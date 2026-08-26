@@ -8,6 +8,7 @@ distinct_from:
   opnorm-leavitt-coarse-fine-return-row: that asks for one operator-norm support row on a nonzero possibly sparse carrier; this asks only for positive normalized-HS cross-Gram mass on the positive-density reblocked active core.
   coherent-heisenberg-multiplicity-decoder: that reconstructs a complete approximate binary Leavitt module; this asks only for the two native selector transports and their relative Pauli gauge.
   moving-signed-source-does-not-localize-paid-sheet-detector: that gives a positive paid moving Hecke row and globally nontrivial factor-level sheet roots but proves that neither is compressed onto an unequal native output; this asks for the missing source-and-target-Gram-typed odd transition.
+  endpoint-detector-cell-retains-coboundary-gauge: that gives an exact ordinary-word endpoint transport for one complete detector/probe mark-return cell but leaves maximal full-range overlap and a moving-frame coboundary; this asks for a native unequal-row Gram in one fixed frame.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism
@@ -246,6 +247,23 @@ literature theorem is permitted in this claim.
   moving-frame gauge as a coboundary.  A successful branching continuation
   therefore needs ordinary-word-authenticated proper subranges with small
   cross-Grams in one fixed Hecke frame, not just more conjugate source types.
+
+  Adding the actual nested detector occurrence does not change this fence.
+  `endpoint-detector-cell-retains-coboundary-gauge` uses the literal
+  `E_(2,6)+E_(2,9)` representative and proves
+
+  ```text
+  [g_3,Y_3]=x_23(b_3),
+  [x_12(a_3),[g_3,Y_3]]=z.
+  ```
+
+  Fresh endpoint Whiteheads conjugate this detector, probe, endpoint pair,
+  mark return and signed source through all three scales.  Every resulting
+  edge is nevertheless a surjective isometry onto the whole moved target,
+  and the six-chart regular `S_3` model retains nontrivial coboundary gauges.
+  Hence the missing input in `(APG1)` is not the existence of an exact
+  endpoint occurrence identity; it is a relation producing proper unequal
+  subranges or a nonmaximal Gram in the prescribed fixed Hecke frame.
 
 - **Polar-correct the paid incidence before applying the Hecke word.**
   `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is

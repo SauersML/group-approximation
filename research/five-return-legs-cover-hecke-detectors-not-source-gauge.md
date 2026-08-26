@@ -12,6 +12,7 @@ distinct_from:
   paid-cut-has-moving-hecke-source-or-detector: that transports a positive source subcut through one prescribed Hecke polar and forces an order-seven exit; this classifies the detector-side probe menu but does not put its representation-dependent multiplicity charts on that prescribed moving subcut.
   eight-external-returns-have-no-whitehead-gauge-lock: that gives an exact finite multiplicity-gauge model after a constant external return has been reached; this finds a complete elementary-root menu but proves that its only possible adjacent-scale endpoint comparison is absent.
   endpoint-whitehead-profile-has-maximal-gram-overlap: that supplies the fresh endpoint Whiteheads proposed here and proves that their finite moved-source automaton is reversible, with maximal overlap between every pair of incoming full-Gram edges.
+  endpoint-detector-cell-retains-coboundary-gauge: that transports an actual depth-three detector/probe mark-return cube through those endpoint Whiteheads; this stops before that extension and only identifies the candidate.
 ---
 
 **ESTABLISHED ALGEBRAIC COVER WITH GAUGE-TYPING FENCE.**  For the `31`
@@ -96,14 +97,23 @@ r in {2,4},                                             (FRC6)
 
 together with the corresponding transport of the paired endpoint ejection.
 That algebraic extension is now exhausted by
-`endpoint-whitehead-profile-has-maximal-gram-overlap`.  It gives exact
+`endpoint-whitehead-profile-has-maximal-gram-overlap` and, at the complete
+detector-occurrence level, by
+`endpoint-detector-cell-retains-coboundary-gauge`.  The latter starts from
+the exceptional `E_(2,6)+E_(2,9)` class, where
+`[g_3,Y_3]=x_23(b_3)`, and transports the detector, probe, matching endpoint
+leg, mark return and signed source together by ordinary conjugation.  Thus
+the fresh word really gives the requested occurrence identity; it is not
+only an isolated coefficient swap.  It gives exact
 full-source/full-range Grams, but the six moved types form the `S_3` Cayley
 profile: both incoming edges at a target have range projection equal to the
 whole same target.  Their cross-Gram square is exactly the target mass, so
 the formal Perron--Frobenius factor `2` is fully paid by overlap.  Choosing
 only one edge gives a permutation profile of spectral radius `1`, and the
 regular `S_3` reservoir realizes the remaining gauges as exact
-coboundaries.  Thus the endpoint Whitehead still needs proper orthogonal
+coboundaries.  The transported detector cube is copied covariantly at every
+chart and does not cut either incoming range.  Thus the endpoint Whitehead
+still needs proper orthogonal
 subranges, or a source-preserving multiplicity-typing occurrence on the
 prescribed moving `R_0 -> P` channel.  Another finite conjugate-source name,
 another disjoint fixed root, or the current `J_m` does not supply either
