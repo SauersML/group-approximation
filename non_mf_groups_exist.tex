@@ -11,9 +11,11 @@
 \anonymousfalse
 \ifanonymous
   \newcommand{\paperauthor}{Anonymous}
+  \newcommand{\coderepo}{the repository accompanying the submission}
 \else
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
+  \newcommand{\coderepo}{\url{https://github.com/SauersML/group-approximation}}
 \fi
 \hypersetup{pdftitle={[DRAFT] Limits of Matrix Approximation of Groups in Operator Norm},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: limits of matrix approximation of groups in operator norm},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
@@ -2904,56 +2906,74 @@ and matrix norms.
 
 Claude Fable~5 and GPT-5.6 Sol were used extensively in mathematical
 exploration, proof development, manuscript drafting, literature navigation,
-Lean formalization, and editorial revision.  The Lean development verifies the
-one-sided transport theorem and the normal property-\textup{(T)} radical
-criterion.  It also verifies the rank 12 compression and commutator
-calculations and the resulting full MF radical conclusion.  For
-Proposition~\ref{prop:simple}, the formalization proves that every nontrivial
-normal subgroup contains an elementary matrix $e_{ij}(x)$ with $x\ne0$.  It
-treats diagonal matrices separately and divides the nondiagonal case according
-to whether the relevant entry of the inverse matrix is zero.
-The formalized simplicity proof uses the concrete two-sided sandwich and the
-fact that every central unit of the binary Leavitt algebra over $\F_2$ equals
-$1$; it does not route through Preusser's general theorem.  That theorem is
-formalized separately in the development, over the hypothesis that the
-coefficient ring admits finite right exchange partitions; the development
-derives the one-element exchange condition from that hypothesis but does not
-prove the two equivalent, so the formalized statement may rest on a stronger
-assumption than Preusser's.  No general theory of pure infiniteness is
-formalized.
+Lean formalization, and editorial revision.  The Lean development is
+available at \coderepo; it builds with \texttt{lake build}, and its
+command \texttt{\#audit\_closed\_axioms} prints the axioms on which any
+declaration depends, so that each endpoint named below can be checked to
+rest on the standard axioms alone.
 
-For Theorem~\ref{thm:recognition}, the development verifies the certificate
-normal form and the passage from a computable finite-output compiler to
+For this paper, the development verifies the following.
+\begin{itemize}
+\item The one-sided transport theorem and the normal
+property-\textup{(T)} radical criterion, which together give
+Theorem~\ref{thm:compression-criterion}.
+\item The rank~$12$ compression and commutator calculations and the
+resulting full MF radical conclusion of Theorem~\ref{thm:headline}.
+\item For Proposition~\ref{prop:simple}, a direct proof that every
+nontrivial normal subgroup contains an elementary matrix $e_{ij}(x)$ with
+$x\ne0$, using the concrete two-sided sandwich and the fact that every
+central unit of the binary Leavitt algebra over $\F_2$ equals $1$; the
+article cites Preusser's theorem instead, and the development formalizes
+that theorem separately over the hypothesis that the coefficient ring
+admits finite right exchange partitions.
+\item The quotient calculus of Theorem~\ref{thm:prescribed-quotients}.
+\item For Theorem~\ref{thm:recognition}, the certificate normal form and
+the passage from a computable finite-output compiler to
 $\Pi^0_2$-completeness; the compiler of Section~\ref{sec:compiler} and
 Theorem~\ref{thm:hnn-permanence} are proved in the article.
+\item A machine-readable manifest lists every numbered statement of this
+paper and records, for each, whether it is matched by a Lean declaration
+or proved in the article.
+\end{itemize}
 
-The development is intended as a research library and not only as a
-certificate for this paper.  Three of its closed, kernel-audited endpoints
-lie outside the present results.  Soficity of a recursively enumerated
-presentation is $\Pi^0_2$-complete; the hardness half follows the
-construction of Bilanovic--Chubb--Roven~\cite{BCR} from a finitely
-presented nonsofic group, whose nonsoficity is that of the Leavitt unit
-group of OpenAI's chapter~\cite{OAI}, re-proved in the development from
-Kun's expander decomposition and the Kun--Thom criterion.
+Beyond this paper, the development proves the following closed,
+kernel-audited statements.
+\begin{itemize}
+\item Soficity of a recursively enumerated presentation is
+$\Pi^0_2$-complete; the hardness half follows the construction of
+Bilanovic--Chubb--Roven~\cite{BCR} from a finitely presented nonsofic
+group, whose nonsoficity is that of the Leavitt unit group of OpenAI's
+chapter~\cite{OAI}, re-proved in the development from Kun's expander
+decomposition and the Kun--Thom criterion.
 \leanverified{Computability/SoficEnumeratedPi02}{GroupApproximation.SoficEnumeratedPi02.sofic_enum_pi02Complete}
-There is one fixed finitely presented non-MF group with a computable
+\item There is one fixed finitely presented non-MF group with a computable
 family of words $w_p$, each invisible to every operator norm matrix model
 and lying in the commutator of the MF radical with the group, such that
 $w_p=1$ exactly when the program $p$ halts.
 \leanverified{Computability/FiniteDimensionalApproximationIncomplete}{GroupApproximation.FiniteDimensionalApproximationIncomplete.fixed_MF_radical_computer}
-There is a finitely presented, point-norm matricially stable, non-MF group
-whose MF radical is the normal closure of a single nontrivial element.
+\item There is a finitely presented, point-norm matricially stable, non-MF
+group whose MF radical is the normal closure of a single nontrivial
+element.
 \leanverified{Sofic/InvisibleExtensions}{GroupApproximation.InvisibleExtensions.stable_nonMF_invisible_extension_exists}
-The library also contains formalizations of Shalom's theorem that every
-finitely generated group with property~\textup{(T)} is a quotient of a
-finitely presented one, of property~\textup{(T)} for $\mathrm{SL}_3(\mathbb Z)$
-from an exact rational sum-of-squares certificate, and of the fact that the
-level-three congruence subgroup $\Gamma(3)$ of $\mathrm{SL}_3(\mathbb Z)$ is
-torsion-free, finitely presented, and has property~\textup{(T)}.
+\item Property~\textup{(T)} for $\mathrm{SL}_3(\mathbb Z)$, from an exact
+rational sum-of-squares certificate.
 \leanverified{Kazhdan/SL3Certificate}{GroupApproximation.SL3Certificate.sl3_hasKazhdanPropertyT}
+\item The level-three congruence subgroup $\Gamma(3)$ of
+$\mathrm{SL}_3(\mathbb Z)$ is torsion-free, finitely presented, and has
+property~\textup{(T)}.
 \leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_torsionFree}
 \leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_finitelyPresented}
 \leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_kazhdan}
+\item Shalom's theorem that every finitely generated group with
+property~\textup{(T)} is a quotient of a finitely presented group with
+property~\textup{(T)}.
+\end{itemize}
+
+The development is organized for reuse: the group properties are the
+predicates \texttt{IsOperatorMF}, \texttt{IsSofic} and
+\texttt{HasKazhdanPropertyT}, the statements of this paper are collected
+under \texttt{Manuscript/OneSidedMFRadical}, and new results can be stated
+against the same definitions and audited with the same command.
 
 \begin{thebibliography}{99}
 \frenchspacing
