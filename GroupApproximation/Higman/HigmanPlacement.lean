@@ -292,6 +292,13 @@ theorem higmanGenerated_recGraph_of_generated (p k t : ℕ) (hk : p + 5 ≤ k)
     (fun d₁ d₂ => by simpa [succCoord, succPair] using higmanGenerated_succPair d₁ d₂)
     (fun n c _ R hR => higmanGenerated_placeAt n c R hR)
 
+/-- The integer-addition graph is generated with its former equality and
+successor premises discharged. -/
+theorem higmanGenerated_addGraph_unconditional : HigmanGenerated addGraph := by
+  exact higmanGenerated_addGraph
+    (fun d₁ d₂ => by simpa [eqCoord, eqRel] using higmanGenerated_eqRel d₁ d₂)
+    (fun d₁ d₂ => by simpa [succCoord, succPair] using higmanGenerated_succPair d₁ d₂)
+
 end Seq
 end Higman
 end GroupApproximation
