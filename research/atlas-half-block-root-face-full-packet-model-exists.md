@@ -134,5 +134,33 @@ simultaneously automatic for arbitrary fine coefficient maps; their
 nuisance-quotient reservoir rank is zero. Thus coupling adjacent rows inside
 the initial same-source orthogonality block does not improve the situation.
 
+Nor does moving to genuinely distinct sources. The first canonical pair
+with distinct source columns and target rows is
+`orth_12_43_ee,orth_12_43_ef` (packet entries `381,382`). By
+`atlas-first-disjoint-mixed-pair-has-zero-reservoir-rank`, the disjoint
+matrix blocks again multiply to zero in both orders, leaving the two fine
+maps arbitrary and contributing zero nuisance-quotient rank. The first
+viable coupled family must therefore include a composable multiplication or
+return row rather than only orthogonality rows.
+
+The first composable family is now exhausted as well. Packet entries
+`3261,3262` are the two St3 rows with common first leg `x_13(e)`, second legs
+`x_32(e),x_32(f)`, and RHS paths `x_12(ee),x_12(ef)`. By
+`atlas-first-composable-mixed-pair-has-zero-quotient-rank`, retaining those
+two RHS paths as nuisance columns gives coefficient matrix `[I_2,-I_2]` and
+quotient-rank increment zero. The next useful family must contain a return
+which identifies a product RHS with an already authenticated occurrence;
+another multiplication row with a fresh product nuisance cannot suffice.
+
+The first literal return does create some rank, but not enough. The three
+factorizations of the common RHS `x_12(ee)` through intermediate indices
+`3,4,5` form the earliest complete return star. By
+`atlas-first-common-rhs-return-star-has-rank-two`, its coefficient matrix is
+`[I_3,-1_3]`: the two path differences survive nuisance elimination, while
+the common product mode does not. Arbitrary unequal intermediate reservoirs
+factor the same common map exactly. The next family must therefore return
+that common RHS to an independently authenticated chart occurrence, not just
+factor it through another rank-five index.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear

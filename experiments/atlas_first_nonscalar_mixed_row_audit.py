@@ -24,6 +24,7 @@ from atlas_relator_rank5_full_family import generate_relators
 
 
 ORTH = re.compile(r"orth_(\d)(\d)_(\d)(\d)_([1efEF])([1efEF])$")
+ST3 = re.compile(r"st3_(\d)(\d)(\d)_([1efEF])([1efEF])$")
 
 
 def mixed_rows(rows):
@@ -43,6 +44,69 @@ def mixed_rows(rows):
     if not selected:
         raise AssertionError("the complete packet has no mixed coefficient row")
     return selected
+
+
+def disjoint_mixed_rows(rows):
+    """Rows whose two roots have distinct sources and distinct targets."""
+    selected = []
+    for index, (name, word) in enumerate(rows):
+        match = ORTH.fullmatch(name)
+        if match is None:
+            continue
+        i, j, k, ell = map(int, match.group(1, 2, 3, 4))
+        left_coefficient, right_coefficient = match.group(5, 6)
+        mixed_direction = (i < j) != (k < ell)
+        coefficient_bearing = (
+            left_coefficient != "1" and right_coefficient != "1"
+        )
+        genuinely_disjoint = i != k and j != ell
+        if mixed_direction and coefficient_bearing and genuinely_disjoint:
+            selected.append((index, name, word))
+    if not selected:
+        raise AssertionError("the packet has no disjoint mixed coefficient row")
+    return selected
+
+
+def composable_mixed_rows(rows):
+    """Nonconstant St3 rows whose three roots are not all one orientation."""
+    selected = []
+    for index, (name, word) in enumerate(rows):
+        match = ST3.fullmatch(name)
+        if match is None:
+            continue
+        i, j, k = map(int, match.group(1, 2, 3))
+        left_coefficient, right_coefficient = match.group(4, 5)
+        directions = (i < j, j < k, i < k)
+        mixed_direction = len(set(directions)) > 1
+        coefficient_bearing = (
+            left_coefficient != "1" and right_coefficient != "1"
+        )
+        if mixed_direction and coefficient_bearing:
+            selected.append((index, name, word))
+    if not selected:
+        raise AssertionError("the packet has no composable mixed coefficient row")
+    return selected
+
+
+def first_common_rhs_star(rows):
+    """First St3 target/product signature with two canonical factorizations."""
+    by_rhs = {}
+    for index, (name, word) in enumerate(rows):
+        match = ST3.fullmatch(name)
+        if match is None:
+            continue
+        i, j, k = map(int, match.group(1, 2, 3))
+        left_coefficient, right_coefficient = match.group(4, 5)
+        directions = (i < j, j < k, i < k)
+        if (left_coefficient == "1" or right_coefficient == "1"
+                or len(set(directions)) == 1):
+            continue
+        key = (i, k, left_coefficient, right_coefficient)
+        by_rhs.setdefault(key, []).append((index, name, word, j))
+    candidates = [value for value in by_rhs.values() if len(value) >= 2]
+    if not candidates:
+        raise AssertionError("the packet has no repeated mixed St3 RHS")
+    return min(candidates, key=lambda value: value[1][0])
 
 
 def matrix_units_multiply(left, right):
@@ -90,6 +154,54 @@ def main():
         lengths[matrix.tobytes()] for _factor, matrix in second_word
     ))
     print("the two-row family is simultaneously automatic")
+
+    disjoint = disjoint_mixed_rows(rows)
+    first_disjoint = disjoint[0]
+    second_disjoint = disjoint[1]
+    assert first_disjoint[0:2] == (380, "orth_12_43_ee")
+    assert second_disjoint[0:2] == (381, "orth_12_43_ef")
+    assert len(first_disjoint[2]) == len(second_disjoint[2]) == 36
+    assert sum(lengths[matrix.tobytes()]
+               for _factor, matrix in first_disjoint[2]) == 130
+    assert sum(lengths[matrix.tobytes()]
+               for _factor, matrix in second_disjoint[2]) == 154
+    assert matrix_units_multiply((1, 2), (4, 3)) is None
+    assert matrix_units_multiply((4, 3), (1, 2)) is None
+    print("first disjoint coupled indices:",
+          first_disjoint[0], second_disjoint[0])
+    print("first disjoint coupled names:",
+          first_disjoint[1], second_disjoint[1])
+    print("disjoint two-row family is simultaneously automatic")
+
+    composable = composable_mixed_rows(rows)
+    first_composable = composable[0]
+    second_composable = composable[1]
+    assert first_composable[0:2] == (3260, "st3_132_ee")
+    assert second_composable[0:2] == (3261, "st3_132_ef")
+    assert len(first_composable[2]) == len(second_composable[2]) == 85
+    assert sum(lengths[matrix.tobytes()]
+               for _factor, matrix in first_composable[2]) == 271
+    assert sum(lengths[matrix.tobytes()]
+               for _factor, matrix in second_composable[2]) == 343
+    print("first composable coupled indices:",
+          first_composable[0], second_composable[0])
+    print("first composable coupled names:",
+          first_composable[1], second_composable[1])
+    print("their two right-hand-side products are independent nuisance columns")
+
+    rhs_star = first_common_rhs_star(rows)
+    assert [(entry[0], entry[1], entry[3]) for entry in rhs_star] == [
+        (3260, "st3_132_ee", 3),
+        (3335, "st3_142_ee", 4),
+        (3408, "st3_152_ee", 5),
+    ]
+    assert [len(entry[2]) for entry in rhs_star] == [85, 85, 39]
+    assert [sum(lengths[matrix.tobytes()]
+                for _factor, matrix in entry[2])
+            for entry in rhs_star] == [271, 295, 130]
+    print("first common-RHS return star:",
+          [(entry[0], entry[1]) for entry in rhs_star])
+    print("full three-path star has quotient-rank increment two")
     return 0
 
 
