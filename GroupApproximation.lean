@@ -1845,6 +1845,7 @@ import GroupApproximation.Higman.InjectedCompilerTower
 import GroupApproximation.Higman.MikhailovaFiberProduct
 import GroupApproximation.Higman.MikhailovaGraphProductWitness
 import GroupApproximation.Higman.MikhailovaRankThreeWitness
+import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.PairedFoldKernel
 import GroupApproximation.Higman.PairedReturnFirstIntersection
 import GroupApproximation.Higman.PairedReturnGraphIntersection
