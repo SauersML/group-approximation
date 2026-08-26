@@ -81,6 +81,24 @@ excluded by the regular-trace firewall.
   word equality authenticates the native Whitehead occurrences but does
   not attach them to the unequal controlled selector outputs.
 
+- **Keep both literal quarter-label Whiteheads and import only the unequal
+  source ranks.**  This conditional affine endpoint is valid and stronger
+  than `(SNA2)`: if actual source reflections of negative fractions
+  `1/2,1/4` were conjugated to `W_1,W_2` themselves, the two common
+  `q=1/4` rows would force the conjugate gauge parameter to equal both
+  `1/2` and `1`.  But
+  `quarter-whiteheads-lack-unequal-source-conjugacy` audits the named
+  native and Hecke rows and finds no such conjugacy.  The Hecke source flags
+  have the correct ranks only as occurrence-untyped compressed supports and
+  do not even begin on the same literal carrier as the same-center packet.
+  Replacing those supports by `1-2r_i` would introduce analytic
+  group-algebra reflections rather than actual existing word occurrences.
+  On the largest corner reducing both Whiteheads, `(CNW9)` collapses the two
+  Hecke target maps while the Whiteheads remain distinct quarter swaps.
+  Imposing the missing conjugacies on the whole fixed carrier merely invokes
+  the exact affine firewall.  Thus this shortcut removes `C_(1/8)` only
+  conditionally and does not remove occurrence typing.
+
 - **Find an odd relation using only the common Pauli carrier.**  This is
   impossible at the group level:
   `same-center-pauli-actors-have-whitehead-sign-quotient` maps every Pauli
