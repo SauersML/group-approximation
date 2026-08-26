@@ -48,3 +48,11 @@ freedom: the singular charged state and all charged pointwise tests erase
 them.  Hence a positive witness cannot be monomial modulo compacts, rather
 than merely a compactly blurred Schreier model.  This does not exclude an
 abstract Calkin normalizer which has no coherent monomial lifts.
+
+The obstruction is actually larger than the compact ideal.
+`fournier-facio-charge-null-monomial-perturbations-impossible` removes every
+perturbation which vanishes in the charged column seminorm, even when it is
+noncompact and has order-one norm on an infinite charge-null subspace.  A
+positive construction must therefore put genuinely delocalized,
+nonmonomial action on a set of **positive charge**; a charge-null non-Cartan
+reservoir cannot carry the missing hyperlinearity witness.
