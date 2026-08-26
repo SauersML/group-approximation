@@ -363,7 +363,7 @@ literature theorem is permitted in this claim.
 
   The obvious mixed relation between the two explicit cells is exact but
   moves the source.  In
-  `simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`,
+  `mixed-whitehead-cell-moves-signed-source`,
   the product of the endpoint `(2,4)` Whitehead and native `(8,9)` Whitehead
   fixes `g_*` and carries the complete depth-two cell to depth three.  It
   fails to normalize `(L_0,lambda_0)`: the original and moved signed groups

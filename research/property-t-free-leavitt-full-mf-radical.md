@@ -573,7 +573,7 @@ common unequal native range.
 
 The shortest mixed relation tying the explicit two-depth cells has also
 been computed.  In
-`simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`,
+`mixed-whitehead-cell-moves-signed-source`,
 the product of matching endpoint and native prefix Whiteheads fixes the
 positive actor and conjugates its whole depth-two mark cell to depth three.
 But it does not normalize the signed source: the exact intersection has

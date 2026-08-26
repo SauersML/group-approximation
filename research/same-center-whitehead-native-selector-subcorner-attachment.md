@@ -367,7 +367,7 @@ excluded by the regular-trace firewall.
 
   The simultaneous endpoint/prefix swap provides the expected global
   conjugacy but not the missing subcorner.
-  `simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`
+  `mixed-whitehead-cell-moves-signed-source`
   constructs an involution fixing `g_*` and transporting both arms of its
   depth-two cell to depth three.  This involution moves `Q`; the two signed
   groups meet in order `16`, and their regular Hecke overlap

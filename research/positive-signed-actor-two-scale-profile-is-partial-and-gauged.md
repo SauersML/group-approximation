@@ -10,7 +10,7 @@ distinct_from:
   exceptional-endpoint-detector-products-stay-at-depth-three: that closes products of the three final endpoint classes; this exhausts all positive nonidentity L0 conjugacy classes and both endpoint-cell orientations.
   five-return-legs-cover-hecke-detectors-not-source-gauge: that uses non-source-preserving Pauli probes to extract roots from twenty-eight of the thirty-one root-free classes; this tests whether the actor itself already has two fixed-source native-depth incidences.
   endpoint-detector-cell-retains-coboundary-gauge: that moves a depth-three root-free occurrence with endpoint Whiteheads; this finds a genuine fixed-Q two-depth occurrence outside the root-free frontier and identifies its remaining independent gauge.
-  simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge: that supplies the natural ordinary word conjugating the two concrete g-star cells and computes its signed-source intersection; this stops before adding that mixed word.
+  mixed-whitehead-cell-moves-signed-source: that supplies the natural ordinary word conjugating the two concrete g-star cells and computes its signed-source intersection; this stops before adding that mixed word.
 ---
 
 **ESTABLISHED COMPLETE POSITIVE-ACTOR PROFILE AUDIT.**  For a positive
@@ -80,7 +80,7 @@ probe or add a fixed-frame target relation.  No Property `(T)`, canonical
 trace, literature input, local computation, or Lean compilation is used.
 
 The shortest natural target relation is now known and confirms this exact
-boundary.  `simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`
+boundary.  `mixed-whitehead-cell-moves-signed-source`
 multiplies the endpoint `(2,4)` partial Whitehead by the native `(8,9)`
 prefix Whitehead.  The resulting involution fixes `g_*` and conjugates the
 whole depth-two cell to the depth-three cell.  It also moves `Q`: its signed

@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: simultaneous-endpoint-prefix-whitehead-source-fence-proof
+id: mixed-whitehead-cell-source-fence-proof
 kind: route
 title: Conjugate the g-star cells by the simultaneous partial swap and compute the signed intersection
-target: simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge
+target: mixed-whitehead-cell-moves-signed-source
 requires:
   - positive-signed-actor-two-scale-profile-is-partial-and-gauged
   - endpoint-whitehead-signed-source-has-only-relative-hecke-overlap

@@ -1,10 +1,10 @@
 ---
 rg: 2
-id: simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge
+id: mixed-whitehead-cell-moves-signed-source
 kind: claim
 title: The shortest mixed Whitehead transports the two-scale cell but moves its signed source
 artifacts:
-  - research/simultaneous-endpoint-prefix-whitehead-source-fence-proof.md
+  - research/mixed-whitehead-cell-source-fence-proof.md
   - experiments/fixed_q_two_scale_mixed_relation_audit.py
 distinct_from:
   positive-signed-actor-two-scale-profile-is-partial-and-gauged: that finds the fixed-Q actor g-star and leaves its two cell gauges independent; this adds the natural ordinary word conjugating the complete first cell to the second.
@@ -92,4 +92,4 @@ Property `(T)`, canonical-trace hypothesis for the MF model, literature
 input, local computation, or Lean compilation is used.
 
 DERIVATION
-simultaneous-endpoint-prefix-whitehead-source-fence-proof
+mixed-whitehead-cell-source-fence-proof
