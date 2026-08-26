@@ -424,5 +424,70 @@ noncomputable def productCodeEquiv (c d : PresentationCode) :
     ((congrEquiv (productGeneratorEquiv c d) (productRels c d)).symm.trans
       (productPresentationEquiv c d))
 
+@[simp] theorem productCodeEquiv_leftGenerator (c d : PresentationCode)
+    (i : Fin (genCount c)) :
+    productCodeEquiv c d
+        (PresentedGroup.of (letterOf (productCode c d) i)) =
+      ((PresentedGroup.of (letterOf c i), 1) : Carrier c × Carrier d) := by
+  rw [← productGeneratorEquiv_inl c d i]
+  change productPresentationEquiv c d
+    (PresentedGroupRelabel.relabelHomSymm (productGeneratorEquiv c d)
+      (productRels c d)
+      (presCongrSet (relSet_productCode c d)
+        (carrierEquivList (productCode c d)
+          (PresentedGroup.of (productGeneratorEquiv c d (Sum.inl i)))))) = _
+  have hlist := presCongrSet_mk (coe_relatorFinset (productCode c d))
+    (FreeGroup.of (productGeneratorEquiv c d (Sum.inl i)))
+  change carrierEquivList (productCode c d)
+      (PresentedGroup.of (productGeneratorEquiv c d (Sum.inl i))) =
+    PresentedGroup.of (productGeneratorEquiv c d (Sum.inl i)) at hlist
+  rw [hlist]
+  have hrel := presCongrSet_mk (relSet_productCode c d)
+    (FreeGroup.of (productGeneratorEquiv c d (Sum.inl i)))
+  change presCongrSet (relSet_productCode c d)
+      (PresentedGroup.of (productGeneratorEquiv c d (Sum.inl i))) =
+    PresentedGroup.of (productGeneratorEquiv c d (Sum.inl i)) at hrel
+  rw [hrel, PresentedGroupRelabel.relabelHomSymm_of]
+  simp only [Equiv.symm_apply_apply]
+  change toProduct c d (PresentedGroup.of (Sum.inl i)) = _
+  rw [toProduct_of_inl]
+  have hi : letterOf c (i : ℕ) = i := by
+    apply Fin.ext
+    exact RawWord.letterOf_val_of_lt c i.isLt
+  rw [hi]
+
+@[simp] theorem productCodeEquiv_rightGenerator (c d : PresentationCode)
+    (j : Fin (genCount d)) :
+    productCodeEquiv c d
+        (PresentedGroup.of
+          (letterOf (productCode c d) (genCount c + j))) =
+      ((1, PresentedGroup.of (letterOf d j)) : Carrier c × Carrier d) := by
+  rw [← productGeneratorEquiv_inr c d j]
+  change productPresentationEquiv c d
+    (PresentedGroupRelabel.relabelHomSymm (productGeneratorEquiv c d)
+      (productRels c d)
+      (presCongrSet (relSet_productCode c d)
+        (carrierEquivList (productCode c d)
+          (PresentedGroup.of (productGeneratorEquiv c d (Sum.inr j)))))) = _
+  have hlist := presCongrSet_mk (coe_relatorFinset (productCode c d))
+    (FreeGroup.of (productGeneratorEquiv c d (Sum.inr j)))
+  change carrierEquivList (productCode c d)
+      (PresentedGroup.of (productGeneratorEquiv c d (Sum.inr j))) =
+    PresentedGroup.of (productGeneratorEquiv c d (Sum.inr j)) at hlist
+  rw [hlist]
+  have hrel := presCongrSet_mk (relSet_productCode c d)
+    (FreeGroup.of (productGeneratorEquiv c d (Sum.inr j)))
+  change presCongrSet (relSet_productCode c d)
+      (PresentedGroup.of (productGeneratorEquiv c d (Sum.inr j))) =
+    PresentedGroup.of (productGeneratorEquiv c d (Sum.inr j)) at hrel
+  rw [hrel, PresentedGroupRelabel.relabelHomSymm_of]
+  simp only [Equiv.symm_apply_apply]
+  change toProduct c d (PresentedGroup.of (Sum.inr j)) = _
+  rw [toProduct_of_inr]
+  have hj : letterOf d (j : ℕ) = j := by
+    apply Fin.ext
+    exact RawWord.letterOf_val_of_lt d j.isLt
+  rw [hj]
+
 end DirectProductCodeSemantics
 end GroupApproximation
