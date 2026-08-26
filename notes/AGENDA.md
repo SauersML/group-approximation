@@ -70,6 +70,13 @@ one charge-null finite-block replacement whose every bounded block-size
 stratum has charge zero.  Therefore a null-boundary theorem alone no longer
 closes the lane; it must also force tight dimensions or control the internal
 matrix dynamics uniformly at dimension infinity.
+The first such constraint is established:
+`fournier-facio-fixed-block-spectrum-escapes` shows that nonsoficity forces
+one nontrivial actor to fix positive block charge, while torsion-free regular
+character forces the number of its distinct internal eigenphases to escape
+every finite cutoff there.  Large multiplicities of a bounded phase model
+are therefore excluded; the common-block survivor needs genuine spectral
+entropy at infinity.
 
 The Kun--Thom fork now has a factor-base reformulation which is genuinely
 different from the forbidden Cartan models.  The wreath embeds in

@@ -92,3 +92,12 @@ comparison with every bounded block-size stratum of charge zero.  Closing
 this face therefore requires a **tight** Cartanization theorem, a uniform
 constraint on internal matrix dynamics as dimensions diverge, or a direct
 obstruction on the genuinely infinite support component.
+
+The first uniform internal constraint is now known.
+`fournier-facio-fixed-block-spectrum-escapes` uses nonsoficity to find a
+nontrivial group element fixing positive block charge and then uses
+torsion-free power recurrence to prove that its number of distinct internal
+eigenphases escapes every finite cutoff.  Thus dimension-at-infinity cannot
+be supplied merely by amplifying a bounded spectral model.  A positive
+common-block construction needs genuinely increasing spectral complexity on
+the fixed sector.
