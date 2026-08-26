@@ -469,7 +469,7 @@ theorem hnnNumberedRels_subset_coded {A : Type} [Group A] (g : ℕ → A) :
         Or.inl ⟨w, hw, rfl⟩, ?_⟩
       rw [relabel_base_word]
       exact (numbered_base_relator w).symm
-    · exact False.elim hw
+    · exact hw.elim
   · refine ⟨freeEval (hnnRaw i), Or.inr ⟨2 * i, ?_⟩, ?_⟩
     · rw [hnnFam_even (n := 2 * i) (by omega)]
       congr 2 <;> omega

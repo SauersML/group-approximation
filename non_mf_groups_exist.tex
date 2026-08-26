@@ -403,41 +403,6 @@ Every homomorphism from $H$ to an MF group is trivial.  Hence $H$ is
 non-MF, and $C^*_{\mathrm r}(H)$ is separable and stably finite but not MF.
 \end{mainthm}
 
-%<webmath object="τ" when="\tau L\tau^{-1}\le L" title="the matrix tau that carries L back inside L">
-% The [[Greek letter]] \(\tau\), read “tau,” names a particular [[invertible]]
-% 12-by-12 [[matrix]] constructed later.  The [[superscript]] \(-1\) means
-% [[inverse]].  The product \(\tau L\tau^{-1}\) means apply [[conjugation]] by
-% tau to every element of the [[subgroup]] L.  The symbol \(\le\) says every
-% result still lies in L, although not every element of L must be reached.
-% This containment in only one direction is what the [[property (T)]] argument
-% needs.
-%</webmath>
-Inside $H$, an explicit element $\tau$ satisfies $\tau L\tau^{-1}\le L$ for
-the subgroup $L\cong\EL_3(R)$ in the upper left.
-The element $c=e_{34}(1)$
-centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
-\leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_compresses_corner}
-\leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_c_commutator_ell}
-%<webmath object="d" when="d=e_{02}(s_1t_1)" title="a concrete nonidentity element of H">
-% The letter d names a [[commutator]] comparing the products
-% \(\tau c\tau^{-1}\ell\) and \(\ell\tau c\tau^{-1}\).  The equality says d
-% is the [[elementary matrix]] \(e_{02}(s_1t_1)\): an [[identity matrix]] with
-% \(s_1t_1\) added in row 0, column 2.  The 0 and 2 are row and column
-% [[index|indices]]; this paper numbers from 0.  The [[Leavitt algebra]]
-% equations imply \(s_1t_1\ne0\), so d is not the identity.  The equation
-% \(t_1(s_1t_1)s_1=1\) shows that the coefficient is nonzero, and simplicity
-% of H then makes the [[normal closure]] of d the whole group.
-%</webmath>
-\[
-d=e_{02}(s_1t_1).
-\]
-Since $H$ is simple and $d\ne1$, the element $d$ normally generates $H$.
-\leanverified{Manuscript/OneSidedMFRadical/RankTwelveEndpoints}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.normalClosure_defect_eq_top}
-The containment $d\in\mathfrak D_H(L)$ therefore gives
-$\mathfrak D_H(L)=H$, and Theorem~\ref{thm:compression-criterion} gives
-$\Rad_{\mathrm{MF}}(H)=H$.
-\leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top}
-
 \begin{mainthm}[a torsion-free group with full MF radical]
 \label{thm:torsion-free}
 There is a two-generated, finitely presented, torsion-free, acylindrically

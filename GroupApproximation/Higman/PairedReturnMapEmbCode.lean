@@ -30,11 +30,11 @@ abbrev Input : Type := PresentationCode × (List Raw × RankThreeWords)
 def targetGeneratorWord (x : Input) (i : ℕ) : Raw :=
   x.2.1.getD i []
 
-def fixedAmbientGeneratorWord (i : ℕ) : Raw :=
+noncomputable def fixedAmbientGeneratorWord (i : ℕ) : Raw :=
   ambientPGeneratorWords.getD i []
 
 /-- The six displayed gluing pairs, in the canonical order of `pGenerators`. -/
-def edgePairs (x : Input) : List (Raw × Raw) :=
+noncomputable def edgePairs (x : Input) : List (Raw × Raw) :=
   [(fixedAmbientGeneratorWord 0, targetGeneratorWord x 0),
     (fixedAmbientGeneratorWord 1, targetGeneratorWord x 1),
     (fixedAmbientGeneratorWord 2, targetGeneratorWord x 2),
@@ -46,19 +46,22 @@ def threeMarkedWords (x : Input) : List Raw :=
   [x.2.2.1, x.2.2.2.1, x.2.2.2.2]
 
 /-- The concrete input to the generic effective `mapEmb` transform. -/
-def mapEmbInput (x : Input) : BenignMapEmbCode.Input :=
+noncomputable def mapEmbInput (x : Input) : BenignMapEmbCode.Input :=
   (((ambientCode, x.1), edgePairs x), (fiveWords, threeMarkedWords x))
 
 /-- The finite rope input produced from the fixed paired-return leaf. -/
-def rankThreeData (x : Input) : RankThreeInputData :=
+noncomputable def rankThreeData (x : Input) : RankThreeInputData :=
   BenignMapEmbRopeInput.rankThreeData (mapEmbInput x)
 
 /-- The resulting finite presentation code. -/
-def compile (x : Input) : PresentationCode :=
+noncomputable def compile (x : Input) : PresentationCode :=
   MikhailovaRopeCode.compileRankThree (rankThreeData x)
 
 @[simp] theorem rankThreeData_words (x : Input) :
-    (rankThreeData x).2.2 = x.2.2 := by
+    (rankThreeData x).2.2 =
+      (DirectProductCode.rightWord ambientCode x.1 x.2.2.1,
+        (DirectProductCode.rightWord ambientCode x.1 x.2.2.2.1,
+          DirectProductCode.rightWord ambientCode x.1 x.2.2.2.2)) := by
   apply BenignMapEmbRopeInput.rankThreeData_words_of_exact
   rfl
 

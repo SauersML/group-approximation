@@ -54,5 +54,13 @@ The statement only identifies the smallest genuine compatibility target and
 rules out a single braid hexagon (or a disk of shared hexagons) as that
 target.
 
+There is a further decisive limitation.  By
+`permutohedral-determinant-flux-is-bianchi-trivial`, if the `c_f` are the
+determinant curvatures of one genuinely shared edge family, `(PSC2)` holds
+identically.  Thus the rank-three sphere is the first **incidence equation**
+for independently prescribed face targets, but it cannot itself provide a
+nonzero determinant obstruction.  A genuine obstruction there must retain
+nonabelian, occurrence-typed packet data.
+
 DERIVATION
 first-permutohedral-scalar-obstruction-proof

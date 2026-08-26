@@ -102,5 +102,9 @@ invariant of finite-dimensional approximants that `delta_e` violates.
   compatibility target in the permutohedral atlas is the closed `S_4`
   surface: by `first-permutohedral-scalar-obstruction-is-rank-three`, once
   the six square faces are fixed, the product of the eight braid-face phases
-  is gauge-invariant.  No native binary-Leavitt occurrence is currently
-  known to force that product nontrivial.
+  is the first closed incidence constraint.  But
+  `permutohedral-determinant-flux-is-bianchi-trivial` shows that this product
+  is automatically one for determinants extracted from a genuinely shared
+  edge family.  Hence even the first shared-cell target must retain
+  nonabelian, occurrence-typed holonomy; scalar or determinant flux cannot
+  decide `(RNM1)`.

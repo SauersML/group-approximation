@@ -3,10 +3,13 @@ import Mathlib.Analysis.CStarAlgebra.CStarMatrix
 
 open GroupApproximation
 
-example {A : Type} [CStarAlgebra A] (k : ℕ) [Nonempty (Fin k)] :
-    NonUnitalCStarAlgebra (CStarMatrix (Fin k) (Fin k) A) := by
-  infer_instance
+variable {A : Type} [CStarAlgebra A] (k : ℕ) [Nonempty (Fin k)]
 
-example {A : Type} [CStarAlgebra A] (k : ℕ) [Nonempty (Fin k)] :
-    CStarAlgebra (CStarMatrix (Fin k) (Fin k) A) := by
-  infer_instance
+#synth NormedRing (CStarMatrix (Fin k) (Fin k) A)
+#synth CompleteSpace (CStarMatrix (Fin k) (Fin k) A)
+#synth StarRing (CStarMatrix (Fin k) (Fin k) A)
+#synth NormedStarGroup (CStarMatrix (Fin k) (Fin k) A)
+#synth CStarRing (CStarMatrix (Fin k) (Fin k) A)
+#synth Algebra ℂ (CStarMatrix (Fin k) (Fin k) A)
+#synth NormedAlgebra ℂ (CStarMatrix (Fin k) (Fin k) A)
+#synth StarModule ℂ (CStarMatrix (Fin k) (Fin k) A)
