@@ -79,6 +79,33 @@ theorem Q_eq_qGraph_range : Q = qGraph.range := by
         · exact (edgeFold_muToM w).symm
       _ = qGraph e := congrArg qGraph hw
 
+/-- Every right-vertex element is a synchronized element followed by an edge
+element.  This removes the right vertex as an independent normal-form
+obstruction in the matched-subamalgam closure problem. -/
+theorem exists_Q_mul_edge (z : C) :
+    ∃ q ∈ Q, ∃ e : Edge, z = q * edgeToC e := by
+  let e₀ : Edge := PairedReturnGraphIntersection.muToM
+    (Monoid.Coprod.inl z.2)
+  have hfold : edgeFold e₀ = z.2 := by
+    simp [e₀, edgeFold_muToM]
+  have hq : qGraph e₀ ∈ Q := by
+    rw [Q_eq_qGraph_range]
+    exact ⟨e₀, rfl⟩
+  refine ⟨qGraph e₀, hq, e₀⁻¹ * z.1, ?_⟩
+  apply Prod.ext
+  · simp [qGraph_apply]
+  · simp [qGraph_apply, hfold]
+
+/-- Equivalently, `Q` together with the amalgamated edge generates the whole
+right vertex group. -/
+theorem Q_sup_edgeRange : Q ⊔ edgeToC.range = ⊤ := by
+  apply top_unique
+  intro z _
+  obtain ⟨q, hq, e, rfl⟩ := exists_Q_mul_edge z
+  exact (Q ⊔ edgeToC.range).mul_mem
+    ((show Q ≤ Q ⊔ edgeToC.range from le_sup_left) hq)
+    ((show edgeToC.range ≤ Q ⊔ edgeToC.range from le_sup_right) ⟨e, rfl⟩)
+
 /-- The graph embedding, with codomain restricted to `Q`. -/
 def qGraphToQ : Edge →* Q :=
   qGraph.codRestrict Q fun e ↦ by
