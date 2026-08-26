@@ -139,3 +139,10 @@ degree-`r` source packet to a transverse degree-`r^2` tuple also contradicts
 operator-MF, regardless of the corner's normalized rank.  Thus neither the
 Toeplitz nor the PI backend needs positive density here; both stop at the
 same-occurrence selector.
+
+For this group the transverse target packet is no longer hypothetical.
+`binary-jacobson-head-sector-has-native-two-qubit-packet` gives four literal
+root words which generate `M_4 tensor I` on every nonzero rounded head cut,
+while the first pair gives the degree-two source factor.  Therefore the PI
+alternative is missing only its one common returned occurrence; target
+fullness and target word visibility are established.
