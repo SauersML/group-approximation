@@ -15,7 +15,7 @@ distinct_from:
 ```text
 P D P^* = D^2,
 epsilon = ||D-K P K^*||_op,
-r       = ||[K^4,P]||_op.                             (HOM1)
+r       = ||K^4 P K^(-4)-P||_op.                      (HOM1)
 ```
 
 Define
@@ -43,7 +43,7 @@ Consequently, if the `q=3^n` periodic clocks admit matchers `K_n` with
 
 ```text
 ||D_n-K_nP_nK_n^*||_op ->0,
-||[K_n^4,P_n]||_op ->0,                               (HOM5)
+||K_n^4P_nK_n^(-4)-P_n||_op ->0,                      (HOM5)
 ```
 
 then `(U_(0,n),...,U_(3,n))` is a full operator-norm Higman microstate and

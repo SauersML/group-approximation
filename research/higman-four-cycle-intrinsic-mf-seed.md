@@ -123,5 +123,5 @@ generator of a noncollapsing sequence must remain outside the operator-norm
 unrestricted quadratic-size gauge space for absorbing the fourth return.
 On the other hand, `order-four-bs-matcher-builds-higman-opnorm-microstate`
 shows that matchers with both vanishing one-step error and
-`||[K^4,P]||->0` would immediately refute this node; no stronger return
+`||K^4 P K^(-4)-P||->0` would immediately refute this node; no stronger return
 `K^4->1` is required.

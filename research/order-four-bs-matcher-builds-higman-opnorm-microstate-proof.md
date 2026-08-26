@@ -29,7 +29,7 @@ For the last row, compare its repeated occurrence `X_0` with the noncyclic
 next occurrence `X_4`.  Since
 
 ```text
-||X_4-X_0||=||K^4 P K^(-4)-P||=||[K^4,P]||=r,
+||X_4-X_0||=||K^4 P K^(-4)-P||=r,
 ```
 
 unitary invariance and `||A^2-B^2||<=2||A-B||` give

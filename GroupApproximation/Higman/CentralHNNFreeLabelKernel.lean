@@ -20,6 +20,101 @@ variable {G : Type} [Group G] (M : Subgroup G)
 
 noncomputable section
 
+/-! ## Coordinate intersections in an arbitrary free group -/
+
+namespace Coordinate
+
+variable {ι : Type}
+
+/-- Kill the free generators outside `S`. -/
+noncomputable def killOutside (S : Set ι) : FreeGroup ι →* FreeGroup ι := by
+  classical
+  exact FreeGroup.lift (fun i => if i ∈ S then FreeGroup.of i else 1)
+
+theorem killOutside_of_mem {S : Set ι} {i : ι} (hi : i ∈ S) :
+    killOutside S (FreeGroup.of i) = FreeGroup.of i := by
+  classical
+  simp [killOutside, hi]
+
+theorem killOutside_of_notMem {S : Set ι} {i : ι} (hi : i ∉ S) :
+    killOutside S (FreeGroup.of i) = 1 := by
+  classical
+  simp [killOutside, hi]
+
+theorem killOutside_fixes {S : Set ι} {w : FreeGroup ι}
+    (hw : w ∈ Subgroup.closure (FreeGroup.of '' S)) :
+    killOutside S w = w := by
+  induction hw using Subgroup.closure_induction with
+  | mem x hx =>
+      obtain ⟨i, hi, rfl⟩ := hx
+      exact killOutside_of_mem hi
+  | one => simp
+  | mul x y hx hy ihx ihy => simp [map_mul, ihx, ihy]
+  | inv x hx ih => simp [map_inv, ih]
+
+theorem killOutside_lands {S T : Set ι} {w : FreeGroup ι}
+    (hw : w ∈ Subgroup.closure (FreeGroup.of '' T)) :
+    killOutside S w ∈ Subgroup.closure (FreeGroup.of '' (S ∩ T)) := by
+  classical
+  induction hw using Subgroup.closure_induction with
+  | mem x hx =>
+      obtain ⟨i, hi, rfl⟩ := hx
+      by_cases hS : i ∈ S
+      · rw [killOutside_of_mem hS]
+        exact Subgroup.subset_closure ⟨i, ⟨hS, hi⟩, rfl⟩
+      · rw [killOutside_of_notMem hS]
+        exact Subgroup.one_mem _
+  | one => simp
+  | mul x y hx hy ihx ihy => simpa only [map_mul] using Subgroup.mul_mem _ ihx ihy
+  | inv x hx ih => simpa only [map_inv] using Subgroup.inv_mem _ ih
+
+/-- Coordinate subgroups of every free group intersect on their index sets. -/
+theorem closure_inter_le (S T : Set ι) :
+    Subgroup.closure (FreeGroup.of '' S) ⊓
+        Subgroup.closure (FreeGroup.of '' T) ≤
+      Subgroup.closure (FreeGroup.of '' (S ∩ T)) := by
+  rintro w ⟨hwS, hwT⟩
+  have hfix := killOutside_fixes hwS
+  have hland := killOutside_lands (S := S) hwT
+  rwa [hfix] at hland
+
+/-- The image of a free word under a map of alphabets is supported on the
+range of that alphabet map. -/
+theorem map_mem_closure_range {κ : Type} (f : ι → κ) (w : FreeGroup ι) :
+    FreeGroup.map f w ∈ Subgroup.closure (FreeGroup.of '' Set.range f) := by
+  induction w using FreeGroup.induction_on with
+  | C1 => simp
+  | of i =>
+      rw [FreeGroup.map.of]
+      exact Subgroup.subset_closure ⟨f i, ⟨i, rfl⟩, rfl⟩
+  | mul x y hx hy => simpa only [map_mul] using Subgroup.mul_mem _ hx hy
+  | inv_of i hi =>
+      rw [map_inv, FreeGroup.map.of]
+      exact Subgroup.inv_mem _
+        (Subgroup.subset_closure ⟨f i, ⟨i, rfl⟩, rfl⟩)
+
+/-- Reflect support through an injective map of free alphabets. -/
+theorem mem_closure_preimage_of_map_mem
+    {κ : Type} {f : ι → κ} (hf : Function.Injective f)
+    (T : Set κ) {w : FreeGroup ι}
+    (hw : FreeGroup.map f w ∈ Subgroup.closure (FreeGroup.of '' T)) :
+    w ∈ Subgroup.closure (FreeGroup.of '' (f ⁻¹' T)) := by
+  have hrange := map_mem_closure_range f w
+  have hinter : FreeGroup.map f w ∈
+      Subgroup.closure (FreeGroup.of '' (Set.range f ∩ T)) :=
+    closure_inter_le (Set.range f) T ⟨hrange, hw⟩
+  have hle : Subgroup.closure (FreeGroup.of '' (Set.range f ∩ T)) ≤
+      (Subgroup.closure (FreeGroup.of '' (f ⁻¹' T))).map (FreeGroup.map f) := by
+    rw [Subgroup.closure_le]
+    rintro _ ⟨j, ⟨⟨i, rfl⟩, hiT⟩, rfl⟩
+    exact ⟨FreeGroup.of i,
+      Subgroup.subset_closure ⟨i, hiT, rfl⟩, by rw [FreeGroup.map.of]⟩
+  obtain ⟨v, hv, hvw⟩ := hle hinter
+  have : v = w := FreeGroup.map_injective hf hvw
+  rwa [← this]
+
+end Coordinate
+
 /-- Right-coset labels met by a base subgroup. -/
 def labelSet (d : HNNExtension.NormalWord.TransversalPair G M M)
     (S : Subgroup G) : Set (Label M d) :=

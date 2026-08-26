@@ -47,7 +47,8 @@ has only `O(q)` parameters, while the ambient unitary group has dimension
 the equation
 
 ```text
-K P K^* approximately D,       [K^4,P] approximately 0 (HCW5)
+K P K^* approximately D,
+K^4 P K^(-4) approximately P.                         (HCW5)
 ```
 
 is nonlinear and could have exceptional solutions.  It does rule out the
