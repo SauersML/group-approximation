@@ -45,7 +45,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 403 --- There is a two-generated, finitely presented, torsion-free, acylindrically hyperbolic group $Q$ with property~\textup{(T)} and
 * **`unassigned`**, line 408 --- Every nontrivial quotient of $Q$ also equals its own MF radical; in particular, no nontrivial quotient of $Q$ is MF\@.
 * **`unassigned`**, line 412 --- The construction combines Fournier-Facio's torsion-free property-\textup{(T)} group~\cite[\S2]{FFF} with Hull's small cancellation theorem~\cite{Hull} so that the compression defect normally generates $Q$.
-* **`unassigned`**, line 418 --- Blackadar and Kirchberg developed the notions of MF and NF algebras and proved that a separable $C^*$-algebra is NF exactly when it is nuclear and MF~\cite{BK}.
+* **`unassigned`**, line 418 --- Blackadar and Kirchberg developed the notions of MF and NF algebras and proved that a separable $C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK}.
 * **`unassigned`**, line 418 --- Carri\'on--Dadarlat--Eckhardt introduced the group property used here~\cite{CDE}.
 * **`unassigned`**, line 418 --- The negative solution of the Connes embedding problem~\cite{MIPRE} implies the existence of separable stably finite $C^*$-algebras that are not MF~\cite[Proposition~6.1 and Remark~6.2]{GoldbringHart}; Theorem~\ref{thm:headline} gives one among reduced group $C^*$-algebras.
 * **`unassigned`**, line 418 --- The case $p=\infty$ remained open.
