@@ -177,8 +177,8 @@ private def cStarSequenceFilterNorm (a : BoundedCStarSequence A) : ℝ :=
 
 private theorem cStarNorm_isBoundedUnder (a : BoundedCStarSequence A) :
     IsBoundedUnder (· ≤ ·) l (fun n : ℕ ↦ ‖a n‖) :=
-  ⟨‖a‖, Eventually.of_forall fun (n : ℕ) ↦
-    boundedCStarSequence_coord_norm_le A a n⟩
+  ⟨‖a‖, show ∀ᶠ n : ℕ in l, ‖a n‖ ≤ ‖a‖ from
+    Eventually.of_forall fun n ↦ boundedCStarSequence_coord_norm_le A a n⟩
 
 omit [∀ n, Nontrivial (A n)] in
 private theorem cStarNorm_isCoboundedUnder [l.NeBot]
@@ -234,6 +234,7 @@ private theorem cStarNorm_le_norm_add_norm_sub
     _ ≤ ‖b‖ + ‖(a - b) n‖ :=
       add_le_add (boundedCStarSequence_coord_norm_le A b n) le_rfl
 
+omit [∀ n, Nontrivial (A n)] in
 private theorem eventually_cStarNorm_lt_of_sub_isNull
     (a b : BoundedCStarSequence A)
     (hab : IsNullCStarSequence A l (a - b)) {y : ℝ} (hy : ‖b‖ < y) :

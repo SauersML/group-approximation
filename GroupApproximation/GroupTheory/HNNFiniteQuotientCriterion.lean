@@ -102,12 +102,15 @@ theorem residuallyFinite (hsync : HasCompatibleFiniteQuotients φ) :
     by_cases hnil : l = []
     · subst l
       rw [HNNSubextension.mapList_nil, HNNBritton.wordProd_nil]
-      apply HNNExtension.of_injective.ne
-      apply hqg
-      intro hg
-      subst g
-      apply hz
-      simpa using hword.symm
+      have hg : g ≠ 1 := by
+        intro hg
+        subst g
+        apply hz
+        simpa using hword.symm
+      intro hof
+      apply hqg hg
+      apply HNNExtension.of_injective (φ := φq)
+      simpa using hof
     · exact HNNBritton.wordProd_ne_one φq
         (HNNSubextension.mapList_ne_nil q hnil) hmapred
   letI : Group.ResiduallyFinite E :=
