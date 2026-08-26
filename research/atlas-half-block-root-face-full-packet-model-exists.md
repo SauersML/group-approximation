@@ -126,5 +126,13 @@ next useful datum is not simply the earliest non-scalar mixed row. It must
 be a coupled family of mixed rows whose joint block data survive the
 rectangular Morita escape and authenticate the coarse/fine covariance.
 
+Even the first shared-occurrence pair is insufficient. The next row is
+`orth_12_32_ef`, so entries `281,282` share `x_12(e)` and compare the two
+fine labels `e,f`. By
+`atlas-first-two-mixed-rows-have-zero-reservoir-rank`, both commutators are
+simultaneously automatic for arbitrary fine coefficient maps; their
+nuisance-quotient reservoir rank is zero. Thus coupling adjacent rows inside
+the initial same-source orthogonality block does not improve the situation.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear

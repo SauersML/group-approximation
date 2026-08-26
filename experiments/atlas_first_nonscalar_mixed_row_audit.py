@@ -26,7 +26,8 @@ from atlas_relator_rank5_full_family import generate_relators
 ORTH = re.compile(r"orth_(\d)(\d)_(\d)(\d)_([1efEF])([1efEF])$")
 
 
-def first_row(rows):
+def mixed_rows(rows):
+    selected = []
     for index, (name, word) in enumerate(rows):
         match = ORTH.fullmatch(name)
         if match is None:
@@ -38,8 +39,10 @@ def first_row(rows):
             left_coefficient != "1" and right_coefficient != "1"
         )
         if mixed_direction and coefficient_bearing:
-            return index, name, word
-    raise AssertionError("the complete packet has no mixed coefficient row")
+            selected.append((index, name, word))
+    if not selected:
+        raise AssertionError("the complete packet has no mixed coefficient row")
+    return selected
 
 
 def matrix_units_multiply(left, right):
@@ -54,11 +57,19 @@ def main():
     assert counts == (200, 2980, 1432)
     assert len(rows) == 4612
 
-    index, name, word = first_row(rows)
+    selected = mixed_rows(rows)
+    index, name, word = selected[0]
     assert index == 280
     assert name == "orth_12_32_ee"
     assert len(word) == 52
     assert sum(lengths[matrix.tobytes()] for _factor, matrix in word) == 166
+
+    second_index, second_name, second_word = selected[1]
+    assert second_index == 281
+    assert second_name == "orth_12_32_ef"
+    assert len(second_word) == 52
+    assert sum(lengths[matrix.tobytes()]
+               for _factor, matrix in second_word) == 226
 
     # x_12(a) and x_32(b) have the common source/column 2. Their nilpotent
     # off-diagonal blocks multiply to zero in both orders, independently of
@@ -73,6 +84,12 @@ def main():
     print("X-length:", sum(lengths[matrix.tobytes()]
                            for _factor, matrix in word))
     print("same-source transvections commute for arbitrary coefficient maps")
+    print("next coupled row index (zero based):", second_index)
+    print("next coupled row name:", second_name)
+    print("next coupled row X-length:", sum(
+        lengths[matrix.tobytes()] for _factor, matrix in second_word
+    ))
+    print("the two-row family is simultaneously automatic")
     return 0
 
 
