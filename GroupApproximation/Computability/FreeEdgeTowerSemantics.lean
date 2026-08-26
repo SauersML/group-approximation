@@ -448,6 +448,58 @@ noncomputable def edgeCodeEquivOfSubgroupEquiv (c : PresentationCode)
   rw [HNNPresentation.fwd, PresentedGroup.toGroup.of]
   rfl
 
+theorem edgeCodeEquivOfSubgroupEquiv_mk_relabel_emb
+    (c : PresentationCode) (edges : List (Raw × Raw))
+    (phi : HNNPresentation.srcSub (codeRels c) (sourceWord c edges) ≃*
+      HNNPresentation.tgtSub (codeRels c) (targetWord c edges))
+    (hphi : ∀ i,
+      ((phi ⟨HNNPresentation.srcGen (codeRels c) (sourceWord c edges) i,
+          HNNPresentation.srcGen_mem (codeRels c) (sourceWord c edges) i⟩ :
+        HNNPresentation.tgtSub (codeRels c) (targetWord c edges)) : Carrier c) =
+      HNNPresentation.tgtGen (codeRels c) (targetWord c edges) i)
+    (w : FreeGroup (Fin (genCount c))) :
+    edgeCodeEquivOfSubgroupEquiv c edges phi hphi
+        (PresentedGroup.mk (codeRels (edgeCode c edges))
+          (relabel (edgeGeneratorEquiv c edges) (HNNPresentation.emb w))) =
+      HNNExtension.of (PresentedGroup.mk (codeRels c) w) := by
+  refine freeGroup_hom_eq_on_generators
+    (f := (edgeCodeEquivOfSubgroupEquiv c edges phi hphi).toMonoidHom.comp
+      ((PresentedGroup.mk (codeRels (edgeCode c edges))).comp
+        ((relabel (edgeGeneratorEquiv c edges)).comp HNNPresentation.emb)))
+    (g := (HNNExtension.of :
+      PresentedGroup (codeRels c) →*
+        HNNPresentation.Ext (codeRels c) (sourceWord c edges)
+          (targetWord c edges) phi).comp (PresentedGroup.mk (codeRels c))) ?_ w
+  intro i
+  simp only [MonoidHom.comp_apply, HNNPresentation.emb_of, relabel,
+    FreeGroup.map.of]
+  rw [edgeGeneratorEquiv_some]
+  change edgeCodeEquivOfSubgroupEquiv c edges phi hphi
+      (PresentedGroup.of (letterOf (edgeCode c edges) i)) =
+    HNNExtension.of (PresentedGroup.of i)
+  have hi : letterOf c (i : ℕ) = i := by
+    apply Fin.ext
+    exact RawWord.letterOf_val_of_lt c i.isLt
+  simpa only [hi] using
+    edgeCodeEquivOfSubgroupEquiv_oldGenerator c edges phi hphi i
+
+theorem edgeCodeEquivOfSubgroupEquiv_oldWord
+    (c : PresentationCode) (edges : List (Raw × Raw))
+    (phi : HNNPresentation.srcSub (codeRels c) (sourceWord c edges) ≃*
+      HNNPresentation.tgtSub (codeRels c) (targetWord c edges))
+    (hphi : ∀ i,
+      ((phi ⟨HNNPresentation.srcGen (codeRels c) (sourceWord c edges) i,
+          HNNPresentation.srcGen_mem (codeRels c) (sourceWord c edges) i⟩ :
+        HNNPresentation.tgtSub (codeRels c) (targetWord c edges)) : Carrier c) =
+      HNNPresentation.tgtGen (codeRels c) (targetWord c edges) i)
+    (w : Raw) :
+    edgeCodeEquivOfSubgroupEquiv c edges phi hphi
+        (PresentedGroup.mk (codeRels (edgeCode c edges))
+          (wordOf (edgeCode c edges) (normWord c w))) =
+      HNNExtension.of (PresentedGroup.mk (codeRels c) (wordOf c w)) := by
+  rw [← relabel_emb_word]
+  exact edgeCodeEquivOfSubgroupEquiv_mk_relabel_emb c edges phi hphi (wordOf c w)
+
 /-- **One computed edge is the honest free-edge HNN extension.**
 
 The only semantic inputs are injectivity of the two displayed free
