@@ -37,6 +37,15 @@ one boundary representation still does not supply `(UFW1)`.
 
 ## Attempts
 
+- **As a bare existence statement this is exactly the root goal.**
+  `unnamed-fixed-space-promotion-is-goal-equivalent` proves the converse to
+  the Fejer terminal: from a finitely presented nonhyperlinear witness `K`,
+  use `K times Z` and the cyclic generator.  Since there is no full canonical
+  microstate sequence, the universal moving-projection assertion is vacuous.
+  The live geometric and heterogeneous-row routes remain meaningful only
+  because they promise an independently specified, nonvacuous finite-model
+  mechanism; the unrestricted existential target itself is not a reduction.
+
 - **Literal boundary-cylinder transport is unnecessary and still fails.**
   Identifying one fixed cylinder with a canonical group-algebra projection is
   blocked by `self-similar-cylinder-return-regular-energy-floor`.  The present

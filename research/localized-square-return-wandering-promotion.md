@@ -46,6 +46,16 @@ need never be identified with a regular or boundary projection.
 
 ## Attempts
 
+- **As a bare existence statement this is exactly the root goal.**
+  `localized-square-return-promotion-is-goal-equivalent` proves the converse
+  to the terminal implication: from any nonhyperlinear group, pass to a
+  finitely presented witness and then to `K times Z`, take `q=1` and the
+  cyclic generator for `w`, and the universal return condition holds
+  vacuously because there is no full canonical microstate sequence.  Thus a
+  productive proof of this target must be independently constructive or
+  nonvacuous on an exhibited family of finite models; the unrestricted
+  existential formulation is not a reduction below nonhyperlinearity.
+
 - **Finite Bass--Serre packets are dead.**  Residual finite quotients reproduce
   the positive regular norm of `(w^2-1)q`, so they give zero-defect canonical
   countermodels to `(LSR1)`.
