@@ -96,11 +96,28 @@ It is `three-bridge-is-cyclic-fiber-product-with-finite-cep`.
 
 ## 4. Add the graph witness without changing the recursive kernel
 
-Run the MF-safe benign construction for `N_e`, obtaining a finitely presented
-overgroup `K_e^0`, an embedded `F`, and a finitely generated subgroup `L_e^0`
-whose intersection with `F` is `N_e`.  The symmetric-double, amenable-edge,
-and central-HNN refactor preserves a regular operator-MF realization on the
-positive branch.
+Apply effective Higman embedding to `Q_e=F/N_e`.  Uniformly obtain a finite
+presentation `H_e=<X_e|R_e>` and words `w_f` representing an embedding of
+`Q_e` in `H_e`.  In `F(X_e) times F(X_e)` form the finitely generated
+Mikhailova subgroup
+
+```text
+M_e=< (x,x),(r,1) : x in X_e, r in R_e >
+   ={(u,v):u=_H_e v}.                                          (M1)
+```
+
+Define
+
+```text
+K_e^0=F times F(X_e) times F(X_e),
+f |-> (f,w_f,1),             L_e^0=F times M_e.                 (M2)
+```
+
+The first coordinate makes the displayed map injective, and
+`(f,w_f,1) in L_e^0` exactly when `w_f=1` in `H_e`, equivalently `f in N_e`.
+Thus `L_e^0` meets the embedded `F` in precisely `N_e`.  Moreover `K_e^0` is
+a finite direct product of finite-rank free groups, so it is finitely
+presented, residually finite, and regularly operator-MF on every branch.
 
 Independently, form the fixed graph witness for `N_+`:
 
@@ -143,7 +160,7 @@ tau_e:S_e->Q_e,
 tau_e|F_0=q_e,             tau_e|F_1=1.                       (T12)
 ```
 
-On `INF`, let `beta_n:H->B_n` be cofinal finite quotients.  Use `(T7)` to
+On `INF`, let `beta_n:H->B_n` be eventually separating finite quotients.  Use `(T7)` to
 choose `r_n:P->C_n` with `ker(r_n j)<=ker(beta_n)`.  Map the ordinary witness
 factor `K_e^0` trivially and map the graph factor by
 
@@ -160,17 +177,19 @@ is `r_n j tau_e`; hence
 ker(lambda_n|S_e) <= ker(beta_n tau_e).                        (T14)
 ```
 
-Represent `Gamma_e` by regular-MF matrices `U_n`.  Tensor `U_n` with the left
-regular representation of the finite image of
+Let `(A,rho,tr)` regularly operator-MF realize `Gamma_e`.  In the reduced
+product of the algebras `A tensor M_|G_n|`, tensor `rho` with the left regular
+representations of the finite images of
 `(lambda_n,beta_n):Gamma_e times H->W_n times B_n`.  Equality of the two edge
 kernels supplied by `(T14)` makes the finite restrictions exactly unitarily
-conjugate, while the common `U_n(s)` factor is unchanged.  Thus the two edge
-C-star embeddings agree in one matrix corona.
+conjugate, while the common `rho(s)` factor is unchanged.  The generated
+separable subalgebra of this `A`-valued reduced product is MF and embeds in a
+matrix corona, where the two edge embeddings agree exactly.
 
 Ueda's universal-HNN corner construction and Shulman's compatible-corona
 criterion make the final HNN algebra MF.  The tensor trace is the regular
-character: `U_n` kills every nonidentity `Gamma_e` element in trace, and the
-cofinal `beta_n` kill every nonidentity element of `H` when the first
+character: `tr(rho(g))` kills every nonidentity `Gamma_e` element, and the
+eventually separating `beta_n` kill every nonidentity element of `H` when the first
 coordinate is trivial.  The reduced von Neumann HNN normal form then
 separates every nonidentity Britton-reduced word.  Consequently
 

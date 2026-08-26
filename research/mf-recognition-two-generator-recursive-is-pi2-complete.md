@@ -5,7 +5,7 @@ kind: claim
 title: MF and LEF recognition are Pi-zero-two complete already for two-generator recursive presentations
 distinct_from:
   mf-recognition-recursive-presentations-is-second-level-complete: that uses countably generated presentations and a countable free product; this reaches two generators, which is optimal, and covers LEF as well as MF.
-  mf-recognition-finite-presentations-is-pi2-complete: that asks for finite presentations and is still open; this stops at finitely generated recursive presentations and needs no MF-safe compiler.
+  mf-recognition-finite-presentations-is-pi2-complete: that reaches finite presentations through a Mikhailova benign witness and tensor-synchronized rope; this result stops earlier at finitely generated recursive presentations and needs no finite-presentation compiler.
 ---
 
 ESTABLISHED.  For recursive presentations on **two** generators,

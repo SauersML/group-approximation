@@ -1,9 +1,10 @@
 # Audit of the finite-presentation MF compiler
 
-**Audited 2026-08-24--25.**  This note records an attempted unconditional
-closure of `mf-recognition-finite-presentations-is-pi2-complete`.  It is not a
-proof of that target.  It reduces the missing compiler to one special graph
-HNN and records why the apparent shortcuts do not prove its MF branch.
+**Audited 2026-08-24--25 and resolved 2026-08-26.**  This note records the
+obstructions found before the tensor-synchronization and Mikhailova
+fiber-product repairs.  The historical failed shortcuts remain useful, but
+the missing compiler described below is now supplied by a regular-MF benign
+witness inside a direct product of free groups.
 
 ## 1. What is already complete
 
@@ -186,12 +187,12 @@ the finite pre-quotient presentation the HNN letter then only swaps `(n,1)`
 and `(1,n)` for `n in N`.  It never forces `n=1`.  See
 `coordinate-swap-rope-does-not-compress-kernel`.
 
-No unconditional proof of `(R2)` was found in the repository or in the
-literature search.  Consequently the finite-presentation `Pi^0_2`-completeness
-claim remains open.  Any proof claiming closure from symmetric doubles,
-central HNNs, trace matching, or the recursive switch alone omits the graph
-edge `(R3)`.
-
-The smallest currently sufficient new theorem is MF permanence of `(R1)` for
-the rope data `S=F *_N F` and `tau:S->F/N`, together with the standard MF-safe
-benign-witness operations.  That is the correct target for the next attack.
+The audit correctly isolated two missing inputs.  They are now supplied as
+follows.  The claim
+`mikhailova-fiber-product-gives-regular-mf-benign-compiler` constructs the
+ordinary benign witness in a finite direct product of free groups, so its
+ambient group is regularly MF without tracking Higman's internal HNN tower.
+The claim `regular-mf-tensor-sync-proves-twisted-rope-mf` tensors that faithful
+regular realization with finite graph maps and proves MF permanence of `(R1)`
+for the rope data.  Thus the graph edge `(R3)` and the pre-rope uniformity gap
+are both accounted for in the final completeness proof.

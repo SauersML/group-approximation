@@ -26,14 +26,17 @@ FIN <=_m NONMF_fp.
 ```
 
 It uses the exact recursive FIN/INF switch, the residually finite
-three-generator bridge, the effective finite-CEP embedding
-`B3(1)<=F_2 times F_2`, a product graph benign witness, and tensor
-synchronization of the final asymmetric rope edge.  The output is MF on
-`INF` and contains the fixed non-MF group `E` on `FIN`.
+three-generator bridge, a Mikhailova fiber-product benign witness whose
+ambient group is a direct product of free groups, the effective finite-CEP
+embedding `B3(1)<=F_2 times F_2`, and tensor synchronization of the final
+asymmetric rope edge.  The output is MF on `INF` and contains the fixed non-MF
+group `E` on `FIN`.
 
 ## Attempts
 
-Generic Higman embedding does lose the MF branch.  The completed compiler
-separates two jobs: the ordinary MF-safe witness supplies a regular-MF
-faithful model, while the graph witness supplies finite edge models.
+The finitely presented Higman host itself need not be MF.  The completed
+compiler uses only its relators and marked embedding words to build a
+Mikhailova subgroup in a residually finite product of free groups.  This
+regular-MF witness supplies the faithful model, while the graph witness
+supplies finite edge models.
 Tensoring them makes the final edge compatible in operator norm.

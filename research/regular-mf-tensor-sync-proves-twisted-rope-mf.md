@@ -11,7 +11,8 @@ distinct_from:
 ---
 
 Let `Gamma` be regularly operator-MF realized, let `Q` be residually finite
-with a cofinal sequence `beta_n:Q->B_n`, let `S<=Gamma`, and let
+with an eventually separating cofinal sequence `beta_n:Q->B_n`, let
+`S<=Gamma`, and let
 `tau:S->Q` be a homomorphism.  Suppose that for each `n` there is a homomorphism
 to a finite group
 
@@ -32,4 +33,6 @@ is regularly operator-MF realized, hence operator-MF.
 The maps `lambda_n` need not separate `Gamma`, and `S` need not be closed in
 the profinite topology of `Gamma`.  All faithfulness on the `Gamma` coordinate
 comes from its regular-MF model; the finite maps are used only to conjugate
-the two edge restrictions exactly.
+the two edge restrictions exactly.  No trace-compatible matrix-corona model of
+`Gamma` is assumed: the proof first works in an `A`-valued reduced product and
+only then embeds its generated separable MF algebra into a matrix corona.

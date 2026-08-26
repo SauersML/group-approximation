@@ -12,10 +12,11 @@ distinct_from:
   hnn-extension-finite-presentation-permanence: that preserves finite presentability, not the MF property.
 ---
 
-Construct an effective finite-presentation gadget that realizes the asymmetric
-subgroup identification required by Higman's rope trick while preserving MF
-whenever its input vertex groups are MF.  Shulman's symmetric-double and
-central-HNN theorems do not currently supply this gadget.
+**ESTABLISHED in the special form required by the Higman rope.**  The
+Mikhailova compiler gives a regular-MF pre-rope benign witness, the finite-CEP
+graph factor gives exact finite edge conjugacies, and tensor synchronization
+makes the final asymmetric graph HNN regularly operator-MF.  This is not a
+generic permanence theorem for arbitrary asymmetric HNN extensions.
 
 ## Attempts
 
@@ -96,10 +97,13 @@ The exact open analytic/group-theoretic subproblem is therefore `(GH1)` for
 the rope data, not generic MF preservation under arbitrary HNN extensions.
 
 The tensor-synchronization theorem now resolves the analytic part without
-requiring finite quotients to separate `Gamma`.  A regular-MF matrix model of
-`Gamma` is tensored with finite graph models whose edge restrictions are
+requiring finite quotients to separate `Gamma`.  A regular representation of
+`Gamma` in an MF algebra is tensored in an algebra-valued reduced product with
+finite graph models whose edge restrictions are
 exactly conjugate; the former supplies faithfulness and the latter supplies
 compatibility.  The product benign witness in
 `graph-witness-product-supplies-tensor-sync` supplies those finite graph
 models uniformly from the finite-CEP embedding
-`B3(1)<=F_2 times F_2`, while leaving the recursive kernel unchanged.
+`B3(1)<=F_2 times F_2`, while leaving the recursive kernel unchanged.  The
+previously missing regular-MF ordinary factor is supplied uniformly by
+`mikhailova-fiber-product-gives-regular-mf-benign-compiler`.
