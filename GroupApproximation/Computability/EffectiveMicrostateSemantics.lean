@@ -71,11 +71,11 @@ theorem toMatrix_wordMatrix (c : PresentationCode) (d : ℕ)
 
 /-- Turn exactly unitary executable generator data into a genuine analytic
 microstate on the represented natural basis. -/
-noncomputable def toMicrostate (c : PresentationCode) (d : ℕ)
+noncomputable abbrev toMicrostate (c : PresentationCode) (d : ℕ)
     (gens : List MatrixCode) (hunitary : GeneratorsUnitary c d gens) :
     Microstate c where
   model := naturalFiniteModel (dim d)
-  card_pos := by simp [dim]
+  card_pos := by simpa [dim] using Nat.succ_pos d
   gen := fun i =>
     ⟨toMatrix d (generator d gens i),
       (isUnitary_iff d (generator d gens i)).1 (hunitary i)⟩
@@ -98,7 +98,7 @@ theorem toMicrostate_hom_wordOf (c : PresentationCode) (d : ℕ)
         Matrix (Fin (dim d)) (Fin (dim d)) ℂ) =
           (w.map (matrixLetter c d gens)).prod
   | [] => by
-      simp [Microstate.hom]
+      simp
   | (i, false) :: w => by
       rw [wordOf_cons_neg, map_mul, map_inv, toMicrostate_hom_wordOf]
       simp [Microstate.hom, toMicrostate, matrixLetter, letterOf]
