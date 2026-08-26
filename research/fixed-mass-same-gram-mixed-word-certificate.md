@@ -86,3 +86,21 @@ round one pointed moment face, although the new branch need not use one Gram
 word for every original verifier row.  This claim remains useful for native
 BCS/Atlas constructions whose mixed rows are already expressed on one
 word-controlled Gram.
+
+## Fixed-packet localization fence
+
+`fixed-packet-reynolds-cannot-supply-same-gram-certificate` closes the
+smallest tempting backend for `(SMG1)`.  Any fixed family of semisimple packet
+actions on `V tensor C^N` leaves the full spectator algebra
+`I_V tensor M_N`; projections of arbitrary rank, including zero, pass every
+fixed Reynolds and packet-incidence test.  Thus packet localization alone
+cannot authenticate the fixed positive Gram mass.  Appending functorial
+polar/support cuts or a trace-cyclic return does not help, because those
+operations exist in the regular finite factor and trigger the established
+proper-return firewall.
+
+The target survives exactly in its advertised genuinely mixed form: a word
+must act nontrivially on the spectator gauge, or a scalable actor must grow
+through the multiplicity coordinate.  A fixed packet calculation followed by
+Reynolds averaging is now an exactly fenced approach, not a candidate proof
+of `(SMG1)--(SMG2)`.
