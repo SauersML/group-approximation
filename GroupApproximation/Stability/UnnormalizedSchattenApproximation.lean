@@ -87,6 +87,44 @@ def IsApproximated (p : ℝ) (G : Type u) [Group G] : Prop :=
         0 < Filter.limsup
           (fun n ↦ schattenPDist p (A.map n g) 1) Filter.atTop
 
+/-- Unnormalized Schatten approximation passes to an embedded subgroup.
+This is the subgroup step used when one places several nonapproximable groups
+inside a common host: approximation of the host would restrict to an
+approximation of each embedded group. -/
+theorem isApproximated_of_injective
+    {p : ℝ} {H G : Type u} [Group H] [Group G]
+    (i : H →* G) (hi : Function.Injective i)
+    (hG : IsApproximated p G) : IsApproximated p H := by
+  obtain ⟨A, hone, hseparate⟩ := hG
+  let B : AlmostRepresentation p H :=
+    { dimension := A.dimension
+      map := fun n h ↦ A.map n (i h)
+      asymptoticallyMultiplicative := by
+        intro g h ε hε
+        simpa only [map_mul] using
+          A.asymptoticallyMultiplicative (i g) (i h) ε hε }
+  refine ⟨B, ?_, ?_⟩
+  · intro n
+    change A.map n (i 1) = 1
+    rw [map_one, hone n]
+  · intro h hh
+    have hih : i h ≠ 1 := by
+      intro hione
+      apply hh
+      apply hi
+      simpa using hione
+    change 0 < Filter.limsup
+      (fun n ↦ schattenPDist p (A.map n (i h)) 1) Filter.atTop
+    exact hseparate (i h) hih
+
+/-- If an embedded subgroup is not Schatten-`p` approximated, neither is its
+ambient group. -/
+theorem not_isApproximated_of_injective
+    {p : ℝ} {H G : Type u} [Group H] [Group G]
+    (i : H →* G) (hi : Function.Injective i)
+    (hH : ¬ IsApproximated p H) : ¬ IsApproximated p G :=
+  fun hG ↦ hH (isApproximated_of_injective i hi hG)
+
 /-- Literal pointwise stability in unnormalized Schatten `p`-distance. -/
 def IsStable (p : ℝ) (G : Type u) [Group G] : Prop :=
   ∀ A : AlmostRepresentation p G,
