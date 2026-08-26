@@ -489,5 +489,66 @@ noncomputable def productCodeEquiv (c d : PresentationCode) :
     exact RawWord.letterOf_val_of_lt d j.isLt
   rw [hj]
 
+theorem productCodeEquiv_mk_relabel_inl (c d : PresentationCode)
+    (w : FreeGroup (Fin (genCount c))) :
+    productCodeEquiv c d
+        (PresentedGroup.mk (codeRels (productCode c d))
+          (relabel (productGeneratorEquiv c d) (FreeGroup.map Sum.inl w))) =
+      ((PresentedGroup.mk (codeRels c) w, 1) : Carrier c × Carrier d) := by
+  refine freeGroup_hom_eq_on_generators
+    (f := (productCodeEquiv c d).toMonoidHom.comp
+      ((PresentedGroup.mk (codeRels (productCode c d))).comp
+        ((relabel (productGeneratorEquiv c d)).comp (FreeGroup.map Sum.inl))))
+    (g := (PresentedGroup.mk (codeRels c)).prod
+      (1 : FreeGroup (Fin (genCount c)) →* Carrier d)) ?_ w
+  intro i
+  have hi : letterOf c (i : ℕ) = i := by
+    apply Fin.ext
+    exact RawWord.letterOf_val_of_lt c i.isLt
+  simp only [MonoidHom.comp_apply, FreeGroup.map.of, relabel]
+  rw [productGeneratorEquiv_inl]
+  change productCodeEquiv c d
+      (PresentedGroup.of (letterOf (productCode c d) i)) =
+    ((PresentedGroup.of i, 1) : Carrier c × Carrier d)
+  simpa only [hi] using productCodeEquiv_leftGenerator c d i
+
+theorem productCodeEquiv_mk_relabel_inr (c d : PresentationCode)
+    (w : FreeGroup (Fin (genCount d))) :
+    productCodeEquiv c d
+        (PresentedGroup.mk (codeRels (productCode c d))
+          (relabel (productGeneratorEquiv c d) (FreeGroup.map Sum.inr w))) =
+      ((1, PresentedGroup.mk (codeRels d) w) : Carrier c × Carrier d) := by
+  refine freeGroup_hom_eq_on_generators
+    (f := (productCodeEquiv c d).toMonoidHom.comp
+      ((PresentedGroup.mk (codeRels (productCode c d))).comp
+        ((relabel (productGeneratorEquiv c d)).comp (FreeGroup.map Sum.inr))))
+    (g := (1 : FreeGroup (Fin (genCount d)) →* Carrier c).prod
+      (PresentedGroup.mk (codeRels d))) ?_ w
+  intro j
+  have hj : letterOf d (j : ℕ) = j := by
+    apply Fin.ext
+    exact RawWord.letterOf_val_of_lt d j.isLt
+  simp only [MonoidHom.comp_apply, FreeGroup.map.of, relabel]
+  rw [productGeneratorEquiv_inr]
+  change productCodeEquiv c d
+      (PresentedGroup.of
+        (letterOf (productCode c d) (genCount c + j))) =
+    ((1, PresentedGroup.of j) : Carrier c × Carrier d)
+  simpa only [hj] using productCodeEquiv_rightGenerator c d j
+
+theorem productCodeEquiv_leftWord (c d : PresentationCode) (w : Raw) :
+    productCodeEquiv c d
+        (PresentedGroup.mk (codeRels (productCode c d))
+          (wordOf (productCode c d) (leftWord c w))) =
+      ((PresentedGroup.mk (codeRels c) (wordOf c w), 1) : Carrier c × Carrier d) := by
+  rw [wordOf_productCode_leftWord, productCodeEquiv_mk_relabel_inl]
+
+theorem productCodeEquiv_rightWord (c d : PresentationCode) (w : Raw) :
+    productCodeEquiv c d
+        (PresentedGroup.mk (codeRels (productCode c d))
+          (wordOf (productCode c d) (rightWord c d w))) =
+      ((1, PresentedGroup.mk (codeRels d) (wordOf d w)) : Carrier c × Carrier d) := by
+  rw [wordOf_productCode_rightWord, productCodeEquiv_mk_relabel_inr]
+
 end DirectProductCodeSemantics
 end GroupApproximation
