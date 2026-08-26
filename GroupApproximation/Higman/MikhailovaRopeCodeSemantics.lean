@@ -782,6 +782,34 @@ noncomputable def compileEquivToRopeOfRelators
   (compileEquivToRopePresOfRelators w ambient source cuttingWords marked
     ambientEquiv sourceEquiv hcutting SF hrel).trans (Rope.ropeEquiv w SF hSF)
 
+/-- Semantic correctness of the concrete finite rope code.  Unlike
+`compileEquivToRopeOfRelators`, this theorem has no abstract presentation
+identification hypothesis: the two displayed finite edge lists are evaluated
+directly as the `A`- and `B`-relators of the rope construction. -/
+noncomputable def compileEquivToRope
+    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
+    (w : BenignWitness N) (ambient source : PresentationCode)
+    (cuttingWords : List MikhailovaRopeCode.Raw)
+    (marked : List (MikhailovaRopeCode.Raw × MikhailovaRopeCode.Raw))
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (sourceEquiv : Carrier source ≃* F)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L)
+    (hmarked : ∀ p ∈ marked, ambientEquiv
+      (PresentedGroup.mk (codeRels ambient) (wordOf ambient p.2)) =
+        w.emb (markedValue source sourceEquiv p))
+    (hmarked_generates :
+      Subgroup.closure (markedSet source sourceEquiv marked) = ⊤) :
+    Carrier (compile (ambient, (source, (cuttingWords, marked)))) ≃*
+      Rope.RopeGroup w :=
+  compileEquivToRopeOfRelators w ambient source cuttingWords marked
+    ambientEquiv sourceEquiv hcutting (markedSet source sourceEquiv marked)
+    (outerPreEquiv_relators_eq w ambient source cuttingWords marked
+      ambientEquiv sourceEquiv hcutting hmarked)
+    hmarked_generates
+
 end MikhailovaRopeCodeSemantics
 end Higman
 end GroupApproximation
