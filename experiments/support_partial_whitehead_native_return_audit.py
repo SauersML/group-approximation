@@ -7,7 +7,8 @@ including coarse completeness reductions.
 from collections import deque
 
 from depth_one_paired_leavitt_return_search import (
-    COORDS, canonical, equal, identity_matrix, left_elementary, signed_l0,
+    COORDS, ZERO, add, canonical, equal, identity_matrix, left_elementary,
+    multiply, signed_l0,
 )
 from individual_cross_whitehead_one_return_search import full_signed_signature
 
@@ -35,6 +36,31 @@ def word_matrix(factors):
 def matrices_equal(left, right):
     return all(equal(left[row][column], right[row][column])
                for row in range(7) for column in range(7))
+
+
+def matrix_multiply(left, right):
+    answer = [[ZERO for _ in range(7)] for _ in range(7)]
+    for row in range(7):
+        for column in range(7):
+            entry = ZERO
+            for middle in range(7):
+                entry = add(entry, multiply(left[row][middle], right[middle][column]))
+            answer[row][column] = entry
+    return answer
+
+
+def conjugate_matrix(actor, matrix):
+    actor_matrix = word_matrix(actor)
+    return matrix_multiply(matrix_multiply(actor_matrix, matrix), actor_matrix)
+
+
+def set_intersection(left, right):
+    return [matrix for matrix in left
+            if any(matrices_equal(matrix, candidate) for candidate in right)]
+
+
+def sets_equal(left, right):
+    return len(left) == len(right) and len(set_intersection(left, right)) == len(left)
 
 
 E0 = canonical((('0', '0'),))
@@ -160,6 +186,47 @@ def main():
     assert not all(normalization['Khat1'])
     assert not all(normalization['Khat2'])
     assert all(normalization['J1']) and all(normalization['J2'])
+
+    e_matrices = list(pauli.values())
+    w1_word = packet_words['W1']
+    w2_word = packet_words['W2']
+    e1 = [conjugate_matrix(w1_word, matrix) for matrix in e_matrices]
+    e2 = [conjugate_matrix(w2_word, matrix) for matrix in e_matrices]
+    e12 = set_intersection(e1, e2)
+    original_two_pair = list(pauli_closure((
+        pauli_generators[1], pauli_generators[2],
+        pauli_generators[4], pauli_generators[5],
+    )).values())
+    common_two_pair = [conjugate_matrix(w1_word, matrix)
+                       for matrix in original_two_pair]
+    print('chart sizes E,E1,E2', len(e_matrices), len(e1), len(e2))
+    print('E1 equals E2', sets_equal(e1, e2), 'intersection', len(e12),
+          'intersection equals transported pairs 2,3', sets_equal(e12, common_two_pair))
+
+    support_difference = add(E0, E000)
+    s_word = w1_word + w2_word
+    s_expected = whitehead(7, 9, support_difference)
+    assert matrices_equal(word_matrix(s_word), word_matrix(s_expected))
+    s_membership = []
+    for generator in pauli_generators:
+        image = conjugate_matrix(s_word, word_matrix((generator,)))
+        s_membership.append(any(matrices_equal(image, candidate)
+                                for candidate in e_matrices))
+    s_e1 = [conjugate_matrix(s_word, matrix) for matrix in e1]
+    print('S same-center membership', s_membership,
+          'normalizes E', all(s_membership),
+          'maps E1 to E2', sets_equal(s_e1, e2))
+    print('S centralizes common pairs 2,3', all(
+        matrices_equal(conjugate_matrix(s_word, matrix), matrix)
+        for matrix in common_two_pair))
+
+    assert len(e1) == len(e2) == 128
+    assert not sets_equal(e1, e2)
+    assert len(e12) == 32 and sets_equal(e12, common_two_pair)
+    assert s_membership == [False, True, True, False, True, True]
+    assert sets_equal(s_e1, e2)
+    assert all(matrices_equal(conjugate_matrix(s_word, matrix), matrix)
+               for matrix in common_two_pair)
 
 
 if __name__ == '__main__':

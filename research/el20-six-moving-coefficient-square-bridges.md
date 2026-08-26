@@ -609,6 +609,25 @@ retains `w_i` while satisfying the order-seven head.  The next seam is to
 identify the transported chart with the signed unequal-scale selector
 chart, not to find another endpoint return.
 
+The two transported charts do have a common part, but it loses exactly the
+bit needed by the second scale.  `support-return-charts-meet-in-two-pauli-pairs`
+computes
+
+```text
+E_1 intersect E_2=W_1<A_2,A_3,B_2,B_3>W_1,
+|E_1 intersect E_2|=32,
+```
+
+while `E_1` and `E_2` each have order `128` and are unequal.  Their relative
+word is `S=W_1W_2=W_79(e_0+e_000,e_0+e_000)`.  It does not normalize the
+original three-pair packet, maps `E_1` exactly to `E_2`, and centralizes the
+common two-pair packet.  Hence its label on the intersection is identity
+and its reservoir factor remains arbitrary.  Independent `C_2` twists of
+`W_1,W_2` cancel in the two odd SRL identities and leave the native braid
+unchanged, while giving `S` their arbitrary product sign.  Thus neither
+the intersection nor the braid ties the two chart gauges; a successful
+comparison must retain all three Pauli pairs.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
