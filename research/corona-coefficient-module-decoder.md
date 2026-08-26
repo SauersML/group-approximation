@@ -3,6 +3,8 @@ rg: 2
 id: corona-coefficient-module-decoder
 kind: claim
 title: Decode compatible finite root multiplicities into one finite projective corona module
+artifacts:
+  - research/norm-ultraproduct-saturation-finite-type-fence-proof.md
 ---
 
 OPEN.  Let `R` be a countable ring with a binary Leavitt family and let
@@ -37,6 +39,34 @@ the problem.
   the ambient projection does not make those internal matrix units nested.
 
 ## Remaining failed shortcuts
+
+- **Pass to a support ultrafilter and use countable saturation.**
+  `norm-ultraproduct-saturation-does-not-decode-corona-root-germs` gives the
+  precise fence.  The common nonzero projection does survive in a norm
+  matrix ultraproduct corner, and countable saturation may be granted there.
+  But saturation requires every finite subset of one bounded operator type
+  to be approximately satisfiable on that same corner.  The root-window
+  theorems provide multiplicity ranks and finite-group spectral projections,
+  not bounded coefficient intertwiners.  For variables of norm at most `K`,
+  the three Leavitt formulas
+
+  ```text
+  T_0S_0=P,             T_1S_1=P,             T_0S_1=0
+  ```
+
+  already have a positive gap: if the two inverse residuals are at most
+  `epsilon<1`, then
+  `||T_0S_1|| >= (1-epsilon)^2/K^2`.  Alternatively the two diagonal inverse
+  rows plus the completeness row have the bound-free Atomic Leavitt Gap
+  `max defect >=1/3`.  Thus the coefficient type is not known to be finitely
+  satisfiable; its first missing finite fragment is already the returned
+  Leavitt operators themselves.  Letting exactifying-intertwiner norms grow
+  with the window does not define a type in fixed bounded sorts, and external
+  rank-germ data are not an automatically saturated expansion of the
+  C-star-algebra language.  In the intended characteristic-two ring finite
+  additive windows exhaust finite coefficient sets; the generic countable
+  ring statement would additionally need local finiteness of the additive
+  group or a replacement for the finite-subgroup germ theorem.
 
 - **Use only the additive Fourier projections.**  This cannot recover the
   Leavitt arrows: one additive character can remain nontrivial on every
