@@ -167,6 +167,13 @@ canonical trace, or literature theorem is permitted.
   same-carrier relation or independently make one of these five occurrences
   ungauged; merely deriving a longer word from the present interface cannot
   close `(GMC3)`.
+  The global endpoint relation `(WM)^5=1`,
+  `M=J_2B_3A_2`, is the first known parity breaker: `M` has grade zero while
+  `W` has grade one.  It becomes useful only after constructing a positive
+  five-stage carrier which keeps all occurrences in one fixed reservoir
+  frame.  The established endpoint cyclic aggregate has positive `W` Gram
+  but its overlap need not reduce `WM`, so it does not yet supply that
+  carrier.
 - Recentering the Pauli center to `x_(18,19)(q)` does make the marked overlap
   reduce both order-seven heads, so there is no moving-cut boundary.  It
   instead enlarges the native label algebra by the two center-chain hub

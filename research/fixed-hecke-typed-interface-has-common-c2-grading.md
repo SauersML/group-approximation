@@ -50,6 +50,22 @@ three endpoint gauges are synchronized; `QWQ` may even vanish.  Therefore
 one may not set the `W` gauge to one while using its global braid as a
 carrier-local relation.
 
+The literal order-five row identifies the exact first escape from this
+grading.  With
+
+```text
+M=J_2B_3A_2,                 M^7=(WM)^5=1,             (HCG3)
+```
+
+one has `deg(M)=1+1=0` but `deg((WM)^5)=5=1`.  Thus `(WM)^5=1` would kill
+the common sign if its five factors were authenticated in one fixed
+reservoir frame on a positive carrier.  The established endpoint theorems
+do not provide that hypothesis: `QWQ` can be zero, and the positive cyclic
+orbit join is invariant under the product word while its positive meet with
+the `W`-translate need not reduce that product.  Hence `(HCG3)` is the
+smallest already-known global parity breaker and, simultaneously, the
+sharpest remaining carrier-authentication target.
+
 Consequently no algebraic recombination of the current typed interface can
 produce an `(ESB2)` bridge whose label action has odd carrier grade and whose
 reservoir action is the identity.  Any successful proof of

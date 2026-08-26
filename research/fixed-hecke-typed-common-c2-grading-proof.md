@@ -51,6 +51,20 @@ interface lies in the kernel of the degree map.  In particular, a relation
 equating an odd-grade native transport with a degree-zero ungauged
 coefficient bridge cannot be derived from it.
 
+For comparison, put `M=J_2B_3A_2`.  Then `deg(M)=0`, whereas
+
+```text
+deg((WM)^5)=5(deg(W)+deg(M))=1.
+```
+
+So the global order-five relation is not a relator of the carrier-local
+graded interface.  This is not an omission: the established full-source
+endpoint profile permits `Q(WQW)Q=0`, while the cyclic aggregate theorem
+does not make its positive overlap reduce `WM`.  Treating `(WM)^5=1` as a
+compressed fixed-frame identity before supplying that missing reducing
+carrier would be the same invalid compression step as treating a global odd
+Whitehead definition as a same-carrier occurrence row.
+
 The global odd rows listed in
 `named-odd-native-factor-rows-have-no-esb-common-carrier` are not relators of
 this carrier-local occurrence group: at least one of their factors acts

@@ -249,6 +249,16 @@ is necessary.  The globally odd Whitehead/commutator definitions cannot be
 inserted here until their other factors have authenticated source and range
 Grams on the same carrier.
 
+The global endpoint identity `(WM)^5=1`, with
+`M=J_2B_3A_2`, is the first already-known relation which breaks this grading:
+`M` has grade zero and `W` has grade one.  It would kill the common sign if
+all five stages were authenticated in one fixed reservoir frame.  Existing
+endpoint results stop exactly before that use: `QWQ` may vanish, and the
+positive cyclic aggregate supplies a Gram lower bound but not a reducing
+meet.  Thus an endpoint five-cycle carrier is a precise alternative to
+finding a wholly new coefficient word, but positivity of its compression
+alone is insufficient.
+
 The first two-return attempt does not kill that product.
 `two-external-return-cell-has-finite-s3-model` adds the commuting return
 `r=x_59(1)`, the matrix root for the enumerated arrow `9->5`, and the
