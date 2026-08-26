@@ -224,3 +224,4 @@
 32965145775	2026-08-26T11:48:23Z	GroupApproximation/Sofic/CentralFreeLampCover.lean	lampRetractMaps_comp
 32973382757	2026-08-26T13:18:45Z	GroupApproximation/Sofic/CentralInvolutionFinite.lean	finite_closure_of_commuting_involutions
 32980427251	2026-08-26T14:32:04Z	GroupApproximation/Sofic/CentralInvolutionSubgroup.lean	centralInvolutionSubgroup_le_iff_mem
+32986771155	2026-08-26T16:06:01Z	GroupApproximation/Sofic/CentralizerNormalizationRefuted.lean	carrying
