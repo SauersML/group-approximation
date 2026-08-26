@@ -128,6 +128,14 @@ a finite mixed Britton window.  If the coset action
   remains is an inequality charging the bounded separator on an already
   quantified actor outlier, not another proof that the actor is far from
   exact.
+- **Uniform actor outliers can nevertheless be exactly UCP-captured.**
+  `p-congruence-packet-is-ucp-exact-but-actor-nonextendable`
+  gives a finite arithmetic packet with zero lattice-centrality defect,
+  `tr([T,H])=0`, and actor distance at least `c_*`, but with its
+  lattice tuple exactly in the UCP matrix range.  Hence `(FDG-out)` is not
+  itself a matrix-order defect.  What distinguishes a genuine FDG packet
+  from this countermodel is precisely the small defect in all relations of
+  `Gamma`, especially denominator transport of the root `e_12(1)`.
 - **Universal lifting is unavailable.**  Replacing the selected finite
   window by LP of the lattice generator system would imply LLP of
   `C^*(SL_3(Z))`, contradicted by `sl3-generator-system-has-no-universal-lp`.

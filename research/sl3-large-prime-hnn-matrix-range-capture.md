@@ -76,6 +76,19 @@ commutant collapse.
   representation until a nearby ucp point has been supplied.  The general
   inference from property T to such a point is false
   (`property-t-alone-cannot-correct-tracial-choi-lifts`).
+- **The quantified actor-outlier modulus is not anti-UCP.**
+  `p-congruence-packet-is-ucp-exact-but-actor-nonextendable`
+  takes the twofold regular representation modulo `p` on `Lambda`.  Its
+  generator tuple lies exactly in `MR_d`, while multiplicity-factor
+  matrices give exact lattice centrality, `tr([T,H])=0`, and
+  same-dimensional arithmetic actor distance at least `c_*` (with the
+  elementary root calculation also giving `sqrt(2)/(p+3)`).  The
+  obstruction to extending this packet is the root
+  transport `h e_12(1) h^(-1)=e_12(1)^p`, which the packet violates
+  macroscopically.  Therefore the one-Britton scalar data and the lower
+  bound on `zeta` cannot themselves manufacture a Choi obstruction.  A
+  proof of `(HMR1)` must use the full approximate `Gamma` relations to
+  construct the selected UCP point.
 - **The whole adjoint complement is the wrong spectral target.**  One might
   try to prove every non-invariant adjoint vector tempered and then invoke
   `tempered-selected-conjugation-vector-obeys-rcc`.  Exact congruence models
