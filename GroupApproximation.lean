@@ -4,6 +4,7 @@ import GroupApproximation.Algebra.MappingTelescope
 import GroupApproximation.Algebra.SemidirectProductAssoc
 import GroupApproximation.Algebra.TwoGeneratedFreeQuotient
 import GroupApproximation.Analysis.FaithfulTracialMatrix
+import GroupApproximation.Analysis.FiniteMatrixPositiveSquareRoot
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
 import GroupApproximation.Analysis.MaximalGroupCStar

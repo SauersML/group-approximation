@@ -50,3 +50,9 @@ Using both rows gives more concrete progress:
 `f(-1/4,0,c)=0`, the transverse line `f(-1/4,b,-1)=0`, and the diagonal line
 `f(a,a+1/4,1)=0`.  The remaining propagation is isolated as
 `steinberg-three-zero-families-propagate-all-chords`.
+
+At the first odd prime this propagation now closes completely:
+`steinberg-zero-marginal-recurrence-is-zero-at-p-three` uses
+`-1/4=1/2` in `F_3`, the source identities, and the plane marginal to kill
+all three `a`-fibers.  The uniform claim still needs a mechanism replacing
+that characteristic-three coincidence.

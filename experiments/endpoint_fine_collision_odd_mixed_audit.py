@@ -10,6 +10,9 @@ from endpoint_chain_center_hecke_collision_audit import (
     coeff, conjugate, entries, generated_signed, group_lookup, root,
     whitehead,
 )
+from depth_one_paired_leavitt_return_search import (
+    multiply as coefficient_multiply,
+)
 from signed_hecke_literal_pauli_probe_audit import (
     matrices_equal, matrix_multiply, word_matrix,
 )
@@ -78,6 +81,7 @@ def main():
     a3 = coeff("1", "000")
     b2 = coeff("00", "1")
     b3 = coeff("000", "1")
+    b3a1 = coefficient_multiply(b3, a1)
 
     named = {
         "C1": root(4, 2, q),
@@ -96,6 +100,10 @@ def main():
         "Bsource": root(8, 3, b2),
         "Bendpoint": root(2, 3, b3),
         "D53": root(5, 3, q),
+        "d": root(8, 2, b2),
+        "f": root(9, 4, b3),
+        "k": root(9, 2, b3),
+        "c": root(9, 7, b3a1),
     }
     w_word = whitehead(8, 2, 2)
     a2_word = ((8, 5, a2),)
@@ -200,6 +208,48 @@ def main():
             else:
                 answer = conjugate_by_factors(m_factors, answer)
         return answer
+
+    # The full common Hecke source has four further positive generators.
+    # Block support leaves at most one nontrivial GL4 return: on the root
+    # coordinates it fixes C3,s,sprime and shears t by sprime.  Verify that
+    # literal lift against the complete signed L0 ledger, rather than silently
+    # replacing Q by the coarser p2 flag.
+    full_l0_names = ("C1", "C2", "C3", "d", "f", "c", "k", "v", "w", "s")
+    l0 = generated_signed(tuple(
+        (named[name], name in ("C1", "C2", "C3"))
+        for name in full_l0_names
+    ))
+    assert len(l0) == 8192
+    q_return_words = sorted(
+        (word for action, word in returning
+         if action == (1, 2, 4 ^ 8, 8)),
+        key=lambda word: (len(word), word),
+    )
+    assert len(q_return_words) == 1
+    q_return_word = q_return_words[0]
+    q_return_signed = []
+    for name in full_l0_names:
+        image = exact_conjugate(q_return_word, named[name])
+        q_return_signed.append(
+            group_lookup("L0-endpoint-return", l0, image)
+            == (name in ("C1", "C2", "C3"))
+        )
+    print("full-L0 block-return word", q_return_word, flush=True)
+    print("full-L0 block-return preserves signed generators",
+          tuple(q_return_signed), flush=True)
+
+    w_intersection = 0
+    w_sign_conflicts = 0
+    for matrix_key, sign in l0.items():
+        element = [list(row) for row in matrix_key]
+        moved_sign = group_lookup(
+            "L0-endpoint-return", l0, conjugate(w_word, element)
+        )
+        if moved_sign is not None:
+            w_intersection += 1
+            w_sign_conflicts += moved_sign != sign
+    print("L0 intersect W L0 W", w_intersection,
+          "signed conflicts", w_sign_conflicts, flush=True)
 
     # Audit a shortest literal signed-source return which transports the
     # fine root s to the adjacent depth-three root t.  This is the smallest
