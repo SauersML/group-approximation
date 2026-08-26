@@ -1,4 +1,4 @@
-import GroupApproximation.Analysis.MFAlgebra
+import GroupApproximation.Analysis.MFAlgebraDimensionNormalization
 import GroupApproximation.Analysis.KirchbergRordamCorona
 import GroupApproximation.Meta.AxiomGuard
 
@@ -37,12 +37,12 @@ structure Model (A : Type u) [NonUnitalCStarAlgebra A] where
   map : ∀ n : ℕ, A → Matrix (X n) (X n) ℂ
   tendsto_mul : ∀ a b : A,
     Tendsto (fun n ↦ ‖map n (a * b) - map n a * map n b‖) atTop (nhds 0)
-  tendsto_linear : ∀ (c₁ c₂ : ℂ) (a b : A),
-    Tendsto
-      (fun n ↦ ‖map n (c₁ • a + c₂ • b) - c₁ • map n a - c₂ • map n b‖)
-      atTop (nhds 0)
+  tendsto_add : ∀ a b : A,
+    Tendsto (fun n ↦ ‖map n (a + b) - (map n a + map n b)‖) atTop (nhds 0)
+  tendsto_smul : ∀ (c : ℂ) (a : A),
+    Tendsto (fun n ↦ ‖map n (c • a) - c • map n a‖) atTop (nhds 0)
   tendsto_star : ∀ a : A,
-    Tendsto (fun n ↦ ‖map n (star a) - (map n a)ᴴ‖) atTop (nhds 0)
+    Tendsto (fun n ↦ ‖map n (star a) - star (map n a)‖) atTop (nhds 0)
   bounded : ∀ a : A, ∃ C : ℝ, ∀ n : ℕ, ‖map n a‖ ≤ C
 
 /-- A fixed bounded representative of the image of one source element. -/
@@ -61,6 +61,10 @@ theorem tendsto_lift_mul {A : Type u} [NonUnitalCStarAlgebra A]
     (f : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)) (a b : A) :
     Tendsto (fun n ↦ ‖lift f (a * b) n - lift f a n * lift f b n‖)
       atTop (nhds 0) := by
+  have hmul : normMatrixCStarCoronaMk (fun n ↦ X n) (lift f a * lift f b) =
+      normMatrixCStarCoronaMk (fun n ↦ X n) (lift f a) *
+        normMatrixCStarCoronaMk (fun n ↦ X n) (lift f b) :=
+    _root_.map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)) (lift f a) (lift f b)
   have h := KirchbergRordam.tendsto_norm_sub_of_corona_eq
     (X := fun n ↦ X n) (u := lift f (a * b))
     (v := lift f a * lift f b) (by
@@ -69,34 +73,53 @@ theorem tendsto_lift_mul {A : Type u} [NonUnitalCStarAlgebra A]
           mk_lift f (a * b)
         _ = f a * f b := map_mul f a b
         _ = normMatrixCStarCoronaMk (fun n ↦ X n) (lift f a * lift f b) := by
-          rw [map_mul, mk_lift, mk_lift])
+          rw [hmul, mk_lift, mk_lift])
   simpa only [lp.infty_coeFn_mul, Pi.mul_apply] using h
 
-/-- Linear defects of the chosen representatives are null. -/
-theorem tendsto_lift_linear {A : Type u} [NonUnitalCStarAlgebra A]
-    (f : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n))
-    (c₁ c₂ : ℂ) (a b : A) :
-    Tendsto
-      (fun n ↦ ‖lift f (c₁ • a + c₂ • b) n -
-        c₁ • lift f a n - c₂ • lift f b n‖) atTop (nhds 0) := by
+/-- Additive defects of the chosen representatives are null. -/
+theorem tendsto_lift_add {A : Type u} [NonUnitalCStarAlgebra A]
+    (f : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)) (a b : A) :
+    Tendsto (fun n ↦ ‖lift f (a + b) n - (lift f a n + lift f b n)‖)
+      atTop (nhds 0) := by
+  have hadd : normMatrixCStarCoronaMk (fun n ↦ X n)
+        (lift f a + lift f b) =
+      normMatrixCStarCoronaMk (fun n ↦ X n) (lift f a) +
+        normMatrixCStarCoronaMk (fun n ↦ X n) (lift f b) :=
+    _root_.map_add (normMatrixCStarCoronaMk (fun n ↦ X n))
+      (lift f a) (lift f b)
   have h := KirchbergRordam.tendsto_norm_sub_of_corona_eq
-    (X := fun n ↦ X n) (u := lift f (c₁ • a + c₂ • b))
-    (v := c₁ • lift f a + c₂ • lift f b) (by
+    (X := fun n ↦ X n) (u := lift f (a + b))
+    (v := lift f a + lift f b) (by
       calc
-        normMatrixCStarCoronaMk (fun n ↦ X n)
-            (lift f (c₁ • a + c₂ • b)) = f (c₁ • a + c₂ • b) :=
-          mk_lift f (c₁ • a + c₂ • b)
-        _ = c₁ • f a + c₂ • f b := by rw [map_add, map_smul, map_smul]
+        normMatrixCStarCoronaMk (fun n ↦ X n) (lift f (a + b)) = f (a + b) :=
+          mk_lift f (a + b)
+        _ = f a + f b := map_add f a b
         _ = normMatrixCStarCoronaMk (fun n ↦ X n)
-            (c₁ • lift f a + c₂ • lift f b) := by
-          rw [map_add, map_smul, map_smul, mk_lift, mk_lift])
-  simpa only [lp.coeFn_add, Pi.add_apply, lp.coeFn_smul, Pi.smul_apply,
-    sub_add] using h
+            (lift f a + lift f b) := by rw [hadd, mk_lift, mk_lift])
+  simpa only [lp.coeFn_add, Pi.add_apply] using h
+
+/-- Complex-homogeneity defects of the chosen representatives are null. -/
+theorem tendsto_lift_smul {A : Type u} [NonUnitalCStarAlgebra A]
+    (f : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n))
+    (c : ℂ) (a : A) :
+    Tendsto (fun n ↦ ‖lift f (c • a) n - c • lift f a n‖)
+      atTop (nhds 0) := by
+  have hs := MFAlgebraDimension.normMatrixCStarCoronaMk_smul
+    (fun n ↦ X n) c (lift f a)
+  have h := KirchbergRordam.tendsto_norm_sub_of_corona_eq
+    (X := fun n ↦ X n) (u := lift f (c • a)) (v := c • lift f a) (by
+      calc
+        normMatrixCStarCoronaMk (fun n ↦ X n) (lift f (c • a)) = f (c • a) :=
+          mk_lift f (c • a)
+        _ = c • f a := map_smul f c a
+        _ = normMatrixCStarCoronaMk (fun n ↦ X n) (c • lift f a) := by
+          rw [hs, mk_lift])
+  simpa only [lp.coeFn_smul, Pi.smul_apply] using h
 
 /-- Star defects of the chosen representatives are null. -/
 theorem tendsto_lift_star {A : Type u} [NonUnitalCStarAlgebra A]
     (f : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)) (a : A) :
-    Tendsto (fun n ↦ ‖lift f (star a) n - (lift f a n)ᴴ‖)
+    Tendsto (fun n ↦ ‖lift f (star a) n - star (lift f a n)‖)
       atTop (nhds 0) := by
   have h := KirchbergRordam.tendsto_norm_sub_of_corona_eq
     (X := fun n ↦ X n) (u := lift f (star a)) (v := star (lift f a)) (by
@@ -111,10 +134,11 @@ theorem tendsto_lift_star {A : Type u} [NonUnitalCStarAlgebra A]
 /-- Coordinate representatives of a corona homomorphism, bundled as a
 discrete asymptotic star homomorphism. -/
 def model {A : Type u} [NonUnitalCStarAlgebra A]
-    (f : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)) : Model A where
+    (f : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)) : Model (X := X) A where
   map n a := lift f a n
   tendsto_mul := tendsto_lift_mul f
-  tendsto_linear := tendsto_lift_linear f
+  tendsto_add := tendsto_lift_add f
+  tendsto_smul := tendsto_lift_smul f
   tendsto_star := tendsto_lift_star f
   bounded a := ⟨‖lift f a‖, fun n ↦
     boundedMatrixSequence_coord_norm_le (fun r ↦ X r) (lift f a) n⟩
@@ -130,10 +154,15 @@ theorem limsup_norm_model_eq {A : Type u} [NonUnitalCStarAlgebra A]
   calc
     Filter.limsup (fun n ↦ ‖(model f).map n a‖) atTop =
         ‖normMatrixCStarCoronaMk (fun n ↦ X n) (lift f a)‖ := by
-          rw [norm_filterMatrixCorona_mk_eq_limsup, Nat.cofinite_eq_atTop]
-          rfl
+          change Filter.limsup (fun n ↦ ‖lift f a n‖) atTop =
+            ‖Ideal.Quotient.mk
+              (nullMatrixSequenceIdeal (fun n ↦ X n) cofinite) (lift f a)‖
+          simpa only [Nat.cofinite_eq_atTop] using
+            (norm_filterMatrixCorona_mk_eq_limsup
+              (fun n ↦ X n) cofinite (lift f a)).symm
     _ = ‖f a‖ := by rw [mk_lift]
-    _ = ‖a‖ := hiso.norm_map
+    _ = ‖a‖ := by
+      simpa only [map_zero, dist_zero_right] using hiso.dist_eq a 0
 
 /-- Two discrete models are asymptotically compatible along maps from a
 common algebra. -/
@@ -173,13 +202,14 @@ theorem models_areCompatible_of_comp_eq
     (h : left.comp iA = right.comp iB) :
     AreCompatible iA iB (model left) (model right) := by
   intro c
-  apply KirchbergRordam.tendsto_norm_sub_of_corona_eq
-  rw [mk_lift, mk_lift]
-  exact DFunLike.congr_fun h c
+  exact KirchbergRordam.tendsto_norm_sub_of_corona_eq
+    (X := fun n ↦ X n) (u := lift left (iA c)) (v := lift right (iB c)) (by
+      rw [mk_lift, mk_lift]
+      exact DFunLike.congr_fun h c)
 
 /-- Compatible faithful corona embeddings unconditionally supply faithful,
 asymptotically compatible coordinate models for both factors. -/
-theorem faithfulCompatibleModels_of_embeddings
+theorem exists_faithfulCompatibleModels_of_embeddings
     {C : Type u} {A : Type v} {B : Type w}
     [NonUnitalCStarAlgebra C] [NonUnitalCStarAlgebra A]
     [NonUnitalCStarAlgebra B]
@@ -188,14 +218,16 @@ theorem faithfulCompatibleModels_of_embeddings
     (right : B →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n))
     (hleft : Function.Injective left) (hright : Function.Injective right)
     (hcompatible : left.comp iA = right.comp iB) :
-    FaithfulCompatibleModels iA iB where
-  left := model left
-  right := model right
-  compatible := models_areCompatible_of_comp_eq iA iB left right hcompatible
-  left_norm_recovery := limsup_norm_model_eq left hleft
-  right_norm_recovery := limsup_norm_model_eq right hright
+    Nonempty (FaithfulCompatibleModels (X := X) iA iB) :=
+  ⟨{
+    left := model left
+    right := model right
+    compatible := models_areCompatible_of_comp_eq iA iB left right hcompatible
+    left_norm_recovery := limsup_norm_model_eq left hleft
+    right_norm_recovery := limsup_norm_model_eq right hright
+  }⟩
 
-/-- Closed universal form of `faithfulCompatibleModels_of_embeddings`, for
+/-- Closed universal form of `exists_faithfulCompatibleModels_of_embeddings`, for
 endpoint and axiom-closure auditing. -/
 def CoronaEmbeddingsGiveFaithfulCompatibleModels : Prop :=
   ∀ {C : Type u} {A : Type v} {B : Type w}
@@ -206,13 +238,14 @@ def CoronaEmbeddingsGiveFaithfulCompatibleModels : Prop :=
     (left : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n))
     (right : B →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)),
     Function.Injective left → Function.Injective right →
-      left.comp iA = right.comp iB → FaithfulCompatibleModels iA iB
+      left.comp iA = right.comp iB →
+        Nonempty (FaithfulCompatibleModels (X := X) iA iB)
 
 /-- The closed compatible-corona-to-asymptotic-model theorem. -/
 theorem coronaEmbeddingsGiveFaithfulCompatibleModels :
     CoronaEmbeddingsGiveFaithfulCompatibleModels := by
   intro C A B _ _ _ X _ iA iB left right hleft hright hcompatible
-  exact faithfulCompatibleModels_of_embeddings
+  exact exists_faithfulCompatibleModels_of_embeddings
     iA iB left right hleft hright hcompatible
 
 end
