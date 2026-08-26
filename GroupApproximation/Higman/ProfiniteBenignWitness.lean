@@ -1,5 +1,6 @@
 import GroupApproximation.Higman.BenignDirectProductResiduallyFinite
 import GroupApproximation.Higman.BenignJoinResiduallyFinite
+import GroupApproximation.Higman.BenignAmbient
 
 /-!
 # Benign witnesses with cofinal finite quotients
@@ -169,6 +170,12 @@ variable {A₁ A₂ : Subgroup G}
 variable (u₁ : ProfiniteBenignWitness A₁)
 variable (u₂ : ProfiniteBenignWitness A₂)
 
+/-- The exact remaining profinite obligation for Higman's join witness.  The
+other two fields (`ambientRF` and `embCofinal`) are proved below. -/
+def CutterClosedObligation : Prop :=
+  profiniteClosure (joinL u₁.witness u₂.witness) =
+    joinL u₁.witness u₂.witness
+
 /-- The two-HNN ambient of the join remains residually finite. -/
 theorem ambient_residuallyFinite :
     Group.ResiduallyFinite (JoinLevel2 u₁.witness u₂.witness) := by
@@ -207,14 +214,33 @@ theorem embedding_cofinal :
 At this point the join has two of the three fields of a
 `ProfiniteBenignWitness`.  The exact missing statement is
 
-`profiniteClosure (joinL u₁.witness u₂.witness) =
-  joinL u₁.witness u₂.witness`.
+`CutterClosedObligation u₁ u₂`.
 
 It needs finite-cover subgroup separability; it does not follow merely from
 residual finiteness of the join ambient.  No conditional endpoint is declared.
 -/
 
 end ProfiniteBenignJoin
+
+/-! ## The exact obligations for image transport -/
+
+namespace ProfiniteBenignMapEmb
+
+variable [Group.FG G] [Group.IsFinitelyPresented N]
+variable {H : Subgroup G} (u : ProfiniteBenignWitness H)
+variable (theta : G →* N) (htheta : Function.Injective theta)
+
+/-- The three facts not supplied by the abstract amalgam normal form in
+`BenignWitness.mapEmb`.  Unlike the direct-product and join-ambient results,
+none follows from the current fields alone: they are a compatible finite-cover
+problem for the particular amalgam `u.K *_G N`. -/
+def LiftingObligations : Prop :=
+  Group.ResiduallyFinite (u.witness.mapEmb theta htheta).K ∧
+    profiniteClosure (u.witness.mapEmb theta htheta).L =
+      (u.witness.mapEmb theta htheta).L ∧
+    CofinalProfiniteEmbedding (u.witness.mapEmb theta htheta).emb
+
+end ProfiniteBenignMapEmb
 
 end
 
