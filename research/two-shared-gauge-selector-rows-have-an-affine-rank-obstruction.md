@@ -68,7 +68,29 @@ The statement is robust.  In a normalized tracial matrix carrier, let
 
 Thus the distance between the two forced values of `theta` gives a
 dimension-independent lower bound on the sum of the two selector-row
-defects.  For the two binary rows above, writing
+defects.  More precisely, suppose the two forced values
+
+```text
+theta_i^*=(r_i-(1-q_i))/(2q_i-1)
+```
+
+belong to `[0,1]`, put `c_i=2|2q_i-1|`, and write
+`Delta=|theta_1^*-theta_2^*|`.  Then `(TSG3)` gives the three sharp
+consequences
+
+```text
+delta_1+delta_2
+  >= min(c_1,c_2) Delta,                              (TSG4a)
+
+delta_1^2+delta_2^2
+  >= (c_1^2 c_2^2/(c_1^2+c_2^2)) Delta^2,            (TSG4b)
+
+max(delta_1,delta_2)
+  >= (c_1 c_2/(c_1+c_2)) Delta.                       (TSG4c)
+```
+
+The constants are optimal consequences of the two scalar rank inequalities.
+For the two binary rows above, writing
 
 ```text
 delta_i=||W_i R_i W_i^*-T_i||_2,
@@ -81,10 +103,11 @@ delta_1 >= |theta-1/2|,
 delta_2 >= (3/2)|theta-5/6|,
 
 delta_1+delta_2 >= 1/3,
-delta_1^2+delta_2^2 >= 13/169.                         (TSG4)
+delta_1^2+delta_2^2 >= 1/13=13/169,
+max(delta_1,delta_2) >= 1/5.                          (TSG5)
 ```
 
-In particular one of the two row defects is at least `1/6`.  No density
+In particular one of the two row defects is at least `1/5`.  No density
 bound, spectral choice, PI degree, or property `(T)` is used after the common
 carrier and common gauge have been decoded.
 
