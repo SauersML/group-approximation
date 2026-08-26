@@ -264,6 +264,18 @@ This is broader than the named depth-one actor menu.  A live two-exit word
 must therefore use depth-two address data, at least three prefix leaves, or
 more than two nonconstant root occurrences.
 
+- **Extend the exact prefix search to three depth-one roots.**  This remains
+  computationally open and is not being promoted to a fence.  The `304^2`
+  ordered two-factor histories collapse to `54897` exact symbolic group
+  elements.  A bounded MSI pass then filtered possible third factors using
+  one signed `L_0` generator, but exceeded its hard `250000` survivor cap
+  (`253762` survivors) before the first `32` of `304` third factors had been
+  processed, and was stopped after `16.5` seconds.  Thus one-row conjugation
+  is far too weak.  A viable exact classification needs a simultaneous
+  multirow signature quotient or a structural double-coset reduction before
+  any further enumeration; no three-letter hit or no-go follows from this
+  bounded pass.
+
 The first such jointly returning coefficient packet is now explicit but
 still gauged.  `asymmetric-depth-two-fold-return-retains-external-gauge`
 uses the complete prefix code `{00,01,1}` and three private commutators to
@@ -281,3 +293,21 @@ cut, so Hall--Witt reassociation or occurrence counting cannot cancel their
 intermediate gauges.  The next live word must mix nonconstant root channels
 before the final return, rather than fold private prefix leaves additively
 inside one root subgroup.
+
+The first genuinely nonseparated A3 version is also exact and stops at the
+same gauge.  `depth-two-a3-return-is-gauged-external-root` uses
+
+```text
+alpha=t_00, beta=s_00t_01, gamma=s_01,
+alpha beta gamma=1, alpha gamma=0,
+```
+
+on a composable three-root path.  Both associator bracketings equal
+`x_78(1)`, while the private-arm shortcut is cross-zero.  Appending one
+Whitehead therefore gives a moving bridge with reservoir factor `DE`, not
+the identity; the internal arms do not reduce the Hecke cut and have no
+same-carrier gauges to cancel.  The old exact `S_3` assignment keeps `DE`
+of order three.  The next cell must attach an opposite-root/Whitehead word
+to an individual private A3 arm before the triple product becomes one, and
+must close a new same-carrier relation rather than conjugate the total
+external output.
