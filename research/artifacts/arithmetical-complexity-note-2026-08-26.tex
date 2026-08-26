@@ -130,6 +130,20 @@ $\mathrm{TORSIONFREE}_{fp}$ is $\Pizt$-complete and $\mathrm{HASTORSION}_{fp}$ i
 \end{corollary}
 Theorem~\ref{thm:fpgate} also explains the cells that remain open. The rope is MF and torsion-free, but it contains free subgroups and is not residually finite, so for amenability and residual finiteness this route is provably unavailable and their completeness cells need a different mechanism; for soficity and hyperlinearity the cells are \emph{exactly} the questions whether the one explicit group $R_e$ is sofic, respectively hyperlinear (\path{sofic-safe-finite-presentation-compiler}, \path{mf-compiler-positive-branch-is-hyperlinear}).
 
+
+\section{Separability is the exact obstruction}
+Let $K$ be residually finite, $L\le K$ any subgroup, and $\Gamma=\langle K,v\mid [v,L]=1\rangle=K*_L(L\times\Z)$.
+\begin{theorem}[\path{centralizing-hnn-is-residually-finite-iff-edge-is-separable}]
+$\Gamma$ is residually finite iff $L$ is closed in the profinite topology of $K$.
+\end{theorem}
+\begin{proof}[Sketch]
+If $L$ is closed, separate the finitely many pinch letters of a Britton-reduced $g\ne1$ from $L$ by a finite quotient $q:K\to Q$ and map $\Gamma\to Q*_{q(L)}(q(L)\times\Z)$, a finite graph of groups with finite and virtually cyclic vertex groups over a finite edge, hence virtually free and residually finite; the image of $g$ stays Britton-reduced. Conversely, for any $\chi:\Gamma\to P$ finite, $U=\{f\in K:\chi(f)\in\chi(L)\}$ has finite index and contains $L$, so every closure point $k$ of $L$ has $\chi(k)\in\chi(L)$ and therefore $\chi([v,k])=1$, while $[v,k]\ne 1$ for $k\notin L$.
+\end{proof}
+\begin{theorem}[\path{enumerated-subgroup-separability-is-pi3-complete}]
+Separability of a recursively enumerated subgroup of $F_2$ is $\Pith$-complete; finitely generated subgroups are always separable (M.\ Hall), so the complexity appears exactly when infinitely many generators may appear over time.
+\end{theorem}
+This also settles what the sofic question for the compiler's rope is \emph{not}: by \path{centralizing-hnn-sofic-via-regular-edge-centralizer}, a stable letter in the centralizer of the edge exists exactly when the finite quotient separates the tested element from the edge image, so for a finitely generated edge the quotient-model route is equivalent to separability of that edge; Mikhailova subgroups are finitely generated with undecidable membership, hence non-separable, and the route dies. Any proof that the rope is sofic --- or even LEF --- must use finite models whose restriction to the base is not a homomorphism onto a finite quotient.
+
 \section{Machine-checked statements}
 The following are kernel-checked Lean~4 declarations on the \path{main} branch of the development (module names under \path{GroupApproximation/Computability/} unless noted).
 \begin{itemize}
