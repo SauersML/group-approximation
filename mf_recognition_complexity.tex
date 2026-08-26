@@ -105,15 +105,14 @@ with property~\textup{(T)} such that every homomorphism from $H$ to an MF
 group is trivial.  We turn to the recognition problem for finitely presented groups.
 
 \begin{mainthm}[MF recognition is $\Pi^0_2$-complete]\label{thm:recognition}
-Fix an effective coding of finite presentations of groups by natural
-numbers.  The set of codes of finite presentations of MF groups is
-$\Pi^0_2$-complete, and the set of codes of finite presentations of non-MF
-groups is $\Sigma^0_2$-complete.  In particular, neither set is
-recursively enumerable: it is impossible to construct an algorithm that
-decides from a finite presentation whether the group it defines is
-MF\@.  There is a computable map $e\mapsto\widehat R_e$ into finite
-presentations such that $\widehat R_e$ presents an MF group if and only if
-the $e$-th partial computable function has infinite domain.
+Deciding whether a finite presentation defines an MF group is
+$\Pi^0_2$-complete, and the complementary problem is
+$\Sigma^0_2$-complete.  In particular, it is impossible to construct an
+algorithm that decides from a finite presentation whether the group it
+defines is MF, or even one that enumerates the presentations of MF
+groups or those of non-MF groups.  There is a computable map
+$e\mapsto\widehat R_e$ such that $\widehat R_e$ presents an MF group if
+and only if the $e$-th partial computable function has infinite domain.
 \end{mainthm}
 
 \begin{figure}[htb]
@@ -158,8 +157,8 @@ labelled trivial.  It is valid if there are unitaries
 $U_1,\dots,U_k\in\U(d)$ such that $\opnorm{r_i(U)-1}\le2^{-n}$ for each
 relator $r_i$ and $\opnorm{w(U)-1}\ge1/4$ for every word labelled
 nontrivial.  These conditions are polynomial equations and inequalities
-over the real numbers, so Tarski's theorem decides whether a certificate
-is valid.  A finite presentation defines an MF group if and only if it has
+over the real numbers, so whether a certificate is valid is decidable,
+by Tarski's theorem.  A finite presentation defines an MF group if and only if it has
 a valid certificate for every $n$.  Hence
 $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and
 $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$
@@ -169,9 +168,8 @@ Given a program index $e$, we construct a finite presentation
 $\widehat R_e$ in Section~\ref{sec:compiler}.  If the $e$-th partial function
 has finite domain, then the presented group contains $H$ and is not MF\@.
 If its domain is infinite, the edge isomorphism in the defining HNN
-extension is implemented by a unitary of a norm matrix corona.
-Theorem~\ref{thm:hnn-permanence} then shows that the presented group is MF
-(Sections~\ref{sec:hnn} and~\ref{sec:compiler}).
+extension is implemented by a unitary of a norm matrix corona, and the
+presented group is MF by Theorem~\ref{thm:hnn-permanence}.
 Korchagin proved that the MF property is closed under direct
 limits~\cite[Proposition~13]{Korchagin}.  Consequently, every finitely
 generated non-MF group is a quotient of a finitely presented one.
