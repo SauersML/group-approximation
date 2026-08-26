@@ -67,6 +67,7 @@ artifacts:
   - research/leavitt-two-compressor-core-is-lef-and-marked-operator-mf.md
   - research/leavitt-st20-two-compressor-mark-is-mf-visible.md
   - research/haar-root-character-vanishes-off-parabolic-action-kernel.md
+  - research/first-partial-inverse-whitehead-face-has-haar-mf-character.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -270,6 +271,15 @@ mark remains MF-visible even after pullback to the chosen Steinberg lifts.
 Therefore a valid collapse must use genuinely non-diagonal Leavitt
 coefficients; neither one nor both diagonal compression directions are
 load-bearing.
+
+Even one off-diagonal partial-inverse face is below the threshold.
+`first-partial-inverse-whitehead-face-has-haar-mf-character` computes the
+shortest `s_0,t_0` opposite-root Whitehead involution and shows that its
+extension of the full row module has a locally finite quotient with Haar row
+character and the mark visible.  The first possible Haar-profile
+obstruction must therefore couple at least two noncommuting coefficient
+occurrences or enforce a global return; a single partial-inverse occurrence
+cannot be load-bearing.
 
 The rank scale along that orbit is now uniform.
 `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed

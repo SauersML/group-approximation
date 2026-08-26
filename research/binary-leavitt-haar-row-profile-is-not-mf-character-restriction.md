@@ -41,6 +41,20 @@ regular-character value on every parabolic element whose vertex action is
 nontrivial.  It deliberately stops at the action kernel and gives no
 finite-matrix contradiction.
 
+The first genuine opposite-root occurrence is also insufficient.
+`first-partial-inverse-whitehead-face-has-haar-mf-character` adjoins
+
+```text
+omega=x_23(s_0)x_32(t_0)x_23(s_0)
+```
+
+to the full row module and identifies a locally finite quotient
+`(R,+)^(n-1) semidirect C_2`.  Its exact finite regular models retain the
+mark and have Haar restriction on the row.  Thus the relations
+`t_0s_0=1`, `s_0t_0=p`, and their shortest opposite-root Whitehead word do
+not close `(HRP1)`; at least two noncommuting coefficient occurrences or a
+global return are necessary.
+
 The first explicit **downstairs elementary-group** two-compressor relation
 beyond the one-level Haar model is the depth-two split of the marked
 off-diagonal root.  With bars denoting elementary images and
