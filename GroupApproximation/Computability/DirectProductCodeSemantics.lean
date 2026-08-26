@@ -327,5 +327,102 @@ noncomputable def productPresentationEquiv (c d : PresentationCode) :
     left_inv := fromProduct_toProduct c d
     right_inv := toProduct_fromProduct c d }
 
+/-! ## Identification with the raw product code -/
+
+theorem setOf_mem_append {alpha : Type} (A B : List alpha) :
+    {x | x ∈ A ++ B} = {x | x ∈ A} ∪ {x | x ∈ B} := by
+  ext x
+  simp
+
+theorem setOf_leftRelators (c d : PresentationCode) :
+    {x | x ∈ (c.2.map (leftWord c)).map (wordOf (productCode c d))} =
+      relabel (productGeneratorEquiv c d) ''
+        relabel Sum.inl '' codeRels c := by
+  ext x
+  constructor
+  · intro hx
+    obtain ⟨w, hw, rfl⟩ := List.mem_map.mp hx
+    obtain ⟨v, hv, rfl⟩ := List.mem_map.mp hw
+    rw [wordOf_productCode_leftWord]
+    have hv' : wordOf c v ∈ codeRels c := by
+      change wordOf c v ∈ relatorFinset c
+      rw [relatorFinset, List.mem_toFinset]
+      exact List.mem_map.mpr ⟨v, hv, rfl⟩
+    exact ⟨_, ⟨_, hv', rfl⟩, rfl⟩
+  · rintro ⟨_, ⟨_, hv, rfl⟩, rfl⟩
+    simp only [codeRels, relatorFinset, Finset.mem_coe,
+      List.mem_toFinset, List.mem_map] at hv
+    obtain ⟨v, hv, rfl⟩ := hv
+    exact List.mem_map.mpr ⟨leftWord c v,
+      List.mem_map.mpr ⟨v, hv, rfl⟩,
+      wordOf_productCode_leftWord c d v⟩
+
+theorem setOf_rightRelators (c d : PresentationCode) :
+    {x | x ∈ (d.2.map (rightWord c d)).map (wordOf (productCode c d))} =
+      relabel (productGeneratorEquiv c d) ''
+        relabel Sum.inr '' codeRels d := by
+  ext x
+  constructor
+  · intro hx
+    obtain ⟨w, hw, rfl⟩ := List.mem_map.mp hx
+    obtain ⟨v, hv, rfl⟩ := List.mem_map.mp hw
+    rw [wordOf_productCode_rightWord]
+    have hv' : wordOf d v ∈ codeRels d := by
+      change wordOf d v ∈ relatorFinset d
+      rw [relatorFinset, List.mem_toFinset]
+      exact List.mem_map.mpr ⟨v, hv, rfl⟩
+    exact ⟨_, ⟨_, hv', rfl⟩, rfl⟩
+  · rintro ⟨_, ⟨_, hv, rfl⟩, rfl⟩
+    simp only [codeRels, relatorFinset, Finset.mem_coe,
+      List.mem_toFinset, List.mem_map] at hv
+    obtain ⟨v, hv, rfl⟩ := hv
+    exact List.mem_map.mpr ⟨rightWord c d v,
+      List.mem_map.mpr ⟨v, hv, rfl⟩,
+      wordOf_productCode_rightWord c d v⟩
+
+theorem setOf_commutatorRelators (c d : PresentationCode) :
+    {x | x ∈ (commutatorWords c d).map (wordOf (productCode c d))} =
+      relabel (productGeneratorEquiv c d) '' crossRels c d := by
+  ext x
+  constructor
+  · intro hx
+    obtain ⟨w, hw, rfl⟩ := List.mem_map.mp hx
+    obtain ⟨row, hrow, hw⟩ := List.mem_flatten.mp hw
+    obtain ⟨i, hi, rfl⟩ := List.mem_map.mp hrow
+    obtain ⟨j, hj, rfl⟩ := List.mem_map.mp hw
+    let fi : Fin (genCount c) := ⟨i, List.mem_range.mp hi⟩
+    let fj : Fin (genCount d) := ⟨j, List.mem_range.mp hj⟩
+    rw [show i = fi by rfl, show j = fj by rfl,
+      wordOf_productCode_commutatorWord]
+    exact ⟨_, ⟨(fi, fj), rfl⟩, rfl⟩
+  · rintro ⟨_, ⟨⟨i, j⟩, rfl⟩, rfl⟩
+    refine List.mem_map.mpr ⟨commutatorWord c i j, ?_,
+      wordOf_productCode_commutatorWord c d i j⟩
+    rw [commutatorWords]
+    refine List.mem_flatten.mpr ⟨commutatorRow c d i, ?_, ?_⟩
+    · exact List.mem_map.mpr ⟨i, List.mem_range.mpr i.isLt, rfl⟩
+    · exact List.mem_map.mpr ⟨j, List.mem_range.mpr j.isLt, rfl⟩
+
+/-- The raw relator list written by `productCode` is exactly the relabelled
+sum-alphabet product presentation. -/
+theorem relSet_productCode (c d : PresentationCode) :
+    {x | x ∈ relatorListOf (productCode c d)} =
+      relabelRels (productGeneratorEquiv c d) (productRels c d) := by
+  rw [show relatorListOf (productCode c d) =
+      (productWords c d).map (wordOf (productCode c d)) by rfl]
+  simp only [productWords, List.map_append]
+  rw [setOf_mem_append, setOf_mem_append, setOf_leftRelators,
+    setOf_rightRelators, setOf_commutatorRelators]
+  simp only [productRels, relabelRels, Set.image_union]
+
+/-- The concrete primitive-recursive product code presents the direct product
+of the two coded groups. -/
+noncomputable def productCodeEquiv (c d : PresentationCode) :
+    Carrier (productCode c d) ≃* Carrier c × Carrier d :=
+  ((carrierEquivList (productCode c d)).trans
+      (presCongrSet (relSet_productCode c d))).trans
+    ((congrEquiv (productGeneratorEquiv c d) (productRels c d)).symm.trans
+      (productPresentationEquiv c d))
+
 end DirectProductCodeSemantics
 end GroupApproximation
