@@ -46,12 +46,12 @@ def targetSubgroup : Subgroup G :=
   (⊤ : Subgroup (FreeGroup X)).map E.target
 
 /-- The source subgroup is canonically a copy of the free group. -/
-noncomputable def sourceEquiv : FreeGroup X ≣* sourceSubgroup E :=
+noncomputable def sourceEquiv : FreeGroup X ≃* sourceSubgroup E :=
   (Subgroup.topEquiv (G := FreeGroup X)).symm.trans
     (Subgroup.equivMapOfInjective ⊤ E.source E.source_injective)
 
 /-- The target subgroup is canonically a copy of the free group. -/
-noncomputable def targetEquiv : FreeGroup X ≣* targetSubgroup E :=
+noncomputable def targetEquiv : FreeGroup X ≃* targetSubgroup E :=
   (Subgroup.topEquiv (G := FreeGroup X)).symm.trans
     (Subgroup.equivMapOfInjective ⊤ E.target E.target_injective)
 
@@ -71,7 +71,7 @@ theorem coe_targetEquiv (w : FreeGroup X) :
 
 /-- The associated-subgroup equivalence induced by using the same free word
 on the source and target generators. -/
-noncomputable def edgeEquiv : sourceSubgroup E ≣* targetSubgroup E :=
+noncomputable def edgeEquiv : sourceSubgroup E ≃* targetSubgroup E :=
   (sourceEquiv E).symm.trans (targetEquiv E)
 
 /-- A free word regarded as an element of the source edge subgroup. -/
@@ -93,8 +93,11 @@ abbrev Extension : Type :=
 evaluation of the same word. -/
 theorem stable_conj_source (w : FreeGroup X) :
     (t : Extension E) * of (E.source w) * t⁻¹ = of (E.target w) := by
-  have h := equiv_eq_conj (edgeEquiv E) (sourceElement E w)
-  rw [coe_edgeEquiv_sourceElement, coe_sourceEquiv] at h
+  have h := equiv_eq_conj (φ := edgeEquiv E) (sourceElement E w)
+  rw [coe_edgeEquiv_sourceElement] at h
+  change of (E.target w) =
+    t * of (((sourceEquiv E w : sourceSubgroup E) : G)) * t⁻¹ at h
+  rw [coe_sourceEquiv] at h
   exact h.symm
 
 /-! ## The explicit `sigma` edge -/
@@ -141,7 +144,7 @@ theorem sigma_stable_conj_fixed (fixed : X → G) (t0 d : G)
     (htarget : Function.Injective (sigmaTarget fixed t0 d)) (x : X) :
     (t : Extension (sigmaData fixed t0 d hsource htarget)) *
         of (fixed x) * t⁻¹ = of (fixed x) := by
-  simpa using stable_conj_source
+  simpa [sigmaData] using stable_conj_source
     (sigmaData fixed t0 d hsource htarget) (FreeGroup.of (Sum.inl x))
 
 /-- The resulting HNN relation `sigma t0 sigma⁻¹ = t0 d`. -/
@@ -150,7 +153,7 @@ theorem sigma_stable_conj_t0 (fixed : X → G) (t0 d : G)
     (htarget : Function.Injective (sigmaTarget fixed t0 d)) :
     (t : Extension (sigmaData fixed t0 d hsource htarget)) *
         of t0 * t⁻¹ = of (t0 * d) := by
-  simpa using stable_conj_source
+  simpa [sigmaData] using stable_conj_source
     (sigmaData fixed t0 d hsource htarget) (FreeGroup.of (Sum.inr ()))
 
 end ExplicitFreeEdge
