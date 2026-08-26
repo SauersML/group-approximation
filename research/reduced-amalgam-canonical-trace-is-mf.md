@@ -8,6 +8,7 @@ distinct_from:
   symmetric-double-weak-mf: that is the established algebra-level conclusion, weak MF of every symmetric double of a countable residually finite group, and it selects no trace; this asks for the strictly finer datum of a matricial trace converging to the canonical group trace.
   shulman-amalgam-mf-criterion: that imports Shulman's Theorem 20 corona-embedding criterion for general amalgams as a literature fact; this is an open question about the trace on one instance, not an import.
   hyperlinear-trace-not-mf-trace: that separates the two trace classes on this repository's constructed group; this asks whether the two coincide on the Kun--Thom double, and is not settled by that separation, which concerns a different group.
+  kt-double-mixed-word-trace-selection: that asks only for normalized-Hilbert--Schmidt models with the canonical mixed reduced-word traces; this asks for the strictly stronger operator-norm MF approximation of the canonical trace.
 artifacts:
   - research/artifacts/hyperlinear-firewall-dossier-2026-08-24.md
   - research/artifacts/shulman-2603-13564-verified.md
@@ -74,3 +75,13 @@ U_n = diag(-1, 1, ..., 1) in U(n),
    trace cannot see, and no soft argument turns an MF embedding of the
    algebra into control of `tau`.  This is the reason the hole is real
    rather than bookkeeping.
+
+5. **Exact weaker trace target.**
+   `kt-double-hyperlinear-iff-mixed-word-trace-selection` identifies the
+   merely hyperlinear endpoint exactly: besides asymptotic vertex models,
+   agreement on `Gamma`, and canonical vertex marginals, one must make every
+   nontrivial reduced alternating word asymptotically traceless.  The open
+   claim `kt-double-mixed-word-trace-selection` asks for exactly those data.
+   The present MF-trace claim implies it, but not conversely.  This is a
+   finite-window unpacking of the gap, not a reduction of its logical
+   strength.
