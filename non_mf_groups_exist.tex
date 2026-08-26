@@ -415,12 +415,13 @@ contradiction, that $\Theta$ is nontrivial on $K$.  Let $p$ be the image in
 $\mathcal Q_{\mathbf d}$ of the Kazhdan projection of $K$.  Because
 $K\trianglelefteq G$, the projection $p$ commutes with $\Theta(G)$; hence
 $q=1-p$ defines a $G$-invariant complementary corner.
-Lemma~\ref{lem:central-corona-corner} realizes the action on this corner by an
-operator norm asymptotic representation $(W_n)$ on matrix corners with
-identities $q_n$.  In every representation of this corner the induced
-representation of $K$ has no nonzero fixed vectors, so the Kazhdan
-inequality yields a single $s_0\in K$ and a subsequence along which
-$\hsnorm{W_n(s_0)-q_n}$ stays bounded below by a positive constant.  This
+After restricting coordinates and identifying each nonzero corner with a
+full matrix algebra, Lemma~\ref{lem:central-corona-corner} realizes this
+action by an operator norm asymptotic representation
+$W_n\colon G\to\U(r_n)$.  Its restriction to $K$ has no nonzero fixed
+vectors, so the Kazhdan inequality yields a single $s_0\in K$ and a
+subsequence along which $\hsnorm{W_n(s_0)-I_{r_n}}$ stays bounded below by a
+positive constant.  This
 contradicts $s_0\in K\le\mathfrak D_G(L)$ and the preceding convergence.
 Thus every corona homomorphism kills $K$, as required.
 
@@ -668,20 +669,24 @@ described the resulting operator norm group problem as related to
 Kirchberg's question~\cite{LubotzkyOppenheim,Thom}.  The negative solution of
 the Connes embedding problem~\cite{MIPRE} yields separable stably finite
 $C^*$-algebras that are not MF, as Goldbring and Hart
-observe~\cite[Proposition~6.1]{GoldbringHart}.  Theorem~\ref{thm:headline} gives such an example among
+observe~\cite[Proposition~6.1 and Remark~6.2]{GoldbringHart}.
+Theorem~\ref{thm:headline} gives such an example among
 reduced group $C^*$-algebras.
 \leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSeparableStablyFiniteNonMFCStarAlgebraExists}
 \leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
 Korchagin subsequently developed
 permanence and local approximation results for MF groups~\cite{Korchagin}.
-Shulman proves MF permanence for doubles $G*_H G$ of MF
-groups~\cite[Theorem~10]{Shulman}.
-Separately, Shulman proves MF full group $C^*$-algebra results for several
-classes of amalgamated and semidirect products~\cite{Shulman}.  The operator norm case
-remained open after failure of approximation had been established for finite
-Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
-Bachner--Dogon--Lubotzky study stability between the operator and
-Hilbert--Schmidt norms as a possible source of non-MF groups~\cite{BDL}.  Here
+Shulman proves that $A*_C A$ is MF whenever $A$ is a separable MF
+$C^*$-algebra and $C\subseteq A$ is a
+$C^*$-subalgebra~\cite[Theorem~10]{Shulman}.  She also proves that the full
+group $C^*$-algebras of amalgamated free products of amenable groups and of
+certain semidirect products are MF~\cite{Shulman}.
+Nonapproximability was known for the unnormalized Schatten $p$-norms with
+$1<p<\infty$~\cite{DGLT,LubotzkyOppenheim}.
+Bachner--Dogon--Lubotzky later proved nonapproximability for $p=1$~\cite{BDL}.
+The operator norm case $p=\infty$ remained open.  They also identify stability
+from operator norm to normalized Hilbert--Schmidt norm as a possible route to
+a non-MF group~\cite[Proposition~1.5]{BDL}.  Here
 operator norm control implies that coordinatewise conjugation defines a
 representation in a second norm matrix corona.  The Kazhdan projection of
 this conjugation representation makes
@@ -1103,22 +1108,23 @@ Let \(\rho\colon G\to\U(\mathcal Q_{\mathbf d})\) be a homomorphism from a
 countable group, and let \(q\in\mathcal Q_{\mathbf d}\) be a nonzero
 projection commuting with \(\rho(G)\).  Then, after passing to an infinite
 coordinate subsequence, there are nonzero projections
-\(q_n\in M_{d_n}(\C)\) and an operator norm asymptotic representation
-%<webmath object="whole" when="W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)" title="the compressed matrices form a new asymptotic representation">
+\(q_n\in M_{d_n}(\C)\), integers \(r_n=\operatorname{rank}(q_n)\), unitary
+identifications \(J_n\colon\C^{r_n}\to q_n\C^{d_n}\), and an operator norm
+asymptotic representation
+%<webmath object="whole" when="W_n\colon G\longrightarrow\U(r_n)" title="the compressed matrices form a standard asymptotic representation">
 % For each stage n, the map \(W_n\) assigns every element of G a unitary
-% operator on the smaller vector space selected by the [[projection]] \(q_n\).
-% The expression \(q_nM_{d_n}(\mathbb C)q_n\) is a [[corner]]: matrices are
-% multiplied by \(q_n\) on both sides so that they act only on the range of
-% \(q_n\).  The symbol \(\mathcal U\) selects the unitary elements of that
-% corner.  Calling the sequence \((W_n)\) an asymptotic representation also
-% requires its multiplication errors to tend to zero in operator norm.
+% matrix on a space whose dimension is the rank of the [[projection]] \(q_n\).
+% The unitary identification \(J_n\) carries this standard matrix space onto
+% the range of \(q_n\).  Conjugating by \(J_n\) therefore places \(W_n(g)\)
+% inside the [[corner]] \(q_nM_{d_n}(\mathbb C)q_n\).  The multiplication
+% errors of \((W_n)\) tend to zero in operator norm.
 %</webmath>
 \[
- W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)
+ W_n\colon G\longrightarrow\U(r_n)
 \]
-with \(W_n(1)=q_n\), whose class in the corona over the retained coordinates
-is the image of the corner representation \(g\mapsto q\rho(g)\) under
-coordinate restriction.
+with \(W_n(1)=I_{r_n}\).  In the corona over the retained coordinates, the
+class of \((J_nW_n(g)J_n^*)\) is the coordinate restriction of
+\(q\rho(g)\).
 \leanverified{Manuscript/OneSidedMFRadical/CentralCoronaCorner}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner}
 \end{lemma}
 
@@ -1142,29 +1148,34 @@ commutation relation in the corona gives
  \qquad(g\in G).
 \]
 Consequently \(q_nU_n(g)q_n\), viewed on \(q_n\C^{d_n}\), has both unitarity
-defects converging to zero.  Let \(W_n(g)\) be its polar correction at the
-stages where both defects are at most \(1/2\), so that the compression is
-invertible there, and let \(W_n(g)=q_n\) at the finitely many earlier
-stages.  Then \(W_n(g)\) is unitary and satisfies
-%<webmath object="whole" when="\opnorm{W_n(g)-q_nU_n(g)q_n}" title="polar correction changes the compressed matrix by a vanishing amount">
+defects converging to zero.  For each fixed \(g\), let
+\(\widetilde W_n(g)\) be its polar correction whenever both defects are at
+most \(1/2\), and set \(\widetilde W_n(g)=q_n\) at the finitely many earlier
+stages.  Then \(\widetilde W_n(g)\) is unitary in the corner and satisfies
+%<webmath object="whole" when="\opnorm{\widetilde W_n(g)-q_nU_n(g)q_n}" title="polar correction changes the compressed matrix by a vanishing amount">
 % The matrix \(q_nU_n(g)q_n\) is the direct compression of the lifted unitary
 % to the range of \(q_n\), but at a finite stage it may not be exactly
 % unitary on that range.  [[polar correction|Polar correction]] replaces it by the exactly
-% unitary matrix \(W_n(g)\).  The displayed operator norm is the size of the
+% unitary matrix \(\widetilde W_n(g)\).  The displayed operator norm is the size of the
 % change made by that correction.  Its convergence to zero says the exact
 % unitary replacement represents the same [[corona class]] as the original
 % compressed sequence.
 %</webmath>
 \[
- \opnorm{W_n(g)-q_nU_n(g)q_n}\longrightarrow0.
+ \opnorm{\widetilde W_n(g)-q_nU_n(g)q_n}\longrightarrow0.
 \]
 For \(g=1\), the compression is already the identity \(q_n\) of the corner,
-so take \(W_n(1)=q_n\).
-The homomorphism relation for \(\rho\) now makes \((W_n)\) an operator norm
-asymptotic representation.  Since \(q\ne0\), infinitely many \(q_n\) are
-nonzero.  Retain and relabel those coordinates.  Under the coordinate
-restriction homomorphism, the displayed estimate identifies the class of
-\((W_n(g))\) with the image of \(q\rho(g)\).
+so take \(\widetilde W_n(1)=q_n\).  Since \(q\ne0\), infinitely many
+\(q_n\) are nonzero.  Retain and relabel those coordinates.  Put
+\(r_n=\operatorname{rank}(q_n)\), choose a unitary
+\(J_n\colon\C^{r_n}\to q_n\C^{d_n}\), and define
+\[
+ W_n(g)=J_n^*\widetilde W_n(g)J_n\in\U(r_n).
+\]
+Conjugation by \(J_n\) preserves operator norms and multiplicative defects.
+Thus \((W_n)\) is an operator norm asymptotic representation with
+\(W_n(1)=I_{r_n}\).  The displayed estimate identifies the class of
+\((J_nW_n(g)J_n^*)\) with the coordinate restriction of \(q\rho(g)\).
 \end{proof}
 
 \begin{theorem}[normal Kazhdan radical theorem]\label{thm:normal-kazhdan}
@@ -1220,16 +1231,20 @@ ranges \(\Theta(g)\operatorname{Fix}\Theta(K)\) and
 Put \(q=1-p\).  The projection \(q\) is nonzero: if \(p=1\), then every vector
 is fixed by \(K\), so every element of \(K\) has trivial corona image.
 Lemma~\ref{lem:central-corona-corner}
-gives an operator norm asymptotic representation \((W_n)\) on nonzero
-corners \(q_nM_{d_n}(\C)q_n\).
+gives positive integers \(r_n\) and an operator norm asymptotic representation
+\(W_n\colon G\to\U(r_n)\).  Let
+\(\widehat\Theta\colon G\to\U(\mathcal Q_{\mathbf r})\) be its corona
+homomorphism.  The coordinatewise corner identifications carry
+\(\widehat\Theta\) to the coordinate restriction of
+\(g\mapsto q\Theta(g)\).
 
 Choose a finite Kazhdan set \(S\subseteq K\) and a Kazhdan
-constant \(\kappa>0\).  In the corner \(q\mathcal Q_{\mathbf d}q\), the
-Kazhdan projection is zero.  Hence the positive element
+constant \(\kappa>0\).  The Kazhdan projection of \(K\) under
+\(\widehat\Theta\) is zero.  Hence the positive element
 %<webmath object="whole" when="b=\frac1{|S|}\sum_{s\in S}" title="b averages the squared movement caused by the Kazhdan set">
 % For each element s in the finite [[Kazhdan set]] S, the operator
-% \(q\Theta(s)q-q\) measures how far the compressed representation of s is
-% from the corner identity q.  Multiplying its [[adjoint]] by itself produces
+% \(\widehat\Theta(s)-1\) measures how far the compressed representation of s
+% is from the identity.  Multiplying its [[adjoint]] by itself produces
 % a positive operator measuring squared movement.  The summation adds these
 % operators for every s in S, and division by \(|S|\), the number of elements
 % in S, takes their average.  The result b is therefore the average squared
@@ -1237,42 +1252,44 @@ Kazhdan projection is zero.  Hence the positive element
 %</webmath>
 \[
  b=\frac1{|S|}\sum_{s\in S}
-       (q\Theta(s)q-q)^*(q\Theta(s)q-q)
+       (\widehat\Theta(s)-1)^*(\widehat\Theta(s)-1)
 \]
 satisfies
-%<webmath object="whole" when="b\ge\frac{\kappa^2}{|S|}\,q" title="the average movement has a uniform positive lower bound">
-% The inequality compares positive operators in the corner.  The right side
-% is the corner identity q multiplied by the positive number
+%<webmath object="whole" when="b\ge\frac{\kappa^2}{|S|}\,1" title="the average movement has a uniform positive lower bound">
+% The inequality compares positive operators in the relabelled matrix corona.
+% The right side is the identity multiplied by the positive number
 % \(\kappa^2/|S|\), where \(\kappa\) is the [[Kazhdan constant]] and \(|S|\)
 % is the size of the finite Kazhdan set.  Saying b is at least this operator
-% means every vector in the corner is moved, on average, by a squared amount
+% means every vector is moved, on average, by a squared amount
 % bounded below by that constant times its squared length.  This lower bound
-% follows because the corner contains no nonzero K-fixed vector.
+% follows because the representation contains no nonzero K-fixed vector.
 %</webmath>
 \[
- b\ge\frac{\kappa^2}{|S|}\,q.
+ b\ge\frac{\kappa^2}{|S|}\,1.
 \]
-Indeed, in every representation of the corner there are no \(K\)-fixed
-vectors, so the defining Kazhdan inequality gives this operator inequality.
+Represent \(\mathcal Q_{\mathbf r}\) faithfully.  Because the image of the
+Kazhdan projection is zero, \(\widehat\Theta|_K\) has no nonzero fixed
+vectors.  The defining Kazhdan inequality therefore gives this operator
+inequality.
 
 The coordinate elements
-%<webmath object="whole" when="b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-q_n)^*" title="b sub n is the finite-stage version of the average movement operator">
-% This repeats the definition of b at matrix stage n.  The corner identity is
-% now \(q_n\), and \(W_n(s)\) is the exactly unitary compressed matrix
+%<webmath object="whole" when="b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-I_{r_n})^*" title="b sub n is the finite-stage version of the average movement operator">
+% This repeats the definition of b at matrix stage n.  The identity is
+% now \(I_{r_n}\), and \(W_n(s)\) is the exactly unitary compressed matrix
 % assigned to s.  For each s, the product
-% \((W_n(s)-q_n)^*(W_n(s)-q_n)\) is a positive matrix measuring squared
+% \((W_n(s)-I_{r_n})^*(W_n(s)-I_{r_n})\) is a positive matrix measuring squared
 % displacement.  Summing over the finite set S and dividing by its size gives
 % the average \(b_n\).  The sequence \((b_n)\) represents b in the quotient
 % corona because the \(W_n(s)\) represent the compressed action.
 %</webmath>
 \[
- b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-q_n)^*(W_n(s)-q_n)
+ b_n=\frac1{|S|}\sum_{s\in S}
+       (W_n(s)-I_{r_n})^*(W_n(s)-I_{r_n})
 \]
-represent \(b\).  Taking the normalized trace on
-\(q_nM_{d_n}(\C)q_n\) yields
-%<webmath object="whole" when="\frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-q_n}^{\,2}" title="the average squared Hilbert--Schmidt movement stays positive">
+represent \(b\).  Taking the normalized trace on \(M_{r_n}(\C)\) yields
+%<webmath object="whole" when="\frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-I_{r_n}}^{\,2}" title="the average squared Hilbert--Schmidt movement stays positive">
 % Each squared norm on the left is the normalized [[Hilbert–Schmidt norm]] of
-% \(W_n(s)-q_n\), squared.  Averaging over s gives the normalized trace of
+% \(W_n(s)-I_{r_n}\), squared.  Averaging over s gives the normalized trace of
 % \(b_n\).  The right side is the fixed positive number
 % \(\kappa^2/|S|\) minus an error denoted \(o(1)\), meaning a numerical
 % sequence that tends to zero.  Thus the average squared distance from the
@@ -1281,15 +1298,14 @@ represent \(b\).  Taking the normalized trace on
 % from the identity.
 %</webmath>
 \[
- \frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-q_n}^{\,2}
+ \frac1{|S|}\sum_{s\in S}\hsnorm{W_n(s)-I_{r_n}}^{\,2}
  \ge \frac{\kappa^2}{|S|}-o(1).
 \]
-Here the Hilbert--Schmidt norms use the normalized trace of the corner.  The
-order inequality for $b$ says that the negative part of
-$b_n-(\kappa^2/|S|)q_n$ converges to zero in operator norm.  Taking normalized
+The order inequality for $b$ says that the negative part of
+$b_n-(\kappa^2/|S|)I_{r_n}$ converges to zero in operator norm.  Taking normalized
 traces gives the displayed inequality.
 After passing to a subsequence, one fixed \(s_0\in S\) therefore stays a
-positive Hilbert--Schmidt distance from the corner identity.  This
+positive Hilbert--Schmidt distance from \(I_{r_n}\).  This
 contradicts \(s_0\in K\le R_{\infty\to2}(G)\), established after passing to
 \(\Theta(G)\).  Thus every corona homomorphism kills \(K\), as required.
 \end{proof}
