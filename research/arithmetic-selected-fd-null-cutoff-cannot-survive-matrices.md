@@ -39,6 +39,20 @@ records the useful certificate direction; the reverse direction is the
 displayed identity `(ASC0)` and is stated here without adding a circular
 route to the dependency graph.
 
+The sequence also has one fixed maximal-C-star limit.  By
+`arithmetic-kazhdan-corner-is-fd-invisible`,
+
+```text
+x_N -> p_C,
+y_N -> z=(u_h-1)p_C,                                   (ASCZ)
+```
+
+where `z` is nonzero but every exact finite-dimensional representation of
+`A` kills it.  Thus `(ASC1)` asks whether this explicit FD-radical element
+vanishes on the selected twice-adjoint MF representations coming from
+arithmetic microstates.  Full membership `z in I_MF(A)` would be stronger
+than necessary.
+
 Equivalently, for every `epsilon>0` there are a fixed `N` and a finite
 presentation-defect tolerance `delta>0` such that every finite matrix tuple
 with defect below `delta` and projective `C`-centrality defect below `delta`
@@ -81,3 +95,13 @@ Connes embeddability of
 matrix lifts refuting `(ASC1)` with a uniform positive floor.  That
 embeddability is open, so `(ASC3)` is a conditional stress test rather than
 an unconditional refutation.
+
+Finally, `normal-closure-heat-exits-control-arithmetic-leak` gives a fixed
+finite non-spherical localization of the same target: the denominator
+displacement is bounded by cross first-exits of finitely many conjugated
+lattice heat filters.  Commuting a filter past `h` only makes it exact on
+the correspondingly transported vector and is tautological.  The missing
+input is why matrix-origin arithmetic relations kill the filters on the
+original selected vector.  Any proof by scalar compression back to the
+lattice-fixed space returns to the already-fenced finite spherical Hecke
+moment problem.
