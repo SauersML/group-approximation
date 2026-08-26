@@ -53,6 +53,16 @@ the benign-witness operations can be chosen with a congruence-extension
 property for `S<=Gamma`; that property would extend each `beta o tau` to a
 finite quotient of `Gamma` and imply `(RPS2)`.
 
+There is now a sharper sufficient condition which does not ask for generic
+finite CEP.  If the benign witness `(K,e,L)` carries a homomorphism
+`sigma:K->Q` extending `q:F->Q` and killing `L`, then every finite quotient
+`beta:Q->B` produces a finite quotient of `Gamma` into
+`(B times B) semidirect C_2`: map `K` into the first coordinate and map the
+first rope letter to the coordinate swap.  Projection onto the first
+coordinate on `S` is exactly `beta tau`.  This proves `(RPS2)` once `Gamma`
+and `Q` are effectively residually finite.  The remaining construction is
+isolated as `positive-scaffold-has-quotient-compatible-rf-witness`.
+
 There are two cautions on that attack.
 
 - **Retracts and virtual retracts are impossible here.**  On the positive

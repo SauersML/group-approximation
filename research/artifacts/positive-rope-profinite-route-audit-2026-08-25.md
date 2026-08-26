@@ -91,3 +91,31 @@ ordinary CEP.  It is an effective **finite CEP** for only the quotient family
 plus a cofinal finite quotient family separating `Gamma`.  This is strictly
 weaker than asking every finite quotient of `S` to extend, and should be kept
 in this tailored form when redesigning the benign witness.
+
+## 5. A finite swap quotient removes the need for generic finite CEP
+
+There is a still more structured sufficient condition.  Suppose the benign
+witness `(K,e,L)` admits a homomorphism `sigma:K->Q` which extends the quotient
+map `q:F->Q` and kills `L`.  For a finite quotient `beta:Q->B`, map `K` to
+the first coordinate of `B times B` through `beta sigma`, and map the first
+rope stable letter to the involution swapping the coordinates.  The relation
+that this stable letter centralizes `L` holds because `sigma(L)=1`.
+
+On `S=<F,F^v>`, the resulting finite quotient `lambda_beta` sends the first
+copy to `(beta q(F),1)` and the second to `(1,beta q(F))`.  Hence first-coordinate
+projection on its edge image is exactly `beta tau`, and
+
+```text
+ker(lambda_beta|S) <= ker(beta tau).
+```
+
+Taking the product with an arbitrary cofinal finite quotient sequence for
+`Gamma` preserves this inclusion and supplies separation of `Gamma`.  This
+construction is proved in
+`quotient-benign-rope-synchronizes-finite-quotients`.
+
+Accordingly, the active target can be made completely concrete: enhance the
+positive benign witness with `sigma`, and prove effective residual finiteness
+of `Q` and `Gamma`.  The new open claim
+`positive-scaffold-has-quotient-compatible-rf-witness` records exactly those
+three obligations.
