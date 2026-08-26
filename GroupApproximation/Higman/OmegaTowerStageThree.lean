@@ -1,4 +1,4 @@
-import GroupApproximation.Higman.OmegaTowerStageTwo
+import GroupApproximation.Higman.OmegaTowerStageTwoBritton
 
 /-!
 # The third stage of the omega tower
@@ -19,11 +19,11 @@ open GroupApproximation.Higman.Seq
 open HNNExtension
 
 /-- The `m`-fold shift transported to the stage-two copy of `F₃`. -/
-noncomputable def slimShiftRangeEquiv (m : ℕ)
-    (hemb : Function.Injective (slimPiF3Hom m)) :
+noncomputable def slimShiftRangeEquiv (m : ℕ) :
     (slimPiF3Hom m).range ≃* (slimPiF3Hom m).range :=
-  ((MonoidHom.ofInjective hemb).symm.trans
-    ((shiftEquiv : MulAut F₃) ^ m)).trans (MonoidHom.ofInjective hemb)
+  ((MonoidHom.ofInjective (slimPiF3Hom_injective m)).symm.trans
+    ((shiftEquiv : MulAut F₃) ^ m)).trans
+      (MonoidHom.ofInjective (slimPiF3Hom_injective m))
 
 theorem shiftEquiv_pow_apply (m : ℕ) (x : F₃) :
     ((shiftEquiv : MulAut F₃) ^ m) x = (⇑shiftAut)^[m] x := by
@@ -33,59 +33,53 @@ theorem shiftEquiv_pow_apply (m : ℕ) (x : F₃) :
       rw [pow_succ, MulAut.mul_apply, ih, Function.iterate_succ_apply]
       rfl
 
-theorem slimShiftRangeEquiv_apply (m : ℕ)
-    (hemb : Function.Injective (slimPiF3Hom m)) (x : F₃) :
-    ((slimShiftRangeEquiv m hemb
+theorem slimShiftRangeEquiv_apply (m : ℕ) (x : F₃) :
+    ((slimShiftRangeEquiv m
         ⟨slimPiF3Hom m x, ⟨x, rfl⟩⟩ : (slimPiF3Hom m).range) : SlimPi m) =
       slimPiF3Hom m (((shiftEquiv : MulAut F₃) ^ m) x) := by
-  have hx : (MonoidHom.ofInjective hemb).symm
+  have hx : (MonoidHom.ofInjective (slimPiF3Hom_injective m)).symm
       ⟨slimPiF3Hom m x, ⟨x, rfl⟩⟩ = x := by
-    apply (MonoidHom.ofInjective hemb).injective
+    apply (MonoidHom.ofInjective (slimPiF3Hom_injective m)).injective
     rw [MulEquiv.apply_symm_apply]
     apply Subtype.ext
     rfl
   change slimPiF3Hom m (((shiftEquiv : MulAut F₃) ^ m)
-      ((MonoidHom.ofInjective hemb).symm ⟨slimPiF3Hom m x, ⟨x, rfl⟩⟩)) = _
+      ((MonoidHom.ofInjective (slimPiF3Hom_injective m)).symm
+        ⟨slimPiF3Hom m x, ⟨x, rfl⟩⟩)) = _
   rw [hx]
 
 /-- The slim third stage, an HNN extension of stage two along the transported
 `m`-fold shift. -/
-abbrev SlimOmega (m : ℕ) (hemb : Function.Injective (slimPiF3Hom m)) : Type :=
+abbrev SlimOmega (m : ℕ) : Type :=
   HNNExtension (SlimPi m) (slimPiF3Hom m).range (slimPiF3Hom m).range
-    (slimShiftRangeEquiv m hemb)
+    (slimShiftRangeEquiv m)
 
 /-- The stage-two base inside the final slim tower. -/
-noncomputable def slimOmegaOf (m : ℕ)
-    (hemb : Function.Injective (slimPiF3Hom m)) : SlimPi m →* SlimOmega m hemb :=
+noncomputable def slimOmegaOf (m : ℕ) : SlimPi m →* SlimOmega m :=
   of
 
 /-- The original `F₃` inside the final slim tower. -/
-noncomputable def slimOmegaEmb (m : ℕ)
-    (hemb : Function.Injective (slimPiF3Hom m)) : F₃ →* SlimOmega m hemb :=
-  (slimOmegaOf m hemb).comp (slimPiF3Hom m)
+noncomputable def slimOmegaEmb (m : ℕ) : F₃ →* SlimOmega m :=
+  (slimOmegaOf m).comp (slimPiF3Hom m)
 
 /-- **The final tower really contains the stage-two copy of `F₃`.** -/
-theorem slimOmegaEmb_injective (m : ℕ)
-    (hemb : Function.Injective (slimPiF3Hom m)) :
-    Function.Injective (slimOmegaEmb m hemb) :=
-  (HNNExtension.of_injective (slimShiftRangeEquiv m hemb)).comp hemb
+theorem slimOmegaEmb_injective (m : ℕ) : Function.Injective (slimOmegaEmb m) :=
+  (HNNExtension.of_injective (slimShiftRangeEquiv m)).comp
+    (slimPiF3Hom_injective m)
 
 /-- The orientation of `Omega.Tower.stable`: Mathlib's HNN relation is
 `t x t⁻¹ = ρ(x)`, so the tower's stable element is `t⁻¹`. -/
-noncomputable def slimOmegaStable (m : ℕ)
-    (hemb : Function.Injective (slimPiF3Hom m)) : SlimOmega m hemb :=
-  (t : SlimOmega m hemb)⁻¹
+noncomputable def slimOmegaStable (m : ℕ) : SlimOmega m :=
+  (t : SlimOmega m)⁻¹
 
 /-- **The concrete third-stage relation.** -/
-theorem slim_conj_stable (m : ℕ)
-    (hemb : Function.Injective (slimPiF3Hom m)) (x : F₃) :
-    (slimOmegaStable m hemb)⁻¹ * slimOmegaEmb m hemb x *
-        slimOmegaStable m hemb =
-      slimOmegaEmb m hemb ((⇑shiftAut)^[m] x) := by
-  have h := HNNExtension.equiv_eq_conj (φ := slimShiftRangeEquiv m hemb)
+theorem slim_conj_stable (m : ℕ) (x : F₃) :
+    (slimOmegaStable m)⁻¹ * slimOmegaEmb m x * slimOmegaStable m =
+      slimOmegaEmb m ((⇑shiftAut)^[m] x) := by
+  have h := HNNExtension.equiv_eq_conj (φ := slimShiftRangeEquiv m)
     ⟨slimPiF3Hom m x, ⟨x, rfl⟩⟩
   rw [slimShiftRangeEquiv_apply] at h
-  change (t : SlimOmega m hemb) * of (slimPiF3Hom m x) * t⁻¹ =
+  change (t : SlimOmega m) * of (slimPiF3Hom m x) * t⁻¹ =
     of (slimPiF3Hom m ((⇑shiftAut)^[m] x))
   rw [← shiftEquiv_pow_apply]
   exact h.symm
