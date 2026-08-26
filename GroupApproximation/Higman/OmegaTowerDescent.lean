@@ -144,6 +144,96 @@ theorem slimGenCode_not_commute_bWord {m : ℕ} (β l : E) {i : ℤ}
   exact genCode_not_commute_of_not_mem (rowOut m) β _
     (basisHom_elt_not_mem_rowOut hi hli)
 
+/-! ## Both coordinates of an arbitrary link word -/
+
+/-- Retraction of the first centralizer extension to its original base,
+killing the stable letter. -/
+def baseRet1 (P : Subgroup G₀) : Cent1 P →* G₀ :=
+  HNNExtension.lift (MonoidHom.id G₀) 1 (by intro z; simp)
+
+@[simp] theorem baseRet1_of (P : Subgroup G₀) (x : G₀) :
+    baseRet1 P (of x) = x := by
+  simp [baseRet1, HNNExtension.lift_of]
+
+@[simp] theorem baseRet1_t (P : Subgroup G₀) :
+    baseRet1 P (t : Cent1 P) = 1 := by
+  simp [baseRet1, HNNExtension.lift_t]
+
+/-- Retraction through the second centralizer extension. -/
+def baseRet2 (P : Subgroup G₀) : Cent2 P →* G₀ :=
+  HNNExtension.lift (baseRet1 P) 1 (by
+    intro z
+    change 1 * baseRet1 P z = baseRet1 P z * 1
+    simp)
+
+@[simp] theorem baseRet2_of (P : Subgroup G₀) (x : Cent1 P) :
+    baseRet2 P (of x) = baseRet1 P x := by
+  simp [baseRet2, HNNExtension.lift_of]
+
+@[simp] theorem baseRet2_t (P : Subgroup G₀) :
+    baseRet2 P (t : Cent2 P) = 1 := by
+  simp [baseRet2, HNNExtension.lift_t]
+
+/-- Retraction of the full three-letter first stage to the original base. -/
+def baseRet3 (P : Subgroup G₀) : Cent3 P →* G₀ :=
+  HNNExtension.lift (baseRet2 P) 1 (by
+    intro z
+    change 1 * baseRet2 P z = baseRet2 P z * 1
+    simp)
+
+@[simp] theorem baseRet3_of (P : Subgroup G₀) (x : Cent2 P) :
+    baseRet3 P (of x) = baseRet2 P x := by
+  simp [baseRet3, HNNExtension.lift_of]
+
+@[simp] theorem baseRet3_t (P : Subgroup G₀) :
+    baseRet3 P (t : Cent3 P) = 1 := by
+  simp [baseRet3, HNNExtension.lift_t]
+
+@[simp] theorem baseRet3_emb3 (P : Subgroup G₀) (x : G₀) :
+    baseRet3 P (emb3 P x) = x := by
+  simp [emb3, emb2, emb1]
+
+@[simp] theorem baseRet3_gen1 (P : Subgroup G₀) :
+    baseRet3 P (gen1 P) = 1 := by
+  simp [gen1]
+
+@[simp] theorem baseRet3_gen2 (P : Subgroup G₀) :
+    baseRet3 P (gen2 P) = 1 := by
+  simp [gen2]
+
+@[simp] theorem baseRet3_gen3 (P : Subgroup G₀) :
+    baseRet3 P (gen3 P) = 1 := by
+  simp [gen3]
+
+theorem baseRet3_comp_genHom (P : Subgroup G₀) :
+    (baseRet3 P).comp (genHom P) = 1 := by
+  refine FreeGroup.ext_hom _ _ fun i => ?_
+  fin_cases i <;> simp [genHom]
+
+/-- The row-coordinate word paired with a word in window blocks. -/
+noncomputable def blockRowHom (m : ℕ) :
+    FreeGroup ↥(blockSet m) →* Row.F₀ :=
+  FreeGroup.lift fun β => Row.basisHom (elt β.1)
+
+/-- The same block alphabet with every generator inverted.  This is a
+homomorphism (unlike inversion of an arbitrary noncommutative word). -/
+noncomputable def blockRowInvHom (m : ℕ) :
+    FreeGroup ↥(blockSet m) →* Row.F₀ :=
+  FreeGroup.lift fun β => (Row.basisHom (elt β.1))⁻¹
+
+/-- The base retraction reads an arbitrary link word as the inverse of its
+paired row word. -/
+theorem baseRet3_comp_slimLinkLift (m : ℕ) :
+    (baseRet3 (rowOut m)).comp (slimLinkLift m) =
+      blockRowInvHom m := by
+  refine FreeGroup.ext_hom _ _ fun β => ?_
+  simp only [MonoidHom.comp_apply, slimLinkLift, FreeGroup.lift_apply_of,
+    slimLinkElem, map_mul, map_inv, slimGenCode, slimBaseCode,
+    blockRowInvHom]
+  rw [← MonoidHom.comp_apply, baseRet3_comp_genHom,
+    baseRet3_emb3]
+  simp
+
 /-! ## The outer Britton spelling
 
 The last HNN stage does not introduce any new base generators into `W`.
