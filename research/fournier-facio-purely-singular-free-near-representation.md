@@ -70,3 +70,12 @@ For a common finite-block system, “unbounded” has a precise meaning.
 every fixed size cutoff has charge zero.  Hence a surviving block model must
 use a non-tight finitely additive charge concentrated at dimension infinity;
 countably additive or tight mixtures of growing matrix fibers are excluded.
+
+Nor must the common blocks be supplied beforehand.
+`fournier-facio-generator-support-components-escape-cutoffs` forms
+the support graph of charge-null comparison unitaries for one finite
+generating set and proves that every bounded finite-component stratum has
+charge zero.  Thus genuinely overlapping finite-band frames survive only if
+their support graph has infinite components on positive charge, or if its
+finite component sizes themselves escape to infinity in the finitely
+additive charge.
