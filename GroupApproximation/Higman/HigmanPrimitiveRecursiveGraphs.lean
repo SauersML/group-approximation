@@ -138,6 +138,60 @@ theorem higmanGenerated_natGraph_get {n : ℕ} (i : Fin n) :
       (higmanGenerated_natInputs n))
     (higmanGenerated_eqRel (i.val : ℤ) (n : ℤ))
 
+/-! ## N-ary composition
+
+The original `m` inputs stay in coordinates `[0,m)`, the result stays at
+coordinate `m`, and the `n` intermediate values occupy the fresh interval
+`[m+1,m+n+1)`.  Each inner graph and the outer graph are placed into this wide
+window; the fresh interval is then existentially forgotten in one operation.
+-/
+
+/-- Placement of the `i`-th inner graph: its `m` inputs remain in place and
+its output is written into the `i`-th fresh coordinate. -/
+def natCompInnerCoord (m : ℕ) (i : ℕ) (j : ℕ) : ℤ :=
+  if j < m then (j : ℤ) else ((m + 1 + i : ℕ) : ℤ)
+
+/-- Placement of the outer graph: its arguments are the fresh intermediate
+coordinates and its output is the retained coordinate `m`. -/
+def natCompOuterCoord (m n : ℕ) (j : ℕ) : ℤ :=
+  if j < n then ((m + 1 + j : ℕ) : ℤ) else (m : ℤ)
+
+/-- The wide relation simultaneously carrying all inner computations and the
+outer computation. -/
+noncomputable def natCompAssembly {m n : ℕ}
+    (F : List.Vector ℕ n → ℕ) (G : Fin n → List.Vector ℕ m → ℕ) : Set E :=
+  (⋂ i ∈ (Finset.univ : Finset (Fin n)),
+      placeAt (m + 1) (natCompInnerCoord m i.val) (natGraph (G i))) ∩
+    placeAt (n + 1) (natCompOuterCoord m n) (natGraph F)
+
+/-- The relation produced by the composition construction. -/
+noncomputable def natCompGraph {m n : ℕ}
+    (F : List.Vector ℕ n → ℕ) (G : Fin n → List.Vector ℕ m → ℕ) : Set E :=
+  (freeAux n (m + 1) (natCompAssembly F G) ∩ windowSupport (m + 1)) ∩
+    natInputs m
+
+/-- Generated natural graphs are closed under the concrete n-ary composition
+construction.  The semantic identification with the ordinary composite is
+proved separately, so this theorem contains only the closure argument. -/
+theorem higmanGenerated_natCompGraph {m n : ℕ}
+    {F : List.Vector ℕ n → ℕ} {G : Fin n → List.Vector ℕ m → ℕ}
+    (hF : HigmanGenerated (natGraph F))
+    (hG : ∀ i, HigmanGenerated (natGraph (G i))) :
+    HigmanGenerated (natCompGraph F G) := by
+  classical
+  unfold natCompGraph natCompAssembly
+  refine HigmanGenerated.inter
+    (HigmanGenerated.inter (higmanGenerated_freeAux n (m + 1) ?_)
+      (higmanGenerated_windowSupport (m + 1)))
+    (higmanGenerated_natInputs m)
+  exact HigmanGenerated.inter
+      (higmanGenerated_biInter Finset.univ
+        (fun i : Fin n =>
+          placeAt (m + 1) (natCompInnerCoord m i.val) (natGraph (G i)))
+        (fun i _ => higmanGenerated_placeAt (m + 1)
+          (natCompInnerCoord m i.val) (natGraph (G i)) (hG i)))
+      (higmanGenerated_placeAt (n + 1) (natCompOuterCoord m n) (natGraph F) hF)
+
 end Seq
 end Higman
 end GroupApproximation
