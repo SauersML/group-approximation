@@ -1982,6 +1982,42 @@ theorem measurableSet_fullPlaneNontrivialSet
   rw [← iUnion_finitePlaneNontrivialSet rho]
   exact MeasurableSet.iUnion fun s ↦ measurableSet_finitePlaneNontrivialSet rho s
 
+/-- Continuity from below for the coefficient-plane filtration.  The full
+moving spectral mass is the supremum of the masses detected on finite
+coefficient planes.  This is the measure-theoretic bridge needed to pass a
+uniform finite-plane estimate to the full column plane. -/
+theorem measure_fullPlaneNontrivialSet_eq_iSup_finitePlaneNontrivialSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (mu : Measure (Spectrum rho)) :
+    mu (fullPlaneNontrivialSet rho) =
+      ⨆ s : Finset (Fin 2 × R (X := X)),
+        mu (finitePlaneNontrivialSet rho s) := by
+  classical
+  have hdir :
+      DirectedOn
+        (fun s t ↦ finitePlaneNontrivialSet rho s ⊆ finitePlaneNontrivialSet rho t)
+        (Set.univ : Set (Finset (Fin 2 × R (X := X)))) := by
+    intro s _ t _
+    refine ⟨s ∪ t, Set.mem_univ _, ?_, ?_⟩
+    · exact finitePlaneNontrivialSet_mono rho Finset.subset_union_left
+    · exact finitePlaneNontrivialSet_mono rho Finset.subset_union_right
+  have h := measure_biUnion_eq_iSup (μ := mu)
+    (s := finitePlaneNontrivialSet rho)
+    (t := Set.univ)
+    Set.countable_univ hdir
+  simpa [iUnion_finitePlaneNontrivialSet rho] using h
+
+/-- A bound uniform over all finite coefficient planes therefore bounds the
+entire moving spectrum. -/
+theorem measure_fullPlaneNontrivialSet_le_of_finitePlaneNontrivialSet_le
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (mu : Measure (Spectrum rho)) (C : ENNReal)
+    (hfinite : ∀ s : Finset (Fin 2 × R (X := X)),
+      mu (finitePlaneNontrivialSet rho s) ≤ C) :
+    mu (fullPlaneNontrivialSet rho) ≤ C := by
+  rw [measure_fullPlaneNontrivialSet_eq_iSup_finitePlaneNontrivialSet]
+  exact iSup_le hfinite
+
 /-- Evaluation on a finite coefficient family gives an honest
 finite-dimensional additive torus. -/
 noncomputable def finitePlaneCoordinate
@@ -2297,3 +2333,5 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms columnPlaneSpectralMeasure_A_union_B_le_ABC
 #audit_axioms columnPlaneSpectralMeasure_B_union_C_le_ABC
 #audit_axioms measurableSet_fullPlaneNontrivialSet
+#audit_axioms measure_fullPlaneNontrivialSet_eq_iSup_finitePlaneNontrivialSet
+#audit_axioms measure_fullPlaneNontrivialSet_le_of_finitePlaneNontrivialSet_le
