@@ -340,3 +340,19 @@ spectral cuts can prove the desired promotion.  The remaining prototype
 must contain a relative reservoir-gauge lock coupling `U_0^*U_1` to the
 source packet; two separately authenticated branch transports leave exactly
 the four-state freedom above.
+
+The actual relative root-position word and its complete finite orbit still
+do not provide that lock.  In
+`relative-a2-weyl-orbit-has-seven-state-gauge-model`, choose `U_0` sending
+the common source root to `x_12` and write `U_1=HU_0`, where the adjacent
+Weyl product `H` cycles `x_12,x_23,x_31` and has order three.  Thus
+`U_0^(-1)U_1` is a conjugate native `A_2` Coxeter word.  Imposing its full
+braid/order action and both oriented cross-zero rows rules out the
+four-state swap, but a seven-state carrier survives: the branch-one source
+support overlaps branch zero, while an order-three reservoir permutation
+moves it through two fresh supports, both disjoint from branch zero, before
+returning.  Every complete positive/opposite occurrence square is exact and
+the parent mark survives.  The remaining fixed relation must compare a
+returned orbit reservoir directly with the source intersection; finite
+Coxeter covariance alone merely bounds the number of fresh gauges rather
+than identifying them.
