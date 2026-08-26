@@ -30,3 +30,15 @@ This closes one of the open cells of
 `Pi^0_2`-completeness on finite presentations is not special to MF: the
 obstacle in the remaining cells is exactly whether the fixed rope has the
 property in question.
+
+## Two generators
+
+The same completeness holds for two-generator finite presentations.  The
+Higman--Neumann--Neumann embedding of a finitely presented group into a
+two-generator finitely presented group is explicit and computable, and it
+is an iterated HNN extension of the given group, so torsion elements of
+the envelope are conjugate into the base: the envelope is torsion-free
+exactly when the base is.  Applying it to the compiler's output preserves
+both branches --- torsion-free on `INF`, and containing `Z/2` on `FIN` ---
+so `INF` reduces to torsion-freeness of two-generator finite
+presentations.
