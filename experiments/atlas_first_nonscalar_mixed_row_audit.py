@@ -20,8 +20,20 @@ coefficient maps.
 import re
 import sys
 
-from atlas_relator_rank5_full_family import generate_relators
+from atlas_kernel_collision_enumerator import evaluate_word
+from atlas_relator_rank5_dictionary import leavitt_equal, rank5_word
+from atlas_relator_rank5_full_family import (
+    generate_relators,
+    rank5_word_multi,
+)
 from atlas_relator_rank5_reverse import generate_relators as reverse_relators
+from atlas_two_chart_search import (
+    commutator,
+    inverse,
+    leavitt_is_one,
+    product,
+    reduce_word,
+)
 
 
 ORTH = re.compile(r"orth_(\d)(\d)_(\d)(\d)_([1efEF])([1efEF])$")
@@ -237,6 +249,71 @@ def main():
     ]
     print("reverse dictionary contains no x_12(ee) factor")
     print("star plus reverse dictionary still has quotient-rank increment two")
+
+    # Shortest coefficient-stripping return to the chart root.  The inner
+    # commutator prepends E to ee, and the outer commutator prepends E once
+    # more:
+    #
+    #   [x_31(E),x_12(ee)] = x_32(e),
+    #   [x_13(E),x_32(e)]  = x_12(1).
+    #
+    # The first equality is a bounded normal-closure consequence of the
+    # j=4 return factorization, one orthogonality row, and two literal St3
+    # rows.  The second is itself a literal St3 row.
+    by_name = {name: (position, word)
+               for position, (name, word) in enumerate(rows)}
+    consequence_rows = [
+        "st3_142_ee",
+        "orth_31_42_Ee",
+        "st3_314_Ee",
+        "st3_342_1e",
+        "st3_132_Ee",
+    ]
+    consequence_census = []
+    for row_name in consequence_rows:
+        position, row_word = by_name[row_name]
+        consequence_census.append((
+            position,
+            row_name,
+            len(row_word),
+            sum(lengths[matrix.tobytes()] for _factor, matrix in row_word),
+        ))
+    assert consequence_census == [
+        (3335, "st3_142_ee", 85, 295),
+        (2182, "orth_31_42_Ee", 49, 167),
+        (3789, "st3_314_Ee", 53, 157),
+        (3924, "st3_342_1e", 49, 179),
+        (3270, "st3_132_Ee", 53, 157),
+    ]
+
+    memo = {}
+    common_rhs = rank5_word_multi(1, 2, ["e", "e"], memo)
+    left_actor = rank5_word(3, 1, "E", memo)[0]
+    return_actor = rank5_word(1, 3, "E", memo)[0]
+    nested_return = reduce_word(commutator(
+        return_actor,
+        commutator(left_actor, common_rhs),
+    ))
+    chart_root = rank5_word(1, 2, "1", memo)[0]
+    assert leavitt_equal(evaluate_word(nested_return),
+                         evaluate_word(chart_root))
+
+    p1_23 = next(row for row in reverse if row[0] == "p1_23")
+    chart_generator_word = reduce_word(product(p1_23[6], p1_23[5]))
+    assert leavitt_equal(evaluate_word(nested_return),
+                         evaluate_word(chart_generator_word))
+    seam_word = reduce_word(product(nested_return,
+                                    inverse(chart_generator_word)))
+    assert leavitt_is_one(evaluate_word(seam_word))
+    assert len(seam_word) == 121
+    assert sum(reverse_lengths[matrix.tobytes()]
+               for _factor, matrix in seam_word) == 366
+    print("shortest nested E-strip support rows:", consequence_census)
+    print("nested E-strip syllables:", len(seam_word))
+    print("nested E-strip X-length:", sum(
+        reverse_lengths[matrix.tobytes()] for _factor, matrix in seam_word
+    ))
+    print("nested return equals reverse-chart root x_12(1) exactly")
     return 0
 
 

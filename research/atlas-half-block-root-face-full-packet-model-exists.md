@@ -173,5 +173,21 @@ actually meet the two-letter occurrence, or prove a quantitative transfer
 from the one-letter chart seam rather than infer it from presentation
 surjectivity.
 
+The shortest longer normal-closure consequence does meet the two-letter
+occurrence, but still does not authenticate it. By
+`atlas-two-e-strip-return-retains-common-gauge`, two coefficient-`E` actors
+give the exact nested return
+
+```text
+[x_13(E),[x_31(E),x_12(ee)]]=x_12(1)=p1_23.
+```
+
+Once the nested monomial is retained as a nuisance, adjoining this row raises
+both total and nuisance rank by one: the quotient increment stays two. An
+exact projected block model absorbs the return with the actor gauge
+`U^(-1)` while leaving the common path gauge `U` arbitrary. The next useful
+family must cancel or independently identify those stripping actors, rather
+than merely return their composite to the chart.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear
