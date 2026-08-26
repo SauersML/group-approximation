@@ -76,6 +76,24 @@ compactness of `Q^N`.  Open: the two-generator version (needs an effective
 Wilson envelope) and `Pi^0_2`-completeness of `RF_fp` (residually finite
 Higman).
 
+## Theorem 6 (amenability; `amenability-two-generator-recursive-is-pi2-complete`)
+
+Amenability is `Pi^0_2`-complete on two-generator recursive presentations,
+metabelian is `Pi^0_2`-complete, and containing `F_2` is
+`Sigma^0_2`-complete.  Upper bound: Kesten's criterion (return
+probabilities of the simple random walk, certified by derivation counts).
+Hardness: `G_J = <a, t | [a, t^j a t^-j], j in J>` is `A(Gamma_J) x| Z`
+with `Gamma_J` the shift graph of `J`, amenable iff `J = Z_{>0}`; reduce
+from `TOT`.  Amenability is not a local approximation property, so this is
+outside the Rice theorem, yet lands at the same level.
+
+Sharpening of Theorem 5: residual finiteness is `Pi^0_3`-complete already at
+three generators (`residual-finiteness-three-generator-recursive-is-pi3-complete`),
+via `H_J` residually finite iff `J` profinitely closed in `Z`
+(`centralizing-hnn-over-conjugate-basis-is-rf-iff-index-set-closed`) and the
+dyadic index sets (`index-set-profinitely-closed-is-pi3-complete`); the same
+`H_J` are LEF and sofic for every `J`.
+
 ## What remains open
 
 * `SOFIC_fp` `Pi^0_2`-complete: needs `sofic-safe-finite-presentation-compiler`.
