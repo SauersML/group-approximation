@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "o.tex",
+  "manuscript": "base.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -448,8 +448,8 @@
     {
       "id": "lem:rf-regular",
       "environment": "lemma",
-      "title": "residually finite groups are regularly realized",
-      "statement_sha256": "53155bab3a9116acb4edc58437c9886753320c04bb488dbaa4266bc69bb720bb",
+      "title": "residually finite groups",
+      "statement_sha256": "7a1667aafe7ec95b2e14334515668ffac9417b62d1a96f5aa676207bcbc5f17f",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [],
@@ -462,7 +462,7 @@
       "id": "thm:hnn-permanence",
       "environment": "theorem",
       "title": "HNN permanence with a corona conjugator",
-      "statement_sha256": "fe3557826e48a6b2a22d15318430bc82994e4425a757c9aa5f06d5b5de9d0993",
+      "statement_sha256": "04042a0dcb525b31e126c4df5f65d5e60b9695ed3c882c10ac74172e17a71462",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [],
@@ -478,7 +478,7 @@
       "id": "cor:central-hnn",
       "environment": "corollary",
       "title": "central HNN extensions",
-      "statement_sha256": "41a62ec497ba59fc44fb2fa12764f85145c5a35e3845c2fa9101d69eaa05be89",
+      "statement_sha256": "b5552d5b52500644b29ffdc00b0470e0367b0a3a4b1d9e79357fd6e4c56a351b",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [
@@ -492,7 +492,7 @@
     {
       "id": "lem:seed",
       "environment": "lemma",
-      "title": "the seed is recursively presented",
+      "title": "a recursive presentation of $H$",
       "statement_sha256": "ea98a3541f6359e405e36cf4cbc0c46e7b9ec175a302a471142dc453a6f5bed3",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
@@ -507,7 +507,7 @@
     {
       "id": "lem:switch",
       "environment": "lemma",
-      "title": "the switch",
+      "title": "the group $C_e$",
       "statement_sha256": "fb956e3c28b27a1350f3832766b95d03df4311c6f1349b7b61f5157302125450",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
@@ -524,7 +524,7 @@
     {
       "id": "lem:bridge",
       "environment": "lemma",
-      "title": "the bridge",
+      "title": "the three-generator embedding",
       "statement_sha256": "adf21b207d37875969522c470f6de1ed70be254d8da7d4d2f2b632f846ae7125",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
@@ -560,7 +560,7 @@
     {
       "id": "lem:central-rope",
       "environment": "lemma",
-      "title": "the central rope",
+      "title": "the first HNN extension",
       "statement_sha256": "68b5a4caab4d65362fe432990d81ff6c96e2245d28d36ebfd381687adddc4260",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
@@ -593,7 +593,7 @@
     {
       "id": "lem:negative-branch",
       "environment": "lemma",
-      "title": "the negative branch",
+      "title": "the case $e\\in\\mathrm{FIN}$",
       "statement_sha256": "c1e9dbb5a71bc7485ba08e0a310a50784a9c6fb7131e5b64d983fb5d5ecccb58",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
@@ -627,7 +627,7 @@
       "id": "lem:tensor-sync",
       "environment": "lemma",
       "title": "tensor synchronization",
-      "statement_sha256": "fe4ce4853de4be83ff9db6f61f9da89c6f2fa65ec517d7d296113e7c1c096a72",
+      "statement_sha256": "4cb1b95f9f2d4239453767b0f7c6bf03c3779c85cfd7d85bacc16385cb7b9ecb",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [
@@ -642,8 +642,8 @@
     {
       "id": "lem:positive-branch",
       "environment": "lemma",
-      "title": "the positive branch",
-      "statement_sha256": "9e1092458357e04af9a315708661092a50b5a6ed3d2b362c5e40fd41e0227dc3",
+      "title": "the case $e\\in\\mathrm{INF}$",
+      "statement_sha256": "1f21834982d8cd048db72018899d3c2bb0ce19365d79d541aa3f2d542417c40e",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [
