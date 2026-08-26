@@ -93,3 +93,46 @@ question is the corona conjugacy of the two `(2n+1)`-tuples
 realization `Phi` of `Gamma_a'`.  This is the single analytic statement on
 which both compiler routes now rest.
 
+*Correction.*  `t -> t d` is an automorphism of `K * F(b,d)` and of `Lambda`,
+but not of `T_cal * F(b,d)` or `K_M * F(b,d)`: the instruction relations
+`r_i^-1 t(a,b) r_i = t(c,0)` would force `r_i^-1 d^((a,b)) r_i = d^((c,0))`,
+false for a free letter `d`.  So the `p`-twist is an automorphism only of
+the machine-free part; on the machine part it is entangled with every
+instruction letter.
+
+*Machine-free model.*  Eliminating `d = t^-1 p t p^-1` and `b_j = t_j^-1 p
+t_j t^-1 p^-1 t` gives
+
+```text
+Gamma_a = < K_M * <p>, a_1..a_(2n) | [a_i,p] = 1, a_i t a_i^-1 = x^-i t x^i,
+                                   a_i x a_i^-1 = x^m, [a_i, b_j] = 1 >,
+```
+
+and dropping the machine (`K_M -> < x, t >`) leaves the finitely presented
+group `Gamma^K = < x, t, p, a_i | same >`, which already contains the
+digit-reading edge and is not residually finite.  Whether `Gamma^K` is MF
+is the smallest instance of the analytic question; a proof for it should
+generalize, since the machine enters only through central HNN letters over
+subgroups of `K`.
+
+*Double machine.*  If the word component is a second machine letter `t'`
+subject to the same instruction relations (`r_i^-1 t'(a,b) r_i = t'(c,0)`),
+then `t -> t t'` is an automorphism of the double machine group and the
+`p`-layer becomes a mapping torus, MF-safe by
+[[crossed-product-by-corona-inner-automorphism-is-mf]] once the automorphism
+is corona-inner.  The price is that appending a letter is now conjugation
+by `x^-i mu` on both copies, so the evaluation map `t'(alpha,0) ->
+w_alpha(c)` is no longer the restriction of an automorphism; the free
+letters `b`, `d` are what make evaluation an automorphism (`b_j -> b_j c_j`),
+and the `p`-edge is what makes them read digits.  The two requirements pull
+in opposite directions, and no single envelope satisfies both.
+
+*Consequence for the insertion edge.*  Since every finite quotient of
+`Gamma_a` identifies `w_alpha(b)` with `w_(alpha+N)(b)`, condition `(c)` of
+`(CF1)` fails for every nontrivial `C`: the finite quotients of the compiler
+output kill `C` entirely, even when `C` is residually finite.  So the
+insertion edge, too, must be handled by an abstract corona argument; the
+graph shape from [[product-commuting-aanderaa-cohen-compiler]] remains the
+right one for Shulman's Theorem 20, with the two embeddings of `A_+` given
+by `(a,1)` and `(a, tau(a))` in `Gamma_a *_(A_+) (A_+ x C)`.
+
