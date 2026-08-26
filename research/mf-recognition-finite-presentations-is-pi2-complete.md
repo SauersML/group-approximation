@@ -4,12 +4,14 @@ id: mf-recognition-finite-presentations-is-pi2-complete
 kind: claim
 title: MF and non-MF recognition are second-level complete on finite presentation codes
 root: true
+artifacts:
+  - research/artifacts/mf-recognition-fp-pi2-completeness-2026-08-25.md
 distinct_from:
   mf-recognition-has-a-pi2-upper-bound: that proves the membership upper bound and properness over the first level; this asks for the missing FIN-hardness.
   mf-recognition-recursive-presentations-is-second-level-complete: that proves exact completeness before finite-presentation compilation.
 ---
 
-The target classification is
+**ESTABLISHED.**  For finite presentation codes,
 
 ```text
 NONMF_fp is Sigma^0_2-complete,
@@ -17,17 +19,21 @@ MF_fp    is Pi^0_2-complete.
 ```
 
 The upper bounds are established by
-[[mf-recognition-has-a-pi2-upper-bound]].  The unresolved direction is
+[[mf-recognition-has-a-pi2-upper-bound]].  The matching hardness reduction is
 
 ```text
 FIN <=_m NONMF_fp.
 ```
 
-This is deliberately open.  Neither Adian--Rabin nor generic effective Higman
-embedding supplies the required eventual-stabilization switch with an MF
-positive branch.
+It uses the exact recursive FIN/INF switch, the residually finite
+three-generator bridge, the effective finite-CEP embedding
+`B3(1)<=F_2 times F_2`, a product graph benign witness, and tensor
+synchronization of the final asymmetric rope edge.  The output is MF on
+`INF` and contains the fixed non-MF group `E` on `FIN`.
 
 ## Attempts
 
-The recursive FIN switch is complete, but generic Higman embedding loses the
-MF branch.  The recorded attack is the MF-safe compiler route below.
+Generic Higman embedding does lose the MF branch.  The completed compiler
+separates two jobs: the ordinary MF-safe witness supplies a regular-MF
+faithful model, while the graph witness supplies finite edge models.
+Tensoring them makes the final edge compatible in operator norm.

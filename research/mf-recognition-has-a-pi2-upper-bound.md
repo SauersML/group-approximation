@@ -12,7 +12,7 @@ artifacts:
 distinct_from:
   mf-recognition-undecidable: that proves first-level hardness and NONMF is not recursively enumerable; this supplies the second-level upper bound and combines the two facts into proper hierarchy containments.
   nonhyperlinear-presentation-codes-have-a-sigma2-upper-bound: that is the analogous tracial-microstate argument for hyperlinearity; this uses fixed operator-norm separation and classifies MF recognition.
-  mf-recognition-finite-presentations-is-pi2-complete: that matching-hardness statement still needs an MF-safe finite-presentation compiler; this claim is only the unconditional upper bound and properness over the first level.
+  mf-recognition-finite-presentations-is-pi2-complete: that combines this unconditional upper bound with the now-established MF-safe finite-presentation hardness compiler.
 ---
 
 For the recursive coding `PresentationCodes.PresentationCode` of finite group

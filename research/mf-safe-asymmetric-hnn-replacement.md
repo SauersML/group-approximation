@@ -94,3 +94,12 @@ group.  This enlarges the MF-safe benign library but does not by itself prove
 
 The exact open analytic/group-theoretic subproblem is therefore `(GH1)` for
 the rope data, not generic MF preservation under arbitrary HNN extensions.
+
+The tensor-synchronization theorem now resolves the analytic part without
+requiring finite quotients to separate `Gamma`.  A regular-MF matrix model of
+`Gamma` is tensored with finite graph models whose edge restrictions are
+exactly conjugate; the former supplies faithfulness and the latter supplies
+compatibility.  The product benign witness in
+`graph-witness-product-supplies-tensor-sync` supplies those finite graph
+models uniformly from the finite-CEP embedding
+`B3(1)<=F_2 times F_2`, while leaving the recursive kernel unchanged.

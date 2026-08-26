@@ -8,6 +8,8 @@ requires:
   - mf-recognition-has-a-pi2-upper-bound
   - mf-recognition-recursive-presentations-is-second-level-complete
   - mf-safe-finite-presentation-compiler
+artifacts:
+  - research/artifacts/mf-recognition-fp-pi2-completeness-2026-08-25.md
 ---
 
 Apply the compiler to the recursive family `H_e`.  On `e in INF` the output is
@@ -15,6 +17,6 @@ MF; on `e in FIN` it contains the fixed non-MF group `E`, hence is non-MF by
 subgroup heredity.  This gives `FIN <=_m NONMF_fp`.  Combine with the
 `Sigma^0_2` upper bound and take complements.
 
-All recursion-theoretic work is already present in the two established input
-claims.  The only open input is the property-specific compiler.
-
+The compiler is supplied by the finite-CEP graph witness and regular-MF
+tensor synchronization of the final rope edge.  The full construction and
+both branch verifications are in the cited artifact.
