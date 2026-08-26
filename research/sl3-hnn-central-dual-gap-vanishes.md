@@ -4,7 +4,7 @@ id: sl3-hnn-central-dual-gap-vanishes
 kind: claim
 title: Stable-letter-central dual tuples have no positive SL3 matrix-range separation gap
 distinct_from:
-  sl3-large-prime-hnn-matrix-range-capture: that is the primal assertion that the selected lattice tuple approaches the ucp matrix range; this is its strictly restricted dual form after central-letter averaging, quantifying only over uniformly bounded separators asymptotically commuting with the HNN letter.
+  sl3-large-prime-hnn-matrix-range-capture: that is the primal assertion that the selected lattice tuple approaches the ucp matrix range; this is the quantitatively equivalent dual support-function formulation, useful for localizing an obstruction in the stable-letter commutant but not logically weaker.
   hnn-matrix-range-obstruction-is-a-letter-multiplicity-coupling: that proves a positive-gap separator must live off the intrinsic spectral algebra; this is the open arithmetic assertion that even the remaining multiplicity-commutant separator has nonpositive gap.
   single-hecke-average-isometry-for-lambda-central-unitaries: that tests one primal lattice-central unitary under one fixed arithmetic Hecke average; this tests every bounded dual generator tuple in the stable-letter commutant against the support function of the full group matrix range.
 ---
@@ -33,14 +33,14 @@ the claim is
 limsup_n [ Re sum_s tr_(d_n)(B_(n,s)^*X_(n,s))-h_n(B_n) ] <=0.    (LCG3)
 ```
 
-By `central-letter-averages-matrix-range-separators`, `(LCG3)` implies
-`sl3-large-prime-hnn-matrix-range-capture`: any positive primal distance
-would yield a uniformly operator-bounded tuple obeying `(LCG2)` with a
-fixed positive gap, contradicting `(LCG3)`.  Thus this is the smallest
-currently isolated UCP lemma closing the large-prime HNN route.  It no
-longer asks to correct an arbitrary lattice microstate, or even to test all
-dual directions; it asks only that the stable-letter commutant contain no
-positive matrix-range separator for the selected lattice tuple.
+`hnn-central-dual-gap-is-equivalent-to-matrix-range-capture` proves that
+`(LCG3)` is quantitatively equivalent to
+`sl3-large-prime-hnn-matrix-range-capture`.  The forward implication no
+longer needs Hahn--Banach averaging: take the distinguished central tuple
+`B_s=X_s/sqrt(|S|)`, whose gap is at least the squared primal distance over
+`2sqrt(|S|)`.  Conversely primal distance bounds every normalized separator
+gap from above.  Thus this is a useful dual localization of the UCP hole,
+but not a logically smaller closure claim.
 
 There is an equivalent endpoint with no ultraproduct quantifier:
 `sl3-hnn-finite-window-central-dual-gap`.  For each operator-norm cutoff and

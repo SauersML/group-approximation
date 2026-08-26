@@ -101,3 +101,10 @@ commutant collapse.
   a genuinely nonabelian stable-letter multiplicity coupling.  The letter
   commutant is still large, so an arithmetic host relation must charge that
   residual component.
+- **The dual formulation is equivalent, not weaker.**
+  `hnn-central-dual-gap-is-equivalent-to-matrix-range-capture` observes that
+  `B_s=X_s/sqrt(|S|)` is itself a uniformly bounded central separator with
+  gap at least the squared primal distance over `2sqrt(|S|)`.  In the other
+  direction, primal distance bounds every normalized separator gap.  Hence
+  `sl3-hnn-central-dual-gap-vanishes` is an exact reformulation which
+  localizes the obstruction, not a strictly smaller theorem.
