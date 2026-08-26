@@ -797,8 +797,16 @@ two-orientation element `x_79(q_0)x_97(q_1)`.  Conjugation by one root
 other retains its nonconstant proper idempotent.  Thus `x_ab(c)P` never
 normalizes `Q`, regardless of `a,b,c`.  The next source-return attempt
 requires at least two additional nonnormal occurrences or a genuine
-three-coordinate cell.  The native-target version remains a separate live
-equation.
+three-coordinate cell.  The native-target version is now closed as well.
+`one-elementary-root-cannot-return-mixed-braid-native-chart` uses the
+intrinsic first Hecke fixed-space term `F_1=<e_2,e_7>`: for every root
+`R=x_ab(c)`, the vector `J_1RP e_7` retains at least one of the two
+nonzero transverse components `x_1e_8,q_1e_9`.  Thus
+`J_1^(-1)RP` cannot normalize `L_0`, regardless of coefficient depth.
+Consequently one arbitrary extra root reaches neither `Q` nor the active
+native target `J_1QJ_1^(-1)`.  The next source/native return attempt needs
+at least two additional nonnormal occurrences or a genuinely
+three-coordinate cell.
 
 The proposed complementary-support continuation was based on the wrong
 literal occurrence.  `actual-mixed-complement-returns-reverse-root`
