@@ -826,6 +826,7 @@ theorem exists_projection_lift_with_infinite_support
   rw [hPmk]
   exact supportProjection_ne_zero Y e he
 
+omit [Nontrivial A] in
 /-- Compressing any lift by a projection lift of the support does not change
 the represented corona element.  Thus the represented algebra is literally
 carried by the coordinate corners before those corners are relabelled and
