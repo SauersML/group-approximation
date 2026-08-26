@@ -259,6 +259,19 @@ meet.  Thus an endpoint five-cycle carrier is a precise alternative to
 finding a wholly new coefficient word, but positivity of its compression
 alone is insufficient.
 
+The tautological five-cycle has now been audited completely at the carrier
+level.  By
+`endpoint-five-moving-cuts-have-zero-meet-and-gauge-drift`, the
+five literal cuts `C^j p_2 C^(-j)` have zero common meet.  Their exact
+transitions determine only cyclic holonomy and admit the same fixed-initial-
+frame coboundary `(D,D,1,1,1)` while leaving the positive endpoint polar
+unchanged.  In addition, the paired `J_2/(B_3A_2)` gauge fixes every actor
+expression built from those cuts.  Hence moving the source rather than
+finding a common carrier does not by itself activate `(WM)^5=1`: a viable
+endpoint route must independently authenticate a fixed-frame stage lock
+(four adjacent ungauged bridges are the minimal local realization) and
+attach the `W` polar to one native factor occurrence.
+
 The first two-return attempt does not kill that product.
 `two-external-return-cell-has-finite-s3-model` adds the commuting return
 `r=x_59(1)`, the matrix root for the enumerated arrow `9->5`, and the

@@ -174,6 +174,17 @@ canonical trace, or literature theorem is permitted.
   frame.  The established endpoint cyclic aggregate has positive `W` Gram
   but its overlap need not reduce `WM`, so it does not yet supply that
   carrier.
+  The literal moving-cut replacement is now also closed as a shortcut.
+  `endpoint-five-moving-cuts-have-zero-meet-and-gauge-drift`
+  proves that the five cuts `C^j p_2 C^(-j)` have zero common meet and that
+  their exact zero-boundary transitions retain the five-stage chart
+  coboundary `(D,D,1,1,1)`.  Keeping the initial frame fixed leaves the
+  positive `p_2Wp_2` polar unchanged.  Moreover the paired `J_2/(B_3A_2)`
+  factor symmetry fixes every one of those cuts.  Thus the order-five
+  alternative needs a fixed-frame stage lock (minimally four adjacent
+  ungauged bridges) plus a literal native-factor attachment, just as the
+  order-seven route needs its six coefficient squares; the orbit cuts
+  themselves provide neither.
 - Recentering the Pauli center to `x_(18,19)(q)` does make the marked overlap
   reduce both order-seven heads, so there is no moving-cut boundary.  It
   instead enlarges the native label algebra by the two center-chain hub
