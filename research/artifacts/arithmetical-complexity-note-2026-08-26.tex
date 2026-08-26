@@ -162,6 +162,14 @@ Separability of a recursively enumerated subgroup of $F_2$ is $\Pith$-complete; 
 \end{theorem}
 This also settles what the sofic question for the compiler's rope is \emph{not}: by \path{centralizing-hnn-sofic-via-regular-edge-centralizer}, a stable letter in the centralizer of the edge exists exactly when the finite quotient separates the tested element from the edge image, so for a finitely generated edge the quotient-model route is equivalent to separability of that edge; Mikhailova subgroups are finitely generated with undecidable membership, hence non-separable, and the route dies. Any proof that the rope is sofic --- or even LEF --- must use finite models whose restriction to the base is not a homomorphism onto a finite quotient.
 
+
+\section{What the remaining cells are}
+Two of the open cells now have a precise shape.
+\begin{proposition}[\path{rf-fp-completeness-reduces-to-subgroup-separability-hardness}]
+For a finite tuple $w$ in $K=F\times F$, the group $\langle K,v\mid [v,w_1]=1,\dots,[v,w_n]=1\rangle$ is finitely presented and, by the criterion above, residually finite iff $\langle w\rangle$ is separable in $K$. Hence $\mathrm{RF}_{fp}$ is $\Pizt$-complete as soon as separability of finitely generated subgroups of $F\times F$ is $\Pizt$-hard --- a question about the best-understood non-subgroup-separable group, and one asking for hardness of a set already known to be $\Pizt$.
+\end{proposition}
+The sofic and hyperlinear finite-presentation cells are properties of a single explicit group, the rope $R$ of \path{the-mikhailova-rope-object-card}: finitely presented, MF, torsion-free, not residually finite, containing free subgroups of rank two, with soficity, LEF and hyperlinearity open, and with quotient models provably unable to settle soficity. Anyone attacking those cells should attack $R$ rather than rebuild a compiler.
+
 \section{Machine-checked statements}
 The following are kernel-checked Lean~4 declarations on the \path{main} branch of the development (module names under \path{GroupApproximation/Computability/} unless noted).
 \begin{itemize}
@@ -170,6 +178,7 @@ The following are kernel-checked Lean~4 declarations on the \path{main} branch o
 \item \path{SoficMicrostateNormalForm.isSofic_iff_forall_answers}, \path{SoficRecognitionPi02.pi02_isSofic}, \path{sofic_fp_strict_position}: the permutation void-challenge normal form, $\Pizt$ membership on finite presentation codes, and $\mathrm{SOFIC}_{fp}\in\Pizt\setminus\Pio$, $\mathrm{NONSOFIC}_{fp}\in\Sizt\setminus\Sio$.
 \item \path{SoficEnumeratedPi02.sofic_enum_pi02Complete}, \path{nonsofic_enum_sigma02Complete}: $\Pizt$-completeness of soficity and $\Sizt$-completeness of nonsoficity on enumerated presentation codes---the first machine-checked exact arithmetical classification of a group approximation property.
 \item \path{LEFEnumeratedPi02.lef_enum_pi02Complete}, \path{nonlef_enum_sigma02Complete}: the same exact classification for local embeddability into finite groups on enumerated presentation codes (exact permutation models, no metric).
+\item \path{ArithmeticalLedgerEndpoint.arithmeticalLedgerHolds}: the whole ledger as one closed proposition, with a \path{#audit_closed_axioms} line certifying that it rests on no hypothesis.
 \item \path{TrivialEnumeratedPi02.trivial_enum_pi02Complete}, \path{AbelianEnumeratedPi02.comm_enum_pi02Complete}: the folklore rows (triviality, commutativity) as exact $\Pizt$-completeness on enumerated presentation codes.
 \item \path{RFPresentationPi02.rf_fp_strict_position}: $\mathrm{RF}_{fp}\in\Pizt\setminus\Pio$, $\mathrm{NONRF}_{fp}\in\Sizt\setminus\Sio$; \path{RFEnumeratedHardness.rfCode_pi02Hard}, \path{AmenableEnumeratedHardness.amenableCode_pi02Hard}, \path{HyperlinearEnumeratedHardness.hyperlinearCode_pi02Hard_of_exists} (conditional), \path{IsoInvariantSwitchHardness.kazhdanCode_pi02Hard} (property (T), via an isomorphism-invariant variant of the switch), \path{ElementaryEnumeratedHardness} (finiteness, triviality): second-level lower bounds on enumerated presentation codes.
 \item \path{ProfinitelyClosedIndexSet.pi03Complete_closedIndex}: $\{e:\cl(W_e)=W_e\}$ is $\Pith$-complete, with the dyadic rows; this is the computability core of the $\Pith$ residual-finiteness theorems.
