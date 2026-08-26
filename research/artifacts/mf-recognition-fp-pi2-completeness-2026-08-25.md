@@ -205,15 +205,34 @@ applied to `(T10)` embeds `Q_e` in the finitely presented group `R_e`, and
 `Q_e` contains `E`.  Since MF is inherited by subgroups and `E` is not MF,
 `R_e` is not MF.
 
-The rope presentation is finite uniformly in `e`: `K_e` is finitely
-presented, `L_e` and `F` are finitely generated, and the final rope relations
-are imposed only on a fixed finite generating set of `F`.
+The abstract notation `(T15)` contains `Q_e`, but the output presentation does
+not list the recursively enumerable relators of `Q_e`.  If `A` is a fixed
+finite generating set of `F`, start instead from
+
+```text
+(Gamma_e times F) * <u>
+```
+
+and, for each `a in A`, impose only
+
+```text
+u(i(a),1)u^-1=(i(a),a),
+u(i(a)^v,1)u^-1=(i(a)^v,1).                                   (T16)
+```
+
+These relations extend from `A` to all of `F`.  For `n in N_e`, benignness
+gives `i(n)^v=i(n)` in `Gamma_e`; comparing the two instances of `(T16)` then
+kills `(1,n)`.  Hence the second free factor descends to `F/N_e=Q_e`.
+The resulting maps in both directions identify this manifestly finite
+candidate with `(T15)`.  Thus the rope presentation is finite uniformly in
+`e`: `K_e` is finitely presented, `L_e` and `F` are finitely generated, and
+only two final relations per generator of `F` are imposed.
 
 We have therefore constructed a total computable map `e |-> code(R_e)` with
 
 ```text
 e in INF  => R_e is MF,
-e in FIN  => R_e is not MF.                                  (T16)
+e in FIN  => R_e is not MF.                                  (T17)
 ```
 
 So `FIN <=_m NONMF_fp` and, by complements, `INF <=_m MF_fp`.  Since `FIN`

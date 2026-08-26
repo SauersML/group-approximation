@@ -112,8 +112,10 @@ M_2(D) *_(B_0 direct-sum B_1) M_2(B_0).                        (9)
 ```
 
 The embeddings of the two factors into the matrix corona agree on the amalgam
-because of `(7)`.  Shulman's compatible-corona criterion makes `(9)`, and
-hence its full corner, MF.
+because of `(7)`: `M_2(D)` uses the amplified vertex embedding, while
+`M_2(B_0)` is embedded by conjugating its standard matrix embedding with
+`diag(1,W)`.  Shulman's compatible-corona criterion makes `(9)`, and hence its
+full corner, MF.
 
 It remains to know that the abstract group HNN has not collapsed in this
 C-star algebra.  The trace in `(8)` completes `D` to the group von Neumann

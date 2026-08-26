@@ -10,7 +10,8 @@ distinct_from:
   twisted-rope-edge-is-mf-under-relative-profinite-compatibility: that preserves Britton reduction in finite HNN quotients; this proves compatibility directly in a matrix corona by tensoring the common base representation.
 ---
 
-Let `Gamma` be regularly operator-MF realized, let `Q` be residually finite
+Let `Gamma` be countable and regularly operator-MF realized, let `Q` be
+countable and residually finite
 with an eventually separating cofinal sequence `beta_n:Q->B_n`, let
 `S<=Gamma`, and let
 `tau:S->Q` be a homomorphism.  Suppose that for each `n` there is a homomorphism
