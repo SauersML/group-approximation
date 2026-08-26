@@ -116,6 +116,20 @@ finitely presentable & -- & $\Sizt$-hard, $\Sith$
 \end{center}
 Open cells (\path{open-cells-arithmetical-complexity-of-group-properties}): $\Pizt$-completeness of $\mathrm{SOFIC}_{fp}$ (needs a sofic-safe finite-presentation compiler: centralizing HNN extensions over non-amenable, non-profinitely-closed Mikhailova-type subgroups), of $\mathrm{HYP}_{fp}$ in case (B) (quasidiagonality of the MF compiler's regular trace), of $\mathrm{RF}_{fp}$ (the residually finite Higman problem) and of $\mathrm{AMENABLE}_{fp}$ (every Higman-type compiler introduces free subgroups); $\Sith$-completeness of $\mathrm{FP}_{rec2}$; and whether some group fails weak or linear soficity.
 
+
+\section{Crossing to finite presentations: one gate for all cells}
+The MF-safe finite-presentation compiler (\path{mf-safe-finite-presentation-compiler}) is uniform in its finitely presented seed $D$, and on the $\mathrm{INF}$ branch its output does not involve the seed at all: it is a fixed rope $R_e$ built from free groups by finite direct products, one amalgam over a Mikhailova-type subgroup, and one further HNN extension.
+\begin{theorem}[\path{finite-presentation-rice-criterion-via-the-fixed-positive-rope}]\label{thm:fpgate}
+Let $P$ be a subgroup-hereditary isomorphism-invariant property such that $P(R_e)$ for every $e\in\mathrm{INF}$, and $\neg P(D)$ for some finitely presented $D$. Then $P_{fp}$ is $\Pizt$-hard and $\neg P_{fp}$ is $\Sizt$-hard; with a $\Pizt$ upper bound, $P_{fp}$ is $\Pizt$-complete.
+\end{theorem}
+\begin{proposition}[\path{mf-compiler-positive-branch-is-torsion-free}]
+Every positive-branch output $R_e$ is torsion-free: each building block is free, a finite direct product of free groups, a subgroup of such, an amalgam over a common subgroup, or an HNN extension of a torsion-free base, and torsion in an amalgam or an HNN extension is conjugate into a vertex group.
+\end{proposition}
+\begin{corollary}[\path{torsion-freeness-of-finite-presentations-is-pi2-complete}]
+$\mathrm{TORSIONFREE}_{fp}$ is $\Pizt$-complete and $\mathrm{HASTORSION}_{fp}$ is $\Sizt$-complete: apply Theorem~\ref{thm:fpgate} with $D=\Z/2$ and the $\Pizt$ normal form of \path{torsion-freeness-recognition-is-pi2-complete}. This is the first finite-presentation cell besides MF to be closed at the second level.
+\end{corollary}
+Theorem~\ref{thm:fpgate} also explains the cells that remain open. The rope is MF and torsion-free, but it contains free subgroups and is not residually finite, so for amenability and residual finiteness this route is provably unavailable and their completeness cells need a different mechanism; for soficity and hyperlinearity the cells are \emph{exactly} the questions whether the one explicit group $R_e$ is sofic, respectively hyperlinear (\path{sofic-safe-finite-presentation-compiler}, \path{mf-compiler-positive-branch-is-hyperlinear}).
+
 \section{Machine-checked statements}
 The following are kernel-checked Lean~4 declarations on the \path{main} branch of the development (module names under \path{GroupApproximation/Computability/} unless noted).
 \begin{itemize}
