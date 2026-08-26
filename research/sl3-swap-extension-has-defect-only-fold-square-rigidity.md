@@ -165,3 +165,15 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   local relation must therefore tie a Weyl slot back to an opposite root (the
   packet violates `W_12E_12W_12^*=B_21`) or use a closed chamber loop which
   forbids this collapsed-root sector.
+
+- **One genuine rank-one conjugacy closes the exact `C_2` congruence
+  counterpacket, but not yet arbitrary outliers.**
+  `rank-one-conjugacy-kills-c2-congruence-fold` imposes
+  `W_12E_12W_12^*=B_21` together with the closed two-return loop.  A parity
+  calculation removes both positive-root sheet signs and the first
+  negative-root sign; the torus word then forces the remaining sheet
+  denominator to be trivial.  Hence the exact packet in
+  `closed-a2-loop-still-leaves-swap-fold-free` cannot be repaired by moving
+  its central sign among the displayed slots.  This is an exact sector
+  theorem, not `(SFS1)`: a surviving countermodel would need a noncentral
+  multiplicity gauge or a genuinely non-congruence actor outlier.

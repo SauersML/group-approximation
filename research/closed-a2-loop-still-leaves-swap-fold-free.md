@@ -63,5 +63,18 @@ the outlier using only `R_tor` and the closed two-return loop.  At least one
 further lattice identity detecting the negative-root sheet sign, or a
 genuinely matricial use of the full free law, remains indispensable.
 
+The first such identity is now explicit.  In the congruence packet,
+
+```text
+W_12E_12W_12^*=1 tensor b_21
+    != Z tensor b_21=B_21.
+```
+
+`rank-one-conjugacy-kills-c2-congruence-fold` proves more than detection:
+adjoining this genuine rank-one Weyl conjugacy forces the fold to vanish for
+every placement of central `C_2` sheet signs on the same exact congruence
+actor.  The remaining enemy must therefore leave the scalar two-sheet
+character class.
+
 DERIVATION
 closed-a2-loop-fold-countermodel-proof
