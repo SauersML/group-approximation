@@ -1,4 +1,4 @@
-import Mathlib.GroupTheory.Coprod.Basic
+import GroupApproximation.Higman.AmalgamPresentation
 
 /-!
 # The kernel of the paired fold map
@@ -114,8 +114,9 @@ theorem fold_ker_eq_differenceRel :
     rw [quotientMap_eq_left_comp_fold K]
     change QuotientGroup.mk' (differenceRel K Set.univ)
       (Monoid.Coprod.inl (fold K x)) = 1
-    rw [show fold K x = 1 from hx, map_one]
-  exact (QuotientGroup.eq_one_iff _).mp hquot
+    rw [show fold K x = 1 from hx]
+    simp only [map_one]
+  exact (QuotientGroup.eq_one_iff x).mp hquot
 
 /-- A generating subset supplies all copy-difference relators. -/
 theorem fold_ker_eq_differenceRel_of_closure {S : Set K}
@@ -149,7 +150,8 @@ theorem fold_ker_eq_differenceRel_of_closure {S : Set K}
     have hk : left k = right k := by
       have : k ∈ left.eqLocus right := by rw [hall]; exact Subgroup.mem_top k
       exact this
-    apply (QuotientGroup.eq_one_iff N).mp
+    apply (QuotientGroup.eq_one_iff (difference K k)).mp
+    change π (difference K k) = 1
     unfold difference
     rw [map_mul, map_inv]
     exact mul_inv_eq_one.mpr hk
@@ -170,20 +172,9 @@ theorem freeGroup_fold_ker_eq_basisDifferences
     (α : Type*) [Fintype α] :
     (fold (FreeGroup α)).ker =
       Subgroup.normalClosure
-        (difference (FreeGroup α) ''
-          ((Finset.univ.image FreeGroup.of : Finset (FreeGroup α)) :
-            Set (FreeGroup α))) := by
-  letI : DecidableEq α := Classical.decEq α
-  letI : DecidableEq (FreeGroup α) := Classical.decEq (FreeGroup α)
-  apply fold_ker_eq_finiteDifferences
-  have himage :
-      ((Finset.univ.image FreeGroup.of : Finset (FreeGroup α)) :
-        Set (FreeGroup α)) = Set.range FreeGroup.of := by
-    ext x
-    simp only [Finset.coe_image, Finset.coe_univ, Set.image_univ,
-      Set.mem_range]
-  rw [himage]
-  exact FreeGroup.closure_range_of α
+        (difference (FreeGroup α) '' Set.range FreeGroup.of) := by
+  exact fold_ker_eq_differenceRel_of_closure (FreeGroup α)
+    (FreeGroup.closure_range_of α)
 
 end PairedFoldKernel
 end Higman
