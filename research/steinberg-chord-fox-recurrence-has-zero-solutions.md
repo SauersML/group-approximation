@@ -31,7 +31,9 @@ loci are recorded in `steinberg-fox-chord-actions-are-explicit`.
    terms of the actual recurrence.
 2. **Use the constant/root-invariant chord vector.**  This is the
    `U^-`-fixed line.  Since `q` and `s` fix it, the first row acts as `-1`,
-   so it supplies no common-kernel vector.
+   so it supplies no common-kernel vector.  The opposite `B`-fixed line is
+   killed by `Y`, but `X` sends its highest vector to a linear combination
+   of three distinct PBW basis vectors, so it also fails.
 3. **Propagate on the generic rational charts.**  Equation `(SCA4)` is a
    closed finite-difference system wherever all seven normalizing factors
    stay nonzero.  The deferred boundary is exact: at

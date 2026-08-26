@@ -415,7 +415,7 @@ occurrence relation or an upper bound on the detector defects.
 
 The external probe menu itself is now exhausted in
 `middle-pauli-probes-leave-three-hecke-classes-untyped` and
-`five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge`.  The
+`five-return-legs-cover-hecke-detectors-not-source-gauge`.  The
 literal paid dual menu and the full primal middle menu leave exactly three
 endpoint classes, represented by matrices supported from actor sources
 `6,9` into targets `2,4`.  Adding `x_12(s_1),x_14(s_1)` closes that endpoint
@@ -426,11 +426,19 @@ paid-menu words preserve `(L_0,lambda_0)`, and both centralize it; every
 useful probe moves among `24` named conjugate sources with arbitrary
 multiplicity chart.  The three endpoint classes have exact mark profile
 only at depth `3`, and the current prefix Whitehead fixes the endpoint leg
-instead of transporting its coefficient to the adjacent depth.  The live
-detector seam is consequently narrower: construct a fresh endpoint-Whitehead
-`Jhat_(r,m)` carrying `x_1r(a_m)` to `x_1r(a_(m+1))`, and supply a
-source-preserving or multiplicity-typing occurrence for it on the already
-established moving `R_0 -> P` channel.
+instead of transporting its coefficient to the adjacent depth.  The
+endpoint-Whitehead candidate is now fully computed in
+`endpoint-whitehead-profile-has-maximal-gram-overlap`.  It carries the
+paired endpoint occurrence through adjacent depths with exact full Grams,
+but the resulting six moved types are the reversible `S_3` Cayley profile.
+Both incoming edges at each target are onto the whole same target, so their
+cross-Gram square equals the complete target mass: the formal
+Perron--Frobenius factor `2` is fully paid by maximal overlap.  Retaining one
+edge gives spectral radius `1`, and a regular `S_3` reservoir realizes the
+moving gauges as exact coboundaries.  The live detector seam is consequently
+narrower: supply proper orthogonal subranges, or a source-preserving
+fixed-frame multiplicity occurrence, on the already established moving
+`R_0 -> P` channel.  Iterating conjugate source names alone cannot close it.
 
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the

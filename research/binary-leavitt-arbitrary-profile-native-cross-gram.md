@@ -218,7 +218,7 @@ literature theorem is permitted in this claim.
   for the paying detector).
 
 - **Exhaust the detector branch with typed finite probes.**
-  `five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge`
+  `five-return-legs-cover-hecke-detectors-not-source-gauge`
   gives a complete exact algebraic answer.  The paid `48`-word dual menu
   followed by the three middle `X_m` legs covers `28/31` externally probed
   classes; adding `x_12(s_1),x_14(s_1)` covers the remaining three, so a
@@ -232,6 +232,20 @@ literature theorem is permitted in this claim.
   endpoint-Whitehead `Jhat_(r,m)` carrying `x_1r(a_m)` to
   `x_1r(a_(m+1))`, together with source-preserving or multiplicity-typed
   control on the prescribed moving `R_0 -> P` channel.
+
+- **Iterate those fresh endpoint Whiteheads as a finite profile automaton.**
+  `endpoint-whitehead-profile-has-maximal-gram-overlap` carries the complete
+  paired endpoint occurrence and its conjugated source through the adjacent
+  scales with exact full source/range Grams.  This does not prove `(APG1)`.
+  The resulting six types form the reversible `S_3` Cayley profile.  At
+  every target the two incoming range projections are both the whole target,
+  and their cross-Gram square is exactly its trace.  Hence the apparent
+  Perron--Frobenius degree `2` is fully paid by maximal Gram overlap; choosing
+  one incoming edge instead leaves a permutation adjacency of spectral
+  radius `1`.  The regular `S_3` multiplicity model also realizes every
+  moving-frame gauge as a coboundary.  A successful branching continuation
+  therefore needs ordinary-word-authenticated proper subranges with small
+  cross-Grams in one fixed Hecke frame, not just more conjugate source types.
 
 - **Polar-correct the paid incidence before applying the Hecke word.**
   `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is

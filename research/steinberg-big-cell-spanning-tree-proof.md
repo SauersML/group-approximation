@@ -55,6 +55,24 @@ This gives its coefficient with the sign dictated by the edge orientation.
 The cut formula uses only `0,+1,-1`, proving `(SBC3)` over every coefficient
 field and defining `E_p`.
 
+More explicitly, orient every tree edge from its point endpoint `P` to its
+plane endpoint `H`.  Let `d=partial(c_f)` be the boundary demand of the chord
+chain, and let `K_H(e)` be the component containing `H` after deleting
+`e=(P,H)`.  Then
+
+```text
+(E_pf)(e)=-sum_(v in K_H(e)) d(v).                     (SBP4)
+```
+
+The branches in `(SBP4)` are completely elementary.  Points outside `H_0`
+are leaves attached to `span(P,z)`; planes not containing `z` are leaves
+attached to `H intersect H_0`.  After removing those leaves, `H_0` is joined
+to every point of `H_0`, and `z` is joined to every plane containing `z`.
+Thus a noncentral cut contains one such leaf, or one center arm together
+with its leaves; the central cut is the `H_0` half of this double star.  This
+is the promised explicit boundary rule for every zero denominator in
+`(SCA2)`.
+
 For a chain `F=E_p f` and a chord `C`, the coefficient of `gF` at `C` is the
 coefficient of `F` at `g^(-1)C`.  If the latter is a chord this is one entry
 of `f`; if it is in `T` it is the cut formula just proved.  This establishes

@@ -72,3 +72,34 @@ Xv=A(1-q)v+B(1-s)v-v=-v.                              (SFP5)
 In particular the one-dimensional `U^-`-fixed line in `St_p|U^-` is not an
 affine escape.  Any counterexample must use a genuinely nonconstant
 root-group coefficient function in the flag-incidence model.
+
+The highest-weight line can also be evaluated without expanding the whole
+module.  Let `v_+` be a highest vector.  Its weight is `(p-1)rho`, so the
+finite torus `T(F_p)` acts trivially; hence every element of `B` fixes
+`v_+`.  In particular `A,B,c,u,r,h` fix it.  Since
+
+```text
+u=q c q^(-1),
+u q v_+=q c v_+=qv_+,                                 (SFP6)
+```
+
+both factors in the second row of `(MMP3)` vanish on `v_+`, and `Yv_+=0`.
+
+For a simple root, the rank-one identity
+
+```text
+x_i(2)x_(-i)(-1/2)x_i(2)=w_i(2)                       (SFP7)
+```
+
+and `x_i(2)v_+=v_+` show that `Aqv_+=w_1(2)v_+`.
+Likewise `Bsv_+` is a nonzero torus multiple of `w_2(2)v_+`.  In the usual
+PBW basis of the Steinberg module these are nonzero multiples of
+`f_1^(p-1)v_+` and `f_2^(p-1)v_+`, respectively.  Together with `v_+` they
+are three distinct PBW basis vectors.  Therefore
+
+```text
+Xv_+=v_+-Aqv_+-Bsv_+ != 0.                            (SFP8)
+```
+
+So the `B`-fixed line is contained in `ker Y` but is disjoint from the
+common kernel.

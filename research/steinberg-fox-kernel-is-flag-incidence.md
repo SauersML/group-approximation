@@ -53,6 +53,10 @@ chamber.  Thus root-group parameters, not only Weyl signs, are essential.
 The other canonical one-dimensional candidate also fails immediately: if
 `v` is fixed by the lower unipotent `U^-`, then `qv=sv=v` and `(SFI2)` gives
 `Xv=-v`, so the `U^-`-fixed Steinberg line contains no common-kernel vector.
+At the opposite extreme, the `B`-fixed highest-weight line lies in `ker Y`
+but not in `ker X`: the two nontrivial terms of `Xv` are nonzero multiples
+of the distinct PBW vectors `f_1^(p-1)v` and `f_2^(p-1)v`.  Thus neither
+canonical extremal line is the sought obstruction.
 
 DERIVATION
 steinberg-flag-incidence-reduction-proof

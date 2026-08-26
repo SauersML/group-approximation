@@ -254,7 +254,7 @@ excluded by the regular-trace firewall.
   normalization itself is analytic and cannot be declared a typed row.
 
   The detector-side root search is now finite and complete, but the same
-  typing seam remains.  `five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge`
+  typing seam remains.  `five-return-legs-cover-hecke-detectors-not-source-gauge`
   exhausts the `31` root-free positive classes: the three middle returns
   cover `28`, and `x_12(s_1),x_14(s_1)` cover the other three.  None of the
   useful first probes preserves `Q`; it only names one of `24` conjugate
@@ -266,6 +266,18 @@ excluded by the regular-trace firewall.
   endpoint-Whitehead `Jhat_(r,m)` carrying `x_1r(a_m)` to
   `x_1r(a_(m+1))` and type its multiplicity action on the moving source/range
   occurrence.
+
+  The fresh endpoint words themselves are no longer open.
+  `endpoint-whitehead-profile-has-maximal-gram-overlap` proves their exact
+  coefficient transport and full source/range Grams.  Iterating them gives
+  the six-state `S_3` profile, not an expanding selector compiler: both
+  incoming transports onto any profile type have the identical whole range,
+  so their cross-Gram has squared mass `tau(Q_k)`.  Thus formal branching
+  degree `2` is exactly cancelled by the Gram leakage, while selecting one
+  edge gives only a permutation cycle.  A regular `S_3` reservoir makes all
+  edge gauges nontrivial coboundaries satisfying every braid relation.  The
+  remaining requirement in `(SNA2)` is therefore a proper-subrange or
+  fixed-frame occurrence typing, not endpoint transport by itself.
 
   The post-moving-source boundary is now exact in
   `moving-signed-source-does-not-localize-paid-sheet-detector`.  The

@@ -39,6 +39,10 @@ The inverse `E_p` is integral and explicit: retain the prescribed chord
 coefficients, and on a tree edge use the signed sum of the chord boundary
 demands on either component cut off by that edge.  Thus there is no division
 and no characteristic-dependent exceptional case in the cycle extension.
+The tree has diameter at most five: its only nonleaf edges form the double
+star with centers `z` and `H_0`.  Hence every exceptional value is a panel
+sum or a sum over one branch of this double star, not an unspecified global
+extension problem.
 
 For `g in SL_3(F_p)` put
 
