@@ -35,13 +35,29 @@ and gives the Pestov 3.4 separation (`hyperlinear-nonsofic-from-free-lamp-hnn`).
   Corollaries 5.2/5.5 (2026-08-14, `hyperlinear-wreath-model`) is that the
   only stated sufficient condition is soficity of the coset action, which
   Kun--Thom Corollary D refutes (`coordinate-action-not-sofic`, route
-  `sofic-action-permanence` dead).  Whether their Definition 4.23 admits
-  charts in an auxiliary hyperlinear group that are not permutation models of
-  the set is not verified against the source; if it does, the statement to
-  prove is that the basis-permuting action is a sofic hyperlinear action
-  although the set action is not sofic.  A universal version ("every
-  basis-permuting action of a sofic group on a free group qualifies") would
-  make the embedded double sofic through the same charts and is false.
+  `sofic-action-permanence` dead).  **Definition 4.23 was read from the arXiv HTML on 2026-08-26** (source
+  checked, statement transcribed): for `alpha : Gamma -> Aut(Delta)` and a
+  *function* `phi : Gamma -> Sym(A)` (a permutation almost-action of the
+  ACTING group on a finite set `A`), `phi` is an `(F, E, epsilon, Lambda)`-
+  automorphic approximation of `alpha` if there is `S subseteq A` with
+  `|S| > (1 - epsilon)|A|` and injective partial homomorphisms
+  `pi_s : E -> Lambda`, `s in S`, such that
+  `pi_(phi(g) . s)(h) = pi_s(alpha(g)^(-1)[h])` whenever `phi(g) . s in S` and
+  `alpha(g)^(-1)[h] in E`; a sofic `C`-action is one admitting such
+  approximations with `Lambda in C` for all `(F, E, epsilon)`.  So the
+  definition models only the acting group `G` by permutations (available:
+  `G` is residually finite) and lets the charts of the free lamp group land
+  in an arbitrary hyperlinear `Lambda`; it does NOT ask for a permutation
+  model of the coset space `G/Gamma`.  Corollary D therefore kills only the
+  chart families that factor through permutation models of `G/Gamma`
+  (e.g. `pi_s = alpha(g_s)^(-1)` with an equivariant labelling `s |-> g_s`,
+  which on expander approximations of the Kazhdan `G` would force cycles of
+  the model graph to read relations).  The statement to prove is that some
+  hyperlinear `Lambda` admits equivariant injective charts of `F(G/Gamma)`
+  along a sofic approximation of `G` although the coset action is not sofic.
+  A universal version ("every basis-permuting action of a sofic group on a
+  free group qualifies") would make the embedded double sofic through the
+  same charts with finite `Lambda`, and is false.
 - **Constraints.**  Any model represents `Gamma` non-amenably
   (`amenable-kazhdan-models-absorb-compression`) and, on its
   compression-detecting corner, without finite-dimensional or tempered
