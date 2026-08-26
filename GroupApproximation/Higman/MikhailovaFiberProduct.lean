@@ -171,10 +171,8 @@ theorem diagonal_mem_freeSubgroup (R : Set (FreeGroup X))
   · intro x
     exact Subgroup.subset_closure (Or.inl ⟨x, rfl⟩)
   · intro x hx
-    change ((FreeGroup.of x)⁻¹, (FreeGroup.of x)⁻¹) ∈ freeSubgroup R
     exact (freeSubgroup R).inv_mem hx
   · intro x y hx hy
-    change (x * y, x * y) ∈ freeSubgroup R
     exact (freeSubgroup R).mul_mem hx hy
 
 theorem freeSubgroup_eq_subgroup (R : Set (FreeGroup X)) :
