@@ -118,23 +118,33 @@ The fourth level is realized too: [[residually-p-for-some-prime-is-sigma4-comple
 
 ## Prior and adjacent work (2026-08-26 literature sweep)
 
-**Must cite.**  Iva Bilanovic, Jennifer Chubb, Sam Roven, "Detecting
-properties from descriptions of groups", Archive for Mathematical Logic 59
-(2019/2020) 293-312, DOI 10.1007/s00153-019-00690-x (arXiv:1903.05143):
-Markov properties are `Pi^0_2`-hard on recursive presentations and
-`Pi^0_1`-hard on computable groups, with sharp classifications for several
-classical algebraic properties (abelian, torsion-free, orderable; cyclic,
-nilpotent, solvable).  This is the closest predecessor of the
-second-level lower bounds here.  Scope comparison, so the novelty line is
-drawn precisely: their hardness families are hypothesis-free Markov
-properties on `rec`/computable syntax; they prove hardness, not
-completeness, do not treat approximation properties (sofic, hyperlinear,
-MF, LEF, weakly/linear sofic — none is Markov without a forbidden
-counterexample in hand), do not treat finite presentations, and have no
-analogue of the completeness dichotomy or of the fp `Pi^0_2`-complete
-cells ([TF], [MF]).  Lempp 1997 (torsion-freeness `Pi^0_2`-complete on fp)
-and Chiodo arXiv:1107.1489 remain the fp-side predecessors, as already
-cited.
+**Must cite, and subsumes one of our theorems.**  Iva Bilanovic, Jennifer
+Chubb, Sam Roven, "Detecting properties from descriptions of groups",
+Archive for Mathematical Logic 59 (2019/2020) 293-312, DOI
+10.1007/s00153-019-00690-x (arXiv:1903.05143).  Their Theorem 3.1: every
+Markov property is `Pi^0_2`-hard on recursively presented (countably
+generated) groups, proved by the same kill-one-copy construction as our
+event ray (`G_+ * G_- * G_- * ...`, one `G_-` killed per enumeration
+event).  Since a hereditary property with a counterexample is Markov, the
+countably generated clause of
+[[second-level-rice-theorem-for-local-approximation-properties]] (and the
+kernel-checked `enumeratedCodeProperty_pi02Hard`) IS their theorem; it must
+be attributed to them, not claimed.  Also theirs: `Pi^0_2`-completeness of
+trivial/abelian/torsion-free/torsion/divisible/orderable on r.p. groups
+(their Cor. 3.2, our "(folk.)" cells), and `Sigma^0_3`-completeness of
+finiteness, decidable word problem, cyclic, nilpotent, solvable and finite
+presentability on r.p. groups (so the countably generated
+finite-presentability and word-problem cells are theirs; only the
+two-generator refinements remain ours or open).  What is NOT in their
+paper and remains this ledger's content: every finite-presentation cell
+([TF] is Lempp, which they cite as the one known fp example; [MF] is ours
+and is the second such theorem), the `Pi^0_2` upper bounds for sofic,
+hyperlinear, MF and LEF recognition (non-obvious certificate normal forms
+with word-problem-oracle elimination), the level-three `Pi^0_3` residual
+finiteness cells, the two-generator and fixed-ambient `V` syntaxes, and
+property (T).  The hyperlinear dichotomy's recursive-presentation half is a
+corollary of their theorem plus marked closedness; only its upper bound
+and finite-presentation side are ours.
 
 The two Tech Insider pieces of 2026-08-17/18 on the Manifold market "Will
 the existence of a non-MF group be proved this month" confirm the public
