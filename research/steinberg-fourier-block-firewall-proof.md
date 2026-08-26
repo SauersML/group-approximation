@@ -5,7 +5,6 @@ kind: route
 title: Compute endpoint Fourier modes and the transverse frequency mixing
 target: steinberg-ordinary-fourier-blocks-do-not-descend-mod-p
 requires:
-  - steinberg-x-plus-incidence-dual-is-surjective
   - steinberg-fox-chord-actions-are-explicit
 ---
 
@@ -47,3 +46,23 @@ characteristic `p`.  Over the cyclotomic integers, the product of the
 nonzero factors `1-zeta^xi` is `p`, so the denominators required to split
 the nonzero frequencies are not units at `p`.  This proves both asserted
 failures and the scoped invalidation.
+
+The exact modular replacement is the augmentation encoding
+
+```text
+Phi_f(a,c;t)=sum_b f(a,b,c)t^b
+  in F_p[t]/(t^p-1)=F_p[epsilon]/epsilon^p.
+```
+
+If `M_k f=sum_b binom(b,k)f(a,b,c)` is the `epsilon^k` coefficient, then
+
+```text
+M_k(D^*(alpha,beta))(a,c)
+=U_k(a)+sum_(i=0)^k binom(ac,i)V_(k-i)(c).             (SFF4)
+```
+
+This Hasse-moment filtration is triangular but not split: the chirp
+`t^(ac)` couples each grade to every lower plane grade, while `A,B` require
+transverse two-variable augmentation filtrations.  Thus replacing ordinary
+Fourier modes by modular moments repairs validity but not the missing
+triangularity.

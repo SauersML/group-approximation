@@ -27,3 +27,11 @@ abstract `u`-push by a complete point/plane case split.  However,
 fiber and fractional-linear-orbit sums only recover the existing `A,C,T`
 balance identities.  Any closure must use the full pointwise system or a
 genuinely weighted transform.
+
+The latter possibility is now sharply fenced:
+`steinberg-nonconstant-weights-generate-full-projective-module` shows that
+translations together with the `u` Möbius pullback generate the complete
+rank-one projective weight module.  Thus any nonconstant weighted packet,
+together with the constant equations, recovers every pointwise slice rather
+than a smaller closed frequency subsystem.  The pointwise system remains
+live; the small-weighted-transform shortcut does not.
