@@ -42,6 +42,12 @@ packet with arbitrary external multiplicity leaves both PI evaluations
 unchanged, so the exact `rectangular-escape` cannot repair the discrepancy by
 trading label degree for spectator multiplicity.
 
+For the operator-MF rather than Hilbert--Schmidt endpoint, positive density
+is unnecessary.  `opnorm-common-intertwiner-pi-gap-is-sparse-terminal`
+proves the same contradiction on any nonzero matrix-selected corner.  This
+does not help authenticate the common occurrence, but it removes carrier
+mass from the Jacobson version of the selector problem.
+
 ## Attempts
 
 - **Do not assume the target is full.** An `M_r` subfactor embeds in

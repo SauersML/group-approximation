@@ -131,3 +131,11 @@ Once `(JSD1)` is proved, the sparse operator-norm clause of
 
 a contradiction.  No positive-density bound, trace estimate, property
 `(T)`, stability theorem, or branching argument remains after selection.
+
+There is now a second sparse terminal with the same semantic boundary.
+`opnorm-common-intertwiner-pi-gap-is-sparse-terminal` shows that a selected
+nonzero head corner carrying one common word-authenticated intertwiner from a
+degree-`r` source packet to a transverse degree-`r^2` tuple also contradicts
+operator-MF, regardless of the corner's normalized rank.  Thus neither the
+Toeplitz nor the PI backend needs positive density here; both stop at the
+same-occurrence selector.
