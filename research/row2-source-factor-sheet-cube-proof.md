@@ -7,6 +7,7 @@ target: row2-source-factor-detects-paid-pauli-sheet
 requires:
   - paid-pauli-menu-has-two-row2-indistinguishable-sheets
   - row2-parallel-a2-return-diamond-has-gl8-model
+  - center-chain-mixed-hecke-overlap-is-common-pauli-source
   - binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale
 ---
 
@@ -93,3 +94,24 @@ factor face globally.  No current result says that the paid constant atom
 or `Q=e_(L_0,lambda_0)` reduces `S`, so compressing `(3)--(6)` to either cut
 would introduce uncontrolled boundary terms.  This route makes no such
 compression.
+
+For completeness, the co-minimal detector in the signed-source normalizer
+table is the common tail `A_1=x_47(a_1)`, `a_1=s_1t_0`.  The common-source
+calculation proves that `A_1` normalizes `Q=e_(L_0,lambda_0)`, and direct
+collection gives
+
+```text
+[A_1,H]=x_43(a_1h).                                   (8)
+```
+
+The coefficient is nonzero.  Indeed `a_1h=0` would imply `t_0h=0` after
+left multiplication by `t_1`; right multiplication by `s_1` would then
+give `t_0+1=0`.  But `t_0=1` and `t_0s_1=0` force `s_1=0`, contradicting
+`t_1s_1=1`.  Thus `(8)` is another nonidentity elementary root and is tied
+to both Hecke maps `u_1=B_2A_1`, `u_2=B_3A_2A_1`.
+
+This extra source-normalizer incidence still does not license compression:
+`A_1Q=QA_1` is known, but no current result says that `H` normalizes `Q` or
+that `Qx_43(a_1h)Q` has positive mass.  Accordingly neither `(8)` nor the
+coefficient-shorter row-two detector `(2)` is claimed to select a signed
+source sheet.

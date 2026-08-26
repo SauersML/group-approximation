@@ -6,7 +6,7 @@ title: The literal row-two source factor detects the paid Pauli sheet root
 artifacts:
   - research/row2-source-factor-sheet-cube-proof.md
 distinct_from:
-  paid-pauli-menu-has-two-row2-indistinguishable-sheets: that tests the composite row-two operators and proves that all five commute with the sheet root; this descends one authenticated factor in the actual A2 row and finds the first noncommuting occurrence.
+  paid-pauli-menu-has-two-row2-indistinguishable-sheets: that tests the composite row-two operators and proves that all five commute with the sheet root; this descends to authenticated factors in the actual A2 row and common signed-source Hecke tail and finds the first noncommuting occurrences.
   row2-parallel-a2-return-diamond-has-gl8-model: that authenticates the two factor paths returning A2 and gives a finite same-root-identification fence; this computes the new factor's exact cube with the paid D/Y2 menu and proves that its sheet output is a nonzero root.
   middle-index-heisenberg-packet-is-not-center-chain-invariant: that computes the q-valued ejection [A2,Y2]=x_53(q); this retains the uncompressed paid coefficient and computes the larger s1h-valued sheet detector.
 ---
@@ -54,9 +54,32 @@ K=[A_2,Y_2]x_53(s_1s_0t_1).                         (SFD6)
 This occurrence has minimum possible ordinary-word length in the native
 inventory: `S_57` is itself one elementary-root factor, and it is tied to
 the prescribed row by `(SFD2)`.  No nonidentity ordinary word can use fewer
-than one factor.  It corrects the scope of the previous two-sheet fence:
-the composite menu is blind to `H`, but the authenticated factor closure is
-not.
+than one factor.  It is also coefficient-shortest among the minimum-length
+detectors found here: its coefficient is the single Leavitt letter `s_1`.
+
+The full inventory contains one co-minimal ordinary-root detector on the
+signed-source side.  The common Hecke tail
+
+```text
+A_1=x_47(a_1),       a_1=s_1t_0,
+u_1=B_2A_1,          u_2=B_3A_2A_1
+```
+
+normalizes `Q=e_(L_0,lambda_0)` and occurs in both exact common-source Hecke
+maps.  It also satisfies
+
+```text
+K_Q=[A_1,H]=x_43(a_1h) !=1.                           (SFD7)
+```
+
+The same elementary argument proves `a_1h` is nonzero: if it vanished,
+left multiplication by `t_1` and then right multiplication by `s_1` would
+give `t_0+1=0`; multiplying that equality by `s_1` contradicts
+`t_0s_1=0` and `t_1s_1=1`.  Thus both the literal row-two factor inventory
+and the signed-source-normalizer inventory detect the sheet at the minimum
+possible elementary-root word length.  This corrects the scope of the
+previous two-sheet fence: the composite menu is blind to `H`, but the
+authenticated factor closure is not.
 
 The detector cannot disappear in a norm-matrix-corona representation which
 retains the marked root.  Its coefficient `s_1h` is nonzero, so
@@ -69,10 +92,11 @@ Here “source factor” means the literal source-side coefficient arm in
 `(SFD2)`; it does **not** mean that `S_57` reduces the signed Reynolds
 projection.  This is an exact sheet **detector**, not yet the signed-source
 selector.  No established relation justifies compression of `(SFD3)` or
-`(SFD4)` to either the paid constant-atom cut or the signed source
+`(SFD4)`, or of `(SFD7)`, to either the paid constant-atom cut or the signed source
 `Q=e_(L_0,lambda_0)`.  In particular, neither cut is currently known to
-reduce `S_57`, and no present estimate controls the leakage term created by
-that compression.  Nor is either signature in `(SFD4)` authenticated as
+reduce `S_57`; although `A_1` does reduce `Q`, `H` is not known to normalize
+`Q`, so this still gives no control of `QK_QQ`.  No present estimate
+controls the resulting leakage terms.  Nor is either signature in `(SFD4)` authenticated as
 the prescribed quarter/eighth source compression.  A continuation may now
 charge leakage of `S_57` from a paid/Reynolds cut, or attach the nonzero `K`
 carrier to the actual signed source; it no longer needs to search for an
