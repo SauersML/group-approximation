@@ -92,6 +92,7 @@ import GroupApproximation.Computability.PresentationCodeList
 import GroupApproximation.Computability.RabinVariantCode
 import GroupApproximation.Computability.CoprodCode
 import GroupApproximation.Computability.AmalgamCode
+import GroupApproximation.Computability.AmalgamCodeSemantics
 import GroupApproximation.Computability.DirectProductCodeSemantics
 import GroupApproximation.Computability.AdianRabinVariantTransform
 import GroupApproximation.Computability.RawWord
