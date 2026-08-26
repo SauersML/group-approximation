@@ -43,6 +43,13 @@ Their almost-simple normalizer choice and product-socle lifting explain the
 binary pattern, but do not supply the normalized-HS robust decoding in
 `(SND1)--(SND2)`.  That stability statement is the new project theorem.
 
+The exact subgroup step no longer needs to be imported from that template.
+`transitive-product-socle-intermediate-is-an-endpoint` proves directly that
+an authenticated `U^k`-invariant, actor-transitive intermediate subgroup in
+`(SND1)` is exactly `K^k` or `T^k`.  Thus the open content here is precisely
+the uniform extraction and perturbation of that discrete intermediate from
+the matrix coordinate.
+
 ## Attempts
 
 **Coordinatewise exactification.**  Exactify the fixed local `T,U,K` tables
