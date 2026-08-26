@@ -3,6 +3,9 @@ rg: 2
 id: binary-jacobson-head-root-has-opnorm-square-decoder
 kind: claim
 title: Named Jacobson raw-root occurrences decode one square Toeplitz reservoir with a uniform modulus
+artifacts:
+  - notes/PROPERTY_T_FREE_MF_ATTEMPT_2026-08-26.md
+  - research/artifacts/property-t-free-provenance-delta-2026-08-26.md
 distinct_from:
   toeplitz-defect-needs-square-decoding: that establishes the terminal normalized-Hilbert--Schmidt trace payment after a square decoder and exhibits the exact rectangular escape; this asks the group presentation to extract the square decoder in operator norm from a surviving head root.
   opnorm-leavitt-coarse-fine-return-row: that seeks a common carrier for the full binary-Leavitt depth-one/depth-two packets; this is the unary one-branch Jacobson packet and only asks for its two one-sided inverse arrows on one selected corner.

@@ -3,6 +3,8 @@ rg: 2
 id: binary-leavitt-native-two-scale-cross-gram-positive
 kind: claim
 title: The two native binary scale transports have a fixed positive cross-Gram corner
+artifacts:
+  - research/artifacts/property-t-free-provenance-delta-2026-08-26.md
 distinct_from:
   opnorm-leavitt-coarse-fine-return-row: that asks for one operator-norm support row on one sparse carrier; this asks for one normalized-HS positive overlap between two positive-density transports.
   affine-leavitt-source-saturated-reynolds-checksum: that asks for a source-sized adjoint Reynolds overlap in an odd affine packet; this permits any fixed positive direct polar Gram overlap in the binary packet.

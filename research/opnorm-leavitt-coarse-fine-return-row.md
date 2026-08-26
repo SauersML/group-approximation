@@ -3,6 +3,8 @@ rg: 2
 id: opnorm-leavitt-coarse-fine-return-row
 kind: claim
 title: Recover one operator-norm coarse-to-fine return row on a common Leavitt prefix carrier
+artifacts:
+  - research/artifacts/property-t-free-provenance-delta-2026-08-26.md
 distinct_from:
   paired-same-reservoir-boundary-lemma: that is the normalized-HS boundary ledger over the first N binary branch steps, on positive-density paired sectors, with a leakage alternative; this is ONE operator-norm row at ONE cell, with no density, no depth parameter and no alternative -- a strictly stronger estimate over a strictly smaller scope, and by opnorm-return-row-cannot-come-from-an-hs-ledger the two cannot be substituted for each other.
   one-coarse-to-fine-prefix-isometry-closes-the-reservoir: that is the established rank consequence once such a row is in hand, together with the exact Leavitt construction of the return word; this asks for the row itself, from the presentation, in the operator norm.
