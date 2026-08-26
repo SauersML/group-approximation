@@ -115,3 +115,34 @@ Torsion-freeness is [[torsion-freeness-recognition-is-pi2-complete]] (hardness k
 **One endpoint.**  `Computability/ArithmeticalLedgerEndpoint.arithmetical_ledger` is this ledger's machine-checked cells conjoined into a single closed proposition.
 
 The fourth level is realized too: [[residually-p-for-some-prime-is-sigma4-complete]].
+
+## Prior and adjacent work (2026-08-26 literature sweep)
+
+**Must cite.**  Iva Bilanovic, Jennifer Chubb, Sam Roven, "Detecting
+properties from descriptions of groups", Archive for Mathematical Logic 59
+(2019/2020) 293-312, DOI 10.1007/s00153-019-00690-x (arXiv:1903.05143):
+Markov properties are `Pi^0_2`-hard on recursive presentations and
+`Pi^0_1`-hard on computable groups, with sharp classifications for several
+classical algebraic properties (abelian, torsion-free, orderable; cyclic,
+nilpotent, solvable).  This is the closest predecessor of the
+second-level lower bounds here.  Scope comparison, so the novelty line is
+drawn precisely: their hardness families are hypothesis-free Markov
+properties on `rec`/computable syntax; they prove hardness, not
+completeness, do not treat approximation properties (sofic, hyperlinear,
+MF, LEF, weakly/linear sofic — none is Markov without a forbidden
+counterexample in hand), do not treat finite presentations, and have no
+analogue of the completeness dichotomy or of the fp `Pi^0_2`-complete
+cells ([TF], [MF]).  Lempp 1997 (torsion-freeness `Pi^0_2`-complete on fp)
+and Chiodo arXiv:1107.1489 remain the fp-side predecessors, as already
+cited.
+
+The two Tech Insider pieces of 2026-08-17/18 on the Manifold market "Will
+the existence of a non-MF group be proved this month" confirm the public
+state of the art consumed by this ledger: as of 2026-08-18 no public
+paper, preprint, or certificate claims a non-MF group; the market movement
+is momentum from the 2026-08-01 OpenAI Astra release (first non-sofic
+group + Connes-rigidity disproof, Lean-certified), which is exactly the
+[[binary-leavitt-unit-group-hyperlinear]] seed family this graph already
+consumes.  Kivanc Ersoy, arXiv:2604.19174, develops the structure theory
+of minimal non-sofic groups conditionally on existence; those results read
+unconditionally against the Astra witness.
