@@ -130,17 +130,23 @@ negative branch is a *splitting*.
   needs only `mf-compiler-positive-branch-is-hyperlinear` (quasidiagonality
   of the regular trace of the MF compiler's positive branch).
 
-## Lean status (2026-08-26, night)
+## Lean status (2026-08-26, 03:45)
 
 Kernel-checked on main: `Computability/HereditaryPropertySwitchCompleteness`
 (`enumeratedCodeProperty_pi02Hard` for every hereditary property with a
-finitely presented forbidden seed) and `Computability/SoficRecognitionSecondLevel`
-(`soficCode_pi02Hard`, `nonsoficCode_sigma02Hard` on enumerated
-presentation codes); `Covers/HyperlinearTableCover` (finitely presented
-non-hyperlinear covers, by a peer session).  In progress: the permutation
-`Pi02` upper bound (`SoficMicrostateNormalForm`, `SoficRecognitionPi02` for
-finite codes; `SoficEnumeratedPi02` for enumerated codes, which together
-with `soficCode_pi02Hard` gives `Pi02Complete`).
+finitely presented forbidden seed); `Computability/SoficRecognitionSecondLevel`
+(`soficCode_pi02Hard`, `nonsoficCode_sigma02Hard`);
+`Computability/SoficMicrostateNormalForm` and `SoficRecognitionPi02`
+(`pi02_isSofic`, `sofic_fp_strict_position` on finite codes);
+`Computability/SoficEnumeratedPi02` (`sofic_enum_pi02Complete`,
+`nonsofic_enum_sigma02Complete` on enumerated codes: the first
+machine-checked exact arithmetical classification of a group approximation
+property); `Computability/HyperlinearUndecidabilityRoute`
+(`not_computablePred_iff_exists_nonhyperlinear_code`, alongside a peer
+session's `exists_not_isHyperlinear_iff_codeProperty_not_computable`);
+`Covers/HyperlinearTableCover` (peer session).  In progress:
+`Computability/ProfinitelyClosedIndexSet` (`pi03Complete_closedIndex`, the
+computability core of the `Pi^0_3` residual-finiteness theorems).
 
 ## What remains open
 

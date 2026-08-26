@@ -81,6 +81,23 @@ theorem exists_not_isHyperlinear_iff_nonhyperlinearEnumeratedCodeProperty_sigma0
   ⟨nonhyperlinearEnumeratedCodeProperty_sigma02Hard_of_exists,
     exists_not_isHyperlinear_of_nonhyperlinearEnumeratedCodeProperty_sigma02Hard⟩
 
+/-- Every group is hyperlinear exactly when the enumerated recognition problem
+is not `Pi02`-hard. -/
+theorem all_isHyperlinear_iff_not_hyperlinearEnumeratedCodeProperty_pi02Hard :
+    (∀ (G : Type) (_ : Group G), IsHyperlinear G) ↔
+      ¬ Pi02Hard HyperlinearEnumeratedCodeProperty :=
+  universal_iff_not_pi02Hard HyperlinearMarkov.HyperlinearProperty
+    (fun f hf hK ↦ isHyperlinear_of_injective f hf hK)
+    (isHyperlinear_of_finite PUnit) hyperlinear_hasFiniteCounterexampleCover
+
+/-- The dual universality criterion using the negative code set. -/
+theorem all_isHyperlinear_iff_not_nonhyperlinearEnumeratedCodeProperty_sigma02Hard :
+    (∀ (G : Type) (_ : Group G), IsHyperlinear G) ↔
+      ¬ Sigma02Hard (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) :=
+  universal_iff_not_sigma02Hard_compl HyperlinearMarkov.HyperlinearProperty
+    (fun f hf hK ↦ isHyperlinear_of_injective f hf hK)
+    (isHyperlinear_of_finite PUnit) hyperlinear_hasFiniteCounterexampleCover
+
 /-- Both sides of the conditional second-level classification at once. -/
 theorem hyperlinear_second_level_hardness_package_of_exists
     (h : ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) :
@@ -164,6 +181,8 @@ open GroupApproximation.HyperlinearRecognitionSecondLevel
 #audit_axioms nonhyperlinearEnumeratedCodeProperty_sigma02Hard_of_exists
 #audit_axioms exists_not_isHyperlinear_iff_hyperlinearEnumeratedCodeProperty_pi02Hard
 #audit_axioms exists_not_isHyperlinear_iff_nonhyperlinearEnumeratedCodeProperty_sigma02Hard
+#audit_axioms all_isHyperlinear_iff_not_hyperlinearEnumeratedCodeProperty_pi02Hard
+#audit_axioms all_isHyperlinear_iff_not_nonhyperlinearEnumeratedCodeProperty_sigma02Hard
 #audit_axioms hyperlinear_second_level_hardness_package_of_exists
 #audit_axioms hyperlinear_recognition_phase_dichotomy
 #audit_axioms hyperlinear_recognition_phase_branches_disjoint

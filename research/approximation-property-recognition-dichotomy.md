@@ -75,7 +75,10 @@ show that any effective `Pi02` upper bound upgrades exactly the counterexample
 branch, and only that branch, to matching completeness.
 These are now instances of the reusable audited theorem in
 `Computability/HereditaryRecognitionPhaseDiagram`, rather than duplicated
-hyperlinearity-specific recursion-theoretic arguments.
+hyperlinearity-specific recursion-theoretic arguments.  The specialized
+`all_isHyperlinear_iff_not_*Hard` endpoints give the other side as exact
+equivalences: universality of hyperlinearity is precisely the failure of either
+second-level hardness condition.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by

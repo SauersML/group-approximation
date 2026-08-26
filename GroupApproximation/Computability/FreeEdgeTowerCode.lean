@@ -80,6 +80,7 @@ def threeStageCode (c : PresentationCode)
   | nil => simp
   | cons edges layers ih =>
       rw [multiEdgeCode_cons, ih, edgeCode_genCount]
+      rw [List.length_cons]
       omega
 
 @[simp] theorem threeStageCode_genCount (c : PresentationCode)
@@ -204,6 +205,7 @@ theorem primrec_centralEdges :
 
 /-- Iterating the one-edge code constructor over a finite family is primitive
 recursive. -/
+set_option maxHeartbeats 800000 in
 theorem primrec_multiEdgeCode :
     Primrec₂ (fun (c : PresentationCode)
       (layers : List (List (Raw × Raw))) => multiEdgeCode c layers) := by

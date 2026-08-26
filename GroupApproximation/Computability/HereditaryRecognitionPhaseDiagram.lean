@@ -129,6 +129,55 @@ theorem exists_failure_iff_sigma02Hard_compl
   ⟨sigma02Hard_compl_of_exists_of_finiteCover P hered hone hcover,
     exists_failure_of_sigma02Hard_compl⟩
 
+/-- The finite-cover hypothesis is exactly the equivalence between abstract
+counterexamples and finite-presentation-code counterexamples. -/
+theorem exists_failure_iff_exists_finiteCode_failure
+    (P : (H : Type) → [Group H] → Prop)
+    (hcover : HasFiniteCounterexampleCover P) :
+    (∃ (G : Type) (_ : Group G), ¬ P G) ↔
+      ∃ seed : PresentationCode, ¬ P (Carrier seed) := by
+  constructor
+  · exact hcover
+  · rintro ⟨seed, hseed⟩
+    exact ⟨Carrier seed, inferInstance, hseed⟩
+
+/-- In the finite-cover setting, universality is equivalent to failure of
+`Pi02` hardness. -/
+theorem universal_iff_not_pi02Hard
+    (P : (H : Type) → [Group H] → Prop)
+    (hered : ∀ {A B : Type} [Group A] [Group B] (f : A →* B),
+      Function.Injective f → P B → P A)
+    (hone : P PUnit) (hcover : HasFiniteCounterexampleCover P) :
+    (∀ (G : Type) (_ : Group G), P G) ↔
+      ¬ Pi02Hard (EnumeratedCodeProperty P) := by
+  constructor
+  · intro hall
+    exact not_pi02Hard_of_forall
+      (fun q ↦ hall (EnumeratedPresentationCodes.Carrier q) inferInstance)
+  · intro hnothard G groupG
+    by_contra hG
+    exact hnothard
+      (pi02Hard_of_exists_of_finiteCover P hered hone hcover ⟨G, groupG, hG⟩)
+
+/-- Equivalently, universality is failure of complementary `Sigma02`
+hardness. -/
+theorem universal_iff_not_sigma02Hard_compl
+    (P : (H : Type) → [Group H] → Prop)
+    (hered : ∀ {A B : Type} [Group A] [Group B] (f : A →* B),
+      Function.Injective f → P B → P A)
+    (hone : P PUnit) (hcover : HasFiniteCounterexampleCover P) :
+    (∀ (G : Type) (_ : Group G), P G) ↔
+      ¬ Sigma02Hard (fun q ↦ ¬ EnumeratedCodeProperty P q) := by
+  constructor
+  · intro hall
+    exact not_sigma02Hard_of_forall_not
+      (fun q hq ↦ hq (hall (EnumeratedPresentationCodes.Carrier q) inferInstance))
+  · intro hnothard G groupG
+    by_contra hG
+    exact hnothard
+      (sigma02Hard_compl_of_exists_of_finiteCover
+        P hered hone hcover ⟨G, groupG, hG⟩)
+
 /-- In the universal regime, recognition is computably constant true. -/
 theorem enumeratedCodeProperty_computable_of_universal
     (P : (H : Type) → [Group H] → Prop)
@@ -208,6 +257,9 @@ open GroupApproximation.HereditaryRecognitionPhaseDiagram
 
 #audit_axioms exists_failure_iff_pi02Hard
 #audit_axioms exists_failure_iff_sigma02Hard_compl
+#audit_axioms exists_failure_iff_exists_finiteCode_failure
+#audit_axioms universal_iff_not_pi02Hard
+#audit_axioms universal_iff_not_sigma02Hard_compl
 #audit_axioms recognition_phase_dichotomy
 #audit_axioms exists_failure_iff_pi02Complete
 #audit_axioms exists_failure_iff_sigma02Complete_compl

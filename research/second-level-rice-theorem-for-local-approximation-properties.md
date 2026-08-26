@@ -84,6 +84,9 @@ counterexample cover.  It proves that existence of an abstract counterexample
 is equivalent both to `Pi02Hard P_rec` and to `Sigma02Hard NON-P_rec`, packages
 the universal-computable/hard-counterexample alternatives as an unconditional
 dichotomy, and upgrades both equivalences to completeness from a `Pi02` upper
-bound.  `Computability/HyperlinearRecognitionSecondLevel` is a checked client
+bound.  It also proves that abstract and finite-code counterexamples are
+equivalent, and that universality of the property is equivalent to failure of
+both the positive `Pi02`-hardness and negative `Sigma02`-hardness conditions.
+`Computability/HyperlinearRecognitionSecondLevel` is a checked client
 of this generic interface, with its finite cover supplied by the hyperlinear
 table obstruction theorem.
