@@ -167,6 +167,17 @@ theorem then gives full MF collapse of `Delta`.
   lifts form infinitely many cosets in the centralizer of the fixed mark,
   so their mark-preservation areas diverge.  Only a direct sheared-diagonal
   diagram avoiding that conjugacy comparison could still use `(TSC5)`.
+* **Fill the sheared diagonal directly from one fixed Gram prototype.**
+  `tagged-sheared-diagonal-one-chart-hits-mark-area` rules out this attempt
+  even without the coefficient shear.  A single transporter can normalize
+  the row `A_i+A_j` and tagged column `B_i+D_(ij)` algebraically, but outer
+  conjugation changes the terminal prototype mark to `g_(ij)zg_(ij)^(-1)`.
+  Making the boundary use the literal common `z` requires a bounded
+  `[g_(ij),z]` filling.  Distinct sheared rows put these transporters in
+  infinitely many cosets of the fixed mark centralizer, so properness makes
+  that return area unbounded.  This leaves only a genuinely multi-chart
+  diagram in which internal mark seams cancel collectively, rather than one
+  outer-conjugacy cell.
 
 The next viable attack must construct a bounded-area orbit section directly,
 replace representative coherence by a finite-coordinate selector whose

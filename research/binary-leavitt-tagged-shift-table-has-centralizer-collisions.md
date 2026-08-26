@@ -104,6 +104,17 @@ establish `binary-leavitt-bounded-area-chromatic-code` by itself.
   their mark-preservation filling areas are unbounded.  A direct filling of
   the sheared diagonal which does not compare through the shear remains
   open.
+* **Direct one-chart sheared diagonal.**  Avoid the shear and normalize the
+  whole rank-one Gram block
+  `(A_i+A_j)(B_i+D_(ij))=q` to one fixed marked Steinberg prototype, with
+  the private third address appearing only in its outer conjugator.  This
+  still cannot give a bounded cell.  By
+  `tagged-sheared-diagonal-one-chart-hits-mark-area`, returning the
+  conjugated prototype mark to the literal common `z` costs a commutator
+  with `z`.  The transporters lie in `C_Delta(z)`, and the pairwise-distinct
+  sheared rows force them into distinct cosets modulo `<z>`, so those areas
+  diverge.  A several-chart diagram whose internal mark seams cancel without
+  an individual mark-return filling is not ruled out.
 
 No Property `(T)`, Kazhdan input, matrix approximation, trace, or literature
 theorem is used.
