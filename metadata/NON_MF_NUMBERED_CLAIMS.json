@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "paper1e.tex",
+  "manuscript": "paper1f.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -31,7 +31,7 @@
       "id": "thm:headline",
       "environment": "mainthm",
       "title": "the binary Leavitt group",
-      "statement_sha256": "5b06979664a4cc9e33530b526da4041e12b48e3cec8e01cf650dd44078e43877",
+      "statement_sha256": "952575355bb59ee9751be9a5243dea6169dfe73d5b119736dd12e999c0259965",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -94,7 +94,7 @@
       "id": "prop:mf-residual-calculus",
       "environment": "proposition",
       "title": "basic properties of the MF radical",
-      "statement_sha256": "6cba25f086839c7dfa3f34941f8d6df1f65d15507b7a4e0067ba71981e27aadc",
+      "statement_sha256": "33e21a9d7a7b619d5ba189c0ccf768f3c4cb29b8f3c1727fe20bf56162264488",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -342,7 +342,7 @@
       "id": "thm:hull",
       "environment": "theorem",
       "title": "Hull's small cancellation theorem",
-      "statement_sha256": "ab082f94c630626d3fe34bb9cf2a512c06f569f005de8e2173e377076175d132",
+      "statement_sha256": "937894bf5215e37ac8e673b76542f58a56bf182f538b51569f1f5bd8a7942028",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [],

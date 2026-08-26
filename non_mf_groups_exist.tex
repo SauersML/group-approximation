@@ -74,10 +74,12 @@
 \begin{abstract}
 We show that not every countable group is MF, where MF means admitting
 finite-dimensional unitary models that are asymptotically multiplicative
-and asymptotically separate nonidentity elements in operator norm.  The
-main tool is a one-sided compression criterion that places normal Kazhdan
+and asymptotically separate nonidentity elements in operator norm.
+Nonapproximable groups were known for the unnormalized Schatten
+$p$-norms, $1\le p<\infty$; the operator norm case, $p=\infty$, was open
+and is settled here.  The main tool is a one-sided compression criterion that places normal Kazhdan
 subgroups in the MF radical.  Applied to the binary Leavitt group, it shows
-that the simple property-\textup{(T)} group $H=\EL_{12}(L_{\F_2}(1,2))$
+that the finitely generated simple property-\textup{(T)} group $H=\EL_{12}(L_{\F_2}(1,2))$
 has trivial image under every homomorphism to an MF group; consequently
 its reduced group $C^*$-algebra is a separable stably finite $C^*$-algebra
 that is not MF\@.  A second application gives a finitely presented
@@ -125,7 +127,7 @@ Our counterexample is
 \[
  H=\EL_{12}(L_{\F_2}(1,2)).
 \]
-The group $H$ is countable, nontrivial, simple, and has
+The group $H$ is finitely generated, nontrivial, simple, and has
 property~\textup{(T)}, but every homomorphism from $H$ to an MF group is
 trivial.  In particular, $H$ is not MF.
 Its reduced group $C^*$-algebra
@@ -214,12 +216,9 @@ is the $c_0$-direct sum.
 A separable $C^*$-algebra is called MF if it embeds as a $C^*$-subalgebra of
 a norm matrix corona.  For every countable group $G$, the reduced group
 algebra $C^*_{\mathrm r}(G)$ is separable and has a faithful canonical trace,
-hence is stably finite.  Suppose that $e\colon C^*_{\mathrm r}(G)\to\mathcal
-Q_{\mathbf d}$ is an MF embedding and put $p=e(1)$.  Then
-$g\mapsto e(\lambda_g)+(1-p)$ is an injective homomorphism from $G$ into
-$\mathcal U(\mathcal Q_{\mathbf d})$, so $G$ is MF.  Therefore a non-MF group
-automatically gives a separable stably finite reduced group $C^*$-algebra that
-is not MF.
+hence is stably finite.  A non-MF group therefore gives a separable
+stably finite reduced group $C^*$-algebra that is not MF (see the proof of
+Theorem~\ref{thm:headline}).
 
 For a countable group $G$, define its MF radical by
 %<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(G)" title="the elements of G that every allowed matrix model erases">
@@ -327,7 +326,10 @@ $\mathfrak D_G(L)\le R_{\infty\to2}(G)$.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedDefectShadow}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectShadowInclusion}
 That is, every operator norm asymptotic representation of $G$ is
 asymptotically trivial on $\mathfrak D_G(L)$ in normalized
-Hilbert--Schmidt norm.  If a corona homomorphism were nontrivial on $K$,
+Hilbert--Schmidt norm.  This holds because conjugation by the compressor
+moves the Kazhdan projection of $L$ below itself, and stable finiteness
+of the corona forces equality (Section~\ref{sec:transport}).  If a corona
+homomorphism were nontrivial on $K$,
 the Kazhdan projection of $K$ would cut out a $G$-invariant corner on
 which $K$ has no nonzero fixed vectors
 (Lemma~\ref{lem:central-corona-corner}); by the Kazhdan inequality some
@@ -414,8 +416,8 @@ $e_{ij}(a)$, $i\ne j$.
 % (T)]], and every [[homomorphism]] from H to an [[MF group]] is the [[trivial
 % homomorphism]].
 %</webmath>
-Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.  Then $H$ is countable,
-nontrivial, simple, has property~\textup{(T)}, and
+Put $R=L_{\F_2}(1,2)$ and $H=\EL_{12}(R)$.  Then $H$ is finitely
+generated, nontrivial, simple, has property~\textup{(T)}, and
 %<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(H)" title="why every allowed map erases all of H">
 % \(\Rad_{\mathrm{MF}}(H)\) is the [[MF radical]] of the [[group]] H.  The
 % equals sign says this [[normal subgroup]] is all of H, not merely part of it.
@@ -564,66 +566,21 @@ in~\cite{KT19,AlekseevThom,Dadarlat}.
 
 \section{One-sided compression and the MF radical}\label{sec:compression}
 
-This section proves Theorem~\ref{thm:compression-criterion}.  Let
-$uLu^{-1}\le L$.  In a finite-dimensional representation $\rho$,
-conjugation by $\rho(u)$ maps the commutant of $\rho(L)$ into itself; the
-map is injective, hence surjective, so the commutant is invariant
-(Theorem~\ref{thm:commutant}).  In a norm matrix corona the same
-conclusion is obtained for the Kazhdan projection of a
-property-\textup{(T)} subgroup: conjugation moves the projection below
-itself, and stable finiteness of the corona forces equality
-(Section~\ref{sec:transport}).  A normal property-\textup{(T)} subgroup
-contained in the compression defect then lies in the MF radical
-(Theorem~\ref{thm:normal-kazhdan}).
+This section proves Theorem~\ref{thm:compression-criterion}.
 
 \subsection{The MF radical}
 
-For $N\trianglelefteq G$ define its \emph{MF kernel closure}
-by
-%<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^G(N)" title="how to read the definition of MF kernel closure">
-% The whole equation says that the [[MF closure|MF kernel closure]] of N inside G
-% consists of the elements that every [[homomorphism]] f must send to the
-% [[identity]] whenever f maps G to an [[MF group]] M and already sends every
-% element of N to the identity.  The large [[intersection]] means an element
-% must lie in every eligible [[kernel]].  The condition \(N\le\ker f\) states
-% that f erases N.  Thus the right side collects N together with anything
-% else that all MF models are forced to erase after N has been erased.
-%</webmath>
-\[
- \operatorname{cl}_{\mathrm{MF}}^G(N)
- =\bigcap\{\ker f:N\le\ker f,\ f\colon G\to M,\ M\text{ MF}\}.
-\]
-The image of a corona homomorphism from $G$ is countable and is itself MF;
-conversely, every MF target embeds in a norm matrix corona.
+The image of a corona homomorphism from $G$ is a countable subgroup of a
+corona unitary group, hence MF; conversely, every countable MF group
+embeds in the unitary group of a norm matrix corona.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedDefinitions}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets}
-Thus
-$\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
-$G/N$ is MF precisely when
-$\operatorname{cl}_{\mathrm{MF}}^G(N)=N$.
-\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
-This is a closure operation on the normal subgroups of one fixed group; it is
-unrelated to topological closure of classes of marked groups.
+Thus $\Rad_{\mathrm{MF}}(G)$ is also the intersection of the kernels of
+all homomorphisms from $G$ to MF groups.
 
 \begin{proposition}[basic properties of the MF radical]\label{prop:mf-residual-calculus}
 For every countable group $G$, the subgroup $\Rad_{\mathrm{MF}}(G)$ is fully
-invariant, the quotient $G/\Rad_{\mathrm{MF}}(G)$ is MF, and
-%<webmath object="whole" when="G/N\text{ is MF}" title="when dividing G by N produces an MF group">
-% Read the whole display as an “if and only if.”  The [[quotient group]]
-% \(G/N\) is MF exactly when the MF kernel closure of N equals N itself.
-% The double arrow says each statement implies the other.  The condition in
-% parentheses says N is a [[normal subgroup]] of G, which is required for
-% \(G/N\) to be a group.  In plain language, finite matrix approximations can
-% distinguish every nonidentity element of the quotient precisely when the
-% requirement to erase N does not force them to erase any additional element
-% of G.
-%</webmath>
-\[
- G/N\text{ is MF}
- \quad\Longleftrightarrow\quad
- \operatorname{cl}_{\mathrm{MF}}^G(N)=N
- \qquad(N\trianglelefteq G).
-\]
-In particular, $G$ is MF if and only if its MF radical is trivial.
+invariant, the quotient $G/\Rad_{\mathrm{MF}}(G)$ is MF, and $G$ is MF
+if and only if $\Rad_{\mathrm{MF}}(G)$ is trivial.
 \leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
 \end{proposition}
 
@@ -640,15 +597,9 @@ $g$ from the identity.  It kills $R$ and descends to a homomorphism from $G/R$
 that separates $x$.  Thus $G/R$ is residually MF, and hence MF by
 Korchagin~\cite[Proposition~6]{Korchagin}.
 
-For $N\trianglelefteq G$, homomorphisms from $G/N$ to MF groups correspond
-to homomorphisms from $G$ to MF groups that kill $N$.  It follows directly
-that
-\[
- \Rad_{\mathrm{MF}}(G/N)
- =\operatorname{cl}_{\mathrm{MF}}^G(N)/N.
-\]
-Since a countable group is MF exactly when its MF radical is trivial, this
-identity gives the asserted closure criterion.
+If $G$ is MF, a corona embedding of $G$ has trivial kernel, so
+$\Rad_{\mathrm{MF}}(G)=1$.  Conversely, if $\Rad_{\mathrm{MF}}(G)=1$,
+then $G=G/\Rad_{\mathrm{MF}}(G)$ is MF.
 \end{proof}
 
 \subsection{Finite dimension}
@@ -1273,16 +1224,11 @@ Since \(K\le\mathfrak D_G(L)\), Theorem~\ref{thm:normal-kazhdan} now gives
 \(K\le\Rad_{\mathrm{MF}}(G)\).  Taking a nontrivial $K$ gives the non-MF
 conclusion.  Taking $K=G=\mathfrak D_G(L)$ gives
 $\Rad_{\mathrm{MF}}(G)=G$.
-
-A finite-dimensional linear representation over any field kills every
-generator of \(\mathfrak D_G(L)\) by Theorem~\ref{thm:commutant}; its
-kernel is normal, so it contains \(\mathfrak D_G(L)\).
 \end{proof}
 
-If $\rho\colon G\to\GL(V)$ is a homomorphism and $V$ is finite-dimensional,
-conjugation by $\rho(u)^{-1}$ maps the commutant of $\rho(L)$ injectively
-into itself, hence bijectively.  Thus $\rho$ kills $\mathfrak D_G(L)$.
-Consequently, $\mathfrak D_G(L)=1$ if $G$ has a faithful finite-dimensional
+By Theorem~\ref{thm:commutant}, every finite-dimensional linear
+representation of $G$ kills the generators of $\mathfrak D_G(L)$, and its
+kernel is normal, so it kills $\mathfrak D_G(L)$.  Consequently, $\mathfrak D_G(L)=1$ if $G$ has a faithful finite-dimensional
 linear representation.  The same conclusion holds if $G$ is residually
 finite, because every nonidentity element then survives in a finite
 permutation representation.
@@ -1304,8 +1250,8 @@ conjugation representation in Theorem~\ref{thm:transport}.
 This section proves Theorem~\ref{thm:headline}.  The relation
 $s_0t_0+s_1t_1=1$ of the binary Leavitt algebra gives an element
 $\tau\in H$ with $\tau L\tau^{-1}\le L$ for a copy $L$ of $\EL_3(R)$,
-and a commutator $d\ne1$ in $\mathfrak D_H(L)$; since $H$ is simple,
-$\mathfrak D_H(L)=H$, and Theorem~\ref{thm:compression-criterion}
+and a commutator $d\ne1$ in $\mathfrak D_H(L)$; since $d$ normally
+generates $H$, $\mathfrak D_H(L)=H$, and Theorem~\ref{thm:compression-criterion}
 applies.
 
 \subsection{The self-compression}
@@ -1601,9 +1547,15 @@ Thus $N$ contains every elementary generator of $H$, so $N=H$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:headline}]
-The ring $R$ is a finitely generated $\F_2$-algebra, so $H$ is countable,
-and $H$ has property~\textup{(T)} by the Ershov--Jaikin-Zapirain theorem
-for elementary groups over finitely generated rings~\cite[Theorem~1.1]{EJZ}.
+Let $Y$ be the set of elements $e_{ij}(a)$ with $i\ne j$ and
+$a\in\{1,s_0,s_1,t_0,t_1\}$.  Since $e_{ij}(a+b)=e_{ij}(a)e_{ij}(b)$ and
+$[e_{ik}(a),e_{kj}(b)]=e_{ij}(ab)$ for distinct $i,j,k$, and since every
+element of $R$ is a sum of monomials in $s_0,s_1,t_0,t_1$, induction on
+the length of a monomial shows that every $e_{ij}(a)$ lies in
+$\langle Y\rangle$; there is always a third index because $12\ge3$.  Thus
+$H=\langle Y\rangle$ is finitely generated, and $H$ has
+property~\textup{(T)} by the Ershov--Jaikin-Zapirain theorem for
+elementary groups over finitely generated rings~\cite[Theorem~1.1]{EJZ}.
 
 The containment \eqref{eq:compresses-L}, the centrality of $c$ relative to
 $L$, and Proposition~\ref{prop:defect} show that
@@ -1645,11 +1597,11 @@ to $A$, and let $t_1,\dots,t_m\in G$ and a finite subset $F\subseteq G$ be
 given.  Then there is a surjective homomorphism $q\colon G\to Q$ such that
 $Q$ is acylindrically hyperbolic, $q|_F$ is injective, $q(t_i)\in q(N)$ for
 all $i$, and every element of finite order in $Q$ is the image of an
-element of the same order in $G$.  The kernel of $q$ is the normal closure
-of $m$ elements.
+element of the same order in $G$.
 \end{theorem}
 
-The last sentence is read off from Hull's proof: the case $m=1$ adds the
+Moreover the kernel of $q$ is the normal closure of $m$ elements; this is
+read off from Hull's proof: the case $m=1$ adds the
 single relator $W=t_1^{-1}h_1^{m_1}h_2^{l_1}\cdots h_1^{m_n}h_2^{l_n}$ for
 suitable $h_1,h_2\in N$, and the general case is an induction on $m$.
 
@@ -1917,7 +1869,8 @@ preprint, 2026.
 \bibitem[SaN]{SauersNotes}
 S.~Sauers,
 \emph{Non-MF group notes},
-companion notes, 2026, \coderepo.
+companion notes, 2026,
+\url{https://github.com/SauersML/group-approximation}.
 
 \bibitem[Sh]{Shulman}
 T.~Shulman,
