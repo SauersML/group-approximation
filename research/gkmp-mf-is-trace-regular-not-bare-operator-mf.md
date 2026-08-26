@@ -123,11 +123,10 @@ For finite generator types `A` and `X`, the concrete next target can be stated
 without mentioning the rest of the compiler:
 
 ```text
-IsPFF (FreeGroup A * FreeGroup X * FreeGroup X),
+IsPFF (FreeGroup A x FreeGroup X x FreeGroup X),
 ```
 
-where `*` on this line denotes direct product.  A still useful weaker target
-is the same statement with `IsTraceRegularMF`.
+A still useful weaker target is the same statement with `IsTraceRegularMF`.
 
 The existing formal ingredients stop short of this target.  The repository
 proves residual finiteness and LEF for every free group, and point-norm

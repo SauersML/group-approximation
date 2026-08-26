@@ -131,6 +131,7 @@ def sourceSandwich
     BoundedMatrixSequence (fun n ↦ Y n) :=
   P * sourceLift Y e a * P
 
+omit [Nontrivial A] in
 theorem sourceSandwich_spec
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -377,7 +378,8 @@ corona of the relabelled finite projection ranges. -/
 theorem exists_injective_unital_supportCornerEmbedding
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (he : Function.Injective e) :
-    ∃ Z : ℕ → FiniteModel, (∀ n, Nonempty (Z n)) ∧
+    ∃ Z : ℕ → FiniteModel, ∃ hZne : ∀ n, Nonempty (Z n),
+      letI : ∀ n, Nonempty (Z n) := hZne
       ∃ E : A →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Z n),
         Function.Injective E := by
   obtain ⟨P, hP, hPmk, _hPinfinite⟩ :=
@@ -388,7 +390,6 @@ theorem exists_injective_unital_supportCornerEmbedding
   let Z : ℕ → FiniteModel := fun k ↦ relabelledCornerModel Y P hP hne k
   let hZne : ∀ n, Nonempty (Z n) := fun k ↦
     relabelledCornerModel_nonempty Y P hP hne k
-  letI : ∀ n, Nonempty (Z n) := hZne
   refine ⟨Z, hZne, supportCornerEmbedding Y e P hP hPmk hne, ?_⟩
   exact supportCornerEmbedding_injective Y e he P hP hPmk hne
 

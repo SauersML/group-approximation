@@ -44,3 +44,9 @@ The strongest current X-only formulation is
 `alpha(a,b)+beta(c,ac-b)` is the whole chord space.  This is equivalent to
 `ker(X_ch) intersect ker(P,H)=0`; it remains open and is stronger than the
 two-row claim.
+
+Using both rows gives more concrete progress:
+`steinberg-y-propagates-matching-to-zero-families` derives the full fiber
+`f(-1/4,0,c)=0`, the transverse line `f(-1/4,b,-1)=0`, and the diagonal line
+`f(a,a+1/4,1)=0`.  The remaining propagation is isolated as
+`steinberg-three-zero-families-propagate-all-chords`.
