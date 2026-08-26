@@ -13,6 +13,6 @@ requires:
 
 If every Maslov parameter is CE, apply the Jiang injection and Bernoulli CE
 equivalence to a nontrivial null sequence and then ISW Theorem C to refute
-LLP. Otherwise the closed-subgroup theorem makes the CE parameter set
+LLP.  Otherwise the closed-subgroup theorem makes the CE parameter set
 finite; a prime outside its order gives a nonhyperlinear finite Deligne
 cover by the finite-cover classification theorem.

@@ -8,7 +8,7 @@ distinct_from:
   finite-central-hs-sector-decomposition: that decomposes approximate representations along central spectral sectors; this uses the exact von Neumann direct-sum decomposition and the closed-subgroup theorem to obtain an iff classification.
 ---
 
-**ESTABLISHED.** Let
+**ESTABLISHED.**  Let
 
 ```text
 1 -> Z -> E_infinity -> Sp_4(Z) -> 1
@@ -37,8 +37,8 @@ L(E_q) = direct_sum_(j=0)^(q-1)
 ```
 
 The group `E_q` is hyperlinear exactly when every summand in `(FDC2)` is
-Connes embeddable. If `1/q in E_CE`, the subgroup property puts every
-`j/q` in `E_CE`. Conversely hyperlinearity makes the `j=1` summand CE.
+Connes embeddable.  If `1/q in E_CE`, the subgroup property puts every
+`j/q` in `E_CE`.  Conversely hyperlinearity makes the `j=1` summand CE.
 This proves `(FDC1)`.
 
 Consequently the following are equivalent:
@@ -49,7 +49,7 @@ Consequently the following are equivalent:
 
 If these fail, `E_CE` is a finite cyclic group, so any prime `q` not dividing
 its order has `1/q notin E_CE`; `(FDC1)` makes the finitely presented finite
-central extension `E_q` nonhyperlinear. Thus failure of the small-twist CE
+central extension `E_q` nonhyperlinear.  Thus failure of the small-twist CE
 claim yields a finitely presented nonhyperlinear group, not merely the
 countable phase extension attached to an irrational parameter.
 

@@ -9,8 +9,8 @@ distinct_from:
   maslov-mod3-projective-defect-gap: that asks for exclusion of the order-three class; the order-two metaplectic class is instead Connes embeddable.
 ---
 
-**ESTABLISHED.** Let `Gamma=Sp_4(Z)`, let `b` be the integral Meyer--Maslov
-cocycle, and let
+**ESTABLISHED.**  Let `Gamma=Sp_4(Z)`, let `b` be the integral
+Meyer--Maslov cocycle, and let
 
 ```text
 E_CE={theta in R/Z : L_(exp(2 pi i theta b))(Gamma) is Connes embeddable}.
@@ -23,8 +23,10 @@ Then
 ```
 
 Equivalently, the metaplectic double cover `E_2` of `Sp_4(Z)` is
-hyperlinear. Consequently, if the closed subgroup `E_CE` is finite, its
-order is even. In particular the first unresolved finite-cover parameters
+hyperlinear.  Consequently, if the closed subgroup `E_CE` is finite, its
+order is even.  In particular the first unresolved finite-cover parameters
 are at odd denominators (notably the mod-three parameter), rather than the
 metaplectic double cover.
+
+The proof is `metaplectic-half-parameter-ce-proof`.
 
