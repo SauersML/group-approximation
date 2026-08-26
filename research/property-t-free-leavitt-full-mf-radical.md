@@ -68,6 +68,8 @@ artifacts:
   - research/leavitt-st20-two-compressor-mark-is-mf-visible.md
   - research/haar-root-character-vanishes-off-parabolic-action-kernel.md
   - research/first-partial-inverse-whitehead-face-has-haar-mf-character.md
+  - research/two-whitehead-face-has-haar-mf-character.md
+  - research/leavitt-first-offdiagonal-packet-breaks-locally-finite-amalgam.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -280,6 +282,16 @@ character and the mark visible.  The first possible Haar-profile
 obstruction must therefore couple at least two noncommuting coefficient
 occurrences or enforce a global return; a single partial-inverse occurrence
 cannot be load-bearing.
+
+The complementary `s_1,t_1` Whitehead does not change that conclusion:
+`two-whitehead-face-has-haar-mf-character` identifies the joint actor as
+`S_3` and again constructs locally finite Haar-row models.  The first packet
+outside this finite actor is now explicit.
+`leavitt-first-offdiagonal-packet-breaks-locally-finite-amalgam` adjoins the
+individual same-root `s_0,t_0` roots and produces an infinite-order prefix
+shift.  This is where the diagonal-core LEF proof genuinely stops, but it is
+only a proof-method fence: no non-LEF or MF-radical conclusion follows from
+the infinite-order element alone.
 
 The rank scale along that orbit is now uniform.
 `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed
