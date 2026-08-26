@@ -27,13 +27,20 @@ Hull saturation starts from a torsion-free Kazhdan compression group, while
 the binary-Leavitt seed contains involutions and cannot embed in a
 torsion-free group.
 
-The algebraic saturation step itself is reusable.  If a finitely presented
-torsion-free acylindrically hyperbolic group `G_0` contains a nonzero normal
-subgroup `N<=Rad_MF(G_0)`, Hull saturation can force the image of `N` to
-normally generate a two-generated torsion-free quotient; MF-radical
-functoriality then makes that quotient full radical, and the same argument
-applies to every nontrivial quotient.  The missing no-`(T)` input is therefore
-such a torsion-free `G_0,N` pair together with a proof of `N<=Rad_MF(G_0)`.
+The approximation-theoretic saturation step is now isolated, with no
+Property `(T)`, in `torsion-free-mf-radical-routing-saturation`.  The live
+route `property-t-free-torsion-free-via-intrinsic-seed` separates the two
+remaining tasks demanded by the final no-literature Lean surface:
+
+1. `torsion-free-fp-ah-mf-radical-seed`: an intrinsically torsion-free
+   finitely presented acylindrically hyperbolic `(G_0,d)` with
+   `1!=d in Rad_MF(G_0)`;
+2. `internal-torsion-free-single-word-router`: an in-repository routing and
+   normal-form proof which protects `d` and makes its image normally generate
+   the required two-generated quotient.
+
+The paper-level Hull theorem explains why the second statement is true, but
+it cannot be used as a premise of the requested unconditional Lean endpoint.
 
 The existing `defect-saturation-full-mf-radical` does not supply this input:
 its radical inclusion is exactly the normal-Kazhdan theorem.
