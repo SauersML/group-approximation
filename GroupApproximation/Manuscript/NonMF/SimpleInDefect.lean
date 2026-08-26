@@ -61,18 +61,25 @@ theorem map_simpleSubgroup_le_printedDefect
   exact (map_simpleSubgroup_le_defectNormal D rho).trans
     (defectNormal_le_printedDefect (D.core.map rho))
 
+/-- The printed hypothesis shape, packaged as one proposition so the endpoint
+has no declaration inputs.  The datum itself remains a genuine mathematical
+hypothesis; a separate construction must produce the manuscript's concrete
+Fournier--Facio datum. -/
+def PrintedSimpleInDefect : Prop :=
+  ∀ {P : Type} {E L : Type} [Group P] [Group E] [Group L]
+    (D : FournierFacioDefectData P E) (rho : E →* L),
+    Function.Surjective rho → D.simpleSubgroup.map rho ≠ ⊥ →
+      D.simpleSubgroup.map rho ≤
+        OneSidedMFRadical.printedDefect (D.iota.range.map rho)
+
 /-- **`lem:simple-in-defect`, in its printed hypothesis shape.**
 
 Here `D.simpleSubgroup.map rho` is `ρ(π(S))` and
 `D.iota.range.map rho` is `ρ(Γ)`.  The proof above shows that the two printed
 hypotheses are stronger than necessary for this containment. -/
-theorem manuscriptLemmaSimpleInDefect
-    (D : FournierFacioDefectData P E) (rho : E →* L)
-    (_rho_surjective : Function.Surjective rho)
-    (_simple_image_ne_bot : D.simpleSubgroup.map rho ≠ ⊥) :
-    D.simpleSubgroup.map rho ≤
-      OneSidedMFRadical.printedDefect (D.iota.range.map rho) :=
-  map_simpleSubgroup_le_printedDefect D rho
+theorem manuscriptLemmaSimpleInDefect : PrintedSimpleInDefect := by
+  intro P E L _ _ _ D rho _ _
+  exact map_simpleSubgroup_le_printedDefect D rho
 
 end NonMF
 end Manuscript

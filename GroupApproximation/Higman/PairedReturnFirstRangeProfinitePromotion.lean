@@ -21,7 +21,7 @@ open PairedReturnFirstRangeVirtualRetract
 /-- The even-parity subgroup has finite index, witnessed by the action on
 the two Boolean states. -/
 instance even_finiteIndex : Even.FiniteIndex := by
-  rw [Even]
+  change stateAct.ker.FiniteIndex
   exact finiteIndex_comap_of_normal stateAct (⊥ : Subgroup (Equiv.Perm Bool))
 
 /-- Inside the even-parity subgroup, the first-coordinate range is
