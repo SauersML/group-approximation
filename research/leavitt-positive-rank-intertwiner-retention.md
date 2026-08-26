@@ -15,6 +15,9 @@ distinct_from:
   sublinear-julia-seam-collapses-the-fold-kernel-tracially: that shows even arbitrary alternating fold-kernel words remain trace-null whenever the Julia seam has sublinear rank; this must establish rank spreading or escape the seam's principal rank ideal.
   julia-derivation-rank-controls-fold: that proves macroscopic `rank(V-1)` is pure commutant gauge and identifies normalized generator-commutator rank as the necessary trace-spreading datum; this still asks to turn that datum into one almost-quotient band satisfying all three IR clauses.
   leavitt-presentation-double-fd-radical-is-fold-kernel: that proves every honest finite-dimensional representation of the entire double factors through the fold; this asks for a genuinely asymptotic band that cannot be repaired to such an exact representation.
+  shulman-presentation-double-has-a-faithful-fold-trace-model: that proves even faithful operator-norm coordinates for the whole double can have the completely folded limiting trace; this asks for a separately selected trace-visible spectral band.
+  leavitt-presentation-double-has-all-fold-mf-moments: that constructs canonical-marginal symmetric MF traces with every ordinary fold-word moment, including zero; this asks for the different compressed adjoint moment on an IR1--IR2 sector.
+  ir-survival-is-one-compressed-adjoint-moment: that rewrites IR3 as one scalar compressed trace gap once IR1--IR2 hold; this remains the open construction of a sector on which that scalar and both structural conditions hold together.
 ---
 
 **OPEN.** Fix a finite free presentation
@@ -65,6 +68,22 @@ fold `P->F` and therefore kills every marked cross word.  Hence correcting a
 candidate band to an exact representation of the **double** would destroy
 `(IR3)`.  The live object must be non-exactifiable at each finite stage, not
 merely a poorly chosen exact block.
+
+Nor does norm faithfulness of the full Shulman coordinate sequence choose the
+needed trace.  The theorem
+`shulman-presentation-double-has-a-faithful-fold-trace-model` constructs a
+faithful MF model of the whole amalgam whose normalized traces converge to
+the folded free-group trace and hence kill every fold word.  Thus retention
+must be imposed by additional trace data; selecting "the" trace of a
+faithful Shulman embedding is not a well-defined refinement.
+
+Even prescribing the ordinary marked fold moment does not supply that data.
+The continuum theorem `leavitt-presentation-double-has-all-fold-mf-moments`
+constructs faithful, swap-symmetric MF models with canonical vertex
+marginals and any chosen value of `tr(u(f_0)v(f_0)^*)`, including the
+canonical value zero.  The exact surviving scalar is instead `(CAM1)` of
+`ir-survival-is-one-compressed-adjoint-moment`: the normalized trace of
+`Pi_n(f_0)` on the **same** almost-reducing, almost-`K`-trivial sector.
 
 The refinement
 `shulman-presentation-double-witnesses-have-adjoint-normal-form` shows that
