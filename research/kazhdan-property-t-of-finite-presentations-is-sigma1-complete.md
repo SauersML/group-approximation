@@ -4,6 +4,7 @@ id: kazhdan-property-t-of-finite-presentations-is-sigma1-complete
 kind: claim
 title: Kazhdan's property (T) is Sigma-zero-one complete for finite presentations, so its failure cannot be certified
 artifacts:
+  - GroupApproximation/Computability/IsoInvariantSwitchHardness.lean
   - GroupApproximation/Computability/RabinConstruction.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
@@ -75,3 +76,5 @@ decide the word problem.  So no algorithm approximates the spectral gap
 (equivalently, the Kazhdan constant) of finitely presented groups to
 within any fixed additive error, even though the gap is left-r.e. by
 Ozawa's theorem.
+
+**Machine-checked (enumerated syntax).**  `Computability/IsoInvariantSwitchHardness.kazhdanCode_pi02Hard` proves (T) `Pi^0_2`-hard and `nonKazhdanCode_sigma02Hard` its failure `Sigma^0_2`-hard on enumerated presentation codes, through the two-isomorphism-type switch (heredity is not needed, only isomorphism invariance), with `F_2` as the forbidden seed.
