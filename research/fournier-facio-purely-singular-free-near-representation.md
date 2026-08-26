@@ -40,9 +40,11 @@ essentially free amenable near action and hence soficity.  A positive witness
 must therefore be both singular and genuinely non-Cartan, mixing basis
 vectors on positive charge with no equivariant coarse coset factor.
 
-This non-Cartan requirement survives passage to the Calkin algebra.
+The monomial part of this non-Cartan requirement survives passage to the
+Calkin algebra.
 `fournier-facio-compact-monomial-near-witness-impossible` shows that arbitrary
 compact perturbations of arbitrary phase-twisted permutation actors add no
 freedom: the singular charged state and all charged pointwise tests erase
-them.  Hence a positive witness must be genuinely non-Cartan even modulo
-compacts, rather than merely a compactly blurred Schreier model.
+them.  Hence a positive witness cannot be monomial modulo compacts, rather
+than merely a compactly blurred Schreier model.  This does not exclude an
+abstract Calkin normalizer which has no coherent monomial lifts.

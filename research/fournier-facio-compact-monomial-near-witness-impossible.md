@@ -39,8 +39,10 @@ representation, contradicting
 Thus a positive singular witness cannot be obtained by compactly blurring a
 Schreier, quasi-regular, or phase-twisted permutation model.  In the Calkin
 algebra its actor image cannot have coherent lifts in the image of one atomic
-masa normalizer.  The surviving positive lane must be genuinely non-Cartan
-even modulo compacts and, by
+masa normalizer.  This is an essential-Cartan fence for such coherent lifts;
+it does not assert that every abstract normalizer in the Calkin algebra has a
+monomial lift.  The surviving positive lane must at least be nonmonomial
+modulo compacts and, by
 `fournier-facio-compression-coset-charge-impossible`, cannot carry an
 equivariant coarse `G/Gamma` factor.
 
