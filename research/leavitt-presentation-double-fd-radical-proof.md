@@ -6,6 +6,7 @@ title: Restrict to the two vertices, apply rigidity, and use residual finiteness
 target: leavitt-presentation-double-fd-radical-is-fold-kernel
 requires:
   - simple-map-quotient-has-rigid-fd-restriction
+  - virtually-free-full-algebras-are-rfd
 ---
 
 Let `i_0,i_1:F->P=F *_K F` be the vertex maps and let `p:P->F` be the fold.
@@ -32,6 +33,20 @@ quotient `a:F->A` with `a(p(w))!=1`.  Composing `a p` with the left regular
 permutation representation of `A` gives a finite-dimensional unitary
 representation of `P` which does not kill `w`.  Hence the intersection of
 the finite-dimensional kernels is contained in `ker(p)`, proving `(PFR1)`.
+
+Every unital finite-dimensional star representation of `C*(P)` is the
+integrated form of a finite-dimensional unitary representation of `P`, so
+the factorization `(PFR3)` shows
+
+```text
+ker(C*(p)) <= intersection_(Phi:C*(P)->M_d) ker(Phi).
+```
+
+Conversely, if `a notin ker(C*(p))`, then `C*(p)(a)` is nonzero in `C*(F)`.
+The established RFD theorem for finitely generated virtually free groups
+applies to the free group `F` and gives a finite-dimensional star
+representation `theta` of `C*(F)` with
+`theta(C*(p)(a))!=0`.  Hence `theta C*(p)` detects `a`, proving `(PFR1*)`.
 
 If `tau_j` are normalized characters of exact finite-dimensional
 representations, `(PFR3)` gives `tau_j((u_w-1)^*(u_w-1))=0` for every
