@@ -23,4 +23,3 @@ The exact central-sign sector is established.  What remains is a
 same-carrier theorem converting an arbitrary approximate actor outlier into
 that sector or directly charging its noncentral gauge.  No scalar sheet
 character remains available as a counterexample.
-
