@@ -32,3 +32,14 @@ coherence retained here.  Merely invoking a global PVM also does not close
 the claim: the established coset-action firewall permits asymptotically
 equivariant finite atomic models which do not correct to finite quotient
 actions.
+
+The one-edge scalar version is now ruled out sharply.
+`finite-dyadic-towers-are-neutral-with-one-torus-edge` constructs, at every
+prescribed finite depth, exact nested trace-flat towers for a base coset and
+its denominator translate, all their pairwise scalar overlaps, an exact
+first cross-Gram, and the full displayed unbalanced torus/root packet.  This
+invalidates `sl3-outlier-exclusion-from-finite-dyadic-scalar-gap`.  Therefore
+the viable all-depth argument must read matrix-coordinate coherence of the
+same atoms around genuinely noncommuting arithmetic loops; neither nesting
+depth nor any scalar statistic of a single denominator edge can supply the
+missing obstruction.
