@@ -2,6 +2,8 @@
 rg: 2
 id: sl3-pair-admits-exterior-atomic-model
 kind: claim
+refuted_by:
+  - sl3-atomic-ambient-is-absorbed-by-lattice
 title: The arithmetic pair SL3(Z) in SL3(Z[1/p]) has an abstract unitary model in the hyperfinite factor keeping every non-lattice element uniformly exterior to the lattice algebra
 invalidates:
   - non-hyperlinear-from-sl3-double-swap
@@ -17,8 +19,9 @@ distinct_from:
   amenable-kazhdan-models-absorb-compression: that kills the same hypothesis for every compressed Kazhdan pair by trace-mass conservation; the arithmetic pair has no strict compressor (the lattice is commensurated), so this hypothesis survives that theorem and is open.
 ---
 
-OPEN (two-sided by design; a positive-side hypothesis for the main goal's
-arithmetic lane).  Fix a prime `p`, `Lambda = SL_3(Z) < Gamma = SL_3(Z[1/p])`.
+REFUTED (see the end of the Attempts section; recorded 2026-08-26, the
+same day it was proposed).  Originally: a positive-side hypothesis for the
+main goal's arithmetic lane.  Fix a prime `p`, `Lambda = SL_3(Z) < Gamma = SL_3(Z[1/p])`.
 
 **Claim.**  There is an injective homomorphism `pi : Gamma -> U(R)` into the
 hyperfinite `II_1` factor such that, with `P = pi(Lambda)''`,
@@ -68,3 +71,12 @@ amenable lattice algebras, of the collapse conjectures in the arithmetic lane.
   `hecke-far-commutator-defect-formula` is the natural tool.
 - **Deferred.**  This session recorded the hypothesis and its wiring; no
   construction was attempted beyond ruling out the near-congruence models.
+- **Refuted.**  `sl3-atomic-ambient-is-absorbed-by-lattice`: inside `R` the
+  ambient algebra `pi(Gamma)''` is amenable too, and `Gamma = SL_3(Z[1/p])`
+  has property (T), so it is atomic as well; joint finite-block matching with
+  `sl3-overlap-full-in-fd-ambient-images` then puts every `pi(g)` in the
+  `L^2`-closure of `pi(Lambda)`, so (EXT) fails maximally.  The weaker form
+  with a non-amenable Connes-embeddable ambient is closed by
+  `sl3-pair-tracial-models-with-atomic-lattice-algebra-are-absorbed`
+  (character rigidity).  The exterior-atomic mechanism is therefore dead for
+  the arithmetic pair, not only for compressed pairs.

@@ -39,7 +39,13 @@ Pestov's Question 3.4 needs.  However, by
 `amenable-kazhdan-models-absorb-compression`, (E1)+(E2) are unsatisfiable
 whenever `Gamma` is Kazhdan and `G` contains a strict compressor of `Gamma`
 (then `pi(t^(-1) Gamma t) <= P` and `E_P(pi(h))` is unitary for
-`h in t^(-1) Gamma t - Gamma`).  So the theorem is vacuous for Kun--Thom pairs
-and its live instances are incompressible pairs -- e.g. the arithmetic pair
-`SL_3(Z) < SL_3(Z[1/p])`, where it is the positive-side hypothesis
-`sl3-pair-admits-exterior-atomic-model`.
+`h in t^(-1) Gamma t - Gamma`).  So the theorem is vacuous for Kun--Thom pairs.  It is also vacuous for the
+arithmetic pair `SL_3(Z) < SL_3(Z[1/p])`, by a different mechanism:
+character rigidity of the S-arithmetic group forces any model with atomic
+lattice algebra to be absorbed
+(`sl3-atomic-ambient-is-absorbed-by-lattice`,
+`sl3-pair-tracial-models-with-atomic-lattice-algebra-are-absorbed`; the
+positive hypothesis `sl3-pair-admits-exterior-atomic-model` is refuted).
+Its possible instances are pairs whose ambient group admits a character
+that is atomic on the subgroup but not atomic itself -- no strict
+compressor and no character rigidity.
