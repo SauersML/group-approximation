@@ -9,9 +9,14 @@ distinct_from:
   middle-index-order-seven-orbit-cut-is-native-scale-neutral: that closes the fixed Fano actor packet; this requires bridges which retain the signed unequal-scale source rather than its scale-neutral constant atom.
 ---
 
-**OPEN SIX-BRIDGE COEFFICIENT INTERFACE.**  In the setting of
-`growing-multicut-el20-order-seven-inheritance`, construct for each row
-`i=1,2` and `0<=k<=6` an ordinary EL20 coefficient word whose compression
+**OPEN SIX-BRIDGE COEFFICIENT INTERFACE.**  Starting from an arbitrary
+surviving EL20 operator-norm model, independently construct a positive-mass
+cut `E_0`, and for each row `i=1,2` seven equal moving cuts `E_(i,k)` with
+`E_(i,0)=E_0=E_(i,7)`, fixed packet charts on those cuts, and the native
+transitions `C_(i,k):E_(i,k)H -> E_(i,k+1)H` required by
+`growing-multicut-el20-order-seven-inheritance`.  In the same construction,
+produce for each `0<=k<=6` an ordinary EL20 coefficient word whose
+compression
 
 ```text
 R_(i,k):E_(i,k)H -> E_(i,k+1)H                       (ESB1)
@@ -34,6 +39,12 @@ with the exact label covariance `(SGL4)` for `0<=k<=5`.  All bridge and
 square errors must be charged to one fixed finite ordinary-relator menu, with
 dimension-independent constants.  A single base bridge is sufficient if
 its six conjugates are authenticated with the same estimates.
+
+This formulation is deliberately independent of the target multicut claim.
+It is not enough to assume the cuts and transitions “in the setting of” that
+claim and then use the bridge Grams to construct them: that would be circular.
+The positive source, the seven charts, native transition typing, and the
+ungauged bridge typing are all outputs of this interface.
 
 The bridge must be coefficient-sensitive and ungauged on the multiplicity
 factor.  Actor covariance alone only produces the order-seven holonomy of

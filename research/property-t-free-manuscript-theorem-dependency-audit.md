@@ -2,7 +2,7 @@
 rg: 2
 id: property-t-free-manuscript-theorem-dependency-audit
 kind: claim
-title: The non-Kazhdan manuscript endpoints have one analytic input and an internal rank-transfer bridge
+title: The current manuscript splits into no-T algebra, two open collapse inputs, and Kazhdan-specific results
 artifacts:
   - non_mf_groups_exist.tex
   - metadata/NON_MF_SENTENCE_CENSUS.md
@@ -12,77 +12,45 @@ artifacts:
   - GroupApproximation/Manuscript/OneSidedMFRadical/PrescribedQuotients.lean
 ---
 
-The theorem-by-theorem dependency audit of `non_mf_groups_exist.tex` has the
-following exact conclusion.
+The current `non_mf_groups_exist.tex` contains three main theorems and fifteen
+numbered supporting results.  A theorem-by-theorem audit gives three disjoint
+classes.
 
-After deleting the statements whose mathematical content is explicitly about
-property `(T)`, Kazhdan projections, or Kazhdan transport, every retained
-manuscript endpoint follows without a literature theorem from one new input:
+**Already independent of Property `(T)`.**  These are
+`prop:mf-residual-calculus`, `thm:commutant`, `lem:stable-finite`,
+`lem:central-corona-corner`, `lem:tau-elementary`, `prop:simple`,
+`prop:defect`, `thm:hull`, `lem:saturation`, and `lem:simple-in-defect`,
+together with the compressor-containment clause of
+`prop:leavitt-compression`.  Their statements and proofs use algebra,
+finite-dimensional linear algebra, stable finiteness, or the separately
+cited Hull/Osin small-cancellation input, not Kazhdan transport.
 
-```text
-Rad_MF(St_20(L_(F_2)(1,2))) = St_20(L_(F_2)(1,2)).
-```
+**Explicitly Kazhdan-specific and removed from the replacement.**  These are
+`thm:compression-criterion`, `lem:kazhdan-projection-order`, `thm:transport`,
+`cor:defect-hs`, and `thm:normal-kazhdan`, plus the Property-`(T)` conjuncts
+of `thm:headline` and `prop:leavitt-compression`.  They cannot be relabelled
+as no-`(T)` results because Property `(T)` occurs in their mathematical
+content.
 
-The passage from this proposed rank-twenty Steinberg result to the literal
-rank-twelve group in the manuscript is not automatic by notation and must be
-present in the proof.  It is nevertheless internal: use the canonical
-surjection `St_20(R) -> EL_20(R)`, preservation of full MF radical under
-surjective images, and the prefix-code matrix self-similarity together with
-`GL_n(R)=EL_n(R)` to identify `EL_20(R)` with `EL_12(R)`.  No external
-`K`-theory theorem is used in that rank transport.
+**Two independent open replacement inputs.**
 
-The retained endpoints are:
+1. `property-t-free-el20-full-mf-radical`, followed by the internal
+   `EL_20(R)~=EL_12(R)` rank transfer, supplies the headline with its
+   Property-`(T)` conjunct deleted: full MF radical, trivial maps to MF
+   groups, non-MF, and the separable stably finite non-MF reduced group
+   C-star algebra.
+2. `property-t-free-torsion-free-full-mf-radical` supplies the second main
+   theorem with its Property-`(T)` conjunct deleted.  It does not follow from
+   the Leavitt collapse.  The printed proof uses Property `(T)` independently
+   for the torsion-free source, its compression subgroup, and every quotient.
 
-1. the literal MF radical and MF-kernel-closure calculus, including the
-   universal MF quotient and the criterion for an MF quotient;
-2. finite-dimensional commutant rigidity and finite-dimensional sterility of
-   the compression-centralizer defect, together with the residually finite
-   and finite-source sterility consequences;
-3. the exact binary-Leavitt Whitehead compressor identities, the nontrivial
-   marked root, and its normal generation;
-4. countability, finite generation, nontriviality and simplicity of the
-   binary-Leavitt elementary group;
-5. the Property-`(T)`-free stable-finiteness and central-corona-corner lemmas,
-   which may be retained although the new collapse proof does not need them;
-6. full MF radical, triviality of all maps to MF groups, non-MF, and the
-   separable stably finite non-MF reduced-group-C-star consequence;
-7. functoriality, normal-generation saturation, full-kernel pullback, the
-   visible MF quotient, universal factorization, and the prescribed-quotient
-   amalgam construction.
+Thus the previous “one analytic input proves every retained endpoint” census
+was incorrect for the current manuscript.  Completion requires both open
+inputs, then a rewrite which removes the Kazhdan-specific numbered block and
+assembles only the retained statements.
 
-The statements to remove, rather than rename, are the one-sided compression
-criterion with property-`(T)` hypotheses, the Kazhdan projection order lemma,
-one-sided Kazhdan transport, the Hilbert--Schmidt defect corollary, the normal
-Kazhdan radical theorem, the property-`(T)` clauses in the headline and the
-Leavitt-compression proposition, the property-`(T)` terminal clauses of defect
-saturation, and the amenable-plus-Kazhdan remark.
-
-The cited Leavitt normal-structure facts do not remain as literature inputs.
-The sandwich property and simplicity of the coefficient ring, the center and
-central-unit calculation, elementary-root detection, and elementary-group
-simplicity all have internal Lean proofs.  The amalgam vertex injections and
-normal-form consequences, the radical/closure calculus, the canonical reduced
-group C-star trace and stable-finiteness argument, and the rank transport are
-also internal.  Historical citations defining MF or attributing earlier work
-are not proof inputs.
-
-Two source-organization changes are still needed for the requested
-`Unconditional.lean`, even after the analytic input is proved.  Generic
-camouflage theorems currently share a module with a Property-`(T)`-mediated
-Hilbert-hotel instance, and some clean algebraic rank-twelve/rank-transport and
-reduced-C-star declarations live in files that also import or expose Kazhdan
-machinery.  The declarations used by the final endpoint must be split or
-restated in clean modules so its import and declaration dependency cone is
-literally Property-`(T)`-free.  This is proof engineering, not an additional
-mathematical or literature assumption.
-
-There are also four non-`(T)` historical sentences which are not proved in the
-repository: Blackadar--Kirchberg's converse `nuclear + MF => NF`, the
-Goldbring--Hart route from the negative Connes-embedding result, Shulman's MF
-permanence theorem for doubles, and the cited finite-Schatten
-non-approximability results.  They are not used by any theorem of the paper.
-They may remain explicitly quarantined literature attributions or be deleted;
-formalizing them would be independent work and is not discharged by the
-binary-Leavitt MF-radical endpoint.  The fifth partial sentence in the current
-sentence census is the Ershov--Jaikin-Zapirain Property-`(T)` theorem itself and
-belongs to the deleted Kazhdan material.
+The final `Unconditional.lean` must likewise have two unconditional inputs
+proved internally and must import no Property-`(T)` or Kazhdan declaration.
+No caller-supplied literature premise counts as unconditional.  Historical
+attributions which are not used by a numbered theorem may be deleted or kept
+explicitly as prose, but they are not part of this dependency claim.
