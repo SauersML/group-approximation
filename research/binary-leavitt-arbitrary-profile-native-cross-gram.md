@@ -90,3 +90,31 @@ literature theorem is permitted in this claim.
   amplification.  Thus density and coordinate dependence do not turn the
   authenticated adjacent-swap menu into `(APG1)`; a new identity-action or
   root-valued relative occurrence must exclude or pay this free orbit.
+- **Search the authenticated native occurrence closure for the root-valued
+  relative word.**  `native-local-occurrence-closure-fixes-mark` makes this
+  search exact: every named prefix factor, return diamond, support loop,
+  Hecke head, and same-center Pauli arm has root indices disjoint from
+  `{1,3}`.  Their whole subgroup centralizes `z`, so no pair already in that
+  closure can meet the disjoint-root alternative.
+- **Adjoin the smallest external Weyl root mover.**  The literal word
+  `h=w_14(1)w_23(1)` exchanges `z=x_13(q)` with `x_42(q)`, and
+  `external-weyl-dressed-native-pair-is-root-valued` therefore makes
+  `(W_1,hW_2)` a genuine root-valued pair with full Gram on `P_zP_C`.
+  It also moves every endpoint of the second Pauli chart.  Enlarging to both
+  charts does not repair this typing: the exact six-qubit model of
+  `six-pair-chart-swap-retains-external-gauge` satisfies both chart
+  covariances, the braid, root exchange, full Gram, and all mixed commutator
+  tests while the exposed gauges remain the scalars `+1` and `-1`.
+  Thus the external mover must be tied to the actual unequal selector by an
+  additional odd occurrence; combined-chart factoriality alone does not
+  prove `(APG1)` for the native transports.
+- **Dress the two affine rows by a dual-Heisenberg spectator and compare the
+  dressed Grams.**  `spectator-dressed-gram-does-not-share-selector-gauges`
+  separates the two operations which this shortcut conflates.  Right
+  dressing a conjugator by a source-central spectator preserves its row but
+  leaves the target affine gauge unchanged; multiplying the target changes
+  the gauge but defines a different row.  A `96`-dimensional exact model has
+  maximal dressed Gram and a shared trivial dressed gauge while its raw
+  selector gauges have positive fractions `1/2` and `5/6`.  Hence a
+  same-packet dual frame does not close the scalar holonomy claim without an
+  ordinary undressing/raw-output comparison occurrence.

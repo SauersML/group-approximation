@@ -151,3 +151,42 @@ excluded by the regular-trace firewall.
   model-dependent subcorner recovers row two from the current
   braid/order-seven/recentered packet; a new mixed occurrence must remove
   the actor holonomy.
+
+- **Make the marked coefficient act on the actual row-two arm and return it
+  through a constant Whitehead.**  This is now literal.  With
+  `C_3=[A_3,B_3]=x_65(q)` one has
+
+  ```text
+  [C_3,A_2]=x_68(qa_2)=x_68(a_2)=w_65(1)A_2w_65(1)^(-1).
+  ```
+
+  `row2-marked-center-action-return-has-gl8-model` nevertheless realizes
+  this mixed occurrence together with both prefix actors and both
+  order-seven heads in a marked `GL_8(F_2)` chart.  Even independently
+  factoring both returned paths does not help:
+  `row2-parallel-a2-return-diamond-has-gl8-model` includes the two literal
+  `s_1,t_00` commutator paths and a factor-by-factor Weyl comparison, yet the
+  same model survives by identifying separately named coefficients in the
+  same root subgroup.  A continuation must attach that returned arm to the
+  unequal Hecke source projection or add a coefficient row which forbids
+  those same-root identifications; another root-position diamond is below
+  the occurrence seam.
+
+- **Move the marked root by an external Weyl and retain both Pauli charts.**
+  The root-valued relative word is exact, but the chart mover is not erased.
+  `six-pair-chart-swap-retains-external-gauge` gives a full `M_64(C)` label
+  model in which all six Pauli pairs and every mixed commutator are exact,
+  while the external chart swap contributes a scalar `-1` only to the
+  dressed second occurrence.  Hence no positive subcorner makes its gauge
+  conjugate to the undressed first gauge.  An ordinary odd word must type
+  the chart swap as part of the actual `1/8` row; analytic chart enlargement
+  is insufficient.
+
+- **Use a dual-Heisenberg spectator to make the dressed outputs share a
+  gauge.**  This changes the operators whose Gram is being measured, not the
+  raw affine targets.  The exact model in
+  `spectator-dressed-gram-does-not-share-selector-gauges` realizes both raw
+  affine rows with the incompatible gauge fractions `1/2,5/6` and gives the
+  dressed outputs maximal Gram with a trivial common spectator gauge.
+  Therefore the dressed overlap does not imply `(SNA2)` without an ordinary
+  word relation comparing the raw outputs or removing the spectators.

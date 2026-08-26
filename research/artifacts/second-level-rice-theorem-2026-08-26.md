@@ -88,7 +88,10 @@ from `TOT`.  Amenability is not a local approximation property, so this is
 outside the Rice theorem, yet lands at the same level.
 
 Sharpening of Theorem 5: residual finiteness is `Pi^0_3`-complete already at
-three generators (`residual-finiteness-three-generator-recursive-is-pi3-complete`),
+two generators (`residual-finiteness-two-generator-recursive-is-pi3-complete`,
+via `G_J = <a,t | [a, t^j a t^-j], j in J>` residually finite iff `J u -J u {0}`
+is profinitely closed, `shift-raag-family-is-rf-iff-symmetrized-index-set-closed`,
+with rows `2^x(4j+1)`), and at three generators (`residual-finiteness-three-generator-recursive-is-pi3-complete`),
 via `H_J` residually finite iff `J` profinitely closed in `Z`
 (`centralizing-hnn-over-conjugate-basis-is-rf-iff-index-set-closed`) and the
 dyadic index sets (`index-set-profinitely-closed-is-pi3-complete`); the same

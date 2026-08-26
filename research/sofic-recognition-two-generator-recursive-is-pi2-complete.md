@@ -4,6 +4,7 @@ id: sofic-recognition-two-generator-recursive-is-pi2-complete
 kind: claim
 title: Soficity is Pi-zero-two complete for two-generator recursive presentations and for subgroups of one finitely presented group
 artifacts:
+  - GroupApproximation/Computability/SoficRecognitionSecondLevel.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
   - GroupApproximation/Endpoint/MainResults.lean
 distinct_from:

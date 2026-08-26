@@ -4,6 +4,8 @@ id: arbitrary-forbidden-seed-hereditary-property-switch
 kind: claim
 title: One finite forbidden seed forces second-level hardness for every hereditary property
 artifacts:
+  - GroupApproximation/Computability/HereditaryPropertySwitchCompleteness.lean
+  - GroupApproximation/Computability/ParametricRecursiveSwitchPresentation.lean
   - GroupApproximation/Computability/ParametricFinInfSwitch.lean
 distinct_from:
   exact-literal-e-fin-inf-switch: that hard-wires the literal non-MF group as the seed; this is uniform in an arbitrary finite-presentation code and draws the consequence for every hereditary property at once.

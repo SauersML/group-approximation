@@ -79,6 +79,17 @@ contain that type.  A free marked `S_3` type has operator-norm leakage one on
 every nonzero adaptive subcut, and an irreducible recentered row-two type has
 quarter-source conjugacy defect two.  Hence positive active density does not
 regularize the packet profile or validate the asserted source ranks.
+The first external and mixed repairs are now fenced as well.  Every word in
+the authenticated local closure fixes `z`.  A constant Weyl dressing can
+move it to a disjoint root and make the Gram full, but it moves the whole
+Pauli chart and retains a scalar `-1` gauge even after both charts are placed
+in one six-pair factor.  Independently, the literal marked action
+`qa_2=a_2`, its constant-Whitehead return, and two factor-by-factor `A_2`
+paths all admit one exact marked `GL_8(F_2)` model.  A dual-Heisenberg
+spectator can also make the dressed outputs share a trivial gauge while the
+two raw affine gauges retain fractions `1/2` and `5/6`.  Consequently neither
+root-valued dressing, finite-factor enlargement, nor spectator Gram payment
+authenticates the two raw selector rows.
 Thus the statement called `finite covariance groupification and the reservoir
 gauge` in the proposal is valid as a conditional representation-theoretic
 lemma, but the assertion that the native Leavitt words satisfy its covariance

@@ -57,7 +57,9 @@ The finitely generated case is settled at three generators by
 the exact criterion
 [[centralizing-hnn-over-conjugate-basis-is-rf-iff-index-set-closed]] and
 the dyadic index sets of [[index-set-profinitely-closed-is-pi3-complete]];
-the countable free product above is then no longer needed.  Two generators
-remain open (an effective Wilson envelope would do it), and
+the countable free product above is then no longer needed.  Two generators, the
+optimum, is [[residual-finiteness-two-generator-recursive-is-pi3-complete]]
+via the shift right-angled Artin family
+[[shift-raag-family-is-rf-iff-symmetrized-index-set-closed]]; and
 `Pi^0_2`-completeness of `RF_fp` is the residually finite Higman problem,
 open in the literature.
