@@ -19,6 +19,26 @@ the selected `C`-fixed full-rank operator `T=Ad U`.  Prove
 lim_(N->infinity) ||gamma(y_N)T||_2=0.                  (ASC1)
 ```
 
+## Semantic status: a universal certificate, not a weaker theorem
+
+In the ultraproduct hypotheses above, `T` is exactly `C`-fixed.  Therefore
+for every `N`, not merely asymptotically,
+
+```text
+gamma(x_N)T=T,
+gamma(y_N)T=(gamma(h)-1)T,
+||gamma(y_N)T||_2^2
+  =2(1-|tau([U,pi(h)])|^2).                            (ASC0)
+```
+
+Thus `(ASC1)` is semantically equivalent to qualitative projective transfer.
+The gain from `(APW1)` is a single explicit finite-dimensional-null
+certificate sequence; it does not make the no-leak assertion logically
+weaker.  The route `arithmetic-fd-null-cutoff-gives-projective-transfer`
+records the useful certificate direction; the reverse direction is the
+displayed identity `(ASC0)` and is stated here without adding a circular
+route to the dependency graph.
+
 Equivalently, for every `epsilon>0` there are a fixed `N` and a finite
 presentation-defect tolerance `delta>0` such that every finite matrix tuple
 with defect below `delta` and projective `C`-centrality defect below `delta`
@@ -45,3 +65,19 @@ unitary retains maximal mass in a matrix ultraproduct.  Thus property `(T)`,
 exact co-density, matrix origin, and full rank do not imply `(ASC1)` in
 general.  A proof here must use the specific denominator and root relations
 of `SL_3(Z[1/p])`.
+
+There is also a sharp conditional arithmetic countermodel.  In the compact
+homogeneous-quotient crossed product, let `P` be one compact-open orbit,
+`U=1-2P`, and `m=mu(P triangle hP)`.  Then `U` is exactly `C`-central and
+
+```text
+tau(U u_h U u_h^*)=1-2m,
+||gamma(y_N)T||_2^2=8m(1-m)                            (ASC3)
+```
+
+for every `N`.  The quantized Hecke dent bounds `m` away from zero.  Hence
+Connes embeddability of
+`sl3-homogeneous-quotient-crossed-product-is-connes-embeddable` would give
+matrix lifts refuting `(ASC1)` with a uniform positive floor.  That
+embeddability is open, so `(ASC3)` is a conditional stress test rather than
+an unconditional refutation.
