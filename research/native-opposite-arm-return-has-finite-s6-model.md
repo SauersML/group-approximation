@@ -73,22 +73,35 @@ U=(4 6),                    Q=(1 3)(4 6),
 V=(1 3 6 5)(2 4),           P=RLR.                     (NOA7)
 ```
 
-All rows are exact and `Z!=1`.  Therefore even a literal opposite-root
+All rows are exact, and both
+
+```text
+C_1=(3 6)(4 5)!=1,              Z=(3 4)(5 6)!=1.      (NOA8)
+```
+
+In the full binary specialization `A=1`, the occurrence
+`C_1=x_15(q_1)` is a fixed root-position Weyl conjugate of the prescribed
+mark `z=x_13(q_1)`.  Hence its left regular action has a nonzero negative
+spectral projection, so the prescribed marked atom itself survives this
+model; survival is not being witnessed only by the returned `A` output.
+
+Therefore even a literal opposite-root
 partial Whitehead containing the propagated `s_0` arm, with its `t_0` arm
 and final `A` output tied to their actual other root occurrences, does not
 imply `(BAC1)`.  The finite escape overlaps several Klein-four and `S_3`
 subpackets in one permutation group; it is neither the four-bit affine
 model nor a finite coefficient-ring representation.
 
-The next native relation must make an opposite-root word read **both binary
-branches simultaneously on one shared payload corner**, rather than
-authenticating one branch all the way through the fold.  This claim is a
-scoped exact model of the displayed native cell, not a model of the full
-signed Leavitt presentation.
+This is already a strict fence for the minimal nonzero-gauge packet made of
+binary completeness, one authenticated uncancelled `s_i/t_i` arm, and the
+prescribed `q_1` marked root.  The next native relation must make an
+opposite-root word read **both binary branches simultaneously on one shared
+payload corner**, rather than authenticating one branch all the way through
+the fold.  This claim is a scoped exact model of the displayed native cell,
+not a model of the full signed Leavitt presentation.
 
 No Property `(T)`, Kazhdan input, stability theorem, trace hypothesis, or
 literature result is used.
 
 DERIVATION
 native-opposite-arm-return-s6-proof
-

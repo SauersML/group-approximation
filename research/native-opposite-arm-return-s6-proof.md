@@ -62,7 +62,19 @@ VJV^(-1)=(3 4)(5 6)=Z.                                (6)
 ```
 
 Also `U^2=Q^2=1` and `V^4=1`.  This proves every displayed occurrence row.
-The generated subgroup of `S_6` is finite and `Z` is a nonidentity
-involution, so its left regular representation has zero cell defect and
-`||lambda(Z)-1||_op=2`.
+The generated subgroup of `S_6` is finite and both
 
+```text
+C_1=(3 6)(4 5),              Z=(3 4)(5 6)
+```
+
+are nonidentity involutions.  Its left regular representation therefore has
+zero cell defect and
+
+```text
+||lambda(C_1)-1||_op=||lambda(Z)-1||_op=2.
+```
+
+Since `C_1=x_15(q_1)` is root-position Weyl conjugate to
+`z=x_13(q_1)`, this verifies survival of the prescribed marked atom in the
+same exact countermodel.

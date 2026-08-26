@@ -322,10 +322,14 @@ swap.  Fixed spare-index Weyl words identify both repeated arm coefficients
 and the returned `A` coefficient with their other named root occurrences.
 Nevertheless explicit permutations in `S_6` satisfy the fold, matching and
 crossed rows, every opposite-root row, and every occurrence transport while
-the final mark remains nontrivial.  Thus authenticating one binary branch
-all the way through one native opposite-root packet is insufficient.  The
-remaining candidate must put both branches into one opposite-root relation
-which reads their coefficients on the same payload corner; another
+both the returned `A` output and the literal prescribed child
+`C_1=x_15(q_1)` remain nontrivial.  Thus the first nonzero-gauge packet with
+binary completeness, one authenticated uncancelled `s_i/t_i` arm, and the
+prescribed marked atom already has an exact finite model.  Authenticating one
+binary branch all the way through one native opposite-root packet is
+insufficient.  The remaining candidate must put both branches into one
+opposite-root relation which reads their coefficients on the same payload
+corner; another
 single-branch occurrence transport can be absorbed by overlapping finite
 Klein-four/`S_3` packets.
 
