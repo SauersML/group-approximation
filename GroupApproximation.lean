@@ -1451,6 +1451,7 @@ import GroupApproximation.Higman.AmalgamPresentation
 import GroupApproximation.Higman.AmalgamPushout
 import GroupApproximation.Higman.CoprodTorsion
 import GroupApproximation.Higman.HNNCentralizer
+import GroupApproximation.Higman.ConjugatedDetector
 import GroupApproximation.Higman.BenignAmbient
 import GroupApproximation.Higman.BenignFamily
 import GroupApproximation.Higman.BenignJoin

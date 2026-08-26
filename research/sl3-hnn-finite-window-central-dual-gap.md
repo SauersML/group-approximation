@@ -211,6 +211,22 @@ a finite mixed Britton window.  If the coset action
   `W` by finitely many uncoupled base or lamp moments cannot prove `(FDG3)`.
   A viable window must test mixed Britton words with the same actor carrying
   both the lamp permutation and the lattice coordinates.
+- **One unbalanced word plus the first cross-Gram blocks the spectator
+  free-lamp escape.**
+  `unbalanced-torus-blocks-spectator-free-lamp-models` considers the exact
+  product form `X_g=I tensor sigma(g)`, `H=V tensor sigma(h)`,
+  `T=L tensor I`.  The torus defect is exactly `||V-I||_2`, while
+
+  ```text
+  |tr(T^*H^*TH)| >=1-2||V-I||_2.
+  ```
+
+  The amalgamated-free value is zero.  Therefore the existing fixed
+  free-lamp/Morita amplifications cannot be combined with the unbalanced
+  root package even for this one mixed moment.  This sharpens the surviving
+  datum: it is not a longer actor-free lamp window, but a genuinely
+  non-product common actor covariance coupling the torus coefficients to
+  the conjugate-letter frame.
 - **The exact finite-action atlas is excluded but approximate atlases remain.**
   Profinite co-density and the Kazhdan gap put every exact arithmetic atlas a
   fixed distance away, while a hypothetical sofic coset-action atlas would

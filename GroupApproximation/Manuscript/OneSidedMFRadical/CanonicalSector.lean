@@ -107,7 +107,7 @@ theorem manuscriptNormalKazhdanCoronaVanishing : NormalKazhdanCoronaVanishing :=
   intro Theta k hk
   have hinv : ManuscriptCoronaMFInvisible k :=
     mem_manuscriptCoronaMFResidual_iff.mp
-      (manuscriptNormalKazhdanPrintedRadical G D hD K hT hK hk)
+      (manuscriptNormalKazhdanPrintedRadical G K hT (hK.trans hD) hk)
   have hone : Theta k = 1 := hinv d hd Theta
   exact MonoidHom.mem_ker.mpr hone
 
@@ -149,7 +149,7 @@ theorem manuscriptPrintedCriterionAssembly : PrintedCriterionAssembly := by
     printedDefect_le_opToHSShadowResidual_direct (G := G) L hL
   refine ⟨hgen, opToHSShadowResidual_normal, hdef, ?_⟩
   intro K _ hK hKD
-  exact manuscriptNormalKazhdanPrintedRadical G (printedDefect L) hdef K hK hKD
+  exact manuscriptNormalKazhdanPrintedRadical G K hK (hKD.trans hdef)
 
 /-- **Theorem~A in its most concrete printed form.**  A normal property-`(T)`
 subgroup of the printed defect `𝔇_G(L)` of a property-`(T)` subgroup `L` is

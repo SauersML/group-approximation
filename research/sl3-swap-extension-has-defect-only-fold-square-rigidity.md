@@ -155,3 +155,13 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   gate needs a second joint chamber relation or a closed rank-two loop which
   removes this internal repair freedom; one eliminated-root equality cannot
   support `(SFS1)`.
+
+- **Even the symmetric pair of mixed chamber words is insufficient.**
+  `two-mixed-a2-words-do-not-control-fold-square` adds the `w_23` chamber mate
+  of the preceding identity.  An exact dihedral `M_2` packet sets both
+  positive root slots to `1`, both opposite-root/Weyl slots to the swap, and
+  the denominator to a rotation of order three.  Both torus closures and both
+  mixed identities are exact, but the Gram defect remains `3/32`.  The next
+  local relation must therefore tie a Weyl slot back to an opposite root (the
+  packet violates `W_12E_12W_12^*=B_21`) or use a closed chamber loop which
+  forbids this collapsed-root sector.

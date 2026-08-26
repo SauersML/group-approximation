@@ -204,6 +204,7 @@ def fullPlaneNontrivialSet
     Set (Spectrum rho) :=
   {chi | ∃ q : Fin 2 × R (X := X), chi ((P rho).coordinate q) ≠ 1}
 
+omit [Fintype X] in
 /-- One arbitrary coefficient coordinate is zero precisely when the
 corresponding character evaluation is trivial. -/
 theorem coordinateAngle_eq_zero_iff
@@ -240,6 +241,14 @@ theorem finitePlaneNontrivialSet_mono
   exact ⟨q, hst hqs, hq⟩
 
 omit [Fintype X] in
+theorem finitePlaneNontrivialSet_subset_fullPlaneNontrivialSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (s : Finset (Fin 2 × R (X := X))) :
+    finitePlaneNontrivialSet rho s ⊆ fullPlaneNontrivialSet rho := by
+  rintro chi ⟨q, _, hq⟩
+  exact ⟨q, hq⟩
+
+omit [Fintype X] in
 theorem measurableSet_finitePlaneNontrivialSet
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
     (s : Finset (Fin 2 × R (X := X))) :
@@ -247,8 +256,7 @@ theorem measurableSet_finitePlaneNontrivialSet
   classical
   induction s using Finset.induction_on with
   | empty =>
-      simpa [finitePlaneNontrivialSet] using
-        (MeasurableSet.empty : MeasurableSet (∅ : Set (Spectrum rho)))
+      simp [finitePlaneNontrivialSet]
   | @insert q s hqs ih =>
       have hsingle : MeasurableSet
           {chi : Spectrum rho | chi ((P rho).coordinate q) ≠ 1} := by
@@ -256,7 +264,9 @@ theorem measurableSet_finitePlaneNontrivialSet
             {chi : Spectrum rho | chi ((P rho).coordinate q) ≠ 1} =
               coordinateAngle rho q ⁻¹' ({0}ᶜ : Set (AddCircle (1 : ℝ))) := by
           ext chi
-          exact not_congr (coordinateAngle_eq_zero_iff rho q chi)
+          simp only [Set.mem_setOf_eq, Set.mem_preimage, Set.mem_compl_iff,
+            Set.mem_singleton_iff]
+          exact (not_congr (coordinateAngle_eq_zero_iff rho q chi)).symm
         rw [hset]
         exact (measurableSet_singleton (0 : AddCircle (1 : ℝ))).compl.preimage
           (continuous_coordinateAngle rho q).measurable
@@ -276,19 +286,14 @@ theorem iUnion_finitePlaneNontrivialSet
   classical
   ext chi
   constructor
-  · rintro ⟨s, q, _, hq⟩
-    exact ⟨q, hq⟩
-  · rintro ⟨q, hq⟩
-    exact ⟨{q}, q, Finset.mem_singleton_self q, hq⟩
-
-/-- For a finite generator type, the full nontrivial support is measurable:
-it is the countable union of its finite-coordinate pieces. -/
-theorem measurableSet_fullPlaneNontrivialSet
-    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E)) :
-    MeasurableSet (fullPlaneNontrivialSet rho) := by
-  rw [← iUnion_finitePlaneNontrivialSet rho]
-  exact MeasurableSet.iUnion fun s ↦
-    measurableSet_finitePlaneNontrivialSet rho s
+  · intro hchi
+    obtain ⟨s, hs⟩ := Set.mem_iUnion.mp hchi
+    exact finitePlaneNontrivialSet_subset_fullPlaneNontrivialSet rho s hs
+  · intro hchi
+    rcases hchi with ⟨q, hq⟩
+    apply Set.mem_iUnion.mpr
+    refine ⟨({q} : Finset (Fin 2 × R (X := X))), ?_⟩
+    exact ⟨q, Finset.mem_singleton_self q, hq⟩
 
 /-- Evaluation on a finite coefficient family gives an honest
 finite-dimensional additive torus. -/
@@ -318,7 +323,9 @@ theorem finitePlaneCoordinate_preimage_punctured
   ext chi
   constructor
   · intro hchi
-    have hne : finitePlaneCoordinate rho s chi ≠ 0 := hchi.2
+    have hne : finitePlaneCoordinate rho s chi ≠ 0 := by
+      intro hzero
+      exact hchi.2 (Set.mem_singleton_iff.mpr hzero)
     by_contra hnot
     apply hne
     funext q
@@ -362,6 +369,24 @@ theorem finitePlaneMeasure_punctured_eq
   unfold finitePlaneMeasure
   rw [map_measureReal_apply (measurable_finitePlaneCoordinate rho s) hpunctured]
   rw [finitePlaneCoordinate_preimage_punctured]
+
+omit [Fintype X] in
+/-- Every finite-dimensional torus detects only part of the full nontrivial
+column-plane support.  Thus all finite-stage mass estimates naturally point
+upward toward the full mass. -/
+theorem finitePlaneMeasure_punctured_le_fullPlaneNontrivialSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (hz : ‖z‖ = 1)
+    (s : Finset (Fin 2 × R (X := X))) :
+    (finitePlaneMeasure rho z hz s).real
+        (Set.univ \ {(0 : s → AddCircle (1 : ℝ))}) ≤
+      (CommutativeStateSpectralMeasure.stateSpectralMeasure
+        ((P rho).vectorState (Complexification.mk z 0)
+          (norm_mk_zero_eq_one hz))).real
+        (fullPlaneNontrivialSet rho) := by
+  rw [finitePlaneMeasure_punctured_eq]
+  exact measureReal_mono
+    (finitePlaneNontrivialSet_subset_fullPlaneNontrivialSet rho s)
 
 omit [Fintype X] in
 theorem scalarTorusCoordinate_preimage_punctured

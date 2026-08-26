@@ -66,7 +66,7 @@ theorem nilpotent_ideal_eq_bot_of_cstar
     have hbpow_mem : b ^ n ∈ J ^ n := Ideal.pow_mem_pow hbJ n
     have hbpow : b ^ n = 0 := by
       rw [hn] at hbpow_mem
-      simpa only [Ideal.mem_bot] using hbpow_mem
+      exact (Ideal.mem_bot).mp hbpow_mem
     have hlarge : n ≤ 2 ^ n := n.lt_two_pow_self.le
     have hbpowTwo : b ^ (2 ^ n) = 0 := pow_eq_zero_of_le hlarge hbpow
     have hbself : IsSelfAdjoint b := IsSelfAdjoint.star_mul_self a
@@ -83,8 +83,9 @@ theorem finiteDimensionalCStar_jacobson_eq_bot
     (D : Type*) [CStarAlgebra D] [FiniteDimensional ℂ D] :
     Ring.jacobson D = ⊥ := by
   letI : IsArtinianRing D := IsArtinianRing.of_finite ℂ D
-  exact nilpotent_ideal_eq_bot_of_cstar (Ring.jacobson D)
-    IsArtinianRing.isNilpotent_jacobson_bot
+  apply nilpotent_ideal_eq_bot_of_cstar (Ring.jacobson D)
+  rw [← Ideal.jacobson_bot]
+  exact IsArtinianRing.isNilpotent_jacobson_bot
 
 /-- Every finite-dimensional complex C-star algebra is semisimple as a ring. -/
 theorem finiteDimensionalCStar_isSemisimpleRing

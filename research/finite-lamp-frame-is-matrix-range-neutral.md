@@ -65,5 +65,15 @@ word in which the **same arithmetic actor** both permutes the lamp frame and
 transports the lattice coordinates.  Finite lamp moments, even all their
 noncommutative cross-Grams, are insufficient.
 
+This neutrality cannot simply be tensored with the unbalanced arithmetic
+closure.  `unbalanced-torus-blocks-spectator-free-lamp-models` proves that
+if the arithmetic actor is placed on one tensor factor and the free-lamp
+denominator coordinate on the other, the unbalanced torus defect `eta`
+forces the first conjugate-letter cross-Gram to have modulus at least
+`1-2eta`.  The free value is zero.  Thus the present construction is
+neutral only after the moving denominator covariance outside the overlap
+has been forgotten; any full countermodel must entangle that covariance
+with the lamp frame rather than add it as a spectator factor.
+
 DERIVATION
 finite-lamp-frame-neutrality-proof

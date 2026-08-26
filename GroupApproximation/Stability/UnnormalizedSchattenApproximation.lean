@@ -1,4 +1,5 @@
 import GroupApproximation.Meta.AxiomGuard
+import GroupApproximation.Sofic.ExteriorMFProfile
 import GroupApproximation.Stability.LinearMetricApproximation
 import Mathlib.Analysis.InnerProductSpace.SingularValues
 import Mathlib.Analysis.Matrix.Normed
@@ -27,6 +28,7 @@ namespace GroupApproximation
 namespace UnnormalizedSchattenApproximation
 
 open Filter
+open scoped Matrix.Norms.L2Operator
 
 universe u
 
@@ -62,6 +64,128 @@ theorem schattenPNorm_nonneg (p : ℝ) {d : ℕ}
       Real.rpow_nonneg
         ((Matrix.toEuclideanLin A).singularValues_nonneg k) p)
     (1 / p)
+
+/-- Every singular value occurring in the finite-dimensional sum is bounded
+by the unnormalized Schatten `p`-quantity.  This is the scalar `ℓ^p`
+estimate, proved directly from nonnegativity of the singular values. -/
+theorem singularValue_le_schattenPNorm {p : ℝ} (hp : 1 ≤ p) {d : ℕ}
+    (A : Matrix (Fin d) (Fin d) ℂ) (k : Fin d) :
+    (Matrix.toEuclideanLin A).singularValues k ≤ schattenPNorm p A := by
+  let T := Matrix.toEuclideanLin A
+  have hp0 : 0 < p := lt_of_lt_of_le zero_lt_one hp
+  have hsingular : 0 ≤ T.singularValues k := T.singularValues_nonneg k
+  have hsum :
+      0 ≤ ∑ j ∈ Finset.range d, Real.rpow (T.singularValues j) p :=
+    Finset.sum_nonneg fun j _ ↦
+      Real.rpow_nonneg (T.singularValues_nonneg j) p
+  have hterm :
+      Real.rpow (T.singularValues k) p ≤
+        ∑ j ∈ Finset.range d, Real.rpow (T.singularValues j) p := by
+    exact Finset.single_le_sum
+      (fun j _ ↦ Real.rpow_nonneg (T.singularValues_nonneg j) p)
+      (Finset.mem_range.mpr k.isLt)
+  rw [schattenPNorm, one_div]
+  exact (Real.le_rpow_inv_iff_of_pos hsingular hsum hp0).2 hterm
+
+/-- Pointwise domination of the singular-value lists implies domination of
+the corresponding unnormalized Schatten quantities. -/
+theorem schattenPNorm_mono_of_singularValues_le {p : ℝ} (hp : 1 ≤ p)
+    {d : ℕ} {A B : Matrix (Fin d) (Fin d) ℂ}
+    (hAB : ∀ k : Fin d,
+      (Matrix.toEuclideanLin A).singularValues k ≤
+        (Matrix.toEuclideanLin B).singularValues k) :
+    schattenPNorm p A ≤ schattenPNorm p B := by
+  let TA := Matrix.toEuclideanLin A
+  let TB := Matrix.toEuclideanLin B
+  have hsumA :
+      0 ≤ ∑ k ∈ Finset.range d, Real.rpow (TA.singularValues k) p :=
+    Finset.sum_nonneg fun k _ ↦
+      Real.rpow_nonneg (TA.singularValues_nonneg k) p
+  have hsums :
+      (∑ k ∈ Finset.range d, Real.rpow (TA.singularValues k) p) ≤
+        ∑ k ∈ Finset.range d, Real.rpow (TB.singularValues k) p := by
+    apply Finset.sum_le_sum
+    intro k hk
+    exact Real.rpow_le_rpow (TA.singularValues_nonneg k)
+      (hAB ⟨k, Finset.mem_range.mp hk⟩) hp.le
+  unfold schattenPNorm
+  exact Real.rpow_le_rpow hsumA hsums (by positivity)
+
+/-- The `L²` operator norm of a nonempty square matrix is bounded by its
+largest singular value.  The proof identifies the top eigenvalue of `Aᴴ A`
+with `‖A‖²` and then uses the decreasing eigenvalue ordering built into
+`LinearMap.singularValues`. -/
+theorem operatorNorm_le_largestSingularValue {d : ℕ} (hd : 0 < d)
+    (A : Matrix (Fin d) (Fin d) ℂ) :
+    ‖A‖ ≤ (Matrix.toEuclideanLin A).singularValues 0 := by
+  let T := Matrix.toEuclideanLin A
+  let D : Matrix (Fin d) (Fin d) ℂ := Aᴴ
+  let H : Matrix (Fin d) (Fin d) ℂ := D * Dᴴ
+  let hH : H.IsHermitian := Matrix.isHermitian_mul_conjTranspose_self D
+  obtain ⟨i, hi⟩ :=
+    exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D ⟨⟨0, hd⟩⟩
+  let j : Fin d :=
+    (Fintype.equivOfCardEq (Fintype.card_fin d)).symm i
+  have hH_eq : H = Aᴴ * A := by
+    simp [H, D]
+  have hadjoint : T.adjoint ∘ₗ T = Matrix.toEuclideanLin H := by
+    rw [hH_eq]
+    simp [T, Matrix.toEuclideanLin_eq_toLin_orthonormal,
+      Matrix.toLin_mul, Matrix.toLin_conjTranspose]
+  have hj :
+      T.isSymmetric_adjoint_comp_self.eigenvalues rfl j = ‖A‖ ^ 2 := by
+    rw [hadjoint]
+    change
+      (Matrix.isSymmetric_toEuclideanLin_iff.mpr hH).eigenvalues
+          Module.finrank_euclideanSpace j = ‖A‖ ^ 2
+    change hH.eigenvalues₀ j = ‖A‖ ^ 2
+    simpa [Matrix.IsHermitian.eigenvalues, j, D,
+      Matrix.l2_opNorm_conjTranspose] using hi
+  have htop :
+      ‖A‖ ^ 2 ≤
+        T.isSymmetric_adjoint_comp_self.eigenvalues rfl (0 : Fin d) := by
+    rw [← hj]
+    exact T.isSymmetric_adjoint_comp_self.eigenvalues_antitone rfl
+      (Fin.zero_le j)
+  have hsquare :
+      ‖A‖ ^ 2 ≤ T.singularValues 0 ^ 2 := by
+    rw [T.sq_singularValues_fin (n := d) rfl (0 : Fin d)]
+    exact htop
+  exact (sq_le_sq₀ (norm_nonneg A) (T.singularValues_nonneg 0)).mp hsquare
+
+/-- The `L²` operator norm is bounded by every unnormalized Schatten
+`p`-quantity with `1 ≤ p`. -/
+theorem operatorNorm_le_schattenPNorm {p : ℝ} (hp : 1 ≤ p)
+    {d : PositiveDimension} (A : Matrix (Fin d.1) (Fin d.1) ℂ) :
+    ‖A‖ ≤ schattenPNorm p A :=
+  (operatorNorm_le_largestSingularValue d.2 A).trans
+    (singularValue_le_schattenPNorm hp A (0 : Fin d.1))
+
+/-- Scalar form of the approximate-involution estimate.  Inside the open
+unit ball about `1`, multiplication by `z + 1` cannot decrease the distance
+from zero, and `(z - 1)(z + 1) = z² - 1`. -/
+theorem norm_sub_one_le_norm_sq_sub_one_of_norm_sub_one_lt_one
+    (z : ℂ) (hz : ‖z - 1‖ < 1) :
+    ‖z - 1‖ ≤ ‖z ^ 2 - 1‖ := by
+  have hplus : 1 < ‖z + 1‖ := by
+    have htriangle := norm_sub_le (z + 1) (z - 1)
+    have hdifference : (z + 1) - (z - 1) = (2 : ℂ) := by ring
+    have htwo : ‖(2 : ℂ)‖ = 2 := by norm_num
+    rw [hdifference, htwo] at htriangle
+    linarith
+  calc
+    ‖z - 1‖ ≤ ‖z - 1‖ * ‖z + 1‖ :=
+      le_mul_of_one_le_right (norm_nonneg _) hplus.le
+    _ = ‖(z - 1) * (z + 1)‖ := (norm_mul _ _).symm
+    _ = ‖z ^ 2 - 1‖ := by congr 1 <;> ring
+
+/-- Raising the scalar approximate-involution estimate to any nonnegative
+real power preserves it. -/
+theorem norm_sub_one_rpow_le_norm_sq_sub_one_rpow
+    {p : ℝ} (hp : 0 ≤ p) (z : ℂ) (hz : ‖z - 1‖ < 1) :
+    Real.rpow ‖z - 1‖ p ≤ Real.rpow ‖z ^ 2 - 1‖ p :=
+  Real.rpow_le_rpow (norm_nonneg _)
+    (norm_sub_one_le_norm_sq_sub_one_of_norm_sub_one_lt_one z hz) hp
 
 /-- Unnormalized Schatten displacement is nonnegative. -/
 theorem schattenPDist_nonneg (p : ℝ) {d : PositiveDimension}
@@ -287,6 +411,7 @@ theorem schattenTwoStabilityPrinciple : SchattenTwoStabilityPrinciple := by
   · simpa [IsSchattenTwoStable] using hstable
 
 #audit_axioms dist_eq_schattenTwoDist
+#audit_closed_axioms operatorNorm_le_schattenPNorm
 #audit_closed_axioms allFinitePStabilityForcesResidualFiniteness
 #audit_closed_axioms schattenTwoStabilityPrinciple
 

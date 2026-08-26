@@ -480,3 +480,13 @@ survives in the central factor.  Thus the next relation must be
 non-equivariant: it must identify one primed diamond arm with an
 independently returned source arm, rather than transport both arms by the
 same Whitehead covariance.
+
+That entire non-equivariant arm-matching menu is finite as well.
+`non-equivariant-native-diamond-arm-matches-retain-gl7-c2-gauge` reconstructs
+both primed arms directly by prefix-square commutators and also matches them
+to the next native row and an independent positive return.  The same exact
+`GL_7(F_2) times C_2` packet realizes all four rows.  Every retained identity
+contains the native Whitehead `J_1` with even parity, so its central gauge
+still cancels.  The live seam is therefore sharper than arm matching: one
+must type an odd literal occurrence of `J_1`, such as one of the elementary
+factors in its three-root Whitehead word, on the already fused marked packet.

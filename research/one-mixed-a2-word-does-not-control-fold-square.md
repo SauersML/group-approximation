@@ -53,6 +53,16 @@ shows that a proof of the full arithmetic terminal must consume at least one
 additional joint rank-two relation.  In particular, merely adding the first
 eliminated-root equality to the two separate rank-one packages cannot work.
 
+The minimal symmetric candidate is
+
+```text
+W_23E_12W_23^*=[E_12,E_23]^(-1).
+```
+
+The packet above violates that equality.  However,
+`two-mixed-a2-words-do-not-control-fold-square` gives a different exact `M_2`
+packet satisfying both mixed words, so the symmetric completion still does
+not close the terminal.
+
 DERIVATION
 one-mixed-a2-fold-countermodel-proof
-
