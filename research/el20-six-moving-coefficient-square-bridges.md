@@ -311,3 +311,33 @@ of order three.  The next cell must attach an opposite-root/Whitehead word
 to an individual private A3 arm before the triple product becomes one, and
 must close a new same-carrier relation rather than conjugate the total
 external output.
+
+That individual-arm refinement is now fenced too.
+`depth-two-a3-private-whiteheads-have-finite-gl6-model` attaches the genuine
+partial inverse coefficients and opposite-root Whiteheads to each of `A`,
+`B`, and `G` before either A3 bracketing forms `x_78(1)`.  One exact
+`GL_6(F_2)` occurrence model realizes the two marked bracketings, the
+cross-zero shortcut, all three private rank-two Weyl cells, and even the
+output Whitehead while the marked long root remains nontrivial.  Thus three
+separate individual-arm cells add no reservoir equation beyond
+`E'=DED^(-1)`; a successful cell must make an opposite arm interact with a
+different A3 channel on the returned Hecke carrier.
+
+Using both complementary branches before collapse still does not kill that
+order-three gauge.  `complementary-depth-two-a3-whiteheads-have-a6-gauge-model`
+builds two depth-two A3 cells with private coefficients
+
+```text
+a_i=s_it_(i0), b_i=s_(i0)t_(i1), c_i=s_(i1)t_i,
+a_ib_ic_i=q_i, a_ic_i=0.
+```
+
+Their outputs `P_i=x_78(q_i)` enter the opposite-root words
+`V_i=P_ix_87(q_i)P_i` before completeness is used, and the literal
+full-Leavitt relation is `V_0V_1=w_78(1)`.  On reservoir factors this adds
+`G_0G_1=D` to the native equations `D=EFE,F=DED`.  An exact `A_6` model
+realizes all three equations and the three-chart branch permutation while
+keeping `DE` equal to a product of two 3-cycles.  Thus even complementary
+private-arm Whiteheads do not give `(ESB2)`; the next occurrence must put an
+individual private arm and `D` or `E` in a new same-chart commutator or
+other relation beyond completeness fusion.
