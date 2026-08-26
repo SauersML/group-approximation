@@ -79,5 +79,14 @@ support.  Thus the remaining covariance task is a concrete range-incidence
 calculation for two named T-roots.  A separate source-degree calculation is
 still required.
 
+The underlying word data itself is now completely fenced.
+`binary-jacobson-balanced-center-fold-data-is-finite-marked` proves that the
+three roots defining the raw source signs together with all four generators
+of `D_T` generate a finite group of order at most `2^12`, with the head mark
+nontrivial.  Therefore no further manipulation of their uncompressed
+conjugation table can supply the missing PI contradiction.  Any successful
+use of `(JCF5)` must authenticate a genuinely representation-dependent
+raw-range compression or adjoin an occurrence outside that finite envelope.
+
 DERIVATION
 binary-jacobson-balanced-center-fold-proof
