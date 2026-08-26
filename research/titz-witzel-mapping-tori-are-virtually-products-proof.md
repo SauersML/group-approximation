@@ -8,6 +8,7 @@ requires:
   - titz-witzel-simple-kazhdan-cat0-lattices-exist
   - finite-outer-order-mapping-torus-is-virtually-product
   - mf-radical-product-and-restricted-sum-formulas
+  - simple-kazhdan-groups-have-full-mf-radical
 ---
 
 Titz Mite--Witzel, *Non-residually finite C2-tilde-lattices*,
@@ -48,8 +49,14 @@ Now apply `finite-outer-order-mapping-torus-is-virtually-product` to every
 `phi`.  This gives the finite-index copy of `K x Z`.  MF is invariant under
 finite index and obeys the direct-product formula, proving `(TWO3)`.
 
-If `K` is non-MF, its MF radical is a nontrivial normal subgroup and therefore
-equals `K` by simplicity.  The product formula gives radical `K x {0}` in the
-finite-index product subgroup, and MF-radical functoriality carries that copy
-of `K` into `Rad_MF(G_phi)`.  The quotient homomorphism `G_phi->Z` gives the
-reverse inclusion.  This proves `(TWO4)` and the final equivalence.
+By `simple-kazhdan-groups-have-full-mf-radical`, the infinite simple Kazhdan
+group `K` is non-MF, every homomorphism from `K` to an MF group is trivial,
+and `Rad_MF(K)=K`.  Therefore the restriction to `K` of every homomorphism
+`G_phi->M` with `M` MF is trivial, so `K<=Rad_MF(G_phi)`.  The quotient
+homomorphism `G_phi->Z` gives the reverse inclusion.  This proves `(TWO4)`
+directly, independently of the finite-index product calculation.
+
+Soficity passes to subgroups and is preserved under extensions with amenable
+quotient.  Thus `G_phi` is sofic exactly when `K` is sofic.  This proves the
+corrected final equivalence: one Titz--Witzel mapping torus solves the target
+if and only if its simple kernel is sofic; non-MF needs no additional input.

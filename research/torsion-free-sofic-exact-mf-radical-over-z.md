@@ -18,6 +18,7 @@ artifacts:
   - research/fp-kernel-crosses-alekseev-thom-open-problem.md
   - research/artifacts/torsion-free-exact-radical-team-audit-2026-08-26.md
   - research/titz-witzel-mapping-tori-are-virtually-products.md
+  - research/titz-witzel-soficity-is-one-finite-csp.md
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
 ---
@@ -77,7 +78,11 @@ arithmetic single-defect saturated group would solve the target by taking its
 direct product with `Z`; this would also cross Alekseev--Thom Open Problem 6.1.
 For a Titz--Witzel simple Kazhdan lattice, every cyclic mapping torus is
 virtually a direct product because its outer automorphism group is finite.
-That route therefore succeeds exactly when one such lattice is proved both
-sofic and non-MF.  The Elek--Szabo simple sofic envelope supplies neither
+The kernel is already unconditionally non-MF with full MF radical by
+`simple-kazhdan-groups-have-full-mf-radical`.  That route therefore succeeds
+exactly when one such lattice is proved sofic; the remaining statement is the
+explicit finite-permutation gate
+`titz-witzel-soficity-is-one-finite-csp`.  The Elek--Szabo simple sofic
+envelope supplies neither
 torsion-free nor Kazhdan control.  No construction presently in Cairn or in
 the audited primary sources closes any of these surviving seams.

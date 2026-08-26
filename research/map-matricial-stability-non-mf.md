@@ -32,9 +32,8 @@ has a name in the graph.
 
 ## Ideas
 
-**A chain that would prove too much — FLAGGED, NOT ASSERTED.**  Two
-statements reported from Dadarlat, arXiv:2007.12655, sit next to each other
-in a way that deserves checking before anyone relies on either:
+**Stronger unconditional criterion, now source-checked.**  Two statements in
+Dadarlat, arXiv:2007.12655v2, combine directly:
 
 - MF implies weak quasidiagonality;
 - Proposition 3.19, attributed to Ozawa--Thom: an infinite property-(T)
@@ -42,20 +41,11 @@ in a way that deserves checking before anyone relies on either:
   quotient.
 
 Chained, these give: *an infinite Kazhdan group with no infinite residually
-finite quotient is not MF* — a published, torsion-free-compatible, entirely
-unconditional non-MF criterion, needing no mark, no stability, and no
-compression data.
-
-**Treat this as probably wrong until checked.**  If it were right, non-MF
-groups would have been available since the Ozawa--Thom result, whereas the
-manuscript records that no countable group was known whose group C-star
-algebra fails to be MF, and Bachner--Dogon--Lubotzky still called the MF
-question open in April 2026.  The likely failure points, in order of
-suspicion: the first statement may be false as summarized, or carry extra
-hypotheses (a `gamma`-element, or a reduced-algebra qualifier); Proposition
-3.19 may carry hypotheses lost in transcription; or infinite Kazhdan groups
-with no infinite residually finite quotient may not be known to exist, which
-would make the criterion vacuous rather than false.  The question is out to
-cairn-scout, who has the primary text.  **Nothing in this repository should
-depend on the chain until it comes back**, and if it does come back valid it
-is a priority matter for the manuscript, not merely a new route.
+finite quotient is not MF*.  Both statements and the proof of Proposition
+3.19 were checked in the primary PDF; no `gamma`-element, stability or
+linearity hypothesis enters this implication.  The simple-group consequence
+and its full-radical upgrade are recorded in
+`simple-kazhdan-groups-have-full-mf-radical`.  This strictly strengthens the
+present stability criterion on infinite simple Kazhdan groups, while the
+present criterion remains useful for minimally almost periodic groups
+without property `(T)`.

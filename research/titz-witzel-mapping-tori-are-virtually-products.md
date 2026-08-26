@@ -9,6 +9,7 @@ distinct_from:
   torsion-free-sofic-extrinsic-kazhdan-defect-kernel: That asks for an extrinsically created radical; this proves that no genuinely extrinsic cyclic action exists for these candidate kernels.
 artifacts:
   - research/artifacts/torsion-free-exact-radical-team-audit-2026-08-26.md
+  - research/artifacts/titz-witzel-sofic-structure-audit-2026-08-26.md
 ---
 
 Let `K` be one of the five simple finite-index subgroups of the Titz
@@ -32,7 +33,9 @@ has a finite-index subgroup isomorphic to `K x Z`.  In particular,
 G_phi is MF  iff  K is MF.                             (TWO3)
 ```
 
-If `K` is non-MF, simplicity gives `Rad_MF(K)=K`, and then
+In fact `K` is unconditionally non-MF and
+`Rad_MF(K)=K` by `simple-kazhdan-groups-have-full-mf-radical`.  Hence for
+every `phi`,
 
 ```text
 Rad_MF(G_phi)=K x {0},       G_phi/Rad_MF(G_phi) ~= Z. (TWO4)
@@ -40,7 +43,7 @@ Rad_MF(G_phi)=K x {0},       G_phi/Rad_MF(G_phi) ~= Z. (TWO4)
 
 Thus this candidate family solves
 `torsion-free-sofic-exact-mf-radical-over-z` if and only if at least one of
-the five kernels is both sofic and non-MF.  In that event `phi=id` already
+the five kernels is sofic.  In that event `phi=id` already
 works, and the preferred strengthening holds because `K` is finitely
 presented and every nonidentity element normally generates the simple group.
-Neither soficity nor non-MF is currently established for these lattices.
+Soficity is currently not established for these lattices; non-MF is settled.
