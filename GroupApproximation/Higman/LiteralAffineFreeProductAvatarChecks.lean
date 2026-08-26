@@ -13,8 +13,11 @@ is a piece.  No `C'(lambda)` condition with `lambda < 1` can hold.
 
 This file permanently fences that failed route at the exact public handoff:
 `ConcreteRemainingRouterChecks d` is empty for every padding depth.  A future
-premise-free blueprint must use nonnested, cyclic-overlap-controlled codewords;
-it cannot obtain the required metric data from consecutive Nielsen pairs.
+premise-free blueprint cannot merely replace the Nielsen padding by nonnested
+private codewords.  The second audit below proves the deeper obstruction: any
+positive doubled presentation still has the two-letter kernel word `x xbar`.
+If the router relator floor is at least twice the norm of that word's avatar,
+the sharp Greendlinger gate contradicts well-definedness of the source map.
 -/
 
 namespace GroupApproximation
@@ -149,6 +152,150 @@ theorem all_depths_no_go : AllDepthsNoGo :=
   not_concreteRemainingRouterChecks
 
 #audit_closed_axioms all_depths_no_go
+
+/-! ## The structural doubled-presentation obstruction
+
+The preceding proof only sees the accidental nesting of consecutive Nielsen
+relators.  The theorem below does not inspect the relator spelling at all.  It
+uses the exact router interface: a source-kernel word dies in the routed
+quotient, while the sharp Greendlinger gate says that a nontrivial word in the
+relator subgroup is longer than half of some symmetrized relator.  Thus no
+router input can put the common relator floor above twice that word's norm.
+-/
+
+/-- General floor obstruction at the exact `AvatarRouterInstance.Inputs`
+handoff.  This theorem is independent of how the positive source relators were
+padded or marked. -/
+theorem no_go_of_short_source_kernel
+    {E : Type} [Group E] {N : Subgroup E} {s : E}
+    {B : Type} [Group B]
+    {D : Blueprint E N s B} (I : AvatarRouterInstance.Inputs D)
+    (hne : FreeGroup.lift D.srcAvatar D.protectedWord ≠ 1)
+    (hres : SharpResiduals (Fin 2))
+    (x : FreeGroup (Fin D.srcPres.card))
+    (hxker : D.srcPres.hom x = 1)
+    (hxne : FreeGroup.lift D.srcAvatar x ≠ 1)
+    (hshort : 2 * FreeGroup.norm (FreeGroup.lift D.srcAvatar x) ≤
+      I.relatorFloor) : False := by
+  let R := I.design hne
+  have hxker' : x ∈ R.srcHom.ker := by
+    exact MonoidHom.mem_ker.mpr hxker
+  have hxquot : R.srcAvatar x = 1 :=
+    MonoidHom.mem_ker.mp (R.srcHom_ker_le_avatar_ker hxker')
+  have hxmem : FreeGroup.lift D.srcAvatar x ∈
+      Subgroup.normalClosure (FreeGroup.mk '' D.relators) := by
+    apply (QuotientGroup.eq_one_iff _).mp
+    exact hxquot
+  obtain ⟨r, hr, hlt⟩ := GreendlingerFreeGate.norm_bound_of_sharpGate
+    (sharpGate_fin_two_of_residuals hres)
+    R.relators_cyclicallyReduced R.metric hxne hxmem
+  have hfloor : I.relatorFloor ≤ r.length := I.metricData.floor_le_length hr
+  omega
+
+/-- The closed, universe-polymorphic statement audited below. -/
+def ShortSourceKernelFloorNoGo : Prop :=
+  ∀ (E : Type) [Group E] (N : Subgroup E) (s : E)
+    (B : Type) [Group B] (D : Blueprint E N s B)
+    (I : AvatarRouterInstance.Inputs D)
+    (_hne : FreeGroup.lift D.srcAvatar D.protectedWord ≠ 1)
+    (_hres : SharpResiduals (Fin 2))
+    (x : FreeGroup (Fin D.srcPres.card)),
+    D.srcPres.hom x = 1 →
+    FreeGroup.lift D.srcAvatar x ≠ 1 →
+    2 * FreeGroup.norm (FreeGroup.lift D.srcAvatar x) ≤ I.relatorFloor →
+    False
+
+/-- Closed audit of the general interface-level obstruction. -/
+theorem short_source_kernel_floor_no_go : ShortSourceKernelFloorNoGo := by
+  intro E _ N s B _ D I hne hres x hxker hxne hshort
+  exact no_go_of_short_source_kernel I hne hres x hxker hxne hshort
+
+#audit_closed_axioms short_source_kernel_floor_no_go
+
+/-! ### The unavoidable length-two word in the concrete doubled source -/
+
+/-- The original source presentation has a generator because its target has a
+certified nontrivial element. -/
+def sourcePairIndex : Fin sourceWordPresentation.card :=
+  ⟨0, card_pos_of_ne_one sourceWordPresentation
+    LiteralAffineFreeProductBassSerre.crossingDefect_ne_one⟩
+
+/-- The positive doubled presentation's unavoidable relation `x xbar`. -/
+def sourcePairWord :
+    List (Fin blueprint.srcPres.card × Bool) :=
+  PositivePresentation.pairWord sourceWordPresentation sourcePairIndex
+
+/-- The doubled pair word is killed by the concrete source presentation map,
+even though finite extraction need not choose it as a defining relator. -/
+theorem sourcePairWord_mem_ker :
+    blueprint.srcPres.hom (FreeGroup.mk sourcePairWord) = 1 := by
+  exact (PositivePresentation.pairWord_mem sourceWordPresentation sourcePairIndex).2
+
+/-- Its avatar has exactly two balanced avatar blocks and no cancellation. -/
+theorem sourcePairAvatar_norm :
+    FreeGroup.norm
+        (FreeGroup.lift blueprint.srcAvatar (FreeGroup.mk sourcePairWord)) =
+      2 * blueprint.avatarLength := by
+  let out := avatarSubst blueprint.srcAvatarWord sourcePairWord
+  have hwpos : ∀ c ∈ sourcePairWord, c.2 = true :=
+    (PositivePresentation.pairWord_mem sourceWordPresentation sourcePairIndex).1
+  have hapos : ∀ k, ∀ c ∈ blueprint.srcAvatarWord k, c.2 = true :=
+    fun k ↦ forall_positive_avatarWord blueprint.avatarCount blueprint.codeL (k : ℕ)
+  have houtpos : ∀ c ∈ out, c.2 = true :=
+    forall_positive_avatarSubst blueprint.srcAvatarWord hapos hwpos
+  have hwlen : sourcePairWord.length = 2 := by
+    rfl
+  have houtlen : out.length = 2 * blueprint.avatarLength := by
+    calc
+      out.length = sourcePairWord.length * blueprint.avatarLength :=
+        length_avatarSubst_eq blueprint.srcAvatarWord blueprint.avatarLength
+          blueprint.length_srcAvatarWord sourcePairWord
+      _ = 2 * blueprint.avatarLength := congrArg
+        (fun n ↦ n * blueprint.avatarLength) hwlen
+  rw [lift_mk_eq_mk_avatarSubst blueprint.srcAvatarWord blueprint.srcAvatar
+    (fun _ ↦ rfl) sourcePairWord]
+  change (FreeGroup.mk out).toWord.length = 2 * blueprint.avatarLength
+  rw [AvatarMetricCheck.toWord_mk_of_forall_positive houtpos, houtlen]
+
+/-- The doubled pair's avatar is nontrivial. -/
+theorem sourcePairAvatar_ne_one :
+    FreeGroup.lift blueprint.srcAvatar (FreeGroup.mk sourcePairWord) ≠ 1 := by
+  intro h
+  have hn := sourcePairAvatar_norm
+  rw [h, FreeGroup.norm_one] at hn
+  have hS : 0 < blueprint.avatarLength :=
+    lt_of_lt_of_le (by decide) blueprint.sixteen_le_avatarLength
+  omega
+
+/-- No exact input using the balanced avatar length and a floor of four avatar
+blocks can pass the sharp router residuals.  This is the promised no-go for
+every redesign that keeps the same positive doubled-presentation/avatar
+interface, regardless of its private codewords or occurrence marks. -/
+theorem no_doubled_blueprint_inputs
+    (I : AvatarRouterInstance.Inputs blueprint)
+    (havatar : I.avatarLen = blueprint.avatarLength)
+    (hfloor : 4 ≤ I.wordFloor)
+    (hres : SharpResiduals (Fin 2)) : False := by
+  apply no_go_of_short_source_kernel I blueprint_protectedWord_ne_one hres
+    (FreeGroup.mk sourcePairWord) sourcePairWord_mem_ker sourcePairAvatar_ne_one
+  change 2 * FreeGroup.norm
+      (FreeGroup.lift blueprint.srcAvatar (FreeGroup.mk sourcePairWord)) ≤
+    I.wordFloor * I.avatarLen
+  rw [sourcePairAvatar_norm, havatar]
+  nlinarith
+
+/-- Closed formulation of the exact concrete doubled-interface obstruction. -/
+def DoubledBlueprintInputsNoGo : Prop :=
+  ∀ (I : AvatarRouterInstance.Inputs blueprint),
+    I.avatarLen = blueprint.avatarLength →
+    4 ≤ I.wordFloor →
+    SharpResiduals (Fin 2) → False
+
+/-- Closed audit: private-generator redesigns cannot evade the doubled pair. -/
+theorem doubled_blueprint_inputs_no_go : DoubledBlueprintInputsNoGo :=
+  no_doubled_blueprint_inputs
+
+#audit_closed_axioms doubled_blueprint_inputs_no_go
 
 end
 
