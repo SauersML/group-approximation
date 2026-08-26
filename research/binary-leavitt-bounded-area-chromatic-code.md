@@ -202,6 +202,67 @@ theorem then gives full MF collapse of `Delta`.
   only free conjugating trees and supply no new fusion equation.  Growing
   boundary paths remain possible, but must be handled as a direct-diagram
   problem rather than as growing positive-area chart count.
+* **Use one direct noncommuting `A_3` associator cell.**  For the private
+  tagged column `C_(ij)=B_i+D_(ij)`, the nested word
+  `N(a,C)=[x_12(a),[x_23(1),x_34(C)]]` equals `x_14(aC)` by either
+  bracketing.  It is marked for `a=A_i+A_j` and trivial for `a=A_j`, so it
+  reads the address-dependent payload with no conjugated-mark seams at all.
+  `tagged-a3-associator-cell-has-finite-positive-root-model` fences it:
+  the whole diagram remains in `U_4^+(R)`, and every finite address menu has
+  an exact finite regular model with the long-root mark nontrivial.  A live
+  direct cell must therefore contain a payload-attached opposite-root or
+  Weyl occurrence, not only noncommuting positive-root associativity.
+* **Attach the opposite long root to the associator output.**  The partial
+  Whitehead `W_q=x_14(q)x_41(q)x_14(q)` is the shortest genuine
+  opposite-root word containing the payload-produced mark.  It still reads
+  the payload too late.  `marked-a3-output-whitehead-has-finite-gl4-model`
+  specializes the tagged diagonal arm to `x_12(1)` and the edge arm to one
+  inside `GL_4(F_2)`; both associator bracketings, the edge zero, the
+  Whitehead factorization and its root swap are exact while `x_14(1)` stays
+  nontrivial.  The next opposite-root cell must contain an individual
+  private coefficient arm before the product collapses to `q`.
+* **Put the private column into the opposite-root word before multiplication.**
+  Use `P=W_14(A_i+A_j,B_i+D_(ij))` for the sheared diagonal and
+  `R=W_14(A_j,B_i+D_(ij))` for the edge.  This shares the literal private
+  column, and neither `A_j` nor the tag can be specialized to zero in the
+  tested table.  `private-arm-opposite-cell-has-finite-m3-model` still gives
+  an exact escape: explicit nonzero matrix units in `M_3(F_2)` satisfy all
+  tagged products, the two A3 outputs, and both Whitehead words; `P,R`
+  generate an `S_3` packet while `x_14(q)` remains nontrivial.  The next
+  cell must invoke a full binary completeness relation unavailable in finite
+  unital coefficient rings, not only one shared private arm.
+* **Couple both binary branches and completeness into that same packet.**
+  This finally kills all exact finite-dimensional coefficient-ring
+  specializations: `t_0s_0=1` makes `s_0` a unit in finite dimension, while
+  `t_0s_1=0` and `t_1s_1=1` then contradict each other.  It still does not
+  kill finite group-occurrence models.  By
+  `full-completeness-opposite-menu-has-finite-gl5-fusion`, three copies of a
+  finite `GL_5(F_2)` payload/opposite packet, permuted by `S_3`, carry every
+  individual arm and satisfy `C_0C_1=J` while the common mark remains
+  nontrivial.  The unresolved row must force these three chart copies onto
+  one coefficient/multiplicity reservoir; coefficient direct-finiteness is
+  not itself that same-corner decoder.
+* **Compose the full fold through the same two branch arms.**  Add both
+  right-compositions by `s_j`, then both left-compositions by `t_i`, so the
+  matching loops return `A` and the crossed loops return zero.  This does
+  break the three-character specialization, but
+  `full-fold-compose-return-has-finite-affine-model` gives a finite
+  four-bit replacement.  Two extra label coordinates `R_0,R_1` record the
+  intermediate arms, and four literal transvections satisfy the entire
+  matching/crossed table while the parent mark stays nonzero.  Hence even
+  the composable fold remains an occurrence-label identity unless another
+  row forces those labels to act as coefficient multiplication on one
+  matrix reservoir.
+* **Factor the authenticated intermediate transport as the actual partial
+  Whitehead.**  Require `W=UVU`, with `U` transported to the shared `S`
+  occurrence and `V` transported to the final `T` occurrence.  This puts
+  both coefficient-labelled factors, the intermediate root, and the final
+  return in one bounded occurrence table.  It is still fenced by
+  `partial-whitehead-fold-return-has-finite-s6-model`: the prior `S_6`
+  packet already contains such `U,V` and two exact root-position
+  conjugators while its mark remains nontrivial.  The unresolved literal
+  row must therefore constrain those conjugators through their prescribed
+  native mixed squares, not merely assert the two occurrence conjugacies.
 
 The next viable attack must construct a bounded-area orbit section directly,
 replace representative coherence by a finite-coordinate selector whose

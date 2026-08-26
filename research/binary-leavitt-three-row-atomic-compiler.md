@@ -131,3 +131,132 @@ arms global while placing all three-character support motion in the
 complementary controlled arms.  Thus a viable prototype must authenticate
 both sides of at least one transported product, or use a mixed cross-arm row
 which forces the complementary range support back into the parent atom.
+
+Depth does not repair this one-arm failure.  The construction
+`full-prefix-range-cells-have-three-state-model` conjugates the fixed cell
+through the `S_3` action on the three nonzero two-bit characters and realizes
+the full binary prefix tree at every depth on one twelve-dimensional space.
+Every node has exact inverse rows, exact parent range-sum, exact one-arm
+Whitehead authentication, and the attached mixed reverse-range crossed-zero
+row `e_0e_1=0`.  Address words collide in the six-element actor, but the
+collisions are harmless because each child retains an equal-rank wing outside
+the current parent atom.  Hence choosing depth beyond `log d` after seeing a
+matrix coordinate cannot by itself produce `(BAC1)`.  The prototype menu
+must contain a cross-address holonomy or cousin-arm occurrence which detects
+reuse of those complementary wings.
+
+The smallest such occurrence is now explicit.
+`first-cousin-cross-arm-breaks-three-state-reuse` adds one equal-depth
+prefix cross-zero row `[X_alpha,Z_beta]=1` between two cousin cells that the
+three-state actor identifies.  It rejects the twelve-dimensional periodic
+model because the reused pair has commutator `J`, not one.  A fresh Pauli
+factor repairs any finite collection of these rows, however; the complete
+depth-`n` table has exact marked models of growing dimension.  Conversely,
+the whole growing cross table would give the required operator-norm packing
+capacity, but its canonical discrepancies have unbounded equal-level
+relator area and therefore cannot be literal conjugates of finitely many
+fixed prototypes.  The surviving design target is a fixed nonlinear
+holonomy compressing many cousin collisions without recreating that area
+divergence.
+
+The first nonlinear compression attempts are also fenced.
+`bounded-cousin-checksums-have-finite-clifford-models` evaluates the balanced
+four-commutator checksum and finds it parity-blind: it is one both for the
+correct two-cousin table and after identifying the cousins.  A bounded
+relative-address holonomy can permute only finitely many named arms and is
+implemented by a finite monomial/Clifford factor.  Any bounded connected
+pairwise mark-seam complex has the same finite-range obstruction.  An odd
+checksum detects reuse only by retaining an asymmetric cousin cross row,
+returning to the finite-fresh-factor/unbounded-area dichotomy above.  The
+remaining prototype must therefore be a non-pairwise coefficient relation
+whose value is neither central mark parity nor a finite affine-symplectic
+permutation of the cousin factors.  A fixed higher-arity product of
+conjugate marks is not enough either:
+`fixed-arity-mark-fusion-has-finite-character-model` realizes every such
+fusion in a finite character actor, even with one controlled Pauli payload
+per chart.  The boundary must read noncommuting row/column payloads in an
+address-sensitive way.
+
+The first literal noncommuting depth-two payload loop is not enough.
+`depth-two-cousin-loop-has-finite-ut5-fusion-model` uses the shared-arm
+identity `t_(00)(s_(00)t_(11))s_(11)=A` as a four-arm nested Steinberg
+commutator, transports the complete loop through both Whitehead address
+moves, and attaches its three outputs to the parent range-sum fold.  Three
+copies of `UT_5(F_2)`, modulo the product of their central long roots and
+with `S_3` permuting the copies, realize the whole table exactly with the
+mark surviving.  Thus conjugating complete noncommuting payload packets and
+fusing only their central outputs still admits a finite nilpotent escape.
+The next word must mix arms from **different** addressed payload copies in
+one noncommuting occurrence; a whole-packet address permutation is not
+enough.
+
+Literal sharing across those copies has now been tested as well.
+`shared-cousin-arm-loop-has-finite-matrix-fusion` puts the source and two
+cousin ranges in `M_3(F_2)`, uses the actual matrix units as the common
+`t_u,s_u,t_v,s_v` occurrences in every inverse, crossed-zero, Whitehead, and
+mixed four-arm row, and imposes the range fold in the top root of
+`UT_5(M_3(F_2))`.  Quotienting that central root by the scalar identity makes
+`q_u+q_v=1-p` equal to `p` in characteristic two while the rank-one mark
+`p` survives.  Thus cross-copy noncommutation plus literal arm sharing is
+still insufficient if the object-erasing equality appears only in a central
+output root.  The surviving candidate must propagate the fold into a second
+composable root by multiplying the identified output with another shared
+coefficient arm.
+
+That first propagation is now fenced too.  In
+`two-step-fold-loop-has-finite-64-model`, the three fold coefficients
+`C_0,C_1,J=C_0C_1` are all sent through the same literal nested word
+`[T,[-,S]]`, where the shared arm occurrences `S,T` are commuting
+involutions.  The active child and parent both return the same nontrivial
+mark and the crossed child returns one, exactly as the coefficient rows
+`t_us_ut_us_u=A`, `t_u(s_vt_v)s_u=0`, and `t_uAs_u=A` require.  Nevertheless
+the whole cell has an exact model of order `64`: on
+`F_2[e,h]/(e^2,h^2)`, the two arms act by multiplication by `1+e,1+h`, so
+the nested word is the nonzero mixed second difference `eh`.  Thus forcing
+the fold out of the central scalar quotient is necessary but not sufficient.
+The next prototype must authenticate an intermediate propagated root (or an
+individual arm action there), rather than checking only equality of the
+three returned long-root words.
+
+The smallest such authentication still has a finite escape.
+`intermediate-fold-arm-has-finite-s6-model` names the propagated root
+`E=[C_0,S]=[J,S]`, imposes `[C_1,S]=1`, uses the same `S` and `T` in every
+row, and adjoins an involution `W` satisfying `WSW^(-1)=E`.  This does rule
+out the preceding square-zero semidirect product because its actor and
+additive-kernel elements cannot be conjugate.  But an exact permutation
+model in `S_6` survives: overlapping double transpositions realize all
+three fold rows, the intermediate transport, the distant-arm commutation,
+and the nontrivial final return simultaneously.  Therefore an abstract
+transport of the intermediate arm is not yet its full native
+authentication.  The remaining bounded target must attach `W` to the
+actual Whitehead factorization (including its other already-shared root
+occurrences), or authenticate the final `T` action by an equally literal
+native occurrence row.
+
+That literal factorization has now also been tested.
+`partial-whitehead-fold-return-has-finite-s6-model` adjoins
+`W=UVU`, transports `U` to the reused `S` arm and `V` to the reused final
+`T` arm, and keeps every preceding fold/intermediate/return row.  The same
+six-point permutation packet extends exactly: take `U=S`, `V=(3 5)` and
+two involutory conjugators for the root-position identifications.  Thus even
+both factor arms in one partial-Whitehead word do not force a common matrix
+reservoir.  The next test must constrain the two root-position transports
+by their full native mixed-square menu rather than allowing independent
+conjugacies.
+
+Doing both at once is still insufficient.
+`whitehead-fold-return-has-affine-model` returns to the full four-bit model
+and defines each partial Whitehead by the literal word
+`W_i=S_iT_iS_i`, using exactly the same affine transvections `S_i,T_i` as
+the two-branch fold-compose-return table.  The braid
+`S_iT_iS_i=T_iS_iT_i`, both Whitehead involution and root-swap rows, and the
+adjacent braid `W_0W_1W_0=W_1W_0W_1` all hold.  More strongly, `W_i` swaps
+the parent mark label `A` with the actual intermediate label `R_i`, and the
+same `T_i` then satisfies `[T_i,R_i]=A` and the crossed-zero row.  Hence both
+intermediate roots and both final outputs are natively authenticated with
+no duplicate arm actor.  The finite affine group, together with its
+equivariant `GL_5(F_2)` payload/opposite packet, nevertheless retains the
+nontrivial mark exactly.  The surviving boundary is no longer occurrence
+sharing or Whitehead factorization: a new row must force these affine
+actors to be coefficient multiplication on one common payload matrix
+corner, rather than merely automorphisms of a finite label packet.
