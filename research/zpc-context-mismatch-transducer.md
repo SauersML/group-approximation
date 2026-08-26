@@ -115,6 +115,19 @@ additional odd selector characters.
   escape unless it directly authenticates a selector--payload coefficient or
   selected proper corner; that is the still-open coupled incidence, not a
   holonomy-only gadget.
+- **Controlled Pauli AND isolates the nonlinear residue.**
+  `controlled-pauli-commutator-is-and-times-multiplicity-commutator` now has
+  an ordinary-word presentation whose selector-sector normal form is
+  `J^(ab)[A_(a,b),B_(a,b)]`.  Taking the second selector to be payload
+  disagreement realizes exactly the missing selector-gated equality, except
+  for the external multiplicity commutator.  The resulting live route is
+  `zpc-controlled-pauli-and-gauge-lock-route`.  It must charge or cancel that
+  commutator in finite normalized-HS models while preserving the source's
+  infinite tracial escape.  A finite packet alone cannot do so:
+  `finite-packet-functoriality-has-positive-regular-profile` and
+  `leavitt-crossed-gram-pauli-charge-has-sectorwise-escape` give the regular
+  and sectorwise gauge absorbers.  Thus the AND identity removes the affine
+  pp-definability problem but does not close context gluing by itself.
 - **Do not globalize readable bits unnecessarily.**  The source ZPC hypotheses
   provide local commutation, not one global readable algebra.  The transducer
   should glue decoded unreadable observables across contexts rather than

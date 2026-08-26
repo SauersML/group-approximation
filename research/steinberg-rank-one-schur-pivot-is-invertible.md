@@ -37,7 +37,15 @@ pivot all `S` rows and reduce the X-dual surjectivity problem to the
 explicit Schur complement on `Q/S`; it does not by itself prove that
 complement is invertible.
 
-## Exact reduction
+## Invalid candidate reduction
+
+**DO NOT USE THIS REDUCTION.**  The following proposed reduction is retained
+only to identify the algebraic fault isolated by
+`steinberg-schur-four-transform-reduction-fails-p-seven-check`.  At `p=7`,
+direct evaluation of `(SRP2)` gives `det(M_7)=4`, whereas `(SRP4)` gives a
+singular `I+H`.  Thus at least one of the claimed cofactor/binomial-inversion
+steps below is wrong.  In particular, the four-transform and resonance
+formulations are not currently equivalent to `(SRP1)`.
 
 Expanding the first row of `(SRP2)` leaves only its last entry `8`, so a
 cofactor reduces `M_p` to a square minor `N=W+K`.  After reversing rows,
@@ -58,7 +66,8 @@ H_(u,v)=2^(1-2v) binom(u+v-1,u)
  [(-1)^v-2^(u-v)+2^(u+v-1)]       (v>=3).             (SRP4)
 ```
 
-Thus `det M_p=det(I+H)`.  If `Q(t)=sum_v q_vt^v`, the generating polynomial
+The invalid derivation then claimed `det M_p=det(I+H)`.  If
+`Q(t)=sum_v q_vt^v`, its proposed generating polynomial
 of `Hq` is
 
 ```text
@@ -69,7 +78,7 @@ of `Hq` is
  }.                                                       (SRP5)
 ```
 
-Consequently `(I+H)q=0` says that `(SRP5)+Q(z)` lies in
+It next claimed that `(I+H)q=0` says that `(SRP5)+Q(z)` lies in
 `span{1,z,z^(p-2)}`.  Homogenize
 
 ```text
@@ -85,14 +94,30 @@ g_2=(Y/8,Y-2X),
 g_3=(Y/2,Y-2X).
 ```
 
-Applying the projective differential to `Phi` removes the Frobenius
-kernel.  On `Sym^(p-2)` the four coefficients become exactly
+Applying the projective differential to `Phi` was then claimed to remove the
+Frobenius kernel.  On `Sym^(p-2)` the proposed four coefficients are
 
 ```text
 1,                    -1/2,          -1/2,          1, (SRP6)
 ```
 
-and the result lies in the two-dimensional boundary space
-`span{Y^(p-2),X^(p-3)Y}`.  Proving that this four-transform operator has no
-nonzero vector with such boundary image is now an equivalent symbolic
-target for `(SRP1)`.
+and the result was claimed to lie in
+`span{Y^(p-2),X^(p-3)Y}`.  None of these downstream claims may be used until
+the `p=7` discrepancy is repaired from the original matrix `(SRP2)`.
+
+## Correct replacement target
+
+The corrected reversed cofactor from `(S47F3)` can be scaled by invertible
+row and column factors.  Thus `(SRP1)` is equivalent to invertibility, for
+`2<=j,v<=p-3`, of
+
+```text
+A_(j,v)=binom(j+v-1,j)-1_(v>=j)binom(v,j)
+       +1_(j+v=p)(-1)^j(2^(2j-1)-1).                 (SRP7)
+```
+
+The high/high block `j,v>(p-1)/2` is triangular with diagonal `-1`.
+Consequently the genuine remaining target is invertibility of the explicit
+low-index Schur complement of `(SRP7)`.  This restarts the argument directly
+from `(SRP2)` and does not inherit any of the invalid four-transform
+identities.

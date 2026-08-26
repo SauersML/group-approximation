@@ -23,9 +23,9 @@ Then
 tau(QP) >= tau(Q)/4.                                   (DCO2)
 ```
 
-The same conclusion is robust: if the double-commutator identity and the two
-commutations hold up to `o(1)` in normalized Hilbert--Schmidt norm for
-rounded involutions, then
+The same conclusion is robust: if the double-commutator identity and all
+three commutations `[r,A]`, `[r,B]`, `[r,z]` hold up to `o(1)` in normalized
+Hilbert--Schmidt norm for rounded involutions, then
 
 ```text
 tau(QP) >= tau(Q)/4-o(1).                              (DCO3)

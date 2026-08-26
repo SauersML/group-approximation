@@ -111,6 +111,36 @@ In particular one of the two row defects is at least `1/5`.  No density
 bound, spectral choice, PI degree, or property `(T)` is used after the common
 carrier and common gauge have been decoded.
 
+The same obstruction tolerates an approximately shared gauge.  Let the two
+rows use multiplicity involutions `V_1,V_2`, and put
+
+```text
+theta_i=tau((1+V_i)/2),
+epsilon_g=||V_2-SV_1S^*||_2
+```
+
+for a multiplicity-space unitary `S`.  Then
+
+```text
+|theta_1-theta_2| <= epsilon_g/2,
+
+delta_1+(2/3)delta_2+(1/2)epsilon_g >= 1/3.           (TSG6)
+```
+
+Consequently
+
+```text
+delta_1^2+delta_2^2
+ >= (9/13)(1/3-epsilon_g/2)_+^2.                     (TSG7)
+```
+
+If the gauge error tends to zero, `(TSG7)` recovers the local `1/13` floor.
+On a reducing carrier of ambient trace `beta`, the corresponding ambient
+squared row energy is at least `beta/13-o(1)`.  The value `1/104` follows
+only if the **same authenticated row carrier** has `beta>=1/8-o(1)`; a
+separate trace-`1/8` marked overlap does not by itself authenticate either
+native selector occurrence.
+
 This produces a new finite-coordinate compiler target for the binary
 Leavitt route.  It is strictly weaker than manufacturing a literal fine
 reflection or an identity-outer anchor: expose two scale-changing rows on

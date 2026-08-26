@@ -44,14 +44,42 @@ tau(supp_Q(C-1)) <= 2tau(QP).                           (DCP5)
 
 Combining `(DCP3)` and `(DCP5)` proves `(DCO2)`.
 
-For the robust statement in norm microstates, first round the four torsion
-words to involutions.  Their operator-norm commutator defects tend to zero.
-Block-diagonalize `A,B,z` across the spectral projection `Q` and take the
-polar signs of the two diagonal blocks; the resulting commuting-with-`Q`
-involutions differ by `o(1)` in operator norm.  On `QH`, `(DCP2)` then holds
-within operator norm `o(1)`.  Once that error is below `2`, the same
-intersection argument forces `rank(C-1)>=rank(Q)/2`: a vector fixed by `C`
-together with its `B`-translate would otherwise see error exactly `2`.
-The support bound `(DCP5)` is unchanged for the rounded block involutions,
-and their negative projections differ from the original ones by `o(1)` in
-operator norm.  Dividing by matrix dimension yields `(DCO3)`.
+For the robust normalized-HS statement, first round the four torsion words
+to involutions in `2`-norm and put `Q=(1-r)/2`.  Approximate commutation with
+`r` means that the off-diagonal `Q`-blocks of `A,B,z` have `2`-norm `o(1)`.
+Replace each by its `Q`-block diagonal part and take the polar sign in each
+block.  The resulting exact involutions commute with `Q` and differ from the
+originals by `o(1)` in `2`-norm.  This is a local block correction, not an
+upgrade from Hilbert--Schmidt norm to operator norm.
+
+For the corrected operators put
+
+```text
+C=[A,z],             W=[C,B],             e=||W-r||_2.
+```
+
+Let `E=ker(C-1) meet Q`.  On `E meet B E B`, both a vector and its
+`B`-translate are fixed by `C`, so `W=1`, whereas `r=-1`.  Therefore
+
+```text
+e^2 >= 4 tau(E meet B E B)
+    >= 4 max(2tau(E)-tau(Q),0).                       (DCP6)
+```
+
+It follows that
+
+```text
+tau(supp_Q(C-1))=tau(Q)-tau(E)
+ >= tau(Q)/2-e^2/8.                                  (DCP7)
+```
+
+The support upper bound `(DCP5)` is still exact for the corrected block
+involutions.  Combining it with `(DCP7)` gives
+
+```text
+tau(PQ) >= tau(Q)/4-e^2/16.                          (DCP8)
+```
+
+Undoing the `o(1)` block and polar-sign corrections proves `(DCO3)`.  This
+argument uses only normalized Hilbert--Schmidt control and all three stated
+approximate centrality relations.

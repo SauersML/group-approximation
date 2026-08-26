@@ -49,3 +49,30 @@ multiplicity factor--then `(CPM4)` reduces exactly to the desired packet
 commutator tensored with the identity.  The remaining reversible-circuit
 groupification problem is therefore multiplicity-commutator cancellation,
 not reconstruction of selector characters.
+
+There is an ordinary-word realization which avoids naming the control
+projections.  Let `S,T` be commuting selector involutions commuting with
+the Pauli involutions `X,Z,J`, and impose on involutions `U,V`
+
+```text
+[U,S]=[U,T]=[U,X]=1,          UZU=SZ,
+[V,S]=[V,T]=[V,Z]=1,          VXV=TX.                (CPM5)
+```
+
+On the marked sector `J=-1` and the selector sector
+`S=(-1)^a,T=(-1)^b`, Schur's lemma gives
+
+```text
+U=X^a tensor A_(a,b),         V=Z^b tensor B_(a,b),
+
+[U,V]=J^(ab) tensor [A_(a,b),B_(a,b)].               (CPM6)
+```
+
+Thus `(CPM5)` groupifies the AND-supported Pauli phase by ordinary group
+relations, but still leaves exactly one multiplicity-gauge commutator on
+each selector sector.  Taking `T=GH` for commuting payload involutions
+`G,H` makes `b=1` the payload-mismatch bit.  If the multiplicity commutator
+is independently locked, the relation `[U,V]=1` forbids exactly the sector
+where the selector is active and the payloads disagree.  The word syntax
+therefore reduces selector-gated equality to the open finite-matrix gauge
+lock; it does not supply that lock.

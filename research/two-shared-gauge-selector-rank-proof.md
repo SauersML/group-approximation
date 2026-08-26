@@ -79,3 +79,27 @@ and gives `(TSG4c)`.  In the binary case `c_1=1`, `c_2=3/2` and
 the corresponding scalar optimization problem, so no larger constants follow
 from the two inequalities `delta_i>=c_i|theta-theta_i^*|` alone.  This proves
 `(TSG4)--(TSG5)`.
+
+For the approximate-gauge form, the positive spectral projections satisfy
+
+```text
+|theta_1-theta_2|
+ <= (1/2)||V_2-SV_1S^*||_2=epsilon_g/2.
+```
+
+Use the first row to move from `theta_1` to `1/2`, the gauge comparison to
+move from `theta_1` to `theta_2`, and the second row to move from `theta_2`
+to `5/6`.  The triangle inequality gives `(TSG6)`.  With
+
+```text
+x=|theta_1-1/2|,       y=|theta_2-5/6|,
+```
+
+one has `x+y >= (1/3-epsilon_g/2)_+`,
+`delta_1>=x`, and `delta_2>=(3/2)y`.  Minimizing
+
+```text
+x^2+(9/4)y^2
+```
+
+at fixed `x+y` gives the factor `9/13`, proving `(TSG7)`.
