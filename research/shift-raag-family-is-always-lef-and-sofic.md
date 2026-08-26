@@ -15,3 +15,11 @@ locally embeddable into finite groups and sofic.  Together with
 [[residual-finiteness-two-generator-recursive-is-pi3-complete]], the
 two-generator recursive family `G_{J_e}` has constant LEF and sofic
 answers while its residual finiteness is `Pi^0_3`-complete.
+
+**Promise corollary.**  Since every group in the hardness family of
+[[residual-finiteness-two-generator-recursive-is-pi3-complete]] is LEF
+and sofic, residual finiteness remains `Pi^0_3`-hard on two-generator
+recursive presentations under the promise that the group is LEF, or
+sofic: knowing that a recursively presented group has every finite-model
+approximation property does not lower the complexity of deciding whether
+it is residually finite.

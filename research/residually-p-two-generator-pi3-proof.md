@@ -34,10 +34,9 @@ into the finite `p`-group `Q` kills every enumerated relator" is `Pi^0_1`,
 so the matrix is `Sigma^0_2` and the whole is `Pi^0_3`.
 
 **Hardness.**  Let row `x` be `{ p^x (p j + 1) : j < |W_g(e,x)| }` and
-`J_e` the union of the rows; `D_x = p^x (Z_p^x)`... explicitly, let
-`D_x` be the set of integers of exact `p`-adic valuation `x`, a clopen
-subset of `Z_p` (hence of the pro-p completion), pairwise disjoint,
-covering `Z \ {0}`; `J_e^s n D_x = +-(row x)`.  If row `x` is infinite,
+`J_e` the union of the rows, and let `D_x` be the set of integers of exact
+`p`-adic valuation `x`, a clopen subset of `Z_p`, the sets `D_x` being
+pairwise disjoint and covering `Z \ {0}`; `J_e^s n D_x = +-(row x)`.  If row `x` is infinite,
 `j = p^k - 1` gives `p^x (p j + 1) = p^x (1 - p) + p^{x+1+k}`, so
 `p^x (1 - p) in cl_p(J_e^s)`; it has valuation `x` and is congruent to
 `p^x` modulo `p^{x+1}`, whereas `-(row x)` is congruent to `-p^x`, and
