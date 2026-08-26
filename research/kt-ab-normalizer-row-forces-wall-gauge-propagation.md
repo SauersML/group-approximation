@@ -67,4 +67,13 @@ compatible with a coherent relative-commutant cocycle over the whole actor.
 Constructing or excluding that nonamenable multiplicity cocycle remains the
 full-actor seam.
 
+The propagation alternative is algebraically sharp.
+`kt-full-actor-cocycle-loops-admit-exact-wreath-wall` conjugates the canonical
+actor copy in `L(W)` by the root lamp.  The resulting coboundary satisfies
+`C^3`, every Steinberg loop, all `Gamma` rows, and canonical actor traces
+exactly, while its marked fold has squared norm two.  Therefore no further
+relation-only tracial estimate can turn propagation into vanishing.  A
+positive theorem must use that the target is a tracial **matrix
+ultraproduct**, not merely a finite tracial von Neumann algebra.
+
 Proof: `kt-ab-normalizer-gauge-propagation-proof`.

@@ -62,6 +62,15 @@ coherent positive-density relative-commutant cocycle carried by both `A` and
 `B`; excluding or constructing that nonamenable cocycle is the full-actor
 problem.
 
+All finite actor loops are compatible with such a cocycle at the purely
+tracial level.  `kt-full-actor-cocycle-loops-admit-exact-wreath-wall` uses
+the canonical root lamp in `L(W)` to conjugate one full actor copy.  The two
+copies agree on `Gamma`, have canonical actor trace, satisfy `C^3` and every
+Steinberg relation exactly, and retain squared fold gap two.  The missing
+point is exactly that `L(W)` is not known Connes embeddable.  Thus a closed
+cocycle-loop or sum-of-squares argument which does not inspect the matricial
+ambient cannot establish this claim.
+
 **This is packaging, not a reduction of the difficulty.**  Given a
 homomorphism `phi` of the free lamp `H_K=G *_Gamma (Gamma x K)` into a
 hyperlinear group with `phi(r)!=1`, put `pi=phi|_G` and `v=phi(k)`: that is a
