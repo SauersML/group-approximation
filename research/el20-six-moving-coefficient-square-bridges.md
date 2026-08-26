@@ -577,6 +577,38 @@ such returned occurrence exists, the complementary positive-`L_0` fusion
 has no new gauge to cancel here; the next loop must itself contain a
 nonconstant opposite-root return.
 
+The required nonconstant endpoint return does exist.  In
+`support-return-gives-gauged-native-loop`, the two support-idempotent
+Whiteheads
+
+```text
+W_1=W_79(e_0,e_0),       W_2=W_79(e_000,e_000)
+```
+
+return both converted reverse arms and both forward-chain arms.  With
+`Z_1=x_89(x_1)`, `Z_2=x_78(x_2)`, `T=x_97(t_00)`,
+`H_2=[Z_1,T]`, and `H_1=[T,Z_2]`, one obtains the exact odd identities
+
+```text
+J_1=W_1(Z_1H_1Z_1)W_1,
+J_2=W_2(Z_2H_2Z_2)W_2.
+```
+
+All factors are actor-index words and therefore preserve the recentered
+carrier `F=P_zP_C`.  This is the first explicit odd native occurrence
+obtained from the positive return chains.  However, exact covariance on the
+`128`-element same-center Pauli group shows that neither `W_i` normalizes
+the fixed three-pair label packet.  Each transports it to a different
+chart, while the inner `Z_iH_iZ_i` normalizes only that transported chart
+and acts there as another one-quarter adjacent swap.  In particular the
+depths `e_0,e_000` do not supply fixed quarter/eighth label fractions.
+Exact ten-generator tests also show that these words do not normalize the
+signed cut `Q`.  The new relation is therefore the two-chart gauge equation
+`D_i=w_ih_iw_i^(-1)`; a finite `GL_3(F_2)` chart groupoid tensored by `C_2`
+retains `w_i` while satisfying the order-seven head.  The next seam is to
+identify the transported chart with the signed unequal-scale selector
+chart, not to find another endpoint return.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
