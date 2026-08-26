@@ -47,10 +47,10 @@ upper bound, proves the exact `Pi02` classification of MF recognition on
 finite presentations. -/
 theorem mfCode_pi02Complete_of_compiler (C : MFCompiler) :
     Pi02Complete MFCode := by
-  refine ⟨MFRecognitionPi02.operatorMFCode_pi02, ?_⟩
-  simpa only [MFCode, OperatorMFProperty,
-    AdianRabinGeneral.codeProperty] using
-    (finiteCodeProperty_pi02Hard_of_compiler C)
+  change Pi02Complete
+    (AdianRabinGeneral.codeProperty OperatorMFProperty)
+  exact ⟨MFRecognitionPi02.operatorMFCode_pi02,
+    finiteCodeProperty_pi02Hard_of_compiler C⟩
 
 /-- The reverse classification needs no new construction: complementing the
 same many-one reductions proves `Sigma02`-completeness of non-MF
