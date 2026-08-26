@@ -76,16 +76,16 @@ current statement of what is left on the cheapest Kun--Thom Clifford branch.
   `marked-double-coset-infinite-degree`.  The completions of
   `vertex-supported-symplectic-completion` are deliberately noninvariant, and
   this is why they do not contradict those no-gos.
-- **Next concrete experiment (not yet run).**  Take a modest group window
-  `E`, a lamp window `F`, and many independent completions sampled by
-  `private-neighbour-density`; extend the tested partial symplectic maps on
-  each block; record separately the `V_A`-valued Clifford factor set and the
-  scalar Weil multiplier (`finite-clifford-symplectic-section-obstruction`);
-  then ask whether a direct sum of blocks can drive the normalized defect mass
-  of items 2--3 to zero while the exact lamp traces of item 4 are preserved.
-  A persistent positive lower bound would be a new obstruction and would prune
-  this lane sharply; decay in the polynomial degree would be the first
-  positive evidence for the claim.
+- **Random/direct-sum dilution — closed as a separate mechanism.**
+  `clifford-direct-sum-dilution-forces-an-exact-good-block` proves that a
+  nonzero Pauli factor-set value has normalized squared defect `2` on its
+  irreducible block.  For a fixed table of `m` multiplication triangles,
+  direct-sum defect below `2/m` therefore leaves one constituent block on
+  which all `m` phase-space defects vanish exactly.  Random completions may
+  help locate such a block, but averaging cannot replace it.  The resulting
+  exact finite target is
+  `minimal-marked-graph-finite-window-phase-space-section`; scalar Weil
+  multipliers are then removed by conjugate doubling.
 - **A design principle worth testing.**  The neighbour chart
   `a ↦ e_{qp}(a)h_{pq}Γ` of `minimal-marked-graph-private-neighbour` turns
   extra demands on a completion into conditions on a Laurent parameter.
