@@ -53,6 +53,22 @@ purely singular invariant amenable near representation with regular
 character; it must be genuinely non-Cartan and cannot admit an equivariant
 coarse factor over the compression cosets.
 
+The Kun--Thom fork now has a factor-base reformulation which is genuinely
+different from the forbidden Cartan models.  The wreath embeds in
+
+```text
+Sym_fin((G/Gamma) x {0,1}) rtimes G,
+```
+
+whose group factor is `R rtimes_alpha G`.  Connes embeddability of this
+larger crossed product is equivalent to a trace-correct homomorphic lift of
+`alpha` through `N_(R^omega)(R) -> Aut(R)`, and would imply hyperlinearity of
+the original nonsofic wreath.  This is only a one-way reduction: the open
+node `kun-thom-finitary-action-lifts-to-normalizer` is the same two-compressor
+incompatibility expressed as a nonabelian cocycle in
+`U(R' cap R^omega)`, not a permanence proof or an extension theorem for an
+already-known wreath embedding.
+
 ### 2026-08-26: honest scope of the Property-(T)-free MF project
 
 Property `(T)` enters the existing non-MF transport proof at one precise
