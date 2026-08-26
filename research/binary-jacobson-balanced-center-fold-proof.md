@@ -50,6 +50,12 @@ This is `(JCF3)`.  No assertion is made for `x_21(T)` or `x_41(T)`: those
 roots do not reduce `e`, so moving them through the final factor `e` in
 `(4)` would be exactly the missing covariance claim.
 
+Also, `(4)` identifies the source Q-rows literally as `x_12(Q)|_e` and
+`x_14(Q)|_e`.  They are not the Q-changed rows of the earlier degree-two
+fold, and this construction has no zero row.  Hence the proof supplies no
+polynomial identity forcing `s_4=0` for the source tuple; that issue is
+logically independent of the carrier calculation above.
+
 There is nevertheless an exact formula for that failure.  Every generator
 `d` of the balanced packet commutes with its center `c_T`.  With `C_d=ede`,
 

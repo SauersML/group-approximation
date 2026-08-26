@@ -2,13 +2,13 @@
 rg: 2
 id: binary-jacobson-balanced-center-fold-authenticates-two-rows
 kind: claim
-title: The balanced Jacobson center has an exact orthogonal fold and authenticates both Q-rows
+title: The balanced Jacobson center folds exactly, but does not inherit the degree-two source
 artifacts:
   - research/binary-jacobson-balanced-center-fold-proof.md
 distinct_from:
   binary-jacobson-balanced-target-redesign-contains-mixed-root: that computes the redesigned packet and proves its center carries the raw range off itself; this turns that orthogonality into an exact coisometry onto a negative moved-center cut.
   binary-jacobson-closing-root-folds-head-two-to-one: that folds two source sign sectors onto one raw range using the closing constant root; this folds one raw range and its moved-center image onto the negative center carrier of the mixed target packet.
-  binary-jacobson-raw-cycle-selects-common-pi-intertwiner: that asks for all four degree-two-to-degree-four covariance rows; this proves the carrier identity and the two Q-labelled rows, leaving exactly the two T-labelled rows.
+  binary-jacobson-raw-cycle-selects-common-pi-intertwiner: that asks for all four degree-two-to-degree-four covariance rows; this proves a carrier identity and two Q-labelled rows for the redesigned packet, but isolates the missing source-degree authentication.
 ---
 
 **ESTABLISHED.**  Let `e=F_+`, and let
@@ -50,11 +50,21 @@ two rows remain for the redesigned packet,
 x_21(T) V = V C_2,       x_41(T) V = V C_4,             (JCF4)
 ```
 
-for one common degree-two source tuple on `e`.  The first T-root is the
-already audited half-supported alternating polar; the second is a new
-opposite-coordinate T-root.  Closing `(JCF4)`--or proving that the two T-root
-leakages have complementary supports--would authenticate the full literal
-M4 target without returning to the old fixed tuple `D`.
+for contractions on `e`.  The first T-root is the already audited
+half-supported alternating polar; the second is a new opposite-coordinate
+T-root.
+
+Crucially, this is **not yet a PI bridge**.  The two source rows in `(JCF3)`
+are `x_12(Q)|_e` and `x_14(Q)|_e`, not the established folded degree-two
+rows `x_12(S^2)|_e` and `x_14(SQ)|_e`; nor does this fold produce the zero
+second row of that tuple.  No identity here proves that the four compressed
+source contractions have `s_4=0`.  Even if `(JCF4)` closed, the result could
+be an ordinary `M_4`-to-`M_4` transport.
+
+Therefore a useful continuation must solve **both** remaining typings:
+control the two T-root leakages and identify a degree-two source algebra on
+`e` for the same occurrence.  The center fold alone only removes the moved
+center ambiguity.
 
 The remaining errors have no hidden gauge.  For
 `d in {x_21(T),x_41(T)}` and the literal source compression `C_d=ede`,
@@ -65,8 +75,9 @@ dV-VC_d=(1-c_T)(1-e)de/sqrt(2).                          (JCF5)
 
 For `d=x_21(T)`, the source support of the unprojected leakage `(1-e)de` is
 exactly `e-p`, where `p=e(1+x_23(1))(1+x_23(Q))/4` is the first mixed-polar
-support.  Thus the final task is a concrete range-incidence calculation for
-two named T-roots, not an unspecified covariance or selector problem.
+support.  Thus the remaining covariance task is a concrete range-incidence
+calculation for two named T-roots.  A separate source-degree calculation is
+still required.
 
 DERIVATION
 binary-jacobson-balanced-center-fold-proof
