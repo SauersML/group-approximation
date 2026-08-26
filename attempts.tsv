@@ -213,3 +213,4 @@
 32913268136	2026-08-26T00:01:18Z	GroupApproximation/Sofic/BlockAmplificationRepair.lean	norm_blockListMap_sub_one_ge_of_mem
 32921056665	2026-08-26T02:00:32Z	GroupApproximation/Sofic/BlockCliffordIndex.lean	sign_sq
 32926019471	2026-08-26T03:20:08Z	GroupApproximation/Sofic/BlockCliffordLamp.lean	sset_one
+32930125237	2026-08-26T04:25:24Z	GroupApproximation/Sofic/BlockCliffordLamp.lean	blockPerm_property
