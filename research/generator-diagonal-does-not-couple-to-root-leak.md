@@ -61,9 +61,11 @@ use further approximate `SL_3` relations to build a ucp comparison point;
 the special choice `C_s=X_s/sqrt(|S|)` does not remove the matrix-order
 seam isolated by the earlier root-leak firewall.
 
-The omission is quantitatively exact rather than cosmetic.
-`root-involution-pays-free-envelope-gap` proves that for the free envelope
-retaining only `B_21^2=1`, the generator-diagonal gap is at most
-`||B_21^2-I||_2^2/(4 sqrt(6))`; this packet attains equality.  Hence the
-entire local gap disappears when that involution defect tends to zero, and
-any arithmetic residual must be carried by mixed lattice relations.
+The artificial omission is quantitatively exact rather than cosmetic.
+`test-involution-pays-free-envelope-gap` proves that for the test envelope
+which replaces the infinite-order arithmetic root coordinate by the extra
+relation `B_21^2=1`, the generator-diagonal gap is at most
+`||B_21^2-I||_2^2/(4 sqrt(6))`; this packet attains equality.  This diagnoses
+the manufactured `C_2*F_5` gap, but it is not an omitted `SL_3(Z)` root
+relation: `x_21(-1)` has infinite order.  Any actual arithmetic residual
+must therefore be carried by mixed lattice relations.

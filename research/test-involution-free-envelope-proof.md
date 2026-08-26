@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: root-involution-free-envelope-proof
+id: test-involution-free-envelope-proof
 kind: route
-title: Symmetrize the leaking root and freely extend the resulting ucp maps
-target: root-involution-pays-free-envelope-gap
+title: Symmetrize the artificial test involution and freely extend the resulting ucp maps
+target: test-involution-pays-free-envelope-gap
 requires: []
 ---
 
@@ -49,3 +49,10 @@ Delta(C;x)
 
 which is `(RIG1)`.  If `B^2=-I`, the last quantity is `1/sqrt(m)`;
 the support calculation in the cited countermodel attains it.
+
+This proof concerns the deliberately chosen envelope
+`C^*(C_2*F_(m-1))`.  It does not impose a genuine relation of
+`SL_3(Z)`: the elementary root element represented by `B` in the intended
+arithmetic problem has infinite order.  Thus the ucp symmetrization closes
+only the artificial order-two test gap and leaves the mixed arithmetic
+matrix-range problem untouched.
