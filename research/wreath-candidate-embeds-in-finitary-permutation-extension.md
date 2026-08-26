@@ -7,6 +7,7 @@ distinct_from:
   hyperlinear-wreath-model: that asks for microstates of `W` directly; this exhibits a larger nonsofic group `Sigma_2` whose hyperlinearity would suffice and whose von Neumann algebra is `R rtimes G`, so the base is a factor rather than a Cartan algebra.
   positive-core-bernoulli-ce: that supplies microstates for a proper subgroup of `W`; this goes the other way, embedding `W` into a larger group with a more rigid base algebra.
   invariant-cartan-completion: that asks to complete a Cartan-type structure in an abstract embedding; here the abelian lamp algebra is replaced by the hyperfinite factor before any embedding is sought.
+  pair-flips-in-finitary-symmetric-group-add-no-envelope: that proves the visible pair-flip subalgebra is still exactly the old abelian lamp algebra and gains no Cartan envelope; this route asks for a genuinely non-Cartan embedding of the whole finitary symmetric factor, so it neither contradicts nor bypasses that fence for free.
 artifacts:
   - notes/HYPERLINEAR_NONSOFIC_ATTEMPT_2026-08-26.md
 ---
