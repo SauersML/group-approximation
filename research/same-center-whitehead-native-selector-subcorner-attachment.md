@@ -9,6 +9,7 @@ distinct_from:
   exact-whitehead-selector-gauge-attachment-collapses-packet: that rules out imposing both unequal rows exactly on the whole fixed packet isotypic carrier; this permits a representation-dependent finite-matrix subcorner and charges all discarded mass by ordinary word defects.
   binary-leavitt-native-two-scale-cross-gram-positive: that permits any authenticated positive polar overlap of the two native rectangular transports; this asks specifically that the same-center Whitehead gauges are the external gauges of the two selector outputs.
   moving-signed-source-does-not-localize-paid-sheet-detector: that proves the paid moving source, both literal sheet detectors, and the forced order-seven exit still do not name an unequal target Gram; this asks for exactly the mixed full-Gram attachment left open by that fence.
+  endpoint-detector-cell-retains-coboundary-gauge: that transports a complete endpoint detector/probe mark-return occurrence through a fresh same-center braid but leaves full overlapping ranges and a coboundary reservoir frame; this asks for the proper fixed-frame unequal attachment excluded there.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core
@@ -278,6 +279,22 @@ excluded by the regular-trace firewall.
   edge gauges nontrivial coboundaries satisfying every braid relation.  The
   remaining requirement in `(SNA2)` is therefore a proper-subrange or
   fixed-frame occurrence typing, not endpoint transport by itself.
+
+  This remains true after inserting the detector/probe cube itself.
+  `endpoint-detector-cell-retains-coboundary-gauge` starts with the exact
+  ordinary identity
+
+  ```text
+  [x_12(a_3),[g_3,Y_3]]=z
+  ```
+
+  and conjugates the detector, probe, source and both endpoint arms through
+  the fresh braid.  Thus endpoint coefficient transport and complete
+  occurrence typing are both available.  What is absent is precisely the
+  conclusion of `(SNA2)`: all edges still have the whole moved source and
+  target as their Grams, and a regular `S_3` multiplicity model keeps the
+  reservoir factors as nontrivial coboundaries.  No restriction of this
+  transported cube names the native quarter/eighth outputs.
 
   The post-moving-source boundary is now exact in
   `moving-signed-source-does-not-localize-paid-sheet-detector`.  The

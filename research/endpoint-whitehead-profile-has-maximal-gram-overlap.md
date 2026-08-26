@@ -65,6 +65,16 @@ Gram/Bessel error is then exactly the whole source mass.  Retaining only
 one incoming edge at each target gives a permutation profile with spectral
 radius `1`.  Neither choice yields a capacity contradiction.
 
+There is an earlier logical obstruction to counting every menu edge at
+once.  The paid dichotomy contains `max_g||(r_g-1)C||`: after passing to a
+subsequence it selects one paying detector, not simultaneous positive mass
+for all detectors.  Iterating that alternative therefore selects at most
+one successor from each current carrier.  Its directed graph is functional
+and every recurrent component is a cycle.  Promoting the finite menu of
+possible choices to simultaneous branching would require separate positive
+subprojections and their cross-range orthogonality, neither of which follows
+from the operator-norm maximum.
+
 The remaining reservoir freedom is also exact, rather than an approximation
 loss.  After removing the adjacent label swaps, the two Whitehead factors
 may be any involutions `V_1,V_2` satisfying the `S_3` braid.  The regular

@@ -10,6 +10,7 @@ artifacts:
   - GroupApproximation/Computability/HereditaryRecognitionPhaseDiagram.lean
   - GroupApproximation/Computability/HyperlinearRecognitionSecondLevel.lean
   - GroupApproximation/Computability/HyperlinearRecognitionHierarchy.lean
+  - GroupApproximation/Computability/MarkovRecognitionHierarchy.lean
 distinct_from:
   nonhyperlinear-presentation-codes-have-a-sigma2-upper-bound: that is the upper bound alone and says so; this adds the matching lower bound conditional on exactly one thing, the existence of a non-hyperlinear group, and shows nothing in between can happen.
   non-hyperlinear-group: that asks for a group; this is a theorem about decision problems whose two sides are the two possible answers to that question, and it is established whichever answer is true.
@@ -88,6 +89,11 @@ negative `Sigma02` hardness, and both are equivalent to existence of Markov data
 and of the explicit Adian--Rabin reduction.  Its audited unconditional endpoint
 `hyperlinear_recognition_hierarchy_dichotomy` packages all finite-code and
 enumerated-code consequences in the two exhaustive regimes at once.
+On the counterexample side,
+`full_markovHierarchyPackage_of_exists` instantiates the property-independent
+`MarkovRecognitionHierarchy.RecognitionHierarchyPackage`, adding exact
+`Pi02`/`Sigma02` completeness of the canonical event-ray family to the same
+single datum.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by

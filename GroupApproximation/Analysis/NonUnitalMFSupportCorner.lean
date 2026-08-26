@@ -34,6 +34,8 @@ namespace GroupApproximation
 namespace NonUnitalMFSupportCorner
 
 open Filter Matrix Topology
+open KazhdanCornerMatrices
+open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 
@@ -46,31 +48,40 @@ variable (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
 
 /-- The least member of an infinite subset of `ℕ`. -/
 noncomputable def leastMember (S : Set ℕ) (hS : S.Infinite) : ℕ :=
-  Nat.find hS.nonempty
+  by
+    classical
+    exact Nat.find hS.nonempty
 
 theorem leastMember_mem (S : Set ℕ) (hS : S.Infinite) :
-    leastMember S hS ∈ S :=
-  Nat.find_spec hS.nonempty
+    leastMember S hS ∈ S := by
+  classical
+  exact Nat.find_spec hS.nonempty
 
 theorem leastMember_le (S : Set ℕ) (hS : S.Infinite)
-    {n : ℕ} (hn : n ∈ S) : leastMember S hS ≤ n :=
-  Nat.find_min' hS.nonempty hn
+    {n : ℕ} (hn : n ∈ S) : leastMember S hS ≤ n := by
+  classical
+  exact Nat.find_min' hS.nonempty hn
 
 /-- The least member of `S` strictly above `n`. -/
 noncomputable def nextMember (S : Set ℕ) (hS : S.Infinite) (n : ℕ) : ℕ :=
-  Nat.find (Set.Infinite.exists_gt hS n)
+  by
+    classical
+    exact Nat.find (Set.Infinite.exists_gt hS n)
 
 theorem nextMember_mem (S : Set ℕ) (hS : S.Infinite) (n : ℕ) :
-    nextMember S hS n ∈ S :=
-  (Nat.find_spec (Set.Infinite.exists_gt hS n)).1
+    nextMember S hS n ∈ S := by
+  classical
+  exact (Nat.find_spec (Set.Infinite.exists_gt hS n)).1
 
 theorem lt_nextMember (S : Set ℕ) (hS : S.Infinite) (n : ℕ) :
-    n < nextMember S hS n :=
-  (Nat.find_spec (Set.Infinite.exists_gt hS n)).2
+    n < nextMember S hS n := by
+  classical
+  exact (Nat.find_spec (Set.Infinite.exists_gt hS n)).2
 
 theorem nextMember_le (S : Set ℕ) (hS : S.Infinite) {n k : ℕ}
-    (hk : k ∈ S) (hnk : n < k) : nextMember S hS n ≤ k :=
-  Nat.find_min' (Set.Infinite.exists_gt hS n) ⟨hk, hnk⟩
+    (hk : k ∈ S) (hnk : n < k) : nextMember S hS n ≤ k := by
+  classical
+  exact Nat.find_min' (Set.Infinite.exists_gt hS n) ⟨hk, hnk⟩
 
 /-- The increasing enumeration of an infinite subset of `ℕ`: start at its
 least member and repeatedly take the least larger member. -/
@@ -110,6 +121,7 @@ This exact range statement is what later makes restriction to the relabelled
 coordinates reflect cofinite nullity on supported matrix families. -/
 theorem range_increasingEnumeration (S : Set ℕ) (hS : S.Infinite) :
     Set.range (increasingEnumeration S hS) = S := by
+  classical
   apply Set.Subset.antisymm
   · rintro _ ⟨n, rfl⟩
     exact increasingEnumeration_mem S hS n
@@ -119,16 +131,14 @@ theorem range_increasingEnumeration (S : Set ℕ) (hS : S.Infinite) :
     have hex : ∃ n, k ≤ f n := ⟨k, hfmono.id_le k⟩
     refine ⟨Nat.find hex, ?_⟩
     apply le_antisymm ?_ (Nat.find_spec hex)
-    generalize hN : Nat.find hex = N
-    cases N with
-    | zero =>
-        rw [hN, increasingEnumeration_zero]
-        exact leastMember_le S hS hk
-    | succ n =>
-        have hminimal : ¬ k ≤ f n := Nat.find_min hex (by omega)
-        have hnlt : f n < k := Nat.lt_of_not_ge hminimal
-        rw [hN, increasingEnumeration_succ]
-        exact nextMember_le S hS hk hnlt
+    by_cases hzero : Nat.find hex = 0
+    · rw [hzero, increasingEnumeration_zero]
+      exact leastMember_le S hS hk
+    · obtain ⟨n, hn⟩ := Nat.exists_eq_succ_of_ne_zero hzero
+      have hminimal : ¬ k ≤ f n := Nat.find_min hex (by omega)
+      have hnlt : f n < k := Nat.lt_of_not_ge hminimal
+      rw [hn, increasingEnumeration_succ]
+      exact nextMember_le S hS hk hnlt
 
 /-! ## Cofinite nullity along the full-support enumeration -/
 
@@ -170,10 +180,11 @@ def reindexBoundedMatrixSequence (φ : ℕ → ℕ)
     BoundedMatrixSequence (fun k ↦ Y (φ k)) :=
   ⟨fun k ↦ x (φ k), memℓp_infty ⟨‖x‖, by
     rintro _ ⟨k, rfl⟩
+    change ‖(x (φ k) : Matrix (Y (φ k)) (Y (φ k)) ℂ)‖ ≤ ‖x‖
     exact boundedMatrixSequence_coord_norm_le (fun n ↦ Y n) x (φ k)⟩⟩
 
-@[simp]
-theorem reindexBoundedMatrixSequence_apply (φ : ℕ → ℕ)
+omit [∀ n, Nonempty (Y n)] in
+@[simp] theorem reindexBoundedMatrixSequence_apply (φ : ℕ → ℕ)
     (x : BoundedMatrixSequence (fun n ↦ Y n)) (k : ℕ) :
     (reindexBoundedMatrixSequence Y φ x k : Matrix (Y (φ k)) (Y (φ k)) ℂ) =
       x (φ k) :=
@@ -225,8 +236,9 @@ theorem supportRelabelling_ne_zero
     (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0) (k : ℕ) :
     (P (supportRelabelling Y P hne k) :
       Matrix (Y (supportRelabelling Y P hne k))
-        (Y (supportRelabelling Y P hne k)) ℂ) ≠ 0 :=
-  increasingEnumeration_mem _ _ k
+        (Y (supportRelabelling Y P hne k)) ℂ) ≠ 0 := by
+  show supportRelabelling Y P hne k ∈ nonzeroSupport Y P
+  exact increasingEnumeration_mem _ _ k
 
 theorem range_supportRelabelling
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -312,24 +324,29 @@ theorem cornerCompression_zero
     {Z : Type*} [Fintype Z] [DecidableEq Z]
     {P : Matrix Z Z ℂ} (hP : P.IsHermitian) :
     cornerCompression hP (0 : Matrix Z Z ℂ) = 0 := by
-  simp [cornerCompression, eigenbasisConj]
+  ext i j
+  simp [cornerCompression, eigenbasisConj,
+    KazhdanCornerMatrices.principalBlock,
+    KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply]
 
 theorem cornerCompression_add
     {Z : Type*} [Fintype Z] [DecidableEq Z]
     {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (C D : Matrix Z Z ℂ) :
     cornerCompression hP (C + D) =
       cornerCompression hP C + cornerCompression hP D := by
+  ext i j
   simp [cornerCompression, eigenbasisConj, Matrix.mul_add, Matrix.add_mul,
     KazhdanCornerMatrices.principalBlock,
-    KazhdanCornerMatrices.coordinateBlock]
+    KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply]
 
 theorem cornerCompression_smul
     {Z : Type*} [Fintype Z] [DecidableEq Z]
     {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (c : ℂ) (C : Matrix Z Z ℂ) :
     cornerCompression hP (c • C) = c • cornerCompression hP C := by
-  simp [cornerCompression, eigenbasisConj, Matrix.mul_smul, Matrix.smul_mul,
+  ext i j
+  simp [cornerCompression, eigenbasisConj,
     KazhdanCornerMatrices.principalBlock,
-    KazhdanCornerMatrices.coordinateBlock]
+    KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply]
 
 theorem cornerCompression_conjTranspose
     {Z : Type*} [Fintype Z] [DecidableEq Z]
@@ -346,10 +363,15 @@ theorem cornerCompression_projection_eq_one
     cornerCompression hP P = 1 := by
   rw [cornerCompression, eigenbasisConj_eq_coordinateProjection hP hPidem]
   ext i j
-  simp [KazhdanCornerMatrices.principalBlock,
-    KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply,
-    coordinateProjection, Matrix.one_apply, Subtype.ext_iff, i.property,
-    j.property]
+  by_cases hij : i = j
+  · subst j
+    simp [KazhdanCornerMatrices.principalBlock,
+      KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply,
+      coordinateProjection, Matrix.one_apply, i.property]
+  · have hval : (i : Z) ≠ (j : Z) := fun h ↦ hij (Subtype.ext h)
+    simp [KazhdanCornerMatrices.principalBlock,
+      KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply,
+      coordinateProjection, Matrix.one_apply, hij, hval]
 
 /-- Compression is multiplicative on two matrices which commute with the
 projection. -/
@@ -399,6 +421,7 @@ theorem cornerPredicate_iff_eigenvalue_ne_zero
   rcases eigenvalues_eq_zero_or_one hP hPidem i with hi | hi
   · simp [cornerPredicate, hi]
   · simp [cornerPredicate, hi]
+    norm_num
 
 /-- The coordinate type selected by the spectral projection has cardinality
 equal to the matrix rank. -/
@@ -463,9 +486,15 @@ theorem card_relabelledCornerModel_eq_rank
     (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0) (k : ℕ) :
     Fintype.card (relabelledCornerModel Y P hP hne k) =
       (relabelledProjection Y P hne k).rank :=
-  card_cornerPredicate_eq_rank
-    (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
-    (relabelledProjection_isOrthogonalProjection Y P hP hne k).2
+  by
+    change Fintype.card
+        {i : Y (supportRelabelling Y P hne k) //
+          cornerPredicate
+            (relabelledProjection_isOrthogonalProjection Y P hP hne k).1 i} =
+      (relabelledProjection Y P hne k).rank
+    exact card_cornerPredicate_eq_rank
+      (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+      (relabelledProjection_isOrthogonalProjection Y P hP hne k).2
 
 theorem card_relabelledCornerModel_pos
     (P : BoundedMatrixSequence (fun n ↦ Y n))

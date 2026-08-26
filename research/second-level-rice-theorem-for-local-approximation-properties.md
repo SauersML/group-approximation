@@ -6,6 +6,7 @@ title: Every nontrivial local approximation property is Pi-zero-two hard on two-
 artifacts:
   - GroupApproximation/Computability/SoficRecognitionSecondLevel.lean
   - GroupApproximation/Computability/HereditaryRecognitionPhaseDiagram.lean
+  - GroupApproximation/Computability/MarkovRecognitionHierarchy.lean
   - GroupApproximation/Computability/HereditaryPropertySwitchCompleteness.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
   - GroupApproximation/Computability/ParametricFinInfSwitch.lean
@@ -90,3 +91,9 @@ both the positive `Pi02`-hardness and negative `Sigma02`-hardness conditions.
 `Computability/HyperlinearRecognitionSecondLevel` is a checked client
 of this generic interface, with its finite cover supplied by the hyperlinear
 table obstruction theorem.
+
+For properties already equipped with full Adian--Rabin data,
+`Computability/MarkovRecognitionHierarchy` goes further: one generic audited
+package simultaneously supplies finite-code undecidability, negative
+non-enumerability, global enumerated-code hardness, exact completeness on the
+canonical event-ray family, and the explicit uniform-word-problem reduction.

@@ -1,5 +1,6 @@
 import GroupApproximation.Computability.HyperlinearMarkov
 import GroupApproximation.Computability.HyperlinearRecognitionSecondLevel
+import GroupApproximation.Computability.MarkovRecognitionHierarchy
 
 /-!
 # The full recognition hierarchy for hyperlinearity
@@ -63,6 +64,15 @@ theorem nonempty_adianRabinReduction_iff_enumerated_pi02Hard :
       Pi02Hard HyperlinearEnumeratedCodeProperty :=
   exists_not_isHyperlinear_iff_nonempty_adianRabinReduction.symm.trans
     exists_not_isHyperlinear_iff_hyperlinearEnumeratedCodeProperty_pi02Hard
+
+/-- A counterexample instantiates the property-independent full Markov
+recognition hierarchy at hyperlinearity. -/
+theorem full_markovHierarchyPackage_of_exists
+    (h : ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) :
+    MarkovRecognitionHierarchy.RecognitionHierarchyPackage
+      (hyperlinearMarkovDataOfExists h) :=
+  MarkovRecognitionHierarchy.recognition_hierarchy_package
+    (hyperlinearMarkovDataOfExists h)
 
 /-- Finite-code decidability occurs exactly when enumerated recognition is not
 `Pi02`-hard. -/
@@ -147,6 +157,7 @@ open GroupApproximation.HyperlinearRecognitionHierarchy
 #audit_axioms exists_finite_forbiddenCode_iff_enumerated_pi02Hard
 #audit_axioms nonempty_markovData_iff_enumerated_pi02Hard
 #audit_axioms nonempty_adianRabinReduction_iff_enumerated_pi02Hard
+#audit_axioms full_markovHierarchyPackage_of_exists
 #audit_axioms finite_computable_iff_enumerated_not_pi02Hard
 #audit_axioms finite_negative_re_iff_enumerated_negative_not_sigma02Hard
 #audit_axioms hyperlinear_recognition_hierarchy_dichotomy

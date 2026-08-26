@@ -440,6 +440,25 @@ narrower: supply proper orthogonal subranges, or a source-preserving
 fixed-frame multiplicity occurrence, on the already established moving
 `R_0 -> P` channel.  Iterating conjugate source names alone cannot close it.
 
+The detector/probe occurrence itself has now also been included, rather than
+inferred from the isolated endpoint pair.
+`endpoint-detector-cell-retains-coboundary-gauge` proves the exact ordinary
+word identities
+
+```text
+[g_3,Y_3]=x_23(b_3),
+[x_12(a_3),[g_3,Y_3]]=z,
+```
+
+and transports the detector, dual probe, signed source and mark-return cell
+together through the fresh endpoint Coxeter braid.  This is genuine
+same-reservoir transport in moving coordinates, but it still does not close
+the MF radical: both incoming maps at every profile target are onto the
+whole same range, and the complete occurrence admits the regular `S_3`
+coboundary gauge model.  The remaining theorem must create proper unequal
+subranges or lock this already-typed cell to one fixed native
+quarter/eighth frame.
+
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the
 commutator of the paid discrepancy with the actual `B_2` arm and ejects a
