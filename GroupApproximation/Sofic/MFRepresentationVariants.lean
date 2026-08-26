@@ -145,6 +145,34 @@ both in reduced norm and in normalized character. -/
 def IsTracePMF (G : Type u) [Group G] : Prop :=
   Nonempty (TracePMFApproximation G)
 
+namespace TracePMFApproximation
+
+/-- A trace-PMF model is, in particular, a trace-regular MF model: exact
+multiplicativity may be forgotten, while the reduced-norm and normalized-trace
+limits are retained verbatim. -/
+noncomputable def toTraceRegularMFApproximation
+    (A : TracePMFApproximation G) : TraceRegularMFApproximation G :=
+  let S := A.toPurelyMatricialFieldApproximation.toStrongMFApproximation
+  { separation := S.toWeakMFApproximation.separation
+    separation_pos := S.toWeakMFApproximation.separation_pos
+    model := A.model
+    modelNonempty := A.modelNonempty
+    map := fun n g ↦ A.representation n g
+    asymptoticallyMultiplicative := S.asymptoticallyMultiplicative
+    separatedEventually := S.toWeakMFApproximation.separatedEventually
+    traceConverges := A.traceConverges
+    reducedNormConverges := A.reducedNormConverges }
+
+end TracePMFApproximation
+
+/-- Trace-PMF implies the repository's trace-regular strong-MF predicate.
+This is the formal bridge to the stronger notion called `MF` by GKMP; it is
+strictly stronger than merely obtaining `IsOperatorMF`. -/
+theorem IsTracePMF.isTraceRegularMF
+    (h : IsTracePMF G) : IsTraceRegularMF G := by
+  rcases h with ⟨A⟩
+  exact ⟨A.toTraceRegularMFApproximation⟩
+
 theorem IsTracePMF.isPurelyMatricialField
     (h : IsTracePMF G) : IsPurelyMatricialField G := by
   rcases h with ⟨A⟩

@@ -59,15 +59,20 @@ the transported conjugate of `L` in the completed `tau_j`/`d`/`sigma` base.
 For the formal compiler in `Higman/InjectedCompilerTower.lean` and
 `Computability/FreeEdgeTowerCode.lean`, the exact unresolved hypotheses are:
 
-1. MF permanence through every `tau_j` HNN edge;
-2. MF permanence through the `d` free-subgroup HNN edge;
-3. MF permanence through the `sigma` free-subgroup HNN edge; and
-4. separability, in the completed inner tower, of the subgroup centralized by
+1. trace-regular MF for the input and permanence through the initial `q`
+   free-letter edge `K * Z`;
+2. trace-regular MF permanence through every `tau_j` HNN edge;
+3. trace-regular MF permanence through the `d` free-subgroup HNN edge;
+4. trace-regular MF permanence through the `sigma` free-subgroup HNN edge; and
+5. separability, in the completed inner tower, of the subgroup centralized by
    the outer detector.
 
-Given 1--3 and 4, GKMP with `L = Z` closes the outer detector: `Z` is
+Given 1--4 and 5, GKMP with `L = Z` closes the outer detector: `Z` is
 residually finite, MF, and exact, so no additional exactness input is needed
-there.  GKMP's displayed isomorphism
+there.  This uses GKMP's trace-regular strong meaning of `MF`, not the formal
+bare `IsOperatorMF` premise in `FreeEdgeTowerCode.MFPermanence`; the latter
+cannot start this route without an additional upgrade.  See
+[[gkmp-mf-is-trace-regular-not-bare-operator-mf]].  GKMP's displayed isomorphism
 `G *_H (H x Z) ~= (*_H G) semidirect Z` remains a product-amalgam identity;
 it does not turn a graph HNN `tAt^-1=B` into an instance of Theorem 1.1.
 No HNN permanence theorem is among GKMP's results.  Two later papers do not

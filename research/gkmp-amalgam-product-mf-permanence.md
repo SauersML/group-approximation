@@ -25,6 +25,14 @@ G *_H (H x L)
 
 is MF.  (The same statement holds for PMF and for PFF.)
 
+Here `MF` is the paper's trace-regular strong convention: its approximations
+have normalized traces converging to the regular character and recover
+reduced group-C-star norms, in addition to being asymptotically
+multiplicative.  It matches the repository's `IsTraceRegularMF` interface,
+not its bare corona-embedding predicate `IsOperatorMF`; see
+[[gkmp-mf-is-trace-regular-not-bare-operator-mf]].  Consequently this theorem
+cannot consume only a formal `IsOperatorMF G` proof.
+
 **Corollary 1.2.**  If `G` is MF and `H < G` is separable, the group double
 `G *_H G` is MF.
 
@@ -45,7 +53,8 @@ artifact.  The internal proof (Sections 2--6) is not re-derived here.
 At `L = Z`, Theorem 1.1 says that the central HNN extension
 `<G,t | [t,h]=1, h in H>` is MF when `G` is MF and `H` is separable in `G`;
 the second factor `Z` is residually finite, MF, and exact.  This is directly
-relevant to the compiler's **outer detector** edge.
+relevant to the compiler's **outer detector** edge only after the completed
+inner tower has been shown trace-regular MF in the paper's sense.
 
 It does not settle the full positive branch.  The actual compiler in
 `Higman/InjectedCompilerTower.lean` has a finite `tau_j` family followed by
