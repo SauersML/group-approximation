@@ -216,3 +216,4 @@
 32930125237	2026-08-26T04:25:24Z	GroupApproximation/Sofic/BlockCliffordLamp.lean	blockPerm_property
 32933469603	2026-08-26T05:19:40Z	GroupApproximation/Sofic/BlockCliffordTowerSofic.lean	finite_range_of_factors
 32937613099	2026-08-26T06:19:38Z	GroupApproximation/Sofic/BlockInfix.lean	infix_of_forall_ne_left
+32943334226	2026-08-26T07:46:27Z	GroupApproximation/Sofic/BlockingFamilyRadical.lean	exists_mem_actualCoronaMFResidual
