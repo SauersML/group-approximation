@@ -164,6 +164,17 @@ a finite mixed Britton window.  If the coset action
   `1/sqrt(2)-o(1)`.  The unresolved separator step is now narrower: turn
   this explicit conjugate-letter root leak into payment by the
   `T`-central off-spectral matrix-range separator.
+- **Leak energy and off-spectral mass do not couple formally.**
+  `unbalanced-root-leak-does-not-charge-off-spectral-separators` gives an
+  exact four-dimensional packet where the unbalanced word has zero defect,
+  the one-Britton trace is zero, one named root has maximal commutator defect
+  two, and a positive-gap separator is fully off the stable-letter spectral
+  algebra on that same root coordinate.  This invalidates
+  `sl3-fdg-via-unbalanced-root-leak-energy`: the two established estimates
+  cannot be joined by a universal Hilbert--Schmidt energy inequality.  The
+  packet violates an additional base relation, so FDG remains open; the
+  surviving coupling must use further approximate `SL_3` relations to
+  construct the ucp comparison point.
 - **Universal lifting is unavailable.**  Replacing the selected finite
   window by LP of the lattice generator system would imply LLP of
   `C^*(SL_3(Z))`, contradicted by `sl3-generator-system-has-no-universal-lp`.
