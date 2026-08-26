@@ -215,6 +215,46 @@ def universalCStarHNNEval
       (R.stable : R.carrier) :=
   rfl
 
+/-- The coordinate evaluations are jointly faithful on the concrete universal
+HNN algebra.  This is immediate from its realization as a subalgebra of the
+bounded product, but naming it is useful when one faithful covariant
+coordinate is used to certify a later group representation. -/
+theorem universalCStarHNN_eq_of_forall_eval_eq
+    [Nonempty (CStarHNNRepresentation B0 B1 theta)]
+    {x y : UniversalCStarHNN B0 B1 theta}
+    (h : ∀ R : CStarHNNRepresentation B0 B1 theta,
+      universalCStarHNNEval B0 B1 theta R x =
+        universalCStarHNNEval B0 B1 theta R y) :
+    x = y := by
+  apply Subtype.ext
+  apply lp.ext
+  funext R
+  exact h R
+
+/-- One covariant coordinate faithful on the base algebra makes the canonical
+base map of the universal HNN algebra faithful. -/
+theorem universalCStarHNNBase_injective_of_coordinate
+    [Nonempty (CStarHNNRepresentation B0 B1 theta)]
+    (R : CStarHNNRepresentation B0 B1 theta)
+    (hR : Function.Injective R.base) :
+    Function.Injective (universalCStarHNNBase B0 B1 theta) := by
+  intro d e hde
+  apply hR
+  have := congrArg (universalCStarHNNEval B0 B1 theta R) hde
+  simpa using this
+
+/-- Evaluation at a coordinate detects any equality whose two sides are
+already separated by that coordinate. -/
+theorem universalCStarHNN_ne_of_eval_ne
+    [Nonempty (CStarHNNRepresentation B0 B1 theta)]
+    (R : CStarHNNRepresentation B0 B1 theta)
+    {x y : UniversalCStarHNN B0 B1 theta}
+    (h : universalCStarHNNEval B0 B1 theta R x ≠
+      universalCStarHNNEval B0 B1 theta R y) :
+    x ≠ y := by
+  intro hxy
+  exact h (congrArg (universalCStarHNNEval B0 B1 theta R) hxy)
+
 /-- Universal property of the concrete C-star HNN algebra. -/
 theorem universalCStarHNN_existsUnique_lift
     [Nonempty (CStarHNNRepresentation B0 B1 theta)]
