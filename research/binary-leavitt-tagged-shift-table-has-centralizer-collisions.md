@@ -115,6 +115,16 @@ establish `binary-leavitt-bounded-area-chromatic-code` by itself.
   sheared rows force them into distinct cosets modulo `<z>`, so those areas
   diverge.  A several-chart diagram whose internal mark seams cancel without
   an individual mark-return filling is not ruled out.
+* **Two or three charts with pairwise internal mark cancellation.**  Splitting
+  the direct Gram cell does not help if its conjugated `z` occurrences are
+  joined by ordinary pairwise seams.  The theorem
+  `bounded-tagged-mark-seam-complex-has-finite-row-range` treats any fixed
+  number of such charts.  A spanning tree from the outer literal `z` gives
+  a bounded `[g_v,z]` filling for every chart gauge; centralizer-area
+  properness leaves finitely many gauges, hence finitely many output rows.
+  This contradicts the distinct rows `x_12(A_i+A_j)`.  A surviving finite
+  complex must contain a genuinely non-pairwise mark-fusion cell rather than
+  only cancelling equal conjugated marks along seams.
 
 No Property `(T)`, Kazhdan input, matrix approximation, trace, or literature
 theorem is used.

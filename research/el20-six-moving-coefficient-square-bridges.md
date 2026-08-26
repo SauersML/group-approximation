@@ -108,6 +108,15 @@ the coboundary drift of
   preimage gauge is conjugated to the literal Whitehead gauge.  Exact
   finite amplifications retain any nontrivial involution on both sides.
   Iterating the preimage only pushes that gauge to greater prefix depth.
+- Closing both compression-preimage branches through the literal range-sum
+  fold still does not remove the gauge.  By
+  `closed-compression-fold-loop-retains-s3-gauge`, the complete bounded
+  occurrence table has an exact three-character model: the two branch edges
+  are the transpositions `(0 2),(0 1)`, while the fold signs are diagonal.
+  The alternating hexagon closes the reservoir only by returning the marked
+  character object; appending one required signed-Hecke move restores a
+  nontrivial transposition.  Hence the first genuine **closed**, non-chain
+  full-Leavitt loop is also fenced.
 - Nor can one append a single genuinely nonnormal opposite-root letter to
   the known Whitehead.  By
   `one-nonnormal-dressing-cannot-preserve-moving-full-gram`, all exact

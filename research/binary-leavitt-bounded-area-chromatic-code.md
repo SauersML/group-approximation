@@ -178,6 +178,16 @@ theorem then gives full MF collapse of `Delta`.
   that return area unbounded.  This leaves only a genuinely multi-chart
   diagram in which internal mark seams cancel collectively, rather than one
   outer-conjugacy cell.
+* **Cancel the mark internally across a bounded chart complex.**  Ordinary
+  two- and three-chart gluings are still fenced when their conjugated marks
+  cancel pairwise.  `bounded-tagged-mark-seam-complex-has-finite-row-range`
+  roots the seam graph at the one outer literal `z`; bounded graph size and
+  bounded seam area put every chart conjugator in one finite commutator-area
+  sublevel of `C_Delta(z)/<z>`.  A bounded word in a finite row palette then
+  has only finitely many values, whereas the sheared rows
+  `x_12(A_i+A_j)` are infinite.  Thus the next multi-chart attempt must use
+  a genuinely ternary-or-higher mark relation, growing chart count, or a
+  direct diagram with no distinguished pairwise mark seams.
 
 The next viable attack must construct a bounded-area orbit section directly,
 replace representative coherence by a finite-coordinate selector whose
