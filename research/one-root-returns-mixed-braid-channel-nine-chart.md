@@ -25,4 +25,3 @@ the two complementary coefficients `q_0,q_1` survives in its original
 matrix position after conjugating the positive signed root `x_79(1)`.
 The result is never a constant matrix, so the proposed word cannot
 normalize the signed Hecke source.
-

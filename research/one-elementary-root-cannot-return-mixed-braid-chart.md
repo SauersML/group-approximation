@@ -77,4 +77,3 @@ one-root-mixed-braid-return-proof
 - **Use one of the two opposite roots on `(7,9)`.**  It may alter the
   coefficient in its own orientation through the quadratic conjugation
   term, but the coefficient in the reverse orientation is untouched.
-

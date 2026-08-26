@@ -34,4 +34,3 @@ matrix units, `(1)` cannot be a constant binary matrix.  Hence the
 conjugate of the signed generator `n` does not belong to `L_0`, proving
 `(ORB4)`.  Equality in `(ORB5)` would equate the finite supports and force
 `RP L_0 (RP)^(-1)=L_0`, contradicting `(ORB4)`.
-
