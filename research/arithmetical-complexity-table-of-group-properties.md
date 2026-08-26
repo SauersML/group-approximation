@@ -4,6 +4,9 @@ id: arithmetical-complexity-table-of-group-properties
 kind: claim
 title: Where the approximation, residual, amenability and rigidity properties of groups sit in the arithmetical hierarchy, by syntax
 artifacts:
+  - GroupApproximation/Computability/HyperlinearEnumeratedHardness.lean
+  - GroupApproximation/Computability/RFEnumeratedHardness.lean
+  - GroupApproximation/Computability/RFPresentationPi02.lean
   - GroupApproximation/Computability/HyperlinearUndecidabilityRoute.lean
   - GroupApproximation/Computability/ProfinitelyClosedIndexSet.lean
   - GroupApproximation/Computability/LEFEnumeratedPi02.lean
@@ -80,3 +83,5 @@ each open cell being a form of a Higman-embedding question for that
 property.
 
 **Machine-checked cells.**  On enumerated presentation codes the sofic and LEF rows are kernel-checked as `Pi02Complete` (`SoficEnumeratedPi02.sofic_enum_pi02Complete`, `LEFEnumeratedPi02.lef_enum_pi02Complete`), the computability core of the residual-finiteness row as `ProfinitelyClosedIndexSet.pi03Complete_closedIndex`, and the hyperlinear finite-presentation equivalence as `HyperlinearUndecidabilityRoute.not_computablePred_iff_exists_nonhyperlinear_code`.
+
+Also kernel-checked: `RFPresentationPi02.rf_fp_strict_position` (the residually finite finite-presentation cell), `RFEnumeratedHardness.rfCode_pi02Hard` (second-level lower bound on enumerated codes) and `HyperlinearEnumeratedHardness.hyperlinearCode_pi02Hard_of_exists`.
