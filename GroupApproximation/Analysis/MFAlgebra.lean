@@ -49,6 +49,33 @@ norm-matrix corona. -/
 def IsMFAlgebra (A : Type u) [NonUnitalCStarAlgebra A] : Prop :=
   TopologicalSpace.SeparableSpace A ∧ HasMFEmbedding A
 
+/-! ## Heredity under faithful star homomorphisms -/
+
+/-- Bare MF embeddability passes backward along an injective nonunital star
+homomorphism.  Compose the faithful map into the MF algebra with its faithful
+norm-matrix-corona representation. -/
+theorem HasMFEmbedding.of_injective_nonUnitalStarAlgHom
+    {A : Type u} {B : Type v}
+    [NonUnitalCStarAlgebra A] [NonUnitalCStarAlgebra B]
+    (hB : HasMFEmbedding B) (i : A →⋆ₙₐ[ℂ] B)
+    (hi : Function.Injective i) : HasMFEmbedding A := by
+  rcases hB with ⟨X, hXne, hXpos, hXmono, e, he⟩
+  letI : ∀ n, Nonempty (X n) := hXne
+  exact ⟨X, hXne, hXpos, hXmono, e.comp i, he.comp hi⟩
+
+/-- The MF property of separable C-star algebras is hereditary under faithful
+star homomorphisms.  Separability of the source follows because an injective
+star homomorphism between C-star algebras is an isometric embedding, and every
+subspace of a second-countable space is separable. -/
+theorem IsMFAlgebra.of_injective_nonUnitalStarAlgHom
+    {A : Type u} {B : Type v}
+    [NonUnitalCStarAlgebra A] [NonUnitalCStarAlgebra B]
+    (hB : IsMFAlgebra B) (i : A →⋆ₙₐ[ℂ] B)
+    (hi : Function.Injective i) : IsMFAlgebra A := by
+  letI : TopologicalSpace.SeparableSpace B := hB.1
+  refine ⟨(NonUnitalStarAlgHom.isometry i hi).isEmbedding.separableSpace, ?_⟩
+  exact hB.2.of_injective_nonUnitalStarAlgHom i hi
+
 /-- A norm-matrix corona has the bare MF embedding property, witnessed by
 its identity map.  No separability claim is made. -/
 theorem normMatrixCStarCorona_hasMFEmbedding
