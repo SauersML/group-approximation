@@ -5,7 +5,7 @@ kind: claim
 title: MF and non-MF recognition are exactly second-level complete for recursive presentations
 distinct_from:
   mf-recognition-has-a-pi2-upper-bound: that is the finite-presentation upper bound; this supplies matching FIN and INF hardness on infinitely generated recursively presented groups.
-  mf-recognition-finite-presentations-is-pi2-complete: that finite-presentation completeness target remains open because generic Higman embedding does not preserve the MF branch.
+  mf-recognition-finite-presentations-is-pi2-complete: that transports this recursive hardness through the finite-CEP graph witness and tensor-synchronized Higman rope.
 ---
 
 For the natural effective coding of countably generated recursively presented
