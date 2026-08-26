@@ -32,7 +32,9 @@ theorem cuttingSubgroup_eq_comap (R : Set (FreeGroup X)) :
       (Mikhailova.freeSubgroup R).comap mikhailovaProjection := by
   ext p
   rcases p with ⟨f, uv⟩
-  simp [cuttingSubgroup, mikhailovaProjection]
+  change (f ∈ (⊤ : Subgroup Source) ∧ uv ∈ Mikhailova.freeSubgroup R) ↔
+    uv ∈ Mikhailova.freeSubgroup R
+  simp
 
 /-- Residual finiteness of the presented quotient makes the rank-three
 cutting subgroup profinitely closed. -/

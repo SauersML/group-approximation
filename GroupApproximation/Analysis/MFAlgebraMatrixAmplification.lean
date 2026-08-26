@@ -83,6 +83,7 @@ theorem coronaOfLifts_eq_of_mk_eq {a b : LiftMatrix k X}
   intro i j
   have hij : IsNullMatrixSequence (fun n ↦ X n) cofinite (a i j - b i j) := by
     rw [← normMatrixCStarCoronaMk_eq_zero_iff, map_sub, h i j, sub_self]
+  unfold IsNullMatrixSequence at hij
   simpa only [block_assembleSequence_sub] using hij
 
 theorem coronaOfLifts_zero :
@@ -202,6 +203,7 @@ theorem matrixCoronaHom_injective :
     hamp i j
   have hij : IsNullMatrixSequence (fun n ↦ X n) cofinite
       (representative X (P i j) - representative X (Q i j)) := by
+    unfold IsNullMatrixSequence
     simpa only [block_assembleSequence_sub] using hblock
   have hzero := (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) _).mpr hij
   rw [map_sub, mk_representative, mk_representative, sub_eq_zero] at hzero
@@ -212,7 +214,8 @@ theorem matrixCoronaHom_injective :
 /-- A positive finite matrix amplification of an MF-embeddable C-star algebra
 is again MF-embeddable. -/
 theorem hasMFEmbedding_cstarMatrix
-    {A : Type u} [CStarAlgebra A] (hA : HasMFEmbedding A) :
+    {A : Type u} [CStarAlgebra A] [Nontrivial A]
+    (hA : HasMFEmbedding A) :
     HasMFEmbedding (CStarMatrix (Fin k) (Fin k) A) := by
   rcases hA with ⟨X, hne, hpos, hmono, e, he⟩
   letI : ∀ n, Nonempty (X n) := hne
@@ -241,7 +244,8 @@ theorem hasMFEmbedding_cstarMatrix
 
 /-- The manuscript's second reduced-product permanence assertion. -/
 theorem isMFAlgebra_cstarMatrix
-    {A : Type u} [CStarAlgebra A] (hA : IsMFAlgebra A) :
+    {A : Type u} [CStarAlgebra A] [Nontrivial A]
+    (hA : IsMFAlgebra A) :
     IsMFAlgebra (CStarMatrix (Fin k) (Fin k) A) := by
   letI : TopologicalSpace.SeparableSpace A := hA.1
   exact ⟨inferInstance, hasMFEmbedding_cstarMatrix hA.2⟩
