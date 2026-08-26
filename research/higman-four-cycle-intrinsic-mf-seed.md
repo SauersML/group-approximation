@@ -136,3 +136,10 @@ On the other hand, `order-four-bs-matcher-builds-higman-opnorm-microstate`
 shows that matchers with both vanishing one-step error and
 `||K^4 P K^(-4)-P||->0` would immediately refute this node; no stronger return
 `K^4->1` is required.
+
+The one-step side can be sharpened further without changing the gate.
+`primitive-shell-bs-clock-has-optimal-opnorm-matcher` restricts to the single
+primitive `3^n`-root shell, where `{P,D}'` is scalar and the optimal matcher
+error is `Theta(3^(-n))`.  Thus neither lower-shell multiplicities nor the
+`O(n/3^n)` whole-clock matching loss is essential: the unresolved condition
+is still exactly the fourth return of the primitive-shell matcher.

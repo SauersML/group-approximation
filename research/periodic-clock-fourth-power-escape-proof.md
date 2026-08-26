@@ -70,3 +70,8 @@ eigenvalue `1` on its orthogonal complement.  Therefore
 ```
 
 Taking the infimum over `Z` proves `(ACE3)`.
+
+All operators used above reduce the unit-shell subspace.  Restricting to it
+makes the joint commutant scalar because multiplication by `2` is transitive
+on the units.  The same computation therefore proves the strengthened
+primitive-shell statement in the claim.

@@ -33,6 +33,10 @@ dist(C_n,{P_n,D_n}') >=1                             (ACE3)
 
 for every sufficiently large `n`.
 
+The construction is already supported on the primitive unit shell
+`span{e_x:x in (Z/3^nZ)^*}`.  On that reducing shell the exact joint
+commutant is scalar, and `(ACE3)` remains valid with the same lower bound.
+
 Thus the pair `(P_n,D_n)` has no dimension-independent operator-norm
 almost-commutant correction theorem, even on unitary fourth powers.  The
 uniform theorem `periodic-clock-p-commutant-has-uniform-joint-gap` really
