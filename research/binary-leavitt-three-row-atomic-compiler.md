@@ -324,3 +324,19 @@ three-copy model.  The remaining gap is promotion from scalar support
 coordinates to arbitrary non-scalar finite packet holonomy: one must show
 that the mixed squares force intersection-zero on the exactified payload
 reservoir without first assuming a character decomposition.
+
+That promotion is false under the current rows.
+`mixed-cross-zero-squares-have-four-state-gauge-model` takes rank-two source
+supports `P_0=<e_1,e_2>`, `P_1=<e_2,e_3>` and parent symmetric difference
+`P_A=<e_1,e_3>`.  They are equirank and the source intersection has rank
+one.  Separate native reservoir gauges transport the two children to the
+complementary target supports `<e_1,e_2>` and `<e_3,e_4>`.  Controlling the
+complete positive/opposite finite packet by these projections makes every
+fold, Whitehead, opposite-factor mixed square, and composable cross-zero row
+exact, while the parent mark survives.  In particular the target cross-Gram
+is zero but the source intersection has operator norm one, so neither
+operator-norm perturbation, rank integrality, nor coordinate-dependent
+spectral cuts can prove the desired promotion.  The remaining prototype
+must contain a relative reservoir-gauge lock coupling `U_0^*U_1` to the
+source packet; two separately authenticated branch transports leave exactly
+the four-state freedom above.

@@ -216,3 +216,14 @@ conjugates transport `G=E` covariantly.  Thus the next relation must
 place `D` itself in a commutation row with `E`, or provide a reverse
 same-carrier triangle that kills `E`; a second commuting return appearing
 only between scalar `L_0` legs is insufficient.
+
+The complete eight-root/one-Whitehead index search is now closed as well.
+`eight-external-returns-have-no-whitehead-gauge-lock` conjugates all eight
+external roots by `J_1,t_1,J_2,t_2`.  The only fixed external roots are
+`x_59,x_96` in row 1 and `x_27,x_74` in row 2, all disjoint from the active
+Whitehead coordinates.  Every overlapping root maps to `L_0`, an opposite
+or nonexternal root, or a non-root transvection.  Fixed-root squares give
+only stage covariance `G_(k+1)=D_kG_kD_k^(-1)` between different charts;
+they do not give `[D_k,G_k]=1`.  Hence no smallest native mixed relation in
+this menu kills the surviving order-three `DE`.  A live next word must mix
+at least two non-fixed external orbits before returning to the same cut.
