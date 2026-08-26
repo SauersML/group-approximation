@@ -534,18 +534,37 @@ equal-rank fine flag.  Thus neither changing endpoint coordinates nor using
 the first noncentral proper compression authenticates an unequal native
 row.
 
-The fine collision becomes genuinely positive before the signed-sheet cut.
+The fine collision becomes genuinely positive even on the signed-sheet cut.
 `endpoint-order-five-actor-has-half-gram` adjoins the actual native head
 `M=J_2B_3A_2`.  Its action with the endpoint word `W` on
 `<C_3,s,t,s'>~=C_2^4` is `GL_4(F_2)`, so nonzero-character multiplicities
 force the raw `W` cross Gram to retain exactly half of
 `1_(C_3=-1,s=+1)` in every finite-dimensional representation.  The same
 packet has the new odd relation `(WM)^5=1`.  This is an unconditional
-proper Gram, not a regular-trace artifact.  It does not yet descend to
-`p_2`: the head ejects `C_2` and `v`, and all eight finite actors capable
-of exchanging the two compensating `s'` sheets fail to normalize signed
-`K_1`.  The remaining task is therefore a finite `K_1`-sheet aggregation
-or return which preserves this half Gram.
+proper Gram, not a regular-trace artifact.  More strongly, the literal
+vector-and-covector stabilizer of the marked projective summand is
+`diag(1,GL_3(F_2))`.  It fixes signed `K_1` pointwise and acts transitively
+on the seven nonzero characters of `<s,t,s'>`.  Thus, writing their common
+nonzero multiplicity as `m_1` and the zero multiplicity as `m_0`,
+
+```text
+rank(p_1)=m_0+7m_1,
+rank(p_2)=m_0+3m_1,
+rank(p_2 meet Wp_2W)=m_0+m_1.
+```
+
+In every finite-dimensional representation the actual signed source obeys
+
+```text
+rank(p_2 meet Wp_2W) >= (1/3)rank(p_2) >= (1/7)rank(p_1).
+```
+
+This invalidates the standalone swapped-character zero-meet profile once
+the full native actor packet is imposed.  The remaining task is narrower:
+type this now-positive endpoint polar as the external gauge of the two
+actual unequal native selector occurrences.  The meet is not known to
+reduce `M`, so the odd order-five relation alone does not perform that
+occurrence attachment.
 
 The original signed source and one endpoint-moved source have now also been
 compared exactly.  In
