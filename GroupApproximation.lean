@@ -1802,6 +1802,8 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.ReducedCStarNotNuclear
 import GroupApproximation.Computability.HereditaryPropertySwitchCompleteness
 import GroupApproximation.Computability.HyperlinearMarkov
 import GroupApproximation.Computability.SoficRecognitionSecondLevel
+import GroupApproximation.Computability.SoficMicrostateNormalForm
+import GroupApproximation.Computability.SoficRecognitionPi02
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

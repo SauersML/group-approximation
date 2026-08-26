@@ -131,13 +131,16 @@ It cannot extend to `(TYC1)--(TYC3)`.
 
 The payment now lies on a fixed positive part of the marked carrier, and
 `(TYC8)` proves that the literal middle-index frame sees the collision.
-It still does not prove that this paid part meets the signed Hecke source:
-the commutator identities alone give no lower bound for the intersection
-of `P_zP_D` with that source projection.  The next live occurrence must
-localize `P_zP_D` to the common center-chain Hecke corner or show that
-escape from that corner itself pays a fixed return defect.  No Property T,
-canonical trace, stability theorem, literature input, or local computation
-is used.
+The subsequent
+`paid-t00-carrier-has-signed-hecke-reynolds-dichotomy` supplies the exact
+operator-norm localization alternative: either this carrier lies within
+distance less than one half of the actual signed source and the discrepancy
+survives after source compression, or one of a fixed finite menu of ordinary
+detector words pays at least one half on `P_zP_D`.  What remains open is to
+make those detector words small from the presentation relators, or to turn
+the operator-norm incidence into the normalized-HS moving cut required by
+the center-chain lane.  No Property T, canonical trace, stability theorem,
+literature input, or local computation is used.
 
 DERIVATION
 native-t00-y1-collision-payment-proof

@@ -14,6 +14,7 @@ distinct_from:
   mark-fixed-relative-words-do-not-coerce-native-hecke-kernel: that audits the two newly established relative-word identities and proves that their commutator kernels are trivial selectors; a common spectator gauge cancels from the full relative word while keeping every near-full native row far from its Hecke map.
   primitive-native-hecke-relators-have-no-odd-mixed-occurrence: that audits the primitive Steinberg and coefficient relators and finds that the Hecke triangles authenticate only the twice-occurring Whitehead factors; it explicitly leaves room for the now-established derived order-seven anchor.
   order-seven-anchor-stops-at-whitehead-compression-leakage: that proves the odd anchor kills the reservoir gauge once the full compression boundary is controlled; its former one-step spectral estimate is only necessary, and the surviving input is a typed moving seven-step return.
+  paid-t00-carrier-has-signed-hecke-reynolds-dichotomy: that gives an exact operator-norm localization of the paid t00 discrepancy to the actual signed source, or one fixed detector-word payment; this asks for vanishing normalized-HS loss for both native covariance rows.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
@@ -168,3 +169,14 @@ two polar-square identities.
   `v_1=u_1` and `v_2=u_2A_1`.  This leakage is positive in the regular
   representation, so obtaining `(OSC4)` from finite coordinates is
   precisely the surviving no-microstate step.
+- **Use the paid t00 carrier and signed Reynolds averaging.**  This now gives
+  a genuine fixed-menu operator-norm dichotomy.  By
+  `paid-t00-carrier-has-signed-hecke-reynolds-dichotomy`, either the paid
+  carrier has distance less than `1/2` from the actual source and the
+  `T/Y` discrepancy remains larger than one after compression by `Q`, or a
+  fixed ordinary detector word has norm defect at least `1/2` on that
+  carrier.  This is useful in the Property-T-free operator-MF lane, where a
+  rank-one operator-norm spike is visible.  It does not prove this leaf:
+  `(OSC4)` requires vanishing normalized-HS spectral mass and all seven
+  moving returns, while the Reynolds inequality supplies neither positive
+  HS mass nor relator control of the detector menu.

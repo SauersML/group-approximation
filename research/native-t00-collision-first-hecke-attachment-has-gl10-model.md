@@ -10,6 +10,7 @@ distinct_from:
   native-t00-y1-collision-pays-marked-opnorm: that forces the collision discrepancy onto at least one sixteenth of the marked active carrier and computes its first contacts with the selector-normalized middle-index dual frame; this attaches the discrepancy to the literal first center-chain Hecke arm and tests whether that contact localizes the paid carrier.
   native-a1-b2-hecke-triangle-has-gl7-model: that authenticates the first Hecke triangle but contains no separated t00 occurrence; this keeps the authenticated triangle and adds the fully paid t00/Y1 discrepancy.
   middle-index-order-seven-orbit-cut-is-native-scale-neutral: that closes all center-chain ejections in a 128-dimensional marked packet whose constant atom erases the scale distinction; this tests only the smallest coefficient-sensitive collision plus one literal Hecke arm and gives a smaller exact occurrence fence.
+  paid-t00-carrier-has-signed-hecke-reynolds-dichotomy: that adjoins the actual signed Reynolds source and proves localization or a fixed detector-word payment; this scoped GL10 chart deliberately contains no source projection and therefore does not test that alternative.
 ---
 
 **ESTABLISHED FIRST-ATTACHMENT FENCE.**  Retain
@@ -69,10 +70,13 @@ as a transverse root-position direction.
 
 This does not contradict the positive payment `(TYC6)`: the finite chart
 has no signed-Hecke source projection and imposes no compression of
-`P_zP_D` by that projection.  It proves the exact boundary.  A successful
-continuation needs a named source reflection or polar-support occurrence
-whose ordinary relations force positive intersection with `P_zP_D`; the
-mixed commutator with `B_2` alone does not.
+`P_zP_D` by that projection.  It proves the exact boundary.  The later
+`paid-t00-carrier-has-signed-hecke-reynolds-dichotomy` shows that, once the
+actual signed source is adjoined, failure of operator-norm incidence pays
+one of a fixed finite menu of detector words.  The remaining continuation
+must derive smallness of those detectors from ordinary presentation
+relators, or upgrade the surviving source incidence to a positive-HS moving
+carrier; the mixed commutator with `B_2` alone does neither.
 
 This is a scoped elementary occurrence model, not a representation of the
 full binary Leavitt elementary group.  No Property T, canonical trace,

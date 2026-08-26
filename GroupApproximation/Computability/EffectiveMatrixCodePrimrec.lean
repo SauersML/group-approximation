@@ -322,7 +322,7 @@ theorem primrec_mulVecNormSq :
           (Primrec.snd.comp₂ Primrec₂.right)))
   exact Primrec.list_foldl hrange (Primrec.const ratZero) hstep
 
-/-! ## Decidable matrix predicates -/
+/-! ## Flat Boolean matrix predicates -/
 
 /-- Primitive recursiveness of Boolean `List.all`, with a predicate depending
 on the ambient input.  This is deliberately Boolean: nested decidable `Prop`
@@ -341,10 +341,10 @@ theorem primrec_listAll {α β : Type*} [Primcodable α] [Primcodable β]
   | nil => rfl
   | cons b l ih => simp only [List.foldr_cons, List.all_cons, ih]
 
-set_option maxHeartbeats 800000 in
-theorem primrecPred_matrixEq :
-    PrimrecPred fun z : (ℕ × MatrixCode) × MatrixCode =>
-      matrixEq z.1.1 z.1.2 z.2 := by
+private theorem primrecRel_matrixEqCell : PrimrecRel fun (j : ℕ)
+    (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
+    ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
+      (entry z.2.1.1 z.2.2 z.1 j) := by
   have hleft : Primrec fun p : ℕ ×
       (ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
       entry p.2.2.1.1 p.2.2.1.2 p.2.1 p.1 :=
@@ -365,36 +365,40 @@ theorem primrecPred_matrixEq :
           (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))
         (Primrec.fst.comp Primrec.snd))
       Primrec.fst)
-  have hcol : PrimrecRel fun (j : ℕ)
-      (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
-      ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
-        (entry z.2.1.1 z.2.2 z.1 j) :=
-    primrecRel_complexEq.comp hleft hright
-  have hrow : Primrec₂ fun (z : (ℕ × MatrixCode) × MatrixCode) (i : ℕ) =>
+  exact primrecRel_complexEq.comp hleft hright
+
+private theorem primrec_matrixEqRow : Primrec₂ fun
+    (z : (ℕ × MatrixCode) × MatrixCode) (i : ℕ) =>
       (List.range (dim z.1.1)).all fun j =>
         decide (ComplexEq (entry z.1.1 z.1.2 i j)
           (entry z.1.1 z.2 i j)) := by
-    have hrange : Primrec fun p : ((ℕ × MatrixCode) × MatrixCode) × ℕ =>
-        List.range (dim p.1.1.1) :=
-      Primrec.list_range.comp
-        (primrec_dim.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
-    have hitem : Primrec₂ fun
-        (p : ((ℕ × MatrixCode) × MatrixCode) × ℕ) (j : ℕ) =>
-        decide (ComplexEq (entry p.1.1.1 p.1.1.2 p.2 j)
-          (entry p.1.1.1 p.1.2 p.2 j)) :=
-      hcol.decide.comp₂ Primrec₂.right
-        ((Primrec.pair (Primrec.snd.comp Primrec.fst)
-          (Primrec.fst.comp Primrec.fst)).to₂)
-    exact (primrec_listAll hrange hitem).to₂
-  have hcheck : Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
-      (List.range (dim z.1.1)).all fun i =>
-        (List.range (dim z.1.1)).all fun j =>
-          decide (ComplexEq (entry z.1.1 z.1.2 i j)
-            (entry z.1.1 z.2 i j)) :=
-    primrec_listAll
-      (Primrec.list_range.comp
-        (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) hrow
-  refine (Primrec.eq.comp hcheck (Primrec.const true)).of_eq ?_
+  have hrange : Primrec fun p : ((ℕ × MatrixCode) × MatrixCode) × ℕ =>
+      List.range (dim p.1.1.1) :=
+    Primrec.list_range.comp
+      (primrec_dim.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+  have hitem : Primrec₂ fun
+      (p : ((ℕ × MatrixCode) × MatrixCode) × ℕ) (j : ℕ) =>
+      decide (ComplexEq (entry p.1.1.1 p.1.1.2 p.2 j)
+        (entry p.1.1.1 p.1.2 p.2 j)) :=
+    primrecRel_matrixEqCell.decide.comp₂ Primrec₂.right
+      ((Primrec.pair (Primrec.snd.comp Primrec.fst)
+        (Primrec.fst.comp Primrec.fst)).to₂)
+  exact (primrec_listAll hrange hitem).to₂
+
+private theorem primrec_matrixEqCheck : Primrec fun
+    z : (ℕ × MatrixCode) × MatrixCode =>
+    (List.range (dim z.1.1)).all fun i =>
+      (List.range (dim z.1.1)).all fun j =>
+        decide (ComplexEq (entry z.1.1 z.1.2 i j)
+          (entry z.1.1 z.2 i j)) :=
+  primrec_listAll
+    (Primrec.list_range.comp
+      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) primrec_matrixEqRow
+
+theorem primrecPred_matrixEq :
+    PrimrecPred fun z : (ℕ × MatrixCode) × MatrixCode =>
+      matrixEq z.1.1 z.1.2 z.2 := by
+  refine (Primrec.eq.comp primrec_matrixEqCheck (Primrec.const true)).of_eq ?_
   intro z
   simp only [List.all_eq_true, decide_eq_true_eq, List.mem_range, matrixEq]
 

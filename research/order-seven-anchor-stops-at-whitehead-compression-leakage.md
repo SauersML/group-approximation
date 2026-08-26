@@ -11,6 +11,7 @@ distinct_from:
   native-whitehead-hecke-head-has-order-seven-anchor: that proves exact odd parity and reservoir-gauge coercivity on an invariant finite packet; this quantifies the error caused by compressing that relation to the nonreducing Hecke source.
   native-whitehead-corner-collapses-hecke-flags: that computes exact fixed reducing corners and shows they collapse the Hecke distinction; this gives the robust inequality and the exact matrix-only leakage estimate still needed.
   mark-fixed-relative-words-do-not-coerce-native-hecke-kernel: that treats relative words whose mark commutator is identically zero and which retain a common spectator gauge; the order-seven word genuinely removes that gauge once compression leakage is controlled.
+  paid-t00-carrier-has-signed-hecke-reynolds-dichotomy: that controls the operator-norm distance of one paid collision carrier from the fixed signed source, or pays a detector word; this needs the full boundary of a model-dependent cut at all seven stages.
 ---
 
 **ESTABLISHED ORDER-SEVEN COMPRESSION BOUNDARY.**  Let `J` be one native
@@ -85,7 +86,11 @@ The affirmative frontier has nevertheless narrowed: occurrence parity is
 closed by the order-seven anchor.  The remaining step is the typed moving
 return in `growing-multicut-el20-order-seven-inheritance`.  The first-exit
 tail estimate `(OSC4)` may be part of such a construction, but is not
-equivalent to the full compression boundary.
+equivalent to the full compression boundary.  In particular, the exact
+operator-norm source incidence from
+`paid-t00-carrier-has-signed-hecke-reynolds-dichotomy` can be supported on a
+single vector and gives no normalized-HS control of any of the seven moving
+boundaries, so it does not silently discharge this leaf.
 
 DERIVATION
 order-seven-compression-boundary-proof

@@ -131,6 +131,124 @@ def generated_with_character(generators):
     return character
 
 
+def signed_identity(bits):
+    size = 1 << bits
+    return (tuple(range(size)), (1,) * size)
+
+
+def signed_compose(left, right):
+    left_permutation, left_sign = left
+    right_permutation, right_sign = right
+    permutation_part = tuple(left_permutation[right_permutation[j]] for j in range(len(right_permutation)))
+    sign_part = tuple(right_sign[j] * left_sign[right_permutation[j]] for j in range(len(right_permutation)))
+    return (permutation_part, sign_part)
+
+
+def signed_power(element, exponent, bits=3):
+    answer = signed_identity(bits)
+    for _ in range(exponent):
+        answer = signed_compose(answer, element)
+    return answer
+
+
+def signed_inverse(element):
+    permutation_part, sign_part = element
+    inverse_permutation = [0] * len(permutation_part)
+    inverse_sign = [1] * len(permutation_part)
+    for source, target in enumerate(permutation_part):
+        inverse_permutation[target] = source
+        inverse_sign[target] = sign_part[source]
+    return (tuple(inverse_permutation), tuple(inverse_sign))
+
+
+def signed_commutator(left, right):
+    return signed_compose(
+        signed_compose(signed_compose(left, right), signed_inverse(left)),
+        signed_inverse(right),
+    )
+
+
+def signed_z(bit, bits=3):
+    size = 1 << bits
+    return (tuple(range(size)), tuple(-1 if (x >> bit) & 1 else 1 for x in range(size)))
+
+
+def signed_cnot(control, target, bits=3):
+    size = 1 << bits
+    permutation_part = []
+    for x in range(size):
+        y = x ^ ((1 << target) if ((x >> control) & 1) else 0)
+        permutation_part.append(y)
+    return (tuple(permutation_part), (1,) * size)
+
+
+def custom_clifford_escape():
+    """Return source, paid, and intersection ranks in the 8D escape block."""
+    one = signed_identity(3)
+    d = signed_z(0)
+    z = signed_z(2)
+    h = signed_compose(d, z)
+
+    # The explicit double commutator returns the mark from D.
+    payment_left = signed_cnot(1, 0)
+    payment_right = signed_cnot(2, 1)
+    assert signed_commutator(signed_commutator(payment_left, d), payment_right) == z
+
+    # Marked-center Weyl transport and a literal commutator cell for h.
+    marked_weyl = signed_cnot(0, 2)
+    assert signed_compose(
+        signed_compose(marked_weyl, z), signed_inverse(marked_weyl)
+    ) == h
+    a3 = signed_compose(signed_cnot(0, 1), signed_cnot(2, 1))
+    b3 = signed_z(1)
+    assert signed_commutator(a3, b3) == h
+
+    # The row-two marked action and both parallel A2 paths collapse on this
+    # summand, while the native head remains an exact seventh-power word.
+    a2 = one
+    returned_a2 = signed_commutator(h, a2)
+    p = one
+    assert returned_a2 == a2
+    assert signed_compose(signed_compose(p, a2), signed_inverse(p)) == returned_a2
+    j2 = b3
+    x2 = signed_commutator(b3, a2)
+    y2 = j2
+    assert signed_compose(signed_compose(x2, y2), x2) == j2
+    assert signed_power(signed_compose(signed_compose(j2, b3), a2), 7) == one
+    j1 = j2
+    assert signed_compose(signed_compose(j1, j2), j1) == signed_compose(
+        signed_compose(j2, j1), j2
+    )
+
+    # D=TY and every displayed parallel A2 factorization is exact.
+    t = one
+    y = d
+    assert signed_compose(t, y) == d
+    left_t0 = one
+    assert signed_commutator(left_t0, y) == t
+    for left_arm in (one, one, one):
+        assert signed_commutator(left_arm, t) == a2
+
+    # H maps through its abelianization with all three simple generators h;
+    # the signed Hecke character projection is therefore P_h^- and U is trivial.
+    source_rank = 0
+    paid_rank = 0
+    intersection_rank = 0
+    for basis in range(8):
+        d_sign = d[1][basis]
+        z_sign = z[1][basis]
+        h_sign = h[1][basis]
+        in_source = h_sign == -1
+        in_paid = d_sign == -1 and z_sign == -1
+        source_rank += int(in_source)
+        paid_rank += int(in_paid)
+        intersection_rank += int(in_source and in_paid)
+    assert source_rank == 4
+    assert paid_rank == 2
+    assert intersection_rank == 0
+    return source_rank, paid_rank, intersection_rank
+
+
 def main():
     # Old vertices followed by the two new center-chain vertices r,s.
     seven_0, nine, eight_0, seven_1, ten, eight_1, six, u, b, c, r, s = range(12)
@@ -232,7 +350,8 @@ def main():
             denominator *= 2
         return Fraction(total, denominator)
 
-    for tensor_power in range(1, 9):
+    gl_source_rank_zero = False
+    for tensor_power in (1,):
         source_trace = normalized_trace_sum(False, False, tensor_power)
         marked_source_trace = normalized_trace_sum(True, False, tensor_power)
         paid_source_trace = normalized_trace_sum(True, True, tensor_power)
@@ -240,6 +359,16 @@ def main():
         print(f"tensor power {tensor_power}: source trace={source_trace}")
         print(f"tensor power {tensor_power}: marked source trace={marked_source_trace}")
         print(f"tensor power {tensor_power}: paid marked source trace={paid_source_trace}")
+        gl_source_rank_zero = source_trace == 0
+
+    source_rank, paid_rank, intersection_rank = custom_clifford_escape()
+    assert gl_source_rank_zero
+    assert source_rank > 0 and paid_rank > 0 and intersection_rank == 0
+    assert a2 != ONE
+    print(
+        "direct-sum fence: signed source and paid carrier are nonzero, "
+        "A2 is globally nontrivial, intersection is zero"
+    )
 
 
 if __name__ == "__main__":

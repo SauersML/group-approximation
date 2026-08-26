@@ -28,8 +28,7 @@ namespace GroupApproximation
 namespace UnnormalizedSchattenApproximation
 
 open Filter
-open scoped Matrix Matrix.Norms.L2Operator
-open scoped Matrix.Norms.L2Operator
+open scoped Matrix
 
 universe u
 
@@ -108,9 +107,13 @@ theorem schattenPNorm_mono_of_singularValues_le {p : ℝ} (hp : 1 ≤ p)
     apply Finset.sum_le_sum
     intro k hk
     exact Real.rpow_le_rpow (TA.singularValues_nonneg k)
-      (hAB ⟨k, Finset.mem_range.mp hk⟩) hp
+      (hAB ⟨k, Finset.mem_range.mp hk⟩) (zero_le_one.trans hp)
   unfold schattenPNorm
   exact Real.rpow_le_rpow hsumA hsums (by positivity)
+
+section OperatorNormBounds
+
+open scoped Matrix.Norms.L2Operator
 
 /-- The `L²` operator norm of a nonempty square matrix is bounded by its
 largest singular value.  The proof identifies the top eigenvalue of `Aᴴ A`
@@ -126,7 +129,7 @@ theorem operatorNorm_le_largestSingularValue {d : ℕ} (hd : 0 < d)
   obtain ⟨i, hi⟩ :=
     exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D ⟨⟨0, hd⟩⟩
   let j : Fin d :=
-    (Fintype.equivOfCardEq (Fintype.card_fin d)).symm i
+    Fin.cast (Fintype.card_fin d) i
   have hH_eq : H = Aᴴ * A := by
     simp [H, D]
   have hadjoint : T.adjoint ∘ₗ T = Matrix.toEuclideanLin H := by
@@ -161,6 +164,8 @@ theorem operatorNorm_le_schattenPNorm {p : ℝ} (hp : 1 ≤ p)
     ‖A‖ ≤ schattenPNorm p A :=
   (operatorNorm_le_largestSingularValue d.2 A).trans
     (singularValue_le_schattenPNorm hp A (⟨0, d.2⟩ : Fin d.1))
+
+end OperatorNormBounds
 
 /-- Scalar form of the approximate-involution estimate.  Inside the open
 unit ball about `1`, multiplication by `z + 1` cannot decrease the distance

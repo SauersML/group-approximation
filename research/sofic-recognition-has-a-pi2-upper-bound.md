@@ -4,6 +4,8 @@ id: sofic-recognition-has-a-pi2-upper-bound
 kind: claim
 title: Soficity is Pi-zero-two for recursive presentations, with a primitive recursive certificate checker
 artifacts:
+  - GroupApproximation/Computability/SoficRecognitionPi02.lean
+  - GroupApproximation/Computability/SoficMicrostateNormalForm.lean
   - GroupApproximation/Sofic/Sofic.lean
   - GroupApproximation/Covers/TableCover.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
@@ -44,3 +46,10 @@ closed field is used: everything in the certificate is finite combinatorics.
 This is the upper half of
 [[sofic-recognition-two-generator-recursive-is-pi2-complete]] and of
 [[sofic-recognition-finite-presentations-arithmetical-position]].
+
+**Machine-checked.**  For finite presentation codes the normal form is
+`SoficMicrostateNormalForm.isSofic_iff_forall_answers`, the certificate
+checker is a computable Boolean predicate, and
+`SoficRecognitionPi02.pi02_isSofic` is the closed `Pi02` statement, with
+`sigma02_not_isSofic` for the complement; the recursive-presentation
+variant with a relator prefix is in progress.

@@ -46,6 +46,12 @@ between `(i)` and undecidability of `HYP_fp` is machine-checked as
 direction constructs the Adian--Rabin data from the finite table cover, and
 `exists_not_isHyperlinear_iff_nonhyperlinearCodeProperty_not_re` checks the
 full equivalence with the stronger non-r.e. conclusion for the negative side.
+The complementary easy side is checked by
+`no_counterexample_iff_hyperlinearCodeProperty_computable` and
+`no_counterexample_iff_nonhyperlinearCodeProperty_re`.  Finally,
+`exists_not_isHyperlinear_iff_nonempty_markovData` identifies the exact phase
+transition: hyperlinearity admits Adian--Rabin Markov data precisely when a
+counterexample exists.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by

@@ -130,6 +130,38 @@ theorem exists_not_isHyperlinear_iff_nonhyperlinearCodeProperty_not_re :
     exact hnotre
       (hyperlinearCodeProperty_computable_of_no_counterexample hnone).not.to_re
 
+/-- The easy side of the dichotomy: no counterexample exists exactly when
+hyperlinearity recognition is computable. -/
+theorem no_counterexample_iff_hyperlinearCodeProperty_computable :
+    (¬ ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
+      ComputablePred HyperlinearCodeProperty := by
+  constructor
+  · exact hyperlinearCodeProperty_computable_of_no_counterexample
+  · intro hcomp hexists
+    exact (hyperlinearCodeProperty_not_computable_of_exists hexists) hcomp
+
+/-- Equivalently, the negative code set is recursively enumerable precisely
+on the no-counterexample side. -/
+theorem no_counterexample_iff_nonhyperlinearCodeProperty_re :
+    (¬ ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
+      REPred (fun c ↦ ¬ HyperlinearCodeProperty c) := by
+  constructor
+  · intro hnone
+    exact (hyperlinearCodeProperty_computable_of_no_counterexample hnone).not.to_re
+  · intro hre hexists
+    exact (nonhyperlinearCodeProperty_not_re_of_exists hexists) hre
+
+/-- Hyperlinearity has Adian--Rabin Markov data exactly when a
+non-hyperlinear group exists. -/
+theorem exists_not_isHyperlinear_iff_nonempty_markovData :
+    (∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
+      Nonempty (MarkovData HyperlinearProperty) := by
+  constructor
+  · intro h
+    exact ⟨hyperlinearMarkovDataOfExists h⟩
+  · rintro ⟨D⟩
+    exact ⟨Carrier D.forbidden, inferInstance, D.forbidden_not⟩
+
 end HyperlinearMarkov
 end GroupApproximation
 
@@ -139,3 +171,6 @@ open GroupApproximation.HyperlinearMarkov
 #audit_axioms nonhyperlinearCodeProperty_not_re_of_exists
 #audit_axioms exists_not_isHyperlinear_iff_codeProperty_not_computable
 #audit_axioms exists_not_isHyperlinear_iff_nonhyperlinearCodeProperty_not_re
+#audit_axioms no_counterexample_iff_hyperlinearCodeProperty_computable
+#audit_axioms no_counterexample_iff_nonhyperlinearCodeProperty_re
+#audit_axioms exists_not_isHyperlinear_iff_nonempty_markovData

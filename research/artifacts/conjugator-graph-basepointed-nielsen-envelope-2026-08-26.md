@@ -146,7 +146,7 @@ and, for \(h\neq1\),
 
 \[
   \boxed{
-  \alpha_k(u_h)=u_{hk},u_k^{-1},u_1.}
+  \alpha_k(u_h)=u_{hk}u_k^{-1}u_1.}
 \]
 
 This is right translation with a basepoint correction.  The correction is
@@ -324,8 +324,8 @@ Thus
 There is an isomorphism \(M\cong M_0\) carrying
 
 \[
-  u_1\mapsto z,quad u_b\mapsto p,quad u_c\mapsto q,quad
-  t_b\mapsto s,quad t_c\mapsto t.
+  u_1\mapsto z,\quad u_b\mapsto p,\quad u_c\mapsto q,\quad
+  t_b\mapsto s,\quad t_c\mapsto t.
 \]
 
 ### Proof
@@ -370,8 +370,8 @@ with the identity assignment on \(t_b,t_c\), defines a homomorphism
 Conversely, send
 
 \[
-  z\mapsto u_1,quad p\mapsto u_b,quad q\mapsto u_c,quad
-  s\mapsto t_b,quad t\mapsto t_c.
+  z\mapsto u_1,\quad p\mapsto u_b,\quad q\mapsto u_c,\quad
+  s\mapsto t_b,\quad t\mapsto t_c.
 \]
 
 The only two relations hold because both \(\alpha_b\) and \(\alpha_c\) fix
@@ -409,7 +409,7 @@ by
 
 \[
   \Psi(z)=\Psi(s)=\Psi(t)=1,qquad
-  \Psi(p)=b,quad\Psi(q)=c.
+  \Psi(p)=b,\quad\Psi(q)=c.
 \]
 
 The two relators are respected.  Moreover
@@ -505,4 +505,3 @@ A future formalization can be split into four independent modules:
 The first three are unconditional algebra and should not be advertised as the
 missing benign witness.  Unrestricted image transport remains false and is
 not used anywhere in this note.
-
