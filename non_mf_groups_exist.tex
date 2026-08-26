@@ -95,12 +95,11 @@ $\Rad_{\mathrm{MF}}(G)=f^{-1}(\Rad_{\mathrm{MF}}(Q))$.  In this case, image
 and inverse image identify the normal subgroups $N\trianglelefteq G$ satisfying
 $\ker f\le N$ and $G/N$ MF with the normal subgroups $P\trianglelefteq Q$
 satisfying $Q/P$ MF.
-Finally, the MF property of finitely presented groups is $\Pi^0_2$-complete
-to recognize: no algorithm decides it from a finite presentation, and the
-finite presentations of non-MF groups cannot be recursively enumerated.
-The lower bound compiles the halting hierarchy into finite presentations by
-HNN extensions, kept MF by a permanence theorem for HNN extensions whose
-edge isomorphism is implemented by a unitary of a norm matrix corona.
+We also prove that recognizing MF groups from finite presentations is
+$\Pi^0_2$-complete; in particular, the finite presentations of non-MF
+groups cannot be recursively enumerated.  The lower bound uses an effective
+Higman embedding together with a permanence theorem for HNN extensions
+whose edge isomorphism is implemented by a unitary of a norm matrix corona.
 \end{abstract}
 
 \maketitle
@@ -679,15 +678,17 @@ computable function has infinite domain.
 The upper bound is a certificate normal form: the MF property is
 determined by finite data with a fixed separation constant, and the
 existence of a certificate at a given scale is decidable
-(Section~\ref{sec:local}).  The lower bound follows the architecture of
-Higman's embedding theorem.  A switch turns $e$ into a recursively
-presented group that is trivial or contains $H$ according as the domain is
-infinite or finite; two HNN extensions wrap it into a finitely presented
-group (Section~\ref{sec:compiler}); and the extensions stay MF on the
-positive branch because of a permanence theorem, Theorem~\ref{thm:hnn-permanence}:
-an HNN extension of a group with a regular trace remains MF whenever the
-edge isomorphism is implemented by a unitary of a norm matrix corona
-(Sections~\ref{sec:hnn} and~\ref{sec:positive}).
+(Section~\ref{sec:local}).  For the lower bound we encode the
+$\Pi^0_2$-complete set of programs with infinite domain.  The
+construction of Bilanovic--Chubb--Roven gives a recursively presented
+group that is trivial or contains $H$ according as the domain is infinite
+or finite; an effective Higman embedding and two HNN extensions turn it
+into a finitely presented group (Section~\ref{sec:compiler}); and
+Theorem~\ref{thm:hnn-permanence} proves that the resulting group is MF
+when the domain is infinite: an HNN extension of a group with a tracial MF
+realization is MF whenever the edge isomorphism is implemented by a
+unitary of a norm matrix corona (Sections~\ref{sec:hnn}
+and~\ref{sec:positive}).
 
 \subsection*{Relation to prior work}
 
@@ -758,12 +759,12 @@ Torsion-freeness is the only other property of finitely presented groups
 whose recognition problem was known to be $\Pi^0_2$-complete, by
 Lempp~\cite{Lempp}.  For recursively presented groups,
 Bilanovic--Chubb--Roven proved that every Markov property is
-$\Pi^0_2$-hard to recognize~\cite{BCR}; their construction is the switch
-of Section~\ref{sec:compiler}.  The passage from recursive to finite
+$\Pi^0_2$-hard to recognize~\cite{BCR}; their construction is the first
+step of Section~\ref{sec:compiler}.  The passage from recursive to finite
 presentations is where the operator algebra enters: a generic Higman
-embedding does not preserve the MF property, and the ropes of
-Section~\ref{sec:compiler} are designed so that Theorem~\ref{thm:hnn-permanence}
-applies to them.
+embedding does not preserve the MF property, and the HNN extensions of
+Section~\ref{sec:compiler} are chosen so that
+Theorem~\ref{thm:hnn-permanence} applies to them.
 
 \section{One-sided compression in finite dimension}
 
@@ -2040,11 +2041,10 @@ $\ker\pi_{\mathbb Z}=\normal d_{W_{\mathbb Z}}$.
 
 \section{Operator norm models on finite sets}\label{sec:local}
 
-The recognition of MF groups from finite presentations, taken up in the
-following sections, rests on the observation that
-the MF property, although defined through sequences of models on all of
-$G$, is determined by finite data with a fixed separation constant.  This
-section isolates that reformulation.
+The MF property is defined through sequences of models on all of $G$,
+but it is determined by finite data with a fixed separation constant.
+This section proves that reformulation and derives the upper bound of
+Theorem~\ref{thm:recognition} from it.
 
 \begin{lemma}[locality with fixed separation]\label{lem:local-models}
 A countable group $G$ is MF if and only if for every finite set
@@ -2197,24 +2197,24 @@ complement as a $\Sigma^0_2$ set.
 
 \section{HNN extensions with a corona conjugator}\label{sec:hnn}
 
-The lower bound in Theorem~\ref{thm:recognition} is a computable family of finitely presented
-groups whose positive branch must be MF\@.  Those groups are built by two
-HNN extensions, and the tool that keeps them MF is the following
-permanence theorem.  It asks for more than the MF property of the base:
-a realization carrying a trace that is regular on the group.
+The groups of Section~\ref{sec:compiler} are built from $H$ by two HNN
+extensions, and the following permanence theorem proves that they are MF
+when the encoded program has infinite domain.  Its hypothesis is stronger
+than the MF property of the base: a realization carrying a trace that
+vanishes off the identity.
 
-A countable group $G$ is \emph{regularly realized} by a triple
+A countable group $G$ \emph{admits a tracial MF realization}
 $(A,\rho,\tau)$ if $A$ is a separable unital MF $C^*$-algebra,
 $\rho\colon G\to\U(A)$ is a homomorphism, and $\tau$ is a tracial state on
-$A$ with $\tau(\rho(g))=0$ for every $g\ne1$.  Since
-$\tau(1)=1$, a regularly realized group embeds in $\U(A)$, so it is MF\@.
+$A$ with $\tau(\rho(g))=0$ for every $g\ne1$.  Since $\tau(1)=1$, such a
+group embeds in $\U(A)$, so it is MF\@.
 Padding blocks with zeros embeds every norm matrix corona
 $\mathcal Q_{\mathbf d}$ isometrically into $\prod_nM_n(\C)/\bigoplus_nM_n(\C)$,
 so the MF algebras of the introduction are exactly the separable
 $C^*$-algebras that embed in the latter corona, as in~\cite{BK,Shulman}.
 
-\begin{lemma}[residually finite groups are regularly realized]\label{lem:rf-regular}
-Every countable residually finite group is regularly realized.
+\begin{lemma}[residually finite groups]\label{lem:rf-regular}
+Every countable residually finite group admits a tracial MF realization.
 \end{lemma}
 
 \begin{proof}
@@ -2232,7 +2232,7 @@ and it is a tracial state on $\mathcal Q_{\mathbf d}$.  If $g\ne1$, then
 $g\notin N_k$ for all large $k$, so $\operatorname{tr}_{d_k}(\lambda_k(g))=0$
 for all large $k$ and $\tau(\rho(g))=0$.  Let $A$ be the $C^*$-algebra
 generated by $\rho(G)$ and the unit of $\mathcal Q_{\mathbf d}$; it is
-separable, unital, and MF, and $(A,\rho,\tau|_A)$ is a regular
+separable, unital, and MF, and $(A,\rho,\tau|_A)$ is a tracial MF
 realization of $G$.
 \end{proof}
 
@@ -2244,15 +2244,15 @@ $\theta\colon S\to G$ be an injective homomorphism.  The HNN extension
 contains $G$ by Britton's lemma~\cite{Britton}.
 
 \begin{theorem}[HNN permanence with a corona conjugator]\label{thm:hnn-permanence}
-In the situation of~\eqref{eq:hnn}, suppose that $G$ is regularly
-realized by $(A,\rho,\tau)$, and that for some norm matrix corona
+In the situation of~\eqref{eq:hnn}, suppose that $G$ admits a tracial
+MF realization $(A,\rho,\tau)$, and that for some norm matrix corona
 $\mathcal Q$ there are an injective $*$-homomorphism
 $\iota\colon A\to\mathcal Q$ and a unitary $W\in\mathcal Q$ with
 \[
  W\,\iota\rho(s)\,W^*=\iota\rho(\theta(s))
  \qquad(s\in S).
 \]
-Then $R$ is regularly realized.  In particular, $R$ is MF\@.
+Then $R$ admits a tracial MF realization.  In particular, $R$ is MF\@.
 \end{theorem}
 
 \begin{proof}
@@ -2268,10 +2268,10 @@ $d$ and $u$ for the images of $d\in D$ and $u$ in $U$.  By construction,
 $U$ has the following universal property: whenever $\pi\colon D\to E$ is a
 unital $*$-homomorphism into a unital $C^*$-algebra and $v\in\U(E)$
 satisfies $v\pi(b)v^*=\pi(\Theta(b))$ for $b\in B_0$, there is a unique
-$*$-homomorphism $U\to E$ extending $\pi$ and sending $u$ to $v$.  The
-proof has three steps: $U$ embeds in an amalgamated free product; that
-amalgamated free product is MF; and $R$ embeds in $\U(U)$ with a regular
-trace.
+$*$-homomorphism $U\to E$ extending $\pi$ and sending $u$ to $v$.  We
+first embed $U$ in an amalgamated free product, which Shulman's criterion
+shows to be MF, and then construct the required tracial state on the copy
+of $R$ inside $U$.
 
 \emph{Step 1: $U$ embeds in an amalgamated free product.}  This step is a
 self-contained form of a corner argument of Ueda~\cite{Ueda}.  Let
@@ -2303,8 +2303,9 @@ $\iota_A(b,0)=\iota_B(b,0)$, so
 where the middle equality uses
 $\iota_B(0,\Theta(b))=\operatorname{diag}(0,b)$ in $A_2$.  The universal
 property of $U$ gives a $*$-homomorphism $\Phi\colon U\to ePe\subseteq P$
-with $\Phi|_D=\pi_D$ and $\Phi(u)=w$.  To see that $\Phi$ is injective,
-map back.  Let $\Psi_1\colon A_1\to M_2(U)$ be the entrywise inclusion
+with $\Phi|_D=\pi_D$ and $\Phi(u)=w$.  We prove that $\Phi$ is injective
+by constructing $\Psi\colon P\to M_2(U)$ with
+$\Psi\Phi(x)=\operatorname{diag}(x,0)$.  Let $\Psi_1\colon A_1\to M_2(U)$ be the entrywise inclusion
 $D\subseteq U$, and let $\Psi_2\colon A_2\to M_2(U)$ be the entrywise
 inclusion $B_0\subseteq U$ followed by conjugation by
 $\operatorname{diag}(1,u)$.  On $C$ we have
@@ -2337,7 +2338,7 @@ and on $C$,
 because $\Theta$ is conjugation by $W$.  Hence $P$ is MF, and so are its
 $C^*$-subalgebras $ePe$ and $\Phi(U)\cong U$.
 
-\emph{Step 3: $R$ embeds in $\U(U)$ with a regular trace.}  The functional
+\emph{Step 3: the tracial state.}  The functional
 $T=\tau\circ\iota^{-1}$ is a tracial state on $\iota(A)\supseteq D$ with
 $T(\iota\rho(g))=0$ for $g\ne1$.  In the GNS representation of $D$ for
 $T$, the vectors $\xi_g=\iota\rho(g)\xi_T$, $g\in G$, are orthonormal,
@@ -2369,20 +2370,18 @@ $C^*$-algebra, and let $\tau'=\tau_R\circ\sigma|_{A'}$, where $\tau_R$ is
 the canonical trace $x\mapsto\langle x\delta_1,\delta_1\rangle$ of
 $C^*_{\mathrm r}(R)$.  Then $\tau'$ is a tracial state on $A'$ with
 $\tau'(j(r))=\tau_R(\lambda_R(r))=0$ for $r\ne1$.  Hence $(A',j,\tau')$
-regularly realizes $R$.
+is a tracial MF realization of $R$.
 \end{proof}
 
-Nothing in the proof asserts that the concrete pair $(\iota\rho,W)$ is a
-faithful representation of $R$ in $\mathcal Q$; in the applications below
-it is not.  Faithfulness is bought at the universal algebra $U$ by the
-regular trace of the base together with the left regular representation of
-$R$ itself, while the operator norm approximation is bought by Shulman's
-criterion.  No reduced normal form for the HNN extension and no
-freeness estimate appears.
+The covariant pair $(\iota\rho,W)$ need not define a faithful
+representation of $R$ in $\mathcal Q$, and in the applications below it
+does not; the map $\sigma\colon U\to C^*_{\mathrm r}(R)$ is what proves
+that $j\colon R\to\U(U)$ is injective.  The proof uses no normal form
+for the HNN extension.
 
 \begin{corollary}[central HNN extensions]\label{cor:central-hnn}
-If $G$ is regularly realized and $S\le G$ is any subgroup, then
-$\langle G,t\mid[t,s]=1\ (s\in S)\rangle$ is regularly realized.
+If $G$ admits a tracial MF realization and $S\le G$ is any subgroup, then
+$\langle G,t\mid[t,s]=1\ (s\in S)\rangle$ admits a tracial MF realization.
 \end{corollary}
 
 \begin{proof}
@@ -2403,19 +2402,19 @@ The set $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is
 $\Sigma^0_2$-complete~\cite[Chapter~IV]{Soare}.  This section constructs a
 computable map $e\mapsto\widehat R_e$ into finite presentations such that
 the presented group is MF if and only if $e\in\mathrm{INF}$.  The
-construction has three moves.  A \emph{switch} turns $e$ into a
-recursively presented group that is trivial for $e\in\mathrm{INF}$ and
-contains $H$ for $e\in\mathrm{FIN}$.  A \emph{rope}, in the manner of
-Higman's embedding theorem, wraps the switch into a finitely presented
-group by two HNN extensions.  A \emph{synchronization} of finite quotients
-then supplies the corona conjugator that Theorem~\ref{thm:hnn-permanence}
-needs on the positive branch.  The first two moves are group theory and
-occupy this section up to Lemma~\ref{lem:negative-branch}; the third is
-carried out in the next section.
+construction of Bilanovic--Chubb--Roven gives a recursively presented group
+$C_e$ that is trivial when $e\in\mathrm{INF}$ and contains $H$ when
+$e\in\mathrm{FIN}$.  We embed $C_e$ in a three-generated recursively
+presented group $Q_e=F/N_e$, use a Mikhailova subgroup to detect $N_e$
+inside a finitely presented group, and apply two HNN extensions, in the
+manner of Higman's rope trick~\cite{Higman}, to obtain $\widehat R_e$.
+This section proves that $\widehat R_e$ is not MF when
+$e\in\mathrm{FIN}$; Section~\ref{sec:positive} proves that it is MF when
+$e\in\mathrm{INF}$.
 
-\subsection*{The seed}
+\subsection*{A recursive presentation of $H$}
 
-\begin{lemma}[the seed is recursively presented]\label{lem:seed}
+\begin{lemma}[a recursive presentation of $H$]\label{lem:seed}
 The group $H=\EL_{12}(R)$ is finitely generated and has decidable word
 problem.  In particular, it has a recursive presentation on finitely many
 generators.
@@ -2439,9 +2438,9 @@ decidable, hence recursively enumerable, and $\langle Y\mid\text{that set}\rangl
 is a recursive presentation of $H$.
 \end{proof}
 
-\subsection*{The switch}
+\subsection*{The group $C_e$}
 
-\begin{lemma}[the switch]\label{lem:switch}
+\begin{lemma}[the group $C_e$]\label{lem:switch}
 There is an algorithm that computes from $e$ a recursive presentation, on
 a computable set of generators, of a group $C_e$ such that $C_e$ is
 trivial if $e\in\mathrm{INF}$ and $H$ embeds in $C_e$ if
@@ -2464,7 +2463,7 @@ killed and $C_e$ is trivial; if $W_e$ is finite, $C_e$ is the free product
 of the remaining copies and contains $H$.
 \end{proof}
 
-\subsection*{The bridge}
+\subsection*{A three-generator embedding}
 
 Let $F=F(x,y,t)$ be the free group on $x,y,t$, and let
 $y_i=x^iyx^{-i}$ for $i\in\mathbb Z$.  For a countable group $C$ with a
@@ -2475,7 +2474,7 @@ generating sequence $(c_i)_{i\ge1}$, put $c_i=1$ for $i\le0$ and
 Let $H_0=B(1)=\langle x,y,t\mid[t,y_i]=1\ (i\in\mathbb Z)\rangle$, let
 $q_+\colon F\to H_0$ be the quotient map, and let $N_+=\ker q_+$.
 
-\begin{lemma}[the bridge]\label{lem:bridge}
+\begin{lemma}[the three-generator embedding]\label{lem:bridge}
 \begin{enumerate}
 \item $B(C)$ is an HNN extension of $C*F(x,y)$, so $C$ embeds in $B(C)$;
 it is generated by $x,y,t$; and a recursive presentation of $B(C)$ on
@@ -2533,7 +2532,7 @@ $Q_e$ on $x,y,t$ is computable from $e$; $N_e\le N_+$; if $e\in\mathrm{INF}$
 then $Q_e=H_0$, $N_e=N_+$ and $q_e=q_+$; and if $e\in\mathrm{FIN}$ then
 $H\le C_e\le Q_e$.
 
-\subsection*{The cutting subgroup}
+\subsection*{Detecting $N_e$ inside a finitely presented group}
 
 \begin{lemma}[Higman embedding and the Mikhailova subgroup]\label{lem:mikhailova}
 There is an algorithm that computes from $e$ a finite presentation
@@ -2573,7 +2572,7 @@ $\widehat H_e$, if and only if $q_e(f)=1$ because the embedding is
 injective, if and only if $f\in N_e$.
 \end{proof}
 
-\subsection*{The ropes}
+\subsection*{The two HNN extensions}
 
 Let $P=F(x_1,y)\times F(x_2,t)$ and $j\colon H_0\to P$ be as in
 Lemma~\ref{lem:bridge}.  Define the graph witness
@@ -2597,7 +2596,7 @@ Let
  S_e=\bigl\langle i(F),\ v\,i(F)\,v^{-1}\bigr\rangle\le\Gamma_e.
 \end{equation}
 
-\begin{lemma}[the central rope]\label{lem:central-rope}
+\begin{lemma}[the first HNN extension]\label{lem:central-rope}
 \begin{enumerate}
 \item $K_e$ is a direct product of free groups of finite rank, hence
 finitely presented and residually finite; $L_e$ is finitely generated;
@@ -2644,7 +2643,7 @@ trivial map on the second; both kill $N_e$, so the definition is
 consistent on the amalgamated subgroup, and (2) transports it to $S_e$.
 \end{proof}
 
-The second rope is the HNN extension
+The second HNN extension is
 \begin{equation}\label{eq:twisted-rope}
  R_e=\bigl\langle\Gamma_e\times Q_e,\ u\ \bigm|\ u(s,1)u^{-1}=(s,\tau_e(s))\ (s\in S_e)\bigr\rangle,
 \end{equation}
@@ -2691,7 +2690,7 @@ homomorphisms are mutually inverse on generators.  Computability of the
 code follows from Lemmas~\ref{lem:mikhailova} and~\ref{lem:central-rope}.
 \end{proof}
 
-\begin{lemma}[the negative branch]\label{lem:negative-branch}
+\begin{lemma}[the case $e\in\mathrm{FIN}$]\label{lem:negative-branch}
 If $e\in\mathrm{FIN}$, then $H$ embeds in $\widehat R_e$, and
 $\widehat R_e$ is not MF\@.
 \end{lemma}
@@ -2704,12 +2703,12 @@ subgroup shows that subgroups of MF groups are MF, and $H$ is not MF by
 Theorem~\ref{thm:headline}.
 \end{proof}
 
-\section{The positive branch}\label{sec:positive}
+\section{The case $e\in\mathrm{INF}$}\label{sec:positive}
 
-We now show that $\widehat R_e$ is MF for $e\in\mathrm{INF}$ and prove
-Theorem~\ref{thm:recognition}.  The realization of the rope is assembled
-inside a norm reduced product of MF algebras, so we first record that such
-products stay MF\@.  For $C^*$-algebras $B_n$, $n\ge1$, write
+We now prove that $\widehat R_e$ is MF for $e\in\mathrm{INF}$ and deduce
+Theorem~\ref{thm:recognition}.  The tracial MF realization of $R_e$ is
+constructed inside a norm reduced product of MF algebras, so we first
+record that separable subalgebras of such products are MF\@.  For $C^*$-algebras $B_n$, $n\ge1$, write
 $\prod_nB_n/\bigoplus_nB_n$ for the quotient of the bounded sequences by
 the sequences with $\opnorm{x_n}\to0$; its norm is $\limsup_n\opnorm{x_n}$.
 
@@ -2752,7 +2751,7 @@ $A$ into a norm matrix corona.
 \end{proof}
 
 \begin{lemma}[tensor synchronization]\label{lem:tensor-sync}
-Let $\Gamma$ be a countable group regularly realized by
+Let $\Gamma$ be a countable group with a tracial MF realization
 $(A_1,\rho_1,\tau_1)$, let $Q$ be a countable group with homomorphisms
 $\beta_n\colon Q\to B_n$ to finite groups such that every $q\ne1$
 satisfies $\beta_n(q)\ne1$ for all large $n$, let $S\le\Gamma$, and let
@@ -2768,7 +2767,7 @@ $WV(s,1)W^*=V(s,\tau(s))$ for all $s\in S$.  Consequently
 \[
  \bigl\langle\Gamma\times Q,\ u\ \bigm|\ u(s,1)u^{-1}=(s,\tau(s))\ (s\in S)\bigr\rangle
 \]
-is regularly realized, and in particular MF\@.
+admits a tracial MF realization, and in particular is MF\@.
 \end{lemma}
 
 \begin{proof}
@@ -2802,8 +2801,8 @@ $W_nL_n(\lambda_n(s),1)W_n^*=L_n(\lambda_n(s),\beta_n\tau(s))$ for all
 $s\in S$.  Put $W=[(1\otimes W_n)_n]\in E$; then $WV(s,1)W^*=V(s,\tau(s))$
 for $s\in S$.  Let $A$ be the $C^*$-algebra generated by $V(\Gamma\times Q)$
 and $W$; it is separable and unital, and MF by
-Lemma~\ref{lem:reduced-products}.  The triple $(A,V,T|_A)$ regularly
-realizes $\Gamma\times Q$.  For the last assertion, apply
+Lemma~\ref{lem:reduced-products}.  The triple $(A,V,T|_A)$ is a tracial
+MF realization of $\Gamma\times Q$.  For the last assertion, apply
 Theorem~\ref{thm:hnn-permanence} to this realization.  Let $\iota$ be an
 injective $*$-homomorphism of $A$ into a norm matrix corona and put
 $p=\iota(1)$.  The element $\widetilde W=\iota(W)+(1-p)$ is a unitary of the
@@ -2811,23 +2810,23 @@ full corona and implements the required covariance on $\iota(A)$, so it is
 the required conjugator.
 \end{proof}
 
-\begin{lemma}[the positive branch]\label{lem:positive-branch}
-If $e\in\mathrm{INF}$, then $\widehat R_e$ is regularly realized; in
-particular, it is MF\@.
+\begin{lemma}[the case $e\in\mathrm{INF}$]\label{lem:positive-branch}
+If $e\in\mathrm{INF}$, then $\widehat R_e$ admits a tracial MF
+realization; in particular, it is MF\@.
 \end{lemma}
 
 \begin{proof}
 Let $e\in\mathrm{INF}$, so that $Q_e=H_0$, $N_e=N_+$, $q_e=q_+$, and
 $\tau_e(i(f))=q_+(f)$, $\tau_e(v\,i(f)\,v^{-1})=1$.  By
-Lemma~\ref{lem:finite-rope} it suffices to show that $R_e$ is regularly
-realized, and by Lemma~\ref{lem:tensor-sync} applied to $\Gamma=\Gamma_e$,
+Lemma~\ref{lem:finite-rope} it suffices to show that $R_e$ admits a
+tracial MF realization, and by Lemma~\ref{lem:tensor-sync} applied to $\Gamma=\Gamma_e$,
 $Q=H_0$, $S=S_e$ and $\tau=\tau_e$, it suffices to produce the data of
 that lemma.
 
 The group $K_e$ is residually finite by Lemma~\ref{lem:central-rope}(1),
-hence regularly realized by Lemma~\ref{lem:rf-regular}, and $\Gamma_e$ is
-the central HNN extension of $K_e$ over $L_e$, hence regularly realized by
-Corollary~\ref{cor:central-hnn}.
+hence admits a tracial MF realization by Lemma~\ref{lem:rf-regular},
+and $\Gamma_e$ is the central HNN extension of $K_e$ over $L_e$, hence
+admits one by Corollary~\ref{cor:central-hnn}.
 
 The group $P=F(x_1,y)\times F(x_2,t)$ is residually finite; choose
 finite-index normal subgroups $P_1\ge P_2\ge\cdots$ of $P$ with trivial
@@ -2878,22 +2877,21 @@ $\Sigma^0_2$-complete set is not $\Pi^0_2$, so neither set is recursively
 enumerable, and in particular neither is decidable.
 \end{proof}
 
-The proof of Lemma~\ref{lem:positive-branch} never claims that the
-explicit unitaries $V(g,q)$ and $W$ represent $R_e$ faithfully, and indeed
-they do not: the finite maps $\lambda_n$ kill the Mikhailova factor, so
-$W$ commutes with $V(\gamma,1)$ for every $\gamma\in K^0_e$, although
-$u$ does not commute with $(\gamma,1)$ in $R_e$.  Faithfulness is
-restored at the universal algebra in Theorem~\ref{thm:hnn-permanence}.
-Three questions in the same register remain open.  Whether the models of
-$\widehat R_e$ can be chosen to converge to $C^*_{\mathrm r}(\widehat R_e)$
-in operator norm, so that the reduced $C^*$-algebra itself is MF, is not
-settled by the argument, which produces only an abstract regular trace.
-Whether $\widehat R_e$ is hyperlinear for $e\in\mathrm{INF}$ is open, and
-would place the recognition problem for hyperlinearity at the same level;
-by Theorem~\ref{thm:hnn-permanence} and the argument above this is a
-question about the regular trace of the rope.  Finally, whether the sofic
-analogue of the compiler exists is open, because the tensor synchronization
-has no counterpart for permutation models.
+The homomorphism $V$ of Lemma~\ref{lem:tensor-sync} does not extend
+faithfully to $R_e$ in the corona: the finite maps $\lambda_n$ are trivial
+on the Mikhailova factor, so $W$ commutes with $V(\gamma,1)$ for every
+$\gamma\in K^0_e$, although $u$ does not commute with $(\gamma,1)$ in
+$R_e$.  Injectivity is obtained in Theorem~\ref{thm:hnn-permanence} from
+the universal algebra.  Three questions remain open.  It is not known
+whether the models of $\widehat R_e$ can be chosen to converge to
+$C^*_{\mathrm r}(\widehat R_e)$ in operator norm, so that the reduced
+$C^*$-algebra itself is MF; the argument produces a tracial state on an
+abstract MF algebra, not strong convergence.  It is not known whether
+$\widehat R_e$ is hyperlinear for $e\in\mathrm{INF}$, which would place
+the recognition problem for hyperlinearity at the same level.  Finally,
+it is not known whether an analogous family of finitely presented groups
+exists for soficity; the construction of Lemma~\ref{lem:tensor-sync} has
+no counterpart for permutation models.
 
 
 
@@ -2908,40 +2906,27 @@ and matrix norms.
 
 \section*{Use of AI and formal methods}
 
-Claude Fable~5 and GPT-5.6 Sol were used extensively in mathematical
-exploration, proof development, manuscript drafting, literature navigation,
-Lean formalization, and editorial revision.  The Lean development is
-available at \coderepo; it builds with \texttt{lake build}, and its
-command \texttt{\#audit\_closed\_axioms} prints the axioms on which any
-declaration depends, so that each endpoint named below can be checked to
-rest on the standard axioms alone.
+Claude Fable~5 and GPT-5.6 Sol assisted with mathematical exploration,
+proof development, literature searches, Lean formalization, drafting, and
+editing.  The author reviewed their output and is responsible for the
+manuscript.  Lean~4 source for the formalized results is available at
+\coderepo; the repository identifies the Lean declarations corresponding
+to the statements below.
 
-For this paper, the development verifies the following.
-\begin{itemize}
-\item The one-sided transport theorem and the normal
-property-\textup{(T)} radical criterion, which together give
-Theorem~\ref{thm:compression-criterion}.
-\item The rank~$12$ compression and commutator calculations and the
-resulting full MF radical conclusion of Theorem~\ref{thm:headline}.
-\item For Proposition~\ref{prop:simple}, a direct proof that every
-nontrivial normal subgroup contains an elementary matrix $e_{ij}(x)$ with
-$x\ne0$, using the concrete two-sided sandwich and the fact that every
-central unit of the binary Leavitt algebra over $\F_2$ equals $1$; the
-article cites Preusser's theorem instead, and the development formalizes
-that theorem separately over the hypothesis that the coefficient ring
-admits finite right exchange partitions.
-\item The quotient calculus of Theorem~\ref{thm:prescribed-quotients}.
-\item For Theorem~\ref{thm:recognition}, the certificate normal form and
-the passage from a computable finite-output compiler to
-$\Pi^0_2$-completeness; the compiler of Section~\ref{sec:compiler} and
+For this paper, the development verifies the one-sided transport theorem
+and the normal property-\textup{(T)} radical criterion behind
+Theorem~\ref{thm:compression-criterion}; the rank~$12$ compression and
+commutator calculations and the full MF radical conclusion of
+Theorem~\ref{thm:headline}, with a direct proof of
+Proposition~\ref{prop:simple} that does not pass through Preusser's
+theorem; the quotient calculus of Theorem~\ref{thm:prescribed-quotients};
+and, for Theorem~\ref{thm:recognition}, the certificate normal form and
+the deduction of $\Pi^0_2$-completeness from a computable family of
+finite presentations that is MF exactly on $\mathrm{INF}$.  The
+construction of that family in Section~\ref{sec:compiler} and
 Theorem~\ref{thm:hnn-permanence} are proved in the article.
-\item A machine-readable manifest lists every numbered statement of this
-paper and records, for each, whether it is matched by a Lean declaration
-or proved in the article.
-\end{itemize}
 
-Beyond this paper, the development proves the following closed,
-kernel-audited statements.
+Beyond this paper, the development proves the following.
 \begin{itemize}
 \item Soficity of a recursively enumerated presentation is
 $\Pi^0_2$-complete; the hardness half follows the construction of
@@ -2959,25 +2944,7 @@ $w_p=1$ exactly when the program $p$ halts.
 group whose MF radical is the normal closure of a single nontrivial
 element.
 \leanverified{Sofic/InvisibleExtensions}{GroupApproximation.InvisibleExtensions.stable_nonMF_invisible_extension_exists}
-\item Property~\textup{(T)} for $\mathrm{SL}_3(\mathbb Z)$, from an exact
-rational sum-of-squares certificate.
-\leanverified{Kazhdan/SL3Certificate}{GroupApproximation.SL3Certificate.sl3_hasKazhdanPropertyT}
-\item The level-three congruence subgroup $\Gamma(3)$ of
-$\mathrm{SL}_3(\mathbb Z)$ is torsion-free, finitely presented, and has
-property~\textup{(T)}.
-\leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_torsionFree}
-\leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_finitelyPresented}
-\leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_kazhdan}
-\item Shalom's theorem that every finitely generated group with
-property~\textup{(T)} is a quotient of a finitely presented group with
-property~\textup{(T)}.
 \end{itemize}
-
-The development is organized for reuse: the group properties are the
-predicates \texttt{IsOperatorMF}, \texttt{IsSofic} and
-\texttt{HasKazhdanPropertyT}, the statements of this paper are collected
-under \texttt{Manuscript/OneSidedMFRadical}, and new results can be stated
-against the same definitions and audited with the same command.
 
 \begin{thebibliography}{99}
 \bibitem[AA]{AbramsAranda}
