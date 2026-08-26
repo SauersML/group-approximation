@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.FilterMatrixCStarCorona
 import GroupApproximation.Analysis.FaithfulTracialMatrix
+import GroupApproximation.Analysis.MFAlgebra
 import GroupApproximation.Analysis.NonUnitalMFSupportCornerEmbedding
 import GroupApproximation.Analysis.ReducedGroupCStarStablyFinite
 import GroupApproximation.Analysis.ShulmanTraceClasses
@@ -217,6 +218,92 @@ theorem injective_tracialMatrixQuotient_comp_of_unique_trace
     ((ultratraceFaithfulTracialState X omega).toTracialState.compStarAlgHom pi) a
 
 end TracialUltraproduct
+
+/-! ## The exact MF-to-tracial-embeddability contrapositive -/
+
+/-- A unital C-star algebra is tracially matrix embeddable when it admits a
+faithful unital star representation into a tracial matrix ultraproduct over a
+free ultrafilter.
+
+For a uniquely traced finite factor, this is the concrete matrix-ultraproduct
+form of Connes embeddability used in the Goldbring--Hart argument.  The
+definition itself contains no factor, von Neumann, or literature hypothesis. -/
+def IsTraciallyMatrixEmbeddable (A : Type u) [CStarAlgebra A] : Prop :=
+  ∃ X : ℕ → FiniteModel, ∃ hXne : ∀ n, Nonempty (X n),
+    letI : ∀ n, Nonempty (X n) := hXne
+    ∃ omega : Ultrafilter ℕ, (omega : Filter ℕ) ≤ Filter.atTop ∧
+      ∃ e : A →⋆ₐ[ℂ]
+          TracialUltraproduct.TracialMatrixQuotient X (omega : Filter ℕ),
+        Function.Injective e
+
+/-- **The unconditional Goldbring--Hart implication.**
+
+If a unital C-star algebra has a unique faithful tracial state and embeds
+(possibly nonunitally) into a norm-matrix corona, then it embeds unitally and
+faithfully into a tracial matrix ultraproduct.  The proof first passes to the
+support corner of the nonunital MF embedding and then quotients by the
+Hilbert--Schmidt trace ideal.  Uniqueness of the source trace makes the
+resulting tracial representation faithful. -/
+theorem isTraciallyMatrixEmbeddable_of_hasMFEmbedding_of_unique_trace
+    {A : Type u} [CStarAlgebra A] [Nontrivial A]
+    (tau : FaithfulTracialState A)
+    (hunique : ∀ sigma : TracialState A, ∀ a : A, sigma a = tau a)
+    (hMF : HasMFEmbedding A) :
+    IsTraciallyMatrixEmbeddable A := by
+  rcases hMF with ⟨Y, hYne, _hYpos, _hYmono, e, he⟩
+  letI : ∀ n, Nonempty (Y n) := hYne
+  obtain ⟨X, hXne, E, hE⟩ :=
+    GroupApproximation.NonUnitalMFSupportCornerEmbedding.exists_injective_unital_supportCornerEmbedding
+      Y e he
+  letI : ∀ n, Nonempty (X n) := hXne
+  let omega : Ultrafilter ℕ := Ultrafilter.of (Filter.atTop : Filter ℕ)
+  have hfree : (omega : Filter ℕ) ≤ Filter.atTop :=
+    Ultrafilter.of_le (Filter.atTop : Filter ℕ)
+  have hcofinite : (omega : Filter ℕ) ≤ Filter.cofinite := by
+    simpa only [Nat.cofinite_eq_atTop] using hfree
+  let pi : A →⋆ₐ[ℂ]
+      TracialUltraproduct.TracialMatrixQuotient X (omega : Filter ℕ) :=
+    (TracialUltraproduct.normMatrixCStarCoronaToTracialMatrixQuotient
+      X omega hcofinite).comp E
+  refine ⟨X, hXne, omega, hfree, pi, ?_⟩
+  exact
+    GroupApproximation.TracialUltraproduct.injective_tracialMatrixQuotient_comp_of_unique_trace
+      tau hunique X omega hcofinite E
+
+/-- A uniquely and faithfully traced algebra which is not tracially matrix
+embeddable cannot have an MF embedding.  This is the contradiction step of
+Goldbring--Hart Proposition 6.1, with every operator-algebraic construction
+made explicit and no appeal to that proposition. -/
+theorem not_hasMFEmbedding_of_not_isTraciallyMatrixEmbeddable
+    {A : Type u} [CStarAlgebra A] [Nontrivial A]
+    (tau : FaithfulTracialState A)
+    (hunique : ∀ sigma : TracialState A, ∀ a : A, sigma a = tau a)
+    (hnot : ¬ IsTraciallyMatrixEmbeddable A) :
+    ¬ HasMFEmbedding A := by
+  intro hMF
+  exact hnot
+    (isTraciallyMatrixEmbeddable_of_hasMFEmbedding_of_unique_trace
+      tau hunique hMF)
+
+/-- The stable-finite/non-MF conclusion for a separable uniquely traced
+non-tracially-matrix-embeddable C-star algebra.  This isolates the exact
+internal theorem needed after one supplies the external CEP witness and its
+separable reduction. -/
+theorem stablyFinite_not_MF_of_not_isTraciallyMatrixEmbeddable
+    {A : Type u} [CStarAlgebra A] [Nontrivial A]
+    [TopologicalSpace.SeparableSpace A]
+    (tau : FaithfulTracialState A)
+    (hunique : ∀ sigma : TracialState A, ∀ a : A, sigma a = tau a)
+    (hnot : ¬ IsTraciallyMatrixEmbeddable A) :
+    IsStablyFiniteCStarAlgebra A ∧ ¬ IsMFAlgebra A := by
+  refine ⟨tau.isStablyFiniteCStarAlgebra, ?_⟩
+  intro hMF
+  exact not_hasMFEmbedding_of_not_isTraciallyMatrixEmbeddable
+    tau hunique hnot hMF.2
+
+#audit_axioms isTraciallyMatrixEmbeddable_of_hasMFEmbedding_of_unique_trace
+#audit_axioms not_hasMFEmbedding_of_not_isTraciallyMatrixEmbeddable
+#audit_axioms stablyFinite_not_MF_of_not_isTraciallyMatrixEmbeddable
 
 end
 
