@@ -778,3 +778,26 @@ normalizes `Q`, regardless of `a,b,c`.  The next source-return attempt
 requires at least two additional nonnormal occurrences or a genuine
 three-coordinate cell.  The native-target version remains a separate live
 equation.
+
+The proposed complementary-support continuation was based on the wrong
+literal occurrence.  `actual-mixed-complement-returns-reverse-root`
+compares the correct residual block
+
+```text
+P_1=x_97(q_1)x_79(1)x_97(q_1)
+   =[[q_0,1],[q_1,q_0]]
+```
+
+with the symmetric partial Whitehead formerly substituted for it; their
+upper-right entries are respectively `1` and `q_1`.  For the actual
+complement
+
+```text
+P_0=x_97(q_0)x_79(1)x_97(q_0)
+```
+
+both braid products `P_1P_0P_1` and `P_0P_1P_0` equal the constant reverse
+root `x_97(1)`, not a support-idempotent Whitehead.  That reverse root fails
+the full signed-`L_0` normalizer test.  Hence the formerly claimed link to
+the support-return chart is invalidated; the genuine complementary cell
+still does not return either signed Hecke target.
