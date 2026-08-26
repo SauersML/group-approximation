@@ -78,22 +78,6 @@ theorem closure_inter_le (S T : Set ι) :
   have hland := killOutside_lands (S := S) hwT
   rwa [hfix] at hland
 
-/-- A basis letter belongs to a coordinate subgroup only when its index is
-one of the selected coordinates. -/
-theorem index_mem_of_of_mem_closure {S : Set ι} {i : ι}
-    (hi : FreeGroup.of i ∈ Subgroup.closure (FreeGroup.of '' S)) : i ∈ S := by
-  classical
-  by_contra hiS
-  have hfix := killOutside_fixes hi
-  rw [killOutside_of_notMem hiS] at hfix
-  let exponent : FreeGroup ι →* Multiplicative ℤ :=
-    FreeGroup.lift fun _ => Multiplicative.ofAdd 1
-  have hone := congrArg exponent hfix.symm
-  change Multiplicative.ofAdd (1 : ℤ) = 1 at hone
-  have hzero : (1 : ℤ) = 0 := by
-    simpa using congrArg (fun x : Multiplicative ℤ => Multiplicative.toAdd x) hone
-  exact one_ne_zero hzero
-
 /-- The image of a free word under a map of alphabets is supported on the
 range of that alphabet map. -/
 theorem map_mem_closure_range {κ : Type} (f : ι → κ) (w : FreeGroup ι) :

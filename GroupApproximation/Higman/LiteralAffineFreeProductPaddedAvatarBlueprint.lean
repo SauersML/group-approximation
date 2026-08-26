@@ -140,15 +140,9 @@ theorem marker_mem_and_padList_mem (P : WordPresentation G) (d : ℕ)
   have hle := pair_wordSubgroup_le P d hr
   constructor
   · apply hle
-    change FreeGroup.mk (marker P) ∈ wordSubgroup
-      ({rightRelatorCode (marker P) (padList r) d,
-        rightRelatorCode (marker P) (padList r) (d + 1)} : Set _)
     rw [heq]
     exact mem_wordSubgroup (by simp)
   · apply hle
-    change FreeGroup.mk (padList r) ∈ wordSubgroup
-      ({rightRelatorCode (marker P) (padList r) d,
-        rightRelatorCode (marker P) (padList r) (d + 1)} : Set _)
     rw [heq]
     exact mem_wordSubgroup (by simp)
 
@@ -156,25 +150,22 @@ theorem marker_mem_and_padList_mem (P : WordPresentation G) (d : ℕ)
 padding with empty defining word. -/
 theorem ker_le (P : WordPresentation G) (d : ℕ) (hP : Admissible P) :
     ((P.pad []).hom).ker ≤ wordSubgroup (rel P d) := by
+  let K := wordSubgroup (rel P d)
   obtain ⟨a, ha⟩ := hP.inhabited
-  have hmarker : FreeGroup.mk (marker P) ∈ wordSubgroup (rel P d) :=
+  have hmarker : FreeGroup.mk (marker P) ∈ K :=
     (marker_mem_and_padList_mem P d ha).1
-  have hold : ∀ r ∈ P.rel,
-      FreeGroup.mk (padList r) ∈ wordSubgroup (rel P d) :=
+  have hold : ∀ r ∈ P.rel, FreeGroup.mk (padList r) ∈ K :=
     fun r hr ↦ (marker_mem_and_padList_mem P d hr).2
-  letI : (wordSubgroup (rel P d)).Normal := wordSubgroup_normal (rel P d)
-  have hpad : wordSubgroup (P.padRel []) ≤ wordSubgroup (rel P d) := by
-    refine Subgroup.normalClosure_le_normal (N := wordSubgroup (rel P d)) ?_
+  have hpad : wordSubgroup ((P.pad []).rel) ≤ K := by
+    refine Subgroup.normalClosure_le_normal ?_
     rintro _ ⟨w, hw, rfl⟩
-    change w ∈ padRelator [] '' P.rel ∪ {padDefiner []} at hw
+    simp only [WordPresentation.pad_rel, WordPresentation.padRel,
+      Set.mem_union, Set.mem_image, Set.mem_singleton_iff] at hw
     rcases hw with ⟨r, hr, rfl⟩ | rfl
     · rw [mk_padRelator]
       exact mul_mem (hold r hr) hmarker
-    · simpa [marker, padDefiner, padList] using hmarker
-  intro x hx
-  have hx' := (P.pad []).ker_le hx
-  change x ∈ wordSubgroup (P.padRel []) at hx'
-  exact hpad hx'
+    · simpa [marker, padDefiner] using hmarker
+  exact fun x hx ↦ hpad ((P.pad []).ker_le hx)
 
 /-- Positive marked padding as a genuine word presentation. -/
 def presentation (P : WordPresentation G) (d : ℕ) (hP : Admissible P) :
@@ -191,8 +182,7 @@ theorem presentation_rel_positive (P : WordPresentation G) (d : ℕ)
     ∀ r ∈ (presentation P d hP).rel, ∀ c ∈ r, c.2 = true := by
   intro r hr
   change r ∈ rel P d at hr
-  change r ∈ codedRelator P d '' P.rel ∪
-    codedRelator P (d + 1) '' P.rel at hr
+  simp only [rel, Set.mem_union, Set.mem_image] at hr
   rcases hr with ⟨r, hr, rfl⟩ | ⟨r, hr, rfl⟩
   · exact codedRelator_positive P d (hP.positive r hr)
   · exact codedRelator_positive P (d + 1) (hP.positive r hr)
@@ -202,12 +192,11 @@ theorem presentation_rel_floor (P : WordPresentation G) (d : ℕ)
     ∀ r ∈ (presentation P d hP).rel, d + 1 ≤ r.length := by
   intro r hr
   change r ∈ rel P d at hr
-  change r ∈ codedRelator P d '' P.rel ∪
-    codedRelator P (d + 1) '' P.rel at hr
+  simp only [rel, Set.mem_union, Set.mem_image] at hr
   rcases hr with ⟨r, hr, rfl⟩ | ⟨r, hr, rfl⟩
   · exact floor_le_length_codedRelator P d (hP.nonempty r hr)
   · have h := floor_le_length_codedRelator P (d + 1) (hP.nonempty r hr)
-    exact Nat.le_trans (by omega) h
+    omega
 
 /-- A long positive spelling of an old word.  The marker occurs once, while
 the chosen old null relator supplies arbitrary length. -/
@@ -220,8 +209,8 @@ theorem length_markedName (P : WordPresentation G)
     (a : List (Fin P.card × Bool)) (d : ℕ)
     (w : List (Fin P.card × Bool)) :
     (markedName P a d w).length = 1 + d * a.length + w.length := by
-  simp [markedName, marker, length_padList]
-  omega
+  simp [markedName, marker, PeriodicOverlap.length_flatten_replicate,
+    length_padList]
 
 theorem depth_le_length_markedName (P : WordPresentation G)
     {a : List (Fin P.card × Bool)} (ha : a ≠ []) (d : ℕ)
@@ -236,29 +225,20 @@ theorem markedName_positive (P : WordPresentation G)
     {a w : List (Fin P.card × Bool)}
     (ha : ∀ c ∈ a, c.2 = true) (hw : ∀ c ∈ w, c.2 = true)
     (d : ℕ) : ∀ c ∈ markedName P a d w, c.2 = true := by
-  have hpa : ∀ c ∈ padList a, c.2 = true := by
-    intro c hc
-    simp only [padList, List.mem_map] at hc
-    obtain ⟨x, hx, rfl⟩ := hc
-    exact ha x hx
-  have hpw : ∀ c ∈ padList w, c.2 = true := by
-    intro c hc
-    simp only [padList, List.mem_map] at hc
-    obtain ⟨x, hx, rfl⟩ := hc
-    exact hw x hx
-  have hflat : ∀ c ∈ (List.replicate d (padList a)).flatten,
-      c.2 = true := by
-    apply AvatarMetricCheck.forall_positive_flatten
-    intro u hu
-    have hu' : u = padList a := List.eq_of_mem_replicate hu
-    simpa [hu'] using hpa
   intro c hc
-  rcases List.mem_append.mp hc with hc | hc
-  · rcases List.mem_append.mp hc with hc | hc
-    · have hc' : c = (Fin.last P.card, true) := by simpa [marker] using hc
-      rw [hc']
-    · exact hflat c hc
-  · exact hpw c hc
+  simp only [markedName, List.mem_append] at hc
+  rcases hc with hc | hc
+  · simpa [marker] using hc
+  · rcases hc with hc | hc
+    · rw [List.mem_flatten] at hc
+      obtain ⟨u, hu, hcu⟩ := hc
+      have hu' : u = padList a := List.eq_of_mem_replicate hu
+      simp only [padList, List.mem_map] at hcu
+      obtain ⟨x, hx, rfl⟩ := hu' ▸ hcu
+      exact ha x hx
+    · simp only [padList, List.mem_map] at hc
+      obtain ⟨x, hx, rfl⟩ := hc
+      exact hw x hx
 
 /-- The fresh generator occurs only at the head of a padded name as well. -/
 theorem markedName_marker_unique (P : WordPresentation G)
@@ -282,48 +262,28 @@ theorem presentation_hom_markedName (P : WordPresentation G) (d : ℕ)
     (ha : P.hom (FreeGroup.mk a) = 1) :
     (presentation P d hP).hom (FreeGroup.mk (markedName P a d w)) =
       P.hom (FreeGroup.mk w) := by
-  have hm : (P.hom.comp (padRetract [])) (FreeGroup.mk (marker P)) = 1 := by
-    change P.hom (padRetract [] (FreeGroup.of (Fin.last P.card))) = 1
-    rw [padRetract_of_last, ← FreeGroup.one_eq_mk, map_one]
-  have ha' : (P.hom.comp (padRetract [])) (FreeGroup.mk (padList a)) =
-      P.hom (FreeGroup.mk a) := by
-    exact P.pad_hom_padList ([] : List (Fin P.card × Bool)) a
-  have hw' : (P.hom.comp (padRetract [])) (FreeGroup.mk (padList w)) =
-      P.hom (FreeGroup.mk w) := by
-    exact P.pad_hom_padList ([] : List (Fin P.card × Bool)) w
-  unfold presentation
-  change (P.hom.comp (padRetract []))
-    (FreeGroup.mk (markedName P a d w)) = _
-  unfold markedName
-  rw [← FreeGroup.mul_mk, ← FreeGroup.mul_mk, map_mul, map_mul,
+  have hm : (P.pad []).hom (FreeGroup.mk (marker P)) = 1 := by
+    change P.hom (padRetract [] (FreeGroup.mk (marker P))) = 1
+    simp [marker, padRetract]
+  have ha' := P.pad_hom_padList ([] : List (Fin P.card × Bool)) a
+  have hw' := P.pad_hom_padList ([] : List (Fin P.card × Bool)) w
+  change (P.pad []).hom (FreeGroup.mk (markedName P a d w)) = _
+  rw [markedName, ← FreeGroup.mul_mk, ← FreeGroup.mul_mk, map_mul, map_mul,
     PeriodicOverlap.mk_flatten_replicate, map_pow, hm, one_mul, ha', ha,
     one_pow, one_mul, hw']
 
 /-- A nontrivial target forces every surjective word presentation to have at
 least one generator. -/
-private theorem freeGroup_subsingleton {A : Type} [IsEmpty A] :
-    Subsingleton (FreeGroup A) := by
-  constructor
-  intro x y
-  have hone : ∀ z : FreeGroup A, z = 1 := by
-    intro z
-    refine FreeGroup.induction_on z rfl
-      (fun i ↦ (IsEmpty.false i).elim)
-      (fun i _ ↦ (IsEmpty.false i).elim)
-      (fun a b ha hb ↦ by rw [ha, hb, one_mul])
-  rw [hone x, hone y]
-
 theorem card_pos_of_ne_one (P : WordPresentation G) {g : G} (hg : g ≠ 1) :
     0 < P.card := by
   by_contra h
   have hc : P.card = 0 := Nat.eq_zero_of_not_pos h
-  letI : IsEmpty (Fin P.card) :=
-    ⟨fun i ↦ by have hi := i.isLt; omega⟩
-  haveI : Subsingleton (FreeGroup (Fin P.card)) :=
-    freeGroup_subsingleton
   obtain ⟨x, hx⟩ := P.hom_surjective g
   apply hg
   rw [← hx]
+  cases hc
+  haveI : Subsingleton (FreeGroup (Fin 0)) :=
+    freeGroup_subsingleton_of_isEmpty
   have hxone : x = 1 := Subsingleton.elim _ _
   rw [hxone, map_one]
 
@@ -335,6 +295,8 @@ theorem normalizedPositive_admissible (P : WordPresentation G)
     Admissible
       (LiteralAffineFreeProductAvatarBlueprint.withoutEmptyRelators
         (PositivePresentation.presentation P)) := by
+  let Q := LiteralAffineFreeProductAvatarBlueprint.withoutEmptyRelators
+    (PositivePresentation.presentation P)
   refine ⟨?_, ?_, ?_⟩
   · intro r hr
     exact PositivePresentation.presentation_rel_positive P r hr.1
@@ -343,9 +305,7 @@ theorem normalizedPositive_admissible (P : WordPresentation G)
   · let i : Fin P.card := ⟨0, hcard⟩
     let x : FreeGroup (Fin (P.card + P.card)) :=
       FreeGroup.mk (PositivePresentation.pairWord P i)
-    have hxker : x ∈
-        (LiteralAffineFreeProductAvatarBlueprint.withoutEmptyRelators
-          (PositivePresentation.presentation P)).hom.ker := by
+    have hxker : x ∈ Q.hom.ker := by
       apply MonoidHom.mem_ker.mpr
       exact (PositivePresentation.pairWord_mem P i).2
     have hxne : x ≠ 1 := by
@@ -359,16 +319,9 @@ theorem normalizedPositive_admissible (P : WordPresentation G)
       rw [hx, FreeGroup.norm_one] at hnorm
       omega
     by_contra hrel
-    have hrel' :
-        (LiteralAffineFreeProductAvatarBlueprint.withoutEmptyRelators
-          (PositivePresentation.presentation P)).rel = ∅ :=
-      Set.not_nonempty_iff_eq_empty.mp hrel
-    have hxmem :=
-      (LiteralAffineFreeProductAvatarBlueprint.withoutEmptyRelators
-        (PositivePresentation.presentation P)).ker_le hxker
+    have hrel' : Q.rel = ∅ := Set.not_nonempty_iff_eq_empty.mp hrel
+    have hxmem := Q.ker_le hxker
     rw [hrel'] at hxmem
-    change x ∈ wordSubgroup
-      (∅ : Set (List (Fin (P.card + P.card) × Bool))) at hxmem
     have hxone : x = 1 := by
       simpa [wordSubgroup] using hxmem
     exact hxne hxone
@@ -378,7 +331,7 @@ fields are intentionally absent: they are supplied by
 `presentation_rel_floor` and `depth_le_length_markedName`. -/
 structure RemainingRouterChecks
     {E : Type} [Group E] {N : Subgroup E} {s : E}
-    {B : Type} [Group B] (D : Blueprint E N s B) (wordFloor : ℕ) where
+    {B : Type} [Group B] (D : Blueprint E N s B) (wordFloor : ℕ) : Prop where
   sharedBound : ℕ
   runCeil : ℕ
   /-- Turn the literal once-occurring fresh presentation marker into the
@@ -406,8 +359,6 @@ open PositiveMarkedPadding
 without an extra premise. -/
 theorem sourcePositive_admissible :
     Admissible sourcePositiveWordPresentation := by
-  letI : Group.IsFinitelyPresented LiteralAffineFreeProductSource.Ambient :=
-    LiteralAffineFreeProductSource.ambient_isFinitelyPresented
   simpa [sourcePositiveWordPresentation] using
     normalizedPositive_admissible sourceWordPresentation
       (card_pos_of_ne_one sourceWordPresentation
@@ -475,8 +426,6 @@ theorem sourceAnchor_positive : ∀ c ∈ sourceAnchor, c.2 = true :=
 
 theorem sourceAnchor_killed :
     sourcePositiveWordPresentation.hom (FreeGroup.mk sourceAnchor) = 1 := by
-  letI : Group.IsFinitelyPresented LiteralAffineFreeProductSource.Ambient :=
-    LiteralAffineFreeProductSource.ambient_isFinitelyPresented
   exact (PositivePresentation.rel_subset_kernelWords sourceWordPresentation
     sourceAnchor_mem.1).2
 
@@ -495,9 +444,8 @@ theorem sourceMarkedName_positive (d : ℕ)
 theorem sourceMarkedName_spec (d : ℕ)
     (g : LiteralAffineFreeProductSource.Ambient) :
     (sourcePaddedPresentation d).hom (FreeGroup.mk (sourceMarkedName d g)) = g := by
-  unfold sourcePaddedPresentation sourceMarkedName
-  exact (presentation_hom_markedName _ d sourcePositive_admissible
-    sourceAnchor_killed).trans (sourcePositiveName_spec g)
+  rw [sourceMarkedName, presentation_hom_markedName _ d sourcePositive_admissible
+    sourceAnchor_killed, sourcePositiveName_spec]
 
 theorem sourceMarkedName_floor (d : ℕ)
     (g : LiteralAffineFreeProductSource.Ambient) :
@@ -547,10 +495,9 @@ theorem partnerMarkedName_spec (d : ℕ)
     (g : CongruenceSubgroup.gamma3Partner.B) :
     (partnerPaddedPresentation d).hom
       (FreeGroup.mk (partnerMarkedName d g)) = g := by
-  unfold partnerPaddedPresentation partnerMarkedName
-  exact (presentation_hom_markedName _ d gamma3Positive_admissible
-    partnerAnchor_killed).trans
-      (PositivePresentation.presentation_hom_name gamma3WordPresentation g)
+  rw [partnerMarkedName, presentation_hom_markedName _ d
+    gamma3Positive_admissible partnerAnchor_killed,
+    PositivePresentation.presentation_hom_name]
 
 theorem partnerMarkedName_floor (d : ℕ)
     (g : CongruenceSubgroup.gamma3Partner.B) :
@@ -666,7 +613,7 @@ theorem blueprint_defectTie_floor (d : ℕ) (i : Fin 2) :
     ((blueprint d).basisWord i)
   have hb := blueprint_basisWord_floor d i
   have hmul := Nat.mul_le_mul_right (blueprint d).avatarLength hb
-  exact le_trans hmul (le_trans hsubst (Nat.le_add_left _ 1))
+  omega
 
 /-- The expanded partner ties meet the common floor. -/
 theorem blueprint_partnerTie_floor (d : ℕ) (i : Fin 2) :
@@ -681,12 +628,12 @@ theorem blueprint_partnerTie_floor (d : ℕ) (i : Fin 2) :
   simp only [List.length_cons, List.length_nil]
   have hname := partnerMarkedName_floor d (gamma3TieElements i)
   have hmul := Nat.mul_le_mul_right (blueprint d).avatarLength hname
-  exact le_trans hmul (Nat.le_add_left _ 1)
+  omega
 
 /-- Static checklist for the next, avatar-level module.  Presentation
 positivity, all four floor branches and basis nonemptiness have disappeared;
 these are exactly the fields still needed to assemble `Inputs (blueprint d)`.-/
-abbrev ConcreteRemainingRouterChecks (d : ℕ) : Type :=
+abbrev ConcreteRemainingRouterChecks (d : ℕ) : Prop :=
   RemainingRouterChecks (blueprint d) (d + 1)
 
 /-- Once the explicitly listed residual checks are supplied, there is no
