@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/arithmetic-single-defect-saturation-2026-08-23.md
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
+  - research/artifacts/torsion-free-exact-radical-team-audit-2026-08-26.md
 ---
 
 In the arithmetic route `defect-saturation-from-arithmetic-source`, choose
@@ -37,3 +38,22 @@ quotients of sofic groups are not known to be sofic in general.
    `arithmetic-defect-saturated-sofic-via-sofic-router`: construct finite
    permutation models during the marked small-cancellation routing rather
    than trying to inherit them from the quotient map afterward.
+4. **Amenable-extension permanence.**  Property `(T)` makes every amenable
+   quotient finite, while full MF radical kills every finite quotient.  Thus
+   every amenable quotient of `Q` is trivial, and the kernel in a proposed
+   sofic-by-amenable decomposition is again all of `Q`.
+5. **Bass--Serre permanence.**  Property `(T)` gives property `FA`, excluding
+   any nontrivial reduced amalgam or HNN decomposition.  Hull's quotient
+   presentation supplies no amenable-edge splitting in any case.
+6. **Exact local models.**  Since `Q` has no nontrivial finite quotient and is
+   finitely presented, it cannot be LEF.  A positive proof must therefore use
+   genuinely approximate, unstable permutations rather than congruence
+   quotients or exact finite charts.
+7. **Hull finite-ball protection.**  Hull's Theorem 7.1 makes each chosen
+   quotient injective on one prescribed finite ball, but increasing that ball
+   changes the quotient.  It does not produce increasingly accurate models
+   of one fixed `Q`, and the theorem contains no soficity-permanence clause.
+
+Proving this claim would answer Alekseev--Thom Open Problem 6.1 and more: the
+output would be two-generated, finitely presented, torsion-free,
+acylindrically hyperbolic, Kazhdan, finite-residual-full and full-MF-radical.

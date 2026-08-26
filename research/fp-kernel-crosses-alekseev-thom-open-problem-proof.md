@@ -5,7 +5,7 @@ kind: route
 title: Restrict soficity to the kernel and exclude residual finiteness through the mapping torus
 target: fp-kernel-crosses-alekseev-thom-open-problem
 requires:
-  - finitely-generated-rf-automorphism-mapping-torus-is-rf
+  - mapping-torus-mf-radical-lies-in-finite-residual
 artifacts:
   - research/artifacts/alekseev-thom-fp-kernel-boundary-2026-08-26.md
 ---
@@ -22,11 +22,16 @@ with
 G ~= K semidirectProduct_phi Z.                         (ATK2)
 ```
 
-Property `(T)` makes `K` finitely generated.  If `K` were residually finite,
-`finitely-generated-rf-automorphism-mapping-torus-is-rf` applied to `(ATK2)`
-would make `G` residually finite, hence operator-MF.  But the target says
-`Rad_MF(G)=K` and `K!=1`, whereas an operator-MF group has trivial MF radical.
-This contradiction proves that `K` is not residually finite.
+Property `(T)` makes `K` finitely generated.  Apply
+`mapping-torus-mf-radical-lies-in-finite-residual` to `(ATK2)`.  It gives
+
+```text
+Rad_MF(G) <= R_fin(K) x {0}.
+```
+
+The target identifies the left side with `K x {0}`, so `R_fin(K)=K`.
+Equivalently, every homomorphism from `K` to a finite group is trivial.  Since
+`K` is nontrivial, it is in particular not residually finite.
 
 Therefore `K` has all four properties in `(ATK1)`, exactly giving a positive
 answer to Alekseev--Thom Open Problem 6.1.

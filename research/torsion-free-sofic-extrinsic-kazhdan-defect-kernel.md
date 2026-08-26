@@ -7,6 +7,7 @@ distinct_from:
   torsion-free-sofic-singly-generated-kazhdan-defect-core: That stronger route asks for an intrinsic full-radical group before adjoining Z; here the defect need only saturate the kernel after the cyclic action is added.
   defect-saturation-full-mf-radical: That arithmetic quotient has an intrinsic full MF radical and unknown soficity; this asks instead for a sofic kernel whose radical behavior is caused extrinsically by its mapping torus.
   finitely-generated-rf-automorphism-mapping-torus-is-rf: That no-go theorem proves the kernel sought here must be non-residually finite.
+  mapping-torus-mf-radical-lies-in-finite-residual: That sharper no-go proves the kernel sought here can have no nontrivial finite quotient at all.
   finite-outer-order-mapping-torus-is-virtually-product: That second no-go theorem shows the genuinely extrinsic route also needs an infinite-order outer action unless the kernel is already non-MF.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
@@ -14,7 +15,8 @@ artifacts:
   - research/torsion-free-lef-kazhdan-non-rf-seed.md
 ---
 
-Construct a nontrivial torsion-free, sofic, non-residually-finite group `K`
+Construct a nontrivial torsion-free, sofic group `K` with no nontrivial finite
+quotient,
 with property `(T)`, an automorphism `phi in Aut(K)`, and a finitely
 generated Kazhdan subgroup
 
@@ -38,11 +40,12 @@ This is strictly weaker than constructing a sofic group `K` with
 lamp subgroup can become the exact MF radical of a non-MF wreath product.
 The lower radical inclusion therefore has to be proved in `G`, not in `K`.
 
-The non-residual-finiteness requirement is forced rather than cosmetic.
+The absence of finite quotients is forced rather than cosmetic.
 Property `(T)` makes `K` finitely generated.  By
-`finitely-generated-rf-automorphism-mapping-torus-is-rf`, a residually finite
-`K` would make `G` residually finite and hence MF, contradicting `(EK1)`
-together with `normal-kazhdan-defect-non-mf`.
+`mapping-torus-mf-radical-lies-in-finite-residual`, the MF radical of `G` is
+contained in the finite residual of `K`.  Thus `(EK1)` forces that finite
+residual to equal `K`, equivalently that every finite quotient of `K` be
+trivial.
 
 ## Attempts
 
@@ -91,12 +94,12 @@ together with `normal-kazhdan-defect-non-mf`.
    `torsion-free-lef-kazhdan-non-rf-seed` now supplies unconditionally all
    four intrinsic kernel properties: finitely generated, torsion-free, LEF
    (hence sofic), non-residually-finite and property `(T)`.  This removes the
-   former seed-existence gap.  Its visible Laurent shift is still only a
-   surjective noninjective endomorphism after the one-sided central quotient,
-   so it does not itself supply `phi in Aut(K)`.  The remaining task is now
-   genuinely equivariant: equip this seed or a refinement with an automorphism
-   whose mapping torus is finitely presented and whose compression defect
-   normally fills `K`.
+   former seed-existence gap, but the sharper finite-residual theorem now
+   rules out the entire seed family.  Its characteristic centre has a
+   nontrivial finitely generated residually finite linear quotient, so every
+   automorphism mapping torus has MF radical contained in that centre.  This
+   remains true for companion-matrix refinements and is independent of finite
+   presentability or the choice of compression data.
 8. **The finite-presentation strengthening is a separate open problem.**
    If this claim is strengthened by requiring `K` itself finitely presented,
    then `K` is a finitely presented sofic Kazhdan non-residually-finite group.
@@ -104,4 +107,6 @@ together with `normal-kazhdan-defect-non-mf`.
    Alekseev--Thom (2026); see
    `fp-kernel-crosses-alekseev-thom-open-problem`.
    The direct route should therefore first retain the infinitely presented
-   LEF seed and seek finite presentability only for the mapping torus.
+   kernel option and seek finite presentability only for the mapping torus,
+   but the kernel must now be finite-residual-full rather than a central
+   extension of a visible linear quotient.

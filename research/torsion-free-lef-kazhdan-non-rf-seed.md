@@ -7,6 +7,7 @@ distinct_from:
   thom-hyperlinear-kazhdan-without-factorization: Thom's published LEF Kazhdan group is built in positive characteristic and has central p-torsion; this characteristic-zero finite-index refinement has no torsion.
   torsion-free-sofic-extrinsic-kazhdan-defect-kernel: that asks in addition for a controlled automorphism, a finitely presented mapping torus and full defect saturation; this supplies the kernel's four intrinsic properties only.
   titz-witzel-simple-kazhdan-cat0-lattices-exist: those groups are finitely presented, torsion-free and simple but their soficity is unknown; this group is LEF but is not claimed finitely presented or simple.
+  mapping-torus-mf-radical-lies-in-finite-residual: that result bounds every automorphism mapping-torus MF radical by the finite residual and uses the characteristic centre and residually finite quotient of this seed to rule out a full kernel MF radical.
 artifacts:
   - research/artifacts/torsion-free-lef-kazhdan-seed-2026-08-26.md
   - GroupApproximation/Algebra/AmenableMFProof.lean
@@ -74,13 +75,20 @@ residual of `J`.  Hence `K` is not residually finite.  Since every LEF group
 is sofic and operator-MF (`isSofic_of_isLEF`,
 `isOperatorMF_of_isLEF`), `(TLK1)` follows.
 
-This closes the intrinsic seed problem on the extrinsic route.  What it does
-**not** provide is an automorphism `phi` for which `K semidirect_phi Z` is
-finitely presented and carries a Kazhdan compression defect equal to `K`.
-The obvious Laurent shift is only a surjective noninjective endomorphism
-after the one-sided quotient, not an automorphism.
+The seed nevertheless cannot solve the exact-radical-over-`Z` target.  Its
+central tail `A=C/C_+` is exactly the characteristic subgroup `Z(K)`, and the
+quotient `K/A=Gamma_0` is finitely generated and residually finite.  By
+`mapping-torus-mf-radical-lies-in-finite-residual`, every
+automorphism `phi` satisfies
 
-The operator-MF clause also rules out using this seed on the direct-product
-route: `K x Z` is operator-MF.  Any successful use of the seed must therefore
-make the cyclic action genuinely extrinsic and use it to create the
-compression obstruction in the total group.
+```text
+Rad_MF(K semidirectProduct_phi Z) <= Z(K) < K.
+```
+
+This rules out not only the obvious Laurent shift but every possible
+automorphism and every companion-matrix refinement of this central-extension
+seed.  The operator-MF clause also rules out the direct-product route:
+`K x Z` is operator-MF.  A successful kernel must avoid any proper
+automorphism-invariant subgroup with finitely generated residually finite
+quotient; in particular, a central-by-residually-finite seed has the wrong
+global quotient geometry.

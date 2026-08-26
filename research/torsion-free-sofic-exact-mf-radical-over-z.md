@@ -13,8 +13,11 @@ distinct_from:
   simple-sofic-total-mf-radical: That gives a countable simple sofic full-radical group but supplies neither finite presentation, torsion-freeness, nor property (T).
 artifacts:
   - research/split-cyclic-kazhdan-defect-exact-mf-radical.md
+  - research/mapping-torus-mf-radical-lies-in-finite-residual.md
   - research/torsion-free-sofic-extrinsic-kazhdan-defect-kernel.md
   - research/fp-kernel-crosses-alekseev-thom-open-problem.md
+  - research/artifacts/torsion-free-exact-radical-team-audit-2026-08-26.md
+  - research/titz-witzel-mapping-tori-are-virtually-products.md
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
 ---
@@ -47,12 +50,14 @@ finite group and therefore answer Alekseev--Thom Open Problem 6.1.  The base
 target deliberately avoids that additional open problem: property `(T)`
 already makes `K` finitely generated, but `K` need not be finitely presented.
 
-Every witness necessarily has a sofic but non-residually-finite kernel.
+Every witness necessarily has a sofic kernel with no nontrivial finite
+quotient.  This is much stronger than non-residual-finiteness.
 Indeed `K` is a subgroup of the sofic group `G`, property `(T)` makes `K`
 finitely generated, and every extension with quotient `Z` splits after
-choosing a lift of `1`.  If `K` were residually finite,
-`finitely-generated-rf-automorphism-mapping-torus-is-rf` would make `G`
-residually finite and hence MF, contradicting its nontrivial MF radical.
+choosing a lift of `1`.  By
+`mapping-torus-mf-radical-lies-in-finite-residual`, the MF radical of the
+resulting mapping torus is contained in the finite residual of `K`.  Equality
+with `K` therefore forces the finite residual to be all of `K`.
 
 The intended construction is a split extension
 
@@ -62,7 +67,17 @@ G = K semidirectProduct_phi Z
 
 with a Kazhdan subgroup `L<=G` satisfying `D_G(L)=K`.  The analytic lower
 inclusion is already unconditional and kernel-checked.  The sharp remaining
-obligation is an extrinsically defect-saturated, sofic but non-residually-
-finite Kazhdan kernel.  It is not necessary to prove that `K` has full MF
+obligation is an extrinsically defect-saturated, sofic Kazhdan kernel with no
+nontrivial finite quotient.  It is not necessary to prove that `K` has full MF
 radical before adjoining `Z`; that stronger arithmetic route remains
 available separately.
+
+The surviving candidates are now sharply separated.  Proving soficity of the
+arithmetic single-defect saturated group would solve the target by taking its
+direct product with `Z`; this would also cross Alekseev--Thom Open Problem 6.1.
+For a Titz--Witzel simple Kazhdan lattice, every cyclic mapping torus is
+virtually a direct product because its outer automorphism group is finite.
+That route therefore succeeds exactly when one such lattice is proved both
+sofic and non-MF.  The Elek--Szabo simple sofic envelope supplies neither
+torsion-free nor Kazhdan control.  No construction presently in Cairn or in
+the audited primary sources closes any of these surviving seams.

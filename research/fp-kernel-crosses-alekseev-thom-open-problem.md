@@ -6,6 +6,7 @@ title: A finitely presented kernel in the split-cyclic target solves Alekseev--T
 distinct_from:
   torsion-free-sofic-exact-mf-radical-over-z: the base target requires finite presentation only of the total group; its Kazhdan kernel is automatically finitely generated but may be infinitely presented.
   torsion-free-lef-kazhdan-non-rf-seed: that established seed is torsion-free, LEF and Kazhdan but is necessarily not finitely presented because it is LEF and non-residually-finite.
+  mapping-torus-mf-radical-lies-in-finite-residual: that sharper theorem shows that any kernel in the split-cyclic target has no nontrivial finite quotient, not merely that it is non-residually finite.
 artifacts:
   - research/artifacts/alekseev-thom-fp-kernel-boundary-2026-08-26.md
 ---
@@ -27,11 +28,11 @@ finiteness.
 
 Soficity passes from the target group `G` to its subgroup `K`.  Every extension
 of `K` by `Z` splits after choosing a lift of `1`, so `G` is a mapping torus of
-an automorphism of `K`.  If `K` were residually finite, property `(T)` would
-make it finitely generated and
-`finitely-generated-rf-automorphism-mapping-torus-is-rf` would make `G`
-residually finite.  Then `G` would be operator-MF, contradicting
-`Rad_MF(G)=K!=1`.  Hence `K` is not residually finite, proving `(ATK1)`.
+an automorphism of `K`.  Property `(T)` makes `K` finitely generated, and
+`mapping-torus-mf-radical-lies-in-finite-residual` puts `Rad_MF(G)` inside
+the finite residual of `K`.  Since `Rad_MF(G)=K`, that finite residual is all
+of `K`; in particular `K` has no nontrivial finite quotient and is not
+residually finite.  This proves `(ATK1)` with a stronger conclusion.
 
 This does not obstruct the base target.  It says that the efficient first goal
 is a finitely presented total mapping torus with an infinitely presented
