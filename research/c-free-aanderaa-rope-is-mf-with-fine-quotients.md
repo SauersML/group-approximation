@@ -53,3 +53,43 @@ central HNN extension of the mapping torus by the free group on the
 *(b), (c).*  Not yet examined; both concern the finite-quotient topology of
 `Gamma_a` on `A_+`, whose `F(b)`-coordinate is free and whose `U`-coordinate
 is the halting subgroup.
+
+*Re-based tower (2026-08-26).*  `Gamma_a` is also the HNN extension of
+`Gamma_a' = < K_M * F(b,d), a_i | psi_i' >` (Cohen's `psi_i` with `p`
+removed from the associated subgroups, still an isomorphism `F(t,x) *
+F(b,d) -> F(t_i,x^m) * F(b_i d, b)`) by the single letter `p` over the
+finite-rank free subgroups `< t, a_1, ..., a_(2n) > -> < t d, a_1, ...,
+a_(2n) >`, basis to basis: conjugating `p t p^-1 = t d` by positive words
+in the `a_i` reproduces every `p t_alpha p^-1 = t_alpha w_alpha(b) d`, so the
+two presentations define the same group, and `Gamma_a' <= Gamma_a` by
+Cohen's goodness of `< t, x, d, b >`.  Thus the whole `p`-layer is one
+basis-to-basis edge over a rank-`(2n+1)` free subgroup, the same shape as
+the Turing-engine edge of
+[[boone-base-semidirect-product-is-hnn-over-free-subgroups]].
+
+*Periodicity obstruction.*  No finite quotient of `Gamma_a` (or of `H_2^0`)
+can synchronize the `p`-edge: if `xbar` has order `N` in a finite quotient
+then `tbar_alpha = tbar_(alpha+N)`, and the `p`-relations force
+`w_alpha(b) = w_(alpha+N)(b)` in the quotient for every `alpha`; the map
+`alpha -> w_alpha(b)` is not `N`-periodic modulo any finite quotient of
+`F(b)` in which the `b_i` survive (carries change all digits).  Hence
+`H_2^0` is not residually finite, its finite quotients are small on `F(b)`,
+and neither the twisted-edge theorems nor the synchronized-HNN theorem can
+treat the `p`-layer.  Likewise `< x^m >` is dense in `< x >` for the
+finite-quotient topology of any group in which `x` is conjugate to `x^m`,
+so the machine edges are not closed in the enlarged base; the engine's
+regular realization is necessarily abstract on `K`.
+
+*Automorphism bookkeeping.*  On the free-product base `F = T_cal * F(b,d)`
+(`T_cal` the central-HNN engine over `E`) both twists are restrictions of
+automorphisms: `psi_i' = (Ad(x^-i mu) * delta_i)|`, `delta_i : d -> b_i d`,
+and `t -> t d` extends to an automorphism `theta_p` of `F`.  But `theta_p`
+and the `Xi_i = Ad(x^-i mu) * delta_i` do not commute, and on a direct-product
+base `T_cal x F(b,d)` the map `t -> t d` is not an automorphism (it would
+need `d` central).  So the two layers admit no common semidirect envelope
+with a free action fixing the images of the `a_i`, and the residual
+question is the corona conjugacy of the two `(2n+1)`-tuples
+`(Phi(t), Phi(a_i))` and `(Phi(t)Phi(d), Phi(a_i))` in some regular
+realization `Phi` of `Gamma_a'`.  This is the single analytic statement on
+which both compiler routes now rest.
+
