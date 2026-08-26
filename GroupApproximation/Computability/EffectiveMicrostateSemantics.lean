@@ -1,5 +1,6 @@
 import GroupApproximation.Computability.CodedMicrostate
 import GroupApproximation.Computability.EffectiveMatrixCode
+import GroupApproximation.Analysis.NaturalMatrixCoordinateEquiv
 
 /-!
 # Semantics of executable matrix microstates
@@ -17,7 +18,7 @@ namespace EffectiveMicrostateSemantics
 open PresentationCodes RawWord
 open EffectiveMatrixCode
 open MFMicrostate
-open scoped Matrix
+open scoped Matrix Matrix.Norms.L2Operator
 
 /-- Every generator named by the presentation code evaluates to an exactly
 unitary coded matrix.  Missing list entries are the coded identity. -/
@@ -62,14 +63,18 @@ theorem toMatrix_wordMatrix (c : PresentationCode) (d : ℕ)
       (w.map (matrixLetter c d gens)).prod := by
   rw [wordMatrix, toMatrix_foldl_matrixMul, toMatrix_identity, one_mul]
   congr 1
-  simp only [List.map_map, Function.comp_apply, toMatrix_letterMatrix]
+  induction w with
+  | nil => rfl
+  | cons p w ih =>
+      simp only [List.map_cons]
+      rw [toMatrix_letterMatrix, ih]
 
 /-- Turn exactly unitary executable generator data into a genuine analytic
 microstate on the represented natural basis. -/
 noncomputable def toMicrostate (c : PresentationCode) (d : ℕ)
     (gens : List MatrixCode) (hunitary : GeneratorsUnitary c d gens) :
     Microstate c where
-  model := Fin (dim d)
+  model := naturalFiniteModel (dim d)
   card_pos := by simp [dim]
   gen := fun i =>
     ⟨toMatrix d (generator d gens i),
@@ -108,9 +113,10 @@ theorem toMicrostate_hom_wordOf_eq_wordMatrix (c : PresentationCode) (d : ℕ)
     (w : List (ℕ × Bool)) :
     (((toMicrostate c d gens hunitary).hom (wordOf c w) :
         Matrix.unitaryGroup (Fin (dim d)) ℂ) :
-      Matrix (Fin (dim d)) (Fin (dim d)) ℂ) =
+        Matrix (Fin (dim d)) (Fin (dim d)) ℂ) =
         toMatrix d (wordMatrix d c.1 gens w) := by
-  rw [toMicrostate_hom_wordOf, toMatrix_wordMatrix]
+  rw [toMicrostate_hom_wordOf c d gens hunitary w,
+    toMatrix_wordMatrix c d gens w]
 
 /-- The analytic displacement is the norm of the executable word matrix minus
 the identity. -/
@@ -119,7 +125,8 @@ theorem toMicrostate_len (c : PresentationCode) (d : ℕ)
     (w : List (ℕ × Bool)) :
     (toMicrostate c d gens hunitary).len w =
       ‖toMatrix d (wordMatrix d c.1 gens w) - 1‖ := by
-  rw [Microstate.len_def, opLength, toMicrostate_hom_wordOf_eq_wordMatrix]
+  rw [Microstate.len_def, opLength,
+    toMicrostate_hom_wordOf_eq_wordMatrix c d gens hunitary w]
 
 /-- The same displacement through the executable subtraction operation. -/
 theorem toMicrostate_len_eq_matrixSub (c : PresentationCode) (d : ℕ)
