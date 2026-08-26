@@ -1689,6 +1689,7 @@ import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.BridgeWordProblem
 import GroupApproximation.Higman.CentralHNNFreeLabelAction
 import GroupApproximation.Higman.CentralHNNFreeLabelFaithful
+import GroupApproximation.Higman.CentralHNNFreeLabelKernel
 import GroupApproximation.Higman.OmegaTower
 import GroupApproximation.Higman.OmegaTowerStages
 import GroupApproximation.Higman.OmegaTowerDescent

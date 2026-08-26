@@ -59,7 +59,9 @@ theorem action_inside_iff_of_mem_closure
         simp only [Inside, action_of, basePerm_apply]
         constructor
         · rintro ⟨hsx, hw⟩
-          exact ⟨S.mul_mem (S.inv_mem hs) hsx, hw⟩
+          exact ⟨by
+            have hmem := S.mul_mem (S.inv_mem hs) hsx
+            simpa [mul_assoc] using hmem, hw⟩
         · rintro ⟨hx, hw⟩
           exact ⟨S.mul_mem hs hx, hw⟩
       · rw [Set.mem_singleton_iff] at hz
@@ -83,8 +85,7 @@ theorem action_inside_iff_of_mem_closure
       intro p
       rw [map_inv]
       have h := ih ((action M d x)⁻¹ p)
-      rw [(action M d x).apply_symm_apply] at h
-      exact h.symm
+      simpa using h.symm
 
 /-- Words supported on the labels met by `S` map into `⟨S,t⟩`. -/
 theorem stableConjLift_mem_closure_of_mem_labelSub
@@ -132,8 +133,8 @@ theorem closure_inf_ker_baseRet
   · rintro z ⟨w, hw, rfl⟩
     constructor
     · exact stableConjLift_mem_closure_of_mem_labelSub M d S hw
-    · rw [MonoidHom.mem_ker, ← MonoidHom.comp_apply,
-        baseRet_comp_stableConjLift]
+    · change baseRet M (stableConjLift M d w) = 1
+      rw [← MonoidHom.comp_apply, baseRet_comp_stableConjLift]
       rfl
 
 end
