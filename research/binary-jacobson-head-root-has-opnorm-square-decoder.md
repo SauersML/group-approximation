@@ -15,6 +15,7 @@ distinct_from:
   binary-jacobson-elementary-symbols-have-zero-toeplitz-index: that proves the ordinary Laurent determinant/index boundary vanishes on every elementary symbol; this must recover a nonabelian same-square occurrence rather than an unbalanced Fredholm index.
   binary-jacobson-untyped-square-decoder-is-target-equivalent: that proves arbitrary coordinate-dependent Toeplitz data merely restate MF-invisibility; this requires a fixed occurrence package and a quantitative relator-to-decoder estimate.
   binary-jacobson-balanced-shift-transport-is-xor: that computes the first literal monomial/raw-root conjugation row and obtains only symmetric difference; this must add an authenticated occurrence which orients that row.
+  binary-jacobson-balanced-split-conserves-pauli-parity: that follows a whole constant A2 pair through the involutive balanced split and shows the source is Pauli exactly when only one target branch is Pauli; this must use the closing incidence as a genuine overlap rather than another conjugacy return.
   binary-jacobson-three-cycle-is-controlled-swap-and-marked-mf: that closes three cyclic triangular rows to a head-controlled swap and proves that the three shifts, Weyl swaps, and one raw root in a common target column remain an amenable marked subsystem; this must leave that common-column semidirect product.
   binary-jacobson-two-target-parabolic-is-marked-mf: that enlarges the package to two external target columns and the full constant cycle between them but remains an amenable marked upper parabolic; this must include a reverse target-to-active root or move the raw cycle onto the active rows.
   binary-jacobson-active-cycle-generates-rank-three: that moves a directed constant three-cycle onto the active rows and, with one balanced shift, generates the full rank-three elementary Jacobson group; this shows that the first internal-cycle escape is already the hard coefficient core rather than a smaller Hall packet.
@@ -155,6 +156,15 @@ native two-qubit packet inside the finite marked group `EL_5(F_2[Q])`.
 Accordingly the first eligible PI bridge must mix an `S/T`-bearing transport
 with a nonmonomial constant-root incidence.  Either side by itself admits a
 marked MF model.
+
+Nor does the literal balanced two-branch return provide the PI degree jump.
+`binary-jacobson-balanced-split-conserves-pauli-parity` factors the conjugated
+constant A2 pair into its `Q` and `ST` branches and proves that the source
+commutator sign is the product of the two branch-center signs.  A negative
+source sector therefore has exactly one Pauli branch, while the sector with
+two transverse Pauli branches has commuting source words.  The remaining
+complete-cycle attack must use the closing raw root as a non-conjugacy
+overlap; another Weyl return cannot change this parity table.
 
 Nor can target depth replace that occurrence.
 `binary-jacobson-head-sector-has-native-clifford-tower` constructs every
