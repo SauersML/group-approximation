@@ -147,6 +147,17 @@ the coboundary drift of
   calculation shows that a return to the constant Hecke normalizer forces
   `a+b=0`.  The returned normalizer is therefore the identity and cannot
   cancel the Whitehead reservoir gauge.
+- Different root channels do contain genuine returns, so the preceding
+  same-channel fence must not be overgeneralized.  The exhaustive calculation
+  `signed-hecke-normalizer-has-eight-external-root-returns` finds exactly
+  eight constant root transvections outside `L_0` which preserve the signed
+  Hecke pair.  Each is the literal inverse-pair commutator
+  `[x(t_0),x(s_0)]=x(1)` in suitable root positions.  These words supply the
+  first concrete nontrivial two-exit candidates, but on the Hecke character
+  carrier each retains a free multiplicity involution.  The next calculation
+  must tie one of those eight involutions to the Whitehead gauge by a mixed
+  relation; merely observing that the output returns to the normalizer does
+  not make it ungauged.
 
 The smallest remaining algebraic search is therefore explicit: find one
 genuinely nonnormal coefficient/root-opposite word with the full-Gram property
