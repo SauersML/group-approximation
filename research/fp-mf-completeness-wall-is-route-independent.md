@@ -4,8 +4,8 @@ id: fp-mf-completeness-wall-is-route-independent
 kind: claim
 title: All three Higman engines reduce finite-presentation MF-completeness to the same MF-permanence wall
 distinct_from:
-  machine-free-digit-reading-group-is-mf: that is the single analytic statement; this is the meta-fact that every known compiler produces an instance of it, so the wall is intrinsic to the problem rather than to one construction.
-  mf-recognition-finite-presentations-is-pi2-complete: that is the target; this explains why the target is exactly as hard as one MF-permanence theorem and no easier.
+  machine-free-digit-reading-group-is-mf: that is the single analytic statement for the three classical machine-engine compilers; this is the comparison showing why those three routes meet it.
+  mf-recognition-finite-presentations-is-pi2-complete: that target is established by the different Mikhailova/graph-witness tensor compiler, so this classical-engine wall is not equivalent to the target.
 ---
 
 ESTABLISHED (as a comparison of the three standard proofs of the Higman
@@ -32,18 +32,17 @@ its MF-ness is unproved, and the missing step is the same:
    `T(P)` is Rotman's construction with torsion tracked, its `INF`-branch
    MF-ness is literally clause 1.
 
-**Conclusion.**  `mf-recognition-finite-presentations-is-pi2-complete` is
-equivalent, over the established recursive-presentation completeness and the
-established engines, to a single MF-permanence statement for a
-basis-to-basis HNN edge between free subgroups of an MF group; every known
-proof of Higman embedding meets this same edge.  This is the MF analogue of
-the open residually-finite Higman embedding problem (Kharlampovich--
-Myasnikov--Sapir 2017, Bull. Math. Sci.), and it is here isolated to the one
-group `Gamma^K` of [[machine-free-digit-reading-group-is-mf]].
+**Conclusion for these three engines.** Their positive branches all reduce
+to a single MF-permanence statement for a basis-to-basis HNN edge between
+free subgroups of an MF group. This is the MF analogue of the open
+residually-finite Higman embedding problem (Kharlampovich--Myasnikov--Sapir
+2017, Bull. Math. Sci.), and it remains isolated to the one group `Gamma^K`
+of [[machine-free-digit-reading-group-is-mf]].
 
-The route-independence is itself the reason no bookkeeping shortcut exists:
-the three engines share no vertex groups except free groups and the MF
-machine, and they still converge on the same free-edge permanence question.
+The convergence is substantive within this three-engine comparison: the
+engines share no vertex groups except free groups and the MF machine, and
+still meet the same free-edge permanence question. It makes no claim about
+compilers outside those three constructions.
 
 ## Proof of the reduction in each case
 
@@ -56,11 +55,9 @@ machine, and they still converge on the same free-edge permanence question.
 trivial-input branch it is the identity-collapse of the same rope, whose
 `INF` output is the group of clause 1.
 
-## Scope correction (2026-08-26 audit)
+## Fourth route and scope boundary
 
-The equivalence claim above quantified over the three MACHINE-BASED Higman
-engines, and for those the reduction to the free-edge wall stands.  But the
-"and no easier" reading is refuted: the Mikhailova/graph-witness compiler
+The Mikhailova/graph-witness compiler
 ([[mf-safe-finite-presentation-compiler-via-mikhailova]]) is a fourth
 route that never meets the wall, because its benign ambient is a direct
 product of free groups (residually finite on every branch — the Higman
@@ -70,6 +67,6 @@ where a corona conjugator exists outright
 ([[twisted-hnn-mf-permanence-with-corona-conjugator]]).  Consequently
 [[mf-recognition-finite-presentations-is-pi2-complete]] is closed while
 [[machine-free-digit-reading-group-is-mf]] remains open as a standalone
-question about `Gamma^K`; the wall is sufficient-side only, not equivalent
-to the completeness target.  Independent verification of the closing chain:
+question about `Gamma^K`; this wall is not equivalent to the completeness
+target. Independent verification of the closing chain:
 `research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md`.

@@ -3,8 +3,9 @@
 arXiv:2603.13564v2, 22 Mar 2026 (paper dated March 24, 2026), Tatiana Shulman.
 Read from the PDF this session (cairn-quotient-mf, 2026-08-14): abstract,
 introduction, and Section 2.1--2.2.  Statements below are transcribed
-verbatim from the introduction; the numbering in parentheses is the paper's
-own forward reference to the body.
+verbatim from the introduction. The displayed theorem numbers were corrected
+after direct inspection of the v2 body and PDF on 2026-08-26; the
+introduction's forward references retain stale earlier counters.
 
 ## Abstract (verbatim)
 
@@ -25,7 +26,7 @@ own forward reference to the body.
 > Let `A` be a separable MF C*-algebra and let `C` be any C*-subalgebra of
 > `A`.  Then `A *_C A` is MF.
 
-## Theorem 20 (verbatim) — the general criterion
+## Theorem 16 (verbatim) — the general criterion
 
 > Let `A, B, C` be separable C*-algebras and `theta_A : C -> A`,
 > `theta_B : C -> B` be inclusions.  Then `A *_C B` is MF if and only if
@@ -47,7 +48,7 @@ MF C*-algebras are MF; Li--Shen proved `A *_F A` MF for `A` separable MF and
 - **Corollary 34.**  `C*(Z^2 x| SL_2(Z))` is MF.
 - **Corollary 35.**  For any semidirect product `G x| F_n` of an amenable
   group `G` by a free group `F_n`, `C*(G x| F_n)` is MF.
-- **Theorem 28 / Theorem 29.**  MF C*-algebras are closed under maximal
+- **Theorem 24 / Theorem 25.**  MF C*-algebras are closed under maximal
   tensor products with `C*(F_n)`, and under **central** HNN-extensions.
 - **Section 2.1**, closing sentence: the C*-algebraic and group-theoretic
   amalgamated free products agree, `C*(G_1 *_H G_2) = C*(G_1) *_{C*(H)} C*(G_2)`.
@@ -89,11 +90,19 @@ paper being answered.
 
 ## Scope caution
 
-Theorem 20 is a statement about **C*-algebras**.  Group MF in the
+Theorem 16 is a statement about **C*-algebras**.  Group MF in the
 Carrion--Dadarlat--Eckhardt sense used by this repository is weaker than
 MF of `C*(G)`; the implication runs `C*(G)` MF `=>` `G` MF and not back.
-Any route built on Theorem 20 therefore proves more than the group claim
+Any route built on Theorem 16 therefore proves more than the group claim
 needs, and inherits the requirement that both vertex algebras be MF.
+
+## Numbering correction
+
+The statements above were first recorded from the v2 introduction, whose
+forward references still say Theorems 20, 28, and 29. Direct inspection of
+the v2 body and PDF shows the actual theorem numbers are 16, 24, and 25.
+The theorem statements are unchanged; downstream citations should use the
+body numbers and may mention the stale introduction aliases for clarity.
 
 ## Explicit stable-trace attribution correction
 

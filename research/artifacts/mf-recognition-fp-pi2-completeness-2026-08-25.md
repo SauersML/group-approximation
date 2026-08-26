@@ -187,8 +187,11 @@ Ueda's universal-HNN corner construction and Shulman's compatible-corona
 criterion make the final HNN algebra MF.  The tensor trace is the regular
 character: `tr(rho(g))` kills every nonidentity `Gamma_e` element, and the
 eventually separating `beta_n` kill every nonidentity element of `H` when the first
-coordinate is trivial.  The reduced von Neumann HNN normal form then
-separates every nonidentity Britton-reduced word.  Consequently
+coordinate is trivial. Group faithfulness is separate from the particular
+tensor intertwiner: amplify the GNS representation of the tensor trace to
+`l2(R_e)` and use the abstract left-regular stable letter. The universal-HNN
+representation then sends every canonical group word to its left-regular
+unitary, so no nonidentity Britton-reduced word collapses. Consequently
 
 ```text
 R_e=<Gamma_e times Q_e,u |
@@ -257,11 +260,14 @@ from `(T2)`.
 
 Mikaelian's explicit Higman algorithm, arXiv:2507.04347v8, supplies the finite
 presentation and marked embedding words used only in the Mikhailova fiber
-product. Shulman's arXiv:2603.13564v2, Theorem 29 handles the first central
-HNN extension. Ueda's universal-HNN corner construction and Shulman's Theorem
-20 handle the final compatible-corona edge; the faithful embeddings and
+product. Shulman's arXiv:2603.13564v2, body Theorem 25 handles the first
+central HNN extension. Ueda's universal-HNN corner construction and
+Shulman's body Theorem 16 handle the final compatible-corona edge; the faithful embeddings and
 group-faithfulness argument are written out in
 `regular-mf-tensor-sync-shulman-completion-2026-08-26.md`.
+
+The v2 introduction's forward references "Th. 29" and "Th. 20" are stale;
+the actual v2 body and PDF number these results 25 and 16.
 
 The paired-return cutter in
 `notes/TRUE_PAIRED_RETURN_CENTRALIZER_SWITCH_CUTS_CONJUGATOR_GRAPH.md`

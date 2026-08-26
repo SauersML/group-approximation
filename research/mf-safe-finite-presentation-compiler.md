@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/mf-recognition-fp-pi2-completeness-2026-08-25.md
   - research/artifacts/regular-mf-tensor-synchronized-rope-2026-08-25.md
   - research/artifacts/regular-mf-tensor-sync-shulman-completion-2026-08-26.md
+  - research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md
 distinct_from:
   threshold-free-reverse-kleene-mf-higman: that compiler preserves a marked radical/nontriviality dichotomy and yields one non-MF group; this must preserve an actual MF positive branch across every input.
   monotone-mf-switch-positive-branch-barrier: that rules out one append-on-halt marked architecture; this asks for a nonmonotone or MF-safe finite-presentation envelope.
@@ -36,9 +37,10 @@ positive rope is regularly operator-MF.
 The analytic endpoint is literature-relative but unconditional: tensor
 synchronization constructs faithful edge-compatible corona embeddings, Ueda
 identifies the universal HNN algebra as a corner, and Shulman's
-arXiv:2603.13564v2, Theorem 20 makes the ambient amalgam MF. The left-regular
+arXiv:2603.13564v2, body Theorem 16 makes the ambient amalgam MF. The left-regular
 representation then proves that the abstract HNN group embeds in that MF
-algebra.
+algebra. The reusable statement is
+[[twisted-hnn-mf-permanence-with-corona-conjugator]].
 
 ## Attempts
 

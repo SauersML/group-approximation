@@ -6,7 +6,7 @@ deliberately zero-literature: it proved the tensor model and then stopped at
 compatible-corona HNN permanence. Shulman's current theorem supplies exactly
 that last implication.
 
-The external inputs are Shulman's arXiv:2603.13564v2, Theorem 20 (the
+The external inputs are Shulman's arXiv:2603.13564v2, body Theorem 16 (the
 compatible-corona criterion for separable full amalgams), and Ueda's
 universal-HNN full-corner construction.
 
@@ -98,13 +98,16 @@ They agree on the edge because
 Phi2(diag(b0,alpha^-1(b1)))=diag(b0,b1)=Phi1(diag(b0,b1)).
 ```
 
-After composing with the amplification of `j`, Shulman's Theorem 20 makes
+After composing with the amplification of `j`, Shulman's Theorem 16 makes
 `P` MF. MF passes to C-star subalgebras and corners, so Ueda's corner gives an
 MF universal algebra `Hcal=HNN(D,B0,alpha)`.
 
 This is the step missing from the zero-literature audit. Merely sending the
-stable letter to `W` need not be faithful; Theorem 20 makes the **universal**
+stable letter to `W` need not be faithful; Theorem 16 makes the **universal**
 HNN algebra MF.
+
+Numbering caution: the v2 introduction still calls this "Th. 20", but the
+v2 body and PDF number it Theorem 16.
 
 ## 3. The abstract HNN group embeds
 

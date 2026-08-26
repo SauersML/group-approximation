@@ -25,3 +25,8 @@ tower.  For the older graph-rope output
 `<G x C, s | s(l,1)s^-1=(l,phi(l))>`, an HNN form of GKMP or a proved
 embedding into a GKMP product-amalgam would still be needed; Theorem 1.1
 itself supplies neither.
+
+This is an alternate route through the older injected machine tower, not a
+dependency of the established Mikhailova/graph-witness compiler. The latter
+closes its different asymmetric edge via
+[[twisted-hnn-mf-permanence-with-corona-conjugator]].

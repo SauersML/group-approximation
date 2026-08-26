@@ -43,7 +43,7 @@ narrower than the claim's original generic formulation.
 - **Shulman's symmetric double does not apply.**  In arXiv:2603.13564v2 the
   notation `A *_C A` explicitly means that the two copies use the identical
   inclusion of `C`.  Theorem 10 therefore does not cover the two embeddings in
-  `(GH1)`.  The general criterion (Theorem 20 in v2) asks for compatible
+  `(GH1)`.  The general criterion (body Theorem 16 in v2) asks for compatible
   matrix-corona embeddings; it does not manufacture them from MF of the two
   vertex algebras.
 - **The trivial-quotient specialization is central but unavailable.**  If
@@ -64,7 +64,7 @@ narrower than the claim's original generic formulation.
   through the retraction balance the two restrictions but lose the kernel of
   the retraction.  Adding one faithful corona embedding creates an unmatched
   operator-norm summand.  Multiplicity dilution repairs normalized traces, not
-  operator norm, so it does not satisfy Theorem 20's exact corona
+  operator norm, so it does not satisfy Theorem 16's exact corona
   compatibility.
 - **Boone packing does not remove the edge.**  Simpson's fixed finite
   presentation packs all input configurations, and its last stable letter is

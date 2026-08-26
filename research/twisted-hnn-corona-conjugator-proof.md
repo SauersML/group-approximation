@@ -4,7 +4,8 @@ id: twisted-hnn-corona-conjugator-proof
 kind: route
 title: Corner the universal HNN into an amalgam, apply Shulman, and inject the group by its regular trace
 target: twisted-hnn-mf-permanence-with-corona-conjugator
-requires: []
+requires:
+  - shulman-amalgam-mf-criterion
 artifacts:
   - research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md
 ---

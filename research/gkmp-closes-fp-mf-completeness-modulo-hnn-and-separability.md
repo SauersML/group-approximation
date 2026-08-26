@@ -10,8 +10,10 @@ distinct_from:
 
 [[gkmp-amalgam-product-mf-permanence]] closes an untwisted product-amalgam,
 equivalently a central HNN edge when its added factor is `Z`.  It does not by
-itself prove finite-presentation `Pi^0_2`-completeness of MF
-([[mf-recognition-finite-presentations-is-pi2-complete]]).
+itself prove finite-presentation `Pi^0_2`-completeness of MF. That result is
+now established by the different Mikhailova/graph-witness tensor route
+([[mf-recognition-finite-presentations-is-pi2-complete]]); the obligations
+below concern only this older GKMP/machine-tower alternative.
 
 For the older single-rope presentation, two conditions would still be needed:
 
