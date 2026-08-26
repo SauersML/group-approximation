@@ -98,6 +98,15 @@ the precise operator-norm task: the selected kernel coefficient may depend
 on the matrix coordinate, while every return check must still be a literal
 conjugate of one of finitely many fixed prototype discrepancies.
 
+The later authenticated support-return loops do not evade this boundary.
+`support-return-odd-loops-do-not-imply-atomic-return` places both exact odd
+factorizations `J_i=W_i(Z_iH_iZ_i)W_i`, their transported Pauli covariances,
+their chart intersection and the native braid in a finite exact model with
+the marked atom nonzero.  The atomic Leavitt gap then rules out any deduction
+of `(BAC1)` from that menu alone.  A viable prototype must add an occurrence
+which couples the coefficient completeness fold to the prescribed atom;
+another formal recombination of the returned native words is insufficient.
+
 The first literal mixed-loop completion of the private-column geometry is
 also below this boundary.  In
 `tagged-whitehead-two-branch-loop-has-a-three-qubit-marked-model`, adjacent
@@ -176,6 +185,17 @@ conjugate marks is not enough either:
 fusion in a finite character actor, even with one controlled Pauli payload
 per chart.  The boundary must read noncommuting row/column payloads in an
 address-sensitive way.
+
+Nor can finite group-algebra polynomial recombination of these packet words
+bypass that occurrence boundary.  By
+`fixed-group-algebra-polynomials-cannot-supply-atomic-return`, arbitrary
+compressed Fourier/Pauli polynomials in either the exact three-qubit model
+or the exact twelve-dimensional three-character model have total AMR defect
+at least one on the nonzero marked atom.  The same bound holds in the left
+regular marked corner for any fixed polynomials in actual Steinberg words.
+Thus a successful compiler must make a genuinely coordinate-dependent
+finite-matrix choice or prove the uniform prototype gap; it cannot extract
+the three rows by a fixed analytic polynomial inside the recovered packet.
 
 The first literal noncommuting depth-two payload loop is not enough.
 `depth-two-cousin-loop-has-finite-ut5-fusion-model` uses the shared-arm
