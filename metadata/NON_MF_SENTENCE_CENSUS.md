@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 284 |
-| `unassigned` | 197 |
+| `formalized` | 283 |
+| `unassigned` | 198 |
 | `definition` | 64 |
 | `structural` | 37 |
 | `attribution` | 13 |
 | `partial` | 6 |
 | **total** | **601** |
 
-Completely formalized or definitional: **348/601** (57.9%).
+Completely formalized or definitional: **347/601** (57.7%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -61,6 +61,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1640 --- Thus $N=1$.
 * **`unassigned`**, line 1648 --- Let
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
+* **`unassigned`**, line 1712 --- Its normal closure is a nontrivial normal subgroup of $H$, and hence is all of $H$ by Proposition~\ref{prop:simple}.
 * **`unassigned`**, line 2080 --- A countable group $G$ is MF if and only if for every finite set $F\subseteq G$ containing $1$ and every $\varepsilon>0$ there are $d\ge1$ and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
 * **`unassigned`**, line 2093 --- Enumerate $G=\{g_0=1,g_1,g_2,\dots\}$, let $F_n=\{g_ig_j:i,j\le n\}\cup\{g_i:i\le n\}$, let $V_n\colon F_n\to\U(d_n)$ be a map for $(F_n,1/n)$, and extend it to $G$ by $V_n(g)=1$ for $g\notin F_n$.
 * **`unassigned`**, line 2093 --- For $g,h\in G$ the elements $g$, $h$, $gh$ lie in $F_n$ for all large $n$, so $\opnorm{V_n(gh)-V_n(g)V_n(h)}\le1/n\to0$; and for $g\ne1$ we have $\opnorm{V_n(g)-1}\ge1$ for all large $n$.
@@ -247,7 +248,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 0 |
 | Normal Kazhdan subgroups and the MF radical | 78 | 3 |
 | The binary Leavitt self-compression | 34 | 0 |
-| Simplicity and the full MF radical | 35 | 12 |
+| Simplicity and the full MF radical | 35 | 13 |
 | Quotients visible to MF | 52 | 0 |
 | Operator norm models on finite sets | 51 | 37 |
 | HNN extensions with a corona conjugator | 62 | 48 |

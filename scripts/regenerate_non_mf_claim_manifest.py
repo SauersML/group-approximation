@@ -106,10 +106,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "prop:leavitt-compression": (
         "Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    "lem:normal-generation-transvection": (),
-    "lem:coefficient-separation": (
-        "Abrams--Aranda Pino, Proposition 10(v), through the preceding "
-        "two-sided sandwich fact",),
     "lem:local-models": (),
     "lem:rf-regular": (),
     "thm:hnn-permanence": (
@@ -160,12 +156,8 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:defect-saturation": ["thm:compression-criterion"],
     "lem:tau-elementary": [],
     "prop:leavitt-compression": ["lem:tau-elementary"],
-    "lem:normal-generation-transvection": [],
-    "lem:coefficient-separation": [],
-    "prop:simple": [
-        "lem:normal-generation-transvection", "lem:coefficient-separation"],
-    "prop:defect": [
-        "lem:normal-generation-transvection", "prop:leavitt-compression"],
+    "prop:simple": [],
+    "prop:defect": ["prop:simple", "prop:leavitt-compression"],
     "prop:full-kernel-pullback": ["prop:mf-residual-calculus"],
     "prop:universal-factorization": [],
     "lem:local-models": [],

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "non_mf_groups_exist.tex",
+  "manuscript": "base_fixed.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -328,44 +328,13 @@
       "lean": []
     },
     {
-      "id": "lem:normal-generation-transvection",
-      "environment": "lemma",
-      "title": "Normal generation by an elementary transvection",
-      "statement_sha256": "094b15ab1493cd2caa1843c068a14207fe1c2c0cf2b7ed10297bb7737b8de118",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
-      "id": "lem:coefficient-separation",
-      "environment": "lemma",
-      "title": "Coefficient separation",
-      "statement_sha256": "f5dd8225f8bb4ca177a7a8bd904ed42c86e49504e6da24a9c1d9a4014aa34474",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [
-        "Abrams--Aranda Pino, Proposition 10(v), through the preceding two-sided sandwich fact"
-      ],
-      "coverage_gap": "",
-      "lean": []
-    },
-    {
       "id": "prop:simple",
       "environment": "proposition",
       "title": "",
       "statement_sha256": "d756a14fb63a07f8fafa6796911dfdae943499b6e97dc9f1287c8e5c306e9ce2",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "lem:normal-generation-transvection",
-        "lem:coefficient-separation"
-      ],
+      "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
@@ -386,7 +355,7 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:normal-generation-transvection",
+        "prop:simple",
         "prop:leavitt-compression"
       ],
       "extra_assumptions": [],
