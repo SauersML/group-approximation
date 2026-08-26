@@ -41,24 +41,29 @@ def generators (R : Set G) : Set (G × G) :=
 def subgroup (R : Set G) : Subgroup (G × G) :=
   Subgroup.closure (generators R)
 
+/-- The quotient map by the normal closure of `R`. -/
+def quotientMap (R : Set G) : G →* G ⧸ Subgroup.normalClosure R :=
+  QuotientGroup.mk' (Subgroup.normalClosure R)
+
+@[simp] theorem quotientMap_apply (R : Set G) (g : G) :
+    quotientMap R g = QuotientGroup.mk g := rfl
+
 /-- The fibre product of the quotient map `G → G / ⟨⟨R⟩⟩` with itself. -/
 def fiberProduct (R : Set G) : Subgroup (G × G) where
-  carrier := {p | (QuotientGroup.mk p.1 : G ⟋ Subgroup.normalClosure R) =
-    QuotientGroup.mk p.2}
-  one_mem' := by simp
+  carrier := {p | quotientMap R p.1 = quotientMap R p.2}
+  one_mem' := by rw [map_one]
   mul_mem' := by
     rintro ⟨a₁, a₂⟩ ⟨b₁, b₂⟩ ha hb
-    change QuotientGroup.mk (a₁ * b₁) = QuotientGroup.mk (a₂ * b₂)
-    simpa only [QuotientGroup.mk_mul] using congrArg₂ (fun x y => x * y) ha hb
+    change quotientMap R (a₁ * b₁) = quotientMap R (a₂ * b₂)
+    rw [map_mul, map_mul, ha, hb]
   inv_mem' := by
     rintro ⟨a₁, a₂⟩ ha
-    change QuotientGroup.mk a₁⁻¹ = QuotientGroup.mk a₂⁻¹
-    simpa only [QuotientGroup.mk_inv] using congrArg Inv.inv ha
+    change quotientMap R a₁⁻¹ = quotientMap R a₂⁻¹
+    rw [map_inv, map_inv, ha]
 
 theorem mem_fiberProduct_iff (R : Set G) (a b : G) :
     (a, b) ∈ fiberProduct R ↔
-      (QuotientGroup.mk a : G ⟋ Subgroup.normalClosure R) =
-        QuotientGroup.mk b :=
+      quotientMap R a = quotientMap R b :=
   Iff.rfl
 
 /-- Every displayed Mikhailova generator lies in the fibre product. -/
@@ -68,7 +73,7 @@ theorem generators_subset_fiberProduct (R : Set G) :
   · obtain ⟨g, rfl⟩ := hp
     exact rfl
   · obtain ⟨r, hr, rfl⟩ := hp
-    change (QuotientGroup.mk r : G ⟋ Subgroup.normalClosure R) = 1
+    change quotientMap R r = 1
     exact (QuotientGroup.eq_one_iff _).2
       (Subgroup.subset_normalClosure hr)
 
@@ -96,9 +101,11 @@ instance firstKernel_normal (R : Set G) : (firstKernel R).Normal where
     change (x, 1) ∈ subgroup R at hx
     have hconj := (subgroup R).mul_mem
       ((subgroup R).mul_mem hdiag hx) ((subgroup R).inv_mem hdiag)
-    change (g * x * g⁻¹, 1) ∈ subgroup R
-    simpa only [Prod.mul_def, Prod.inv_def, mul_one, one_mul,
-      mul_inv_cancel] using hconj
+    have heq : (g, g) * (x, 1) * (g, g)⁻¹ =
+        (g * x * g⁻¹, 1) := by
+      apply Prod.ext <;> simp
+    rw [← heq]
+    exact hconj
 
 theorem normalClosure_le_firstKernel (R : Set G) :
     Subgroup.normalClosure R ≤ firstKernel R :=
@@ -111,9 +118,8 @@ theorem first_pair_mem_of_mem_normalClosure (R : Set G) {x : G}
 theorem fiberProduct_le_subgroup (R : Set G) :
     fiberProduct R ≤ subgroup R := by
   rintro ⟨a, b⟩ hab
-  have hquot :
-      (QuotientGroup.mk (a * b⁻¹) : G ⟋ Subgroup.normalClosure R) = 1 := by
-    rw [QuotientGroup.mk_mul, QuotientGroup.mk_inv, hab, mul_inv_cancel]
+  have hquot : quotientMap R (a * b⁻¹) = 1 := by
+    rw [map_mul, map_inv, hab, mul_inv_cancel]
   have hnormal : a * b⁻¹ ∈ Subgroup.normalClosure R :=
     (QuotientGroup.eq_one_iff _).1 hquot
   have hfirst : (a * b⁻¹, 1) ∈ subgroup R :=
@@ -121,7 +127,10 @@ theorem fiberProduct_le_subgroup (R : Set G) :
   have hdiag : (b, b) ∈ subgroup R :=
     Subgroup.subset_closure (Or.inl ⟨b, rfl⟩)
   have hmul := (subgroup R).mul_mem hfirst hdiag
-  simpa only [Prod.mul_def, one_mul, mul_inv_cancel_left] using hmul
+  have heq : (a * b⁻¹, 1) * (b, b) = (a, b) := by
+    apply Prod.ext <;> simp [mul_assoc]
+  rw [← heq]
+  exact hmul
 
 /-- **Mikhailova fibre-product theorem.**  Diagonal pairs and first-coordinate
 relator pairs generate exactly the pullback of the quotient map with itself. -/
@@ -131,8 +140,7 @@ theorem subgroup_eq_fiberProduct (R : Set G) :
 
 theorem mem_subgroup_iff_quotient_eq (R : Set G) (a b : G) :
     (a, b) ∈ subgroup R ↔
-      (QuotientGroup.mk a : G ⟋ Subgroup.normalClosure R) =
-        QuotientGroup.mk b := by
+      quotientMap R a = quotientMap R b := by
   rw [subgroup_eq_fiberProduct]
   rfl
 
@@ -160,9 +168,11 @@ theorem diagonal_mem_freeSubgroup (R : Set (FreeGroup X))
   · intro x
     exact Subgroup.subset_closure (Or.inl ⟨x, rfl⟩)
   · intro x hx
-    simpa only [Prod.inv_def] using (freeSubgroup R).inv_mem hx
+    change (x⁻¹, x⁻¹) ∈ freeSubgroup R
+    exact (freeSubgroup R).inv_mem hx
   · intro x y hx hy
-    simpa only [Prod.mul_def] using (freeSubgroup R).mul_mem hx hy
+    change (x * y, x * y) ∈ freeSubgroup R
+    exact (freeSubgroup R).mul_mem hx hy
 
 theorem freeSubgroup_eq_subgroup (R : Set (FreeGroup X)) :
     freeSubgroup R = subgroup R := by
@@ -188,8 +198,7 @@ theorem freeSubgroup_eq_fiberProduct (R : Set (FreeGroup X)) :
 theorem mem_freeSubgroup_iff_quotient_eq (R : Set (FreeGroup X))
     (u v : FreeGroup X) :
     (u, v) ∈ freeSubgroup R ↔
-      (QuotientGroup.mk u :
-          FreeGroup X ⟋ Subgroup.normalClosure R) = QuotientGroup.mk v := by
+      quotientMap R u = quotientMap R v := by
   rw [freeSubgroup_eq_fiberProduct]
   rfl
 
@@ -206,11 +215,7 @@ Mikhailova subgroup, with the displayed generators themselves as witness. -/
 theorem freeSubgroup_fg [Finite X] {R : Set (FreeGroup X)} (hR : R.Finite) :
     (freeSubgroup R).FG := by
   refine (Subgroup.fg_iff _).2 ⟨freeGenerators R, rfl, ?_⟩
-  exact (by
-    simpa only [Set.image_univ] using
-      (Set.finite_univ.image
-        (fun x : X => (FreeGroup.of x, FreeGroup.of x))).union
-      (hR.image firstHom))
+  exact (Set.finite_range _).union (hR.image firstHom)
 
 end Mikhailova
 end Higman
