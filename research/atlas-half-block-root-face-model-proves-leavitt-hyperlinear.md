@@ -9,6 +9,7 @@ requires:
   - atlas-three-label-mode-two-unitary-moment-reduction
   - atlas-first-root-relator-is-half-block-commutant-face
   - atlas-root-triangle-is-heisenberg-character-fibers
+  - atlas-ck-dual-pair-cell-leaves-one-partition-multiplicity
   - atlas-half-block-root-face-full-packet-model-exists
 ---
 
