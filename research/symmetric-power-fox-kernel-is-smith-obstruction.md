@@ -50,5 +50,14 @@ propagated merely by multiplying a left inverse or a kernel vector by one
 coordinate.  A successful induction must mix degree blocks or control the
 Smith torsion directly.
 
+Nor would an all-degree pure-symmetric theorem by itself settle the first
+building-specific candidate.  In characteristic `p`, the Steinberg module of
+`SL_3(F_p)` has highest weight `(p-1)(omega_1+omega_2)`, rather than
+`n omega_1` or `n omega_2`.  Even if it occurs as a subquotient of a larger
+polynomial module, zero common kernel does not descend to arbitrary
+quotients.  Thus the Steinberg block requires a separate mixed-weight test;
+the apartment-cycle analogy alone is not a counterexample because the two
+Fox rows are noncentral and their common kernel is not an `SL_3`-submodule.
+
 DERIVATION
 symmetric-power-fox-smith-reduction-proof

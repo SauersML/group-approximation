@@ -122,3 +122,24 @@ nontrivial correction terms.  It identifies the first exact obstruction:
 the ordinary graded-module induction is unavailable, and degree four shows
 that working only over `Q` loses real odd Smith torsion that the authenticated
 row must remove.
+
+Finally, the defining-characteristic Steinberg representation is
+
+```text
+St_p=L((p-1)(omega_1+omega_2)).                         (SPR11)
+```
+
+It is the mixed Cartan component associated with the two fundamental
+directions, not a pure symmetric power with highest weight `n omega_1` or
+`n omega_2`.  The extension argument `(MMP11)` is one-way: safety of both a
+submodule and its quotient implies safety of the extension, but safety of an
+ambient module does not imply safety of either subquotient.  Consequently an
+all-`n` proof for pure symmetric powers would not automatically evaluate the
+two rows on `(SPR11)`.
+
+The spherical-building model makes `(SPR11)` a plausible place to test for
+odd Smith torsion, but does not itself produce a common-kernel vector.  The
+rows `X,Y` are not central in the group algebra, so their common kernel need
+not be actor-invariant; an apartment class must be checked against both rows
+explicitly.  No such check is supplied here, and no Steinberg counterexample
+is claimed.
