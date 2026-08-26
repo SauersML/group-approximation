@@ -37,7 +37,7 @@ property           fp                          rec2 / rec                    enu
 -------------------------------------------------------------------------------------
 trivial            Sigma^0_1-complete (folk.)  Pi^0_2-complete (folk.)       Pi^0_2-complete
 abelian            Pi^0_2 (folk.)              Pi^0_2-complete (folk.)       Pi^0_2-complete
-torsion-free       Pi^0_2 (complete OPEN)      Pi^0_2-complete               Pi^0_2-complete
+torsion-free       Pi^0_2-complete [TF]        Pi^0_2-complete               Pi^0_2-complete
 sofic              Pi^0_2 \ Pi^0_1, complete   Pi^0_2-complete               Pi^0_2-complete
                    OPEN [S]
 operator-MF        Pi^0_2-complete [MF]        Pi^0_2-complete               Pi^0_2-complete
@@ -67,6 +67,8 @@ non-hyperlinear group exists;
 [[linear-soficity-recognition-has-a-pi2-upper-bound]] (side (B) iff some
 group fails the property);
 `[FP]` = [[finite-presentability-two-generator-recursive-is-sigma2-hard]];
+`[TF]` = [[torsion-freeness-of-finite-presentations-is-pi2-complete]], via
+[[finite-presentation-rice-criterion-via-the-fixed-positive-rope]];
 `[RF-Higman]` = `Pi^0_2`-completeness of `RF_fp`, the residually finite
 Higman problem.  Rows: sofic
 [[sofic-recognition-two-generator-recursive-is-pi2-complete]],
@@ -104,3 +106,5 @@ The `trivial` row on enumerated codes is fully kernel-checked: `TrivialEnumerate
 Commutativity on enumerated codes is fully kernel-checked: `AbelianEnumeratedPi02.comm_enum_pi02Complete`.
 
 Torsion-freeness is [[torsion-freeness-recognition-is-pi2-complete]] (hardness kernel-checked as `TorsionFreeEnumeratedHardness.torsionFreeCode_pi02Hard`), and the free-subgroup row's lower bound as `FreeSubgroupEnumeratedHardness.containsFreeSubgroupCode_sigma02Hard`.  The three levels are read as a hierarchy theorem in [[natural-group-properties-realize-the-first-three-levels]].
+
+**The finite-presentation cells have one common gate.**  By [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]], a hereditary property is `Pi^0_2`-hard on finite presentations as soon as the MF compiler's positive rope has it.  The rope is MF and torsion-free, is not amenable and is not residually finite, and its soficity and hyperlinearity are open: this is exactly the pattern of closed and open cells above.

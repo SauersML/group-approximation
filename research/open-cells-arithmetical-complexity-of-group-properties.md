@@ -13,6 +13,14 @@ OPEN (root).  Each item is a precise question left open by
 [[arithmetical-complexity-table-of-group-properties]]; establishing any of
 them fills one cell.
 
+0. **Common gate.**  By
+   [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]] every
+   hereditary cell below is the single question "does the MF compiler's
+   positive rope have the property".  The rope is MF and torsion-free
+   ([[mf-compiler-positive-branch-is-torsion-free]], which closes the
+   torsion-free cell), is not amenable and is not residually finite, so for
+   cells 3 and 4 this route is provably unavailable.
+
 1. **`SOFIC_fp` `Pi^0_2`-complete?**  Known: `Pi^0_2 \ Pi^0_1`.  Needs
    [[sofic-safe-finite-presentation-compiler]]; blocked by soficity of
    centralizing HNN extensions over non-amenable, non-profinitely-closed
