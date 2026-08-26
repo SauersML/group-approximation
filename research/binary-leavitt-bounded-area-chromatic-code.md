@@ -144,6 +144,18 @@ theorem then gives full MF collapse of `Delta`.
   at bounded area with all edgewise three-address charts that contain it.
   A pair-dependent simultaneous prefix unit proves each exact identity but
   does not yet give the one-word-per-vertex requirement of `(CCC2)`.
+* **Normalize the tagged cell inside the source-row stabilizer.**
+  `tagged-shift-stabilizer-normalization-has-unbounded-row-holonomy` rules
+  out this coherence shortcut.  A private tag can make one transporter fix
+  `A_i` while normalizing `A_j` and `B_i+D_(ij)` as group elements.  To make
+  both commutator discrepancies literal conjugates of fixed prototypes,
+  however, both row occurrences must agree at bounded area with their one
+  canonical vertex words.  Those comparisons are commutators with endpoint
+  holonomies centralizing nontrivial order-two roots.  Finite-mark
+  centralizer-area properness and the two-role counting identity then force
+  bounded successor fibres, contrary to the growing shift packets.  This
+  refutes the stabilizer compiler, not the possibility of a non-chart edge
+  diagram for the tagged table.
 
 The next viable attack must construct a bounded-area orbit section directly,
 replace representative coherence by a finite-coordinate selector whose

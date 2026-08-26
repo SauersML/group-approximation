@@ -97,3 +97,14 @@ intersection into `(BAC1)` without a depth-dependent word-area loss is now
 the precise operator-norm task: the selected kernel coefficient may depend
 on the matrix coordinate, while every return check must still be a literal
 conjugate of one of finitely many fixed prototype discrepancies.
+
+The first literal mixed-loop completion of the private-column geometry is
+also below this boundary.  In
+`tagged-whitehead-two-branch-loop-has-a-three-qubit-marked-model`, adjacent
+Whiteheads transport the tagged marked commutator from one branch to the
+other and close a genuine null loop.  Three Pauli factors and tensor swaps
+realize that loop, every crossed-zero row, and the Whitehead braid exactly
+with the mark equal to `-1`.  Thus the required prototype cannot merely
+return the same payload commutator through both branch charts.  It must make
+the coefficient range-sum/parent-generation occurrence act on the selected
+atom, thereby ruling out Pauli-factor reuse.

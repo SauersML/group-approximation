@@ -67,9 +67,32 @@ occurrence charts compare with bounded area, or give one canonical word for
 bounded mixed/opposite-root cell.  Qualitative prefix cancellation does not
 provide that comparison.
 
+The direct stabilizer repair is ruled out by
+`tagged-shift-stabilizer-normalization-has-unbounded-row-holonomy`.
+Choosing the private tag so one pair transporter fixes `A_i` and
+simultaneously normalizes `A_j` and `B_i+D_(ij)` does normalize each
+coefficient triple as group elements.  It does not make the canonical target
+word for `A_j` equal to its occurrence in every predecessor chart.  Uniform
+bounded-area comparisons at both rows would confine the two endpoint
+holonomies to finite sets by finite-mark centralizer-area properness, forcing
+a uniform bound on the number of successors.  Private tags do not occur in
+that row-holonomy equation.
+
 Thus `(TST1)` supplies the requested new vertex geometry and narrows the
 bounded-area leaf to a multi-predecessor chart-coherence cell.  It does not
 establish `binary-leavitt-bounded-area-chromatic-code` by itself.
+
+## Attempts
+
+* **Source-row stabilizer normalization.**  For each `(i,j)`, use the private
+  tag to choose a transporter which fixes `A_i` and normalizes `A_j` and
+  `B_i+D_(ij)` to one fixed two-row/one-column cell.  The coefficient-level
+  construction succeeds.  Its bounded-area upgrade fails: the source and
+  target occurrences differ from their canonical row words by endpoint
+  holonomies centralizing nontrivial order-two elementary roots.  The route
+  `tagged-shift-stabilizer-holonomy-proof` shows that bounded comparisons at
+  both ends would bound every successor fibre.  Literal conjugacy is the
+  zero-area special case and is therefore impossible on growing packets.
 
 No Property `(T)`, Kazhdan input, matrix approximation, trace, or literature
 theorem is used.
