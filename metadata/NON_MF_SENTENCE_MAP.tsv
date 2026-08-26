@@ -481,3 +481,24 @@ b2015fd184d0	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.cornerCo
 b6088e2ed5ea	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.eq_zero_of_mem_corner_of_fixed GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedNormalKazhdanCornerSteps	Vanishing of the represented Kazhdan projection gives the absence of nonzero fixed vectors in a faithful representation.
 cd9dcf514aee	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner GroupApproximation.PrintedCornerCompression.PrintedCornerData.cornerRepresentation	The central-corner endpoint supplies the rank-sized operator-norm almost representation after retaining nonzero coordinates.
 e92d1496dcf8	formalized	GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCorrectedCornerKazhdanProjectionZero GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedCorrectedCornerKazhdanDetection GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUnsquaredCorrectedCornerKazhdanDetection	Projection-zero gives the absence of K-fixed vectors, and the normalized corrected-corner endpoint selects one fixed Kazhdan element and a subsequence with the unsquared positive Hilbert--Schmidt gap.
+
+# Section sec:local (operator norm models on finite sets), added 2026-08-26.
+# Lemma lem:local-models and Proposition prop:mf-upper-bound are printed with
+# complete paper proofs.  The two Pi^0_2 / Sigma^0_2 conclusions are stated
+# exactly by MFRecognitionPi02; the remaining proof sentences are owed Lean
+# carriers (the manuscript leads, the formalization follows) and are left
+# unassigned deliberately so the census keeps reporting the debt.
+c8ff1e053794	structural		Section opener; says where the argument is going
+ee1a4d254680	structural		Section opener; asserts nothing
+2cf854b6b256	structural		Hypothesis-introducing sentence of the easy direction
+eedf096a0771	structural		Hypothesis-introducing sentence of the converse; restates the printed MF definition
+1b3bfacc7dff	structural		Announces the amplification step, asserts nothing
+80dea25d23e4	structural		Fixes F, epsilon and K for the window argument; asserts nothing
+b4a096a92e57	definition		Kleene--Mostowski levels; the Lean carriers are the ArithmeticalHierarchy predicates Pi02 and Sigma02
+8d2338091a30	definition		The effective coding of finite presentations is PresentationCodes.PresentationCode
+bbf9fb702b83	definition	GroupApproximation.MFRecognitionSecondLevel.MFCode GroupApproximation.MFRecognitionSecondLevel.NonMFCode	MF_fp and NONMF_fp are MFCode and NonMFCode on PresentationCode
+986567176317	formalized	GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02	Pi02 of the code predicate is exactly the forall-exists form with a decidable matrix
+8b7c6fcc3995	formalized	GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02 GroupApproximation.MFRecognitionPi02.nonOperatorMFCode_sigma02	The two hierarchy placements, on PresentationCode
+d9548590d33a	definition		Names the generators and relators of the code P
+48c460e1177d	structural		Hypothesis-introducing sentence of the forward direction
+1648e5a783fe	structural		Hypothesis-introducing sentence of the converse direction

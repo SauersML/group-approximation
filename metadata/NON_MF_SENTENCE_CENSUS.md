@@ -6,14 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 341 |
-| `definition` | 64 |
-| `structural` | 23 |
+| `formalized` | 340 |
+| `definition` | 68 |
+| `unassigned` | 40 |
+| `structural` | 31 |
 | `attribution` | 13 |
 | `partial` | 6 |
-| **total** | **447** |
+| **total** | **498** |
 
-Completely formalized or definitional: **405/447** (90.6%).
+Completely formalized or definitional: **408/498** (81.9%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -33,6 +34,49 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * The abstract finite-p obstruction is formalized. Bachner--Dogon--Lubotzky's concrete p = 1 construction is a separate literature input not reproduced here.
 * **`partial`**, line 703 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
   * The printed statement is proved directly in every prime characteristic. Composite positive characteristic is not recovered from the prime-characteristic quotients, because property (T) descends to quotients and not conversely. The characteristic-zero reduction and rank propagation are already unconditional in printedEJZIntegralReduction and printedEJZColumnPlaneReduction. The scalar torus layer is now unconditional: the spectral measure satisfies all four shear quasi-invariance estimates, the sector transports and quadratic core estimate are explicit, and the vertical, horizontal, and punctured-mass bounds follow from the unit-root spectral displacement identities. The exact support comparison is also formalized: scalar punctured mass is at most the full-plane nontrivial mass. The finite word-region layer now includes exact A/B/C/D shear placements and the general quasi-invariant image-measure inequality. The resulting unit-shear bounds A-union-B <= A-union-B-union-C plus error and B-union-C <= A-union-B-union-C plus error are formally correct but algebraically tautological; they do not bound the missing D mass. The unresolved substantive step is the full Pontryagin-dual leading-letter partition with generator-dependent images landing in the opposite region unions and pairwise disjoint image memory. This is needed because the zero fiber of the two unit-coordinate characters can contain characters nontrivial on other coefficients, and equal-degree phases can cancel. The Kazhdan-subset half is already characteristic-free.
+* **`unassigned`**, line 1111 --- Then, after passing to an infinite coordinate subsequence, there are nonzero projections \(q_n\in M_{d_n}(\C)\), integers \(r_n=\operatorname{rank}(q_n)\), unitary identifications \(J_n\colon\C^{r_n}\to q_n\C^{d_n}\), and an operator norm asymptotic representation
+  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
+* **`unassigned`**, line 1129 --- with \(W_n(1)=I_{r_n}\).
+  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
+* **`unassigned`**, line 1129 --- In the corona over the retained coordinates, the class of \((J_nW_n(g)J_n^*)\) is the coordinate restriction of \(q\rho(g)\).
+  * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
+* **`unassigned`**, line 2293 --- A countable group $G$ is MF if and only if for every finite set $F\subseteq G$ containing $1$ and every $\varepsilon>0$ there are $d\ge1$ and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
+* **`unassigned`**, line 2306 --- Enumerate $G=\{g_0=1,g_1,g_2,\dots\}$, let $F_n=\{g_ig_j:i,j\le n\}\cup\{g_i:i\le n\}$, let $V_n\colon F_n\to\U(d_n)$ be a map for $(F_n,1/n)$, and extend it to $G$ by $V_n(g)=1$ for $g\notin F_n$.
+* **`unassigned`**, line 2306 --- For $g,h\in G$ the elements $g$, $h$, $gh$ lie in $F_n$ for all large $n$, so $\opnorm{V_n(gh)-V_n(g)V_n(h)}\le1/n\to0$; and for $g\ne1$ we have $\opnorm{V_n(g)-1}\ge1$ for all large $n$.
+* **`unassigned`**, line 2306 --- Hence $G$ is MF.
+* **`unassigned`**, line 2315 --- For a unitary $u$ and $k\ge1$ the tensor power $u^{\otimes k}$ is a unitary of dimension $d^k$, $(uv)^{\otimes k}=u^{\otimes k}v^{\otimes k}$, and telescoping gives $\opnorm{u^{\otimes k}-v^{\otimes k}}\le k\opnorm{u-v}$.
+* **`unassigned`**, line 2315 --- If $\opnorm{u-1}=c>0$, write $c=2\sin(\theta/2)$ with $0<\theta\le\pi$; then $e^{i\theta}$ or $e^{-i\theta}$ is an eigenvalue of $u$, so $e^{ik\theta}$ or $e^{-ik\theta}$ is an eigenvalue of $u^{\otimes k}$, and $\opnorm{u^{\otimes k}-1}\ge\lvert e^{ik\theta}-1\rvert=2\lvert\sin(k\theta/2)\rvert$.
+* **`unassigned`**, line 2315 --- If $\theta\ge\pi/2$ take $k=1$; otherwise the first $k$ with $k\theta\ge\pi/2$ satisfies $k\theta<\pi/2+\theta<\pi$.
+* **`unassigned`**, line 2315 --- In both cases $k\theta\in[\pi/2,3\pi/2]$ modulo $2\pi$, so $\opnorm{u^{\otimes k}-1}\ge\sqrt2$.
+* **`unassigned`**, line 2315 --- Write $k(c)$ for this exponent; it depends only on $c$.
+* **`unassigned`**, line 2338 --- Then $W_n(1)=1$ and $\opnorm{W_n(gh)-W_n(g)W_n(h)}\le K\opnorm{V_n(gh)-V_n(g)V_n(h)}$, so the defects of $W_n$ tend to zero.
+* **`unassigned`**, line 2338 --- For $g\in F\setminus\{1\}$ choose a subsequence along which $\opnorm{V_n(g)-1}\to c_g$ and eigenvalues $\lambda_n$ of $V_n(g)$ with $\lvert\lambda_n-1\rvert\to c_g$; passing to a further subsequence, $\lambda_n\to\lambda$ with $\lvert\lambda-1\rvert=c_g$, and then $\lambda_n^{k}\to\lambda^{k}$ with $\lvert\lambda^{k}-1\rvert\ge\sqrt2$ for $k=k(c_g)$.
+* **`unassigned`**, line 2338 --- Since $\lambda_n^{k}$ is an eigenvalue of $V_n(g)^{\otimes k}$, it follows that $\limsup_n\opnorm{W_n(g)-1}\ge\sqrt2>1$.
+* **`unassigned`**, line 2338 --- Choose $n_0$ such that for $n\ge n_0$ every defect of $W_n$ on $F$ is at most $\varepsilon$, and for each $g\in F\setminus\{1\}$ choose $m_g\ge n_0$ with $\opnorm{W_{m_g}(g)-1}\ge1$.
+* **`unassigned`**, line 2338 --- Let $V$ be the restriction to $F$ of $\bigoplus_{g\in F\setminus\{1\}}W_{m_g}$ (and of $W_{n_0}$ if $F=\{1\}$).
+* **`unassigned`**, line 2338 --- Then $V(1)=1$, the defect of $V$ on $F$ is the maximum of the defects of its blocks, hence at most $\varepsilon$, and for $g\in F\setminus\{1\}$ the block $m_g$ gives $\opnorm{V(g)-1}\ge1$.
+* **`unassigned`**, line 2380 --- A \emph{certificate at scale $n$} is a triple $c=(d,\ell,\pi)$ consisting of a dimension $d\ge1$, a labelling $\ell$ of every reduced word of length at most $n$ in $x_1^{\pm1},\dots,x_k^{\pm1}$ by one of the symbols $\mathsf T$ and $\mathsf S$, and, for every word $w$ labelled $\mathsf T$, an expression of $w$ as a product of conjugates of the relators and their inverses that freely reduces to $w$.
+* **`unassigned`**, line 2380 --- Such an expression is checkable, and its existence forces $w=1$ in $G_P$.
+* **`unassigned`**, line 2380 --- Let $\Phi(P,n,c)$ be the statement that there are $U_1,\dots,U_k\in\U(d)$ with $\opnorm{r_i(U)-1}\le2^{-n}$ for $i\le m$ and $\opnorm{w(U)-1}\ge1/4$ for every word $w$ labelled $\mathsf S$, where $w(U)$ is the evaluation of $w$ at $U_1,\dots,U_k$ with $x_j^{-1}\mapsto U_j^{*}$.
+* **`unassigned`**, line 2380 --- Writing $U_j=A_j+iB_j$ with real matrices, unitarity is a system of polynomial equations, and a bound $\opnorm{X}\le t$ or $\opnorm{X}\ge t$ on a matrix whose entries are polynomials in the variables is a semialgebraic condition, since $\opnorm{X}\le t$ holds precisely when $t^2-X^*X$ is positive semidefinite.
+* **`unassigned`**, line 2380 --- Thus $\Phi(P,n,c)$ is a sentence of the first-order theory of the ordered field of real numbers, and its truth is decidable by Tarski's theorem~\cite{Tarski}.
+* **`unassigned`**, line 2380 --- Let $C(P,n,c)$ hold when $c$ is a well-formed certificate at scale $n$ whose $\mathsf T$-expressions check and $\Phi(P,n,c)$ holds.
+* **`unassigned`**, line 2380 --- Then $C$ is decidable.
+* **`unassigned`**, line 2402 --- Fix $n$, let $L=\max(n,\lvert r_1\rvert,\dots,\lvert r_m\rvert)$, let $F$ be the set of images in $G_P$ of all words of length at most $L$, together with their inverses, and let $\varepsilon=2^{-n}/(4L)$.
+* **`unassigned`**, line 2402 --- Lemma~\ref{lem:local-models} gives $V\colon F\to\U(d)$ with $V(1)=1$, defect at most $\varepsilon$ on $F$, and $\opnorm{V(g)-1}\ge1$ for $g\in F\setminus\{1\}$.
+* **`unassigned`**, line 2402 --- Put $U_j=V(\bar x_j)$, where $\bar w$ denotes the image of a word $w$ in $G_P$.
+* **`unassigned`**, line 2402 --- For $g\in F$ we have $g^{-1}\in F$ and $\opnorm{V(g)V(g^{-1})-1}\le\varepsilon$, so $\opnorm{V(g^{-1})-V(g)^*}\le\varepsilon$.
+* **`unassigned`**, line 2402 --- For a word $w=y_1\cdots y_\ell$ of length $\ell\le L$, all of whose prefixes have images in $F$, induction on $\ell$ gives $\opnorm{w(U)-V(\bar w)}\le2\ell\varepsilon$.
+* **`unassigned`**, line 2402 --- In particular $\opnorm{r_i(U)-1}\le2L\varepsilon\le2^{-n}$.
+* **`unassigned`**, line 2402 --- Label a word $w$ of length at most $n$ by $\mathsf T$ if $\bar w=1$, with a normal-closure expression as witness, and by $\mathsf S$ otherwise; for the latter, $\opnorm{w(U)-1}\ge\opnorm{V(\bar w)-1}-2n\varepsilon\ge1-\tfrac12\ge\tfrac14$.
+* **`unassigned`**, line 2402 --- So $C(P,n,c)$ holds for this certificate.
+* **`unassigned`**, line 2419 --- For each $g\in G_P$ fix a word $w_g$ representing $g$, with $w_1$ the empty word, and put $V_n(g)=w_g(U^{(n)})$.
+* **`unassigned`**, line 2419 --- Then $V_n(1)=1$.
+* **`unassigned`**, line 2419 --- For $g,h\in G_P$ the word $t=w_gw_hw_{gh}^{-1}$ is trivial in $G_P$, so it is freely equal to a product of $A$ conjugates of relators and their inverses, for some $A$ depending on $g$ and $h$ but not on $n$.
+* **`unassigned`**, line 2419 --- Since evaluation is a homomorphism on the free group, since the operator norm is unitarily invariant, and since $\opnorm{xy-1}\le\opnorm{x-1}+\opnorm{y-1}$ for unitaries $x,y$,
+* **`unassigned`**, line 2434 --- For $g\ne1$ the word $w_g$ is nontrivial in $G_P$, so for $n\ge\lvert w_g\rvert$ the certificate $c_n$ cannot label it $\mathsf T$, hence labels it $\mathsf S$, and $\opnorm{V_n(g)-1}\ge1/4$.
+* **`unassigned`**, line 2434 --- Thus $\limsup_n\opnorm{V_n(g)-1}\ge1/4>0$, and $G_P$ is MF.
+* **`unassigned`**, line 2439 --- The displayed equivalence exhibits $\mathrm{MF}_{\mathrm{fp}}$ as $\{P:\forall n\,\exists c\,C(P,n,c)\}$, a $\Pi^0_2$ set, and its complement as a $\Sigma^0_2$ set.
 
 ## By section
 
@@ -43,9 +87,10 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Relation to prior work | 26 | 0 |
 | One-sided compression in finite dimension | 13 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 0 |
-| Normal Kazhdan subgroups and the MF radical | 78 | 0 |
+| Normal Kazhdan subgroups and the MF radical | 78 | 3 |
 | The binary Leavitt self-compression | 34 | 0 |
 | Simplicity and the full MF radical | 79 | 0 |
 | Quotients visible to MF | 52 | 0 |
+| Operator norm models on finite sets | 51 | 37 |
 | Acknowledgments | 2 | 0 |
 | Use of AI and formal methods | 8 | 0 |

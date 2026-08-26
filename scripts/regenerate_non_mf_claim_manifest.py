@@ -50,13 +50,13 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptNormMatrixCoronaStableFinite"),
     "lem:kazhdan-projection-order": (
-        "Analysis/MaximalCStarKazhdanProjection",
+        "Manuscript/OneSidedMFRadical/KazhdanProjectionOrderLiteral",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptMaximalCStarKazhdanProjectionOrder"),
+        "manuscriptLiteralMaximalCStarKazhdanProjectionOrder"),
     "thm:transport": (
-        "Manuscript/OneSidedMFRadical/KazhdanTransport",
+        "Manuscript/OneSidedMFRadical/TransportCommutantEquality",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptOneSidedKazhdanTransport"),
+        "manuscriptOneSidedKazhdanTransportCommutantEquality"),
     "cor:defect-hs": (
         "Manuscript/OneSidedMFRadical/DefectHS",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
@@ -88,11 +88,14 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
     "prop:full-kernel-pullback": (
         "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptPrintedFullKernelPullback"),
+        "manuscriptPrintedFullKernelPullbackParagraph"),
     "prop:universal-factorization": (
         "Manuscript/OneSidedMFRadical/UniversalFactorization",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptUniversalFactorization"),
+    "prop:mf-upper-bound": (
+        "Computability/MFRecognitionPi02",
+        "GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02"),
 }
 
 
@@ -107,6 +110,7 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "lem:coefficient-separation": (
         "Abrams--Aranda Pino, Proposition 10(v), through the preceding "
         "two-sided sandwich fact",),
+    "lem:local-models": (),
 }
 
 
@@ -145,6 +149,8 @@ DEPENDENCIES: dict[str, list[str]] = {
         "lem:normal-generation-transvection", "prop:leavitt-compression"],
     "prop:full-kernel-pullback": ["prop:mf-residual-calculus"],
     "prop:universal-factorization": [],
+    "lem:local-models": [],
+    "prop:mf-upper-bound": ["lem:local-models"],
 }
 
 
@@ -240,7 +246,8 @@ def generate(tex: Path) -> dict:
                 "module": pm,
                 "declaration": pd,
                 "covers": coverage(pm, pd),
-            } for _role, pm, pd in claim.badges],
+            } for pm, pd in dict.fromkeys(
+                (pm, pd) for _role, pm, pd in claim.badges)],
         })
 
     return {

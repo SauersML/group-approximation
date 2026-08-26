@@ -139,7 +139,7 @@
       "id": "lem:stable-finite",
       "environment": "lemma",
       "title": "",
-      "statement_sha256": "8d86c4ae8a4d6fd6e556076f516a7de76e80c9b49a55bbd0929757d18bee6bea",
+      "statement_sha256": "12b54d31ee357bdbe9b992c08840a3f17a8e8335a57ebc1acc5001a7b89df455",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -169,8 +169,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Analysis/MaximalCStarKazhdanProjection",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarKazhdanProjectionOrder",
+          "module": "Manuscript/OneSidedMFRadical/KazhdanProjectionOrderLiteral",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptLiteralMaximalCStarKazhdanProjectionOrder",
           "covers": "the complete printed proposition"
         }
       ]
@@ -192,8 +192,8 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/KazhdanTransport",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport",
+          "module": "Manuscript/OneSidedMFRadical/TransportCommutantEquality",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransportCommutantEquality",
           "covers": "the complete printed proposition"
         }
       ]
@@ -224,7 +224,7 @@
       "id": "lem:central-corona-corner",
       "environment": "lemma",
       "title": "central corona corners",
-      "statement_sha256": "7978c0785a0472e25fc8ed939ac87e4075152c03d8b633199be2a8d9749e2a64",
+      "statement_sha256": "700a5b8ba98a615ca99cafcac9a74ad41635bedd631267941058b9bd0c0a8a82",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -418,13 +418,7 @@
         {
           "role": "exact",
           "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackFromFullKernel",
-          "covers": "one printed clause; the listed declarations are collective"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullback",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph",
           "covers": "one printed clause; the listed declarations are collective"
         }
       ]
@@ -446,6 +440,47 @@
           "module": "Manuscript/OneSidedMFRadical/UniversalFactorization",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization",
           "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:local-models",
+      "environment": "lemma",
+      "title": "locality with fixed separation",
+      "statement_sha256": "0d7da83e07e44e4e952ac1d2c95f378c2998c373d89a58b40141ef2898052f11",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "prop:mf-upper-bound",
+      "environment": "proposition",
+      "title": "the certificate normal form",
+      "statement_sha256": "7ff613982799c121367c1504129b4129f4ed9098cc2c2c7f21592b06dea18e1e",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:local-models"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Computability/MFRecognitionPi02",
+          "declaration": "GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Computability/MFRecognitionPi02",
+          "declaration": "GroupApproximation.MFRecognitionPi02.nonOperatorMFCode_sigma02",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     }
