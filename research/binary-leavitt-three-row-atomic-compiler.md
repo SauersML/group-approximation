@@ -260,3 +260,20 @@ nontrivial mark exactly.  The surviving boundary is no longer occurrence
 sharing or Whitehead factorization: a new row must force these affine
 actors to be coefficient multiplication on one common payload matrix
 corner, rather than merely automorphisms of a finite label packet.
+
+The first literal arm-inside-opposite-root attempt does leave the affine
+actor category, but it still does not close.
+`native-opposite-arm-return-has-finite-s6-model` uses actual indices and the
+chain `x_15(q_i),x_56(s_0),x_16(s_0),x_01(t_0),x_06(A)`.  It inserts the
+opposite root `x_61(t_0)` and the genuine partial Whitehead
+`P=x_16(s_0)x_61(t_0)x_16(s_0)`, including its braid, involution, and root
+swap.  Fixed spare-index Weyl words identify both repeated arm coefficients
+and the returned `A` coefficient with their other named root occurrences.
+Nevertheless explicit permutations in `S_6` satisfy the fold, matching and
+crossed rows, every opposite-root row, and every occurrence transport while
+the final mark remains nontrivial.  Thus authenticating one binary branch
+all the way through one native opposite-root packet is insufficient.  The
+remaining candidate must put both branches into one opposite-root relation
+which reads their coefficients on the same payload corner; another
+single-branch occurrence transport can be absorbed by overlapping finite
+Klein-four/`S_3` packets.

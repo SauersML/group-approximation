@@ -171,7 +171,16 @@ the coboundary drift of
   carries its multiplicity involution `E` to `DED^(-1)` on the target
   carrier, where `D` is the Whitehead gauge.  A two-qubit exact model has
   `D=Z tensor 1`, `E=1 tensor Z`, so coordinate overlap and one transport
-  square leave the gauges at distance `sqrt(2)`.
+  leave `||E-D||_2=sqrt(2)`.
+- Expanding the root-position conjugator into its actual native word does
+  create the first unequal-odd-parity closed cell, but still not
+  cancellation.  By `native-weyl-return-gauges-have-s3-model`, with
+  `n=x_78(1)`, `m=x_87(1)` and `w=nmn`, the factorization and native square
+  give reservoir equations `D=EFE`, `F=DED^(-1)`.  Their exact solution by
+  the three distinct reflections of `S_3` keeps `DE` a nontrivial
+  three-cycle.  All other fixed Weyl mixed squares extend by literal
+  conjugation.  Thus parity is finally odd in the required sense, but a
+  second relation must rule out this order-three gauge product.
 
 The smallest remaining algebraic search is therefore explicit: find one
 genuinely nonnormal coefficient/root-opposite word with the full-Gram property
@@ -187,3 +196,9 @@ For the eight external returns, the gate is now sharper: exhibit a mixed
 closed full-EL20 word on one Hecke carrier in which `E_(s,t)` and the
 literal Whitehead gauge occur with unequal odd parity.  A normalization
 identity or a single Singer conjugacy square cannot supply that equality.
+
+The native Weyl expansion supplies such an odd-parity word but reveals the
+next obstruction: odd parity identifies only the `C_2` abelianization of
+the gauges.  The surviving search must additionally force the resulting
+`S_3` reflection pair to commute, or impose an incompatible braid length,
+so that the order-three product dies.

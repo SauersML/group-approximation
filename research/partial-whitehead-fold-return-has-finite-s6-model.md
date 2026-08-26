@@ -86,7 +86,10 @@ literature result, or local compilation is used.
   conjugate to the literal final `T` occurrence, yet the mark survives.
   Conjugacy of coefficient-labelled root occurrences is not equality of
   their multiplicity actions.
+- **Expand a root-position conjugator on the external-return coordinate.**
+  `native-weyl-return-gauges-have-s3-model` performs this literal expansion
+  and all native mixed squares.  It produces odd gauge parity, but the two
+  gauges survive as distinct reflections whose product has order three.
 
 DERIVATION
 partial-whitehead-fold-return-s6-proof
-
