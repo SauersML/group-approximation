@@ -37,10 +37,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptPrintedHeadline"),
-    "thm:commutant": (
-        "Manuscript/OneSidedMFRadical/FiniteDimensionalCommutant",
-        "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptFiniteDimensionalCommutantRigidity"),
     "lem:stable-finite": (
         "Manuscript/OneSidedMFRadical/StableFiniteness",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
@@ -110,11 +106,10 @@ COLLECTIVE_CLAIMS: set[str] = set()
 DEPENDENCIES: dict[str, list[str]] = {
     "prop:mf-residual-calculus": ["lem:central-corona-corner"],
     "thm:compression-criterion": [
-        "thm:commutant", "cor:defect-hs", "thm:normal-kazhdan"],
+        "cor:defect-hs", "thm:normal-kazhdan"],
     "thm:headline": [
         "thm:compression-criterion", "prop:leavitt-compression",
         "prop:simple", "prop:defect"],
-    "thm:commutant": [],
     "lem:stable-finite": [],
     "lem:kazhdan-projection-order": [],
     "thm:transport": ["lem:stable-finite", "lem:kazhdan-projection-order"],
