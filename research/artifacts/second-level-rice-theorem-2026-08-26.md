@@ -97,6 +97,51 @@ via `H_J` residually finite iff `J` profinitely closed in `Z`
 dyadic index sets (`index-set-profinitely-closed-is-pi3-complete`); the same
 `H_J` are LEF and sofic for every `J`.
 
+## Theorem 7 (property (T); `kazhdan-property-t-of-finite-presentations-is-sigma1-complete`)
+
+Kazhdan's property (T) is `Sigma^0_1`-complete on finite presentations
+and on two-generator recursive presentations: semidecidable (Ozawa's
+sum-of-squares criterion, rationalized by Netzer--Thom), and
+`Sigma^0_1`-hard because the Rabin group `K(w)` is trivial when `w = 1` and
+a nontrivial amalgam over `F_2` otherwise, which fails Serre's FA and
+hence (T).  Not a Markov-property argument: (T) is not hereditary; the
+negative branch is a *splitting*.
+
+## Further rows
+
+* Amenability on finite presentations: `Pi^0_2 \ Pi^0_1`
+  (`amenability-of-finite-presentations-arithmetical-position`);
+  completeness open (`amenability-of-finite-presentations-is-pi2-complete`,
+  root) because Higman-type compilers introduce free subgroups.
+* Residually `p`: `Pi^0_3`-complete on two-generator recursive
+  presentations for every prime `p`
+  (`residually-p-two-generator-recursive-is-pi3-complete`).
+* Weak soficity and linear soficity: `Pi^0_2` on recursive presentations
+  (`weak-soficity-recognition-has-a-pi2-upper-bound` via Glebsky's
+  product-quotient characterization; `linear-soficity-recognition-has-a-pi2-upper-bound`
+  via the rank metric), hence trivial-or-`Pi^0_2`-complete dichotomies.
+* Finite presentability: `Sigma^0_2`-hard, `Sigma^0_3`, on two-generator
+  recursive presentations (`finite-presentability-two-generator-recursive-is-sigma2-hard`).
+* Fixed ambient: inside Higman's universal group, two-generated subgroups
+  realize levels three (residual finiteness), two (amenability) and one
+  (property (T)) (`fixed-ambient-subgroup-levels-rf-amenable-t`).
+* Ledger of all cells: `arithmetical-complexity-table-of-group-properties`.
+* Conditional: `hyperlinear-fp-recognition-complete-iff-nonhyperlinear-group`
+  needs only `mf-compiler-positive-branch-is-hyperlinear` (quasidiagonality
+  of the regular trace of the MF compiler's positive branch).
+
+## Lean status (2026-08-26, night)
+
+Kernel-checked on main: `Computability/HereditaryPropertySwitchCompleteness`
+(`enumeratedCodeProperty_pi02Hard` for every hereditary property with a
+finitely presented forbidden seed) and `Computability/SoficRecognitionSecondLevel`
+(`soficCode_pi02Hard`, `nonsoficCode_sigma02Hard` on enumerated
+presentation codes); `Covers/HyperlinearTableCover` (finitely presented
+non-hyperlinear covers, by a peer session).  In progress: the permutation
+`Pi02` upper bound (`SoficMicrostateNormalForm`, `SoficRecognitionPi02` for
+finite codes; `SoficEnumeratedPi02` for enumerated codes, which together
+with `soficCode_pi02Hard` gives `Pi02Complete`).
+
 ## What remains open
 
 * `SOFIC_fp` `Pi^0_2`-complete: needs `sofic-safe-finite-presentation-compiler`.
