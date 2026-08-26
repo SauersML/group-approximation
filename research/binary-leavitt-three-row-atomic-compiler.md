@@ -490,3 +490,14 @@ contains the native Whitehead `J_1` with even parity, so its central gauge
 still cancels.  The live seam is therefore sharper than arm matching: one
 must type an odd literal occurrence of `J_1`, such as one of the elementary
 factors in its three-root Whitehead word, on the already fused marked packet.
+
+That odd factor can now be typed, but the resulting table remains finite.
+`odd-native-s-factor-return-diamond-has-gl7-model` returns the literal
+coefficient `s_00t_0` through the constant reverse root, obtains its
+`s_0t_00` conjugate, and imposes the actual three-root factorization of
+`J_1`.  This kills the artificial central `C_2` gauge from the preceding
+model.  The two factors become the opposite transvections `R_0,C_0`, so
+their Whitehead product is the ordinary endpoint swap in `GL_7(F_2)`;
+the marked child on the other branch still survives.  The next live row
+must therefore couple this now-authenticated `J_1` to the second scale or
+to a carrier datum outside the finite seven-coordinate closure.
