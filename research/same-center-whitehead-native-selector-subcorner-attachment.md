@@ -185,6 +185,13 @@ excluded by the regular-trace firewall.
   full-rank-scale `t_1` direction while preserving the same exact marked
   chart and order-seven head.  This proves that Hecke-arm contact without a
   named source compression still does not establish `(SNA2)`.
+  Signed Reynolds averaging sharpens this to the exact alternative in
+  `paid-t00-carrier-has-signed-hecke-reynolds-dichotomy`: source compression
+  keeps norm greater than one, or an explicit detector word pays at least
+  one half.  The detector is not a relator, and
+  `paid-t00-carrier-can-miss-row2-source` realizes the segregated branch.
+  Hence `(SNA2)` still needs an ordinary occurrence identifying that branch
+  with a native row defect.
 
 - **Move the marked root by an external Weyl and retain both Pauli charts.**
   The root-valued relative word is exact, but the chart mover is not erased.

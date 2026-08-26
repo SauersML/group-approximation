@@ -31,6 +31,8 @@ requires:
   - marked-t00-separation-has-gl10-model
   - native-t00-collision-first-hecke-attachment-has-gl10-model
   - paid-t00-pauli-menu-hits-whitehead-constant-atom
+  - paid-t00-carrier-has-signed-hecke-reynolds-dichotomy
+  - paid-t00-carrier-can-miss-row2-source
   - fine-idempotent-biaction-return-has-gl10-model
   - property-t-free-manuscript-theorem-dependency-audit
 ---
@@ -71,6 +73,12 @@ of the paid discrepancy has positive compression on the Whitehead-fixed
 constant atom.  This is arbitrary-profile and finite-menu, but both native
 Whitehead label actions on that atom have the same quarter scale.  It does
 not yet supply the unequal quarter/eighth occurrence.
+For the fixed common signed source, Reynolds averaging now gives an exact
+source-or-detector alternative.  The detector menu consists of ordinary
+group words, not relators, and the reducible row-two fence realizes the
+detector branch with zero paid/source incidence.  Closing the route requires
+one more occurrence which makes that branch pay presentation defect or
+transports the localized mismatch into the unequal row.
 The manuscript dependency audit then separates this open
 MF-collapse input from the already established downstream algebraic theorem
 package.  Therefore the proposed proof has exactly the safe status stated in

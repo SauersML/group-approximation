@@ -75,7 +75,7 @@ holds.  The menu is finite, so a detector selected infinitely often is
 constant after passage to a subsequence.
 
 All identities above hold in an arbitrary C*-algebra representation.  In a
-norm corona they therefore hold exactly.  For a coordinate statement,
-`finite-group-opnorm-support-profile` corrects the fixed `L_0` table in the
-same matrix dimension, while functional-calculus rounding corrects the
-fixed involutions.  Fixed-word telescoping changes `(1)--(7)` by `o(1)`.
+norm corona they therefore hold exactly.  Coordinate representatives of
+these fixed star-polynomials inherit `(1)--(7)` with `o(1)` loss.  If exact
+coordinate projections are desired, `finite-group-opnorm-support-profile`
+corrects the fixed finite tables in the same matrix dimension.

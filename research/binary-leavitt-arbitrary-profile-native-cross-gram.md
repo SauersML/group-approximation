@@ -162,3 +162,14 @@ literature theorem is permitted in this claim.
   only the equal-scale adjacent swaps.  The missing occurrence must show
   that one localized conjugate is the controlled quarter/eighth row, or
   couple it to that row by an ordinary mixed word.
+- **Project the paid carrier onto the fixed signed Hecke source.**  The exact
+  Reynolds estimate
+  `paid-t00-carrier-has-signed-hecke-reynolds-dichotomy` gives a sharp
+  operator-norm alternative: either the source-compressed `T/Y` mismatch is
+  greater than one, or one of `8192` explicit detector words is nontrivial by
+  at least one half on the paid carrier.  The detector words are not
+  relators, so the second branch is not a presentation defect.  Moreover
+  `paid-t00-carrier-can-miss-row2-source` realizes zero incidence in a
+  reducible finite packet with both source and paid carrier nonzero.  This
+  fixed-source dichotomy is useful occurrence data, but it does not replace
+  the arbitrary-profile selector source required by `(APG1)`.
