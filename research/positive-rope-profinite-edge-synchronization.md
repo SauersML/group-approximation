@@ -3,6 +3,8 @@ rg: 2
 id: positive-rope-profinite-edge-synchronization
 kind: claim
 title: The positive Higman rope admits cofinal finite quotients synchronizing its graph edge
+artifacts:
+  - research/artifacts/positive-rope-profinite-route-audit-2026-08-25.md
 distinct_from:
   coordinate-swap-rope-does-not-compress-kernel: that symmetrizes the presentation before the recursive kernel is imposed and thereby loses compression; this asks for compatible quotients of the already correct rope group.
   higman-half-row-has-regular-mf-benign-witness: that supplies a regular-MF benign witness but no cofinal finite quotient family and no compatibility with the quotient-valued graph map.
@@ -51,3 +53,21 @@ the benign-witness operations can be chosen with a congruence-extension
 property for `S<=Gamma`; that property would extend each `beta o tau` to a
 finite quotient of `Gamma` and imply `(RPS2)`.
 
+There are two cautions on that attack.
+
+- **Retracts and virtual retracts are impossible here.**  On the positive
+  branch `Q` cannot be finitely presented: if a monotone relator stream on a
+  finite alphabet reached a finitely presented limit, compactness of normal
+  generation would make it reach that limit at a finite stage, contradicting
+  the FIN/INF switch.  Moreover, killing the second free factor in
+  `S=F *_N F` gives `Q`; hence finite presentability of `S` would imply finite
+  presentability of `Q`.  Thus `S` is not finitely presented.  A retract, and
+  also a virtual retract, of a finitely presented group is finitely
+  presented, so neither can be the source of `(RPS2)`.
+- **Ordinary CEP is too weak.**  Wagner's congruence-extension refinement of
+  Higman embedding extends a finite quotient `S->S/K` to a quotient of the
+  ambient finitely presented group in which `S/K` embeds, but the ambient
+  quotient need not be finite or residually finite.  What `(RPS2)` needs is
+  the finite congruence extension property: every relevant finite quotient of
+  `S` must embed in an actual finite quotient of `Gamma`.  This stronger
+  property is not supplied by the cited CEP theorem.
