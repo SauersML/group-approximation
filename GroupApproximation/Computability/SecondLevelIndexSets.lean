@@ -104,5 +104,171 @@ theorem finiteDomain_sigma02 : Sigma02 FiniteDomain := by
   classical
   simp only [FiniteDomain, InfiniteDomain, Set.Infinite, not_not]
 
+/-! ## Completeness
+
+For a uniformly r.e. relation `q (a, n)`, the program compiled below halts on
+input `k` exactly when the finite prefix `q (a, 0), ..., q (a, k)` is true.
+Its domain is therefore infinite exactly when every row of the `Π⁰₂` instance
+is true.  The construction uses only partial-recursive finite iteration and
+the `s-m-n` operator `Code.curry`.
+-/
+
+section PrefixCompiler
+
+variable {A : Type*}
+
+/-- Run the r.e. semidecider successively on the prefix from `0` through
+`bound`.  The value is irrelevant; only the domain carries information. -/
+private def prefixRun (q : A × ℕ → Prop) (a : A) (bound : ℕ) : Part Unit :=
+  Nat.rec
+    (Part.assert (q (a, 0)) fun _ => Part.some ())
+    (fun n previous => previous.bind fun _ =>
+      Part.assert (q (a, n + 1)) fun _ => Part.some ())
+    bound
+
+private theorem accept_dom_iff (r : Prop) :
+    (Part.assert r fun _ => Part.some ()).Dom ↔ r := by
+  change (∃ _ : r, True) ↔ r
+  simp
+
+/-- The finite-prefix runner halts exactly when every requested row holds. -/
+private theorem prefixRun_dom_iff (q : A × ℕ → Prop) (a : A) (bound : ℕ) :
+    (prefixRun q a bound).Dom ↔ ∀ n ≤ bound, q (a, n) := by
+  induction bound with
+  | zero =>
+      change (Part.assert (q (a, 0)) fun _ => Part.some ()).Dom ↔ _
+      rw [accept_dom_iff]
+      simp
+  | succ bound ih =>
+      change ((prefixRun q a bound).bind fun _ =>
+        Part.assert (q (a, bound + 1)) fun _ => Part.some ()).Dom ↔ _
+      rw [Part.bind_dom]
+      constructor
+      · rintro ⟨hprevious, hnext⟩ n hn
+        by_cases hnb : n ≤ bound
+        · exact ih.mp hprevious n hnb
+        · have hn' : n = bound + 1 := by omega
+          subst n
+          exact (accept_dom_iff _).mp hnext
+      · intro hall
+        have hprevious : (prefixRun q a bound).Dom :=
+          ih.mpr fun n hn => hall n (Nat.le.step hn)
+        refine ⟨hprevious, ?_⟩
+        exact (accept_dom_iff _).mpr (hall (bound + 1) (by omega))
+
+variable [Primcodable A]
+
+/-- Finite iteration of a uniform r.e. semidecider is partial recursive. -/
+private theorem prefixRun_partrec₂ {q : A × ℕ → Prop} (hq : REPred q) :
+    Partrec₂ (prefixRun q) := by
+  have hbase : Partrec fun x : A × ℕ =>
+      Part.assert (q (x.1, 0)) fun _ => Part.some () :=
+    hq.comp (Computable.fst.pair (Computable.const 0))
+  have hstep : Partrec₂ fun (x : A × ℕ) (y : ℕ × Unit) =>
+      Part.assert (q (x.1, y.1 + 1)) fun _ => Part.some () := by
+    change Partrec fun z : (A × ℕ) × (ℕ × Unit) =>
+      Part.assert (q (z.1.1, z.2.1 + 1)) fun _ => Part.some ()
+    exact hq.comp
+      ((Computable.fst.comp Computable.fst).pair
+        (Computable.succ.comp (Computable.fst.comp Computable.snd)))
+  exact (Partrec.nat_rec Computable.snd hbase hstep).of_eq fun _ => rfl
+
+/-- The numerical partial function to which `Code.exists_code` is applied.
+The input is the standard code of a pair `(a, bound)`. -/
+private def encodedPrefixRun (q : A × ℕ → Prop) (input : ℕ) : Part ℕ :=
+  Part.bind (↑(Encodable.decode₂ (A × ℕ) input) : Part (A × ℕ)) fun x =>
+    (prefixRun q x.1 x.2).map Encodable.encode
+
+private theorem encodedPrefixRun_partrec {q : A × ℕ → Prop} (hq : REPred q) :
+    Nat.Partrec (encodedPrefixRun q) := by
+  exact (Partrec.bind_decode₂_iff.mp (prefixRun_partrec₂ hq)).of_eq fun _ => rfl
+
+/-- One fixed universal code for the prefix runner before specializing its
+first argument. -/
+private noncomputable def prefixRunnerCode (q : A × ℕ → Prop) (hq : REPred q) : Code :=
+  (Code.exists_code.mp (encodedPrefixRun_partrec hq)).choose
+
+private theorem eval_prefixRunnerCode (q : A × ℕ → Prop) (hq : REPred q) :
+    Code.eval (prefixRunnerCode q hq) = encodedPrefixRun q :=
+  (Code.exists_code.mp (encodedPrefixRun_partrec hq)).choose_spec
+
+/-- Specialize the universal prefix runner at the instance `a`. -/
+private noncomputable def prefixCode (q : A × ℕ → Prop) (hq : REPred q) (a : A) : Code :=
+  Code.curry (prefixRunnerCode q hq) (Encodable.encode a)
+
+/-- The specialization map is computable; the semidecider code is a fixed
+constant and `Code.curry` is the constructive `s-m-n` operator. -/
+private theorem computable_prefixCode (q : A × ℕ → Prop) (hq : REPred q) :
+    Computable (prefixCode q hq) :=
+  (Code.primrec₂_curry.comp (Primrec.const (prefixRunnerCode q hq))
+    Primrec.encode).to_comp
+
+/-- Exact semantics of the compiled code on one input. -/
+private theorem eval_prefixCode_dom_iff (q : A × ℕ → Prop) (hq : REPred q)
+    (a : A) (bound : ℕ) :
+    (Code.eval (prefixCode q hq a) bound).Dom ↔
+      ∀ n ≤ bound, q (a, n) := by
+  rw [prefixCode, Code.eval_curry, eval_prefixRunnerCode]
+  change (Part.bind
+    (↑(Encodable.decode₂ (A × ℕ) (Nat.pair (Encodable.encode a) bound)) :
+      Part (A × ℕ))
+    fun x : A × ℕ => Part.map Encodable.encode (prefixRun q x.1 x.2)).Dom ↔ _
+  have hpair : Nat.pair (Encodable.encode a) bound = Encodable.encode (a, bound) := by
+    rw [Encodable.encode_prod_val, Encodable.encode_nat]
+  rw [hpair, Encodable.decode₂_encode, Part.coe_some, Part.bind_some]
+  change (prefixRun q a bound).Dom ↔ _
+  exact prefixRun_dom_iff q a bound
+
+/-- The compiled domain is infinite exactly when the entire r.e. row is
+true. -/
+private theorem infiniteDomain_prefixCode_iff (q : A × ℕ → Prop) (hq : REPred q)
+    (a : A) :
+    InfiniteDomain (prefixCode q hq a) ↔ ∀ n, q (a, n) := by
+  constructor
+  · intro hinfinite n
+    have hunbounded : ∀ bound, ∃ k, bound < k ∧
+        (Code.eval (prefixCode q hq a) k).Dom := by
+      simpa only [InfiniteDomain, codeDomain, Set.mem_setOf_eq, and_comm] using
+        (Set.infinite_iff_exists_gt.mp hinfinite)
+    obtain ⟨k, hnk, hk⟩ := hunbounded n
+    exact (eval_prefixCode_dom_iff q hq a k).mp hk n (Nat.le_of_lt hnk)
+  · intro hall
+    rw [InfiniteDomain, Set.infinite_iff_exists_gt]
+    intro bound
+    refine ⟨bound + 1, ?_, by omega⟩
+    exact (eval_prefixCode_dom_iff q hq a (bound + 1)).mpr fun n _ => hall n
+
+/-- Every `Π⁰₂` predicate, on any effective carrier, computably many-one
+reduces to infinitude of a partial-recursive program domain. -/
+theorem pi02_manyOne_infiniteDomain {p : A → Prop} (hp : Pi02 p) :
+    p ≤₀ InfiniteDomain := by
+  obtain ⟨q, hq, hpq⟩ := hp
+  refine ⟨prefixCode q hq, computable_prefixCode q hq, fun a => ?_⟩
+  exact (hpq a).trans (infiniteDomain_prefixCode_iff q hq a).symm
+
+end PrefixCompiler
+
+/-- Infinitude of a partial-recursive program domain is `Π⁰₂`-hard. -/
+theorem infiniteDomain_pi02Hard : Pi02Hard InfiniteDomain :=
+  fun _ hp => pi02_manyOne_infiniteDomain hp
+
+/-- Infinitude of a partial-recursive program domain is `Π⁰₂`-complete. -/
+theorem infiniteDomain_pi02Complete : Pi02Complete InfiniteDomain :=
+  ⟨infiniteDomain_pi02, infiniteDomain_pi02Hard⟩
+
+/-- Finiteness of a partial-recursive program domain is `Σ⁰₂`-hard. -/
+theorem finiteDomain_sigma02Hard : Sigma02Hard FiniteDomain := by
+  intro p hp
+  obtain ⟨f, hf, hcorrect⟩ :=
+    pi02_manyOne_infiniteDomain (p := fun n => ¬ p n) hp
+  refine ⟨f, hf, fun n => ?_⟩
+  have h := not_congr (hcorrect n)
+  classical
+  simpa only [not_not, FiniteDomain, InfiniteDomain, Set.Infinite] using h
+
+/-- Finiteness of a partial-recursive program domain is `Σ⁰₂`-complete. -/
+theorem finiteDomain_sigma02Complete : Sigma02Complete FiniteDomain :=
+  ⟨finiteDomain_sigma02, finiteDomain_sigma02Hard⟩
+
 end SecondLevelIndexSets
 end GroupApproximation
