@@ -12,6 +12,7 @@ distinct_from:
   endpoint-detector-cell-retains-coboundary-gauge: that transports a complete endpoint detector/probe mark-return occurrence through a fresh same-center braid but leaves full overlapping ranges and a coboundary reservoir frame; this asks for the proper fixed-frame unequal attachment excluded there.
   two-endpoint-source-intersections-retain-character-square: that intersects both endpoint source types and retains an exact orthogonal four-character square even after all endpoint detector classes are imposed; this asks for the native attachment which must break that twist.
   endpoint-whiteheads-are-center-chain-hecke-spectators: that places the endpoint braid on the literal quarter/eighth Hecke supports and gets the correct one-eighth cross-Gram, but only because the braid centralizes those supports; this asks for the noncentral raw-row attachment absent there.
+  endpoint-whitehead-hecke-flag-trichotomy: that enumerates all coordinate collisions with the two Hecke flags; the unique fine-only collision has flexible, possibly zero overlap and leaves its polar gauge entirely in the reservoir.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core
@@ -320,6 +321,18 @@ excluded by the regular-trace firewall.
   solution of `(SNA2)` must therefore couple one endpoint/native word oddly
   to an individual Hecke polar; scalar compression by the fixed flags is
   not enough.
+
+  No alternative endpoint placement repairs this.
+  `endpoint-whitehead-hecke-flag-trichotomy`
+  proves the complete incidence classification.  Touching coordinate `7`
+  ejects the quarter support; avoiding `7,8` is the spectator case; touching
+  `8` alone preserves `p_1` but sends the extra fine root
+  `x_68(a_2)` to a new root.  The resulting fine compression has exact polar
+  `What p_*`, but `p_*` has no positive arbitrary-profile lower bound: an
+  exact swapped-character block has nonzero `p_2` and zero `p_*`.  Whenever
+  it survives, both fine label involutions are scalar `+1`, so the complete
+  Whitehead factor is again an uncontrolled reservoir gauge.  This is an
+  equal-rank fine-to-fine covariance, not either unequal row in `(SNA2)`.
 
   Nor does intersecting one moved source with the original signed source
   create a fixed-frame subcorner.

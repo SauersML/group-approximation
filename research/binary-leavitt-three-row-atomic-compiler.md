@@ -74,6 +74,17 @@ off-diagonal loops can control the completeness discrepancy in `(BAC1)`.
 The next prototype must include the coefficient range-sum/parent-generation
 occurrence on `p_U`, or a spectral support row which is equivalent to it.
 
+The shortest literal continuation of that completeness occurrence has now
+been classified completely.  By
+`single-root-completeness-attachments-are-exhausted`, one additional root
+position is either composable on one side, opposite, same-source/target, or
+distant.  The composable case is exactly the intermediate-fold/native-arm
+return family already fenced in `S_6`; the opposite case is exactly the
+reverse-product child/parent Whitehead family with its finite fusion model;
+the other cases commute.  Hence there is no new shared intermediate-arm word
+at one-root depth.  A live prototype needs at least two new root positions
+whose mutual mixed relation locks the branch transports on one reservoir.
+
 Nodewise recursion of the two inner Morita branches does not provide the
 missing capacity by itself.
 `local-morita-sibling-cells-have-a-two-qubit-periodic-absorber` assigns the

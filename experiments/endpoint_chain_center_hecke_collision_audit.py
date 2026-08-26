@@ -5,11 +5,9 @@ Whitehead is expected to preserve the quarter flag and move the extra
 eighth-scale generator.
 """
 
-from itertools import product
-
 from depth_one_paired_leavitt_return_search import binary_words, canonical, equal
 from signed_hecke_literal_pauli_probe_audit import (
-    COORDS, INDEX, identity_matrix, inverse_word_matrix, matrix_key,
+    COORDS, identity_matrix, inverse_word_matrix,
     matrix_multiply, matrices_equal, word_matrix,
 )
 

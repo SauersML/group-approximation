@@ -123,6 +123,16 @@ to sit on one carrier.**
   must contain a literal coefficient-completeness occurrence attached to
   the selected marked support (or an equivalent wordized support incidence),
   rather than only multiplicative paths through the two packets.
+* **There is no unaudited one-root completeness continuation.**
+  `single-root-completeness-attachments-are-exhausted` classifies every root
+  position relative to the fold root `x_ab(p)x_ab(q)=x_ab(1)`.  A
+  non-opposite position is either one of the two composable intermediate-arm
+  cells already fenced by the native `s_0,t_0` return model, or it commutes.
+  The unique opposite position is the child/parent partial-Whitehead cell,
+  which also has a marked finite fusion model.  Thus the missing support
+  incidence cannot be obtained by one more root word, even with the literal
+  native return already audited.  It must relate at least two new root
+  occurrences so as to lock their relative reservoir gauge.
 
 * **The authenticated support-return odd loops do not supply the row.**
   `support-return-odd-loops-do-not-imply-atomic-return` keeps the two literal
