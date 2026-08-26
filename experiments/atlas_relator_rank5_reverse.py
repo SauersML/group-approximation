@@ -36,6 +36,7 @@ a product of at most four rank-five generators, in any order.
 """
 
 import argparse
+import json
 import os
 import sys
 
@@ -83,11 +84,8 @@ def coefficient(sigma_w, sigma_wprime):
     return "1" if sigma_w == sigma_wprime else None
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--verbose", action="store_true")
-    args = parser.parse_args()
-
+def generate_relators(verify=True):
+    """Return the twelve relators ``g w_g^-1`` in generator order."""
     lengths = transvection_lengths()
     memo = {}
     rows = []
@@ -116,23 +114,36 @@ def main():
             word = product(word, rank5_word(k, l, b, memo)[0])
         word = reduce_word(word)
 
-        ok = leavitt_equal(evaluate_word(word),
-                           leavitt_chart_element(chart, matrix))
+        ok = (not verify) or leavitt_equal(
+            evaluate_word(word), leavitt_chart_element(chart, matrix)
+        )
         if not ok:
             failures.append(name)
-        rows.append((name, chart, u, v, factors, word, ok))
+        relator = reduce_word(product(gen_word, inverse(word)))
+        rows.append((name, chart, u, v, factors, word, relator, ok))
+
+    if failures:
+        raise AssertionError("reverse dictionary failures: %r" % failures)
+    return rows, lengths
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--verbose", action="store_true")
+    parser.add_argument("--emit", default="")
+    args = parser.parse_args()
+
+    rows, lengths = generate_relators(verify=True)
+    failures = []
 
     print("atlas generators expressed in rank-five words: %d" % len(rows))
     print("verified exactly:                              %d"
-          % sum(1 for row in rows if row[6]))
-    if failures:
-        print("FAILURES:", failures)
-        return 1
+          % sum(1 for row in rows if row[7]))
 
     print()
     print("%-8s %-5s %-5s %-5s  %-34s %6s %8s"
           % ("gen", "chart", "u", "v", "rank-five factors", "syll", "X-len"))
-    for name, chart, u, v, factors, word, _ok in rows:
+    for name, chart, u, v, factors, word, _relator, _ok in rows:
         pretty = " ".join("x_%d%d(%s)" % (k, l, b) for k, l, b in factors)
         print("%-8s %-5d %-5s %-5s  %-34s %6d %8d"
               % (name, chart, u, v, pretty, len(word),
@@ -142,6 +153,20 @@ def main():
     print("Every atlas generator is a product of at most four rank-five")
     print("generators, so adding the twelve relators  g . w_g^{-1}  to T_St")
     print("makes psi : St_5(L) -> Pbar/<<T_St>> surjective.")
+
+    if args.emit:
+        payload = []
+        for name, _chart, _u, _v, _factors, _word, relator, _ok in rows:
+            payload.append({
+                "name": "reverse_%s" % name,
+                "syllables": len(relator),
+                "x_length": sum(lengths[m.tobytes()] for _f, m in relator),
+                "word": [[int(f), "".join(str(int(v)) for v in m.reshape(-1))]
+                         for f, m in relator],
+            })
+        with open(args.emit, "w") as handle:
+            json.dump({"relators": payload}, handle)
+        print("wrote", args.emit)
 
     return 0
 

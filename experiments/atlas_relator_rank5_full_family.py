@@ -109,11 +109,13 @@ def rank5_word_multi(k, l, factors, memo):
     return reduce_word(commutator(left, right))
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--emit", default="")
-    args = parser.parse_args()
+def generate_relators(verify=True):
+    """Return the distinct full-family relators in deterministic order.
 
+    ``verify=False`` skips the exact Leavitt-kernel audit but does not change
+    generation or deduplication.  It is used by the packet exporter, whose
+    source families have already been independently verified by this script.
+    """
     lengths = transvection_lengths()
     memo = {}
     single = {}
@@ -124,14 +126,13 @@ def main():
         return single[(k, l, b)]
 
     # -- extend and re-verify the dictionary on two-letter coefficients
-    checked = 0
-    for k, l in itertools.permutations(range(1, 6), 2):
-        for r, s in itertools.product(COEFF_LETTERS, repeat=2):
-            word = rank5_word_multi(k, l, [r, s], memo)
-            assert leavitt_equal(evaluate_word(word), target_multi(k, l, [r, s])), \
-                (k, l, r, s)
-            checked += 1
-    print("two-letter dictionary entries verified exactly:", checked)
+    if verify:
+        for k, l in itertools.permutations(range(1, 6), 2):
+            for r, s in itertools.product(COEFF_LETTERS, repeat=2):
+                word = rank5_word_multi(k, l, [r, s], memo)
+                assert leavitt_equal(
+                    evaluate_word(word), target_multi(k, l, [r, s])
+                ), (k, l, r, s)
 
     names, words = [], []
     seen = set()
@@ -153,7 +154,6 @@ def main():
             add("root_%d%d_%s%s" % (i, j, r, s),
                 commutator(x(i, j, r), x(i, j, s)))
     n_root = len(words)
-    print("(St2) root-subgroup commutativity:", n_root)
 
     # (St2) for distinct roots with i != l and k != j
     roots = [(i, j) for i in range(1, 6) for j in range(1, 6) if i != j]
@@ -167,8 +167,6 @@ def main():
     # side condition -- index-disjoint, same-source ((i,j),(i,l)) and
     # same-target ((i,j),(k,j)) alike.  The same-target instances are load
     # bearing: the spare-index derivation's [Z,V] = 1 hypothesis is one.
-    print("(St2) cross-root commutation (disjoint + same-source + "
-          "same-target):", n_orth)
 
     # (St3) for every coefficient pair
     for i, j, k in itertools.permutations(range(1, 6), 3):
@@ -177,8 +175,25 @@ def main():
             add("st3_%d%d%d_%s%s" % (i, j, k, r, s),
                 product(commutator(x(i, j, r), x(j, k, s)), inverse(rhs)))
     n_st3 = len(words) - n_root - n_orth
-    print("(St3) Steinberg products:", n_st3)
+    return list(zip(names, words)), lengths, (n_root, n_orth, n_st3)
 
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--emit", default="")
+    args = parser.parse_args()
+
+    relators, lengths, counts = generate_relators(verify=True)
+    names = [name for name, _word in relators]
+    words = [word for _name, word in relators]
+    n_root, n_orth, n_st3 = counts
+
+    print("two-letter dictionary entries verified exactly:",
+          20 * len(COEFF_LETTERS) ** 2)
+    print("(St2) root-subgroup commutativity:", n_root)
+    print("(St2) cross-root commutation (disjoint + same-source + "
+          "same-target):", n_orth)
+    print("(St3) Steinberg products:", n_st3)
     print("distinct nonidentity relators:", len(words))
 
     bad, boundary = [], 0

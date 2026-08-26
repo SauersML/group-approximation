@@ -56,9 +56,16 @@ table under another tracked path or reachable commit.  The generator provenance
 is exact: the full family entered at commit `0c8e3b3cf`, the involutivity merge
 at `0701ceb90`, and the reverse dictionary at `0c30ee812`.
 
+`experiments/atlas_relator_rank5_complete_packet.py` now provides the missing
+deterministic serializer.  Its lightweight assembly audit finds that eight of
+the twelve named reverse relations reduce freely to the empty word.  Hence the
+proved presentation ledger has 4,648 entries but only 4,640 reduced nonempty
+words; the four nonempty reverse relations are new.  Its ordered-list SHA-256
+is `9e751115287b18fbe847309379d2710ffa0b1466c836d32ff4ec24446e6c2b99`.
+
 No checked-in artifact or script exports `(BAT1)`.  Therefore the common-root
-gcd cannot presently be computed from repository data without first adding
-the twelve-word serializer and the balanced-area collector.  Substituting
+gcd cannot presently be computed from repository data without adding the
+balanced-area collector to the now-complete packet exporter.  Substituting
 the six-row or fourteen-word Atlas surrogates would not decide the positive
 criterion because those lists are not the complete usable packet.
 

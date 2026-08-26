@@ -7,18 +7,22 @@ target: atlas-three-mode-balanced-area-coefficient-table
 requires:
   - atlas-steinberg-rank-five-translation
   - atlas-three-label-mode-two-unitary-moment-reduction
+  - atlas-rank-five-complete-packet-exporter
 ---
 
-First serialize the twelve reverse-dictionary relators
+The first serialization step is complete in
+`atlas-rank-five-complete-packet-exporter`.  It preserves the twelve named
+reverse-dictionary entries
 
 ```text
 g w_g^(-1)
 ```
 
 already constructed and verified by
-`experiments/atlas_relator_rank5_reverse.py`, and merge them with the 4,636
-emitted full-family and involutivity words.  This restores the cited
-4,648-word `T_St` artifact locally.
+`experiments/atlas_relator_rank5_reverse.py`, and merges them with the 4,636
+full-family and involutivity words.  Eight reverse entries reduce freely to the
+empty word, so downstream collection may skip them after checking the recorded
+4,648-entry / 4,640-nonempty ledger.
 
 For each word, stream formula `(TLMP1)` one syllable at a time.  Expand each
 of the fixed label projections
