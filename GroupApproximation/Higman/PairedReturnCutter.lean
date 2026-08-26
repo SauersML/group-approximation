@@ -413,6 +413,35 @@ theorem fiveCutter_comap_left :
     rw [← fiveCutter_inf_leftRange] at hmap
     exact hmap.1
 
+/-! ## Literal finite cutting input
+
+`MikhailovaRopeCode.Input` asks its caller for a finite list of cutting words.
+Before choosing a presentation code and representatives for those words, the
+corresponding semantic datum is the following literal list in the ambient
+group. -/
+
+/-- The five cutting elements, in the order used by the raw rope compiler. -/
+def fiveList : List Ambient :=
+  [x, pHom bSync, pHom cSync, qHom bSync, qHom cSync]
+
+/-- The set underlying `fiveList` is exactly the displayed five-element set. -/
+theorem setOf_mem_fiveList_eq_fiveSet :
+    {g : Ambient | g ∈ fiveList} = fiveSet := by
+  ext g
+  simp [fiveList, fiveSet]
+
+/-- The semantic cutting-list package needed before translating the five
+elements to raw words: it has length five, generates the literal cutter, and
+cuts out the conjugator graph along the embedded left factor. -/
+theorem fiveList_cutting_input :
+    fiveList.length = 5 ∧
+      Subgroup.closure {g : Ambient | g ∈ fiveList} = fiveCutter ∧
+      fiveCutter.comap
+          (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC) = Star.graphSub := by
+  refine ⟨rfl, ?_, fiveCutter_comap_left⟩
+  rw [setOf_mem_fiveList_eq_fiveSet]
+  rfl
+
 end PairedReturnCutter
 end Higman
 end GroupApproximation
