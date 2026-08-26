@@ -10,6 +10,8 @@ distinct_from:
   endpoint-order-five-return-leaves-full-hecke-fine-sign-free: that gives a two-dimensional profile for the pointwise return relations only and explicitly does not extend it across the moving actor; this constructs one exact representation of the complete literal L0, W, M, J1 packet.
   native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that computes a one-sided support bound on the coarser p2 source from the GL5 stabilizer; this keeps the four additional roots of the actual Hecke source Q and makes its W compression identically zero.
   endpoint-whitehead-signed-source-has-only-relative-hecke-overlap: that computes the canonical regular-trace overlap and a flag-interface fence; this supplies a finite complete-moving-packet zero-Gram profile rather than only the static endpoint relations.
+  b2-pairs-full-hecke-first-support: that uses the additional B2 commutator to split Q equally between the two first-selector signs; this zero endpoint Gram is compatible with that internal half-rank split and shows only that W carries Q outside itself.
+  b2-b3-pair-full-hecke-four-native-sectors: that obtains a rank-one-quarter joint J1/J2 source by adjoining the B2 and B3 sign flips; this claim continues to fence only the endpoint compression QWQ.
 ---
 
 **ESTABLISHED COMPLETE-PACKET ZERO-GRAM FENCE.**  Put
@@ -102,6 +104,14 @@ some different authenticated native rectangular transports; it refutes the
 specific attempt to obtain `(APG1)` by taking the full-source endpoint Gram
 `QWQ`.  A positive proof must use an additional native occurrence outside
 `(FMQ2)` which pays the four zero-Gram states.
+
+There is nevertheless a positive support statement after adjoining the
+literal root `B_2`, which is outside the named actor subgroup `(FMQ2)` but
+normalizes `Q`.  The relation `[x_58(a_2),B_2]=C_2`, with `C_2=-1` on `Q`,
+exchanges the two `r=x_58(a_2)` signs.  Hence
+`b2-pairs-full-hecke-first-support` gives rank `Q(1+r)/2=rank(Q)/2` in every
+full-source representation.  This does not repair `(FMQ3)`: an equal
+internal sign split and the orthogonality `QWQ=0` can hold simultaneously.
 
 No Property `(T)`, canonical trace, literature input, local computation, or
 Lean compilation is used.
