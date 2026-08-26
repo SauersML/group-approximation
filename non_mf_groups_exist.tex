@@ -342,6 +342,13 @@ result: every finite-dimensional linear representation of $G$ over any field
 kills $\mathfrak D_G(L)$.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedDefect}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectFiniteDimensionalSterility}
 
+Property~\textup{(T)} is not itself an obstruction to MF approximation:
+every residually finite group is MF, including many Kazhdan groups.  In the
+argument above, property~\textup{(T)} controls the fixed vectors of an exact
+corona representation.  The one-sided compression forces the corresponding
+Kazhdan projection to commute with the compressor, which makes the
+Hilbert--Schmidt commutant invariant.
+
 We next apply Theorem~\ref{thm:compression-criterion} to the group $H$.
 
 %<webmath object="LF2" when="L_{\F_2}(1,2)" title="the system that copies itself and is used to build H">
@@ -459,8 +466,8 @@ centralizes $L$, and for $\ell=e_{12}(1)$ the corresponding commutator is
 \[
 d=e_{02}(s_1t_1).
 \]
-The relation $t_1(s_1t_1)s_1=1$ shows that $d\ne1$.  Since $H$ is simple,
-$d$ normally generates $H$.
+The relation $t_1(s_1t_1)s_1=1$ and the Steinberg commutator relations
+show directly that $d$ normally generates $H$.
 \leanverified{Manuscript/OneSidedMFRadical/RankTwelveEndpoints}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.normalClosure_defect_eq_top}
 Since
 $d\in\mathfrak D_H(L)$ and $\mathfrak D_H(L)$ is normal, it follows that
@@ -549,6 +556,11 @@ $\EL_{12}(R)$ is simple (Proposition~\ref{prop:simple}).
 Ershov--Jaikin-Zapirain give property~\textup{(T)} for
 $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital
 associative ring~\cite[Theorem~1.1]{EJZ}.
+OpenAI used the binary Leavitt unit group to construct the first known
+nonsofic group~\cite[Chapter~3]{OAI}.  Khanh--Thanh's matrix-ring
+isomorphisms and their equality $\GL_n(R)=\EL_n(R)$ identify that group
+with the group $H$ studied here~\cite{KhanhThanh}.  The present argument
+applies the Leavitt compression to operator norm approximation.
 Related rigidity results for metric approximations of Kazhdan groups appear
 in~\cite{KT19,AlekseevThom,Dadarlat}.
 
@@ -1574,9 +1586,20 @@ Direct multiplication of the matrices in \eqref{eq:tau} gives
 \end{equation}
 The second factor commutes with $\ell=e_{12}(1)$.  The identity
 $[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ therefore gives $d=e_{02}(q)$, which is
-nontrivial because $q\ne0$.  Its normal closure is a nontrivial normal
-subgroup of $H$, and hence is all of $H$ by
-Proposition~\ref{prop:simple}.
+nontrivial because $q\ne0$.
+
+Let $N=\normal d_H$.  Since $t_1qs_1=1$, the Steinberg relations give
+\[
+ [d,e_{23}(s_1)]=e_{03}(qs_1)\in N,
+ \qquad
+ [e_{10}(t_1),e_{03}(qs_1)]=e_{13}(1)\in N.
+\]
+Conjugation by elementary Weyl matrices gives $e_{ij}(1)\in N$ for every
+$i\ne j$.  For $a\in R$ and distinct $i,j,k$,
+\[
+ [e_{ik}(a),e_{kj}(1)]=e_{ij}(a)\in N.
+\]
+Thus $N$ contains every elementary generator of $H$, so $N=H$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:headline}]
@@ -1848,6 +1871,12 @@ Commun. ACM \textbf{64} (2021), no.~11, 131--138,
 \doi{10.1145/3485628},
 \href{https://arxiv.org/abs/2001.04383}{arXiv:2001.04383}.
 
+\bibitem[K--T]{KhanhThanh}
+H.~V. Khanh and V.~H. Thanh,
+\emph{Matrix generators for the unit groups of $L_K(1,d)$},
+preprint, 2026,
+\href{https://arxiv.org/abs/2607.10351}{arXiv:2607.10351}.
+
 \bibitem[Kor]{Korchagin}
 A.~I. Korchagin,
 \emph{The MF-property for countable discrete groups},
@@ -1872,6 +1901,13 @@ G.~Kun and A.~Thom,
 \emph{Inapproximability of actions and Kazhdan's property~\textup{(T)}},
 preprint, 2019,
 \href{https://arxiv.org/abs/1901.03963}{arXiv:1901.03963}.
+
+\bibitem[OAI]{OAI}
+OpenAI,
+\emph{Nonsofic groups exist},
+in \emph{Ten advances in mathematics and theoretical computer science},
+Chapter~3, 78--95, 2026,
+\url{https://cdn.openai.com/pdf/ten-proofs-oai.pdf}.
 
 \bibitem[Os]{Osin}
 D.~Osin,

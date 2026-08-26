@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "paper1d.tex",
+  "manuscript": "paper1e.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -324,7 +324,6 @@
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "prop:simple",
         "prop:leavitt-compression"
       ],
       "extra_assumptions": [],

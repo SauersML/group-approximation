@@ -124,7 +124,7 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:tau-elementary": [],
     "prop:leavitt-compression": ["lem:tau-elementary"],
     "prop:simple": [],
-    "prop:defect": ["prop:simple", "prop:leavitt-compression"],
+    "prop:defect": ["prop:leavitt-compression"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
     "lem:simple-in-defect": [],
