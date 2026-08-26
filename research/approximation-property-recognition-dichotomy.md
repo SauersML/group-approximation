@@ -47,10 +47,13 @@ direction constructs the Adian--Rabin data from the finite table cover, and
 `nonhyperlinearCodeProperty_not_re_of_exists` checks the stronger non-r.e.
 conclusion for the negative side.
 
-The same dichotomy holds verbatim for **weak soficity** and for **linear
-soficity** over any fixed field, and for every local approximation property
-that contains the residually finite groups, with "`Pi^0_2`-complete" read as
-"`Pi^0_2`-hard" until the corresponding upper bound is recorded.  For
+The same dichotomy holds verbatim for **weak soficity** (with the
+`Pi^0_2` membership supplied by
+[[weak-soficity-recognition-has-a-pi2-upper-bound]], so the row is a
+completeness dichotomy) and for **linear soficity** over any fixed field,
+and for every local approximation property that contains the residually
+finite groups, with "`Pi^0_2`-complete" read as "`Pi^0_2`-hard" where the
+corresponding upper bound is not yet recorded.  For
 soficity and operator-MF side (B) is known to hold.
 
 **Why this matters for the goal.**  (D2) turns [[non-hyperlinear-group]] into
