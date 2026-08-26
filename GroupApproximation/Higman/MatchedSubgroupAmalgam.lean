@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.SymmetricDoubleSubgroupReflection
 import GroupApproximation.Higman.AmalgamPushout
+import GroupApproximation.Algebra.PushoutITorsionFree
 
 /-!
 # Matched subgroups embed as a sub-amalgam
@@ -227,6 +228,212 @@ theorem matchedMap_range_eq_closure
     · let qs : ↥Q := ⟨q, hq⟩
       refine ⟨smallInQ eA eB Z Q Delta hZ hQ qs, ?_⟩
       exact matchedMap_smallInQ eA eB Z Q Delta hZ hQ qs
+
+/-! ## Normal-form factor reflection -/
+
+/-- A nonempty reduced word whose first letter is not in the `i`-th factor
+cannot represent an element of that factor.  This is the one-sided normal-form
+statement needed below; prefixing by the inverse of a putative factor
+representative produces a nonempty reduced word in the base. -/
+theorem reduced_not_mem_factor_of_fstIdx_ne
+    {ι : Type} {H : Type} {G : ι → Type}
+    [Group H] [∀ i, Group (G i)]
+    (φ : ∀ i, H →* G i) (hφ : ∀ i, Function.Injective (φ i))
+    (i : ι) (w : Monoid.CoprodI.Word G)
+    (hw : PushoutI.Reduced φ w) (hne : w.toList ≠ [])
+    (hfst : w.fstIdx ≠ some i) :
+    PushoutI.ofCoprodI w.prod ∉ (PushoutI.of (φ := φ) i).range := by
+  classical
+  intro hmem
+  obtain ⟨g, hg⟩ := hmem
+  by_cases hgr : g ∈ (φ i).range
+  · have hbase : PushoutI.ofCoprodI w.prod ∈ (PushoutI.base φ).range := by
+      obtain ⟨h, hh⟩ := hgr
+      refine ⟨h, ?_⟩
+      rw [← hg, ← hh]
+      exact (PushoutI.of_apply_eq_base φ i h).symm
+    have hempty := hw.eq_empty_of_mem_range hφ hbase
+    apply hne
+    have hlist := congrArg Monoid.CoprodI.Word.toList hempty
+    simpa [Monoid.CoprodI.Word.empty] using hlist
+  · have hginv : g⁻¹ ≠ 1 := by
+      intro hg1
+      apply hgr
+      have : g = 1 := inv_eq_one.mp hg1
+      rw [this]
+      exact Subgroup.one_mem _
+    let v : Monoid.CoprodI.Word G :=
+      Monoid.CoprodI.Word.cons g⁻¹ w hfst hginv
+    have hvred : PushoutI.Reduced φ v := by
+      rintro ⟨j, x⟩ hx
+      change ⟨j, x⟩ ∈ (⟨i, g⁻¹⟩ :: w.toList) at hx
+      rcases List.mem_cons.mp hx with hx | hx
+      · cases hx
+        intro hinv
+        apply hgr
+        obtain ⟨h, hh⟩ := hinv
+        refine ⟨h⁻¹, ?_⟩
+        simpa using congrArg Inv.inv hh
+      · exact hw ⟨j, x⟩ hx
+    have hvone : (PushoutI.ofCoprodI v.prod : PushoutI φ) = 1 := by
+      rw [Monoid.CoprodI.Word.prod_cons, map_mul, PushoutI.ofCoprodI_of,
+        ← hg]
+      simp
+    have hvbase : (PushoutI.ofCoprodI v.prod : PushoutI φ) ∈
+        (PushoutI.base φ).range := by
+      rw [hvone]
+      exact Subgroup.one_mem _
+    have hempty := hvred.eq_empty_of_mem_range hφ hvbase
+    have hlist := congrArg Monoid.CoprodI.Word.toList hempty
+    simp [v, Monoid.CoprodI.Word.cons, Monoid.CoprodI.Word.empty] at hlist
+
+/-- A reduced word representing an element of the `i`-th factor has at most
+one syllable, and a nonempty such word starts in the `i`-th factor. -/
+theorem reduced_factor_shape
+    {ι : Type} {H : Type} {G : ι → Type}
+    [Group H] [∀ i, Group (G i)]
+    (φ : ∀ i, H →* G i) (hφ : ∀ i, Function.Injective (φ i))
+    (i : ι) (w : Monoid.CoprodI.Word G)
+    (hw : PushoutI.Reduced φ w)
+    (hmem : PushoutI.ofCoprodI w.prod ∈ (PushoutI.of (φ := φ) i).range) :
+    w.toList.tail = [] ∧ (w.toList ≠ [] → w.fstIdx = some i) := by
+  classical
+  by_cases hnil : w.toList = []
+  · exact ⟨by simp [hnil], fun h ↦ (h hnil).elim⟩
+  obtain ⟨j, g, w', hidx, hg, hwcons⟩ :=
+    PushoutITorsionFree.exists_cons w hnil
+  subst w
+  have htail : w'.toList = [] := by
+    by_contra hne
+    by_cases hji : j = i
+    · subst j
+      obtain ⟨a, ha⟩ := hmem
+      have htailMem : (PushoutI.ofCoprodI w'.prod : PushoutI φ) ∈
+          (PushoutI.of (φ := φ) i).range := by
+        refine ⟨g⁻¹ * a, ?_⟩
+        calc
+          PushoutI.of (φ := φ) i (g⁻¹ * a) =
+              (PushoutI.of (φ := φ) i g)⁻¹ *
+                PushoutI.of (φ := φ) i a := by simp
+          _ = (PushoutI.of (φ := φ) i g)⁻¹ *
+                PushoutI.ofCoprodI
+                  (Monoid.CoprodI.Word.cons g w' hidx hg).prod :=
+              congrArg (fun z ↦ (PushoutI.of (φ := φ) i g)⁻¹ * z) ha
+          _ = PushoutI.ofCoprodI w'.prod := by
+              rw [Monoid.CoprodI.Word.prod_cons, map_mul,
+                PushoutI.ofCoprodI_of]
+              simp
+      exact reduced_not_mem_factor_of_fstIdx_ne φ hφ i w'
+        (fun l hl ↦ hw l (List.mem_cons_of_mem _ hl)) hne hidx htailMem
+    · have hfst :
+          (Monoid.CoprodI.Word.cons g w' hidx hg).fstIdx ≠ some i := by
+        simp only [Monoid.CoprodI.Word.fstIdx, Monoid.CoprodI.Word.cons,
+          List.head?_cons, Option.map_some]
+        exact fun h ↦ hji (Option.some.inj h)
+      exact reduced_not_mem_factor_of_fstIdx_ne φ hφ i
+        (Monoid.CoprodI.Word.cons g w' hidx hg) hw (by simp) hfst hmem
+  constructor
+  · simp [Monoid.CoprodI.Word.cons, htail]
+  · intro _
+    by_contra hne
+    exact reduced_not_mem_factor_of_fstIdx_ne φ hφ i
+      (Monoid.CoprodI.Word.cons g w' hidx hg) hw (by simp) hne hmem
+
+/-- **Factor-range reflection for the embedded small amalgam.**  If an element
+of the small amalgam maps into one chosen factor of the large amalgam, it was
+already in the corresponding small factor. -/
+theorem matchedMap_reflects_factor_range
+    (heA : Function.Injective eA) (heB : Function.Injective eB)
+    (hZ : Z.comap eA = Delta) (hQ : Q.comap eB = Delta) :
+    ∀ b x, matchedMap eA eB Z Q Delta hZ hQ x ∈
+        (PushoutI.of (φ := Amalgam.famHom eA eB) b).range →
+      x ∈ (PushoutI.of
+        (φ := smallEdge eA eB Z Q Delta hZ hQ) b).range := by
+  classical
+  intro b x hx
+  obtain ⟨d⟩ := PushoutI.NormalWord.transversal_nonempty
+    (smallEdge eA eB Z Q Delta hZ hQ)
+    (smallEdge_injective eA eB Z Q Delta heA heB hZ hQ)
+  let w : PushoutI.NormalWord d := PushoutI.NormalWord.equiv x
+  have hxprod : w.prod = x :=
+    (PushoutI.NormalWord.equiv (d := d)).symm_apply_apply x
+  let wm := PushoutEmbedding.wordMap (factorInclusion Z Q)
+    (fun i ↦ by cases i <;> exact Subtype.val_injective) w.toWord
+  have hredSource : PushoutI.Reduced
+      (smallEdge eA eB Z Q Delta hZ hQ) w.toWord :=
+    PushoutEmbedding.normalWord_reduced _ d w
+  have hredTarget : PushoutI.Reduced (Amalgam.famHom eA eB) wm := by
+    intro l hl
+    obtain ⟨l', hl', heq⟩ := List.mem_map.mp hl
+    cases heq
+    exact fun hrange ↦ hredSource l' hl'
+      (factorInclusion_reflects_range eA eB Z Q Delta hZ hQ l'.1 l'.2 hrange)
+  have hprodImage :
+      matchedMap eA eB Z Q Delta hZ hQ w.prod =
+        PushoutI.base (Amalgam.famHom eA eB) (edgeInclusion Delta w.head) *
+          PushoutI.ofCoprodI wm.prod := by
+    rw [PushoutI.NormalWord.prod, map_mul, matchedMap,
+      PushoutBaseChange.map_base, PushoutBaseChange.map_ofCoprodI_prod]
+  have hbaseFactor :
+      PushoutI.base (Amalgam.famHom eA eB) (edgeInclusion Delta w.head) ∈
+        (PushoutI.of (φ := Amalgam.famHom eA eB) b).range := by
+    refine ⟨Amalgam.famHom eA eB b (edgeInclusion Delta w.head), ?_⟩
+    exact PushoutI.of_apply_eq_base _ b (edgeInclusion Delta w.head)
+  have hwordFactor : PushoutI.ofCoprodI wm.prod ∈
+      (PushoutI.of (φ := Amalgam.famHom eA eB) b).range := by
+    have heq : PushoutI.ofCoprodI wm.prod =
+        (PushoutI.base (Amalgam.famHom eA eB) (edgeInclusion Delta w.head))⁻¹ *
+          matchedMap eA eB Z Q Delta hZ hQ x := by
+      rw [← hxprod, hprodImage]
+      simp
+    rw [heq]
+    exact (PushoutI.of (φ := Amalgam.famHom eA eB) b).range.mul_mem
+      ((PushoutI.of (φ := Amalgam.famHom eA eB) b).range.inv_mem hbaseFactor) hx
+  obtain ⟨hmtail, hmfst⟩ := reduced_factor_shape
+    (Amalgam.famHom eA eB)
+    (Amalgam.famHom_injective eA eB heA heB) b wm hredTarget hwordFactor
+  cases hlist : w.toWord.toList with
+  | nil =>
+      refine ⟨smallEdge eA eB Z Q Delta hZ hQ b w.head, ?_⟩
+      calc
+        PushoutI.of (φ := smallEdge eA eB Z Q Delta hZ hQ) b
+            (smallEdge eA eB Z Q Delta hZ hQ b w.head) =
+            PushoutI.base (smallEdge eA eB Z Q Delta hZ hQ) w.head :=
+          PushoutI.of_apply_eq_base _ b w.head
+        _ = w.prod := by
+          rw [PushoutI.NormalWord.prod]
+          have hwordOne : w.toWord.prod = 1 := by
+            simp [Monoid.CoprodI.Word.prod, hlist]
+          rw [hwordOne, map_one, mul_one]
+        _ = x := hxprod
+  | cons a rest =>
+      have hrest : rest = [] := by
+        have ht := hmtail
+        simp only [wm, PushoutEmbedding.wordMap_toList, hlist,
+          List.map_cons, List.tail_cons] at ht
+        cases rest with
+        | nil => rfl
+        | cons c cs => simp at ht
+      subst rest
+      rcases a with ⟨j, g⟩
+      have hwmne : wm.toList ≠ [] := by
+        simp [wm, PushoutEmbedding.wordMap, hlist]
+      have hwmidx := hmfst hwmne
+      have hji : j = b := by
+        simpa [wm, PushoutEmbedding.wordMap, hlist,
+          Monoid.CoprodI.Word.fstIdx] using hwmidx
+      subst j
+      refine ⟨smallEdge eA eB Z Q Delta hZ hQ b w.head * g, ?_⟩
+      calc
+        PushoutI.of (φ := smallEdge eA eB Z Q Delta hZ hQ) b
+            (smallEdge eA eB Z Q Delta hZ hQ b w.head * g) =
+            PushoutI.base (smallEdge eA eB Z Q Delta hZ hQ) w.head *
+              PushoutI.of (φ := smallEdge eA eB Z Q Delta hZ hQ) b g := by
+          rw [map_mul, PushoutI.of_apply_eq_base]
+        _ = w.prod := by
+          rw [PushoutI.NormalWord.prod]
+          simp [Monoid.CoprodI.Word.prod, hlist]
+        _ = x := hxprod
 
 end MatchedSubgroupAmalgam
 end Higman
