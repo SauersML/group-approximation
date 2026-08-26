@@ -119,6 +119,53 @@ theorem dToTop_injective : Function.Injective (dToTop T) :=
 theorem baseToTop_injective : Function.Injective (baseToTop T) :=
   (dToTop_injective T).comp ((tauToD_injective T).comp (baseToTau_injective T))
 
+/-! ## The named `tau`--`d`--`sigma` constructor -/
+
+/-- The first layer obtained by evaluating the Nielsen shear. -/
+abbrev ShearTau {X : Type v}
+    (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
+    (payload : FreeGroup X) : Type _ :=
+  Extension (evaluatedShearData eval heval payload)
+
+/-- The second layer, using the explicit `d` evaluation maps. -/
+abbrev ShearD {X : Type v} {J : Type w}
+    (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
+    (payload : FreeGroup X)
+    (k0 : ShearTau eval heval payload)
+    (s tauLetter : J → ShearTau eval heval payload)
+    (hsource : Function.Injective (dSource k0 s tauLetter))
+    (htarget : Function.Injective (dTarget k0 s)) : Type _ :=
+  Extension (dData k0 s tauLetter hsource htarget)
+
+/-- Build the complete three-layer value from the literal evaluation maps.
+
+The only hypotheses are injectivity of:
+
+* the initial free evaluation `eval`;
+* `dSource k0 s tauLetter` and `dTarget k0 s`;
+* `sigmaSource fixed t0` and `sigmaTarget fixed t0 d0`.
+
+Injectivity of the sheared target is derived automatically from the Nielsen
+inverse. -/
+def shearDSigmaTower {X : Type v} {J : Type w} {Y : Type z}
+    (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
+    (payload : FreeGroup X)
+    (k0 : ShearTau eval heval payload)
+    (s tauLetter : J → ShearTau eval heval payload)
+    (hdSource : Function.Injective (dSource k0 s tauLetter))
+    (hdTarget : Function.Injective (dTarget k0 s))
+    (fixed : Y → ShearD eval heval payload k0 s tauLetter hdSource hdTarget)
+    (t0 d0 : ShearD eval heval payload k0 s tauLetter hdSource hdTarget)
+    (hsigmaSource : Function.Injective (sigmaSource fixed t0))
+    (hsigmaTarget : Function.Injective (sigmaTarget fixed t0 d0)) :
+    ThreeStage G where
+  TauIndex := X ⊕ Unit
+  tau := evaluatedShearData eval heval payload
+  DIndex := Unit ⊕ J
+  d := dData k0 s tauLetter hdSource hdTarget
+  SigmaIndex := Y ⊕ Unit
+  sigma := sigmaData fixed t0 d0 hsigmaSource hsigmaTarget
+
 /-! ## The corrected detector, attached after the tower -/
 
 variable {F K : Type u} [Group F] [Group K]

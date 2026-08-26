@@ -402,6 +402,15 @@ nonzero native Hecke ejection alone does not imply positive paid mass on the
 signed source; the missing statement must explicitly name its source
 projection or charge escape from it.
 
+There is also a profile-uniform localization to the native middle-index
+packet.  `paid-t00-pauli-menu-hits-whitehead-constant-atom` averages the paid
+carrier over the eight literal Pauli-flip conjugates and places one conjugate
+on the constant atom preserved by both prefix Whiteheads, with a fixed mass
+floor.  This removes total avoidance of the Whitehead packet, but both label
+actions on that atom are quarter-scale.  Identifying the localized paid word
+with the unequal quarter/eighth selector output remains the final occurrence
+typing problem.
+
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single
 finite matrix tuple with small relator defect is not a sound nontriviality

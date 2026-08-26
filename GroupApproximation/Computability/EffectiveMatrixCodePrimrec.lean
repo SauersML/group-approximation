@@ -324,23 +324,6 @@ theorem primrec_mulVecNormSq :
 
 /-! ## Flat Boolean matrix predicates -/
 
-/-- Primitive recursiveness of Boolean `List.all`, with a predicate depending
-on the ambient input.  This is deliberately Boolean: nested decidable `Prop`
-quantifiers produce prohibitively large elaboration terms for matrix checks. -/
-theorem primrec_listAll {α β : Type*} [Primcodable α] [Primcodable β]
-    {f : α → List β} {p : α → β → Bool}
-    (hf : Primrec f) (hp : Primrec₂ p) :
-    Primrec fun a => (f a).all (p a) := by
-  have hstep : Primrec₂ fun (a : α) (q : β × Bool) => p a q.1 && q.2 :=
-    Primrec.and.comp₂
-      (hp.comp₂ Primrec₂.left (Primrec.fst.comp₂ Primrec₂.right))
-      (Primrec.snd.comp₂ Primrec₂.right)
-  refine (Primrec.list_foldr hf (Primrec.const true) hstep).of_eq ?_
-  intro a
-  induction f a with
-  | nil => rfl
-  | cons b l ih => simp only [List.foldr_cons, List.all_cons, ih]
-
 private theorem primrecRel_matrixEqCell : PrimrecRel fun (j : ℕ)
     (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
     ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
@@ -416,7 +399,7 @@ theorem primrecPred_generatorsUnitary :
   have hitem : Primrec₂ fun (z : ℕ × List MatrixCode) (A : MatrixCode) =>
       decide (isUnitary z.1 A) :=
     primrecPred_isUnitary.decide.comp₂
-      (Primrec.fst.comp₂ Primrec₂.left) Primrec₂.right
+      (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd).to₂
   have hcheck : Primrec fun z : ℕ × List MatrixCode =>
       z.2.all fun A => decide (isUnitary z.1 A) :=
     primrec_listAll Primrec.snd hitem

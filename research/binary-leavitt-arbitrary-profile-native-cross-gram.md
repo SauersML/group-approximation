@@ -152,3 +152,13 @@ literature theorem is permitted in this claim.
   one exact `GL_10(F_2)` chart.  The attachment still does not name the
   signed-Hecke source cut.  A mass-incidence or source-escape relation,
   rather than another uncompressed mixed commutator, remains necessary.
+- **Average the paid discrepancy over the literal Pauli flips.**  This gives
+  a genuine arbitrary-profile improvement.
+  `paid-t00-pauli-menu-hits-whitehead-constant-atom` proves that one of eight
+  fixed conjugates of `D` has compression mass at least `tau(P_z)/128` on
+  the constant middle-index atom, which both prefix Whiteheads preserve; a
+  fixed spectral cut retains at least `tau(P_z)/256`.  Hence the paid
+  coefficient cannot avoid every Whitehead-fixed atom.  This still types
+  only the equal-scale adjacent swaps.  The missing occurrence must show
+  that one localized conjugate is the controlled quarter/eighth row, or
+  couple it to that row by an ordinary mixed word.
