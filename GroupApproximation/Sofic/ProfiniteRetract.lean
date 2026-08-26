@@ -117,8 +117,9 @@ theorem profiniteClosure_comap_eq_of_closed (L : Subgroup Q) (f : G →* Q)
     (hL : profiniteClosure L = L) :
     profiniteClosure (L.comap f) = L.comap f := by
   apply le_antisymm
-  · rw [← hL]
-    exact profiniteClosure_comap_le L f
+  · have hle := profiniteClosure_comap_le L f
+    rw [hL] at hle
+    exact hle
   · exact le_profiniteClosure (L.comap f)
 
 /-- The diagonal in the square of a residually finite group is profinitely
