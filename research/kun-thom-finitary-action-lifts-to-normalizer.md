@@ -52,3 +52,13 @@ nonabelian cocycle problem.  The natural finite-quotient lift of the Kazhdan
 subgroup is incompatible with the compressor relations, so a proof needs a
 genuinely exotic simultaneous lift for the two named compressors.
 
+Two exact reductions now remove possible ambiguity in that last sentence.
+First, `kt-finitary-action-is-outer-mod-scalar-core` proves that for the
+valid specialization `q=2` every nonidentity actor automorphism is outer, so
+`(KFL1)` is automatic and only cocycle splitting remains.  Second,
+`kt-two-compressor-normalizer-cocycle-splits` constructs a trace-correct
+normalizer lift on `<A,B>=SL_3(Z)` itself.  Thus the two compressor lifts are
+not intrinsically incompatible: the first possible nonsplit class uses
+mixed relations with the nonnormal Kazhdan subgroup `Gamma`.  A full proof
+must extend the already split compressor lift across those mixed
+stabilizer/compression relations.
