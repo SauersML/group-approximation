@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.MFAlgebra
 import Mathlib.Analysis.CStarAlgebra.Hom
 import Mathlib.Analysis.CStarAlgebra.lpSpace
+import Mathlib.GroupTheory.HNNExtension
 
 /-!
 # A universe-relative universal C-star HNN algebra
@@ -292,6 +293,94 @@ theorem universalCStarHNN_existsUnique_lift
       exact (Set.mem_singleton_iff.mp hx)
     rw [hx']
     exact hq.2
+
+/-! ## The induced representation of an abstract group HNN extension -/
+
+universe v
+
+/-- A star-algebra homomorphism maps unitary elements functorially. -/
+def unitaryMapOfStarAlgHom {E : Type u} {F : Type v}
+    [CStarAlgebra E] [CStarAlgebra F] (f : E →⋆ₐ[ℂ] F) :
+    unitary E →* unitary F :=
+  (Unitary.map
+    ({ toFun := f
+       map_one' := map_one f
+       map_mul' := map_mul f
+       map_star' := map_star f } : E →⋆* F)).toMonoidHom
+
+@[simp] theorem coe_unitaryMapOfStarAlgHom {E : Type u} {F : Type v}
+    [CStarAlgebra E] [CStarAlgebra F] (f : E →⋆ₐ[ℂ] F)
+    (x : unitary E) :
+    ((unitaryMapOfStarAlgHom f x : unitary F) : F) = f (x : E) :=
+  rfl
+
+section GroupLift
+
+variable {G : Type v} [Group G]
+variable {A B : Subgroup G} (phi : A ≃* B)
+variable [Nonempty (CStarHNNRepresentation B0 B1 theta)]
+
+/-- A base-group representation in the universal C-star HNN algebra, together
+with the covariance relation on the associated subgroup, induces the expected
+representation of the abstract group HNN extension. -/
+def universalCStarHNNGroupLift
+    (rho : G →* unitary (UniversalCStarHNN B0 B1 theta))
+    (hrel : ∀ a : A,
+      universalCStarHNNStable B0 B1 theta * rho (a : G) =
+        rho ((phi a : B) : G) * universalCStarHNNStable B0 B1 theta) :
+    HNNExtension G A B phi →* unitary (UniversalCStarHNN B0 B1 theta) :=
+  HNNExtension.lift rho (universalCStarHNNStable B0 B1 theta) hrel
+
+@[simp] theorem universalCStarHNNGroupLift_of
+    (rho : G →* unitary (UniversalCStarHNN B0 B1 theta))
+    (hrel : ∀ a : A,
+      universalCStarHNNStable B0 B1 theta * rho (a : G) =
+        rho ((phi a : B) : G) * universalCStarHNNStable B0 B1 theta)
+    (g : G) :
+    universalCStarHNNGroupLift B0 B1 theta phi rho hrel (HNNExtension.of g) =
+      rho g :=
+  HNNExtension.lift_of _ _ _ _
+
+@[simp] theorem universalCStarHNNGroupLift_t
+    (rho : G →* unitary (UniversalCStarHNN B0 B1 theta))
+    (hrel : ∀ a : A,
+      universalCStarHNNStable B0 B1 theta * rho (a : G) =
+        rho ((phi a : B) : G) * universalCStarHNNStable B0 B1 theta) :
+    universalCStarHNNGroupLift B0 B1 theta phi rho hrel HNNExtension.t =
+      universalCStarHNNStable B0 B1 theta :=
+  HNNExtension.lift_t _ _ _
+
+/-- Evaluate the induced group-HNN representation at one covariant
+coordinate. -/
+def universalCStarHNNGroupLiftEval
+    (R : CStarHNNRepresentation B0 B1 theta)
+    (rho : G →* unitary (UniversalCStarHNN B0 B1 theta))
+    (hrel : ∀ a : A,
+      universalCStarHNNStable B0 B1 theta * rho (a : G) =
+        rho ((phi a : B) : G) * universalCStarHNNStable B0 B1 theta) :
+    HNNExtension G A B phi →* unitary R.carrier :=
+  (unitaryMapOfStarAlgHom (universalCStarHNNEval B0 B1 theta R)).comp
+    (universalCStarHNNGroupLift B0 B1 theta phi rho hrel)
+
+/-- A faithful covariant coordinate certifies faithfulness of the induced
+representation into the universal C-star HNN algebra.  This is the exact
+group-level hook later consumed by `HasMFEmbedding.isOperatorMF`. -/
+theorem universalCStarHNNGroupLift_injective_of_eval
+    (R : CStarHNNRepresentation B0 B1 theta)
+    (rho : G →* unitary (UniversalCStarHNN B0 B1 theta))
+    (hrel : ∀ a : A,
+      universalCStarHNNStable B0 B1 theta * rho (a : G) =
+        rho ((phi a : B) : G) * universalCStarHNNStable B0 B1 theta)
+    (hfaithful : Function.Injective
+      (universalCStarHNNGroupLiftEval B0 B1 theta phi R rho hrel)) :
+    Function.Injective
+      (universalCStarHNNGroupLift B0 B1 theta phi rho hrel) := by
+  intro x y hxy
+  apply hfaithful
+  exact congrArg
+    (unitaryMapOfStarAlgHom (universalCStarHNNEval B0 B1 theta R)) hxy
+
+end GroupLift
 
 end
 

@@ -11,6 +11,7 @@ import GroupApproximation.Analysis.FiniteProductCorrectedStarEquiv
 import GroupApproximation.Analysis.ProperIsometryFromCompression
 import GroupApproximation.Analysis.ExplicitReducedGroupCStarConsequences
 import GroupApproximation.Analysis.MaximalGroupCStar
+import GroupApproximation.Analysis.UniversalCStarHNN
 import GroupApproximation.Analysis.MaximalCStarKazhdanAverage
 import GroupApproximation.Analysis.QuasiRegularWitness
 import GroupApproximation.Analysis.StateExtension
