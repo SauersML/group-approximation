@@ -77,15 +77,14 @@
 \begin{abstract}
 A countable group is MF if it admits finite-dimensional unitary models
 that are asymptotically multiplicative and asymptotically separate
-nonidentity elements in operator norm.  We show that deciding whether a
-finite presentation defines an MF group is $\Pi^0_2$-complete.  So it is
-impossible to construct an algorithm that decides from a finite
-presentation whether the group it defines is MF, and impossible even to
-enumerate the presentations of MF groups, or those of non-MF groups.  A
-presentation defines an MF group if and only if, for every accuracy,
-finitely many unitary matrices satisfy its relators to within that
-accuracy while keeping prescribed nontrivial words away from the
-identity; whether such matrices exist is decidable, by Tarski's theorem.  We also construct, computably from any program, a
+nonidentity elements in operator norm.  The finite presentations of MF
+groups form a $\Pi^0_2$-complete set, and their complement is
+$\Sigma^0_2$-complete.  MF recognition from finite presentations is
+undecidable.  Neither the MF presentations nor the non-MF presentations
+can be recursively enumerated.  For each $n$, a finite certificate records matrix
+approximations for words of length at most $n$ with relator error at most
+$2^{-n}$; validity is decidable by Tarski's theorem.  We also construct,
+computably from any program, a
 finite presentation that defines an MF group if and only if the program
 halts on infinitely many inputs.  If the program halts on only finitely
 many inputs, the presented group contains the non-MF group
@@ -108,10 +107,9 @@ group is trivial.  We turn to the recognition problem for finitely presented gro
 Fix an effective coding of finite presentations of groups by natural
 numbers.  The set of codes of finite presentations of MF groups is
 $\Pi^0_2$-complete, and the set of codes of finite presentations of non-MF
-groups is $\Sigma^0_2$-complete.  In particular, neither set is
-recursively enumerable: it is impossible to construct an algorithm that
-decides from a finite presentation whether the group it defines is
-MF\@.  There is a computable map $e\mapsto\widehat R_e$ into finite
+groups is $\Sigma^0_2$-complete.  Neither set is recursively enumerable.
+MF recognition from finite presentations is undecidable.  There is a
+computable map $e\mapsto\widehat R_e$ into finite
 presentations such that $\widehat R_e$ presents an MF group if and only if
 the $e$-th partial computable function has infinite domain.
 \end{mainthm}
@@ -158,8 +156,8 @@ labelled trivial.  It is valid if there are unitaries
 $U_1,\dots,U_k\in\U(d)$ such that $\opnorm{r_i(U)-1}\le2^{-n}$ for each
 relator $r_i$ and $\opnorm{w(U)-1}\ge1/4$ for every word labelled
 nontrivial.  These conditions are polynomial equations and inequalities
-over the real numbers, so Tarski's theorem decides whether a certificate
-is valid.  A finite presentation defines an MF group if and only if it has
+over the real numbers, so validity is decidable by Tarski's theorem.  A
+finite presentation defines an MF group if and only if it has
 a valid certificate for every $n$.  Hence
 $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and
 $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$
@@ -170,7 +168,7 @@ $\widehat R_e$ in Section~\ref{sec:compiler}.  If the $e$-th partial function
 has finite domain, then the presented group contains $H$ and is not MF\@.
 If its domain is infinite, the edge isomorphism in the defining HNN
 extension is implemented by a unitary of a norm matrix corona.
-Theorem~\ref{thm:hnn-permanence} then shows that the presented group is MF
+The presented group is then MF by Theorem~\ref{thm:hnn-permanence}
 (Sections~\ref{sec:hnn} and~\ref{sec:compiler}).
 Korchagin proved that the MF property is closed under direct
 limits~\cite[Proposition~13]{Korchagin}.  Consequently, every finitely
@@ -178,22 +176,22 @@ generated non-MF group is a quotient of a finitely presented one.
 
 \subsection*{Relation to prior work}
 
-Decision problems for finitely presented groups go back to Dehn, and the
-theorem of Adian and Rabin~\cite{Adian,Rabin} shows that no Markov
-property (one that some finitely presented group has and that no group
-containing some fixed finitely presented group has) can be recognized
-from a finite presentation.  Once a finitely
-presented non-MF group exists, the MF property is Markov, and Adian--Rabin
-gives undecidability; Theorem~\ref{thm:recognition} gives the exact level.
-A classical $\Pi^0_2$-complete recognition problem for finitely presented
-groups is torsion-freeness, by Lempp~\cite{Lempp}.  For recursively presented groups,
+Dehn initiated the study of decision problems for finitely presented
+groups.  Adian and Rabin later proved that every Markov property is
+undecidable from finite presentations~\cite{Adian,Rabin}.  A property is
+Markov if it holds for some finitely presented group and fails for every
+group containing some fixed finitely presented group.  The trivial group
+is MF, whereas every group containing $H$ is non-MF.  Thus MF is a Markov
+property, and the Adian--Rabin theorem implies undecidability.  Lempp proved
+that recognizing torsion-free finitely presented groups is
+$\Pi^0_2$-complete~\cite{Lempp}.  For recursively presented groups,
 Bilanovic--Chubb--Roven proved that every Markov property is
 $\Pi^0_2$-hard to recognize~\cite{BCR}; their construction is the first
-step of Section~\ref{sec:compiler}.  The passage from recursive to finite
-presentations is where the operator algebra enters: a generic Higman
-embedding does not preserve the MF property, and the HNN extensions of
-Section~\ref{sec:compiler} are chosen so that
-Theorem~\ref{thm:hnn-permanence} applies to them.
+step of Section~\ref{sec:compiler}.  Our reduction must replace a recursive
+presentation by a finite one without changing whether the group is MF.  A
+general Higman embedding does not preserve this property.  The HNN
+extensions in Section~\ref{sec:compiler} are constructed to satisfy the
+hypotheses of Theorem~\ref{thm:hnn-permanence}.
 
 \section{MF groups}\label{sec:prelim}
 
@@ -229,131 +227,135 @@ to a subgroup shows that subgroups of MF groups are MF\@.
 
 Throughout, the binary Leavitt algebra $L_{\F_2}(1,2)$ is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to $t_is_j=\delta_{ij}$
-and $s_0t_0+s_1t_1=1$, and $H=\EL_{12}(L_{\F_2}(1,2))$ is the subgroup of
+and $s_0t_0+s_1t_1=1$~\cite{Leavitt}, and
+$H=\EL_{12}(L_{\F_2}(1,2))$ is the subgroup of
 $\GL_{12}(L_{\F_2}(1,2))$ generated by the elementary matrices
 $e_{ij}(a)=1+aE_{ij}$, $i\ne j$.  By~\cite[Theorem~B]{NonMF}, every homomorphism from
 $H$ to an MF group is trivial; in particular $H$ is not MF\@.
 
+\newpage
 \section{Locality and finite certificates}\label{sec:local}
 
-The MF property is defined through sequences of models on all of $G$,
-but it is determined by finite data with a fixed separation constant.
-The reformulation is due to Korchagin~\cite{Korchagin}.
+We use the following form of Korchagin's finite-presentation criterion.
 
-The following finite-domain formulation is derived from
-Korchagin~\cite[Proposition~7]{Korchagin}.
-
-\begin{lemma}[locality with fixed separation]\label{lem:local-models}
-A countable group $G$ is MF if and only if for every finite set
-$F\subseteq G$ containing $1$ and every $\varepsilon>0$ there are $d\ge1$
-and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
-\begin{gather*}
- \opnorm{V(gh)-V(g)V(h)}\le\varepsilon\quad\text{whenever }g,h,gh\in F,\\
- \opnorm{V(g)-1}\ge1\quad\text{for }g\in F\setminus\{1\}.
-\end{gather*}
+\begin{lemma}[Korchagin's criterion]\label{lem:local-models}
+Let $G=\langle x_1,\dots,x_k\mid r_1,\dots,r_m\rangle$.  Then $G$ is MF
+if and only if, for every $\varepsilon>0$ and every finite family
+$\mathcal W$ of words that are nontrivial in $G$, there are $d\ge1$ and
+$U_1,\dots,U_k\in\U(d)$ such that
+\[
+ \opnorm{r_i(U)-1}\le\varepsilon\quad(i\le m),
+ \qquad
+ \opnorm{w(U)-1}\ge\tfrac12\quad(w\in\mathcal W).
+\]
 \leanverified{Sofic/OperatorMFLocalNormalization}{GroupApproximation.OperatorMFLocalNormalization.isOperatorMF_iff_isNormApproximable_one}
 \end{lemma}
 
 \begin{proof}
-Maps for an exhaustion $(F_n,1/n)$ of $G$, extended by $1$ outside
-$F_n$, form an MF model.  Conversely, Korchagin's amplification ---
-replacing $V_n(g)$ by a direct sum of its tensor powers --- raises the
-separation of finitely many nonidentity elements above $1$ while
-multiplying the defects by a constant~\cite[Proposition~7]{Korchagin}.
-A block direct sum of late amplified models, one summand for each
-$g\in F\setminus\{1\}$, gives the stated map.
+Korchagin proves the criterion with one chosen representative for each
+element of a finite subset of $G$ and separation constant $1$
+\cite[Propositions~7--8]{Korchagin}.  If $\omega$ is his representative
+of the same element as a prescribed word $w$, then $w\omega^{-1}$ is a
+product of finitely many conjugates of the relators.  For a finite family
+$\mathcal W$, a sufficiently small relator tolerance therefore preserves
+separation at least $1/2$ for every $w\in\mathcal W$.  Conversely,
+Korchagin's amplification changes any fixed positive separation constant
+to $1$.
 \end{proof}
 
-We use the Kleene--Mostowski arithmetical hierarchy in its standard
-form~\cite{Soare}: a set $A\subseteq\mathbb N$ is $\Sigma^0_1$ if
-$A=\{x:\exists y\,R(x,y)\}$ for a decidable relation $R$, it is
-$\Pi^0_1$ if its complement is $\Sigma^0_1$, and $\Sigma^0_2$ and
-$\Pi^0_2$ are the classes $\{x:\exists y\,\forall z\,R(x,y,z)\}$ and
-$\{x:\forall y\,\exists z\,R(x,y,z)\}$ with $R$ decidable.  Fix an
-effective coding of finite presentations by natural numbers, under which a
-code determines computably its number of generators and its finite list of
-relator words, and write $G_P$ for the group presented by the code $P$.
-Let $\mathrm{MF}_{\mathrm{fp}}$ be the set of codes $P$ such that $G_P$ is
-MF, and $\mathrm{NONMF}_{\mathrm{fp}}$ its complement.  Korchagin's
-Proposition~8~\cite{Korchagin} is the finite-presentation form of
-Lemma~\ref{lem:local-models}; the certificates below add normal-closure
-witnesses for the trivial words, which is what makes the relation
-decidable.
+A set $A\subseteq\mathbb N$ belongs to $\Pi^0_2$ if there is a decidable
+predicate $R$ such that
+\[
+ x\in A\quad\Longleftrightarrow\quad
+ \forall n\,\exists c\,R(x,n,c).
+\]
+Its complement then belongs to $\Sigma^0_2$; see~\cite{Soare}.  Fix a
+computable coding of finite presentations by natural numbers.  From a code
+$P$ one can recover its generators and relators.  Write $G_P$ for the
+group defined by $P$, and set
+\[
+ \mathrm{MF}_{\mathrm{fp}}=\{P:G_P\text{ is MF}\},
+ \qquad
+ \mathrm{NONMF}_{\mathrm{fp}}=\mathbb N\setminus
+ \mathrm{MF}_{\mathrm{fp}}.
+\]
 
 \begin{proposition}[finite certificates]\label{prop:mf-upper-bound}
-There is a decidable relation $C(P,n,c)$ on triples of natural numbers
-such that a code $P$ lies in $\mathrm{MF}_{\mathrm{fp}}$ if and only if
-for every $n$ there is $c$ with $C(P,n,c)$.  Consequently
+A decidable predicate $C(P,n,c)$ satisfies
+\[
+ P\in\mathrm{MF}_{\mathrm{fp}}
+ \quad\Longleftrightarrow\quad
+ \forall n\,\exists c\,C(P,n,c).
+\]
+Consequently
 $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and
 $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$.
 \end{proposition}
 
 \begin{proof}
-Let $P=\langle x_1,\dots,x_k\mid r_1,\dots,r_m\rangle$.  A
-\emph{certificate at scale $n$} is a triple $c=(d,\ell,\pi)$ consisting of
-a dimension $d\ge1$, a labelling $\ell$ of every reduced word of length at
-most $n$ in $x_1^{\pm1},\dots,x_k^{\pm1}$ by one of the symbols
-$\mathsf T$ and $\mathsf S$, and, for every word $w$ labelled $\mathsf T$,
-an expression of $w$ as a product of conjugates of the relators and their
-inverses that freely reduces to $w$.  Such an expression is checkable, and
-its existence forces $w=1$ in $G_P$.  Let $\Phi(P,n,c)$ be the statement
-that there are $U_1,\dots,U_k\in\U(d)$ with
-$\opnorm{r_i(U)-1}\le2^{-n}$ for $i\le m$ and $\opnorm{w(U)-1}\ge1/4$ for
-every word $w$ labelled $\mathsf S$, where $w(U)$ is the evaluation of $w$
-at $U_1,\dots,U_k$ with $x_j^{-1}\mapsto U_j^{*}$.  Writing
-$U_j=A_j+iB_j$ with real matrices, unitarity is a system of polynomial
-equations, and a bound $\opnorm{X}\le t$ or $\opnorm{X}\ge t$ on a matrix
-whose entries are polynomials in the variables is a semialgebraic
-condition.  Indeed, $\opnorm{X}\le t$ holds precisely when $t^2-X^*X$ is
-positive semidefinite, while, for $t\ge0$, $\opnorm{X}\ge t$ holds precisely
-when there is a vector $v$ with $\opnorm{v}=1$ and
-$\opnorm{Xv}^2\ge t^2$.  Thus $\Phi(P,n,c)$ is a sentence of the
-first-order theory of the ordered field of real numbers, and its truth is
-decidable by Tarski's theorem~\cite{Tarski}.  Let $C(P,n,c)$ hold when $c$
-is a well-formed certificate at scale $n$ whose $\mathsf T$-expressions
-check and $\Phi(P,n,c)$ holds.  Then $C$ is decidable.
-
-Suppose that $G_P$ is MF.  Fix $n$, let
-$L=\max\bigl(\{1,n\}\cup\{\lvert r_i\rvert:1\le i\le m\}\bigr)$,
-let $F$ be the set of images in $G_P$ of all words of length at most $L$,
-together with their inverses, and let $\varepsilon=2^{-n}/(4L)$.
-Lemma~\ref{lem:local-models} gives $V\colon F\to\U(d)$ with $V(1)=1$,
-defect at most $\varepsilon$ on $F$, and $\opnorm{V(g)-1}\ge1$ for
-$g\in F\setminus\{1\}$.  Put $U_j=V(\bar x_j)$, where $\bar w$ denotes
-the image of a word $w$ in $G_P$.  For $g\in F$ we have $g^{-1}\in F$ and
-$\opnorm{V(g)V(g^{-1})-1}\le\varepsilon$, so
-$\opnorm{V(g^{-1})-V(g)^*}\le\varepsilon$.  For a word $w=y_1\cdots y_\ell$
-of length $\ell\le L$, all of whose prefixes have images in $F$, induction
-on $\ell$ gives $\opnorm{w(U)-V(\bar w)}\le2\ell\varepsilon$.  In
-particular $\opnorm{r_i(U)-1}\le2L\varepsilon\le2^{-n}$.  Label a word $w$
-of length at most $n$ by $\mathsf T$ if $\bar w=1$, with a normal-closure
-expression as witness, and by $\mathsf S$ otherwise; for the latter,
-$\opnorm{w(U)-1}\ge\opnorm{V(\bar w)-1}-2n\varepsilon\ge1-\tfrac12\ge\tfrac14$.
-So $C(P,n,c)$ holds for this certificate.
-
-Conversely, suppose that for every $n$ some certificate $c_n=(d_n,\ell_n,\pi_n)$
-satisfies $C(P,n,c_n)$, and choose $U^{(n)}\in\U(d_n)^k$ witnessing
-$\Phi(P,n,c_n)$.  For each $g\in G_P$ fix a reduced word $w_g$ representing $g$,
-with $w_1$ the empty word, and put $V_n(g)=w_g(U^{(n)})$.  Then
-$V_n(1)=1$.  For $g,h\in G_P$ the word $t=w_gw_hw_{gh}^{-1}$ is trivial in
-$G_P$, so it is freely equal to a product of $A$ conjugates of relators and
-their inverses, for some $A$ depending on $g$ and $h$ but not on $n$.
-Since evaluation is a homomorphism on the free group, since the operator
-norm is unitarily invariant, and since
-$\opnorm{xy-1}\le\opnorm{x-1}+\opnorm{y-1}$ for unitaries $x,y$,
+Fix a presentation
+$P=\langle x_1,\dots,x_k\mid r_1,\dots,r_m\rangle$, and let $W_n$ be the
+finite set of reduced words of length at most $n$.  A certificate $c$
+contains the following data:
+\begin{enumerate}
+\item a positive integer $d$;
+\item a partition $W_n=T\sqcup S$;
+\item for every $w\in T$, an expression of $w$ as a product of conjugates
+of the relators and their inverses.
+\end{enumerate}
+A certificate is valid if every expression in item~3 is correct and there
+are unitaries $U_1,\dots,U_k\in\U(d)$ such
+that
 \[
- \opnorm{V_n(g)V_n(h)-V_n(gh)}
- =\opnorm{t(U^{(n)})-1}
- \le A\,2^{-n}\longrightarrow0.
+ \opnorm{r_i(U)-1}\le2^{-n}\quad(i\le m),
+ \qquad
+ \opnorm{w(U)-1}\ge\tfrac14\quad(w\in S).
 \]
-For $g\ne1$ the word $w_g$ is nontrivial in $G_P$, so for
-$n\ge\lvert w_g\rvert$ the certificate $c_n$ cannot label it $\mathsf T$,
-so labels it $\mathsf S$, and $\opnorm{V_n(g)-1}\ge1/4$.  Thus
-$\limsup_n\opnorm{V_n(g)-1}\ge1/4>0$, and $G_P$ is MF.
+Here $w(U)$ denotes evaluation at the matrices $U_j$, with
+$x_j^{-1}$ evaluated as $U_j^*$.
 
-The displayed equivalence exhibits $\mathrm{MF}_{\mathrm{fp}}$ as
-$\{P:\forall n\,\exists c\,C(P,n,c)\}$, a $\Pi^0_2$ set, and its
-complement as a $\Sigma^0_2$ set.
+Free reduction checks the expressions attached to the words in $T$.  When
+such an expression is correct, its word is trivial in $G_P$.  It remains
+to decide whether the required unitaries exist.  Write
+$U_j=A_j+iB_j$ with $A_j$ and $B_j$ real matrices.  Unitarity is
+polynomial in their entries, and for $t\ge0$,
+\[
+ \begin{aligned}
+  \opnorm{X}\le t
+  &\quad\Longleftrightarrow\quad t^2I-X^*X\succeq0,\\
+  \opnorm{X}\ge t
+  &\quad\Longleftrightarrow\quad
+  \exists v\ \bigl(\opnorm{v}=1\ \text{ and }\
+                          \opnorm{Xv}^2\ge t^2\bigr).
+ \end{aligned}
+\]
+Positive semidefiniteness is characterized by the principal minors.  After
+separating real and imaginary parts, both conditions are semialgebraic.
+Thus the existence of the matrices is a sentence in the first-order theory
+of the real numbers, and validity is decidable by Tarski's
+theorem~\cite{Tarski}.  Define $C(P,n,c)$ to mean that $c$ is valid.
+
+Suppose first that $G_P$ is MF.  For each $n$, label a word of length at
+most $n$ by $T$ precisely when it is trivial in $G_P$, and put the remaining
+words in $S$.  Choose a normal-closure expression for every word in $T$.
+Lemma~\ref{lem:local-models}, applied to the words in $S$, supplies
+unitaries with relator error at most $2^{-n}$ and separation at least
+$1/2$.  These data form a valid certificate.
+
+Conversely, suppose that a valid certificate exists for every $n$.  Let
+$\mathcal W$ be a finite family of words that are nontrivial in $G_P$, and
+let $\varepsilon>0$.  Choose $n$ larger than the length of every word in
+$\mathcal W$ and such that $2^{-n}\le\varepsilon$.  No word in
+$\mathcal W$ belongs to $T$, because membership in $T$ includes a proof
+that the word is trivial.  The matrices certified for $n$
+therefore have relator error at most $\varepsilon$ and separate every word
+in $\mathcal W$ from the identity by at least $1/4$.  Korchagin's criterion,
+whose fixed separation constant is immaterial by amplification, now implies
+that $G_P$ is MF.
+
+The two implications prove the equivalence in the statement.  Since $C$
+is decidable, it also proves the asserted upper bounds in the arithmetical
+hierarchy.
 \end{proof}
 
 \section{HNN extensions with a corona conjugator}\label{sec:hnn}
@@ -432,19 +434,11 @@ containing $p$.  Conjugation by $W$ restricts to a $*$-isomorphism
 $\Theta\colon B_0\to B_1$ carrying $\iota\rho(s)$ to $\iota\rho(\theta(s))$.
 Let $U$ be the quotient of the full unital free product $D*C(\mathbb T)$ by
 the closed ideal generated by the elements $ubu^*-\Theta(b)$, $b\in B_0$,
-where $u$ is the canonical unitary generator of $C(\mathbb T)$.  We write
-$d$ and $u$ for the images of $d\in D$ and $u$ in $U$.  By construction,
-$U$ has the following universal property: whenever $\pi\colon D\to E$ is a
-unital $*$-homomorphism into a unital $C^*$-algebra and $v\in\U(E)$
-satisfies $v\pi(b)v^*=\pi(\Theta(b))$ for $b\in B_0$, there is a unique
-$*$-homomorphism $U\to E$ extending $\pi$ and sending $u$ to $v$.  We
+where $u$ denotes the canonical unitary.  This is the universal
+$C^*$-HNN extension of $D$ by $\Theta$.
 \leanverified{Manuscript/OneSidedMFRadical/HNNCoronaConjugatorSentenceAudit}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit.universalCStarHNN_mappingProperty}
-first embed $U$ in an amalgamated free product, which Shulman's criterion
-shows to be MF, and then construct the required tracial state on the copy
-of $R$ inside $U$.
 
-\emph{Step 1: $U$ embeds in an amalgamated free product.}  Let
-$C=B_0\oplus B_1$, $A_1=M_2(D)$, and $A_2=M_2(B_0)$, with the unital
+Let $C=B_0\oplus B_1$, $A_1=M_2(D)$, and $A_2=M_2(B_0)$, with the unital
 inclusions
 \[
  \iota_A(c_0,c_1)=\begin{pmatrix}c_0&0\\0&c_1\end{pmatrix}\in A_1,
@@ -458,44 +452,25 @@ product~\cite[Proposition~2.4]{Ueda}: for the projection
 $e=\iota_A(1_D,0)=\iota_B(1_D,0)$ there is an isomorphism of $U$ onto
 $ePe$ carrying $d\in D$ to $\operatorname{diag}(d,0)$ and the unitary
 $u$ to the partial isometry $e_{12}f_{21}$ built from the matrix units
-$e_{ij}$ of $A_1$ and $f_{ij}$ of $A_2$.  In particular $U$ embeds
-in $P$.
+$e_{ij}$ of $A_1$ and $f_{ij}$ of $A_2$.
 
-\emph{Step 2: $P$ is MF.}  By Shulman's amalgamated-free-product
-criterion~\cite[Theorem~16]{Shulman},
-the full amalgamated free product $A_1*_CA_2$ of separable $C^*$-algebras
-is MF as soon as there are injective $*$-homomorphisms $\varphi_A$ and
-$\varphi_B$ of $A_1$ and $A_2$ into one norm matrix corona with
-$\varphi_A\circ\iota_A=\varphi_B\circ\iota_B$.
-The first reduction inside this criterion is explicit: for a positive,
-strictly increasing matrix-size sequence, the closed $C^*$-subalgebra of the
-common corona generated by the two images is separable and MF, and the factor
-maps corestrict to compatible injective homomorphisms into it.
-\leanverified{Analysis/MFAlgebraAmalgamGenerated}{GroupApproximation.MFAlgebraAmalgamCriterion.compatibleGenerated_comp_eq}
-\leanverified{Analysis/MFAlgebraAmalgamGenerated}{GroupApproximation.MFAlgebraAmalgamCriterion.compatibleGenerated_factor_injective}
-\leanverified{Analysis/MFAlgebraAmalgamGenerated}{GroupApproximation.MFAlgebraAmalgamCriterion.compatibleGenerated_separableSpace}
-\leanverified{Analysis/MFAlgebraAmalgamGenerated}{GroupApproximation.MFAlgebraAmalgamCriterion.compatibleGenerated_isMFAlgebra}
-Moreover, any compatible pair of corona homomorphisms extends to the universal
-amalgam, and chosen bounded representatives of the extension restrict
-asymptotically to the chosen representatives of both factor maps.
-\leanverified{Analysis/MFAlgebraAmalgamCriterion}{GroupApproximation.MFAlgebraAmalgamCriterion.exists_compatible_asymptotic_amalgam_model}
-Identify $M_2(\mathcal Q)$ with the norm matrix corona of the doubled dimension
-sequence, and let $\varphi_A\colon M_2(D)\to M_2(\mathcal Q)$ be the
-entrywise inclusion and
-$\varphi_B\colon M_2(B_0)\to M_2(\mathcal Q)$ the entrywise inclusion
-followed by conjugation by $\operatorname{diag}(1,W)$.  Both are injective,
-and on $C$,
+Shulman's criterion reduces the MF property of $P$ to compatible
+embeddings of $A_1$ and $A_2$ in a norm matrix corona
+\cite[Theorem~16]{Shulman}.  Identify $M_2(\mathcal Q)$ with the corona
+of the doubled dimension sequence.  Let $\varphi_A$ be the entrywise
+embedding of $A_1=M_2(D)$, and let $\varphi_B$ be the entrywise embedding
+of $A_2=M_2(B_0)$ followed by conjugation by $\operatorname{diag}(1,W)$.
+Both are injective, and for $(c_0,c_1)\in C$,
 \[
- \varphi_B(\iota_B(c_0,c_1))
+ \varphi_B\iota_B(c_0,c_1)
  =\begin{pmatrix}c_0&0\\0&W\Theta^{-1}(c_1)W^*\end{pmatrix}
  =\begin{pmatrix}c_0&0\\0&c_1\end{pmatrix}
- =\varphi_A(\iota_A(c_0,c_1)),
+ =\varphi_A\iota_A(c_0,c_1).
 \]
-because $\Theta$ is conjugation by $W$.  So $P$ is MF, as is its
-$C^*$-subalgebra $ePe\cong U$.
+Hence $P$ is MF, and so is its corner $U\cong ePe$.
 
-\emph{Step 3: the tracial state.}  The functional
-$T=\tau\circ\iota^{-1}$ is a tracial state on $\iota(A)\supseteq D$ with
+The functional $T=\tau\circ\iota^{-1}$ is a tracial state on
+$\iota(A)\supseteq D$ with
 $T(\iota\rho(g))=0$ for $g\ne1$.  In the GNS representation of $D$ for
 $T$, the vectors $\xi_g=\iota\rho(g)\xi_T$, $g\in G$, are orthonormal,
 because $\langle\xi_g,\xi_h\rangle=T(\iota\rho(h^{-1}g))$.  Their closed
@@ -690,14 +665,11 @@ $e_{ij}(a+b)=e_{ij}(a)e_{ij}(b)$ and
 $[e_{ik}(a),e_{kj}(b)]=e_{ij}(ab)$ for distinct $i,j,k$, induction on
 monomial length shows that $H=\langle Y\rangle$.  The monomials in
 $s_0,s_1,t_0,t_1$ that contain no subword $t_is_j$ and no subword
-$s_1t_1$ form the standard reduced $\F_2$-basis of
-$L_{\F_2}(1,2)$~\cite{Leavitt}.
-Indeed, with the orientation $t_is_j\to\delta_{ij}$ and
-$s_1t_1\to1+s_0t_0$, the two critical words $t_is_1t_1$ and $s_1t_1s_j$
-resolve to a common value, and the Diamond Lemma~\cite{Bergman} gives
-these monomials as a basis.
-Products of reduced monomials are computed by the defining reductions, so
-equality in $L_{\F_2}(1,2)$ is decidable.  So a word in $Y^{\pm1}$
+$s_1t_1$ form the standard reduced basis of $L_{\F_2}(1,2)$ by the basis
+theorem for Leavitt path algebras, with $s_1$ chosen as the special edge
+\cite[Theorem~3.7]{LopatkinNam}.  The reductions
+$t_is_j\to\delta_{ij}$ and $s_1t_1\to1+s_0t_0$ compute products in this
+basis, so equality in $L_{\F_2}(1,2)$ is decidable.  Thus a word in $Y^{\pm1}$
 evaluates to an explicit $12\times12$ matrix over
 $L_{\F_2}(1,2)$, and it represents $1$ in $H$ exactly when
 that matrix is the identity.  The set of words representing $1$ is
@@ -1107,12 +1079,6 @@ I.~Bilanovic, J.~Chubb, and S.~Roven,
 Arch. Math. Logic \textbf{59} (2020), no.~3--4, 293--312,
 \doi{10.1007/s00153-019-00690-x}.
 
-\bibitem[Ber]{Bergman}
-G.~M. Bergman,
-\emph{The diamond lemma for ring theory},
-Adv. Math. \textbf{29} (1978), no.~2, 178--218,
-\doi{10.1016/0001-8708(78)90010-5}.
-
 \bibitem[BK]{BK}
 B.~Blackadar and E.~Kirchberg,
 \emph{Generalized inductive limits of finite-dimensional $C^*$-algebras},
@@ -1164,6 +1130,12 @@ Trans. Amer. Math. Soc. \textbf{103} (1962), 113--130,
 S.~Lempp,
 \emph{The computational complexity of torsion-freeness of finitely presented groups},
 Bull. Austral. Math. Soc. \textbf{56} (1997), 273--277.
+
+\bibitem[LN]{LopatkinNam}
+V.~Lopatkin and T.~G. Nam,
+\emph{On the homological dimensions of Leavitt path algebras with coefficients in commutative rings},
+J. Algebra \textbf{481} (2017), 273--292,
+\doi{10.1016/j.jalgebra.2017.02.027}.
 
 \bibitem[LS]{LyndonSchupp}
 R.~C. Lyndon and P.~E. Schupp,
