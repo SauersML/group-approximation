@@ -4,6 +4,7 @@ id: arithmetical-complexity-table-of-group-properties
 kind: claim
 title: Where the approximation, residual, amenability and rigidity properties of groups sit in the arithmetical hierarchy, by syntax
 artifacts:
+  - GroupApproximation/Computability/ArithmeticalLedgerEndpoint.lean
   - GroupApproximation/Computability/FreeSubgroupEnumeratedHardness.lean
   - GroupApproximation/Computability/TorsionFreeEnumeratedHardness.lean
   - GroupApproximation/Computability/AbelianEnumeratedPi02.lean
@@ -108,3 +109,5 @@ Commutativity on enumerated codes is fully kernel-checked: `AbelianEnumeratedPi0
 Torsion-freeness is [[torsion-freeness-recognition-is-pi2-complete]] (hardness kernel-checked as `TorsionFreeEnumeratedHardness.torsionFreeCode_pi02Hard`), and the free-subgroup row's lower bound as `FreeSubgroupEnumeratedHardness.containsFreeSubgroupCode_sigma02Hard`.  The three levels are read as a hierarchy theorem in [[natural-group-properties-realize-the-first-three-levels]].
 
 **The finite-presentation cells have one common gate.**  By [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]], a hereditary property is `Pi^0_2`-hard on finite presentations as soon as the MF compiler's positive rope has it.  The rope is MF and torsion-free, is not amenable and is not residually finite, and its soficity and hyperlinearity are open: this is exactly the pattern of closed and open cells above.
+
+**One endpoint.**  `Computability/ArithmeticalLedgerEndpoint.arithmetical_ledger` is this ledger's machine-checked cells conjoined into a single closed proposition.
