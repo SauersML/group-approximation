@@ -115,6 +115,17 @@ the fixed-depth nonhyperlinearity criterion.
   half-period words must be retained on the same positive-mass rectangular
   piece before this inequality can be applied.
 
+- **Exact regular dyadic levels already have one common last-layer carrier.**
+  `six-top-dyadic-root-signs-share-weyl-hexagon-carrier` takes the all-negative
+  character of the six commuting top-layer root involutions in
+  `SL_3(Z/2^a)`.  In every regular congruence frame it has trace exactly
+  `1/64`, is invariant under both signed Weyl generators, and makes both
+  half-period commutators negative in every oriented chamber.  Hence neither
+  six-way intersection loss nor closed-gallery holonomy survives on the
+  exact regular face.  The remaining decoder must recover this fixed
+  last-layer sign packet from an arbitrary matrix microstate and control its
+  one rectangular denominator-depth transition.
+
 - **Fixed odd clock packets close.**  For every fixed odd quotient packet,
   finite-group exactification plus the literal six-edge holonomy gives the
   no-leak branch with a dimension-independent modulus; this is

@@ -83,3 +83,19 @@ the finite arithmetic information lost by fixed Reynolds--Gram positivity.
   desired cut.  Any surviving matching must make its neighbor relation depend
   nonlinearly on the actual coordinate `U` and threshold `t`, or use a family
   of packet data growing with dimension.
+- The standard moving-subspace argument through residual-column coercivity
+  is still tracially blind.  `atlas-pointwise-column-coercivity-misses-moving-injection`
+  shows that the standard principal-angle argument would require
+  `A^*A<=L^2 sum_r R_r^*R_r`; this passes to the exact Leavitt factor and is
+  false there.  Thus any such column estimate must itself use matrix-only
+  rank/integrality information, or the injection has to be established only
+  after thresholding.  It cannot be a spectral corollary of fixed
+  tracially-valid residual-column coercivity.
+- The first literal surviving polar mechanism is now isolated in
+  `atlas-six-row-polar-high-spaces-meet-source-at-acute-angle`: join both the
+  initial and final high-singular spaces of all six residuals and ask that
+  the source high space meet their orthogonal complement trivially.  The
+  principal-angle injection route then proves `(SCI3)` with `C_rank=2`.
+  This incidence moves with `(U,t)` and is calibrated by an exact finite
+  affine-frame falsification test; unlike residual-column coercivity it is
+  imposed only after spectral thresholding.

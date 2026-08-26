@@ -75,6 +75,28 @@ untwisted fibre.
   and exact ucp splitting do not force the faithfulness needed by the prior
   no-go.  Closing the non-equivariant retract lane requires a Maslov-specific
   obstruction to such a boundary ideal, not a generic operator-system lemma.
+- **Simplicity and central-fibre origin do not supply that obstruction.**
+  In `v4-twisted-fibre-has-a-nonfaithful-untwisted-matrix-retract`, the
+  nondegenerate twisted fibre of `V_4` is the simple algebra `M_2`, the
+  untwisted fibre is the finite/RFD algebra `C^4`, and nevertheless the first
+  is a split ucp complete-order retract of `M_2(C^4)` with its generator
+  defect hidden in a scalar boundary ideal.  Hence the analogous formal
+  features of the Maslov central-fibre decomposition cannot close the lane.
+  The exact point absent from the countermodel is canonical covariance of
+  generator images; some Maslov-specific weakened covariance condition is
+  the surviving target.
+- **The covariance threshold is now sharp.**  Exact covariance modulo a
+  scalar cochain is impossible for an odd-to-even split ucp retract:
+  `scalar-covariant-odd-even-ucp-retract-is-impossible` uses the split norm
+  equality to make every scalar unimodular and hence every generator image
+  multiplicative.  But arbitrary matrix-valued homogeneous covariance is
+  still too weak.  `matrix-homogeneous-ucp-retracts-can-hide-defect` puts a
+  positive-definite Fourier multiplier in a hidden diagonal block, producing
+  exactly coaction-equivariant split ucp retracts with positive generator
+  defect.  Approximate scalar covariance likewise has no formal finite-stage
+  rigidity.  The remaining possible input is therefore a quantitative
+  Maslov-specific modulus upgrading matrix homogeneous coefficients toward a
+  scalar/projective coefficient; that is not supplied by ucp theory alone.
 - **The Connes-embeddability of the fibres is also live.**  Thom's
   criterion (Lemma 3.4, `thom-central-corner-criterion`) makes
   hyperlinearity of `E_3` equivalent to Connes-embeddability of all

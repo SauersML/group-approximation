@@ -129,6 +129,17 @@ weakening consumed by the HNN marked word.
   matrix-only step: authenticating positive common carrier mass around the
   closed hexagon rather than allowing separate rectangular root matchings.
 
+- **The exact regular congruence stratum authenticates a fixed positive
+  carrier.**  In `SL_3(Z/2^a)`, the six top-layer root involutions generate
+  `(C_2)^6`.  `six-top-dyadic-root-signs-share-weyl-hexagon-carrier` proves
+  that their all-negative character projection has regular trace `1/64`, is
+  fixed by the signed Weyl hexagon, and supports both negative half-period
+  commutators in every chamber.  Thus the common-carrier intersection is
+  already depth independent after exact regular congruence decoding.  The
+  unresolved boundary is outlier/approximate decoding plus the rectangular
+  transition between adjacent dyadic depths, not a loss intrinsic to the
+  closed A2 packet.
+
 - **Approximate perfectness removes the projective phases quantitatively.**
   This part of the exact proof survives presentation defect and is not the
   remaining obstruction.  Put
