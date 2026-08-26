@@ -14,17 +14,8 @@ three things mechanically:
 There is no "proof is analogous" row and no prose claim stronger than the
 declaration receiving the badge. A row is `closed` only when the declaration
 has an empty outer telescope and audits to `propext`, `Classical.choice`,
-`Quot.sound`.  A row is `conditional` only when the declaration is printed with
-the weaker `#audit_axioms` macro and is **not** printed with the closed one --
-so "conditional" can neither hide a real hypothesis nor understate a theorem
-that is actually closed.  Exactly one row is conditional.
-
-**When Peter--Weyl lands.**  `PeterWeyl.SeparatesPoints` is being discharged in
-`Analysis/CompactHaar` (step 1 done; steps 2 and 5 outstanding).  On the day it
-closes, do NOT edit the Cor. C.6 row: add an unconditional corollary, print it
-with `#audit_closed_axioms`, add it as a new `closed` row, and leave the
-conditional theorem and its row in place as the record of what the package
-proved without that input.
+`Quot.sound`.  Peter--Weyl point separation is proved by
+`Analysis/PeterWeylSeparation`, and every row is now closed.
 
 ## Rows
 
@@ -47,14 +38,15 @@ proved without that input.
 | Cor. C.3 (pairwise noncommensurable) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyNoncommensurable` | closed |
 | Cor. C.4 (Bohr column, one direction) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyBohrColumn` | closed |
 | Cor. C.5 (Hom-set factorization) | `GroupApproximation.Manuscript.MFRadicals.manuscriptAlternatingFamilyTargetEquivalence` | closed |
-| Cor. C.6 (five radicals, needs Peter--Weyl) | `GroupApproximation.Manuscript.MFRadicals.manuscriptFinitePerfectLampFiveRadicals` | conditional |
+| Peter--Weyl matrix separation | `GroupApproximation.PeterWeyl.compactGroupsAreMatrixSeparated` | closed |
+| Cor. C.6 (five radicals) | `GroupApproximation.Manuscript.MFRadicals.manuscriptFinitePerfectLampFiveRadicals` | closed |
 | Theorem suite (abstract) | `GroupApproximation.Manuscript.MFRadicals.manuscriptMFRadicalPaperSuite` | closed |
 <!-- END-LEDGER-ROWS -->
 
 ## Deliberately not advertised
 
-Two statements the package could be extended with are **not** claimed anywhere
-above, and no row depends on either:
+One statement the package could be extended with is **not** claimed anywhere
+above, and no row depends on it:
 
 * the **exact** radical of the literal seed `E`, which reduces to a single
   remaining statement -- that the symmetric double `Σ *_B Σ` is MF. The
@@ -62,16 +54,6 @@ above, and no row depends on either:
   the analytic half is isolated, not proved, in `Sofic/SymmetricDoubleMF` and
   `Sofic/SymmetricDoubleShulman`, which also rule out the tempting RF/LEF
   shortcut.
-* the fifth (Bohr) radical as an **equality**. Cor. C.4 claims only what is
-  proved without Peter--Weyl: the Bohr residual is contained in the lamp
-  subgroup, and every homomorphism into a profinite target kills that subgroup.
-  So on totally disconnected compact targets the fifth theory agrees with the
-  other four, and on general compact targets it can see at most what they see.
-  The missing direction, `lampSub n <= bohrResidual (WAlt n)` for a *connected*
-  compact target, is Peter--Weyl -- isolated as `PeterWeyl.SeparatesPoints` in
-  `Sofic/FiveRadicalsCoincide` -- and is assumed nowhere. The four-radical
-  statement in Cor. C.1 does not use it either.
-
 ## Adjectives
 
 Three different strengths of "explicit" appear in the package and are not
