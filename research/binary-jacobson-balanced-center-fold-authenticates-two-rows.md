@@ -56,5 +56,17 @@ opposite-coordinate T-root.  Closing `(JCF4)`--or proving that the two T-root
 leakages have complementary supports--would authenticate the full literal
 M4 target without returning to the old fixed tuple `D`.
 
+The remaining errors have no hidden gauge.  For
+`d in {x_21(T),x_41(T)}` and the literal source compression `C_d=ede`,
+
+```text
+dV-VC_d=(1-c_T)(1-e)de/sqrt(2).                          (JCF5)
+```
+
+For `d=x_21(T)`, the source support of the unprojected leakage `(1-e)de` is
+exactly `e-p`, where `p=e(1+x_23(1))(1+x_23(Q))/4` is the first mixed-polar
+support.  Thus the final task is a concrete range-incidence calculation for
+two named T-roots, not an unspecified covariance or selector problem.
+
 DERIVATION
 binary-jacobson-balanced-center-fold-proof

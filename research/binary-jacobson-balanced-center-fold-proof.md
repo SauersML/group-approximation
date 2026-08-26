@@ -49,3 +49,23 @@ dV=d(1-c_T)e/sqrt(2)
 This is `(JCF3)`.  No assertion is made for `x_21(T)` or `x_41(T)`: those
 roots do not reduce `e`, so moving them through the final factor `e` in
 `(4)` would be exactly the missing covariance claim.
+
+There is nevertheless an exact formula for that failure.  Every generator
+`d` of the balanced packet commutes with its center `c_T`.  With `C_d=ede`,
+
+```text
+dV-VC_d
+ =(1-c_T)(de-ede)/sqrt(2)
+ =(1-c_T)(1-e)de/sqrt(2),                                (5)
+```
+
+which proves `(JCF5)`.  For `d=u=x_21(T)`, the earlier polar-support theorem
+gives `(eue)^*(eue)=p`.  Since `u` is unitary,
+
+```text
+((1-e)ue)^*((1-e)ue)=e-p.                               (6)
+```
+
+So the first remaining row has precisely the advertised leakage source.
+Equation `(5)` also identifies exactly what must be computed for
+`x_41(T)`; no relation for its range is asserted here.
