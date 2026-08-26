@@ -56,6 +56,8 @@ contains F_2       Sigma^0_2 (lower: Pi^0_1-h) Sigma^0_2-complete            Sig
 residually finite  Pi^0_2 \ Pi^0_1, complete   Pi^0_3-complete               Pi^0_3-complete
                    OPEN [RF-Higman]
 residually p       Pi^0_2 \ Pi^0_1 (as RF)     Pi^0_3-complete               Pi^0_3-complete
+residually p for   --                          Sigma^0_4-complete            Sigma^0_4-complete
+some prime p
 property (T)       Sigma^0_1-complete          Sigma^0_1-complete (rec)      --
 ```
 
@@ -111,3 +113,5 @@ Torsion-freeness is [[torsion-freeness-recognition-is-pi2-complete]] (hardness k
 **The finite-presentation cells have one common gate.**  By [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]], a hereditary property is `Pi^0_2`-hard on finite presentations as soon as the MF compiler's positive rope has it.  The rope is MF and torsion-free, is not amenable and is not residually finite, and its soficity and hyperlinearity are open: this is exactly the pattern of closed and open cells above.
 
 **One endpoint.**  `Computability/ArithmeticalLedgerEndpoint.arithmetical_ledger` is this ledger's machine-checked cells conjoined into a single closed proposition.
+
+The fourth level is realized too: [[residually-p-for-some-prime-is-sigma4-complete]].
