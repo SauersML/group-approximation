@@ -414,6 +414,36 @@ theorem unaryGraphComp_eq (F G : ℤ → ℤ) :
         by simp, by simp⟩
       simpa [Function.comp_apply] using hgraph
 
+/-! ## The natural-number value domain
+
+The primitive-recursion trace itself constructs nonnegativity: start the
+running value at zero and advance it once per step. -/
+
+def natCounterBase : Set E := windowSupport 1 ∩ pinAt 0 0
+
+def natCounterStep : Set E := windowSupport 3 ∩ succPair 1 2
+
+theorem higmanGenerated_natCounterBase : HigmanGenerated natCounterBase :=
+  HigmanGenerated.inter (higmanGenerated_windowSupport 1) (higmanGenerated_pinAt 0 0)
+
+theorem higmanGenerated_natCounterStep : HigmanGenerated natCounterStep :=
+  HigmanGenerated.inter (higmanGenerated_windowSupport 3) (higmanGenerated_succPair 1 2)
+
+/-- The arity-two graph obtained by iterating successor from zero. -/
+def natCounterGraph : Set E := recGraph 0 natCounterBase natCounterStep
+
+theorem higmanGenerated_natCounterGraph : HigmanGenerated natCounterGraph := by
+  unfold natCounterGraph
+  exact higmanGenerated_recGraph_of_generated 0 8 3 (by norm_num) (by norm_num)
+    natCounterBase natCounterStep higmanGenerated_natCounterBase higmanGenerated_natCounterStep
+
+/-- Project away the counter output; the remaining first coordinate ranges
+over the nonnegative integers. -/
+noncomputable def nonnegativeValues : Set E := existsAt 1 2 natCounterGraph
+
+theorem higmanGenerated_nonnegativeValues : HigmanGenerated nonnegativeValues :=
+  higmanGenerated_existsAt 1 2 higmanGenerated_natCounterGraph
+
 end Seq
 end Higman
 end GroupApproximation
