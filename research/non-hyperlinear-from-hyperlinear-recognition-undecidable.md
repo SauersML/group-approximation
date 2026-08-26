@@ -6,6 +6,8 @@ title: An undecidability proof for hyperlinear recognition produces a non-hyperl
 target: non-hyperlinear-group
 requires:
   - hyperlinear-recognition-undecidable
+artifacts:
+  - GroupApproximation/Computability/HyperlinearUndecidabilityRoute.lean
 ---
 
 ## Why sufficient
@@ -31,3 +33,5 @@ finite-table certificate of
 [[local-approximation-properties-are-marked-closed]], non-hyperlinearity of a
 member is a `Sigma^0_2` event that becomes checkable once its witnessing
 table and tolerance are guessed.
+
+**Machine-checked.**  `Computability/HyperlinearUndecidabilityRoute.exists_nonhyperlinear_code_of_not_computablePred` is this implication on presentation codes, and `not_computablePred_iff_exists_nonhyperlinear_code` the equivalence with its Adian--Rabin converse (Markov data `hyperlinearMarkovData`), given undecidability of the word problem; a peer session's parallel formalization (`exists_not_isHyperlinear_iff_codeProperty_not_computable` and the `exists_nonhyperlinear_code_iff_*` endpoints) checks the same equivalence with the non-r.e. sharpening.
