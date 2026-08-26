@@ -109,7 +109,6 @@ rsync -rlptz \
   "$LOCAL/formalization.yaml" \
   "$LOCAL/LICENSE" \
   "$LOCAL/non_mf_groups_exist.tex" \
-  "$LOCAL/mf_radical_tex_quine.tex" \
   "$LOCAL/README.md" \
   "$USER_MSI@$LOGIN_IP:$REMOTE/" || exit $?
 
