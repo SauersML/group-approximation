@@ -48,7 +48,13 @@ U_i in U(20160 r_i),    r_i -> infinity,
 whose block coefficients generate `M_(r_i)(C)`, remain order-one
 noncommuting, and satisfy the full relator packet asymptotically.  Permutation,
 block-monomial, bounded-subhomogeneous, asymptotically commuting, and generic
-Haar models are excluded.  The Fournier--Facio alternative is equivalently a
+Haar models are excluded.  The minimal controlled-label slice now has three
+label modes and exactly two relative coefficient unitaries `Z_1,Z_2`; every
+packet defect is an explicit affine expression in their tracial Laurent
+moments.  Small-phase clock--shift pairs converge to the commutative wall and
+are excluded, leaving an order-one-phase/non-Heisenberg pair with
+positive-density commutator spectrum as the sharp structured survivor.  The
+Fournier--Facio alternative is equivalently a
 purely singular invariant amenable near representation with regular
 character; it must be genuinely non-Cartan and cannot admit an equivariant
 coarse factor over the compression cosets.  The common-block subcase is now
