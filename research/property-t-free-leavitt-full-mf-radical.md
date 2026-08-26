@@ -73,6 +73,8 @@ artifacts:
   - research/leavitt-first-offdiagonal-core-is-marked-non-lef.md
   - research/leavitt-first-offdiagonal-packet-has-jacobson-orbit-quotient.md
   - research/binary-jacobson-elementary-mark-is-finite-quotient-invisible.md
+  - research/binary-jacobson-steinberg-head-root-is-mf-invisible.md
+  - research/property-t-free-leavitt-via-jacobson-head-root.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -305,6 +307,28 @@ multiplication-table obstruction.  What remains is specifically MF rather
 than finite-group approximation: almost representations may realize the
 one-sided inverse through rectangular multiplicity, and converting the root
 table into square coefficient operators is the unresolved decoder.
+
+This gives a smaller complete endpoint than the full coefficient-module
+problem.  The single open statement
+`binary-jacobson-steinberg-head-root-is-mf-invisible` asks whether the head
+root `x_13(1-ST)` of the finitely presented one-branch Jacobson Steinberg
+group dies in every norm matrix corona.  The ring embeds in the binary
+Leavitt algebra and the head root maps exactly to `z`, so
+`property-t-free-leavitt-via-jacobson-head-root` closes the full goal from
+that one result.  Its only known escape is rectangular Morita typing; all
+finite-group and finite-ring models already kill the head.
+
+The independent matrix-only audit reaches the same seam from the opposite
+direction.  Weighted Hall deficit, rectangular rank deficiency,
+supercritical projection branching, the Atomic Leavitt Gap and the
+coarse-to-fine operator-norm leakage theorem are complete terminal
+obstructions.  None chooses its own carrier.  The unresolved theorem must
+select its source/target projections from each finite matrix coordinate and
+authenticate the native unequal-scale occurrence transporting them.  A
+uniform Hall deficit then gives the quantitative contradiction immediately;
+a nonzero same-reservoir return gives the operator-norm version even on a
+sparse carrier.  A functorial selector built from fixed group words is
+forbidden by the regular-representation model.
 
 The rank scale along that orbit is now uniform.
 `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed
