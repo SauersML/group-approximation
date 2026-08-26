@@ -149,3 +149,15 @@ to sit on one carrier.**
   coefficient occurrence to a spectral support incidence (or use full
   completeness to exclude that type); another multiplication/action return
   for the fine idempotent cannot imply `(OPLR)`.
+* **The first full-presentation same-root discrepancy is paid but remains
+  transverse.**  `native-t00-y1-collision-pays-marked-opnorm` proves that
+  the product of the actual `x_78(t_00)` arm with the old
+  `Y_1=x_78(s_0t_00)` arm is a nonzero root whose four-conjugate normal word
+  returns `z`.  Its negative projection meets the marked carrier in at least
+  one sixteenth of the marked mass, and the two arms differ by norm two on
+  that meet.  Hence the old exact collision is genuinely ruled out.
+  `marked-t00-separation-has-gl10-model` then gives the sharp residual fence:
+  two extra root-position vertices retain the paid distinction and its
+  marked saturation while keeping every named return row exact.  Since the
+  separating vertices are transverse to the signed-Hecke source, `(OPLR)`
+  still requires a spectral-source incidence or a source-escape payment.

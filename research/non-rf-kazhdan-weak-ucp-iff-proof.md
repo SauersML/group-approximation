@@ -5,11 +5,21 @@ kind: route
 title: Kazhdan averaging plus Malcev residual finiteness of finite-dimensional images, and a vacuous converse
 target: non-rf-kazhdan-weak-ucp-iff-non-hyperlinear
 requires:
-  - kazhdan-weak-ucp-stability-is-flexible-stability
+  - kazhdan-almost-invariant-corner-near-invariant-projection
 ---
 
-`(i) <=> (ii)` is `kazhdan-weak-ucp-stability-is-flexible-stability`
-(`Gamma` has property (T)).
+`(i) => (ii)`.  Apply weak ucp-stability to a hyperlinear approximation.
+Its Stinespring corner is almost invariant, so
+`kazhdan-almost-invariant-corner-near-invariant-projection` rounds it to a
+finite-dimensional invariant corner of relative dimension `1+o(1)`, giving
+the required flexible correction.  Conversely, a finite-dimensional
+flexible correction is already a ucp dilation, so `(ii) => (i)`.
+
+This equivalence concerns only hyperlinear approximations.  The stronger
+claim that weak ucp-stability implies correction of **all** asymptotic
+representations is
+`kazhdan-weak-ucp-stability-is-flexible-stability` and additionally assumes
+that `Gamma` is hyperlinear.  It cannot be invoked after assuming `(iii)`.
 
 `(ii) => (iii)`.  Suppose `Gamma` is hyperlinear; then it admits a
 hyperlinear approximation `phi_n : Gamma -> U(d_n)` (Dogon Def 1.4: this is
@@ -30,6 +40,6 @@ contradicting the hypothesis.  (This is the Becker--Lubotzky observation
 reproved here to keep the route self-contained; Dogon Prop. 1.11 is the
 same conclusion from `(i)` through Kirchberg's factorization property.)
 
-`(iii) => (i)` and `(iii) => (ii)`.  Both Def 1.5 and `(WF1)` quantify
+`(iii) => (i)` and `(iii) => (ii)`.  Both Def 1.5 and statement `(ii)` quantify
 over hyperlinear approximations of `Gamma`; if `Gamma` is not hyperlinear
 there are none (Dogon Def 1.1/1.4 equivalence), so both hold vacuously.

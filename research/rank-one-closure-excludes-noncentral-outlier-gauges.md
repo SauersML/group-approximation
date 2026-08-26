@@ -46,3 +46,11 @@ is therefore not the obvious natural affine extension: it is an arbitrary
 unitary/nonlinear gauge, a different coefficient module, or a noncongruence
 actor outlier.  Upgrading that scoped detector to those sectors is still the
 common-carrier/exactification problem, not another missing scalar relation.
+
+The linear sector is now larger than copies of the defining module.
+`authenticated-mixed-loop-kills-minuscule-affine-modules` computes the dual
+Fox rows and uses extension closure to kill every defining-characteristic
+module whose composition factors are trivial, defining, contragredient, or
+Frobenius twists of those.  The remaining linear question is the literal
+two-row group-algebra problem for the other highest-weight blocks; it is not
+hidden inside multiplicity or nonsplit-extension bookkeeping.

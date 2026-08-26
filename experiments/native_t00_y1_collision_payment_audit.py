@@ -34,9 +34,11 @@ def polynomial_product(left, right):
 
 def main():
     t1 = frozenset({("", "1")})
+    s1 = frozenset({("1", "")})
     t00 = frozenset({("", "00")})
     s0_t00 = frozenset({("0", "00")})
     s00_s1 = frozenset({("001", "")})
+    s000 = frozenset({("000", "")})
     discrepancy = t00 ^ s0_t00
 
     assert discrepancy
@@ -44,7 +46,25 @@ def main():
         polynomial_product(t1, discrepancy), s00_s1
     )
     assert sandwich == frozenset({ONE})
-    print("t1 (t00 + s0 t00) (s00 s1) = 1; discrepancy is nonzero")
+
+    a1 = frozenset({("1", "0")})
+    a2 = frozenset({("1", "00")})
+    a3 = frozenset({("1", "000")})
+    b2 = frozenset({("00", "1")})
+    b1 = frozenset({("0", "1")})
+    b0 = t1
+
+    assert polynomial_product(a1, discrepancy) == a2 ^ a3
+    assert polynomial_product(discrepancy, b2) == b0 ^ b1
+    assert polynomial_product(
+        polynomial_product(t1, a3), s000
+    ) == frozenset({ONE})
+    assert polynomial_product(b0, s1) == frozenset({ONE})
+    print(
+        "t1 (t00 + s0 t00) (s00 s1) = 1; "
+        "a1*d=a2+a3; d*b2=b0+b1; "
+        "ejected coefficients have one-sandwich inverses"
+    )
 
 
 if __name__ == "__main__":

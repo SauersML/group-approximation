@@ -254,8 +254,14 @@ theorem shearBackward_comp_shearForward (payload : FreeGroup X) :
   intro x
   rcases x with x | _
   · simp
-  · simp [MonoidHom.comp_apply,
-      DFunLike.congr_fun (shearBackward_comp_fixedInclusion payload) payload]
+  · rename_i u
+    rcases u with ⟨⟩
+    rw [shearForward_k0, map_mul, map_inv, shearBackward_k0]
+    have hfix := DFunLike.congr_fun
+      (shearBackward_comp_fixedInclusion payload) payload
+    change shearBackward payload (fixedInclusion payload) = fixedInclusion payload at hfix
+    rw [hfix]
+    group
 
 theorem shearForward_comp_shearBackward (payload : FreeGroup X) :
     (shearForward payload).comp (shearBackward payload) = MonoidHom.id _ := by
@@ -263,8 +269,14 @@ theorem shearForward_comp_shearBackward (payload : FreeGroup X) :
   intro x
   rcases x with x | _
   · simp
-  · simp [MonoidHom.comp_apply,
-      DFunLike.congr_fun (shearForward_comp_fixedInclusion payload) payload]
+  · rename_i u
+    rcases u with ⟨⟩
+    rw [shearBackward_k0, map_mul, shearForward_k0]
+    have hfix := DFunLike.congr_fun
+      (shearForward_comp_fixedInclusion payload) payload
+    change shearForward payload (fixedInclusion payload) = fixedInclusion payload at hfix
+    rw [hfix]
+    group
 
 /-- The `tau`-layer shear is an actual automorphism, with no freeness input. -/
 noncomputable def shearEquiv (payload : FreeGroup X) :

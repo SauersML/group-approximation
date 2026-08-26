@@ -567,3 +567,14 @@ same-root prefix coefficient by an additive or multiplicative occurrence
 attached to the marked carrier, or attach the returned arm directly to the
 unequal Hecke source.  Another root-position return diamond cannot yield
 `(BAC1)`.
+
+The same-root identification used by that `GL_8` fence is not compatible
+with the full presentation.  `native-t00-y1-collision-pays-marked-opnorm`
+uses the nonzero discrepancy `d=t_00+s_0t_00` and an explicit sandwich to
+return its root to `z`; the discrepancy has a fixed positive overlap with
+the marked carrier.  This is a genuine payment, but not yet an atomic
+return.  `marked-t00-separation-has-gl10-model` separates the two coefficient
+occurrences on two extra vertices, saturates their product back to the mark,
+and keeps all three `A_2` paths exact.  Thus the prototype must localize this
+paid discrepancy to the selected source atom, not merely distinguish the
+coefficients globally.

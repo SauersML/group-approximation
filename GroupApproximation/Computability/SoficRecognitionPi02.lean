@@ -152,10 +152,11 @@ def compTable (m : ℕ) (t s : List ℕ) : List ℕ :=
   (List.range (m + 1)).map fun x => act m t (act m s x)
 
 theorem act_idTable (m x : ℕ) (hx : x < m + 1) : act m (idTable m) x = x := by
-  have hlen : x < (idTable m).length := by
-    rw [idTable, List.length_range]; exact hx
+  have hlen : x < (List.range (m + 1)).length := by
+    rw [List.length_range]; exact hx
   have hget : (idTable m).getD x 0 = x := by
-    rw [List.getD_eq_getElem _ _ hlen, idTable]
+    show (List.range (m + 1)).getD x 0 = x
+    rw [List.getD_eq_getElem _ _ hlen]
     simp
   rw [act, hget]
   omega
@@ -222,11 +223,13 @@ def tabOf (m : ℕ) (p : Equiv.Perm (natModel m)) : List ℕ :=
 
 theorem act_tabOf (m : ℕ) (p : Equiv.Perm (natModel m)) (i : Fin (m + 1)) :
     act m (tabOf m p) i.val = (p i).val := by
-  have hlen : (i : ℕ) < (tabOf m p).length := by
-    rw [tabOf, List.length_ofFn]; exact i.isLt
+  have hlen : (i : ℕ)
+      < (List.ofFn fun j : Fin (m + 1) => (p j).val).length := by
+    rw [List.length_ofFn]; exact i.isLt
   have hget : (tabOf m p).getD i.val 0 = (p i).val := by
-    rw [List.getD_eq_getElem _ _ hlen, tabOf]
-    simp
+    show (List.ofFn fun j : Fin (m + 1) => (p j).val).getD i.val 0 = (p i).val
+    rw [List.getD_eq_getElem _ _ hlen]
+    simp only [List.getElem_ofFn]
   rw [act, hget]
   have h := (p i).isLt
   omega
@@ -267,7 +270,9 @@ theorem hammingDistance_eq_movedCount (m : ℕ) (P : Equiv.Perm (natModel m))
       rw [hP i, hcon]
       rfl
     · rintro ⟨-, hne⟩ hcon
-      exact hne (by rw [← hP i, hcon])
+      refine hne ?_
+      rw [← hP i, hcon]
+      simp
   have hcard : (hammingDisagreement P (1 : Equiv.Perm (natModel m))).card
       = movedCount m T := by
     rw [hset, Finset.card_filter, movedCount, natSum_map_range,
@@ -352,12 +357,12 @@ theorem hom_letter_val (c : PresentationCode) (cert : PermCert)
       = certGen c cert n := certGen_letterOf c cert n
   cases s with
   | true =>
-      rw [wordOf_pos, PermMicrostate.hom_of, certMicrostate_gen_val, hgen]
-      rfl
+      have hlt : letterTable c cert (n, true) = (certGen c cert n).1 := rfl
+      rw [wordOf_pos, PermMicrostate.hom_of, certMicrostate_gen_val, hgen, hlt]
   | false =>
+      have hlf : letterTable c cert (n, false) = (certGen c cert n).2 := rfl
       rw [wordOf_neg, map_inv, PermMicrostate.hom_of,
-        certMicrostate_gen_inv_val, hgen]
-      rfl
+        certMicrostate_gen_inv_val, hgen, hlf]
 
 theorem act_wordTable_val (c : PresentationCode) (cert : PermCert)
     (h : CertValid c cert) :
@@ -403,7 +408,7 @@ theorem certGen_certOf (c : PresentationCode) (m : ℕ)
         (tabOf m (g j), tabOf m (g j)⁻¹)).length := by
     rw [List.length_ofFn]; exact j.isLt
   rw [List.getD_eq_getElem _ _ hlen]
-  simp
+  simp only [List.getElem_ofFn]
 
 theorem certValid_certOf (c : PresentationCode) (m : ℕ)
     (g : Fin (genCount c) → Equiv.Perm (natModel m)) :
@@ -424,12 +429,9 @@ theorem certOf_hom (c : PresentationCode) (m : ℕ)
     (g : Fin (genCount c) → Equiv.Perm (natModel m))
     (x : FreeGroup (Fin (genCount c))) :
     (certMicrostate c (certOf c m g) (certValid_certOf c m g)).hom x
-      = FreeGroup.lift g x := by
-  have hEq : (certMicrostate c (certOf c m g) (certValid_certOf c m g)).hom
-      = FreeGroup.lift g := by
-    refine FreeGroup.ext_hom _ _ fun j => ?_
-    rw [PermMicrostate.hom_of, FreeGroup.lift_apply_of, certOf_gen]
-  rw [hEq]
+      = FreeGroup.lift g x :=
+  FreeGroup.lift_unique _
+    fun j => (PermMicrostate.hom_of _ j).trans (certOf_gen c m g j)
 
 /-! ## Transporting a microstate to `{0, …, m}` -/
 
@@ -555,23 +557,25 @@ theorem passes_iff_exists_cert (c : PresentationCode)
   constructor
   · rintro ⟨M, hrel, hsep⟩
     classical
-    obtain ⟨m, hm⟩ : ∃ m : ℕ, Fintype.card M.carrier = m + 1 :=
-      ⟨Fintype.card M.carrier - 1, by omega⟩
-    obtain e : M.carrier ≃ Fin (m + 1) := Fintype.equivFinOfCardEq hm
+    obtain ⟨m, hm⟩ : ∃ m : ℕ, Fintype.card M.carrier = m + 1 := by
+      have hpos := M.nonempty
+      exact ⟨Fintype.card M.carrier - 1, by omega⟩
+    have e : M.carrier ≃ Fin (m + 1) := Fintype.equivFinOfCardEq hm
     set g : Fin (genCount c) → Equiv.Perm (natModel m) :=
       fun j => permCongrHom e (M.gen j) with hg
     have hlift : FreeGroup.lift g = (permCongrHom e).comp M.hom := by
       refine FreeGroup.ext_hom _ _ fun j => ?_
-      rw [FreeGroup.lift_apply_of, MonoidHom.comp_apply, PermMicrostate.hom_of, hg]
+      rw [FreeGroup.lift_apply_of, MonoidHom.comp_apply, PermMicrostate.hom_of]
     have hlen : ∀ w : List (ℕ × Bool),
         (certMicrostate c (certOf c m g) (certValid_certOf c m g)).len w
           = M.len w := by
       intro w
       rw [PermMicrostate.len_def, PermMicrostate.len_def,
-        certOf_hom c m g (wordOf c w), hlift, MonoidHom.comp_apply,
-        show (1 : Equiv.Perm (natModel m)) = permCongrHom e 1 from
-          (map_one (permCongrHom e)).symm,
-        hammingDistance_permCongrHom]
+        certOf_hom c m g (wordOf c w), hlift, MonoidHom.comp_apply]
+      show hammingDistance (natModel m) (permCongrHom e (M.hom (wordOf c w))) 1
+        = hammingDistance M.carrier (M.hom (wordOf c w)) 1
+      rw [show (1 : Equiv.Perm (natModel m)) = permCongrHom e 1 from
+        (map_one (permCongrHom e)).symm, hammingDistance_permCongrHom]
     refine ⟨certOf c m g, (passesCheck_eq_true_iff (c, W, k) _).2
       ⟨certValid_certOf c m g, ?_, ?_⟩⟩
     · intro r hr
@@ -776,20 +780,6 @@ def answerCheck (x : CheckInput) (b : AnswerData) : Bool :=
   (decide (b.1.1 ∈ x.2.1) && WordProblemRE.searchCheck (x.1, b.1.1) b.1.2)
     || passesCheck x b.2
 
-theorem exists_or_of_pair {α β : Type} [Inhabited α] [Inhabited β]
-    (f : α → Bool) (g : β → Bool) :
-    (∃ b : α × β, (f b.1 || g b.2) = true)
-      ↔ (∃ a, f a = true) ∨ ∃ b, g b = true := by
-  constructor
-  · rintro ⟨⟨a, b⟩, hb⟩
-    rw [Bool.or_eq_true] at hb
-    rcases hb with h | h
-    · exact Or.inl ⟨a, h⟩
-    · exact Or.inr ⟨b, h⟩
-  · rintro (⟨a, ha⟩ | ⟨b, hb⟩)
-    · exact ⟨(a, default), by simp [ha]⟩
-    · exact ⟨(default, b), by simp [hb]⟩
-
 theorem exists_void_iff (c : PresentationCode) (W : List (List (ℕ × Bool))) :
     (∃ y : List (ℕ × Bool) × WordProblemRE.SearchData,
         (decide (y.1 ∈ W) && WordProblemRE.searchCheck (c, y.1) y.2) = true)
@@ -807,16 +797,20 @@ theorem exists_void_iff (c : PresentationCode) (W : List (List (ℕ × Bool))) :
 
 theorem answerCheck_iff (x : CheckInput) :
     (∃ b : AnswerData, answerCheck x b = true) ↔ Answers x.1 x.2.1 x.2.2 := by
-  rw [Answers, answerCheck]
-  rw [show (∃ b : AnswerData, ((decide (b.1.1 ∈ x.2.1) &&
-      WordProblemRE.searchCheck (x.1, b.1.1) b.1.2) || passesCheck x b.2) = true)
-      ↔ (∃ y : List (ℕ × Bool) × WordProblemRE.SearchData,
-          (decide (y.1 ∈ x.2.1) &&
-            WordProblemRE.searchCheck (x.1, y.1) y.2) = true) ∨
-        ∃ cert : PermCert, passesCheck x cert = true from
-      exists_or_of_pair _ _]
-  rw [exists_void_iff]
-  exact or_congr Iff.rfl (passes_iff_exists_cert x.1 x.2.1 x.2.2).symm
+  constructor
+  · rintro ⟨⟨⟨w, p⟩, cert⟩, hb⟩
+    rw [answerCheck, Bool.or_eq_true] at hb
+    rcases hb with h | h
+    · exact Or.inl ((exists_void_iff x.1 x.2.1).1 ⟨(w, p), h⟩)
+    · exact Or.inr ((passes_iff_exists_cert x.1 x.2.1 x.2.2).2 ⟨cert, h⟩)
+  · intro hAns
+    rcases hAns with hvoid | hM
+    · obtain ⟨⟨w, p⟩, h⟩ := (exists_void_iff x.1 x.2.1).2 hvoid
+      exact ⟨((w, p), default), by
+        rw [answerCheck, Bool.or_eq_true]; exact Or.inl h⟩
+    · obtain ⟨cert, h⟩ := (passes_iff_exists_cert x.1 x.2.1 x.2.2).1 hM
+      exact ⟨((default, default), cert), by
+        rw [answerCheck, Bool.or_eq_true]; exact Or.inr h⟩
 
 theorem primrec_answerCheck : Primrec₂ answerCheck := by
   have hmem : PrimrecPred fun z : CheckInput × AnswerData =>
@@ -849,7 +843,7 @@ theorem rePred_answers :
     REPred fun x : PresentationCode × (List (List (ℕ × Bool)) × ℕ) =>
       Answers x.1 x.2.1 x.2.2 :=
   (WordProblemRE.rePred_exists_eq_true primrec_answerCheck.to_comp).of_eq
-    fun x => (answerCheck_iff x).symm
+    answerCheck_iff
 
 /-! ## The arithmetical bounds -/
 
@@ -864,8 +858,15 @@ theorem primrec_decodeChallenge : Primrec decodeChallenge :=
 
 theorem decodeChallenge_surjective (Wk : List (List (ℕ × Bool)) × ℕ) :
     decodeChallenge (Encodable.encode Wk) = Wk := by
-  rw [decodeChallenge, Encodable.encodek]
-  rfl
+  simp [decodeChallenge]
+
+/-! Sealing the decoder is what keeps the arithmetical bookkeeping cheap:
+`Encodable.decode` at a product type runs through `Nat.unpair`, whose
+well-founded recursion elaboration will happily try to evaluate on an open
+term.  Nothing below needs to look inside the decoder --- only
+`decodeChallenge_surjective` --- so it is sealed here. -/
+
+attribute [irreducible] decodeChallenge
 
 /-- **Recognising soficity from a finite presentation code is `Π⁰₂`.** -/
 theorem pi02_isSofic :
@@ -878,13 +879,17 @@ theorem pi02_isSofic :
         Primrec.snd)).to_comp
     exact rePred_answers.comp hmap
   · intro c
-    rw [isSofic_iff_forall_answers c]
+    refine Iff.trans (isSofic_iff_forall_answers c) ?_
     constructor
     · intro h n
-      exact h _ _
+      show Answers c (decodeChallenge n).1 (decodeChallenge n).2
+      exact h (decodeChallenge n).1 (decodeChallenge n).2
     · intro h W k
-      have := h (Encodable.encode (W, k))
-      rwa [decodeChallenge_surjective (W, k)] at this
+      have hn : Answers c (decodeChallenge (Encodable.encode (W, k))).1
+          (decodeChallenge (Encodable.encode (W, k))).2 :=
+        h (Encodable.encode (W, k))
+      rw [decodeChallenge_surjective (W, k)] at hn
+      exact hn
 
 /-- **Recognising non-soficity from a finite presentation code is `Σ⁰₂`.** -/
 theorem sigma02_not_isSofic :

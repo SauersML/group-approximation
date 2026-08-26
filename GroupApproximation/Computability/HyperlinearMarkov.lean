@@ -91,17 +91,23 @@ theorem nonhyperlinearCodeProperty_not_re_of_exists
   negative_side_not_re_of_wordProblem (hyperlinearMarkovDataOfExists h)
     WordProblemRE.not_rePred_compl_wordProblemPred
 
+/-- If there is no non-hyperlinear group, hyperlinearity recognition is the
+computable constant-true predicate. -/
+theorem hyperlinearCodeProperty_computable_of_no_counterexample
+    (h : ¬ ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) :
+    ComputablePred HyperlinearCodeProperty := by
+  push Not at h
+  letI : DecidablePred HyperlinearCodeProperty :=
+    fun c ↦ isTrue (h (Carrier c) inferInstance)
+  exact ⟨inferInstance, Computable.const true⟩
+
 /-- If hyperlinearity recognition is undecidable, some group must fail
 hyperlinearity: otherwise its code predicate is computably constant true. -/
 theorem exists_not_isHyperlinear_of_codeProperty_not_computable
     (h : ¬ ComputablePred HyperlinearCodeProperty) :
     ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G := by
   by_contra hnone
-  push Not at hnone
-  apply h
-  letI : DecidablePred HyperlinearCodeProperty :=
-    fun c ↦ isTrue (hnone (Carrier c) inferInstance)
-  exact ⟨inferInstance, Computable.const true⟩
+  exact h (hyperlinearCodeProperty_computable_of_no_counterexample hnone)
 
 /-- **Recognition/existence equivalence.**  Non-hyperlinear groups exist if and
 only if hyperlinearity on finite presentation codes is undecidable. -/
@@ -111,6 +117,19 @@ theorem exists_not_isHyperlinear_iff_codeProperty_not_computable :
   ⟨hyperlinearCodeProperty_not_computable_of_exists,
     exists_not_isHyperlinear_of_codeProperty_not_computable⟩
 
+/-- **Enumeration/existence equivalence.**  Non-hyperlinear groups exist if
+and only if the non-hyperlinear finite-presentation codes are not recursively
+enumerable. -/
+theorem exists_not_isHyperlinear_iff_nonhyperlinearCodeProperty_not_re :
+    (∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
+      ¬ REPred (fun c ↦ ¬ HyperlinearCodeProperty c) := by
+  constructor
+  · exact nonhyperlinearCodeProperty_not_re_of_exists
+  · intro hnotre
+    by_contra hnone
+    exact hnotre
+      (hyperlinearCodeProperty_computable_of_no_counterexample hnone).not.to_re
+
 end HyperlinearMarkov
 end GroupApproximation
 
@@ -119,3 +138,4 @@ open GroupApproximation.HyperlinearMarkov
 #audit_axioms hyperlinearCodeProperty_not_computable_of_exists
 #audit_axioms nonhyperlinearCodeProperty_not_re_of_exists
 #audit_axioms exists_not_isHyperlinear_iff_codeProperty_not_computable
+#audit_axioms exists_not_isHyperlinear_iff_nonhyperlinearCodeProperty_not_re

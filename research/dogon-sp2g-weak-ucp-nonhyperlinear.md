@@ -4,7 +4,7 @@ id: dogon-sp2g-weak-ucp-nonhyperlinear
 kind: claim
 title: Weak ucp-stability of the symplectic lattice makes the Deligne universal-cover lattice non-hyperlinear
 distinct_from:
-  hs-stability-forces-nonhyperlinear-central-extension: that is Dogon--Vigdorovich Theorem 1.1, consuming flexible HS-stability of a (T;FD) group to kill a FINITE central extension; this is Dogon's earlier Corollary 1.9, consuming the formally weaker weak ucp-stability of the Kazhdan lattice Sp_2g(Z) to kill the infinite cyclic Deligne extension itself.
+  hs-stability-forces-nonhyperlinear-central-extension: that is Dogon--Vigdorovich Theorem 1.1, consuming flexible HS-stability of a (T;FD) group to kill a FINITE central extension; this is Dogon's earlier Corollary 1.9 for the Kazhdan lattice Sp_2g(Z) and kills the infinite cyclic Deligne extension itself. Although its source hypothesis is phrased as weak ucp-stability, it is equivalent here to full flexible HS-stability because Sp_2g(Z) is residually finite (hence hyperlinear) and Kazhdan.
   deligne-triple-cover-fd-central-invisibility: that is the finite-dimensional invisibility of the central mark in Deligne's triple cover of Sp_4(Z), an unconditional ingredient of the direct HS-collapse lane; this is the conditional theorem that a stability property of the base lattice already forces non-hyperlinearity of the cover.
   sl3-z-weakly-ucp-stable: that hypothesis concerns SL_3(Z) and is consumed through a thin co-dense HNN pair; this concerns Sp_2g(Z) and is consumed through Deligne's central extension with no auxiliary construction.
 ---
@@ -36,5 +36,7 @@ non-residually-finite corner is
 group itself, here it is Deligne's extension; both need only a lifting
 property, not a stability theorem.  By
 `kazhdan-weak-ucp-stability-is-flexible-stability` the hypothesis is also
-exactly flexible HS-stability of `Sp_(2g)(Z)` on hyperlinear
-approximations, the form in which Dogon's abstract states it.
+exactly full flexible HS-stability of `Sp_(2g)(Z)` on all asymptotic
+representations.  Thus the weak-ucp wording is not a smaller positive route
+for this symplectic lattice; what differs from the finite-extension theorem
+is the extension mechanism and endpoint.

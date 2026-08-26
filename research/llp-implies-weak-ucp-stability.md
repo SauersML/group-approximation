@@ -18,8 +18,9 @@ representations `pi_n` on Hilbert spaces containing `C^(d_n)`.
 
 Consequences already in the graph: with non-residual-finiteness and
 property (T), non-hyperlinearity
-(`llp-non-rf-kazhdan-group-is-non-hyperlinear`); with property (T) alone,
-flexible HS-stability on hyperlinear approximations
+(`llp-non-rf-kazhdan-group-is-non-hyperlinear`); for a hyperlinear
+property-(T) group, full flexible HS-stability on all asymptotic
+representations
 (`kazhdan-weak-ucp-stability-is-flexible-stability`).  Every amenable
 group is weakly ucp-stable this way (Choi--Effros lifting), which is
 Dogon's separation of weak ucp-stability from flexible HS-stability.

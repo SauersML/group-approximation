@@ -286,6 +286,42 @@ noncomputable def wordCoordinateSet (n : ℕ) :
     (FreeAlgebraDegree.freeWordsLE X n).image fun w ↦
       (b, FreeAlgebraDegree.wordMonomial X ℤ w)
 
+/-- The degree-bounded word coordinates in one of the two root subgroups. -/
+noncomputable def rootWordCoordinateSet (b : Fin 2) (n : ℕ) :
+    Finset (Fin 2 × R (X := X)) := by
+  classical
+  exact (FreeAlgebraDegree.freeWordsLE X n).image fun w ↦
+    (b, FreeAlgebraDegree.wordMonomial X ℤ w)
+
+theorem mem_rootWordCoordinateSet_iff
+    (b c : Fin 2) (a : R (X := X)) (n : ℕ) :
+    (c, a) ∈ rootWordCoordinateSet (X := X) b n ↔
+      c = b ∧ ∃ w : FreeMonoid X,
+        FreeAlgebraDegree.freeWordLength X w ≤ n ∧
+        FreeAlgebraDegree.wordMonomial X ℤ w = a := by
+  classical
+  constructor
+  · intro h
+    rw [rootWordCoordinateSet] at h
+    obtain ⟨w, hw, heq⟩ := Finset.mem_image.mp h
+    exact ⟨(congrArg Prod.fst heq).symm, w,
+      (FreeAlgebraDegree.mem_freeWordsLE X w n).mp hw,
+      congrArg Prod.snd heq⟩
+  · rintro ⟨rfl, w, hw, ha⟩
+    rw [rootWordCoordinateSet]
+    exact Finset.mem_image.mpr
+      ⟨w, (FreeAlgebraDegree.mem_freeWordsLE X w n).mpr hw,
+        Prod.ext rfl ha⟩
+
+theorem rootWordCoordinateSet_mono (b : Fin 2) {m n : ℕ} (hmn : m ≤ n) :
+    rootWordCoordinateSet (X := X) b m ⊆
+      rootWordCoordinateSet (X := X) b n := by
+  rintro ⟨c, a⟩ h
+  obtain ⟨hcb, w, hw, ha⟩ :=
+    (mem_rootWordCoordinateSet_iff b c a m).mp h
+  exact (mem_rootWordCoordinateSet_iff b c a n).mpr
+    ⟨hcb, w, hw.trans hmn, ha⟩
+
 theorem mem_wordCoordinateSet_iff (b : Fin 2) (a : R (X := X)) (n : ℕ) :
     (b, a) ∈ wordCoordinateSet (X := X) n ↔
       ∃ w : FreeMonoid X, FreeAlgebraDegree.freeWordLength X w ≤ n ∧
@@ -661,6 +697,175 @@ theorem measurableSet_finitePlaneNontrivialSet
       rw [hunion]
       exact hsingle.union ih
 
+/-! ### Least detected word degree -/
+
+/-- Characters detected on a word monomial of degree at most `n` in one
+fixed root subgroup. -/
+def rootWordVisibleSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) : Set (Spectrum rho) :=
+  finitePlaneNontrivialSet rho (rootWordCoordinateSet (X := X) b n)
+
+theorem rootWordVisibleSet_mono
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) {m n : ℕ} (hmn : m ≤ n) :
+    rootWordVisibleSet rho b m ⊆ rootWordVisibleSet rho b n :=
+  finitePlaneNontrivialSet_mono rho (rootWordCoordinateSet_mono b hmn)
+
+theorem measurableSet_rootWordVisibleSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) :
+    MeasurableSet (rootWordVisibleSet rho b n) :=
+  measurableSet_finitePlaneNontrivialSet rho _
+
+/-- The cumulative detection set strictly before degree `d`.  Monotonicity
+of the degree filtration makes this just the preceding visible set. -/
+def rootWordVisibleBefore
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) : ℕ → Set (Spectrum rho)
+  | 0 => ∅
+  | d + 1 => rootWordVisibleSet rho b d
+
+theorem measurableSet_rootWordVisibleBefore
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (d : ℕ) :
+    MeasurableSet (rootWordVisibleBefore rho b d) := by
+  cases d with
+  | zero => exact MeasurableSet.empty
+  | succ d => exact measurableSet_rootWordVisibleSet rho b d
+
+/-- The Borel cell on which `d` is the least word degree detected in one
+fixed root subgroup. -/
+def leastRootWordDetectionSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (d : ℕ) : Set (Spectrum rho) :=
+  rootWordVisibleSet rho b d \ rootWordVisibleBefore rho b d
+
+theorem measurableSet_leastRootWordDetectionSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (d : ℕ) :
+    MeasurableSet (leastRootWordDetectionSet rho b d) :=
+  (measurableSet_rootWordVisibleSet rho b d).diff
+    (measurableSet_rootWordVisibleBefore rho b d)
+
+/-- Distinct least-degree cells for one root subgroup are disjoint. -/
+theorem disjoint_leastRootWordDetectionSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) {d e : ℕ} (hde : d ≠ e) :
+    Disjoint (leastRootWordDetectionSet rho b d)
+      (leastRootWordDetectionSet rho b e) := by
+  apply Set.disjoint_left.mpr
+  intro chi hd he
+  change chi ∈ rootWordVisibleSet rho b d ∧
+      chi ∉ rootWordVisibleBefore rho b d at hd
+  change chi ∈ rootWordVisibleSet rho b e ∧
+      chi ∉ rootWordVisibleBefore rho b e at he
+  rcases lt_or_gt_of_ne hde with hlt | hgt
+  · cases e with
+    | zero => omega
+    | succ k =>
+        apply he.2
+        exact rootWordVisibleSet_mono rho b (by omega) hd.1
+  · cases d with
+    | zero => omega
+    | succ k =>
+        apply hd.2
+        exact rootWordVisibleSet_mono rho b (by omega) he.1
+
+/-- The least detected word degree up to stage `n`; `n+1` is the sentinel
+when the character is trivial on the entire degree-`n` root family. -/
+noncomputable def leastRootWordDegreeWithin
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho) : ℕ := by
+  classical
+  exact if h : ∃ d, d ≤ n ∧ chi ∈ rootWordVisibleSet rho b d then
+    Nat.find h
+  else n + 1
+
+theorem leastRootWordDegreeWithin_le
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho)
+    (hchi : chi ∈ rootWordVisibleSet rho b n) :
+    leastRootWordDegreeWithin rho b n chi ≤ n := by
+  classical
+  let h : ∃ d, d ≤ n ∧ chi ∈ rootWordVisibleSet rho b d :=
+    ⟨n, le_rfl, hchi⟩
+  rw [leastRootWordDegreeWithin, dif_pos h]
+  exact Nat.find_min' h ⟨n, le_rfl, hchi⟩
+
+theorem leastRootWordDegreeWithin_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho)
+    (hchi : chi ∈ rootWordVisibleSet rho b n) :
+    chi ∈ rootWordVisibleSet rho b
+      (leastRootWordDegreeWithin rho b n chi) := by
+  classical
+  let h : ∃ d, d ≤ n ∧ chi ∈ rootWordVisibleSet rho b d :=
+    ⟨n, le_rfl, hchi⟩
+  rw [leastRootWordDegreeWithin, dif_pos h]
+  exact (Nat.find_spec h).2
+
+theorem not_mem_rootWordVisibleSet_of_lt_leastRootWordDegreeWithin
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho)
+    (hchi : chi ∈ rootWordVisibleSet rho b n) {d : ℕ}
+    (hd : d < leastRootWordDegreeWithin rho b n chi) :
+    chi ∉ rootWordVisibleSet rho b d := by
+  classical
+  intro hdmem
+  let h : ∃ e, e ≤ n ∧ chi ∈ rootWordVisibleSet rho b e :=
+    ⟨n, le_rfl, hchi⟩
+  have hfindle : Nat.find h ≤ n := Nat.find_min' h ⟨n, le_rfl, hchi⟩
+  have hdle : d ≤ n := by
+    rw [leastRootWordDegreeWithin, dif_pos h] at hd
+    omega
+  have hminimal := Nat.find_min' h ⟨d, hdle, hdmem⟩
+  rw [leastRootWordDegreeWithin, dif_pos h] at hd
+  omega
+
+/-- A character visible by degree `n` belongs to the least-degree cell
+selected by `leastRootWordDegreeWithin`. -/
+theorem mem_leastRootWordDetectionSet_leastRootWordDegreeWithin
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho)
+    (hchi : chi ∈ rootWordVisibleSet rho b n) :
+    chi ∈ leastRootWordDetectionSet rho b
+      (leastRootWordDegreeWithin rho b n chi) := by
+  refine ⟨leastRootWordDegreeWithin_mem rho b n chi hchi, ?_⟩
+  generalize hdegree : leastRootWordDegreeWithin rho b n chi = d
+  cases d with
+  | zero => exact Set.not_mem_empty chi
+  | succ k =>
+      change chi ∉ rootWordVisibleSet rho b k
+      apply not_mem_rootWordVisibleSet_of_lt_leastRootWordDegreeWithin
+        rho b n chi hchi
+      omega
+
+/-- The least-degree cells through stage `n` are a disjoint exhaustion of
+the degree-`n` visible set. -/
+theorem iUnion_leastRootWordDetectionSet_range
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) :
+    (⋃ d ∈ (Finset.range (n + 1) : Set ℕ),
+      leastRootWordDetectionSet rho b d) = rootWordVisibleSet rho b n := by
+  ext chi
+  constructor
+  · intro hchi
+    obtain ⟨d, hd⟩ := Set.mem_iUnion.mp hchi
+    obtain ⟨hdrange, hdcell⟩ := Set.mem_iUnion.mp hd
+    have hdle : d ≤ n := by
+      have := Finset.mem_range.mp (Finset.mem_coe.mp hdrange)
+      omega
+    exact rootWordVisibleSet_mono rho b hdle hdcell.1
+  · intro hchi
+    let d := leastRootWordDegreeWithin rho b n chi
+    have hdle : d ≤ n := leastRootWordDegreeWithin_le rho b n chi hchi
+    apply Set.mem_iUnion.mpr
+    refine ⟨d, Set.mem_iUnion.mpr ⟨?_, ?_⟩⟩
+    · exact Finset.mem_coe.mpr (Finset.mem_range.mpr (by omega))
+    · exact mem_leastRootWordDetectionSet_leastRootWordDegreeWithin
+        rho b n chi hchi
+
 omit [Fintype X] in
 theorem iUnion_finitePlaneNontrivialSet
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E)) :
@@ -980,4 +1185,7 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms finitePlaneNontrivialSet_of_controlled_characterAction_lower_mem
 #audit_axioms wordCoordinateNontrivial_of_controlled_characterAction_upper_mem
 #audit_axioms wordCoordinateNontrivial_of_controlled_characterAction_lower_mem
+#audit_axioms measurableSet_leastRootWordDetectionSet
+#audit_axioms disjoint_leastRootWordDetectionSet
+#audit_axioms iUnion_leastRootWordDetectionSet_range
 #audit_axioms measurableSet_fullPlaneNontrivialSet

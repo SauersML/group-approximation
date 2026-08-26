@@ -73,8 +73,9 @@ claim.
   only at level two).
 - **Outliers.**  Nothing beyond the reduction to `sl3-z-weakly-ucp-stable`
   is known.  What is established (`infinite-hyperlinear-kazhdan-group-is-not-hs-stable`)
-  is that `SL_3(Z)` is not STRICTLY HS-stable; flexible and weak ucp
-  stability on regular-type hyperlinear approximations are open, and both
+  is that `SL_3(Z)` is not STRICTLY HS-stable; weak ucp-stability is
+  equivalent here to full flexible stability on every asymptotic
+  representation, and this common assertion is open.  Both
   this route and the earlier thin-subgroup edge
   `non-hyperlinear-from-sl3-z-weak-ucp-stability` hinge on exactly that
   hypothesis, so the goal is one hypothesis away along two independent

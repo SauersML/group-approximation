@@ -234,6 +234,72 @@ theorem exists_scalar_conjugator_eq_smul_adjoint
   exact ⟨α,
     conjugator_eq_smul_adjoint_of_adjointInverse_trans_eq_smul_refl T α hα⟩
 
+/-- If an invertible operator is a unit scalar multiple of its adjoint, then
+that scalar times its conjugate is one. -/
+theorem unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
+    {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    [FiniteDimensional ℂ V] [Nontrivial V]
+    (T : V ≃ₗ[ℂ] V) (α : ℂˣ)
+    (hT : T = α • adjointLinearEquiv T) :
+    star (α : ℂ) * (α : ℂ) = 1 := by
+  obtain ⟨x, hx⟩ := exists_ne (0 : V)
+  have hTx : T x ≠ 0 := by
+    intro hzero
+    apply hx
+    exact T.injective (by simpa using hzero)
+  have hpoint (y : V) :
+      T y = (α : ℂ) • T.toLinearMap.adjoint y := by
+    simpa using DFunLike.congr_fun hT y
+  have hinner :
+      inner ℂ (T x) (T x) =
+        (star (α : ℂ) * (α : ℂ)) * inner ℂ (T x) (T x) := by
+    calc
+      inner ℂ (T x) (T x) =
+          inner ℂ ((α : ℂ) • T.toLinearMap.adjoint x) (T x) := by
+        rw [hpoint]
+      _ = star (α : ℂ) * inner ℂ (T.toLinearMap.adjoint x) (T x) := by
+        rw [inner_smul_left]
+      _ = star (α : ℂ) * inner ℂ x (T (T x)) := by
+        rw [LinearMap.adjoint_inner_left]
+      _ = star (α : ℂ) *
+          inner ℂ x ((α : ℂ) • T.toLinearMap.adjoint (T x)) := by
+        rw [hpoint]
+      _ = star (α : ℂ) *
+          ((α : ℂ) * inner ℂ x (T.toLinearMap.adjoint (T x))) := by
+        rw [inner_smul_right]
+      _ = (star (α : ℂ) * (α : ℂ)) * inner ℂ (T x) (T x) := by
+        rw [LinearMap.adjoint_inner_right]
+        ring
+  have hinner_ne : inner ℂ (T x) (T x) ≠ 0 := by
+    intro hzero
+    exact hTx (inner_self_eq_zero.mp hzero)
+  refine mul_right_cancel₀ hinner_ne ?_
+  simpa using hinner.symm
+
+/-- The unit scalar relating an invertible operator to its adjoint has
+complex norm one. -/
+theorem norm_unitScalar_eq_one_of_eq_smul_adjoint
+    {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    [FiniteDimensional ℂ V] [Nontrivial V]
+    (T : V ≃ₗ[ℂ] V) (α : ℂˣ)
+    (hT : T = α • adjointLinearEquiv T) :
+    ‖(α : ℂ)‖ = 1 := by
+  have hstar := unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint T α hT
+  have hnorm := congrArg norm hstar
+  rw [norm_mul, norm_star, norm_one] at hnorm
+  nlinarith [norm_nonneg (α : ℂ)]
+
+/-- The scalar supplied by the transported-involution argument is an actual
+unit-modulus phase. -/
+theorem exists_phase_conjugator_eq_smul_adjoint
+    {D V : Type*} [CStarAlgebra D] [NormedAddCommGroup V]
+    [InnerProductSpace ℂ V] [FiniteDimensional ℂ V] [Nontrivial V]
+    (e : D ≃ₐ[ℂ] Module.End ℂ V) (T : V ≃ₗ[ℂ] V)
+    (hT : T.conjAlgEquiv ℂ = transportedInvolutionAutomorphism e) :
+    ∃ α : ℂˣ, ‖(α : ℂ)‖ = 1 ∧ T = α • adjointLinearEquiv T := by
+  obtain ⟨α, hα⟩ := exists_scalar_conjugator_eq_smul_adjoint e T hT
+  exact ⟨α, norm_unitScalar_eq_one_of_eq_smul_adjoint T α hα, hα⟩
+
 /-- The blockwise transported involution has the concrete Skolem--Noether
 form `x ↦ T x⋆ T⁻¹` for an actual invertible complex-linear operator
 `T`. -/
@@ -262,4 +328,7 @@ open GroupApproximation.BlackadarKirchberg
 #audit_axioms exists_scalar_adjointInverse_trans_conjugator
 #audit_axioms conjugator_eq_smul_adjoint_of_adjointInverse_trans_eq_smul_refl
 #audit_axioms exists_scalar_conjugator_eq_smul_adjoint
+#audit_axioms unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
+#audit_axioms norm_unitScalar_eq_one_of_eq_smul_adjoint
+#audit_axioms exists_phase_conjugator_eq_smul_adjoint
 #audit_axioms exists_conjugatingLinearEquiv_formula_for_transportedInvolution

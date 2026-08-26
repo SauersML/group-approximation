@@ -27,10 +27,10 @@ twisted sectors and produces congruence representations in untwisted ones.
 
 ## The theorems
 
-1. `kazhdan-weak-ucp-stability-is-flexible-stability` — for (T) groups,
-   Dogon's weak ucp-stability = flexible HS-stability on hyperlinear
-   approximations.  (Dogon's Thm 1.6 hypothesis is not weaker than his
-   Thm 1.3's on any group either applies to.)
+1. `kazhdan-weak-ucp-stability-is-flexible-stability` — for hyperlinear
+   (T) groups, Dogon's weak ucp-stability = full flexible HS-stability on
+   all asymptotic representations.  The hyperlinearity qualifier is
+   load-bearing: on a non-hyperlinear group weak ucp-stability is vacuous.
 2. `kazhdan-subgroup-weak-ucp-exactifies-microstates` — subgroup form:
    HNN/wreath microstates become exact on a weakly ucp-stable Kazhdan
    subgroup; confines RCC enemies to the Lambda-exact face; the
@@ -56,8 +56,8 @@ twisted sectors and produces congruence representations in untwisted ones.
 
 ## The holes (each alone reaches the goal)
 
-- `sl3-z-weakly-ucp-stable` — flexible stability of `SL_3(Z)` on
-  separating sequences; consumed through the thin co-dense pair
+- `sl3-z-weakly-ucp-stable` — full flexible stability of `SL_3(Z)` on all
+  asymptotic representations (equivalently weak ucp-stability); consumed through the thin co-dense pair
   (`non-hyperlinear-from-sl3-z-weak-ucp-stability`).
 - `non-rf-kazhdan-group-with-llp-full-c-star-algebra` — candidates:
   simple Kazhdan Kac--Moody lattices (forced witnesses:
@@ -116,4 +116,3 @@ The triangle corner has its normal form
 (`triangle-colimit-llp-reduces-to-relator-local-splitting`) and the
 Kac--Moody LP fork (`compact-hyperbolic-km-lattices-fail-lp`) whose
 refutation branch is the shortest program-closing conditional recorded.
-

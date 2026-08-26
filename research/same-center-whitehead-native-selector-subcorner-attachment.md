@@ -172,6 +172,15 @@ excluded by the regular-trace firewall.
   those same-root identifications; another root-position diamond is below
   the occurrence seam.
 
+  The full presentation does forbid the particular equality used by that
+  `GL_8` model.  `native-t00-y1-collision-pays-marked-opnorm` proves that
+  `D=x_78(t_00+s_0t_00)` has a fixed normal return to `z`, so it has positive
+  overlap with the marked carrier and forces maximal separation of the two
+  arms there.  This is not yet `(SNA2)`: the `GL_10` model of
+  `marked-t00-separation-has-gl10-model` retains the paid distinction and
+  stores it outside every named signed-Hecke source.  The next occurrence
+  must localize `P_zP_D` to the row-two source or make source escape pay.
+
 - **Move the marked root by an external Weyl and retain both Pauli charts.**
   The root-valued relative word is exact, but the chart mover is not erased.
   `six-pair-chart-swap-retains-external-gauge` gives a full `M_64(C)` label

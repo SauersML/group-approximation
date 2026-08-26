@@ -90,6 +90,17 @@ spectator can also make the dressed outputs share a trivial gauge while the
 two raw affine gauges retain fractions `1/2` and `5/6`.  Consequently neither
 root-valued dressing, finite-factor enlargement, nor spectator Gram payment
 authenticates the two raw selector rows.
+One full-presentation coefficient payment is nevertheless now available.
+The discrepancy root `x_78(t_00+s_0t_00)` has an explicit four-conjugate
+normal return to `z`; its negative projection occupies a fixed positive part
+of the marked carrier and the two coefficient arms differ there by norm two.
+This rules out the earlier exact `GL_8` collision.  It still does not type a
+selector source: a marked `GL_10(F_2)` packet keeps the paid discrepancy on
+transverse root-position vertices, and a second `GL_10` packet realizes the
+fine-idempotent root and both Morita absorption rows with half, rather than
+quarter, negative spectral rank.  The remaining seam is therefore a
+spectral incidence between the paid carrier and the signed Hecke source, or
+a fixed ordinary word which charges escape from that source.
 Thus the statement called `finite covariance groupification and the reservoir
 gauge` in the proposal is valid as a conditional representation-theoretic
 lemma, but the assertion that the native Leavitt words satisfy its covariance

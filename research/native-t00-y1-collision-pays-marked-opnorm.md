@@ -85,17 +85,59 @@ whenever the common carrier is nonzero.  After active-core reblocking,
 `(TYC6)` is a dimension-independent positive-rank payment; its rounded
 microstate version loses only `o(1)` normalized mass.
 
+The same attachment is coefficient-sensitive relative to the literal
+middle-index dual frame.  With the notation
+
+```text
+a_m=s_1t_(0^m),       b_m=s_(0^m)t_1,
+C_7=x_17(a_1),        C_8=x_18(a_2),
+D_7=x_73(b_1),        D_8=x_83(b_2),
+a_0=s_1,              b_0=t_1,
+```
+
+the first mixed commutators with the collision root satisfy
+
+```text
+[C_7,D] C_8=x_18(a_3),          [D,D_8] D_7=x_73(b_0). (TYC8)
+```
+
+Indeed
+
+```text
+a_1d=a_2+a_3,                    db_2=b_0+b_1.          (TYC9)
+```
+
+Both new coefficient directions have full Leavitt rank scale:
+
+```text
+t_1a_3s_000=1,                   b_0s_1=1.              (TYC10)
+```
+
+Thus `D` is not another linear actor on the known seven-pair
+scale-neutral table: its first literal contacts with the dual frame eject
+the new roots `x_18(a_3)` and `x_73(b_0)`.  This is an occurrence-typed
+statement, because `C_7,C_8,D_7,D_8` are the actual middle-index roots
+normalized by the native Whitehead selectors, not replacement copies.
+The normalization boundary is equally explicit: the prefix Whiteheads
+normalize those four frame roots, but no displayed relation says that they
+normalize the collision root `D=x_78(d)` or that `D` preserves their
+constant atom.  Thus `(TYC8)` is a literal occurrence coupling, not yet a
+shared-selector-carrier theorem.
+
 This is the first full-presentation relation that excludes the exact
 `GL_8(F_2)` escape in `row2-parallel-a2-return-diamond-has-gl8-model`:
 that model assigns `T=Y`, hence `D=1`, while keeping the mark nonidentity.
 It cannot extend to `(TYC1)--(TYC3)`.
 
-The payment now lies on a fixed positive part of the marked carrier, but it
-does not yet prove that this part meets the signed Hecke source.  The next
-live occurrence must localize `P_zP_D` to the common center-chain Hecke
-corner or show that escape from that corner itself pays a fixed return
-defect.  No Property T, canonical trace, stability theorem, literature
-input, or local computation is used.
+The payment now lies on a fixed positive part of the marked carrier, and
+`(TYC8)` proves that the literal middle-index frame sees the collision.
+It still does not prove that this paid part meets the signed Hecke source:
+the commutator identities alone give no lower bound for the intersection
+of `P_zP_D` with that source projection.  The next live occurrence must
+localize `P_zP_D` to the common center-chain Hecke corner or show that
+escape from that corner itself pays a fixed return defect.  No Property T,
+canonical trace, stability theorem, literature input, or local computation
+is used.
 
 DERIVATION
 native-t00-y1-collision-payment-proof

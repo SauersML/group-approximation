@@ -118,3 +118,27 @@ literature theorem is permitted in this claim.
   selector gauges have positive fractions `1/2` and `5/6`.  Hence a
   same-packet dual frame does not close the scalar holonomy claim without an
   ordinary undressing/raw-output comparison occurrence.
+- **Charge the first same-root coefficient collision to the mark.**  This
+  succeeds and is the first full-presentation operator-norm payment on this
+  branch.  `native-t00-y1-collision-pays-marked-opnorm` puts
+
+  ```text
+  D=x_78(t_00+s_0t_00)=x_78(t_00)Y_1
+  ```
+
+  and uses an explicit Leavitt sandwich to write `z` as a product of four
+  conjugates of `D`.  A surviving mark forces
+  `||x_78(t_00)-Y_1||_op` uniformly positive.  More strongly, the commuting
+  root projections satisfy
+  `tau(P_zP_D)>=tau(P_z)/16`, and on this common carrier the mismatch has
+  operator norm two.  This excludes the exact `GL_8` collision used by the
+  parallel-return fence.
+
+  The payment is not yet the native Gram.  The exact packet of
+  `marked-t00-separation-has-gl10-model` stores `T` and `Y_1` on two extra
+  transverse vertices, returns `D` to the surviving mark, and keeps both
+  native `A_2` paths, Hecke heads, and the prefix braid.  It contains no
+  signed-Hecke source projection, so the paid carrier can still miss the
+  selector source.  The new sharp target is to multiply or compress this
+  discrepancy by an actual center-chain source occurrence, or charge its
+  escape from that source to a row defect.

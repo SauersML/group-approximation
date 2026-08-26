@@ -373,6 +373,26 @@ The repaired scalar target is now named
 `arbitrary-profile-cross-gram-implies-shared-gauge-compiler` records the
 valid route from that stronger input to the shared-gauge compiler.
 
+The first genuinely full-presentation operator-norm payment on this repaired
+route is now established.  `native-t00-y1-collision-pays-marked-opnorm`
+compares the actual row-two arm `x_78(t_00)` with the first prefix arm
+`Y_1=x_78(s_0t_00)`.  Their discrepancy coefficient has an explicit
+single-sandwich inverse, so its root normally returns to `z` in four
+conjugate factors.  On the direct marked/discrepancy overlap, of relative
+mass at least `1/16`, the two arms differ by operator norm two.  Thus the
+finite `GL_8` collision is not a full-presentation model.
+
+This payment still stops one incidence short of collapse.
+`marked-t00-separation-has-gl10-model` separates the two arms, saturates the
+discrepancy back to the surviving mark, and realizes all currently named
+Hecke/return rows while storing the separation on transverse vertices.
+Likewise `fine-idempotent-biaction-return-has-gl10-model` names
+`e_00=s_00t_00` and both of its Morita absorption rows, but its literal root
+has half negative spectral rank rather than the physical quarter-corner
+rank.  The next live statement is therefore a spectral-source localization:
+force the paid marked carrier into the signed Hecke source, or make every
+escape from that source pay one fixed ordinary-word defect.
+
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single
 finite matrix tuple with small relator defect is not a sound nontriviality

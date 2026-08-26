@@ -27,7 +27,6 @@ with the whole S-arithmetic group in the ultraproduct, contradicting its
 canonical HNN mixed moment.  This proves `(RC3-p)`.
 
 Compared with `sl3-large-prime-collapse-from-weak-ucp-stability`, the sole
-open input has been reduced from weak ucp-stability of every separating
-approximation of `SL_3(Z)` to `(HMR1)` for the restrictions selected by this
-one HNN presentation.
-
+open input has been reduced from full flexible stability of `SL_3(Z)`
+(equivalently its weak ucp-stability) to `(HMR1)` for the restrictions
+selected by this one HNN presentation.

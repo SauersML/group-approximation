@@ -44,8 +44,8 @@ The equivalence `(i) <=> (ii)` is machine-checked as
 between `(i)` and undecidability of `HYP_fp` is machine-checked as
 `exists_not_isHyperlinear_iff_codeProperty_not_computable`; its forward
 direction constructs the Adian--Rabin data from the finite table cover, and
-`nonhyperlinearCodeProperty_not_re_of_exists` checks the stronger non-r.e.
-conclusion for the negative side.
+`exists_not_isHyperlinear_iff_nonhyperlinearCodeProperty_not_re` checks the
+full equivalence with the stronger non-r.e. conclusion for the negative side.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by

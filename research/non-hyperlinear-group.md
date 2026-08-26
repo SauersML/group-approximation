@@ -2582,11 +2582,12 @@ If it is established, the new pair-HNN router closes
 continues through fixed-scale holonomy and the multiplicity-return
 transducer to this root claim.
 
-The stability interface was consolidated on 2026-08-21.  For Kazhdan
-groups, Dogon's weak ucp-stability coincides with flexible HS-stability on
-hyperlinear approximations
-(`kazhdan-weak-ucp-stability-is-flexible-stability`: Kazhdan-average the
-Stinespring corner to an exactly invariant finite corner; reusable form
+The stability interface was consolidated and corrected on 2026-08-26.  For
+hyperlinear Kazhdan groups, Dogon's weak ucp-stability coincides with full
+flexible HS-stability on every asymptotic representation
+(`kazhdan-weak-ucp-stability-is-flexible-stability`: tensor-regularize by
+one exact regular packet, then Kazhdan-average the Stinespring corner to an
+exactly invariant finite corner; reusable form
 `kazhdan-almost-invariant-corner-near-invariant-projection`), so the
 weakest usable stability hypothesis for the plain lattice is
 `sl3-z-weakly-ucp-stable`, consumed through the thin co-dense pair by
@@ -3399,4 +3400,3 @@ included -- can feed it; and the naive regeneration of enemies one congruence
 floor down is refuted by an exact Weyl identity
 (`weyl-reverser-blocks-naive-swap-twist-descent`), the same rank-two rigidity
 that closes the coprime sector.  The surviving descent is dihedral only.
-

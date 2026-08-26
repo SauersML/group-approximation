@@ -27,6 +27,9 @@ requires:
   - row2-marked-center-action-return-has-gl8-model
   - row2-parallel-a2-return-diamond-has-gl8-model
   - spectator-dressed-gram-does-not-share-selector-gauges
+  - native-t00-y1-collision-pays-marked-opnorm
+  - marked-t00-separation-has-gl10-model
+  - fine-idempotent-biaction-return-has-gl10-model
   - property-t-free-manuscript-theorem-dependency-audit
 ---
 
@@ -50,6 +53,13 @@ marked `GL_8(F_2)`.  Finally, a dual-frame spectator can make dressed Grams
 maximal without changing the two incompatible raw affine gauges.  These
 results isolate an ordinary unequal-source occurrence, rather than another
 analytic dressing or root-position comparison, as the missing datum.
+The first full-presentation coefficient payment sharpens that occurrence:
+the `t_00+s_0t_00` discrepancy has a positive marked carrier and a uniform
+operator-norm floor, but a marked `GL_10(F_2)` packet keeps it transverse to
+the signed-Hecke source.  Likewise, naming `e_00=s_00t_00` and both of its
+Morita absorption rows does not turn its root spectrum into the physical
+quarter corner.  The missing row is therefore a spectral-source incidence
+or an ordinary source-escape payment.
 The manuscript dependency audit then separates this open
 MF-collapse input from the already established downstream algebraic theorem
 package.  Therefore the proposed proof has exactly the safe status stated in

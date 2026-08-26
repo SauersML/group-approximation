@@ -65,3 +65,40 @@ so `P_zP_D` is a projection.  On its range `D=-1`; since `D=TY` and `Y` is
 an involution, `T=-Y`.  Thus `(T-Y)P_zP_D=-2YP_zP_D`, whose norm is two on
 every nonzero common carrier.  This proves `(TYC7)`.  The robust overlap
 form in `(URR5)` gives the final asymptotic statement.
+
+For the literal middle-index contact, prefix cancellation gives
+
+```text
+a_1d
+ =s_1t_0(t_00+s_0t_00)
+ =s_1t_000+s_1t_00
+ =a_3+a_2,
+
+db_2
+ =(t_00+s_0t_00)s_00t_1
+ =t_1+s_0t_1
+ =b_0+b_1.
+```
+
+The ordinary composable-root commutator law therefore gives
+
+```text
+[C_7,D]=x_18(a_2+a_3),
+[D,D_8]=x_73(b_0+b_1).
+```
+
+The factors in each displayed root subgroup commute, and characteristic
+two makes every root element an involution.  Multiplication by `C_8` and
+`D_7` cancels the old directions `a_2` and `b_1`, proving `(TYC8)`.  Finally
+
+```text
+t_1a_3s_000=t_1s_1(t_000s_000)=1,
+b_0s_1=t_1s_1=1,
+```
+
+so neither ejected coefficient is zero and each has a one-sandwich inverse.
+This proves `(TYC9)--(TYC10)`.  These identities use the literal roots from
+`middle-index-marked-heisenberg-packet-is-whitehead-equivariant`; they do
+not manufacture dual roots for the nine-pair spectator packet.  They hence
+avoid that spectator typing error, while stopping short of a Hecke-source
+mass estimate.

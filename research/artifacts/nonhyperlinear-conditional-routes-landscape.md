@@ -11,8 +11,12 @@ question of the same shape:
 
 - **Dogon, arXiv:2211.10492.**  For a countable property (T) group `Gamma`
   with a suitable central extension by a countable abelian `A`, if `Gamma`
-  is flexibly HS-stable -- or merely *weakly ucp-stable* (Thm 1.6, weaker,
-  after Ioana--Spaas--Wiersma) -- then a non-hyperlinear group exists.
+  is flexibly HS-stable -- or *weakly ucp-stable* in the wording of Theorem
+  1.6 -- then a non-hyperlinear group exists.  The later theorem
+  `kazhdan-weak-ucp-stability-is-flexible-stability` shows that for the
+  hyperlinear Kazhdan bases used here the latter is not a smaller positive
+  hypothesis: it implies full flexible HS-stability on all asymptotic
+  representations.
   Applied to `Sp_(2g)(Z)` (which has (T) and `pi_1(Sp_(2g)(R)) = Z`), to
   generic Gromov-density-`(1/3,1/2)` random groups, and to all infinitely
   presented (T) groups.  HS analogue of Bowen--Burton (P-stability of
@@ -29,7 +33,8 @@ question of the same shape:
   lane, for the explicit commensurated pairs `SL_2(Z) <= SL_2(Z[1/2])` and
   `SL_3(Z) <= SL_3(Z[1/2])`.
 
-**The shared open core.**  Flexible HS-stability (or weak ucp-stability) of
+**The shared open core.**  Flexible HS-stability (equivalently here, weak
+ucp-stability) of
 an infinite (T)/(T;FD) group is not known for ANY such group; an infinite
 hyperlinear (T) group is not even locally HS-stable, so these questions ask
 for stability against the (T) obstruction, which is exactly why they are
@@ -71,10 +76,10 @@ surveyed above.
   one were, the goal would already be solved -- so LLP is not a shortcut,
   it is the same open difficulty in different words; (iii) whether the
   relative-commutant / HNN route weakens from flexible HS-stability to weak
-  ucp-stability is worth checking, but Dogon's Thm 1.6 weak-ucp version is
-  proved only for the (T) central-extension route via ISW20 cohomological
-  ucp machinery, not by the elementary projection argument, so a weak-ucp
-  HNN theorem would need that machinery too.
+  ucp-stability has now been decided negatively for hyperlinear Kazhdan
+  hosts.  Exact regular tensor packets remove the separating quantifier and
+  Kazhdan averaging removes the dilation, so the weak-ucp HNN formulation
+  is the same full flexible-stability problem.
 - **Where to spend effort.**  Since all routes share the stability/ucp
   core, effort concentrates on `(RCC)` for a commensurated arithmetic pair
   (Popa deformation/rigidity, proper proximality) or on a direct
