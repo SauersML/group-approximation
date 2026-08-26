@@ -37,10 +37,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptPrintedHeadline"),
-    "thm:prescribed-quotients": (
-        "Manuscript/OneSidedMFRadical/PrescribedQuotients",
-        "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptPrescribedMFQuotients"),
     "thm:commutant": (
         "Manuscript/OneSidedMFRadical/FiniteDimensionalCommutant",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
@@ -85,10 +81,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptPrintedFullKernelPullbackParagraph"),
-    "prop:universal-factorization": (
-        "Manuscript/OneSidedMFRadical/UniversalFactorization",
-        "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptUniversalFactorization"),
     "prop:mf-upper-bound": (
         "Computability/MFRecognitionPi02",
         "GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02"),
@@ -102,7 +94,8 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "prop:leavitt-compression": (
         "Ershov--Jaikin-Zapirain, Theorem 1.1",),
-    "lem:local-models": (),
+    "lem:local-models": (
+        "Korchagin, Proposition 7 (amplification of the separation constant)",),
     "lem:marked-closed": (),
     "lem:rf-regular": (),
     "thm:hnn-permanence": (
@@ -146,8 +139,6 @@ DEPENDENCIES: dict[str, list[str]] = {
     "thm:headline": [
         "thm:compression-criterion", "prop:leavitt-compression",
         "prop:simple", "prop:defect"],
-    "thm:prescribed-quotients": [
-        "prop:full-kernel-pullback", "prop:universal-factorization"],
     "thm:commutant": [],
     "lem:stable-finite": [],
     "lem:kazhdan-projection-order": [],
@@ -160,7 +151,6 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:simple": [],
     "prop:defect": ["prop:simple", "prop:leavitt-compression"],
     "prop:full-kernel-pullback": ["prop:mf-residual-calculus"],
-    "prop:universal-factorization": [],
     "lem:local-models": [],
     "prop:mf-upper-bound": ["lem:local-models"],
     "lem:marked-closed": ["lem:local-models"],

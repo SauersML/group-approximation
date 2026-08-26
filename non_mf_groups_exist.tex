@@ -17,7 +17,7 @@
   \newcommand{\paperauthor}{\paperauthorname}
   \newcommand{\coderepo}{\url{https://github.com/SauersML/group-approximation}}
 \fi
-\hypersetup{pdftitle={[DRAFT] Non-MF Groups},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: non-MF groups},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
+\hypersetup{pdftitle={[DRAFT] Limits of Matrix Approximation of Groups in Operator Norm},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: limits of matrix approximation of groups in operator norm},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 % Machine-readable source metadata attaching a printed statement to an
 % accompanying Lean~4 declaration.  The macro is intentionally invisible in
@@ -68,7 +68,7 @@
 
 \begin{document}
 \frenchspacing
-\title{Non-MF Groups}
+\title{Limits of Matrix Approximation of Groups in Operator Norm}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
@@ -521,12 +521,9 @@ The MF property is closed in the space of marked groups
 limits, by Korchagin~\cite[Proposition~13]{Korchagin}), so every finitely
 generated group that is not MF is a quotient of a finitely presented one;
 Theorem~\ref{thm:recognition} gives the uniform family and the exact level.
-Section~\ref{sec:prescribed-quotients}, which the proofs of
-Theorems~\ref{thm:headline} and~\ref{thm:recognition} do not use, proves
-that $\Rad_{\mathrm{MF}}(G)=f^{-1}(\Rad_{\mathrm{MF}}(Q))$ for every
-surjection $f\colon G\to Q$ with $\ker f\le\Rad_{\mathrm{MF}}(G)$, and
-that every countable MF group $Q$ is the maximal MF quotient
-$W_Q/\Rad_{\mathrm{MF}}(W_Q)$ of a non-MF group $W_Q$.
+Proposition~\ref{prop:full-kernel-pullback} records the pullback formula
+$\Rad_{\mathrm{MF}}(G)=f^{-1}(\Rad_{\mathrm{MF}}(Q))$ for surjections
+$f\colon G\to Q$ with $\ker f\le\Rad_{\mathrm{MF}}(G)$.
 
 \subsection*{Relation to prior work}
 
@@ -684,6 +681,90 @@ that
 \]
 Since a countable group is MF exactly when its MF radical is trivial, this
 identity gives the asserted closure criterion.
+\end{proof}
+
+\begin{proposition}[full-kernel pullback]\label{prop:full-kernel-pullback}
+Let $f\colon G\to Q$ be a surjective homomorphism of countable groups.  If
+$\ker f\le\Rad_{\mathrm{MF}}(G)$, then
+%<webmath object="pullback-radical" when="\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr)" title="how the erased elements of G are read from Q">
+% The [[homomorphism]] \(f\colon G\to Q\) is [[surjective]], and its [[kernel]]
+% is already inside the [[MF radical]] of G.  Therefore every allowed
+% finite matrix [[representation]] of G ignores the kernel and [[factors
+% through]] Q.  On the right, \(f^{-1}\) means [[preimage]].  The equality says
+% that an element of G is erased by every representation exactly when its
+% [[image]] in Q is erased by every representation of Q.  This is a [[pullback]]
+% formula.
+%</webmath>
+\[
+ \Rad_{\mathrm{MF}}(G)
+ =f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
+\]
+In particular, the conclusion holds whenever
+$\Rad_{\mathrm{MF}}(\ker f)=\ker f$.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph}
+More generally, for every normal subgroup $N\trianglelefteq G$,
+%<webmath object="closure-pullback-general" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right)" title="how relations forced in G are read from Q">
+% \(\operatorname{cl}_{\mathrm{MF}}^G(N)\) is an MF [[closure operation]] on
+% the [[normal subgroup]] N inside G: it adds every element that all
+% [[homomorphism|homomorphisms]] to [[MF group|MF groups]] are forced to erase
+% once they erase N.  The superscript G names the surrounding group and the
+% subscript MF names the condition.  The expression \(f(N)\) is the [[image]]
+% of N in Q, while \(f^{-1}\) takes a [[preimage]].  The equality says that the
+% forced elements in G are exactly the pullback of the forced elements in Q.
+%</webmath>
+\[
+ \operatorname{cl}_{\mathrm{MF}}^G(N)
+ =f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right).
+\]
+Consequently,
+%<webmath object="quotient-correspondence-general" when="G/N\text{ is MF}\Longleftrightarrow\ker f\le N\text{ and }Q/f(N)\text{ is MF}" title="exactly when matrices can model G divided by N without losing information">
+% The slash in \(G/N\) forms a [[quotient group]] by treating every element of
+% the [[normal subgroup]] N as the [[identity]].  The double arrow
+% \(\Longleftrightarrow\) means “if and only if,” so the two sides are exactly
+% equivalent.  The condition \(\ker f\le N\) says N contains the [[kernel]] of
+% f.  The expression \(Q/f(N)\) is another quotient group, using the [[image]]
+% of N.  Thus \(G/N\) is an [[MF group]] exactly when N removes everything f
+% forgets and the remaining quotient of Q is MF.
+%</webmath>
+\[
+ G/N\text{ is MF}
+ \quad\Longleftrightarrow\quad
+ \ker f\le N\ \text{ and }\ Q/f(N)\text{ is MF}.
+\]
+\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph}
+\end{proposition}
+
+\begin{proof}
+Every corona homomorphism from $G$ kills $\ker f$ and therefore factors
+uniquely through $f$.  Conversely, composing a corona homomorphism from $Q$
+with $f$ gives one of $G$.  Intersecting these two corresponding families of
+kernels gives the displayed MF radical pullback.  For the stated sufficient
+condition,
+let \(\pi\colon G\to\U(\mathcal Q_{\mathbf d})\) be any corona homomorphism.
+Its restriction to \(\ker f\) is trivial because
+\(\Rad_{\mathrm{MF}}(\ker f)=\ker f\).  Hence
+\(\ker f\le\Rad_{\mathrm{MF}}(G)\).
+
+The same factorization, restricted to homomorphisms that kill $N$, gives the
+closure formula.  If this closure equals $N$, then it contains $\ker f$.
+Mapping the equality onto $Q$ shows that
+$\operatorname{cl}_{\mathrm{MF}}^Q(f(N))=f(N)$.  Conversely, these two
+conditions give
+%<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}(f(N))=N" title="the two closure conditions force the MF closure to be exactly N">
+% Start with N and take its image \(f(N)\) in Q.  The hypothesis says that
+% \(f(N)\) is already [[MF closure|MF-closed]] in Q, so pulling that closure
+% back gives \(f^{-1}(f(N))\).  Because N contains the [[kernel]] of f, this
+% [[preimage]] is exactly N rather than a larger subgroup.  The chain of two
+% equals signs therefore proves that applying MF closure inside G adds no new
+% elements to N.  By the earlier criterion, this is equivalent to the
+% [[quotient group]] \(G/N\) being an [[MF group]].
+%</webmath>
+\[
+ \operatorname{cl}_{\mathrm{MF}}^G(N)
+ =f^{-1}(f(N))=N.
+\]
+The final equivalence now follows from
+Proposition~\ref{prop:mf-residual-calculus}, applied in $G$ and $Q$.
 \end{proof}
 
 \subsection{Finite dimension}
@@ -1641,9 +1722,7 @@ but it is determined by finite data with a fixed separation constant.
 The reformulation is due to Korchagin~\cite{Korchagin}; this section
 derives the upper bound of Theorem~\ref{thm:recognition} from it.
 
-The following lemma is a direct consequence of
-Korchagin~\cite[Proposition~7]{Korchagin}, who obtains the stronger
-separation constant $\sqrt 2$.
+The following lemma is due to Korchagin~\cite[Proposition~7]{Korchagin}.
 
 \begin{lemma}[locality with fixed separation]\label{lem:local-models}
 A countable group $G$ is MF if and only if for every finite set
@@ -1656,10 +1735,20 @@ and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
 \end{lemma}
 
 \begin{proof}
-Restricting the maps in Korchagin's formulation gives the stated finite
-models.  Conversely, choose such models along an increasing exhaustion
-of $G$, with defects tending to zero, and extend each map arbitrarily to
-the rest of $G$.  Their uniform separation gives an MF model.
+If every finite $F\ni1$ and every $\varepsilon>0$ admit such a map,
+choose an exhaustion of $G$ by finite sets $F_n$ closed enough that
+$g,h,gh\in F_n$ for all large $n$, take a map for $(F_n,1/n)$, and extend
+it by $1$ outside $F_n$; the resulting sequence is an MF model.
+Conversely, given MF models $V_n$, Korchagin~\cite[Proposition~7]{Korchagin}
+amplifies the separation: replacing $V_n(g)$ by the direct sum of its
+tensor powers $V_n(g)^{\otimes k}$, $k\le K$, multiplies the defects by at
+most $K$ and raises $\limsup_n\opnorm{V_n(g)-1}$ above $1$ for each of
+finitely many $g$, since an eigenvalue $e^{i\theta}$ of $V_n(g)$ with
+$\theta$ small has a power $e^{ik\theta}$ at angular distance at least
+$\pi/2$ from $1$.  A block direct sum of these amplified models over
+finitely many late indices, one for each $g\in F\setminus\{1\}$, then
+has defect at most $\varepsilon$ on $F$ and separation at least $1$ from
+the identity on $F\setminus\{1\}$.
 \end{proof}
 
 \begin{lemma}[marked closedness]\label{lem:marked-closed}
@@ -1862,20 +1951,51 @@ first embed $U$ in an amalgamated free product, which Shulman's criterion
 shows to be MF, and then construct the required tracial state on the copy
 of $R$ inside $U$.
 
-\emph{Step 1: $U$ embeds in an amalgamated free product.}
-Ueda's universal HNN corner construction~\cite[Proposition~2.4]{Ueda}
-identifies $P$ with $M_2(U)$ and $U$ with the corner $ePe$, where
-$C=B_0\oplus B_1$, $A_1=M_2(D)$, $A_2=M_2(B_0)$,
-$P=A_1*_CA_2$, and the inclusions of $C$ are
+\emph{Step 1: $U$ embeds in an amalgamated free product.}  This step follows a corner argument of Ueda~\cite{Ueda}.  Let
+$C=B_0\oplus B_1$, $A_1=M_2(D)$, and $A_2=M_2(B_0)$, with the unital
+inclusions
 \[
  \iota_A(c_0,c_1)=\begin{pmatrix}c_0&0\\0&c_1\end{pmatrix}\in A_1,
  \qquad
  \iota_B(c_0,c_1)=\begin{pmatrix}c_0&0\\0&\Theta^{-1}(c_1)\end{pmatrix}\in A_2,
 \]
-with $e$ the common image of $\operatorname{diag}(p,0)$.  Thus $U$ is
-isomorphic to a $C^*$-subalgebra of $P$.
+and let $P=A_1*_CA_2$ be the full amalgamated free product, in which
+$A_1$ and $A_2$ embed~\cite[Section~2.1]{Shulman}.  Write $e_{ij}$ and
+$f_{ij}$ for the matrix units of $A_1$ and $A_2$.  Since
+$\iota_A(p,0)=\iota_B(p,0)$ and $\iota_A(0,p)=\iota_B(0,p)$, we have
+$e_{11}=f_{11}=:e$ and $e_{22}=f_{22}$ in $P$.  Define
+$\pi_D\colon D\to ePe$ by $\pi_D(d)=\operatorname{diag}(d,0)$, a unital
+$*$-homomorphism into the corner, and put $w=e_{12}f_{21}\in ePe$.  Then
+$ww^*=e_{12}f_{22}e_{21}=e_{12}e_{22}e_{21}=e$ and
+$w^*w=f_{12}e_{22}f_{21}=f_{12}f_{22}f_{21}=e$, so $w$ is a unitary of
+$ePe$.  For $b\in B_0$ the element $\operatorname{diag}(b,0)$ is
+$\iota_A(b,0)=\iota_B(b,0)$, so
+\begin{align*}
+ w\pi_D(b)w^*
+ &=e_{12}\bigl(f_{21}\operatorname{diag}(b,0)f_{12}\bigr)e_{21}
+ =e_{12}\,\iota_B(0,\Theta(b))\,e_{21}\\
+ &=e_{12}\,\iota_A(0,\Theta(b))\,e_{21}
+ =\pi_D(\Theta(b)),
+\end{align*}
+where the middle equality uses
+$\iota_B(0,\Theta(b))=\operatorname{diag}(0,b)$ in $A_2$.  The universal
+property of $U$ gives a $*$-homomorphism $\Phi\colon U\to ePe\subseteq P$
+with $\Phi|_D=\pi_D$ and $\Phi(u)=w$.  We prove that $\Phi$ is injective
+by constructing $\Psi\colon P\to M_2(U)$ with
+$\Psi\Phi(x)=\operatorname{diag}(x,0)$.  Let $\Psi_1\colon A_1\to M_2(U)$ be the entrywise inclusion
+$D\subseteq U$, and let $\Psi_2\colon A_2\to M_2(U)$ be the entrywise
+inclusion $B_0\subseteq U$ followed by conjugation by
+$\operatorname{diag}(1,u)$.  On $C$ we have
+$\Psi_1(\iota_A(c_0,c_1))=\operatorname{diag}(c_0,c_1)$ and
+$\Psi_2(\iota_B(c_0,c_1))=\operatorname{diag}(c_0,u\Theta^{-1}(c_1)u^*)
+=\operatorname{diag}(c_0,c_1)$, so the pair induces a $*$-homomorphism
+$\Psi\colon P\to M_2(U)$.  On generators,
+$\Psi\Phi(d)=\operatorname{diag}(d,0)$ and
+$\Psi\Phi(u)=\Psi_1(e_{12})\Psi_2(f_{21})=\operatorname{diag}(u,0)$.
+Hence $\Psi\Phi$ is the injective $*$-homomorphism $x\mapsto\operatorname{diag}(x,0)$
+of $U$ into $M_2(U)$, and $\Phi$ is injective.
 
-\emph{Step 2: $P$ is MF.}  By Shulman's criterion~\cite[Theorem~20]{Shulman},
+\emph{Step 2: $P$ is MF.}  By Shulman's criterion~\cite[Theorem~16]{Shulman},
 the full amalgamated free product $A_1*_CA_2$ of separable $C^*$-algebras
 is MF as soon as there are injective $*$-homomorphisms $\varphi_A$ and
 $\varphi_B$ of $A_1$ and $A_2$ into one norm matrix corona with
@@ -1892,8 +2012,8 @@ and on $C$,
  =\begin{pmatrix}c_0&0\\0&c_1\end{pmatrix}
  =\varphi_A(\iota_A(c_0,c_1)),
 \]
-because $\Theta$ is conjugation by $W$.  Hence $P$ is MF, and so is
-$U\cong ePe$.
+because $\Theta$ is conjugation by $W$.  Hence $P$ is MF, and so are its
+$C^*$-subalgebras $ePe$ and $\Phi(U)\cong U$.
 
 \emph{Step 3: the tracial state.}  The functional
 $T=\tau\circ\iota^{-1}$ is a tracial state on $\iota(A)\supseteq D$ with
@@ -2009,9 +2129,18 @@ $e\in\mathrm{FIN}$.
 
 \begin{proof}
 Apply the construction of Bilanovic--Chubb--Roven~\cite[Theorem~3.1]{BCR}
-with positive group $1$ and negative group $H$.  The construction is
-uniform in $e$, gives the trivial group when $W_e$ is infinite, and
-retains a free factor isomorphic to $H$ when $W_e$ is finite.
+to the trivial group and $H$.
+Let $\langle Y\mid T\rangle$ be the recursive presentation of $H$ from
+Lemma~\ref{lem:seed}.  Take generators $y_{i,\ell}$ for $i\ge1$ and
+$\ell\in Y$, one copy $Y_i$ of $Y$ for each $i$, and as relators all
+words of $T$ rewritten in each copy $Y_i$, together with every generator
+$y_{i,\ell}$ for which $i\le\lvert W_e\rvert$.  The last family is
+recursively enumerable uniformly in $e$: enumerate $W_e$, and whenever its
+$i$-th element appears, enumerate all of $Y_i$.  The group presented is
+the free product of the copies $H_i\cong H$, $i\ge1$, with the first
+$\lvert W_e\rvert$ copies killed.  If $W_e$ is infinite every copy is
+killed and $C_e$ is trivial; if $W_e$ is finite, $C_e$ is the free product
+of the remaining copies and contains $H$.
 \end{proof}
 
 \subsection*{A three-generator embedding}
@@ -2271,11 +2400,35 @@ $B$ is.
 \end{lemma}
 
 \begin{proof}
-The first assertion is the standard diagonal argument for MF
-algebras~\cite{BK}; see also its use in the proof of
-Korchagin~\cite[Proposition~6]{Korchagin}.  The second follows by applying
-$M_k$ to an MF embedding, since $M_k$ of a norm matrix corona is the
-corona of the dimension sequence multiplied by $k$.
+The second assertion holds because $M_k$ of a norm matrix corona is the
+norm matrix corona of the dimension sequence multiplied by $k$.  For the
+first, let $A$ be a separable $C^*$-subalgebra, and choose a sequence
+$(a_i)_{i\ge1}$ dense in $A$, with lifts $(a_i^{(n)})_n$.  Choose for each
+$n$ an injective $*$-homomorphism $\eta_n$ of $B_n$ into a norm matrix
+corona, and lifts $(a_i^{(n,k)})_k$ of $\eta_n(a_i^{(n)})$ with
+$\sup_k\opnorm{a_i^{(n,k)}}\le\opnorm{a_i^{(n)}}+1$.  Enumerate the
+noncommutative $*$-polynomials with coefficients in $\mathbb Q(i)$ as
+$p_1,p_2,\dots$, and let $\mathcal P_n$ be the set of those among
+$p_1,\dots,p_n$ that involve only $a_1,\dots,a_n$, choosing $p_1=0$ so that
+$\mathcal P_n$ is nonempty.  For $p\in\mathcal P_n$
+the number $\opnorm{p(a^{(n)})}$ equals $\limsup_k\opnorm{p(a^{(n,k)})}$,
+since $\eta_n$ is isometric.  Hence there is $K_n$ such that
+$\opnorm{p(a^{(n,k)})}\le\opnorm{p(a^{(n)})}+1/n$ for all $k\ge K_n$ and
+$p\in\mathcal P_n$, and for each $p\in\mathcal P_n$ there is $k_p\ge K_n$
+with $\opnorm{p(a^{(n,k_p)})}\ge\opnorm{p(a^{(n)})}-1/n$.  Put
+\[
+ b_i^{(n)}=\bigoplus_{p\in\mathcal P_n}a_i^{(n,k_p)},
+\]
+a block diagonal matrix.  For $p\in\mathcal P_n$ the norm of
+$p(b^{(n)})$ is the maximum of $\opnorm{p(a^{(n,k_{p'})})}$ over
+$p'\in\mathcal P_n$, which lies between $\opnorm{p(a^{(n)})}-1/n$ and
+$\opnorm{p(a^{(n)})}+1/n$.  Every polynomial belongs to $\mathcal P_n$ for
+all large $n$, so
+$\limsup_n\opnorm{p(b^{(n)})}=\limsup_n\opnorm{p(a^{(n)})}=\opnorm{p(a)}$
+for every $p$.  Therefore $a_i\mapsto[(b_i^{(n)})_n]$ is well defined and
+isometric on the $*$-algebra over $\mathbb Q(i)$ generated by the $a_i$,
+which is dense in $A$, and it extends to an isometric $*$-homomorphism of
+$A$ into a norm matrix corona.
 \end{proof}
 
 \begin{lemma}[tensor synchronization]\label{lem:tensor-sync}
@@ -2423,362 +2576,6 @@ no counterpart for permutation models.
 
 
 
-\section{Pullback formulas for MF radicals}\label{sec:prescribed-quotients}
-
-This section is not used in the proof of Theorem~\ref{thm:recognition}.
-It proves that the MF radical pulls back along surjections whose kernel
-lies in the radical, and it realizes every countable MF group as the
-maximal MF quotient of a non-MF group.
-
-\begin{theorem}[prescribed maximal MF quotients]\label{thm:prescribed-quotients}
-Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
-$1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$ and, for a
-countable group $Q$, define
-%<webmath object="whole" when="W_Q=B*_A(Q\times A)" title="how the group W sub Q is assembled">
-% The equation is a construction recipe.  The new [[group]] \(W_Q\) is the
-% [[amalgamated free product]] of B and the [[direct product]] \(Q\times A\),
-% with their two copies of the [[subgroup]] A identified.  The subscript Q
-% records which chosen group was used; it is not multiplication.  The star
-% with A underneath is the gluing operation, not ordinary multiplication.
-% Apart from the relations already present in B and \(Q\times A\), the only
-% new equations are those identifying the two copies of A.
-%</webmath>
-%<webmath object="∗A" when="B*_A(Q\times A)" title="the operation that joins the two groups along A">
-% The star with A written beneath it is read “free product amalgamated over
-% A.”  It forms an [[amalgamated free product]] by taking the two groups on
-% either side and identifying a specified copy of the [[subgroup]] A in the
-% first with a specified copy of A in the second.  The star is therefore one
-% operation together with its subscript; it is not multiplication followed
-% by the letter A.  Here it glues B to \(Q\times A\) using the cyclic subgroup
-% A generated by d.
-%</webmath>
-\[
- W_Q=B*_A(Q\times A),
-\]
-where $A$ is embedded in $Q\times A$ as the second factor.
-Then the map $\pi_Q\colon W_Q\to Q$ which kills $B$ and projects the second
-vertex group onto $Q$ is a split epimorphism, and
-%<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(W_Q)" title="the elements of W_Q that every allowed matrix model erases">
-% The left side is the [[MF radical]] of the [[group]] \(W_Q\).  On the right,
-% \(\pi_Q^{-1}\) means [[preimage]], not “divide by \(\pi_Q\)”: collect every
-% input whose output lies in the MF radical of Q.  Thus an element of \(W_Q\)
-% is erased by every finite matrix [[representation]] exactly when its
-% [[image]] under \(\pi_Q\) is erased in Q.  If Q is an [[MF group]], its MF
-% radical contains only the [[identity]], so this preimage is the [[kernel]]
-% of \(\pi_Q\).
-%</webmath>
-\[
- \Rad_{\mathrm{MF}}(W_Q)
- =\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
-\]
-The group $W_Q$ is non-MF.  If $Q$ is MF, then
-%<webmath object="whole" when="\Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q" title="three descriptions of the part of W sub Q erased by matrices">
-% This chain says that three [[normal subgroup|normal subgroups]] are equal.
-% The [[MF radical]] of \(W_Q\) contains the elements every MF model sends to
-% the identity.  The [[kernel]] of \(\pi_Q\) contains the elements lost when
-% \(W_Q\) is mapped onto Q.  The double angle brackets give the [[normal
-% closure]] of d in \(W_Q\).  Because Q is assumed to be MF, its own MF
-% radical is trivial, so the elements forced to disappear are exactly this
-% kernel, which is also exactly everything normally generated by d.
-%</webmath>
-\[
- \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal{d}_{W_Q}.
-\]
-Moreover, precomposition with $\pi_Q$ induces a bijection
-%<webmath object="whole" when="\operatorname{Hom}(Q,M)" title="why maps out of W sub Q are the same as maps out of Q">
-% The left [[set]] contains all [[homomorphism|homomorphisms]] from Q to the MF
-% group M; the right set contains all homomorphisms from \(W_Q\) to M.  The
-% arrow sends \(h\colon Q\to M\) to the [[composition]] \(h\circ\pi_Q\): first
-% map \(W_Q\) onto Q, then apply h.  Calling this arrow a [[bijection]] means
-% every homomorphism from \(W_Q\) to an MF target is obtained in exactly one
-% such way.  MF targets therefore retain the Q information and necessarily
-% erase the attached B information.
-%</webmath>
-\[
- \operatorname{Hom}(Q,M)\longrightarrow\operatorname{Hom}(W_Q,M)
-\]
-for every MF group $M$.
-\leanverified{Manuscript/OneSidedMFRadical/PrescribedQuotients}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients}
-\end{theorem}
-
-We begin with the pullback of the radical along a surjection whose kernel
-lies in the radical.
-
-\begin{proposition}[full-kernel pullback]\label{prop:full-kernel-pullback}
-Let $f\colon G\to Q$ be a surjective homomorphism of countable groups.  If
-$\ker f\le\Rad_{\mathrm{MF}}(G)$, then
-%<webmath object="pullback-radical" when="\Rad_{\mathrm{MF}}(G)=f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr)" title="how the erased elements of G are read from Q">
-% The [[homomorphism]] \(f\colon G\to Q\) is [[surjective]], and its [[kernel]]
-% is already inside the [[MF radical]] of G.  Therefore every allowed
-% finite matrix [[representation]] of G ignores the kernel and [[factors
-% through]] Q.  On the right, \(f^{-1}\) means [[preimage]].  The equality says
-% that an element of G is erased by every representation exactly when its
-% [[image]] in Q is erased by every representation of Q.  This is a [[pullback]]
-% formula.
-%</webmath>
-\[
- \Rad_{\mathrm{MF}}(G)
- =f^{-1}\!\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
-\]
-In particular, the conclusion holds whenever
-$\Rad_{\mathrm{MF}}(\ker f)=\ker f$.
-\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph}
-More generally, for every normal subgroup $N\trianglelefteq G$,
-%<webmath object="closure-pullback-general" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right)" title="how relations forced in G are read from Q">
-% \(\operatorname{cl}_{\mathrm{MF}}^G(N)\) is an MF [[closure operation]] on
-% the [[normal subgroup]] N inside G: it adds every element that all
-% [[homomorphism|homomorphisms]] to [[MF group|MF groups]] are forced to erase
-% once they erase N.  The superscript G names the surrounding group and the
-% subscript MF names the condition.  The expression \(f(N)\) is the [[image]]
-% of N in Q, while \(f^{-1}\) takes a [[preimage]].  The equality says that the
-% forced elements in G are exactly the pullback of the forced elements in Q.
-%</webmath>
-\[
- \operatorname{cl}_{\mathrm{MF}}^G(N)
- =f^{-1}\!\left(\operatorname{cl}_{\mathrm{MF}}^Q(f(N))\right).
-\]
-Consequently,
-%<webmath object="quotient-correspondence-general" when="G/N\text{ is MF}\Longleftrightarrow\ker f\le N\text{ and }Q/f(N)\text{ is MF}" title="exactly when matrices can model G divided by N without losing information">
-% The slash in \(G/N\) forms a [[quotient group]] by treating every element of
-% the [[normal subgroup]] N as the [[identity]].  The double arrow
-% \(\Longleftrightarrow\) means “if and only if,” so the two sides are exactly
-% equivalent.  The condition \(\ker f\le N\) says N contains the [[kernel]] of
-% f.  The expression \(Q/f(N)\) is another quotient group, using the [[image]]
-% of N.  Thus \(G/N\) is an [[MF group]] exactly when N removes everything f
-% forgets and the remaining quotient of Q is MF.
-%</webmath>
-\[
- G/N\text{ is MF}
- \quad\Longleftrightarrow\quad
- \ker f\le N\ \text{ and }\ Q/f(N)\text{ is MF}.
-\]
-\leanverified{Manuscript/OneSidedMFRadical/PrintedFullKernelPullback}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph}
-\end{proposition}
-
-\begin{proof}
-Every corona homomorphism from $G$ kills $\ker f$ and therefore factors
-uniquely through $f$.  Conversely, composing a corona homomorphism from $Q$
-with $f$ gives one of $G$.  Intersecting these two corresponding families of
-kernels gives the displayed MF radical pullback.  For the stated sufficient
-condition,
-let \(\pi\colon G\to\U(\mathcal Q_{\mathbf d})\) be any corona homomorphism.
-Its restriction to \(\ker f\) is trivial because
-\(\Rad_{\mathrm{MF}}(\ker f)=\ker f\).  Hence
-\(\ker f\le\Rad_{\mathrm{MF}}(G)\).
-
-The same factorization, restricted to homomorphisms that kill $N$, gives the
-closure formula.  If this closure equals $N$, then it contains $\ker f$.
-Mapping the equality onto $Q$ shows that
-$\operatorname{cl}_{\mathrm{MF}}^Q(f(N))=f(N)$.  Conversely, these two
-conditions give
-%<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}(f(N))=N" title="the two closure conditions force the MF closure to be exactly N">
-% Start with N and take its image \(f(N)\) in Q.  The hypothesis says that
-% \(f(N)\) is already [[MF closure|MF-closed]] in Q, so pulling that closure
-% back gives \(f^{-1}(f(N))\).  Because N contains the [[kernel]] of f, this
-% [[preimage]] is exactly N rather than a larger subgroup.  The chain of two
-% equals signs therefore proves that applying MF closure inside G adds no new
-% elements to N.  By the earlier criterion, this is equivalent to the
-% [[quotient group]] \(G/N\) being an [[MF group]].
-%</webmath>
-\[
- \operatorname{cl}_{\mathrm{MF}}^G(N)
- =f^{-1}(f(N))=N.
-\]
-The final equivalence now follows from
-Proposition~\ref{prop:mf-residual-calculus}, applied in $G$ and $Q$.
-\end{proof}
-
-Thus image under $f$ and inverse image under $f$ give mutually inverse
-correspondences, preserving inclusion between the normal subgroups with MF
-quotient in $G$ and in $Q$.  The map induced by $f$ on the maximal MF
-quotients is an isomorphism:
-%<webmath object="visible-quotient-iso" when="G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q)" title="the largest detectable parts of G and Q have the same structure">
-% Each slash forms a [[quotient group]] by removing the corresponding [[MF
-% radical]].  The symbol \(\cong\) means there is an [[isomorphism]]: a
-% reversible pairing that preserves multiplication between the two quotients.
-% Because
-% the [[kernel]] of f is already invisible to MF, every finite matrix
-% [[representation]] of G [[factors through]] f.  After the invisible elements
-% are removed, G and Q therefore retain exactly the same group structure.
-%</webmath>
-\[
- G/\Rad_{\mathrm{MF}}(G)
- \cong Q/\Rad_{\mathrm{MF}}(Q).
-\]
-These correspondences respect composition of surjective homomorphisms whose
-kernels lie in the MF radical.
-
-In the setting of Theorem~\\ref{thm:prescribed-quotients}, the trivial
-map $B\\to Q$ and the projection $Q\\times A\\to Q$ agree on $A$.  They
-therefore define an epimorphism
-%<webmath object="πQ" when="\pi_Q\colon W_Q\longrightarrow Q" title="the map that discards B and A and keeps Q">
-% The [[Greek letter]] \(\pi\), read “pi,” names a [[homomorphism]], and the
-% [[subscript]] Q records its destination.  The colon and arrow say its inputs are
-% in \(W_Q\) and its outputs are in Q.  It sends every element of B to the
-% [[identity]] and sends each ordered pair \((q,a)\) in the [[direct product]]
-% \(Q\times A\) to q.  Every q is reached, so the map is [[surjective]].  Its
-% [[kernel]] is the [[normal closure]] of d.
-%</webmath>
-\[
- \pi_Q\colon W_Q\longrightarrow Q.
-\]
-It is split by the inclusion $Q\to Q\times A\to W_Q$.  The normal-form
-theorem for amalgamated free products shows that both vertex maps of the
-amalgam $W_Q$ are injective; in particular, $d\ne1$ in $W_Q$.
-
-\begin{proposition}[universal factorization]\label{prop:universal-factorization}
-Let $T$ be a group such that every homomorphism $B\to T$ is trivial.  Then
-precomposition with $\pi_Q$ is a bijection
-%<webmath object="Hom" when="\operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T)" title="maps into T can be described using Q alone">
-% \(\operatorname{Hom}(Q,T)\) is the [[set]] of all [[homomorphism|homomorphisms]]
-% from the [[group]] Q to the group T.  The arrow sends such a map h to the
-% map in two stages \(h\circ\pi_Q\) from \(W_Q\) to T; this is called
-% [[precomposition]] with \(\pi_Q\).  The statement says this arrow is a
-% [[bijection]]: every map on either side corresponds to exactly one map on the
-% other side.  Consequently, T receives no information from \(W_Q\) beyond Q.
-%</webmath>
-\[
- \operatorname{Hom}(Q,T)\longrightarrow\operatorname{Hom}(W_Q,T).
-\]
-Furthermore,
-%<webmath object="ker" when="\ker\pi_Q=\normal d_{W_Q}" title="the elements discarded by the map to Q">
-% \(\ker\pi_Q\) is the [[kernel]] of \(\pi_Q\): exactly the elements of
-% \(W_Q\) sent to the [[identity]] in Q.  The double angle brackets
-% \(\normal d_{W_Q}\) mean the [[normal closure]] of d inside \(W_Q\).  The
-% equals sign says these are the same [[normal subgroup]]: erasing d erases
-% exactly what the map \(\pi_Q\) erases, no more and no less.
-%</webmath>
-\[
- \ker\pi_Q=\normal d_{W_Q}.
-\]
-\leanverified{Manuscript/OneSidedMFRadical/UniversalFactorization}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization}
-\end{proposition}
-
-\begin{proof}
-Let $f\colon W_Q\to T$ be a homomorphism.  Its restriction to $B$ is
-trivial, so its restriction to the amalgamated subgroup $A$ is trivial.  For
-$(q,a)\in Q\times A$, we then have
-%<webmath object="whole" when="f(q,a)=f(q,1)f(1,a)=f(q,1)" title="the map f ignores the A-coordinate of each pair">
-% The pair \((q,a)\) in the [[direct product]] \(Q\times A\) can be factored
-% as \((q,1)(1,a)\): one factor carries only the Q-coordinate and the other
-% carries only the A-coordinate.  Because f is a [[homomorphism]], it turns
-% that product into \(f(q,1)f(1,a)\).  The restriction of f to A is trivial,
-% so \(f(1,a)\) is the [[identity]] and disappears from the product.  Thus the
-% value of f depends only on q.  This is exactly why f [[factors through]] the
-% projection from \(Q\times A\) onto Q.
-%</webmath>
-\[
- f(q,a)=f(q,1)f(1,a)=f(q,1).
-\]
-Thus the restriction of $f$ to $Q\times A$ factors uniquely through the
-projection onto $Q$.  The universal property of the amalgam shows that $f$
-factors through $\pi_Q$.  The factorization is unique because $\pi_Q$ is
-surjective.
-
-The element $d$ belongs to $\ker\pi_Q$.  Conversely, quotienting $W_Q$ by
-$\normal d_{W_Q}$ kills $B$, since $\normal d_B=B$, and kills the $A$-factor
-of $Q\times A$.  The resulting quotient is $Q$, with quotient map
-induced by $\pi_Q$.  Hence $\ker\pi_Q=\normal d_{W_Q}$.
-\end{proof}
-
-\begin{proof}[Proof of Theorem~\ref{thm:prescribed-quotients}]
-Every homomorphism from $B$ to an MF group is trivial: compose it with a
-faithful corona embedding of the target and use
-$\Rad_{\mathrm{MF}}(B)=B$.  Proposition~\ref{prop:universal-factorization}
-therefore gives the asserted bijection for every MF group $M$.  In
-addition, the definition of $\Rad_{\mathrm{MF}}(B)=B$ says directly that
-every homomorphism from $B$ to $\U(\mathcal Q_{\mathbf d})$ is trivial.
-Applying Proposition~\ref{prop:universal-factorization} with
-$T=\U(\mathcal Q_{\mathbf d})$ shows that every corona homomorphism from
-$W_Q$ factors uniquely through $\pi_Q$.  Intersecting their kernels gives
-%<webmath object="whole" when="\Rad_{\mathrm{MF}}(W_Q)=\pi_Q^{-1}" title="the MF radical of W sub Q is pulled back from Q">
-% Every homomorphism from \(W_Q\) to a [[norm matrix corona]] factors uniquely
-% through the map \(\pi_Q\colon W_Q\to Q\).  Therefore an element of \(W_Q\)
-% is erased by every such homomorphism exactly when its image in Q lies in the
-% [[MF radical]] of Q.  The notation \(\pi_Q^{-1}\) means [[preimage]], not an
-% inverse function: it collects all elements whose image has the stated
-% property.  The equality says that the complete invisible part of \(W_Q\) is
-% precisely the pullback of the invisible part of Q.
-%</webmath>
-\[
- \Rad_{\mathrm{MF}}(W_Q)
- =\pi_Q^{-1}\bigl(\Rad_{\mathrm{MF}}(Q)\bigr).
-\]
-The kernel of $\pi_Q$ belongs to this radical, and it contains the
-nonidentity element $d$.  Thus $W_Q$ is non-MF.  If $Q$ is MF, its MF radical
-is trivial, and the displayed equality becomes
-%<webmath object="whole" when="\Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}" title="when Q is MF, the invisible part is exactly the normal closure of d">
-% If Q is an [[MF group]], its [[MF radical]] contains only the identity.
-% Pulling that one-element subgroup back through \(\pi_Q\) gives the
-% [[kernel]] of \(\pi_Q\), namely all elements of \(W_Q\) sent to the identity
-% in Q.  The preceding proposition identifies this kernel with the [[normal
-% closure]] of d in \(W_Q\).  Thus all three expressions name the same
-% [[normal subgroup]].  In particular d is nontrivial but invisible to every
-% allowed matrix model, so \(W_Q\) is not MF.
-%</webmath>
-\[
- \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}.
-\]
-
-\end{proof}
-
-If $N\trianglelefteq W_Q$, the same factorization gives
-%<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)=\pi_Q^{-1}" title="MF closure in W sub Q is the pullback of MF closure in Q">
-% First send the [[normal subgroup]] N into Q, obtaining \(\pi_Q(N)\).  Take
-% the [[MF closure]] of that image inside Q, which adds every element that all
-% MF-target maps must erase once they erase \(\pi_Q(N)\).  Finally take the
-% [[preimage]] under \(\pi_Q\), bringing the result back to \(W_Q\).  The
-% equality says this three-step procedure gives exactly the MF closure of N
-% computed directly inside \(W_Q\).  It works because every relevant
-% [[homomorphism]] from \(W_Q\) factors uniquely through Q.
-%</webmath>
-\begin{equation}\label{eq:closure-pullback}
- \operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)
- =\pi_Q^{-1}\!\left(
-   \operatorname{cl}_{\mathrm{MF}}^Q(\pi_Q(N))
-  \right).
-\end{equation}
-Indeed, a homomorphism from $W_Q$ to an MF group kills $N$ exactly when its
-unique factor through $Q$ kills $\pi_Q(N)$.  Proposition~\ref{prop:mf-residual-calculus}
-and \eqref{eq:closure-pullback} give
-%<webmath object="whole" when="W_Q/N\text{ is MF}" title="the two exact conditions for the quotient W sub Q over N to be MF">
-% The double arrow means the statement on the left holds exactly when both
-% conditions on the right hold.  First, N must contain the [[kernel]] of
-% \(\pi_Q\); otherwise the quotient would retain a nontrivial element that all
-% MF models erase.  Second, after mapping N into Q, the [[quotient group]]
-% \(Q/\pi_Q(N)\) must itself be an [[MF group]].  Together these conditions
-% say that \(W_Q/N\) has discarded the entire invisible attached part and that
-% the remaining quotient inherited from Q admits the required finite-matrix
-% approximations.
-%</webmath>
-\[
- W_Q/N\text{ is MF}
- \quad\Longleftrightarrow\quad
- \ker\pi_Q\le N
- \text{ and }
- Q/\pi_Q(N)\text{ is MF}.
-\]
-Here, if $\ker\pi_Q\le N$, then
-$N=\pi_Q^{-1}(\pi_Q(N))$.
-
-For $Q=\mathbb Z$ and every normal subgroup $N\trianglelefteq W_{\mathbb Z}$,
-%<webmath object="whole" when="W_{\mathbb Z}/N\text{ is MF}" title="for this concrete group, the quotient is MF exactly when N contains d">
-% Here \(\mathbb Z\) is the [[group of integers]] under addition, and every
-% quotient of it is MF.  The general two-condition criterion therefore loses
-% its second condition.  What remains is that N must contain the element d,
-% or equivalently contain its [[normal closure]], which is the kernel of the
-% map from \(W_{\mathbb Z}\) to \(\mathbb Z\).  The double arrow means both
-% directions hold: containing d is sufficient for the [[quotient group]] to
-% be an [[MF group]], and any MF quotient must contain d.
-%</webmath>
-\begin{equation}\label{eq:one-word-quotient-test}
- W_{\mathbb Z}/N\text{ is MF}
- \quad\Longleftrightarrow\quad
- d\in N.
-\end{equation}
-Indeed, every quotient of $\mathbb Z$ is MF, while
-$\ker\pi_{\mathbb Z}=\normal d_{W_{\mathbb Z}}$.
-
 \section*{Acknowledgments}
 
 The author thanks Francesco Fournier-Facio for early advice and detailed
@@ -2793,42 +2590,16 @@ and matrix norms.
 Claude Fable~5 and GPT-5.6 Sol assisted with mathematical exploration,
 proof development, literature searches, Lean formalization, drafting, and
 editing.  The author reviewed their output and is responsible for the
-manuscript.  Lean~4 source for the formalized results is available at
-\coderepo; the repository identifies the Lean declarations corresponding
-to the statements of this paper.
-
-For this paper, the development verifies the one-sided transport theorem
-and the normal property-\textup{(T)} radical criterion behind
-Theorem~\ref{thm:compression-criterion}; the rank~$12$ compression and
-commutator calculations and the full MF radical conclusion of
-Theorem~\ref{thm:headline}, including a direct proof of
-Proposition~\ref{prop:simple}; the quotient calculus of Theorem~\ref{thm:prescribed-quotients};
-and, for Theorem~\ref{thm:recognition}, the description by finite
-certificates and
-the deduction of $\Pi^0_2$-completeness from a computable family of
-finite presentations that is MF exactly on $\mathrm{INF}$.  The
+manuscript.  Lean~4 source is available at \coderepo.  The development
+verifies Theorems~\ref{thm:compression-criterion} and~\ref{thm:headline},
+the finite certificates of Proposition~\ref{prop:mf-upper-bound}, and the
+deduction of Theorem~\ref{thm:recognition} from a computable family of
+finite presentations that is MF exactly on $\mathrm{INF}$; the
 construction of that family in Section~\ref{sec:compiler} and
-Theorem~\ref{thm:hnn-permanence} are proved in the article.
-
-Beyond this paper, the development proves the following.
-\begin{itemize}
-\item Soficity of a recursively enumerated presentation is
-$\Pi^0_2$-complete; the hardness half follows the construction of
-Bilanovic--Chubb--Roven~\cite{BCR} from a finitely presented nonsofic
-group, whose nonsoficity is that of the Leavitt unit group of OpenAI's
-chapter~\cite{OAI}, re-proved in the development from Kun's expander
-decomposition and the Kun--Thom criterion.
-\leanverified{Computability/SoficEnumeratedPi02}{GroupApproximation.SoficEnumeratedPi02.sofic_enum_pi02Complete}
-\item There is one fixed finitely presented non-MF group with a computable
-family of words $w_p$, each killed by every corona homomorphism and lying
-in the commutator of the MF radical with the group, such that
-$w_p=1$ exactly when the program $p$ halts.
-\leanverified{Computability/FiniteDimensionalApproximationIncomplete}{GroupApproximation.FiniteDimensionalApproximationIncomplete.fixed_MF_radical_computer}
-\item There is a finitely presented, point-norm matricially stable, non-MF
-group whose MF radical is the normal closure of a single nontrivial
-element.
-\leanverified{Sofic/InvisibleExtensions}{GroupApproximation.InvisibleExtensions.stable_nonMF_invisible_extension_exists}
-\end{itemize}
+Theorem~\ref{thm:hnn-permanence} are proved in the article.  The
+repository also contains machine-checked results not used here, on MF
+radicals, the recognition of approximation properties, and related group
+constructions, with an indexed list of statements and declarations.
 
 \begin{thebibliography}{99}
 \bibitem[AA]{AbramsAranda}

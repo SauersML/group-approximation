@@ -113,6 +113,28 @@
       ]
     },
     {
+      "id": "prop:full-kernel-pullback",
+      "environment": "proposition",
+      "title": "full-kernel pullback",
+      "statement_sha256": "b0c6befd095a2e1a3ceadd2fb6ea2f5c51e512f21436c9821cf539f69cc38b57",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "prop:mf-residual-calculus"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
       "id": "thm:commutant",
       "environment": "theorem",
       "title": "finite-dimensional commutant rigidity",
@@ -345,10 +367,12 @@
       "title": "locality with fixed separation",
       "statement_sha256": "0099a2469fd840f0d186a88891290d500771b3d052ae52ec1d6e05ae6a22ef18",
       "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript.",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [],
       "extra_assumptions": [],
-      "external_inputs": [],
+      "external_inputs": [
+        "Korchagin, Proposition 7 (amplification of the separation constant)"
+      ],
       "coverage_gap": "",
       "lean": []
     },
@@ -475,7 +499,7 @@
       "id": "lem:bridge",
       "environment": "lemma",
       "title": "the three-generator embedding",
-      "statement_sha256": "adf21b207d37875969522c470f6de1ed70be254d8da7d4d2f2b632f846ae7125",
+      "statement_sha256": "636d096f0f7b7f07084d035c7b49ff4b5a88705752b4d1cf50ed388f6d78b710",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [],
@@ -492,7 +516,7 @@
       "id": "lem:mikhailova",
       "environment": "lemma",
       "title": "Higman embedding and the Mikhailova subgroup",
-      "statement_sha256": "62afc9c0041819a76d5fde21b440f8f8dc00feb5eb02320490fbebe4f42e715b",
+      "statement_sha256": "17e8092369f8dbb61d3985f561587883c6c9a9f135c2a51e2865c0ff13a1cff2",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
@@ -608,71 +632,6 @@
       "external_inputs": [],
       "coverage_gap": "",
       "lean": []
-    },
-    {
-      "id": "thm:prescribed-quotients",
-      "environment": "theorem",
-      "title": "prescribed maximal MF quotients",
-      "statement_sha256": "881486bf3a326e7c475370d9e6617fd092050d72b130bdb66aac1286b22f2834",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:full-kernel-pullback",
-        "prop:universal-factorization"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/PrescribedQuotients",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:full-kernel-pullback",
-      "environment": "proposition",
-      "title": "full-kernel pullback",
-      "statement_sha256": "b0c6befd095a2e1a3ceadd2fb6ea2f5c51e512f21436c9821cf539f69cc38b57",
-      "status": "exact",
-      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
-      "dependencies": [
-        "prop:mf-residual-calculus"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph",
-          "covers": "one printed clause; the listed declarations are collective"
-        }
-      ]
-    },
-    {
-      "id": "prop:universal-factorization",
-      "environment": "proposition",
-      "title": "universal factorization",
-      "statement_sha256": "d68ff5d921d874282bb59f4ea01c16c43b91865482fe3bb8480aa63113b16bfe",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/UniversalFactorization",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization",
-          "covers": "the complete printed proposition"
-        }
-      ]
     }
   ]
 }
