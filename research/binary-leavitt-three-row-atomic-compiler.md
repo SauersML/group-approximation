@@ -307,3 +307,20 @@ Thus the remaining seam is not merely to use completeness nonlinearly; it
 must prevent this three-packet support fusion by forcing the opposite-root
 coefficient occurrences for both children and the parent onto one
 indivisible payload reservoir.
+
+One literal mixed cross-zero square now eliminates that entire scalar
+support-fusion firewall.  In
+`cross-zero-breaks-reverse-whitehead-support-fusion`, fixed Weyl words move
+the same `C_0=x_14(q_0),C_1=x_14(q_1)` occurrences, together with their
+opposite factors `D_i`, to `x_12(q_0),x_23(q_1)` and the corresponding
+opposite roots.  The Leavitt crossed product gives a trivial commutator.
+Any scalar packet coordinate active for both children would instead contain
+`[x_12(1),x_23(1)]=x_13(1)`, so the two child supports must be disjoint.
+But completeness makes the parent support their symmetric difference, and
+the native partial-Whitehead transports make both child supports equimeasurable
+with the parent.  Their common weight is therefore both `r` and `2r`, hence
+zero.  This rules out arbitrary finite scalar support fusions, not only the
+three-copy model.  The remaining gap is promotion from scalar support
+coordinates to arbitrary non-scalar finite packet holonomy: one must show
+that the mixed squares force intersection-zero on the exactified payload
+reservoir without first assuming a character decomposition.
