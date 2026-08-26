@@ -26,4 +26,11 @@ the five same-reservoir placements.
 
 A successful window must add a non-typed return beyond these cells.  Merely
 repeating them at any fixed depth is also refuted by the iterated rectangular
-model.
+model.  The first such return is the Leavitt range-sum fold
+`r_fold=C_0C_1D^(-1)`, but the exact models in
+`leavitt-range-sum-fold-does-not-pay-reynolds` and
+`closed-compression-fold-loop-retains-s3-gauge` show that adjoining it still
+does not recover the source reservoir: the scalar fold leaves an independent
+nilpotent payload, and the closed two-branch compression/fold loop leaves an
+`S_3` reservoir gauge.  What remains must couple a fold occurrence directly
+to the native packet payload or pay a matrix boundary for failing to do so.

@@ -7,6 +7,8 @@ distinct_from:
   same-orbit-closure: that closes every Leavitt child on one source-sized paired orbit; this asks only for two fixed packet projections to enter two commuting returned algebras.
   balanced-router-pauli-holonomy-interface: that promotes the projection reflections to ordinary group words; this leaves them as fixed group-algebra expressions and recovers their projections instead.
   pauli-carrier-membership-decoder: that puts the transported branch carrier under one raw binary carrier and immediately creates a rank-capacity contradiction; this asks only for membership in one of two commuting descendant algebras.
+  leavitt-range-sum-fold-is-first-object-erasing-row: that identifies the first full-presentation word outside the typed Morita/Whitehead language; this asks for the stronger payload-coupled placement of five particular native packet factors.
+  leavitt-range-sum-fold-does-not-pay-reynolds: that proves the scalar fold remains exact with positive transverse reservoir leakage, even under literal fold-occurrence reuse; this endpoint therefore cannot use object erasure without an additional payload-coupled return.
 ---
 
 OPEN.  Let `F` be the trace-quarter common product of the two transported
@@ -102,8 +104,37 @@ Whitehead inverse pair, branch swap, and two-copy multiplication still fails
 by `whitehead-swap-window-places-native-pauli-factors`.  Therefore the first
 eligible new row must be genuinely object-erasing: it must contain a literal
 mixed cross-reservoir operator and identify the returned source identity, or
-pay a finite-coordinate boundary for failing to do so.  The stored rank-five
-word inventory does not currently authenticate such a row.
+pay a finite-coordinate boundary for failing to do so.
+
+The first such algebraic row is already known.  With
+
+```text
+D   =[x_12(A t_0),[x_23(1),x_34(s_0 A)]],
+C_i =[x_12(A s_i),[x_23(1),x_34(t_i A)]],
+```
+
+the full Leavitt coefficient table gives the fixed object-erasing word
+
+```text
+r_fold=C_0 C_1 D^(-1)=1.                              (SNQ3)
+```
+
+Here `D` names the source identity while `C_0C_1` names the sum of the two
+target range identities in the same long root.  Thus the source inventory
+contains no earlier eligible row: typed Steinberg triangles and the
+Whitehead/swap/copy cells preserve object type, while `(SNQ3)` is the first
+row which deletes it.
+
+However `(SNQ3)` does not authenticate the five native factors.
+`leavitt-range-sum-fold-does-not-pay-reynolds` makes the packet, branch
+covariance, common marked phase, literal fold occurrences, and `(SNQ3)` exact
+while retaining positive transverse Reynolds leakage.  The stronger closed
+two-branch compression/fold window still retains the exact finite `S_3`
+reservoir gauge of `closed-compression-fold-loop-retains-s3-gauge`.
+Consequently the remaining inventory question is not the existence of an
+object-erasing word.  It is the first **payload-coupled** cross-reservoir row
+which ties one occurrence in `(SNQ3)` to `q,T_0,T_1,comb,Q_P`, or else makes
+failure of that tie pay a dimension-independent finite-coordinate boundary.
 
 ## Falsification gate
 
