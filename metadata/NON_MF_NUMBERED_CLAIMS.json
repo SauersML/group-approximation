@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "base.tex",
+  "manuscript": "non_mf_groups_exist.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -283,34 +283,6 @@
       ]
     },
     {
-      "id": "prop:defect-saturation",
-      "environment": "proposition",
-      "title": "functoriality and normal generation",
-      "statement_sha256": "531f440c51bb7025811bad20aec22bb14ab2fd71c9d69e4c1fe060379889d5bc",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:compression-criterion"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/DefectSaturation",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptDefectSaturation",
-          "covers": "a printed conclusion of the proposition"
-        },
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/CompleteDefectSaturation",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompleteDefectSaturation",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "lem:tau-elementary",
       "environment": "lemma",
       "title": "",
@@ -436,7 +408,7 @@
       "id": "lem:local-models",
       "environment": "lemma",
       "title": "locality with fixed separation",
-      "statement_sha256": "0d7da83e07e44e4e952ac1d2c95f378c2998c373d89a58b40141ef2898052f11",
+      "statement_sha256": "0099a2469fd840f0d186a88891290d500771b3d052ae52ec1d6e05ae6a22ef18",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [],
