@@ -347,6 +347,107 @@ theorem relabel_hnnRels (c : PresentationCode)
 
 /-! ## The honest one-edge equivalence -/
 
+/-- **One computed edge realizes any specified subgroup equivalence.**
+
+Unlike `edgeCodeEquiv`, this statement does not ask the displayed tuples to be
+free.  Its semantic input is exactly the data needed by the HNN presentation:
+an equivalence between the generated source and target subgroups, together
+with its value on each displayed generator. -/
+noncomputable def edgeCodeEquivOfSubgroupEquiv (c : PresentationCode)
+    (edges : List (Raw × Raw))
+    (phi : HNNPresentation.srcSub (codeRels c) (sourceWord c edges) ≃*
+      HNNPresentation.tgtSub (codeRels c) (targetWord c edges))
+    (hphi : ∀ i,
+      ((phi ⟨HNNPresentation.srcGen (codeRels c) (sourceWord c edges) i,
+          HNNPresentation.srcGen_mem (codeRels c) (sourceWord c edges) i⟩ :
+        HNNPresentation.tgtSub (codeRels c) (targetWord c edges)) : Carrier c) =
+      HNNPresentation.tgtGen (codeRels c) (targetWord c edges) i) :
+    Carrier (edgeCode c edges) ≃*
+      HNNPresentation.Ext (codeRels c) (sourceWord c edges)
+        (targetWord c edges) phi :=
+  ((PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm).trans
+    (PresentedGroupRelabel.congrEquiv (edgeGeneratorEquiv c edges)
+      (HNNPresentation.hnnRels (codeRels c)
+        (sourceWord c edges) (targetWord c edges))).symm).trans
+    (HNNPresentation.equivPres (codeRels c)
+      (sourceWord c edges) (targetWord c edges) phi hphi)
+
+/-- The generic subgroup-equivalence bridge preserves every old generator. -/
+@[simp] theorem edgeCodeEquivOfSubgroupEquiv_oldGenerator
+    (c : PresentationCode) (edges : List (Raw × Raw))
+    (phi : HNNPresentation.srcSub (codeRels c) (sourceWord c edges) ≃*
+      HNNPresentation.tgtSub (codeRels c) (targetWord c edges))
+    (hphi : ∀ i,
+      ((phi ⟨HNNPresentation.srcGen (codeRels c) (sourceWord c edges) i,
+          HNNPresentation.srcGen_mem (codeRels c) (sourceWord c edges) i⟩ :
+        HNNPresentation.tgtSub (codeRels c) (targetWord c edges)) : Carrier c) =
+      HNNPresentation.tgtGen (codeRels c) (targetWord c edges) i)
+    (i : Fin (genCount c)) :
+    edgeCodeEquivOfSubgroupEquiv c edges phi hphi
+        (PresentedGroup.of (letterOf (edgeCode c edges) i)) =
+      HNNExtension.of (PresentedGroup.of (letterOf c i)) := by
+  rw [← edgeGeneratorEquiv_some c edges i]
+  change HNNPresentation.fwd (codeRels c)
+    (sourceWord c edges) (targetWord c edges) phi hphi
+    (PresentedGroupRelabel.relabelHomSymm (edgeGeneratorEquiv c edges)
+      (HNNPresentation.hnnRels (codeRels c)
+        (sourceWord c edges) (targetWord c edges))
+      (PresentationCodeList.presCongrSet
+        (relabel_hnnRels c edges).symm
+        (PresentedGroup.of (edgeGeneratorEquiv c edges (some i))))) = _
+  have hpres := PresentationCodeList.presCongrSet_mk
+    (relabel_hnnRels c edges).symm
+    (FreeGroup.of (edgeGeneratorEquiv c edges (some i)))
+  change PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm
+      (PresentedGroup.of (edgeGeneratorEquiv c edges (some i))) =
+    PresentedGroup.of (edgeGeneratorEquiv c edges (some i)) at hpres
+  rw [hpres, PresentedGroupRelabel.relabelHomSymm_of]
+  simp only [Equiv.symm_apply_apply]
+  rw [HNNPresentation.fwd, PresentedGroup.toGroup.of]
+  have hi : letterOf c (i : ℕ) = i := by
+    apply Fin.ext
+    exact RawWord.letterOf_val_of_lt c i.isLt
+  rw [hi]
+  rfl
+
+/-- The final raw generator becomes the stable letter in the generic bridge. -/
+@[simp] theorem edgeCodeEquivOfSubgroupEquiv_stable
+    (c : PresentationCode) (edges : List (Raw × Raw))
+    (phi : HNNPresentation.srcSub (codeRels c) (sourceWord c edges) ≃*
+      HNNPresentation.tgtSub (codeRels c) (targetWord c edges))
+    (hphi : ∀ i,
+      ((phi ⟨HNNPresentation.srcGen (codeRels c) (sourceWord c edges) i,
+          HNNPresentation.srcGen_mem (codeRels c) (sourceWord c edges) i⟩ :
+        HNNPresentation.tgtSub (codeRels c) (targetWord c edges)) : Carrier c) =
+      HNNPresentation.tgtGen (codeRels c) (targetWord c edges) i) :
+    edgeCodeEquivOfSubgroupEquiv c edges phi hphi
+        (PresentedGroup.of
+          (letterOf (edgeCode c edges) (stableIndex c))) =
+      (HNNExtension.t : HNNPresentation.Ext (codeRels c)
+        (sourceWord c edges) (targetWord c edges) phi) := by
+  rw [← edgeGeneratorEquiv_none c edges]
+  change HNNPresentation.fwd (codeRels c)
+    (sourceWord c edges) (targetWord c edges) phi hphi
+    (PresentedGroupRelabel.relabelHomSymm (edgeGeneratorEquiv c edges)
+      (HNNPresentation.hnnRels (codeRels c)
+        (sourceWord c edges) (targetWord c edges))
+      (PresentationCodeList.presCongrSet
+        (relabel_hnnRels c edges).symm
+        (PresentedGroup.of (edgeGeneratorEquiv c edges none)))) = _
+  have hpres := PresentationCodeList.presCongrSet_mk
+    (relabel_hnnRels c edges).symm
+    (FreeGroup.of (edgeGeneratorEquiv c edges none))
+  change PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm
+      (PresentedGroup.of (edgeGeneratorEquiv c edges none)) =
+    PresentedGroup.of (edgeGeneratorEquiv c edges none) at hpres
+  rw [hpres, PresentedGroupRelabel.relabelHomSymm_of]
+  simp only [Equiv.symm_apply_apply]
+  rw [HNNPresentation.fwd, PresentedGroup.toGroup.of]
+  rfl
+
 /-- **One computed edge is the honest free-edge HNN extension.**
 
 The only semantic inputs are injectivity of the two displayed free
