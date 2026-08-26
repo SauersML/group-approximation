@@ -211,3 +211,4 @@
 32909672642	2026-08-25T23:12:30Z	GroupApproximation/Sofic/BassSerreHullGeometry.lean	isAcylindrical
 32911791308	2026-08-25T23:40:50Z	GroupApproximation/Sofic/BespokeRouterGateAssembly.lean	metricSmallCancellation_mono
 32913268136	2026-08-26T00:01:18Z	GroupApproximation/Sofic/BlockAmplificationRepair.lean	norm_blockListMap_sub_one_ge_of_mem
+32921056665	2026-08-26T02:00:32Z	GroupApproximation/Sofic/BlockCliffordIndex.lean	sign_sq
