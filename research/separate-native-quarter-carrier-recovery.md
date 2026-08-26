@@ -93,6 +93,18 @@ so five uniform `eta`-placements already force `eta>=1/72`.  This is the
 smallest known multiplicative packet audit; choosing the returned algebras
 and proving these factor placements remains the matrix-only step.
 
+No finite window made solely from typed rank-five multiplication triangles
+can prove those five placements.  The exact Morita model invalidates
+`typed-rank-five-window-places-native-pauli-factors`: every such pasted
+triangle preserves the distinction between the source identity `1_E` and
+the doubled target identity `1_(E direct sum E)`.  Adding the canonical
+Whitehead inverse pair, branch swap, and two-copy multiplication still fails
+by `whitehead-swap-window-places-native-pauli-factors`.  Therefore the first
+eligible new row must be genuinely object-erasing: it must contain a literal
+mixed cross-reservoir operator and identify the returned source identity, or
+pay a finite-coordinate boundary for failing to do so.  The stored rank-five
+word inventory does not currently authenticate such a row.
+
 ## Falsification gate
 
 An argument using only their traces, the compulsory `5/32` overlap, or the

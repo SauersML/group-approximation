@@ -3,6 +3,8 @@ rg: 2
 id: mixed-steinberg-loops-admit-morita-rectangular-model
 kind: claim
 title: Pure mixed Steinberg loops admit an exact finite Morita-rectangular model
+invalidates:
+  - typed-rank-five-window-places-native-pauli-factors
 distinct_from:
   outer-root-leavitt-table: that proves the diagonal/crossed nested commutator words in one ring; this realizes those words and all their rank-five/six associativity refinements with unequal source and target reservoirs.
   rectangular-escape: that gives the paired-label and Weyl representation model; this explains algebraically why adding more Steinberg commutator triangles does not close the escape.
