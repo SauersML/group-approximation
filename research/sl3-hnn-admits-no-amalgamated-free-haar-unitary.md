@@ -41,6 +41,18 @@ Nothing weaker than this statement makes `G_3` the witness.
   computable coordinate by coordinate.  This is where the congruence
   models, in which `pi_n(A) subseteq pi_n(C)''`, are automatically
   excluded (co-density), and where exotic models are not.
+- **The ambient-extendable sector is closed.**
+  `sl3-amalgamated-free-enemies-are-ambient-extension-outliers` combines
+  the exact subgroup-indicator moment forced by amalgamated freeness with
+  the unbalanced-torus inequality.  It proves that any surviving enemy is
+  uniformly separated, on the lattice generators, from the restriction of
+  every exact same-dimensional representation of `A`.  This includes
+  arbitrary exact ambient multiplicity patterns, not only a single tensor
+  factor.  The remaining gap is therefore genuinely an ambient-extension
+  outlier: being close to an exact representation of `C` does not by itself
+  make that representation extend to `A`.  The exact residual leaf is
+  `sl3-ambient-outliers-carry-no-free-hnn-letter`,
+  wired through `sl3-amalgamated-free-exclusion-from-outlier-rigidity`.
 - **Popa's theorem does not apply.**  Relative free independence in the
   centraliser `B' cap M` is a theorem for AMENABLE `B` (Popa
   arXiv:1308.3982); `B = L(SL_3(Z))` is the opposite extreme, and no
