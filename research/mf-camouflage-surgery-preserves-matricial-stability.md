@@ -48,3 +48,20 @@ for finite `r`.  More broadly, every finitely presented group which is both
 MF and point-norm matricially stable occurs as the universal MF quotient of
 a finitely presented stable non-MF group with singly normally generated MF
 radical.
+
+## Provenance firewall
+
+This is a transport theorem, not a first non-MF seed.  Its definition starts
+with a group `B` satisfying `Rad_MF(B)=B`, and the proof of non-MF for
+`C_d(Q)` consumes that hypothesis verbatim.  Taking `Q=1` even gives
+
+```text
+C_d(1)=B *_D D isomorphic to B.
+```
+
+The finitely presented Hilbert-hotel pair currently used to instantiate `B`
+gets its full MF radical from `normal-kazhdan-defect-non-mf`; hence that
+specialization has Property `(T)` in its proof provenance.  Camouflage can
+preserve point-norm stability and prescribe the visible quotient after an
+independent full-radical seed is known, but it cannot manufacture the first
+Property-`(T)`-free non-MF group.

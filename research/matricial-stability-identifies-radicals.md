@@ -40,3 +40,8 @@ finitely presented stable groups with nontrivial finite-dimensional
 residual.  Starting from a stable MF group such as a finite-rank free group
 or `Z`, the camouflage group remains stable while its finite-dimensional
 residual becomes the nontrivial singly normally generated hidden kernel.
+This application is not an independent existence proof: the camouflage
+construction also starts from a full-MF-radical seed `B`, and its current
+finitely presented `B` is proved full-radical by Kazhdan transport.  Thus the
+identification theorem is Property-`(T)`-free, while the presently displayed
+non-MF instantiation is not Property-`(T)`-free in provenance.
