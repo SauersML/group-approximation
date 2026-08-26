@@ -141,3 +141,17 @@ to `1/16`.  Thus it already establishes an explicit non-hyperlinear group.
   surviving candidate.  The unbalanced word plus the displayed separate
   rank-one consistency does not extract the product-multiplicity coordinate
   used by the established product-sector theorem.
+
+- **The first mixed `A_2` word is still not enough.**
+  `one-mixed-a2-word-does-not-control-fold-square` repairs the omitted identity
+
+  ```text
+  W_12 E_23 W_12^*=[E_12,E_23]
+  ```
+
+  exactly on an internal Pauli qubit while retaining the exact torus, swap,
+  and rank-one package in `M_4`.  Its fold has
+  `Re tr(V^2)=-1/2` and Gram defect `3/32`.  Consequently the surviving local
+  gate needs a second joint chamber relation or a closed rank-two loop which
+  removes this internal repair freedom; one eliminated-root equality cannot
+  support `(SFS1)`.

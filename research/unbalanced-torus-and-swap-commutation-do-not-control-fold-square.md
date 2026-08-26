@@ -82,5 +82,12 @@ that it alone pays the fold energy.  A positive continuation must turn this
 or another genuinely mixed actor defect into a dimension-free fold-square
 estimate on arbitrary outlier assignments.
 
+That first continuation is now also fenced.  The exact `M_4` packet in
+`one-mixed-a2-word-does-not-control-fold-square` satisfies `(UTS3)` together
+with every equality above and still has a nontrivial fold square.  Thus the
+next positive input must contain at least one additional joint rank-two
+relation; detecting the diagonal `M_2` packet with one mixed word is not the
+same as controlling all packets satisfying that word.
+
 DERIVATION
 unbalanced-torus-swap-countermodel-proof
