@@ -808,6 +808,18 @@ native target `J_1QJ_1^(-1)`.  The next source/native return attempt needs
 at least two additional nonnormal occurrences or a genuinely
 three-coordinate cell.
 
+The same-pair two-root repair is also closed at arbitrary coefficient
+depth.  `two-same-pair-roots-cannot-return-mixed-braid-native-chart`
+tests both products of roots in the `(7,9)` and `(9,7)` subgroups.  In one
+order the `e_9` coefficient is `bq_0+q_1`, which cannot vanish by right
+support.  In the other, either the `e_9` coefficient survives or applying
+`J_1` leaves the nonzero `e_8` coefficient
+`x_1(q_0+aq_1)`, whose right-`q_0` component is `x_1`.  Thus two further
+roots confined to the residual pair still cannot reach the active native
+chart.  A live two-root continuation must use different coordinate
+channels; otherwise at least three further same-pair occurrences are
+needed.
+
 The proposed complementary-support continuation was based on the wrong
 literal occurrence.  `actual-mixed-complement-returns-reverse-root`
 compares the correct residual block
