@@ -69,15 +69,26 @@ group von Neumann algebra of `Gamma` with the character
 
 **The Kun--Thom subgroup.**  The sandwich theorem (Vaserstein) shows a
 non-central normal subgroup of `EL_r(R_+)`, `r >= 3`, contains `E_r(R_+, I)`
-for a nonzero ideal `I`.  Pick `a, b in I` of positive `x_1`-degree with
-nonzero leading coefficients after specializing `x_2, ..., x_d` to elements of
-`F_q` (possible since `I` is a nonzero ideal of a polynomial ring), and view
-`e_12(a), e_21(b)` inside `SL_2(F_q((x_1^(-1))))` acting on its Bruhat--Tits
-tree.  The product `e_12(a) e_21(b)` has trace `2 + ab` of absolute value
-`q^(deg ab) > 1`, so it is hyperbolic; `e_12(a)` fixes the end `infinity`
-and `e_21(b)` fixes the end `0`, neither fixes the other's end, and no point
-is fixed by both a hyperbolic element and the group, so the group they
-generate is a non-elementary group of tree automorphisms and contains a free
-subgroup (ping-pong).  Hence every non-central normal subgroup is
-non-amenable, the amenable radical is the center `Z = mu(F_q) cap EL_r`,
-finite, and (4) applies.
+for a nonzero ideal `I`.  Pick a nonzero `c in I` and put `a = c x_1`, `a' = c x_1^2`, `b = c x_1`,
+all in `I`.  Let `K = F_q(x_2, ..., x_d)((x_1^(-1)))`, a field complete for
+the discrete valuation `-deg_(x_1)`, and view `e_12(a), e_12(a'), e_21(b)`
+in `SL_2(K)` acting on the Bruhat--Tits tree of `SL_2(K)`, whose ends are
+the points of `P^1(K)`.  An element of `SL_2(K)` is hyperbolic exactly when
+its trace has absolute value `> 1`; `tr(e_12(a) e_21(b)) = 2 + ab` and
+`tr(e_12(a') e_21(b)) = 2 + a'b` have positive `x_1`-degree, so both
+products are hyperbolic.  Their axes join the two fixed points of each in
+`P^1(K)`, the roots of `z^2 - a z - a/b` and of `z^2 - a' z - a'/b`
+respectively; since `a != a'` these root pairs differ, so the axes are
+distinct.  The unipotent `e_12(a)` fixes exactly one end, `infinity`, and
+`e_21(b)` fixes exactly one end, `0`, so the group `Lambda_0` they generate
+with `e_12(a')` fixes no end; it fixes no vertex (it contains hyperbolic
+elements); and it preserves no line (an invariant line would be the axis of
+every hyperbolic element of `Lambda_0`, but two hyperbolic elements have
+distinct axes).  A group of tree automorphisms that fixes no vertex, fixes no
+end and preserves no line contains a non-abelian free subgroup (ping-pong on
+two hyperbolic elements with distinct axes, after passing to powers), so
+`Lambda_0 <= E_r(R_+, I)` is non-amenable.  Two generators would not do when
+`p = 2`, where `e_12(a)` and `e_21(b)` are involutions generating an infinite
+dihedral group; the third generator is what forces distinct axes.  Hence
+every non-central normal subgroup of `Gamma` is non-amenable, the amenable
+radical is the finite center `Z = mu(F_q) cap EL_r`, and (4) applies.

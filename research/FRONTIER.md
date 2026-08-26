@@ -7213,8 +7213,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-26 · sl3-pair-atomic-lattice-absorption-proof [COMPLETE] Character rigidity kills the regular corner, then the ambient-amenable absorption applies
 - 2026-08-26 · sl3-pair-admits-exterior-atomic-model [REFUTED] The arithmetic pair SL3(Z) in SL3(Z[1/p]) has an abstract unitary model in the hyperfinite factor keeping every non-lattice element uniformly exterior to the lattice algebra
 - 2026-08-26 · sl3-atomic-ambient-is-absorbed-by-lattice [ESTABLISHED] Every amenable atomic model of the S-arithmetic SL3 group is absorbed by the integral lattice algebra
-- 2026-08-26 · kt-double-hyperlinear-via-hyperfinite-edge-model [INVALIDATED] Model the Kazhdan subgroup by an amenable algebra so that Brown--Dykema--Jung adjoins the free lamp, then upgrade the abstract embedding
-- 2026-08-26 · kazhdan-generated-amenable-algebra-is-atomic-proof [COMPLETE] Connes--Jones bimodule property (T) for the generated algebra, against Connes' coarse-bimodule characterization of amenability
+- 2026-08-26 · leavitt-two-compressor-covariance-triangle-has-marked-models [ESTABLISHED] Two-compressor covariance and its order-three triangle have marked finite models
+- 2026-08-26 · leavitt-st20-two-compressor-mark-is-mf-invisible [OPEN] The literal Steinberg two-compressor core kills the marked root in every MF model
 
 ## Active claims
 

@@ -46,11 +46,15 @@ the **tempered part** of the action, with projection `f = e_(T_Gamma)`.
 `E_r(R_+, I)` and the congruence-type subgroup of a unique ideal `I`
 (Vaserstein's sandwich theorem for `r >= 3` over commutative rings, *On the
 normal subgroups of GL_n over a ring*, LNM 854 (1981)); for `I != 0` the
-group `E_r(R_+, I)` contains `e_12(a)` and `e_21(b)` with `a, b in I` of
-positive degree in `x_1`, which act on the Bruhat--Tits tree of
-`SL_2(F_q((x_1^(-1))))` (coefficients in the other variables specialized)
-with `e_12(a) e_21(b)` hyperbolic and neither generator fixing the other's
-end, so they generate a non-elementary, hence non-amenable, subgroup.  Thus
+group `E_r(R_+, I)` contains `e_12(a), e_12(a'), e_21(b)` with
+`a = c x_1`, `a' = c x_1^2`, `b = c x_1` for any nonzero `c in I`.  Viewed
+in `SL_2(K)`, `K = F_q(x_2, ..., x_d)((x_1^(-1)))` a complete discretely
+valued field, these act on the Bruhat--Tits tree of `SL_2(K)`: the products
+`e_12(a) e_21(b)` and `e_12(a') e_21(b)` are hyperbolic with distinct axes
+(`a != a'`), and the three generators fix no common end.  So they generate a
+non-elementary group of tree automorphisms, which contains a free subgroup and
+is non-amenable.  (Two generators do not suffice when `p = 2`: `e_12(a)` and
+`e_21(b)` are then involutions generating an infinite dihedral group.)  Thus
 the amenable radical of `Gamma` is its finite center, and (4) applies.
 
 **What this buys.**  Together with the finite-dimensional part, every
