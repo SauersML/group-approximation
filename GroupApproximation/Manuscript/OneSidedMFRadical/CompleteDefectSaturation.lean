@@ -34,25 +34,25 @@ namespace OneSidedMFRadical
 /-- **Proposition `prop:defect-saturation` in its complete printed form.**
 
 The first conjunct is the five-clause `DefectSaturation`.  The second is the
-image branch's final sentence: with `f` onto, `S ≤ 𝔇_G(L)` simple, `f(S)`
-nontrivial and normally generating `Q`, and with `G` countable and both `L`
-and `G` Kazhdan, the MF radical of `Q` is all of `Q`. -/
+image branch's final sentence: with `f` onto, `S ≤ 𝔇_G(L)`, `f(S)` normally
+generating `Q`, and with `G` countable and both `L` and `G` Kazhdan, the MF
+radical of `Q` is all of `Q`. -/
 def CompleteDefectSaturation : Prop :=
   DefectSaturation ∧
     (∀ (G Q : Type) [Group G] [Group Q] [Countable G] (f : G →* Q),
       Function.Surjective f →
       ∀ (L S : Subgroup G),
         HasKazhdanPropertyT.{0, 0} ↥L → HasKazhdanPropertyT.{0, 0} G →
-        IsSimpleGroup S → S ≤ printedDefect L → S.map f ≠ ⊥ →
+        S ≤ printedDefect L →
         Subgroup.normalClosure (S.map f : Set Q) = ⊤ →
           manuscriptCoronaMFResidual Q = ⊤)
 
 /-- Closed proof of every printed clause of `prop:defect-saturation`. -/
 theorem manuscriptCompleteDefectSaturation : CompleteDefectSaturation := by
   refine ⟨manuscriptDefectSaturation, ?_⟩
-  intro G Q _ _ _ f hf L S hL hG hS hSD hne hgen
+  intro G Q _ _ _ f hf L S hL hG hSD hgen
   exact (manuscriptImageSaturationFullMFRadicalRoute
-    f hf L S hL hG hS hSD hne hgen).2.2.2
+    f hf L S hL hG hSD hgen).2.2.2
 
 end OneSidedMFRadical
 end Manuscript

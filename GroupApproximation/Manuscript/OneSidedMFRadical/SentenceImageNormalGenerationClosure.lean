@@ -33,13 +33,15 @@ theorem manuscriptNormalClosureSimpleImageLeMappedPrintedDefect
   Subgroup.normalClosure_le_normal
     (manuscriptSimpleImageLeMappedPrintedDefect f L S hSD)
 
-/-- **Sentence-census row 199.**  The hypotheses from the image clause are
-retained, while the conclusion exposes in order the image inclusion, normal
-closure containment, and the resulting equality with `Q`. -/
+/-- **Sentence-census row 199.**  The hypotheses are exactly the printed
+ones (`f` onto, `S ≤ 𝔇_G(L)`, `f(S)` normally generating `Q`; simplicity of
+`S` and nontriviality of `f(S)` are not assumed), while the conclusion
+exposes in order the image inclusion, normal closure containment, and the
+resulting equality with `Q`. -/
 theorem manuscriptSimpleImageNormalGenerationRoute
     (f : G →* Q) (_hf : Function.Surjective f)
-    (L S : Subgroup G) (_hS : IsSimpleGroup S)
-    (hSD : S ≤ printedDefect L) (_hne : S.map f ≠ ⊥)
+    (L S : Subgroup G)
+    (hSD : S ≤ printedDefect L)
     (hgen : Subgroup.normalClosure (S.map f : Set Q) = ⊤) :
     S.map f ≤ printedDefect (L.map f) ∧
       Subgroup.normalClosure (S.map f : Set Q) ≤

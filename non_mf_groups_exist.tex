@@ -1168,16 +1168,16 @@ restriction homomorphism, the displayed estimate identifies the class of
 \end{proof}
 
 \begin{theorem}[normal Kazhdan radical theorem]\label{thm:normal-kazhdan}
-Let \(G\) be countable, let \(D\le R_{\infty\to2}(G)\), and let
-\(K\trianglelefteq G\) have property~\textup{(T)} with \(K\le D\).  Then
+Let \(G\) be countable and let \(K\trianglelefteq G\) have
+property~\textup{(T)} with \(K\le R_{\infty\to2}(G)\).  Then
 %<webmath object="whole" when="K\le\Rad_{\mathrm{MF}}(G)" title="the normal property-(T) subgroup is erased by every MF model">
 % The sign \(\le\) states that the subgroup K is contained in the [[MF
 % radical]] of G.  By definition, this means every [[homomorphism]] from G to
 % every [[norm matrix corona]] sends each element of K to the identity.  The
-% hypotheses supply two ingredients: K has [[property (T)]], and K lies in D,
-% which itself lies in the universal infinity-to-two kernel.  The proof uses
-% property (T) to turn Hilbert–Schmidt invisibility into total invisibility in
-% every operator-norm matrix model.
+% hypotheses supply two ingredients: K has [[property (T)]], and K lies in
+% the universal infinity-to-two kernel.  The proof uses property (T) to turn
+% Hilbert–Schmidt invisibility into total invisibility in every operator-norm
+% matrix model.
 %</webmath>
 \[
  K\le\Rad_{\mathrm{MF}}(G).
@@ -1223,7 +1223,7 @@ Lemma~\ref{lem:central-corona-corner}
 gives an operator norm asymptotic representation \((W_n)\) on nonzero
 corners \(q_nM_{d_n}(\C)q_n\).
 
-Choose a finite symmetric Kazhdan set \(S\subseteq K\) and a Kazhdan
+Choose a finite Kazhdan set \(S\subseteq K\) and a Kazhdan
 constant \(\kappa>0\).  In the corner \(q\mathcal Q_{\mathbf d}q\), the
 Kazhdan projection is zero.  Hence the positive element
 %<webmath object="whole" when="b=\frac1{|S|}\sum_{s\in S}" title="b averages the squared movement caused by the Kazhdan set">
@@ -1322,7 +1322,7 @@ Normality of \(R_{\infty\to2}(G)\) therefore gives
 \[
  \mathfrak D_G(L)\le R_{\infty\to2}(G).
 \]
-Theorem~\ref{thm:normal-kazhdan} now gives
+Since \(K\le\mathfrak D_G(L)\), Theorem~\ref{thm:normal-kazhdan} now gives
 \(K\le\Rad_{\mathrm{MF}}(G)\).  Taking a nontrivial $K$ gives the non-MF
 conclusion.  Taking $K=G=\mathfrak D_G(L)$ gives
 $\Rad_{\mathrm{MF}}(G)=G$.
@@ -1366,12 +1366,12 @@ property~\textup{(T)}, then
  \Rad_{\mathrm{MF}}(G)=G.
 \]
 
-Alternatively, suppose that $f$ is onto, $S\le D$ is simple, $f(S)\ne1$, and
-$f(S)$ normally generates $Q$.  Then
+Alternatively, suppose that $f$ is onto, $S\le D$, and $f(S)$ normally
+generates $Q$.  Then
 %<webmath object="whole" when="\mathfrak D_Q(f(L))=Q" title="the image defect is all of Q">
 % The left side is the compression-centralizer defect formed in Q from the
-% subgroup \(f(L)\).  Functoriality places the nontrivial simple group
-% \(f(S)\) inside this defect.  The defect is a [[normal subgroup]], so it
+% subgroup \(f(L)\).  Functoriality places the image \(f(S)\) inside this
+% defect.  The defect is a [[normal subgroup]], so it
 % contains the [[normal closure]] of \(f(S)\).  By hypothesis that normal
 % closure is all of Q.  The displayed equality records the result: every
 % element of Q lies in the defect determined by \(f(L)\).

@@ -45,8 +45,7 @@ theorem normalKazhdan_le_actualCoronaMFResidual_of_le_printedDefect
     K ≤ actualCoronaMFResidual G := by
   have hshadow : printedDefect L ≤ opToHSShadowResidual G :=
     printedDefect_le_opToHSShadowResidual_direct L hL
-  exact manuscriptNormalKazhdanRadical G (printedDefect L)
-    hshadow K hK hKD
+  exact manuscriptNormalKazhdanRadical G K hK (hKD.trans hshadow)
 
 /-! ## Closed endpoints for the manuscript audit -/
 

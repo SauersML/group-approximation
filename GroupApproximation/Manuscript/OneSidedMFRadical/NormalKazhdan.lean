@@ -15,19 +15,16 @@ namespace OneSidedMFRadical
 inside the operator-to-Hilbert--Schmidt shadow residual lies in the genuine
 MF radical. -/
 def NormalKazhdanRadical : Prop :=
-  ∀ (G : Type) [Group G] [Countable G] (D : Subgroup G),
-    D ≤ opToHSShadowResidual G →
-    ∀ (K : Subgroup G) [K.Normal],
-      HasKazhdanPropertyT.{0, 0} K → K ≤ D →
-        K ≤ actualCoronaMFResidual G
+  ∀ (G : Type) [Group G] [Countable G] (K : Subgroup G) [K.Normal],
+    HasKazhdanPropertyT.{0, 0} K → K ≤ opToHSShadowResidual G →
+      K ≤ actualCoronaMFResidual G
 
 /-- Closed proof of the manuscript's normal Kazhdan radical theorem. -/
 theorem manuscriptNormalKazhdanRadical : NormalKazhdanRadical := by
-  intro G _ _ D hD K _ hT hK
+  intro G _ _ K _ hT hK
   rw [actualCoronaMFResidual_eq_coronaMFResidual,
     coronaMFResidual_eq_normMFResidual]
-  exact normalKazhdan_le_normMFResidual_of_le_opToHSShadowResidual
-    K hT (hK.trans hD)
+  exact normalKazhdan_le_normMFResidual_of_le_opToHSShadowResidual K hT hK
 
 end OneSidedMFRadical
 end Manuscript

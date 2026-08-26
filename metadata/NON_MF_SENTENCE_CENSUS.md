@@ -6,15 +6,14 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 329 |
+| `formalized` | 332 |
 | `definition` | 63 |
-| `structural` | 20 |
-| `attribution` | 15 |
-| `provenance` | 4 |
-| `partial` | 4 |
+| `structural` | 23 |
+| `attribution` | 12 |
+| `partial` | 5 |
 | **total** | **435** |
 
-Completely formalized or definitional: **392/435** (90.1%).
+Completely formalized or definitional: **395/435** (90.8%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -24,6 +23,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 
 * **`partial`**, line 654 --- Their 1997 paper developed these notions and proved that a separable $C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK}.
   * The corpus defines finite-local NF independently and proves that it implies separability and nuclearity, and in the unital case constructs a faithful matrix-corona embedding and hence proves MF. The printed equivalence remains partial because the converse implication from separable nuclear and MF to this independent NF predicate is not proved.
+* **`partial`**, line 663 --- The negative solution of the Connes embedding problem~\cite{MIPRE} yields separable stably finite $C^*$-algebras that are not MF, as Goldbring and Hart observe~\cite[Proposition~6.1]{GoldbringHart}.
+  * The sentence attributes an actual existential theorem, not only terminology or priority: the negative solution of Connes embedding yields a separable stably finite non-MF C-star algebra. The manuscript's own reduced-group example proves the same bare existential conclusion independently, but it does not formalize the historical implication from a non-R-omega-embeddable II_1 factor through the strongly dense unique-trace C-star subalgebra used by Goldbring--Hart. Under the strict sentence/path audit, that cited route remains unformalized even though it is unused below.
 * **`partial`**, line 663 --- Shulman proves MF permanence for doubles $G*_H G$ of MF groups~\cite[Theorem~10]{Shulman}.
   * NOT proved in-repo. The sentence states a specific theorem -- G MF implies the double G *_H G is MF -- so it is not bare attribution, but nothing in the corpus establishes it: metadata/LITERATURE_QUARANTINE.md lists the Shulman amalgamated-double theorem as an unproved input, and Sofic/SymmetricDoubleShulman.lean proves only that IsOperatorMF (SymmetricDouble SigmaGroup sigmaBase) is EQUIVALENT to the exact-radical endpoint, explicitly declining to prove it. No declaration may be named without laundering that input
 * **`partial`**, line 663 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.

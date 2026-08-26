@@ -47,15 +47,17 @@ theorem manuscriptMappedFullDefectGivesFullMFRadical
       (manuscriptSurjectiveImageHasKazhdanPropertyT f hf hG) hD
 
 /-- **The final image route in the proof around census rows 199--200.**
-All printed hypotheses are retained.  The conclusion exposes property `(T)`
+The printed hypotheses are `f` onto, `S ≤ 𝔇_G(L)`, and normal generation
+of `Q` by `f(S)`, with `G` countable and `L`, `G` Kazhdan; simplicity of `S`
+and nontriviality of `f(S)` are not assumed, matching the manuscript.  The
+conclusion exposes property `(T)`
 for `f(L)` and `Q`, fullness of the mapped defect, and the final full-radical
 conclusion obtained by taking `K = Q` in the compression criterion. -/
 theorem manuscriptImageSaturationFullMFRadicalRoute
     [Countable G] (f : G →* Q) (hf : Function.Surjective f)
     (L S : Subgroup G) (hL : HasKazhdanPropertyT.{0, 0} ↥L)
     (hG : HasKazhdanPropertyT.{0, 0} G)
-    (hS : IsSimpleGroup S) (hSD : S ≤ printedDefect L)
-    (hne : S.map f ≠ ⊥)
+    (hSD : S ≤ printedDefect L)
     (hgen : Subgroup.normalClosure (S.map f : Set Q) = ⊤) :
     HasKazhdanPropertyT.{0, 0} ↥(L.map f) ∧
       HasKazhdanPropertyT.{0, 0} Q ∧
@@ -64,7 +66,7 @@ theorem manuscriptImageSaturationFullMFRadicalRoute
   have hLT := manuscriptMappedSubgroupHasKazhdanPropertyT f L hL
   have hQT := manuscriptSurjectiveImageHasKazhdanPropertyT f hf hG
   have hD := printedDefect_map_eq_top_of_simple_image_normalClosure_eq_top
-    f hf L S hS hSD hne hgen
+    f hf L S hSD hgen
   exact ⟨hLT, hQT, hD,
     manuscriptMappedFullDefectGivesFullMFRadical f hf L hL hG hD⟩
 

@@ -244,7 +244,7 @@
       "id": "thm:normal-kazhdan",
       "environment": "theorem",
       "title": "normal Kazhdan radical theorem",
-      "statement_sha256": "7611e74f969ea3d5bf7d054d5e6e0f357b6ce6eb8607ad6de78d4a878dd4868d",
+      "statement_sha256": "f0bde8a7a0658a1fce8b090514b5a9df60e1e3ec47d010a1473077aab7f6567f",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -266,7 +266,7 @@
       "id": "prop:defect-saturation",
       "environment": "proposition",
       "title": "functoriality and normal generation",
-      "statement_sha256": "5285736fe4b503c8ffd31b9a743668783bf78198a56ec0ad2cfcfa3b953960bf",
+      "statement_sha256": "531f440c51bb7025811bad20aec22bb14ab2fd71c9d69e4c1fe060379889d5bc",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [

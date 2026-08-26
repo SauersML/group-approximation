@@ -89,14 +89,15 @@ theorem printedDefect_eq_top_of_simple_normalClosure_eq_top
   exact Subgroup.normalClosure_le_normal
     (simple_le_printedDefect_of_inf_ne_bot L S hS hne)
 
-/-- The proposition's more general image statement.  The simplicity and
-nontrivial-image hypotheses are retained exactly as printed; once `S ≤ D`
-and normal generation of `f(S)` are supplied, normality is the step that
-forces the conclusion. -/
+/-- The proposition's more general image statement, exactly as printed:
+once `S ≤ D` and normal generation of `f(S)` are supplied, normality is the
+step that forces the conclusion.  Neither simplicity of `S` nor
+nontriviality of `f(S)` is needed, and the manuscript no longer assumes
+them; the name keeps its historical `simple_image` for stability of the
+census rows that cite it. -/
 theorem printedDefect_map_eq_top_of_simple_image_normalClosure_eq_top
     (f : G →* Q) (_hf : Function.Surjective f) (L S : Subgroup G)
-    (_hS : IsSimpleGroup S) (hSD : S ≤ printedDefect L)
-    (_hne : S.map f ≠ ⊥)
+    (hSD : S ≤ printedDefect L)
     (hgen : Subgroup.normalClosure (S.map f : Set Q) = ⊤) :
     printedDefect (L.map f) = ⊤ := by
   have hmap : S.map f ≤ printedDefect (L.map f) :=
@@ -288,8 +289,8 @@ def DefectSaturation : Prop :=
       printedDefect L ⊓ S ≠ ⊥ →
       Subgroup.normalClosure (S : Set G) = ⊤ → printedDefect L = ⊤) ∧
   (∀ (G Q : Type) [Group G] [Group Q] (f : G →* Q),
-      Function.Surjective f → ∀ (L S : Subgroup G), IsSimpleGroup S →
-      S ≤ printedDefect L → S.map f ≠ ⊥ →
+      Function.Surjective f → ∀ (L S : Subgroup G),
+      S ≤ printedDefect L →
       Subgroup.normalClosure (S.map f : Set Q) = ⊤ →
         printedDefect (L.map f) = ⊤) ∧
   (∀ (G : Type) [Group G] [Countable G] (L S : Subgroup G),
@@ -305,9 +306,9 @@ theorem manuscriptDefectSaturation : DefectSaturation := by
       simple_le_printedDefect_of_inf_ne_bot L S hS hne
   · exact fun _ _ L S hS hne hgen ↦
       printedDefect_eq_top_of_simple_normalClosure_eq_top L S hS hne hgen
-  · exact fun _ _ _ _ f hf L S hS hSD hne hgen ↦
+  · exact fun _ _ _ _ f hf L S hSD hgen ↦
       printedDefect_map_eq_top_of_simple_image_normalClosure_eq_top
-        f hf L S hS hSD hne hgen
+        f hf L S hSD hgen
   · exact fun _ _ _ L S hL hG hS hne hgen ↦
       manuscriptCoronaMFResidual_eq_top_of_printedDefect_saturation
         L S hL hG hS hne hgen

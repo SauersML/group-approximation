@@ -66,22 +66,20 @@ noncomputable section
 /-! ## `thm:normal-kazhdan` over the printed natural-dimension radical -/
 
 /-- **Theorem `thm:normal-kazhdan`, with `Rad_MF(G)` as printed.**  For a
-countable `G`, a subgroup `D ≤ R_{∞→2}(G)`, and a normal property-`(T)`
-subgroup `K ≤ D`, the containment `K ≤ Rad_MF(G)` holds for the manuscript's
+countable `G` and a normal property-`(T)` subgroup `K ≤ R_{∞→2}(G)`, the
+containment `K ≤ Rad_MF(G)` holds for the manuscript's
 own natural-dimension radical: the intersection of the kernels of all
 homomorphisms `G → U(∏_n M_{d_n}(ℂ) / ⊕_n M_{d_n}(ℂ))`. -/
 def NormalKazhdanPrintedRadical : Prop :=
-  ∀ (G : Type) [Group G] [Countable G] (D : Subgroup G),
-    D ≤ opToHSShadowResidual G →
-    ∀ (K : Subgroup G) [K.Normal],
-      HasKazhdanPropertyT.{0, 0} ↥K → K ≤ D →
-        K ≤ manuscriptCoronaMFResidual G
+  ∀ (G : Type) [Group G] [Countable G] (K : Subgroup G) [K.Normal],
+    HasKazhdanPropertyT.{0, 0} ↥K → K ≤ opToHSShadowResidual G →
+      K ≤ manuscriptCoronaMFResidual G
 
 /-- Closed proof of the normal-Kazhdan theorem at the printed radical. -/
 theorem manuscriptNormalKazhdanPrintedRadical : NormalKazhdanPrintedRadical := by
-  intro G _ _ D hD K _ hT hK
+  intro G _ _ K _ hT hK
   rw [manuscriptCoronaMFResidual_eq_actualCoronaMFResidual]
-  exact manuscriptNormalKazhdanRadical G D hD K hT hK
+  exact manuscriptNormalKazhdanRadical G K hT hK
 
 /-- **The closing sentence of the proof of `thm:normal-kazhdan`**: under the
 hypotheses of that theorem, *every* corona homomorphism kills `K`.  The
