@@ -80,12 +80,11 @@ and asymptotically separate nonidentity elements in operator norm.  More
 precisely, the simple property-\textup{(T)} group
 $H=\EL_{12}(L_{\F_2}(1,2))$ has trivial image under every homomorphism to
 an MF group; consequently its reduced group $C^*$-algebra is a separable
-stably finite $C^*$-algebra that is not MF\@.  The obstruction comes from a
-one-sided compression phenomenon for Kazhdan subgroups in norm matrix
-coronas.  In the opposite direction, we prove an MF permanence theorem for
-HNN extensions whose edge isomorphism is implemented by a unitary of a
-norm matrix corona.  Combining the two mechanisms, we show that
-recognizing MF groups from finite presentations is $\Pi^0_2$-complete.
+stably finite $C^*$-algebra that is not MF\@.  The proof rests on a one-sided compression criterion for Kazhdan
+subgroups in norm matrix coronas.  We also prove an MF permanence theorem
+for HNN extensions whose edge isomorphism is implemented by a unitary of a
+norm matrix corona, and use it to show that recognizing MF groups from
+finite presentations is $\Pi^0_2$-complete.
 \end{abstract}
 
 \maketitle
@@ -258,8 +257,9 @@ For a countable group $G$, define its MF radical by
  =\bigcap_{\mathbf d}
    \bigcap_{\pi\colon G\to\U(\mathcal Q_{\mathbf d})}\ker\pi.
 \]
-Proposition~\ref{prop:mf-residual-calculus} shows that $G$ is MF
-precisely when $\Rad_{\mathrm{MF}}(G)$ is trivial.  If
+We call a homomorphism $G\to\U(\mathcal Q_{\mathbf d})$ a \emph{corona
+homomorphism}.  Proposition~\ref{prop:mf-residual-calculus} shows that $G$
+is MF precisely when $\Rad_{\mathrm{MF}}(G)$ is trivial.  If
 $\Rad_{\mathrm{MF}}(G)=G$, every homomorphism from $G$ to an MF group is
 trivial.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedCriterion}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets}
@@ -341,8 +341,7 @@ result: every finite-dimensional linear representation of $G$ over any field
 kills $\mathfrak D_G(L)$.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedDefect}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectFiniteDimensionalSterility}
 
-We next apply Theorem~\ref{thm:compression-criterion} to the binary Leavitt
-construction that produces the group $H$ announced above.
+We next apply Theorem~\ref{thm:compression-criterion} to the group $H$.
 
 %<webmath object="LF2" when="L_{\F_2}(1,2)" title="the system that copies itself and is used to build H">
 % \(L_{\F_2}(1,2)\) names a particular [[Leavitt algebra]].  The subscript
@@ -518,9 +517,10 @@ Theorem~\ref{thm:hnn-permanence}, an MF permanence theorem for HNN
 extensions whose edge isomorphism is implemented by a unitary of a norm
 matrix corona, and is MF (Sections~\ref{sec:hnn} and~\ref{sec:positive}).
 The MF property is closed in the space of marked groups
-(Lemma~\ref{lem:marked-closed}), so every finitely generated group that is
-not MF is a quotient of a finitely presented one;
-Theorem~\ref{thm:recognition} adds the uniform family and the exact level.
+(Lemma~\ref{lem:marked-closed}; equivalently, it is closed under direct
+limits, by Korchagin~\cite[Proposition~13]{Korchagin}), so every finitely
+generated group that is not MF is a quotient of a finitely presented one;
+Theorem~\ref{thm:recognition} gives the uniform family and the exact level.
 Section~\ref{sec:prescribed-quotients}, which the proofs of
 Theorems~\ref{thm:headline} and~\ref{thm:recognition} do not use, proves
 that $\Rad_{\mathrm{MF}}(G)=f^{-1}(\Rad_{\mathrm{MF}}(Q))$ for every
@@ -542,9 +542,8 @@ arbitrary groups.
 The group property used here was introduced by
 Carri\'on--Dadarlat--Eckhardt~\cite{CDE}.  If every separable stably finite $C^*$-algebra were MF,
 then every countable group would be MF because its reduced group
-$C^*$-algebra is separable and stably finite.  Later approximation papers
-described the resulting operator norm group problem as related to
-Kirchberg's question~\cite{LubotzkyOppenheim,Thom}.  The negative solution of
+$C^*$-algebra is separable and stably finite.  Later papers on approximation of groups relate the resulting operator
+norm problem to Kirchberg's question~\cite{LubotzkyOppenheim,Thom}.  The negative solution of
 the Connes embedding problem~\cite{MIPRE} yields separable stably finite
 $C^*$-algebras that are not MF, as Goldbring and Hart
 observe~\cite[Proposition~6.1 and Remark~6.2]{GoldbringHart}.
@@ -564,18 +563,11 @@ $1<p<\infty$~\cite{DGLT,LubotzkyOppenheim}.
 Bachner--Dogon--Lubotzky later proved nonapproximability for $p=1$~\cite{BDL}.
 The operator norm case $p=\infty$ remained open.  They also identify stability
 from operator norm to normalized Hilbert--Schmidt norm as a possible route to
-a non-MF group~\cite[Proposition~1.5]{BDL}.  Here
-operator norm control implies that coordinatewise conjugation defines a
-representation in a second norm matrix corona.  The Kazhdan projection of
-this conjugation representation makes
-the Hilbert--Schmidt asymptotic commutant invariant under the one-sided
-compressor.  Theorem~\ref{thm:normal-kazhdan} then proves that a normal
-property-\textup{(T)} subgroup
-contained in the defect lies in the MF radical.
+a non-MF group~\cite[Proposition~1.5]{BDL}; that is the route taken
+here.
 
 Leavitt introduced the algebras $L_K(1,n)$ as examples of rings with
-nonunique module rank~\cite{Leavitt}.  Their defining relations supply the
-internal compression used here.  The binary Leavitt algebra is purely
+nonunique module rank~\cite{Leavitt}.  The compression used here comes from their defining relations.  The binary Leavitt algebra is purely
 infinite simple~\cite{AbramsAranda}, hence an exchange ring~\cite{AraExchange},
 and its center is the base field~\cite{ArandaCrow}.  Preusser classified the
 subgroups of $\GL_n$ over an exchange ring that are normalized by
@@ -590,12 +582,13 @@ in~\cite{KT19,AlekseevThom,Dadarlat}.
 
 Decision problems for finitely presented groups go back to Dehn, and the
 theorem of Adian and Rabin~\cite{Adian,Rabin} shows that no Markov
-property can be recognized from a finite presentation.  Once a finitely
+property (one that some finitely presented group has and that no group
+containing some fixed finitely presented group has) can be recognized
+from a finite presentation.  Once a finitely
 presented non-MF group exists, the MF property is Markov, and Adian--Rabin
 gives undecidability; Theorem~\ref{thm:recognition} gives the exact level.
-Torsion-freeness is the only other property of finitely presented groups
-whose recognition problem was known to be $\Pi^0_2$-complete, by
-Lempp~\cite{Lempp}.  For recursively presented groups,
+A classical $\Pi^0_2$-complete recognition problem for finitely presented
+groups is torsion-freeness, by Lempp~\cite{Lempp}.  For recursively presented groups,
 Bilanovic--Chubb--Roven proved that every Markov property is
 $\Pi^0_2$-hard to recognize~\cite{BCR}; their construction is the first
 step of Section~\ref{sec:compiler}.  The passage from recursive to finite
@@ -1003,9 +996,9 @@ $G\to\U(\mathcal B)$.  Its restriction to $L$ therefore extends to a
 $*$-homomorphism $C^*_{\max}(L)\to\mathcal B$.  Let $P\in\mathcal B$ be the
 image of the Kazhdan projection~\cite{AkemannWalter}.  Under the natural
 representation of $\mathcal B$ on $\mathcal K_\omega$, its range is
-$\operatorname{Fix}\sigma(L)$.  This representation of $\mathcal B$ need
-not be faithful; it is used only after the following projection identity has
-been proved inside $\mathcal B$.  Since
+$\operatorname{Fix}\sigma(L)$.  The projection identity below is proved inside $\mathcal B$; the
+representation of $\mathcal B$ on $\mathcal K_\omega$ is used only
+afterwards.  Since
 $uLu^{-1}\le L$, the unitary $U=\widetilde\sigma(u)$ satisfies the
 hypothesis of Lemma~\ref{lem:kazhdan-projection-order}, and hence
 $U^*PU\le P$ inside $\mathcal B$.
@@ -1076,7 +1069,7 @@ Intersecting over $(V_n)$ proves the claim.
 \subsection{Normal Kazhdan subgroups and the MF radical}
 
 Let $K\trianglelefteq G$ have property~\textup{(T)}, and let $p$ be the
-image of its Kazhdan projection under a corona representation of $G$.
+image of its Kazhdan projection under a corona homomorphism of $G$.
 Normality of $K$ implies that $p$ commutes with the image of $G$.  Hence
 $q=1-p$ also commutes with that image, and in every nondegenerate
 representation of the corner $q\mathcal Q_{\mathbf d}q$ the induced
@@ -1213,13 +1206,14 @@ Lemma~\ref{lem:central-corona-corner}
 gives positive integers \(r_n\) and an operator norm asymptotic representation
 \(W_n\colon G\to\U(r_n)\).  Let
 \(\widehat\Theta\colon G\to\U(\mathcal Q_{\mathbf r})\) be its corona
-homomorphism.  The coordinatewise corner identifications carry
-\(\widehat\Theta\) to the coordinate restriction of
-\(g\mapsto q\Theta(g)\).
+homomorphism.  Under the coordinatewise corner identifications, \(\widehat\Theta\)
+is the coordinate restriction of \(g\mapsto q\Theta(g)\).
 
 Choose a finite Kazhdan set \(S\subseteq K\) and a Kazhdan
-constant \(\kappa>0\).  The Kazhdan projection of \(K\) under
-\(\widehat\Theta\) is zero.  Hence the positive element
+constant \(\kappa>0\).  Represent \(\mathcal Q_{\mathbf r}\) faithfully.
+The Kazhdan projection of \(K\) under \(\widehat\Theta\) is zero, so
+\(\widehat\Theta|_K\) has no nonzero fixed vectors, and the Kazhdan
+inequality gives, for the positive element
 %<webmath object="whole" when="b=\frac1{|S|}\sum_{s\in S}" title="b averages the squared movement caused by the Kazhdan set">
 % For each element s in the finite [[Kazhdan set]] S, the operator
 % \(\widehat\Theta(s)-1\) measures how far the compressed representation of s
@@ -1233,7 +1227,7 @@ constant \(\kappa>0\).  The Kazhdan projection of \(K\) under
  b=\frac1{|S|}\sum_{s\in S}
        (\widehat\Theta(s)-1)^*(\widehat\Theta(s)-1)
 \]
-satisfies
+the inequality
 %<webmath object="whole" when="b\ge\frac{\kappa^2}{|S|}\,1" title="the average movement has a uniform positive lower bound">
 % The inequality compares positive operators in the relabelled matrix corona.
 % The right side is the identity multiplied by the positive number
@@ -1246,10 +1240,6 @@ satisfies
 \[
  b\ge\frac{\kappa^2}{|S|}\,1.
 \]
-Represent \(\mathcal Q_{\mathbf r}\) faithfully.  Because the image of the
-Kazhdan projection is zero, \(\widehat\Theta|_K\) has no nonzero fixed
-vectors.  The defining Kazhdan inequality therefore gives this operator
-inequality.
 
 The coordinate elements
 %<webmath object="whole" when="b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-I_{r_n})^*" title="b sub n is the finite-stage version of the average movement operator">
@@ -1322,19 +1312,19 @@ Since \(K\le\mathfrak D_G(L)\), Theorem~\ref{thm:normal-kazhdan} now gives
 conclusion.  Taking $K=G=\mathfrak D_G(L)$ gives
 $\Rad_{\mathrm{MF}}(G)=G$.
 
-For a finite-dimensional linear representation over an arbitrary field,
-Theorem~\ref{thm:commutant} kills every generator of
-\(\mathfrak D_G(L)\).  Its kernel is normal, so it contains
-\(\mathfrak D_G(L)\).
+A finite-dimensional linear representation over any field kills every
+generator of \(\mathfrak D_G(L)\) by Theorem~\ref{thm:commutant}; its
+kernel is normal, so it contains \(\mathfrak D_G(L)\).
 \end{proof}
 
 \section{The binary Leavitt group}\label{sec:leavitt}
 
-This section proves Theorem~\ref{thm:headline}.  The defining relation
-$R\cong R^2$ of the binary Leavitt algebra supplies the one-sided
-self-compression required by Theorem~\ref{thm:compression-criterion};
-simplicity of $\EL_{12}(R)$ then turns a single invisible commutator into
-a full MF radical.
+This section proves Theorem~\ref{thm:headline}.  The relation
+$s_0t_0+s_1t_1=1$ of the binary Leavitt algebra gives an element
+$\tau\in H$ with $\tau L\tau^{-1}\le L$ for a copy $L$ of $\EL_3(R)$,
+and a commutator $d\ne1$ in $\mathfrak D_H(L)$; since $H$ is simple,
+$\mathfrak D_H(L)=H$, and Theorem~\ref{thm:compression-criterion}
+applies.
 
 \subsection{The self-compression}
 
@@ -1386,10 +1376,9 @@ $q^2=q$, $qs_0=t_0q=0$, and $t_0s_0=1$, all consequences of
 \[
  \Psi(I_3)=qI_3+s_0I_3t_0=qI_3+pI_3=(p+q)I_3=I_3,
 \]
-so $\Psi$ preserves the identity.  Finally, $t_0\Psi(A)s_0=A$, and hence
-$\Psi$ is injective.  These identities show that $\Psi$ is injective, multiplicative, and
-identity preserving, so its restriction to $\GL_3(R)$ is an injective
-group homomorphism $\GL_3(R)\to\GL_3(R)$.
+so $\Psi$ preserves the identity.  Finally, $t_0\Psi(A)s_0=A$, so
+$\Psi$ is injective.  Hence $\Psi$ restricts to an injective group
+homomorphism $\GL_3(R)\to\GL_3(R)$.
 
 To realize $\Psi$ by conjugation on the embedded copy of $\GL_3(R)$,
 define the following $6\times6$ block matrices:
@@ -1645,12 +1634,16 @@ $\mathcal U(\mathcal Q_{\mathbf d})$.  This contradicts the fact that $H$ is
 not MF.
 \end{proof}
 
-\section{Operator norm models on finite sets}\label{sec:local}
+\section{Locality and finite certificates}\label{sec:local}
 
 The MF property is defined through sequences of models on all of $G$,
 but it is determined by finite data with a fixed separation constant.
-This section proves that reformulation and derives the upper bound of
-Theorem~\ref{thm:recognition} from it.
+The reformulation is due to Korchagin~\cite{Korchagin}; this section
+derives the upper bound of Theorem~\ref{thm:recognition} from it.
+
+The following lemma is a direct consequence of
+Korchagin~\cite[Proposition~7]{Korchagin}, who obtains the stronger
+separation constant $\sqrt 2$.
 
 \begin{lemma}[locality with fixed separation]\label{lem:local-models}
 A countable group $G$ is MF if and only if for every finite set
@@ -1663,55 +1656,10 @@ and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
 \end{lemma}
 
 \begin{proof}
-Suppose first that every finite $F\ni1$ and every $\varepsilon>0$ admit
-such a map.  Enumerate $G=\{g_0=1,g_1,g_2,\dots\}$, let
-$F_n=\{g_ig_j:i,j\le n\}\cup\{g_i:i\le n\}$, let $V_n\colon F_n\to\U(d_n)$
-be a map for $(F_n,1/n)$, and extend it to $G$ by $V_n(g)=1$ for
-$g\notin F_n$.  For $g,h\in G$ the elements $g$, $h$, $gh$ lie in $F_n$
-for all large $n$, so $\opnorm{V_n(gh)-V_n(g)V_n(h)}\le1/n\to0$; and for
-$g\ne1$ we have $\opnorm{V_n(g)-1}\ge1$ for all large $n$.  Hence $G$ is
-MF.
-
-Conversely, let $V_n\colon G\to\U(d_n)$ be MF models: $V_n(1)=1$, the
-multiplication defects tend to zero, and
-$c_g=\limsup_n\opnorm{V_n(g)-1}>0$ for every $g\ne1$.  The separation
-constants $c_g$ may be arbitrarily small, and we first amplify them.  For
-a unitary $u$ and $k\ge1$ the tensor power $u^{\otimes k}$ is a unitary of
-dimension $d^k$, $(uv)^{\otimes k}=u^{\otimes k}v^{\otimes k}$, and
-telescoping gives $\opnorm{u^{\otimes k}-v^{\otimes k}}\le k\opnorm{u-v}$.
-If $\opnorm{u-1}=c>0$, write $c=2\sin(\theta/2)$ with $0<\theta\le\pi$;
-then $e^{i\theta}$ or $e^{-i\theta}$ is an eigenvalue of $u$, so
-$e^{ik\theta}$ or $e^{-ik\theta}$ is an eigenvalue of $u^{\otimes k}$, and
-$\opnorm{u^{\otimes k}-1}\ge\lvert e^{ik\theta}-1\rvert=2\lvert\sin(k\theta/2)\rvert$.
-If $\theta\ge\pi/2$ take $k=1$; otherwise the first $k$ with
-$k\theta\ge\pi/2$ satisfies $k\theta<\pi/2+\theta<\pi$.  In both cases
-$k\theta\in[\pi/2,3\pi/2]$ modulo $2\pi$, so
-$\opnorm{u^{\otimes k}-1}\ge\sqrt2$.  Write $k(c)$ for this exponent; it
-depends only on $c$.
-
-Now fix a finite $F\ni1$ and $\varepsilon>0$, let
-$K=\max_{g\in F\setminus\{1\}}k(c_g)$, and put
-\[
- W_n(g)=\bigoplus_{k=1}^{K}V_n(g)^{\otimes k}\in\U(D_n),
- \qquad D_n=\sum_{k=1}^{K}d_n^{k}.
-\]
-Then $W_n(1)=1$ and
-$\opnorm{W_n(gh)-W_n(g)W_n(h)}\le K\opnorm{V_n(gh)-V_n(g)V_n(h)}$, so the
-defects of $W_n$ tend to zero.  For $g\in F\setminus\{1\}$ choose a
-subsequence along which $\opnorm{V_n(g)-1}\to c_g$ and eigenvalues
-$\lambda_n$ of $V_n(g)$ with $\lvert\lambda_n-1\rvert\to c_g$; passing to
-a further subsequence, $\lambda_n\to\lambda$ with $\lvert\lambda-1\rvert=c_g$,
-and then $\lambda_n^{k}\to\lambda^{k}$ with $\lvert\lambda^{k}-1\rvert\ge\sqrt2$
-for $k=k(c_g)$.  Since $\lambda_n^{k}$ is an eigenvalue of
-$V_n(g)^{\otimes k}$, it follows that
-$\limsup_n\opnorm{W_n(g)-1}\ge\sqrt2>1$.  Choose $n_0$ such that for
-$n\ge n_0$ every defect of $W_n$ on $F$ is at most $\varepsilon$, and for
-each $g\in F\setminus\{1\}$ choose $m_g\ge n_0$ with
-$\opnorm{W_{m_g}(g)-1}\ge1$.  Let $V$ be the restriction to $F$ of
-$\bigoplus_{g\in F\setminus\{1\}}W_{m_g}$ (and of $W_{n_0}$ if
-$F=\{1\}$).  Then $V(1)=1$, the defect of $V$ on $F$ is the maximum of
-the defects of its blocks, hence at most $\varepsilon$, and for
-$g\in F\setminus\{1\}$ the block $m_g$ gives $\opnorm{V(g)-1}\ge1$.
+Restricting the maps in Korchagin's formulation gives the stated finite
+models.  Conversely, choose such models along an increasing exhaustion
+of $G$, with defects tending to zero, and extend each map arbitrarily to
+the rest of $G$.  Their uniform separation gives an MF model.
 \end{proof}
 
 \begin{lemma}[marked closedness]\label{lem:marked-closed}
@@ -1733,7 +1681,7 @@ $N_0\subseteq N$, and the inequalities hold in every marked group
 mapping onto $G$.  Hence every marked group that agrees with $G$ on the
 finitely many words involved carries a table isomorphic to that of $F$,
 and so is not MF; this is closedness.  Applied to $\langle X\mid N_0\rangle$,
-which maps onto $G$ and carries the same table, it gives the finitely
+which maps onto $G$ and has the same table, it gives the finitely
 presented quotient.
 \end{proof}
 
@@ -1747,7 +1695,11 @@ effective coding of finite presentations by natural numbers, under which a
 code determines computably its number of generators and its finite list of
 relator words, and write $G_P$ for the group presented by the code $P$.
 Let $\mathrm{MF}_{\mathrm{fp}}$ be the set of codes $P$ such that $G_P$ is
-MF, and $\mathrm{NONMF}_{\mathrm{fp}}$ its complement.
+MF, and $\mathrm{NONMF}_{\mathrm{fp}}$ its complement.  Korchagin's
+Proposition~8~\cite{Korchagin} is the finite-presentation form of
+Lemma~\ref{lem:local-models}; the certificates below add normal-closure
+witnesses for the trivial words, which is what makes the relation
+decidable.
 
 \begin{proposition}[finite certificates]\label{prop:mf-upper-bound}
 There is a decidable relation $C(P,n,c)$ on triples of natural numbers
@@ -1826,16 +1778,19 @@ complement as a $\Sigma^0_2$ set.
 
 \section{HNN extensions with a corona conjugator}\label{sec:hnn}
 
-The preceding sections turned a one-sided conjugation inside a norm
-matrix corona into an obstruction to operator norm approximation.
-Theorem~\ref{thm:recognition} also needs the complementary positive
-principle: when the conjugation is implemented by a unitary of the corona,
-an HNN extension remains MF\@.  The central case $\theta=\mathrm{id}$ is
-close to Shulman's permanence theorem for central HNN
-extensions~\cite{Shulman}; the form needed below carries a tracial state
-that vanishes off the identity, which is what makes the group inject, and
-allows an edge isomorphism implemented by a corona unitary.  Its
-hypothesis is accordingly stronger than the MF property of the base.
+Sections~\ref{sec:compression} and~\ref{sec:leavitt} used a one-sided
+conjugation in a norm matrix corona to obstruct operator norm
+approximation.  Theorem~\ref{thm:recognition} also needs a positive
+statement: if the edge isomorphism of an HNN extension is implemented by a
+unitary of a norm matrix corona, then the HNN extension is MF\@.  For
+$\theta=\mathrm{id}$ this is close to Shulman's theorem on central HNN
+extensions~\cite{Shulman}; the version below assumes a tracial state
+vanishing off the identity, which is used to prove that the group embeds
+in the resulting algebra, and allows a nontrivial edge isomorphism.  Two
+separate things are needed: a unitary of a corona implementing the edge
+isomorphism, which is finite-dimensional bookkeeping, and injectivity of
+the group in the resulting algebra, which comes from the trace and the
+left regular representation.
 
 A countable group $G$ \emph{admits a tracial MF realization}
 $(A,\rho,\tau)$ if $A$ is a separable unital MF $C^*$-algebra,
@@ -1907,52 +1862,20 @@ first embed $U$ in an amalgamated free product, which Shulman's criterion
 shows to be MF, and then construct the required tracial state on the copy
 of $R$ inside $U$.
 
-\emph{Step 1: $U$ embeds in an amalgamated free product.}  This step is a
-self-contained form of a corner argument of Ueda~\cite{Ueda}.  Let
-$C=B_0\oplus B_1$, $A_1=M_2(D)$, and $A_2=M_2(B_0)$, with the unital
-inclusions
+\emph{Step 1: $U$ embeds in an amalgamated free product.}
+Ueda's universal HNN corner construction~\cite[Proposition~2.4]{Ueda}
+identifies $P$ with $M_2(U)$ and $U$ with the corner $ePe$, where
+$C=B_0\oplus B_1$, $A_1=M_2(D)$, $A_2=M_2(B_0)$,
+$P=A_1*_CA_2$, and the inclusions of $C$ are
 \[
  \iota_A(c_0,c_1)=\begin{pmatrix}c_0&0\\0&c_1\end{pmatrix}\in A_1,
  \qquad
  \iota_B(c_0,c_1)=\begin{pmatrix}c_0&0\\0&\Theta^{-1}(c_1)\end{pmatrix}\in A_2,
 \]
-and let $P=A_1*_CA_2$ be the full amalgamated free product, in which
-$A_1$ and $A_2$ embed~\cite[Section~2.1]{Shulman}.  Write $e_{ij}$ and
-$f_{ij}$ for the matrix units of $A_1$ and $A_2$.  Since
-$\iota_A(p,0)=\iota_B(p,0)$ and $\iota_A(0,p)=\iota_B(0,p)$, we have
-$e_{11}=f_{11}=:e$ and $e_{22}=f_{22}$ in $P$.  Define
-$\pi_D\colon D\to ePe$ by $\pi_D(d)=\operatorname{diag}(d,0)$, a unital
-$*$-homomorphism into the corner, and put $w=e_{12}f_{21}\in ePe$.  Then
-$ww^*=e_{12}f_{22}e_{21}=e_{12}e_{22}e_{21}=e$ and
-$w^*w=f_{12}e_{22}f_{21}=f_{12}f_{22}f_{21}=e$, so $w$ is a unitary of
-$ePe$.  For $b\in B_0$ the element $\operatorname{diag}(b,0)$ is
-$\iota_A(b,0)=\iota_B(b,0)$, so
-\begin{align*}
- w\pi_D(b)w^*
- &=e_{12}\bigl(f_{21}\operatorname{diag}(b,0)f_{12}\bigr)e_{21}
- =e_{12}\,\iota_B(0,\Theta(b))\,e_{21}\\
- &=e_{12}\,\iota_A(0,\Theta(b))\,e_{21}
- =\pi_D(\Theta(b)),
-\end{align*}
-where the middle equality uses
-$\iota_B(0,\Theta(b))=\operatorname{diag}(0,b)$ in $A_2$.  The universal
-property of $U$ gives a $*$-homomorphism $\Phi\colon U\to ePe\subseteq P$
-with $\Phi|_D=\pi_D$ and $\Phi(u)=w$.  We prove that $\Phi$ is injective
-by constructing $\Psi\colon P\to M_2(U)$ with
-$\Psi\Phi(x)=\operatorname{diag}(x,0)$.  Let $\Psi_1\colon A_1\to M_2(U)$ be the entrywise inclusion
-$D\subseteq U$, and let $\Psi_2\colon A_2\to M_2(U)$ be the entrywise
-inclusion $B_0\subseteq U$ followed by conjugation by
-$\operatorname{diag}(1,u)$.  On $C$ we have
-$\Psi_1(\iota_A(c_0,c_1))=\operatorname{diag}(c_0,c_1)$ and
-$\Psi_2(\iota_B(c_0,c_1))=\operatorname{diag}(c_0,u\Theta^{-1}(c_1)u^*)
-=\operatorname{diag}(c_0,c_1)$, so the pair induces a $*$-homomorphism
-$\Psi\colon P\to M_2(U)$.  On generators,
-$\Psi\Phi(d)=\operatorname{diag}(d,0)$ and
-$\Psi\Phi(u)=\Psi_1(e_{12})\Psi_2(f_{21})=\operatorname{diag}(u,0)$.
-Hence $\Psi\Phi$ is the injective $*$-homomorphism $x\mapsto\operatorname{diag}(x,0)$
-of $U$ into $M_2(U)$, and $\Phi$ is injective.
+with $e$ the common image of $\operatorname{diag}(p,0)$.  Thus $U$ is
+isomorphic to a $C^*$-subalgebra of $P$.
 
-\emph{Step 2: $P$ is MF.}  By Shulman's criterion~\cite[Theorem~16]{Shulman},
+\emph{Step 2: $P$ is MF.}  By Shulman's criterion~\cite[Theorem~20]{Shulman},
 the full amalgamated free product $A_1*_CA_2$ of separable $C^*$-algebras
 is MF as soon as there are injective $*$-homomorphisms $\varphi_A$ and
 $\varphi_B$ of $A_1$ and $A_2$ into one norm matrix corona with
@@ -1969,8 +1892,8 @@ and on $C$,
  =\begin{pmatrix}c_0&0\\0&c_1\end{pmatrix}
  =\varphi_A(\iota_A(c_0,c_1)),
 \]
-because $\Theta$ is conjugation by $W$.  Hence $P$ is MF, and so are its
-$C^*$-subalgebras $ePe$ and $\Phi(U)\cong U$.
+because $\Theta$ is conjugation by $W$.  Hence $P$ is MF, and so is
+$U\cong ePe$.
 
 \emph{Step 3: the tracial state.}  The functional
 $T=\tau\circ\iota^{-1}$ is a tracial state on $\iota(A)\supseteq D$ with
@@ -2035,8 +1958,9 @@ $\Sigma^0_2$-complete~\cite[Chapter~IV]{Soare}.  We now combine the obstruction 
 Theorem~\ref{thm:headline} with the permanence of
 Theorem~\ref{thm:hnn-permanence}: this section constructs a computable
 map $e\mapsto\widehat R_e$ into finite presentations such that the
-presented group contains $H$ when $e\in\mathrm{FIN}$ and falls under
-Theorem~\ref{thm:hnn-permanence} when $e\in\mathrm{INF}$, so that it is
+presented group contains $H$ when $e\in\mathrm{FIN}$ and satisfies the
+hypotheses of Theorem~\ref{thm:hnn-permanence} when $e\in\mathrm{INF}$,
+so that it is
 MF if and only if $e\in\mathrm{INF}$.  The construction of
 Bilanovic--Chubb--Roven gives a recursively presented group
 $C_e$ that is trivial when $e\in\mathrm{INF}$ and contains $H$ when
@@ -2085,18 +2009,9 @@ $e\in\mathrm{FIN}$.
 
 \begin{proof}
 Apply the construction of Bilanovic--Chubb--Roven~\cite[Theorem~3.1]{BCR}
-to the trivial group and $H$.
-Let $\langle Y\mid T\rangle$ be the recursive presentation of $H$ from
-Lemma~\ref{lem:seed}.  Take generators $y_{i,\ell}$ for $i\ge1$ and
-$\ell\in Y$, one copy $Y_i$ of $Y$ for each $i$, and as relators all
-words of $T$ rewritten in each copy $Y_i$, together with every generator
-$y_{i,\ell}$ for which $i\le\lvert W_e\rvert$.  The last family is
-recursively enumerable uniformly in $e$: enumerate $W_e$, and whenever its
-$i$-th element appears, enumerate all of $Y_i$.  The group presented is
-the free product of the copies $H_i\cong H$, $i\ge1$, with the first
-$\lvert W_e\rvert$ copies killed.  If $W_e$ is infinite every copy is
-killed and $C_e$ is trivial; if $W_e$ is finite, $C_e$ is the free product
-of the remaining copies and contains $H$.
+with positive group $1$ and negative group $H$.  The construction is
+uniform in $e$, gives the trivial group when $W_e$ is infinite, and
+retains a free factor isomorphic to $H$ when $W_e$ is finite.
 \end{proof}
 
 \subsection*{A three-generator embedding}
@@ -2107,8 +2022,8 @@ generating sequence $(c_i)_{i\ge1}$, put $c_i=1$ for $i\le0$ and
 \begin{equation}\label{eq:bridge}
  B(C)=\bigl\langle C*F(x,y),\ t\ \bigm|\ ty_it^{-1}=c_iy_i\ (i\in\mathbb Z)\bigr\rangle.
 \end{equation}
-Let $H_0=B(1)=\langle x,y,t\mid[t,y_i]=1\ (i\in\mathbb Z)\rangle$, let
-$q_+\colon F\to H_0$ be the quotient map, and let $N_+=\ker q_+$.
+Let $Q_+=B(1)=\langle x,y,t\mid[t,y_i]=1\ (i\in\mathbb Z)\rangle$, let
+$q_+\colon F\to Q_+$ be the quotient map, and let $N_+=\ker q_+$.
 
 \begin{lemma}[the three-generator embedding]\label{lem:bridge}
 \begin{enumerate}
@@ -2116,11 +2031,11 @@ $q_+\colon F\to H_0$ be the quotient map, and let $N_+=\ker q_+$.
 it is generated by $x,y,t$; and a recursive presentation of $B(C)$ on
 $x,y,t$ is computable from a recursive presentation of $C$.  We write
 $B(C)=F/N_C$ and $q_C\colon F\to B(C)$ for the quotient map.
-\item Killing $C$ induces a surjection $B(C)\to H_0$; hence
+\item Killing $C$ induces a surjection $B(C)\to Q_+$; hence
 $N_C\le N_+$, with equality when $C$ is trivial.
 \item The assignment $x\mapsto(x_1,x_2)$, $y\mapsto(y,1)$, $t\mapsto(1,t)$
-defines an injective homomorphism $j\colon H_0\to P=F(x_1,y)\times F(x_2,t)$.
-In particular, $H_0$ is residually finite.
+defines an injective homomorphism $j\colon Q_+\to P=F(x_1,y)\times F(x_2,t)$.
+In particular, $Q_+$ is residually finite.
 \end{enumerate}
 \end{lemma}
 
@@ -2138,14 +2053,14 @@ into~\eqref{eq:bridge} produces a recursive presentation on $x,y,t$,
 uniformly in the presentation of $C$.
 
 (2) The relators of~\eqref{eq:bridge} map to the relators $[t,y_i]$ of
-$H_0$ when every $c_i$ is sent to $1$, and the map is the identity on
+$Q_+$ when every $c_i$ is sent to $1$, and the map is the identity on
 $x,y,t$.
 
 (3) The relators $[t,y_i]$ are sent to $[(1,t),(x_1^iyx_1^{-i},1)]=1$, so
 $j$ is a homomorphism.  Let $N_0$ be the normal closure of $\{y,t\}$ in
-$H_0$.  Then $H_0/N_0=\langle x\rangle$ is infinite cyclic and the
-extension splits, so $H_0=N_0\rtimes\langle x\rangle$.  Rewriting the
-presentation of $H_0$ over the transversal $\{x^n\}$ by the
+$Q_+$.  Then $Q_+/N_0=\langle x\rangle$ is infinite cyclic and the
+extension splits, so $Q_+=N_0\rtimes\langle x\rangle$.  Rewriting the
+presentation of $Q_+$ over the transversal $\{x^n\}$ by the
 Reidemeister--Schreier method~\cite[Chapter~II]{LyndonSchupp} presents
 $N_0$ on the generators $y_n=x^nyx^{-n}$ and $t_m=x^mtx^{-m}$, $n,m\in\mathbb Z$,
 with relators the conjugates $x^m[t,y_n]x^{-m}=[t_m,y_{n+m}]$, that is,
@@ -2158,25 +2073,25 @@ $j(x)=(x_1,x_2)$ has infinite order and $j(x)^k\notin j(N_0)$ for $k\ne0$,
 because the exponent sum of $x_1$ in $j(x^kn)$ is $k$ for $n\in N_0$.
 Hence $j$ is injective on $N_0\rtimes\langle x\rangle$.  Free groups are
 residually finite and residual finiteness passes to direct products and
-subgroups, so $H_0$ is residually finite.
+subgroups, so $Q_+$ is residually finite.
 \end{proof}
 
 For $e\in\mathbb N$ let $Q_e=B(C_e)=F/N_e$ with $C_e$ the group of
 Lemma~\ref{lem:switch}, and write $q_e\colon F\to Q_e$.  By
 Lemmas~\ref{lem:switch} and~\ref{lem:bridge}, a recursive presentation of
 $Q_e$ on $x,y,t$ is computable from $e$; $N_e\le N_+$; if $e\in\mathrm{INF}$
-then $Q_e=H_0$, $N_e=N_+$ and $q_e=q_+$; and if $e\in\mathrm{FIN}$ then
+then $Q_e=Q_+$, $N_e=N_+$ and $q_e=q_+$; and if $e\in\mathrm{FIN}$ then
 $H\le C_e\le Q_e$.
 
 \subsection*{Detecting $N_e$ inside a finitely presented group}
 
 \begin{lemma}[Higman embedding and the Mikhailova subgroup]\label{lem:mikhailova}
 There is an algorithm that computes from $e$ a finite presentation
-$\langle X_e\mid R_e\rangle$ of a group $\widehat H_e$, words
+$\langle X_e\mid R_e\rangle$ of a group $\Lambda_e$, words
 $w_x,w_y,w_t\in F(X_e)$, and a finite generating set of a subgroup
 $M_e\le F(X_e)\times F(X_e)$, such that $x\mapsto w_x$, $y\mapsto w_y$,
-$t\mapsto w_t$ induces an embedding $Q_e\to\widehat H_e$, and
-$M_e=\{(u,v):u=v\text{ in }\widehat H_e\}$.  Consequently, with
+$t\mapsto w_t$ induces an embedding $Q_e\to\Lambda_e$, and
+$M_e=\{(u,v):u=v\text{ in }\Lambda_e\}$.  Consequently, with
 \[
  K^0_e=F\times F(X_e)\times F(X_e),
  \qquad
@@ -2197,27 +2112,27 @@ the embedding words from a recursive presentation is given by
 Mikaelian~\cite{Mikaelian}.  Apply it to the presentation of $Q_e$.
 Following Mikhailova~\cite{Mikhailova}, let $M_e$ be the subgroup of
 $F(X_e)\times F(X_e)$ generated by the pairs $(z,z)$, $z\in X_e$, and
-$(r,1)$, $r\in R_e$.  If $(u,v)\in M_e$ then $u=v$ in $\widehat H_e$,
+$(r,1)$, $r\in R_e$.  If $(u,v)\in M_e$ then $u=v$ in $\Lambda_e$,
 since this holds for the generators.  Conversely, if $u=v$ in
-$\widehat H_e$, then $uv^{-1}$ lies in the normal closure of $R_e$, so it
+$\Lambda_e$, then $uv^{-1}$ lies in the normal closure of $R_e$, so it
 is a product of conjugates $gr^{\pm1}g^{-1}$ with $r\in R_e$, and
 $(gr^{\pm1}g^{-1},1)=(g,g)(r^{\pm1},1)(g,g)^{-1}\in M_e$; hence
 $(u,v)=(uv^{-1},1)(v,v)\in M_e$.  The first coordinate makes $i_e$
 injective, and $(f,w_f,1)\in F\times M_e$ if and only if $w_f=1$ in
-$\widehat H_e$, if and only if $q_e(f)=1$ because the embedding is
+$\Lambda_e$, if and only if $q_e(f)=1$ because the embedding is
 injective, if and only if $f\in N_e$.
 \end{proof}
 
 \subsection*{The two HNN extensions}
 
-Let $P=F(x_1,y)\times F(x_2,t)$ and $j\colon H_0\to P$ be as in
-Lemma~\ref{lem:bridge}.  Define the graph witness
+Let $P=F(x_1,y)\times F(x_2,t)$ and $j\colon Q_+\to P$ be as in
+Lemma~\ref{lem:bridge}, and put
 \[
  K^{\mathrm g}=F\times P,
  \qquad
  L^{\mathrm g}=\{(f,\,jq_+(f)):f\in F\},
 \]
-and the product witness
+and define
 \[
  K_e=K^0_e\times K^{\mathrm g},
  \qquad
@@ -2276,7 +2191,8 @@ $\Gamma_e$ by Britton's lemma.
 
 (3) Define $\tau_e$ on $F*_{N_e}F$ by $q_e$ on the first copy and by the
 trivial map on the second; both kill $N_e$, so the definition is
-consistent on the amalgamated subgroup, and (2) transports it to $S_e$.
+consistent on the amalgamated subgroup, and (2) identifies $F*_{N_e}F$
+with $S_e$.
 \end{proof}
 
 The second HNN extension is
@@ -2355,35 +2271,11 @@ $B$ is.
 \end{lemma}
 
 \begin{proof}
-The second assertion holds because $M_k$ of a norm matrix corona is the
-norm matrix corona of the dimension sequence multiplied by $k$.  For the
-first, let $A$ be a separable $C^*$-subalgebra, and choose a sequence
-$(a_i)_{i\ge1}$ dense in $A$, with lifts $(a_i^{(n)})_n$.  Choose for each
-$n$ an injective $*$-homomorphism $\eta_n$ of $B_n$ into a norm matrix
-corona, and lifts $(a_i^{(n,k)})_k$ of $\eta_n(a_i^{(n)})$ with
-$\sup_k\opnorm{a_i^{(n,k)}}\le\opnorm{a_i^{(n)}}+1$.  Enumerate the
-noncommutative $*$-polynomials with coefficients in $\mathbb Q(i)$ as
-$p_1,p_2,\dots$, and let $\mathcal P_n$ be the set of those among
-$p_1,\dots,p_n$ that involve only $a_1,\dots,a_n$, choosing $p_1=0$ so that
-$\mathcal P_n$ is nonempty.  For $p\in\mathcal P_n$
-the number $\opnorm{p(a^{(n)})}$ equals $\limsup_k\opnorm{p(a^{(n,k)})}$,
-since $\eta_n$ is isometric.  Hence there is $K_n$ such that
-$\opnorm{p(a^{(n,k)})}\le\opnorm{p(a^{(n)})}+1/n$ for all $k\ge K_n$ and
-$p\in\mathcal P_n$, and for each $p\in\mathcal P_n$ there is $k_p\ge K_n$
-with $\opnorm{p(a^{(n,k_p)})}\ge\opnorm{p(a^{(n)})}-1/n$.  Put
-\[
- b_i^{(n)}=\bigoplus_{p\in\mathcal P_n}a_i^{(n,k_p)},
-\]
-a block diagonal matrix.  For $p\in\mathcal P_n$ the norm of
-$p(b^{(n)})$ is the maximum of $\opnorm{p(a^{(n,k_{p'})})}$ over
-$p'\in\mathcal P_n$, which lies between $\opnorm{p(a^{(n)})}-1/n$ and
-$\opnorm{p(a^{(n)})}+1/n$.  Every polynomial belongs to $\mathcal P_n$ for
-all large $n$, so
-$\limsup_n\opnorm{p(b^{(n)})}=\limsup_n\opnorm{p(a^{(n)})}=\opnorm{p(a)}$
-for every $p$.  Therefore $a_i\mapsto[(b_i^{(n)})_n]$ is well defined and
-isometric on the $*$-algebra over $\mathbb Q(i)$ generated by the $a_i$,
-which is dense in $A$, and it extends to an isometric $*$-homomorphism of
-$A$ into a norm matrix corona.
+The first assertion is the standard diagonal argument for MF
+algebras~\cite{BK}; see also its use in the proof of
+Korchagin~\cite[Proposition~6]{Korchagin}.  The second follows by applying
+$M_k$ to an MF embedding, since $M_k$ of a norm matrix corona is the
+corona of the dimension sequence multiplied by $k$.
 \end{proof}
 
 \begin{lemma}[tensor synchronization]\label{lem:tensor-sync}
@@ -2452,11 +2344,11 @@ realization; in particular, it is MF\@.
 \end{lemma}
 
 \begin{proof}
-Let $e\in\mathrm{INF}$, so that $Q_e=H_0$, $N_e=N_+$, $q_e=q_+$, and
+Let $e\in\mathrm{INF}$, so that $Q_e=Q_+$, $N_e=N_+$, $q_e=q_+$, and
 $\tau_e(i(f))=q_+(f)$, $\tau_e(v\,i(f)\,v^{-1})=1$.  By
 Lemma~\ref{lem:finite-rope} it suffices to show that $R_e$ admits a
 tracial MF realization, and by Lemma~\ref{lem:tensor-sync} applied to $\Gamma=\Gamma_e$,
-$Q=H_0$, $S=S_e$ and $\tau=\tau_e$, it suffices to produce the data of
+$Q=Q_+$, $S=S_e$ and $\tau=\tau_e$, it suffices to produce the data of
 that lemma.
 
 The group $K_e$ is residually finite by Lemma~\ref{lem:central-rope}(1),
@@ -2467,7 +2359,7 @@ admits one by Corollary~\ref{cor:central-hnn}.
 The group $P=F(x_1,y)\times F(x_2,t)$ is residually finite; choose
 finite-index normal subgroups $P_1\ge P_2\ge\cdots$ of $P$ with trivial
 intersection, let $r_n\colon P\to C_n=P/P_n$, and put
-$\beta_n=r_n\circ j\colon H_0\to C_n$ with $j$ the embedding of
+$\beta_n=r_n\circ j\colon Q_+\to C_n$ with $j$ the embedding of
 Lemma~\ref{lem:bridge}(3).  Since $j$ is injective and the $P_n$ decrease
 to the trivial group, every $h\ne1$ has $\beta_n(h)\ne1$ for all large $n$.
 
@@ -2485,7 +2377,7 @@ and on the generators of $S_e$,
  \qquad
  \lambda_n(v\,i(f)\,v^{-1})=(1,r_njq_+(f)).
 \]
-Let $\pi_0,\pi_1\colon S_e\to H_0$ be the homomorphisms that are $q_+$ on
+Let $\pi_0,\pi_1\colon S_e\to Q_+$ be the homomorphisms that are $q_+$ on
 one copy of $F$ in $S_e\cong F*_{N_+}F$ and trivial on the other, as in
 Lemma~\ref{lem:central-rope}(3); thus $\pi_0=\tau_e$.  The displayed
 formulas show that $\lambda_n|_{S_e}=(r_nj\pi_0,\,r_nj\pi_1)$, both sides
@@ -2518,7 +2410,7 @@ faithfully to $R_e$ in the corona: the finite maps $\lambda_n$ are trivial
 on the Mikhailova factor, so $W$ commutes with $V(\gamma,1)$ for every
 $\gamma\in K^0_e$, although $u$ does not commute with $(\gamma,1)$ in
 $R_e$.  Injectivity is obtained in Theorem~\ref{thm:hnn-permanence} from
-the universal algebra.  Three questions remain open.  It is not known
+the universal algebra.  The following questions are open.  It is not known
 whether the models of $\widehat R_e$ can be chosen to converge to
 $C^*_{\mathrm r}(\widehat R_e)$ in operator norm, so that the reduced
 $C^*$-algebra itself is MF; the argument produces a tracial state on an
@@ -2561,8 +2453,9 @@ countable group $Q$, define
 % A generated by d.
 %</webmath>
 \[
- W_Q=B*_A(Q\times A).
+ W_Q=B*_A(Q\times A),
 \]
+where $A$ is embedded in $Q\times A$ as the second factor.
 Then the map $\pi_Q\colon W_Q\to Q$ which kills $B$ and projects the second
 vertex group onto $Q$ is a split epimorphism, and
 %<webmath object="RadMF" when="\Rad_{\mathrm{MF}}(W_Q)" title="the elements of W_Q that every allowed matrix model erases">
@@ -2715,50 +2608,8 @@ quotients is an isomorphism:
 These correspondences respect composition of surjective homomorphisms whose
 kernels lie in the MF radical.
 
-Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
-$1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$.  For a
-countable group $Q$, define
-%<webmath object="WQ" when="W_Q=B*_A(Q\times A)" title="the group formed by attaching B to Q times A">
-% The equation defines a new [[group]] called \(W_Q\); the subscript Q records
-% which chosen group Q was used.  The symbol \(\times\) forms the [[direct
-% product]] \(Q\times A\), whose elements are pairs \((q,a)\).  The starred
-% symbol \(*_A\) forms an [[amalgamated free product]], joining B to
-% \(Q\times A\) while identifying their copies of the [[subgroup]] A.  Every
-% [[homomorphism]] from B to an [[MF group]] is the [[trivial homomorphism]], so
-% an MF target receives only the information coming from Q.
-%</webmath>
-%<webmath object="∗A" when="B*_A(Q\times A)" title="the operation that joins the two groups along A">
-% The starred symbol with subscript A, \(*_A\), means [[amalgamated free
-% product]].  Start with the [[group]] B and the [[direct product]]
-% \(Q\times A\), identify the copy of the [[subgroup]] A in each, and impose no
-% additional equations connecting the two sides.  The subscript A records the
-% shared subgroup used for the attachment.
-%</webmath>
-%<webmath object="B" when="B*_A(Q\times A)" title="the attached group B that allowed matrix models cannot detect">
-% B is the attached [[group]].  Its [[MF radical]] equals all of B, meaning
-% every [[homomorphism]] from B to any [[MF group]] is the [[trivial
-% homomorphism]].  Inside \(W_Q\), B supplies elements that finite matrix
-% [[representation|representations]] cannot detect.
-%</webmath>
-%<webmath object="Q" when="B*_A(Q\times A)" title="the chosen group Q that remains detectable">
-% Q is any chosen [[countable]] [[group]], meaning its elements can be put in a
-% list.  The
-% construction builds \(W_Q\) around this Q.  The [[homomorphism]] \(\pi_Q\)
-% recovers Q, and every homomorphism from \(W_Q\) to an [[MF group]] [[factors
-% through]] \(\pi_Q\).  Thus the MF target receives exactly the information
-% from Q.
-%</webmath>
-%<webmath object="A" when="B*_A(Q\times A)" title="the part A used to attach the two groups">
-% A is the [[cyclic subgroup]] made from d and its [[inverse]].  The construction
-% identifies this copy of A inside B with the second coordinate of the [[direct
-% product]] \(Q\times A\).  Treating d as the [[identity]] collapses A; because
-% the [[normal closure]] of d is B, it collapses B as well and leaves Q.
-%</webmath>
-\begin{equation}\label{eq:amalgam}
- W_Q=B*_A(Q\times A),
-\end{equation}
-where $A\to Q\times A$ is the inclusion into the second factor.  The trivial
-map $B\to Q$ and the projection $Q\times A\to Q$ agree on $A$.  They
+In the setting of Theorem~\\ref{thm:prescribed-quotients}, the trivial
+map $B\\to Q$ and the projection $Q\\times A\\to Q$ agree on $A$.  They
 therefore define an epimorphism
 %<webmath object="πQ" when="\pi_Q\colon W_Q\longrightarrow Q" title="the map that discards B and A and keeps Q">
 % The [[Greek letter]] \(\pi\), read “pi,” names a [[homomorphism]], and the
@@ -2772,8 +2623,8 @@ therefore define an epimorphism
  \pi_Q\colon W_Q\longrightarrow Q.
 \]
 It is split by the inclusion $Q\to Q\times A\to W_Q$.  The normal-form
-theorem for amalgamated free products shows that both vertex maps in
-\eqref{eq:amalgam} are injective; in particular, $d\ne1$ in $W_Q$.
+theorem for amalgamated free products shows that both vertex maps of the
+amalgam $W_Q$ are injective; in particular, $d\ne1$ in $W_Q$.
 
 \begin{proposition}[universal factorization]\label{prop:universal-factorization}
 Let $T$ be a group such that every homomorphism $B\to T$ is trivial.  Then
@@ -2910,8 +2761,7 @@ and \eqref{eq:closure-pullback} give
 Here, if $\ker\pi_Q\le N$, then
 $N=\pi_Q^{-1}(\pi_Q(N))$.
 
-Taking $Q=\mathbb Z$ makes the quotient criterion especially concrete:
-for every normal subgroup $N\trianglelefteq W_{\mathbb Z}$,
+For $Q=\mathbb Z$ and every normal subgroup $N\trianglelefteq W_{\mathbb Z}$,
 %<webmath object="whole" when="W_{\mathbb Z}/N\text{ is MF}" title="for this concrete group, the quotient is MF exactly when N contains d">
 % Here \(\mathbb Z\) is the [[group of integers]] under addition, and every
 % quotient of it is MF.  The general two-condition criterion therefore loses
@@ -2970,8 +2820,8 @@ chapter~\cite{OAI}, re-proved in the development from Kun's expander
 decomposition and the Kun--Thom criterion.
 \leanverified{Computability/SoficEnumeratedPi02}{GroupApproximation.SoficEnumeratedPi02.sofic_enum_pi02Complete}
 \item There is one fixed finitely presented non-MF group with a computable
-family of words $w_p$, each invisible to every operator norm matrix model
-and lying in the commutator of the MF radical with the group, such that
+family of words $w_p$, each killed by every corona homomorphism and lying
+in the commutator of the MF radical with the group, such that
 $w_p=1$ exactly when the program $p$ halts.
 \leanverified{Computability/FiniteDimensionalApproximationIncomplete}{GroupApproximation.FiniteDimensionalApproximationIncomplete.fixed_MF_radical_computer}
 \item There is a finitely presented, point-norm matricially stable, non-MF
