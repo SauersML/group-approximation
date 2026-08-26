@@ -218,6 +218,104 @@ theorem action_injective
     simp [hz1]
   · exact bot_le
 
+/-! ## The kernel of the base retraction -/
+
+/-- Retraction to the base group, killing the stable letter. -/
+def baseRet : CentHNN M →* G :=
+  HNNExtension.lift (MonoidHom.id G) 1 (by intro z; simp)
+
+@[simp] theorem baseRet_of (g : G) : baseRet M (of g) = g := by
+  simp [baseRet, HNNExtension.lift_of]
+
+@[simp] theorem baseRet_t : baseRet M (t : CentHNN M) = 1 := by
+  simp [baseRet, HNNExtension.lift_t]
+
+/-- The first action coordinate is the left-regular action of `baseRet`. -/
+theorem action_fst_apply
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (z : CentHNN M) (x : G) (w : FreeGroup (Label M d)) :
+    (action M d z (x, w)).1 = baseRet M z * x := by
+  induction z using HNNExtension.induction_on generalizing x w with
+  | of g => simp
+  | t => simp
+  | mul a b ha hb =>
+      rw [map_mul, Equiv.Perm.mul_apply, ha, hb, map_mul]
+      group
+  | inv a ha =>
+      rw [map_inv, map_inv]
+      let p := (action M d a)⁻¹ (x, w)
+      have hp : action M d a p = (x, w) :=
+        (action M d a).apply_symm_apply (x, w)
+      change p.1 = (baseRet M a)⁻¹ * x
+      calc
+        p.1 = (baseRet M a)⁻¹ * (baseRet M a * p.1) := by group
+        _ = (baseRet M a)⁻¹ * (action M d a (p.1, p.2)).1 := by
+          rw [ha]
+        _ = (baseRet M a)⁻¹ * x := by rw [show (p.1, p.2) = p from rfl, hp]
+
+/-- It suffices for an element to fix the distinguished point in order to be
+the identity. -/
+theorem eq_one_of_action_apply_eq
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    {z : CentHNN M}
+    (hz : action M d z ((1 : G), (1 : FreeGroup (Label M d))) = (1, 1)) :
+    z = 1 := by
+  obtain ⟨g, l, hl, hprod⟩ := HNNBritton.exists_hasSpelling (MulEquiv.refl M) z
+  rw [← hprod, action_wordProd_one] at hz
+  by_cases hnil : l = []
+  · subst l
+    have hg : g = 1 := by
+      simpa [baseRun] using congrArg Prod.fst hz
+    subst g
+    simpa using hprod.symm
+  · have hfree : FreeGroup.mk (labelWord M d l 1) = 1 := by
+      simpa using congrArg Prod.snd hz
+    exact absurd hfree (mk_labelWord_ne_one M d hnil hl 1)
+
+@[simp] theorem baseRet_stableConj
+    (d : HNNExtension.NormalWord.TransversalPair G M M) (q : Label M d) :
+    baseRet M (stableConj M d q) = 1 := by
+  simp [stableConj]
+
+theorem baseRet_comp_stableConjLift
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    (baseRet M).comp (stableConjLift M d) = 1 := by
+  refine FreeGroup.ext_hom _ _ fun q => ?_
+  simp [stableConjLift]
+
+/-- **The kernel of the base retraction is exactly the free group on stable
+conjugates indexed by the right cosets of `M`.** -/
+theorem range_stableConjLift_eq_ker_baseRet
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    (stableConjLift M d).range = (baseRet M).ker := by
+  apply le_antisymm
+  · rintro z ⟨w, rfl⟩
+    rw [MonoidHom.mem_ker, ← MonoidHom.comp_apply,
+      baseRet_comp_stableConjLift]
+    rfl
+  · intro z hz
+    rw [MonoidHom.mem_ker] at hz
+    let p : Space M d := action M d z ((1 : G), 1)
+    let w : FreeGroup (Label M d) := p.2
+    have hp : p = (1, w) := by
+      apply Prod.ext
+      · dsimp [p]
+        rw [action_fst_apply, hz, one_mul]
+      · rfl
+    refine ⟨w, ?_⟩
+    let y : CentHNN M := stableConjLift M d w
+    have hy : action M d y ((1 : G), 1) = (1, w) := by
+      exact action_stableConjLift_apply_one M d w
+    have hpoint : action M d z ((1 : G), 1) = action M d y ((1 : G), 1) := by
+      rw [show action M d z ((1 : G), 1) = p from rfl, hp, hy]
+    have hfix :
+        action M d (y⁻¹ * z) ((1 : G), 1) = ((1 : G), 1) := by
+      rw [map_mul, map_inv, Equiv.Perm.mul_apply, hpoint]
+      exact (action M d y).symm_apply_apply ((1 : G), 1)
+    have hone : y⁻¹ * z = 1 := eq_one_of_action_apply_eq M d hfix
+    change y = z
+    exact inv_mul_eq_one.mp hone
+
 end
 
 end CentralHNNFreeLabel
