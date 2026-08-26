@@ -8,6 +8,7 @@ distinct_from:
   hall-reflection-realizes-rank-one-restriction-instability: that has vanishing normalized-HS fold mass; this tensor-amplifies its exact finite-window edge models after adding a canonical finite-quotient vertex block.
   dimension-defect-controlled-mf-hyperlinear: that requires a dimension-versus-defect rate before functorial amplification of approximate multiplication; here every current kernel-window relation is exact, so arbitrary tensor powers cost no edge defect.
   leavitt-positive-rank-intertwiner-retention: that asks for a compressed adjoint sector satisfying IR1--IR3; this controls the ordinary trace of one group fold word and does not supply such a sector.
+  leavitt-hall-tensor-mf-trace-quotients-are-sofic: that identifies the resulting GNS group quotients as sofic; this constructs and computes the MF traces before asking what approximation class their quotients have.
 ---
 
 **ESTABLISHED FOLD-MOMENT SIMPLEX.** Fix `f_0 in F\K` and
@@ -60,6 +61,11 @@ sector.  These data therefore do not identify the remaining condition.  The
 scalar appearing in IR is instead a **compressed adjoint** moment on the
 same almost-reducing sector, identified separately in
 `ir-survival-is-one-compressed-adjoint-moment`; it is not `tau_t(w)`.
+
+Moreover these particular traces cannot supply a sofic-radical collision:
+`leavitt-hall-tensor-mf-trace-quotients-are-sofic` proves that every one of
+their GNS group quotients is sofic, including when `t<1` and the fold word
+survives.
 
 DERIVATION
 all-fold-mf-moments-from-tensored-hall-reflections
