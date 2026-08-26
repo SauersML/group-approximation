@@ -157,6 +157,29 @@ membership, hence non-separable
 proof there must use models that do not restrict to homomorphisms onto
 finite quotients.
 
+## Theorem 10 (further rows, and where the arithmetical hierarchy stops)
+
+Torsion-freeness is `Pi^0_2`-complete on recursive and on finite
+presentations (`torsion-freeness-recognition-is-pi2-complete`,
+`torsion-freeness-of-finite-presentations-is-pi2-complete`); perfectness
+and every bounded nilpotency class or derived length are `Pi^0_2`-complete
+(`perfectness-and-bounded-solvability-are-pi2-complete`); solvability of
+the word problem is `Sigma^0_3`-complete
+(`word-problem-solvability-rec2-is-sigma3-complete`); and on the fixed
+Higman-universal ambient the three levels one, two and three are realized
+by property (T), amenability and residual finiteness
+(`fixed-ambient-subgroup-levels-rf-amenable-t`).  The first three levels
+are each realized by a natural property
+(`natural-group-properties-realize-the-first-three-levels`); level four is
+open.
+
+The hierarchy stops being the right measure for isomorphism: on finitely
+generated recursive presentations the isomorphism relation is `Sigma^0_3`
+and `Pi^0_2`-hard against a fixed target, but on countably generated
+enumerated presentations it is `Pi^0_3`-hard, hence not `Sigma^0_3`, and
+in fact `Sigma^1_1`-complete already for computable torsion-free abelian
+groups (Downey--Montalban, J. Algebra 320 (2008) 2291--2300).
+
 ## Lean status (2026-08-26, 03:45)
 
 Kernel-checked on main: `Computability/HereditaryPropertySwitchCompleteness`
@@ -177,7 +200,11 @@ computability core of the `Pi^0_3` residual-finiteness theorems);
 classification); `Computability/RFPresentationPi02` (`rf_fp_strict_position`);
 `Computability/RFEnumeratedHardness` (`rfCode_pi02Hard`);
 `Computability/HyperlinearEnumeratedHardness`
-(`hyperlinearCode_pi02Hard_of_exists`).
+(`hyperlinearCode_pi02Hard_of_exists`); `AmenableEnumeratedHardness`,
+`IsoInvariantSwitchHardness` (property (T)), `ElementaryEnumeratedHardness`,
+`TrivialEnumeratedPi02`, `AbelianEnumeratedPi02`,
+`FreeSubgroupEnumeratedHardness`, `TorsionFreeEnumeratedHardness`,
+`PerfectEnumeratedHardness` --- twenty-one modules in all.
 
 ## What remains open
 
