@@ -79,3 +79,40 @@ could work.
   `c_i = M_i! = 0` in `Z/q^m` once `M_i >= q^m`.  Hence, for each fixed
   `q^m`, **all but finitely many elements of `J_e` are congruent to `1`
   modulo `q^m`**.
+
+## The companion at `Pi^0_4`, and the finite-presentation contrast
+
+The same family settles the universal form.  Since `J_e` is pro-`q` closed
+exactly when every row over `q` is finite, and the rows over distinct
+primes are independent,
+
+```text
+{ e : G_e is residually a finite p-group for EVERY prime p }
+    is Pi^0_4-complete,                                                 (P4)
+```
+
+by the same reduction with the outer quantifier universal.  So both halves
+of the fourth level are realized:
+
+```text
+level 4:   residually p for some prime   Sigma^0_4-complete,
+           residually p for every prime  Pi^0_4-complete.
+```
+
+For **finite** presentations the picture collapses one level, as it does
+for residual finiteness: residual `p`-finiteness of a finite presentation
+is `Pi^0_2` (a finite relator list needs no closure quantifier), so
+"residually `p` for some prime" is `Sigma^0_3` and "for every prime" is
+`Pi^0_3` there; their completeness is open, and by
+[[finite-presentation-rice-criterion-via-the-fixed-positive-rope]] the
+compiler route is unavailable, since the rope is not residually finite and
+a fortiori not residually `p`.
+
+## Where the mechanism stops
+
+The index-set family supplies exactly two quantifier resources: the
+finiteness of a single row (`Sigma^0_2`), and the two indices `x` and `p`
+that range over it.  That yields levels three (`Pi^0_3`, fixed prime) and
+four (both halves, quantifying over primes) and no further; reaching a
+natural fifth level would need a genuinely new resource --- another
+topological parameter of the same group, not another index.
