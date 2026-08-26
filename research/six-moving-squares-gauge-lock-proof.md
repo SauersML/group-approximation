@@ -35,6 +35,5 @@ Summing `(SGL5)` along the path from `0` to `k` bounds
 
 Since `D_0^2=1`, `D_0^7=D_0`, proving `(SGL7)`.  Finally, if the comparison
 graph is disconnected, assign `D=1` on one component and one fixed
-nontrivial involution on an even component; every retained edge equality
-and the seventh-power product remain exact.  This proves the stated
-sharpness.
+nontrivial involution on another; every retained edge equality remains
+exact.  This proves the stated sharpness.

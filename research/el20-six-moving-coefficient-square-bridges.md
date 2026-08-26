@@ -45,6 +45,12 @@ the coboundary drift of
 
 - The head `T_i` itself gives a full-Gram parallel transition, but carries
   the very reservoir gauge being measured, so its square is tautological.
+- The sharper factorization is now explicit in
+  `literal-whiteheads-give-gauged-moving-bridge-table`: each `v_i` normalizes
+  the signed Hecke source, so `J_i` alone and its six Singer conjugates have
+  exact full Grams and exact mixed squares.  But `J_i` is the literal native
+  Whitehead occurrence defining the stage discrepancy, so those bridges
+  type as `N_(i,k) tensor D_(i,k)`, not as ungauged coefficient bridges.
 - The seven-pair Fano packet gives ungauged root operators on its full label
   factor.  No established calculation shows that any such root has full
   source Gram from the signed Hecke character cut to its next Singer
@@ -59,6 +65,13 @@ the coboundary drift of
   support `L_0`, while the Singer stage uses `t_iL_0t_i^(-1)`.  Any word
   which moves this support has nontrivial actor quotient and reacquires the
   regular-amplification gauge.
+- Refining each moving cut by a Singer-normalized incoming-root Lagrangian
+  does not turn that subgroup mismatch into a character mismatch.  By
+  `incoming-lagrangian-refinement-preserves-hecke-actor-support`, an affine
+  stabilizer refinement still has actor support `t_i^kL_0t_i^(-k)`.  A
+  dual Pauli translation preserves this subgroup support and changes at
+  most its character/cocycle, whereas the next stage has the genuinely
+  different subgroup `t_i^(k+1)L_0t_i^(-(k+1))`.
 
 The smallest remaining algebraic search is therefore explicit: find one
 coefficient/root-opposite word with the full-Gram property `(ESB1)--(ESB2)`

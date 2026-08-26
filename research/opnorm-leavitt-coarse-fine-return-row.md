@@ -99,8 +99,20 @@ to sit on one carrier.**
   matrix coordinate -- from the multiplicity algebra of an exactified packet
   -- which is what makes the target operator-norm-native rather than a
   corollary of the existing tracial calculus.
-* **Deferred.**  No attack has yet been run at additive-identity recovery in
-  the operator norm; this node exists to name it.  The nearest live
+* **Adaptive prefix atoms plus Thompson simplicity do not supply the row.**
+  `adaptive-prefix-atom-rank-return-does-not-close-opnorm-row` separates the
+  three tempting steps.  Operator distance below one preserves rank but does
+  not identify projections.  A growing atom orbit may be an exact orthogonal
+  path whose first return grows with matrix dimension.  And absence of finite
+  actor actions applies only after one has produced a total action on one
+  finite invariant PVM; pointwise covariance on every fixed atom does not
+  control the coordinate-dependent frontier.  Producing that invariant PVM
+  with uniform covariance is the missing global exactification statement,
+  not a consequence of simplicity.  Freezing a finite invariant packet
+  instead lands in the Morita-neutral model of
+  `binary-leavitt-finite-actor-minimal-atom-dichotomy`.
+* **Remaining live probe.**  The adaptive-atom attack above does not address
+  additive-identity recovery in the operator norm.  The nearest live
   operator-norm machinery is `conjugacy-addressed-opnorm-challenges-are-lossless`
   (literal conjugates of root discrepancies are address-lossless in operator
   norm) and `opnorm-coordinatewise-capacity-diagonal` (a frozen coordinate is
