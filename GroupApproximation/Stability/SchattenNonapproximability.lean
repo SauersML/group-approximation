@@ -96,6 +96,70 @@ structure InvolutionDefectDominates (p : ℝ) : Prop where
     ‖(U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1‖ < 1 →
       schattenPDist p U 1 ≤ schattenPDist p 1 (U * U)
 
+/-! The pointwise operator estimate behind the desired singular-value
+comparison. -/
+
+/-- If an operator is within one of the identity, multiplication by
+`T + 1` cannot decrease vector norms. -/
+theorem norm_le_norm_add_one_apply_of_norm_sub_one_lt_one
+    {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
+    (T : E →L[ℂ] E) (hT : ‖T - 1‖ < 1) (x : E) :
+    ‖x‖ ≤ ‖(T + 1) x‖ := by
+  by_cases hx : x = 0
+  · simp [hx]
+  have hxpos : 0 < ‖x‖ := norm_pos_iff.mpr hx
+  have herror : ‖(T - 1) x‖ < ‖x‖ := by
+    calc
+      ‖(T - 1) x‖ ≤ ‖T - 1‖ * ‖x‖ := (T - 1).le_opNorm x
+      _ < 1 * ‖x‖ := by gcongr
+      _ = ‖x‖ := one_mul _
+  have hsplit : (2 : ℂ) • x = (T + 1) x - (T - 1) x := by
+    simp [two_smul]
+  have htriangle := norm_sub_le ((T + 1) x) ((T - 1) x)
+  have htwo : ‖(2 : ℂ)‖ = 2 := by norm_num
+  rw [← hsplit, norm_smul, htwo] at htriangle
+  linarith
+
+/-- For an approximate unitary involution, the squared defect dominates the
+linear defect on every vector.  The remaining passage from this pointwise
+inequality to ordered singular values is the finite-dimensional min--max
+principle absent from Mathlib's current singular-value API. -/
+theorem pointwise_involutionDefectDominates
+    (d : PositiveDimension) (U : UnitaryTarget d)
+    (hU : ‖(U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1‖ < 1)
+    (x : EuclideanSpace ℂ (Fin d.1)) :
+    ‖(Matrix.toEuclideanCLM (n := Fin d.1) (𝕜 := ℂ))
+        ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1) x‖ ≤
+      ‖(Matrix.toEuclideanCLM (n := Fin d.1) (𝕜 := ℂ))
+        (1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2) x‖ := by
+  let Φ := Matrix.toEuclideanCLM (n := Fin d.1) (𝕜 := ℂ)
+  let T : EuclideanSpace ℂ (Fin d.1) →L[ℂ] EuclideanSpace ℂ (Fin d.1) :=
+    Φ (U : Matrix (Fin d.1) (Fin d.1) ℂ)
+  let y := Φ
+    ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1) x
+  have hT : ‖T - 1‖ < 1 := by
+    calc
+      ‖T - 1‖ = ‖Φ ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1)‖ := by
+        rw [map_sub, map_one]
+      _ = ‖(U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1‖ :=
+        Matrix.l2_opNorm_toEuclideanCLM _
+      _ < 1 := hU
+  have hpoint := norm_le_norm_add_one_apply_of_norm_sub_one_lt_one T hT y
+  change ‖Φ ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1) x‖ ≤ _
+  calc
+    ‖Φ ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1) x‖ ≤
+        ‖(Φ (U : Matrix (Fin d.1) (Fin d.1) ℂ) + 1)
+          (Φ ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1) x)‖ := hpoint
+    _ = ‖Φ (((U : Matrix (Fin d.1) (Fin d.1) ℂ) + 1) *
+          ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1)) x‖ := by
+      rw [← map_one Φ, ← map_add, map_mul]
+      rfl
+    _ = ‖Φ (-(1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2)) x‖ := by
+      congr 2
+      noncomm_ring
+    _ = ‖Φ (1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2) x‖ := by
+      rw [map_neg, neg_apply, norm_neg]
+
 /-- Positive limsup separation is witnessed infinitely often above half of
 that limsup. -/
 theorem frequently_half_limsup_lt_schattenPDist
