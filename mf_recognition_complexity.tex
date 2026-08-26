@@ -75,13 +75,15 @@
 \keywords{MF groups, arithmetical hierarchy, finitely presented groups, HNN extensions, Higman embedding, norm matrix coronas}
 
 \begin{abstract}
-A countable group is MF if it admits finite-dimensional unitary models that
-are asymptotically multiplicative and asymptotically separate nonidentity
-elements in operator norm.  We show that the set of finite presentations of
-MF groups is $\Pi^0_2$-complete in the arithmetical hierarchy, and the set
-of finite presentations of non-MF groups is $\Sigma^0_2$-complete; in
-particular neither set is recursively enumerable.  The upper bound is a
-description of the MF property by finite certificates.  The lower bound
+We find that the MF property is very hard to detect from a finite
+presentation.  Specifically, the finite presentations of MF groups form a
+$\Pi^0_2$-complete set and the finite presentations of non-MF groups a
+$\Sigma^0_2$-complete set, so neither is recursively enumerable, and MF
+recognition is undecidable even relative to an oracle for the halting
+problem.  Here a countable group is MF if it admits finite-dimensional
+unitary models that are asymptotically multiplicative and asymptotically
+separate nonidentity elements in operator norm.  The upper bound is a
+description of the MF property by finite semialgebraic certificates.  The lower bound
 encodes the set of programs with infinite domain into finite presentations
 by an effective Higman embedding, a central HNN extension, and a twisted
 one, using the non-MF group of~\cite{NonMF} on one branch
@@ -473,6 +475,10 @@ maps corestrict to compatible injective homomorphisms into it.
 \leanverified{Analysis/MFAlgebraAmalgamGenerated}{GroupApproximation.MFAlgebraAmalgamCriterion.compatibleGenerated_factor_injective}
 \leanverified{Analysis/MFAlgebraAmalgamGenerated}{GroupApproximation.MFAlgebraAmalgamCriterion.compatibleGenerated_separableSpace}
 \leanverified{Analysis/MFAlgebraAmalgamGenerated}{GroupApproximation.MFAlgebraAmalgamCriterion.compatibleGenerated_isMFAlgebra}
+Moreover, any compatible pair of corona homomorphisms extends to the universal
+amalgam, and chosen bounded representatives of the extension restrict
+asymptotically to the chosen representatives of both factor maps.
+\leanverified{Analysis/MFAlgebraAmalgamCriterion}{GroupApproximation.MFAlgebraAmalgamCriterion.exists_compatible_asymptotic_amalgam_model}
 Identify $M_2(\mathcal Q)$ with the norm matrix corona of the doubled dimension
 sequence, and let $\varphi_A\colon M_2(D)\to M_2(\mathcal Q)$ be the
 entrywise inclusion and
@@ -485,8 +491,8 @@ and on $C$,
  =\begin{pmatrix}c_0&0\\0&c_1\end{pmatrix}
  =\varphi_A(\iota_A(c_0,c_1)),
 \]
-because $\Theta$ is conjugation by $W$.  So $P$ is MF, as are its
-$C^*$-subalgebras $ePe$ and $\Phi(U)\cong U$.
+because $\Theta$ is conjugation by $W$.  So $P$ is MF, as is its
+$C^*$-subalgebra $ePe\cong U$.
 
 \emph{Step 3: the tracial state.}  The functional
 $T=\tau\circ\iota^{-1}$ is a tracial state on $\iota(A)\supseteq D$ with
