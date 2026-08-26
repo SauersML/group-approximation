@@ -51,7 +51,11 @@ block-monomial, bounded-subhomogeneous, asymptotically commuting, and generic
 Haar models are excluded.  The Fournier--Facio alternative is equivalently a
 purely singular invariant amenable near representation with regular
 character; it must be genuinely non-Cartan and cannot admit an equivariant
-coarse factor over the compression cosets.
+coarse factor over the compression cosets.  The common-block subcase is now
+forced entirely to dimension infinity: every fixed block-size cutoff has
+singular charge zero.  Thus a positive witness needs either a purely finitely
+additive unbounded-block model or overlapping delocalization with no common
+block decomposition.
 
 The Kun--Thom fork now has a factor-base reformulation which is genuinely
 different from the forbidden Cartan models.  The wreath embeds in
