@@ -347,6 +347,74 @@ theorem relabel_hnnRels (c : PresentationCode)
 
 /-! ## The honest one-edge equivalence -/
 
+/-- The raw edge code is the word-level quotient presentation before any
+subgroup-isomorphism hypothesis is imposed.  This is the correct semantic
+endpoint when the displayed relations force additional collapse, as in the
+finite Mikhailova rope presentation over `Gamma × F`. -/
+noncomputable def edgeCodePresEquiv (c : PresentationCode)
+    (edges : List (Raw × Raw)) :
+    Carrier (edgeCode c edges) ≃*
+      HNNPresentation.Pres (codeRels c) (sourceWord c edges)
+        (targetWord c edges) :=
+  (PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm).trans
+    (PresentedGroupRelabel.congrEquiv (edgeGeneratorEquiv c edges)
+      (HNNPresentation.hnnRels (codeRels c)
+        (sourceWord c edges) (targetWord c edges))).symm
+
+@[simp] theorem edgeCodePresEquiv_oldGenerator (c : PresentationCode)
+    (edges : List (Raw × Raw)) (i : Fin (genCount c)) :
+    edgeCodePresEquiv c edges
+        (PresentedGroup.of (letterOf (edgeCode c edges) i)) =
+      (PresentedGroup.of (some (letterOf c i)) :
+        HNNPresentation.Pres (codeRels c) (sourceWord c edges)
+          (targetWord c edges)) := by
+  rw [← edgeGeneratorEquiv_some c edges i]
+  change PresentedGroupRelabel.relabelHomSymm (edgeGeneratorEquiv c edges)
+    (HNNPresentation.hnnRels (codeRels c)
+      (sourceWord c edges) (targetWord c edges))
+    (PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm
+      (PresentedGroup.of (edgeGeneratorEquiv c edges (some i)))) = _
+  have hpres := PresentationCodeList.presCongrSet_mk
+    (relabel_hnnRels c edges).symm
+    (FreeGroup.of (edgeGeneratorEquiv c edges (some i)))
+  change PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm
+      (PresentedGroup.of (edgeGeneratorEquiv c edges (some i))) =
+    PresentedGroup.of (edgeGeneratorEquiv c edges (some i)) at hpres
+  rw [hpres, PresentedGroupRelabel.relabelHomSymm_of]
+  simp only [Equiv.symm_apply_apply]
+  have hi : letterOf c (i : ℕ) = i := by
+    apply Fin.ext
+    exact RawWord.letterOf_val_of_lt c i.isLt
+  rw [hi]
+
+@[simp] theorem edgeCodePresEquiv_stable (c : PresentationCode)
+    (edges : List (Raw × Raw)) :
+    edgeCodePresEquiv c edges
+        (PresentedGroup.of
+          (letterOf (edgeCode c edges) (stableIndex c))) =
+      (PresentedGroup.of none :
+        HNNPresentation.Pres (codeRels c) (sourceWord c edges)
+          (targetWord c edges)) := by
+  rw [← edgeGeneratorEquiv_none c edges]
+  change PresentedGroupRelabel.relabelHomSymm (edgeGeneratorEquiv c edges)
+    (HNNPresentation.hnnRels (codeRels c)
+      (sourceWord c edges) (targetWord c edges))
+    (PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm
+      (PresentedGroup.of (edgeGeneratorEquiv c edges none))) = _
+  have hpres := PresentationCodeList.presCongrSet_mk
+    (relabel_hnnRels c edges).symm
+    (FreeGroup.of (edgeGeneratorEquiv c edges none))
+  change PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm
+      (PresentedGroup.of (edgeGeneratorEquiv c edges none)) =
+    PresentedGroup.of (edgeGeneratorEquiv c edges none) at hpres
+  rw [hpres, PresentedGroupRelabel.relabelHomSymm_of]
+  simp only [Equiv.symm_apply_apply]
+
 /-- **One computed edge realizes any specified subgroup equivalence.**
 
 Unlike `edgeCodeEquiv`, this statement does not ask the displayed tuples to be
