@@ -93,29 +93,6 @@
       ]
     },
     {
-      "id": "thm:prescribed-quotients",
-      "environment": "mainthm",
-      "title": "prescribed quotients visible to MF",
-      "statement_sha256": "881486bf3a326e7c475370d9e6617fd092050d72b130bdb66aac1286b22f2834",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:full-kernel-pullback",
-        "prop:universal-factorization"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/PrescribedQuotients",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "thm:recognition",
       "environment": "mainthm",
       "title": "recognizing MF groups",
@@ -363,6 +340,29 @@
       ]
     },
     {
+      "id": "thm:prescribed-quotients",
+      "environment": "theorem",
+      "title": "prescribed quotients visible to MF",
+      "statement_sha256": "881486bf3a326e7c475370d9e6617fd092050d72b130bdb66aac1286b22f2834",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:full-kernel-pullback",
+        "prop:universal-factorization"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrescribedQuotients",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "prop:full-kernel-pullback",
       "environment": "proposition",
       "title": "full-kernel pullback",
@@ -412,6 +412,21 @@
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:marked-closed",
+      "environment": "lemma",
+      "title": "marked closedness",
+      "statement_sha256": "0e91cc012c8ab6a306e7cc767d6e66a9af9aa731c7f6a68a0e89b7c2aec51404",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:local-models"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
