@@ -152,11 +152,10 @@ theorem opNorm_lt_invSucc_of_upperNormCert (d k : ℕ) (A : MatrixCode)
         (froSqCode d (gramPowCode d A m))) : ℚ) : ℝ) <
         ((toRat (ratPow (ratInvSucc k) (2 ^ (m + 2))) : ℚ) : ℝ)) := by
     exact_mod_cast hq
-  simpa only [toRat_mul, toRat_ratOfNat, toRat_froSqCode,
+  norm_num [toRat_mul, toRat_ratOfNat, toRat_froSqCode,
     toMatrix_gramPowCode, toRat_ratPow, toRat_ratInvSucc,
-    Rat.cast_mul, Rat.cast_natCast, Rat.cast_pow, Rat.cast_div,
-    Rat.cast_one, Nat.cast_pow, Fintype.card_fin, Nat.cast_add,
-    Nat.cast_one] using hr
+    Fintype.card_fin] at hr ⊢
+  simpa only [Nat.cast_pow] using hr
 
 /-- Completeness of the executable strict upper certificate. -/
 theorem exists_upperNormCert_of_opNorm_lt_invSucc (d k : ℕ)
@@ -175,11 +174,10 @@ theorem exists_upperNormCert_of_opNorm_lt_invSucc (d k : ℕ)
       (((toRat (ratMul (ratOfNat ((dim d) ^ 4))
         (froSqCode d (gramPowCode d A m))) : ℚ) : ℝ) <
         ((toRat (ratPow (ratInvSucc k) (2 ^ (m + 2))) : ℚ) : ℝ)) := by
-    simpa only [toRat_mul, toRat_ratOfNat, toRat_froSqCode,
+    norm_num [toRat_mul, toRat_ratOfNat, toRat_froSqCode,
       toMatrix_gramPowCode, toRat_ratPow, toRat_ratInvSucc,
-      Rat.cast_mul, Rat.cast_natCast, Rat.cast_pow, Rat.cast_div,
-      Rat.cast_one, Nat.cast_pow, Fintype.card_fin, Nat.cast_add,
-      Nat.cast_one] using hr
+      Fintype.card_fin] at hr ⊢
+    simpa only [Nat.cast_pow] using hr
   exact_mod_cast hrat
 
 /-- Soundness of the executable strict lower-third certificate. -/
@@ -203,6 +201,8 @@ theorem one_third_lt_opNorm_of_lowerThirdCert (d : ℕ) (A : MatrixCode)
 theorem exists_lowerThirdCert_of_one_third_lt_opNorm (d : ℕ)
     (A : MatrixCode) (h : (1 : ℝ) / 3 < ‖toMatrix d A‖) :
     ∃ m, lowerThirdCert d A m := by
+  let i : Fin (dim d) := ⟨0, by simp [dim]⟩
+  letI : Nonempty (Fin (dim d)) := ⟨i⟩
   obtain ⟨m, hm⟩ := OperatorNormCertificate.exists_certificate_of_lt_opNorm
     (n := Fin (dim d)) (by infer_instance) (toMatrix d A)
     (show 0 ≤ (1 : ℝ) / 3 by positivity) h
@@ -281,7 +281,11 @@ theorem primrec_ratInvSucc : Primrec ratInvSucc :=
 theorem primrec_ratPow : Primrec₂ ratPow := by
   have hstep : Primrec₂ fun q (p : ℕ × RatCode) => ratMul p.2 q :=
     primrec_ratMul.comp₂ (Primrec.snd.comp₂ Primrec₂.right) Primrec₂.left
-  exact Primrec.nat_rec (Primrec.const ratOne) hstep
+  refine (Primrec.nat_rec (Primrec.const ratOne) hstep).of_eq ?_
+  intro q n
+  induction n with
+  | zero => rfl
+  | succ n ih => simp only [ratPow, ih]
 
 theorem primrec_matrixPow :
     Primrec fun z : (ℕ × MatrixCode) × ℕ =>
@@ -294,7 +298,11 @@ theorem primrec_matrixPow :
       (Primrec.pair (Primrec.fst.comp Primrec.fst)
         (Primrec.snd.comp Primrec.snd))
       (Primrec.snd.comp Primrec.fst))).to₂
-  exact Primrec.nat_rec hbase hstep
+  refine (Primrec.nat_rec hbase hstep).of_eq ?_
+  intro p n
+  induction n with
+  | zero => rfl
+  | succ n ih => simp only [matrixPow, ih]
 
 theorem primrec_froRowSqCode :
     Primrec fun z : (ℕ × MatrixCode) × ℕ =>
@@ -302,7 +310,7 @@ theorem primrec_froRowSqCode :
   have hrange : Primrec fun z : (ℕ × MatrixCode) × ℕ =>
       List.range (dim z.1.1) :=
     Primrec.list_range.comp
-      (primrec_dim.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))
   have hstep : Primrec₂ fun (z : (ℕ × MatrixCode) × ℕ)
       (p : RatCode × ℕ) =>
       ratAdd p.1 (complexNormSq (entry z.1.1 z.1.2 z.2 p.2)) := by
@@ -310,10 +318,9 @@ theorem primrec_froRowSqCode :
         (RatCode × ℕ) => entry q.1.1.1 q.1.1.2 q.1.2 q.2.2 :=
       primrec_entry.comp (Primrec.pair
         (Primrec.pair
-          (Primrec.pair (Primrec.fst.comp (Primrec.fst.comp
-            (Primrec.fst.comp Primrec.fst)))
-            (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
-          (Primrec.snd.comp (Primrec.fst.comp Primrec.fst)))
+          (Primrec.pair (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))
+            (Primrec.snd.comp (Primrec.fst.comp Primrec.fst)))
+          (Primrec.snd.comp Primrec.fst))
         (Primrec.snd.comp Primrec.snd))
     exact (primrec_ratAdd.comp (Primrec.fst.comp Primrec.snd)
       (primrec_complexNormSq.comp hentry)).to₂
@@ -336,9 +343,9 @@ theorem primrec_gramPowCode :
     Primrec fun z : (ℕ × MatrixCode) × ℕ =>
       gramPowCode z.1.1 z.1.2 z.2 := by
   have hd : Primrec fun z : (ℕ × MatrixCode) × ℕ => z.1.1 :=
-    Primrec.fst.comp (Primrec.fst.comp Primrec.fst)
+    Primrec.fst.comp Primrec.fst
   have hA : Primrec fun z : (ℕ × MatrixCode) × ℕ => z.1.2 :=
-    Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
+    Primrec.snd.comp Primrec.fst
   have hstar : Primrec fun z : (ℕ × MatrixCode) × ℕ =>
       conjTranspose z.1.1 z.1.2 :=
     primrec_conjTranspose.comp (Primrec.pair hd hA)
@@ -355,11 +362,11 @@ theorem primrecPred_upperNormCert :
     PrimrecPred fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
       upperNormCert z.1.1.1 z.1.1.2 z.1.2 z.2 := by
   have hd : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ => z.1.1.1 :=
-    Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))
+    Primrec.fst.comp (Primrec.fst.comp Primrec.fst)
   have hk : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ => z.1.1.2 :=
-    Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))
-  have hA : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ => z.1.2 :=
     Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
+  have hA : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ => z.1.2 :=
+    Primrec.snd.comp Primrec.fst
   have hdim : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
       dim z.1.1.1 := primrec_dim.comp hd
   have hdim4 := primrec_natPow.comp hdim (Primrec.const 4)
@@ -378,9 +385,9 @@ theorem primrecPred_lowerThirdCert :
     PrimrecPred fun z : (ℕ × MatrixCode) × ℕ =>
       lowerThirdCert z.1.1 z.1.2 z.2 := by
   have hd : Primrec fun z : (ℕ × MatrixCode) × ℕ => z.1.1 :=
-    Primrec.fst.comp (Primrec.fst.comp Primrec.fst)
+    Primrec.fst.comp Primrec.fst
   have hA : Primrec fun z : (ℕ × MatrixCode) × ℕ => z.1.2 :=
-    Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
+    Primrec.snd.comp Primrec.fst
   have hdim := primrec_dim.comp hd
   have hdim2 := primrec_natPow.comp hdim (Primrec.const 2)
   have hexp := primrec_natPow.comp (Primrec.const 2)
