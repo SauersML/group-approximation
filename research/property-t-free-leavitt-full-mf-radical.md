@@ -573,7 +573,7 @@ common unequal native range.
 
 The shortest mixed relation tying the explicit two-depth cells has also
 been computed.  In
-`simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`,
+`mixed-whitehead-cell-moves-signed-source`,
 the product of matching endpoint and native prefix Whiteheads fixes the
 positive actor and conjugates its whole depth-two mark cell to depth three.
 But it does not normalize the signed source: the exact intersection has
@@ -583,6 +583,17 @@ short cross and common-tail words supply only commutation or the inverse
 swap.  Thus even this genuine global occurrence relation does not establish
 the full MF radical; one still needs a noninverse positive return to the
 same signed source or the prescribed unequal native range Gram.
+
+The first nontrivial second-transport loop has now been found and fenced.
+`external-normalizer-dressed-cell-has-full-gauged-gram` takes
+`H'=Hx_59(1)`, where `x_59(1)` is the unique external signed-normalizer root
+centralizing the concrete depth-two cell.  The relative loop is nonidentity
+and source-normalizing, but both transports have the same whole moved range
+and their cross Gram is the full unitary `x_59(1)Q`.  On the signed carrier
+this word retains an arbitrary external multiplicity involution.  Therefore
+the second transport does not establish the full MF radical: it introduces
+another spectator gauge rather than returning the source or producing the
+unequal native selector Gram.
 
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the

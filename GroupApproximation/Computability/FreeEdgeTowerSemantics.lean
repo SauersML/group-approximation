@@ -18,6 +18,7 @@ namespace FreeEdgeTowerSemantics
 
 open PresentationCodes FreeEdgeTowerCode
 open Higman ExplicitFreeEdge
+open PresentedGroupRelabel RawWord CoprodCode
 
 /-- The relator set presented by a code, named for use with
 `HNNPresentation`. -/
@@ -197,6 +198,120 @@ noncomputable def presentedHNNEquiv (c : PresentationCode)
     (fun g => by
       simpa using mem_sourceSubgroup_edgeData_iff c edges hsource htarget g)
     (presentedEdgeEquiv_intertwines c edges hsource htarget)
+
+/-! ## Append numbering and raw-word decoding -/
+
+@[simp] theorem letterOf_edgeCode_old (c : PresentationCode)
+    (edges : List (Raw × Raw)) (i : Fin (genCount c)) :
+    letterOf (edgeCode c edges) i = i.castSucc := by
+  apply Fin.ext
+  simp only [letterOf, edgeCode_genCount, Fin.val_castSucc]
+  exact Nat.mod_eq_of_lt (lt_trans i.isLt (Nat.lt_succ_self _))
+
+@[simp] theorem letterOf_edgeCode_stable (c : PresentationCode)
+    (edges : List (Raw × Raw)) :
+    letterOf (edgeCode c edges) (stableIndex c) = Fin.last (genCount c) := by
+  apply Fin.ext
+  simp [letterOf, stableIndex, edgeCode_genCount]
+
+/-- A normalized old word is read in the enlarged code by appending the old
+alphabet inclusion. -/
+theorem wordOf_edgeCode_norm (c : PresentationCode)
+    (edges : List (Raw × Raw)) (w : Raw) :
+    wordOf (edgeCode c edges) (normWord c w) =
+      FreeGroup.map Fin.castSucc (wordOf c w) := by
+  rw [wordOf, wordOf, FreeGroup.map.mk]
+  congr 1
+  simp only [normWord, List.map_map, Function.comp_def]
+  refine List.map_congr_left fun p _ => ?_
+  refine Prod.ext ?_ rfl
+  apply Fin.ext
+  change (p.1 % genCount c) % (genCount c + 1) = p.1 % genCount c
+  exact Nat.mod_eq_of_lt
+    (lt_trans (Nat.mod_lt _ (genCount_pos c)) (Nat.lt_succ_self _))
+
+/-- Relabelling an old HNN word by append numbering is exactly the enlarged
+code's reading of the normalized raw word. -/
+theorem relabel_emb_word (c : PresentationCode)
+    (edges : List (Raw × Raw)) (w : Raw) :
+    relabel (optionFinAppendEquiv (genCount c))
+        (HNNPresentation.emb (wordOf c w)) =
+      wordOf (edgeCode c edges) (normWord c w) := by
+  rw [wordOf_edgeCode_norm]
+  change FreeGroup.map (optionFinAppendEquiv (genCount c))
+      (FreeGroup.map some (wordOf c w)) =
+    FreeGroup.map Fin.castSucc (wordOf c w)
+  have hmap :
+      (FreeGroup.map (optionFinAppendEquiv (genCount c))).comp
+          (FreeGroup.map some) = FreeGroup.map Fin.castSucc := by
+    apply FreeGroup.ext_hom
+    intro i
+    simp
+  rw [← MonoidHom.comp_apply, hmap]
+
+/-- The HNN stable word becomes the final raw generator. -/
+theorem relabel_stableWord (c : PresentationCode) :
+    relabel (optionFinAppendEquiv (genCount c)) HNNPresentation.stableWord =
+      FreeGroup.of (Fin.last (genCount c)) := by
+  simp [HNNPresentation.stableWord, relabel]
+
+/-- Reading one raw edge relator gives the corresponding append-numbered HNN
+relator. -/
+theorem wordOf_edgeRelator (c : PresentationCode)
+    (edges : List (Raw × Raw)) (p : Raw × Raw) :
+    wordOf (edgeCode c edges) (edgeRelator c p) =
+      FreeGroup.of (Fin.last (genCount c)) *
+        FreeGroup.map Fin.castSucc (wordOf c p.1) *
+        (FreeGroup.of (Fin.last (genCount c)))⁻¹ *
+        (FreeGroup.map Fin.castSucc (wordOf c p.2))⁻¹ := by
+  simp only [edgeRelator, wordOf_append, wordOf_pos, wordOf_neg,
+    wordOf_invWord, wordOf_edgeCode_norm, letterOf_edgeCode_stable]
+  rfl
+
+/-- The word-level HNN relator attached to one raw edge. -/
+def hnnRelator (c : PresentationCode) (edges : List (Raw × Raw))
+    (i : Fin edges.length) : FreeGroup (Option (Fin (genCount c))) :=
+  HNNPresentation.stableWord * HNNPresentation.emb (sourceWord c edges i) *
+    HNNPresentation.stableWord⁻¹ *
+    (HNNPresentation.emb (targetWord c edges i))⁻¹
+
+/-- Relabelling an HNN relator by append numbering produces the raw relator
+inserted by `edgeCode`. -/
+theorem relabel_hnnRelator (c : PresentationCode)
+    (edges : List (Raw × Raw)) (i : Fin edges.length) :
+    relabel (optionFinAppendEquiv (genCount c)) (hnnRelator c edges i) =
+      wordOf (edgeCode c edges) (edgeRelator c (edges.get i)) := by
+  simp only [hnnRelator, map_mul, map_inv, relabel_stableWord,
+    sourceWord, targetWord, relabel_emb_word]
+  exact (wordOf_edgeRelator c edges (edges.get i)).symm
+
+/-- The HNN relator set is spelled by the old relator list followed by the
+finite list of edge relators. -/
+theorem hnnRels_eq_list (c : PresentationCode)
+    (edges : List (Raw × Raw)) :
+    HNNPresentation.hnnRels (codeRels c) (sourceWord c edges) (targetWord c edges) =
+      {x | x ∈ (PresentationCodeList.relatorListOf c).map HNNPresentation.emb ++
+        List.ofFn (hnnRelator c edges)} := by
+  rw [HNNPresentation.hnnRels, PresentationCodeList.coe_relatorFinset]
+  ext x
+  simp [hnnRelator]
+
+/-- After append relabelling, the explicit HNN relator list is literally the
+raw relator list read from `edgeCode`. -/
+theorem relabel_hnnRelatorList (c : PresentationCode)
+    (edges : List (Raw × Raw)) :
+    ((PresentationCodeList.relatorListOf c).map HNNPresentation.emb ++
+        List.ofFn (hnnRelator c edges)).map
+          (relabel (optionFinAppendEquiv (genCount c))) =
+      PresentationCodeList.relatorListOf (edgeCode c edges) := by
+  simp only [PresentationCodeList.relatorListOf, edgeCode_relators,
+    List.map_append, List.map_map]
+  congr 1
+  · refine List.map_congr_left fun w _ => ?_
+    exact relabel_emb_word c edges w
+  · rw [List.map_ofFn]
+    simp_rw [relabel_hnnRelator]
+    rw [← List.map_ofFn, List.ofFn_get]
 
 end FreeEdgeTowerSemantics
 end GroupApproximation

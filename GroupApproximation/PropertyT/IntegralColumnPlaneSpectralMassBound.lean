@@ -147,6 +147,22 @@ local instance representedColumnPlaneSpectrumBorelSpace
     BorelSpace (Spectrum rho) :=
   ⟨rfl⟩
 
+/-- The full Gelfand spectral measure of the represented column plane at a
+unit real vector. -/
+noncomputable def columnPlaneSpectralMeasure
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (hz : ‖z‖ = 1) : Measure (Spectrum rho) :=
+  CommutativeStateSpectralMeasure.stateSpectralMeasure
+    ((P rho).vectorState (Complexification.mk z 0)
+      (norm_mk_zero_eq_one hz))
+
+noncomputable local instance columnPlaneSpectralMeasureIsFinite
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (hz : ‖z‖ = 1) :
+    IsFiniteMeasure (columnPlaneSpectralMeasure rho z hz) := by
+  unfold columnPlaneSpectralMeasure
+  infer_instance
+
 omit [Fintype X] in
 /-- The integral free algebra on a countable alphabet is countable.  We
 expose this locally so countable unions over all coefficient coordinates can
@@ -1128,6 +1144,36 @@ noncomputable def lowerUnitCharacterAction
     ((P rho).rho (lowerShear 1))
     (lowerShear_forward rho 1) (lowerShear_backward rho 1) chi
 
+/-- The upper unit action, bundled as a measurable equivalence. -/
+noncomputable def upperUnitCharacterMeasurableEquiv
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E)) :
+    Spectrum rho ≃ᵐ Spectrum rho :=
+  (CommutativeCStarCovariance.characterHomeomorph (P rho).algebra
+    ((P rho).rho (upperShear 1))
+    (upperShear_forward rho 1) (upperShear_backward rho 1)).toMeasurableEquiv
+
+@[simp] theorem upperUnitCharacterMeasurableEquiv_apply
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (chi : Spectrum rho) :
+    upperUnitCharacterMeasurableEquiv rho chi =
+      upperUnitCharacterAction rho chi :=
+  rfl
+
+/-- The lower unit action, bundled as a measurable equivalence. -/
+noncomputable def lowerUnitCharacterMeasurableEquiv
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E)) :
+    Spectrum rho ≃ᵐ Spectrum rho :=
+  (CommutativeCStarCovariance.characterHomeomorph (P rho).algebra
+    ((P rho).rho (lowerShear 1))
+    (lowerShear_forward rho 1) (lowerShear_backward rho 1)).toMeasurableEquiv
+
+@[simp] theorem lowerUnitCharacterMeasurableEquiv_apply
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (chi : Spectrum rho) :
+    lowerUnitCharacterMeasurableEquiv rho chi =
+      lowerUnitCharacterAction rho chi :=
+  rfl
+
 theorem rootWordVisibleSet_upperUnit_zero_iff
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
     (n : ℕ) (chi : Spectrum rho) :
@@ -1783,6 +1829,132 @@ theorem lowerUnitCharacterAction_mapsTo_B_union_C
     · exact Or.inl (Or.inl hA)
     · exact Or.inl (Or.inr hB')
   · exact Or.inr (wordPairRegion_lowerUnit_eq_C_of_eq_C rho n chi hC)
+
+/-- A measurable image inclusion turns quadratic quasi-invariance into a
+one-sided finite-measure estimate.  No injectivity between pieces and no
+disjointness of images is required. -/
+theorem measureReal_le_target_add_quasiInvariant_error
+    {Omega : Type*} [MeasurableSpace Omega]
+    (mu : Measure Omega) [IsFiniteMeasure mu] (epsilon : ℝ)
+    (g : Omega ≃ᵐ Omega) {S T : Set Omega}
+    (hS : MeasurableSet S) (hT : MeasurableSet T)
+    (hquasi :
+      KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale
+        mu epsilon g)
+    (hmaps : Set.MapsTo g S T) :
+    mu.real S ≤ mu.real T +
+      2 * epsilon * Real.sqrt (mu.real S) + epsilon ^ 2 := by
+  have himageMeasurable : MeasurableSet (g '' S) :=
+    g.measurableSet_image.mpr hS
+  have himageSubset : g '' S ⊆ T := by
+    rintro y ⟨x, hx, rfl⟩
+    exact hmaps hx
+  have himageMass : mu.real (g '' S) ≤ mu.real T :=
+    measureReal_mono himageSubset
+  have hbound := hquasi S hS himageMeasurable
+  have hlower := neg_le_of_abs_le hbound
+  linarith
+
+/-- The upper-unit `A ∪ B` placement gives a finite-measure inequality
+without treating the possibly overlapping `B` and `C` images as disjoint. -/
+theorem measureReal_A_union_B_le_ABC_of_upperUnit_quasiInvariant
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (mu : Measure (Spectrum rho)) [IsFiniteMeasure mu]
+    (n : ℕ) (epsilon : ℝ)
+    (hquasi :
+      KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale
+        mu epsilon (upperUnitCharacterMeasurableEquiv rho)) :
+    mu.real (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ≤
+      mu.real ((wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∪
+        wordPairRegionSet rho n .C) +
+      2 * epsilon * Real.sqrt
+        (mu.real (wordPairRegionSet rho n .A ∪
+          wordPairRegionSet rho n .B)) + epsilon ^ 2 := by
+  apply measureReal_le_target_add_quasiInvariant_error mu epsilon
+    (upperUnitCharacterMeasurableEquiv rho)
+  · exact (measurableSet_wordPairRegionSet rho n .A).union
+      (measurableSet_wordPairRegionSet rho n .B)
+  · exact ((measurableSet_wordPairRegionSet rho n .A).union
+      (measurableSet_wordPairRegionSet rho n .B)).union
+      (measurableSet_wordPairRegionSet rho n .C)
+  · exact hquasi
+  · intro chi hchi
+    change upperUnitCharacterAction rho chi ∈
+      (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∪
+        wordPairRegionSet rho n .C
+    exact upperUnitCharacterAction_mapsTo_A_union_B rho n hchi
+
+/-- The symmetric overlap-safe estimate for the lower-unit image of
+`B ∪ C`. -/
+theorem measureReal_B_union_C_le_ABC_of_lowerUnit_quasiInvariant
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (mu : Measure (Spectrum rho)) [IsFiniteMeasure mu]
+    (n : ℕ) (epsilon : ℝ)
+    (hquasi :
+      KassabovBorelMeasureInequalities.MeasurableQuasiInvariantAtScale
+        mu epsilon (lowerUnitCharacterMeasurableEquiv rho)) :
+    mu.real (wordPairRegionSet rho n .B ∪ wordPairRegionSet rho n .C) ≤
+      mu.real ((wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∪
+        wordPairRegionSet rho n .C) +
+      2 * epsilon * Real.sqrt
+        (mu.real (wordPairRegionSet rho n .B ∪
+          wordPairRegionSet rho n .C)) + epsilon ^ 2 := by
+  apply measureReal_le_target_add_quasiInvariant_error mu epsilon
+    (lowerUnitCharacterMeasurableEquiv rho)
+  · exact (measurableSet_wordPairRegionSet rho n .B).union
+      (measurableSet_wordPairRegionSet rho n .C)
+  · exact ((measurableSet_wordPairRegionSet rho n .A).union
+      (measurableSet_wordPairRegionSet rho n .B)).union
+      (measurableSet_wordPairRegionSet rho n .C)
+  · exact hquasi
+  · intro chi hchi
+    change lowerUnitCharacterAction rho chi ∈
+      (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∪
+        wordPairRegionSet rho n .C
+    exact lowerUnitCharacterAction_mapsTo_B_union_C rho n hchi
+
+/-- The upper-unit finite-measure inequality for the actual column-plane
+spectral measure of an almost invariant vector. -/
+theorem columnPlaneSpectralMeasure_A_union_B_le_ABC
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (hz : ‖z‖ = 1) (n : ℕ) (delta : ℝ)
+    (hdelta : 0 < delta)
+    (hnear : ∀ s ∈ integralControlSet X, ‖rho s z - z‖ < delta) :
+    (columnPlaneSpectralMeasure rho z hz).real
+        (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ≤
+      (columnPlaneSpectralMeasure rho z hz).real
+          ((wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∪
+            wordPairRegionSet rho n .C) +
+        2 * delta * Real.sqrt
+          ((columnPlaneSpectralMeasure rho z hz).real
+            (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B)) +
+        delta ^ 2 := by
+  apply measureReal_A_union_B_le_ABC_of_upperUnit_quasiInvariant
+  have hq := upperShear_measurableQuasiInvariantAtScale
+    X rho z hz delta hdelta hnear none
+  simpa only [columnPlaneSpectralMeasure, integralControlCoefficient,
+    upperUnitCharacterMeasurableEquiv] using hq
+
+/-- The symmetric lower-unit inequality for the same full spectral measure. -/
+theorem columnPlaneSpectralMeasure_B_union_C_le_ABC
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (z : E) (hz : ‖z‖ = 1) (n : ℕ) (delta : ℝ)
+    (hdelta : 0 < delta)
+    (hnear : ∀ s ∈ integralControlSet X, ‖rho s z - z‖ < delta) :
+    (columnPlaneSpectralMeasure rho z hz).real
+        (wordPairRegionSet rho n .B ∪ wordPairRegionSet rho n .C) ≤
+      (columnPlaneSpectralMeasure rho z hz).real
+          ((wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∪
+            wordPairRegionSet rho n .C) +
+        2 * delta * Real.sqrt
+          ((columnPlaneSpectralMeasure rho z hz).real
+            (wordPairRegionSet rho n .B ∪ wordPairRegionSet rho n .C)) +
+        delta ^ 2 := by
+  apply measureReal_B_union_C_le_ABC_of_lowerUnit_quasiInvariant
+  have hq := lowerShear_measurableQuasiInvariantAtScale
+    X rho z hz delta hdelta hnear none
+  simpa only [columnPlaneSpectralMeasure, integralControlCoefficient,
+    lowerUnitCharacterMeasurableEquiv] using hq
 
 omit [Fintype X] in
 theorem iUnion_finitePlaneNontrivialSet

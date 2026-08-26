@@ -1,5 +1,5 @@
 import GroupApproximation.Analysis.CollapseDiscardCoordinates
-import GroupApproximation.Analysis.PrintedCornerCompression
+import GroupApproximation.Analysis.CornerMatrixEmbedding
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -421,6 +421,27 @@ theorem cornerCompression_projectionSandwich_mul
     (projectionSandwich_commutes hPidem B)
     (projectionSandwich_commutes hPidem C)
 
+/-- Compression to the range coordinates preserves the operator norm of a
+projection sandwich. -/
+theorem norm_cornerCompression_projectionSandwich
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (hPidem : P * P = P)
+    (B : Matrix Z Z ℂ) :
+    ‖cornerCompression hP (P * B * P)‖ = ‖P * B * P‖ := by
+  have hembed := cornerEmbed_cornerCompression hP hPidem (P * B * P)
+  have hsandwich : P * (P * B * P) * P = P * B * P := by
+    calc
+      P * (P * B * P) * P = (P * P) * B * (P * P) := by noncomm_ring
+      _ = P * B * P := by rw [hPidem]
+  calc
+    ‖cornerCompression hP (P * B * P)‖ =
+        ‖cornerEmbed hP (cornerCompression hP (P * B * P))‖ :=
+      (norm_cornerEmbed hP _).symm
+    _ = ‖P * (P * B * P) * P‖ :=
+      congrArg (fun C : Matrix Z Z ℂ ↦ ‖C‖) hembed
+    _ = ‖P * B * P‖ :=
+      congrArg (fun C : Matrix Z Z ℂ ↦ ‖C‖) hsandwich
+
 theorem cornerPredicate_iff_eigenvalue_ne_zero
     {Z : Type*} [Fintype Z] [DecidableEq Z]
     {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (hPidem : P * P = P) (i : Z) :
@@ -710,6 +731,52 @@ theorem isNull_cornerCompressSequence
         (x (supportRelabelling Y P hne k))
   · exact hx.comp (supportRelabelling_strictMono Y P hne).tendsto_atTop
 
+/-- On projection-sandwiched families, coordinate compression preserves and
+reflects cofinite nullity.  Reflection uses the full increasing enumeration
+of every nonzero coordinate of `P`; an arbitrary subsequence would not
+suffice. -/
+theorem isNull_cornerCompressSequence_projectionSandwich_iff
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x : BoundedMatrixSequence (fun n ↦ Y n)) :
+    IsNullMatrixSequence
+        (fun k ↦ (relabelledCornerModel Y P hP hne k : Type)) cofinite
+        (cornerCompressSequence Y P hP hne (P * x * P)) ↔
+      IsNullMatrixSequence (fun n ↦ Y n) cofinite (P * x * P) := by
+  constructor
+  · intro hcorner
+    have hnorm :
+        (fun k ↦ ‖supportReindex Y P hne (P * x * P) k‖) =
+          fun k ↦ ‖cornerCompressSequence Y P hP hne (P * x * P) k‖ := by
+      funext k
+      change
+        ‖(P (supportRelabelling Y P hne k) :
+              Matrix (Y (supportRelabelling Y P hne k))
+                (Y (supportRelabelling Y P hne k)) ℂ) *
+            x (supportRelabelling Y P hne k) *
+            P (supportRelabelling Y P hne k)‖ =
+          ‖cornerCompression
+            (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+            ((P (supportRelabelling Y P hne k) :
+                Matrix (Y (supportRelabelling Y P hne k))
+                  (Y (supportRelabelling Y P hne k)) ℂ) *
+              x (supportRelabelling Y P hne k) *
+              P (supportRelabelling Y P hne k))‖
+      exact (norm_cornerCompression_projectionSandwich
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).2
+        (x (supportRelabelling Y P hne k))).symm
+    have hreindexed :
+        IsNullMatrixSequence
+          (fun k ↦ Y (supportRelabelling Y P hne k)) cofinite
+          (supportReindex Y P hne (P * x * P)) := by
+      rw [IsNullMatrixSequence] at hcorner ⊢
+      rw [hnorm]
+      exact hcorner
+    exact (isNull_compressFamily_supportReindex_iff Y P x hne).mpr hreindexed
+  · exact isNull_cornerCompressSequence Y P hP hne (P * x * P)
+
 /-! ## The corner class of an ambient bounded family -/
 
 /-- Compress a bounded family and then take its class in the relabelled
@@ -856,7 +923,9 @@ theorem mk_compress_lift_eq
 #audit_axioms cornerCompressSequence_star
 #audit_axioms cornerCompressSequence_projection_eq_one
 #audit_axioms cornerCompressSequence_projectionSandwich_mul
+#audit_axioms norm_cornerCompression_projectionSandwich
 #audit_axioms isNull_cornerCompressSequence
+#audit_axioms isNull_cornerCompressSequence_projectionSandwich_iff
 #audit_axioms cornerClass_eq_zero_of_isNull
 #audit_axioms cornerClass_projection_eq_one
 #audit_axioms cornerClass_projectionSandwich_mul

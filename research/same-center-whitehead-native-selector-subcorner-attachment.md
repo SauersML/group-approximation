@@ -367,7 +367,7 @@ excluded by the regular-trace firewall.
 
   The simultaneous endpoint/prefix swap provides the expected global
   conjugacy but not the missing subcorner.
-  `simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`
+  `mixed-whitehead-cell-moves-signed-source`
   constructs an involution fixing `g_*` and transporting both arms of its
   depth-two cell to depth three.  This involution moves `Q`; the two signed
   groups meet in order `16`, and their regular Hecke overlap
@@ -375,6 +375,16 @@ excluded by the regular-trace firewall.
   Hence its conjugacy relates the cell over `Q` to the next cell over the
   moved source.  No cross commutator returns that chart to the fixed source,
   so `(SNA2)` remains open.
+
+  There is a second parallel edge, but it is fully overlapping.
+  `external-normalizer-dressed-cell-has-full-gauged-gram` classifies every
+  constant signed-normalizer root centralizing the concrete depth-two cell.
+  The unique external choice is `x_59(1)`, and `H'=Hx_59(1)` has relative
+  loop `x_59(1)`.  Both edges have source Gram `Q`, range Gram the same moved
+  `Q'`, and cross Gram the full unitary `x_59(1)Q`.  Its multiplicity factor
+  is precisely the old uncontrolled external gauge.  Hence the second edge
+  supplies neither the nonmaximal overlap nor the fixed native target in
+  `(SNA2)`.
 
   The post-moving-source boundary is now exact in
   `moving-signed-source-does-not-localize-paid-sheet-detector`.  The

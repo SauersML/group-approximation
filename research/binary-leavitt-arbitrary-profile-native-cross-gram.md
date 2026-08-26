@@ -363,7 +363,7 @@ literature theorem is permitted in this claim.
 
   The obvious mixed relation between the two explicit cells is exact but
   moves the source.  In
-  `simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`,
+  `mixed-whitehead-cell-moves-signed-source`,
   the product of the endpoint `(2,4)` Whitehead and native `(8,9)` Whitehead
   fixes `g_*` and carries the complete depth-two cell to depth three.  It
   fails to normalize `(L_0,lambda_0)`: the original and moved signed groups
@@ -373,6 +373,17 @@ literature theorem is permitted in this claim.
   Therefore this ordinary conjugacy compares the second cell on the moved
   source, not the two native transports on the fixed source required by
   `(APG1)`.
+
+  Dressing this mixed word does give a second ordinary transport with a
+  normalizing relative loop, but its Gram is maximal.
+  `external-normalizer-dressed-cell-has-full-gauged-gram` proves that
+  `H'=Hx_59(1)` is the unique external-root dressing centralizing the whole
+  depth-two cell.  Both `H,H'` map `Q` to the same moved source and
+  `T^*T'=x_59(1)Q`.  The relative loop therefore contributes the established
+  uncontrolled external spectator involution rather than a common native
+  gauge or proper subrange.  Seven internal normalizer dressings contribute
+  only character scalars.  This exhausts the shortest normalizer double-coset
+  repair without proving `(APG1)`.
 
 - **Polar-correct the paid incidence before applying the Hecke word.**
   `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is

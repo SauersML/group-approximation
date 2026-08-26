@@ -1,15 +1,16 @@
 ---
 rg: 2
-id: simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge
+id: mixed-whitehead-cell-moves-signed-source
 kind: claim
 title: The shortest mixed Whitehead transports the two-scale cell but moves its signed source
 artifacts:
-  - research/simultaneous-endpoint-prefix-whitehead-source-fence-proof.md
+  - research/mixed-whitehead-cell-source-fence-proof.md
   - experiments/fixed_q_two_scale_mixed_relation_audit.py
 distinct_from:
   positive-signed-actor-two-scale-profile-is-partial-and-gauged: that finds the fixed-Q actor g-star and leaves its two cell gauges independent; this adds the natural ordinary word conjugating the complete first cell to the second.
   endpoint-whitehead-signed-source-has-only-relative-hecke-overlap: that moves one endpoint against a spare coordinate and computes an endpoint-isolating intersection; this simultaneously moves the endpoint and middle coordinates of the concrete depth-two/depth-three cell.
   endpoint-detector-cell-retains-coboundary-gauge: that transports a root-free depth-three detector cell around a three-endpoint profile; this treats the non-root-free g-star cell and the single depth-two-to-three mixed swap.
+  external-normalizer-dressed-cell-has-full-gauged-gram: that constructs a second transport by dressing this word with the unique external signed-normalizer centralizer and computes its full relative Gram; this stops at the first transport.
 ---
 
 **ESTABLISHED MIXED-RELATION SOURCE FENCE.**  Put
@@ -91,5 +92,14 @@ return `HQH` to `Q` on positive mass without being the inverse move.  No
 Property `(T)`, canonical-trace hypothesis for the MF model, literature
 input, local computation, or Lean compilation is used.
 
+A nontrivial second transport now exists, but it confirms rather than removes
+this source fence.  `external-normalizer-dressed-cell-has-full-gauged-gram`
+uses `H'=Hx_59(1)`.  The external root centralizes the whole depth-two cell
+and normalizes the signed pair, so the relative loop is a genuine nonidentity
+normalizer.  Both transports still go from `Q` onto the same moved `Q'`, and
+their cross Gram is the full unitary `x_59(1)Q` carrying the uncontrolled
+external multiplicity involution.  Thus the second edge adds no return from
+`Q'` to `Q` and no proper range.
+
 DERIVATION
-simultaneous-endpoint-prefix-whitehead-source-fence-proof
+mixed-whitehead-cell-source-fence-proof

@@ -20,3 +20,10 @@ Summing a recurrence over one coordinate does not directly close: the maps
 `tau_A,tau_B,tau_u` mix the fibers.  The boundary-slice equations give
 explicit differences of `P` or `H`, but a proof must still force their
 absolute values rather than only those differences.
+
+`steinberg-fox-marginal-pushes-are-explicit` eliminates the remaining
+abstract `u`-push by a complete point/plane case split.  However,
+`steinberg-pushed-marginal-sums-have-no-new-closure` shows that unweighted
+fiber and fractional-linear-orbit sums only recover the existing `A,C,T`
+balance identities.  Any closure must use the full pointwise system or a
+genuinely weighted transform.
