@@ -206,14 +206,14 @@ with the raw output code. -/
 def edgeGeneratorEquiv (c : PresentationCode) (edges : List (Raw × Raw)) :
     Option (Fin (genCount c)) ≃ Fin (genCount (edgeCode c edges)) :=
   (optionFinAppendEquiv (genCount c)).trans
-    (Equiv.cast (edgeCode_genCount c edges).symm)
+    (finCongr (edgeCode_genCount c edges).symm)
 
 @[simp] theorem edgeGeneratorEquiv_some (c : PresentationCode)
     (edges : List (Raw × Raw)) (i : Fin (genCount c)) :
     edgeGeneratorEquiv c edges (some i) = letterOf (edgeCode c edges) i := by
   apply Fin.ext
   simp only [edgeGeneratorEquiv, Equiv.trans_apply, optionFinAppendEquiv_some,
-    Equiv.coe_cast, cast_eq, Fin.val_castSucc, letterOf, edgeCode_genCount]
+    finCongr_apply, Fin.coe_cast, Fin.val_castSucc, letterOf, edgeCode_genCount]
   exact (Nat.mod_eq_of_lt (lt_trans i.isLt (Nat.lt_succ_self _))).symm
 
 @[simp] theorem edgeGeneratorEquiv_none (c : PresentationCode)
@@ -276,7 +276,6 @@ theorem wordOf_edgeRelator (c : PresentationCode)
           (wordOf c p.2))⁻¹ := by
   simp only [edgeRelator, wordOf_append, wordOf_pos, wordOf_neg,
     wordOf_invWord, wordOf_edgeCode_norm]
-  rfl
 
 /-- The word-level HNN relator attached to one raw edge. -/
 def hnnRelator (c : PresentationCode) (edges : List (Raw × Raw))
