@@ -272,6 +272,35 @@ theorem eq_one_of_action_apply_eq
       simpa using congrArg Prod.snd hz
     exact absurd hfree (mk_labelWord_ne_one M d hnil hl 1)
 
+/-- Equality at the distinguished point already detects equality in the
+central HNN extension. -/
+theorem eq_of_action_apply_eq
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    {x y : CentHNN M}
+    (hxy : action M d x ((1 : G), (1 : FreeGroup (Label M d))) =
+      action M d y ((1 : G), (1 : FreeGroup (Label M d)))) :
+    x = y := by
+  have hfix : action M d (y⁻¹ * x) ((1 : G), 1) = ((1 : G), 1) := by
+    rw [map_mul, map_inv, Equiv.Perm.mul_apply, hxy]
+    exact (action M d y).symm_apply_apply ((1 : G), 1)
+  have hone : y⁻¹ * x = 1 := eq_one_of_action_apply_eq M d hfix
+  have hyx : y = x := inv_mul_eq_one.mp hone
+  exact hyx.symm
+
+/-- A stable conjugate depends only on the right coset of its conjugator. -/
+theorem stableConj_eq_conj_of_label_eq
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (q : Label M d) (s : G)
+    (hs : ((d.compl (1 : ℤˣ)).equiv s).2 = q) :
+    stableConj M d q = of s⁻¹ * (t : CentHNN M) * of s := by
+  apply eq_of_action_apply_eq M d
+  rw [action_stableConj_apply_one]
+  simp only [map_mul, map_inv, Equiv.Perm.mul_apply, action_of, action_t,
+    basePerm_apply, basePerm_inv_apply, stablePerm_apply, mul_one]
+  rw [hs]
+  congr 1
+  group
+
 @[simp] theorem baseRet_stableConj
     (d : HNNExtension.NormalWord.TransversalPair G M M) (q : Label M d) :
     baseRet M (stableConj M d q) = 1 := by
