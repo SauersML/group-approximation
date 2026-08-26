@@ -91,3 +91,16 @@ invariant of finite-dimensional approximants that `delta_e` violates.
   attack; its difficulty is that `pi` may be a single irreducible, in which
   case `sigma(C[H])` is all of `M_d` and every group-algebra identity holds
   approximately.
+* **One regular braid hexagon has no external gauge obstruction.**
+  `isolated-regular-a2-hexagon-has-free-external-holonomy` shows that after
+  one coherent regular six-chamber packet has been amplified, an arbitrary
+  `U(m)` holonomy can be placed on one compatibility edge, or cancelled
+  there, without changing any vertex or edge representation.  Thus numerical
+  minimization of the gauges of one fixed-radius hexagon cannot decide
+  `(RNM1)`.  Shared two-cells are essential, but two cells sharing an edge
+  are still a disk and retain a free boundary correction.  The first scalar
+  compatibility target in the permutohedral atlas is the closed `S_4`
+  surface: by `first-permutohedral-scalar-obstruction-is-rank-three`, once
+  the six square faces are fixed, the product of the eight braid-face phases
+  is gauge-invariant.  No native binary-Leavitt occurrence is currently
+  known to force that product nontrivial.
