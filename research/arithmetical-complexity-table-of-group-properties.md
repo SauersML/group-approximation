@@ -4,6 +4,7 @@ id: arithmetical-complexity-table-of-group-properties
 kind: claim
 title: Where the approximation, residual, amenability and rigidity properties of groups sit in the arithmetical hierarchy, by syntax
 artifacts:
+  - GroupApproximation/Computability/TrivialEnumeratedPi02.lean
   - GroupApproximation/Computability/ElementaryEnumeratedHardness.lean
   - GroupApproximation/Computability/IsoInvariantSwitchHardness.lean
   - GroupApproximation/Computability/AmenableEnumeratedHardness.lean
@@ -92,3 +93,5 @@ Also kernel-checked: `RFPresentationPi02.rf_fp_strict_position` (the residually 
 Amenability's second-level lower bound on enumerated codes is `AmenableEnumeratedHardness.amenableCode_pi02Hard`.
 
 The `trivial` row's second-level lower bound and finiteness are `ElementaryEnumeratedHardness.trivialCode_pi02Hard` / `finiteCode_pi02Hard`; property (T)'s enumerated lower bound is `IsoInvariantSwitchHardness.kazhdanCode_pi02Hard` (isomorphism invariance suffices for the switch, heredity is not needed).
+
+The `trivial` row on enumerated codes is fully kernel-checked: `TrivialEnumeratedPi02.trivial_enum_pi02Complete`.
