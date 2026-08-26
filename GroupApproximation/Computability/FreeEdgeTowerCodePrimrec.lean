@@ -28,10 +28,9 @@ theorem primrec_multiEdgeCode :
       (fun a : PresentationCode × List (Raw × Raw) => edgeCode a.1 a.2) :=
     primrec_edgeCode
   have hstep : Primrec₂
-      (fun (z : (PresentationCode × List (List (Raw × Raw))) × PresentationCode)
-        (edges : List (Raw × Raw)) => edgeCode z.2 edges) := by
-    exact (hedgeCode.comp
-      (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd)).to₂
+      (fun (_ : PresentationCode × List (List (Raw × Raw)))
+        (p : PresentationCode × List (Raw × Raw)) => edgeCode p.1 p.2) :=
+    (hedgeCode.comp Primrec.snd).to₂
   exact Primrec.list_foldl Primrec.snd Primrec.fst hstep
 
 /-- The whole `tau_j`, `d`, `sigma`, detector-last compiler is primitive
