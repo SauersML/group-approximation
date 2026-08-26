@@ -928,3 +928,20 @@ filling of the tested word.  This is not merely a logical caution;
 `finitely-presented-amenable-undecidable-word-problem` supplies a fixed
 finitely presented solvable (hence operator-MF) counterexample with
 undecidable word problem.
+
+The native endpoint crossing has now been fenced at the all-word level as
+well.  `endpoint-native-heads-retain-coordinate-q-s3-retract` uses the
+reducing projection `q(E_77+E_88)` to kill `P,J_1,J_2,A_1,A_2,B_2,B_3`
+simultaneously while retaining the constant opposite-root `S_3`.  Thus the
+paid `B_2` sign pairing and both native order-seven heads do not by
+themselves identify the endpoint occurrence with the constant Weyl gauge.
+The apparent first boundary `x_84(1)` only destroys that particular corner:
+`endpoint-constant-root-enlargements-have-marked-finite-quotient` shows that
+every finite constant-root enlargement still has a finite prime-field image
+retaining the `S_3`.  Finally
+`endpoint-zero-tail-packet-has-marked-finite-model` places the inward root
+`x_84(1)`, the native outward root `x_47(s_0t_1)`, all three Whiteheads, all
+four native arms, both heads, and the actual mark `x_13(q)` in one exact
+`GL_40(F_2)` model.  Hence the first load-bearing endpoint relation must
+escape this two-tail coefficient model; adding the first crossing root or
+even the smallest inward-outward native package is not such a relation.
