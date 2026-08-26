@@ -60,8 +60,10 @@ character; it must be genuinely non-Cartan and cannot admit an equivariant
 coarse factor over the compression cosets.  The common-block subcase is now
 forced entirely to dimension infinity: every fixed block-size cutoff has
 singular charge zero.  Thus a positive witness needs either a purely finitely
-additive unbounded-block model or overlapping delocalization with no common
-block decomposition.
+additive unbounded-block model or overlapping delocalization supported on
+genuinely infinite comparison components.  Even without a prescribed block
+system, every bounded component-size stratum of the generators' joint
+support graph has charge zero.
 
 The Kun--Thom fork now has a factor-base reformulation which is genuinely
 different from the forbidden Cartan models.  The wreath embeds in
