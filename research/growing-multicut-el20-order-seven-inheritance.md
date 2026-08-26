@@ -98,5 +98,8 @@ canonical trace, or literature theorem is permitted.
   seven-dimensional reservoir in which all moving boundaries vanish, all
   stages have the right label matrix, and all gauges are conjugates of one
   involution, but their norm product is one while the involution is
-  nontrivial.  No construction forcing the additional holonomy commutation
-  is currently known.
+  nontrivial.  `six-ungauged-moving-squares-lock-seven-gauges` gives a sharp
+  quantitative endpoint: six parallel ungauged coefficient bridges and
+  their mixed squares force all stage gauges to agree.  The concrete word
+  problem is isolated in `el20-six-moving-coefficient-square-bridges`; no
+  such full-Gram bridge is currently known.
