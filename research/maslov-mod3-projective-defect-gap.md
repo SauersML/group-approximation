@@ -90,3 +90,12 @@ presentation coordinates.
   tensor root.  `order-three-tensor-neutralization-loses-projective-root`
   records the exact `C_3 x C_3` Weyl model and the determinant discontinuity
   which rule out obtaining the gap from cocycle order or determinant alone.
+- **Metaplectic-base degree-six relocation.**
+  `maslov-mod3-gap-is-metaplectic-base-degree-six-gap` proves that this gap is
+  quantitatively equivalent to the `1/6` gap.  At group level this replaces
+  `E_3` by
+  `1 -> Z/3 -> E_6 -> E_2 -> 1`, where the metaplectic base `E_2` is
+  residually finite and the kernel is the full finite residual of `E_6`.
+  Thus one may attack a finite invisible central extension of an RF Kazhdan
+  base, but RF and property `(T)` alone still do not supply the missing
+  normalized-HS stability modulus.
