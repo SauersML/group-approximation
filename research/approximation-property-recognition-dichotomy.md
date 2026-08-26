@@ -5,6 +5,8 @@ kind: claim
 title: Recognizing hyperlinearity is either trivial or Pi-zero-two complete, and a non-hyperlinear group exists iff it is undecidable
 artifacts:
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
+  - GroupApproximation/Covers/HyperlinearTableCover.lean
+  - GroupApproximation/Computability/HyperlinearMarkov.lean
 distinct_from:
   nonhyperlinear-presentation-codes-have-a-sigma2-upper-bound: that is the upper bound alone and says so; this adds the matching lower bound conditional on exactly one thing, the existence of a non-hyperlinear group, and shows nothing in between can happen.
   non-hyperlinear-group: that asks for a group; this is a theorem about decision problems whose two sides are the two possible answers to that question, and it is established whichever answer is true.
@@ -36,6 +38,14 @@ In particular the following are equivalent:
 (v)   HYP_rec2 is Pi^0_2-complete;
 (vi)  NONHYP_fp is not recursively enumerable.                        (D2)
 ```
+
+The equivalence `(i) <=> (ii)` is machine-checked as
+`exists_not_isHyperlinear_iff_exists_finitelyPresented`.  The equivalence
+between `(i)` and undecidability of `HYP_fp` is machine-checked as
+`exists_not_isHyperlinear_iff_codeProperty_not_computable`; its forward
+direction constructs the Adian--Rabin data from the finite table cover, and
+`nonhyperlinearCodeProperty_not_re_of_exists` checks the stronger non-r.e.
+conclusion for the negative side.
 
 The same dichotomy holds verbatim for **weak soficity** and for **linear
 soficity** over any fixed field, and for every local approximation property
