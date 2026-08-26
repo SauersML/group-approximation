@@ -140,3 +140,14 @@ excluded by the regular-trace firewall.
   polar calculus alone prove `(SNA2)`.  A positive proof still needs an
   ordinary native relation which fixes the parity of the individual dressed
   occurrence.
+
+- **Use the row-two quarter source on an irreducible actor constituent.**
+  This fails with the sharpest possible operator-norm gap.
+  `row2-quarter-source-opnorm-two-fence` chooses a nontrivial irreducible
+  reservoir constituent for the recentered five-pair actor packet.  The only
+  packet-reducing projections are zero and the whole carrier, and the actual
+  `J_2` has strictly larger negative rank than every quarter-source
+  reflection.  Their conjugacy defect is exactly two.  Hence no positive
+  model-dependent subcorner recovers row two from the current
+  braid/order-seven/recentered packet; a new mixed occurrence must remove
+  the actor holonomy.

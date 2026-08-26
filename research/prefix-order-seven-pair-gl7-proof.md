@@ -13,7 +13,7 @@ requires:
 Use the occurrence assignment `(P73)`.  The paths
 
 ```text
-8_0 -> 9 -> 7_0,          9 -> 7_0 -> 8_0
+8_0 -> 6 -> 7_0,          9 -> 10 -> 8_0
 ```
 
 give
@@ -30,7 +30,7 @@ the three-by-three blocks shows
 (J_1B_2A_1)^7=1,       (J_2B_3A_2)^7=1.              (2)
 ```
 
-These are the two standard `GL_3(F_2)` order-seven cells sharing one
-triangle.  The MSI-only artifact checks `(1)--(2)`, the adjacent braid, and
+These are two standard `GL_3(F_2)` order-seven cells sharing the vertex
+`8_0`.  The MSI-only artifact checks `(1)--(2)`, the adjacent braid, and
 survival of the old marked child.  Hence simultaneous order-seven
 authentication supplies no unequal selector rank typing.

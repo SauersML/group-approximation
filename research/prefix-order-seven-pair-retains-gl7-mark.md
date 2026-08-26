@@ -31,13 +31,14 @@ v_2=B_3A_2,       [B_3,A_2]=X_2,
 ```
 
 The union still has an exact marked model in the same `GL_7(F_2)` chart.
-On the three vertices `(7_0,9,8_0)` put
+Keep the prefix triangle on `(7_0,9,8_0)` and put the two Hecke heads on
+the adjacent triangles `(6,7_0,8_0)` and `(10,8_0,9)`:
 
 ```text
 X_1=e_(8_0,7_0), Y_1=e_(7_0,8_0),
 X_2=e_(9,8_0),   Y_2=e_(8_0,9),
-U=e_(9,7_0),
-B_2=Y_2, A_1=U, B_3=U, A_2=Y_1.                      (P73)
+A_1=e_(6,7_0), B_2=e_(8_0,6),
+A_2=e_(10,8_0), B_3=e_(9,10).                        (P73)
 ```
 
 Then the two path commutators in `(P72)` are `X_1,X_2`.  Direct

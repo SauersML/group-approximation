@@ -82,3 +82,11 @@ literature theorem is permitted in this claim.
   maximal cross Gram in which the dressing is `-1` on every positive
   subcorner.  Thus the root-valued alternative remains sufficient only once
   the actual full-word occurrence typing is supplied independently.
+- **Cut a nonidentity prefix-normalizer orbit after active reblocking.**
+  `free-s3-atom-has-unit-opnorm-leakage` gives a marked arbitrary-profile
+  type on which the active projection is the whole carrier but every
+  nonidentity `S_3` normalizer moves a character atom orthogonally.  Every
+  nonzero subcut has operator-norm return leakage exactly one, even after
+  amplification.  Thus density and coordinate dependence do not turn the
+  authenticated adjacent-swap menu into `(APG1)`; a new identity-action or
+  root-valued relative occurrence must exclude or pay this free orbit.

@@ -130,3 +130,11 @@ to sit on one carrier.**
   that model.  Hence a new coefficient-completeness-to-mark relation is
   required; support-return recombination alone cannot recover the missing
   additive packet identity.
+* **A nonzero adaptive cut inside the free prefix orbit still has unit
+  leakage.**  `free-s3-atom-has-unit-opnorm-leakage` puts the mark at `-1`
+  on the full six-dimensional active carrier and shows that every
+  nonidentity authenticated prefix normalizer moves the chosen character
+  atom orthogonally.  Every nonzero coordinate-dependent subprojection has
+  return leakage exactly one.  A proof of `(OPLR)` must use a relation
+  outside this finite normalizer menu which forces identity action on the
+  selected type or rules the type out.
