@@ -14,9 +14,11 @@ distinct_from:
 artifacts:
   - research/split-cyclic-kazhdan-defect-exact-mf-radical.md
   - research/mapping-torus-mf-radical-lies-in-finite-residual.md
+  - research/exact-kazhdan-radical-kernel-cannot-be-lef.md
   - research/torsion-free-sofic-extrinsic-kazhdan-defect-kernel.md
   - research/fp-kernel-crosses-alekseev-thom-open-problem.md
   - research/artifacts/torsion-free-exact-radical-team-audit-2026-08-26.md
+  - research/artifacts/torsion-free-exact-radical-breakthrough-round2-2026-08-26.md
   - research/titz-witzel-mapping-tori-are-virtually-products.md
   - research/titz-witzel-exact-kazhdan-mf-radical-over-z.md
   - research/titz-witzel-soficity-is-one-finite-csp.md
@@ -63,6 +65,20 @@ choosing a lift of `1`.  By
 `mapping-torus-mf-radical-lies-in-finite-residual`, the MF radical of the
 resulting mapping torus is contained in the finite residual of `K`.  Equality
 with `K` therefore forces the finite residual to be all of `K`.
+
+Moreover, the kernel can never be LEF.  Indeed LEF implies operator-MF, and
+the Dadarlat--Ozawa--Thom theorem gives every infinite operator-MF Kazhdan
+group an infinite residually finite quotient.  Such a quotient produces a
+nontrivial finite quotient, contradicting the previous paragraph.  Thus the
+required kernel occupies the genuinely approximate region
+
+```text
+sofic but non-LEF, property (T), and no nontrivial finite quotient.
+```
+
+In particular, no marked limit of finite groups can supply it; this closes
+the former alternating-mother branch.  See
+`exact-kazhdan-radical-kernel-cannot-be-lef`.
 
 The intended construction is a split extension
 
