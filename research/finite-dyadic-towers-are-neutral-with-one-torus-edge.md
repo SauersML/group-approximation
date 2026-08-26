@@ -9,6 +9,7 @@ distinct_from:
   free-hnn-outlier-has-dyadic-a2-pvm-tower: that extracts one coherent tower at all depths and all arithmetic cosets from a hypothetical enemy; this gives exact finite models at every prescribed depth for the base coset and its denominator translate, including the unbalanced torus/root package.
   finite-lamp-frame-is-matrix-range-neutral: that realizes arbitrary finite free-lamp word windows on a spectator factor but cannot be combined in product form with the unbalanced torus word; this builds the torus coefficients and the two dyadic PVM towers on the same tensor bits, so the denominator covariance is not a spectator.
   unbalanced-torus-forces-cross-gram-on-ambient-face: that excludes the cross-Gram zero packet whenever the lattice data have an exact ambient SL3 reference; this exact finite packet deliberately lacks the remaining SL3 relations and demonstrates why the ambient reference is load-bearing.
+  britton-root-leak-bound-is-sharp-at-every-dyadic-depth: that gives a simpler Mach--Zehnder clock with exact cross-Gram and sharp named-root leak at every depth, but does not make every pair of retained dyadic atoms mutually unbiased; this Walsh packet realizes the entire scalar overlap table across the edge.
 ---
 
 For every `R>=1` there is a finite-dimensional unitary packet with all of
