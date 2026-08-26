@@ -47,8 +47,9 @@ G=EL_5(<D,s_0,t_0>)
 is a locally-finite-by-residually-finite Toeplitz elementary group.  This
 structure does not imply LEF; `(FNL1)` gives the explicit obstruction.
 
-The smallest new occurrence beyond the completed Whitehead face is one raw
-factor.  With the constant Weyl swap `P in Lambda` and
+A single new occurrence beyond the completed Whitehead face already
+suffices: expose one raw factor.  With the constant Weyl swap `P in Lambda`
+and
 
 ```text
 W_0=u (P v P^(-1)) u,

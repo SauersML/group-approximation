@@ -71,6 +71,8 @@ artifacts:
   - research/two-whitehead-face-has-haar-mf-character.md
   - research/leavitt-first-offdiagonal-packet-breaks-locally-finite-amalgam.md
   - research/leavitt-first-offdiagonal-core-is-marked-non-lef.md
+  - research/leavitt-first-offdiagonal-packet-has-jacobson-orbit-quotient.md
+  - research/binary-jacobson-elementary-mark-is-finite-quotient-invisible.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
