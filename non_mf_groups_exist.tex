@@ -11,13 +11,11 @@
 \anonymousfalse
 \ifanonymous
   \newcommand{\paperauthor}{Anonymous}
-  \newcommand{\coderepo}{the repository accompanying the submission}
 \else
   \input{coderepo.tex}
   \newcommand{\paperauthor}{\paperauthorname}
-  \newcommand{\coderepo}{\url{https://github.com/SauersML/group-approximation}}
 \fi
-\hypersetup{pdftitle={[DRAFT] Limits of Matrix Approximation of Groups in Operator Norm},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: limits of matrix approximation of groups in operator norm},pdfkeywords={draft, MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
+\hypersetup{pdftitle={Non-MF Groups},pdfauthor={\paperauthor},pdfsubject={MF groups and operator-norm matrix approximation},pdfkeywords={MF groups, norm matrix coronas, MF radicals, property (T), asymptotic representations}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 % Machine-readable source metadata attaching a printed statement to an
 % accompanying Lean~4 declaration.  The macro is intentionally invisible in
@@ -68,7 +66,7 @@
 
 \begin{document}
 \frenchspacing
-\title{Limits of Matrix Approximation of Groups in Operator Norm}
+\title{Non-MF Groups}
 \author{\paperauthor}
 \subjclass[2020]{Primary 46L05; Secondary 20C07, 16S50, 20G35}
 \keywords{MF groups, norm matrix coronas, MF radicals, property~(T), asymptotic representations, Leavitt algebra}
@@ -1755,16 +1753,6 @@ discussion and for comments on the surrounding literature.  The author also
 thanks Tatiana Shulman for clarifying the terminology and historical context
 of the MF question, and Caleb Eckhardt for discussions of MF representations
 and matrix norms.
-
-\section*{Use of AI and formal methods}
-
-Claude Fable~5 and GPT-5.6 Sol assisted with mathematical exploration,
-proof development, literature searches, Lean formalization, drafting, and
-editing.  Lean~4 source is available at \coderepo.  The development
-verifies Theorems~\ref{thm:compression-criterion}
-and~\ref{thm:headline}.  The repository also contains machine-checked
-results not used here; they are listed in
-\texttt{docs/additional-results.md}.
 
 \begin{thebibliography}{99}
 \bibitem[AA]{AbramsAranda}
