@@ -136,6 +136,34 @@ a finite mixed Britton window.  If the coset action
   itself a matrix-order defect.  What distinguishes a genuine FDG packet
   from this countermodel is precisely the small defect in all relations of
   `Gamma`, especially denominator transport of the root `e_12(1)`.
+- **One root transport still does not connect the two defects.**
+  `balanced-denominator-transport-is-ucp-neutral`
+  replaces the mod-`p` packet by a congruence actor of modulus coprime to
+  `p` and twists the denominator matrix on a two-dimensional multiplicity
+  factor.  It satisfies `h e_12(1) h^(-1)=e_12(p)` -- indeed every
+  denominator-balanced arithmetic relation -- exactly, retains the uniform
+  one-Britton actor-outlier bound, and still lies exactly in the lattice UCP
+  matrix range.  Thus the full window must use an unbalanced arithmetic
+  closure consequence which detects the denominator multiplicity; merely
+  adjoining root conjugacy to `(FDG-out)` cannot charge a separator.
+- **The first unbalanced closure word is explicit and sharp on product
+  twists.**  `two-torus-closures-detect-denominator-multiplicity` writes
+  `h` as the product of the `(1,2)` and `(2,3)` Steinberg torus words after
+  replacing their negative roots by `h`-conjugates.  The resulting fixed
+  relation has total `h`-exponent `-1`, and on
+  `H=V tensor rho(h)` it evaluates exactly to `V^(-1) tensor I`.  It closes
+  the pure multiplicity-twist counterpacket with constant one.  The precise
+  surviving step is therefore to control an arbitrary outlier separator by
+  such a product-normal-form multiplicity coordinate; the ordinary-word
+  detector itself is no longer missing.
+- **The same word localizes every canonical Britton leak on two roots.**
+  `unbalanced-torus-word-localizes-britton-leak` proves, for arbitrary
+  approximate packets, that the sum of the commutation defects of
+  `H^*TH` with `x_21(-1)` and `x_32(-1)` is at least `sqrt(2)-o(1)`.
+  Thus at least one fixed negative simple root carries defect
+  `1/sqrt(2)-o(1)`.  The unresolved separator step is now narrower: turn
+  this explicit conjugate-letter root leak into payment by the
+  `T`-central off-spectral matrix-range separator.
 - **Universal lifting is unavailable.**  Replacing the selected finite
   window by LP of the lattice generator system would imply LLP of
   `C^*(SL_3(Z))`, contradicted by `sl3-generator-system-has-no-universal-lp`.

@@ -89,6 +89,27 @@ commutant collapse.
   bound on `zeta` cannot themselves manufacture a Choi obstruction.  A
   proof of `(HMR1)` must use the full approximate `Gamma` relations to
   construct the selected UCP point.
+- **Balanced denominator transport remains UCP-neutral.**
+  The stronger packet
+  `balanced-denominator-transport-is-ucp-neutral`
+  uses a modulus coprime to `p`, so the native relation
+  `h e_12(1)h^(-1)=e_12(p)` holds exactly.  A multiplicity twist on `h`
+  cancels from every word of total denominator exponent zero.  The packet
+  is still uniformly actor-noncorrectable by the one-Britton moment while
+  its lattice tuple lies exactly in `MR_d`.  Hence even the displayed root
+  transport does not by itself construct the selected ucp point.  What the
+  full `Gamma` presentation adds is an unbalanced closure consequence,
+  forced by perfectness, which detects that multiplicity twist.
+  `two-torus-closures-detect-denominator-multiplicity` makes this consequence
+  explicit: two rank-one torus words give a fixed relator whose value on
+  `H=V tensor rho(h)` is exactly `V^(-1)`.  This eliminates pure tensor
+  twists sharply, but does not yet decompose an arbitrary approximate actor
+  outlier into that form.
+  For arbitrary packets, `unbalanced-torus-word-localizes-britton-leak`
+  still yields a sharp consequence: the conjugate letter `H^*TH` has
+  commutation defect at least `1/sqrt(2)-o(1)` on one of the two negative
+  simple roots.  What remains is not leak localization but coupling that
+  named root defect to the central matrix-range separator.
 - **The whole adjoint complement is the wrong spectral target.**  One might
   try to prove every non-invariant adjoint vector tempered and then invoke
   `tempered-selected-conjugation-vector-obeys-rcc`.  Exact congruence models
