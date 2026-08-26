@@ -25,7 +25,7 @@ open MikhailovaGraphProduct
 the source presented quotient.  The benign witness is the explicit
 product-of-three-free-groups Mikhailova witness. -/
 theorem nonempty_fpOvergroup_of_markedEmbedding
-    {X : Type*} [Finite X] (S : Set Source) {R : Set (FreeGroup X)}
+    {X : Type} [Finite X] (S : Set Source) {R : Set (FreeGroup X)}
     (hR : R.Finite) (words : Source →* FreeGroup X)
     (i : PresentedGroup S →* PresentedGroup R) (hi : Function.Injective i)
     (hcomm : (quotientHom R).comp words = i.comp (quotientHom S)) :
@@ -37,7 +37,7 @@ theorem nonempty_fpOvergroup_of_markedEmbedding
 factor gives the same finitely presented hull whenever the source relators
 already lie in the graph kernel. -/
 theorem nonempty_fpOvergroup_of_markedEmbedding_and_graph
-    {X P : Type*} [Finite X] [Group P] [Group.IsFinitelyPresented P]
+    {X P : Type} [Finite X] [Group P] [Group.IsFinitelyPresented P]
     (S : Set Source) {R : Set (FreeGroup X)} (hR : R.Finite)
     (words : Source →* FreeGroup X)
     (i : PresentedGroup S →* PresentedGroup R) (hi : Function.Injective i)
@@ -50,7 +50,7 @@ theorem nonempty_fpOvergroup_of_markedEmbedding_and_graph
 /-- The graph target may itself be only embedded in a finitely presented
 group.  No finite-presentability assumption is placed on that target. -/
 theorem nonempty_fpOvergroup_of_markedEmbedding_and_embeddedGraph
-    {X Q P : Type*} [Finite X] [Group Q] [Group P]
+    {X Q P : Type} [Finite X] [Group Q] [Group P]
     [Group.IsFinitelyPresented P]
     (S : Set Source) {R : Set (FreeGroup X)} (hR : R.Finite)
     (words : Source →* FreeGroup X)
