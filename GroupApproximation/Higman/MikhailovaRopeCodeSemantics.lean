@@ -101,6 +101,61 @@ noncomputable def outerBaseCodeEquiv (ambient source : PresentationCode)
       (firstStageCode ambient cuttingWords) source).trans
     (prodMulEquiv (firstStageCodeEquiv ambient cuttingWords) (MulEquiv.refl _))
 
+/-- The identity edge equivalence in the coded central layer intertwines the
+identity of a semantic cutting subgroup under a marked ambient equivalence. -/
+theorem centralSubgroupEquiv_intertwines
+    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
+    (w : BenignWitness N) (ambient : PresentationCode)
+    (cuttingWords : List MikhailovaRopeCode.Raw)
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L) :
+    HNNCongr.Intertwines
+      (centralSubgroupEquiv ambient cuttingWords)
+      (MulEquiv.refl w.L) ambientEquiv hcutting := by
+  intro a ha
+  rfl
+
+/-- Once the ambient code and the displayed cutting generators are identified
+with a benign witness, the first concrete compiler layer is `Rope.Gamma`. -/
+noncomputable def firstStageCodeEquivToGamma
+    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
+    (w : BenignWitness N) (ambient : PresentationCode)
+    (cuttingWords : List MikhailovaRopeCode.Raw)
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L) :
+    Carrier (firstStageCode ambient cuttingWords) ≃* Rope.Gamma w :=
+  (firstStageCodeEquiv ambient cuttingWords).trans
+    (HNNCongr.congrEquiv
+      (centralSubgroupEquiv ambient cuttingWords)
+      (MulEquiv.refl w.L) ambientEquiv hcutting
+      (centralSubgroupEquiv_intertwines w ambient cuttingWords
+        ambientEquiv hcutting))
+
+/-- The compiler-generated direct-product base is `Rope.Amb` once the ambient
+and quotient source codes carry their marked semantic equivalences. -/
+noncomputable def outerBaseCodeEquivToRopeAmb
+    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
+    (w : BenignWitness N) (ambient source : PresentationCode)
+    (cuttingWords : List MikhailovaRopeCode.Raw)
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (sourceEquiv : Carrier source ≃* F ⧸ N)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L) :
+    Carrier (outerBaseCode ambient source cuttingWords) ≃* Rope.Amb w :=
+  (DirectProductCodeSemantics.productCodeEquiv
+      (firstStageCode ambient cuttingWords) source).trans
+    (prodMulEquiv
+      (firstStageCodeEquivToGamma w ambient cuttingWords ambientEquiv hcutting)
+      sourceEquiv)
+
 /-- The strongest unconditional semantic reading of the complete compiler.
 The sole remaining input is the actual equivalence between the two generated
 outer subgroups and its values on the displayed rope generators. -/
