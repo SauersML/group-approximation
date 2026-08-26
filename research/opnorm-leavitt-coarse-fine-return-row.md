@@ -161,3 +161,12 @@ to sit on one carrier.**
   marked saturation while keeping every named return row exact.  Since the
   separating vertices are transverse to the signed-Hecke source, `(OPLR)`
   still requires a spectral-source incidence or a source-escape payment.
+* **Signed Reynolds averaging makes that escape explicit but not small.**
+  `paid-t00-carrier-has-signed-hecke-reynolds-dichotomy` either leaves the
+  paid `T/Y` mismatch above one after compression by the full common signed
+  source, or finds one fixed detector word with norm at least one half on
+  the paid carrier.  None of those detector words is presently a relator.
+  The exact reducible model of `paid-t00-carrier-can-miss-row2-source`
+  realizes source segregation while retaining every named row-two relation.
+  Thus `(OPLR)` needs a normal-saturation/occurrence row which makes the
+  detector branch contradictory, not another bare source projection.
