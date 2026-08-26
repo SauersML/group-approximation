@@ -424,12 +424,12 @@ noncomputable def rankThreePresentedEquiv
   rw [show QuotientGroup.quotientMulEquivOfEq
       (normalClosure_rankThreeRelatorSet c) (PresentedGroup.of j) =
         (QuotientGroup.mk (FreeGroup.of j) :
-          FreeGroup (Fin 3) ⨸ MonoidHom.ker (pi3 (sourceGen c))) from rfl]
+          FreeGroup (Fin 3) ⧸ MonoidHom.ker (pi3 (sourceGen c))) from rfl]
   rw [show QuotientGroup.quotientKerEquivOfSurjective
       (pi3 (sourceGen c))
       (pi3_surjective (sourceGen c) (sourceGen_spans c))
       (QuotientGroup.mk (FreeGroup.of j) :
-        FreeGroup (Fin 3) ⨸ MonoidHom.ker (pi3 (sourceGen c))) =
+        FreeGroup (Fin 3) ⧸ MonoidHom.ker (pi3 (sourceGen c))) =
         pi3 (sourceGen c) (FreeGroup.of j) from rfl]
   exact FreeGroup.lift_apply_of
 
