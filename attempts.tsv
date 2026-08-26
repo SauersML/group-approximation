@@ -218,3 +218,4 @@
 32937613099	2026-08-26T06:19:38Z	GroupApproximation/Sofic/BlockInfix.lean	infix_of_forall_ne_left
 32943334226	2026-08-26T07:46:27Z	GroupApproximation/Sofic/BlockingFamilyRadical.lean	exists_mem_actualCoronaMFResidual
 32947585597	2026-08-26T08:27:45Z	GroupApproximation/Sofic/BoundedConjProductAlgebra.lean	isBoundedConjProduct_succ_of
+32952878707	2026-08-26T09:25:44Z	GroupApproximation/Sofic/CDEMFRadical.lean	cdeMFInvisible_iff_coronaMFInvisible
