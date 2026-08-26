@@ -42,6 +42,27 @@ constraint and would be perfect for `G`, contradicting `omega*(G)<1`.
 
 ## Attempts
 
+- **Ucp compression to an arbitrary readable atom does not descend.**
+  Compressing the IRS representation to a positive readable atom does send
+  every selected equation word to its required scalar.  However,
+  `scalar-relator-compression-does-not-kill-normal-ideal` gives an exact
+  `2 x 2` counterexample to the tempting multiplicative-domain argument:
+  scalar compression of each named relator does not kill its conjugates or
+  the two-sided normal ideal.  Descent is valid only when every conjugate
+  relation also holds on the atom, equivalently on the entire unreadable
+  orbit of the fibre.  Thus ucp compression reformulates rather than removes
+  the remote-bit/invariant-fibre obstruction.
+
+- **Orbitwise equation-menu coherence is sufficient and weaker than fibre
+  invariance.**  The exact repair does not require unreadable generators to
+  preserve every readable bit.  It is enough that one positive readable atom
+  and all its unreadable translates satisfy the same finite frozen relator
+  menu.  `orbitwise-scalar-relators-give-quotient-representation` then
+  restricts the ambient action to the cyclic orbit hull and produces a
+  genuine quotient representation with `J=-1`.  This decomposes the present
+  claim through the smaller open target
+  `zpc-frozen-equation-menu-has-positive-orbitwise-class`.
+
 - **Invariant readable atom.**  By `zpc-readable-variables-global-boolean-field`,
   all readable variables have joint spectral atoms `p_r`.  It is enough to
   find one positive-trace atom that is invariant under every unreadable
