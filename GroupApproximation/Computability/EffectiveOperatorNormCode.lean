@@ -25,14 +25,23 @@ theorem primrecPred_upperNormCert :
     Primrec.snd.comp Primrec.fst
   have hdim : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
       dim z.1.1.1 := primrec_dim.comp hd
-  have hdim4 := primrec_natPow.comp hdim (Primrec.const 4)
-  have hgram := primrec_gramPowCode.comp
+  have hdim4 : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
+      (dim z.1.1.1) ^ 4 := primrec_natPow.comp hdim (Primrec.const 4)
+  have hgram : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
+      gramPowCode z.1.1.1 z.1.2 z.2 := primrec_gramPowCode.comp
     (Primrec.pair (Primrec.pair hd hA) Primrec.snd)
-  have hfro := primrec_froSqCode.comp (Primrec.pair hd hgram)
-  have hleft := primrec_ratMul.comp (primrec_ratOfNat.comp hdim4) hfro
-  have hexp := primrec_natPow.comp (Primrec.const 2)
+  have hfro : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
+      froSqCode z.1.1.1 (gramPowCode z.1.1.1 z.1.2 z.2) :=
+    primrec_froSqCode.comp (Primrec.pair hd hgram)
+  have hleft : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
+      ratMul (ratOfNat ((dim z.1.1.1) ^ 4))
+        (froSqCode z.1.1.1 (gramPowCode z.1.1.1 z.1.2 z.2)) :=
+    primrec_ratMul.comp (primrec_ratOfNat.comp hdim4) hfro
+  have hexp : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
+      2 ^ (z.2 + 2) := primrec_natPow.comp (Primrec.const 2)
     (Primrec.nat_add.comp Primrec.snd (Primrec.const 2))
-  have hright := primrec_ratPow.comp
+  have hright : Primrec fun z : ((ℕ × ℕ) × MatrixCode) × ℕ =>
+      ratPow (ratInvSucc z.1.1.2) (2 ^ (z.2 + 2)) := primrec_ratPow.comp
     (primrec_ratInvSucc.comp hk) hexp
   exact primrecRel_ratLt.comp hleft hright
 
@@ -44,15 +53,24 @@ theorem primrecPred_lowerThirdCert :
     Primrec.fst.comp Primrec.fst
   have hA : Primrec fun z : (ℕ × MatrixCode) × ℕ => z.1.2 :=
     Primrec.snd.comp Primrec.fst
-  have hdim := primrec_dim.comp hd
-  have hdim2 := primrec_natPow.comp hdim (Primrec.const 2)
-  have hexp := primrec_natPow.comp (Primrec.const 2)
+  have hdim : Primrec fun z : (ℕ × MatrixCode) × ℕ => dim z.1.1 :=
+    primrec_dim.comp hd
+  have hdim2 : Primrec fun z : (ℕ × MatrixCode) × ℕ => (dim z.1.1) ^ 2 :=
+    primrec_natPow.comp hdim (Primrec.const 2)
+  have hexp : Primrec fun z : (ℕ × MatrixCode) × ℕ => 2 ^ (z.2 + 2) :=
+    primrec_natPow.comp (Primrec.const 2)
     (Primrec.nat_add.comp Primrec.snd (Primrec.const 2))
-  have hleft := primrec_ratMul.comp (primrec_ratOfNat.comp hdim2)
+  have hleft : Primrec fun z : (ℕ × MatrixCode) × ℕ =>
+      ratMul (ratOfNat ((dim z.1.1) ^ 2))
+        (ratPow (ratInvSucc 2) (2 ^ (z.2 + 2))) :=
+    primrec_ratMul.comp (primrec_ratOfNat.comp hdim2)
     (primrec_ratPow.comp (Primrec.const (ratInvSucc 2)) hexp)
-  have hgram := primrec_gramPowCode.comp
+  have hgram : Primrec fun z : (ℕ × MatrixCode) × ℕ =>
+      gramPowCode z.1.1 z.1.2 z.2 := primrec_gramPowCode.comp
     (Primrec.pair (Primrec.pair hd hA) Primrec.snd)
-  have hright := primrec_froSqCode.comp (Primrec.pair hd hgram)
+  have hright : Primrec fun z : (ℕ × MatrixCode) × ℕ =>
+      froSqCode z.1.1 (gramPowCode z.1.1 z.1.2 z.2) :=
+    primrec_froSqCode.comp (Primrec.pair hd hgram)
   exact primrecRel_ratLt.comp hleft hright
 
 end EffectiveOperatorNormCode
