@@ -55,6 +55,8 @@ or by direct-sum reblocking of these coordinates.  Thus pointwise
 operator-norm covariance of every fixed lamp word -- even together with an
 exact representation of the **entire** lamp group at every coordinate --
 does not imply vanishing actor leakage for its finite character PVM.
+In particular this applies to every infinite finitely generated `A`, with
+`s` chosen as any nonidentity member of a fixed finite generating set.
 
 The corona homomorphism in this example does admit a different zero-leakage
 lift: replace the moving character by the invariant total-parity character.

@@ -902,7 +902,7 @@ theorem slimBase_mul_gen_mul_rowInv_not_mem_slimLink
           of (Row.basisHom (elt l)) * (t : Cent1 (rowOut m)) ∈
         (of : Row.F₀ →* Cent1 (rowOut m)).range := by
     refine ⟨(Row.basisHom (elt β))⁻¹ * Seq.retract (q : F₃), ?_⟩
-    simpa [slimBaseCode, slimKBase, slimGenCode, map_mul, map_inv,
+    simpa [slimBaseCode, slimKBase, map_mul, map_inv,
       dropToCent1_genCode] using hdrop.symm
   exact basisHom_elt_not_mem_rowOut hi hli
     (mem_of_conj_mem_range (rowOut m) hbase)
