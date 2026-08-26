@@ -541,37 +541,27 @@ theorem flipScalarUnitaryHom_swap :
 algebra. -/
 theorem flipScalarUnitaryHom_injective [Nontrivial A] :
     Function.Injective (flipScalarUnitaryHom (A := A)) := by
+  have honeNeg : (1 : A) ≠ -1 := by
+    intro h
+    have hsmul : (2 : ℂ) • (1 : A) = 0 := by
+      calc
+        (2 : ℂ) • (1 : A) = 1 + 1 := two_smul ℂ (1 : A)
+        _ = -1 + 1 := congrArg (fun x : A ↦ x + 1) h
+        _ = 0 := neg_add_cancel 1
+    have honezero : (1 : A) = 0 :=
+      (smul_eq_zero.mp hsmul).resolve_left (by norm_num)
+    exact (one_ne_zero : (1 : A) ≠ 0) honezero
   intro x y hxy
   cases x <;> cases y
   · rfl
   · exfalso
     have h : (1 : A) = -1 :=
       congrArg (fun u : unitary A ↦ (u : A)) hxy
-    have htwo : (2 : A) = 0 := by
-      calc
-        (2 : A) = 1 + 1 := by norm_num
-        _ = -1 + 1 := congrArg (fun x : A ↦ x + 1) h
-        _ = 0 := neg_add_cancel 1
-    have honezero : (1 : A) = 0 := by
-      calc
-        (1 : A) = (1 / 2 : ℂ) • (2 : A) := by norm_num
-        _ = 0 := by rw [htwo, smul_zero]
-    have hnorm := congrArg norm honezero
-    norm_num at hnorm
+    exact honeNeg h
   · exfalso
     have h : (-1 : A) = 1 :=
       congrArg (fun u : unitary A ↦ (u : A)) hxy
-    have htwo : (2 : A) = 0 := by
-      calc
-        (2 : A) = 1 + 1 := by norm_num
-        _ = 1 + -1 := (congrArg (fun x : A ↦ 1 + x) h).symm
-        _ = 0 := add_neg_cancel 1
-    have honezero : (1 : A) = 0 := by
-      calc
-        (1 : A) = (1 / 2 : ℂ) • (2 : A) := by norm_num
-        _ = 0 := by rw [htwo, smul_zero]
-    have hnorm := congrArg norm honezero
-    norm_num at hnorm
+    exact honeNeg h.symm
   · rfl
 
 /-- In the scalar representation, the nontrivial element of `C₂` already
