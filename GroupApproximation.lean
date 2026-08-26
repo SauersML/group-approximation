@@ -171,6 +171,8 @@ import GroupApproximation.GroupTheory.FiniteCyclicHom
 import GroupApproximation.GroupTheory.HNNBrittonPinch
 import GroupApproximation.GroupTheory.HNNBrittonSpelling
 import GroupApproximation.GroupTheory.HNNBrittonCyclic
+import GroupApproximation.GroupTheory.FiniteHNNFreeLabelAction
+import GroupApproximation.GroupTheory.FiniteHNNFreeLabelFaithful
 import GroupApproximation.Monsters.SL2PingPong
 import GroupApproximation.Monsters.SL2Completeness
 import GroupApproximation.Monsters.P13BlockSL2
@@ -1677,8 +1679,10 @@ import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.BridgeWordProblem
 import GroupApproximation.Higman.OmegaTower
 import GroupApproximation.Higman.OmegaTowerStages
+import GroupApproximation.Higman.OmegaTowerDescent
 import GroupApproximation.Higman.OmegaTowerStageTwo
 import GroupApproximation.Higman.OmegaTowerStageThree
+import GroupApproximation.Higman.OmegaTowerDescent
 import GroupApproximation.Higman.RowDeletionBenign
 import GroupApproximation.Higman.SwapWitnessTower
 import GroupApproximation.Higman.SwapCarrierFromTower
