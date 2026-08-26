@@ -97,3 +97,11 @@ together with `normal-kazhdan-defect-non-mf`.
    genuinely equivariant: equip this seed or a refinement with an automorphism
    whose mapping torus is finitely presented and whose compression defect
    normally fills `K`.
+8. **The finite-presentation strengthening is a separate open problem.**
+   If this claim is strengthened by requiring `K` itself finitely presented,
+   then `K` is a finitely presented sofic Kazhdan non-residually-finite group.
+   This is exactly the existence question isolated as Open Problem 6.1 by
+   Alekseev--Thom (2026); see
+   `fp-kernel-crosses-alekseev-thom-open-problem`.
+   The direct route should therefore first retain the infinitely presented
+   LEF seed and seek finite presentability only for the mapping torus.

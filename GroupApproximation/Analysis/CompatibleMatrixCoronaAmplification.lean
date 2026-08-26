@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.MatrixCoronaAmplificationEmbedding
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Compatible embeddings survive matrix-corona amplification
@@ -56,7 +57,37 @@ theorem exists_compatible_embeddings_into_amplified_corona
   · ext c
     exact congrArg amp (DFunLike.congr_fun hcompatible c)
 
+/-- Closed universal form of
+`exists_compatible_embeddings_into_amplified_corona`, suitable for endpoint
+and axiom-closure auditing. -/
+def CompatibleEmbeddingsAmplify : Prop :=
+  ∀ {C : Type u} {A : Type v} {B : Type w}
+    [CStarAlgebra C] [CStarAlgebra A] [CStarAlgebra B]
+    {I : Type} [Fintype I] [DecidableEq I] [Nonempty I]
+    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
+    (iA : C →⋆ₙₐ[ℂ] A) (iB : C →⋆ₙₐ[ℂ] B)
+    (left : A →⋆ₙₐ[ℂ]
+      CStarMatrix I I (NormMatrixCStarCorona (fun n ↦ X n)))
+    (right : B →⋆ₙₐ[ℂ]
+      CStarMatrix I I (NormMatrixCStarCorona (fun n ↦ X n))),
+    Function.Injective left → Function.Injective right →
+      left.comp iA = right.comp iB →
+        ∃ left' : A →⋆ₙₐ[ℂ]
+            NormMatrixCStarCorona (fun n ↦ I × X n),
+          ∃ right' : B →⋆ₙₐ[ℂ]
+              NormMatrixCStarCorona (fun n ↦ I × X n),
+            Function.Injective left' ∧ Function.Injective right' ∧
+              left'.comp iA = right'.comp iB
+
+/-- The closed compatibility-preserving matrix-amplification package. -/
+theorem compatibleEmbeddingsAmplify : CompatibleEmbeddingsAmplify := by
+  intro C A B _ _ _ I _ _ _ X _ iA iB left right hleft hright hcompatible
+  exact exists_compatible_embeddings_into_amplified_corona
+    X iA iB left right hleft hright hcompatible
+
 end
 
 end CompatibleMatrixCoronaAmplification
 end GroupApproximation
+
+#audit_closed_axioms GroupApproximation.CompatibleMatrixCoronaAmplification.compatibleEmbeddingsAmplify

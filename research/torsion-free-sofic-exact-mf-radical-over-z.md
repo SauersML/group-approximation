@@ -14,6 +14,7 @@ distinct_from:
 artifacts:
   - research/split-cyclic-kazhdan-defect-exact-mf-radical.md
   - research/torsion-free-sofic-extrinsic-kazhdan-defect-kernel.md
+  - research/fp-kernel-crosses-alekseev-thom-open-problem.md
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
 ---
@@ -37,6 +38,14 @@ Hom(Z,M) ~= Hom(G,M).                                  (TFZ2)
 
 Preferred strengthening: `K` itself can be chosen finitely presented and
 normally generated in `G` by one element.
+
+The finite-presentation part of that strengthening is not a routine bonus.
+By
+`fp-kernel-crosses-alekseev-thom-open-problem`,
+it would produce a finitely presented, sofic, property-`(T)`, non-residually-
+finite group and therefore answer Alekseev--Thom Open Problem 6.1.  The base
+target deliberately avoids that additional open problem: property `(T)`
+already makes `K` finitely generated, but `K` need not be finitely presented.
 
 Every witness necessarily has a sofic but non-residually-finite kernel.
 Indeed `K` is a subgroup of the sofic group `G`, property `(T)` makes `K`

@@ -211,11 +211,20 @@ theorem matrixCoronaHom_injective :
 
 /-! ## MF permanence -/
 
+section MFPermanence
+
+variable {A : Type u} [CStarAlgebra A]
+
+noncomputable local instance : PartialOrder A :=
+  CStarAlgebra.spectralOrder A
+
+local instance : StarOrderedRing A :=
+  CStarAlgebra.spectralOrderedRing A
+
 /-- A positive finite matrix amplification of an MF-embeddable C-star algebra
 is again MF-embeddable. -/
 theorem hasMFEmbedding_cstarMatrix
     (m : ℕ) [Nonempty (Fin m)]
-    {A : Type u} [CStarAlgebra A] [Nontrivial A]
     (hA : HasMFEmbedding A) :
     HasMFEmbedding (CStarMatrix (Fin m) (Fin m) A) := by
   rcases hA with ⟨X, hne, hpos, hmono, e, he⟩
@@ -247,11 +256,21 @@ theorem hasMFEmbedding_cstarMatrix
 /-- The manuscript's second reduced-product permanence assertion. -/
 theorem isMFAlgebra_cstarMatrix
     (m : ℕ) [Nonempty (Fin m)]
-    {A : Type u} [CStarAlgebra A] [Nontrivial A]
     (hA : IsMFAlgebra A) :
     IsMFAlgebra (CStarMatrix (Fin m) (Fin m) A) := by
   letI : TopologicalSpace.SeparableSpace A := hA.1
+  letI : ∀ _ : Fin m, TopologicalSpace.SeparableSpace A :=
+    fun _ ↦ hA.1
+  letI : ∀ _ : Fin m,
+      TopologicalSpace.SeparableSpace (Fin m → A) :=
+    fun _ ↦ inferInstance
+  letI : TopologicalSpace.SeparableSpace
+      (CStarMatrix (Fin m) (Fin m) A) :=
+    inferInstanceAs (TopologicalSpace.SeparableSpace
+      (Matrix (Fin m) (Fin m) A))
   exact ⟨inferInstance, hasMFEmbedding_cstarMatrix m hA.2⟩
+
+end MFPermanence
 
 end
 

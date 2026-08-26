@@ -12,7 +12,7 @@ stable conjugates of the six diagonal source marks.
 namespace GroupApproximation
 namespace BenignSupCode
 
-open PresentationCodes DirectProductCode FreeEdgeTowerCode
+open PresentationCodes DirectProductCode FreeEdgeTowerCode RawTransformPrimrec
 open Higman.MikhailovaRopeCode
 
 abbrev Raw : Type := BenignInfCode.Raw
@@ -25,14 +25,17 @@ def generatorWords (c : PresentationCode) : List Raw :=
 def productBase (x : Input) : PresentationCode :=
   productCode (BenignInfCode.leftCode x) (BenignInfCode.rightCode x)
 
+def leftGeneratorWords (x : Input) : List Raw :=
+  (generatorWords (BenignInfCode.leftCode x)).map
+    (leftWord (BenignInfCode.leftCode x))
+
 def m1Words (x : Input) : List Raw :=
   BenignInfCode.leftCuttingWords x ++
     (generatorWords (BenignInfCode.rightCode x)).map
       (rightWord (BenignInfCode.leftCode x) (BenignInfCode.rightCode x))
 
 def m2Words (x : Input) : List Raw :=
-  (generatorWords (BenignInfCode.leftCode x)).map
-      (leftWord (BenignInfCode.leftCode x)) ++
+  leftGeneratorWords x ++
     BenignInfCode.rightCuttingWords x
 
 def level1 (x : Input) : PresentationCode :=
@@ -70,7 +73,7 @@ theorem primrec_generatorWord :
 
 theorem primrec_generatorWords : Primrec generatorWords :=
   Primrec.list_map
-    (Primrec.list_range.comp PresentationCodes.primrec_genCount)
+    (Primrec.list_range.comp primrec_genCount)
     (primrec_generatorWord.comp Primrec.snd)
 
 theorem primrec_productBase : Primrec productBase :=
@@ -112,9 +115,7 @@ theorem primrec_leftGeneratorWord : Primrec
   Primrec₂.comp primrec_leftWord
     (BenignInfCode.primrec_leftCode.comp Primrec.fst) Primrec.snd
 
-theorem primrec_leftGeneratorWords : Primrec (fun x : Input =>
-    (generatorWords (BenignInfCode.leftCode x)).map fun w =>
-      leftWord (BenignInfCode.leftCode x) w) :=
+theorem primrec_leftGeneratorWords : Primrec leftGeneratorWords :=
   Primrec.list_map
     (primrec_generatorWords.comp BenignInfCode.primrec_leftCode)
     primrec_leftGeneratorWord
