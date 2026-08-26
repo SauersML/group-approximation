@@ -31,7 +31,7 @@ has weight four in every row and every column, and therefore total weight
 `native-inverse-pair-seven-orbits-retain-external-gauge` without depending
 on the chosen Singer matrix or the chosen nonzero primal and dual vectors.
 
-Now put the Pauli operators on `C[V]`
+Now fix `a,phi` with `<phi,a>=1` and put the Pauli operators on `C[V]`
 
 ```text
 X_a delta_x=delta_(x+a),       Z_phi delta_x=(-1)^<phi,x>delta_x.

@@ -9,11 +9,11 @@ requires:
 ---
 
 Let `V=F_2^3`.  If `S in GL(V)` has order seven, then no nonidentity power
-of `S` fixes a nonzero vector: an orbit length divides seven, and a fixed
-nonzero vector would leave an invariant two-dimensional quotient, whose
-general linear group has order six and therefore has no element of order
-seven.  Thus every nonzero `S`-orbit has length seven and is exactly
-`V\{0}`.  The same applies to `S^(-transpose)` on `V^*`.
+of `S` fixes a nonzero vector.  Indeed, the stabilizer of a fixed nonzero
+vector maps to `GL_2(F_2)`, of order six, and the kernel of that map is a
+two-group.  Hence that stabilizer has no element of order seven.  Every
+nonzero `S`-orbit therefore has length seven and is exactly `V\{0}`.  The
+same argument applies to `S^(-transpose)` on `V^*`.
 
 The sum of all seven nonzero vectors of `F_2^3` is zero, since each
 coordinate equals one four times.  Consequently, for every nonzero `a,phi`,
@@ -35,7 +35,8 @@ weight four.  Hence the complete table has weight `7*4=28`.  Replacing `S`
 by any second Singer element changes only the order in which the same seven
 vectors and functionals occur.
 
-For the exact countermodel, on `C[V]` define
+For the exact countermodel, fix nonzero `a,phi` with `<phi,a>=1`.  On
+`C[V]` define
 
 ```text
 X_a delta_x=delta_(x+a),
@@ -48,7 +49,7 @@ Then
 ```text
 U_S X_a U_S^(-1)=X_(Sa),
 U_S Z_phi U_S^(-1)=Z_(S^(-transpose)phi),
-[X_a,Z_phi]=(-1)^<phi,a>.                             (4)
+[X_a,Z_phi]=(-1)^<phi,a>=-1.                         (4)
 ```
 
 Equation `(1)` makes both ordered orbit products of the `X` occurrences
