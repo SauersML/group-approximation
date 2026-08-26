@@ -79,3 +79,13 @@ charge zero.  Thus genuinely overlapping finite-band frames survive only if
 their support graph has infinite components on positive charge, or if its
 finite component sizes themselves escape to infinity in the finitely
 additive charge.
+
+Bare hyperfinite exhaustion does not eliminate the first survivor.
+`fournier-facio-hyperfinite-support-exhaustion-misses-cutoff` gives an exact
+singular amenable regular-character calibration whose support graph has one
+infinite component and is exhausted by uniformly finite nested relations.
+Each finite stage has boundary charge tending to zero but still strictly
+positive, whereas the cutoff theorem needs a fixed comparison unitary with
+exactly null boundary.  Closing this face requires a uniform null-boundary or
+Cartanization theorem, not only amenability/hyperfiniteness of the support
+relation.
