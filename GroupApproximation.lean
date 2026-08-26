@@ -95,6 +95,7 @@ import GroupApproximation.Computability.AmalgamCode
 import GroupApproximation.Computability.AmalgamCodeSemantics
 import GroupApproximation.Computability.AmalgamCodePushout
 import GroupApproximation.Computability.BenignMapEmbCode
+import GroupApproximation.Computability.BenignInfCode
 import GroupApproximation.Computability.BenignMapEmbRopeInput
 import GroupApproximation.Computability.DirectProductCodeSemantics
 import GroupApproximation.Computability.AdianRabinVariantTransform
