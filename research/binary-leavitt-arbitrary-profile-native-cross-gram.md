@@ -162,6 +162,17 @@ literature theorem is permitted in this claim.
   only the equal-scale adjacent swaps.  The missing occurrence must show
   that one localized conjugate is the controlled quarter/eighth row, or
   couple it to that row by an ordinary mixed word.
+- **Audit all eight localized conjugates against the actual row-two words.**
+  `paid-pauli-menu-has-two-row2-indistinguishable-sheets` shows that the
+  eight words have only two values, `D` and `DH`, four times each, where
+  `H=x_73(t_1+s_0t_1)`.  The sheet root `H` commutes with
+  `T,A_2,B_2,B_3,J_2` and the order-seven head.  Hence every member has the
+  same `B_2` attachment and the seventh-power orbit transports the two
+  sheets in parallel.  A minimal three-qubit exact block realizes the paid
+  constant atom while a separate exact row-two block carries the unequal
+  Hecke packet.  Thus the finite Pauli menu does not itself authenticate the
+  quarter/eighth row; the next mixed occurrence must detect `H` or force one
+  sheet onto the actual unequal source carrier.
 - **Project the paid carrier onto the fixed signed Hecke source.**  The exact
   Reynolds estimate
   `paid-t00-carrier-has-signed-hecke-reynolds-dichotomy` gives a sharp

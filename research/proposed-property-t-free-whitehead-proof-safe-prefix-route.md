@@ -31,6 +31,8 @@ requires:
   - marked-t00-separation-has-gl10-model
   - native-t00-collision-first-hecke-attachment-has-gl10-model
   - paid-t00-pauli-menu-hits-whitehead-constant-atom
+  - native-actor-normal-closure-does-not-localize-paid-t00-support
+  - paid-t00-reynolds-cut-is-whitehead-reducing
   - paid-t00-carrier-has-signed-hecke-reynolds-dichotomy
   - paid-t00-carrier-can-miss-row2-source
   - fine-idempotent-biaction-return-has-gl10-model
@@ -71,8 +73,12 @@ uncompressed Hecke commutator is still below the source-carrier seam.
 The eight literal middle-index Pauli flips now guarantee that one conjugate
 of the paid discrepancy has positive compression on the Whitehead-fixed
 constant atom.  This is arbitrary-profile and finite-menu, but both native
-Whitehead label actions on that atom have the same quarter scale.  It does
-not yet supply the unequal quarter/eighth occurrence.
+Whitehead label actions on that atom have the same quarter scale.  Averaging
+over their exact `S_3` and taking a high spectral cut gives a positive subcut
+reducing both Whiteheads and retains one paid member of a fixed forty-eight
+word menu.  The complementary `GL_8` fence shows that actor conjugation alone
+cannot replace the Pauli-flip step.  None of these statements yet supplies
+the unequal quarter/eighth occurrence.
 For the fixed common signed source, Reynolds averaging now gives an exact
 source-or-detector alternative.  The detector menu consists of ordinary
 group words, not relators, and the reducible row-two fence realizes the

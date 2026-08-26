@@ -193,6 +193,18 @@ excluded by the regular-trace firewall.
   Hence `(SNA2)` still needs an ordinary occurrence identifying that branch
   with a native row defect.
 
+  Exhausting the eight constant-atom conjugates does not add such an
+  occurrence.  `paid-pauli-menu-has-two-row2-indistinguishable-sheets`
+  collects them to the two values `D,DH`, with
+  `H=x_73(t_1+s_0t_1)`.  This `H` commutes with the actual
+  `T,A_2,B_2,B_3,J_2` packet and its order-seven head, so the entire named
+  row transports the two choices in parallel and gives the same first
+  Hecke commutator on both.  The minimal marked three-qubit fence separates
+  the paid equal-scale atom from a noncollapsed row-two summand.  Therefore
+  a continuation must genuinely detect this sheet root or impose source
+  incidence; freezing one of the eight words along a subsequence is not
+  occurrence typing.
+
 - **Move the marked root by an external Weyl and retain both Pauli charts.**
   The root-valued relative word is exact, but the chart mover is not erased.
   `six-pair-chart-swap-retains-external-gauge` gives a full `M_64(C)` label
