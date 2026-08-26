@@ -478,3 +478,18 @@ their forced off-diagonal product is zero while the actual diagonal is
 partial-Whitehead object eraser yields a new gauge equation.  The remaining
 structural possibility must use at least two additional nonnormal
 occurrences in genuinely different root channels.
+
+Two such occurrences are still insufficient if each is an arbitrary
+rank-two coefficient word.  The support calculation in
+`two-distinct-rank-two-channels-cannot-factor-cross-return` is independent
+of coefficient depth: two distinct coordinate pairs whose product is
+supported on `(7,8)` must have the form `{k,7}` and `{k,8}`.  Multiplying
+the two general invertible blocks in either order leaves the resulting
+`(7,8)` block triangular.  But every undressed return `NK_0` and native
+target `J_1NK_0`, with the supported signed normalizer
+`N in {1,x_78(1)}`, has both off-diagonal entries nonzero.  Hence two
+different elementary/partial-Whitehead channels cannot furnish even the
+ordinary return word, regardless of full Leavitt coefficient sums.  A live
+independent factorization now needs at least three rank-two occurrences or
+one genuinely three-coordinate occurrence; dyadic same-pair fusion and
+normalizer dressing remain excluded.
