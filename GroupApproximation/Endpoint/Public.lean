@@ -24,6 +24,8 @@ import GroupApproximation.Computability.MFObserverBlindPromise
 import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Computability.RationalComplexCode
 import GroupApproximation.Computability.EffectiveMatrixCode
+import GroupApproximation.Computability.EffectiveMatrixCodePrimrec
+import GroupApproximation.Computability.RationalMatrixEncoding
 import GroupApproximation.Sofic.PropertyTFreeMFCollapse
 import GroupApproximation.Sofic.FiniteOrderNormalGenerator
 import GroupApproximation.Sofic.SimpleTorsionDichotomy
@@ -695,6 +697,12 @@ export GroupApproximation.EffectiveMatrixCode
     toMatrix toVector matrixEq_iff isUnitary_iff entrySmall_iff
     opNorm_le_of_matrixSmall vectorNormSq_semantics mulVecEntry_semantics
     mulVecNormSq_semantics one_third_lt_opNorm_of_vectorWitness)
+export GroupApproximation.EffectiveMatrixCodePrimrec
+  (primrec_dim primrec_complexSub primrec_complexNormSq primrec_complexSum
+    primrec_entry primrec_vectorEntry primrec_matrixEntryMul)
+export GroupApproximation.RationalMatrixEncoding
+  (exists_complexCode_of_isRat exists_matrixCode_of_isRat
+    exists_unitary_matrixCode_close)
 export GroupApproximation.FreeProductMFRadicalRetraction
   (inr_mem_normMFResidual_iff_of_residual_eq_bot
     inr_mem_normMFResidual_iff_of_isOperatorMF

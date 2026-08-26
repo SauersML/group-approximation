@@ -119,7 +119,7 @@ theorem commute_t_of_iff (g : K) :
     have hconj := conj_eq_self_of_mem L hg
     apply (commute_iff_eq _ _).2
     calc
-      (t : CentHNN L) * of g = t * (t⁻¹ * of g * t) := by rw [hconj]; group
+      (t : CentHNN L) * of g = t * (t⁻¹ * of g * t) := by rw [hconj]
       _ = of g * t := by group
 
 /-! ## The subgroup form -/

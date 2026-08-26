@@ -70,21 +70,20 @@ theorem primrec_matrixEntryMul :
       complexMul
         (entry z.1.1.1.1 z.1.1.1.2 z.1.2 k)
         (entry z.1.1.1.1 z.1.1.2 k z.2) := by
-    have hleft : Primrec fun p :
+    have hpackLeft : Primrec fun p :
         (((((ℕ × MatrixCode) × MatrixCode) × ℕ) × ℕ) × ℕ) =>
-        entry (hd p.1) (hA p.1) (hi p.1) p.2 :=
-      primrec_entry.comp
-        (Primrec.pair
-          (Primrec.pair (Primrec.pair (hd.comp Primrec.fst)
-            (hA.comp Primrec.fst)) (hi.comp Primrec.fst)) Primrec.snd)
-    have hright : Primrec fun p :
+        (((p.1.1.1.1.1, p.1.1.1.1.2), p.1.1.2), p.2) :=
+      Primrec.pair
+        (Primrec.pair (Primrec.pair (hd.comp Primrec.fst)
+          (hA.comp Primrec.fst)) (hi.comp Primrec.fst)) Primrec.snd
+    have hpackRight : Primrec fun p :
         (((((ℕ × MatrixCode) × MatrixCode) × ℕ) × ℕ) × ℕ) =>
-        entry (hd p.1) (hB p.1) p.2 (hj p.1) :=
-      primrec_entry.comp
-        (Primrec.pair
-          (Primrec.pair (Primrec.pair (hd.comp Primrec.fst)
-            (hB.comp Primrec.fst)) Primrec.snd) (hj.comp Primrec.fst))
-    exact (primrec_complexMul.comp hleft hright).to₂
+        (((p.1.1.1.1.1, p.1.1.1.2), p.2), p.1.2) :=
+      Primrec.pair
+        (Primrec.pair (Primrec.pair (hd.comp Primrec.fst)
+          (hB.comp Primrec.fst)) Primrec.snd) (hj.comp Primrec.fst)
+    exact (primrec_complexMul.comp
+      (primrec_entry.comp hpackLeft) (primrec_entry.comp hpackRight)).to₂
   exact primrec_complexSum.comp (Primrec.list_map hrange hterm)
 
 end EffectiveMatrixCodePrimrec
