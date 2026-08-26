@@ -219,6 +219,7 @@ import GroupApproximation.Sofic.NormMFPrintedConsequences
 import GroupApproximation.Sofic.NormallyGeneratedMFObstruction
 import GroupApproximation.Sofic.OperatorMFPositiveControls
 import GroupApproximation.Sofic.OperatorMFProduct
+import GroupApproximation.Sofic.OperatorMFHNNCyclicBlocks
 import GroupApproximation.Sofic.LocallyFiniteMF
 import GroupApproximation.Sofic.CentralInvolutionFinite
 import GroupApproximation.Sofic.OperatorMFQuotientNonclosure
