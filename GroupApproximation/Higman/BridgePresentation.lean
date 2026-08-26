@@ -649,7 +649,9 @@ theorem primrec_cycle : Primrec cycle := by
   have hnext : Primrec fun k : ℕ ↦ (k + 1) % 3 :=
     Primrec.nat_mod.comp
       (Primrec.nat_add.comp Primrec.id (Primrec.const 1)) (Primrec.const 3)
-  exact Primrec.ite hlt hnext Primrec.id
+  exact (Primrec.ite hlt hnext Primrec.id).of_eq fun k => by
+    unfold cycle
+    rfl
 
 theorem inv_mem_codedRels {A : Type} [Group A] (g : ℕ → A)
     {z : FreeGroup ℕ} (hz : z ∈ codedRels g) : z⁻¹ ∈ codedRels g := by
