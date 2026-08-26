@@ -18,6 +18,7 @@ distinct_from:
   binary-jacobson-three-cycle-is-controlled-swap-and-marked-mf: that closes three cyclic triangular rows to a head-controlled swap and proves that the three shifts, Weyl swaps, and one raw root in a common target column remain an amenable marked subsystem; this must leave that common-column semidirect product.
   binary-jacobson-two-target-parabolic-is-marked-mf: that enlarges the package to two external target columns and the full constant cycle between them but remains an amenable marked upper parabolic; this must include a reverse target-to-active root or move the raw cycle onto the active rows.
   binary-jacobson-active-cycle-generates-rank-three: that moves a directed constant three-cycle onto the active rows and, with one balanced shift, generates the full rank-three elementary Jacobson group; this shows that the first internal-cycle escape is already the hard coefficient core rather than a smaller Hall packet.
+  binary-jacobson-constant-q-root-envelope-is-finite: that places the native Pauli packet, all Q-labelled roots, and every constant root/Weyl occurrence in a finite marked group; this must mix an S/T-bearing occurrence with a nonmonomial constant-root incidence rather than add further constant transports.
   binary-jacobson-one-reverse-root-completes-two-target-parabolic: that adjoins one reverse constant root to the full two-target upper parabolic and immediately generates the entire rank-five elementary group; this requires a selected finite portion of the upper coefficient module rather than the full parabolic if reverse incidence is to yield a smaller decoder.
 ---
 
@@ -146,3 +147,18 @@ root words which generate `M_4 tensor I` on every nonzero rounded head cut,
 while the first pair gives the degree-two source factor.  Therefore the PI
 alternative is missing only its one common returned occurrence; target
 fullness and target word visibility are established.
+
+The obvious constant-coordinate returns cannot be that occurrence.
+`binary-jacobson-constant-q-root-envelope-is-finite` places every constant
+root, every `Q`-labelled root, every constant Weyl word, and the complete
+native two-qubit packet inside the finite marked group `EL_5(F_2[Q])`.
+Accordingly the first eligible PI bridge must mix an `S/T`-bearing transport
+with a nonmonomial constant-root incidence.  Either side by itself admits a
+marked MF model.
+
+Nor can target depth replace that occurrence.
+`binary-jacobson-head-sector-has-native-clifford-tower` constructs every
+finite Clifford rank from literal finitary roots, but places the entire tower
+and all monomial transports inside the amenable marked-MF subgroup `K`.
+Therefore the common return must visibly consume the raw nonmonomial root at
+the generation seam.
