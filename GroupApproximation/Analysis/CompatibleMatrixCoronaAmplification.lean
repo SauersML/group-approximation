@@ -53,8 +53,8 @@ theorem exists_compatible_embeddings_into_amplified_corona
   refine ⟨amp.comp left, amp.comp right, ?_, ?_, ?_⟩
   · exact (matrixCoronaAmplification_injective X).comp hleft
   · exact (matrixCoronaAmplification_injective X).comp hright
-  · rw [NonUnitalStarAlgHom.comp_assoc, hcompatible,
-      NonUnitalStarAlgHom.comp_assoc]
+  · ext c
+    exact congrArg amp (DFunLike.congr_fun hcompatible c)
 
 end
 
