@@ -6,6 +6,7 @@ title: Reblock a surviving torsion root and invoke the positive-density coeffici
 target: property-t-free-leavitt-full-mf-radical
 requires:
   - torsion-normal-generator-has-full-support-corona-core
+  - full-leavitt-idempotent-defect-saturation
   - coherent-heisenberg-multiplicity-decoder
   - tracial-projective-hilbert-hotel-cancellation
 ---

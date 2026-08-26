@@ -4,7 +4,9 @@ id: leavitt-diagonal-compression-is-elementary-amenable
 kind: claim
 title: The diagonal Leavitt elementary subgroup with one compressor is elementary amenable and contains the mark
 artifacts:
-  - research/leavitt-diagonal-compression-amenability-proof.md
+  - research/leavitt-diagonal-compression-is-elementary-amenable-proof.md
+  - notes/PROPERTY_T_FREE_MF_ATTEMPT_2026-08-26.md
+  - non_mf_groups_exist.tex
 distinct_from:
   amenable-multi-compressors-have-a-joint-hs-telescope: that is a Kun--Thom Hilbert--Schmidt statement about arithmetic actors; this identifies a literal locally finite subgroup of the binary-Leavitt manuscript group on which one manuscript compressor acts by self-similarity and the mark remains MF-visible.
   norm-corona-locally-finite-compression-countermodel: that constructs the compression phenomenon abstractly in a tensor norm corona; this locates it inside the literal Leavitt elementary group and pins the manuscript mark in the amenable subgroup.
@@ -58,4 +60,4 @@ self-similarity alone does not select the manuscript's desired profile.
 No Property `(T)`, stability theorem, or literature input is used.
 
 DERIVATION
-leavitt-diagonal-compression-amenability-proof
+leavitt-diagonal-compression-is-elementary-amenable-proof

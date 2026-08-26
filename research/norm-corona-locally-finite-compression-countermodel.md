@@ -2,13 +2,15 @@
 rg: 2
 id: norm-corona-locally-finite-compression-countermodel
 kind: claim
-title: The norm corona hosts an amenable locally finite compression whose defect survives
+title: The norm corona hosts a locally finite compression whose defect survives
 artifacts:
   - research/norm-corona-locally-finite-compression-countermodel-proof.md
+  - notes/PROPERTY_T_FREE_MF_ATTEMPT_2026-08-26.md
 distinct_from:
   uhf-cyclic-shift-has-strict-compressed-commutant: that isolates strict failure of relative-commutant normalization in the same tensor-tail geometry; this packages the compressor with a countable amenable group and exhibits an explicit nontrivial central defect surviving its tautological MF representation.
   trace-blindness-sharpness: that is a tracial Bernoulli-shift counterexample in a finite von Neumann setting; this is an operator-norm matrix-corona group with a strict one-sided compression.
   finite-infranormal-subgroup-is-normal: that forbids strict compression of a finite subgroup; this uses an infinite locally finite subgroup.
+  one-variable-no-compressor: that excludes a strict compressor in one arithmetic model; this exhibits a strict compressor and an MF-visible defect.
 ---
 
 Let

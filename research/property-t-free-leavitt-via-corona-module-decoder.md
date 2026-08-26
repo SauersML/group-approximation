@@ -5,6 +5,7 @@ kind: route
 title: Decode a surviving root and apply corona Hilbert-hotel cancellation
 target: property-t-free-leavitt-full-mf-radical
 requires:
+  - full-leavitt-idempotent-defect-saturation
   - corona-coefficient-module-decoder
   - finite-root-windows-share-one-reducing-corona-carrier
   - binary-leavitt-two-branch-character-restriction-is-faithful

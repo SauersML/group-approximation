@@ -82,13 +82,16 @@ without assuming property `(T)` for either a compression source or the
 ambient group.  More general elementary-group versions are welcome, but the
 literal binary-Leavitt Steinberg group is the fixed target of this goal.
 
-For this simple torsion-marked target, the endpoint has the equivalent
-Kazhdan-free formulation in
-`simple-torsion-non-mf-iff-trivial-mf-characters`: every pointwise trace
-limit of operator-norm asymptotic representations must be the trivial
-character.  This is a reformulation, not a proof; the occurrence compiler
-must still exclude the macroscopic nontrivial character supplied by any
-surviving corona representation.
+Because the involution `z` normally generates this target, the endpoint has
+the equivalent Kazhdan-free formulation in
+`torsion-normal-generator-mf-character-criterion`: every
+pointwise trace limit of operator-norm asymptotic representations must be the
+trivial character.  The unresolved literal instance is
+`binary-leavitt-steinberg-mf-characters-are-trivial`.  This is a
+reformulation, not a proof; the occurrence compiler must still exclude the
+macroscopic nontrivial character supplied by any surviving corona
+representation.  No simplicity assertion for the Steinberg central cover is
+used.
 
 The proposed route is intrinsic to norm matrix coronas.  A surviving root
 has exact finite additive and Heisenberg multiplicity germs.  The remaining
