@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.FiniteMatrixPositiveSquareRootUnit
 import GroupApproximation.Analysis.FiniteMatrixTransportedInvolution
+import GroupApproximation.Analysis.BlackadarKirchbergStarEquivTransport
 
 /-!
 # Correcting a finite matrix algebra equivalence to preserve star
@@ -13,6 +14,28 @@ namespace GroupApproximation
 namespace BlackadarKirchberg
 
 noncomputable section
+
+open scoped Matrix.Norms.L2Operator
+
+local instance matrixBlockCStarAlgebraForCorrected
+    (Z : Type*) [Fintype Z] [DecidableEq Z] [Nonempty Z] :
+    CStarAlgebra (Matrix Z Z ℂ) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+local instance boundedMatrixSequenceCStarAlgebraForCorrected
+    (X : ℕ → Type*) [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
+    [∀ n, Nonempty (X n)] : CStarAlgebra (BoundedMatrixSequence X) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
 
 /-- Every complex-algebra equivalence from a C-star algebra onto the
 endomorphisms of a nonzero finite-dimensional Hilbert space can be corrected
@@ -101,6 +124,107 @@ theorem exists_correctedStarAlgEquiv_to_moduleEnd
   rw [heStar]
   exact hintertwine (e d)
 
+/-! ## The concrete full-matrix form -/
+
+/-- On a finite-dimensional Hilbert space, passing from algebraic
+endomorphisms to continuous endomorphisms is a star-algebra equivalence. -/
+def moduleEndToContinuousStarAlgEquiv
+    (V : Type*) [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    [FiniteDimensional ℂ V] :
+    Module.End ℂ V ≃⋆ₐ[ℂ] (V →L[ℂ] V) := by
+  letI := FiniteDimensional.complete ℂ V
+  exact StarAlgEquiv.ofAlgEquiv (Module.End.toContinuousLinearMap V)
+    LinearMap.adjoint_toContinuousLinearMap
+
+/-- Every complex-algebra equivalence from a C-star algebra onto a nonzero
+full matrix algebra can be corrected by an inner automorphism to preserve
+the involution.  This is the concrete-matrix version of
+`exists_correctedStarAlgEquiv_to_moduleEnd`. -/
+theorem exists_correctedStarAlgEquiv_to_matrix
+    {D : Type*} [CStarAlgebra D] {k : ℕ} [Nonempty (Fin k)]
+    (e : D ≃ₐ[ℂ] Matrix (Fin k) (Fin k) ℂ) :
+    Nonempty (D ≃⋆ₐ[ℂ] Matrix (Fin k) (Fin k) ℂ) := by
+  let V := EuclideanSpace ℂ (Fin k)
+  let matrixToEnd : Matrix (Fin k) (Fin k) ℂ ≃⋆ₐ[ℂ] Module.End ℂ V :=
+    (Matrix.toEuclideanCLM (n := Fin k) (𝕜 := ℂ)).trans
+      (moduleEndToContinuousStarAlgEquiv V).symm
+  let eEnd : D ≃ₐ[ℂ] Module.End ℂ V := e.trans matrixToEnd.toAlgEquiv
+  obtain ⟨corrected⟩ := exists_correctedStarAlgEquiv_to_moduleEnd eEnd
+  exact ⟨corrected.trans matrixToEnd.symm⟩
+
+/-- Every finite-dimensional simple complex C-star algebra is
+star-isomorphic to a nonzero full matrix algebra.  Artin--Wedderburn supplies
+the algebra equivalence and `exists_correctedStarAlgEquiv_to_matrix` corrects
+its involution. -/
+theorem exists_starAlgEquiv_matrix_of_finiteDimensional_simpleCStar
+    (D : Type*) [CStarAlgebra D] [FiniteDimensional ℂ D] [IsSimpleRing D] :
+    ∃ (k : ℕ) (hk : Nonempty (Fin k)),
+      letI : Nonempty (Fin k) := hk
+      Nonempty (D ≃⋆ₐ[ℂ] Matrix (Fin k) (Fin k) ℂ) := by
+  obtain ⟨k, hk, ⟨e⟩⟩ :=
+    IsSimpleRing.exists_algEquiv_matrix_of_isAlgClosed ℂ D
+  have hk' : Nonempty (Fin k) := Fin.pos_iff_nonempty.mp (NeZero.pos k)
+  exact ⟨k, hk', exists_correctedStarAlgEquiv_to_matrix e⟩
+
+/-- A completely positive contraction from a C-star algebra algebraically
+equivalent to one nonzero full matrix block has an exact completely positive
+contractive lift through the concrete matrix corona.  No star-preserving
+decomposition is assumed: it is produced by
+`exists_correctedStarAlgEquiv_to_matrix`. -/
+theorem exists_completelyPositiveContractive_lift_of_algEquiv_matrix
+    {D : Type*} [CStarAlgebra D] {k : ℕ} [Nonempty (Fin k)]
+    {X : ℕ → Type*} [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
+    [∀ n, Nonempty (X n)]
+    (e : D ≃ₐ[ℂ] Matrix (Fin k) (Fin k) ℂ)
+    (f : D →ₗ[ℂ] NormMatrixCStarCorona X)
+    (hf : CStarExactness.IsCompletelyPositive f)
+    (hcontract : ∀ x, ‖f x‖ ≤ ‖x‖) :
+    ∃ lift : D →ₗ[ℂ] BoundedMatrixSequence X,
+      CStarExactness.IsCompletelyPositive lift ∧
+      (∀ x, ‖lift x‖ ≤ ‖x‖) ∧
+      ∀ x, normMatrixCStarCoronaQuotient X (lift x) = f x := by
+  obtain ⟨eStar⟩ := exists_correctedStarAlgEquiv_to_matrix e
+  let pushed : Matrix (Fin k) (Fin k) ℂ →ₗ[ℂ] NormMatrixCStarCorona X :=
+    f.comp (starAlgEquivLinearMap eStar.symm)
+  have hpushed : CStarExactness.IsCompletelyPositive pushed := by
+    change CStarExactness.IsCompletelyPositive
+      (f.comp (starAlgEquivLinearMap eStar.symm))
+    exact isCompletelyPositive_comp_starAlgEquiv eStar.symm f hf
+  have hpushedContract : ∀ y, ‖pushed y‖ ≤ ‖y‖ := by
+    intro y
+    exact (hcontract (eStar.symm y)).trans_eq (StarAlgEquiv.norm_map eStar.symm y)
+  obtain ⟨matrixLift, hmatrixCP, hmatrixContract, hmatrixQuot⟩ :=
+    exists_completelyPositiveContractive_matrix_lift X pushed hpushed
+      hpushedContract
+  let lift : D →ₗ[ℂ] BoundedMatrixSequence X :=
+    matrixLift.comp (starAlgEquivLinearMap eStar)
+  refine ⟨lift, ?_, ?_, ?_⟩
+  · exact isCompletelyPositive_comp_starAlgEquiv eStar matrixLift hmatrixCP
+  · intro x
+    exact (hmatrixContract (eStar x)).trans_eq (StarAlgEquiv.norm_map eStar x)
+  · intro x
+    exact (hmatrixQuot (eStar x)).trans (congrArg f (eStar.symm_apply_apply x))
+
+/-- Every completely positive contraction from a finite-dimensional simple
+complex C-star algebra to a concrete matrix corona has an exact completely
+positive contractive lift. -/
+theorem exists_completelyPositiveContractive_lift_of_finiteDimensional_simpleCStar
+    {D : Type*} [CStarAlgebra D] [FiniteDimensional ℂ D] [IsSimpleRing D]
+    {X : ℕ → Type*} [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
+    [∀ n, Nonempty (X n)]
+    (f : D →ₗ[ℂ] NormMatrixCStarCorona X)
+    (hf : CStarExactness.IsCompletelyPositive f)
+    (hcontract : ∀ x, ‖f x‖ ≤ ‖x‖) :
+    ∃ lift : D →ₗ[ℂ] BoundedMatrixSequence X,
+      CStarExactness.IsCompletelyPositive lift ∧
+      (∀ x, ‖lift x‖ ≤ ‖x‖) ∧
+      ∀ x, normMatrixCStarCoronaQuotient X (lift x) = f x := by
+  obtain ⟨k, hk, ⟨e⟩⟩ :=
+    exists_starAlgEquiv_matrix_of_finiteDimensional_simpleCStar D
+  letI : Nonempty (Fin k) := hk
+  exact exists_completelyPositiveContractive_lift_of_algEquiv_matrix
+    e.toAlgEquiv f hf hcontract
+
 end
 
 end BlackadarKirchberg
@@ -109,3 +233,8 @@ end GroupApproximation
 open GroupApproximation.BlackadarKirchberg
 
 #audit_axioms exists_correctedStarAlgEquiv_to_moduleEnd
+#audit_axioms moduleEndToContinuousStarAlgEquiv
+#audit_axioms exists_correctedStarAlgEquiv_to_matrix
+#audit_axioms exists_starAlgEquiv_matrix_of_finiteDimensional_simpleCStar
+#audit_axioms exists_completelyPositiveContractive_lift_of_algEquiv_matrix
+#audit_axioms exists_completelyPositiveContractive_lift_of_finiteDimensional_simpleCStar
