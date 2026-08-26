@@ -92,13 +92,35 @@ TARGET="${1:-}"
 "$MSI" true >/dev/null 2>&1 || "$MSI" up || exit 1
 
 echo "==> syncing sources to $REMOTE"
-rsync -rlptz --delete \
-  -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
-  --include='*/' \
-  --include='*.lean' --include='lean-toolchain' --include='lakefile.toml' \
-  --include='lake-manifest.json' \
-  --exclude='*' \
-  "$LOCAL/GroupApproximation/" "$USER_MSI@$LOGIN_IP:$REMOTE/GroupApproximation/" || exit $?
+# Several proof lanes deliberately share one worktree.  A source file can be
+# saved while rsync is reading it; rsync then returns 23 or 24 and reports that
+# the update was discarded.  That is a transient snapshot race, not a broken
+# source tree.  Retry the source transfer until one pass observes a stable
+# tree.  Other rsync failures remain fatal immediately.
+SOURCE_SYNC_ATTEMPT=0
+while true; do
+  rsync -rlptz --delete \
+    -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
+    --include='*/' \
+    --include='*.lean' --include='lean-toolchain' --include='lakefile.toml' \
+    --include='lake-manifest.json' \
+    --exclude='*' \
+    "$LOCAL/GroupApproximation/" "$USER_MSI@$LOGIN_IP:$REMOTE/GroupApproximation/"
+  SOURCE_SYNC_STATUS=$?
+  [ "$SOURCE_SYNC_STATUS" -eq 0 ] && break
+  case "$SOURCE_SYNC_STATUS" in
+    23|24)
+      SOURCE_SYNC_ATTEMPT=$((SOURCE_SYNC_ATTEMPT + 1))
+      if [ "$SOURCE_SYNC_ATTEMPT" -ge 8 ]; then
+        echo "remote-build: source tree did not stabilize after 8 sync attempts" >&2
+        exit "$SOURCE_SYNC_STATUS"
+      fi
+      echo "==> source changed during sync; retrying ($SOURCE_SYNC_ATTEMPT/8)"
+      sleep 1
+      ;;
+    *) exit "$SOURCE_SYNC_STATUS" ;;
+  esac
+done
 
 rsync -rlptz \
   -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
