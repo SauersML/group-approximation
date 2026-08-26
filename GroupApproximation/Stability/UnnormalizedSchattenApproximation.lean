@@ -111,6 +111,74 @@ theorem schattenPNorm_mono_of_singularValues_le {p : ℝ} (hp : 1 ≤ p)
   unfold schattenPNorm
   exact Real.rpow_le_rpow hsumA hsums (by positivity)
 
+section OperatorNormBounds
+
+open scoped Matrix.Norms.L2Operator
+
+/-- The `L²` operator norm of a nonempty square matrix is bounded by its
+largest singular value. -/
+theorem operatorNorm_le_largestSingularValue {d : ℕ} (hd : 0 < d)
+    (A : Matrix (Fin d) (Fin d) ℂ) :
+    ‖A‖ ≤ (Matrix.toEuclideanLin A).singularValues 0 := by
+  letI : NeZero d := ⟨Nat.ne_of_gt hd⟩
+  let T := Matrix.toEuclideanLin A
+  let D : Matrix (Fin d) (Fin d) ℂ := Aᴴ
+  let H : Matrix (Fin d) (Fin d) ℂ := D * Dᴴ
+  let hH : H.IsHermitian := Matrix.isHermitian_mul_conjTranspose_self D
+  obtain ⟨i, hi⟩ :=
+    exists_eigenvalue_mul_conjTranspose_eq_sq_opNorm D ⟨⟨0, hd⟩⟩
+  let j : Fin (Fintype.card (Fin d)) :=
+    (Fintype.equivOfCardEq
+      (Fintype.card_fin (Fintype.card (Fin d)))).symm i
+  have hcard : 0 < Fintype.card (Fin d) := by simpa using hd
+  have hfinrank :
+      Module.finrank ℂ (EuclideanSpace ℂ (Fin d)) = Fintype.card (Fin d) :=
+    finrank_euclideanSpace
+  have hH_eq : H = Aᴴ * A := by
+    simp [H, D]
+  have hadjoint : T.adjoint ∘ₗ T = Matrix.toEuclideanLin H := by
+    rw [hH_eq]
+    simp only [T, Matrix.toEuclideanLin_eq_toLin_orthonormal]
+    rw [← Matrix.toLin_conjTranspose]
+    exact (Matrix.toLin_mul _ _ _ Aᴴ A).symm
+  let hHlin : (Matrix.toEuclideanLin H).IsSymmetric :=
+    Matrix.isSymmetric_toEuclideanLin_iff.mpr hH
+  have heigenvalues :
+      T.isSymmetric_adjoint_comp_self.eigenvalues hfinrank =
+        hHlin.eigenvalues hfinrank := by
+    apply (LinearMap.IsSymmetric.eigenvalues_eq_eigenvalues_iff
+      T.isSymmetric_adjoint_comp_self hfinrank hHlin hfinrank).2
+    exact congrArg LinearMap.charpoly hadjoint
+  have hj :
+      T.isSymmetric_adjoint_comp_self.eigenvalues hfinrank j = ‖A‖ ^ 2 := by
+    rw [heigenvalues]
+    change hH.eigenvalues₀ j = ‖A‖ ^ 2
+    simpa [Matrix.IsHermitian.eigenvalues, j, H, D,
+      Matrix.l2_opNorm_conjTranspose] using hi
+  have htop :
+      ‖A‖ ^ 2 ≤
+        T.isSymmetric_adjoint_comp_self.eigenvalues hfinrank
+          (⟨0, hcard⟩ : Fin (Fintype.card (Fin d))) := by
+    rw [← hj]
+    exact T.isSymmetric_adjoint_comp_self.eigenvalues_antitone hfinrank
+      (Fin.zero_le j)
+  have hsquare :
+      ‖A‖ ^ 2 ≤ T.singularValues 0 ^ 2 := by
+    rw [T.sq_singularValues_fin hfinrank
+      (⟨0, hcard⟩ : Fin (Fintype.card (Fin d)))]
+    exact htop
+  exact (sq_le_sq₀ (norm_nonneg A) (T.singularValues_nonneg 0)).mp hsquare
+
+/-- The `L²` operator norm is bounded by every unnormalized Schatten
+`p`-quantity with `1 ≤ p`. -/
+theorem operatorNorm_le_schattenPNorm {p : ℝ} (hp : 1 ≤ p)
+    {d : PositiveDimension} (A : Matrix (Fin d.1) (Fin d.1) ℂ) :
+    ‖A‖ ≤ schattenPNorm p A :=
+  (operatorNorm_le_largestSingularValue d.2 A).trans
+    (singularValue_le_schattenPNorm hp A (⟨0, d.2⟩ : Fin d.1))
+
+end OperatorNormBounds
+
 /-- Scalar form of the approximate-involution estimate.  Inside the open
 unit ball about `1`, multiplication by `z + 1` cannot decrease the distance
 from zero, and `(z - 1)(z + 1) = z² - 1`. -/
@@ -362,6 +430,7 @@ theorem schattenTwoStabilityPrinciple : SchattenTwoStabilityPrinciple := by
   · simpa [IsSchattenTwoApproximated] using happrox
   · simpa [IsSchattenTwoStable] using hstable
 
+#audit_axioms operatorNorm_le_schattenPNorm
 #audit_axioms dist_eq_schattenTwoDist
 #audit_closed_axioms allFinitePStabilityForcesResidualFiniteness
 #audit_closed_axioms schattenTwoStabilityPrinciple
