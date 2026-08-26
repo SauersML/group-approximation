@@ -6,6 +6,7 @@ title: The two native binary scale transports have a fixed positive cross-Gram c
 distinct_from:
   opnorm-leavitt-coarse-fine-return-row: that asks for one operator-norm support row on one sparse carrier; this asks for one normalized-HS positive overlap between two positive-density transports.
   affine-leavitt-source-saturated-reynolds-checksum: that asks for a source-sized adjoint Reynolds overlap in an odd affine packet; this permits any fixed positive direct polar Gram overlap in the binary packet.
+  full-hecke-whitehead-zero-cross-gram: that gives an exact canonical finite interface with the paid source supports and synchronized Whitehead gauges but zero mixed target Gram; this asks whether the remaining full-group relations force the missing target incidence.
 ---
 
 **NORMALIZED-HS SCALAR HOLONOMY CLAIM.**  On the positive-density active core

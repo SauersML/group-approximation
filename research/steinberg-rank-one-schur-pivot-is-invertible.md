@@ -3,6 +3,9 @@ rg: 2
 id: steinberg-rank-one-schur-pivot-is-invertible
 kind: claim
 title: The complete X row has an invertible interior rank-one Schur pivot
+distinct_from:
+  steinberg-schur-corrected-endpoint-reduction: that derives an exact equivalent endpoint-derivative system and controls the dense Pascal determinant; this still asks to prove that the cyclotomic antidiagonal creates no endpoint-zero kernel.
+  steinberg-schur-antidiagonal-resonates: that blocks recursive division by every antidiagonal coefficient; it does not refute invertibility.
 ---
 
 For every odd `p>=5`, let `M_p=pi_S X^*|_S` in the bases
@@ -121,3 +124,15 @@ Consequently the genuine remaining target is invertibility of the explicit
 low-index Schur complement of `(SRP7)`.  This restarts the argument directly
 from `(SRP2)` and does not inherit any of the invalid four-transform
 identities.
+
+`steinberg-schur-corrected-endpoint-reduction` now replaces that low-index
+target by the exact scalar condition
+
+```text
+ker(R) intersect ker(Q'(-1))={0}.                       (SRP8)
+```
+
+It also proves that deleting the cyclotomic antidiagonal leaves determinant
+`-1/2` for every odd prime.  Thus `(SRP8)`, not the dense Pascal block, is the
+only remaining issue.  A row-by-row division is unavailable because
+`steinberg-schur-antidiagonal-resonates` finds a literal `p=31` zero pivot.

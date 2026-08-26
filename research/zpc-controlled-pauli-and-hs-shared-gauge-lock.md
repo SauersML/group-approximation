@@ -7,6 +7,7 @@ distinct_from:
   controlled-pauli-commutator-is-and-times-multiplicity-commutator: that proves the exact AND phase and exposes the external commutator; this asks for the finite-matrix-specific packet that charges or cancels that commutator.
   selector-gated-equality-is-not-affine-pp-definable: that rules out commuting affine auxiliaries; this permits a genuinely projective noncommutative realization with an infinite tracial escape.
   leavitt-crossed-gram-pauli-charge-has-sectorwise-escape: that gives an exact four-sector finite gauge absorber; this target must add incidence which defeats that absorber without becoming a universal finite-packet exclusion.
+  pauli-gauge-word-retains-and-cocycle: that proves fixed Pauli-packet dressing cannot manufacture a pure gauge word; this target remains open only through genuinely new mixed occurrence information.
 ---
 
 **OPEN HS SHARED-GAUGE LOCK.**  Construct a fixed finite ordinary group-word
@@ -34,3 +35,12 @@ The target is not supplied by finite Pauli exactification, a projective cycle
 phase, or a sector-preserving covariance packet.  Any construction must
 explicitly defeat both the regular-profile barrier and the four-sector
 Clifford escape while retaining the infinite tracial model.
+
+The natural two-label-copy gauge strip is now sharply fenced.  By
+`pauli-gauge-word-retains-and-cocycle`,
+any dressed word carrying `[A,B]` also carries the `ab` Pauli cocycle up to an
+affine selector phase.  Rank-preserving synchronization of a new copy is
+ruled out by `transitive-selector-flips-kill-leavitt-sibling-support`.
+Consequently the smallest surviving seam is
+`zpc-active-identity-copy-mixed-occurrence-on-a-positive-corner`: a
+non-rank-preserving, model-dependent cross-Gram or proper-corner incidence.

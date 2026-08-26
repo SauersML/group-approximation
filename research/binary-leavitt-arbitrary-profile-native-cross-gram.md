@@ -19,6 +19,7 @@ distinct_from:
   b2-pairs-full-hecke-first-support: that uses the additional literal B2 arm to exchange the two first-selector signs on Q and forces the first native support to have exactly half the full-source rank; this positive sign cut is compatible with the zero endpoint Gram and does not yet align the second transport on that cut.
   b2-b3-pair-full-hecke-four-native-sectors: that proves the two actual J1 and J2 compression supports meet in a representation-universal rank-one-quarter subcorner of Q; the remaining issue is to use this literal common source in the shared-gauge selector compilation rather than the refuted endpoint Gram QWQ.
   endpoint-whitehead-star-braid-synchronizes-native-gauges: that derives odd Coxeter rows coupling J1 and J2 to the positive endpoint W occurrence, eliminating an independent paired central sign; it also proves that every signed-source actor return preserves the missing J1 support sign, so gauge synchronization alone gives no first-row mass.
+  full-hecke-whitehead-zero-cross-gram: that gives a canonical finite interface with the paid full-Hecke supports, exact braid synchronization, and zero mixed target Gram; this arbitrary-profile claim must use a further full-group target-incidence relation.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism
