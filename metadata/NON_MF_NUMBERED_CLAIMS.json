@@ -382,20 +382,15 @@
       "environment": "lemma",
       "title": "",
       "statement_sha256": "036c7227d38f8ca49c0de1e6d2a22a0b7785a5594e4fcde4a5ec65b137a60bf5",
-      "status": "exact",
-      "object_identity": "The datum packages the groups and maps fixed immediately before the printed lemma; the endpoint proves the same displayed containment and retains the printed hypotheses.",
+      "status": "paper-proof",
+      "object_identity": "The containment is formalized from a Fournier--Facio defect datum, but the corpus does not yet construct the concrete datum used in the manuscript.",
       "dependencies": [],
       "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/NonMF/SimpleInDefect",
-          "declaration": "GroupApproximation.Manuscript.NonMF.manuscriptLemmaSimpleInDefect",
-          "covers": "the complete printed lemma"
-        }
-      ]
+      "external_inputs": [
+        "Fournier-Facio, Section 2"
+      ],
+      "coverage_gap": "The formal containment theorem requires a FournierFacioDefectData object; no premise-free construction of the manuscript's concrete datum is present.",
+      "lean": []
     }
   ]
 }
