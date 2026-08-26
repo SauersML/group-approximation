@@ -26,7 +26,8 @@
 % strips \leanverified and \leanstep before hashing a sentence, so a badge
 % carrying any other status would be extracted as prose.  This record does not
 % assert that the surrounding prose proof is a line-by-line transcription;
-% route-level correspondence is tracked separately.
+% sentence- and route-level correspondence is recorded in
+% metadata/NON_MF_SENTENCE_MAP.tsv and enforced by scripts/sentence_census.py.
 \newcommand{\leanverified}[2]{\ignorespaces}
 \allowdisplaybreaks
 \raggedbottom
@@ -416,7 +417,8 @@ $K\trianglelefteq G$, the projection $p$ commutes with $\Theta(G)$; hence
 $q=1-p$ defines a $G$-invariant complementary corner.
 Lemma~\ref{lem:central-corona-corner} realizes the action on this corner by an
 operator norm asymptotic representation $(W_n)$ on matrix corners with
-identities $q_n$.  The corner has no nonzero $K$-fixed vectors, so the Kazhdan
+identities $q_n$.  In every representation of this corner the induced
+representation of $K$ has no nonzero fixed vectors, so the Kazhdan
 inequality yields a single $s_0\in K$ and a subsequence along which
 $\hsnorm{W_n(s_0)-q_n}$ stays bounded below by a positive constant.  This
 contradicts $s_0\in K\le\mathfrak D_G(L)$ and the preceding convergence.
@@ -556,8 +558,8 @@ $\Rad_{\mathrm{MF}}(H)=H$.
 \leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top}
 
 If $\rho\colon G\to\GL(V)$ is a homomorphism and $V$ is finite-dimensional,
-conjugation by $\rho(u)$ maps the commutant of $\rho(L)$ injectively into
-itself, hence bijectively.  Thus $\rho$ kills $\mathfrak D_G(L)$.
+conjugation by $\rho(u)^{-1}$ maps the commutant of $\rho(L)$ injectively
+into itself, hence bijectively.  Thus $\rho$ kills $\mathfrak D_G(L)$.
 Consequently, $\mathfrak D_G(L)=1$ if $G$ has a faithful finite-dimensional
 linear representation.  The same conclusion holds if $G$ is residually
 finite, because every nonidentity element then survives in a finite
@@ -658,14 +660,15 @@ asked whether every separable nuclear stably finite $C^*$-algebra is
 quasidiagonal.  This was a question about nuclear $C^*$-algebras, not about
 arbitrary groups.
 
-Carri\'on--Dadarlat--Eckhardt introduced the group property used
-here~\cite{CDE}.  If every separable stably finite $C^*$-algebra were MF,
+The group property used here was introduced by
+Carri\'on--Dadarlat--Eckhardt~\cite{CDE}.  If every separable stably finite $C^*$-algebra were MF,
 then every countable group would be MF because its reduced group
 $C^*$-algebra is separable and stably finite.  Later approximation papers
 described the resulting operator norm group problem as related to
 Kirchberg's question~\cite{LubotzkyOppenheim,Thom}.  The negative solution of
-the Connes embedding problem produced stably finite non-MF $C^*$-algebras in
-general~\cite{MIPRE}.  Theorem~\ref{thm:headline} gives such an example among
+the Connes embedding problem~\cite{MIPRE} yields separable stably finite
+$C^*$-algebras that are not MF, as Goldbring and Hart
+observe~\cite[Proposition~6.1]{GoldbringHart}.  Theorem~\ref{thm:headline} gives such an example among
 reduced group $C^*$-algebras.
 \leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSeparableStablyFiniteNonMFCStarAlgebraExists}
 \leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
@@ -1089,8 +1092,9 @@ Intersecting over $(V_n)$ proves the claim.
 Let $K\trianglelefteq G$ have property~\textup{(T)}, and let $p$ be the
 image of its Kazhdan projection under a corona representation of $G$.
 Normality of $K$ implies that $p$ commutes with the image of $G$.  Hence
-$q=1-p$ also commutes with that image, and the corner
-$q\mathcal Q_{\mathbf d}q$ has no nonzero $K$-fixed vectors.
+$q=1-p$ also commutes with that image, and in every nondegenerate
+representation of the corner $q\mathcal Q_{\mathbf d}q$ the induced
+representation of $K$ has no nonzero fixed vectors.
 
 \begin{lemma}[central corona corners]\label{lem:central-corona-corner}
 Let \(\rho\colon G\to\U(\mathcal Q_{\mathbf d})\) be a homomorphism from a
@@ -1110,16 +1114,18 @@ coordinate subsequence, there are nonzero projections
 \[
  W_n\colon G\longrightarrow\U(q_nM_{d_n}(\C)q_n)
 \]
-whose corona class is the corner representation \(g\mapsto q\rho(g)\).
+with \(W_n(1)=q_n\), whose class in the corona over the retained coordinates
+is the image of the corner representation \(g\mapsto q\rho(g)\) under
+coordinate restriction.
 \leanverified{Manuscript/OneSidedMFRadical/CentralCoronaCorner}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner}
 \end{lemma}
 
 \begin{proof}
 Lift \(q\) to projections \(q_n\), and lift each \(\rho(g)\) to unitaries
-\(U_n(g)\).  The first lift is obtained by spectral rounding; the second is
-obtained by polar correction, since the two unitarity defects of any lift
-converge to zero in operator norm.  The commutation relation in the corona
-gives
+\(U_n(g)\), choosing \(U_n(1)=I_{d_n}\).  The first lift is obtained by
+spectral rounding; the second is obtained by polar correction, since the two
+unitarity defects of any lift converge to zero in operator norm.  The
+commutation relation in the corona gives
 %<webmath object="whole" when="\opnorm{q_nU_n(g)-U_n(g)q_n}" title="the lifted projection and lifted representation almost commute">
 % The two products differ only in the order of \(q_n\) and \(U_n(g)\).
 % Their difference is therefore the [[commutator]] of those matrices, written
@@ -1134,8 +1140,10 @@ gives
  \qquad(g\in G).
 \]
 Consequently \(q_nU_n(g)q_n\), viewed on \(q_n\C^{d_n}\), has both unitarity
-defects converging to zero.  Its polar correction \(W_n(g)\) is unitary and
-satisfies
+defects converging to zero.  Let \(W_n(g)\) be its polar correction at the
+stages where both defects are at most \(1/2\), so that the compression is
+invertible there, and let \(W_n(g)=q_n\) at the finitely many earlier
+stages.  Then \(W_n(g)\) is unitary and satisfies
 %<webmath object="whole" when="\opnorm{W_n(g)-q_nU_n(g)q_n}" title="polar correction changes the compressed matrix by a vanishing amount">
 % The matrix \(q_nU_n(g)q_n\) is the direct compression of the lifted unitary
 % to the range of \(q_n\), but at a finite stage it may not be exactly
@@ -1148,9 +1156,13 @@ satisfies
 \[
  \opnorm{W_n(g)-q_nU_n(g)q_n}\longrightarrow0.
 \]
+For \(g=1\), the compression is already the identity \(q_n\) of the corner,
+so take \(W_n(1)=q_n\).
 The homomorphism relation for \(\rho\) now makes \((W_n)\) an operator norm
 asymptotic representation.  Since \(q\ne0\), infinitely many \(q_n\) are
-nonzero; retain those coordinates.
+nonzero.  Retain and relabel those coordinates.  Under the coordinate
+restriction homomorphism, the displayed estimate identifies the class of
+\((W_n(g))\) with the image of \(q\rho(g)\).
 \end{proof}
 
 \begin{theorem}[normal Kazhdan radical theorem]\label{thm:normal-kazhdan}
@@ -1276,8 +1288,8 @@ $b_n-(\kappa^2/|S|)q_n$ converges to zero in operator norm.  Taking normalized
 traces gives the displayed inequality.
 After passing to a subsequence, one fixed \(s_0\in S\) therefore stays a
 positive Hilbert--Schmidt distance from the corner identity.  This
-contradicts \(s_0\in K\le D\le R_{\infty\to2}(G)\).  Thus every corona
-homomorphism kills \(K\), as required.
+contradicts \(s_0\in K\le R_{\infty\to2}(G)\), established after passing to
+\(\Theta(G)\).  Thus every corona homomorphism kills \(K\), as required.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:compression-criterion}]
@@ -1436,8 +1448,8 @@ In particular $q\ne0$.
 
 We use indices $0,\ldots,11$ for $12\times12$ matrices.  We identify
 $\GL_3(R)$ with the subgroup of $\GL_{12}(R)$ consisting of the matrices
-$\operatorname{diag}(A,I_9)$.  On $M_3(R)$ consider the unital injective
-endomorphism
+$\operatorname{diag}(A,I_9)$.  Define a map
+$\Psi\colon M_3(R)\to M_3(R)$ by
 %<webmath object="whole" when="\Psi(A)=qI_3+s_0A t_0" title="Psi compresses A into one Leavitt piece and fills the other with identity">
 % The Greek letter \(\Psi\), read “psi,” names a map from 3-by-3 matrices to
 % 3-by-3 matrices.  The term \(s_0At_0\) multiplies every entry of A by
@@ -1450,12 +1462,16 @@ endomorphism
  \Psi(A)=qI_3+s_0A t_0.
 \end{equation}
 Here $s_0At_0$ denotes the matrix $(s_0a_{ij}t_0)_{ij}$.  The relations
-$qs_0=t_0q=0$ and $t_0s_0=1$ show that $\Psi$ is multiplicative.  Moreover,
+$q^2=q$, $qs_0=t_0q=0$, and $t_0s_0=1$, all consequences of
+\eqref{eq:leavitt}, show that $\Psi$ is multiplicative.  Moreover,
 \[
  \Psi(I_3)=qI_3+s_0I_3t_0=qI_3+pI_3=(p+q)I_3=I_3,
 \]
-so $\Psi$ is unital.  Finally, $t_0\Psi(A)s_0=A$, and hence $\Psi$ is
-injective.
+so $\Psi$ preserves the identity.  Finally, $t_0\Psi(A)s_0=A$, and hence
+$\Psi$ is injective.  Thus $\Psi$ is an injective identity-preserving
+multiplicative map.  It is not additive, since $\Psi(0)=qI_3\ne0$.
+Consequently, it restricts to an injective group homomorphism
+$\GL_3(R)\to\GL_3(R)$.
 
 To implement $\Psi$ by conjugation on the embedded copy of $\GL_3(R)$,
 define the following $6\times6$ block matrices:
@@ -1699,9 +1715,11 @@ Let $N\trianglelefteq H$ be nontrivial.  By
 \eqref{eq:two-sided-sandwich} and Lemma
 \ref{lem:normal-generation-transvection}, it is enough to find
 $i\ne j$ and $0\ne x\in R$ such that $e_{ij}(x)\in N$.
+Choose $1\ne g\in N$.  We distinguish according as $g$ is diagonal or
+nondiagonal.
 
 \paragraph{The diagonal case.}
-Choose $1\ne g\in N$ and write
+Suppose first that $g$ is diagonal, and write
 $g=\operatorname{diag}(\lambda_0,\ldots,\lambda_{11})$.
 If $g$ commutes with every $e_{ij}(a)$, then the relations with $a=1$ give
 $\lambda_i=\lambda_j$ for all $i\ne j$.  Hence $g=\lambda I_{12}$ for some
@@ -1722,9 +1740,10 @@ $x=\lambda_i a\lambda_j^{-1}-a$.  Then $x\ne0$, and normality of $N$ gives
 \[
  [g,e_{ij}(a)]=e_{ij}(x)\in N.
 \]
+Lemma~\ref{lem:normal-generation-transvection} now gives $N=H$ in this case.
 
 \paragraph{The nondiagonal case.}
-Suppose now that $g$ is not diagonal.  Choose distinct $i,\ell$ such that
+Suppose instead that $g$ is not diagonal.  Choose distinct $i,\ell$ such that
 $g_{\ell i}\ne0$, and put $r=(g^{-1})_{\ell i}$.
 
 If $r=0$, set
@@ -1975,10 +1994,12 @@ Consequently,
 Every corona homomorphism from $G$ kills $\ker f$ and therefore factors
 uniquely through $f$.  Conversely, composing a corona homomorphism of $Q$
 with $f$ gives one of $G$.  Intersecting these two corresponding families of
-kernels gives the displayed MF radical pullback.  For the final assertion,
-functoriality of the MF radical under
-the inclusion $\ker f\to G$ gives
-$\ker f\le\Rad_{\mathrm{MF}}(G)$.
+kernels gives the displayed MF radical pullback.  For the stated sufficient
+condition,
+let \(\pi\colon G\to\U(\mathcal Q_{\mathbf d})\) be any corona homomorphism.
+Its restriction to \(\ker f\) is trivial because
+\(\Rad_{\mathrm{MF}}(\ker f)=\ker f\).  Hence
+\(\ker f\le\Rad_{\mathrm{MF}}(G)\).
 
 The same factorization, restricted to homomorphisms that kill $N$, gives the
 closure formula.  If this closure equals $N$, then it contains $\ker f$.
@@ -1986,13 +2007,13 @@ Mapping the equality onto $Q$ shows that
 $\operatorname{cl}_{\mathrm{MF}}^Q(f(N))=f(N)$.  Conversely, these two
 conditions give
 %<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^G(N)=f^{-1}(f(N))=N" title="the two closure conditions force the MF closure to be exactly N">
-% Start with N and take its image (f(N)) in Q.  The hypothesis says that
-% (f(N)) is already [[MF closure|MF-closed]] in Q, so pulling that closure
-% back gives (f^{-1}(f(N))).  Because N contains the [[kernel]] of f, this
+% Start with N and take its image \(f(N)\) in Q.  The hypothesis says that
+% \(f(N)\) is already [[MF closure|MF-closed]] in Q, so pulling that closure
+% back gives \(f^{-1}(f(N))\).  Because N contains the [[kernel]] of f, this
 % [[preimage]] is exactly N rather than a larger subgroup.  The chain of two
 % equals signs therefore proves that applying MF closure inside G adds no new
 % elements to N.  By the earlier criterion, this is equivalent to the
-% [[quotient group]] (G/N) being an [[MF group]].
+% [[quotient group]] \(G/N\) being an [[MF group]].
 %</webmath>
 \[
  \operatorname{cl}_{\mathrm{MF}}^G(N)
@@ -2115,13 +2136,13 @@ Let $f\colon W_Q\to T$ be a homomorphism.  Its restriction to $B$ is
 trivial, so its restriction to the amalgamated subgroup $A$ is trivial.  For
 $(q,a)\in Q\times A$, we then have
 %<webmath object="whole" when="f(q,a)=f(q,1)f(1,a)=f(q,1)" title="the map f ignores the A-coordinate of each pair">
-% The pair ((q,a)) in the [[direct product]] (Q\times A) can be factored
-% as ((q,1)(1,a)): one factor carries only the Q-coordinate and the other
+% The pair \((q,a)\) in the [[direct product]] \(Q\times A\) can be factored
+% as \((q,1)(1,a)\): one factor carries only the Q-coordinate and the other
 % carries only the A-coordinate.  Because f is a [[homomorphism]], it turns
-% that product into (f(q,1)f(1,a)).  The restriction of f to A is trivial,
-% so (f(1,a)) is the [[identity]] and disappears from the product.  Thus the
+% that product into \(f(q,1)f(1,a)\).  The restriction of f to A is trivial,
+% so \(f(1,a)\) is the [[identity]] and disappears from the product.  Thus the
 % value of f depends only on q.  This is exactly why f [[factors through]] the
-% projection from (Q\times A) onto Q.
+% projection from \(Q\times A\) onto Q.
 %</webmath>
 \[
  f(q,a)=f(q,1)f(1,a)=f(q,1).
@@ -2148,12 +2169,12 @@ Applying Proposition~\ref{prop:universal-factorization} with
 $T=\U(\mathcal Q_{\mathbf d})$ shows that every corona homomorphism from
 $W_Q$ factors uniquely through $\pi_Q$.  Intersecting their kernels gives
 %<webmath object="whole" when="\Rad_{\mathrm{MF}}(W_Q)=\pi_Q^{-1}" title="the MF radical of W sub Q is pulled back from Q">
-% Every homomorphism from (W_Q) to a [[norm matrix corona]] factors uniquely
-% through the map (pi_Qcolon W_Q\to Q).  Therefore an element of (W_Q)
+% Every homomorphism from \(W_Q\) to a [[norm matrix corona]] factors uniquely
+% through the map \(\pi_Q\colon W_Q\to Q\).  Therefore an element of \(W_Q\)
 % is erased by every such homomorphism exactly when its image in Q lies in the
-% [[MF radical]] of Q.  The notation (pi_Q^{-1}) means [[preimage]], not an
+% [[MF radical]] of Q.  The notation \(\pi_Q^{-1}\) means [[preimage]], not an
 % inverse function: it collects all elements whose image has the stated
-% property.  The equality says that the complete invisible part of (W_Q) is
+% property.  The equality says that the complete invisible part of \(W_Q\) is
 % precisely the pullback of the invisible part of Q.
 %</webmath>
 \[
@@ -2165,12 +2186,12 @@ nonidentity element $d$.  Thus $W_Q$ is non-MF.  If $Q$ is MF, its MF radical
 is trivial, and the displayed equality becomes
 %<webmath object="whole" when="\Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}" title="when Q is MF, the invisible part is exactly the normal closure of d">
 % If Q is an [[MF group]], its [[MF radical]] contains only the identity.
-% Pulling that one-element subgroup back through (pi_Q) gives the
-% [[kernel]] of (pi_Q), namely all elements of (W_Q) sent to the identity
+% Pulling that one-element subgroup back through \(\pi_Q\) gives the
+% [[kernel]] of \(\pi_Q\), namely all elements of \(W_Q\) sent to the identity
 % in Q.  The preceding proposition identifies this kernel with the [[normal
-% closure]] of d in (W_Q).  Thus all three expressions name the same
+% closure]] of d in \(W_Q\).  Thus all three expressions name the same
 % [[normal subgroup]].  In particular d is nontrivial but invisible to every
-% allowed matrix model, so (W_Q) is not MF.
+% allowed matrix model, so \(W_Q\) is not MF.
 %</webmath>
 \[
  \Rad_{\mathrm{MF}}(W_Q)=\ker\pi_Q=\normal d_{W_Q}.
@@ -2180,13 +2201,13 @@ is trivial, and the displayed equality becomes
 
 If $N\trianglelefteq W_Q$, the same factorization gives
 %<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)=\pi_Q^{-1}" title="MF closure in W sub Q is the pullback of MF closure in Q">
-% First send the [[normal subgroup]] N into Q, obtaining (pi_Q(N)).  Take
+% First send the [[normal subgroup]] N into Q, obtaining \(\pi_Q(N)\).  Take
 % the [[MF closure]] of that image inside Q, which adds every element that all
-% MF-target maps must erase once they erase (pi_Q(N)).  Finally take the
-% [[preimage]] under (pi_Q), bringing the result back to (W_Q).  The
+% MF-target maps must erase once they erase \(\pi_Q(N)\).  Finally take the
+% [[preimage]] under \(\pi_Q\), bringing the result back to \(W_Q\).  The
 % equality says this three-step procedure gives exactly the MF closure of N
-% computed directly inside (W_Q).  It works because every relevant
-% [[homomorphism]] from (W_Q) factors uniquely through Q.
+% computed directly inside \(W_Q\).  It works because every relevant
+% [[homomorphism]] from \(W_Q\) factors uniquely through Q.
 %</webmath>
 \begin{equation}\label{eq:closure-pullback}
  \operatorname{cl}_{\mathrm{MF}}^{W_Q}(N)
@@ -2200,10 +2221,10 @@ and \eqref{eq:closure-pullback} give
 %<webmath object="whole" when="W_Q/N\text{ is MF}" title="the two exact conditions for the quotient W sub Q over N to be MF">
 % The double arrow means the statement on the left holds exactly when both
 % conditions on the right hold.  First, N must contain the [[kernel]] of
-% (pi_Q); otherwise the quotient would retain a nontrivial element that all
+% \(\pi_Q\); otherwise the quotient would retain a nontrivial element that all
 % MF models erase.  Second, after mapping N into Q, the [[quotient group]]
-% (Q/\pi_Q(N)) must itself be an [[MF group]].  Together these conditions
-% say that (W_Q/N) has discarded the entire invisible attached part and that
+% \(Q/\pi_Q(N)\) must itself be an [[MF group]].  Together these conditions
+% say that \(W_Q/N\) has discarded the entire invisible attached part and that
 % the remaining quotient inherited from Q admits the required finite-matrix
 % approximations.
 %</webmath>
@@ -2220,11 +2241,11 @@ $N=\pi_Q^{-1}(\pi_Q(N))$.
 Taking $Q=\mathbb Z$ makes the quotient criterion especially concrete:
 for every normal subgroup $N\trianglelefteq W_{\mathbb Z}$,
 %<webmath object="whole" when="W_{\mathbb Z}/N\text{ is MF}" title="for this concrete group, the quotient is MF exactly when N contains d">
-% Here (mathbb Z) is the [[group of integers]] under addition, and every
+% Here \(\mathbb Z\) is the [[group of integers]] under addition, and every
 % quotient of it is MF.  The general two-condition criterion therefore loses
 % its second condition.  What remains is that N must contain the element d,
 % or equivalently contain its [[normal closure]], which is the kernel of the
-% map from (W_{\mathbb Z}) to (mathbb Z).  The double arrow means both
+% map from \(W_{\mathbb Z}\) to \(\mathbb Z\).  The double arrow means both
 % directions hold: containing d is sufficient for the [[quotient group]] to
 % be an [[MF group]], and any MF quotient must contain d.
 %</webmath>
@@ -2346,6 +2367,13 @@ M.~Ershov and A.~Jaikin-Zapirain,
 \emph{Invent. Math.} \textbf{179} (2010), 303--347,
 \doi{10.1007/s00222-009-0218-2}.
 
+\bibitem[GH]{GoldbringHart}
+I.~Goldbring and B.~Hart,
+\emph{The universal theory of the hyperfinite $\mathrm{II}_1$ factor is not
+computable},
+preprint, 2021,
+\href{https://arxiv.org/abs/2006.05629}{arXiv:2006.05629}.
+
 \bibitem[JNVWY]{MIPRE}
 Z.~Ji, A.~Natarajan, T.~Vidick, J.~Wright, and H.~Yuen,
 \emph{$\operatorname{MIP}^*=\operatorname{RE}$},
@@ -2382,12 +2410,6 @@ R.~Preusser,
 \emph{On general linear groups over exchange rings},
 Linear and Multilinear Algebra \textbf{70} (2022), no.~4, 705--713,
 \doi{10.1080/03081087.2020.1743636}.
-
-\bibitem[RS]{RainoneSchafhauser}
-T.~Rainone and C.~Schafhauser,
-\emph{Crossed products of nuclear $C^*$-algebras and their traces},
-Adv. Math. \textbf{347} (2019), 105--149,
-\doi{10.1016/j.aim.2019.01.045}.
 
 \bibitem[Sh]{Shulman}
 T.~Shulman,

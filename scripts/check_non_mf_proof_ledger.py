@@ -3,10 +3,14 @@
 
 `check_non_mf_refs.py` asks whether every margin badge resolves.
 `check_non_mf_claim_manifest.py` asks whether every numbered environment has a
-manifest entry whose printed statement has not drifted.  Neither asks the
-question `metadata/NON_MF_PROOF_LEDGER.md` exists to answer: whether every
-inferential step of every printed proof has a Lean counterpart, and whether
-that counterpart is the *same* step.
+manifest entry whose printed statement has not drifted.  Neither asks whether
+every inferential step of every printed proof has a Lean counterpart, and
+whether that counterpart is the *same* step.
+
+Validation deliberately has no default ledger.  The original manuscript
+ledger is a retired historical record, while this checker remains live for
+explicit workflows such as the notes ledger.  Callers must therefore name the
+ledger they intend to validate with `--ledger`.
 
 That judgment is human and cannot be automated.  What this gate automates is
 the drift around it, so that the judgment stays attached to the text and the
@@ -55,7 +59,6 @@ from lean_decls import build_index
 
 REPO = Path(__file__).resolve().parent.parent
 DEFAULT_TEX = REPO / "non_mf_groups_exist.tex"
-DEFAULT_LEDGER = REPO / "metadata" / "NON_MF_PROOF_LEDGER.md"
 
 ROOT_NAMESPACE = "GroupApproximation"
 MATHLIB_PREFIX = "Mathlib:"
@@ -879,7 +882,9 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo", type=Path, default=REPO)
     parser.add_argument("--tex", type=Path, default=DEFAULT_TEX)
-    parser.add_argument("--ledger", type=Path, default=DEFAULT_LEDGER)
+    parser.add_argument(
+        "--ledger", type=Path,
+        help="ledger to validate (required outside --self-test)")
     parser.add_argument(
         "--repin-digests", action="store_true",
         help="rewrite env anchor digests to the manuscript's current statements; "
@@ -893,6 +898,12 @@ def main() -> int:
     args = parser.parse_args()
     if args.self_test:
         return self_test()
+    if args.ledger is None:
+        parser.error(
+            "--ledger is required for validation.  "
+            "metadata/NON_MF_PROOF_LEDGER.md is retired; run "
+            "scripts/sentence_census.py for the live manuscript audit, or "
+            "name an active ledger explicitly")
 
     tex = args.tex if args.tex.is_absolute() else args.repo / args.tex
     ledger = args.ledger if args.ledger.is_absolute() else args.repo / args.ledger

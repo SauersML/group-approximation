@@ -1,89 +1,17 @@
 {
   "schema_version": 1,
   "manuscript": "non_mf_groups_exist.tex",
-  "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: exact Lean counterpart, complete paper proof, or stated literature input. Exact claims carry exact-role margin declarations; paper and literature claims carry none.",
+  "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
-      "id": "thm:A",
-      "environment": "mainthm",
-      "title": "an explicit non-MF group",
-      "statement_sha256": "c5660134b135e2a867561e9e3bb21c7fa92fd6b1067329a7db2d0e157fa9deed",
-      "status": "exact",
-      "object_identity": "The companion notes identify the printed affine construction with the literal presented group used by the named declarations; the printed conclusions are invariant under that identification.",
-      "dependencies": [
-        "thm:kazhdan-clifford",
-        "lem:unitarycorona"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralNonMFEndpoint",
-          "declaration": "GroupApproximation.LiteralNonMFEndpoint.manuscriptTheoremA",
-          "covers": "the complete printed proposition under the specialization or identification recorded above"
-        },
-        {
-          "role": "exact",
-          "module": "Sofic/LiteralTheoremAPackage",
-          "declaration": "GroupApproximation.LiteralTheoremAPackage.manuscriptTheoremA_package",
-          "covers": "a printed conclusion of the proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:lift",
-      "environment": "lemma",
-      "title": "lifting",
-      "statement_sha256": "721a3d635e21456fb92cb1f55c7480387a6e636dafd15a55eb2ccaad6ad3a5fc",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryLifting",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:unitarycorona",
-      "environment": "lemma",
-      "title": "unitaries in the quotient",
-      "statement_sha256": "da8c086325c912abb1442b5253c1868ff3598bf556a67d67f1cbed5ae4c6731b",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "lem:lift"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptUnitaryCoronaEquivalence",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:mf-equivalences",
+      "id": "prop:mf-residual-calculus",
       "environment": "proposition",
-      "title": "Equivalent formulations of the MF property",
-      "statement_sha256": "f68097942772b0116101c4c168a193858c02dba053eee4c0f9ad4d5f4ecce8d6",
+      "title": "basic properties of the MF radical",
+      "statement_sha256": "6cba25f086839c7dfa3f34941f8d6df1f65d15507b7a4e0067ba71981e27aadc",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:unitarycorona",
-        "lem:tensor-amplification"
+        "lem:central-corona-corner"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -91,173 +19,89 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptMFDefinitionEquivalences",
+          "module": "Manuscript/OneSidedMFRadical/LiteralMFClosure",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral",
           "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "lem:tensor-amplification",
-      "environment": "lemma",
-      "title": "tensor amplification",
-      "statement_sha256": "0bcd5e6c6b4e59321ef54c0e7e3e4218fee352021bcec8cce456c8d6a1d60ea3",
+      "id": "thm:compression-criterion",
+      "environment": "mainthm",
+      "title": "one-sided compression criterion",
+      "statement_sha256": "4ea0b3df0aed35e3d47643be6107329edb3fb30332c3c5ee1ead03c91fec0499",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
+      "dependencies": [
+        "thm:commutant",
+        "cor:defect-hs",
+        "thm:normal-kazhdan"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTensorAmplification",
+          "module": "Manuscript/OneSidedMFRadical/PrintedCriterion",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedCompressionCriterion",
           "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "thm:markedclosed",
-      "environment": "theorem",
-      "title": "the MF locus is closed",
-      "statement_sha256": "28fac97c4cd092bf99386ebce5706bc705ba0af963c19675dcb2ca14c077b527",
+      "id": "thm:headline",
+      "environment": "mainthm",
+      "title": "the binary Leavitt group",
+      "statement_sha256": "5b06979664a4cc9e33530b526da4041e12b48e3cec8e01cf650dd44078e43877",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
+      "dependencies": [
+        "thm:compression-criterion",
+        "prop:leavitt-compression",
+        "prop:simple",
+        "prop:defect"
+      ],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.isClosed_operatorMFLocus",
+          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedHeadline",
           "covers": "the complete printed proposition"
         },
         {
           "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.isOpen_compl_operatorMFLocus",
+          "module": "Manuscript/OneSidedMFRadical/HeadlineTheorem",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline",
           "covers": "a printed conclusion of the proposition"
         },
         {
           "role": "exact",
-          "module": "Sofic/MarkedMFClosed",
-          "declaration": "GroupApproximation.MarkedGroupSpace.exists_wordBall_cylinder_subset_compl_operatorMFLocus",
+          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequence",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/ReducedCStarConsequence",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF",
           "covers": "a printed conclusion of the proposition"
         }
       ]
     },
     {
-      "id": "lem:finitecompare",
-      "environment": "lemma",
-      "title": "comparison in a finite algebra",
-      "statement_sha256": "fc2a55b505fb0455b75447b10bb9399a687fed72fda340b9483e12f1fede066c",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/UltraproductKazhdanTransport",
-          "declaration": "GroupApproximation.kt_10_finiteness_reverses",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:ultrafinite",
-      "environment": "lemma",
-      "title": "finiteness of a norm quotient of matrix blocks",
-      "statement_sha256": "18a9bd515024e111bf781e608fc7e1df56453a4e5eb1608c5e417424dfe46102",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/UltraproductDedekindFinite",
-          "declaration": "GroupApproximation.kt_06_ultraproduct_finite",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:exactfd",
-      "environment": "theorem",
-      "title": "the finite-dimensional case",
-      "statement_sha256": "1b89b962cc94424bacc8737d008a28d45400b0a7962507a89f5b6cff78c55bc1",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptTheoremB",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:kazhdan-gap",
-      "environment": "lemma",
-      "title": "Kazhdan spectral gap",
-      "statement_sha256": "88edd2899a12ce01718448347b8325c62c025e7b24913be49df7763b8370ba33",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/UltraproductKazhdanProjection",
-          "declaration": "GroupApproximation.UltraproductKazhdanProjection.manuscriptKazhdanSpectralGap",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "thm:kazhdan-transport",
-      "environment": "theorem",
-      "title": "one-sided conjugation preserves asymptotic commutants",
-      "statement_sha256": "2a1d4bc0a7b826678a9fb23945b163e259c821f3b37720ff8237434b6932316a",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptSubgroupSpecializations",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptKazhdanTransportSubgroup",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "lem:corner",
-      "environment": "lemma",
-      "title": "compression to an asymptotically central corner",
-      "statement_sha256": "5d32374145f307f1ec760709387ef933965f2f541a27ea3a1192a5f8004498bd",
+      "id": "thm:prescribed-quotients",
+      "environment": "mainthm",
+      "title": "prescribed quotients visible to MF",
+      "statement_sha256": "881486bf3a326e7c475370d9e6617fd092050d72b130bdb66aac1286b22f2834",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "lem:lift"
+        "prop:full-kernel-pullback",
+        "prop:universal-factorization"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -265,39 +109,17 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Analysis/PrintedCornerCompression",
-          "declaration": "GroupApproximation.PrintedCornerCompression.manuscriptCornerAsymptoticRepresentation",
+          "module": "Manuscript/OneSidedMFRadical/PrescribedQuotients",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients",
           "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "thm:sign-criterion",
+      "id": "thm:commutant",
       "environment": "theorem",
-      "title": "central involution obstruction",
-      "statement_sha256": "8094b24bda7ec03f6f620acad8b198bdd18aabd624e6129a5881a90d532c2a5b",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "thm:kazhdan-transport"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Sofic/ManuscriptSubgroupSpecializations",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCentralSignCriterionSubgroup",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "con:clifford",
-      "environment": "construction",
-      "title": "Clifford groups",
-      "statement_sha256": "009265a7f2d936cde715f07e0a93b00cb3dbe737b5296fdc4fd9b7a53585013d",
+      "title": "finite-dimensional commutant rigidity",
+      "statement_sha256": "a25bdabf8f2042808c8d911ac339bc4e507ba8ffc2416e4a334a42f421a2962b",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -307,24 +129,62 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/ManuscriptExactWrappers",
-          "declaration": "GroupApproximation.ManuscriptExactWrappers.manuscriptCliffordConstruction",
+          "module": "Manuscript/OneSidedMFRadical/FiniteDimensionalCommutant",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFiniteDimensionalCommutantRigidity",
           "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "thm:kazhdan-clifford",
+      "id": "lem:stable-finite",
+      "environment": "lemma",
+      "title": "",
+      "statement_sha256": "8d86c4ae8a4d6fd6e556076f516a7de76e80c9b49a55bbd0929757d18bee6bea",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/StableFiniteness",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormMatrixCoronaStableFinite",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:kazhdan-projection-order",
+      "environment": "lemma",
+      "title": "one-sided order for the Kazhdan projection",
+      "statement_sha256": "b010cc003a831d149670e277a50c7de481116cab97b409381182f6d26dc6b387",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/MaximalCStarKazhdanProjection",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMaximalCStarKazhdanProjectionOrder",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:transport",
       "environment": "theorem",
-      "title": "the basic construction",
-      "statement_sha256": "afc58d4e7ad0f434fa306673ae1a876b8a9d065d6b737775943834e335fdbb66",
+      "title": "one-sided Kazhdan transport",
+      "statement_sha256": "ea1a79197adebc1082475d3f87d41ca599818d911f71cbbf7b23260ea14e4ac6",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "prop:mf-equivalences",
-        "thm:sign-criterion",
-        "thm:kazhdan-transport",
-        "con:clifford"
+        "lem:stable-finite",
+        "lem:kazhdan-projection-order"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -332,21 +192,21 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/KazhdanCliffordConstruction",
-          "declaration": "GroupApproximation.KazhdanCliffordConstruction.kazhdanCliffordConstruction",
+          "module": "Manuscript/OneSidedMFRadical/KazhdanTransport",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedKazhdanTransport",
           "covers": "the complete printed proposition"
         }
       ]
     },
     {
-      "id": "cor:uniform",
+      "id": "cor:defect-hs",
       "environment": "corollary",
-      "title": "uniform finite operator-norm obstruction",
-      "statement_sha256": "127963fa65d9be4e6a9e27bc9d6910285109ce088fc61e729b0963319c059142",
+      "title": "",
+      "statement_sha256": "d00080c95aae8eedc0df426fad4dbf5f878410a9cc6ad8714de099f325fcf324",
       "status": "exact",
-      "object_identity": "The companion notes identify the printed affine construction with the literal presented group used by the named declaration, carrying the distinguished element and the local obstruction with it.",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
-        "thm:A"
+        "thm:transport"
       ],
       "extra_assumptions": [],
       "external_inputs": [],
@@ -354,9 +214,238 @@
       "lean": [
         {
           "role": "exact",
-          "module": "Sofic/LiteralUniformObstruction",
-          "declaration": "GroupApproximation.LiteralUniformObstruction.literal_uniform_operatorNorm_obstruction",
-          "covers": "the complete printed proposition under the specialization or identification recorded above"
+          "module": "Manuscript/OneSidedMFRadical/DefectHS",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:central-corona-corner",
+      "environment": "lemma",
+      "title": "central corona corners",
+      "statement_sha256": "7978c0785a0472e25fc8ed939ac87e4075152c03d8b633199be2a8d9749e2a64",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/CentralCoronaCorner",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "thm:normal-kazhdan",
+      "environment": "theorem",
+      "title": "normal Kazhdan radical theorem",
+      "statement_sha256": "7611e74f969ea3d5bf7d054d5e6e0f357b6ce6eb8607ad6de78d4a878dd4868d",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:central-corona-corner"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/NormalKazhdan",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNormalKazhdanRadical",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:defect-saturation",
+      "environment": "proposition",
+      "title": "functoriality and normal generation",
+      "statement_sha256": "5285736fe4b503c8ffd31b9a743668783bf78198a56ec0ad2cfcfa3b953960bf",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "thm:compression-criterion"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/DefectSaturation",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptDefectSaturation",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/CompleteDefectSaturation",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompleteDefectSaturation",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:tau-elementary",
+      "environment": "lemma",
+      "title": "",
+      "statement_sha256": "26c02dd68632b4cfa281352bd5740ba40affcb3030e953449e38996acf4ff730",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_mem",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:leavitt-compression",
+      "environment": "proposition",
+      "title": "",
+      "statement_sha256": "112f7da1ac22abefeb76ec79b5113a2db344d8ea31464aff73f5774e76f1debd",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:tau-elementary"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Ershov--Jaikin-Zapirain, Theorem 1.1"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:normal-generation-transvection",
+      "environment": "lemma",
+      "title": "Normal generation by an elementary transvection",
+      "statement_sha256": "094b15ab1493cd2caa1843c068a14207fe1c2c0cf2b7ed10297bb7737b8de118",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:coefficient-separation",
+      "environment": "lemma",
+      "title": "Coefficient separation",
+      "statement_sha256": "f5dd8225f8bb4ca177a7a8bd904ed42c86e49504e6da24a9c1d9a4014aa34474",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Abrams--Aranda Pino, Proposition 10(v), through the preceding two-sided sandwich fact"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "prop:simple",
+      "environment": "proposition",
+      "title": "",
+      "statement_sha256": "d756a14fb63a07f8fafa6796911dfdae943499b6e97dc9f1287c8e5c306e9ce2",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:normal-generation-transvection",
+        "lem:coefficient-separation"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/RankTwelveSimplicity",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionSimple",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:defect",
+      "environment": "proposition",
+      "title": "",
+      "statement_sha256": "0c24db3bd659ea518410bd956aa8b0538cf3ac5eeede650b10cbbd84340caf04",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:normal-generation-transvection",
+        "prop:leavitt-compression"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptPropositionDefect",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:full-kernel-pullback",
+      "environment": "proposition",
+      "title": "full-kernel pullback",
+      "statement_sha256": "b0c6befd095a2e1a3ceadd2fb6ea2f5c51e512f21436c9821cf539f69cc38b57",
+      "status": "exact",
+      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
+      "dependencies": [
+        "prop:mf-residual-calculus"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackFromFullKernel",
+          "covers": "one printed clause; the listed declarations are collective"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullback",
+          "covers": "one printed clause; the listed declarations are collective"
+        }
+      ]
+    },
+    {
+      "id": "prop:universal-factorization",
+      "environment": "proposition",
+      "title": "universal factorization",
+      "statement_sha256": "d68ff5d921d874282bb59f4ea01c16c43b91865482fe3bb8480aa63113b16bfe",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/UniversalFactorization",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptUniversalFactorization",
+          "covers": "the complete printed proposition"
         }
       ]
     }

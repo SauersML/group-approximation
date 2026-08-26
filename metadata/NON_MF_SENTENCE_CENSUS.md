@@ -6,16 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 282 |
-| `definition` | 56 |
-| `unassigned` | 41 |
-| `structural` | 19 |
-| `attribution` | 16 |
+| `formalized` | 329 |
+| `definition` | 63 |
+| `structural` | 20 |
+| `attribution` | 15 |
 | `provenance` | 4 |
 | `partial` | 4 |
-| **total** | **422** |
+| **total** | **435** |
 
-Carrying a declaration or a ledger row: **342/422** (81.0%).
+Completely formalized or definitional: **392/435** (90.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -23,55 +22,14 @@ A sentence under a single-row ledger anchor inherits that forced row.  A sentenc
 
 These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
 
-* **`partial`**, line 652 --- Their 1997 paper introduced MF $C^*$-algebras; for separable nuclear algebras, the MF and NF properties are equivalent~\cite{BK}.
-  * TWO clauses. Clause 1, 'Their 1997 paper introduced MF C*-algebras', is attribution: it credits Blackadar-Kirchberg and asserts nothing of ours. Clause 2, 'for separable nuclear algebras, the MF and NF properties are equivalent', is UNPROVED and is why this row is partial rather than attribution: it is a mathematical assertion, and the census rule admits attribution only for a sentence that makes no assertion of its own. It is a cited theorem of Blackadar-Kirchberg \cite{BK}, not a result of this paper, and it is NOT formalized anywhere in the corpus -- there is no NF predicate in the tree at all, so no declaration can be named without laundering the citation. Nothing downstream consumes it: `grep -n "NF\b" non_mf_groups_exist.tex` returns only lines 615-616, this passage itself. Inertness makes the gap harmless, not absent.
-* **`partial`**, line 662 --- Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
+* **`partial`**, line 654 --- Their 1997 paper developed these notions and proved that a separable $C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK}.
+  * The corpus defines finite-local NF independently and proves that it implies separability and nuclearity, and in the unital case constructs a faithful matrix-corona embedding and hence proves MF. The printed equivalence remains partial because the converse implication from separable nuclear and MF to this independent NF predicate is not proved.
+* **`partial`**, line 663 --- Shulman proves MF permanence for doubles $G*_H G$ of MF groups.
   * NOT proved in-repo. The sentence states a specific theorem -- G MF implies the double G *_H G is MF -- so it is not bare attribution, but nothing in the corpus establishes it: metadata/LITERATURE_QUARANTINE.md lists the Shulman amalgamated-double theorem as an unproved input, and Sofic/SymmetricDoubleShulman.lean proves only that IsOperatorMF (SymmetricDouble SigmaGroup sigmaBase) is EQUIVALENT to the exact-radical endpoint, explicitly declining to prove it. No declaration may be named without laundering that input
-* **`partial`**, line 662 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
+* **`partial`**, line 663 --- The operator norm case remained open after failure of approximation had been established for finite Schatten norms~\cite{DGLT,LubotzkyOppenheim,Thom}.
   * one clause is a dated status claim with no mathematical content -- 'the operator norm case remained open' -- and the paper closes it. The other clause reports the DGLT / Lubotzky-Oppenheim / Thom non-approximability theorems for finite Schatten norms, which IS a proposition and is NOT formalized: grep over GroupApproximation finds no Schatten-norm stability content at all
-* **`unassigned`**, line 689 --- In the present case, every nontrivial normal subgroup of $\EL_{12}(R)$ contains some $e_{ij}(x)$ with $i\ne j$ and $x\ne0$ (Proposition~\ref{prop:simple}).
-* **`partial`**, line 689 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
-  * generalRankFiniteFieldElementaryPropertyT now proves the printed statement for every rank n >= 3 over every finite-type algebra over every finite field, hence for every ring of prime characteristic -- via the identity-padding homomorphism EL_3 -> EL_n (Steinberg.ElementaryIndexPadding), which was the entire blocker. STILL PARTIAL, and this is the residue: characteristic zero, and positive characteristic that is not prime. The Kazhdan-subset half is characteristic-free, but the control half needs a coefficient FIELD (CharacterMass.gap and the finite-dual sum), and in characteristic zero the finite character sum becomes a Haar integral over a torus needing an equidistribution estimate. Ershov--Jaikin-Zapirain do not prove that half either: they import Kassabov's relative (T) for (EL_2(R) semidirect R^2, R^2), which is not in this tree or in Mathlib
-* **`unassigned`**, line 1513 --- Put $I=I_6$.
-* **`unassigned`**, line 1513 --- The Whitehead factorization gives
-* **`unassigned`**, line 1532 --- If $B=(b_{rs})_{r,s=0}^5\in M_6(R)$, then
-* **`unassigned`**, line 1540 --- In either product, distinct off-diagonal matrix units have product zero, so no cross-terms occur.
-* **`unassigned`**, line 1540 --- Every factor on the right-hand side of \eqref{eq:whitehead-factorization} therefore belongs to $\EL_{12}(R)$.
-* **`unassigned`**, line 1540 --- Since $Y=X^{-1}$, its left-hand side is $\tau$, and the result follows.
-* **`unassigned`**, line 1546 --- Set $H=\EL_{12}(R)$, and let
-* **`unassigned`**, line 1554 --- $L=\EL_3(R)\le H$ denote the image of the embedding $A\mapsto\operatorname{diag}(A,I_9)$.
-* **`unassigned`**, line 1558 --- The groups $H$ and $L$ have property~\textup{(T)}, and $\tau\in H$ satisfies
-* **`unassigned`**, line 1574 --- The ring $R$ is generated by $s_0,s_1,t_0,t_1$ as a unital ring.
-* **`unassigned`**, line 1574 --- The theorem of Ershov and Jaikin-Zapirain therefore gives property~\textup{(T)} for $\EL_{12}(R)$ and $\EL_3(R)$~\cite[Theorem~1.1]{EJZ}.
-* **`unassigned`**, line 1574 --- Lemma \ref{lem:tau-elementary} gives $\tau\in H$.
-* **`unassigned`**, line 1579 --- For $i\ne j$ and $a\in R$, equations \eqref{eq:corner-conjugation} and \eqref{eq:matrix-compression} give
-* **`unassigned`**, line 1584 --- where the elementary matrices are viewed in the embedded copy of $L$.
-* **`unassigned`**, line 1584 --- These matrices generate $L$, so \eqref{eq:compresses-L} follows.
-* **`unassigned`**, line 1610 --- Let $S$ be a unital ring, let $n\ge3$, and let $N\trianglelefteq\EL_n(S)$.
-* **`unassigned`**, line 1610 --- Suppose that $e_{ij}(x)\in N$ and that $axb=1$ for some $a,b\in S$.
-* **`unassigned`**, line 1610 --- Then $N=\EL_n(S)$.
-* **`unassigned`**, line 1616 --- Choose $k$ different from $i$ and $j$.
-* **`unassigned`**, line 1616 --- Normality of $N$ and the elementary commutator relations give
-* **`unassigned`**, line 1631 --- so $e_{jk}(1)\in N$.
-* **`unassigned`**, line 1633 --- Products of the generalized permutation matrices
-* **`unassigned`**, line 1637 --- conjugate $e_{jk}(1)$ to $e_{uv}(1)$ or its inverse for any $u\ne v$.
-* **`unassigned`**, line 1637 --- Normality of $N$, and taking inverses if necessary, therefore gives $e_{uv}(1)\in N$ for every $u\ne v$.
-* **`unassigned`**, line 1637 --- Given $r\in S$ and $u\ne v$, choose $h$ different from $u$ and $v$.
-* **`unassigned`**, line 1637 --- Then
-* **`unassigned`**, line 1644 --- Thus $N$ contains every elementary generator of $\EL_n(S)$.
-* **`unassigned`**, line 1648 --- If $r,s\in R$ are nonzero, then there exist $a,b\in R$ such that
-* **`unassigned`**, line 1662 --- By \eqref{eq:two-sided-sandwich}, choose $u,v,c,d\in R$ such that
-* **`unassigned`**, line 1666 --- and set
-* **`unassigned`**, line 1676 --- The Leavitt relation $t_1s_0=0$ gives
-* **`unassigned`**, line 1680 --- On the other hand,
-* **`unassigned`**, line 1684 --- If this element were zero, then
-* **`unassigned`**, line 1688 --- contrary to $t_0(s_0t_1)s_1=1$.
-* **`unassigned`**, line 1702 --- If $g$ commutes with every $e_{ij}(a)$, then the relations with $a=1$ give $\lambda_i=\lambda_j$ for all $i\ne j$.
-* **`unassigned`**, line 1702 --- Hence $g=\lambda I_{12}$ for some unit $\lambda\in R$.
-* **`unassigned`**, line 1702 --- The relations for arbitrary $a\in R$ then give $\lambda a=a\lambda$, so $\lambda\in Z(R)^\times$.
-* **`unassigned`**, line 1863 --- For $i,j\in\{0,1,2\}$ with $i\ne j$ and $a\in R$, we have $j\ne3$ and $i\ne4$.
-* **`unassigned`**, line 1863 --- Hence the Steinberg relations give
-* **`unassigned`**, line 1883 --- Since $t_1qs_1=1$, Lemma~\ref{lem:normal-generation-transvection}, applied to $e_{02}(q)$, gives $\normal d_H=H$.
+* **`partial`**, line 692 --- Ershov--Jaikin-Zapirain give property~\textup{(T)} for $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital associative ring~\cite[Theorem~1.1]{EJZ}.
+  * The printed statement is proved directly in every prime characteristic. Composite positive characteristic is not recovered from the prime-characteristic quotients, because property (T) descends to quotients and not conversely. It is not an independent residue of the full theorem, however: printedEJZIntegralReduction proves reduction to finite-rank free Z-algebras, and printedEJZColumnPlaneReduction propagates the rank-three integral control estimate to every rank by identity padding and then descends through a finite free-algebra presentation. These implication theorems are deliberately not listed as sentence carriers, because their explicit antecedent IntegralFreeColumnPlaneMassBounds remains unproved. STILL PARTIAL: that integral column-plane estimate is the remaining gap. The Kazhdan-subset half is already characteristic-free. EJZ import Kassabov's relative-(T) input rather than prove this analytic control half.
 
 ## By section
 
@@ -79,12 +37,12 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | --- | --- | --- |
 | (front matter) | 11 | 0 |
 | Introduction | 79 | 0 |
-| Relation to prior work | 24 | 1 |
+| Relation to prior work | 24 | 0 |
 | One-sided compression in finite dimension | 14 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 0 |
-| Normal Kazhdan subgroups and the MF radical | 68 | 0 |
-| The binary Leavitt self-compression | 30 | 15 |
-| Simplicity and the full MF radical | 75 | 25 |
-| Quotients visible to MF | 50 | 0 |
+| Normal Kazhdan subgroups and the MF radical | 72 | 0 |
+| The binary Leavitt self-compression | 34 | 0 |
+| Simplicity and the full MF radical | 78 | 0 |
+| Quotients visible to MF | 52 | 0 |
 | Acknowledgments | 2 | 0 |
 | Use of AI and formal methods | 8 | 0 |
