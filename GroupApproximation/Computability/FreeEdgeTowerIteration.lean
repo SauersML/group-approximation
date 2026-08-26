@@ -63,6 +63,7 @@ theorem transportData_intertwines (e : G ≃* H) (E : Data X G) :
   let w : FreeGroup X := (sourceEquiv E).symm a
   have hsource : E.source w = g := by
     rw [← coe_sourceEquiv]
+    exact congrArg Subtype.val ((sourceEquiv E).apply_symm_apply a)
   have horiginal :
       (⟨g, hg⟩ : sourceSubgroup E) = sourceElement E w := by
     apply Subtype.ext
@@ -119,6 +120,19 @@ inductive ChainFreeness : (c : PresentationCode) →
       ChainFreeness (edgeCode c edges) layers →
       ChainFreeness c (edges :: layers)
 
+/-- The freeness data for the first layer of a nonempty chain. -/
+theorem ChainFreeness.head {c : PresentationCode}
+    {edges : List (Raw × Raw)} {layers : List (List (Raw × Raw))} :
+    ChainFreeness c (edges :: layers) → EdgeFreeness c edges
+  | .cons h _ => h
+
+/-- The freeness data remaining after the first layer of a nonempty chain. -/
+theorem ChainFreeness.tail {c : PresentationCode}
+    {edges : List (Raw × Raw)} {layers : List (List (Raw × Raw))} :
+    ChainFreeness c (edges :: layers) →
+      ChainFreeness (edgeCode c edges) layers
+  | .cons _ hs => hs
+
 /-- A computed presentation together with an honest, iterated free-edge HNN
 tower presenting it. -/
 structure SemanticStage (c : PresentationCode) where
@@ -151,9 +165,9 @@ noncomputable def SemanticStage.addEdge {c : PresentationCode}
 noncomputable def buildFrom {c : PresentationCode} (S : SemanticStage c) :
     (layers : List (List (Raw × Raw))) → ChainFreeness c layers →
       SemanticStage (multiEdgeCode c layers)
-  | [], .nil _ => S
-  | edges :: layers, .cons h hs =>
-      buildFrom (S.addEdge edges h) layers hs
+  | [], _ => S
+  | edges :: layers, h =>
+      buildFrom (S.addEdge edges h.head) layers h.tail
 
 /-- The honest iterated HNN tower attached to a raw finite edge program. -/
 noncomputable def build (c : PresentationCode)

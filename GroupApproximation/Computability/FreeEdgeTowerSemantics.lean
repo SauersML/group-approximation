@@ -382,22 +382,41 @@ canonical base inclusion into the honest HNN extension. -/
       HNNExtension.of (PresentedGroup.of (letterOf c i)) := by
   rw [← edgeGeneratorEquiv_some c edges i]
   change presentedHNNEquiv c edges hsource htarget
-    (HNNPresentation.equivPres (codeRels c)
+    (HNNPresentation.fwd (codeRels c)
       (sourceWord c edges) (targetWord c edges)
       (presentedEdgeEquiv c edges hsource htarget)
       (presentedEdgeEquiv_gen c edges hsource htarget)
-      ((PresentedGroupRelabel.congrEquiv (edgeGeneratorEquiv c edges)
+      (PresentedGroupRelabel.relabelHomSymm (edgeGeneratorEquiv c edges)
         (HNNPresentation.hnnRels (codeRels c)
-          (sourceWord c edges) (targetWord c edges))).symm
+          (sourceWord c edges) (targetWord c edges))
         (PresentationCodeList.presCongrSet
           (relabel_hnnRels c edges).symm
           (PresentedGroup.of (edgeGeneratorEquiv c edges (some i)))))) = _
-  rw [PresentedGroupRelabel.congrEquiv]
+  have hpres := PresentationCodeList.presCongrSet_mk
+    (relabel_hnnRels c edges).symm
+    (FreeGroup.of (edgeGeneratorEquiv c edges (some i)))
+  change PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm
+      (PresentedGroup.of (edgeGeneratorEquiv c edges (some i))) =
+    PresentedGroup.of (edgeGeneratorEquiv c edges (some i)) at hpres
+  rw [hpres]
   rw [PresentedGroupRelabel.relabelHomSymm_of]
   simp only [Equiv.symm_apply_apply]
-  rw [HNNPresentation.equivPres, HNNPresentation.fwd,
-    PresentedGroup.toGroup.of]
-  rw [presentedHNNEquiv, HNNCongr.congrEquiv, HNNCongr.congrHom_of]
+  rw [HNNPresentation.fwd, PresentedGroup.toGroup.of]
+  change HNNCongr.congrHom
+      (presentedEdgeEquiv c edges hsource htarget)
+      (edgeEquiv (edgeData c edges hsource htarget))
+      (MulEquiv.refl (Carrier c))
+      (fun g => by
+        simpa using mem_sourceSubgroup_edgeData_iff
+          c edges hsource htarget g)
+      (presentedEdgeEquiv_intertwines c edges hsource htarget)
+      (HNNExtension.of (PresentedGroup.of i)) = _
+  rw [HNNCongr.congrHom_of]
+  have hi : letterOf c (i : ℕ) = i := by
+    apply Fin.ext
+    exact RawWord.letterOf_val_of_lt c i.isLt
+  rw [hi]
   rfl
 
 /-- The final raw generator of one computed edge is the honest HNN stable
@@ -412,22 +431,37 @@ letter. -/
       (HNNExtension.t : Extension (edgeData c edges hsource htarget)) := by
   rw [← edgeGeneratorEquiv_none c edges]
   change presentedHNNEquiv c edges hsource htarget
-    (HNNPresentation.equivPres (codeRels c)
+    (HNNPresentation.fwd (codeRels c)
       (sourceWord c edges) (targetWord c edges)
       (presentedEdgeEquiv c edges hsource htarget)
       (presentedEdgeEquiv_gen c edges hsource htarget)
-      ((PresentedGroupRelabel.congrEquiv (edgeGeneratorEquiv c edges)
+      (PresentedGroupRelabel.relabelHomSymm (edgeGeneratorEquiv c edges)
         (HNNPresentation.hnnRels (codeRels c)
-          (sourceWord c edges) (targetWord c edges))).symm
+          (sourceWord c edges) (targetWord c edges))
         (PresentationCodeList.presCongrSet
           (relabel_hnnRels c edges).symm
           (PresentedGroup.of (edgeGeneratorEquiv c edges none))))) = _
-  rw [PresentedGroupRelabel.congrEquiv]
+  have hpres := PresentationCodeList.presCongrSet_mk
+    (relabel_hnnRels c edges).symm
+    (FreeGroup.of (edgeGeneratorEquiv c edges none))
+  change PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm
+      (PresentedGroup.of (edgeGeneratorEquiv c edges none)) =
+    PresentedGroup.of (edgeGeneratorEquiv c edges none) at hpres
+  rw [hpres]
   rw [PresentedGroupRelabel.relabelHomSymm_of]
   simp only [Equiv.symm_apply_apply]
-  rw [HNNPresentation.equivPres, HNNPresentation.fwd,
-    PresentedGroup.toGroup.of]
-  rw [presentedHNNEquiv, HNNCongr.congrEquiv, HNNCongr.congrHom_t]
+  rw [HNNPresentation.fwd, PresentedGroup.toGroup.of]
+  change HNNCongr.congrHom
+      (presentedEdgeEquiv c edges hsource htarget)
+      (edgeEquiv (edgeData c edges hsource htarget))
+      (MulEquiv.refl (Carrier c))
+      (fun g => by
+        simpa using mem_sourceSubgroup_edgeData_iff
+          c edges hsource htarget g)
+      (presentedEdgeEquiv_intertwines c edges hsource htarget)
+      HNNExtension.t = _
+  rw [HNNCongr.congrHom_t]
 
 end FreeEdgeTowerSemantics
 end GroupApproximation
