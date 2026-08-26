@@ -1,5 +1,6 @@
 import Mathlib.GroupTheory.PresentedGroup
 import Mathlib.Logic.Equiv.Fin.Basic
+import Mathlib.Logic.Equiv.Fin.Rotate
 
 /-!
 # Renumbering the generators of a presentation
@@ -161,6 +162,26 @@ def optionFinEquiv (n : ℕ) : Option (Fin n) ≃ Fin (n + 1) := (finSuccEquiv n
 
 @[simp] theorem optionFinEquiv_some (n : ℕ) (i : Fin n) :
     optionFinEquiv n (some i) = i.succ := rfl
+
+/-- One `Option`, numbered in append order: the old generators retain indices
+`0, …, n-1`, while `none` is the new final generator `n`.  This is the
+numbering used by `FreeEdgeTowerCode.edgeCode`. -/
+def optionFinAppendEquiv (n : ℕ) : Option (Fin n) ≃ Fin (n + 1) :=
+  (optionFinEquiv n).trans (finRotate (n + 1)).symm
+
+@[simp] theorem optionFinAppendEquiv_none (n : ℕ) :
+    optionFinAppendEquiv n none = Fin.last n := by
+  apply (finRotate (n + 1)).injective
+  simp [optionFinAppendEquiv]
+
+@[simp] theorem optionFinAppendEquiv_some (n : ℕ) (i : Fin n) :
+    optionFinAppendEquiv n (some i) = i.castSucc := by
+  apply (finRotate (n + 1)).injective
+  simp only [optionFinAppendEquiv, Equiv.trans_apply, Equiv.apply_symm_apply,
+    optionFinEquiv_some]
+  apply Fin.ext
+  rw [coe_finRotate_of_ne_last (Fin.castSucc_lt_last i).ne]
+  rfl
 
 /-- `k` `Option`s over `Fin n`, as a generator type. -/
 def OptionIter (α : Type) : ℕ → Type
