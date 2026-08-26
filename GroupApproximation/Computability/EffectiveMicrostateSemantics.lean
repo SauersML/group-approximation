@@ -113,7 +113,8 @@ theorem toMicrostate_hom_wordOf (c : PresentationCode) (d : ℕ)
               Matrix.unitaryGroup (Fin (dim d)) ℂ) :
             Matrix (Fin (dim d)) (Fin (dim d)) ℂ) = _
       rw [toMicrostate_hom_wordOf c d gens hunitary w]
-      simp [Microstate.hom, toMicrostate, matrixLetter, letterOf]
+      simp [Microstate.hom, toMicrostate, matrixLetter, letterOf,
+        Matrix.star_eq_conjTranspose]
   | (i, true) :: w => by
       rw [wordOf_cons_pos, map_mul]
       change
