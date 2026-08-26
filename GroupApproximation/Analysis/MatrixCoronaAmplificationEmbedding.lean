@@ -65,6 +65,7 @@ theorem assembleSequence_sub (a b : LiftMatrix I X) :
 /-- Nullity of an assembled sequence is equivalent to entrywise nullity.
 This is the representative-independence and faithfulness mechanism for the
 amplification map. -/
+omit [Nonempty I] [∀ n, Nonempty (X n)] in
 theorem isNull_assembleSequence_iff (a : LiftMatrix I X) :
     IsNullMatrixSequence (fun n ↦ I × X n) cofinite (assembleSequence X a) ↔
       ∀ i j, IsNullMatrixSequence (fun n ↦ X n) cofinite (a i j) := by
@@ -119,17 +120,11 @@ theorem coronaOfLifts_zero :
   rw [coronaOfLifts, ← map_zero
     (normMatrixCStarCoronaMk (fun n ↦ I × X n))]
   congr 1
-  apply lp.ext
-  funext n
-  ext p q
 
 theorem coronaOfLifts_add (a b : LiftMatrix I X) :
     coronaOfLifts X (a + b) = coronaOfLifts X a + coronaOfLifts X b := by
   rw [coronaOfLifts, coronaOfLifts, coronaOfLifts, ← map_add]
   congr 1
-  apply lp.ext
-  funext n
-  ext p q
 
 theorem coronaOfLifts_smul (c : ℂ) (a : LiftMatrix I X) :
     coronaOfLifts X (c • a) = c • coronaOfLifts X a := by
@@ -158,9 +153,6 @@ theorem coronaOfLifts_star (a : LiftMatrix I X) :
     coronaOfLifts X (fun i j ↦ star (a j i)) = star (coronaOfLifts X a) := by
   rw [coronaOfLifts, coronaOfLifts, normMatrixCStarCorona_star_mk]
   congr 1
-  apply lp.ext
-  funext n
-  ext p q
 
 /-- A fixed representative of each element of the source corona. -/
 def representative (x : NormMatrixCStarCorona (fun n ↦ X n)) :

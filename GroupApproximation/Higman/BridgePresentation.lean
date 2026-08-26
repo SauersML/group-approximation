@@ -471,8 +471,10 @@ theorem hnnNumberedRels_subset_coded {A : Type} [Group A] (g : ℕ → A) :
       exact (numbered_base_relator w).symm
     · exact hw.elim
   · refine ⟨freeEval (hnnRaw i), Or.inr ⟨2 * i, ?_⟩, ?_⟩
-    · rw [hnnFam_even (n := 2 * i) (by omega)]
-      congr 2 <;> omega
+    · change freeEval (hnnFam (2 * i)) = freeEval (hnnRaw i)
+      rw [hnnFam_even (n := 2 * i) (by omega)]
+      congr 2
+      omega
     · exact map_cycle_hnnRaw i
 
 /-- Conversely, every symmetric coded relator belongs to the normal closure
