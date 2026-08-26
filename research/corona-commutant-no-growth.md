@@ -52,6 +52,15 @@ false: `infinite-cyclic-compression-lamp-mf` and
 the card is retained as the record of the question and for its
 calibrations.
 
+There is also a direct UHF calibration requiring neither residual-finite
+word metrics nor a slow wall.  In
+`uhf-cyclic-shift-has-strict-compressed-commutant`, cyclic permutation of the
+first `n` tensor factors converges in the norm corona to the one-sided shift
+of the `2^infinity` UHF algebra.  The last-site Pauli sequence commutes with
+every fixed local Pauli word but not with the inverse-shifted first-site
+Pauli.  It therefore witnesses the strict inclusion of relative commutants
+by one exact norm-two commutator.
+
 **This is the single fork.**  Granting it, `Theta(d) = Theta(t c t^{-1})`
 lies in `Theta(t iota(Gamma) t^{-1})' cap Q = C`, hence commutes with
 `Theta(iota(v_1))`, so `Theta(u) = 1` for every corona representation of

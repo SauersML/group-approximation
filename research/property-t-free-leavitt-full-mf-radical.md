@@ -222,6 +222,18 @@ fixed `M` are compatible with sparse escape and still fall short of
 can return the sparse carrier.  The load-bearing mixed-root row must fold
 this intrinsically infinite orbit back to one finite projective reservoir.
 
+There is no generic rank-or-commutant dichotomy which closes this seam.
+`sparse-dyadic-rank-germ-carries-haar-cyclic-holonomy` gives one nonzero
+vanishing-density corona projection which is divisible through every fixed
+dyadic depth and simultaneously carries Haar-like cyclic holonomy.  The
+other proposed horn, invariance of the full relative commutant under a
+one-sided compression, fails in the exact UHF tensor model of
+`uhf-cyclic-shift-has-strict-compressed-commutant`.  These two examples do
+not model the full mixed Leavitt coefficient table, so they do not refute
+the goal; they prove that a successful closure must use a literal
+coefficient-sensitive occurrence which defeats both tensor-tail escapes,
+not a generic bounded-window rank or commutant-normalization principle.
+
 The rank scale along that orbit is now uniform.
 `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed
 two-commutator saturation formula and, in the reverse direction, a sandwich

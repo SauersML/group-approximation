@@ -34,3 +34,9 @@ finite closed supercritical branching system on fixed classes, or an actual
 partial isometry from one marked carrier onto two orthogonal subprojections
 of that same carrier.
 
+The same rank germ supports a stronger dynamic escape.
+`sparse-dyadic-rank-germ-carries-haar-cyclic-holonomy` puts a regular cycle
+of order `2^(floor(n/2))` on the sparse projection.  Every fixed nonzero
+corner moment then vanishes eventually, while all fixed dyadic divisibility
+relations remain exact.  Thus recursive divisibility does not force a
+bounded-window return carrier even after one records its internal holonomy.
