@@ -314,6 +314,45 @@ def main():
         reverse_lengths[matrix.tobytes()] for _factor, matrix in seam_word
     ))
     print("nested return equals reverse-chart root x_12(1) exactly")
+
+    # Move the returned unit root to the other literal chart.  In
+    # characteristic two, w_ij=x_ij(1)x_ji(1)x_ij(1) swaps coordinates i,j.
+    # The product w_13 w_24 therefore carries root (1,2) to (3,4), whose
+    # reverse-dictionary occurrence is p2_23.
+    def weyl(i, j):
+        forward = rank5_word(i, j, "1", memo)[0]
+        backward = rank5_word(j, i, "1", memo)[0]
+        return reduce_word(product(forward, backward, forward))
+
+    chart_swap = reduce_word(product(weyl(1, 3), weyl(2, 4)))
+    second_chart_return = reduce_word(product(
+        chart_swap,
+        nested_return,
+        inverse(chart_swap),
+    ))
+    second_chart_root = rank5_word(3, 4, "1", memo)[0]
+    assert leavitt_equal(evaluate_word(second_chart_return),
+                         evaluate_word(second_chart_root))
+    p2_23 = next(row for row in reverse if row[0] == "p2_23")
+    second_chart_generator = reduce_word(product(p2_23[6], p2_23[5]))
+    assert leavitt_equal(evaluate_word(second_chart_return),
+                         evaluate_word(second_chart_generator))
+    distinct_chart_seam = reduce_word(product(
+        second_chart_return,
+        inverse(second_chart_generator),
+    ))
+    assert leavitt_is_one(evaluate_word(distinct_chart_seam))
+    assert len(chart_swap) == 20
+    assert len(distinct_chart_seam) == 160
+    assert sum(reverse_lengths[matrix.tobytes()]
+               for _factor, matrix in distinct_chart_seam) == 479
+    print("distinct-chart Weyl transporter syllables:", len(chart_swap))
+    print("distinct-chart seam syllables:", len(distinct_chart_seam))
+    print("distinct-chart seam X-length:", sum(
+        reverse_lengths[matrix.tobytes()]
+        for _factor, matrix in distinct_chart_seam
+    ))
+    print("Weyl-transported nested return equals p2_23=x_34(1) exactly")
     return 0
 
 

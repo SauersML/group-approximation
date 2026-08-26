@@ -189,5 +189,20 @@ exact projected block model absorbs the return with the actor gauge
 family must cancel or independently identify those stripping actors, rather
 than merely return their composite to the chart.
 
+Transporting that identity output to the other atlas chart still does not
+cancel the actors. By `atlas-distinct-chart-ee-return-retains-loop-gauge`,
+the explicit Weyl word `H=w_13w_24` gives
+
+```text
+H[x_13(E),[x_31(E),x_12(ee)]]H^(-1)=x_34(1)=p2_23.
+```
+
+This is a literal distinct-chart endpoint, but its reduced monomial is a
+second nuisance column. Total and nuisance rank each rise by one, leaving
+quotient increment two; an arbitrary spectator on `H` is invisible because
+the nested output is the identity coefficient. A viable third direction
+must therefore meet the unstripped mode or its payload directly, not merely
+move the stripped identity between chart frames.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear
