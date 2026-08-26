@@ -86,6 +86,17 @@ the actual native selector occurrences as those candidates on a positive
 model-dependent subcorner.  The whole-carrier version is impossible, and the
 full Gram of the two Whitehead unitaries does not imply the subcorner claim.
 
+Keeping both literal Whitehead target labels at negative fraction `1/4`
+does give a numerically stronger possible endpoint: source fractions
+`1/2,1/4` would force the common gauge parameter to be both `1/2` and `1`.
+However `quarter-whiteheads-lack-unequal-source-conjugacy` audits the named
+native and Hecke covariance rows and finds no actual occurrence with a
+literal `W_i` on the target side.  The same-center Pauli rows use `W_i` as
+the conjugator and cancel its gauge, the Hecke flags are occurrence-untyped,
+and their common Whitehead reduction collapses the two target maps.  Thus
+this alternative removes the analytic `C_(1/8)` only by replacing it with
+two still-missing mixed source-to-Whitehead occurrence rows.
+
 The scalar trace-cyclic triangle lemmas do not weaken this last requirement.
 As recorded in
 `trace-cyclic-balance-does-not-bypass-native-two-scale-occurrence`, their
