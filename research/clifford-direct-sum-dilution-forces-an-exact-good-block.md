@@ -89,7 +89,9 @@ completed blocks.  Once the defect is below the fixed `2/m` threshold, one
 constituent block already solves every tested phase-space equation exactly.
 
 Direct sums may still average scalar Weil multipliers, but those are not the
-hard obstruction: conjugate doubling cancels them.  The surviving target is
-therefore the exact local section
-`minimal-marked-graph-finite-window-phase-space-section`, not a probabilistic
-dilution of its Pauli curvature.
+hard obstruction: conjugate doubling cancels them.  The exact local section
+`minimal-marked-graph-finite-window-phase-space-section` is now refuted by
+the finitely presented Steinberg actor cover.  Therefore block-preserving
+direct-sum dilution is excluded outright.  Any surviving CE model must keep
+essential covariance-coupled mixing between the completed Clifford blocks,
+as recorded in `minimal-graph-ce-forces-correlated-actor-instability`.

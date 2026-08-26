@@ -13,7 +13,8 @@ artifacts:
   - notes/TRUE_KUN_THOM_CLIFFORD_PHASE.md
 ---
 
-Let `S_min` be the minimal marked orbital graph of the Kun--Thom Laurent pair
+Fix the endpoint-relevant low-rank choice `q=2`, `r=d=3`.  Let `S_min` be
+the minimal marked orbital graph of this Kun--Thom Laurent pair
 and `A_{S_min}` the twisted group von Neumann algebra of
 `(F_2^{(X)}, b_{S_min})` at the central character `z ↦ −1`, with `G` permuting
 the generators.  Prove that
@@ -83,14 +84,54 @@ current statement of what is left on the cheapest Kun--Thom Clifford branch.
   direct-sum defect below `2/m` therefore leaves one constituent block on
   which all `m` phase-space defects vanish exactly.  Random completions may
   help locate such a block, but averaging cannot replace it.  The resulting
-  exact finite target is
-  `minimal-marked-graph-finite-window-phase-space-section`; scalar Weil
-  multipliers are then removed by conjugate doubling.
-- **A design principle worth testing.**  The neighbour chart
+  exact finite target `minimal-marked-graph-finite-window-phase-space-section`
+  is refuted by the finitely presented Steinberg cover.  Hence every
+  block-preserving dilution architecture is dead, not merely reduced to a
+  harder exact search.
+- **Private-neighbour affine searches do not reach the surviving locus.**
+  The neighbour chart
   `a ↦ e_{qp}(a)h_{pq}Γ` of `minimal-marked-graph-private-neighbour` turns
   extra demands on a completion into conditions on a Laurent parameter.
   Whenever such a demand reduces to finitely many affine cosets of proper
   denominator ideals, high-degree abundance satisfies it simultaneously with
-  privateness (`private-neighbour-density`).  Whether the Clifford cocycle
-  conditions have that shape is open and is the cheapest thing to check
-  first.
+  privateness (`private-neighbour-density`).  But any search which ends in a
+  fixed blockwise Clifford action with scalar curvature is now refuted by the
+  Steinberg-cover table.  Affine abundance can only re-enter as part of a
+  genuinely off-block/multiplicity-mixing construction; the old fixed-action
+  cocycle search is closed.
+
+## Exact approximate replacement
+
+`minimal-graph-ce-forces-correlated-actor-instability` pins the alternative
+left after the exact scalar section is refuted.  Any CE microstates restrict
+to a canonical actor
+approximation carrying the full marked Majorana wall: a base involution
+almost central for a finite Kazhdan packet is sent by `h` to an
+asymptotically anticommuting involution.  This forces failure of both
+flexible HS-stability and weak ucp-stability of the complete rank-three
+actor.
+
+The finitely presented Steinberg cover supplies one fixed actor table on
+which scalar curvature is impossible even though the quotient actor itself
+need not be finitely presented.  A covariance-compatible retraction to
+invariant irreducible Clifford blocks would reduce, by the `2/m` direct-sum
+quantization bound, to exactly that forbidden scalar block.  Therefore every
+CE construction must retain essential off-block mixing, or an equivalent
+non-retractable multiplicity action, at a fixed normalized-HS scale.  Generic bad actor
+microstates do not suffice: the established local-instability examples make
+all lamp sites coincide.  The fixed-action twisted-cocycle calculation also
+does not suffice, because it begins only after the missing covariant
+retraction.  Thus the frontier is compressed to one source-specific
+correlated projective-HS instability; no ordinary stability node currently
+constructs it.
+
+For the fixed cover table with `m` multiplication triangles this is
+dimension-free, not merely qualitative.  If `epsilon` is the original actor
+defect and `eta` the actor perturbation to a blockwise Clifford model, then
+
+```text
+epsilon+3 eta >= sqrt(2/m).
+```
+
+Thus any CE sequence has asymptotic retraction cost at least
+`sqrt(2/m)/3`.

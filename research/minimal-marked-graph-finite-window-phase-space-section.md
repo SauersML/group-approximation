@@ -11,7 +11,8 @@ distinct_from:
   kun-thom-clifford-relative-wall: that asks only for one wall in a matrix ultraproduct; this constructs all tested lamp and actor moments for the named minimal marked-graph crossed product
 ---
 
-Let `S_min` be the minimal marked orbital graph of the Kun--Thom pair,
+Let `S_min` be the minimal marked orbital graph of any Kun--Thom Theorem E
+pair,
 `V = F_2^(G/Gamma)` with its nondegenerate adjacency form `b`, and
 `A_min` its twisted lamp factor.
 
@@ -98,7 +99,7 @@ multipliers are harmless by conjugate doubling; a nonzero Pauli label is not.
   the fixed `2/m` threshold for `m` tested triangles, one constituent block
   already has zero Pauli factor on every triangle.  Randomness may search for
   that block but cannot replace its existence.
-- **Private-neighbour completion — live, not yet reduced.**  The available
+- **Private-neighbour completion — insufficient.**  The available
   `private-neighbour-density` theorem supplies many vertex choices while
   preserving nondegeneracy.  For one fixed completion and one fixed partial
   symplectic action,
@@ -108,25 +109,29 @@ multipliers are harmless by conjugate doubling; a nonzero Pauli label is not.
   shows that changing completion vertices also changes `K`, the symplectic
   extensions `S_g`, and hence the coboundary matrix itself; those simultaneous
   Witt-extension equations are quadratic before the lift gauge is chosen.
-The open calculation is therefore to choose private-neighbour completions
-for which the resulting restricted class `[a_S]` vanishes.  No affine
-Laurent-coset description of that completion-level condition has yet been
-proved.
+This once reduced the problem to choosing completions for which `[a_S]`
+vanishes.  The Steinberg-cover obstruction now shows that no such choice can
+work on its fixed finite image table, regardless of how the simultaneous
+Witt-extension equations depend on the completion parameters.
 
-## Resolution: refuted by the finite actor presentation
+## Resolution: refuted through the Steinberg actor cover
 
-**REFUTED.**  Theorem E permits a stable-rank instance `r >= d+4`, and
-`finite-presentation-refutes-marked-graph-scalar-window` proves that its
-actor `G` is finitely presented.  Put the entire finite presentation into
-one tested actor table.  Scalar-only Clifford curvature then projects to an
-exact homomorphism `G -> Sp(K)`, a finite group.  Relative finite-quotient
-blindness identifies the marked actor `h` with the image of `Gamma`; since
-the base lamp label is `Gamma`-fixed, its image at `h Gamma` must equal it.
-That contradicts the required marked symplectic pairing `1`.
+**REFUTED in every rank.**
+`finite-presentation-refutes-marked-graph-scalar-window` uses the finitely
+presented cover
 
-Thus private-neighbour completion cannot solve `(FWP1)`: the obstruction is
-already global on one finite relator table, before the completion parameters
-are considered.  This refutes only this exact scalar-curvature certificate.
-The parent claim `minimal-marked-graph-crossed-product-ce` remains open
-because normalized-Hilbert--Schmidt microstates may retain small nonzero
-phase-space curvature on the presentation relators.
+```text
+St_r(R) semidirect SL_d(Z) -> G
+```
+
+rather than a finite presentation of `EL_r(R)`.  Put the images in `G` of
+all cover-relator prefixes, finite polynomial-root generators and the marked
+lift into one actor table.  Scalar Clifford curvature projects that table to
+a homomorphism from the cover into a finite symplectic group.  Positive
+compressor inclusions become equalities in every finite image, so the marked
+lift belongs to the polynomial subgroup image.  It must fix the base lamp
+label, contradicting the marked alternating pairing `1`.
+
+At `r=3` this bypasses the uncontrolled unstable kernel `K_2(3,R)` entirely:
+Allcock finitely presents the Steinberg cover itself.  Therefore successive
+low-rank windows cannot evade the compressor through that kernel.
