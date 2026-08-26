@@ -459,3 +459,24 @@ exactly and keeps the marked child nontrivial.  A live continuation must
 therefore leave this six-coordinate closure, for example by comparing a
 returned child with a source child on one fixed packet or by adding a
 depth-changing coefficient occurrence not implemented by the finite chart.
+
+Closing the balanced coefficient actions does not leave the finite Morita
+category.  `balanced-cross-matrix-unit-actions-have-m3-morita-model` adds
+the full table `e_ij s_k=delta_(jk)s_i` and
+`t_k e_ij=delta_(ki)t_j` to the private-middle closure.  An exact
+`GL_7(M_3(F_2))` model realizes the whole menu while separating the range
+unit `p=E_00+E_11` from the source unit `h=E_(star,star)`.  The familiar
+inverse row stops this particular rectangular model, but the already
+established full depth-one Clifford firewall shows that it does not stop
+all finite occurrence models.  A live row must therefore be genuinely
+depth-changing or otherwise leave the complete depth-one actor menu.
+
+The first literal depth-changing attachment is finite too.
+`first-native-diamond-extension-of-cross-return-has-gl7-c2-model` shares
+the returned arm `x_97(t_0)` with the first native prefix diamond, includes
+the primed `t_00,s_00` arms and its complete middle-swap naturality, and
+has an exact `GL_7(F_2) times C_2` marked model.  The native Whitehead gauge
+survives in the central factor.  Thus the next relation must be
+non-equivariant: it must identify one primed diamond arm with an
+independently returned source arm, rather than transport both arms by the
+same Whitehead covariance.
