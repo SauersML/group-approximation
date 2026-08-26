@@ -169,6 +169,35 @@ requires either a formal PFF direct-product theorem for exact factors or a
 formal import of GKMP's graph-product/RAAG corollary.  Neither exists in the
 current Lean tree.
 
+The direct-product step has an elementary and an analytic half which must not
+be conflated.  From PFF models `rho_n` of `G` and `sigma_n` of `H`, the
+Kronecker representations
+
+```text
+(g,h) |-> rho_n(g) tensor sigma_n(h)
+```
+
+are genuine homomorphisms with finite image.  Their normalized traces are the
+products of the factor traces, so they converge to the regular character of
+`G x H`.  This group/trace construction is finite-dimensional algebra and can
+be formalized independently of any permanence theorem.
+
+What remains is the reduced-norm assertion for every
+`c : (G x H) ->_0 C`:
+
+```text
+||eval(rho_n tensor sigma_n, c)|| -> ||lambda_(G x H)(c)||. (PROD-NORM)
+```
+
+Individual strong convergence of `rho_n` and `sigma_n` does not by itself
+prove `(PROD-NORM)`.  The published tensor argument uses exactness of at least
+one reduced group C-star factor to identify and control the spatial tensor
+limit.  The repository has no theorem converting that exactness hypothesis
+and the two factorwise PFF models into `(PROD-NORM)`.  Thus the elementary
+Kronecker/trace model should be formalized separately, while the analytic
+exactness theorem remains one precise imported input.  Applying it twice to
+the three finite-rank free factors gives the desired `IsPFF K_e`.
+
 For arbitrary trace-regular inputs that need not be residually finite,
 Collins--Male's strong asymptotic freeness theorem for independent Haar
 unitaries and deterministic matrices is the relevant primary analytic input

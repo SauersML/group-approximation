@@ -57,6 +57,7 @@ import GroupApproximation.Analysis.LanceCPApprox
 import GroupApproximation.Analysis.LanceNuclearity
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
+import GroupApproximation.Sofic.FreeGroupPFFInterface
 import GroupApproximation.Analysis.TorsionFreeFullMFCStarConsequences
 import GroupApproximation.Computability.MarkovMFConsequences
 import GroupApproximation.Computability.MFRadicalComputer

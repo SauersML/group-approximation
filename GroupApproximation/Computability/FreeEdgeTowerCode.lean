@@ -1,4 +1,5 @@
 import GroupApproximation.Computability.RawTransformPrimrec
+import GroupApproximation.Sofic.FreeGroupPFFInterface
 
 /-!
 # Finite codes for free-edge HNN towers
@@ -289,6 +290,23 @@ separately so that no code-level computability theorem can silently assume an
 MF permanence result for an asymmetric HNN edge. -/
 def MFPermanence (x : TowerInput) : Prop :=
   IsOperatorMF (Carrier x.1) → IsOperatorMF (Carrier (compile x))
+
+/-! ## The concrete strong-MF source needed before tower permanence
+
+This interface names the exact Bordenave--Collins input for one finite-rank
+free factor.  It is deliberately existential rather than postulated: callers
+must supply both finite trace models and their reduced-norm limit. -/
+
+/-- The positive-base obligation for a finite-rank free factor. -/
+def FreeGroupPFFBaseInput (rank : ℕ) : Prop :=
+  ∃ A : FreeGroupFiniteTraceModels rank, A.HasReducedNormLimit
+
+/-- A discharged positive-base obligation supplies the strong PFF predicate
+which can feed a future exact-product and GKMP permanence interface. -/
+theorem isPFF_freeGroup_of_baseInput {rank : ℕ}
+    (h : FreeGroupPFFBaseInput rank) : IsPFF (FreeGroup (Fin rank)) := by
+  rcases h with ⟨A, hA⟩
+  exact isPFF_freeGroup_of_finiteTraceModels A hA
 
 end FreeEdgeTowerCode
 end GroupApproximation
