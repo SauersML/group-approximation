@@ -53,7 +53,7 @@ theorem exists_vectorCode_close (d : ℕ)
     exact hz i
   let i₀ : Fin (dim d) := ⟨0, by simp [dim]⟩
   have hcoordSq (i : Fin (dim d)) : ‖(x - y) i‖ ^ 2 < δ ^ 2 :=
-    (sq_lt_sq₀ (norm_nonneg _) hδ).2 (hcoord i)
+    (sq_lt_sq₀ (norm_nonneg _) hδ.le).2 (hcoord i)
   have hsum : ∑ i : Fin (dim d), ‖(x - y) i‖ ^ 2 <
       ∑ _i : Fin (dim d), δ ^ 2 := by
     exact Finset.sum_lt_sum (fun i _ ↦ (hcoordSq i).le)
@@ -67,16 +67,18 @@ theorem exists_vectorCode_close (d : ℕ)
         simp [D]
       _ ≤ ε ^ 2 := by
         have hDone : 1 ≤ D := by
-          exact_mod_cast (Nat.succ_le_iff.2 (Nat.zero_lt_succ d))
+          norm_num [D, dim]
         dsimp [δ]
         field_simp
         nlinarith [sq_nonneg ε]
   refine ⟨v, ?_⟩
   rw [show (EuclideanSpace.equiv (Fin (dim d)) ℂ).symm (toVector d v) = y from rfl,
     EuclideanSpace.norm_eq]
+  have hsumNonneg : 0 ≤ ∑ i : Fin (dim d), ‖(x - y) i‖ ^ 2 :=
+    Finset.sum_nonneg fun _ _ ↦ sq_nonneg _
   calc
     Real.sqrt (∑ i : Fin (dim d), ‖(x - y) i‖ ^ 2)
-        < Real.sqrt (ε ^ 2) := (Real.sqrt_lt_sqrt (by positivity)).2 hsum'
+        < Real.sqrt (ε ^ 2) := Real.sqrt_lt_sqrt hsumNonneg hsum'
     _ = ε := Real.sqrt_sq_eq_abs _ |>.trans (abs_of_pos hε)
 
 /-- A vector-code norm inequality is exactly strong enough to pass the
@@ -93,7 +95,7 @@ theorem vectorWitness_of_norm_sq_lt (d : ℕ) (A : MatrixCode) (v : VectorCode)
     rw [toRat_mul, toRat_ratOfNat]
     push_cast
     rw [vectorNormSq_semantics, mulVecNormSq_semantics]
-    simpa only [EuclideanSpace.norm_sq_eq, Equiv.apply_symm_apply,
+    simpa [EuclideanSpace.norm_sq_eq, Matrix.mulVec, dotProduct,
       OperatorNormCertificate.apply_coord] using h
   exact_mod_cast hreal
 
