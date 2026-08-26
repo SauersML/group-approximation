@@ -9,6 +9,7 @@ distinct_from:
   coherent-heisenberg-multiplicity-decoder: that reconstructs a complete approximate binary Leavitt module; this asks only for the two native selector transports and their relative Pauli gauge.
   moving-signed-source-does-not-localize-paid-sheet-detector: that gives a positive paid moving Hecke row and globally nontrivial factor-level sheet roots but proves that neither is compressed onto an unequal native output; this asks for the missing source-and-target-Gram-typed odd transition.
   endpoint-detector-cell-retains-coboundary-gauge: that gives an exact ordinary-word endpoint transport for one complete detector/probe mark-return cell but leaves maximal full-range overlap and a moving-frame coboundary; this asks for a native unequal-row Gram in one fixed frame.
+  endpoint-whiteheads-are-center-chain-hecke-spectators: that compresses the fresh endpoint braid by the actual nested quarter/eighth Hecke flags and obtains the desired one-eighth scalar Gram, but proves that the endpoint words centralize the entire flag algebra and remain untyped spectator dressings.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism
@@ -264,6 +265,38 @@ literature theorem is permitted in this claim.
   Hence the missing input in `(APG1)` is not the existence of an exact
   endpoint occurrence identity; it is a relation producing proper unequal
   subranges or a nonmaximal Gram in the prescribed fixed Hecke frame.
+
+  Compressing the endpoint words by the existing quarter/eighth Hecke flags
+  supplies the scalar shape but still not the occurrence.
+  `endpoint-whiteheads-are-center-chain-hecke-spectators` proves that, for
+  the endpoint chain `(10,11,2)`, both fresh Whiteheads centralize
+
+  ```text
+  p_2<=p_1<=e,       tau(p_1|e)=1/4,       tau(p_2|e)=1/8.
+  ```
+
+  Therefore `R_i=What_i p_i` have
+  `|(R_1^*R_2)|^2=p_2`, the exact desired one-eighth nonmaximal Gram.  The
+  reason is nevertheless pure spectator compression: the only possible
+  center-chain commutator vanishes by `q c_2=0`, so the endpoint braid
+  commutes with the entire Hecke flag algebra and its arms.  Dressing the
+  Hecke polars by these words changes their reservoir factors without
+  authenticating either raw native row.  The canonical regular model and a
+  regular `S_3` endpoint reservoir realize this scalar Gram with nontrivial
+  coboundary gauges.  Thus `(APG1)` needs a noncentral odd mixed occurrence,
+  not merely the correct compressed trace.
+
+  Directly intersecting an endpoint-moved signed source with the original
+  source does not supply that fixed frame.
+  `endpoint-whitehead-signed-source-has-only-relative-hecke-overlap`
+  computes the exact signed subgroup intersections: their orders are `256`
+  and `512` at actor endpoints `2` and `4`.  In the canonical regular trace
+  this gives the nonzero Hecke coefficients `tau(Q)/32` and `tau(Q)/16`,
+  but an exact two-character profile satisfying the same intersection table
+  has orthogonal source projections.  Normalizer dressings retain full
+  cross-Gram, and the only supplied return is the inverse Whitehead.  Hence
+  neither the finite subgroup intersection nor its canonical trace value
+  proves `(APG1)` for an arbitrary reblocked norm-corona profile.
 
 - **Polar-correct the paid incidence before applying the Hecke word.**
   `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is

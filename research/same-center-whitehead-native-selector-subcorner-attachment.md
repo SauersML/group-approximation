@@ -10,6 +10,7 @@ distinct_from:
   binary-leavitt-native-two-scale-cross-gram-positive: that permits any authenticated positive polar overlap of the two native rectangular transports; this asks specifically that the same-center Whitehead gauges are the external gauges of the two selector outputs.
   moving-signed-source-does-not-localize-paid-sheet-detector: that proves the paid moving source, both literal sheet detectors, and the forced order-seven exit still do not name an unequal target Gram; this asks for exactly the mixed full-Gram attachment left open by that fence.
   endpoint-detector-cell-retains-coboundary-gauge: that transports a complete endpoint detector/probe mark-return occurrence through a fresh same-center braid but leaves full overlapping ranges and a coboundary reservoir frame; this asks for the proper fixed-frame unequal attachment excluded there.
+  endpoint-whiteheads-are-center-chain-hecke-spectators: that places the endpoint braid on the literal quarter/eighth Hecke supports and gets the correct one-eighth cross-Gram, but only because the braid centralizes those supports; this asks for the noncentral raw-row attachment absent there.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core
@@ -295,6 +296,30 @@ excluded by the regular-trace firewall.
   target as their Grams, and a regular `S_3` multiplicity model keeps the
   reservoir factors as nontrivial coboundaries.  No restriction of this
   transported cube names the native quarter/eighth outputs.
+
+  Even the literal nested Hecke supports do not make this cube noncentral.
+  `endpoint-whiteheads-are-center-chain-hecke-spectators` uses the endpoint
+  chain `(10,11,2)` and proves exact commutation of both fresh Whiteheads
+  with the center-chain atom, both flag groups, and both Hecke arms.  The
+  compressed words on the quarter/eighth supports consequently have
+  cross-Gram support exactly `p_2`, of relative trace `1/8`.  This is the
+  correct scalar number but the wrong occurrence type: it is a commuting
+  spectator dressing, so its regular `S_3` reservoir gauge remains free and
+  the fixed regular-trace model satisfies every displayed equation.  A
+  solution of `(SNA2)` must therefore couple one endpoint/native word oddly
+  to an individual Hecke polar; scalar compression by the fixed flags is
+  not enough.
+
+  Nor does intersecting one moved source with the original signed source
+  create a fixed-frame subcorner.
+  `endpoint-whitehead-signed-source-has-only-relative-hecke-overlap` proves
+  that the pair intersection is exactly the endpoint-isolating subgroup,
+  of order `256` for endpoint `2` and `512` for endpoint `4`.  The associated
+  canonical Hecke coefficients are positive, but a two-character exact
+  profile has zero meet between the two source projections.  Every constant
+  signed normalizer dressing still gives a full, maximally overlapping edge,
+  while the inverse Whitehead only cancels its own gauge.  Thus this relative
+  Hecke overlap is not the positive fixed subcorner required by `(SNA2)`.
 
   The post-moving-source boundary is now exact in
   `moving-signed-source-does-not-localize-paid-sheet-detector`.  The
