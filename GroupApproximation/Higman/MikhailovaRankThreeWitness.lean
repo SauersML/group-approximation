@@ -100,7 +100,7 @@ theorem range_inf_cutting_eq_kernel_map {X : Type}
   · intro hx
     obtain ⟨f, hf, rfl⟩ := Subgroup.mem_map.mp hx
     refine Subgroup.mem_inf.mpr ⟨⟨f, rfl⟩, ?_⟩
-    rw [comap_cutting_eq_kernel R words] at hf
+    rw [← comap_cutting_eq_kernel R words] at hf
     exact Subgroup.mem_comap.mp hf
 
 /-- Finite target alphabet and relator data make the displayed cutting
