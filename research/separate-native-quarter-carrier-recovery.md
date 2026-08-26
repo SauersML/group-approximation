@@ -11,6 +11,7 @@ distinct_from:
   leavitt-range-sum-fold-does-not-pay-reynolds: that proves the scalar fold remains exact with positive transverse reservoir leakage, even under literal fold-occurrence reuse; this endpoint therefore cannot use object erasure without an additional payload-coupled return.
   reverse-product-whitehead-fold-has-finite-fusion: that identifies the first literal payload-coupled opposite-root fold row and gives its three-packet fusion model; this endpoint needs a matrix-only irreducible-payload lock beyond that row.
   returned-opposite-cross-zero-has-finite-s6-model: that adjoins the full relative A2 orbit and direct returned-source cross-zero comparisons while retaining finite Coxeter re-gauging; this endpoint must use a cross-Gram lock unavailable in that finite window.
+  relative-gauge-invariance-transfers-cross-orthogonality: that gives the exact two-projection inequality after one payload projection is invariant under the relative branch word; this must still authenticate such invariance from a literal finite-coordinate row.
 ---
 
 OPEN.  Let `F` be the trace-quarter common product of the two transported
@@ -168,21 +169,23 @@ and the direct returned comparisons `[D_0,C_1]=[D_1,C_0]=1` retain the exact
 invalidates `returned-a2-fold-window-places-native-pauli-factors`.
 
 Hence the first unavoidable finite-coordinate boundary is now precise.  On
-the selected packet block, one must lock the relative branch gauge to the
-source payload so that target cross-orthogonality forces source
-cross-orthogonality, quantitatively of the form
+the selected packet block, put `V=U_0^*U_1`.  The elementary inequality in
+`relative-gauge-invariance-transfers-cross-orthogonality` gives
 
 ```text
 ||P_0P_1||_2
- <= omega(packet defects,||Q_0Q_1||_2,cross-Gram defect), (SNQ5)
-Q_i=U_iP_iU_i^*,          omega(0,0,0)=0.
+ <= ||Q_0Q_1||_2
+    +min(||VP_1V^*-P_1||_2,||V^*P_0V-P_0||_2),          (SNQ5)
+Q_i=U_iP_iU_i^*.
 ```
 
 The four-state model makes `Q_0Q_1=0` while `||P_0P_1||_op=1`, so the
-cross-Gram term in `(SNQ5)` is load bearing.  It must compare a returned
-opposite factor with its canonical noncommuting factor on one irreducible
-payload block; equality of outputs, complete native occurrence sharing,
-relative Weyl covariance, and returned zero-products do not supply it.
+relative-gauge term in `(SNQ5)` is load bearing.  The remaining row only has
+to authenticate one word-visible payload projection as approximately
+invariant under the literal relative branch word.  This is weaker than
+reconstructing or proving irreducibility of the whole payload algebra, but
+equality of outputs, complete native occurrence sharing, relative Weyl
+covariance, and returned zero-products do not supply it.
 
 ## Falsification gate
 

@@ -54,6 +54,9 @@ prove the five native placements.
 
 The surviving boundary is strictly stronger than another equality,
 conjugacy, Coxeter-order, or zero-product row.  A valid finite-coordinate
-argument must identify one cross-child opposite factor with its canonical
-noncommuting factor on the **same irreducible payload block**, or pay a
-dimension-independent cross-Gram loss when that identification fails.
+argument must lock the relative branch word to one word-visible payload
+projection.  By
+`relative-gauge-invariance-transfers-cross-orthogonality`, invariance of one
+such projection already transfers target cross-orthogonality back to the
+source; the exact `S_6` model survives by spending precisely this relative-
+gauge defect.
