@@ -42,8 +42,8 @@ private theorem complexZeroListCheck_eq_true_iff (L : List ComplexCode) :
   | cons z L ih =>
       change ((decide (ComplexEq z complexZero) && complexZeroListCheck L) = true) ↔
         ∀ w ∈ z :: L, ComplexEq w complexZero
-      rw [Bool.and_eq_true, decide_eq_true_eq, ih]
-      simp only [List.mem_cons, forall_eq_or_imp]
+      simp only [Bool.and_eq_true, decide_eq_true_eq, List.mem_cons,
+        forall_eq_or_imp, ih]
 
 private theorem complexSub_eq_zero_iff (z w : ComplexCode) :
     ComplexEq (complexSub z w) complexZero ↔ ComplexEq z w := by
