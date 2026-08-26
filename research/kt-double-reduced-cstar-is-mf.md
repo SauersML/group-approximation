@@ -86,3 +86,23 @@ exterior-return expectation tend to one, so this is not a reduced relative
 model.  It proves that the next positive or negative step must control the
 **joint distribution** of return-expectation loss and leakage across physical
 trace sectors; aggregate leakage plus actor relations alone is padding-blind.
+
+The reduced exterior-return hypothesis does recover one padding-stable
+physical carrier.  `exterior-return-loss-has-quarter-trace-support` shows that
+the off-edge component of a fixed vanished return has normalized `L2` norm
+tending to one and right support of trace at least `1/4-o(1)`.  Thus the
+vanishing-weight escape above is unavailable after `(KRC3)` is coupled back to
+one fixed return.  What remains is not positive trace but **invariance**: this
+support need not reduce the edge algebra or the actor packet.
+
+A fixed Kazhdan-weighted residual ledger cannot supply that invariance by a
+tracial spectral-gap argument alone.
+`fixed-summable-kazhdan-residual-square-functions-vanish` proves that every
+fixed summable square function of pointwise actor defects tends to zero by
+dominated convergence, even when indexed by the expanding Schreier graph
+`Gamma/(t Gamma t^(-1))`; moreover the exact regular tracial model has zero
+return expectation, zero actor defect, and the same Schreier gap.  Any
+successful propagation must therefore use a finite-matrix-only ingredient:
+moving-radius/nonsummable control plus a presentation mechanism, one fixed
+multiscale checksum, or authentication of the quarter-trace support as a
+common reducing carrier.

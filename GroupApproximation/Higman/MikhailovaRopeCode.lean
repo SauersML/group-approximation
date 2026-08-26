@@ -194,7 +194,7 @@ def rankThreeMarked (words : RankThreeWords) : List (Raw × Raw) :=
 /-- Assemble the exact raw input consumed by `compile`, with the relator-free
 rank-three source presentation filled in canonically. -/
 def rankThreeInput (d : RankThreeInputData) : Input :=
-  (d.1, (presentationSkeleton 2, (d.2.1, rankThreeMarked d.2.2)))
+  (d.1, (presentationSkeleton 3, (d.2.1, rankThreeMarked d.2.2)))
 
 /-- The rank-three finite-presentation compiler after canonical input
 assembly. -/
@@ -255,7 +255,7 @@ theorem primrec_rankThreeInput : Primrec rankThreeInput := by
   have hwords : Primrec (fun d : RankThreeInputData => d.2.2) :=
     Primrec.snd.comp Primrec.snd
   exact Primrec.pair hambient
-    (Primrec.pair (Primrec.const (presentationSkeleton 2))
+    (Primrec.pair (Primrec.const (presentationSkeleton 3))
       (Primrec.pair hcutting (primrec_rankThreeMarked.comp hwords)))
 
 theorem primrec_ropeIndexParameters : Primrec ropeIndexParameters :=

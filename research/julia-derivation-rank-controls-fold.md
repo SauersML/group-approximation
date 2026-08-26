@@ -7,6 +7,7 @@ distinct_from:
   sublinear-julia-seam-collapses-the-fold-kernel-tracially: that bounds fold words by `rank(V-1)`; this proves that quantity is gauge-dependent and replaces it by the intrinsic generator-commutator rank.
   corona-representations-have-an-ideal-valued-support-length: that defines ideal support after passing to the norm corona; this gives a finite-coordinate, gauge-invariant rank estimate directly from the Julia derivation.
   finite-cross-word-family-fits-one-hall-reflection: that gives explicit rank-one permutation seams with finitely many operator gaps; this identifies the necessary rank-spreading quantity for arbitrary globally conjugate models.
+  common-padding-erases-julia-derivation-density: that proves faithful norm-corona coordinates can have this intrinsic density diluted to zero by common exact padding; this computes what the density would have to control if separately selected.
 ---
 
 **ESTABLISHED GAUGE CORRECTION.** Let `F=<X>` be finitely generated and let
@@ -69,6 +70,11 @@ would force a uniform derivation-rank floor. This isolates exactly what a
 It is only a necessary condition: algebraic rank is discontinuous, so a
 full-rank commutator may still have arbitrarily small normalized HS norm and
 does not itself produce an `(IR)` band.
+
+Moreover no lower bound on this density follows from faithful operator-norm
+coordinates: `common-padding-erases-julia-derivation-density` preserves the
+entire norm-corona model while diluting `R_X/d` to zero. A positive density
+must be selected by additional trace data.
 
 DERIVATION
 julia-derivation-rank-fold-proof

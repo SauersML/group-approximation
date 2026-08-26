@@ -7,6 +7,7 @@ distinct_from:
   shulman-double-forces-unstable-kernel-restriction: that extracts arbitrary exact vertex-representation pairs from weak MF; this proves that a witnessing choice can be made globally conjugate and identifies its left-right representation with one adjoint representation.
   leavitt-positive-rank-intertwiner-retention: that asks for a trace-visible almost-quotient sector; this identifies the precise positive spectral sector where such a witness would have to live but supplies no normalized-rank bound.
   weak-mf-embedding-not-reusable: that is the general norm-versus-tracial firewall; this is the free-vertex specialization and records the exact finite-coordinate normal form which survives that firewall.
+  common-padding-erases-julia-derivation-density: that preserves this normal form and every norm-corona conclusion while diluting its gauge-invariant generator-commutator rank; this extracts the normal form but makes no normalized-rank claim.
 artifacts:
   - notes/SHULMAN_PRESENTATION_DOUBLE_JULIA_AUDIT_2026-08-26.md
 ---
@@ -66,6 +67,13 @@ arbitrarily large common exact summand can be inserted in the escaping
 finite-coordinate tail without changing the strong quotient, the edge
 error, or operator-norm separation.  Therefore `(SJA1)--(SJA4)` sharpen the
 open retention problem but neither prove nor refute it.
+
+This includes the intrinsic Julia profile. Common trivial summands preserve
+every norm estimate and every separated word while leaving the unnormalized
+generator-commutator ranks fixed. Thus
+`common-padding-erases-julia-derivation-density` rules out a lower bound on
+`R_X/d` from the published construction itself; such a bound would have to
+come from a separately selected trace-visible coordinate sequence.
 
 DERIVATION
 shulman-presentation-double-adjoint-normal-form-proof

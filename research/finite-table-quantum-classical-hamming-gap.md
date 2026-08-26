@@ -6,6 +6,7 @@ title: Some finite table is solvable to arbitrary unitary accuracy but not by pe
 distinct_from:
   hyperlinear-nonsofic-group: that is the existence of a hyperlinear group that is not sofic; this is a finite, table-level statement with no group in it — it is what nonsoficity of such a group would look like locally, and on its own it produces no group at all.
   coherent-groupification-of-table-gap: that is the second half of the separation — embedding such a table coherently into one hyperlinear group; this is the first half, the existence of the gap itself, and is a purely finite question.
+  known-game-gaps-miss-finite-group-table-quantifiers: that audits the existing nonlocal-game sources and proves the exact, quantum-gapped, and natural nonclosed marked-table attempts do not supply this target; this remains the unrestricted finite-table existence question.
 artifacts:
   - research/artifacts/hyperlinear-divergent-strategies-2026-08-18.md
 ---
@@ -50,6 +51,13 @@ robust gaps across group tables would be real evidence for
   known to survive those four constraints, and the standard ones (magic
   square, linear system games) have classical solutions once the variables are
   required to be a group table's regular representation.
+- **Use the nonclosed Slofstra LCS game.** This has the uniquely relevant
+  quantum shape `omega^q=1` with no exact finite-dimensional strategy, but
+  its natural marked sign survives in permutation ultraproducts.  The full
+  audit is `known-game-gaps-miss-finite-group-table-quantifiers`: strict
+  finite-dimensional quantum gaps fail the unitary side, exact perfect
+  strategies classicalize as tables, and the nonclosed marked table has no
+  known permutation floor.
 - **Take `T` to be the multiplication table of a known nonsofic group.**
   Circular in the wrong direction: the Kun–Thom groups are nonsofic but nothing
   says their tables have unitary models of every accuracy — that is precisely

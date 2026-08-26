@@ -15,6 +15,7 @@ requires:
   - atlas-three-transverse-shears-leave-fifteen-character-types
   - atlas-target-gl3-preserves-the-fifteen-type-degeneracy
   - atlas-ef-target-rows-shrink-but-do-not-remove-degenerate-face
+  - atlas-ef-dual-rows-create-the-prefix-depth-tower
   - atlas-half-block-root-face-full-packet-model-exists
 ---
 

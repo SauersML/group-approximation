@@ -91,8 +91,6 @@ import GroupApproximation.Computability.PresentationCodeCompleteness
 import GroupApproximation.Computability.PresentationCodeList
 import GroupApproximation.Computability.RabinVariantCode
 import GroupApproximation.Computability.CoprodCode
-import GroupApproximation.Computability.AmalgamCode
-import GroupApproximation.Computability.AmalgamCodeSemantics
 import GroupApproximation.Computability.DirectProductCodeSemantics
 import GroupApproximation.Computability.AdianRabinVariantTransform
 import GroupApproximation.Computability.RawWord
@@ -175,7 +173,6 @@ import GroupApproximation.GroupTheory.HNNBrittonSpelling
 import GroupApproximation.GroupTheory.HNNBrittonCyclic
 import GroupApproximation.GroupTheory.FiniteHNNFreeLabelAction
 import GroupApproximation.GroupTheory.FiniteHNNFreeLabelFaithful
-import GroupApproximation.GroupTheory.FiniteHNNResiduallyFinite
 import GroupApproximation.Monsters.SL2PingPong
 import GroupApproximation.Monsters.SL2Completeness
 import GroupApproximation.Monsters.P13BlockSL2
@@ -1866,7 +1863,6 @@ import GroupApproximation.Higman.MikhailovaRopeCode
 import GroupApproximation.Higman.MikhailovaRopeCodeSemantics
 import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.PairedReturnCutterCode
-import GroupApproximation.Endpoint.PairedReturnCutterCodeAudit
 import GroupApproximation.Higman.FreeLampFinitePresentation
 import GroupApproximation.Higman.PairedFoldKernel
 import GroupApproximation.Higman.PairedReturnFirstIntersection

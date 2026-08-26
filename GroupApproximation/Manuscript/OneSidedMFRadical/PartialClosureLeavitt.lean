@@ -11,7 +11,7 @@ import GroupApproximation.Leavitt.ElementaryTransvectionExtraction
 * "and `yx = d s₀ t₁ c = 0` would imply `s₀t₁ = (cwd)(s₀t₁)(cwd) =
   (cw)((ds₀)(t₁c))(wd) = 0`" — a `calc` block inside the second conjunct of
   `exists_reversing_zero_product`;
-* "To obtain the coefficient-separation identity, choose factorizations
+* "To obtain `\eqref{eq:coefficient-separation}`, choose factorizations
   `c_r r d_r = 1`, `e_d d_r f_d = 1`, `e_s s f_s = 1`, `e_t (c_r r) f_t = 1`"
   — four proof-internal `obtain`s inside `exists_annihilate_preserve_reverse`,
   together with the nonvanishing facts `d_r ≠ 0` and `c_r r ≠ 0` that justify
@@ -19,7 +19,7 @@ import GroupApproximation.Leavitt.ElementaryTransvectionExtraction
 * "Thus for some `i ≠ j` and `a ∈ R`, conjugation by `g` sends `e_{ij}(a)` to
   `e_{ij}(y)` with `y ≠ a`" — the internal `ha` of the diagonal branch of
   `RootDetectionBinary.exists_elGen_mem_of_diagonal`;
-* "Thus the `(i,m)` entry of the defect in the row-unipotent zero-inverse defect display is
+* "Thus the `(i,m)` entry of the defect in `\eqref{eq:row-unipotent-zero-inverse}` is
   nonzero" — the internal `hvm` of `exists_elGen_mem_of_inv_entry_zero`;
 * "Again `AB = 0`, because its potentially nonzero coefficient contains `arb`"
   — the internal `hAB` of `exists_elGen_mem_of_annihilating_coefficients`.
@@ -83,7 +83,7 @@ theorem manuscriptPrintedReversedProductVanishingImplication :
 
 /-! ## Coefficient separation: the four printed factorizations
 
-`non_mf_groups_exist.tex`: "To obtain the coefficient-separation identity,
+`non_mf_groups_exist.tex`: "To obtain `\eqref{eq:coefficient-separation}`,
 choose factorizations `c_r r d_r = 1`, `e_d d_r f_d = 1`, `e_s s f_s = 1`,
 `e_t (c_r r) f_t = 1`, apply the preceding construction to `w = e_t f_d`, and
 set `a = f_s x e_t c_r`, `b = d_r f_d y e_s`." -/
@@ -154,7 +154,7 @@ theorem manuscriptPrintedCoefficientSeparationRecipe :
         _ = y * x := by rw [hdf, hsf, htf]; simp
     rw [← hrecover, hzero, mul_zero, zero_mul]
 
-/-- **The whole printed derivation of the coefficient-separation identity.**
+/-- **The whole printed derivation of `\eqref{eq:coefficient-separation}`.**
 For nonzero `r, s` the eight factorization scalars, the pair `x, y` produced by
 the preceding construction at `w = e_t f_d`, and the printed `a, b` all exist
 together and satisfy `arb = 0`, `bsar ≠ 0`. -/
@@ -169,7 +169,7 @@ def PrintedCoefficientSeparation : Prop :=
             a = fs * x * et * cr ∧ b = dr * fd * y * es ∧
             a * r * b = 0 ∧ b * s * a * r ≠ 0
 
-/-- Closed proof of the printed derivation of the coefficient-separation identity. -/
+/-- Closed proof of the printed derivation of `\eqref{eq:coefficient-separation}`. -/
 theorem manuscriptPrintedCoefficientSeparation : PrintedCoefficientSeparation := by
   intro S _ L hdiv r s hr hs
   letI : Nontrivial S := ⟨⟨r, 0, hr⟩⟩
@@ -182,7 +182,7 @@ theorem manuscriptPrintedCoefficientSeparation : PrintedCoefficientSeparation :=
   exact ⟨cr, dr, ed, fd, es, fs, et, ft, x, y, fs * x * et * cr,
     dr * fd * y * es, hcr, hdf, hsf, htf, hxy, hyx, rfl, rfl, hab, hba⟩
 
-/-- **the coefficient-separation identity at the manuscript's coefficient
+/-- **`\eqref{eq:coefficient-separation}` at the manuscript's coefficient
 ring.**  Two-sided division is `BinaryLeavitt.exists_mul_mul_eq_one`, so the
 separation is unconditional over `L_{𝔽₂}(1,2)`. -/
 def PrintedCoefficientSeparationAtBinaryLeavitt : Prop :=
@@ -322,13 +322,13 @@ theorem manuscriptPrintedDiagonalConjugationMovesRootAtBinaryLeavitt :
 `[g e_{iℓ}(1) g^{-1}, e_{iℓ}(1)] = 1 - BA` belongs to `N`.  Its defect `-BA` is
 square-zero and supported in row `i`.  There is an `m` for which
 `g_{ℓi}(g^{-1})_{ℓm} ≠ 0` ... Thus the `(i,m)` entry of the defect in
-the row-unipotent zero-inverse defect display is nonzero." -/
+`\eqref{eq:row-unipotent-zero-inverse}` is nonzero." -/
 
 /-- **"Thus the `(i,m)` entry of the defect in
-the row-unipotent zero-inverse defect display is nonzero."**
+`\eqref{eq:row-unipotent-zero-inverse}` is nonzero."**
 
 The graded sentence is the last conjunct.  The three that precede it are what
-pins down *which* object "the defect in the row-unipotent zero-inverse defect display" is:
+pins down *which* object "the defect in `\eqref{eq:row-unipotent-zero-inverse}`" is:
 `AB = 0`, the printed value `1 - BA` of the double commutator, and
 row-support in row `i`.  Membership in `N` is a separate sentence and is
 already carried by `doubleCommutator_mem`, so no normal subgroup appears here.
@@ -386,7 +386,7 @@ theorem manuscriptPrintedSparseDefectEntryNonzero :
 /-! ## The dense off-diagonal branch: the annihilating product
 
 `non_mf_groups_exist.tex`: "It remains to treat `r ≠ 0`.  Apply
-the coefficient-separation identity to `r` and `s = g_{ℓi}`, obtaining `a, b`
+`\eqref{eq:coefficient-separation}` to `r` and `s = g_{ℓi}`, obtaining `a, b`
 with `arb = 0` and `bsar ≠ 0`.  This time put `A = g(aE_{iℓ})g^{-1}`,
 `B = bE_{iℓ}`.  Again `AB = 0`, because its potentially nonzero coefficient
 contains `arb`." -/
@@ -397,7 +397,7 @@ contains `arb`." -/
 The first conjunct *is* the printed reason: every entry of `AB` is either `0`
 or `g_{pi}` times the coefficient `a r b`, with `r = (g^{-1})_{ℓi}`.  The
 second is the conclusion the sentence draws from it.  The hypothesis
-`a r b = 0` is the first half of the coefficient-separation identity, produced
+`a r b = 0` is the first half of `\eqref{eq:coefficient-separation}`, produced
 unconditionally over `L_{𝔽₂}(1,2)` by
 `manuscriptPrintedCoefficientSeparationAtBinaryLeavitt`. -/
 def PrintedDenseAnnihilatingProduct : Prop :=

@@ -96,5 +96,13 @@ The surviving Certificate C architecture therefore needs an **unbounded**
 moving-radius amplification of its vanishing actor defect, not merely the
 single ill-conditioned direction allowed by `(KPA10)`.
 
+This growth law is not itself contradictory.  The sharp calibration
+`canonical-moments-admit-divergent-edge-leakage`
+uses small rotations of a growing diagonal algebra to realize canonical
+group moments, covariance defect tending to zero, and aggregate leakage
+tending to infinity.  That model has no strict compressor; the remaining
+content is compatibility of the divergent leakage with the full Kun--Thom
+actor relations.
+
 DERIVATION
 kt-infinite-return-principal-angle-sum-proof
