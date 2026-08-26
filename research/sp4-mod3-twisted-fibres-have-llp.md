@@ -46,6 +46,14 @@ untwisted fibre.
   Fournier-Facio--Willett positive machinery (LLP + RFD, property FD)
   does not apply.  Nothing in the recorded literature computes any
   lifting property of a twisted algebra of a higher-rank lattice.
+- **The exact metaplectic finite model does not bridge the odd orbit.**
+  `finite-metaplectic-morita-shifts-cannot-reach-odd-maslov-fibres` proves
+  that every generator-equivariant finite tensor/Morita shift carries an
+  exact projective coefficient whose class is the difference of the two
+  twists.  Metaplectic finite quotients supply only classes `0` and `1/2`;
+  an odd-fibre bridge would require a forbidden exact `1/3` or `1/6`
+  coefficient.  Hence the half-shift retract cannot be iterated or Morita-
+  amplified into a proof of `(TF3)`.
 - **The Connes-embeddability of the fibres is also live.**  Thom's
   criterion (Lemma 3.4, `thom-central-corner-criterion`) makes
   hyperlinearity of `E_3` equivalent to Connes-embeddability of all

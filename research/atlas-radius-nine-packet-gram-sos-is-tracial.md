@@ -3,6 +3,7 @@ rg: 2
 id: atlas-radius-nine-packet-gram-sos-is-tracial
 kind: claim
 title: The fixed A4 packet Gram and conditional-expectation SOS calculus is tracially blind
+invalidates: [atlas-joint-s3-charge-from-fixed-reynolds-gram]
 distinct_from:
   tracial-npa-cannot-separate-canonical-trace: that treats the standard truncated scalar moment hierarchy; this also covers finite-packet Reynolds expectations, operator-valued Gram matrices, and fixed Schur-complement manipulations.
   global-tracial-positivity-cannot-separate-group-trace: that is the semantic firewall for arbitrary universal tracial proofs; this identifies the concrete proposed radius-nine packet calculus as lying behind that firewall.
@@ -59,3 +60,10 @@ positive normalized density.
 This does not refute the radius-nine separator.  It fences the entire natural
 packet-Gram SOS proof class and isolates the genuinely matricial ingredient
 which any remaining certificate must display explicitly.
+
+The same firewall applies to the six-row collision-channel charge.  The
+diagonal `S3` projection `E_K`, its sign and standard central summands, the
+six fixed residual words, and every fixed Gram/Schur/SOS combination of them
+are operations in the displayed calculus.  The exact Leavitt factor has zero
+six-row defect and positive nontrivial-channel mass, so this claim
+invalidates `atlas-joint-s3-charge-from-fixed-reynolds-gram`.

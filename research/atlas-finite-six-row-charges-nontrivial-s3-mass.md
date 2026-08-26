@@ -81,6 +81,14 @@ exclude the entire unitary locus without a witness.
   needed estimate must distinguish finite matrices from that factor.
 - Fixed congruence, determinant, parity, and bounded rank corrections vanish
   under external amplification and cannot supply `C_S3`.
+- **Fixed Reynolds--Gram charging is refuted.**  The route
+  `atlas-joint-s3-charge-from-fixed-reynolds-gram` allows the exact diagonal
+  `S3` expectation, separate sign/standard blocks, fixed operator-valued
+  Gram matrices, Schur complements, and sums of squares.  All those
+  operations extend to finite tracial factors, where the exact Leavitt model
+  has `D_6=0` and `m_nt>=1/2`.  Therefore channel splitting is useful only
+  upstream of a dimension-dependent finite-coordinate selection; fixed
+  blockwise positivity cannot close `(JSC3)`.
 - A valid proof may work separately on the sign and standard central
   idempotents, but both estimates must retain the collision residual or a
   mixed boundary--collision coefficient.  Merely proving positive channel
