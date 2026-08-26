@@ -230,6 +230,25 @@ the gauges.  The surviving search must additionally force the resulting
 `S_3` reflection pair to commute, or impose an incompatible braid length,
 so that the order-three product dies.
 
+There is also a global closure obstruction to recombining the already typed
+rows in a more elaborate way.  By
+`fixed-hecke-typed-interface-has-common-c2-grading`, every relation currently
+authenticated on one fixed Hecke carrier admits the common grading
+
+```text
+J_1,J_2,B_2,B_3,W |-> c in C_2.
+```
+
+This includes both native heads, both order-seven rows, all three
+Whitehead braids, the B2/B3 sign flips, and the complete rowwise/cross-row
+diamond interface.  The grading survives arbitrary derivation from those
+rows.  Thus a longer formal consequence of the existing carrier-valid menu
+cannot become the ungauged bridge: a new odd-grade same-carrier occurrence,
+or an independent proof that one of the five displayed gauges is trivial,
+is necessary.  The globally odd Whitehead/commutator definitions cannot be
+inserted here until their other factors have authenticated source and range
+Grams on the same carrier.
+
 The first two-return attempt does not kill that product.
 `two-external-return-cell-has-finite-s3-model` adds the commuting return
 `r=x_59(1)`, the matrix root for the enumerated arrow `9->5`, and the

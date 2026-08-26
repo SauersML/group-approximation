@@ -155,6 +155,18 @@ canonical trace, or literature theorem is permitted.
   operator-norm or polar argument based only on the actual order-seven heads;
   the independently ungauged occurrence typing in the six-bridge claim is
   load-bearing.
+- The obstruction is closed under arbitrary algebraic recombination of the
+  currently typed same-carrier rows.  By
+  `fixed-hecke-typed-interface-has-common-c2-grading`, the complete
+  authenticated interface maps onto `C_2` with
+  `J_1,J_2,B_2,B_3,W` all carrying the same nontrivial grade.  Both native
+  heads, all three Whitehead braids, the Pauli sign flips, and the full
+  rowwise/cross-row diamond table are homogeneous.  Hence none of their
+  consequences can supply a degree-zero parallel bridge for a degree-one
+  native transition.  A proof must add a genuinely new odd-grade
+  same-carrier relation or independently make one of these five occurrences
+  ungauged; merely deriving a longer word from the present interface cannot
+  close `(GMC3)`.
 - Recentering the Pauli center to `x_(18,19)(q)` does make the marked overlap
   reduce both order-seven heads, so there is no moving-cut boundary.  It
   instead enlarges the native label algebra by the two center-chain hub
