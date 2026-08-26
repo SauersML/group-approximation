@@ -311,7 +311,7 @@ representation, the complement of the Kazhdan projection is a $G$-invariant
 corner.  The Kazhdan inequality forces this corner to vanish when
 $K\le\mathfrak D_G(L)$.
 
-Many Kazhdan groups are residually finite and hence MF.
+Many Kazhdan groups are residually finite and so MF.
 
 %<webmath object="LF2" when="L_{\F_2}(1,2)" title="the system that copies itself and is used to build H">
 % \(L_{\F_2}(1,2)\) names a particular [[Leavitt algebra]].  The subscript
@@ -394,7 +394,7 @@ generated, nontrivial, simple, has property~\textup{(T)}, and
 \leanverified{Manuscript/OneSidedMFRadical/HeadlineTheorem}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline}
 \leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequence}
 \leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF}
-Every homomorphism from $H$ to an MF group is trivial.  Hence $H$ is
+Every homomorphism from $H$ to an MF group is trivial.  So $H$ is
 non-MF, and $C^*_{\mathrm r}(H)$ is separable and stably finite but not MF.
 \end{mainthm}
 
@@ -444,7 +444,7 @@ Ershov--Jaikin-Zapirain~\cite[Theorem~1.1]{EJZ}.
 \subsection{The MF radical}
 
 The image of a corona homomorphism from $G$ is a countable subgroup of a
-corona unitary group, hence MF; conversely, every countable MF group
+corona unitary group, so MF; conversely, every countable MF group
 embeds in the unitary group of a norm matrix corona.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedDefinitions}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets}
 Thus $\Rad_{\mathrm{MF}}(G)$ is also the intersection of the kernels of
@@ -465,8 +465,8 @@ fully invariant.
 
 Put $R=\Rad_{\mathrm{MF}}(G)$.  If $1\ne x\in G/R$ and $g$ represents $x$,
 then $g\notin R$, so a homomorphism from $G$ to an MF group separates $g$
-from $1$.  It kills $R$ and induces a homomorphism separating $x$.  Hence
-$G/R$ is residually MF and therefore MF by
+from $1$.  It kills $R$ and induces a homomorphism separating $x$.  So
+$G/R$ is residually MF, and MF by
 Korchagin~\cite[Proposition~6]{Korchagin}; this also covers the trivial
 quotient.
 
@@ -578,12 +578,22 @@ matrix corona are equal whenever one is dominated by the other.
 \end{lemma}
 
 \begin{proof}
-Suppose that $v^*v=1$ in the corona, and let $(x_n)$ be a bounded lift of
-$v$.  Since $x_n^*x_n\to1$, polar correction replaces all sufficiently late
-$x_n$ by unitaries at distance $o(1)$.  Thus $vv^*=1$, and the same argument
-applies to every matrix amplification.  If equivalent projections $p\le q$
-in a stably finite algebra are implemented by $w^*w=q$ and $ww^*=p$, then
-$w$ is an isometry in the finite corner $qAq$, so $p=ww^*=q$.
+Write $A$ for the displayed corona.  Suppose that $v^*v=1$ in $A$, and let
+$(x_n)$ be a bounded lift of
+$v$.  Then $\opnorm{x_n^*x_n-1}\to0$.  For all sufficiently large $n$, the
+matrix $x_n^*x_n$ is invertible, and
+\[
+ u_n=x_n(x_n^*x_n)^{-1/2}
+\]
+is unitary.  Moreover, $\opnorm{u_n-x_n}\to0$; after assigning arbitrary
+unitary values to the finitely many remaining coordinates, $(u_n)$ is a
+unitary lift of $v$.  So $vv^*=1$, and $A$ is finite.  For every
+$k\ge1$, apply this construction with matrix sizes $km_n$ to see that
+$\prod_nM_{km_n}(\C)/\bigoplus_nM_{km_n}(\C)$ is finite.  This corona is
+canonically isomorphic to $M_k(A)$, so $A$ is stably finite.  Finally, let
+$p\le q$ be equivalent projections in a stably finite algebra $B$, and choose
+a partial isometry $w$ with $w^*w=q$ and $ww^*=p$.  Then $w\in qBq$ is an
+isometry in the finite corner $qBq$, so $p=ww^*=q$.
 \end{proof}
 
 \begin{lemma}[one-sided order for the Kazhdan projection]
@@ -638,7 +648,7 @@ then
  =U^*\bigl(U\pi(\ell)U^*\bigr)\xi
  =U^*\xi,
 \]
-because $U\pi(\ell)U^*$ belongs to $\pi(L)$.  Hence
+because $U\pi(\ell)U^*$ belongs to $\pi(L)$.  So
 $U^*\operatorname{Fix}\pi(L)\subseteq\operatorname{Fix}\pi(L)$, so the
 range projection $U^*PU$ is dominated by $P$ in $B(\mathcal H)$.  Faithfulness
 of the representation gives the same projection inequality in $B$.
@@ -706,16 +716,16 @@ operators $\operatorname{Ad}(V_n(g))$ in the norm matrix corona
 After choosing matrix units on each $M_{d_n}(\C)$, this is a norm matrix
 corona with coordinate sizes $d_n^2$.
 By the preceding estimate, $g\mapsto\widetilde\sigma(g)$ is a
-homomorphism $G\to\U(\mathcal B)$.  Its restriction to $L$ therefore extends to a
+homomorphism $G\to\U(\mathcal B)$.  So its restriction to $L$ extends to a
 $*$-homomorphism $C^*_{\max}(L)\to\mathcal B$.  Let $P\in\mathcal B$ be the
 image of the Kazhdan projection~\cite{AkemannWalter}.  Under the natural
 representation of $\mathcal B$ on $\mathcal K_\omega$, its range is
 $\operatorname{Fix}\sigma(L)$.  Since
 $uLu^{-1}\le L$, the unitary $U=\widetilde\sigma(u)$ satisfies the
-hypothesis of Lemma~\ref{lem:kazhdan-projection-order}, and hence
+hypothesis of Lemma~\ref{lem:kazhdan-projection-order}, and so
 $U^*PU\le P$ inside $\mathcal B$.
 The two projections are unitarily equivalent.  Lemma~\ref{lem:stable-finite}
-therefore gives $U^*PU=P$, so $U$ commutes with $P$.  Hence both $U\xi$ and
+then gives $U^*PU=P$: $U$ commutes with $P$, and both $U\xi$ and
 $U^*\xi$ are fixed by $\sigma(L)$.  Since $\omega$ was arbitrary, the
 corresponding Hilbert--Schmidt commutators converge to zero along the full
 sequence.
@@ -761,7 +771,7 @@ sequence in operator norm with $(V_n(ucu^{-1}))$; explicitly,
 \[
  \opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\longrightarrow0.
 \]
-Therefore
+So
 %<webmath object="whole" when="\hsnorm{V_n([ucu^{-1},\ell])-1}" title="the represented commutator approaches the identity in Hilbert--Schmidt norm">
 % The matrix \(V_n([ucu^{-1},\ell])\) is the nth assignment to the displayed
 % group [[commutator]].  Subtracting the identity matrix 1 measures how far
@@ -975,7 +985,7 @@ represent \(b\).  Taking the normalized trace on \(M_{r_n}(\C)\) yields
 The order inequality for $b$ says that the negative part of
 $b_n-(\kappa^2/|S|)I_{r_n}$ converges to zero in operator norm.  Taking normalized
 traces gives the displayed inequality.
-After passing to a subsequence, one fixed \(s_0\in S\) therefore stays a
+After passing to a subsequence, one fixed \(s_0\in S\) then stays a
 positive Hilbert--Schmidt distance from \(I_{r_n}\).  This
 contradicts \(s_0\in K\le R_{\infty\to2}(G)\), established after passing to
 \(\Theta(G)\).  Thus every corona homomorphism kills \(K\).
@@ -996,7 +1006,7 @@ Corollary~\ref{cor:defect-hs} gives
 \[
  [ucu^{-1},\ell]\in R_{\infty\to2}(G).
 \]
-Normality of \(R_{\infty\to2}(G)\) therefore gives
+So normality of \(R_{\infty\to2}(G)\) gives
 %<webmath object="whole" when="\mathfrak D_G(L)\le R_{\infty\to2}(G)" title="the entire defect subgroup is universally Hilbert--Schmidt trivial">
 % The left side is the [[normal closure]] of all compression commutators from
 % the preceding display.  Every one of those generators lies in
@@ -1079,7 +1089,7 @@ $q^2=q$, $qs_0=t_0q=0$, and $t_0s_0=1$, all consequences of
  \Psi(I_3)=qI_3+s_0I_3t_0=qI_3+pI_3=(p+q)I_3=I_3,
 \]
 so $\Psi$ preserves the identity.  Finally, $t_0\Psi(A)s_0=A$, so
-$\Psi$ is injective.  Hence $\Psi$ restricts to an injective group
+$\Psi$ is injective and restricts to an injective group
 homomorphism $\GL_3(R)\to\GL_3(R)$.
 
 To realize $\Psi$ by conjugation on the embedded copy of $\GL_3(R)$,
@@ -1150,7 +1160,7 @@ identity
   \begin{pmatrix}I&-I\\0&I\end{pmatrix}
   \begin{pmatrix}I&0\\I&I\end{pmatrix}
 \]
-with $I=I_6$ therefore expresses $\tau$ as a product of six matrices of
+with $I=I_6$ then expresses $\tau$ as a product of six matrices of
 $\EL_{12}(R)$.
 \end{proof}
 
@@ -1183,8 +1193,8 @@ The groups $H$ and $L$ have property~\textup{(T)}, and $\tau\in H$ satisfies
 \end{proposition}
 
 \begin{proof}
-The ring $R$ is generated by $s_0,s_1,t_0,t_1$ as a unital ring.  The theorem
-of Ershov and Jaikin-Zapirain therefore gives property~\textup{(T)} for
+The ring $R$ is generated by $s_0,s_1,t_0,t_1$ as a unital ring.  So the theorem
+of Ershov and Jaikin-Zapirain gives property~\textup{(T)} for
 $\EL_{12}(R)$ and $\EL_3(R)$~\cite[Theorem~1.1]{EJZ}.
 Lemma~\ref{lem:tau-elementary} gives $\tau\in H$.
 
@@ -1205,7 +1215,7 @@ The group $H=\EL_{12}(R)$ is nontrivial and simple.
 \end{proposition}
 
 \begin{proof}
-The ring $R$ is purely infinite simple~\cite{AbramsAranda}, and therefore is
+The ring $R$ is purely infinite simple~\cite{AbramsAranda}, and so is
 an exchange ring~\cite{AraExchange}.  Let $N\trianglelefteq H$.  Since
 $H=\EL_{12}(R)$, the subgroup $N\le\GL_{12}(R)$ is normalized by
 $\EL_{12}(R)$.  Preusser's sandwich theorem~\cite[Theorem~3]{Preusser}
@@ -1216,12 +1226,13 @@ provides an ideal $I\trianglelefteq R$ such that
 Simplicity of $R$ gives $I=0$ or $I=R$.  If $I=R$, then
 $\EL_{12}(R,I)=H$, so $N=H$.
 
-Suppose that $I=0$.  Then $N\le C_{12}(R,0)=Z(\GL_{12}(R))$.  A matrix that
-commutes with every $e_{ij}(1)$ is a scalar matrix $\lambda I_{12}$.
-Commutation with $e_{ij}(a)$ for arbitrary $a\in R$ then gives
-$\lambda a=a\lambda$, so $\lambda\in Z(R)^\times$.  Since
-$Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, we have $\lambda=1$ and
-$N=1$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
+Suppose that $I=0$.  Then $N\le C_{12}(R,0)=Z(\GL_{12}(R))$.  Fix
+$g\in N$.  Since $g$ centralizes $e_{ij}(1)$ for every $i\ne j$, comparison
+of entries in $gE_{ij}=E_{ij}g$ shows that $g=\lambda I_{12}$ for some
+$\lambda\in R^\times$.  Centralizing $e_{ij}(a)$ now gives
+$\lambda a=a\lambda$ for every $a\in R$, and so
+$\lambda\in Z(R)^\times$.  Since $Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow},
+we have $g=1$.  Thus $N=1$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
 \end{proof}
 
 \begin{proposition}\label{prop:defect}
@@ -1270,7 +1281,7 @@ in $H$.  Then
 
 \begin{proof}
 For $i,j\in\{0,1,2\}$ with $i\ne j$ and $a\in R$, we have $j\ne3$ and
-$i\ne4$.  Hence the Steinberg relations give
+$i\ne4$.  So the Steinberg relations give
 \[
  [e_{ij}(a),e_{34}(1)]=1.
 \]
@@ -1290,7 +1301,7 @@ Direct multiplication of the matrices in \eqref{eq:tau} gives
  \tau c\tau^{-1}=e_{01}(q)e_{34}(1).
 \end{equation}
 The second factor commutes with $\ell=e_{12}(1)$.  The identity
-$[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ therefore gives $d=e_{02}(q)$, which is
+$[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ then gives $d=e_{02}(q)$, which is
 nontrivial because $q\ne0$.
 Since $H$ is simple, the nontrivial element $d$ normally generates $H$.
 \end{proof}
@@ -1314,7 +1325,7 @@ $\Rad_{\mathrm{MF}}(H)=H$.
 Proposition~\ref{prop:simple} shows that $H$ is nontrivial and simple.
 
 The equality $\Rad_{\mathrm{MF}}(H)=H$ implies that every homomorphism from
-$H$ to an MF group is trivial, and hence that $H$ is not MF.
+$H$ to an MF group is trivial, and so that $H$ is not MF.
 
 $C^*_{\mathrm r}(H)$ is separable, and its faithful canonical trace makes
 it stably finite.  If an MF embedding
@@ -1415,7 +1426,7 @@ $t_LJ_Lt_L^{-1}=\rho(\pi(S))\le\Gamma_L$.  For $c\in J_L$ and
 $\ell\in\Gamma_L$, the commutator $[t_Lct_L^{-1},\ell]$ lies in
 $\mathfrak D_L(\Gamma_L)$ by \eqref{eq:intrinsic-defect}.  As $c$ ranges
 over $J_L$, the element $t_Lct_L^{-1}$ ranges over $\rho(\pi(S))$, and
-$\ell$ may be taken in $\rho(\pi(S))\le\Gamma_L$; hence the commutator
+$\ell$ may be taken in $\rho(\pi(S))\le\Gamma_L$; so the commutator
 subgroup of $\rho(\pi(S))$ lies in $\mathfrak D_L(\Gamma_L)$.  Since
 $\rho(\pi(S))\ne1$ and $S$ is simple, $\rho(\pi(S))\cong S$ is perfect, so
 $\rho(\pi(S))\le\mathfrak D_L(\Gamma_L)$.

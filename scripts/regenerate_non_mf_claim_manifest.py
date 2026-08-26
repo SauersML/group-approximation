@@ -65,10 +65,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
         "printedTauGL_mem"),
-    "lem:simple-in-defect": (
-        "Manuscript/NonMF/SimpleInDefect",
-        "GroupApproximation.Manuscript.NonMF."
-        "manuscriptLemmaSimpleInDefect"),
     "prop:leavitt-compression": (
         "Manuscript/OneSidedMFRadical/SentenceCurrentLeavittCompressionClosure",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
@@ -89,6 +85,8 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means the argument
 # is entirely elementary and self-contained in the paper.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
+    "lem:simple-in-defect": (
+        "Fournier-Facio, Section 2",),
     "thm:hull": (
         "Hull, Theorem 7.1",),
     "lem:saturation": (

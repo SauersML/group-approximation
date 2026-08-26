@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "paper1k.tex",
+  "manuscript": "paper1n.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -30,7 +30,7 @@
       "id": "thm:headline",
       "environment": "mainthm",
       "title": "the binary Leavitt group",
-      "statement_sha256": "4a0634991d998ddf57c701f408746046a24fa3b28f93d24200dd5bb2fd627009",
+      "statement_sha256": "e04b9ec5b700f236c65bd56daea05be02cdabe48849b07244a68c9024eeb0132",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -362,7 +362,7 @@
       "title": "",
       "statement_sha256": "036c7227d38f8ca49c0de1e6d2a22a0b7785a5594e4fcde4a5ec65b137a60bf5",
       "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. The Lean declaration isolates the formal consequence of the required Fournier--Facio defect data, but the corpus does not yet construct those data.",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [
