@@ -4,6 +4,8 @@ id: second-level-rice-theorem-for-local-approximation-properties
 kind: claim
 title: Every nontrivial local approximation property is Pi-zero-two hard on two-generator recursive presentations and undecidable on finite presentations
 artifacts:
+  - GroupApproximation/Computability/SoficRecognitionSecondLevel.lean
+  - GroupApproximation/Computability/HereditaryPropertySwitchCompleteness.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
   - GroupApproximation/Computability/ParametricFinInfSwitch.lean
   - GroupApproximation/Computability/AdianRabinGeneral.lean
