@@ -70,3 +70,10 @@ sector has therefore moved past every tensor product of two copies chosen
 from the defining and contragredient coordinates: the quadratic calculation
 also closes the dual symmetric square, while the bilinear calculation closes
 the mixed tensor.
+
+`authenticated-mixed-loop-kills-cubic-affine-modules` continues one degree
+further on the defining side.  A power-of-two torus minor and two
+authenticated minors with determinants `24` and `-20` give a certificate
+uniform in every odd characteristic.  Thus the first untested defining
+symmetric power is degree four; arbitrary highest weights and the dual cubic
+remain outside the present calculation.
