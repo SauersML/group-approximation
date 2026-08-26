@@ -8,6 +8,7 @@ artifacts:
 distinct_from:
   endpoint-native-heads-retain-coordinate-q-s3-retract: that constructs the proper q-weighted corner retained by both native heads; this proves that x_84(1) ties the active coordinate weights together and, with B2 and either orientation of the first prefix bridge, leaves only scalar zero or one Cantor weights.
   endpoint-b2-enlargement-has-native-s3-retract: that kills B2 in the quotient R/pR and retains the native S3; this shows exactly why adding the constant coefficient at the same root position defeats all diagonal locally constant refinements of that escape.
+  endpoint-zero-tail-packet-has-marked-finite-model: that gives a GL40(F2) model of the complete inward-outward package and retains the actual mark; this classifies the failure of the narrower Cantor-diagonal weighted-corner ansatz and records the infinite depth-growing elementary subcore inside that finite-model-safe package.
   leavitt-diagonal-compression-is-elementary-amenable: that identifies the whole Cantor diagonal and its locally finite elementary group; this uses the Cantor-function model only to solve the exact commutation equations for one active weighted corner.
 ---
 
@@ -78,9 +79,11 @@ x_87(c^k),                  k>=1,                      (CCW8)
 
 and `c^k=s_(0^(k+1))t_0` are nonzero and pairwise distinct by the Leavitt
 grading.  Thus the first corner-destroying package meets an unbounded-depth
-elementary core.  No established node identifies this core as non-MF or as
-another known hard obstruction; a different finite quotient may still
-exist.
+elementary core.  This still is not a same-carrier breaker:
+`endpoint-zero-tail-packet-has-marked-finite-model` supplies an exact
+`GL_40(F_2)` model of the whole inward-outward packet retaining the mark.
+No established node identifies the infinite abstract core as non-MF or as
+another known hard obstruction.
 
 No Property `(T)`, Kazhdan input, trace profile, stability theorem,
 finite-word computation, or numerical approximation is used.
