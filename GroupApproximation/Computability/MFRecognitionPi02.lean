@@ -574,16 +574,15 @@ theorem primrec_wordDefect :
     primrec_wordMatrix.comp (Primrec.pair
       (Primrec.pair
         (Primrec.pair
-          (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
-          (Primrec.fst.comp (Primrec.fst.comp
-            (Primrec.fst.comp Primrec.fst))))
-        (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))) Primrec.snd)
+          (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))
+          (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+        (Primrec.snd.comp Primrec.fst)) Primrec.snd)
   exact primrec_matrixSub.comp (Primrec.pair
     (Primrec.pair
-      (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+      (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))
       hword)
     (primrec_identity.comp
-      (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))
+      (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))))
 
 set_option maxSynthPendingDepth 1000 in
 theorem primrecPred_generatorsUnitary :
@@ -604,7 +603,7 @@ theorem primrecPred_generatorsUnitary :
     PrimrecRel.forall_mem_list hitem
   refine (hall.comp
     (Primrec.list_range.comp
-      (primrec_genCount.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
+      (primrec_genCount.comp (Primrec.fst.comp Primrec.fst)))
     Primrec.id).of_eq ?_
   intro z
   constructor
@@ -665,13 +664,13 @@ theorem primrecPred_upperPacket :
     hall.comp
       (Primrec.list_range.comp (Primrec.list_length.comp
         (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp
-          (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))))
+          (Primrec.fst.comp Primrec.fst))))))
       Primrec.id
   have hlen : PrimrecPred fun z : UpperInput =>
       z.2.length = z.1.1.1.1.2.length :=
     Primrec.eq.comp (Primrec.list_length.comp Primrec.snd)
       (Primrec.list_length.comp (Primrec.snd.comp (Primrec.fst.comp
-        (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))))
+        (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))
   refine (PrimrecPred.and hlen hforall).of_eq ?_
   intro z
   simp only [UpperPacket]
@@ -732,12 +731,12 @@ theorem primrecPred_lowerPacket :
     hall.comp
       (Primrec.list_range.comp (Primrec.list_length.comp
         (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp
-          (Primrec.fst.comp Primrec.fst)))))) Primrec.id
+          Primrec.fst))))) Primrec.id
   have hlen : PrimrecPred fun z : LowerInput =>
       z.2.length = z.1.1.1.2.length :=
     Primrec.eq.comp (Primrec.list_length.comp Primrec.snd)
       (Primrec.list_length.comp (Primrec.snd.comp (Primrec.fst.comp
-        (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))
+        (Primrec.fst.comp Primrec.fst))))
   refine (PrimrecPred.and hlen hforall).of_eq ?_
   intro z
   simp only [LowerPacket]
