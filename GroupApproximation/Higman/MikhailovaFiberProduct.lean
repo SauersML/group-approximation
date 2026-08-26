@@ -51,7 +51,9 @@ def quotientMap (R : Set G) : G →* G ⧸ Subgroup.normalClosure R :=
 /-- The fibre product of the quotient map `G → G / ⟨⟨R⟩⟩` with itself. -/
 def fiberProduct (R : Set G) : Subgroup (G × G) where
   carrier := {p | quotientMap R p.1 = quotientMap R p.2}
-  one_mem' := by rw [map_one]
+  one_mem' := by
+    change quotientMap R (1 : G) = quotientMap R 1
+    rfl
   mul_mem' := by
     rintro ⟨a₁, a₂⟩ ⟨b₁, b₂⟩ ha hb
     change quotientMap R (a₁ * b₁) = quotientMap R (a₂ * b₂)
@@ -104,6 +106,7 @@ instance firstKernel_normal (R : Set G) : (firstKernel R).Normal where
     have heq : (g, g) * (x, 1) * (g, g)⁻¹ =
         (g * x * g⁻¹, 1) := by
       apply Prod.ext <;> simp
+    change (g * x * g⁻¹, 1) ∈ subgroup R
     rw [← heq]
     exact hconj
 
@@ -168,7 +171,7 @@ theorem diagonal_mem_freeSubgroup (R : Set (FreeGroup X))
   · intro x
     exact Subgroup.subset_closure (Or.inl ⟨x, rfl⟩)
   · intro x hx
-    change (x⁻¹, x⁻¹) ∈ freeSubgroup R
+    change ((FreeGroup.of x)⁻¹, (FreeGroup.of x)⁻¹) ∈ freeSubgroup R
     exact (freeSubgroup R).inv_mem hx
   · intro x y hx hy
     change (x * y, x * y) ∈ freeSubgroup R
