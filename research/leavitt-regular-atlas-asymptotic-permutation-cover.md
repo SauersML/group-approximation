@@ -3,6 +3,7 @@ rg: 2
 id: leavitt-regular-atlas-asymptotic-permutation-cover
 kind: claim
 title: Build asymptotic finite covers of the universal Leavitt atlas with free regular A8 vertex actions
+refuted_by: leavitt-regular-atlas-permutation-cover-impossible
 distinct_from:
   leavitt-regular-atlas-hyperlinearity-criterion: that permits an arbitrary relative unitary and is equivalent to hyperlinearity of Q; this asks for the stronger permutation-unitary witness, which would make a central extension of Q sofic.
   atlas-a8-mixed-block-transport-has-permutation-models: that realizes every rational one-step mixed-block marginal by a permutation; this asks that the same permutation close every fixed multi-step atlas relator loop on almost every sheet.
@@ -10,7 +11,7 @@ distinct_from:
   openai-leavitt-unit-nonsofic: that excludes soficity of Q itself; this asks for a sofic central extension of Q, and soficity is not known to descend through arbitrary central quotients.
 ---
 
-**OPEN finite combinatorial target.**  Use the canonical source and normal
+**REFUTED finite combinatorial target.**  Use the canonical source and normal
 generators of `leavitt-regular-atlas-hyperlinearity-criterion`:
 
 ```text
@@ -73,10 +74,11 @@ choosing one common sheet permutation whose finitely many prescribed return
 maps all have `o(1)` support.  Retaining arbitrary return permutations, as in
 the finite-sheet transport theorem, gives exact matrices but not `(APC2)`.
 
-This is the smallest presently isolated positive construction: one finite
-alphabet, one unknown permutation at each multiplicity, and one fixed finite
-list of asymptotic return equations.  It is stronger than hyperlinearity and
-is not claimed to exist here.
+This formerly looked like the smallest positive construction, but
+`leavitt-regular-atlas-permutation-cover-impossible` now rules it out. The
+reason is special to the Leavitt target: every nontrivial permutation
+ultraproduct image would be a sofic central extension of `Q`, whereas every
+countable central extension of `Q` is nonsofic.
 
 ## Attempts
 
@@ -85,7 +87,9 @@ is not claimed to exist here.
   Choosing the absorbers independently for different relators does not give
   one permutation `U_n`; choosing one permutation retains its actual cycle
   holonomies, which need not satisfy `(APC2)`.  The missing operation is a
-  simultaneous coupling of all finitely many path-return statistics.
+  simultaneous coupling of all finitely many path-return statistics. The
+  all-central-cover obstruction proves that no such permutation coupling
+  exists.
 - **Use exact finite covers.**  This is impossible.  If every element of
   `bar S` were identically trivial on one finite cover while a factor acted
   freely, it would give a nontrivial finite quotient of the quasisimple

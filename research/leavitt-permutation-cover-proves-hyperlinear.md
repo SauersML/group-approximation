@@ -38,11 +38,12 @@ a central quotient of a hyperlinear group is hyperlinear.  Applying it to
 Together with `openai-leavitt-unit-nonsofic`, this is the desired
 hyperlinear/nonsofic separation.
 
-There is deliberately no assertion that `Q` is sofic.  Soficity does not
-have the central-quotient permanence used in the last paragraph; confusing
-the two would incorrectly turn the established nonsoficity of `Q` into an
-obstruction to `(APC1)--(APC2)`.  In fact that failure of sofic descent is
-exactly why the permutation-cover target is a viable positive route.
+There is deliberately no assertion that soficity descends through an arbitrary
+central quotient. Nevertheless this route is dead for a stronger,
+target-specific reason: `leavitt-all-countable-central-covers-are-nonsofic`
+says that the group `W` in `(PCP3)` itself is nonsofic. Thus the formal
+conditional implication above is correct, but its premise is impossible by
+`leavitt-regular-atlas-permutation-cover-impossible`.
 
 Finally, a permutation relative chart unitary is a special case of the
 unitary in the regular-atlas criterion, and
