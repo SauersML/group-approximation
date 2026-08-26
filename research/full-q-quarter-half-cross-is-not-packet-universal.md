@@ -9,6 +9,7 @@ distinct_from:
   full-q-quarter-adjacent-profiles-have-half-cross: that computes FJ_1J_2F=(1/2)F in the two adjacent-character monomial profiles; this gives an exact finite representation of the same packet in which that scalar identity fails.
   full-q-native-quarter-source-has-distinct-literal-ranges: that separates the two literal range projections in one adjacent-character profile while retaining cross coefficient one half; this separates the full cross operator from one-half times the source by finite-group support.
   binary-leavitt-arbitrary-profile-native-cross-gram: that asks only for a uniform positive lower bound on cross-Gram mass in every surviving profile; this refutes the stronger universal scalar formula and does not decide that positive lower bound.
+  full-q-relative-word-hecke-interface-has-zero-central-block: that computes the complete twisted Hecke algebra for the smaller relative-word interface H=<K,J_1J_2> and finds a simple block on which the cross word vanishes; this uses only support separation to refute the exact scalar formula in the faithful regular model.
 ---
 
 **ESTABLISHED SCALAR-FORMULA FENCE.**  Retain the exact eight-projective-
