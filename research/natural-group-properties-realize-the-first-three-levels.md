@@ -2,7 +2,7 @@
 rg: 2
 id: natural-group-properties-realize-the-first-three-levels
 kind: claim
-title: Natural group properties are complete at each of the first three arithmetical levels, and the fourth is open
+title: Natural group properties are complete at each of the first four arithmetical levels
 artifacts:
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
@@ -33,11 +33,16 @@ with the completeness proofs in
 [[residually-p-two-generator-recursive-is-pi3-complete]] and
 [[word-problem-solvability-rec2-is-sigma3-complete]].
 
-## The level-four question
+## The level-four question, answered
 
-OPEN: is there a natural property of finitely generated groups that is
-`Sigma^0_4`- or `Pi^0_4`-complete on recursive presentations?  The natural
-candidate is
+`Sigma^0_4` is realized: being residually a finite `p`-group for **some**
+prime `p` is `Sigma^0_4`-complete on two-generator recursive presentations
+([[residually-p-for-some-prime-is-sigma4-complete]]), through index-set
+rows that are selectively visible to a single prime.  The rest of this
+section records how that question looked before it was answered, and the
+two computations that answer it.
+
+The candidate was
 
 ```text
 "G is residually a finite p-group for some prime p",
@@ -63,7 +68,7 @@ progression with common difference `p` is **dense** in `Z_q` for every
 `q != p`, because `p` is invertible modulo `q^m`; so progressions are
 maximally visible to the other primes and can never be used.
 
-**A candidate that survives both tests.**  Use factorial powers with a
+**The construction that works.**  Use factorial powers with a
 shift.  Put
 
 ```text
@@ -80,11 +85,11 @@ with `c_p` a fixed integer.  Two computations, one for each topology:
 
 So `row_p(k) u {1 + c_p}` is closed in every pro-`q` topology with
 `q != p`, and its pro-`p` closedness is exactly the finiteness of `k`.
-This is the selective visibility the construction needs.  What remains
-before a `Sigma^0_4`-completeness claim can be made is to rule out
-*accidental* limit points of the union of all rows: a diagonal sequence
-drawn from infinitely many rows could converge in some `Z_q` to an integer
-outside the set, and the shifts `c_p` must be chosen (for instance highly
-divisible, or congruent to prescribed residues modulo the moduli that
-matter for the smaller primes) to prevent it.  That verification has not
-been carried out here.
+This is the selective visibility the construction needs.  Accidental limit points of the union are ruled out by the *uniformity* of
+the threshold: for fixed `q^m`, the exponent of the unit group of `Z/q^m`
+divides `n!` beyond a bound independent of the base, and factorial shifts
+vanish modulo `q^m` beyond another such bound, so all but finitely many
+elements of the whole union are congruent to `1`; hence every sequence of
+distinct elements converges to `1`, and `1` is put into the set.  The
+verification is carried out in
+[[residually-p-some-prime-sigma4-proof]].
