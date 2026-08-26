@@ -834,7 +834,7 @@ theorem mem_leastRootWordDetectionSet_leastRootWordDegreeWithin
   refine ⟨leastRootWordDegreeWithin_mem rho b n chi hchi, ?_⟩
   generalize hdegree : leastRootWordDegreeWithin rho b n chi = d
   cases d with
-  | zero => exact Set.not_mem_empty chi
+  | zero => simp [rootWordVisibleBefore]
   | succ k =>
       change chi ∉ rootWordVisibleSet rho b k
       apply not_mem_rootWordVisibleSet_of_lt_leastRootWordDegreeWithin

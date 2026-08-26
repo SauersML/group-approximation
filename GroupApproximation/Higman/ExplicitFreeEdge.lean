@@ -256,6 +256,7 @@ theorem shearBackward_comp_shearForward (payload : FreeGroup X) :
   · simp
   · rename_i u
     rcases u with ⟨⟩
+    simp only [MonoidHom.comp_apply, MonoidHom.id_apply]
     rw [shearForward_k0, map_mul, map_inv, shearBackward_k0]
     have hfix := DFunLike.congr_fun
       (shearBackward_comp_fixedInclusion payload) payload
@@ -271,6 +272,7 @@ theorem shearForward_comp_shearBackward (payload : FreeGroup X) :
   · simp
   · rename_i u
     rcases u with ⟨⟩
+    simp only [MonoidHom.comp_apply, MonoidHom.id_apply]
     rw [shearBackward_k0, map_mul, shearForward_k0]
     have hfix := DFunLike.congr_fun
       (shearForward_comp_fixedInclusion payload) payload
