@@ -43,6 +43,15 @@ closed by repairing only the wrap boundary of the one-compressor telescope;
 the missing datum is a positive-density full-actor outlier or a genuinely
 non-block-preserving extension.
 
+Nor does adjoining the first transverse elementary direction close the
+wall.  `kt-a2-heisenberg-flat-wall-survives-one-more-compressor` copies the
+nested gauge through Heisenberg Folner boxes for
+`t=u_12`, `s=u_23`, `r=[t,s]=u_13`; all three covariance rows and the full
+rank-two Steinberg packet have `O(L^(-1/2))` defect while the squared return
+gap still tends to two.  The first possible full-actor obstruction must
+therefore use a nonamenable compressor family or mixed stabilizer incidence
+beyond this A2 unipotent packet.
+
 **This is packaging, not a reduction of the difficulty.**  Given a
 homomorphism `phi` of the free lamp `H_K=G *_Gamma (Gamma x K)` into a
 hyperlinear group with `phi(r)!=1`, put `pi=phi|_G` and `v=phi(k)`: that is a
