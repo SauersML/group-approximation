@@ -104,3 +104,31 @@ must act nontrivially on the spectator gauge, or a scalable actor must grow
 through the multiplicity coordinate.  A fixed packet calculation followed by
 Reynolds averaging is now an exactly fenced approach, not a candidate proof
 of `(SMG1)--(SMG2)`.
+
+## Shortest spectator-sensitive word
+
+The first existing ordinary word which genuinely acts on the multiplicity
+spectator is the native Whitehead--Hecke anchor
+
+```text
+T=Jv,                         T^7=1.
+```
+
+By `native-whitehead-hecke-head-has-order-seven-anchor`, attaching a commuting
+reservoir involution `D` to either factor changes the seventh power to `D`.
+Thus on a reducing carrier the relator gives the exact dimension-free
+estimate `||D-1||_2`; unlike every even/projective relative word, this actor
+really does see `I_V tensor M_N`.
+
+The shortest compression of that actor is now exactly refuted.
+`order-seven-first-exit-supplies-same-gram-mass` tried to use a low spectral
+cut of `Q T^*(1-Q)T Q`.  The amplified seven-cycle model has a trace-`1/7`
+cut with zero first-exit energy but `ETE=0`, so its compressed seventh power
+is maximally wrong.  Accordingly
+`order-seven-first-exit-closes-same-gram-certificate` is invalidated.
+
+What survives is strictly stronger and already sharply named: control the
+full moving-cut boundary `(1-E)TE`, or all six orbit exits through the seven
+stages.  This is the orbit-saturated mechanism of the existing growing
+multicut order-seven lane.  The actor is no longer the hole; positive-mass
+compression leakage is.

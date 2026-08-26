@@ -6,6 +6,7 @@ title: A low first-exit cut does not control the order-seven compression telesco
 invalidates:
   - order-seven-compression-telescope-proof
   - fixed-finite-coordinate-cuts-force-order-seven-leakage-tail
+  - order-seven-first-exit-closes-same-gram-certificate
 artifacts:
   - research/order-seven-first-exit-counterexample-proof.md
 distinct_from:
