@@ -2,12 +2,22 @@
 rg: 2
 id: centralizing-hnn-sofic-strategy-route
 kind: route
-title: Free edge action, full wreath centralizer, random stable letter
+title: Free edge action and a perturbed non-quotient model, then a stable letter in the edge centralizer
 target: sofic-safe-finite-presentation-compiler
 requires:
   - centralizing-hnn-sofic-via-regular-edge-centralizer
   - mf-safe-finite-presentation-compiler
 ---
+
+## Status
+
+The quotient-model version of this route is **refuted** in
+[[centralizing-hnn-sofic-via-regular-edge-centralizer]]: closure points of
+the edge kill the pinches at every scale.  What the route still asks for is
+the perturbed version --- an approximate model of `K_e` keeping `L_e`
+acting freely while separating `cl(L_e) \ L_e` --- together with the
+separation lemma.  The route is kept because the second half (the final
+rope edge) is unaffected.
 
 ## Why sufficient
 
