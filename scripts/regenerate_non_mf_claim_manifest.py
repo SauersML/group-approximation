@@ -67,7 +67,7 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "printedTauGL_mem"),
     "prop:leavitt-compression": (
         "Manuscript/OneSidedMFRadical/SentenceCurrentLeavittCompressionClosure",
-        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
         "manuscriptCurrentLeavittCompressionProposition"),
     "prop:simple": (
         "Manuscript/OneSidedMFRadical/RankTwelveSimplicity",

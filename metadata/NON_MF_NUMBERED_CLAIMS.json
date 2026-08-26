@@ -368,7 +368,7 @@
       "external_inputs": [
         "Fournier-Facio, Section 2"
       ],
-      "coverage_gap": "The formal containment theorem requires a FournierFacioDefectData object; no premise-free construction of the manuscript's concrete datum is present.",
+      "coverage_gap": "",
       "lean": []
     }
   ]

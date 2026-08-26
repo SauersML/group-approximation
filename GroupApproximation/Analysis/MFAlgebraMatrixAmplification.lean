@@ -214,41 +214,44 @@ theorem matrixCoronaHom_injective :
 /-- A positive finite matrix amplification of an MF-embeddable C-star algebra
 is again MF-embeddable. -/
 theorem hasMFEmbedding_cstarMatrix
+    (m : ℕ) [Nonempty (Fin m)]
     {A : Type u} [CStarAlgebra A] [Nontrivial A]
     (hA : HasMFEmbedding A) :
-    HasMFEmbedding (CStarMatrix (Fin k) (Fin k) A) := by
+    HasMFEmbedding (CStarMatrix (Fin m) (Fin m) A) := by
   rcases hA with ⟨X, hne, hpos, hmono, e, he⟩
   letI : ∀ n, Nonempty (X n) := hne
-  have hk : 0 < k := by
+  have hm : 0 < m := by
     simpa using
-      (Fintype.card_pos_iff.mpr (inferInstance : Nonempty (Fin k)))
-  have hampne : ∀ n, Nonempty (ampModel k (X n)) := fun _ ↦ inferInstance
-  have hamppos : ∀ n, 0 < Fintype.card (ampModel k (X n)) := fun n ↦ by
+      (Fintype.card_pos_iff.mpr (inferInstance : Nonempty (Fin m)))
+  have hampne : ∀ n, Nonempty (ampModel m (X n)) := fun _ ↦ inferInstance
+  have hamppos : ∀ n, 0 < Fintype.card (ampModel m (X n)) := fun n ↦ by
     rw [Fintype.card_prod, Fintype.card_fin]
-    exact Nat.mul_pos hk (hpos n)
-  have hampmono : StrictMono (fun n ↦ Fintype.card (ampModel k (X n))) := by
+    exact Nat.mul_pos hm (hpos n)
+  have hampmono : StrictMono (fun n ↦ Fintype.card (ampModel m (X n))) := by
     intro m n hmn
     simp only [Fintype.card_prod, Fintype.card_fin]
-    exact (Nat.mul_lt_mul_left hk).mpr (hmono hmn)
-  let E : CStarMatrix (Fin k) (Fin k) A →⋆ₙₐ[ℂ]
-      CStarMatrix (Fin k) (Fin k)
+    exact (Nat.mul_lt_mul_left hm).mpr (hmono hmn)
+  let E : CStarMatrix (Fin m) (Fin m) A →⋆ₙₐ[ℂ]
+      CStarMatrix (Fin m) (Fin m)
         (NormMatrixCStarCorona (fun n ↦ X n)) := CStarMatrix.mapₙₐ e
   have hE : Function.Injective E := by
     intro P Q hPQ
     ext i j
     apply he
-    exact congrArg (fun M : CStarMatrix (Fin k) (Fin k)
+    exact congrArg (fun M : CStarMatrix (Fin m) (Fin m)
       (NormMatrixCStarCorona (fun n ↦ X n)) ↦ M i j) hPQ
-  exact ⟨fun n ↦ ampModel k (X n), hampne, hamppos, hampmono,
-    (matrixCoronaHom X).comp E, matrixCoronaHom_injective X |>.comp hE⟩
+  exact ⟨fun n ↦ ampModel m (X n), hampne, hamppos, hampmono,
+    (matrixCoronaHom (k := m) X).comp E,
+    (matrixCoronaHom_injective (k := m) X).comp hE⟩
 
 /-- The manuscript's second reduced-product permanence assertion. -/
 theorem isMFAlgebra_cstarMatrix
+    (m : ℕ) [Nonempty (Fin m)]
     {A : Type u} [CStarAlgebra A] [Nontrivial A]
     (hA : IsMFAlgebra A) :
-    IsMFAlgebra (CStarMatrix (Fin k) (Fin k) A) := by
+    IsMFAlgebra (CStarMatrix (Fin m) (Fin m) A) := by
   letI : TopologicalSpace.SeparableSpace A := hA.1
-  exact ⟨inferInstance, hasMFEmbedding_cstarMatrix hA.2⟩
+  exact ⟨inferInstance, hasMFEmbedding_cstarMatrix m hA.2⟩
 
 end
 
