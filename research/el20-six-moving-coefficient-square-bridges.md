@@ -140,11 +140,20 @@ the coboundary drift of
   `J_i Norm(Q)`.  A relative factor outside the source normalizer changes
   the range Gram.  Explicitly, `x_82(1)` conjugates the source root
   `x_28(1)` to the `(2,8)` swap, which is not in `L_0`.
+- Pairing two exits in that same critical opposite-root channel gives no
+  extra freedom.  By
+  `paired-critical-opposite-roots-return-only-trivially`, root additivity
+  reduces `x_82(b)x_82(a)` to `x_82(a+b)`, and the exact `(2,8)` block
+  calculation shows that a return to the constant Hecke normalizer forces
+  `a+b=0`.  The returned normalizer is therefore the identity and cannot
+  cancel the Whitehead reservoir gauge.
 
 The smallest remaining algebraic search is therefore explicit: find one
 genuinely nonnormal coefficient/root-opposite word with the full-Gram property
 `(ESB1)--(ESB2)` and verify its six Singer conjugate squares.  It must contain
-at least two occurrences which exit and then return to the Hecke atom
-normalizer, with the returned normalizer cancelling the Whitehead gauge; not
-only normalizer letters inside a larger finite packet.  No Property `(T)`, canonical
-trace profile, or tracial-von-Neumann extension is allowed.
+at least two occurrences in different root channels, or a longer asymmetric
+return with an intervening coefficient word, which exit and then return to the
+Hecke atom normalizer.  The returned nonidentity normalizer must cancel the
+Whitehead gauge; normalizer letters inside a larger finite packet and a
+same-channel opposite-root pair are both insufficient.  No Property `(T)`,
+canonical trace profile, or tracial-von-Neumann extension is allowed.

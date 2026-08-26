@@ -7,7 +7,8 @@ distinct_from:
   atlas-six-relator-relative-h-bridge-gap: that asks the six nonlinear rows to control four relative H bridge words quadratically; this asks only for one scalar positive lower bound on the sum of the six nonlinear defects.
   atlas-six-relator-hyperlinear-escape-test: that identifies exact matrix-ultraproduct zeroes with nontrivial hyperlinear quotients; this is the finitary uniform-gap formulation on the regular common-frame matrix coordinates.
   atlas-five-row-operator-phase-lift: that compares the six nonlinear defects to five additive covariance rows; this contains no additive row and no bridge observable.
-  atlas-finite-nontrivial-s3-shell-pays-boundary: that deletes the collision word and asks the five boundary rows only to separate one fixed positive-mass shell in the nontrivial collision channels; collision centrality reduces the present target to that shell statement.
+  atlas-finite-nontrivial-s3-shell-pays-boundary: that refuted target deletes the collision word and asks the five boundary rows only to separate one fixed positive-mass shell; the finite affine boundary model shows why collision cannot be discarded that way.
+  atlas-finite-six-row-charges-nontrivial-s3-mass: that keeps the full joint defect but asks it to charge only the aggregate sign-plus-standard collision-channel mass; the collision-distance inequality makes that structured estimate quantitatively equivalent to the present scalar floor.
 ---
 
 **OPEN.** In the regular common-frame coordinates, put
@@ -73,3 +74,13 @@ No proof of `(RDF2)` is asserted here.
   removes it from the six-row face.  Therefore a proof of `(RDF2)` must keep
   a joint boundary--collision statistic; aggregate nontrivial-channel mass
   is not enough.
+- **Valid joint-channel reduction.**
+  `atlas-joint-s3-charge-gives-six-relator-floor` retains the collision term
+  and reduces `(RDF2)` to
+  `atlas-finite-six-row-charges-nontrivial-s3-mass`.  If the joint defect
+  charges `m_epsilon+m_sigma` with constant `C_S3`, collision distance and
+  polar rounding give the explicit floor
+  `2/(1+16 sqrt(2C_S3))^2`.  Conversely `(RDF2)` gives the channel charge
+  with `C_S3=1/eta_6`, since total channel mass is at most one.  The affine
+  boundary model is now harmless because its collision defect pays; the
+  exact Leavitt factor still forbids any universal tracial proof.
