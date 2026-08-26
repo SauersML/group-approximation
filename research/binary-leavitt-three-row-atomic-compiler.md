@@ -451,7 +451,7 @@ surviving.  Thus one branch-swap normalizer only turns the direct-product
 gauge into a wreath gauge.
 
 Closing the entire natural first swap orbit is finite as well.
-`private-middle-swap-crosses-returned-morita-branches-but-has-gl6-model`
+`private-middle-swap-return-has-gl6-model`
 keeps the constant swap as a named occurrence, forms all four positive and
 returned cross commutators, and closes both complementary cross partial
 Whiteheads.  One defining `GL_6(F_2)` packet realizes the complete table
