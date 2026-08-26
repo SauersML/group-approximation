@@ -50,13 +50,14 @@ and for a `Pi^0_3`-complete set `{e : for all x, W_g(e,x) finite}` the
 countable free product `G_e = *_x H_g(e,x)` is residually finite iff `e`
 is in the set.
 
-## Open sharpening
+## Sharpening
 
-Whether `RF_rec2` (two generators) is `Pi^0_3`-complete needs an
-*effective* residually-finite envelope: a computable embedding of the
-countable residually finite free product into a two-generator residually
-finite group, uniformly in the presentation.  Wilson's embedding theorem
-for residually finite groups (Math. Z. 174, 1980) is the natural candidate
-and has not been checked for uniformity here.  The finite-presentation
-question, `Pi^0_2`-completeness of `RF_fp`, is the residually-finite Higman
-problem in disguise and is open in the literature.
+The finitely generated case is settled at three generators by
+[[residual-finiteness-three-generator-recursive-is-pi3-complete]], through
+the exact criterion
+[[centralizing-hnn-over-conjugate-basis-is-rf-iff-index-set-closed]] and
+the dyadic index sets of [[index-set-profinitely-closed-is-pi3-complete]];
+the countable free product above is then no longer needed.  Two generators
+remain open (an effective Wilson envelope would do it), and
+`Pi^0_2`-completeness of `RF_fp` is the residually finite Higman problem,
+open in the literature.
