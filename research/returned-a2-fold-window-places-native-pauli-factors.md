@@ -59,4 +59,7 @@ projection.  By
 `relative-gauge-invariance-transfers-cross-orthogonality`, invariance of one
 such projection already transfers target cross-orthogonality back to the
 source; the exact `S_6` model survives by spending precisely this relative-
-gauge defect.
+gauge defect.  Once a Pauli carrier is exposed, two mixed commutators of that
+same relative word with its Pauli generators provide an explicit sufficient
+lock.  Those two authenticated rows are absent from the returned window
+above.

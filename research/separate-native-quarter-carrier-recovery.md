@@ -187,6 +187,23 @@ reconstructing or proving irreducibility of the whole payload algebra, but
 equality of outputs, complete native occurrence sharing, relative Weyl
 covariance, and returned zero-products do not supply it.
 
+On an exposed Pauli payload, the established Pauli gauge-lock theorem makes
+this still more concrete.  If `X,Z` are its two anticommuting involutions,
+then `(SNQ5)` implies
+
+```text
+||P_0P_1||_2
+ <=||Q_0Q_1||_2+2||[V,X]||_2+2||[V,Z]||_2.            (SNQ6)
+```
+
+Thus the first genuinely useful payload-coupled row need only expose the
+**same** literal relative word `V` in two mixed Pauli commutators on the
+selected carrier.  The remaining source-inventory question is whether the
+raw/comb rank-five presentation supplies those two commutators with bounded
+normal-closure provenance and a common finite-coordinate cut.  The stored
+raw and comb words are operator names, not such equations, so this is not
+yet authenticated by the current census.
+
 ## Falsification gate
 
 An argument using only their traces, the compulsory `5/32` overlap, or the
