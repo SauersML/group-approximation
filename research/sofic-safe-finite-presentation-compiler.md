@@ -61,3 +61,12 @@ independent interest, the residually finite version being a known open
 question.
 
 **Reframed (2026-08-26).**  By [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]] the whole question is whether the MF compiler's *existing* positive rope is sofic: no new compiler is needed, only soficity of one explicit finitely presented group built from free groups by products, an amalgam over the Mikhailova-type subgroup `L_e`, and one further HNN extension.  The torsion-free instance of the same criterion is closed ([[mf-compiler-positive-branch-is-torsion-free]]), so the machinery is known to transfer; soficity is blocked only at the non-amenable amalgam edge.
+
+**Sharpened obstruction (2026-08-26).**  By
+[[centralizing-hnn-sofic-via-regular-edge-centralizer]] the quotient-model
+construction for the first rope is *equivalent* to separability of the
+edge, and the Mikhailova edge is finitely generated with undecidable
+membership, hence non-separable.  So the models used in any sofic proof
+here cannot restrict to homomorphisms onto finite quotients of `K_e`; the
+freedom that remains is that local models need only be multiplicative on a
+ball.
