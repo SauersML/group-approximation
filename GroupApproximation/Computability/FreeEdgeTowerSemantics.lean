@@ -213,7 +213,7 @@ def edgeGeneratorEquiv (c : PresentationCode) (edges : List (Raw × Raw)) :
     edgeGeneratorEquiv c edges (some i) = letterOf (edgeCode c edges) i := by
   apply Fin.ext
   simp only [edgeGeneratorEquiv, Equiv.trans_apply, optionFinAppendEquiv_some,
-    finCongr_apply, Fin.coe_cast, Fin.val_castSucc, letterOf, edgeCode_genCount]
+    finCongr_apply, Fin.val_cast, Fin.val_castSucc, letterOf, edgeCode_genCount]
   exact (Nat.mod_eq_of_lt (lt_trans i.isLt (Nat.lt_succ_self _))).symm
 
 @[simp] theorem edgeGeneratorEquiv_none (c : PresentationCode)
@@ -222,6 +222,7 @@ def edgeGeneratorEquiv (c : PresentationCode) (edges : List (Raw × Raw)) :
       letterOf (edgeCode c edges) (stableIndex c) := by
   apply Fin.ext
   simp [edgeGeneratorEquiv, letterOf, stableIndex, edgeCode_genCount]
+  rfl
 
 /-- A normalized old word is read in the enlarged code by appending the old
 alphabet inclusion. -/
