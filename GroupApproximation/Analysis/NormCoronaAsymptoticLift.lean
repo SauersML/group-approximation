@@ -1,4 +1,4 @@
-import GroupApproximation.Analysis.MFAlgebraDimensionNormalization
+import GroupApproximation.Analysis.MFAlgebra
 import GroupApproximation.Analysis.KirchbergRordamCorona
 import GroupApproximation.Meta.AxiomGuard
 
@@ -145,6 +145,21 @@ def AreCompatible {C : Type u} {A : Type v} {B : Type w}
   ∀ c : C, Tendsto
     (fun n ↦ ‖left.map n (iA c) - right.map n (iB c)‖) atTop (nhds 0)
 
+/-- The full asymptotic datum extracted from a compatible pair of faithful
+corona embeddings: both factor models recover norms, and their restrictions
+to the common algebra agree asymptotically. -/
+structure FaithfulCompatibleModels {C : Type u} {A : Type v} {B : Type w}
+    [NonUnitalCStarAlgebra C] [NonUnitalCStarAlgebra A]
+    [NonUnitalCStarAlgebra B]
+    (iA : C →⋆ₙₐ[ℂ] A) (iB : C →⋆ₙₐ[ℂ] B) where
+  left : Model (X := X) A
+  right : Model (X := X) B
+  compatible : AreCompatible iA iB left right
+  left_norm_recovery : ∀ a : A,
+    Filter.limsup (fun n ↦ ‖left.map n a‖) atTop = ‖a‖
+  right_norm_recovery : ∀ b : B,
+    Filter.limsup (fun n ↦ ‖right.map n b‖) atTop = ‖b‖
+
 /-- Compatible corona homomorphisms have asymptotically compatible chosen
 coordinate lifts.  This is the relative input used before gluing the two
 factor models across an amalgam. -/
@@ -162,9 +177,47 @@ theorem models_areCompatible_of_comp_eq
   rw [mk_lift, mk_lift]
   exact DFunLike.congr_fun h c
 
+/-- Compatible faithful corona embeddings unconditionally supply faithful,
+asymptotically compatible coordinate models for both factors. -/
+theorem faithfulCompatibleModels_of_embeddings
+    {C : Type u} {A : Type v} {B : Type w}
+    [NonUnitalCStarAlgebra C] [NonUnitalCStarAlgebra A]
+    [NonUnitalCStarAlgebra B]
+    (iA : C →⋆ₙₐ[ℂ] A) (iB : C →⋆ₙₐ[ℂ] B)
+    (left : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n))
+    (right : B →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n))
+    (hleft : Function.Injective left) (hright : Function.Injective right)
+    (hcompatible : left.comp iA = right.comp iB) :
+    FaithfulCompatibleModels iA iB where
+  left := model left
+  right := model right
+  compatible := models_areCompatible_of_comp_eq iA iB left right hcompatible
+  left_norm_recovery := limsup_norm_model_eq left hleft
+  right_norm_recovery := limsup_norm_model_eq right hright
+
+/-- Closed universal form of `faithfulCompatibleModels_of_embeddings`, for
+endpoint and axiom-closure auditing. -/
+def CoronaEmbeddingsGiveFaithfulCompatibleModels : Prop :=
+  ∀ {C : Type u} {A : Type v} {B : Type w}
+    [NonUnitalCStarAlgebra C] [NonUnitalCStarAlgebra A]
+    [NonUnitalCStarAlgebra B]
+    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
+    (iA : C →⋆ₙₐ[ℂ] A) (iB : C →⋆ₙₐ[ℂ] B)
+    (left : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n))
+    (right : B →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n)),
+    Function.Injective left → Function.Injective right →
+      left.comp iA = right.comp iB → FaithfulCompatibleModels iA iB
+
+/-- The closed compatible-corona-to-asymptotic-model theorem. -/
+theorem coronaEmbeddingsGiveFaithfulCompatibleModels :
+    CoronaEmbeddingsGiveFaithfulCompatibleModels := by
+  intro C A B _ _ _ X _ iA iB left right hleft hright hcompatible
+  exact faithfulCompatibleModels_of_embeddings
+    iA iB left right hleft hright hcompatible
+
 end
 
 end NormCoronaAsymptoticLift
 end GroupApproximation
 
-#audit_closed_axioms GroupApproximation.NormCoronaAsymptoticLift.models_areCompatible_of_comp_eq
+#audit_closed_axioms GroupApproximation.NormCoronaAsymptoticLift.coronaEmbeddingsGiveFaithfulCompatibleModels

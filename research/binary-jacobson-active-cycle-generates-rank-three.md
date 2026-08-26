@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: binary-jacobson-one-balanced-shift-and-constant-cycle-generate-rank-three
+id: binary-jacobson-active-cycle-generates-rank-three
 kind: claim
 title: One balanced Jacobson shift and one directed constant three-cycle generate the full rank-three elementary group
 artifacts:

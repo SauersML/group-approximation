@@ -3,7 +3,7 @@ rg: 2
 id: binary-jacobson-active-cycle-generation-proof
 kind: route
 title: Extract S, the head idempotent, and T by conjugating constant roots
-target: binary-jacobson-one-balanced-shift-and-constant-cycle-generate-rank-three
+target: binary-jacobson-active-cycle-generates-rank-three
 requires: []
 artifacts:
   - notes/PROPERTY_T_FREE_MF_ATTEMPT_2026-08-26.md

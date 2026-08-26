@@ -56,7 +56,7 @@ and six distinct products.  Therefore `<n_r,m_r>` is `GL_2(F_2)=S_3`.
 Because `rI` commutes with every generator of `G=<P,n,m>`, the map
 
 ```text
-pi:G -> GL(rR^9),             g |-> (rI)g(rI)          (7)
+pi:G -> GL_20(rRr),           g |-> (rI)g(rI)          (7)
 ```
 
 is a homomorphism, with identity `rI` in the target corner.  Equations
@@ -76,4 +76,3 @@ The artifact verifies `(8)=1` exactly.  Deleting `P` leaves
 `n n m m n n m m`, whose involutive free reduction is empty.  This bounded
 enumeration is not used to infer the all-word statement; that statement is
 the algebraic corner retraction `(7)`.
-
