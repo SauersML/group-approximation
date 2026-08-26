@@ -188,6 +188,20 @@ theorem then gives full MF collapse of `Delta`.
   `x_12(A_i+A_j)` are infinite.  Thus the next multi-chart attempt must use
   a genuinely ternary-or-higher mark relation, growing chart count, or a
   direct diagram with no distinguished pairwise mark seams.
+* **Use one genuinely non-pairwise fixed-arity mark fusion.**
+  `fixed-arity-mark-fusion-has-finite-character-model` fences the bare
+  higher-arity product relation without refining it into pairwise seams.  On
+  `l^2(F_2^r)`, `r` distinct conjugate half-negative signs multiply to one
+  further conjugate half-negative sign, and fixed marked Pauli payloads can
+  be carried with them.  Thus arity at least three alone is insufficient;
+  the fusion cell must read noncommuting address-dependent payload incidence.
+* **Let the number of charts grow with the edge addresses.**  This cannot be
+  an independent escape under the uniform-area conclusion being sought.
+  By `uniform-area-bounds-essential-chart-count`, an area-`B` diagram has at
+  most `B` relator-bearing chart instances.  Additional zero-cell charts are
+  only free conjugating trees and supply no new fusion equation.  Growing
+  boundary paths remain possible, but must be handled as a direct-diagram
+  problem rather than as growing positive-area chart count.
 
 The next viable attack must construct a bounded-area orbit section directly,
 replace representative coherence by a finite-coordinate selector whose
