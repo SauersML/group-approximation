@@ -264,79 +264,6 @@ $\Rad_{\mathrm{MF}}(G)=G$, every homomorphism from $G$ to an MF group is
 trivial.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedCriterion}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets}
 
-More generally, for $N\trianglelefteq G$ define its \emph{MF kernel closure}
-by
-%<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^G(N)" title="how to read the definition of MF kernel closure">
-% The whole equation says that the [[MF closure|MF kernel closure]] of N inside G
-% consists of the elements that every [[homomorphism]] f must send to the
-% [[identity]] whenever f maps G to an [[MF group]] M and already sends every
-% element of N to the identity.  The large [[intersection]] means an element
-% must lie in every eligible [[kernel]].  The condition \(N\le\ker f\) states
-% that f erases N.  Thus the right side collects N together with anything
-% else that all MF models are forced to erase after N has been erased.
-%</webmath>
-\[
- \operatorname{cl}_{\mathrm{MF}}^G(N)
- =\bigcap\{\ker f:N\le\ker f,\ f\colon G\to M,\ M\text{ MF}\}.
-\]
-The image of a corona homomorphism from $G$ is countable and is itself MF;
-conversely, every MF target embeds in a norm matrix corona.
-\leanverified{Manuscript/OneSidedMFRadical/PrintedDefinitions}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets}
-Thus
-$\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
-$G/N$ is MF precisely when
-$\operatorname{cl}_{\mathrm{MF}}^G(N)=N$.
-\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
-This is a closure operation on the normal subgroups of one fixed group; it is
-unrelated to topological closure of classes of marked groups.
-
-\begin{proposition}[basic properties of the MF radical]\label{prop:mf-residual-calculus}
-For every countable group $G$, the subgroup $\Rad_{\mathrm{MF}}(G)$ is fully
-invariant, the quotient $G/\Rad_{\mathrm{MF}}(G)$ is MF, and
-%<webmath object="whole" when="G/N\text{ is MF}" title="when dividing G by N produces an MF group">
-% Read the whole display as an “if and only if.”  The [[quotient group]]
-% \(G/N\) is MF exactly when the MF kernel closure of N equals N itself.
-% The double arrow says each statement implies the other.  The condition in
-% parentheses says N is a [[normal subgroup]] of G, which is required for
-% \(G/N\) to be a group.  In plain language, finite matrix approximations can
-% distinguish every nonidentity element of the quotient precisely when the
-% requirement to erase N does not force them to erase any additional element
-% of G.
-%</webmath>
-\[
- G/N\text{ is MF}
- \quad\Longleftrightarrow\quad
- \operatorname{cl}_{\mathrm{MF}}^G(N)=N
- \qquad(N\trianglelefteq G).
-\]
-In particular, $G$ is MF if and only if its MF radical is trivial.
-\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
-\end{proposition}
-
-\begin{proof}
-An intersection of kernels is normal.  If $\alpha$ is an endomorphism of
-$G$, $x\in\Rad_{\mathrm{MF}}(G)$, and $\pi$ is a corona homomorphism from $G$,
-then $\pi\circ\alpha$ kills $x$.  Hence $\pi(\alpha(x))=1$ for every $\pi$,
-which proves full invariance.
-
-Put $R=\Rad_{\mathrm{MF}}(G)$.  If $G/R$ is trivial, there is nothing to
-prove.  If $x\in G/R$ is nontrivial and $g\in G$ maps to $x$, then
-$g\notin R$.  Some homomorphism from $G$ to an MF group therefore separates
-$g$ from the identity.  It kills $R$ and descends to a homomorphism from $G/R$
-that separates $x$.  Thus $G/R$ is residually MF, and hence MF by
-Korchagin~\cite[Proposition~6]{Korchagin}.
-
-For $N\trianglelefteq G$, homomorphisms from $G/N$ to MF groups correspond
-to homomorphisms from $G$ to MF groups that kill $N$.  It follows directly
-that
-\[
- \Rad_{\mathrm{MF}}(G/N)
- =\operatorname{cl}_{\mathrm{MF}}^G(N)/N.
-\]
-Since a countable group is MF exactly when its MF radical is trivial, this
-identity gives the asserted closure criterion.
-\end{proof}
-
 For a subgroup $L\le G$, put
 %<webmath object="CompG" when="\operatorname{Comp}_G(L)" title="the elements of G that carry L back inside L">
 % \(\operatorname{Comp}_G(L)\) is the name of a [[set]] of elements u inside
@@ -709,6 +636,81 @@ equivalent projections, one below the other, to be equal; the projection
 in question is the Kazhdan projection of a property-\textup{(T)} subgroup.
 Property~\textup{(T)} of a normal subgroup then transports the resulting
 Hilbert--Schmidt collapse back into an obstruction in operator norm.
+
+\subsection{The MF radical}
+
+For $N\trianglelefteq G$ define its \emph{MF kernel closure}
+by
+%<webmath object="whole" when="\operatorname{cl}_{\mathrm{MF}}^G(N)" title="how to read the definition of MF kernel closure">
+% The whole equation says that the [[MF closure|MF kernel closure]] of N inside G
+% consists of the elements that every [[homomorphism]] f must send to the
+% [[identity]] whenever f maps G to an [[MF group]] M and already sends every
+% element of N to the identity.  The large [[intersection]] means an element
+% must lie in every eligible [[kernel]].  The condition \(N\le\ker f\) states
+% that f erases N.  Thus the right side collects N together with anything
+% else that all MF models are forced to erase after N has been erased.
+%</webmath>
+\[
+ \operatorname{cl}_{\mathrm{MF}}^G(N)
+ =\bigcap\{\ker f:N\le\ker f,\ f\colon G\to M,\ M\text{ MF}\}.
+\]
+The image of a corona homomorphism from $G$ is countable and is itself MF;
+conversely, every MF target embeds in a norm matrix corona.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedDefinitions}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCoronaImagesAndTargets}
+Thus
+$\Rad_{\mathrm{MF}}(G)=\operatorname{cl}_{\mathrm{MF}}^G(1)$, and
+$G/N$ is MF precisely when
+$\operatorname{cl}_{\mathrm{MF}}^G(N)=N$.
+\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
+This is a closure operation on the normal subgroups of one fixed group; it is
+unrelated to topological closure of classes of marked groups.
+
+\begin{proposition}[basic properties of the MF radical]\label{prop:mf-residual-calculus}
+For every countable group $G$, the subgroup $\Rad_{\mathrm{MF}}(G)$ is fully
+invariant, the quotient $G/\Rad_{\mathrm{MF}}(G)$ is MF, and
+%<webmath object="whole" when="G/N\text{ is MF}" title="when dividing G by N produces an MF group">
+% Read the whole display as an “if and only if.”  The [[quotient group]]
+% \(G/N\) is MF exactly when the MF kernel closure of N equals N itself.
+% The double arrow says each statement implies the other.  The condition in
+% parentheses says N is a [[normal subgroup]] of G, which is required for
+% \(G/N\) to be a group.  In plain language, finite matrix approximations can
+% distinguish every nonidentity element of the quotient precisely when the
+% requirement to erase N does not force them to erase any additional element
+% of G.
+%</webmath>
+\[
+ G/N\text{ is MF}
+ \quad\Longleftrightarrow\quad
+ \operatorname{cl}_{\mathrm{MF}}^G(N)=N
+ \qquad(N\trianglelefteq G).
+\]
+In particular, $G$ is MF if and only if its MF radical is trivial.
+\leanverified{Manuscript/OneSidedMFRadical/LiteralMFClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral}
+\end{proposition}
+
+\begin{proof}
+An intersection of kernels is normal.  If $\alpha$ is an endomorphism of
+$G$, $x\in\Rad_{\mathrm{MF}}(G)$, and $\pi$ is a corona homomorphism from $G$,
+then $\pi\circ\alpha$ kills $x$.  Hence $\pi(\alpha(x))=1$ for every $\pi$,
+which proves full invariance.
+
+Put $R=\Rad_{\mathrm{MF}}(G)$.  If $G/R$ is trivial, there is nothing to
+prove.  If $x\in G/R$ is nontrivial and $g\in G$ maps to $x$, then
+$g\notin R$.  Some homomorphism from $G$ to an MF group therefore separates
+$g$ from the identity.  It kills $R$ and descends to a homomorphism from $G/R$
+that separates $x$.  Thus $G/R$ is residually MF, and hence MF by
+Korchagin~\cite[Proposition~6]{Korchagin}.
+
+For $N\trianglelefteq G$, homomorphisms from $G/N$ to MF groups correspond
+to homomorphisms from $G$ to MF groups that kill $N$.  It follows directly
+that
+\[
+ \Rad_{\mathrm{MF}}(G/N)
+ =\operatorname{cl}_{\mathrm{MF}}^G(N)/N.
+\]
+Since a countable group is MF exactly when its MF radical is trivial, this
+identity gives the asserted closure criterion.
+\end{proof}
 
 \subsection{Finite dimension}
 
@@ -1407,12 +1409,11 @@ $q^2=q$, $qs_0=t_0q=0$, and $t_0s_0=1$, all consequences of
  \Psi(I_3)=qI_3+s_0I_3t_0=qI_3+pI_3=(p+q)I_3=I_3,
 \]
 so $\Psi$ preserves the identity.  Finally, $t_0\Psi(A)s_0=A$, and hence
-$\Psi$ is injective.  Thus $\Psi$ is an injective identity-preserving
-multiplicative map.  It is not additive, since $\Psi(0)=qI_3\ne0$.
-Consequently, it restricts to an injective group homomorphism
-$\GL_3(R)\to\GL_3(R)$.
+$\Psi$ is injective.  These identities show that $\Psi$ is injective, multiplicative, and
+identity preserving, so its restriction to $\GL_3(R)$ is an injective
+group homomorphism $\GL_3(R)\to\GL_3(R)$.
 
-To implement $\Psi$ by conjugation on the embedded copy of $\GL_3(R)$,
+To realize $\Psi$ by conjugation on the embedded copy of $\GL_3(R)$,
 define the following $6\times6$ block matrices:
 %<webmath object="whole" when="X=\begin{pmatrix}s_0I_3" title="the block matrices X and Y that implement the compression">
 % X and Y are 6-by-6 [[block matrix|block matrices]], written as 2-by-2 arrays
@@ -1640,10 +1641,9 @@ Proposition~\ref{prop:simple}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:headline}]
-The finitely generated $\F_2$-algebra $R$ is countable, and hence so is $H$.
-The ring $R$ is finitely generated, and $H$ has property~\textup{(T)} by the
-Ershov--Jaikin-Zapirain theorem for elementary groups over finitely generated
-rings~\cite[Theorem~1.1]{EJZ}.
+The ring $R$ is a finitely generated $\F_2$-algebra, so $H$ is countable,
+and $H$ has property~\textup{(T)} by the Ershov--Jaikin-Zapirain theorem
+for elementary groups over finitely generated rings~\cite[Theorem~1.1]{EJZ}.
 
 The containment \eqref{eq:compresses-L}, the centrality of $c$ relative to
 $L$, and Proposition~\ref{prop:defect} show that
@@ -1652,8 +1652,7 @@ Proposition~\ref{prop:defect} gives $\normal d_H=H$, so
 $\mathfrak D_H(L)=H$.  The group $H$ has property~\textup{(T)}, so
 Theorem~\ref{thm:compression-criterion}, applied with $K=H$, gives
 $\Rad_{\mathrm{MF}}(H)=H$.
-Independently of this radical calculation, Proposition~\ref{prop:simple}
-shows that $H$ is nontrivial and simple.
+Proposition~\ref{prop:simple} shows that $H$ is nontrivial and simple.
 
 If $M$ is MF and $f\colon H\to M$ is a homomorphism, compose $f$ with a
 faithful corona embedding of $M$.  Since

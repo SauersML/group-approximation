@@ -4,28 +4,6 @@
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
-      "id": "prop:mf-residual-calculus",
-      "environment": "proposition",
-      "title": "basic properties of the MF radical",
-      "statement_sha256": "6cba25f086839c7dfa3f34941f8d6df1f65d15507b7a4e0067ba71981e27aadc",
-      "status": "exact",
-      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "lem:central-corona-corner"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/LiteralMFClosure",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral",
-          "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
       "id": "thm:compression-criterion",
       "environment": "mainthm",
       "title": "one-sided compression criterion",
@@ -111,6 +89,28 @@
       ],
       "coverage_gap": "",
       "lean": []
+    },
+    {
+      "id": "prop:mf-residual-calculus",
+      "environment": "proposition",
+      "title": "basic properties of the MF radical",
+      "statement_sha256": "6cba25f086839c7dfa3f34941f8d6df1f65d15507b7a4e0067ba71981e27aadc",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:central-corona-corner"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/LiteralMFClosure",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "thm:commutant",
