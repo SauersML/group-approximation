@@ -45,3 +45,37 @@ counts as `(SNA2)`.  The subcorner must be genuinely model-dependent: exact
 fixed-word attachment of both unequal rows on the whole packet carrier is
 excluded by the regular-trace firewall.
 
+## Attempts
+
+- **Identify the same-center Whiteheads with the native Whiteheads.**  This
+  identification is literal, not a root-position conjugacy:
+
+  ```text
+  W_1=J_1=x_87(x_1)x_78(y_1)x_87(x_1),
+  W_2=J_2=x_98(x_2)x_89(y_2)x_98(x_2).
+  ```
+
+  Hence the factors `V_i` are already the reservoir gauges of the two
+  native partial Whitehead words on `F`; there is no additional transporter
+  `R_i` and no two-sided chart-gauge freedom at this step.  This still does
+  not prove `(SNA2)`: both literal words act by adjacent swaps with negative
+  label fraction `1/4`, whereas the controlled selector rows required in
+  `(SNA2)` have fixed label factors `C_(1/4)` and `C_(1/8)` and retain
+  distinct source fractions.  On the natural common reducing Hecke corner,
+  `native-whitehead-corner-collapses-hecke-flags` proves that the two Hecke
+  polars become equal while `J_1,J_2` remain the two adjacent swaps.  Thus
+  word equality authenticates the native Whitehead occurrences but does
+  not attach them to the unequal controlled selector outputs.
+
+- **Dress one Whitehead transport by an ordinary root mover and cut the
+  resulting positive cross Gram.**  The root-valued overlap theorem proves
+  the scalar Gram only after the dressed full-word occurrences have been
+  named.  It does not remove the dressing.  The exact finite packet
+  `root-valued-overlap-does-not-undress-external-selector` makes the root
+  overlap and Gram maximal while the mover is the scalar `-1` on the entire
+  marked carrier.  Every positive subcorner then pays squared comparison
+  error `4tau(P)`.  Hence a root-valued relative word can close the scalar
+  leaf of `binary-leavitt-arbitrary-profile-native-cross-gram`, but cannot by
+  polar calculus alone prove `(SNA2)`.  A positive proof still needs an
+  ordinary native relation which fixes the parity of the individual dressed
+  occurrence.

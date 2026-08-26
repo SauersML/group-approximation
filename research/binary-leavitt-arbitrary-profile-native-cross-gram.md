@@ -74,3 +74,11 @@ literature theorem is permitted in this claim.
   overlaps by a mixed/opposite-root row, or prove a strict capacity deficit
   for their own exactified source and target projections.  This is deferred
   while the operator-norm atomic three-row route is tested in parallel.
+- **Use a root mover to dress one same-center Whitehead candidate and then
+  polar-cut its cross Gram.**  This does give the scalar overlap for the
+  dressed word, but does not authenticate it as the undressed native
+  occurrence.  `root-valued-overlap-does-not-undress-external-selector`
+  gives an exact marked transporter packet with maximal root overlap and
+  maximal cross Gram in which the dressing is `-1` on every positive
+  subcorner.  Thus the root-valued alternative remains sufficient only once
+  the actual full-word occurrence typing is supplied independently.

@@ -356,3 +356,17 @@ the parent mark survives.  The remaining fixed relation must compare a
 returned orbit reservoir directly with the source intersection; finite
 Coxeter covariance alone merely bounds the number of fresh gauges rather
 than identifying them.
+
+The direct returned-source comparison exists as an ordinary word, but it
+still has a finite non-scalar escape.
+`returned-opposite-cross-zero-has-finite-s6-model` adds
+`[x_41(q_0),x_14(q_1)]=1` and its symmetric companion after the relative
+orbit returns.  These genuine Leavitt consequences compare the original
+opposite/positive source occurrences.  They kill the canonical seven-state
+payload, but `S_6` realizes the two child Whiteheads on disjoint Coxeter
+triples: the cross-child opposite factors commute, the two child outputs
+multiply to the parent Whitehead, and the diagonal parent mark survives.
+Three cyclic copies add the full native `A_2` orbit and exact return.  Thus
+the missing lock must identify the cross-child opposite factors with the
+canonical noncommuting factors on one irreducible payload block; returned
+zero-product words alone allow finite Coxeter re-gauging.
