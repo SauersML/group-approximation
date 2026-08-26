@@ -23,11 +23,22 @@ all odd characteristics, including `3` and `5`: two complementary minors of
 the authenticated row have determinants `24` and `-20`, whose only common
 prime divisor is `2`.
 
+The same conclusion also holds on
+
+```text
+Sym^3((K^3)^*).                                        (CAM2)
+```
+
+Away from characteristic three the torus kernel is a single explicit line
+and the authenticated row is nonzero on it.  In characteristic three the
+torus rank drops, but a separate full minor of the stacked two-row operator
+has determinant `-91/64`, so the extra directions are also killed.
+
 Consequently every module filtered by the previously established blocks and
-arbitrary copies or twists of `(CAM1)` also has zero affine gauge.  This
-pushes the first unresolved defining-module symmetric power to degree four;
-it does not prove the universal group-algebra ideal statement or the dual
-cubic statement.
+arbitrary copies or twists of `(CAM1)` and `(CAM2)` also has zero affine
+gauge.  This pushes the first unresolved symmetric powers on both fundamental
+sides to degree four.  It does not prove the universal group-algebra ideal
+statement.
 
 DERIVATION
 authenticated-mixed-loop-cubic-module-proof

@@ -75,5 +75,15 @@ the mixed tensor.
 further on the defining side.  A power-of-two torus minor and two
 authenticated minors with determinants `24` and `-20` give a certificate
 uniform in every odd characteristic.  Thus the first untested defining
-symmetric power is degree four; arbitrary highest weights and the dual cubic
-remain outside the present calculation.
+symmetric power is degree four.  The same node closes the dual cubic outside
+characteristic three by a one-line kernel computation, and closes the
+characteristic-three rank drop with a separate stacked minor.  Thus degree
+four is now the first untested symmetric power on either fundamental side;
+arbitrary mixed highest weights remain outside the present calculation.
+
+`authenticated-mixed-loop-kills-quartic-affine-modules` closes the defining
+quartic in every odd characteristic.  Its five-minor certificate uses one
+generic determinant and one alternate determinant for each exceptional
+prime dividing it.  The first untested defining symmetric power is therefore
+degree five, while the dual quartic and general mixed highest weights remain
+open.
