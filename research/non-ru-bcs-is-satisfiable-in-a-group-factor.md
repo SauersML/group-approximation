@@ -159,6 +159,15 @@ constraint ideal, and which satisfies the Parseval condition `(PGR3)`.
   coefficient in `supp(q)`; unlike the central case, no theorem forces that
   support into a finite normal subgroup.  Thus the finite-normal twisted-
   sector fence and this finite-packet literal fence are complementary.
+- **Common-corner unitary dilation is circular.**
+  `unitary-corner-compressions-force-reduction` proves in every finite
+  tracial von Neumann algebra that if `pup` is unitary in `pMp`, then `p`
+  commutes with `u`.  Quantitatively an `epsilon`-unitary compression has
+  commutator norm `O(sqrt(epsilon))`.  Hence independently dilating the BCS
+  involutions to literal group unitaries cannot manufacture a host: the
+  common compression corner already reduces all those literals and is
+  exactly the group-factor corner requested in `(GFB1)`.  Halmos blocks and
+  free tags add no weaker intermediate object.
 - **Arbitrary algebraic Bass--Serre projections have no new stable packet
   class.**  `bass-serre-algebraic-projections-are-stably-vertex-induced`
   applies the Bergman--Dicks projective-module theorem to every projection in
