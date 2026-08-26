@@ -55,7 +55,6 @@ def baseCode : (ℕ ⊕ Fin 2) ≃ ℕ where
         simp [show ¬ k + 2 < 2 by omega]
     | inr i =>
         simp only [i.isLt, dite_true]
-        exact congrArg Sum.inr (Fin.ext rfl)
   right_inv n := by
     by_cases h : n < 2
     · simp [h]
@@ -93,7 +92,10 @@ def freePresentedEquiv (X : Type) :
 
 @[simp] theorem freePresentedEquiv_of (X : Type) (x : X) :
     freePresentedEquiv X (PresentedGroup.of x) = FreeGroup.of x :=
-  PresentedGroup.toGroup.of _
+  by
+    unfold freePresentedEquiv
+    change PresentedGroup.toGroup (fun _ h => False.elim h) (PresentedGroup.of x) = _
+    rw [PresentedGroup.toGroup.of]
 
 /-- Isomorphisms of both factors induce an isomorphism of their free products. -/
 def coprodCongr {G H G' H' : Type} [Group G] [Group H] [Group G'] [Group H']
@@ -109,31 +111,31 @@ def coprodCongr {G H G' H' : Type} [Group G] [Group H] [Group G'] [Group H']
     (by
       refine Monoid.Coprod.hom_ext ?_ ?_
       · refine MonoidHom.ext fun x => ?_
-        simp only [MonoidHom.comp_apply, Monoid.Coprod.lift_apply_inl,
-          MulEquiv.symm_apply_apply]
+        change Monoid.Coprod.inl (e.symm (e x)) = Monoid.Coprod.inl x
+        rw [MulEquiv.symm_apply_apply]
       · refine MonoidHom.ext fun x => ?_
-        simp only [MonoidHom.comp_apply, Monoid.Coprod.lift_apply_inr,
-          MulEquiv.symm_apply_apply])
+        change Monoid.Coprod.inr (f.symm (f x)) = Monoid.Coprod.inr x
+        rw [MulEquiv.symm_apply_apply])
     (by
       refine Monoid.Coprod.hom_ext ?_ ?_
       · refine MonoidHom.ext fun x => ?_
-        simp only [MonoidHom.comp_apply, Monoid.Coprod.lift_apply_inl,
-          MulEquiv.apply_symm_apply]
+        change Monoid.Coprod.inl (e (e.symm x)) = Monoid.Coprod.inl x
+        rw [MulEquiv.apply_symm_apply]
       · refine MonoidHom.ext fun x => ?_
-        simp only [MonoidHom.comp_apply, Monoid.Coprod.lift_apply_inr,
-          MulEquiv.apply_symm_apply])
+        change Monoid.Coprod.inr (f (f.symm x)) = Monoid.Coprod.inr x
+        rw [MulEquiv.apply_symm_apply])
 
 @[simp] theorem coprodCongr_inl {G H G' H' : Type}
     [Group G] [Group H] [Group G'] [Group H']
     (e : G ≃* G') (f : H ≃* H') (x : G) :
     coprodCongr e f (Monoid.Coprod.inl x) = Monoid.Coprod.inl (e x) :=
-  Monoid.Coprod.lift_apply_inl _ _ _
+  by rfl
 
 @[simp] theorem coprodCongr_inr {G H G' H' : Type}
     [Group G] [Group H] [Group G'] [Group H']
     (e : G ≃* G') (f : H ≃* H') (x : H) :
     coprodCongr e f (Monoid.Coprod.inr x) = Monoid.Coprod.inr (f x) :=
-  Monoid.Coprod.lift_apply_inr _ _ _
+  by rfl
 
 /-- The whole word problem of a spanning family presents the group. -/
 noncomputable def groupEquiv {A : Type} [Group A] (g : ℕ → A)
@@ -144,7 +146,12 @@ noncomputable def groupEquiv {A : Type} [Group A] (g : ℕ → A)
 
 @[simp] theorem groupEquiv_of {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) (k : ℕ) :
-    groupEquiv g hspan (PresentedGroup.of k) = g k := rfl
+    groupEquiv g hspan (PresentedGroup.of k) = g k := by
+  change (QuotientGroup.quotientKerEquivOfSurjective (FreeGroup.lift g)
+      (lift_surjective hspan))
+      (QuotientGroup.quotientMulEquivOfEq (normalClosure_relatorSetOf g)
+        (PresentedGroup.of k)) = g k
+  rfl
 
 /-- The numbered presentation of `A * F₂`. -/
 noncomputable def baseEquiv {A : Type} [Group A] (g : ℕ → A)
@@ -160,21 +167,49 @@ noncomputable def baseEquiv {A : Type} [Group A] (g : ℕ → A)
     baseEquiv g hspan (PresentedGroup.of 0) = (xg : P A) := by
   change baseEquiv g hspan
       (PresentedGroup.of (baseCode (Sum.inr (0 : Fin 2)))) = _
-  simp [baseEquiv, xg, iF]
+  unfold baseEquiv
+  rw [show (PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
+      (PresentedGroup.of (baseCode (Sum.inr (0 : Fin 2)))) =
+        PresentedGroup.of (Sum.inr (0 : Fin 2)) from
+      PresentedGroupRelabel.relabelHomSymm_of baseCode (sumRels g) _]
+  rw [show PresentedGroup.coprodPresentations (wordSet g)
+      (∅ : Set (FreeGroup (Fin 2))) (PresentedGroup.of (Sum.inr (0 : Fin 2))) =
+        Monoid.Coprod.inr (PresentedGroup.of (0 : Fin 2)) from
+      PresentedGroup.toGroup.of _]
+  rw [coprodCongr_inr, freePresentedEquiv_of]
+  rfl
 
 @[simp] theorem baseEquiv_of_one {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) :
     baseEquiv g hspan (PresentedGroup.of 1) = (yg : P A) := by
   change baseEquiv g hspan
       (PresentedGroup.of (baseCode (Sum.inr (1 : Fin 2)))) = _
-  simp [baseEquiv, yg, iF]
+  unfold baseEquiv
+  rw [show (PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
+      (PresentedGroup.of (baseCode (Sum.inr (1 : Fin 2)))) =
+        PresentedGroup.of (Sum.inr (1 : Fin 2)) from
+      PresentedGroupRelabel.relabelHomSymm_of baseCode (sumRels g) _]
+  rw [show PresentedGroup.coprodPresentations (wordSet g)
+      (∅ : Set (FreeGroup (Fin 2))) (PresentedGroup.of (Sum.inr (1 : Fin 2))) =
+        Monoid.Coprod.inr (PresentedGroup.of (1 : Fin 2)) from
+      PresentedGroup.toGroup.of _]
+  rw [coprodCongr_inr, freePresentedEquiv_of]
+  rfl
 
 @[simp] theorem baseEquiv_of_add_two {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) (k : ℕ) :
     baseEquiv g hspan (PresentedGroup.of (k + 2)) = iA (g k) := by
   change baseEquiv g hspan
       (PresentedGroup.of (baseCode (Sum.inl k))) = _
-  simp [baseEquiv, iA]
+  unfold baseEquiv
+  rw [show (PresentedGroupRelabel.congrEquiv baseCode (sumRels g)).symm
+      (PresentedGroup.of (baseCode (Sum.inl k))) = PresentedGroup.of (Sum.inl k) from
+      PresentedGroupRelabel.relabelHomSymm_of baseCode (sumRels g) _]
+  rw [show PresentedGroup.coprodPresentations (wordSet g)
+      (∅ : Set (FreeGroup (Fin 2))) (PresentedGroup.of (Sum.inl k)) =
+        Monoid.Coprod.inl (PresentedGroup.of k) from PresentedGroup.toGroup.of _]
+  rw [coprodCongr_inl, groupEquiv_of]
+  rfl
 
 /-! ## 2. Transporting the associated subgroups -/
 
@@ -190,13 +225,29 @@ theorem baseEquiv_srcWord {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) (i : ℕ) :
     baseEquiv g hspan (PresentedGroup.mk (baseRels g) (srcWord i)) = aFam i := by
   unfold srcWord aFam
-  simp only [map_mul, map_zpow, baseEquiv_of_zero, baseEquiv_of_one]
+  simp only [map_mul, map_zpow, PresentedGroup.of]
+  rw [baseEquiv_of_zero, baseEquiv_of_one]
 
 theorem baseEquiv_tgtWord {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) (i : ℕ) :
     baseEquiv g hspan (PresentedGroup.mk (baseRels g) (tgtWord i)) = bFam g i := by
   unfold tgtWord bFam
-  rw [map_mul, baseEquiv_of_add_two, baseEquiv_srcWord]
+  simp only [map_mul, PresentedGroup.of]
+  rw [baseEquiv_of_add_two, baseEquiv_srcWord]
+
+theorem baseEquiv_symm_aFam {A : Type} [Group A] (g : ℕ → A)
+    (hspan : Subgroup.closure (Set.range g) = ⊤) (i : ℕ) :
+    (baseEquiv g hspan).symm (aFam i) =
+      HNNPresentation.srcGen (baseRels g) srcWord i := by
+  rw [← baseEquiv_srcWord g hspan i, MulEquiv.symm_apply_apply]
+  rfl
+
+theorem baseEquiv_symm_bFam {A : Type} [Group A] (g : ℕ → A)
+    (hspan : Subgroup.closure (Set.range g) = ⊤) (i : ℕ) :
+    (baseEquiv g hspan).symm (bFam g i) =
+      HNNPresentation.tgtGen (baseRels g) tgtWord i := by
+  rw [← baseEquiv_tgtWord g hspan i, MulEquiv.symm_apply_apply]
+  rfl
 
 /-- The actual-to-presented base isomorphism sends the source subgroup to the
 source subgroup of `HNNPresentation`. -/
@@ -210,21 +261,17 @@ theorem map_Asub {A : Type} [Group A] (g : ℕ → A)
     induction hx using Subgroup.closure_induction with
     | mem x hx =>
         obtain ⟨i, rfl⟩ := hx
-        have he := baseEquiv_srcWord g hspan i
-        have hv : (baseEquiv g hspan).symm (aFam i) =
-            HNNPresentation.srcGen (baseRels g) srcWord i := by
-          simpa [HNNPresentation.srcGen] using
-            (congrArg (baseEquiv g hspan).symm he).symm
-        rw [hv]
+        change (baseEquiv g hspan).symm (aFam i) ∈
+          HNNPresentation.srcSub (baseRels g) srcWord
+        rw [baseEquiv_symm_aFam]
         exact HNNPresentation.srcGen_mem (baseRels g) srcWord i
-    | one => simpa using Subgroup.one_mem (HNNPresentation.srcSub (baseRels g) srcWord)
-    | mul x y _ _ hx hy => simpa using Subgroup.mul_mem _ hx hy
-    | inv x _ hx => simpa using Subgroup.inv_mem _ hx
+    | one => exact Subgroup.one_mem (HNNPresentation.srcSub (baseRels g) srcWord)
+    | mul x y _ _ hx hy => exact Subgroup.mul_mem _ hx hy
+    | inv x _ hx => exact Subgroup.inv_mem _ hx
   · rw [HNNPresentation.srcSub, Subgroup.closure_le]
     rintro y ⟨i, rfl⟩
     refine ⟨aFam i, aFam_mem_Asub i, ?_⟩
-    have he := congrArg (baseEquiv g hspan).symm (baseEquiv_srcWord g hspan i)
-    simpa using he.symm
+    exact baseEquiv_symm_aFam g hspan i
 
 /-- The same transport for the target subgroup. -/
 theorem map_Bsub {A : Type} [Group A] (g : ℕ → A)
@@ -237,27 +284,24 @@ theorem map_Bsub {A : Type} [Group A] (g : ℕ → A)
     induction hx using Subgroup.closure_induction with
     | mem x hx =>
         obtain ⟨i, rfl⟩ := hx
-        have he := congrArg (baseEquiv g hspan).symm (baseEquiv_tgtWord g hspan i)
-        have hv : (baseEquiv g hspan).symm (bFam g i) =
-            HNNPresentation.tgtGen (baseRels g) tgtWord i := by
-          simpa [HNNPresentation.tgtGen] using he.symm
-        rw [hv]
+        change (baseEquiv g hspan).symm (bFam g i) ∈
+          HNNPresentation.tgtSub (baseRels g) tgtWord
+        rw [baseEquiv_symm_bFam]
         exact HNNPresentation.tgtGen_mem (baseRels g) tgtWord i
-    | one => simpa using Subgroup.one_mem (HNNPresentation.tgtSub (baseRels g) tgtWord)
-    | mul x y _ _ hx hy => simpa using Subgroup.mul_mem _ hx hy
-    | inv x _ hx => simpa using Subgroup.inv_mem _ hx
+    | one => exact Subgroup.one_mem (HNNPresentation.tgtSub (baseRels g) tgtWord)
+    | mul x y _ _ hx hy => exact Subgroup.mul_mem _ hx hy
+    | inv x _ hx => exact Subgroup.inv_mem _ hx
   · rw [HNNPresentation.tgtSub, Subgroup.closure_le]
     rintro y ⟨i, rfl⟩
     refine ⟨bFam g i, bFam_mem_Bsub g i, ?_⟩
-    have he := congrArg (baseEquiv g hspan).symm (baseEquiv_tgtWord g hspan i)
-    simpa [HNNPresentation.tgtGen] using he.symm
+    exact baseEquiv_symm_bFam g hspan i
 
 theorem mem_Asub_iff {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) (x : P A) :
     x ∈ Asub ↔ (baseEquiv g hspan).symm x ∈
       HNNPresentation.srcSub (baseRels g) srcWord := by
   rw [← map_Asub g hspan, Subgroup.mem_map_equiv,
-    MulEquiv.apply_symm_apply]
+    MulEquiv.symm_symm, MulEquiv.apply_symm_apply]
 
 /-- The associated-subgroup isomorphism transported to the presented base. -/
 noncomputable def presPhi {A : Type} [Group A] (g : ℕ → A)
@@ -294,17 +338,15 @@ theorem presPhi_gen {A : Type} [Group A] (g : ℕ → A)
       HNNPresentation.tgtGen (baseRels g) tgtWord i := by
   have hsrc : HNNPresentation.srcGen (baseRels g) srcWord i =
       (baseEquiv g hspan).symm (aFam i) := by
-    have h := congrArg (baseEquiv g hspan).symm (baseEquiv_srcWord g hspan i)
-    simpa [HNNPresentation.srcGen] using h.symm
-  have hmem : aFam i ∈ Asub := aFam_mem_Asub i
+    exact (baseEquiv_symm_aFam g hspan i).symm
+  have hmem : aFam i ∈ (Asub (A := A)) := aFam_mem_Asub i
   have hsub : (⟨HNNPresentation.srcGen (baseRels g) srcWord i,
       HNNPresentation.srcGen_mem (baseRels g) srcWord i⟩ :
         HNNPresentation.srcSub (baseRels g) srcWord) =
       ⟨(baseEquiv g hspan).symm (aFam i), (mem_Asub_iff g hspan (aFam i)).1 hmem⟩ :=
     Subtype.ext hsrc
   rw [hsub, presPhi_intertwines g hspan (aFam i) hmem, psi_aFam]
-  have h := congrArg (baseEquiv g hspan).symm (baseEquiv_tgtWord g hspan i)
-  simpa [HNNPresentation.tgtGen] using h.symm
+  exact baseEquiv_symm_bFam g hspan i
 
 /-! ## 3. The presented extension and its numbered relators -/
 
@@ -373,17 +415,26 @@ theorem map_cycle_hnnRaw (i : ℕ) :
   have hold : freeEval (hnnRaw i) =
       FreeGroup.of 2 * srcWord i * (FreeGroup.of 2)⁻¹ *
         (FreeGroup.of (i + 3) * srcWord i)⁻¹ := by
+    have ha := freeEval_aRaw i
+    unfold freeEval at ha
     unfold hnnRaw freeEval
     rw [evalRaw_append]
-    simp only [evalRaw_cons, evalRaw_invRaw, freeEval_aRaw]
+    simp only [evalRaw_cons, evalRaw_invRaw]
+    rw [ha]
     group
+  have hemb :
+      (FreeGroup.map optionNatEquiv).comp HNNPresentation.emb =
+        FreeGroup.map (fun k : ℕ => k + 1) := by
+    apply FreeGroup.ext_hom
+    intro k
+    simp only [MonoidHom.comp_apply, FreeGroup.map.of, HNNPresentation.emb,
+      optionNatEquiv_some]
   rw [hold]
   simp only [map_mul, map_inv, FreeGroup.map.of, cycle_two, cycle_add_three,
-    HNNPresentation.stableWord, HNNPresentation.emb, optionNatEquiv_none,
-    optionNatEquiv_some, tgtWord, hsrc]
+    HNNPresentation.stableWord, optionNatEquiv_none, tgtWord, hsrc]
+  rw [← MonoidHom.comp_apply, hemb, ← MonoidHom.comp_apply, hemb]
 
-theorem numbered_base_relator {A : Type} [Group A] (g : ℕ → A)
-    (u : FreeGroup ℕ) :
+theorem numbered_base_relator (u : FreeGroup ℕ) :
     FreeGroup.map optionNatEquiv
         (HNNPresentation.emb (FreeGroup.map (fun k : ℕ => k + 2) u)) =
       FreeGroup.map cycle (FreeGroup.map (fun k : ℕ => k + 3) u) := by
@@ -397,18 +448,32 @@ theorem numbered_base_relator {A : Type} [Group A] (g : ℕ → A)
       optionNatEquiv_some, cycle_add_three]
   exact DFunLike.congr_fun hhom u
 
+theorem relabel_base_word (u : FreeGroup ℕ) :
+    FreeGroup.map baseCode (FreeGroup.map Sum.inl u) =
+      FreeGroup.map (fun k : ℕ => k + 2) u := by
+  have hhom : (FreeGroup.map baseCode).comp (FreeGroup.map Sum.inl) =
+      FreeGroup.map (fun k : ℕ => k + 2) := by
+    apply FreeGroup.ext_hom
+    intro k
+    simp only [MonoidHom.comp_apply, FreeGroup.map.of, baseCode_inl]
+  exact DFunLike.congr_fun hhom u
+
 /-- Every literal HNN-presentation relator occurs among `codedRels`. -/
 theorem hnnNumberedRels_subset_coded {A : Type} [Group A] (g : ℕ → A) :
     hnnNumberedRels g ⊆ codedRels g := by
   rintro r ⟨s, hs, rfl⟩
-  rcases hs with ⟨u, ⟨v, hv, rfl⟩, rfl⟩ | ⟨i, rfl⟩
-  · refine ⟨FreeGroup.map (fun k : ℕ => k + 3) v, Or.inl ⟨v, hv, rfl⟩, ?_⟩
-    exact numbered_base_relator g v
+  rcases hs with ⟨u, hu, rfl⟩ | ⟨i, rfl⟩
+  · rcases hu with ⟨v, hv, rfl⟩
+    rcases hv with ⟨w, hw, rfl⟩ | ⟨w, hw⟩
+    · refine ⟨FreeGroup.map (fun k : ℕ => k + 3) w,
+        Or.inl ⟨w, hw, rfl⟩, ?_⟩
+      rw [relabel_base_word]
+      exact (numbered_base_relator w).symm
+    · exact False.elim hw
   · refine ⟨freeEval (hnnRaw i), Or.inr ⟨2 * i, ?_⟩, ?_⟩
     · rw [hnnFam_even (n := 2 * i) (by omega)]
-      congr 2
-      omega
-    · exact (map_cycle_hnnRaw i).symm
+      congr 2 <;> omega
+    · exact map_cycle_hnnRaw i
 
 /-- Conversely, every symmetric coded relator belongs to the normal closure
 of the literal HNN relators. -/
@@ -416,17 +481,19 @@ theorem codedRels_subset_normalClosure {A : Type} [Group A] (g : ℕ → A) :
     codedRels g ⊆ Subgroup.normalClosure (hnnNumberedRels g) := by
   rintro r ⟨s, hs, rfl⟩
   rcases hs with ⟨u, hu, rfl⟩ | ⟨n, rfl⟩
-  · refine Subgroup.subset_normalClosure ?_
-    refine ⟨FreeGroup.map optionNatEquiv
-      (HNNPresentation.emb (FreeGroup.map (fun k : ℕ => k + 2) u)), ?_, ?_⟩
-    · exact Or.inl ⟨FreeGroup.map (fun k : ℕ => k + 2) u,
-        ⟨u, hu, rfl⟩, rfl⟩
-    · exact (numbered_base_relator g u).symm
+  · rw [← numbered_base_relator u]
+    exact Subgroup.subset_normalClosure
+      ⟨HNNPresentation.emb (FreeGroup.map (fun k : ℕ => k + 2) u),
+        Or.inl ⟨FreeGroup.map (fun k : ℕ => k + 2) u,
+          ⟨FreeGroup.map Sum.inl u, Or.inl ⟨u, hu, rfl⟩,
+            relabel_base_word u⟩, rfl⟩, rfl⟩
   · by_cases h : n % 2 = 0
-    · rw [hnnFam_even h, map_cycle_hnnRaw]
+    · change FreeGroup.map cycle (freeEval (hnnFam n)) ∈ _
+      rw [hnnFam_even h, map_cycle_hnnRaw]
       exact Subgroup.subset_normalClosure
         ⟨_, Or.inr ⟨n / 2, rfl⟩, rfl⟩
-    · rw [hnnFam_odd h, freeEval_invRaw, map_inv, map_cycle_hnnRaw]
+    · change FreeGroup.map cycle (freeEval (hnnFam n)) ∈ _
+      rw [hnnFam_odd h, freeEval_invRaw, map_inv, map_cycle_hnnRaw]
       exact Subgroup.inv_mem _ (Subgroup.subset_normalClosure
         ⟨_, Or.inr ⟨n / 2, rfl⟩, rfl⟩)
 
@@ -445,7 +512,11 @@ def normalClosureEquiv {S T : Set (FreeGroup ℕ)}
 
 @[simp] theorem normalClosureEquiv_mk {S T : Set (FreeGroup ℕ)}
     (h : Subgroup.normalClosure S = Subgroup.normalClosure T) (w : FreeGroup ℕ) :
-    normalClosureEquiv h (PresentedGroup.mk S w) = PresentedGroup.mk T w := rfl
+    normalClosureEquiv h (PresentedGroup.mk S w) = PresentedGroup.mk T w := by
+  show QuotientGroup.quotientMulEquivOfEq h
+      (QuotientGroup.mk w : FreeGroup ℕ ⧸ Subgroup.normalClosure S) =
+    (QuotientGroup.mk w : FreeGroup ℕ ⧸ Subgroup.normalClosure T)
+  rfl
 
 /-! ## 4. The extension is the coded presentation -/
 
@@ -471,22 +542,73 @@ noncomputable def extEquivCoded {A : Type} [Group A] (g : ℕ → A)
 theorem extEquivNumbered_t {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) :
     extEquivNumbered g hspan (HNNExtension.t : Ext g) = PresentedGroup.of 0 := by
-  simp [extEquivNumbered, HNNPresentation.equivPres, HNNPresentation.bwd,
-    HNNCongr.congrEquiv, PresentedGroupRelabel.congrEquiv]
+  show PresentedGroupRelabel.congrEquiv optionNatEquiv
+      (HNNPresentation.hnnRels (baseRels g) srcWord tgtWord)
+      ((HNNPresentation.equivPres (baseRels g) srcWord tgtWord (presPhi g hspan)
+        (presPhi_gen g hspan)).symm
+        (HNNCongr.congrEquiv (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+          (mem_Asub_iff g hspan) (presPhi_intertwines g hspan)
+          HNNExtension.t)) = _
+  rw [show HNNCongr.congrEquiv (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+      (mem_Asub_iff g hspan) (presPhi_intertwines g hspan)
+      (HNNExtension.t : Ext g) = HNNExtension.t from
+    HNNCongr.congrHom_t (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+      (mem_Asub_iff g hspan) (presPhi_intertwines g hspan)]
+  change PresentedGroupRelabel.congrEquiv optionNatEquiv _
+      (HNNPresentation.bwd (baseRels g) srcWord tgtWord (presPhi g hspan)
+        (presPhi_gen g hspan) HNNExtension.t) = _
+  rw [HNNPresentation.bwd, HNNExtension.lift_t]
+  exact PresentedGroupRelabel.relabelHom_of optionNatEquiv _ none
 
 theorem extEquivNumbered_x {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) :
     extEquivNumbered g hspan (HNNExtension.of (xg : P A)) = PresentedGroup.of 1 := by
-  simp [extEquivNumbered, HNNPresentation.equivPres, HNNPresentation.bwd,
-    HNNPresentation.bwdBase_mk, HNNCongr.congrEquiv, baseEquiv_of_zero,
-    PresentedGroupRelabel.congrEquiv]
+  show PresentedGroupRelabel.congrEquiv optionNatEquiv _
+      ((HNNPresentation.equivPres (baseRels g) srcWord tgtWord (presPhi g hspan)
+        (presPhi_gen g hspan)).symm
+        (HNNCongr.congrEquiv (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+          (mem_Asub_iff g hspan) (presPhi_intertwines g hspan)
+          (HNNExtension.of (xg : P A)))) = _
+  rw [show HNNCongr.congrEquiv (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+      (mem_Asub_iff g hspan) (presPhi_intertwines g hspan)
+      (HNNExtension.of (xg : P A)) = HNNExtension.of ((baseEquiv g hspan).symm xg) from
+    HNNCongr.congrHom_of (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+      (mem_Asub_iff g hspan) (presPhi_intertwines g hspan) xg]
+  change PresentedGroupRelabel.congrEquiv optionNatEquiv _
+      (HNNPresentation.bwd (baseRels g) srcWord tgtWord (presPhi g hspan)
+        (presPhi_gen g hspan) (HNNExtension.of ((baseEquiv g hspan).symm xg))) = _
+  rw [HNNPresentation.bwd, HNNExtension.lift_of]
+  have hx : (baseEquiv g hspan).symm xg =
+      (PresentedGroup.of 0 : PresentedGroup (baseRels g)) := by
+    rw [MulEquiv.symm_apply_eq]
+    exact (baseEquiv_of_zero g hspan).symm
+  rw [hx, HNNPresentation.bwdBase, PresentedGroup.toGroup.of]
+  exact PresentedGroupRelabel.relabelHom_of optionNatEquiv _ (some 0)
 
 theorem extEquivNumbered_y {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) :
     extEquivNumbered g hspan (HNNExtension.of (yg : P A)) = PresentedGroup.of 2 := by
-  simp [extEquivNumbered, HNNPresentation.equivPres, HNNPresentation.bwd,
-    HNNPresentation.bwdBase_mk, HNNCongr.congrEquiv, baseEquiv_of_one,
-    PresentedGroupRelabel.congrEquiv]
+  show PresentedGroupRelabel.congrEquiv optionNatEquiv _
+      ((HNNPresentation.equivPres (baseRels g) srcWord tgtWord (presPhi g hspan)
+        (presPhi_gen g hspan)).symm
+        (HNNCongr.congrEquiv (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+          (mem_Asub_iff g hspan) (presPhi_intertwines g hspan)
+          (HNNExtension.of (yg : P A)))) = _
+  rw [show HNNCongr.congrEquiv (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+      (mem_Asub_iff g hspan) (presPhi_intertwines g hspan)
+      (HNNExtension.of (yg : P A)) = HNNExtension.of ((baseEquiv g hspan).symm yg) from
+    HNNCongr.congrHom_of (psi g) (presPhi g hspan) (baseEquiv g hspan).symm
+      (mem_Asub_iff g hspan) (presPhi_intertwines g hspan) yg]
+  change PresentedGroupRelabel.congrEquiv optionNatEquiv _
+      (HNNPresentation.bwd (baseRels g) srcWord tgtWord (presPhi g hspan)
+        (presPhi_gen g hspan) (HNNExtension.of ((baseEquiv g hspan).symm yg))) = _
+  rw [HNNPresentation.bwd, HNNExtension.lift_of]
+  have hy : (baseEquiv g hspan).symm yg =
+      (PresentedGroup.of 1 : PresentedGroup (baseRels g)) := by
+    rw [MulEquiv.symm_apply_eq]
+    exact (baseEquiv_of_one g hspan).symm
+  rw [hy, HNNPresentation.bwdBase, PresentedGroup.toGroup.of]
+  exact PresentedGroupRelabel.relabelHom_of optionNatEquiv _ (some 1)
 
 theorem extEquivCoded_gen3 {A : Type} [Group A] (g : ℕ → A)
     (hspan : Subgroup.closure (Set.range g) = ⊤) (j : Fin 3) :
@@ -501,6 +623,7 @@ theorem pi3_to_coded {A : Type} [Group A] (g : ℕ → A)
     extEquivCoded g hspan (pi3 g (rawToFree 2 v)) =
       evalRaw (fun k ↦ (PresentedGroup.of k : PresentedGroup (codedRels g)))
         (relabel (fun k ↦ (k + 1) % 3) v) := by
+  unfold pi3
   rw [lift_rawToFree]
   change extEquivCoded g hspan
       (evalRaw (fun k : ℕ ↦ gen3 g ⟨k % 3, Nat.mod_lt _ (by omega)⟩) v) = _
@@ -518,7 +641,7 @@ theorem primrec_cycle : Primrec cycle := by
   have hnext : Primrec fun k : ℕ ↦ (k + 1) % 3 :=
     Primrec.nat_mod.comp
       (Primrec.nat_add.comp Primrec.id (Primrec.const 1)) (Primrec.const 3)
-  exact Primrec.cond hlt.decide hnext Primrec.id
+  exact Primrec.ite hlt hnext Primrec.id
 
 theorem inv_mem_codedRels {A : Type} [Group A] (g : ℕ → A)
     {z : FreeGroup ℕ} (hz : z ∈ codedRels g) : z⁻¹ ∈ codedRels g := by
@@ -558,7 +681,7 @@ theorem rePred_pi3_of_spans {A : Type} [Group A] (g : ℕ → A)
         (Primrec.nat_add.comp Primrec.id (Primrec.const 1)) (Primrec.const 3))).to_comp
   refine (rePred_comp hcanonical hrotate).of_eq fun v ↦ ?_
   rw [← pi3_to_coded g hspan]
-  exact (extEquivCoded g hspan).map_eq_one_iff.symm
+  exact (extEquivCoded g hspan).map_eq_one_iff
 
 /-- **The repaired bridge is unconditional.**  This is the direct replacement
 for the old route through the overstrong `BridgeWP.ExtPresentation` input. -/

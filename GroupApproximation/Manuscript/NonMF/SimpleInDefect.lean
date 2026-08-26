@@ -1,3 +1,4 @@
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefect
 import GroupApproximation.Sofic.IntrinsicCompressionDefect
 import GroupApproximation.Sofic.KazhdanCompressionFunctorial
@@ -76,3 +77,5 @@ theorem manuscriptLemmaSimpleInDefect
 end NonMF
 end Manuscript
 end GroupApproximation
+
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.manuscriptLemmaSimpleInDefect

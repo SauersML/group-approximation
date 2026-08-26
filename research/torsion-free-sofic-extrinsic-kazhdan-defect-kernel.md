@@ -11,6 +11,7 @@ distinct_from:
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
   - GroupApproximation/Sofic/SoficByAmenablePermanence.lean
+  - research/torsion-free-lef-kazhdan-non-rf-seed.md
 ---
 
 Construct a nontrivial torsion-free, sofic, non-residually-finite group `K`
@@ -86,3 +87,13 @@ together with `normal-kazhdan-defect-non-mf`.
    would need an infinite-order class in `Out(K)` for a genuinely extrinsic
    obstruction; a finite-order outer action only gives a virtually direct
    product.
+7. **Characteristic-zero Thom/Kida--Tucker-Drob seed.**
+   `torsion-free-lef-kazhdan-non-rf-seed` now supplies unconditionally all
+   four intrinsic kernel properties: finitely generated, torsion-free, LEF
+   (hence sofic), non-residually-finite and property `(T)`.  This removes the
+   former seed-existence gap.  Its visible Laurent shift is still only a
+   surjective noninjective endomorphism after the one-sided central quotient,
+   so it does not itself supply `phi in Aut(K)`.  The remaining task is now
+   genuinely equivariant: equip this seed or a refinement with an automorphism
+   whose mapping torus is finitely presented and whose compression defect
+   normally fills `K`.

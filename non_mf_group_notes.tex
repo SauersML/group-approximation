@@ -327,8 +327,8 @@ then $\opnorm{w(V_1,\dots,V_8)-1}<1$.
 If no such $\delta$ exists, then for every $n$ there are a dimension
 $d_n$ and a tuple $V^{(n)}$ satisfying every relator to within $1/n$
 and with $\opnorm{w(V^{(n)})-1}\ge1$.  Each tuple defines a
-homomorphism $\varphi_n\colon F_8\to\U(d_n)$, since $F_8$ is free, and
-by the unitary lifting argument the classes define a homomorphism
+homomorphism $\varphi_n\colon F_8\to\U(d_n)$, since $F_8$ is free.  Their
+unitary classes define a homomorphism
 $\Phi\colon F_8\to\U(\mathcal Q((d_n)))$.  Each of the forty-one
 relators lies in $\ker\Phi$, its images converging to $1$ in operator
 norm, so $\Phi$ factors as $\Theta\circ\pi$ through the quotient map
@@ -580,28 +580,7 @@ Hence both $V[x_n]$ and $V^*[x_n]$ are fixed by $\pi(L)$, which gives the
 asserted estimates.
 \end{proof}
 
-Taking $\nu_n=k_n$, the rank of the
-projection lift in the proof of
-Theorem~\ref{thm:projection-collapse}, gives the normalization used
-there.
-
 \section{Obstructions from a one-sided conjugation datum}\label{sec:conj}
-
-By Theorem~\ref{thm:transport-variants}, with $\nu_n=d_n$, applied to the property-\textup{(T)}
-subgroup $L=\iota(\Lambda)$, the normal closure
-$N_{\mathrm{conj}}$ of the commutators $[tct^{-1},\iota(\lambda)]$ is
-contained in $K_2^{\omega}(U)$ for every operator-norm asymptotic
-representation $U$ of $H$.  For a finite normal subgroup of
-$N_{\mathrm{conj}}$, Theorem~\ref{thm:criterion} uses the complement of a
-projection obtained from its averaging operators.  The central involution
-case has $F=\{1,w\}$.  For a normal
-property-\textup{(T)} subgroup, which may be infinite, noncentral and
-torsion-free, the corner is a spectral projection of a Kazhdan
-average (Theorems~\ref{thm:abstract-nk}
-and~\ref{thm:normal-kazhdan}).  Corollary~\ref{cor:intrinsic-nk}
-replaces $N_{\mathrm{conj}}$ by the subgroup
-$\mathfrak D(H,L)$ of \eqref{eq:intrinsicdefect}, which depends on $L$
-alone and not on a choice of $t$ and $c$.
 
 \begin{definition}[Kazhdan conjugation datum]\label{def:pattern}
 Let $H$ be a countable group.  A \emph{Kazhdan conjugation datum} in
@@ -737,8 +716,8 @@ $L=\iota(\mathcal B)$ and $\hat c=tct^{-1}$.  The element
 $u=[\hat c,\iota(v_1)]$ belongs to $N_{\mathrm{conj}}$, and $w=u^2$.
 The subgroup $\langle w\rangle$ is finite and normal because $w$ is a central
 involution.  Theorem~\ref{thm:criterion}, applied with
-$F=\langle w\rangle$, maps $w$ to the identity under every homomorphism from
-$E$ to a norm matrix corona.
+$F=\langle w\rangle$, implies that every homomorphism from $E$ to a norm
+matrix corona maps $w$ to the identity.
 \end{proof}
 
 The same conclusion holds for every finite normal subgroup $F$ contained
@@ -1518,10 +1497,6 @@ Lemma~\ref{lem:permanence}(2), while \(E\) is not MF by Corollary~\ref{cor:marke
 
 \section{Commuting orbits and the MF residual}\label{subsec:collapse}
 
-For the central involution criterion, the corner is the negative
-spectral corner of a central involution.  Here it is an arbitrary
-projection of $\mathcal Q$ whose conjugation orbit commutes.
-
 \begin{theorem}[a commuting orbit forces commutation]\label{thm:projection-collapse}
 Let $H$ be countable, let $L\le H$ have property~\textup{(T)}, let
 $s\in H$ satisfy $s\gamma s^{-1}\in L$ for every $\gamma\in L$, and let
@@ -1910,13 +1885,6 @@ reverse inclusion follows from the residual calculation just proved.
 \section{Spectral components and exact finite-lamp quotients}
 \label{sec:spectral-visible-notes}
 
-The projection theorem above has a functional-calculus form which is both
-stronger and easier to apply.  It also identifies the exact quotient detected
-by finite-dimensional approximation in the affine-doubling wreath family.
-These results are retained here rather than in the self-compression paper
-because their proofs use commuting projection orbits and rank-normalized
-Hilbert--Schmidt geometry.
-
 \subsection{Spectral-component rigidity}
 
 \begin{theorem}[spectral-component motion]\label{thm:notes-spectral-motion}
@@ -2011,12 +1979,15 @@ $\Phi_n=\psi_{n-1}\cdots\psi_1\Phi_1$.
 
 For $\Phi_1$, apply Theorem~\ref{thm:notes-spectral-motion} with
 $L=\Gamma_*$ and $s=t$ to $k_{t\Gamma_*}$, where $k\in K$.  Every corona
+image of this lamp has finite spectrum, commutes with the image of
+$t\Gamma_*t^{-1}$, and has pairwise commuting $\Gamma_*$-conjugates.  Every corona
 homomorphism $\pi$ then satisfies
 \[
  \pi(\gamma k_{t\Gamma_*}\gamma^{-1})=\pi(k_{t\Gamma_*})
  \qquad(\gamma\in\Gamma_*).
 \]
-Their conjugates identify the lamps in each fibre of $X\to X_1$.  Each fibre
+Conjugating these equalities by elements of $G_*$ identifies the lamps in
+each fibre of $X\to X_1$.  Each fibre
 contains distinct sites, so commutation between different site groups makes
 the identified copy of $K$ abelian.  These equalities generate
 $\ker\Phi_1$.  Hence
@@ -2041,10 +2012,10 @@ configuration belongs to $\ker\Phi_K$, choose $n$ such that any two points of
 its support with the same image in $G_*/N$ already have the same image in
 $X_n$.  The configuration then belongs to $\ker\Phi_n$.  Thus
 \[
- \ker\Phi_K=\bigcup_{n\geq1}\ker\Phi_n
+\ker\Phi_K=\bigcup_{n\geq1}\ker\Phi_n
  \leq\operatorname{Rad}_{\mathrm{MF}}(W_K),
 \]
-which proves the corona factorization.
+so every corona homomorphism annihilates $\ker\Phi_K$.
 
 The homomorphism
 \[
@@ -2055,8 +2026,9 @@ The homomorphism
 is injective.  The group $G_*$ and the wreath product
 $K_{\mathrm{ab}}^{(\mathbb Z)}\rtimes\mathbb Z$
 are residually finite, so $P_K$ is residually finite.  Its finite quotients
-separate every element outside $\ker\Phi_K$.  This proves the displayed
-equalities for the finite, finite-dimensional unitary, and MF residuals.  A
+separate every element outside $\ker\Phi_K$.  The finite,
+finite-dimensional unitary, and MF residuals therefore equal
+$\ker\Phi_K$.  A
 finite-dimensional linear image is residually finite by Mal'cev's theorem,
 and finite-dimensional unitary representations separate points of compact
 groups by Peter--Weyl.  The linear and Bohr residuals therefore have the same
@@ -2101,14 +2073,19 @@ For every countable abelian group $A$,
 \begin{proof}
 If $A$ has nontrivial torsion, a finite-order one-site lamp has
 zero-dimensional spectrum in every corona representation.  Theorem
-\ref{thm:notes-spectral-motion} identifies its image with a distinct-site
-translate, producing a nontrivial word killed by every such representation.
+\ref{thm:notes-spectral-motion} identifies its image with the image of each
+$\Gamma_*$-translate in the same fibre of $X\to X_1$.  For a nonidentity
+torsion element $a\in A$, choose $\gamma\in\Gamma_*$ such that
+$\gamma t\Gamma_*\ne t\Gamma_*$; such an element exists because
+$[\Gamma_*:t\Gamma_*t^{-1}]=8$.  Every corona homomorphism annihilates
+$a_{\gamma t\Gamma_*}a_{t\Gamma_*}^{-1}$, which is nonidentity in
+$A^{(X)}$.
 
 Suppose that $A$ is torsion-free.  The embedding
 $A\to A\otimes_{\mathbb Z}\mathbb Q$ is injective, and the countable
 $\mathbb Q$-vector space $A\otimes_{\mathbb Z}\mathbb Q$ embeds in a
-$\mathbb Q$-linear complement of $2\pi\mathbb Q$ in $\mathbb R$.  Their
-composition is an injective additive map
+$\mathbb Q$-linear complement of $2\pi\mathbb Q$ in $\mathbb R$.  Composing
+the two embeddings gives an injective additive map
 $\theta\colon A\to\mathbb R$ whose image meets $2\pi\mathbb Z$ only at zero.
 Put
 $\Gamma_1=t\Gamma_*t^{-1}$ and identify $G_*/\Gamma_1$ with $X$ by

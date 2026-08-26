@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
+import GroupApproximation.Analysis.MFAlgebraDimensionNormalization
 
 /-!
 # Matrix amplifications of MF algebras are MF
@@ -56,6 +57,15 @@ omit [Nonempty (Fin k)] [∀ n, Nonempty (X n)] in
     StablyFiniteAmplification.block i j (assembleSequence X a n) = a i j n :=
   rfl
 
+omit [Nonempty (Fin k)] [∀ n, Nonempty (X n)] in
+theorem block_assembleSequence_sub (a b : LiftMatrix k X)
+    (i j : Fin k) (n : ℕ) :
+    StablyFiniteAmplification.block i j
+        ((assembleSequence X a - assembleSequence X b) n) =
+      (a i j - b i j) n := by
+  ext p q
+  rfl
+
 /-- The corona class represented by an assembled matrix of lifts. -/
 def coronaOfLifts (a : LiftMatrix k X) :
     NormMatrixCStarCorona (fun n ↦ ampModel k (X n)) :=
@@ -66,42 +76,35 @@ theorem coronaOfLifts_eq_of_mk_eq {a b : LiftMatrix k X}
     (h : ∀ i j, normMatrixCStarCoronaMk (fun n ↦ X n) (a i j) =
       normMatrixCStarCoronaMk (fun n ↦ X n) (b i j)) :
     coronaOfLifts X a = coronaOfLifts X b := by
+  unfold coronaOfLifts
   rw [← sub_eq_zero, ← map_sub,
     normMatrixCStarCoronaMk_eq_zero_iff]
   apply StablyFiniteAmplification.tendsto_norm_of_forall_block
   intro i j
   have hij : IsNullMatrixSequence (fun n ↦ X n) cofinite (a i j - b i j) := by
     rw [← normMatrixCStarCoronaMk_eq_zero_iff, map_sub, h i j, sub_self]
-  simpa [assembleSequence, StablyFiniteAmplification.block] using hij
+  simpa only [block_assembleSequence_sub] using hij
 
 theorem coronaOfLifts_zero :
     coronaOfLifts X (0 : LiftMatrix k X) = 0 := by
   rw [coronaOfLifts, ← map_zero (normMatrixCStarCoronaMk
     (fun n ↦ ampModel k (X n)))]
   congr 1
-  apply lp.ext
-  funext n
-  ext p q
-  rfl
 
 theorem coronaOfLifts_add (a b : LiftMatrix k X) :
     coronaOfLifts X (a + b) = coronaOfLifts X a + coronaOfLifts X b := by
   rw [coronaOfLifts, coronaOfLifts, coronaOfLifts, ← map_add]
   congr 1
-  apply lp.ext
-  funext n
-  ext p q
-  rfl
 
 theorem coronaOfLifts_smul (c : ℂ) (a : LiftMatrix k X) :
     coronaOfLifts X (c • a) = c • coronaOfLifts X a := by
-  rw [coronaOfLifts, coronaOfLifts,
-    map_smul (normMatrixCStarCoronaQuotient (fun n ↦ ampModel k (X n)))]
-  congr 1
-  apply lp.ext
-  funext n
-  ext p q
-  rfl
+  have hassemble : assembleSequence X (c • a) = c • assembleSequence X a := by
+    apply lp.ext
+    funext n
+    ext p q
+    rfl
+  unfold coronaOfLifts
+  rw [hassemble, MFAlgebraDimension.normMatrixCStarCoronaMk_smul]
 
 theorem coronaOfLifts_mul (a b : LiftMatrix k X) :
     coronaOfLifts X (fun i j ↦ ∑ r : Fin k, a i r * b r j) =
@@ -116,10 +119,6 @@ theorem coronaOfLifts_star (a : LiftMatrix k X) :
     coronaOfLifts X (fun i j ↦ star (a j i)) = star (coronaOfLifts X a) := by
   rw [coronaOfLifts, coronaOfLifts, normMatrixCStarCorona_star_mk]
   congr 1
-  apply lp.ext
-  funext n
-  ext p q
-  rfl
 
 /-- A fixed representative of each element of the source corona. -/
 def representative (x : NormMatrixCStarCorona (fun n ↦ X n)) :
@@ -146,28 +145,37 @@ def matrixCoronaHom :
     rw [← coronaOfLifts_add]
     apply coronaOfLifts_eq_of_mk_eq X
     intro i j
-    rw [map_add, mk_representative, mk_representative, mk_representative]
-    rfl
+    rw [CStarMatrix.add_apply, Pi.add_apply, Pi.add_apply, map_add,
+      mk_representative, mk_representative, mk_representative]
   map_mul' P Q := by
     rw [← coronaOfLifts_mul]
     apply coronaOfLifts_eq_of_mk_eq X
     intro i j
-    rw [map_sum, Matrix.mul_apply]
+    rw [CStarMatrix.mul_apply, mk_representative, map_sum]
     exact Finset.sum_congr rfl fun r _ ↦ by
-      rw [map_mul, mk_representative, mk_representative, mk_representative]
+      rw [map_mul, mk_representative, mk_representative]
   map_smul' c P := by
+    change coronaOfLifts X (fun i j ↦ representative X ((c • P) i j)) =
+      c • coronaOfLifts X (fun i j ↦ representative X (P i j))
     rw [← coronaOfLifts_smul]
     apply coronaOfLifts_eq_of_mk_eq X
     intro i j
-    rw [map_smul (normMatrixCStarCoronaQuotient (fun n ↦ X n)),
-      mk_representative, mk_representative]
-    rfl
+    change normMatrixCStarCoronaQuotient (fun n ↦ X n)
+        (representative X ((c • P) i j)) =
+      normMatrixCStarCoronaQuotient (fun n ↦ X n)
+        (c • representative X (P i j))
+    change normMatrixCStarCoronaMk (fun n ↦ X n)
+        (representative X ((c • P) i j)) =
+      normMatrixCStarCoronaMk (fun n ↦ X n)
+        (c • representative X (P i j))
+    rw [CStarMatrix.smul_apply, mk_representative,
+      MFAlgebraDimension.normMatrixCStarCoronaMk_smul, mk_representative]
   map_star' P := by
     rw [← coronaOfLifts_star]
     apply coronaOfLifts_eq_of_mk_eq X
     intro i j
-    rw [normMatrixCStarCorona_star_mk, mk_representative,
-      mk_representative, CStarMatrix.star_apply]
+    rw [CStarMatrix.star_apply, mk_representative,
+      ← normMatrixCStarCorona_star_mk, mk_representative]
 
 @[simp] theorem matrixCoronaHom_apply
     (P : CStarMatrix (Fin k) (Fin k)
@@ -177,23 +185,24 @@ def matrixCoronaHom :
 
 /-- The amplification map is faithful: equality of assembled classes makes
 each block difference null, so every source-corona entry agrees. -/
-theorem matrixCoronaHom_injective : Function.Injective (matrixCoronaHom X) := by
+theorem matrixCoronaHom_injective :
+    Function.Injective (matrixCoronaHom (k := k) X) := by
   intro P Q hPQ
-  apply CStarMatrix.ext
-  intro i j
+  ext i j
   have hamp : IsNullMatrixSequence (fun n ↦ ampModel k (X n)) cofinite
       (assembleSequence X (fun r s ↦ representative X (P r s)) -
         assembleSequence X (fun r s ↦ representative X (Q r s))) := by
-    rw [← normMatrixCStarCoronaMk_eq_zero_iff, map_sub,
-      ← matrixCoronaHom_apply, ← matrixCoronaHom_apply, hPQ, sub_self]
+    rw [← normMatrixCStarCoronaMk_eq_zero_iff, map_sub]
+    exact sub_eq_zero.mpr hPQ
   have hblock := StablyFiniteAmplification.tendsto_norm_block
+    (m := k)
     (fun n ↦
       (assembleSequence X (fun r s ↦ representative X (P r s)) -
         assembleSequence X (fun r s ↦ representative X (Q r s))) n)
     hamp i j
   have hij : IsNullMatrixSequence (fun n ↦ X n) cofinite
       (representative X (P i j) - representative X (Q i j)) := by
-    simpa [assembleSequence, StablyFiniteAmplification.block] using hblock
+    simpa only [block_assembleSequence_sub] using hblock
   have hzero := (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) _).mpr hij
   rw [map_sub, mk_representative, mk_representative, sub_eq_zero] at hzero
   exact hzero
@@ -207,15 +216,17 @@ theorem hasMFEmbedding_cstarMatrix
     HasMFEmbedding (CStarMatrix (Fin k) (Fin k) A) := by
   rcases hA with ⟨X, hne, hpos, hmono, e, he⟩
   letI : ∀ n, Nonempty (X n) := hne
+  have hk : 0 < k := by
+    simpa using
+      (Fintype.card_pos_iff.mpr (inferInstance : Nonempty (Fin k)))
   have hampne : ∀ n, Nonempty (ampModel k (X n)) := fun _ ↦ inferInstance
   have hamppos : ∀ n, 0 < Fintype.card (ampModel k (X n)) := fun n ↦ by
     rw [Fintype.card_prod, Fintype.card_fin]
-    exact Nat.mul_pos (Fintype.card_pos_iff.mpr inferInstance) (hpos n)
+    exact Nat.mul_pos hk (hpos n)
   have hampmono : StrictMono (fun n ↦ Fintype.card (ampModel k (X n))) := by
     intro m n hmn
     simp only [Fintype.card_prod, Fintype.card_fin]
-    exact (Nat.mul_lt_mul_left (Fintype.card_pos_iff.mpr
-      (inferInstance : Nonempty (Fin k)))).mpr (hmono hmn)
+    exact (Nat.mul_lt_mul_left hk).mpr (hmono hmn)
   let E : CStarMatrix (Fin k) (Fin k) A →⋆ₙₐ[ℂ]
       CStarMatrix (Fin k) (Fin k)
         (NormMatrixCStarCorona (fun n ↦ X n)) := CStarMatrix.mapₙₐ e

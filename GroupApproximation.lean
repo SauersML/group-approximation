@@ -1874,6 +1874,7 @@ import GroupApproximation.Higman.MikhailovaRopeCode
 import GroupApproximation.Higman.MikhailovaRopeCodeSemantics
 import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.PairedReturnCutterCode
+import GroupApproximation.Higman.PairedReturnMapEmbCode
 import GroupApproximation.Endpoint.PairedReturnCutterCodeAudit
 import GroupApproximation.Higman.FreeLampFinitePresentation
 import GroupApproximation.Higman.PairedFoldKernel

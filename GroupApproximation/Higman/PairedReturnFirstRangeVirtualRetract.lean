@@ -41,22 +41,25 @@ def stateAct : F₃ →* Equiv.Perm Bool :=
 /-- The Boolean component of the two-state action is exactly `stateAct` and
 does not depend on the word coordinate. -/
 theorem act_snd (x : F₃) (w : Double) (s : Bool) :
-    (act x (w, s)).2 = stateAct x s := by
-  induction x using FreeGroup.induction_on with
-  | one => simp
+    (PairedReturnEdgeGraph.act x (w, s)).2 = stateAct x s := by
+  induction x using FreeGroup.induction_on generalizing w s with
+  | C1 => simp
   | of i =>
       fin_cases i <;> cases s <;> rfl
-  | inv x ih =>
-      rw [map_inv, map_inv]
-      apply (stateAct x).injective
-      rw [Equiv.apply_symm_apply]
-      have h := congrArg Prod.snd ((act x).apply_symm_apply (w, s))
-      rw [ih] at h
-      exact h
+  | inv_of i hi =>
+      fin_cases i <;> cases s <;> rfl
   | mul x y hx hy =>
       rw [map_mul, map_mul]
-      change (act x (act y (w, s))).2 = stateAct x (stateAct y s)
-      rw [hx, hy]
+      change (PairedReturnEdgeGraph.act x
+        (PairedReturnEdgeGraph.act y (w, s))).2 =
+          stateAct x (stateAct y s)
+      have hpair : PairedReturnEdgeGraph.act y (w, s) =
+          ((PairedReturnEdgeGraph.act y (w, s)).1, stateAct y s) := by
+        apply Prod.ext
+        · rfl
+        · exact hy w s
+      rw [hpair]
+      exact hx _ _
 
 /-- Every action element is a left writer on the word coordinate. -/
 def Writer : Subgroup (Equiv.Perm StateSpace) where
@@ -72,10 +75,12 @@ def Writer : Subgroup (Equiv.Perm StateSpace) where
   inv_mem' := by
     intro p hp u w s
     apply p.injective
-    rw [p.apply_symm_apply]
-    have h := hp ((p.symm (u, s)).1) w ((p.symm (u, s)).2)
-    rw [p.apply_symm_apply] at h
-    exact h.symm
+    calc
+      p (p.symm (u * w, s)) = (u * w, s) := p.apply_symm_apply _
+      _ = ((p (p.symm (u, s))).1 * w, (p (p.symm (u, s))).2) := by
+        rw [p.apply_symm_apply]
+      _ = p ((p.symm (u, s)).1 * w, (p.symm (u, s)).2) :=
+        (hp _ _ _).symm
 
 theorem writePerm_mem_Writer (h : Sync) : writePerm h ∈ Writer := by
   intro u w s
@@ -88,20 +93,23 @@ theorem togglePerm_mem_Writer : togglePerm ∈ Writer := by
   intro u w s
   rfl
 
-theorem act_mem_Writer (x : F₃) : act x ∈ Writer := by
+theorem act_mem_Writer (x : F₃) : PairedReturnEdgeGraph.act x ∈ Writer := by
   induction x using FreeGroup.induction_on with
-  | one => exact Writer.one_mem
+  | C1 => exact Writer.one_mem
   | of i =>
       fin_cases i
-      · simpa [act] using togglePerm_mem_Writer
-      · simpa [act] using writePerm_mem_Writer PairedReturnCutter.bSync
-      · simpa [act] using writePerm_mem_Writer PairedReturnCutter.cSync
-  | inv x hx => exact Writer.inv_mem hx
-  | mul x y hx hy => exact Writer.mul_mem hx hy
+      · simpa [PairedReturnEdgeGraph.act] using togglePerm_mem_Writer
+      · simpa [PairedReturnEdgeGraph.act] using
+          writePerm_mem_Writer PairedReturnCutter.bSync
+      · simpa [PairedReturnEdgeGraph.act] using
+          writePerm_mem_Writer PairedReturnCutter.cSync
+  | inv_of i hi => simpa only [map_inv] using Writer.inv_mem hi
+  | mul x y hx hy => simpa only [map_mul] using Writer.mul_mem hx hy
 
 theorem act_mul_right (x : F₃) (u w : Double) (s : Bool) :
-    act x (u * w, s) =
-      ((act x (u, s)).1 * w, (act x (u, s)).2) :=
+    PairedReturnEdgeGraph.act x (u * w, s) =
+      ((PairedReturnEdgeGraph.act x (u, s)).1 * w,
+        (PairedReturnEdgeGraph.act x (u, s)).2) :=
   act_mem_Writer x u w s
 
 /-- The index-two even-parity subgroup. -/
@@ -109,48 +117,62 @@ def Even : Subgroup F₃ := stateAct.ker
 
 /-- Read the word written by an even element on the false state. -/
 def read : Even →* Double where
-  toFun x := (act (x : F₃) (1, false)).1
+  toFun x := (PairedReturnEdgeGraph.act (x : F₃) (1, false)).1
   map_one' := by simp
   map_mul' := by
     intro x y
     rw [Subgroup.coe_mul, map_mul]
-    change (act (x : F₃) (act (y : F₃) (1, false))).1 = _
-    have hy : (act (y : F₃) (1, false)).2 = false := by
+    change (PairedReturnEdgeGraph.act (x : F₃)
+      (PairedReturnEdgeGraph.act (y : F₃) (1, false))).1 = _
+    have hy : (PairedReturnEdgeGraph.act (y : F₃) (1, false)).2 = false := by
       rw [act_snd]
       have hyker : stateAct (y : F₃) = 1 := MonoidHom.mem_ker.mp y.property
       rw [hyker]
       rfl
     conv_lhs =>
-      rw [show act (y : F₃) (1, false) =
-          ((act (y : F₃) (1, false)).1, false) by
+      rw [show PairedReturnEdgeGraph.act (y : F₃) (1, false) =
+          ((PairedReturnEdgeGraph.act (y : F₃) (1, false)).1, false) by
         apply Prod.ext
         · rfl
         · exact hy]
-    rw [act_mul_right]
-    rfl
+    have h := act_mul_right (x : F₃) (1 : Double)
+      (PairedReturnEdgeGraph.act (y : F₃) (1, false)).1 false
+    simp only [one_mul] at h
+    exact congrArg Prod.fst h
+
+/-- Elements of `K` have even `a`-parity. -/
+theorem stateAct_of_mem_K {x : F₃} (hx : x ∈ K) : stateAct x = 1 := by
+  induction hx using Subgroup.closure_induction with
+  | mem y hy =>
+      rcases hy with rfl | hy
+      · exact stateAct_b
+      · rw [Set.mem_singleton_iff] at hy
+        subst y
+        exact stateAct_c
+  | one => exact map_one stateAct
+  | mul x y _ _ hx hy => rw [map_mul, hx, hy, mul_one]
+  | inv x _ hx => rw [map_inv, hx, inv_one]
 
 /-- Every first-path element has even `a`-parity. -/
 theorem firstPath_mem_Even (z : Double) : firstPath z ∈ Even := by
-  rw [Even, MonoidHom.mem_ker]
-  apply Equiv.ext
-  intro s
-  have hs := act_snd (firstPath z) 1 s
   induction z using Monoid.Coprod.induction_on with
   | inl h =>
-      rw [firstPath_inl, act_of_mem_K h.property] at hs
-      exact hs.symm
+      rw [Even, MonoidHom.mem_ker, firstPath_inl]
+      exact stateAct_of_mem_K h.property
   | inr h =>
-      rw [firstPath_inr, map_mul, map_mul, map_inv, act_a] at hs
-      change (!(!s)) = stateAct (a * (h : F₃) * a⁻¹) s at hs
-      cases s <;> exact hs.symm
+      rw [Even, MonoidHom.mem_ker, firstPath_inr, map_mul, map_mul, map_inv,
+        stateAct_a, stateAct_of_mem_K h.property]
+      apply Equiv.ext
+      intro s
+      cases s <;> rfl
   | mul x y hx hy =>
-      rw [map_mul, hx, hy]
-      rfl
+      rw [map_mul]
+      exact Even.mul_mem hx hy
 
 /-- Reading a first-path element recovers the original two-copy word. -/
 theorem read_firstPath (z : Double) :
     read ⟨firstPath z, firstPath_mem_Even z⟩ = z := by
-  change (act (firstPath z) (1, false)).1 = z
+  change (PairedReturnEdgeGraph.act (firstPath z) (1, false)).1 = z
   rw [act_firstPath]
   simp
 
@@ -172,10 +194,12 @@ theorem evenToFirstRange_comp_firstRangeToEven :
     evenToFirstRange.comp firstRangeToEven = MonoidHom.id FirstRange := by
   ext j
   obtain ⟨z, hz⟩ := j.property
-  apply Subtype.ext
-  change firstPath (read ⟨(j : F₃), _⟩) = (j : F₃)
-  rw [← hz]
-  rw [read_firstPath]
+  change firstPath (read (firstRangeToEven j)) = (j : F₃)
+  have heven : firstRangeToEven j =
+      (⟨firstPath z, firstPath_mem_Even z⟩ : Even) := by
+    apply Subtype.ext
+    exact hz.symm
+  rw [heven, read_firstPath, hz]
 
 end PairedReturnFirstRangeVirtualRetract
 end Higman
