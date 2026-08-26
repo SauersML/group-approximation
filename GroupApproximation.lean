@@ -1676,6 +1676,7 @@ import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.BridgeWordProblem
 import GroupApproximation.Higman.OmegaTower
 import GroupApproximation.Higman.OmegaTowerStages
+import GroupApproximation.Higman.OmegaTowerStageTwo
 import GroupApproximation.Higman.RowDeletionBenign
 import GroupApproximation.Higman.SwapWitnessTower
 import GroupApproximation.Higman.SwapCarrierFromTower
