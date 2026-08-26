@@ -85,3 +85,21 @@ b_j] = 1`).  So every residual method — finite or solvable — is blind to the
 free structure of the word component, which is where the MF approximants
 must be genuinely non-exact.
 
+*Shift edge versus digit edge.*  Write `Gamma_2 = < F(x,t) * F(b,d), p |
+p t_alpha p^-1 = t_alpha w_alpha(b) d >`.  Then `Gamma_2 = HNN(P_0; x)` with
+`P_0 = (T * F(b,d)) *_psi` residually finite and `x` conjugating the free
+subgroup `T = < t_alpha : alpha in Z >` to itself by the shift `t_alpha ->
+t_(alpha+1)`.  A finite quotient of `P_0` synchronizes the shift exactly iff
+the kernel of `T -> Q` is shift-invariant, i.e. the shift induces an
+automorphism `phi` of the image, so `q(t_(alpha+1)) = phi(q(t_alpha))` and
+`alpha -> q(t_alpha)` is periodic of period `ord(phi)`; the digit edge then
+forces `w_alpha(b) = w_(alpha+N)(b)`.  So the shift edge and the digit edge
+cannot both be synchronized by one finite quotient, in any order.  What
+remains is the approximate version: the tuples `(lambda(q(t_alpha)))_(|alpha|
+<= A)` and `(lambda(q(t_(alpha+1))))` need only be conjugate up to `o(1)` in
+operator norm on windows `A -> oo`, with the digit refinement kept exact on
+the window.  Whether tuples of regular representations that are locally
+isomorphic up to length `L(A) -> oo` are asymptotically unitarily conjugate
+is the concrete operator-theoretic question; single unitaries of large
+order are (eigenvalue equidistribution), tuples are not known to be.
+
