@@ -240,6 +240,84 @@ theorem restrictLower_coordinate (r : R) (q : Fin 2 × R) :
   · rw [map_mul]
     rfl
 
+/-! ### Exact action on arbitrary coefficient coordinates -/
+
+/-- An upper shear fixes every coordinate in the first root subgroup. -/
+theorem coordinateAngle_characterAction_upper_zero
+    (r a : R) (chi : X rho) :
+    coordinateAngle rho (0, a)
+        (characterAction (P rho).algebra ((P rho).rho (upperShear r))
+          (upperShear_forward rho r) (upperShear_backward rho r) chi) =
+      coordinateAngle rho (0, a) chi := by
+  apply AddCircle.injective_toCircle (by norm_num)
+  rw [coordinateAngle_toCircle, coordinateAngle_toCircle]
+  apply Circle.ext
+  change characterAction (P rho).algebra ((P rho).rho (upperShear r))
+      (upperShear_forward rho r) (upperShear_backward rho r) chi
+        ((P rho).coordinate (0, a)) =
+    chi ((P rho).coordinate (0, a))
+  rw [characterAction_apply_apply, restrictUpper_coordinate]
+  simp only [Fin.isValue, if_true]
+
+/-- On a second-root coordinate, an upper shear adds the coordinate whose
+coefficient is obtained by left multiplication by the shear coefficient. -/
+theorem coordinateAngle_characterAction_upper_one
+    (r a : R) (chi : X rho) :
+    coordinateAngle rho (1, a)
+        (characterAction (P rho).algebra ((P rho).rho (upperShear r))
+          (upperShear_forward rho r) (upperShear_backward rho r) chi) =
+      coordinateAngle rho (0, r * a) chi + coordinateAngle rho (1, a) chi := by
+  apply AddCircle.injective_toCircle (by norm_num)
+  rw [coordinateAngle_toCircle, AddCircle.toCircle_add,
+    coordinateAngle_toCircle, coordinateAngle_toCircle]
+  apply Circle.ext
+  change characterAction (P rho).algebra ((P rho).rho (upperShear r))
+      (upperShear_forward rho r) (upperShear_backward rho r) chi
+        ((P rho).coordinate (1, a)) =
+    chi ((P rho).coordinate (0, r * a)) *
+      chi ((P rho).coordinate (1, a))
+  rw [characterAction_apply_apply, restrictUpper_coordinate]
+  have hq : (((1, a) : Fin 2 × R).1) ≠ 0 := one_ne_zero
+  rw [if_neg hq, map_mul]
+
+/-- On a first-root coordinate, a lower shear adds the coordinate whose
+coefficient is obtained by left multiplication by the shear coefficient. -/
+theorem coordinateAngle_characterAction_lower_zero
+    (r a : R) (chi : X rho) :
+    coordinateAngle rho (0, a)
+        (characterAction (P rho).algebra ((P rho).rho (lowerShear r))
+          (lowerShear_forward rho r) (lowerShear_backward rho r) chi) =
+      coordinateAngle rho (1, r * a) chi + coordinateAngle rho (0, a) chi := by
+  apply AddCircle.injective_toCircle (by norm_num)
+  rw [coordinateAngle_toCircle, AddCircle.toCircle_add,
+    coordinateAngle_toCircle, coordinateAngle_toCircle]
+  apply Circle.ext
+  change characterAction (P rho).algebra ((P rho).rho (lowerShear r))
+      (lowerShear_forward rho r) (lowerShear_backward rho r) chi
+        ((P rho).coordinate (0, a)) =
+    chi ((P rho).coordinate (1, r * a)) *
+      chi ((P rho).coordinate (0, a))
+  rw [characterAction_apply_apply, restrictLower_coordinate]
+  have hq : (((0, a) : Fin 2 × R).1) ≠ 1 := zero_ne_one
+  rw [if_neg hq, map_mul]
+
+/-- A lower shear fixes every coordinate in the second root subgroup. -/
+theorem coordinateAngle_characterAction_lower_one
+    (r a : R) (chi : X rho) :
+    coordinateAngle rho (1, a)
+        (characterAction (P rho).algebra ((P rho).rho (lowerShear r))
+          (lowerShear_forward rho r) (lowerShear_backward rho r) chi) =
+      coordinateAngle rho (1, a) chi := by
+  apply AddCircle.injective_toCircle (by norm_num)
+  rw [coordinateAngle_toCircle, coordinateAngle_toCircle]
+  apply Circle.ext
+  change characterAction (P rho).algebra ((P rho).rho (lowerShear r))
+      (lowerShear_forward rho r) (lowerShear_backward rho r) chi
+        ((P rho).coordinate (1, a)) =
+    chi ((P rho).coordinate (1, a))
+  rw [characterAction_apply_apply, restrictLower_coordinate]
+  simp only [Fin.isValue, if_true]
+
 /-- The upper unit shear acts on scalar spectral coordinates as the lower
 positive torus shear `(x,y) ↦ (x,x+y)`. -/
 theorem scalarTorusCoordinate_characterAction_upper_one (chi : X rho) :
