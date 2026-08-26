@@ -29,6 +29,7 @@ import GroupApproximation.Computability.RFRecognitionHierarchy
 import GroupApproximation.Computability.SoficEnumeratedPi02
 import GroupApproximation.Computability.SoficMicrostateNormalForm
 import GroupApproximation.Computability.SoficRecognitionPi02
+import GroupApproximation.Computability.TrivialEnumeratedPi02
 import GroupApproximation.Kazhdan.KazhdanEigenvalueBound
 import GroupApproximation.Analysis.AbstractSpectralGap
 import GroupApproximation.Analysis.CStarSpectralProjection
