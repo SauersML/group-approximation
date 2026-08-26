@@ -201,16 +201,16 @@ def matrixCoronaAmplification :
     rw [← coronaOfLifts_smul]
     apply coronaOfLifts_eq_of_mk_eq X
     intro i j
-    change normMatrixCStarCoronaQuotient (fun n ↦ X n)
-        (representative X ((c • P) i j)) =
-      normMatrixCStarCoronaQuotient (fun n ↦ X n)
-        (c • representative X (P i j))
-    change normMatrixCStarCoronaMk (fun n ↦ X n)
-        (representative X ((c • P) i j)) =
-      normMatrixCStarCoronaQuotient (fun n ↦ X n)
-        (c • representative X (P i j))
-    rw [mk_representative, CStarMatrix.smul_apply, map_smul,
-      mk_representative]
+    calc
+      normMatrixCStarCoronaMk (fun n ↦ X n)
+          (representative X ((c • P) i j))
+          = (c • P) i j := mk_representative X _
+      _ = c • P i j := CStarMatrix.smul_apply c P i j
+      _ = c • normMatrixCStarCoronaMk (fun n ↦ X n)
+          (representative X (P i j)) := by rw [mk_representative]
+      _ = normMatrixCStarCoronaMk (fun n ↦ X n)
+          (c • representative X (P i j)) :=
+        (map_smul (normMatrixCStarCoronaQuotient (fun n ↦ X n)) c _).symm
   map_star' P := by
     rw [← coronaOfLifts_star]
     apply coronaOfLifts_eq_of_mk_eq X
