@@ -97,6 +97,45 @@ theorem row_mem_rowOut {m : ℕ} {i : ℤ} (hi : i ∉ Finset.Ico (0 : ℤ) (m :
     Row.row i ∈ rowOut m :=
   Subgroup.subset_closure ⟨i, hi, rfl⟩
 
+/-- The outside row is exactly the image of the coordinate subgroup on the
+outside indices.  This is the form consumed by the Britton descent. -/
+theorem rowOut_eq_map_indexSub (m : ℕ) :
+    rowOut m =
+      (RowDeletionGraph.indexSub
+        (fun i : ℤ => i ∉ Finset.Ico (0 : ℤ) (m : ℤ))).map Row.basisHom := by
+  unfold rowOut RowDeletionGraph.indexSub
+  rw [MonoidHom.map_closure]
+  congr 1
+  ext x
+  constructor
+  · rintro ⟨i, hi, rfl⟩
+    exact ⟨FreeGroup.of i, ⟨i, hi, rfl⟩, Row.basisHom_of i⟩
+  · rintro ⟨_, ⟨i, hi, rfl⟩, rfl⟩
+    exact ⟨i, hi, (Row.basisHom_of i).symm⟩
+
+/-- **Exact coordinate test for the outside row.** -/
+theorem row_mem_rowOut_iff (m : ℕ) (i : ℤ) :
+    Row.row i ∈ rowOut m ↔ i ∉ Finset.Ico (0 : ℤ) (m : ℤ) := by
+  constructor
+  · intro hrow
+    rw [rowOut_eq_map_indexSub] at hrow
+    obtain ⟨w, hw, hwi⟩ := hrow
+    have hw_eq : w = FreeGroup.of i := Row.basisHom_injective
+      (hwi.trans (Row.basisHom_of i).symm)
+    subst w
+    by_contra hi
+    have hkill := RowDeletionGraph.killOn_eq_self_of_mem_indexSub
+      (fun j : ℤ => j ∉ Finset.Ico (0 : ℤ) (m : ℤ)) hw
+    have hout : ¬ (i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) := fun h => h hi
+    rw [Split.killOn_of, if_neg hout] at hkill
+    simp at hkill
+  · exact row_mem_rowOut
+
+theorem row_not_mem_rowOut {m : ℕ} {i : ℤ}
+    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) : Row.row i ∉ rowOut m := by
+  rw [row_mem_rowOut_iff]
+  exact not_not_intro hi
+
 /-! ### The outside row is benign
 
 This is the first concrete fat-tower input.  The outside indices split into
