@@ -82,10 +82,12 @@ the Siegel nor Klingen parabolic contains the standard
 `isw-scalar-cocycle-obstruction-dies-on-sp4-parabolic-radicals` computes
 that the Levi-invariant scalar `H^2` of either radical is finite.  Hence no
 pointwise-trivial sequence can remain nontrivial on the relative-`(T)`
-radical, so ISW Theorem A itself cannot be rerun there.  The remaining
-possibilities are a genuinely global affine subgroup of `Sp_4(Z)`, or the
-operator-valued mechanism of ISW Theorem C with new coefficient and
-embeddability input.
+radical, so ISW Theorem A itself cannot be rerun there.  The global subgroup
+shortcut is now closed as well: `sp4-contains-no-isw-affine-subgroup`
+proves that every hypothetical standard `Z^2 rtimes F` copy is virtually
+forced into a rational Klingen or Siegel parabolic and hence cannot exist.
+The remaining published refutation possibility is the operator-valued
+mechanism of ISW Theorem C with new coefficient and embeddability input.
 
 The other proposed scalar shortcut is closed universally:
 `sp4-metaplectic-class-pointwise-coboundary-limit` proves that

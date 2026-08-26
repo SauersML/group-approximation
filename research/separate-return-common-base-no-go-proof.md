@@ -63,6 +63,25 @@ the infinite regular orbit.  In approximate finite orbit truncations,
 vanishing normalized covariance error would give a Folner sequence for
 `F_r`, impossible when `r>=2`.
 
+There is an exact quantitative form of this obstruction.  Let `(e_g)` be
+the labeled block PVM and let `W_s` be any proposed unitary shift.  Projection
+rank matching gives
+
+```text
+(1/2) sum_g ||W_s e_g W_s^* - e_(sg)||_2^2
+  >= (1/2) ||s_*mu-mu||_1.                              (SCB6)
+```
+
+The bound is optimal: pair the two block decompositions with maximal rank
+intersection in every label.  Hence vanishing aggregate HS mismatch for
+every generator is literally a Reiter sequence of finitely supported
+probability measures.  In the homogeneous-quotient application the acting
+cocompact lattice is infinite Kazhdan and therefore nonamenable, so some
+generator retains a uniform mismatch.  This quantitative statement still
+only fences labeled orbit-block commonization; an arbitrary common embedding
+may mix or destroy those artificial labels and remains the open
+spatialization problem.
+
 One may instead permute a finite quotient `F_r/H`.  To label a quotient block
 by `pi_0 compose beta_g`, however, changing the representative from `g` to
 `gh`, `h in H`, must not change that block up to the allowed matrix-unitary

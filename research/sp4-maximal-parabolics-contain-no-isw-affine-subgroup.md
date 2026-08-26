@@ -29,6 +29,6 @@ contains `E`.
 This closes the most immediate subgroup attack on
 `sp2g-z-full-c-star-algebra-has-llp`: Ioana--Spaas--Wiersma Corollary B
 cannot be imported to `Sp_4(Z)` through its Siegel or Klingen parabolic.
-It does not exclude an embedding elsewhere in `Sp_4(Z)`; doing that would
-require a global classification of affine subgroups, not merely the
-parabolic structure.
+The subsequent claim `sp4-contains-no-isw-affine-subgroup` supplies the
+global classification step: Jordan decomposition forces every hypothetical
+copy virtually into one of these two parabolics.
