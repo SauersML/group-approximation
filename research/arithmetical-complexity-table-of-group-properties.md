@@ -4,6 +4,8 @@ id: arithmetical-complexity-table-of-group-properties
 kind: claim
 title: Where the approximation, residual, amenability and rigidity properties of groups sit in the arithmetical hierarchy, by syntax
 artifacts:
+  - GroupApproximation/Computability/FreeSubgroupEnumeratedHardness.lean
+  - GroupApproximation/Computability/TorsionFreeEnumeratedHardness.lean
   - GroupApproximation/Computability/AbelianEnumeratedPi02.lean
   - GroupApproximation/Computability/TrivialEnumeratedPi02.lean
   - GroupApproximation/Computability/ElementaryEnumeratedHardness.lean
@@ -35,6 +37,7 @@ property           fp                          rec2 / rec                    enu
 -------------------------------------------------------------------------------------
 trivial            Sigma^0_1-complete (folk.)  Pi^0_2-complete (folk.)       Pi^0_2-complete
 abelian            Pi^0_2 (folk.)              Pi^0_2-complete (folk.)       Pi^0_2-complete
+torsion-free       Pi^0_2 (complete OPEN)      Pi^0_2-complete               Pi^0_2-complete
 sofic              Pi^0_2 \ Pi^0_1, complete   Pi^0_2-complete               Pi^0_2-complete
                    OPEN [S]
 operator-MF        Pi^0_2-complete [MF]        Pi^0_2-complete               Pi^0_2-complete
@@ -99,3 +102,5 @@ The `trivial` row's second-level lower bound and finiteness are `ElementaryEnume
 The `trivial` row on enumerated codes is fully kernel-checked: `TrivialEnumeratedPi02.trivial_enum_pi02Complete`.
 
 Commutativity on enumerated codes is fully kernel-checked: `AbelianEnumeratedPi02.comm_enum_pi02Complete`.
+
+Torsion-freeness is [[torsion-freeness-recognition-is-pi2-complete]] (hardness kernel-checked as `TorsionFreeEnumeratedHardness.torsionFreeCode_pi02Hard`), and the free-subgroup row's lower bound as `FreeSubgroupEnumeratedHardness.containsFreeSubgroupCode_sigma02Hard`.  The three levels are read as a hierarchy theorem in [[natural-group-properties-realize-the-first-three-levels]].
