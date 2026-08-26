@@ -33,3 +33,35 @@ representation realizes it exactly in a finite von Neumann algebra.  The
 finite-orbit theorem also leaves it untouched.  The attack is deferred to a
 literal non-diagonal or two-compressor relation that uses operator-norm
 matrix origin and has no regular-representation analogue.
+
+The purely character-theoretic part is now exhausted on the parabolic.
+`haar-root-character-vanishes-off-parabolic-action-kernel` applies Bessel to
+the root-module conjugacy orbit and proves that `(HRP1)` already forces the
+regular-character value on every parabolic element whose vertex action is
+nontrivial.  It deliberately stops at the action kernel and gives no
+finite-matrix contradiction.
+
+The first explicit **downstairs elementary-group** two-compressor relation
+beyond the one-level Haar model is the depth-two split of the marked
+off-diagonal root.  With bars denoting elementary images and
+`z=x_13(s_1t_1)`, it is
+
+```text
+bar(tau_0) bar(z) bar(tau_0)^(-1)
+ = (bar(tau_0)^2 bar(z) bar(tau_0)^(-2))
+   (bar(tau_1) bar(tau_0) bar(z)
+      bar(tau_0)^(-1) bar(tau_1)^(-1)).                (HRP2)
+```
+
+This is `(DTS1)` of
+`leavitt-two-compressor-depth-two-relation-breaks-hxh-model` specialized to
+`z`.  That claim proves that the canonical `H times H` one-level covariance
+model, whose trace is Haar on every nontrivial diagonal-stage element, does
+not satisfy `(HRP2)`.  This identifies the first explicit off-diagonal test
+missed by that model; it does **not** prove that `(HRP2)` excludes arbitrary
+MF coordinates.  Nor is equality of the corresponding chosen Steinberg
+lifts asserted here: a central Steinberg correction must first be computed
+for those literal words.  Even after that lift is verified, a growing
+coordinate may realize deeper child trees, so a valid obstruction must still
+turn the recursive split into one fixed same-reservoir rank or operator-norm
+return.
