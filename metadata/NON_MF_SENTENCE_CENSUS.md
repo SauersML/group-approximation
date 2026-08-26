@@ -6,15 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 282 |
-| `unassigned` | 225 |
-| `definition` | 102 |
+| `formalized` | 265 |
+| `unassigned` | 226 |
+| `definition` | 101 |
 | `structural` | 44 |
 | `attribution` | 15 |
 | `partial` | 6 |
-| **total** | **674** |
+| `provenance` | 3 |
+| **total** | **660** |
 
-Completely formalized or definitional: **384/674** (57.0%).
+Completely formalized or definitional: **366/660** (55.5%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -30,6 +31,8 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 342 --- For $N\trianglelefteq G$, homomorphisms from $G/N$ to MF groups correspond to homomorphisms from $G$ to MF groups that kill $N$.
 * **`unassigned`**, line 342 --- It follows directly that
 * **`unassigned`**, line 349 --- Since a countable group is MF exactly when its MF radical is trivial, this identity gives the asserted closure criterion.
+* **`unassigned`**, line 557 --- The relation $t_1(s_1t_1)s_1=1$ shows that $d\ne1$.
+* **`unassigned`**, line 557 --- Since $H$ is simple, $d$ normally generates $H$.
 * **`unassigned`**, line 659 --- It locates the recognition problem for the MF property in the Kleene--Mostowski arithmetical hierarchy, whose levels $\Sigma^0_n$ and $\Pi^0_n$ count alternations of quantifiers over a decidable relation.
 * **`unassigned`**, line 665 --- The set of codes of finite presentations of MF groups is $\Pi^0_2$-complete, and the set of codes of finite presentations of non-MF groups is $\Sigma^0_2$-complete.
 * **`unassigned`**, line 665 --- In particular, neither set is recursively enumerable, and no algorithm decides from a finite presentation whether the presented group is MF\@.
@@ -57,223 +60,222 @@ These are the sentences the development does not settle, verbatim.  `open` sente
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
 * **`unassigned`**, line 1176 --- In the corona over the retained coordinates, the class of \((J_nW_n(g)J_n^*)\) is the coordinate restriction of \(q\rho(g)\).
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1562 --- Put
-* **`unassigned`**, line 1681 --- The ring $R$ is purely infinite simple~\cite{AbramsAranda}, and therefore is an exchange ring~\cite{AraExchange}.
-* **`unassigned`**, line 1681 --- Since $H=\EL_{12}(R)$, the subgroup $N\le\GL_{12}(R)$ is normalized by $\EL_{12}(R)$.
-* **`unassigned`**, line 1681 --- Preusser's sandwich theorem~\cite[Theorem~3]{Preusser} provides an ideal $I\trianglelefteq R$ such that
-* **`unassigned`**, line 1689 --- Simplicity of $R$ gives $I=0$ or $I=R$.
-* **`unassigned`**, line 1689 --- If $I=R$, then $\EL_{12}(R,I)=H$, so $N=H$.
-* **`unassigned`**, line 1692 --- Suppose that $I=0$.
-* **`unassigned`**, line 1692 --- Then $N\le C_{12}(R,0)=Z(\GL_{12}(R))$.
-* **`unassigned`**, line 1692 --- A matrix that commutes with every elementary matrix $e_{ij}(a)$ is a scalar matrix $\lambda I_{12}$ with $\lambda\in Z(R)^\times$.
-* **`unassigned`**, line 1692 --- Since $Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, its only central unit is $1$.
-* **`unassigned`**, line 1692 --- Thus $N=1$.
-* **`unassigned`**, line 1700 --- Let
+* **`unassigned`**, line 1476 --- Put
+* **`unassigned`**, line 1595 --- The ring $R$ is purely infinite simple~\cite{AbramsAranda}, and therefore is an exchange ring~\cite{AraExchange}.
+* **`unassigned`**, line 1595 --- Since $H=\EL_{12}(R)$, the subgroup $N\le\GL_{12}(R)$ is normalized by $\EL_{12}(R)$.
+* **`unassigned`**, line 1595 --- Preusser's sandwich theorem~\cite[Theorem~3]{Preusser} provides an ideal $I\trianglelefteq R$ such that
+* **`unassigned`**, line 1603 --- Simplicity of $R$ gives $I=0$ or $I=R$.
+* **`unassigned`**, line 1603 --- If $I=R$, then $\EL_{12}(R,I)=H$, so $N=H$.
+* **`unassigned`**, line 1606 --- Suppose that $I=0$.
+* **`unassigned`**, line 1606 --- Then $N\le C_{12}(R,0)=Z(\GL_{12}(R))$.
+* **`unassigned`**, line 1606 --- A matrix that commutes with every $e_{ij}(1)$ is a scalar matrix $\lambda I_{12}$.
+* **`unassigned`**, line 1606 --- Commutation with $e_{ij}(a)$ for arbitrary $a\in R$ then gives $\lambda a=a\lambda$, so $\lambda\in Z(R)^\times$.
+* **`unassigned`**, line 1606 --- Since $Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, we have $\lambda=1$ and $N=1$.
+* **`unassigned`**, line 1615 --- Let
   * printed badge recorded; an overlay assignment is owed because the paper's proof ledger is retired
-* **`unassigned`**, line 1764 --- Its normal closure is a nontrivial normal subgroup of $H$, and hence is all of $H$ by Proposition~\ref{prop:simple}.
-* **`unassigned`**, line 2132 --- A countable group $G$ is MF if and only if for every finite set $F\subseteq G$ containing $1$ and every $\varepsilon>0$ there are $d\ge1$ and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
-* **`unassigned`**, line 2145 --- For $g,h\in G$ the elements $g$, $h$, $gh$ lie in $F_n$ for all large $n$, so $\opnorm{V_n(gh)-V_n(g)V_n(h)}\le1/n\to0$; and for $g\ne1$ we have $\opnorm{V_n(g)-1}\ge1$ for all large $n$.
-* **`unassigned`**, line 2145 --- Hence $G$ is MF.
-* **`unassigned`**, line 2154 --- For a unitary $u$ and $k\ge1$ the tensor power $u^{\otimes k}$ is a unitary of dimension $d^k$, $(uv)^{\otimes k}=u^{\otimes k}v^{\otimes k}$, and telescoping gives $\opnorm{u^{\otimes k}-v^{\otimes k}}\le k\opnorm{u-v}$.
-* **`unassigned`**, line 2154 --- If $\opnorm{u-1}=c>0$, write $c=2\sin(\theta/2)$ with $0<\theta\le\pi$; then $e^{i\theta}$ or $e^{-i\theta}$ is an eigenvalue of $u$, so $e^{ik\theta}$ or $e^{-ik\theta}$ is an eigenvalue of $u^{\otimes k}$, and $\opnorm{u^{\otimes k}-1}\ge\lvert e^{ik\theta}-1\rvert=2\lvert\sin(k\theta/2)\rvert$.
-* **`unassigned`**, line 2154 --- If $\theta\ge\pi/2$ take $k=1$; otherwise the first $k$ with $k\theta\ge\pi/2$ satisfies $k\theta<\pi/2+\theta<\pi$.
-* **`unassigned`**, line 2154 --- In both cases $k\theta\in[\pi/2,3\pi/2]$ modulo $2\pi$, so $\opnorm{u^{\otimes k}-1}\ge\sqrt2$.
-* **`unassigned`**, line 2177 --- Then $W_n(1)=1$ and $\opnorm{W_n(gh)-W_n(g)W_n(h)}\le K\opnorm{V_n(gh)-V_n(g)V_n(h)}$, so the defects of $W_n$ tend to zero.
-* **`unassigned`**, line 2177 --- For $g\in F\setminus\{1\}$ choose a subsequence along which $\opnorm{V_n(g)-1}\to c_g$ and eigenvalues $\lambda_n$ of $V_n(g)$ with $\lvert\lambda_n-1\rvert\to c_g$; passing to a further subsequence, $\lambda_n\to\lambda$ with $\lvert\lambda-1\rvert=c_g$, and then $\lambda_n^{k}\to\lambda^{k}$ with $\lvert\lambda^{k}-1\rvert\ge\sqrt2$ for $k=k(c_g)$.
-* **`unassigned`**, line 2177 --- Since $\lambda_n^{k}$ is an eigenvalue of $V_n(g)^{\otimes k}$, it follows that $\limsup_n\opnorm{W_n(g)-1}\ge\sqrt2>1$.
-* **`unassigned`**, line 2177 --- Choose $n_0$ such that for $n\ge n_0$ every defect of $W_n$ on $F$ is at most $\varepsilon$, and for each $g\in F\setminus\{1\}$ choose $m_g\ge n_0$ with $\opnorm{W_{m_g}(g)-1}\ge1$.
-* **`unassigned`**, line 2177 --- Then $V(1)=1$, the defect of $V$ on $F$ is the maximum of the defects of its blocks, hence at most $\varepsilon$, and for $g\in F\setminus\{1\}$ the block $m_g$ gives $\opnorm{V(g)-1}\ge1$.
-* **`unassigned`**, line 2219 --- A \emph{certificate at scale $n$} is a triple $c=(d,\ell,\pi)$ consisting of a dimension $d\ge1$, a labelling $\ell$ of every reduced word of length at most $n$ in $x_1^{\pm1},\dots,x_k^{\pm1}$ by one of the symbols $\mathsf T$ and $\mathsf S$, and, for every word $w$ labelled $\mathsf T$, an expression of $w$ as a product of conjugates of the relators and their inverses that freely reduces to $w$.
-* **`unassigned`**, line 2219 --- Such an expression is checkable, and its existence forces $w=1$ in $G_P$.
-* **`unassigned`**, line 2219 --- Writing $U_j=A_j+iB_j$ with real matrices, unitarity is a system of polynomial equations, and a bound $\opnorm{X}\le t$ or $\opnorm{X}\ge t$ on a matrix whose entries are polynomials in the variables is a semialgebraic condition, since $\opnorm{X}\le t$ holds precisely when $t^2-X^*X$ is positive semidefinite.
-* **`unassigned`**, line 2219 --- Thus $\Phi(P,n,c)$ is a sentence of the first-order theory of the ordered field of real numbers, and its truth is decidable by Tarski's theorem~\cite{Tarski}.
-* **`unassigned`**, line 2219 --- Then $C$ is decidable.
-* **`unassigned`**, line 2241 --- Lemma~\ref{lem:local-models} gives $V\colon F\to\U(d)$ with $V(1)=1$, defect at most $\varepsilon$ on $F$, and $\opnorm{V(g)-1}\ge1$ for $g\in F\setminus\{1\}$.
-* **`unassigned`**, line 2241 --- For $g\in F$ we have $g^{-1}\in F$ and $\opnorm{V(g)V(g^{-1})-1}\le\varepsilon$, so $\opnorm{V(g^{-1})-V(g)^*}\le\varepsilon$.
-* **`unassigned`**, line 2241 --- For a word $w=y_1\cdots y_\ell$ of length $\ell\le L$, all of whose prefixes have images in $F$, induction on $\ell$ gives $\opnorm{w(U)-V(\bar w)}\le2\ell\varepsilon$.
-* **`unassigned`**, line 2241 --- In particular $\opnorm{r_i(U)-1}\le2L\varepsilon\le2^{-n}$.
-* **`unassigned`**, line 2241 --- Label a word $w$ of length at most $n$ by $\mathsf T$ if $\bar w=1$, with a normal-closure expression as witness, and by $\mathsf S$ otherwise; for the latter, $\opnorm{w(U)-1}\ge\opnorm{V(\bar w)-1}-2n\varepsilon\ge1-\tfrac12\ge\tfrac14$.
-* **`unassigned`**, line 2241 --- So $C(P,n,c)$ holds for this certificate.
-* **`unassigned`**, line 2258 --- For each $g\in G_P$ fix a word $w_g$ representing $g$, with $w_1$ the empty word, and put $V_n(g)=w_g(U^{(n)})$.
-* **`unassigned`**, line 2258 --- Then $V_n(1)=1$.
-* **`unassigned`**, line 2258 --- For $g,h\in G_P$ the word $t=w_gw_hw_{gh}^{-1}$ is trivial in $G_P$, so it is freely equal to a product of $A$ conjugates of relators and their inverses, for some $A$ depending on $g$ and $h$ but not on $n$.
-* **`unassigned`**, line 2258 --- Since evaluation is a homomorphism on the free group, since the operator norm is unitarily invariant, and since $\opnorm{xy-1}\le\opnorm{x-1}+\opnorm{y-1}$ for unitaries $x,y$,
-* **`unassigned`**, line 2273 --- For $g\ne1$ the word $w_g$ is nontrivial in $G_P$, so for $n\ge\lvert w_g\rvert$ the certificate $c_n$ cannot label it $\mathsf T$, hence labels it $\mathsf S$, and $\opnorm{V_n(g)-1}\ge1/4$.
-* **`unassigned`**, line 2273 --- Thus $\limsup_n\opnorm{V_n(g)-1}\ge1/4>0$, and $G_P$ is MF.
-* **`unassigned`**, line 2278 --- The displayed equivalence exhibits $\mathrm{MF}_{\mathrm{fp}}$ as $\{P:\forall n\,\exists c\,C(P,n,c)\}$, a $\Pi^0_2$ set, and its complement as a $\Sigma^0_2$ set.
-* **`unassigned`**, line 2285 --- The lower bound in Theorem~\ref{thm:recognition} is a computable family of finitely presented groups whose positive branch must be MF\@.
-* **`unassigned`**, line 2291 --- Since $\tau(1)=1$, a regularly realized group embeds in $\U(A)$, so it is MF\@.
-* **`unassigned`**, line 2291 --- Padding blocks with zeros embeds every norm matrix corona $\mathcal Q_{\mathbf d}$ isometrically into $\prod_nM_n(\C)/\bigoplus_nM_n(\C)$, so the MF algebras of the introduction are exactly the separable $C^*$-algebras that embed in the latter corona, as in~\cite{BK,Shulman}.
-* **`unassigned`**, line 2302 --- Every countable residually finite group is regularly realized.
-* **`unassigned`**, line 2306 --- In the corona $\mathcal Q_{\mathbf d}$ put $\rho(g)=[(\lambda_k(g))_k]$; then $\rho$ is a homomorphism into the unitary group.
-* **`unassigned`**, line 2306 --- If $g\ne1$, then $g\notin N_k$ for all large $k$, so $\operatorname{tr}_{d_k}(\lambda_k(g))=0$ for all large $k$ and $\tau(\rho(g))=0$.
-* **`unassigned`**, line 2329 --- contains $G$ by Britton's lemma~\cite{Britton}.
-* **`unassigned`**, line 2332 --- In the situation of~\eqref{eq:hnn}, suppose that $G$ is regularly realized by $(A,\rho,\tau)$, and that for some norm matrix corona $\mathcal Q$ there are an injective $*$-homomorphism $\iota\colon A\to\mathcal Q$ and a unitary $W\in\mathcal Q$ with
-* **`unassigned`**, line 2340 --- Then $R$ is regularly realized. In particular, $R$ is MF\@.
-* **`unassigned`**, line 2344 --- Conjugation by $W$ restricts to a $*$-isomorphism $\Theta\colon B_0\to B_1$ carrying $\iota\rho(s)$ to $\iota\rho(\theta(s))$.
-* **`unassigned`**, line 2344 --- By construction, $U$ has the following universal property: whenever $\pi\colon D\to E$ is a unital $*$-homomorphism into a unital $C^*$-algebra and $v\in\U(E)$ satisfies $v\pi(b)v^*=\pi(\Theta(b))$ for $b\in B_0$, there is a unique $*$-homomorphism $U\to E$ extending $\pi$ and sending $u$ to $v$.
-* **`unassigned`**, line 2361 --- \emph{Step 1: $U$ embeds in an amalgamated free product.} This step is a self-contained form of a corner argument of Ueda~\cite{Ueda}.
-* **`unassigned`**, line 2370 --- and let $P=A_1*_CA_2$ be the full amalgamated free product, in which $A_1$ and $A_2$ embed~\cite[Section~2.1]{Shulman}.
-* **`unassigned`**, line 2370 --- Since $\iota_A(p,0)=\iota_B(p,0)$ and $\iota_A(0,p)=\iota_B(0,p)$, we have $e_{11}=f_{11}=:e$ and $e_{22}=f_{22}$ in $P$.
-* **`unassigned`**, line 2370 --- Then $ww^*=e_{12}f_{22}e_{21}=e_{12}e_{22}e_{21}=e$ and $w^*w=f_{12}e_{22}f_{21}=f_{12}f_{22}f_{21}=e$, so $w$ is a unitary of $ePe$.
-* **`unassigned`**, line 2370 --- For $b\in B_0$ the element $\operatorname{diag}(b,0)$ is $\iota_A(b,0)=\iota_B(b,0)$, so
-* **`unassigned`**, line 2388 --- where the middle equality uses $\iota_B(0,\Theta(b))=\operatorname{diag}(0,b)$ in $A_2$.
-* **`unassigned`**, line 2388 --- The universal property of $U$ gives a $*$-homomorphism $\Phi\colon U\to ePe\subseteq P$ with $\Phi|_D=\pi_D$ and $\Phi(u)=w$.
-* **`unassigned`**, line 2388 --- On $C$ we have $\Psi_1(\iota_A(c_0,c_1))=\operatorname{diag}(c_0,c_1)$ and $\Psi_2(\iota_B(c_0,c_1))=\operatorname{diag}(c_0,u\Theta^{-1}(c_1)u^*) =\operatorname{diag}(c_0,c_1)$, so the pair induces a $*$-homomorphism $\Psi\colon P\to M_2(U)$.
-* **`unassigned`**, line 2388 --- On generators, $\Psi\Phi(d)=\operatorname{diag}(d,0)$ and $\Psi\Phi(u)=\Psi_1(e_{12})\Psi_2(f_{21})=\operatorname{diag}(u,0)$.
-* **`unassigned`**, line 2388 --- Hence $\Psi\Phi$ is the injective $*$-homomorphism $x\mapsto\operatorname{diag}(x,0)$ of $U$ into $M_2(U)$, and $\Phi$ is injective.
-* **`unassigned`**, line 2405 --- \emph{Step 2: $P$ is MF.} By Shulman's criterion~\cite[Theorem~16]{Shulman}, the full amalgamated free product $A_1*_CA_2$ of separable $C^*$-algebras is MF as soon as there are injective $*$-homomorphisms $\varphi_A$ and $\varphi_B$ of $A_1$ and $A_2$ into one norm matrix corona with $\varphi_A\circ\iota_A=\varphi_B\circ\iota_B$.
-* **`unassigned`**, line 2405 --- Identify $M_2(\mathcal Q)$ with the norm matrix corona of the doubled dimension sequence, and let $\varphi_A\colon M_2(D)\to M_2(\mathcal Q)$ be the entrywise inclusion and $\varphi_B\colon M_2(B_0)\to M_2(\mathcal Q)$ the entrywise inclusion followed by conjugation by $\operatorname{diag}(1,W)$.
-* **`unassigned`**, line 2405 --- Both are injective, and on $C$,
-* **`unassigned`**, line 2422 --- because $\Theta$ is conjugation by $W$.
-* **`unassigned`**, line 2422 --- Hence $P$ is MF, and so are its $C^*$-subalgebras $ePe$ and $\Phi(U)\cong U$.
-* **`unassigned`**, line 2425 --- \emph{Step 3: $R$ embeds in $\U(U)$ with a regular trace.} The functional $T=\tau\circ\iota^{-1}$ is a tracial state on $\iota(A)\supseteq D$ with $T(\iota\rho(g))=0$ for $g\ne1$.
-* **`unassigned`**, line 2425 --- In the GNS representation of $D$ for $T$, the vectors $\xi_g=\iota\rho(g)\xi_T$, $g\in G$, are orthonormal, because $\langle\xi_g,\xi_h\rangle=T(\iota\rho(h^{-1}g))$.
-* **`unassigned`**, line 2425 --- Their closed span is invariant under $D$, and on it $\iota\rho(g)$ acts as the left regular representation $\lambda_G(g)$ of $G$.
-* **`unassigned`**, line 2425 --- Thus there is a $*$-homomorphism $\pi\colon D\to C^*_{\mathrm r}(G)$ with $\pi(\iota\rho(g))=\lambda_G(g)$.
-* **`unassigned`**, line 2425 --- Since $G\le R$, the space $\ell^2(R)$ is a direct sum of copies of $\ell^2(G)$ indexed by the right cosets of $G$, so $\lambda_R|_G$ is a multiple of $\lambda_G$ and the assignment $\lambda_G(g)\mapsto\lambda_R(g)$ extends to a $*$-homomorphism $C^*_{\mathrm r}(G)\to C^*_{\mathrm r}(R)$.
-* **`unassigned`**, line 2425 --- Composing, we obtain $\sigma_0\colon D\to C^*_{\mathrm r}(R)$ with $\sigma_0(\iota\rho(g))=\lambda_R(g)$.
-* **`unassigned`**, line 2425 --- The pair $(\sigma_0,\lambda_R(t))$ satisfies the covariance relation $\lambda_R(t)\sigma_0(b)\lambda_R(t)^*=\sigma_0(\Theta(b))$ for $b\in B_0$: on the generators $\iota\rho(s)$ both sides equal $\lambda_R(\theta(s))$, because $tst^{-1}=\theta(s)$ in $R$, and two $*$-homomorphisms that agree on generators agree on $B_0$.
-* **`unassigned`**, line 2425 --- The universal property of $U$ gives $\sigma\colon U\to C^*_{\mathrm r}(R)$ with $\sigma(\iota\rho(g))=\lambda_R(g)$ and $\sigma(u)=\lambda_R(t)$.
-* **`unassigned`**, line 2448 --- The defining relations of~\eqref{eq:hnn} hold in $U$, since $u\,\iota\rho(s)\,u^*=\Theta(\iota\rho(s))=\iota\rho(\theta(s))$, so $j$ is a homomorphism, and $\sigma\circ j=\lambda_R$ is injective, so $j$ is injective.
-* **`unassigned`**, line 2448 --- Then $\tau'$ is a tracial state on $A'$ with $\tau'(j(r))=\tau_R(\lambda_R(r))=0$ for $r\ne1$.
-* **`unassigned`**, line 2448 --- Hence $(A',j,\tau')$ regularly realizes $R$.
-* **`unassigned`**, line 2469 --- If $G$ is regularly realized and $S\le G$ is any subgroup, then $\langle G,t\mid[t,s]=1\ (s\in S)\rangle$ is regularly realized.
-* **`unassigned`**, line 2474 --- Apply Theorem~\ref{thm:hnn-permanence} with $\theta$ the inclusion of $S$, with $\iota$ any injective $*$-homomorphism of $A$ into a norm matrix corona, and with $W=1$.
-* **`unassigned`**, line 2487 --- The set $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is $\Sigma^0_2$-complete~\cite[Chapter~IV]{Soare}.
-* **`unassigned`**, line 2487 --- This section constructs a computable map $e\mapsto\widehat R_e$ into finite presentations such that the presented group is MF if and only if $e\in\mathrm{INF}$.
-* **`unassigned`**, line 2487 --- The construction has three moves.
-* **`unassigned`**, line 2487 --- A \emph{switch} turns $e$ into a recursively presented group that is trivial for $e\in\mathrm{INF}$ and contains $H$ for $e\in\mathrm{FIN}$.
-* **`unassigned`**, line 2487 --- A \emph{rope}, in the manner of Higman's embedding theorem, wraps the switch into a finitely presented group by two HNN extensions.
-* **`unassigned`**, line 2487 --- A \emph{synchronization} of finite quotients then supplies the corona conjugator that Theorem~\ref{thm:hnn-permanence} needs on the positive branch.
-* **`unassigned`**, line 2487 --- The first two moves are group theory and occupy this section up to Lemma~\ref{lem:negative-branch}; the third is carried out in the next section.
-* **`unassigned`**, line 2504 --- The group $H=\EL_{12}(R)$ is finitely generated and has decidable word problem.
-* **`unassigned`**, line 2504 --- In particular, it has a recursive presentation on finitely many generators.
-* **`unassigned`**, line 2510 --- Since $e_{ij}(a+b)=e_{ij}(a)e_{ij}(b)$ and $[e_{ik}(a),e_{kj}(b)]=e_{ij}(ab)$ for distinct $i,j,k$, and since every element of $R$ is a sum of monomials in the generators $s_0,s_1,t_0,t_1$, induction on the length of a monomial shows that every $e_{ij}(a)$ lies in the subgroup generated by $Y$; there is always an index $k\notin\{i,j\}$ because $12\ge3$.
-* **`unassigned`**, line 2510 --- Thus $H=\langle Y\rangle$.
-* **`unassigned`**, line 2510 --- The monomials in $s_0,s_1,t_0,t_1$ containing no factor $s_1t_1$ form an $\F_2$-basis of $R$~\cite{Leavitt}, and the product of two basis monomials is computed from the defining relations by finitely many rewritings, so equality in $R$ is decidable.
-* **`unassigned`**, line 2510 --- A word in $Y^{\pm1}$ is therefore evaluated to an explicit $12\times12$ matrix over $R$, and it represents $1$ in $H$ exactly when that matrix is the identity.
-* **`unassigned`**, line 2510 --- The set of words representing $1$ is decidable, hence recursively enumerable, and $\langle Y\mid\text{that set}\rangle$ is a recursive presentation of $H$.
-* **`unassigned`**, line 2530 --- There is an algorithm that computes from $e$ a recursive presentation, on a computable set of generators, of a group $C_e$ such that $C_e$ is trivial if $e\in\mathrm{INF}$ and $H$ embeds in $C_e$ if $e\in\mathrm{FIN}$.
-* **`unassigned`**, line 2537 --- This is the construction of Bilanovic--Chubb--Roven~\cite[Theorem~3.1]{BCR} with the trivial group as positive witness and $H$ as negative witness.
-* **`unassigned`**, line 2537 --- Take generators $y_{i,\ell}$ for $i\ge1$ and $\ell\in Y$, one copy $Y_i$ of $Y$ for each $i$, and as relators all words of $T$ rewritten in each copy $Y_i$, together with every generator $y_{i,\ell}$ for which $i\le\lvert W_e\rvert$.
-* **`unassigned`**, line 2537 --- The last family is recursively enumerable uniformly in $e$: enumerate $W_e$, and whenever its $i$-th element appears, enumerate all of $Y_i$.
-* **`unassigned`**, line 2537 --- The group presented is the free product of the copies $H_i\cong H$, $i\ge1$, with the first $\lvert W_e\rvert$ copies killed. If $W_e$ is infinite every copy is killed and $C_e$ is trivial; if $W_e$ is finite, $C_e$ is the free product of the remaining copies and contains $H$.
-* **`unassigned`**, line 2554 --- For a countable group $C$ with a generating sequence $(c_i)_{i\ge1}$, put $c_i=1$ for $i\le0$ and
-* **`unassigned`**, line 2565 --- $B(C)$ is an HNN extension of $C*F(x,y)$, so $C$ embeds in $B(C)$; it is generated by $x,y,t$; and a recursive presentation of $B(C)$ on $x,y,t$ is computable from a recursive presentation of $C$.
-* **`unassigned`**, line 2565 --- We write $B(C)=F/N_C$ and $q_C\colon F\to B(C)$ for the quotient map.
-* **`unassigned`**, line 2569 --- Killing $C$ induces a surjection $B(C)\to H_0$; hence $N_C\le N_+$, with equality when $C$ is trivial.
-* **`unassigned`**, line 2571 --- The assignment $x\mapsto(x_1,x_2)$, $y\mapsto(y,1)$, $t\mapsto(1,t)$ defines an injective homomorphism $j\colon H_0\to P=F(x_1,y)\times F(x_2,t)$.
-* **`unassigned`**, line 2571 --- In particular, $H_0$ is residually finite.
-* **`unassigned`**, line 2578 --- (1) The elements $y_i$, $i\in\mathbb Z$, freely generate the normal closure of $y$ in $F(x,y)$~\cite[Chapter~I]{LyndonSchupp}.
-* **`unassigned`**, line 2578 --- The retraction $C*F(x,y)\to F(x,y)$ killing $C$ sends $c_iy_i$ to $y_i$, so a nontrivial reduced word in the $c_iy_i$ maps to a nontrivial word in the $y_i$; hence the $c_iy_i$ freely generate a free subgroup, and $y_i\mapsto c_iy_i$ is an isomorphism between two free subgroups of the base.
-* **`unassigned`**, line 2578 --- Thus~\eqref{eq:bridge} is an HNN extension, and the base, hence $C$, embeds by Britton's lemma.
-* **`unassigned`**, line 2578 --- The relation $c_i=ty_it^{-1}y_i^{-1}$ shows that $x,y,t$ generate $B(C)$, and substituting this expression for $c_i$ into the relators of $C$ and into~\eqref{eq:bridge} produces a recursive presentation on $x,y,t$, uniformly in the presentation of $C$.
-* **`unassigned`**, line 2590 --- (2) The relators of~\eqref{eq:bridge} map to the relators $[t,y_i]$ of $H_0$ when every $c_i$ is sent to $1$, and the map is the identity on $x,y,t$.
-* **`unassigned`**, line 2594 --- (3) The relators $[t,y_i]$ are sent to $[(1,t),(x_1^iyx_1^{-i},1)]=1$, so $j$ is a homomorphism.
-* **`unassigned`**, line 2594 --- Then $H_0/N_0=\langle x\rangle$ is infinite cyclic and the extension splits, so $H_0=N_0\rtimes\langle x\rangle$.
-* **`unassigned`**, line 2594 --- Rewriting the presentation of $H_0$ over the transversal $\{x^n\}$ by the Reidemeister--Schreier method~\cite[Chapter~II]{LyndonSchupp} presents $N_0$ on the generators $y_n=x^nyx^{-n}$ and $t_m=x^mtx^{-m}$, $n,m\in\mathbb Z$, with relators the conjugates $x^m[t,y_n]x^{-m}=[t_m,y_{n+m}]$, that is, all commutators $[t_m,y_n]$.
-* **`unassigned`**, line 2594 --- Hence $N_0=F(y_n:n\in\mathbb Z)\times F(t_m:m\in\mathbb Z)$.
-* **`unassigned`**, line 2594 --- Now $j(y_n)=(x_1^nyx_1^{-n},1)$ and $j(t_m)=(1,x_2^mtx_2^{-m})$, and the elements $x_1^nyx_1^{-n}$ freely generate the normal closure of $y$ in $F(x_1,y)$, and likewise for $t$; so $j$ restricted to $N_0$ is an isomorphism onto the product of these two normal closures.
-* **`unassigned`**, line 2594 --- Finally $j(x)=(x_1,x_2)$ has infinite order and $j(x)^k\notin j(N_0)$ for $k\ne0$, because the exponent sum of $x_1$ in $j(x^kn)$ is $k$ for $n\in N_0$.
-* **`unassigned`**, line 2594 --- Hence $j$ is injective on $N_0\rtimes\langle x\rangle$.
-* **`unassigned`**, line 2594 --- Free groups are residually finite and residual finiteness passes to direct products and subgroups, so $H_0$ is residually finite.
-* **`unassigned`**, line 2614 --- For $e\in\mathbb N$ let $Q_e=B(C_e)=F/N_e$ with $C_e$ the group of Lemma~\ref{lem:switch}, and write $q_e\colon F\to Q_e$.
-* **`unassigned`**, line 2614 --- By Lemmas~\ref{lem:switch} and~\ref{lem:bridge}, a recursive presentation of $Q_e$ on $x,y,t$ is computable from $e$; $N_e\le N_+$; if $e\in\mathrm{INF}$ then $Q_e=H_0$, $N_e=N_+$ and $q_e=q_+$; and if $e\in\mathrm{FIN}$ then $H\le C_e\le Q_e$.
-* **`unassigned`**, line 2624 --- There is an algorithm that computes from $e$ a finite presentation $\langle X_e\mid R_e\rangle$ of a group $\widehat H_e$, words $w_x,w_y,w_t\in F(X_e)$, and a finite generating set of a subgroup $M_e\le F(X_e)\times F(X_e)$, such that $x\mapsto w_x$, $y\mapsto w_y$, $t\mapsto w_t$ induces an embedding $Q_e\to\widehat H_e$, and $M_e=\{(u,v):u=v\text{ in }\widehat H_e\}$.
-* **`unassigned`**, line 2624 --- Consequently, with
-* **`unassigned`**, line 2637 --- where $w_f$ is the image of $f$ under $x\mapsto w_x$, $y\mapsto w_y$, $t\mapsto w_t$, the map $i_e\colon F\to K^0_e$ is injective and $i_e(f)\in L^0_e$ if and only if $f\in N_e$.
-* **`unassigned`**, line 2643 --- Higman's embedding theorem~\cite{Higman} embeds every finitely generated recursively presented group in a finitely presented group, and its proof is effective; an explicit algorithm producing the finite presentation and the embedding words from a recursive presentation is given by Mikaelian~\cite{Mikaelian}.
-* **`unassigned`**, line 2643 --- Apply it to the presentation of $Q_e$.
-* **`unassigned`**, line 2643 --- Following Mikhailova~\cite{Mikhailova}, let $M_e$ be the subgroup of $F(X_e)\times F(X_e)$ generated by the pairs $(z,z)$, $z\in X_e$, and $(r,1)$, $r\in R_e$.
-* **`unassigned`**, line 2643 --- If $(u,v)\in M_e$ then $u=v$ in $\widehat H_e$, since this holds for the generators.
-* **`unassigned`**, line 2643 --- Conversely, if $u=v$ in $\widehat H_e$, then $uv^{-1}$ lies in the normal closure of $R_e$, so it is a product of conjugates $gr^{\pm1}g^{-1}$ with $r\in R_e$, and $(gr^{\pm1}g^{-1},1)=(g,g)(r^{\pm1},1)(g,g)^{-1}\in M_e$; hence $(u,v)=(uv^{-1},1)(v,v)\in M_e$.
-* **`unassigned`**, line 2643 --- The first coordinate makes $i_e$ injective, and $(f,w_f,1)\in F\times M_e$ if and only if $w_f=1$ in $\widehat H_e$, if and only if $q_e(f)=1$ because the embedding is injective, if and only if $f\in N_e$.
-* **`unassigned`**, line 2670 --- and the product witness
-* **`unassigned`**, line 2678 --- Let
-* **`unassigned`**, line 2687 --- $K_e$ is a direct product of free groups of finite rank, hence finitely presented and residually finite; $L_e$ is finitely generated; $i$ is injective; and $i(F)\cap L_e=i(N_e)$.
-* **`unassigned`**, line 2690 --- $\Gamma_e$ is finitely presented, and a finite presentation is computable from $e$.
-* **`unassigned`**, line 2690 --- The natural map from the amalgamated free product $F*_{N_e}F$, in which $n\in N_e$ in the first copy is identified with $n$ in the second copy, onto $S_e$, sending the first copy to $i(F)$ and the second to $v\,i(F)\,v^{-1}$, is an isomorphism.
-* **`unassigned`**, line 2695 --- There is a homomorphism $\tau_e\colon S_e\to Q_e$ with $\tau_e(i(f))=q_e(f)$ and $\tau_e(v\,i(f)\,v^{-1})=1$ for $f\in F$.
-* **`unassigned`**, line 2701 --- (1) $K_e=F\times F(X_e)\times F(X_e)\times F\times P$ is a product of five free groups of finite rank, so it is finitely presented, and residually finite because free groups are.
-* **`unassigned`**, line 2701 --- The subgroup $L_e$ is generated by the basis of the first factor, the generators of $M_e$ from Lemma~\ref{lem:mikhailova}, and the elements $(a,jq_+(a))$ for $a\in\{x,y,t\}$, so it is finitely generated. Injectivity of $i$ is clear from the first coordinate.
-* **`unassigned`**, line 2701 --- An element $i(f)$ lies in $L_e$ if and only if $i_e(f)\in L^0_e$ and $(f,1)\in L^{\mathrm g}$; the first holds if and only if $f\in N_e$ by Lemma~\ref{lem:mikhailova}, and the second if and only if $jq_+(f)=1$, that is, $f\in N_+$.
-* **`unassigned`**, line 2701 --- Since $N_e\le N_+$, the intersection is $i(N_e)$.
-* **`unassigned`**, line 2713 --- (2) The presentation~\eqref{eq:central-rope} is finite once $[v,\ell]=1$ is imposed only for the finitely many generators $\ell$ of $L_e$, and it is computable from $e$ because $K_e$, $L_e$ and $i$ are.
-* **`unassigned`**, line 2713 --- It is an HNN extension of $K_e$ with both edge groups equal to $L_e$ and the identity as edge isomorphism.
-* **`unassigned`**, line 2713 --- The map from $F*_{N_e}F$ to $S_e$ is well defined because $i(n)\in L_e$ commutes with $v$ for $n\in N_e$.
-* **`unassigned`**, line 2713 --- A reduced word of the amalgamated free product alternates between elements of the two copies of $F$ lying outside $N_e$; its image is a word $i(f_0)\,v\,i(f_1)\,v^{-1}\,i(f_2)\cdots$ in which every letter between consecutive occurrences of $v^{\pm1}$ is some $i(f_k)$ with $f_k\notin N_e$, hence $i(f_k)\notin L_e$ by (1).
-* **`unassigned`**, line 2713 --- Such a word contains no pinch $v^{\pm1}\ell v^{\mp1}$ with $\ell\in L_e$, so it is nontrivial in $\Gamma_e$ by Britton's lemma.
-* **`unassigned`**, line 2727 --- (3) Define $\tau_e$ on $F*_{N_e}F$ by $q_e$ on the first copy and by the trivial map on the second; both kill $N_e$, so the definition is consistent on the amalgamated subgroup, and (2) transports it to $S_e$.
-* **`unassigned`**, line 2732 --- The second rope is the HNN extension
-* **`unassigned`**, line 2736 --- whose edge maps $s\mapsto(s,1)$ and $s\mapsto(s,\tau_e(s))$ are injective homomorphisms of $S_e$ into $\Gamma_e\times Q_e$; so $\Gamma_e\times Q_e$ embeds in $R_e$ by Britton's lemma.
-* **`unassigned`**, line 2736 --- The presentation~\eqref{eq:twisted-rope} lists the recursively enumerable relators of $Q_e$.
-* **`unassigned`**, line 2736 --- Its finite replacement is
-* **`unassigned`**, line 2747 --- where $\Gamma_e\times F$ carries the finite presentation of Lemma~\ref{lem:central-rope}(2), the basis $x,y,t$ of $F$, and the commutation relators between the two factors.
-* **`unassigned`**, line 2752 --- The groups $\widehat R_e$ and $R_e$ are isomorphic by the map that is the identity on $\Gamma_e$ and on $u$ and sends $F$ onto $Q_e$ by $q_e$.
-* **`unassigned`**, line 2752 --- A code of the finite presentation~\eqref{eq:finite-rope} is computable from $e$.
-* **`unassigned`**, line 2759 --- Both maps $f\mapsto u(i(f),1)u^{-1}$ and $f\mapsto(i(f),f)$ are homomorphisms $F\to\widehat R_e$, and they agree on the basis, so $u(i(f),1)u^{-1}=(i(f),f)$ for all $f\in F$; likewise $u(v\,i(f)\,v^{-1},1)u^{-1}=(v\,i(f)\,v^{-1},1)$ for all $f$.
-* **`unassigned`**, line 2759 --- If $n\in N_e$, then $i(n)\in L_e$ by Lemma~\ref{lem:central-rope}(1), so $v\,i(n)\,v^{-1}=i(n)$ in $\Gamma_e$, and comparing the two relations gives $(i(n),n)=(i(n),1)$, that is, $(1,n)=1$ in $\widehat R_e$.
-* **`unassigned`**, line 2759 --- Hence the factor $F$ of $\widehat R_e$ factors through $Q_e=F/N_e$, and the relations of~\eqref{eq:finite-rope} become $u(s,1)u^{-1}=(s,\tau_e(s))$ for $s$ in the generating set $\{i(a),\,v\,i(a)\,v^{-1}:a\in\{x,y,t\}\}$ of $S_e$, hence for all $s\in S_e$, since both sides are homomorphic in $s$.
-* **`unassigned`**, line 2759 --- This defines a homomorphism $R_e\to\widehat R_e$; conversely, the relations of~\eqref{eq:finite-rope} hold in $R_e$ after $F\to Q_e$, because $\tau_e(i(a))=q_e(a)$ and $\tau_e(v\,i(a)\,v^{-1})=1$.
-* **`unassigned`**, line 2759 --- The two homomorphisms are mutually inverse on generators.
-* **`unassigned`**, line 2759 --- Computability of the code follows from Lemmas~\ref{lem:mikhailova} and~\ref{lem:central-rope}.
-* **`unassigned`**, line 2778 --- If $e\in\mathrm{FIN}$, then $H$ embeds in $\widehat R_e$, and $\widehat R_e$ is not MF\@.
-* **`unassigned`**, line 2783 --- For $e\in\mathrm{FIN}$ we have $H\le C_e\le Q_e\le\Gamma_e\times Q_e\le R_e\cong\widehat R_e$ by Lemmas~\ref{lem:switch}, \ref{lem:bridge}(1), \ref{lem:finite-rope} and Britton's lemma for~\eqref{eq:twisted-rope}.
-* **`unassigned`**, line 2783 --- Restricting MF models to a subgroup shows that subgroups of MF groups are MF, and $H$ is not MF by Theorem~\ref{thm:headline}.
-* **`unassigned`**, line 2792 --- The realization of the rope is assembled inside a norm reduced product of MF algebras, so we first record that such products stay MF\@.
-* **`unassigned`**, line 2800 --- If every $B_n$ is MF, then every separable $C^*$-subalgebra of $\prod_nB_n/\bigoplus_nB_n$ is MF\@.
-* **`unassigned`**, line 2800 --- Moreover, $M_k(B)$ is MF whenever $B$ is.
-* **`unassigned`**, line 2806 --- The second assertion holds because $M_k$ of a norm matrix corona is the norm matrix corona of the dimension sequence multiplied by $k$.
-* **`unassigned`**, line 2806 --- For the first, let $A$ be a separable $C^*$-subalgebra, and choose a sequence $(a_i)_{i\ge1}$ dense in $A$, with lifts $(a_i^{(n)})_n$.
-* **`unassigned`**, line 2806 --- For $p\in\mathcal P_n$ the number $\opnorm{p(a^{(n)})}$ equals $\limsup_k\opnorm{p(a^{(n,k)})}$, since $\eta_n$ is isometric.
-* **`unassigned`**, line 2806 --- Hence there is $K_n$ such that $\opnorm{p(a^{(n,k)})}\le\opnorm{p(a^{(n)})}+1/n$ for all $k\ge K_n$ and $p\in\mathcal P_n$, and for each $p\in\mathcal P_n$ there is $k_p\ge K_n$ with $\opnorm{p(a^{(n,k_p)})}\ge\opnorm{p(a^{(n)})}-1/n$.
-* **`unassigned`**, line 2806 --- Put
-* **`unassigned`**, line 2824 --- a block diagonal matrix.
-* **`unassigned`**, line 2824 --- For $p\in\mathcal P_n$ the norm of $p(b^{(n)})$ is the maximum of $\opnorm{p(a^{(n,k_{p'})})}$ over $p'\in\mathcal P_n$, which lies between $\opnorm{p(a^{(n)})}-1/n$ and $\opnorm{p(a^{(n)})}+1/n$.
-* **`unassigned`**, line 2824 --- Every polynomial belongs to $\mathcal P_n$ for all large $n$, so $\limsup_n\opnorm{p(b^{(n)})}=\limsup_n\opnorm{p(a^{(n)})}=\opnorm{p(a)}$ for every $p$.
-* **`unassigned`**, line 2824 --- Therefore $a_i\mapsto[(b_i^{(n)})_n]$ is well defined and isometric on the $*$-algebra over $\mathbb Q(i)$ generated by the $a_i$, which is dense in $A$, and it extends to an isometric $*$-homomorphism of $A$ into a norm matrix corona.
-* **`unassigned`**, line 2837 --- Suppose that for every $n$ there is a homomorphism $\lambda_n\colon\Gamma\to G_n$ to a finite group with
-* **`unassigned`**, line 2846 --- Then there are a separable unital MF $C^*$-algebra $A$, a homomorphism $V\colon\Gamma\times Q\to\U(A)$, a tracial state $T$ on $A$ with $T(V(g,q))=0$ for $(g,q)\ne(1,1)$, and a unitary $W\in A$ with $WV(s,1)W^*=V(s,\tau(s))$ for all $s\in S$.
-* **`unassigned`**, line 2846 --- Consequently
-* **`unassigned`**, line 2853 --- is regularly realized, and in particular MF\@.
-* **`unassigned`**, line 2867 --- for a free ultrafilter $\omega$.
-* **`unassigned`**, line 2867 --- Each coordinate of $V$ is a homomorphism into a unitary group, so $V$ is a homomorphism, and $T$ is a tracial state on $E$ because $\lvert(\tau_1\otimes\operatorname{tr}_{k_n})(x_n)\rvert\le\opnorm{x_n}$.
-* **`unassigned`**, line 2867 --- If $g\ne1$ then $\tau_1(\rho_1(g))=0$, so $T(V(g,q))=0$; if $g=1$ and $q\ne1$ then $\beta_n(q)\ne1$ for all large $n$, the regular representation of a finite group has trace zero off the identity, and again $T(V(1,q))=0$.
-* **`unassigned`**, line 2875 --- The two homomorphisms $s\mapsto(\lambda_n(s),1)$ and $s\mapsto(\lambda_n(s),\beta_n\tau(s))$ from $S$ to $E_n$ have the same kernel, namely $\ker(\lambda_n|_S)$, by the hypothesis.
-* **`unassigned`**, line 2875 --- Their images are therefore isomorphic subgroups of $E_n$ of the same order, isomorphic via $(\lambda_n(s),1)\mapsto(\lambda_n(s),\beta_n\tau(s))$.
-* **`unassigned`**, line 2875 --- The restriction of $L_n$ to a subgroup of $E_n$ is unitarily equivalent to the direct sum of as many copies of the left regular representation of that subgroup as it has right cosets, so there is a unitary $W_n\in M_{k_n}(\C)$ with $W_nL_n(\lambda_n(s),1)W_n^*=L_n(\lambda_n(s),\beta_n\tau(s))$ for all $s\in S$.
-* **`unassigned`**, line 2875 --- The triple $(A,V,T|_A)$ regularly realizes $\Gamma\times Q$.
-* **`unassigned`**, line 2895 --- If $e\in\mathrm{INF}$, then $\widehat R_e$ is regularly realized; in particular, it is MF\@.
-* **`unassigned`**, line 2907 --- The group $K_e$ is residually finite by Lemma~\ref{lem:central-rope}(1), hence regularly realized by Lemma~\ref{lem:rf-regular}, and $\Gamma_e$ is the central HNN extension of $K_e$ over $L_e$, hence regularly realized by Corollary~\ref{cor:central-hnn}.
-* **`unassigned`**, line 2912 --- The group $P=F(x_1,y)\times F(x_2,t)$ is residually finite; choose finite-index normal subgroups $P_1\ge P_2\ge\cdots$ of $P$ with trivial intersection, let $r_n\colon P\to C_n=P/P_n$, and put $\beta_n=r_n\circ j\colon H_0\to C_n$ with $j$ the embedding of Lemma~\ref{lem:bridge}(3).
-* **`unassigned`**, line 2912 --- Since $j$ is injective and the $P_n$ decrease to the trivial group, every $h\ne1$ has $\beta_n(h)\ne1$ for all large $n$.
-* **`unassigned`**, line 2919 --- This respects the relations of~\eqref{eq:central-rope}: the factor $L^0_e$ of $L_e$ lies in $K^0_e$ and is killed, and an element $(f,jq_+(f))$ of $L^{\mathrm g}$ is sent to $(r_njq_+(f),r_njq_+(f))$, which lies on the diagonal and commutes with $\sigma$.
-* **`unassigned`**, line 2919 --- Hence $\lambda_n\colon\Gamma_e\to G_n$ is a homomorphism, and on the generators of $S_e$,
-* **`unassigned`**, line 2933 --- The displayed formulas show that $\lambda_n|_{S_e}=(r_nj\pi_0,\,r_nj\pi_1)$, both sides being homomorphisms that agree on generators.
-* **`unassigned`**, line 2933 --- Therefore
-* **`unassigned`**, line 2941 --- which is the hypothesis of Lemma~\ref{lem:tensor-sync}.
-* **`unassigned`**, line 2945 --- By Lemma~\ref{lem:finite-rope} the map $e\mapsto\widehat R_e$ is computable, by Lemma~\ref{lem:positive-branch} the presented group is MF for $e\in\mathrm{INF}$, and by Lemma~\ref{lem:negative-branch} it is not MF for $e\in\mathrm{FIN}$.
-* **`unassigned`**, line 2945 --- Hence $\mathrm{INF}$ reduces to $\mathrm{MF}_{\mathrm{fp}}$ and $\mathrm{FIN}$ reduces to $\mathrm{NONMF}_{\mathrm{fp}}$ under computable many-one reductions.
-* **`unassigned`**, line 2945 --- Since $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is $\Sigma^0_2$-complete, and since $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$ by Proposition~\ref{prop:mf-upper-bound}, the two sets are complete at their levels.
-* **`unassigned`**, line 2945 --- A $\Pi^0_2$-complete set is not $\Sigma^0_2$ and a $\Sigma^0_2$-complete set is not $\Pi^0_2$, so neither set is recursively enumerable, and in particular neither is decidable.
-* **`unassigned`**, line 2961 --- The proof of Lemma~\ref{lem:positive-branch} never claims that the explicit unitaries $V(g,q)$ and $W$ represent $R_e$ faithfully, and indeed they do not: the finite maps $\lambda_n$ kill the Mikhailova factor, so $W$ commutes with $V(\gamma,1)$ for every $\gamma\in K^0_e$, although $u$ does not commute with $(\gamma,1)$ in $R_e$.
-* **`unassigned`**, line 2961 --- Faithfulness is restored at the universal algebra in Theorem~\ref{thm:hnn-permanence}.
-* **`unassigned`**, line 2961 --- Whether the models of $\widehat R_e$ can be chosen to converge to $C^*_{\mathrm r}(\widehat R_e)$ in operator norm, so that the reduced $C^*$-algebra itself is MF, is not settled by the argument, which produces only an abstract regular trace.
-* **`unassigned`**, line 2961 --- Whether $\widehat R_e$ is hyperlinear for $e\in\mathrm{INF}$ is open, and would place the recognition problem for hyperlinearity at the same level; by Theorem~\ref{thm:hnn-permanence} and the argument above this is a question about the regular trace of the rope.
-* **`unassigned`**, line 2961 --- Finally, whether the sofic analogue of the compiler exists is open, because the tensor synchronization has no counterpart for permutation models.
-* **`unassigned`**, line 3009 --- For Theorem~\ref{thm:recognition}, the development verifies the certificate normal form and the passage from a computable finite-output compiler to $\Pi^0_2$-completeness; the compiler of Section~\ref{sec:compiler} and Theorem~\ref{thm:hnn-permanence} are proved in the article.
+* **`unassigned`**, line 1679 --- Its normal closure is a nontrivial normal subgroup of $H$, and hence is all of $H$ by Proposition~\ref{prop:simple}.
+* **`unassigned`**, line 2047 --- A countable group $G$ is MF if and only if for every finite set $F\subseteq G$ containing $1$ and every $\varepsilon>0$ there are $d\ge1$ and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
+* **`unassigned`**, line 2057 --- For $g,h\in G$ the elements $g$, $h$, $gh$ lie in $F_n$ for all large $n$, so $\opnorm{V_n(gh)-V_n(g)V_n(h)}\le1/n\to0$; and for $g\ne1$ we have $\opnorm{V_n(g)-1}\ge1$ for all large $n$.
+* **`unassigned`**, line 2057 --- Hence $G$ is MF.
+* **`unassigned`**, line 2066 --- For a unitary $u$ and $k\ge1$ the tensor power $u^{\otimes k}$ is a unitary of dimension $d^k$, $(uv)^{\otimes k}=u^{\otimes k}v^{\otimes k}$, and telescoping gives $\opnorm{u^{\otimes k}-v^{\otimes k}}\le k\opnorm{u-v}$.
+* **`unassigned`**, line 2066 --- If $\opnorm{u-1}=c>0$, write $c=2\sin(\theta/2)$ with $0<\theta\le\pi$; then $e^{i\theta}$ or $e^{-i\theta}$ is an eigenvalue of $u$, so $e^{ik\theta}$ or $e^{-ik\theta}$ is an eigenvalue of $u^{\otimes k}$, and $\opnorm{u^{\otimes k}-1}\ge\lvert e^{ik\theta}-1\rvert=2\lvert\sin(k\theta/2)\rvert$.
+* **`unassigned`**, line 2066 --- If $\theta\ge\pi/2$ take $k=1$; otherwise the first $k$ with $k\theta\ge\pi/2$ satisfies $k\theta<\pi/2+\theta<\pi$.
+* **`unassigned`**, line 2066 --- In both cases $k\theta\in[\pi/2,3\pi/2]$ modulo $2\pi$, so $\opnorm{u^{\otimes k}-1}\ge\sqrt2$.
+* **`unassigned`**, line 2089 --- Then $W_n(1)=1$ and $\opnorm{W_n(gh)-W_n(g)W_n(h)}\le K\opnorm{V_n(gh)-V_n(g)V_n(h)}$, so the defects of $W_n$ tend to zero.
+* **`unassigned`**, line 2089 --- For $g\in F\setminus\{1\}$ choose a subsequence along which $\opnorm{V_n(g)-1}\to c_g$ and eigenvalues $\lambda_n$ of $V_n(g)$ with $\lvert\lambda_n-1\rvert\to c_g$; passing to a further subsequence, $\lambda_n\to\lambda$ with $\lvert\lambda-1\rvert=c_g$, and then $\lambda_n^{k}\to\lambda^{k}$ with $\lvert\lambda^{k}-1\rvert\ge\sqrt2$ for $k=k(c_g)$.
+* **`unassigned`**, line 2089 --- Since $\lambda_n^{k}$ is an eigenvalue of $V_n(g)^{\otimes k}$, it follows that $\limsup_n\opnorm{W_n(g)-1}\ge\sqrt2>1$.
+* **`unassigned`**, line 2089 --- Choose $n_0$ such that for $n\ge n_0$ every defect of $W_n$ on $F$ is at most $\varepsilon$, and for each $g\in F\setminus\{1\}$ choose $m_g\ge n_0$ with $\opnorm{W_{m_g}(g)-1}\ge1$.
+* **`unassigned`**, line 2089 --- Then $V(1)=1$, the defect of $V$ on $F$ is the maximum of the defects of its blocks, hence at most $\varepsilon$, and for $g\in F\setminus\{1\}$ the block $m_g$ gives $\opnorm{V(g)-1}\ge1$.
+* **`unassigned`**, line 2131 --- A \emph{certificate at scale $n$} is a triple $c=(d,\ell,\pi)$ consisting of a dimension $d\ge1$, a labelling $\ell$ of every reduced word of length at most $n$ in $x_1^{\pm1},\dots,x_k^{\pm1}$ by one of the symbols $\mathsf T$ and $\mathsf S$, and, for every word $w$ labelled $\mathsf T$, an expression of $w$ as a product of conjugates of the relators and their inverses that freely reduces to $w$.
+* **`unassigned`**, line 2131 --- Such an expression is checkable, and its existence forces $w=1$ in $G_P$.
+* **`unassigned`**, line 2131 --- Writing $U_j=A_j+iB_j$ with real matrices, unitarity is a system of polynomial equations, and a bound $\opnorm{X}\le t$ or $\opnorm{X}\ge t$ on a matrix whose entries are polynomials in the variables is a semialgebraic condition, since $\opnorm{X}\le t$ holds precisely when $t^2-X^*X$ is positive semidefinite.
+* **`unassigned`**, line 2131 --- Thus $\Phi(P,n,c)$ is a sentence of the first-order theory of the ordered field of real numbers, and its truth is decidable by Tarski's theorem~\cite{Tarski}.
+* **`unassigned`**, line 2131 --- Then $C$ is decidable.
+* **`unassigned`**, line 2153 --- Lemma~\ref{lem:local-models} gives $V\colon F\to\U(d)$ with $V(1)=1$, defect at most $\varepsilon$ on $F$, and $\opnorm{V(g)-1}\ge1$ for $g\in F\setminus\{1\}$.
+* **`unassigned`**, line 2153 --- For $g\in F$ we have $g^{-1}\in F$ and $\opnorm{V(g)V(g^{-1})-1}\le\varepsilon$, so $\opnorm{V(g^{-1})-V(g)^*}\le\varepsilon$.
+* **`unassigned`**, line 2153 --- For a word $w=y_1\cdots y_\ell$ of length $\ell\le L$, all of whose prefixes have images in $F$, induction on $\ell$ gives $\opnorm{w(U)-V(\bar w)}\le2\ell\varepsilon$.
+* **`unassigned`**, line 2153 --- In particular $\opnorm{r_i(U)-1}\le2L\varepsilon\le2^{-n}$.
+* **`unassigned`**, line 2153 --- Label a word $w$ of length at most $n$ by $\mathsf T$ if $\bar w=1$, with a normal-closure expression as witness, and by $\mathsf S$ otherwise; for the latter, $\opnorm{w(U)-1}\ge\opnorm{V(\bar w)-1}-2n\varepsilon\ge1-\tfrac12\ge\tfrac14$.
+* **`unassigned`**, line 2153 --- So $C(P,n,c)$ holds for this certificate.
+* **`unassigned`**, line 2170 --- For each $g\in G_P$ fix a word $w_g$ representing $g$, with $w_1$ the empty word, and put $V_n(g)=w_g(U^{(n)})$.
+* **`unassigned`**, line 2170 --- Then $V_n(1)=1$.
+* **`unassigned`**, line 2170 --- For $g,h\in G_P$ the word $t=w_gw_hw_{gh}^{-1}$ is trivial in $G_P$, so it is freely equal to a product of $A$ conjugates of relators and their inverses, for some $A$ depending on $g$ and $h$ but not on $n$.
+* **`unassigned`**, line 2170 --- Since evaluation is a homomorphism on the free group, since the operator norm is unitarily invariant, and since $\opnorm{xy-1}\le\opnorm{x-1}+\opnorm{y-1}$ for unitaries $x,y$,
+* **`unassigned`**, line 2185 --- For $g\ne1$ the word $w_g$ is nontrivial in $G_P$, so for $n\ge\lvert w_g\rvert$ the certificate $c_n$ cannot label it $\mathsf T$, hence labels it $\mathsf S$, and $\opnorm{V_n(g)-1}\ge1/4$.
+* **`unassigned`**, line 2185 --- Thus $\limsup_n\opnorm{V_n(g)-1}\ge1/4>0$, and $G_P$ is MF.
+* **`unassigned`**, line 2190 --- The displayed equivalence exhibits $\mathrm{MF}_{\mathrm{fp}}$ as $\{P:\forall n\,\exists c\,C(P,n,c)\}$, a $\Pi^0_2$ set, and its complement as a $\Sigma^0_2$ set.
+* **`unassigned`**, line 2197 --- The lower bound in Theorem~\ref{thm:recognition} is a computable family of finitely presented groups whose positive branch must be MF\@.
+* **`unassigned`**, line 2203 --- Since $\tau(1)=1$, a regularly realized group embeds in $\U(A)$, so it is MF\@.
+* **`unassigned`**, line 2203 --- Padding blocks with zeros embeds every norm matrix corona $\mathcal Q_{\mathbf d}$ isometrically into $\prod_nM_n(\C)/\bigoplus_nM_n(\C)$, so the MF algebras of the introduction are exactly the separable $C^*$-algebras that embed in the latter corona, as in~\cite{BK,Shulman}.
+* **`unassigned`**, line 2214 --- Every countable residually finite group is regularly realized.
+* **`unassigned`**, line 2218 --- In the corona $\mathcal Q_{\mathbf d}$ put $\rho(g)=[(\lambda_k(g))_k]$; then $\rho$ is a homomorphism into the unitary group.
+* **`unassigned`**, line 2218 --- If $g\ne1$, then $g\notin N_k$ for all large $k$, so $\operatorname{tr}_{d_k}(\lambda_k(g))=0$ for all large $k$ and $\tau(\rho(g))=0$.
+* **`unassigned`**, line 2241 --- contains $G$ by Britton's lemma~\cite{Britton}.
+* **`unassigned`**, line 2244 --- In the situation of~\eqref{eq:hnn}, suppose that $G$ is regularly realized by $(A,\rho,\tau)$, and that for some norm matrix corona $\mathcal Q$ there are an injective $*$-homomorphism $\iota\colon A\to\mathcal Q$ and a unitary $W\in\mathcal Q$ with
+* **`unassigned`**, line 2252 --- Then $R$ is regularly realized. In particular, $R$ is MF\@.
+* **`unassigned`**, line 2256 --- Conjugation by $W$ restricts to a $*$-isomorphism $\Theta\colon B_0\to B_1$ carrying $\iota\rho(s)$ to $\iota\rho(\theta(s))$.
+* **`unassigned`**, line 2256 --- By construction, $U$ has the following universal property: whenever $\pi\colon D\to E$ is a unital $*$-homomorphism into a unital $C^*$-algebra and $v\in\U(E)$ satisfies $v\pi(b)v^*=\pi(\Theta(b))$ for $b\in B_0$, there is a unique $*$-homomorphism $U\to E$ extending $\pi$ and sending $u$ to $v$.
+* **`unassigned`**, line 2273 --- \emph{Step 1: $U$ embeds in an amalgamated free product.} This step is a self-contained form of a corner argument of Ueda~\cite{Ueda}.
+* **`unassigned`**, line 2282 --- and let $P=A_1*_CA_2$ be the full amalgamated free product, in which $A_1$ and $A_2$ embed~\cite[Section~2.1]{Shulman}.
+* **`unassigned`**, line 2282 --- Since $\iota_A(p,0)=\iota_B(p,0)$ and $\iota_A(0,p)=\iota_B(0,p)$, we have $e_{11}=f_{11}=:e$ and $e_{22}=f_{22}$ in $P$.
+* **`unassigned`**, line 2282 --- Then $ww^*=e_{12}f_{22}e_{21}=e_{12}e_{22}e_{21}=e$ and $w^*w=f_{12}e_{22}f_{21}=f_{12}f_{22}f_{21}=e$, so $w$ is a unitary of $ePe$.
+* **`unassigned`**, line 2282 --- For $b\in B_0$ the element $\operatorname{diag}(b,0)$ is $\iota_A(b,0)=\iota_B(b,0)$, so
+* **`unassigned`**, line 2300 --- where the middle equality uses $\iota_B(0,\Theta(b))=\operatorname{diag}(0,b)$ in $A_2$.
+* **`unassigned`**, line 2300 --- The universal property of $U$ gives a $*$-homomorphism $\Phi\colon U\to ePe\subseteq P$ with $\Phi|_D=\pi_D$ and $\Phi(u)=w$.
+* **`unassigned`**, line 2300 --- On $C$ we have $\Psi_1(\iota_A(c_0,c_1))=\operatorname{diag}(c_0,c_1)$ and $\Psi_2(\iota_B(c_0,c_1))=\operatorname{diag}(c_0,u\Theta^{-1}(c_1)u^*) =\operatorname{diag}(c_0,c_1)$, so the pair induces a $*$-homomorphism $\Psi\colon P\to M_2(U)$.
+* **`unassigned`**, line 2300 --- On generators, $\Psi\Phi(d)=\operatorname{diag}(d,0)$ and $\Psi\Phi(u)=\Psi_1(e_{12})\Psi_2(f_{21})=\operatorname{diag}(u,0)$.
+* **`unassigned`**, line 2300 --- Hence $\Psi\Phi$ is the injective $*$-homomorphism $x\mapsto\operatorname{diag}(x,0)$ of $U$ into $M_2(U)$, and $\Phi$ is injective.
+* **`unassigned`**, line 2317 --- \emph{Step 2: $P$ is MF.} By Shulman's criterion~\cite[Theorem~16]{Shulman}, the full amalgamated free product $A_1*_CA_2$ of separable $C^*$-algebras is MF as soon as there are injective $*$-homomorphisms $\varphi_A$ and $\varphi_B$ of $A_1$ and $A_2$ into one norm matrix corona with $\varphi_A\circ\iota_A=\varphi_B\circ\iota_B$.
+* **`unassigned`**, line 2317 --- Identify $M_2(\mathcal Q)$ with the norm matrix corona of the doubled dimension sequence, and let $\varphi_A\colon M_2(D)\to M_2(\mathcal Q)$ be the entrywise inclusion and $\varphi_B\colon M_2(B_0)\to M_2(\mathcal Q)$ the entrywise inclusion followed by conjugation by $\operatorname{diag}(1,W)$.
+* **`unassigned`**, line 2317 --- Both are injective, and on $C$,
+* **`unassigned`**, line 2334 --- because $\Theta$ is conjugation by $W$.
+* **`unassigned`**, line 2334 --- Hence $P$ is MF, and so are its $C^*$-subalgebras $ePe$ and $\Phi(U)\cong U$.
+* **`unassigned`**, line 2337 --- \emph{Step 3: $R$ embeds in $\U(U)$ with a regular trace.} The functional $T=\tau\circ\iota^{-1}$ is a tracial state on $\iota(A)\supseteq D$ with $T(\iota\rho(g))=0$ for $g\ne1$.
+* **`unassigned`**, line 2337 --- In the GNS representation of $D$ for $T$, the vectors $\xi_g=\iota\rho(g)\xi_T$, $g\in G$, are orthonormal, because $\langle\xi_g,\xi_h\rangle=T(\iota\rho(h^{-1}g))$.
+* **`unassigned`**, line 2337 --- Their closed span is invariant under $D$, and on it $\iota\rho(g)$ acts as the left regular representation $\lambda_G(g)$ of $G$.
+* **`unassigned`**, line 2337 --- Thus there is a $*$-homomorphism $\pi\colon D\to C^*_{\mathrm r}(G)$ with $\pi(\iota\rho(g))=\lambda_G(g)$.
+* **`unassigned`**, line 2337 --- Since $G\le R$, the space $\ell^2(R)$ is a direct sum of copies of $\ell^2(G)$ indexed by the right cosets of $G$, so $\lambda_R|_G$ is a multiple of $\lambda_G$ and the assignment $\lambda_G(g)\mapsto\lambda_R(g)$ extends to a $*$-homomorphism $C^*_{\mathrm r}(G)\to C^*_{\mathrm r}(R)$.
+* **`unassigned`**, line 2337 --- Composing, we obtain $\sigma_0\colon D\to C^*_{\mathrm r}(R)$ with $\sigma_0(\iota\rho(g))=\lambda_R(g)$.
+* **`unassigned`**, line 2337 --- The pair $(\sigma_0,\lambda_R(t))$ satisfies the covariance relation $\lambda_R(t)\sigma_0(b)\lambda_R(t)^*=\sigma_0(\Theta(b))$ for $b\in B_0$: on the generators $\iota\rho(s)$ both sides equal $\lambda_R(\theta(s))$, because $tst^{-1}=\theta(s)$ in $R$, and two $*$-homomorphisms that agree on generators agree on $B_0$.
+* **`unassigned`**, line 2337 --- The universal property of $U$ gives $\sigma\colon U\to C^*_{\mathrm r}(R)$ with $\sigma(\iota\rho(g))=\lambda_R(g)$ and $\sigma(u)=\lambda_R(t)$.
+* **`unassigned`**, line 2360 --- The defining relations of~\eqref{eq:hnn} hold in $U$, since $u\,\iota\rho(s)\,u^*=\Theta(\iota\rho(s))=\iota\rho(\theta(s))$, so $j$ is a homomorphism, and $\sigma\circ j=\lambda_R$ is injective, so $j$ is injective.
+* **`unassigned`**, line 2360 --- Then $\tau'$ is a tracial state on $A'$ with $\tau'(j(r))=\tau_R(\lambda_R(r))=0$ for $r\ne1$.
+* **`unassigned`**, line 2360 --- Hence $(A',j,\tau')$ regularly realizes $R$.
+* **`unassigned`**, line 2381 --- If $G$ is regularly realized and $S\le G$ is any subgroup, then $\langle G,t\mid[t,s]=1\ (s\in S)\rangle$ is regularly realized.
+* **`unassigned`**, line 2386 --- Apply Theorem~\ref{thm:hnn-permanence} with $\theta$ the inclusion of $S$, with $\iota$ any injective $*$-homomorphism of $A$ into a norm matrix corona, and with $W=1$.
+* **`unassigned`**, line 2399 --- The set $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is $\Sigma^0_2$-complete~\cite[Chapter~IV]{Soare}.
+* **`unassigned`**, line 2399 --- This section constructs a computable map $e\mapsto\widehat R_e$ into finite presentations such that the presented group is MF if and only if $e\in\mathrm{INF}$.
+* **`unassigned`**, line 2399 --- The construction has three moves.
+* **`unassigned`**, line 2399 --- A \emph{switch} turns $e$ into a recursively presented group that is trivial for $e\in\mathrm{INF}$ and contains $H$ for $e\in\mathrm{FIN}$.
+* **`unassigned`**, line 2399 --- A \emph{rope}, in the manner of Higman's embedding theorem, wraps the switch into a finitely presented group by two HNN extensions.
+* **`unassigned`**, line 2399 --- A \emph{synchronization} of finite quotients then supplies the corona conjugator that Theorem~\ref{thm:hnn-permanence} needs on the positive branch.
+* **`unassigned`**, line 2399 --- The first two moves are group theory and occupy this section up to Lemma~\ref{lem:negative-branch}; the third is carried out in the next section.
+* **`unassigned`**, line 2416 --- The group $H=\EL_{12}(R)$ is finitely generated and has decidable word problem.
+* **`unassigned`**, line 2416 --- In particular, it has a recursive presentation on finitely many generators.
+* **`unassigned`**, line 2422 --- Since $e_{ij}(a+b)=e_{ij}(a)e_{ij}(b)$ and $[e_{ik}(a),e_{kj}(b)]=e_{ij}(ab)$ for distinct $i,j,k$, and since every element of $R$ is a sum of monomials in the generators $s_0,s_1,t_0,t_1$, induction on the length of a monomial shows that every $e_{ij}(a)$ lies in the subgroup generated by $Y$; there is always an index $k\notin\{i,j\}$ because $12\ge3$.
+* **`unassigned`**, line 2422 --- Thus $H=\langle Y\rangle$.
+* **`unassigned`**, line 2422 --- The monomials in $s_0,s_1,t_0,t_1$ containing no factor $s_1t_1$ form an $\F_2$-basis of $R$~\cite{Leavitt}, and the product of two basis monomials is computed from the defining relations by finitely many rewritings, so equality in $R$ is decidable.
+* **`unassigned`**, line 2422 --- A word in $Y^{\pm1}$ is therefore evaluated to an explicit $12\times12$ matrix over $R$, and it represents $1$ in $H$ exactly when that matrix is the identity.
+* **`unassigned`**, line 2422 --- The set of words representing $1$ is decidable, hence recursively enumerable, and $\langle Y\mid\text{that set}\rangle$ is a recursive presentation of $H$.
+* **`unassigned`**, line 2442 --- There is an algorithm that computes from $e$ a recursive presentation, on a computable set of generators, of a group $C_e$ such that $C_e$ is trivial if $e\in\mathrm{INF}$ and $H$ embeds in $C_e$ if $e\in\mathrm{FIN}$.
+* **`unassigned`**, line 2449 --- This is the construction of Bilanovic--Chubb--Roven~\cite[Theorem~3.1]{BCR} with the trivial group as positive witness and $H$ as negative witness.
+* **`unassigned`**, line 2449 --- Take generators $y_{i,\ell}$ for $i\ge1$ and $\ell\in Y$, one copy $Y_i$ of $Y$ for each $i$, and as relators all words of $T$ rewritten in each copy $Y_i$, together with every generator $y_{i,\ell}$ for which $i\le\lvert W_e\rvert$.
+* **`unassigned`**, line 2449 --- The last family is recursively enumerable uniformly in $e$: enumerate $W_e$, and whenever its $i$-th element appears, enumerate all of $Y_i$.
+* **`unassigned`**, line 2449 --- The group presented is the free product of the copies $H_i\cong H$, $i\ge1$, with the first $\lvert W_e\rvert$ copies killed. If $W_e$ is infinite every copy is killed and $C_e$ is trivial; if $W_e$ is finite, $C_e$ is the free product of the remaining copies and contains $H$.
+* **`unassigned`**, line 2466 --- For a countable group $C$ with a generating sequence $(c_i)_{i\ge1}$, put $c_i=1$ for $i\le0$ and
+* **`unassigned`**, line 2477 --- $B(C)$ is an HNN extension of $C*F(x,y)$, so $C$ embeds in $B(C)$; it is generated by $x,y,t$; and a recursive presentation of $B(C)$ on $x,y,t$ is computable from a recursive presentation of $C$.
+* **`unassigned`**, line 2477 --- We write $B(C)=F/N_C$ and $q_C\colon F\to B(C)$ for the quotient map.
+* **`unassigned`**, line 2481 --- Killing $C$ induces a surjection $B(C)\to H_0$; hence $N_C\le N_+$, with equality when $C$ is trivial.
+* **`unassigned`**, line 2483 --- The assignment $x\mapsto(x_1,x_2)$, $y\mapsto(y,1)$, $t\mapsto(1,t)$ defines an injective homomorphism $j\colon H_0\to P=F(x_1,y)\times F(x_2,t)$.
+* **`unassigned`**, line 2483 --- In particular, $H_0$ is residually finite.
+* **`unassigned`**, line 2490 --- (1) The elements $y_i$, $i\in\mathbb Z$, freely generate the normal closure of $y$ in $F(x,y)$~\cite[Chapter~I]{LyndonSchupp}.
+* **`unassigned`**, line 2490 --- The retraction $C*F(x,y)\to F(x,y)$ killing $C$ sends $c_iy_i$ to $y_i$, so a nontrivial reduced word in the $c_iy_i$ maps to a nontrivial word in the $y_i$; hence the $c_iy_i$ freely generate a free subgroup, and $y_i\mapsto c_iy_i$ is an isomorphism between two free subgroups of the base.
+* **`unassigned`**, line 2490 --- Thus~\eqref{eq:bridge} is an HNN extension, and the base, hence $C$, embeds by Britton's lemma.
+* **`unassigned`**, line 2490 --- The relation $c_i=ty_it^{-1}y_i^{-1}$ shows that $x,y,t$ generate $B(C)$, and substituting this expression for $c_i$ into the relators of $C$ and into~\eqref{eq:bridge} produces a recursive presentation on $x,y,t$, uniformly in the presentation of $C$.
+* **`unassigned`**, line 2502 --- (2) The relators of~\eqref{eq:bridge} map to the relators $[t,y_i]$ of $H_0$ when every $c_i$ is sent to $1$, and the map is the identity on $x,y,t$.
+* **`unassigned`**, line 2506 --- (3) The relators $[t,y_i]$ are sent to $[(1,t),(x_1^iyx_1^{-i},1)]=1$, so $j$ is a homomorphism.
+* **`unassigned`**, line 2506 --- Then $H_0/N_0=\langle x\rangle$ is infinite cyclic and the extension splits, so $H_0=N_0\rtimes\langle x\rangle$.
+* **`unassigned`**, line 2506 --- Rewriting the presentation of $H_0$ over the transversal $\{x^n\}$ by the Reidemeister--Schreier method~\cite[Chapter~II]{LyndonSchupp} presents $N_0$ on the generators $y_n=x^nyx^{-n}$ and $t_m=x^mtx^{-m}$, $n,m\in\mathbb Z$, with relators the conjugates $x^m[t,y_n]x^{-m}=[t_m,y_{n+m}]$, that is, all commutators $[t_m,y_n]$.
+* **`unassigned`**, line 2506 --- Hence $N_0=F(y_n:n\in\mathbb Z)\times F(t_m:m\in\mathbb Z)$.
+* **`unassigned`**, line 2506 --- Now $j(y_n)=(x_1^nyx_1^{-n},1)$ and $j(t_m)=(1,x_2^mtx_2^{-m})$, and the elements $x_1^nyx_1^{-n}$ freely generate the normal closure of $y$ in $F(x_1,y)$, and likewise for $t$; so $j$ restricted to $N_0$ is an isomorphism onto the product of these two normal closures.
+* **`unassigned`**, line 2506 --- Finally $j(x)=(x_1,x_2)$ has infinite order and $j(x)^k\notin j(N_0)$ for $k\ne0$, because the exponent sum of $x_1$ in $j(x^kn)$ is $k$ for $n\in N_0$.
+* **`unassigned`**, line 2506 --- Hence $j$ is injective on $N_0\rtimes\langle x\rangle$.
+* **`unassigned`**, line 2506 --- Free groups are residually finite and residual finiteness passes to direct products and subgroups, so $H_0$ is residually finite.
+* **`unassigned`**, line 2526 --- For $e\in\mathbb N$ let $Q_e=B(C_e)=F/N_e$ with $C_e$ the group of Lemma~\ref{lem:switch}, and write $q_e\colon F\to Q_e$.
+* **`unassigned`**, line 2526 --- By Lemmas~\ref{lem:switch} and~\ref{lem:bridge}, a recursive presentation of $Q_e$ on $x,y,t$ is computable from $e$; $N_e\le N_+$; if $e\in\mathrm{INF}$ then $Q_e=H_0$, $N_e=N_+$ and $q_e=q_+$; and if $e\in\mathrm{FIN}$ then $H\le C_e\le Q_e$.
+* **`unassigned`**, line 2536 --- There is an algorithm that computes from $e$ a finite presentation $\langle X_e\mid R_e\rangle$ of a group $\widehat H_e$, words $w_x,w_y,w_t\in F(X_e)$, and a finite generating set of a subgroup $M_e\le F(X_e)\times F(X_e)$, such that $x\mapsto w_x$, $y\mapsto w_y$, $t\mapsto w_t$ induces an embedding $Q_e\to\widehat H_e$, and $M_e=\{(u,v):u=v\text{ in }\widehat H_e\}$.
+* **`unassigned`**, line 2536 --- Consequently, with
+* **`unassigned`**, line 2549 --- where $w_f$ is the image of $f$ under $x\mapsto w_x$, $y\mapsto w_y$, $t\mapsto w_t$, the map $i_e\colon F\to K^0_e$ is injective and $i_e(f)\in L^0_e$ if and only if $f\in N_e$.
+* **`unassigned`**, line 2555 --- Higman's embedding theorem~\cite{Higman} embeds every finitely generated recursively presented group in a finitely presented group, and its proof is effective; an explicit algorithm producing the finite presentation and the embedding words from a recursive presentation is given by Mikaelian~\cite{Mikaelian}.
+* **`unassigned`**, line 2555 --- Apply it to the presentation of $Q_e$.
+* **`unassigned`**, line 2555 --- Following Mikhailova~\cite{Mikhailova}, let $M_e$ be the subgroup of $F(X_e)\times F(X_e)$ generated by the pairs $(z,z)$, $z\in X_e$, and $(r,1)$, $r\in R_e$.
+* **`unassigned`**, line 2555 --- If $(u,v)\in M_e$ then $u=v$ in $\widehat H_e$, since this holds for the generators.
+* **`unassigned`**, line 2555 --- Conversely, if $u=v$ in $\widehat H_e$, then $uv^{-1}$ lies in the normal closure of $R_e$, so it is a product of conjugates $gr^{\pm1}g^{-1}$ with $r\in R_e$, and $(gr^{\pm1}g^{-1},1)=(g,g)(r^{\pm1},1)(g,g)^{-1}\in M_e$; hence $(u,v)=(uv^{-1},1)(v,v)\in M_e$.
+* **`unassigned`**, line 2555 --- The first coordinate makes $i_e$ injective, and $(f,w_f,1)\in F\times M_e$ if and only if $w_f=1$ in $\widehat H_e$, if and only if $q_e(f)=1$ because the embedding is injective, if and only if $f\in N_e$.
+* **`unassigned`**, line 2582 --- and the product witness
+* **`unassigned`**, line 2590 --- Let
+* **`unassigned`**, line 2599 --- $K_e$ is a direct product of free groups of finite rank, hence finitely presented and residually finite; $L_e$ is finitely generated; $i$ is injective; and $i(F)\cap L_e=i(N_e)$.
+* **`unassigned`**, line 2602 --- $\Gamma_e$ is finitely presented, and a finite presentation is computable from $e$.
+* **`unassigned`**, line 2602 --- The natural map from the amalgamated free product $F*_{N_e}F$, in which $n\in N_e$ in the first copy is identified with $n$ in the second copy, onto $S_e$, sending the first copy to $i(F)$ and the second to $v\,i(F)\,v^{-1}$, is an isomorphism.
+* **`unassigned`**, line 2607 --- There is a homomorphism $\tau_e\colon S_e\to Q_e$ with $\tau_e(i(f))=q_e(f)$ and $\tau_e(v\,i(f)\,v^{-1})=1$ for $f\in F$.
+* **`unassigned`**, line 2613 --- (1) $K_e=F\times F(X_e)\times F(X_e)\times F\times P$ is a product of five free groups of finite rank, so it is finitely presented, and residually finite because free groups are.
+* **`unassigned`**, line 2613 --- The subgroup $L_e$ is generated by the basis of the first factor, the generators of $M_e$ from Lemma~\ref{lem:mikhailova}, and the elements $(a,jq_+(a))$ for $a\in\{x,y,t\}$, so it is finitely generated. Injectivity of $i$ is clear from the first coordinate.
+* **`unassigned`**, line 2613 --- An element $i(f)$ lies in $L_e$ if and only if $i_e(f)\in L^0_e$ and $(f,1)\in L^{\mathrm g}$; the first holds if and only if $f\in N_e$ by Lemma~\ref{lem:mikhailova}, and the second if and only if $jq_+(f)=1$, that is, $f\in N_+$.
+* **`unassigned`**, line 2613 --- Since $N_e\le N_+$, the intersection is $i(N_e)$.
+* **`unassigned`**, line 2625 --- (2) The presentation~\eqref{eq:central-rope} is finite once $[v,\ell]=1$ is imposed only for the finitely many generators $\ell$ of $L_e$, and it is computable from $e$ because $K_e$, $L_e$ and $i$ are.
+* **`unassigned`**, line 2625 --- It is an HNN extension of $K_e$ with both edge groups equal to $L_e$ and the identity as edge isomorphism.
+* **`unassigned`**, line 2625 --- The map from $F*_{N_e}F$ to $S_e$ is well defined because $i(n)\in L_e$ commutes with $v$ for $n\in N_e$.
+* **`unassigned`**, line 2625 --- A reduced word of the amalgamated free product alternates between elements of the two copies of $F$ lying outside $N_e$; its image is a word $i(f_0)\,v\,i(f_1)\,v^{-1}\,i(f_2)\cdots$ in which every letter between consecutive occurrences of $v^{\pm1}$ is some $i(f_k)$ with $f_k\notin N_e$, hence $i(f_k)\notin L_e$ by (1).
+* **`unassigned`**, line 2625 --- Such a word contains no pinch $v^{\pm1}\ell v^{\mp1}$ with $\ell\in L_e$, so it is nontrivial in $\Gamma_e$ by Britton's lemma.
+* **`unassigned`**, line 2639 --- (3) Define $\tau_e$ on $F*_{N_e}F$ by $q_e$ on the first copy and by the trivial map on the second; both kill $N_e$, so the definition is consistent on the amalgamated subgroup, and (2) transports it to $S_e$.
+* **`unassigned`**, line 2644 --- The second rope is the HNN extension
+* **`unassigned`**, line 2648 --- whose edge maps $s\mapsto(s,1)$ and $s\mapsto(s,\tau_e(s))$ are injective homomorphisms of $S_e$ into $\Gamma_e\times Q_e$; so $\Gamma_e\times Q_e$ embeds in $R_e$ by Britton's lemma.
+* **`unassigned`**, line 2648 --- The presentation~\eqref{eq:twisted-rope} lists the recursively enumerable relators of $Q_e$.
+* **`unassigned`**, line 2648 --- Its finite replacement is
+* **`unassigned`**, line 2661 --- where $\Gamma_e\times F$ carries the finite presentation of Lemma~\ref{lem:central-rope}(2), the basis $x,y,t$ of $F$, and the commutation relators between the two factors.
+* **`unassigned`**, line 2666 --- The groups $\widehat R_e$ and $R_e$ are isomorphic by the map that is the identity on $\Gamma_e$ and on $u$ and sends $F$ onto $Q_e$ by $q_e$.
+* **`unassigned`**, line 2666 --- A code of the finite presentation~\eqref{eq:finite-rope} is computable from $e$.
+* **`unassigned`**, line 2673 --- Both maps $f\mapsto u(i(f),1)u^{-1}$ and $f\mapsto(i(f),f)$ are homomorphisms $F\to\widehat R_e$, and they agree on the basis, so $u(i(f),1)u^{-1}=(i(f),f)$ for all $f\in F$; likewise $u(v\,i(f)\,v^{-1},1)u^{-1}=(v\,i(f)\,v^{-1},1)$ for all $f$.
+* **`unassigned`**, line 2673 --- If $n\in N_e$, then $i(n)\in L_e$ by Lemma~\ref{lem:central-rope}(1), so $v\,i(n)\,v^{-1}=i(n)$ in $\Gamma_e$, and comparing the two relations gives $(i(n),n)=(i(n),1)$, that is, $(1,n)=1$ in $\widehat R_e$.
+* **`unassigned`**, line 2673 --- Hence the factor $F$ of $\widehat R_e$ factors through $Q_e=F/N_e$, and the relations of~\eqref{eq:finite-rope} become $u(s,1)u^{-1}=(s,\tau_e(s))$ for $s$ in the generating set $\{i(a),\,v\,i(a)\,v^{-1}:a\in\{x,y,t\}\}$ of $S_e$, hence for all $s\in S_e$, since both sides are homomorphic in $s$.
+* **`unassigned`**, line 2673 --- This defines a homomorphism $R_e\to\widehat R_e$; conversely, the relations of~\eqref{eq:finite-rope} hold in $R_e$ after $F\to Q_e$, because $\tau_e(i(a))=q_e(a)$ and $\tau_e(v\,i(a)\,v^{-1})=1$.
+* **`unassigned`**, line 2673 --- The two homomorphisms are mutually inverse on generators.
+* **`unassigned`**, line 2673 --- Computability of the code follows from Lemmas~\ref{lem:mikhailova} and~\ref{lem:central-rope}.
+* **`unassigned`**, line 2692 --- If $e\in\mathrm{FIN}$, then $H$ embeds in $\widehat R_e$, and $\widehat R_e$ is not MF\@.
+* **`unassigned`**, line 2697 --- For $e\in\mathrm{FIN}$ we have $H\le C_e\le Q_e\le\Gamma_e\times Q_e\le R_e\cong\widehat R_e$ by Lemmas~\ref{lem:switch}, \ref{lem:bridge}(1), \ref{lem:finite-rope} and Britton's lemma for~\eqref{eq:twisted-rope}.
+* **`unassigned`**, line 2697 --- Restricting MF models to a subgroup shows that subgroups of MF groups are MF, and $H$ is not MF by Theorem~\ref{thm:headline}.
+* **`unassigned`**, line 2706 --- The realization of the rope is assembled inside a norm reduced product of MF algebras, so we first record that such products stay MF\@.
+* **`unassigned`**, line 2714 --- If every $B_n$ is MF, then every separable $C^*$-subalgebra of $\prod_nB_n/\bigoplus_nB_n$ is MF\@.
+* **`unassigned`**, line 2714 --- Moreover, $M_k(B)$ is MF whenever $B$ is.
+* **`unassigned`**, line 2720 --- The second assertion holds because $M_k$ of a norm matrix corona is the norm matrix corona of the dimension sequence multiplied by $k$.
+* **`unassigned`**, line 2720 --- For the first, let $A$ be a separable $C^*$-subalgebra, and choose a sequence $(a_i)_{i\ge1}$ dense in $A$, with lifts $(a_i^{(n)})_n$.
+* **`unassigned`**, line 2720 --- For $p\in\mathcal P_n$ the number $\opnorm{p(a^{(n)})}$ equals $\limsup_k\opnorm{p(a^{(n,k)})}$, since $\eta_n$ is isometric.
+* **`unassigned`**, line 2720 --- Hence there is $K_n$ such that $\opnorm{p(a^{(n,k)})}\le\opnorm{p(a^{(n)})}+1/n$ for all $k\ge K_n$ and $p\in\mathcal P_n$, and for each $p\in\mathcal P_n$ there is $k_p\ge K_n$ with $\opnorm{p(a^{(n,k_p)})}\ge\opnorm{p(a^{(n)})}-1/n$.
+* **`unassigned`**, line 2720 --- Put
+* **`unassigned`**, line 2738 --- a block diagonal matrix.
+* **`unassigned`**, line 2738 --- For $p\in\mathcal P_n$ the norm of $p(b^{(n)})$ is the maximum of $\opnorm{p(a^{(n,k_{p'})})}$ over $p'\in\mathcal P_n$, which lies between $\opnorm{p(a^{(n)})}-1/n$ and $\opnorm{p(a^{(n)})}+1/n$.
+* **`unassigned`**, line 2738 --- Every polynomial belongs to $\mathcal P_n$ for all large $n$, so $\limsup_n\opnorm{p(b^{(n)})}=\limsup_n\opnorm{p(a^{(n)})}=\opnorm{p(a)}$ for every $p$.
+* **`unassigned`**, line 2738 --- Therefore $a_i\mapsto[(b_i^{(n)})_n]$ is well defined and isometric on the $*$-algebra over $\mathbb Q(i)$ generated by the $a_i$, which is dense in $A$, and it extends to an isometric $*$-homomorphism of $A$ into a norm matrix corona.
+* **`unassigned`**, line 2751 --- Suppose that for every $n$ there is a homomorphism $\lambda_n\colon\Gamma\to G_n$ to a finite group with
+* **`unassigned`**, line 2760 --- Then there are a separable unital MF $C^*$-algebra $A$, a homomorphism $V\colon\Gamma\times Q\to\U(A)$, a tracial state $T$ on $A$ with $T(V(g,q))=0$ for $(g,q)\ne(1,1)$, and a unitary $W\in A$ with $WV(s,1)W^*=V(s,\tau(s))$ for all $s\in S$.
+* **`unassigned`**, line 2760 --- Consequently
+* **`unassigned`**, line 2767 --- is regularly realized, and in particular MF\@.
+* **`unassigned`**, line 2781 --- for a free ultrafilter $\omega$.
+* **`unassigned`**, line 2781 --- Each coordinate of $V$ is a homomorphism into a unitary group, so $V$ is a homomorphism, and $T$ is a tracial state on $E$ because $\lvert(\tau_1\otimes\operatorname{tr}_{k_n})(x_n)\rvert\le\opnorm{x_n}$.
+* **`unassigned`**, line 2781 --- If $g\ne1$ then $\tau_1(\rho_1(g))=0$, so $T(V(g,q))=0$; if $g=1$ and $q\ne1$ then $\beta_n(q)\ne1$ for all large $n$, the regular representation of a finite group has trace zero off the identity, and again $T(V(1,q))=0$.
+* **`unassigned`**, line 2789 --- The two homomorphisms $s\mapsto(\lambda_n(s),1)$ and $s\mapsto(\lambda_n(s),\beta_n\tau(s))$ from $S$ to $E_n$ have the same kernel, namely $\ker(\lambda_n|_S)$, by the hypothesis.
+* **`unassigned`**, line 2789 --- Their images are therefore isomorphic subgroups of $E_n$ of the same order, isomorphic via $(\lambda_n(s),1)\mapsto(\lambda_n(s),\beta_n\tau(s))$.
+* **`unassigned`**, line 2789 --- The restriction of $L_n$ to a subgroup of $E_n$ is unitarily equivalent to the direct sum of as many copies of the left regular representation of that subgroup as it has right cosets, so there is a unitary $W_n\in M_{k_n}(\C)$ with $W_nL_n(\lambda_n(s),1)W_n^*=L_n(\lambda_n(s),\beta_n\tau(s))$ for all $s\in S$.
+* **`unassigned`**, line 2789 --- The triple $(A,V,T|_A)$ regularly realizes $\Gamma\times Q$.
+* **`unassigned`**, line 2809 --- If $e\in\mathrm{INF}$, then $\widehat R_e$ is regularly realized; in particular, it is MF\@.
+* **`unassigned`**, line 2821 --- The group $K_e$ is residually finite by Lemma~\ref{lem:central-rope}(1), hence regularly realized by Lemma~\ref{lem:rf-regular}, and $\Gamma_e$ is the central HNN extension of $K_e$ over $L_e$, hence regularly realized by Corollary~\ref{cor:central-hnn}.
+* **`unassigned`**, line 2826 --- The group $P=F(x_1,y)\times F(x_2,t)$ is residually finite; choose finite-index normal subgroups $P_1\ge P_2\ge\cdots$ of $P$ with trivial intersection, let $r_n\colon P\to C_n=P/P_n$, and put $\beta_n=r_n\circ j\colon H_0\to C_n$ with $j$ the embedding of Lemma~\ref{lem:bridge}(3).
+* **`unassigned`**, line 2826 --- Since $j$ is injective and the $P_n$ decrease to the trivial group, every $h\ne1$ has $\beta_n(h)\ne1$ for all large $n$.
+* **`unassigned`**, line 2833 --- This respects the relations of~\eqref{eq:central-rope}: the factor $L^0_e$ of $L_e$ lies in $K^0_e$ and is killed, and an element $(f,jq_+(f))$ of $L^{\mathrm g}$ is sent to $(r_njq_+(f),r_njq_+(f))$, which lies on the diagonal and commutes with $\sigma$.
+* **`unassigned`**, line 2833 --- Hence $\lambda_n\colon\Gamma_e\to G_n$ is a homomorphism, and on the generators of $S_e$,
+* **`unassigned`**, line 2847 --- The displayed formulas show that $\lambda_n|_{S_e}=(r_nj\pi_0,\,r_nj\pi_1)$, both sides being homomorphisms that agree on generators.
+* **`unassigned`**, line 2847 --- Therefore
+* **`unassigned`**, line 2855 --- which is the hypothesis of Lemma~\ref{lem:tensor-sync}.
+* **`unassigned`**, line 2859 --- By Lemma~\ref{lem:finite-rope} the map $e\mapsto\widehat R_e$ is computable, by Lemma~\ref{lem:positive-branch} the presented group is MF for $e\in\mathrm{INF}$, and by Lemma~\ref{lem:negative-branch} it is not MF for $e\in\mathrm{FIN}$.
+* **`unassigned`**, line 2859 --- Hence $\mathrm{INF}$ reduces to $\mathrm{MF}_{\mathrm{fp}}$ and $\mathrm{FIN}$ reduces to $\mathrm{NONMF}_{\mathrm{fp}}$ under computable many-one reductions.
+* **`unassigned`**, line 2859 --- Since $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is $\Sigma^0_2$-complete, and since $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$ by Proposition~\ref{prop:mf-upper-bound}, the two sets are complete at their levels.
+* **`unassigned`**, line 2859 --- A $\Pi^0_2$-complete set is not $\Sigma^0_2$ and a $\Sigma^0_2$-complete set is not $\Pi^0_2$, so neither set is recursively enumerable, and in particular neither is decidable.
+* **`unassigned`**, line 2875 --- The proof of Lemma~\ref{lem:positive-branch} never claims that the explicit unitaries $V(g,q)$ and $W$ represent $R_e$ faithfully, and indeed they do not: the finite maps $\lambda_n$ kill the Mikhailova factor, so $W$ commutes with $V(\gamma,1)$ for every $\gamma\in K^0_e$, although $u$ does not commute with $(\gamma,1)$ in $R_e$.
+* **`unassigned`**, line 2875 --- Faithfulness is restored at the universal algebra in Theorem~\ref{thm:hnn-permanence}.
+* **`unassigned`**, line 2875 --- Whether the models of $\widehat R_e$ can be chosen to converge to $C^*_{\mathrm r}(\widehat R_e)$ in operator norm, so that the reduced $C^*$-algebra itself is MF, is not settled by the argument, which produces only an abstract regular trace.
+* **`unassigned`**, line 2875 --- Whether $\widehat R_e$ is hyperlinear for $e\in\mathrm{INF}$ is open, and would place the recognition problem for hyperlinearity at the same level; by Theorem~\ref{thm:hnn-permanence} and the argument above this is a question about the regular trace of the rope.
+* **`unassigned`**, line 2875 --- Finally, whether the sofic analogue of the compiler exists is open, because the tensor synchronization has no counterpart for permutation models.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 12 | 1 |
-| Introduction | 88 | 12 |
+| Introduction | 89 | 14 |
 | Relation to prior work | 31 | 3 |
 | One-sided compression in finite dimension | 13 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 61 | 1 |
-| Normal Kazhdan subgroups and the MF radical | 78 | 3 |
+| Normal Kazhdan subgroups and the MF radical | 57 | 3 |
 | The binary Leavitt self-compression | 34 | 1 |
 | Simplicity and the full MF radical | 35 | 12 |
 | Quotients visible to MF | 52 | 0 |
@@ -285,5 +287,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | The bridge | 24 | 21 |
 | The cutting subgroup | 9 | 9 |
 | The ropes | 34 | 32 |
-| The positive branch | 59 | 41 |
-| Use of AI and formal methods | 9 | 1 |
+| The positive branch | 57 | 41 |
+| Acknowledgments | 2 | 0 |
+| Use of AI and formal methods | 15 | 0 |

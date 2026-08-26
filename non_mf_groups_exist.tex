@@ -2927,6 +2927,34 @@ normal form and the passage from a computable finite-output compiler to
 $\Pi^0_2$-completeness; the compiler of Section~\ref{sec:compiler} and
 Theorem~\ref{thm:hnn-permanence} are proved in the article.
 
+The development is intended as a research library and not only as a
+certificate for this paper.  Three of its closed, kernel-audited endpoints
+lie outside the present results.  Soficity of a recursively enumerated
+presentation is $\Pi^0_2$-complete; the hardness half follows the
+construction of Bilanovic--Chubb--Roven~\cite{BCR} from a finitely
+presented nonsofic group, whose nonsoficity is that of the Leavitt unit
+group of OpenAI's chapter~\cite{OAI}, re-proved in the development from
+Kun's expander decomposition and the Kun--Thom criterion.
+\leanverified{Computability/SoficEnumeratedPi02}{GroupApproximation.SoficEnumeratedPi02.sofic_enum_pi02Complete}
+There is one fixed finitely presented non-MF group with a computable
+family of words $w_p$, each invisible to every operator norm matrix model
+and lying in the commutator of the MF radical with the group, such that
+$w_p=1$ exactly when the program $p$ halts.
+\leanverified{Computability/FiniteDimensionalApproximationIncomplete}{GroupApproximation.FiniteDimensionalApproximationIncomplete.fixed_MF_radical_computer}
+There is a finitely presented, point-norm matricially stable, non-MF group
+whose MF radical is the normal closure of a single nontrivial element.
+\leanverified{Sofic/InvisibleExtensions}{GroupApproximation.InvisibleExtensions.stable_nonMF_invisible_extension_exists}
+The library also contains formalizations of Shalom's theorem that every
+finitely generated group with property~\textup{(T)} is a quotient of a
+finitely presented one, of property~\textup{(T)} for $\mathrm{SL}_3(\mathbb Z)$
+from an exact rational sum-of-squares certificate, and of the fact that the
+level-three congruence subgroup $\Gamma(3)$ of $\mathrm{SL}_3(\mathbb Z)$ is
+torsion-free, finitely presented, and has property~\textup{(T)}.
+\leanverified{Kazhdan/SL3Certificate}{GroupApproximation.SL3Certificate.sl3_hasKazhdanPropertyT}
+\leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_torsionFree}
+\leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_finitelyPresented}
+\leanverified{Kazhdan/TorsionFreeKazhdanPartner}{GroupApproximation.CongruenceSubgroup.gamma3_kazhdan}
+
 \begin{thebibliography}{99}
 \frenchspacing
 \bibitem[AA]{AbramsAranda}
@@ -3085,6 +3113,13 @@ preprint, 2025,
 K.~A. Mihailova,
 \emph{The occurrence problem for direct products of groups},
 Dokl. Akad. Nauk SSSR \textbf{119} (1958), 1103--1105.
+
+\bibitem[OAI]{OAI}
+OpenAI,
+\emph{Nonsofic groups exist},
+in \emph{Ten advances in mathematics and theoretical computer science},
+Chapter~3, 78--95, 2026,
+\url{https://cdn.openai.com/pdf/ten-proofs-oai.pdf}.
 
 \bibitem[Pre]{Preusser}
 R.~Preusser,

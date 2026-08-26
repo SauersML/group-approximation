@@ -573,3 +573,12 @@ e74f0aec3715	structural		lem:positive-branch: says where the argument is going
 07b43ee9236e	definition		lem:positive-branch: fixes notation or hypotheses
 d9c7de923504	definition		lem:positive-branch: fixes notation or hypotheses
 fe09dcd2b596	structural		lem:positive-branch: says where the argument is going
+
+# Formal-methods paragraph on the library's independent endpoints, added 2026-08-26.
+ddd185a0f4bb	provenance		Disclosure of what the development verifies for Theorem D; MFRecognitionPi02.operatorMFCode_pi02 and the compiler-conditional MFRecognitionSecondLevel.mfCode_pi02Complete_of_compiler
+79bfddc9e6f5	provenance		Statement of intent about the library; asserts no mathematics
+7359208b1c22	provenance		Introduces the three endpoints; asserts no mathematics
+3a1b1d1e86f9	formalized	GroupApproximation.SoficEnumeratedPi02.sofic_enum_pi02Complete	Pi^0_2-completeness of soficity on enumerated presentations; hardness pattern credited to BCR, seed nonsoficity to OpenAI's chapter
+115d90a5bbb1	formalized	GroupApproximation.FiniteDimensionalApproximationIncomplete.fixed_MF_radical_computer	The fixed MF-radical computer
+43f245fa1822	formalized	GroupApproximation.InvisibleExtensions.stable_nonMF_invisible_extension_exists	Stable non-MF invisible extension
+677410bd6657	formalized	GroupApproximation.SL3Certificate.sl3_hasKazhdanPropertyT GroupApproximation.CongruenceSubgroup.gamma3_torsionFree GroupApproximation.CongruenceSubgroup.gamma3_finitelyPresented GroupApproximation.CongruenceSubgroup.gamma3_kazhdan	Shalom's cover theorem is Shalom.exists_finitelyPresented_kazhdan_cover, whose statement carries its hypotheses as binders and is therefore not listed here
