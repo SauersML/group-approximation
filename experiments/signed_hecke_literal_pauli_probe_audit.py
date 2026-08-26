@@ -200,6 +200,9 @@ def main():
          for m, middle in enumerate(MIDDLE, start=1)}
     y = {middle: ((3, middle, b[m]),)
          for m, middle in enumerate(MIDDLE, start=1)}
+    s57 = ((7, 5, coeff("1", "")),)
+    a1_arm = ((7, 4, a[1]),)
+    expanded_single_legs = tuple(x[middle] for middle in MIDDLE) + (s57, a1_arm)
 
     whiteheads = []
     for m, (first, second) in enumerate(((7, 8), (8, 9)), start=1):
@@ -263,11 +266,13 @@ def main():
 
     uncovered_first = []
     uncovered_dual_x = []
+    uncovered_expanded_single = []
     uncovered_dual_primal = []
     uncovered_two_dual = []
     for representative, conjugates, _closure in classes:
         first_hit = False
         dual_x_hit = False
+        expanded_single_hit = False
         dual_primal_hit = False
         two_dual_hit = False
         for element in conjugates:
@@ -289,6 +294,15 @@ def main():
                         if is_elementary(extracted):
                             dual_x_hit = True
                             break
+                if not expanded_single_hit:
+                    for leg in expanded_single_legs:
+                        leg_matrix = word_matrix(leg)
+                        extracted = commutator(
+                            first, first_inverse, leg_matrix, leg_matrix
+                        )
+                        if is_elementary(extracted):
+                            expanded_single_hit = True
+                            break
                 if not dual_primal_hit:
                     for second, second_inverse, _ in primal:
                         extracted = commutator(
@@ -305,14 +319,18 @@ def main():
                         if is_elementary(extracted):
                             two_dual_hit = True
                             break
-                if first_hit and dual_x_hit and dual_primal_hit and two_dual_hit:
+                if (first_hit and dual_x_hit and expanded_single_hit
+                        and dual_primal_hit and two_dual_hit):
                     break
-            if first_hit and dual_x_hit and dual_primal_hit and two_dual_hit:
+            if (first_hit and dual_x_hit and expanded_single_hit
+                    and dual_primal_hit and two_dual_hit):
                 break
         if not first_hit:
             uncovered_first.append(representative)
         if not dual_x_hit:
             uncovered_dual_x.append(representative)
+        if not expanded_single_hit:
+            uncovered_expanded_single.append(representative)
         if not dual_primal_hit:
             uncovered_dual_primal.append(representative)
         if not two_dual_hit:
@@ -324,10 +342,13 @@ def main():
     print("distinct literal transported source types =", len(source_types))
     print("classes with no elementary first commutator =", len(uncovered_first))
     print("classes missed by dual-menu then one X leg =", len(uncovered_dual_x))
+    print("classes missed after also adding S57 and A1 =",
+          len(uncovered_expanded_single))
     print("classes missed by dual-48 then primal-48 =", len(uncovered_dual_primal))
     print("classes missed by two dual-48 probes =", len(uncovered_two_dual))
     print("first-commutator fence =", sorted(uncovered_first))
     print("dual-X fence =", sorted(uncovered_dual_x))
+    print("dual-(X,S57,A1) fence =", sorted(uncovered_expanded_single))
     print("dual-primal fence =", sorted(uncovered_dual_primal))
     print("dual-dual fence =", sorted(uncovered_two_dual))
 

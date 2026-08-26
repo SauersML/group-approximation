@@ -156,6 +156,29 @@ unrestricted stabilizer corrector still exists there (and even normalizes the
 packet), so this closes only the packet-central wordization shortcut; the
 selected-stabilizer and typewise nontransport readout gates remain live.
 
+Allowing a selector-group normalizer has an exact, less pessimistic boundary.
+`selector-normalizer-corrector-has-an-atom-permutation-criterion` shows that
+for a block-monomial payload with atom permutation `sigma`, a normalizer
+inducing `alpha` works precisely when `alpha` fixes the selected atom and
+`(alpha sigma)^2=1`.  Independent multiplicity gauges then absorb every
+payload block, so this does not create the projective payload collapse of a
+full-matrix normalizer.  But the required `alpha` need not belong to the
+actual finite selector-group automorphism image: the regular `C_4` packet
+with `sigma=(0 1 2)` is a four-character exact counterexample.  Thus a
+normalizer wordization must certify this permutation condition for its
+specific packet; normalizer availability is not automatic.
+
+Outside the block-monomial face even the full selected-atom diagonal
+normalizer can fail.  `three-character-payload-defeats-every-selector-normalizer-corrector`
+gives a rational real-orthogonal `3 x 3` payload with `qWq=0` for the regular
+`C_3` character packet.  The only allowed row permutations are identity and
+the swap of the two nontrivial characters, and in both cases asymmetric
+off-diagonal moduli prevent `SW` from being self-adjoint.  Hence the general
+operator corrector cannot be wordized merely by allowing an arbitrary
+finite selector normalizer; a surviving transducer must either establish the
+block-monomial permutation criterion in its intended face or genuinely leave
+the selector normalizer.
+
 For affine Fourier payloads, the SELECT side can now be made substantially
 smaller and representation-rigid.  `extraspecial-common-gauge-fourier-controller`
 uses only the rank-`k` Pauli packet: Stone--von Neumann uniqueness and the

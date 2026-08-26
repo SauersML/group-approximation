@@ -287,7 +287,7 @@ theorem intOfIndex_neg_of_odd {n : ℕ} (h : ¬ n % 2 = 0) : intOfIndex n < 0 :=
   rw [intOfIndex_odd h]; omega
 
 theorem intOfIndex_surjective (i : ℤ) : ∃ n : ℕ, intOfIndex n = i := by
-  rcases le_or_lt 0 i with h | h
+  by_cases h : 0 ≤ i
   · refine ⟨2 * i.natAbs, ?_⟩
     have h1 : 2 * i.natAbs % 2 = 0 := by omega
     have h2 : 2 * i.natAbs / 2 = i.natAbs := by omega
@@ -363,7 +363,7 @@ theorem closedIndex_iff_forall_index (c : Code) :
     · right
       have hcp' : ¬ ∀ m : ℕ, 0 < m →
           ∃ j ∈ intImage (WSet c), (m : ℤ) ∣ (intOfIndex n - j) := hcp
-      push_neg at hcp'
+      push Not at hcp'
       obtain ⟨m, hm, hmall⟩ := hcp'
       refine ⟨m, hm, fun k hk => ?_⟩
       have hnot : ¬ ((m : ℤ) ∣ (intOfIndex n - (k : ℤ))) :=
@@ -453,7 +453,7 @@ theorem not_closedAtIndex_iff (z : Code × ℕ) :
     · exact ⟨(0, 0), (refuteCheck_eq_true_iff z t (0, 0)).2 ⟨hleft, Or.inl ht0⟩⟩
     · have hex : ∃ k ∈ WSet z.1, congrTest z.2 t k = true := by
         by_contra hno
-        push_neg at hno
+        push Not at hno
         exact hnot (Or.inr ⟨t, htpos, fun k hk => by simpa using hno k hk⟩)
       obtain ⟨k, hk, hck⟩ := hex
       obtain ⟨s, hs⟩ := (eval_dom_iff_exists_evaln_isSome z.1 k).1 hk
@@ -501,7 +501,7 @@ theorem exists_bound_of_finiteDomain {c : Code} (h : FiniteDomain c) :
     ∃ B : ℕ, ∀ j, Row c j → j < B := by
   have hni : ¬ (codeDomain c).Infinite := Set.not_infinite.2 h
   rw [Set.infinite_iff_exists_gt] at hni
-  push_neg at hni
+  push Not at hni
   obtain ⟨B, hB⟩ := hni
   refine ⟨B + 1, fun j hj => ?_⟩
   obtain ⟨n, hjn, hn⟩ := hj
@@ -522,7 +522,7 @@ theorem zero_mem_dyadicSet (g : ℕ × ℕ → Code) (e : ℕ) : 0 ∈ dyadicSet
 /-- The search matrix enumerating the dyadic set. -/
 def dyadicCheck (g : ℕ × ℕ → Code) (em : ℕ × ℕ) (w : ℕ × ℕ × ℕ × ℕ) : Bool :=
   decide (em.2 = 0) ||
-    (decide (em.2 = 2 ^ w.1 * (2 * w.2.1 + 1) ∧ w.2.1 < w.2.2.1) &&
+    (decide (em.2 = 2 ^ w.1 * (2 * w.2.1 + 1)) && decide (w.2.1 < w.2.2.1) &&
       (Code.evaln w.2.2.2 (g (em.1, w.1)) w.2.2.1).isSome)
 
 theorem dyadicCheck_eq_true_iff (g : ℕ × ℕ → Code) (em : ℕ × ℕ)
@@ -549,6 +549,7 @@ theorem exists_dyadicCheck_iff (g : ℕ × ℕ → Code) (em : ℕ × ℕ) :
 theorem primrec₂_natPow : Primrec₂ ((· ^ ·) : ℕ → ℕ → ℕ) :=
   Primrec₂.unpaired'.1 Nat.Primrec.pow
 
+set_option maxHeartbeats 1000000 in
 theorem computable_dyadicCheck {g : ℕ × ℕ → Code} (hg : Computable g) :
     Computable₂ (dyadicCheck g) := by
   have hm : Primrec fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) => z.1.2 :=
@@ -571,9 +572,15 @@ theorem computable_dyadicCheck {g : ℕ × ℕ → Code} (hg : Computable g) :
     Primrec.nat_add.comp (Primrec.nat_mul.comp (Primrec.const 2) hj) (Primrec.const 1)
   have hval : Primrec fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) =>
       2 ^ z.2.1 * (2 * z.2.2.1 + 1) := Primrec.nat_mul.comp hpow hodd
+  have hshape : Primrec fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) =>
+      decide (z.1.2 = 2 ^ z.2.1 * (2 * z.2.2.1 + 1)) :=
+    (Primrec.eq.comp hm hval).decide
+  have hlt : Primrec fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) =>
+      decide (z.2.2.1 < z.2.2.2.1) :=
+    (Primrec.nat_lt.comp hj hn).decide
   have hcond : Primrec fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) =>
-      decide (z.1.2 = 2 ^ z.2.1 * (2 * z.2.2.1 + 1) ∧ z.2.2.1 < z.2.2.2.1) :=
-    (PrimrecPred.and (Primrec.eq.comp hm hval) (Primrec.nat_lt.comp hj hn)).decide
+      decide (z.1.2 = 2 ^ z.2.1 * (2 * z.2.2.1 + 1)) && decide (z.2.2.1 < z.2.2.2.1) :=
+    Primrec.and.comp hshape hlt
   have hev : Computable fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) =>
       (Code.evaln z.2.2.2.2 (g (z.1.1, z.2.1)) z.2.2.2.1).isSome :=
     Primrec.option_isSome.to_comp.comp

@@ -7000,6 +7000,7 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
+- 2026-08-26 · non-hyperlinear-from-hyperlinear-recognition-undecidable [OPEN] An undecidability proof for hyperlinear recognition produces a non-hyperlinear group without constructing one
 - 2026-08-26 · same-center-whitehead-native-selector-subcorner-attachment [OPEN] Attach the two native selector occurrences to the conjugate Whitehead gauges on a positive model-dependent subcorner
 - 2026-08-26 · row2-source-factor-sheet-cube-proof [COMPLETE] Collect the paid factor cube and expose its nonzero x53 sheet face
 - 2026-08-26 · row2-source-factor-detects-paid-pauli-sheet [ESTABLISHED] The literal row-two source factor detects the paid Pauli sheet root
@@ -7007,7 +7008,6 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 - 2026-08-26 · property-t-free-leavitt-full-mf-radical [OPEN] Derive binary-Leavitt full MF collapse without Kazhdan hypotheses
 - 2026-08-26 · paid-moving-hecke-source-proof [COMPLETE] Intersect the paid compression with the conjugated signed source and charge the forced head exit
 - 2026-08-26 · paid-cut-has-moving-hecke-source-or-detector [ESTABLISHED] Paid Whitehead mass either pays a detector or enters one moving Hecke source row
-- 2026-08-26 · growing-multicut-el20-order-seven-inheritance [OPEN] Transport one reservoir gauge around seven moving coefficient-sensitive cuts
 
 ## Active claims
 

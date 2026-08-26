@@ -95,6 +95,13 @@ union of level-`(m + O(1))` cells.
   `2/(rD)`.  Hence matrix amplification cannot turn this into a collapsed
   profinite model; one must spatialize the genuinely noncompact lattice
   return action.
+  This is now an exact finite-corner criterion rather than only a permanence
+  slogan: `sl3-homogeneous-ce-is-common-cocycle-spatialization` proves that
+  `(SH1)` is embeddable iff one embedding of a finite profinite corner into
+  `R^omega` simultaneously spatializes every lattice return and closes the
+  compression cocycle on the lattice relators.  Each cyclic return is
+  separately spatializable, but the separate embeddings leave a
+  relative-commutant two-cocycle and do not supply the common solution.
 - **Exact-face stability.**  If `SL_3(Z)` were flexibly HS-stable, any
   microstate sequence of `M` would restrict on `SL_3(Z)` to near-genuine
   congruence representations, and `u_h` would reduce to the one-unitary

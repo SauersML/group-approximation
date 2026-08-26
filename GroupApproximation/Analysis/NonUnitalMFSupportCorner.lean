@@ -351,6 +351,47 @@ theorem cornerCompression_projection_eq_one
     coordinateProjection, Matrix.one_apply, Subtype.ext_iff, i.property,
     j.property]
 
+/-- Compression is multiplicative on two matrices which commute with the
+projection. -/
+theorem cornerCompression_mul_of_commute
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P B C : Matrix Z Z ℂ} (hP : P.IsHermitian) (hPidem : P * P = P)
+    (hB : B * P = P * B) (hC : C * P = P * C) :
+    cornerCompression hP (B * C) =
+      cornerCompression hP B * cornerCompression hP C := by
+  have hle := norm_cornerCompression_mul_defect_le hP hPidem (B * C) B C
+  have hzero :
+      ‖cornerCompression hP (B * C) -
+        cornerCompression hP B * cornerCompression hP C‖ = 0 := by
+    apply le_antisymm
+    · simpa [hB, hC] using hle
+    · exact norm_nonneg _
+  exact sub_eq_zero.mp (norm_eq_zero.mp hzero)
+
+/-- A two-sided compression by a projection commutes with that projection. -/
+theorem projectionSandwich_commutes
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P : Matrix Z Z ℂ} (hPidem : P * P = P) (C : Matrix Z Z ℂ) :
+    (P * C * P) * P = P * (P * C * P) := by
+  calc
+    (P * C * P) * P = P * C * (P * P) := by noncomm_ring
+    _ = P * C * P := by rw [hPidem]
+    _ = (P * P) * C * P := by rw [hPidem]
+    _ = P * (P * C * P) := by noncomm_ring
+
+/-- Consequently compression is exactly multiplicative on two projection
+sandwiches. -/
+theorem cornerCompression_projectionSandwich_mul
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (hPidem : P * P = P)
+    (B C : Matrix Z Z ℂ) :
+    cornerCompression hP ((P * B * P) * (P * C * P)) =
+      cornerCompression hP (P * B * P) *
+        cornerCompression hP (P * C * P) :=
+  cornerCompression_mul_of_commute hP hPidem
+    (projectionSandwich_commutes hPidem B)
+    (projectionSandwich_commutes hPidem C)
+
 theorem cornerPredicate_iff_eigenvalue_ne_zero
     {Z : Type*} [Fintype Z] [DecidableEq Z]
     {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (hPidem : P * P = P) (i : Z) :
@@ -571,6 +612,43 @@ theorem cornerCompressSequence_projection_eq_one
     (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
     (relabelledProjection_isOrthogonalProjection Y P hP hne k).2
 
+/-- Bounded coordinate compression is exactly multiplicative on two families
+which have first been sandwiched by the projection lift. -/
+theorem cornerCompressSequence_projectionSandwich_mul
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x y : BoundedMatrixSequence (fun n ↦ Y n)) :
+    cornerCompressSequence Y P hP hne ((P * x * P) * (P * y * P)) =
+      cornerCompressSequence Y P hP hne (P * x * P) *
+        cornerCompressSequence Y P hP hne (P * y * P) := by
+  refine lp.ext (funext fun k ↦ ?_)
+  change cornerCompression
+      (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+      (((P (supportRelabelling Y P hne k) :
+          Matrix (Y (supportRelabelling Y P hne k))
+            (Y (supportRelabelling Y P hne k)) ℂ) *
+        x (supportRelabelling Y P hne k) * P (supportRelabelling Y P hne k)) *
+       ((P (supportRelabelling Y P hne k) :
+          Matrix (Y (supportRelabelling Y P hne k))
+            (Y (supportRelabelling Y P hne k)) ℂ) *
+        y (supportRelabelling Y P hne k) * P (supportRelabelling Y P hne k))) =
+    cornerCompression
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+        ((P (supportRelabelling Y P hne k) :
+          Matrix (Y (supportRelabelling Y P hne k))
+            (Y (supportRelabelling Y P hne k)) ℂ) *
+          x (supportRelabelling Y P hne k) * P (supportRelabelling Y P hne k)) *
+      cornerCompression
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+        ((P (supportRelabelling Y P hne k) :
+          Matrix (Y (supportRelabelling Y P hne k))
+            (Y (supportRelabelling Y P hne k)) ℂ) *
+          y (supportRelabelling Y P hne k) * P (supportRelabelling Y P hne k))
+  exact cornerCompression_projectionSandwich_mul
+    (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+    (relabelledProjection_isOrthogonalProjection Y P hP hne k).2 _ _
+
 /-- Coordinate compression carries ambient cofinite-null families to
 cofinite-null corner families.  This is the well-definedness direction needed
 for a later quotient map; the converse is a separate norm-reflection theorem
@@ -592,6 +670,54 @@ theorem isNull_cornerCompressSequence
         (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
         (x (supportRelabelling Y P hne k))
   · exact hx.comp (supportRelabelling_strictMono Y P hne).tendsto_atTop
+
+/-! ## The corner class of an ambient bounded family -/
+
+/-- Compress a bounded family and then take its class in the relabelled
+corner corona.  This is not asserted to be multiplicative on arbitrary
+ambient families. -/
+def cornerClass
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x : BoundedMatrixSequence (fun n ↦ Y n)) :
+    NormMatrixCStarCorona (relabelledCornerModel Y P hP hne) :=
+  normMatrixCStarCoronaMk (relabelledCornerModel Y P hP hne)
+    (cornerCompressSequence Y P hP hne x)
+
+/-- Ambient null families have zero corner class. -/
+theorem cornerClass_eq_zero_of_isNull
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x : BoundedMatrixSequence (fun n ↦ Y n))
+    (hx : IsNullMatrixSequence (fun n ↦ Y n) cofinite x) :
+    cornerClass Y P hP hne x = 0 := by
+  apply (normMatrixCStarCoronaMk_eq_zero_iff
+    (relabelledCornerModel Y P hP hne)
+    (cornerCompressSequence Y P hP hne x)).mpr
+  exact isNull_cornerCompressSequence Y P hP hne x hx
+
+/-- The projection lift represents the unit of the corner corona. -/
+theorem cornerClass_projection_eq_one
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0) :
+    cornerClass Y P hP hne P = 1 := by
+  rw [cornerClass, cornerCompressSequence_projection_eq_one, map_one]
+
+/-- The corner class is exactly multiplicative on projection-sandwiched
+families. -/
+theorem cornerClass_projectionSandwich_mul
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x y : BoundedMatrixSequence (fun n ↦ Y n)) :
+    cornerClass Y P hP hne ((P * x * P) * (P * y * P)) =
+      cornerClass Y P hP hne (P * x * P) *
+        cornerClass Y P hP hne (P * y * P) := by
+  rw [cornerClass, cornerClass, cornerClass,
+    cornerCompressSequence_projectionSandwich_mul, map_mul]
 
 /-- The image of the source unit, which is the unit of the represented
 corner. -/
@@ -683,7 +809,11 @@ theorem mk_compress_lift_eq
 #audit_axioms card_relabelledCornerModel_pos
 #audit_axioms cornerCompressSequence_star
 #audit_axioms cornerCompressSequence_projection_eq_one
+#audit_axioms cornerCompressSequence_projectionSandwich_mul
 #audit_axioms isNull_cornerCompressSequence
+#audit_axioms cornerClass_eq_zero_of_isNull
+#audit_axioms cornerClass_projection_eq_one
+#audit_axioms cornerClass_projectionSandwich_mul
 
 end
 

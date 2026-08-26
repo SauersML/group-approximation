@@ -33,7 +33,9 @@ def adjointLinearEquiv
       simp
     have hadj := congrArg (fun A : Module.End ℂ V ↦ A.adjoint) hcomp
     rw [LinearMap.adjoint_comp, LinearMap.adjoint_id] at hadj
-    exact DFunLike.congr_fun hadj x
+    have hx := DFunLike.congr_fun hadj x
+    change T.symm.toLinearMap.adjoint (T.toLinearMap.adjoint x) = x at hx
+    exact hx
   right_inv x := by
     have hcomp : T.symm.toLinearMap ∘ₗ T.toLinearMap =
         (LinearMap.id : Module.End ℂ V) := by
@@ -41,7 +43,9 @@ def adjointLinearEquiv
       simp
     have hadj := congrArg (fun A : Module.End ℂ V ↦ A.adjoint) hcomp
     rw [LinearMap.adjoint_comp, LinearMap.adjoint_id] at hadj
-    exact DFunLike.congr_fun hadj x
+    have hx := DFunLike.congr_fun hadj x
+    change T.toLinearMap.adjoint (T.symm.toLinearMap.adjoint x) = x at hx
+    exact hx
   map_add' x y := by simp
   map_smul' c x := by simp
 

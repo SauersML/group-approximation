@@ -115,6 +115,85 @@ theorem hyperlinear_second_level_hardness_package_of_exists
   ⟨hyperlinearEnumeratedCodeProperty_pi02Hard_of_exists h,
     nonhyperlinearEnumeratedCodeProperty_sigma02Hard_of_exists h⟩
 
+/-! ## The unconditional recognition phase diagram -/
+
+/-- If every group is hyperlinear, the enumerated hyperlinearity predicate is
+the computable constant-true predicate. -/
+theorem hyperlinearEnumeratedCodeProperty_computable_of_universal
+    (h : ∀ (G : Type) (_ : Group G), IsHyperlinear G) :
+    ComputablePred HyperlinearEnumeratedCodeProperty := by
+  letI : DecidablePred HyperlinearEnumeratedCodeProperty := fun q ↦
+    isTrue (h (EnumeratedPresentationCodes.Carrier q) inferInstance)
+  exact ⟨inferInstance, Computable.const true⟩
+
+/-- In the universal regime, the negative predicate is computably empty. -/
+theorem nonhyperlinearEnumeratedCodeProperty_computable_of_universal
+    (h : ∀ (G : Type) (_ : Group G), IsHyperlinear G) :
+    ComputablePred (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) := by
+  letI : DecidablePred (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) := fun q ↦
+    isFalse (fun hn ↦ hn (h (EnumeratedPresentationCodes.Carrier q) inferInstance))
+  exact ⟨inferInstance, Computable.const false⟩
+
+/-- The two exhaustive recognition regimes.  This theorem is unconditional:
+which branch holds is precisely the open non-hyperlinear-group problem. -/
+theorem hyperlinear_recognition_phase_dichotomy :
+    ((∀ (G : Type) (_ : Group G), IsHyperlinear G) ∧
+      ComputablePred HyperlinearEnumeratedCodeProperty ∧
+      REPred (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q)) ∨
+    ((∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ∧
+      Pi02Hard HyperlinearEnumeratedCodeProperty ∧
+      Sigma02Hard (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q)) := by
+  classical
+  by_cases hcounter : ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G
+  · exact Or.inr ⟨hcounter,
+      hyperlinearEnumeratedCodeProperty_pi02Hard_of_exists hcounter,
+      nonhyperlinearEnumeratedCodeProperty_sigma02Hard_of_exists hcounter⟩
+  · push Not at hcounter
+    exact Or.inl ⟨hcounter,
+      hyperlinearEnumeratedCodeProperty_computable_of_universal hcounter,
+      (nonhyperlinearEnumeratedCodeProperty_computable_of_universal hcounter).to_re⟩
+
+/-- The two branches of `hyperlinear_recognition_phase_dichotomy` are
+disjoint. -/
+theorem hyperlinear_recognition_phase_branches_disjoint :
+    ¬ ((∀ (G : Type) (_ : Group G), IsHyperlinear G) ∧
+      (∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G)) := by
+  rintro ⟨hall, G, groupG, hG⟩
+  exact hG (hall G groupG)
+
+/-! ## Completeness once the effective upper bound is supplied -/
+
+/-- Any `Pi02` upper bound upgrades the hard branch to completeness. -/
+theorem hyperlinearEnumeratedCodeProperty_pi02Complete_of_exists
+    (hupper : Pi02 HyperlinearEnumeratedCodeProperty)
+    (h : ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) :
+    Pi02Complete HyperlinearEnumeratedCodeProperty :=
+  ⟨hupper, hyperlinearEnumeratedCodeProperty_pi02Hard_of_exists h⟩
+
+/-- With the effective upper bound fixed, `Pi02`-completeness is equivalent to
+the existence of a non-hyperlinear group. -/
+theorem exists_not_isHyperlinear_iff_hyperlinearEnumeratedCodeProperty_pi02Complete
+    (hupper : Pi02 HyperlinearEnumeratedCodeProperty) :
+    (∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
+      Pi02Complete HyperlinearEnumeratedCodeProperty := by
+  constructor
+  · exact hyperlinearEnumeratedCodeProperty_pi02Complete_of_exists hupper
+  · intro h
+    exact exists_not_isHyperlinear_of_hyperlinearEnumeratedCodeProperty_pi02Hard h.2
+
+/-- The same upper bound gives the complementary `Sigma02` classification. -/
+theorem exists_not_isHyperlinear_iff_nonhyperlinearEnumeratedCodeProperty_sigma02Complete
+    (hupper : Pi02 HyperlinearEnumeratedCodeProperty) :
+    (∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
+      Sigma02Complete (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) := by
+  constructor
+  · intro h
+    exact pi02Complete_compl
+      (hyperlinearEnumeratedCodeProperty_pi02Complete_of_exists hupper h)
+  · intro h
+    exact
+      exists_not_isHyperlinear_of_nonhyperlinearEnumeratedCodeProperty_sigma02Hard h.2
+
 end HyperlinearRecognitionSecondLevel
 end GroupApproximation
 
@@ -125,3 +204,7 @@ open GroupApproximation.HyperlinearRecognitionSecondLevel
 #audit_axioms exists_not_isHyperlinear_iff_hyperlinearEnumeratedCodeProperty_pi02Hard
 #audit_axioms exists_not_isHyperlinear_iff_nonhyperlinearEnumeratedCodeProperty_sigma02Hard
 #audit_axioms hyperlinear_second_level_hardness_package_of_exists
+#audit_axioms hyperlinear_recognition_phase_dichotomy
+#audit_axioms hyperlinear_recognition_phase_branches_disjoint
+#audit_axioms exists_not_isHyperlinear_iff_hyperlinearEnumeratedCodeProperty_pi02Complete
+#audit_axioms exists_not_isHyperlinear_iff_nonhyperlinearEnumeratedCodeProperty_sigma02Complete

@@ -50,6 +50,14 @@ NONHYP_rec`.  The reverse implications are also checked: if `(i)` fails, those
 targets are respectively constant true and constant false, and explicit
 second-level source predicates rule out hardness.
 
+The same module packages this argument without hypotheses as
+`hyperlinear_recognition_phase_dichotomy` and proves its two branches disjoint.
+It additionally factors the remaining effective-classification task cleanly:
+given `Pi02 HYP_rec`, a counterexample exists iff `HYP_rec` is `Pi02Complete`,
+and iff `NONHYP_rec` is `Sigma02Complete`.  Thus the analytic coding work needed
+for the upper bound is logically separated from the already checked phase
+transition and hardness compiler.
+
 **Other properties.**  Weakly sofic and linear sofic groups are defined by
 table models in finite groups with bi-invariant metrics, respectively in
 `GL_n` of a field with the normalized rank metric, so both are local

@@ -11,7 +11,7 @@ Boolean decision layer.
 namespace GroupApproximation
 namespace EffectiveMatrixCodePrimrec
 
-open RationalComplexCode EffectiveMatrixCode PresentationCodes
+open RationalComplexCode EffectiveMatrixCode
 
 /-! ## Boolean matrix predicates
 

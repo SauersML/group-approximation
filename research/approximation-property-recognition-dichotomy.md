@@ -64,7 +64,14 @@ of the explicit reduction type.  Finally,
 `Computability/HyperlinearRecognitionSecondLevel` machine-checks `(i) <=>
 (vii) <=> (viii)`.  Its forward maps are the arbitrary-forbidden-seed event-ray
 compiler; its reverse maps prove directly that constant-true and constant-false
-predicates cannot be hard at the corresponding second level.
+predicates cannot be hard at the corresponding second level.  The unconditional
+audited theorem `hyperlinear_recognition_phase_dichotomy` packages both regimes:
+either all groups are hyperlinear and the positive/negative enumerated-code
+predicates are computable/recursively enumerable, or a counterexample exists
+and those predicates are respectively `Pi02Hard`/`Sigma02Hard`; a companion
+theorem proves the branches disjoint.  The two `*_Complete` equivalences also
+show that any effective `Pi02` upper bound upgrades exactly the counterexample
+branch, and only that branch, to matching completeness.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by
