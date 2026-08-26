@@ -137,4 +137,3 @@ tr(Q_fP_fQ_f-(Q_fP_fQ_f)^2)=(1/32)||F^2-1||_2^2
 ```
 
 then proves `(NCG8)`.
-

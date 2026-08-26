@@ -86,4 +86,3 @@ block gauges are both closed.
 
 DERIVATION
 rank-one-near-central-gauge-proof
-
