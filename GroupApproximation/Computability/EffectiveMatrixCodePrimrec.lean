@@ -341,6 +341,7 @@ theorem primrec_listAll {α β : Type*} [Primcodable α] [Primcodable β]
   | nil => rfl
   | cons b l ih => simp only [List.foldr_cons, List.all_cons, ih]
 
+set_option maxHeartbeats 800000 in
 theorem primrecPred_matrixEq :
     PrimrecPred fun z : (ℕ × MatrixCode) × MatrixCode =>
       matrixEq z.1.1 z.1.2 z.2 := by
@@ -470,6 +471,7 @@ theorem primrecPred_entrySmall :
       (primrec_complexNormSq.comp Primrec.snd))
     (Primrec.const ratOne)
 
+set_option maxHeartbeats 2000000 in
 theorem primrecPred_matrixSmall :
     PrimrecPred fun z : (ℕ × ℕ) × MatrixCode =>
       matrixSmall z.1.1 z.1.2 z.2 := by
@@ -515,6 +517,7 @@ theorem primrecPred_matrixSmall :
   intro z
   simp only [List.all_eq_true, decide_eq_true_eq, List.mem_range, matrixSmall]
 
+set_option maxHeartbeats 2000000 in
 theorem primrecPred_vectorWitness :
     PrimrecPred fun z : (ℕ × MatrixCode) × VectorCode =>
       vectorWitness z.1.1 z.1.2 z.2 := by
