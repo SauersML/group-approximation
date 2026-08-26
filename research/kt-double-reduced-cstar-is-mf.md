@@ -41,3 +41,38 @@ The concrete profinite regular completion used in
 `symmetric-double-weak-mf-proof` fails to factor through `C*_r(G)` by
 `kt-shulman-profinite-vertex-model-is-nontempered`.
 
+The remaining relative-microstate architecture is quantitatively constrained
+by `kt-return-expectation-pays-one-full-edge-principal-angle`.  For the fixed
+compressor return `h=t^(-1) gamma t outside Gamma`, vanishing of the matrix
+edge expectation forces the aggregate forward covariance leakage of
+`C*(phi_n(Gamma))` under `phi_n(t)` to have liminf at least one.  If an edge
+word basis has Gram lower bound `lambda_n`, word lengths `ell_(i,n)`, and
+actor covariance defect at most `epsilon_n`, this requires
+
+```text
+lambda_n^(-1) epsilon_n^2 sum_i ell_(i,n)^2 >= 1-o(1).  (KRC2)
+```
+
+Thus the positive model cannot be a uniformly conditioned exactification of
+the vertex inclusion.  It must use genuinely approximate coordinates whose
+vanishing pointwise defect is amplified by growing word complexity or a
+degenerating moving edge Gram matrix.  The latter escape is real even for
+exact canonical-character vertex sequences:
+`kt-kazhdan-edge-grams-are-conditioned-only-at-fixed-radius` constructs
+moving edge words with arbitrarily small Gram eigenvalue.  Property `(T)`
+controls every fixed window but supplies no uniform conditioning at the
+moving radius required here.
+
+The infinite index of the actual compressor strengthens this from a
+one-direction obstruction to a divergent-capacity requirement.
+`kt-infinite-index-returns-force-divergent-edge-leakage` proves that any
+relative vertex microstates realizing the canonical edge expectation must
+satisfy
+
+```text
+||(1-E_(B_n))Ad(phi_n(t))E_(B_n)||_HS^2 -> infinity,    (KRC3)
+```
+
+and hence the left side of `(KRC2)` must diverge rather than merely stay
+above one.  The positive construction must therefore create unboundedly many
+moving edge directions on which pointwise-small covariance errors aggregate.
