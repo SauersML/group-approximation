@@ -96,6 +96,13 @@ No established finite packet supplies these two parity constraints.
 5. `same-center-m8-commutators-cannot-wordize-one-eighth-reflection` forces
    the second cell to leave the present Pauli/adjacent-Whitehead label
    group: its label action in `(LDC3)` has odd determinant.
+6. `same-center-quarter-label-difference-has-quadratic-phase-fence` closes
+   the corresponding internal search for the first cell.  Its determinant
+   is one and supplies no obstruction, but its label phase is the quadratic
+   function `x_1x_2`, whereas every word in the six native Pauli roots and
+   the two prefix Whiteheads has affine phase.  Adjoining a CZ covariance
+   word changes the missing equation to the explicit cross-outer gauge lock
+   `D V_1=I`; covariance alone does not prove it.
 
 Accordingly the minimum unfenced packet is two odd incidence constraints,
 one involving each actual native selector occurrence.  They may be
@@ -126,6 +133,13 @@ the established fences.
   A live search must therefore add a genuinely mixed word outside that
   finite actor packet and share one of its non-Boolean coefficient
   occurrences with the actual second native row.
+- **Build `L_1` from the native Pauli roots and prefix Whiteheads.**  The
+  affine-phase calculation in
+  `same-center-quarter-label-difference-has-quadratic-phase-fence` excludes
+  the required quadratic controlled sign times swap.  A newly adjoined CZ
+  normalizer has an arbitrary multiplicity factor, so multiplying it by the
+  first Whitehead only reduces the problem to authenticating their
+  cross-outer gauge equality.
 
 No Property `(T)`, canonical-trace substitution, stability theorem,
 computation, or literature input is used.
