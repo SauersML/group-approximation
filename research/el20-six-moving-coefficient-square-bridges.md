@@ -525,3 +525,24 @@ the first two fused gauges remains order three.  Thus a three-coordinate
 braid alone still does not authenticate a shared selector; the next word
 must form a genuine coefficient sum before complementary separation or add
 a same-carrier relation between the two private factors.
+
+Forming completeness inside one aggregate mixed commutator is also now
+explicit, rather than merely proposed.  In
+`aggregate-cross-commutator-sum-has-finite-s6-gauge`, the two-arm row and
+column words
+
+```text
+A=x_79(p)x_(7,10)(r),
+B=x_98(r)x_(10,8)(p)
+```
+
+satisfy `[A,B]=x_78(pr+rp)=x_78(1)`.  Thus `q_0+q_1=1` is genuinely formed
+inside a single four-coordinate commutator before an output-root fusion.
+Nevertheless the relation on reservoir factors is only
+`E=[alpha,beta]`.  An exact `S_6` model realizes `alpha,beta` as
+involutions with that commutator while a native involution `D` still has
+`DE` of order three.  Appending this word to `K_0` is precisely normalizer
+dressing and supplies no shared occurrence with `J_1`.  The next live cell
+must make one of the private row/column roots occur literally inside the
+native Whitehead/Singer word, or impose another same-carrier relation
+between its factor and `D`.
