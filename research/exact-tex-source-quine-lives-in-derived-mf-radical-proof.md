@@ -10,7 +10,7 @@ requires:
 artifacts:
   - GroupApproximation/Computability/MFRadicalQuine.lean
   - GroupApproximation/Computability/MFRadicalQuineSource.lean
-  - mf_radical_tex_quine.tex
+  - f1746067c:mf_radical_tex_quine.tex
   - scripts/check_mf_radical_tex_quine.py
 ---
 

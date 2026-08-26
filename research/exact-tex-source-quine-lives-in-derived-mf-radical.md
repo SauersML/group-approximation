@@ -4,7 +4,7 @@ id: exact-tex-source-quine-lives-in-derived-mf-radical
 kind: claim
 title: An exact TeX source quine is encoded by identity inside the derived MF radical of one fixed finitely presented non-MF group
 artifacts:
-  - mf_radical_tex_quine.tex
+  - f1746067c:mf_radical_tex_quine.tex
   - GroupApproximation/Computability/MFRadicalQuine.lean
   - GroupApproximation/Computability/MFRadicalQuineSource.lean
   - scripts/build_mf_radical_tex_quine.py
