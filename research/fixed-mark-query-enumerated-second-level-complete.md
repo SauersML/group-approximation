@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: fixed-non-mf-mark-query-enumerated-presentations-is-second-level-complete
+id: fixed-mark-query-enumerated-second-level-complete
 kind: claim
 title: The fixed non-MF marked query is exactly second-level complete on enumerated presentations
 distinct_from:

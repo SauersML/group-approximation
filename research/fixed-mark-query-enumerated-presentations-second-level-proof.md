@@ -3,7 +3,7 @@ rg: 2
 id: fixed-mark-query-enumerated-presentations-second-level-proof
 kind: route
 title: Compile the exact ray switch into the standard enumerated-presentation syntax
-target: fixed-non-mf-mark-query-enumerated-presentations-is-second-level-complete
+target: fixed-mark-query-enumerated-second-level-complete
 requires:
   - exact-literal-e-fin-inf-switch
   - literal-central-mark-corona-invisible
