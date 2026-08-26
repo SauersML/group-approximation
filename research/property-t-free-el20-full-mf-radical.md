@@ -24,4 +24,8 @@ The direct route below has no remaining algebraic or normal-generation
 input: simplicity of `EL_20(R)` and the affine rank contradiction are
 internal and established.  It is blocked exactly at
 `binary-leavitt-el20-arbitrary-profile-native-cross-gram`, now reduced by the
-order-seven anchor to the finite-coordinate leakage estimate `(OCI5)`.
+order-seven anchor to the moving-cut compiler
+`growing-multicut-el20-order-seven-inheritance`.  The former common-cut
+leakage formulation is refuted; the remaining issue is a coefficient-word
+lock which makes all seven stage gauges equal in one fixed Hecke reservoir
+frame rather than merely conjugate with trivial cyclic product.

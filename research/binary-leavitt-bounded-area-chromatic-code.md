@@ -121,7 +121,31 @@ theorem then gives full MF collapse of `Delta`.
   `one-column-orbit-codes-have-bounded-chromatic-number`.
   A block construction must therefore vary the normalized column type or
   make many neighbors coincide modulo its cyclic subgroup.
+* **Replace the root column by finitely many mixed/opposite-root cells.**
+  This does not by itself escape centralizer area.  The theorem
+  `finite-prototype-column-codes-force-coset-collisions` allows any finite
+  list of nontrivial finite-order column prototypes.  If the normalized
+  neighbour rows remain distinct elementary-root coefficients, their cyclic
+  coset fibres are uniformly bounded (usually injective), and the theorem
+  bounds the chromatic number.  Hence a fixed-cell two-branch construction
+  must do more than change the column's root type: it must create unbounded
+  normalized-row collisions, or use infinitely many genuinely different
+  column types.  The former is a concrete new design target; the latter must
+  still keep `(CCC1)--(CCC2)` at uniform presentation area.
+* **Private third-address tagged shift table.**
+  `binary-leavitt-tagged-shift-table-has-centralizer-collisions` supplies
+  genuinely different vertex data.  At `(i,j)` it uses the row `A_i` and
+  column `B_i+D_(ij)`, where `D_(ij)` is a private orthogonal prefix column.
+  The diagonal is marked, while every outgoing target `(j,k)` has the same
+  row `A_j` and commutes with that column.  Thus normalized-row fibres are
+  unbounded and no literal column persists across distinct row values; the
+  existing cumulative/tree centralizer arguments do not apply.  The new
+  bottleneck is multi-predecessor word coherence: one row `A_j` must compare
+  at bounded area with all edgewise three-address charts that contain it.
+  A pair-dependent simultaneous prefix unit proves each exact identity but
+  does not yet give the one-word-per-vertex requirement of `(CCC2)`.
 
 The next viable attack must construct a bounded-area orbit section directly,
-or replace representative coherence by a finite-coordinate selector whose
-error does not telescope with address length.
+replace representative coherence by a finite-coordinate selector whose
+error does not telescope with address length, or realize the unbounded
+cyclic-coset collisions forced by the finite-prototype theorem.

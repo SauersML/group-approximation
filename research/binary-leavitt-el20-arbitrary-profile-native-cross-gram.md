@@ -39,9 +39,17 @@ not available.
 
 ## Attempts
 
-The order-seven route below reduces this claim to
-`finite-coordinate-el20-active-cut-inherits-order-seven-anchor`.  Fixed
-center-chain fractions fail on arbitrary profiles, and finite invariant
-actor atoms admit exact Morita-neutral countermodels.  The live attack is the
-matrix-dependent Whitehead-leakage estimate `(OCI5)`; it is deferred nowhere
-else.
+The original order-seven route through one common reducing cut is refuted:
+`el20-order-seven-heads-force-zero-common-hecke-reducing-cut` forces that cut
+to vanish, and `order-seven-first-exit-is-not-seven-step-leakage` shows that
+the proposed one-exit estimate did not control a seventh-power telescope.
+
+The surviving route is
+`order-seven-growing-multicut-gives-el20-native-cross-gram`.  Its only open
+input is `growing-multicut-el20-order-seven-inheritance`, but moving cuts do
+not by themselves finish the argument.  The exact fence
+`moving-order-seven-stage-gauges-have-coboundary-drift` shows that seven
+transported conjugates of one nontrivial gauge may have trivial cyclic
+product.  The live requirement is therefore an EL20 coefficient-sensitive
+fixed-Hecke-frame lock (equivalently, asymptotic commutation with the
+reservoir holonomy), in addition to the moving boundary control.

@@ -8,6 +8,7 @@ distinct_from:
   openai-leavitt-unit-nonsofic: that is the established nonsoficity theorem; this records the exact Property-(T) dependency in both of its available derivations and the missing implication needed to combine it with MF reblocking.
 artifacts:
   - research/property-t-free-leavitt-full-mf-radical.md
+  - research/opnorm-packet-rank-does-not-yield-action-shadow.md
 ---
 
 **ESTABLISHED AUDIT.**  Let
@@ -57,4 +58,11 @@ proof.
 This audit rules out only the direct composition.  A Leavitt-specific
 shadow-to-action converter exploiting the simultaneous operator-norm defect
 still remains a live route and would bypass the coefficient-module decoder.
-
+The natural implementation by fixed finite-packet exactification and
+projection-rank rigidity is now fenced by
+`opnorm-packet-rank-does-not-yield-action-shadow`: parabolic normalizers give
+only the exact finite-actor countermodel, while the opposite roots needed to
+read Leavitt multiplication do not act on that packet's atom set.  Any live
+converter must add a common mixed-root atom algebra or a coefficient-sensitive
+moving-occurrence lock; it cannot be obtained from the current `<1` rank
+threshold alone.
