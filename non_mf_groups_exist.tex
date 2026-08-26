@@ -468,26 +468,6 @@ Theorem~\ref{thm:compression-criterion} gives
 $\Rad_{\mathrm{MF}}(H)=H$.
 \leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top}
 
-If $\rho\colon G\to\GL(V)$ is a homomorphism and $V$ is finite-dimensional,
-conjugation by $\rho(u)^{-1}$ maps the commutant of $\rho(L)$ injectively
-into itself, hence bijectively.  Thus $\rho$ kills $\mathfrak D_G(L)$.
-Consequently, $\mathfrak D_G(L)=1$ if $G$ has a faithful finite-dimensional
-linear representation.  The same conclusion holds if $G$ is residually
-finite, because every nonidentity element then survives in a finite
-permutation representation.
-\leanverified{Manuscript/OneSidedMFRadical/DefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectSterility}
-If $G$ is amenable, its
-property-\textup{(T)} subgroup $L$ is finite~\cite{BHV}; then
-$uLu^{-1}=L$, so
-$ucu^{-1}$ centralizes $L$ for every
-$u\in\operatorname{Comp}_G(L)$, and again $\mathfrak D_G(L)=1$.
-
-The argument is specific to operator norm approximation and gives no
-conclusion about soficity or hyperlinearity: normalized Hilbert--Schmidt
-approximations do not provide the operator norm control used to construct the
-conjugation representation in Theorem~\ref{thm:transport}.
-\leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity}
-
 We also determine the arithmetical complexity of MF recognition for
 finite presentations, in the Kleene--Mostowski hierarchy whose levels
 $\Sigma^0_n$ and $\Pi^0_n$ count alternations of quantifiers over a
@@ -1051,8 +1031,8 @@ Indeed, for unitaries $A,B$ one has
  \opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}
  \le2\opnorm{A-B},
 \]
-so the operator norm multiplicative defects of $(V_n)$ also make the
-conjugation actions multiplicative modulo $c_0$.  The class
+so the conjugation actions are multiplicative modulo $c_0$ because the
+multiplicative defects of $(V_n)$ tend to zero in operator norm.  The class
 $\xi=[x_n]_\omega$ is fixed by $\sigma(L)$.
 
 For $g\in G$, let $\widetilde\sigma(g)$ be the class of the coordinate
@@ -1071,9 +1051,8 @@ operators $\operatorname{Ad}(V_n(g))$ in the norm matrix corona
 \]
 After choosing matrix units on each $M_{d_n}(\C)$, this is a norm matrix
 corona with coordinate sizes $d_n^2$.
-The preceding estimate shows directly that
-$g\mapsto\widetilde\sigma(g)$ is an exact homomorphism
-$G\to\U(\mathcal B)$.  Its restriction to $L$ therefore extends to a
+By the preceding estimate, $g\mapsto\widetilde\sigma(g)$ is a
+homomorphism $G\to\U(\mathcal B)$.  Its restriction to $L$ therefore extends to a
 $*$-homomorphism $C^*_{\max}(L)\to\mathcal B$.  Let $P\in\mathcal B$ be the
 image of the Kazhdan projection~\cite{AkemannWalter}.  Under the natural
 representation of $\mathcal B$ on $\mathcal K_\omega$, its range is
@@ -1255,11 +1234,9 @@ Suppose that a homomorphism
 Replace \(G\) by \(\Theta(G)\), replace \(K\) by \(\Theta(K)\), and denote
 the resulting inclusion into the corona again by \(\Theta\).  The new \(K\)
 is a nontrivial normal property-\textup{(T)} subgroup, since
-property~\textup{(T)} passes to quotients.  Every one of its
-elements remains in the universal Hilbert--Schmidt kernel, because any
-operator norm asymptotic representation of \(\Theta(G)\), precomposed with
-the quotient map from the original group, is such a representation of the
-original group.
+property~\textup{(T)} passes to quotients.  It is contained in \(R_{\infty\to2}(\Theta(G))\), because an operator
+norm asymptotic representation of \(\Theta(G)\), precomposed with the
+quotient map, is one of the original group.
 
 Let \(p_K\in C^*_{\max}(K)\) be the Kazhdan projection and let \(p\) be its
 image in \(\mathcal Q_{\mathbf d}\).  Under any faithful representation of the
@@ -1397,6 +1374,26 @@ A finite-dimensional linear representation over any field kills every
 generator of \(\mathfrak D_G(L)\) by Theorem~\ref{thm:commutant}; its
 kernel is normal, so it contains \(\mathfrak D_G(L)\).
 \end{proof}
+
+If $\rho\colon G\to\GL(V)$ is a homomorphism and $V$ is finite-dimensional,
+conjugation by $\rho(u)^{-1}$ maps the commutant of $\rho(L)$ injectively
+into itself, hence bijectively.  Thus $\rho$ kills $\mathfrak D_G(L)$.
+Consequently, $\mathfrak D_G(L)=1$ if $G$ has a faithful finite-dimensional
+linear representation.  The same conclusion holds if $G$ is residually
+finite, because every nonidentity element then survives in a finite
+permutation representation.
+\leanverified{Manuscript/OneSidedMFRadical/DefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectSterility}
+If $G$ is amenable, its
+property-\textup{(T)} subgroup $L$ is finite~\cite{BHV}; then
+$uLu^{-1}=L$, so
+$ucu^{-1}$ centralizes $L$ for every
+$u\in\operatorname{Comp}_G(L)$, and again $\mathfrak D_G(L)=1$.
+
+The argument is specific to operator norm approximation and gives no
+conclusion about soficity or hyperlinearity: normalized Hilbert--Schmidt
+approximations do not provide the operator norm control used to construct the
+conjugation representation in Theorem~\ref{thm:transport}.
+\leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity}
 
 \section{The binary Leavitt group}\label{sec:leavitt}
 
