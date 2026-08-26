@@ -457,6 +457,61 @@ words, deeper two-occurrence coefficients, or the first genuine
 three-channel factorization; a pair of elementary depth-one exits is not
 enough.
 
+The unmatched three-factor boundary has now produced the first exact
+individual source returns.  `cross-whitehead-sandwiches-branch-roots-into-signed-normalizer`
+tests every arbitrary depth-one word
+`x_ab(c)x_ba(d)x_ab(c)` together with one individually nonnormal depth-one
+root in a different channel, in both orders, for both branches and both
+source/native targets.  Hashing the exposed `x_28(1)` row reduces the
+`6381568` syntactic cases to `1128560` exact state transitions and `1700`
+full-signature survivors.  The only hits are `24` source spellings: the
+three-factor word is one of the two braid spellings of `K_i`, the added
+root enters coordinate `8` from `6` or `9`, and
+
+```text
+K_0x_(8,k)(g)K_0=x_(7,k)(pg),   g in {s_1,r,q_1},
+K_1x_(8,k)(g)K_1=x_(7,k)(rg),   g in {s_0,p,q_0}.
+```
+
+These close the complete signed source Gram table, but the returned
+nonconstant normalizer root has an uncontrolled reservoir gauge.  No word
+returns to the native `J_1` target.  Thus the next relation must type or
+cancel this returned normalizer action; the positive full-Gram identity by
+itself is not yet the ESB bridge.
+
+Fusing the complementary authenticated returns does use completeness, but
+does not cancel that action.  For either `k=6` or `9`, the two identities
+
+```text
+K_0x_(8,k)(r)K_0=x_(7,k)(q_0),
+K_1x_(8,k)(p)K_1=x_(7,k)(q_1)
+```
+
+multiply on their common output root to `x_(7,k)(1)`.  The full table in
+`fused-authenticated-cross-returns-retain-s3-square-gauge` has an exact
+`S_3 times S_3` model: the two `K_i` gauges are `(c,1),(1,c)`, the incoming
+gauges are `(a,1),(1,a)`, and the returned gauges are `(b,1),(1,b)`, with
+`cac=b`.  The fused constant output therefore carries `(b,b)`, not the
+identity.  Hence even two full-Gram authenticated returns reconstruct an
+external constant-normalizer gauge; a native occurrence must still type
+that fused output or one branch return individually.
+
+The obvious order-seven attachment through signed `L_0` is now excluded.
+`signed-l0-does-not-attach-cross-returns-to-order-seven-head` closes all
+`8192` signed-`L_0` matrices and finds that the elementary conjugacy orbit
+of each return position `6->8`, `9->8`, `6->7`, or `9->7` contains no other
+root position.  In particular the `r`-coefficient input is not conjugate to
+the native `A_1=x_47(r)` position `7->4`.  A complete depth-two monomial
+audit does find
+
+```text
+K_0x_(8,k)(s_10t_1)K_0=x_(7,k)(s_00t_1),
+```
+
+but neither side is conjugate to the native `B_2=x_84(s_00t_1)` position
+`4->8`.  Hence the order-three return gauge and order-seven head act on
+unidentified reservoir factors; coprimality supplies no collapse.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
@@ -546,3 +601,23 @@ dressing and supplies no shared occurrence with `J_1`.  The next live cell
 must make one of the private row/column roots occur literally inside the
 native Whitehead/Singer word, or impose another same-carrier relation
 between its factor and `D`.
+
+A still tighter completeness word can share literal factors with `K_0`,
+but it too retains a finite spectator.  In
+`mixed-completeness-braid-retains-s3-square-gauge`, take
+
+```text
+U=x_78(p), V=x_87(r), U'=x_79(1), V'=x_97(q_1),
+A=UU', B=VV'.
+```
+
+The nilpotent products satisfy `XY=E_77` by
+`pr+q_1=q_0+q_1=1`, while
+`YX=q_1E_88+rE_89+q_1E_99`; hence `ABA=BAB`.  The word also contains the
+actual mixed occurrence `[V,U']=x_89(r)`, and `U,V` are the literal factors
+of `K_0=UVU`.  Even this full displayed table admits an exact
+`S_3 times S_3` gauge: put `U,V` in the first factor and `U',V'` in the
+second.  Then `K_0` has gauge `(c,1)` while the aggregate braid output has
+gauge `(c,c)`.  Thus the completeness calculation creates an independent
+channel-nine spectator instead of identifying the native gauge.  The next
+word must return and type that spectator on an already shared occurrence.
