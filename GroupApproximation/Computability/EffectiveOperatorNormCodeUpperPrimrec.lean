@@ -1,4 +1,4 @@
-import GroupApproximation.Computability.EffectiveOperatorNormCodeOperationsPrimrec
+import GroupApproximation.Computability.EffectiveOperatorNormCodeUpperFroPrimrec
 
 /-! Primitive recursiveness of the strict upper norm certificate. -/
 
@@ -15,21 +15,9 @@ private theorem primrec_upperDim : Primrec fun z : UpperInput => z.1.1.1 :=
 private theorem primrec_upperK : Primrec fun z : UpperInput => z.1.1.2 :=
   Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
 
-private theorem primrec_upperMatrix : Primrec fun z : UpperInput => z.1.2 :=
-  Primrec.snd.comp Primrec.fst
-
 private theorem primrec_upperDimPow : Primrec fun z : UpperInput =>
     (dim z.1.1.1) ^ 4 :=
   primrec_natPow.comp (primrec_dim.comp primrec_upperDim) (Primrec.const 4)
-
-private theorem primrec_upperGram : Primrec fun z : UpperInput =>
-    gramPowCode z.1.1.1 z.1.2 z.2 :=
-  primrec_gramPowCode.comp
-    (Primrec.pair (Primrec.pair primrec_upperDim primrec_upperMatrix) Primrec.snd)
-
-private theorem primrec_upperFro : Primrec fun z : UpperInput =>
-    froSqCode z.1.1.1 (gramPowCode z.1.1.1 z.1.2 z.2) :=
-  primrec_froSqCode.comp (Primrec.pair primrec_upperDim primrec_upperGram)
 
 private theorem primrec_upperLeft : Primrec fun z : UpperInput =>
     ratMul (ratOfNat ((dim z.1.1.1) ^ 4))

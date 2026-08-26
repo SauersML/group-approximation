@@ -111,15 +111,18 @@ to sit on one carrier.**
   not a consequence of simplicity.  Freezing a finite invariant packet
   instead lands in the Morita-neutral model of
   `binary-leavitt-finite-actor-minimal-atom-dichotomy`.
-* **Remaining live probe.**  The adaptive-atom attack above does not address
-  additive-identity recovery in the operator norm.  The nearest live
-  operator-norm machinery is `conjugacy-addressed-opnorm-challenges-are-lossless`
-  (literal conjugates of root discrepancies are address-lossless in operator
-  norm) and `opnorm-coordinatewise-capacity-diagonal` (a frozen coordinate is
-  defeated by a sufficiently large challenge).  A first concrete probe: use
-  the off-diagonal corners of the `2 by 2` chart `(PSR1)` to build closed
-  loops through both packets and ask whether the loop defect controls
-  `||sum_i e_ii - sum_a f_aa||_op`, which is the one quantity `(EXA3)` needs.
+* **The complete ordinary off-diagonal loop probe is negative.**
+  `coarse-fine-offdiagonal-loops-are-morita-blind` writes every bridge
+  `x_(u,i)=s_ut_i`, `y_(i,u)=s_it_u` between the depth-one and depth-two
+  charts.  The shortest mixed paths and their reverse paths close in three
+  factors, and every longer loop obtained from ordinary non-opposite
+  Steinberg triangles is a pasting of the same typed compositions.  All of
+  them hold in an exact six-object model with
+  `||sum_i e_ii-sum_u f_uu||_op=1`.  Thus lengthening or multiplying the
+  off-diagonal loop list cannot prove `(OPLR)`.  The remaining live probe
+  must contain a literal coefficient-completeness occurrence attached to
+  the selected marked support (or an equivalent wordized support incidence),
+  rather than only multiplicative paths through the two packets.
 
 * **The authenticated support-return odd loops do not supply the row.**
   `support-return-odd-loops-do-not-imply-atomic-return` keeps the two literal

@@ -81,7 +81,7 @@ private theorem codeListFoldState_aux (n : ℕ) (v : RawWord) (k : ℕ)
       simp only [List.reverse_cons, List.foldr_append, List.foldr_cons,
         List.foldr_nil]
       rw [ih]
-      simp [codeListFrom, List.reverse_cons, List.append_assoc, Nat.add_assoc,
+      simp [codeListFrom, List.reverse_cons, List.append_assoc,
         Nat.add_comm, Nat.add_left_comm]
 
 theorem codeListFoldState_eq (n : ℕ) (v : RawWord) (k : ℕ) :
@@ -195,7 +195,10 @@ theorem primrec_sameSeqCode : Primrec₂ sameSeqCode := by
       (z.1 ++ z.2).map fun p =>
         decide (Seq.evalCode z.1 p.1 = Seq.evalCode z.2 p.1) :=
     Primrec.list_map hcodes htest
-  have hfold := Primrec.list_foldr hmap (Primrec.const true)
+  have hfold := Primrec.list_foldr
+    (h := fun (_ : List (ℤ × ℤ) × List (ℤ × ℤ))
+      (bs : Bool × Bool) => bs.1 && bs.2)
+    hmap (Primrec.const true)
     (Primrec.and.comp (Primrec.fst.comp Primrec.snd)
       (Primrec.snd.comp Primrec.snd))
   exact hfold.of_eq fun z => (Seq.list_all_eq_foldr _ _).symm
@@ -241,14 +244,14 @@ theorem exists_codeCheck_iff (n : ℕ)
 
 /-- **Higman's Section 5, computability leaf.**  Code sets of recursively
 enumerable subgroups are recursively enumerable. -/
-def codeRE : CodeRE where
-  code_re := by
-    intro n N hre
-    obtain ⟨F, hF, hFspec⟩ := exists_primrec_of_rePred hre
-    have hsearch : REPred fun l : List (ℤ × ℤ) =>
-        ∃ q : RawWord × ℕ, codeCheck n F l q = true :=
-      WordProblemRE.rePred_exists_eq_true (primrec_codeCheck n hF).to_comp
-    exact hsearch.of_eq fun l => exists_codeCheck_iff n N hFspec l
+theorem codeRE : CodeRE := by
+  refine ⟨?_⟩
+  intro n N hre
+  obtain ⟨F, hF, hFspec⟩ := exists_primrec_of_rePred hre
+  have hsearch : REPred fun l : List (ℤ × ℤ) =>
+      ∃ q : RawWord × ℕ, codeCheck n F l q = true :=
+    WordProblemRE.rePred_exists_eq_true (primrec_codeCheck n hF).to_comp
+  exact hsearch.of_eq fun l => exists_codeCheck_iff n N hFspec l
 
 end Transport
 end Higman

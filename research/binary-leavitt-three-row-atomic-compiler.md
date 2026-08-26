@@ -61,10 +61,18 @@ ranks, or finite semisimple packet multiplicities still admits the same
 escape.  The nearest operator-norm tools are
 `conjugacy-addressed-opnorm-challenges-are-lossless` and
 `opnorm-coordinatewise-capacity-diagonal`; neither currently constructs the
-cross-typed additive completeness row.  A concrete next probe is to close
-off-diagonal loops through the depth-one chart and test whether finitely many
-loop discrepancies control the operator sum of the returned range
-projections on `p_U`.
+cross-typed additive completeness row.
+
+The complete ordinary off-diagonal loop probe is now exhausted.
+`coarse-fine-offdiagonal-loops-are-morita-blind` writes the full bridge table
+between all two coarse and four fine corners.  Its three-factor forward and
+reverse paths are the shortest mixed loops; every ordinary Steinberg-loop
+pasting is exact in a marked finite six-object model where the coarse and
+fine packet identities are orthogonal and their operator-norm difference is
+one.  Hence no finite prototype family drawn only from these multiplicative
+off-diagonal loops can control the completeness discrepancy in `(BAC1)`.
+The next prototype must include the coefficient range-sum/parent-generation
+occurrence on `p_U`, or a spectral support row which is equivalent to it.
 
 Nodewise recursion of the two inner Morita branches does not provide the
 missing capacity by itself.

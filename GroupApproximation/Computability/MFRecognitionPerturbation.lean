@@ -195,20 +195,23 @@ theorem exists_coded_openPasses {c : PresentationCode}
   obtain ⟨gens, hunitary, hcodeClose⟩ :=
     MicrostateGeneratorEncoding.exists_generatorCodes_close M d e hη
   let C : Microstate c := toMicrostate c d gens hunitary
+  let U : Fin (genCount c) → Matrix.unitaryGroup (Fin (dim d)) ℂ :=
+    fun i => unitaryReindexEquiv e (M.gen i)
+  let V : Fin (genCount c) → Matrix.unitaryGroup (Fin (dim d)) ℂ :=
+    fun i => C.gen i
   have hclose : ∀ i,
-      ‖(((N.gen i : Matrix.unitaryGroup (Fin (dim d)) ℂ) :
-          Matrix (Fin (dim d)) (Fin (dim d)) ℂ)) -
-        (((C.gen i : Matrix.unitaryGroup (Fin (dim d)) ℂ) :
-          Matrix (Fin (dim d)) (Fin (dim d)) ℂ))‖ < η := by
+      ‖(U i : Matrix (Fin (dim d)) (Fin (dim d)) ℂ) -
+        (V i : Matrix (Fin (dim d)) (Fin (dim d)) ℂ)‖ < η := by
     intro i
-    simpa [N, Microstate.reindex, C,
-      EffectiveMicrostateSemantics.toMicrostate] using hcodeClose i
+    simpa [U, V, C, EffectiveMicrostateSemantics.toMicrostate] using hcodeClose i
+  have hNgen : N.gen = U := by rfl
+  have hCgen : C.gen = V := by rfl
   have hgap (w : List (ℕ × Bool)) :
       |N.len w - C.len w| ≤ (w.length : ℝ) * η := by
     rw [Microstate.len_def, Microstate.len_def,
       microstate_hom_wordOf_eq_tupleWord,
-      microstate_hom_wordOf_eq_tupleWord]
-    exact abs_tupleLength_sub_le N.gen C.gen hclose w
+      microstate_hom_wordOf_eq_tupleWord, hNgen, hCgen]
+    exact abs_tupleLength_sub_le U V hclose w
   refine ⟨d, gens, hunitary, ?_, ?_⟩
   · intro r hr
     have hmarginη : (r.length : ℝ) * η <

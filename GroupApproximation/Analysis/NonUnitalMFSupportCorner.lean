@@ -41,7 +41,7 @@ noncomputable section
 
 universe u
 
-variable {A : Type u} [CStarAlgebra A]
+variable {A : Type u} [CStarAlgebra A] [Nontrivial A]
 variable (Y : ℕ → FiniteModel) [∀ n, Nonempty (Y n)]
 
 /-! ## Increasing enumeration of an infinite subset of `ℕ` -/
@@ -195,10 +195,10 @@ omit [∀ n, Nonempty (Y n)] in
       x (φ k) :=
   rfl
 
+omit [∀ n, Nonempty (Y n)] in
 /-- Cofinite nullity of a supported bounded matrix family is equivalent to
 cofinite nullity after relabelling by the full increasing enumeration of its
 support. -/
-omit [∀ n, Nonempty (Y n)] in
 theorem isNull_reindex_iff_of_supported
     (S : Set ℕ) (hS : S.Infinite)
     (x : BoundedMatrixSequence (fun n ↦ Y n))
@@ -303,8 +303,8 @@ theorem isNull_supportReindex_iff
   apply hsupport n
   simpa [nonzeroSupport] using hn
 
-/-- Coordinate compression by `P` vanishes at every zero coordinate of `P`. -/
 omit [∀ n, Nonempty (Y n)] in
+/-- Coordinate compression by `P` vanishes at every zero coordinate of `P`. -/
 theorem compressFamily_eq_zero_of_projection_eq_zero
     (P x : BoundedMatrixSequence (fun n ↦ Y n)) (n : ℕ)
     (hzero : (P n : Matrix (Y n) (Y n) ℂ) = 0) :
@@ -767,6 +767,7 @@ def supportProjection
     NormMatrixCStarCorona (fun n ↦ Y n) :=
   e 1
 
+omit [Nontrivial A] in
 /-- The support of a nonunital star homomorphism is self-adjoint. -/
 theorem star_supportProjection
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n)) :
@@ -774,6 +775,7 @@ theorem star_supportProjection
   rw [supportProjection, ← map_star]
   simp
 
+omit [Nontrivial A] in
 /-- The support of a nonunital star homomorphism is idempotent. -/
 theorem supportProjection_mul_self
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n)) :
@@ -791,6 +793,7 @@ theorem supportProjection_ne_zero
     simpa [supportProjection] using hzero
   exact one_ne_zero (he hmap)
 
+omit [Nontrivial A] in
 /-- The support acts as a left identity on the represented algebra. -/
 theorem supportProjection_mul_apply
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
@@ -798,6 +801,7 @@ theorem supportProjection_mul_apply
     supportProjection Y e * e a = e a := by
   rw [supportProjection, ← map_mul, one_mul]
 
+omit [Nontrivial A] in
 /-- The support acts as a right identity on the represented algebra. -/
 theorem apply_mul_supportProjection
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
