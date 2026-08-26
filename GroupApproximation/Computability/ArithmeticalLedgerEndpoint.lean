@@ -12,6 +12,7 @@ import GroupApproximation.Computability.FreeSubgroupEnumeratedHardness
 import GroupApproximation.Computability.IsoInvariantSwitchHardness
 import GroupApproximation.Computability.HyperlinearUndecidabilityRoute
 import GroupApproximation.Computability.SoficRecognitionPi02
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The arithmetical ledger, as one closed statement
@@ -75,6 +76,24 @@ theorem arithmetical_ledger :
    ⟨SoficRecognitionPi02.pi02_isSofic, SoficRecognitionPi02.sigma02_not_isSofic⟩,
    ⟨RFPresentationPi02.pi02_residuallyFinite,
     RFPresentationPi02.sigma02_not_residuallyFinite⟩⟩
+
+/-- The ledger, as a named closed proposition, so that the closed-axiom
+audit can read its head. -/
+def ArithmeticalLedgerHolds : Prop :=
+    Pi02Complete (fun c : PresentationCode ↦ IsSofic (Carrier c)) ∧
+    Pi02Complete (fun c : PresentationCode ↦ IsLEF (Carrier c)) ∧
+    Pi02Complete (fun c : PresentationCode ↦ Subsingleton (Carrier c)) ∧
+    Pi02Complete AbelianEnumeratedPi02.IsCommCode ∧
+    ProfinitelyClosedIndexSet.Pi03Complete ProfinitelyClosedIndexSet.ClosedIndex
+
+theorem arithmeticalLedgerHolds : ArithmeticalLedgerHolds :=
+  ⟨SoficEnumeratedPi02.sofic_enum_pi02Complete,
+   LEFEnumeratedPi02.lef_enum_pi02Complete,
+   TrivialEnumeratedPi02.trivial_enum_pi02Complete,
+   AbelianEnumeratedPi02.comm_enum_pi02Complete,
+   ProfinitelyClosedIndexSet.pi03Complete_closedIndex⟩
+
+#audit_closed_axioms GroupApproximation.ArithmeticalLedgerEndpoint.arithmeticalLedgerHolds
 
 end ArithmeticalLedgerEndpoint
 end GroupApproximation
