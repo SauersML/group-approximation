@@ -4,6 +4,7 @@ id: coarse-fine-offdiagonal-loop-morita-proof
 kind: route
 title: Proof that the complete off-diagonal prefix chart remains Morita typed
 target: coarse-fine-offdiagonal-loops-are-morita-blind
+requires: []
 ---
 
 Use the reversed dual-prefix convention.  Cancellation gives, for every
