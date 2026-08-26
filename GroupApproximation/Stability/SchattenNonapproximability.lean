@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.VisibleQuotient
+import GroupApproximation.Analysis.SingularValueOrder
 import GroupApproximation.Leavitt.HilbertHotelModelNonMF
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Stability.MixedApproximation
@@ -160,6 +161,44 @@ theorem pointwise_involutionDefectDominates
     _ = ‖Φ (1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2) x‖ := by
       rw [map_neg, neg_apply, norm_neg]
 
+/-- Matrix form of the finite-dimensional involution-defect inequality. -/
+theorem schattenPNorm_sub_one_le_involutionDefect
+    (p : ℝ) (hp : 1 ≤ p) (d : PositiveDimension) (U : UnitaryTarget d)
+    (hU : ‖(U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1‖ < 1) :
+    schattenPNorm p ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1) ≤
+      schattenPNorm p (1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2) := by
+  let A : Matrix (Fin d.1) (Fin d.1) ℂ :=
+    (U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1
+  let B : Matrix (Fin d.1) (Fin d.1) ℂ :=
+    1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2
+  have hpoint : ∀ x : EuclideanSpace ℂ (Fin d.1),
+      ‖(Matrix.toEuclideanLin A) x‖ ≤ ‖(Matrix.toEuclideanLin B) x‖ := by
+    intro x
+    change
+      ‖(Matrix.toEuclideanCLM (n := Fin d.1) (𝕜 := ℂ)
+          ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1)) x‖ ≤
+        ‖(Matrix.toEuclideanCLM (n := Fin d.1) (𝕜 := ℂ)
+          (1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2)) x‖
+    exact pointwise_involutionDefectDominates d U hU x
+  change schattenPNorm p A ≤ schattenPNorm p B
+  exact schattenPNorm_mono_of_singularValues_le hp fun k ↦ by
+    have hfinrank :
+        Module.finrank ℂ (EuclideanSpace ℂ (Fin d.1)) = d.1 := by
+      simp [finrank_euclideanSpace]
+    let j : Fin (Module.finrank ℂ (EuclideanSpace ℂ (Fin d.1))) :=
+      Fin.cast hfinrank.symm k
+    simpa [j] using
+      SingularValueOrder.singularValues_le_of_norm_apply_le
+        (Matrix.toEuclideanLin A) (Matrix.toEuclideanLin B) hpoint j
+
+/-- The finite-dimensional involution-defect inequality holds for every
+unnormalized Schatten exponent `p ≥ 1`. -/
+theorem involutionDefectDominates (p : ℝ) (hp : 1 ≤ p) :
+    InvolutionDefectDominates p := by
+  refine ⟨fun d U hU ↦ ?_⟩
+  simpa only [schattenPDist, Submonoid.coe_one, Submonoid.coe_mul, pow_two] using
+    schattenPNorm_sub_one_le_involutionDefect p hp d U hU
+
 /-- Positive limsup separation is witnessed infinitely often above half of
 that limsup. -/
 theorem frequently_half_limsup_lt_schattenPDist
@@ -208,8 +247,7 @@ theorem eventually_involutionDefect_lt_half_limsup
 
 theorem false_of_separated_involution_almostRepresentation
     {p : ℝ} {G : Type} [Group G] [Countable G]
-    (hp : 1 ≤ p) (hdom : InvolutionDefectDominates p)
-    (htop : normMFResidual G = ⊤) (A : AlmostRepresentation p G)
+    (hp : 1 ≤ p) (htop : normMFResidual G = ⊤) (A : AlmostRepresentation p G)
     (hone : ∀ n, A.map n 1 = 1) {z : G} (hz_sq : z * z = 1)
     (hL : 0 < Filter.limsup
       (fun n ↦ schattenPDist p (A.map n z) 1) Filter.atTop) : False := by
@@ -229,22 +267,19 @@ theorem false_of_separated_involution_almostRepresentation
     eventually_involutionDefect_lt_half_limsup A hone hz_sq hL
   obtain ⟨n, hfar, hopn, hdefn⟩ :=
     (hfrequent.and_eventually (hopEventually.and hdefEventually)).exists
-  exact (not_lt_of_ge (hdom.bound (A.dimension n) (A.map n z) hopn))
+  exact (not_lt_of_ge
+      ((involutionDefectDominates p hp).bound (A.dimension n) (A.map n z) hopn))
     (hdefn.trans hfar)
 
-/-- Once `InvolutionDefectDominates p` is known, a nontrivial involution in a
-countable full-MF-radical group rules out unnormalized Schatten-`p`
-approximation.  This is the complete group-theoretic and asymptotic part of
-the Bachner--Dogon--Lubotzky mechanism for the stronger full-radical input
-available in this repository. -/
+/-- A nontrivial involution in a countable full-MF-radical group rules out
+unnormalized Schatten-`p` approximation for every `p ≥ 1`. -/
 theorem not_isApproximated_of_normMFResidual_eq_top_of_involution
     {p : ℝ} {G : Type} [Group G] [Countable G]
-    (hp : 1 ≤ p) (hdom : InvolutionDefectDominates p)
-    (htop : normMFResidual G = ⊤) {z : G}
+    (hp : 1 ≤ p) (htop : normMFResidual G = ⊤) {z : G}
     (hz_sq : z * z = 1) (hz_ne : z ≠ 1) :
     ¬ IsApproximated p G := by
   rintro ⟨A, hone, hseparate⟩
-  exact false_of_separated_involution_almostRepresentation hp hdom htop A hone
+  exact false_of_separated_involution_almostRepresentation hp htop A hone
     hz_sq (hseparate z hz_ne)
 
 /-! ## The unconditional concrete group-theoretic witness -/
@@ -275,13 +310,12 @@ theorem hilbertHotelModel_involution_profile :
       HilbertHotel.Cover.normMFResidual_model_eq_top]
     trivial
 
-/-- The concrete reduction: the sole remaining obligation for
-Schatten-`p` nonapproximability of the explicit Hilbert-hotel model is the
-finite-dimensional involution-defect inequality. -/
+/-- The explicit Hilbert-hotel model is not approximable in any unnormalized
+Schatten exponent `p ≥ 1`. -/
 theorem hilbertHotelModel_not_isApproximated
-    (p : ℝ) (hp : 1 ≤ p) (hdom : InvolutionDefectDominates p) :
+    (p : ℝ) (hp : 1 ≤ p) :
     ¬ IsApproximated p HilbertHotel.Cover.Model :=
-  not_isApproximated_of_normMFResidual_eq_top_of_involution hp hdom
+  not_isApproximated_of_normMFResidual_eq_top_of_involution hp
     HilbertHotel.Cover.normMFResidual_model_eq_top
     (by simpa [pow_two] using HilbertHotel.Cover.defectModel_sq)
     HilbertHotel.Cover.defectModel_ne_one
@@ -305,7 +339,9 @@ theorem fullRadicalInvolutionWitnessExists :
 
 #audit_axioms toOpAlmostRepresentation
 #audit_axioms opNorm_tendsto_zero_of_normMFResidual_eq_top
+#audit_axioms involutionDefectDominates
 #audit_axioms not_isApproximated_of_normMFResidual_eq_top_of_involution
+#audit_axioms hilbertHotelModel_not_isApproximated
 #audit_closed_axioms fullRadicalInvolutionWitnessExists
 
 end SchattenNonapproximability
