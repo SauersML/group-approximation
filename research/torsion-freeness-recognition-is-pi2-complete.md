@@ -4,6 +4,7 @@ id: torsion-freeness-recognition-is-pi2-complete
 kind: claim
 title: Torsion-freeness is Pi-zero-two complete for two-generator recursive presentations and for enumerated presentations
 artifacts:
+  - GroupApproximation/Computability/TorsionFreeEnumeratedPi02.lean
   - GroupApproximation/Computability/TorsionFreeEnumeratedHardness.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
@@ -43,3 +44,5 @@ finiteness at `Pi^0_3`.  See
 [[natural-group-properties-realize-the-first-three-levels]].
 
 **Machine-checked hardness.**  `Computability/TorsionFreeEnumeratedHardness.torsionFreeCode_pi02Hard` and `hasTorsionCode_sigma02Hard` are the second-level lower bounds on enumerated presentation codes, with `Z/2` as forbidden seed; the upper bound is paper-level.
+
+**Both halves machine-checked.**  `Computability/TorsionFreeEnumeratedPi02.torsionFree_enum_pi02Complete` is `Pi02Complete` of torsion-freeness on enumerated presentation codes; the upper bound is the certified form of the challenge (the power's triviality carries its own certificate, so the matrix is a single existential over a decidable check).
