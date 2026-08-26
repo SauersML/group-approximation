@@ -5,6 +5,7 @@ kind: claim
 title: The non-Kazhdan manuscript endpoints have one analytic input and an internal rank-transfer bridge
 artifacts:
   - non_mf_groups_exist.tex
+  - metadata/NON_MF_SENTENCE_CENSUS.md
   - research/property-t-free-manuscript-theorem-dependency-audit-proof.md
   - GroupApproximation/Manuscript/OneSidedMFRadical/LiteralMFClosure.lean
   - GroupApproximation/Manuscript/OneSidedMFRadical/RankTwelveSimplicity.lean
@@ -74,3 +75,14 @@ machinery.  The declarations used by the final endpoint must be split or
 restated in clean modules so its import and declaration dependency cone is
 literally Property-`(T)`-free.  This is proof engineering, not an additional
 mathematical or literature assumption.
+
+There are also four non-`(T)` historical sentences which are not proved in the
+repository: Blackadar--Kirchberg's converse `nuclear + MF => NF`, the
+Goldbring--Hart route from the negative Connes-embedding result, Shulman's MF
+permanence theorem for doubles, and the cited finite-Schatten
+non-approximability results.  They are not used by any theorem of the paper.
+They may remain explicitly quarantined literature attributions or be deleted;
+formalizing them would be independent work and is not discharged by the
+binary-Leavitt MF-radical endpoint.  The fifth partial sentence in the current
+sentence census is the Ershov--Jaikin-Zapirain Property-`(T)` theorem itself and
+belongs to the deleted Kazhdan material.
