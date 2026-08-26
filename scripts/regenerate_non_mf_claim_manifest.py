@@ -69,10 +69,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/NormalKazhdan",
         "GroupApproximation.Manuscript.OneSidedMFRadical."
         "manuscriptNormalKazhdanRadical"),
-    "prop:defect-saturation": (
-        "Manuscript/OneSidedMFRadical/CompleteDefectSaturation",
-        "GroupApproximation.Manuscript.OneSidedMFRadical."
-        "manuscriptCompleteDefectSaturation"),
     "lem:tau-elementary": (
         "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
@@ -158,7 +154,6 @@ DEPENDENCIES: dict[str, list[str]] = {
     "cor:defect-hs": ["thm:transport"],
     "lem:central-corona-corner": [],
     "thm:normal-kazhdan": ["lem:central-corona-corner"],
-    "prop:defect-saturation": ["thm:compression-criterion"],
     "lem:tau-elementary": [],
     "prop:leavitt-compression": ["lem:tau-elementary"],
     "prop:simple": [],

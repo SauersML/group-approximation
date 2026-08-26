@@ -1,4 +1,5 @@
 import GroupApproximation.Algebra.VisibleQuotient
+import GroupApproximation.Analysis.SingularValueOrder
 import GroupApproximation.Leavitt.HilbertHotelModelNonMF
 import GroupApproximation.Sofic.FiniteDimensionalResidual
 import GroupApproximation.Stability.MixedApproximation
@@ -159,6 +160,29 @@ theorem pointwise_involutionDefectDominates
       noncomm_ring
     _ = ‖Φ (1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2) x‖ := by
       rw [map_neg, neg_apply, norm_neg]
+
+/-- The finite-dimensional involution-defect inequality holds for every
+unnormalized Schatten exponent `p ≥ 1`. -/
+theorem involutionDefectDominates (p : ℝ) (hp : 1 ≤ p) :
+    InvolutionDefectDominates p := by
+  refine ⟨fun d U hU ↦ ?_⟩
+  unfold schattenPDist
+  apply schattenPNorm_mono_of_singularValues_le hp
+  intro k
+  have hpoint : ∀ x : EuclideanSpace ℂ (Fin d.1),
+      ‖(Matrix.toEuclideanLin
+          ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1)) x‖ ≤
+        ‖(Matrix.toEuclideanLin
+          (1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2)) x‖ := by
+    intro x
+    simpa only [Matrix.coe_toEuclideanCLM_eq_toEuclideanLin] using
+      pointwise_involutionDefectDominates d U hU x
+  simpa only [pow_two] using
+    SingularValueOrder.singularValues_le_of_norm_apply_le
+      (Matrix.toEuclideanLin
+        ((U : Matrix (Fin d.1) (Fin d.1) ℂ) - 1))
+      (Matrix.toEuclideanLin
+        (1 - (U : Matrix (Fin d.1) (Fin d.1) ℂ) ^ 2)) hpoint k
 
 /-- Positive limsup separation is witnessed infinitely often above half of
 that limsup. -/

@@ -1681,6 +1681,7 @@ import GroupApproximation.Higman.SwapCarrierFromTower
 import GroupApproximation.Higman.SwapCarrierWitness
 import GroupApproximation.Higman.TauRouteC
 import GroupApproximation.Higman.SsetBaseCase
+import GroupApproximation.Higman.CurrentOperationClosures
 import GroupApproximation.Higman.OperationClosureTheta
 import GroupApproximation.Higman.OperationClosureTau
 import GroupApproximation.Higman.FlipGroup
