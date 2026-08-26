@@ -11,6 +11,8 @@ requires:
   - atlas-root-triangle-is-heisenberg-character-fibers
   - atlas-ck-dual-pair-cell-leaves-one-partition-multiplicity
   - atlas-first-transverse-root-shear-leaves-fixed-character-face
+  - atlas-two-transverse-shears-have-determinant-balance-test
+  - atlas-three-transverse-shears-leave-fifteen-character-types
   - atlas-half-block-root-face-full-packet-model-exists
 ---
 

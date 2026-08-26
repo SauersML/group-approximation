@@ -52,5 +52,25 @@ one transverse root direction still does not close the model: a positive
 construction may live on its fixed face, while a negative argument must
 intersect at least two transverse shears or force mass out of that face.
 
+The minimal two-direction intersection is now exact by
+`atlas-two-transverse-shears-have-determinant-balance-test`.  On every joint
+character type it reduces branch balance to one `2 by 2` determinant over
+`F_2`.  Nonzero determinant gives an actual marked-preserving branch swap;
+determinant zero leaves the branch orientation free.  The common fixed face
+has label trace `1/4` in the regular chart, so it cannot be discarded as a
+vanishing label block.  The remaining positive construction may concentrate
+its coefficient multiplicity on this degeneracy face; a negative argument
+must charge it using a third direction or a genuinely non-character row.
+
+The third and final rank-five transverse direction is now exhausted by
+`atlas-three-transverse-shears-leave-fifteen-character-types`.  The balance
+criterion becomes `u notin span(w)` in `F_2^3`: 49 of 64 target-character
+types balance, but 15 remain degenerate.  Their canonical mass is `15/64`,
+and their marked part has ambient mass `15/128`.  Exact affine-orbit models
+retain either marked orientation on each degenerate type.  There is no fourth
+transverse root available from `12` in rank five, so the next row must be
+genuinely non-shear: it must compare the two degenerate orientation orbits,
+not merely add another adjacent coefficient-one target.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear
