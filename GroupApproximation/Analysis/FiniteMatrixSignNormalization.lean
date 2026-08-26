@@ -50,14 +50,18 @@ theorem inner_map_self_re_eq_sum_eigenvalues_mul_normSq
   rw [inner_smul_right]
   have hconj : inner ℂ x (b i) =
       (starRingEnd ℂ) (inner ℂ (b i) x) := (inner_conj_symm x (b i)).symm
-  rw [hconj, starRingEnd_apply, Complex.star_def]
+  rw [hconj, starRingEnd_apply]
   have hrearrange :
       (inner ℂ (b i) x * (hT.eigenvalues rfl i : ℂ)) *
-          (inner ℂ (b i) x).conj =
+          star (inner ℂ (b i) x) =
         (hT.eigenvalues rfl i : ℂ) *
-          (inner ℂ (b i) x * (inner ℂ (b i) x).conj) := by
+          (star (inner ℂ (b i) x) * inner ℂ (b i) x) := by
     ring
-  rw [hrearrange, Complex.mul_conj, ← Complex.ofReal_mul, Complex.ofReal_re]
+  let z := inner ℂ (b i) x
+  have hnormSq : star z * z = ((Complex.normSq z : ℝ) : ℂ) := by
+    change (starRingEnd ℂ) z * z = _
+    rw [mul_comm, Complex.mul_conj]
+  rw [hrearrange, hnormSq, ← Complex.ofReal_mul, Complex.ofReal_re]
 
 /-- Nonnegative eigenvalues give a nonnegative quadratic form. -/
 theorem inner_map_self_re_nonneg_of_eigenvalues_nonneg
@@ -98,13 +102,14 @@ theorem exists_sign_normalization_isSymmetric_and_form_nonneg
     · intro x
       have hminus :
           ((((-1 : ℝ) : ℂ) • S.toLinearMap) x) = -(S x) := by
-        change (-1 : ℂ) • S x = -(S x)
-        exact neg_one_smul ℂ (S x)
-      rw [hminus, inner_neg_right, Complex.neg_re,
-        inner_map_self_re_eq_sum_eigenvalues_mul_normSq S.toLinearMap hS x,
+        simp
+      rw [hminus, inner_neg_right, Complex.neg_re]
+      change 0 ≤ -(inner ℂ x (S.toLinearMap x)).re
+      rw [inner_map_self_re_eq_sum_eigenvalues_mul_normSq S.toLinearMap hS x,
         ← Finset.sum_neg_distrib]
-      exact Finset.sum_nonneg fun i _ ↦
-        mul_nonneg (neg_nonneg.mpr (hneg i).le) (Complex.normSq_nonneg _)
+      exact Finset.sum_nonneg fun i _ ↦ by
+        simpa only [neg_mul] using
+          mul_nonneg (neg_nonneg.mpr (hneg i).le) (Complex.normSq_nonneg _)
 
 end
 
