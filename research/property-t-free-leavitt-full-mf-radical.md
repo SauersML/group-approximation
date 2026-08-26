@@ -234,6 +234,14 @@ the goal; they prove that a successful closure must use a literal
 coefficient-sensitive occurrence which defeats both tensor-tail escapes,
 not a generic bounded-window rank or commutant-normalization principle.
 
+The same firewall now exists inside the literal Leavitt group.
+`leavitt-diagonal-compression-is-elementary-amenable` shows that the
+diagonal-root subgroup together with either one manuscript compressor is
+elementary amenable and already contains the marked root.  Thus a valid
+collapse cannot be assembled from diagonal cylinder relations and one
+compression direction; it must use a mixed coefficient occurrence or both
+complementary compression directions on one authenticated reservoir.
+
 The rank scale along that orbit is now uniform.
 `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed
 two-commutator saturation formula and, in the reverse direction, a sandwich
