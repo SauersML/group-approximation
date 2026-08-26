@@ -108,10 +108,14 @@ noncomputable def freeLetterToCoprod :
     (Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ))) (by
       intro a
       have ha : (a : K) = 1 := Subgroup.mem_bot.mp a.property
-      change Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ)) =
-        Monoid.Coprod.inl (a : K) *
+      change Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ)) *
+          Monoid.Coprod.inl (a : K) = Monoid.Coprod.inl (a : K) *
           Monoid.Coprod.inr (Multiplicative.ofAdd (1 : ℤ))
-      rw [ha, map_one, one_mul])
+      have hbase :
+          (Monoid.Coprod.inl : K →* Monoid.Coprod K (Multiplicative ℤ))
+              (1 : K) = (1 : Monoid.Coprod K (Multiplicative ℤ)) :=
+        MonoidHom.map_one _
+      rw [ha, hbase, mul_one, one_mul])
 
 /-- Map the free product to the trivial-edge HNN extension. -/
 def coprodToFreeLetter :

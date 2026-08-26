@@ -13,7 +13,7 @@ distinct_from:
   two-endpoint-source-intersections-retain-character-square: that intersects both endpoint source types and retains an exact orthogonal four-character square even after all endpoint detector classes are imposed; this asks for the native attachment which must break that twist.
   endpoint-whiteheads-are-center-chain-hecke-spectators: that places the endpoint braid on the literal quarter/eighth Hecke supports and gets the correct one-eighth cross-Gram, but only because the braid centralizes those supports; this asks for the noncentral raw-row attachment absent there.
   endpoint-whitehead-hecke-flag-trichotomy: that enumerates all coordinate collisions with the two Hecke flags; the unique fine-only collision has flexible, possibly zero overlap and leaves its polar gauge entirely in the reservoir.
-  endpoint-order-five-actor-has-half-gram: that removes this flexibility before signed-sheet conditioning by a GL4 character orbit and an odd order-five anchor; the actors which exchange the compensating sheets fail the literal K1 occurrence typing.
+  endpoint-order-five-actor-has-half-gram: that removes the zero-meet flexibility even on the literal signed p2 source by a signed-K1-returning GL3 subgroup, giving a representation-universal one-third endpoint Gram; occurrence typing to the native unequal selector rows remains open.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core
@@ -330,7 +330,10 @@ excluded by the regular-trace firewall.
   `8` alone preserves `p_1` but sends the extra fine root
   `x_68(a_2)` to a new root.  The resulting fine compression has exact polar
   `What p_*`, but `p_*` has no positive arbitrary-profile lower bound: an
-  exact swapped-character block has nonzero `p_2` and zero `p_*`.  Whenever
+  exact swapped-character block has nonzero `p_2` and zero `p_*` for the
+  isolated endpoint packet.  This block does not extend to the enlarged
+  native actor packet: `endpoint-order-five-actor-has-half-gram` forces at
+  least one third of the actual `p_2` source into the meet.  Whenever
   it survives, both fine label involutions are scalar `+1`, so the complete
   Whitehead factor is again an uncontrolled reservoir gauge.  This is an
   equal-rank fine-to-fine covariance, not either unequal row in `(SNA2)`.

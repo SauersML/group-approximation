@@ -332,5 +332,43 @@ theorem relabel_hnnRelatorList (c : PresentationCode)
       exact hright
     exact relabel_hnnRelator c edges ⟨n, hn⟩
 
+/-- The relabelled HNN presentation has exactly the relator set computed by
+`edgeCode`.  This is the semantic bridge from the raw list compiler to the
+word-level HNN presentation. -/
+theorem relabel_hnnRels (c : PresentationCode)
+    (edges : List (Raw × Raw)) :
+    relabelRels (edgeGeneratorEquiv c edges)
+        (HNNPresentation.hnnRels (codeRels c)
+          (sourceWord c edges) (targetWord c edges)) =
+      codeRels (edgeCode c edges) := by
+  rw [hnnRels_eq_list, relabelRels, ← setOf_mem_map,
+    relabel_hnnRelatorList]
+  exact (PresentationCodeList.coe_relatorFinset (edgeCode c edges)).symm
+
+/-! ## The honest one-edge equivalence -/
+
+/-- **One computed edge is the honest free-edge HNN extension.**
+
+The only semantic inputs are injectivity of the two displayed free
+evaluations.  The equivalence is the composite of relator-set transport,
+append renumbering, the word-level HNN presentation theorem, and transport to
+`ExplicitFreeEdge.Extension`. -/
+noncomputable def edgeCodeEquiv (c : PresentationCode)
+    (edges : List (Raw × Raw))
+    (hsource : Function.Injective (sourceEval c edges))
+    (htarget : Function.Injective (targetEval c edges)) :
+    Carrier (edgeCode c edges) ≃*
+      Extension (edgeData c edges hsource htarget) :=
+  (((PresentationCodeList.presCongrSet
+      (relabel_hnnRels c edges).symm).trans
+    (PresentedGroupRelabel.congrEquiv (edgeGeneratorEquiv c edges)
+      (HNNPresentation.hnnRels (codeRels c)
+        (sourceWord c edges) (targetWord c edges))).symm).trans
+    (HNNPresentation.equivPres (codeRels c)
+      (sourceWord c edges) (targetWord c edges)
+      (presentedEdgeEquiv c edges hsource htarget)
+      (presentedEdgeEquiv_gen c edges hsource htarget))).trans
+    (presentedHNNEquiv c edges hsource htarget)
+
 end FreeEdgeTowerSemantics
 end GroupApproximation

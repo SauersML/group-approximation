@@ -3,6 +3,9 @@ rg: 2
 id: hyperlinear-recognition-undecidable
 kind: claim
 title: Hyperlinearity of finitely presented groups is undecidable
+artifacts:
+  - GroupApproximation/Computability/HyperlinearUndecidabilityRoute.lean
+  - GroupApproximation/Computability/HyperlinearEnumeratedHardness.lean
 distinct_from:
   approximation-property-recognition-dichotomy: that is the established two-sided theorem; this is the assertion that side (B) is the true side, which is open and equivalent to the goal.
   non-hyperlinear-group: that asks for a group; this asks for an algorithmic impossibility, and the two are equivalent by the dichotomy, so this is the goal seen from the computability side, where MIP-star-equals-RE-style reductions can be attempted.
@@ -53,3 +56,5 @@ recorded in [[taller-vidick-lcs-re-hardness]] and in the audit
   strategy yields only approximate relations and no group.
 * A `Pi^0_2` upper bound ([[nonhyperlinear-presentation-codes-have-a-sigma2-upper-bound]])
   is not evidence either way.
+
+**Machine-checked consequences.**  `HyperlinearUndecidabilityRoute.not_computablePred_iff_exists_nonhyperlinear_code` (this claim is equivalent to a non-hyperlinear finite presentation, given the word problem) and `HyperlinearEnumeratedHardness.hyperlinearCode_pi02Hard_of_exists` (one such presentation makes hyperlinearity of enumerated presentations `Pi^0_2`-hard).

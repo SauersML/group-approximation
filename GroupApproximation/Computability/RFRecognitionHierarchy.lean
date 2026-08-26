@@ -1,5 +1,5 @@
 import GroupApproximation.Computability.MarkovRecognitionHierarchy
-import GroupApproximation.Computability.RFPresentationPi02
+import GroupApproximation.Computability.RFEnumeratedHardness
 
 /-!
 # The recognition hierarchy for residual finiteness
@@ -64,7 +64,7 @@ theorem rf_finite_bounds_and_enumerated_hardness :
       (fun c => ¬ EnumeratedCodeProperty ResiduallyFiniteProperty c) := by
   have h := recognition_hierarchy_package rfHierarchyData
   exact ⟨pi02_residuallyFinite, sigma02_not_residuallyFinite,
-    h.2.2.1, h.2.2.2.1⟩
+    RFEnumeratedHardness.rfCode_pi02Hard, h.2.2.2.1⟩
 
 /-- Exact second-level completeness on the canonical event-ray switch family,
 paired with an explicit reduction from the uniform word problem. -/

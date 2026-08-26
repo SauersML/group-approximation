@@ -12,7 +12,7 @@ distinct_from:
   two-endpoint-source-intersections-retain-character-square: that combines both actor endpoint intersections and all three exceptional detector classes but retains orthogonal character-twist source charts; this asks for the fixed-frame native Gram absent from that square.
   endpoint-whiteheads-are-center-chain-hecke-spectators: that compresses the fresh endpoint braid by the actual nested quarter/eighth Hecke flags and obtains the desired one-eighth scalar Gram, but proves that the endpoint words centralize the entire flag algebra and remain untyped spectator dressings.
   endpoint-whitehead-hecke-flag-trichotomy: that exhausts every non-spectator coordinate placement and finds one fine-only collision, but its proper overlap can vanish in an exact two-dimensional profile and has no unequal-rank covariance.
-  endpoint-order-five-actor-has-half-gram: that adjoins the native order-seven head and forces a genuine half Gram on the four-root endpoint orbit in every representation; its exact GL4 actors all eject the signed K1 sheet needed for the prescribed p2 source.
+  endpoint-order-five-actor-has-half-gram: that adjoins the native order-seven head, realizes a literal GL4 block, and finds its signed-K1-returning GL3 subgroup; this forces at least one third of the actual p2 source to survive the endpoint Gram, but does not yet type that polar as a native unequal-selector occurrence.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism
@@ -319,14 +319,26 @@ literature theorem is permitted in this claim.
   p_2 What p_2=What p_*,
   ```
 
-  and the canonical trace of `p_*` is `tau(e)/16`.  This does not give an
-  arbitrary-profile floor: the exact two-dimensional swapped-character
-  model has `p_2!=0` and `p_*=0`, while the trivial character has full meet.
+  and the canonical trace of `p_*` is `tau(e)/16`.  For this isolated
+  endpoint packet there is no arbitrary-profile floor: the exact
+  two-dimensional swapped-character model has `p_2!=0` and `p_*=0`, while
+  the trivial character has full meet.
   On every surviving meet both fine bits are `+1`, so the polar has identity
   fine-label action and retains the whole endpoint reservoir gauge.  The
   word conjugates `p_2` only to an equal-rank fine flag, not `p_1` to `p_2`.
-  Thus coordinate collisions do not supply the odd unequal-row occurrence
-  required by `(APG1)`.
+  The isolated countermodel does not extend to the enlarged native actor
+  packet.  `endpoint-order-five-actor-has-half-gram` proves that the
+  signed-`K_1`-returning `GL_3(F_2)` forces
+
+  ```text
+  rank(p_2 meet What p_2 What) >= (1/3)rank(p_2).
+  ```
+
+  This closes positive Gram on the actual signed source, but not the
+  occurrence typing: the compressed endpoint polar is still not identified
+  with either prescribed native unequal-selector output.  Thus coordinate
+  collisions plus the actor close positivity, while `(APG1)` still requires
+  the typed common gauge.
 
   Directly intersecting an endpoint-moved signed source with the original
   source does not supply that fixed frame.

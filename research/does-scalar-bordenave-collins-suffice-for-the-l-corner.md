@@ -49,3 +49,35 @@ last step.
 Not resolved.  The task is to check whether the fixed-family-generated
 `L`-corner lets the scalar Bordenave--Collins theorem apply, or whether the
 operator-valued extension is genuinely required.
+
+## Resolution (2026-08-26, from the literature check): scalar route is NEGATIVE
+
+Reading Bordenave--Collins (Annals 2019), Chen--Garza-Vargas--Tropp
+(arXiv:2405.16026, matrix-coefficient strong convergence of random
+permutations, their Thm 3.9), and Magee's survey (arXiv:2503.21619):
+
+* **Matrix coefficients are fine.**  Strong convergence of random
+  permutations with `M_D(C)` coefficients is known (Chen et al. Thm 3.9), so
+  the linearization amplification is not itself an obstacle.
+
+* **But the product/commuting structure is the `F_2 x F_2` wall.**  Magee
+  records that whether random-permutation representations of `F_2` strongly
+  converge to the regular representation is *open* (his Question 2.8), that
+  `F_2 x F_2 x F_2` is **not** PPermF, and that `SL_4(Z)` is not PMatF.  Our
+  model has `L <= G` with a commuting `C`-factor -- exactly the product shape
+  where the random-permutation route to strong convergence is open or fails.
+  Dilating the `B`-shift to a *random permutation* to invoke Bordenave--
+  Collins therefore reaches for PPermF-strength (which has genuine
+  obstructions) when MF is all that is needed.
+
+**Conclusion.**  The scalar Bordenave--Collins theorem does **not** suffice by
+the random-permutation dilation, and that route risks a spurious
+`F_2 x F_2`-type obstruction.  The terminal lemma is genuinely the GKMP
+selflessness / operator-valued strong-freeness statement (which achieves
+PFF/MF *without* the random-permutation regime), not a clean citation.  So
+[[b-shift-strong-freeness-linearization-pff]] Step 4's random-cycle move is
+the wrong tool; the correct terminal input is
+[[strong-convergence-fell-shifted-hnn-model]]'s estimate proved by the GKMP
+method directly.  This keeps the reduction honest and prevents a false
+closure via an over-strong (PPermF) theorem.
+

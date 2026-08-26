@@ -147,7 +147,10 @@ session's `exists_not_isHyperlinear_iff_codeProperty_not_computable`);
 `Covers/HyperlinearTableCover` (peer session).  `Computability/ProfinitelyClosedIndexSet` (`pi03Complete_closedIndex`, the
 computability core of the `Pi^0_3` residual-finiteness theorems);
 `Computability/LEFEnumeratedPi02` (`lef_enum_pi02Complete`, the second exact
-classification).
+classification); `Computability/RFPresentationPi02` (`rf_fp_strict_position`);
+`Computability/RFEnumeratedHardness` (`rfCode_pi02Hard`);
+`Computability/HyperlinearEnumeratedHardness`
+(`hyperlinearCode_pi02Hard_of_exists`).
 
 ## What remains open
 

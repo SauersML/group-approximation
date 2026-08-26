@@ -27,9 +27,13 @@ theorem rfCode_pi02Hard :
         Group.ResiduallyFinite (EnumeratedPresentationCodes.Carrier q)) := by
   obtain ⟨seed, hseed⟩ := exists_non_residuallyFinite_code
   exact pi02Hard_of_hereditary (fun (H : Type) (_ : Group H) ↦ Group.ResiduallyFinite H)
-    (fun f hf hK ↦ residuallyFinite_of_injective f hf hK)
-    (residuallyFinite_of_injective (1 : PUnit →* Carrier trivialCode)
-      (fun a b _ ↦ Subsingleton.elim a b) residuallyFinite_trivialCode)
+    (fun f hf hK ↦ by
+      haveI := hK
+      exact residuallyFinite_of_injective f hf)
+    (by
+      haveI := residuallyFinite_trivialCode
+      exact residuallyFinite_of_injective (1 : PUnit →* Carrier trivialCode)
+        (fun a b _ ↦ Subsingleton.elim a b))
     seed hseed
 
 end RFEnumeratedHardness

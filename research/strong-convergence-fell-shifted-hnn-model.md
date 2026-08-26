@@ -110,3 +110,35 @@ explicit finite-dimensional model rather than as "adapt GKMP".
 Steps 1--2 proved/standard; Steps 3--4 are the two gaps, the second (joint
 freeness estimate) being the operative one.  The reduction of the whole prize
 to this one estimate is the content.
+
+## The exact missing tool identified (2026-08-26, from GKMP v4 method)
+
+Reading the GKMP method (arXiv:2603.24502v4, intro + Lemma 2.3 + Theorem 2.2):
+their engine is precisely **Fell's absorption by tensoring with a copy of `G`
++ virtually-free strongly-convergent models (Bordenave--Collins + induced
+representations) + exactness**, with the group maps upgraded to the reduced
+`C*`-algebra by a **`C*`-correspondence machinery (their Theorem 2.2)**.  Their
+concrete map (Lemma 2.3) even handles a shift:
+`G *_H (H x Z) = [G/K_i *_{H_i/K_i} (H_i/K_i x Z)] x G`, RHS a product of
+virtually free groups with `G`.
+
+This is exactly the construction reconstructed in
+[[pff-bridge-value-fell-absorption-attack]] and
+[[cocycle-twisted-shift-freeness-galois-corner]].  The one piece not
+reproducible here is the **`C*`-correspondence upgrade (Theorem 2.2)** applied
+to the *twisted* edge: GKMP upgrade the finite-level group homomorphisms to
+`C*_r`-isometry for the untwisted product `H x K` and the shift `H x Z`; the
+rope's stable letter carries the extra `phi`-cocycle, and it is their Theorem
+2.2 machinery -- not a random-matrix estimate, not Bordenave--Collins (which
+would hit the `F_2 x F_2` PPF wall,
+[[does-scalar-bordenave-collins-suffice-for-the-l-corner]]) -- that would
+upgrade the cocycle-twisted finite-level maps to a reduced-`C*` isometry.
+
+**So the terminal input is precisely: GKMP's Theorem 2.2 `C*`-correspondence
+upgrade, applied to the `phi`-cocycle-twisted virtually-free tower.**  Every
+surrounding ingredient (virtually-free models, tensor-`G` Fell absorption,
+exactness, separability on INF, weak convergence, central case) is in hand.
+This is a specific, named, research-level step in the GKMP framework -- the
+honest boundary of what can be assembled here without reproducing their
+correspondence machinery.
+

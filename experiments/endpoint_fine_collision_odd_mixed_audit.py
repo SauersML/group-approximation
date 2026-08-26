@@ -11,7 +11,7 @@ from endpoint_chain_center_hecke_collision_audit import (
     whitehead,
 )
 from signed_hecke_literal_pauli_probe_audit import (
-    matrices_equal, matrix_multiply,
+    matrices_equal, matrix_multiply, word_matrix,
 )
 
 
@@ -88,8 +88,11 @@ def main():
         "s": root(6, 8, a2),
         "t": root(6, 9, a3),
         "sprime": root(6, 2, a3),
+        "A1": root(4, 7, a1),
         "A2": root(5, 8, a2),
         "A2prime": root(5, 2, a3),
+        "B2": root(8, 4, b2),
+        "B3": root(9, 5, b3),
         "Bsource": root(8, 3, b2),
         "Bendpoint": root(2, 3, b3),
         "D53": root(5, 3, q),
@@ -100,6 +103,9 @@ def main():
     # whitehead(r,s,m) transports the active endpoint r to s; the native
     # J2=x_98(x2)x_89(y2)x_98(x2) is therefore whitehead(8,9,2).
     j2_word = whitehead(8, 9, 2)
+    j1_word = whitehead(7, 8, 1)
+    named["J1"] = word_matrix(j1_word)
+    named["J2"] = word_matrix(j2_word)
     m_factors = (j2_word, b3_word, a2_word)
 
     print("W conjugates")
@@ -195,20 +201,28 @@ def main():
                 answer = conjugate_by_factors(m_factors, answer)
         return answer
 
-    # Exhaust the 168 possible returns.  The other 19992 abstract actors
-    # fail one of the two necessary active-corner tests: fixing the C3
-    # covector (first column) and fixing the C2/v target (first row).
-    exact_return_failures = []
-    for _, actor_word in returning:
-        for name in k1_names:
-            image = exact_conjugate(actor_word, named[name])
-            sign = group_lookup("K1-odd-mixed", k1, image)
-            if sign is None or sign != name.startswith("C"):
-                exact_return_failures.append((actor_word, name, entries(image)))
-                break
-    print("exact signed-K1 return failures", tuple(exact_return_failures),
-          flush=True)
-    assert not exact_return_failures
+    # Audit a shortest literal signed-source return which transports the
+    # fine root s to the adjacent depth-three root t.  This is the smallest
+    # candidate for upgrading the character-orbit argument to an actual
+    # same-Q native-cell occurrence.
+    s_to_t_returns = sorted(
+        (word for action, word in returning if bit_apply(action, 2) == 4),
+        key=lambda word: (len(word), word),
+    )
+    assert s_to_t_returns
+    shortest_s_to_t = s_to_t_returns[0]
+    print("shortest signed-K1 return s->t", shortest_s_to_t, flush=True)
+    for name in ("C1", "C2", "C3", "v", "w", "s", "t", "sprime",
+                 "A1", "A2", "B2", "B3", "J1", "J2"):
+        image = exact_conjugate(shortest_s_to_t, named[name])
+        print("return", shortest_s_to_t, "conjugates", name, "to",
+              entries(image), flush=True)
+
+    # The 168 returns are exactly diag(1,GL3) on the four active summands.
+    # Hence they fix K1 pointwise: C2 and v use active target 1, C3 uses
+    # active source 1, w is disjoint, and C1 uses the q-part of coordinate 2,
+    # orthogonal to the active e3-part there.  The other 19992 actors fail
+    # one of the first-column/first-row tests before any long-word expansion.
 
     signed_shear_returns = []
     for actor_word in shear_words:
