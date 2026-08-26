@@ -76,3 +76,13 @@ satisfy
 and hence the left side of `(KRC2)` must diverge rather than merely stay
 above one.  The positive construction must therefore create unboundedly many
 moving edge directions on which pointwise-small covariance errors aggregate.
+
+The unnormalized divergence cannot by itself be opposed to the full actor.
+`vanishing-weight-block-carries-full-actor-edge-leakage` constructs canonical
+approximate tables of the actual full Kazhdan actor, including its strict
+compressor, in which all of the divergent leakage sits on a vanishing
+physical-trace summand.  The dominant exact finite-image summand makes every
+exterior-return expectation tend to one, so this is not a reduced relative
+model.  It proves that the next positive or negative step must control the
+**joint distribution** of return-expectation loss and leakage across physical
+trace sectors; aggregate leakage plus actor relations alone is padding-blind.
