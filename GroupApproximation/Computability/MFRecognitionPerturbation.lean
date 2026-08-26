@@ -130,9 +130,8 @@ theorem exists_coded_openPasses {c : PresentationCode}
       (mul_le_mul_of_nonneg_left hηr_le (by positivity)).trans_lt
         (hrelMargin r hr)
     have habs := hgap r
-    rw [abs_sub_comm] at habs
     have hside : C.len r - N.len r ≤ (r.length : ℝ) * η :=
-      (le_abs_self (C.len r - N.len r)).trans habs
+      reverse_sub_le_of_abs_sub_le habs
     linarith
   · intro w hw
     have hmarginη : (w.length : ℝ) * η < N.len w - 1 / 3 :=
@@ -140,7 +139,7 @@ theorem exists_coded_openPasses {c : PresentationCode}
         (hwordMargin w hw)
     have habs := hgap w
     have hside : N.len w - C.len w ≤ (w.length : ℝ) * η :=
-      (le_abs_self _).trans habs
+      sub_le_of_abs_sub_le habs
     linarith
 
 end

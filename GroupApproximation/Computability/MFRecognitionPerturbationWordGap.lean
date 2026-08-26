@@ -126,6 +126,18 @@ theorem abs_microstate_len_tupleWord_sub_le {c : PresentationCode}
   rw [microstate_len_eq_tupleWord]
   exact abs_tupleLength_sub_le M.gen V hclose w
 
+/-- Either orientation of a difference is bounded by a bound on its absolute
+value. -/
+theorem sub_le_of_abs_sub_le {a b δ : ℝ} (h : |a - b| ≤ δ) :
+    a - b ≤ δ :=
+  (le_abs_self (a - b)).trans h
+
+/-- The reverse difference is also bounded by a bound on the absolute value. -/
+theorem reverse_sub_le_of_abs_sub_le {a b δ : ℝ} (h : |a - b| ≤ δ) :
+    b - a ≤ δ := by
+  rw [abs_sub_comm] at h
+  exact sub_le_of_abs_sub_le h
+
 end
 end MFRecognitionPi02
 end GroupApproximation
