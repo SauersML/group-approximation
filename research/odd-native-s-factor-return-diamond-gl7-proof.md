@@ -79,6 +79,16 @@ Together `(5)--(6)` close both sides of the returned-root square and prove
 of the native partial Whitehead is the additional literal relation
 `J_1=X_1Y_1X_1`.
 
+The auxiliary opposite constant root is also an output of the named arm
+packet rather than an untyped completion:
+
+```text
+[PA'P,PB'P]=P[A',B']P=x_69(1)=bar M.                 (7)
+```
+
+Together with `M=[A',B']=x_96(1)`, equation `(7)` types the literal
+returned-root Whitehead `P=M bar M M`.
+
 In the existing seven-coordinate model, write `e_ab=I+E_ab`.  The new
 assignments are
 
@@ -86,18 +96,19 @@ assignments are
 bar M=e_(6,9),       P=(6 9),
 PAP=e_(6,7_0),       PB'P=e_(8_0,9),
 X_1=e_(8_0,7_0),    PA'P=e_(6,8_0),
-PBP=e_(7_0,9),       Y_1=e_(7_0,8_0).                 (7)
+PBP=e_(7_0,9),       Y_1=e_(7_0,8_0).                 (8)
 ```
 
-All equations `(1)--(6)` are elementary path products, and
+All equations `(1)--(7)` are elementary path products, and
 
 ```text
-e_(8_0,7_0)e_(7_0,8_0)e_(8_0,7_0)=(7_0 8_0).         (8)
+e_(8_0,7_0)e_(7_0,8_0)e_(8_0,7_0)=(7_0 8_0).         (9)
 ```
 
 The previous model sends the scoped actor to `((7_0 8_0),c)` in
 `GL_7(F_2) times C_2`, while every factor in `(7)` has central coordinate
-zero.  Equation `(8)` and the literal word equation therefore force `c=0`.  Dropping that
+zero.  Equation `(9)` and the literal word equation therefore force `c=0`.  Dropping that
 coordinate gives an exact `GL_7(F_2)` model of the enlarged table, and the
 marked child `e_(7_1,8_1)` remains nonidentity.  The MSI-only artifact
-checks the preceding packet together with `(1)--(8)`.
+checks the preceding packet, both literal actor factorizations, and mark
+survival.

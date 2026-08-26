@@ -6,6 +6,7 @@ title: The odd native s factor closes the returned-root diamond but still has a 
 artifacts:
   - research/odd-native-s-factor-return-diamond-gl7-proof.md
   - experiments/odd_native_s_factor_return_diamond_gl7_audit.py
+  - research/artifacts/odd-native-whitehead-factor-gl7-msi-2026-08-26.md
 distinct_from:
   first-native-diamond-extension-of-cross-return-has-gl7-c2-model: that scoped table leaves the native actor as an independent GL7-C2 gauge because it does not contain the two odd coefficient factors of the literal Whitehead word; this adjoins those factors and proves that the C2 coordinate is then forced to vanish.
   non-equivariant-native-diamond-arm-matches-retain-gl7-c2-gauge: that matches the primed s00 and t00 arms separately without adjoining the odd factor x_87(s_00t_0); this forms that factor from one returned-root transport and closes its J1-conjugate diamond.
@@ -64,6 +65,16 @@ X_1Y_1X_1=(7_0 8_0).
 
 Hence `(OSF3)` forces the `C_2` coordinate of `J_1` to be zero.
 
+The opposite constant root used in `P` is itself returned by the same four
+arms:
+
+```text
+bar M=[PA'P,PB'P]=x_69(1),       P=M bar M M.          (OSF4)
+```
+
+Thus neither `J_1` nor the auxiliary constant swap retains a private
+central coordinate.
+
 This is a genuine gauge improvement but not a marked obstruction.  The
 complete extended table has an exact model in `GL_7(F_2)`: on the vertex
 order
@@ -72,7 +83,7 @@ order
 (7_0,9,8_0,7_1,10,8_1,6)
 ```
 
-take `bar M=e_(6,9)`, so `P=(6 9)` and `(OSF1)--(OSF3)` are elementary
+take `bar M=e_(6,9)`, so `P=(6 9)` and `(OSF1)--(OSF4)` are elementary
 path products and standard two-transvection swap identities.  Every preceding cross-return,
 native-diamond, and non-equivariant arm-match row remains exact, whereas
 the old marked child

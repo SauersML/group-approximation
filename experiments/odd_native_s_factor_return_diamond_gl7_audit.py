@@ -54,6 +54,11 @@ def main():
     odd_y = odd_y_left
     assert conjugate(native_label, odd_x) == odd_y
 
+    # The opposite root used in the returned Whitehead is also recovered
+    # from the two transported primed arms.
+    recovered_opposite = commutator(transported_t00, transported_s00)
+    assert recovered_opposite == opposite_return
+
     literal_j1 = multiply(multiply(odd_x, odd_y), odd_x)
     assert literal_j1 == native_label
     assert multiply(literal_j1, literal_j1) == ONE
@@ -65,7 +70,7 @@ def main():
     # literal equation J1=X1*Y1*X1 forces the old actor gauge bit to zero.
     forced_native_gauge_bit = 0
     assert forced_native_gauge_bit == 0
-    print("odd native s-factor closes in GL7(F2); C2 gauge killed, mark survives")
+    print("odd native factors and constant swap close in GL7(F2); gauges killed; mark survives")
 
 
 if __name__ == "__main__":

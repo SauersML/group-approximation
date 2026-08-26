@@ -501,3 +501,36 @@ their Whitehead product is the ordinary endpoint swap in `GL_7(F_2)`;
 the marked child on the other branch still survives.  The next live row
 must therefore couple this now-authenticated `J_1` to the second scale or
 to a carrier datum outside the finite seven-coordinate closure.
+
+Literal coupling to the second prefix scale is finite as well.
+`literal-prefix-coupling-of-j1-j2-has-gl7-model` compiles both factors of
+`J_2` from those of `J_1` using the actual two-sided prefix identities and
+imposes the adjacent braid.  The actors become the two adjacent swaps of
+one `S_3` label chart inside the same `GL_7(F_2)` model, while the marked
+child survives.  This removes both independent actor signs but supplies no
+unequal selector type.  On the same-center Pauli carrier both actors have
+quarter-negative label type.  The first missing selector data are therefore
+the two model-dependent source-return conjugacies: a half source matched to
+`J_1` and a quarter source matched to `J_2` on one reducing reservoir.
+
+The first literal center-chain attachment does not supply those conjugacies.
+`native-a1-b2-hecke-triangle-has-gl7-model` reconstructs the actual
+`A_1=x_47(s_1t_0)` and `B_2=x_84(s_00t_1)` arms from named prefix roots,
+recovers the first Whitehead factor as `[B_2,A_1]`, and imposes the exact
+order-seven Hecke head.  This triangle is the natural `GL_3(F_2)` packet on
+three vertices of the existing chart, so the mark again survives.  The live
+seam is now the shared-carrier attachment of the second Hecke triangle and,
+ultimately, dimension-independent source-return/leakage estimates; another
+whole-carrier prefix or braid identity remains below the finite-model
+firewall.
+
+Even both order-seven heads remain inside that firewall.
+`prefix-order-seven-pair-retains-gl7-mark` folds the two Hecke cells into
+the authenticated adjacent-prefix triangle simultaneously.  Both seventh
+powers and the `J_1,J_2` braid hold in the same exact `GL_7(F_2)` model,
+with the marked child nonidentity.  Hence no further fixed order-seven or
+equal-type prefix relation can manufacture the required rank asymmetry.
+The live statement is precisely the pair of mixed source-return
+conjugacies from `quarter-whiteheads-lack-unequal-source-conjugacy`, proved
+with dimension-independent leakage control on one representation-dependent
+reducing carrier.
