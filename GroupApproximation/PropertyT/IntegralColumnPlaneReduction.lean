@@ -22,6 +22,12 @@ Thus the missing integral input may be attacked without constructing or
 estimating a projection: it is enough to prove a dimension-free displacement
 bound for the additive two-root subgroup.  Conversely, the existing elementary
 displacement inequality recovers such a bound from the projection estimate.
+The subgroup is proved here to have the concrete normal form
+`x_ik(a) x_jk(b)`.  Consequently, its displacement bound is equivalent, up to
+a factor two, to one uniform bound for the individual coefficients `a` of an
+elementary root.  Since every integral free polynomial belongs to a finite
+degree stage, this is further equivalent with no loss to a single bound on all
+finite-rank degree stages, uniform in the degree.
 No characteristic, finiteness, or literature hypothesis occurs here.
 -/
 
@@ -71,6 +77,191 @@ def ColumnPlaneDisplacementBound (R : Type u) [Ring R]
             h ∈ (elementaryRootSubgroup i k hik ⊔
               elementaryRootSubgroup j k hjk) →
                 ‖rho h z - z‖ ≤ C * delta
+
+/-! ### Reducing the plane to its two coefficient coordinates -/
+
+/-- The subgroup consisting of the products of the two elementary roots in a
+common column.  Keeping this subgroup explicit avoids using an abstract word
+in a subgroup join: the two roots commute, so every such word has exactly the
+two-coordinate form displayed here. -/
+def columnPlaneProductSubgroup (R : Type u) [Ring R]
+    (i j k : Fin 3) (_hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) :
+    Subgroup (elementaryGroup (Fin 3) R) where
+  carrier := {g | ∃ a b : R,
+    elementaryRoot i k hik a * elementaryRoot j k hjk b = g}
+  one_mem' := ⟨0, 0, by simp⟩
+  mul_mem' := by
+    rintro _ _ ⟨a, b, rfl⟩ ⟨c, d, rfl⟩
+    refine ⟨a + c, b + d, ?_⟩
+    rw [← elementaryRoot_mul i k hik a c,
+      ← elementaryRoot_mul j k hjk b d]
+    have hcomm := elementaryRoot_commute_of_ne i k j k hik hjk
+      hjk.symm hik.symm c b
+    calc
+      (elementaryRoot i k hik a * elementaryRoot i k hik c) *
+          (elementaryRoot j k hjk b * elementaryRoot j k hjk d) =
+        elementaryRoot i k hik a *
+          (elementaryRoot i k hik c * elementaryRoot j k hjk b) *
+            elementaryRoot j k hjk d := by simp only [mul_assoc]
+      _ = elementaryRoot i k hik a *
+          (elementaryRoot j k hjk b * elementaryRoot i k hik c) *
+            elementaryRoot j k hjk d := by rw [hcomm.eq]
+      _ = (elementaryRoot i k hik a * elementaryRoot j k hjk b) *
+          (elementaryRoot i k hik c * elementaryRoot j k hjk d) := by
+        simp only [mul_assoc]
+  inv_mem' := by
+    rintro _ ⟨a, b, rfl⟩
+    refine ⟨-a, -b, ?_⟩
+    rw [elementaryRoot_neg, elementaryRoot_neg, mul_inv_rev]
+    exact (elementaryRoot_commute_of_ne i k j k hik hjk
+      hjk.symm hik.symm a b).inv_left.inv_right.eq
+
+/-- The product model of a common-column plane is exactly the join of its two
+root subgroups. -/
+theorem columnPlaneProductSubgroup_eq_sup
+    {R : Type u} [Ring R]
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k) :
+    columnPlaneProductSubgroup R i j k hij hik hjk =
+      elementaryRootSubgroup i k hik ⊔ elementaryRootSubgroup j k hjk := by
+  apply le_antisymm
+  · rintro _ ⟨a, b, rfl⟩
+    exact (elementaryRootSubgroup i k hik ⊔
+      elementaryRootSubgroup j k hjk).mul_mem
+        ((show elementaryRootSubgroup i k hik ≤
+          elementaryRootSubgroup i k hik ⊔ elementaryRootSubgroup j k hjk from
+            le_sup_left) ⟨a, rfl⟩)
+        ((show elementaryRootSubgroup j k hjk ≤
+          elementaryRootSubgroup i k hik ⊔ elementaryRootSubgroup j k hjk from
+            le_sup_right) ⟨b, rfl⟩)
+  · apply sup_le
+    · rintro _ ⟨a, rfl⟩
+      exact ⟨a, 0, by simp⟩
+    · rintro _ ⟨b, rfl⟩
+      exact ⟨0, b, by simp⟩
+
+/-- Every element of a common-column plane is a product of one element from
+each of its two root coordinates. -/
+theorem exists_columnPlane_coordinate_factorization
+    {R : Type u} [Ring R]
+    (i j k : Fin 3) (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
+    (g : elementaryGroup (Fin 3) R)
+    (hg : g ∈ elementaryRootSubgroup i k hik ⊔
+      elementaryRootSubgroup j k hjk) :
+    ∃ a b : R,
+      elementaryRoot i k hik a * elementaryRoot j k hjk b = g := by
+  rw [← columnPlaneProductSubgroup_eq_sup i j k hij hik hjk] at hg
+  exact hg
+
+/-- A coefficientwise version of the remaining estimate.  It asks for one
+dimension-free displacement bound, uniform over every coefficient of every
+elementary root. -/
+def RootCoefficientDisplacementBound (R : Type u) [Ring R]
+    (S : Finset (elementaryGroup (Fin 3) R)) (C : ℝ) : Prop :=
+  ∀ (E : Type v) [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E],
+    ∀ (rho : elementaryGroup (Fin 3) R →* (E ≃ₗᵢ[ℝ] E)) (z : E) (delta : ℝ),
+      0 < delta → (∀ s ∈ S, ‖rho s z - z‖ < delta) →
+        ∀ (i k : Fin 3) (hik : i ≠ k) (a : R),
+          ‖rho (elementaryRoot i k hik a) z - z‖ ≤ C * delta
+
+/-- A plane-displacement bound controls every individual root coefficient
+with the same constant.  The second root is supplied by the third index in
+`Fin 3`. -/
+theorem rootCoefficientDisplacementBound_of_columnPlaneDisplacementBound
+    {R : Type u} [Ring R] {S : Finset (elementaryGroup (Fin 3) R)} {C : ℝ}
+    (hplane : ColumnPlaneDisplacementBound.{u, v} R S C) :
+    RootCoefficientDisplacementBound.{u, v} R S C := by
+  intro E _ _ _ rho z delta hdelta hnear i k hik a
+  let j := a2ThirdIndex i k
+  have hij : i ≠ j := (a2ThirdIndex_ne_left i k hik).symm
+  have hjk : j ≠ k := a2ThirdIndex_ne_right i k hik
+  apply hplane E rho z delta hdelta hnear i j k hij hik hjk
+    (elementaryRoot i k hik a)
+  exact (show elementaryRootSubgroup i k hik ≤
+    elementaryRootSubgroup i k hik ⊔ elementaryRootSubgroup j k hjk from
+      le_sup_left) ⟨a, rfl⟩
+
+/-- Coefficientwise displacement bounds the whole common-column plane.  The
+only loss is the factor two from its two-coordinate factorization. -/
+theorem columnPlaneDisplacementBound_of_rootCoefficientDisplacementBound
+    {R : Type u} [Ring R] {S : Finset (elementaryGroup (Fin 3) R)} {C : ℝ}
+    (hroot : RootCoefficientDisplacementBound.{u, v} R S C) :
+    ColumnPlaneDisplacementBound.{u, v} R S (2 * C) := by
+  intro E _ _ _ rho z delta hdelta hnear i j k hij hik hjk g hg
+  obtain ⟨a, b, rfl⟩ :=
+    exists_columnPlane_coordinate_factorization i j k hij hik hjk g hg
+  calc
+    ‖rho (elementaryRoot i k hik a * elementaryRoot j k hjk b) z - z‖ ≤
+        ‖rho (elementaryRoot i k hik a) z - z‖ +
+          ‖rho (elementaryRoot j k hjk b) z - z‖ :=
+      A2System.norm_mul_displacement_le rho z _ _
+    _ ≤ C * delta + C * delta :=
+      add_le_add
+        (hroot E rho z delta hdelta hnear i k hik a)
+        (hroot E rho z delta hdelta hnear j k hjk b)
+    _ = (2 * C) * delta := by ring
+
+/-- Existence of the uniform plane bound is equivalent to existence of the
+coefficientwise root bound.  Thus the remaining integral analytic problem can
+be stated without subgroup joins or arbitrary words. -/
+theorem exists_columnPlaneDisplacementBound_iff_exists_rootCoefficientBound
+    (R : Type u) [Ring R] (S : Finset (elementaryGroup (Fin 3) R)) :
+    (∃ C : ℝ, ColumnPlaneDisplacementBound.{u, v} R S C) ↔
+      ∃ C : ℝ, RootCoefficientDisplacementBound.{u, v} R S C := by
+  constructor
+  · rintro ⟨C, hC⟩
+    exact ⟨C, rootCoefficientDisplacementBound_of_columnPlaneDisplacementBound hC⟩
+  · rintro ⟨C, hC⟩
+    exact ⟨2 * C, columnPlaneDisplacementBound_of_rootCoefficientDisplacementBound hC⟩
+
+/-- The finite-stage form of the integral coefficientwise estimate.  The
+constant is uniform in the degree `n`; each individual stage is a finite-rank
+free abelian group, but the same `C` must work for all stages. -/
+def IntegralStageRootCoefficientDisplacementBound
+    (X : Type u) [Fintype X] (C : ℝ) : Prop :=
+  ∀ (E : Type v) [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    [CompleteSpace E],
+    ∀ (rho : elementaryGroup (Fin 3) (FreeAlgebra ℤ X) →* (E ≃ₗᵢ[ℝ] E))
+      (z : E) (delta : ℝ),
+      0 < delta →
+        (∀ s ∈ integralControlSet X, ‖rho s z - z‖ < delta) →
+          ∀ (n : ℕ) (i k : Fin 3) (hik : i ≠ k)
+            (a : FreeAlgebraDegree.degreeLE X ℤ n),
+              ‖rho (elementaryRoot i k hik a.1) z - z‖ ≤ C * delta
+
+/-- A coefficientwise integral bound restricts to every finite degree stage
+without changing its constant. -/
+theorem integralStageRootCoefficientDisplacementBound_of_rootCoefficientBound
+    (X : Type u) [Fintype X] {C : ℝ}
+    (hroot : RootCoefficientDisplacementBound.{u, v}
+      (FreeAlgebra ℤ X) (integralControlSet X) C) :
+    IntegralStageRootCoefficientDisplacementBound.{u, v} X C := by
+  intro E _ _ _ rho z delta hdelta hnear n i k hik a
+  exact hroot E rho z delta hdelta hnear i k hik a.1
+
+/-- Uniform control on all finite degree stages controls every integral free
+polynomial, because every free polynomial lies in one of those stages. -/
+theorem rootCoefficientDisplacementBound_of_integralStageBound
+    (X : Type u) [Fintype X] {C : ℝ}
+    (hstage : IntegralStageRootCoefficientDisplacementBound.{u, v} X C) :
+    RootCoefficientDisplacementBound.{u, v}
+      (FreeAlgebra ℤ X) (integralControlSet X) C := by
+  intro E _ _ _ rho z delta hdelta hnear i k hik a
+  obtain ⟨n, ha⟩ := FreeAlgebraDegree.exists_mem_degreeLE X ℤ a
+  exact hstage E rho z delta hdelta hnear n i k hik ⟨a, ha⟩
+
+/-- The full coefficientwise integral estimate is exactly a dimension-free
+family of estimates on the finite-rank degree stages. -/
+theorem exists_rootCoefficientBound_iff_exists_integralStageBound
+    (X : Type u) [Fintype X] :
+    (∃ C : ℝ, RootCoefficientDisplacementBound.{u, v}
+        (FreeAlgebra ℤ X) (integralControlSet X) C) ↔
+      ∃ C : ℝ, IntegralStageRootCoefficientDisplacementBound.{u, v} X C := by
+  constructor
+  · rintro ⟨C, hC⟩
+    exact ⟨C, integralStageRootCoefficientDisplacementBound_of_rootCoefficientBound X hC⟩
+  · rintro ⟨C, hC⟩
+    exact ⟨C, rootCoefficientDisplacementBound_of_integralStageBound X hC⟩
 
 /-- A uniform displacement estimate for the two-root subgroups implies the
 column-plane moving-projection estimate with no loss in the constant. -/
@@ -128,6 +319,32 @@ theorem integral_exists_columnPlaneMassBound_iff_exists_displacementBound
         (integralControlSet X) C :=
   exists_columnPlaneMassBound_iff_exists_displacementBound
     (FreeAlgebra ℤ X) (integralControlSet X)
+
+/-- The exact integral gap in coefficientwise form.  Proving the plane mass
+bound is equivalent to uniformly controlling the displacement of a vector by
+`elementaryRoot i k hik a`, simultaneously for every integral free-algebra
+coefficient `a`. -/
+theorem integral_exists_columnPlaneMassBound_iff_exists_rootCoefficientBound
+    (X : Type u) [Fintype X] :
+    (∃ C : ℝ, ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
+        (integralControlSet X) C) ↔
+      ∃ C : ℝ, RootCoefficientDisplacementBound.{u, v}
+        (FreeAlgebra ℤ X) (integralControlSet X) C := by
+  rw [integral_exists_columnPlaneMassBound_iff_exists_displacementBound X]
+  exact exists_columnPlaneDisplacementBound_iff_exists_rootCoefficientBound
+    (FreeAlgebra ℤ X) (integralControlSet X)
+
+/-- Final finite-stage reduction of the missing integral input.  The desired
+column-plane mass estimate exists if and only if the finite-rank degree stages
+admit one displacement constant independent of their degree (and hence of
+their rank). -/
+theorem integral_exists_columnPlaneMassBound_iff_exists_integralStageBound
+    (X : Type u) [Fintype X] :
+    (∃ C : ℝ, ColumnPlaneMassBound.{u, v} (FreeAlgebra ℤ X)
+        (integralControlSet X) C) ↔
+      ∃ C : ℝ, IntegralStageRootCoefficientDisplacementBound.{u, v} X C := by
+  rw [integral_exists_columnPlaneMassBound_iff_exists_rootCoefficientBound X]
+  exact exists_rootCoefficientBound_iff_exists_integralStageBound X
 
 end IntegralColumnPlaneReduction
 
