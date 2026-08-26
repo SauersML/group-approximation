@@ -66,6 +66,17 @@ Whitehead involutions but the individual same-root packet
 infinite-order prefix shift.  That result breaks the previous locally finite
 amalgam proof only; it does not yet exclude a different MF model.
 
+The exact status of that packet is now sharper.
+`leavitt-first-offdiagonal-core-is-marked-non-lef` identifies it with an
+elementary group over the one-branch algebraic Toeplitz ring and gives a
+finitely presented Steinberg cover whose marked defect dies in every finite
+quotient.  Thus one raw factor beyond the completed Whitehead involution is
+already a genuine finite-table obstruction.  The distinction between LEF
+and MF is now load-bearing: operator-norm microstates can still use
+rectangular Morita multiplicities, and excluding those is exactly the
+unproved root-to-square decoder rather than a further group-normal-form
+calculation.
+
 The first explicit **downstairs elementary-group** two-compressor relation
 beyond the one-level Haar model is the depth-two split of the marked
 off-diagonal root.  With bars denoting elementary images and

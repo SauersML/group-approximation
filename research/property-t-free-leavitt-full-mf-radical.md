@@ -70,6 +70,7 @@ artifacts:
   - research/first-partial-inverse-whitehead-face-has-haar-mf-character.md
   - research/two-whitehead-face-has-haar-mf-character.md
   - research/leavitt-first-offdiagonal-packet-breaks-locally-finite-amalgam.md
+  - research/leavitt-first-offdiagonal-core-is-marked-non-lef.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -292,6 +293,16 @@ individual same-root `s_0,t_0` roots and produces an infinite-order prefix
 shift.  This is where the diagonal-core LEF proof genuinely stops, but it is
 only a proof-method fence: no non-LEF or MF-radical conclusion follows from
 the infinite-order element alone.
+
+The LEF half of that sentence is now closed.
+`leavitt-first-offdiagonal-core-is-marked-non-lef` identifies the enlarged
+coefficient ring as the one-branch algebraic Toeplitz ring and maps a
+finitely presented Steinberg cover onto it.  Its defect root maps to `z` but
+dies in every finite quotient by direct finiteness, giving a fixed finite
+multiplication-table obstruction.  What remains is specifically MF rather
+than finite-group approximation: almost representations may realize the
+one-sided inverse through rectangular multiplicity, and converting the root
+table into square coefficient operators is the unresolved decoder.
 
 The rank scale along that orbit is now uniform.
 `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed
