@@ -19,7 +19,7 @@
   \newcommand{\paperauthor}{\paperauthorname}
   \newcommand{\coderepo}{\url{https://github.com/SauersML/group-approximation}}
 \fi
-\hypersetup{pdftitle={[DRAFT] The Complexity of Recognizing MF Groups from Finite Presentations},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: arithmetical complexity of MF recognition},pdfkeywords={draft, MF groups, arithmetical hierarchy, finitely presented groups, HNN extensions, Higman embedding}}
+\hypersetup{pdftitle={[DRAFT] MF Recognition is Pi02-Complete},pdfauthor={\paperauthor},pdfsubject={Draft manuscript: arithmetical complexity of MF recognition},pdfkeywords={draft, MF groups, arithmetical hierarchy, finitely presented groups, HNN extensions, Higman embedding}}
 \newcommand{\doi}[1]{\href{https://doi.org/#1}{\nolinkurl{doi:#1}}}
 % Machine-readable source metadata attaching a printed statement to an
 % accompanying Lean~4 declaration.  The macro is intentionally invisible in
@@ -69,7 +69,7 @@
 
 \begin{document}
 \frenchspacing
-\title{The Complexity of Recognizing MF Groups from Finite Presentations}
+\title{MF Recognition is $\Pi^0_2$-Complete}
 \author{\paperauthor}
 \subjclass[2020]{Primary 03D40; Secondary 20F10, 46L05, 03D80}
 \keywords{MF groups, arithmetical hierarchy, finitely presented groups, HNN extensions, Higman embedding, norm matrix coronas}
@@ -115,7 +115,7 @@ presented by $\widehat R_e$ is MF if and only if the $e$-th partial
 computable function has infinite domain.
 \end{mainthm}
 
-Recognizing the MF property is therefore exactly as hard as deciding
+So recognizing the MF property is exactly as hard as deciding
 whether a program halts on infinitely many inputs, and remains
 undecidable relative to an oracle for the halting problem.
 Figure~\ref{fig:levels} places the theorem in the arithmetical
@@ -346,7 +346,7 @@ $\opnorm{xy-1}\le\opnorm{x-1}+\opnorm{y-1}$ for unitaries $x,y$,
 \]
 For $g\ne1$ the word $w_g$ is nontrivial in $G_P$, so for
 $n\ge\lvert w_g\rvert$ the certificate $c_n$ cannot label it $\mathsf T$,
-hence labels it $\mathsf S$, and $\opnorm{V_n(g)-1}\ge1/4$.  Thus
+so labels it $\mathsf S$, and $\opnorm{V_n(g)-1}\ge1/4$.  Thus
 $\limsup_n\opnorm{V_n(g)-1}\ge1/4>0$, and $G_P$ is MF.
 
 The displayed equivalence exhibits $\mathrm{MF}_{\mathrm{fp}}$ as
@@ -441,7 +441,7 @@ first embed $U$ in an amalgamated free product, which Shulman's criterion
 shows to be MF, and then construct the required tracial state on the copy
 of $R$ inside $U$.
 
-\emph{Step 1: $U$ embeds in an amalgamated free product.}  This step follows a corner argument of Ueda~\cite{Ueda}.  Let
+\emph{Step 1: $U$ embeds in an amalgamated free product.}  Let
 $C=B_0\oplus B_1$, $A_1=M_2(D)$, and $A_2=M_2(B_0)$, with the unital
 inclusions
 \[
@@ -450,43 +450,14 @@ inclusions
  \iota_B(c_0,c_1)=\begin{pmatrix}c_0&0\\0&\Theta^{-1}(c_1)\end{pmatrix}\in A_2,
 \]
 and let $P=A_1*_CA_2$ be the full amalgamated free product, in which
-$A_1$ and $A_2$ embed~\cite[Section~2.1]{Shulman}.  Write $e_{ij}$ and
-\leanverified{Manuscript/OneSidedMFRadical/HNNAmalgamCornerSentences}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNAmalgamCornerSentences.manuscriptSentence_ce5f1d31a90e_factorMapsInjective}
-$f_{ij}$ for the matrix units of $A_1$ and $A_2$.  Since
-$\iota_A(p,0)=\iota_B(p,0)$ and $\iota_A(0,p)=\iota_B(0,p)$, we have
-$e_{11}=f_{11}=:e$ and $e_{22}=f_{22}$ in $P$.  Define
-$\pi_D\colon D\to ePe$ by $\pi_D(d)=\operatorname{diag}(d,0)$, a unital
-$*$-homomorphism into the corner, and put $w=e_{12}f_{21}\in ePe$.  Then
-$ww^*=e_{12}f_{22}e_{21}=e_{12}e_{22}e_{21}=e$ and
-$w^*w=f_{12}e_{22}f_{21}=f_{12}f_{22}f_{21}=e$, so $w$ is a unitary of
-$ePe$.  For $b\in B_0$ the element $\operatorname{diag}(b,0)$ is
-\leanverified{Manuscript/OneSidedMFRadical/HNNAmalgamCornerSentences}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNAmalgamCornerSentences.manuscriptSentence_6e8a0c1082a2_cornerWordUnitary}
-$\iota_A(b,0)=\iota_B(b,0)$, so
-\begin{align*}
- w\pi_D(b)w^*
- &=e_{12}\bigl(f_{21}\operatorname{diag}(b,0)f_{12}\bigr)e_{21}
- =e_{12}\,\iota_B(0,\Theta(b))\,e_{21}\\
- &=e_{12}\,\iota_A(0,\Theta(b))\,e_{21}
- =\pi_D(\Theta(b)),
-\end{align*}
-where the middle equality uses
-$\iota_B(0,\Theta(b))=\operatorname{diag}(0,b)$ in $A_2$.  The universal
-property of $U$ gives a $*$-homomorphism $\Phi\colon U\to ePe\subseteq P$
-with $\Phi|_D=\pi_D$ and $\Phi(u)=w$.  We prove that $\Phi$ is injective
-by constructing $\Psi\colon P\to M_2(U)$ with
-$\Psi\Phi(x)=\operatorname{diag}(x,0)$.  Let $\Psi_1\colon A_1\to M_2(U)$ be the entrywise inclusion
-$D\subseteq U$, and let $\Psi_2\colon A_2\to M_2(U)$ be the entrywise
-inclusion $B_0\subseteq U$ followed by conjugation by
-$\operatorname{diag}(1,u)$.  On $C$ we have
-$\Psi_1(\iota_A(c_0,c_1))=\operatorname{diag}(c_0,c_1)$ and
-$\Psi_2(\iota_B(c_0,c_1))=\operatorname{diag}(c_0,u\Theta^{-1}(c_1)u^*)
-=\operatorname{diag}(c_0,c_1)$, so the pair induces a $*$-homomorphism
-$\Psi\colon P\to M_2(U)$.  On generators,
-$\Psi\Phi(d)=\operatorname{diag}(d,0)$ and
-$\Psi\Phi(u)=\Psi_1(e_{12})\Psi_2(f_{21})=\operatorname{diag}(u,0)$.
-Hence $\Psi\Phi$ is the injective $*$-homomorphism $x\mapsto\operatorname{diag}(x,0)$
-of $U$ into $M_2(U)$, and $\Phi$ is injective.
-\leanverified{Manuscript/OneSidedMFRadical/HNNAmalgamCornerSentences}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNAmalgamCornerSentences.manuscriptSentence_3c22068a27b2_injectiveOfMatrixRetraction}
+$A_1$ and $A_2$ embed~\cite[Section~2.1]{Shulman}.  Ueda proved that the
+universal HNN extension is a full corner of exactly this amalgamated free
+product~\cite[Proposition~2.4]{Ueda}: for the projection
+$e=\iota_A(1_D,0)=\iota_B(1_D,0)$ there is an isomorphism of $U$ onto
+$ePe$ carrying $d\in D$ to $\operatorname{diag}(d,0)$ and the unitary
+$u$ to the partial isometry $e_{12}f_{21}$ built from the matrix units
+$e_{ij}$ of $A_1$ and $f_{ij}$ of $A_2$.  In particular $U$ embeds
+in $P$.
 
 \emph{Step 2: $P$ is MF.}  By Shulman's amalgamated-free-product
 criterion~\cite[Theorem~16]{Shulman},
@@ -514,7 +485,7 @@ and on $C$,
  =\begin{pmatrix}c_0&0\\0&c_1\end{pmatrix}
  =\varphi_A(\iota_A(c_0,c_1)),
 \]
-because $\Theta$ is conjugation by $W$.  Hence $P$ is MF, and so are its
+because $\Theta$ is conjugation by $W$.  So $P$ is MF, as are its
 $C^*$-subalgebras $ePe$ and $\Phi(U)\cong U$.
 
 \emph{Step 3: the tracial state.}  The functional
@@ -551,7 +522,7 @@ injective.  Let $A'=C^*(j(R))\subseteq U$, a separable unital MF
 $C^*$-algebra, and let $\tau'=\tau_R\circ\sigma|_{A'}$, where $\tau_R$ is
 the canonical trace $x\mapsto\langle x\delta_1,\delta_1\rangle$ of
 $C^*_{\mathrm r}(R)$.  Then $\tau'$ is a tracial state on $A'$ with
-$\tau'(j(r))=\tau_R(\lambda_R(r))=0$ for $r\ne1$.  Hence $(A',j,\tau')$
+$\tau'(j(r))=\tau_R(\lambda_R(r))=0$ for $r\ne1$.  So $(A',j,\tau')$
 is a tracial MF realization of $R$.
 \end{proof}
 
@@ -595,7 +566,7 @@ $p_1,p_2,\dots$, and let $\mathcal P_n$ be the set of those among
 $p_1,\dots,p_n$ that involve only $a_1,\dots,a_n$, choosing $p_1=0$ so that
 $\mathcal P_n$ is nonempty.  For $p\in\mathcal P_n$
 the number $\opnorm{p(a^{(n)})}$ equals $\limsup_k\opnorm{p(a^{(n,k)})}$,
-since $\eta_n$ is isometric.  Hence there is $K_n$ such that
+since $\eta_n$ is isometric.  So there is $K_n$ such that
 $\opnorm{p(a^{(n,k)})}\le\opnorm{p(a^{(n)})}+1/n$ for all $k\ge K_n$ and
 $p\in\mathcal P_n$, and for each $p\in\mathcal P_n$ there is $k_p\ge K_n$
 with $\opnorm{p(a^{(n,k_p)})}\ge\opnorm{p(a^{(n)})}-1/n$.  Put
@@ -608,7 +579,7 @@ $p'\in\mathcal P_n$, which lies between $\opnorm{p(a^{(n)})}-1/n$ and
 $\opnorm{p(a^{(n)})}+1/n$.  Every polynomial belongs to $\mathcal P_n$ for
 all large $n$, so
 $\limsup_n\opnorm{p(b^{(n)})}=\limsup_n\opnorm{p(a^{(n)})}=\opnorm{p(a)}$
-for every $p$.  Therefore $a_i\mapsto[(b_i^{(n)})_n]$ is well defined and
+for every $p$.  So $a_i\mapsto[(b_i^{(n)})_n]$ is well defined and
 isometric on the $*$-algebra over $\mathbb Q(i)$ generated by the $a_i$,
 which is dense in $A$, and it extends to an isometric $*$-homomorphism of
 $A$ into a norm matrix corona.
@@ -655,8 +626,8 @@ again $T(V(1,q))=0$.
 
 The two homomorphisms $s\mapsto(\lambda_n(s),1)$ and
 $s\mapsto(\lambda_n(s),\beta_n\tau(s))$ from $S$ to $E_n$ have the same
-kernel, namely $\ker(\lambda_n|_S)$, by the hypothesis.  Their images are
-therefore isomorphic subgroups of $E_n$ of the same order, isomorphic via
+kernel, namely $\ker(\lambda_n|_S)$, by the hypothesis.  So their images are
+isomorphic subgroups of $E_n$ of the same order, isomorphic via
 $(\lambda_n(s),1)\mapsto(\lambda_n(s),\beta_n\tau(s))$.  The restriction
 of $L_n$ to a subgroup of $E_n$ is unitarily equivalent to the direct sum
 of as many copies of the left regular representation of that subgroup as
@@ -745,11 +716,11 @@ $s_1t_1\to1+s_0t_0$, the two critical words $t_is_1t_1$ and $s_1t_1s_j$
 resolve to a common value, and the Diamond Lemma~\cite{Bergman} gives
 these monomials as a basis.
 Products of reduced monomials are computed by the defining reductions, so
-equality in $L_{\F_2}(1,2)$ is decidable.  A word in $Y^{\pm1}$ is
-therefore evaluated to an explicit $12\times12$ matrix over
+equality in $L_{\F_2}(1,2)$ is decidable.  So a word in $Y^{\pm1}$
+evaluates to an explicit $12\times12$ matrix over
 $L_{\F_2}(1,2)$, and it represents $1$ in $H$ exactly when
 that matrix is the identity.  The set of words representing $1$ is
-decidable, hence recursively enumerable, and $\langle Y\mid\text{that set}\rangle$
+decidable, so recursively enumerable, and $\langle Y\mid\text{that set}\rangle$
 is a recursive presentation of $H$.
 \end{proof}
 
@@ -795,7 +766,7 @@ $q_+\colon F\to Q_+$ be the quotient map, and let $N_+=\ker q_+$.
 it is generated by $x,y,t$; and a recursive presentation of $B(C)$ on
 $x,y,t$ is computable from a recursive presentation of $C$.  We write
 $B(C)=F/N_C$ and $q_C\colon F\to B(C)$ for the quotient map.
-\item Killing $C$ induces a surjection $B(C)\to Q_+$; hence
+\item Killing $C$ induces a surjection $B(C)\to Q_+$; so
 $N_C\le N_+$, with equality when $C$ is trivial.
 \item The assignment $x\mapsto(x_1,x_2)$, $y\mapsto(y,1)$, $t\mapsto(1,t)$
 defines an injective homomorphism $j\colon Q_+\to P=F(x_1,y)\times F(x_2,t)$.
@@ -807,10 +778,10 @@ In particular, $Q_+$ is residually finite.
 (1) The elements $y_i$, $i\in\mathbb Z$, freely generate the normal
 closure of $y$ in $F(x,y)$~\cite[Chapter~I]{LyndonSchupp}.  The retraction
 $C*F(x,y)\to F(x,y)$ killing $C$ sends $c_iy_i$ to $y_i$, so a nontrivial
-reduced word in the $c_iy_i$ maps to a nontrivial word in the $y_i$; hence
+reduced word in the $c_iy_i$ maps to a nontrivial word in the $y_i$; so
 the $c_iy_i$ freely generate a free subgroup, and $y_i\mapsto c_iy_i$ is an
 isomorphism between two free subgroups of the base.  Thus~\eqref{eq:bridge}
-is an HNN extension, and the base, hence $C$, embeds by Britton's lemma.
+is an HNN extension, and the base, and with it $C$, embeds by Britton's lemma.
 The relation $c_i=ty_it^{-1}y_i^{-1}$ shows that $x,y,t$ generate $B(C)$,
 and substituting this expression for $c_i$ into the relators of $C$ and
 into~\eqref{eq:bridge} produces a recursive presentation on $x,y,t$,
@@ -828,14 +799,14 @@ presentation of $Q_+$ over the transversal $\{x^n\}$ by the
 Reidemeister--Schreier method~\cite[Chapter~II]{LyndonSchupp} presents
 $N_0$ on the generators $y_n=x^nyx^{-n}$ and $t_m=x^mtx^{-m}$, $n,m\in\mathbb Z$,
 with relators the conjugates $x^m[t,y_n]x^{-m}=[t_m,y_{n+m}]$, that is,
-all commutators $[t_m,y_n]$.  Hence $N_0=F(y_n:n\in\mathbb Z)\times F(t_m:m\in\mathbb Z)$.
+all commutators $[t_m,y_n]$.  So $N_0=F(y_n:n\in\mathbb Z)\times F(t_m:m\in\mathbb Z)$.
 Now $j(y_n)=(x_1^nyx_1^{-n},1)$ and $j(t_m)=(1,x_2^mtx_2^{-m})$, and the
 elements $x_1^nyx_1^{-n}$ freely generate the normal closure of $y$ in
 $F(x_1,y)$, and likewise for $t$; so $j$ restricted to $N_0$ is an
 isomorphism onto the product of these two normal closures.  Finally
 $j(x)=(x_1,x_2)$ has infinite order and $j(x)^k\notin j(N_0)$ for $k\ne0$,
 because, for $h\in N_0$, the exponent sum of $x_1$ in $j(x^k h)$ is $k$.
-Hence $j$ is injective on $N_0\rtimes\langle x\rangle$.  Free groups are
+So $j$ is injective on $N_0\rtimes\langle x\rangle$.  Free groups are
 residually finite and residual finiteness passes to direct products and
 subgroups, so $Q_+$ is residually finite.
 \end{proof}
@@ -910,7 +881,7 @@ Let
 
 \begin{lemma}[the first HNN extension]\label{lem:central-rope}
 \begin{enumerate}
-\item $K_e$ is a direct product of free groups of finite rank, hence
+\item $K_e$ is a direct product of free groups of finite rank, so
 finitely presented and residually finite; $L_e$ is finitely generated;
 $i$ is injective; and $i(F)\cap L_e=i(N_e)$.
 \item $\Gamma_e$ is finitely presented, and a finite presentation is
@@ -946,7 +917,7 @@ the amalgamated free product alternates between elements of the two
 copies of $F$ lying outside $N_e$; its image is a word
 $i(f_0)\,v\,i(f_1)\,v^{-1}\,i(f_2)\cdots$ in which every letter between
 consecutive occurrences of $v^{\pm1}$ is some $i(f_k)$ with
-$f_k\notin N_e$, hence $i(f_k)\notin L_e$ by (1).  Such a word contains no
+$f_k\notin N_e$, so $i(f_k)\notin L_e$ by (1).  Such a word contains no
 pinch $v^{\pm1}\ell v^{\mp1}$ with $\ell\in L_e$, so it is nontrivial in
 $\Gamma_e$ by Britton's lemma.
 
@@ -991,7 +962,7 @@ $u(i(f),1)u^{-1}=(i(f),f)$ for all $f\in F$; likewise
 $u(v\,i(f)\,v^{-1},1)u^{-1}=(v\,i(f)\,v^{-1},1)$ for all $f$.  If
 $n\in N_e$, then $i(n)\in L_e$ by Lemma~\ref{lem:central-rope}(1), so
 $v\,i(n)\,v^{-1}=i(n)$ in $\Gamma_e$, and comparing the two relations
-gives $(i(n),n)=(i(n),1)$, that is, $(1,n)=1$ in $\widehat R_e$.  Hence
+gives $(i(n),n)=(i(n),1)$, that is, $(1,n)=1$ in $\widehat R_e$.  So
 the factor $F$ of $\widehat R_e$ factors through $Q_e=F/N_e$, and the
 relations of~\eqref{eq:finite-rope} become $u(s,1)u^{-1}=(s,\alpha_e(s))$
 for $s$ in the generating set $\{i(a),\,v\,i(a)\,v^{-1}:a\in\{x,y,t\}\}$
@@ -1031,9 +1002,9 @@ $Q=Q_+$, $S=S_e$ and $\tau=\alpha_e$, it suffices to produce the data of
 that lemma.
 
 The group $K_e$ is residually finite by Lemma~\ref{lem:central-rope}(1),
-hence admits a tracial MF realization by Lemma~\ref{lem:rf-regular},
-and $\Gamma_e$ is the central HNN extension of $K_e$ over $L_e$, hence
-admits one by Corollary~\ref{cor:central-hnn}.
+so it admits a tracial MF realization by Lemma~\ref{lem:rf-regular};
+and $\Gamma_e$, the central HNN extension of $K_e$ over $L_e$, admits
+one by Corollary~\ref{cor:central-hnn}.
 
 The group $P=F(x_1,y)\times F(x_2,t)$ is residually finite; choose
 finite-index normal subgroups $P_1\ge P_2\ge\cdots$ of $P$ with trivial
@@ -1049,7 +1020,7 @@ $(r_njq_+(f),\,r_n(p))$, and put $\lambda_n(v)=\sigma$.  This respects the
 relations of~\eqref{eq:central-rope}: the factor $L^0_e$ of $L_e$ lies in
 $K^0_e$ and is killed, and an element $(f,jq_+(f))$ of $L^{\mathrm g}$ is
 sent to $(r_njq_+(f),r_njq_+(f))$, which lies on the diagonal and commutes
-with $\sigma$.  Hence $\lambda_n\colon\Gamma_e\to G_n$ is a homomorphism,
+with $\sigma$.  So $\lambda_n\colon\Gamma_e\to G_n$ is a homomorphism,
 and on the generators of $S_e$,
 \[
  \lambda_n(i(f))=(r_njq_+(f),1),
@@ -1060,7 +1031,7 @@ Let $\pi_0,\pi_1\colon S_e\to Q_+$ be the homomorphisms that are $q_+$ on
 one copy of $F$ in $S_e\cong F*_{N_+}F$ and trivial on the other, as in
 Lemma~\ref{lem:central-rope}(3); thus $\pi_0=\alpha_e$.  The displayed
 formulas show that $\lambda_n|_{S_e}=(r_nj\pi_0,\,r_nj\pi_1)$, both sides
-being homomorphisms that agree on generators.  Therefore
+being homomorphisms that agree on generators.  So
 \[
  \ker(\lambda_n|_{S_e})=\ker(r_nj\pi_0)\cap\ker(r_nj\pi_1)\le\ker(\beta_n\circ\alpha_e),
 \]
@@ -1071,7 +1042,7 @@ which is the hypothesis of Lemma~\ref{lem:tensor-sync}.
 By Lemma~\ref{lem:finite-rope} the map $e\mapsto\widehat R_e$ is
 computable, by Lemma~\ref{lem:positive-branch} the presented group is MF
 for $e\in\mathrm{INF}$, and by Lemma~\ref{lem:negative-branch} it is not MF
-for $e\in\mathrm{FIN}$.  Hence $\mathrm{INF}$ reduces to
+for $e\in\mathrm{FIN}$.  So $\mathrm{INF}$ reduces to
 $\mathrm{MF}_{\mathrm{fp}}$ and $\mathrm{FIN}$ reduces to
 $\mathrm{NONMF}_{\mathrm{fp}}$ under computable many-one reductions.  Since
 $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is
@@ -1087,7 +1058,7 @@ enumerable, and in particular neither is decidable.
 \begin{remark}\label{rem:template}
 The construction uses only these properties of $H$: it is finitely
 generated, recursively presented, and not MF, while subgroups of MF
-groups are MF\@.  It therefore applies to any group property that is
+groups are MF\@.  So it applies to any group property that is
 closed under subgroups, given a finitely generated recursively presented
 group without the property and an analogue of
 Lemma~\ref{lem:tensor-sync} for the twisted HNN extensions; the open
@@ -1254,7 +1225,8 @@ A.~Tarski,
 \bibitem[Ue]{Ueda}
 Y.~Ueda,
 \emph{Remarks on HNN extensions in operator algebras},
-Illinois J. Math. \textbf{52} (2008), no.~3, 705--725.
+Illinois J. Math. \textbf{52} (2008), no.~3, 705--725,
+\href{https://arxiv.org/abs/math/0601706}{arXiv:math/0601706}.
 
 \end{thebibliography}
 \end{document}
