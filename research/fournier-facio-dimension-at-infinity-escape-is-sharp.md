@@ -59,6 +59,13 @@ for every finite `m`.  The support graph of `T` is one infinite component,
 yet `M` is a single exact charged-null finite-block replacement whose block
 sizes escape every cutoff.
 
+This splice also realizes the sharp fixed-sector spectral law.  The spectrum
+of `M` on `I_k` is the complete set of `|I_k|`-th roots of unity, and for
+every fixed `n!=0` only the finitely many cycles whose lengths divide `n`
+contribute fixed vectors.  Hence `phi_mu(M^n)=0` for every `n!=0`: the
+charged aggregate spectral distribution is Haar even though every block is
+finite.
+
 Consequently neither hyperfinite exhaustion nor its strongest naive
 null-boundary upgrade closes the Fournier--Facio survivor.  A useful
 Cartanization theorem would additionally have to produce tight block

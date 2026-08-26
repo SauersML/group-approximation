@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "paper1.tex",
+  "manuscript": "non_mf_groups_exist.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -71,6 +71,26 @@
       ]
     },
     {
+      "id": "thm:recognition",
+      "environment": "mainthm",
+      "title": "recognizing MF groups",
+      "statement_sha256": "e929035db2472425af5d5e04b606c435ea092b22785279fff143ea89e82e2068",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "prop:mf-upper-bound",
+        "lem:finite-rope",
+        "lem:positive-branch",
+        "lem:negative-branch"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Soare: INF is Pi^0_2-complete and FIN is Sigma^0_2-complete"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
       "id": "prop:mf-residual-calculus",
       "environment": "proposition",
       "title": "basic properties of the MF radical",
@@ -89,28 +109,6 @@
           "module": "Manuscript/OneSidedMFRadical/LiteralMFClosure",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptMFResidualCalculusLiteral",
           "covers": "the complete printed proposition"
-        }
-      ]
-    },
-    {
-      "id": "prop:full-kernel-pullback",
-      "environment": "proposition",
-      "title": "full-kernel pullback",
-      "statement_sha256": "b0c6befd095a2e1a3ceadd2fb6ea2f5c51e512f21436c9821cf539f69cc38b57",
-      "status": "exact",
-      "object_identity": "The margin declarations collectively cover every printed clause, with the same literal objects in each clause.",
-      "dependencies": [
-        "prop:mf-residual-calculus"
-      ],
-      "extra_assumptions": [],
-      "external_inputs": [],
-      "coverage_gap": "",
-      "lean": [
-        {
-          "role": "exact",
-          "module": "Manuscript/OneSidedMFRadical/PrintedFullKernelPullback",
-          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedFullKernelPullbackParagraph",
-          "covers": "one printed clause; the listed declarations are collective"
         }
       ]
     },
@@ -325,10 +323,7 @@
       "statement_sha256": "0c24db3bd659ea518410bd956aa8b0538cf3ac5eeede650b10cbbd84340caf04",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
-      "dependencies": [
-        "prop:simple",
-        "prop:leavitt-compression"
-      ],
+      "dependencies": [],
       "extra_assumptions": [],
       "external_inputs": [],
       "coverage_gap": "",
@@ -340,6 +335,282 @@
           "covers": "the complete printed proposition"
         }
       ]
+    },
+    {
+      "id": "lem:local-models",
+      "environment": "lemma",
+      "title": "locality with fixed separation",
+      "statement_sha256": "0099a2469fd840f0d186a88891290d500771b3d052ae52ec1d6e05ae6a22ef18",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Korchagin, Proposition 7 (amplification of the separation constant)"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:marked-closed",
+      "environment": "lemma",
+      "title": "marked closedness",
+      "statement_sha256": "0e91cc012c8ab6a306e7cc767d6e66a9af9aa731c7f6a68a0e89b7c2aec51404",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:local-models"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "prop:mf-upper-bound",
+      "environment": "proposition",
+      "title": "finite certificates",
+      "statement_sha256": "7ff613982799c121367c1504129b4129f4ed9098cc2c2c7f21592b06dea18e1e",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:local-models"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Computability/MFRecognitionPi02",
+          "declaration": "GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Computability/MFRecognitionPi02",
+          "declaration": "GroupApproximation.MFRecognitionPi02.nonOperatorMFCode_sigma02",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
+      "id": "lem:rf-regular",
+      "environment": "lemma",
+      "title": "residually finite groups",
+      "statement_sha256": "7a1667aafe7ec95b2e14334515668ffac9417b62d1a96f5aa676207bcbc5f17f",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:hnn-permanence",
+      "environment": "theorem",
+      "title": "HNN permanence with a corona conjugator",
+      "statement_sha256": "ba8110a6be50b32ab9fc68774495c203224670585e26bd7d462c5b415111b0a9",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Ueda, Proposition 2.4 (the universal HNN corner construction)",
+        "Shulman, Theorem 20 (the amalgam criterion for MF)",
+        "Britton's lemma"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "cor:central-hnn",
+      "environment": "corollary",
+      "title": "central HNN extensions",
+      "statement_sha256": "b5552d5b52500644b29ffdc00b0470e0367b0a3a4b1d9e79357fd6e4c56a351b",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "thm:hnn-permanence"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:seed",
+      "environment": "lemma",
+      "title": "a recursive presentation of $H$",
+      "statement_sha256": "ea98a3541f6359e405e36cf4cbc0c46e7b9ec175a302a471142dc453a6f5bed3",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Leavitt's normal form: the monomials without a factor s_1 t_1 are an F_2-basis of L(1,2)"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:switch",
+      "environment": "lemma",
+      "title": "the group $C_e$",
+      "statement_sha256": "fb956e3c28b27a1350f3832766b95d03df4311c6f1349b7b61f5157302125450",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:seed"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Bilanovic--Chubb--Roven, Theorem 3.1 (the construction pattern)"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:bridge",
+      "environment": "lemma",
+      "title": "the three-generator embedding",
+      "statement_sha256": "636d096f0f7b7f07084d035c7b49ff4b5a88705752b4d1cf50ed388f6d78b710",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Britton's lemma",
+        "Reidemeister--Schreier rewriting",
+        "free basis of the normal closure of a basis element"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:mikhailova",
+      "environment": "lemma",
+      "title": "Higman embedding and the Mihailova subgroup",
+      "statement_sha256": "17e8092369f8dbb61d3985f561587883c6c9a9f135c2a51e2865c0ff13a1cff2",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:switch",
+        "lem:bridge"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Higman's embedding theorem in Mikaelian's explicit form",
+        "Mikhailova's fibre product"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:central-rope",
+      "environment": "lemma",
+      "title": "the first HNN extension",
+      "statement_sha256": "68b5a4caab4d65362fe432990d81ff6c96e2245d28d36ebfd381687adddc4260",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:mikhailova",
+        "lem:bridge"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Britton's lemma"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:finite-rope",
+      "environment": "lemma",
+      "title": "the finite presentation",
+      "statement_sha256": "a616263ab734765316a3f1e983665d668834d169455519e446f8d316250253d4",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:central-rope"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:negative-branch",
+      "environment": "lemma",
+      "title": "the case $e\\in\\mathrm{FIN}$",
+      "statement_sha256": "c1e9dbb5a71bc7485ba08e0a310a50784a9c6fb7131e5b64d983fb5d5ecccb58",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "lem:switch",
+        "lem:bridge",
+        "lem:finite-rope",
+        "thm:headline"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Britton's lemma"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:reduced-products",
+      "environment": "lemma",
+      "title": "reduced products of MF algebras",
+      "statement_sha256": "210c3086d4e60b6dbf9a42970f5f4409c0a7eb025adb9968a6de43cc4f11a878",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Blackadar--Kirchberg: the standard diagonal permanence argument",
+        "Korchagin, proof of Proposition 6"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:tensor-sync",
+      "environment": "lemma",
+      "title": "tensor synchronization",
+      "statement_sha256": "4cb1b95f9f2d4239453767b0f7c6bf03c3779c85cfd7d85bacc16385cb7b9ecb",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:reduced-products",
+        "thm:hnn-permanence"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:positive-branch",
+      "environment": "lemma",
+      "title": "the case $e\\in\\mathrm{INF}$",
+      "statement_sha256": "1f21834982d8cd048db72018899d3c2bb0ce19365d79d541aa3f2d542417c40e",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:finite-rope",
+        "lem:tensor-sync",
+        "lem:central-rope",
+        "lem:rf-regular",
+        "cor:central-hnn",
+        "lem:bridge"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
     }
   ]
 }

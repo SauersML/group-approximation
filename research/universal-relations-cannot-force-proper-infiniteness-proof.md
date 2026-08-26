@@ -28,7 +28,7 @@ tau(a) = <a delta_e, delta_e>,
 which is a **faithful** trace on `C*_r(G)`: `tau(a^* a) = ||a delta_e||^2`,
 and `a delta_e = 0` forces `a lambda(g) delta_e = lambda(g) a delta_e = 0`
 for all `g` when `a` commutes appropriately -- more directly,
-`a delta_e = 0` gives `<a delta_g, delta_h> = <a delta_e, delta_(g^-1 h)> = 0`
+`a delta_e = 0` gives `<a delta_g, delta_h> = <a delta_e, delta_(h g^-1)> = 0`
 for all `g,h`, hence `a = 0`.
 
 Proper infiniteness of `q` means `q ⊕ q` is Murray--von Neumann subequivalent

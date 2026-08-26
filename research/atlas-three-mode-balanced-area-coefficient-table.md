@@ -9,7 +9,7 @@ distinct_from:
   atlas-order-one-weyl-atlas-is-one-laurent-common-root-test: that proves how the resulting Laurent polynomials decide the order-one Weyl family; this is the missing finite input table, not the common-root decision itself.
 ---
 
-**OPEN FINITE DATA TARGET.**  Let `T_St` be the established usable packet of
+**ESTABLISHED.**  Let `T_St` be the established usable packet of
 4,648 words.  For each `s in T_St` and integer `A`, define
 
 ```text
@@ -63,9 +63,22 @@ proved presentation ledger has 4,648 entries but only 4,640 reduced nonempty
 words; the four nonempty reverse relations are new.  Its ordered-list SHA-256
 is `9e751115287b18fbe847309379d2710ffa0b1466c836d32ff4ec24446e6c2b99`.
 
-No checked-in artifact or script exports `(BAT1)`.  Therefore the common-root
-gcd cannot presently be computed from repository data without adding the
-balanced-area collector to the now-complete packet exporter.  Substituting
+For a negative decision the first row already suffices.  MSI job `17081560`
+exports
+
+```text
+f_(root_12_1e)(t)=16953689/41287680,
+f_(root_12_1e)(t)-1=-24333991/41287680,
+```
+
+so the exact gcd is `1`, certified by the multiplier
+`-41287680/24333991`.  The collector therefore stopped after one of 4,648
+entries, as permitted by the negative-certificate clause above.  The packet
+SHA-256, sparse row, gcd, and checked Bezout identity are stored in
+`experiments/atlas-rank5-balanced-area.json`; full provenance is in
+`atlas-first-rank-five-relator-kills-order-one-weyl-slice`.
+
+Substituting
 the six-row or fourteen-word Atlas surrogates would not decide the positive
 criterion because those lists are not the complete usable packet.
 

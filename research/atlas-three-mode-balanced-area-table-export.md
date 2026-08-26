@@ -8,6 +8,7 @@ requires:
   - atlas-steinberg-rank-five-translation
   - atlas-three-label-mode-two-unitary-moment-reduction
   - atlas-rank-five-complete-packet-exporter
+  - atlas-three-mode-balanced-area-sparse-collector
 ---
 
 The first serialization step is complete in
@@ -24,7 +25,9 @@ full-family and involutivity words.  Eight reverse entries reduce freely to the
 empty word, so downstream collection may skip them after checking the recorded
 4,648-entry / 4,640-nonempty ledger.
 
-For each word, stream formula `(TLMP1)` one syllable at a time.  Expand each
+`experiments/atlas_three_mode_balanced_area.py` now carries out the following
+exact collection.  For each word, stream formula `(TLMP1)` one syllable at a
+time.  Expand each
 of the fixed label projections
 
 ```text
@@ -48,9 +51,14 @@ discard `a!=0` or `b!=0`, take the exact normalized label trace, and collect
 the result by `A`.  This yields `(BAT1)` without enumerating the formal
 `3^(2l)` sector expansion or allocating dense label matrices.
 
-Validate on three controls before the full packet: the empty word gives
-`f=1`; a one-chart nonidentity word gives `f=0` under the regular label
-trace; and the `z->1` specialization agrees with the previously established
-small-phase/commutative evaluation.  The final artifact should include a
-hash of the regenerated `T_St` word list so the Laurent table is tied to the
-proved usable packet.
+The implementation validates five exact controls before the full packet: the
+empty word gives `f=1`; a nonidentity word in either chart gives `f=0`; the
+second-chart identity gives `f=1`; and a second-chart word followed by its
+inverse gives `f=1`.  The final artifact includes the hash of the regenerated
+`T_St` word list so the Laurent table is tied to the proved usable packet.
+
+The first local nonempty-word calibration is already about 23 seconds, so the
+complete packet is a remote/MSI job rather than a local run.  The script has a
+hard live-state cap and prints the exact remote command on overflow.  It also
+maintains the incremental gcd of `f_s(t)-1` and a checked Bezout certificate,
+so a negative decision may stop before exporting the rest of the packet.

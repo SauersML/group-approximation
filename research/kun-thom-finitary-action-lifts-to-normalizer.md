@@ -83,3 +83,51 @@ for a finite generating set `T` of `Gamma`.  By
 squared HS distance exactly two from the identity in the canonical AFP
 paste.  Thus the remaining task is a genuinely macroscopic mixed-kernel
 closing problem, not alignment of independently chosen subgroup lifts.
+
+The kernel-closing equation is now cohomologically exact.  For a compatible
+AFP lift `u`, the discrepancy
+
+```text
+k_gamma=(u_C u_gamma u_C^*)u_(alpha_C(gamma))^*
+```
+
+is a `U(R' cap R^omega)`-valued one-cocycle, and changing `u_C` by a kernel
+gauge changes `k` by a coboundary.  Hence closing the displayed finite seam
+is exactly triviality of this cocycle subject to the remaining `SL_3(Z)`
+relations.  Moreover `kt-canonical-afp-seam-has-no-internal-gauge-correction`
+proves by a Fourier/Bass--Serre argument that no nonzero intertwiner exists
+inside the canonical CE amalgam algebra.  Any positive solution must create
+the correcting gauge in the larger **extrinsic** relative commutant of its
+embedding into `R^omega`; an extrinsic-commutant collapse theorem would give
+the negative branch instead.
+
+This internal obstruction is quantitative and stable under every finite
+diagonal amplification (`kt-internal-c-seam-has-a-kazhdan-gap`).  Therefore
+the usual direct-sum/flip trick does not repair it: that flip exchanges two
+different Gamma representations rather than intertwining repeated copies of
+the same `H_A` lift, and making the mixed blocks `S`-covariant requires the
+infinite coset induction `S/<A>`, not the three-cycle `C^3=1`.
+`kt-extrinsic-c-seam-has-a-finite-satisfiability-criterion` now gives the
+sharp ultrapower test: a correcting gauge exists exactly when one fixed
+finite Gamma seam packet and the finite `SL_3(Z)` relator packet can be made
+arbitrarily small while commuting with longer finite subsets of `R`.
+
+Two further fences show how nontrivial such a solution must be.  Passive
+McDuff amplification of the AFP paste retains the identical Kazhdan seam
+gap, so an independent hyperfinite central-sequence factor cannot supply the
+gauge.  In any finite ambient algebra, an exact extrinsic corrector has
+conditional expectation zero onto the AFP paste and hence lies at squared
+distance one from it; approximate correctors satisfy
+`||E_M(z)||_2<=defect/kappa`.  The positive branch therefore needs a wholly
+new, dynamically nontrivial Gamma bimodule in the extrinsic relative
+commutant, not absorption or small perturbation of the known CE model.
+
+The minimal new module is now intrinsic: an exact corrector generates an
+orthogonal index-one correspondence between the two copies
+`W^*(R,C Gamma C^(-1))` and `W^*(R,alpha_C(Gamma))`, with an `R`-central
+unitary cyclic vector.  Independent Bernoulli, coinduced, or McDuff tensor
+actions of the quotient actor do not create it: their actor unitaries already
+satisfy the quotient C-normalization identity and cancel from the seam, so
+`k_gamma` remains `k_gamma tensor 1`.  Any positive construction must couple
+the AFP paste to the new factor non-tensorially; at that point it is exactly
+the mixed-kernel correspondence problem rather than a permanence shortcut.

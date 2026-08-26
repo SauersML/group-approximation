@@ -24,6 +24,29 @@ tau(P) <= epsilon_left+epsilon_head,
 epsilon_left^2+epsilon_head^2 >= tau(P)^2/2.            (PTH2)
 ```
 
+There is also a sparse operator-norm form, which does not use `tau(P)`.
+Put
+
+```text
+delta=||YX-1||_op<1,             eta=||P-(1-XY)||_op.
+```
+
+Because `X,Y` are square matrices, `YX` invertible implies that both `X`
+and `Y` are invertible.  Moreover
+
+```text
+||XY-1||_op <= delta/(1-delta).
+```
+
+Consequently, if `P!=0`,
+
+```text
+1=||P||_op <= eta+delta/(1-delta).                       (PTH2-op)
+```
+
+Thus a same-square decoder with both operator-norm errors tending to zero
+kills even a rank-one head.  Positive normalized trace is unnecessary.
+
 Thus, once the Toeplitz source and target have been decoded on the **same
 finite matrix reservoir**, positive forbidden-head mass quantitatively
 excludes the stationary congruence collapse and pays one of the two named
@@ -56,6 +79,7 @@ falsification test:
 
 ```text
 same square reservoir + positive head  => named HS payment;
+same square reservoir + nonzero head   => named operator-norm payment;
 unpaid positive head                   => rectangular reservoir escape.
                                                                (PTH5)
 ```

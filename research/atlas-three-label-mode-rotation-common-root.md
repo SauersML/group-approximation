@@ -7,6 +7,7 @@ target: binary-leavitt-unit-group-hyperlinear
 requires:
   - atlas-order-one-weyl-atlas-is-one-laurent-common-root-test
   - atlas-three-mode-balanced-area-coefficient-table
+  - atlas-order-one-weyl-common-root-exists
 ---
 
 For every literal relator `s in bar_S`, form the Laurent polynomial
@@ -33,7 +34,8 @@ rational rotation algebra, not by substituting one fixed irreducible Weyl
 trace.  The latter shortcut is invalid because extra exponent classes survive
 modulo the fixed order.
 
-The exact missing input is tracked by
-`atlas-three-mode-balanced-area-coefficient-table`.  The repository contains
-generators and verification scripts for the 4,648 words but not the cited
-merged JSON artifact and not the balanced-area Laurent coefficients.
+The exact coefficient audit is now complete in the negative direction.  The
+first packet relation has the constant value
+`16953689/41287680`, so its difference from one is a nonzero constant and the
+gcd is already one.  Therefore this route is refuted.  The result does not
+touch non-Heisenberg two-unitary models in the full moment system.

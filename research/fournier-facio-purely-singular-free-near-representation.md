@@ -101,3 +101,18 @@ eigenphases escapes every finite cutoff.  Thus dimension-at-infinity cannot
 be supplied merely by amplifying a bounded spectral model.  A positive
 common-block construction needs genuinely increasing spectral complexity on
 the fixed sector.
+
+The complete marginal law is also forced.
+`fournier-facio-fixed-block-actor-is-charge-haar` shows that every nonzero
+power moment of this fixed-block actor vanishes under the normalized charged
+corner state.  Its aggregate spectrum is exactly Haar, not merely large or
+dense, and each fixed power has vanishing diagonal coefficient columnwise in
+charge.  Equivalently every fixed Krylov window
+`delta_x,U delta_x,...,U^N delta_x` is asymptotically orthonormal on a
+conull part of the fixed sector.  This excludes Haar-distributed irrational
+diagonal phases as well as biased dense spectra.  The signed-square cyclic
+splice shows that the Haar-and-wandering one-actor condition is attainable at
+dimension infinity.
+The remaining difficulty is therefore simultaneous: couple that off-diagonal
+Haar field to the other generators and both compressors without reverting to
+a monomial near action.
