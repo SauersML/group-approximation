@@ -341,3 +341,42 @@ keeping `DE` equal to a product of two 3-cycles.  Thus even complementary
 private-arm Whiteheads do not give `(ESB2)`; the next occurrence must put an
 individual private arm and `D` or `E` in a new same-chart commutator or
 other relation beyond completeness fusion.
+
+The first literal same-chart private-Weyl commutator is now also computed.
+Writing `P_i=x_78(q_i)`, `R_i=x_87(q_i)`, and
+`V_i=P_iR_iP_i`, orthogonality and completeness give
+
+```text
+nV_in=R_i,       mV_im=P_i,       [w,V_i]=1,
+n=P_0P_1,        m=R_0R_1,        w=V_0V_1.
+```
+
+Thus `complementary-private-weyl-loops-have-s3-square-gauge-model` does put
+each individual private Whitehead in a common-carrier commutator with the
+native Weyl.  It is still insufficient: the complete table has an exact
+`S_3 times S_3` gauge model with the two branches in separate factors and
+the native gauges embedded diagonally.  The private commutators hold while
+the diagonal `DE` has order three.  The next word must mix the two branch
+reservoir factors off this direct-product decomposition, not merely
+centralize each private factor by their diagonal product.
+
+Directly crossing the uncompleted depth-two private packets does not provide
+that word.  `complementary-private-a3-root-packets-cross-commute` observes
+that every private coefficient and genuine reverse in branch `i` has the
+form `s_(i mu)t_(i nu)`.  Prefix orthogonality therefore makes both products
+between a branch-zero and a branch-one coefficient vanish.  This remains
+true at actual shared EL20 indices: for example
+
+```text
+[x_(10,7)(s_00t_0),x_(7,12)(s_1t_10)]=1,
+[x_78(q_1),x_(8,10)(s_0t_01)]=1.
+```
+
+Indeed all individual complementary private-root words commute factor by
+factor, including opposite-root occurrences.  The existing `S_3 times S_3`
+gauge fence already realizes every such cross commutation while its diagonal
+native `DE` retains order three.  Thus a positive cell must first leave the
+pure top-prefix components--through a genuinely mixed `0`-to-`1`
+coefficient or through completeness before the noncommuting occurrence;
+one pure individual arm from each branch cannot produce a new `D/E`
+equation.
