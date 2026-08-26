@@ -1,5 +1,7 @@
 import GroupApproximation.Higman.MatchedSubgroupAmalgam
 import GroupApproximation.Higman.PairedReturnGraphIntersection
+import GroupApproximation.Higman.FreeLampFinitePresentation
+import GroupApproximation.Higman.TransportCodeRE
 
 /-!
 # The five-generator paired-return cutter
@@ -562,6 +564,50 @@ theorem fiveCutter_torsionFree_benign_data :
   exact ⟨Amalgam.of_injective_push edgeToP edgeToC edgeToP_injective
       edgeToC_injective false,
     fiveCutter_fg, fiveCutter_comap_left, ambient_torsionFree⟩
+
+/-! ## The conjugator-graph and Section 5 witnesses
+
+The free-lamp finite-presentation theorem now supplies the sole field omitted
+from `fiveCutter_torsionFree_benign_data`.  Thus the literal five-generator
+cutter is a complete torsion-free benign witness for Higman's conjugator
+graph. -/
+
+theorem ambient_finitelyPresented : Group.IsFinitelyPresented Ambient := by
+  exact
+    FreeLampFinitePresentation.isFinitelyPresented_swappedAmalgam_of_equiv
+      PairedReturnGraphIntersection.P PairedReturnGraphIntersection.M
+      edgeSub_fg syncEquivFree
+
+/-- The torsion-free benign witness whose cutting subgroup is exactly the
+literal closure of `x, p_b, p_c, q_b, q_c`. -/
+def fiveCutterWitness : TorsionFreeBenignWitness Star.graphSub := by
+  letI : Group.IsFinitelyPresented Ambient := ambient_finitelyPresented
+  exact
+    { witness :=
+        { K := Ambient
+          emb := MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+          emb_injective := Amalgam.of_injective_push edgeToP edgeToC
+            edgeToP_injective edgeToC_injective false
+          L := fiveCutter
+          L_fg := fiveCutter_fg
+          comap_eq := fiveCutter_comap_left }
+      torsionFree := ambient_torsionFree }
+
+theorem graph_benignTF : BenignTF Star.graphSub :=
+  ⟨fiveCutterWitness⟩
+
+/-- Higman's fixed conjugator graph, discharged by the paired-return cutter. -/
+theorem conjugatorGraph : Star.ConjugatorGraph where
+  graph_benign := graph_benignTF
+
+/-- The un-conjugation leaf obtained from the concrete conjugator graph. -/
+theorem unConjugation : Transport.UnConjugation :=
+  Star.unConjugation_of conjugatorGraph
+
+/-- **Higman's complete Section 5 transport**, combining the existing
+computability leaf with the literal paired-return conjugator-graph witness. -/
+theorem transportSectionFive : TransportSectionFive :=
+  Transport.transportSectionFive_of_parts Transport.codeRE unConjugation
 
 end PairedReturnCutter
 end Higman
