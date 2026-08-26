@@ -14,6 +14,7 @@ distinct_from:
   finite-cross-word-family-fits-one-hall-reflection: that concentrates every fixed finite family of canonical cross-word gaps on one rank-one reflection; this must use longer alternating-word coupling or genuinely all-word structure rather than a larger finite cross-word list.
   sublinear-julia-seam-collapses-the-fold-kernel-tracially: that shows even arbitrary alternating fold-kernel words remain trace-null whenever the Julia seam has sublinear rank; this must establish rank spreading or escape the seam's principal rank ideal.
   julia-derivation-rank-controls-fold: that proves macroscopic `rank(V-1)` is pure commutant gauge and identifies normalized generator-commutator rank as the necessary trace-spreading datum; this still asks to turn that datum into one almost-quotient band satisfying all three IR clauses.
+  leavitt-presentation-double-fd-radical-is-fold-kernel: that proves every honest finite-dimensional representation of the entire double factors through the fold; this asks for a genuinely asymptotic band that cannot be repaired to such an exact representation.
 ---
 
 **OPEN.** Fix a finite free presentation
@@ -55,6 +56,15 @@ is the natural candidate, but the known almost-invariant vector
 `I/sqrt(d_n)` controls only one spectral direction. The missing statement is
 relative-rank control together with `(IR1)` and survival `(IR3)`; neither
 operator-MF nor the exterior-power amplifier supplies it automatically.
+
+There is no exact-representation endpoint hidden behind this spectral
+problem.  The theorem
+`leavitt-presentation-double-fd-radical-is-fold-kernel` says that every
+honest finite-dimensional representation of `P=F *_K F` factors through the
+fold `P->F` and therefore kills every marked cross word.  Hence correcting a
+candidate band to an exact representation of the **double** would destroy
+`(IR3)`.  The live object must be non-exactifiable at each finite stage, not
+merely a poorly chosen exact block.
 
 The refinement
 `shulman-presentation-double-witnesses-have-adjoint-normal-form` shows that
