@@ -75,3 +75,37 @@ relators are satisfied exactly.
 
 Resource note: six concurrent runs at 8 threads each, about 2--3 minutes
 per run up to `d=32`; no job left running.
+
+## Radius-one hexagon smoke test and scope correction
+
+The follow-up `hexagon_holonomy.py` probe was audited before use.  Its first
+version accidentally called a span enumerator on all `32` values of a map
+from `F_2^5`, causing a `2^32` loop.  Replacing that line by the set of the
+already-enumerated image values removed the stall.  A bounded MSI smoke test
+
+```text
+python3 hexagon_holonomy.py 1 0 20
+```
+
+then returned
+
+```text
+loss0 = 1.9949
+loss  = 1.8191103630525847
+operator-norm defect = 1.9999999020060122
+time = 49.3 seconds.
+```
+
+This is optimizer calibration only, not a lower bound: L-BFGS is nonconvex
+and twenty iterations do not exhaust the gauge space.
+
+More importantly, the probe does **not** use the regular local Heisenberg
+packet.  Its center has dimension `16`, but the code retains only one
+central-character extension for each of `32` coarse characters, and only a
+`32`-dimensional diagonal selection in each chosen sector.  Thus its total
+dimension is `1024`.  The regular packet uses all `2^16` central characters
+and has dimension `2^10` in every central sector.  Multiplicity `m` merely
+duplicates the thin packet, and the code never checks survival of the marked
+root.  Therefore neither success nor failure of this optimization decides
+`leavitt-regular-character-is-not-mf`; the exact fence is recorded in
+`radius-one-hexagon-probe-omits-regular-packet`.
