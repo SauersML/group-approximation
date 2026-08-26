@@ -226,3 +226,4 @@
 32980427251	2026-08-26T14:32:04Z	GroupApproximation/Sofic/CentralInvolutionSubgroup.lean	centralInvolutionSubgroup_le_iff_mem
 32986771155	2026-08-26T16:06:01Z	GroupApproximation/Sofic/CentralizerNormalizationRefuted.lean	carrying
 32994802817	2026-08-26T17:33:38Z	GroupApproximation/Sofic/CharacterCount.lean	range_mulRight
+33004569929	2026-08-26T19:20:24Z	GroupApproximation/Sofic/ChiodoBelegradekTheorem.lean	ContainsEveryFPTorsionFree
