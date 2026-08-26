@@ -84,6 +84,36 @@ theorem slim_conj_stable (m : ℕ) (x : F₃) :
   rw [← shiftEquiv_pow_apply]
   exact h.symm
 
+/-! ## The completed three-stage tower interface -/
+
+/-- The second-copy code at the top of the slim tower. -/
+noncomputable def slimOmegaGen (m : ℕ) (β : E) : SlimOmega m :=
+  slimOmegaOf m (slimPiOf m (slimGenCode m β))
+
+/-- **The three concrete HNN stages form an unconditional `Omega.Tower`.**
+The remaining `OmegaTowerInput` work is now entirely in `TowerClosure`: the
+fat-tower benignness transfer and the slim-tower normal-form descent. -/
+noncomputable def slimTower (m : ℕ) : Tower m where
+  G := SlimOmega m
+  emb := slimOmegaEmb m
+  emb_injective := slimOmegaEmb_injective m
+  gen := slimOmegaGen m
+  stable := slimOmegaStable m
+  conj_stable := slim_conj_stable m
+  conj_gen β hβ := by
+    have h := congrArg (slimOmegaOf m) (slim_conj_gen m β hβ)
+    simpa only [slimOmegaGen, slimOmegaEmb, MonoidHom.comp_apply, map_mul,
+      map_inv, slimPiF3Hom_a] using h
+  commute_row β hβ i hi := by
+    have hcomm := commute_genHom_row_slim (y := aElt β) hi
+    have hpi : Commute
+        (slimPiOf m (slimGenCode m β))
+        (slimPiOf m (emb3 (rowOut m) (Row.row i))) := by
+      exact Commute.map hcomm (slimPiOf m)
+    have htop := Commute.map hpi (slimOmegaOf m)
+    simpa only [slimOmegaGen, slimOmegaEmb, MonoidHom.comp_apply,
+      slimGenCode, slimPiF3Hom_rowElt, slimPiRowEmb] using htop
+
 end Omega
 end Higman
 end GroupApproximation
