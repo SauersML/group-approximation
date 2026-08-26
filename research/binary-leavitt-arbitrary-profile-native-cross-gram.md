@@ -202,3 +202,16 @@ literature theorem is permitted in this claim.
   reducible finite packet with both source and paid carrier nonzero.  This
   fixed-source dichotomy is useful occurrence data, but it does not replace
   the arbitrary-profile selector source required by `(APG1)`.
+
+- **Move the localized paid mass through one exact Hecke row.**
+  `paid-cut-has-moving-hecke-source-or-detector` is the strongest valid
+  combination of the paid Whitehead cut with that Reynolds dichotomy.  In
+  the source branch it produces a positive model-dependent `R_0<=Q` and the
+  literal zero-boundary transport `u_iR_0u_i^(-1)<=P`; in the other branch a
+  conjugated detector pays.  This still does not prove `(APG1)`: restriction
+  to `Q` makes both Hecke maps land in the same refined range `P`, so the
+  quarter/eighth native outputs are not authenticated, while one moving row
+  can absorb an arbitrary reservoir coboundary.  The missing transition is
+  an odd, source-and-target-Gram-typed ordinary occurrence from that returned
+  cut to the actual unequal native row (or a relation-controlled upper bound
+  for the paying detector).

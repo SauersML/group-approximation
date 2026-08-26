@@ -115,3 +115,46 @@ This extra source-normalizer incidence still does not license compression:
 that `Qx_43(a_1h)Q` has positive mass.  Accordingly neither `(8)` nor the
 coefficient-shorter row-two detector `(2)` is claimed to select a signed
 source sheet.
+
+Here is the exact compression formula.  Put `U=A_1`, `K_U=[U,H]`,
+`R=QHQ`, and `L=QH(1-Q)`.  Root operators are involutions in characteristic
+two, and `U` commutes with `Q`.  Inserting `Q+(1-Q)` between the first `H`
+and the second `U` gives
+
+```text
+QK_UQ
+ =QUHUHQ
+ =U(QHQ)U(QHQ)+U(QH(1-Q))U((1-Q)HQ)
+ =URUR+ULUL^*.                                        (9)
+```
+
+Consequently
+
+```text
+Q(K_U-1)Q=URUR-Q+ULUL^*.                              (10)
+```
+
+Neither term forces a lower bound.  This is not merely a missing estimate.
+On the ordered basis of `C^4`, set
+
+```text
+Q=diag(1,0,0,0),          U=diag(1,1,-1,-1),
+H=SWAP_(2,3),             K_U=diag(1,-1,-1,1),
+z=diag(-1,-1,1,1),        V=SWAP_(1,3).               (11)
+```
+
+Then `K_U=[U,H]`, `UQ=QU`, `HQ=QH=Q`, and hence `L=0`, `R=Q` and
+`Q(K_U-1)Q=0`.  Nevertheless `K_U` is nonidentity, its negative spectral
+projection has rank two, `zQ=-Q`, and `z=VK_UV^(-1)`, so even the strongest
+global rank comparison is exact in this model.
+
+To include the signed-source datum literally, represent `L_0` diagonally
+by its character `lambda_0` on `QH` and by three copies of the trivial
+character on `(1-Q)H`.  Since `lambda_0` is nontrivial, its signed Reynolds
+average is exactly `Q`.  Both `U` and `H` preserve the two character
+isotypic pieces, so the source-normalizer assertions hold.  This is a
+four-dimensional exact model of precisely the compression, signed-character,
+and global detector-rank data used above.  It is not a representation of
+the full Steinberg group, and it proves the sharp scoped fence: those data
+alone allow a globally nontrivial sheet detector to act trivially on the
+entire marked signed source.

@@ -91,6 +91,20 @@ canonical trace, or literature theorem is permitted.
   source/range Grams and ungauged typing.  Merely selecting lower spectral
   mass cannot replace it.
 
+- **The paid Reynolds cut supplies a genuine first moving source row, but
+  only under its honest detector alternative.**
+  `paid-cut-has-moving-hecke-source-or-detector` conjugates the actual signed
+  source by the frozen paid Whitehead word.  Either one conjugated detector
+  pays at least `1/2`, or a positive support of mass at least
+  `3tau(P_z)/31744` lies in the resulting moving source; undoing the
+  conjugation and applying either literal `u_i` then has exactly zero source
+  boundary.  The incompatible-character commutator simultaneously forces
+  `10epsilon_1+4epsilon_2>=sqrt(tau(R_0))`, so this cut cannot be the common
+  cut forbidden above.  This closes one initial mass/ordinary-row step, not
+  the compiler: the detector branch is not a relator defect, and the next
+  moving transition still needs a full-Gram ungauged occurrence in the fixed
+  Hecke frame.
+
 - The tautological orbit choice `E_(i,k)=T_i^kE_0T_i^(-k)` has zero
   transition boundary, but it does not authenticate the coefficient label at
   any intermediate stage and allows seven independent multiplicity gauges.

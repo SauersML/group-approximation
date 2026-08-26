@@ -92,17 +92,46 @@ Here “source factor” means the literal source-side coefficient arm in
 `(SFD2)`; it does **not** mean that `S_57` reduces the signed Reynolds
 projection.  This is an exact sheet **detector**, not yet the signed-source
 selector.  No established relation justifies compression of `(SFD3)` or
-`(SFD4)`, or of `(SFD7)`, to either the paid constant-atom cut or the signed source
-`Q=e_(L_0,lambda_0)`.  In particular, neither cut is currently known to
+`(SFD4)`, or of `(SFD7)`, to either the paid constant-atom cut or the signed
+source `Q=e_(L_0,lambda_0)`.  In particular, neither cut is currently known to
 reduce `S_57`; although `A_1` does reduce `Q`, `H` is not known to normalize
-`Q`, so this still gives no control of `QK_QQ`.  No present estimate
-controls the resulting leakage terms.  Nor is either signature in `(SFD4)` authenticated as
-the prescribed quarter/eighth source compression.  A continuation may now
+`Q`, so this still gives no control of `Q K_Q Q`.  No present estimate
+controls the resulting leakage terms.  Nor is either signature in `(SFD4)`
+authenticated as the prescribed quarter/eighth source compression.  A continuation may now
 charge leakage of `S_57` from a paid/Reynolds cut, or attach the nonzero `K`
 carrier to the actual signed source; it no longer needs to search for an
 ordinary word which merely fails to commute with `H`.  No Property T,
 canonical trace, literature input, local computation, or Lean compilation
 is used.
+
+The strongest compression identity supplied by the present data is exact.
+Write `U=A_1`, `R=QHQ`, and `L=QH(1-Q)`.  Since `UQ=QU` and both root
+operators are involutions,
+
+```text
+QK_QQ=U R U R+U L U L^*,
+Q(K_Q-1)Q=U R U R-Q+U L U L^*.                       (SFD8)
+```
+
+There is no positive lower bound for the second line from signed-character,
+normalizer, global root-rank, or even zero-leakage data.  On `C^4`, with
+
+```text
+Q=diag(1,0,0,0),           U=diag(1,1,-1,-1),
+H=SWAP_(2,3),              K_Q=[U,H]=diag(1,-1,-1,1),
+z=diag(-1,-1,1,1),         V=SWAP_(1,3),              (SFD9)
+```
+
+where coordinates are numbered `1,2,3,4`, one has `UQ=HQ=Q`,
+`Q(K_Q-1)Q=0`, and `z=VK_QV^(-1)`, while both `z` and `K_Q` have nontrivial
+spectral rank two and `zQ=-Q`.  Realize the actual signed source group on
+this space as `lambda_0` on `QH` and as three copies of the trivial
+character on `(1-Q)H`; then its Reynolds projection is exactly `Q`, and
+`U,H` preserve that character splitting.  Thus even strengthening the
+known data by zero `H`-leakage does not source-localize the globally
+nonzero detector.  A positive continuation needs an additional mixed
+occurrence tying its nontrivial spectral sector to `Q`, not a sharper use of
+`A_1Q=QA_1` alone.
 
 DERIVATION
 row2-source-factor-sheet-cube-proof

@@ -180,3 +180,16 @@ two polar-square identities.
   `(OSC4)` requires vanishing normalized-HS spectral mass and all seven
   moving returns, while the Reynolds inequality supplies neither positive
   HS mass nor relator control of the detector menu.
+- **Combine the paid Whitehead trace cut with the signed source branch.**
+  This combination is now rigorous in
+  `paid-cut-has-moving-hecke-source-or-detector`.  If no conjugated detector
+  pays `1/2`, a positive model-dependent `R_0<=Q` retains the paid overlap,
+  and either literal Hecke word transports it exactly into `P`.  The
+  zero-common-cut commutator forces a quantitative order-seven exit from
+  `R_0`, so no common invariant cut is being smuggled in.  This supplies one
+  moving common-source row but not this claim: on `Q`, both maps land in the
+  same `P`, whereas the native source/controlled-target reflections with
+  ratios `(1/2,1/4)` and `(1/4,1/8)` remain unauthenticated.  The exact next
+  input is a source-and-target-Gram-typed transition from the moved cut into
+  one native row, with its reservoir gauge fixed in the Hecke frame; a
+  tautological word-conjugate cut retains the coboundary ambiguity.
