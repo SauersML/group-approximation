@@ -65,6 +65,10 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
         "printedTauGL_mem"),
+    "lem:simple-in-defect": (
+        "Manuscript/NonMF/SimpleInDefect",
+        "GroupApproximation.Manuscript.NonMF."
+        "manuscriptLemmaSimpleInDefect"),
     "prop:leavitt-compression": (
         "Manuscript/OneSidedMFRadical/SentenceCurrentLeavittCompressionClosure",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
@@ -90,8 +94,6 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "lem:saturation": (
         "Osin, Lemma 7.1", "Hull, Theorem 3.12",
         "Hull, Corollary 5.7 and Lemma 5.8"),
-    "lem:simple-in-defect": (
-        "Fournier-Facio, Section 2",),
     "thm:torsion-free": (
         "Fournier-Facio, Section 2", "Hull, Corollary 7.4"),
 }
