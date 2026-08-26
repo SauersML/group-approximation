@@ -105,6 +105,27 @@ theorem abs_tupleLength_sub_le {c : PresentationCode} {Y : FiniteModel}
   have hgap := tupleWord_gap_le U V hclose w
   simpa only [sub_sub_sub_cancel_right] using hgap
 
+/-- A microstate's displacement is the norm of its tuple-word evaluation. -/
+theorem microstate_len_eq_tupleWord {c : PresentationCode}
+    (M : Microstate c) (w : List (ℕ × Bool)) :
+    M.len w =
+      ‖(tupleWord M.gen w : Matrix M.model M.model ℂ) - 1‖ := by
+  rw [Microstate.len_def, opLength, microstate_hom_wordOf_eq_tupleWord]
+
+/-- Generatorwise perturbation controls the displacement of a microstate
+against any comparison tuple on its finite model. -/
+theorem abs_microstate_len_tupleWord_sub_le {c : PresentationCode}
+    (M : Microstate c)
+    (V : Fin (genCount c) → Matrix.unitaryGroup M.model ℂ) {η : ℝ}
+    (hclose : ∀ i,
+      ‖(M.gen i : Matrix M.model M.model ℂ) -
+        (V i : Matrix M.model M.model ℂ)‖ < η)
+    (w : List (ℕ × Bool)) :
+    |M.len w - ‖(tupleWord V w : Matrix M.model M.model ℂ) - 1‖| ≤
+      (w.length : ℝ) * η := by
+  rw [microstate_len_eq_tupleWord]
+  exact abs_tupleLength_sub_le M.gen V hclose w
+
 end
 end MFRecognitionPi02
 end GroupApproximation
