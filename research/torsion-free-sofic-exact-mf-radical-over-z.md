@@ -18,6 +18,7 @@ artifacts:
   - research/fp-kernel-crosses-alekseev-thom-open-problem.md
   - research/artifacts/torsion-free-exact-radical-team-audit-2026-08-26.md
   - research/titz-witzel-mapping-tori-are-virtually-products.md
+  - research/titz-witzel-exact-kazhdan-mf-radical-over-z.md
   - research/titz-witzel-soficity-is-one-finite-csp.md
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
@@ -86,3 +87,9 @@ explicit finite-permutation gate
 envelope supplies neither
 torsion-free nor Kazhdan control.  No construction presently in Cairn or in
 the audited primary sources closes any of these surviving seams.
+
+In particular, `titz-witzel-exact-kazhdan-mf-radical-over-z` proves
+unconditionally every clause of `(TFZ1)` and `(TFZ2)` except soficity and the
+consequent hyperlinearity assertion: taking `G=K x Z` already gives finite
+presentation, torsion-freeness, the exact proper Kazhdan radical, quotient
+`Z`, non-MF, finite presentation of `K`, and one-element normal generation.

@@ -141,6 +141,60 @@ Hamming distance by a quantity tending to zero.
    does not decide the gate; it identifies sparse branching or defects as a
    mandatory feature of any positive model.
 
+## Stability and sparse-defect rigidity audit
+
+The preceding local-model obstruction does **not** combine with property
+`(T)` to decide soficity using any currently published theorem.  The precise
+quantifier gap is as follows.
+
+* A hypothetical sofic approximation has the correct radius-five ball at
+  `1-o(1)` of its vertices.  Titz Mite--Witzel Proposition 4.12 rules out a
+  finite graph where the correct radius-five ball occurs at **every** vertex.
+  It supplies no positive lower bound on the density of bad vertices.
+* Kun, *On sofic approximations of Property (T) groups*, Theorem 1, says that
+  such an approximation can be changed on `o(|V_n|)` edges into a disjoint
+  union of uniform expanders.  Alekseev--Drigalla, *Geometric property (T) for
+  box spaces and sofic approximations*, arXiv:2511.16515, Theorem 6.2,
+  strengthens the coarse conclusion: every sofic approximation of a
+  property-`(T)` group is approximately isomorphic to one with geometric
+  property `(T)`.  Both conclusions explicitly retain an `o(|V_n|)` edit
+  set.  Neither turns an almost action into a finite action or makes every
+  radius-five ball correct.
+* The radius-four automorphism computation only canonically recovers the
+  generator labels on the good locus.  Across the sparse bad locus those
+  partial labels need not close up.  Expansion prevents that locus from
+  separating a macroscopic Folner piece, but does not fill or remove it.
+
+The missing upgrade has an exact standard name.  Chapman--Lubotzky,
+*Stability of Homomorphisms, Coverings and Cocycles I*, identify pointwise
+flexible permutation stability with covering/cocycle stability of the finite
+presentation complex.  Their Part II proves that complete complexes and
+spherical buildings are coboundary expanders with permutation coefficients
+(Theorem 1.6), so this applies to the spherical building links.  But its
+property-`(T)` and Garland conclusions give **large cosystoles** (Theorem
+1.7), not the needed lower bound on the one-dimensional cocycle Cheeger
+constant of the affine quotient.  Section 6 leaves precisely that cocycle
+stability problem open even for the arithmetic Bruhat--Tits families where it
+would produce nonsofic groups.  Chapman--Peled,
+*Cocycle stability in permutations of random simplicial complexes*,
+arXiv:2509.21566v2, remains conditional on the analogous linear stability
+rate and does not apply to this fixed exotic complex.
+
+Consequently, a proof that this Titz--Witzel presentation is stable in finite
+actions (or pointwise flexibly permutation stable) would indeed finish the
+negative horn: together with a hypothetical sofic approximation it would
+make the group residually finite, contradicting its nontrivial finite
+residual (`sofic-stable-implies-residually-finite`).  This is a reformulation
+of the missing theorem, not a consequence of property `(T)`.  Becker--
+Lubotzky's theorem points in the opposite logical direction: if this infinite
+Kazhdan group is sofic, then it cannot be strictly permutation stable.
+
+Thus the terminal negative target is quantitative and unambiguous: prove a
+dimension-independent repair inequality which bounds distance to a genuine
+finite action by the density of bad radius-five balls.  Ball rigidity,
+Kazhdan expansion, large cosystoles, expander decomposition, and geometric
+property `(T)` do not presently supply that inequality.
+
 The gate is consequently both explicit and genuinely terminal: proving it
 would answer Alekseev--Thom Open Problem 6.1 for a finitely presented sofic
 Kazhdan non-residually-finite group and would close the requested exact-MF-

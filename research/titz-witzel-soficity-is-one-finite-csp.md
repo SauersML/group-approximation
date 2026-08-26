@@ -90,3 +90,23 @@ model is a genuine finite action and hence factors through the quotient
 lifts cannot solve the gate.  This does not prove nonsoficity, because a sofic
 model may have a vanishing but nonempty set of defective vertices.  Any
 positive construction must exploit precisely such sparse defects.
+
+Nor do the strongest available property-`(T)` approximation theorems remove
+that sparse set.  Kun's expander-decomposition theorem changes a hypothetical
+sofic model on `o(d_n)` edges into a disjoint union of uniform expanders.
+Alekseev--Drigalla, arXiv:2511.16515, Theorem 6.2, upgrades this only to an
+approximately isomorphic model with geometric property `(T)`.  Both allow
+exactly the `o(d_n)` exceptional data that Proposition 4.12 cannot see.
+Radius-four label rigidity canonically labels the good locus, but gives no
+repair across its sparse boundary.
+
+Chapman--Lubotzky's permutation coboundary expansion for spherical buildings
+therefore does not close the gate either.  It controls the spherical links;
+their property-`(T)`/Garland theorem yields large cosystoles, whereas repairing
+the almost action requires a one-dimensional cocycle-stability inequality for
+the whole affine quotient complex.  Their Section 6 records that inequality
+as open even in the arithmetic Bruhat--Tits setting.  If it were proved here,
+`sofic-stable-implies-residually-finite` would immediately force the negative
+horn, since `K` has no nontrivial finite quotients.  This is the exact missing
+stability theorem, not a consequence of property `(T)` or local ball
+rigidity.  The complete source audit is in the attached artifact.
