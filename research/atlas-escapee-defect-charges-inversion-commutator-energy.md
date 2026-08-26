@@ -76,5 +76,11 @@ already show that active traces are not globally constant.  Thus `(EIC3)`
 rules out gauge-only flat-block progress but does not by itself select the
 hyperlinear or non-hyperlinear branch.
 
+For the exact three-term decomposition of the shortest escapee and the proof
+that its literal four-syllable controls reach only one parabolic term, see
+`atlas-shortest-escapee-literal-control-firewall`.  That result fences the
+naive pointwise telescope but leaves `(EIC6)` for the full control family
+open.
+
 DERIVATION
 atlas-escapee-inversion-energy-proof

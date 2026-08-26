@@ -3,6 +3,7 @@ rg: 2
 id: minimal-marked-graph-finite-window-phase-space-section
 kind: claim
 title: Finite marked-graph windows admit Clifford lifts with scalar-only multiplication curvature
+refuted_by: [finite-presentation-refutes-marked-graph-scalar-window]
 distinct_from:
   finite-clifford-symplectic-section-obstruction: that rules out a global multiplicative section of the full finite symplectic group; this asks only for scalar curvature on one prescribed finite partial group table, after choosing a new vertex-supported completion for that table
   vertex-supported-symplectic-completion: that solves the finite lamp algebra and its trace exactly but supplies no actor maps; this is precisely the missing actor-coherence statement on top of those completed blocks
@@ -107,7 +108,25 @@ multipliers are harmless by conjugate doubling; a nonzero Pauli label is not.
   shows that changing completion vertices also changes `K`, the symplectic
   extensions `S_g`, and hence the coboundary matrix itself; those simultaneous
   Witt-extension equations are quadratic before the lift gauge is chosen.
-  The open calculation is therefore to choose private-neighbour completions
-  for which the resulting restricted class `[a_S]` vanishes.  No affine
-  Laurent-coset description of that completion-level condition has yet been
-  proved.
+The open calculation is therefore to choose private-neighbour completions
+for which the resulting restricted class `[a_S]` vanishes.  No affine
+Laurent-coset description of that completion-level condition has yet been
+proved.
+
+## Resolution: refuted by the finite actor presentation
+
+**REFUTED.**  Theorem E permits a stable-rank instance `r >= d+4`, and
+`finite-presentation-refutes-marked-graph-scalar-window` proves that its
+actor `G` is finitely presented.  Put the entire finite presentation into
+one tested actor table.  Scalar-only Clifford curvature then projects to an
+exact homomorphism `G -> Sp(K)`, a finite group.  Relative finite-quotient
+blindness identifies the marked actor `h` with the image of `Gamma`; since
+the base lamp label is `Gamma`-fixed, its image at `h Gamma` must equal it.
+That contradicts the required marked symplectic pairing `1`.
+
+Thus private-neighbour completion cannot solve `(FWP1)`: the obstruction is
+already global on one finite relator table, before the completion parameters
+are considered.  This refutes only this exact scalar-curvature certificate.
+The parent claim `minimal-marked-graph-crossed-product-ce` remains open
+because normalized-Hilbert--Schmidt microstates may retain small nonzero
+phase-space curvature on the presentation relators.
