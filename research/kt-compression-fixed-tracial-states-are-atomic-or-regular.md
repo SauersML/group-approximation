@@ -31,24 +31,30 @@ hyperlinear model could live.
 
 ## Attempts
 
-- **Finite-dimensional fixed points.**  A finite-dimensional character is
-  fixed iff `sigma o phi_A ~= sigma` for all `A`.  Since `phi_A` lowers the
-  congruence level (the pullback of a cofinite ideal `I` along a monomial
-  substitution is a cofinite ideal of no larger colength, with equality iff
-  the substituted subring surjects onto `R_+/I`), only representations
-  factoring through `EL_r(F_q)` (the augmentation level) are fixed by every
-  `A`; higher levels are moved.  So the finite-dimensional part of a fixed
-  point is supported on the augmentation quotient -- consistent with
-  `atomic-tracial-algebra-endomorphisms-are-automorphisms`, which says the
-  blocks of an atomic fixed model are permuted.
+- **Finite-dimensional fixed points are plentiful, and all blind.**  For a
+  cofinite ideal `I` with `phi_A^(-1)(I) = I` for every non-negative `A` --
+  for instance `I_N = (x_1^N - 1, ..., x_d^N - 1)`, invariant because each
+  `A` acts on `R_+/I_N = F_q[(Z/N)^d]` by a ring automorphism -- the regular
+  character of the finite quotient `EL_r(R_+/I)` is fixed, since `phi_A`
+  descends to an automorphism of that finite group.  Every maximal ideal of
+  `R_+` lies over a torsion point of `(bar F_q)^d`, whose orbit under the
+  monomial substitutions is finite, so invariant cofinite ideals exist at
+  every torsion point; the augmentation ideal is only the simplest case.
+  These fixed points are exactly the characters of finite-quotient models,
+  in which the image of `Gamma` is normal and compression is invisible
+  (`finite-quotient-blindness`), consistent with
+  `atomic-tracial-algebra-endomorphisms-are-automorphisms`.  A single
+  irreducible character is fixed only if the induced automorphism fixes its
+  class; mixtures over automorphism orbits always are.
 - **Regular-type fixed points.**  `delta_e` and every `chi_Z` are fixed.  A
-  pulled-back regular character `1_N` of a quotient `Gamma/N` is fixed iff
-  `phi_A^(-1)(N) = N` for all `A`; for `N = E_r(R_+, I)` this needs `I`
-  invariant under all substitutions, and the only such cofinite or
-  co-infinite ideals found are `0`, the augmentation ideal and `R_+`.  A
-  fixed `1_N` with `Gamma/N` infinite would already give a non-canonical
-  regime candidate, but such an `N` is not in the core and so cannot come
-  from a faithful model (`model-characters-of-compressed-pairs-are-compression-invariant`, (2)).
+  pulled-back regular character `1_N` of an infinite quotient `Gamma/N` is
+  fixed iff `phi_A^(-1)(N) = N` for all `A`; for `N = E_r(R_+, I)` this needs
+  a substitution-invariant ideal `I` with `R_+/I` infinite.  None is known:
+  the powers of the augmentation ideal and the ideal of the coordinate
+  hyperplane arrangement are both moved by a transvection substitution.  In
+  any case such an `N` is not in the finite core, so it cannot arise from a
+  model in criterion form
+  (`model-characters-of-compressed-pairs-are-compression-invariant`, (2)).
 - **General characters.**  `Gamma` is not a lattice for `d >= 2`, so the
   Bekka / Peterson / Bader--Boutonnet--Houdayer--Peterson character rigidity
   theorems do not apply; a proof would have to use the compression
