@@ -55,4 +55,10 @@ No proof of `(RDF2)` is asserted here.
   range, but residual finiteness of any surviving quotient would itself
   produce an exact zero of `(RDF1)`. Finite-target exclusion at bounded
   index is therefore evidence, not a uniform proof.
-
+- The natural alternating family is now excluded in every degree by
+  `atlas-six-relator-has-no-natural-alternating-target`: the repeated
+  fixed-point-free second-chart letter in `s_0` forces the two natural
+  supports to have union degree at most twelve, where the existing exact
+  screens finish. This removes one infinite finite-simple family, but
+  arbitrary non-natural finite-simple targets and diffuse hyperlinear
+  quotients remain.

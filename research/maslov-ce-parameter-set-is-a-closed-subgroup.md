@@ -61,5 +61,7 @@ only if `E_CE=R/Z`. Therefore the small-twist ISW input is equivalent to
 Connes embeddability of **every** Maslov-twisted group von Neumann algebra,
 including the mod-three Deligne algebras. If the small-twist input fails,
 `E_CE` is finite and every parameter outside it gives a non-CE twisted group
-algebra and hence a countable nonhyperlinear central extension.
-
+algebra and hence a countable nonhyperlinear central extension. Moreover
+`metaplectic-half-parameter-is-ce` proves `1/2 in E_CE`, so the finite branch
+has even order; the first unresolved rational test is at an odd denominator,
+not at the metaplectic double cover.
