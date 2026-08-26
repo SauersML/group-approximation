@@ -53,6 +53,7 @@ artifacts:
   - research/finitely-presented-amenable-undecidable-word-problem.md
   - research/artifacts/property-t-free-atomic-leavitt-amr-2026-08-24.md
   - research/coarse-fine-offdiagonal-loops-are-morita-blind.md
+  - research/single-root-completeness-attachments-are-exhausted.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -389,6 +390,16 @@ multiplicative off-diagonal loops.  The missing word must attach the additive
 coefficient-completeness occurrence, or an equivalent spectral support
 incidence, to the selected marked carrier.
 
+The smallest literal completeness continuation is exhausted as well.
+`single-root-completeness-attachments-are-exhausted` classifies all root
+positions relative to `x_ab(p)x_ab(q)=x_ab(1)`.  The only noncommuting
+possibilities are the one-sided composable intermediate-arm cell and the
+opposite-root partial-Whitehead cell; their strongest native specializations
+already have exact marked finite models.  Consequently an operator-norm
+repair must relate at least two new root occurrences and lock their relative
+reservoir gauge.  There is no remaining one-root word to try between the
+additive fold and the marked support.
+
 The first genuinely full-presentation operator-norm payment on this repaired
 route is now established.  `native-t00-y1-collision-pays-marked-opnorm`
 compares the actual row-two arm `x_78(t_00)` with the first prefix arm
@@ -504,6 +515,25 @@ nontrivial coboundary gauges while satisfying the complete compressed
 table.  The missing row must be a noncentral odd ordinary occurrence tied
 to an individual raw native/Hecke polar, not a fixed flag compression.
 
+All noncentral endpoint coordinate placements are now classified as well.
+`endpoint-whitehead-hecke-flag-trichotomy`
+shows that an endpoint edge either dresses both flags, ejects the quarter
+flag, or preserves the quarter flag while ejecting the eighth.  The last
+case occurs for `(8,2;2)` and has the exact proper compression
+
+```text
+p_2 What p_2=What p_*,
+```
+
+with canonical mass `tau(e)/16`.  This is not the missing positive carrier:
+an exact two-dimensional swapped-character representation has `p_2!=0`
+but `p_*=0`, so no arbitrary-profile mass floor exists.  On a surviving
+`p_*` both fine label bits are already `+1`; the polar retains the entire
+uncontrolled endpoint gauge and conjugates one fine flag only to an
+equal-rank fine flag.  Thus neither changing endpoint coordinates nor using
+the first noncentral proper compression authenticates an unequal native
+row.
+
 The original signed source and one endpoint-moved source have now also been
 compared exactly.  In
 `endpoint-whitehead-signed-source-has-only-relative-hecke-overlap` their
@@ -540,6 +570,19 @@ explicit two-cell word splits into independently gauge-dressable commuting
 factors.  The full MF radical therefore remains open: this partial
 occurrence neither handles an arbitrary paying detector nor produces the
 common unequal native range.
+
+The shortest mixed relation tying the explicit two-depth cells has also
+been computed.  In
+`simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`,
+the product of matching endpoint and native prefix Whiteheads fixes the
+positive actor and conjugates its whole depth-two mark cell to depth three.
+But it does not normalize the signed source: the exact intersection has
+order `16`, the canonical overlap is only `tau(Q)/512`, and a finite
+two-character profile makes the source charts orthogonal.  The remaining
+short cross and common-tail words supply only commutation or the inverse
+swap.  Thus even this genuine global occurrence relation does not establish
+the full MF radical; one still needs a noninverse positive return to the
+same signed source or the prescribed unequal native range Gram.
 
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the

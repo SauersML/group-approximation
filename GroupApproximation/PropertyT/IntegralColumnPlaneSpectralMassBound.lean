@@ -1717,6 +1717,73 @@ theorem lowerUnitCharacterAction_mapsTo_B_union_A
   · exact Or.inr hA
   · exact Or.inl hB
 
+theorem upperUnitCharacterAction_mapsTo_A
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    Set.MapsTo (upperUnitCharacterAction rho)
+      (wordPairRegionSet rho n .A) (wordPairRegionSet rho n .A) := by
+  intro chi hchi
+  exact wordPairRegion_upperUnit_eq_A_of_eq_A rho n chi hchi
+
+theorem lowerUnitCharacterAction_mapsTo_C
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    Set.MapsTo (lowerUnitCharacterAction rho)
+      (wordPairRegionSet rho n .C) (wordPairRegionSet rho n .C) := by
+  intro chi hchi
+  exact wordPairRegion_lowerUnit_eq_C_of_eq_C rho n chi hchi
+
+theorem upperUnitCharacterAction_mapsTo_D
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    Set.MapsTo (upperUnitCharacterAction rho)
+      (wordPairRegionSet rho n .D) (wordPairRegionSet rho n .D) := by
+  intro chi hchi
+  exact wordPairRegion_upperUnit_eq_D_of_eq_D rho n chi hchi
+
+theorem lowerUnitCharacterAction_mapsTo_D
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    Set.MapsTo (lowerUnitCharacterAction rho)
+      (wordPairRegionSet rho n .D) (wordPairRegionSet rho n .D) := by
+  intro chi hchi
+  exact wordPairRegion_lowerUnit_eq_D_of_eq_D rho n chi hchi
+
+/-- The strongest union placement supplied by the upper-unit results without
+resolving phase cancellation: `A ∪ B` maps into `A ∪ B ∪ C`. -/
+theorem upperUnitCharacterAction_mapsTo_A_union_B
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    Set.MapsTo (upperUnitCharacterAction rho)
+      (wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B)
+      ((wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∪
+        wordPairRegionSet rho n .C) := by
+  intro chi hchi
+  rcases hchi with hA | hB
+  · exact Or.inl (Or.inl
+      (wordPairRegion_upperUnit_eq_A_of_eq_A rho n chi hA))
+  · rcases wordPairRegion_upperUnit_eq_B_or_C_of_eq_B rho n chi hB with
+      hB' | hC
+    · exact Or.inl (Or.inr hB')
+    · exact Or.inr hC
+
+/-- Symmetrically, `B ∪ C` maps under the lower unit shear into
+`A ∪ B ∪ C`. -/
+theorem lowerUnitCharacterAction_mapsTo_B_union_C
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    Set.MapsTo (lowerUnitCharacterAction rho)
+      (wordPairRegionSet rho n .B ∪ wordPairRegionSet rho n .C)
+      ((wordPairRegionSet rho n .A ∪ wordPairRegionSet rho n .B) ∪
+        wordPairRegionSet rho n .C) := by
+  intro chi hchi
+  rcases hchi with hB | hC
+  · rcases wordPairRegion_lowerUnit_eq_A_or_B_of_eq_B rho n chi hB with
+      hA | hB'
+    · exact Or.inl (Or.inl hA)
+    · exact Or.inl (Or.inr hB')
+  · exact Or.inr (wordPairRegion_lowerUnit_eq_C_of_eq_C rho n chi hC)
+
 omit [Fintype X] in
 theorem iUnion_finitePlaneNontrivialSet
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E)) :
@@ -2050,4 +2117,6 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms wordPairRegion_lowerUnit_eq_A_or_B_of_eq_B
 #audit_axioms upperUnitCharacterAction_mapsTo_B_union_C
 #audit_axioms lowerUnitCharacterAction_mapsTo_B_union_A
+#audit_axioms upperUnitCharacterAction_mapsTo_A_union_B
+#audit_axioms lowerUnitCharacterAction_mapsTo_B_union_C
 #audit_axioms measurableSet_fullPlaneNontrivialSet

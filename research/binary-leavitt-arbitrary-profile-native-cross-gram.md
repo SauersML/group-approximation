@@ -11,6 +11,7 @@ distinct_from:
   endpoint-detector-cell-retains-coboundary-gauge: that gives an exact ordinary-word endpoint transport for one complete detector/probe mark-return cell but leaves maximal full-range overlap and a moving-frame coboundary; this asks for a native unequal-row Gram in one fixed frame.
   two-endpoint-source-intersections-retain-character-square: that combines both actor endpoint intersections and all three exceptional detector classes but retains orthogonal character-twist source charts; this asks for the fixed-frame native Gram absent from that square.
   endpoint-whiteheads-are-center-chain-hecke-spectators: that compresses the fresh endpoint braid by the actual nested quarter/eighth Hecke flags and obtains the desired one-eighth scalar Gram, but proves that the endpoint words centralize the entire flag algebra and remain untyped spectator dressings.
+  endpoint-whitehead-hecke-flag-trichotomy: that exhausts every non-spectator coordinate placement and finds one fine-only collision, but its proper overlap can vanish in an exact two-dimensional profile and has no unequal-rank covariance.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism
@@ -304,6 +305,28 @@ literature theorem is permitted in this claim.
   coboundary gauges.  Thus `(APG1)` needs a noncentral odd mixed occurrence,
   not merely the correct compressed trace.
 
+  Moving the endpoint chain onto native coordinates does create exactly one
+  noncentral possibility, and it is now exhausted by
+  `endpoint-whitehead-hecke-flag-trichotomy`.
+  Every legal orientation either preserves both flags, ejects the quarter
+  flag by touching coordinate `7`, or preserves `p_1` while ejecting `p_2`
+  by touching `8` but not `7`.  For the sharp edge `(8,2;2)`,
+
+  ```text
+  s=x_68(a_2) -> s'=x_62(a_3),
+  K_2 intersect K_2'=K_1,
+  p_2 What p_2=What p_*,
+  ```
+
+  and the canonical trace of `p_*` is `tau(e)/16`.  This does not give an
+  arbitrary-profile floor: the exact two-dimensional swapped-character
+  model has `p_2!=0` and `p_*=0`, while the trivial character has full meet.
+  On every surviving meet both fine bits are `+1`, so the polar has identity
+  fine-label action and retains the whole endpoint reservoir gauge.  The
+  word conjugates `p_2` only to an equal-rank fine flag, not `p_1` to `p_2`.
+  Thus coordinate collisions do not supply the odd unequal-row occurrence
+  required by `(APG1)`.
+
   Directly intersecting an endpoint-moved signed source with the original
   source does not supply that fixed frame.
   `endpoint-whitehead-signed-source-has-only-relative-hecke-overlap`
@@ -337,6 +360,19 @@ literature theorem is permitted in this claim.
   independent commuting roots whose edge gauges can be dressed separately.
   Hence this occurrence does not prove `(APG1)` for an arbitrary paying
   detector or identify the two native targets.
+
+  The obvious mixed relation between the two explicit cells is exact but
+  moves the source.  In
+  `simultaneous-endpoint-prefix-whitehead-moves-source-before-locking-gauge`,
+  the product of the endpoint `(2,4)` Whitehead and native `(8,9)` Whitehead
+  fixes `g_*` and carries the complete depth-two cell to depth three.  It
+  fails to normalize `(L_0,lambda_0)`: the original and moved signed groups
+  intersect in only `16` elements.  Their canonical overlap is
+  `tau(Q)/512`, while a two-character exact profile has zero meet.  Cross
+  commutators and common-tail products add only commuting/swap relations.
+  Therefore this ordinary conjugacy compares the second cell on the moved
+  source, not the two native transports on the fixed source required by
+  `(APG1)`.
 
 - **Polar-correct the paid incidence before applying the Hecke word.**
   `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is

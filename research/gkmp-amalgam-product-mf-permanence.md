@@ -5,12 +5,12 @@ kind: claim
 title: Gao-Kunnawalkam-Manzoor-Patchell MF permanence for product-amalgams with a separable edge
 distinct_from:
   shulman-amalgam-mf-criterion: that gives a necessary-and-sufficient corona-embedding condition for a general amalgam; this is a checkable sufficient condition, requiring only that the edge subgroup be separable and one side residually finite, and it is the tool that handles the asymmetric product edge Shulman's symmetric theorem cannot.
-  twisted-rope-edge-is-mf-under-relative-profinite-compatibility: that is this repository's bespoke finite-quotient theorem for one product edge; this is the published general theorem, proved by C*-free-independence / selflessness methods, and it is strictly stronger.
+  twisted-rope-edge-is-mf-under-relative-profinite-compatibility: that is this repository's bespoke finite-quotient theorem for a twisted HNN edge under a compatibility hypothesis; GKMP is a published theorem for an untwisted product-amalgam under separability, so neither statement formally subsumes the other.
 artifacts:
   - research/artifacts/gkmp-2603-24502-verified.md
 ---
 
-ESTABLISHED (literature import; verified from arXiv:2603.24502v2, D. Gao,
+ESTABLISHED (literature import; verified from arXiv:2603.24502v5, D. Gao,
 S. Kunnawalkam Elayavalli, A. Manzoor, G. Patchell, *A new source of purely
 finite matricial fields*, 25--26 Mar 2026).
 
@@ -29,8 +29,9 @@ is MF.  (The same statement holds for PMF and for PFF.)
 `G *_H G` is MF.
 
 The proof is by a `C*`-free-independence / selflessness argument in
-matrix ultraproducts (after Ozawa), not by finite quotients; exactness is
-essential and enters through the tensor step `H x L`.  Applications in the
+matrix ultraproducts (after Ozawa), not by finite quotients; exactness is a
+stated hypothesis and enters through the tensor step `H x L`.  The paper
+does not prove that this hypothesis is logically necessary.  Applications in the
 paper: arbitrary graph products of exact residually finite MF groups are MF
 (generalizing Magee--Thomas); fundamental groups of closed hyperbolic
 `3`-manifolds and all virtually special groups are PFF.
@@ -39,19 +40,24 @@ paper: arbitrary graph products of exact residually finite MF groups are MF
 1.2--1.4 read this session from the arXiv HTML; transcription in the
 artifact.  The internal proof (Sections 2--6) is not re-derived here.
 
-## Why it is the missing permanence tool
+## Exact scope for the compiler
 
-The finite-presentation MF-completeness wall
-([[fp-mf-completeness-wall-is-route-independent]]) is a product-edge
-permanence question `Gamma *_S (S x Q)` that no finite-quotient method
-settles ([[twisted-edge-over-amalgamated-product-base-is-mf]] only handles
-the profinitely-compatible case).  Theorem 1.1 is exactly a permanence
-theorem for `G *_H (H x L)`, i.e. for that product edge, with a checkable
-hypothesis (`H` separable, one side exact) in place of profinite
-compatibility.  It therefore directly targets the wall and supersedes the
-pessimistic reading in
-[[digit-edge-mf-is-a-free-entropy-model-uniqueness-question]]: the
-free-entropy obstruction rules out a *soft distribution-matching* proof, but
-Theorem 1.1 is a *hard* theorem that goes through anyway by free
-independence, so the completeness is **not** known to be open in the
-negative direction after all.
+At `L = Z`, Theorem 1.1 says that the central HNN extension
+`<G,t | [t,h]=1, h in H>` is MF when `G` is MF and `H` is separable in `G`;
+the second factor `Z` is residually finite, MF, and exact.  This is directly
+relevant to the compiler's **outer detector** edge.
+
+It does not settle the full positive branch.  The actual compiler in
+`Higman/InjectedCompilerTower.lean` has a finite `tau_j` family followed by
+the `d` and `sigma` basis-to-basis HNN edges before the central detector is
+attached.  These are HNN extensions along nontrivial isomorphisms of free
+subgroups, not product-amalgams.  GKMP proves neither their MF permanence nor
+separability of the final transported detector subgroup in the completed
+inner tower.  The paper itself cites separate work on HNN extensions as "in
+preparation"; no HNN theorem occurs in Theorem 1.1.
+
+Consequently the imported theorem reopens a useful product-edge route and
+can close the last central edge under separability, but it does not supersede
+the open free-edge wall in
+[[fp-mf-completeness-wall-is-route-independent]] or establish finite-
+presentation MF-completeness.

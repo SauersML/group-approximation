@@ -129,20 +129,26 @@ theorem exists_matrixAnswerCheck_of_coded_openPasses
   refine ⟨a, (matrixAnswerCheck_eq_true_iff c W k a).2 ?_⟩
   refine ⟨hunitary, ?_, ?_⟩
   · constructor
-    · simp [a, upperList]
+    · change upperList.length = c.2.length
+      simp [upperList]
     · intro i hi
+      change upperNormCert d k
+        (wordDefect c d gens (c.2.getD i [])) (upperList.getD i 0)
       have hs : upperList.getD i 0 = upper ⟨i, hi⟩ := by
-        simp [upperList, List.getD_eq_getElem?_getD, List.getElem?_ofFn, hi]
+        simp [upperList, List.getD_eq_getElem?_getD, hi]
       rw [hs]
-      simpa [a, wordDefect, List.getD_eq_getElem?_getD, hi] using
+      simpa [List.getD_eq_getElem?_getD, hi] using
         hupper ⟨i, hi⟩
   · constructor
-    · simp [a, lowerList]
+    · change lowerList.length = W.length
+      simp [lowerList]
     · intro i hi
+      change lowerThirdCert d
+        (wordDefect c d gens (W.getD i [])) (lowerList.getD i 0)
       have hs : lowerList.getD i 0 = lower ⟨i, hi⟩ := by
-        simp [lowerList, List.getD_eq_getElem?_getD, List.getElem?_ofFn, hi]
+        simp [lowerList, List.getD_eq_getElem?_getD, hi]
       rw [hs]
-      simpa [a, wordDefect, List.getD_eq_getElem?_getD, hi] using
+      simpa [List.getD_eq_getElem?_getD, hi] using
         hlower ⟨i, hi⟩
 
 /-- Existential exactness of the finite matrix branch. -/

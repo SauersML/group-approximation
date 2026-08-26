@@ -1,15 +1,15 @@
 ---
 rg: 2
-id: endpoint-whitehead-placements-have-a-three-way-hecke-flag-trichotomy
+id: endpoint-whitehead-hecke-flag-trichotomy
 kind: claim
-title: Every endpoint Whitehead placement either dresses, ejects the quarter flag, or halves the eighth flag
+title: Every endpoint Whitehead placement either dresses, ejects the quarter flag, or has flexible fine overlap
 artifacts:
   - research/endpoint-whitehead-placement-trichotomy-proof.md
   - experiments/endpoint_chain_center_hecke_collision_audit.py
 distinct_from:
   endpoint-whiteheads-are-center-chain-hecke-spectators: that treats the all-spare endpoint placement and obtains a spectator-compressed one-eighth Gram; this classifies every legal coordinate placement and isolates the unique fine-only collision type.
   endpoint-detector-cell-retains-coboundary-gauge: that transports the full detector cell through an arbitrary fresh endpoint chain; this asks how every such chain meets the literal center-chain quarter/eighth flag packet.
-  native-whitehead-corner-collapses-hecke-flags: that computes the largest common reducing corner for the two original native Whiteheads; this treats fresh endpoint Whiteheads and shows that the only proper fine compression is a fixed regular half of the eighth flag.
+  native-whitehead-corner-collapses-hecke-flags: that computes the largest common reducing corner for the two original native Whiteheads; this treats fresh endpoint Whiteheads and shows that the only proper fine compression is half-sized only in the canonical regular trace and can vanish in an exact profile.
 ---
 
 **ESTABLISHED COMPLETE PLACEMENT FENCE.**  Retain the center-chain signed
@@ -78,22 +78,53 @@ and the two signed characters extend to their join.  Hence, writing
 p_*:=e_(<K_2,K_2'>,lambda),
 ```
 
-one has
+one has in the group algebra
 
 ```text
 p_2(Wp_2W)=p_*,                 tau(p_*)=tau(e)/16,
 (p_2Wp_2)^*(p_2Wp_2)=p_*.                             (EPT6)
 ```
 
-Thus the noncentral placement gives a genuine proper fixed-source
-compression: it keeps the whole quarter flag but retains exactly half of
-the eighth flag.
+The exact polar normal form is sharper:
+
+```text
+p_2Wp_2=Wp_*=p_*W.                                    (EPT7)
+```
+
+Thus the noncentral placement gives a genuine proper fixed group-algebra
+compression.  In the canonical regular trace it keeps the whole quarter
+flag and retains exactly half of the eighth flag.
+
+That half is **not** forced in an arbitrary representation.  On the
+`p_1`-sector write `S=s|p_1`, `S'=s'|p_1`.  The only flag relations relevant
+to this compression are
+
+```text
+S^2=S'^2=W^2=1,       [S,S']=1,       WSW=S',          (EPT8)
+p_2=(1+S)/2,          Wp_2W=(1+S')/2.
+```
+
+There is an exact two-dimensional realization
+
+```text
+S=diag(1,-1),         S'=diag(-1,1),       W=SWAP.     (EPT9)
+```
+
+It has `p_2!=0` but `p_*=0`, so `p_2Wp_2=0`.  At the opposite extreme the
+one-dimensional character `S=S'=1` has `p_*=p_2`.  Tensoring either model
+with the signed `K_1` character realizes the complete displayed flag
+interface.  Hence no representation-independent positive fraction of
+`p_2` survives the compression.
 
 This still is not an odd raw-row occurrence.  The projection `p_*` is a
-fixed positive group-algebra character projection, exists with the same
-mass in the canonical regular trace, and is reduced by `W`, which swaps
-`K_2` and `K_2'`.  On `p_*` the moved and original fine flags have become
-the same identity support.  The displayed noncentral information is the
+fixed group-algebra character projection and is reduced by `W`, which swaps
+`K_2` and `K_2'`; it may nevertheless vanish in the matrix profile under
+consideration.  On every surviving `p_*`, both fine label involutions are
+`+1`.  Thus `(EPT7)` has identity fine-label action and its entire `W`
+factor is an uncontrolled reservoir involution.  Also `W` conjugates `p_2`
+to the equal-rank projection `Wp_2W`, not the coarse projection `p_1` to
+`p_2`; it supplies no unequal-rank source reflection covariance.  The
+displayed noncentral information is the
 even conjugation row `WsW=s'` (and likewise for `A_2`); it does not conjugate
 either native source reflection to its controlled Hecke target.  Promoting
 this fixed cut to the two affine selector rows would hit the regular-trace
@@ -101,8 +132,8 @@ firewall immediately.
 
 Consequently no endpoint-chain coordinate choice closes the native
 occurrence seam.  The only choice that distinguishes `p_1` from `p_2`
-produces a fixed regular half-cut and collapses the distinction on its
-reducing core.  A successful continuation must add a different ordinary
+produces a profile-flexible overlap and collapses the distinction on every
+surviving reducing core.  A successful continuation must add a different ordinary
 word with odd individual-row parity and a representation-dependent
 relation-paid kernel; changing endpoint coordinates or orientation cannot
 supply it.

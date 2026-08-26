@@ -150,5 +150,53 @@ theorem presentedEdgeEquiv_gen (c : PresentationCode)
   simpa [E, edgeData, HNNPresentation.tgtGen] using
     coe_edgeEquiv_sourceElement E (FreeGroup.of i)
 
+/-- Membership in the presentation source subgroup is membership in the
+explicitly evaluated source subgroup. -/
+theorem mem_sourceSubgroup_edgeData_iff (c : PresentationCode)
+    (edges : List (Raw × Raw))
+    (hsource : Function.Injective (sourceEval c edges))
+    (htarget : Function.Injective (targetEval c edges)) (g : Carrier c) :
+    g ∈ HNNPresentation.srcSub (codeRels c) (sourceWord c edges) ↔
+      g ∈ sourceSubgroup (edgeData c edges hsource htarget) := by
+  rw [sourceSubgroup_edgeData c edges hsource htarget]
+
+/-- The transported presentation equivalence really is the explicit edge
+equivalence after forgetting subgroup proof fields. -/
+theorem presentedEdgeEquiv_intertwines (c : PresentationCode)
+    (edges : List (Raw × Raw))
+    (hsource : Function.Injective (sourceEval c edges))
+    (htarget : Function.Injective (targetEval c edges)) :
+    HNNCongr.Intertwines
+      (presentedEdgeEquiv c edges hsource htarget)
+      (edgeEquiv (edgeData c edges hsource htarget))
+      (MulEquiv.refl (Carrier c))
+      (fun g => by
+        simpa using mem_sourceSubgroup_edgeData_iff
+          c edges hsource htarget g) := by
+  intro a ha
+  change ((edgeEquiv (edgeData c edges hsource htarget)
+      ⟨a, (mem_sourceSubgroup_edgeData_iff c edges hsource htarget a).1 ha⟩ :
+        targetSubgroup (edgeData c edges hsource htarget)) : Carrier c) =
+    ((presentedEdgeEquiv c edges hsource htarget ⟨a, ha⟩ :
+        HNNPresentation.tgtSub (codeRels c) (targetWord c edges)) : Carrier c)
+  rfl
+
+/-- The HNN extension appearing in the word-level presentation is the honest
+`ExplicitFreeEdge.Extension`. -/
+noncomputable def presentedHNNEquiv (c : PresentationCode)
+    (edges : List (Raw × Raw))
+    (hsource : Function.Injective (sourceEval c edges))
+    (htarget : Function.Injective (targetEval c edges)) :
+    HNNPresentation.Ext (codeRels c) (sourceWord c edges) (targetWord c edges)
+        (presentedEdgeEquiv c edges hsource htarget) ≃*
+      Extension (edgeData c edges hsource htarget) :=
+  HNNCongr.congrEquiv
+    (presentedEdgeEquiv c edges hsource htarget)
+    (edgeEquiv (edgeData c edges hsource htarget))
+    (MulEquiv.refl (Carrier c))
+    (fun g => by
+      simpa using mem_sourceSubgroup_edgeData_iff c edges hsource htarget g)
+    (presentedEdgeEquiv_intertwines c edges hsource htarget)
+
 end FreeEdgeTowerSemantics
 end GroupApproximation

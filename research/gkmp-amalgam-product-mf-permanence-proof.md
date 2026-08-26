@@ -7,8 +7,8 @@ target: gkmp-amalgam-product-mf-permanence
 requires: []
 ---
 
-Literature import, verified this session from the arXiv HTML of
-arXiv:2603.24502v2 (Gao--Kunnawalkam Elayavalli--Manzoor--Patchell).  The
+Literature import, verified from the arXiv HTML of
+arXiv:2603.24502v5 (Gao--Kunnawalkam Elayavalli--Manzoor--Patchell).  The
 statement transcribed is Theorem 1.1 and Corollary 1.2; the proof is the
 selflessness / C*-free-independence argument of Sections 2--6, taken as a
 black box.
