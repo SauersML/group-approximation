@@ -6,6 +6,7 @@ title: Canonicalize a failed transfer, split by lattice correctability, and extr
 target: sl3-projective-transfer-enemy-dichotomy
 requires:
   - sl3-odd-correctable-sector-has-uniform-projective-modulus
+  - unbalanced-torus-extracts-near-central-denominator-coordinate
   - fixed-projective-gap-forces-primary-congruence-mass
   - sl3-regular-projective-correction-is-inner-adjoint-stability
   - full-sl3-root-package-has-an-exact-tracial-hnn-leak
@@ -42,4 +43,3 @@ Finally `full-sl3-root-package-has-an-exact-tracial-hnn-leak` supplies the
 stated firewall: all algebraic and finite-tracial hypotheses hold in that
 model while the desired conclusion fails maximally.  It is not a matrix
 countermodel, so it fences proof methods without deciding either branch.
-
