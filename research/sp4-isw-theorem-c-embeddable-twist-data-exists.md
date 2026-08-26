@@ -7,6 +7,7 @@ distinct_from:
   sp2g-z-full-c-star-algebra-has-llp: that is the lifting hole; this is its ONLY surviving refutation mouth — establishing this claim refutes that one through the moreover clause of Ioana--Spaas--Wiersma Theorem C.
   isw-theorem-a-has-no-data-on-sp4-lattice: that closed the scalar Theorem A mechanism, which needs finite-dimensional realizability; this is the operator-valued Theorem C mechanism, which needs no realizability at all and instead pays an R^omega-embeddability toll.
   sp4-mod3-twisted-fibres-have-llp: that carries the property-(T)-versus-Connes-embedding stake on the mod-three twisted GROUP fibres of the Deligne cover; this carries the same stake structure on Maslov-twisted Bernoulli CROSSED PRODUCTS, a different family of algebras with classical parts.
+  scalar-twisted-bernoulli-ce-iff-twisted-group-factor-ce: that proves the Bernoulli classical layer adds no Connes-embeddability obstruction for a constant scalar twist of a residually finite group; this still asks for the surviving Maslov-twisted group algebras to be Connes embeddable.
 ---
 
 OPEN CLAIM.  There exist an ergodic p.m.p. action
@@ -38,7 +39,7 @@ Fournier-Facio--Willett negatively.  Failure of (c) on every candidate
 family would instead produce a Connes-embedding-problem headline (see
 Attempts).
 
-**Why (a)+(b) are essentially available — the wall is (c).**  The
+**Why (a)+(b) are available — the wall is (c).**  The
 scalar supply that Theorem A could not use (no finite-dimensional
 realizability is required here) feeds Theorem C: `H^2(Gamma,R) = R`
 (rank one, `sp4-fd-projective-multiplier-is-finite` Step 0), a real
@@ -50,7 +51,9 @@ as constant `L^0(T^Gamma,T)`-cocycles over the Bernoulli action, they
 stay non-coboundaries by the embedding
 `H^2(Gamma,T) + H^2(Gamma,ZGamma) -> H^2(Gamma,L^0(T^Gamma,T))`
 recorded by ISW (p. 3, citing Jiang [Ji16] via Popa's cocycle
-superrigidity) — see the hedge in Attempts.  ISW Remark 1.1 (p. 3)
+superrigidity).  More precisely,
+`sp4-maslov-circle-survives-in-bernoulli-l0-cohomology` checks Jiang's
+natural constant-cocycle map and establishes this packet.  ISW Remark 1.1 (p. 3)
 frames the same frontier: LP for a property (T) group would force
 `H^2(Gamma,L^0(X,T))` to be countable for every ergodic p.m.p. action,
 and "not a single calculation of `H^2`" for a free ergodic action of a
@@ -58,17 +61,13 @@ property (T) group is available.
 
 ## Attempts
 
-- **The LP half assembles; nothing is recorded on (c).**  The
-  construction above satisfies (a)+(b) modulo one verification: ISW's
-  fetched sentence asserts an EMBEDDING of
-  `H^2(Gamma,T) + H^2(Gamma,ZGamma)` into the Bernoulli
-  `H^2(Gamma,L^0)`, which forces the T-summand to inject, but whether
-  that embedding is induced by the inclusion of constants (so that the
-  specific classes `[c_theta]` survive, not merely an abstract copy)
-  needs verification in Jiang [Ji16] before the LP half can be landed
-  as an established node.  Consistency check: LP does fail
-  (Corollary E), so no fence can kill (a)+(b); the open content is
-  genuinely concentrated in (c).
+- **The cohomological half is complete.**
+  `sp4-maslov-circle-survives-in-bernoulli-l0-cohomology` verifies at
+  Jiang, Lemma 2.9 and the immediately following remark, that the relevant
+  map is precisely the natural inclusion of constant scalar cocycles and is
+  injective for a Bernoulli action of a property `(T)` group. Thus the
+  selected small nontrivial Maslov classes satisfy (a)+(b), with no
+  remaining hedge.
 - **The `ZGamma` feed is rationally dead; the circle is the live
   feed.**  Borel--Serre (as quoted in Brück--Patzt--Sroka,
   arXiv:2306.03180, abstract, source-verified 2026-08-21): `Sp_2n(Z)`
@@ -105,3 +104,35 @@ property (T) group is available.
   where no example is known.  Either resolution of (c) is a headline:
   embeddable twists refute the LLP hole; a non-embeddable twist
   settles the property (T) Connes-embedding problem.
+
+- **The Bernoulli classical layer has now been removed from the toll.**
+  `scalar-twisted-bernoulli-ce-iff-twisted-group-factor-ce` proves that for
+  every constant scalar cocycle `c_theta` of the residually finite group
+  `Sp_4(Z)`,
+
+  ```text
+  L^infty(T^Gamma) x|_(c_theta) Gamma is CE
+      iff
+  L_(c_theta)(Gamma) is CE.                              (TC2)
+  ```
+
+  The forward direction is the twisted group subalgebra. In the reverse
+  direction, tensor projective microstates of the twisted group algebra with
+  locally faithful finite-quotient Bernoulli permutation models; the first
+  factor supplies the multiplier and kills nonidentity group traces, while
+  the second supplies the cylinder-function moments and covariance.
+
+  Consequently the operator-valued Theorem-C mouth is no longer a crossed-
+  product permanence problem. Once the constant Maslov classes are verified
+  to survive in Bernoulli `L^0` cohomology, its only remaining analytic input
+  is:
+
+  ```text
+  choose theta_n -> 0, [c_(theta_n)] != 0, with
+  L_(c_(theta_n))(Sp_4(Z)) Connes embeddable for every n. (TC3)
+  ```
+
+  If one of these twisted group algebras is non-CE, it already feeds
+  `nonce-twisted-factor-gives-nonhyperlinear-group`; if all are CE, Theorem C
+  refutes LLP for `C^*(Sp_4(Z))`. Thus the classical Bernoulli action cannot
+  distinguish the two outcomes.
