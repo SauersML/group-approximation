@@ -72,8 +72,17 @@ the coboundary drift of
   dual Pauli translation preserves this subgroup support and changes at
   most its character/cocycle, whereas the next stage has the genuinely
   different subgroup `t_i^(k+1)L_0t_i^(-(k+1))`.
+- The canonical full-Leavitt escape also has the wrong support, for a
+  different exact reason. By
+  `leavitt-compression-preserves-root-position-support`, the compression
+  endomorphism `x_ab(r) |-> x_ab(s_0rt_0)` and its explicit 20-by-20
+  Whitehead implementation preserve every ordered root position. The
+  Singer step sends the actual `(2,8)` root of `L_0` to `(2,7)`, so the
+  compression cell sends `Q` to the Reynolds cut over `alpha(L_0)` rather
+  than to `t_iQt_i^(-1)`. Its Singer conjugates therefore fail `(ESB1)`
+  before the mixed-square estimate is reached.
 
 The smallest remaining algebraic search is therefore explicit: find one
-coefficient/root-opposite word with the full-Gram property `(ESB1)--(ESB2)`
+genuinely mixed coefficient/root-opposite word with the full-Gram property `(ESB1)--(ESB2)`
 and verify its six Singer conjugate squares.  No Property `(T)`, canonical
 trace profile, or tracial-von-Neumann extension is allowed.
