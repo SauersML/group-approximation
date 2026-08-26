@@ -566,6 +566,28 @@ actual unequal native selector occurrences.  The meet is not known to
 reduce `M`, so the odd order-five relation alone does not perform that
 occurrence attachment.
 
+The bound also does not automatically descend from `p_2` to the complete
+common Hecke source `Q=e_(L_0,lambda_0)`.  The exact audit
+`endpoint-order-five-return-leaves-full-hecke-fine-sign-free` finds the
+literal return word which fixes all ten generators of `L_0` pointwise, but
+it acts on the two missing fine roots by `t -> ts'`, `s' -> s'`.  Its exact
+two-dimensional compressed covariance permits `s'=-1`, whereas the moved
+endpoint source requires `s'=+1`.  Thus the return relations alone still
+permit `Q(WQW)Q=0`; an additional moving-sheet orbit or a typed native row
+must pay that last sign.
+
+Adding the first native Whitehead strengthens the finite actor but remains
+one-sided.  `native-j1-extension-gives-gl5-but-only-second-whitehead-gram`
+identifies the literal five-projective-summand group as `GL_5(F_2)` without
+enumerating it.  Its `diag(I_3,GL_2)` signed-source return forces the actual
+`J_2` compression to retain at least one third of `p_2` in every profile.
+The same subgroup fixes the missing `J_1` support root `r=x_58(a_2)`, and
+therefore supplies no corresponding first-row lower bound.  The bare
+five-projective-summand calculation does not model the four additional
+coefficient roots of the full source `L_0`; the separate exact return audit
+above remains the valid full-`Q` fence.  Hence this is genuine native
+second-row progress, not yet the common two-row selector attachment.
+
 Passing to an odd-actor-invariant carrier does not lose all of this progress.
 `full-packet-cyclic-aggregates-retain-positive-endpoint-gram` joins the five
 `C=WM` translates, or the seven `M` translates, of `p_2`.  These carriers

@@ -13,6 +13,8 @@ distinct_from:
   endpoint-whiteheads-are-center-chain-hecke-spectators: that compresses the fresh endpoint braid by the actual nested quarter/eighth Hecke flags and obtains the desired one-eighth scalar Gram, but proves that the endpoint words centralize the entire flag algebra and remain untyped spectator dressings.
   endpoint-whitehead-hecke-flag-trichotomy: that exhausts every non-spectator coordinate placement and finds one fine-only collision, but its proper overlap can vanish in an exact two-dimensional profile and has no unequal-rank covariance.
   endpoint-order-five-actor-has-half-gram: that adjoins the native order-seven head, realizes a literal GL4 block, and finds its signed-K1-returning GL3 subgroup; this forces at least one third of the actual p2 source to survive the endpoint Gram, but does not yet type that polar as a native unequal-selector occurrence.
+  endpoint-order-five-return-leaves-full-hecke-fine-sign-free: that checks the complete ten-generator common Hecke source and finds an exact return fixing it pointwise, but the return leaves the missing fine sign free and hence does not descend the p2 bound to Q.
+  native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that adjoins J1 to obtain a literal GL5 block and proves a uniform one-third support for the actual J2 compression, but its signed stabilizer fixes the missing J1 root and gives no two-row attachment.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism

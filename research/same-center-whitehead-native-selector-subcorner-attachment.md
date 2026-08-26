@@ -14,6 +14,9 @@ distinct_from:
   endpoint-whiteheads-are-center-chain-hecke-spectators: that places the endpoint braid on the literal quarter/eighth Hecke supports and gets the correct one-eighth cross-Gram, but only because the braid centralizes those supports; this asks for the noncentral raw-row attachment absent there.
   endpoint-whitehead-hecke-flag-trichotomy: that enumerates all coordinate collisions with the two Hecke flags; the unique fine-only collision has flexible, possibly zero overlap and leaves its polar gauge entirely in the reservoir.
   endpoint-order-five-actor-has-half-gram: that removes the zero-meet flexibility even on the literal signed p2 source by a signed-K1-returning GL3 subgroup, giving a representation-universal one-third endpoint Gram; occurrence typing to the native unequal selector rows remains open.
+  endpoint-odd-actor-retains-native-factor-gauge: that proves the order-five product and its positive cyclic aggregates cannot type an individual Hecke factor: a paired gauge cancels in the product while changing the exposed mixed Hecke word.
+  endpoint-order-five-return-leaves-full-hecke-fine-sign-free: that audits all four extra generators of the common Hecke source Q and finds a pointwise return, but its two-dimensional Pauli covariance permits the missing fine sign to remain negative.
+  native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that enlarges the literal actor to GL5 and gives a profile-uniform Gram for the actual J2 compression; its stabilizer fixes the J1 support, so the two unequal rows are not yet attached.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core
@@ -337,6 +340,16 @@ excluded by the regular-trace firewall.
   it survives, both fine label involutions are scalar `+1`, so the complete
   Whitehead factor is again an uncontrolled reservoir gauge.  This is an
   equal-rank fine-to-fine covariance, not either unequal row in `(SNA2)`.
+
+  Factoring the odd actor does not expose the missing row.
+  `endpoint-odd-actor-retains-native-factor-gauge` applies one central
+  multiplicity involution simultaneously to `J_2` and `B_3A_2`.  Their
+  product `M`, the word `C=WM`, the endpoint action, both cyclic joins, and
+  the positive endpoint polar remain unchanged, while
+  `u_2=B_3A_2A_1` acquires the involution.  The seventh-power anchor detects
+  a gauge on either factor separately but not this cancelling pair.  Hence
+  a continuation needs an ordinary occurrence with odd incidence in one
+  exposed factor, or direct source/target-Gram typing of `u_2`.
 
   Nor does intersecting one moved source with the original signed source
   create a fixed-frame subcorner.
