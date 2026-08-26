@@ -93,6 +93,8 @@ theorem primrec_stableIndex :
 theorem primrec_edgeRelator :
     Primrec₂ (fun (c : PresentationCode) (p : Raw × Raw) =>
       edgeRelator c p) := by
+  change Primrec (fun a : PresentationCode × (Raw × Raw) =>
+    edgeRelator a.1 a.2)
   have hstablePos : Primrec (fun c : PresentationCode =>
       [(stableIndex c, true)]) :=
     Primrec₂.comp Primrec.list_cons
@@ -105,12 +107,12 @@ theorem primrec_edgeRelator :
       (Primrec.const [])
   have hsource : Primrec (fun a : PresentationCode × (Raw × Raw) =>
       normWord a.1 a.2.1) :=
-    primrec_normWord.comp
-      (Primrec.pair Primrec.fst (Primrec.fst.comp Primrec.snd))
+    Primrec₂.comp primrec_normWord Primrec.fst
+      (Primrec.fst.comp Primrec.snd)
   have htarget : Primrec (fun a : PresentationCode × (Raw × Raw) =>
       normWord a.1 a.2.2) :=
-    primrec_normWord.comp
-      (Primrec.pair Primrec.fst (Primrec.snd.comp Primrec.snd))
+    Primrec₂.comp primrec_normWord Primrec.fst
+      (Primrec.snd.comp Primrec.snd)
   exact Primrec₂.comp Primrec.list_append (hstablePos.comp Primrec.fst)
     (Primrec₂.comp Primrec.list_append hsource
       (Primrec₂.comp Primrec.list_append (hstableNeg.comp Primrec.fst)
@@ -120,12 +122,19 @@ theorem primrec_edgeRelator :
 theorem primrec_edgeCode :
     Primrec₂ (fun (c : PresentationCode) (edges : List (Raw × Raw)) =>
       edgeCode c edges) := by
+  change Primrec (fun a : PresentationCode × List (Raw × Raw) =>
+    edgeCode a.1 a.2)
   have hnormalized : Primrec (fun c : PresentationCode =>
       c.2.map (normWord c)) := primrec_leftWords
+  have hedgeRelator : Primrec
+      (fun a : (PresentationCode × List (Raw × Raw)) × (Raw × Raw) =>
+        edgeRelator a.1.1 a.2) :=
+    Primrec₂.comp primrec_edgeRelator
+      (Primrec.fst.comp Primrec.fst) Primrec.snd
   have hedgeRelators : Primrec
       (fun a : PresentationCode × List (Raw × Raw) =>
         a.2.map (edgeRelator a.1)) :=
-    Primrec.list_map Primrec.snd primrec_edgeRelator
+    Primrec.list_map Primrec.snd hedgeRelator
   exact Primrec.pair
     (Primrec.succ.comp (Primrec.fst.comp Primrec.fst))
     (Primrec₂.comp Primrec.list_append (hnormalized.comp Primrec.fst)
