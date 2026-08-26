@@ -69,4 +69,3 @@ This theorem does **not** turn the known failure of LLP for
 norm-lifting obstruction and may be supported on normalized-HS invisible
 corners; `(RUR2)` preserves a pre-existing normalized-HS ucp obstruction but
 does not manufacture one from a norm-only obstruction.
-

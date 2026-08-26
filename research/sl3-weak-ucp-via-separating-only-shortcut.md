@@ -24,4 +24,3 @@ representation.
 Thus a positive proof may still use the regular tensor packet during its
 argument, but it must in fact imply full flexible HS-stability.  The weak-ucp
 input quantifier does not make the `SL_3(Z)` problem smaller.
-
