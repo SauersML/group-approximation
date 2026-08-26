@@ -54,3 +54,10 @@ module whose composition factors are trivial, defining, contragredient, or
 Frobenius twists of those.  The remaining linear question is the literal
 two-row group-algebra problem for the other highest-weight blocks; it is not
 hidden inside multiplicity or nonsplit-extension bookkeeping.
+
+`authenticated-mixed-loop-kills-quadratic-affine-modules` further computes
+the rows on the symmetric square.  In odd characteristic this also kills the
+full tensor square of the defining module, and extension closure propagates
+the result to every module filtered by the degree-zero, degree-one, and this
+degree-two block.  Consequently the first polynomial nonlinear block is not
+the missing affine enemy either.

@@ -6,7 +6,7 @@ title: For a non-residually-finite Kazhdan group, weak ucp-stability is the same
 distinct_from:
   kazhdan-weak-ucp-stability-is-flexible-stability: that identifies weak ucp-stability with FULL flexible stability only for HYPERLINEAR Kazhdan groups; this adds non-residual-finiteness and instead identifies weak ucp-stability (and flexible correction restricted to hyperlinear approximations) with the NEGATION of hyperlinearity, using vacuity on the non-hyperlinear side.
   hs-stability-plus-fd-residual-forces-nonhyperlinearity: that derives non-hyperlinearity from uniform flexible HS-stability plus one word killed by all finite-dimensional representations, for any finitely presented group; this is the Kazhdan-specific equivalence in the ucp language, where non-residual-finiteness alone replaces the residual word and the converse direction also holds.
-  infinite-hyperlinear-kazhdan-group-is-not-hs-stable: that is Becker--Lubotzky's no-go for STRICT stability of hyperlinear Kazhdan groups; this concerns weak ucp / flexible stability and is an equivalence, not a no-go.
+  infinite-hyperlinear-kazhdan-group-is-not-hs-stable: that is Becker--Lubotzky's no-go for STRICT stability of hyperlinear Kazhdan groups; this concerns weak ucp-stability and flexible correction restricted to hyperlinear approximations, not full flexible stability on the vacuous non-hyperlinear side.
 ---
 
 **THEOREM.**  Let `Gamma` be a finitely generated group with Kazhdan's
