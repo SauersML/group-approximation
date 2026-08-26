@@ -81,5 +81,15 @@ disjoint marked orientations.  Hence no coefficient-one target-basis word
 can close the face.  The next genuinely new family must carry a nontrivial
 coefficient on a moving target root or use a different incidence pattern.
 
+The first such nontrivial rows are now computed by
+`atlas-ef-target-rows-shrink-but-do-not-remove-degenerate-face`.  Coefficient
+`e` translates `(u,w)` by `(e_r,e_r)` and coefficient `f` by `(0,e_r)`, so
+active rows really do mix the `1,7,7` strata and can expose balanced types.
+But the common positive character of the six target `e/f` roots is fixed;
+its intersection with the old degeneracy face has exact canonical target
+mass `15/4096` and marked ambient mass `15/8192`.  Thus the positive model
+still has a dimension-independent place to hide.  The next new rows must use
+`E,F` or return their longer coefficient images to this finite CK window.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear
