@@ -4,6 +4,10 @@
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{etoolbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\definecolor{nmfacc}{RGB}{0,114,178}
+\definecolor{nmfgray}{RGB}{110,110,110}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
@@ -113,6 +117,49 @@ computable function has infinite domain.
 Recognizing the MF property is therefore exactly as hard as deciding
 whether a program halts on infinitely many inputs, and remains
 undecidable relative to an oracle for the halting problem.
+Figure~\ref{fig:levels} places the theorem in the arithmetical
+hierarchy.
+
+\begin{figure}[htb]
+\centering
+\begin{tikzpicture}[font=\small,
+  cls/.style={draw, rounded corners=2pt, inner sep=4pt},
+  prob/.style={font=\small, text=nmfgray},
+  inc/.style={nmfgray!70, semithick},
+  proof/.style={-{Stealth[length=2.4mm]}, nmfacc, semithick}]
+% the lattice
+\node[cls] (d1) at (0,0)    {$\Delta^0_1$};
+\node[cls] (s1) at (-1.6,1.35) {$\Sigma^0_1$};
+\node[cls] (p1) at (1.6,1.35)  {$\Pi^0_1$};
+\node[cls] (s2) at (-1.6,3.1)  {$\Sigma^0_2$};
+\node[cls] (p2) at (1.6,3.1)   {$\Pi^0_2$};
+\draw[inc] (d1)--(s1); \draw[inc] (d1)--(p1);
+\draw[inc] (s1)--(s2); \draw[inc] (p1)--(p2);
+\draw[inc] (s1)--(p2); \draw[inc] (p1)--(s2);
+% problems at their exact levels, height = complexity
+\node[prob, anchor=west] (dec) at (3.4,0)
+  {word problem in $H$ (Lemma~\ref{lem:seed})};
+\node[prob, anchor=west] (halt) at (3.4,1.35)
+  {halting problem};
+\node[prob, anchor=west] (inf) at (3.4,3.1)
+  {$\mathrm{TOT}$; torsion-freeness; $\mathrm{INF}$};
+\node[draw, thick, anchor=west, inner sep=4pt] (mf) at (9.05,3.1)
+  {$\mathrm{MF}_{\mathrm{fp}}$};
+% the two halves of Theorem A
+\draw[proof] (inf.east) -- (mf.west)
+  node[midway, below=0.6mm, font=\scriptsize, text=nmfacc]
+  {hardness: $e\mapsto\widehat R_e$};
+\draw[proof] (mf.north) to[bend right=17]
+  node[above=0.4mm, font=\scriptsize, text=nmfacc, pos=0.5]
+  {membership: $\forall n\,\exists$ certificate} (p2.north);
+\end{tikzpicture}
+\caption{Height is logical complexity.  $\mathrm{MF}_{\mathrm{fp}}$ is
+$\Pi^0_2$-complete: finite certificates place it in $\Pi^0_2$
+(Section~\ref{sec:local}), and the computable family $\widehat R_e$
+reduces $\mathrm{INF}$ to it (Sections~\ref{sec:compiler}
+and~\ref{sec:positive}).  Its complement is $\Sigma^0_2$-complete.}
+\label{fig:levels}
+\end{figure}
 
 Proposition~\ref{prop:mf-upper-bound} gives a $\Pi^0_2$ description of
 the MF presentations: a presentation is MF exactly when finite
