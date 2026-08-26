@@ -27,8 +27,10 @@ operator-MF        Pi^0_2-complete [MF]        Pi^0_2-complete               Pi^
 LEF                = RF_fp                     Pi^0_2-complete               Pi^0_2-complete
 hyperlinear        trivial or Sigma^0_1-hard   trivial or Pi^0_2-complete    same
                    in Pi^0_2 \ Pi^0_1 [H]      [H]
-weakly/linear      as hyperlinear (hardness)   as hyperlinear (hardness)     same
-sofic
+weakly sofic,      as hyperlinear              as hyperlinear                same
+linear sofic       (in Pi^0_2 \ Pi^0_1) [W]    (trivial or complete) [W]
+finitely           --                          Sigma^0_2-hard, in Sigma^0_3  Sigma^0_2-hard, in Sigma^0_3
+presentable                                    [FP]
 amenable           Pi^0_2 \ Pi^0_1, complete   Pi^0_2-complete               Pi^0_2-complete
                    OPEN [A]
 metabelian         Pi^0_2 (complete OPEN)      Pi^0_2-complete               Pi^0_2-complete
@@ -44,6 +46,10 @@ Legend.  `[S]` = [[sofic-safe-finite-presentation-compiler]];
 `[H]` = [[approximation-property-recognition-dichotomy]], side (B) iff a
 non-hyperlinear group exists;
 `[A]` = [[amenability-of-finite-presentations-is-pi2-complete]];
+`[W]` = [[weak-soficity-recognition-has-a-pi2-upper-bound]],
+[[linear-soficity-recognition-has-a-pi2-upper-bound]] (side (B) iff some
+group fails the property);
+`[FP]` = [[finite-presentability-two-generator-recursive-is-sigma2-hard]];
 `[RF-Higman]` = `Pi^0_2`-completeness of `RF_fp`, the residually finite
 Higman problem.  Rows: sofic
 [[sofic-recognition-two-generator-recursive-is-pi2-complete]],

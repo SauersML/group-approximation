@@ -30,11 +30,11 @@ existential over a decidable predicate, and (LS1) is `Pi^0_2`.
 
 Heredity and locality are immediate from the definition (a model of a
 finite subset of a subgroup is a model in the group and conversely), and
-`delta`-linear soficity holds for sofic groups via permutation matrices,
-since `rank(P_sigma - P_tau) >= (number of moved points)/2`... more
-precisely `rank(P_sigma - 1)` equals the number of points moved by
-`sigma` minus the number of nontrivial cycles, which is at least half the
-number of moved points, giving separation `>= (1 - eps)/2 >= 1/4`.  So the
+`delta`-linear soficity holds for sofic groups via permutation matrices:
+`rank(P_sigma - 1)` equals the number of points moved by `sigma` minus the
+number of nontrivial cycles of `sigma`, which is at least half the number
+of moved points, so a sofic model with Hamming separation `1 - eps` gives
+rank separation `>= (1 - eps)/2 >= 1/4`.  So the
 hypotheses of the second-level Rice theorem hold, and the dichotomy
 follows exactly as for hyperlinearity in
 [[approximation-property-recognition-dichotomy]].
