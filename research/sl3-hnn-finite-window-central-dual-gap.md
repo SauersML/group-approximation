@@ -156,6 +156,20 @@ a finite mixed Britton window.  If the coset action
   surviving step is therefore to control an arbitrary outlier separator by
   such a product-normal-form multiplicity coordinate; the ordinary-word
   detector itself is no longer missing.
+- **The entire ambient-extendable correction sector is now closed.**
+  `unbalanced-torus-extracts-near-central-denominator-coordinate` replaces
+  the displayed tensor factor by the intrinsic coordinate
+  `H sigma(h)^*` relative to any exact ambient reference `sigma`.  The fixed
+  overlap `C intersect hCh^(-1)` has the full image in every finite ambient
+  representation, and its conjugacy relators Kazhdan-round that coordinate
+  into the full lattice commutant.  The unbalanced word then charges every
+  Wedderburn multiplicity block at once.  Consequently a genuine FDG packet
+  is not merely far from exact actors as in `(FDG-out)`; its **lattice
+  restriction** stays uniformly far from the restriction of every exact
+  same-dimensional ambient actor.  The remaining finite inequality must
+  charge this sharper ambient-extension outlier.  A dyadic lattice
+  correction need not extend ambiently, so this does not yet supply the ucp
+  comparison point required by `(FDG3)`.
 - **The same word localizes every canonical Britton leak on two roots.**
   `unbalanced-torus-word-localizes-britton-leak` proves, for arbitrary
   approximate packets, that the sum of the commutation defects of

@@ -627,3 +627,36 @@ weakening consumed by the HNN marked word.
   dimension-free quadratic bound.  The surviving problem is extracting a
   product multiplicity coordinate from an arbitrary approximate actor, not
   detecting it once exposed.
+
+- **The torus charge is basis-free and has an exact residual-coordinate
+  dichotomy.**
+  `unbalanced-torus-extracts-near-central-denominator-coordinate` removes
+  the homogeneous tensor-product hypothesis.  Relative to any exact
+  ambient reference actor `sigma`, put `W=H sigma(h)^*` and
+  `C_+=C intersect hCh^(-1)`.  This overlap contains `Gamma(p^2)` and has
+  the full image in every exact ambient finite-dimensional representation.
+  Kazhdan projection for `C_+` and polar rounding extract a unitary
+  `V in sigma(C)'` with
+
+  ```text
+  ||W-V||_2 <=(2/kappa_+)
+               (sum_(c in S_+)||[W,sigma(c)]||_2^2)^(1/2).
+  ```
+
+  Finite-dimensional co-density makes `V` commute with the entire ambient
+  image, so the unbalanced word evaluates to `V^*` block by block, even
+  when every isotypic multiplicity carries a different `V_alpha`.  The
+  resulting dimension-free estimate is
+
+  ```text
+  e(U,H) <=K q_C(U)+C||ev(R_tor)-I||_2^2
+                    +C sum_c||[H sigma(h)^*,sigma(c)]||_2^2.
+  ```
+
+  The fixed overlap relations `h(h^(-1)ch)h^(-1)=c` force the last sum to
+  zero whenever the approximate lattice packet approaches `sigma(C)`.
+  Hence every surviving enemy must stay a uniform distance from the
+  restriction of every exact same-dimensional ambient actor.  This does
+  not collapse the remaining dyadic branch: a
+  lattice correction of positive `2`-conductor need not extend to `A`, and
+  excluding precisely that ambient-extension outlier remains open.

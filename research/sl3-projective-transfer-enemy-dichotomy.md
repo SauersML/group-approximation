@@ -75,6 +75,31 @@ Thus branch 2 must route mass between different conductors over an
 unbounded-width profile; it cannot hide inside large same-level
 multiplicities.
 
+There is now a complementary closure theorem on the ambient-extendable part
+of either branch.  If the lattice tuple approaches the restriction of exact
+same-dimensional representations `sigma_n:Gamma->U(d_n)`, define
+
+```text
+W_n=rho_n(h)sigma_n(h)^*.
+```
+
+For the fixed overlap `C_+=Lambda intersect h Lambda h^(-1)`, the ambient
+relations force
+
+```text
+sum_(c in S_+)||[W_n,sigma_n(c)]||_2^2 ->0.             (PED3)
+```
+
+The overlap contains `Gamma(p^2)` and has the full image in every exact
+ambient finite representation.  Therefore
+`unbalanced-torus-extracts-near-central-denominator-coordinate` Kazhdan-
+rounds `W_n` to an arbitrary blockwise unitary in the full lattice
+commutant, and the unbalanced torus word charges that entire coordinate.
+No enemy is ambient-extendably correctable.  The genuinely dyadic case may
+fail to possess an ambient extension at all, so this sharpens rather than
+erases the primary-conductor branch: the residual is exactly an
+**ambient-extension outlier**.
+
 Clifford classification of only the newest two congruence layers cannot
 finish this cross-conductor problem.
 `depth-two-clifford-types-form-a-finite-fiber-folner-graph` identifies

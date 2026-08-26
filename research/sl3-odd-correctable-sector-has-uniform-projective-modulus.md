@@ -46,7 +46,8 @@ e(U,rho(h))
  <= eta_odd(delta+xi+sum_(c in S_Lambda)e(U,rho(c))). (OCP3)
 ```
 
-The modulus is asserted existentially; no linear rate is claimed.
+The original ultraproduct proof below asserts the modulus existentially;
+the final paragraph records the later direct finite-matrix rate.
 
 Proof mechanism.  If `(OCP2)` failed, pass to a tracial matrix ultraproduct.
 The ambient assignments give an exact representation `pi` of `Gamma`, and
@@ -78,3 +79,24 @@ present, already isolated by the mixed-level analysis.  Purely odd
 congruence levels and all their multiplicity data cannot support a
 projective far-sector escape.  This lemma alone does not give a lower bound
 on the two-primary mass inside a mixed-level representation.
+
+The modulus can now be made direct and polynomial on the stated coprime
+sector.  A representation `sigma` of congruence level `N` with `(N,p)=1`
+extends in the same dimension to `Gamma` through reduction modulo `N`.
+Apply `unbalanced-torus-extracts-near-central-denominator-coordinate` to
+that extension.  The fixed overlap relations make its relative-coordinate
+energy `O((delta+xi)^2)`, the fixed unbalanced torus consequence has squared
+defect `O((delta+xi)^2)`, and changing the projective source energy from
+`rho|_Lambda` to `sigma` costs `O(xi)`.  Hence, after fixing the
+presentations and generator words, there is `K_odd<infinity` such that
+
+```text
+e(U,rho(h))
+ <=K_odd (q+xi+(delta+xi)^2).                          (OCP4)
+```
+
+This upgrades the sequential ultraproduct proof of `(OCP3)` to an explicit
+dimension-, level-, and multiplicity-independent finite-matrix estimate.
+It still does not apply to the positive `p`-conductor summand of a mixed
+correction, because that summand has no reduction-modulo-`N` ambient
+extension.
