@@ -299,6 +299,65 @@ theorem higmanGenerated_addGraph_unconditional : HigmanGenerated addGraph := by
     (fun d₁ d₂ => by simpa [eqCoord, eqRel] using higmanGenerated_eqRel d₁ d₂)
     (fun d₁ d₂ => by simpa [succCoord, succPair] using higmanGenerated_succPair d₁ d₂)
 
+/-! ## Unary graph composition
+
+The input and output occupy coordinates `0` and `1`; coordinate `2` carries
+the existential intermediate value. -/
+
+def unaryInnerCoord (j : ℕ) : ℤ := if j = 0 then 0 else 2
+
+def unaryOuterCoord (j : ℕ) : ℤ := if j = 0 then 2 else 1
+
+noncomputable def unaryGraphComp (Outer Inner : Set E) : Set E :=
+  existsAt 2 3
+    (placeAt 2 unaryInnerCoord Inner ∩ placeAt 2 unaryOuterCoord Outer)
+
+/-- Generated binary graphs are closed under relational composition. -/
+theorem higmanGenerated_unaryGraphComp {Outer Inner : Set E}
+    (hOuter : HigmanGenerated Outer) (hInner : HigmanGenerated Inner) :
+    HigmanGenerated (unaryGraphComp Outer Inner) := by
+  unfold unaryGraphComp
+  exact higmanGenerated_existsAt 2 3
+    (HigmanGenerated.inter
+      (higmanGenerated_placeAt 2 unaryInnerCoord Inner hInner)
+      (higmanGenerated_placeAt 2 unaryOuterCoord Outer hOuter))
+
+theorem mem_unaryGraphComp_iff (Outer Inner : Set E) (f : E) :
+    f ∈ unaryGraphComp Outer Inner ↔
+      f ∈ windowSupport 3 ∧ f 2 = 0 ∧ ∃ y : ℤ,
+        (∃ s ∈ Inner, f 0 = s 0 ∧ y = s 1) ∧
+        (∃ r ∈ Outer, y = r 0 ∧ f 1 = r 1) := by
+  rw [unaryGraphComp, mem_existsAt_iff]
+  constructor
+  · rintro ⟨hwin, hzero, y, ⟨hinner, houter⟩⟩
+    rcases hinner with ⟨s, hs, hscoord⟩
+    rcases houter with ⟨r, hr, hrcoord⟩
+    refine ⟨hwin, hzero, y, ⟨s, hs, ?_, ?_⟩, ⟨r, hr, ?_, ?_⟩⟩
+    · simpa [unaryInnerCoord] using hscoord 0 (by omega)
+    · have h := hscoord 1 (by omega)
+      simp [unaryInnerCoord] at h
+      have hz : f (2 : ℤ) = 0 := by simpa using hzero
+      rw [hz, zero_add] at h
+      exact h
+    · have h := hrcoord 0 (by omega)
+      simp [unaryOuterCoord] at h
+      have hz : f (2 : ℤ) = 0 := by simpa using hzero
+      rw [hz, zero_add] at h
+      exact h
+    · simpa [unaryOuterCoord] using hrcoord 1 (by omega)
+  · rintro ⟨hwin, hzero, y, ⟨s, hs, hs0, hs1⟩, ⟨r, hr, hr0, hr1⟩⟩
+    refine ⟨hwin, hzero, y, ⟨⟨s, hs, ?_⟩, ⟨r, hr, ?_⟩⟩⟩
+    · intro j hj
+      have hj' : j = 0 ∨ j = 1 := by omega
+      rcases hj' with rfl | rfl
+      · simpa [unaryInnerCoord] using hs0
+      · simp [unaryInnerCoord, hzero, hs1]
+    · intro j hj
+      have hj' : j = 0 ∨ j = 1 := by omega
+      rcases hj' with rfl | rfl
+      · simp [unaryOuterCoord, hzero, hr0]
+      · simpa [unaryOuterCoord] using hr1
+
 end Seq
 end Higman
 end GroupApproximation
