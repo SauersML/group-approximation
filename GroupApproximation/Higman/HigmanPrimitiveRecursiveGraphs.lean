@@ -229,51 +229,6 @@ theorem higmanGenerated_natCompGraph {m n : ℕ}
           (natCompInnerCoord m i.val) (natGraph (G i)) (hG i)))
       (higmanGenerated_placeAt (n + 1) (natCompOuterCoord m n) (natGraph F) hF)
 
-/-! ## Primitive recursion: the generated construction
-
-`recGraph` expects the step variables in the order
-`parameters, counter, old value, new value`.  `Nat.Primrec'.prec` supplies its
-step graph in the order `counter, old value, parameters, new value`, so one
-finite placement is the whole adapter between the two conventions.
--/
-
-def natRecStepCoord (n : ℕ) (j : ℕ) : ℤ :=
-  if j = 0 then (n : ℤ)
-  else if j = 1 then ((n + 1 : ℕ) : ℤ)
-  else if j < n + 2 then ((j - 2 : ℕ) : ℤ)
-  else ((n + 2 : ℕ) : ℤ)
-
-noncomputable def natRecStep {n : ℕ}
-    (H : List.Vector ℕ (n + 2) → ℕ) : Set E :=
-  placeAt (n + 3) (natRecStepCoord n) (natGraph H) ∩ windowSupport (n + 3)
-
-noncomputable def natRecGraph {n : ℕ}
-    (F : List.Vector ℕ n → ℕ) (H : List.Vector ℕ (n + 2) → ℕ) : Set E :=
-  recGraph n (natGraph F) (natRecStep H)
-
-theorem nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
-  induction n with
-  | zero => norm_num
-  | succ n ih =>
-      rw [pow_succ]
-      have hp : 1 ≤ 2 ^ n := Nat.one_le_pow' n 1
-      omega
-
-/-- Primitive recursion preserves generation at the construction level. -/
-theorem higmanGenerated_natRecGraph {n : ℕ}
-    {F : List.Vector ℕ n → ℕ} {H : List.Vector ℕ (n + 2) → ℕ}
-    (hF : HigmanGenerated (natGraph F)) (hH : HigmanGenerated (natGraph H)) :
-    HigmanGenerated (natRecGraph F H) := by
-  have hstep : HigmanGenerated (natRecStep H) := by
-    unfold natRecStep
-    exact HigmanGenerated.inter
-      (higmanGenerated_placeAt (n + 3) (natRecStepCoord n) (natGraph H) hH)
-      (higmanGenerated_windowSupport (n + 3))
-  unfold natRecGraph
-  refine higmanGenerated_recGraph_of_generated n (2 ^ (n + 5)) (n + 5)
-    (nat_le_two_pow (n + 5)) ?_ (natGraph F) (natRecStep H) hF hstep
-  norm_num
-
 end Seq
 end Higman
 end GroupApproximation
