@@ -131,7 +131,12 @@ theorem presentedEdgeEquiv_gen (c : PresentationCode)
           HNNPresentation.srcGen_mem (codeRels c) (sourceWord c edges) i⟩ =
         sourceElement E (FreeGroup.of i) := by
     apply Subtype.ext
-    simp [E, HNNPresentation.srcGen, edgeData]
+    change HNNPresentation.srcGen (codeRels c) (sourceWord c edges) i =
+      ((sourceEquiv E (FreeGroup.of i) : sourceSubgroup E) : Carrier c)
+    rw [coe_sourceEquiv]
+    change PresentedGroup.mk (codeRels c) (sourceWord c edges i) =
+      sourceEval c edges (FreeGroup.of i)
+    rw [sourceEval_of]
   change (((MulEquiv.subgroupCongr
       (targetSubgroup_edgeData c edges hsource htarget))
         (edgeEquiv E ((MulEquiv.subgroupCongr
