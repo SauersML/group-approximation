@@ -479,6 +479,23 @@ returns to the native `J_1` target.  Thus the next relation must type or
 cancel this returned normalizer action; the positive full-Gram identity by
 itself is not yet the ESB bridge.
 
+Fusing the complementary authenticated returns does use completeness, but
+does not cancel that action.  For either `k=6` or `9`, the two identities
+
+```text
+K_0x_(8,k)(r)K_0=x_(7,k)(q_0),
+K_1x_(8,k)(p)K_1=x_(7,k)(q_1)
+```
+
+multiply on their common output root to `x_(7,k)(1)`.  The full table in
+`fused-authenticated-cross-returns-retain-s3-square-gauge` has an exact
+`S_3 times S_3` model: the two `K_i` gauges are `(c,1),(1,c)`, the incoming
+gauges are `(a,1),(1,a)`, and the returned gauges are `(b,1),(1,b)`, with
+`cac=b`.  The fused constant output therefore carries `(b,b)`, not the
+identity.  Hence even two full-Gram authenticated returns reconstruct an
+external constant-normalizer gauge; a native occurrence must still type
+that fused output or one branch return individually.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
