@@ -370,5 +370,64 @@ noncomputable def edgeCodeEquiv (c : PresentationCode)
       (presentedEdgeEquiv_gen c edges hsource htarget))).trans
     (presentedHNNEquiv c edges hsource htarget)
 
+/-- The one-edge equivalence preserves every old generator, followed by the
+canonical base inclusion into the honest HNN extension. -/
+@[simp] theorem edgeCodeEquiv_oldGenerator (c : PresentationCode)
+    (edges : List (Raw × Raw))
+    (hsource : Function.Injective (sourceEval c edges))
+    (htarget : Function.Injective (targetEval c edges))
+    (i : Fin (genCount c)) :
+    edgeCodeEquiv c edges hsource htarget
+        (PresentedGroup.of (letterOf (edgeCode c edges) i)) =
+      HNNExtension.of (PresentedGroup.of (letterOf c i)) := by
+  rw [← edgeGeneratorEquiv_some c edges i]
+  change presentedHNNEquiv c edges hsource htarget
+    (HNNPresentation.equivPres (codeRels c)
+      (sourceWord c edges) (targetWord c edges)
+      (presentedEdgeEquiv c edges hsource htarget)
+      (presentedEdgeEquiv_gen c edges hsource htarget)
+      ((PresentedGroupRelabel.congrEquiv (edgeGeneratorEquiv c edges)
+        (HNNPresentation.hnnRels (codeRels c)
+          (sourceWord c edges) (targetWord c edges))).symm
+        (PresentationCodeList.presCongrSet
+          (relabel_hnnRels c edges).symm
+          (PresentedGroup.of (edgeGeneratorEquiv c edges (some i)))))) = _
+  rw [PresentedGroupRelabel.congrEquiv]
+  rw [PresentedGroupRelabel.relabelHomSymm_of]
+  simp only [Equiv.symm_apply_apply]
+  rw [HNNPresentation.equivPres, HNNPresentation.fwd,
+    PresentedGroup.toGroup.of]
+  rw [presentedHNNEquiv, HNNCongr.congrEquiv, HNNCongr.congrHom_of]
+  rfl
+
+/-- The final raw generator of one computed edge is the honest HNN stable
+letter. -/
+@[simp] theorem edgeCodeEquiv_stable (c : PresentationCode)
+    (edges : List (Raw × Raw))
+    (hsource : Function.Injective (sourceEval c edges))
+    (htarget : Function.Injective (targetEval c edges)) :
+    edgeCodeEquiv c edges hsource htarget
+        (PresentedGroup.of
+          (letterOf (edgeCode c edges) (stableIndex c))) =
+      (HNNExtension.t : Extension (edgeData c edges hsource htarget)) := by
+  rw [← edgeGeneratorEquiv_none c edges]
+  change presentedHNNEquiv c edges hsource htarget
+    (HNNPresentation.equivPres (codeRels c)
+      (sourceWord c edges) (targetWord c edges)
+      (presentedEdgeEquiv c edges hsource htarget)
+      (presentedEdgeEquiv_gen c edges hsource htarget)
+      ((PresentedGroupRelabel.congrEquiv (edgeGeneratorEquiv c edges)
+        (HNNPresentation.hnnRels (codeRels c)
+          (sourceWord c edges) (targetWord c edges))).symm
+        (PresentationCodeList.presCongrSet
+          (relabel_hnnRels c edges).symm
+          (PresentedGroup.of (edgeGeneratorEquiv c edges none))))) = _
+  rw [PresentedGroupRelabel.congrEquiv]
+  rw [PresentedGroupRelabel.relabelHomSymm_of]
+  simp only [Equiv.symm_apply_apply]
+  rw [HNNPresentation.equivPres, HNNPresentation.fwd,
+    PresentedGroup.toGroup.of]
+  rw [presentedHNNEquiv, HNNCongr.congrEquiv, HNNCongr.congrHom_t]
+
 end FreeEdgeTowerSemantics
 end GroupApproximation
