@@ -1,1 +1,1 @@
-../metadata/NON_MF_UNCONDITIONAL_BASELINE.txtconditional-data GroupApproximation.Manuscript.NonMF.manuscriptLemmaSimpleInDefect  -- row 15: the printed lemma is itself conditional; FournierFacioDefectData packages its printed hypotheses
+../metadata/NON_MF_UNCONDITIONAL_BASELINE.txt

@@ -62,15 +62,8 @@ theorem profiniteClosure_map_subtype_eq_of_closed
     let xs : S := ⟨x, hxS⟩
     have hxsClosure : xs ∈ profiniteClosure L := by
       intro Q _ _ q
-      letI : q.ker.FiniteIndex :=
-        finiteIndex_comap_of_normal q (⊥ : Subgroup Q)
       let N : Subgroup G := q.ker.map S.subtype
-      letI : N.FiniteIndex := by
-        refine ⟨?_⟩
-        change (q.ker.map S.subtype).index ≠ 0
-        rw [Subgroup.index_map_subtype]
-        exact Nat.mul_ne_zero Subgroup.FiniteIndex.index_ne_zero
-          Subgroup.FiniteIndex.index_ne_zero
+      letI : N.FiniteIndex := inferInstance
       let C : Subgroup G := N.normalCore
       letI : C.Normal := inferInstance
       letI : C.FiniteIndex := inferInstance
@@ -86,7 +79,8 @@ theorem profiniteClosure_map_subtype_eq_of_closed
       have hnS : n = y⁻¹ * xs := by
         apply Subtype.ext
         change (n : G) = (y : G)⁻¹ * x
-        exact hnz.trans (congrArg (fun g : G => g⁻¹ * x) hyz).symm
+        rw [← hyz]
+        exact hnz
       have hqdiff : q (y⁻¹ * xs) = 1 := by
         rw [← hnS]
         exact MonoidHom.mem_ker.mp hn

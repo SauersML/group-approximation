@@ -361,15 +361,20 @@
       "environment": "lemma",
       "title": "",
       "statement_sha256": "036c7227d38f8ca49c0de1e6d2a22a0b7785a5594e4fcde4a5ec65b137a60bf5",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. The Lean declaration isolates the formal consequence of the required Fournier--Facio defect data, but the corpus does not yet construct those data.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Fournier-Facio, Section 2"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMF/SimpleInDefect",
+          "declaration": "GroupApproximation.Manuscript.NonMF.manuscriptLemmaSimpleInDefect",
+          "covers": "the complete printed proposition"
+        }
+      ]
     }
   ]
 }

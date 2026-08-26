@@ -9,14 +9,13 @@ distinct_from:
   titz-witzel-simple-kazhdan-cat0-lattices-exist: those groups are finitely presented, torsion-free and simple but their soficity is unknown; this group is LEF but is not claimed finitely presented or simple.
 artifacts:
   - research/artifacts/torsion-free-lef-kazhdan-seed-2026-08-26.md
-  - GroupApproximation/Algebra/AmenableMFProof.lean
 ---
 
 **ESTABLISHED.**  There exists a finitely generated group `K` such that
 
 ```text
-K is torsion-free, LEF, sofic, operator-MF, property (T),
-and not residually finite.                                  (TLK1)
+K is torsion-free, LEF, sofic, property (T), and not residually finite.
+                                                               (TLK1)
 ```
 
 The construction is a characteristic-zero version of Thom's one-sided
@@ -71,16 +70,10 @@ Finally the invisible central element lies in `K`.  If a finite quotient of
 would still omit it (the element is central) and would give a finite quotient
 of `J` separating it.  This contradicts its membership in the finite
 residual of `J`.  Hence `K` is not residually finite.  Since every LEF group
-is sofic and operator-MF (`isSofic_of_isLEF`,
-`isOperatorMF_of_isLEF`), `(TLK1)` follows.
+is sofic, `(TLK1)` follows.
 
 This closes the intrinsic seed problem on the extrinsic route.  What it does
 **not** provide is an automorphism `phi` for which `K semidirect_phi Z` is
 finitely presented and carries a Kazhdan compression defect equal to `K`.
 The obvious Laurent shift is only a surjective noninjective endomorphism
 after the one-sided quotient, not an automorphism.
-
-The operator-MF clause also rules out using this seed on the direct-product
-route: `K x Z` is operator-MF.  Any successful use of the seed must therefore
-make the cyclic action genuinely extrinsic and use it to create the
-compression obstruction in the total group.
