@@ -3,6 +3,10 @@ rg: 2
 id: binary-leavitt-two-shared-gauge-selector-compiler
 kind: claim
 title: Share one multiplicity involution across two incompatible binary selector rows
+artifacts:
+  - research/same-center-whitehead-analytic-candidate-package.md
+  - research/same-center-whitehead-native-selector-subcorner-attachment.md
+  - research/same-center-whitehead-native-occurrence-compiler-route.md
 distinct_from:
   binary-leavitt-atomic-morita-return: that returns a Leavitt family to one prescribed sparse atom; this works on a positive-density packet carrier and needs only two scalar selector rows with a common external gauge.
   opnorm-leavitt-coarse-fine-return-row: that asks for one literal operator-norm coarse-to-fine support row; this permits both fine reflections to retain a nontrivial gauge and contradicts their two rank equations in normalized Hilbert--Schmidt norm.
@@ -71,6 +75,16 @@ Ordinary packet dressing cannot prove `(SGS2)` because it shares gauges only
 inside one outer-automorphism class.  The two unequal-scale selectors must be
 coupled by a Whitehead/Leavitt occurrence, a common coefficient Gram row, or
 another matrix-only holonomy theorem.
+
+The same-center Whitehead branch is now isolated at its exact boundary.
+`same-center-whitehead-analytic-candidate-package` establishes the positive
+carrier, common `M_8(C)` factor, conjugate Whitehead reservoir gauges, and the
+two analytic unequal-label candidates.  The only remaining arrow on that
+branch is
+`same-center-whitehead-native-selector-subcorner-attachment`: authenticate
+the actual native selector occurrences as those candidates on a positive
+model-dependent subcorner.  The whole-carrier version is impossible, and the
+full Gram of the two Whitehead unitaries does not imply the subcorner claim.
 
 The scalar trace-cyclic triangle lemmas do not weaken this last requirement.
 As recorded in
