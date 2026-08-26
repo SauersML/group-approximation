@@ -30,3 +30,19 @@ block-scalar center tends to zero, the fold-Gram defect tends to zero with an
 explicit dimension-free bound.  Thus this claim has been reduced to gauges
 which stay uniformly noncentral, together with genuinely non-congruence actor
 outliers.
+
+The first authenticated denominator-crossing test also closes a genuinely
+noncentral, but still linear, part of that residual.
+`authenticated-mixed-loop-kills-natural-affine-gauges` imposes the mixed word
+
+```text
+[h x_21(-1) h^(-1),x_13(1)]=h^(-1)x_23(-1)h
+```
+
+on the same honest coefficient carrier as the rank-one conjugacy and the two
+closed returns.  Its two affine Fox rows force every natural-module
+translation gauge to vanish, uniformly over multiplicity.  What remains here
+is therefore not the obvious natural affine extension: it is an arbitrary
+unitary/nonlinear gauge, a different coefficient module, or a noncongruence
+actor outlier.  Upgrading that scoped detector to those sectors is still the
+common-carrier/exactification problem, not another missing scalar relation.
