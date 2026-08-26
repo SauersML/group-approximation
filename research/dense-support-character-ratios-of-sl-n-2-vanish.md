@@ -9,8 +9,14 @@ artifacts:
 
 **ESTABLISHED by citation** (`dense-support-character-ratios-citation`).
 
-For `g in SL_N(F_2)` write `supp(g)=N-dim ker(g-1)`.  For every
-`delta>0`,
+For `g in SL_N(F_2)` write
+
+```text
+supp(g)=min_(lambda in algebraic closure of F_2)
+          codim ker(g-lambda I),
+```
+
+the codimension of its largest eigenspace.  For every `delta>0`,
 
 ```text
 sup { |chi(g)|/chi(1) : chi in Irr(SL_N(F_2)) nontrivial,
@@ -19,11 +25,15 @@ sup { |chi(g)|/chi(1) : chi in Irr(SL_N(F_2)) nontrivial,
 
 as `N -> infinity`.
 
-This is the weak, constant-free form of the Larsen--Shalev--Tiep character
-bound `|chi(g)| <= chi(1)^(1-c*supp(g)/N)` with an absolute `c>0`, combined
-with the fact that every nontrivial irreducible character of `SL_N(F_2)`
-has degree at least `2^(N-1)-1`, so that
-`chi(1)^(-c*delta) <= (2^(N-1)-1)^(-c*delta) -> 0`.
+This is the constant-free consequence of Larsen--Shalev--Tiep's uniform
+bound
+
+```text
+|chi(g)|/chi(1) < 2^(-sqrt(supp(g))/481).
+```
+
+If `supp(g)>=delta N`, the right side tends to zero uniformly.  No
+minimal-character-degree estimate is needed.
 
 It is a theorem about finite groups; no property `(T)`, spectral gap,
 Kazhdan constant, or expander input appears in it or in its use here.

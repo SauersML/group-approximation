@@ -2,7 +2,7 @@
 rg: 2
 id: dense-support-character-ratios-citation
 kind: route
-title: Larsen--Shalev--Tiep support character bound plus the minimal degree of SL_N(2)
+title: Larsen--Shalev--Tiep support character bound for finite classical groups
 target: dense-support-character-ratios-of-sl-n-2-vanish
 requires: []
 ---
@@ -12,31 +12,33 @@ requires: []
 This is not a new theorem.
 
 **Source.**  Michael Larsen, Aner Shalev, Pham Huu Tiep, *The Waring
-problem for finite simple groups*, Ann. of Math. (2) 174 (2011), 1885--1950.
-Their character bound for `SL_n(q)` states that there is an absolute
-constant `c>0` such that for every `g in SL_n(q)` of support `s` (the
-codimension of the largest eigenspace of `g`) and every irreducible
-character `chi`,
+problem for finite simple groups*, Ann. of Math. (2) 174 (2011), 1885--1950,
+Definition 4.1.1 and Theorem 4.3.6 (restated as Theorem 1.2.1).
+
+They define the support of `g` to be
 
 ```text
-|chi(g)| <= chi(1)^(1 - c*s/n).                                        (1)
+supp(g)=min_lambda codim ker(g-lambda I),
 ```
 
-Sharper exponents are given by Bezrukavnikov--Liebeck--Shalev--Tiep,
-*Character bounds for finite groups of Lie type*, Acta Math. 221 (2018),
-in terms of the Levi subgroup containing the centralizer; only the weak
-form `(1)` is used here, and only in the limit `n -> infinity` with
-`s/n >= delta` fixed.
+where `lambda` ranges over the algebraic closure, and prove for simple
+simply connected classical groups and every nontrivial irreducible character
+`chi` the uniform estimate
 
-**Minimal degree.**  The smallest degree of a nontrivial irreducible
-complex representation of `SL_n(2)`, `n>=3`, is `2^(n-1)-1` (the
-Landazuri--Seitz bound, which for `SL_n(q)` is `(q^n-q)/(q-1)` with the
-listed small exceptions, none at `q=2`, `n>=3`).
+```text
+|chi(g)|/chi(1) < q^(-sqrt(supp(g))/481).                              (1)
+```
 
-**Assembly.**  For nontrivial `chi` and `supp(g)>=delta n`,
-`|chi(g)|/chi(1) <= chi(1)^(-c*delta) <= (2^(n-1)-1)^(-c*delta)`, which
-tends to `0` as `n -> infinity` uniformly in `chi` and `g`.  This is
-`(DSC1)`.
+Equivalently, their theorem states that for every `epsilon>0`, once the
+support is sufficiently large the ratio is at most `epsilon`, uniformly in
+the rank, field, element, and nontrivial character.
+
+**Assembly.**  Take `q=2`.  If `supp(g)>=delta n`, `(1)` is at most
+`2^(-sqrt(delta n)/481)`, which tends to zero uniformly in `chi` and `g`.
+This is `(DSC1)`.  No minimal-degree assertion is used.
+
+**Primary link.**
+https://annals.math.princeton.edu/wp-content/uploads/annals-v174-n3-p10-p.pdf
 
 **What is imported and what is not.**  The imported statement is `(1)`,
 a bound on complex characters of finite groups.  Nothing about infinite

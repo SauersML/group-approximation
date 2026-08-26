@@ -7,6 +7,7 @@ target: degree-zero-leavitt-core-characters-are-dirac-haar-mixtures
 requires:
   - dense-support-character-ratios-of-sl-n-2-vanish
   - binary-leavitt-elementary-group-is-simple
+  - torsion-normal-generator-mf-character-criterion
 ---
 
 ## Step 1: the tower and the support of a fixed element
@@ -15,11 +16,16 @@ requires:
 embed `B_m` into `B_(m+1)` as `a -> a tensor 1_2`.  Hence
 `G_m:=EL_n(B_m)=SL_(n*2^m)(F_2)` embeds into `G_(m+1)` as `A -> A tensor
 1_2`, and `Gamma_0^(n)=union_m G_m`.  For `1!=A in G_m` and `M>=m`, the
-image of `A` in `G_M=SL_N(F_2)`, `N=n*2^M`, is `A tensor 1_(2^(M-m))`, and
+image of `A` in `G_M=SL_N(F_2)`, `N=n*2^M`, is `A tensor 1_(2^(M-m))`.
+Here support means the codimension of the largest eigenspace over the
+algebraic closure.  Therefore
 
 ```text
 supp(A tensor 1_(2^(M-m)))=2^(M-m) supp(A) >= 2^(M-m) = N/(n*2^m).      (1)
 ```
+
+The inequality uses `supp(A)>=1`: over `F_2`, a matrix with support zero is
+a scalar matrix and hence is the identity.
 
 So the support fraction is at least `delta_m:=1/(n*2^m)`, independent of
 `M`.
@@ -34,9 +40,10 @@ phi|G_M = sum_(pi in Irr(G_M)) a_pi^(M) chi_pi/chi_pi(1),
 a_pi^(M)>=0,   sum_pi a_pi^(M)=1.                                         (2)
 ```
 
-The trivial weight `a_1^(M)=(1/|G_M|)sum_(g in G_M) phi(g)` is the
-proportion of `G_M`-fixed vectors in the GNS representation of `phi`; since
-`G_M<=G_(M+1)`, it is non-increasing in `M`.  Let `w=lim_M a_1^(M)`.
+The trivial weight `a_1^(M)=(1/|G_M|)sum_(g in G_M) phi(g)` equals
+`<P_(G_M)xi,xi>` for the fixed-vector projection in the GNS representation
+of `phi`.  Since `G_M<=G_(M+1)`, these fixed subspaces decrease and the
+weights are non-increasing.  Let `w=lim_M a_1^(M)`.
 
 ## Step 3: evaluation at a fixed element
 
@@ -68,7 +75,12 @@ fixed by every conjugate of every element of `Gamma_0^(n)`, hence by the
 normal closure of `Gamma_0^(n)` in `H`, which is `H` because `H` is simple
 (`binary-leavitt-elementary-group-is-simple`) and `Gamma_0^(n)!=1`.  Thus
 `phi=1` on `H`.
-Item 4: `K_2(F_2)=0` and the Steinberg group of a finite field of rank
-`>=5` is the universal central extension, so `St_N(F_2)=SL_N(F_2)`; the
-tower for `St_20(R_0)` is therefore the same tower and Steps 1--3 apply
-verbatim.
+
+Finally, if a corona representation of `H` is nontrivial, simplicity makes
+any nonidentity involution a normal generator.  The
+`torsion-normal-generator-mf-character-criterion` supplies a nontrivial MF
+character; the preceding paragraph forces its parameter to satisfy `w<1`.
+
+No Steinberg-group assertion is made here.  Passing from
+`St_n(M_k(F_2))` to the flattened finite linear tower requires an additional
+unstable Morita theorem and filtered-colimit compatibility.

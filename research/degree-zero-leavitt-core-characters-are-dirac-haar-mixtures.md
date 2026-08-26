@@ -48,20 +48,17 @@ w*delta_0+(1-w)*Haar   on   (B_m)^* .                                   (DHM3)
 3. `phi` is trivial on `H` iff `w=1`, i.e. iff `phi(g)=1` for ONE
    nonidentity degree-zero element, e.g. the manuscript defect
    `d=x_02(q)`.  Hence `Rad_MF(H)=H` holds as soon as every MF character
-   has `w=1`, and conversely a nontrivial corona representation yields, by
-   `corona-representations-are-exact-on-locally-finite-subgroups` and the
-   torsion-normal-generator reblocking of the peers' character criterion,
-   an MF character with `w<1`.
-4. The same holds for the Steinberg group `St_20(R)`: `St_20(R_0)=union_m
-   St_(20*2^m)(F_2)=union_m SL_(20*2^m)(F_2)` because `K_2(F_2)=0` and
-   `St_N(F_2)=SL_N(F_2)` for `N>=5`.
+   has `w=1`.  Conversely, simplicity and
+   `torsion-normal-generator-mf-character-criterion` turn any nontrivial
+   corona representation into an MF character with `w<1`.
 
 ## Why the tensor tower is rigid while the corner tower is not
 
 The argument uses only the inductive embedding of `(DHM1)`: an element
 `A in SL_(n*2^m)(F_2)` becomes `A tensor 1_(2^(M-m))` in
-`SL_(n*2^M)(F_2)`, whose support is `2^(M-m) supp(A) >= N/(n*2^m)`, a fixed
-positive fraction of `N=n*2^M`.  By
+`SL_(n*2^M)(F_2)`.  Its largest-eigenspace support is
+`2^(M-m) supp(A) >= N/(n*2^m)`, a fixed positive fraction of
+`N=n*2^M`.  By
 `dense-support-character-ratios-of-sl-n-2-vanish` every nontrivial
 irreducible character ratio at such an element tends to `0` as `M` grows,
 so a character can see only the trivial weight.  A "corner" tower
@@ -93,6 +90,10 @@ on every degree-zero root at every depth.
 No Property `(T)`, spectral gap, or stability theorem is used; the only
 literature input is the finite-group character bound cited in
 `dense-support-character-ratios-citation`.
+
+No Steinberg-group extension is asserted here.  That extension needs a
+separate unstable Morita/block-flattening theorem for
+`St_n(M_k(F_2))` and compatible filtered-colimit embeddings.
 
 DERIVATION
 degree-zero-core-dirac-haar-proof
