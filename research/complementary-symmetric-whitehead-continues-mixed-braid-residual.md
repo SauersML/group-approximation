@@ -26,4 +26,3 @@ to the two support Whiteheads, but
 `complementary-mixed-braid-returns-support-but-retains-s3` proves that
 `A!=P`.  Thus this support-cell calculation does not continue the actual
 mixed-braid residual.
-
