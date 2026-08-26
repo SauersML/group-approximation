@@ -350,88 +350,119 @@ private theorem primrecRel_matrixEqCell : PrimrecRel fun (j : ℕ)
       Primrec.fst)
   exact primrecRel_complexEq.comp hleft hright
 
-private theorem primrec_matrixEqRow : Primrec₂ fun
-    (z : (ℕ × MatrixCode) × MatrixCode) (i : ℕ) =>
-      (List.range (dim z.1.1)).all fun j =>
-        decide (ComplexEq (entry z.1.1 z.1.2 i j)
-          (entry z.1.1 z.2 i j)) := by
-  have hrange : Primrec fun p : ((ℕ × MatrixCode) × MatrixCode) × ℕ =>
-      List.range (dim p.1.1.1) :=
-    Primrec.list_range.comp
-      (primrec_dim.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
-  have hitem : Primrec₂ fun
-      (p : ((ℕ × MatrixCode) × MatrixCode) × ℕ) (j : ℕ) =>
-      decide (ComplexEq (entry p.1.1.1 p.1.1.2 p.2 j)
-        (entry p.1.1.1 p.1.2 p.2 j)) :=
-    primrecRel_matrixEqCell.decide.comp₂ Primrec₂.right
-      ((Primrec.pair (Primrec.snd.comp Primrec.fst)
-        (Primrec.fst.comp Primrec.fst)).to₂)
-  exact (primrec_listAll hrange hitem).to₂
+/-- The row-major list of coordinates of the coded square matrix. -/
+def matrixCoordinates (d : ℕ) : List (ℕ × ℕ) :=
+  (List.range (dim d)).flatMap fun i =>
+    (List.range (dim d)).map fun j => (i, j)
 
-private theorem primrec_matrixEqCheck : Primrec fun
-    z : (ℕ × MatrixCode) × MatrixCode =>
-    (List.range (dim z.1.1)).all fun i =>
-      (List.range (dim z.1.1)).all fun j =>
-        decide (ComplexEq (entry z.1.1 z.1.2 i j)
-          (entry z.1.1 z.2 i j)) :=
-  primrec_listAll
-    (Primrec.list_range.comp
-      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) primrec_matrixEqRow
+theorem primrec_matrixCoordinates : Primrec matrixCoordinates := by
+  have hrange : Primrec fun d : ℕ => List.range (dim d) :=
+    Primrec.list_range.comp primrec_dim
+  have hrow : Primrec₂ fun (d : ℕ) (i : ℕ) =>
+      (List.range (dim d)).map fun j => (i, j) := by
+    have hsource : Primrec fun p : ℕ × ℕ => List.range (dim p.1) :=
+      Primrec.list_range.comp (primrec_dim.comp Primrec.fst)
+    have hpair : Primrec₂ fun (p : ℕ × ℕ) (j : ℕ) => (p.2, j) :=
+      (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd).to₂
+    exact (Primrec.list_map hsource hpair).to₂
+  exact Primrec.list_flatMap hrange hrow
 
-theorem primrecPred_matrixEq :
-    PrimrecPred fun z : (ℕ × MatrixCode) × MatrixCode =>
-      matrixEq z.1.1 z.1.2 z.2 := by
-  refine (Primrec.eq.comp primrec_matrixEqCheck (Primrec.const true)).of_eq ?_
-  intro z
-  simp only [List.all_eq_true, decide_eq_true_eq, List.mem_range, matrixEq]
+/-- One flat Boolean pass checks equality at every matrix coordinate. -/
+def matrixEqCheck (d : ℕ) (A B : MatrixCode) : Bool :=
+  (matrixCoordinates d).foldr (fun ij ok =>
+    decide (ComplexEq (entry d A ij.1 ij.2) (entry d B ij.1 ij.2)) && ok) true
 
-theorem primrecPred_isUnitary :
-    PrimrecPred fun z : ℕ × MatrixCode => isUnitary z.1 z.2 :=
-  primrecPred_matrixEq.comp (Primrec.pair
+theorem primrec_matrixEqCheck :
+    Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
+      matrixEqCheck z.1.1 z.1.2 z.2 := by
+  have hcoords : Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
+      matrixCoordinates z.1.1 :=
+    primrec_matrixCoordinates.comp (Primrec.fst.comp Primrec.fst)
+  have hdecision : Primrec fun p : ((ℕ × MatrixCode) × MatrixCode) ×
+      ((ℕ × ℕ) × Bool) =>
+      decide (ComplexEq (entry p.1.1.1 p.1.1.2 p.2.1.1 p.2.1.2)
+        (entry p.1.1.1 p.1.2 p.2.1.1 p.2.1.2)) :=
+    primrecRel_matrixEqCell.decide.comp
+      (Primrec.snd.comp (Primrec.fst.comp Primrec.snd))
+      (Primrec.pair
+        (Primrec.fst.comp (Primrec.fst.comp Primrec.snd)) Primrec.fst)
+  have hstep : Primrec₂ fun (z : (ℕ × MatrixCode) × MatrixCode)
+      (q : (ℕ × ℕ) × Bool) =>
+      decide (ComplexEq (entry z.1.1 z.1.2 q.1.1 q.1.2)
+        (entry z.1.1 z.2 q.1.1 q.1.2)) && q.2 :=
+    (Primrec.and.comp hdecision (Primrec.snd.comp Primrec.snd)).to₂
+  unfold matrixEqCheck
+  exact Primrec.list_foldr hcoords (Primrec.const true) hstep
+
+private theorem foldr_decide_and_eq_true {α : Type*} (L : List α)
+    (p : α → Prop) [DecidablePred p] :
+    L.foldr (fun x ok => decide (p x) && ok) true = true ↔
+      ∀ x ∈ L, p x := by
+  induction L with
+  | nil => simp
+  | cons x L ih => simp only [List.foldr_cons, Bool.and_eq_true,
+      decide_eq_true_eq, List.mem_cons, forall_eq_or_imp, ih]
+
+theorem matrixEqCheck_eq_true_iff (d : ℕ) (A B : MatrixCode) :
+    matrixEqCheck d A B = true ↔ matrixEq d A B := by
+  rw [matrixEqCheck, foldr_decide_and_eq_true]
+  constructor
+  · intro h i hi j hj
+    exact h (i, j) (by simp [matrixCoordinates, hi, hj])
+  · intro h ij hij
+    rcases List.mem_flatMap.mp hij with ⟨i, hi, hij⟩
+    rcases List.mem_map.mp hij with ⟨j, hj, rfl⟩
+    exact h i (List.mem_range.mp hi) j (List.mem_range.mp hj)
+
+/-- Exact unitarity, computed through the flat equality checker. -/
+def isUnitaryCheck (d : ℕ) (A : MatrixCode) : Bool :=
+  matrixEqCheck d (matrixMul d (conjTranspose d A) A) (identity d)
+
+theorem primrec_isUnitaryCheck :
+    Primrec fun z : ℕ × MatrixCode => isUnitaryCheck z.1 z.2 := by
+  unfold isUnitaryCheck
+  exact primrec_matrixEqCheck.comp (Primrec.pair
     (Primrec.pair Primrec.fst
       (primrec_matrixMul.comp (Primrec.pair
         (Primrec.pair Primrec.fst
           (primrec_conjTranspose.comp Primrec.id)) Primrec.snd)))
     (primrec_identity.comp Primrec.fst))
 
-theorem primrecPred_generatorsUnitary :
-    PrimrecPred fun z : ℕ × List MatrixCode => generatorsUnitary z.1 z.2 := by
-  have hitem : Primrec₂ fun (z : ℕ × List MatrixCode) (A : MatrixCode) =>
-      decide (isUnitary z.1 A) :=
-    primrecPred_isUnitary.decide.comp₂
-      (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd).to₂
-  have hcheck : Primrec fun z : ℕ × List MatrixCode =>
-      z.2.all fun A => decide (isUnitary z.1 A) :=
-    primrec_listAll Primrec.snd hitem
-  refine (Primrec.eq.comp hcheck (Primrec.const true)).of_eq ?_
-  intro z
-  simp only [List.all_eq_true, decide_eq_true_eq, generatorsUnitary]
+theorem isUnitaryCheck_eq_true_iff (d : ℕ) (A : MatrixCode) :
+    isUnitaryCheck d A = true ↔ isUnitary d A := by
+  simpa only [isUnitaryCheck, isUnitary] using
+    matrixEqCheck_eq_true_iff d (matrixMul d (conjTranspose d A) A) (identity d)
 
-theorem primrec_matrixEqDecision :
-    Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
-      decide (matrixEq z.1.1 z.1.2 z.2) :=
-  primrecPred_matrixEq.decide
+theorem primrecPred_isUnitary :
+    PrimrecPred fun z : ℕ × MatrixCode => isUnitary z.1 z.2 :=
+  (Primrec.eq.comp primrec_isUnitaryCheck (Primrec.const true)).of_eq
+    fun z => isUnitaryCheck_eq_true_iff z.1 z.2
 
-theorem primrec_isUnitaryDecision :
-    Primrec fun z : ℕ × MatrixCode => decide (isUnitary z.1 z.2) :=
-  primrecPred_isUnitary.decide
+/-- Exact unitarity for a supplied list of matrices. -/
+def generatorsUnitaryCheck (d : ℕ) (gens : List MatrixCode) : Bool :=
+  gens.foldr (fun A ok => isUnitaryCheck d A && ok) true
 
-theorem primrec_generatorsUnitaryDecision :
-    Primrec fun z : ℕ × List MatrixCode => decide (generatorsUnitary z.1 z.2) :=
-  primrecPred_generatorsUnitary.decide
+theorem primrec_generatorsUnitaryCheck :
+    Primrec fun z : ℕ × List MatrixCode => generatorsUnitaryCheck z.1 z.2 := by
+  have hstep : Primrec₂ fun (z : ℕ × List MatrixCode)
+      (q : MatrixCode × Bool) => isUnitaryCheck z.1 q.1 && q.2 := by
+    have hunitary : Primrec fun p : (ℕ × List MatrixCode) ×
+        (MatrixCode × Bool) => isUnitaryCheck p.1.1 p.2.1 :=
+      primrec_isUnitaryCheck.comp
+        (Primrec.pair (Primrec.fst.comp Primrec.fst)
+          (Primrec.fst.comp Primrec.snd))
+    exact (Primrec.and.comp hunitary (Primrec.snd.comp Primrec.snd)).to₂
+  unfold generatorsUnitaryCheck
+  exact Primrec.list_foldr Primrec.snd (Primrec.const true) hstep
 
-theorem computable_matrixEqDecision :
-    Computable fun z : (ℕ × MatrixCode) × MatrixCode =>
-      decide (matrixEq z.1.1 z.1.2 z.2) :=
-  primrec_matrixEqDecision.to_comp
-
-theorem computable_isUnitaryDecision :
-    Computable fun z : ℕ × MatrixCode => decide (isUnitary z.1 z.2) :=
-  primrec_isUnitaryDecision.to_comp
-
-theorem computable_generatorsUnitaryDecision :
-    Computable fun z : ℕ × List MatrixCode => decide (generatorsUnitary z.1 z.2) :=
-  primrec_generatorsUnitaryDecision.to_comp
+theorem generatorsUnitaryCheck_eq_true_iff (d : ℕ) (gens : List MatrixCode) :
+    generatorsUnitaryCheck d gens = true ↔ generatorsUnitary d gens := by
+  induction gens with
+  | nil => simp [generatorsUnitaryCheck, generatorsUnitary]
+  | cons A gens ih =>
+      simp only [generatorsUnitaryCheck, List.foldr_cons, Bool.and_eq_true,
+        isUnitaryCheck_eq_true_iff, ih, generatorsUnitary, List.mem_cons,
+        forall_eq_or_imp]
 
 theorem primrec_natPow : Primrec₂ ((· ^ ·) : ℕ → ℕ → ℕ) :=
   Primrec₂.unpaired'.1 Nat.Primrec.pow
@@ -439,9 +470,13 @@ theorem primrec_natPow : Primrec₂ ((· ^ ·) : ℕ → ℕ → ℕ) :=
 theorem primrec_ratOfNat : Primrec ratOfNat :=
   Primrec.pair (Primrec.pair Primrec.id (Primrec.const 0)) (Primrec.const 0)
 
-theorem primrecPred_entrySmall :
-    PrimrecPred fun z : (ℕ × ℕ) × ComplexCode =>
-      entrySmall z.1.1 z.1.2 z.2 := by
+/-- Boolean form of the exact rational entry bound. -/
+def entrySmallCheck (d k : ℕ) (z : ComplexCode) : Bool :=
+  decide (entrySmall d k z)
+
+theorem primrec_entrySmallCheck :
+    Primrec fun z : (ℕ × ℕ) × ComplexCode =>
+      entrySmallCheck z.1.1 z.1.2 z.2 := by
   have hd : Primrec fun z : (ℕ × ℕ) × ComplexCode => z.1.1 :=
     Primrec.fst.comp Primrec.fst
   have hk : Primrec fun z : (ℕ × ℕ) × ComplexCode => z.1.2 :=
@@ -453,59 +488,63 @@ theorem primrecPred_entrySmall :
   have hfactor : Primrec fun z : (ℕ × ℕ) × ComplexCode =>
       (z.1.2 + 1) ^ 2 * (dim z.1.1) ^ 4 :=
     Primrec.nat_mul.comp hksq hdim4
-  exact primrecRel_ratLt.comp
+  unfold entrySmallCheck entrySmall
+  exact primrecRel_ratLt.decide.comp
     (primrec_ratMul.comp (primrec_ratOfNat.comp hfactor)
       (primrec_complexNormSq.comp Primrec.snd))
     (Primrec.const ratOne)
 
-private theorem primrecRel_matrixSmallCell : PrimrecRel fun (j : ℕ)
-    (z : ℕ × ((ℕ × ℕ) × MatrixCode)) =>
-    entrySmall z.2.1.1 z.2.1.2 (entry z.2.1.1 z.2.2 z.1 j) := by
-  let hd : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
-      p.2.2.1.1 := Primrec.fst.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))
-  let hk : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
-      p.2.2.1.2 := Primrec.snd.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))
-  let hA : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
-      p.2.2.2 := Primrec.snd.comp (Primrec.snd.comp Primrec.snd)
-  let hi : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
-      p.2.1 := Primrec.fst.comp Primrec.snd
-  have hentry : Primrec fun p : ℕ ×
-      (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
-      entry p.2.2.1.1 p.2.2.2 p.2.1 p.1 :=
-    primrec_entry.comp (Primrec.pair
-      (Primrec.pair (Primrec.pair hd hA) hi)
-      Primrec.fst)
-  exact primrecPred_entrySmall.comp (Primrec.pair (Primrec.pair hd hk) hentry)
+theorem entrySmallCheck_eq_true_iff (d k : ℕ) (z : ComplexCode) :
+    entrySmallCheck d k z = true ↔ entrySmall d k z := by
+  simp only [entrySmallCheck, decide_eq_true_eq]
 
-private theorem primrec_matrixSmallRow : Primrec₂ fun
-    (z : (ℕ × ℕ) × MatrixCode) (i : ℕ) =>
-      (List.range (dim z.1.1)).all fun j =>
-        decide (entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j)) := by
-  have hrange : Primrec fun p : ((ℕ × ℕ) × MatrixCode) × ℕ =>
-      List.range (dim p.1.1.1) :=
-    Primrec.list_range.comp
-      (primrec_dim.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
-  have hitem : Primrec₂ fun (p : ((ℕ × ℕ) × MatrixCode) × ℕ) (j : ℕ) =>
-      decide (entrySmall p.1.1.1 p.1.1.2 (entry p.1.1.1 p.1.2 p.2 j)) :=
-    primrecRel_matrixSmallCell.decide.comp₂ Primrec₂.right
-      ((Primrec.pair (Primrec.snd.comp Primrec.fst)
-        (Primrec.fst.comp Primrec.fst)).to₂)
-  exact (primrec_listAll hrange hitem).to₂
+/-- One flat Boolean pass checks the entrywise smallness bound. -/
+def matrixSmallCheck (d k : ℕ) (A : MatrixCode) : Bool :=
+  (matrixCoordinates d).foldr (fun ij ok =>
+    decide (entrySmall d k (entry d A ij.1 ij.2)) && ok) true
 
-private theorem primrec_matrixSmallCheck : Primrec fun z : (ℕ × ℕ) × MatrixCode =>
-    (List.range (dim z.1.1)).all fun i =>
-      (List.range (dim z.1.1)).all fun j =>
-        decide (entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j)) :=
-  primrec_listAll
-    (Primrec.list_range.comp
-      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) primrec_matrixSmallRow
+theorem primrec_matrixSmallCheck :
+    Primrec fun z : (ℕ × ℕ) × MatrixCode =>
+      matrixSmallCheck z.1.1 z.1.2 z.2 := by
+  have hcoords : Primrec fun z : (ℕ × ℕ) × MatrixCode =>
+      matrixCoordinates z.1.1 :=
+    primrec_matrixCoordinates.comp (Primrec.fst.comp Primrec.fst)
+  have hdecision : Primrec fun p : ((ℕ × ℕ) × MatrixCode) ×
+      ((ℕ × ℕ) × Bool) =>
+      decide (entrySmall p.1.1.1 p.1.1.2
+        (entry p.1.1.1 p.1.2 p.2.1.1 p.2.1.2)) := by
+    have hentry : Primrec fun p : ((ℕ × ℕ) × MatrixCode) ×
+        ((ℕ × ℕ) × Bool) =>
+        entry p.1.1.1 p.1.2 p.2.1.1 p.2.1.2 :=
+      primrec_entry.comp (Primrec.pair
+        (Primrec.pair
+          (Primrec.pair
+            (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+            (Primrec.snd.comp (Primrec.fst.comp Primrec.fst)))
+          (Primrec.fst.comp (Primrec.fst.comp Primrec.snd)))
+        (Primrec.snd.comp (Primrec.fst.comp Primrec.snd)))
+    exact primrec_entrySmallCheck.comp (Primrec.pair
+      (Primrec.pair
+        (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+        (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
+      hentry)
+  have hstep : Primrec₂ fun (z : (ℕ × ℕ) × MatrixCode)
+      (q : (ℕ × ℕ) × Bool) =>
+      decide (entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 q.1.1 q.1.2)) && q.2 :=
+    (Primrec.and.comp hdecision (Primrec.snd.comp Primrec.snd)).to₂
+  unfold matrixSmallCheck
+  exact Primrec.list_foldr hcoords (Primrec.const true) hstep
 
-theorem primrecPred_matrixSmall :
-    PrimrecPred fun z : (ℕ × ℕ) × MatrixCode =>
-      matrixSmall z.1.1 z.1.2 z.2 := by
-  refine (Primrec.eq.comp primrec_matrixSmallCheck (Primrec.const true)).of_eq ?_
-  intro z
-  simp only [List.all_eq_true, decide_eq_true_eq, List.mem_range, matrixSmall]
+theorem matrixSmallCheck_eq_true_iff (d k : ℕ) (A : MatrixCode) :
+    matrixSmallCheck d k A = true ↔ matrixSmall d k A := by
+  rw [matrixSmallCheck, foldr_decide_and_eq_true]
+  constructor
+  · intro h i hi j hj
+    exact h (i, j) (by simp [matrixCoordinates, hi, hj])
+  · intro h ij hij
+    rcases List.mem_flatMap.mp hij with ⟨i, hi, hij⟩
+    rcases List.mem_map.mp hij with ⟨j, hj, rfl⟩
+    exact h i (List.mem_range.mp hi) j (List.mem_range.mp hj)
 
 private theorem primrec_vectorWitnessLeft : Primrec fun
     z : (ℕ × MatrixCode) × VectorCode => vectorNormSq z.1.1 z.2 :=
@@ -517,30 +556,86 @@ private theorem primrec_vectorWitnessRight : Primrec fun
     ratMul (ratOfNat 9) (mulVecNormSq z.1.1 z.1.2 z.2) :=
   primrec_ratMul.comp (Primrec.const (ratOfNat 9)) primrec_mulVecNormSq
 
+/-- Boolean rational-vector separation witness. -/
+def vectorWitnessCheck (d : ℕ) (A : MatrixCode) (v : VectorCode) : Bool :=
+  decide (RatLt (vectorNormSq d v)
+    (ratMul (ratOfNat 9) (mulVecNormSq d A v)))
+
+theorem primrec_vectorWitnessCheck :
+    Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
+      vectorWitnessCheck z.1.1 z.1.2 z.2 := by
+  unfold vectorWitnessCheck
+  exact primrecRel_ratLt.decide.comp
+    primrec_vectorWitnessLeft primrec_vectorWitnessRight
+
+theorem vectorWitnessCheck_eq_true_iff (d : ℕ) (A : MatrixCode) (v : VectorCode) :
+    vectorWitnessCheck d A v = true ↔ vectorWitness d A v := by
+  simp only [vectorWitnessCheck, vectorWitness, decide_eq_true_eq]
+
+/-! ## Public primitive-recursive predicate interface -/
+
+theorem primrecPred_matrixEq :
+    PrimrecPred fun z : (ℕ × MatrixCode) × MatrixCode =>
+      matrixEq z.1.1 z.1.2 z.2 :=
+  (Primrec.eq.comp primrec_matrixEqCheck (Primrec.const true)).of_eq
+    fun z => matrixEqCheck_eq_true_iff z.1.1 z.1.2 z.2
+
+theorem primrecPred_generatorsUnitary :
+    PrimrecPred fun z : ℕ × List MatrixCode => generatorsUnitary z.1 z.2 :=
+  (Primrec.eq.comp primrec_generatorsUnitaryCheck (Primrec.const true)).of_eq
+    fun z => generatorsUnitaryCheck_eq_true_iff z.1 z.2
+
+theorem primrecPred_matrixSmall :
+    PrimrecPred fun z : (ℕ × ℕ) × MatrixCode =>
+      matrixSmall z.1.1 z.1.2 z.2 :=
+  (Primrec.eq.comp primrec_matrixSmallCheck (Primrec.const true)).of_eq
+    fun z => matrixSmallCheck_eq_true_iff z.1.1 z.1.2 z.2
+
 theorem primrecPred_vectorWitness :
     PrimrecPred fun z : (ℕ × MatrixCode) × VectorCode =>
       vectorWitness z.1.1 z.1.2 z.2 :=
-  primrecRel_ratLt.comp primrec_vectorWitnessLeft primrec_vectorWitnessRight
+  (Primrec.eq.comp primrec_vectorWitnessCheck (Primrec.const true)).of_eq
+    fun z => vectorWitnessCheck_eq_true_iff z.1.1 z.1.2 z.2
+
+theorem primrec_matrixEqDecision :
+    Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
+      decide (matrixEq z.1.1 z.1.2 z.2) := primrecPred_matrixEq.decide
+
+theorem primrec_isUnitaryDecision :
+    Primrec fun z : ℕ × MatrixCode => decide (isUnitary z.1 z.2) :=
+  primrecPred_isUnitary.decide
+
+theorem primrec_generatorsUnitaryDecision :
+    Primrec fun z : ℕ × List MatrixCode => decide (generatorsUnitary z.1 z.2) :=
+  primrecPred_generatorsUnitary.decide
 
 theorem primrec_matrixSmallDecision :
     Primrec fun z : (ℕ × ℕ) × MatrixCode =>
-      decide (matrixSmall z.1.1 z.1.2 z.2) :=
-  primrecPred_matrixSmall.decide
+      decide (matrixSmall z.1.1 z.1.2 z.2) := primrecPred_matrixSmall.decide
 
 theorem primrec_vectorWitnessDecision :
     Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
-      decide (vectorWitness z.1.1 z.1.2 z.2) :=
-  primrecPred_vectorWitness.decide
+      decide (vectorWitness z.1.1 z.1.2 z.2) := primrecPred_vectorWitness.decide
+
+theorem computable_matrixEqDecision :
+    Computable fun z : (ℕ × MatrixCode) × MatrixCode =>
+      decide (matrixEq z.1.1 z.1.2 z.2) := primrec_matrixEqDecision.to_comp
+
+theorem computable_isUnitaryDecision :
+    Computable fun z : ℕ × MatrixCode => decide (isUnitary z.1 z.2) :=
+  primrec_isUnitaryDecision.to_comp
+
+theorem computable_generatorsUnitaryDecision :
+    Computable fun z : ℕ × List MatrixCode => decide (generatorsUnitary z.1 z.2) :=
+  primrec_generatorsUnitaryDecision.to_comp
 
 theorem computable_matrixSmallDecision :
     Computable fun z : (ℕ × ℕ) × MatrixCode =>
-      decide (matrixSmall z.1.1 z.1.2 z.2) :=
-  primrec_matrixSmallDecision.to_comp
+      decide (matrixSmall z.1.1 z.1.2 z.2) := primrec_matrixSmallDecision.to_comp
 
 theorem computable_vectorWitnessDecision :
     Computable fun z : (ℕ × MatrixCode) × VectorCode =>
-      decide (vectorWitness z.1.1 z.1.2 z.2) :=
-  primrec_vectorWitnessDecision.to_comp
+      decide (vectorWitness z.1.1 z.1.2 z.2) := primrec_vectorWitnessDecision.to_comp
 
 end EffectiveMatrixCodePrimrec
 end GroupApproximation
