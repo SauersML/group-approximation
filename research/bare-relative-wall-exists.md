@@ -32,6 +32,17 @@ the radical-collision endpoint the bare inequality already produces a
 hyperlinear nonsofic group.  This is the weakest known sufficient hypothesis
 in the whole Kun--Thom lane.
 
+The nested one-compressor geometry itself is not the obstruction.
+`kt-nested-compressor-flat-tower-has-uniform-wall` gives explicit finite flat
+shift towers for the ascending-HNN subgroup `V=<Gamma,t>` with covariance
+defect `2/sqrt(L)` and squared wall gap at least `2(1-1/L)`.  What fails is
+the cheap extension to the full actor: exact full-`G` blocks fold the marked
+return, so any tower-preserving extension retaining the gap must be
+nonliftable on at least half its dimension.  Thus the full claim cannot be
+closed by repairing only the wrap boundary of the one-compressor telescope;
+the missing datum is a positive-density full-actor outlier or a genuinely
+non-block-preserving extension.
+
 **This is packaging, not a reduction of the difficulty.**  Given a
 homomorphism `phi` of the free lamp `H_K=G *_Gamma (Gamma x K)` into a
 hyperlinear group with `phi(r)!=1`, put `pi=phi|_G` and `v=phi(k)`: that is a
