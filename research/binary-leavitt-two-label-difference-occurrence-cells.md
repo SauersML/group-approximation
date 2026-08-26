@@ -109,6 +109,16 @@ No established finite packet supplies these two parity constraints.
    natural marked/star profile still has zero full-Hecke source.  Thus
    common root-carrier membership is weaker than either label-only odd row
    required in `(LDC2)--(LDC3)`.
+8. `seven-head-return-shares-sixteenth-atom-with-u2` gives full cross-Gram
+   mass between one literal seven-head return and `U_2` on a positive joint
+   Pauli atom.  It removes the physical-reservoir ambiguity for that
+   comparison, but leaves one exposed relative reservoir unitary and does
+   not yet identify the return with the native one-eighth selector.
+9. `head-square-whitehead-loop-preserves-deep-star-flag` supplies an exact
+   odd `U_i` occurrence on every all-positive quarter/eighth atom.  Its
+   remaining gauge is no longer compression leakage: the loop traverses
+   anchored and forked Pauli charts, so one cross-chart identity-outer lock
+   is still required before its odd parity can authenticate `U_i` itself.
 
 Accordingly the minimum unfenced packet is two odd incidence constraints,
 one involving each actual native selector occurrence.  They may be
@@ -154,6 +164,20 @@ the established fences.
   star projections nonzero while killing the full-Hecke source.  The flip
   joins carriers but does not authenticate either spectator sign in
   `(LDC3)`.
+- **Reset the cumulative head holonomy by a longer Coxeter word.**  The
+  literal word `H_3(H_2H_1)^3` retains an eighth source and range, and after
+  fixing the remaining `Z_1` sign it shares exactly the same positive
+  source/range atom as `U_2`.  This produces a full native cross-Gram on a
+  common reservoir.  The relative unitary is nevertheless unconstrained;
+  treating the order-four heads as the Coxeter involutions would be an
+  invalid gauge substitution.
+- **Use the exact cube `(H_i^2U_i)^3=L_i`.**  This is a genuine odd
+  occurrence and has zero leakage on the deep positive flag.  However
+  `H_i^2=X_i` moves an anchored `A` arm to the forked arm `F_i`, and `L_i`
+  changes the outer chart.  The cube constrains their three transition
+  gauges jointly, not the corrected-Whitehead gauge alone.  A successful
+  continuation must identify one of these chart transitions on the same
+  reservoir or couple the two adjacent cubes with full odd parity rank.
 
 No Property `(T)`, canonical-trace substitution, stability theorem,
 computation, or literature input is used.
