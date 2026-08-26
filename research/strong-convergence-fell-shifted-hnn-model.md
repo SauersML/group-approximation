@@ -142,3 +142,16 @@ This is a specific, named, research-level step in the GKMP framework -- the
 honest boundary of what can be assembled here without reproducing their
 correspondence machinery.
 
+
+## Scope note (2026-08-26)
+
+This node's target is the reduced-norm (trace-regular / strong-convergence)
+convention: an isometric embedding of `C*_r(R)`.  The finite-presentation
+`Pi^0_2`-completeness prize does NOT need it: the bare operator-MF
+statement is closed unconditionally via
+[[twisted-hnn-mf-permanence-with-corona-conjugator]] (universal HNN
+algebra + Shulman's amalgam criterion; no freeness estimate), see
+`research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md`.  The
+freeness estimate below remains the open content of the strictly stronger
+reduced-norm question, whose recognition problem also lacks a known
+`Pi^0_2` upper bound.

@@ -77,3 +77,16 @@ non-MF; it would have to exploit that the finitely presented HNN is strictly
 harder than its MF amalgam completion, i.e. that finite presentability itself
 destroys MF here.  That is a sharper and more specific target than a generic
 non-completeness argument.
+
+## Scope note (2026-08-26)
+
+The "sole remaining obstruction" above concerns the GKMP (reduced-norm /
+strong-convergence) convention.  At the bare operator-MF convention the
+amalgam-vs-HNN tension dissolves: the universal-HNN route
+([[twisted-hnn-mf-permanence-with-corona-conjugator]]) needs no two-model
+conjugacy of regular models — the conjugator lives on a finite tensor
+factor and faithfulness is bought by the regular trace, not by strong
+convergence.  The finite-presentation completeness theorem is closed there
+(`research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md`);
+the GKMP-convention question stays open with the free-entropy obstruction
+intact.

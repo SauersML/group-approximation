@@ -144,3 +144,15 @@ non-uniformity that Step 5 shows is real for generic shears.
 
 Recorded above inline (Steps 4a, 4b, 5, 6).  The rank-1 case and the
 finite-dimensional-`v` case are proved; the open point is the uniform limit.
+
+## Scope note (2026-08-26)
+
+The target above ("R is MF" witnessed by a trace-preserving embedding of
+`C*_r(R)` into a matrix ultraproduct) is the reduced-norm convention.  For
+the bare operator-MF convention the HNN form is now a theorem,
+[[twisted-hnn-mf-permanence-with-corona-conjugator]], proved without any
+Step-4 conjugator in the ultraproduct of models: the universal HNN algebra
+is MF by Shulman's amalgam criterion and the group injects via its own
+left regular representation.  The finite-presentation completeness prize
+consumed only that version.  Steps 1-4 above remain the honest state of
+the strictly stronger reduced-norm question.

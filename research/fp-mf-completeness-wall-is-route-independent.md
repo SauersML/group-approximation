@@ -55,3 +55,21 @@ machine, and they still converge on the same free-edge permanence question.
 (arXiv:1107.1489, discussion after Thm 2.2, citing Rotman Thm 12.18); on the
 trivial-input branch it is the identity-collapse of the same rope, whose
 `INF` output is the group of clause 1.
+
+## Scope correction (2026-08-26 audit)
+
+The equivalence claim above quantified over the three MACHINE-BASED Higman
+engines, and for those the reduction to the free-edge wall stands.  But the
+"and no easier" reading is refuted: the Mikhailova/graph-witness compiler
+([[mf-safe-finite-presentation-compiler-via-mikhailova]]) is a fourth
+route that never meets the wall, because its benign ambient is a direct
+product of free groups (residually finite on every branch — the Higman
+host is consulted only for its presentation, never for an approximation
+property) and its final twist lands in the residually finite bridge value,
+where a corona conjugator exists outright
+([[twisted-hnn-mf-permanence-with-corona-conjugator]]).  Consequently
+[[mf-recognition-finite-presentations-is-pi2-complete]] is closed while
+[[machine-free-digit-reading-group-is-mf]] remains open as a standalone
+question about `Gamma^K`; the wall is sufficient-side only, not equivalent
+to the completeness target.  Independent verification of the closing chain:
+`research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md`.
