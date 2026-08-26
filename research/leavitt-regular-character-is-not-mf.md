@@ -9,6 +9,7 @@ distinct_from:
   degree-zero-leavitt-core-characters-are-dirac-haar-mixtures: that is the established classification showing every character is `w+(1-w)delta_e` on the core; this is the open assertion that the `w=0` endpoint of that family is not operator-norm approximable.
 artifacts:
   - research/artifacts/property-t-free-provenance-delta-2026-08-26.md
+  - research/artifacts/leavitt-defect-floor-experiment-2026-08-26.md
 ---
 
 **OPEN.**  Let `R=L_(F_2)(1,2)` and `H=EL_n(R)`, `n>=3` (equivalently
@@ -32,6 +33,18 @@ realize all such invariants exactly; a proof must find an operator-norm
 invariant of finite-dimensional approximants that `delta_e` violates.
 
 ## Attempts
+
+* **Blind numerical optimisation is not a probe.**  The radius-2
+  vocabulary-closed truncation, mark pinned at half or quarter rank,
+  L-BFGS from random involutions, `d<=64`: every run converges exactly to
+  the trivial representation with the whole defect on the eight relators
+  whose right-hand side is the mark; see
+  `research/artifacts/leavitt-defect-floor-experiment-2026-08-26.md`.  The
+  nontrivial approximants at feasible radius, if they exist, are a
+  measure-zero target, and at feasible radius the truncated group is
+  strictly freer than the Steinberg group, so finite models are expected
+  anyway; the obstruction is asymptotic in the radius with no effective
+  bound.
 
 * **Trace and character data cannot decide it.**  By
   `degree-zero-leavitt-core-characters-are-dirac-haar-mixtures` every MF
