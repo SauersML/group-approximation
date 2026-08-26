@@ -353,7 +353,11 @@ theorem primrecPred_matrixEq :
       ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
         (entry z.2.1.1 z.2.2 z.1 j) :=
     primrecRel_complexEq.comp hleft hright
-  have hcols := PrimrecRel.forall_lt hcol
+  have hcols : PrimrecRel fun (n : ℕ)
+      (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
+      ∀ j < n, ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
+        (entry z.2.1.1 z.2.2 z.1 j) :=
+    PrimrecRel.forall_lt hcol
   have hrow : PrimrecRel fun (i : ℕ)
       (z : (ℕ × MatrixCode) × MatrixCode) =>
       ∀ j < dim z.1.1,
@@ -361,7 +365,11 @@ theorem primrecPred_matrixEq :
     exact PrimrecRel.comp₂ hcols
       (primrec_dim.comp₂ (Primrec.fst.comp₂ Primrec₂.right))
       (Primrec.pair Primrec.fst Primrec.snd).to₂
-  have hrows := PrimrecRel.forall_lt hrow
+  have hrows : PrimrecRel fun (n : ℕ)
+      (z : (ℕ × MatrixCode) × MatrixCode) =>
+      ∀ i < n, ∀ j < dim z.1.1,
+        ComplexEq (entry z.1.1 z.1.2 i j) (entry z.1.1 z.2 i j) :=
+    PrimrecRel.forall_lt hrow
   have hbounded := hrows.comp
     (primrec_dim.comp (Primrec.fst.comp Primrec.fst)) Primrec.id
   simpa only [matrixEq] using hbounded
@@ -434,41 +442,48 @@ theorem primrecPred_entrySmall :
       (primrec_complexNormSq.comp Primrec.snd))
     (Primrec.const ratOne)
 
-set_option maxHeartbeats 800000 in
+set_option maxHeartbeats 2000000 in
 theorem primrecPred_matrixSmall :
     PrimrecPred fun z : (ℕ × ℕ) × MatrixCode =>
       matrixSmall z.1.1 z.1.2 z.2 := by
+  let hd : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
+      p.2.2.1.1 := Primrec.fst.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))
+  let hk : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
+      p.2.2.1.2 := Primrec.snd.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))
+  let hA : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
+      p.2.2.2 := Primrec.snd.comp (Primrec.snd.comp Primrec.snd)
+  let hi : Primrec fun p : ℕ × (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
+      p.2.1 := Primrec.fst.comp Primrec.snd
   have hentry : Primrec fun p : ℕ ×
       (ℕ × ((ℕ × ℕ) × MatrixCode)) =>
       entry p.2.2.1.1 p.2.2.2 p.2.1 p.1 :=
     primrec_entry.comp (Primrec.pair
-      (Primrec.pair
-        (Primrec.pair
-          (Primrec.fst.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.snd)))
-          (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))
-        (Primrec.fst.comp Primrec.snd))
+      (Primrec.pair (Primrec.pair hd hA) hi)
       Primrec.fst)
   have hcol : PrimrecRel fun (j : ℕ)
       (z : ℕ × ((ℕ × ℕ) × MatrixCode)) =>
       entrySmall z.2.1.1 z.2.1.2 (entry z.2.1.1 z.2.2 z.1 j) := by
-    exact primrecPred_entrySmall.comp (Primrec.pair
-      (Primrec.pair
-        (Primrec.fst.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.snd)))
-        (Primrec.snd.comp (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))))
-      hentry)
-  have hcols := PrimrecRel.forall_lt hcol
+    exact primrecPred_entrySmall.comp (Primrec.pair (Primrec.pair hd hk) hentry)
+  have hcols : PrimrecRel fun (n : ℕ)
+      (z : ℕ × ((ℕ × ℕ) × MatrixCode)) =>
+      ∀ j < n, entrySmall z.2.1.1 z.2.1.2
+        (entry z.2.1.1 z.2.2 z.1 j) :=
+    PrimrecRel.forall_lt hcol
   have hrow : PrimrecRel fun (i : ℕ) (z : (ℕ × ℕ) × MatrixCode) =>
       ∀ j < dim z.1.1,
         entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j) := by
     exact PrimrecRel.comp₂ hcols
       (primrec_dim.comp₂ (Primrec.fst.comp₂ Primrec₂.right))
       (Primrec.pair Primrec.fst Primrec.snd).to₂
-  have hrows := PrimrecRel.forall_lt hrow
+  have hrows : PrimrecRel fun (n : ℕ) (z : (ℕ × ℕ) × MatrixCode) =>
+      ∀ i < n, ∀ j < dim z.1.1,
+        entrySmall z.1.1 z.1.2 (entry z.1.1 z.2 i j) :=
+    PrimrecRel.forall_lt hrow
   have hbounded := hrows.comp
     (primrec_dim.comp (Primrec.fst.comp Primrec.fst)) Primrec.id
   simpa only [matrixSmall] using hbounded
 
-set_option maxHeartbeats 800000 in
+set_option maxHeartbeats 2000000 in
 theorem primrecPred_vectorWitness :
     PrimrecPred fun z : (ℕ × MatrixCode) × VectorCode =>
       vectorWitness z.1.1 z.1.2 z.2 := by
