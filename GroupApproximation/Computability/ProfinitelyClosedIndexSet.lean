@@ -519,18 +519,33 @@ theorem mem_dyadicSet_iff (g : ℕ × ℕ → Code) (e m : ℕ) :
 
 theorem zero_mem_dyadicSet (g : ℕ × ℕ → Code) (e : ℕ) : 0 ∈ dyadicSet g e := Or.inl rfl
 
+/-- The step-indexed halting test, with the code as its own argument.  Keeping
+the code separate is what lets the reduction's computable code family enter
+through `Computable₂.comp`, whose intermediate types are `Code` and a tuple of
+naturals; routing it instead through the mixed intermediate `(ℕ × Code) × ℕ` of
+`Code.primrec_evaln` makes the elaborator's `whnf` diverge. -/
+def evalnBool (c : Code) (u : ℕ × ℕ) : Bool := (Code.evaln u.2 c u.1).isSome
+
+theorem primrec₂_evalnBool : Primrec₂ evalnBool := by
+  have hc : Primrec fun z : Code × (ℕ × ℕ) => z.1 := Primrec.fst
+  have hn : Primrec fun z : Code × (ℕ × ℕ) => z.2.1 := Primrec.fst.comp Primrec.snd
+  have hs : Primrec fun z : Code × (ℕ × ℕ) => z.2.2 := Primrec.snd.comp Primrec.snd
+  exact Primrec.of_eq
+    (Primrec.option_isSome.comp
+      (Code.primrec_evaln.comp (Primrec.pair (Primrec.pair hs hc) hn))) fun _ => rfl
+
 /-- The search matrix enumerating the dyadic set. -/
 def dyadicCheck (g : ℕ × ℕ → Code) (em : ℕ × ℕ) (w : ℕ × ℕ × ℕ × ℕ) : Bool :=
   decide (em.2 = 0) ||
     (decide (em.2 = 2 ^ w.1 * (2 * w.2.1 + 1)) && decide (w.2.1 < w.2.2.1) &&
-      (Code.evaln w.2.2.2 (g (em.1, w.1)) w.2.2.1).isSome)
+      evalnBool (g (em.1, w.1)) (w.2.2.1, w.2.2.2))
 
 theorem dyadicCheck_eq_true_iff (g : ℕ × ℕ → Code) (em : ℕ × ℕ)
     (w : ℕ × ℕ × ℕ × ℕ) :
     dyadicCheck g em w = true ↔
       em.2 = 0 ∨ ((em.2 = 2 ^ w.1 * (2 * w.2.1 + 1) ∧ w.2.1 < w.2.2.1) ∧
         (Code.evaln w.2.2.2 (g (em.1, w.1)) w.2.2.1).isSome = true) := by
-  simp only [dyadicCheck, Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq]
+  simp only [dyadicCheck, evalnBool, Bool.or_eq_true, Bool.and_eq_true, decide_eq_true_eq]
 
 theorem exists_dyadicCheck_iff (g : ℕ × ℕ → Code) (em : ℕ × ℕ) :
     (∃ w : ℕ × ℕ × ℕ × ℕ, dyadicCheck g em w = true) ↔ em.2 ∈ dyadicSet g em.1 := by
@@ -549,7 +564,7 @@ theorem exists_dyadicCheck_iff (g : ℕ × ℕ → Code) (em : ℕ × ℕ) :
 theorem primrec₂_natPow : Primrec₂ ((· ^ ·) : ℕ → ℕ → ℕ) :=
   Primrec₂.unpaired'.1 Nat.Primrec.pow
 
-set_option maxHeartbeats 1000000 in
+set_option maxHeartbeats 400000 in
 theorem computable_dyadicCheck {g : ℕ × ℕ → Code} (hg : Computable g) :
     Computable₂ (dyadicCheck g) := by
   have hm : Primrec fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) => z.1.2 :=
@@ -582,12 +597,9 @@ theorem computable_dyadicCheck {g : ℕ × ℕ → Code} (hg : Computable g) :
       decide (z.1.2 = 2 ^ z.2.1 * (2 * z.2.2.1 + 1)) && decide (z.2.2.1 < z.2.2.2.1) :=
     Primrec.and.comp hshape hlt
   have hev : Computable fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) =>
-      (Code.evaln z.2.2.2.2 (g (z.1.1, z.2.1)) z.2.2.2.1).isSome :=
-    Primrec.option_isSome.to_comp.comp
-      (Code.primrec_evaln.to_comp.comp
-        (Computable.pair
-          (Computable.pair hs.to_comp (hg.comp (Computable.pair he hx.to_comp)))
-          hn.to_comp))
+      evalnBool (g (z.1.1, z.2.1)) (z.2.2.2.1, z.2.2.2.2) :=
+    primrec₂_evalnBool.to_comp.comp (hg.comp (Computable.pair he hx.to_comp))
+      (Computable.pair hn.to_comp hs.to_comp)
   exact Computable.of_eq
     (Primrec.or.to_comp.comp hzero.to_comp
       (Primrec.and.to_comp.comp hcond.to_comp hev)) fun _ => rfl

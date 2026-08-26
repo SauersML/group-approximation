@@ -1,5 +1,5 @@
 import GroupApproximation.Computability.HyperlinearMarkov
-import GroupApproximation.Computability.SoficRecognitionSecondLevel
+import GroupApproximation.Computability.HereditaryRecognitionPhaseDiagram
 
 /-!
 # The exact second-level hardness phase transition for hyperlinearity
@@ -22,48 +22,28 @@ namespace HyperlinearRecognitionSecondLevel
 
 open ArithmeticalHierarchy
 open PresentationCodes
+open HereditaryRecognitionPhaseDiagram
 
 /-- Hyperlinearity on standard recursively enumerated presentation codes. -/
 abbrev HyperlinearEnumeratedCodeProperty :
     EnumeratedPresentationCodes.PresentationCode → Prop :=
   fun q ↦ IsHyperlinear (EnumeratedPresentationCodes.Carrier q)
 
-/-- The empty numerical predicate belongs to `Pi02`. -/
-private theorem pi02_false : Pi02 (fun _ : ℕ ↦ False) := by
-  letI : DecidablePred (fun _ : ℕ × ℕ ↦ False) := fun _ ↦ isFalse id
-  have hcomp : ComputablePred (fun _ : ℕ × ℕ ↦ False) :=
-    ⟨inferInstance, Computable.const false⟩
-  exact ⟨fun _ ↦ False, hcomp.to_re, by simp⟩
-
-/-- A constantly true predicate cannot be `Pi02`-hard. -/
-private theorem not_pi02Hard_of_forall
-    {T : Type*} [Primcodable T] {p : T → Prop} (hall : ∀ t, p t) :
-    ¬ Pi02Hard p := by
-  intro hhard
-  obtain ⟨f, _, hf⟩ := hhard (fun _ : ℕ ↦ False) pi02_false
-  exact (hf 0).mpr (hall (f 0))
-
-/-- A constantly false predicate cannot be `Sigma02`-hard. -/
-private theorem not_sigma02Hard_of_forall_not
-    {T : Type*} [Primcodable T] {p : T → Prop} (hall : ∀ t, ¬ p t) :
-    ¬ Sigma02Hard p := by
-  intro hhard
-  have htrue : Sigma02 (fun _ : ℕ ↦ True) := by
-    unfold Sigma02
-    simpa only [not_true] using pi02_false
-  obtain ⟨f, _, hf⟩ := hhard (fun _ : ℕ ↦ True) htrue
-  exact hall (f 0) ((hf 0).mp trivial)
+/-- Hyperlinearity has the finite-counterexample-cover property, by the finite
+table obstruction theorem. -/
+theorem hyperlinear_hasFiniteCounterexampleCover :
+    HasFiniteCounterexampleCover HyperlinearMarkov.HyperlinearProperty :=
+  HyperlinearMarkov.exists_nonhyperlinear_code_of_exists
 
 /-- A non-hyperlinear group makes hyperlinearity `Pi02`-hard on recursively
 enumerated presentation codes. -/
 theorem hyperlinearEnumeratedCodeProperty_pi02Hard_of_exists
     (h : ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) :
-    Pi02Hard HyperlinearEnumeratedCodeProperty := by
-  obtain ⟨seed, hseed⟩ := HyperlinearMarkov.exists_nonhyperlinear_code_of_exists h
-  exact SoficRecognitionSecondLevel.pi02Hard_of_hereditary
+    Pi02Hard HyperlinearEnumeratedCodeProperty :=
+  pi02Hard_of_exists_of_finiteCover
     HyperlinearMarkov.HyperlinearProperty
     (fun f hf hK ↦ isHyperlinear_of_injective f hf hK)
-    (isHyperlinear_of_finite PUnit) seed hseed
+    (isHyperlinear_of_finite PUnit) hyperlinear_hasFiniteCounterexampleCover h
 
 /-- Under the same hypothesis, non-hyperlinearity is `Sigma02`-hard on the
 same standard codes. -/
@@ -76,21 +56,15 @@ theorem nonhyperlinearEnumeratedCodeProperty_sigma02Hard_of_exists
 otherwise the target predicate is constantly true. -/
 theorem exists_not_isHyperlinear_of_hyperlinearEnumeratedCodeProperty_pi02Hard
     (h : Pi02Hard HyperlinearEnumeratedCodeProperty) :
-    ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G := by
-  by_contra hnone
-  push Not at hnone
-  exact (not_pi02Hard_of_forall
-    (fun q ↦ hnone (EnumeratedPresentationCodes.Carrier q) inferInstance)) h
+    ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G :=
+  exists_failure_of_pi02Hard h
 
 /-- Second-level hardness of non-hyperlinearity likewise forces a
 counterexample: without one its target predicate is constantly false. -/
 theorem exists_not_isHyperlinear_of_nonhyperlinearEnumeratedCodeProperty_sigma02Hard
     (h : Sigma02Hard (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q)) :
-    ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G := by
-  by_contra hnone
-  push Not at hnone
-  exact (not_sigma02Hard_of_forall_not
-    (fun q hq ↦ hq (hnone (EnumeratedPresentationCodes.Carrier q) inferInstance))) h
+    ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G :=
+  exists_failure_of_sigma02Hard_compl h
 
 /-- **Exact hardness phase transition.**  A non-hyperlinear group exists iff
 hyperlinearity of recursively enumerated presentations is `Pi02`-hard. -/
@@ -121,18 +95,16 @@ theorem hyperlinear_second_level_hardness_package_of_exists
 the computable constant-true predicate. -/
 theorem hyperlinearEnumeratedCodeProperty_computable_of_universal
     (h : ∀ (G : Type) (_ : Group G), IsHyperlinear G) :
-    ComputablePred HyperlinearEnumeratedCodeProperty := by
-  letI : DecidablePred HyperlinearEnumeratedCodeProperty := fun q ↦
-    isTrue (h (EnumeratedPresentationCodes.Carrier q) inferInstance)
-  exact ⟨inferInstance, Computable.const true⟩
+    ComputablePred HyperlinearEnumeratedCodeProperty :=
+  enumeratedCodeProperty_computable_of_universal
+    HyperlinearMarkov.HyperlinearProperty h
 
 /-- In the universal regime, the negative predicate is computably empty. -/
 theorem nonhyperlinearEnumeratedCodeProperty_computable_of_universal
     (h : ∀ (G : Type) (_ : Group G), IsHyperlinear G) :
-    ComputablePred (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) := by
-  letI : DecidablePred (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) := fun q ↦
-    isFalse (fun hn ↦ hn (h (EnumeratedPresentationCodes.Carrier q) inferInstance))
-  exact ⟨inferInstance, Computable.const false⟩
+    ComputablePred (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) :=
+  enumeratedCodeProperty_compl_computable_of_universal
+    HyperlinearMarkov.HyperlinearProperty h
 
 /-- The two exhaustive recognition regimes.  This theorem is unconditional:
 which branch holds is precisely the open non-hyperlinear-group problem. -/
@@ -142,16 +114,10 @@ theorem hyperlinear_recognition_phase_dichotomy :
       REPred (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q)) ∨
     ((∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ∧
       Pi02Hard HyperlinearEnumeratedCodeProperty ∧
-      Sigma02Hard (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q)) := by
-  classical
-  by_cases hcounter : ∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G
-  · exact Or.inr ⟨hcounter,
-      hyperlinearEnumeratedCodeProperty_pi02Hard_of_exists hcounter,
-      nonhyperlinearEnumeratedCodeProperty_sigma02Hard_of_exists hcounter⟩
-  · push Not at hcounter
-    exact Or.inl ⟨hcounter,
-      hyperlinearEnumeratedCodeProperty_computable_of_universal hcounter,
-      (nonhyperlinearEnumeratedCodeProperty_computable_of_universal hcounter).to_re⟩
+      Sigma02Hard (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q)) :=
+  recognition_phase_dichotomy HyperlinearMarkov.HyperlinearProperty
+    (fun f hf hK ↦ isHyperlinear_of_injective f hf hK)
+    (isHyperlinear_of_finite PUnit) hyperlinear_hasFiniteCounterexampleCover
 
 /-- The two branches of `hyperlinear_recognition_phase_dichotomy` are
 disjoint. -/
@@ -175,24 +141,19 @@ the existence of a non-hyperlinear group. -/
 theorem exists_not_isHyperlinear_iff_hyperlinearEnumeratedCodeProperty_pi02Complete
     (hupper : Pi02 HyperlinearEnumeratedCodeProperty) :
     (∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
-      Pi02Complete HyperlinearEnumeratedCodeProperty := by
-  constructor
-  · exact hyperlinearEnumeratedCodeProperty_pi02Complete_of_exists hupper
-  · intro h
-    exact exists_not_isHyperlinear_of_hyperlinearEnumeratedCodeProperty_pi02Hard h.2
+      Pi02Complete HyperlinearEnumeratedCodeProperty :=
+  exists_failure_iff_pi02Complete HyperlinearMarkov.HyperlinearProperty
+    (fun f hf hK ↦ isHyperlinear_of_injective f hf hK)
+    (isHyperlinear_of_finite PUnit) hyperlinear_hasFiniteCounterexampleCover hupper
 
 /-- The same upper bound gives the complementary `Sigma02` classification. -/
 theorem exists_not_isHyperlinear_iff_nonhyperlinearEnumeratedCodeProperty_sigma02Complete
     (hupper : Pi02 HyperlinearEnumeratedCodeProperty) :
     (∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
-      Sigma02Complete (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) := by
-  constructor
-  · intro h
-    exact pi02Complete_compl
-      (hyperlinearEnumeratedCodeProperty_pi02Complete_of_exists hupper h)
-  · intro h
-    exact
-      exists_not_isHyperlinear_of_nonhyperlinearEnumeratedCodeProperty_sigma02Hard h.2
+      Sigma02Complete (fun q ↦ ¬ HyperlinearEnumeratedCodeProperty q) :=
+  exists_failure_iff_sigma02Complete_compl HyperlinearMarkov.HyperlinearProperty
+    (fun f hf hK ↦ isHyperlinear_of_injective f hf hK)
+    (isHyperlinear_of_finite PUnit) hyperlinear_hasFiniteCounterexampleCover hupper
 
 end HyperlinearRecognitionSecondLevel
 end GroupApproximation

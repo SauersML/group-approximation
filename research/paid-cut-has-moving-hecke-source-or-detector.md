@@ -11,6 +11,7 @@ distinct_from:
   el20-order-seven-heads-force-zero-common-hecke-reducing-cut: that rules out a positive common reducing subcut of the fixed signed source; this constructs a positive moving source cut and quantifies the order-seven exit which it must pay.
   center-chain-common-source-authenticates-native-covariances: that asks to identify both common-source Hecke maps with the actual unequal native selector covariances; this reaches the exact common Hecke source and one literal Hecke transport but deliberately does not make that missing identification.
   row2-source-factor-detects-paid-pauli-sheet: that gives a literal word detecting the two paid Pauli sheets but no signed-source incidence or boundary estimate; this obtains signed-source mass under the detector alternative but does not type its common Hecke target as the unequal native row.
+  paid-polar-bridge-does-not-type-moving-hecke-target: that polar-corrects the positive operator in this claim and proves the resulting analytic isometry can have zero Gram with both literal Hecke targets and arbitrary gauge, even under the strict source-incidence branch and exact order-seven heads.
 ---
 
 **ESTABLISHED MOVING-SOURCE ALTERNATIVE.**  Freeze the paid menu member from
@@ -104,6 +105,12 @@ cut nor the tautological conjugate `t_iR_0t_i^(-1)` supplies that datum.
 For the literal row-two candidate, the already detected sheet face reduces
 this further to a quantitative `S_57` boundary/source-incidence transition;
 detecting its nonzero root globally is not yet control on `R_i`.
+
+Polar-decomposing `EC_sQ_s` also does not supply the missing datum.
+`paid-polar-bridge-does-not-type-moving-hecke-target` records the exact raw
+ordinary-word Gram which survives that operation and gives an acute graph
+model in which the polar support is full but its Gram with both `u_i`
+targets is zero.
 
 No Property `(T)`, canonical trace profile, or fixed common invariant cut is
 used.

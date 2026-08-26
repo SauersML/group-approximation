@@ -75,13 +75,40 @@ theorem evaluatedShear_stable_conj {X : Type}
   simpa [evaluatedShearData] using
     stable_conj_source (evaluatedShearData eval heval payload) word
 
-/-! ## Three composable HNN edges -/
+/-! ## Arbitrarily composable HNN edges -/
+
+/-- A group reached from `G` by an explicitly injected chain. -/
+structure InjectedStage (G : Type) [Group G] where
+  Carrier : Type
+  group : Group Carrier
+  map : G →* Carrier
+  map_injective : Function.Injective map
+
+attribute [instance] InjectedStage.group
+
+/-- The empty chain. -/
+def InjectedStage.base (G : Type) [Group G] : InjectedStage G where
+  Carrier := G
+  group := inferInstance
+  map := MonoidHom.id G
+  map_injective := Function.injective_id
+
+/-- Add one honest free-edge HNN extension to an injected chain. -/
+def InjectedStage.addEdge (S : InjectedStage G) {X : Type}
+    (E : Data X S.Carrier) : InjectedStage G where
+  Carrier := Extension E
+  group := inferInstance
+  map := (of : S.Carrier →* Extension E).comp S.map
+  map_injective :=
+    (HNNExtension.of_injective (φ := edgeEquiv E)).comp S.map_injective
+
+/-! ## The singleton-`tau` specialization -/
 
 /-- The exact algebraic data of the three inner compiler layers.  Every
 field is a concrete `ExplicitFreeEdge.Data`, hence records two homomorphisms
 from a displayed free group and injectivity proofs for precisely those maps.
 -/
-structure ThreeStage (G : Type) [Group G] where
+structure SingletonTauThreeStage (G : Type) [Group G] where
   TauIndex : Type
   tau : Data TauIndex G
   DIndex : Type
@@ -89,7 +116,7 @@ structure ThreeStage (G : Type) [Group G] where
   SigmaIndex : Type
   sigma : Data SigmaIndex (Extension d)
 
-variable (T : ThreeStage G)
+variable (T : SingletonTauThreeStage G)
 
 /-- The group after the `tau` edge. -/
 abbrev Tau : Type := Extension T.tau
@@ -157,7 +184,7 @@ The only hypotheses are injectivity of:
 
 Injectivity of the sheared target is derived automatically from the Nielsen
 inverse. -/
-def shearDSigmaTower {X J Y : Type}
+def singletonShearDSigmaTower {X J Y : Type}
     (eval : FreeGroup (X ⊕ Unit) →* G) (heval : Function.Injective eval)
     (payload : FreeGroup X)
     (k0 : ShearTau eval heval payload)
@@ -168,7 +195,7 @@ def shearDSigmaTower {X J Y : Type}
     (t0 d0 : ShearD eval heval payload k0 s tauLetter hdSource hdTarget)
     (hsigmaSource : Function.Injective (sigmaSource fixed t0))
     (hsigmaTarget : Function.Injective (sigmaTarget fixed t0 d0)) :
-    ThreeStage G where
+    SingletonTauThreeStage G where
   TauIndex := X ⊕ Unit
   tau := evaluatedShearData eval heval payload
   DIndex := Unit ⊕ J
@@ -176,28 +203,64 @@ def shearDSigmaTower {X J Y : Type}
   SigmaIndex := Y ⊕ Unit
   sigma := sigmaData fixed t0 d0 hsigmaSource hsigmaTarget
 
+/-! ## A compiler tower over an arbitrary injected `tau_j` chain -/
+
+/-- The general inner compiler.  `tauStage` is built by starting from
+`InjectedStage.base` and calling `InjectedStage.addEdge` once for every
+`tau_j`; the remaining two fields are the `d` and `sigma` edges. -/
+structure CompilerTower (G : Type) [Group G] where
+  tauStage : InjectedStage G
+  DIndex : Type
+  d : Data DIndex tauStage.Carrier
+  SigmaIndex : Type
+  sigma : Data SigmaIndex (Extension d)
+
+variable (C : CompilerTower G)
+
+abbrev CompilerD : Type := Extension C.d
+
+abbrev CompilerTop : Type := Extension C.sigma
+
+def compilerTauToD : C.tauStage.Carrier →* CompilerD C := of
+
+def compilerDToTop : CompilerD C →* CompilerTop C := of
+
+/-- The original base mapped through the entire `tau_j`, `d`, `sigma` chain. -/
+def compilerBaseToTop : G →* CompilerTop C :=
+  (compilerDToTop C).comp ((compilerTauToD C).comp C.tauStage.map)
+
+theorem compilerTauToD_injective : Function.Injective (compilerTauToD C) :=
+  HNNExtension.of_injective (φ := edgeEquiv C.d)
+
+theorem compilerDToTop_injective : Function.Injective (compilerDToTop C) :=
+  HNNExtension.of_injective (φ := edgeEquiv C.sigma)
+
+theorem compilerBaseToTop_injective : Function.Injective (compilerBaseToTop C) :=
+  (compilerDToTop_injective C).comp
+    ((compilerTauToD_injective C).comp C.tauStage.map_injective)
+
 /-! ## The corrected detector, attached after the tower -/
 
 variable {F K : Type} [Group F] [Group K]
 
 /-- A three-stage compiler whose starting group is `K * ⟨q⟩`, realized as
 the HNN extension of `K` over the trivial subgroup. -/
-abbrev FreeLetterTower := ThreeStage (ConjugatedDetector.FreeLetterExtension K)
+abbrev FreeLetterTower := CompilerTower (ConjugatedDetector.FreeLetterExtension K)
 
 /-- The final central HNN detector, attached only after `tau`, `d`, and
 `sigma` have been completed. -/
 abbrev Outermost (L : Subgroup K) (T : FreeLetterTower (K := K)) : Type _ :=
-  ConjugatedDetector.FreeOutermostExtension L (baseToTop T)
+  ConjugatedDetector.FreeOutermostExtension L (compilerBaseToTop T)
 
 /-- The completed inner tower embeds in the outermost detector. -/
 def topToOutermost (L : Subgroup K) (T : FreeLetterTower (K := K)) :
-    Top T →* Outermost L T := of
+    CompilerTop T →* Outermost L T := of
 
 /-- The free-letter base mapped through all four layers. -/
 def freeLetterToOutermost (L : Subgroup K)
-    (T : FreeLetterTower (K := K)) :
+  (T : FreeLetterTower (K := K)) :
     ConjugatedDetector.FreeLetterExtension K →* Outermost L T :=
-  (topToOutermost L T).comp (baseToTop T)
+  (topToOutermost L T).comp (compilerBaseToTop T)
 
 /-- The original benign-witness ambient group mapped through the free-letter
 step, all three compiler layers, and the final detector. -/
@@ -216,7 +279,7 @@ theorem topToOutermost_injective (L : Subgroup K)
 theorem freeLetterToOutermost_injective (L : Subgroup K)
     (T : FreeLetterTower (K := K)) :
     Function.Injective (freeLetterToOutermost L T) :=
-  (topToOutermost_injective L T).comp (baseToTop_injective T)
+  (topToOutermost_injective L T).comp (compilerBaseToTop_injective T)
 
 /-- In particular the original benign-witness ambient group survives the
 complete tower. -/
@@ -230,15 +293,16 @@ theorem originalToOutermost_injective (L : Subgroup K)
 of `F` at the top of the three inner layers. -/
 theorem detectorEdge_inf_embedded_atTop
     (L : Subgroup K) (e : F →* K) (T : FreeLetterTower (K := K)) :
-    (ConjugatedDetector.freeLetterConjugateSubgroup L).map (baseToTop T) ⊓
-        (ConjugatedDetector.freeLetterEmbeddedSubgroup e).map (baseToTop T) = ⊥ :=
+    (ConjugatedDetector.freeLetterConjugateSubgroup L).map (compilerBaseToTop T) ⊓
+        (ConjugatedDetector.freeLetterEmbeddedSubgroup e).map
+          (compilerBaseToTop T) = ⊥ :=
   ConjugatedDetector.tower_freeLetterConjugate_inf_embedded
-    L e (baseToTop T) (baseToTop_injective T)
+    L e (compilerBaseToTop T) (compilerBaseToTop_injective T)
 
 /-- The literal payload tested by the outermost stable letter. -/
 def detectedWord (L : Subgroup K) (e : F →* K)
     (T : FreeLetterTower (K := K)) (f : F) : Outermost L T :=
-  ConjugatedDetector.freeDetectedWord L e (baseToTop T) f
+  ConjugatedDetector.freeDetectedWord L e (compilerBaseToTop T) f
 
 /-- **End-to-end detector survival.**
 
@@ -257,7 +321,7 @@ theorem commute_outerStable_detectedWord_iff
     (T : FreeLetterTower (K := K)) (hcut : L.comap e = N) (f : F) :
     Commute (t : Outermost L T) (detectedWord L e T f) ↔ f ∈ N := by
   exact ConjugatedDetector.commute_freeStable_freeDetectedWord_iff
-    N L e (baseToTop T) (baseToTop_injective T) hcut f
+    N L e (compilerBaseToTop T) (compilerBaseToTop_injective T) hcut f
 
 end
 

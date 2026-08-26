@@ -203,6 +203,16 @@ def main():
     s57 = ((7, 5, coeff("1", "")),)
     a1_arm = ((7, 4, a[1]),)
     expanded_single_legs = tuple(x[middle] for middle in MIDDLE) + (s57, a1_arm)
+    a0 = coeff("1", "")
+    endpoint_legs_a0 = tuple(((source, 1, a0),) for source in (2, 4))
+    endpoint_legs_all = tuple(
+        ((source, 1, a[m]),) for source in (2, 4) for m in (1, 2, 3)
+    ) + endpoint_legs_a0
+    endpoint_legs_labeled = tuple(
+        (source, m, ((source, 1, a[m]),))
+        for source in (2, 4) for m in (1, 2, 3)
+    )
+    z_matrix = word_matrix(((3, 1, coeff("1", "1")),))
 
     whiteheads = []
     for m, (first, second) in enumerate(((7, 8), (8, 9)), start=1):
@@ -253,6 +263,12 @@ def main():
 
     preserving = tuple(word for word in dual_words
                        if signed_signature(word, character) is not None)
+    assert len(preserving) == 2
+    preserving_matrices = tuple(word_matrix(word) for word in preserving)
+    assert any(matrices_equal(matrix, identity_matrix())
+               for matrix in preserving_matrices)
+    assert any(matrices_equal(matrix, word_matrix(y[7]))
+               for matrix in preserving_matrices)
     source_types = {
         tuple(matrix_key(matrix_multiply(
             matrix_multiply(matrix, constant_matrix(actor_transvection(source, target))),
@@ -267,12 +283,21 @@ def main():
     uncovered_first = []
     uncovered_dual_x = []
     uncovered_expanded_single = []
+    uncovered_endpoint_a0 = []
+    uncovered_exact_mark_a0 = []
+    uncovered_endpoint_all = []
+    uncovered_exact_mark = []
+    uncovered_combined = []
     uncovered_dual_primal = []
     uncovered_two_dual = []
     for representative, conjugates, _closure in classes:
         first_hit = False
         dual_x_hit = False
         expanded_single_hit = False
+        endpoint_a0_hit = False
+        exact_mark_a0_hit = False
+        endpoint_all_hit = False
+        exact_mark_hit = False
         dual_primal_hit = False
         two_dual_hit = False
         for element in conjugates:
@@ -303,6 +328,40 @@ def main():
                         if is_elementary(extracted):
                             expanded_single_hit = True
                             break
+                if not endpoint_a0_hit:
+                    for leg in endpoint_legs_a0:
+                        leg_matrix = word_matrix(leg)
+                        forward = commutator(
+                            leg_matrix, leg_matrix, first, first_inverse
+                        )
+                        reverse = commutator(
+                            first, first_inverse, leg_matrix, leg_matrix
+                        )
+                        if is_elementary(forward) or is_elementary(reverse):
+                            endpoint_a0_hit = True
+                        if (matrices_equal(forward, z_matrix)
+                                or matrices_equal(reverse, z_matrix)):
+                            exact_mark_a0_hit = True
+                        if endpoint_a0_hit and exact_mark_a0_hit:
+                            break
+                if not endpoint_all_hit or not exact_mark_hit:
+                    for leg in endpoint_legs_all:
+                        leg_matrix = word_matrix(leg)
+                        forward = commutator(
+                            leg_matrix, leg_matrix, first, first_inverse
+                        )
+                        reverse = commutator(
+                            first, first_inverse, leg_matrix, leg_matrix
+                        )
+                        endpoint_all_hit |= (
+                            is_elementary(forward) or is_elementary(reverse)
+                        )
+                        exact_mark_hit |= (
+                            matrices_equal(forward, z_matrix)
+                            or matrices_equal(reverse, z_matrix)
+                        )
+                        if endpoint_all_hit and exact_mark_hit:
+                            break
                 if not dual_primal_hit:
                     for second, second_inverse, _ in primal:
                         extracted = commutator(
@@ -320,9 +379,13 @@ def main():
                             two_dual_hit = True
                             break
                 if (first_hit and dual_x_hit and expanded_single_hit
+                        and endpoint_a0_hit and exact_mark_a0_hit
+                        and endpoint_all_hit and exact_mark_hit
                         and dual_primal_hit and two_dual_hit):
                     break
             if (first_hit and dual_x_hit and expanded_single_hit
+                    and endpoint_a0_hit and exact_mark_a0_hit
+                    and endpoint_all_hit and exact_mark_hit
                     and dual_primal_hit and two_dual_hit):
                 break
         if not first_hit:
@@ -331,6 +394,16 @@ def main():
             uncovered_dual_x.append(representative)
         if not expanded_single_hit:
             uncovered_expanded_single.append(representative)
+        if not endpoint_a0_hit:
+            uncovered_endpoint_a0.append(representative)
+        if not exact_mark_a0_hit:
+            uncovered_exact_mark_a0.append(representative)
+        if not endpoint_all_hit:
+            uncovered_endpoint_all.append(representative)
+        if not exact_mark_hit:
+            uncovered_exact_mark.append(representative)
+        if not (dual_x_hit or endpoint_a0_hit):
+            uncovered_combined.append(representative)
         if not dual_primal_hit:
             uncovered_dual_primal.append(representative)
         if not two_dual_hit:
@@ -339,18 +412,100 @@ def main():
     print("literal dual menu size =", len(dual))
     print("literal primal menu size =", len(primal))
     print("literal dual words preserving signed source =", len(preserving))
+    print("the preserving words are exactly 1 and Y_1=x_73(b_1)")
     print("distinct literal transported source types =", len(source_types))
     print("classes with no elementary first commutator =", len(uncovered_first))
     print("classes missed by dual-menu then one X leg =", len(uncovered_dual_x))
     print("classes missed after also adding S57 and A1 =",
           len(uncovered_expanded_single))
+    print("classes missed by endpoint legs x_12(s1),x_14(s1) =",
+          len(uncovered_endpoint_a0))
+    print("classes with no exact z return from the two s1 endpoint legs =",
+          len(uncovered_exact_mark_a0))
+    print("classes missed by all matching endpoint a_m legs =",
+          len(uncovered_endpoint_all))
+    print("classes with no exact z return from an endpoint leg =",
+          len(uncovered_exact_mark))
+    print("classes missed by X_m union the two s1 endpoint legs =",
+          len(uncovered_combined))
     print("classes missed by dual-48 then primal-48 =", len(uncovered_dual_primal))
     print("classes missed by two dual-48 probes =", len(uncovered_two_dual))
     print("first-commutator fence =", sorted(uncovered_first))
     print("dual-X fence =", sorted(uncovered_dual_x))
     print("dual-(X,S57,A1) fence =", sorted(uncovered_expanded_single))
+    print("endpoint-a0 fence =", sorted(uncovered_endpoint_a0))
+    print("exact-mark-a0 fence =", sorted(uncovered_exact_mark_a0))
+    print("all-endpoint fence =", sorted(uncovered_endpoint_all))
+    print("exact-mark fence =", sorted(uncovered_exact_mark))
+    print("combined-leg fence =", sorted(uncovered_combined))
     print("dual-primal fence =", sorted(uncovered_dual_primal))
     print("dual-dual fence =", sorted(uncovered_two_dual))
+
+    endpoint_fence_representatives = {
+        (65, 74, 4, 8, 16, 32, 64),
+        (73, 2, 4, 8, 16, 32, 64),
+        (73, 74, 4, 8, 16, 32, 64),
+    }
+    adjacent_profiles = []
+    direct_adjacent_profiles = []
+    for representative, conjugates, _closure in classes:
+        if representative not in endpoint_fence_representatives:
+            continue
+        menu_profile = []
+        direct_profile = []
+        for element in conjugates:
+            element_inverse = binary_inverse(element)
+            element_matrix = constant_matrix(element)
+            element_inverse_matrix = constant_matrix(element_inverse)
+            menu_m = set()
+            direct_m = set()
+            for probe, probe_inverse, probe_word in dual:
+                first = commutator(
+                    element_matrix, element_inverse_matrix, probe, probe_inverse
+                )
+                first_inverse = commutator(
+                    probe, probe_inverse, element_matrix, element_inverse_matrix
+                )
+                for _source, m, leg in endpoint_legs_labeled:
+                    leg_matrix = word_matrix(leg)
+                    returned = commutator(
+                        leg_matrix, leg_matrix, first, first_inverse
+                    )
+                    if matrices_equal(returned, z_matrix):
+                        menu_m.add(m)
+                        if probe_word == y[MIDDLE[m - 1]]:
+                            direct_m.add(m)
+            menu_profile.append(tuple(sorted(menu_m)))
+            direct_profile.append(tuple(sorted(direct_m)))
+        adjacent_profiles.append((representative, tuple(menu_profile)))
+        direct_adjacent_profiles.append((representative, tuple(direct_profile)))
+
+    has_adjacent = lambda profile: any(
+        (1 in values and 2 in values) or (2 in values and 3 in values)
+        for _representative, class_values in profile for values in class_values
+    )
+    print("endpoint-fence same-g menu scale profiles =", adjacent_profiles)
+    print("endpoint-fence same-g direct-Y scale profiles =", direct_adjacent_profiles)
+    print("some endpoint-fence g has adjacent menu scales =",
+          has_adjacent(adjacent_profiles))
+    print("some endpoint-fence g has adjacent direct-Y scales =",
+          has_adjacent(direct_adjacent_profiles))
+
+    # The prefix Whitehead swaps the middle Pauli factors, but it is disjoint
+    # from the new endpoint legs.  It therefore fixes each L_(r,m) instead of
+    # carrying its coefficient a_m to a_(m+1).
+    for m, whitehead in enumerate(whiteheads, start=1):
+        whitehead_matrix = word_matrix(whitehead)
+        whitehead_inverse = inverse_word_matrix(whitehead)
+        for source in (2, 4):
+            current = word_matrix(((source, 1, a[m]),))
+            adjacent = word_matrix(((source, 1, a[m + 1]),))
+            transported = matrix_multiply(
+                matrix_multiply(whitehead_matrix, current), whitehead_inverse
+            )
+            assert matrices_equal(transported, current)
+            assert not matrices_equal(transported, adjacent)
+    print("literal Whiteheads fix endpoint legs and do not transport a_m to a_(m+1)")
 
 
 if __name__ == "__main__":

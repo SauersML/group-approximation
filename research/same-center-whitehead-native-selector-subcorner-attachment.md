@@ -8,6 +8,7 @@ distinct_from:
   same-center-whitehead-gram-is-not-native-selector-gram: that proves the full Gram of the two reducing Whitehead unitaries does not supply this attachment; this is the precisely fenced additional matrix-only statement.
   exact-whitehead-selector-gauge-attachment-collapses-packet: that rules out imposing both unequal rows exactly on the whole fixed packet isotypic carrier; this permits a representation-dependent finite-matrix subcorner and charges all discarded mass by ordinary word defects.
   binary-leavitt-native-two-scale-cross-gram-positive: that permits any authenticated positive polar overlap of the two native rectangular transports; this asks specifically that the same-center Whitehead gauges are the external gauges of the two selector outputs.
+  moving-signed-source-does-not-localize-paid-sheet-detector: that proves the paid moving source, both literal sheet detectors, and the forced order-seven exit still do not name an unequal target Gram; this asks for exactly the mixed full-Gram attachment left open by that fence.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core
@@ -244,6 +245,25 @@ excluded by the regular-trace firewall.
   relation-controlled upper bound on that paying word.  A tautological
   conjugate cut leaves the reservoir coboundary free and cannot substitute
   for either transition.
+
+  Taking the polar part of the positive source incidence does not move this
+  seam.  `paid-polar-bridge-does-not-type-moving-hecke-target` shows that
+  the polar range can lie in the Whitehead-reducing cut with full positive
+  support while having zero Gram with both literal Hecke targets.  The raw
+  ordinary-word-authenticated moment remains `Q_sC_sEaEC_sQ_s`; the polar
+  normalization itself is analytic and cannot be declared a typed row.
+
+  The post-moving-source boundary is now exact in
+  `moving-signed-source-does-not-localize-paid-sheet-detector`.  The
+  common-tail detector `K_Q=[A_1,H]` has a signed-character model in which
+  it is globally nontrivial, mark-conjugate, and equal-rank, yet acts as the
+  identity on all of `Q`; consequently it acts trivially on every extracted
+  `R_0<=Q` and its Hecke conjugate acts trivially on `R_i`.  The shorter
+  `S_57` cube has only global rank control and introduces the uncontrolled
+  boundary `||(1-R_0)S_57R_0||_2`.  Thus neither sheet detector turns the
+  forced order-seven exit into the missing unequal target Gram.  The next
+  input must be the ordinary mixed full-Gram row stated in `(MSD7)`, not a
+  further global root-saturation argument.
 
 - **Move the marked root by an external Weyl and retain both Pauli charts.**
   The root-valued relative word is exact, but the chart mover is not erased.

@@ -8,6 +8,7 @@ artifacts:
   - experiments/signed_hecke_detector_normal_closure_audit.py
   - experiments/signed-hecke-detector-normal-closure.json
 distinct_from:
+  middle-pauli-probes-leave-three-signed-hecke-detector-classes-untyped: that tests the literal paid 48-word dual menu and the full 48-word primal return menu on the 31 externally probed classes; three endpoint classes still admit no elementary extraction, and the only source-preserving paid-menu words centralize the detector group.
   paid-t00-carrier-has-signed-hecke-reynolds-dichotomy: that makes one of 8192 ordinary detector words pay on the paid carrier, or retains the native discrepancy on the signed source; this audits every detector algebraically and determines exactly why normal saturation does not turn its payment into source incidence.
   binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale: that uniformly compares two elementary roots by Leavitt sandwiches; most detectors here are products of roots, and the first step is to extract one nonzero root from such a product.
   native-actor-normal-closure-does-not-localize-paid-t00-support: that fences conjugation of the paid discrepancy by the native Whitehead actor menu on its three-bit constant atom; this fences detector saturation while preserving the actual signed source group.

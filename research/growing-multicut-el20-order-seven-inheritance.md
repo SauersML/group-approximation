@@ -105,6 +105,14 @@ canonical trace, or literature theorem is permitted.
   moving transition still needs a full-Gram ungauged occurrence in the fixed
   Hecke frame.
 
+  The polar isometry of the positive incidence is not such an occurrence.
+  `paid-polar-bridge-does-not-type-moving-hecke-target` gives an exact
+  acute-angle fence satisfying `||(1-Q)C||_op=1/3`, with full positive polar
+  support and both seventh-power heads exact, but zero polar Gram against
+  both literal `u_i` targets.  It also pays the forced moving boundary
+  maximally.  Thus the missing bridge must bound a raw ordinary-word mixed
+  Gram before polar correction.
+
 - The tautological orbit choice `E_(i,k)=T_i^kE_0T_i^(-k)` has zero
   transition boundary, but it does not authenticate the coefficient label at
   any intermediate stage and allows seven independent multiplicity gauges.

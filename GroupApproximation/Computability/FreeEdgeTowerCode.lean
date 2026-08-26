@@ -54,15 +54,40 @@ def edgeCode (c : PresentationCode) (edges : List (Raw × Raw)) :
     (edgeCode c edges).2 =
       c.2.map (normWord c) ++ edges.map (edgeRelator c) := rfl
 
-/-- The three inner compiler layers in their intended order. -/
+/-- Adjoin one stable generator for every member of a finite edge family. -/
+def multiEdgeCode (c : PresentationCode)
+    (layers : List (List (Raw × Raw))) : PresentationCode :=
+  layers.foldl edgeCode c
+
+@[simp] theorem multiEdgeCode_nil (c : PresentationCode) :
+    multiEdgeCode c [] = c := rfl
+
+@[simp] theorem multiEdgeCode_cons (c : PresentationCode)
+    (edges : List (Raw × Raw)) (layers : List (List (Raw × Raw))) :
+    multiEdgeCode c (edges :: layers) =
+      multiEdgeCode (edgeCode c edges) layers := rfl
+
+/-- The inner compiler: the whole `tau_j` family, then `d`, then `sigma`. -/
 def threeStageCode (c : PresentationCode)
-    (tauEdges dEdges sigmaEdges : List (Raw × Raw)) : PresentationCode :=
-  edgeCode (edgeCode (edgeCode c tauEdges) dEdges) sigmaEdges
+    (tauLayers : List (List (Raw × Raw)))
+    (dEdges sigmaEdges : List (Raw × Raw)) : PresentationCode :=
+  edgeCode (edgeCode (multiEdgeCode c tauLayers) dEdges) sigmaEdges
+
+@[simp] theorem multiEdgeCode_genCount (c : PresentationCode)
+    (layers : List (List (Raw × Raw))) :
+    genCount (multiEdgeCode c layers) = genCount c + layers.length := by
+  induction layers generalizing c with
+  | nil => simp
+  | cons edges layers ih =>
+      rw [multiEdgeCode_cons, ih, edgeCode_genCount]
+      omega
 
 @[simp] theorem threeStageCode_genCount (c : PresentationCode)
-    (tauEdges dEdges sigmaEdges : List (Raw × Raw)) :
-    genCount (threeStageCode c tauEdges dEdges sigmaEdges) = genCount c + 3 := by
-  simp [threeStageCode]
+    (tauLayers : List (List (Raw × Raw)))
+    (dEdges sigmaEdges : List (Raw × Raw)) :
+    genCount (threeStageCode c tauLayers dEdges sigmaEdges) =
+      genCount c + tauLayers.length + 2 := by
+  simp [threeStageCode, Nat.add_assoc]
 
 /-- Turn a finite word list into identity edge pairs, so the new stable letter
 centralizes those words. -/
@@ -72,17 +97,17 @@ def centralEdges (words : List Raw) : List (Raw × Raw) :=
 /-- The corrected ordering at code level: build all three inner layers first,
 then attach the central detector as the outermost HNN edge. -/
 def detectorLastCode (c : PresentationCode)
-    (tauEdges dEdges sigmaEdges : List (Raw × Raw))
+    (tauLayers : List (List (Raw × Raw))) (dEdges sigmaEdges : List (Raw × Raw))
     (detectorWords : List Raw) : PresentationCode :=
-  edgeCode (threeStageCode c tauEdges dEdges sigmaEdges)
+  edgeCode (threeStageCode c tauLayers dEdges sigmaEdges)
     (centralEdges detectorWords)
 
 @[simp] theorem detectorLastCode_genCount (c : PresentationCode)
-    (tauEdges dEdges sigmaEdges : List (Raw × Raw))
+    (tauLayers : List (List (Raw × Raw))) (dEdges sigmaEdges : List (Raw × Raw))
     (detectorWords : List Raw) :
-    genCount (detectorLastCode c tauEdges dEdges sigmaEdges detectorWords) =
-      genCount c + 4 := by
-  simp [detectorLastCode]
+    genCount (detectorLastCode c tauLayers dEdges sigmaEdges detectorWords) =
+      genCount c + tauLayers.length + 3 := by
+  simp [detectorLastCode, Nat.add_assoc]
 
 /-! ## Computability of one edge -/
 
@@ -164,7 +189,7 @@ theorem computable_edgeCode :
 /-- The finite syntactic input for the four edges. -/
 abbrev TowerInput : Type :=
   PresentationCode ×
-    (List (Raw × Raw) ×
+    (List (List (Raw × Raw)) ×
       (List (Raw × Raw) ×
         (List (Raw × Raw) × List Raw)))
 
@@ -177,16 +202,40 @@ theorem primrec_centralEdges :
     Primrec (fun words : List Raw => centralEdges words) :=
   Primrec.list_map Primrec.id (Primrec.pair Primrec.snd Primrec.snd)
 
+/-- Iterating the one-edge code constructor over a finite family is primitive
+recursive. -/
+theorem primrec_multiEdgeCode :
+    Primrec₂ (fun (c : PresentationCode)
+      (layers : List (List (Raw × Raw))) => multiEdgeCode c layers) := by
+  change Primrec (fun a : PresentationCode × List (List (Raw × Raw)) =>
+    multiEdgeCode a.1 a.2)
+  have hedgeCode : Primrec
+      (fun a : PresentationCode × List (Raw × Raw) => edgeCode a.1 a.2) :=
+    primrec_edgeCode
+  have hstep : Primrec₂
+      (fun (z : (PresentationCode × List (List (Raw × Raw))) × PresentationCode)
+        (edges : List (Raw × Raw)) => edgeCode z.2 edges) := by
+    exact (hedgeCode.comp
+      (Primrec.pair (Primrec.snd.comp Primrec.fst) Primrec.snd)).to₂
+  have hfold : Primrec
+      (fun a : PresentationCode × List (List (Raw × Raw)) =>
+        a.2.foldl edgeCode a.1) :=
+    Primrec.list_foldl Primrec.snd Primrec.fst hstep
+  exact hfold
+
 /-- The full four-edge raw presentation compiler is primitive recursive. -/
 theorem primrec_compile : Primrec compile := by
   have hedgeCode : Primrec
       (fun a : PresentationCode × List (Raw × Raw) => edgeCode a.1 a.2) :=
     primrec_edgeCode
-  have hTau : Primrec (fun x : TowerInput => edgeCode x.1 x.2.1) :=
-    hedgeCode.comp
+  have hmultiEdgeCode : Primrec
+      (fun a : PresentationCode × List (List (Raw × Raw)) =>
+        multiEdgeCode a.1 a.2) := primrec_multiEdgeCode
+  have hTau : Primrec (fun x : TowerInput => multiEdgeCode x.1 x.2.1) :=
+    hmultiEdgeCode.comp
       (Primrec.pair Primrec.fst (Primrec.fst.comp Primrec.snd))
   have hD : Primrec (fun x : TowerInput =>
-      edgeCode (edgeCode x.1 x.2.1) x.2.2.1) :=
+      edgeCode (multiEdgeCode x.1 x.2.1) x.2.2.1) :=
     hedgeCode.comp
       (Primrec.pair hTau
         (Primrec.fst.comp (Primrec.snd.comp Primrec.snd)))
@@ -232,26 +281,28 @@ def detectorPayloadWord (x : TowerInput)
   normWord (innerCode x) (x.2.2.2.2.get i)
 
 /-- Marked semantic data for the computed tower.  Besides a group
-equivalence, it records the images of every original generator, all four new
-stable letters, and every detector payload word.  These fields are the exact
+equivalence, it records the images of every original generator, the whole
+`tau_j` stable-letter family, the `d`, `sigma`, and detector stable letters,
+and every detector payload word.  These fields are the exact
 compatibility needed to transport the outer detector theorem through the
 finite presentation; a bare abstract equivalence would not suffice. -/
 structure MarkedSemanticData (x : TowerInput) (HonestTower : Type)
     [Group HonestTower]
     (baseGenerator : Fin (genCount x.1) → HonestTower)
-    (tauStable dStable sigmaStable detectorStable : HonestTower)
+    (tauStable : Fin x.2.1.length → HonestTower)
+    (dStable sigmaStable detectorStable : HonestTower)
     (detectorPayload : Fin x.2.2.2.2.length → HonestTower) where
   equiv : Carrier (compile x) ≃* HonestTower
   original_generator : ∀ i : Fin (genCount x.1),
     equiv (compiledGenerator x i) = baseGenerator i
-  tau_stable :
-    equiv (compiledGenerator x (genCount x.1)) = tauStable
+  tau_stable : ∀ i : Fin x.2.1.length,
+    equiv (compiledGenerator x (genCount x.1 + i)) = tauStable i
   d_stable :
-    equiv (compiledGenerator x (genCount x.1 + 1)) = dStable
+    equiv (compiledGenerator x (genCount x.1 + x.2.1.length)) = dStable
   sigma_stable :
-    equiv (compiledGenerator x (genCount x.1 + 2)) = sigmaStable
+    equiv (compiledGenerator x (genCount x.1 + x.2.1.length + 1)) = sigmaStable
   detector_stable :
-    equiv (compiledGenerator x (genCount x.1 + 3)) = detectorStable
+    equiv (compiledGenerator x (genCount x.1 + x.2.1.length + 2)) = detectorStable
   detector_payload : ∀ i : Fin x.2.2.2.2.length,
     equiv (compiledWord x (detectorPayloadWord x i)) = detectorPayload i
 
@@ -259,7 +310,8 @@ structure MarkedSemanticData (x : TowerInput) (HonestTower : Type)
 def MarkedSemanticEquivalence (x : TowerInput) (HonestTower : Type)
     [Group HonestTower]
     (baseGenerator : Fin (genCount x.1) → HonestTower)
-    (tauStable dStable sigmaStable detectorStable : HonestTower)
+    (tauStable : Fin x.2.1.length → HonestTower)
+    (dStable sigmaStable detectorStable : HonestTower)
     (detectorPayload : Fin x.2.2.2.2.length → HonestTower) : Prop :=
   Nonempty (MarkedSemanticData x HonestTower baseGenerator tauStable dStable
     sigmaStable detectorStable detectorPayload)
@@ -269,7 +321,8 @@ for invariant transport. -/
 theorem semanticEquivalence_of_marked (x : TowerInput) (HonestTower : Type)
     [Group HonestTower]
     (baseGenerator : Fin (genCount x.1) → HonestTower)
-    (tauStable dStable sigmaStable detectorStable : HonestTower)
+    (tauStable : Fin x.2.1.length → HonestTower)
+    (dStable sigmaStable detectorStable : HonestTower)
     (detectorPayload : Fin x.2.2.2.2.length → HonestTower)
     (h : MarkedSemanticEquivalence x HonestTower baseGenerator tauStable dStable
       sigmaStable detectorStable detectorPayload) :

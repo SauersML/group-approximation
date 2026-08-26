@@ -349,6 +349,7 @@ theorem wordCoordinateSet_mono {m n : ℕ} (hmn : m ≤ n) :
   exact (mem_wordCoordinateSet_iff b a n).mpr
     ⟨w, hw.trans hmn, ha⟩
 
+omit [Fintype X] in
 /-- Left multiplication of a word monomial by any coefficient occurring in
 the integral control set is again a word monomial, with degree increased by
 at most one. -/
@@ -515,7 +516,7 @@ theorem finitePlaneNontrivialSet_of_characterAction_upper_mem
     have hparts : coordinateAngle rho (0, r * a) chi ≠ 0 ∨
         coordinateAngle rho (1, a) chi ≠ 0 := by
       by_contra hboth
-      push_neg at hboth
+      push Not at hboth
       exact hangle (by rw [hboth.1, hboth.2, zero_add])
     rcases hparts with hleft | hright
     · refine ⟨(0, r * a), ?_, ?_⟩
@@ -556,7 +557,7 @@ theorem finitePlaneNontrivialSet_of_characterAction_lower_mem
     have hparts : coordinateAngle rho (1, r * a) chi ≠ 0 ∨
         coordinateAngle rho (0, a) chi ≠ 0 := by
       by_contra hboth
-      push_neg at hboth
+      push Not at hboth
       exact hangle (by rw [hboth.1, hboth.2, zero_add])
     rcases hparts with hleft | hright
     · refine ⟨(1, r * a), ?_, ?_⟩
@@ -820,7 +821,7 @@ theorem leastRootWordDegreeWithin_le
   let h : ∃ d, d ≤ n ∧ chi ∈ rootWordVisibleSet rho b d :=
     ⟨n, le_rfl, hchi⟩
   rw [leastRootWordDegreeWithin, dif_pos h]
-  exact Nat.find_min' h ⟨n, le_rfl, hchi⟩
+  exact Nat.find_min' h ⟨le_rfl, hchi⟩
 
 theorem leastRootWordDegreeWithin_mem
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
@@ -844,11 +845,11 @@ theorem not_mem_rootWordVisibleSet_of_lt_leastRootWordDegreeWithin
   intro hdmem
   let h : ∃ e, e ≤ n ∧ chi ∈ rootWordVisibleSet rho b e :=
     ⟨n, le_rfl, hchi⟩
-  have hfindle : Nat.find h ≤ n := Nat.find_min' h ⟨n, le_rfl, hchi⟩
+  have hfindle : Nat.find h ≤ n := Nat.find_min' h ⟨le_rfl, hchi⟩
   have hdle : d ≤ n := by
     rw [leastRootWordDegreeWithin, dif_pos h] at hd
     omega
-  have hminimal := Nat.find_min' h ⟨d, hdle, hdmem⟩
+  have hminimal := Nat.find_min' h ⟨hdle, hdmem⟩
   rw [leastRootWordDegreeWithin, dif_pos h] at hd
   omega
 
@@ -963,7 +964,7 @@ theorem rootWordDegreeFiber_eq_leastRootWordDetectionSet
         rho b n chi hvisibleN
     by_contra hne
     exact Set.disjoint_left.mp
-      (disjoint_leastRootWordDetectionSet rho b hne) chi hselected hleast
+      (disjoint_leastRootWordDetectionSet rho b hne) hselected hleast
 
 theorem rootWordDegreeFiber_eq_sentinel
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
@@ -1072,7 +1073,7 @@ theorem wordPairRegionSet_eq_iUnion_degreeFibers
       rw [hab.1, hab.2]
       exact hcase.2.2
     · rw [if_neg hcase] at hab
-      exact hab
+      exact (Set.not_mem_empty chi hab).elim
 
 theorem measurableSet_wordPairRegionSet
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))

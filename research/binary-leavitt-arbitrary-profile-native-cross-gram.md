@@ -7,6 +7,7 @@ distinct_from:
   binary-leavitt-native-two-scale-cross-gram-positive: that is restricted to canonical-trace normalized-HS microstates; this is quantified over every positive-density active core obtained from an arbitrary norm-corona representation and may use operator-norm exactification.
   opnorm-leavitt-coarse-fine-return-row: that asks for one operator-norm support row on a nonzero possibly sparse carrier; this asks only for positive normalized-HS cross-Gram mass on the positive-density reblocked active core.
   coherent-heisenberg-multiplicity-decoder: that reconstructs a complete approximate binary Leavitt module; this asks only for the two native selector transports and their relative Pauli gauge.
+  moving-signed-source-does-not-localize-paid-sheet-detector: that gives a positive paid moving Hecke row and globally nontrivial factor-level sheet roots but proves that neither is compressed onto an unequal native output; this asks for the missing source-and-target-Gram-typed odd transition.
 ---
 
 **OPEN MF-NATIVE SCALAR HOLONOMY CLAIM.**  Let an arbitrary homomorphism
@@ -215,3 +216,26 @@ literature theorem is permitted in this claim.
   an odd, source-and-target-Gram-typed ordinary occurrence from that returned
   cut to the actual unequal native row (or a relation-controlled upper bound
   for the paying detector).
+
+- **Polar-correct the paid incidence before applying the Hecke word.**
+  `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is
+  still insufficient.  It identifies the only authenticated raw relative
+  Gram as `Q_sC_sEu_i s^(-1)R_s`; positivity controls the different operator
+  `Q_sC_sEC_sQ_s`.  An exact acute graph has strict source incidence, full
+  positive polar support, exact seventh-power heads, and zero polar Gram
+  with both `u_i` targets, while its polar gauge is arbitrary.  Thus the
+  live occurrence must lower-bound the raw mixed Gram before polar
+  normalization; the analytic polar cannot itself be the typed selector.
+
+- **Use the new factor-level sheet detector after moving the paid source.**
+  `moving-signed-source-does-not-localize-paid-sheet-detector` gives the
+  sharp fence.  In an exact signed-character model the common-tail root
+  `K_Q=[A_1,H]` is nontrivial, mark-conjugate, and has the marked spectral
+  rank, but `Q(K_Q-1)Q=0`; hence it is invisible on every moving
+  `R_0<=Q`.  The row-two root `[S_57,H]` is also only globally saturated,
+  and compression of its cube costs an uncontrolled `S_57` exit.  The
+  order-seven lower bound proves that some exit occurs but supplies no
+  native target projection.  Therefore the live cross-Gram input is exactly
+  one odd ordinary occurrence with both source and actual unequal-target
+  Grams fixed in the Hecke frame, as in `(MSD7)`; global detector rank and a
+  tautological word-conjugate range do not suffice.

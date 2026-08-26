@@ -5,6 +5,7 @@ kind: claim
 title: Every nontrivial local approximation property is Pi-zero-two hard on two-generator recursive presentations and undecidable on finite presentations
 artifacts:
   - GroupApproximation/Computability/SoficRecognitionSecondLevel.lean
+  - GroupApproximation/Computability/HereditaryRecognitionPhaseDiagram.lean
   - GroupApproximation/Computability/HereditaryPropertySwitchCompleteness.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
   - GroupApproximation/Computability/ParametricFinInfSwitch.lean
@@ -75,3 +76,14 @@ even recursively presented.  Instances are drawn in
 [[sofic-recognition-two-generator-recursive-is-pi2-complete]],
 [[sofic-recognition-finite-presentations-arithmetical-position]] and
 [[approximation-property-recognition-dichotomy]].
+
+**Machine-checked phase theorem.**
+`Computability/HereditaryRecognitionPhaseDiagram` isolates exactly the abstract
+input used here: subgroup heredity, truth on the trivial group, and a finite
+counterexample cover.  It proves that existence of an abstract counterexample
+is equivalent both to `Pi02Hard P_rec` and to `Sigma02Hard NON-P_rec`, packages
+the universal-computable/hard-counterexample alternatives as an unconditional
+dichotomy, and upgrades both equivalences to completeness from a `Pi02` upper
+bound.  `Computability/HyperlinearRecognitionSecondLevel` is a checked client
+of this generic interface, with its finite cover supplied by the hyperlinear
+table obstruction theorem.

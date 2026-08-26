@@ -12,6 +12,8 @@ artifacts:
   - research/property-t-free-leavitt-via-full-support-hs-decoder.md
   - research/property-t-free-leavitt-via-opnorm-return-row.md
   - research/property-t-free-leavitt-via-atomic-morita-return.md
+  - research/moving-signed-source-does-not-localize-paid-sheet-detector.md
+  - research/moving-signed-source-sheet-detector-fence-proof.md
   - research/property-t-free-leavitt-via-chromatic-code.md
   - research/property-t-free-leavitt-via-nested-prefix-conjugacy-code.md
   - research/leavitt-nonsoficity-does-not-close-macroscopic-mf-branch.md
@@ -451,6 +453,30 @@ common refined Hecke range and does not authenticate either unequal native
 selector output.  The remaining transition must either make the detector
 branch a presentation payment or carry this cut, with full source/target
 Grams and no moving-frame coboundary, into one actual quarter/eighth row.
+
+Taking the polar part of the paid source incidence does not strengthen this
+into a typed row.  `paid-polar-bridge-does-not-type-moving-hecke-target`
+tracks the precise raw ordinary-word coefficient
+`Q_sC_sEu_i s^(-1)R_s` and shows that its polar normalization may have
+arbitrary gauge.  Its acute graph model satisfies the strict source branch,
+has full positive polar support and exact order-seven heads, but has zero
+Gram with both literal Hecke targets while paying the forced exit.  Hence
+the remaining transition must authenticate and lower-bound that raw mixed
+Gram (or supply an independent fixed-frame bridge); analytic polar
+alignment alone cannot close the MF radical.
+
+Combining that moving cut with the new literal sheet factors does not close
+the transition.  `moving-signed-source-does-not-localize-paid-sheet-detector`
+exhibits an exact signed-character model in which
+`K_Q=[A_1,H]` is globally nontrivial and mark-conjugate but acts identically
+on all of `Q`, hence on every extracted `R_0`.  The shorter
+`[S_57,H]` cube has no source-compression estimate and pays an uncontrolled
+`S_57` boundary.  The forced order-seven exit is a lower bound, not the
+full source/range Gram typing of an unequal native output.  Thus the
+post-PMH bottleneck is precisely `(MSD7)`: an ordinary odd mixed transition
+from the moved cut to an actual quarter/eighth target, with the reservoir
+factor fixed in the Hecke frame (or an ordinary relator estimate disposing
+of the detector branch).
 
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single

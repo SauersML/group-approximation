@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
   - GroupApproximation/Covers/HyperlinearTableCover.lean
   - GroupApproximation/Computability/HyperlinearMarkov.lean
+  - GroupApproximation/Computability/HereditaryRecognitionPhaseDiagram.lean
   - GroupApproximation/Computability/HyperlinearRecognitionSecondLevel.lean
 distinct_from:
   nonhyperlinear-presentation-codes-have-a-sigma2-upper-bound: that is the upper bound alone and says so; this adds the matching lower bound conditional on exactly one thing, the existence of a non-hyperlinear group, and shows nothing in between can happen.
@@ -72,6 +73,9 @@ and those predicates are respectively `Pi02Hard`/`Sigma02Hard`; a companion
 theorem proves the branches disjoint.  The two `*_Complete` equivalences also
 show that any effective `Pi02` upper bound upgrades exactly the counterexample
 branch, and only that branch, to matching completeness.
+These are now instances of the reusable audited theorem in
+`Computability/HereditaryRecognitionPhaseDiagram`, rather than duplicated
+hyperlinearity-specific recursion-theoretic arguments.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by
