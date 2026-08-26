@@ -457,6 +457,28 @@ words, deeper two-occurrence coefficients, or the first genuine
 three-channel factorization; a pair of elementary depth-one exits is not
 enough.
 
+The unmatched three-factor boundary has now produced the first exact
+individual source returns.  `cross-whitehead-sandwiches-branch-roots-into-signed-normalizer`
+tests every arbitrary depth-one word
+`x_ab(c)x_ba(d)x_ab(c)` together with one individually nonnormal depth-one
+root in a different channel, in both orders, for both branches and both
+source/native targets.  Hashing the exposed `x_28(1)` row reduces the
+`6381568` syntactic cases to `1128560` exact state transitions and `1700`
+full-signature survivors.  The only hits are `24` source spellings: the
+three-factor word is one of the two braid spellings of `K_i`, the added
+root enters coordinate `8` from `6` or `9`, and
+
+```text
+K_0x_(8,k)(g)K_0=x_(7,k)(pg),   g in {s_1,r,q_1},
+K_1x_(8,k)(g)K_1=x_(7,k)(rg),   g in {s_0,p,q_0}.
+```
+
+These close the complete signed source Gram table, but the returned
+nonconstant normalizer root has an uncontrolled reservoir gauge.  No word
+returns to the native `J_1` target.  Thus the next relation must type or
+cancel this returned normalizer action; the positive full-Gram identity by
+itself is not yet the ESB bridge.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
@@ -546,3 +568,23 @@ dressing and supplies no shared occurrence with `J_1`.  The next live cell
 must make one of the private row/column roots occur literally inside the
 native Whitehead/Singer word, or impose another same-carrier relation
 between its factor and `D`.
+
+A still tighter completeness word can share literal factors with `K_0`,
+but it too retains a finite spectator.  In
+`mixed-completeness-braid-retains-s3-square-gauge`, take
+
+```text
+U=x_78(p), V=x_87(r), U'=x_79(1), V'=x_97(q_1),
+A=UU', B=VV'.
+```
+
+The nilpotent products satisfy `XY=E_77` by
+`pr+q_1=q_0+q_1=1`, while
+`YX=q_1E_88+rE_89+q_1E_99`; hence `ABA=BAB`.  The word also contains the
+actual mixed occurrence `[V,U']=x_89(r)`, and `U,V` are the literal factors
+of `K_0=UVU`.  Even this full displayed table admits an exact
+`S_3 times S_3` gauge: put `U,V` in the first factor and `U',V'` in the
+second.  Then `K_0` has gauge `(c,1)` while the aggregate braid output has
+gauge `(c,c)`.  Thus the completeness calculation creates an independent
+channel-nine spectator instead of identifying the native gauge.  The next
+word must return and type that spectator on an already shared occurrence.
