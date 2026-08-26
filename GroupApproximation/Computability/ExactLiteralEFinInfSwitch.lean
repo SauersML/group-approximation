@@ -261,7 +261,7 @@ theorem stageHom_comp_collapseHom (E : StageEvents) {J : ℕ}
     obtain ⟨k, hjk, hkJ, hk⟩ := hhead j hj
     obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hjk
     exact (of_eq_one_of_event_after E g d j hk).symm
-    · rw [MonoidHom.comp_apply, collapseHom_of, if_neg hj, stageHom_of,
+  · rw [MonoidHom.comp_apply, collapseHom_of, if_neg hj, stageHom_of,
       MonoidHom.id_apply]
     have hjJ : J ≤ j := by omega
     obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hjJ
