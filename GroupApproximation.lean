@@ -174,6 +174,7 @@ import GroupApproximation.GroupTheory.HNNBrittonSpelling
 import GroupApproximation.GroupTheory.HNNBrittonCyclic
 import GroupApproximation.GroupTheory.FiniteHNNFreeLabelAction
 import GroupApproximation.GroupTheory.FiniteHNNFreeLabelFaithful
+import GroupApproximation.GroupTheory.FiniteHNNResiduallyFinite
 import GroupApproximation.Monsters.SL2PingPong
 import GroupApproximation.Monsters.SL2Completeness
 import GroupApproximation.Monsters.P13BlockSL2
