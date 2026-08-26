@@ -147,6 +147,75 @@ def bSync : Sync := ⟨b, b_mem_K⟩
 
 def cSync : Sync := ⟨c, c_mem_K⟩
 
+/-- Read the subgroup `⟨b,c⟩` in the free group on two letters. -/
+def syncToFree : Sync →* FreeGroup (Fin 2) :=
+  Seq.retract.comp K.subtype
+
+/-- Send the two free generators back to the displayed generators of `Sync`. -/
+def freeToSync : FreeGroup (Fin 2) →* Sync :=
+  FreeGroup.lift fun i => if i = 0 then bSync else cSync
+
+@[simp] theorem syncToFree_b : syncToFree bSync = FreeGroup.of 0 := by
+  simp [syncToFree, bSync, Row.b]
+
+@[simp] theorem syncToFree_c : syncToFree cSync = FreeGroup.of 1 := by
+  simp [syncToFree, cSync, Row.c]
+
+@[simp] theorem freeToSync_of_zero :
+    freeToSync (FreeGroup.of (0 : Fin 2)) = bSync := by
+  simp [freeToSync]
+
+@[simp] theorem freeToSync_of_one :
+    freeToSync (FreeGroup.of (1 : Fin 2)) = cSync := by
+  simp [freeToSync]
+
+theorem syncToFree_comp_freeToSync :
+    syncToFree.comp freeToSync = MonoidHom.id (FreeGroup (Fin 2)) := by
+  apply FreeGroup.ext_hom
+  intro i
+  fin_cases i <;> simp
+
+theorem freeToSync_comp_syncToFree :
+    freeToSync.comp syncToFree = MonoidHom.id Sync := by
+  apply MonoidHom.ext
+  intro h
+  have hall : ∀ (y : F₃) (hy : y ∈ K),
+      (freeToSync.comp syncToFree) ⟨y, hy⟩ = ⟨y, hy⟩ := by
+    intro y hy
+    induction hy using Subgroup.closure_induction with
+    | mem y hy =>
+        rcases hy with rfl | hy
+        · have hb : (⟨b, b_mem_K⟩ : Sync) = bSync := Subtype.ext rfl
+          rw [hb]
+          change freeToSync (syncToFree bSync) = bSync
+          rw [syncToFree_b, freeToSync_of_zero]
+        · rw [Set.mem_singleton_iff] at hy
+          subst y
+          have hc : (⟨c, c_mem_K⟩ : Sync) = cSync := Subtype.ext rfl
+          rw [hc]
+          change freeToSync (syncToFree cSync) = cSync
+          rw [syncToFree_c, freeToSync_of_one]
+    | one =>
+        change (freeToSync.comp syncToFree) (1 : Sync) = 1
+        exact map_one _
+    | mul y z hy hz ihy ihz =>
+        have heq : (⟨y * z, K.mul_mem hy hz⟩ : Sync) =
+            (⟨y, hy⟩ : Sync) * ⟨z, hz⟩ := Subtype.ext rfl
+        rw [heq, map_mul, ihy, ihz]
+    | inv y hy ihy =>
+        have heq : (⟨y⁻¹, K.inv_mem hy⟩ : Sync) = (⟨y, hy⟩ : Sync)⁻¹ :=
+          Subtype.ext rfl
+        rw [heq, map_inv, ihy]
+  exact hall h h.property
+
+/-- The subgroup `K = ⟨b,c⟩` is explicitly the free group of rank two. -/
+def syncEquivFree : Sync ≃* FreeGroup (Fin 2) where
+  toFun := syncToFree
+  invFun := freeToSync
+  left_inv h := DFunLike.congr_fun freeToSync_comp_syncToFree h
+  right_inv w := DFunLike.congr_fun syncToFree_comp_freeToSync w
+  map_mul' := map_mul syncToFree
+
 /-- The switch element `x = γ₁ = (a,1)` in the left factor. -/
 def x : Ambient :=
   MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (Star.genPair 1)
