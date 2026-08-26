@@ -284,17 +284,22 @@
       "environment": "proposition",
       "title": "",
       "statement_sha256": "112f7da1ac22abefeb76ec79b5113a2db344d8ea31464aff73f5774e76f1debd",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal groups, compressor, and subgroup containment.",
       "dependencies": [
         "lem:tau-elementary"
       ],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Ershov--Jaikin-Zapirain, Theorem 1.1"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/SentenceCurrentLeavittCompressionClosure",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.manuscriptCurrentLeavittCompressionProposition",
+          "covers": "the complete printed proposition"
+        }
+      ]
     },
     {
       "id": "prop:simple",
@@ -377,15 +382,20 @@
       "environment": "lemma",
       "title": "",
       "statement_sha256": "036c7227d38f8ca49c0de1e6d2a22a0b7785a5594e4fcde4a5ec65b137a60bf5",
-      "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "status": "exact",
+      "object_identity": "The datum packages the groups and maps fixed immediately before the printed lemma; the endpoint proves the same displayed containment and retains the printed hypotheses.",
       "dependencies": [],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Fournier-Facio, Section 2"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
-      "lean": []
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NonMF/SimpleInDefect",
+          "declaration": "GroupApproximation.Manuscript.NonMF.manuscriptLemmaSimpleInDefect",
+          "covers": "the complete printed lemma"
+        }
+      ]
     }
   ]
 }
