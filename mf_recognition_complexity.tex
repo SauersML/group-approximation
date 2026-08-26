@@ -75,19 +75,23 @@
 \keywords{MF groups, arithmetical hierarchy, finitely presented groups, HNN extensions, Higman embedding, norm matrix coronas}
 
 \begin{abstract}
-The set of finite presentations of MF groups is $\Pi^0_2$-complete, and its
-complement is $\Sigma^0_2$-complete.  Consequently, neither set is recursively
-enumerable, and MF recognition remains undecidable relative to an oracle for
-the halting problem.  Here a countable group is MF if it admits finite-dimensional
-unitary models that are asymptotically multiplicative and asymptotically
-separate nonidentity elements in operator norm.  The upper bound is a
-description of the MF property by finite semialgebraic certificates.  The lower bound
-encodes the set of programs with infinite domain into finite presentations
-by an effective Higman embedding, a central HNN extension, and a twisted
-one, using the non-MF group of~\cite{NonMF} on one branch
-and, on the other, an MF
-permanence theorem for HNN extensions whose edge isomorphism is
-implemented by a unitary of a norm matrix corona.
+The finite presentations of MF groups form a $\Pi^0_2$-complete set, and
+the finite presentations of non-MF groups form a $\Sigma^0_2$-complete
+set.  Neither set is recursively enumerable: it is impossible to
+construct an algorithm that decides from a finite presentation whether
+the group it defines is MF\@.  Here a countable group is MF if it admits
+finite-dimensional unitary models that are asymptotically multiplicative
+and asymptotically separate nonidentity elements in operator norm.  A
+presentation defines an MF group if and only if it admits a finite
+certificate at every scale, and whether a candidate certificate is valid
+is decidable, by Tarski's theorem.  We construct a computable map
+$e\mapsto\widehat R_e$ into finite presentations such that
+$\widehat R_e$ presents an MF group if and only if the $e$-th partial
+computable function has infinite domain: if the domain is finite,
+$\widehat R_e$ contains the non-MF group of~\cite{NonMF}; if it is
+infinite, $\widehat R_e$ is MF by a permanence theorem for HNN
+extensions whose edge isomorphism is implemented by a unitary of a norm
+matrix corona.
 \end{abstract}
 
 \maketitle
@@ -98,27 +102,19 @@ implemented by a unitary of a norm matrix corona.
 Not every countable group is MF: \emph{Non-MF Groups}~\cite{NonMF}
 constructs a finitely generated simple group $H=\EL_{12}(L_{\F_2}(1,2))$
 with property~\textup{(T)} such that every homomorphism from $H$ to an MF
-group is trivial.  We turn to the corresponding recognition problem for
-finitely presented groups.  Our main theorem shows that MF recognition is
-$\Pi^0_2$-complete.
+group is trivial.  We turn to the recognition problem for finitely presented groups.
 
 \begin{mainthm}[MF recognition is $\Pi^0_2$-complete]\label{thm:recognition}
 Fix an effective coding of finite presentations of groups by natural
 numbers.  The set of codes of finite presentations of MF groups is
 $\Pi^0_2$-complete, and the set of codes of finite presentations of non-MF
 groups is $\Sigma^0_2$-complete.  In particular, neither set is
-recursively enumerable, and no algorithm decides from a finite presentation
-whether the presented group is MF\@.  More precisely, there is a computable
-map $e\mapsto\widehat R_e$ into finite presentations such that the group
-presented by $\widehat R_e$ is MF if and only if the $e$-th partial
+recursively enumerable: it is impossible to construct an algorithm that
+decides from a finite presentation whether the group it defines is
+MF\@.  There is a computable map $e\mapsto\widehat R_e$ such that
+$\widehat R_e$ presents an MF group if and only if the $e$-th partial
 computable function has infinite domain.
 \end{mainthm}
-
-So recognizing the MF property is exactly as hard as deciding
-whether a program halts on infinitely many inputs, and remains
-undecidable relative to an oracle for the halting problem.
-Figure~\ref{fig:levels} places the theorem in the arithmetical
-hierarchy.
 
 \begin{figure}[htb]
 \centering
@@ -145,33 +141,36 @@ hierarchy.
 \node[probs, below=2mm of d1]
   {word problem in $H$ (Lemma~\ref{lem:seed})};
 \end{tikzpicture}
-\caption{The arithmetical hierarchy.  Lines are inclusions, and every
+\caption{The arithmetical hierarchy.  Lines indicate inclusions, and each
 listed problem is complete at its level; the word problem in $H$ is
-decidable.  Boldface marks the two sets of
-Theorem~\ref{thm:recognition}: finite certificates put
-$\mathrm{MF}_{\mathrm{fp}}$ in $\Pi^0_2$ (Section~\ref{sec:local}), and
-the family $\widehat R_e$ reduces $\mathrm{INF}$ to
+decidable.  The two sets from Theorem~\ref{thm:recognition} appear in
+bold.  $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ by finite certificates
+(Section~\ref{sec:local}).  The
+family $\widehat R_e$ reduces $\mathrm{INF}$ to
 $\mathrm{MF}_{\mathrm{fp}}$ and $\mathrm{FIN}$ to
 $\mathrm{NONMF}_{\mathrm{fp}}$ (Section~\ref{sec:compiler}).}
 \label{fig:levels}
 \end{figure}
 
-Proposition~\ref{prop:mf-upper-bound} gives a $\Pi^0_2$ description of
-the MF presentations: a presentation is MF exactly when finite
-certificates, each checkable by decidable real arithmetic, exist at
-every scale (Section~\ref{sec:local}).  For
-hardness we reduce the $\Pi^0_2$-complete set of programs with infinite
-domain to MF recognition: from $e$ we construct a finite presentation
-$\widehat R_e$ (Section~\ref{sec:compiler}).  If the domain is finite,
-then $H\le\widehat R_e$, so $\widehat R_e$ is not MF\@.  If the domain is
-infinite, then $\widehat R_e$ satisfies the hypotheses of
+A finite presentation defines an MF group if and only if, at every scale,
+it admits a finite certificate consisting of normal-closure witnesses and
+a system of polynomial equations and inequalities with a real solution.
+Whether such a system has a real solution is decidable, by Tarski's
+theorem, so
+$\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and
+$\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$
+(Section~\ref{sec:local}).
+
+Given a program index $e$, we construct a finite presentation
+$\widehat R_e$ in Section~\ref{sec:compiler}.  If the corresponding partial
+function has finite domain, then $H\le\widehat R_e$, so $\widehat R_e$ is
+not MF\@.  If its domain is infinite, then $\widehat R_e$ satisfies the hypotheses of
 Theorem~\ref{thm:hnn-permanence}, an MF permanence theorem for HNN
 extensions whose edge isomorphism is implemented by a unitary of a norm
 matrix corona, and is MF (Sections~\ref{sec:hnn} and~\ref{sec:compiler}).
 The MF property is closed under direct limits, as Korchagin
 proved~\cite[Proposition~13]{Korchagin}, so every finitely generated
-group that is not MF is a quotient of a finitely presented one;
-Theorem~\ref{thm:recognition} gives the uniform family and the exact level.
+group that is not MF is a quotient of a finitely presented one.
 
 \subsection*{Relation to prior work}
 
