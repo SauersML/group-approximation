@@ -8,6 +8,7 @@ distinct_from:
   defect-saturation-full-mf-radical: That arithmetic quotient has an intrinsic full MF radical and unknown soficity; this asks instead for a sofic kernel whose radical behavior is caused extrinsically by its mapping torus.
   finitely-generated-rf-automorphism-mapping-torus-is-rf: That no-go theorem proves the kernel sought here must be non-residually finite.
   mapping-torus-mf-radical-lies-in-finite-residual: That sharper no-go proves the kernel sought here can have no nontrivial finite quotient at all.
+  exact-kazhdan-radical-kernel-cannot-be-lef: That combines the no-finite-quotient condition with the Ozawa--Thom theorem to prove that the desired nontrivial Kazhdan kernel cannot be LEF.
   finite-outer-order-mapping-torus-is-virtually-product: That second no-go theorem shows the genuinely extrinsic route also needs an infinite-order outer action unless the kernel is already non-MF.
 artifacts:
   - GroupApproximation/Sofic/NormalKazhdanMFRadical.lean
@@ -46,6 +47,12 @@ Property `(T)` makes `K` finitely generated.  By
 contained in the finite residual of `K`.  Thus `(EK1)` forces that finite
 residual to equal `K`, equivalently that every finite quotient of `K` be
 trivial.
+
+This also forces `K` to be non-LEF.  By
+`exact-kazhdan-radical-kernel-cannot-be-lef`, a countable LEF Kazhdan group
+with no nontrivial finite quotient is trivial.  Thus exact finite local models
+and all finite marked-limit constructions are excluded; any positive route
+must build genuinely Hamming-approximate sofic models.
 
 ## Attempts
 
@@ -110,3 +117,8 @@ trivial.
    kernel option and seek finite presentability only for the mapping torus,
    but the kernel must now be finite-residual-full rather than a central
    extension of a visible linear quotient.
+9. **Finite marked limits are impossible.**  A marked limit of finite groups
+   is LEF.  Combining this with property `(T)` and the required absence of
+   finite quotients contradicts the Dadarlat--Ozawa--Thom quotient theorem.
+   Hence the alternating-mother strategy cannot provide this kernel, even if
+   its torsion and normal-generation gates could otherwise be controlled.

@@ -4,7 +4,8 @@ id: torsion-free-kazhdan-alternating-mother-limit-gate-proof
 kind: route
 title: Derive the exact torsion and simplicity gates for alternating marked limits of a torsion-free Kazhdan mother
 target: torsion-free-kazhdan-alternating-mother-limit-gate
-requires: []
+requires:
+  - exact-kazhdan-radical-kernel-cannot-be-lef
 ---
 
 **Primary inputs.**  Kaluba--Nowak--Ozawa, *`Aut(F_5)` has property
@@ -86,15 +87,35 @@ to the marked limit.  Finite simplicity provides a certificate at every
 level, but gives neither a level-independent number of conjugates nor a
 level-independent marking-length bound for the conjugators.
 
-## 4. Two sharp exclusions
+## 4. The decisive LEF--Kazhdan exclusion
 
-An infinite simple LEF group is not finitely presented: every finitely
+Every marked limit of finite groups is LEF.  Every quotient of `Gamma_0` has
+property `(T)`.  Suppose a convergent subsequence above had an infinite simple
+limit `K`.  Simplicity gives that `K` has no nontrivial finite quotient.
+
+On the other hand, `lef-implies-operator-mf` makes `K` operator-MF.  Dadarlat
+records that MF implies weak quasidiagonality, and Ozawa--Thom Proposition
+3.19 says that every infinite weakly quasidiagonal Kazhdan group has an
+infinite residually finite quotient.  A nontrivial residually finite group has
+a nontrivial finite quotient.  Composing with the quotient map from `K`
+contradicts simplicity.  This is the general theorem
+`exact-kazhdan-radical-kernel-cannot-be-lef`.
+
+Therefore the bounded normal-generation certificates in Section 3 must fail
+for at least one persistent nonidentity word along every convergent
+subsequence.  This turns the former simplicity "gate" into a no-go theorem.
+The torsion-order gate may still hold, but a torsion-free limit cannot also be
+simple or, more generally, have no nontrivial finite quotient.
+
+## 5. Two further exclusions
+
+The stronger argument above shows that a successful simple marked limit does
+not exist at all, before finite presentability is considered.  More generally,
+an infinite simple LEF group is never finitely presented: every finitely
 presented LEF group is residually finite, while an infinite simple group has
-no nontrivial finite quotient.  Thus a successful marked limit here must be
-infinitely presented.  Nothing in the quotient construction organizes its
-infinitely many relators into finitely many automorphism orbits, so it does
-not provide the finite automorphic presentation needed to make a mapping
-torus finitely presented.
+no nontrivial finite quotient.  Nothing in the quotient construction would in
+any event organize its infinitely many relators into finitely many
+automorphism orbits.
 
 Also, one cannot run the construction with the full `Aut(F_5)` or its
 quotient `Out(F_5)`.  Let `tau` be Bridson--Vogtmann's normally generating
