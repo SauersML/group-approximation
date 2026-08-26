@@ -1,6 +1,7 @@
 import GroupApproximation.Computability.ParametricRecursiveSwitchPresentation
 import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.MikhailovaGraphProductWitness
+import GroupApproximation.Higman.MikhailovaRopeCode
 import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.RopeTrick
 import GroupApproximation.Meta.AxiomGuard
@@ -180,6 +181,36 @@ theorem manuscriptPrintedMikhailovaGraphProductPackage :
     S hR words i hi hcomm q hSq
   exact ⟨w.emb_injective, w.L_fg, w.comap_eq⟩
 
+/-- The marked Mikhailova cut and its graph factor feed directly into the rope
+trick, giving a finitely presented overgroup of the source quotient. -/
+def PrintedMikhailovaRopeCompositionPackage : Prop :=
+  ∀ (X P : Type) [Finite X] [Group P] [Group.IsFinitelyPresented P]
+    (S : Set Higman.MikhailovaRankThree.Source)
+    (R : Set (FreeGroup X)) (hR : R.Finite)
+    (words : Higman.MikhailovaRankThree.Source →* FreeGroup X)
+    (i : PresentedGroup S →* PresentedGroup R)
+    (hi : Function.Injective i)
+    (hcomm : (Higman.MikhailovaRankThree.quotientHom R).comp words =
+      i.comp (Higman.MikhailovaRankThree.quotientHom S))
+    (q : Higman.MikhailovaRankThree.Source →* P)
+    (hSq : Subgroup.normalClosure S ≤ q.ker),
+    Nonempty (Higman.FPOvergroup (PresentedGroup S))
+
+theorem manuscriptPrintedMikhailovaRopeCompositionPackage :
+    PrintedMikhailovaRopeCompositionPackage := by
+  intro X P _ _ _ S R hR words i hi hcomm q hSq
+  exact Higman.MikhailovaRopeCompiler.nonempty_fpOvergroup_of_markedEmbedding_and_graph
+    S hR words i hi hcomm q hSq
+
+/-- Once the finite ambient, source, cutting words, and marked words have been
+computed, the remaining raw finite-presentation transformation is computable. -/
+def PrintedRawRopeSyntaxCompilerIsComputable : Prop :=
+  Computable Higman.MikhailovaRopeCode.compile
+
+theorem manuscriptPrintedRawRopeSyntaxCompilerIsComputable :
+    PrintedRawRopeSyntaxCompilerIsComputable :=
+  Higman.MikhailovaRopeCode.computable_compile
+
 /-! ## The ropes -/
 
 /-- Every benign normal subgroup of a finitely generated, finitely presented
@@ -211,6 +242,8 @@ theorem manuscriptPrintedRopePackage : PrintedRopePackage := by
 #audit_closed_axioms manuscriptPrintedMikhailovaFiberProductPackage
 #audit_closed_axioms manuscriptPrintedRankThreeCutPackage
 #audit_closed_axioms manuscriptPrintedMikhailovaGraphProductPackage
+#audit_closed_axioms manuscriptPrintedMikhailovaRopeCompositionPackage
+#audit_closed_axioms manuscriptPrintedRawRopeSyntaxCompilerIsComputable
 #audit_closed_axioms manuscriptPrintedRopePackage
 
 end ComputabilityConstruction
