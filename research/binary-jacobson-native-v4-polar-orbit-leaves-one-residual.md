@@ -62,6 +62,18 @@ e_res=e(1-alpha)(1-zY)/4.                               (JV46)
 
 Equivalently, the native orbit covers precisely `e-e_res`.
 
+This is not merely a failure of the two chosen generators.  On `e_res` the
+controlled coefficient space
+
+```text
+W=span_F2{Q,SQ,ST,S^2T}
+```
+
+has `x_13(r)=x_13(rQ)` for every `r in W`.  Therefore every source-row root
+`x_12(r)`, `r in W`, preserves the product sign `zY`; none of their
+conjugates of the seed can enter `(JV46)`.  Thus all source-row corrections
+whose coefficients are already typed by the raw cuts are exhausted at once.
+
 The remaining constant opposite root `x_31(1)` does not normalize the raw
 range `e`: it already fails to normalize the negative cut of `x_13(Q)`, and
 its conjugates of the other same-position defining roots leave the abelian
