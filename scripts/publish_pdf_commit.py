@@ -29,12 +29,17 @@ from typing import Callable, Mapping, Sequence
 
 ALLOWED_PDFS = frozenset(
     {
+        "mf_recognition_complexity.pdf",
         "non_mf_group_notes.pdf",
         "non_mf_groups_exist.pdf",
     }
 )
 ALLOWED_DRAFT_SOURCES = frozenset(
-    {"non_mf_group_notes.tex", "non_mf_groups_exist.tex"}
+    {
+        "mf_recognition_complexity.tex",
+        "non_mf_group_notes.tex",
+        "non_mf_groups_exist.tex",
+    }
 )
 CLASSIFIER = Path(__file__).with_name("advance_verified_branch.py")
 REMOTE = "origin"
