@@ -109,6 +109,30 @@ theorem transportedInvolution_mul_self_eq_map_star_mul_self
       e (star (e.symm x) * e.symm x) := by
   simp [transportedInvolution]
 
+/-- The transported Gram operation has the same zero-detection property as
+the original C-star Gram operation.  This uses only injectivity of the
+algebra equivalence, not preservation of the target positive cone. -/
+theorem transportedInvolution_mul_self_eq_zero_iff
+    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    (e : D ≃ₐ[ℂ] B) (x : B) :
+    transportedInvolution e x * x = 0 ↔ x = 0 := by
+  constructor
+  · intro hzero
+    have himage : e (star (e.symm x) * e.symm x) = 0 := by
+      rw [← transportedInvolution_mul_self_eq_map_star_mul_self]
+      exact hzero
+    have hsource : star (e.symm x) * e.symm x = 0 := by
+      apply e.injective
+      simpa using himage
+    have hxsource : e.symm x = 0 :=
+      (CStarRing.star_mul_self_eq_zero_iff (e.symm x)).mp hsource
+    calc
+      x = e (e.symm x) := (e.apply_symm_apply x).symm
+      _ = e 0 := congrArg e hxsource
+      _ = 0 := map_zero e
+  · rintro rfl
+    simp
+
 theorem transportedInvolution_smul
     {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
     (e : D ≃ₐ[ℂ] B) (c : ℂ) (x : B) :
@@ -300,6 +324,163 @@ theorem exists_phase_conjugator_eq_smul_adjoint
   obtain ⟨α, hα⟩ := exists_scalar_conjugator_eq_smul_adjoint e T hT
   exact ⟨α, norm_unitScalar_eq_one_of_eq_smul_adjoint T α hα, hα⟩
 
+/-- A complex unit satisfying `α̅α = 1` admits an explicit phase
+correction `β` with `βα = β̅`.  The construction uses `β = i` when
+`α = -1`, and `β = 1 + α̅` otherwise. -/
+theorem exists_unitScalar_mul_eq_star
+    (α : ℂˣ) (hα : star (α : ℂ) * (α : ℂ) = 1) :
+    ∃ β : ℂˣ, (β : ℂ) * (α : ℂ) = star (β : ℂ) := by
+  by_cases hminus : (α : ℂ) = -1
+  · let β : ℂˣ := Units.mk0 Complex.I Complex.I_ne_zero
+    refine ⟨β, ?_⟩
+    simp [β, hminus]
+  · have hnonzero : 1 + star (α : ℂ) ≠ 0 := by
+      intro hzero
+      have hstarzero : 1 + (α : ℂ) = 0 := by
+        simpa using congrArg star hzero
+      apply hminus
+      rw [eq_neg_iff_add_eq_zero, add_comm]
+      exact hstarzero
+    let β : ℂˣ := Units.mk0 (1 + star (α : ℂ)) hnonzero
+    refine ⟨β, ?_⟩
+    change (1 + star (α : ℂ)) * (α : ℂ) =
+      star (1 + star (α : ℂ))
+    calc
+      (1 + star (α : ℂ)) * (α : ℂ) =
+          (α : ℂ) + star (α : ℂ) * (α : ℂ) := by ring
+      _ = (α : ℂ) + 1 := by rw [hα]
+      _ = star (1 + star (α : ℂ)) := by simp [add_comm]
+
+/-- The adjoint of a unit-scaled invertible operator is obtained by scaling
+the adjoint by the conjugate unit. -/
+theorem adjointLinearEquiv_unit_smul_apply
+    {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    [FiniteDimensional ℂ V]
+    (T : V ≃ₗ[ℂ] V) (β : ℂˣ) (x : V) :
+    adjointLinearEquiv (β • T) x =
+      star (β : ℂ) • adjointLinearEquiv T x := by
+  apply ext_inner_right ℂ
+  intro y
+  calc
+    inner ℂ (adjointLinearEquiv (β • T) x) y =
+        inner ℂ x ((β • T) y) := by
+      exact LinearMap.adjoint_inner_left (β • T).toLinearMap y x
+    _ = inner ℂ x ((β : ℂ) • T y) := by rfl
+    _ = (β : ℂ) * inner ℂ x (T y) := by rw [inner_smul_right]
+    _ = (β : ℂ) * inner ℂ (adjointLinearEquiv T x) y := by
+      rw [LinearMap.adjoint_inner_left]
+    _ = inner ℂ (star (β : ℂ) • adjointLinearEquiv T x) y := by
+      rw [inner_smul_left, star_star]
+
+/-- A scalar correction satisfying `βα = β̅` turns an
+`α`-self-adjoint conjugator into a genuinely self-adjoint one. -/
+theorem adjointLinearEquiv_unit_smul_eq_self
+    {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    [FiniteDimensional ℂ V]
+    (T : V ≃ₗ[ℂ] V) (α β : ℂˣ)
+    (hT : T = α • adjointLinearEquiv T)
+    (hβ : (β : ℂ) * (α : ℂ) = star (β : ℂ)) :
+    adjointLinearEquiv (β • T) = β • T := by
+  ext x
+  have hpoint : T x = (α : ℂ) • adjointLinearEquiv T x := by
+    simpa using DFunLike.congr_fun hT x
+  rw [adjointLinearEquiv_unit_smul_apply]
+  calc
+    star (β : ℂ) • adjointLinearEquiv T x =
+        ((β : ℂ) * (α : ℂ)) • adjointLinearEquiv T x := by rw [hβ]
+    _ = (β : ℂ) • ((α : ℂ) • adjointLinearEquiv T x) := by
+      rw [smul_smul]
+    _ = (β : ℂ) • T x := by rw [← hpoint]
+    _ = (β • T) x := by rfl
+
+/-- Rescaling a conjugator by a complex unit does not change the induced
+inner automorphism. -/
+theorem unit_smul_conjAlgEquiv_eq
+    {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    [FiniteDimensional ℂ V] [Nontrivial V]
+    (T : V ≃ₗ[ℂ] V) (β : ℂˣ) :
+    (β • T).conjAlgEquiv ℂ = T.conjAlgEquiv ℂ := by
+  exact LinearEquiv.conjAlgEquiv_ext_iff' (β • T) T |>.mpr ⟨β, rfl⟩
+
+/-- The Skolem--Noether conjugator of a transported C-star involution can be
+rescaled by a complex unit to become self-adjoint. -/
+theorem exists_selfAdjoint_rescaling_of_transportedInvolution
+    {D V : Type*} [CStarAlgebra D] [NormedAddCommGroup V]
+    [InnerProductSpace ℂ V] [FiniteDimensional ℂ V] [Nontrivial V]
+    (e : D ≃ₐ[ℂ] Module.End ℂ V) (T : V ≃ₗ[ℂ] V)
+    (hT : T.conjAlgEquiv ℂ = transportedInvolutionAutomorphism e) :
+    ∃ β : ℂˣ, adjointLinearEquiv (β • T) = β • T := by
+  obtain ⟨α, hα⟩ := exists_scalar_conjugator_eq_smul_adjoint e T hT
+  have hunit := unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint T α hα
+  obtain ⟨β, hβ⟩ := exists_unitScalar_mul_eq_star α hunit
+  exact ⟨β, adjointLinearEquiv_unit_smul_eq_self T α β hα hβ⟩
+
+/-- The transported involution is implemented by a genuinely self-adjoint
+conjugator, obtained by an explicit unit-scalar rescaling of the
+Skolem--Noether conjugator. -/
+theorem exists_selfAdjoint_conjugator_for_transportedInvolution
+    {D V : Type*} [CStarAlgebra D] [NormedAddCommGroup V]
+    [InnerProductSpace ℂ V] [FiniteDimensional ℂ V] [Nontrivial V]
+    (e : D ≃ₐ[ℂ] Module.End ℂ V) :
+    ∃ S : V ≃ₗ[ℂ] V,
+      S.conjAlgEquiv ℂ = transportedInvolutionAutomorphism e ∧
+      adjointLinearEquiv S = S := by
+  obtain ⟨T, hT⟩ := exists_conjugatingLinearEquiv_for_transportedInvolution e
+  obtain ⟨β, hself⟩ := exists_selfAdjoint_rescaling_of_transportedInvolution e T hT
+  refine ⟨β • T, ?_, hself⟩
+  rw [unit_smul_conjAlgEquiv_eq, hT]
+
+/-! ## Algebraic anisotropy of the corrected conjugator -/
+
+/-- The rank-one endomorphism `v ↦ ⟨z,v⟩ w`, expressed through
+Mathlib's inner-product linear maps. -/
+def innerRankOneEnd
+    {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    (w z : V) : Module.End ℂ V :=
+  (InnerProductSpace.toSpanSingleton ℂ V w).comp (innerₛₗ ℂ z)
+
+@[simp] theorem innerRankOneEnd_apply
+    {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    (w z v : V) :
+    innerRankOneEnd w z v = inner ℂ z v • w := by
+  rfl
+
+@[simp] theorem star_innerRankOneEnd
+    {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
+    [FiniteDimensional ℂ V] (w z : V) :
+    star (innerRankOneEnd w z) = innerRankOneEnd z w := by
+  rw [LinearMap.star_eq_adjoint, innerRankOneEnd, LinearMap.adjoint_comp,
+    LinearMap.adjoint_innerₛₗ_apply, LinearMap.adjoint_toSpanSingleton]
+
+/-- Any conjugator implementing a transported C-star involution has no
+nonzero isotropic vector for the inverse-conjugator form.  Otherwise the
+rank-one operator with range spanned by that vector would have zero
+transported Gram element, contradicting C-star cancellation in the source. -/
+theorem conjugator_inverseForm_anisotropic
+    {D V : Type*} [CStarAlgebra D] [NormedAddCommGroup V]
+    [InnerProductSpace ℂ V] [FiniteDimensional ℂ V]
+    (e : D ≃ₐ[ℂ] Module.End ℂ V) (S : V ≃ₗ[ℂ] V)
+    (hS : S.conjAlgEquiv ℂ = transportedInvolutionAutomorphism e)
+    {w : V} (hw : w ≠ 0) :
+    inner ℂ w (S.symm w) ≠ 0 := by
+  intro hisotropic
+  let A : Module.End ℂ V := innerRankOneEnd w w
+  have hAne : A ≠ 0 := by
+    intro hAzero
+    have happ := congrArg (fun F : Module.End ℂ V ↦ F w) hAzero
+    have hinner : inner ℂ w w ≠ 0 := inner_self_ne_zero.mpr hw
+    have hAw : inner ℂ w w • w ≠ 0 := smul_ne_zero hinner hw
+    apply hAw
+    simpa [A] using happ
+  have htransport (x : Module.End ℂ V) :
+      transportedInvolution e x = S.conjAlgEquiv ℂ (star x) := by
+    rw [transportedInvolution_eq_automorphism_star, ← hS]
+  have hGram : transportedInvolution e A * A = 0 := by
+    ext v
+    rw [Module.End.mul_apply, htransport]
+    simp [LinearEquiv.conjAlgEquiv_apply, A, hisotropic]
+  exact hAne ((transportedInvolution_mul_self_eq_zero_iff e A).mp hGram)
+
 /-- The blockwise transported involution has the concrete Skolem--Noether
 form `x ↦ T x⋆ T⁻¹` for an actual invertible complex-linear operator
 `T`. -/
@@ -331,4 +512,13 @@ open GroupApproximation.BlackadarKirchberg
 #audit_axioms unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
 #audit_axioms norm_unitScalar_eq_one_of_eq_smul_adjoint
 #audit_axioms exists_phase_conjugator_eq_smul_adjoint
+#audit_axioms exists_unitScalar_mul_eq_star
+#audit_axioms adjointLinearEquiv_unit_smul_apply
+#audit_axioms adjointLinearEquiv_unit_smul_eq_self
+#audit_axioms unit_smul_conjAlgEquiv_eq
+#audit_axioms exists_selfAdjoint_rescaling_of_transportedInvolution
+#audit_axioms exists_selfAdjoint_conjugator_for_transportedInvolution
+#audit_axioms innerRankOneEnd
+#audit_axioms star_innerRankOneEnd
+#audit_axioms conjugator_inverseForm_anisotropic
 #audit_axioms exists_conjugatingLinearEquiv_formula_for_transportedInvolution

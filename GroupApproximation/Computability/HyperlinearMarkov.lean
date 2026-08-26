@@ -162,6 +162,20 @@ theorem exists_not_isHyperlinear_iff_nonempty_markovData :
   · rintro ⟨D⟩
     exact ⟨Carrier D.forbidden, inferInstance, D.forbidden_not⟩
 
+/-- **Reduction/existence equivalence.**  A non-hyperlinear group exists
+exactly when there is an explicit computable Adian--Rabin reduction from the
+uniform word problem to hyperlinearity of finite presentation codes. -/
+theorem exists_not_isHyperlinear_iff_nonempty_adianRabinReduction :
+    (∃ (G : Type) (_ : Group G), ¬ IsHyperlinear G) ↔
+      Nonempty
+        (MarkovMFConsequences.AdianRabinReduction
+          AdianRabinWordProblem.wordProblemPred HyperlinearCodeProperty) := by
+  constructor
+  · intro h
+    exact ⟨reduction (hyperlinearMarkovDataOfExists h)⟩
+  · rintro ⟨R⟩
+    exact ⟨Carrier R.markov.negativeCode, inferInstance, R.markov.negative⟩
+
 end HyperlinearMarkov
 end GroupApproximation
 
@@ -174,3 +188,4 @@ open GroupApproximation.HyperlinearMarkov
 #audit_axioms no_counterexample_iff_hyperlinearCodeProperty_computable
 #audit_axioms no_counterexample_iff_nonhyperlinearCodeProperty_re
 #audit_axioms exists_not_isHyperlinear_iff_nonempty_markovData
+#audit_axioms exists_not_isHyperlinear_iff_nonempty_adianRabinReduction

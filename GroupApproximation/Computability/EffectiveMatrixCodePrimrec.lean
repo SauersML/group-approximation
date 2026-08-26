@@ -324,7 +324,6 @@ theorem primrec_mulVecNormSq :
 
 /-! ## Flat Boolean matrix predicates -/
 
-set_option maxHeartbeats 2000000 in
 private theorem primrecRel_matrixEqCell : PrimrecRel fun (j : ℕ)
     (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
     ComplexEq (entry z.2.1.1 z.2.1.2 z.1 j)
@@ -356,7 +355,6 @@ def matrixCoordinates (d : ℕ) : List (ℕ × ℕ) :=
   (List.range (dim d)).flatMap fun i =>
     (List.range (dim d)).map fun j => (i, j)
 
-set_option maxHeartbeats 2000000 in
 theorem primrec_matrixCoordinates : Primrec matrixCoordinates := by
   have hrange : Primrec fun d : ℕ => List.range (dim d) :=
     Primrec.list_range.comp primrec_dim
@@ -374,7 +372,6 @@ def matrixEqCheck (d : ℕ) (A B : MatrixCode) : Bool :=
   (matrixCoordinates d).foldr (fun ij ok =>
     decide (ComplexEq (entry d A ij.1 ij.2) (entry d B ij.1 ij.2)) && ok) true
 
-set_option maxHeartbeats 2000000 in
 theorem primrec_matrixEqCheck :
     Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
       matrixEqCheck z.1.1 z.1.2 z.2 := by
@@ -421,7 +418,6 @@ theorem matrixEqCheck_eq_true_iff (d : ℕ) (A B : MatrixCode) :
 def isUnitaryCheck (d : ℕ) (A : MatrixCode) : Bool :=
   matrixEqCheck d (matrixMul d (conjTranspose d A) A) (identity d)
 
-set_option maxHeartbeats 2000000 in
 theorem primrec_isUnitaryCheck :
     Primrec fun z : ℕ × MatrixCode => isUnitaryCheck z.1 z.2 := by
   unfold isUnitaryCheck
@@ -446,7 +442,6 @@ theorem primrecPred_isUnitary :
 def generatorsUnitaryCheck (d : ℕ) (gens : List MatrixCode) : Bool :=
   gens.foldr (fun A ok => isUnitaryCheck d A && ok) true
 
-set_option maxHeartbeats 2000000 in
 theorem primrec_generatorsUnitaryCheck :
     Primrec fun z : ℕ × List MatrixCode => generatorsUnitaryCheck z.1 z.2 := by
   have hstep : Primrec₂ fun (z : ℕ × List MatrixCode)
@@ -465,10 +460,9 @@ theorem generatorsUnitaryCheck_eq_true_iff (d : ℕ) (gens : List MatrixCode) :
   induction gens with
   | nil => simp [generatorsUnitaryCheck, generatorsUnitary]
   | cons A gens ih =>
-      change (isUnitaryCheck d A && generatorsUnitaryCheck d gens = true) ↔
-        ∀ B ∈ A :: gens, isUnitary d B
-      rw [Bool.and_eq_true, isUnitaryCheck_eq_true_iff, ih]
-      simp only [List.mem_cons, forall_eq_or_imp]
+      simp only [generatorsUnitaryCheck, List.foldr_cons, Bool.and_eq_true,
+        isUnitaryCheck_eq_true_iff, ih, generatorsUnitary, List.mem_cons,
+        forall_eq_or_imp]
 
 theorem primrec_natPow : Primrec₂ ((· ^ ·) : ℕ → ℕ → ℕ) :=
   Primrec₂.unpaired'.1 Nat.Primrec.pow
@@ -480,7 +474,6 @@ theorem primrec_ratOfNat : Primrec ratOfNat :=
 def entrySmallCheck (d k : ℕ) (z : ComplexCode) : Bool :=
   decide (entrySmall d k z)
 
-set_option maxHeartbeats 2000000 in
 theorem primrec_entrySmallCheck :
     Primrec fun z : (ℕ × ℕ) × ComplexCode =>
       entrySmallCheck z.1.1 z.1.2 z.2 := by
@@ -510,7 +503,6 @@ def matrixSmallCheck (d k : ℕ) (A : MatrixCode) : Bool :=
   (matrixCoordinates d).foldr (fun ij ok =>
     decide (entrySmall d k (entry d A ij.1 ij.2)) && ok) true
 
-set_option maxHeartbeats 2000000 in
 theorem primrec_matrixSmallCheck :
     Primrec fun z : (ℕ × ℕ) × MatrixCode =>
       matrixSmallCheck z.1.1 z.1.2 z.2 := by
@@ -554,13 +546,11 @@ theorem matrixSmallCheck_eq_true_iff (d k : ℕ) (A : MatrixCode) :
     rcases List.mem_map.mp hij with ⟨j, hj, rfl⟩
     exact h i (List.mem_range.mp hi) j (List.mem_range.mp hj)
 
-set_option maxHeartbeats 2000000 in
 private theorem primrec_vectorWitnessLeft : Primrec fun
     z : (ℕ × MatrixCode) × VectorCode => vectorNormSq z.1.1 z.2 :=
   primrec_vectorNormSq.comp
     (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd)
 
-set_option maxHeartbeats 2000000 in
 private theorem primrec_vectorWitnessRight : Primrec fun
     z : (ℕ × MatrixCode) × VectorCode =>
     ratMul (ratOfNat 9) (mulVecNormSq z.1.1 z.1.2 z.2) :=
@@ -571,7 +561,6 @@ def vectorWitnessCheck (d : ℕ) (A : MatrixCode) (v : VectorCode) : Bool :=
   decide (RatLt (vectorNormSq d v)
     (ratMul (ratOfNat 9) (mulVecNormSq d A v)))
 
-set_option maxHeartbeats 2000000 in
 theorem primrec_vectorWitnessCheck :
     Primrec fun z : (ℕ × MatrixCode) × VectorCode =>
       vectorWitnessCheck z.1.1 z.1.2 z.2 := by

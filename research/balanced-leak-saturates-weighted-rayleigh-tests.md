@@ -59,6 +59,20 @@ are absent from the single-vector Rayleigh data.  Consequently this is a
 firewall against optimizing scalar Kazhdan weights, not a refutation of a
 multi-translate norm, matrix-coordinate, or cocycle argument.
 
+For the standard **uniform lazy** shell average, the remaining freedom is now
+quantitatively bounded by
+`single-hecke-dent-is-the-expanding-commutator-defect`.  In the balanced case
+`||Ad pi(h)(x)-x||_2^2=2`, so that theorem gives
+
+```text
+1/2 <= 1-||S(x)||_2^2 <= 1.
+```
+
+Thus the unknown cross-Gram entries still determine the actual norm, but they
+cannot coherently erase a fixed expanding-generator defect.  This refinement
+does not contradict the weighted-Rayleigh firewall: it supplies only a
+factor-two interval, not the missing norm or its matrix-origin obstruction.
+
 For the homogeneous-quotient crossed product of
 `homogeneous-quotient-ce-refutes-arithmetic-commutant-collapse`, `(BLR2)`
 applies whenever the finite `K`-orbit algebra contains a `Lambda`-invariant
@@ -83,4 +97,3 @@ has one.
   not fixed by `(BLR2)`.  It is recorded only as a future one-core sparse MSI
   screen; it has not been run, supplies no numerical evidence, and no Cairn
   route depends on it.
-

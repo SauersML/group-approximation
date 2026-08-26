@@ -87,3 +87,11 @@ generic determinant and one alternate determinant for each exceptional
 prime dividing it.  The first untested defining symmetric power is therefore
 degree five, while the dual quartic and general mixed highest weights remain
 open.
+
+The general symmetric-power continuation is now exact rather than
+heuristic.  `symmetric-power-fox-kernel-is-smith-obstruction`
+writes the two polynomial Fox rows in every degree and identifies the
+all-odd-characteristic assertion with the unit maximal-minor ideal over
+`Z[1/2]`.  The substitutions are not triangular in any evident monomial
+order, so the certificates through degree four do not yet constitute an
+induction; a uniform Smith left inverse is the missing polynomial statement.

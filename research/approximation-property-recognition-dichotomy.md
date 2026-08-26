@@ -51,7 +51,9 @@ The complementary easy side is checked by
 `no_counterexample_iff_nonhyperlinearCodeProperty_re`.  Finally,
 `exists_not_isHyperlinear_iff_nonempty_markovData` identifies the exact phase
 transition: hyperlinearity admits Adian--Rabin Markov data precisely when a
-counterexample exists.
+counterexample exists.  The still stronger audited endpoint
+`exists_not_isHyperlinear_iff_nonempty_adianRabinReduction` says the same for
+an explicit computable many-one reduction from the uniform word problem.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by

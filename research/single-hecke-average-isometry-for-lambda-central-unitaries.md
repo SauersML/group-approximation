@@ -77,6 +77,23 @@ about ONE explicit operator.
   spherical leak, and conversely.  Any quantitative finite-level
   argument may thus assume the decay is geometric with the explicit
   rate `delta_0(n, p)`.
+- **The one-step dent is already the single expanding commutator, up to a
+  factor of two.**
+  `single-hecke-dent-is-the-expanding-commutator-defect` proves in every
+  finite tracial model, without property (T), that
+
+  ```text
+  (1/4)||[k,pi(h)]||_2^2
+    <= 1-||S(k)||_2^2
+    <= (1/2)||[k,pi(h)]||_2^2.
+  ```
+
+  The exact identity is
+  `1-||S(k)||_2^2=(1/2)||[k,pi(h)]||_2^2-||S(k)-k||_2^2`.
+  Thus cross-Gram coherence among the `L` translated copies cannot make the
+  Hecke dent vanish, or even become little-o, while the single `h`-commutator
+  stays macroscopic.  This removes that finite-level escape but does not
+  force the commutator itself to vanish; that remains the matrix-origin gap.
 - **The Lambda-exact odd-congruence sector is CLOSED (2026-08-21).**
   `odd-congruence-lambda-exact-sector-collapses`: if the
   `Lambda`-restriction of the microstates can be taken as genuine

@@ -230,7 +230,9 @@ the same selected induced-type gate rather than closing it.
 
 ## Finite verifier-type reduction
 
-There is nevertheless a rigorous weakening of the required synchronization.
+There is nevertheless a rigorous weakening of the required synchronization,
+recorded as
+`finite-tailored-checks-reduce-to-typewise-positive-loss-gadgets`.
 Partition the finite check set into its finitely many local predicate/gate
 types `C=disjointUnion_(t in T) C_t`, and put
 
@@ -252,6 +254,18 @@ orientation need only be common inside `C_t`: by
 harmlessly from the typewise zero test.  Different types may retain
 unrelated gauges.  If a CE base type extended every `E_t`, `(TCG2)` would be
 contradicted.
+
+This does **not** mean that partitioning by syntactic type constructs the
+common orientation used in the preceding sentence.  The theorem
+`transitive-controller-orbit-common-twist-preserves-zero-lcu` applies only
+after the intended payload controllers form an actual transitive orbit and
+satisfy its conjugacy condition `(TCO4)`.  Arbitrary occurrences of the same
+gate type have different payload words; forcing `(TCO4)` adds relations not
+satisfied by the common perfect strategy, while independently renamed orbit
+copies no longer evaluate one common decoded strategy.  The type partition
+reduces the soundness quantifier exactly, but the typewise nontransport
+holonomy readout must still build the required common payload orbit or avoid
+LCU factorization altogether.
 
 ## Signed-Hecke transporter audit
 

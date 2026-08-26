@@ -136,5 +136,63 @@ theorem computable_edgeCode :
       edgeCode a.1 a.2) :=
   primrec_edgeCode.to_comp
 
+/-! ## The complete primitive-recursive compiler -/
+
+/-- The finite syntactic input for the four edges. -/
+abbrev TowerInput : Type :=
+  PresentationCode ×
+    (List (RawWord × RawWord) ×
+      (List (RawWord × RawWord) ×
+        (List (RawWord × RawWord) × List RawWord)))
+
+/-- Compile a packed input by the fixed `tau`, `d`, `sigma`, detector-last
+sequence. -/
+def compile (x : TowerInput) : PresentationCode :=
+  detectorLastCode x.1 x.2.1 x.2.2.1 x.2.2.2.1 x.2.2.2.2
+
+theorem primrec_centralEdges :
+    Primrec (fun words : List RawWord => centralEdges words) :=
+  Primrec.list_map Primrec.id (Primrec.pair Primrec.snd Primrec.snd)
+
+/-- The full four-edge raw presentation compiler is primitive recursive. -/
+theorem primrec_compile : Primrec compile := by
+  have hTau : Primrec (fun x : TowerInput => edgeCode x.1 x.2.1) :=
+    primrec_edgeCode.comp
+      (Primrec.pair Primrec.fst (Primrec.fst.comp Primrec.snd))
+  have hD : Primrec (fun x : TowerInput =>
+      edgeCode (edgeCode x.1 x.2.1) x.2.2.1) :=
+    primrec_edgeCode.comp
+      (Primrec.pair hTau
+        (Primrec.fst.comp (Primrec.snd.comp Primrec.snd)))
+  have hSigma : Primrec (fun x : TowerInput =>
+      threeStageCode x.1 x.2.1 x.2.2.1 x.2.2.2.1) :=
+    primrec_edgeCode.comp
+      (Primrec.pair hD
+        (Primrec.fst.comp
+          (Primrec.snd.comp (Primrec.snd.comp Primrec.snd))))
+  have hDetector : Primrec (fun x : TowerInput =>
+      centralEdges x.2.2.2.2) :=
+    primrec_centralEdges.comp
+      (Primrec.snd.comp
+        (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))
+  exact primrec_edgeCode.comp (Primrec.pair hSigma hDetector)
+
+theorem computable_compile : Computable compile := primrec_compile.to_comp
+
+/-! ## Deliberately separate semantic obligations -/
+
+/-- The word-level obligation connecting the computed presentation to a
+particular honest group-theoretic tower.  This is data to be proved from
+`HNNPresentation.equivPres`; it is not built into the raw compiler. -/
+def SemanticEquivalence (x : TowerInput) (HonestTower : Type)
+    [Group HonestTower] : Prop :=
+  Nonempty (Carrier (compile x) ≃* HonestTower)
+
+/-- The analytic obligation needed on the positive branch.  It is stated
+separately so that no code-level computability theorem can silently assume an
+MF permanence result for an asymmetric HNN edge. -/
+def MFPermanence (x : TowerInput) : Prop :=
+  IsOperatorMF (Carrier x.1) → IsOperatorMF (Carrier (compile x))
+
 end FreeEdgeTowerCode
 end GroupApproximation

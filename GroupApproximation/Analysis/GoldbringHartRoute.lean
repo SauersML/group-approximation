@@ -40,14 +40,16 @@ trace-ideal argument cannot simply forget this distinction: the support
 projection of a nonunital embedding can have zero normalized trace after
 passing to the tracial quotient.  `NonUnitalMFSupportCorner` proves that this
 support is a nonzero projection, produces a projection lift with infinitely
-many nonzero coordinates, and proves that compression by the lift preserves
-the represented corona elements.  What remains is the sequence-level assembly
-which relabels those coordinates and identifies their finite corners with a
-new full matrix corona.  Thus the theorems below intentionally take an
-explicit `StarAlgHom`, not `HasMFEmbedding`.  Closing the manuscript's
-historical implication against its present `IsMFAlgebra` definition still
-requires that corner-corona assembly, as well as a formal source for a
-non-Connes-embeddable factor and the separable elementary-substructure step.
+many nonzero coordinates, enumerates the full support increasingly, constructs
+the finite projection-range models with their exact ranks, and proves that
+compression by the lift preserves the represented corona elements.  What
+remains is to descend those coordinate compressions as a unital star-algebra
+homomorphism into the relabelled matrix corona and prove that this quotient map
+is injective.  Thus the theorems below intentionally take an explicit
+`StarAlgHom`, not `HasMFEmbedding`.  Closing the manuscript's historical
+implication against its present `IsMFAlgebra` definition still requires that
+corner-corona assembly, as well as a formal source for a non-Connes-embeddable
+factor and the separable elementary-substructure step.
 -/
 
 namespace GroupApproximation

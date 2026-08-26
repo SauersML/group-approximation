@@ -706,6 +706,35 @@ def rootWordVisibleSet
     (b : Fin 2) (n : ℕ) : Set (Spectrum rho) :=
   finitePlaneNontrivialSet rho (rootWordCoordinateSet (X := X) b n)
 
+theorem mem_rootWordVisibleSet_iff
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho) :
+    chi ∈ rootWordVisibleSet rho b n ↔
+      ∃ w : FreeMonoid X,
+        FreeAlgebraDegree.freeWordLength X w ≤ n ∧
+        coordinateAngle rho
+          (b, FreeAlgebraDegree.wordMonomial X ℤ w) chi ≠ 0 := by
+  classical
+  constructor
+  · rintro ⟨⟨c, a⟩, hmem, hnontrivial⟩
+    obtain ⟨hcb, w, hw, ha⟩ :=
+      (mem_rootWordCoordinateSet_iff b c a n).mp hmem
+    subst c
+    subst a
+    refine ⟨w, hw, ?_⟩
+    intro hzero
+    exact hnontrivial
+      ((coordinateAngle_eq_zero_iff rho
+        (b, FreeAlgebraDegree.wordMonomial X ℤ w) chi).mp hzero)
+  · rintro ⟨w, hw, hnonzero⟩
+    refine ⟨(b, FreeAlgebraDegree.wordMonomial X ℤ w), ?_, ?_⟩
+    · exact (mem_rootWordCoordinateSet_iff b b _ n).mpr
+        ⟨rfl, w, hw, rfl⟩
+    · intro hone
+      exact hnonzero
+        ((coordinateAngle_eq_zero_iff rho
+          (b, FreeAlgebraDegree.wordMonomial X ℤ w) chi).mpr hone)
+
 theorem rootWordVisibleSet_mono
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
     (b : Fin 2) {m n : ℕ} (hmn : m ≤ n) :
@@ -865,6 +894,220 @@ theorem iUnion_leastRootWordDetectionSet_range
     · exact Finset.mem_coe.mpr (Finset.mem_range.mpr (by omega))
     · exact mem_leastRootWordDetectionSet_leastRootWordDegreeWithin
         rho b n chi hchi
+
+theorem leastRootWordDegreeWithin_eq_succ_of_not_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho)
+    (hchi : chi ∉ rootWordVisibleSet rho b n) :
+    leastRootWordDegreeWithin rho b n chi = n + 1 := by
+  classical
+  rw [leastRootWordDegreeWithin, dif_neg]
+  rintro ⟨d, hd, hvisible⟩
+  exact hchi (rootWordVisibleSet_mono rho b hd hvisible)
+
+theorem leastRootWordDegreeWithin_le_succ
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho) :
+    leastRootWordDegreeWithin rho b n chi ≤ n + 1 := by
+  by_cases hchi : chi ∈ rootWordVisibleSet rho b n
+  · exact (leastRootWordDegreeWithin_le rho b n chi hchi).trans
+      (Nat.le_succ n)
+  · rw [leastRootWordDegreeWithin_eq_succ_of_not_mem rho b n chi hchi]
+
+/-- No degree below the finite-stage selector is visible, including when the
+selector is the sentinel `n+1`. -/
+theorem not_mem_rootWordVisibleSet_of_lt_degreeWithin
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) (chi : Spectrum rho) {d : ℕ}
+    (hd : d < leastRootWordDegreeWithin rho b n chi) :
+    chi ∉ rootWordVisibleSet rho b d := by
+  by_cases hchi : chi ∈ rootWordVisibleSet rho b n
+  · exact not_mem_rootWordVisibleSet_of_lt_leastRootWordDegreeWithin
+      rho b n chi hchi hd
+  · intro hdvisible
+    apply hchi
+    have hdle : d ≤ n := by
+      have hselector := leastRootWordDegreeWithin_le_succ rho b n chi
+      omega
+    exact rootWordVisibleSet_mono rho b hdle hdvisible
+
+/-- One selector fiber.  For values at most `n` this is a least-degree cell;
+the `n+1` fiber is the invisible set, and larger fibers are empty. -/
+def rootWordDegreeFiber
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n d : ℕ) : Set (Spectrum rho) :=
+  {chi | leastRootWordDegreeWithin rho b n chi = d}
+
+theorem rootWordDegreeFiber_eq_leastRootWordDetectionSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n d : ℕ) (hd : d ≤ n) :
+    rootWordDegreeFiber rho b n d = leastRootWordDetectionSet rho b d := by
+  ext chi
+  constructor
+  · intro hfiber
+    have hvisible : chi ∈ rootWordVisibleSet rho b n := by
+      by_contra hnot
+      have hsentinel :=
+        leastRootWordDegreeWithin_eq_succ_of_not_mem rho b n chi hnot
+      change leastRootWordDegreeWithin rho b n chi = d at hfiber
+      omega
+    have hleast :=
+      mem_leastRootWordDetectionSet_leastRootWordDegreeWithin
+        rho b n chi hvisible
+    rwa [hfiber] at hleast
+  · intro hleast
+    have hvisibleD : chi ∈ rootWordVisibleSet rho b d := hleast.1
+    have hvisibleN := rootWordVisibleSet_mono rho b hd hvisibleD
+    have hselected :=
+      mem_leastRootWordDetectionSet_leastRootWordDegreeWithin
+        rho b n chi hvisibleN
+    by_contra hne
+    exact Set.disjoint_left.mp
+      (disjoint_leastRootWordDetectionSet rho b hne) chi hselected hleast
+
+theorem rootWordDegreeFiber_eq_sentinel
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n : ℕ) :
+    rootWordDegreeFiber rho b n (n + 1) =
+      (rootWordVisibleSet rho b n)ᶜ := by
+  ext chi
+  constructor
+  · intro hfiber hvisible
+    have hle := leastRootWordDegreeWithin_le rho b n chi hvisible
+    change leastRootWordDegreeWithin rho b n chi = n + 1 at hfiber
+    omega
+  · intro hnot
+    exact leastRootWordDegreeWithin_eq_succ_of_not_mem rho b n chi hnot
+
+theorem rootWordDegreeFiber_eq_empty_of_succ_lt
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n d : ℕ) (hd : n + 1 < d) :
+    rootWordDegreeFiber rho b n d = ∅ := by
+  ext chi
+  constructor
+  · intro hfiber
+    have hle := leastRootWordDegreeWithin_le_succ rho b n chi
+    change leastRootWordDegreeWithin rho b n chi = d at hfiber
+    omega
+  · exact False.elim
+
+theorem measurableSet_rootWordDegreeFiber
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (b : Fin 2) (n d : ℕ) :
+    MeasurableSet (rootWordDegreeFiber rho b n d) := by
+  by_cases hd : d ≤ n
+  · rw [rootWordDegreeFiber_eq_leastRootWordDetectionSet rho b n d hd]
+    exact measurableSet_leastRootWordDetectionSet rho b d
+  · have hge : n + 1 ≤ d := by omega
+    rcases Nat.eq_or_lt_of_le hge with heq | hlt
+    · rw [← heq, rootWordDegreeFiber_eq_sentinel]
+      exact (measurableSet_rootWordVisibleSet rho b n).compl
+    · rw [rootWordDegreeFiber_eq_empty_of_succ_lt rho b n d hlt]
+      exact MeasurableSet.empty
+
+/-! ### Two-root valuation regions -/
+
+/-- The four nonzero comparison regions, together with the region of
+characters invisible in both root coordinates through the current stage. -/
+inductive WordPairRegion
+  | zero | A | B | C | D
+  deriving DecidableEq, Fintype
+
+/-- Numerical A/B/C/D classification of two sentinel-valued least degrees.
+The equal positive-degree case is kept as the separate region `B`; no claim
+is made here that a shear cannot cancel the two corresponding circle phases. -/
+def wordPairRegionOfDegrees (n a b : ℕ) : WordPairRegion :=
+  if a = n + 1 ∧ b = n + 1 then .zero
+  else if a = 0 ∨ b = 0 then .D
+  else if b < a then .A
+  else if a = b then .B
+  else .C
+
+/-- The A/B/C/D region of a spectral character at degree stage `n`. -/
+noncomputable def wordPairRegion
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho) : WordPairRegion :=
+  wordPairRegionOfDegrees n
+    (leastRootWordDegreeWithin rho 0 n chi)
+    (leastRootWordDegreeWithin rho 1 n chi)
+
+/-- One region fiber of the two-root least-degree classifier. -/
+def wordPairRegionSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (region : WordPairRegion) : Set (Spectrum rho) :=
+  {chi | wordPairRegion rho n chi = region}
+
+theorem wordPairRegionSet_eq_iUnion_degreeFibers
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (region : WordPairRegion) :
+    wordPairRegionSet rho n region =
+      ⋃ a : ℕ, ⋃ b : ℕ,
+        if a ≤ n + 1 ∧ b ≤ n + 1 ∧
+            wordPairRegionOfDegrees n a b = region then
+          rootWordDegreeFiber rho 0 n a ∩ rootWordDegreeFiber rho 1 n b
+        else ∅ := by
+  ext chi
+  constructor
+  · intro hregion
+    let a := leastRootWordDegreeWithin rho 0 n chi
+    let b := leastRootWordDegreeWithin rho 1 n chi
+    have ha : a ≤ n + 1 := leastRootWordDegreeWithin_le_succ rho 0 n chi
+    have hb : b ≤ n + 1 := leastRootWordDegreeWithin_le_succ rho 1 n chi
+    change wordPairRegionOfDegrees n a b = region at hregion
+    apply Set.mem_iUnion.mpr
+    refine ⟨a, Set.mem_iUnion.mpr ⟨b, ?_⟩⟩
+    rw [if_pos ⟨ha, hb, hregion⟩]
+    exact ⟨rfl, rfl⟩
+  · intro hchi
+    obtain ⟨a, ha⟩ := Set.mem_iUnion.mp hchi
+    obtain ⟨b, hab⟩ := Set.mem_iUnion.mp ha
+    by_cases hcase : a ≤ n + 1 ∧ b ≤ n + 1 ∧
+        wordPairRegionOfDegrees n a b = region
+    · rw [if_pos hcase] at hab
+      change leastRootWordDegreeWithin rho 0 n chi = a ∧
+          leastRootWordDegreeWithin rho 1 n chi = b at hab
+      change wordPairRegionOfDegrees n
+          (leastRootWordDegreeWithin rho 0 n chi)
+          (leastRootWordDegreeWithin rho 1 n chi) = region
+      rw [hab.1, hab.2]
+      exact hcase.2.2
+    · rw [if_neg hcase] at hab
+      exact hab
+
+theorem measurableSet_wordPairRegionSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (region : WordPairRegion) :
+    MeasurableSet (wordPairRegionSet rho n region) := by
+  rw [wordPairRegionSet_eq_iUnion_degreeFibers]
+  apply MeasurableSet.iUnion
+  intro a
+  apply MeasurableSet.iUnion
+  intro b
+  split_ifs
+  · exact (measurableSet_rootWordDegreeFiber rho 0 n a).inter
+      (measurableSet_rootWordDegreeFiber rho 1 n b)
+  · exact MeasurableSet.empty
+
+/-- Different A/B/C/D region fibers are disjoint. -/
+theorem disjoint_wordPairRegionSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) {r s : WordPairRegion} (hrs : r ≠ s) :
+    Disjoint (wordPairRegionSet rho n r) (wordPairRegionSet rho n s) := by
+  apply Set.disjoint_left.mpr
+  intro chi hr hs
+  exact hrs (hr.symm.trans hs)
+
+/-- The five fibers cover the entire finite-stage character spectrum. -/
+theorem iUnion_wordPairRegionSet
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    (⋃ region : WordPairRegion, wordPairRegionSet rho n region) = Set.univ := by
+  ext chi
+  constructor
+  · exact fun _ ↦ Set.mem_univ chi
+  · intro _
+    apply Set.mem_iUnion.mpr
+    exact ⟨wordPairRegion rho n chi, rfl⟩
 
 omit [Fintype X] in
 theorem iUnion_finitePlaneNontrivialSet
@@ -1188,4 +1431,7 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms measurableSet_leastRootWordDetectionSet
 #audit_axioms disjoint_leastRootWordDetectionSet
 #audit_axioms iUnion_leastRootWordDetectionSet_range
+#audit_axioms measurableSet_wordPairRegionSet
+#audit_axioms disjoint_wordPairRegionSet
+#audit_axioms iUnion_wordPairRegionSet
 #audit_axioms measurableSet_fullPlaneNontrivialSet
