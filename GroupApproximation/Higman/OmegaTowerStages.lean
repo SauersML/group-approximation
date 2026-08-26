@@ -1,5 +1,6 @@
 import GroupApproximation.Higman.HNNCentralizer
 import GroupApproximation.Higman.OmegaTower
+import GroupApproximation.Higman.RowDeletionGraph
 
 /-!
 # Stage one of the `ωₘ` tower
@@ -95,6 +96,104 @@ def rowOut (m : ℕ) : Subgroup Row.F₀ :=
 theorem row_mem_rowOut {m : ℕ} {i : ℤ} (hi : i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) :
     Row.row i ∈ rowOut m :=
   Subgroup.subset_closure ⟨i, hi, rfl⟩
+
+/-! ### The outside row is benign
+
+This is the first concrete fat-tower input.  The outside indices split into
+the negative half-line and the tail beginning at `m`; both are automorphic
+images of the half-row already constructed in `RowDeletionBenign`.
+-/
+
+/-- The tail of the row beginning at `m`. -/
+def rowTail (m : ℕ) : Subgroup Row.F₀ :=
+  Subgroup.closure (Row.row '' {i : ℤ | (m : ℤ) ≤ i})
+
+/-- The `m`-fold row shift. -/
+def rowShiftPow (m : ℕ) : Row.F₀ ≃* Row.F₀ :=
+  (Row.shift : MulAut Row.F₀) ^ m
+
+theorem rowShiftPow_row (m : ℕ) (i : ℤ) :
+    rowShiftPow m (Row.row i) = Row.row (i + (m : ℤ)) := by
+  induction m generalizing i with
+  | zero => simp [rowShiftPow]
+  | succ n ih =>
+      rw [rowShiftPow, pow_succ, MulAut.mul_apply, Row.shift_row]
+      change rowShiftPow n (Row.row (i + 1)) = Row.row (i + (n + 1 : ℕ))
+      rw [ih]
+      congr 1
+      push_cast
+      ring
+
+theorem map_halfRow_rowShiftPow (m : ℕ) :
+    Row.HalfRow.map (rowShiftPow m).toMonoidHom = rowTail m := by
+  rw [Row.halfRow_eq_closure, MonoidHom.map_closure]
+  unfold rowTail
+  congr 1
+  ext x
+  constructor
+  · rintro ⟨_, ⟨i, hi, rfl⟩, rfl⟩
+    change 0 ≤ i at hi
+    refine ⟨i + (m : ℤ), ?_, ?_⟩
+    · change (m : ℤ) ≤ i + (m : ℤ)
+      omega
+    · exact (rowShiftPow_row m i).symm
+  · rintro ⟨j, hj, rfl⟩
+    change (m : ℤ) ≤ j at hj
+    refine ⟨Row.row (j - (m : ℤ)), ?_, ?_⟩
+    · refine ⟨j - (m : ℤ), ?_, rfl⟩
+      change 0 ≤ j - (m : ℤ)
+      omega
+    · change rowShiftPow m (Row.row (j - (m : ℤ))) = Row.row j
+      rw [rowShiftPow_row]
+      congr 1
+      ring
+
+theorem benignTF_rowTail (m : ℕ) : BenignTF (rowTail m) := by
+  rw [← map_halfRow_rowShiftPow]
+  exact BenignTF.mapEmb IsPowerTorsionFree.of_isMulTorsionFree
+    Row.benignTF_halfRow (rowShiftPow m).toMonoidHom (rowShiftPow m).injective
+
+theorem rowOut_eq_neg_sup_tail (m : ℕ) :
+    rowOut m =
+      (RowDeletionGraph.indexSub (fun i : ℤ => i < 0)).map Row.basisHom ⊔
+        rowTail m := by
+  unfold rowOut RowDeletionGraph.indexSub rowTail
+  rw [MonoidHom.map_closure, ← Subgroup.closure_union]
+  congr 1
+  ext x
+  constructor
+  · rintro ⟨i, hi, rfl⟩
+    change i ∉ Finset.Ico (0 : ℤ) (m : ℤ) at hi
+    have hout : i < 0 ∨ (m : ℤ) ≤ i := by
+      rw [Finset.mem_Ico] at hi
+      omega
+    rcases hout with hneg | htail
+    · exact Or.inl ⟨FreeGroup.of i, ⟨i, hneg, rfl⟩, Row.basisHom_of i⟩
+    · exact Or.inr ⟨i, htail, rfl⟩
+  · rintro (hneg | htail)
+    · obtain ⟨_, ⟨i, hi, rfl⟩, rfl⟩ := hneg
+      refine ⟨i, ?_, (Row.basisHom_of i).symm⟩
+      change i ∉ Finset.Ico (0 : ℤ) (m : ℤ)
+      rw [Finset.mem_Ico]
+      change i < 0 at hi
+      omega
+    · obtain ⟨i, hi, rfl⟩ := htail
+      refine ⟨i, ?_, rfl⟩
+      change i ∉ Finset.Ico (0 : ℤ) (m : ℤ)
+      rw [Finset.mem_Ico]
+      change (m : ℤ) ≤ i at hi
+      omega
+
+/-- **The outside-row subgroup is benign with a torsion-free witness.** -/
+theorem benignTF_rowOut (m : ℕ) : BenignTF (rowOut m) := by
+  rw [rowOut_eq_neg_sup_tail]
+  exact BenignTF.sup RowDeletionGraph.benignTF_map_indexSub_neg
+    (benignTF_rowTail m)
+
+/-- A selected torsion-free benign witness for the outside row, ready to be
+used as the finitely presented base of the fat first stage. -/
+noncomputable def rowOutWitness (m : ℕ) : TorsionFreeBenignWitness (rowOut m) :=
+  Classical.choice (benignTF_rowOut m)
 
 /-- The bridge to the `F₃` side: the retraction killing `a` carries the row
 `rowElt i` of `F₃` to the row `Row.row i` of `⟨b, c⟩`, so the rows of `F₃`
@@ -285,6 +384,56 @@ theorem commute_genHom_row_slim {m : ℕ} (y : F₃) {i : ℤ}
     (hi : i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) :
     Commute (genHom (rowOut m) y) (emb3 (rowOut m) (Row.row i)) :=
   commute_genHom y (row_mem_rowOut hi)
+
+/-! ## 5.  The fat first stage from the outside-row witness -/
+
+/-- The finitely presented base selected by the outside-row witness. -/
+abbrev FatBase (m : ℕ) : Type := (rowOutWitness m).witness.K
+
+/-- The finitely generated cutter for the outside rows in the fat base. -/
+noncomputable def fatOutside (m : ℕ) : Subgroup (FatBase m) :=
+  (rowOutWitness m).witness.L
+
+/-- The rank-two row carrier embedded in the fat base. -/
+noncomputable def fatBaseEmb (m : ℕ) : Row.F₀ →* FatBase m :=
+  (rowOutWitness m).witness.emb
+
+/-- Mikaelian's fat first stage, with three letters centralizing the finite
+cutter for the outside rows. -/
+abbrev FatCent3 (m : ℕ) : Type := Cent3 (fatOutside m)
+
+/-- The original row carrier embedded through the fat first stage. -/
+noncomputable def fatCent3Emb (m : ℕ) : Row.F₀ →* FatCent3 m :=
+  (emb3 (fatOutside m)).comp (fatBaseEmb m)
+
+theorem fatCent3Emb_injective (m : ℕ) : Function.Injective (fatCent3Emb m) :=
+  (emb3_injective (fatOutside m)).comp (rowOutWitness m).witness.emb_injective
+
+/-- **The fat first stage is finitely presented.** -/
+theorem isFinitelyPresented_fatCent3 (m : ℕ) :
+    Group.IsFinitelyPresented (FatCent3 m) :=
+  isFinitelyPresented_cent3 (rowOutWitness m).witness.L_fg
+
+/-- **The fat first stage is torsion-free.** -/
+theorem isPowerTorsionFree_fatCent3 (m : ℕ) :
+    IsPowerTorsionFree (FatCent3 m) :=
+  isPowerTorsionFree_cent3 (rowOutWitness m).torsionFree
+
+theorem fat_row_mem_outside {m : ℕ} {i : ℤ}
+    (hi : i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) :
+    fatBaseEmb m (Row.row i) ∈ fatOutside m := by
+  have hrow : Row.row i ∈ rowOut m := row_mem_rowOut hi
+  rw [← (rowOutWitness m).witness.comap_eq] at hrow
+  exact Subgroup.mem_comap.mp hrow
+
+/-- **The first tower relation in the fat stage.**  The second-copy code
+commutes with every outside row after passage through the selected benign
+witness. -/
+theorem commute_fat_genHom_row {m : ℕ} (y : F₃) {i : ℤ}
+    (hi : i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) :
+    Commute (genHom (fatOutside m) y)
+      (emb3 (fatOutside m) (fatBaseEmb m (Row.row i))) :=
+  commute_genHom y (fat_row_mem_outside hi)
 
 end Omega
 end Higman
