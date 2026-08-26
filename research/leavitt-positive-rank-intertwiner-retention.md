@@ -12,6 +12,8 @@ distinct_from:
   finite-kernel-window-has-maximally-moving-zero-mode: that gives every fixed kernel window an exact finite-dimensional zero mode moved orthogonally by `f_0`; this requires a genuinely growing window coupled to relative-rank almost reduction.
   hall-reflection-realizes-rank-one-restriction-instability: that realizes all bare restriction-instability and Julia-normal-form hypotheses on one vanishing-rank coset reflection; this must use additional simultaneous-word structure of the faithful double model.
   finite-cross-word-family-fits-one-hall-reflection: that concentrates every fixed finite family of canonical cross-word gaps on one rank-one reflection; this must use longer alternating-word coupling or genuinely all-word structure rather than a larger finite cross-word list.
+  sublinear-julia-seam-collapses-the-fold-kernel-tracially: that shows even arbitrary alternating fold-kernel words remain trace-null whenever the Julia seam has sublinear rank; this must establish rank spreading or escape the seam's principal rank ideal.
+  julia-derivation-rank-controls-fold: that proves macroscopic `rank(V-1)` is pure commutant gauge and identifies normalized generator-commutator rank as the necessary trace-spreading datum; this still asks to turn that datum into one almost-quotient band satisfying all three IR clauses.
 ---
 
 **OPEN.** Fix a finite free presentation
@@ -81,3 +83,15 @@ on the **same** band.  Its exact zero-energy line already has `(IR1)` and
 displacement, so `(IR3)` alone fails.  Spectral-flow or moving-cutoff
 arguments must therefore prove trace-visible survival in addition to
 equivariance; the latter cannot promote the operator wall by itself.
+
+Nor is it enough merely to add longer alternating words.  The Julia rank
+firewall `sublinear-julia-seam-collapses-the-fold-kernel-tracially` proves
+that one low-rank implementer makes every fixed word in the **entire** fold
+kernel tracially null.  But `rank(V_n-1)` itself cannot be the sought lower
+bound: commutant gauges change it without changing either vertex map, and
+`V=-1` has full deviation rank while moving no word.  The intrinsic target
+from `julia-derivation-rank-controls-fold`
+is positive normalized rank of the generator commutators
+`[sigma_n(x),V_n]`.  A successful moving-band argument must convert that
+active support into `(IR1)--(IR3)`, or find trace-visible positive-energy
+motion outside it; finite-word norm faithfulness alone does neither.

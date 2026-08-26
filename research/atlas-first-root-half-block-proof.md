@@ -6,7 +6,6 @@ title: Read root_12_1e as a commutator and pinch it by the fixed transvection
 target: atlas-first-root-relator-is-half-block-commutant-face
 requires:
   - atlas-three-label-mode-two-unitary-moment-reduction
-  - atlas-first-rank-five-relator-kills-order-one-weyl-slice
 ---
 
 The deterministic rank-five dictionary gives

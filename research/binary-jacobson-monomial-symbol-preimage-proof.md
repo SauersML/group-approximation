@@ -52,9 +52,13 @@ Taking the inverse image in `(1)` gives
 
 The group `L` is locally finite, hence amenable.  Amenability is closed under
 extensions, so `K` is countable amenable.  The established literature input
-`amenable-implies-operator-mf` gives an injective norm-corona representation
-of `K`.  Since `z_Q` is a nonidentity element of `L<=K`, this representation
-retains it.  If `Ktilde` is the inverse image of `K` in `St_5(J)`, compose
+`amenable-implies-operator-mf` is proved in the stronger regular form needed
+here: quasidiagonality of the canonical trace on `C*_r(K)` gives ucp maps
+which are asymptotically multiplicative in operator norm and converge in
+trace to the regular character.  Polar correction on each finite window
+therefore gives unitary maps `sigma_n` satisfying `(JMP3a)`.  Since `z_Q` is
+a nonidentity element of `L<=K`, their norm-corona representation retains it.
+If `Ktilde` is the inverse image of `K` in `St_5(J)`, compose
 
 ```text
 Ktilde -> K -> U(Q_d).                                  (6)
@@ -63,20 +67,20 @@ Ktilde -> K -> U(Q_d).                                  (6)
 The Steinberg root `x_13(Q)` maps to `z_Q`, so `(6)` is the asserted marked
 subsystem model.
 
-## One raw Laurent root generates past the firewall
+## One constant raw root generates past the firewall
 
-Fix `i!=j` and let `H=<K,x_ij(S)>`.  Its symbol contains `M` and
-`x_ij(z)`.  For any integer `n`, choose a third index `k` and the balanced
+Fix `i!=j` and let `H=<K,x_ij(1)>`.  Its symbol contains `M` and
+`x_ij(1)`.  For any integer `n`, choose a third index `k` and the balanced
 diagonal monomial
 
 ```text
-d_n=diag(1,...,z^(n-1) at i,...,z^(1-n) at k,...,1).
+d_n=diag(1,...,z^n at i,...,z^(-n) at k,...,1).
 ```
 
 Because `j` is different from `i,k`, conjugation gives
 
 ```text
-d_n x_ij(z) d_n^(-1)=x_ij(z^n).                         (7)
+d_n x_ij(1) d_n^(-1)=x_ij(z^n).                         (7)
 ```
 
 Constant Weyl elements in `M` move `(i,j)` to every ordered pair `(a,b)`.
@@ -96,8 +100,14 @@ mu(H)=EL_5(A).                                          (9)
 
 But `ker(mu)=L<=K<=H`.  Given `g in E`, choose `h in H` with
 `mu(h)=mu(g)` using `(9)`; then `gh^(-1) in L<=H`, so `g in H`.  This proves
-`<K,x_ij(S)>=E`.  Replacing `z` by `z^(-1)` proves the identical statement
-for `x_ij(T)`.
+`<K,x_ij(1)>=E`.
+
+The `S` and `T` versions follow from the same threshold.  A balanced
+monomial conjugate of `x_ij(1)` has symbol `x_ij(z)` or `x_ij(z^(-1))`;
+comparing it with `x_ij(S)` or `x_ij(T)` leaves an element of
+`ker(mu)=L<=K`.  Conversely the original argument with the `S` or `T` root
+generates the constant Laurent root in the symbol and then uses the same
+kernel correction.
 
 The argument establishes only the marked-MF status of `K` and the generation
 identity after adjoining a raw root.  It does not transfer MF to `E` across

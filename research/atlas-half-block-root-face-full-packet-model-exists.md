@@ -32,5 +32,15 @@ atoms and satisfy the scalar Pauli signs `(HTF7)`.  The remaining search is
 whether the other roots can couple these noncommutative character fibers
 while satisfying the other packet entries.
 
+The next unused Cuntz--Krieger dual-pair triangles are now resolved by
+`atlas-ck-dual-pair-cell-leaves-one-partition-multiplicity`.  Every negative
+`D8` atom is a two-qubit Pauli block, and the CK partition `eE+fF=1` refines
+its multiplicity space into complementary `eE` and `fF` branches.  Crucially,
+that entire local subsystem admits every branch-size ratio exactly.  Thus the
+remaining full-packet question is narrower than arbitrary fiber coupling:
+some relation outside the local `(1,5,2)` CK cell must transport, compare, or
+eliminate those two multiplicity branches.  Repeating local Heisenberg or
+extraspecial rows cannot close `(HRM1)--(HRM3)`.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear

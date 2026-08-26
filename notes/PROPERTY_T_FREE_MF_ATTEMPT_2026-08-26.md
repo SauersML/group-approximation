@@ -209,6 +209,57 @@ retaining the head transvection.  Consequently the first possible square
 authentication must use a relation from the remaining Laurent-symbol
 elementary quotient rather than only finitary matrix units and one shift.
 
+The boundary has now been sharpened further.  If `K` is the preimage of the
+determinant-one monomial Laurent subgroup, then `K` is amenable and its
+**regular character** is MF; the head involution has a rounded negative cut
+of asymptotic normalized rank `1/2`.  Thus neither positive density nor the
+regular trace profile helps inside `K`.  Nevertheless
+
+```text
+<K,x_ij(1)>=EL_5(J),
+```
+
+so one constant nonmonomial elementary root is the exact generation seam.
+The first literal conjugation by the balanced Jacobson shift is triangular:
+it sends `x_2k(1)` to `x_1k(Q)x_2k(T)`, hence gives symmetric difference of
+two commuting spectral cuts.  The independent regular profile satisfies the
+resulting rank identity exactly; it is not a same-square Toeplitz arrow.
+
+Two further shortcuts are now closed.  Every elementary Laurent symbol has
+determinant one and hence total Toeplitz index zero; the balanced Whitehead
+lift explicitly cancels the `+1` and `-1` indices.  The ordinary `K_1` boundary
+therefore cannot detect the head.  Also the old untyped decoder formulation
+was equivalent to the target itself: arbitrary `X,Y,P,C` satisfying the
+terminal Toeplitz equations cannot exist.  The corrected OPEN decoder now
+requires fixed named group-word occurrences, a specified coordinate selector,
+and a dimension-independent modulus from their relator defects.
+
+Finally the finitary kernel is self-centralizing in `EL_5(J)`.  Its simplicity
+implies that every homomorphism retaining the head transvection is faithful.
+Accordingly a marked norm-corona countermodel is exactly an operator-MF
+embedding of the full elementary Jacobson group; there is no smaller marked
+quotient on which the remaining issue can be tested.
+
+Primary-source stable-rank and graph-`K`-theory inputs remove the Steinberg
+cover ambiguity as well.  The Toeplitz graph algebra `J` has Bass stable rank
+`2` and `K_2(J)=0`; unstable `K_2(5,J)` is already stable, so
+
+```text
+St_5(J)=EL_5(J).
+```
+
+The Laurent symbol quotient is residually finite.  Hence the MF radical of
+this group is contained in its simple finitary kernel and is exactly one of
+
+```text
+1,                    GL_fin(N x {1,...,5},F_2).
+```
+
+The first case is precisely operator-MF; the second is precisely head
+invisibility.  Thus the remaining theorem is a binary classification of one
+explicit group, not a statement about a cover or an unknown intermediate
+marked quotient.
+
 ## Additional route-level failures
 
 Several abstract transfers remain unavailable for exact quantifier reasons.

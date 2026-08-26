@@ -5,7 +5,6 @@ kind: route
 title: Intersect one root subgroup with its same-source and same-target neighbors
 target: atlas-root-triangle-is-heisenberg-character-fibers
 requires:
-  - atlas-first-root-relator-is-half-block-commutant-face
   - atlas-steinberg-rank-five-translation
 ---
 
