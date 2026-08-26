@@ -75,3 +75,25 @@ is finite.  The packet contains the literal nontrivial head root
 `w=x_13(Q)`, so the inclusion `H_N<=E` and its finite regular representation
 give the advertised exact marked model.  This proves the fence without any
 Property `(T)` input.
+
+For the full-packet quotient `(JB6)`, use the explicit overlap
+
+```text
+K={(g,1):g acts on <e_1,e_3> and fixes e_2}
+```
+
+from `binary-jacobson-one-step-finite-type-envelope-is-marked-mf`.  Project
+`F=G_Q x G_P` onto `G_Q`, embed it in `GL_4(F_2)` fixing `e_4`, and put
+`h=w_24`.  This involution commutes with the image of `K`.  Therefore the
+maps on the two vertex groups agree on the amalgam.  Since `r=w_23`, the
+product `hr=w_24w_23` is a three-cycle, proving the braid relation.  The map
+retains `w=x_13(Q)` as `x_13(1)`.
+
+Finally the three conjugates of `a=hu` in this quotient are
+
+```text
+w_24 w_12,       w_34 w_23,       w_14 w_31.
+```
+
+Their cyclic product is `w_14 w_23`.  The controlled-swap relation would
+require `w_23`, so the residual `w_14` proves the last comparison.

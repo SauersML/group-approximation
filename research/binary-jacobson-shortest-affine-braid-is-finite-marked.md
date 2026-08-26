@@ -56,6 +56,19 @@ is finite and retains `w!=1`.  Hence it has an exact faithful finite-dimensional
 unitary model containing the affine braid, the nonzero head cut and the
 complete degree-`2^N` Clifford packet.
 
+The fence remains valid after adjoining the **entire** finite packet `F`.
+There is a finite marked quotient
+
+```text
+(Gamma_F/<normal closure of (hr)^3>) -> GL_4(F_2)        (JB6)
+```
+
+which projects `F=G_Q x G_P` to its head factor, embeds that `GL_3(F_2)` on
+coordinates `1,2,3`, and sends `h` to the coordinate swap `w_24`.  The
+overlap `K` acts only on coordinates `1,3`, so `w_24` centralizes it; and
+`r=w_23`, so `w_24 w_23` has order three.  The head transvection `w=x_13(Q)`
+maps to the nonidentity transvection `x_13(1)`.
+
 Consequently a common degree-two-to-degree-four PI return cannot be a formal
 consequence of `(JB3)` and any fixed finitary packet.  Although the braid
 authenticates two literal word paths, both are unitaries in one finite `S_3`
@@ -63,6 +76,14 @@ actor and preserve packet degree.  A load-bearing Jacobson occurrence must
 combine a shortest relator with another independent raw incidence whose orbit
 is not contained in a fixed finite part of the finitary kernel, or must use a
 joint compression not forced by the affine braid alone.
+
+The two minimum cells are complementary.  In the quotient `(JB6)`, the
+three-cyclic controlled-swap product of
+`binary-jacobson-first-mixed-kernel-is-three-syllable` evaluates to
+`w_14 w_23`, rather than its required value `w_23`.  Conversely that node's
+retraction onto `F` does not satisfy `(hr)^3=1`.  Thus each shortest cell
+separately has a full-packet marked finite model, while their joint quotient
+is the first finite-holonomy package not decided by either retraction.
 
 DERIVATION
 binary-jacobson-shortest-affine-braid-proof

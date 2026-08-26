@@ -107,6 +107,16 @@ macroscopic nontrivial character supplied by any surviving corona
 representation.  No simplicity assertion for the Steinberg central cover is
 used.
 
+The positive-density conclusion of that reduction is not itself a character
+transport theorem.  `macroscopic-mark-core-does-not-control-character-transport`
+compresses the moving-label lamp model to a three-dimensional active carrier
+on which the fixed mark has trace `2/3` and two conjugate marked supports join
+to the identity, while the coordinate character-PVM leakage is still exactly
+one.  Thus active-core reblocking removes sparse rank but not moving labels.
+The literal Leavitt proof must consume additional normal-generation
+**occurrences** to choose a globally compatible lift; the numerical rank and
+support-covering consequences alone do not close the character route.
+
 The proposed route is intrinsic to norm matrix coronas.  A surviving root
 has exact finite additive and Heisenberg multiplicity germs.  The remaining
 step is to assemble those germs into one nonzero finitely generated

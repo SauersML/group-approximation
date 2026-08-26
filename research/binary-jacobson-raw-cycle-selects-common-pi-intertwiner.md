@@ -85,6 +85,57 @@ The live seam is consequently a joint raw-range/opposite-root polar or
 another genuinely S/T-bearing closing incidence, not a central phase or a
 constant `S_3` correction.
 
+Both sides of the desired PI bridge are now literal on that raw range.
+`binary-jacobson-positive-tail-fold-is-a-literal-degree-two-tuple` identifies
+the folded source as the compressed named tuple
+
+```text
+(x_12(S^2),0,x_14(SQ),x_43(1)),
+```
+
+while the untransported native words still give `M_4` on the same projection.
+Moreover `binary-jacobson-first-alternating-ts-closure-relation` supplies an
+explicit nontrivial kernel word beyond the one-step envelope:
+
+```text
+[[h x_13(ST) h,x_31(1)],h x_23(1) h]=x_23(1).
+```
+
+Its inner commutator is the literal root `x_21(T)`, which detects the source
+coefficient `SQ` by `TSQ=Q`.  The remaining test is now concrete: determine
+the support and covariance rows of the polar of its compression to the
+positive raw range.  No search for an unspecified alternating relation or
+an unspecified source tuple remains.
+
+That first polar test is now negative in the sharpest possible form.
+`binary-jacobson-first-alternating-polar-is-half-supported` proves that
+
+```text
+F_+ x_21(T) F_+
+```
+
+is already a partial isometry, but both of its supports lie in the positive
+`x_23(1)` cut, which has exactly half the rank of `F_+`.  It can never be the
+coisometry in `(JPI1)`.  A continuation must authenticate the complementary
+`x_23(1)=-1` occurrence and identify its covariance with the same literal
+target rows, or abandon this polar for a different alternating square return.
+
+The obvious native completion is also fully audited.
+`binary-jacobson-native-v4-polar-orbit-leaves-one-residual` conjugates the
+seed polar by `x_12(Q)` and `x_12(1)`.  The four occurrences fill the entire
+`x_13(1)=+1` part of the raw range, but on the negative constant-root cut
+they cover only the two sectors with `x_23(1)x_23(Q)=+1`.  The exact missing
+projection is
+
+```text
+e_res=F_+ (1-x_13(1))(1-x_23(1)x_23(Q))/4.
+```
+
+The constant opposite root does not normalize `F_+`, so only the joint
+compression `e_res x_31(1)e_res` (or an S/T-bearing conjugate) remains as a
+candidate complementary polar.  Merely summing the four native conjugates
+cannot produce the common coisometry.
+
 The exact fences make the load-bearing package sharp.  Constant and
 `Q`-labelled roots alone lie in the finite marked envelope of
 `binary-jacobson-constant-q-root-envelope-is-finite`.  All finitary Clifford
@@ -111,6 +162,10 @@ head-controlled swap, and that no nontrivial kernel word uses fewer than
 three balanced syllables.  The remaining issue is therefore sharply beyond
 word discovery: one must extract from this three-cell mixed holonomy (or a
 further relation involving it) the common PI intertwining rows in `(JPI1)`.
+In fact the quotient by this first relator still retracts onto the full finite
+packet with the head mark nontrivial.  Hence a successful return must couple
+the controlled-swap cell to a further occurrence which breaks that explicit
+head/tail retraction.
 
 There is also a shorter-looking representative at the same optimal syllable
 length, and it is exactly fenced.
@@ -127,6 +182,14 @@ with the head visible.  Thus the first affine braid authenticates only
 degree-preserving finite holonomy.  A successful return has to combine a
 shortest relation with an additional independent raw incidence or a joint
 compression not implied by either shortest relation alone.
+
+The braid fence now includes the entire finite packet: projection to the
+head factor followed by `GL_3(2)<=GL_4(2)`, with `h=w_24`, is a marked finite
+model of the braid quotient.  That model fails the cyclic controlled-swap
+cell by exactly the residual Weyl factor `w_14`; the controlled-swap
+retraction, in the other direction, fails the braid.  Their **joint** quotient
+is therefore the first finite-holonomy package not covered by either explicit
+marked model.
 
 No carrier-density theorem is requested.  If `(JPI1)` holds on even a
 rank-one nonzero `P`, `opnorm-common-intertwiner-pi-gap-is-sparse-terminal`
