@@ -241,6 +241,29 @@ noncomputable def slimGenSub (m : ℕ) (B : Set E) :
     Subgroup (Cent3 (rowOut m)) :=
   Subgroup.closure (slimGenCode m '' (B ∩ blockSet m))
 
+/-- The second-copy embedding is injective, detected by `genProjection3`. -/
+theorem genHom_injective (m : ℕ) :
+    Function.Injective (genHom (rowOut m)) := by
+  intro x y hxy
+  have h := congrArg (genProjection3 m) hxy
+  rwa [← MonoidHom.comp_apply, ← MonoidHom.comp_apply,
+    genProjection3_comp_genHom, MonoidHom.id_apply, MonoidHom.id_apply] at h
+
+/-- The selected first-stage `g`-subgroup is literally the image of the
+corresponding conjugate subgroup of `F₃`. -/
+theorem slimGenSub_eq_map_ASub (m : ℕ) (B : Set E) :
+    slimGenSub m B =
+      (ASub (B ∩ blockSet m)).map (genHom (rowOut m)) := by
+  unfold slimGenSub ASub slimGenCode
+  rw [MonoidHom.map_closure]
+  congr 1
+  ext x
+  constructor
+  · rintro ⟨β, hβ, rfl⟩
+    exact ⟨aElt β, ⟨β, hβ, rfl⟩, rfl⟩
+  · rintro ⟨y, ⟨β, hβ, rfl⟩, rfl⟩
+    exact ⟨β, hβ, rfl⟩
+
 @[simp] theorem genProjection3_slimGenCode (m : ℕ) (β : E) :
     genProjection3 m (slimGenCode m β) = aElt β := by
   unfold slimGenCode
