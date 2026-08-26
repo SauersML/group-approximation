@@ -326,24 +326,15 @@ $\Rad_{\mathrm{MF}}(G)=G$.
 We sketch the argument.  Corollary~\ref{cor:defect-hs} gives
 $\mathfrak D_G(L)\le R_{\infty\to2}(G)$.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedDefectShadow}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectShadowInclusion}
-Equivalently, if $(V_n)$ is any
-operator norm asymptotic representation of $G$, then
-$\hsnorm{V_n(d)-1}\to0$ for every $d\in\mathfrak D_G(L)$.  To upgrade this
-conclusion to corona triviality on $K$, fix a homomorphism
-$\Theta\colon G\to\U(\mathcal Q_{\mathbf d})$ and suppose, toward a
-contradiction, that $\Theta$ is nontrivial on $K$.  Let $p$ be the image in
-$\mathcal Q_{\mathbf d}$ of the Kazhdan projection of $K$.  Because
-$K\trianglelefteq G$, the projection $p$ commutes with $\Theta(G)$; hence
-$q=1-p$ defines a $G$-invariant complementary corner.
-After restricting coordinates and identifying each nonzero corner with a
-full matrix algebra, Lemma~\ref{lem:central-corona-corner} realizes this
-action by an operator norm asymptotic representation
-$W_n\colon G\to\U(r_n)$.  Its restriction to $K$ has no nonzero fixed
-vectors, so the Kazhdan inequality yields a single $s_0\in K$ and a
-subsequence along which $\hsnorm{W_n(s_0)-I_{r_n}}$ stays bounded below by a
-positive constant.  This
-contradicts $s_0\in K\le\mathfrak D_G(L)$ and the preceding convergence.
-Thus every corona homomorphism kills $K$, as required.
+That is, every operator norm asymptotic representation of $G$ is
+asymptotically trivial on $\mathfrak D_G(L)$ in normalized
+Hilbert--Schmidt norm.  If a corona homomorphism were nontrivial on $K$,
+the Kazhdan projection of $K$ would cut out a $G$-invariant corner on
+which $K$ has no nonzero fixed vectors
+(Lemma~\ref{lem:central-corona-corner}); by the Kazhdan inequality some
+$s_0\in K$ would then stay bounded away from the identity in normalized
+Hilbert--Schmidt norm along a subsequence, contradicting
+$s_0\in\mathfrak D_G(L)$.
 
 Theorem~\ref{thm:commutant} gives a separate finite-dimensional vanishing
 result: every finite-dimensional linear representation of $G$ over any field
