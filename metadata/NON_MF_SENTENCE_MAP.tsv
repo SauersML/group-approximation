@@ -502,3 +502,22 @@ bbf9fb702b83	definition	GroupApproximation.MFRecognitionSecondLevel.MFCode Group
 d9548590d33a	definition		Names the generators and relators of the code P
 48c460e1177d	structural		Hypothesis-introducing sentence of the forward direction
 1648e5a783fe	structural		Hypothesis-introducing sentence of the converse direction
+
+# Section sec:hnn (HNN extensions with a corona conjugator), added 2026-08-26.
+# Theorem thm:hnn-permanence, Lemma lem:rf-regular and Corollary
+# cor:central-hnn are printed with complete paper proofs; their proof
+# sentences are owed Lean carriers and are left unassigned deliberately.
+19733b65e67d	structural		Section opener; says what the theorem is for
+09a46d2f0990	structural		Section opener; asserts nothing
+fca1ca5d4221	structural		Section opener; motivates the regular trace, asserts nothing
+8ce427b9bc5d	definition		Defines a regular realization (A, rho, tau)
+d2d6f8c60b94	definition		Fixes G, S, theta for the HNN extension
+e16e647b7b7d	structural		Introduces the displayed presentation, asserts nothing
+f216646fc6fe	structural		Proof plan; asserts nothing
+7e099a6b3bb3	structural		Announces the map-back argument, asserts nothing
+e8737d4642b6	definition		Names the matrix units of A_1 and A_2
+19154a5424fc	definition		Notation for images in U
+81664733eb86	definition		Defines the homomorphism j on generators
+6d9352c489f5	structural		Commentary on the proof; asserts nothing beyond what the proof proves
+3b83399f4275	structural		Commentary on where faithfulness and approximation come from
+48be2fcced39	structural		Commentary; asserts nothing

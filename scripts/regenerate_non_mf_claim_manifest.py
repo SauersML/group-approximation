@@ -111,6 +111,11 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
         "Abrams--Aranda Pino, Proposition 10(v), through the preceding "
         "two-sided sandwich fact",),
     "lem:local-models": (),
+    "lem:rf-regular": (),
+    "thm:hnn-permanence": (
+        "Shulman, Theorem 16 (the amalgam criterion for MF)",
+        "Britton's lemma",),
+    "cor:central-hnn": (),
 }
 
 
@@ -151,6 +156,9 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:universal-factorization": [],
     "lem:local-models": [],
     "prop:mf-upper-bound": ["lem:local-models"],
+    "lem:rf-regular": [],
+    "thm:hnn-permanence": [],
+    "cor:central-hnn": ["thm:hnn-permanence"],
 }
 
 

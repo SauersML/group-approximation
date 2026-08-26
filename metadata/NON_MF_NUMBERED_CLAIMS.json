@@ -483,6 +483,50 @@
           "covers": "a printed conclusion of the proposition"
         }
       ]
+    },
+    {
+      "id": "lem:rf-regular",
+      "environment": "lemma",
+      "title": "residually finite groups are regularly realized",
+      "statement_sha256": "53155bab3a9116acb4edc58437c9886753320c04bb488dbaa4266bc69bb720bb",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "thm:hnn-permanence",
+      "environment": "theorem",
+      "title": "HNN permanence with a corona conjugator",
+      "statement_sha256": "fe3557826e48a6b2a22d15318430bc82994e4425a757c9aa5f06d5b5de9d0993",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Shulman, Theorem 16 (the amalgam criterion for MF)",
+        "Britton's lemma"
+      ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "cor:central-hnn",
+      "environment": "corollary",
+      "title": "central HNN extensions",
+      "statement_sha256": "41a62ec497ba59fc44fb2fa12764f85145c5a35e3845c2fa9101d69eaa05be89",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "thm:hnn-permanence"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
     }
   ]
 }
