@@ -18,11 +18,9 @@ together with soficity, finite generation, the failure of MF, and the
 coincidence of four radicals.  `Aₙ` is then one member of that family rather
 than the definition of it.
 
-The fifth (Bohr) column is stated separately and *conditionally*: it takes the
-single classical input `PeterWeyl.SeparatesPoints` as a genuine leading
-hypothesis, so that the conditionality is visible to the audit's binder check
-rather than hidden inside a named proposition.  Nothing else in this file
-depends on it.
+The fifth (Bohr) column is stated parametrically in the Peter--Weyl point
+separation theorem.  `Analysis/PeterWeylSeparation` now supplies that theorem
+unconditionally for the manuscript-facing specialization.
 -/
 
 namespace GroupApproximation
@@ -210,17 +208,11 @@ theorem precomp_bijective_profinite (hK : commutator K = ⊤)
   rw [(four_radicals_eq_lampSub K hK).2.2.1] at hfinite
   simpa only [lampSub, ker_rightHom_eq_lampRange] using hfinite
 
-/-! ## The fifth column, conditionally
-
-`PeterWeyl.SeparatesPoints` enters as a genuine leading hypothesis, not as a
-clause inside a named proposition.  That is deliberate: the audit's binder check
-must be able to see that this statement, unlike every other one in the package,
-is not closed. -/
+/-! ## The fifth column from Peter--Weyl separation -/
 
 /-- **Five radicals, given the separation core of Peter--Weyl.**  The Bohr
-kernel joins the other four exactly when finite-dimensional unitary
-representations separate the points of a compact group.  That input is isolated
-and is proved nowhere in this development. -/
+kernel joins the other four when finite-dimensional representations separate
+the points of a compact group. -/
 theorem five_radicals_eq_lampSub_of_separatesPoints
     (hPW : PeterWeyl.SeparatesPoints.{0}) (hK : commutator K = ⊤) :
     actualCoronaMFResidual (WFin K) = lampSub K ∧
