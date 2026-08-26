@@ -34,15 +34,22 @@ Consequently no first new plane is available for any odd `p>=7`, while
 the prime-three and prime-five closures are precisely the already proved
 exceptional cases.
 
-For comparison, naïvely iterating the fractional-linear expression would
-give
+For comparison, direct Möbius iteration is strictly stronger than the
+proved rule.  For `p!=3`, put
 
 ```text
-1/T(B)=1/(4B)-1,
-T^n(-1)=3*4^n/(1-4^(n+1))                              (SPTSP3)
+z(B)=4B/(4B+3).
 ```
 
-projectively.  That orbit has length governed by `ord_p(4)` and includes
-the point at infinity; it is not the logical propagation relation supplied
-by `Y`.  Formula `(SPTSP3)` therefore cannot be used to bypass the missing
-known endpoint.
+Then direct substitution gives
+
+```text
+z(T(B))=4z(B),
+T^n(-1)=3*4^n/(1-4^(n+1)).                             (SPTSP3)
+```
+
+The fixed points are `0` and `-3/4`, corresponding to `z=0,infinity`,
+while `z(-1)=4`.  Thus the direct orbit has exactly `ord_p(4)` elements
+and never reaches the nonzero fixed plane `-3/4`.  It is not the logical
+propagation relation supplied by `Y`, and even this stronger, unjustified
+orbit would not kill every nonzero plane.

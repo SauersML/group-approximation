@@ -20,12 +20,12 @@ The initial zero set is now substantially larger than the three families:
 `steinberg-zero-marginal-kills-b-minus-one-plane` kills the full plane
 `b=-1` for every odd prime.  Its projective plane-transfer reaches every
 nonzero `b` at `p=3,5`, proving the claim at those primes.  The uniform
-problem is reduced further to connectivity of the transfer graph on the
-remaining `b`-planes, possibly after adjoining one additional recurrence
-move.
+problem is not merely an uncomputed orbit question:
+`steinberg-plane-transfer-stalls-at-large-primes` proves that
+the current transfer is a conditioned two-of-three rule and cannot make
+its first move from the sole full-plane seed `b=-1` for any `p>=7`.
+One more full-plane seed, a direct transfer, or a lemma upgrading one of
+the two additional zero lines to a full plane is required.
 
-The existing move alone is insufficient at large primes:
-`steinberg-plane-transfer-stalls-at-large-primes` shows that its two
-candidate planes are both unknown when one starts from `b=-1` and
-`p>=7`.  This is a scoped refutation of single-transfer iteration, not of
-the present claim.
+This is a scoped refutation of single-transfer iteration, not of the
+present claim.

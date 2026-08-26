@@ -12,20 +12,22 @@ distinct_from:
   steinberg-three-zero-families-propagate-all-chords: this refutes only iteration of the one known plane-transfer relation, not propagation using another recurrence move.
 ---
 
-**ESTABLISHED FIREWALL.**  Let `Z` be the set of already-proved zero
-`b`-planes.  The transfer from a known plane `B` relates the two new
-candidates
+**ESTABLISHED FIREWALL.**  Write `Z(B)` for vanishing on the full
+`b=B` plane.  The transfer from a known plane is the conditioned rule
 
 ```text
-x=4B,                  x/(1-x)=4B/(1-4B).             (SPTS1)
+Z(B) ==> (Z(4B) iff Z(4B/(1-4B))),                    (SPTS1)
 ```
 
-It proves one candidate only when the other is already in `Z`; the
+with a separate exceptional conclusion when `4B=1`.  It proves one
+candidate only when the other is already known; the
 Möbius expression is not a freely iterable map on known planes.  Starting
-with the uniform plane `Z={-1}`, the first relation has an already-known
+with the uniform seed `Z(-1)`, the first relation has an already-known
 endpoint only for `p=3`, while the exceptional `x=1` branch occurs only
 for `p=5`.  Hence at every odd prime `p>=7` this closure procedure stalls
-immediately at `Z={-1}`.  A second independent plane or another transfer
+immediately.  Even the unjustified direct Möbius orbit has length
+`ord_p(4)` and misses the nonzero fixed plane `-3/4`.  A second independent
+plane or another transfer
 move is necessary for a uniform proof.
 
 DERIVATION

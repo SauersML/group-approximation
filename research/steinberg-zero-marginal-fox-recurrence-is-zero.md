@@ -62,13 +62,14 @@ prime that the entire affine plane `b=-1` vanishes, and supplies two further
 zero lines.  The associated projective plane-transfer closes the recurrence
 at the next odd prime as well: `steinberg-zero-plane-transfer-closes-p-five`
 propagates the initial plane through every nonzero `b` in `F_5`, after which
-the marginals kill the remaining chords.  For general `p`, the open task is
-to understand the components of that plane-transfer graph or supply another
-transfer joining them.
+the marginals kill the remaining chords.  For general `p`,
+`steinberg-plane-transfer-stalls-at-large-primes` sharpens the
+remaining obstruction: the proved transfer only identifies the two other
+planes in a triple once the first is zero, and from the uniform seed
+`b=-1` it has no first move for `p>=7`.  The next step must supply a second
+full-plane seed, a genuinely direct transfer, or an upgrade of one of the
+known zero lines; computing the orbit of the displayed Mobius map alone
+cannot close the proof.
 
-The one-transfer connectivity hope is now itself fenced:
-`steinberg-plane-transfer-stalls-at-large-primes` proves that the relation
-equates two candidate planes and cannot be freely iterated from `B=-1`.
-For every `p>=7` neither candidate is initially known, so no first new
-plane is obtained.  Uniform propagation therefore requires a second seed
-plane or another independent recurrence move.
+The same firewall also checks that even the stronger, unjustified direct
+Mobius orbit misses the nonzero fixed plane `b=-3/4`.
