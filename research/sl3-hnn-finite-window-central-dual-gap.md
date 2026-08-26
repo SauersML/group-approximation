@@ -81,6 +81,38 @@ a finite mixed Britton window.  If the coset action
   one instead of its canonical value zero.  Hence every counterexample to
   `(FDG3)` is uniformly noncorrectable already at the actor level; bounded
   congruence depth and exact finite-action atlases are completely absent.
+- **The same word gives the exact noncorrectability modulus.**
+  `one-britton-moment-forces-uniform-actor-noncorrectability` keeps the
+  distance `zeta` from the finite actor packet to every exact
+  same-dimensional representation and proves
+
+  ```text
+  zeta >=
+   [sqrt(2(1-delta_B))-(2sqrt(|S|)/kappa)delta_C]_+
+   /(2+4sqrt(|S|)/kappa).
+  ```
+
+  Put
+
+  ```text
+  c_*=sqrt(2)/(2+4sqrt(|S|)/kappa).
+  ```
+
+  After shrinking `delta` and including `[t,h]` in `W`, every tuple admitted
+  by `(FDG1)--(FDG2)` has `zeta>=c_*/2`.  Consequently the exact remaining
+  finite inequality is `(FDG3)` restricted to the closed quantitative
+  outlier stratum
+
+  ```text
+  dist_(2,S union {h})(actor, exact Gamma representations)>=c_*/2.  (FDG-out)
+  ```
+
+  This restriction is equivalent to the full finite-window claim: the
+  one-Britton theorem puts every sufficiently accurate admissible tuple in
+  `(FDG-out)`, while the converse restriction is immediate.  Thus what
+  remains is an inequality charging the bounded separator on an already
+  quantified actor outlier, not another proof that the actor is far from
+  exact.
 - **Universal lifting is unavailable.**  Replacing the selected finite
   window by LP of the lattice generator system would imply LLP of
   `C^*(SL_3(Z))`, contradicted by `sl3-generator-system-has-no-universal-lp`.
