@@ -35,3 +35,14 @@ rank-one projective weight module.  Thus any nonconstant weighted packet,
 together with the constant equations, recovers every pointwise slice rather
 than a smaller closed frequency subsystem.  The pointwise system remains
 live; the small-weighted-transform shortcut does not.
+
+The first exceptional pointwise orbit is now understood exactly, and it
+does not close the claim by itself.  The firewall
+`steinberg-y-anchor-leaves-one-boundary-mode` shows that `Y` forces the
+fiber `f(-1/4,0,t)` to one scalar `kappa` on `t!=0`, with
+`P(-1/4,0)=-kappa`, while its `t=0` value is zero.  Both obvious remaining
+`Y` equations are identities.  Applying `X` exports `kappa` into a coupled
+`q`-difference and transverse `s`-difference cascade rather than killing
+it locally.  Thus the live marginal problem is to control those transverse
+branches using the full two-row pointwise system; further iteration of the
+single exceptional projective orbit is insufficient.

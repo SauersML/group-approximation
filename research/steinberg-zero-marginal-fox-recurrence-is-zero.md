@@ -54,5 +54,21 @@ Using both rows gives more concrete progress:
 At the first odd prime this propagation now closes completely:
 `steinberg-zero-marginal-recurrence-is-zero-at-p-three` uses
 `-1/4=1/2` in `F_3`, the source identities, and the plane marginal to kill
-all three `a`-fibers.  The uniform claim still needs a mechanism replacing
-that characteristic-three coincidence.
+all three `a`-fibers.
+
+There is now also uniform plane-scale progress:
+`steinberg-zero-marginal-kills-b-minus-one-plane` proves for every odd
+prime that the entire affine plane `b=-1` vanishes, and supplies two further
+zero lines.  The associated projective plane-transfer closes the recurrence
+at the next odd prime as well: `steinberg-zero-plane-transfer-closes-p-five`
+propagates the initial plane through every nonzero `b` in `F_5`, after which
+the marginals kill the remaining chords.  For general `p`, the open task is
+to understand the components of that plane-transfer graph or supply another
+transfer joining them.
+
+The one-transfer connectivity hope is now itself fenced:
+`steinberg-plane-transfer-stalls-at-large-primes` proves that the relation
+equates two candidate planes and cannot be freely iterated from `B=-1`.
+For every `p>=7` neither candidate is initially known, so no first new
+plane is obtained.  Uniform propagation therefore requires a second seed
+plane or another independent recurrence move.

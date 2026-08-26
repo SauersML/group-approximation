@@ -15,3 +15,17 @@ order in which each recurrence has at most one unknown predecessor,
 including the exceptional denominators.  A proof closes the second half of
 the marginal split; a counterexample would be an explicit residual
 circulation satisfying both rows.
+
+The initial zero set is now substantially larger than the three families:
+`steinberg-zero-marginal-kills-b-minus-one-plane` kills the full plane
+`b=-1` for every odd prime.  Its projective plane-transfer reaches every
+nonzero `b` at `p=3,5`, proving the claim at those primes.  The uniform
+problem is reduced further to connectivity of the transfer graph on the
+remaining `b`-planes, possibly after adjoining one additional recurrence
+move.
+
+The existing move alone is insufficient at large primes:
+`steinberg-plane-transfer-stalls-at-large-primes` shows that its two
+candidate planes are both unknown when one starts from `b=-1` and
+`p>=7`.  This is a scoped refutation of single-transfer iteration, not of
+the present claim.
