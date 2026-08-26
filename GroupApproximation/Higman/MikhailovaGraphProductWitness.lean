@@ -50,8 +50,7 @@ theorem graphCutting_comap_eq_kernel {P : Type} [Group P]
   ext f
   constructor
   · intro hf
-    obtain ⟨g, hg⟩ := Subgroup.mem_comap.mp hf
-    obtain ⟨x, hx⟩ := hg
+    obtain ⟨x, hx⟩ := Subgroup.mem_comap.mp hf
     have hx1 : x = f := congrArg Prod.fst hx
     have hx2 : q x = 1 := congrArg Prod.snd hx
     rw [hx1] at hx2
