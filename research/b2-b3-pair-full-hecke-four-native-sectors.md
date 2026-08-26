@@ -9,6 +9,7 @@ distinct_from:
   b2-pairs-full-hecke-first-support: that uses B2 alone to split the first native r sign exactly in half; this adds the B3 flip of the second native t sign and proves that the two actual compression supports meet in exactly one quarter of Q.
   native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that obtains only a one-third lower bound for the second support on the coarser p2 source and leaves the first sign free; this obtains sharp one-half marginals and a sharp one-quarter joint sector on the finer actual source Q.
   full-moving-hecke-packet-retains-q-kernel-profile: that proves the endpoint compression QWQ can vanish; this concerns the internal joint r,t decomposition of Q and is compatible with W carrying Q orthogonally outside itself.
+  full-q-native-quarter-source-has-distinct-literal-ranges: that shows the two literal Whitehead images of the common quarter source need not be the same range projection; this claim establishes only the common source and its exact rank.
   full-hecke-quarter-source-equalizes-selector-ranks: that inserts these sharp ranks into the affine selector formula and proves that normalization on Q changes the two source fractions to one half and one half; this establishes only the four-sector geometry.
 ---
 
