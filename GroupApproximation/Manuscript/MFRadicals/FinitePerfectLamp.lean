@@ -1,3 +1,4 @@
+import GroupApproximation.Analysis.PeterWeylSeparation
 import GroupApproximation.Sofic.FinitePerfectLampExactRadical
 
 /-!
@@ -12,16 +13,12 @@ quantifies over the lamp group instead: for every nontrivial finite perfect `K`,
 with the member sofic, finitely generated and not MF, and with four radicals
 coinciding.  `Aₙ` is one member of this family.
 
-## The fifth column is the one conditional row
+## The fifth column
 
-`manuscriptFinitePerfectLampFiveRadicals` takes `PeterWeyl.SeparatesPoints` as a
-**leading hypothesis** rather than folding it into a named proposition.  That is
-deliberate.  Folding it in would make the statement pass
-`#audit_closed_axioms` — the gate does not unfold named propositions — and it
-would then read exactly like the closed rows beside it.  Keeping the binder in
-front means the gate rejects it, `Endpoint/MFRadicalPaperAudit` prints it with
-the weaker macro, and the ledger records it as `conditional`.  It is the only
-row of the package in that state, and nothing else depends on it.
+The Peter--Weyl separation theorem is supplied by
+`Analysis/PeterWeylSeparation`, which translates the vendored Tau Ceti density
+theorem into the matrix-valued formulation used by the radical calculus.
+Consequently the fifth radical is now included without an external hypothesis.
 -/
 
 namespace GroupApproximation
@@ -44,8 +41,7 @@ def FinitePerfectLampFamily : Prop :=
 theorem manuscriptFinitePerfectLampFamily : FinitePerfectLampFamily :=
   fun K _ _ _ hK => finitePerfectPackage K hK
 
-/-- The five-radical conclusion, as a closed proposition.  It is *not* proved
-unconditionally anywhere; see the theorem below. -/
+/-- The five-radical conclusion, as a closed proposition. -/
 def FinitePerfectLampFiveRadicals : Prop :=
   ∀ (K : Type) [Group K] [Finite K], commutator K = ⊤ →
     actualCoronaMFResidual (WFin K) = lampSub K ∧
@@ -54,12 +50,11 @@ def FinitePerfectLampFiveRadicals : Prop :=
           linearResidual (WFin K) = lampSub K ∧
             PeterWeyl.bohrResidual (WFin K) = lampSub K
 
-/-- **The fifth column, conditional on Peter--Weyl.**  The hypothesis is a
-leading binder on purpose: this is the one statement of the package that is not
-closed, and the audit's binder check is what says so. -/
-theorem manuscriptFinitePerfectLampFiveRadicals
-    (hPW : PeterWeyl.SeparatesPoints.{0}) : FinitePerfectLampFiveRadicals :=
-  fun K _ _ hK => five_radicals_eq_lampSub_of_separatesPoints K hPW hK
+/-- **The fifth column, unconditionally.** -/
+theorem manuscriptFinitePerfectLampFiveRadicals :
+    FinitePerfectLampFiveRadicals :=
+  fun K _ _ hK => five_radicals_eq_lampSub_of_separatesPoints K
+    PeterWeyl.separatesPoints hK
 
 end MFRadicals
 end Manuscript
