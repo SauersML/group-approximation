@@ -50,6 +50,26 @@ Whiteheads on a longer star fix the all-positive atom in the remaining
 `Z` signs, so `(HSW2)` restricts without leakage to the literal quarter
 source, and also to the eighth source after adjoining the next cell.
 
+There is a useful exact typing consequence.  If
+
+```text
+Q_i=E(1+Z_i)(1+Z_(i+1))/4,
+```
+
+then the adjacent-swap label of `U_i` is the identity on `Q_i`: both swapped
+qubits are in their positive `Z` state.  In the marked-star Pauli
+decomposition,
+
+```text
+U_i|_(Q_iH)=I_(label(Q_i)) tensor V_i.                 (HSW3')
+```
+
+Thus the actual corrected Whitehead itself is an identity-outer occurrence
+of its braided gauge on the quarter atom, and on every deeper all-positive
+atom contained in it.  This does not yet compare that occurrence to the
+head polar on an opposite atom, but it removes any ambiguity about the
+gauge carried by the fixed positive atom.
+
 The identity still does not isolate the desired corrected-Whitehead gauge.
 The prefix root `X_i=H_i^2` does not normalize the fixed anchored Pauli
 packet.  It sends
@@ -65,7 +85,8 @@ similarly transports between the anchored and forked charts.  Hence the
 three stages in `(HSW2)` are a closed groupoid loop on the fixed `Z` atom,
 not three copies of one operator in a fixed full-Pauli chart.
 
-After choosing charts, the reservoir equation has the form
+Outside the fixed positive atom, after choosing charts, the reservoir
+equation has the form
 
 ```text
 (D_(X_i)D_(U_i))_2 (D_(X_i)D_(U_i))_1
@@ -74,15 +95,29 @@ After choosing charts, the reservoir equation has the form
 
 with transition conjugacies between stages.  It does not imply
 `D_(U_i)=1`, nor identify `D_(U_i)` with the cumulative asymmetric-head
-holonomy.  A finite moving-chart `S_3` model permits a nontrivial
-involutive corrected-Whitehead gauge while the product around `(HSW5)` is
-the prescribed outer-Weyl transition.
+holonomy.  This is not repaired by imposing the complete finite relations
+of the constant outer `SL_3(F_2)`.  The exact model in
+`constant-outer-weyls-retain-an-sl3-spectator-on-the-deep-star` tensors the
+moving-chart packet by the regular outer module.  On the same positive deep
+atom, both `D_(L_i)` and the corresponding `D_(U_i)` are nontrivial
+involutions in 28 regular `S_3` copies, while the product around `(HSW5)` is
+still exactly the prescribed outer-Weyl transition.
 
 Thus `(HSW2)` is an explicit odd return that genuinely preserves the
-quarter/eighth star flag.  The remaining seam is smaller than
-a support-return problem: one additional cross-chart occurrence must
-identify the forked arm `F_i` with the anchored arm in the same reservoir
-frame, or provide an identity-outer copy of either `D_(X_i)` or `D_(L_i)`.
+quarter/eighth star flag, and `(HSW3')` exposes the braided gauge there as
+identity-outer.  The remaining seam is smaller than a support-return
+problem: one additional cross-chart occurrence must compare the head polar
+on its opposite atom with this fixed positive atom, or identify the forked
+arm `F_i` with the anchored arm in the same reservoir frame.
+
+The direct branch-flip continuation is fenced by
+`branch-flip-leaves-head-square-star-seam`.  The full flip on the outer
+indices moves the q-star centers, while the full flip on the middle indices
+changes the forked arm to the wrong Pauli type.  A q-fixed corner
+localization does give the literal same-carrier conjugacy `F_i -> A_i`, but
+its quotient with `L_i` is a nontrivial identity-label involution on the
+reservoir in an exact finite model.  Thus a second transporter is not yet
+the required same-frame identification.
 
 The identities are asserted in the elementary image.  Using their written
 lifts in the unquotiented Steinberg group still requires the usual central

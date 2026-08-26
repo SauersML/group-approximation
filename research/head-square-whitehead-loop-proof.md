@@ -52,6 +52,12 @@ gives `(HSW3)`.  Both output signs are positive on the all-positive atom,
 which proves zero leakage for every nested positive source flag containing
 this adjacent pair.
 
+In the Pauli tensor decomposition, `U_i=SWAP_(i,i+1) tensor V_i`.  The
+label swap fixes pointwise the joint positive eigenspace of
+`Z_i,Z_(i+1)` and acts trivially on all other label qubits.  Compressing to
+that eigenspace proves `(HSW3')` with the same named reservoir involution
+`V_i`, not a newly chosen chart gauge.
+
 Finally `X_i` fixes `A_i`, while
 
 ```text
