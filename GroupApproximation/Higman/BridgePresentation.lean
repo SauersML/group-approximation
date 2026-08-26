@@ -518,6 +518,12 @@ def normalClosureEquiv {S T : Set (FreeGroup ℕ)}
     (QuotientGroup.mk w : FreeGroup ℕ ⧸ Subgroup.normalClosure T)
   rfl
 
+@[simp] theorem normalClosureEquiv_of {S T : Set (FreeGroup ℕ)}
+    (h : Subgroup.normalClosure S = Subgroup.normalClosure T) (k : ℕ) :
+    normalClosureEquiv h (PresentedGroup.of k) =
+      (PresentedGroup.of k : PresentedGroup T) := by
+  exact normalClosureEquiv_mk h (FreeGroup.of k)
+
 /-! ## 4. The extension is the coded presentation -/
 
 /-- The actual HNN extension, transported to the presented base and then to
