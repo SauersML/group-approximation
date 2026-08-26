@@ -56,6 +56,9 @@ artifacts:
   - research/single-root-completeness-attachments-are-exhausted.md
   - research/endpoint-whitehead-star-braid-synchronizes-native-gauges.md
   - research/endpoint-whitehead-star-braid-proof.md
+  - research/full-moving-hecke-packet-retains-q-kernel-profile.md
+  - research/full-moving-hecke-q-kernel-profile-proof.md
+  - experiments/full_q_moving_gl8_permutation_audit.py
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -578,6 +581,25 @@ endpoint source requires `s'=+1`.  Thus the return relations alone still
 permit `Q(WQW)Q=0`; an additional moving-sheet orbit or a typed native row
 must pay that last sign.
 
+The complete moving-sheet packet does not pay it either.
+`full-moving-hecke-packet-retains-q-kernel-profile` uses the literal
+eight-projective-summand parabolic chart and the `465`-state orbit of
+adjacent characters with covector-vector pairing zero.  All ten `L_0`
+generators and the actual `W,M,J_1` act on one common finite Hilbert space,
+but
+
+```text
+rank(Q)=4,                    QWQ=0.
+```
+
+Thus the earlier return profile was not an artifact of omitting the moving
+relations: even the entire `GL_5` actor does not descend the `p_2` bound to
+the full source.  This exact profile does not refute `(APG1)` for some
+different authenticated pair of native rectangular transports.  It rules
+out specifically the attempt to prove `(APG1)` by using the full-source
+endpoint Gram `QWQ`; a new occurrence outside this packet must pay the four
+zero-Gram states.
+
 Adding the first native Whitehead strengthens the finite actor but remains
 one-sided.  `native-j1-extension-gives-gl5-but-only-second-whitehead-gram`
 identifies the literal five-projective-summand group as `GL_5(F_2)` without
@@ -586,9 +608,10 @@ enumerating it.  Its `diag(I_3,GL_2)` signed-source return forces the actual
 The same subgroup fixes the missing `J_1` support root `r=x_58(a_2)`, and
 therefore supplies no corresponding first-row lower bound.  The bare
 five-projective-summand calculation does not model the four additional
-coefficient roots of the full source `L_0`; the separate exact return audit
-above remains the valid full-`Q` fence.  Hence this is genuine native
-second-row progress, not yet the common two-row selector attachment.
+coefficient roots of the full source `L_0`; the complete adjacent-character
+model above does, and retains a zero full-`Q` endpoint Gram.  Hence this is
+genuine native second-row progress, not yet the common two-row selector
+attachment.
 
 There is no longer an independent **central gauge-parity** ambiguity on the
 first row.  `endpoint-whitehead-star-braid-synchronizes-native-gauges`
@@ -599,8 +622,9 @@ particular, the simultaneous central change `J_1 -> J_1D`, `u_1 -> u_1D`
 which evades `(J_1u_1)^7=1` is detected by `(J_1W)^3=1` unless the same `D`
 is carried by `W`, in which case it is one common endpoint gauge.  This is
 the desired algebraic gauge synchronization, but it does not supply the
-missing carrier: the full signed-source normalizer sends
-`r` only to `rv^epsilon`, and `v=+1` on `p_2`.  Hence it preserves the `r`
+missing carrier: the signed-`K_2` actor normalizer sends `r` only to
+`rv^epsilon`, and
+`v=+1` on `p_2`.  Hence it preserves the `r`
 sign and permits the scoped profile `r=-1`, `q_1=0`.  The remaining first-row
 problem is therefore positive support/occurrence attachment, not a free
 central sign.  This is sharp already for the literal `J_1,W` moving table:
