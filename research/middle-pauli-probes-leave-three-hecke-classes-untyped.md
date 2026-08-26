@@ -106,7 +106,7 @@ representation-profile freedom exhibited by
 
 This is an exact finite-menu obstruction, not a claim that no longer mixed
 word can work.  In fact
-`five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge` adds the
+`five-return-legs-cover-hecke-detectors-not-source-gauge` adds the
 two incident legs `x_12(s_1),x_14(s_1)` and closes the elementary-root count
 for all `31` classes.  That extension also proves the remaining boundary:
 the current Whitehead does not transport the endpoint coefficient and no

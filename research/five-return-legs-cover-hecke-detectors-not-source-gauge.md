@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge
+id: five-return-legs-cover-hecke-detectors-not-source-gauge
 kind: claim
 title: Five return legs cover every fenced signed-Hecke detector but do not type the moving-source gauge
 artifacts:
@@ -11,6 +11,7 @@ distinct_from:
   middle-pauli-probes-leave-three-hecke-classes-untyped: that exhausts the paid dual and primal middle-index menus and leaves three endpoint classes; this adds the two missing actor-endpoint legs and obtains a complete algebraic root-extraction cover.
   paid-cut-has-moving-hecke-source-or-detector: that transports a positive source subcut through one prescribed Hecke polar and forces an order-seven exit; this classifies the detector-side probe menu but does not put its representation-dependent multiplicity charts on that prescribed moving subcut.
   eight-external-returns-have-no-whitehead-gauge-lock: that gives an exact finite multiplicity-gauge model after a constant external return has been reached; this finds a complete elementary-root menu but proves that its only possible adjacent-scale endpoint comparison is absent.
+  endpoint-whitehead-profile-has-maximal-gram-overlap: that supplies the fresh endpoint Whiteheads proposed here and proves that their finite moved-source automaton is reversible, with maximal overlap between every pair of incoming full-Gram edges.
 ---
 
 **ESTABLISHED ALGEBRAIC COVER WITH GAUGE-TYPING FENCE.**  For the `31`
@@ -85,8 +86,8 @@ Thus the current braid transports the middle Pauli factor but not the new
 endpoint coefficient.  The two exact mark cells needed for a shared
 reservoir gauge never occur on the same detector/source occurrence.
 
-The next viable extension is therefore the fresh endpoint-Whitehead
-candidate `Jhat_(r,m)` characterized by
+The first natural extension is the fresh endpoint-Whitehead candidate
+`Jhat_(r,m)` characterized by
 
 ```text
 Jhat_(r,m)L_(r,m)Jhat_(r,m)^(-1)=L_(r,m+1),
@@ -94,10 +95,19 @@ r in {2,4},                                             (FRC6)
 ```
 
 together with the corresponding transport of the paired endpoint ejection.
-It must also come with a source-preserving or multiplicity-typing occurrence
-identifying that transport on the prescribed moving `R_0 -> P` channel.
-Another finite conjugate-source name, another disjoint fixed root, or the
-current `J_m` does not supply either requirement.  No Property T, Kazhdan
+That algebraic extension is now exhausted by
+`endpoint-whitehead-profile-has-maximal-gram-overlap`.  It gives exact
+full-source/full-range Grams, but the six moved types form the `S_3` Cayley
+profile: both incoming edges at a target have range projection equal to the
+whole same target.  Their cross-Gram square is exactly the target mass, so
+the formal Perron--Frobenius factor `2` is fully paid by overlap.  Choosing
+only one edge gives a permutation profile of spectral radius `1`, and the
+regular `S_3` reservoir realizes the remaining gauges as exact
+coboundaries.  Thus the endpoint Whitehead still needs proper orthogonal
+subranges, or a source-preserving multiplicity-typing occurrence on the
+prescribed moving `R_0 -> P` channel.  Another finite conjugate-source name,
+another disjoint fixed root, or the current `J_m` does not supply either
+requirement.  No Property T, Kazhdan
 input, canonical trace, literature theorem, local computation, or Lean
 compilation is used.
 

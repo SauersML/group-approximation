@@ -3,7 +3,7 @@ rg: 2
 id: five-return-leg-signed-hecke-detector-proof
 kind: route
 title: Add the two missing actor-endpoint legs and audit adjacent mark scales
-target: five-return-legs-cover-signed-hecke-detectors-but-not-source-gauge
+target: five-return-legs-cover-hecke-detectors-not-source-gauge
 requires:
   - middle-pauli-probes-leave-three-hecke-classes-untyped
   - paid-cut-has-moving-hecke-source-or-detector
