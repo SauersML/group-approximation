@@ -7,6 +7,7 @@ distinct_from:
   weak-mf-embedding-not-reusable: that dilutes a general norm model by adding identity blocks; this gives an intrinsic rank bound for every fold-kernel word in one globally conjugate presentation-double model.
   finite-cross-word-family-fits-one-hall-reflection: that constructs a rank-one Hall model for canonical length-two cross words; this treats arbitrary alternating words and any sublinear-rank Julia conjugator.
   corona-representations-have-an-ideal-valued-support-length: that assigns an abstract ideal support to every corona word; this computes a uniform principal-rank upper bound for the entire fold kernel from one Julia seam.
+  julia-derivation-rank-controls-fold: that proves `rank(V-1)` is not intrinsic and replaces it by the gauge-invariant generator-commutator rank; this remains a valid sufficient firewall for a chosen low-rank implementer.
 ---
 
 **ESTABLISHED JULIA RANK FIREWALL.** Let `P=F *_K F`, let
@@ -48,12 +49,13 @@ line has `(IR1)` and `(IR2)`, but `(SJS4)` forces `(IR3)` to vanish. The
 operator wall carried by the seam supplies no trace-visible quotient motion.
 
 This does not show that Shulman's faithful norm-corona coordinates can be
-chosen with `rank(V_n-1)=o(d_n)`. It proves the exact missing structural
-input: longer alternating words by themselves cannot promote the wall.
-Positive-rank intertwiner retention must either prove that every admissible
-Julia seam spreads to macroscopic relative rank, or extract a positive
-kernel-energy band whose surviving motion is not confined to the seam's
-principal rank ideal.
+chosen with `rank(V_n-1)=o(d_n)`. Moreover that raw rank is a commutant-gauge
+choice, not an invariant of the vertex pair. The refinement
+`julia-derivation-rank-controls-fold`
+identifies the correct necessary profile: normalized rank of the active
+generator commutators. Positive-rank intertwiner retention must force that
+gauge-invariant derivation rank to spread, or extract a positive
+kernel-energy band whose surviving motion lies outside its support ideal.
 
 DERIVATION
 sublinear-julia-seam-rank-proof

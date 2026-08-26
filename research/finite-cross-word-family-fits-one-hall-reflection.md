@@ -7,6 +7,7 @@ distinct_from:
   hall-reflection-realizes-rank-one-restriction-instability: that treats one fixed quotient word along an exhaustion; this simultaneously separates any prescribed finite family and permits arbitrarily large coset dimension without identity padding.
   weak-mf-embedding-not-reusable: that dilutes an arbitrary norm model by a common identity block; this gives an explicit globally conjugate two-vertex model whose separating unitary differs from the identity in rank one.
   shulman-presentation-double-witnesses-have-adjoint-normal-form: that supplies simultaneous faithfulness for every word of the full double; this shows that all canonical length-two cross words, even jointly on finite windows, impose no trace-spreading constraint.
+  sublinear-julia-seam-collapses-the-fold-kernel-tracially: that gives an abstract rank bound for every alternating fold-kernel word under an arbitrary sublinear-rank Julia conjugator; this constructs the rank-one Hall conjugator and exact multiword operator gaps.
 ---
 
 **ESTABLISHED MULTIWORD CALIBRATION.** Let `Q=F/K` be infinite and simple,
@@ -52,11 +53,13 @@ The coset representation on `F/L` and its basepoint reflection give
 
 Thus passing from one cross word to any **fixed finite family** does not force
 the Shulman operator-norm defect to spread over positive normalized rank.
-Any positive retention theorem must use longer alternating words in a way
-that couples their defect supports, or a single simultaneous all-word
-property not inherited from finite-window norm faithfulness. Merely enlarging
-the finite list of canonical cross words remains compatible with this
-vanishing-rank model.
+Any positive retention theorem must force genuine rank spreading, rather
+than merely enlarge the word list.  Indeed
+`sublinear-julia-seam-collapses-the-fold-kernel-tracially` shows that every
+fixed alternating word in the whole fold kernel remains trace-null whenever
+the common Julia conjugator has sublinear deviation rank.  Thus longer words
+help only if their simultaneous operator separation can first be shown to
+exclude such a seam.
 
 The statement diagonalizes. Choose exhaustions
 
