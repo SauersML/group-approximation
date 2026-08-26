@@ -29,7 +29,6 @@ Consequently residual finiteness of finitely generated recursively
 presented groups is strictly harder, in the arithmetical hierarchy, than
 local embeddability into finite groups, soficity, hyperlinearity or
 operator-MF, each of which is `Pi^0_2` on the same syntax.  The
-two-generator case is open only because the profinite-closure family is
-three-generated; a two-generator residually finite envelope that is
-effective and preserves non-residual-finiteness of the seed (for instance an
-effective form of Wilson's embedding theorem) would close it.
+two-generator case, which is optimal, is
+[[residual-finiteness-two-generator-recursive-is-pi3-complete]], through
+the shift right-angled Artin family instead of the centralizing one.
