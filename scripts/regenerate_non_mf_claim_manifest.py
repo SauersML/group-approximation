@@ -126,6 +126,11 @@ PAPER_PROOFS: dict[str, tuple[str, ...]] = {
     "lem:central-rope": ("Britton's lemma",),
     "lem:finite-rope": (),
     "lem:negative-branch": ("Britton's lemma",),
+    "thm:recognition": (
+        "Soare: INF is Pi^0_2-complete and FIN is Sigma^0_2-complete",),
+    "lem:reduced-products": (),
+    "lem:tensor-sync": (),
+    "lem:positive-branch": (),
 }
 
 
@@ -173,6 +178,14 @@ DEPENDENCIES: dict[str, list[str]] = {
     "lem:finite-rope": ["lem:central-rope"],
     "lem:negative-branch": [
         "lem:switch", "lem:bridge", "lem:finite-rope", "thm:headline"],
+    "thm:recognition": [
+        "prop:mf-upper-bound", "lem:finite-rope", "lem:positive-branch",
+        "lem:negative-branch"],
+    "lem:reduced-products": [],
+    "lem:tensor-sync": ["lem:reduced-products", "thm:hnn-permanence"],
+    "lem:positive-branch": [
+        "lem:finite-rope", "lem:tensor-sync", "lem:central-rope",
+        "lem:rf-regular", "cor:central-hnn", "lem:bridge"],
 }
 
 

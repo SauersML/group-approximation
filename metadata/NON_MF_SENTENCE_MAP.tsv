@@ -521,3 +521,55 @@ e8737d4642b6	definition		Names the matrix units of A_1 and A_2
 6d9352c489f5	structural		Commentary on the proof; asserts nothing beyond what the proof proves
 3b83399f4275	structural		Commentary on where faithfulness and approximation come from
 48be2fcced39	structural		Commentary; asserts nothing
+
+# Section sec:positive, Theorem thm:recognition and its introduction paragraphs, added 2026-08-26.
+# Proof sentences are owed Lean carriers and are left unassigned deliberately.
+64f16793c875	structural		thm:prescribed-quotients: says where the argument is going
+c50fc2691dfd	definition		thm:recognition: fixes notation or hypotheses
+6a09fe5ee1ea	structural		thm:recognition: says where the argument is going
+aff53941016c	structural		thm:recognition: says where the argument is going
+d015bedf8a02	structural		Relation to prior work: says where the argument is going
+33d4a0112770	attribution		Relation to prior work: credits prior work
+e11471085770	attribution		Relation to prior work: credits prior work
+8f195ee04108	definition		prop:simple: fixes notation or hypotheses
+4797f51d35e5	definition		lem:local-models: fixes notation or hypotheses
+7802bfa86830	definition		lem:local-models: fixes notation or hypotheses
+047050bb0f80	definition		lem:local-models: fixes notation or hypotheses
+4b85128c696d	definition		prop:mf-upper-bound: fixes notation or hypotheses
+6aa84a1ea64e	definition		prop:mf-upper-bound: fixes notation or hypotheses
+b2c1e4c2ae81	definition		prop:mf-upper-bound: fixes notation or hypotheses
+3190c7e7c5e7	definition		prop:mf-upper-bound: fixes notation or hypotheses
+d24f2aafe806	definition		lem:rf-regular: fixes notation or hypotheses
+11d4d87d7567	definition		lem:rf-regular: fixes notation or hypotheses
+f10c14a3da04	definition		lem:rf-regular: fixes notation or hypotheses
+1b2e770ebfc3	definition		lem:rf-regular: fixes notation or hypotheses
+e50e725402bb	definition		thm:hnn-permanence: fixes notation or hypotheses
+4fc48fc00cad	definition		thm:hnn-permanence: fixes notation or hypotheses
+ed6b314fa5e9	definition		thm:hnn-permanence: fixes notation or hypotheses
+6f0dfc49cd2e	definition		thm:hnn-permanence: fixes notation or hypotheses
+1697fe050cf1	definition		thm:hnn-permanence: fixes notation or hypotheses
+a4a7ba3358d8	definition		thm:hnn-permanence: fixes notation or hypotheses
+56d2d1b74f45	definition		sec:compiler: fixes notation or hypotheses
+39510bd63d88	definition		lem:seed: fixes notation or hypotheses
+3d8eb73ddcd1	definition		lem:switch: fixes notation or hypotheses
+b20fc4765983	definition		The bridge: fixes notation or hypotheses
+3231b3db132e	definition		The bridge: fixes notation or hypotheses
+2dcc3182dc1d	definition		lem:bridge: fixes notation or hypotheses
+f3215452012c	definition		The ropes: fixes notation or hypotheses
+eace2ac0ddb7	definition		The ropes: fixes notation or hypotheses
+60d204f80bdd	structural		sec:positive: says where the argument is going
+1eea9a5ce3df	definition		sec:positive: fixes notation or hypotheses
+806df043cd2b	definition		lem:reduced-products: fixes notation or hypotheses
+fdd08af01730	definition		lem:reduced-products: fixes notation or hypotheses
+5d114d3cd70a	definition		lem:tensor-sync: fixes notation or hypotheses
+ee466d71c530	definition		lem:tensor-sync: fixes notation or hypotheses
+fceeda5b719f	definition		lem:tensor-sync: fixes notation or hypotheses
+ff6115d8f3c3	definition		lem:tensor-sync: fixes notation or hypotheses
+751603845436	definition		lem:tensor-sync: fixes notation or hypotheses
+bcd30f73f5a7	structural		lem:tensor-sync: says where the argument is going
+28bdddd4fea6	definition		lem:positive-branch: fixes notation or hypotheses
+e74f0aec3715	structural		lem:positive-branch: says where the argument is going
+102f151f2f9c	definition		lem:positive-branch: fixes notation or hypotheses
+07b43ee9236e	definition		lem:positive-branch: fixes notation or hypotheses
+d9c7de923504	definition		lem:positive-branch: fixes notation or hypotheses
+fe09dcd2b596	structural		lem:positive-branch: says where the argument is going

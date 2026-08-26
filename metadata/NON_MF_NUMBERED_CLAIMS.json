@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "base_fixed.tex",
+  "manuscript": "base.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -114,6 +114,26 @@
           "covers": "the complete printed proposition"
         }
       ]
+    },
+    {
+      "id": "thm:recognition",
+      "environment": "mainthm",
+      "title": "recognizing MF groups",
+      "statement_sha256": "e929035db2472425af5d5e04b606c435ea092b22785279fff143ea89e82e2068",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "dependencies": [
+        "prop:mf-upper-bound",
+        "lem:finite-rope",
+        "lem:positive-branch",
+        "lem:negative-branch"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [
+        "Soare: INF is Pi^0_2-complete and FIN is Sigma^0_2-complete"
+      ],
+      "coverage_gap": "",
+      "lean": []
     },
     {
       "id": "thm:commutant",
@@ -615,6 +635,55 @@
       "external_inputs": [
         "Britton's lemma"
       ],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:reduced-products",
+      "environment": "lemma",
+      "title": "reduced products of MF algebras",
+      "statement_sha256": "210c3086d4e60b6dbf9a42970f5f4409c0a7eb025adb9968a6de43cc4f11a878",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:tensor-sync",
+      "environment": "lemma",
+      "title": "tensor synchronization",
+      "statement_sha256": "fe4ce4853de4be83ff9db6f61f9da89c6f2fa65ec517d7d296113e7c1c096a72",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:reduced-products",
+        "thm:hnn-permanence"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": []
+    },
+    {
+      "id": "lem:positive-branch",
+      "environment": "lemma",
+      "title": "the positive branch",
+      "statement_sha256": "9e1092458357e04af9a315708661092a50b5a6ed3d2b362c5e40fd41e0227dc3",
+      "status": "paper-proof",
+      "object_identity": "The complete proof is given in the manuscript.",
+      "dependencies": [
+        "lem:finite-rope",
+        "lem:tensor-sync",
+        "lem:central-rope",
+        "lem:rf-regular",
+        "cor:central-hnn",
+        "lem:bridge"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
       "coverage_gap": "",
       "lean": []
     }

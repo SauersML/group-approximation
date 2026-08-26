@@ -5,6 +5,7 @@ kind: claim
 title: MF and non-MF recognition are second-level complete on finite presentation codes
 root: true
 artifacts:
+  - non_mf_groups_exist.tex
   - research/artifacts/mf-recognition-fp-pi2-completeness-2026-08-25.md
   - research/artifacts/regular-mf-tensor-sync-shulman-completion-2026-08-26.md
   - research/artifacts/mf-fp-pi2-unconditional-assembly-2026-08-26.md

@@ -92,6 +92,12 @@ $\Rad_{\mathrm{MF}}(G)=f^{-1}(\Rad_{\mathrm{MF}}(Q))$.  In this case, image
 and inverse image identify the normal subgroups $N\trianglelefteq G$ satisfying
 $\ker f\le N$ and $G/N$ MF with the normal subgroups $P\trianglelefteq Q$
 satisfying $Q/P$ MF.
+Finally, the MF property of finitely presented groups is $\Pi^0_2$-complete
+to recognize: no algorithm decides it from a finite presentation, and the
+finite presentations of non-MF groups cannot be recursively enumerated.
+The lower bound compiles the halting hierarchy into finite presentations by
+HNN extensions, kept MF by a permanence theorem for HNN extensions whose
+edge isomorphism is implemented by a unitary of a norm matrix corona.
 \end{abstract}
 
 \maketitle
@@ -650,6 +656,36 @@ for every MF group $M$.
 \leanverified{Manuscript/OneSidedMFRadical/PrescribedQuotients}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrescribedMFQuotients}
 \end{mainthm}
 
+The final main result concerns all finitely presented groups at once.  It
+locates the recognition problem for the MF property in the
+Kleene--Mostowski arithmetical hierarchy, whose levels $\Sigma^0_n$ and
+$\Pi^0_n$ count alternations of quantifiers over a decidable relation.
+
+\begin{mainthm}[recognizing MF groups]\label{thm:recognition}
+Fix an effective coding of finite presentations of groups by natural
+numbers.  The set of codes of finite presentations of MF groups is
+$\Pi^0_2$-complete, and the set of codes of finite presentations of non-MF
+groups is $\Sigma^0_2$-complete.  In particular, neither set is
+recursively enumerable, and no algorithm decides from a finite presentation
+whether the presented group is MF\@.  More precisely, there is a computable
+map $e\mapsto\widehat R_e$ into finite presentations such that the group
+presented by $\widehat R_e$ is MF if and only if the $e$-th partial
+computable function has infinite domain.
+\end{mainthm}
+
+The upper bound is a certificate normal form: the MF property is
+determined by finite data with a fixed separation constant, and the
+existence of a certificate at a given scale is decidable
+(Section~\ref{sec:local}).  The lower bound follows the architecture of
+Higman's embedding theorem.  A switch turns $e$ into a recursively
+presented group that is trivial or contains $H$ according as the domain is
+infinite or finite; two HNN extensions wrap it into a finitely presented
+group (Section~\ref{sec:compiler}); and the extensions stay MF on the
+positive branch because of a permanence theorem, Theorem~\ref{thm:hnn-permanence}:
+an HNN extension of a group with a regular trace remains MF whenever the
+edge isomorphism is implemented by a unitary of a norm matrix corona
+(Sections~\ref{sec:hnn} and~\ref{sec:positive}).
+
 \subsection*{Relation to prior work}
 
 Blackadar and Kirchberg introduced the notions of MF and NF algebras in a
@@ -709,6 +745,22 @@ $\EL_n(R)$ whenever $n\ge3$ and $R$ is a finitely generated unital
 associative ring~\cite[Theorem~1.1]{EJZ}.
 Related rigidity results for metric approximations of Kazhdan groups appear
 in~\cite{KT19,AlekseevThom,Dadarlat}.
+
+Decision problems for finitely presented groups go back to Dehn, and the
+theorem of Adian and Rabin~\cite{Adian,Rabin} shows that no Markov
+property can be recognized from a finite presentation.  Once a finitely
+presented non-MF group exists, the MF property is Markov, and Adian--Rabin
+gives undecidability; Theorem~\ref{thm:recognition} gives the exact level.
+Torsion-freeness is the only other property of finitely presented groups
+whose recognition problem was known to be $\Pi^0_2$-complete, by
+Lempp~\cite{Lempp}.  For recursively presented groups,
+Bilanovic--Chubb--Roven proved that every Markov property is
+$\Pi^0_2$-hard to recognize~\cite{BCR}; their construction is the switch
+of Section~\ref{sec:compiler}.  The passage from recursive to finite
+presentations is where the operator algebra enters: a generic Higman
+embedding does not preserve the MF property, and the ropes of
+Section~\ref{sec:compiler} are designed so that Theorem~\ref{thm:hnn-permanence}
+applies to them.
 
 \section{One-sided compression in finite dimension}
 
@@ -1348,6 +1400,92 @@ Theorem~\ref{thm:commutant} kills every generator of
 \(\mathfrak D_G(L)\).
 \end{proof}
 
+\begin{proposition}[functoriality and normal generation]\label{prop:defect-saturation}
+Let $L\le G$ and put $D=\mathfrak D_G(L)$.
+
+If $f\colon G\to Q$ is a homomorphism, then
+%<webmath object="whole" when="f(D)\le\mathfrak D_{f(G)}(f(L))" title="a homomorphism sends the defect into the defect of the images">
+% The set \(f(D)\) is the [[image]] of the defect subgroup D under f.  The
+% right side is the defect subgroup formed inside the image group \(f(G)\)
+% using the image subgroup \(f(L)\).  The containment says every f-image of a
+% compression commutator from G belongs to the defect built after applying f.
+% The statement promises containment, not equality, because a general
+% homomorphism may merge elements and the image data may have additional
+% defect generators.
+%</webmath>
+\begin{equation}\label{eq:defect-functoriality}
+ f(D)\le\mathfrak D_{f(G)}(f(L)).
+\end{equation}
+If $S\le G$ is a nontrivial simple subgroup and $D\cap S\ne1$, then
+$S\le D$.  If in addition the normal closure of $S$ in $G$ is all of $G$,
+then $D=G$.  If moreover $G$ is countable and both $L$ and $G$ have
+property~\textup{(T)}, then
+%<webmath object="whole" when="\Rad_{\mathrm{MF}}(G)=G" title="every element of G is erased by every MF model">
+% The [[MF radical]] contains exactly the elements sent to the identity by
+% every homomorphism from G into a norm matrix corona.  Equality with G says
+% it contains every element, so every such homomorphism is trivial.  The
+% preceding hypotheses make the compression defect equal G by normal
+% generation.  Since both the compressor subgroup L and the normal subgroup
+% K chosen as G have property (T), the compression criterion places all of G
+% in its MF radical.
+%</webmath>
+\[
+ \Rad_{\mathrm{MF}}(G)=G.
+\]
+
+Alternatively, suppose that $f$ is onto, $S\le D$, and $f(S)$ normally
+generates $Q$.  Then
+%<webmath object="whole" when="\mathfrak D_Q(f(L))=Q" title="the image defect is all of Q">
+% The left side is the compression-centralizer defect formed in Q from the
+% subgroup \(f(L)\).  Functoriality places the image \(f(S)\) inside this
+% defect.  The defect is a [[normal subgroup]], so it
+% contains the [[normal closure]] of \(f(S)\).  By hypothesis that normal
+% closure is all of Q.  The displayed equality records the result: every
+% element of Q lies in the defect determined by \(f(L)\).
+%</webmath>
+\[
+ \mathfrak D_Q(f(L))=Q.
+\]
+If, in addition, $G$ is countable and both $L$ and $G$ have
+property~\textup{(T)}, then
+%<webmath object="whole" when="\Rad_{\mathrm{MF}}(Q)=Q" title="every element of Q is erased by every MF model">
+% The equality says every element of Q belongs to its [[MF radical]], so every
+% homomorphism from Q into a [[norm matrix corona]] is trivial.  Property (T)
+% passes from G and L to their images Q and \(f(L)\).  The preceding equality
+% says the compression defect formed from \(f(L)\) is the whole group Q.
+% Applying the compression criterion inside Q therefore places Q inside its
+% own radical; the reverse containment holds because the radical is a
+% subgroup of Q.
+%</webmath>
+\[
+ \Rad_{\mathrm{MF}}(Q)=Q.
+\]
+\leanverified{Manuscript/OneSidedMFRadical/DefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptDefectSaturation}
+\leanverified{Manuscript/OneSidedMFRadical/CompleteDefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompleteDefectSaturation}
+\end{proposition}
+
+\begin{proof}
+If $u\in\operatorname{Comp}_G(L)$, then
+$f(u)f(L)f(u)^{-1}\le f(L)$.  If $c\in C_G(L)$, then
+$f(c)\in C_{f(G)}(f(L))$.  Therefore $f$ takes every defining generator of
+$D$ into a defining generator of $\mathfrak D_{f(G)}(f(L))$.  This proves
+\eqref{eq:defect-functoriality}.
+
+The subgroup $D$ is normal in $G$, so $D\cap S$ is normal in $S$.
+Simplicity and $D\cap S\ne1$ give $D\cap S=S$, hence $S\le D$.  Since $D$
+is normal in $G$, it then contains the normal closure of $S$.  When the normal
+closure of $S$ is $G$, this proves $D=G$.  Under the property~\textup{(T)}
+hypotheses, Theorem~\ref{thm:compression-criterion} with $K=G$ then gives
+$\Rad_{\mathrm{MF}}(G)=G$.
+
+For the image statement, \eqref{eq:defect-functoriality} gives
+$f(S)\le\mathfrak D_Q(f(L))$.  The latter subgroup is normal in $Q$, so it
+contains the normal closure of $f(S)$ and is therefore all of $Q$.  Property
+\textup{(T)} passes to quotients, so the final hypotheses give property
+\textup{(T)} for both $f(L)$ and $Q$.  Applying
+Theorem~\ref{thm:compression-criterion} inside $Q$, with $K=Q$, proves the
+last assertion.
+\end{proof}
 \section{The binary Leavitt self-compression}
 
 Throughout this section $R=L_{\F_2}(1,2)$ and
@@ -1552,11 +1690,10 @@ Simplicity of $R$ gives $I=0$ or $I=R$.  If $I=R$, then
 $\EL_{12}(R,I)=H$, so $N=H$.
 
 Suppose that $I=0$.  Then $N\le C_{12}(R,0)=Z(\GL_{12}(R))$.  A matrix that
-commutes with every $e_{ij}(1)$ is a scalar matrix $\lambda I_{12}$.
-Commutation with $e_{ij}(a)$ for arbitrary $a\in R$ then gives
-$\lambda a=a\lambda$, so $\lambda\in Z(R)^\times$.  Since
-$Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, we have $\lambda=1$ and
-$N=1$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
+commutes with every elementary matrix $e_{ij}(a)$ is a scalar matrix
+$\lambda I_{12}$ with $\lambda\in Z(R)^\times$.  Since
+$Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, its only central unit is $1$.
+Thus $N=1$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
 \end{proof}
 
 \begin{proposition}\label{prop:defect}
@@ -1580,8 +1717,8 @@ in $H$.  Then
 % \(d=e_{02}(q)\ne1\) says the [[commutator]] d is an [[elementary matrix]]
 % with q in row 0, column 2 and is not the [[identity]].  Third,
 % \(\normal d_H=H\) says the [[normal closure]] of d is the whole [[group]] H.
-% The explicit formula shows that d is nontrivial, and simplicity of H then
-% proves the last statement.
+% The equation \(t_1qs_1=1\) and elementary matrix commutator rules prove that
+% last statement.
 %</webmath>
 %<webmath object="e02" when="d=e_{02}(q)" title="the identity matrix with q added in row 0, column 2">
 % \(e_{02}(q)\) is an [[elementary matrix]]: the 12-by-12 [[identity matrix]]
@@ -2145,7 +2282,7 @@ complement as a $\Sigma^0_2$ set.
 
 \section{HNN extensions with a corona conjugator}\label{sec:hnn}
 
-The lower bound in Theorem~C is a computable family of finitely presented
+The lower bound in Theorem~\ref{thm:recognition} is a computable family of finitely presented
 groups whose positive branch must be MF\@.  Those groups are built by two
 HNN extensions, and the tool that keeps them MF is the following
 permanence theorem.  It asks for more than the MF property of the base:
@@ -2650,7 +2787,195 @@ subgroup shows that subgroups of MF groups are MF, and $H$ is not MF by
 Theorem~\ref{thm:headline}.
 \end{proof}
 
-\section*{Acknowledgments}
+\section{The positive branch}\label{sec:positive}
+
+We now show that $\widehat R_e$ is MF for $e\in\mathrm{INF}$ and prove
+Theorem~\ref{thm:recognition}.  The realization of the rope is assembled
+inside a norm reduced product of MF algebras, so we first record that such
+products stay MF\@.  For $C^*$-algebras $B_n$, $n\ge1$, write
+$\prod_nB_n/\bigoplus_nB_n$ for the quotient of the bounded sequences by
+the sequences with $\opnorm{x_n}\to0$; its norm is $\limsup_n\opnorm{x_n}$.
+
+\begin{lemma}[reduced products of MF algebras]\label{lem:reduced-products}
+If every $B_n$ is MF, then every separable $C^*$-subalgebra of
+$\prod_nB_n/\bigoplus_nB_n$ is MF\@.  Moreover, $M_k(B)$ is MF whenever
+$B$ is.
+\end{lemma}
+
+\begin{proof}
+The second assertion holds because $M_k$ of a norm matrix corona is the
+norm matrix corona of the dimension sequence multiplied by $k$.  For the
+first, let $A$ be a separable $C^*$-subalgebra, and choose a sequence
+$(a_i)_{i\ge1}$ dense in $A$, with lifts $(a_i^{(n)})_n$.  Choose for each
+$n$ an injective $*$-homomorphism $\eta_n$ of $B_n$ into a norm matrix
+corona, and lifts $(a_i^{(n,k)})_k$ of $\eta_n(a_i^{(n)})$ with
+$\sup_k\opnorm{a_i^{(n,k)}}\le\opnorm{a_i^{(n)}}+1$.  Enumerate the
+noncommutative $*$-polynomials with coefficients in $\mathbb Q(i)$ as
+$p_1,p_2,\dots$, and let $\mathcal P_n$ be the set of those among
+$p_1,\dots,p_n$ that involve only $a_1,\dots,a_n$.  For $p\in\mathcal P_n$
+the number $\opnorm{p(a^{(n)})}$ equals $\limsup_k\opnorm{p(a^{(n,k)})}$,
+since $\eta_n$ is isometric.  Hence there is $K_n$ such that
+$\opnorm{p(a^{(n,k)})}\le\opnorm{p(a^{(n)})}+1/n$ for all $k\ge K_n$ and
+$p\in\mathcal P_n$, and for each $p\in\mathcal P_n$ there is $k_p\ge K_n$
+with $\opnorm{p(a^{(n,k_p)})}\ge\opnorm{p(a^{(n)})}-1/n$.  Put
+\[
+ b_i^{(n)}=\bigoplus_{p\in\mathcal P_n}a_i^{(n,k_p)},
+\]
+a block diagonal matrix.  For $p\in\mathcal P_n$ the norm of
+$p(b^{(n)})$ is the maximum of $\opnorm{p(a^{(n,k_{p'})})}$ over
+$p'\in\mathcal P_n$, which lies between $\opnorm{p(a^{(n)})}-1/n$ and
+$\opnorm{p(a^{(n)})}+1/n$.  Every polynomial belongs to $\mathcal P_n$ for
+all large $n$, so
+$\limsup_n\opnorm{p(b^{(n)})}=\limsup_n\opnorm{p(a^{(n)})}=\opnorm{p(a)}$
+for every $p$.  Therefore $a_i\mapsto[(b_i^{(n)})_n]$ is well defined and
+isometric on the $*$-algebra over $\mathbb Q(i)$ generated by the $a_i$,
+which is dense in $A$, and it extends to an isometric $*$-homomorphism of
+$A$ into a norm matrix corona.
+\end{proof}
+
+\begin{lemma}[tensor synchronization]\label{lem:tensor-sync}
+Let $\Gamma$ be a countable group regularly realized by
+$(A_1,\rho_1,\tau_1)$, let $Q$ be a countable group with homomorphisms
+$\beta_n\colon Q\to B_n$ to finite groups such that every $q\ne1$
+satisfies $\beta_n(q)\ne1$ for all large $n$, let $S\le\Gamma$, and let
+$\tau\colon S\to Q$ be a homomorphism.  Suppose that for every $n$ there
+is a homomorphism $\lambda_n\colon\Gamma\to G_n$ to a finite group with
+\[
+ \ker(\lambda_n|_S)\le\ker(\beta_n\circ\tau).
+\]
+Then there are a separable unital MF $C^*$-algebra $A$, a homomorphism
+$V\colon\Gamma\times Q\to\U(A)$, a tracial state $T$ on $A$ with
+$T(V(g,q))=0$ for $(g,q)\ne(1,1)$, and a unitary $W\in A$ with
+$WV(s,1)W^*=V(s,\tau(s))$ for all $s\in S$.  Consequently
+\[
+ \bigl\langle\Gamma\times Q,\ u\ \bigm|\ u(s,1)u^{-1}=(s,\tau(s))\ (s\in S)\bigr\rangle
+\]
+is regularly realized, and in particular MF\@.
+\end{lemma}
+
+\begin{proof}
+Let $E_n$ be the image of $(\lambda_n,\beta_n)\colon\Gamma\times Q\to G_n\times B_n$,
+a finite group of order $k_n$, and let $L_n$ be its left regular
+representation on $\ell^2(E_n)$.  Put $B'_n=A_1\otimes M_{k_n}(\C)$,
+which is MF by Lemma~\ref{lem:reduced-products}, let
+$E=\prod_nB'_n/\bigoplus_nB'_n$, and define
+\[
+ V(g,q)=\bigl[\bigl(\rho_1(g)\otimes L_n(\lambda_n(g),\beta_n(q))\bigr)_n\bigr],
+ \qquad
+ T\bigl([(x_n)_n]\bigr)=\lim_\omega(\tau_1\otimes\operatorname{tr}_{k_n})(x_n),
+\]
+for a free ultrafilter $\omega$.  Each coordinate of $V$ is a homomorphism
+into a unitary group, so $V$ is a homomorphism, and $T$ is a tracial state
+on $E$ because $\lvert(\tau_1\otimes\operatorname{tr}_{k_n})(x_n)\rvert\le\opnorm{x_n}$.
+If $g\ne1$ then $\tau_1(\rho_1(g))=0$, so $T(V(g,q))=0$; if $g=1$ and
+$q\ne1$ then $\beta_n(q)\ne1$ for all large $n$, the regular
+representation of a finite group has trace zero off the identity, and
+again $T(V(1,q))=0$.
+
+The two homomorphisms $s\mapsto(\lambda_n(s),1)$ and
+$s\mapsto(\lambda_n(s),\beta_n\tau(s))$ from $S$ to $E_n$ have the same
+kernel, namely $\ker(\lambda_n|_S)$, by the hypothesis.  Their images are
+therefore isomorphic subgroups of $E_n$ of the same order, isomorphic via
+$(\lambda_n(s),1)\mapsto(\lambda_n(s),\beta_n\tau(s))$.  The restriction
+of $L_n$ to a subgroup of $E_n$ is unitarily equivalent to the direct sum
+of as many copies of the left regular representation of that subgroup as
+it has right cosets, so there is a unitary $W_n\in M_{k_n}(\C)$ with
+$W_nL_n(\lambda_n(s),1)W_n^*=L_n(\lambda_n(s),\beta_n\tau(s))$ for all
+$s\in S$.  Put $W=[(1\otimes W_n)_n]\in E$; then $WV(s,1)W^*=V(s,\tau(s))$
+for $s\in S$.  Let $A$ be the $C^*$-algebra generated by $V(\Gamma\times Q)$
+and $W$; it is separable and unital, and MF by
+Lemma~\ref{lem:reduced-products}.  The triple $(A,V,T|_A)$ regularly
+realizes $\Gamma\times Q$.  For the last assertion, apply
+Theorem~\ref{thm:hnn-permanence} to this realization, with $\iota$ any
+injective $*$-homomorphism of $A$ into a norm matrix corona and with the
+conjugator $\iota(W)$.
+\end{proof}
+
+\begin{lemma}[the positive branch]\label{lem:positive-branch}
+If $e\in\mathrm{INF}$, then $\widehat R_e$ is regularly realized; in
+particular, it is MF\@.
+\end{lemma}
+
+\begin{proof}
+Let $e\in\mathrm{INF}$, so that $Q_e=H_0$, $N_e=N_+$, $q_e=q_+$, and
+$\tau_e(i(f))=q_+(f)$, $\tau_e(v\,i(f)\,v^{-1})=1$.  By
+Lemma~\ref{lem:finite-rope} it suffices to show that $R_e$ is regularly
+realized, and by Lemma~\ref{lem:tensor-sync} applied to $\Gamma=\Gamma_e$,
+$Q=H_0$, $S=S_e$ and $\tau=\tau_e$, it suffices to produce the data of
+that lemma.
+
+The group $K_e$ is residually finite by Lemma~\ref{lem:central-rope}(1),
+hence regularly realized by Lemma~\ref{lem:rf-regular}, and $\Gamma_e$ is
+the central HNN extension of $K_e$ over $L_e$, hence regularly realized by
+Corollary~\ref{cor:central-hnn}.
+
+The group $P=F(x_1,y)\times F(x_2,t)$ is residually finite; choose
+finite-index normal subgroups $P_1\ge P_2\ge\cdots$ of $P$ with trivial
+intersection, let $r_n\colon P\to C_n=P/P_n$, and put
+$\beta_n=r_n\circ j\colon H_0\to C_n$ with $j$ the embedding of
+Lemma~\ref{lem:bridge}(3).  Since $j$ is injective and the $P_n$ decrease
+to the trivial group, every $h\ne1$ has $\beta_n(h)\ne1$ for all large $n$.
+
+Let $G_n=(C_n\times C_n)\rtimes\langle\sigma\rangle$, where $\sigma$ of
+order two exchanges the coordinates.  Define $\lambda_n$ on
+$K_e=K^0_e\times(F\times P)$ by killing $K^0_e$ and sending $(f,p)$ to
+$(r_njq_+(f),\,r_n(p))$, and put $\lambda_n(v)=\sigma$.  This respects the
+relations of~\eqref{eq:central-rope}: the factor $L^0_e$ of $L_e$ lies in
+$K^0_e$ and is killed, and an element $(f,jq_+(f))$ of $L^{\mathrm g}$ is
+sent to $(r_njq_+(f),r_njq_+(f))$, which lies on the diagonal and commutes
+with $\sigma$.  Hence $\lambda_n\colon\Gamma_e\to G_n$ is a homomorphism,
+and on the generators of $S_e$,
+\[
+ \lambda_n(i(f))=(r_njq_+(f),1),
+ \qquad
+ \lambda_n(v\,i(f)\,v^{-1})=(1,r_njq_+(f)).
+\]
+Let $\pi_0,\pi_1\colon S_e\to H_0$ be the homomorphisms that are $q_+$ on
+one copy of $F$ in $S_e\cong F*_{N_+}F$ and trivial on the other, as in
+Lemma~\ref{lem:central-rope}(3); thus $\pi_0=\tau_e$.  The displayed
+formulas show that $\lambda_n|_{S_e}=(r_nj\pi_0,\,r_nj\pi_1)$, both sides
+being homomorphisms that agree on generators.  Therefore
+\[
+ \ker(\lambda_n|_{S_e})=\ker(r_nj\pi_0)\cap\ker(r_nj\pi_1)\le\ker(\beta_n\circ\tau_e),
+\]
+which is the hypothesis of Lemma~\ref{lem:tensor-sync}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:recognition}]
+By Lemma~\ref{lem:finite-rope} the map $e\mapsto\widehat R_e$ is
+computable, by Lemma~\ref{lem:positive-branch} the presented group is MF
+for $e\in\mathrm{INF}$, and by Lemma~\ref{lem:negative-branch} it is not MF
+for $e\in\mathrm{FIN}$.  Hence $\mathrm{INF}$ reduces to
+$\mathrm{MF}_{\mathrm{fp}}$ and $\mathrm{FIN}$ reduces to
+$\mathrm{NONMF}_{\mathrm{fp}}$ under computable many-one reductions.  Since
+$\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is
+$\Sigma^0_2$-complete, and since
+$\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and
+$\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$ by
+Proposition~\ref{prop:mf-upper-bound}, the two sets are complete at their
+levels.  A $\Pi^0_2$-complete set is not $\Sigma^0_2$ and a
+$\Sigma^0_2$-complete set is not $\Pi^0_2$, so neither set is recursively
+enumerable, and in particular neither is decidable.
+\end{proof}
+
+The proof of Lemma~\ref{lem:positive-branch} never claims that the
+explicit unitaries $V(g,q)$ and $W$ represent $R_e$ faithfully, and indeed
+they do not: the finite maps $\lambda_n$ kill the Mikhailova factor, so
+$W$ commutes with $V(\gamma,1)$ for every $\gamma\in K^0_e$, although
+$u$ does not commute with $(\gamma,1)$ in $R_e$.  Faithfulness is
+restored at the universal algebra in Theorem~\ref{thm:hnn-permanence}.
+Three questions in the same register remain open.  Whether the models of
+$\widehat R_e$ can be chosen to converge to $C^*_{\mathrm r}(\widehat R_e)$
+in operator norm, so that the reduced $C^*$-algebra itself is MF, is not
+settled by the argument, which produces only an abstract regular trace.
+Whether $\widehat R_e$ is hyperlinear for $e\in\mathrm{INF}$ is open, and
+would place the recognition problem for hyperlinearity at the same level;
+by Theorem~\ref{thm:hnn-permanence} and the argument above this is a
+question about the regular trace of the rope.  Finally, whether the sofic
+analogue of the compiler exists is open, because the tensor synchronization
+has no counterpart for permutation models.
+
+
 
 The author thanks Francesco Fournier-Facio for early advice and detailed
 comments on earlier drafts, and Alon Dogon for organizing the ensuing
@@ -2671,11 +2996,20 @@ Proposition~\ref{prop:simple}, the formalization proves that every nontrivial
 normal subgroup contains an elementary matrix $e_{ij}(x)$ with $x\ne0$.  It
 treats diagonal matrices separately and divides the nondiagonal case according
 to whether the relevant entry of the inverse matrix is zero.
-The article invokes Preusser's sandwich theorem for concision.  The formalized
-simplicity proof is independent of that citation: it uses the concrete
-two-sided sandwich and the fact that every central unit of the binary Leavitt
-algebra over $\F_2$ equals $1$.  No general theory of pure infiniteness is
+The formalized simplicity proof uses the concrete two-sided sandwich and the
+fact that every central unit of the binary Leavitt algebra over $\F_2$ equals
+$1$; it does not route through Preusser's general theorem.  That theorem is
+formalized separately in the development, over the hypothesis that the
+coefficient ring admits finite right exchange partitions; the development
+derives the one-element exchange condition from that hypothesis but does not
+prove the two equivalent, so the formalized statement may rest on a stronger
+assumption than Preusser's.  No general theory of pure infiniteness is
 formalized.
+
+For Theorem~\ref{thm:recognition}, the development verifies the certificate
+normal form and the passage from a computable finite-output compiler to
+$\Pi^0_2$-completeness; the compiler of Section~\ref{sec:compiler} and
+Theorem~\ref{thm:hnn-permanence} are proved in the article.
 
 \begin{thebibliography}{99}
 \frenchspacing
@@ -2684,6 +3018,11 @@ G.~Abrams and G.~Aranda Pino,
 \emph{Purely infinite simple Leavitt path algebras},
 J. Pure Appl. Algebra \textbf{207} (2006), no.~3, 553--563,
 \doi{10.1016/j.jpaa.2005.10.010}.
+
+\bibitem[Ad]{Adian}
+S.~I. Adian,
+\emph{Algorithmic unsolvability of problems of recognition of certain properties of groups},
+Dokl. Akad. Nauk SSSR \textbf{103} (1955), 533--535.
 
 \bibitem[AW]{AkemannWalter}
 C.~A. Akemann and M.~E. Walter,
@@ -2798,6 +3137,11 @@ W.~G.~Leavitt,
 \emph{Trans. Amer. Math. Soc.} \textbf{103} (1962), 113--130,
 \doi{10.1090/S0002-9947-1962-0132764-6}.
 
+\bibitem[Lem]{Lempp}
+S.~Lempp,
+\emph{The computational complexity of torsion-freeness of finitely presented groups},
+Bull. Austral. Math. Soc. \textbf{56} (1997), 273--277.
+
 \bibitem[LS]{LyndonSchupp}
 R.~C. Lyndon and P.~E. Schupp,
 \emph{Combinatorial group theory},
@@ -2831,6 +3175,11 @@ R.~Preusser,
 \emph{On general linear groups over exchange rings},
 Linear and Multilinear Algebra \textbf{70} (2022), no.~4, 705--713,
 \doi{10.1080/03081087.2020.1743636}.
+
+\bibitem[Ra]{Rabin}
+M.~O. Rabin,
+\emph{Recursive unsolvability of group theoretic problems},
+Ann. of Math. (2) \textbf{67} (1958), 172--194.
 
 \bibitem[Sh]{Shulman}
 T.~Shulman,
