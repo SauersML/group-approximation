@@ -7,6 +7,7 @@ distinct_from:
   binary-jacobson-elementary-mark-is-finite-quotient-invisible: that kills the head root only in exact finite quotients of the elementary group; this asks for operator-norm asymptotic matrix representations of the finitely presented Steinberg cover.
   leavitt-first-offdiagonal-core-is-marked-non-lef: that promotes exact finite-quotient collapse to a fixed finite-table obstruction; this requires a dimension-independent operator-norm robustification of that table.
   toeplitz-defect-needs-square-decoding: that proves the terminal trace inequality after square coefficient operators have been decoded and exhibits rectangular escape otherwise; this is the group-level statement that must rule out that escape.
+  binary-jacobson-mf-radical-dichotomy: that proves the elementary group is MF or has exactly the finitary symbol kernel as radical; this asks which side of that exact dichotomy occurs.
 ---
 
 **OPEN.**  Let
@@ -22,6 +23,19 @@ Prove that every homomorphism from `Gamma_T` to a norm matrix corona kills
 ```text
 w_T in Rad_MF(Gamma_T).                                  (JMF1)
 ```
+
+There is no longer a cover ambiguity.  By
+`binary-jacobson-steinberg-cover-is-elementary`, `Gamma_T=EL_5(J)`.  By
+`binary-jacobson-head-retaining-homomorphisms-are-faithful`, every
+homomorphism retaining `w_T` is faithful.  Thus `(JMF1)` is equivalent to
+saying that this one explicit group is not operator-MF.  The radical
+dichotomy says its only alternatives are
+
+```text
+Rad_MF(Gamma_T)=1       or       Rad_MF(Gamma_T)=L,      (JMF2)
+```
+
+where `L` is the finitary simple kernel and contains `w_T`.
 
 The exact finite analogue is established: `Gamma_T` is finitely presented,
 `w_T` is nontrivial, and every homomorphism to a finite group kills it.  The
