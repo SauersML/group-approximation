@@ -22,6 +22,13 @@ artifacts:
   - research/cz-spectral-cut-carrier-holonomy-audit-proof.md
   - research/two-shared-gauge-selector-rows-have-an-affine-rank-obstruction.md
   - research/two-shared-gauge-selector-rank-proof.md
+  - research/finite-packet-rank-polytope-is-complete.md
+  - research/finite-packet-rank-polytope-proof.md
+  - research/finite-packet-holonomy-cuts-the-multiplicity-simplex.md
+  - research/finite-packet-holonomy-fixed-simplex-proof.md
+  - research/holonomy-rank-gap-is-a-carrier-local-mf-certificate.md
+  - research/carrier-local-holonomy-rank-mf-proof.md
+  - research/artifacts/property-t-free-rank-polytope-holonomy-integration-2026-08-25.md
   - research/binary-leavitt-two-shared-gauge-selector-compiler.md
   - research/property-t-free-leavitt-via-two-shared-gauge-rows.md
   - research/binary-leavitt-native-two-scale-cross-gram-positive.md

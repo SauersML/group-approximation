@@ -51,4 +51,31 @@ For the squared bound, the minimum of
 x^2+(9/4)(1/3-x)^2
 ```
 
-occurs at `x=3/13` and equals `13/169`.  This proves `(TSG4)`.
+occurs at `x=3/13` and equals `13/169=1/13`.
+
+For the general sharp constants, `(TSG3)` reads
+
+```text
+delta_i >= c_i |theta-theta_i^*|.
+```
+
+On the interval between the two target values, minimizing the sum places
+`theta` at the endpoint carrying the larger weight and gives
+`min(c_1,c_2) Delta`.  Minimizing the square sum
+
+```text
+c_1^2 x^2+c_2^2(Delta-x)^2
+```
+
+puts `x=c_2^2 Delta/(c_1^2+c_2^2)` and gives `(TSG4b)`.
+Minimizing the maximum balances the two terms,
+
+```text
+c_1 x=c_2(Delta-x),
+```
+
+and gives `(TSG4c)`.  In the binary case `c_1=1`, `c_2=3/2` and
+`Delta=1/3`, so the balanced value is `1/5`.  Each minimum is attained by
+the corresponding scalar optimization problem, so no larger constants follow
+from the two inequalities `delta_i>=c_i|theta-theta_i^*|` alone.  This proves
+`(TSG4)--(TSG5)`.

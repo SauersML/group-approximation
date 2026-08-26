@@ -28,8 +28,8 @@ the finite-order unitary `rho(z)`, such that:
    norm to one fixed semisimple packet;
 3. fixed transport words authenticate a finite permutation-holonomy network
    with group `H` on the packet sectors;
-4. fixed selector words have demanded source-rank vector `r` and target
-   fingerprint map `L`;
+4. the coordinate source-rank vectors converge to the demanded vector `r`,
+   and the target fingerprints give one fixed rational affine map `L`;
 5. every packet, transport, and selector defect tends to zero in operator
    norm.
 
@@ -54,12 +54,14 @@ the nonzero corner `P_n M_(d_n)(C)P_n`; there
 ||X||_(2,P_n) <= ||X||_op.                             (CLM3)
 ```
 
-If `epsilon=2 dist_infinity(r,P)>0`, at least one selector row has
-corner Hilbert--Schmidt defect at least `epsilon`, hence operator defect at
-least `epsilon`, contradicting clause 5.  A rational separator gives the
-corresponding weighted explicit gap.  Tensor spectators and direct-sum
-mixing cannot dilute the conclusion because both are already absorbed by
-the rank polytope.
+If `epsilon=2 dist_infinity(r,P)>0`, exact packet ranks and the vanishing
+operator defects force a sequence of points of `P` whose selector ranks
+converge to `r`.  This is impossible; quantitatively, for all large
+coordinates at least one selector row has corner Hilbert--Schmidt defect at
+least `epsilon-o(1)`, hence the same operator-norm lower bound, contradicting
+clause 5.  A rational separator gives the corresponding weighted explicit
+gap.  Tensor spectators and direct-sum mixing cannot dilute the conclusion
+because both are already absorbed by the rank polytope.
 
 This is a theorem schema, not an authentication theorem for any particular
 presentation.  In particular it does **not** establish

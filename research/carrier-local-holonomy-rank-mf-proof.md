@@ -13,9 +13,22 @@ artifacts:
 ---
 
 Assume a corona representation keeps `z` nontrivial and apply the stated
-authentication property.  Exactification changes the fixed finite word data
-by `o(1)` in operator norm.  The holonomy theorem puts the exactified packet's
-rank vector in `P=L(Delta^H)`.
+authentication property.  Clause 2 exactifies the fixed semisimple packet,
+changing its block projections by `o(1)` in operator norm.  For an
+authenticated transport `U` from sector `alpha` to `sigma(alpha)`, clauses 3
+and 5 then give
+
+```text
+||U e_alpha U^* - e_(sigma(alpha))||_op=o(1).
+```
+
+For large coordinates this norm is less than one.  Two finite-dimensional
+projections at distance less than one have equal rank.  Thus every transport
+preserves the exact sector ranks, and composing around cycles makes the
+dimension-weighted multiplicity state exactly `H`-invariant.  The exactified
+target rank vector therefore lies in `P=L(Delta^H)`.  The same operator-norm
+rank rigidity, together with clause 4, says that the source ranks converge to
+`r`; selector exactification changes their trace reads only by `o(1)`.
 
 Because `P_n` is nonzero, its corner has normalized trace
 
@@ -25,11 +38,12 @@ tau_(P_n)(X)=Tr(X)/rank(P_n).
 
 For every corner matrix, Cauchy--Schwarz gives
 `||X||_(2,P_n)<=||X||_op`; no factor involving
-`rank(P_n)/d_n` occurs.  The rank-polytope theorem therefore gives
+`rank(P_n)/d_n` occurs.  The rank-polytope theorem therefore gives, up to the
+preceding `o(1)` source and selector perturbations,
 
 ```text
 max_i delta_(i,n)
- >= 2 dist_infinity(r,P)>0
+ >= 2 dist_infinity(r,P)-o(1)>0
 ```
 
 in the normalized corner Hilbert--Schmidt norm.  Clause 5 says every one of

@@ -93,3 +93,11 @@ third balance edge must already decode the two native gauge projections on
 equal normalized carriers.  That is the same missing occurrence coupling in
 scalar form, while the common-hidden-projection two-orientation lemma assumes
 still more alignment.
+
+The abstract theorem
+`holonomy-rank-gap-is-a-carrier-local-mf-certificate` removes positive
+ambient density from the **terminal** obstruction whenever the native words
+are authenticated on one nonzero invariant carrier with operator-norm
+control.  It does not remove the open native occurrence problem here:
+neither the abstract rank polytope nor packet exactification proves that the
+depth-one and depth-two Leavitt occurrences reuse one multiplicity state.

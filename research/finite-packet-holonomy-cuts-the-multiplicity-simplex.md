@@ -20,15 +20,18 @@ p_w=P_(sigma_e)p_v.                                   (HRS1)
 ```
 
 Choose a base vertex.  The permutations around based cycles generate a
-finite holonomy group `H<=S_s`.  Consistent states on the whole network are
-in bijection with
+finite holonomy group `H<=S_s`.  In the closed normalized-state relaxation,
+consistent states on the whole network are in bijection with
 
 ```text
 Delta_(s-1)^H={p in Delta_(s-1): hp=p for every h in H}. (HRS2)
 ```
 
-After transporting all selector reads to the base, let `L` be their combined
-affine rank map.  The complete feasible rank set is the rational polytope
+Finite-dimensional packets give the rational/divisibility points of this
+simplex, and every rational fixed state is realized after a common
+amplification.  After transporting all selector reads to the base, let `L`
+be their combined affine rank map.  Its coefficients are rational packet
+rank fractions.  The closed feasible rank envelope is the rational polytope
 
 ```text
 P_(Gamma,H)=L(Delta_(s-1)^H).                         (HRS3)
