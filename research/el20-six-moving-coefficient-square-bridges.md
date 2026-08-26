@@ -399,3 +399,24 @@ table is realized in `(S_3 times S_3) semidirect C_2`, with an extra central
 still has order three.  The next relation must type one individual `K_i`
 against a native occurrence on a common Hecke carrier before their product
 becomes the aggregate branch flip.
+
+That individual typing test is now exact and negative at the first native
+row.  `individual-cross-whiteheads-miss-native-hecke-target` conjugates the
+literal Hecke generator `x_28(1)` and obtains
+
+```text
+K_0x_28(1)K_0=x_27(r)x_28(q_0),
+K_1x_28(1)K_1=x_27(p)x_28(q_1).
+```
+
+Thus neither `K_i` preserves the constant signed cut.  Multiplying by the
+actual native `J_1` still leaves explicit nonconstant entries, so
+`J_1^(-1)K_i` is not in the signed normalizer; because `t_1=J_1v_1` and
+`v_1` is in that normalizer, the Singer target fails identically.  The one
+literal short native relation that remains is `wK_0w=K_1`.  Its complete
+local reservoir table has an exact `S_4` model in which the two individual
+gauges are exchanged by `D`, their product is a double transposition, and
+`DE` remains order three.  Hence an individual cross-branch Whitehead plus
+one native row still supplies no `(ESB1)--(ESB2)` square.  A live word must
+first return its nonconstant `K_i` cut to `Q` or to `J_iQJ_i^(-1)` through
+another coefficient-sensitive occurrence.
