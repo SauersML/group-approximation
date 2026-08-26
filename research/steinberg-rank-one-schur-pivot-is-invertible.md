@@ -6,6 +6,7 @@ title: The complete X row has an invertible interior rank-one Schur pivot
 distinct_from:
   steinberg-schur-corrected-endpoint-reduction: that derives an exact equivalent endpoint-derivative system and controls the dense Pascal determinant; this still asks to prove that the cyclotomic antidiagonal creates no endpoint-zero kernel.
   steinberg-schur-antidiagonal-resonates: that blocks recursive division by every antidiagonal coefficient; it does not refute invertibility.
+  steinberg-schur-geometric-row-transform: that computes every one-parameter geometric row sum and rules out a single-weight endpoint extraction for p at least 11; this still permits multiweight or nongeneric global arguments.
 ---
 
 For every odd `p>=5`, let `M_p=pi_S X^*|_S` in the bases
@@ -136,3 +137,7 @@ It also proves that deleting the cyclotomic antidiagonal leaves determinant
 `-1/2` for every odd prime.  Thus `(SRP8)`, not the dense Pascal block, is the
 only remaining issue.  A row-by-row division is unavailable because
 `steinberg-schur-antidiagonal-resonates` finds a literal `p=31` zero pivot.
+Nor can one geometric row weighting extract the endpoint:
+`steinberg-schur-geometric-row-transform` leaves four exponential families
+and a nonzero quadratic term.  The live global version must combine multiple
+weights or exploit an additional symmetry of `(SCE3)`.

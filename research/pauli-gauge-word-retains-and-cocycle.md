@@ -81,3 +81,14 @@ This result does not refute a model-dependent mixed occurrence which places
 an independently authenticated identity-label actor on the same reservoir.
 It proves that such an occurrence is genuinely new information: it cannot be
 obtained by dressing the active actors with a fixed Pauli packet.
+
+For the literal first dressings the affine remainder has an exact ordinary
+word form:
+
+```text
+[XU,ZV]=J S T [U,V].                                     (PDC6)
+```
+
+This is the native identity used by
+`reynolds-exit-does-not-carry-pauli-gauge`; after `[U,V]=1` it exposes the
+selector sign `JST`, not the pure multiplicity commutator.
