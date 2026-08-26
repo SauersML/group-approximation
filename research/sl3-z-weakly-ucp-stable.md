@@ -64,7 +64,12 @@ the p = 3 HNN microstates to the `Lambda`-exact face
   `no-published-unconditional-codense-stable-host`, the same authors show
   `C^*(SL_n(Z))` (`n >= 3`) fails LLP, so the claim cannot be imported
   from a lifting property.  It must be a genuine rigidity statement about
-  almost-representations.
+  almost-representations.  Passing to the reduced algebra does not rescue
+  this plan.  `sl3-reduced-group-cstar-has-no-llp` applies the
+  regular-representation LLP obstruction to the residually finite,
+  nonamenable lattice and proves that `C^*_r(SL_3(Z))` also fails LLP.  The
+  corresponding dead route and refutation edge are recorded as
+  `sl3-weak-ucp-via-reduced-llp`.
 - **Source-verified literature boundary (2026-08-21 audit).**  Dogon
   arXiv:2211.10492, immediately after Theorem 1.6, states only the forward
   implications
