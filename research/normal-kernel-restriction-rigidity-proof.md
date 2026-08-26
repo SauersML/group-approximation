@@ -14,3 +14,9 @@ For `T in V`, `f in F`, `k in K`, normality gives `f^(-1) k f in K`, so
 `Pi|_V` is a finite-dimensional unitary representation of `Q`, which is
 trivial by hypothesis.  If `u|_K = v|_K` then `1 in V`, and
 `1 = Pi(f)(1) = u(f) v(f)^*` for all `f`.
+
+(4): for `T in u(K)'`, `T` is a `K`-intertwiner from `u` to `u`, so by (1)
+with `v = u` the operator `Pi(f)(T) = u(f) T u(f)^*` lies in `Hom_K(u, u)` and
+the induced representation of `Q` on `Hom_K(u,u)` is trivial; hence
+`u(f) T u(f)^* = T` for all `f`, i.e. `T in u(F)'`.  The reverse inclusion is
+trivial, and bicommutants give `u(K)'' = u(F)''`.

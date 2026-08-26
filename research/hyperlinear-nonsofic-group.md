@@ -37,3 +37,27 @@ property (T) plus a commuting non-LEF subgroup. Two qualifications:
   Q3.4 with a different approximation class, and it isolates what the
   hyperlinear side is missing — a permanence theorem with no hypothesis on
   the coset action.
+
+**Status 2026-08-26 (abstract-embedding pass and notebook ingestion).**
+Hyperlinearity of any candidate is equivalent to an abstract unitary
+embedding (`abstract-unitary-embedding-upgrades-to-hyperlinear`), but for
+compressed Kazhdan pairs that freedom is bounded: the Kazhdan subgroup is
+always represented non-amenably (`amenable-kazhdan-models-absorb-compression`),
+every model splits into an atomic corner (never faithful), a regular-character
+corner (the setting of all routes above) and a remainder carrying
+compression-fixed mixtures of infinite-index induced characters that are
+non-regular on every root subgroup
+(`kt-remainder-corner-characters-are-infinite-index-induced`,
+`remainder-corner-root-character-is-persistently-nonregular`).  The nonsofic
+Kun--Thom double now decides one of the two roots either way
+(`kt-pair-group-double-is-not-hyperlinear` versus
+`kt-double-mixed-word-trace-selection`).  Two routes were added into this
+claim from the attack notebook
+(`research/artifacts/hyperlinear-nonsofic-attack-notebook-2026-08-26.md`):
+`hyperlinear-nonsofic-from-leavitt-retention`, whose single open leaf
+`leavitt-presentation-double-positive-rank-retention` is a norm-to-trace
+transfer for Shulman pairs of the simple Kazhdan quotient
+`EL_4(L_(F_2)(1,2))` with the defect necessarily on the Kazhdan generators
+(`intertwiner-retention-is-equivalent-to-hyperlinearity`), and
+`hyperlinear-nonsofic-from-free-lamp-hnn` through the open
+`kt-free-lamp-hnn-group-is-hyperlinear`.

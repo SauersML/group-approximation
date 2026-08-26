@@ -20,6 +20,16 @@ unitary representations `u, v` of `F` on `H`, let `F` act on `HS(H)` by
 **Theorem.**  (1) `V` is `Pi(F)`-invariant and `Pi|_V` factors through `Q`.
 (2) If `u|_K = v|_K` then `u = v`.  (3) Hence restriction
 `Hom(F, U(d)) -> Hom(K, U(d))` is injective for every `d`.
+(4) (Kernel absorption.)  For every finite-dimensional unitary `u` of `F`,
+`u(K)' = u(F)'`, equivalently `u(K)'' = u(F)''`: the kernel generates the
+same algebra as the whole group, and `u|_K` has the multiplicity structure of
+`u`.  Consequently the exact `K`-commutant sector of the left-right
+representation `Pi(f)(T) = u(f) T u(f)^*` is fixed pointwise by `Pi(F)`, so
+it can never carry the defect sought in
+`intertwiner-retention-makes-leavitt-quotient-hyperlinear`; the retained
+sector must lie strictly outside every exact commutant.  This is the
+finite-dimensional twin of `amenable-kazhdan-models-absorb-compression` and
+of `sl3-atomic-ambient-is-absorbed-by-lattice`.
 
 (1) is a two-line computation using normality of `K`; (2) follows because
 `1 in V` and the `Q`-representation on `V` is trivial, so `1 = Pi(f)(1) =
