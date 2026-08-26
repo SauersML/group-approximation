@@ -127,7 +127,11 @@ joint commutant is only `C^(n+1)`.  This still does not close the gate:
 `periodic-clock-p-commutant-has-uniform-joint-gap` gives a dimension-free
 correction once `K^4` commutes with `P` exactly, and a rate-dependent one when
 `3^n r->0`, but the gate assumes only `r->0` and still lacks a compatible
-fourth-root correction.
+fourth-root correction.  This rate loss is real at the almost-commutant
+level: `periodic-clock-has-opnorm-almost-central-fourth-power-escape`
+exhibits unitary fourth powers far from the joint commutant despite both
+commutators vanishing.  What remains special, and open, is imposing the
+matcher equation on that same fourth root.
 On the other hand, `order-four-bs-matcher-builds-higman-opnorm-microstate`
 shows that matchers with both vanishing one-step error and
 `||K^4 P K^(-4)-P||->0` would immediately refute this node; no stronger return

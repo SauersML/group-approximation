@@ -56,4 +56,7 @@ This still does not settle the matcher gate.  Its hypothesis asks only
 after exact `P`-commutation.  Nor does closeness of `K^4` to `{P,D}'` by
 itself provide a compatible fourth-root correction of `K`.  The theorem
 therefore isolates the remaining slow-return/root-compatibility seam rather
-than claiming Higman collapse.
+than claiming Higman collapse.  The exactness cannot be dropped formally:
+`periodic-clock-has-opnorm-almost-central-fourth-power-escape` gives unitary
+fourth powers with both commutators tending to zero while their distance to
+the joint commutant stays at least one.

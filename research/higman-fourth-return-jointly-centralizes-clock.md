@@ -49,6 +49,11 @@ particular `(HJC2)` does **not** give a dimension-independent operator-norm
 estimate of `dist(K^4,{P,D}')` for an arbitrary return rate.
 `periodic-clock-p-commutant-has-uniform-joint-gap` does give such an estimate
 when `P`-commutation is exact, and when `3^n r->0`; the unrestricted gate has
-only `r->0`.  Control of a compatible fourth root is also absent.  The claim
-therefore rules out treating the full `2q-1`-dimensional `P`-centralizer as
-free return gauge, while leaving slow exceptional arithmetic matchers open.
+only `r->0`.  Moreover
+`periodic-clock-has-opnorm-almost-central-fourth-power-escape` constructs
+unitary fourth powers with both commutators vanishing but fixed distance from
+the joint commutant, so simultaneous centrality alone cannot remove that
+rate seam.  Control of the **same** fourth root as a spectral matcher is
+still absent.  The claim therefore rules out treating the full
+`2q-1`-dimensional `P`-centralizer as free return gauge, while leaving slow
+exceptional arithmetic matchers open.
