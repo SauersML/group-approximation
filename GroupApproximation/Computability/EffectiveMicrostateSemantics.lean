@@ -75,7 +75,9 @@ noncomputable abbrev toMicrostate (c : PresentationCode) (d : ℕ)
     (gens : List MatrixCode) (hunitary : GeneratorsUnitary c d gens) :
     Microstate c where
   model := naturalFiniteModel (dim d)
-  card_pos := by simpa [dim] using Nat.succ_pos d
+  card_pos := by
+    rw [card_naturalFiniteModel]
+    exact Nat.succ_pos d
   gen := fun i =>
     ⟨toMatrix d (generator d gens i),
       (isUnitary_iff d (generator d gens i)).1 (hunitary i)⟩
@@ -98,12 +100,31 @@ theorem toMicrostate_hom_wordOf (c : PresentationCode) (d : ℕ)
         Matrix (Fin (dim d)) (Fin (dim d)) ℂ) =
           (w.map (matrixLetter c d gens)).prod
   | [] => by
-      simp
+      rw [wordOf_nil, map_one]
+      rfl
   | (i, false) :: w => by
-      rw [wordOf_cons_neg, map_mul, map_inv, toMicrostate_hom_wordOf]
+      rw [wordOf_cons_neg, map_mul, map_inv]
+      change
+        ((((toMicrostate c d gens hunitary).hom
+            (FreeGroup.of (letterOf c i)))⁻¹ :
+              Matrix.unitaryGroup (Fin (dim d)) ℂ) :
+            Matrix (Fin (dim d)) (Fin (dim d)) ℂ) *
+          (((toMicrostate c d gens hunitary).hom (wordOf c w) :
+              Matrix.unitaryGroup (Fin (dim d)) ℂ) :
+            Matrix (Fin (dim d)) (Fin (dim d)) ℂ) = _
+      rw [toMicrostate_hom_wordOf c d gens hunitary w]
       simp [Microstate.hom, toMicrostate, matrixLetter, letterOf]
   | (i, true) :: w => by
-      rw [wordOf_cons_pos, map_mul, toMicrostate_hom_wordOf]
+      rw [wordOf_cons_pos, map_mul]
+      change
+        (((toMicrostate c d gens hunitary).hom
+            (FreeGroup.of (letterOf c i)) :
+              Matrix.unitaryGroup (Fin (dim d)) ℂ) :
+            Matrix (Fin (dim d)) (Fin (dim d)) ℂ) *
+          (((toMicrostate c d gens hunitary).hom (wordOf c w) :
+              Matrix.unitaryGroup (Fin (dim d)) ℂ) :
+            Matrix (Fin (dim d)) (Fin (dim d)) ℂ) = _
+      rw [toMicrostate_hom_wordOf c d gens hunitary w]
       simp [Microstate.hom, toMicrostate, matrixLetter, letterOf]
 
 /-- Executable word evaluation is exactly the matrix underlying the analytic
