@@ -56,27 +56,46 @@ local instance boundedMatrixSequenceCStarAlgebraForTransport :
   toNormedAlgebra := inferInstance
   toStarModule := inferInstance
 
+/-- The underlying complex-linear map of a star-algebra equivalence. -/
+def starAlgEquivLinearMap
+    {A B : Type*} [Semiring A] [Semiring B] [Algebra ℂ A] [Algebra ℂ B]
+    [Star A] [Star B] (e : A ≃⋆ₐ[ℂ] B) : A →ₗ[ℂ] B :=
+  e.toAlgEquiv.toLinearEquiv.toLinearMap
+
+@[simp] theorem starAlgEquivLinearMap_apply
+    {A B : Type*} [Semiring A] [Semiring B] [Algebra ℂ A] [Algebra ℂ B]
+    [Star A] [Star B] (e : A ≃⋆ₐ[ℂ] B) (x : A) :
+    starAlgEquivLinearMap e x = e x := rfl
+
 /-- Precomposition by a star-algebra equivalence preserves complete
 positivity. -/
 theorem isCompletelyPositive_comp_starAlgEquiv
     {A : Type v} {B C : Type*}
-    [NonUnitalCStarAlgebra A] [NonUnitalCStarAlgebra B]
-    [NonUnitalCStarAlgebra C]
+    [CStarAlgebra A] [CStarAlgebra B] [CStarAlgebra C]
     (e : A ≃⋆ₐ[ℂ] B) (f : B →ₗ[ℂ] C)
     (hf : CStarExactness.IsCompletelyPositive f) :
     CStarExactness.IsCompletelyPositive
-      (f.comp e.toContinuousLinearEquiv.toContinuousLinearMap.toLinearMap) := by
-  apply hf.comp
+      (f.comp (starAlgEquivLinearMap e)) := by
   intro n M hM
   obtain ⟨N, hN⟩ := hM
-  let e★ := e.toStarAlgHom.toNonUnitalStarAlgHom
-  refine ⟨CStarMatrix.mapₙₐ (n := Fin n) e★ N, ?_⟩
+  let estar := e.toStarAlgHom.toNonUnitalStarAlgHom
+  have hpositive : ∃ Q : CStarMatrix (Fin n) (Fin n) B,
+      M.map ⇑(starAlgEquivLinearMap e) = star Q * Q := by
+    refine ⟨CStarMatrix.mapₙₐ (n := Fin n) estar N, ?_⟩
+    have hmap :
+        M.map ⇑(starAlgEquivLinearMap e) =
+          CStarMatrix.mapₙₐ (n := Fin n) estar M := by
+      ext i j
+      rfl
+    rw [hmap, hN, map_mul, map_star]
+  obtain ⟨P, hP⟩ := hf n (M.map ⇑(starAlgEquivLinearMap e)) hpositive
+  refine ⟨P, ?_⟩
   have hmap :
-      M.map ⇑e.toContinuousLinearEquiv.toContinuousLinearMap.toLinearMap =
-        CStarMatrix.mapₙₐ (n := Fin n) e★ M := by
+      M.map ⇑(f.comp (starAlgEquivLinearMap e)) =
+        (M.map ⇑(starAlgEquivLinearMap e)).map ⇑f := by
     ext i j
     rfl
-  rw [hmap, hN, map_mul, map_star]
+  rw [hmap, hP]
 
 /-- Exact c.p.c. matrix-corona lifts transport across a star-algebra
 equivalence with an explicit finite product of full matrix algebras. -/
@@ -91,7 +110,7 @@ theorem exists_completelyPositiveContractive_lift_of_starAlgEquiv_directMatrixSu
       (∀ x, ‖lift x‖ ≤ ‖x‖) ∧
       ∀ x, normMatrixCStarCoronaQuotient X (lift x) = f x := by
   let einv : DirectMatrixSum d →ₗ[ℂ] D :=
-    e.symm.toContinuousLinearEquiv.toContinuousLinearMap.toLinearMap
+    starAlgEquivLinearMap e.symm
   let pushed : DirectMatrixSum d →ₗ[ℂ] NormMatrixCStarCorona X :=
     f.comp einv
   have hpushed : CStarExactness.IsCompletelyPositive pushed := by
@@ -102,12 +121,13 @@ theorem exists_completelyPositiveContractive_lift_of_starAlgEquiv_directMatrixSu
     calc
       ‖f (einv y)‖ ≤ ‖einv y‖ := hcontract (einv y)
       _ = ‖y‖ := by
-        simpa only [einv] using StarAlgEquiv.norm_map e.symm y
+        change ‖e.symm y‖ = ‖y‖
+        exact StarAlgEquiv.norm_map e.symm y
   obtain ⟨matrixLift, hmatrixCP, hmatrixContract, hmatrixQuot⟩ :=
     exists_completelyPositiveContractive_directMatrixSum_lift
       d X pushed hpushed hpushedContract
   let edir : D →ₗ[ℂ] DirectMatrixSum d :=
-    e.toContinuousLinearEquiv.toContinuousLinearMap.toLinearMap
+    starAlgEquivLinearMap e
   let lift : D →ₗ[ℂ] BoundedMatrixSequence X := matrixLift.comp edir
   refine ⟨lift, ?_, ?_, ?_⟩
   · exact isCompletelyPositive_comp_starAlgEquiv e matrixLift hmatrixCP
@@ -115,12 +135,16 @@ theorem exists_completelyPositiveContractive_lift_of_starAlgEquiv_directMatrixSu
     change ‖matrixLift (edir x)‖ ≤ ‖x‖
     calc
       ‖matrixLift (edir x)‖ ≤ ‖edir x‖ := hmatrixContract (edir x)
-      _ = ‖x‖ := by simpa only [edir] using StarAlgEquiv.norm_map e x
+      _ = ‖x‖ := by
+        change ‖e x‖ = ‖x‖
+        exact StarAlgEquiv.norm_map e x
   · intro x
     calc
       normMatrixCStarCoronaQuotient X (lift x) = pushed (edir x) :=
         hmatrixQuot (edir x)
-      _ = f x := by simp [pushed, einv, edir]
+      _ = f x := by
+        change f (e.symm (e x)) = f x
+        exact congrArg f (e.symm_apply_apply x)
 
 end
 
