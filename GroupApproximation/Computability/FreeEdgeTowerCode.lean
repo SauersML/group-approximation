@@ -203,9 +203,9 @@ theorem primrec_centralEdges :
     Primrec (fun words : List Raw => centralEdges words) :=
   Primrec.list_map Primrec.id (Primrec.pair Primrec.snd Primrec.snd)
 
+set_option maxHeartbeats 800000 in
 /-- Iterating the one-edge code constructor over a finite family is primitive
 recursive. -/
-set_option maxHeartbeats 800000 in
 theorem primrec_multiEdgeCode :
     Primrec₂ (fun (c : PresentationCode)
       (layers : List (List (Raw × Raw))) => multiEdgeCode c layers) := by
