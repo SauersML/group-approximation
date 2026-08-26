@@ -16,6 +16,8 @@ distinct_from:
   binary-jacobson-untyped-square-decoder-is-target-equivalent: that proves arbitrary coordinate-dependent Toeplitz data merely restate MF-invisibility; this requires a fixed occurrence package and a quantitative relator-to-decoder estimate.
   binary-jacobson-balanced-shift-transport-is-xor: that computes the first literal monomial/raw-root conjugation row and obtains only symmetric difference; this must add an authenticated occurrence which orients that row.
   binary-jacobson-three-cycle-is-controlled-swap-and-marked-mf: that closes three cyclic triangular rows to a head-controlled swap and proves that the three shifts, Weyl swaps, and one raw root in a common target column remain an amenable marked subsystem; this must leave that common-column semidirect product.
+  binary-jacobson-two-target-parabolic-is-marked-mf: that enlarges the package to two external target columns and the full constant cycle between them but remains an amenable marked upper parabolic; this must include a reverse target-to-active root or move the raw cycle onto the active rows.
+  binary-jacobson-active-cycle-generates-rank-three: that moves a directed constant three-cycle onto the active rows and, with one balanced shift, generates the full rank-three elementary Jacobson group; this shows that the first internal-cycle escape is already the hard coefficient core rather than a smaller Hall packet.
 ---
 
 **OPEN.**  Let
@@ -85,6 +87,20 @@ root in a fixed target column, and the head root is amenable and marked MF
 by `binary-jacobson-three-cycle-is-controlled-swap-and-marked-mf`.  Thus a
 successful occurrence must couple different target columns or use a larger
 piece of the monomial-symbol preimage than this cyclic actor.
+
+The most literal two-target coupling is now closed as well.  Allowing all
+upper-right coefficient roots into columns `4,5` and adjoining the two
+constant cycle roots `x_45(1),x_54(1)` stays inside the amenable block
+parabolic of `binary-jacobson-two-target-parabolic-is-marked-mf`; it retains
+the head in a faithful operator-MF model.  Moving the directed constant
+three-cycle onto the active rows genuinely escapes that fence, but
+`binary-jacobson-active-cycle-generates-rank-three` shows that one balanced
+shift plus those three roots already generates `EL_3(J)`.  Therefore the
+first unfenced internal-cycle package is not a smaller type ledger on which
+an ordinary Hall count can be read: it is the full rank-three coefficient
+core.  The remaining selector must use a coordinate-dependent occurrence
+inside that core (or a reverse target-to-active incidence), not merely add a
+second external column.
 
 The ordinary algebraic Toeplitz boundary does not supply that interaction.
 `binary-jacobson-elementary-symbols-have-zero-toeplitz-index` shows that the
