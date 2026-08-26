@@ -57,6 +57,17 @@ logical levels: scalar-line exact covariance closes the Maslov lane, general
 matrix homogeneous covariance does not, and approximate covariance needs a
 new modulus.
 
+The twist difference does produce one real restriction not visible here.
+`odd-maslov-homogeneous-coefficients-have-a-fixed-size-defect-gap` proves
+that an odd-to-even homogeneous map has a uniform positive coefficient
+defect at every fixed matrix size.  Hence the present construction is a
+formal covariance countermodel, but it does not refute Maslov-specific
+scalarization after uniformly bounded coefficient degree has been fixed.
+The unbounded-degree version is now fenced as well by
+`odd-maslov-homogeneous-coefficients-have-a-uniform-folner-gap`: vanishing
+coefficient boundary would produce an amenable trace on the odd fibre.  The
+present countermodel therefore proves flexibility only when the twist
+difference is trivial; it does not model an asymptotically scalar odd/even
+bridge.
+
 The proof is `positive-definite-fourier-multiplier-retract-proof`.
-
-

@@ -8,7 +8,9 @@ requires:
   - atlas-six-row-polar-high-spaces-meet-source-at-acute-angle
 ---
 
-Fix `U,t` and use `(PAI1)--(PAI2)`.  Condition `(PAI3)` says that the
+**INVALIDATED.**  The proposed implication itself is the following valid
+finite-dimensional calculation.  Fix `U,t` and use `(PAI1)--(PAI2)`.
+Condition `(PAI3)` says that the
 orthogonal projection
 
 ```text
@@ -41,4 +43,6 @@ principal angles, and integer rank.  It does not assert an operator
 domination and therefore does not extend formally to the exact Leavitt
 factor.
 
-
+However, `atlas-affine-acute-angle-forces-two-point-k-orbit` gives a finite
+regular affine frame with `rank(P_t)>rank(Z_t)` at every sufficiently small
+threshold.  Thus the required premise is false and this route is invalidated.

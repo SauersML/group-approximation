@@ -91,11 +91,12 @@ the finite arithmetic information lost by fixed Reynolds--Gram positivity.
   rank/integrality information, or the injection has to be established only
   after thresholding.  It cannot be a spectral corollary of fixed
   tracially-valid residual-column coercivity.
-- The first literal surviving polar mechanism is now isolated in
-  `atlas-six-row-polar-high-spaces-meet-source-at-acute-angle`: join both the
-  initial and final high-singular spaces of all six residuals and ask that
-  the source high space meet their orthogonal complement trivially.  The
-  principal-angle injection route then proves `(SCI3)` with `C_rank=2`.
-  This incidence moves with `(U,t)` and is calibrated by an exact finite
-  affine-frame falsification test; unlike residual-column coercivity it is
-  imposed only after spectral thresholding.
+- The literal twelve-space polar mechanism is refuted by the exact affine
+  frame.  `atlas-affine-acute-angle-forces-two-point-k-orbit` computes the
+  small-threshold source rank as at least `2/3`, while all five boundary
+  targets vanish and the collision initial/final spaces coincide at rank
+  `1/2`.  Therefore even an incidence moving with `(U,t)` cannot simply join
+  the residuals' initial and final high spaces and project the whole source
+  into that join.  A surviving proof of `(SCI3)` must permit bounded
+  multiplicity in a way not equivalent to one acute-angle injection; the
+  affine calibration still remains compatible with `C_rank>=2`.

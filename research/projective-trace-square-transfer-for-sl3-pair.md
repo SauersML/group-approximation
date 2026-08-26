@@ -140,6 +140,28 @@ weakening consumed by the HNN marked word.
   transition between adjacent dyadic depths, not a loss intrinsic to the
   closed A2 packet.
 
+- **Proper sign moments do not decode that carrier.**
+  `six-weyl-sign-proper-moments-miss-top-parity` takes the odd-parity affine
+  hyperplane of the six sign characters.  Its exact finite representation
+  has the regular trace on every nonempty proper product of the six signs
+  and exact signed-Weyl covariance, but its all-negative projection is zero.
+  Fourier inversion shows that precisely the missing full six-root parity
+  moment distinguishes it from the regular packet.  Thus an outlier decoder
+  must control that genuinely six-way moving-depth word; one-root, pairwise,
+  five-wise, and Weyl-symmetrized proper moments cannot close the packet.
+  This no-go is upstream of the still-open rectangular denominator
+  transition.
+
+- **The denominator image of the missing parity word is explicit.**
+  `six-root-top-parity-transports-to-staggered-negative-triple` computes that
+  conjugation by `diag(2,1,1/2)` sends the product of all six top-layer root
+  signs, modulo level `2^a`, to the commuting `21,32,31` triple at depths
+  `a-2,a-2,a-3`.  Thus the remaining decoder/transport gate is now a single
+  scalar coefficient transfer from the sixfold source parity word to this
+  order-`4,4,8` target triple.  The identity is exact, but its fixed-generator
+  word length grows with `a`; it does not by itself give the required
+  depth-free normalized-HS modulus.
+
 - **Approximate perfectness removes the projective phases quantitatively.**
   This part of the exact proof survives presentation defect and is not the
   remaining obstruction.  Put

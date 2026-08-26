@@ -96,4 +96,11 @@ denominator-depth transition.  Once that is done,
 `robust-half-period-a2-flip-pays-simultaneous-doubling` supplies the analytic
 payment.
 
-
+The decoder has one sharp mandatory statistic.
+`six-weyl-sign-proper-moments-miss-top-parity` constructs six exactly
+commuting, exactly Weyl-covariant signs which match the regular packet on
+all 62 nonempty proper sign-product moments while their all-negative atom is
+zero.  Hence the full six-root parity moment cannot be inferred from the
+proper moments or Weyl covariance.  Controlling that one moving-depth word
+(or an equivalent genuinely six-way statistic) is necessary before the
+rectangular `h`-transport problem even begins.

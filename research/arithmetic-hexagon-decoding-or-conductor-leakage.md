@@ -126,6 +126,17 @@ the fixed-depth nonhyperlinearity criterion.
   last-layer sign packet from an arbitrary matrix microstate and control its
   one rectangular denominator-depth transition.
 
+- **The unique missing source statistic has an exact staggered target.**
+  `six-weyl-sign-proper-moments-miss-top-parity` shows that all proper
+  moments leave one undetected parity coefficient.  Once that coefficient
+  is supplied, `six-root-top-parity-transports-to-staggered-negative-triple`
+  computes its image under `h=diag(2,1,1/2)`: modulo level `2^a`, the six
+  top-root product becomes the commuting negative-root triple at depths
+  `a-2,a-2,a-3`, of orders `4,4,8`.  Hence the rectangular step no longer
+  has an unspecified algebraic target.  The open estimate is to transport
+  this growing-depth scalar moment with a dimension-free loss, or charge its
+  failure to conductor exit; naive power telescoping still loses with `a`.
+
 - **Fixed odd clock packets close.**  For every fixed odd quotient packet,
   finite-group exactification plus the literal six-edge holonomy gives the
   no-leak branch with a dimension-independent modulus; this is

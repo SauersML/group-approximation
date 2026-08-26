@@ -3,12 +3,14 @@ rg: 2
 id: atlas-six-row-polar-high-spaces-meet-source-at-acute-angle
 kind: claim
 title: Initial and final residual high spaces meet the Atlas source at an acute principal angle
+refuted_by: atlas-affine-acute-angle-forces-two-point-k-orbit
 distinct_from:
   atlas-six-row-singular-counting-dominates-nontrivial-s3: that asks only a rank bound with an unspecified constant; this asks the concrete stronger geometric statement that the source has no vector orthogonal to all twelve moving initial/final high spaces and would give constant two.
   atlas-pointwise-column-coercivity-misses-moving-injection: that rules out deriving transversality from tracially functorial unthresholded column positivity; this imposes transversality only after taking the finite-coordinate spectral projections.
 ---
 
-**OPEN.**  For each of the six residuals write its polar decomposition as
+**REFUTED.**  The proposed statement was the following.  For each of the six
+residuals write its polar decomposition as
 
 ```text
 R_r=V_r |R_r|,
@@ -43,13 +45,13 @@ No uniform margin below one is required: finite-dimensional injectivity is
 enough.  The incidence in `(PAI1)--(PAI2)` depends on the complete matrix
 coordinate `U` and on `t`; it is not a fixed packet graph.
 
-This is calibrated to the characteristic-two affine enemy.  There only the
-collision residual survives and is self-adjoint, so its initial and final
-high spaces coincide and the estimate, if true, uses at most one half-rank
-target.  The claim therefore has a sharp falsification test on that archived
-frame: compute the nonzero singular space of `U-E_K(U)` and check whether it
-has a vector in the `+1` collision eigenspace.  That is a finite exact group-
-algebra calculation, not a large search.  It has not yet been carried out.
+The characteristic-two affine enemy refutes it.  There only the collision
+residual survives and is self-adjoint, so `Z_t` has normalized rank `1/2`.
+The exact orbit-rank calculation in
+`atlas-affine-acute-angle-forces-two-point-k-orbit` gives normalized source
+rank at least `2/3` for every sufficiently small threshold.  Hence
+`Z_t:Ran(P_t)->Ran(Z_t)` cannot be injective and `(PAI3)` fails for every
+choice of `kappa`.
 
 The Leavitt factor violates the tracial analogue because every `Q_r,Q'_r`
 is zero while `P_t` is nonzero for a positive-measure set of thresholds.
@@ -58,19 +60,17 @@ spectral selection, exactly as required by the parent singular-counting gate.
 
 ## Attempts
 
-- **Affine falsification.**  On the strongest archived finite affine enemy,
-  the five boundary residual spaces vanish and the collision initial/final
-  spaces coincide.  It remains to compare that half-rank eigenspace with the
-  nonzero singular space of `U-E_K(U)` by exact finite group-algebra linear
-  algebra.  No regular-multiplicity scan is needed.
+- **Affine falsification is complete.**
+  `atlas-affine-acute-angle-forces-two-point-k-orbit` first reduces the source
+  rank to the raw-`S3` orbit size.  The archived dual functionals then prove
+  that the raw three-cycle does not fix the quotient vector.  Thus the orbit
+  has size `3` or `6`, the source rank is at least `2/3`, and the half-rank
+  collision target cannot receive an injection.
 - **Unthresholded column coercivity is fenced.**  The route
   `atlas-moving-singular-injection-via-residual-column-coercivity` is
   invalidated in its fixed-tracial form.  A successful proof must use the
   post-threshold initial/final ranges themselves, not obtain their
   transversality from a Gram inequality valid in arbitrary finite factors.
-- **Principal-angle margin.**  No uniform angle gap is requested.  Requiring
-  one would add an unnecessary compactness problem as the external
-  multiplicity grows; strict finite-dimensional injectivity already gives
-  the rank inequality.
-
-
+- **Adding an angle margin cannot help.**  The counterexample already has a
+  nonzero kernel for the proposed projection, not merely angles converging to
+  `pi/2` under amplification.

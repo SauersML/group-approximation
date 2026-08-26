@@ -97,6 +97,25 @@ untwisted fibre.
   rigidity.  The remaining possible input is therefore a quantitative
   Maslov-specific modulus upgrading matrix homogeneous coefficients toward a
   scalar/projective coefficient; that is not supplied by ucp theory alone.
+- **Bounded homogeneous coefficient size has a Maslov gap.**
+  `odd-maslov-homogeneous-coefficients-have-a-fixed-size-defect-gap` uses the
+  odd difference multiplier, projective GNS compression, and Deligne
+  invisibility to prove that every fixed coefficient size `n` pays a
+  positive total generator defect `kappa_n`.  Thus fixed-size compactness
+  alone says that the same-twist countermodel could escape only by taking
+  coefficient size to infinity.  The next item closes that apparent escape.
+- **The unbounded coefficient escape is also closed for scalarization.**
+  `odd-maslov-homogeneous-coefficients-have-a-uniform-folner-gap` identifies
+  the coefficient defect with normalized finite-rank boundary in the
+  projective GNS representation.  A hypothetical sequence with defect
+  tending to zero, even with matrix size tending to infinity, direct-sums to
+  one forbidden odd-Maslov Folner representation.  Hence one constant
+  `kappa_hom>0` works in all coefficient sizes.  The surviving homogeneous
+  retract lane cannot perturb its hidden boundary toward a scalar/projective
+  Morita bridge: any retract must kill a macroscopic positive coefficient
+  boundary.  Such a genuinely nonfaithful macroscopic-boundary retract is
+  not ruled out and could still transfer LLP, but the proposed quantitative
+  scalarization gate is now closed negatively.
 - **The Connes-embeddability of the fibres is also live.**  Thom's
   criterion (Lemma 3.4, `thom-central-corner-criterion`) makes
   hyperlinearity of `E_3` equivalent to Connes-embeddability of all
