@@ -7,6 +7,7 @@ distinct_from:
   hnn-stable-letter-rounds-to-finite-order: that extracts one balanced finite-order unitary for every chosen order; this retains the common spectral source and records the nested projection tower, its entire coset orbit, and one literal Steinberg loop at every depth.
   full-hnn-regularity-is-a-quasiregular-unitary-orbit: that gives the orthonormal orbit of the Haar generators themselves; this resolves every generator into coherent dyadic spectral atoms and computes their translate overlaps.
   closed-a2-loop-still-leaves-swap-fold-free: that finite packet retains one balanced projection while satisfying two shortest return relations; this consequence of the full Haar law supplies all dyadic refinements simultaneously and the full coset-indexed free family.
+  arithmetic-global-pvm-does-not-bypass-coset-action-gate: that proves a rounded global binary-lamp PVM still leaves an asymptotic coset-action model; this retains the diffuse free-lamp tower and literal rank-two coherence, but does not claim that PVM existence alone escapes that same gate.
 ---
 
 Put `C=SL_3(Z)<A=SL_3(Z[1/2])`, `B=L(C)`, and suppose an enemy for
@@ -76,7 +77,11 @@ finite coset window is compatible with the existing finite-lamp and
 two-letter Morita countermodels.  The remaining matrix-specific datum is
 simultaneous coherence over unbounded dyadic depth together with the one
 common approximate arithmetic actor.  The corresponding explicit residual
-is `sl3-outliers-have-no-dyadic-a2-pvm-tower`.
+is `sl3-outliers-have-no-dyadic-a2-pvm-tower`.  In particular,
+`arithmetic-global-pvm-does-not-bypass-coset-action-gate` already rules out
+treating the tower merely as a global PVM: without a same-carrier
+matrix-coordinate estimate, it returns to the original coset-action
+approximation problem.
 
 DERIVATION
 free-hnn-dyadic-a2-pvm-tower-proof

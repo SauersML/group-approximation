@@ -7,6 +7,7 @@ distinct_from:
   sl3-ambient-outliers-carry-no-free-hnn-letter: that quantifies over one Haar unitary with its full B-valued distribution; this asks only for the nested dyadic spectral atoms, their coset covariance, scalar free-lamp law, and literal Steinberg-loop coherence.
   sl3-outliers-carry-no-balanced-free-involution: that retains one binary spectral cut and works with separation from every exact lattice representation at large primes; this retains all dyadic refinements and uses the sharper ambient-extension outlier at p equals 2.
   two-conjugate-letter-overlap-data-is-morita-neutral: that gives countermodels at every fixed finite spectral and word window; this asserts that no single matrix-ultraproduct actor can carry all depths and all covariant coset atoms coherently.
+  arithmetic-global-pvm-does-not-bypass-coset-action-gate: that identifies the finite-atomic coset-action enemy surviving a global binary-lamp PVM; this asks whether the additional diffuse free-lamp and all-depth rank-two coherence excludes the corresponding ambient-outlier model.
 ---
 
 OPEN.  For `C=SL_3(Z)<A=SL_3(Z[1/2])`, there is no trace-preserving
@@ -27,4 +28,7 @@ tensoring realize the same scalar data.  A proof must use the common actor
 to propagate the nested atoms through an unbounded family of rank-two
 loops, or find a dimension-free obstruction to that propagation.  Merely
 reapplying one balanced-involution fold estimate discards exactly the
-coherence retained here.
+coherence retained here.  Merely invoking a global PVM also does not close
+the claim: the established coset-action firewall permits asymptotically
+equivariant finite atomic models which do not correct to finite quotient
+actions.
