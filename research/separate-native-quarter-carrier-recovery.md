@@ -9,6 +9,8 @@ distinct_from:
   pauli-carrier-membership-decoder: that puts the transported branch carrier under one raw binary carrier and immediately creates a rank-capacity contradiction; this asks only for membership in one of two commuting descendant algebras.
   leavitt-range-sum-fold-is-first-object-erasing-row: that identifies the first full-presentation word outside the typed Morita/Whitehead language; this asks for the stronger payload-coupled placement of five particular native packet factors.
   leavitt-range-sum-fold-does-not-pay-reynolds: that proves the scalar fold remains exact with positive transverse reservoir leakage, even under literal fold-occurrence reuse; this endpoint therefore cannot use object erasure without an additional payload-coupled return.
+  reverse-product-whitehead-fold-has-finite-fusion: that identifies the first literal payload-coupled opposite-root fold row and gives its three-packet fusion model; this endpoint needs a matrix-only irreducible-payload lock beyond that row.
+  returned-opposite-cross-zero-has-finite-s6-model: that adjoins the full relative A2 orbit and direct returned-source cross-zero comparisons while retaining finite Coxeter re-gauging; this endpoint must use a cross-Gram lock unavailable in that finite window.
 ---
 
 OPEN.  Let `F` be the trace-quarter common product of the two transported
@@ -135,6 +137,52 @@ Consequently the remaining inventory question is not the existence of an
 object-erasing word.  It is the first **payload-coupled** cross-reservoir row
 which ties one occurrence in `(SNQ3)` to `q,T_0,T_1,comb,Q_P`, or else makes
 failure of that tie pay a dimension-independent finite-coordinate boundary.
+
+The first payload-coupled candidate can also be stated exactly.  Write
+
+```text
+q_i=s_i t_i,       C_i=x_14(q_i),       D_i=x_41(q_i),
+J=x_14(A),         L=x_41(A),
+W_i=C_iD_iC_i,     W_A=JLJ.
+```
+
+Then orthogonality and `q_0+q_1=A` give the fixed nonlinear row
+
+```text
+W_0W_1W_A^(-1)=1.                                    (SNQ4)
+```
+
+This really ties each literal fold output `C_i` to an opposite-root payload
+before the two branches are combined; completeness is essential in its
+derivation.  It is therefore the first genuine payload-coupled successor to
+`(SNQ3)`, not another typed or scalar identity.
+
+It still does not place the five factors.  The exact three-packet model of
+`reverse-product-whitehead-fold-has-finite-fusion` satisfies `(SNQ4)` with
+the mark surviving.  Adding native composable-root transports and crossed
+zeros eliminates scalar support fusion, but
+`mixed-cross-zero-squares-have-four-state-gauge-model` retains a non-scalar
+relative reservoir gauge.  Even the full order-three relative `A_2` orbit
+and the direct returned comparisons `[D_0,C_1]=[D_1,C_0]=1` retain the exact
+`S_6` model of `returned-opposite-cross-zero-has-finite-s6-model`.  This
+invalidates `returned-a2-fold-window-places-native-pauli-factors`.
+
+Hence the first unavoidable finite-coordinate boundary is now precise.  On
+the selected packet block, one must lock the relative branch gauge to the
+source payload so that target cross-orthogonality forces source
+cross-orthogonality, quantitatively of the form
+
+```text
+||P_0P_1||_2
+ <= omega(packet defects,||Q_0Q_1||_2,cross-Gram defect), (SNQ5)
+Q_i=U_iP_iU_i^*,          omega(0,0,0)=0.
+```
+
+The four-state model makes `Q_0Q_1=0` while `||P_0P_1||_op=1`, so the
+cross-Gram term in `(SNQ5)` is load bearing.  It must compare a returned
+opposite factor with its canonical noncommuting factor on one irreducible
+payload block; equality of outputs, complete native occurrence sharing,
+relative Weyl covariance, and returned zero-products do not supply it.
 
 ## Falsification gate
 

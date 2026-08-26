@@ -3,6 +3,8 @@ rg: 2
 id: returned-opposite-cross-zero-has-finite-s6-model
 kind: claim
 title: The returned opposite cross-zero cell has a finite S6 holonomy model
+invalidates:
+  - returned-a2-fold-window-places-native-pauli-factors
 artifacts:
   - research/returned-opposite-cross-zero-s6-proof.md
 distinct_from:
@@ -67,4 +69,3 @@ literature result is used.
 
 DERIVATION
 returned-opposite-cross-zero-s6-proof
-
