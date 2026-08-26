@@ -65,6 +65,14 @@ the native `J_1` target.  Thus this calculation closes one proposed
 continuation of `el20-six-moving-coefficient-square-bridges`; it does not
 establish any of `(ESB1)`--`(ESB3)` and does not retract that open claim.
 
+The bare-root failure is not a failure of every longer continuation.
+`reverse-mixed-root-has-two-positive-hecke-commutator-returns` uses the
+literal `x_97(1)` occurrence in two positive-`L_0` commutators and obtains
+the external signed normalizers `x_96(1)` and `x_27(1)`.  These are genuine
+returns to the source carrier, but the native-orbit audit types both as
+disjoint spectators, so neither supplies the missing native Gram or gauge
+lock.
+
 No Property `(T)`, Kazhdan input, trace hypothesis, literature theorem,
 local computation, or Lean compilation is used.
 
