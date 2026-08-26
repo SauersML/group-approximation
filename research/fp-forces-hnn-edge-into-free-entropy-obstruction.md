@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: finite-presentation-forces-the-hnn-edge-back-into-the-free-entropy-obstruction
+id: fp-forces-hnn-edge-into-free-entropy-obstruction
 kind: claim
 title: The amalgam edge is MF but not finitely presented, and finite presentation forces an HNN edge that reintroduces the free-entropy obstruction
 distinct_from:

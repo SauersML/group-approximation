@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: finite-presentation-forces-the-hnn-edge-back-into-the-free-entropy-obstruction-proof
+id: fp-forces-hnn-edge-free-entropy-proof
 kind: route
-title: Compare the trace-conjugacy content of the amalgam and HNN edges
-target: finite-presentation-forces-the-hnn-edge-back-into-the-free-entropy-obstruction
+title: Compare the trace-conjugacy content of the two edges (see body) the trace-conjugacy content of the amalgam and HNN edges
+target: fp-forces-hnn-edge-into-free-entropy-obstruction
 requires:
   - gkmp-amalgam-product-mf-permanence
   - digit-edge-mf-is-a-free-entropy-model-uniqueness-question
