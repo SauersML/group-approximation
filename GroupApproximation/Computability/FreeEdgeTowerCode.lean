@@ -214,6 +214,69 @@ def SemanticEquivalence (x : TowerInput) (HonestTower : Type)
     [Group HonestTower] : Prop :=
   Nonempty (Carrier (compile x) ≃* HonestTower)
 
+/-- The code after the three inner edges, before the detector is attached. -/
+def innerCode (x : TowerInput) : PresentationCode :=
+  threeStageCode x.1 x.2.1 x.2.2.1 x.2.2.2.1
+
+/-- A numbered generator in the compiled presentation. -/
+def compiledGenerator (x : TowerInput) (i : ℕ) : Carrier (compile x) :=
+  PresentedGroup.of (letterOf (compile x) i)
+
+/-- A raw word evaluated in the compiled presentation. -/
+def compiledWord (x : TowerInput) (w : Raw) : Carrier (compile x) :=
+  PresentedGroup.mk _ (wordOf (compile x) w)
+
+/-- The normalized detector payload actually inserted into the outer edge. -/
+def detectorPayloadWord (x : TowerInput)
+    (i : Fin x.2.2.2.2.length) : Raw :=
+  normWord (innerCode x) (x.2.2.2.2.get i)
+
+/-- Marked semantic data for the computed tower.  Besides a group
+equivalence, it records the images of every original generator, all four new
+stable letters, and every detector payload word.  These fields are the exact
+compatibility needed to transport the outer detector theorem through the
+finite presentation; a bare abstract equivalence would not suffice. -/
+structure MarkedSemanticData (x : TowerInput) (HonestTower : Type)
+    [Group HonestTower]
+    (baseGenerator : Fin (genCount x.1) → HonestTower)
+    (tauStable dStable sigmaStable detectorStable : HonestTower)
+    (detectorPayload : Fin x.2.2.2.2.length → HonestTower) where
+  equiv : Carrier (compile x) ≃* HonestTower
+  original_generator : ∀ i : Fin (genCount x.1),
+    equiv (compiledGenerator x i) = baseGenerator i
+  tau_stable :
+    equiv (compiledGenerator x (genCount x.1)) = tauStable
+  d_stable :
+    equiv (compiledGenerator x (genCount x.1 + 1)) = dStable
+  sigma_stable :
+    equiv (compiledGenerator x (genCount x.1 + 2)) = sigmaStable
+  detector_stable :
+    equiv (compiledGenerator x (genCount x.1 + 3)) = detectorStable
+  detector_payload : ∀ i : Fin x.2.2.2.2.length,
+    equiv (compiledWord x (detectorPayloadWord x i)) = detectorPayload i
+
+/-- The marked semantic-equivalence obligation. -/
+def MarkedSemanticEquivalence (x : TowerInput) (HonestTower : Type)
+    [Group HonestTower]
+    (baseGenerator : Fin (genCount x.1) → HonestTower)
+    (tauStable dStable sigmaStable detectorStable : HonestTower)
+    (detectorPayload : Fin x.2.2.2.2.length → HonestTower) : Prop :=
+  Nonempty (MarkedSemanticData x HonestTower baseGenerator tauStable dStable
+    sigmaStable detectorStable detectorPayload)
+
+/-- Marked compatibility contains, in particular, the bare equivalence needed
+for invariant transport. -/
+theorem semanticEquivalence_of_marked (x : TowerInput) (HonestTower : Type)
+    [Group HonestTower]
+    (baseGenerator : Fin (genCount x.1) → HonestTower)
+    (tauStable dStable sigmaStable detectorStable : HonestTower)
+    (detectorPayload : Fin x.2.2.2.2.length → HonestTower)
+    (h : MarkedSemanticEquivalence x HonestTower baseGenerator tauStable dStable
+      sigmaStable detectorStable detectorPayload) :
+    SemanticEquivalence x HonestTower := by
+  rcases h with ⟨h⟩
+  exact ⟨h.equiv⟩
+
 /-- The analytic obligation needed on the positive branch.  It is stated
 separately so that no code-level computability theorem can silently assume an
 MF permanence result for an asymmetric HNN edge. -/
