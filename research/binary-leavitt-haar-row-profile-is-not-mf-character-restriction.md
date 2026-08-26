@@ -33,3 +33,60 @@ representation realizes it exactly in a finite von Neumann algebra.  The
 finite-orbit theorem also leaves it untouched.  The attack is deferred to a
 literal non-diagonal or two-compressor relation that uses operator-norm
 matrix origin and has no regular-representation analogue.
+
+The purely character-theoretic part is now exhausted on the parabolic.
+`haar-root-character-vanishes-off-parabolic-action-kernel` applies Bessel to
+the root-module conjugacy orbit and proves that `(HRP1)` already forces the
+regular-character value on every parabolic element whose vertex action is
+nontrivial.  It deliberately stops at the action kernel and gives no
+finite-matrix contradiction.
+
+The first genuine opposite-root occurrence is also insufficient.
+`first-partial-inverse-whitehead-face-has-haar-mf-character` adjoins
+
+```text
+omega=x_23(s_0)x_32(t_0)x_23(s_0)
+```
+
+to the full row module and identifies a locally finite quotient
+`(R,+)^(n-1) semidirect C_2`.  Its exact finite regular models retain the
+mark and have Haar restriction on the row.  Thus the relations
+`t_0s_0=1`, `s_0t_0=p`, and their shortest opposite-root Whitehead word do
+not close `(HRP1)`; at least two noncommuting coefficient occurrences or a
+global return are necessary.
+
+Even the complementary Whitehead pair remains finite-type.
+`two-whitehead-face-has-haar-mf-character` computes the two actor blocks and
+shows that they generate exactly `S_3`; the full face is
+`(R,+)^(n-1) semidirect S_3`, locally finite with an exact Haar-row MF
+character retaining `z`.  What first escapes this fence is not the two
+Whitehead involutions but the individual same-root packet
+`x_ij(s_0),x_ij(t_0)` together with the constant coordinate swap:
+`leavitt-first-offdiagonal-packet-breaks-locally-finite-amalgam` extracts an
+infinite-order prefix shift.  That result breaks the previous locally finite
+amalgam proof only; it does not yet exclude a different MF model.
+
+The first explicit **downstairs elementary-group** two-compressor relation
+beyond the one-level Haar model is the depth-two split of the marked
+off-diagonal root.  With bars denoting elementary images and
+`z=x_13(s_1t_1)`, it is
+
+```text
+bar(tau_0) bar(z) bar(tau_0)^(-1)
+ = (bar(tau_0)^2 bar(z) bar(tau_0)^(-2))
+   (bar(tau_1) bar(tau_0) bar(z)
+      bar(tau_0)^(-1) bar(tau_1)^(-1)).                (HRP2)
+```
+
+This is `(DTS1)` of
+`leavitt-two-compressor-depth-two-relation-breaks-hxh-model` specialized to
+`z`.  That claim proves that the canonical `H times H` one-level covariance
+model, whose trace is Haar on every nontrivial diagonal-stage element, does
+not satisfy `(HRP2)`.  This identifies the first explicit off-diagonal test
+missed by that model; it does **not** prove that `(HRP2)` excludes arbitrary
+MF coordinates.  Nor is equality of the corresponding chosen Steinberg
+lifts asserted here: a central Steinberg correction must first be computed
+for those literal words.  Even after that lift is verified, a growing
+coordinate may realize deeper child trees, so a valid obstruction must still
+turn the recursive split into one fixed same-reservoir rank or operator-norm
+return.

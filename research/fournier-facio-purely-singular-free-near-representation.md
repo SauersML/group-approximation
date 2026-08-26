@@ -56,3 +56,26 @@ noncompact and has order-one norm on an infinite charge-null subspace.  A
 positive construction must therefore put genuinely delocalized,
 nonmonomial action on a set of **positive charge**; a charge-null non-Cartan
 reservoir cannot carry the missing hyperlinearity witness.
+
+Uniformly finite-dimensional delocalization is also insufficient.
+`fournier-facio-bounded-block-near-witness-impossible` allows arbitrary
+matrix-valued cocycles on a common charged block system and arbitrary
+charge-null errors, but uniform recurrence in `U(m)` forces the underlying
+block near action to be essentially free.  Hence any positive witness must
+have unbounded block sizes on positive charge or genuinely overlapping
+finite-band supports with no common bounded block decomposition.
+
+For a common finite-block system, “unbounded” has a precise meaning.
+`fournier-facio-block-dimension-escapes-every-charge-cutoff` proves that
+every fixed size cutoff has charge zero.  Hence a surviving block model must
+use a non-tight finitely additive charge concentrated at dimension infinity;
+countably additive or tight mixtures of growing matrix fibers are excluded.
+
+Nor must the common blocks be supplied beforehand.
+`fournier-facio-generator-support-components-escape-cutoffs` forms
+the support graph of charge-null comparison unitaries for one finite
+generating set and proves that every bounded finite-component stratum has
+charge zero.  Thus genuinely overlapping finite-band frames survive only if
+their support graph has infinite components on positive charge, or if its
+finite component sizes themselves escape to infinity in the finitely
+additive charge.

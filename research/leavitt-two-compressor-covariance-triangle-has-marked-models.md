@@ -22,5 +22,12 @@ successful two-compressor proof must use another literal relation in the
 concrete group.  No corresponding order-three identity is asserted for
 arbitrary Steinberg lifts.
 
+The first such missing relations are now explicit:
+`leavitt-two-compressor-core-has-modular-normal-form` supplies the order-two
+word `(tau_1 tau_0^(-2))^2`, while
+`leavitt-two-compressor-depth-two-relation-breaks-hxh-model` supplies the
+recursive child split.  Thus this claim is a finite-packet fence, not a model
+of the literal full subgroup.
+
 DERIVATION
 leavitt-two-compressor-permutation-model-proof

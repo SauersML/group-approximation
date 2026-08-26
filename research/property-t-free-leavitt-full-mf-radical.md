@@ -63,6 +63,13 @@ artifacts:
   - research/b2-full-hecke-first-support-proof.md
   - research/b2-b3-pair-full-hecke-four-native-sectors.md
   - research/b2-b3-full-hecke-four-sector-proof.md
+  - research/leavitt-two-compressor-core-has-modular-normal-form.md
+  - research/leavitt-two-compressor-core-is-lef-and-marked-operator-mf.md
+  - research/leavitt-st20-two-compressor-mark-is-mf-visible.md
+  - research/haar-root-character-vanishes-off-parabolic-action-kernel.md
+  - research/first-partial-inverse-whitehead-face-has-haar-mf-character.md
+  - research/two-whitehead-face-has-haar-mf-character.md
+  - research/leavitt-first-offdiagonal-packet-breaks-locally-finite-amalgam.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -250,8 +257,41 @@ The same firewall now exists inside the literal Leavitt group.
 diagonal-root subgroup together with either one manuscript compressor is
 elementary amenable and already contains the marked root.  Thus a valid
 collapse cannot be assembled from diagonal cylinder relations and one
-compression direction; it must use a mixed coefficient occurrence or both
-complementary compression directions on one authenticated reservoir.
+compression direction.
+
+The two-compressor alternative is now ruled out as well.
+`leavitt-two-compressor-core-has-modular-normal-form` identifies the exact
+elementary core as
+
+```text
+C_lc({0,1}^N,GL_5(F_2)) semidirect (C_2*C_3),
+```
+
+and `leavitt-two-compressor-core-is-lef-and-marked-operator-mf` constructs
+finite local models for every multiplication table by finite amalgams.  The
+mark remains MF-visible even after pullback to the chosen Steinberg lifts.
+Therefore a valid collapse must use genuinely non-diagonal Leavitt
+coefficients; neither one nor both diagonal compression directions are
+load-bearing.
+
+Even one off-diagonal partial-inverse face is below the threshold.
+`first-partial-inverse-whitehead-face-has-haar-mf-character` computes the
+shortest `s_0,t_0` opposite-root Whitehead involution and shows that its
+extension of the full row module has a locally finite quotient with Haar row
+character and the mark visible.  The first possible Haar-profile
+obstruction must therefore couple at least two noncommuting coefficient
+occurrences or enforce a global return; a single partial-inverse occurrence
+cannot be load-bearing.
+
+The complementary `s_1,t_1` Whitehead does not change that conclusion:
+`two-whitehead-face-has-haar-mf-character` identifies the joint actor as
+`S_3` and again constructs locally finite Haar-row models.  The first packet
+outside this finite actor is now explicit.
+`leavitt-first-offdiagonal-packet-breaks-locally-finite-amalgam` adjoins the
+individual same-root `s_0,t_0` roots and produces an infinite-order prefix
+shift.  This is where the diagonal-core LEF proof genuinely stops, but it is
+only a proof-method fence: no non-LEF or MF-radical conclusion follows from
+the infinite-order element alone.
 
 The rank scale along that orbit is now uniform.
 `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed
