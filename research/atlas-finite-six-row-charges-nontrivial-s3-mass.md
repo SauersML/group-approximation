@@ -89,6 +89,15 @@ exclude the entire unitary locus without a witness.
   has `D_6=0` and `m_nt>=1/2`.  Therefore channel splitting is useful only
   upstream of a dimension-dependent finite-coordinate selection; fixed
   blockwise positivity cannot close `(JSC3)`.
+- **First dimension-dependent gate.**
+  `atlas-six-row-singular-counting-dominates-nontrivial-s3` asks whether, at
+  every threshold, the moving high-singular-value projection of
+  `U-E_K(U)` is covered in normalized rank by the six residual high-spectrum
+  projections at a proportional threshold.  The exact layer-cake route
+  `atlas-singular-counting-layer-cake-proves-joint-s3-charge` turns constants
+  `(C_rank,kappa)` into `C_S3=C_rank kappa^(-2)`.  Unlike naive HS-to-rank
+  decoding, this claim scales the residual threshold with the source
+  threshold and does not attempt a multiplicative clipping.
 - A valid proof may work separately on the sign and standard central
   idempotents, but both estimates must retain the collision residual or a
   mixed boundary--collision coefficient.  Merely proving positive channel
