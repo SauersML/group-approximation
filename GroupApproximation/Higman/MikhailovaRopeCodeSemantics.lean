@@ -1,6 +1,7 @@
 import GroupApproximation.Higman.MikhailovaRopeCode
 import GroupApproximation.Computability.DirectProductCodeSemantics
 import GroupApproximation.Computability.FreeEdgeTowerSemantics
+import GroupApproximation.Algebra.HNNPresentationQuotient
 
 /-!
 # Semantics of the effective Mikhailova rope code
@@ -137,19 +138,20 @@ noncomputable def firstStageCodeEquivToGamma
       (centralSubgroupEquiv_intertwines w ambient cuttingWords
         ambientEquiv hcutting))
 
-/-- The compiler-generated direct-product base is `Rope.Amb` once the ambient
-and quotient source codes carry their marked semantic equivalences. -/
-noncomputable def outerBaseCodeEquivToRopeAmb
+/-- The compiler-generated direct-product base is the free base
+`Rope.Gamma w × F` used by `Rope.Pre`.  The source code presents `F` itself,
+not the quotient `F/N`; the outer rope relations are what force `N` to die. -/
+noncomputable def outerBaseCodeEquivToRopePreBase
     {F : Type} [Group F] {N : Subgroup F} [N.Normal]
     (w : BenignWitness N) (ambient source : PresentationCode)
     (cuttingWords : List MikhailovaRopeCode.Raw)
     (ambientEquiv : Carrier ambient ≃* w.K)
-    (sourceEquiv : Carrier source ≃* F ⧸ N)
+    (sourceEquiv : Carrier source ≃* F)
     (hcutting : ∀ g : Carrier ambient,
       g ∈ HNNPresentation.srcSub (codeRels ambient)
           (sourceWord ambient (centralEdges cuttingWords)) ↔
         ambientEquiv g ∈ w.L) :
-    Carrier (outerBaseCode ambient source cuttingWords) ≃* Rope.Amb w :=
+    Carrier (outerBaseCode ambient source cuttingWords) ≃* (Rope.Gamma w × F) :=
   (DirectProductCodeSemantics.productCodeEquiv
       (firstStageCode ambient cuttingWords) source).trans
     (prodMulEquiv
@@ -200,18 +202,18 @@ theorem firstStageCodeEquivToGamma_oldWord
         (PresentedGroup.mk (codeRels ambient) (wordOf ambient raw))) = _
   rw [HNNCongr.congrHom_of]
 
-theorem outerBaseCodeEquivToRopeAmb_leftWord
+theorem outerBaseCodeEquivToRopePreBase_leftWord
     {F : Type} [Group F] {N : Subgroup F} [N.Normal]
     (w : BenignWitness N) (ambient source : PresentationCode)
     (cuttingWords : List MikhailovaRopeCode.Raw)
     (ambientEquiv : Carrier ambient ≃* w.K)
-    (sourceEquiv : Carrier source ≃* F ⧸ N)
+    (sourceEquiv : Carrier source ≃* F)
     (hcutting : ∀ g : Carrier ambient,
       g ∈ HNNPresentation.srcSub (codeRels ambient)
           (sourceWord ambient (centralEdges cuttingWords)) ↔
         ambientEquiv g ∈ w.L)
     (raw : MikhailovaRopeCode.Raw) :
-    outerBaseCodeEquivToRopeAmb w ambient source cuttingWords
+    outerBaseCodeEquivToRopePreBase w ambient source cuttingWords
         ambientEquiv sourceEquiv hcutting
         (PresentedGroup.mk (DirectProductCodeSemantics.codeRels
             (productCode (firstStageCode ambient cuttingWords) source))
@@ -234,18 +236,18 @@ theorem outerBaseCodeEquivToRopeAmb_leftWord
   change (_, sourceEquiv 1) = _
   simp
 
-theorem outerBaseCodeEquivToRopeAmb_rightWord
+theorem outerBaseCodeEquivToRopePreBase_rightWord
     {F : Type} [Group F] {N : Subgroup F} [N.Normal]
     (w : BenignWitness N) (ambient source : PresentationCode)
     (cuttingWords : List MikhailovaRopeCode.Raw)
     (ambientEquiv : Carrier ambient ≃* w.K)
-    (sourceEquiv : Carrier source ≃* F ⧸ N)
+    (sourceEquiv : Carrier source ≃* F)
     (hcutting : ∀ g : Carrier ambient,
       g ∈ HNNPresentation.srcSub (codeRels ambient)
           (sourceWord ambient (centralEdges cuttingWords)) ↔
         ambientEquiv g ∈ w.L)
     (raw : MikhailovaRopeCode.Raw) :
-    outerBaseCodeEquivToRopeAmb w ambient source cuttingWords
+    outerBaseCodeEquivToRopePreBase w ambient source cuttingWords
         ambientEquiv sourceEquiv hcutting
         (PresentedGroup.mk (DirectProductCodeSemantics.codeRels
             (productCode (firstStageCode ambient cuttingWords) source))
@@ -266,228 +268,116 @@ theorem outerBaseCodeEquivToRopeAmb_rightWord
   change (_, sourceEquiv _) = _
   simp
 
-/-- The strongest unconditional semantic reading of the complete compiler.
-The sole remaining input is the actual equivalence between the two generated
-outer subgroups and its values on the displayed rope generators. -/
-noncomputable def compileEquivOfSubgroupEquiv
+/-! ## The raw-presentation route used by the effective compiler
+
+The actual Mikhailova rope compiler uses a free copy of `F` in its base, so
+its displayed edge families need not define isomorphic subgroups before the
+new relations are imposed.  Its semantics therefore proceeds through the raw
+quotient presentation. -/
+
+/-- The compiler output, regrouped as a quotient of the free product of its
+already-presented outer base with the outer stable letter. -/
+noncomputable def compileEquivToRawQuotient
     (ambient source : PresentationCode)
     (cuttingWords : List MikhailovaRopeCode.Raw)
-    (marked : List (MikhailovaRopeCode.Raw × MikhailovaRopeCode.Raw))
-    (phi : HNNPresentation.srcSub
-        (codeRels (outerBaseCode ambient source cuttingWords))
-        (sourceWord (outerBaseCode ambient source cuttingWords)
-          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ≃*
-      HNNPresentation.tgtSub
-        (codeRels (outerBaseCode ambient source cuttingWords))
-        (targetWord (outerBaseCode ambient source cuttingWords)
-          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)))
-    (hphi : ∀ i,
-      ((phi ⟨HNNPresentation.srcGen
-            (codeRels (outerBaseCode ambient source cuttingWords))
-            (sourceWord (outerBaseCode ambient source cuttingWords)
-              (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i,
-          HNNPresentation.srcGen_mem
-            (codeRels (outerBaseCode ambient source cuttingWords))
-            (sourceWord (outerBaseCode ambient source cuttingWords)
-              (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i⟩ :
-        HNNPresentation.tgtSub
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked))) :
-        Carrier (outerBaseCode ambient source cuttingWords)) =
-      HNNPresentation.tgtGen
-        (codeRels (outerBaseCode ambient source cuttingWords))
-        (targetWord (outerBaseCode ambient source cuttingWords)
-          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i) :
+    (marked : List (MikhailovaRopeCode.Raw × MikhailovaRopeCode.Raw)) :
     Carrier (compile (ambient, (source, (cuttingWords, marked)))) ≃*
-      HNNPresentation.Ext
+      HNNPresentationQuotient.Q
         (codeRels (outerBaseCode ambient source cuttingWords))
         (sourceWord (outerBaseCode ambient source cuttingWords)
           (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked))
         (targetWord (outerBaseCode ambient source cuttingWords)
-          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) phi := by
-  exact edgeCodeEquivOfSubgroupEquiv
-    (outerBaseCode ambient source cuttingWords)
-    (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)
-    phi hphi
+          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) :=
+  (edgeCodePresEquiv
+      (outerBaseCode ambient source cuttingWords)
+      (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)).trans
+    (HNNPresentationQuotient.equiv
+      (codeRels (outerBaseCode ambient source cuttingWords))
+      (sourceWord (outerBaseCode ambient source cuttingWords)
+        (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked))
+      (targetWord (outerBaseCode ambient source cuttingWords)
+        (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)))
 
-/-! ## Transporting the outer layer to the semantic rope group -/
-
-/-- Restrict a base equivalence to subgroups described by a pointwise
-membership equivalence. -/
-def subgroupEquivOfMem {G H : Type} [Group G] [Group H]
-    (e : G ≃* H) (A : Subgroup G) (B : Subgroup H)
-    (hmem : ∀ g : G, g ∈ A ↔ e g ∈ B) : A ≃* B where
-  toFun a := ⟨e a, (hmem a).1 a.2⟩
-  invFun b := ⟨e.symm b, (hmem (e.symm b)).2 (by
-    rw [e.apply_symm_apply]
-    exact b.2)⟩
-  left_inv a := Subtype.ext (e.symm_apply_apply a)
-  right_inv b := Subtype.ext (e.apply_symm_apply b)
-  map_mul' a b := Subtype.ext (map_mul e (a : G) (b : G))
-
-@[simp] theorem coe_subgroupEquivOfMem {G H : Type} [Group G] [Group H]
-    (e : G ≃* H) (A : Subgroup G) (B : Subgroup H)
-    (hmem : ∀ g : G, g ∈ A ↔ e g ∈ B) (a : A) :
-    ((subgroupEquivOfMem e A B hmem a : B) : H) = e a := rfl
-
-/-- Transport `Rope.psi` back through an equivalence from the coded outer base
-to the semantic rope ambient. -/
-noncomputable def outerRopeSubgroupEquiv
+/-- Transport the free product underlying the raw outer presentation to
+`Rope.Pre`. -/
+noncomputable def outerPreEquiv
     {F : Type} [Group F] {N : Subgroup F} [N.Normal]
-    (w : BenignWitness N)
-    (ambient source : PresentationCode)
+    (w : BenignWitness N) (ambient source : PresentationCode)
+    (cuttingWords : List MikhailovaRopeCode.Raw)
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (sourceEquiv : Carrier source ≃* F)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L) :
+    HNNPresentationQuotient.Amb
+        (codeRels (outerBaseCode ambient source cuttingWords)) ≃* Rope.Pre w :=
+  HNNPresentationQuotient.coprodCongr
+    (outerBaseCodeEquivToRopePreBase w ambient source cuttingWords
+      ambientEquiv sourceEquiv hcutting)
+
+/-- Once the transported displayed relators are identified with
+`Rope.relators`, the concrete compiler carrier is literally `Rope.Pres`. -/
+noncomputable def compileEquivToRopePresOfRelators
+    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
+    (w : BenignWitness N) (ambient source : PresentationCode)
     (cuttingWords : List MikhailovaRopeCode.Raw)
     (marked : List (MikhailovaRopeCode.Raw × MikhailovaRopeCode.Raw))
-    (baseEquiv : Carrier (outerBaseCode ambient source cuttingWords) ≃* Rope.Amb w)
-    (hsource : ∀ g : Carrier (outerBaseCode ambient source cuttingWords),
-      g ∈ HNNPresentation.srcSub
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (sourceEquiv : Carrier source ≃* F)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L)
+    (SF : Set F)
+    (hrel : outerPreEquiv w ambient source cuttingWords ambientEquiv sourceEquiv hcutting ''
+        HNNPresentationQuotient.relators
           (codeRels (outerBaseCode ambient source cuttingWords))
           (sourceWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ↔
-        baseEquiv g ∈ Rope.AeSub w)
-    (htarget : ∀ g : Carrier (outerBaseCode ambient source cuttingWords),
-      g ∈ HNNPresentation.tgtSub
-          (codeRels (outerBaseCode ambient source cuttingWords))
+            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked))
           (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ↔
-        baseEquiv g ∈ Rope.BeSub w) :
-    HNNPresentation.srcSub
+            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) =
+      Rope.relators w SF) :
+    Carrier (compile (ambient, (source, (cuttingWords, marked)))) ≃*
+      Rope.Pres w SF :=
+  (compileEquivToRawQuotient ambient source cuttingWords marked).trans
+    ((HNNPresentationQuotient.quotientEquivImage
+      (outerPreEquiv w ambient source cuttingWords ambientEquiv sourceEquiv hcutting)
+      (HNNPresentationQuotient.relators
         (codeRels (outerBaseCode ambient source cuttingWords))
         (sourceWord (outerBaseCode ambient source cuttingWords)
-          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ≃*
-      HNNPresentation.tgtSub
-        (codeRels (outerBaseCode ambient source cuttingWords))
+          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked))
         (targetWord (outerBaseCode ambient source cuttingWords)
-          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) :=
-  (subgroupEquivOfMem baseEquiv _ _ hsource).trans
-    ((Rope.psi w).trans (subgroupEquivOfMem baseEquiv _ _ htarget).symm)
+          (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)))).trans
+      (QuotientGroup.quotientMulEquivOfEq (congrArg Subgroup.normalClosure hrel)))
 
-theorem outerRopeSubgroupEquiv_intertwines
+/-- The raw compiler reaches the semantic rope group after the relator
+identification and the generating-set hypothesis used by the rope trick. -/
+noncomputable def compileEquivToRopeOfRelators
     {F : Type} [Group F] {N : Subgroup F} [N.Normal]
-    (w : BenignWitness N)
-    (ambient source : PresentationCode)
+    (w : BenignWitness N) (ambient source : PresentationCode)
     (cuttingWords : List MikhailovaRopeCode.Raw)
     (marked : List (MikhailovaRopeCode.Raw × MikhailovaRopeCode.Raw))
-    (baseEquiv : Carrier (outerBaseCode ambient source cuttingWords) ≃* Rope.Amb w)
-    (hsource : ∀ g : Carrier (outerBaseCode ambient source cuttingWords),
-      g ∈ HNNPresentation.srcSub
+    (ambientEquiv : Carrier ambient ≃* w.K)
+    (sourceEquiv : Carrier source ≃* F)
+    (hcutting : ∀ g : Carrier ambient,
+      g ∈ HNNPresentation.srcSub (codeRels ambient)
+          (sourceWord ambient (centralEdges cuttingWords)) ↔
+        ambientEquiv g ∈ w.L)
+    (SF : Set F)
+    (hrel : outerPreEquiv w ambient source cuttingWords ambientEquiv sourceEquiv hcutting ''
+        HNNPresentationQuotient.relators
           (codeRels (outerBaseCode ambient source cuttingWords))
           (sourceWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ↔
-        baseEquiv g ∈ Rope.AeSub w)
-    (htarget : ∀ g : Carrier (outerBaseCode ambient source cuttingWords),
-      g ∈ HNNPresentation.tgtSub
-          (codeRels (outerBaseCode ambient source cuttingWords))
+            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked))
           (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ↔
-        baseEquiv g ∈ Rope.BeSub w) :
-    HNNCongr.Intertwines
-      (outerRopeSubgroupEquiv w ambient source cuttingWords marked
-        baseEquiv hsource htarget)
-      (Rope.psi w) baseEquiv hsource := by
-  intro a ha
-  simp [outerRopeSubgroupEquiv, subgroupEquivOfMem]
-
-theorem outerRopeSubgroupEquiv_gen
-    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
-    (w : BenignWitness N)
-    (ambient source : PresentationCode)
-    (cuttingWords : List MikhailovaRopeCode.Raw)
-    (marked : List (MikhailovaRopeCode.Raw × MikhailovaRopeCode.Raw))
-    (baseEquiv : Carrier (outerBaseCode ambient source cuttingWords) ≃* Rope.Amb w)
-    (hsource : ∀ g : Carrier (outerBaseCode ambient source cuttingWords),
-      g ∈ HNNPresentation.srcSub
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (sourceWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ↔
-        baseEquiv g ∈ Rope.AeSub w)
-    (htarget : ∀ g : Carrier (outerBaseCode ambient source cuttingWords),
-      g ∈ HNNPresentation.tgtSub
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ↔
-        baseEquiv g ∈ Rope.BeSub w)
-    (hgen : ∀ i,
-      (((Rope.psi w)
-        ⟨baseEquiv (HNNPresentation.srcGen
-            (codeRels (outerBaseCode ambient source cuttingWords))
-            (sourceWord (outerBaseCode ambient source cuttingWords)
-              (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i),
-          (hsource _).1 (HNNPresentation.srcGen_mem _ _ i)⟩ : Rope.BeSub w) :
-          Rope.Amb w) =
-        baseEquiv (HNNPresentation.tgtGen
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i)) :
-    ∀ i,
-      (((outerRopeSubgroupEquiv w ambient source cuttingWords marked
-          baseEquiv hsource htarget)
-        ⟨HNNPresentation.srcGen
-            (codeRels (outerBaseCode ambient source cuttingWords))
-            (sourceWord (outerBaseCode ambient source cuttingWords)
-              (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i,
-          HNNPresentation.srcGen_mem _ _ i⟩ :
-        HNNPresentation.tgtSub
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked))) :
-          Carrier (outerBaseCode ambient source cuttingWords)) =
-        HNNPresentation.tgtGen
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i := by
-  intro i
-  apply baseEquiv.injective
-  simpa [outerRopeSubgroupEquiv, subgroupEquivOfMem] using hgen i
-
-/-- If the coded outer base is identified with `Rope.Amb` and its two displayed
-subgroups are exactly `AeSub` and `BeSub`, with the marked generators acted on
-as prescribed by `Rope.psi`, then the complete primitive-recursive code has
-carrier exactly the semantic rope group. -/
-noncomputable def compileEquivToRope
-    {F : Type} [Group F] {N : Subgroup F} [N.Normal]
-    (w : BenignWitness N)
-    (ambient source : PresentationCode)
-    (cuttingWords : List MikhailovaRopeCode.Raw)
-    (marked : List (MikhailovaRopeCode.Raw × MikhailovaRopeCode.Raw))
-    (baseEquiv : Carrier (outerBaseCode ambient source cuttingWords) ≃* Rope.Amb w)
-    (hsource : ∀ g : Carrier (outerBaseCode ambient source cuttingWords),
-      g ∈ HNNPresentation.srcSub
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (sourceWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ↔
-        baseEquiv g ∈ Rope.AeSub w)
-    (htarget : ∀ g : Carrier (outerBaseCode ambient source cuttingWords),
-      g ∈ HNNPresentation.tgtSub
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) ↔
-        baseEquiv g ∈ Rope.BeSub w)
-    (hgen : ∀ i,
-      (((Rope.psi w)
-        ⟨baseEquiv (HNNPresentation.srcGen
-            (codeRels (outerBaseCode ambient source cuttingWords))
-            (sourceWord (outerBaseCode ambient source cuttingWords)
-              (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i),
-          (hsource _).1 (HNNPresentation.srcGen_mem _ _ i)⟩ : Rope.BeSub w) :
-          Rope.Amb w) =
-        baseEquiv (HNNPresentation.tgtGen
-          (codeRels (outerBaseCode ambient source cuttingWords))
-          (targetWord (outerBaseCode ambient source cuttingWords)
-            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) i)) :
-    Carrier (compile (ambient, (source, (cuttingWords, marked)))) ≃* Rope.RopeGroup w :=
-  (compileEquivOfSubgroupEquiv ambient source cuttingWords marked
-    (outerRopeSubgroupEquiv w ambient source cuttingWords marked
-      baseEquiv hsource htarget)
-    (outerRopeSubgroupEquiv_gen w ambient source cuttingWords marked
-      baseEquiv hsource htarget hgen)).trans
-    (HNNCongr.congrEquiv
-      (outerRopeSubgroupEquiv w ambient source cuttingWords marked
-        baseEquiv hsource htarget)
-      (Rope.psi w) baseEquiv hsource
-      (outerRopeSubgroupEquiv_intertwines w ambient source cuttingWords marked
-        baseEquiv hsource htarget))
+            (ropeEdges ambient (firstStageCode ambient cuttingWords) source marked)) =
+      Rope.relators w SF)
+    (hSF : Subgroup.closure SF = ⊤) :
+    Carrier (compile (ambient, (source, (cuttingWords, marked)))) ≃*
+      Rope.RopeGroup w :=
+  (compileEquivToRopePresOfRelators w ambient source cuttingWords marked
+    ambientEquiv sourceEquiv hcutting SF hrel).trans (Rope.ropeEquiv w SF hSF)
 
 end MikhailovaRopeCodeSemantics
 end Higman

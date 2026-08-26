@@ -18,6 +18,77 @@ open Monoid
 
 variable {X I : Type} (rels : Set (FreeGroup X)) (w v : I → FreeGroup X)
 
+section Transport
+
+variable {G H : Type} [Group G] [Group H]
+
+/-- An equivalence of base groups extends across the freely adjoined stable
+letter. -/
+def coprodCongr (e : G ≃* H) :
+    Coprod G (Multiplicative ℤ) ≃* Coprod H (Multiplicative ℤ) := by
+  let f : Coprod G (Multiplicative ℤ) →* Coprod H (Multiplicative ℤ) :=
+    Coprod.lift (Coprod.inl.comp e.toMonoidHom) Coprod.inr
+  let g : Coprod H (Multiplicative ℤ) →* Coprod G (Multiplicative ℤ) :=
+    Coprod.lift (Coprod.inl.comp e.symm.toMonoidHom) Coprod.inr
+  refine MonoidHom.toMulEquiv f g ?_ ?_
+  · refine Coprod.hom_ext ?_ ?_
+    · ext x
+      simp [f, g]
+    · ext
+      simp [f, g]
+  · refine Coprod.hom_ext ?_ ?_
+    · ext x
+      simp [f, g]
+    · ext
+      simp [f, g]
+
+@[simp] theorem coprodCongr_inl (e : G ≃* H) (g : G) :
+    coprodCongr e (Coprod.inl g) = Coprod.inl (e g) := by
+  simp [coprodCongr]
+
+@[simp] theorem coprodCongr_inr (e : G ≃* H) (z : Multiplicative ℤ) :
+    coprodCongr e (Coprod.inr z) = Coprod.inr z := by
+  simp [coprodCongr]
+
+/-- A group equivalence transports a quotient by a normally generated set to
+the quotient by the image set. -/
+noncomputable def quotientEquivImage (e : G ≃* H) (S : Set G) :
+    (G ⧸ Subgroup.normalClosure S) ≃*
+      H ⧸ Subgroup.normalClosure (e '' S) := by
+  let qG := QuotientGroup.mk' (Subgroup.normalClosure S)
+  let qH := QuotientGroup.mk' (Subgroup.normalClosure (e '' S))
+  let f : G ⧸ Subgroup.normalClosure S →*
+      H ⧸ Subgroup.normalClosure (e '' S) :=
+    QuotientGroup.lift _ (qH.comp e.toMonoidHom) (by
+      refine Subgroup.normalClosure_le_normal ?_
+      intro x hx
+      exact (QuotientGroup.eq_one_iff _).2
+        (Subgroup.subset_normalClosure ⟨x, hx, rfl⟩))
+  let g : H ⧸ Subgroup.normalClosure (e '' S) →*
+      G ⧸ Subgroup.normalClosure S :=
+    QuotientGroup.lift _ (qG.comp e.symm.toMonoidHom) (by
+      refine Subgroup.normalClosure_le_normal ?_
+      rintro _ ⟨x, hx, rfl⟩
+      exact (QuotientGroup.eq_one_iff _).2 (by
+        simpa using Subgroup.subset_normalClosure hx))
+  refine MonoidHom.toMulEquiv f g ?_ ?_
+  · refine MonoidHom.ext fun x => ?_
+    obtain ⟨x, rfl⟩ := QuotientGroup.mk'_surjective
+      (Subgroup.normalClosure S) x
+    change qG (e.symm (e x)) = qG x
+    rw [e.symm_apply_apply]
+  · refine MonoidHom.ext fun x => ?_
+    obtain ⟨x, rfl⟩ := QuotientGroup.mk'_surjective
+      (Subgroup.normalClosure (e '' S)) x
+    change qH (e (e.symm x)) = qH x
+    rw [e.apply_symm_apply]
+
+@[simp] theorem quotientEquivImage_mk (e : G ≃* H) (S : Set G) (g : G) :
+    quotientEquivImage e S (QuotientGroup.mk' (Subgroup.normalClosure S) g) =
+      QuotientGroup.mk' (Subgroup.normalClosure (e '' S)) (e g) := rfl
+
+end Transport
+
 /-- The free product of the already-presented base with the stable letter. -/
 abbrev Amb : Type := Coprod (PresentedGroup rels) (Multiplicative ℤ)
 
