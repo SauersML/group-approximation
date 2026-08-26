@@ -8,6 +8,7 @@ artifacts:
 distinct_from:
   periodic-higman-bs-clocks-have-three-opnorm-small-seams: that constructs the quantitative operator-norm matcher and leaves its fourth return open; this computes exactly how much right-gauge freedom the clock centralizer supplies for trying to repair that return.
   three-higman-bs-seams-vanish-fourth-is-product-holonomy: that identifies the abstract four-matcher product equation for arbitrary packets; this audits the multiplicity and centralizer size of the concrete q=3^n packet.
+  order-four-bs-matcher-builds-higman-opnorm-microstate: that proves a vanishing fourth-return commutator would give a full countermodel; this computes the concrete centralizer in which that return must land.
 ---
 
 **ESTABLISHED.**  Let `q=3^n`, and let `P` be the permutation unitary on
