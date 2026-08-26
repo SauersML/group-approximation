@@ -879,8 +879,7 @@ theorem slimBase_mul_gen_mul_rowInv_not_mem_slimLink
   have hproj : genProjection3 m
         (slimBaseCode m l * slimGenCode m β * (slimKBase m q)⁻¹) =
       genProjection3 m (slimLinkElem m β) := by
-    simp [slimBaseCode, slimKBase, slimLinkElem,
-      genProjection3_slimPiBaseRet_comp_slimPiF3Hom]
+    simp [slimBaseCode, slimKBase, slimLinkElem]
   have heq : slimBaseCode m l * slimGenCode m β * (slimKBase m q)⁻¹ =
       slimLinkElem m β :=
     genProjection3_injOn_slimLink m hlink hcanonical hproj
@@ -903,7 +902,8 @@ theorem slimBase_mul_gen_mul_rowInv_not_mem_slimLink
           of (Row.basisHom (elt l)) * (t : Cent1 (rowOut m)) ∈
         (of : Row.F₀ →* Cent1 (rowOut m)).range := by
     refine ⟨(Row.basisHom (elt β))⁻¹ * Seq.retract (q : F₃), ?_⟩
-    simpa [slimBaseCode, slimKBase, map_mul, map_inv] using hdrop
+    simpa [slimBaseCode, slimKBase, map_mul, map_inv,
+      dropToCent1_genCode] using hdrop.symm
   exact basisHom_elt_not_mem_rowOut hi hli
     (mem_of_conj_mem_range (rowOut m) hbase)
 
