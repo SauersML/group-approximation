@@ -98,6 +98,16 @@ the coboundary drift of
   compression cell sends `Q` to the Reynolds cut over `alpha(L_0)` rather
   than to `t_iQt_i^(-1)`.  Its Singer conjugates therefore fail `(ESB1)`
   before the mixed-square estimate is reached.
+- Using both complementary compressions of the constant Singer actor does
+  not repair that support mismatch.  By
+  `complementary-compressed-singer-words-only-return-gauged-head`, the two
+  compressed actors are `c_0=qI+pt` and `c_1=pI+qt`, commute, and multiply
+  to `t`.  Every mixed power is `pt^a+qt^b`; the seven-element orbit of one
+  signed-Hecke source covector forces `a=b=1` whenever that word transports
+  `L_0` to `tL_0t^(-1)`.  Thus the only full subgroup return in this entire
+  canonical nonconstant centralizer family is the original gauged Singer
+  actor itself.  A model-dependent proper subcut or a mixed word outside
+  this family remains possible.
 - Dressing the literal Whitehead by any collection of already ungauged
   source/range normalizers cannot repair `(ESB2)`.  By
   `label-only-dressing-cannot-ungauge-a-whitehead-bridge`, a composite with
