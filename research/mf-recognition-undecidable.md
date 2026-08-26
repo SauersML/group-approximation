@@ -35,8 +35,10 @@ NONMF_fp in Sigma^0_2 \ Sigma^0_1,
 MF_fp    in Pi^0_2    \ Pi^0_1.
 ```
 
-Second-level completeness holds for [[mf-recognition-recursive-presentations-is-second-level-complete|recursive presentations]]; its
-[[mf-recognition-finite-presentations-is-pi2-complete|finite-presentation analogue]] remains open behind [[mf-safe-finite-presentation-compiler]].
+Second-level completeness holds both for
+[[mf-recognition-recursive-presentations-is-second-level-complete|recursive presentations]]
+and, after the Mikhailova benign compiler and tensor-synchronized rope, for
+[[mf-recognition-finite-presentations-is-pi2-complete|finite presentations]].
 
 Two assertions, and the second is strictly stronger than the first.  The
 recursively enumerable set in the argument is the **uniform word problem** `W`,

@@ -129,13 +129,13 @@ ker(lambda_beta|S) <= ker(beta tau).                            (7)
 Products with independent cofinal finite quotients of `Gamma` and `Q` give
 the equality of graph-edge kernels required by `(RPS1)`.
 
-## 5. The sole remaining uniformity problem
+## 5. Resolution of the uniformity problem
 
-For the positive group `B3(1)`, Sections 1--4 give the complete profinite
-rope construction.  The finite-presentation reduction, however, must output
-one benign witness uniformly before knowing whether the c.e. set is finite
-or infinite.  The remaining target is a relative Higman compiler whose
-benign data specialize on `INF` to `(4)` while retaining ordinary benignness
-on `FIN`.  Merely multiplying an arbitrary Higman witness by `(4)` is not
-enough: the arbitrary factor remains in the positive vertex group and can be
-non-MF.
+For the positive group `B3(1)`, Sections 1--4 give the graph factor.  The
+branch-independent ordinary factor is supplied by the Mikhailova compiler.
+Given an effective Higman embedding `F/N_e-><X_e|R_e>`, its cutting subgroup
+is the product of `F` with the Mikhailova fiber product in
+`F(X_e) times F(X_e)`, while `F` embeds by `f |-> (f,w_f,1)`.  Its intersection
+is exactly `N_e`, and its ambient group is a finite direct product of free
+groups.  Multiplying this regular-MF witness by `(4)` therefore preserves the
+positive branch and supplies the finite graph maps used in Sections 3--4.

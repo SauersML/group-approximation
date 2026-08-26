@@ -23,16 +23,19 @@ W_e finite    => E embeds in Carrier(P_e),
 
 for one fixed finitely presented non-MF group `E`.
 
-Generic effective Higman embedding does not solve this.  The completed
-compiler uses the three-generator bridge, intersects the ordinary MF-safe
-benign witness with the fixed finite-CEP graph witness for `B3(1)`, and
-tensors the graph factor's finite swap models with the regular-MF model of
-the whole first rope group.  The negative branch is preserved because the
-recursive bridge embeds; the positive rope is regularly operator-MF.
+The completed compiler applies effective Higman embedding only to obtain a
+finite presentation and marked embedding words, then tests its kernel with a
+Mikhailova fiber-product subgroup inside a direct product of free groups.  The
+ambient benign witness is therefore residually finite on every branch.  Its
+product with the fixed finite-CEP graph witness for `B3(1)` supplies the exact
+kernel and the finite swap models; tensor synchronization finishes the rope.
+The negative branch is preserved because the recursive bridge embeds, and the
+positive rope is regularly operator-MF.
 
 ## Attempts
 
-The doubles/amenable-edge refactor formerly stopped at asymmetric HNN
-identification.  `regular-mf-tensor-sync-proves-twisted-rope-mf` and
-`graph-witness-product-supplies-tensor-sync` close that edge without changing
-its Britton compression semantics.
+The earlier doubles/amenable-edge proposal never constructed a complete
+MF-safe pre-rope witness.  The Mikhailova construction supplies that missing
+object directly; `regular-mf-tensor-sync-proves-twisted-rope-mf` and
+`graph-witness-product-supplies-tensor-sync` close the remaining final edge
+without changing its Britton compression semantics.
