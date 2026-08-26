@@ -712,6 +712,28 @@ theorem normMatrixCStarCoronaMk_eq_zero_iff (a : BoundedMatrixSequence X) :
   unfold normMatrixCStarCoronaMk NormMatrixCStarCorona
   exact filterMatrixCoronaMk_eq_zero_iff X cofinite a
 
+/-- A cofinite norm-matrix corona with nonempty coordinate spaces is
+nontrivial.  The constant identity sequence cannot converge to zero in
+operator norm. -/
+noncomputable instance normMatrixCStarCoronaNontrivial :
+    Nontrivial (NormMatrixCStarCorona X) := by
+  refine ⟨⟨1, 0, ?_⟩⟩
+  intro hone
+  have hmk : normMatrixCStarCoronaMk X (1 : BoundedMatrixSequence X) = 0 := by
+    rw [map_one, hone]
+  have hnull : IsNullMatrixSequence X cofinite
+      (1 : BoundedMatrixSequence X) :=
+    (normMatrixCStarCoronaMk_eq_zero_iff X _).mp hmk
+  have hnorm :
+      (fun n ↦ ‖((1 : BoundedMatrixSequence X) n)‖) =
+        fun _ : ℕ ↦ (1 : ℝ) := by
+    funext n
+    exact norm_one
+  rw [IsNullMatrixSequence, hnorm] at hnull
+  have honezero : (1 : ℝ) = 0 :=
+    tendsto_nhds_unique tendsto_const_nhds hnull
+  norm_num at honezero
+
 /-- Every element of the opaque corona has a bounded matrix-sequence lift. -/
 theorem normMatrixCStarCoronaMk_surjective :
     Function.Surjective (normMatrixCStarCoronaMk X) := by
