@@ -32,16 +32,16 @@ def adjointLinearEquiv
       ext y
       simp
     have hadj := congrArg (fun A : Module.End ℂ V ↦ A.adjoint) hcomp
-    have hx := congrArg (fun A : Module.End ℂ V ↦ A x) hadj
-    simpa using hx
+    rw [LinearMap.adjoint_comp, LinearMap.adjoint_id] at hadj
+    exact DFunLike.congr_fun hadj x
   right_inv x := by
     have hcomp : T.symm.toLinearMap ∘ₗ T.toLinearMap =
         (LinearMap.id : Module.End ℂ V) := by
       ext y
       simp
     have hadj := congrArg (fun A : Module.End ℂ V ↦ A.adjoint) hcomp
-    have hx := congrArg (fun A : Module.End ℂ V ↦ A x) hadj
-    simpa using hx
+    rw [LinearMap.adjoint_comp, LinearMap.adjoint_id] at hadj
+    exact DFunLike.congr_fun hadj x
   map_add' x y := by simp
   map_smul' c x := by simp
 
@@ -66,33 +66,34 @@ theorem star_conjAlgEquiv_apply
     star (T.conjAlgEquiv ℂ A) =
       (adjointLinearEquiv T.symm).conjAlgEquiv ℂ (star A) := by
   ext x
-  simp [LinearEquiv.conjAlgEquiv_apply, adjointLinearEquiv,
-    LinearMap.star_eq_adjoint]
+  change (T.toLinearMap ∘ₗ A ∘ₗ T.symm.toLinearMap).adjoint x =
+    T.symm.toLinearMap.adjoint (A.adjoint (T.toLinearMap.adjoint x))
+  rw [LinearMap.adjoint_comp, LinearMap.adjoint_comp]
 
 /-- The involution on the target transported through a complex algebra
 equivalence. -/
-def transportedInvolution {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+def transportedInvolution {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) (b : B) : B := e (star (e.symm b))
 
 @[simp] theorem transportedInvolution_zero
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) : transportedInvolution e 0 = 0 := by
   simp [transportedInvolution]
 
 @[simp] theorem transportedInvolution_one
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) : transportedInvolution e 1 = 1 := by
   simp [transportedInvolution]
 
 theorem transportedInvolution_add
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) (x y : B) :
     transportedInvolution e (x + y) =
       transportedInvolution e x + transportedInvolution e y := by
   simp [transportedInvolution]
 
 theorem transportedInvolution_mul
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) (x y : B) :
     transportedInvolution e (x * y) =
       transportedInvolution e y * transportedInvolution e x := by
@@ -103,7 +104,7 @@ image of a genuine C-star Gram element in the source.  This is the analytic
 positivity input available before the algebraic Wedderburn equivalence has
 been corrected to preserve `star`. -/
 theorem transportedInvolution_mul_self_eq_map_star_mul_self
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) (x : B) :
     transportedInvolution e x * x =
       e (star (e.symm x) * e.symm x) := by
@@ -113,7 +114,7 @@ theorem transportedInvolution_mul_self_eq_map_star_mul_self
 the original C-star Gram operation.  This uses only injectivity of the
 algebra equivalence, not preservation of the target positive cone. -/
 theorem transportedInvolution_mul_self_eq_zero_iff
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) (x : B) :
     transportedInvolution e x * x = 0 ↔ x = 0 := by
   constructor
@@ -134,14 +135,14 @@ theorem transportedInvolution_mul_self_eq_zero_iff
     simp
 
 theorem transportedInvolution_smul
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) (c : ℂ) (x : B) :
     transportedInvolution e (c • x) =
       star c • transportedInvolution e x := by
   simp [transportedInvolution]
 
 @[simp] theorem transportedInvolution_involutive
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [Algebra ℂ B]
     (e : D ≃ₐ[ℂ] B) (x : B) :
     transportedInvolution e (transportedInvolution e x) = x := by
   simp [transportedInvolution]
@@ -149,7 +150,8 @@ theorem transportedInvolution_smul
 /-- Composing the transported involution with the target involution produces
 an ordinary complex-algebra automorphism. -/
 def transportedInvolutionAutomorphism
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [StarRing B]
+    [Algebra ℂ B] [StarModule ℂ B] [InvolutiveStar B]
     (e : D ≃ₐ[ℂ] B) : B ≃ₐ[ℂ] B where
   toFun x := transportedInvolution e (star x)
   invFun x := star (transportedInvolution e x)
@@ -160,10 +162,12 @@ def transportedInvolutionAutomorphism
   map_mul' x y := by
     simp [transportedInvolution]
   commutes' c := by
-    simp [transportedInvolution]
+    simp only [Algebra.algebraMap_eq_smul_one, star_smul, star_one,
+      transportedInvolution_smul, transportedInvolution_one, star_star]
 
 @[simp] theorem transportedInvolutionAutomorphism_apply
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [StarRing B]
+    [Algebra ℂ B] [StarModule ℂ B] [InvolutiveStar B]
     (e : D ≃ₐ[ℂ] B) (x : B) :
     transportedInvolutionAutomorphism e x =
       transportedInvolution e (star x) := rfl
@@ -171,10 +175,11 @@ def transportedInvolutionAutomorphism
 /-- Exact reduction of the transported involution to the associated ordinary
 algebra automorphism and the standard target involution. -/
 theorem transportedInvolution_eq_automorphism_star
-    {D B : Type*} [CStarAlgebra D] [CStarAlgebra B]
+    {D B : Type*} [CStarAlgebra D] [Ring B] [StarRing B]
+    [Algebra ℂ B] [StarModule ℂ B] [InvolutiveStar B]
     (e : D ≃ₐ[ℂ] B) (x : B) :
     transportedInvolution e x = transportedInvolutionAutomorphism e (star x) := by
-  simp [transportedInvolutionAutomorphism, transportedInvolution]
+  rw [transportedInvolutionAutomorphism_apply, star_star]
 
 /-- Skolem--Noether, in Mathlib's endomorphism-algebra form, supplies an
 actual conjugating linear equivalence for the ordinary automorphism associated
@@ -282,9 +287,11 @@ theorem unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
           inner ℂ ((α : ℂ) • T.toLinearMap.adjoint x) (T x) := by
         rw [hpoint]
       _ = star (α : ℂ) * inner ℂ (T.toLinearMap.adjoint x) (T x) := by
-        rw [inner_smul_left]
+        simpa only [starRingEnd_apply] using
+          (inner_smul_left (α : ℂ) (T.toLinearMap.adjoint x) (T x))
       _ = star (α : ℂ) * inner ℂ x (T (T x)) := by
-        rw [LinearMap.adjoint_inner_left]
+        congr 1
+        exact LinearMap.adjoint_inner_left T.toLinearMap (T x) x
       _ = star (α : ℂ) *
           inner ℂ x ((α : ℂ) • T.toLinearMap.adjoint (T x)) := by
         rw [hpoint]
@@ -292,7 +299,7 @@ theorem unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
           ((α : ℂ) * inner ℂ x (T.toLinearMap.adjoint (T x))) := by
         rw [inner_smul_right]
       _ = (star (α : ℂ) * (α : ℂ)) * inner ℂ (T x) (T x) := by
-        rw [LinearMap.adjoint_inner_right]
+        rw [LinearMap.adjoint_inner_right T.toLinearMap x (T x)]
         ring
   have hinner_ne : inner ℂ (T x) (T x) ≠ 0 := by
     intro hzero
@@ -368,9 +375,11 @@ theorem adjointLinearEquiv_unit_smul_apply
     _ = inner ℂ x ((β : ℂ) • T y) := by rfl
     _ = (β : ℂ) * inner ℂ x (T y) := by rw [inner_smul_right]
     _ = (β : ℂ) * inner ℂ (adjointLinearEquiv T x) y := by
-      rw [LinearMap.adjoint_inner_left]
+      congr 1
+      exact LinearMap.adjoint_inner_left T.toLinearMap y x
     _ = inner ℂ (star (β : ℂ) • adjointLinearEquiv T x) y := by
-      rw [inner_smul_left, star_star]
+      simpa only [starRingEnd_apply, star_star] using
+        (inner_smul_left (star (β : ℂ)) (adjointLinearEquiv T x) y).symm
 
 /-- A scalar correction satisfying `βα = β̅` turns an
 `α`-self-adjoint conjugator into a genuinely self-adjoint one. -/
@@ -437,7 +446,7 @@ Mathlib's inner-product linear maps. -/
 def innerRankOneEnd
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
     (w z : V) : Module.End ℂ V :=
-  (InnerProductSpace.toSpanSingleton ℂ V w).comp (innerₛₗ ℂ z)
+  (LinearMap.toSpanSingleton ℂ V w).comp (innerₛₗ ℂ z)
 
 @[simp] theorem innerRankOneEnd_apply
     {V : Type*} [NormedAddCommGroup V] [InnerProductSpace ℂ V]

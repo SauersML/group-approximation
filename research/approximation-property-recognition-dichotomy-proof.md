@@ -43,7 +43,12 @@ installs the constant-true decision procedure under `not (i)`.  The audited
 `exists_nonhyperlinear_code_iff_nonhyperlinearCodeProperty_not_re`, and
 `exists_nonhyperlinear_code_iff_nonempty_adianRabinReduction` endpoints state
 the same phase transition entirely inside the concrete finite-presentation
-code space.
+code space.  `Computability/HyperlinearRecognitionSecondLevel` then feeds that
+forbidden code to the enumerated-presentation event-ray compiler and proves the
+exact equivalences between `(i)`, `Pi02Hard HYP_rec`, and `Sigma02Hard
+NONHYP_rec`.  The reverse implications are also checked: if `(i)` fails, those
+targets are respectively constant true and constant false, and explicit
+second-level source predicates rule out hardness.
 
 **Other properties.**  Weakly sofic and linear sofic groups are defined by
 table models in finite groups with bi-invariant metrics, respectively in

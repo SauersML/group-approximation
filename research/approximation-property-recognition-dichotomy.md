@@ -7,6 +7,7 @@ artifacts:
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
   - GroupApproximation/Covers/HyperlinearTableCover.lean
   - GroupApproximation/Computability/HyperlinearMarkov.lean
+  - GroupApproximation/Computability/HyperlinearRecognitionSecondLevel.lean
 distinct_from:
   nonhyperlinear-presentation-codes-have-a-sigma2-upper-bound: that is the upper bound alone and says so; this adds the matching lower bound conditional on exactly one thing, the existence of a non-hyperlinear group, and shows nothing in between can happen.
   non-hyperlinear-group: that asks for a group; this is a theorem about decision problems whose two sides are the two possible answers to that question, and it is established whichever answer is true.
@@ -36,7 +37,9 @@ In particular the following are equivalent:
 (iii) HYP_fp is undecidable;
 (iv)  HYP_rec2 is undecidable;
 (v)   HYP_rec2 is Pi^0_2-complete;
-(vi)  NONHYP_fp is not recursively enumerable.                        (D2)
+(vi)  NONHYP_fp is not recursively enumerable;
+(vii) HYP_rec is Pi^0_2-hard on enumerated presentation codes;
+(viii) NONHYP_rec is Sigma^0_2-hard on those same codes.               (D2)
 ```
 
 The equivalence `(i) <=> (ii)` is machine-checked as
@@ -57,7 +60,11 @@ an explicit computable many-one reduction from the uniform word problem.  The
 three parallel `exists_nonhyperlinear_code_iff_*` endpoints sharpen this to the
 actual finite-presentation coding: existence of a forbidden code is equivalent
 to undecidability, to non-r.e.-ness of the negative code set, and to inhabitation
-of the explicit reduction type.
+of the explicit reduction type.  Finally,
+`Computability/HyperlinearRecognitionSecondLevel` machine-checks `(i) <=>
+(vii) <=> (viii)`.  Its forward maps are the arbitrary-forbidden-seed event-ray
+compiler; its reverse maps prove directly that constant-true and constant-false
+predicates cannot be hard at the corresponding second level.
 
 The same dichotomy holds verbatim for **weak soficity** (with the
 `Pi^0_2` membership supplied by

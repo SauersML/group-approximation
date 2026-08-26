@@ -221,6 +221,30 @@ excluded by the regular-trace firewall.
   The remaining seam is precisely that source incidence or a quantitative
   charge for the `S_57` leakage.
 
+  There is now a valid moving-source incidence statement, but it stops one
+  typing later than `(SNA2)` requires.
+  `paid-cut-has-moving-hecke-source-or-detector` conjugates the full signed
+  source by the frozen paid Whitehead word.  Unless one conjugated detector
+  pays at least one half, the paid overlap produces a positive
+  approximation-dependent `R_0<=Q`, and either literal Hecke word `u_i`
+  carries `R_0` into the common range `P` with zero boundary.  The exact
+  EL20 commutator forces
+
+  ```text
+  10||(1-R_0)t_1R_0||_2+4||(1-R_0)t_2R_0||_2
+    >=sqrt(tau(R_0)),
+  ```
+
+  so this is genuinely a moving cut, not the forbidden common reducing
+  corner.  It still does not establish `(SNA2)`: after refinement to `Q`,
+  both Hecke maps have the same range `P`, and the native quarter/eighth
+  target Grams are absent.  In the detector-free branch the exact next seam
+  is to control the `S_57` boundary while carrying `R_i` to the actual
+  row-two source/target flag; in the detector branch it is a
+  relation-controlled upper bound on that paying word.  A tautological
+  conjugate cut leaves the reservoir coboundary free and cannot substitute
+  for either transition.
+
 - **Move the marked root by an external Weyl and retain both Pauli charts.**
   The root-valued relative word is exact, but the chart mover is not erased.
   `six-pair-chart-swap-retains-external-gauge` gives a full `M_64(C)` label

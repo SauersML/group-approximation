@@ -308,6 +308,49 @@ theorem isNull_compressFamily_supportReindex_iff
 
 open PrintedCornerCompression
 
+theorem cornerCompression_zero
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P : Matrix Z Z ℂ} (hP : P.IsHermitian) :
+    cornerCompression hP (0 : Matrix Z Z ℂ) = 0 := by
+  simp [cornerCompression, eigenbasisConj]
+
+theorem cornerCompression_add
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (C D : Matrix Z Z ℂ) :
+    cornerCompression hP (C + D) =
+      cornerCompression hP C + cornerCompression hP D := by
+  simp [cornerCompression, eigenbasisConj, Matrix.mul_add, Matrix.add_mul,
+    KazhdanCornerMatrices.principalBlock,
+    KazhdanCornerMatrices.coordinateBlock]
+
+theorem cornerCompression_smul
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (c : ℂ) (C : Matrix Z Z ℂ) :
+    cornerCompression hP (c • C) = c • cornerCompression hP C := by
+  simp [cornerCompression, eigenbasisConj, Matrix.mul_smul, Matrix.smul_mul,
+    KazhdanCornerMatrices.principalBlock,
+    KazhdanCornerMatrices.coordinateBlock]
+
+theorem cornerCompression_conjTranspose
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (C : Matrix Z Z ℂ) :
+    cornerCompression hP Cᴴ = (cornerCompression hP C)ᴴ := by
+  rw [cornerCompression, cornerCompression,
+    ← eigenbasisConj_conjTranspose,
+    KazhdanCornerMatrices.principalBlock_conjTranspose]
+
+/-- A projection becomes the identity of its range matrix algebra. -/
+theorem cornerCompression_projection_eq_one
+    {Z : Type*} [Fintype Z] [DecidableEq Z]
+    {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (hPidem : P * P = P) :
+    cornerCompression hP P = 1 := by
+  rw [cornerCompression, eigenbasisConj_eq_coordinateProjection hP hPidem]
+  ext i j
+  simp [KazhdanCornerMatrices.principalBlock,
+    KazhdanCornerMatrices.coordinateBlock, Matrix.toBlock_apply,
+    coordinateProjection, Matrix.one_apply, Subtype.ext_iff, i.property,
+    j.property]
+
 theorem cornerPredicate_iff_eigenvalue_ne_zero
     {Z : Type*} [Fintype Z] [DecidableEq Z]
     {P : Matrix Z Z ℂ} (hP : P.IsHermitian) (hPidem : P * P = P) (i : Z) :
@@ -398,6 +441,158 @@ theorem relabelledCornerModel_nonempty
     Nonempty (relabelledCornerModel Y P hP hne k) :=
   Fintype.card_pos_iff.mp (card_relabelledCornerModel_pos Y P hP hne k)
 
+noncomputable instance relabelledCornerModel.instNonempty
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0) (k : ℕ) :
+    Nonempty (relabelledCornerModel Y P hP hne k) :=
+  relabelledCornerModel_nonempty Y P hP hne k
+
+/-! ## Bounded coordinate compression -/
+
+/-- Compress a bounded ambient family to the relabelled projection-range
+matrix models.  Coordinate compression is contractive, so the resulting
+family is uniformly bounded. -/
+def cornerCompressSequence
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x : BoundedMatrixSequence (fun n ↦ Y n)) :
+    BoundedMatrixSequence (relabelledCornerModel Y P hP hne) :=
+  ⟨fun k ↦ cornerCompression
+      (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+      (x (supportRelabelling Y P hne k)),
+    memℓp_infty ⟨‖x‖, by
+      rintro _ ⟨k, rfl⟩
+      exact (norm_cornerCompression_le
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+        (x (supportRelabelling Y P hne k))).trans
+          (boundedMatrixSequence_coord_norm_le (fun n ↦ Y n) x
+            (supportRelabelling Y P hne k))⟩⟩
+
+@[simp]
+theorem cornerCompressSequence_apply
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x : BoundedMatrixSequence (fun n ↦ Y n)) (k : ℕ) :
+    (cornerCompressSequence Y P hP hne x k :
+      Matrix (relabelledCornerModel Y P hP hne k)
+        (relabelledCornerModel Y P hP hne k) ℂ) =
+      cornerCompression
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+        (x (supportRelabelling Y P hne k)) :=
+  rfl
+
+@[simp]
+theorem cornerCompressSequence_zero
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0) :
+    cornerCompressSequence Y P hP hne 0 = 0 := by
+  refine lp.ext (funext fun k ↦ ?_)
+  change cornerCompression
+      (relabelledProjection_isOrthogonalProjection Y P hP hne k).1 0 = 0
+  exact cornerCompression_zero _
+
+/-- Coordinate compression, bundled as a complex linear map between the two
+bounded-sequence spaces. -/
+def cornerCompressSequenceLinear
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0) :
+    BoundedMatrixSequence (fun n ↦ Y n) →ₗ[ℂ]
+      BoundedMatrixSequence (relabelledCornerModel Y P hP hne) where
+  toFun := cornerCompressSequence Y P hP hne
+  map_add' x y := by
+    refine lp.ext (funext fun k ↦ ?_)
+    change cornerCompression
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+          (x (supportRelabelling Y P hne k) +
+            y (supportRelabelling Y P hne k)) =
+      cornerCompression
+          (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+          (x (supportRelabelling Y P hne k)) +
+        cornerCompression
+          (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+          (y (supportRelabelling Y P hne k))
+    exact cornerCompression_add _ _ _
+  map_smul' c x := by
+    refine lp.ext (funext fun k ↦ ?_)
+    change cornerCompression
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+          (c • x (supportRelabelling Y P hne k)) =
+      c • cornerCompression
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+        (x (supportRelabelling Y P hne k))
+    exact cornerCompression_smul _ _ _
+
+@[simp]
+theorem cornerCompressSequenceLinear_apply
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x : BoundedMatrixSequence (fun n ↦ Y n)) :
+    cornerCompressSequenceLinear Y P hP hne x =
+      cornerCompressSequence Y P hP hne x :=
+  rfl
+
+/-- Bounded coordinate compression respects adjoints exactly. -/
+theorem cornerCompressSequence_star
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x : BoundedMatrixSequence (fun n ↦ Y n)) :
+    cornerCompressSequence Y P hP hne (star x) =
+      star (cornerCompressSequence Y P hP hne x) := by
+  refine lp.ext (funext fun k ↦ ?_)
+  change cornerCompression
+      (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+        ((x (supportRelabelling Y P hne k) :
+          Matrix (Y (supportRelabelling Y P hne k))
+            (Y (supportRelabelling Y P hne k)) ℂ)ᴴ) =
+    (cornerCompression
+      (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+      (x (supportRelabelling Y P hne k)))ᴴ
+  exact cornerCompression_conjTranspose _ _
+
+/-- The projection lift compresses to the identity bounded sequence in its
+range models. -/
+theorem cornerCompressSequence_projection_eq_one
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0) :
+    cornerCompressSequence Y P hP hne P = 1 := by
+  refine lp.ext (funext fun k ↦ ?_)
+  change cornerCompression
+      (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+      (relabelledProjection Y P hne k) = 1
+  exact cornerCompression_projection_eq_one
+    (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+    (relabelledProjection_isOrthogonalProjection Y P hP hne k).2
+
+/-- Coordinate compression carries ambient cofinite-null families to
+cofinite-null corner families.  This is the well-definedness direction needed
+for a later quotient map; the converse is a separate norm-reflection theorem
+and is not asserted here. -/
+theorem isNull_cornerCompressSequence
+    (P : BoundedMatrixSequence (fun n ↦ Y n))
+    (hP : ∀ n, IsOrthogonalProjectionMatrix (P n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) P ≠ 0)
+    (x : BoundedMatrixSequence (fun n ↦ Y n))
+    (hx : IsNullMatrixSequence (fun n ↦ Y n) cofinite x) :
+    IsNullMatrixSequence (relabelledCornerModel Y P hP hne) cofinite
+      (cornerCompressSequence Y P hP hne x) := by
+  rw [IsNullMatrixSequence, Nat.cofinite_eq_atTop] at hx ⊢
+  apply squeeze_zero'
+    (Eventually.of_forall fun k ↦
+      norm_nonneg (cornerCompressSequence Y P hP hne x k))
+  · exact Eventually.of_forall fun k ↦
+      norm_cornerCompression_le
+        (relabelledProjection_isOrthogonalProjection Y P hP hne k).1
+        (x (supportRelabelling Y P hne k))
+  · exact hx.comp (supportRelabelling_strictMono Y P hne).tendsto_atTop
+
 /-- The image of the source unit, which is the unit of the represented
 corner. -/
 def supportProjection
@@ -486,6 +681,9 @@ theorem mk_compress_lift_eq
 #audit_axioms card_cornerPredicate_eq_rank
 #audit_axioms card_relabelledCornerModel_eq_rank
 #audit_axioms card_relabelledCornerModel_pos
+#audit_axioms cornerCompressSequence_star
+#audit_axioms cornerCompressSequence_projection_eq_one
+#audit_axioms isNull_cornerCompressSequence
 
 end
 

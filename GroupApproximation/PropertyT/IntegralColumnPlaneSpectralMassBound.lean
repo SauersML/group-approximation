@@ -1414,6 +1414,25 @@ theorem wordPairRegionOfDegrees_C_data
           cases hregion
         · exact ⟨(not_or.mp hzero).1, (not_or.mp hzero).2, by omega⟩
 
+theorem wordPairRegionOfDegrees_B_data
+    (n a b : ℕ) (hregion : wordPairRegionOfDegrees n a b = .B) :
+    ¬(a = n + 1 ∧ b = n + 1) ∧ a ≠ 0 ∧ b ≠ 0 ∧ a = b := by
+  by_cases hboth : a = n + 1 ∧ b = n + 1
+  · rw [wordPairRegionOfDegrees, if_pos hboth] at hregion
+    cases hregion
+  · by_cases hzero : a = 0 ∨ b = 0
+    · rw [wordPairRegionOfDegrees, if_neg hboth, if_pos hzero] at hregion
+      cases hregion
+    · by_cases hba : b < a
+      · rw [wordPairRegionOfDegrees, if_neg hboth, if_neg hzero,
+          if_pos hba] at hregion
+        cases hregion
+      · by_cases heq : a = b
+        · exact ⟨hboth, (not_or.mp hzero).1, (not_or.mp hzero).2, heq⟩
+        · rw [wordPairRegionOfDegrees, if_neg hboth, if_neg hzero,
+            if_neg hba, if_neg heq] at hregion
+          cases hregion
+
 theorem wordPairRegionOfDegrees_D_data
     (n a b : ℕ) (hregion : wordPairRegionOfDegrees n a b = .D) :
     a = 0 ∨ b = 0 := by
@@ -1445,6 +1464,29 @@ theorem wordPairRegionOfDegrees_eq_D_of_right_zero
     wordPairRegionOfDegrees n a b = .D := by
   subst b
   simp [wordPairRegionOfDegrees]
+
+theorem wordPairRegionOfDegrees_eq_A_of_pos_of_lt
+    (n a b : ℕ) (hb : b ≠ 0) (hlt : b < a) :
+    wordPairRegionOfDegrees n a b = .A := by
+  have ha : a ≠ 0 := by omega
+  have hboth : ¬(a = n + 1 ∧ b = n + 1) := by omega
+  simp [wordPairRegionOfDegrees, hboth, ha, hb, hlt]
+
+theorem wordPairRegionOfDegrees_eq_B_of_pos_of_eq_of_le
+    (n a b : ℕ) (ha : a ≠ 0) (heq : a = b) (hale : a ≤ n) :
+    wordPairRegionOfDegrees n a b = .B := by
+  subst b
+  have hsentinel : a ≠ n + 1 := by omega
+  simp [wordPairRegionOfDegrees, ha, hsentinel]
+
+theorem wordPairRegionOfDegrees_eq_C_of_pos_of_lt
+    (n a b : ℕ) (ha : a ≠ 0) (hlt : a < b) :
+    wordPairRegionOfDegrees n a b = .C := by
+  have hb : b ≠ 0 := by omega
+  have hboth : ¬(a = n + 1 ∧ b = n + 1) := by omega
+  have hba : ¬ b < a := by omega
+  have heq : a ≠ b := by omega
+  simp [wordPairRegionOfDegrees, hboth, ha, hb, hba, heq]
 
 /-- Region `A` is preserved by the upper unit shear: its second-root leading
 term occurs strictly before any first-root term, so cancellation is
@@ -1526,6 +1568,153 @@ theorem wordPairRegion_lowerUnit_eq_D_of_eq_D
   · apply wordPairRegionOfDegrees_eq_D_of_right_zero
     rw [leastRootWordDegreeWithin_lowerUnit_one]
     exact hb
+
+/-- Equal leading degrees may cancel under the upper unit shear, but the
+affected second-root degree can only stay fixed or increase.  Thus `B` lands
+in `B ∪ C`; no choice between the two is made here. -/
+theorem wordPairRegion_upperUnit_eq_B_or_C_of_eq_B
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hregion : wordPairRegion rho n chi = .B) :
+    wordPairRegion rho n (upperUnitCharacterAction rho chi) = .B ∨
+      wordPairRegion rho n (upperUnitCharacterAction rho chi) = .C := by
+  let a := leastRootWordDegreeWithin rho 0 n chi
+  let b := leastRootWordDegreeWithin rho 1 n chi
+  change wordPairRegionOfDegrees n a b = .B at hregion
+  obtain ⟨hnotBoth, ha0, _hb0, hab⟩ :=
+    wordPairRegionOfDegrees_B_data n a b hregion
+  have haleSucc : a ≤ n + 1 :=
+    leastRootWordDegreeWithin_le_succ rho 0 n chi
+  have hbleSucc : b ≤ n + 1 :=
+    leastRootWordDegreeWithin_le_succ rho 1 n chi
+  have hale : a ≤ n := by
+    by_contra hnot
+    have haSentinel : a = n + 1 := by omega
+    have hbSentinel : b = n + 1 := by omega
+    exact hnotBoth ⟨haSentinel, hbSentinel⟩
+  let c := leastRootWordDegreeWithin rho 1 n
+    (upperUnitCharacterAction rho chi)
+  have halec : a ≤ c := by
+    by_cases hvisible : upperUnitCharacterAction rho chi ∈
+        rootWordVisibleSet rho 1 n
+    · have hcAt : upperUnitCharacterAction rho chi ∈
+          rootWordVisibleSet rho 1 c :=
+        leastRootWordDegreeWithin_mem rho 1 n _ hvisible
+      by_contra hnot
+      rcases rootWordVisibleSet_of_upperUnit_one_mem rho c chi hcAt with
+        hzero | hone
+      · exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 0 n chi
+          (by omega)) hzero
+      · exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 1 n chi
+          (by omega)) hone
+    · have hcSentinel := leastRootWordDegreeWithin_eq_succ_of_not_mem
+          rho 1 n (upperUnitCharacterAction rho chi) hvisible
+      change c = n + 1 at hcSentinel
+      omega
+  have hzeroDegree : leastRootWordDegreeWithin rho 0 n
+      (upperUnitCharacterAction rho chi) = a := by
+    exact leastRootWordDegreeWithin_upperUnit_zero rho n chi
+  by_cases hac : a = c
+  · left
+    change wordPairRegionOfDegrees n
+      (leastRootWordDegreeWithin rho 0 n (upperUnitCharacterAction rho chi))
+      c = .B
+    rw [hzeroDegree]
+    exact wordPairRegionOfDegrees_eq_B_of_pos_of_eq_of_le
+      n a c ha0 hac hale
+  · right
+    change wordPairRegionOfDegrees n
+      (leastRootWordDegreeWithin rho 0 n (upperUnitCharacterAction rho chi))
+      c = .C
+    rw [hzeroDegree]
+    exact wordPairRegionOfDegrees_eq_C_of_pos_of_lt n a c ha0 (by omega)
+
+/-- Symmetrically, lower-unit cancellation can only raise the first-root
+degree, so `B` lands in `A ∪ B`. -/
+theorem wordPairRegion_lowerUnit_eq_A_or_B_of_eq_B
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) (chi : Spectrum rho)
+    (hregion : wordPairRegion rho n chi = .B) :
+    wordPairRegion rho n (lowerUnitCharacterAction rho chi) = .A ∨
+      wordPairRegion rho n (lowerUnitCharacterAction rho chi) = .B := by
+  let a := leastRootWordDegreeWithin rho 0 n chi
+  let b := leastRootWordDegreeWithin rho 1 n chi
+  change wordPairRegionOfDegrees n a b = .B at hregion
+  obtain ⟨hnotBoth, _ha0, hb0, hab⟩ :=
+    wordPairRegionOfDegrees_B_data n a b hregion
+  have haleSucc : a ≤ n + 1 :=
+    leastRootWordDegreeWithin_le_succ rho 0 n chi
+  have hbleSucc : b ≤ n + 1 :=
+    leastRootWordDegreeWithin_le_succ rho 1 n chi
+  have hble : b ≤ n := by
+    by_contra hnot
+    have hbSentinel : b = n + 1 := by omega
+    have haSentinel : a = n + 1 := by omega
+    exact hnotBoth ⟨haSentinel, hbSentinel⟩
+  let c := leastRootWordDegreeWithin rho 0 n
+    (lowerUnitCharacterAction rho chi)
+  have hblec : b ≤ c := by
+    by_cases hvisible : lowerUnitCharacterAction rho chi ∈
+        rootWordVisibleSet rho 0 n
+    · have hcAt : lowerUnitCharacterAction rho chi ∈
+          rootWordVisibleSet rho 0 c :=
+        leastRootWordDegreeWithin_mem rho 0 n _ hvisible
+      by_contra hnot
+      rcases rootWordVisibleSet_of_lowerUnit_zero_mem rho c chi hcAt with
+        hone | hzero
+      · exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 1 n chi
+          (by omega)) hone
+      · exact (not_mem_rootWordVisibleSet_of_lt_degreeWithin rho 0 n chi
+          (by omega)) hzero
+    · have hcSentinel := leastRootWordDegreeWithin_eq_succ_of_not_mem
+          rho 0 n (lowerUnitCharacterAction rho chi) hvisible
+      change c = n + 1 at hcSentinel
+      omega
+  have honeDegree : leastRootWordDegreeWithin rho 1 n
+      (lowerUnitCharacterAction rho chi) = b := by
+    exact leastRootWordDegreeWithin_lowerUnit_one rho n chi
+  by_cases hbc : b = c
+  · right
+    change wordPairRegionOfDegrees n c
+      (leastRootWordDegreeWithin rho 1 n (lowerUnitCharacterAction rho chi)) = .B
+    rw [honeDegree]
+    exact wordPairRegionOfDegrees_eq_B_of_pos_of_eq_of_le
+      n c b (by omega) hbc.symm (by omega)
+  · left
+    change wordPairRegionOfDegrees n c
+      (leastRootWordDegreeWithin rho 1 n (lowerUnitCharacterAction rho chi)) = .A
+    rw [honeDegree]
+    exact wordPairRegionOfDegrees_eq_A_of_pos_of_lt n c b hb0 (by omega)
+
+/-- Set-level form of the exact upper-unit `B` placement.  This is only an
+image inclusion; it does not assert that images of different phase fibers
+are disjoint. -/
+theorem upperUnitCharacterAction_mapsTo_B_union_C
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    Set.MapsTo (upperUnitCharacterAction rho)
+      (wordPairRegionSet rho n .B)
+      (wordPairRegionSet rho n .B ∪ wordPairRegionSet rho n .C) := by
+  intro chi hchi
+  change wordPairRegion rho n (upperUnitCharacterAction rho chi) = .B ∨
+    wordPairRegion rho n (upperUnitCharacterAction rho chi) = .C
+  exact wordPairRegion_upperUnit_eq_B_or_C_of_eq_B rho n chi hchi
+
+/-- Set-level form of the exact lower-unit `B` placement, again without any
+image-disjointness assertion. -/
+theorem lowerUnitCharacterAction_mapsTo_B_union_A
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (n : ℕ) :
+    Set.MapsTo (lowerUnitCharacterAction rho)
+      (wordPairRegionSet rho n .B)
+      (wordPairRegionSet rho n .B ∪ wordPairRegionSet rho n .A) := by
+  intro chi hchi
+  change wordPairRegion rho n (lowerUnitCharacterAction rho chi) = .B ∨
+    wordPairRegion rho n (lowerUnitCharacterAction rho chi) = .A
+  rcases wordPairRegion_lowerUnit_eq_A_or_B_of_eq_B rho n chi hchi with
+    hA | hB
+  · exact Or.inr hA
+  · exact Or.inl hB
 
 omit [Fintype X] in
 theorem iUnion_finitePlaneNontrivialSet
@@ -1856,4 +2045,8 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms wordPairRegion_lowerUnit_eq_C_of_eq_C
 #audit_axioms wordPairRegion_upperUnit_eq_D_of_eq_D
 #audit_axioms wordPairRegion_lowerUnit_eq_D_of_eq_D
+#audit_axioms wordPairRegion_upperUnit_eq_B_or_C_of_eq_B
+#audit_axioms wordPairRegion_lowerUnit_eq_A_or_B_of_eq_B
+#audit_axioms upperUnitCharacterAction_mapsTo_B_union_C
+#audit_axioms lowerUnitCharacterAction_mapsTo_B_union_A
 #audit_axioms measurableSet_fullPlaneNontrivialSet

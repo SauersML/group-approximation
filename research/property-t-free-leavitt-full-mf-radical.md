@@ -437,6 +437,21 @@ Whitehead packet, but both label actions on that atom are quarter-scale.
 Identifying the localized paid word with the unequal quarter/eighth selector
 output remains the final occurrence-typing problem.
 
+The localized payment can now be moved through one literal Hecke row without
+reviving the false common-cut argument.  In
+`paid-cut-has-moving-hecke-source-or-detector`, either a conjugated signed
+detector pays at least one half, or the paid Whitehead overlap yields a
+positive model-dependent subcut of the conjugated signed source.  Undoing
+the paid conjugation and applying either exact Hecke word transports at least
+`3tau(P_z)/31744` of support with zero row boundary.  The actual EL20
+incompatible-character commutator forces a quantitative exit from at least
+one order-seven head on that same source cut, so it must move at the next
+stage.  This is a valid first moving-cut occurrence, but it lands in the
+common refined Hecke range and does not authenticate either unequal native
+selector output.  The remaining transition must either make the detector
+branch a presentation payment or carry this cut, with full source/target
+Grams and no moving-frame coboundary, into one actual quarter/eighth row.
+
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single
 finite matrix tuple with small relator defect is not a sound nontriviality

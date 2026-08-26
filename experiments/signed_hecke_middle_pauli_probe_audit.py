@@ -30,7 +30,6 @@ from signed_hecke_root_normalizer_audit import (
     COORDS as ACTOR_COORDS,
     GENERATORS as ACTOR_GENERATORS,
     IDENTITY as ACTOR_IDENTITY,
-    multiply as actor_multiply,
     signed_l0,
     transvection as actor_transvection,
 )
@@ -189,22 +188,19 @@ def main():
     w2 = swap(8, 9)
     s3 = generated_group((w1, w2))
     translations = generated_group((y[7], y[8], y[9]))
-    menu_labels = {}
-    for permutation in s3:
-        for translation in translations:
-            word = multiply(permutation, translation)
-            translation_mask = tuple(
-                middle for middle in MIDDLE
-                if translation != multiply(translation, y[middle])
-                and any(
-                    translation[INDEX[target]]
-                    & (1 << INDEX[3])
-                    for target in (middle,)
-                )
-            )
-            menu_labels[word] = (permutation, translation_mask)
-    menu = frozenset(menu_labels)
+    menu = frozenset(
+        multiply(permutation, translation)
+        for permutation in s3
+        for translation in translations
+    )
     assert len(menu) == 48
+    primal_translations = generated_group((x[7], x[8], x[9]))
+    primal_menu = frozenset(
+        multiply(permutation, translation)
+        for permutation in s3
+        for translation in primal_translations
+    )
+    assert len(primal_menu) == 48
 
     preserving = frozenset(word for word in menu
                            if preserves_signed_source(word, character))
@@ -219,6 +215,8 @@ def main():
     uncovered_menu = []
     uncovered_menu_double = []
     uncovered_two_menu = []
+    uncovered_menu_primal = []
+    uncovered_primal_menu = []
     uncovered_preserving = []
     uncovered_preserving_two_menu = []
     for representative, conjugates, closure in classes:
@@ -239,6 +237,8 @@ def main():
         menu_hits = []
         menu_double_hits = []
         two_menu_hits = []
+        menu_primal_hits = []
+        primal_menu_hits = []
         preserving_hits = []
         preserving_two_menu_hits = []
         for element in embedded_conjugates:
@@ -258,6 +258,17 @@ def main():
                         two_menu_hits.append((word, second_word))
                         if word in preserving and second_word in preserving:
                             preserving_two_menu_hits.append((word, second_word))
+                for second_word in primal_menu:
+                    extracted = commutator(first, second_word)
+                    if is_transvection(extracted):
+                        menu_primal_hits.append((word, second_word))
+
+            for word in primal_menu:
+                first = commutator(element, word)
+                for second_word in menu:
+                    extracted = commutator(first, second_word)
+                    if is_transvection(extracted):
+                        primal_menu_hits.append((word, second_word))
 
         if not translation_hits:
             uncovered_translation.append(representative)
@@ -269,6 +280,10 @@ def main():
             uncovered_menu_double.append(representative)
         if not two_menu_hits:
             uncovered_two_menu.append(representative)
+        if not menu_primal_hits:
+            uncovered_menu_primal.append(representative)
+        if not primal_menu_hits:
+            uncovered_primal_menu.append(representative)
         if not preserving_hits:
             uncovered_preserving.append(representative)
         if not preserving_two_menu_hits:
@@ -283,6 +298,8 @@ def main():
             "menu": bool(menu_hits),
             "menu_double_root": bool(menu_double_hits),
             "two_menu_root": bool(two_menu_hits),
+            "menu_primal_root": bool(menu_primal_hits),
+            "primal_menu_root": bool(primal_menu_hits),
             "preserving": bool(preserving_hits),
             "preserving_two_menu_root": bool(preserving_two_menu_hits),
         })
@@ -297,6 +314,8 @@ def main():
             row["menu"],
             row["menu_double_root"],
             row["two_menu_root"],
+            row["menu_primal_root"],
+            row["primal_menu_root"],
             row["preserving"],
             row["preserving_two_menu_root"],
         )
@@ -320,6 +339,10 @@ def main():
           len(uncovered_menu_double))
     print("classes missed by two-probe 48-menu root extraction =",
           len(uncovered_two_menu))
+    print("classes missed by dual-48 then primal-48 root extraction =",
+          len(uncovered_menu_primal))
+    print("classes missed by primal-48 then dual-48 root extraction =",
+          len(uncovered_primal_menu))
     print("classes commuting with every source-preserving menu probe =",
           len(uncovered_preserving))
     print("classes missed by two source-preserving menu probes =",
@@ -333,6 +356,8 @@ def main():
         ("full-menu fence", uncovered_menu),
         ("menu-double fence", uncovered_menu_double),
         ("two-menu fence", uncovered_two_menu),
+        ("dual-primal fence", uncovered_menu_primal),
+        ("primal-dual fence", uncovered_primal_menu),
         ("preserving fence", uncovered_preserving),
         ("preserving-two-menu fence", uncovered_preserving_two_menu),
     ):

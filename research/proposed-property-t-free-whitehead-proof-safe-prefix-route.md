@@ -34,6 +34,7 @@ requires:
   - native-actor-normal-closure-does-not-localize-paid-t00-support
   - paid-t00-reynolds-cut-is-whitehead-reducing
   - paid-t00-carrier-has-signed-hecke-reynolds-dichotomy
+  - paid-cut-has-moving-hecke-source-or-detector
   - paid-t00-carrier-can-miss-row2-source
   - fine-idempotent-biaction-return-has-gl10-model
   - property-t-free-manuscript-theorem-dependency-audit
@@ -85,6 +86,14 @@ group words, not relators, and the reducible row-two fence realizes the
 detector branch with zero paid/source incidence.  Closing the route requires
 one more occurrence which makes that branch pay presentation defect or
 transports the localized mismatch into the unequal row.
+The strongest valid moving version of this statement is now explicit in
+`paid-cut-has-moving-hecke-source-or-detector`: in the source branch a
+positive paid subcut enters `Q` and either literal Hecke word transports it
+with zero boundary, while the exact incompatible-character commutator forces
+a subsequent head exit.  Thus this step does not require, and cannot be
+upgraded to, one common invariant Hecke cut.  It still stops before the
+unequal native typing because both refined Hecke maps land in the same `P`
+and a single moving row leaves a reservoir coboundary free.
 The manuscript dependency audit then separates this open
 MF-collapse input from the already established downstream algebraic theorem
 package.  Therefore the proposed proof has exactly the safe status stated in
