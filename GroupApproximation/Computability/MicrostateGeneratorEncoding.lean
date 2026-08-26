@@ -49,7 +49,8 @@ theorem exists_generatorCodes_close {c : PresentationCode} (M : Microstate c)
   have hgenerator (i : Fin (genCount c)) : generator d gens i = C i := by
     rw [generator, List.getD_eq_getElem?_getD]
     change (List.ofFn C)[i.val]?.getD (identity d) = C i
-    have hi : i.val < (List.ofFn C).length := by simp
+    have hi : i.val < (List.ofFn C).length := by
+      simpa only [List.length_ofFn, Fintype.card_fin] using i.isLt
     rw [List.getElem?_eq_getElem hi]
     simp only [List.getElem_ofFn, Option.getD_some]
   refine ⟨gens, ?_, ?_⟩
