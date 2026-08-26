@@ -1843,6 +1843,7 @@ import GroupApproximation.Computability.SoficPromiseMFRecognition
 import GroupApproximation.External.TauCeti.RepresentationTheory.Compact.RepresentativeDensity
 import GroupApproximation.Higman.InjectedCompilerTower
 import GroupApproximation.Higman.MikhailovaFiberProduct
+import GroupApproximation.Higman.MikhailovaRankThreeWitness
 import GroupApproximation.Higman.PairedFoldKernel
 import GroupApproximation.Higman.PairedReturnFirstIntersection
 import GroupApproximation.Higman.TransportCodeRE
