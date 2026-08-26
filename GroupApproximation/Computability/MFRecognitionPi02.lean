@@ -517,14 +517,14 @@ theorem openPasses_of_matrixAnswerCheck_eq_true (c : PresentationCode)
   have hvalid := (matrixAnswerCheck_eq_true_iff c W k a).1 ha
   refine ⟨hvalid.1, ?_, ?_⟩
   · intro r hr
-    obtain ⟨i, hi, rfl⟩ := List.get_of_mem hr
+    obtain ⟨i, rfl⟩ := List.get_of_mem hr
     have hcert := hvalid.2.1.2 i.1 i.2
     rw [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem i.2,
       Option.getD_some] at hcert
     rw [toMicrostate_len_eq_matrixSub]
     exact opNorm_lt_invSucc_of_upperNormCert _ _ _ _ hcert
   · intro w hw
-    obtain ⟨i, hi, rfl⟩ := List.get_of_mem hw
+    obtain ⟨i, rfl⟩ := List.get_of_mem hw
     have hcert := hvalid.2.2.2 i.1 i.2
     rw [List.getD_eq_getElem?_getD, List.getElem?_eq_getElem i.2,
       Option.getD_some] at hcert
@@ -591,63 +591,444 @@ theorem exists_matrixAnswerCheck_iff (c : PresentationCode)
     exact exists_matrixAnswerCheck_of_coded_openPasses
       c W k d gens hunitary hpass
 
-/-! ## Joining the void and matrix branches -/
+/-! ## Primitive recursiveness of the bounded exact checks -/
 
-/-- The total finite-answer checker for one presentation and one challenge. -/
+theorem primrec_wordDefect :
+    Primrec fun z : (((PresentationCode × ℕ) × List MatrixCode) ×
+      List (ℕ × Bool)) =>
+      wordDefect z.1.1.1 z.1.1.2 z.1.2 z.2 := by
+  have hword : Primrec fun z : (((PresentationCode × ℕ) × List MatrixCode) ×
+      List (ℕ × Bool)) =>
+      wordMatrix z.1.1.2 z.1.1.1.1 z.1.2 z.2 :=
+    primrec_wordMatrix.comp (Primrec.pair
+      (Primrec.pair
+        (Primrec.pair
+          (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+          (Primrec.fst.comp (Primrec.fst.comp
+            (Primrec.fst.comp Primrec.fst))))
+        (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))) Primrec.snd)
+  exact primrec_matrixSub.comp (Primrec.pair
+    (Primrec.pair
+      (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+      hword)
+    (primrec_identity.comp
+      (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))
+
+set_option maxSynthPendingDepth 1000 in
+theorem primrecPred_matrixEq :
+    PrimrecPred fun z : (ℕ × MatrixCode) × MatrixCode =>
+      matrixEq z.1.1 z.1.2 z.2 := by
+  have hcoord : PrimrecRel fun (ij : ℕ × ℕ)
+      (z : (ℕ × MatrixCode) × MatrixCode) =>
+      RationalComplexCode.ComplexEq
+        (entry z.1.1 z.1.2 ij.1 ij.2)
+        (entry z.1.1 z.2 ij.1 ij.2) := by
+    have hleft : Primrec fun p : (ℕ × ℕ) ×
+        ((ℕ × MatrixCode) × MatrixCode) =>
+        entry p.2.1.1 p.2.1.2 p.1.1 p.1.2 :=
+      primrec_entry.comp (Primrec.pair
+        (Primrec.pair
+          (Primrec.pair
+            (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))
+            (Primrec.snd.comp (Primrec.fst.comp Primrec.snd)))
+          (Primrec.fst.comp Primrec.fst))
+        (Primrec.snd.comp Primrec.fst))
+    have hright : Primrec fun p : (ℕ × ℕ) ×
+        ((ℕ × MatrixCode) × MatrixCode) =>
+        entry p.2.1.1 p.2.2 p.1.1 p.1.2 :=
+      primrec_entry.comp (Primrec.pair
+        (Primrec.pair
+          (Primrec.pair
+            (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))
+            (Primrec.snd.comp Primrec.snd))
+          (Primrec.fst.comp Primrec.fst))
+        (Primrec.snd.comp Primrec.fst))
+    exact RationalComplexCode.primrecRel_complexEq.comp hleft hright
+  have hcol : PrimrecRel fun (j : ℕ)
+      (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
+      RationalComplexCode.ComplexEq
+        (entry z.2.1.1 z.2.1.2 z.1 j)
+        (entry z.2.1.1 z.2.2 z.1 j) :=
+    PrimrecRel.comp hcoord
+      (Primrec.pair (Primrec.fst.comp Primrec.snd) Primrec.fst)
+      (Primrec.snd.comp Primrec.snd)
+  have hcols : PrimrecRel fun (L : List ℕ)
+      (z : ℕ × ((ℕ × MatrixCode) × MatrixCode)) =>
+      ∀ j ∈ L,
+        RationalComplexCode.ComplexEq
+          (entry z.2.1.1 z.2.1.2 z.1 j)
+          (entry z.2.1.1 z.2.2 z.1 j) :=
+    PrimrecRel.forall_mem_list hcol
+  have hrow : PrimrecRel fun (i : ℕ)
+      (z : (ℕ × MatrixCode) × MatrixCode) =>
+      ∀ j ∈ List.range (dim z.1.1),
+        RationalComplexCode.ComplexEq
+          (entry z.1.1 z.1.2 i j) (entry z.1.1 z.2 i j) :=
+    PrimrecRel.comp hcols
+      (Primrec.list_range.comp (primrec_dim.comp
+        (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))))
+      (Primrec.pair Primrec.fst Primrec.snd)
+  have hrows : PrimrecRel fun (L : List ℕ)
+      (z : (ℕ × MatrixCode) × MatrixCode) =>
+      ∀ i ∈ L, ∀ j ∈ List.range (dim z.1.1),
+        RationalComplexCode.ComplexEq
+          (entry z.1.1 z.1.2 i j) (entry z.1.1 z.2 i j) :=
+    PrimrecRel.forall_mem_list hrow
+  refine (PrimrecRel.comp hrows
+    (Primrec.list_range.comp
+      (primrec_dim.comp (Primrec.fst.comp Primrec.fst))) Primrec.id).of_eq ?_
+  intro z
+  constructor
+  · intro h i hi j hj
+    exact h i (List.mem_range.2 hi) j (List.mem_range.2 hj)
+  · intro h i hi j hj
+    exact h i (List.mem_range.1 hi) j (List.mem_range.1 hj)
+
+theorem primrec_matrixEqCheck :
+    Primrec fun z : (ℕ × MatrixCode) × MatrixCode =>
+      matrixEqCheck z.1.1 z.1.2 z.2 :=
+  primrecPred_matrixEq.decide
+
+theorem primrecPred_isUnitary :
+    PrimrecPred fun z : ℕ × MatrixCode => isUnitary z.1 z.2 := by
+  exact primrecPred_matrixEq.comp (Primrec.pair
+    (Primrec.pair Primrec.fst
+      (primrec_matrixMul.comp (Primrec.pair
+        (Primrec.pair Primrec.fst
+          (primrec_conjTranspose.comp Primrec.id)) Primrec.snd)))
+    (primrec_identity.comp Primrec.fst))
+
+theorem primrec_isUnitaryCheck :
+    Primrec fun z : ℕ × MatrixCode => isUnitaryCheck z.1 z.2 := by
+  exact primrecPred_isUnitary.decide.of_eq fun z => by
+    simp [isUnitaryCheck, matrixEqCheck, isUnitary]
+
+set_option maxSynthPendingDepth 1000 in
+theorem primrecPred_generatorsUnitary :
+    PrimrecPred fun z : (PresentationCode × ℕ) × List MatrixCode =>
+      GeneratorsUnitary z.1.1 z.1.2 z.2 := by
+  have hitem : PrimrecRel fun (i : ℕ)
+      (z : (PresentationCode × ℕ) × List MatrixCode) =>
+      isUnitary z.1.2 (generator z.1.2 z.2 i) := by
+    exact primrecPred_isUnitary.comp (Primrec.pair
+      (Primrec.snd.comp (Primrec.fst.comp Primrec.snd))
+      (primrec_generator.comp (Primrec.pair
+        (Primrec.pair
+          (Primrec.snd.comp (Primrec.fst.comp Primrec.snd))
+          (Primrec.snd.comp Primrec.snd)) Primrec.fst)))
+  have hall : PrimrecRel fun (L : List ℕ)
+      (z : (PresentationCode × ℕ) × List MatrixCode) =>
+      ∀ i ∈ L, isUnitary z.1.2 (generator z.1.2 z.2 i) :=
+    PrimrecRel.forall_mem_list hitem
+  refine (PrimrecRel.comp hall
+    (Primrec.list_range.comp
+      (primrec_genCount.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
+    Primrec.id).of_eq ?_
+  intro z
+  constructor
+  · intro h i
+    exact h i (List.mem_range.2 i.isLt)
+  · intro h i hi
+    exact h ⟨i, List.mem_range.1 hi⟩
+
+theorem primrec_generatorTupleCheck :
+    Primrec fun z : (PresentationCode × ℕ) × List MatrixCode =>
+      generatorTupleCheck z.1.1 z.1.2 z.2 :=
+  primrecPred_generatorsUnitary.decide
+
+private abbrev UpperInput :=
+  (((PresentationCode × ℕ) × ℕ) × List MatrixCode) × List ℕ
+
+set_option maxSynthPendingDepth 1000 in
+theorem primrecPred_upperPacket :
+    PrimrecPred fun z : UpperInput =>
+      UpperPacket z.1.1.1.1 z.1.1.1.2 z.1.1.2 z.1.2 z.2 := by
+  have hitem : PrimrecRel fun (i : ℕ) (z : UpperInput) =>
+      upperNormCert z.1.1.1.2 z.1.1.2
+        (wordDefect z.1.1.1.1 z.1.1.1.2 z.1.2
+          (z.1.1.1.1.2.getD i []))
+        (z.2.getD i 0) := by
+    have hc : Primrec fun p : ℕ × UpperInput => p.2.1.1.1.1 :=
+      Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp
+        (Primrec.fst.comp Primrec.snd)))
+    have hd : Primrec fun p : ℕ × UpperInput => p.2.1.1.1.2 :=
+      Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp
+        (Primrec.fst.comp Primrec.snd)))
+    have hk : Primrec fun p : ℕ × UpperInput => p.2.1.1.2 :=
+      Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))
+    have hgens : Primrec fun p : ℕ × UpperInput => p.2.1.2 :=
+      Primrec.snd.comp (Primrec.fst.comp Primrec.snd)
+    have hrels : Primrec fun p : ℕ × UpperInput => p.2.1.1.1.1.2 :=
+      Primrec.snd.comp hc
+    have hrelator : Primrec fun p : ℕ × UpperInput =>
+        p.2.1.1.1.1.2.getD p.1 [] :=
+      (Primrec.list_getD ([] : List (ℕ × Bool))).comp hrels Primrec.fst
+    have hdefect : Primrec fun p : ℕ × UpperInput =>
+        wordDefect p.2.1.1.1.1 p.2.1.1.1.2 p.2.1.2
+          (p.2.1.1.1.1.2.getD p.1 []) :=
+      primrec_wordDefect.comp (Primrec.pair
+        (Primrec.pair (Primrec.pair hc hd) hgens) hrelator)
+    have hcert : Primrec fun p : ℕ × UpperInput => p.2.2.getD p.1 0 :=
+      (Primrec.list_getD 0).comp (Primrec.snd.comp Primrec.snd) Primrec.fst
+    exact primrecPred_upperNormCert.comp (Primrec.pair
+      (Primrec.pair (Primrec.pair hd hk) hdefect) hcert)
+  have hall : PrimrecRel fun (L : List ℕ) (z : UpperInput) =>
+      ∀ i ∈ L,
+        upperNormCert z.1.1.1.2 z.1.1.2
+          (wordDefect z.1.1.1.1 z.1.1.1.2 z.1.2
+            (z.1.1.1.1.2.getD i []))
+          (z.2.getD i 0) :=
+    PrimrecRel.forall_mem_list hitem
+  have hforall : PrimrecPred fun z : UpperInput =>
+      ∀ i ∈ List.range z.1.1.1.1.2.length,
+        upperNormCert z.1.1.1.2 z.1.1.2
+          (wordDefect z.1.1.1.1 z.1.1.1.2 z.1.2
+            (z.1.1.1.1.2.getD i []))
+          (z.2.getD i 0) :=
+    PrimrecRel.comp hall
+      (Primrec.list_range.comp (Primrec.list_length.comp
+        (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp
+          (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))))
+      Primrec.id
+  have hlen : PrimrecPred fun z : UpperInput =>
+      z.2.length = z.1.1.1.1.2.length :=
+    Primrec.eq.comp (Primrec.list_length.comp Primrec.snd)
+      (Primrec.list_length.comp (Primrec.snd.comp (Primrec.fst.comp
+        (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))))
+  refine (PrimrecPred.and hlen hforall).of_eq ?_
+  intro z
+  simp only [UpperPacket]
+  constructor
+  · rintro ⟨hlen', h⟩
+    exact ⟨hlen', fun i hi => h i (List.mem_range.2 hi)⟩
+  · rintro ⟨hlen', h⟩
+    exact ⟨hlen', fun i hi => h i (List.mem_range.1 hi)⟩
+
+private abbrev LowerInput :=
+  (((PresentationCode × List (List (ℕ × Bool))) × ℕ) × List MatrixCode) ×
+    List ℕ
+
+set_option maxSynthPendingDepth 1000 in
+theorem primrecPred_lowerPacket :
+    PrimrecPred fun z : LowerInput =>
+      LowerPacket z.1.1.1.1 z.1.1.1.2 z.1.1.2 z.1.2 z.2 := by
+  have hitem : PrimrecRel fun (i : ℕ) (z : LowerInput) =>
+      lowerThirdCert z.1.1.2
+        (wordDefect z.1.1.1.1 z.1.1.2 z.1.2
+          (z.1.1.1.2.getD i []))
+        (z.2.getD i 0) := by
+    have hc : Primrec fun p : ℕ × LowerInput => p.2.1.1.1.1 :=
+      Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp
+        (Primrec.fst.comp Primrec.snd)))
+    have hW : Primrec fun p : ℕ × LowerInput => p.2.1.1.1.2 :=
+      Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp
+        (Primrec.fst.comp Primrec.snd)))
+    have hd : Primrec fun p : ℕ × LowerInput => p.2.1.1.2 :=
+      Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.snd))
+    have hgens : Primrec fun p : ℕ × LowerInput => p.2.1.2 :=
+      Primrec.snd.comp (Primrec.fst.comp Primrec.snd)
+    have hword : Primrec fun p : ℕ × LowerInput =>
+        p.2.1.1.1.2.getD p.1 [] :=
+      (Primrec.list_getD ([] : List (ℕ × Bool))).comp hW Primrec.fst
+    have hdefect : Primrec fun p : ℕ × LowerInput =>
+        wordDefect p.2.1.1.1.1 p.2.1.1.2 p.2.1.2
+          (p.2.1.1.1.2.getD p.1 []) :=
+      primrec_wordDefect.comp (Primrec.pair
+        (Primrec.pair (Primrec.pair hc hd) hgens) hword)
+    have hcert : Primrec fun p : ℕ × LowerInput => p.2.2.getD p.1 0 :=
+      (Primrec.list_getD 0).comp (Primrec.snd.comp Primrec.snd) Primrec.fst
+    exact primrecPred_lowerThirdCert.comp
+      (Primrec.pair (Primrec.pair hd hdefect) hcert)
+  have hall : PrimrecRel fun (L : List ℕ) (z : LowerInput) =>
+      ∀ i ∈ L,
+        lowerThirdCert z.1.1.2
+          (wordDefect z.1.1.1.1 z.1.1.2 z.1.2
+            (z.1.1.1.2.getD i []))
+          (z.2.getD i 0) :=
+    PrimrecRel.forall_mem_list hitem
+  have hforall : PrimrecPred fun z : LowerInput =>
+      ∀ i ∈ List.range z.1.1.1.2.length,
+        lowerThirdCert z.1.1.2
+          (wordDefect z.1.1.1.1 z.1.1.2 z.1.2
+            (z.1.1.1.2.getD i []))
+          (z.2.getD i 0) :=
+    PrimrecRel.comp hall
+      (Primrec.list_range.comp (Primrec.list_length.comp
+        (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp
+          (Primrec.fst.comp Primrec.fst)))))) Primrec.id
+  have hlen : PrimrecPred fun z : LowerInput =>
+      z.2.length = z.1.1.1.2.length :=
+    Primrec.eq.comp (Primrec.list_length.comp Primrec.snd)
+      (Primrec.list_length.comp (Primrec.snd.comp (Primrec.fst.comp
+        (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))))
+  refine (PrimrecPred.and hlen hforall).of_eq ?_
+  intro z
+  simp only [LowerPacket]
+  constructor
+  · rintro ⟨hlen', h⟩
+    exact ⟨hlen', fun i hi => h i (List.mem_range.2 hi)⟩
+  · rintro ⟨hlen', h⟩
+    exact ⟨hlen', fun i hi => h i (List.mem_range.1 hi)⟩
+
+private abbrev MatrixCheckInput :=
+  ((PresentationCode × List (List (ℕ × Bool))) × ℕ) × MatrixAnswer
+
+set_option maxSynthPendingDepth 1000 in
+theorem primrecPred_matrixAnswerValid :
+    PrimrecPred fun z : MatrixCheckInput =>
+      MatrixAnswerValid z.1.1.1 z.1.1.2 z.1.2 z.2 := by
+  have hc : Primrec fun z : MatrixCheckInput => z.1.1.1 :=
+    Primrec.fst.comp (Primrec.fst.comp Primrec.fst)
+  have hW : Primrec fun z : MatrixCheckInput => z.1.1.2 :=
+    Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
+  have hk : Primrec fun z : MatrixCheckInput => z.1.2 :=
+    Primrec.snd.comp Primrec.fst
+  have hd : Primrec fun z : MatrixCheckInput => z.2.1 :=
+    Primrec.fst.comp Primrec.snd
+  have hgens : Primrec fun z : MatrixCheckInput => z.2.2.1 :=
+    Primrec.fst.comp (Primrec.snd.comp Primrec.snd)
+  have hupp : Primrec fun z : MatrixCheckInput => z.2.2.2.1 :=
+    Primrec.fst.comp (Primrec.snd.comp (Primrec.snd.comp Primrec.snd))
+  have hlow : Primrec fun z : MatrixCheckInput => z.2.2.2.2 :=
+    Primrec.snd.comp (Primrec.snd.comp (Primrec.snd.comp Primrec.snd))
+  have hunit : PrimrecPred fun z : MatrixCheckInput =>
+      GeneratorsUnitary z.1.1.1 z.2.1 z.2.2.1 :=
+    primrecPred_generatorsUnitary.comp
+      (Primrec.pair (Primrec.pair hc hd) hgens)
+  have hupper : PrimrecPred fun z : MatrixCheckInput =>
+      UpperPacket z.1.1.1 z.2.1 z.1.2 z.2.2.1 z.2.2.2.1 :=
+    primrecPred_upperPacket.comp (Primrec.pair
+      (Primrec.pair (Primrec.pair (Primrec.pair hc hd) hk) hgens) hupp)
+  have hlower : PrimrecPred fun z : MatrixCheckInput =>
+      LowerPacket z.1.1.1 z.1.1.2 z.2.1 z.2.2.1 z.2.2.2.2 :=
+    primrecPred_lowerPacket.comp (Primrec.pair
+      (Primrec.pair (Primrec.pair (Primrec.pair hc hW) hd) hgens) hlow)
+  exact PrimrecPred.and hunit (PrimrecPred.and hupper hlower)
+
+theorem primrec_matrixAnswerCheck :
+    Primrec fun z : MatrixCheckInput =>
+      matrixAnswerCheck z.1.1.1 z.1.1.2 z.1.2 z.2 :=
+  primrecPred_matrixAnswerValid.decide
+
+/-! ## The full checker and the hierarchy upper bound -/
+
+/-- Combine the executable void and matrix branches for one challenge. -/
 def answerCheck (c : PresentationCode) (W : List (List (ℕ × Bool)))
     (k : ℕ) : MFAnswerCertificate → Bool
   | Sum.inl a => voidAnswerCheck c W a
   | Sum.inr a => matrixAnswerCheck c W k a
 
-/-- Existential exactness of the complete finite answer type. -/
+theorem primrec_answerCheck :
+    Primrec fun z : ((PresentationCode × List (List (ℕ × Bool))) × ℕ) ×
+      MFAnswerCertificate => answerCheck z.1.1.1 z.1.1.2 z.1.2 z.2 := by
+  have hvoid : Primrec₂ fun
+      (z : ((PresentationCode × List (List (ℕ × Bool))) × ℕ) ×
+        MFAnswerCertificate) (a : VoidAnswer) =>
+      voidAnswerCheck z.1.1.1 z.1.1.2 a := by
+    exact (primrec_voidAnswerCheck.comp (Primrec.pair
+      (Primrec.pair
+        (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+        (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
+      Primrec.snd)).to₂
+  have hmatrix : Primrec₂ fun
+      (z : ((PresentationCode × List (List (ℕ × Bool))) × ℕ) ×
+        MFAnswerCertificate) (a : MatrixAnswer) =>
+      matrixAnswerCheck z.1.1.1 z.1.1.2 z.1.2 a := by
+    exact (primrec_matrixAnswerCheck.comp (Primrec.pair
+      (Primrec.pair
+        (Primrec.pair
+          (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+          (Primrec.snd.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))))
+        (Primrec.snd.comp (Primrec.fst.comp Primrec.fst))) Primrec.snd)).to₂
+  exact (Primrec.sumCasesOn Primrec.snd hvoid hmatrix).of_eq fun z => by
+    cases z.2 <;> rfl
+
+/-- Both a challenge and its proposed finite answer are total natural-number
+decoders.  Thus `MFChecker` is an ordinary Boolean matrix on naturals. -/
+def MFChecker (c : PresentationCode) (n cert : ℕ) : Bool :=
+  answerCheck c (challengeAt n).1 (challengeAt n).2
+    (answerCertificateAt cert)
+
+theorem primrec_MFChecker :
+    Primrec fun z : (PresentationCode × ℕ) × ℕ =>
+      MFChecker z.1.1 z.1.2 z.2 := by
+  exact primrec_answerCheck.comp (Primrec.pair
+    (Primrec.pair
+      (Primrec.pair (Primrec.fst.comp Primrec.fst)
+        (Primrec.fst.comp
+          (primrec_challengeAt.comp (Primrec.snd.comp Primrec.fst))))
+      (Primrec.snd.comp
+        (primrec_challengeAt.comp (Primrec.snd.comp Primrec.fst))))
+    (primrec_answerCertificateAt.comp Primrec.snd))
+
+theorem computable₂_MFChecker :
+    Computable₂ fun z : PresentationCode × ℕ => MFChecker z.1 z.2 :=
+  primrec_MFChecker.to_comp.to₂
+
 theorem exists_answerCheck_iff (c : PresentationCode)
     (W : List (List (ℕ × Bool))) (k : ℕ) :
-    (∃ a : MFAnswerCertificate, answerCheck c W k a = true) ↔
+    (∃ cert : MFAnswerCertificate, answerCheck c W k cert = true) ↔
       AnswersOpen c W k := by
-  rw [AnswersOpen, ← exists_voidAnswerCheck_iff,
-    ← exists_matrixAnswerCheck_iff]
   constructor
-  · rintro ⟨a, ha⟩
-    cases a with
-    | inl a => exact Or.inl ⟨a, ha⟩
-    | inr a => exact Or.inr ⟨a, ha⟩
-  · rintro (⟨a, ha⟩ | ⟨a, ha⟩)
-    · exact ⟨Sum.inl a, ha⟩
-    · exact ⟨Sum.inr a, ha⟩
+  · rintro ⟨cert, hcert⟩
+    cases cert with
+    | inl a =>
+        exact Or.inl ((exists_voidAnswerCheck_iff c W).1 ⟨a, hcert⟩)
+    | inr a =>
+        exact Or.inr ((exists_matrixAnswerCheck_iff c W k).1 ⟨a, hcert⟩)
+  · rintro (hvoid | hmatrix)
+    · obtain ⟨a, ha⟩ := (exists_voidAnswerCheck_iff c W).2 hvoid
+      exact ⟨Sum.inl a, ha⟩
+    · obtain ⟨a, ha⟩ := (exists_matrixAnswerCheck_iff c W k).2 hmatrix
+      exact ⟨Sum.inr a, ha⟩
 
-/-- Decode both the challenge and its proposed answer from natural numbers. -/
-def codedAnswerCheck (c : PresentationCode) (q a : ℕ) : Bool :=
-  answerCheck c (challengeWords (challengeAt q))
-    (challengeScale (challengeAt q)) (answerCertificateAt a)
-
-/-- The natural-number answer search is exactly the open analytic answer. -/
-theorem exists_codedAnswerCheck_iff (c : PresentationCode) (q : ℕ) :
-    (∃ a, codedAnswerCheck c q a = true) ↔
-      AnswersOpen c (challengeWords (challengeAt q))
-        (challengeScale (challengeAt q)) := by
-  rw [codedAnswerCheck]
+/-- Decoding the natural answer coordinate loses no witnesses. -/
+theorem exists_MFChecker_iff (c : PresentationCode) (n : ℕ) :
+    (∃ cert : ℕ, MFChecker c n cert = true) ↔
+      AnswersOpen c (challengeAt n).1 (challengeAt n).2 := by
   constructor
-  · rintro ⟨a, ha⟩
-    exact (exists_answerCheck_iff _ _ _).1
-      ⟨answerCertificateAt a, ha⟩
+  · rintro ⟨cert, hcert⟩
+    exact (exists_answerCheck_iff c (challengeAt n).1 (challengeAt n).2).1
+      ⟨answerCertificateAt cert, hcert⟩
   · intro h
-    obtain ⟨a, ha⟩ := (exists_answerCheck_iff _ _ _).2 h
-    exact ⟨Encodable.encode a, by simpa using ha⟩
+    obtain ⟨cert, hcert⟩ :=
+      (exists_answerCheck_iff c (challengeAt n).1 (challengeAt n).2).2 h
+    exact ⟨Encodable.encode cert, by simpa [MFChecker] using hcert⟩
 
-/-- Before the computability audit, the finite checker already has the exact
-global logical normal form required for Operator-MF recognition. -/
-theorem isOperatorMF_iff_forall_exists_codedAnswerCheck
-    (c : PresentationCode) :
+/-- The requested exact `∀∃` checker normal form. -/
+theorem isOperatorMF_iff_forall_exists_MFChecker (c : PresentationCode) :
     IsOperatorMF (Carrier c) ↔
-      ∀ q, ∃ a, codedAnswerCheck c q a = true := by
+      ∀ n, ∃ cert : ℕ, MFChecker c n cert = true := by
   rw [isOperatorMF_iff_forall_openAnswers]
-  constructor
-  · intro h q
-    exact (exists_codedAnswerCheck_iff c q).2
-      (h (challengeWords (challengeAt q))
-        (challengeScale (challengeAt q)))
-  · intro h W k
-    have hq := (exists_codedAnswerCheck_iff c
-      (Encodable.encode ((W, k) : Challenge))).1
-      (h (Encodable.encode ((W, k) : Challenge)))
-    simpa using hq
+  rw [← forall_challengeAt_iff]
+  apply forall_congr'
+  intro n
+  exact (exists_MFChecker_iff c n).symm
+
+/-- For one presentation and one challenge, existence of a finite accepted
+answer is recursively enumerable. -/
+theorem rePred_MFAnswer :
+    REPred fun z : PresentationCode × ℕ =>
+      ∃ cert : ℕ, MFChecker z.1 z.2 cert = true :=
+  WordProblemRE.rePred_exists_eq_true computable₂_MFChecker
+
+/-- Operator-MF recognition for concrete finite-presentation codes lies in
+`Π⁰₂`.  This is an upper bound only. -/
+theorem operatorMFCode_pi02 :
+    Pi02 fun c : PresentationCode => IsOperatorMF (Carrier c) := by
+  refine pi02_of_re_family rePred_MFAnswer ?_
+  intro c
+  exact isOperatorMF_iff_forall_exists_MFChecker c
+
+/-- Non-operator-MF recognition for concrete finite-presentation codes lies in
+the second existential level, unconditionally and with the finite checker
+above as its witness system. -/
+theorem nonOperatorMFCode_sigma02 :
+    Sigma02 fun c : PresentationCode => ¬ IsOperatorMF (Carrier c) := by
+  exact (sigma02_compl_iff
+    (fun c : PresentationCode => IsOperatorMF (Carrier c))).2
+    operatorMFCode_pi02
+
+end
+end MFRecognitionPi02
+end GroupApproximation

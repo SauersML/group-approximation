@@ -90,6 +90,9 @@ the model predicate left abstract.
   finitely presented non-hyperlinear cover.  This implication is now checked
   in Lean by `exists_finitelyPresented_cover_of_not_isHyperlinear`; locality
   supplies the passage from an arbitrary counterexample to a finitely
-  generated one.  This is the bridge between [[non-hyperlinear-group]] and its
+  generated one.  The combined universe-polymorphic endpoint is machine-checked
+  as `exists_not_isHyperlinear_iff_exists_finitelyPresented`: a
+  non-hyperlinear group exists iff a finitely presented non-hyperlinear group
+  exists.  This is the bridge between [[non-hyperlinear-group]] and its
   recognition-theoretic reformulation in
   [[approximation-property-recognition-dichotomy]].

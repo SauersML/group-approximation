@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.FilterMatrixCStarCorona
 import GroupApproximation.Analysis.FaithfulTracialMatrix
+import GroupApproximation.Analysis.NonUnitalMFSupportCorner
 import GroupApproximation.Analysis.ReducedGroupCStarStablyFinite
 import GroupApproximation.Analysis.ShulmanTraceClasses
 import GroupApproximation.Analysis.TracialQuotientCStar
@@ -37,12 +38,16 @@ The repository's `HasMFEmbedding` permits a *nonunital* homomorphism
 `A →⋆ₙₐ Q`, whereas Proposition 6.1 uses a unital C-star embedding.  The
 trace-ideal argument cannot simply forget this distinction: the support
 projection of a nonunital embedding can have zero normalized trace after
-passing to the tracial quotient.  Thus the theorems below intentionally take
-an explicit `StarAlgHom`, not `HasMFEmbedding`.  Closing the manuscript's
-historical implication against its present `IsMFAlgebra` definition requires
-an additional unitalization-by-corner theorem (or a change to the definition),
-as well as a formal source for a non-Connes-embeddable factor and the separable
-elementary-substructure step.
+passing to the tracial quotient.  `NonUnitalMFSupportCorner` proves that this
+support is a nonzero projection, produces a projection lift with infinitely
+many nonzero coordinates, and proves that compression by the lift preserves
+the represented corona elements.  What remains is the sequence-level assembly
+which relabels those coordinates and identifies their finite corners with a
+new full matrix corona.  Thus the theorems below intentionally take an
+explicit `StarAlgHom`, not `HasMFEmbedding`.  Closing the manuscript's
+historical implication against its present `IsMFAlgebra` definition still
+requires that corner-corona assembly, as well as a formal source for a
+non-Connes-embeddable factor and the separable elementary-substructure step.
 -/
 
 namespace GroupApproximation

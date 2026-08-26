@@ -81,11 +81,19 @@ formally trivial.
 ## What is not here
 
 No matrix models for the double are constructed, and no clause of
-`ShulmanTrace.MFTraceModel` is verified for it.  That is the entire remaining
-content, and it is genuinely the C⋆-theorem: `Sofic/SymmetricDoubleMF` proves
-the exact-model routes are closed (`B` is not separable in `Σ`), so the models
-must be approximate, and an approximate model for an amalgam is produced by
-freeness with amalgamation over `C⋆(B)`, which this repository does not have.
+`ShulmanTrace.MFTraceModel` is verified for it.  Shulman's Theorem 10 proves a
+C-star-algebraic statement from the hypothesis that the *vertex C-star
+algebra* is MF.  It does not turn a faithful group homomorphism into a matrix
+corona into a faithful embedding of that C-star algebra.  Nor does an
+arbitrary faithful corona representation induce a faithful map of doubles:
+`exists_faithful_corona_representation_not_faithful_on_double` gives the
+scalar `C₂` counterexample.
+
+Consequently the group sentence below is retained only as an explicitly
+quantified input.  The published sentence is not supplied by Theorem 10 as
+written.  `Sofic/SymmetricDoubleMF` also proves that the exact-model routes for
+the particular pair are closed (`B` is not separable in `Σ`), so a proof for
+that pair would require genuinely new approximate-amalgamation input.
 -/
 
 namespace GroupApproximation
@@ -212,12 +220,13 @@ theorem manuscriptExactRadical_of_terminalAmalgam_isOperatorMF
   manuscriptExactRadical_of_symmetricDoubleMF
     (isOperatorMF_symmetricDouble_of_terminalAmalgam h)
 
-/-! ## The general sentence, with both side conditions on the factor discharged
+/-! ## The unsupported general group sentence, isolated as an input
 
-Shulman's Theorem 10 is about `A *_C A` for a *separable MF* algebra `A`.  The
-two things it asks of the factor -- countability and the MF property -- are
-proved here rather than assumed, so the sentence may be quoted in its general
-form and applied with nothing left to supply. -/
+The declarations below do not derive a group theorem from Shulman's C-star
+theorem.  They state exactly what the manuscript endpoint would consume if an
+independent proof of weak/operator-MF permanence for group doubles were
+available.  The factor-side facts are discharged only so that no unrelated
+assumption is hidden beside that one unresolved sentence. -/
 
 /-- **The general symmetric-amalgamation sentence, MF-factor form.**  If every
 countable operator-MF group has operator-MF symmetric doubles over every

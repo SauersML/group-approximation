@@ -15,6 +15,7 @@ namespace IntegralColumnPlaneSpectralMassBound
 
 open MeasureTheory Set WeakDual
 open IntegralCharacterMass IntegralColumnPlaneSpectralMeasure
+open IntegralColumnPlaneSpectralShear
 open IntegralColumnPlaneSpectralTorus IntegralColumnPlaneSpectralCoreBound
 open KassabovRankZeroTorusGeometry
 open RepresentedRootPlaneSpectralMeasure
@@ -146,10 +147,11 @@ local instance representedColumnPlaneSpectrumBorelSpace
     BorelSpace (Spectrum rho) :=
   ⟨rfl⟩
 
-/-- The integral free algebra on a finite alphabet is countable.  We expose
-this locally so countable unions over all coefficient coordinates can be
-used without adding a countability hypothesis to any theorem. -/
-noncomputable local instance integralFreeAlgebraCountable :
+omit [Fintype X] in
+/-- The integral free algebra on a countable alphabet is countable.  We
+expose this locally so countable unions over all coefficient coordinates can
+be used without adding a hypothesis to the finite-alphabet theorems. -/
+noncomputable local instance integralFreeAlgebraCountable [Countable X] :
     Countable (R (X := X)) := by
   letI : Countable (FreeMonoid X) :=
     Countable.of_equiv (List X) (FreeMonoid.ofList (α := X))
@@ -274,6 +276,102 @@ noncomputable def integralFiniteCoefficientClosure
   exact s ∪ (Finset.univ : Finset (Option X)).biUnion (fun q ↦
     s.image (fun p ↦ ((0 : Fin 2), integralControlCoefficient X q * p.2)) ∪
       s.image (fun p ↦ ((1 : Fin 2), integralControlCoefficient X q * p.2)))
+
+/-- The finite family of the two root coordinates whose coefficients are
+word monomials of degree at most `n`. -/
+noncomputable def wordCoordinateSet (n : ℕ) :
+    Finset (Fin 2 × R (X := X)) := by
+  classical
+  exact (Finset.univ : Finset (Fin 2)).biUnion fun b ↦
+    (FreeAlgebraDegree.freeWordsLE X n).image fun w ↦
+      (b, FreeAlgebraDegree.wordMonomial X ℤ w)
+
+theorem mem_wordCoordinateSet_iff (b : Fin 2) (a : R (X := X)) (n : ℕ) :
+    (b, a) ∈ wordCoordinateSet (X := X) n ↔
+      ∃ w : FreeMonoid X, FreeAlgebraDegree.freeWordLength X w ≤ n ∧
+        FreeAlgebraDegree.wordMonomial X ℤ w = a := by
+  classical
+  constructor
+  · intro h
+    rw [wordCoordinateSet] at h
+    obtain ⟨c, _, hc⟩ := Finset.mem_biUnion.mp h
+    obtain ⟨w, hw, heq⟩ := Finset.mem_image.mp hc
+    refine ⟨w, (FreeAlgebraDegree.mem_freeWordsLE X w n).mp hw, ?_⟩
+    exact congrArg Prod.snd heq
+  · rintro ⟨w, hw, ha⟩
+    rw [wordCoordinateSet]
+    apply Finset.mem_biUnion.mpr
+    refine ⟨b, Finset.mem_univ b, ?_⟩
+    apply Finset.mem_image.mpr
+    refine ⟨w, (FreeAlgebraDegree.mem_freeWordsLE X w n).mpr hw, ?_⟩
+    exact Prod.ext rfl ha
+
+theorem wordCoordinateSet_mono {m n : ℕ} (hmn : m ≤ n) :
+    wordCoordinateSet (X := X) m ⊆ wordCoordinateSet (X := X) n := by
+  rintro ⟨b, a⟩ h
+  obtain ⟨w, hw, ha⟩ := (mem_wordCoordinateSet_iff b a m).mp h
+  exact (mem_wordCoordinateSet_iff b a n).mpr
+    ⟨w, hw.trans hmn, ha⟩
+
+/-- Left multiplication of a word monomial by any coefficient occurring in
+the integral control set is again a word monomial, with degree increased by
+at most one. -/
+theorem exists_controlCoefficient_mul_wordMonomial
+    (q : Option X) {w : FreeMonoid X} {n : ℕ}
+    (hw : FreeAlgebraDegree.freeWordLength X w ≤ n) :
+    ∃ v : FreeMonoid X,
+      FreeAlgebraDegree.freeWordLength X v ≤ n + 1 ∧
+      FreeAlgebraDegree.wordMonomial X ℤ v =
+        integralControlCoefficient X q *
+          FreeAlgebraDegree.wordMonomial X ℤ w := by
+  cases q with
+  | none =>
+      refine ⟨w, hw.trans (Nat.le_succ n), ?_⟩
+      simp [integralControlCoefficient]
+  | some x =>
+      refine ⟨FreeMonoid.of x * w, ?_, ?_⟩
+      · rw [FreeAlgebraDegree.freeWordLength_mul,
+          FreeAlgebraDegree.freeWordLength_of]
+        omega
+      · calc
+          FreeAlgebraDegree.wordMonomial X ℤ (FreeMonoid.of x * w) =
+              FreeAlgebraDegree.wordMonomial X ℤ (FreeMonoid.of x) *
+                FreeAlgebraDegree.wordMonomial X ℤ w :=
+            (FreeAlgebraDegree.wordMonomial_mul X ℤ _ _).symm
+          _ = FreeAlgebra.ι ℤ x *
+                FreeAlgebraDegree.wordMonomial X ℤ w := by
+            rw [FreeAlgebraDegree.wordMonomial_of]
+          _ = integralControlCoefficient X (some x) *
+                FreeAlgebraDegree.wordMonomial X ℤ w := rfl
+
+/-- One simultaneous round of every controlled upper and lower shear sends
+degree-`n` word-coordinate dependencies into the degree-`n+1` family. -/
+theorem integralFiniteCoefficientClosure_wordCoordinateSet_subset (n : ℕ) :
+    integralFiniteCoefficientClosure (wordCoordinateSet (X := X) n) ⊆
+      wordCoordinateSet (X := X) (n + 1) := by
+  classical
+  intro p hp
+  rw [integralFiniteCoefficientClosure, Finset.mem_union] at hp
+  rcases hp with hp | hp
+  · exact wordCoordinateSet_mono (Nat.le_succ n) hp
+  · obtain ⟨q, _, hq⟩ := Finset.mem_biUnion.mp hp
+    rcases Finset.mem_union.mp hq with hq | hq
+    · obtain ⟨⟨b, a⟩, ha, rfl⟩ := Finset.mem_image.mp hq
+      obtain ⟨w, hw, hwa⟩ := (mem_wordCoordinateSet_iff b a n).mp ha
+      obtain ⟨v, hv, hvcoeff⟩ :=
+        exists_controlCoefficient_mul_wordMonomial q hw
+      apply (mem_wordCoordinateSet_iff 0
+        (integralControlCoefficient X q * a) (n + 1)).mpr
+      exact ⟨v, hv, hvcoeff.trans (congrArg
+        (fun c : R (X := X) ↦ integralControlCoefficient X q * c) hwa)⟩
+    · obtain ⟨⟨b, a⟩, ha, rfl⟩ := Finset.mem_image.mp hq
+      obtain ⟨w, hw, hwa⟩ := (mem_wordCoordinateSet_iff b a n).mp ha
+      obtain ⟨v, hv, hvcoeff⟩ :=
+        exists_controlCoefficient_mul_wordMonomial q hw
+      apply (mem_wordCoordinateSet_iff 1
+        (integralControlCoefficient X q * a) (n + 1)).mpr
+      exact ⟨v, hv, hvcoeff.trans (congrArg
+        (fun c : R (X := X) ↦ integralControlCoefficient X q * c) hwa)⟩
 
 theorem upperFiniteCoefficientClosure_subset_integral
     (q : Option X) (s : Finset (Fin 2 × R (X := X))) :
@@ -481,6 +579,40 @@ theorem finitePlaneNontrivialSet_of_controlled_characterAction_lower_mem
     finitePlaneNontrivialSet_of_characterAction_lower_mem rho
       (integralControlCoefficient X q) s chi hchi
   exact ⟨p, lowerFiniteCoefficientClosure_subset_integral q s hp,
+    hnontrivial⟩
+
+/-- Pulling the degree-`n` visible set back through a controlled upper shear
+lands in the degree-`n+1` visible set. -/
+theorem wordCoordinateNontrivial_of_controlled_characterAction_upper_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (q : Option X) (n : ℕ) (chi : Spectrum rho)
+    (hchi : CommutativeCStarCovariance.characterAction (P rho).algebra
+        ((P rho).rho (upperShear (integralControlCoefficient X q)))
+        (upperShear_forward rho _) (upperShear_backward rho _) chi ∈
+      finitePlaneNontrivialSet rho (wordCoordinateSet (X := X) n)) :
+    chi ∈ finitePlaneNontrivialSet rho
+      (wordCoordinateSet (X := X) (n + 1)) := by
+  obtain ⟨p, hp, hnontrivial⟩ :=
+    finitePlaneNontrivialSet_of_controlled_characterAction_upper_mem
+      rho q (wordCoordinateSet (X := X) n) chi hchi
+  exact ⟨p, integralFiniteCoefficientClosure_wordCoordinateSet_subset n hp,
+    hnontrivial⟩
+
+/-- Pulling the degree-`n` visible set back through a controlled lower shear
+lands in the degree-`n+1` visible set. -/
+theorem wordCoordinateNontrivial_of_controlled_characterAction_lower_mem
+    (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
+    (q : Option X) (n : ℕ) (chi : Spectrum rho)
+    (hchi : CommutativeCStarCovariance.characterAction (P rho).algebra
+        ((P rho).rho (lowerShear (integralControlCoefficient X q)))
+        (lowerShear_forward rho _) (lowerShear_backward rho _) chi ∈
+      finitePlaneNontrivialSet rho (wordCoordinateSet (X := X) n)) :
+    chi ∈ finitePlaneNontrivialSet rho
+      (wordCoordinateSet (X := X) (n + 1)) := by
+  obtain ⟨p, hp, hnontrivial⟩ :=
+    finitePlaneNontrivialSet_of_controlled_characterAction_lower_mem
+      rho q (wordCoordinateSet (X := X) n) chi hchi
+  exact ⟨p, integralFiniteCoefficientClosure_wordCoordinateSet_subset n hp,
     hnontrivial⟩
 
 omit [Fintype X] in
@@ -842,6 +974,10 @@ open GroupApproximation.IntegralColumnPlaneSpectralMassBound
 #audit_axioms scalarTorusMeasure_horizontalOuter_le
 #audit_axioms scalarTorusMeasure_punctured_mass_le
 #audit_axioms card_integralFiniteCoefficientClosure_le
+#audit_axioms exists_controlCoefficient_mul_wordMonomial
+#audit_axioms integralFiniteCoefficientClosure_wordCoordinateSet_subset
 #audit_axioms finitePlaneNontrivialSet_of_controlled_characterAction_upper_mem
 #audit_axioms finitePlaneNontrivialSet_of_controlled_characterAction_lower_mem
+#audit_axioms wordCoordinateNontrivial_of_controlled_characterAction_upper_mem
+#audit_axioms wordCoordinateNontrivial_of_controlled_characterAction_lower_mem
 #audit_axioms measurableSet_fullPlaneNontrivialSet

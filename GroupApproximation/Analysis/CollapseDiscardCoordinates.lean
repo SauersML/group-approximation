@@ -91,6 +91,29 @@ theorem norm_mkK_projection_eventually (ω : Ultrafilter ℕ) (P : MatFam Y)
 
 variable [∀ n, Nonempty (Y n)]
 
+/-- A bounded matrix family with nonzero class in the cofinite corona is
+nonzero at infinitely many coordinates.
+
+This is the part of the printed discarding argument which uses only the
+cofinite quotient.  It is independent of the fact that the coordinates are
+projections. -/
+theorem support_infinite_of_mk_ne_zero
+    (Q : BoundedMatrixSequence (fun n ↦ Y n))
+    (hne : normMatrixCStarCoronaMk (fun n ↦ Y n) Q ≠ 0) :
+    {n : ℕ | (Q n : Matrix (Y n) (Y n) ℂ) ≠ 0}.Infinite := by
+  intro hfin
+  refine hne ((normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ Y n) Q).mpr ?_)
+  show Tendsto (fun n ↦ ‖(Q n : Matrix (Y n) (Y n) ℂ)‖) cofinite (nhds 0)
+  have hev : ∀ᶠ n in cofinite,
+      ‖(Q n : Matrix (Y n) (Y n) ℂ)‖ = 0 := by
+    rw [Filter.eventually_cofinite]
+    refine Set.Finite.subset hfin ?_
+    intro n hn
+    simp only [Set.mem_setOf_eq] at hn ⊢
+    intro hz
+    exact hn (by rw [hz, norm_zero])
+  exact Tendsto.congr' (hev.mono fun _ hn ↦ hn.symm) tendsto_const_nhds
+
 /-- **The printed discarding step.**  If the projection lift is nonzero in the
 corona then there is a *free* ultrafilter along which its rank is
 `ω`-eventually positive.
@@ -108,18 +131,7 @@ theorem exists_free_ultrafilter_rank_pos
     ∃ ω : Ultrafilter ℕ, (ω : Filter ℕ) ≤ cofinite ∧
       ∀ᶠ n in (ω : Filter ℕ), 0 < (Q n).rank := by
   classical
-  have hinf : {n : ℕ | (Q n : Matrix (Y n) (Y n) ℂ) ≠ 0}.Infinite := by
-    intro hfin
-    refine hne ((normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ Y n) Q).mpr ?_)
-    show Tendsto (fun n ↦ ‖(Q n : Matrix (Y n) (Y n) ℂ)‖) cofinite (nhds 0)
-    have hev : ∀ᶠ n in cofinite, ‖(Q n : Matrix (Y n) (Y n) ℂ)‖ = 0 := by
-      rw [Filter.eventually_cofinite]
-      refine Set.Finite.subset hfin ?_
-      intro n hn
-      simp only [Set.mem_setOf_eq] at hn ⊢
-      intro hz
-      exact hn (by rw [hz, norm_zero])
-    exact Tendsto.congr' (hev.mono fun n hn ↦ hn.symm) tendsto_const_nhds
+  have hinf := support_infinite_of_mk_ne_zero Y Q hne
   haveI hnb : (cofinite ⊓ 𝓟 {n : ℕ | (Q n : Matrix (Y n) (Y n) ℂ) ≠ 0} :
       Filter ℕ).NeBot := by
     rw [Filter.inf_principal_neBot_iff]

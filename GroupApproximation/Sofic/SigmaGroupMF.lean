@@ -29,11 +29,18 @@ Group.ResiduallyFinite Σ  →  IsLEF Σ  →  IsOperatorMF Σ
 
 ## Why this is worth stating
 
-Shulman's Theorem 10 concerns `A *_C A` for a *separable MF* algebra `A`.  The
-group-side hypothesis it wants is exactly `IsOperatorMF Σ`, and that is now
-discharged rather than assumed.  What remains for the exact radical is the
-amalgamation step alone -- the passage from MF of the factor to MF of the
-double -- and not any property of the factor.
+Shulman's Theorem 10 concerns `A *_C A` for a *separable MF C-star algebra*
+`A`.  The theorem cannot be applied to `IsOperatorMF Σ` alone: a faithful
+group homomorphism `Σ → U(Q_d)` need not extend to a faithful embedding of
+either full or reduced group C-star algebra.  Moreover, even the induced map
+from a group double can fail to be injective because the represented edge
+algebra can contain images of elements outside the edge subgroup; the closed
+corona counterexample is
+`exists_faithful_corona_representation_not_faithful_on_double`.
+
+Thus this file discharges the factor's weak/operator-MF property and nothing
+more.  The passage from that property to operator MF of the double remains a
+separate, currently unsupported step.
 
 The contrast with `SymmetricDoubleMF` is the whole content: the factor is MF by
 an exact finite model, while the double provably is not reachable that way.  So
@@ -62,8 +69,8 @@ theorem sigmaGroup_isLEF : IsLEF SigmaGroup := by
 
 /-- **The compression source is operator MF.**
 
-This is the group-side hypothesis of Shulman's theorem for the symmetric
-double, discharged.  It does *not* give operator MF of the double:
+This is the weak/operator-MF property asserted of the factor.  It does *not*
+give operator MF of the double:
 `Sofic/SymmetricDoubleMF.exactModelRoute_closed` proves the amalgam is neither
 residually finite nor `LEF`, so this chain stops at the factor. -/
 theorem sigmaGroup_isOperatorMF : IsOperatorMF SigmaGroup :=

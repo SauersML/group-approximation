@@ -41,10 +41,13 @@ Two *theorems* were being carried inside the phrase "the double construction",
 and they are not part of it.  They are separate published results about
 separate objects:
 
-* **Shulman**, *The MF property for amalgamated free products*: the amalgam of
-  MF C\*-algebras over a common subalgebra is MF.  What the construction
-  consumes from it is one sentence -- `IsOperatorMF (IteratedDouble G Γ K)` --
-  and nothing else.
+* **The symmetric-double MF sentence**: the construction consumes
+  `IsOperatorMF (IteratedDouble G Γ K)`.  Shulman's C\*-algebra theorem does
+  not prove this from weak/operator MF of `G`: it assumes an MF vertex
+  C\*-algebra, and the induced group-double map also needs subgroup reflection.
+  The latter failure for an arbitrary faithful corona representation is
+  formalized by
+  `exists_faithful_corona_representation_not_faithful_on_double`.
 * **Kun--Thom**: in a permutation ultraproduct, the centralizer of an
   infranormal Kazhdan subgroup is normalized.  What the construction consumes
   is `HasSoficCentralizerNormalization Γ`.

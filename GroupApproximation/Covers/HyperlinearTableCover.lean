@@ -1,4 +1,5 @@
 import GroupApproximation.Covers.TableCover
+import GroupApproximation.Meta.AxiomGuard
 import GroupApproximation.Sofic.Hyperlinear
 
 /-!
@@ -158,4 +159,48 @@ theorem exists_finitelyPresented_not_isHyperlinear [Group.FG G]
     exists_finitelyPresented_cover_of_not_isHyperlinear h
   exact ⟨H, inferInstance, hfp, hn⟩
 
+/-- Every non-hyperlinear group already has a finitely generated
+non-hyperlinear subgroup.  This is the contrapositive of the finite-subgroup
+locality theorem for hyperlinearity. -/
+theorem exists_finitelyGenerated_subgroup_not_isHyperlinear
+    (h : ¬ IsHyperlinear G) :
+    ∃ H : Subgroup G, Group.FG H ∧ ¬ IsHyperlinear H := by
+  classical
+  by_contra hcon
+  push Not at hcon
+  apply h
+  apply isHyperlinear_of_local
+  intro F
+  let H : Subgroup G := Subgroup.closure (F : Set G)
+  have hHfg : Group.FG H :=
+    (Group.fg_iff_subgroup_fg H).mpr
+      ((Subgroup.fg_iff H).mpr ⟨(F : Set G), rfl, F.finite_toSet⟩)
+  refine ⟨H, inferInstance, H.subtype, H.subtype_injective,
+    hcon H hHfg, ?_⟩
+  intro g hg
+  exact ⟨⟨g, Subgroup.subset_closure hg⟩, rfl⟩
+
+/-- **Existence equivalence.**  A non-hyperlinear group exists exactly when a
+finitely presented non-hyperlinear group exists.  The forward implication is
+constructive at the level of groups once a counterexample is supplied: take a
+finitely generated bad subgroup and then its finite table cover. -/
+theorem exists_not_isHyperlinear_iff_exists_finitelyPresented :
+    (∃ (G : Type u) (_ : Group G), ¬ IsHyperlinear G) ↔
+      ∃ (H : Type u) (_ : Group H), Group.IsFinitelyPresented H ∧
+        ¬ IsHyperlinear H := by
+  constructor
+  · rintro ⟨G, _, hG⟩
+    obtain ⟨K, hKfg, hK⟩ :=
+      exists_finitelyGenerated_subgroup_not_isHyperlinear hG
+    letI : Group.FG K := hKfg
+    exact exists_finitelyPresented_not_isHyperlinear hK
+  · rintro ⟨H, _, _, hH⟩
+    exact ⟨H, inferInstance, hH⟩
+
 end GroupApproximation
+
+open GroupApproximation
+
+#audit_axioms exists_finitelyPresented_cover_of_not_isHyperlinear
+#audit_axioms exists_finitelyGenerated_subgroup_not_isHyperlinear
+#audit_axioms exists_not_isHyperlinear_iff_exists_finitelyPresented

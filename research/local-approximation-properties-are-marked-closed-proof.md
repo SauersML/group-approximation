@@ -49,4 +49,7 @@ machine-checked in `Covers.HyperlinearTableCover`: the conditional naming map
 pulls any finite unitary model of `tableTestSet` back to the original table,
 and `exists_finitelyPresented_cover_of_not_isHyperlinear` enlarges the
 obstruction by a finite generating set so that `tableEvaluation` remains
-surjective.
+surjective.  The same file first applies the universe-polymorphic locality
+theorem to extract a finitely generated bad subgroup from an arbitrary bad
+group, then composes the two steps in the audited equivalence
+`exists_not_isHyperlinear_iff_exists_finitelyPresented`.

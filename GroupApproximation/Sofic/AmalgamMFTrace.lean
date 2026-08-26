@@ -12,11 +12,14 @@ manuscript's exact MF-residual identity to a single `Iff`:
 Res_MF(E) = q₁⁻¹(D)   ↔   (E/⟨w⟩)/D  is MF.
 ```
 
-The manuscript discharges the right-hand side at paper level by identifying
-`(E/⟨w⟩)/D` with `Σ *_B (B × C₂)` — a free-lamp amalgam over a two-element lamp
-— and then invoking Shulman's MF theorem for amalgamated free products.  This
-file records what the repository can already contribute to that step, and it is
-deliberate about what it does not contribute.
+The manuscript attempts to discharge the right-hand side by identifying
+`(E/⟨w⟩)/D` with `Σ *_B (B × C₂)` — a free-lamp amalgam over a two-element
+lamp — and invoking Shulman's C-star-algebraic theorem.  That invocation does
+not by itself prove the weak/operator-MF group statement: the theorem assumes
+an MF vertex C-star algebra, while `IsOperatorMF Σ` supplies only a faithful
+group homomorphism into a matrix corona.  This file records the exact remaining
+group statement and is deliberate about not treating the published inference
+as an input-free theorem.
 
 ## What is proved here
 
@@ -66,10 +69,10 @@ isomorphism, and then the symmetric theorem.
    the printed defect with the normal closure of the single commutator
    `⁅v₁, d⁆`.
 2. Operator MF of the symmetric double is also a hypothesis.  Nothing in this
-   tree proves it: `KunThomShulmanDouble.exists_not_isOperatorMF_symmetricDouble`
-   shows it is false for general pairs, so it can only ever be proved from
-   properties of the particular pair — which is where Shulman's C⋆-theorem, and
-   the residual finiteness of `Σ`, enter.
+   tree proves it.  Shulman's C-star theorem does not consume residual
+   finiteness, or even weak/operator MF, of `Σ` as its algebra hypothesis.
+   The exact failure of the arbitrary-corona-embedding route is formalized by
+   `exists_faithful_corona_representation_not_faithful_on_double`.
 
 Neither literature theorem is added as a hypothesis-free fact.  Callers supply
 the proof terms at the boundary these declarations name.

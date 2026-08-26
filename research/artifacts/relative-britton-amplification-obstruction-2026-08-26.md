@@ -403,3 +403,115 @@ amplification route, but only when finite **coset** geometry persists.  The
 currently audited rope hypotheses provide compatible finite edge images, not
 relative normal-form persistence, so Theorem 7.1 cannot close that endpoint
 without a new argument establishing condition 2.
+
+## 9. The tensor-synchronized rope hypotheses do not imply persistence
+
+Write the finite vertex map in that construction as
+
+\[
+q_n(g,q)=(\lambda_n(g),\beta_n(q)).
+\]
+
+Its two finite edge images are
+
+\[
+\kappa_{0,n}(s)=(\lambda_n(s),1),\qquad
+\kappa_{1,n}(s)=(\lambda_n(s),\beta_n(\tau(s))).
+\]
+
+The stated assumptions are:
+
+1. \(\beta_n\) eventually separates each fixed nonidentity element of \(Q\);
+2. \(\ker(\lambda_n|_S)\subseteq\ker(\beta_n\tau)\).
+
+Condition 2, together with the automatic reverse inclusion used in the rope,
+identifies the two **images of \(S\)**.  It says nothing about whether an
+element of \(\Gamma\setminus S\) can enter \(\lambda_n(S)\).
+
+Indeed,
+
+\[
+q_n(g,q)\in\kappa_{0,n}(S)
+\]
+
+holds exactly when
+
+\[
+\beta_n(q)=1
+\quad\text{and}\quad
+\lambda_n(g)\in\lambda_n(S).
+\]
+
+Eventual separation by \(\beta_n\) handles the first condition when
+\(q\neq1\), but when \(q=1\) there is no hypothesis preventing
+\(g\notin S\) from satisfying the second condition for every \(n\).
+Membership in the second edge image has the analogous defect, with a possibly
+varying witness \(s_n\in S\).  The kernel comparison only says that the graph
+map is well defined on \(\lambda_n(S)\); it supplies no separation of ambient
+cosets.
+
+### Smallest explicit instance
+
+Take
+
+\[
+\Gamma=\mathbf Z=\langle a\rangle,\qquad S=1,qquad Q=1.
+\]
+
+Give \(\Gamma\) its elementary regular MF model (the cyclic permutation
+matrices of orders tending to infinity; every fixed nonzero power eventually
+has normalized trace zero).  For every \(n\), take
+
+\[
+C_n=1,\qquad \lambda_n:\mathbf Z\to1,
+\qquad B_n=1,qquad\beta_n:1\to1.
+\]
+
+All tensor-synchronized rope hypotheses hold:
+
+* separation in \(Q\) is vacuous;
+* both kernels on \(S=1\) are trivial;
+* the two finite edge images are equal and their regular representations are
+  exactly intertwined by \(W_n=1\);
+* the independent regular-MF factor keeps \(a\) nontrivial in the vertex
+  corona model.
+
+The abstract HNN group is
+
+\[
+\mathbf Z*\langle t\rangle=F(a,t).
+\]
+
+The word
+
+\[
+w=tat^{-1}a^{-1}
+\]
+
+is freely reduced and nontrivial.  Nevertheless \(q_n(a)=1\) for every
+\(n\), so its image in every finite HNN coordinate is the identity.  The
+tensor-compatible unitary constructed by the rope is also \(W=1\), and the
+resulting corona representation kills \(w\).
+
+This is not an artificial corner case: Section 4 of the tensor-synchronized
+rope explicitly permits a product witness factor \(K_0\) which every
+\(\lambda_n\) kills.  If \(1\neq k\in K_0\) lies outside the edge subgroup,
+then the syllable \((k,1)\) is non-edge in the abstract vertex group but maps
+to the finite edge identity at every coordinate.  Thus the advertised
+ignored-factor feature is directly incompatible with relative normal-form
+persistence unless an additional finite model is introduced for the coset
+geometry.
+
+Hence none of the current tensor-synchronized hypotheses implies the extra
+condition in Corollary 8.1.  The smallest missing assumption is a relative
+separation statement such as
+
+\[
+g\notin S\quad\Longrightarrow\quad
+\lambda_n(g)\notin\lambda_n(S)
+\quad\text{for some sufficiently late coordinate},
+\]
+
+with the corresponding twisted statement for the second edge.  Requiring it
+would remove the point of allowing \(\lambda_n\) to ignore \(K_0\), so it is a
+genuine strengthening, not a consequence of the present construction.

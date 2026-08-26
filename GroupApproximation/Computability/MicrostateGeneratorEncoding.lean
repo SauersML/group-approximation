@@ -31,22 +31,27 @@ theorem exists_generatorCodes_close {c : PresentationCode} (M : Microstate c)
     ∃ gens : List MatrixCode,
       GeneratorsUnitary c d gens ∧
       ∀ i : Fin (genCount c),
-        ‖((((M.reindex (naturalFiniteModel (dim d)) e).gen i :
+        ‖(((unitaryReindexEquiv e (M.gen i) :
             Matrix.unitaryGroup (Fin (dim d)) ℂ) :
               Matrix (Fin (dim d)) (Fin (dim d)) ℂ) -
             toMatrix d (generator d gens i))‖ < ε := by
   classical
-  let N : Microstate c := M.reindex (naturalFiniteModel (dim d)) e
   have hcode : ∀ i : Fin (genCount c), ∃ C : MatrixCode,
       isUnitary d C ∧
-        ‖(((N.gen i : Matrix.unitaryGroup (Fin (dim d)) ℂ) :
+        ‖(((unitaryReindexEquiv e (M.gen i) :
+            Matrix.unitaryGroup (Fin (dim d)) ℂ) :
             Matrix (Fin (dim d)) (Fin (dim d)) ℂ) - toMatrix d C)‖ < ε := by
     intro i
-    exact RationalMatrixEncoding.exists_unitary_matrixCode_close d (N.gen i).2 hε
+    exact RationalMatrixEncoding.exists_unitary_matrixCode_close d
+      (unitaryReindexEquiv e (M.gen i)).2 hε
   choose C hCunitary hCclose using hcode
   let gens : List MatrixCode := List.ofFn C
   have hgenerator (i : Fin (genCount c)) : generator d gens i = C i := by
-    simp [generator, gens, List.getD_eq_getElem?_getD, i.isLt]
+    rw [generator, List.getD_eq_getElem?_getD]
+    change (List.ofFn C)[i.val]?.getD (identity d) = C i
+    have hi : i.val < (List.ofFn C).length := by simp
+    rw [List.getElem?_eq_getElem hi]
+    simp only [List.getElem_ofFn, Option.getD_some]
   refine ⟨gens, ?_, ?_⟩
   · intro i
     rw [hgenerator]
@@ -64,7 +69,7 @@ theorem exists_naturalized_generatorCodes_close {c : PresentationCode}
     ∃ (e : M.model ≃ Fin (dim d)) (gens : List MatrixCode),
       GeneratorsUnitary c d gens ∧
       (∀ i : Fin (genCount c),
-        ‖((((M.reindex (naturalFiniteModel (dim d)) e).gen i :
+        ‖(((unitaryReindexEquiv e (M.gen i) :
             Matrix.unitaryGroup (Fin (dim d)) ℂ) :
               Matrix (Fin (dim d)) (Fin (dim d)) ℂ) -
             toMatrix d (generator d gens i))‖ < ε) ∧
@@ -73,8 +78,8 @@ theorem exists_naturalized_generatorCodes_close {c : PresentationCode}
   dsimp only
   let d := Fintype.card M.model - 1
   have hcard : Fintype.card M.model = dim d := by
-    dsimp [d, dim]
-    omega
+    rw [dim]
+    exact (Nat.sub_add_cancel (Nat.succ_le_iff.2 M.card_pos)).symm
   let e : M.model ≃ Fin (dim d) :=
     (Fintype.equivFin M.model).trans (finCongr hcard)
   obtain ⟨gens, hunitary, hclose⟩ :=

@@ -106,19 +106,28 @@ theorem computable_answerCertificateAt : Computable answerCertificateAt :=
 
 @[simp] theorem challengeAt_encode (q : Challenge) :
     challengeAt (Encodable.encode q) = q := by
-  simp [challengeAt, Encodable.encodek]
+  change (Encodable.decode (Encodable.encode q)).getD defaultChallenge = q
+  rw [Encodable.encodek]
+  rfl
 
 @[simp] theorem matrixAnswerAt_encode (a : MatrixAnswer) :
     matrixAnswerAt (Encodable.encode a) = a := by
-  simp [matrixAnswerAt, Encodable.encodek]
+  change (Encodable.decode (Encodable.encode a)).getD defaultMatrixAnswer = a
+  rw [Encodable.encodek]
+  rfl
 
 @[simp] theorem voidAnswerAt_encode (a : VoidAnswer) :
     voidAnswerAt (Encodable.encode a) = a := by
-  simp [voidAnswerAt, Encodable.encodek]
+  change (Encodable.decode (Encodable.encode a)).getD defaultVoidAnswer = a
+  rw [Encodable.encodek]
+  rfl
 
 @[simp] theorem answerCertificateAt_encode (a : MFAnswerCertificate) :
     answerCertificateAt (Encodable.encode a) = a := by
-  simp [answerCertificateAt, Encodable.encodek]
+  change (Encodable.decode (Encodable.encode a)).getD
+      defaultMFAnswerCertificate = a
+  rw [Encodable.encodek]
+  rfl
 
 theorem challengeAt_surjective : Function.Surjective challengeAt :=
   fun q => ⟨Encodable.encode q, challengeAt_encode q⟩
@@ -139,7 +148,9 @@ theorem forall_challengeAt_iff {p : Challenge → Prop} :
     (∀ n, p (challengeAt n)) ↔ ∀ W k, p (W, k) := by
   constructor
   · intro h W k
-    simpa using h (Encodable.encode (W, k))
+    have h' := h (Encodable.encode (W, k))
+    rw [challengeAt_encode] at h'
+    exact h'
   · intro h n
     exact h (challengeAt n).1 (challengeAt n).2
 
