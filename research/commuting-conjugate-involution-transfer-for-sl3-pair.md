@@ -112,6 +112,15 @@ matrix-coordinate exclusion of the independent two-coordinate overlap.
   leak excluded by rank-two Weyl collapse.  It also shows determinant and
   parity are tautological on the commuting four atoms: the target lamp word
   always has determinant one for every overlap `a`.
+- The depth-free diagonal/off-diagonal theorem at `p>=11` does not decide
+  this node.  That theorem assumes an exact genuine lattice representation
+  and uses the positivity of `4c_p-3` to compare its depth-type measure with
+  one `Ad(Jh)`-twist.  The present claim is the `p=2` native balanced-lamp
+  packet and still includes noncorrectable/outlier lattice microstates; its
+  scalar is the four-atom overlap `tr(P hPh^*)`, not the large-prime depth
+  mass.  Consequently the one-twist theorem closes every flat/ultra-deep
+  tower in the large-prime `Lambda`-exact face but neither forces the endpoint
+  alternatives `(CCI7)` here nor refutes them.
 - `commuting-conjugate-involution-is-balanced-overlap` gives the complete
   projection reduction `(CCI4)--(CCI7)` and proves that the old universal RCC
   dilation no longer supplies a counterexample: it does not preserve

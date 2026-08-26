@@ -140,6 +140,18 @@ weakening consumed by the HNN marked word.
   transition between adjacent dyadic depths, not a loss intrinsic to the
   closed A2 packet.
 
+- **The large-prime one-twist depth argument does not close this dyadic
+  decoder.**  `p-divisible-lambda-exact-mass-vanishes-at-large-primes`
+  concerns `p>=11` and starts from a genuine lattice representation, so
+  that exact `C_0`-isotypic depth measures exist.  It proves a positive
+  diagonal/off-diagonal gap because `4c_p-3>0`.  Here the arithmetic pair is
+  fixed at `p=2`, where that coefficient is negative, and `(PTS1)` quantifies
+  over arbitrary approximate assignments rather than the already decoded
+  `Lambda`-exact face.  Thus the single-twist proof really does kill all
+  flat and ultra-deep towers in its stated large-prime face, but it supplies
+  neither the missing sixfold-parity decoder nor a counterexample to this
+  universal dyadic transfer claim.
+
 - **Proper sign moments do not decode that carrier.**
   `six-weyl-sign-proper-moments-miss-top-parity` takes the odd-parity affine
   hyperplane of the six sign characters.  Its exact finite representation

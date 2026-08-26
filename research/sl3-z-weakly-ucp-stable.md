@@ -111,6 +111,18 @@ the p = 3 HNN microstates to the `Lambda`-exact face
   known theorem does not apply; the claim is exactly the regular-type
   sector, the same sector as `sl3z-regular-microstates-are-congruence-correctable`
   but with infinite-dimensional dilations allowed.
+- **The large-prime one-twist theorem is downstream, not an exactification
+  theorem.**  `p-divisible-lambda-exact-mass-vanishes-at-large-primes`
+  begins with a genuine finite-dimensional representation `rho'` of
+  `SL_3(Z)` and compares the isotypic weights of `rho'|_(C_0)` with those of
+  its single `Ad(Jh)`-twist.  Its diagonal/off-diagonal argument therefore
+  eliminates every shallow, flat, and ultra-deep `p`-divisible tower only
+  after the lattice tuple has been corrected to the genuine representation
+  variety.  An arbitrary regular-type hyperlinear approximation has no such
+  exact isotypic measure before correction.  Producing that correction is
+  precisely the present weak-ucp/flexible-stability claim, so the one-twist
+  theorem neither proves nor refutes this node and cannot be used
+  circularly to remove its outlier sector.
 - **Where a proof would have to live.**  A hyperlinear approximation
   defines, for each finite window, an almost-positive-definite
   matrix-valued kernel on the group; weak ucp-stability asks that it be
