@@ -52,12 +52,13 @@ and gives the Pestov 3.4 separation (`hyperlinear-nonsofic-from-free-lamp-hnn`).
   chart families that factor through permutation models of `G/Gamma`
   (e.g. `pi_s = alpha(g_s)^(-1)` with an equivariant labelling `s |-> g_s`,
   which on expander approximations of the Kazhdan `G` would force cycles of
-  the model graph to read relations).  The statement to prove is that some
-  hyperlinear `Lambda` admits equivariant injective charts of `F(G/Gamma)`
-  along a sofic approximation of `G` although the coset action is not sofic.
-  A universal version ("every basis-permuting action of a sofic group on a
-  free group qualifies") would make the embedded double sofic through the
-  same charts with finite `Lambda`, and is false.
+  the model graph to read relations).  **Closed (2026-08-26, `free-lamp-sofic-class-action-is-sofic-set-action`):**
+  for a free lamp group a Definition 4.23 chart restricted to basis
+  elements is a Definition 4.16 set-chart with finite image, and set-charts
+  extend to charts into the free group on the chart set, so the free-lamp
+  action is a sofic hyperlinear action iff the coset action is sofic --
+  which Corollary D refutes.  Alekseev--Bradford permanence therefore
+  cannot prove this claim; the auxiliary group buys nothing for free lamps.
 - **Constraints.**  Any model represents `Gamma` non-amenably
   (`amenable-kazhdan-models-absorb-compression`) and, on its
   compression-detecting corner, without finite-dimensional or tempered
