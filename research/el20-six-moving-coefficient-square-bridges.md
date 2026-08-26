@@ -432,6 +432,19 @@ itself, and in both cases `LK_i=1`.  Thus the next live word needs either a
 depth-two coefficient or at least two additional nonnormal occurrences;
 one more depth-one root/Whitehead cell only cancels the original word.
 
+The matching depth-two boundary is now closed as well.
+`one-depth-two-monomial-does-not-return-cross-whitehead` tests every one of
+the `48` exact prefix monomials `s_mu t_nu` with both prefix lengths at most
+two, first as one elementary root and then as the genuine partial Whitehead
+with matched reverse `s_nu t_mu`, at all `42` actor positions.  Among
+`16128` branch/target tests, the exposed generator `x_28(1)` leaves only
+the same two braid spellings of `K_i` for the source target and no survivor
+for the `J_1` target.  The full signed signature confirms that both source
+survivors have `LK_i=1`.  Thus one genuine depth-two partial inverse still
+does not return the cut; the next search must use an asymmetric/unmatched
+three-factor word, a coefficient sum, greater depth, or two additional
+nonnormal occurrences.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
@@ -451,3 +464,32 @@ suffix leaf, with diagonal `DE` of order three.  The same construction
 iterates at every fixed dyadic depth.  Thus address refinement alone merely
 factorizes the old gauge; a live word must interact across distinct suffix
 leaves before their completeness sum.
+
+The direct low-depth return equation after a coarse `K_i` is now solved as
+well.  `first-cross-whitehead-has-no-alternative-low-depth-return` proves
+that appending any one elementary root leaves at least one of the two
+nonconstant entries exposed by `K_0x_28(1)K_0`.  Allowing an arbitrary
+depth-changing partial inverse pair in a second Whitehead on `(7,8)` still
+gives only the tautological return `K_0K_0=1`: the other constant signed
+return `x_78(1)` violates the necessary Whitehead block diagonal identity.
+The corresponding equations for the native `J_1` coset also fail, since
+their forced off-diagonal product is zero while the actual diagonal is
+`q_1` or `q_1+r`, rather than one.  Thus no one-root or same-pair
+partial-Whitehead object eraser yields a new gauge equation.  The remaining
+structural possibility must use at least two additional nonnormal
+occurrences in genuinely different root channels.
+
+Two such occurrences are still insufficient if each is an arbitrary
+rank-two coefficient word.  The support calculation in
+`two-distinct-rank-two-channels-cannot-factor-cross-return` is independent
+of coefficient depth: two distinct coordinate pairs whose product is
+supported on `(7,8)` must have the form `{k,7}` and `{k,8}`.  Multiplying
+the two general invertible blocks in either order leaves the resulting
+`(7,8)` block triangular.  But every undressed return `NK_0` and native
+target `J_1NK_0`, with the supported signed normalizer
+`N in {1,x_78(1)}`, has both off-diagonal entries nonzero.  Hence two
+different elementary/partial-Whitehead channels cannot furnish even the
+ordinary return word, regardless of full Leavitt coefficient sums.  A live
+independent factorization now needs at least three rank-two occurrences or
+one genuinely three-coordinate occurrence; dyadic same-pair fusion and
+normalizer dressing remain excluded.
