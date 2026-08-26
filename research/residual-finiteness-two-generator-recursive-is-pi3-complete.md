@@ -4,6 +4,7 @@ id: residual-finiteness-two-generator-recursive-is-pi3-complete
 kind: claim
 title: Residual finiteness is Pi-zero-three complete for two-generator recursive presentations, which is optimal
 artifacts:
+  - GroupApproximation/Computability/ProfinitelyClosedIndexSet.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
   residual-finiteness-three-generator-recursive-is-pi3-complete: that uses the three-generator centralizing family; this reaches two generators, the minimum possible, with the shift right-angled Artin family and a sparser dyadic row placement that survives symmetrization.
@@ -35,3 +36,5 @@ every approximation property and above amenability, and one
 two-generator family exhibits the gap.  The finite-presentation question
 (`Pi^0_2`-completeness of `RF_fp`) remains the residually finite Higman
 problem.
+
+**Machine-checked core.**  The computability half of the hardness argument, `Pi^0_3`-completeness of profinite closedness of `W_e` with the dyadic rows, is `ProfinitelyClosedIndexSet.pi03Complete_closedIndex`; the group-theoretic criterion is paper-level.
