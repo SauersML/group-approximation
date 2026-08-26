@@ -358,6 +358,62 @@ theorem mem_unaryGraphComp_iff (Outer Inner : Set E) (f : E) :
       · simp [unaryOuterCoord, hzero, hr0]
       · simpa [unaryOuterCoord] using hr1
 
+/-- The arity-two graph of an integer-valued unary function. -/
+def unaryGraph (F : ℤ → ℤ) : Set E :=
+  {f | f ∈ windowSupport 2 ∧ f 1 = F (f 0)}
+
+private noncomputable def pairSeq (x y : ℤ) : E :=
+  Finsupp.single 0 x + Finsupp.single 1 y
+
+@[simp] private theorem pairSeq_zero (x y : ℤ) : pairSeq x y 0 = x := by
+  simp [pairSeq]
+
+@[simp] private theorem pairSeq_one (x y : ℤ) : pairSeq x y 1 = y := by
+  simp [pairSeq]
+
+private theorem pairSeq_mem_windowSupport (x y : ℤ) : pairSeq x y ∈ windowSupport 2 := by
+  rw [mem_windowSupport_iff]
+  constructor
+  · intro i hi
+    have h0 : i ≠ 0 := by omega
+    have h1 : i ≠ 1 := by omega
+    simp [pairSeq, h0, h1]
+  · intro i hi
+    have h0 : i ≠ 0 := by omega
+    have h1 : i ≠ 1 := by omega
+    simp [pairSeq, h0, h1]
+
+/-- The relational composition construction computes ordinary composition on
+actual unary function graphs. -/
+theorem unaryGraphComp_eq (F G : ℤ → ℤ) :
+    unaryGraphComp (unaryGraph F) (unaryGraph G) = unaryGraph (F ∘ G) := by
+  ext f
+  rw [mem_unaryGraphComp_iff]
+  constructor
+  · rintro ⟨hwin3, hzero, y, ⟨s, ⟨hswin, hsgraph⟩, hs0, hs1⟩,
+        ⟨r, ⟨hrwin, hrgraph⟩, hr0, hr1⟩⟩
+    have hwin2 : f ∈ windowSupport 2 := by
+      rw [mem_windowSupport_iff] at hwin3 ⊢
+      refine ⟨hwin3.1, fun i hi => ?_⟩
+      rcases eq_or_lt_of_le hi with rfl | hi
+      · exact hzero
+      · exact hwin3.2 i (by omega)
+    refine ⟨hwin2, ?_⟩
+    change f 1 = F (G (f 0))
+    rw [hr1, hrgraph, ← hr0, hs1, hsgraph, ← hs0]
+  · rintro ⟨hwin2, hgraph⟩
+    have hzero : f 2 = 0 := by
+      exact ((mem_windowSupport_iff 2 f).mp hwin2).2 2 (by norm_num)
+    have hwin3 : f ∈ windowSupport 3 := by
+      rw [mem_windowSupport_iff] at hwin2 ⊢
+      refine ⟨hwin2.1, fun i hi => hwin2.2 i (by omega)⟩
+    refine ⟨hwin3, hzero, G (f 0), ?_, ?_⟩
+    · refine ⟨pairSeq (f 0) (G (f 0)), ⟨pairSeq_mem_windowSupport _ _, by simp⟩,
+        by simp, by simp⟩
+    · refine ⟨pairSeq (G (f 0)) (f 1), ⟨pairSeq_mem_windowSupport _ _, ?_⟩,
+        by simp, by simp⟩
+      simpa [Function.comp_apply] using hgraph
+
 end Seq
 end Higman
 end GroupApproximation
