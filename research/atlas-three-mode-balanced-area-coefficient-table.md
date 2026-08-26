@@ -45,6 +45,17 @@ literal words are reproducible rather than lost:
 - `experiments/atlas_relator_rank5_reverse.py` constructs and verifies the
   twelve reverse-dictionary words, but currently has no JSON-emission option.
 
+The apparent `4,636` versus `4,648` discrepancy is now audited exactly.  The
+historical `--emit-merged atlas-rank5-T_St.json` command merges only the first
+two bullets, hence `4,612 + 24 = 4,636`; all existing warm-start and flip
+statistics use that probe list.  The proved usable packet additionally contains
+the twelve reverse-dictionary relators, hence `4,636 + 12 = 4,648`.  An
+all-reference object audit (`git rev-list --objects --all`) finds neither the
+generated 4,636-word JSON, a fully merged 4,648-word JSON, nor a balanced-area
+table under another tracked path or reachable commit.  The generator provenance
+is exact: the full family entered at commit `0c8e3b3cf`, the involutivity merge
+at `0701ceb90`, and the reverse dictionary at `0c30ee812`.
+
 No checked-in artifact or script exports `(BAT1)`.  Therefore the common-root
 gcd cannot presently be computed from repository data without first adding
 the twelve-word serializer and the balanced-area collector.  Substituting
