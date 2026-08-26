@@ -58,13 +58,10 @@ from a caller.
 -- nontrivial finite perfect lamp group.
 #audit_closed_axioms GroupApproximation.Manuscript.MFRadicals.manuscriptFinitePerfectLampFamily
 
--- The ONE conditional row of the package.  It is printed with the weaker
--- macro because it is not closed: `PeterWeyl.SeparatesPoints` is a leading
--- hypothesis, deliberately left in front rather than folded into a named
--- proposition where the binder check could not see it.  A green build here
--- says its PROOF contains no hidden postulate; it does not erase the
--- displayed hypothesis, and no closed row above depends on it.
-#audit_axioms GroupApproximation.Manuscript.MFRadicals.manuscriptFinitePerfectLampFiveRadicals
+-- Peter--Weyl point separation and the resulting fifth radical are both
+-- closed theorems.
+#audit_closed_axioms GroupApproximation.PeterWeyl.compactGroupsAreMatrixSeparated
+#audit_closed_axioms GroupApproximation.Manuscript.MFRadicals.manuscriptFinitePerfectLampFiveRadicals
 #audit_axioms GroupApproximation.AlternatingLampFamily.alternatingFamilyRadicalPackage
 #audit_axioms GroupApproximation.AlternatingLampFamily.bohrResidual_le_lampRange
 #audit_axioms GroupApproximation.AlternatingLampFamily.lampRange_le_ker_of_profinite
