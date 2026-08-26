@@ -6,6 +6,7 @@ title: The cyclic UHF tensor shift strictly compresses its norm-corona relative 
 artifacts:
   - research/uhf-cyclic-shift-compressed-commutant-proof.md
 distinct_from:
+  norm-corona-locally-finite-compression-countermodel: that adds the internal last-site group element, its surviving central Pauli commutator, and amenability of the generated compressor group; this isolates the strict relative-commutant inclusion itself.
   corona-commutant-growth-witness: that uses slow phase walls in faithful finite-quotient representations of residually finite compressor groups; this is the direct tensor-tail model in the `2^infinity` UHF embedding and identifies an explicit last-site Pauli witness.
   finite-stencil-pauli-tape-has-marked-periodizations: that constructs a separate exact finite cyclic model for each fixed stencil; this puts all finite tensor stages into one norm corona and computes the strict relative-commutant inclusion there.
   norm-corona-sparse-character-atom-reduces-pointwise-centralizer: that positively reduces a prescribed pointwise centralizer on a sparse atom; this proves that a one-sided compression need not normalize the full ambient relative commutant containing that atom.
