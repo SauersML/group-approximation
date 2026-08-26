@@ -66,5 +66,7 @@ the missing affine enemy either.
 mixed tensor `M tensor M^*=End(M)`.  The calculation is uniform in every odd
 characteristic and does not split off the scalar summand, so it covers the
 adjoint-type corrector even in characteristic three.  The unresolved linear
-sector has therefore moved past all degree-two tensors of the defining and
-contragredient coordinates that have been checked explicitly.
+sector has therefore moved past every tensor product of two copies chosen
+from the defining and contragredient coordinates: the quadratic calculation
+also closes the dual symmetric square, while the bilinear calculation closes
+the mixed tensor.

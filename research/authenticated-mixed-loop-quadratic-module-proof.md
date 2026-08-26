@@ -72,7 +72,45 @@ Because the characteristic is odd, `(QMP8)=0` implies `F=E=0`.
 The last equation of `(QMP4)` then implies `D=0`, and the remaining equation
 implies `A=0`.  Thus `P=0`, proving the common-kernel assertion.
 
+## The contragredient symmetric square
+
+On the dual basis, the six coefficient substitutions are
+
+```text
+q: y |-> y+(1/2)x,       s: z |-> z+(1/2)y,
+A_0: x |-> x-2y,
+B_0: (x,y,z) |-> ((1/2)x,2y-2z,z),
+u: (x,y,z) |-> (x-z,y+(1/2)z,z),
+r: y |-> y+z.                                         (QMP9)
+```
+
+Expanding `XP` with `(QMP9)` gives the six coefficient equations
+
+```text
+-B/2-D/4-A=0,             B-C/2=0,
+-2B-2E-F=0,              -(E+C)/2=0,
+4E=0,                    -2E=0.                       (QMP10)
+```
+
+Therefore
+
+```text
+ker(X|Sym^2(M^*))=K(y^2-(1/4)x^2).                    (QMP11)
+```
+
+For `P=D(y^2-(1/4)x^2)`, direct use of the last two substitutions in
+`(QMP9)` and `rho(h^(-1))=diag(2,1,1/2)` gives
+
+```text
+YP=-2D yz-(1/2)D z^2.                                  (QMP12)
+```
+
+This vanishes only for `D=0` in every odd characteristic.  Hence the dual
+symmetric square has zero common kernel as claimed.
+
 Frobenius fixes the prime-field constants in the calculation.  Equation
-`(QAM2)` and the contragredient calculation from the required claim give the
-tensor-square statement.  Finally, the extension-closure argument
-`(MMP11)` applies unchanged to any filtration with the stated sections.
+`(QAM2)`, its dual, and the contragredient calculation from the required
+claim give both pure tensor-square statements.  The mixed tensor statement
+is the separate direct calculation cited in the claim.  Finally, the
+extension-closure argument `(MMP11)` applies unchanged to any filtration
+with the stated sections.
