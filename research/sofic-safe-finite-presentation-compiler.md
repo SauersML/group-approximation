@@ -59,3 +59,5 @@ A sofic-preserving Higman embedding theorem for recursively presented sofic
 groups would do it; that theorem is not in the literature and would be of
 independent interest, the residually finite version being a known open
 question.
+
+**Reframed (2026-08-26).**  By [[finite-presentation-rice-criterion-via-the-fixed-positive-rope]] the whole question is whether the MF compiler's *existing* positive rope is sofic: no new compiler is needed, only soficity of one explicit finitely presented group built from free groups by products, an amalgam over the Mikhailova-type subgroup `L_e`, and one further HNN extension.  The torsion-free instance of the same criterion is closed ([[mf-compiler-positive-branch-is-torsion-free]]), so the machinery is known to transfer; soficity is blocked only at the non-amenable amalgam edge.

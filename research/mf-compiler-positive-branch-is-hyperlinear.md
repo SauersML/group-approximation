@@ -39,3 +39,10 @@ completeness dichotomy: a non-hyperlinear group exists iff `HYP_fp` is
 finitely presented non-hyperlinear seed, which
 [[local-approximation-properties-are-marked-closed]] supplies from any
 non-hyperlinear group.
+
+**Companion result.**  The same positive branch is torsion-free
+([[mf-compiler-positive-branch-is-torsion-free]]), which closes the
+torsion-free finite-presentation cell through
+[[finite-presentation-rice-criterion-via-the-fixed-positive-rope]]; this
+claim is the analytic member of the same family of questions about one
+explicit group.
