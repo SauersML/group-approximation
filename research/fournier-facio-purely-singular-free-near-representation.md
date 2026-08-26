@@ -64,3 +64,9 @@ charge-null errors, but uniform recurrence in `U(m)` forces the underlying
 block near action to be essentially free.  Hence any positive witness must
 have unbounded block sizes on positive charge or genuinely overlapping
 finite-band supports with no common bounded block decomposition.
+
+For a common finite-block system, “unbounded” has a precise meaning.
+`fournier-facio-block-dimension-escapes-every-charge-cutoff` proves that
+every fixed size cutoff has charge zero.  Hence a surviving block model must
+use a non-tight finitely additive charge concentrated at dimension infinity;
+countably additive or tight mixtures of growing matrix fibers are excluded.
