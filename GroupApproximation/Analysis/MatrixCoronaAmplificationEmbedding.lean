@@ -62,10 +62,10 @@ theorem assembleSequence_sub (a b : LiftMatrix I X) :
   ext p q
   rfl
 
+omit [Nonempty I] [∀ n, Nonempty (X n)] in
 /-- Nullity of an assembled sequence is equivalent to entrywise nullity.
 This is the representative-independence and faithfulness mechanism for the
 amplification map. -/
-omit [Nonempty I] [∀ n, Nonempty (X n)] in
 theorem isNull_assembleSequence_iff (a : LiftMatrix I X) :
     IsNullMatrixSequence (fun n ↦ I × X n) cofinite (assembleSequence X a) ↔
       ∀ i j, IsNullMatrixSequence (fun n ↦ X n) cofinite (a i j) := by
