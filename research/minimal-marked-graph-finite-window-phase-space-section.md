@@ -99,8 +99,15 @@ multipliers are harmless by conjugate doubling; a nonzero Pauli label is not.
   that block but cannot replace its existence.
 - **Private-neighbour completion — live, not yet reduced.**  The available
   `private-neighbour-density` theorem supplies many vertex choices while
-  preserving nondegeneracy.  The open calculation is whether requiring the
-  finitely many phase-space factor labels to vanish cuts out only finitely
-  many affine denominator cosets in those Laurent parameters.  If it does,
-  density chooses all completion vertices simultaneously; no such affine
-  description has yet been proved.
+  preserving nondegeneracy.  For one fixed completion and one fixed partial
+  symplectic action,
+  `clifford-phase-space-curvature-is-a-twisted-f2-cocycle` proves that lift
+  repair is exactly the finite linear equation `delta_S r=a`.  But
+  `private-neighbour-completion-changes-clifford-module`
+  shows that changing completion vertices also changes `K`, the symplectic
+  extensions `S_g`, and hence the coboundary matrix itself; those simultaneous
+  Witt-extension equations are quadratic before the lift gauge is chosen.
+  The open calculation is therefore to choose private-neighbour completions
+  for which the resulting restricted class `[a_S]` vanishes.  No affine
+  Laurent-coset description of that completion-level condition has yet been
+  proved.
