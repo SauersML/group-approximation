@@ -69,7 +69,7 @@ N_e <= N_+                                                    (T5)
 
 uniformly.
 
-## 3. The positive bridge has effective finite CEP
+## 3. The positive bridge embeds in a residually finite product
 
 The bridge embedding is
 
@@ -81,18 +81,16 @@ x |-> (x_1,x_2),   y |-> (y,1),   t |-> (1,t).                (T6)
 Its image is exactly the kernel of the difference of the two `x`-exponent
 maps, so `H` is finitely generated normal in `P` and `P/H=Z`.
 
-For a finite-index normal `J` in `H`, intersect its orbit under the cyclic
-quotient action.  Finitely generated groups have only finitely many subgroups
-of a fixed finite index, so the intersection is a finite-index `P`-normal
-subgroup `M<=J`.  The cyclic action on `H/M` has finite order; quotienting the
-cyclic lift by that order gives a finite quotient `r:P->C` with
+Only the residually finite ambient embedding is needed. Choose a nested
+separating sequence `r_n:P->C_n` and put
 
 ```text
-ker(r|H)=M<=J.                                                (T7)
+beta_n=r_n j:H->C_n.                                         (T7)
 ```
 
-This construction is effective from the multiplication table of `H/J`.
-It is `three-bridge-is-cyclic-fiber-product-with-finite-cep`.
+Since `j` is injective, these restrictions eventually separate every
+nonidentity element of `H`. No extension of an arbitrarily prescribed finite
+quotient of `H` is required.
 
 ## 4. Add the graph witness without changing the recursive kernel
 
@@ -160,8 +158,7 @@ tau_e:S_e->Q_e,
 tau_e|F_0=q_e,             tau_e|F_1=1.                       (T12)
 ```
 
-On `INF`, let `beta_n:H->B_n` be eventually separating finite quotients.  Use `(T7)` to
-choose `r_n:P->C_n` with `ker(r_n j)<=ker(beta_n)`.  Map the ordinary witness
+On `INF`, use `(T7)`, so `beta_n=r_n j`. Map the ordinary witness
 factor `K_e^0` trivially and map the graph factor by
 
 ```text
@@ -170,8 +167,8 @@ factor `K_e^0` trivially and map the graph factor by
 
 The subgroup `L_e` lands on the diagonal.  Therefore `(T13)` extends over
 the first rope letter by sending `v` to the coordinate swap, giving a finite
-homomorphism `lambda_n:Gamma_e->W_n`.  On `S_e`, first-coordinate projection
-is `r_n j tau_e`; hence
+homomorphism `lambda_n:Gamma_e->W_n`. On `S_e`, first-coordinate projection
+is `r_n j tau_e=beta_n tau_e`; hence
 
 ```text
 ker(lambda_n|S_e) <= ker(beta_n tau_e).                        (T14)
@@ -228,6 +225,23 @@ candidate with `(T15)`.  Thus the rope presentation is finite uniformly in
 `e`: `K_e` is finitely presented, `L_e` and `F` are finitely generated, and
 only two final relations per generator of `F` are imposed.
 
+For completeness, call the finite presentation in `(T16)` `Rhat_e`. Its
+relations extend from the basis to every `f in F`:
+
+```text
+u(i(f),1)u^-1=(i(f),f),
+u(i(f)^v,1)u^-1=(i(f)^v,1).                                 (T16a)
+```
+
+If `n in N_e`, then `i(n)^v=i(n)` by the cutting identity. Comparing the two
+relations kills `(1,n)`, so the displayed `F` factors through `Q_e=F/N_e`.
+The relations are now precisely the HNN identification in `(T15)`, giving a
+map `(T15)->Rhat_e`. Conversely the quotient `F->Q_e` and the stable letter
+of `(T15)` satisfy `(T16)`, giving the inverse map. Both composites fix all
+generators. Both edge maps in `(T15)` are injective because their first
+coordinate is `s`, so Britton normal form embeds `Gamma_e times Q_e` and in
+particular `Q_e`.
+
 We have therefore constructed a total computable map `e |-> code(R_e)` with
 
 ```text
@@ -238,3 +252,20 @@ e in FIN  => R_e is not MF.                                  (T17)
 So `FIN <=_m NONMF_fp` and, by complements, `INF <=_m MF_fp`.  Since `FIN`
 and `INF` are respectively `Sigma^0_2`- and `Pi^0_2`-complete, `(T1)` follows
 from `(T2)`.
+
+## 6. External inputs and exact scope
+
+Mikaelian's explicit Higman algorithm, arXiv:2507.04347v8, supplies the finite
+presentation and marked embedding words used only in the Mikhailova fiber
+product. Shulman's arXiv:2603.13564v2, Theorem 29 handles the first central
+HNN extension. Ueda's universal-HNN corner construction and Shulman's Theorem
+20 handle the final compatible-corona edge; the faithful embeddings and
+group-faithfulness argument are written out in
+`regular-mf-tensor-sync-shulman-completion-2026-08-26.md`.
+
+The paired-return cutter in
+`notes/TRUE_PAIRED_RETURN_CENTRALIZER_SWITCH_CUTS_CONJUGATOR_GRAPH.md`
+independently closes `Higman.Star.ConjugatorGraph.graph_benign` inside two
+central HNN extensions. It strengthens the internal explicit Higman route but
+is not a substitute for the final quotient-valued HNN theorem; the two solve
+different edges.

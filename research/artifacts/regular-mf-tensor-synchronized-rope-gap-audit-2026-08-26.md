@@ -4,8 +4,11 @@
 **Conclusion:** the tensor construction proves a faithful regular model of the
 vertex group and exact edge compatibility, but it does **not** by itself prove
 that the HNN group is MF.  The remaining implication is precisely a
-compatible-amalgam/free-product MF permanence theorem.  The repository does
-not currently prove that theorem internally.
+compatible-amalgam/free-product MF permanence theorem. The repository does
+not prove that theorem internally. It is exactly Shulman's
+arXiv:2603.13564v2, Theorem 20; the external-theorem completion, including
+faithful corner embeddings and group faithfulness, is recorded in
+`regular-mf-tensor-sync-shulman-completion-2026-08-26.md`.
 
 ## 1. What the tensor construction really proves
 
@@ -203,4 +206,6 @@ separation.  Establishing that lemma is exactly the missing analytic content,
 not bookkeeping already present in the tensor model.
 
 No status label should be upgraded from the present artifact under a
-zero-literature audit.
+zero-literature audit. With the source-verified Shulman theorem admitted, the
+completion artifact discharges the obligation unconditionally in the ordinary
+literature-relative sense.

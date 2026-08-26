@@ -100,6 +100,10 @@ argument proves that every separable subalgebra of `E` is MF.
 
 ## 3. The C-star HNN and the group normal form
 
+The exact faithful embeddings required by Shulman's theorem and an elementary
+repair of group faithfulness are expanded in
+`regular-mf-tensor-sync-shulman-completion-2026-08-26.md`.
+
 Let `D=C*(V(Gamma times Q))<=D'`, and let `B_0,B_1` be the two edge
 subalgebras.  The unitary `W in D'` conjugates `B_0` onto `B_1`.  Embed `D'`
 into a matrix corona; the edge conjugacy remains exact there.

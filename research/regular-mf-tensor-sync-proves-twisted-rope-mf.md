@@ -5,6 +5,7 @@ kind: claim
 title: Relative finite edge models tensor with a regular-MF base to make the twisted rope MF
 artifacts:
   - research/artifacts/regular-mf-tensor-synchronized-rope-2026-08-25.md
+  - research/artifacts/regular-mf-tensor-sync-shulman-completion-2026-08-26.md
 distinct_from:
   profinite-synchronized-hnn-is-regular-mf: that requires a cofinal synchronized finite quotient family of the whole vertex group; this allows the finite edge models to ignore arbitrary base factors because a separate regular-MF representation supplies faithfulness.
   twisted-rope-edge-is-mf-under-relative-profinite-compatibility: that preserves Britton reduction in finite HNN quotients; this proves compatibility directly in a matrix corona by tensoring the common base representation.
@@ -30,6 +31,12 @@ R=<Gamma times Q,u |
 ```
 
 is regularly operator-MF realized, hence operator-MF.
+
+The last implication uses Shulman's arXiv:2603.13564v2, Theorem 20, after
+Ueda's universal-HNN corner construction. Tensor synchronization supplies
+faithful edge-compatible embeddings of both corner-amalgam vertices. Theorem
+20 makes the universal HNN algebra MF; the particular finite edge intertwiner
+alone need not give a faithful representation of the stable letter.
 
 The maps `lambda_n` need not separate `Gamma`, and `S` need not be closed in
 the profinite topology of `Gamma`.  All faithfulness on the `Gamma` coordinate

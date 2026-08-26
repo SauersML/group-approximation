@@ -10,6 +10,7 @@ requires:
   - mf-safe-finite-presentation-compiler
 artifacts:
   - research/artifacts/mf-recognition-fp-pi2-completeness-2026-08-25.md
+  - research/artifacts/regular-mf-tensor-sync-shulman-completion-2026-08-26.md
 ---
 
 Apply the compiler to the recursive family `H_e`.  On `e in INF` the output is

@@ -6,6 +6,7 @@ title: MF and non-MF recognition are second-level complete on finite presentatio
 root: true
 artifacts:
   - research/artifacts/mf-recognition-fp-pi2-completeness-2026-08-25.md
+  - research/artifacts/regular-mf-tensor-sync-shulman-completion-2026-08-26.md
 distinct_from:
   mf-recognition-has-a-pi2-upper-bound: that proves the membership upper bound and properness over the first level; this asks for the missing FIN-hardness.
   mf-recognition-recursive-presentations-is-second-level-complete: that proves exact completeness before finite-presentation compilation.
@@ -27,7 +28,7 @@ FIN <=_m NONMF_fp.
 
 It uses the exact recursive FIN/INF switch, the residually finite
 three-generator bridge, a Mikhailova fiber-product benign witness whose
-ambient group is a direct product of free groups, the effective finite-CEP
+ambient group is a direct product of free groups, the residually finite
 embedding `B3(1)<=F_2 times F_2`, and tensor synchronization of the final
 asymmetric rope edge.  The output is MF on `INF` and contains the fixed non-MF
 group `E` on `FIN`.

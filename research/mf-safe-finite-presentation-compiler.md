@@ -6,6 +6,7 @@ title: Compile the FIN free-factor switch to finite presentations without losing
 artifacts:
   - research/artifacts/mf-recognition-fp-pi2-completeness-2026-08-25.md
   - research/artifacts/regular-mf-tensor-synchronized-rope-2026-08-25.md
+  - research/artifacts/regular-mf-tensor-sync-shulman-completion-2026-08-26.md
 distinct_from:
   threshold-free-reverse-kleene-mf-higman: that compiler preserves a marked radical/nontriviality dichotomy and yields one non-MF group; this must preserve an actual MF positive branch across every input.
   monotone-mf-switch-positive-branch-barrier: that rules out one append-on-halt marked architecture; this asks for a nonmonotone or MF-safe finite-presentation envelope.
@@ -26,11 +27,18 @@ for one fixed finitely presented non-MF group `E`.
 The completed compiler applies effective Higman embedding only to obtain a
 finite presentation and marked embedding words, then tests its kernel with a
 Mikhailova fiber-product subgroup inside a direct product of free groups.  The
-ambient benign witness is therefore residually finite on every branch.  Its
-product with the fixed finite-CEP graph witness for `B3(1)` supplies the exact
+ambient benign witness is therefore residually finite on every branch. Its
+product with the fixed graph witness inside `F_2 times F_2` supplies the exact
 kernel and the finite swap models; tensor synchronization finishes the rope.
 The negative branch is preserved because the recursive bridge embeds, and the
 positive rope is regularly operator-MF.
+
+The analytic endpoint is literature-relative but unconditional: tensor
+synchronization constructs faithful edge-compatible corona embeddings, Ueda
+identifies the universal HNN algebra as a corner, and Shulman's
+arXiv:2603.13564v2, Theorem 20 makes the ambient amalgam MF. The left-regular
+representation then proves that the abstract HNN group embeds in that MF
+algebra.
 
 ## Attempts
 
