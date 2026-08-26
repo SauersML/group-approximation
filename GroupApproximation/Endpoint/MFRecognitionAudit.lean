@@ -1,4 +1,5 @@
 import GroupApproximation.Meta.AxiomGuard
+import GroupApproximation.Endpoint.MFRecognitionPi02Audit
 import GroupApproximation.Computability.MFRecognitionImpossible
 import GroupApproximation.Computability.MicrostateNormalForm
 import GroupApproximation.Computability.RationalComplexCode
