@@ -21,6 +21,7 @@ distinct_from:
   endpoint-whitehead-star-braid-synchronizes-native-gauges: that supplies the missing odd J1--W and J2--W gauge synchronization on a common homogeneous carrier; its p2-only signed-source normalizer calculation does not see the additional B2 full-source arm.
   b2-pairs-full-hecke-first-support: that proves the first native sign cut has exactly half the actual full Hecke source Q by the B2 commutator; the remaining task is to align that paid cut with the second typed transport on the same carrier.
   b2-b3-pair-full-hecke-four-native-sectors: that sharpens both native source supports to rank one half and their joint source to rank one quarter of Q; this supplies the common positive carrier which the p2-only actor analysis could not force.
+  full-hecke-quarter-source-equalizes-selector-ranks: that proves the common quarter carrier cannot simply replace the unequal source rows in the affine endpoint because both Q-normalized source supports have fraction one half; this still asks for occurrence typing which preserves the original unequal normalization.
 ---
 
 **OPEN OCCURRENCE-TYPING SEAM.**  In every positive-density active-core
