@@ -141,6 +141,244 @@ theorem matchedCutter_inf_leftRange :
     edgeToP_injective edgeToC_injective
     graphSub_comap_edgeToP_eq_Delta Q_comap_edgeToC_eq_Delta
 
+/-! ## The five literal generators -/
+
+def bSync : Sync := ⟨b, b_mem_K⟩
+
+def cSync : Sync := ⟨c, c_mem_K⟩
+
+/-- The switch element `x = γ₁ = (a,1)` in the left factor. -/
+def x : Ambient :=
+  MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (Star.genPair 1)
+
+/-- The synchronized left path `h ↦ p_h`. -/
+def pHom : Sync →* Ambient :=
+  (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC).comp leftLift
+
+/-- The synchronized right path before switching. -/
+def rightHom : Sync →* Ambient :=
+  (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC).comp rightLift
+
+/-- The switched path `h ↦ q_h = x⁻¹ right(h) x`. -/
+def qHom : Sync →* Ambient where
+  toFun h := x⁻¹ * rightHom h * x
+  map_one' := by simp
+  map_mul' h k := by
+    simp only [map_mul]
+    group
+
+/-- The five displayed elements from the paired-return construction. -/
+def fiveSet : Set Ambient :=
+  {x, pHom bSync, pHom cSync, qHom bSync, qHom cSync}
+
+/-- The literal five-generator cutter. -/
+def fiveCutter : Subgroup Ambient := Subgroup.closure fiveSet
+
+theorem x_mem_fiveCutter : x ∈ fiveCutter :=
+  Subgroup.subset_closure (by simp [fiveSet])
+
+theorem p_b_mem_fiveCutter : pHom bSync ∈ fiveCutter :=
+  Subgroup.subset_closure (by simp [fiveSet])
+
+theorem p_c_mem_fiveCutter : pHom cSync ∈ fiveCutter :=
+  Subgroup.subset_closure (by simp [fiveSet])
+
+theorem q_b_mem_fiveCutter : qHom bSync ∈ fiveCutter :=
+  Subgroup.subset_closure (by simp [fiveSet])
+
+theorem q_c_mem_fiveCutter : qHom cSync ∈ fiveCutter :=
+  Subgroup.subset_closure (by simp [fiveSet])
+
+/-- A homomorphism out of `K = ⟨b,c⟩` lands in a subgroup as soon as its
+two basis values do. -/
+theorem hom_mem_of_bc_mem (f : Sync →* Ambient) (L : Subgroup Ambient)
+    (hb : f bSync ∈ L) (hc : f cSync ∈ L) (h : Sync) : f h ∈ L := by
+  have hall : ∀ (y : F₃) (hy : y ∈ K), f ⟨y, hy⟩ ∈ L := by
+    intro y hy
+    induction hy using Subgroup.closure_induction with
+    | mem y hy =>
+        rcases hy with hy | hy
+        · subst y
+          simpa [bSync] using hb
+        · rw [Set.mem_singleton_iff] at hy
+          subst y
+          simpa [cSync] using hc
+    | one =>
+        have heq : (⟨1, K.one_mem⟩ : Sync) = 1 := Subtype.ext rfl
+        rw [heq, map_one]
+        exact L.one_mem
+    | mul y z hy hz ihy ihz =>
+        have heq : (⟨y * z, K.mul_mem hy hz⟩ : Sync) =
+            (⟨y, hy⟩ : Sync) * ⟨z, hz⟩ := Subtype.ext rfl
+        rw [heq, map_mul]
+        exact L.mul_mem ihy ihz
+    | inv y hy ihy =>
+        have heq : (⟨y⁻¹, K.inv_mem hy⟩ : Sync) = (⟨y, hy⟩ : Sync)⁻¹ :=
+          Subtype.ext rfl
+        rw [heq, map_inv]
+        exact L.inv_mem ihy
+  exact hall h h.property
+
+theorem p_mem_fiveCutter (h : Sync) : pHom h ∈ fiveCutter :=
+  hom_mem_of_bc_mem pHom fiveCutter p_b_mem_fiveCutter p_c_mem_fiveCutter h
+
+theorem q_mem_fiveCutter (h : Sync) : qHom h ∈ fiveCutter :=
+  hom_mem_of_bc_mem qHom fiveCutter q_b_mem_fiveCutter q_c_mem_fiveCutter h
+
+/-- The two edge paths, regarded as elements of `M`. -/
+def alphaM (h : Sync) : Edge :=
+  PairedReturnGraphIntersection.muToM (Monoid.Coprod.inl h)
+
+def betaM (h : Sync) : Edge :=
+  PairedReturnGraphIntersection.muToM (Monoid.Coprod.inr h)
+
+@[simp] theorem alphaM_coe (h : Sync) :
+    (alphaM h : PairedReturnGraphIntersection.P) =
+      PairedReturnGraphIntersection.alpha h := by
+  exact PairedReturnGraphIntersection.mu_inl h
+
+@[simp] theorem betaM_coe (h : Sync) :
+    (betaM h : PairedReturnGraphIntersection.P) =
+      PairedReturnGraphIntersection.beta h := by
+  exact PairedReturnGraphIntersection.mu_inr h
+
+/-- The returning difference, as an element of the edge group. -/
+def deltaM (h : Sync) : Edge :=
+  ⟨PairedReturnGraphIntersection.delta h,
+    PairedReturnGraphIntersection.deltaSub_le_M
+      (PairedReturnGraphIntersection.delta_mem_deltaSub h)⟩
+
+theorem leftLift_inv_mul_rightLift (h : Sync) :
+    (leftLift h)⁻¹ * rightLift h = edgeToC (deltaM h) := by
+  apply Prod.ext
+  · apply Subtype.ext
+    change (PairedReturnGraphIntersection.alpha h)⁻¹ *
+      PairedReturnGraphIntersection.beta h =
+        PairedReturnGraphIntersection.delta h
+    rfl
+  · simp
+
+theorem delta_mul_switch_eq_genPair (h : Sync) :
+    PairedReturnGraphIntersection.delta h * Star.genPair 1 = Star.genPair h := by
+  apply Prod.ext
+  · simp [PairedReturnGraphIntersection.delta_apply, Star.genPair]
+  · simp [PairedReturnGraphIntersection.delta_apply, Star.genPair]
+
+/-- **Every matched path returns the desired graph value.** -/
+theorem paired_return (h : Sync) :
+    (pHom h)⁻¹ * x * qHom h =
+      MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (Star.genPair h) := by
+  have hedge :
+      MatchedSubgroupAmalgam.bigInB edgeToP edgeToC (edgeToC (deltaM h)) =
+        MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (edgeToP (deltaM h)) :=
+    (PushoutI.of_apply_eq_base (Amalgam.famHom edgeToP edgeToC) true
+      (deltaM h)).trans
+      (PushoutI.of_apply_eq_base (Amalgam.famHom edgeToP edgeToC) false
+        (deltaM h)).symm
+  calc
+    (pHom h)⁻¹ * x * qHom h =
+        (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC (leftLift h))⁻¹ *
+          x * (x⁻¹ *
+            MatchedSubgroupAmalgam.bigInB edgeToP edgeToC (rightLift h) * x) := rfl
+    _ = MatchedSubgroupAmalgam.bigInB edgeToP edgeToC
+          ((leftLift h)⁻¹ * rightLift h) * x := by
+      rw [map_mul, map_inv]
+      group
+    _ = MatchedSubgroupAmalgam.bigInB edgeToP edgeToC (edgeToC (deltaM h)) * x := by
+      rw [leftLift_inv_mul_rightLift]
+    _ = MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (edgeToP (deltaM h)) * x := by
+      rw [hedge]
+    _ = MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+          (PairedReturnGraphIntersection.delta h * Star.genPair 1) := by
+      rw [map_mul]
+      rfl
+    _ = MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (Star.genPair h) := by
+      rw [delta_mul_switch_eq_genPair]
+
+theorem graphMap_le_fiveCutter :
+    Star.graphSub.map (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC) ≤
+      fiveCutter := by
+  rintro _ ⟨z, hz, rfl⟩
+  rw [Star.graphSub_eq_closure] at hz
+  induction hz using Subgroup.closure_induction with
+  | mem z hz =>
+      obtain ⟨h, rfl⟩ := hz
+      rw [← paired_return]
+      exact fiveCutter.mul_mem
+        (fiveCutter.mul_mem (fiveCutter.inv_mem (p_mem_fiveCutter h))
+          x_mem_fiveCutter)
+        (q_mem_fiveCutter h)
+  | one => simp
+  | mul y z _ _ hy hz => simpa only [map_mul] using fiveCutter.mul_mem hy hz
+  | inv y _ hy => simpa only [map_inv] using fiveCutter.inv_mem hy
+
+theorem QMap_le_fiveCutter :
+    Q.map (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC) ≤ fiveCutter := by
+  rintro _ ⟨z, hz, rfl⟩
+  obtain ⟨w, hw⟩ := hz
+  subst z
+  induction w using Monoid.Coprod.induction_on with
+  | inl h => exact p_mem_fiveCutter h
+  | inr h =>
+      change rightHom h ∈ fiveCutter
+      have hq : rightHom h = x * qHom h * x⁻¹ := by
+        change rightHom h = x * (x⁻¹ * rightHom h * x) * x⁻¹
+        group
+      rw [hq]
+      exact fiveCutter.mul_mem
+        (fiveCutter.mul_mem x_mem_fiveCutter (q_mem_fiveCutter h))
+        (fiveCutter.inv_mem x_mem_fiveCutter)
+  | mul y z hy hz =>
+      rw [map_mul, map_mul]
+      exact fiveCutter.mul_mem hy hz
+
+theorem matchedCutter_le_fiveCutter : matchedCutter ≤ fiveCutter := by
+  refine (Subgroup.closure_le _).mpr ?_
+  rintro y (hy | hy)
+  · obtain ⟨z, hz, rfl⟩ := hy
+    exact graphMap_le_fiveCutter ⟨z, hz, rfl⟩
+  · obtain ⟨z, hz, rfl⟩ := hy
+    exact QMap_le_fiveCutter ⟨z, hz, rfl⟩
+
+theorem x_mem_matchedCutter : x ∈ matchedCutter := by
+  exact Subgroup.subset_closure (Or.inl
+    ⟨Star.genPair 1, Star.mem_graphSub.mpr
+      ⟨FreeGroup.of 1, Star.graphHom_of 1⟩, rfl⟩)
+
+theorem p_mem_matchedCutter (h : Sync) : pHom h ∈ matchedCutter := by
+  exact Subgroup.subset_closure (Or.inr
+    ⟨leftLift h, leftLift_mem_Q h, rfl⟩)
+
+theorem q_mem_matchedCutter (h : Sync) : qHom h ∈ matchedCutter := by
+  exact matchedCutter.mul_mem
+    (matchedCutter.mul_mem (matchedCutter.inv_mem x_mem_matchedCutter)
+      (Subgroup.subset_closure (Or.inr
+        ⟨rightLift h, rightLift_mem_Q h, rfl⟩)))
+    x_mem_matchedCutter
+
+theorem fiveCutter_le_matchedCutter : fiveCutter ≤ matchedCutter := by
+  refine (Subgroup.closure_le _).mpr ?_
+  intro y hy
+  simp only [fiveSet, Set.mem_insert_iff, Set.mem_singleton_iff] at hy
+  rcases hy with rfl | rfl | rfl | rfl | rfl
+  · exact x_mem_matchedCutter
+  · exact p_mem_matchedCutter bSync
+  · exact p_mem_matchedCutter cSync
+  · exact q_mem_matchedCutter bSync
+  · exact q_mem_matchedCutter cSync
+
+/-- **The matched cutter is generated by the five displayed elements.** -/
+theorem fiveCutter_eq_matchedCutter : fiveCutter = matchedCutter :=
+  le_antisymm fiveCutter_le_matchedCutter matchedCutter_le_fiveCutter
+
+/-- **Five-generator cutter equality.**  The literal cutter meets the embedded
+left factor in exactly Higman's conjugator graph. -/
+theorem fiveCutter_inf_leftRange :
+    fiveCutter ⊓ (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC).range =
+      Star.graphSub.map (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC) := by
+  rw [fiveCutter_eq_matchedCutter]
+  exact matchedCutter_inf_leftRange
+
 end PairedReturnCutter
 end Higman
 end GroupApproximation
