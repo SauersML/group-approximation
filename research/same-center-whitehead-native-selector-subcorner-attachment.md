@@ -47,6 +47,20 @@ excluded by the regular-trace firewall.
 
 ## Attempts
 
+- **Wordize the one-eighth label as a commutator of two controlled Pauli or
+  adjacent-Whitehead occurrences.**  This is impossible already on the
+  recovered `M_8(C)` label by
+  `same-center-m8-commutators-cannot-wordize-one-eighth-reflection`.
+  The desired rank-one reflection has determinant `-1`, whereas every
+  ordinary label commutator has determinant `+1`.  Two independent Pauli
+  half-controls produce a rank-two, one-quarter reflection because the
+  payload qubit remains free.  Cutting that last qubit would assume the
+  missing joint-control occurrence.  The adjacent braid does not remove the
+  other obstruction: it makes `V_1,V_2` conjugate but need not make them
+  commute, as the two standard `S_3` transpositions show.  Hence `(SNA2)`
+  needs a direct odd-determinant mixed occurrence, or a same-gauge
+  identity-outer anchor, rather than a two-word commutator repair.
+
 - **Identify the same-center Whiteheads with the native Whiteheads.**  This
   identification is literal, not a root-position conjugacy:
 
