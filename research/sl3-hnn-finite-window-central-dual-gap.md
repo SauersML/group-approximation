@@ -73,6 +73,14 @@ a finite mixed Britton window.  If the coset action
 
 ## Attempts
 
+- **The exact actor sector needs only one mixed word.**
+  `one-britton-commutator-excludes-exact-arithmetic-actor-sector` takes
+  `W={[t,h]}`.  Property `(T)` moves an approximately `Lambda`-central letter
+  to the exact lattice commutant, finite-dimensional arithmetic co-density
+  makes that the `Gamma`-commutant, and the trace of `[t,h]` is forced near
+  one instead of its canonical value zero.  Hence every counterexample to
+  `(FDG3)` is uniformly noncorrectable already at the actor level; bounded
+  congruence depth and exact finite-action atlases are completely absent.
 - **Universal lifting is unavailable.**  Replacing the selected finite
   window by LP of the lattice generator system would imply LLP of
   `C^*(SL_3(Z))`, contradicted by `sl3-generator-system-has-no-universal-lp`.
