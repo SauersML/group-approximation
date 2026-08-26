@@ -63,6 +63,10 @@ artifacts:
   - research/b2-full-hecke-first-support-proof.md
   - research/b2-b3-pair-full-hecke-four-native-sectors.md
   - research/b2-b3-full-hecke-four-sector-proof.md
+  - research/leavitt-two-compressor-core-has-modular-normal-form.md
+  - research/leavitt-two-compressor-core-is-lef-and-marked-operator-mf.md
+  - research/leavitt-st20-two-compressor-mark-is-mf-visible.md
+  - research/haar-root-character-vanishes-off-parabolic-action-kernel.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -250,8 +254,22 @@ The same firewall now exists inside the literal Leavitt group.
 diagonal-root subgroup together with either one manuscript compressor is
 elementary amenable and already contains the marked root.  Thus a valid
 collapse cannot be assembled from diagonal cylinder relations and one
-compression direction; it must use a mixed coefficient occurrence or both
-complementary compression directions on one authenticated reservoir.
+compression direction.
+
+The two-compressor alternative is now ruled out as well.
+`leavitt-two-compressor-core-has-modular-normal-form` identifies the exact
+elementary core as
+
+```text
+C_lc({0,1}^N,GL_5(F_2)) semidirect (C_2*C_3),
+```
+
+and `leavitt-two-compressor-core-is-lef-and-marked-operator-mf` constructs
+finite local models for every multiplication table by finite amalgams.  The
+mark remains MF-visible even after pullback to the chosen Steinberg lifts.
+Therefore a valid collapse must use genuinely non-diagonal Leavitt
+coefficients; neither one nor both diagonal compression directions are
+load-bearing.
 
 The rank scale along that orbit is now uniform.
 `binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale` uses the fixed
