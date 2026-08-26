@@ -153,6 +153,23 @@ genuine failure of local splitting must take.
   content is that `W` may be chosen once and for all.  This also shows the
   conjecture is not vacuous and not obviously false: it fails only if the
   minimal admissible depth `W_R` diverges as the packet grows.
+- **Closed-ideal density does not upgrade a local lift to one finite
+  reservoir.**  For a fixed `t` and `L_W`, `(RR2)` is equivalent to the
+  existence of one ucp section `s=t+d` with `d:E->L_W`: the forward
+  implication is exactly
+  `finite-reservoir-compactness-lifts-ucp-repairs`, and the reverse
+  implication uses the same `d` for every packet.  Thus starting from an
+  arbitrary local ucp section only gives a correction `s-t:E->I_N` in the
+  **closed** ideal.  Approximating its finite-dimensional range by the
+  algebraic relator ideal produces maps at vanishing distance from the ucp
+  cone, as in `exhausting-ideal-reservoirs-have-lift-or-quotient-separator`,
+  but does not make any approximant ucp.  The tempting strictification by an
+  additive cp kernel map is impossible: if `k:E->I_N` is positive and
+  `(s+k)(1)=1`, then `k(1)=0`, hence `||k||=||k(1)||=0` and `k=0`.  This is a
+  no-go only for the density-plus-positive-slack shortcut, not for `(RR2)`;
+  a successful finite-reservoir correction is necessarily a signed
+  unit-zero direction whose sum with `t` satisfies the coupled Choi
+  inequalities.
 - **What a proof has to bound, and what it does not.**  The argument above
   needs `rho(L_W) = rho(I_N)`, which certainly fails uniformly in `R` (a large
   representation has a large image of the ideal).  But that is far more than
