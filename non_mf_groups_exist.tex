@@ -93,7 +93,7 @@ the same property.
 
 Not every countable group is MF.
 \leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
-Our counterexample is
+The counterexample is
 %<webmath object="whole" when="H=\EL_{12}(L_{\F_2}(1,2))" title="the matrix group that provides the counterexample">
 % This equation names the counterexample H.  The expression
 % \(L_{\F_2}(1,2)\) is the binary [[Leavitt algebra]], and
@@ -132,6 +132,10 @@ Its reduced group $C^*$-algebra
 $C^*_{\mathrm r}(H)$ is separable and stably finite, but is not MF.
 \leanverified{Manuscript/OneSidedMFRadical/HeadlineTheorem}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptBinaryLeavittHeadline}
 \leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptReducedCStarConsequence}
+The group is not new: by the isomorphisms of Khanh--Thanh, $H$ is the
+unit group of the binary Leavitt algebra~\cite{KhanhThanh}, with which
+OpenAI constructed the first nonsofic group~\cite{OAI}.  The theorems
+about it are.
 
 More precisely, a countable group $G$ is \emph{MF} if there are positive
 integers $d_n$ and maps $V_n\colon G\to\U(d_n)$, with $V_n(1)=1$, such that
@@ -477,9 +481,6 @@ Theorem~\ref{thm:compression-criterion} gives
 $\Rad_{\mathrm{MF}}(H)=H$.
 \leanverified{Manuscript/OneSidedMFRadical/RankTwelveConfiguration}{GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.rankTwelve_actualCoronaMFResidual_eq_top}
 
-The second application of Theorem~\ref{thm:compression-criterion} is to
-a group without torsion.
-
 \begin{mainthm}[a torsion-free group with full MF radical]
 \label{thm:torsion-free}
 There is a two-generated, finitely presented, torsion-free, acylindrically
@@ -495,8 +496,7 @@ The group $Q$ is a small-cancellation quotient, in the sense of
 Hull~\cite{Hull}, of the torsion-free property-\textup{(T)} group of
 Fournier-Facio~\cite[\S2]{FFF}, chosen so that the compression defect
 normally generates the quotient (Section~\ref{sec:torsion-free}).  Thus
-the obstruction of Theorem~\ref{thm:compression-criterion} depends
-neither on torsion, nor on simplicity, nor on the Leavitt algebra.
+Theorem~\ref{thm:compression-criterion} also applies to $Q$.
 
 \subsection*{Relation to prior work}
 
@@ -1612,7 +1612,9 @@ Following Fournier-Facio~\cite[\S2]{FFF}, let $U$ be a universal finitely
 presented torsion-free group, one containing a copy of every finitely
 presented torsion-free group~\cite{Chiodo}; let $S$ be a finitely presented
 infinite simple torsion-free group~\cite{HydeLodha}; and let $H_0$ be a
-torsion-free hyperbolic group with property~\textup{(T)}~\cite{Kotowski}.
+torsion-free hyperbolic group with property~\textup{(T)}, obtained from the
+density model at a parameter between $1/3$ and $1/2$
+~\cite{Kotowski,Ollivier}.
 Small cancellation over the relatively hyperbolic pair $(U*H_0,U)$ embeds
 $U$ in a finitely presented torsion-free quotient $P$ of $H_0$
 ~\cite[Proposition~2.3]{FFFStability}; torsion-freeness is preserved by
@@ -1861,6 +1863,12 @@ OpenAI,
 in \emph{Ten advances in mathematics and theoretical computer science},
 Chapter~3, 78--95, 2026,
 \url{https://cdn.openai.com/pdf/ten-proofs-oai.pdf}.
+
+\bibitem[Ol]{Ollivier}
+Y.~Ollivier,
+\emph{Sharp phase transition theorems for hyperbolicity of random groups},
+Geom. Funct. Anal. \textbf{14} (2004), no.~3, 595--679,
+\href{https://arxiv.org/abs/math/0301187}{arXiv:math/0301187}.
 
 \bibitem[Os]{Osin}
 D.~Osin,

@@ -6,15 +6,15 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 154 |
+| `formalized` | 156 |
 | `unassigned` | 120 |
-| `definition` | 42 |
+| `definition` | 41 |
 | `structural` | 11 |
 | `attribution` | 9 |
 | `partial` | 3 |
-| **total** | **339** |
+| **total** | **340** |
 
-Completely formalized or definitional: **196/339** (57.8%).
+Completely formalized or definitional: **197/340** (57.9%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -27,22 +27,22 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 75 --- The main tool is a one-sided compression criterion that places normal Kazhdan subgroups in the MF radical. Applied to the binary Leavitt group, it shows that the finitely generated simple property-\textup{(T)} group $H=\EL_{12}(L_{\F_2}(1,2))$ has trivial image under every homomorphism to an MF group; consequently its reduced group $C^*$-algebra is a separable stably finite $C^*$-algebra that is not MF\@.
 * **`unassigned`**, line 75 --- A second application gives a finitely presented torsion-free group with property~\textup{(T)} that has trivial image under every homomorphism to an MF group, and every nontrivial quotient of it has the same property.
 * **`unassigned`**, line 128 --- The group $H$ is finitely generated, nontrivial, simple, and has property~\textup{(T)}, but every homomorphism from $H$ to an MF group is trivial. In particular, $H$ is not MF.
-* **`unassigned`**, line 147 --- Here, MF group always means this operator-norm local-approximation property.
-* **`unassigned`**, line 147 --- The strong-convergence convention also requires the matrix models to recover the norms of the left regular representation~\cite{GaoEtAl,Schafhauser}.
-* **`unassigned`**, line 217 --- A non-MF group therefore gives a separable stably finite reduced group $C^*$-algebra that is not MF (see the proof of Theorem~\ref{thm:headline}).
-* **`unassigned`**, line 259 --- We call a homomorphism $G\to\U(\mathcal Q_{\mathbf d})$ a \emph{corona homomorphism}.
-* **`unassigned`**, line 325 --- This holds because conjugation by the compressor moves the Kazhdan projection of $L$ below itself, and stable finiteness of the corona forces equality (Section~\ref{sec:transport}).
-* **`unassigned`**, line 325 --- If a corona homomorphism were nontrivial on $K$, the Kazhdan projection of $K$ would cut out a $G$-invariant corner on which $K$ has no nonzero fixed vectors (Lemma~\ref{lem:central-corona-corner}); by the Kazhdan inequality some $s_0\in K$ would then stay bounded away from the identity in normalized Hilbert--Schmidt norm along a subsequence, contradicting $s_0\in\mathfrak D_G(L)$.
-* **`unassigned`**, line 346 --- Property~\textup{(T)} is not itself an obstruction to MF approximation: every residually finite group is MF, including many Kazhdan groups.
-* **`unassigned`**, line 346 --- In the argument above, property~\textup{(T)} controls the fixed vectors of an exact corona representation.
-* **`unassigned`**, line 346 --- The one-sided compression forces the corresponding Kazhdan projection to commute with the compressor, which makes the Hilbert--Schmidt commutant invariant.
-* **`unassigned`**, line 353 --- We next apply Theorem~\ref{thm:compression-criterion} to the group $H$.
-* **`unassigned`**, line 470 --- The relation $t_1(s_1t_1)s_1=1$ and the Steinberg commutator relations show directly that $d$ normally generates $H$.
-* **`unassigned`**, line 480 --- The second application of Theorem~\ref{thm:compression-criterion} is to a group without torsion.
-* **`unassigned`**, line 485 --- There is a two-generated, finitely presented, torsion-free, acylindrically hyperbolic group $Q$ with property~\textup{(T)} and
-* **`unassigned`**, line 490 --- Every nontrivial quotient of $Q$ also equals its own MF radical; in particular, no nontrivial quotient of $Q$ is MF\@.
-* **`unassigned`**, line 494 --- The group $Q$ is a small-cancellation quotient, in the sense of Hull~\cite{Hull}, of the torsion-free property-\textup{(T)} group of Fournier-Facio~\cite[\S2]{FFF}, chosen so that the compression defect normally generates the quotient (Section~\ref{sec:torsion-free}).
-* **`unassigned`**, line 494 --- Thus the obstruction of Theorem~\ref{thm:compression-criterion} depends neither on torsion, nor on simplicity, nor on the Leavitt algebra.
+* **`unassigned`**, line 128 --- The theorems about it are.
+* **`unassigned`**, line 151 --- Here, MF group always means this operator-norm local-approximation property.
+* **`unassigned`**, line 151 --- The strong-convergence convention also requires the matrix models to recover the norms of the left regular representation~\cite{GaoEtAl,Schafhauser}.
+* **`unassigned`**, line 221 --- A non-MF group therefore gives a separable stably finite reduced group $C^*$-algebra that is not MF (see the proof of Theorem~\ref{thm:headline}).
+* **`unassigned`**, line 263 --- We call a homomorphism $G\to\U(\mathcal Q_{\mathbf d})$ a \emph{corona homomorphism}.
+* **`unassigned`**, line 329 --- This holds because conjugation by the compressor moves the Kazhdan projection of $L$ below itself, and stable finiteness of the corona forces equality (Section~\ref{sec:transport}).
+* **`unassigned`**, line 329 --- If a corona homomorphism were nontrivial on $K$, the Kazhdan projection of $K$ would cut out a $G$-invariant corner on which $K$ has no nonzero fixed vectors (Lemma~\ref{lem:central-corona-corner}); by the Kazhdan inequality some $s_0\in K$ would then stay bounded away from the identity in normalized Hilbert--Schmidt norm along a subsequence, contradicting $s_0\in\mathfrak D_G(L)$.
+* **`unassigned`**, line 350 --- Property~\textup{(T)} is not itself an obstruction to MF approximation: every residually finite group is MF, including many Kazhdan groups.
+* **`unassigned`**, line 350 --- In the argument above, property~\textup{(T)} controls the fixed vectors of an exact corona representation.
+* **`unassigned`**, line 350 --- The one-sided compression forces the corresponding Kazhdan projection to commute with the compressor, which makes the Hilbert--Schmidt commutant invariant.
+* **`unassigned`**, line 357 --- We next apply Theorem~\ref{thm:compression-criterion} to the group $H$.
+* **`unassigned`**, line 474 --- The relation $t_1(s_1t_1)s_1=1$ and the Steinberg commutator relations show directly that $d$ normally generates $H$.
+* **`unassigned`**, line 486 --- There is a two-generated, finitely presented, torsion-free, acylindrically hyperbolic group $Q$ with property~\textup{(T)} and
+* **`unassigned`**, line 491 --- Every nontrivial quotient of $Q$ also equals its own MF radical; in particular, no nontrivial quotient of $Q$ is MF\@.
+* **`unassigned`**, line 495 --- The group $Q$ is a small-cancellation quotient, in the sense of Hull~\cite{Hull}, of the torsion-free property-\textup{(T)} group of Fournier-Facio~\cite[\S2]{FFF}, chosen so that the compression defect normally generates the quotient (Section~\ref{sec:torsion-free}).
+* **`unassigned`**, line 495 --- Thus Theorem~\ref{thm:compression-criterion} also applies to $Q$.
 * **`unassigned`**, line 503 --- Blackadar and Kirchberg developed the notions of MF and NF algebras and proved that a separable $C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK}.
 * **`unassigned`**, line 510 --- Later papers on approximation of groups relate the resulting operator norm problem to Kirchberg's question~\cite{LubotzkyOppenheim,Thom}.
 * **`partial`**, line 510 --- The negative solution of the Connes embedding problem~\cite{MIPRE} yields separable stably finite $C^*$-algebras that are not MF, as Goldbring and Hart observe~\cite[Proposition~6.1 and Remark~6.2]{GoldbringHart}.
@@ -121,7 +121,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1595 --- Then
 * **`unassigned`**, line 1606 --- so $Q=q(N_0)=\langle q(h_1),q(h_2)\rangle$ and $q(N)=Q$.
 * **`unassigned`**, line 1606 --- The group $Q$ is torsion-free because $G$ is, and finitely presented because it is $G$ with $m$ relators added.
-* **`unassigned`**, line 1611 --- Following Fournier-Facio~\cite[\S2]{FFF}, let $U$ be a universal finitely presented torsion-free group, one containing a copy of every finitely presented torsion-free group~\cite{Chiodo}; let $S$ be a finitely presented infinite simple torsion-free group~\cite{HydeLodha}; and let $H_0$ be a torsion-free hyperbolic group with property~\textup{(T)}~\cite{Kotowski}.
+* **`unassigned`**, line 1611 --- Following Fournier-Facio~\cite[\S2]{FFF}, let $U$ be a universal finitely presented torsion-free group, one containing a copy of every finitely presented torsion-free group~\cite{Chiodo}; let $S$ be a finitely presented infinite simple torsion-free group~\cite{HydeLodha}; and let $H_0$ be a torsion-free hyperbolic group with property~\textup{(T)}, obtained from the density model at a parameter between $1/3$ and $1/2$ ~\cite{Kotowski,Ollivier}.
 * **`unassigned`**, line 1611 --- Small cancellation over the relatively hyperbolic pair $(U*H_0,U)$ embeds $U$ in a finitely presented torsion-free quotient $P$ of $H_0$ ~\cite[Proposition~2.3]{FFFStability}; torsion-freeness is preserved by Osin's embedding theorem~\cite[Theorem~2.4(5)]{OsinSmallCancellation}.
 * **`unassigned`**, line 1611 --- Consequently, $P$ has property~\textup{(T)}.
 * **`unassigned`**, line 1611 --- By universality, $P$ contains a subgroup $P_1\times P_2\times S$ with $P_i\cong P$.
@@ -129,32 +129,32 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 1611 --- Hull's common quotient theorem~\cite[Corollary~7.4]{Hull} applied to $E$ and $H_0$ gives a surjection $\pi\colon E\to G_0$ onto a finitely presented torsion-free group with property~\textup{(T)}, injective on a prescribed finite subset of $E$; since $E$ is finitely generated, the proof of that corollary produces $G_0$ acylindrically hyperbolic.
 * **`unassigned`**, line 1611 --- We run the construction with the prescribed finite subset containing an element $s\ne1$ of $S$.
 * **`unassigned`**, line 1611 --- Then $\pi(S)\ne1$, so $\pi|_S$ is injective because $S$ is simple.
-* **`unassigned`**, line 1636 --- Put $\Gamma=\pi(P)$, $t=\pi(u_1)$, and $J=t^{-1}\pi(S)t$.
-* **`unassigned`**, line 1636 --- Since $S$ commutes with $P_1=u_1Pu_1^{-1}$, the subgroup $J$ centralizes $\Gamma$, and $t\Gamma t^{-1}=\pi(P_1)\le\Gamma$, so $t\in\operatorname{Comp}_{G_0}(\Gamma)$.
-* **`unassigned`**, line 1636 --- Moreover $tJt^{-1}=\pi(S)\le\Gamma$, and $\Gamma$ has property~\textup{(T)} as a quotient of $P$.
-* **`unassigned`**, line 1643 --- Let $\rho\colon G_0\to L$ be a surjective homomorphism with $\rho(\pi(S))\ne1$.
-* **`unassigned`**, line 1643 --- Then $\rho(\pi(S))\le\mathfrak D_L(\rho(\Gamma))$.
-* **`unassigned`**, line 1648 --- Write $\Gamma_L=\rho(\Gamma)$, $t_L=\rho(t)$, and $J_L=\rho(J)$.
-* **`unassigned`**, line 1648 --- Then $t_L\Gamma_Lt_L^{-1}\le\Gamma_L$, $J_L$ centralizes $\Gamma_L$, and $t_LJ_Lt_L^{-1}=\rho(\pi(S))\le\Gamma_L$.
-* **`unassigned`**, line 1648 --- For $c\in J_L$ and $\ell\in\Gamma_L$, the commutator $[t_Lct_L^{-1},\ell]$ lies in $\mathfrak D_L(\Gamma_L)$ by \eqref{eq:intrinsic-defect}.
-* **`unassigned`**, line 1648 --- As $c$ ranges over $J_L$, the element $t_Lct_L^{-1}$ ranges over $\rho(\pi(S))$, and $\ell$ may be taken in $\rho(\pi(S))\le\Gamma_L$; hence the commutator subgroup of $\rho(\pi(S))$ lies in $\mathfrak D_L(\Gamma_L)$.
-* **`unassigned`**, line 1648 --- Since $\rho(\pi(S))\ne1$ and $S$ is simple, $\rho(\pi(S))\cong S$ is perfect, so $\rho(\pi(S))\le\mathfrak D_L(\Gamma_L)$.
-* **`unassigned`**, line 1661 --- Let $N$ be the normal closure of $\pi(S)$ in $G_0$.
-* **`unassigned`**, line 1661 --- It is nontrivial, so Lemma~\ref{lem:saturation} applied to $G_0$, $N$, and $F=\{1,\pi(s)\}$ gives $q\colon G_0\to Q$ with $Q$ two-generated, finitely presented, torsion-free, and acylindrically hyperbolic, $q(N)=Q$, and $q(\pi(s))\ne1$.
-* **`unassigned`**, line 1661 --- The group $Q$ has property~\textup{(T)} as a quotient of $G_0$.
-* **`unassigned`**, line 1667 --- Let $r\colon Q\to L$ be a surjection onto a nontrivial group and put $\rho=r\circ q$.
-* **`unassigned`**, line 1667 --- Since $q(N)=Q$, the normal closure of $\rho(\pi(S))$ in $L$ is $\rho(N)=L$; as $L\ne1$, this forces $\rho(\pi(S))\ne1$.
-* **`unassigned`**, line 1667 --- By Lemma~\ref{lem:simple-in-defect}, $\rho(\pi(S))\le\mathfrak D_L(\rho(\Gamma))$, and since $\mathfrak D_L(\rho(\Gamma))$ is normal in $L$ and contains a normal generating set of $L$, it equals $L$.
-* **`unassigned`**, line 1667 --- The group $L$ has property~\textup{(T)} as a quotient of $Q$, and $\rho(\Gamma)$ has property~\textup{(T)} as a quotient of $\Gamma$.
-* **`unassigned`**, line 1667 --- Theorem~\ref{thm:compression-criterion}, applied to $L$ with the subgroup $\rho(\Gamma)$ and $K=L$, gives $\Rad_{\mathrm{MF}}(L)=L$.
-* **`unassigned`**, line 1667 --- Taking $r$ the identity gives $\Rad_{\mathrm{MF}}(Q)=Q$, and a nontrivial group equal to its own MF radical is not MF\@.
+* **`unassigned`**, line 1638 --- Put $\Gamma=\pi(P)$, $t=\pi(u_1)$, and $J=t^{-1}\pi(S)t$.
+* **`unassigned`**, line 1638 --- Since $S$ commutes with $P_1=u_1Pu_1^{-1}$, the subgroup $J$ centralizes $\Gamma$, and $t\Gamma t^{-1}=\pi(P_1)\le\Gamma$, so $t\in\operatorname{Comp}_{G_0}(\Gamma)$.
+* **`unassigned`**, line 1638 --- Moreover $tJt^{-1}=\pi(S)\le\Gamma$, and $\Gamma$ has property~\textup{(T)} as a quotient of $P$.
+* **`unassigned`**, line 1645 --- Let $\rho\colon G_0\to L$ be a surjective homomorphism with $\rho(\pi(S))\ne1$.
+* **`unassigned`**, line 1645 --- Then $\rho(\pi(S))\le\mathfrak D_L(\rho(\Gamma))$.
+* **`unassigned`**, line 1650 --- Write $\Gamma_L=\rho(\Gamma)$, $t_L=\rho(t)$, and $J_L=\rho(J)$.
+* **`unassigned`**, line 1650 --- Then $t_L\Gamma_Lt_L^{-1}\le\Gamma_L$, $J_L$ centralizes $\Gamma_L$, and $t_LJ_Lt_L^{-1}=\rho(\pi(S))\le\Gamma_L$.
+* **`unassigned`**, line 1650 --- For $c\in J_L$ and $\ell\in\Gamma_L$, the commutator $[t_Lct_L^{-1},\ell]$ lies in $\mathfrak D_L(\Gamma_L)$ by \eqref{eq:intrinsic-defect}.
+* **`unassigned`**, line 1650 --- As $c$ ranges over $J_L$, the element $t_Lct_L^{-1}$ ranges over $\rho(\pi(S))$, and $\ell$ may be taken in $\rho(\pi(S))\le\Gamma_L$; hence the commutator subgroup of $\rho(\pi(S))$ lies in $\mathfrak D_L(\Gamma_L)$.
+* **`unassigned`**, line 1650 --- Since $\rho(\pi(S))\ne1$ and $S$ is simple, $\rho(\pi(S))\cong S$ is perfect, so $\rho(\pi(S))\le\mathfrak D_L(\Gamma_L)$.
+* **`unassigned`**, line 1663 --- Let $N$ be the normal closure of $\pi(S)$ in $G_0$.
+* **`unassigned`**, line 1663 --- It is nontrivial, so Lemma~\ref{lem:saturation} applied to $G_0$, $N$, and $F=\{1,\pi(s)\}$ gives $q\colon G_0\to Q$ with $Q$ two-generated, finitely presented, torsion-free, and acylindrically hyperbolic, $q(N)=Q$, and $q(\pi(s))\ne1$.
+* **`unassigned`**, line 1663 --- The group $Q$ has property~\textup{(T)} as a quotient of $G_0$.
+* **`unassigned`**, line 1669 --- Let $r\colon Q\to L$ be a surjection onto a nontrivial group and put $\rho=r\circ q$.
+* **`unassigned`**, line 1669 --- Since $q(N)=Q$, the normal closure of $\rho(\pi(S))$ in $L$ is $\rho(N)=L$; as $L\ne1$, this forces $\rho(\pi(S))\ne1$.
+* **`unassigned`**, line 1669 --- By Lemma~\ref{lem:simple-in-defect}, $\rho(\pi(S))\le\mathfrak D_L(\rho(\Gamma))$, and since $\mathfrak D_L(\rho(\Gamma))$ is normal in $L$ and contains a normal generating set of $L$, it equals $L$.
+* **`unassigned`**, line 1669 --- The group $L$ has property~\textup{(T)} as a quotient of $Q$, and $\rho(\Gamma)$ has property~\textup{(T)} as a quotient of $\Gamma$.
+* **`unassigned`**, line 1669 --- Theorem~\ref{thm:compression-criterion}, applied to $L$ with the subgroup $\rho(\Gamma)$ and $K=L$, gives $\Rad_{\mathrm{MF}}(L)=L$.
+* **`unassigned`**, line 1669 --- Taking $r$ the identity gives $\Rad_{\mathrm{MF}}(Q)=Q$, and a nontrivial group equal to its own MF radical is not MF\@.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 5 | 4 |
-| Introduction | 51 | 17 |
+| Introduction | 52 | 17 |
 | Relation to prior work | 24 | 8 |
 | The MF radical | 14 | 10 |
 | Finite dimension | 12 | 2 |
