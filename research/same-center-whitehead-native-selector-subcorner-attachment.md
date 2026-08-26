@@ -211,3 +211,15 @@ excluded by the regular-trace firewall.
   dressed outputs maximal Gram with a trivial common spectator gauge.
   Therefore the dressed overlap does not imply `(SNA2)` without an ordinary
   word relation comparing the raw outputs or removing the spectators.
+
+- **Make every signed-Reynolds detector small by relator telescoping.**
+  `signed-reynolds-detectors-form-the-marked-complement-subgroup` proves
+  that the `8192` detector words are the graph of `lambda_0` inside the
+  genuine direct product `<z> directProduct L_0`.  They form a faithful
+  subgroup isomorphic to `L_0`; only the identity detector is a relator.
+  In the regular representation all defining relators vanish while every
+  nonidentity detector has operator-norm distance two from the identity,
+  also on the negative marked sector.  Thus the detector branch of the
+  Reynolds dichotomy cannot be removed by bounded-area presentation
+  telescoping.  The remaining positive use of that dichotomy must exploit
+  its source-compressed discrepancy or a new paid-subcorner incidence.
