@@ -75,21 +75,22 @@
 \keywords{MF groups, arithmetical hierarchy, finitely presented groups, HNN extensions, Higman embedding, norm matrix coronas}
 
 \begin{abstract}
-The finite presentations of MF groups form a $\Pi^0_2$-complete set, and
-the finite presentations of non-MF groups form a $\Sigma^0_2$-complete
-set.  Neither set is recursively enumerable: it is impossible to
-construct an algorithm that decides from a finite presentation whether
-the group it defines is MF\@.  Here a countable group is MF if it admits
-finite-dimensional unitary models that are asymptotically multiplicative
-and asymptotically separate nonidentity elements in operator norm.  Finite
-semialgebraic certificates characterize the MF condition.  We construct a
-computable map $e\mapsto\widehat R_e$ into finite presentations such that
-$\widehat R_e$ presents an MF group if and only if the $e$-th partial
-computable function has infinite domain.  If the domain is finite, the
-presented group contains the non-MF group of~\cite{NonMF}.  If the domain
-is infinite, the presented group is MF by a permanence theorem for HNN
-extensions whose edge isomorphism is implemented by a unitary of a norm
-matrix corona.
+A countable group is MF if it admits finite-dimensional unitary models
+that are asymptotically multiplicative and asymptotically separate
+nonidentity elements in operator norm.  We show that deciding whether a
+finite presentation defines an MF group is $\Pi^0_2$-complete.  So it is
+impossible to construct an algorithm that decides from a finite
+presentation whether the group it defines is MF, and impossible even to
+enumerate the presentations of MF groups, or those of non-MF groups.  A
+presentation defines an MF group if and only if certificates exist at
+every scale; the certificates are finite, and checking one is decidable,
+by Tarski's theorem.  We also construct, computably from any program, a
+finite presentation that defines an MF group if and only if the program
+halts on infinitely many inputs.  If the program halts on only finitely
+many inputs, the presented group contains the non-MF group
+of~\cite{NonMF}; if it halts on infinitely many inputs, the group is MF
+by a permanence theorem for HNN extensions whose edge isomorphism is
+implemented by a unitary of a norm matrix corona.
 \end{abstract}
 
 \maketitle
