@@ -36,3 +36,63 @@ as an `F_p`-function is `P=0`.  An exact determinant evaluation would
 pivot all `S` rows and reduce the X-dual surjectivity problem to the
 explicit Schur complement on `Q/S`; it does not by itself prove that
 complement is invertible.
+
+## Exact reduction
+
+Expanding the first row of `(SRP2)` leaves only its last entry `8`, so a
+cofactor reduces `M_p` to a square minor `N=W+K`.  After reversing rows,
+the anti-Pascal part factors as
+
+```text
+W'_(j,v)=a_j binom(v,j)b_v,
+a_j=(-1)^(j+1)2^(1-j),             b_v=2^(-v),
+```
+
+and has determinant `-1/8`.  Binomial inversion gives the exact correction
+`H=W^(-1)K`, indexed by `u,v=2,...,p-3`:
+
+```text
+H_(u,2)=(u+1)/8,
+
+H_(u,v)=2^(1-2v) binom(u+v-1,u)
+ [(-1)^v-2^(u-v)+2^(u+v-1)]       (v>=3).             (SRP4)
+```
+
+Thus `det M_p=det(I+H)`.  If `Q(t)=sum_v q_vt^v`, the generating polynomial
+of `Hq` is
+
+```text
+2(1-z)^p Q(-1/[4(1-z)])
+ -(1-2z)^p{
+    2Q(1/[8(1-2z)])-Q(1/[2(1-2z)])
+    +7q_2/[32(1-2z)^2]
+ }.                                                       (SRP5)
+```
+
+Consequently `(I+H)q=0` says that `(SRP5)+Q(z)` lies in
+`span{1,z,z^(p-2)}`.  Homogenize
+
+```text
+Phi(X,Y)=Y^pQ(X/Y).
+```
+
+The four degree-`p` transforms use
+
+```text
+I,
+g_1=(-Y/4,Y-X),
+g_2=(Y/8,Y-2X),
+g_3=(Y/2,Y-2X).
+```
+
+Applying the projective differential to `Phi` removes the Frobenius
+kernel.  On `Sym^(p-2)` the four coefficients become exactly
+
+```text
+1,                    -1/2,          -1/2,          1, (SRP6)
+```
+
+and the result lies in the two-dimensional boundary space
+`span{Y^(p-2),X^(p-3)Y}`.  Proving that this four-transform operator has no
+nonzero vector with such boundary image is now an equivalent symbolic
+target for `(SRP1)`.

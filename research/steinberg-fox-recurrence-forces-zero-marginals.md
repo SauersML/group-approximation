@@ -46,3 +46,9 @@ fiber `f(-1/4,0,t)` to one scalar `kappa` on `t!=0`, with
 it locally.  Thus the live marginal problem is to control those transverse
 branches using the full two-row pointwise system; further iteration of the
 single exceptional projective orbit is insufficient.
+
+In characteristic three the full coupled cascade does close:
+`steinberg-flag-fox-map-is-injective-at-p-three` proves the stronger fact
+that the entire arbitrary-marginal chord function is zero.  This settles
+the marginal claim at `p=3`, but the all-prime marginal system remains
+open.
