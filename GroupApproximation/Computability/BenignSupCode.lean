@@ -12,7 +12,7 @@ stable conjugates of the six diagonal source marks.
 namespace GroupApproximation
 namespace BenignSupCode
 
-open PresentationCodes DirectProductCode FreeEdgeTowerCode
+open PresentationCodes DirectProductCode FreeEdgeTowerCode RawTransformPrimrec
 open Higman.MikhailovaRopeCode
 
 abbrev Raw : Type := BenignInfCode.Raw
@@ -70,7 +70,7 @@ theorem primrec_generatorWord :
 
 theorem primrec_generatorWords : Primrec generatorWords :=
   Primrec.list_map
-    (Primrec.list_range.comp PresentationCodes.primrec_genCount)
+    (Primrec.list_range.comp primrec_genCount)
     (primrec_generatorWord.comp Primrec.snd)
 
 theorem primrec_productBase : Primrec productBase :=
