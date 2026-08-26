@@ -420,3 +420,34 @@ gauges are exchanged by `D`, their product is a double transposition, and
 one native row still supplies no `(ESB1)--(ESB2)` square.  A live word must
 first return its nonconstant `K_i` cut to `Q` or to `J_iQJ_i^(-1)` through
 another coefficient-sensitive occurrence.
+
+The complete one-occurrence depth-one menu does not supply that return.
+`one-depth-one-occurrence-does-not-return-cross-whitehead` tests all `336`
+nonconstant depth-one elementary roots and all `2688` depth-one
+three-factor opposite-root Whiteheads on the actor coordinates.  Each
+candidate is checked on all ten generators and the character of the full
+signed group `L_0`, against both `Q` and `J_1QJ_1^(-1)`.  The native target
+has no hits.  The source target has only the two braid spellings of `K_i`
+itself, and in both cases `LK_i=1`.  Thus the next live word needs either a
+depth-two coefficient or at least two additional nonnormal occurrences;
+one more depth-one root/Whitehead cell only cancels the original word.
+
+Dyadically refining the two cross coefficients does not supply that return.
+In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
+splittings
+
+```text
+p=sum_(j=0,1)s_(0j)t_(1j),
+r=sum_(j=0,1)s_(1j)t_(0j)
+```
+
+factor each coarse `K_i` into two commuting suffix-private Whiteheads.
+Every private factor still sends `x_28(1)` to a matrix with nonconstant
+entries, and multiplication by the actual `J_1` leaves the explicit
+coefficient `x_1`; hence neither the native Whitehead nor Singer target is
+reached before fusion.  Coarse equality and the literal swap of the two
+orientations have an exact `S_4 times S_4` gauge model, one factor per
+suffix leaf, with diagonal `DE` of order three.  The same construction
+iterates at every fixed dyadic depth.  Thus address refinement alone merely
+factorizes the old gauge; a live word must interact across distinct suffix
+leaves before their completeness sum.
