@@ -370,7 +370,7 @@
     {
       "id": "prop:mf-upper-bound",
       "environment": "proposition",
-      "title": "the certificate normal form",
+      "title": "finite certificates",
       "statement_sha256": "7ff613982799c121367c1504129b4129f4ed9098cc2c2c7f21592b06dea18e1e",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
@@ -612,7 +612,7 @@
     {
       "id": "thm:prescribed-quotients",
       "environment": "theorem",
-      "title": "prescribed quotients visible to MF",
+      "title": "prescribed maximal MF quotients",
       "statement_sha256": "881486bf3a326e7c475370d9e6617fd092050d72b130bdb66aac1286b22f2834",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",

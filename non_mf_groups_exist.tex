@@ -498,10 +498,10 @@ approximations do not provide the operator norm control used to construct the
 conjugation representation in Theorem~\ref{thm:transport}.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity}
 
-The final main result concerns all finitely presented groups at once.  It
-locates the recognition problem for the MF property in the
-Kleene--Mostowski arithmetical hierarchy, whose levels $\Sigma^0_n$ and
-$\Pi^0_n$ count alternations of quantifiers over a decidable relation.
+We also determine the arithmetical complexity of MF recognition for
+finite presentations, in the Kleene--Mostowski hierarchy whose levels
+$\Sigma^0_n$ and $\Pi^0_n$ count alternations of quantifiers over a
+decidable relation.
 
 \begin{mainthm}[recognizing MF groups]\label{thm:recognition}
 Fix an effective coding of finite presentations of groups by natural
@@ -515,39 +515,27 @@ presented by $\widehat R_e$ is MF if and only if the $e$-th partial
 computable function has infinite domain.
 \end{mainthm}
 
-The upper bound is a certificate normal form: the MF property is
-determined by finite data with a fixed separation constant, and the
-existence of a certificate at a given scale is decidable
-(Section~\ref{sec:local}).  For the lower bound we encode the
-$\Pi^0_2$-complete set of programs with infinite domain.  The
-construction of Bilanovic--Chubb--Roven gives a recursively presented
-group that is trivial or contains $H$ according as the domain is infinite
-or finite; an effective Higman embedding and two HNN extensions turn it
-into a finitely presented group (Section~\ref{sec:compiler}); and
-Theorem~\ref{thm:hnn-permanence} proves that the resulting group is MF
-when the domain is infinite: an HNN extension of a group with a tracial MF
-realization is MF whenever the edge isomorphism is implemented by a
-unitary of a norm matrix corona (Sections~\ref{sec:hnn}
-and~\ref{sec:positive}).
-
-Theorems~\ref{thm:compression-criterion} and~\ref{thm:hnn-permanence}
-point in opposite directions.  The first turns a one-sided conjugation in
-a norm matrix corona into an obstruction to operator norm approximation;
-the second turns a conjugation implemented in a norm matrix corona into a
-construction that preserves it.  Theorem~\ref{thm:recognition} comes from
-building a finite presentation in which one or the other mechanism wins
-according to a $\Pi^0_2$-complete predicate: on one branch the group
-contains $H$, on the other it falls under
-Theorem~\ref{thm:hnn-permanence}.  Finite presentability by itself is not
-the point.  The MF property is closed in the space of marked groups
-(Lemma~\ref{lem:marked-closed}), so every finitely generated non-MF group
-is a quotient of a finitely presented one; the content of
-Theorem~\ref{thm:recognition} is the uniform computable family and the
-exact level.  Section~\ref{sec:prescribed-quotients} records a
-complementary calculus that the main line does not use: the MF radical
-pulls back along surjections whose kernel is invisible to MF, and every
-countable group $Q$ is the quotient visible to MF of a non-MF group
-$W_Q$.
+Proposition~\ref{prop:mf-upper-bound} gives a $\Pi^0_2$ description of
+the MF presentations: a presentation is MF exactly when finite
+certificates exist at every scale (Section~\ref{sec:local}).  For
+hardness we reduce the $\Pi^0_2$-complete set of programs with infinite
+domain to MF recognition: from $e$ we construct a finite presentation
+$\widehat R_e$ (Section~\ref{sec:compiler}).  If the domain is finite,
+then $H\le\widehat R_e$, so $\widehat R_e$ is not MF\@.  If the domain is
+infinite, then $\widehat R_e$ satisfies the hypotheses of
+Theorem~\ref{thm:hnn-permanence}, an MF permanence theorem for HNN
+extensions whose edge isomorphism is implemented by a unitary of a norm
+matrix corona, and is MF (Sections~\ref{sec:hnn} and~\ref{sec:positive}).
+The MF property is closed in the space of marked groups
+(Lemma~\ref{lem:marked-closed}), so every finitely generated group that is
+not MF is a quotient of a finitely presented one;
+Theorem~\ref{thm:recognition} adds the uniform family and the exact level.
+Section~\ref{sec:prescribed-quotients}, which the proofs of
+Theorems~\ref{thm:headline} and~\ref{thm:recognition} do not use, proves
+that $\Rad_{\mathrm{MF}}(G)=f^{-1}(\Rad_{\mathrm{MF}}(Q))$ for every
+surjection $f\colon G\to Q$ with $\ker f\le\Rad_{\mathrm{MF}}(G)$, and
+that every countable MF group $Q$ is the maximal MF quotient
+$W_Q/\Rad_{\mathrm{MF}}(W_Q)$ of a non-MF group $W_Q$.
 
 \subsection*{Relation to prior work}
 
@@ -627,15 +615,17 @@ Theorem~\ref{thm:hnn-permanence} applies to them.
 
 \section{One-sided compression and the MF radical}\label{sec:compression}
 
-This section proves Theorem~\ref{thm:compression-criterion}.  The
-mechanism is visible already in finite dimension: an injective linear
-endomorphism of a finite-dimensional space is surjective, so a one-sided
-invariant commutant is invariant.  In a norm matrix corona the substitute
-for finite dimensionality is stable finiteness, which forces two
-equivalent projections, one below the other, to be equal; the projection
-in question is the Kazhdan projection of a property-\textup{(T)} subgroup.
-Property~\textup{(T)} of a normal subgroup then transports the resulting
-Hilbert--Schmidt collapse back into an obstruction in operator norm.
+This section proves Theorem~\ref{thm:compression-criterion}.  Let
+$uLu^{-1}\le L$.  In a finite-dimensional representation $\rho$,
+conjugation by $\rho(u)$ maps the commutant of $\rho(L)$ into itself; the
+map is injective, hence surjective, so the commutant is invariant
+(Theorem~\ref{thm:commutant}).  In a norm matrix corona the same
+conclusion is obtained for the Kazhdan projection of a
+property-\textup{(T)} subgroup: conjugation moves the projection below
+itself, and stable finiteness of the corona forces equality
+(Section~\ref{sec:transport}).  A normal property-\textup{(T)} subgroup
+contained in the compression defect then lies in the MF radical
+(Theorem~\ref{thm:normal-kazhdan}).
 
 \subsection{The MF radical}
 
@@ -777,13 +767,10 @@ $\rho(ucu^{-1})\in C$.  Therefore
 $\rho([ucu^{-1},\ell])=1$ for every $\ell\in L$.
 \end{proof}
 
-This is where finite dimensionality enters the proof: an injective linear
-self-map of an infinite-dimensional commutant need not be surjective.
+The finite-dimensionality hypothesis cannot be dropped: an injective
+linear self-map of an infinite-dimensional commutant need not be
+surjective.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCommutantFiniteDimensionalHypothesisIsEssential}
-In Section~\ref{sec:transport} the Kazhdan projection places the analogous
-endomorphism inside a norm matrix corona, where stable finiteness supplies
-the missing surjectivity for projections onto fixed vectors.
-
 \subsection{Kazhdan transport in normalized Hilbert--Schmidt norm}
 \label{sec:transport}
 
@@ -1771,7 +1758,7 @@ relator words, and write $G_P$ for the group presented by the code $P$.
 Let $\mathrm{MF}_{\mathrm{fp}}$ be the set of codes $P$ such that $G_P$ is
 MF, and $\mathrm{NONMF}_{\mathrm{fp}}$ its complement.
 
-\begin{proposition}[the certificate normal form]\label{prop:mf-upper-bound}
+\begin{proposition}[finite certificates]\label{prop:mf-upper-bound}
 There is a decidable relation $C(P,n,c)$ on triples of natural numbers
 such that a code $P$ lies in $\mathrm{MF}_{\mathrm{fp}}$ if and only if
 for every $n$ there is $c$ with $C(P,n,c)$.  Consequently
@@ -2029,11 +2016,9 @@ $\tau'(j(r))=\tau_R(\lambda_R(r))=0$ for $r\ne1$.  Hence $(A',j,\tau')$
 is a tracial MF realization of $R$.
 \end{proof}
 
-The covariant pair $(\iota\rho,W)$ need not define a faithful
-representation of $R$ in $\mathcal Q$, and in the applications below it
-does not; the map $\sigma\colon U\to C^*_{\mathrm r}(R)$ is what proves
-that $j\colon R\to\U(U)$ is injective.  The proof uses no normal form
-for the HNN extension.
+Injectivity of $j$ follows from $\sigma\circ j=\lambda_R$, not from the
+covariant pair $(\iota\rho,W)$, which need not be faithful; in the
+applications below it is not.
 
 \begin{corollary}[central HNN extensions]\label{cor:central-hnn}
 If $G$ admits a tracial MF realization and $S\le G$ is any subgroup, then
@@ -2108,8 +2093,8 @@ $e\in\mathrm{FIN}$.
 \end{lemma}
 
 \begin{proof}
-This is the construction of Bilanovic--Chubb--Roven~\cite[Theorem~3.1]{BCR}
-with the trivial group as positive witness and $H$ as negative witness.
+Apply the construction of Bilanovic--Chubb--Roven~\cite[Theorem~3.1]{BCR}
+to the trivial group and $H$.
 Let $\langle Y\mid T\rangle$ be the recursive presentation of $H$ from
 Lemma~\ref{lem:seed}.  Take generators $y_{i,\ell}$ for $i\ge1$ and
 $\ell\in Y$, one copy $Y_i$ of $Y$ for each $i$, and as relators all
@@ -2320,7 +2305,7 @@ relators of $Q_e$.  Its finite replacement is
  \quad(a\in\{x,y,t\})\Bigr\rangle,
 \end{aligned}
 \end{equation}
-where $\Gamma_e\times F$ carries the finite presentation of
+where $\Gamma_e\times F$ is equipped with the finite presentation of
 Lemma~\ref{lem:central-rope}(2), the basis $x,y,t$ of $F$, and the
 commutation relators between the two factors.
 
@@ -2342,8 +2327,8 @@ gives $(i(n),n)=(i(n),1)$, that is, $(1,n)=1$ in $\widehat R_e$.  Hence
 the factor $F$ of $\widehat R_e$ factors through $Q_e=F/N_e$, and the
 relations of~\eqref{eq:finite-rope} become $u(s,1)u^{-1}=(s,\tau_e(s))$
 for $s$ in the generating set $\{i(a),\,v\,i(a)\,v^{-1}:a\in\{x,y,t\}\}$
-of $S_e$, hence for all $s\in S_e$, since both sides are homomorphic in
-$s$.  This defines a homomorphism $R_e\to\widehat R_e$; conversely, the
+of $S_e$; both sides define homomorphisms on $S_e$, so the relations hold
+for all $s\in S_e$.  This defines a homomorphism $R_e\to\widehat R_e$; conversely, the
 relations of~\eqref{eq:finite-rope} hold in $R_e$ after $F\to Q_e$,
 because $\tau_e(i(a))=q_e(a)$ and $\tau_e(v\,i(a)\,v^{-1})=1$.  The two
 homomorphisms are mutually inverse on generators.  Computability of the
@@ -2555,14 +2540,14 @@ no counterpart for permutation models.
 
 
 
-\section{MF radicals under quotient maps}\label{sec:prescribed-quotients}
+\section{Pullback formulas for MF radicals}\label{sec:prescribed-quotients}
 
 This section is not used in the proof of Theorem~\ref{thm:recognition}.
-It describes what MF representations see of a group that contains a
-subgroup with full MF radical, and it produces every countable group as
-the visible quotient of a non-MF group.
+It proves that the MF radical pulls back along surjections whose kernel
+lies in the radical, and it realizes every countable MF group as the
+maximal MF quotient of a non-MF group.
 
-\begin{theorem}[prescribed quotients visible to MF]\label{thm:prescribed-quotients}
+\begin{theorem}[prescribed maximal MF quotients]\label{thm:prescribed-quotients}
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
 $1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$ and, for a
 countable group $Q$, define
@@ -2633,7 +2618,7 @@ for every MF group $M$.
 \end{theorem}
 
 We begin with the pullback of the radical along a surjection whose kernel
-is invisible to MF\@.
+lies in the radical.
 
 \begin{proposition}[full-kernel pullback]\label{prop:full-kernel-pullback}
 Let $f\colon G\to Q$ be a surjective homomorphism of countable groups.  If
@@ -2721,8 +2706,8 @@ Proposition~\ref{prop:mf-residual-calculus}, applied in $G$ and $Q$.
 
 Thus image under $f$ and inverse image under $f$ give mutually inverse
 correspondences, preserving inclusion between the normal subgroups with MF
-quotient in $G$ and in $Q$.  The map induced by $f$ on the largest
-quotients visible to MF is an isomorphism:
+quotient in $G$ and in $Q$.  The map induced by $f$ on the maximal MF
+quotients is an isomorphism:
 %<webmath object="visible-quotient-iso" when="G/\Rad_{\mathrm{MF}}(G)\cong Q/\Rad_{\mathrm{MF}}(Q)" title="the largest detectable parts of G and Q have the same structure">
 % Each slash forms a [[quotient group]] by removing the corresponding [[MF
 % radical]].  The symbol \(\cong\) means there is an [[isomorphism]]: a
@@ -2736,8 +2721,8 @@ quotients visible to MF is an isomorphism:
  G/\Rad_{\mathrm{MF}}(G)
  \cong Q/\Rad_{\mathrm{MF}}(Q).
 \]
-These correspondences respect composition of surjective homomorphisms with
-kernels invisible to MF.
+These correspondences respect composition of surjective homomorphisms whose
+kernels lie in the MF radical.
 
 Let $B$ be a countable group with $\Rad_{\mathrm{MF}}(B)=B$, and let
 $1\ne d\in B$ normally generate $B$.  Put $A=\langle d\rangle$.  For a
@@ -2969,16 +2954,16 @@ proof development, literature searches, Lean formalization, drafting, and
 editing.  The author reviewed their output and is responsible for the
 manuscript.  Lean~4 source for the formalized results is available at
 \coderepo; the repository identifies the Lean declarations corresponding
-to the statements below.
+to the statements of this paper.
 
 For this paper, the development verifies the one-sided transport theorem
 and the normal property-\textup{(T)} radical criterion behind
 Theorem~\ref{thm:compression-criterion}; the rank~$12$ compression and
 commutator calculations and the full MF radical conclusion of
-Theorem~\ref{thm:headline}, with a direct proof of
-Proposition~\ref{prop:simple} that does not pass through Preusser's
-theorem; the quotient calculus of Theorem~\ref{thm:prescribed-quotients};
-and, for Theorem~\ref{thm:recognition}, the certificate normal form and
+Theorem~\ref{thm:headline}, including a direct proof of
+Proposition~\ref{prop:simple}; the quotient calculus of Theorem~\ref{thm:prescribed-quotients};
+and, for Theorem~\ref{thm:recognition}, the description by finite
+certificates and
 the deduction of $\Pi^0_2$-completeness from a computable family of
 finite presentations that is MF exactly on $\mathrm{INF}$.  The
 construction of that family in Section~\ref{sec:compiler} and
