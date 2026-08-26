@@ -566,6 +566,18 @@ actual unequal native selector occurrences.  The meet is not known to
 reduce `M`, so the odd order-five relation alone does not perform that
 occurrence attachment.
 
+Passing to an odd-actor-invariant carrier does not lose all of this progress.
+`full-packet-cyclic-aggregates-retain-positive-endpoint-gram` joins the five
+`C=WM` translates, or the seven `M` translates, of `p_2`.  These carriers
+contain the marked signed source, reduce the corresponding odd actor, and
+retain Whitehead Gram fractions at least `1/15` and `1/21`.  What remains
+noninvariant is the positive common meet on which the Whitehead polar is
+defined.  Consequently the odd relation still cannot be telescoped on that
+polar subcorner.  The exact cyclic-only lamp model proves that this failure
+cannot be repaired from `C^5=1` or `M^7=1` alone; the returning `GL_3`
+incidence is exactly what supplies positivity, while a native source-and-
+target occurrence is still needed to lock its gauge.
+
 The original signed source and one endpoint-moved source have now also been
 compared exactly.  In
 `endpoint-whitehead-signed-source-has-only-relative-hecke-overlap` their

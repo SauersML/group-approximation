@@ -340,6 +340,19 @@ literature theorem is permitted in this claim.
   collisions plus the actor close positivity, while `(APG1)` still requires
   the typed common gauge.
 
+  Odd cyclic aggregation preserves this gain but does not supply the typing.
+  `full-packet-cyclic-aggregates-retain-positive-endpoint-gram` takes the
+  orbit join of `p_2` under either `C=WM` or `M`.  The joins are respectively
+  `C`- and `M`-invariant and retain Whitehead Gram fractions at least `1/15`
+  and `1/21` in every finite-dimensional profile.  The common positive meet
+  need not reduce the odd actor, however, so neither `C^5=1` nor `M^7=1`
+  can yet be restricted to its polar corner.  The complementary exact model
+  in `cyclic-endpoint-sheet-aggregation-has-zero-gram-profile` shows that the
+  cyclic relator by itself would give no overlap if the literal returning
+  `GL_3` incidence were deleted.  Thus mass and scalar overlap now survive
+  both the signed cut and finite orbit aggregation; the remaining obstruction
+  is specifically the native unequal-row occurrence/gauge identification.
+
   Directly intersecting an endpoint-moved signed source with the original
   source does not supply that fixed frame.
   `endpoint-whitehead-signed-source-has-only-relative-hecke-overlap`
