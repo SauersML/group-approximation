@@ -66,6 +66,9 @@ the desired coercivity even for the shortest escapee.
 **FULL-CONTROL COERCIVITY REMAINS OPEN.**  This firewall is deliberately
 narrow.  It does not exclude an inequality using longer controls, linear
 combinations of their operator Jacobians, or all `4,564` control defects.
+The stronger `atlas-shortest-escapee-has-no-relator-telescope` shows that
+longer controls cannot help through an exact product-of-conjugates word
+telescope either; genuinely analytic operator information could still help.
 In particular it proves neither
 
 ```text
