@@ -26,3 +26,19 @@ Whether `FP_rec2` is `Sigma^0_3`-complete is open here; a family in which
 adding relators makes infinitely many earlier relators redundant would be
 needed, which shift-invariant right-angled Artin families cannot do since
 their relators are independent.
+
+## Why slot-killing families cannot reach the third level
+
+Suppose a reduction attaches to `W <= N` the relator set
+`R(W) = B u {z_j : j in W}` with a fixed base `B` (relators are only ever
+added as `W` grows).  If `R(W)` is finitely normally generated, by a
+finite `S <= R(W)`, then for every `W'` with `{j : z_j in S} <= W' <= W`
+the normal closures satisfy `N_S <= N_{R(W')} <= N_{R(W)} = N_S`, so
+`R(W')` is finitely normally generated too.  Finite presentability is
+therefore convex on the lattice of index sets: whenever it holds for `W`
+it holds for every intermediate `W'` above a finite subset.  The
+cofiniteness index set `COF` is not of this form (a cofinite set has
+coinfinite subsets containing any given finite set), so no encoding in
+which `W_e` only adds relators to a fixed base can prove
+`Sigma^0_3`-hardness of `FP_rec2`; a proof would have to vary the base
+with `e` in a non-monotone way, as machine encodings do.
