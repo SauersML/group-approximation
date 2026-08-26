@@ -690,6 +690,27 @@ The amenability half is fully machine-checked; only the "hence MF" step is not.
 
 ---
 
+### 15. `lem:simple-in-defect` — conditional by its printed shape, accepted
+
+Added 2026-08-26 with the badge
+`GroupApproximation.Manuscript.NonMF.manuscriptLemmaSimpleInDefect`
+(`Manuscript/NonMF/SimpleInDefect.lean`).  The gate reports
+`conditional-data` because the statement quantifies over a
+`FournierFacioDefectData P E` and nothing in the corpus constructs one.
+That is the printed lemma's own shape: Lemma 4.3 of the paper is a
+conditional statement about any surjection out of a group carrying the
+Fournier-Facio configuration, and the structure's fields are exactly the
+lemma's printed hypotheses (the compressing element, the centralizing
+copy of the simple group, and its displacement into the corner).  The
+configuration is supplied in prose by Fournier-Facio's construction and
+Hull's common quotient theorem, which sit outside the kernel-checked
+boundary (see
+`notes/TORSION_FREE_SATURATION_DIRECT_ROUTE_2026-08-14.md`).  Discharge
+would mean constructing a `FournierFacioDefectData` instance, i.e.
+formalizing acylindrical hyperbolicity and Hull's small cancellation;
+until then this row licenses the single baseline line for the
+declaration.
+
 ## 3. Off-badge watchlist
 
 `--audit-corpus` lists every corpus-defined name that no corpus declaration
