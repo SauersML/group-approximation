@@ -4,6 +4,7 @@ id: amenability-two-generator-recursive-is-pi2-complete
 kind: claim
 title: Amenability is Pi-zero-two complete for two-generator recursive presentations, and containing a free subgroup is Sigma-zero-two complete
 artifacts:
+  - GroupApproximation/Computability/AmenableEnumeratedHardness.lean
   - research/artifacts/second-level-rice-theorem-2026-08-26.md
 distinct_from:
   second-level-rice-theorem-for-local-approximation-properties: that handles hereditary properties containing the residually finite groups and its positive branch is the residually finite bridge value, which contains free groups; amenability excludes free groups, so this needs a different two-generator family and a different upper bound (Kesten rather than finite models).
@@ -51,3 +52,5 @@ theorem does not apply to it; nevertheless it sits at exactly the same
 level as soficity, hyperlinearity, MF and LEF.  The reason is Kesten's
 criterion: a single number, the return probability, plays the role of the
 finite model.
+
+**Machine-checked hardness.**  `Computability/AmenableEnumeratedHardness.amenableCode_pi02Hard` and `nonamenableCode_sigma02Hard` are the second-level lower bounds on enumerated presentation codes (amenable groups are sofic, so the nonsofic seed is forbidden); the Kesten upper bound is paper-level.
