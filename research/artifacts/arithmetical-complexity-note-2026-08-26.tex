@@ -137,6 +137,18 @@ Torsion-freeness is $\Pizt$-complete on recursive presentations and, through the
 
 For \emph{isomorphism} the arithmetical hierarchy stops being the right measure. On finitely generated recursive presentations, isomorphism is $\Sith$ --- two finite tuples of words, each relator condition an r.e.\ derivation search --- and $\Pizt$-hard against a single fixed target (the lamplighter, identified inside the shift family by amenability). On countably generated enumerated presentations it is $\Pith$-hard, hence \emph{not} $\Sith$: with $A_e=\bigoplus_{x\in S_e}\Z/2$ for a uniformly $\Sizt$ index set $S_e$, one has $A_e\cong\bigoplus_\N\Z/2$ iff $S_e$ is infinite. In fact the enumerated isomorphism problem is $\Sigma^1_1$-complete already for computable torsion-free abelian groups (Downey--Montalb\'an, \emph{J.\ Algebra} \textbf{320} (2008) 2291--2300).
 
+
+\section{The fourth level}
+Fix a computable enumeration of pairs (prime, index) and put $\mathrm{row}(i,k)=\{p_i^{\,n!}+c_i:\ \mathrm{start}_i\le n<\mathrm{start}_i+k\}$ with $\mathrm{start}_i\ge i$ and factorial shifts $c_i=M_i!$, $M_i\ge i$; let $J_e=\{0,1\}\cup\bigcup_i\mathrm{row}(i,k_i(e))$.
+\begin{lemma}[selective visibility]
+Fix a prime $q$ and $m\ge1$, and let $\lambda$ be the exponent of $(\Z/q^m)^\times$. For every $p\ne q$ and every $n\ge\lambda$ we have $\lambda\mid n!$, hence $p^{\,n!}\equiv1\pmod{q^m}$ --- a threshold uniform in $p$; and $c_i\equiv0\pmod{q^m}$ once $M_i\ge q^m$. So all but finitely many elements of $J_e$ are $\equiv1\pmod{q^m}$.
+\end{lemma}
+Consequently any sequence of distinct elements converges to $1$ in the pro-$q$ topology, so $J_e$ is pro-$q$ closed whenever every row over $q$ is finite; and $p$-adically each infinite row over $p$ converges to its own shift $c_i\notin J_e$, so $J_e$ fails to be pro-$p$ closed exactly when some row over $p$ is infinite. (By contrast, a row that is an arithmetic progression of common difference $p$ is \emph{dense} in $\Z_q$ for every $q\ne p$, since $p$ is invertible mod $q^m$: the obvious first attempt cannot work.)
+\begin{theorem}[\path{residually-p-for-some-prime-is-sigma4-complete}]
+Being residually a finite $p$-group for \emph{some} prime $p$ is $\Sigma^0_4$-complete for two-generator recursive presentations.
+\end{theorem}
+Hence each of the first four arithmetical levels is realized by a natural property of finitely generated groups: property (T) at level one; sofic, hyperlinear (side (B)), operator-MF, LEF, amenable, torsion-free, perfect, commutative, trivial at level two; residual finiteness and residual $p$-finiteness at level three; residual $p$-finiteness for some prime at level four.
+
 \section{Separability is the exact obstruction}
 Let $K$ be residually finite, $L\le K$ any subgroup, and $\Gamma=\langle K,v\mid [v,L]=1\rangle=K*_L(L\times\Z)$.
 \begin{theorem}[\path{centralizing-hnn-is-residually-finite-iff-edge-is-separable}]
