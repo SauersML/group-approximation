@@ -1851,6 +1851,7 @@ import GroupApproximation.Higman.MikhailovaFiberProduct
 import GroupApproximation.Higman.MikhailovaGraphProductWitness
 import GroupApproximation.Higman.MikhailovaRankThreeWitness
 import GroupApproximation.Higman.MikhailovaRopeCode
+import GroupApproximation.Higman.MikhailovaRopeCodeSemantics
 import GroupApproximation.Higman.MikhailovaRopeCompiler
 import GroupApproximation.Higman.FreeLampFinitePresentation
 import GroupApproximation.Higman.PairedFoldKernel
