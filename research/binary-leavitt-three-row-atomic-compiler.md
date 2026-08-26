@@ -277,3 +277,17 @@ remaining candidate must put both branches into one opposite-root relation
 which reads their coefficients on the same payload corner; another
 single-branch occurrence transport can be absorbed by overlapping finite
 Klein-four/`S_3` packets.
+
+The most obvious two-branch opposite-root word is not such a reader.
+`aggregate-binary-whitehead-does-not-read-completeness` places
+`x_16(s_0),x_17(s_1)` in one row, `x_61(t_0),x_71(t_1)` in one column, and
+forms the aggregate partial Whitehead `RLR`.  Because the crossed products
+vanish and the two matching root pairs commute across branches, its braid
+`RLR=LRL` factors exactly as the product of the two ordinary branch braids.
+The derivation never uses `s_0t_0+s_1t_1=A`.  An exact
+`S_3 times S_3 times C_2 times C_2` model keeps the aggregate word and an
+independent nontrivial fold mark.  Therefore visually placing both arms in
+one three-by-three block is not enough.  The unresolved word must put the
+shared **reverse products** `s_it_i` themselves into a noncommuting
+opposite-root coefficient occurrence before their completeness sum is
+collapsed to a root label.
