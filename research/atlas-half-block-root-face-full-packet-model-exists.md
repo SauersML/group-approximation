@@ -91,5 +91,29 @@ mass `15/4096` and marked ambient mass `15/8192`.  Thus the positive model
 still has a dimension-independent place to hide.  The next new rows must use
 `E,F` or return their longer coefficient images to this finite CK window.
 
+The `E/F` continuation and its returns are now identified by
+`atlas-ef-dual-rows-create-the-prefix-depth-tower`.  At depth one, the twelve
+new `pE,qE,pF,qF` target signs leave a smaller marked face of mass
+`15/2^25`.  Iterating the relations `Ee=Ff=1`, `Ef=Fe=0` produces `2^n`
+independent Heisenberg pairs over the marked root, so exact finite-dimensional
+models collapse as `2^(2^n)` spin divisibility tends to infinity.  Every
+fixed depth nevertheless has a marked finite regular model.  The remaining
+positive construction is therefore precisely an ultra-deep coherent prefix
+tower, not another bounded character face.
+
+The natural depth-free scalar closures of that tower are now exhausted by
+`atlas-ultradeep-prefix-tower-survives-bounded-scalar-closures`.  Coherent
+Schrodinger windows survive tensoring with the exact regular-`A8` margin;
+fixed tags leave atom mass `2^(-2^n)`, bounded phase menus have bounded
+approximate rank, the Renyi-2 address rate is critical, and the canonical
+Whitehead/swap completion still exchanges label and reservoir dimensions
+rectangularly.  This does not construct a model of all `4,648` words.  It
+isolates the first genuinely untested datum: one non-scalar mixed packet row
+must authenticate the coarse and fine selectors on the same multiplicity
+reservoir.  The already known three-elementary coarse-to-fine partial swap
+would then give the depth-free trace floor; finding another divisibility,
+tag, phase, entropy, or diagonal-copy argument cannot close the remaining
+face.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear
