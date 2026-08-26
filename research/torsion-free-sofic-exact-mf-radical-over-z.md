@@ -20,6 +20,9 @@ artifacts:
   - research/titz-witzel-mapping-tori-are-virtually-products.md
   - research/titz-witzel-exact-kazhdan-mf-radical-over-z.md
   - research/titz-witzel-soficity-is-one-finite-csp.md
+  - research/titz-witzel-sofic-gate-two-generators-four-approximate-relators.md
+  - research/fp-mapping-torus-iff-finite-automorphic-presentation.md
+  - research/artifacts/torsion-free-exact-radical-breakthrough-2026-08-26.md
   - GroupApproximation/Kazhdan/KazhdanFiniteGeneration.lean
   - research/artifacts/torsion-free-full-mf-radical-2026-08-19.md
 ---
@@ -81,9 +84,12 @@ For a Titz--Witzel simple Kazhdan lattice, every cyclic mapping torus is
 virtually a direct product because its outer automorphism group is finite.
 The kernel is already unconditionally non-MF with full MF radical by
 `simple-kazhdan-groups-have-full-mf-radical`.  That route therefore succeeds
-exactly when one such lattice is proved sofic; the remaining statement is the
-explicit finite-permutation gate
-`titz-witzel-soficity-is-one-finite-csp`.  The Elek--Szabo simple sofic
+exactly when one such lattice is proved sofic.  The original twelve-equation
+finite-permutation gate `titz-witzel-soficity-is-one-finite-csp` is now
+Tietze-reduced by
+`titz-witzel-sofic-gate-two-generators-four-approximate-relators` to one
+exact involution, one arbitrary permutation, four approximate equations and
+the separated word `u^8`.  The Elek--Szabo simple sofic
 envelope supplies neither
 torsion-free nor Kazhdan control.  No construction presently in Cairn or in
 the audited primary sources closes any of these surviving seams.
