@@ -84,18 +84,20 @@ The visible `x_29(r)` term cannot be repaired by simply cancelling its
 unique factor.  Indeed `(MBT2)` factors as
 
 ```text
-L=x_89(r) W,       W=W_79(1,q_1),                    (MBT8)
+L=x_89(r)P,
+P=x_79(q_1)x_97(q_1)x_79(1)
+ =[[q_0,1],[q_1,q_0]]_(7,9).                         (MBT8)
 ```
 
-so left multiplication by `x_89(r)` leaves `W`.  But for the positive
+so left multiplication by `x_89(r)` leaves `P`.  But for the positive
 signed generator `n=x_79(1) in L_0`, direct conjugation gives
 
 ```text
-WnW^(-1)=x_79(q_0)x_97(q_1),                         (MBT9)
+PnP^(-1)=x_79(q_0)x_97(q_1),                         (MBT9)
 ```
 
 again outside the constant group.  Also, for
-`g'=J_1^(-1)W`, the eighth row of `(g')^(-1)=WJ_1` is
+`g'=J_1^(-1)P`, the eighth row of `(g')^(-1)=PJ_1` is
 `(x_1,1-e_00,0)`, so `g'` does not normalize `L_0`.  Thus the obvious
 one-root cancellation still reaches neither Hecke target.
 
@@ -122,5 +124,5 @@ mixed-braid-relative-target-proof
   `J_1` leaves the same nonconstant ninth-coordinate term in `(MBT6)`, so
   the comparison is not repaired by the already known native transporter.
 - **Cancel the exposed `x_29(r)` contribution.**  The exact factorization
-  `(MBT8)` reduces this to one partial Whitehead, but `(MBT9)` exposes its
-  nonconstant action on the positive root `x_79(1)`.
+  `(MBT8)` reduces this to one asymmetric three-root involution, but
+  `(MBT9)` exposes its nonconstant action on the positive root `x_79(1)`.

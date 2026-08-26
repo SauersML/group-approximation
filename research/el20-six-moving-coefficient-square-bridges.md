@@ -760,8 +760,21 @@ comparing it with either Hecke target.
 
 Cancelling the exposed root does not repair the target.  The same exact
 calculation factors the relative word as
-`x_89(r)W_79(1,q_1)`.  Removing `x_89(r)` leaves a partial Whitehead which
+`x_89(r)P`, where
+`P=x_79(q_1)x_97(q_1)x_79(1)`.  Removing `x_89(r)` leaves an asymmetric
+three-root involution which
 sends the positive signed root `x_79(1)` to
 `x_79(q_0)x_97(q_1)`, again outside the constant signed group.  Thus the
 next live continuation needs a genuinely new return cell, not the visible
 single-root cancellation of the mixed-braid comparison.
+
+One arbitrary elementary continuation is now excluded at every coefficient
+depth.  By `one-elementary-root-cannot-return-mixed-braid-chart`, the
+residual involution `P` sends the positive signed root `x_79(1)` to the
+two-orientation element `x_79(q_0)x_97(q_1)`.  Conjugation by one root
+`x_ab(c)` can modify at most one of those two original orientations; the
+other retains its nonconstant proper idempotent.  Thus `x_ab(c)P` never
+normalizes `Q`, regardless of `a,b,c`.  The next source-return attempt
+requires at least two additional nonnormal occurrences or a genuine
+three-coordinate cell.  The native-target version remains a separate live
+equation.

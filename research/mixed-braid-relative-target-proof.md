@@ -57,11 +57,12 @@ For the advertised one-root repair, multiply `(3)` on the left by
 `x_89(r)`.  This gives the `(7,9)` block
 
 ```text
-W=[[q_0,1],[q_1,q_0]]=W_79(1,q_1).                   (4)
+P=[[q_0,1],[q_1,q_0]]
+ =x_79(q_1)x_97(q_1)x_79(1).                         (4)
 ```
 
 Conjugating `x_79(1)` uses column seven and row nine of `(4)`.  The two
 diagonal coefficients vanish by `q_0q_1=q_1q_0=0`, leaving exactly
-`x_79(q_0)x_97(q_1)`.  The eighth coordinate is fixed by `W`, so the
-eighth row of `WJ_1` is the eighth row of `J_1`, namely
+`x_79(q_0)x_97(q_1)`.  The eighth coordinate is fixed by `P`, so the
+eighth row of `PJ_1` is the eighth row of `J_1`, namely
 `(x_1,1-e_00,0)`.  These are the two assertions following `(MBT8)`.
