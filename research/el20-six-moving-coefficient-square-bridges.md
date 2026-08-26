@@ -202,3 +202,17 @@ next obstruction: odd parity identifies only the `C_2` abelianization of
 the gauges.  The surviving search must additionally force the resulting
 `S_3` reflection pair to commute, or impose an incompatible braid length,
 so that the order-three product dies.
+
+The first two-return attempt does not kill that product.
+`two-external-return-cell-has-finite-s3-model` adds the commuting return
+`r=x_59(1)`, the matrix root for the enumerated arrow `9->5`, and the
+literal same-carrier triangle
+`[x_45(1),x_59(1)]=x_49(1)`, whose other two roots lie in `L_0`.
+The triangle cancels the new gauge on its two commutator appearances and
+does not determine it.  Native commutation reads `[E,G]=1`, realized by
+`G=E`, while the old Whitehead and external
+gauges remain the distinct reflections `D=(1 2),E=(2 3)`.  Singer
+conjugates transport `G=E` covariantly.  Thus the next relation must
+place `D` itself in a commutation row with `E`, or provide a reverse
+same-carrier triangle that kills `E`; a second commuting return appearing
+only between scalar `L_0` legs is insufficient.

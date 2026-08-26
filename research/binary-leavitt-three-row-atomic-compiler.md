@@ -291,3 +291,19 @@ one three-by-three block is not enough.  The unresolved word must put the
 shared **reverse products** `s_it_i` themselves into a noncommuting
 opposite-root coefficient occurrence before their completeness sum is
 collapsed to a root label.
+
+That exact target now has a smallest explicit word, but it too has a finite
+fence.  In `reverse-product-whitehead-fold-has-finite-fusion`, each shared
+reverse-product output `x_14(q_i)` and the opposite root carrying the same
+coefficient `x_41(q_i)` form the partial Whitehead `W_i`; the parent
+coefficient `A` forms `W_A` in the same root pair.  Orthogonality and
+`q_0+q_1=A` give the genuinely nonlinear relation `W_0W_1=W_A`.  This time
+completeness is essential in the coefficient derivation, and both
+`s_it_i` coefficients occur inside noncommuting words before the comparison.
+Nevertheless three finite `GL_4(F_2)` packets with supports
+`(1,1,0),(1,0,1),(0,1,1)` satisfy the complete shared-path table and the new
+relation because the scalar Whitehead is an involution.  The mark survives.
+Thus the remaining seam is not merely to use completeness nonlinearly; it
+must prevent this three-packet support fusion by forcing the opposite-root
+coefficient occurrences for both children and the parent onto one
+indivisible payload reservoir.

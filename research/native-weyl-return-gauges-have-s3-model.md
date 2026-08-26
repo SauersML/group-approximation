@@ -99,7 +99,10 @@ literature result, or local compilation is used.
 - **Add all fixed root-position mixed squares.**  Defining every transported
   occurrence by literal conjugation in the same `S_3` packet makes every
   such square a naturality identity and leaves `(NWR5)` untouched.
+- **Add a commuting external return through an `L_0` triangle.**
+  `two-external-return-cell-has-finite-s3-model` shows that the triangle
+  only requires the new gauge to commute with `E`; taking it equal to `E`
+  leaves the old reflection pair `D,E` and their order-three product intact.
 
 DERIVATION
 native-weyl-return-s3-proof
-
