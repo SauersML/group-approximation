@@ -131,6 +131,12 @@ $\mathrm{TORSIONFREE}_{fp}$ is $\Pizt$-complete and $\mathrm{HASTORSION}_{fp}$ i
 Theorem~\ref{thm:fpgate} also explains the cells that remain open. The rope is MF and torsion-free, but it contains free subgroups and is not residually finite, so for amenability and residual finiteness this route is provably unavailable and their completeness cells need a different mechanism; for soficity and hyperlinearity the cells are \emph{exactly} the questions whether the one explicit group $R_e$ is sofic, respectively hyperlinear (\path{sofic-safe-finite-presentation-compiler}, \path{mf-compiler-positive-branch-is-hyperlinear}).
 
 
+
+\section{Further rows, and where the hierarchy stops}
+Torsion-freeness is $\Pizt$-complete on recursive presentations and, through the gate of the previous section, on finite presentations; perfectness and every bounded nilpotency class or derived length are $\Pizt$-complete (seeds $\Z$ and $F_2$); solvability of the word problem is $\Sith$-complete; and inside Higman's universal group the three levels one, two and three are realized by property (T), amenability and residual finiteness. Thus each of the first three arithmetical levels is realized by a natural, classically studied property; a natural level-four property is open, the candidate being ``residually a finite $p$-group for some prime $p$'', whose hardness needs index sets whose pro-$p$ closedness is controlled independently for each prime.
+
+For \emph{isomorphism} the arithmetical hierarchy stops being the right measure. On finitely generated recursive presentations, isomorphism is $\Sith$ --- two finite tuples of words, each relator condition an r.e.\ derivation search --- and $\Pizt$-hard against a single fixed target (the lamplighter, identified inside the shift family by amenability). On countably generated enumerated presentations it is $\Pith$-hard, hence \emph{not} $\Sith$: with $A_e=\bigoplus_{x\in S_e}\Z/2$ for a uniformly $\Sizt$ index set $S_e$, one has $A_e\cong\bigoplus_\N\Z/2$ iff $S_e$ is infinite. In fact the enumerated isomorphism problem is $\Sigma^1_1$-complete already for computable torsion-free abelian groups (Downey--Montalb\'an, \emph{J.\ Algebra} \textbf{320} (2008) 2291--2300).
+
 \section{Separability is the exact obstruction}
 Let $K$ be residually finite, $L\le K$ any subgroup, and $\Gamma=\langle K,v\mid [v,L]=1\rangle=K*_L(L\times\Z)$.
 \begin{theorem}[\path{centralizing-hnn-is-residually-finite-iff-edge-is-separable}]
