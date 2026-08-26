@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: private-middle-swap-returned-morita-gl6-proof
+id: private-middle-swap-gl6-proof
 kind: route
 title: Fuse the two returned Morita triangles through their private middle indices
-target: private-middle-swap-crosses-returned-morita-branches-but-has-gl6-model
+target: private-middle-swap-return-has-gl6-model
 requires:
   - aggregate-morita-common-opposite-return-has-gl3-square-model
   - cross-branch-partial-whiteheads-have-finite-wreath-gauge-model

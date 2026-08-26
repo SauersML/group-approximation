@@ -7,7 +7,7 @@ artifacts:
   - research/first-native-diamond-cross-return-gl7-c2-proof.md
   - experiments/first_native_diamond_cross_return_gl7_c2_audit.py
 distinct_from:
-  private-middle-swap-crosses-returned-morita-branches-but-has-gl6-model: that closes the depth-one positive and returned cross coefficients in one six-coordinate model; this adjoins the first literal depth-changing native Whitehead diamond sharing one of its returned arms.
+  private-middle-swap-return-has-gl6-model: that closes the depth-one positive and returned cross coefficients in one six-coordinate model; this adjoins the first literal depth-changing native Whitehead diamond sharing one of its returned arms.
   reverse-return-has-native-arm-leavitt-diamond: that establishes the coefficient-sensitive diamond and leaves its transport gauge open; this closes that diamond together with the aggregate cross-return packet in an explicit finite marked model.
   intermediate-native-arm-orbit-cuts-retain-the-return-gauge: that fences spectral cuts made from an order-seven orbit of the native diamond; this is the smaller exact occurrence-table fence before any order-seven actor is adjoined.
 ---

@@ -5,7 +5,7 @@ kind: route
 title: Attach one native depth-changing diamond to the finite cross-return chart
 target: first-native-diamond-extension-of-cross-return-has-gl7-c2-model
 requires:
-  - private-middle-swap-crosses-returned-morita-branches-but-has-gl6-model
+  - private-middle-swap-return-has-gl6-model
   - reverse-return-has-native-arm-leavitt-diamond
   - outer-root-leavitt-table
 ---

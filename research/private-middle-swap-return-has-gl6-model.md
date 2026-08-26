@@ -1,10 +1,10 @@
 ---
 rg: 2
-id: private-middle-swap-crosses-returned-morita-branches-but-has-gl6-model
+id: private-middle-swap-return-has-gl6-model
 kind: claim
 title: A private-middle swap crosses both returned Morita branches but has an exact GL6 model
 artifacts:
-  - research/private-middle-swap-returned-morita-gl6-proof.md
+  - research/private-middle-swap-gl6-proof.md
   - experiments/private_middle_swap_returned_morita_gl6_audit.py
 distinct_from:
   aggregate-morita-common-opposite-return-has-gl3-square-model: that stops with two block-diagonal three-coordinate packets; this adjoins one literal constant Whitehead swapping their private middle indices and obtains all four cross coefficients in the positive and returned-opposite parents.
@@ -107,4 +107,4 @@ stability theorem, trace hypothesis, literature theorem, or local
 computation is used.
 
 DERIVATION
-private-middle-swap-returned-morita-gl6-proof
+private-middle-swap-gl6-proof
