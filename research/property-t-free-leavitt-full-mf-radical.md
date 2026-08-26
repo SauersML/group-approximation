@@ -459,6 +459,24 @@ coboundary gauge model.  The remaining theorem must create proper unequal
 subranges or lock this already-typed cell to one fixed native
 quarter/eighth frame.
 
+Using both actor endpoints simultaneously still does not provide that lock.
+`two-endpoint-source-intersections-retain-character-square` computes the
+full source-character obstruction:
+
+```text
+|Ann(K_2)|=4,        |Ann(K_4)|=8,
+|Ann(<K_2,K_4>)|=2.
+```
+
+The surviving twist yields an exact four-character square in which `Q`,
+its `r=2` image and its `r=4` image are pairwise orthogonal.  Every one of
+the three exceptional endpoint detectors has positive sign under both
+twists, and all nested commutator returns extend chartwise.  Therefore
+neither intersecting the two endpoint sources nor imposing the complete
+endpoint detector menu forces simultaneous positive subranges in one fixed
+`Q` frame.  The full-radical seam remains a twist-breaking mixed native
+occurrence with proper range or nonzero fixed-frame Gram.
+
 The obvious fixed-frame compression by the existing unequal Hecke flags is
 now also closed as a fence.
 `endpoint-whiteheads-are-center-chain-hecke-spectators` proves that the
@@ -486,6 +504,17 @@ removes the spare endpoint coefficients.  Hence the new finite overlap is
 not the missing unconditional MF occurrence; the required next input is
 still a proper unequal subrange or an independently positive fixed-frame
 row.
+
+The last bounded fixed-source shortcut on the three exceptional detector
+classes is now exhausted too.
+`exceptional-endpoint-detector-products-stay-at-depth-three` computes their
+entire `L_0`-normal product subgroup: it is positive, elementary abelian of
+order eight, and all its endpoint incidence is in the third native column.
+It therefore supplies no one actor word giving mark-return cells at adjacent
+depths on the original `Q`.  Producing an earlier depth necessarily leaves
+this subgroup and reintroduces either a moved signed source or the endpoint
+Whitehead coboundary.  This fence does not establish the full MF radical;
+it removes only the proposed bounded-product bypass.
 
 The first literal Hecke contact is also now audited.
 `native-t00-collision-first-hecke-attachment-has-gl10-model` computes the

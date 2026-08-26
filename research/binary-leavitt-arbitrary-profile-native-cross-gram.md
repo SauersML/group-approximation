@@ -9,6 +9,7 @@ distinct_from:
   coherent-heisenberg-multiplicity-decoder: that reconstructs a complete approximate binary Leavitt module; this asks only for the two native selector transports and their relative Pauli gauge.
   moving-signed-source-does-not-localize-paid-sheet-detector: that gives a positive paid moving Hecke row and globally nontrivial factor-level sheet roots but proves that neither is compressed onto an unequal native output; this asks for the missing source-and-target-Gram-typed odd transition.
   endpoint-detector-cell-retains-coboundary-gauge: that gives an exact ordinary-word endpoint transport for one complete detector/probe mark-return cell but leaves maximal full-range overlap and a moving-frame coboundary; this asks for a native unequal-row Gram in one fixed frame.
+  two-endpoint-source-intersections-retain-character-square: that combines both actor endpoint intersections and all three exceptional detector classes but retains orthogonal character-twist source charts; this asks for the fixed-frame native Gram absent from that square.
   endpoint-whiteheads-are-center-chain-hecke-spectators: that compresses the fresh endpoint braid by the actual nested quarter/eighth Hecke flags and obtains the desired one-eighth scalar Gram, but proves that the endpoint words centralize the entire flag algebra and remain untyped spectator dressings.
 ---
 
@@ -266,6 +267,23 @@ literature theorem is permitted in this claim.
   endpoint occurrence identity; it is a relation producing proper unequal
   subranges or a nonmaximal Gram in the prescribed fixed Hecke frame.
 
+  Combining the `r=2` and `r=4` endpoint-source intersections does not
+  supply that relation.  The exact calculation in
+  `two-endpoint-source-intersections-retain-character-square` gives
+
+  ```text
+  |Ann(K_2)|=4,       |Ann(K_4)|=8,
+  |Ann(<K_2,K_4>)|=2.
+  ```
+
+  The surviving nontrivial character is invisible to both intersections.
+  A four-character exact profile makes the fixed source and its two endpoint
+  images pairwise orthogonal.  All three exceptional detector
+  representatives have positive sign under both endpoint twists, and their
+  commutator identities survive on all four charts.  Thus simultaneous use
+  of both endpoint classes still gives no positive fixed-frame subrange for
+  `(APG1)`.
+
   Compressing the endpoint words by the existing quarter/eighth Hecke flags
   supplies the scalar shape but still not the occurrence.
   `endpoint-whiteheads-are-center-chain-hecke-spectators` proves that, for
@@ -297,6 +315,16 @@ literature theorem is permitted in this claim.
   cross-Gram, and the only supplied return is the inverse Whitehead.  Hence
   neither the finite subgroup intersection nor its canonical trace value
   proves `(APG1)` for an arbitrary reblocked norm-corona profile.
+
+  Products of the three exceptional fixed-source detectors do not synthesize
+  an adjacent-scale pair either.
+  `exceptional-endpoint-detector-products-stay-at-depth-three` proves that
+  their complete `L_0`-normal product subgroup is `C_2^3`, has positive
+  signed character, and has endpoint support only in native column `9`.
+  Thus every fixed-`Q` mark-return cell obtained from this subgroup remains
+  at depth `3`; columns `7,8` are absent.  Moving outside that subgroup is
+  exactly where a probe moves `Q` or an endpoint Whitehead introduces the
+  already fenced chart gauge.
 
 - **Polar-correct the paid incidence before applying the Hecke word.**
   `paid-polar-bridge-does-not-type-moving-hecke-target` proves that this is
