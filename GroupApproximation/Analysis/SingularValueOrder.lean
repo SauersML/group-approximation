@@ -90,8 +90,8 @@ theorem inner_le_eigenvalue_mul_normSq_of_mem_span_Ici
       exact hcoord
     simp [b, hzero]
 
-/-- The first `k+1` vectors in a basis span a space of dimension `k+1`. -/
 omit [FiniteDimensional ℂ E] in
+/-- The first `k+1` vectors in a basis span a space of dimension `k+1`. -/
 theorem finrank_span_basis_image_Iic
     (b : Module.Basis (Fin (Module.finrank ℂ E)) ℂ E)
     (k : Fin (Module.finrank ℂ E)) :
@@ -109,8 +109,8 @@ theorem finrank_span_basis_image_Iic
   rw [← hrange, finrank_span_eq_card hf]
   simp
 
-/-- The basis vectors from `k` onward span a space of dimension `n-k`. -/
 omit [FiniteDimensional ℂ E] in
+/-- The basis vectors from `k` onward span a space of dimension `n-k`. -/
 theorem finrank_span_basis_image_Ici
     (b : Module.Basis (Fin (Module.finrank ℂ E)) ℂ E)
     (k : Fin (Module.finrank ℂ E)) :
