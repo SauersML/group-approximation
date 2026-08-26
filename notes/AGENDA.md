@@ -63,7 +63,13 @@ singular charge zero.  Thus a positive witness needs either a purely finitely
 additive unbounded-block model or overlapping delocalization supported on
 genuinely infinite comparison components.  Even without a prescribed block
 system, every bounded component-size stratum of the generators' joint
-support graph has charge zero.
+support graph has charge zero.  This escape is sharp even after exact
+Cartanization: `fournier-facio-dimension-at-infinity-escape-is-sharp`
+splices the bilateral shift at a zero-density signed-square cut set to obtain
+one charge-null finite-block replacement whose every bounded block-size
+stratum has charge zero.  Therefore a null-boundary theorem alone no longer
+closes the lane; it must also force tight dimensions or control the internal
+matrix dynamics uniformly at dimension infinity.
 
 The Kun--Thom fork now has a factor-base reformulation which is genuinely
 different from the forbidden Cartan models.  The wreath embeds in

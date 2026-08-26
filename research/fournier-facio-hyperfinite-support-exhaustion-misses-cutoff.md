@@ -51,9 +51,13 @@ arbitrarily small charged boundaries; the established cutoff fence needs one
 fixed comparison family with **zero** charged boundary.  Amenability or
 hyperfiniteness alone does not promote the former to the latter.  The
 remaining Fournier--Facio positive face must therefore be attacked by a
-uniform null-boundary theorem, a Cartan/monomialization theorem, or a direct
-obstruction on the genuinely infinite support component—not by bare
-hyperfinite exhaustion.
+dimension-tight null-boundary theorem, a Cartan/monomialization theorem with
+uniform control of the diverging internal fibers, or a direct obstruction on
+the genuinely infinite support component—not by bare hyperfinite exhaustion.
+The need for dimension control is sharp:
+`fournier-facio-dimension-at-infinity-escape-is-sharp` gives a single exact
+null-boundary finite-block replacement whose every bounded-size stratum has
+charge zero.
 
 There are exactly two tempting but invalid quantifier exchanges here.
 First, `inf_n mu(boundary R_n)=0` does not produce an `n` with null boundary;
