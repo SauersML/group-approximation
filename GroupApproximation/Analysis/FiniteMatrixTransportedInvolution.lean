@@ -285,7 +285,7 @@ theorem unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
     calc
       inner ℂ (T x) (T x) =
           inner ℂ ((α : ℂ) • T.toLinearMap.adjoint x) (T x) := by
-        rw [hpoint]
+        exact congrArg (fun z ↦ inner ℂ z (T x)) (hpoint x)
       _ = star (α : ℂ) * inner ℂ (T.toLinearMap.adjoint x) (T x) := by
         simpa only [starRingEnd_apply] using
           (inner_smul_left (α : ℂ) (T.toLinearMap.adjoint x) (T x))
@@ -294,7 +294,7 @@ theorem unitScalar_star_mul_self_eq_one_of_eq_smul_adjoint
         exact LinearMap.adjoint_inner_left T.toLinearMap (T x) x
       _ = star (α : ℂ) *
           inner ℂ x ((α : ℂ) • T.toLinearMap.adjoint (T x)) := by
-        rw [hpoint]
+        exact congrArg (fun z ↦ star (α : ℂ) * inner ℂ x z) (hpoint (T x))
       _ = star (α : ℂ) *
           ((α : ℂ) * inner ℂ x (T.toLinearMap.adjoint (T x))) := by
         rw [inner_smul_right]

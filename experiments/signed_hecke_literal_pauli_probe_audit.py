@@ -282,16 +282,33 @@ def main():
                     probe, probe_inverse, element_matrix, element_inverse_matrix
                 )
                 first_hit |= is_elementary(first)
-                for middle in MIDDLE:
-                    x_matrix = word_matrix(x[middle])
-                    extracted = commutator(first, first_inverse, x_matrix, x_matrix)
-                    dual_x_hit |= is_elementary(extracted)
-                for second, second_inverse, _ in primal:
-                    extracted = commutator(first, first_inverse, second, second_inverse)
-                    dual_primal_hit |= is_elementary(extracted)
-                for second, second_inverse, _ in dual:
-                    extracted = commutator(first, first_inverse, second, second_inverse)
-                    two_dual_hit |= is_elementary(extracted)
+                if not dual_x_hit:
+                    for middle in MIDDLE:
+                        x_matrix = word_matrix(x[middle])
+                        extracted = commutator(first, first_inverse, x_matrix, x_matrix)
+                        if is_elementary(extracted):
+                            dual_x_hit = True
+                            break
+                if not dual_primal_hit:
+                    for second, second_inverse, _ in primal:
+                        extracted = commutator(
+                            first, first_inverse, second, second_inverse
+                        )
+                        if is_elementary(extracted):
+                            dual_primal_hit = True
+                            break
+                if not two_dual_hit:
+                    for second, second_inverse, _ in dual:
+                        extracted = commutator(
+                            first, first_inverse, second, second_inverse
+                        )
+                        if is_elementary(extracted):
+                            two_dual_hit = True
+                            break
+                if first_hit and dual_x_hit and dual_primal_hit and two_dual_hit:
+                    break
+            if first_hit and dual_x_hit and dual_primal_hit and two_dual_hit:
+                break
         if not first_hit:
             uncovered_first.append(representative)
         if not dual_x_hit:
