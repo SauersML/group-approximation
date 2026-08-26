@@ -53,8 +53,12 @@ the `d` and `sigma` basis-to-basis HNN edges before the central detector is
 attached.  These are HNN extensions along nontrivial isomorphisms of free
 subgroups, not product-amalgams.  GKMP proves neither their MF permanence nor
 separability of the final transported detector subgroup in the completed
-inner tower.  The paper itself cites separate work on HNN extensions as "in
-preparation"; no HNN theorem occurs in Theorem 1.1.
+inner tower.  No HNN theorem occurs in Theorem 1.1.  The separately published
+arXiv:2604.06982 proves selflessness results for reduced HNN extensions, and
+arXiv:2604.14106 proves that suitably compatible strong convergence data
+passes to HNN extensions.  Neither paper deduces HNN MF permanence from the
+MF property of the base alone; the latter requires strong convergence of the
+conditional expectations and edge isomorphisms as input.
 
 Consequently the imported theorem reopens a useful product-edge route and
 can close the last central edge under separability, but it does not supersede
