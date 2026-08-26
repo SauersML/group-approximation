@@ -3,7 +3,7 @@ rg: 2
 id: atlas-mix-q14-and-packet-escapes-by-low-rank-bridges
 kind: route
 title: Mix the q14-exact and packet-exact full-coefficient phases by iterative low-rank bridges
-target: leavitt-regular-atlas-hyperlinearity-criterion
+target: binary-leavitt-unit-group-hyperlinear
 requires: []
 ---
 
