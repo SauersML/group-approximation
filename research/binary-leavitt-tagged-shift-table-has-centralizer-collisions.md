@@ -93,6 +93,17 @@ establish `binary-leavitt-bounded-area-chromatic-code` by itself.
   `tagged-shift-stabilizer-holonomy-proof` shows that bounded comparisons at
   both ends would bound every successor fibre.  Literal conjugacy is the
   zero-area special case and is therefore impossible on growing packets.
+* **Two-diagonal coefficient shear.**  The explicit unit
+  `u_(ij)=1+B_iA_j` fixes `B_i+D_(ij)` and `A_j`, while sending `A_i` to
+  `A_i+A_j`.  Consequently the edge commutator is the quotient of the
+  ordinary and sheared marked-diagonal discrepancies by the exact identity
+  `(TSC5)`.  This is a genuine non-chart algebraic reduction.  Its natural
+  fixed-cell implementation is ruled out by
+  `tagged-shift-shear-has-unbounded-fixed-mark-area`: every
+  shear fixes the same mark `z`, the shears escape in `C_Delta(z)/<z>`, and
+  their mark-preservation filling areas are unbounded.  A direct filling of
+  the sheared diagonal which does not compare through the shear remains
+  open.
 
 No Property `(T)`, Kazhdan input, matrix approximation, trace, or literature
 theorem is used.

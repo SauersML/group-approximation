@@ -156,6 +156,17 @@ theorem then gives full MF collapse of `Delta`.
   bounded successor fibres, contrary to the growing shift packets.  This
   refutes the stabilizer compiler, not the possibility of a non-chart edge
   diagram for the tagged table.
+* **Cancel two marked diagonals with a coefficient shear.**  Put
+  `u_(ij)=1+B_iA_j`.  It fixes the tagged column and the target row and sends
+  the source row to the source-plus-target row.  The group identity
+  `[b,h]=a^(-1)delta_1delta_0^(-1)a`, for
+  `delta_0=[a,h]z^(-1)` and `delta_1=[ab,h]z^(-1)`, would pay every edge by
+  two marked diagonal cells.  The algebra is exact, but
+  `tagged-shift-shear-has-unbounded-fixed-mark-area` shows
+  that conjugating the first cell into the second is not uniform: the shear
+  lifts form infinitely many cosets in the centralizer of the fixed mark,
+  so their mark-preservation areas diverge.  Only a direct sheared-diagonal
+  diagram avoiding that conjugacy comparison could still use `(TSC5)`.
 
 The next viable attack must construct a bounded-area orbit section directly,
 replace representative coherence by a finite-coordinate selector whose

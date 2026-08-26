@@ -73,16 +73,27 @@ the coboundary drift of
   most its character/cocycle, whereas the next stage has the genuinely
   different subgroup `t_i^(k+1)L_0t_i^(-(k+1))`.
 - The canonical full-Leavitt escape also has the wrong support, for a
-  different exact reason. By
+  different exact reason.  By
   `leavitt-compression-preserves-root-position-support`, the compression
   endomorphism `x_ab(r) |-> x_ab(s_0rt_0)` and its explicit 20-by-20
-  Whitehead implementation preserve every ordered root position. The
+  Whitehead implementation preserve every ordered root position.  The
   Singer step sends the actual `(2,8)` root of `L_0` to `(2,7)`, so the
   compression cell sends `Q` to the Reynolds cut over `alpha(L_0)` rather
-  than to `t_iQt_i^(-1)`. Its Singer conjugates therefore fail `(ESB1)`
+  than to `t_iQt_i^(-1)`.  Its Singer conjugates therefore fail `(ESB1)`
   before the mixed-square estimate is reached.
+- Dressing the literal Whitehead by any collection of already ungauged
+  source/range normalizers cannot repair `(ESB2)`.  By
+  `label-only-dressing-cannot-ungauge-a-whitehead-bridge`, a composite with
+  exactly one gauged Whitehead occurrence is still typed `N tensor D`, and
+  its distance from the required `N tensor 1` is exactly `||D-1||_2` up to
+  the accumulated chart errors.  A successful composite therefore needs a
+  second genuinely gauged mixed/opposite-root occurrence whose reservoir
+  action cancels `D` while its total label action still moves the signed
+  Hecke source exactly once; pure normalizer dressing is not enough.
 
 The smallest remaining algebraic search is therefore explicit: find one
-genuinely mixed coefficient/root-opposite word with the full-Gram property `(ESB1)--(ESB2)`
-and verify its six Singer conjugate squares.  No Property `(T)`, canonical
+genuinely mixed coefficient/root-opposite word with the full-Gram property
+`(ESB1)--(ESB2)` and verify its six Singer conjugate squares.  It must contain
+the second gauge-bearing occurrence just isolated, not only one Whitehead
+surrounded by label-only factors.  No Property `(T)`, canonical
 trace profile, or tracial-von-Neumann extension is allowed.

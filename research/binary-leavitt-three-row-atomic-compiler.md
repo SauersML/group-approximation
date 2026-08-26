@@ -108,3 +108,16 @@ with the mark equal to `-1`.  Thus the required prototype cannot merely
 return the same payload commutator through both branch charts.  It must make
 the coefficient range-sum/parent-generation occurrence act on the selected
 atom, thereby ruling out Pauli-factor reuse.
+
+The smallest output-authenticated implementation of that requirement has
+now also been tested.  In
+`payload-range-sum-whitehead-has-three-character-model`,
+each inverse payload commutator is transported by its own literal Whitehead
+to the corresponding `s_it_i` range sign, and the two range signs multiply
+to the parent sign.  This excludes the scalar-mark three-qubit reuse model,
+but a twelve-dimensional three-character orbit satisfies the whole table
+with the parent mark surviving.  Each Whitehead moves half of its negative
+range through the complementary parent-sign sector.  Thus the next fixed
+prototype must authenticate an individual coefficient arm on the prescribed
+parent atom, not only the inverse and reverse **output commutators** and
+their exact range sum.
