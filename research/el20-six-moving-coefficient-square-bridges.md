@@ -801,3 +801,23 @@ root `x_97(1)`, not a support-idempotent Whitehead.  That reverse root fails
 the full signed-`L_0` normalizer test.  Hence the formerly claimed link to
 the support-return chart is invalidated; the genuine complementary cell
 still does not return either signed Hecke target.
+
+The first structural continuation of that reverse root does return the
+signed source.  By
+`reverse-mixed-root-has-two-positive-hecke-commutator-returns`, the two
+positive-character `L_0` roots `x_76(1),x_29(1)` give
+
+```text
+[x_97(1),x_76(1)]=x_96(1),
+[x_29(1),x_97(1)]=x_27(1).
+```
+
+Both outputs are external signed normalizers, so the actual mixed-braid
+occurrence now has two literal three-letter returns to `Q`.  They are,
+however, exactly the rowwise fixed roots of the complete native-orbit audit:
+`x_96` is disjoint from the first active Whitehead and `x_27` from the
+second.  Their naturality squares compare different multiplicity charts and
+retain the moving-stage `S_3` gauge.  The shortest authenticated return is
+therefore a spectator return, not `(ESB1)`; the next useful word must make a
+returned occurrence meet the active native packet or identify its spectator
+gauge by an independent same-chart relation.
