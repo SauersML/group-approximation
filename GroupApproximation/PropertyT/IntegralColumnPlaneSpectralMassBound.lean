@@ -1073,7 +1073,7 @@ theorem wordPairRegionSet_eq_iUnion_degreeFibers
       rw [hab.1, hab.2]
       exact hcase.2.2
     · rw [if_neg hcase] at hab
-      exact (Set.not_mem_empty chi hab).elim
+      exact ((Set.mem_empty_iff_false chi).mp hab).elim
 
 theorem measurableSet_wordPairRegionSet
     (rho : elementaryGroup (Fin 3) (R (X := X)) →* (E ≃ₗᵢ[ℝ] E))
