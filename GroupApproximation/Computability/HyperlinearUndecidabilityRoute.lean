@@ -45,8 +45,9 @@ theorem exists_nonhyperlinear_code_of_not_computablePred
     (h : ¬ ComputablePred hyperlinearCode) :
     ∃ c : PresentationCode, ¬ IsHyperlinear (Carrier c) := by
   by_contra hcon
-  push_neg at hcon
-  exact h (computablePred_of_forall hcon)
+  exact h (computablePred_of_forall fun c => by
+    by_contra hc
+    exact hcon ⟨c, hc⟩)
 
 /-- The group-level form: a non-hyperlinear group exists. -/
 theorem exists_nonhyperlinear_group_of_not_computablePred
