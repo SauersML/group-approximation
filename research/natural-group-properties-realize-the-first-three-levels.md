@@ -58,7 +58,33 @@ must be designed to have their only accumulation points at prescribed
 The dyadic construction of [[index-set-profinitely-closed-is-pi3-complete]]
 does not generalize as written: its rows `2^x(2j+1)` accumulate at `-2^x`
 in every profinite topology, so the same failure is seen at every prime and
-the existential over `p` collapses.  A prime-indexed variant would have to
-place row `p` inside a set that is closed in the pro-`q` topology for
-`q != p`; finite rows are closed in all of them, so the difficulty is
-exactly to make the *infinite* rows selectively visible.
+the existential over `p` collapses.  Worse, *any* row that is an arithmetic
+progression with common difference `p` is **dense** in `Z_q` for every
+`q != p`, because `p` is invertible modulo `q^m`; so progressions are
+maximally visible to the other primes and can never be used.
+
+**A candidate that survives both tests.**  Use factorial powers with a
+shift.  Put
+
+```text
+row_p(k) = { p^(n!) + c_p : 1 <= n <= k },
+```
+
+with `c_p` a fixed integer.  Two computations, one for each topology:
+
+* in `Z_p`, `p^(n!) -> 0`, so the row accumulates at `c_p`; if `c_p` is
+  omitted from the set, the row is **not** pro-`p` closed;
+* in `Z_q` for `q != p`, the order of `p` modulo `q^m` divides `n!` for all
+  large `n`, so `p^(n!) -> 1` and the row accumulates only at `1 + c_p`;
+  adjoining that single integer makes the row pro-`q` closed.
+
+So `row_p(k) u {1 + c_p}` is closed in every pro-`q` topology with
+`q != p`, and its pro-`p` closedness is exactly the finiteness of `k`.
+This is the selective visibility the construction needs.  What remains
+before a `Sigma^0_4`-completeness claim can be made is to rule out
+*accidental* limit points of the union of all rows: a diagonal sequence
+drawn from infinitely many rows could converge in some `Z_q` to an integer
+outside the set, and the shifts `c_p` must be chosen (for instance highly
+divisible, or congruent to prescribed residues modulo the moduli that
+matter for the smaller primes) to prevent it.  That verification has not
+been carried out here.
