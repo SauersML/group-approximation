@@ -5,9 +5,7 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{etoolbox}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning}
-\definecolor{nmfacc}{RGB}{0,114,178}
-\definecolor{nmfgray}{RGB}{110,110,110}
+\usetikzlibrary{positioning}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
@@ -38,6 +36,9 @@
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{plain}
 \theoremstyle{plain}
 \newtheorem{mainthm}{Theorem}
 \renewcommand{\themainthm}{\Alph{mainthm}}
@@ -82,8 +83,9 @@ of finite presentations of non-MF groups is $\Sigma^0_2$-complete; in
 particular neither set is recursively enumerable.  The upper bound is a
 description of the MF property by finite certificates.  The lower bound
 encodes the set of programs with infinite domain into finite presentations
-by an effective Higman embedding and two HNN extensions, using the non-MF
-group of the companion paper on one branch and, on the other, an MF
+by an effective Higman embedding, a central HNN extension, and a twisted
+one, using the non-MF group of the companion manuscript on one branch
+and, on the other, an MF
 permanence theorem for HNN extensions whose edge isomorphism is
 implemented by a unitary of a norm matrix corona.
 \end{abstract}
@@ -124,40 +126,36 @@ hierarchy.
 \centering
 \begin{tikzpicture}[font=\small,
   cls/.style={draw, rounded corners=2pt, inner sep=4pt},
-  prob/.style={font=\small, text=nmfgray},
-  inc/.style={nmfgray!70, semithick},
-  proof/.style={-{Stealth[length=2.4mm]}, nmfacc, semithick}]
-% the lattice
-\node[cls] (d1) at (0,0)    {$\Delta^0_1$};
-\node[cls] (s1) at (-1.6,1.35) {$\Sigma^0_1$};
-\node[cls] (p1) at (1.6,1.35)  {$\Pi^0_1$};
-\node[cls] (s2) at (-1.6,3.1)  {$\Sigma^0_2$};
-\node[cls] (p2) at (1.6,3.1)   {$\Pi^0_2$};
-\draw[inc] (d1)--(s1); \draw[inc] (d1)--(p1);
-\draw[inc] (s1)--(s2); \draw[inc] (p1)--(p2);
-\draw[inc] (s1)--(p2); \draw[inc] (p1)--(s2);
-% problems at their exact levels, height = complexity
-\node[prob, anchor=west] (dec) at (3.4,0)
+  probs/.style={font=\small, align=center, inner sep=1pt}]
+\node[cls] (d1) at (0,0)      {$\Delta^0_1$};
+\node[cls] (s1) at (-2.0,1.5) {$\Sigma^0_1$};
+\node[cls] (p1) at (2.0,1.5)  {$\Pi^0_1$};
+\node[cls] (s2) at (-2.0,3.2) {$\Sigma^0_2$};
+\node[cls] (p2) at (2.0,3.2)  {$\Pi^0_2$};
+\draw[thin] (d1)--(s1);
+\draw[thin] (d1)--(p1);
+\draw[thin] (s1)--(s2);
+\draw[thin] (p1)--(p2);
+\draw[thin] (s1)--(p2);
+\draw[thin] (p1)--(s2);
+\node[probs, above=2mm of s2]
+  {$\mathrm{FIN}$\\ $\boldsymbol{\mathrm{NONMF}_{\mathrm{fp}}}$};
+\node[probs, above=2mm of p2]
+  {$\mathrm{INF}$; $\mathrm{TOT}$\\ torsion-freeness\\
+   $\boldsymbol{\mathrm{MF}_{\mathrm{fp}}}$};
+\node[probs, anchor=east] at (-3.0,1.5) {halting\\ problem};
+\node[probs, below=2mm of d1]
   {word problem in $H$ (Lemma~\ref{lem:seed})};
-\node[prob, anchor=west] (halt) at (3.4,1.35)
-  {halting problem};
-\node[prob, anchor=west] (inf) at (3.4,3.1)
-  {$\mathrm{TOT}$; torsion-freeness; $\mathrm{INF}$};
-\node[draw, thick, anchor=west, inner sep=4pt] (mf) at (9.05,3.1)
-  {$\mathrm{MF}_{\mathrm{fp}}$};
-% the two halves of Theorem A
-\draw[proof] (inf.east) -- (mf.west)
-  node[midway, below=0.6mm, font=\scriptsize, text=nmfacc]
-  {hardness: $e\mapsto\widehat R_e$};
-\draw[proof] (mf.north) to[bend right=17]
-  node[above=0.4mm, font=\scriptsize, text=nmfacc, pos=0.5]
-  {membership: $\forall n\,\exists$ certificate} (p2.north);
 \end{tikzpicture}
-\caption{Height is logical complexity.  $\mathrm{MF}_{\mathrm{fp}}$ is
-$\Pi^0_2$-complete: finite certificates place it in $\Pi^0_2$
-(Section~\ref{sec:local}), and the computable family $\widehat R_e$
-reduces $\mathrm{INF}$ to it (Sections~\ref{sec:compiler}
-and~\ref{sec:positive}).  Its complement is $\Sigma^0_2$-complete.}
+\caption{The arithmetical hierarchy.  Lines are inclusions, and every
+listed problem is complete at its level; the word problem in $H$ is
+decidable.  Boldface marks the two sets of
+Theorem~\ref{thm:recognition}: finite certificates put
+$\mathrm{MF}_{\mathrm{fp}}$ in $\Pi^0_2$ (Section~\ref{sec:local}), and
+the family $\widehat R_e$ reduces $\mathrm{INF}$ to
+$\mathrm{MF}_{\mathrm{fp}}$ and $\mathrm{FIN}$ to
+$\mathrm{NONMF}_{\mathrm{fp}}$ (Sections~\ref{sec:compiler}
+and~\ref{sec:positive}).}
 \label{fig:levels}
 \end{figure}
 
@@ -173,10 +171,11 @@ infinite, then $\widehat R_e$ satisfies the hypotheses of
 Theorem~\ref{thm:hnn-permanence}, an MF permanence theorem for HNN
 extensions whose edge isomorphism is implemented by a unitary of a norm
 matrix corona, and is MF (Sections~\ref{sec:hnn} and~\ref{sec:positive}).
-The MF property is closed in the space of marked groups
-(Lemma~\ref{lem:marked-closed}).  It is also closed under direct limits,
-by Korchagin~\cite[Proposition~13]{Korchagin}, so every finitely
-generated group that is not MF is a quotient of a finitely presented one;
+The MF property is closed in the space of marked groups ---
+equivalently, under direct limits, as Korchagin
+proved~\cite[Proposition~13]{Korchagin}; Lemma~\ref{lem:marked-closed}
+records the marked-group form --- so every finitely generated group that
+is not MF is a quotient of a finitely presented one;
 Theorem~\ref{thm:recognition} gives the uniform family and the exact level.
 
 \subsection*{Relation to prior work}
@@ -230,11 +229,11 @@ to a subgroup shows that subgroups of MF groups are MF\@.
 \leanverified{Sofic/MFDefinitions}{GroupApproximation.standardMFDefinitions_iff}
 \leanverified{Sofic/OperatorMFPositiveControls}{GroupApproximation.IsOperatorMF.subgroup}
 
-Throughout, $R=L_{\F_2}(1,2)$ is the binary Leavitt algebra, the unital
+Throughout, the binary Leavitt algebra $L_{\F_2}(1,2)$ is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to $t_is_j=\delta_{ij}$
-and $s_0t_0+s_1t_1=1$, and $H=\EL_{12}(R)$ is the subgroup of
-$\GL_{12}(R)$ generated by the elementary matrices $e_{ij}(a)=1+aE_{ij}$,
-$i\ne j$.  By Theorem~B of the companion manuscript~\cite{NonMF}, every homomorphism from
+and $s_0t_0+s_1t_1=1$, and $H=\EL_{12}(L_{\F_2}(1,2))$ is the subgroup of
+$\GL_{12}(L_{\F_2}(1,2))$ generated by the elementary matrices
+$e_{ij}(a)=1+aE_{ij}$, $i\ne j$.  By Theorem~B of the companion manuscript~\cite{NonMF}, every homomorphism from
 $H$ to an MF group is trivial; in particular $H$ is not MF\@.
 
 \section{Locality and finite certificates}\label{sec:local}
@@ -273,6 +272,10 @@ finitely many late indices, one for each $g\in F\setminus\{1\}$, then
 has defect at most $\varepsilon$ on $F$ and separation at least $1$ from
 the identity on $F\setminus\{1\}$.
 \end{proof}
+
+The closedness in the next lemma is Korchagin's closure of the MF
+property under direct limits~\cite[Proposition~13]{Korchagin}, in the
+marked-group language.
 
 \begin{lemma}[marked closedness]\label{lem:marked-closed}
 The class of MF groups is closed in the space of marked groups.  In
@@ -409,7 +412,9 @@ A countable group $G$ \emph{admits a tracial MF realization}
 $(A,\rho,\tau)$ if $A$ is a separable unital MF $C^*$-algebra,
 $\rho\colon G\to\U(A)$ is a homomorphism, and $\tau$ is a tracial state on
 $A$ with $\tau(\rho(g))=0$ for every $g\ne1$.  Since $\tau(1)=1$, such a
-group embeds in $\U(A)$, so it is MF\@.
+group embeds in $\U(A)$, so it is MF\@.  Only the vanishing of $\tau$
+off the identity is used below; traciality is what the constructions of
+Section~\ref{sec:positive} provide.
 \leanverified{Manuscript/OneSidedMFRadical/HNNCoronaConjugatorSentenceAudit}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit.RegularRealizationData.rho_injective}
 \leanverified{Manuscript/OneSidedMFRadical/HNNCoronaConjugatorSentenceAudit}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit.RegularRealizationData.isOperatorMF}
 To embed an arbitrary norm matrix corona $\mathcal Q_{\mathbf d}$ in
@@ -626,7 +631,7 @@ MF if and only if $e\in\mathrm{INF}$.  The construction of
 Bilanovic--Chubb--Roven gives a recursively presented group
 $C_e$ that is trivial when $e\in\mathrm{INF}$ and contains $H$ when
 $e\in\mathrm{FIN}$.  We embed $C_e$ in a three-generated recursively
-presented group $Q_e=F/N_e$, use a Mikhailova subgroup to detect $N_e$
+presented group $Q_e=F/N_e$, use a Mihailova subgroup to detect $N_e$
 inside a finitely presented group, and apply two HNN extensions, in the
 manner of Higman's rope trick~\cite{Higman}, to obtain $\widehat R_e$.
 For $e\in\mathrm{FIN}$, the group $\widehat R_e$ is not MF; for
@@ -644,7 +649,7 @@ $Q_e=F/N_e$ & three-generated recursively presented group containing
 $Q_+=F/N_+$ & the value of $Q_e$ for trivial $C_e$; embeds in
   $F(x_1,y)\times F(x_2,t)$ \\[1pt]
 $\Lambda_e$; $M_e$ & finitely presented Higman host of $Q_e$; the
-  Mikhailova subgroup detecting equality in $\Lambda_e$ \\[1pt]
+  Mihailova subgroup detecting equality in $\Lambda_e$ \\[1pt]
 $K_e$; $L_e$ & a product of six free groups; its finitely generated
   subgroup with $i(F)\cap L_e=i(N_e)$ \\[1pt]
 $\Gamma_e$; $S_e$ & the central HNN extension
@@ -663,7 +668,7 @@ $\widehat R_e$ & the finite presentation of
 \subsection*{A recursive presentation of \texorpdfstring{$H$}{H}}
 
 \begin{lemma}[a recursive presentation of $H$]\label{lem:seed}
-The group $H=\EL_{12}(R)$ is finitely generated and has decidable word
+The group $H=\EL_{12}(L_{\F_2}(1,2))$ is finitely generated and has decidable word
 problem.  In particular, it has a recursive presentation on finitely many
 generators.
 \end{lemma}
@@ -675,7 +680,8 @@ $e_{ij}(a+b)=e_{ij}(a)e_{ij}(b)$ and
 $[e_{ik}(a),e_{kj}(b)]=e_{ij}(ab)$ for distinct $i,j,k$, induction on
 monomial length shows that $H=\langle Y\rangle$.  The monomials in
 $s_0,s_1,t_0,t_1$ that contain no subword $t_is_j$ and no subword
-$s_1t_1$ form the standard reduced $\F_2$-basis of $R$~\cite{Leavitt}.
+$s_1t_1$ form the standard reduced $\F_2$-basis of
+$L_{\F_2}(1,2)$~\cite{Leavitt}.
 Indeed, orient the defining relations as
 $t_is_j\to\delta_{ij}$ and $s_1t_1\to1+s_0t_0$, using a degree-lexicographic
 order in which $s_1>s_0$.  The critical words are $t_is_1t_1$ and
@@ -688,8 +694,9 @@ $s_1t_1s_j$.  Their two reductions agree because, for $i,j\in\{0,1\}$,
 The Diamond Lemma~\cite{Bergman} gives precisely the displayed irreducible
 monomials as a basis.
 Products of reduced monomials are computed by the defining reductions, so
-equality in $R$ is decidable.  A word in $Y^{\pm1}$ is therefore evaluated to an explicit
-$12\times12$ matrix over $R$, and it represents $1$ in $H$ exactly when
+equality in $L_{\F_2}(1,2)$ is decidable.  A word in $Y^{\pm1}$ is
+therefore evaluated to an explicit $12\times12$ matrix over
+$L_{\F_2}(1,2)$, and it represents $1$ in $H$ exactly when
 that matrix is the identity.  The set of words representing $1$ is
 decidable, hence recursively enumerable, and $\langle Y\mid\text{that set}\rangle$
 is a recursive presentation of $H$.
@@ -791,7 +798,7 @@ $H\le C_e\le Q_e$.
 
 \subsection*{Detecting \texorpdfstring{$N_e$}{N-e} inside a finitely presented group}
 
-\begin{lemma}[Higman embedding and the Mikhailova subgroup]\label{lem:mikhailova}
+\begin{lemma}[Higman embedding and the Mihailova subgroup]\label{lem:mikhailova}
 There is an algorithm that computes from $e$ a finite presentation
 $\langle X_e\mid R_e\rangle$ of a group $\Lambda_e$, words
 $w_x,w_y,w_t\in F(X_e)$, and a finite generating set of a subgroup
@@ -816,7 +823,7 @@ recursively presented group in a finitely presented group, and its proof
 is effective; an explicit algorithm producing the finite presentation and
 the embedding words from a recursive presentation is given by
 Mikaelian~\cite{Mikaelian}.  Apply it to the presentation of $Q_e$.
-Following Mikhailova~\cite{Mikhailova}, let $M_e$ be the subgroup of
+Following Mihailova~\cite{Mihailova}, let $M_e$ be the subgroup of
 $F(X_e)\times F(X_e)$ generated by the pairs $(z,z)$, $z\in X_e$, and
 $(r,1)$, $r\in R_e$.  If $(u,v)\in M_e$ then $u=v$ in $\Lambda_e$,
 since this holds for the generators.  Conversely, if $u=v$ in
@@ -824,7 +831,7 @@ $\Lambda_e$, then $uv^{-1}$ lies in the normal closure of $R_e$, so it
 is a product of conjugates $gr^{\pm1}g^{-1}$ with $r\in R_e$, and
 $(gr^{\pm1}g^{-1},1)=(g,g)(r^{\pm1},1)(g,g)^{-1}\in M_e$; hence
 $(u,v)=(uv^{-1},1)(v,v)\in M_e$.  The first coordinate makes $i_e$
-\leanverified{Manuscript/OneSidedMFRadical/ComputabilityConstructionClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.ComputabilityConstruction.manuscriptPrintedMikhailovaFiberProductPackage}
+\leanverified{Manuscript/OneSidedMFRadical/ComputabilityConstructionClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.ComputabilityConstruction.manuscriptPrintedMihailovaFiberProductPackage}
 injective, and $(f,w_f,1)\in F\times M_e$ if and only if $w_f=1$ in
 $\Lambda_e$, if and only if $q_e(f)=1$ because the embedding is
 injective, if and only if $f\in N_e$.
@@ -1136,9 +1143,22 @@ $\Sigma^0_2$-complete set is not $\Pi^0_2$, so neither set is recursively
 enumerable, and in particular neither is decidable.
 \end{proof}
 
+\begin{remark}\label{rem:template}
+Sections~\ref{sec:compiler} and~\ref{sec:positive} use only these
+properties of $H$: it is finitely generated, it has a recursive
+presentation, and it is not MF, while subgroups of MF groups are MF\@.
+The decidable word problem of Lemma~\ref{lem:seed} is a convenience.
+The same construction therefore applies to any group property that is
+closed under subgroups, once two inputs are supplied: a finitely
+generated recursively presented group without the property, and an
+analogue of Lemma~\ref{lem:tensor-sync} for the resulting twisted HNN
+extensions.  The open problems below record which input is missing for
+soficity and for hyperlinearity.
+\end{remark}
+
 The homomorphism $V$ of Lemma~\ref{lem:tensor-sync} does not extend
 faithfully to $R_e$ in the corona: the finite maps $\lambda_n$ are trivial
-on the Mikhailova factor, so $W$ commutes with $V(\gamma,1)$ for every
+on the Mihailova factor, so $W$ commutes with $V(\gamma,1)$ for every
 $\gamma\in K^0_e$, although $u$ does not commute with $(\gamma,1)$ in
 $R_e$.  Injectivity is obtained in Theorem~\ref{thm:hnn-permanence} from
 the universal algebra.
@@ -1150,11 +1170,16 @@ whether the models of $\widehat R_e$ can be chosen to converge to
 $C^*_{\mathrm r}(\widehat R_e)$ in operator norm, so that the reduced
 $C^*$-algebra itself is MF; the argument produces only a tracial state on
 an abstract MF algebra.  We do not know whether
-$\widehat R_e$ is hyperlinear for $e\in\mathrm{INF}$, which would place
-the recognition problem for hyperlinearity at the same level.  Finally,
-we do not know whether an analogous family of finitely presented groups
-exists for soficity.  Such a construction would require a permutation-model
-replacement for Lemma~\ref{lem:tensor-sync}.
+$\widehat R_e$ is hyperlinear for $e\in\mathrm{INF}$; placing
+hyperlinearity recognition at the same level would also require a
+finitely presented non-hyperlinear group, and none is known.  We do not know whether an analogous family of finitely presented groups
+exists for soficity; such a construction would require a
+permutation-model replacement for Lemma~\ref{lem:tensor-sync}.  Finally,
+we do not know the complexity of MF recognition under the strong
+convergence convention of~\cite{GaoEtAl,Schafhauser}: the norms
+$\opnorm{\lambda(w)}$ in the left regular representation are not in
+general computable from a finite presentation, so
+Proposition~\ref{prop:mf-upper-bound} does not apply.
 
 
 
@@ -1178,7 +1203,8 @@ editing.  Lean~4 source is available at \coderepo.
 Sauers,
 \emph{Non-MF Groups},
 companion manuscript, 2026,
-\href{https://github.com/SauersML/group-approximation/blob/main/non_mf_groups_exist.tex}{source manuscript}.
+registered entry
+\url{https://palomar-registry.org/entry?id=PALOMAR-2026-08-24-000006&version=1}.
 
 \bibitem[Ad]{Adian}
 S.~I. Adian,
@@ -1254,7 +1280,7 @@ V.~H. Mikaelian,
 preprint, 2025,
 \href{https://arxiv.org/abs/2507.04347v8}{arXiv:2507.04347v8}.
 
-\bibitem[Mih]{Mikhailova}
+\bibitem[Mih]{Mihailova}
 K.~A. Mihailova,
 \emph{The occurrence problem for direct products of groups},
 Dokl. Akad. Nauk SSSR \textbf{119} (1958), 1103--1105.
