@@ -1,6 +1,6 @@
 import GroupApproximation.Analysis.FilterMatrixCStarCorona
 import GroupApproximation.Analysis.FaithfulTracialMatrix
-import GroupApproximation.Analysis.NonUnitalMFSupportCorner
+import GroupApproximation.Analysis.NonUnitalMFSupportCornerEmbedding
 import GroupApproximation.Analysis.ReducedGroupCStarStablyFinite
 import GroupApproximation.Analysis.ShulmanTraceClasses
 import GroupApproximation.Analysis.TracialQuotientCStar
@@ -27,29 +27,27 @@ its existing concrete operator algebras, and no literature assumptions:
   homomorphism to the tracial matrix quotient; and
 * a unital star homomorphism from a uniquely and faithfully traced algebra to
   a faithfully traced algebra is injective.  Applied to the preceding map,
-  this is the exact trace-ideal step in Goldbring--Hart.
+  this is the exact trace-ideal step in Goldbring--Hart; and
+* every injective nonunital norm-corona representation of a unital C-star
+  algebra becomes an injective unital representation after passing to its
+  relabelled support corner.
 
 No predicate for Connes embeddability, no substitute for the negative
 solution of CEP, and no assumed Goldbring--Hart package is introduced here.
 
-## The remaining interface mismatch
+## The remaining external inputs
 
 The repository's `HasMFEmbedding` permits a *nonunital* homomorphism
-`A →⋆ₙₐ Q`, whereas Proposition 6.1 uses a unital C-star embedding.  The
-trace-ideal argument cannot simply forget this distinction: the support
-projection of a nonunital embedding can have zero normalized trace after
-passing to the tracial quotient.  `NonUnitalMFSupportCorner` proves that this
-support is a nonzero projection, produces a projection lift with infinitely
-many nonzero coordinates, enumerates the full support increasingly, constructs
-the finite projection-range models with their exact ranks, and proves that
-compression by the lift preserves the represented corona elements.  What
-remains is to descend those coordinate compressions as a unital star-algebra
-homomorphism into the relabelled matrix corona and prove that this quotient map
-is injective.  Thus the theorems below intentionally take an explicit
-`StarAlgHom`, not `HasMFEmbedding`.  Closing the manuscript's historical
-implication against its present `IsMFAlgebra` definition still requires that
-corner-corona assembly, as well as a formal source for a non-Connes-embeddable
-factor and the separable elementary-substructure step.
+`A →⋆ₙₐ Q`, whereas Proposition 6.1 uses a unital C-star embedding.  This
+distinction is now resolved by
+`NonUnitalMFSupportCornerEmbedding.exists_injective_unital_supportCornerEmbedding`:
+the support projection is lifted, all of its nonzero coordinates are retained,
+and compression gives an injective unital representation into a new norm
+matrix corona.  The theorems below may therefore be applied after that support
+reduction.  Closing the manuscript's historical existential implication still
+requires a formal construction of a non-Connes-embeddable factor from the
+negative solution of CEP and the separable elementary-substructure transfer
+used in Goldbring--Hart's remark.
 -/
 
 namespace GroupApproximation

@@ -151,6 +151,7 @@ def sourceCornerClass
       (fun k ↦ (relabelledCornerModel Y P hP hne k : Type)) :=
   cornerClass Y P hP hne (sourceSandwich Y e P a)
 
+omit [Nontrivial A] in
 theorem sourceCornerClass_zero
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -169,6 +170,7 @@ theorem sourceCornerClass_zero
           (map_zero (normMatrixCStarCoronaMk (fun n ↦ Y n))).symm)
   rw [hclass, cornerClass_zero]
 
+omit [Nontrivial A] in
 theorem sourceCornerClass_add
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -198,6 +200,7 @@ theorem sourceCornerClass_add
           (map_add (normMatrixCStarCoronaMk (fun n ↦ Y n)) _ _).symm)
   rw [hclass, cornerClass_add]
 
+omit [Nontrivial A] in
 theorem sourceCornerClass_smul
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -225,6 +228,7 @@ theorem sourceCornerClass_smul
           (map_smul q c _).symm)
   rw [hclass, cornerClass_smul]
 
+omit [Nontrivial A] in
 theorem sourceCornerClass_star
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -249,6 +253,7 @@ theorem sourceCornerClass_star
           normMatrixCStarCorona_star_mk _ _)
   rw [hclass, cornerClass_star]
 
+omit [Nontrivial A] in
 theorem sourceCornerClass_mul
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -279,6 +284,7 @@ theorem sourceCornerClass_mul
   rw [hclass, sourceSandwich, sourceSandwich,
     cornerClass_projectionSandwich_mul]
 
+omit [Nontrivial A] in
 theorem sourceCornerClass_one
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -326,6 +332,7 @@ def supportCornerEmbedding
         rw [Algebra.smul_def, mul_one]
   map_star' := sourceCornerClass_star Y e P hP hPmk hne
 
+omit [Nontrivial A] in
 @[simp] theorem supportCornerEmbedding_apply
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (P : BoundedMatrixSequence (fun n ↦ Y n))
@@ -336,6 +343,7 @@ def supportCornerEmbedding
       sourceCornerClass Y e P hP hne a :=
   rfl
 
+omit [Nontrivial A] in
 theorem supportCornerEmbedding_injective
     (e : A →⋆ₙₐ[ℂ] NormMatrixCStarCorona (fun n ↦ Y n))
     (he : Function.Injective e)
