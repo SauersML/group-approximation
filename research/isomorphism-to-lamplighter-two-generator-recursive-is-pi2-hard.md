@@ -14,14 +14,32 @@ ESTABLISHED.  For two-generator recursive presentations,
 { e : G_e ~= Z wr Z }   is Pi^0_2-hard,                              (IS1)
 ```
 
-and for pairs of recursive presentations the isomorphism relation
-`{(e, e') : G_e ~= G_{e'}}` is `Sigma^0_3`.  In particular the isomorphism
-problem for recursively presented groups is not `Sigma^0_1` as it is for
-finite presentations, where isomorphism is witnessed by a finite Tietze
-transformation, and not `Pi^0_2`-easy either: it is `Pi^0_2`-hard already
-against one fixed target.
+and for pairs of **finitely generated** recursive presentations, each on a
+fixed finite generating tuple, the isomorphism relation
+`{(e, e') : G_e ~= G_{e'}}` is `Sigma^0_3`, because an isomorphism is
+witnessed by two finite tuples of words.  So on finitely generated
+recursive presentations isomorphism is between `Pi^0_2`-hard and
+`Sigma^0_3`, whereas for finite presentations it is `Sigma^0_1`-complete
+(a finite Tietze transformation).
 
-**Proof.**  Hardness: the shift right-angled Artin family
+**The countably generated case is not arithmetical at all.**  For
+enumerated presentations an isomorphism is an infinite object and cannot be
+guessed by a finite tuple; the corresponding index set is `Sigma^1_1`, and
+by Downey--Montalban (*The isomorphism problem for torsion-free abelian
+groups is analytic complete*, J. Algebra 320 (2008) 2291--2300, Theorem
+1.2) already the isomorphism problem for computable torsion-free abelian
+groups is `Sigma^1_1`-complete, hence so is the problem for enumerated
+group presentations.  A cheap arithmetical lower bound in the same
+direction: with `A_e = direct sum over {x : FiniteDomain(g(e,x))} of Z/2`,
+which is enumerated uniformly in `e`, `A_e` is isomorphic to the fixed
+group `direct sum over N of Z/2` iff that index set is infinite, a
+`Pi^0_3`-complete condition, so enumerated isomorphism is already
+`Pi^0_3`-hard and therefore not `Sigma^0_3`.
+
+**Proof.**  (Finitely generated upper bound: two finite tuples of words,
+each relator condition an r.e. derivation search under a universal
+quantifier, so `exists (finite tuples) forall (relators) exists
+(derivation)`.)  Hardness: the shift right-angled Artin family
 [[shift-raag-family-classifies-amenability]] has `G_J ~= Z wr Z` iff
 `J = Z_{>0}` (if `J = Z_{>0}` the kernel is free abelian on the shift
 orbit and the group is the lamplighter; if `J != Z_{>0}` the group is not
@@ -32,5 +50,5 @@ relator of `e` maps to a trivial word of `e'`, every relator of `e'` maps
 to a trivial word of `e`, and the two composites fix each generator; each
 clause is "for every enumerated relator there is a derivation", `Pi^0_2`,
 and the existential over the finitely many words makes it `Sigma^0_3`.
-The `Sigma^0_3` upper bound is a corollary: whether it is sharp is open
-here.
+The `Sigma^0_3` upper bound for the finitely generated syntax is a
+corollary: whether it is sharp there is open here.
