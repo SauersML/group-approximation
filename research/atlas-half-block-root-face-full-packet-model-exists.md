@@ -115,5 +115,16 @@ would then give the depth-free trace floor; finding another divisibility,
 tag, phase, entropy, or diagonal-copy argument cannot close the remaining
 face.
 
+The literal first-row continuation is now also exhausted. Under the
+canonical packet order, after discarding one-root rows, same-orientation
+roots, and rows with a displayed constant coefficient, the first survivor is
+`orth_12_32_ee=[x_12(e),x_32(e)]`. By
+`atlas-first-nonscalar-mixed-row-is-same-source-commutation` this is an
+automatic same-source matrix-unit commutation: it holds exactly on every
+coherent prefix window for arbitrary unequal target reservoirs. Hence the
+next useful datum is not simply the earliest non-scalar mixed row. It must
+be a coupled family of mixed rows whose joint block data survive the
+rectangular Morita escape and authenticate the coarse/fine covariance.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear
