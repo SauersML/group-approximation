@@ -7,7 +7,7 @@ target: signed-l0-does-not-attach-cross-returns-to-order-seven-head
 requires:
   - cross-whitehead-sandwiches-branch-roots-into-signed-normalizer
   - native-whitehead-hecke-head-has-order-seven-anchor
-  - fused-authenticated-cross-returns-retain-s3-square-gauge
+  - fused-cross-returns-cancel-positive-l0-gauge
 ---
 
 Represent the actor coordinates in the order `(2,4,5,6,7,8,9)`.  A

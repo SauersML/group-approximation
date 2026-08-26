@@ -479,22 +479,26 @@ returns to the native `J_1` target.  Thus the next relation must type or
 cancel this returned normalizer action; the positive full-Gram identity by
 itself is not yet the ESB bridge.
 
-Fusing the complementary authenticated returns does use completeness, but
-does not cancel that action.  For either `k=6` or `9`, the two identities
+Fusing the complementary authenticated returns uses completeness and does
+cancel their combined output action on the signed Hecke carrier.  For
+either `k=6` or `9`, the two identities
 
 ```text
 K_0x_(8,k)(r)K_0=x_(7,k)(q_0),
 K_1x_(8,k)(p)K_1=x_(7,k)(q_1)
 ```
 
-multiply on their common output root to `x_(7,k)(1)`.  The full table in
-`fused-authenticated-cross-returns-retain-s3-square-gauge` has an exact
-`S_3 times S_3` model: the two `K_i` gauges are `(c,1),(1,c)`, the incoming
-gauges are `(a,1),(1,a)`, and the returned gauges are `(b,1),(1,b)`, with
-`cac=b`.  The fused constant output therefore carries `(b,b)`, not the
-identity.  Hence even two full-Gram authenticated returns reconstruct an
-external constant-normalizer gauge; a native occurrence must still type
-that fused output or one branch return individually.
+multiply on their common output root to `N=x_(7,k)(1)`.  These are exactly
+the positive signed-`L_0` generators `6->7` and `9->7` from `(ERN1)`, so
+`rho(N)Q=Q`.  Consequently
+`fused-cross-returns-cancel-positive-l0-gauge` gives
+`b_0b_1=1`, and since the branch actions are involutions, `b_0=b_1`.
+The former `S_3 times S_3` assignment with `b_0b_1=(b,b)` omitted this
+already established native row and is not a model of the signed-Hecke
+packet.  This cancellation still does not type either individual branch
+action against a selector factor or turn the repeated `K_i` occurrences
+into the native Whitehead occurrence; that odd occurrence attachment is
+the remaining seam.
 
 The obvious order-seven attachment through signed `L_0` is now excluded.
 `signed-l0-does-not-attach-cross-returns-to-order-seven-head` closes all
@@ -509,8 +513,9 @@ K_0x_(8,k)(s_10t_1)K_0=x_(7,k)(s_00t_1),
 ```
 
 but neither side is conjugate to the native `B_2=x_84(s_00t_1)` position
-`4->8`.  Hence the order-three return gauge and order-seven head act on
-unidentified reservoir factors; coprimality supplies no collapse.
+`4->8`.  Hence the identified branch-return action and order-seven head
+still act on unidentified reservoir factors; no coprime-order collapse
+follows.
 
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
