@@ -439,3 +439,23 @@ still factorizes in `GL_3(F_2) times GL_3(F_2)`, with the marked child
 nontrivial.  Thus a live occurrence must now mix the two returned
 three-coordinate packets by a coefficient-sensitive word; branchwise
 opposite-root braids and their common aggregate parent remain finite.
+
+The first literal coefficient-sensitive mixer does cross those packets but
+still does not close the compiler.
+`aggregate-morita-cross-partial-whitehead-has-gl3-wreath-model` uses the
+balanced coefficient `s_0t_1` and its reverse, stabilized by a constant
+middle-coordinate swap, to conjugate the actual gauge-nonzero `s_i,t_i`
+arms between the two returned triangles.  The enlarged table has an exact
+finite `(GL_3(F_2) times GL_3(F_2)) semidirect C_2` model with the mark
+surviving.  Thus one branch-swap normalizer only turns the direct-product
+gauge into a wreath gauge.
+
+Closing the entire natural first swap orbit is finite as well.
+`private-middle-swap-crosses-returned-morita-branches-but-has-gl6-model`
+keeps the constant swap as a named occurrence, forms all four positive and
+returned cross commutators, and closes both complementary cross partial
+Whiteheads.  One defining `GL_6(F_2)` packet realizes the complete table
+exactly and keeps the marked child nontrivial.  A live continuation must
+therefore leave this six-coordinate closure, for example by comparing a
+returned child with a source child on one fixed packet or by adding a
+depth-changing coefficient occurrence not implemented by the finite chart.
