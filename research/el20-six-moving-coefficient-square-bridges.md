@@ -746,3 +746,22 @@ second.  Then `K_0` has gauge `(c,1)` while the aggregate braid output has
 gauge `(c,c)`.  Thus the completeness calculation creates an independent
 channel-nine spectator instead of identifying the native gauge.  The next
 word must return and type that spectator on an already shared occurrence.
+
+The direct relative comparison is now closed.
+`mixed-braid-gauge-cancellation-misses-signed-hecke-targets` multiplies the
+aggregate braid output `G=ABA` by `K_0^(-1)` exactly.  The resulting
+involutive word has eighth row `(0,1,r)` on `(7,8,9)`, so it sends the
+signed generator `x_28(1)` to `x_28(1)x_29(r)`.  Multiplication by the
+native `J_1` leaves the same nonconstant ninth-coordinate coefficient.
+Hence this shortest spectator-cancelling word transports neither `Q` nor
+`J_1QJ_1^(-1)` and fails `(ESB1)`.  A surviving continuation must return
+the channel-nine chart through an additional nonconstant occurrence before
+comparing it with either Hecke target.
+
+Cancelling the exposed root does not repair the target.  The same exact
+calculation factors the relative word as
+`x_89(r)W_79(1,q_1)`.  Removing `x_89(r)` leaves a partial Whitehead which
+sends the positive signed root `x_79(1)` to
+`x_79(q_0)x_97(q_1)`, again outside the constant signed group.  Thus the
+next live continuation needs a genuinely new return cell, not the visible
+single-root cancellation of the mixed-braid comparison.

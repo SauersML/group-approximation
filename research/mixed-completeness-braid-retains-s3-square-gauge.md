@@ -84,6 +84,12 @@ table, not a finite representation of EL20.  A useful continuation must
 return the channel-nine spectator to an already typed native occurrence;
 the mixed braid alone does not close the ESB selector attachment.
 
+Restoring the positive signed-Hecke occurrence `U'=x_79(1)` does not make
+the relative aggregate output into the missing bridge.  The exact
+calculation `mixed-braid-gauge-cancellation-misses-signed-hecke-targets`
+shows that the comparison word with `K_0` contains a nonconstant
+`x_29(r)` term and transports neither `Q` nor `J_1QJ_1^(-1)`.
+
 No Property T, Kazhdan input, trace hypothesis, literature theorem, local
 computation, or Lean compilation is used.
 
