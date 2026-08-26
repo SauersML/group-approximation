@@ -180,6 +180,11 @@ excluded by the regular-trace firewall.
   `marked-t00-separation-has-gl10-model` retains the paid distinction and
   stores it outside every named signed-Hecke source.  The next occurrence
   must localize `P_zP_D` to the row-two source or make source escape pay.
+  The literal attachment `[D,B_2]` has also been tested:
+  `native-t00-collision-first-hecke-attachment-has-gl10-model` ejects the
+  full-rank-scale `t_1` direction while preserving the same exact marked
+  chart and order-seven head.  This proves that Hecke-arm contact without a
+  named source compression still does not establish `(SNA2)`.
 
 - **Move the marked root by an external Weyl and retain both Pauli charts.**
   The root-valued relative word is exact, but the chart mover is not erased.

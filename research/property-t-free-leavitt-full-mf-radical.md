@@ -393,6 +393,15 @@ rank.  The next live statement is therefore a spectral-source localization:
 force the paid marked carrier into the signed Hecke source, or make every
 escape from that source pay one fixed ordinary-word defect.
 
+The first literal Hecke contact is also now audited.
+`native-t00-collision-first-hecke-attachment-has-gl10-model` computes the
+commutator of the paid discrepancy with the actual `B_2` arm and ejects a
+full-rank-scale `t_1` coefficient.  The same marked `GL_10(F_2)` chart still
+realizes that attachment and the order-seven head exactly.  Consequently a
+nonzero native Hecke ejection alone does not imply positive paid mass on the
+signed source; the missing statement must explicitly name its source
+projection or charge escape from it.
+
 A seed-free computability shortcut has also been excluded.  Operator-MF does
 not make the complement of the word problem recursively enumerable: a single
 finite matrix tuple with small relator defect is not a sound nontriviality
