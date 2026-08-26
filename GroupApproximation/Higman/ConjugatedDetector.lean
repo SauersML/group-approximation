@@ -60,6 +60,33 @@ theorem map_conj_mem_towerSubgroup_iff (L : Subgroup K) (q x : K)
   · intro hx
     exact ⟨q * x * q⁻¹, (conj_mem_conjugateSubgroup_iff L q x).2 hx, rfl⟩
 
+/-- Membership in the image of a subgroup can be reflected across an
+injective homomorphism. -/
+theorem map_mem_map_iff_of_injective (A : Subgroup K) (j : K →* P)
+    (hj : Function.Injective j) (x : K) :
+    j x ∈ A.map j ↔ x ∈ A := by
+  constructor
+  · rintro ⟨y, hy, hyx⟩
+    have : y = x := hj hyx
+    simpa [this] using hy
+  · intro hx
+    exact ⟨x, hx, rfl⟩
+
+/-- An injective homomorphism preserves a trivial intersection of subgroups. -/
+theorem map_inf_map_eq_bot_of_inf_eq_bot (A B : Subgroup K) (j : K →* P)
+    (hj : Function.Injective j) (hAB : A ⊓ B = ⊥) :
+    A.map j ⊓ B.map j = ⊥ := by
+  rw [Subgroup.eq_bot_iff_forall]
+  intro x hx
+  rcases hx.1 with ⟨a, ha, rfl⟩
+  rcases hx.2 with ⟨b, hb, hba⟩
+  have hba' : b = a := hj hba
+  subst b
+  have haBot : a ∈ A ⊓ B := ⟨ha, hb⟩
+  rw [hAB] at haBot
+  have haone : a = 1 := by simpa using haBot
+  rw [haone, map_one]
+
 /-! ## The free-letter separation behind `H ∩ F = 1` -/
 
 /-- A free letter over `K`, realized as the central HNN extension over the
@@ -108,6 +135,93 @@ theorem freeLetterConjugate_inf_base (L : Subgroup K) :
     mem_of_conj_mem_range (⊥ : Subgroup K) hbase
   have hkone : k = 1 := by simpa using hkbot
   rw [← hkx, hkone, map_one]
+
+/-- Exact membership in the free-letter conjugate. -/
+theorem freeLetter_conj_mem_iff (L : Subgroup K) (x : K) :
+    (t : FreeLetterExtension K) * of x * t⁻¹ ∈
+        freeLetterConjugateSubgroup L ↔ x ∈ L := by
+  change (t : FreeLetterExtension K) * of x * t⁻¹ ∈
+      conjugateSubgroup
+        (L.map (of : K →* FreeLetterExtension K))
+        (t : FreeLetterExtension K) ↔ x ∈ L
+  rw [conj_mem_conjugateSubgroup_iff]
+  exact map_mem_map_iff_of_injective L
+    (of : K →* FreeLetterExtension K)
+    (of_injective_centHNN (⊥ : Subgroup K)) x
+
+/-- The old copy of `F` inside the free-letter extension. -/
+def freeLetterEmbeddedSubgroup (e : F →* K) :
+    Subgroup (FreeLetterExtension K) :=
+  MonoidHom.range ((of : K →* FreeLetterExtension K).comp e)
+
+/-- The corrected detector subgroup misses the old copy of `F`, with no
+assumption on `e`: `qLq⁻¹ ∩ e(F) = 1`. -/
+theorem freeLetterConjugate_inf_embedded (L : Subgroup K) (e : F →* K) :
+    freeLetterConjugateSubgroup L ⊓ freeLetterEmbeddedSubgroup e = ⊥ := by
+  rw [Subgroup.eq_bot_iff_forall]
+  intro x hx
+  have hxBase : x ∈ MonoidHom.range (of : K →* FreeLetterExtension K) := by
+    rcases hx.2 with ⟨f, rfl⟩
+    exact ⟨e f, rfl⟩
+  have hxBot : x ∈ freeLetterConjugateSubgroup L ⊓
+      MonoidHom.range (of : K →* FreeLetterExtension K) := ⟨hx.1, hxBase⟩
+  rw [freeLetterConjugate_inf_base L] at hxBot
+  simpa using hxBot
+
+/-- The separation `qLq⁻¹ ∩ e(F)=1` survives every subsequent tower
+whose base map is injective. -/
+theorem tower_freeLetterConjugate_inf_embedded
+    (L : Subgroup K) (e : F →* K)
+    (j : FreeLetterExtension K →* P) (hj : Function.Injective j) :
+    (freeLetterConjugateSubgroup L).map j ⊓
+        (freeLetterEmbeddedSubgroup e).map j = ⊥ :=
+  map_inf_map_eq_bot_of_inf_eq_bot _ _ j hj
+    (freeLetterConjugate_inf_embedded L e)
+
+/-! ## The corrected detector after an arbitrary injected tower -/
+
+/-- The conjugated edge subgroup after the free-letter base has passed through
+an arbitrary injective tower. -/
+def freeTowerSubgroup (L : Subgroup K)
+    (j : FreeLetterExtension K →* P) : Subgroup P :=
+  (freeLetterConjugateSubgroup L).map j
+
+/-- Add the corrected detector only after the preceding tower is complete. -/
+abbrev FreeOutermostExtension (L : Subgroup K)
+    (j : FreeLetterExtension K →* P) : Type :=
+  CentHNN (freeTowerSubgroup L j)
+
+/-- The literal conjugated payload in the completed tower. -/
+def freeTowerWord (e : F →* K) (j : FreeLetterExtension K →* P)
+    (f : F) : P :=
+  j ((t : FreeLetterExtension K) * of (e f) * t⁻¹)
+
+/-- The literal conjugated payload in the outer detector extension. -/
+def freeDetectedWord (L : Subgroup K) (e : F →* K)
+    (j : FreeLetterExtension K →* P) (f : F) :
+    FreeOutermostExtension L j :=
+  of (freeTowerWord e j f)
+
+/-- **Exact corrected outermost detector.**  For `H=qLq⁻¹` in
+`K * ⟨q⟩`, subsequently embedded in any tower, the final central letter
+commutes with `q e(f) q⁻¹` exactly when `f ∈ N`.
+
+This statement simultaneously captures the corrected conjugation and the
+"detector last" ordering: no earlier tower letter acts on the detector stable
+letter. -/
+theorem commute_freeStable_freeDetectedWord_iff
+    (N : Subgroup F) (L : Subgroup K) (e : F →* K)
+    (j : FreeLetterExtension K →* P) (hj : Function.Injective j)
+    (hcut : L.comap e = N) (f : F) :
+    Commute (t : FreeOutermostExtension L j)
+        (freeDetectedWord L e j f) ↔ f ∈ N := by
+  unfold freeDetectedWord
+  rw [commute_t_of_iff]
+  unfold freeTowerWord freeTowerSubgroup
+  rw [map_mem_map_iff_of_injective _ j hj]
+  rw [freeLetter_conj_mem_iff]
+  change f ∈ L.comap e ↔ f ∈ N
+  rw [hcut]
 
 /-- The outermost central HNN detector attached to the completed tower `P`. -/
 abbrev Extension (L : Subgroup K) (q : K) (j : K →* P) : Type _ :=
