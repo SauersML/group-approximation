@@ -109,6 +109,25 @@ excluded by the regular-trace firewall.
   compressing those actors back to this carrier is the unresolved moving
   return/leakage problem.
 
+- **Use the authenticated support-return odd loops as the two selector
+  rows.**  The identities
+
+  ```text
+  J_i=W_i(Z_iH_iZ_i)W_i
+  ```
+
+  are literal group-word identities on the recentered carrier and are the
+  first successful odd returns of both native coefficients.  However,
+  `support-return-selector-occurrence-fence`
+  classifies every occurrence in this finite menu.  The `J_i` are both
+  quarter-label adjacent swaps; each inner word is another quarter-label
+  swap on a different transported chart; and the two transported charts
+  meet in only two Pauli pairs, where their relative transporter is
+  label-trivial.  The named Hecke source ranks remain analytic and
+  occurrence-untyped.  Thus the odd loops authenticate native Whitehead
+  occurrences but still do not furnish the `1/4,1/8` target-label pair or
+  the two ordinary source conjugacies required by `(SNA2)`.
+
 - **Dress one Whitehead transport by an ordinary root mover and cut the
   resulting positive cross Gram.**  The root-valued overlap theorem proves
   the scalar Gram only after the dressed full-word occurrences have been

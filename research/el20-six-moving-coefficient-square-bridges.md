@@ -628,6 +628,15 @@ unchanged, while giving `S` their arbitrary product sign.  Thus neither
 the intersection nor the braid ties the two chart gauges; a successful
 comparison must retain all three Pauli pairs.
 
+`support-return-selector-occurrence-fence` records the resulting selector
+typing consequence.  In the authenticated odd-loop menu, `J_1,J_2` are
+both quarter-label swaps on the fixed chart, the two inner words are
+quarter-label swaps on their separate transported charts, and the relative
+word is label-trivial on their common two-pair packet.  The named Hecke
+fractions remain analytic source supports rather than ordinary word
+conjugacies.  Hence these loops do not yet furnish either the one-eighth
+target label or the two typed source rows needed by the affine endpoint.
+
 Dyadically refining the two cross coefficients does not supply that return.
 In `dyadic-cross-whitehead-fusion-has-finite-product-gauge`, the exact
 splittings
