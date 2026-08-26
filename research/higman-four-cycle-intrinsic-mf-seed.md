@@ -143,3 +143,9 @@ primitive `3^n`-root shell, where `{P,D}'` is scalar and the optimal matcher
 error is `Theta(3^(-n))`.  Thus neither lower-shell multiplicities nor the
 `O(n/3^n)` whole-clock matching loss is essential: the unresolved condition
 is still exactly the fourth return of the primitive-shell matcher.
+For the exact sorted spectral assignment,
+`primitive-shell-sorted-matcher-is-one-phase-torus` reduces all matcher
+freedom to `K=RH`, with one diagonal phase torus, and identifies the
+parity-corrected doubling cocycle of the matched diagonal.  The resulting
+phase optimization is explicit, but no analytic lower bound or vanishing
+construction is currently known; nearby-spectrum mixing is also not covered.
