@@ -189,6 +189,17 @@ a finite mixed Britton window.  If the coset action
   packet violates an additional base relation, so FDG remains open; the
   surviving coupling must use further approximate `SL_3` relations to
   construct the ucp comparison point.
+- **Choosing the generator diagonal does not repair that coupling.**
+  `generator-diagonal-does-not-couple-to-root-leak` strengthens the local
+  firewall to the distinguished separator `B_s=X_s/sqrt(|S|)`.  Its exact
+  four-dimensional packet makes the entire selected tuple commute with the
+  stable letter, realizes the unbalanced word and one-Britton moment
+  exactly, has maximal leak on the named root, and gives the generator
+  diagonal a positive support-function gap with aligned off-spectral mass.
+  This invalidates `sl3-fdg-via-generator-diagonal-root-leak`.  Hence the
+  diagonal's fixed identity pairing does not create the missing
+  root-leak/matrix-order bridge; further approximate `SL_3` relations remain
+  load-bearing.
 - **Universal lifting is unavailable.**  Replacing the selected finite
   window by LP of the lattice generator system would imply LLP of
   `C^*(SL_3(Z))`, contradicted by `sl3-generator-system-has-no-universal-lp`.
