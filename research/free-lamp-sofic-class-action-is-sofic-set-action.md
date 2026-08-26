@@ -6,6 +6,7 @@ title: For a free lamp group the Alekseev--Bradford sofic class-action condition
 distinct_from:
   coordinate-action-not-sofic: that is Kun--Thom Corollary D, the nonsoficity of the coset action in the Gao--Kunnawalkam Elayavalli--Patchell sense; this shows the Alekseev--Bradford automorphism-action notion adds nothing for free lamps, so that corollary also kills the free-lamp permanence route.
   kt-free-lamp-hnn-group-is-hyperlinear: that is the open hyperlinearity of the free-lamp HNN group; this closes one specific mechanism for it (semidirect-product permanence) and leaves the group question open.
+  sofic-action-permanence: that dead route invoked wreath permanence theorems needing a sofic coset action; this proves that the newer automorphism-action permanence needs exactly the same input when the lamp group is free.
 ---
 
 Let `G` act on a set `X` and on the free group `Delta = F(X)` by permuting
@@ -18,7 +19,7 @@ Definition 4.23, read from the arXiv HTML on 2026-08-26) if and only if
 `G -> Sym(X)` is a sofic action on a set in the sense of Gao--Kunnawalkam
 Elayavalli--Patchell (their Definition 4.16, same source).
 
-**Consequence.**  (The dead route `sofic-action-permanence` invoked wreath permanence theorems needing a sofic coset action; this shows the newer automorphism-action permanence needs exactly the same input when the lamp group is free.)  For the Kun--Thom pair, `G` acting on `X = G/Gamma` is not
+**Consequence.**  For the Kun--Thom pair, `G` acting on `X = G/Gamma` is not
 a sofic action (`coordinate-action-not-sofic`, Kun--Thom Corollary D), so
 the free-lamp action `G -> Aut(F(G/Gamma))` is **not** a sofic hyperlinear
 action, and Alekseev--Bradford's Corollary 5.2(c) cannot be applied to
