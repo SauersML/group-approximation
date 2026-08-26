@@ -1,0 +1,118 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1.05in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{xcolor}\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+\newcommand{\N}{\mathbb N}\newcommand{\Z}{\mathbb Z}\newcommand{\R}{\mathbb R}
+\newcommand{\Pizt}{\Pi^0_2}\newcommand{\Sizt}{\Sigma^0_2}\newcommand{\Pith}{\Pi^0_3}\newcommand{\Sith}{\Sigma^0_3}
+\newcommand{\Sio}{\Sigma^0_1}\newcommand{\Pio}{\Pi^0_1}
+\newcommand{\cl}{\operatorname{cl}}
+\title{The arithmetical complexity of approximation, residual and rigidity\\ properties of finitely generated groups}
+\author{Research note, 2026-08-26\\ \small (Cairn graph \texttt{group-approximation}; node identifiers in \texttt{typewriter})}
+\date{}
+\begin{document}\maketitle
+\begin{abstract}
+We locate the recognition problems for the standard approximation properties of groups (sofic, hyperlinear, operator-MF, LEF, weakly and linear sofic), the residual properties (residual finiteness, residual $p$-finiteness), amenability and Kazhdan's property (T) in the arithmetical hierarchy, on three syntaxes: finite presentations, two-generator recursive presentations, and pairs of words in Higman's universal finitely presented group. The organizing statement is a second-level Rice theorem: every \emph{local approximation property} that contains the residually finite groups and fails for some group is $\Pizt$-hard on two-generator recursive presentations and undecidable with non-r.e.\ complement on finite presentations. Soficity is $\Pizt$-complete on recursive presentations, unconditionally. Hyperlinearity is either trivial or $\Pizt$-complete, so a non-hyperlinear group exists iff hyperlinearity of finitely presented groups is undecidable. Residual finiteness is $\Pith$-complete already for two-generator recursive presentations, one full level above every approximation property and above amenability, which is $\Pizt$-complete by Kesten's criterion. Property (T) is $\Sio$-complete on finite presentations, so its failure cannot be certified. Several of the finite-presentation cells are open and are stated precisely.
+\end{abstract}
+
+\section{Syntaxes and conventions}
+$\mathrm{P}_{fp}$ denotes the set of codes of finite presentations whose group has property $\mathrm P$; $\mathrm{P}_{rec2}$ the set of indices of two-generator recursive presentations (a program enumerating relators) whose group has $\mathrm P$; $\mathrm P_V$ the set of pairs of words $(u_1,u_2)$ in a fixed finite generating set of Higman's universal finitely presented group $V$ such that $\langle u_1,u_2\rangle$ has $\mathrm P$; $\mathrm P_{enum}$ the countably generated enumerated presentations. $\mathrm{INF}=\{e: W_e \text{ infinite}\}$ and $\mathrm{FIN}$ are $\Pizt$- and $\Sizt$-complete; $\mathrm{TOT}=\{e:W_e=\N\}$ is $\Pizt$-complete; $\{e:\forall x\ W_{g(e,x)}\text{ finite}\}$ is $\Pith$-complete for suitable computable $g$; $\mathrm{COF}$ is $\Sith$-complete; $\mathrm{REC}$ is $\Sith$-complete.
+
+\section{Local approximation properties and the marked-group space}
+\begin{definition}[\texttt{local-approximation-properties-are-marked-closed}]
+A \emph{finite table} is a finite set with a distinguished element and a partial binary operation, up to isomorphism; $\mathrm{tab}_G(F)=(F\cup F\!\cdot\! F,\ (x,y)\mapsto xy,\ 1)$ for finite $F\subseteq G$. A \emph{model predicate} is a predicate $M(T,\varepsilon)$ on tables and rationals $\varepsilon>0$, monotone in $\varepsilon$ and passing to sub-tables. The associated \emph{local approximation property} is $P_M(G):\iff \forall F\subseteq G$ finite, $\forall \varepsilon>0$: $M(\mathrm{tab}_G(F),\varepsilon)$.
+\end{definition}
+Sofic (permutation models, Hamming), hyperlinear (unitary models, normalized Hilbert--Schmidt), operator-MF (unitary models, operator norm, fixed separation), LEF (exact finite models), weakly sofic and linear sofic are of this form.
+\begin{theorem}\label{thm:closed}
+For every model predicate $M$: $P_M$ is hereditary and local; it is closed in the space of marked groups; and every finitely generated group $G=\langle X\mid N\rangle$ failing $P_M$ has a finitely presented cover $\langle X\mid N_0\rangle\twoheadrightarrow G$, $N_0\subseteq N$ finite, failing $P_M$.
+\end{theorem}
+\begin{proof}[Sketch]
+A failing table $\mathrm{tab}_G(F)$ with tolerance $\varepsilon$ is described by finitely many word equalities and inequalities among words of length $\le r$. Any marked group agreeing with $G$ on words of length $\le 4r$ carries an isomorphic table, hence fails $P_M$; this is openness of the failure locus. The finitely many equalities are consequences of finitely many relators $N_0$; in $\langle X\mid N_0\rangle$ they hold by construction and the inequalities hold because they hold in the quotient $G$. (Sofic and hyperlinear instances are kernel-checked: \texttt{Covers/TableCover}, \texttt{Covers/HyperlinearTableCover}.)
+\end{proof}
+
+\section{The second-level Rice theorem}
+\begin{theorem}[\texttt{second-level-rice-theorem-for-local-approximation-properties}]\label{thm:rice}
+Let $P=P_M$ be a local approximation property such that (H1) every residually finite group has $P$ and (H2) some finitely generated group fails $P$. Then: (a) $P_{fp}$ is $\Sio$-hard and its complement is $\Pio$-hard, so neither is decidable and $\neg P_{fp}$ is not r.e.; (b) $P_{rec2}$ is $\Pizt$-hard and $\neg P_{rec2}$ is $\Sizt$-hard; (c) $P_V$ is $\Pizt$-hard; (d) if $P_{rec}\in\Pizt$ then $P_{rec2}$ and $P_V$ are $\Pizt$-complete and $P_{fp}\in\Pizt\setminus\Pio$, $\neg P_{fp}\in\Sizt\setminus\Sio$.
+\end{theorem}
+\begin{proof}[Sketch]
+By Theorem~\ref{thm:closed} there is a finitely presented $E\notin P$. (a) $P$ is a Markov property (positive witness the trivial group, forbidden subgroup $E$, heredity), so Adian--Rabin reduces the word problem to $P_{fp}$. (b) The parametric FIN/INF ray switch (\texttt{arbitrary-forbidden-seed-hereditary-property-switch}, Lean \texttt{ParametricRecursiveSwitchPresentation}) gives countably generated recursive $S_e$ with $S_e\cong 1$ for $e\in\mathrm{INF}$ and $S_e\cong E$ for $e\in\mathrm{FIN}$; the two-generator bidirectional bridge $B_2(-)$ has residually finite value on $1$ and contains its argument, so $Q_e=B_2(S_e)$ has $P$ iff $e\in\mathrm{INF}$. (c) Embed $\ast_e Q_e$ in $V$ by Mikaelian's explicit Higman embedding. (d) Hardness plus membership.
+\end{proof}
+Kernel-checked half: \texttt{HereditaryPropertySwitchCompleteness.enumeratedCodeProperty\_pi02Hard} proves (b) on enumerated presentations for every hereditary $P$ with a finitely presented forbidden seed.
+
+\section{Soficity: an exact classification}
+\begin{theorem}[\texttt{sofic-recognition-has-a-pi2-upper-bound}]\label{thm:sofup}
+For a recursive presentation $\langle X\mid r_1,r_2,\dots\rangle$ of $H$, with $d$ the normalized Hamming distance,
+$H$ is sofic iff for all $(W,N,k)$: some $w\in W$ is trivial in $H$, or there is a finite $Y$ and $\sigma:X\to\mathrm{Sym}(Y)$ with $d(\sigma(r_j),\mathrm{id})\le 1/k$ for $j\le N$ and $d(\sigma(w),\mathrm{id})\ge 1-1/k$ for $w\in W$. Hence $\mathrm{SOFIC}_{rec}\in\Pizt$, with a primitive recursive certificate checker.
+\end{theorem}
+\begin{proof}[Sketch]
+($\Rightarrow$) restrict a sofic model of the ball of radius $n$ to generators; right-invariance gives $d(\sigma(u),\phi(\bar u))\le(|u|-1)\varepsilon$. ($\Leftarrow$) choose words $u_g$ for the ball; every trivial word of length $\le 4n$ has area $\le A$ from $r_1,\dots,r_N$, so conjugation invariance and subadditivity give defects $\le A/k$; separation is read off the nontrivial words $u_g^{-1}u_h\in W$. (Finite-presentation instance kernel-checked: \texttt{SoficRecognitionPi02.pi02\_isSofic}; the strict placement $\Pizt\setminus\Pio$ is \texttt{sofic\_fp\_strict\_position}.)
+\end{proof}
+\begin{theorem}[\texttt{sofic-recognition-two-generator-recursive-is-pi2-complete}]
+$\mathrm{SOFIC}_{rec2}$ and $\mathrm{SOFIC}_V$ are $\Pizt$-complete; $\mathrm{SOFIC}_{fp}\in\Pizt\setminus\Pio$ and $\mathrm{NONSOFIC}_{fp}\in\Sizt\setminus\Sio$.
+\end{theorem}
+\begin{proof} Theorem~\ref{thm:rice} with (H2) the kernel-checked finitely presented nonsofic group (\texttt{Endpoint/MainResults.exists\_finitelyPresented\_nonsofic\_group}) and Theorem~\ref{thm:sofup}. \end{proof}
+
+\section{The hyperlinear dichotomy}
+\begin{theorem}[\texttt{approximation-property-recognition-dichotomy}]
+Exactly one of: (A) every group is hyperlinear, and $\mathrm{HYP}_{fp},\mathrm{HYP}_{rec2},\mathrm{HYP}_V$ are decidable (everything); (B) $\mathrm{HYP}_{rec2}$ and $\mathrm{HYP}_V$ are $\Pizt$-complete, $\mathrm{HYP}_{fp}$ is $\Sio$-hard and in $\Pizt\setminus\Pio$, $\mathrm{NONHYP}_{fp}$ is $\Pio$-hard and not r.e. In particular, a non-hyperlinear group exists iff a finitely presented one exists iff $\mathrm{HYP}_{fp}$ is undecidable iff $\mathrm{HYP}_{rec2}$ is $\Pizt$-complete.
+\end{theorem}
+The same holds for weak soficity and linear soficity over any computable field, with membership in $\Pizt$ supplied respectively by Glebsky's product-quotient characterization (normal-closure membership in a direct product of finite groups is one bounded template in every coordinate) and by the rank metric.
+\begin{remark}
+An undecidability proof for $\mathrm{HYP}_{fp}$ would produce a non-hyperlinear group without exhibiting one, exactly as $\mathrm{MIP}^*=\mathrm{RE}$ refutes Connes' embedding conjecture; it must deliver a computable family $e\mapsto G_e$ with exact relations on the positive side, the perfect-completeness obstacle of the Taller--Vidick LCS hardness. Whether $\mathrm{HYP}_{fp}$ is $\Pizt$-complete in case (B) reduces to hyperlinearity of the positive branch of the MF-safe finite-presentation compiler, i.e.\ to quasidiagonality of its regular trace (\texttt{mf-compiler-positive-branch-is-hyperlinear}).
+\end{remark}
+
+\section{Residual finiteness is one level higher}
+Let $F=F(a,b)$, $a_j=b^jab^{-j}$, and for $J\subseteq\Z$ let $A_J=\langle a_j:j\in J\rangle$ and $H_J=\langle F,s\mid [s,A_J]=1\rangle$. For $J\subseteq\Z_{>0}$ let $G_J=\langle a,t\mid [a,t^jat^{-j}]=1\ (j\in J)\rangle$ and $J^s=J\cup(-J)\cup\{0\}$. Write $\cl(S)$ for the closure of $S\subseteq\Z$ in the profinite topology of $\Z$: $i\in\cl(S)$ iff $(i+n\Z)\cap S\ne\emptyset$ for all $n\ge1$.
+\begin{theorem}[\texttt{centralizing-hnn-over-conjugate-basis-is-rf-iff-index-set-closed}, \texttt{shift-raag-family-is-rf-iff-symmetrized-index-set-closed}]\label{thm:crit}
+The profinite closure of $A_J$ in $F$ is $A_{\cl(J)}$; $H_J$ is residually finite iff $\cl(J)=J$; $G_J=A(\Gamma_J)\rtimes\Z$ with $\Gamma_J$ the graph on $\Z$ with edges $\{i,i+j\}$, $j\in J$, and $G_J$ is residually finite iff $J^s$ is closed. Both families are LEF and sofic for every $J$.
+\end{theorem}
+\begin{proof}[Sketch]
+If $i\in\cl(J)$ and $U\le F$ has finite index with $A_J\le U$, then $b^n\in U$ for some $n$ and $a_i=b^{-kn}a_jb^{kn}\in U$ for $j\in J$, $j=i+kn$. Conversely, for $g\notin A_{\cl(J)}$ involving a letter $a_i$, $i\notin\cl(J)$, pass to $\langle a\rangle*\langle b\mid b^n\rangle$ with $(i+n\Z)\cap J=\emptyset$ and $n$ exceeding all index differences in $g$: the normal closure of $a$ is free on $a_0,\dots,a_{n-1}$ (Kurosh), the image of $A_J$ is a proper free factor missing $a_{i\bmod n}$, and virtually free groups are subgroup separable. For $H_J$: closed $\Rightarrow$ residually finite by separating pinches and mapping to $Q*_{\psi(A_J)}(\psi(A_J)\times\Z)$, virtually free; not closed $\Rightarrow$ the pinch $[s,a_i]$, $i\in\cl(J)\setminus J$, dies in every finite quotient. For $G_J$: a finite-order image of $t$ folds $d\in\cl(J^s)\setminus J^s$ onto an edge, killing $[a_0,a_d]$; closed index sets are separated through $A(\Gamma_{J,m})\rtimes\Z/m$. LEF: truncate the shift graph to one period; sofic: right-angled Artin kernel, sofic-by-amenable (Elek--Szab\'o).
+\end{proof}
+\begin{theorem}[\texttt{index-set-profinitely-closed-is-pi3-complete}]
+$\{e: \cl(W_e)=W_e\}$ is $\Pith$-complete. Hardness: $J_e=\{0\}\cup\bigcup_x\{2^x(2j+1): j<|W_{g(e,x)}|\}$ is closed iff every row is finite, because the sets $D_x=2^x+2^{x+1}\Z$ are pairwise disjoint clopen subsets of $\hat\Z$ covering $\Z\setminus\{0\}$, an infinite row $x$ has the closure point $-2^x$, and a finite row is closed.
+\end{theorem}
+\begin{theorem}[\texttt{residual-finiteness-two-generator-recursive-is-pi3-complete}]
+$\mathrm{RF}_{rec2}$ is $\Pith$-complete (two generators is optimal), and so is $\mathrm{RF}_V$; $\mathrm{RF}_{fp}\in\Pizt\setminus\Pio$. The family $G_{J_e}$ with rows $\{2^x(4j+1):j<|W_{g(e,x)}|\}$ (closure point $-3\cdot2^x$, stable under symmetrization) witnesses hardness; it is LEF and sofic throughout, so the level does not drop under those promises. Residual $p$-finiteness is $\Pith$-complete for every prime $p$ (\texttt{residually-p-two-generator-recursive-is-pi3-complete}).
+\end{theorem}
+Upper bound: residual finiteness of a recursive presentation is $\forall w\,[w=1\ \vee\ \exists$ finite quotient separating $w]$ where the inner statement is $\Sizt$ because a finite quotient must kill every enumerated relator ($\Pio$); on finite presentations the relator check is finite and the level drops to $\Pizt$. Since LEF is $\Pizt$ on the same syntax, residual finiteness and LEF, which coincide for finitely presented groups, are separated by one quantifier alternation on recursive presentations, and the family $G_{J_e}$ realizes the gap.
+
+\section{Amenability, free subgroups, finite presentability}
+\begin{theorem}[\texttt{amenability-two-generator-recursive-is-pi2-complete}]
+$\mathrm{AMENABLE}_{rec2}$ and $\mathrm{METABELIAN}_{rec2}$ are $\Pizt$-complete and $\mathrm{CONTAINS}\text{-}F_2{}_{rec2}$ is $\Sizt$-complete. Upper bound: Kesten's criterion, $G$ amenable iff $\forall k\,\exists n$: the number of trivial words of length $2n$ over $S=X\cup X^{-1}$ is at least $(1-1/k)^{2n}|S|^{2n}$, a count certified by derivations. Hardness: $G_J$ is amenable iff metabelian iff $G_J\cong\Z\wr\Z$ iff $J=\Z_{>0}$ (a right-angled Artin group is amenable iff its graph is complete), and contains $F_2$ otherwise; reduce from $\mathrm{TOT}$. $\mathrm{AMENABLE}_{fp}\in\Pizt\setminus\Pio$ by Adian--Rabin with trivial witness and $F_2$ forbidden.
+\end{theorem}
+\begin{proposition}[\texttt{finite-presentability-two-generator-recursive-is-sigma2-hard}]
+$\mathrm{FP}_{rec2}$ is $\Sizt$-hard and in $\Sith$: $G_J$ is finitely presentable iff $J$ is finite (Bieri--Strebel forbids an ascending HNN structure over a finitely generated subgroup of the right-angled Artin kernel). Finite presentability is convex on index sets for any family that only adds relators to a fixed base, so such families cannot reach $\Sith$; on enumerated presentations $\mathrm{FP}$, finite generation, finiteness and property (T) are $\Sith$-complete. Solvability of the word problem on $rec2$ is $\Sith$-complete, since the word problem of $G_J$ is decidable iff $J$ is.
+\end{proposition}
+
+\section{Property (T)}
+\begin{theorem}[\texttt{kazhdan-property-t-of-finite-presentations-is-sigma1-complete}]
+$\mathrm T_{fp}$ and $\mathrm T_{rec2}$ are $\Sio$-complete; failure of (T) is not semidecidable, and no algorithm approximates the spectral gap of a finitely presented group to within a fixed additive error.
+\end{theorem}
+\begin{proof}[Sketch]
+Semidecidability is Ozawa's criterion ($\Delta^2-\lambda\Delta$ a sum of hermitian squares in $\R[\Gamma]$), rationalized by Netzer--Thom. For hardness, the Rabin group $K(w)$ attached to a word $w$ of a group with unsolvable word problem is trivial when $w=1$ (kernel-checked, \texttt{RabinConstruction}) and otherwise an amalgamated free product over a rank-two free subgroup, proper in both factors; a nontrivial amalgam has no fixed point on its Bass--Serre tree, so fails Serre's FA, and (T) implies FA (Watatani). Property (T) is not hereditary, so this is not a Markov-property argument: the negative branch is a splitting. For two generators use $SL_3(\Z)$ versus $SL_3(\Z)\times\Z$, which is two-generated because $SL_3(\Z)$ is perfect.
+\end{proof}
+
+\section{Ledger and open cells}
+\begin{center}\small
+\begin{tabular}{lll}
+property & $fp$ & $rec2$ / $V$\\\hline
+sofic & $\Pizt\setminus\Pio$ (complete: open) & $\Pizt$-complete\\
+operator-MF & $\Pizt$-complete (Cairn) & $\Pizt$-complete\\
+LEF & $=\mathrm{RF}_{fp}$ & $\Pizt$-complete\\
+hyperlinear / weakly / linear sofic & trivial or $\Sio$-hard in $\Pizt\setminus\Pio$ & trivial or $\Pizt$-complete\\
+amenable & $\Pizt\setminus\Pio$ (complete: open) & $\Pizt$-complete\\
+residually finite, residually $p$ & $\Pizt\setminus\Pio$ (complete: RF-Higman) & $\Pith$-complete\\
+property (T) & $\Sio$-complete & $\Sio$-complete\\
+finitely presentable & -- & $\Sizt$-hard, $\Sith$
+\end{tabular}
+\end{center}
+Open cells (\texttt{open-cells-arithmetical-complexity-of-group-properties}): $\Pizt$-completeness of $\mathrm{SOFIC}_{fp}$ (needs a sofic-safe finite-presentation compiler: centralizing HNN extensions over non-amenable, non-profinitely-closed Mikhailova-type subgroups), of $\mathrm{HYP}_{fp}$ in case (B) (quasidiagonality of the MF compiler's regular trace), of $\mathrm{RF}_{fp}$ (the residually finite Higman problem) and of $\mathrm{AMENABLE}_{fp}$ (every Higman-type compiler introduces free subgroups); $\Sith$-completeness of $\mathrm{FP}_{rec2}$; and whether some group fails weak or linear soficity.
+\end{document}
