@@ -65,6 +65,10 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
         "printedTauGL_mem"),
+    "prop:leavitt-compression": (
+        "Manuscript/OneSidedMFRadical/SentenceCurrentLeavittCompressionClosure",
+        "GroupApproximation.Manuscript.OneSidedMFRadical."
+        "manuscriptCurrentLeavittCompressionProposition"),
     "prop:simple": (
         "Manuscript/OneSidedMFRadical/RankTwelveSimplicity",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
@@ -81,8 +85,6 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means the argument
 # is entirely elementary and self-contained in the paper.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
-    "prop:leavitt-compression": (
-        "Ershov--Jaikin-Zapirain, Theorem 1.1",),
     "thm:hull": (
         "Hull, Theorem 7.1",),
     "lem:saturation": (

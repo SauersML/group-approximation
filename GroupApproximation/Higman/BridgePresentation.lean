@@ -464,7 +464,7 @@ theorem hnnNumberedRels_subset_coded {A : Type} [Group A] (g : ℕ → A) :
   rintro r ⟨s, hs, rfl⟩
   rcases hs with ⟨u, hu, rfl⟩ | ⟨i, rfl⟩
   · rcases hu with ⟨v, hv, rfl⟩
-    rcases hv with ⟨w, hw, rfl⟩ | ⟨w, hw⟩
+    rcases hv with ⟨w, hw, rfl⟩ | ⟨w, hw, rfl⟩
     · refine ⟨FreeGroup.map (fun k : ℕ => k + 3) w,
         Or.inl ⟨w, hw, rfl⟩, ?_⟩
       rw [relabel_base_word]
