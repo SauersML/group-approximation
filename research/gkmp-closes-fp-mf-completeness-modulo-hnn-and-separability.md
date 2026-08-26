@@ -32,7 +32,9 @@ The remaining ingredients are already in hand or automatic:
   groups by HNN extensions and amalgams over exact (indeed free/cyclic)
   subgroups; exactness is closed under both, so `G` is exact and (SEP)'s
   overgroup is exact, satisfying the exactness hypothesis of Theorem 1.1
-  outright.
+  outright.  This part survives audit: group exactness is closed under
+  arbitrary amalgamated free products and HNN extensions; it does not require
+  the edge subgroup to be amenable.
 * **`C` residually finite MF on `INF`.**  `C = B2(1)` is residually finite
   ([[bidirectional-hnn-bridge-trivial-value-is-residually-finite]]), hence MF.
 * **`E <= C` on `FIN`.**  The switch embeds `E`, so the output is non-MF.
@@ -68,9 +70,13 @@ residually finite, MF, and exact, so no additional exactness input is needed
 there.  GKMP's displayed isomorphism
 `G *_H (H x Z) ~= (*_H G) semidirect Z` remains a product-amalgam identity;
 it does not turn a graph HNN `tAt^-1=B` into an instance of Theorem 1.1.
-The paper explicitly cites separate work on HNN extensions as "in
-preparation", confirming that an HNN permanence theorem is not among its
-results.
+No HNN permanence theorem is among GKMP's results.  Two later papers do not
+silently supply it: arXiv:2604.06982 concerns selflessness of reduced HNN
+extensions, while arXiv:2604.14106 transports already compatible strong
+convergence data through HNN extensions.  Its Corollary 1.3 assumes strong
+convergence of the base tuple together with both subgroup expectations and
+the edge isomorphism.  Ordinary MF of the base supplies none of that relative
+compatibility, so it does not discharge items 1--3.
 
 ## Attempts
 

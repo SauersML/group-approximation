@@ -32,9 +32,10 @@ Z permuting the copies.
 1.3: arbitrary graph products of exact residually finite MF/PMF/PFF groups
 are MF/PMF/PFF (generalizes Magee-Thomas RAAG result).
 1.4: pi_1 of a non-positively-curved compact orientable aspherical
-3-manifold is PFF; all virtually special groups are PFF. (Uses: virtually
-special ⟹ subgroup of RAAG; quasi-convex subgroups of such are separable
-[Haglund-Wise], fed into Cor 1.2.)
+3-manifold is PFF; all virtually special groups are PFF.  The latter uses a
+finite-index subgroup embedding in a RAAG, Corollary 1.3 for the RAAG, and
+finite-index-overgroup permanence.  It does not say that Higman compiler
+subgroups are separable.
 
 ## Method
 
@@ -60,6 +61,13 @@ central detector HNN.  GKMP applies directly only to the last edge, if its
 subgroup is separable in the already completed inner tower.  It proves no MF
 permanence for the preceding `tau_j`, `d`, or `sigma` edges and no
 separability theorem for the transported detector subgroup.
+
+Two papers appearing after GKMP do not change that conclusion without new
+relative approximation data.  arXiv:2604.06982 proves selflessness results
+for reduced HNN extensions.  arXiv:2604.14106, Corollary 1.3, transports
+strong convergence through an HNN extension assuming strong convergence of
+the base together with both subgroup conditional expectations and the edge
+isomorphism.  MF of the base alone does not supply those relative data.
 
 The earlier record misread Chiodo--Vyas, arXiv:1604.03788.  That paper proves
 that the Aanderaa--Cohen construction preserves torsion length.  Separately,
