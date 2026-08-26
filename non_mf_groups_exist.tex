@@ -1348,92 +1348,6 @@ Theorem~\ref{thm:commutant} kills every generator of
 \(\mathfrak D_G(L)\).
 \end{proof}
 
-\begin{proposition}[functoriality and normal generation]\label{prop:defect-saturation}
-Let $L\le G$ and put $D=\mathfrak D_G(L)$.
-
-If $f\colon G\to Q$ is a homomorphism, then
-%<webmath object="whole" when="f(D)\le\mathfrak D_{f(G)}(f(L))" title="a homomorphism sends the defect into the defect of the images">
-% The set \(f(D)\) is the [[image]] of the defect subgroup D under f.  The
-% right side is the defect subgroup formed inside the image group \(f(G)\)
-% using the image subgroup \(f(L)\).  The containment says every f-image of a
-% compression commutator from G belongs to the defect built after applying f.
-% The statement promises containment, not equality, because a general
-% homomorphism may merge elements and the image data may have additional
-% defect generators.
-%</webmath>
-\begin{equation}\label{eq:defect-functoriality}
- f(D)\le\mathfrak D_{f(G)}(f(L)).
-\end{equation}
-If $S\le G$ is a nontrivial simple subgroup and $D\cap S\ne1$, then
-$S\le D$.  If in addition the normal closure of $S$ in $G$ is all of $G$,
-then $D=G$.  If moreover $G$ is countable and both $L$ and $G$ have
-property~\textup{(T)}, then
-%<webmath object="whole" when="\Rad_{\mathrm{MF}}(G)=G" title="every element of G is erased by every MF model">
-% The [[MF radical]] contains exactly the elements sent to the identity by
-% every homomorphism from G into a norm matrix corona.  Equality with G says
-% it contains every element, so every such homomorphism is trivial.  The
-% preceding hypotheses make the compression defect equal G by normal
-% generation.  Since both the compressor subgroup L and the normal subgroup
-% K chosen as G have property (T), the compression criterion places all of G
-% in its MF radical.
-%</webmath>
-\[
- \Rad_{\mathrm{MF}}(G)=G.
-\]
-
-Alternatively, suppose that $f$ is onto, $S\le D$, and $f(S)$ normally
-generates $Q$.  Then
-%<webmath object="whole" when="\mathfrak D_Q(f(L))=Q" title="the image defect is all of Q">
-% The left side is the compression-centralizer defect formed in Q from the
-% subgroup \(f(L)\).  Functoriality places the image \(f(S)\) inside this
-% defect.  The defect is a [[normal subgroup]], so it
-% contains the [[normal closure]] of \(f(S)\).  By hypothesis that normal
-% closure is all of Q.  The displayed equality records the result: every
-% element of Q lies in the defect determined by \(f(L)\).
-%</webmath>
-\[
- \mathfrak D_Q(f(L))=Q.
-\]
-If, in addition, $G$ is countable and both $L$ and $G$ have
-property~\textup{(T)}, then
-%<webmath object="whole" when="\Rad_{\mathrm{MF}}(Q)=Q" title="every element of Q is erased by every MF model">
-% The equality says every element of Q belongs to its [[MF radical]], so every
-% homomorphism from Q into a [[norm matrix corona]] is trivial.  Property (T)
-% passes from G and L to their images Q and \(f(L)\).  The preceding equality
-% says the compression defect formed from \(f(L)\) is the whole group Q.
-% Applying the compression criterion inside Q therefore places Q inside its
-% own radical; the reverse containment holds because the radical is a
-% subgroup of Q.
-%</webmath>
-\[
- \Rad_{\mathrm{MF}}(Q)=Q.
-\]
-\leanverified{Manuscript/OneSidedMFRadical/DefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptDefectSaturation}
-\leanverified{Manuscript/OneSidedMFRadical/CompleteDefectSaturation}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompleteDefectSaturation}
-\end{proposition}
-
-\begin{proof}
-If $u\in\operatorname{Comp}_G(L)$, then
-$f(u)f(L)f(u)^{-1}\le f(L)$.  If $c\in C_G(L)$, then
-$f(c)\in C_{f(G)}(f(L))$.  Therefore $f$ takes every defining generator of
-$D$ into a defining generator of $\mathfrak D_{f(G)}(f(L))$.  This proves
-\eqref{eq:defect-functoriality}.
-
-The subgroup $D$ is normal in $G$, so $D\cap S$ is normal in $S$.
-Simplicity and $D\cap S\ne1$ give $D\cap S=S$, hence $S\le D$.  Since $D$
-is normal in $G$, it then contains the normal closure of $S$.  When the normal
-closure of $S$ is $G$, this proves $D=G$.  Under the property~\textup{(T)}
-hypotheses, Theorem~\ref{thm:compression-criterion} with $K=G$ then gives
-$\Rad_{\mathrm{MF}}(G)=G$.
-
-For the image statement, \eqref{eq:defect-functoriality} gives
-$f(S)\le\mathfrak D_Q(f(L))$.  The latter subgroup is normal in $Q$, so it
-contains the normal closure of $f(S)$ and is therefore all of $Q$.  Property
-\textup{(T)} passes to quotients, so the final hypotheses give property
-\textup{(T)} for both $f(L)$ and $Q$.  Applying
-Theorem~\ref{thm:compression-criterion} inside $Q$, with $K=Q$, proves the
-last assertion.
-\end{proof}
 \section{The binary Leavitt self-compression}
 
 Throughout this section $R=L_{\F_2}(1,2)$ and
@@ -1638,10 +1552,11 @@ Simplicity of $R$ gives $I=0$ or $I=R$.  If $I=R$, then
 $\EL_{12}(R,I)=H$, so $N=H$.
 
 Suppose that $I=0$.  Then $N\le C_{12}(R,0)=Z(\GL_{12}(R))$.  A matrix that
-commutes with every elementary matrix $e_{ij}(a)$ is a scalar matrix
-$\lambda I_{12}$ with $\lambda\in Z(R)^\times$.  Since
-$Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, its only central unit is $1$.
-Thus $N=1$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
+commutes with every $e_{ij}(1)$ is a scalar matrix $\lambda I_{12}$.
+Commutation with $e_{ij}(a)$ for arbitrary $a\in R$ then gives
+$\lambda a=a\lambda$, so $\lambda\in Z(R)^\times$.  Since
+$Z(R)=\F_2$~\cite[Corollary~4.3]{ArandaCrow}, we have $\lambda=1$ and
+$N=1$.  Finally, $e_{01}(1)\ne1$, so $H$ is nontrivial.
 \end{proof}
 
 \begin{proposition}\label{prop:defect}
@@ -1665,8 +1580,8 @@ in $H$.  Then
 % \(d=e_{02}(q)\ne1\) says the [[commutator]] d is an [[elementary matrix]]
 % with q in row 0, column 2 and is not the [[identity]].  Third,
 % \(\normal d_H=H\) says the [[normal closure]] of d is the whole [[group]] H.
-% The equation \(t_1qs_1=1\) and elementary matrix commutator rules prove that
-% last statement.
+% The explicit formula shows that d is nontrivial, and simplicity of H then
+% proves the last statement.
 %</webmath>
 %<webmath object="e02" when="d=e_{02}(q)" title="the identity matrix with q added in row 0, column 2">
 % \(e_{02}(q)\) is an [[elementary matrix]]: the 12-by-12 [[identity matrix]]
@@ -1711,9 +1626,9 @@ Direct multiplication of the matrices in \eqref{eq:tau} gives
 \end{equation}
 The second factor commutes with $\ell=e_{12}(1)$.  The identity
 $[e_{ij}(a),e_{jk}(b)]=e_{ik}(ab)$ therefore gives $d=e_{02}(q)$, which is
-nontrivial because $q\ne0$.  Since $t_1qs_1=1$,
-Lemma~\ref{lem:normal-generation-transvection}, applied to $e_{02}(q)$,
-gives $\normal d_H=H$.
+nontrivial because $q\ne0$.  Its normal closure is a nontrivial normal
+subgroup of $H$, and hence is all of $H$ by
+Proposition~\ref{prop:simple}.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:headline}]
@@ -2756,14 +2671,10 @@ Proposition~\ref{prop:simple}, the formalization proves that every nontrivial
 normal subgroup contains an elementary matrix $e_{ij}(x)$ with $x\ne0$.  It
 treats diagonal matrices separately and divides the nondiagonal case according
 to whether the relevant entry of the inverse matrix is zero.
-The formalized simplicity proof uses the concrete two-sided sandwich and the
-fact that every central unit of the binary Leavitt algebra over $\F_2$ equals
-$1$; it does not route through Preusser's general theorem.  That theorem is
-formalized separately in the development, over the hypothesis that the
-coefficient ring admits finite right exchange partitions; the development
-derives the one-element exchange condition from that hypothesis but does not
-prove the two equivalent, so the formalized statement may rest on a stronger
-assumption than Preusser's.  No general theory of pure infiniteness is
+The article invokes Preusser's sandwich theorem for concision.  The formalized
+simplicity proof is independent of that citation: it uses the concrete
+two-sided sandwich and the fact that every central unit of the binary Leavitt
+algebra over $\F_2$ equals $1$.  No general theory of pure infiniteness is
 formalized.
 
 \begin{thebibliography}{99}
