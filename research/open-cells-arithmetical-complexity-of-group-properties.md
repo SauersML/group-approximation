@@ -39,3 +39,17 @@ them fills one cell.
    [[linear-soficity-recognition-has-a-pi2-upper-bound]]).
 7. **`METABELIAN_fp`, `CONTAINS-F2_fp` exact levels** (`Pi^0_2`, `Sigma^0_2`
    upper bounds; first-level hardness only).
+
+## Attempts
+
+The obvious attack on every finite-presentation cell is a property-safe
+Higman compiler: cells 1--4 record where it dies (non-amenable
+non-closed edges; an abstract trace; the residually finite Higman
+problem; free subgroups in every HNN tower).  For cell 5 the obvious
+attack, an r.e. edge set complemented to force cofiniteness, dies because
+complements of r.e. edge sets give non-recursively-presented groups and
+shift-invariant relator families collapse under the shift.  Cell 6 is
+deferred to the literature's open questions on universality of weak and
+linear soficity.  Cell 7 is deferred: its positive branch would have to be
+metabelian, respectively free-subgroup-free, on a finitely presented
+switch, which is the same obstruction as cell 4.
