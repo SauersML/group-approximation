@@ -15,6 +15,8 @@ import GroupApproximation.Analysis.SpectralComponentDiameter
 import GroupApproximation.Analysis.SpectralComponentMotion
 import GroupApproximation.Analysis.ClopenSpectralProjection
 import GroupApproximation.Analysis.GNSEigenvector
+import GroupApproximation.Computability.SoficMicrostateNormalForm
+import GroupApproximation.Computability.SoficRecognitionPi02
 import GroupApproximation.Kazhdan.KazhdanEigenvalueBound
 import GroupApproximation.Analysis.AbstractSpectralGap
 import GroupApproximation.Analysis.CStarSpectralProjection
