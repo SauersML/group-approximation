@@ -107,15 +107,15 @@ theorem primrec_edgeRelator :
       (Primrec.const [])
   have hsource : Primrec (fun a : PresentationCode × (Raw × Raw) =>
       normWord a.1 a.2.1) :=
-    Primrec₂.comp primrec_normWord Primrec.fst
-      (Primrec.fst.comp Primrec.snd)
+    primrec_normWord.comp
+      (Primrec.pair Primrec.fst (Primrec.fst.comp Primrec.snd))
   have htarget : Primrec (fun a : PresentationCode × (Raw × Raw) =>
       normWord a.1 a.2.2) :=
-    Primrec₂.comp primrec_normWord Primrec.fst
-      (Primrec.snd.comp Primrec.snd)
-  exact Primrec₂.comp Primrec.list_append (hstablePos.comp Primrec.fst)
-    (Primrec₂.comp Primrec.list_append hsource
-      (Primrec₂.comp Primrec.list_append (hstableNeg.comp Primrec.fst)
+    primrec_normWord.comp
+      (Primrec.pair Primrec.fst (Primrec.snd.comp Primrec.snd))
+  exact Primrec.list_append.comp (hstablePos.comp Primrec.fst)
+    (Primrec.list_append.comp hsource
+      (Primrec.list_append.comp (hstableNeg.comp Primrec.fst)
         (primrec_invWord.comp htarget)))
 
 /-- Computing one finite HNN presentation layer is primitive recursive. -/
@@ -129,15 +129,15 @@ theorem primrec_edgeCode :
   have hedgeRelator : Primrec
       (fun a : (PresentationCode × List (Raw × Raw)) × (Raw × Raw) =>
         edgeRelator a.1.1 a.2) :=
-    Primrec₂.comp primrec_edgeRelator
-      (Primrec.fst.comp Primrec.fst) Primrec.snd
+    primrec_edgeRelator.comp
+      (Primrec.pair (Primrec.fst.comp Primrec.fst) Primrec.snd)
   have hedgeRelators : Primrec
       (fun a : PresentationCode × List (Raw × Raw) =>
         a.2.map (edgeRelator a.1)) :=
     Primrec.list_map Primrec.snd hedgeRelator
   exact Primrec.pair
     (Primrec.succ.comp (Primrec.fst.comp Primrec.fst))
-    (Primrec₂.comp Primrec.list_append (hnormalized.comp Primrec.fst)
+    (Primrec.list_append.comp (hnormalized.comp Primrec.fst)
       hedgeRelators)
 
 /-- The code-level HNN constructor is computable. -/
@@ -167,15 +167,15 @@ theorem primrec_centralEdges :
 /-- The full four-edge raw presentation compiler is primitive recursive. -/
 theorem primrec_compile : Primrec compile := by
   have hTau : Primrec (fun x : TowerInput => edgeCode x.1 x.2.1) :=
-    Primrec₂.comp primrec_edgeCode Primrec.fst
+    primrec_edgeCode.comp Primrec.fst
       (Primrec.fst.comp Primrec.snd)
   have hD : Primrec (fun x : TowerInput =>
       edgeCode (edgeCode x.1 x.2.1) x.2.2.1) :=
-    Primrec₂.comp primrec_edgeCode hTau
+    primrec_edgeCode.comp hTau
       (Primrec.fst.comp (Primrec.snd.comp Primrec.snd))
   have hSigma : Primrec (fun x : TowerInput =>
       threeStageCode x.1 x.2.1 x.2.2.1 x.2.2.2.1) :=
-    Primrec₂.comp primrec_edgeCode hD
+    primrec_edgeCode.comp hD
       (Primrec.fst.comp
         (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))
   have hDetector : Primrec (fun x : TowerInput =>
@@ -183,7 +183,7 @@ theorem primrec_compile : Primrec compile := by
     primrec_centralEdges.comp
       (Primrec.snd.comp
         (Primrec.snd.comp (Primrec.snd.comp Primrec.snd)))
-  exact Primrec₂.comp primrec_edgeCode hSigma hDetector
+  exact primrec_edgeCode.comp hSigma hDetector
 
 theorem computable_compile : Computable compile := primrec_compile.to_comp
 
