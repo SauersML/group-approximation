@@ -21,6 +21,7 @@ import re
 import sys
 
 from atlas_relator_rank5_full_family import generate_relators
+from atlas_relator_rank5_reverse import generate_relators as reverse_relators
 
 
 ORTH = re.compile(r"orth_(\d)(\d)_(\d)(\d)_([1efEF])([1efEF])$")
@@ -202,6 +203,40 @@ def main():
     print("first common-RHS return star:",
           [(entry[0], entry[1]) for entry in rhs_star])
     print("full three-path star has quotient-rank increment two")
+
+    # The reverse dictionary is the next literal chart seam.  Its right-hand
+    # sides use only the five one-letter coefficient generators.  In
+    # particular, none is the two-letter common RHS x_12(ee) of the return
+    # star above.  Therefore these rows have zero entries in all four columns
+    # (P_3,P_4,P_5,R) of the star census; adjoining them cannot raise the
+    # nuisance-quotient rank from two to three.
+    reverse, reverse_lengths = reverse_relators(verify=False)
+    assert len(reverse) == 12
+    factor_signatures = {
+        (i, j, coefficient)
+        for _name, _chart, _u, _v, factors, _word, _relator, _ok in reverse
+        for i, j, coefficient in factors
+    }
+    assert all(coefficient in {"1", "e", "f", "E", "F"}
+               for _i, _j, coefficient in factor_signatures)
+    assert (1, 2, "ee") not in factor_signatures
+
+    nontrivial_reverse = [
+        (name, factors, len(relator),
+         sum(reverse_lengths[matrix.tobytes()]
+             for _factor, matrix in relator))
+        for name, _chart, _u, _v, factors, _word, relator, _ok in reverse
+        if len(factors) == 2
+    ]
+    print("reverse dictionary two-factor seams:", nontrivial_reverse)
+    assert nontrivial_reverse == [
+        ("p1_01", [(3, 5, "E"), (4, 5, "F")], 18, 71),
+        ("p1_10", [(5, 3, "e"), (5, 4, "f")], 17, 67),
+        ("p2_01", [(1, 5, "E"), (2, 5, "F")], 18, 71),
+        ("p2_10", [(5, 1, "e"), (5, 2, "f")], 17, 67),
+    ]
+    print("reverse dictionary contains no x_12(ee) factor")
+    print("star plus reverse dictionary still has quotient-rank increment two")
     return 0
 
 

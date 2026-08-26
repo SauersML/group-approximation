@@ -162,5 +162,16 @@ factor the same common map exactly. The next family must therefore return
 that common RHS to an independently authenticated chart occurrence, not just
 factor it through another rank-five index.
 
+The obvious chart seam does not supply that occurrence. By
+`atlas-reverse-dictionary-does-not-close-ee-return`, the complete reverse
+dictionary uses only the one-letter coefficient roots `1,e,f,E,F`; none of
+its twelve rows contains the two-letter RHS `x_12(ee)`. Appending those rows
+therefore leaves the star's literal nuisance-quotient rank at two and retains
+the common seam mode. This is a scoped incidence fence, not a proof that no
+longer normal-closure consequence exists. The next useful family must
+actually meet the two-letter occurrence, or prove a quantitative transfer
+from the one-letter chart seam rather than infer it from presentation
+surjectivity.
+
 ROUTES
 atlas-half-block-root-face-model-proves-leavitt-hyperlinear
