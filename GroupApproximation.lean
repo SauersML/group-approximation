@@ -1677,6 +1677,8 @@ import GroupApproximation.Higman.TransportStarWitness
 import GroupApproximation.Higman.MapEmbSharp
 import GroupApproximation.Higman.BridgeEffectivity
 import GroupApproximation.Higman.BridgeWordProblem
+import GroupApproximation.Higman.CentralHNNFreeLabelAction
+import GroupApproximation.Higman.CentralHNNFreeLabelFaithful
 import GroupApproximation.Higman.OmegaTower
 import GroupApproximation.Higman.OmegaTowerStages
 import GroupApproximation.Higman.OmegaTowerDescent
