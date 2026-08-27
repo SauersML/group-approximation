@@ -227,9 +227,10 @@ theorem hjoinSyntax_eq_transportStar
 
 /-- The exact code-semantic facts still needed to identify the emitted
 `BenignSupCode` syntax with the special semantic join witness.  Existing
-The ambient equivalence is now supplied unconditionally by
-`Model.supLevel2Equiv`.  These two fields are precisely the remaining cutter
-and mark identifications at the actual TransportStar inputs. -/
+The ambient equivalence and all six mark identifications are supplied
+unconditionally by `Model.supLevel2Equiv` and
+`Model.supLevel2Equiv_outputMark`.  This single field is precisely the
+remaining final-cutter identification at the actual TransportStar inputs. -/
 structure SpecialJoinCodeSemantics
     (hfive : profiniteClosure fiveCutter = fiveCutter)
     {H : Subgroup Conj.F₃} (C : Model sourceMark H)
@@ -239,11 +240,6 @@ structure SpecialJoinCodeSemantics
         (hjoinSyntax hfive C).2.1).map
         (Model.supLevel2Equiv (hgammaModel hfive C) botModel).toMonoidHom =
       (hjoinData hfive C hclosed).witness.L
-  marked_eq : ∀ i : MarkCount,
-    Model.supLevel2Equiv (hgammaModel hfive C) botModel
-        (evalWord (hjoinSyntax hfive C).1
-          ((hjoinSyntax hfive C).2.2.getD i [])) =
-      (hjoinData hfive C hclosed).witness.emb (pMark i)
 
 /-- Assemble the actual coded special-Sup model from exactly the outstanding
 two-stage code semantics. -/
@@ -259,7 +255,8 @@ def hjoinModel
   coded := hjoinSyntax hfive C
   ambientEquiv := Model.supLevel2Equiv (hgammaModel hfive C) botModel
   cutter_eq := S.cutter_eq
-  marked_eq := S.marked_eq
+  marked_eq := Model.supLevel2Equiv_outputMark
+    (hgammaModel hfive C) botModel
 
 @[simp] theorem hjoinModel_coded
     (hfive : profiniteClosure fiveCutter = fiveCutter)

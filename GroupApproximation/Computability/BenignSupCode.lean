@@ -82,6 +82,11 @@ def transform (x : Input) : Output :=
 @[simp] theorem transform_marks (x : Input) :
     (transform x).2.2 = outputMarks x := rfl
 
+@[simp] theorem outputMarks_getD (x : Input) (i : Fin 6) :
+    (outputMarks x).getD i [] =
+      liftToLevel2 x (liftToLevel1 x (BenignInfCode.diagonalAt x i)) := by
+  fin_cases i <;> rfl
+
 theorem primrec_generatorWord :
     Primrec (fun i : ℕ => ([(i, true)] : Raw)) :=
   Primrec.list_cons.comp (Primrec.pair Primrec.id (Primrec.const true))

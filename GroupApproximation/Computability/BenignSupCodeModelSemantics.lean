@@ -190,6 +190,71 @@ def supLevel2Equiv (C₁ : Model mark H₁) (C₂ : Model mark H₂) :
   centralStageEquiv _ _ (supLevel1Equiv C₁ C₂) _
     (sup_m2_cutter_eq C₁ C₂)
 
+/-- A source diagonal word is sent to the semantic diagonal embedding in the
+join product base. -/
+theorem supBaseEquiv_diagonalAt
+    (C₁ : Model mark H₁) (C₂ : Model mark H₂) (i : MarkCount) :
+    supBaseEquiv C₁ C₂
+        (evalWord (productBase (supInput C₁ C₂))
+          (BenignInfCode.diagonalAt (supInput C₁ C₂) i)) =
+      Higman.joinEmb C₁.data.witness C₂.data.witness (mark i) := by
+  change
+    (prodEquiv C₁.ambientEquiv C₂.ambientEquiv)
+      (DirectProductCodeSemantics.productCodeEquiv C₁.coded.1 C₂.coded.1
+        (evalWord
+          (DirectProductCode.productCode C₁.coded.1 C₂.coded.1)
+          (BenignInfCode.diagonalAt (supInput C₁ C₂) i))) = _
+  have hdiag := BenignInfCodeSemantics.productCodeEquiv_diagonalAt
+    (supInput C₁ C₂) (i : ℕ)
+  change
+    DirectProductCodeSemantics.productCodeEquiv C₁.coded.1 C₂.coded.1
+        (evalWord (DirectProductCode.productCode C₁.coded.1 C₂.coded.1)
+          (BenignInfCode.diagonalAt (supInput C₁ C₂) i)) =
+      (evalWord C₁.coded.1 (C₁.coded.2.2.getD i []),
+        evalWord C₂.coded.1 (C₂.coded.2.2.getD i [])) at hdiag
+  rw [hdiag]
+  change
+    (C₁.ambientEquiv
+        (evalWord C₁.coded.1 (C₁.coded.2.2.getD i [])),
+      C₂.ambientEquiv
+        (evalWord C₂.coded.1 (C₂.coded.2.2.getD i []))) = _
+  exact Prod.ext (C₁.marked_eq i) (C₂.marked_eq i)
+
+/-- The explicit first old-alphabet lift has the semantic first-stage value. -/
+theorem supLevel1Equiv_liftToLevel1
+    (C₁ : Model mark H₁) (C₂ : Model mark H₂)
+    (raw : BenignSupCode.Raw) :
+    supLevel1Equiv C₁ C₂
+        (evalWord (level1 (supInput C₁ C₂))
+          (liftToLevel1 (supInput C₁ C₂) raw)) =
+      HNNExtension.of (supBaseEquiv C₁ C₂
+        (evalWord (productBase (supInput C₁ C₂)) raw)) :=
+  centralStageEquiv_oldWord _ _ _ _ _ raw
+
+/-- The explicit second old-alphabet lift has the semantic second-stage
+value. -/
+theorem supLevel2Equiv_liftToLevel2
+    (C₁ : Model mark H₁) (C₂ : Model mark H₂)
+    (raw : BenignSupCode.Raw) :
+    supLevel2Equiv C₁ C₂
+        (evalWord (level2 (supInput C₁ C₂))
+          (liftToLevel2 (supInput C₁ C₂) raw)) =
+      HNNExtension.of (supLevel1Equiv C₁ C₂
+        (evalWord (level1 (supInput C₁ C₂)) raw)) :=
+  centralStageEquiv_oldWord _ _ _ _ _ raw
+
+/-- Every emitted output mark is exactly the twice-embedded semantic source
+mark. -/
+theorem supLevel2Equiv_outputMark
+    (C₁ : Model mark H₁) (C₂ : Model mark H₂) (i : MarkCount) :
+    supLevel2Equiv C₁ C₂
+        (evalWord (level2 (supInput C₁ C₂))
+          ((outputMarks (supInput C₁ C₂)).getD i [])) =
+      Higman.joinEmb₂ C₁.data.witness C₂.data.witness (mark i) := by
+  rw [outputMarks_getD, supLevel2Equiv_liftToLevel2,
+    supLevel1Equiv_liftToLevel1, supBaseEquiv_diagonalAt]
+  rfl
+
 end
 
 end Model
