@@ -167,5 +167,84 @@ theorem Reduced.rightCarryComparison_of_eq
       _ = rawHead⁻¹ * smallHead := by group
   rwa [hcarry] at hcompare
 
+/-! ## Matched sub-amalgam specialization -/
+
+open Higman
+
+variable {M₀ A B : Type}
+  [Group M₀] [Group A] [Group B]
+
+/-- If a base-prefixed reduced word lies in a matched sub-amalgam, it admits
+a carry comparison with the factorwise image of a genuine word in the small
+amalgam. -/
+theorem Reduced.exists_rightCarryComparison_of_mem_matchedMap_range
+    (eA : M₀ →* A) (eB : M₀ →* B)
+    (Z : Subgroup A) (Q : Subgroup B) (Delta : Subgroup M₀)
+    (heA : Function.Injective eA) (heB : Function.Injective eB)
+    (hZ : Z.comap eA = Delta) (hQ : Q.comap eB = Delta)
+    (raw : CoprodI.Word (Amalgam.fam A B))
+    (hraw : PushoutI.Reduced (Amalgam.famHom eA eB) raw)
+    (rawHead : M₀)
+    (hmem : PushoutI.base (Amalgam.famHom eA eB) rawHead *
+        PushoutI.ofCoprodI raw.prod ∈
+      (Higman.MatchedSubgroupAmalgam.matchedMap
+        eA eB Z Q Delta hZ hQ).range) :
+    ∃ (d : PushoutI.NormalWord.Transversal
+          (Higman.MatchedSubgroupAmalgam.smallEdge
+            eA eB Z Q Delta hZ hQ))
+      (w : PushoutI.NormalWord d),
+      RightCarryComparison (Amalgam.famHom eA eB) raw.toList
+        (PushoutEmbedding.wordMap
+          (Higman.MatchedSubgroupAmalgam.factorInclusion Z Q)
+          (fun i ↦ by cases i <;> exact Subtype.val_injective)
+          w.toWord).toList
+        (rawHead⁻¹ *
+          Higman.MatchedSubgroupAmalgam.edgeInclusion Delta w.head) := by
+  classical
+  obtain ⟨y, hy⟩ := hmem
+  obtain ⟨d⟩ := PushoutI.NormalWord.transversal_nonempty
+    (Higman.MatchedSubgroupAmalgam.smallEdge
+      eA eB Z Q Delta hZ hQ)
+    (Higman.MatchedSubgroupAmalgam.smallEdge_injective
+      eA eB Z Q Delta heA heB hZ hQ)
+  let w : PushoutI.NormalWord d := PushoutI.NormalWord.equiv y
+  have hwprod : w.prod = y :=
+    (PushoutI.NormalWord.equiv (d := d)).symm_apply_apply y
+  let wm := PushoutEmbedding.wordMap
+    (Higman.MatchedSubgroupAmalgam.factorInclusion Z Q)
+    (fun i ↦ by cases i <;> exact Subtype.val_injective) w.toWord
+  have hwred : PushoutI.Reduced
+      (Higman.MatchedSubgroupAmalgam.smallEdge
+        eA eB Z Q Delta hZ hQ) w.toWord :=
+    PushoutEmbedding.normalWord_reduced _ d w
+  have hwmred : PushoutI.Reduced (Amalgam.famHom eA eB) wm := by
+    intro l hl
+    obtain ⟨l', hl', heq⟩ := List.mem_map.mp hl
+    cases heq
+    exact fun hrange ↦ hwred l' hl'
+      (Higman.MatchedSubgroupAmalgam.factorInclusion_reflects_range
+        eA eB Z Q Delta hZ hQ l'.1 l'.2 hrange)
+  have hprodImage :
+      Higman.MatchedSubgroupAmalgam.matchedMap
+          eA eB Z Q Delta hZ hQ w.prod =
+        PushoutI.base (Amalgam.famHom eA eB)
+            (Higman.MatchedSubgroupAmalgam.edgeInclusion Delta w.head) *
+          PushoutI.ofCoprodI wm.prod := by
+    rw [PushoutI.NormalWord.prod, map_mul,
+      Higman.MatchedSubgroupAmalgam.matchedMap,
+      PushoutBaseChange.map_base, PushoutBaseChange.map_ofCoprodI_prod]
+  have heqProd : PushoutI.base (Amalgam.famHom eA eB) rawHead *
+        PushoutI.ofCoprodI raw.prod =
+      PushoutI.base (Amalgam.famHom eA eB)
+          (Higman.MatchedSubgroupAmalgam.edgeInclusion Delta w.head) *
+        PushoutI.ofCoprodI wm.prod := by
+    rw [← hprodImage, hwprod, hy]
+  refine ⟨d, w, ?_⟩
+  exact Reduced.rightCarryComparison_of_eq
+    (Amalgam.famHom eA eB)
+    (Amalgam.famHom_injective eA eB heA heB)
+    hraw hwmred rawHead
+    (Higman.MatchedSubgroupAmalgam.edgeInclusion Delta w.head) heqProd
+
 end MatchedSubgroupAmalgamWordReflection
 end GroupApproximation
