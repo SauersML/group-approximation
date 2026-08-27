@@ -1976,6 +1976,8 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedForms
 import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
 import GroupApproximation.Manuscript.NonMF.HullBallForm
 import GroupApproximation.Manuscript.NonMF.TheoremCDebts
+import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
+import GroupApproximation.Manuscript.NonMF.HullInputsProved
 import GroupApproximation.Manuscript.MFRecognition.SeedFromTheoremC
 import GroupApproximation.Manuscript.MFRecognition.RecognitionDebts
 import GroupApproximation.Manuscript.MFRecognition.CentralRopeBritton
