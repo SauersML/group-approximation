@@ -96,6 +96,33 @@ def bigInA : A →* Amalgam.Push eA eB :=
 def bigInB : B →* Amalgam.Push eA eB :=
   PushoutI.of (φ := Amalgam.famHom eA eB) true
 
+/-! ## Factor-list evaluation -/
+
+/-- Evaluate a literal list of alternating-factor letters in the ambient
+amalgam.  This is the list-facing companion to `Monoid.CoprodI.Word.prod`.
+Keeping the definition here lets normal-word scans expose and preserve a
+distinguished first syllable without reopening the quotient construction. -/
+def factorListProd :
+    List (Σ b, Amalgam.fam A B b) → Amalgam.Push eA eB
+  | [] => 1
+  | ⟨b, g⟩ :: l =>
+      PushoutI.of (φ := Amalgam.famHom eA eB) b g *
+        factorListProd l
+
+/-- Evaluating a coproduct word in the amalgam is exactly evaluation of its
+underlying factor list. -/
+theorem ofCoprodI_prod_eq_factorListProd
+    (w : Monoid.CoprodI.Word (Amalgam.fam A B)) :
+    PushoutI.ofCoprodI w.prod = factorListProd eA eB w.toList := by
+  induction w using Monoid.CoprodI.Word.consRecOn with
+  | empty =>
+      simp [factorListProd, Monoid.CoprodI.Word.prod_empty]
+  | cons b g w hidx hg ih =>
+      rw [Monoid.CoprodI.Word.prod_cons, map_mul,
+        PushoutI.ofCoprodI_of, factorListProd.eq_def]
+      exact congrArg
+        (fun z => PushoutI.of (φ := Amalgam.famHom eA eB) b g * z) ih
+
 @[simp] theorem matchedMap_smallInZ
     (hZ : Z.comap eA = Delta) (hQ : Q.comap eB = Delta) (z : ↥Z) :
     matchedMap eA eB Z Q Delta hZ hQ (smallInZ eA eB Z Q Delta hZ hQ z) =
