@@ -477,6 +477,50 @@ theorem factorization_of_edgeScan
               MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (tail : _) := by
             exact (mul_assoc _ _ _).symm
 
+/-- Scanning a finite factor list either succeeds or stops at a carried left
+syllable outside `graphSub * M`. -/
+theorem exists_edgeScan_or_bad (e : Edge) :
+    ∀ l : List (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b),
+      (∃ tail, EdgeScan e l tail) ∨
+      ∃ (pre : List
+            (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+          (carry : Edge) (g : PairedReturnGraphIntersection.P)
+          (rest : List
+            (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b)),
+        l = pre ++ ⟨false, g⟩ :: rest ∧
+        EdgeScan e pre carry ∧
+        (carry : PairedReturnGraphIntersection.P) * g ∉ LeftProduct
+  | [] => Or.inl ⟨e, EdgeScan.nil e⟩
+  | ⟨b, x⟩ :: l => by
+      cases b with
+      | false =>
+          change PairedReturnGraphIntersection.P at x
+          by_cases hx : (e : PairedReturnGraphIntersection.P) * x ∈ LeftProduct
+          · obtain ⟨z, hz, m, hm, hzm⟩ := hx
+            let ms : Edge := ⟨m, hm⟩
+            rcases exists_edgeScan_or_bad ms l with hscan | hbad
+            · obtain ⟨tail, htail⟩ := hscan
+              exact Or.inl ⟨tail, EdgeScan.left e ms tail x z l hz
+                hzm.symm htail⟩
+            · obtain ⟨pre, carry, g, rest, hl, hpref, hfail⟩ := hbad
+              refine Or.inr ⟨⟨false, x⟩ :: pre, carry, g, rest,
+                ?_, ?_, hfail⟩
+              · simp [hl]
+              · exact EdgeScan.left e ms carry x z pre hz hzm.symm hpref
+          · exact Or.inr ⟨[], e, x, l, rfl, EdgeScan.nil e, hx⟩
+      | true =>
+          change C at x
+          obtain ⟨t, ht, m, hem⟩ :=
+            PairedReturnQProfinite.exists_Q_mul_edge (edgeToC e * x)
+          rcases exists_edgeScan_or_bad m l with hscan | hbad
+          · obtain ⟨tail, htail⟩ := hscan
+            exact Or.inl ⟨tail, EdgeScan.right e m tail x t l ht hem htail⟩
+          · obtain ⟨pre, carry, g, rest, hl, hpref, hfail⟩ := hbad
+            refine Or.inr ⟨⟨true, x⟩ :: pre, carry, g, rest,
+              ?_, ?_, hfail⟩
+            · simp [hl]
+            · exact EdgeScan.right e m carry x t pre ht hem hpref
+
 /-- The same quotient in the iterated-central-HNN model used by the finite
 free-label action. -/
 def ambientToFiniteStage2 (Q : Type) [Group Q]
