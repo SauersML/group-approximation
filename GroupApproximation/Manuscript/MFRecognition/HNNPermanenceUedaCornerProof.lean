@@ -213,11 +213,11 @@ def cornerLiftHom (e : UniversalCStarAmalgam iA iB) (he_star : star e = e)
     UniversalCStarHNNAmbient B0 B1 theta →⋆ₙₐ[ℂ]
       UniversalCStarAmalgamAmbient iA iB where
   toFun := cornerLiftAmbient e he_star he_mul pi u hcov hne
-  map_smul' _ _ := rfl
-  map_zero' := rfl
-  map_add' _ _ := rfl
-  map_mul' _ _ := rfl
-  map_star' _ := rfl
+  map_smul' _ _ := by apply lp.ext; funext Q; exact rfl
+  map_zero' := by apply lp.ext; funext Q; exact rfl
+  map_add' _ _ := by apply lp.ext; funext Q; exact rfl
+  map_mul' _ _ := by apply lp.ext; funext Q; exact rfl
+  map_star' _ := by apply lp.ext; funext Q; exact rfl
 
 @[simp] theorem cornerLiftHom_apply (e : UniversalCStarAmalgam iA iB)
     (he_star : star e = e) (he_mul : e * e = e)
