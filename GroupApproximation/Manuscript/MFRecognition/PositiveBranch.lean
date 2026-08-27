@@ -20,12 +20,18 @@ import GroupApproximation.Manuscript.MFRecognition.TensorSynchronization
 > [the finite quotients: `PositiveBranchFiniteQuotients`]
 
 The group-theoretic paragraph of the printed proof is proved with no open
-leaves in `PositiveBranchFiniteQuotients`.  The two analytic steps the printed
-proof cites — `cor:central-hnn` and the last clause of `lem:tensor-sync` —
-are authored by the `hnn-permanence` and `tensor-sync` lanes.  They are
-carried here as the fields of `PositiveBranchInputs`, quoted exactly as
-printed, and every theorem below takes that structure as a leading binder; the
-conclusions are the printed statements.
+leaves in `PositiveBranchFiniteQuotients`.
+
+## The citation binder `hIn`
+
+Both analytic steps the printed proof cites rest on one bundle,
+`TensorSynchronization.HNNPermanenceInputs`: its `hnnPermanence` field is
+`thm:hnn-permanence` itself, and its `unitalCoronaEmbedding` field supplies
+the printed "`ι` any injective `*`-homomorphism of `A` into a norm matrix
+corona".  `cor:central-hnn` is the printed specialization of the first at
+`θ = ` the inclusion of `S` and `W = 1`, so a single `hIn` binder carries
+both.  It is threaded through every theorem below, and the conclusions are
+the printed statements.
 
 `lem:rf-regular` is *not* an input: the repository already proves it, as
 `HNNCoronaConjugatorSentenceAudit.residuallyFinite_isRegularlyRealized`.
@@ -41,43 +47,66 @@ open GroupApproximation.SecondLevelIndexSets
 
 /-! ## 1.  The two analytic steps the printed proof cites -/
 
-/-- **The two analytic theorems the proof of `lem:positive-branch` cites.**
+/-- **`cor:central-hnn` (central HNN extensions).**
 
-Both are statements of the manuscript's own Section `sec:prelim`, formalized
-by the `hnn-permanence` and `tensor-sync` lanes; the positive branch consumes
-them and proves nothing about them. -/
-structure PositiveBranchInputs : Type where
-  /-- **`cor:central-hnn` (central HNN extensions).**
+> If `G` admits a tracial MF realization and `S ≤ G` is any subgroup, then
+> `⟨G, t | [t,s] = 1 (s ∈ S)⟩` admits a tracial MF realization.
 
-  > If `G` admits a tracial MF realization and `S ≤ G` is any subgroup, then
-  > `⟨G, t | [t,s] = 1 (s ∈ S)⟩` admits a tracial MF realization.
+Printed proof: "Apply `thm:hnn-permanence` with `θ` the inclusion of `S`, with
+`ι` any injective `*`-homomorphism of `A` into a norm matrix corona, and with
+`W = 1`."  Conjugation by `1` is the identity, so the covariance hypothesis of
+`thm:hnn-permanence` is immediate. -/
+theorem manuscriptCentralHNN (hIn : TensorSynchronization.HNNPermanenceInputs)
+    {G : Type} [Group G] [Countable G] (hG : IsRegularlyRealized G)
+    (S : Subgroup G) :
+    IsRegularlyRealized (HNNExtension G S S (MulEquiv.refl S)) := by
+  obtain ⟨A, instA, ⟨realization⟩⟩ := hG
+  letI : CStarAlgebra A := instA
+  letI : Nontrivial A :=
+    GroupApproximation.Manuscript.OneSidedMFRadical.TensorSynchronizationAssembly.regularRealization_nontrivial
+      realization
+  obtain ⟨X, hX, iota, hiota⟩ :=
+    GroupApproximation.Manuscript.MFRecognition.TensorSynchronization.unitalCoronaEmbedding
+      realization.mf
+  letI : ∀ n, Nonempty (X n) := hX
+  refine hIn.hnnPermanence (MulEquiv.refl S) realization iota hiota 1 ?_
+  intro s
+  show (1 : NormMatrixCStarCorona (fun n ↦ X n)) *
+        iota ((realization.rho (s : G) : unitary A) : A) *
+      star (1 : NormMatrixCStarCorona (fun n ↦ X n)) =
+    iota ((realization.rho (s : G) : unitary A) : A)
+  rw [one_mul, star_one, mul_one]
 
-  Printed proof: "Apply `thm:hnn-permanence` with `θ` the inclusion of `S`,
-  with `ι` any injective `*`-homomorphism of `A` into a norm matrix corona,
-  and with `W = 1`." -/
-  centralHNN : ∀ (G : Type) [Group G] [Countable G],
-    IsRegularlyRealized G → ∀ S : Subgroup G,
-      IsRegularlyRealized (HNNExtension G S S (MulEquiv.refl S))
-  /-- **`lem:tensor-sync` (tensor synchronization), final clause.**
+/-- **`lem:tensor-sync` (tensor synchronization), final clause**, in the
+`TwistedHNN` presentation used by recognition.
 
-  > Let `Γ` be a countable group with a tracial MF realization
-  > `(A_1, ρ_1, τ_1)`, let `Q` be a countable group with homomorphisms
-  > `β_n : Q → B_n` to finite groups such that every `q ≠ 1` satisfies
-  > `β_n(q) ≠ 1` for all large `n`, let `S ≤ Γ`, and let `τ : S → Q` be a
-  > homomorphism.  Suppose that for every `n` there is a homomorphism
-  > `λ_n : Γ → G_n` to a finite group with `ker(λ_n|_S) ≤ ker(β_n ∘ τ)`.
-  > Then ... `⟨Γ × Q, u | u(s,1)u⁻¹ = (s,τ(s)) (s ∈ S)⟩` admits a tracial MF
-  > realization, and in particular is MF. -/
-  tensorSynchronization : ∀ (Gamma : Type) [Group Gamma] [Countable Gamma]
-      (Q : Type) [Group Q] [Countable Q] (B G : ℕ → Type)
-      [∀ n, Group (B n)] [∀ n, Finite (B n)] [∀ n, Group (G n)]
-      [∀ n, Finite (G n)],
-    IsRegularlyRealized Gamma →
-      ∀ beta : ∀ n, Q →* B n,
-        (∀ q : Q, q ≠ 1 → ∃ N, ∀ n, N ≤ n → beta n q ≠ 1) →
-          ∀ (S : Subgroup Gamma) (tau : ↥S →* Q) (lambda : ∀ n, Gamma →* G n),
-            (∀ n, ((lambda n).comp S.subtype).ker ≤ ((beta n).comp tau).ker) →
-              IsRegularlyRealized (TwistedHNN S tau)
+> Let `Γ` be a countable group with a tracial MF realization
+> `(A_1, ρ_1, τ_1)`, let `Q` be a countable group with homomorphisms
+> `β_n : Q → B_n` to finite groups such that every `q ≠ 1` satisfies
+> `β_n(q) ≠ 1` for all large `n`, let `S ≤ Γ`, and let `τ : S → Q` be a
+> homomorphism.  Suppose that for every `n` there is a homomorphism
+> `λ_n : Γ → G_n` to a finite group with `ker(λ_n|_S) ≤ ker(β_n ∘ τ)`.
+> Then ... `⟨Γ × Q, u | u(s,1)u⁻¹ = (s,τ(s)) (s ∈ S)⟩` admits a tracial MF
+> realization, and in particular is MF. -/
+theorem manuscriptTensorSynchronization
+    (hIn : TensorSynchronization.HNNPermanenceInputs)
+    {Gamma Q : Type} [Group Gamma] [Countable Gamma] [Group Q] [Countable Q]
+    (B G : ℕ → Type) [∀ n, Group (B n)] [∀ n, Finite (B n)]
+    [∀ n, Group (G n)] [∀ n, Finite (G n)]
+    (hGamma : IsRegularlyRealized Gamma)
+    (beta : ∀ n, Q →* B n)
+    (hbeta : ∀ q : Q, q ≠ 1 → ∃ N, ∀ n, N ≤ n → beta n q ≠ 1)
+    (S : Subgroup Gamma) (tau : ↥S →* Q)
+    (lambda : ∀ n, Gamma →* G n)
+    (hker : ∀ n, ((lambda n).comp S.subtype).ker ≤ ((beta n).comp tau).ker) :
+    IsRegularlyRealized (TwistedHNN S tau) := by
+  classical
+  letI : ∀ n, Fintype (B n) := fun _ ↦ Fintype.ofFinite _
+  letI : ∀ n, Fintype (G n) := fun _ ↦ Fintype.ofFinite _
+  obtain ⟨A, inst, ⟨R⟩⟩ := hGamma
+  letI : CStarAlgebra A := inst
+  exact TensorSynchronization.manuscriptTensorSynchronization_hnn hIn
+    R beta (fun q hq ↦ Filter.eventually_atTop.mpr (hbeta q hq)) tau lambda hker
 
 /-! ## 2.  The lemma -/
 
@@ -97,18 +126,20 @@ theorem isRegularlyRealized_ropeBase
 
 /-- "and `Γ_e`, the central HNN extension of `K_e` over `L_e`, admits one by
 `cor:central-hnn`." -/
-theorem isRegularlyRealized_centralRope (I : PositiveBranchInputs)
+theorem isRegularlyRealized_centralRope
+    (hIn : TensorSynchronization.HNNPermanenceInputs)
     (D : RecognitionInputs e H C F P Qplus Q K0 Rhat) :
     IsRegularlyRealized (CentralRope D.L0 (D.j.comp D.qplus)) := by
   letI : Countable (RopeBase K0 F P) := D.countable_K
-  exact I.centralHNN (RopeBase K0 F P) (isRegularlyRealized_ropeBase D)
+  exact manuscriptCentralHNN hIn (isRegularlyRealized_ropeBase D)
     (ropeEdge D.L0 (D.j.comp D.qplus))
 
 /-- **`lem:positive-branch`, first clause.**  "If `e ∈ INF`, then `R_e` admits
 a tracial MF realization."  This is `lem:tensor-sync` applied to `Γ = Γ_e`,
 `Q = Q_+`, `S = S_e` and `τ = α_e`, with the finite quotients of
 `PositiveBranchFiniteQuotients`. -/
-theorem isRegularlyRealized_twistedRope (I : PositiveBranchInputs)
+theorem isRegularlyRealized_twistedRope
+    (hIn : TensorSynchronization.HNNPermanenceInputs)
     (D : RecognitionInputs e H C F P Qplus Q K0 Rhat)
     (hINF : InfiniteDomain e) :
     IsRegularlyRealized
@@ -137,9 +168,9 @@ theorem isRegularlyRealized_twistedRope (I : PositiveBranchInputs)
     show (D.equiv_Q_Qplus hINF)
         (D.alpha (ropeGenConjS D.L0 (D.j.comp D.qplus) D.i0 f)) = 1
     rw [D.alpha_genConj f, map_one]
-  refine I.tensorSynchronization (CentralRope D.L0 (D.j.comp D.qplus)) Q
+  refine manuscriptTensorSynchronization hIn
     (fun n => T.Quot n) (fun n => SwapProduct (T.Quot n))
-    (isRegularlyRealized_centralRope I D)
+    (isRegularlyRealized_centralRope hIn D)
     (fun n => (T.beta D.j n).comp (D.equiv_Q_Qplus hINF).toMonoidHom) ?_
     (ropeSubgroup D.L0 (D.j.comp D.qplus) D.i0) D.alpha
     (fun n => ropeLambda D.L0 (D.j.comp D.qplus) (T.proj n)) ?_
@@ -160,14 +191,15 @@ theorem isRegularlyRealized_twistedRope (I : PositiveBranchInputs)
 
 "If `e ∈ INF`, then `R̂_e` admits a tracial MF realization; in particular, it
 is MF."  The passage from `R_e` to `R̂_e` is `lem:finite-rope`. -/
-theorem manuscriptPositiveBranch (I : PositiveBranchInputs)
+theorem manuscriptPositiveBranch
+    (hIn : TensorSynchronization.HNNPermanenceInputs)
     (D : RecognitionInputs e H C F P Qplus Q K0 Rhat)
     (hINF : InfiniteDomain e) :
     IsRegularlyRealized Rhat ∧ IsOperatorMF Rhat := by
   letI : Countable Rhat := D.countable_Rhat
   have hR : IsRegularlyRealized Rhat :=
     isRegularlyRealized_of_mulEquiv D.equiv_Rhat.symm
-      (isRegularlyRealized_twistedRope I D hINF)
+      (isRegularlyRealized_twistedRope hIn D hINF)
   exact ⟨hR, isOperatorMF_of_isRegularlyRealized hR⟩
 
 end Recognition

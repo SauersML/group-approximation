@@ -36,9 +36,8 @@ reduction bookkeeping is `HereditaryPropertySwitchCompleteness`, whose
   asserts it.  Its `code` and `computable_code` fields are what the landed
   `FiniteRope` (`lem:finite-rope`) and `EffectiveHigmanCompiler` produce, and
   its `negative` and `positive` fields are the two branch lemmas;
-* `recognitionFamily_of_inputs` --- the assembly point, taking the
-  positive branch's own cited inputs (`PositiveBranchInputs`) as a leading
-  binder;
+* `recognitionFamily_of_inputs` --- the assembly point, taking the remaining
+  HNN-permanence theorem as a leading binder;
 * `mfPresentations_not_re` --- **`MF_fp ∉ RE`**, which the repository did not
   yet carry for finite presentations (it carried `NONMF_fp ∉ RE`
   unconditionally, and `MF_fp ∉ RE` only for enumerated codes).  The proof is
@@ -62,7 +61,7 @@ open GroupApproximation.MFRecognitionSecondLevel
 /-- **The datum the proof of `thm:recognition` opens with**: a computable map
 `e ↦ R̂_e` into finite presentations whose group is not MF for `e ∈ FIN`
 (`lem:negative-branch`) and is MF for `e ∈ INF` (`lem:positive-branch`). -/
-structure RecognitionFamily where
+structure RecognitionFamily : Type where
   /-- The code of the finite presentation `R̂_e` of `eq:finite-rope`. -/
   code : Nat.Partrec.Code → PresentationCode
   /-- **`lem:finite-rope`.**  "A code of the finite presentation
@@ -78,7 +77,8 @@ structure RecognitionFamily where
 /-- **The two branch lemmas produce the family.**  The negative branch gives
 `negative` and the positive branch gives `positive`; computability of the code
 is `lem:finite-rope`. -/
-def recognitionFamily_of_inputs (I : PositiveBranchInputs)
+def recognitionFamily_of_inputs
+    (hIn : TensorSynchronization.HNNPermanenceInputs)
     (code : Nat.Partrec.Code → PresentationCode) (hcode : Computable code)
     (H C F P Qplus Q K0 : Nat.Partrec.Code → Type)
     [∀ e, Group (H e)] [∀ e, Group (C e)] [∀ e, Group (F e)]
@@ -90,7 +90,7 @@ def recognitionFamily_of_inputs (I : PositiveBranchInputs)
   code := code
   computable_code := hcode
   negative := fun c hfin => not_isOperatorMF_Rhat (D c) hfin
-  positive := fun c hinf => (manuscriptPositiveBranch I (D c) hinf).2
+  positive := fun c hinf => (manuscriptPositiveBranch hIn (D c) hinf).2
 
 /-- The family is exactly the repository's finite-output switch compiler for
 operator-MF, so every second-level consequence already proved for such a
@@ -121,7 +121,8 @@ theorem nonMFPresentations_sigma02 : Sigma02 NonMFCode :=
 
 /-- **"Deciding whether a finite presentation defines an MF group is
 `Π⁰₂`-complete."** -/
-theorem mfPresentations_pi02Complete (R : RecognitionFamily) : Pi02Complete MFCode :=
+theorem mfPresentations_pi02Complete (R : RecognitionFamily) :
+    Pi02Complete MFCode :=
   mfCode_pi02Complete_of_compiler (manuscriptMFCompiler R)
 
 /-- **"and the complementary problem is `Σ⁰₂`-complete."** -/
