@@ -1,6 +1,7 @@
 import GroupApproximation.Higman.OmegaHalfLineRightInsertion
 import GroupApproximation.Higman.TransportStar
 import GroupApproximation.Higman.CentralHNNFreeLabelKernel
+import GroupApproximation.Higman.ExplicitFreeEdge
 
 /-!
 # The paired graph gate for one-sided Omega insertion
@@ -112,6 +113,88 @@ theorem insertGraphPair_slimGraphPair_of_mem_gate
       slimGraphPair m (beta + l) :=
   insertGraphPair_slimGraphPair_of_rightTail hbeta
     ((slimGraphPair_mem_slimRightGraph_iff m l).mp hl)
+
+/-! ## The literal proper free edge -/
+
+/-- A right-tail sequence regarded as a graph-basis label. -/
+abbrev RightTailIndex (m : ℕ) := ↥(rightTailSeq m)
+
+/-- The source index map into the conjugator basis. -/
+noncomputable def rightTailIndexToK (m : ℕ) : RightTailIndex m → ↥Conj.K :=
+  fun l => bK (l : E)
+
+theorem rightTailIndexToK_injective (m : ℕ) :
+    Function.Injective (rightTailIndexToK m) := by
+  intro l r hlr
+  exact Subtype.ext (bK_injective hlr)
+
+/-- The target index map obtained by prepending the selected window block. -/
+noncomputable def insertedRightTailIndexToK
+    (m : ℕ) (beta : E) : RightTailIndex m → ↥Conj.K :=
+  fun l => bK (beta + (l : E))
+
+theorem insertedRightTailIndexToK_injective (m : ℕ) (beta : E) :
+    Function.Injective (insertedRightTailIndexToK m beta) := by
+  intro l r hlr
+  apply Subtype.ext
+  have hadd : beta + (l : E) = beta + (r : E) := bK_injective hlr
+  exact add_left_cancel hadd
+
+/-- Evaluate a free word in right-tail graph letters. -/
+noncomputable def rightGraphSource (m : ℕ) :
+    FreeGroup (RightTailIndex m) →* SlimPi m × F₃ :=
+  (slimGraphHom m).comp (FreeGroup.map (rightTailIndexToK m))
+
+/-- Evaluate the same free word after prepending `beta` to every graph
+letter. -/
+noncomputable def rightGraphTarget (m : ℕ) (beta : E) :
+    FreeGroup (RightTailIndex m) →* SlimPi m × F₃ :=
+  (slimGraphHom m).comp (FreeGroup.map (insertedRightTailIndexToK m beta))
+
+theorem rightGraphSource_injective (m : ℕ) :
+    Function.Injective (rightGraphSource m) :=
+  (slimGraphHom_injective m).comp
+    (FreeGroup.map_injective (rightTailIndexToK_injective m))
+
+theorem rightGraphTarget_injective (m : ℕ) (beta : E) :
+    Function.Injective (rightGraphTarget m beta) :=
+  (slimGraphHom_injective m).comp
+    (FreeGroup.map_injective (insertedRightTailIndexToK_injective m beta))
+
+@[simp] theorem rightGraphSource_of (m : ℕ) (l : RightTailIndex m) :
+    rightGraphSource m (FreeGroup.of l) = slimGraphPair m (l : E) := by
+  change slimGraphHom m (FreeGroup.of (bK (l : E))) = slimGraphPair m (l : E)
+  rw [slimGraphHom_of_bK]
+
+@[simp] theorem rightGraphTarget_of (m : ℕ) (beta : E)
+    (l : RightTailIndex m) :
+    rightGraphTarget m beta (FreeGroup.of l) =
+      slimGraphPair m (beta + (l : E)) := by
+  change slimGraphHom m (FreeGroup.of (bK (beta + (l : E)))) =
+    slimGraphPair m (beta + (l : E))
+  rw [slimGraphHom_of_bK]
+
+/-- **The honest proper free-edge datum for one selected block.**  Its source
+basis consists of right-tail graph pairs and its target basis consists of the
+same pairs after canonical block insertion. -/
+noncomputable def rightInsertionEdge
+    (m : ℕ) (beta : E) :
+    ExplicitFreeEdge.Data (RightTailIndex m) (SlimPi m × F₃) where
+  source := rightGraphSource m
+  target := rightGraphTarget m beta
+  source_injective := rightGraphSource_injective m
+  target_injective := rightGraphTarget_injective m beta
+
+/-- The HNN stable letter for the literal graph edge performs canonical
+right insertion on every basis pair. -/
+theorem rightInsertionEdge_stable_conj
+    (m : ℕ) (beta : E) (l : RightTailIndex m) :
+    (HNNExtension.t : ExplicitFreeEdge.Extension (rightInsertionEdge m beta)) *
+        HNNExtension.of (slimGraphPair m (l : E)) * HNNExtension.t⁻¹ =
+      HNNExtension.of (slimGraphPair m (beta + (l : E))) := by
+  simpa only [rightInsertionEdge, rightGraphSource_of, rightGraphTarget_of]
+    using ExplicitFreeEdge.stable_conj_source
+      (rightInsertionEdge m beta) (FreeGroup.of l)
 
 end Omega
 end Higman
