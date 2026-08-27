@@ -199,6 +199,33 @@ theorem wordMoverFamily_opNormVanishing
   rw [norm_sub_rev]
   exact h.le
 
+/-- For a sequence bounded at a nonnegative rank weight, replacing a
+chosen-word mover by the ambient almost-representation mover changes its
+conjugate by scaled-mass zero. -/
+theorem wordMoverFamily_scaled_conjugation
+    {E : Type} [Group E]
+    (B : OpAlmostRepresentation E) (w : ℕ → ℝ) (hw : ∀ n, 0 ≤ w n)
+    (iota : Γ →* E)
+    (U : Γ → ∀ n, Matrix.unitaryGroup (B.model n) ℂ)
+    (S : Finset Γ)
+    (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
+    (hU : ∀ a ∈ S,
+      (QuotientGroup.mk (U a) : NormMatrixCoronaUnitary B.model) =
+        (OpAlmostRepresentation.coronaHom B) (iota a))
+    (x : ∀ n, Matrix (B.model n) (B.model n) ℂ)
+    (hbound : ScaledKazhdanTransport.IsScaledMassBounded B w x)
+    (g : Γ) :
+    ScaledKazhdanTransport.ScaledMassVanishing B w (fun n ↦
+      (wordMoverFamily S hgen U g n :
+          Matrix (B.model n) (B.model n) ℂ) * x n *
+          (wordMoverFamily S hgen U g n :
+            Matrix (B.model n) (B.model n) ℂ)ᴴ -
+        (B.map n (iota g) : Matrix (B.model n) (B.model n) ℂ) * x n *
+          (B.map n (iota g) : Matrix (B.model n) (B.model n) ℂ)ᴴ) :=
+  ScaledKazhdanTransport.scaled_conjugation_massVanishing_of_opNormVanishing
+    hw (wordMoverFamily S hgen U g) (fun n ↦ B.map n (iota g)) x hbound
+    (wordMoverFamily_opNormVanishing B iota U S hgen hU g)
+
 end
 
 end FinitePacketWordCovariance
