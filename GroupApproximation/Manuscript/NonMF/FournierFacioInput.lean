@@ -157,12 +157,15 @@ def HullCommonQuotientStatement : Prop :=
   ∀ (E : Type) (_ : Group E) (H₀ : Type) (_ : Group H₀),
     Group.IsFinitelyPresented E → IsPowerTorsionFree E →
       TorsionFree.IsAcylindricallyHyperbolic E →
-      Group.IsFinitelyPresented H₀ → HasKazhdanPropertyT.{0, 0} H₀ →
-        ∀ F : Finset E,
-          ∃ (G₀ : Type) (_ : Group G₀) (pi : E →* G₀),
-            Function.Surjective pi ∧ Group.IsFinitelyPresented G₀ ∧
-              IsPowerTorsionFree G₀ ∧ HasKazhdanPropertyT.{0, 0} G₀ ∧
-              TorsionFree.IsAcylindricallyHyperbolic G₀ ∧ Set.InjOn pi (F : Set E)
+      Infinite H₀ → Group.IsFinitelyPresented H₀ →
+        IsPowerTorsionFree H₀ → GroupApproximation.Hyperbolic.IsHyperbolicGroup H₀ →
+          HasKazhdanPropertyT.{0, 0} H₀ →
+            ∀ F : Finset E,
+              ∃ (G₀ : Type) (_ : Group G₀) (pi : E →* G₀),
+                Function.Surjective pi ∧ Group.IsFinitelyPresented G₀ ∧
+                  IsPowerTorsionFree G₀ ∧ HasKazhdanPropertyT.{0, 0} G₀ ∧
+                  TorsionFree.IsAcylindricallyHyperbolic G₀ ∧
+                    Set.InjOn pi (F : Set E)
 
 /-- **The six statements the Fournier-Facio paragraph cites and does not
 prove.**  Nothing in this development inhabits this structure; every result
@@ -354,7 +357,8 @@ theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := 
   obtain ⟨s, hs⟩ := exists_ne (1 : S)
   obtain ⟨G₀, instG₀, pi, -, hG₀fp, hG₀tf, hG₀T, hG₀acyl, hinj⟩ :=
     I.hullCommonQuotient (Skeleton f hf) inferInstance H₀ instH₀ hEfp hEtf hEacyl
-      hH₀fp hH₀T {1, skeletonIota f hf (factorSimple f s)}
+      hH₀inf hH₀fp hH₀tf hH₀hyp hH₀T
+      {1, skeletonIota f hf (factorSimple f s)}
   letI := instG₀
   haveI := hG₀fp
   have hmem1 : (1 : Skeleton f hf) ∈
