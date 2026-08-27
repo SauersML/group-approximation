@@ -237,20 +237,43 @@ torsion-free property-\textup{(T)} group~\cite[\S2]{FFF} and Hull's small
 cancellation theorem~\cite{Hull}; it uses a different toolkit from the rest
 of the paper and can be read independently.
 
+\subsection*{Relation to prior work}
+
 Blackadar and Kirchberg introduced MF algebras and proved that a separable
-$C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK};
-Carri\'on--Dadarlat--Eckhardt introduced the group property~\cite{CDE}.
-The negative solution of the Connes embedding problem~\cite{MIPRE} implies
-the existence of separable stably finite $C^*$-algebras that are not
-MF~\cite[Proposition~6.1 and Remark~6.2]{GoldbringHart}; Theorem~\ref{thm:headline} gives one
-among reduced group $C^*$-algebras.
+$C^*$-algebra is NF if and only if it is nuclear and MF~\cite{BK}.  Whether
+every separable stably finite $C^*$-algebra is MF, the MF
+problem~\cite[\S6]{GoldbringHart}, was answered negatively through the
+failure of the Connes embedding problem~\cite{MIPRE}\cite[Proposition~6.1
+and Remark~6.2]{GoldbringHart}.  Theorem~\ref{thm:headline} gives a
+counterexample among reduced group $C^*$-algebras.  Whether every countable
+group is MF was a longstanding open problem~\cite{BDL}.
 \leanverified{Manuscript/OneSidedMFRadical/ReducedCStarConsequence}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSeparableStablyFiniteNonMFCStarAlgebraExists}
-Nonapproximability was known for the unnormalized Schatten $p$-norms when
-$1<p<\infty$~\cite{DGLT,LubotzkyOppenheim}, and Bachner--Dogon--Lubotzky
-settled $p=1$~\cite{BDL}; the case $p=\infty$ remained open.  For groups of
-Deligne type, operator--Hilbert--Schmidt stability would imply that the
-group is not MF~\cite[Proposition~1.5]{BDL}; here the input is the
-compression relation instead.
+
+Theorem~\ref{thm:compression-criterion} uses the configuration of the
+nonsofic construction~\cite[Proposition~2.3]{OAI}: a property-\textup{(T)}
+subgroup $L$ conjugated into itself by an element $u$, and an element $c$
+commuting with $L$ whose conjugate $ucu^{-1}$ does not.  There, soficity
+and the rigidity theorems of Kun~\cite{Kun16} and Kun--Thom~\cite{KT19}
+force the centralizing subgroup to be locally embeddable into finite
+groups, and a copy of Thompson's group $V$ gives the contradiction.  Here
+the rigidity is the Kazhdan projection of $L$ in a norm matrix corona,
+which stable finiteness of the corona forces to commute with the
+compressor, and the contradiction is a commutator $[ucu^{-1},\ell]\ne1$
+that every operator norm asymptotic representation sends to $1$ in
+Hilbert--Schmidt norm.  The group $H$ is the unit group of the binary
+Leavitt algebra, the group of~\cite{OAI}, and
+Theorem~\ref{thm:torsion-free} reuses Fournier-Facio's
+configuration~\cite{FFF}.  Bachner--Dogon--Lubotzky showed that for groups
+of Deligne type, operator--Hilbert--Schmidt stability would imply that the
+group is not MF~\cite[Proposition~1.5]{BDL}.  The compression relation
+replaces stability.
+
+Leavitt introduced the algebras $L_K(1,n)$~\cite{Leavitt}.  The binary
+Leavitt algebra is purely infinite simple~\cite{AbramsAranda}, is an
+exchange ring~\cite{AraExchange}, and has center
+$\F_2$~\cite{ArandaCrow}.  Preusser's sandwich theorem then gives
+simplicity of $H$~\cite{Preusser}, and property~\textup{(T)} is
+Ershov--Jaikin-Zapirain's theorem~\cite[Theorem~1.1]{EJZ}.
 
 \section{One-sided compression}
 \label{sec:compression-radical}
@@ -881,12 +904,6 @@ M.~Chiodo,
 Groups Complex. Cryptol. \textbf{6} (2014), no.~1, 1--8,
 \href{https://arxiv.org/abs/1107.1489}{arXiv:1107.1489}.
 
-\bibitem[DGLT]{DGLT}
-M.~De~Chiffre, L.~Glebsky, A.~Lubotzky, and A.~Thom,
-\emph{Stability, cohomology vanishing, and nonapproximable groups},
-Forum Math. Sigma \textbf{8} (2020), Paper No.~e18,
-\doi{10.1017/fms.2020.5}.
-
 \bibitem[EJZ]{EJZ}
 M.~Ershov and A.~Jaikin-Zapirain,
 \emph{Property~\textup{(T)} for noncommutative universal lattices},
@@ -938,6 +955,18 @@ H.~V. Khanh and V.~H. Thanh,
 preprint, 2026,
 \href{https://arxiv.org/abs/2607.10351}{arXiv:2607.10351}.
 
+\bibitem[Ku16]{Kun16}
+G.~Kun,
+\emph{On sofic approximations of property~\textup{(T)} groups},
+preprint, 2016,
+\href{https://arxiv.org/abs/1606.04471}{arXiv:1606.04471}.
+
+\bibitem[KT19]{KT19}
+G.~Kun and A.~Thom,
+\emph{Inapproximability of actions and Kazhdan's property~\textup{(T)}},
+preprint, 2019,
+\href{https://arxiv.org/abs/1901.03963}{arXiv:1901.03963}.
+
 \bibitem[Kor]{Korchagin}
 A.~I. Korchagin,
 \emph{The MF-property for countable discrete groups},
@@ -951,11 +980,11 @@ M.~Kotowski and M.~Kotowski,
 J. Lond. Math. Soc. (2) \textbf{88} (2013), no.~2, 396--416,
 \href{https://arxiv.org/abs/1106.2242}{arXiv:1106.2242}.
 
-\bibitem[LO]{LubotzkyOppenheim}
-A.~Lubotzky and I.~Oppenheim,
-\emph{Non $p$-norm approximated groups},
-J. Anal. Math. \textbf{141} (2020), no.~1, 305--321,
-\doi{10.1007/s11854-020-0119-2}.
+\bibitem[Lev]{Leavitt}
+W.~G.~Leavitt,
+\emph{The module type of a ring},
+Trans. Amer. Math. Soc. \textbf{103} (1962), 113--130,
+\doi{10.1090/S0002-9947-1962-0132764-X}.
 
 \bibitem[Mil]{Milnor}
 J.~Milnor,
