@@ -1,6 +1,6 @@
 import GroupApproximation.Analysis.MaximalGroupCStarTrace
 import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
-import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceCitations
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceEdgeDensity
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceBaseTrace
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceCovariantBase
 
@@ -35,10 +35,9 @@ paragraph is now proved elsewhere on main and simply reused here:
 
 What remains here is the assembly: the covariance relation, the lift `σ`, the
 group representation `j`, its faithfulness, the trace `τ'`, and the realization
-`(A', j, τ')`.  Exactly one printed sentence of the paragraph is still assumed
-rather than proved — *"two `*`-homomorphisms that agree on generators agree on
-`B₀`"*, the field `HNNInputs.edgeDensity`, used once, in
-`sigmaZero_covariance`.
+`(A', j, τ')`.  Every printed sentence of the paragraph is now proved; the
+density step that used to be assumed is
+`HNNPermanenceEdgeDensity.edgeDensity_proved`.
 -/
 
 namespace GroupApproximation
@@ -89,7 +88,7 @@ set_option maxHeartbeats 1000000 in
 set_option synthInstance.maxHeartbeats 400000 in
 /-- Printed: *"The pair `(σ₀, λ_R(t))` satisfies the covariance relation
 `λ_R(t)σ₀(b)λ_R(t)* = σ₀(Θ(b))` for `b ∈ B₀`."* -/
-theorem sigmaZero_covariance (hIn : HNNInputs)
+theorem sigmaZero_covariance (_hIn : HNNInputs)
     (data : CoronaConjugator G S T phi A X)
     (b : sourceEdgeAlgebra data) :
     (stableUnitary G S T phi :
@@ -107,7 +106,7 @@ theorem sigmaZero_covariance (hIn : HNNInputs)
         (sigmaZero data).comp
           ((targetEdgeAlgebra data).subtype.comp
             (edgeIsomorphism data).toStarAlgHom) := by
-    refine hIn.edgeDensity data _ _ ?_
+    refine edgeDensity_proved data _ _ ?_
     intro s
     show (stableUnitary G S T phi :
               ReducedGroupCStar (HNNExtension G S T phi)) *

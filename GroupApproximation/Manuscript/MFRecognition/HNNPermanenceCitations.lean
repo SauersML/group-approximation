@@ -120,8 +120,6 @@ structure HNNInputs : Type where
   /-- Steps 1 and 2: `U` is MF.  Discharged from Ueda, Proposition 2.4 and
   Shulman, Theorem 16 by `universalHNNIsMFStatement_of_citations`. -/
   universalHNNIsMF : UniversalHNNIsMFStatement
-  /-- The printed density sentence of Step 3. -/
-  edgeDensity : EdgeDensityStatement
   /-- Universe descent to the repository's `IsRegularlyRealized`. -/
   regularRealizationDescent : RegularRealizationDescentStatement
   /-- The unital corona embedding used by `cor:central-hnn`. -/

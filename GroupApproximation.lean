@@ -2043,6 +2043,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNTraceReducedSubgroup
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceCovariantBase
 import GroupApproximation.Manuscript.MFRecognition.PositiveBranch
 import GroupApproximation.Manuscript.MFRecognition.RecognitionMainTheorem
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceEdgeDensity
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
