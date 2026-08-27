@@ -6,6 +6,7 @@ import GroupApproximation.Higman.TransportStarCode
 import GroupApproximation.Higman.TransportStarProdBotProfinite
 import GroupApproximation.Higman.ProfiniteBenignProductSeparable
 import GroupApproximation.Higman.ProfiniteBenignFactorizationReflection
+import GroupApproximation.Higman.TransportStarSourceProductSeparable
 
 /-!
 # The coded profinite prefix of TransportStar
@@ -137,6 +138,13 @@ def graphModel (hclosed : profiniteClosure fiveCutter = fiveCutter) :
   cutter_eq := graph_cutter_eq
   marked_eq := pMark_raw
 
+/-- The fixed graph model reflects every prescribed quotient; this is the
+exact paired-return theorem, not an additional compiler input. -/
+theorem graphModel_factorizationReflecting
+    (hclosed : profiniteClosure fiveCutter = fiveCutter) :
+    (graphModel hclosed).data.FactorizationReflecting :=
+  PairedReturnProfiniteWitness.witness_factorizationReflecting hclosed
+
 private theorem pMark_source_raw (i : MarkCount) :
     pEquiv (evalWord pCode (pGeneratorWords.getD i [])) = pMark i := by
   change PairedReturnCutterCode.evalPRaw (pGeneratorWords.getD i []) =
@@ -243,6 +251,39 @@ def hgammaModel (hclosed : profiniteClosure fiveCutter = fiveCutter)
     Model pMark
       (Star.graphSub ⊓ H.comap (MonoidHom.fst Conj.F₃ Conj.F₃)) :=
   Model.inf (graphModel hclosed) (hprodModel C)
+
+/-- Product separation through the actual graph/hprod Inf.  Synchronization
+uses the concrete `retK ∘ fst` detector, so the hprod side needs only the
+valid coordinate reflection inherited from `C`. -/
+theorem hgammaModel_productSeparable
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (hH : H ≤ Conj.cbHom.range)
+    (C : Model sourceMark H)
+    (hGraphProduct : (graphModel hfive).data.ProductSeparable)
+    (hCProduct : C.data.ProductSeparable)
+    (hCReflect : C.data.FactorizationReflecting) :
+    (hgammaModel hfive C).data.ProductSeparable := by
+  exact ProfiniteBenignWitness.ProductSeparable.inf
+    (graphModel hfive).data (hprodModel C).data hGraphProduct
+      (hprodModel_productSeparable C hCProduct)
+      (TransportStarSourceProductSeparable.graph_fstComap_infSynchronizing
+        H hH (graphModel hfive).data
+          (graphModel_factorizationReflecting hfive) C.data hCReflect)
+
+/-- Literal coordinate-subgroup specialization used by TransportStar. -/
+theorem hgammaModel_coord_productSeparable
+    (hfive : profiniteClosure fiveCutter = fiveCutter) (T : Set ↑Conj.K)
+    (C : Model sourceMark ((Star.coordSub T).map Conj.cbHom))
+    (hGraphProduct : (graphModel hfive).data.ProductSeparable)
+    (hCProduct : C.data.ProductSeparable)
+    (hCReflect : C.data.FactorizationReflecting) :
+    (hgammaModel hfive C).data.ProductSeparable := by
+  apply hgammaModel_productSeparable hfive
+  · rintro _ ⟨w, -, rfl⟩
+    exact ⟨w, rfl⟩
+  · exact hGraphProduct
+  · exact hCProduct
+  · exact hCReflect
 
 @[simp] theorem hgammaModel_coded
     (hclosed : profiniteClosure fiveCutter = fiveCutter)
