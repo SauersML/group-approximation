@@ -10,9 +10,9 @@ Theorem 3.3, which is Osin, *Acylindrically hyperbolic groups*, Trans. Amer.
 Math. Soc. 368 (2016), Theorem 1.2:
 
 > For any group `G` the following conditions are equivalent.
-> * `(AH₁)` `G` is acylindrically hyperbolic in the sense of Definition 1.1
->   (some generating set `X` makes `Γ(G,X)` hyperbolic and non-elementary and
->   the action acylindrical).
+> * `(AH₁)` There exists a generating set `X` of `G` such that the
+>   corresponding Cayley graph `Γ(G,X)` is hyperbolic, `|∂Γ(G,X)| > 2`, and
+>   the natural action of `G` on `Γ(G,X)` is acylindrical.
 > * `(AH₂)` `G` admits a non-elementary acylindrical action on a hyperbolic
 >   space.
 > * `(AH₃)` `G` is not virtually cyclic and admits an action on a hyperbolic
@@ -20,19 +20,26 @@ Math. Soc. 368 (2016), Theorem 1.2:
 >   the WPD condition.
 > * `(AH₄)` `G` contains a proper infinite hyperbolically embedded subgroup.
 
-`(AH₁)` is the repository's `TorsionFree.IsAcylindricallyHyperbolic`, `(AH₃)` is
-`AH3Data` together with `¬ IsVirtuallyCyclic`, and `(AH₄)` is
-`GGT.IsHypEmbedded`.  The implication the manuscript needs is `(AH₃) ⇒ (AH₁)`,
-which in the literature factors as
+`(AH₁)` is the repository's `TorsionFree.IsAcylindricallyHyperbolic`, with
+`|∂Γ(G,X)| > 2` in the equivalent form `ActsNonElementarily` that Osin's
+Theorem 1.1 licenses for acylindrical actions; `(AH₃)` is `AH3Data` together
+with `¬ IsVirtuallyCyclic`; `(AH₄)` is `GGT.IsHypEmbedded`.  Osin records the
+routing himself: "*It immediately follows from definitions that
+`(AH₁) ⟹ (AH₂) ⟹ (AH₃)`.  The implication `(AH₃) ⟹ (AH₄)` is non-trivial and
+was proved in [Dahmani--Guirardel--Osin].  Thus we only need to prove that
+`(AH₄) ⟹ (AH₁)`.  In fact, we prove a stronger statement, Theorem 5.4*".  So
+the implication the manuscript needs, `(AH₃) ⇒ (AH₁)`, factors as
 
-* `(AH₃) ⇒ (AH₄)`: Dahmani--Guirardel--Osin, Mem. Amer. Math. Soc. 245 (2017),
-  Theorem 6.8 — a loxodromic WPD element `g` lies in a maximal virtually cyclic
-  subgroup `E(g)` which is hyperbolically embedded in `G`; and
-* `(AH₄) ⇒ (AH₁)`: Osin, Theorem 1.2, proved in §5 of that paper.
+* `(AH₃) ⇒ (AH₄)`: Dahmani--Guirardel--Osin, Mem. Amer. Math. Soc. 245 (2017)
+  — a loxodromic WPD element lies in a virtually cyclic hyperbolically embedded
+  subgroup.  This is `(L₃) ⇒ (L₄)` of Osin's own Theorem 1.4, which he
+  attributes to that paper; here it is `DGOTheorem68`.
+* `(AH₄) ⇒ (AH₁)`: Osin, Theorem 5.4, here `OsinTheorem54`, together with the
+  non-elementarity clause `RelativeCayleyNonElementary`.
 
-Both are stated here as named propositions, `DGOTheorem68` and `OsinAH4ToAH1`,
-and `osinTheorem12_of` assembles `OsinTheorem12` from them.  Nothing in this
-development inhabits either.
+`osinAH4ToAH1_of` proves `OsinAH4ToAH1` from those two, and `osinTheorem12_of`
+assembles `OsinTheorem12`.  Nothing in this development inhabits the three
+named literature propositions.
 
 ## What is proved
 
@@ -40,7 +47,10 @@ development inhabits either.
   implication `(AH₁) ⇒ (AH₃)`, in full: the Cayley graph of an acylindrically
   hyperbolic group is a hyperbolic space on which some element is loxodromic
   and, by `isWPDAt_of_isAcylindrical`, WPD.  So the `(AH₃)` interface is not
-  vacuous, and the two named propositions above are the only debt.
+  vacuous, and the named propositions above are the only debt.
+* `osinAH4ToAH1_of` — `(AH₄) ⇒ (AH₁)` from Osin's Theorem 5.4 and the
+  non-elementarity clause, the last step being a definitional unpacking of the
+  Cayley-graph form.
 * `infinite_of_mem_of_isLoxodromic` — a subgroup containing a loxodromic
   element is infinite, so the infinitude clause of `(AH₄)` is derived from the
   loxodromy `AH3Data` already records rather than asked of the citation.
@@ -177,29 +187,89 @@ theorem infinite_of_mem_of_isLoxodromic {G : Type u} [Group G] {X : Type v}
       (not_isOfFinOrder_of_isLoxodromic hlox)
   exact Set.infinite_of_injective_forall_mem hinj fun n => Subgroup.zpow_mem E hg n
 
-/-! ## The two literature inputs -/
+/-! ## The literature inputs -/
 
-/-- **Dahmani--Guirardel--Osin, Theorem 6.8**, in the form Osin's Theorem 1.2
-uses it for `(AH₃) ⇒ (AH₄)`: a loxodromic WPD element of an action on a
-hyperbolic space is contained in a hyperbolically embedded subgroup `E(g)`,
-which is virtually cyclic — hence infinite, since a loxodromic element has
-infinite order, and proper as soon as `G` is not virtually cyclic.
+/-- **`(AH₃) ⇒ (AH₄)`: Dahmani--Guirardel--Osin.**  Osin states it as
+`(L₃) ⇒ (L₄)` of his Theorem 1.4 and attributes it to that paper:
 
-Properness is the trivial deduction from `E(g)` being virtually cyclic while
-`G` is not, and is folded in.  Infinitude is *not* folded in: it is derived
-from loxodromy by `infinite_of_mem_of_isLoxodromic`, so this proposition asks
-the literature for strictly less than `(AH₄)` consumes. -/
+> `(L₃)` There exists an action of `G` on a hyperbolic space such that `g` acts
+>   loxodromically and satisfies the WPD condition.
+> `(L₄)` The order of `g` is infinite and `g` is contained in a virtually
+>   cyclic hyperbolically embedded subgroup of `G`.
+
+Two clauses of `(L₄)` are dropped rather than asked for.  Infinitude of the
+subgroup is derived from loxodromy by `infinite_of_mem_of_isLoxodromic`;
+virtual cyclicity is used only to make the subgroup proper, and properness is
+asked for directly.  So this proposition asks the literature for strictly less
+than `(AH₄)` consumes. -/
 def DGOTheorem68 : Prop :=
   ∀ (G : Type u) [Group G] (D : AH3Data G), ¬ IsVirtuallyCyclic G →
     ∃ E : Subgroup G, D.elt ∈ E ∧ E ≠ ⊤ ∧ IsHypEmbedded G E
 
-/-- **Osin, Theorem 1.2, the implication `(AH₄) ⇒ (AH₁)`** (proved in §5 of
-*Acylindrically hyperbolic groups*): a proper infinite hyperbolically embedded
-subgroup produces a generating set for which the Cayley graph is hyperbolic,
-the action acylindrical, and the group non-elementary. -/
+/-- **Osin, Theorem 1.2, the implication `(AH₄) ⇒ (AH₁)`**: a proper infinite
+hyperbolically embedded subgroup makes `G` acylindrically hyperbolic.  Osin
+proves it in §5 of *Acylindrically hyperbolic groups* through his Theorem 5.4,
+which is stated separately below and is what this proposition is assembled
+from. -/
 def OsinAH4ToAH1 : Prop :=
   ∀ (G : Type u) [Group G] (E : Subgroup G), E ≠ ⊤ → (E : Set G).Infinite →
     IsHypEmbedded G E → IsAcylindricallyHyperbolic G
+
+/-- **Osin, *Acylindrically hyperbolic groups*, Theorem 5.4**, verbatim:
+
+> Let `G` be a group, `{H_λ}_{λ∈Λ}` a finite collection of subgroups of `G`,
+> `X` a subset of `G`.  Suppose that `{H_λ}_{λ∈Λ} ↪_h (G,X)`.  Then there
+> exists `Y ⊆ G` such that `X ⊆ Y` and the following conditions hold.
+> (a) `{H_λ}_{λ∈Λ} ↪_h (G,Y)`.  In particular, the Cayley graph
+>     `Γ(G, Y ⊔ H)` is hyperbolic.
+> (b) The action of `G` on `Γ(G, Y ⊔ H)` is acylindrical.
+
+**The enlargement of `X` to `Y` is not a convenience, it is necessary**, and
+this is why no proposition here asserts that `G` acts acylindrically on
+`Γ(G, X ⊔ H)` itself.  Osin gives the counterexample immediately before
+Theorem 5.4: for `G = (K × ℤ) * H` with `K` infinite and `H` nontrivial, and
+`X = K ∪ {x}` with `x` a generator of `ℤ`, one has `H ↪_h (G,X)` while the
+action on `Γ(G, X ⊔ H)` is *not* acylindrical — every element of `K` moves
+every vertex of the ray labelled by the positive powers of `x` a distance at
+most `1`.  Enlarging to `Y = K × ℤ` repairs it, and `Γ(G, Y ⊔ H)` is then
+quasi-isometric to the Bass--Serre tree of the free product.
+
+Clause (a) is `D'.IsHyperbolicallyEmbedded`, whose own first field is the
+hyperbolicity of `Γ(G, Y ⊔ H)`; clause (b) is the acylindricity of the
+translation action on that Cayley graph. -/
+def OsinTheorem54 : Prop :=
+  ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
+    ∃ D' : RelGenSet G Unit, D.base ⊆ D'.base ∧ D'.fam = D.fam ∧
+      D'.IsHyperbolicallyEmbedded ∧ IsAcylindrical G (Cayley D'.alphabet)
+
+/-- **The rest of Osin's proof of `(AH₄) ⇒ (AH₁)`**, beyond Theorem 5.4: on the
+enlarged generating set the action is not merely acylindrical but
+*non-elementary*, which is the third clause of Definition 1.1.  Properness and
+infinitude of the subgroup are exactly what rules out the two degenerate cases
+of Osin's Theorem 1.1 (bounded orbits; virtually cyclic). -/
+def RelativeCayleyNonElementary : Prop :=
+  ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
+    IsAcylindrical G (Cayley D.alphabet) → D.fam () ≠ ⊤ →
+      ((D.fam () : Set G)).Infinite →
+        ActsNonElementarily (⊤ : Subgroup G) (Cayley.base D.alphabet)
+
+/-- **`(AH₄) ⇒ (AH₁)` from Theorem 5.4 and the non-elementarity clause.**
+
+The last step is a definitional unpacking: `IsAcylindricallyHyperbolic` is the
+Cayley-graph form, and Theorem 5.4's `Y` supplies the alphabet, its clause (a)
+the hyperbolicity, its clause (b) the acylindricity. -/
+theorem osinAH4ToAH1_of (h54 : OsinTheorem54)
+    (hne : RelativeCayleyNonElementary) : OsinAH4ToAH1 := by
+  intro G _ E hE hinf hemb
+  obtain ⟨_X, D, -, hfam, hhyp⟩ := hemb
+  obtain ⟨D', -, hfam', hhyp', hacy⟩ := h54 G D hhyp
+  obtain ⟨δ, hδ⟩ := hhyp'.hyperbolic
+  have hlam : D'.fam () = E := by
+    rw [hfam']
+    exact congrFun hfam ()
+  have hEne : D'.fam () ≠ ⊤ := by rw [hlam]; exact hE
+  have hEinf : ((D'.fam () : Set G)).Infinite := by rw [hlam]; exact hinf
+  exact ⟨⟨D'.alphabet, δ, hδ, hacy, hne G D' hhyp' hacy hEne hEinf⟩⟩
 
 /-- **Osin, Theorem 1.2, the implication `(AH₃) ⇒ (AH₁)`** — the form
 Minasyan--Osin cite as their Theorem 3.3. -/

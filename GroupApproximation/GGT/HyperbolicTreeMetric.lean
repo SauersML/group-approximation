@@ -148,9 +148,6 @@ theorem graphDist_fourPoint_zero (w x y z : V) :
   have hyzTri : H.dist y z ≤ H.dist y w + H.dist z w := by
     have h := hH.connected.dist_triangle (u := y) (v := w) (w := z)
     omega
-  have hxzTri : H.dist x z ≤ H.dist x w + H.dist z w := by
-    have h := hH.connected.dist_triangle (u := x) (v := w) (w := z)
-    omega
   have hxwTri : H.dist x w ≤ H.dist x y + H.dist y w := by
     have h := hH.connected.dist_triangle (u := x) (v := y) (w := w)
     omega

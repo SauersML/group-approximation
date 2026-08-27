@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCRotatingFamily
+import GroupApproximation.GGT.WPDAcylindricalHyperbolicity
 
 /-!
 # Hull's small cancellation theorem in acylindrically hyperbolic groups
@@ -65,8 +66,10 @@ acylindrical action is WPD, its elementary closure
 `E(g) = {h : ∃ n > 0, h gⁿ h⁻¹ = g^{±n}}` is the unique maximal virtually
 cyclic subgroup containing `g`, and `E(g) ↪_h G`.  Stated, not proved, as
 `GGT.DGOTheorem68` in `GGT/WPDAcylindricalHyperbolicity.lean`, against
-`GGT.AH3Data` (an isometric action on a `δ`-hyperbolic space, a distinguished
-element, and `IsWPDAt`) and `¬ GGT.IsVirtuallyCyclic G`.
+`GGT.AH3Data` (an isometric action on a `δ`-hyperbolic space, a loxodromic
+element, and `IsWPDAt`) and `¬ GGT.IsVirtuallyCyclic G` -- and that last
+hypothesis is free here: `not_isVirtuallyCyclic_of_suitable` below derives it
+from clause (2) of Hull's Definition 1.4.
 
 Note what it does *not* give: its conclusion is `GGT.IsHypEmbedded G E`, i.e.
 `E ↪_h (G, X)` for *some* relative generating set `X`, not for Hull's `A`.
@@ -137,6 +140,13 @@ itself is the citation, and it is the only one.  The arithmetic of the kernel
 by `m` elements -- is `ker_comp_eq` and is proved, so the
 manuscript's separate remark on Hull's construction is a citation only at
 `m = 1`.
+
+Two hypotheses the chain would otherwise have to carry are also discharged
+here rather than assumed: `not_isVirtuallyCyclic_of_suitable` derives the
+hypothesis of `GGT.DGOTheorem68` from Hull's Definition 1.4, and
+`HullSC.isHypEmbeddedOf_coneOff` identifies the cone-off as the witness for
+`H ↪_h (G,A)`, so step (3) reduces to hyperbolicity and local finiteness of
+one explicit relative Cayley graph.
 -/
 
 namespace GroupApproximation
@@ -320,6 +330,66 @@ that data, existentially quantified. -/
 theorem isAcylindricallyHyperbolic_of_hullGeneratingSet {G : Type u} [Group G]
     (A : HullGeneratingSet G) : IsAcylindricallyHyperbolic G :=
   ⟨⟨A.alphabet, A.delta, A.hyperbolic, A.acylindrical, A.nonElementary⟩⟩
+
+/-! ## Suitability discharges the hypothesis of DGO's Theorem 6.8 -/
+
+/-- **Two independent loxodromics have no common nonzero power.**
+
+If `g ^ m = h ^ k` with `k ≠ 0`, then `g ^ (m·N) = h ^ (k·N)` for every `N`, so
+the two power orbits meet; at a point where they meet the Gromov product is the
+distance from the basepoint, and loxodromy of `h ^ k` makes that unbounded,
+contradicting the bound independence supplies.  With `k = 0` the equation reads
+`g ^ m = 1`, and a loxodromic element has infinite order.
+
+This is the argument of `HullGeometry.notMem_zpowers_of_independent`, run for
+powers on both sides rather than for `h` itself. -/
+theorem eq_zero_of_common_zpow_of_independent {G : Type u} [Group G]
+    {X : Type v} [PseudoMetricSpace X] [MulAction G X]
+    (hiso : IsIsometricAction G X) {g h : G} {x : X}
+    (hg : IsLoxodromic g x) (hh : IsLoxodromic h x) (hind : Independent g h x)
+    {m k : ℤ} (hmk : g ^ m = h ^ k) : m = 0 ∧ k = 0 := by
+  obtain ⟨C, hC⟩ := hind
+  have hk0 : k = 0 := by
+    by_contra hk
+    have hlox : IsLoxodromic (h ^ k) x := isLoxodromic_zpow hiso hh hk
+    obtain ⟨N, hN⟩ :=
+      Filter.eventually_atTop.mp (hlox.isEscaping.eventually_ge_atTop (C + 1))
+    have hkey := hC (m * (N : ℤ)) (k * (N : ℤ))
+    have hgpow : g ^ (m * (N : ℤ)) = h ^ (k * (N : ℤ)) := by
+      rw [zpow_mul, zpow_mul, hmk]
+    rw [hgpow, gromovProduct_self, dist_comm] at hkey
+    have hfar := hN N le_rfl
+    have hpow : (h ^ k) ^ N = h ^ (k * (N : ℤ)) := by
+      rw [zpow_mul, zpow_natCast]
+    rw [hpow] at hfar
+    linarith
+  refine ⟨?_, hk0⟩
+  have hginj : Function.Injective (fun n : ℤ => g ^ n) :=
+    injective_zpow_iff_not_isOfFinOrder.mpr
+      (not_isOfFinOrder_of_isLoxodromic hg)
+  have hone : g ^ m = g ^ (0 : ℤ) := by
+    rw [hmk, hk0, zpow_zero, zpow_zero]
+  exact hginj hone
+
+/-- **A group with a non-elementary subgroup is not virtually cyclic.** -/
+theorem not_isVirtuallyCyclic_of_actsNonElementarily {G : Type u} [Group G]
+    {X : Type v} [PseudoMetricSpace X] [MulAction G X]
+    (hiso : IsIsometricAction G X) {S : Subgroup G} {x : X}
+    (hne : ActsNonElementarily S x) : ¬ GGT.IsVirtuallyCyclic G := by
+  obtain ⟨g, -, h, -, hg, hh, hind⟩ := hne
+  exact GGT.not_isVirtuallyCyclic_of_no_common_power
+    (fun m k hmk => eq_zero_of_common_zpow_of_independent hiso hg hh hind hmk)
+
+/-- **The hypothesis of `GGT.DGOTheorem68` is free in Hull's setting.**  That
+citation asks for `¬ IsVirtuallyCyclic G` before it produces the hyperbolically
+embedded elementary closure `E(g)`; clause (2) of Hull's Definition 1.4 --
+`N` contains two independent loxodromics -- already gives it.  So step (3) of
+the plan above costs the chain nothing beyond the citation itself. -/
+theorem not_isVirtuallyCyclic_of_suitable {G : Type u} [Group G]
+    {A : Alphabet G} {N : Subgroup G} (h : Suitable A N) :
+    ¬ GGT.IsVirtuallyCyclic G :=
+  not_isVirtuallyCyclic_of_actsNonElementarily (isIsometricAction_cayley A)
+    h.actsNonElementarily
 
 /-! ## The citation, and the induction -/
 

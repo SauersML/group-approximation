@@ -110,15 +110,18 @@ theorem alphabet_carrier (X : RelativeGeneratingSet G H) :
 
 /-- Every non-peripheral letter is a letter of the relative alphabet. -/
 theorem subset_alphabet (X : RelativeGeneratingSet G H) :
-    X.carrier ⊆ X.alphabet.carrier :=
-  Set.subset_union_left
+    X.carrier ⊆ X.alphabet.carrier := by
+  rw [X.alphabet_carrier]
+  exact Set.subset_union_left
 
 /-- Every element of every peripheral subgroup is a letter of the relative
 alphabet.  This is the whole difference between `Γ(G, X)` and
 `Γ(G, X ⊔ ℋ)`. -/
 theorem peripheral_subset_alphabet (X : RelativeGeneratingSet G H) (l : ι) :
-    (H l : Set G) ⊆ X.alphabet.carrier :=
-  fun _ hx => Or.inr (Set.mem_iUnion.mpr ⟨l, hx⟩)
+    (H l : Set G) ⊆ X.alphabet.carrier := by
+  rw [X.alphabet_carrier]
+  intro x hx
+  exact Or.inr (Set.mem_iUnion.mpr ⟨l, hx⟩)
 
 /-- **The relative word length** `|g|_{X ⊔ ℋ}`. -/
 noncomputable def relLength (X : RelativeGeneratingSet G H) (g : G) : ℕ :=
@@ -145,7 +148,7 @@ theorem relLength_le_one_of_mem_peripheral (X : RelativeGeneratingSet G H)
   wordNorm_le_one_of_mem (X.peripheral_subset_alphabet l hg)
 
 theorem relLength_one (X : RelativeGeneratingSet G H) : X.relLength 1 = 0 :=
-  wordNorm_one _
+  wordNorm_one X.alphabet.carrier
 
 theorem relLength_eq_zero_iff (X : RelativeGeneratingSet G H) (g : G) :
     X.relLength g = 0 ↔ g = 1 :=
@@ -161,7 +164,7 @@ theorem relLength_inv (X : RelativeGeneratingSet G H) (g : G) :
 
 theorem relDist_self (X : RelativeGeneratingSet G H) (g : G) :
     X.relDist g g = 0 :=
-  wordDist_self _ g
+  wordDist_self X.alphabet.carrier g
 
 theorem relDist_comm (X : RelativeGeneratingSet G H) (g h : G) :
     X.relDist g h = X.relDist h g :=
@@ -177,11 +180,11 @@ theorem relDist_eq_zero_iff (X : RelativeGeneratingSet G H) (g h : G) :
 
 theorem relDist_left_invariant (X : RelativeGeneratingSet G H) (g x y : G) :
     X.relDist (g * x) (g * y) = X.relDist x y :=
-  wordDist_left_invariant _ g x y
+  wordDist_left_invariant X.alphabet.carrier g x y
 
 theorem relDist_one_left (X : RelativeGeneratingSet G H) (g : G) :
     X.relDist 1 g = X.relLength g :=
-  wordDist_one_left _ g
+  wordDist_one_left X.alphabet.carrier g
 
 /-- **The cone crushes the coset.**  Two points of the same peripheral coset
 are at relative distance at most one, whatever their distance in `Γ(G, X)`. -/

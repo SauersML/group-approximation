@@ -180,6 +180,27 @@ structure IsHyperbolicallyEmbedded (D : RelGenSet G Λ) : Prop where
 
 end RelGenSet
 
+/-- **Dahmani--Guirardel--Osin, Corollary 4.27**, quoted by Osin as his
+Lemma 5.7:
+
+> Let `G` be a group, `{H_λ}_{λ∈Λ}` a collection of subgroups of `G`,
+> `X₁, X₂ ⊆ G` two relative generating sets of `G` with respect to
+> `{H_λ}_{λ∈Λ}`.  Suppose that `|X₁ △ X₂| < ∞`.  Then
+> `{H_λ}_{λ∈Λ} ↪_h (G,X₁)` if and only if `{H_λ}_{λ∈Λ} ↪_h (G,X₂)`.
+
+Hyperbolic embeddedness therefore depends on the relative generating set only
+up to a finite symmetric difference — the lemma that moves the notion between
+two alphabets.  It is a citation, not proved here; it is stated because a
+consumer wanting `↪_h (G, A)` for a *prescribed* `A`, rather than for the `X`
+some other theorem produced, has to pass through it.  Note that it does **not**
+license the passage in Osin's Theorem 5.4, whose enlargement of `X` to `Y` is
+in general infinite. -/
+def DGOCorollary427 : Prop :=
+  ∀ (G : Type u) [Group G] (Λ : Type w) (D₁ D₂ : RelGenSet G Λ),
+    D₁.fam = D₂.fam →
+      ((D₁.base \ D₂.base) ∪ (D₂.base \ D₁.base)).Finite →
+        (D₁.IsHyperbolicallyEmbedded ↔ D₂.IsHyperbolicallyEmbedded)
+
 /-- **`H ↪_h (G, X)`** for a single subgroup: the one-element family. -/
 def IsHypEmbeddedOf (G : Type u) [Group G] (X : Set G) (H : Subgroup G) : Prop :=
   ∃ D : RelGenSet G Unit, D.base = X ∧ D.fam = (fun _ => H) ∧

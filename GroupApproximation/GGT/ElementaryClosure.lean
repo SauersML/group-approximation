@@ -17,8 +17,8 @@ Lemma 7.1 is the geometric debt recorded by
 `Manuscript.NonMF.HullFillCorrectedInputs.HullInputsCorrected.osinNonElementary`.
 
 This module writes `E(g)` down and proves everything about it that does not need
-quasi-geodesic stability.  `GGT.ElementaryOsinSNormal` then names the two facts
-that do need it and closes Lemma 7.1 against them.
+quasi-geodesic stability.  `GGT.ElementaryOsinSNormal` then names the facts that
+do need it and closes Lemma 7.1 against them.
 
 ## What is proved here
 
@@ -56,7 +56,7 @@ have the same absolute value, which is Osin's own form `h gⁿ h⁻¹ = g^{±n}`
 **The independence interface.**  Independence of two power orbits is destroyed
 by a common power and, for a conjugate, by nothing else:
 
-* `not_independent_of_common_zpow` --- if `aᵖ = bᵍ` with `p, q ≠ 0` then the two
+* `not_independent_of_common_zpow` --- if `a^p = b^q` with `p, q ≠ 0` then the two
   orbits share the points `a^{pn} x = b^{qn} x`, whose Gromov product with
   themselves is their distance to the basepoint, which is unbounded.
 * `mem_elementaryClosure_of_common_zpow_conj` and its inverse form --- a common
