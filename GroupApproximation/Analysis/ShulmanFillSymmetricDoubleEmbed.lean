@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.ShulmanSymmetricDoubleRoute
+import GroupApproximation.Analysis.MFAlgebraSymmetricDoubleIdentity
 import GroupApproximation.Analysis.ShulmanFillUnitalCorner
 import GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit
 
@@ -55,21 +56,11 @@ open MFAlgebraAmalgamCriterion
 
 noncomputable section
 
-/-! ## The double of an algebra always has a compatible representation -/
+/-! ## Theorem 16 from the two inputs
 
-/-- The identity pair is a compatible representation of the symmetric double,
-so the universal double is never formed over an empty index. -/
-def selfRepresentation {C D : Type} [CStarAlgebra C] [CStarAlgebra D]
-    [Nontrivial D] (k : C →⋆ₐ[ℂ] D) : CStarAmalgamRepresentation k k :=
-  CStarAmalgamRepresentation.ofCompatiblePair k k
-    (StarAlgHom.id ℂ D) (StarAlgHom.id ℂ D) rfl
-
-instance nonempty_selfRepresentation {C D : Type} [CStarAlgebra C]
-    [CStarAlgebra D] [Nontrivial D] (k : C →⋆ₐ[ℂ] D) :
-    Nonempty (CStarAmalgamRepresentation k k) :=
-  ⟨selfRepresentation k⟩
-
-/-! ## Theorem 16 from the two inputs -/
+`Nonempty (CStarAmalgamRepresentation k k)` for the symmetric double is the
+peer lane's `MFAlgebraAmalgamCriterion.symmetricAmalgamRepresentationNonempty`,
+built from the identity pair; nothing is restated here. -/
 
 /-- **Shulman's Theorem 16 on his own route.**  The printed criterion follows
 from Theorem 10 and Theorem 13.  The steps are: unitalize the corona pair on
