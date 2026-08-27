@@ -2074,6 +2074,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerCommon
 import GroupApproximation.Manuscript.NinetyNineProblems.StablyFinite
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemX
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXImpliesIX
+import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationProperty
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
