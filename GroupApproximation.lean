@@ -2078,6 +2078,7 @@ import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationProperty
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXGroups
 import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationImpliesHyperlinear
 import GroupApproximation.Analysis.MatrixAbsoluteValue
+import GroupApproximation.Analysis.HilbertSchmidtPolarCorrection
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
