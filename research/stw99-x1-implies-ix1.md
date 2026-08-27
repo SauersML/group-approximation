@@ -6,6 +6,7 @@ title: Amenable-implies-quasidiagonal for traces gives quasidiagonality of nucle
 target: stw99-problem-ix1-nuclear-faithful-trace-quasidiagonal
 requires: [stw99-problem-x1-amenable-traces-quasidiagonal]
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/ProblemXImpliesIX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -20,6 +21,12 @@ theorems), and a nuclear MF algebra is NF, i.e. quasidiagonal
 (Blackadar--Kirchberg, Math. Ann. 307 (1997), Theorem 5.2.2; Lean
 `blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra`).
 
-STW state the implication in the paragraph before Problem X.  A Lean module
-formalizing this route over the repository's existing predicates is being
-authored under `GroupApproximation/Manuscript/NinetyNineProblems/`.
+STW state the implication in the paragraph before Problem X.  
+
+**Formalized:** `NinetyNineProblems.problemIX1Statement_of_problemX1Statement`
+(`GroupApproximation/Manuscript/NinetyNineProblems/ProblemXImpliesIX.lean`): with `NuclearAmenableTraceInput` and
+`BlackadarKirchbergNFConverseInput` as the two literature binders,
+`ProblemX1Statement → ProblemIX1Statement`.  The step "faithful quasidiagonal
+trace ⟹ MF" is proved outright there (`isMFAlgebra_of_isQuasidiagonalTrace`,
+via injectivity of the MF-trace corona homomorphism), so no third input is
+needed.  Landed f2e177871.
