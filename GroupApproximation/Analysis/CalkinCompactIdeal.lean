@@ -93,12 +93,13 @@ theorem isClosed_compactIdeal :
 
 /-- **Schauder's theorem**, in the form the Calkin algebra needs: the adjoint
 of a compact operator is compact, so the ideal is `*`-closed and the quotient
-inherits a star.  Not in Mathlib; see this module's header for the cheap
+inherits a star.  Written with `star` rather than `ContinuousLinearMap.adjoint`
+because the star of `B(H)` *is* the adjoint, and the ideal's star-closure is
+what consumes it.  Not in Mathlib; see this module's header for the cheap
 Hilbert-space proof. -/
 def CompactStarClosedStatement : Prop :=
   ∀ (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
-    (T : H →L[ℂ] H), IsCompactOperator T →
-      IsCompactOperator (ContinuousLinearMap.adjoint T)
+    (T : H →L[ℂ] H), IsCompactOperator T → IsCompactOperator (star T)
 
 /-! The C-star identity for the quotient is deliberately *not* stated here, and
 the reason is the finding itself: `A ⧸ I` carries no norm and no star until
