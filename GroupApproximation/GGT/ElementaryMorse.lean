@@ -89,7 +89,14 @@ that sub-chain down to the part that actually straddles `p` makes `N' = O(ρ/l)`
 and then `ρ ≤ D/2 + δ·clog₂(Cρ)` is linear-against-logarithmic *in `ρ` alone* —
 which is exactly `exists_bound_of_linear_le_add_clog`, already proved and already
 used once by `exists_bound_excursion_chain_length`.  So the missing step is the
-cut, not a new estimate.
+cut, not a new estimate.  `chord_depth_le_clog` is that route's weak half,
+proved; `StraddlingCut` is the cut, stated; and
+`exists_bound_chord_depth_of_straddlingCut` closes the bootstrap from it.  What
+the divergence estimate needs of the cut is worth recording exactly: its
+conclusion is `R ≤ C + D/2 + k·δ`, so a merely *bounded* endpoint Gromov product
+`C` does not suffice — `C` has to be a definite fraction of `ρ`.  That is why
+`StraddlingCut` asks for `C ≤ ρ/2`, and why cutting at the ball `B(p, 2ρ)`,
+where `C` can be as large as `2ρ`, cannot work.
 
 The engine `exists_bound_chain_excursion_depth` does **not** supply it, and the
 tempting route through it does not close: applying it at `w := γ t` needs both
