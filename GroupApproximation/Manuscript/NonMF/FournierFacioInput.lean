@@ -2,6 +2,7 @@ import GroupApproximation.Manuscript.NonMF.AcylindricallyHyperbolic
 import GroupApproximation.Manuscript.NonMF.FournierFacioDoubleHNN
 import GroupApproximation.Sofic.ChiodoBelegradekTheorem
 import GroupApproximation.Kazhdan.Kazhdan
+import GroupApproximation.Algebra.HyperbolicGroup
 import Mathlib.GroupTheory.Subgroup.Simple
 import Mathlib.GroupTheory.SpecificGroups.Cyclic
 
@@ -112,15 +113,16 @@ def HydeLodhaStatement : Prop :=
     Group.IsFinitelyPresented S ∧ Infinite S ∧ IsSimpleGroup S ∧
       IsPowerTorsionFree S
 
-/-- **The density-model group `H₀`.**  The manuscript takes `H₀` torsion-free
-hyperbolic with property (T); only the three properties used downstream are
-recorded — finite presentation, torsion-freeness, property (T).  Hyperbolicity
-enters inside the cited small-cancellation step and nowhere in this
-development. -/
+/-- **The density-model group `H₀`.**  This records the full group used in the
+manuscript: it is infinite, finitely presented, torsion-free, hyperbolic, and
+has property (T).  Infinitude and hyperbolicity are hypotheses of the cited
+small-cancellation construction; omitting them would incorrectly make the
+construction apply to the trivial group. -/
 def KotowskiOllivierStatement : Prop :=
   ∃ (H₀ : Type) (_ : Group H₀),
-    Group.IsFinitelyPresented H₀ ∧ IsPowerTorsionFree H₀ ∧
-      HasKazhdanPropertyT.{0, 0} H₀
+    Infinite H₀ ∧ Group.IsFinitelyPresented H₀ ∧
+      IsPowerTorsionFree H₀ ∧ GroupApproximation.Hyperbolic.IsHyperbolicGroup H₀ ∧
+        HasKazhdanPropertyT.{0, 0} H₀
 
 /-- **The small-cancellation quotient `P`.**  "Small cancellation over the
 relatively hyperbolic pair `(U * H₀, U)` embeds `U` in a finitely presented
@@ -129,12 +131,14 @@ embedding theorem."  The two clauses used downstream are the surjection
 `H₀ ↠ P` and the embedding `U ↪ P`. -/
 def FournierFacioQuotientStatement : Prop :=
   ∀ (H₀ U : Type) (_ : Group H₀) (_ : Group U),
-    Group.IsFinitelyPresented H₀ → IsPowerTorsionFree H₀ →
-      Group.IsFinitelyPresented U → IsPowerTorsionFree U →
-        ∃ (P : Type) (_ : Group P),
-          Group.IsFinitelyPresented P ∧ IsPowerTorsionFree P ∧
-            (∃ p : H₀ →* P, Function.Surjective p) ∧
-            (∃ e : U →* P, Function.Injective e)
+    Infinite H₀ → Group.IsFinitelyPresented H₀ →
+      IsPowerTorsionFree H₀ → GroupApproximation.Hyperbolic.IsHyperbolicGroup H₀ →
+        HasKazhdanPropertyT.{0, 0} H₀ →
+          Group.IsFinitelyPresented U → IsPowerTorsionFree U →
+            ∃ (P : Type) (_ : Group P),
+              Group.IsFinitelyPresented P ∧ IsPowerTorsionFree P ∧
+                (∃ p : H₀ →* P, Function.Surjective p) ∧
+                (∃ e : U →* P, Function.Injective e)
 
 /-- **Minasyan--Osin's tree criterion.**  "Its Bass--Serre action makes it
 acylindrically hyperbolic."  Stated exactly at the manuscript's `E`: the double
@@ -292,6 +296,18 @@ instance instGroupCore (C : Configuration) : Group C.Core := C.groupCore
 instance instAcylAmbient (C : Configuration) :
     TorsionFree.IsAcylindricallyHyperbolic C.Ambient := C.acylAmbient
 
+/-- **"Then `π(S) ≠ 1`."**  `S` is simple, hence nontrivial, and `π|_S` is
+injective, so its range is not the trivial subgroup.  This is the hypothesis
+`lem:simple-in-defect` prints for `ρ = id`. -/
+theorem simpleRange_ne_bot (C : Configuration) : C.simple.range ≠ ⊥ := by
+  obtain ⟨x, hx⟩ := exists_ne (1 : C.Simple)
+  intro hbot
+  apply hx
+  apply C.simple_injective
+  have hmem : C.simple x ∈ C.simple.range := MonoidHom.mem_range.mpr ⟨x, rfl⟩
+  rw [hbot, Subgroup.mem_bot] at hmem
+  rw [hmem, map_one]
+
 /-- `G₀` is countable: it is finitely presented. -/
 theorem countableAmbient (C : Configuration) : Countable C.Ambient :=
   ChiodoBelegradek.countable_of_isFinitelyPresented C.Ambient
@@ -307,9 +323,11 @@ theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := 
   classical
   obtain ⟨U, instU, hUfp, hUtf, hUuniv⟩ := I.chiodo
   obtain ⟨S, instS, hSfp, hSinf, hSsimple, hStf⟩ := I.hydeLodha
-  obtain ⟨H₀, instH₀, hH₀fp, hH₀tf, hH₀T⟩ := I.kotowskiOllivier
+  obtain ⟨H₀, instH₀, hH₀inf, hH₀fp, hH₀tf, hH₀hyp, hH₀T⟩ :=
+    I.kotowskiOllivier
   obtain ⟨P, instP, hPfp, hPtf, ⟨quot, hquot⟩, ⟨emb, hemb⟩⟩ :=
-    I.smallCancellationQuotient H₀ U instH₀ instU hH₀fp hH₀tf hUfp hUtf
+    I.smallCancellationQuotient H₀ U instH₀ instU hH₀inf hH₀fp hH₀tf
+      hH₀hyp hH₀T hUfp hUtf
   letI := instU
   letI := instS
   letI := instH₀
