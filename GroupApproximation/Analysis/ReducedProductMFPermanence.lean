@@ -267,3 +267,6 @@ end
 
 end ReducedProductMFPermanence
 end GroupApproximation
+
+#print axioms GroupApproximation.ReducedProductMFPermanence.hasMFEmbedding_of_denseRange
+#print axioms GroupApproximation.ReducedProductMFPermanence.isMFAlgebra_of_injective_reducedProduct
