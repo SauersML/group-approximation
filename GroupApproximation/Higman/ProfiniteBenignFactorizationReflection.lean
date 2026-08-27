@@ -55,6 +55,21 @@ theorem of_retraction
   rw [← hrg]
   exact hleq
 
+/-- The tautological closed-FG witness manufactures reflection internally;
+no recursive compiler input is needed at this leaf. -/
+theorem ofClosedFG [Group.IsFinitelyPresented G] [Group.ResiduallyFinite G]
+    {H : Subgroup G} (hfg : H.FG)
+    (hclosed : profiniteClosure H = H) :
+    (ProfiniteBenignWitness.ofClosedFG hfg hclosed).FactorizationReflecting := by
+  apply of_retraction (ProfiniteBenignWitness.ofClosedFG hfg hclosed)
+    (MonoidHom.id G)
+  · rfl
+  · intro x hx
+    obtain ⟨y, hy, hxy⟩ := hx
+    change y = x at hxy
+    rw [← hxy]
+    exact hy
+
 /-- Coordinate form of reflection through the direct-product comap witness.
 It reflects a prescribed quotient of the target coordinate `N`; this is the
 exact form used by hprod, where `phi` is first projection. -/
