@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.BlackadarKirchbergFiniteDimensionalArvesonExtension
+import GroupApproximation.Analysis.BlackadarKirchbergFiniteCoordinateUCP
 import GroupApproximation.Analysis.NonUnitalMFSupportCornerEmbedding
 import GroupApproximation.Meta.AxiomGuard
 
@@ -96,6 +97,7 @@ theorem exists_numerator_ucp_inverse_of_isMFAlgebra
         Function.Injective embedding ∧
           IsCompletelyPositive inverse ∧
           inverse 1 = 1 ∧
+          (∀ x, ‖inverse x‖ ≤ ‖x‖) ∧
           (∀ x, IsNullMatrixSequence (fun n ↦ X n) Filter.cofinite x →
             inverse x = 0) ∧
           ∀ a : A,
@@ -125,11 +127,17 @@ theorem exists_numerator_ucp_inverse_of_isMFAlgebra
       quotientStar.toNonUnitalStarAlgHom) n M hM
   have hquotient_apply (x : BoundedMatrixSequence (fun n ↦ X n)) :
       quotient x = normMatrixCStarCoronaMk (fun n ↦ X n) x := rfl
-  refine ⟨X, hXne, embedding, inverse, lift, hembedding,
-    hextensionCP.comp hquotientCP, ?_, ?_, ?_⟩
-  · dsimp only [inverse, LinearMap.comp_apply]
+  have hinverseCP : IsCompletelyPositive inverse :=
+    hextensionCP.comp hquotientCP
+  have hinverseOne : inverse 1 = 1 := by
+    dsimp only [inverse, LinearMap.comp_apply]
     rw [hquotient_apply]
     rw [map_one, hextensionOne]
+  refine ⟨X, hXne, embedding, inverse, lift, hembedding,
+    hinverseCP, hinverseOne, ?_, ?_, ?_⟩
+  · intro x
+    exact norm_apply_le_of_ucp_finiteDimensionalTarget inverse hinverseCP
+      hinverseOne x
   · intro x hx
     dsimp only [inverse, LinearMap.comp_apply]
     have hzero : normMatrixCStarCoronaMk (fun n ↦ X n) x = 0 :=
