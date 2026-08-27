@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "manuscript": "paper1w.tex",
+  "manuscript": "non_mf_groups_exist.tex",
   "status_policy": "Every numbered theorem-like environment records its proof boundary explicitly: an exact Lean counterpart or a complete paper proof. Exact claims carry exact-role margin declarations; paper-proved claims carry none.",
   "claims": [
     {
@@ -79,7 +79,7 @@
       "dependencies": [
         "thm:compression-criterion",
         "lem:saturation",
-        "lem:simple-in-defect"
+        "lem:commutator-in-defect"
       ],
       "extra_assumptions": [],
       "external_inputs": [
@@ -357,17 +357,15 @@
       "lean": []
     },
     {
-      "id": "lem:simple-in-defect",
+      "id": "lem:commutator-in-defect",
       "environment": "lemma",
       "title": "",
-      "statement_sha256": "036c7227d38f8ca49c0de1e6d2a22a0b7785a5594e4fcde4a5ec65b137a60bf5",
+      "statement_sha256": "947abea9655365beef021b37dacbe40f1aed1be728fb143ae4b2888516a399c0",
       "status": "paper-proof",
-      "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
+      "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [],
       "extra_assumptions": [],
-      "external_inputs": [
-        "Fournier-Facio, Section 2"
-      ],
+      "external_inputs": [],
       "coverage_gap": "",
       "lean": []
     }

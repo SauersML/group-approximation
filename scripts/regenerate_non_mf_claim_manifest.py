@@ -85,8 +85,7 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
 # mathematical results used by that proof; an empty tuple means the argument
 # is entirely elementary and self-contained in the paper.
 PAPER_PROOFS: dict[str, tuple[str, ...]] = {
-    "lem:simple-in-defect": (
-        "Fournier-Facio, Section 2",),
+    "lem:commutator-in-defect": (),
     "thm:hull": (
         "Hull, Theorem 7.1",),
     "lem:saturation": (
@@ -124,10 +123,10 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:defect": ["prop:leavitt-compression"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
-    "lem:simple-in-defect": [],
+    "lem:commutator-in-defect": [],
     "thm:torsion-free": [
         "thm:compression-criterion", "lem:saturation",
-        "lem:simple-in-defect"],
+        "lem:commutator-in-defect"],
 }
 
 
