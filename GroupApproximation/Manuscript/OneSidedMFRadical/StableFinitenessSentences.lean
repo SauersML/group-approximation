@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.FiniteCStarMurrayVonNeumann
 import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
+import GroupApproximation.Analysis.MatrixCoronaAmplificationEquiv
 import GroupApproximation.Manuscript.OneSidedMFRadical.StableFinitenessSentencesCore
 import Mathlib.Analysis.CStarAlgebra.CStarMatrix
 
@@ -162,46 +163,36 @@ theorem sentence_993df6a79c44 (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
     (k : ℕ) [Nonempty (Fin k)] :
     ∀ v : NormMatrixCStarCorona (fun n ↦ (Fin k × X n : Type)),
       star v * v = 1 → v * star v = 1 :=
-  fun v hv ↦ StableFinitenessSentencesCore.isometry_eq_unitary hv
+  fun _v hv ↦ StableFinitenessSentencesCore.isometry_eq_unitary hv
 
-/-- **Proof sentence `36cd63cf2803`, first clause (assumed).**  "This corona
+/-- **Proof sentence `36cd63cf2803`, first clause.**  "This corona
 is canonically isomorphic to `M_k(A)`."
 
-This exact isomorphism -- `CStarMatrix I I (NormMatrixCStarCorona X) ≃⋆
-NormMatrixCStarCorona (I × X)` -- is independently documented as a genuine,
-unbuilt analytic gap in two places already on `origin/main`:
-`Analysis/MFStablyFinite.lean` ("`M_I(Q_X)` is again a norm-matrix corona ...
-That is not a formality in Lean ... Neither is in Mathlib and neither is in
-this repository") and `Analysis/MatrixCoronaDedekindFinite.lean` ("this file
-does not construct `M_I(ℓ∞)/M_I(c₀) ≃ ℓ∞/c₀` at all ... building it is not
-the cheapest route").  This declaration states the isomorphism the printed
-sentence asserts, literally, rather than avoid it; see
-`sentence_36cd63cf2803_stablyFinite` immediately below for the sentence's
-actual consequence, which does not need it. -/
--- TODO(open): construct the canonical star-algebra isomorphism between
--- `CStarMatrix (Fin k) (Fin k) A` and the norm-matrix corona of amplified
--- matrix sizes `km_n`.  Needs (i) the `CStarMatrix` norm over an `ℓ∞`
--- product identified with the supremum of the coordinate matrix norms, and
--- (ii) `M_{Fin k}` of the `c₀` ideal identified with the `c₀` ideal of the
--- amplified sequence; neither is in the pinned Mathlib or this repository
--- (see the module docstrings cited above).
+The map chooses bounded representatives entrywise and assembles their
+coordinate blocks.  A null amplified sequence has null blocks, which gives
+injectivity; taking all blocks of an amplified representative gives
+surjectivity. -/
 def MatrixAmplificationCoronaIsomorphism : Prop :=
   ∀ (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] (k : ℕ) [Nonempty (Fin k)],
     Nonempty (CStarMatrix (Fin k) (Fin k) (stableFiniteCorona X) ≃⋆ₐ[ℂ]
       NormMatrixCStarCorona (fun n ↦ (Fin k × X n : Type)))
+
+theorem sentence_36cd63cf2803_isomorphism :
+    MatrixAmplificationCoronaIsomorphism := by
+  intro X _ k _
+  exact ⟨MatrixCoronaAmplificationEmbedding.matrixCoronaAmplificationEquiv X⟩
 
 /-- **Proof sentence `36cd63cf2803`, second clause.**  "so `A` is stably
 finite."  Proved directly, by the abstract Neumann-series route of
 `Analysis/MatrixCoronaDedekindFinite.lean`
 (`MatrixCoronaFinite.mul_eq_one_symm_matrixCorona`) -- the same route
 `Manuscript/OneSidedMFRadical/StableFiniteness.lean` itself uses for this
-conjunct -- so that this printed consequence is established unconditionally,
-independently of the assumed `MatrixAmplificationCoronaIsomorphism`. -/
+conjunct. -/
 theorem sentence_36cd63cf2803_stablyFinite (X : ℕ → FiniteModel)
     [∀ n, Nonempty (X n)] (k : ℕ) (hk : 0 < k) :
     ∀ v : Matrix (Fin k) (Fin k) (stableFiniteCorona X),
       star v * v = 1 → v * star v = 1 :=
-  fun v hv ↦ MatrixCoronaFinite.mul_eq_one_symm_matrixCorona ⟨⟨0, hk⟩⟩ X hv
+  fun _v hv ↦ MatrixCoronaFinite.mul_eq_one_symm_matrixCorona ⟨⟨0, hk⟩⟩ X hv
 
 /-- **Proof sentence `9b9e5b396d6f`.**  "Finally, let `p≤q` be equivalent
 projections in a stably finite algebra `B`, and choose a partial isometry
