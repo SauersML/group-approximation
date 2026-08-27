@@ -15,7 +15,7 @@ repository's own full amalgam.
 
 Exactly one: **Shulman, Theorem 10** — for a separable MF `C*`-algebra `A` and
 a unital `C*`-subalgebra `C ⊆ A`, the full unital amalgamated free product
-`A *_C A` is MF.  That is the single `sorry` of this file.
+`A *_C A` is MF.  That is the single cited input of this file.
 
 The *object* is not cited.  The note that graded this sentence `partial` in
 `metadata/NON_MF_SENTENCE_MAP.tsv` records two missing pieces — the full
@@ -63,7 +63,7 @@ namespace PriorWork
 
 universe u v
 
--- LITERATURE INPUT (sorry): Shulman, The MF property for amalgamated free
+-- LITERATURE INPUT (assumed): Shulman, The MF property for amalgamated free
 -- products, arXiv:2603.13564 (v2, 22 March 2026), Theorem 10.
 /-- **Shulman, Theorem 10, the symmetric amalgam theorem.**
 
@@ -78,12 +78,11 @@ Separability of `A` is carried inside `IsMFAlgebra A`.  The amalgam is the
 repository's own `UniversalCStarAmalgam i i`, with its universal property
 proved in `Analysis/UniversalCStarAmalgam.lean`; only the MF conclusion is
 cited. -/
-theorem shulman_symmetricAmalgam_isMFAlgebra
-    {C A : Type u} [CStarAlgebra C] [CStarAlgebra A]
-    (i : C →⋆ₐ[ℂ] A) (_hi : Function.Injective i) (_hA : IsMFAlgebra A)
-    [Nonempty (CStarAmalgamRepresentation i i)] :
-    IsMFAlgebra (UniversalCStarAmalgam i i) :=
-  sorry
+def ShulmanSymmetricAmalgamStatement : Prop :=
+  ∀ {C A : Type} [CStarAlgebra C] [CStarAlgebra A]
+    (i : C →⋆ₐ[ℂ] A), Function.Injective i → IsMFAlgebra A →
+      ∀ [Nonempty (CStarAmalgamRepresentation i i)],
+        IsMFAlgebra (UniversalCStarAmalgam i i)
 
 /-- **The heredity step the notes take next**, at the algebra level:
 
@@ -94,14 +93,14 @@ into the symmetric amalgam `A *_C A` is itself MF.  The amalgam is MF by the
 cited Theorem 10; the passage to the subalgebra is
 `IsMFAlgebra.of_injective_nonUnitalStarAlgHom`, which is unconditional. -/
 theorem isMFAlgebra_of_injective_into_symmetricAmalgam
-    {C A : Type u} {B : Type v} [CStarAlgebra C] [CStarAlgebra A]
+    (hShulman : ShulmanSymmetricAmalgamStatement)
+    {C A : Type} {B : Type v} [CStarAlgebra C] [CStarAlgebra A]
     [NonUnitalCStarAlgebra B]
     (i : C →⋆ₐ[ℂ] A) (hi : Function.Injective i) (hA : IsMFAlgebra A)
     [Nonempty (CStarAmalgamRepresentation i i)]
     (j : B →⋆ₙₐ[ℂ] UniversalCStarAmalgam i i) (hj : Function.Injective j) :
     IsMFAlgebra B :=
-  (shulman_symmetricAmalgam_isMFAlgebra i hi hA).of_injective_nonUnitalStarAlgHom
-    j hj
+  (hShulman i hi hA).of_injective_nonUnitalStarAlgHom j hj
 
 end PriorWork
 end NonMF

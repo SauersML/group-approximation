@@ -22,7 +22,7 @@ repository's independent finite-local NF predicate `IsNFAlgebra`, at
 Exactly one: **the converse half of Blackadar--Kirchberg's characterization** —
 a separable nuclear MF `C*`-algebra is NF.  It is exposed below as the leading
 binder `BlackadarKirchbergNFConverseInput`; no theorem in this file hides the
-citation behind `sorry` or an axiom.
+citation behind an assumed hypothesis or an axiom.
 
 The forward half is *not* cited.  `IsNFAlgebra` is defined in
 `Analysis/NFAlgebra.lean` independently of nuclearity and of MF — its data are

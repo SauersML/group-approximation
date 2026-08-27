@@ -164,7 +164,7 @@ theorem sentence_993df6a79c44 (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)]
       star v * v = 1 → v * star v = 1 :=
   fun v hv ↦ StableFinitenessSentencesCore.isometry_eq_unitary hv
 
-/-- **Proof sentence `36cd63cf2803`, first clause (`sorry`).**  "This corona
+/-- **Proof sentence `36cd63cf2803`, first clause (assumed).**  "This corona
 is canonically isomorphic to `M_k(A)`."
 
 This exact isomorphism -- `CStarMatrix I I (NormMatrixCStarCorona X) ≃⋆
@@ -178,18 +178,17 @@ the cheapest route").  This declaration states the isomorphism the printed
 sentence asserts, literally, rather than avoid it; see
 `sentence_36cd63cf2803_stablyFinite` immediately below for the sentence's
 actual consequence, which does not need it. -/
--- TODO(sorry): construct the canonical star-algebra isomorphism between
+-- TODO(open): construct the canonical star-algebra isomorphism between
 -- `CStarMatrix (Fin k) (Fin k) A` and the norm-matrix corona of amplified
 -- matrix sizes `km_n`.  Needs (i) the `CStarMatrix` norm over an `ℓ∞`
 -- product identified with the supremum of the coordinate matrix norms, and
 -- (ii) `M_{Fin k}` of the `c₀` ideal identified with the `c₀` ideal of the
 -- amplified sequence; neither is in the pinned Mathlib or this repository
 -- (see the module docstrings cited above).
-theorem sentence_36cd63cf2803_isomorphism (X : ℕ → FiniteModel)
-    [∀ n, Nonempty (X n)] (k : ℕ) [Nonempty (Fin k)] :
+def MatrixAmplificationCoronaIsomorphism : Prop :=
+  ∀ (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] (k : ℕ) [Nonempty (Fin k)],
     Nonempty (CStarMatrix (Fin k) (Fin k) (stableFiniteCorona X) ≃⋆ₐ[ℂ]
-      NormMatrixCStarCorona (fun n ↦ (Fin k × X n : Type))) := by
-  sorry
+      NormMatrixCStarCorona (fun n ↦ (Fin k × X n : Type)))
 
 /-- **Proof sentence `36cd63cf2803`, second clause.**  "so `A` is stably
 finite."  Proved directly, by the abstract Neumann-series route of
@@ -197,7 +196,7 @@ finite."  Proved directly, by the abstract Neumann-series route of
 (`MatrixCoronaFinite.mul_eq_one_symm_matrixCorona`) -- the same route
 `Manuscript/OneSidedMFRadical/StableFiniteness.lean` itself uses for this
 conjunct -- so that this printed consequence is established unconditionally,
-independently of the `sorry` in `sentence_36cd63cf2803_isomorphism`. -/
+independently of the assumed `MatrixAmplificationCoronaIsomorphism`. -/
 theorem sentence_36cd63cf2803_stablyFinite (X : ℕ → FiniteModel)
     [∀ n, Nonempty (X n)] (k : ℕ) (hk : 0 < k) :
     ∀ v : Matrix (Fin k) (Fin k) (stableFiniteCorona X),

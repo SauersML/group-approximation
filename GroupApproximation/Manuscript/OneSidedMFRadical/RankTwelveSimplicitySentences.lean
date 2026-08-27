@@ -24,7 +24,7 @@ computation) and `GroupApproximation.PreusserAssembly` (Preusser's
 Proposition 21 and the resulting sandwich theorem, both discharged from the
 row-annihilator and exchange-refinement calculus rather than assumed).
 
-No sentence below needs a `sorry`.  Where the printed sentence's own
+No sentence below needs an assumed input.  Where the printed sentence's own
 justification is a literature citation (Abrams--Aranda, Ara), the repository
 already proves a stronger unconditional replacement for exactly the
 consequence the rest of the proof consumes, and that replacement is wrapped

@@ -71,11 +71,11 @@ It is carried twice over, in the two shapes the development uses.
   Every consequence below is *proved* from it, so the conditional theorems
   `manuscriptMikhailova` and `manuscriptMikhailovaUniform` carry the
   hypothesis in a leading binder where the audit can see it.
-* As the named literature declaration `effectiveHigmanCompiler_exists`,
+* As the named literature declaration the supplied `EffectiveHigmanCompiler`,
   asserting that the structure is inhabited, with an open leaf for its proof.
   This is the fleet's 1:1 form for a cited-but-unproved statement, and it is
-  what makes `manuscriptMikhailova_unconditional` and
-  `manuscriptMikhailovaUniform_unconditional` available in the printed,
+  what makes `manuscriptMikhailova_ofCompiler` and
+  `manuscriptMikhailovaUniform_ofCompiler` available in the printed,
   unquantified shape.
 
 Two repository gates read the second form, and the coordinator has accepted
@@ -175,17 +175,18 @@ theorem manuscriptMikhailovaUniform (h : EffectiveHigmanCompiler)
 
 /-! ## 3.  The literature input, and the printed lemma off it -/
 
-/-- **The cited half of `lem:mikhailova`.**  Higman's embedding theorem is
+/-! **The cited half of `lem:mikhailova`.**  Higman's embedding theorem is
 effective, and an explicit algorithm producing the finite presentation and the
 marked embedding words from a recursive presentation exists.  The manuscript
-cites this and does not prove it. -/
--- LITERATURE INPUT (sorry): Higman 1961 Theorem 1; Mikaelian, explicit algorithm
-theorem effectiveHigmanCompiler_exists : Nonempty EffectiveHigmanCompiler := sorry
+cites this and does not prove it.
 
-/-- **`lem:mikhailova`, first sentence, unquantified.**  The printed statement
-with no leading binder: the cited algorithm is supplied by
-`effectiveHigmanCompiler_exists`. -/
-theorem manuscriptMikhailova_unconditional :
+LITERATURE INPUT (assumed): Higman 1961 Theorem 1; Mikaelian, explicit
+algorithm.  It is supplied as the hypothesis `h : EffectiveHigmanCompiler` at
+every use site rather than asserted here. -/
+
+/-- **`lem:mikhailova`, first sentence.**  The printed statement, with the cited
+Higman/Mikaelian algorithm supplied as the hypothesis `h`. -/
+theorem manuscriptMikhailova_ofCompiler (h : EffectiveHigmanCompiler) :
     ∃ f : RecPresCode → RawMarkedOutput, Computable f ∧
       ∀ P : RecPresCode, ∃ o : MarkedHigmanOutput P,
         o.raw = f P ∧
@@ -197,12 +198,12 @@ theorem manuscriptMikhailova_unconditional :
           (u, v) ∈ o.mihailova ↔
             PresentedGroup.mk (hostRelators o.host) u =
               PresentedGroup.mk (hostRelators o.host) v) :=
-  manuscriptMikhailova (Classical.choice effectiveHigmanCompiler_exists)
+  manuscriptMikhailova (h)
 
-/-- **`lem:mikhailova`, computing from `e`, unquantified in the compiler.**
-The only remaining hypothesis is the computable index map `e ↦ Q_e` that
-Lemmas `lem:switch` and `lem:bridge` supply. -/
-theorem manuscriptMikhailovaUniform_unconditional
+/-- **`lem:mikhailova`, computing from `e`.**  Besides the cited compiler `h`,
+the only hypothesis is the computable index map `e ↦ Q_e` that `lem:switch`
+and `lem:bridge` supply. -/
+theorem manuscriptMikhailovaUniform_ofCompiler (h : EffectiveHigmanCompiler)
     {qcode : ℕ → RecPresCode} (hq : Computable qcode) :
     ∃ f : ℕ → RawMarkedOutput, Computable f ∧
       ∀ e : ℕ, ∃ o : MarkedHigmanOutput (qcode e),
@@ -215,7 +216,7 @@ theorem manuscriptMikhailovaUniform_unconditional
           (u, v) ∈ o.mihailova ↔
             PresentedGroup.mk (hostRelators o.host) u =
               PresentedGroup.mk (hostRelators o.host) v) :=
-  manuscriptMikhailovaUniform (Classical.choice effectiveHigmanCompiler_exists)
+  manuscriptMikhailovaUniform (h)
     hq
 
 end

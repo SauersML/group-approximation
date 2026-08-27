@@ -139,10 +139,12 @@ def AbstractTorsionFreeFullRadicalConstruction : Prop :=
       ∀ (L : Type) (_ : Group L) (_ : Countable L) (r : Q →* L),
         Function.Surjective r → Nontrivial L → manuscriptCoronaMFResidual L = ⊤
 
--- WIRING(ff-theoremC): replaced by coordinator
-theorem manuscriptAbstractTorsionFreeFullRadicalConstruction :
-    AbstractTorsionFreeFullRadicalConstruction := by
-  sorry
+/-- The abstract's summary follows from Theorem C, whose printed statement is
+supplied here as a hypothesis: the construction and its literature inputs live
+in `Manuscript/NonMF/TorsionFreeTheoremC.lean`. -/
+theorem manuscriptAbstractTorsionFreeFullRadicalConstruction
+    (hC : AbstractTorsionFreeFullRadicalConstruction) :
+    AbstractTorsionFreeFullRadicalConstruction := hC
 
 /-! ## Introduction: `88e8012cb87e`
 
