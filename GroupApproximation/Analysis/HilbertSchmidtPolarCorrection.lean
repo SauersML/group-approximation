@@ -295,12 +295,20 @@ theorem euclideanNormAgrees_of_sum_normSq
   have hcong := congrArg Real.sqrt hsq
   rwa [Real.sqrt_sq (norm_nonneg _), Real.sqrt_sq (norm_nonneg _)] at hcong
 
+end
+
+/-! ## The exported statement
+
+The section above is closed here so that the two theorems below carry their own
+explicit `Y` and `x`, in the binder names the consumers code against, rather
+than the implicit section variables. -/
+
 /-- `|x|` moves every vector exactly as far as `x` does, in the Euclidean form
-the polar construction consumes.  This is
-`MatrixAbs.norm_abs_mulVec` read through the conversion above. -/
-theorem euclideanNormAgrees_abs (Z : FiniteModel) (a : Matrix Z Z ℂ) :
-    EuclideanNormAgrees Z a (MatrixAbs.abs Z a) :=
-  euclideanNormAgrees_of_sum_normSq (MatrixAbs.norm_abs_mulVec Z a)
+the polar construction consumes.  This is `MatrixAbs.norm_abs_mulVec` read
+through the conversion above. -/
+theorem euclideanNormAgrees_abs (Y : FiniteModel) (x : Matrix Y Y ℂ) :
+    EuclideanNormAgrees Y x (MatrixAbs.abs Y x) :=
+  euclideanNormAgrees_of_sum_normSq (MatrixAbs.norm_abs_mulVec Y x)
 
 /-- **The Hilbert--Schmidt polar correction.**  Every square matrix is, in the
 normalized Hilbert--Schmidt norm, at least as close to some unitary as its Gram
@@ -322,12 +330,10 @@ without it.
 
 This is the lemma the passage from an amenable trace to a hyperlinear group
 was missing. -/
-theorem exists_unitary_hsNorm_sub_le (Z : FiniteModel) (a : Matrix Z Z ℂ) :
-    ∃ u ∈ Matrix.unitaryGroup Z ℂ, hsNorm Z (u - a) ≤ hsNorm Z (aᴴ * a - 1) :=
-  exists_unitary_hsNorm_sub_le_of_le (euclideanNormAgrees_abs Z a)
-    (MatrixAbs.hsNorm_one_sub_abs_le Z a)
-
-end
+theorem exists_unitary_hsNorm_sub_le (Y : FiniteModel) (x : Matrix Y Y ℂ) :
+    ∃ u ∈ Matrix.unitaryGroup Y ℂ, hsNorm Y (u - x) ≤ hsNorm Y (xᴴ * x - 1) :=
+  exists_unitary_hsNorm_sub_le_of_le (euclideanNormAgrees_abs Y x)
+    (MatrixAbs.hsNorm_one_sub_abs_le Y x)
 
 end HilbertSchmidtPolar
 end GroupApproximation
