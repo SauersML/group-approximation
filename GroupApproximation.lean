@@ -2227,6 +2227,8 @@ import GroupApproximation.Manuscript.MFRecognition.FixedUniversalHostOfOmega
 import GroupApproximation.Manuscript.MFRecognition.TwoSidedBridgeRelatorCode
 import GroupApproximation.Manuscript.MFRecognition.TwoSidedConcreteQCodeFamily
 import GroupApproximation.Sofic.ProfiniteFiniteExtensionLERF
+import GroupApproximation.Computability.BenignSupCodeSemantics
+import GroupApproximation.Analysis.CStarMatrixTwoByTwo
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

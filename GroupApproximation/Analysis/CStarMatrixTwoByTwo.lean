@@ -96,7 +96,7 @@ def cStarMatrixUnit2 {A : Type u} [CStarAlgebra A] (i j : Fin 2) :
     star (cStarMatrixUnit2 (A := A) i j) = cStarMatrixUnit2 j i := by
   ext p q
   fin_cases i <;> fin_cases j <;> fin_cases p <;> fin_cases q <;>
-    simp [cStarMatrixUnit2, CStarMatrix.star_apply, Matrix.single_apply]
+    simp [cStarMatrixUnit2, CStarMatrix.star_apply]
 
 @[simp] theorem cStarMatrixUnit2_mul
     {A : Type u} [CStarAlgebra A] (i j k l : Fin 2) :
@@ -121,7 +121,7 @@ def cStarMatrixUnit2 {A : Type u} [CStarAlgebra A] (i j : Fin 2) :
     cStarMatrixMap f (cStarMatrixUnit2 i j) = cStarMatrixUnit2 i j := by
   ext p q
   fin_cases i <;> fin_cases j <;> fin_cases p <;> fin_cases q <;>
-    simp [cStarMatrixUnit2, Matrix.single_apply]
+    simp [cStarMatrixUnit2]
 
 end
 
