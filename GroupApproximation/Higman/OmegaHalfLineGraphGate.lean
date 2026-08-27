@@ -2,6 +2,7 @@ import GroupApproximation.Higman.OmegaHalfLineRightInsertion
 import GroupApproximation.Higman.TransportStar
 import GroupApproximation.Higman.CentralHNNFreeLabelKernel
 import GroupApproximation.Higman.ExplicitFreeEdge
+import GroupApproximation.Higman.OmegaHalfLineAscendingCriterion
 
 /-!
 # The paired graph gate for one-sided Omega insertion
@@ -195,6 +196,165 @@ theorem rightInsertionEdge_stable_conj
   simpa only [rightInsertionEdge, rightGraphSource_of, rightGraphTarget_of]
     using ExplicitFreeEdge.stable_conj_source
       (rightInsertionEdge m beta) (FreeGroup.of l)
+
+/-! ## The two edge images as literal restricted graphs -/
+
+/-- The source range of the explicit edge is exactly the graph restricted to
+right-tail sequence labels.  This is the bridge from the infinite free-basis
+description to a finite cutter: a benign witness only has to cut out
+`slimRightGraph`. -/
+theorem rightInsertion_sourceSubgroup_eq_slimRightGraph
+    (m : ℕ) (beta : E) :
+    ExplicitFreeEdge.sourceSubgroup (rightInsertionEdge m beta) =
+      slimRightGraph m := by
+  apply le_antisymm
+  · rintro x ⟨w, -, rfl⟩
+    refine ⟨FreeGroup.map (rightTailIndexToK m) w, ?_, rfl⟩
+    induction w using FreeGroup.induction_on with
+    | C1 => exact Subgroup.one_mem _
+    | of l =>
+        exact Subgroup.subset_closure
+          ⟨bK (l : E), ⟨(l : E), l.property, rfl⟩, rfl⟩
+    | inv_of l hl =>
+        rw [map_inv, FreeGroup.map.of]
+        exact Subgroup.inv_mem _
+          (Subgroup.subset_closure
+            ⟨bK (l : E), ⟨(l : E), l.property, rfl⟩, rfl⟩)
+    | mul u v hu hv =>
+        rw [map_mul]
+        exact Subgroup.mul_mem _ hu hv
+  · rintro x ⟨w, hw, rfl⟩
+    have hrange : w ∈ (FreeGroup.map (rightTailIndexToK m)).range := by
+      refine Subgroup.closure_induction (p := fun z _ =>
+        z ∈ (FreeGroup.map (rightTailIndexToK m)).range) ?_ ?_ ?_ ?_ hw
+      · rintro _ ⟨q, ⟨l, hl, rfl⟩, rfl⟩
+        exact ⟨FreeGroup.of ⟨l, hl⟩, by simp [rightTailIndexToK]⟩
+      · exact Subgroup.one_mem _
+      · intro u v _ _ hu hv
+        exact Subgroup.mul_mem _ hu hv
+      · intro u _ hu
+        exact Subgroup.inv_mem _ hu
+    obtain ⟨v, hv⟩ := hrange
+    refine ⟨v, Subgroup.mem_top v, ?_⟩
+    change slimGraphHom m (FreeGroup.map (rightTailIndexToK m) v) =
+      slimGraphHom m w
+    rw [hv]
+
+/-- The inserted target graph, still indexed by the same right-tail free
+basis. -/
+noncomputable def slimInsertedRightGraph (m : ℕ) (beta : E) :
+    Subgroup (SlimPi m × F₃) :=
+  (Star.coordSub (bK '' ((fun l : E => beta + l) '' rightTailSeq m))).map
+    (slimGraphHom m)
+
+/-- The target range of the explicit edge is the inserted restricted graph.
+This gives the second exact comap/range equation required by a finite-rank
+compression. -/
+theorem rightInsertion_targetSubgroup_eq_slimInsertedRightGraph
+    (m : ℕ) (beta : E) :
+    ExplicitFreeEdge.targetSubgroup (rightInsertionEdge m beta) =
+      slimInsertedRightGraph m beta := by
+  apply le_antisymm
+  · rintro x ⟨w, -, rfl⟩
+    refine ⟨FreeGroup.map (insertedRightTailIndexToK m beta) w, ?_, rfl⟩
+    induction w using FreeGroup.induction_on with
+    | C1 => exact Subgroup.one_mem _
+    | of l =>
+        exact Subgroup.subset_closure
+          ⟨bK (beta + (l : E)),
+            ⟨beta + (l : E), ⟨(l : E), l.property, rfl⟩, rfl⟩, rfl⟩
+    | inv_of l hl =>
+        rw [map_inv, FreeGroup.map.of]
+        exact Subgroup.inv_mem _
+          (Subgroup.subset_closure
+            ⟨bK (beta + (l : E)),
+              ⟨beta + (l : E), ⟨(l : E), l.property, rfl⟩, rfl⟩, rfl⟩)
+    | mul u v hu hv =>
+        rw [map_mul]
+        exact Subgroup.mul_mem _ hu hv
+  · rintro x ⟨w, hw, rfl⟩
+    have hrange : w ∈ (FreeGroup.map
+        (insertedRightTailIndexToK m beta)).range := by
+      refine Subgroup.closure_induction (p := fun z _ =>
+        z ∈ (FreeGroup.map (insertedRightTailIndexToK m beta)).range)
+        ?_ ?_ ?_ ?_ hw
+      · rintro _ ⟨q, ⟨l, ⟨r, hr, rfl⟩, rfl⟩, rfl⟩
+        exact ⟨FreeGroup.of ⟨r, hr⟩,
+          by simp [insertedRightTailIndexToK]⟩
+      · exact Subgroup.one_mem _
+      · intro u v _ _ hu hv
+        exact Subgroup.mul_mem _ hu hv
+      · intro u _ hu
+        exact Subgroup.inv_mem _ hu
+    obtain ⟨v, hv⟩ := hrange
+    refine ⟨v, Subgroup.mem_top v, ?_⟩
+    change slimGraphHom m
+        (FreeGroup.map (insertedRightTailIndexToK m beta) v) =
+      slimGraphHom m w
+    rw [hv]
+
+/-! ## Exact base return for the literal edge -/
+
+/-- The two edge images are the complete base answer after adjoining the
+stable letter to the source image. -/
+noncomputable def rightInsertionHull (m : ℕ) (beta : E) :
+    Subgroup (SlimPi m × F₃) :=
+  ExplicitFreeEdge.sourceSubgroup (rightInsertionEdge m beta) ⊔
+    ExplicitFreeEdge.targetSubgroup (rightInsertionEdge m beta)
+
+/-- The literal right-insertion edge satisfies both asymmetric gate clauses.
+The reverse clause is available only on the target image; this is the proper
+edge restriction absent from the refuted automorphic tower. -/
+theorem rightInsertion_oneSidedGate (m : ℕ) (beta : E) :
+    OneSidedGate
+      (ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta))
+      (ExplicitFreeEdge.sourceSubgroup (rightInsertionEdge m beta))
+      (rightInsertionHull m beta) := by
+  refine ⟨le_sup_left, ?_, ?_⟩
+  · intro a _
+    exact Subgroup.mem_sup_right
+      (ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta) a).property
+  · intro b _
+    exact Subgroup.mem_sup_left
+      ((ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta)).symm b).property
+
+/-- The target image is already forced into the stable hull of the source:
+apply the forward edge map to the corresponding source element. -/
+theorem target_le_rightInsertion_stableHull (m : ℕ) (beta : E) :
+    ExplicitFreeEdge.targetSubgroup (rightInsertionEdge m beta) ≤
+      HNNDescent.stableHull
+        (ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta))
+        (ExplicitFreeEdge.sourceSubgroup (rightInsertionEdge m beta)) := by
+  intro y hy
+  let b : ExplicitFreeEdge.targetSubgroup (rightInsertionEdge m beta) := ⟨y, hy⟩
+  let a := (ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta)).symm b
+  have ha : (a : SlimPi m × F₃) ∈
+      HNNDescent.stableHull
+        (ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta))
+        (ExplicitFreeEdge.sourceSubgroup (rightInsertionEdge m beta)) :=
+    HNNDescent.le_stableHull
+      (ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta))
+      (ExplicitFreeEdge.sourceSubgroup (rightInsertionEdge m beta)) a.property
+  have hb := (HNNDescent.stable_stableHull
+      (ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta))
+      (ExplicitFreeEdge.sourceSubgroup (rightInsertionEdge m beta))).fwd a ha
+  simpa [a, b] using hb
+
+/-- **Full one-sided base cutter equality for one selected block.**  The
+subgroup generated by the source graph and the HNN stable letter meets the
+base in exactly the join of the source and inserted target graphs. -/
+theorem rightInsertion_generatedBase_eq (m : ℕ) (beta : E) :
+    HNNDescent.generatedBase
+        (ExplicitFreeEdge.edgeEquiv (rightInsertionEdge m beta))
+        (ExplicitFreeEdge.sourceSubgroup (rightInsertionEdge m beta)) =
+      rightInsertionHull m beta := by
+  rw [← HNNDescent.stableHull_eq_generatedBase]
+  apply le_antisymm
+  · exact HNNDescent.stableHull_le _ le_sup_left
+      (rightInsertion_oneSidedGate m beta).stable
+  · exact sup_le
+      (HNNDescent.le_stableHull _ _)
+      (target_le_rightInsertion_stableHull m beta)
 
 end Omega
 end Higman
