@@ -1726,6 +1726,7 @@ import GroupApproximation.Higman.TauRouteC
 import GroupApproximation.Higman.SsetBaseCase
 import GroupApproximation.Higman.CurrentOperationClosures
 import GroupApproximation.Higman.CurrentREBenign
+import GroupApproximation.Higman.OmegaFillLeadLinkBenign
 import GroupApproximation.Higman.OmegaDebt
 import GroupApproximation.Higman.OperationClosureTheta
 import GroupApproximation.Higman.OperationClosureTau
