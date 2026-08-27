@@ -100,6 +100,61 @@ theorem covariance_wordMover
     (chosenWord_letters S hgen g) x
   simpa only [chosenWord_prod, wordMover] using h
 
+variable {X : ℕ → FiniteModel}
+
+/-- The coordinate word mover formed stagewise from a family of generator
+movers. -/
+def wordMoverFamily (S : Finset Γ)
+    (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
+    (U : Γ → ∀ n, Matrix.unitaryGroup (X n) ℂ) (g : Γ) :
+    ∀ n, Matrix.unitaryGroup (X n) ℂ :=
+  fun n ↦ wordMover S hgen (fun a ↦ U a n) g
+
+/-- Products of coordinate mover lifts represent the corresponding product
+in the norm-matrix corona. -/
+theorem wordMoverList_lifts
+    (rho : Γ →* NormMatrixCoronaUnitary X)
+    (U : Γ → ∀ n, Matrix.unitaryGroup (X n) ℂ)
+    (S : Finset Γ)
+    (hU : ∀ a ∈ S,
+      (QuotientGroup.mk (U a) : NormMatrixCoronaUnitary X) = rho a)
+    (l : List Γ) (hl : ∀ a ∈ l, a ∈ S) :
+    (QuotientGroup.mk
+        (fun n ↦ wordMoverList (fun a ↦ U a n) l) :
+      NormMatrixCoronaUnitary X) = rho l.prod := by
+  induction l with
+  | nil =>
+      change QuotientGroup.mk
+          (1 : ∀ n, Matrix.unitaryGroup (X n) ℂ) = rho 1
+      rw [map_one]
+      exact map_one (QuotientGroup.mk' (nullCofiniteOpSubgroup X))
+  | cons a l ih =>
+      have ha : a ∈ S := hl a List.mem_cons_self
+      have htail : ∀ b ∈ l, b ∈ S :=
+        fun b hb ↦ hl b (List.mem_cons_of_mem a hb)
+      change QuotientGroup.mk
+          (U a * fun n ↦ wordMoverList (fun b ↦ U b n) l) =
+        rho (a * l.prod)
+      rw [QuotientGroup.mk_mul, hU a ha, ih htail, map_mul]
+
+/-- The chosen-word coordinate mover is a lift of the original corona
+homomorphism at every group element. -/
+theorem wordMoverFamily_lifts
+    (rho : Γ →* NormMatrixCoronaUnitary X)
+    (U : Γ → ∀ n, Matrix.unitaryGroup (X n) ℂ)
+    (S : Finset Γ)
+    (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
+    (hU : ∀ a ∈ S,
+      (QuotientGroup.mk (U a) : NormMatrixCoronaUnitary X) = rho a)
+    (g : Γ) :
+    (QuotientGroup.mk (wordMoverFamily S hgen U g) :
+      NormMatrixCoronaUnitary X) = rho g := by
+  have h := wordMoverList_lifts rho U S hU (chosenWord S hgen g)
+    (chosenWord_letters S hgen g)
+  change QuotientGroup.mk
+      (fun n ↦ wordMoverList (fun a ↦ U a n) (chosenWord S hgen g)) = rho g
+  simpa only [chosenWord_prod] using h
+
 end
 
 end FinitePacketWordCovariance
