@@ -65,7 +65,7 @@ variable [CompleteSpace H]
 adjoint. -/
 theorem norm_star_le {A : H →L[ℂ] H} {C : ℝ} (h : ‖A‖ ≤ C) : ‖star A‖ ≤ C := by
   rw [ContinuousLinearMap.star_eq_adjoint]
-  exact le_of_eq (ContinuousLinearMap.adjoint.norm_map A) |>.trans h
+  exact (le_of_eq (ContinuousLinearMap.adjoint.norm_map A)).trans h
 
 /-- `T` is the `*`-strong limit of the sequence `S`: the sequence and its
 adjoint sequence converge pointwise, to `T` and to `T*`. -/
