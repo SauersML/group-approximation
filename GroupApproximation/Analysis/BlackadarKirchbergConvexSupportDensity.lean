@@ -41,10 +41,36 @@ theorem mem_closedConvexHull_of_complex_support
     RCLike.geometric_hahn_banach_closed_point (𝕜 := ℂ)
       (convex_closedConvexHull (𝕜 := ℝ) (s := s))
       (isClosed_closedConvexHull (𝕜 := ℝ) (s := s)) hx
+  change ∀ a ∈ closedConvexHull ℝ s, (f a).re < u at hset
+  change u < (f x).re at hpoint
   obtain ⟨y, hy, hxy⟩ := hsupport f
   have hyHull : y ∈ closedConvexHull ℝ s := subset_closedConvexHull hy
   have hyu : (f y).re < u := hset y hyHull
   exact lt_asymm (hxy.trans_lt hyu) hpoint
+
+/-- Approximate support inequalities suffice: the arbitrarily small loss is
+absorbed by the strict gap supplied by Hahn--Banach separation. -/
+theorem mem_closedConvexHull_of_approximate_complex_support
+    (s : Set E) (x : E)
+    (hsupport : ∀ (f : E →L[ℂ] ℂ) (delta : ℝ), 0 < delta →
+      ∃ y ∈ s, (f x).re < (f y).re + delta) :
+    x ∈ closedConvexHull ℝ s := by
+  by_contra hx
+  obtain ⟨f, u, hset, hpoint⟩ :=
+    RCLike.geometric_hahn_banach_closed_point (𝕜 := ℂ)
+      (convex_closedConvexHull (𝕜 := ℝ) (s := s))
+      (isClosed_closedConvexHull (𝕜 := ℝ) (s := s)) hx
+  change ∀ a ∈ closedConvexHull ℝ s, (f a).re < u at hset
+  change u < (f x).re at hpoint
+  set delta : ℝ := ((f x).re - u) / 2 with hdelta
+  have hdeltaPos : 0 < delta := by
+    rw [hdelta]
+    linarith
+  obtain ⟨y, hy, hxy⟩ := hsupport f delta hdeltaPos
+  have hyHull : y ∈ closedConvexHull ℝ s := subset_closedConvexHull hy
+  have hyu : (f y).re < u := hset y hyHull
+  rw [hdelta] at hxy
+  linarith
 
 /-- Quantitative form of the support criterion: every positive tolerance
 contains a finite convex combination of `s` within that tolerance of `x`. -/
@@ -62,6 +88,23 @@ theorem exists_convexHull_near_of_complex_support
   refine ⟨y, hy, ?_⟩
   simpa only [dist_eq_norm, norm_sub_rev] using hdist
 
+/-- Quantitative norm approximation under the approximate support
+criterion. -/
+theorem exists_convexHull_near_of_approximate_complex_support
+    (s : Set E) (x : E)
+    (hsupport : ∀ (f : E →L[ℂ] ℂ) (delta : ℝ), 0 < delta →
+      ∃ y ∈ s, (f x).re < (f y).re + delta)
+    {epsilon : ℝ} (hepsilon : 0 < epsilon) :
+    ∃ y ∈ convexHull ℝ s, ‖y - x‖ < epsilon := by
+  have hxClosed : x ∈ closedConvexHull ℝ s :=
+    mem_closedConvexHull_of_approximate_complex_support s x hsupport
+  have hxClosure : x ∈ closure (convexHull ℝ s) := by
+    rwa [← closedConvexHull_eq_closure_convexHull (𝕜 := ℝ)]
+  obtain ⟨y, hy, hdist⟩ :=
+    Metric.mem_closure_iff.mp hxClosure epsilon hepsilon
+  refine ⟨y, hy, ?_⟩
+  simpa only [dist_eq_norm, norm_sub_rev] using hdist
+
 end
 
 end BlackadarKirchberg
@@ -70,4 +113,6 @@ end GroupApproximation
 open GroupApproximation.BlackadarKirchberg
 
 #audit_axioms mem_closedConvexHull_of_complex_support
+#audit_axioms mem_closedConvexHull_of_approximate_complex_support
 #audit_axioms exists_convexHull_near_of_complex_support
+#audit_axioms exists_convexHull_near_of_approximate_complex_support
