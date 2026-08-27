@@ -1,5 +1,5 @@
 import GroupApproximation.Higman.RelabelPresentation
-import GroupApproximation.Manuscript.MFRecognition.ConcreteQCodeFamily
+import GroupApproximation.Manuscript.MFRecognition.TwoSidedConcreteQCodeFamily
 
 /-!
 # A recursive presentation of the fixed universal family
@@ -20,7 +20,7 @@ namespace FixedUniversalFamilyRecursive
 open Nat.Partrec
 open Higman
 open EnumeratedPresentationCodes
-open ConcreteQCodeFamily
+open TwoSidedConcreteQCodeFamily
 
 noncomputable section
 
@@ -42,7 +42,7 @@ theorem primrec_indexedQcode : Primrec indexedQcode := by
     Code.primrec₂_curry.comp
       (Primrec.const RecursiveSwitchPresentation.universalSwitchEnumeratorCode)
       Primrec.encode
-  exact Higman.BridgeRelatorCode.primrec_rankThreeCode.comp
+  exact TwoSidedBridgeRelatorCode.primrec_rankThreeCode.comp
     (hswitch.comp (Primrec.ofNat Code))
 
 theorem primrec_universalRawRelator : Primrec universalRawRelator := by
