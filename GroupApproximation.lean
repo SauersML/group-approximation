@@ -1915,6 +1915,8 @@ import GroupApproximation.Computability.SoficRecognitionSecondLevel
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedHeadlineExact
 import GroupApproximation.Manuscript.NonMF.AcylindricallyHyperbolic
 import GroupApproximation.Manuscript.NonMF.HullSmallCancellation
+import GroupApproximation.Manuscript.MFRecognition.MarkedHigmanOutput
+import GroupApproximation.Manuscript.MFRecognition.EffectiveHigmanCompiler
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
