@@ -2000,6 +2000,7 @@ import GroupApproximation.Manuscript.MFRecognition.TensorSynchronization
 import GroupApproximation.Manuscript.MFRecognition.SwitchGroupBCR
 import GroupApproximation.Manuscript.MFRecognition.CoronaEmbeddingRemark
 import GroupApproximation.Manuscript.MFRecognition.RegularRealizationSentences
+import GroupApproximation.Manuscript.MFRecognition.PreliminarySentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
