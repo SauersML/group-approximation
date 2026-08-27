@@ -1953,6 +1953,10 @@ import GroupApproximation.Manuscript.MFRecognition.RecognitionInputs
 import GroupApproximation.Manuscript.MFRecognition.SeedPresentation
 import GroupApproximation.Manuscript.MFRecognition.CentralRopeBritton
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceSetup
+import GroupApproximation.Manuscript.MFRecognition.MarkedHigmanRopeInput
+import GroupApproximation.Manuscript.MFRecognition.MarkedHigmanRopeProfinite
+import GroupApproximation.Manuscript.MFRecognition.CentralRopeCore
+import GroupApproximation.Manuscript.MFRecognition.NegativeBranch
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
