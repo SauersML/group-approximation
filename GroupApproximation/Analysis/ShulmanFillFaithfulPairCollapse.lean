@@ -57,8 +57,20 @@ And the two symmetric-double inputs are not independent:
 `symmetricDoubleMF_of_shulmanTheorem16` below derives Theorem 10 from Theorem
 16, by taking `A₁ = A₂ = D` with the inclusion pair.  So on that route the only
 strengthening over the endpoint is Theorem 13, and Theorem 10 is a corollary of
-what it is being used to prove.  That is a reason to spend effort on Theorem 13
-rather than on Theorem 10, if the symmetric-double route is carried at all.
+what it is being used to prove.
+
+That last point is about the *debt order*, not about a proof route.  The
+implication runs from the endpoint, so it cannot be used to prove Theorem 10:
+a non-circular proof of Theorem 16 along this route still has to prove Theorem
+10 on Shulman's own terms, by his Theorem 4 together with the flip, which is
+the work `Analysis/ShulmanFillSymmetricDouble` is doing.  What the implication
+does say is that carrying `symmetricDoubleMF` as a named `sorry` can never
+overstate the debt, since the endpoint already implies it.
+
+So the honest bottom of the lane is a choice between two pieces of
+construction-and-proof work: build `𝒟`, and `B(H)`'s compacts and Calkin
+quotient if they turn out to be expressible, and prove Theorem 4 and Theorem
+13's Voiculescu step; or discharge the norming atom.
 
 This module is not in the root import list.  It was authored while builds were
 suspended, so it is kept out of the closure until it has been elaborated.
