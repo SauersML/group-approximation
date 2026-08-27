@@ -111,39 +111,26 @@ theorem finiteCoordinateConvexMap_one
       rw [← Finset.sum_smul]
       simp only [← Complex.ofReal_sum, hweight, Complex.ofReal_one, one_smul]
 
-/-- A finite convex coordinate UCP map into a nontrivial finite-dimensional
-C-star algebra is contractive. -/
-theorem finiteCoordinateConvexMap_norm_le
-    [Nontrivial D] [FiniteDimensional ℂ D]
-    (S : Finset ℕ) (weight : S → ℝ) (hweight0 : ∀ n, 0 ≤ weight n)
-    (hweight1 : ∑ n, weight n = 1)
-    (component : ∀ n : S, Matrix (X n) (X n) ℂ →ₗ[ℂ] D)
-    (hcomponentCP : ∀ n : S,
-      IsCompletelyPositive (A := Matrix (X n) (X n) ℂ) (B := D)
-        (component n))
-    (hcomponentOne : ∀ n, component n 1 = 1)
-    (x : BoundedMatrixSequence (fun n ↦ X n)) :
-    ‖finiteCoordinateConvexMap S weight component x‖ ≤ ‖x‖ := by
-  obtain ⟨R⟩ := exists_matrixUCPRetract_of_finiteDimensionalCStar D
-  let included : BoundedMatrixSequence (fun n ↦ X n) →ₗ[ℂ]
-      Matrix R.model R.model ℂ :=
-    (R.embedding : D →ₗ[ℂ] Matrix R.model R.model ℂ).comp
-      (finiteCoordinateConvexMap S weight component)
+/-- A UCP map into an abstract nontrivial finite-dimensional C-star algebra
+is contractive.  A faithful matrix embedding reduces the estimate to the
+concrete Stinespring bound. -/
+theorem norm_apply_le_of_ucp_finiteDimensionalTarget
+    {A : Type u} [CStarAlgebra A]
+    {E : Type w} [CStarAlgebra E] [Nontrivial E] [FiniteDimensional ℂ E]
+    (f : A →ₗ[ℂ] E) (hf : IsCompletelyPositive f) (hfOne : f 1 = 1)
+    (x : A) : ‖f x‖ ≤ ‖x‖ := by
+  obtain ⟨R⟩ := exists_matrixUCPRetract_of_finiteDimensionalCStar E
+  let included : A →ₗ[ℂ] Matrix R.model R.model ℂ :=
+    (R.embedding : E →ₗ[ℂ] Matrix R.model R.model ℂ).comp f
   have hembeddingCP : IsCompletelyPositive
-      (A := D) (B := Matrix R.model R.model ℂ)
-      (R.embedding : D →ₗ[ℂ] Matrix R.model R.model ℂ) :=
+      (A := E) (B := Matrix R.model R.model ℂ)
+      (R.embedding : E →ₗ[ℂ] Matrix R.model R.model ℂ) :=
     isCompletelyPositive_of_starAlgHom R.embedding.toNonUnitalStarAlgHom
-  have hfiniteCP :=
-    isCompletelyPositive_finiteCoordinateConvexMap S weight hweight0
-      component hcomponentCP
-  have hincludedCP : IsCompletelyPositive included :=
-    hembeddingCP.comp hfiniteCP
+  have hincludedCP : IsCompletelyPositive included := hembeddingCP.comp hf
   have hincludedOne : included 1 = 1 := by
     calc
-      included 1 = R.embedding
-          (finiteCoordinateConvexMap S weight component 1) := rfl
-      _ = R.embedding 1 := by
-        rw [finiteCoordinateConvexMap_one S weight hweight1 component hcomponentOne]
+      included 1 = R.embedding (f 1) := rfl
+      _ = R.embedding 1 := by rw [hfOne]
       _ = 1 := R.embedding.map_one
   let op : Matrix R.model R.model ℂ →ₗ[ℂ]
       (EuclideanSpace ℂ R.model →L[ℂ] EuclideanSpace ℂ R.model) :=
@@ -159,11 +146,9 @@ theorem finiteCoordinateConvexMap_norm_le
     dsimp only [includedOp, LinearMap.comp_apply]
     rw [hincludedOne]
     exact map_one (Matrix.toEuclideanCLM (n := R.model) (𝕜 := ℂ))
-  have hcontract :=
-    hincludedOpCP.norm_apply_le_of_unital hincludedOpOne x
+  have hcontract := hincludedOpCP.norm_apply_le_of_unital hincludedOpOne x
   calc
-    ‖finiteCoordinateConvexMap S weight component x‖ =
-        ‖R.embedding (finiteCoordinateConvexMap S weight component x)‖ :=
+    ‖f x‖ = ‖R.embedding (f x)‖ :=
       (NonUnitalStarAlgHom.norm_map R.embedding.toNonUnitalStarAlgHom
         R.embedding_injective _).symm
     _ = ‖included x‖ := rfl
@@ -172,6 +157,28 @@ theorem finiteCoordinateConvexMap_norm_le
         ‖Matrix.toEuclideanCLM (n := R.model) (𝕜 := ℂ) (included x)‖
       exact (Matrix.l2_opNorm_toEuclideanCLM (included x)).symm
     _ ≤ ‖x‖ := hcontract
+
+/-- A finite convex coordinate UCP map into a nontrivial finite-dimensional
+C-star algebra is contractive. -/
+theorem finiteCoordinateConvexMap_norm_le
+    [Nontrivial D] [FiniteDimensional ℂ D]
+    (S : Finset ℕ) (weight : S → ℝ) (hweight0 : ∀ n, 0 ≤ weight n)
+    (hweight1 : ∑ n, weight n = 1)
+    (component : ∀ n : S, Matrix (X n) (X n) ℂ →ₗ[ℂ] D)
+    (hcomponentCP : ∀ n : S,
+      IsCompletelyPositive (A := Matrix (X n) (X n) ℂ) (B := D)
+        (component n))
+    (hcomponentOne : ∀ n, component n 1 = 1)
+    (x : BoundedMatrixSequence (fun n ↦ X n)) :
+    ‖finiteCoordinateConvexMap S weight component x‖ ≤ ‖x‖ := by
+  have hfiniteCP : IsCompletelyPositive
+      (A := BoundedMatrixSequence (fun n ↦ X n)) (B := D)
+      (finiteCoordinateConvexMap S weight component) :=
+    isCompletelyPositive_finiteCoordinateConvexMap S weight hweight0
+      component hcomponentCP
+  exact norm_apply_le_of_ucp_finiteDimensionalTarget
+    (finiteCoordinateConvexMap S weight component) hfiniteCP
+    (finiteCoordinateConvexMap_one S weight hweight1 component hcomponentOne) x
 
 /-- The map depends only on the selected finite set of coordinates. -/
 theorem finiteCoordinateConvexMap_eq_of_selected_eq
@@ -193,5 +200,6 @@ open GroupApproximation.BlackadarKirchberg
 
 #audit_axioms isCompletelyPositive_finiteCoordinateConvexMap
 #audit_axioms finiteCoordinateConvexMap_one
+#audit_axioms norm_apply_le_of_ucp_finiteDimensionalTarget
 #audit_axioms finiteCoordinateConvexMap_norm_le
 #audit_axioms finiteCoordinateConvexMap_eq_of_selected_eq
