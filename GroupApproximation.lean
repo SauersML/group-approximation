@@ -2020,6 +2020,7 @@ import GroupApproximation.Analysis.HNNTraceGeneratedDensity
 import GroupApproximation.Analysis.HNNTraceStarAlgHomDescent
 import GroupApproximation.Analysis.HNNTraceTracialStateContinuous
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceBaseTransport
+import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationSentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
