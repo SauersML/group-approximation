@@ -127,5 +127,45 @@ theorem RightNormalizeTrace.compare
               rw [map_mul, map_inv]
               group
 
+/-- Equality of two base-prefixed reduced words produces an explicit carry
+comparison.  The initial carry is the discrepancy between their displayed
+base prefixes, and the terminal carry is `1`. -/
+theorem Reduced.rightCarryComparison_of_eq
+    (φ : ∀ i, H →* G i)
+    (hφ : ∀ i, Function.Injective (φ i))
+    {raw small : CoprodI.Word G}
+    (hrawReduced : PushoutI.Reduced φ raw)
+    (hsmallReduced : PushoutI.Reduced φ small)
+    (rawHead smallHead : H)
+    (heq : PushoutI.base φ rawHead * PushoutI.ofCoprodI raw.prod =
+      PushoutI.base φ smallHead * PushoutI.ofCoprodI small.prod) :
+    RightCarryComparison φ raw.toList small.toList
+      (rawHead⁻¹ * smallHead) := by
+  classical
+  obtain ⟨d⟩ := PushoutI.NormalWord.transversal_nonempty φ hφ
+  obtain ⟨rw, hrwprod, -, hrwtrace⟩ :=
+    Reduced.exists_normalWord_prod_eq_with_trace φ d hrawReduced
+  obtain ⟨sw, hswprod, -, hswtrace⟩ :=
+    Reduced.exists_normalWord_prod_eq_with_trace φ d hsmallReduced
+  have hnormal : rawHead • rw = smallHead • sw := by
+    apply PushoutI.NormalWord.prod_injective
+    rw [PushoutI.NormalWord.prod_base_smul,
+      PushoutI.NormalWord.prod_base_smul, hrwprod, hswprod]
+    exact heq
+  have hheads : rawHead * rw.head = smallHead * sw.head := by
+    exact congrArg PushoutI.NormalWord.head hnormal
+  have hlists : rw.toList = sw.toList := by
+    exact congrArg (fun w ↦ w.toList) hnormal
+  rw [hlists] at hrwtrace
+  have hcompare := hrwtrace.compare φ hswtrace
+  have hcarry : rw.head * sw.head⁻¹ = rawHead⁻¹ * smallHead := by
+    calc
+      rw.head * sw.head⁻¹ =
+          rawHead⁻¹ * (rawHead * rw.head) * sw.head⁻¹ := by group
+      _ = rawHead⁻¹ * (smallHead * sw.head) * sw.head⁻¹ := by
+        rw [hheads]
+      _ = rawHead⁻¹ * smallHead := by group
+  rwa [hcarry] at hcompare
+
 end MatchedSubgroupAmalgamWordReflection
 end GroupApproximation
