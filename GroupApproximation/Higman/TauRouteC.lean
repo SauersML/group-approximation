@@ -2,6 +2,7 @@ import GroupApproximation.Higman.ClosuresAssembly
 import GroupApproximation.Higman.GeneratedValue
 import GroupApproximation.Higman.OmegaFatSelectedCutter
 import GroupApproximation.Higman.OmegaFiniteLinkGraph
+import GroupApproximation.Higman.OmegaFiniteLinkHNN
 
 /-!
 # Route C: the `τ`-free chain
