@@ -27,7 +27,7 @@ are not given a Lean declaration; each is noted at its place below.
 
 Covered ranges:
 * abstract (tex lines 78-98): `aea2e8dcb3b4`, `bae33ce50d1a`, `c54ed6a64a49`,
-  `4ee80496e936`, `675d05a8d993`, `31e75269416c`.
+  `3c2b1886156d`, `675d05a8d993`, `31e75269416c`.
 * `sec:prelim`, "MF groups" (tex lines 197-235): `a7c657eb85c7`+`6201111b83a0`,
   `297f1fbfa1f5` (skipped), `d7be1aaf4514` (skipped), `2a0d28e65002` (skipped),
   `05203f9f8c7f`+`bf4989940236`, `089abd2aa0ca`, `3a88dbf43438`,
@@ -124,7 +124,7 @@ theorem manuscriptMFPresentationsNotRE
     (R : Recognition.RecognitionFamily) : PrintedMFPresentationsNotRE :=
   Recognition.mfPresentations_not_re R
 
-/-- Sentence `4ee80496e936`: a presentation defines an MF group exactly when
+/-- Sentence `3c2b1886156d`: a presentation defines an MF group exactly when
 every finite word challenge has either a word-problem witness or a coded
 rational unitary microstate with decidable norm certificates.  The `∀∃`
 checker normal form is exactly `isOperatorMF_iff_forall_exists_MFChecker`, and
