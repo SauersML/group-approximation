@@ -76,6 +76,30 @@ theorem exists_finite_hom_separating_leftProduct_list :
       · exact hq g hg (congrArg Prod.fst heq)
       · exact hr y hy g hg (congrArg Prod.snd heq)
 
+/-- The simultaneous reader quotient preserves each offending syllable as an
+actual nonmembership in the product of the two mapped left subgroups.  This is
+the pointwise input used by the reduced-amalgam spelling: subsequent edge
+adjustments cannot turn one of these syllables into a matched left syllable. -/
+theorem exists_finite_hom_reflecting_leftProduct_list
+    (l : List PairedReturnGraphIntersection.P)
+    (hout : ∀ z ∈ l, z ∉ LeftProduct) :
+    ∃ (Q : Type) (_ : Group Q) (_ : Finite Q)
+        (q : PairedReturnGraphIntersection.P →* Q),
+      ∀ z ∈ l,
+        q z ∉
+          (Star.graphSub.map q : Set Q) *
+            (PairedReturnGraphIntersection.M.map q : Set Q) := by
+  obtain ⟨Q, hQgroup, hQfinite, q, hq⟩ :=
+    exists_finite_hom_separating_leftProduct_list l hout
+  refine ⟨Q, hQgroup, hQfinite, q, ?_⟩
+  intro z hz hmem
+  obtain ⟨a, ha, m, hm, ham⟩ := hmem
+  obtain ⟨a₀, ha₀, rfl⟩ := Subgroup.mem_map.mp ha
+  obtain ⟨m₀, hm₀, rfl⟩ := Subgroup.mem_map.mp hm
+  apply hq z hz (a₀ * m₀)
+  · exact ⟨a₀, ha₀, m₀, hm₀, rfl⟩
+  · simpa only [map_mul] using ham
+
 /-! ## The label-preserving finite-base quotient -/
 
 /-- Restrict a quotient of `P` to the image of the paired edge. -/
