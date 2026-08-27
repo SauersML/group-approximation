@@ -327,6 +327,37 @@ theorem imageLamp_profiniteClosure_eq_of_fg
   exact FreeLampFiniteBaseProfinite.profiniteClosure_eq_of_fg_of_lampEquiv
     (M := PairedReturnGraphIntersection.M.map q) d syncEquivFree H hH
 
+/-- The image of the concrete matched cutter is closed in every finite-base
+free-lamp quotient. -/
+theorem profiniteClosure_map_matchedCutter
+    (Q : Type) [Group Q] [Finite Q]
+    (q : PairedReturnGraphIntersection.P →* Q) :
+    profiniteClosure
+        (matchedCutter.map (ambientToImageLamp Q q)) =
+      matchedCutter.map (ambientToImageLamp Q q) := by
+  apply imageLamp_profiniteClosure_eq_of_fg Q q
+  apply Higman.fg_map
+  rw [← fiveCutter_eq_matchedCutter]
+  exact fiveCutter_fg
+
+/-- Once an element survives outside the mapped cutter in one finite-base
+free lamp, finite-base LERF supplies an actual finite separating quotient. -/
+theorem not_mem_profiniteClosure_matchedCutter_of_image
+    (Q : Type) [Group Q] [Finite Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    {z : Ambient}
+    (hz : ambientToImageLamp Q q z ∉
+      matchedCutter.map (ambientToImageLamp Q q)) :
+    z ∉ profiniteClosure matchedCutter := by
+  have hzTarget : ambientToImageLamp Q q z ∉
+      profiniteClosure (matchedCutter.map (ambientToImageLamp Q q)) := by
+    rwa [profiniteClosure_map_matchedCutter Q q]
+  intro hzClosure
+  apply hzTarget
+  intro R _ _ r
+  have h := hzClosure R (r.comp (ambientToImageLamp Q q))
+  rwa [Subgroup.map_map]
+
 end PairedReturnMatchedCutterProfinite
 end Higman
 end GroupApproximation
