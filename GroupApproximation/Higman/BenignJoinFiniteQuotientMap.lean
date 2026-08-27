@@ -50,6 +50,33 @@ def level1Map (q₁ : w₁.K →* Q₁) (q₂ : w₂.K →* Q₂) :
       HNNExtension.t := by
   exact CentralHNNFiniteQuotientMap.map_t _ _
 
+/-- First-stage block words are mapped coefficientwise. -/
+@[simp] theorem level1Map_blockOf
+    (q₁ : w₁.K →* Q₁) (q₂ : w₂.K →* Q₂)
+    (p : JoinBase w₁ w₂ × JoinBase w₁ w₂) :
+    level1Map w₁ w₂ q₁ q₂
+        (Pinch.blockOf (joinM₁ w₁ w₂) p) =
+      Pinch.blockOf
+        ((joinM₁ w₁ w₂).map (baseMap w₁ w₂ q₁ q₂))
+        (baseMap w₁ w₂ q₁ q₂ p.1,
+          baseMap w₁ w₂ q₁ q₂ p.2) := by
+  simp [Pinch.blockOf]
+
+/-- First-stage block spellings are mapped coefficientwise. -/
+theorem level1Map_word
+    (q₁ : w₁.K →* Q₁) (q₂ : w₂.K →* Q₂)
+    (z : JoinBase w₁ w₂)
+    (l : List (JoinBase w₁ w₂ × JoinBase w₁ w₂)) :
+    level1Map w₁ w₂ q₁ q₂
+        (Pinch.word (joinM₁ w₁ w₂) z l) =
+      Pinch.word
+        ((joinM₁ w₁ w₂).map (baseMap w₁ w₂ q₁ q₂))
+        (baseMap w₁ w₂ q₁ q₂ z)
+        (l.map fun p ↦
+          (baseMap w₁ w₂ q₁ q₂ p.1,
+            baseMap w₁ w₂ q₁ q₂ p.2)) := by
+  simp [Pinch.word, map_list_prod, List.map_map, Function.comp_def]
+
 /-- The image of the second edge in the first finite-quotient stage. -/
 abbrev TargetM₂ (q₁ : w₁.K →* Q₁) (q₂ : w₂.K →* Q₂) :
     Subgroup (TargetLevel1 w₁ w₂ q₁ q₂) :=
@@ -78,6 +105,31 @@ def level2Map (q₁ : w₁.K →* Q₁) (q₂ : w₂.K →* Q₂) :
         (HNNExtension.t : JoinLevel2 w₁ w₂) =
       HNNExtension.t := by
   exact CentralHNNFiniteQuotientMap.map_t _ _
+
+/-- Second-stage block words are mapped coefficientwise. -/
+@[simp] theorem level2Map_blockOf
+    (q₁ : w₁.K →* Q₁) (q₂ : w₂.K →* Q₂)
+    (p : JoinLevel1 w₁ w₂ × JoinLevel1 w₁ w₂) :
+    level2Map w₁ w₂ q₁ q₂
+        (Pinch.blockOf (joinM₂' w₁ w₂) p) =
+      Pinch.blockOf (TargetM₂ w₁ w₂ q₁ q₂)
+        (level1Map w₁ w₂ q₁ q₂ p.1,
+          level1Map w₁ w₂ q₁ q₂ p.2) := by
+  simp [Pinch.blockOf]
+
+/-- Second-stage block spellings are mapped coefficientwise. -/
+theorem level2Map_word
+    (q₁ : w₁.K →* Q₁) (q₂ : w₂.K →* Q₂)
+    (z : JoinLevel1 w₁ w₂)
+    (l : List (JoinLevel1 w₁ w₂ × JoinLevel1 w₁ w₂)) :
+    level2Map w₁ w₂ q₁ q₂
+        (Pinch.word (joinM₂' w₁ w₂) z l) =
+      Pinch.word (TargetM₂ w₁ w₂ q₁ q₂)
+        (level1Map w₁ w₂ q₁ q₂ z)
+        (l.map fun p ↦
+          (level1Map w₁ w₂ q₁ q₂ p.1,
+            level1Map w₁ w₂ q₁ q₂ p.2)) := by
+  simp [Pinch.word, map_list_prod, List.map_map, Function.comp_def]
 
 end
 
