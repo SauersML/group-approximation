@@ -120,7 +120,15 @@ structure IsSmallCancellation (D : GGT.RelGenSet G Λ)
   /-- Every word has at least `ρ` letters. -/
   long : ∀ v ∈ W, rho ≤ v.length
   /-- Every letter of the hyperbolically embedded family is deep: it escapes the
-  relative ball of radius `ρ` about `1`. -/
+  relative ball of radius `ρ` about `1`.
+
+  The relative metric is per-index -- `D.relBall lam n` counts only paths
+  avoiding edges of `Γ_{H lam}`, and says nothing about the other components --
+  so the index has to be pinned to the letter's own.  The guard
+  `a.IsCompOf lam` does that: `GGT.RelLetter.IsCompOf lam (comp mu h)` is
+  `mu = lam`, so for a component letter the clause fires at exactly one `lam`,
+  its own; and `IsCompOf lam (base _)` is `False`, so base letters carry no
+  depth condition, which is right -- only the `H`-letters have to be long. -/
   deep : ∀ v ∈ W, ∀ (a : GGT.RelLetter G Λ), a ∈ v → ∀ lam : Λ,
     a.IsCompOf lam → a.val ∉ D.relBall lam rho
   /-- Every `ε`-piece is shorter than `μ` times its word. -/

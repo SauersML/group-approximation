@@ -355,7 +355,7 @@ theorem actsNonElementarily_of_isSNormal (hiso : IsIsometricAction G X)
     (hG : ActsNonElementarily (⊤ : Subgroup G) x)
     {N : Subgroup G} (hN : HullSuitable.IsSNormal N) :
     ActsNonElementarily N x := by
-  obtain ⟨g₁, -, -, -, hg₁, -, -⟩ := hG
+  obtain ⟨g₁, -, -, -, hg₁, -, -⟩ := id hG
   obtain ⟨g, hgN, hg⟩ :=
     hlox N (not_bddOrbit_of_isSNormal hiso hacy hN hg₁)
   obtain ⟨h, hhN, hh⟩ : ∃ h : G, h ∈ N ∧ h ∉ elementaryClosure g := by

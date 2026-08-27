@@ -320,16 +320,12 @@ noncomputable def ah3Data (hj₁ : Function.Injective j₁)
     (hinter : ∀ p q : P, j₁ p = j₂ q → p = 1)
     (hcrit : BassSerreHNN.IsTreeWPDCriterion (Double j₁ j₂ hj₁ hj₂)
       (BassSerreHNN.tree_isTree (stageTwoEquiv j₁ j₂ hj₁ hj₂))) :
-    AH3Data.{0, 0} (Double j₁ j₂ hj₁ hj₂) where
-  Space := BassSerreHNN.Space (stageTwoEquiv j₁ j₂ hj₁ hj₂)
-  isometric := BassSerreHNN.isIsometricAction (stageTwoEquiv j₁ j₂ hj₁ hj₂)
-  delta := 0
-  hyperbolic :=
-    BassSerreHNN.isHyperbolicSpace_zero_space (stageTwoEquiv j₁ j₂ hj₁ hj₂)
-  elt := axisElt hj₁ hj₂
-  base := BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1
-  loxodromic := isLoxodromic_axisElt hj₁ hj₂
-  wpd := by
+    AH3Data.{0, 0} (Double j₁ j₂ hj₁ hj₂) :=
+  AH3Data.ofData (BassSerreHNN.Space (stageTwoEquiv j₁ j₂ hj₁ hj₂))
+    (BassSerreHNN.isIsometricAction (stageTwoEquiv j₁ j₂ hj₁ hj₂)) 0
+    (BassSerreHNN.isHyperbolicSpace_zero_space (stageTwoEquiv j₁ j₂ hj₁ hj₂))
+    (axisElt hj₁ hj₂) (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
+    (isLoxodromic_axisElt hj₁ hj₂) (by
     refine hcrit (axisElt hj₁ hj₂)
       (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
       (BassSerreHNN.isIsometricAction (stageTwoEquiv j₁ j₂ hj₁ hj₂))

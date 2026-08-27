@@ -254,6 +254,54 @@ theorem dist_retractTip_end (A : Alphabet G) (p : Point A) :
       rw [if_neg h, if_pos (le_refl (1 - p.param))]
     rw [hval, dist_self]
 
+/-! ### Evaluating the retractions -/
+
+theorem retractBase_of_nonpos (A : Alphabet G) (p : Point A) {r : ℝ}
+    (h : r ≤ 0) : retractBase A p r = p := by
+  show (if r ≤ 0 then p else
+    if p.param ≤ r then vertex A p.base else p.withParam (p.param - r)) = p
+  rw [if_pos h]
+
+theorem retractBase_of_far (A : Alphabet G) (p : Point A) {r : ℝ}
+    (h0 : ¬ r ≤ 0) (h1 : p.param ≤ r) :
+    retractBase A p r = vertex A p.base := by
+  show (if r ≤ 0 then p else
+    if p.param ≤ r then vertex A p.base else p.withParam (p.param - r))
+    = vertex A p.base
+  rw [if_neg h0, if_pos h1]
+
+theorem retractBase_of_mem (A : Alphabet G) (p : Point A) {r : ℝ}
+    (h0 : ¬ r ≤ 0) (h1 : ¬ p.param ≤ r) :
+    retractBase A p r = p.withParam (p.param - r) := by
+  show (if r ≤ 0 then p else
+    if p.param ≤ r then vertex A p.base else p.withParam (p.param - r))
+    = p.withParam (p.param - r)
+  rw [if_neg h0, if_neg h1]
+
+theorem retractTip_of_nonpos (A : Alphabet G) (p : Point A) {r : ℝ}
+    (h : r ≤ 0) : retractTip A p r = p := by
+  show (if r ≤ 0 then p else
+    if 1 - p.param ≤ r then vertex A p.tip else p.withParam (p.param + r)) = p
+  rw [if_pos h]
+
+theorem retractTip_of_far (A : Alphabet G) (p : Point A) {r : ℝ}
+    (h0 : ¬ r ≤ 0) (h1 : 1 - p.param ≤ r) :
+    retractTip A p r = vertex A p.tip := by
+  show (if r ≤ 0 then p else
+    if 1 - p.param ≤ r then vertex A p.tip else p.withParam (p.param + r))
+    = vertex A p.tip
+  rw [if_neg h0, if_pos h1]
+
+theorem retractTip_of_mem (A : Alphabet G) (p : Point A) {r : ℝ}
+    (h0 : ¬ r ≤ 0) (h1 : ¬ 1 - p.param ≤ r) :
+    retractTip A p r = p.withParam (p.param + r) := by
+  show (if r ≤ 0 then p else
+    if 1 - p.param ≤ r then vertex A p.tip else p.withParam (p.param + r))
+    = p.withParam (p.param + r)
+  rw [if_neg h0, if_neg h1]
+
+/-! ### The retractions are `1`-Lipschitz -/
+
 /-- The base retraction is `1`-Lipschitz on `[0, p.param]`. -/
 theorem retractBase_lipschitz (A : Alphabet G) (p : Point A) :
     ∀ s ∈ Set.Icc (0 : ℝ) p.param, ∀ t ∈ Set.Icc (0 : ℝ) p.param, s ≤ t →
@@ -263,77 +311,41 @@ theorem retractBase_lipschitz (A : Alphabet G) (p : Point A) :
   obtain ⟨ht0, ht1⟩ := ht
   have hp0 := p.param_nonneg
   have hp1 := p.param_le_one
+  have hself : p.withParam p.param = p := Point.withParam_self p
   by_cases hsz : s ≤ 0
-  · have hs00 : s = 0 := le_antisymm hsz hs0
-    rw [show retractBase A p s = p by rw [hs00]; exact retractBase_zero A p]
+  · rw [retractBase_of_nonpos A p hsz]
     by_cases htz : t ≤ 0
-    · have ht00 : t = 0 := le_antisymm htz ht0
-      rw [show retractBase A p t = p by rw [ht00]; exact retractBase_zero A p],
-        hs00, ht00]
-      rw [dist_self]
-      norm_num
+    · rw [retractBase_of_nonpos A p htz, dist_self]
+      linarith
     · by_cases hte : p.param ≤ t
-      · have h := Point.dist_withParam_base_le p p.param_nonneg p.param_le_one
-        rw [Point.withParam_self] at h
-        rw [show retractBase A p t = vertex A p.base by
-          show (if t ≤ 0 then p else
-            if p.param ≤ t then vertex A p.base
-              else p.withParam (p.param - t)) = vertex A p.base
-          rw [if_neg htz, if_pos hte]]
-        rw [hs00]
+      · rw [retractBase_of_far A p htz hte]
+        have h := Point.dist_withParam_base_le p hp0 hp1
+        rw [hself] at h
         linarith
-      · have h := Point.dist_withParam_le p p.param_nonneg p.param_le_one
-          (by linarith : (0:ℝ) ≤ p.param - t) (by linarith)
-        rw [Point.withParam_self] at h
-        rw [show retractBase A p t = p.withParam (p.param - t) by
-          show (if t ≤ 0 then p else
-            if p.param ≤ t then vertex A p.base
-              else p.withParam (p.param - t)) = p.withParam (p.param - t)
-          rw [if_neg htz, if_pos rfl]]
-        rw [hs00]
-        rw [abs_of_nonneg (by linarith : (0:ℝ) ≤ p.param - (p.param - t))] at h
+      · rw [retractBase_of_mem A p htz hte]
+        have h := Point.dist_withParam_le p hp0 hp1
+          (by linarith : (0 : ℝ) ≤ p.param - t) (by linarith)
+        rw [hself, abs_of_nonneg
+          (by linarith : (0 : ℝ) ≤ p.param - (p.param - t))] at h
         linarith
   · have htz : ¬ t ≤ 0 := fun h => hsz (le_trans hst h)
     by_cases hse : p.param ≤ s
     · have hte : p.param ≤ t := le_trans hse hst
-      rw [show retractBase A p s = vertex A p.base by
-        show (if s ≤ 0 then p else
-          if p.param ≤ s then vertex A p.base
-            else p.withParam (p.param - s)) = vertex A p.base
-        rw [if_neg hsz, if_pos hse],
-        show retractBase A p t = vertex A p.base by
-        show (if t ≤ 0 then p else
-          if p.param ≤ t then vertex A p.base
-            else p.withParam (p.param - t)) = vertex A p.base
-        rw [if_neg htz, if_pos hte]]
-      rw [dist_self]
+      rw [retractBase_of_far A p hsz hse, retractBase_of_far A p htz hte,
+        dist_self]
       linarith
-    · rw [show retractBase A p s = p.withParam (p.param - s) by
-        show (if s ≤ 0 then p else
-          if p.param ≤ s then vertex A p.base
-            else p.withParam (p.param - s)) = p.withParam (p.param - s)
-        rw [if_neg hsz, if_neg hse]]
+    · rw [retractBase_of_mem A p hsz hse]
       by_cases hte : p.param ≤ t
-      · have h := Point.dist_withParam_base_le p
-          (by linarith : (0:ℝ) ≤ p.param - s) (by linarith)
-        rw [show retractBase A p t = vertex A p.base by
-          show (if t ≤ 0 then p else
-            if p.param ≤ t then vertex A p.base
-              else p.withParam (p.param - t)) = vertex A p.base
-          rw [if_neg htz, if_pos hte]]
-        have hb : (p.withParam (p.param - s)).base = p.base := rfl
-        rw [hb] at h
+      · rw [retractBase_of_far A p htz hte]
+        have h := Point.dist_withParam_base_le p
+          (by linarith : (0 : ℝ) ≤ p.param - s) (by linarith)
         linarith
-      · have h := Point.dist_withParam_le p
-          (by linarith : (0:ℝ) ≤ p.param - s) (by linarith)
-          (by linarith : (0:ℝ) ≤ p.param - t) (by linarith)
-        rw [show retractBase A p t = p.withParam (p.param - t) by
-          show (if t ≤ 0 then p else
-            if p.param ≤ t then vertex A p.base
-              else p.withParam (p.param - t)) = p.withParam (p.param - t)
-          rw [if_neg htz, if_neg hte]]
-        rw [abs_of_nonneg (by linarith :
-          (0:ℝ) ≤ p.param - s - (p.param - t))] at h
+      · rw [retractBase_of_mem A p htz hte]
+        have h := Point.dist_withParam_le p
+          (by linarith : (0 : ℝ) ≤ p.param - s) (by linarith)
+          (by linarith : (0 : ℝ) ≤ p.param - t) (by linarith)
+        rw [abs_of_nonneg
+          (by linarith : (0 : ℝ) ≤ p.param - s - (p.param - t))] at h
         linarith
 
 /-- The far retraction is `1`-Lipschitz on `[0, 1 - p.param]`. -/
@@ -345,73 +357,41 @@ theorem retractTip_lipschitz (A : Alphabet G) (p : Point A) :
   obtain ⟨ht0, ht1⟩ := ht
   have hp0 := p.param_nonneg
   have hp1 := p.param_le_one
+  have hself : p.withParam p.param = p := Point.withParam_self p
   by_cases hsz : s ≤ 0
-  · have hs00 : s = 0 := le_antisymm hsz hs0
-    rw [show retractTip A p s = p by rw [hs00]; exact retractTip_zero A p]
+  · rw [retractTip_of_nonpos A p hsz]
     by_cases htz : t ≤ 0
-    · have ht00 : t = 0 := le_antisymm htz ht0
-      rw [show retractTip A p t = p by rw [ht00]; exact retractTip_zero A p,
-        hs00, ht00, dist_self]
-      norm_num
+    · rw [retractTip_of_nonpos A p htz, dist_self]
+      linarith
     · by_cases hte : 1 - p.param ≤ t
-      · have h := Point.dist_withParam_tip_le p p.param_nonneg p.param_le_one
-        rw [Point.withParam_self] at h
-        rw [show retractTip A p t = vertex A p.tip by
-          show (if t ≤ 0 then p else
-            if 1 - p.param ≤ t then vertex A p.tip
-              else p.withParam (p.param + t)) = vertex A p.tip
-          rw [if_neg htz, if_pos hte], hs00]
+      · rw [retractTip_of_far A p htz hte]
+        have h := Point.dist_withParam_tip_le p hp0 hp1
+        rw [hself] at h
         linarith
-      · have h := Point.dist_withParam_le p p.param_nonneg p.param_le_one
-          (by linarith : (0:ℝ) ≤ p.param + t) (by linarith)
-        rw [Point.withParam_self] at h
-        rw [show retractTip A p t = p.withParam (p.param + t) by
-          show (if t ≤ 0 then p else
-            if 1 - p.param ≤ t then vertex A p.tip
-              else p.withParam (p.param + t)) = p.withParam (p.param + t)
-          rw [if_neg htz, if_neg hte], hs00]
-        rw [abs_of_nonpos (by linarith : p.param - (p.param + t) ≤ 0)] at h
+      · rw [retractTip_of_mem A p htz hte]
+        have h := Point.dist_withParam_le p hp0 hp1
+          (by linarith : (0 : ℝ) ≤ p.param + t) (by linarith)
+        rw [hself, abs_of_nonpos
+          (by linarith : p.param - (p.param + t) ≤ 0)] at h
         linarith
   · have htz : ¬ t ≤ 0 := fun h => hsz (le_trans hst h)
     by_cases hse : 1 - p.param ≤ s
     · have hte : 1 - p.param ≤ t := le_trans hse hst
-      rw [show retractTip A p s = vertex A p.tip by
-        show (if s ≤ 0 then p else
-          if 1 - p.param ≤ s then vertex A p.tip
-            else p.withParam (p.param + s)) = vertex A p.tip
-        rw [if_neg hsz, if_pos hse],
-        show retractTip A p t = vertex A p.tip by
-        show (if t ≤ 0 then p else
-          if 1 - p.param ≤ t then vertex A p.tip
-            else p.withParam (p.param + t)) = vertex A p.tip
-        rw [if_neg htz, if_pos hte], dist_self]
+      rw [retractTip_of_far A p hsz hse, retractTip_of_far A p htz hte,
+        dist_self]
       linarith
-    · rw [show retractTip A p s = p.withParam (p.param + s) by
-        show (if s ≤ 0 then p else
-          if 1 - p.param ≤ s then vertex A p.tip
-            else p.withParam (p.param + s)) = p.withParam (p.param + s)
-        rw [if_neg hsz, if_neg hse]]
+    · rw [retractTip_of_mem A p hsz hse]
       by_cases hte : 1 - p.param ≤ t
-      · have h := Point.dist_withParam_tip_le p
-          (by linarith : (0:ℝ) ≤ p.param + s) (by linarith)
-        rw [show retractTip A p t = vertex A p.tip by
-          show (if t ≤ 0 then p else
-            if 1 - p.param ≤ t then vertex A p.tip
-              else p.withParam (p.param + t)) = vertex A p.tip
-          rw [if_neg htz, if_pos hte]]
-        have hb : (p.withParam (p.param + s)).tip = p.tip := rfl
-        rw [hb] at h
+      · rw [retractTip_of_far A p htz hte]
+        have h := Point.dist_withParam_tip_le p
+          (by linarith : (0 : ℝ) ≤ p.param + s) (by linarith)
         linarith
-      · have h := Point.dist_withParam_le p
-          (by linarith : (0:ℝ) ≤ p.param + s) (by linarith)
-          (by linarith : (0:ℝ) ≤ p.param + t) (by linarith)
-        rw [show retractTip A p t = p.withParam (p.param + t) by
-          show (if t ≤ 0 then p else
-            if 1 - p.param ≤ t then vertex A p.tip
-              else p.withParam (p.param + t)) = p.withParam (p.param + t)
-          rw [if_neg htz, if_neg hte]]
-        rw [abs_of_nonpos (by linarith :
-          p.param + s - (p.param + t) ≤ 0)] at h
+      · rw [retractTip_of_mem A p htz hte]
+        have h := Point.dist_withParam_le p
+          (by linarith : (0 : ℝ) ≤ p.param + s) (by linarith)
+          (by linarith : (0 : ℝ) ≤ p.param + t) (by linarith)
+        rw [abs_of_nonpos
+          (by linarith : p.param + s - (p.param + t) ≤ 0)] at h
         linarith
 
 /-! ## Reversing a retraction -/

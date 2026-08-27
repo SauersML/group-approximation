@@ -152,7 +152,6 @@ theorem between_smul_of_middle {G : Type u} [Group G] {V : Type v}
   · rcases between_tripod hH step1 y with h | h
     · exact h
     · exfalso
-      have c : H.dist (g • y) y = H.dist y (g • y) := SimpleGraph.dist_comm
       omega
   · rw [← e2]
     exact step1
@@ -233,11 +232,14 @@ theorem hasSegmentShift_of_adj {G : Type u} [Group G] {V : Type v}
   refine ⟨u, w, fun g => (H.dist x y : ℤ) - (H.dist x (g • y) : ℤ), hL, ?_⟩
   intro g hgx hgy
   refine ⟨?_, ?_⟩
-  · have t1 := hH.connected.dist_triangle (u := x) (v := y) (w := g • y)
+  · show ((H.dist x y : ℤ) - (H.dist x (g • y) : ℤ)).natAbs ≤ n
+    have t1 := hH.connected.dist_triangle (u := x) (v := y) (w := g • y)
     have t2 := hH.connected.dist_triangle (u := x) (v := g • y) (w := y)
     have c : H.dist (g • y) y = H.dist y (g • y) := SimpleGraph.dist_comm
     omega
   · intro h hhx hhy hΦ
+    have hΦ' : (H.dist x y : ℤ) - (H.dist x (g • y) : ℤ)
+        = (H.dist x y : ℤ) - (H.dist x (h • y) : ℤ) := hΦ
     have heq : H.dist x (g • y) = H.dist x (h • y) := by omega
     exact ⟨smul_eq_smul_of_dist_eq hH hiso g h hgx hgy hhx hhy hu2 hu3 hu4 heq,
       smul_eq_smul_of_dist_eq hH hiso g h hgx hgy hhx hhy hw2 hw3 hw4 heq⟩

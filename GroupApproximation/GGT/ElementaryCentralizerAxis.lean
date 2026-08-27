@@ -345,7 +345,7 @@ theorem actsNonElementarily_of_isSNormal_of_torsionFree
     ActsNonElementarily N x := by
   have hcen : NoIndependentPairInCentralizer G x :=
     noIndependentPairInCentralizer_of_orbitNearAxis hiso hacy hnear
-  obtain ⟨g₁, -, -, -, hg₁, -, -⟩ := hG
+  obtain ⟨g₁, -, -, -, hg₁, -, -⟩ := id hG
   obtain ⟨g, hgN, hg⟩ := hlox N (not_bddOrbit_of_isSNormal hiso hacy hN hg₁)
   obtain ⟨h, hhN, hh⟩ : ∃ h : G, h ∈ N ∧ h ∉ elementaryClosure g := by
     by_contra hcon

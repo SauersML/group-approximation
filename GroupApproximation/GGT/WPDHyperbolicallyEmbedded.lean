@@ -188,6 +188,12 @@ structure IsHyperbolicallyEmbedded (D : RelGenSet G Λ) : Prop where
   /-- Clause (b): each `(H λ, d̂_λ)` is locally finite. -/
   locallyFinite : ∀ (lam : Λ) (n : ℕ), (D.relBall lam n).Finite
 
+/-- The family is always part of the alphabet: `Γ(G, X ⊔ ⨆H)` has the letters
+of every `H λ` among its letters. -/
+theorem fam_subset_alphabet (D : RelGenSet G Λ) (lam : Λ) :
+    (D.fam lam : Set G) ⊆ D.alphabet.carrier := fun _ hh =>
+  Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, hh⟩)
+
 /-- **A relative generating set must not contain its own family.**
 
 If `H λ ⊆ X` and `H λ` is infinite, the family is not hyperbolically embedded.
@@ -217,6 +223,28 @@ theorem not_isHyperbolicallyEmbedded_of_fam_subset_base (D : RelGenSet G Λ)
     rintro ⟨hc, -⟩
     exact hc
   · simp
+
+/-- **A subgroup cannot be coned off twice.**
+
+If a second relative generating set takes the *alphabet* of the first as its
+base and cones off the same infinite family again, it is not hyperbolically
+embedded — the family already sits inside that alphabet
+(`fam_subset_alphabet`), so `not_isHyperbolicallyEmbedded_of_fam_subset_base`
+applies.
+
+This is the shape of a mistake that is easy to make when two coning-off steps
+are composed, as in Osin's Theorem 5.4 followed by an application of
+Dahmani--Guirardel--Osin's Theorem 6.8: the second step must cone off a
+*different* subgroup, and its base is the first step's alphabet.  Naming the
+same family twice makes the second statement vacuous rather than false, which
+is why it survives casual reading. -/
+theorem not_isHyperbolicallyEmbedded_of_base_supset_alphabet
+    {D E : RelGenSet G Λ} (lam : Λ) (hbase : D.alphabet.carrier ⊆ E.base)
+    (hfam : (E.fam lam : Set G) = (D.fam lam : Set G))
+    (hinf : (E.fam lam : Set G).Infinite) : ¬ E.IsHyperbolicallyEmbedded := by
+  refine not_isHyperbolicallyEmbedded_of_fam_subset_base E lam ?_ hinf
+  rw [hfam]
+  exact fun z hz => hbase (fam_subset_alphabet D lam hz)
 
 /-- **No element of `H λ` is loxodromic on `Γ(G, X ⊔ ⨆H)`.**
 
