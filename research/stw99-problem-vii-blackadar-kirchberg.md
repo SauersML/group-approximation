@@ -1,0 +1,27 @@
+---
+rg: 2
+id: stw99-problem-vii-blackadar-kirchberg
+kind: claim
+title: Every separable nuclear stably finite C*-algebra is quasidiagonal (STW Problem VII, Blackadar--Kirchberg)
+root: true
+distinct_from:
+  kun-thom-wreath-stably-finite: that establishes stable finiteness of one group algebra; this asks whether stable finiteness forces quasidiagonality across all separable nuclear algebras.
+  non-hyperlinear-group: that asks for a group whose von Neumann algebra escapes R^ω; this is the nuclear quasidiagonality question, whose non-nuclear analogue is already refuted by MIP*=RE.
+artifacts:
+  - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+---
+
+**Problem VII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Blackadar--Kirchberg, Math. Ann. 307 (1997),
+Question 7.3.2).  Is every separable nuclear stably finite C\*-algebra
+quasidiagonal?
+
+Context recorded by STW: the non-nuclear version is false.  MIP\*=RE
+(Ji--Natarajan--Vidick--Wright--Yuen) gives a separably acting II₁ factor `M`
+not embeddable in `R^ω`; a strongly dense separable C\*-subalgebra of `M` with
+unique trace is stably finite but not `Q^ω`-embeddable, hence not MF and not
+quasidiagonal.  So the problem is genuinely about nuclearity.
+
+Special cases: Problem IX(1) (faithful trace) and, for group algebras, the
+Rosenberg conjecture, now Tikuisis--White--Winter's Theorem C.  Faithful
+traces force stable finiteness, so this problem implies IX(1)
+(`stw99-vii-implies-ix1`).
