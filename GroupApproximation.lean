@@ -2097,6 +2097,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerCovari
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerNontrivial
 import GroupApproximation.Analysis.AmenableTraceHyperlinear
 import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationHyperlinearTheorem
+import GroupApproximation.Manuscript.NinetyNineProblems.KazhdanQuasidiagonalTraces
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
