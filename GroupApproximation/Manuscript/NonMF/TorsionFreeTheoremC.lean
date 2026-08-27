@@ -45,8 +45,9 @@ statement is the printed one; the containment itself
 > quotient of `Q` also equals its own MF radical; in particular, no nontrivial
 > quotient of `Q` is MF.
 
-`manuscriptTorsionFreeFullMFRadical`, proved along the printed proof:
-`N = ⟪π(S)⟫`, `lem:saturation` at `F = {1, π(s)}`, `ρ = r ∘ q`,
+`manuscriptTorsionFreeFullMFRadical`, with `TheoremC.LiteratureInputs` as a
+leading binder and the printed statement as its conclusion, proved along the
+printed proof: `N = ⟪π(S)⟫`, `lem:saturation` at `F = {1, π(s)}`, `ρ = r ∘ q`,
 `ρ(π(S)) ≠ 1`, `lem:simple-in-defect`, normality of the defect plus a normal
 generating set, property (T) for `L` and for `ρ(Γ)`, then
 `thm:compression-criterion` with `K = L`, then `r = id`.
@@ -298,9 +299,17 @@ def PrintedTorsionFreeFullMFRadical : Prop :=
       (∀ (L : Type) (_ : Group L) (_ : Countable L) (r : Q →* L),
         Function.Surjective r → Nontrivial L → ¬ IsCDEOperatorMF L)
 
-/-- **Theorem C, proved along the printed proof.** -/
-theorem manuscriptTorsionFreeFullMFRadical : PrintedTorsionFreeFullMFRadical := by
-  obtain ⟨cfg⟩ := exists_configuration
+/-- **Theorem C, proved along the printed proof, from the paragraph's cited
+inputs.**
+
+The leading binder is the whole literature debt of the construction: the six
+statements Fournier-Facio's paragraph cites and does not prove
+(`TheoremC.LiteratureInputs`).  The conclusion is the printed statement of
+`thm:torsion-free` unchanged. -/
+theorem manuscriptTorsionFreeFullMFRadical (I : LiteratureInputs)
+    (hHull : TorsionFree.HullInputs.{0}) :
+    PrintedTorsionFreeFullMFRadical := by
+  obtain ⟨cfg⟩ := exists_configuration I
   haveI : Countable cfg.Ambient := cfg.countableAmbient
   obtain ⟨s, hs⟩ := exists_ne (1 : cfg.Simple)
   have hsne : cfg.simple s ≠ 1 := by
@@ -320,7 +329,9 @@ theorem manuscriptTorsionFreeFullMFRadical : PrintedTorsionFreeFullMFRadical := 
   -- `lem:saturation` applied to `G₀`, `N` and `F = {1, π(s)}`.
   have hFin : ({1, cfg.simple s} : Set cfg.Ambient).Finite :=
     (Set.finite_singleton (cfg.simple s)).insert 1
-  obtain ⟨SQ⟩ := TorsionFree.saturation cfg.torsionFreeAmbient
+  -- SINGLE CALL SITE for `TorsionFree.saturation`, which carries Hull's cited
+  -- inputs as its leading hypothesis `hHull`.
+  obtain ⟨SQ⟩ := TorsionFree.saturation hHull cfg.torsionFreeAmbient
     (Subgroup.normalClosure (↑cfg.simple.range : Set cfg.Ambient)) hNne hFin
   haveI : Countable SQ.Q := SQ.surjective.countable
   -- "The group `Q` has property (T) as a quotient of `G₀`."

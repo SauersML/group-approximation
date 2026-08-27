@@ -26,9 +26,11 @@ and running to
 
 Four objects are cited and not proved (`U`, `S`, `H₀`, `P`), as are the two
 theorems that produce `E`'s acylindrical hyperbolicity and Hull's common
-quotient; each is a `-- LITERATURE INPUT (sorry)` below, stated exactly as the
-manuscript uses it.  Everything the paragraph *asserts on the strength of those
-citations* is proved here:
+quotient.  Each is stated exactly as the manuscript uses it and collected as a
+field of `LiteratureInputs`; **nothing here inhabits that structure**, and every
+result downstream of the paragraph carries it as an explicit hypothesis, so the
+literature debt is visible in the type.  Everything the paragraph *asserts on
+the strength of those citations* is proved here, with no open leaves:
 
 * `kazhdan_of_fournierFacioQuotient` — "Consequently, `P` has property (T)."
 * `containsEveryFPTorsionFree_of_fournierFacioQuotient` — `P` inherits `U`'s
@@ -48,7 +50,8 @@ citations* is proved here:
   last sentence of `lem:simple-in-defect`.
 
 The paragraph's output, in the form the printed proof of `thm:torsion-free`
-consumes it, is `Configuration`; `exists_configuration` assembles one.
+consumes it, is `Configuration`; `exists_configuration` assembles one from a
+`LiteratureInputs`.
 
 ## Acylindrical hyperbolicity
 
@@ -102,28 +105,12 @@ theorem injective_of_map_ne_one {S H : Type} [Group S] [Group H] [IsSimpleGroup 
 
 /-! ## The literature inputs -/
 
-/-- **Chiodo's universal group `U`**, in the form this repository already
-states it: `ChiodoBelegradek.Statement` is "there is a finitely presented
-torsion-free group containing a copy of every finitely presented torsion-free
-group". -/
--- LITERATURE INPUT (sorry): Chiodo, arXiv:1107.1489v4, Theorem 3.10
--- (= Belegradek, Theorem A.1).  Restated in this repository as
--- `GroupApproximation.ChiodoBelegradek.Statement`, where two of its three
--- clauses are proved and the missing one is named.
-theorem chiodoUniversalGroup : ChiodoBelegradek.Statement := by
-  sorry
-
 /-- **Hyde--Lodha's group `S`**: a finitely presented infinite simple
 torsion-free group. -/
 def HydeLodhaStatement : Prop :=
   ∃ (S : Type) (_ : Group S),
     Group.IsFinitelyPresented S ∧ Infinite S ∧ IsSimpleGroup S ∧
       IsPowerTorsionFree S
-
--- LITERATURE INPUT (sorry): Hyde--Lodha, a finitely presented infinite simple
--- torsion-free group.
-theorem hydeLodhaSimpleGroup : HydeLodhaStatement := by
-  sorry
 
 /-- **The density-model group `H₀`.**  The manuscript takes `H₀` torsion-free
 hyperbolic with property (T); only the three properties used downstream are
@@ -134,12 +121,6 @@ def KotowskiOllivierStatement : Prop :=
   ∃ (H₀ : Type) (_ : Group H₀),
     Group.IsFinitelyPresented H₀ ∧ IsPowerTorsionFree H₀ ∧
       HasKazhdanPropertyT.{0, 0} H₀
-
--- LITERATURE INPUT (sorry): Kotowski--Kotowski and Ollivier--Wise, the density
--- model at a parameter between 1/3 and 1/2: a torsion-free hyperbolic group
--- with property (T).
-theorem kotowskiOllivierBase : KotowskiOllivierStatement := by
-  sorry
 
 /-- **The small-cancellation quotient `P`.**  "Small cancellation over the
 relatively hyperbolic pair `(U * H₀, U)` embeds `U` in a finitely presented
@@ -155,24 +136,13 @@ def FournierFacioQuotientStatement : Prop :=
             (∃ p : H₀ →* P, Function.Surjective p) ∧
             (∃ e : U →* P, Function.Injective e)
 
--- LITERATURE INPUT (sorry): Fournier-Facio et al., Proposition 2.3, together
--- with Osin, "Small cancellations over relatively hyperbolic groups and
--- embedding theorems", Theorem 2.4(5).
-theorem fournierFacioQuotient : FournierFacioQuotientStatement := by
-  sorry
-
 /-- **Minasyan--Osin's tree criterion.**  "Its Bass--Serre action makes it
 acylindrically hyperbolic."  Stated exactly at the manuscript's `E`: the double
 HNN extension of `P` along the two `P`-factors of `P₁ × P₂ × S`. -/
 def MinasyanOsinStatement : Prop :=
   ∀ (P S : Type) (_ : Group P) (_ : Group S) (f : (P × P × S) →* P)
-    (hf : Function.Injective f), TorsionFree.IsAcylindricallyHyperbolic (Skeleton f hf)
-
--- LITERATURE INPUT (sorry): Minasyan--Osin, acylindrical hyperbolicity of
--- groups acting on trees, applied to the Bass--Serre tree of the double HNN
--- extension.
-theorem minasyanOsinAcylindricallyHyperbolic : MinasyanOsinStatement := by
-  sorry
+    (hf : Function.Injective f),
+    TorsionFree.IsAcylindricallyHyperbolic (Skeleton f hf)
 
 /-- **Hull's common quotient theorem, Corollary 7.4**, in the form the
 manuscript uses it: applied to `E` and `H₀` it gives a surjection `π : E ↠ G₀`
@@ -181,7 +151,8 @@ prescribed finite subset of `E`; since `E` is finitely generated, the proof of
 that corollary produces `G₀` acylindrically hyperbolic. -/
 def HullCommonQuotientStatement : Prop :=
   ∀ (E : Type) (_ : Group E) (H₀ : Type) (_ : Group H₀),
-    Group.IsFinitelyPresented E → IsPowerTorsionFree E → TorsionFree.IsAcylindricallyHyperbolic E →
+    Group.IsFinitelyPresented E → IsPowerTorsionFree E →
+      TorsionFree.IsAcylindricallyHyperbolic E →
       Group.IsFinitelyPresented H₀ → HasKazhdanPropertyT.{0, 0} H₀ →
         ∀ F : Finset E,
           ∃ (G₀ : Type) (_ : Group G₀) (pi : E →* G₀),
@@ -189,10 +160,35 @@ def HullCommonQuotientStatement : Prop :=
               IsPowerTorsionFree G₀ ∧ HasKazhdanPropertyT.{0, 0} G₀ ∧
               TorsionFree.IsAcylindricallyHyperbolic G₀ ∧ Set.InjOn pi (F : Set E)
 
--- LITERATURE INPUT (sorry): Hull, "Small cancellation in acylindrically
--- hyperbolic groups", Corollary 7.4.
-theorem hullCommonQuotient : HullCommonQuotientStatement := by
-  sorry
+/-- **The six statements the Fournier-Facio paragraph cites and does not
+prove.**  Nothing in this development inhabits this structure; every result
+downstream of the paragraph carries it as an explicit hypothesis, so the
+literature debt is visible in the type of each such result. -/
+structure LiteratureInputs where
+  /-- **Chiodo**, arXiv:1107.1489v4, Theorem 3.10 (= Belegradek, Theorem A.1):
+  a finitely presented torsion-free group containing a copy of every finitely
+  presented torsion-free group.  This repository already states the sentence,
+  as `GroupApproximation.ChiodoBelegradek.Statement`, and proves two of its
+  three clauses there. -/
+  chiodo : ChiodoBelegradek.Statement
+  /-- **Hyde--Lodha**: a finitely presented infinite simple torsion-free
+  group. -/
+  hydeLodha : HydeLodhaStatement
+  /-- **Kotowski--Kotowski** and **Ollivier--Wise**: the density model at a
+  parameter between `1/3` and `1/2` gives a torsion-free hyperbolic group with
+  property (T). -/
+  kotowskiOllivier : KotowskiOllivierStatement
+  /-- **Fournier-Facio et al., Proposition 2.3** together with **Osin**,
+  *Small cancellations over relatively hyperbolic groups and embedding
+  theorems*, **Theorem 2.4(5)**: small cancellation over `(U * H₀, U)` embeds
+  `U` in a finitely presented torsion-free quotient `P` of `H₀`. -/
+  smallCancellationQuotient : FournierFacioQuotientStatement
+  /-- **Minasyan--Osin**: acylindrical hyperbolicity of groups acting on trees,
+  applied to the Bass--Serre tree of the double HNN extension `E`. -/
+  minasyanOsin : MinasyanOsinStatement
+  /-- **Hull**, *Small cancellation in acylindrically hyperbolic groups*,
+  **Corollary 7.4**: the common quotient theorem. -/
+  hullCommonQuotient : HullCommonQuotientStatement
 
 /-! ## What the paragraph proves about `P` -/
 
@@ -304,16 +300,16 @@ end Configuration
 
 /-! ## Assembling the paragraph -/
 
-/-- **The Fournier-Facio paragraph, assembled.**  Each literature input above
-is used exactly once, and every other step is one of the proofs of this
-module. -/
-theorem exists_configuration : Nonempty Configuration := by
+/-- **The Fournier-Facio paragraph, assembled.**  Each field of `I` is used
+exactly once, and every other step is one of the proofs of this module.  The
+literature debt of the whole paragraph is exactly the hypothesis `I`. -/
+theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := by
   classical
-  obtain ⟨U, instU, hUfp, hUtf, hUuniv⟩ := chiodoUniversalGroup
-  obtain ⟨S, instS, hSfp, hSinf, hSsimple, hStf⟩ := hydeLodhaSimpleGroup
-  obtain ⟨H₀, instH₀, hH₀fp, hH₀tf, hH₀T⟩ := kotowskiOllivierBase
+  obtain ⟨U, instU, hUfp, hUtf, hUuniv⟩ := I.chiodo
+  obtain ⟨S, instS, hSfp, hSinf, hSsimple, hStf⟩ := I.hydeLodha
+  obtain ⟨H₀, instH₀, hH₀fp, hH₀tf, hH₀T⟩ := I.kotowskiOllivier
   obtain ⟨P, instP, hPfp, hPtf, ⟨quot, hquot⟩, ⟨emb, hemb⟩⟩ :=
-    fournierFacioQuotient H₀ U instH₀ instU hH₀fp hH₀tf hUfp hUtf
+    I.smallCancellationQuotient H₀ U instH₀ instU hH₀fp hH₀tf hUfp hUtf
   letI := instU
   letI := instS
   letI := instH₀
@@ -335,11 +331,11 @@ theorem exists_configuration : Nonempty Configuration := by
     skeleton_isFinitelyPresented f hf
   have hEtf : IsPowerTorsionFree (Skeleton f hf) := skeleton_torsionFree f hf hPtf
   have hEacyl : TorsionFree.IsAcylindricallyHyperbolic (Skeleton f hf) :=
-    minasyanOsinAcylindricallyHyperbolic P S inferInstance inferInstance f hf
+    I.minasyanOsin P S inferInstance inferInstance f hf
   -- "the prescribed finite subset containing an element `s ≠ 1` of `S`"
   obtain ⟨s, hs⟩ := exists_ne (1 : S)
   obtain ⟨G₀, instG₀, pi, -, hG₀fp, hG₀tf, hG₀T, hG₀acyl, hinj⟩ :=
-    hullCommonQuotient (Skeleton f hf) inferInstance H₀ instH₀ hEfp hEtf hEacyl
+    I.hullCommonQuotient (Skeleton f hf) inferInstance H₀ instH₀ hEfp hEtf hEacyl
       hH₀fp hH₀T {1, skeletonIota f hf (factorSimple f s)}
   letI := instG₀
   haveI := hG₀fp
