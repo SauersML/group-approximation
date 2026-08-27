@@ -340,6 +340,21 @@ theorem profiniteClosure_map_matchedCutter
   rw [← fiveCutter_eq_matchedCutter]
   exact fiveCutter_fg
 
+/-- Closure membership in the original ambient becomes actual cutter
+membership after every finite-base free-lamp quotient. -/
+theorem image_mem_map_matchedCutter_of_mem_profiniteClosure
+    (Q : Type) [Group Q] [Finite Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    {z : Ambient} (hz : z ∈ profiniteClosure matchedCutter) :
+    ambientToImageLamp Q q z ∈
+      matchedCutter.map (ambientToImageLamp Q q) := by
+  have hImageClosure : ambientToImageLamp Q q z ∈
+      profiniteClosure (matchedCutter.map (ambientToImageLamp Q q)) := by
+    intro R _ _ r
+    have h := hz R (r.comp (ambientToImageLamp Q q))
+    rwa [Subgroup.map_map]
+  rwa [profiniteClosure_map_matchedCutter Q q] at hImageClosure
+
 /-- Once an element survives outside the mapped cutter in one finite-base
 free lamp, finite-base LERF supplies an actual finite separating quotient. -/
 theorem not_mem_profiniteClosure_matchedCutter_of_image
