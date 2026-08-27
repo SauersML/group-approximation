@@ -6,23 +6,19 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 133 |
+| `formalized` | 134 |
 | `definition` | 32 |
 | `structural` | 22 |
 | `attribution` | 8 |
-| `partial` | 1 |
 | **total** | **196** |
 
-Completely formalized or definitional: **165/196** (84.2%).
+Completely formalized or definitional: **166/196** (84.7%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
 ## What no declaration establishes
 
-These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
-
-* **`partial`**, line 664 --- Hull's small cancellation theorem~\cite[Theorem~7.1]{Hull} is stated with injectivity on a ball of $\Gamma(G,A)$; a ball containing a given finite set gives the following form.
-  * NEW this pass. Clause 1 (a finite F lies in a ball of Gamma(G,A)) is now proved. Clause 2 (apply Hull's injectivity-radius formulation at that radius) has no separate carrier: the Lean development states the finite-set version directly as HullInputs.smallCancellation, so the reduction is absorbed into that citation. [supersedes p1_map_additions.tsv: Procedural preamble describing how the finite-set version of Hull's theorem is obtained (choose a ball containing F, apply the injectivity-radius formulation); no independent assertion, sets up thm:hull.] [census-triage: decl written in its as-written dotted form, not the fully-qualified path -- the corpus indexes by the name the module writes, and --verify-decls's short-name fallback only tries the single last segment, which does not match a two-segment written name: GroupApproximation.Manuscript.NonMF.TorsionFree.Cayley.val_base -> Cayley.val_base.] Merged 2026-08-27 from 3 sentences of the previous version.
+Every sentence carries a declaration, a ledger row, or a reason no declaration applies.
 
 ## By section
 

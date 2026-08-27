@@ -1,14 +1,15 @@
 import GroupApproximation.Computability.ParametricRecursiveSwitchPresentation
 import GroupApproximation.Computability.PresentationCodeCompleteness
+import GroupApproximation.Manuscript.MFRecognition.SeedFromTheoremC
 
 /-!
 # The finite-presentation seed and the FIN/INF switch
 
 The recognition construction only needs a fixed finitely presented non-MF
-group.  We use the repository's closed negative presentation code directly,
-then feed it to the executable parametric finite-seed switch.  This avoids an
-irrelevant Diamond-Lemma word-problem detour through the particular Leavitt
-group used in the companion paper.
+group: the paper's `E`, the group of Theorem C, coded in
+`SeedFromTheoremC` (`lem:seed`).  It is fed to the executable parametric
+finite-seed switch.  This avoids an irrelevant Diamond-Lemma word-problem
+detour through the particular Leavitt group used in the companion paper.
 -/
 
 namespace GroupApproximation
@@ -21,8 +22,9 @@ open ParametricRecursiveSwitchPresentation
 
 noncomputable section
 
-/-- The fixed finitely presented non-MF seed. -/
-abbrev seedCode : PresentationCode := PresentationCodes.negativeCode
+/-- **The fixed finitely presented non-MF seed: the paper's `E`**, the group of
+Theorem C, coded by `SeedFromTheoremC.seedCodeC` (`lem:seed`). -/
+abbrev seedCode : PresentationCode := SeedFromTheoremC.seedCodeC
 
 /-- The group carried by the seed presentation. -/
 abbrev H : Type := Carrier seedCode
@@ -31,9 +33,9 @@ instance : Group H := inferInstance
 instance : Countable H := inferInstance
 instance : Group.IsFinitelyPresented H := inferInstance
 
-/-- The seed is unconditionally non-MF. -/
+/-- **`lem:seed`**: the seed is not MF. -/
 theorem seed_not_isOperatorMF : ¬ IsOperatorMF H :=
-  PresentationCodes.not_isOperatorMF_negativeCode
+  SeedFromTheoremC.not_isOperatorMF_seedCodeC
 
 /-- The recursive presentation emitted for program `e`. -/
 abbrev switchCode (e : Code) : Code :=
