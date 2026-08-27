@@ -30,12 +30,14 @@ def selectedEndsWithRow {m : ℕ} {B : Set E}
   p.2 = true ∧ (p.1 : E) ≠ 0
 
 theorem toWord_inv_eq_invRev
-    {A : Type*} [DecidableEq A] (v : FreeGroup A) :
+    {A : Type} [DecidableEq A] (v : FreeGroup A) :
     v⁻¹.toWord = FreeGroup.invRev v.toWord := by
+  have hred : FreeGroup.IsReduced (FreeGroup.invRev v.toWord) :=
+    Hyperbolic.isReduced_invRev (FreeGroup.isReduced_toWord (x := v))
   have heq : v⁻¹ = FreeGroup.mk (FreeGroup.invRev v.toWord) := by
     rw [← FreeGroup.inv_mk, FreeGroup.mk_toWord]
-  rw [heq, FreeGroup.toWord_mk,
-    (Hyperbolic.isReduced_invRev FreeGroup.isReduced_toWord).reduce_eq]
+  rw [heq, FreeGroup.toWord_mk]
+  exact hred.reduce_eq
 
 end Omega
 end Higman
