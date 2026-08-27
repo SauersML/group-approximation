@@ -66,9 +66,11 @@
 Some groups are not MF. For example, $H=\EL_{12}(L_{\F_2}(1,2))$ is
 a simple property-\textup{(T)} group where every homomorphism from $H$
 to an MF group is trivial, so $C^*_{\mathrm r}(H)$ is a separable stably
-finite $C^*$-algebra that is not MF\@. In general, a
-normal property-\textup{(T)} subgroup contained in the commutators of a
-one-sided compression of a property-\textup{(T)} subgroup is killed by every
+finite $C^*$-algebra that is not MF\@.  Generally, if a
+property-\textup{(T)} subgroup $L$ of a countable group is conjugated into
+itself by an element $u$, then every normal property-\textup{(T)} subgroup
+contained in the normal closure of the commutators $[ucu^{-1},\ell]$, with
+$c$ centralizing $L$ and $\ell\in L$, lies in the kernel of every
 homomorphism to an MF group.  The same criterion gives a finitely presented
 torsion-free property-\textup{(T)} group with no nontrivial homomorphism to
 an MF group.
@@ -79,7 +81,7 @@ an MF group.
 
 \section{Introduction}
 
-The counterexample is
+Not every countable group is MF; the counterexample is
 \[
  H=\EL_{12}(L_{\F_2}(1,2)),
 \]
@@ -678,9 +680,9 @@ $\normal d_H=H$ gives $\mathfrak D_H(L)=H$.  So
 Theorem~\ref{thm:compression-criterion}, applied with $K=H$, makes every
 homomorphism from $H$ to an MF group trivial, and
 Proposition~\ref{prop:simple} makes $H$ nontrivial and simple.  In
-particular $H$ is not MF\@.  The algebra $C^*_{\mathrm r}(H)$ is separable
-and stably finite; if an embedding $e\colon C^*_{\mathrm r}(H)\to\mathcal Q_{\mathbf d}$
-existed and $p=e(1)$, then $h\mapsto e(\lambda_h)+(1-p)$ would embed $H$ in
+particular $H$ is not MF\@.  The algebra $C^*_{\mathrm r}(H)$ is separable,
+and stably finite because its canonical trace is faithful; if an embedding
+$e\colon C^*_{\mathrm r}(H)\to\mathcal Q_{\mathbf d}$ existed and $p=e(1)$, then $h\mapsto e(\lambda_h)+(1-p)$ would embed $H$ in
 $\U(\mathcal Q_{\mathbf d})$.
 \end{proof}
 
