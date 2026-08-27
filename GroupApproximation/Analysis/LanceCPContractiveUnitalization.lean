@@ -1,6 +1,8 @@
 import GroupApproximation.Analysis.LanceCPApprox
+import GroupApproximation.Analysis.CStarTakesakiDense
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order
+import Mathlib.Analysis.InnerProductSpace.GramMatrix
 
 /-!
 # Unit-defect control for completely positive contractions
@@ -29,6 +31,102 @@ namespace CStarExactness
 universe u v w
 
 noncomputable section
+
+open scoped ComplexOrder InnerProductSpace
+
+/-! ## State-valued positive rank-one maps -/
+
+/-- A state, multiplied by a fixed target element. -/
+def stateSmulLinearMap
+    {A : Type u} {B : Type v} [CStarAlgebra A] [CStarAlgebra B]
+    (omega : CStarState.State A) (b : B) : A →ₗ[ℂ] B where
+  toFun a := omega.toCLM a • b
+  map_add' a c := by rw [map_add, add_smul]
+  map_smul' z a := by
+    simp only [map_smul, smul_smul, RingHom.id_apply, smul_eq_mul]
+
+@[simp] theorem stateSmulLinearMap_apply
+    {A : Type u} {B : Type v} [CStarAlgebra A] [CStarAlgebra B]
+    (omega : CStarState.State A) (b : B) (a : A) :
+    stateSmulLinearMap omega b a = omega.toCLM a • b := rfl
+
+open scoped MatrixOrder Matrix.Norms.L2Operator in
+/-- A finite Gram matrix has a square factor in the ordinary complex matrix
+algebra.  Keeping the matrix-order scope inside this declaration prevents it
+from competing with the `CStarMatrix` instances in complete-positivity proofs. -/
+theorem exists_matrix_star_mul_self_eq_gram
+    {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+    {n : ℕ} (v : Fin n → H) :
+  ∃ Q : Matrix (Fin n) (Fin n) ℂ, Matrix.gram ℂ v = star Q * Q := by
+  have hnonneg : 0 ≤ Matrix.gram ℂ v := (Matrix.posSemidef_gram ℂ v).nonneg
+  exact CStarAlgebra.nonneg_iff_eq_star_mul_self.mp hnonneg
+
+/-- A positive element multiplied by a state gives a completely positive map. -/
+theorem isCompletelyPositive_stateSmulLinearMap
+    {A : Type u} {B : Type v} [CStarAlgebra A] [CStarAlgebra B]
+    [Nontrivial A]
+    (omega : CStarState.State A) {b : B}
+    (hb : ∃ c : B, b = star c * c) :
+    IsCompletelyPositive (stateSmulLinearMap omega b) := by
+  intro n M hM
+  obtain ⟨N, rfl⟩ := hM
+  obtain ⟨c, rfl⟩ := hb
+  let v : Fin n → PiLp 2 (fun _ : Fin n ↦ omega.GNSSpace) := fun i ↦
+    WithLp.toLp 2 (fun r ↦ (omega.gnsRep).hom (N r i) omega.gnsVector)
+  let S : Matrix (Fin n) (Fin n) ℂ := Matrix.gram ℂ v
+  have hSentry : ∀ i j : Fin n,
+      S i j = ∑ r : Fin n, omega.toCLM (star (N r i) * N r j) := by
+    intro i j
+    rw [show S i j = ⟪v i, v j⟫_ℂ from rfl, PiLp.inner_apply]
+    refine Finset.sum_congr rfl fun r _ ↦ ?_
+    change ⟪(omega.gnsRep).hom (N r i) omega.gnsVector,
+        (omega.gnsRep).hom (N r j) omega.gnsVector⟫_ℂ = _
+    calc
+      ⟪(omega.gnsRep).hom (N r i) omega.gnsVector,
+          (omega.gnsRep).hom (N r j) omega.gnsVector⟫_ℂ =
+          ⟪omega.gnsVector,
+            (omega.gnsRep).hom (star (N r i))
+              ((omega.gnsRep).hom (N r j) omega.gnsVector)⟫_ℂ := by
+            exact (omega.gnsRep).isAdjoint_star (N r i) _ _
+      _ = ⟪omega.gnsVector,
+            (omega.gnsRep).hom (star (N r i) * N r j)
+              omega.gnsVector⟫_ℂ := by
+            rw [map_mul]
+            rfl
+      _ = omega.toCLM (star (N r i) * N r j) :=
+        CStarTensor.inner_gnsVector_gnsRep omega _
+  obtain ⟨Q, hQ⟩ := exists_matrix_star_mul_self_eq_gram v
+  let P : CStarMatrix (Fin n) (Fin n) B := fun i j ↦ Q i j • c
+  refine ⟨P, ?_⟩
+  ext i j
+  have hNentry : (star N * N) i j =
+      ∑ r : Fin n, star (N r i) * N r j := by
+    rw [cstarMatrix_mul_apply]
+    refine Finset.sum_congr rfl fun r _ ↦ ?_
+    rw [cstarMatrix_star_apply]
+  have hQentry : S i j = ∑ r : Fin n, star (Q r i) * Q r j := by
+    change Matrix.gram ℂ v i j = _
+    rw [hQ, Matrix.mul_apply]
+    refine Finset.sum_congr rfl fun r _ ↦ ?_
+    rfl
+  calc
+    ((star N * N).map ⇑(stateSmulLinearMap omega (star c * c))) i j =
+        omega.toCLM ((star N * N) i j) • (star c * c) := rfl
+    _ = (∑ r : Fin n, omega.toCLM (star (N r i) * N r j)) •
+        (star c * c) := by rw [hNentry, map_sum]
+    _ = S i j • (star c * c) := by rw [hSentry]
+    _ = (∑ r : Fin n, star (Q r i) * Q r j) • (star c * c) := by
+      rw [← hQentry]
+    _ = ∑ r : Fin n,
+        (star (Q r i) * Q r j) • (star c * c) := Finset.sum_smul
+    _ = ∑ r : Fin n, star (P r i) * P r j := by
+      refine Finset.sum_congr rfl fun r _ ↦ ?_
+      change (star (Q r i) * Q r j) • (star c * c) =
+        (star (Q r i • c)) * (Q r j • c)
+      rw [star_smul, smul_mul_smul]
+    _ = (star P * P) i j := by
+      rw [cstarMatrix_mul_apply]
+      exact (Finset.sum_congr rfl fun r _ ↦ by rw [cstarMatrix_star_apply]).symm
 
 /-- The unit defect of a completely positive contraction is positive. -/
 theorem one_sub_map_one_nonneg_of_completelyPositive_contractive
@@ -136,3 +234,5 @@ open GroupApproximation.CStarExactness
 #audit_axioms one_sub_map_one_nonneg_of_completelyPositive_contractive
 #audit_axioms norm_one_sub_second_one_le_of_cp_contractions
 #audit_axioms norm_second_incoming_unit_defect_le_of_cp_contractions
+#audit_axioms exists_matrix_star_mul_self_eq_gram
+#audit_axioms isCompletelyPositive_stateSmulLinearMap
