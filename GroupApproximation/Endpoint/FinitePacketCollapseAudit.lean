@@ -11,13 +11,14 @@ import GroupApproximation.Sofic.FinitePacketDelormeDiagonalization
 import GroupApproximation.Sofic.FinitePacketDisplacementCocycle
 import GroupApproximation.Sofic.FinitePacketWordCovariance
 import GroupApproximation.Sofic.FinitePacketCollapseCore
+import GroupApproximation.Sofic.FinitePacketFullCollapse
 
 /-!
 # Kernel audit for the formalized finite-packet collapse layers
 
-These are the new unconditional declarations.  The full corona-collapse and
-concrete `S₉` carrier are intentionally absent until their remaining inputs
-are formalized.
+These are the unconditional finite-packet declarations, including the full
+generic corona-collapse endpoint.  The concrete `S₉` carrier remains a
+separate specialization.
 -/
 
 #print axioms GroupApproximation.FinitePacketCovariance.exists_near_identity_exact_covariance
@@ -37,6 +38,7 @@ are formalized.
 #print axioms GroupApproximation.StarTranspositionRankMass.matMass_sub_eq_three_mul_rank
 #print axioms GroupApproximation.FinitePacketDelormeCenter.exists_approximate_coboundary
 #print axioms GroupApproximation.FinitePacketDelormeDiagonalization.exists_cofinal_vanishing_coboundary_primitive
+#print axioms GroupApproximation.FinitePacketDelormeDiagonalization.scaledMassVanishing_rankScaled_unitary
 #print axioms GroupApproximation.FinitePacketDisplacementCocycle.isBoundedSeq_normalizedDisplacement
 #print axioms GroupApproximation.FinitePacketDisplacementCocycle.seqNorm_cocycleDefect_eq_zero
 #print axioms GroupApproximation.FinitePacketDisplacementCocycle.exists_uniform_profile_bound
@@ -46,3 +48,6 @@ are formalized.
 #print axioms GroupApproximation.FinitePacketWordCovariance.wordMoverFamily_scaled_conjugation
 #print axioms GroupApproximation.FinitePacketCollapseCore.eventually_packetRankWeight_eq_zero_of_scaled_vanishing
 #print axioms GroupApproximation.FinitePacketCollapseCore.eventually_generator_eq_base_of_scaled_vanishing
+#print axioms GroupApproximation.FinitePacketFullCollapse.scaledMassVanishing_rankScaled_defect
+#print axioms GroupApproximation.FinitePacketFullCollapse.rankScaled_normalizedDisplacement_eq
+#print axioms GroupApproximation.FinitePacketFullCollapse.exists_cofinal_exact_packet_collapse
