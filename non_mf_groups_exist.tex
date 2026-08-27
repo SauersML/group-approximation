@@ -168,35 +168,35 @@ Let $P$ be the projection onto the vectors fixed by $L$, which is the
 Kazhdan projection of $L$, and let $U$ be the unitary of the compressor
 $u$.  If $\xi$ is fixed by $L$, then so is $U^*\xi$, because
 $\ell\cdot U^*\xi=U^*\bigl((u\ell u^{-1})\cdot\xi\bigr)$ for $\ell\in L$
-and $u\ell u^{-1}\in L$ fixes $\xi$.  So $U^*PU\le P$.  The projections
+and $u\ell u^{-1}\in L$ fixes $\xi$; therefore $U^*PU\le P$.  The projections
 $P$ and $U^*PU$ are conjugate by the unitary $U$, and in a stably finite
-$C^*$-algebra two equivalent projections, one below the other, are equal;
-the matrix corona is stably finite, so $U^*PU=P$.  In terms of
+$C^*$-algebra two equivalent projections, one below the other, are equal.
+The matrix corona is stably finite, and $U^*PU=P$ follows.  In terms of
 sequences, the vectors fixed by $L$ are the classes of $(x_n)$ with
 $\hsnorm{[V_n(\ell),x_n]}\to0$ for all $\ell\in L$, and $U^*PU=P$ means
 that conjugation by $V_n(u)$ maps this Hilbert--Schmidt asymptotic
 commutant of $L$ onto itself.  For $c\in C_G(L)$ the sequence $(V_n(c))$
 lies in the asymptotic commutant, so $(V_n(ucu^{-1}))$ does too, that is,
 $\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$ for all $\ell\in L$.  The elements
-with this property form a normal subgroup, so every element of
-$\mathfrak D_G(L)$ tends to $1$ in Hilbert--Schmidt norm.
+with this property form a normal subgroup, which then contains
+$\mathfrak D_G(L)$.
 
-So the hypothesis $K\le\mathfrak D_G(L)$ gives $\hsnorm{V_n(k)-1}\to0$ for
-$k\in K$, and a second use of property~\textup{(T)}, now for $K$, gives
-triviality in operator norm.  Suppose that a corona homomorphism
+The hypothesis $K\le\mathfrak D_G(L)$ therefore gives
+$\hsnorm{V_n(k)-1}\to0$ for $k\in K$, and a second use of
+property~\textup{(T)}, now for $K$, gives triviality in operator norm.  Suppose that a corona homomorphism
 $\Theta\colon G\to\U(\mathcal Q_{\mathbf d})$ is nontrivial on $K$.  Let
 $p\in\mathcal Q_{\mathbf d}$ be the Kazhdan projection of $K$, the
 projection onto the $K$-fixed vectors.  Then $p\ne1$, and $p$ commutes
-with $\Theta(G)$ because $K$ is normal.  So $\Theta$ compresses to the
-corner $(1-p)\mathcal Q_{\mathbf d}(1-p)$, where $K$ has no fixed vectors,
+with $\Theta(G)$ because $K$ is normal.  The homomorphism $\Theta$ then
+compresses to the corner $(1-p)\mathcal Q_{\mathbf d}(1-p)$, where $K$ has no fixed vectors,
 and the compressed homomorphism lifts to an operator norm asymptotic
 representation $(W_n)$ of $G$ on smaller matrices.  The Kazhdan inequality
 for $K$ bounds the average of $\hsnorm{W_n(s)-1}^2$ over a Kazhdan set
 $S\subseteq K$ below by a positive constant, so some $s\in S$ stays a
 fixed Hilbert--Schmidt distance from $1$, against the vanishing on $K$
-applied to $(W_n)$.  So every corona homomorphism is trivial on $K$, and
-by Lemma~\ref{prop:mf-residual-calculus} so is every homomorphism to an
-MF group.  A Hilbert--Schmidt bound on the multiplicative defect gives no
+applied to $(W_n)$.  Every corona homomorphism is therefore trivial on
+$K$, and by Lemma~\ref{prop:mf-residual-calculus} the same holds for
+every homomorphism to an MF group.  A Hilbert--Schmidt bound on the multiplicative defect gives no
 operator norm bound on the conjugation maps, so the argument does not
 apply to sofic or hyperlinear approximations.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity}
