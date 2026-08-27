@@ -192,7 +192,8 @@ theorem starStrongSubalgebra_isClosed (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L
     obtain ⟨N, hN⟩ := Metric.tendsto_atTop.mp h1 ε hε
     refine ⟨N, ?_⟩
     have h2 := hN N le_rfl
-    rw [Real.dist_eq, sub_zero, abs_of_nonneg (by positivity)] at h2
+    have hnn : (0 : ℝ) ≤ ‖a - u N‖ * ‖v‖ := by positivity
+    rw [Real.dist_eq, sub_zero, abs_of_nonneg hnn] at h2
     exact h2.le
   have hsub : ∀ (k : ℕ) (n : ℕ),
       ι n (a n) - ι n ((u k) n) = ι n ((a - u k) n) := by
@@ -222,12 +223,23 @@ theorem starStrongSubalgebra_isClosed (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L
 
 /-! ## The limit map `q` -/
 
+/-- Membership in `𝒟`, in the shape `Exists.choose` consumes: the subtype's
+`property` field has `Membership.mem` at its head, and dot notation resolves on
+that head, not on the existential it unfolds to. -/
+theorem exists_isStarStrongLimit_of_mem (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
+    (hnorm : ∀ (n : ℕ) (x : A n), ‖ι n x‖ ≤ ‖x‖)
+    (hone : ∀ v : H, Tendsto (fun n ↦ ι n (1 : A n) v) atTop (𝓝 v))
+    (x : starStrongSubalgebra ι hnorm hone) :
+    ∃ T : H →L[ℂ] H,
+      IsStarStrongLimit (fun n ↦ ι n ((x : BoundedStarSequence A) n)) T :=
+  x.property
+
 /-- **Shulman's `q`.**  The `*`-strong limit of a member of `𝒟`. -/
 def starStrongLimit (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
     (hnorm : ∀ (n : ℕ) (x : A n), ‖ι n x‖ ≤ ‖x‖)
     (hone : ∀ v : H, Tendsto (fun n ↦ ι n (1 : A n) v) atTop (𝓝 v))
     (x : starStrongSubalgebra ι hnorm hone) : H →L[ℂ] H :=
-  x.property.choose
+  (exists_isStarStrongLimit_of_mem ι hnorm hone x).choose
 
 theorem starStrongLimit_spec (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
     (hnorm : ∀ (n : ℕ) (x : A n), ‖ι n x‖ ≤ ‖x‖)
@@ -236,7 +248,7 @@ theorem starStrongLimit_spec (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
     IsStarStrongLimit
       (fun n ↦ ι n ((x : BoundedStarSequence A) n))
       (starStrongLimit ι hnorm hone x) :=
-  x.property.choose_spec
+  (exists_isStarStrongLimit_of_mem ι hnorm hone x).choose_spec
 
 /-- `q` is determined by any `*`-strong limit of the same sequence. -/
 theorem starStrongLimit_eq (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
