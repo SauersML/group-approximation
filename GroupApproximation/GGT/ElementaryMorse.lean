@@ -68,14 +68,28 @@ recursive-detour bound.  What is wrong with it is the constant: `kL, kR` are the
 dyadic depths of the two sides, so the bound carries a `δ·log₂ N` term and
 degrades with the length of the chain.
 
-**Removing that term is the whole residual, and no covering argument enters.**
-The classical route is the bootstrap the source lemma is shaped for: the two
-sampled vertices `y i` and `y (j+q)` that
-`exists_chain_vertices_across_far_vertex` returns are at chain-distance at most
-`(D + (kL+kR)δ + 6δ)/l`, so the sub-chain carrying the detour has length
-logarithmic in `N`; applying the same estimate to *that* sub-chain replaces
-`log₂ N` by `log₂ log₂ N`, and iterating stabilises, because `log₂` is
-eventually contracting.  That induction is the missing step.
+**Removing that term is the whole residual, and it is not an induction on the
+chain length.**  Recursing on `N` cannot work, and the reason is worth stating:
+the two sampled vertices `y i` and `y (j+q)` that
+`exists_chain_vertices_across_far_vertex` returns are only known to satisfy
+`d(y i, y (j+q)) ≤ D + (kL+kR)δ + 6δ`, an error that *itself* carries the
+`log₂ N` term.  So an inductive step that bounds the depth of `y j` against the
+chord of the sub-chain `[i, j+q]` and then transfers to the big chord reintroduces
+`(kL+kR)δ` as an additive error at every level, and the constant never closes up
+however deep the recursion goes.  Self-improvement has to happen at a smaller
+*scale*, not on a shorter chain.
+
+The route that does close is the linear-versus-logarithmic comparison already in
+the file, applied to the depth rather than to the length.  Let `p = fAC s` be a
+chord point at maximal distance `ρ` from the chain; the chain avoids `B(p, ρ)`,
+and `y 0`, `y N`, `p` all lie on the chord with `p` between them, so their
+Gromov product at `p` is `0` and `radius_le_of_chain_avoids_ball` gives
+`ρ ≤ D/2 + clog₂(N')·δ` for the excursion sub-chain of length `N'`.  Cutting
+that sub-chain down to the part that actually straddles `p` makes `N' = O(ρ/l)`,
+and then `ρ ≤ D/2 + δ·clog₂(Cρ)` is linear-against-logarithmic *in `ρ` alone* —
+which is exactly `exists_bound_of_linear_le_add_clog`, already proved and already
+used once by `exists_bound_excursion_chain_length`.  So the missing step is the
+cut, not a new estimate.
 
 The engine `exists_bound_chain_excursion_depth` does **not** supply it, and the
 tempting route through it does not close: applying it at `w := γ t` needs both
