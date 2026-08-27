@@ -55,3 +55,20 @@ The absolute (T) case is now typed and consumed:
 `not_hasFactorizationProperty_of_kazhdan_not_operatorMF`.  What this claim
 asks beyond it is exactly the RELATIVE version: running the rigidity of the
 Kazhdan base of `E` through models of the whole non-Kazhdan group.
+
+## Depth calibration against the flexible-stability frontier
+
+Step (i) — upgrading the u.c.p. models POINTWISE (not just in character) on
+the Kazhdan base — is precisely a flexible Hilbert--Schmidt stability
+statement for that base.  The graph already carries flexible HS-stability of
+arithmetic groups as live routes into `non-hyperlinear-group`
+(`non-hyperlinear-from-hnn-over-sl2-z`, `non-hyperlinear-from-hnn-over-sln-z`,
+`non-hyperlinear-from-sl3-z-weak-ucp-stability`; Dogon arXiv:2211.10492 for
+`Sp₂g(ℤ)`, Dogon--Vigdorovich arXiv:2506.20843 for `SL₂(ℤ[1/p])` and the
+character-rigidity equivalence for higher-rank lattices).  So establishing the
+stability input here would simultaneously advance the program's root, and
+conversely: this leaf is at least as deep as that frontier, and any partial
+stability theorem for the literal base should be checked against both
+consumers.  Kirchberg's character-level lemma is what remains after
+stability is subtracted, which is why the absolute Kazhdan case closed
+(`KazhdanQuasidiagonalTraces.lean`) while this relative case is open.
