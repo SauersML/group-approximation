@@ -1,4 +1,5 @@
 import GroupApproximation.Sofic.FinitePacketDisplacementCocycle
+import GroupApproximation.Stability.MixedApproximation
 
 /-!
 # Extending generator covariance along chosen words
@@ -154,6 +155,49 @@ theorem wordMoverFamily_lifts
   change QuotientGroup.mk
       (fun n ↦ wordMoverList (fun a ↦ U a n) (chosenWord S hgen g)) = rho g
   simpa only [chosenWord_prod] using h
+
+/-- Chosen-word movers and the ambient almost representation are
+operator-norm equivalent coordinatewise, because they define the same corona
+element. -/
+theorem wordMoverFamily_opNormVanishing
+    {E : Type} [Group E]
+    (B : OpAlmostRepresentation E) (iota : Γ →* E)
+    (U : Γ → ∀ n, Matrix.unitaryGroup (B.model n) ℂ)
+    (S : Finset Γ)
+    (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
+    (hU : ∀ a ∈ S,
+      (QuotientGroup.mk (U a) : NormMatrixCoronaUnitary B.model) =
+        (OpAlmostRepresentation.coronaHom B) (iota a))
+    (g : Γ) :
+    KazhdanCornerMatrices.OpNormVanishing B (fun n ↦
+      (wordMoverFamily S hgen U g n :
+          Matrix (B.model n) (B.model n) ℂ) -
+        (B.map n (iota g) : Matrix (B.model n) (B.model n) ℂ)) := by
+  let rho : Γ →* NormMatrixCoronaUnitary B.model :=
+    (OpAlmostRepresentation.coronaHom B).comp iota
+  have hclass :
+      (QuotientGroup.mk (wordMoverFamily S hgen U g) :
+          NormMatrixCoronaUnitary B.model) =
+        QuotientGroup.mk (fun n ↦ B.map n (iota g)) := by
+    calc
+      QuotientGroup.mk (wordMoverFamily S hgen U g) = rho g :=
+        wordMoverFamily_lifts rho U S hgen hU g
+      _ = (OpAlmostRepresentation.coronaHom B) (iota g) := rfl
+      _ = QuotientGroup.mk (fun n ↦ B.map n (iota g)) := rfl
+  have hnull :
+      (wordMoverFamily S hgen U g)⁻¹ * (fun n ↦ B.map n (iota g)) ∈
+        nullCofiniteOpSubgroup B.model := QuotientGroup.eq.mp hclass
+  intro ε hε
+  have hev := hnull ε hε
+  rw [Nat.cofinite_eq_atTop, Filter.eventually_atTop] at hev
+  obtain ⟨N, hN⟩ := hev
+  refine ⟨N, fun n hn ↦ ?_⟩
+  have h := hN n hn
+  change opLength (B.model n)
+      ((wordMoverFamily S hgen U g n)⁻¹ * B.map n (iota g)) < ε at h
+  rw [opLength_inv_mul] at h
+  rw [norm_sub_rev]
+  exact h.le
 
 end
 
