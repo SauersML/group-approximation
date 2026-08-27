@@ -2021,6 +2021,8 @@ import GroupApproximation.Analysis.HNNTraceStarAlgHomDescent
 import GroupApproximation.Analysis.HNNTraceTracialStateContinuous
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceBaseTransport
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceCitations
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceTraceBridge
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanence
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
