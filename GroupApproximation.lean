@@ -1913,6 +1913,8 @@ import GroupApproximation.Leavitt.LeavittModuleRank
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerClassIdentificationAudit
 import GroupApproximation.Computability.SoficRecognitionSecondLevel
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedHeadlineExact
+import GroupApproximation.Manuscript.NonMF.AcylindricallyHyperbolic
+import GroupApproximation.Manuscript.NonMF.HullSmallCancellation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
