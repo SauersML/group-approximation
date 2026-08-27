@@ -339,7 +339,8 @@ challenge is answered with separation `δ`, the coded group is MF: a
 challenge whose words separate the set's distinct pairs, at the scale the
 area bound of the multiplication words prescribes. -/
 theorem isOperatorMF_of_answers (c : PresentationCode) (δ : ℝ) (hδ : 0 < δ)
-    (h : ∀ W N k, (∃ w ∈ W, EnumWordProblem c w) ∨
+    (h : ∀ (W : List (List (ℕ × Bool))) (N k : ℕ),
+      (∃ w ∈ W, EnumWordProblem c w) ∨
       ∃ M : NatMatrixMicrostate,
         (∀ j, j ≤ N → M.hlen (relatorAt c j) ≤ 1 / ((k : ℝ) + 1)) ∧
           ∀ w ∈ W, δ ≤ M.len w) :

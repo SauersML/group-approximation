@@ -131,13 +131,13 @@ def challengeCode (c : PresentationCode) (W : List (List (ℕ × Bool)))
 theorem letters_lt_genCount_of_mem_words (c : PresentationCode)
     {W : List (List (ℕ × Bool))} (N : ℕ) {w : List (ℕ × Bool)} (hw : w ∈ W) :
     ∀ p ∈ w, p.1 < PresentationCodes.genCount (challengeCode c W N) :=
-  fun p hp => Nat.lt_succ_of_lt (lt_challengeBound_of_mem_words c N hw hp)
+  fun _ hp => Nat.lt_succ_of_lt (lt_challengeBound_of_mem_words c N hw hp)
 
 theorem letters_lt_genCount_of_relator (c : PresentationCode)
     (W : List (List (ℕ × Bool))) {N j : ℕ} (hj : j ≤ N) :
     ∀ p ∈ rawRelator c j,
       p.1 < PresentationCodes.genCount (challengeCode c W N) :=
-  fun p hp => Nat.lt_succ_of_lt (lt_challengeBound_of_relator c W hj hp)
+  fun _ hp => Nat.lt_succ_of_lt (lt_challengeBound_of_relator c W hj hp)
 
 /-! ## Moving microstates between the two alphabets -/
 
@@ -151,10 +151,10 @@ theorem lift_wordOf {Y : FiniteModel} (c' : PresentationCodes.PresentationCode)
   | [] => by
       rw [RawWord.wordOf_nil, map_one, evalRaw_nil]
   | (i, true) :: w => by
-      rw [RawWord.wordOf_cons_pos, map_mul, FreeGroup.lift.of, lift_wordOf c' g w]
+      rw [RawWord.wordOf_cons_pos, map_mul, FreeGroup.lift_apply_of, lift_wordOf c' g w]
       rfl
   | (i, false) :: w => by
-      rw [RawWord.wordOf_cons_neg, map_mul, map_inv, FreeGroup.lift.of,
+      rw [RawWord.wordOf_cons_neg, map_mul, map_inv, FreeGroup.lift_apply_of,
         lift_wordOf c' g w]
       rfl
 
