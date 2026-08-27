@@ -2,6 +2,7 @@
 rg: 2
 id: literal-group-factorization-property
 kind: claim
+refuted_by: [literal-group-lacks-factorization-property]
 title: The literal finitely presented group has Kirchberg's factorization property
 distinct_from:
   literal-group-sofic: that is permutation approximation of E in normalized Hamming distance; this asks that the canonical trace of C*(E) be amenable in Brown's sense, which is soficity plus a u.c.p. lifting of the resulting tracial-ultraproduct representation, and the lifting is the whole content.
