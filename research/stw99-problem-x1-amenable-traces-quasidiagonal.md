@@ -10,6 +10,7 @@ distinct_from:
   mf-implies-hyperlinear: that compares two approximation properties of a group; this compares two approximation properties of a single trace on an arbitrary C*-algebra.
   stw99-problem-ix1-nuclear-faithful-trace-quasidiagonal: that asks only about faithful traces on separable nuclear algebras and concludes quasidiagonality of the algebra; this asks about every amenable trace and concludes quasidiagonality of the trace, and it is the stronger question (route stw99-x1-implies-ix1).
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -67,3 +68,8 @@ canonical trace is a hyperlinear trace that is not quasidiagonal
 (`literal-canonical-trace-hyperlinear-not-quasidiagonal`).  The one thing
 standing between that fact and a negative answer to this problem is the
 factorization property of `E` (`literal-group-factorization-property`).
+
+Lean statement: `NinetyNineProblems.ProblemX1Statement` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`).  The same
+module proves `isHyperlinearTrace_of_isAmenableTrace` (an amenable trace is a
+hyperlinear trace) and the conditional refutation
+`not_problemX1Statement_of_literalFactorizationProperty`.

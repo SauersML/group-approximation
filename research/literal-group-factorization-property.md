@@ -7,6 +7,7 @@ distinct_from:
   literal-group-sofic: that is permutation approximation of E in normalized Hamming distance; this asks that the canonical trace of C*(E) be amenable in Brown's sense, which is soficity plus a u.c.p. lifting of the resulting tracial-ultraproduct representation, and the lifting is the whole content.
   literal-central-mark-corona-invisible: that is an operator-norm obstruction; this is a Hilbert--Schmidt-norm approximation property with a lifting clause, and the two are independent.
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -56,3 +57,6 @@ says it cannot do for merely bounded ones.
 Open.  Any proof must use the structure of `E` (an HNN-type extension of a
 Kazhdan--Clifford base with a telescope core that is locally residually
 finite, `literal-telescope-core-lef`) rather than soficity alone.
+
+Lean: `NinetyNineProblems.LiteralFactorizationProperty : Prop` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`), defined
+as `IsAmenableTrace` of the canonical trace of `C*(E)`; no inhabitant.

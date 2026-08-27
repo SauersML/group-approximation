@@ -6,6 +6,7 @@ title: Factorization property of the literal group plus its non-quasidiagonal tr
 target: stw99-problem-x1-fails-on-full-group-algebras
 requires: [literal-group-factorization-property, literal-canonical-trace-hyperlinear-not-quasidiagonal]
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -17,3 +18,8 @@ amenable trace that is not quasidiagonal, which is the target with `G = E`.
 Nothing else is used.  The premise
 `literal-canonical-trace-hyperlinear-not-quasidiagonal` is established in
 Lean; the factorization-property premise is the only open leaf.
+
+**Formalized:** `NinetyNineProblems.not_problemX1Statement_of_literalFactorizationProperty :
+LiteralFactorizationProperty → ¬ ProblemX1Statement` and its contrapositive
+`not_literalFactorizationProperty_of_problemX1Statement` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`, 2dbea8f73).
+The Lean hypothesis is exactly the open leaf.

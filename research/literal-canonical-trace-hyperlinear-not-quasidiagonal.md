@@ -7,6 +7,7 @@ distinct_from:
   literal-central-mark-corona-invisible: that is the statement about group representations into the norm corona; this is its trace-level form on the whole of C*(E), paired with the positive Hilbert--Schmidt statement that soficity gives.
   literal-group-sofic: that is the permutation approximation; this is the pair of trace statements it feeds, one positive and one negative.
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - GroupApproximation/Analysis/SoficHyperlinearBridge.lean
   - GroupApproximation/Sofic/LiteralTraceConsequence.lean
@@ -38,3 +39,6 @@ so `E` is not operator-MF.
 
 The distance between clause 1 and Brown's amenability of `τ_E` is complete
 positivity of the models, i.e. `literal-group-factorization-property`.
+
+**Formalized verbatim:** `NinetyNineProblems.literalCanonicalTrace_hyperlinear_not_quasidiagonal`
+(`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`), axiom-clean, landed 2dbea8f73.

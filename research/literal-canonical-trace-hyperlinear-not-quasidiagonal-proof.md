@@ -6,6 +6,7 @@ title: Composition of the sofic hyperlinear bridge with the not-MF-trace endpoin
 target: literal-canonical-trace-hyperlinear-not-quasidiagonal
 requires: []
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - GroupApproximation/Analysis/SoficHyperlinearBridge.lean
   - GroupApproximation/Sofic/LiteralTraceConsequence.lean
 ---
@@ -22,3 +23,7 @@ Non-quasidiagonal clause: given `M : QuasidiagonalTraceModel τ_E`,
 A Lean module stating the conjunction verbatim is being authored
 (`GroupApproximation/Manuscript/NinetyNineProblems/`); until it lands the two
 cited modules carry the two halves.
+
+Landed: `NinetyNineProblems.literalCanonicalTrace_isHyperlinearTrace`,
+`literalCanonicalTrace_not_isQuasidiagonalTrace` and their conjunction in
+`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean` (2dbea8f73).
