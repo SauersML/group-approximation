@@ -1919,6 +1919,8 @@ import GroupApproximation.Manuscript.NonMF.HullSmallCancellation
 import GroupApproximation.Manuscript.MFRecognition.MarkedHigmanOutput
 import GroupApproximation.Manuscript.MFRecognition.EffectiveHigmanCompiler
 import GroupApproximation.Manuscript.NonMF.Saturation
+import GroupApproximation.Manuscript.MFRecognition.MikhailovaConsequences
+import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveSimplicitySentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

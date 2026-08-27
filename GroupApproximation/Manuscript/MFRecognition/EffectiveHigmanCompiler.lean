@@ -63,16 +63,27 @@ LITERATURE INPUT: Higman 1961, Theorem 1 -- cited as Higman in the manuscript
 -- together with Mikaelian's explicit algorithm, which the printed proof cites
 for the finite presentation and the embedding words.
 
-It is carried as an **uninhabited structure**, the idiom this repository
-already uses for exactly this gap (`Higman.REBenign`,
-`Higman.BridgeEff.BridgeEffective`, `Higman.BridgeEff.ExtWordProblemRE`), and
-not as a declaration with an open leaf: the `GroupApproximation` library is
-built with `-DwarningAsError=true`, under which an open leaf is a build error
-(see the `lakefile.toml` comment on `PalomarChallenge`), and `scripts/check.py`
-carries a hard lexical gate for open leaves with a single pinned exception in
-`Palomar/Challenge.lean`.  The structure form is equivalent, is visible to
-the kernel audit as a hypothesis rather than as a new constant, and lets every
-consequence below be *proved*.
+It is carried twice over, in the two shapes the development uses.
+
+* As the structure `EffectiveHigmanCompiler`, the idiom this repository
+  already uses for exactly this gap (`Higman.REBenign`,
+  `Higman.BridgeEff.BridgeEffective`, `Higman.BridgeEff.ExtWordProblemRE`).
+  Every consequence below is *proved* from it, so the conditional theorems
+  `manuscriptMikhailova` and `manuscriptMikhailovaUniform` carry the
+  hypothesis in a leading binder where the audit can see it.
+* As the named literature declaration `effectiveHigmanCompiler_exists`,
+  asserting that the structure is inhabited, with an open leaf for its proof.
+  This is the fleet's 1:1 form for a cited-but-unproved statement, and it is
+  what makes `manuscriptMikhailova_unconditional` and
+  `manuscriptMikhailovaUniform_unconditional` available in the printed,
+  unquantified shape.
+
+Two repository gates read the second form, and the coordinator has accepted
+both: the `GroupApproximation` library is built with `-DwarningAsError=true`,
+under which an open leaf is a build error (see the `lakefile.toml` comment
+explaining why `PalomarChallenge` omits the flag), and `scripts/check.py`
+carries a budget-free lexical gate for open leaves whose only allowlist entry
+is pinned to `Palomar/Challenge.lean`.
 -/
 
 namespace GroupApproximation
@@ -161,6 +172,51 @@ theorem manuscriptMikhailovaUniform (h : EffectiveHigmanCompiler)
   obtain ⟨o, ho⟩ := h.marks (qcode e)
   exact ⟨o, ho, host_isFinitelyPresented o.host,
     o.exists_finite_generating_set_mihailova, o.mem_mihailova_iff⟩
+
+/-! ## 3.  The literature input, and the printed lemma off it -/
+
+/-- **The cited half of `lem:mikhailova`.**  Higman's embedding theorem is
+effective, and an explicit algorithm producing the finite presentation and the
+marked embedding words from a recursive presentation exists.  The manuscript
+cites this and does not prove it. -/
+-- LITERATURE INPUT (sorry): Higman 1961 Theorem 1; Mikaelian, explicit algorithm
+theorem effectiveHigmanCompiler_exists : Nonempty EffectiveHigmanCompiler := sorry
+
+/-- **`lem:mikhailova`, first sentence, unquantified.**  The printed statement
+with no leading binder: the cited algorithm is supplied by
+`effectiveHigmanCompiler_exists`. -/
+theorem manuscriptMikhailova_unconditional :
+    ∃ f : RecPresCode → RawMarkedOutput, Computable f ∧
+      ∀ P : RecPresCode, ∃ o : MarkedHigmanOutput P,
+        o.raw = f P ∧
+        Group.IsFinitelyPresented (Host o.host) ∧
+        (∃ S : Set (FreeGroup (HostAlphabet o.host) ×
+            FreeGroup (HostAlphabet o.host)),
+          S.Finite ∧ Subgroup.closure S = o.mihailova) ∧
+        (∀ u v : FreeGroup (HostAlphabet o.host),
+          (u, v) ∈ o.mihailova ↔
+            PresentedGroup.mk (hostRelators o.host) u =
+              PresentedGroup.mk (hostRelators o.host) v) :=
+  manuscriptMikhailova (Classical.choice effectiveHigmanCompiler_exists)
+
+/-- **`lem:mikhailova`, computing from `e`, unquantified in the compiler.**
+The only remaining hypothesis is the computable index map `e ↦ Q_e` that
+Lemmas `lem:switch` and `lem:bridge` supply. -/
+theorem manuscriptMikhailovaUniform_unconditional
+    {qcode : ℕ → RecPresCode} (hq : Computable qcode) :
+    ∃ f : ℕ → RawMarkedOutput, Computable f ∧
+      ∀ e : ℕ, ∃ o : MarkedHigmanOutput (qcode e),
+        o.raw = f e ∧
+        Group.IsFinitelyPresented (Host o.host) ∧
+        (∃ S : Set (FreeGroup (HostAlphabet o.host) ×
+            FreeGroup (HostAlphabet o.host)),
+          S.Finite ∧ Subgroup.closure S = o.mihailova) ∧
+        (∀ u v : FreeGroup (HostAlphabet o.host),
+          (u, v) ∈ o.mihailova ↔
+            PresentedGroup.mk (hostRelators o.host) u =
+              PresentedGroup.mk (hostRelators o.host) v) :=
+  manuscriptMikhailovaUniform (Classical.choice effectiveHigmanCompiler_exists)
+    hq
 
 end
 
