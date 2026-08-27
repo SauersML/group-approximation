@@ -20,6 +20,7 @@ namespace GroupApproximation
 namespace BlackadarKirchberg
 
 open GroupApproximation.CStarExactness
+open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 
@@ -29,6 +30,22 @@ variable {A : Type u} {D : Type w}
   [CStarAlgebra A] [CStarAlgebra D]
   [Nontrivial A] [Nontrivial D]
   [FiniteDimensional ℂ D]
+
+local instance boundedMatrixSequenceCStarAlgebraForMFUCPInverse
+    (X : ℕ → FiniteModel) [∀ n, Nonempty (X n)] :
+    CStarAlgebra (BoundedMatrixSequence (fun n ↦ X n)) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := by
+    constructor
+    intro c x
+    apply lp.ext
+    funext n
+    change star (c • x n) = star c • star (x n)
+    rw [star_smul]
 
 /-- An MF algebra admits a faithful unital matrix-corona representation across
 which every finite-dimensional UCP map extends UCP-exactly. -/
@@ -57,6 +74,76 @@ theorem exists_unitalMFEmbedding_with_ucp_extension
       hobservableCP hobservableOne
   exact ⟨X, hXne, embedding, extension, hembedding, hextensionCP,
     hextensionOne, hextends⟩
+
+/-- Numerator form of the preceding theorem.  The corona extension composed
+with the quotient map is UCP on the bounded matrix product, kills every
+cofinite-null sequence, and recovers the finite-dimensional observable on a
+chosen bounded lift of every represented source element.
+
+This is the exact global CP approximate-inverse datum immediately before the
+finite-coordinate localization step in the BK construction. -/
+theorem exists_numerator_ucp_inverse_of_isMFAlgebra
+    (hMF : IsMFAlgebra A)
+    (observable : A →ₗ[ℂ] D)
+    (hobservableCP : IsCompletelyPositive observable)
+    (hobservableOne : observable 1 = 1) :
+    ∃ (X : ℕ → FiniteModel) (hX : ∀ n, Nonempty (X n)),
+      letI : ∀ n, Nonempty (X n) := hX
+      ∃ (embedding : A →⋆ₐ[ℂ]
+          NormMatrixCStarCorona (fun n ↦ X n))
+        (inverse : BoundedMatrixSequence (fun n ↦ X n) →ₗ[ℂ] D)
+        (lift : A → BoundedMatrixSequence (fun n ↦ X n)),
+        Function.Injective embedding ∧
+          IsCompletelyPositive inverse ∧
+          inverse 1 = 1 ∧
+          (∀ x, IsNullMatrixSequence (fun n ↦ X n) Filter.cofinite x →
+            inverse x = 0) ∧
+          ∀ a : A,
+            normMatrixCStarCoronaMk (fun n ↦ X n) (lift a) = embedding a ∧
+              inverse (lift a) = observable a := by
+  obtain ⟨X, hXne, embedding, extension, hembedding, hextensionCP,
+      hextensionOne, hextends⟩ :=
+    exists_unitalMFEmbedding_with_ucp_extension hMF observable
+      hobservableCP hobservableOne
+  letI : ∀ n, Nonempty (X n) := hXne
+  let quotientStar : BoundedMatrixSequence (fun n ↦ X n) →⋆ₐ[ℂ]
+      NormMatrixCStarCorona (fun n ↦ X n) :=
+    normMatrixCStarCoronaQuotient (fun n ↦ X n)
+  let quotient : BoundedMatrixSequence (fun n ↦ X n) →ₗ[ℂ]
+      NormMatrixCStarCorona (fun n ↦ X n) :=
+    { toFun := quotientStar
+      map_add' := quotientStar.map_add
+      map_smul' := fun c x ↦ map_smul quotientStar c x }
+  let inverse : BoundedMatrixSequence (fun n ↦ X n) →ₗ[ℂ] D :=
+    extension.comp quotient
+  let lift : A → BoundedMatrixSequence (fun n ↦ X n) :=
+    NonUnitalMFSupportCornerEmbedding.sourceLift X
+      embedding.toNonUnitalStarAlgHom
+  have hquotientCP : IsCompletelyPositive quotient := by
+    intro n M hM
+    exact (isCompletelyPositive_of_starAlgHom
+      quotientStar.toNonUnitalStarAlgHom) n M hM
+  have hquotient_apply (x : BoundedMatrixSequence (fun n ↦ X n)) :
+      quotient x = normMatrixCStarCoronaMk (fun n ↦ X n) x := rfl
+  refine ⟨X, hXne, embedding, inverse, lift, hembedding,
+    hextensionCP.comp hquotientCP, ?_, ?_, ?_⟩
+  · dsimp only [inverse, LinearMap.comp_apply]
+    rw [hquotient_apply]
+    rw [map_one, hextensionOne]
+  · intro x hx
+    dsimp only [inverse, LinearMap.comp_apply]
+    have hzero : normMatrixCStarCoronaMk (fun n ↦ X n) x = 0 :=
+      (normMatrixCStarCoronaMk_eq_zero_iff (fun n ↦ X n) x).mpr hx
+    rw [hquotient_apply, hzero, map_zero]
+  · intro a
+    have hlift : normMatrixCStarCoronaMk (fun n ↦ X n) (lift a) =
+        embedding a :=
+      NonUnitalMFSupportCornerEmbedding.sourceLift_spec X
+        embedding.toNonUnitalStarAlgHom a
+    refine ⟨hlift, ?_⟩
+    dsimp only [inverse, LinearMap.comp_apply]
+    rw [hquotient_apply, hlift]
+    exact hextends a
 
 /-- Closed universal packaging of the MF-to-corona finite-dimensional UCP
 extension theorem. -/
@@ -95,4 +182,5 @@ end GroupApproximation
 open GroupApproximation.BlackadarKirchberg
 
 #audit_axioms exists_unitalMFEmbedding_with_ucp_extension
+#audit_axioms exists_numerator_ucp_inverse_of_isMFAlgebra
 #audit_closed_axioms mfHasFiniteDimensionalUCPExtensions
