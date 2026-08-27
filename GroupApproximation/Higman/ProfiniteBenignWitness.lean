@@ -182,6 +182,15 @@ namespace ProfiniteBenignWitness
 
 variable {H₁ H₂ : Subgroup G}
 
+/-- Every strengthened benign witness cuts out a profinitely closed subgroup
+of its source.  This is the source-level invariant carried implicitly by the
+closed cutter; recording it explicitly is useful at the special join seam. -/
+theorem source_closed {H : Subgroup G} (u : ProfiniteBenignWitness H) :
+    profiniteClosure H = H := by
+  rw [← u.witness.comap_eq]
+  exact profiniteClosure_comap_eq_of_closed u.witness.L u.witness.emb
+    u.cutterClosed
+
 /-- Forget the cutter while retaining the residually finite, profinitely full
 overgroup carried by a strengthened benign witness. -/
 def toProfiniteFPOvergroup {H : Subgroup G} (u : ProfiniteBenignWitness H) :
