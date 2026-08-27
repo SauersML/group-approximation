@@ -62,10 +62,11 @@
 \keywords{MF groups, norm matrix coronas, property~(T), asymptotic representations, Leavitt algebra}
 
 \begin{abstract}
-Not every countable group is MF: the group $H=\EL_{12}(L_{\F_2}(1,2))$ is
-a simple property-\textup{(T)} group such that every homomorphism from $H$
+\leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
+Not every group is MF: $H=\EL_{12}(L_{\F_2}(1,2))$ is
+a simple property-\textup{(T)} group where every homomorphism from $H$
 to an MF group is trivial, so $C^*_{\mathrm r}(H)$ is a separable stably
-finite $C^*$-algebra that is not MF\@.  The obstruction is general: a
+finite $C^*$-algebra that is not MF\@. In general, a
 normal property-\textup{(T)} subgroup contained in the commutators of a
 one-sided compression of a property-\textup{(T)} subgroup is killed by every
 homomorphism to an MF group.  The same criterion gives a finitely presented
@@ -78,8 +79,6 @@ an MF group.
 
 \section{Introduction}
 
-Not every countable group is MF.
-\leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
 The counterexample is
 \[
  H=\EL_{12}(L_{\F_2}(1,2)),
@@ -149,8 +148,7 @@ homomorphism from $G$ to an MF group is trivial.
 \leanverified{Manuscript/OneSidedMFRadical/PrintedCriterion}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets}
 \end{mainthm}
 
-Two norms do two different jobs in the proof.  The operator norm is the
-input: asymptotic multiplicativity in operator norm makes the conjugation
+Aymptotic multiplicativity in operator norm makes the conjugation
 maps $\operatorname{Ad}(V_n(g))$ an asymptotic unitary representation of
 $G$ on the matrix spaces $M_{d_n}(\C)$, because
 $\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B}$.  The
@@ -158,8 +156,8 @@ normalized Hilbert--Schmidt norm is the Hilbert space structure on
 $M_{d_n}(\C)$ on which that representation acts, and so the norm in which
 property~\textup{(T)} can say anything.  In an ultraproduct of these Hilbert
 spaces, the Kazhdan projection $P$ of $L$ exists, and the compressor $u$
-satisfies $U^*PU\le P$ because $uLu^{-1}\le L$ has fewer constraints and so
-more fixed vectors; the two projections are unitarily equivalent, and
+satisfies $U^*PU\le P$ ($uLu^{-1}\le L$ has fewer constraints and so
+more fixed vectors). The two projections are unitarily equivalent, and
 stable finiteness of the matrix corona forces $U^*PU=P$.  So conjugation
 by the compressor preserves the Hilbert--Schmidt asymptotic commutant of
 $L$, and every element of $\mathfrak D_G(L)$ tends to $1$ in
