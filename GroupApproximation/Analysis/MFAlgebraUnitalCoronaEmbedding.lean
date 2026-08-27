@@ -1,3 +1,4 @@
+import GroupApproximation.Analysis.MFAlgebra
 import GroupApproximation.Analysis.NonUnitalMFSupportCornerEmbedding
 import GroupApproximation.Meta.AxiomGuard
 
@@ -22,12 +23,13 @@ universe u
 /-- Every nontrivial MF C-star algebra has a faithful unital representation in
 a norm-matrix corona. -/
 theorem exists_injective_unital_coronaEmbedding
-    {A : Type u} [CStarAlgebra A] [Nontrivial A]
-    (hA : IsMFAlgebra A) :
-    ∃ (X : ℕ → FiniteModel) (hX : ∀ n, Nonempty (X n)),
-      letI : ∀ n, Nonempty (X n) := hX
-      ∃ iota : A →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
-        Function.Injective iota := by
+    : ∀ {A : Type u} [CStarAlgebra A] [Nontrivial A],
+      IsMFAlgebra A →
+        ∃ (X : ℕ → FiniteModel) (hX : ∀ n, Nonempty (X n)),
+          letI : ∀ n, Nonempty (X n) := hX
+          ∃ iota : A →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
+            Function.Injective iota := by
+  intro A _ _ hA
   obtain ⟨Y, hY, _hYpos, _hYmono, e, he⟩ := hA.2
   letI : ∀ n, Nonempty (Y n) := hY
   exact
