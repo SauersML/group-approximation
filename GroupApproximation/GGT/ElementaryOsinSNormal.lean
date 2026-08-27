@@ -276,6 +276,62 @@ theorem exists_notMem_elementaryClosure (hiso : IsIsometricAction G X) {x : X}
   exact not_independent_of_common_zpow hiso ha (mul_ne_zero hm₁ hj₂)
     (mul_ne_zero hm₂ hj₁) hcommon hab
 
+/-! ## Two independent elementary closures share no infinite subgroup -/
+
+/-- **The usable form of "`E(g) ∩ E(k)` is finite".**  A subgroup lying in the
+elementary closures of two independent loxodromics is finite: virtual cyclicity
+inside `E(g)` puts a power `gʲ` into it, virtual cyclicity inside `E(k)` applied
+to the infinite cyclic group `⟨gʲ⟩` puts a power `kⁱ` back into `⟨gʲ⟩`, and that
+common nonzero power contradicts independence. -/
+theorem not_infinite_le_inf_elementaryClosure (hiso : IsIsometricAction G X)
+    {x : X} (hvc : ElementaryClosureVirtuallyCyclic G x) {g k : G}
+    (hg : IsLoxodromic g x) (hk : IsLoxodromic k x)
+    (hind : Independent g k x) {K : Subgroup G}
+    (hKg : K ≤ elementaryClosure g) (hKk : K ≤ elementaryClosure k)
+    (hKinf : ((K : Subgroup G) : Set G).Infinite) : False := by
+  obtain ⟨j, hj, hjmem⟩ := hvc g hg K hKg hKinf
+  have hgjlox : IsLoxodromic (g ^ j) x := isLoxodromic_zpow hiso hg hj
+  obtain ⟨i, hi, himem⟩ := hvc k hk (Subgroup.zpowers (g ^ j))
+    (Subgroup.zpowers_le.mpr (hKk hjmem)) (infinite_coe_zpowers hgjlox)
+  obtain ⟨m, hm⟩ := Subgroup.mem_zpowers_iff.mp himem
+  have hm0 : m ≠ 0 := by
+    intro h0
+    rw [h0, zpow_zero] at hm
+    exact zpow_ne_one_of_isLoxodromic hk hi hm.symm
+  have hcommon : g ^ (j * m) = k ^ i := by
+    rw [zpow_mul]
+    exact hm
+  exact not_independent_of_common_zpow hiso hg (mul_ne_zero hj hm0) hi
+    hcommon hind
+
+/-- **Over a torsion-free ambient group, `E(g)` is commensurable to `⟨g⟩`
+elementwise.**  Every nontrivial element of `E(g)` has infinite order, so its
+cyclic subgroup is an infinite subgroup of `E(g)` and contains a nonzero power
+of `g`.
+
+This replaces the false reading `E(g) = ⟨g⟩`: a torsion-free virtually cyclic
+group is infinite cyclic, so `E(g)` is `⟨h⟩` for a root `h` of `g`, and equals
+`⟨g⟩` only when `g` has no root in it. -/
+theorem exists_common_zpow_of_mem_elementaryClosure_of_torsionFree
+    {x : X} (hvc : ElementaryClosureVirtuallyCyclic G x)
+    (htf : IsPowerTorsionFree G) {g c : G} (hg : IsLoxodromic g x)
+    (hc : c ∈ elementaryClosure g) (hc1 : c ≠ 1) :
+    ∃ i m : ℤ, i ≠ 0 ∧ m ≠ 0 ∧ g ^ i = c ^ m := by
+  have hcinf : ¬ IsOfFinOrder c := htf.not_isOfFinOrder hc1
+  have hle : Subgroup.zpowers c ≤ elementaryClosure g :=
+    Subgroup.zpowers_le.mpr hc
+  have hinf : ((Subgroup.zpowers c : Subgroup G) : Set G).Infinite := by
+    refine Set.infinite_of_injective_forall_mem (f := fun t : ℤ => c ^ t) ?_ ?_
+    · exact injective_zpow_iff_not_isOfFinOrder.mpr hcinf
+    · intro t
+      exact Subgroup.zpow_mem _ (Subgroup.mem_zpowers c) t
+  obtain ⟨i, hi, himem⟩ := hvc g hg (Subgroup.zpowers c) hle hinf
+  obtain ⟨m, hm⟩ := Subgroup.mem_zpowers_iff.mp himem
+  refine ⟨i, m, hi, ?_, hm.symm⟩
+  intro h0
+  rw [h0, zpow_zero] at hm
+  exact zpow_ne_one_of_isLoxodromic hg hi hm.symm
+
 /-! ## Osin's Lemma 7.1 -/
 
 /-- **Osin, Lemma 7.1.**  An `s`-normal subgroup of a group acting
@@ -313,21 +369,8 @@ theorem actsNonElementarily_of_isSNormal (hiso : IsIsometricAction G X)
       have h2 := (mem_twistedIntersection.mp hy).2
       rw [inv_inv] at h2
       exact hNle h2
-    obtain ⟨j, hj, hjmem⟩ := hvc g hg (twistedIntersection N f⁻¹) hTg
+    exact not_infinite_le_inf_elementaryClosure hiso hvc hg hk hindgk hTg hTk
       (infinite_twistedIntersection hN f⁻¹)
-    have hgjlox : IsLoxodromic (g ^ j) x := isLoxodromic_zpow hiso hg hj
-    obtain ⟨i, hi, himem⟩ := hvc (f * g * f⁻¹) hk (Subgroup.zpowers (g ^ j))
-      (Subgroup.zpowers_le.mpr (hTk hjmem)) (infinite_coe_zpowers hgjlox)
-    obtain ⟨m, hm⟩ := Subgroup.mem_zpowers_iff.mp himem
-    have hm0 : m ≠ 0 := by
-      intro h0
-      rw [h0, zpow_zero] at hm
-      exact zpow_ne_one_of_isLoxodromic hk hi hm.symm
-    have hcommon : g ^ (j * m) = (f * g * f⁻¹) ^ i := by
-      rw [zpow_mul]
-      exact hm
-    exact not_independent_of_common_zpow hiso hg (mul_ne_zero hj hm0) hi
-      hcommon hindgk
   exact actsNonElementarily_of_notMem_elementaryClosure hiso hindep hgN hhN hg hh
 
 /-- Osin's Lemma 7.1 from the bundled inputs. -/

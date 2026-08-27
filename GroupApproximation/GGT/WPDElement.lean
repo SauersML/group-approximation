@@ -30,6 +30,8 @@ general a subgroup, so it is defined here as a set.
   element WPD**.  This is the easy half of Osin's Theorem 1.2 in the direction
   `(AH₁) ⇒ (AH₃)`, and it is what keeps the WPD interface from being vacuous:
   the Cayley graph of an acylindrically hyperbolic group supplies WPD elements.
+* `pairStab_zero_finite_of_trivial_intersection` — two points whose stabilizers
+  intersect trivially have finite pointwise stabilizer.
 * `isWPDAt_of_cosetCover` and `isWPDAt_of_pairStab_cover` — the bookkeeping
   half of Minasyan--Osin's Corollary 4.3: an `ε`-stabilizer covered by finitely
   many translates of a finite pointwise stabilizer is finite, so a tree

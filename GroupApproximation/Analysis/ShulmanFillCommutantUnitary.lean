@@ -33,42 +33,25 @@ the amalgam contractively (`norm_universalCStarAmalgamEval_le` below), so the
 limsup never exceeds `‖y‖`.  The whole analytic content of Shulman's Theorem
 16 is therefore the single inequality `‖y‖ - ε ≤ limsup_n …`.
 
-## How that inequality is proved in the literature
+## Correction: that inequality is not how the paper proceeds
 
-1. **Relative position.**  Conjugating `r_n` by a unitary of the commutant of
-   `γ_n(F)`, `F ⊆ C` finite, keeps the amalgamation constraint exactly at
-   stage `n` while moving the two models into general position.  The
-   commutant of a finite-dimensional `*`-algebra in `M_{k_n}` is a direct sum
-   of matrix blocks, so it carries its own unitary group to choose from —
-   this is the step `ShulmanDiagonalSelection` is written for, and the reason
-   the unitaries are called *diagonal*: in a basis adapted to `γ_n(F)` they
-   are block scalars.
+An earlier version of this docstring described the missing step as an
+estimate of Haagerup--Thorbjørnsen type — random matrices, asymptotic
+freeness, generic position.  Reading the paper shows that is wrong.  Shulman
+proves Theorem 16 (arXiv:2603.13564v2, p. 10) by putting
+`D = C*(φ_A(A), φ_B(B))`, quoting `A *_C B ⊂ D *_C D` from Enders--Shulman
+(arXiv:2403.12224, Th. 4.11, her Theorem 13) and applying the symmetric
+Theorem 10 to `D`, whose conjugating unitary is the explicit **flip**
+`((0,1),(1,0))` — it commutes with the amalgamated part exactly, because the
+two factor representations agree on `C`.  No random matrix appears anywhere
+in the argument.  The corrected account, with page references, is in
+`Analysis/ShulmanFillCommutantExact`.
 
-2. **Asymptotic freeness with amalgamation.**  For Haar-distributed `u_n` in
-   that commutant, the pair `(l_n, u_n r_n u_n^*)` converges in `*`-moments
-   over the amalgamated algebra to the amalgamated free product of the two
-   limits.  This is the amalgamated form of Voiculescu's asymptotic freeness.
-
-3. **Strong convergence.**  Moments are not enough: the word norm is an
-   operator norm, and one needs convergence of norms, which is the
-   Haagerup--Thorbjørnsen theorem (and its amalgamated descendants).  This is
-   the input the repository does not have in any form.
-
-4. **Diagonalization.**  Steps 1--3 give, for each word and each `ε`, a stage
-   from which the estimate holds; a countable dense family of words and a
-   diagonal extraction then give one sequence `u_n` that works for all of
-   them.  `ShulmanDiagonalSelection.normDiagonalSelection` is precisely this
-   extraction, stated for a countable family of convergent sequences.
-
-## A caution about the trace files
-
-`Analysis/ShulmanTraceFactorization` and the modules around it work in the
-Hilbert--Schmidt quotient, where the ideal is the `2`-norm-null sequences and
-the invariant is the ultratrace.  Convergence of traces does not give
-convergence of operator norms, so step 3 cannot be sourced there: a
-Hilbert--Schmidt factorization of a trace is compatible with the operator
-norm of a word collapsing.  The repository already records this separation in
-`notes/FALSE_SHULMAN_TRACE_AUDIT.md`; it applies here as well.
+The statement below is therefore not the paper's route.  It remains a
+sufficient condition — a norming family does make the amalgam MF, by
+`isMFAlgebra_of_norming_representations` — but formalizing Shulman means
+Theorem 4 (her lifting characterization of MF), Lemma 7, Lemma 9 and the
+cited Theorem 13, not a genericity estimate.
 
 This module is not in the root import list.  It was authored while builds were
 suspended, so it is kept out of the closure until it has been elaborated.

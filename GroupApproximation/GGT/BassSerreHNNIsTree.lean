@@ -118,8 +118,9 @@ theorem level_of_up_walk (φ : A ≃* B) {b c : Vertex φ}
       have hswap : (s(u, a) : Sym2 (Vertex φ)) = s(a, u) := Sym2.eq_swap
       have hne : d ≠ u := by
         intro hdu
+        subst hdu
         refine hnotmem ?_
-        rw [SimpleGraph.Walk.edges_cons, hdu, hswap]
+        rw [SimpleGraph.Walk.edges_cons, hswap]
         exact List.mem_cons_self
       have hd : level φ d = level φ a + 1 := by
         rcases level_adj φ hbd with h | h
@@ -142,13 +143,7 @@ theorem peel (φ : A ≃* B) (n : ℕ)
   rcases eq_or_ne v w with rfl | hvw
   · rw [SimpleGraph.Walk.isPath_iff_nil] at hp hq
     rw [hp.eq_nil, hq.eq_nil]
-  · have hvpos : level φ v ≠ 0 := by
-      intro h0
-      have hw0 : level φ w = 0 := by omega
-      have h1 : v = vmk φ 1 := (level_eq_zero_iff φ v).1 h0
-      have h2 : w = vmk φ 1 := (level_eq_zero_iff φ w).1 hw0
-      exact hvw (h1.trans h2.symm)
-    cases p with
+  · cases p with
     | nil => exact absurd rfl hvw
     | @cons _ bp _ hbp p' =>
         cases q with

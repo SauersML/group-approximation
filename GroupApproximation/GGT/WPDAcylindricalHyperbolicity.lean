@@ -41,6 +41,9 @@ development inhabits either.
   hyperbolic group is a hyperbolic space on which some element is loxodromic
   and, by `isWPDAt_of_isAcylindrical`, WPD.  So the `(AH₃)` interface is not
   vacuous, and the two named propositions above are the only debt.
+* `infinite_of_mem_of_isLoxodromic` — a subgroup containing a loxodromic
+  element is infinite, so the infinitude clause of `(AH₄)` is derived from the
+  loxodromy `AH3Data` already records rather than asked of the citation.
 * `exists_zpow_eq_of_isVirtuallyCyclic` — in a virtually cyclic group every
   element has a positive power inside the cyclic subgroup of finite index.
 * `not_isVirtuallyCyclic_of_no_common_power` — **the criterion consumers use**:

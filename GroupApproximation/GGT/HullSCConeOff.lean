@@ -53,6 +53,17 @@ Everything in this module is proved; nothing is postulated.
 * `wordNorm_coneOff_le`, `coneOff_dist_le` -- the cone-off does not increase
   distances, and each coset of `H` has diameter at most one in it.  The second
   is the defining property of a cone: the coset is crushed.
+* `isHypEmbeddedOf_coneOff` -- **the cone-off is the witness for `H ↪_h (G,A)`**.
+  So what has to be established about `E(g)` in Hull's Theorem 5.1 is a
+  statement about `Cayley (coneOff A E(g)).alphabet` and about that relative
+  generating set's `relBall`, and nothing else.
+
+One inherited convention, documented in `GGT/WPDHyperbolicallyEmbedded.lean` and
+recorded here because `coneOff` inherits it: the hyperbolicity clause is stated
+against the word metric of the *set* `X ∪ ⋃ Hλ` rather than of the disjoint
+union, since duplicating a letter creates parallel edges and does not change
+the vertex metric; the disjointness is used where it matters, in the definition
+of the relative metric `d̂λ`, whose balls about `1` are `relBall`.
 -/
 
 namespace GroupApproximation
@@ -225,6 +236,21 @@ theorem mem_cayleyBall_one_coneOff {G : Type u} [Group G] (A : Alphabet G)
     h ∈ cayleyBall (coneOff A H).alphabet 1 := by
   rw [mem_cayleyBall_iff, wordDist_one_left]
   exact wordNorm_le_one_of_mem (mem_coneOff_of_mem A hh)
+
+/-- **The cone-off is the witness for `H ↪_h (G, A)`.**  Osin's definition
+asks for *some* relative generating set with base `A` and family `{H}` whose
+relative Cayley graph is hyperbolic and whose relative metric is locally
+finite; `coneOff A H` is that relative generating set, so hyperbolicity and
+local finiteness of the cone-off *are* the hyperbolic embedding.
+
+This is the bridge between the geometry of this module and the predicate
+`GGT.IsHypEmbeddedOf` that Hull's Theorem 5.1 consumes: what has to be
+established about `E(g)` is a statement about `Cayley (coneOff A E(g)).alphabet`
+and about `(coneOff A E(g)).relBall`, and nothing else. -/
+theorem isHypEmbeddedOf_coneOff {G : Type u} [Group G] (A : Alphabet G)
+    (H : Subgroup G) (h : (coneOff A H).IsHyperbolicallyEmbedded) :
+    GGT.IsHypEmbeddedOf G A.carrier H :=
+  ⟨coneOff A H, rfl, rfl, h⟩
 
 end HullSC
 end GroupApproximation

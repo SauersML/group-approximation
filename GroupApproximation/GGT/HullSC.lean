@@ -40,13 +40,16 @@ word metric of `A` and the translation action.  Four-point hyperbolicity is
 **(1) Hyperbolically embedded subgroups** (Osin, *Acylindrically hyperbolic
 groups*, Def. 4.25; DGO §4).  `{Hλ} ↪_h (G, X)` when `X ∪ ⋃ Hλ` generates `G`,
 the coned-off graph `Γ(G, X ⊔ ⊔ Hλ)` is hyperbolic, and each `Hλ` carries a
-locally finite relative metric.  The definition is `GGT.IsHypEmbedded` and
-`GGT.RelGenSet.IsHyperbolicallyEmbedded` of
-`GGT/WPDHyperbolicallyEmbedded.lean`, and it is used, not restated;
-`HullSC.coneOff` of `GGT/HullSCConeOff.lean` is the relative generating set for
-a single subgroup, read as a cone-off -- adjoining every element of `H` as a
-letter is exactly the cone of radius one over each coset, and
-`HullSC.coneOff_dist_le` proves the crushing.
+locally finite relative metric.  The definition is
+`GGT.RelGenSet.IsHyperbolicallyEmbedded` -- with the family primary and the
+single-subgroup wrappers `GGT.IsHypEmbeddedOf`, `GGT.IsHypEmbedded` -- of
+`GGT/WPDHyperbolicallyEmbedded.lean`, and it is used, not restated.
+`HullSC.coneOff` of `GGT/HullSCConeOff.lean` is that relative generating set
+for a single subgroup, read as a cone-off: adjoining every element of `H` as a
+letter is exactly the cone of radius one over each coset,
+`HullSC.coneOff_dist_le` proves the crushing, and
+`HullSC.isHypEmbeddedOf_coneOff` proves that the cone-off is the witness for
+`H ↪_h (G,A)`.
 
 **(2) Hull's Theorem 3.12** (after Osin, Thm 1.2 and DGO Thm 4.42).  An
 acylindrically hyperbolic `G` has a generating set `A`, in general infinite,
@@ -57,12 +60,22 @@ it.  The first half is
 rather than a citation because acylindrical hyperbolicity is taken in the
 Cayley-graph form; the second half is what makes step (3) available.
 
-**(3) Elementary closures** (DGO Thm 6.8; Osin Thm 6.8).  A loxodromic element
-`g` of an acylindrical action is WPD, its elementary closure
+**(3) Elementary closures** (DGO Thm 6.8).  A loxodromic element `g` of an
+acylindrical action is WPD, its elementary closure
 `E(g) = {h : ∃ n > 0, h gⁿ h⁻¹ = g^{±n}}` is the unique maximal virtually
-cyclic subgroup containing `g`, and `E(g) ↪_h (G, A)`.  Over a torsion-free
-ambient group `E(g) = ⟨g⟩`, which is why the torsion clauses of (5) are free in
-the lane this repository runs.  Owned by the `ggt-elementary` lane.
+cyclic subgroup containing `g`, and `E(g) ↪_h G`.  Stated, not proved, as
+`GGT.DGOTheorem68` in `GGT/WPDAcylindricalHyperbolicity.lean`, against
+`GGT.AH3Data` (an isometric action on a `δ`-hyperbolic space, a distinguished
+element, and `IsWPDAt`) and `¬ GGT.IsVirtuallyCyclic G`.
+
+Note what it does *not* give: its conclusion is `GGT.IsHypEmbedded G E`, i.e.
+`E ↪_h (G, X)` for *some* relative generating set `X`, not for Hull's `A`.
+Upgrading an arbitrary `X` to one containing `A`, with the action on the
+resulting coned-off graph still acylindrical, is exactly the content of (2),
+and it is the step that makes the alphabet of the quotient in (8) comparable
+with the alphabet of `G`.  Over a torsion-free ambient group `E(g) = ⟨g⟩`,
+which is why the torsion clauses of (6) are free in the lane this repository
+runs; that identification is owned by the `ggt-elementary` lane.
 
 **(4) The cone-off is hyperbolic, and the rotating family.**  Coning `Γ(G,A)`
 off along the cosets of `H = E(g)` leaves it hyperbolic (DGO §5, the
