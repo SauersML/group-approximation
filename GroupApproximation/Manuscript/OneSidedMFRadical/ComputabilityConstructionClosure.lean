@@ -1,5 +1,4 @@
 import GroupApproximation.Computability.ParametricRecursiveSwitchPresentation
-import GroupApproximation.Computability.CodedProfiniteWitnessThree
 import GroupApproximation.Higman.BridgePresentation
 import GroupApproximation.Higman.MikhailovaGraphProductWitness
 import GroupApproximation.Higman.MikhailovaRopeCode
