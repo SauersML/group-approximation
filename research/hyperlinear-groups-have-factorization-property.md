@@ -8,6 +8,7 @@ distinct_from:
   hyperlinear-implies-sofic: that asks whether Hilbert--Schmidt matrix approximation can be replaced by permutation approximation; this asks whether it can be upgraded to completely positive maps on the full group C*-algebra, and neither is known to imply the other.
   non-hyperlinear-group: that asks for a group without any Hilbert--Schmidt approximation; this asks that every group with one also have the stronger lifting property.
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -37,3 +38,5 @@ them --- non-hyperlinear, i.e. it would settle `non-hyperlinear-group`.
 
 Carried as a refuted node so that the generic route into
 `literal-group-factorization-property` displays as dead rather than open.
+
+Lean: `NinetyNineProblems.not_forall_hyperlinear_hasFactorizationProperty` (`GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean`).

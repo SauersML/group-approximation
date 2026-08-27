@@ -8,6 +8,7 @@ distinct_from:
   hyperlinear-groups-have-factorization-property: that is the universal upgrade statement; this is the family of counterexamples that refutes it.
   literal-group-factorization-property: that asks the factorization property for one specific non-Kazhdan group; this is about Kazhdan groups, where Kirchberg's theorem decides the property by residual finiteness.
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -27,3 +28,8 @@ of Elek--Szabó.
 of a sofic group's full C*-algebra need not be amenable in Brown's sense, and
 `literal-group-factorization-property` cannot be reached from
 `literal-group-sofic` alone.
+
+Lean: `ThomSoficKazhdanNonResiduallyFiniteInput` (typed literature input) and
+`not_forall_sofic_hasFactorizationProperty`,
+`not_forall_hyperlinear_hasFactorizationProperty` (`GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean`), which derive the
+refutation from that input and Kirchberg's theorem as a typed input.
