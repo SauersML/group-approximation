@@ -15,8 +15,10 @@ generators, never on limits.  `CompatibleCoronaDenseNormingStatement` below is
 that weakened input, with the dense set chosen by whoever discharges it, and
 `shulmanTheorem16_of_denseNorming` closes Theorem 16 from it.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is not named in the root import list, but it reaches the root
+closure through `Analysis/ShulmanFillWordNorming` and
+`Analysis/ShulmanFillConjugatePair`.  It was authored while builds were
+suspended and has not been elaborated since.
 -/
 
 namespace GroupApproximation

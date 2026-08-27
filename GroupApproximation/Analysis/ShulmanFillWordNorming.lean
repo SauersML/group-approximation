@@ -17,8 +17,10 @@ closure argument survives in it: an element of `adjoinSet iA iB` is a
 polynomial expression in the generators, and the statement asks that its norm
 be approximated by an evaluation with an MF carrier.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is not named in the root import list, but
+`Analysis/ShulmanFillConjugatePair` imports it and the root imports that, so it
+is in the root closure.  It was authored while builds were suspended and has
+not been elaborated since.
 -/
 
 namespace GroupApproximation

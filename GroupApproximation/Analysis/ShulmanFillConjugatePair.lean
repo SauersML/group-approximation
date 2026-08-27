@@ -79,8 +79,9 @@ for the common image of `C`, and let `y` be a word in the two factor images.
   step 2, so it is formalizable now.
 * `exists_diagonal_unitaries_attaining_word_norm`: step 5 itself.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+`GroupApproximation.lean` imports this module, and so does
+`Manuscript.MFRecognition.RecognitionDebts`, so `thm:recognition` rests on it.
+It was authored while builds were suspended and has not been elaborated since.
 -/
 
 namespace GroupApproximation

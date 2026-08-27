@@ -98,6 +98,18 @@ conclusion is `R ≤ C + D/2 + k·δ`, so a merely *bounded* endpoint Gromov pro
 `StraddlingCut` asks for `C ≤ ρ/2`, and why cutting at the ball `B(p, 2ρ)`,
 where `C` can be as large as `2ρ`, cannot work.
 
+**And `StraddlingCut` is not reachable at all along the maximality route.**
+`straddling_pair_of_dense_chord` and `gromovProduct_straddling_le_two_mul`
+below prove that the pair obtained by cutting the chord at width `r` has
+endpoint Gromov product at most `2ρ` and no better — the `r` cancels, so
+widening the cut buys nothing.  Since the divergence estimate needs `C` strictly
+below `ρ`, the maximality route cannot supply the cut, whatever the width.  The
+residual is therefore not "produce the cut" but "find a different route to a
+small Gromov product", and the group-theoretic setting is where to look: for an
+orbit chain `y i = gⁱ x` the displacement `d(y 0, y i) = d(x, gⁱ x)` is pinned
+between `l·i − B` and `D·i` by `orbit_quasiIsometricEmbedding_of_isLoxodromic`,
+which the general chain hypothesis does not give.
+
 The engine `exists_bound_chain_excursion_depth` does **not** supply it, and the
 tempting route through it does not close: applying it at `w := γ t` needs both
 chain endpoints inside `B(γ t, R)`, and those endpoints are `γ 0` and `γ L`, at
@@ -383,6 +395,80 @@ theorem exists_bound_chord_depth_of_straddlingCut {δ D l : ℝ}
   have hmono : (Nat.clog 2 n : ℝ) ≤ (Nat.clog 2 M : ℝ) := by
     exact_mod_cast Nat.clog_mono_right 2 hnM
   nlinarith [hhalf, hmono, hδ0]
+
+/-! ## The straddling pair, and why its Gromov product cannot beat `2ρ` -/
+
+/-- **The straddling pair, from chord density.**
+
+The non-circular input is *maximality* of `ρ`: if `ρ` is the largest distance
+from a chord point to the chain, then every chord point is within `ρ` of some
+chain vertex, which is `hdense` below.  Cutting the chord at parameter distance
+`r` on either side of `s₀` and pulling back through `hdense` gives the two
+vertices, with no assumption that the chain is anywhere near the chord.
+
+Both conclusions are uniform in `r`, and that is the point of the next
+remark. -/
+theorem straddling_pair_of_dense_chord {ρ r s₀ : ℝ} (hρ0 : 0 ≤ ρ) (hr0 : 0 ≤ r)
+    (y : ℕ → X) (N : ℕ) {fAC : ℝ → X}
+    (hAC : IsGeodesicSegment fAC 0 (dist (y 0) (y N)))
+    (hlo : 0 ≤ s₀ - r) (hhi : s₀ + r ≤ dist (y 0) (y N))
+    (hdense : ∀ t ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)),
+      ∃ i, i ≤ N ∧ dist (y i) (fAC t) ≤ ρ) :
+    ∃ a b : ℕ, a ≤ N ∧ b ≤ N ∧
+      dist (y a) (fAC s₀) ≤ ρ + r ∧ dist (y b) (fAC s₀) ≤ ρ + r ∧
+      2 * r - 2 * ρ ≤ dist (y a) (y b) := by
+  have hmemL : s₀ - r ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)) :=
+    ⟨hlo, by linarith⟩
+  have hmemR : s₀ + r ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)) :=
+    ⟨by linarith, hhi⟩
+  have hmemM : s₀ ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)) :=
+    ⟨by linarith, by linarith⟩
+  obtain ⟨a, haN, ha⟩ := hdense _ hmemL
+  obtain ⟨b, hbN, hb⟩ := hdense _ hmemR
+  have hLM : dist (fAC (s₀ - r)) (fAC s₀) = r := by
+    rw [hAC.dist_eq hmemL hmemM]
+    rw [show s₀ - r - s₀ = -r by ring, abs_neg, abs_of_nonneg hr0]
+  have hMR : dist (fAC s₀) (fAC (s₀ + r)) = r := by
+    rw [hAC.dist_eq hmemM hmemR]
+    rw [show s₀ - (s₀ + r) = -r by ring, abs_neg, abs_of_nonneg hr0]
+  have hLR : dist (fAC (s₀ - r)) (fAC (s₀ + r)) = 2 * r := by
+    rw [hAC.dist_eq hmemL hmemR]
+    rw [show s₀ - r - (s₀ + r) = -(2 * r) by ring, abs_neg,
+      abs_of_nonneg (by linarith : (0 : ℝ) ≤ 2 * r)]
+  refine ⟨a, b, haN, hbN, ?_, ?_, ?_⟩
+  · have := dist_triangle (y a) (fAC (s₀ - r)) (fAC s₀)
+    rw [hLM] at this
+    linarith
+  · have := dist_triangle (y b) (fAC (s₀ + r)) (fAC s₀)
+    rw [dist_comm (fAC (s₀ + r)) (fAC s₀), hMR] at this
+    linarith
+  · have h1 := dist_triangle (fAC (s₀ - r)) (y a) (fAC (s₀ + r))
+    have h2 := dist_triangle (y a) (y b) (fAC (s₀ + r))
+    rw [hLR] at h1
+    rw [dist_comm (fAC (s₀ - r)) (y a)] at h1
+    rw [dist_comm (y b) (fAC (s₀ + r))] at h2
+    linarith
+
+/-- **`2ρ` is a floor, so `StraddlingCut` as stated is not reachable this way.**
+
+Feeding `straddling_pair_of_dense_chord` into the Gromov product at `p = fAC s₀`
+gives `(y a | y b)_p ≤ ((ρ+r) + (ρ+r) − (2r − 2ρ))/2 = 2ρ`, **independently of
+`r`**: widening the cut raises the endpoint distances and the mutual distance by
+the same amount, and the `r` cancels.  So no choice of cut width brings the
+product below `2ρ`, and `StraddlingCut`'s demand of `ρ/2` cannot be met along
+this route — nor can anything below `ρ`, which is what
+`radius_le_of_chain_avoids_ball` would need to say something.
+
+That is a genuine obstruction rather than a gap in the write-up, and it applies
+to the maximality route as a whole, not to a particular parametrisation of
+it. -/
+theorem gromovProduct_straddling_le_two_mul {ρ r s₀ : ℝ} {y : ℕ → X} {N a b : ℕ}
+    {fAC : ℝ → X}
+    (ha : dist (y a) (fAC s₀) ≤ ρ + r) (hb : dist (y b) (fAC s₀) ≤ ρ + r)
+    (hab : 2 * r - 2 * ρ ≤ dist (y a) (y b)) :
+    gromovProduct (y a) (y b) (fAC s₀) ≤ 2 * ρ := by
+  unfold gromovProduct
+  linarith
 
 /-! ## What the two residues are waiting for -/
 
