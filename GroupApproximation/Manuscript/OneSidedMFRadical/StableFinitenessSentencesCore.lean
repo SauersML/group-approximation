@@ -137,6 +137,7 @@ theorem polarPatch_of_not_good (x : BoundedMatrixSequence Y) {n : ℕ}
     polarPatch x n = 1 :=
   dif_neg hn
 
+omit [∀ n, Nonempty (Y n)] in
 /-- Each patched coordinate is unitary: the printed polar correction where
 it applies, and the identity (trivially unitary) elsewhere. -/
 theorem polarPatch_mem_unitary (x : BoundedMatrixSequence Y) (n : ℕ) :
@@ -168,6 +169,7 @@ def polarPatchSeq (x : BoundedMatrixSequence Y) : BoundedMatrixSequence Y :=
 
 /-! ## The convergence and lifting clauses -/
 
+omit [∀ n, Nonempty (Y n)] in
 /-- **"`‖u_n-x_n‖→0`."**  The patched sequence converges to the given lift in
 the coordinate operator norm, uniformly along the cofinite filter (proof
 sentence `ee3d6cbf975d`, first clause). -/
