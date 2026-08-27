@@ -363,6 +363,120 @@ theorem map_matchedCutter_eq_imageGeneratorClosure
         Or.inl ⟨g, hg, rfl⟩, ?_⟩
       exact ambientToImageLamp_left Q q g
 
+/-! ## Edge-carry scanning -/
+
+/-- A successful left-to-right scan carries one edge element between
+successive factor syllables. -/
+inductive EdgeScan : Edge →
+    List (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b) →
+    Edge → Prop
+  | nil (e : Edge) : EdgeScan e [] e
+  | left (e m tail : Edge) (g z : PairedReturnGraphIntersection.P)
+      (l : List (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+      (hz : z ∈ Star.graphSub)
+      (heq : (e : PairedReturnGraphIntersection.P) * g =
+        z * (m : PairedReturnGraphIntersection.P))
+      (hscan : EdgeScan m l tail) :
+      EdgeScan e (⟨false, g⟩ :: l) tail
+  | right (e m tail : Edge) (c t : C)
+      (l : List (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+      (ht : t ∈ PairedReturnCutter.Q)
+      (heq : edgeToC e * c = t * edgeToC m)
+      (hscan : EdgeScan m l tail) :
+      EdgeScan e (⟨true, c⟩ :: l) tail
+
+/-- The scan invariant: a successfully scanned word is a cutter element
+followed by the residual carried edge. -/
+theorem factorization_of_edgeScan
+    {e tail : Edge}
+    {l : List (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b)}
+    (hscan : EdgeScan e l tail) :
+    ∃ h ∈ matchedCutter,
+      MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (e : _) *
+          MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l =
+        h * MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (tail : _) := by
+  induction hscan with
+  | nil e =>
+      refine ⟨1, matchedCutter.one_mem, ?_⟩
+      simp [MatchedSubgroupAmalgam.factorListProd]
+  | left e m tail g z l hz heq hscan ih =>
+      obtain ⟨h, hh, hfac⟩ := ih
+      refine ⟨MatchedSubgroupAmalgam.bigInA edgeToP edgeToC z * h,
+        matchedCutter.mul_mem
+          (Subgroup.subset_closure (Or.inl ⟨z, hz, rfl⟩)) hh, ?_⟩
+      change MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (e : _) *
+          (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC g *
+            MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) = _
+      calc
+        MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (e : _) *
+              (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC g *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) =
+            MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+              ((e : PairedReturnGraphIntersection.P) * g) *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l := by
+                  rw [← mul_assoc, ← map_mul]
+        _ = MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+              (z * (m : PairedReturnGraphIntersection.P)) *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l := by rw [heq]
+        _ = MatchedSubgroupAmalgam.bigInA edgeToP edgeToC z *
+              (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (m : _) *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) := by
+                  rw [map_mul, mul_assoc]
+        _ = MatchedSubgroupAmalgam.bigInA edgeToP edgeToC z *
+              (h * MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+                (tail : _)) := by rw [hfac]
+        _ = (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC z * h) *
+              MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (tail : _) := by
+            exact (mul_assoc _ _ _).symm
+  | right e m tail c t l ht heq hscan ih =>
+      obtain ⟨h, hh, hfac⟩ := ih
+      refine ⟨MatchedSubgroupAmalgam.bigInB edgeToP edgeToC t * h,
+        matchedCutter.mul_mem
+          (Subgroup.subset_closure (Or.inr ⟨t, ht, rfl⟩)) hh, ?_⟩
+      change MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (e : _) *
+          (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC c *
+            MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) = _
+      have hedge :
+          MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (e : _) =
+            MatchedSubgroupAmalgam.bigInB edgeToP edgeToC (edgeToC e) :=
+        (PushoutI.of_apply_eq_base
+          (Amalgam.famHom edgeToP edgeToC) false e).trans
+          (PushoutI.of_apply_eq_base
+            (Amalgam.famHom edgeToP edgeToC) true e).symm
+      have htailEdge :
+          MatchedSubgroupAmalgam.bigInB edgeToP edgeToC (edgeToC m) =
+            MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (m : _) :=
+        (PushoutI.of_apply_eq_base
+          (Amalgam.famHom edgeToP edgeToC) true m).trans
+          (PushoutI.of_apply_eq_base
+            (Amalgam.famHom edgeToP edgeToC) false m).symm
+      rw [hedge]
+      calc
+        MatchedSubgroupAmalgam.bigInB edgeToP edgeToC (edgeToC e) *
+              (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC c *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) =
+            MatchedSubgroupAmalgam.bigInB edgeToP edgeToC
+              (edgeToC e * c) *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l := by
+                rw [← mul_assoc, ← map_mul]
+        _ = MatchedSubgroupAmalgam.bigInB edgeToP edgeToC
+              (t * edgeToC m) *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l := by rw [heq]
+        _ = MatchedSubgroupAmalgam.bigInB edgeToP edgeToC t *
+              (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC (edgeToC m) *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) := by
+                  rw [map_mul, mul_assoc]
+        _ = MatchedSubgroupAmalgam.bigInB edgeToP edgeToC t *
+              (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (m : _) *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) := by
+                  rw [htailEdge]
+        _ = MatchedSubgroupAmalgam.bigInB edgeToP edgeToC t *
+              (h * MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+                (tail : _)) := by rw [hfac]
+        _ = (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC t * h) *
+              MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (tail : _) := by
+            exact (mul_assoc _ _ _).symm
+
 /-- The same quotient in the iterated-central-HNN model used by the finite
 free-label action. -/
 def ambientToFiniteStage2 (Q : Type) [Group Q]
