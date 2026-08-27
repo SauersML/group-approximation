@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.PairedReturnLeftProductProfinite
+import GroupApproximation.Higman.PairedReturnEdgeSeparable
 import GroupApproximation.Higman.FreeLampFiniteBaseProfinite
 
 /-!
@@ -117,6 +118,23 @@ theorem exists_finite_hom_reflecting_graph
   rw [ConjugatorGraphProfinite.profiniteClosure_graphSub] at hzClosure
   exact hz hzClosure
 
+/-- A point outside the paired edge remains outside its image in one finite
+quotient. -/
+theorem exists_finite_hom_reflecting_edge
+    {z : PairedReturnGraphIntersection.P}
+    (hz : z ∉ PairedReturnGraphIntersection.M) :
+    ∃ (Q : Type) (_ : Group Q) (_ : Finite Q)
+        (q : PairedReturnGraphIntersection.P →* Q),
+      q z ∉ PairedReturnGraphIntersection.M.map q := by
+  by_contra hnone
+  have hzClosure : z ∈ profiniteClosure PairedReturnGraphIntersection.M := by
+    intro Q _ _ q
+    by_contra hout
+    apply hnone
+    exact ⟨Q, inferInstance, inferInstance, q, hout⟩
+  rw [PairedReturnEdgeSeparable.profiniteClosure_edge] at hzClosure
+  exact hz hzClosure
+
 /-- One product quotient simultaneously preserves all offending left
 syllables and a terminal failure to lie in the conjugator graph. -/
 theorem exists_finite_hom_reflecting_leftProduct_list_and_graph
@@ -184,6 +202,39 @@ theorem exists_finite_hom_reflecting_graph_list :
       · apply hr y hy
         exact ⟨g, hg, congrArg Prod.snd hge⟩
 
+/-- One finite quotient simultaneously preserves a finite list of failures
+to lie in the paired edge. -/
+theorem exists_finite_hom_reflecting_edge_list :
+    ∀ l : List PairedReturnGraphIntersection.P,
+      (∀ z ∈ l, z ∉ PairedReturnGraphIntersection.M) →
+      ∃ (Q : Type) (_ : Group Q) (_ : Finite Q)
+          (q : PairedReturnGraphIntersection.P →* Q),
+        ∀ z ∈ l, q z ∉ PairedReturnGraphIntersection.M.map q
+  | [] => by
+      intro _
+      refine ⟨PUnit, inferInstance, inferInstance, 1, ?_⟩
+      simp
+  | z :: l => by
+      intro hout
+      obtain ⟨Q, hQgroup, hQfinite, q, hq⟩ :=
+        exists_finite_hom_reflecting_edge
+          (hout z List.mem_cons_self)
+      letI : Group Q := hQgroup
+      letI : Finite Q := hQfinite
+      obtain ⟨R, hRgroup, hRfinite, r, hr⟩ :=
+        exists_finite_hom_reflecting_edge_list l
+          (fun y hy ↦ hout y (List.mem_cons_of_mem z hy))
+      letI : Group R := hRgroup
+      letI : Finite R := hRfinite
+      refine ⟨Q × R, inferInstance, inferInstance, q.prod r, ?_⟩
+      intro y hy hmem
+      obtain ⟨g, hg, hge⟩ := Subgroup.mem_map.mp hmem
+      rcases List.mem_cons.mp hy with rfl | hy
+      · apply hq
+        exact ⟨g, hg, congrArg Prod.fst hge⟩
+      · apply hr y hy
+        exact ⟨g, hg, congrArg Prod.snd hge⟩
+
 /-- One product quotient simultaneously reflects two finite families: left
 product failures and graph failures. -/
 theorem exists_finite_hom_reflecting_leftProduct_list_and_graph_list
@@ -216,6 +267,49 @@ theorem exists_finite_hom_reflecting_leftProduct_list_and_graph_list
   · intro z hz hmem
     obtain ⟨g, hg, hge⟩ := Subgroup.mem_map.mp hmem
     apply hr z hz
+    exact ⟨g, hg, congrArg Prod.snd hge⟩
+
+/-- One product quotient preserves the left-product and terminal-graph
+obstructions and also prevents every displayed left syllable from becoming
+a new edge syllable. -/
+theorem exists_finite_hom_reflecting_obstruction_lists
+    (leftBad graphBad edgeBad : List PairedReturnGraphIntersection.P)
+    (hleft : ∀ z ∈ leftBad, z ∉ LeftProduct)
+    (hgraph : ∀ z ∈ graphBad, z ∉ Star.graphSub)
+    (hedge : ∀ z ∈ edgeBad, z ∉ PairedReturnGraphIntersection.M) :
+    ∃ (Q : Type) (_ : Group Q) (_ : Finite Q)
+        (q : PairedReturnGraphIntersection.P →* Q),
+      (∀ z ∈ leftBad,
+        q z ∉ (Star.graphSub.map q : Set Q) *
+          (PairedReturnGraphIntersection.M.map q : Set Q)) ∧
+      (∀ z ∈ graphBad, q z ∉ Star.graphSub.map q) ∧
+      (∀ z ∈ edgeBad,
+        q z ∉ PairedReturnGraphIntersection.M.map q) := by
+  obtain ⟨Q, hQgroup, hQfinite, q, hleftq, hgraphq⟩ :=
+    exists_finite_hom_reflecting_leftProduct_list_and_graph_list
+      leftBad graphBad hleft hgraph
+  letI : Group Q := hQgroup
+  letI : Finite Q := hQfinite
+  obtain ⟨R, hRgroup, hRfinite, r, hedger⟩ :=
+    exists_finite_hom_reflecting_edge_list edgeBad hedge
+  letI : Group R := hRgroup
+  letI : Finite R := hRfinite
+  refine ⟨Q × R, inferInstance, inferInstance, q.prod r, ?_, ?_, ?_⟩
+  · intro z hz hmem
+    obtain ⟨a, ha, m, hm, ham⟩ := hmem
+    obtain ⟨a₀, ha₀, rfl⟩ := Subgroup.mem_map.mp ha
+    obtain ⟨m₀, hm₀, rfl⟩ := Subgroup.mem_map.mp hm
+    apply hleftq z hz
+    refine ⟨q a₀, ⟨a₀, ha₀, rfl⟩,
+      q m₀, ⟨m₀, hm₀, rfl⟩, ?_⟩
+    exact congrArg Prod.fst ham
+  · intro z hz hmem
+    obtain ⟨g, hg, hge⟩ := Subgroup.mem_map.mp hmem
+    apply hgraphq z hz
+    exact ⟨g, hg, congrArg Prod.fst hge⟩
+  · intro z hz hmem
+    obtain ⟨g, hg, hge⟩ := Subgroup.mem_map.mp hmem
+    apply hedger z hz
     exact ⟨g, hg, congrArg Prod.snd hge⟩
 
 /-! ## The label-preserving finite-base quotient -/
@@ -641,54 +735,65 @@ theorem exists_bad_or_terminal_of_normalWord_not_mem
       (normalWord_mem_matchedCutter_of_edgeScan w tail htail ht)
   · exact Or.inl hbad
 
-/-- Forget the synchronization letter of a factor syllable and retain its
-literal base contribution.  These contributions multiply to every carry
-that can be created by collapsing a contiguous block in a quotient. -/
-def factorBase :
-    (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b) →
-      PairedReturnGraphIntersection.P
-  | ⟨false, g⟩ => g
-  | ⟨true, c⟩ => edgeToP c.1
-
-/-- Products of all nonempty prefixes of a list. -/
-def prefixProducts : List PairedReturnGraphIntersection.P →
-    List PairedReturnGraphIntersection.P
+/-- The left-factor syllables of a factor spelling. -/
+def leftFactors :
+    List (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b) →
+      List PairedReturnGraphIntersection.P
   | [] => []
-  | g :: l => g :: (prefixProducts l).map (g * ·)
+  | ⟨false, g⟩ :: l => g :: leftFactors l
+  | ⟨true, _⟩ :: l => leftFactors l
 
-/-- Products of all nonempty contiguous blocks of a finite list. -/
-def contiguousProducts : List PairedReturnGraphIntersection.P →
-    List PairedReturnGraphIntersection.P
-  | [] => []
-  | g :: l => prefixProducts (g :: l) ++ contiguousProducts l
+theorem mem_leftFactors {g : PairedReturnGraphIntersection.P} :
+    ∀ {l}, g ∈ leftFactors l → ⟨false, g⟩ ∈ l
+  | [], h => by simp [leftFactors] at h
+  | ⟨false, x⟩ :: l, h => by
+      rw [leftFactors] at h
+      rcases List.mem_cons.mp h with rfl | h
+      · exact List.mem_cons_self
+      · exact List.mem_cons_of_mem _ (mem_leftFactors h)
+  | ⟨true, x⟩ :: l, h => by
+      rw [leftFactors] at h
+      exact List.mem_cons_of_mem _ (mem_leftFactors h)
 
-/-- The finite saturation family of a normal spelling.  Including the head
-means that every possible carried block, rather than only the first carry
-chosen by one source scan, is tested in the same quotient. -/
-def saturationValues
+/-- Every displayed left syllable of a normal word is outside the paired
+edge. -/
+theorem leftFactors_not_mem_edge
     {d : PushoutI.NormalWord.Transversal
       (Amalgam.famHom edgeToP edgeToC)}
-    (w : PushoutI.NormalWord d) : List PairedReturnGraphIntersection.P :=
-  contiguousProducts
-    ((w.head : PairedReturnGraphIntersection.P) ::
-      w.toWord.toList.map factorBase)
+    (w : PushoutI.NormalWord d) :
+    ∀ g ∈ leftFactors w.toWord.toList,
+      g ∉ PairedReturnGraphIntersection.M := by
+  intro g hg hgedge
+  have hred := PushoutEmbedding.normalWord_reduced
+    (Amalgam.famHom edgeToP edgeToC) d w
+  apply hred ⟨false, g⟩ (mem_leftFactors hg)
+  exact ⟨⟨g, hgedge⟩, rfl⟩
 
-/-- A quotient preserves every forbidden left-product and terminal-graph
-test in the finite saturated family of the normal spelling. -/
+/-- A quotient preserves the source scan obstruction and prevents every
+left normal syllable from collapsing into the target edge. -/
 def PreservedObstruction
     (Q : Type) [Group Q]
     (q : PairedReturnGraphIntersection.P →* Q)
     {d : PushoutI.NormalWord.Transversal
       (Amalgam.famHom edgeToP edgeToC)}
     (w : PushoutI.NormalWord d) : Prop :=
-  (∀ x ∈ saturationValues w, x ∉ LeftProduct →
-    q x ∉ (Star.graphSub.map q : Set Q) *
-      (PairedReturnGraphIntersection.M.map q : Set Q)) ∧
-  (∀ x ∈ saturationValues w, x ∉ Star.graphSub →
-    q x ∉ Star.graphSub.map q)
+  ((∃ (pre : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+        (carry : Edge) (g : PairedReturnGraphIntersection.P)
+        (rest : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b)),
+      w.toWord.toList = pre ++ ⟨false, g⟩ :: rest ∧
+      EdgeScan w.head pre carry ∧
+      q ((carry : PairedReturnGraphIntersection.P) * g) ∉
+        (Star.graphSub.map q : Set Q) *
+          (PairedReturnGraphIntersection.M.map q : Set Q)) ∨
+    ∃ tail, EdgeScan w.head w.toWord.toList tail ∧
+      q (tail : PairedReturnGraphIntersection.P) ∉ Star.graphSub.map q) ∧
+  ∀ g ∈ leftFactors w.toWord.toList,
+    q g ∉ PairedReturnGraphIntersection.M.map q
 
 /-- Every excluded element has a normal spelling and one finite quotient
-preserving the entire saturated obstruction family of that spelling. -/
+preserving its scan obstruction while keeping the spelling reduced. -/
 theorem exists_finite_hom_preserving_normalObstruction
     {z : Ambient} (hz : z ∉ matchedCutter) :
     ∃ (d : PushoutI.NormalWord.Transversal
@@ -710,22 +815,33 @@ theorem exists_finite_hom_preserving_normalObstruction
   have hwprod : w.prod = z :=
     (PushoutI.NormalWord.equiv (d := d)).symm_apply_apply z
   have hwout : w.prod ∉ matchedCutter := by rwa [hwprod]
-  let leftBad := (saturationValues w).filter fun x ↦ x ∉ LeftProduct
-  let graphBad := (saturationValues w).filter fun x ↦ x ∉ Star.graphSub
-  obtain ⟨Q, hQgroup, hQfinite, q, hleft, hgraph⟩ :=
-    exists_finite_hom_reflecting_leftProduct_list_and_graph_list
-      leftBad graphBad (by
-        intro x hx
-        exact of_decide_eq_true (List.mem_filter.mp hx).2) (by
-        intro x hx
-        exact of_decide_eq_true (List.mem_filter.mp hx).2)
-  refine ⟨d, w, Q, hQgroup, hQfinite, q, hwprod, hwout, ?_, ?_⟩
-  · intro x hx hbad
-    apply hleft x
-    exact List.mem_filter.mpr ⟨hx, by simpa using hbad⟩
-  · intro x hx hbad
-    apply hgraph x
-    exact List.mem_filter.mpr ⟨hx, by simpa using hbad⟩
+  have hedge := leftFactors_not_mem_edge w
+  rcases exists_bad_or_terminal_of_normalWord_not_mem w hwout with
+      hbad | hterminal
+  · obtain ⟨pre, carry, g, rest, hlist, hscan, hfail⟩ := hbad
+    obtain ⟨Q, hQgroup, hQfinite, q, hleft, _, hedgeq⟩ :=
+      exists_finite_hom_reflecting_obstruction_lists
+        [(carry : PairedReturnGraphIntersection.P) * g] []
+        (leftFactors w.toWord.toList) (by
+          intro x hx
+          rw [List.mem_singleton] at hx
+          subst x
+          exact hfail) (by simp) hedge
+    refine ⟨d, w, Q, hQgroup, hQfinite, q, hwprod, hwout,
+      Or.inl ⟨pre, carry, g, rest, hlist, hscan, ?_⟩, hedgeq⟩
+    exact hleft ((carry : PairedReturnGraphIntersection.P) * g) (by simp)
+  · obtain ⟨tail, hscan, htail⟩ := hterminal
+    obtain ⟨Q, hQgroup, hQfinite, q, _, hgraph, hedgeq⟩ :=
+      exists_finite_hom_reflecting_obstruction_lists []
+        [(tail : PairedReturnGraphIntersection.P)]
+        (leftFactors w.toWord.toList) (by simp) (by
+          intro x hx
+          rw [List.mem_singleton] at hx
+          subst x
+          exact htail) hedge
+    refine ⟨d, w, Q, hQgroup, hQfinite, q, hwprod, hwout,
+      Or.inr ⟨tail, hscan, ?_⟩, hedgeq⟩
+    exact hgraph (tail : PairedReturnGraphIntersection.P) (by simp)
 
 /-- The same quotient in the iterated-central-HNN model used by the finite
 free-label action. -/
