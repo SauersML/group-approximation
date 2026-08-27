@@ -41,4 +41,4 @@ end
 end MFAlgebraUnitalCoronaEmbedding
 end GroupApproximation
 
-#audit_closed_axioms GroupApproximation.MFAlgebraUnitalCoronaEmbedding.exists_injective_unital_coronaEmbedding
+#audit_axioms GroupApproximation.MFAlgebraUnitalCoronaEmbedding.exists_injective_unital_coronaEmbedding
