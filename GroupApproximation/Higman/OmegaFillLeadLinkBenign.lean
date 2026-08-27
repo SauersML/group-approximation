@@ -632,8 +632,7 @@ theorem linkAut_vElem (m : ℕ) {r j : ℤ} (hjr : j ≤ r) {f : E} (hf : f ∈ 
           * (fatGenCode m (f + Finsupp.single j 1))⁻¹
     rw [map_mul, map_mul, map_inv, map_inv, genConjAut_fatGenCode m hf'',
       genConjAut_fatGenCode m hf', genConjAut_fatRow, add_right_comm]
-  · show (MulEquiv.refl F₃) (rowElt r)⁻¹ = (rowElt r)⁻¹
-    rfl
+  · rfl
 
 /-- **`Φⱼ⁻¹ v_β = v_{β - eⱼ}`** for `β` supported on `[j, r]`. -/
 theorem linkAut_symm_vElem (m : ℕ) {r j : ℤ} (hjr : j ≤ r) {f : E}
@@ -649,8 +648,7 @@ theorem linkAut_symm_vElem (m : ℕ) {r j : ℤ} (hjr : j ≤ r) {f : E}
           * (fatGenCode m (f + Finsupp.single j (-1)))⁻¹
     rw [map_mul, map_mul, map_inv, map_inv, genConjAut_symm_fatGenCode m hf'',
       genConjAut_symm_fatGenCode m hf', genConjAut_symm_fatRow, add_right_comm]
-  · show (MulEquiv.refl F₃).symm (rowElt r)⁻¹ = (rowElt r)⁻¹
-    rfl
+  · rfl
 
 /-! ## 5.  Stable hulls under a full automorphism, on elements -/
 
@@ -705,7 +703,7 @@ theorem stable_vSub (m : ℕ) {r j : ℤ} (hjr : j ≤ r) :
     have hmap : (vSub m r j).map (linkAut m j).toMonoidHom ≤ vSub m r j := by
       unfold vSub
       rw [MonoidHom.map_closure]
-      refine Subgroup.closure_le.mpr ?_
+      refine (Subgroup.closure_le _).mpr ?_
       rintro _ ⟨_, ⟨f, hf, rfl⟩, rfl⟩
       refine Subgroup.subset_closure ⟨f + Finsupp.single j 1,
         add_single_mem_windowSet hf le_rfl hjr 1, ?_⟩
@@ -715,7 +713,7 @@ theorem stable_vSub (m : ℕ) {r j : ℤ} (hjr : j ≤ r) :
     have hmap : (vSub m r j).map (linkAut m j).symm.toMonoidHom ≤ vSub m r j := by
       unfold vSub
       rw [MonoidHom.map_closure]
-      refine Subgroup.closure_le.mpr ?_
+      refine (Subgroup.closure_le _).mpr ?_
       rintro _ ⟨_, ⟨f, hf, rfl⟩, rfl⟩
       refine Subgroup.subset_closure ⟨f + Finsupp.single j (-1),
         add_single_mem_windowSet hf le_rfl hjr (-1), ?_⟩
@@ -733,16 +731,16 @@ theorem vElem_mem_stableHull (m : ℕ) {r j : ℤ} (hjr : j ≤ r) {f : E}
       ∈ HNNDescent.stableHull (topAut (linkAut m j)) (vSub m r (j + 1)) := by
     intro n
     induction n using Int.induction_on with
-    | hz =>
+    | zero =>
         rw [Finsupp.single_zero, add_zero]
         exact HNNDescent.le_stableHull _ _
           (Subgroup.subset_closure ⟨f.erase j, herase, rfl⟩)
-    | hp k ih =>
+    | succ k ih =>
         have hw : f.erase j + Finsupp.single j (k : ℤ) ∈ windowSet j r :=
           add_single_mem_windowSet (windowSet_mono_succ herase) le_rfl hjr _
         rw [Finsupp.single_add, ← add_assoc, ← linkAut_vElem m hjr hw]
         exact Stable.map_mem _ hst ih
-    | hn k ih =>
+    | pred k ih =>
         have hw : f.erase j + Finsupp.single j (-(k : ℤ)) ∈ windowSet j r :=
           add_single_mem_windowSet (windowSet_mono_succ herase) le_rfl hjr _
         have hsplit : f.erase j + Finsupp.single j (-(k : ℤ) - 1)
@@ -759,7 +757,7 @@ theorem vSub_eq_stableHull (m : ℕ) {r j : ℤ} (hjr : j ≤ r) :
     vSub m r j = HNNDescent.stableHull (topAut (linkAut m j)) (vSub m r (j + 1)) := by
   apply le_antisymm
   · show Subgroup.closure (vElem m r '' windowSet j r) ≤ _
-    refine Subgroup.closure_le.mpr ?_
+    refine (Subgroup.closure_le _).mpr ?_
     rintro _ ⟨f, hf, rfl⟩
     exact vElem_mem_stableHull m hjr hf
   · exact HNNDescent.stableHull_le _ (vSub_succ_le m r j) (stable_vSub m hjr)
@@ -793,12 +791,8 @@ theorem benignTF_vSub (m : ℕ) (r : ℤ) : ∀ k : ℕ, BenignTF (vSub m r (r +
       letI : Group.IsFinitelyPresented (LinkAmbient m) := inferInstance
       letI : Group.FG (LinkAmbient m) :=
         ProductFinitePresentation.fg_of_isFinitelyPresented (LinkAmbient m)
-      have hjr : r + 1 - ((k + 1 : ℕ) : ℤ) ≤ r := by
-        push_cast
-        omega
-      have hnext : r + 1 - ((k + 1 : ℕ) : ℤ) + 1 = r + 1 - (k : ℤ) := by
-        push_cast
-        ring
+      have hjr : r + 1 - ((k + 1 : ℕ) : ℤ) ≤ r := by omega
+      have hnext : r + 1 - ((k + 1 : ℕ) : ℤ) + 1 = r + 1 - (k : ℤ) := by omega
       rw [vSub_eq_stableHull m hjr, hnext]
       exact BenignTF.stableHull (isPowerTorsionFree_linkAmbient m) (linkAut m _)
         (benignTF_vSub m r k)
@@ -806,9 +800,7 @@ theorem benignTF_vSub (m : ℕ) (r : ℤ) : ∀ k : ℕ, BenignTF (vSub m r (r +
 /-- **Example 3.11: `V^{(r)} = T_0` is benign.** -/
 theorem benignTF_vSub_zero (m : ℕ) (r : ℕ) : BenignTF (vSub m r 0) := by
   have h := benignTF_vSub m r (r + 1)
-  have hzero : (r : ℤ) + 1 - ((r + 1 : ℕ) : ℤ) = 0 := by
-    push_cast
-    ring
+  have hzero : (r : ℤ) + 1 - ((r + 1 : ℕ) : ℤ) = 0 := by omega
   rwa [hzero] at h
 
 /-! ## 7.  Example 3.12: the join, and the sheared link -/
@@ -851,7 +843,7 @@ theorem zSub_succ_eq (m : ℕ) {r : ℤ} (hr : 0 ≤ r) :
     zSub m (r + 1) = zSub m r ⊔ vSub m r 0 := by
   apply le_antisymm
   · show Subgroup.closure (linkElem m '' lowSet (r + 1)) ≤ _
-    refine Subgroup.closure_le.mpr ?_
+    refine (Subgroup.closure_le _).mpr ?_
     rintro _ ⟨f, hf, rfl⟩
     have herase : f.erase r ∈ lowSet r := erase_mem_lowSet hf
     have hwin : f.erase r ∈ windowSet 0 r :=
@@ -859,10 +851,10 @@ theorem zSub_succ_eq (m : ℕ) {r : ℤ} (hr : 0 ≤ r) :
     have key : ∀ n : ℤ, linkElem m (f.erase r + Finsupp.single r n) ∈ zSub m r ⊔ vSub m r 0 := by
       intro n
       induction n using Int.induction_on with
-      | hz =>
+      | zero =>
           rw [Finsupp.single_zero, add_zero]
           exact Subgroup.mem_sup_left (Subgroup.subset_closure ⟨f.erase r, herase, rfl⟩)
-      | hp k ih =>
+      | succ k ih =>
           have hw : f.erase r + Finsupp.single r (k : ℤ) ∈ windowSet 0 r :=
             add_single_mem_windowSet hwin (by omega) le_rfl _
           have hle : ∀ i ∈ (f.erase r + Finsupp.single r (k : ℤ)).support, i ≤ r :=
@@ -870,7 +862,7 @@ theorem zSub_succ_eq (m : ℕ) {r : ℤ} (hr : 0 ≤ r) :
           rw [Finsupp.single_add, ← add_assoc, ← vElem_mul_linkElem m hle]
           exact Subgroup.mul_mem _
             (Subgroup.mem_sup_right (Subgroup.subset_closure ⟨_, hw, rfl⟩)) ih
-      | hn k ih =>
+      | pred k ih =>
           have hw : f.erase r + Finsupp.single r (-(k : ℤ) - 1) ∈ windowSet 0 r :=
             add_single_mem_windowSet hwin (by omega) le_rfl _
           have hle : ∀ i ∈ (f.erase r + Finsupp.single r (-(k : ℤ) - 1)).support, i ≤ r :=
@@ -889,7 +881,7 @@ theorem zSub_succ_eq (m : ℕ) {r : ℤ} (hr : 0 ≤ r) :
     exact key (f r)
   · refine sup_le (zSub_le_succ m r) ?_
     show Subgroup.closure (vElem m r '' windowSet 0 r) ≤ _
-    refine Subgroup.closure_le.mpr ?_
+    refine (Subgroup.closure_le _).mpr ?_
     rintro _ ⟨f, hf, rfl⟩
     have hle : ∀ i ∈ f.support, i ≤ r := fun i hi => (hf i hi).2
     rw [eq_mul_inv_of_mul_eq (vElem_mul_linkElem m hle)]
@@ -907,7 +899,9 @@ theorem benignTF_zSub (m : ℕ) : ∀ r : ℕ, BenignTF (zSub m r)
       letI : Group.IsFinitelyPresented (LinkAmbient m) := inferInstance
       letI : Group.FG (LinkAmbient m) :=
         ProductFinitePresentation.fg_of_isFinitelyPresented (LinkAmbient m)
-      rw [Nat.cast_succ, zSub_succ_eq m (by omega)]
+      have hcast : ((r + 1 : ℕ) : ℤ) = (r : ℤ) + 1 := by omega
+      have hr0 : (0 : ℤ) ≤ (r : ℤ) := by omega
+      rw [hcast, zSub_succ_eq m hr0]
       exact BenignTF.sup (benignTF_zSub m r) (benignTF_vSub_zero m r)
 
 theorem lowSet_eq_blockSet (m : ℕ) : lowSet (m : ℤ) = blockSet m := by
