@@ -1,4 +1,5 @@
 import GroupApproximation.Computability.CodedProfiniteWitness
+import GroupApproximation.Computability.BenignSupCodeModelSemantics
 import GroupApproximation.Higman.PairedReturnProfiniteWitness
 import GroupApproximation.Higman.PairedReturnCutterCode
 import GroupApproximation.Higman.TransportStarCode
@@ -226,23 +227,20 @@ theorem hjoinSyntax_eq_transportStar
 
 /-- The exact code-semantic facts still needed to identify the emitted
 `BenignSupCode` syntax with the special semantic join witness.  Existing
-`BenignSupCodeSemantics` proves the individual HNN word formulas; these three
-fields are precisely their missing two-stage assembly at the actual
-TransportStar inputs. -/
+The ambient equivalence is now supplied unconditionally by
+`Model.supLevel2Equiv`.  These two fields are precisely the remaining cutter
+and mark identifications at the actual TransportStar inputs. -/
 structure SpecialJoinCodeSemantics
     (hfive : profiniteClosure fiveCutter = fiveCutter)
     {H : Subgroup Conj.F₃} (C : Model sourceMark H)
     (hclosed : SpecialJoinClosedObligation hfive C) where
-  ambientEquiv :
-    Carrier (hjoinSyntax hfive C).1 ≃*
-      (hjoinData hfive C hclosed).witness.K
   cutter_eq :
     (wordSubgroup (hjoinSyntax hfive C).1
         (hjoinSyntax hfive C).2.1).map
-        ambientEquiv.toMonoidHom =
+        (Model.supLevel2Equiv (hgammaModel hfive C) botModel).toMonoidHom =
       (hjoinData hfive C hclosed).witness.L
   marked_eq : ∀ i : MarkCount,
-    ambientEquiv
+    Model.supLevel2Equiv (hgammaModel hfive C) botModel
         (evalWord (hjoinSyntax hfive C).1
           ((hjoinSyntax hfive C).2.2.getD i [])) =
       (hjoinData hfive C hclosed).witness.emb (pMark i)
@@ -259,7 +257,7 @@ def hjoinModel
         Star.ProdBot) where
   data := hjoinData hfive C hclosed
   coded := hjoinSyntax hfive C
-  ambientEquiv := S.ambientEquiv
+  ambientEquiv := Model.supLevel2Equiv (hgammaModel hfive C) botModel
   cutter_eq := S.cutter_eq
   marked_eq := S.marked_eq
 
