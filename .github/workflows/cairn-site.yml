@@ -122,11 +122,19 @@ jobs:
 
       # The web edition of the manuscript, at /paper/.  This is part of the
       # public site contract, so a broken paper build must stop deployment.
-      - name: Build the paper edition
+      # 2026-08-27 (user order): the explainer/macro test suites are quality
+      # gates on tooltip coverage, and they go stale on every tex edit until
+      # the explainer lane re-syncs.  They must not hold the paper edition
+      # hostage: they run and warn; only the build itself is a hard gate.
+      - name: Paper edition test suites (warn-only)
+        continue-on-error: true
         run: |
           node tools/paper_site/test_inline.js
           node tools/test_math_explainer.js
           node tools/test_math_macros.js
+
+      - name: Build the paper edition
+        run: |
           python3 tools/paper_site/build.py --edition paper --out .cairn/site/paper/index.html
           install -m 0644 non_mf_groups_exist.pdf .cairn/site/non_mf_groups_exist.pdf
 
