@@ -8,6 +8,7 @@ distinct_from:
   stw99-problem-x1-amenable-traces-quasidiagonal: that is the universal question; this is its negation restricted to the canonical traces of full group C*-algebras, carried as a separate node because both sides have live routes.
   literal-central-mark-corona-invisible: that is the operator-norm corona obstruction for one group; this is the trace-level consequence, which needs in addition that the canonical trace of that group be amenable.
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/ProblemXGroups.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -31,3 +32,10 @@ residually finite; so the manuscript's simple Kazhdan group
 canonical trace is not amenable, and it says nothing about this problem.  The
 literal group `E` is an HNN-type extension and is not itself Kazhdan, which is
 why the question stays open for it.
+
+Lean (group-level reading): `NinetyNineProblems.AmenableCanonicalTraceGroupsAreOperatorMF`
+and `amenableCanonicalTraceGroupsAreOperatorMF_of_problemX1`,
+`not_problemX1Statement_of_amenable_not_operatorMF` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemXGroups.lean`): a positive
+answer to X(1) makes every factorization-property group operator-MF, so this
+claim is equivalent to the existence of a factorization-property group that is
+not operator-MF.
