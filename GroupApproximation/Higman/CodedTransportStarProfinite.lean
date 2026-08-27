@@ -5,6 +5,7 @@ import GroupApproximation.Higman.PairedReturnCutterCode
 import GroupApproximation.Higman.TransportStarCode
 import GroupApproximation.Higman.TransportStarProdBotProfinite
 import GroupApproximation.Higman.ProfiniteBenignProductSeparable
+import GroupApproximation.Higman.ProfiniteBenignFactorizationReflection
 
 /-!
 # The coded profinite prefix of TransportStar
@@ -212,6 +213,22 @@ theorem hprodModel_productSeparable {H : Subgroup Conj.F₃}
   exact ProfiniteBenignWitness.ProductSeparable.comap_of_surjective
     C.data hC (ProfiniteBenignWitness.selfOvergroup (G := P))
       (MonoidHom.fst Conj.F₃ Conj.F₃) Prod.fst_surjective
+
+/-- Prescribed quotients of the varying first coordinate are reflected by a
+finite quotient of the literal hprod ambient. -/
+theorem hprodModel_factorizationReflecting_fst
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (hC : C.data.FactorizationReflecting)
+    (Q : Type) [Group Q] [Finite Q] (q : Conj.F₃ →* Q) :
+    ∃ (R : Type) (_ : Group R) (_ : Finite R)
+        (p : (hprodModel C).data.witness.K →* R),
+      ∀ g : P,
+        p ((hprodModel C).data.witness.emb g) ∈
+            (hprodModel C).data.witness.L.map p →
+          q g.1 ∈ H.map q := by
+  exact ProfiniteBenignWitness.FactorizationReflecting.comap_coordinate
+    C.data hC (ProfiniteBenignWitness.selfOvergroup (G := P))
+      (MonoidHom.fst Conj.F₃ Conj.F₃) Q q
 
 @[simp] theorem hprodModel_coded {H : Subgroup Conj.F₃}
     (C : Model sourceMark H) :
