@@ -161,7 +161,7 @@ theorem hullCommonQuotient : HullCommonQuotientStatement := by
 
 /-- The cited inputs, as a term.  The first field is proved; the other four are
 the debts above. -/
-theorem literatureInputs : LiteratureInputs :=
+def literatureInputs : LiteratureInputs :=
   { chiodo := chiodo
     kotowskiOllivier := kotowskiOllivier
     smallCancellationQuotient := smallCancellationQuotient
