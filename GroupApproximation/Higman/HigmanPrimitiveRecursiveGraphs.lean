@@ -406,6 +406,105 @@ noncomputable def natRecGraph {n : ℕ}
     (F : List.Vector ℕ n → ℕ) (H : List.Vector ℕ (n + 2) → ℕ) : Set E :=
   recGraph n (natGraph F) (natRecStep H)
 
+/-- A canonical step point, written in the coordinate order consumed by
+`recGraph`: parameters, counter, old value, new value. -/
+def natRecNativeCoords {n : ℕ} (H : List.Vector ℕ (n + 2) → ℕ)
+    (a : List.Vector ℕ (n + 2)) (i : Fin (n + 3)) : ℤ :=
+  if hi : i.val < n then (a.get ⟨i.val + 2, by omega⟩ : ℤ)
+  else if hcount : i.val = n then (a.get ⟨0, by omega⟩ : ℤ)
+  else if hold : i.val = n + 1 then (a.get ⟨1, by omega⟩ : ℤ)
+  else (H a : ℤ)
+
+noncomputable def natRecNativeSeq {n : ℕ} (H : List.Vector ℕ (n + 2) → ℕ)
+    (a : List.Vector ℕ (n + 2)) : E :=
+  coordSeq (n + 3) (natRecNativeCoords H a)
+
+@[simp] theorem natRecNativeSeq_param {n : ℕ}
+    (H : List.Vector ℕ (n + 2) → ℕ) (a : List.Vector ℕ (n + 2))
+    (j : ℕ) (hj : j < n) :
+    natRecNativeSeq H a (j : ℤ) = (a.get ⟨j + 2, by omega⟩ : ℤ) := by
+  rw [natRecNativeSeq, coordSeq_apply_natCast (n + 3) _ j (by omega)]
+  simp [natRecNativeCoords, hj]
+
+@[simp] theorem natRecNativeSeq_count {n : ℕ}
+    (H : List.Vector ℕ (n + 2) → ℕ) (a : List.Vector ℕ (n + 2)) :
+    natRecNativeSeq H a (n : ℤ) = (a.get ⟨0, by omega⟩ : ℤ) := by
+  rw [natRecNativeSeq, coordSeq_apply_natCast (n + 3) _ n (by omega)]
+  simp [natRecNativeCoords]
+
+@[simp] theorem natRecNativeSeq_old {n : ℕ}
+    (H : List.Vector ℕ (n + 2) → ℕ) (a : List.Vector ℕ (n + 2)) :
+    natRecNativeSeq H a ((n + 1 : ℕ) : ℤ) = (a.get ⟨1, by omega⟩ : ℤ) := by
+  rw [natRecNativeSeq, coordSeq_apply_natCast (n + 3) _ (n + 1) (by omega)]
+  simp [natRecNativeCoords]
+
+@[simp] theorem natRecNativeSeq_output {n : ℕ}
+    (H : List.Vector ℕ (n + 2) → ℕ) (a : List.Vector ℕ (n + 2)) :
+    natRecNativeSeq H a ((n + 2 : ℕ) : ℤ) = (H a : ℤ) := by
+  rw [natRecNativeSeq, coordSeq_apply_natCast (n + 3) _ (n + 2) (by omega)]
+  simp [natRecNativeCoords]
+
+@[simp] theorem natRecStepCoord_count (n : ℕ) : natRecStepCoord n 0 = (n : ℤ) := by
+  simp [natRecStepCoord]
+
+@[simp] theorem natRecStepCoord_old (n : ℕ) :
+    natRecStepCoord n 1 = ((n + 1 : ℕ) : ℤ) := by
+  simp [natRecStepCoord]
+
+@[simp] theorem natRecStepCoord_param (n j : ℕ) (hj : j < n) :
+    natRecStepCoord n (j + 2) = (j : ℤ) := by
+  simp [natRecStepCoord, hj]
+
+@[simp] theorem natRecStepCoord_output (n : ℕ) :
+    natRecStepCoord n (n + 2) = ((n + 2 : ℕ) : ℤ) := by
+  simp [natRecStepCoord]
+
+theorem natRecNativeSeq_mem {n : ℕ} (H : List.Vector ℕ (n + 2) → ℕ)
+    (a : List.Vector ℕ (n + 2)) : natRecNativeSeq H a ∈ natRecStep H := by
+  refine ⟨⟨natGraphSeq H a, natGraphSeq_mem H a, fun j hj => ?_⟩,
+    coordSeq_mem_windowSupport (n + 3) (natRecNativeCoords H a)⟩
+  by_cases h0 : j = 0
+  · subst j
+    rw [natRecStepCoord_count, natRecNativeSeq_count,
+      natGraphSeq_input H a ⟨0, by omega⟩]
+  by_cases h1 : j = 1
+  · subst j
+    rw [natRecStepCoord_old, natRecNativeSeq_old,
+      natGraphSeq_input H a ⟨1, by omega⟩]
+  by_cases hout : j = n + 2
+  · subst j
+    rw [natRecStepCoord_output, natRecNativeSeq_output, natGraphSeq_output]
+  · let k := j - 2
+    have hk : k < n := by omega
+    have hjk : j = k + 2 := by omega
+    rw [hjk, natRecStepCoord_param n k hk, natRecNativeSeq_param H a k hk,
+      natGraphSeq_input H a ⟨k + 2, by omega⟩]
+
+theorem recBaseAt_natGraph_iff {n : ℕ} (F : List.Vector ℕ n → ℕ)
+    (x : ℕ → ℤ) (u : ℤ) :
+    recBaseAt n (natGraph F) x u ↔
+      (∀ j : ℕ, j < n → 0 ≤ x j) ∧
+        u = (F (List.Vector.ofFn fun i : Fin n => (x i.val).toNat) : ℤ) := by
+  constructor
+  · rintro ⟨w, hw, hparam, hout⟩
+    refine ⟨fun j hj => ?_, ?_⟩
+    · rw [← hparam j hj]
+      exact hw.2.1 ⟨j, hj⟩
+    · have hargs : (List.Vector.ofFn fun i : Fin n => (w (i.val : ℤ)).toNat) =
+          List.Vector.ofFn fun i : Fin n => (x i.val).toNat := by
+        congr 1
+        funext i
+        exact congrArg Int.toNat (hparam i.val i.isLt)
+      rw [← hout, hw.2.2, hargs]
+  · rintro ⟨hnonneg, hu⟩
+    let a : List.Vector ℕ n :=
+      List.Vector.ofFn fun i : Fin n => (x i.val).toNat
+    refine ⟨natGraphSeq F a, natGraphSeq_mem F a, fun j hj => ?_, ?_⟩
+    · rw [natGraphSeq_input F a ⟨j, hj⟩]
+      simp only [a, List.Vector.get_ofFn, Int.toNat_of_nonneg (hnonneg j hj)]
+    · rw [natGraphSeq_output]
+      exact hu.symm
+
 theorem nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
   induction n with
   | zero => norm_num
