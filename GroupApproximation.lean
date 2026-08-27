@@ -1930,6 +1930,12 @@ import GroupApproximation.Manuscript.NonMF.PriorWorkConnesEmbedding
 import GroupApproximation.Manuscript.NonMF.PriorWorkErshovJaikinZapirain
 import GroupApproximation.Manuscript.NonMF.PriorWorkShulmanAmalgam
 import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationCoronaTrace
+import GroupApproximation.Manuscript.OneSidedMFRadical.StableFinitenessSentencesCore
+import GroupApproximation.Manuscript.OneSidedMFRadical.StableFinitenessSentences
+import GroupApproximation.Manuscript.NonMF.FournierFacioDoubleHNN
+import GroupApproximation.Manuscript.NonMF.FournierFacioInput
+import GroupApproximation.Manuscript.NonMF.TorsionFreeTheoremC
+import GroupApproximation.Manuscript.MFRecognition.FiniteRope
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
