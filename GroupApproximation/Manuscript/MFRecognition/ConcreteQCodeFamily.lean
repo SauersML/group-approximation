@@ -1,4 +1,5 @@
 import GroupApproximation.Computability.RecursiveSwitchPresentation
+import GroupApproximation.Computability.CodedProfiniteWitness
 import GroupApproximation.Higman.BridgeRelatorCode
 import GroupApproximation.Manuscript.MFRecognition.FixedUniversalFamily
 
@@ -120,6 +121,32 @@ noncomputable def presentedQEquivBridge (e : Nat.Partrec.Code) :
         rw [rank3Relators_qcode_eq, normalClosure_insert_one])).trans
     (Higman.BridgeRelatorCode.rankThreePresentedEquiv
       (RecursiveSwitchPresentation.switchEnumeratorCode e))
+
+/-- The six operation-calculus marks on the rank-three source: its three
+free generators, followed by the identities required by the product stage of
+TransportStar. -/
+def sourceMarks (i : CodedProfiniteWitness.MarkCount) : Source :=
+  [FreeGroup.of (0 : Fin 3), FreeGroup.of (1 : Fin 3),
+    FreeGroup.of (2 : Fin 3), 1, 1, 1].getD i 1
+
+/-- The exact finite-syntax/profinite contract required at a concrete
+positive-branch input. -/
+abbrev KernelModel (e : Nat.Partrec.Code) :=
+  CodedProfiniteWitness.Model sourceMarks (kernelN (qcode e))
+
+/-- A coded witness constructed for the literal bridge kernel is immediately
+a model for the manuscript's concrete qcode kernel.  This is the exact seam
+between switch/bridge semantics and the operation-coded profinite compiler. -/
+def kernelModelOfBridge (e : Nat.Partrec.Code)
+    (C : CodedProfiniteWitness.Model sourceMarks
+      (MonoidHom.ker
+        (Higman.BridgeEff.pi3
+          (Higman.BridgeRelatorCode.sourceGen
+            (RecursiveSwitchPresentation.switchEnumeratorCode e))))) :
+    KernelModel e := by
+  change CodedProfiniteWitness.Model sourceMarks (kernelN (qcode e))
+  rw [kernelN_qcode_eq_bridgeKer]
+  exact C
 
 /-- A natural-number enumeration of the actual code-indexed family.  This is
 used only by the fixed universal host that witnesses computability; the
