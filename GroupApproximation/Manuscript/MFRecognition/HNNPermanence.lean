@@ -1,4 +1,7 @@
+import GroupApproximation.Analysis.MFAlgebraUnitalCoronaEmbedding
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceTraceBridge
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniverseDescent
+import GroupApproximation.Manuscript.OneSidedMFRadical.TensorSynchronizationCoordinateCore
 
 /-!
 # `thm:hnn-permanence` and `cor:central-hnn`
@@ -25,17 +28,10 @@ the repository's `IsRegularlyRealized`, and the printed *"In particular, `R` is
 MF"* is `IsOperatorMF`.
 
 Every statement below carries the single leading hypothesis
-`(hIn : HNNInputs)`, declared in `HNNPermanenceShulman`.  Its first two fields
-are the results the manuscript cites — Ueda, Proposition 2.4 and Shulman,
-Theorem 16 — and the rest are the printed steps of Step 3 that this
-development does not yet close, together with two obligations the manuscript
-does not discuss because they are artefacts of the formalization: the
-repository's `IsRegularlyRealized` quantifies over realization algebras in
-`Type`, while the universal `C*`-HNN algebra of Step 1 necessarily lives one
-universe higher; and the corollary's *"`ι` any injective `*`-homomorphism of
-`A` into a norm matrix corona"* needs a *unital* such map, while
-`HasMFEmbedding` supplies a possibly non-unital one.  Only the conclusions are
-the printed ones.
+`(hIn : HNNInputs)`, declared in `HNNPermanenceCitations`.  Its sole field is
+the remaining MF-algebra permanence input for the universal HNN algebra.  The
+trace construction, unital corona embedding, and universe descent are proved
+internally.
 -/
 
 namespace GroupApproximation
@@ -49,13 +45,9 @@ noncomputable section
 
 /-! ## The assumed inputs
 
-Everything this proof assumes is bundled as `HNNInputs`, declared in
-`HNNPermanenceShulman`: the two cited results (Ueda, Proposition 2.4 and
-Shulman, Theorem 16) and the printed steps of Step 3 that are still open, each
-typed by a named proposition.  Every statement below carries the single leading
-hypothesis `(hIn : HNNInputs)`, so the citations and the outstanding
-obligations travel with the conclusions; only the conclusions are the printed
-ones. -/
+The remaining MF-algebra permanence input is bundled as `HNNInputs`.  Every
+statement below carries it explicitly; all trace and descent steps are proved
+inside the repository. -/
 
 /-! ## `thm:hnn-permanence` -/
 
@@ -87,7 +79,7 @@ theorem manuscriptHNNPermanence (hIn : HNNInputs) {G : Type} [Group G] [Countabl
     IsRegularlyRealized (HNNExtension G S T phi) := by
   letI : Countable (HNNExtension G S T phi) :=
     hnnExtension_countable G S T phi
-  exact hIn.regularRealizationDescent
+  exact regularRealizationDescent_proved
     (hnnRegularRealization hIn
       ({ realization := realization
          iota := iota
@@ -152,8 +144,12 @@ theorem manuscriptCentralHNN (hIn : HNNInputs) {G : Type} [Group G] [Countable G
     IsRegularlyRealized (HNNExtension G S S (MulEquiv.refl S)) := by
   obtain ⟨A, instA, ⟨realization⟩⟩ := hG
   letI : CStarAlgebra A := instA
+  letI : Nontrivial A :=
+    OneSidedMFRadical.TensorSynchronizationAssembly.regularRealization_nontrivial
+      realization
   obtain ⟨X, hX, iota, hiota⟩ :=
-    hIn.unitalCoronaEmbedding realization.mf
+    MFAlgebraUnitalCoronaEmbedding.exists_injective_unital_coronaEmbedding
+      realization.mf
   letI : ∀ n, Nonempty (X n) := hX
   refine manuscriptHNNPermanence hIn
     (MulEquiv.refl S) realization iota hiota 1 ?_

@@ -6,17 +6,13 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceSetupUniversal
 /-!
 # The assumed inputs of `thm:hnn-permanence`
 
-Every hypothesis the HNN permanence proof rests on is named here, as a
-proposition, and bundled as `HNNInputs`.
+The remaining hypothesis of the HNN permanence proof is named here and
+bundled as `HNNInputs`.
 
-This module deliberately closes over *landed* modules only.  The mechanics of
-Steps 1 and 2 — the amalgam `P`, Ueda's corner `ePe`, the matrix units — are
-being reorganized elsewhere, and nothing in the critical path
-(`HNNPermanenceTraceBridge`, `HNNPermanence`) should have to move when they do.
-The output of those two steps enters here as one proposition,
-`UniversalHNNIsMFStatement`, and `HNNPermanenceShulman` discharges it from the
-two citations along the printed route: Ueda's Proposition 2.4 puts `U` inside
-the full amalgam, and Shulman's Theorem 16 makes that amalgam MF.
+The direct Ueda corner embedding is constructed in the Ueda modules.  The
+output of Steps 1 and 2 enters the trace bridge as
+`UniversalHNNIsMFStatement`; the sole remaining input is the direct Shulman
+amalgam-MF theorem.
 -/
 
 namespace GroupApproximation
@@ -53,7 +49,7 @@ def ShulmanTheorem16Statement : Prop :=
           (∀ c : C, phiA (iA c) = phiB (iB c)) →
             IsMFAlgebra (UniversalCStarAmalgam iA iB)
 
-/-! ## The printed steps of Step 3 that are still open
+/-! ## The printed steps of Step 3
 
 Each is a *named* proposition, so a consumer's type shows exactly which printed
 sentence it rests on.  None of them is a citation: the manuscript proves all
@@ -75,33 +71,13 @@ def EdgeDensityStatement : Prop :=
               unitary (sourceEdgeAlgebra data)) : sourceEdgeAlgebra data))) →
         f = g
 
-/-- A tracial MF realization in any universe gives one in `Type`.  Not a
-statement of the manuscript: the repository's `IsRegularlyRealized` pins the
-realization algebra to `Type`, while the universal `C*`-HNN algebra of Step 1
-lives one universe higher.  Still open. -/
-def RegularRealizationDescentStatement : Prop :=
-  ∀ {R : Type} [Group R] [Countable R] {B : Type 1} [CStarAlgebra B],
-    RegularRealizationData R B → IsRegularlyRealized R
-
-/-- A unital separable MF C-star algebra has a *unital* faithful corona
-embedding.  Needed by the printed proof of `cor:central-hnn`, which takes *"`ι`
-any injective `*`-homomorphism of `A` into a norm matrix corona"*, while
-`HasMFEmbedding` supplies a possibly non-unital one.  Still open. -/
-def UnitalCoronaEmbeddingStatement : Prop :=
-  ∀ {A : Type} [CStarAlgebra A], IsMFAlgebra A →
-    ∃ (X : ℕ → FiniteModel) (hX : ∀ n, Nonempty (X n)),
-      letI : ∀ n, Nonempty (X n) := hX
-      ∃ iota : A →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
-        Function.Injective iota
-
 /-- **The conclusion of Steps 1 and 2**: the universal `C*`-HNN algebra `U` is
 MF.
 
 This is not a citation.  It is what the printed Step 1 and Step 2 establish
 together — `U` embeds in the full amalgamated free product `P = A₁ *_C A₂` by
-Ueda's Proposition 2.4, and `P`, hence its corner `ePe ≅ U`, is MF by Shulman's
-Theorem 16 — and `HNNPermanenceShulman.universalHNNIsMFStatement_of_citations`
-proves exactly this proposition from those two cited results.  It is stated
+the direct Ueda corner map, and `P`, hence its corner containing `U`, is MF by
+Shulman's Theorem 16.  It is stated
 separately so that Step 3 and the manuscript theorems depend on the *conclusion*
 of Steps 1–2 rather than on the particular modules that construct `P`. -/
 def UniversalHNNIsMFStatement : Prop :=
@@ -114,16 +90,12 @@ def UniversalHNNIsMFStatement : Prop :=
 in the style of `NonMF.TorsionFree.HullInputs`.
 
 A term of this structure is never constructed here, so every downstream
-statement carries `(hIn : HNNInputs)` and the assumptions travel with the
-conclusions. -/
+statement carries `(hIn : HNNInputs)` and the remaining assumption travels
+with the conclusion. -/
 structure HNNInputs : Type where
-  /-- Steps 1 and 2: `U` is MF.  Discharged from Ueda, Proposition 2.4 and
-  Shulman, Theorem 16 by `universalHNNIsMFStatement_of_citations`. -/
+  /-- Steps 1 and 2: the direct Ueda embedding and Shulman's theorem make `U`
+  MF. -/
   universalHNNIsMF : UniversalHNNIsMFStatement
-  /-- Universe descent to the repository's `IsRegularlyRealized`. -/
-  regularRealizationDescent : RegularRealizationDescentStatement
-  /-- The unital corona embedding used by `cor:central-hnn`. -/
-  unitalCoronaEmbedding : UnitalCoronaEmbeddingStatement
 
 end
 
