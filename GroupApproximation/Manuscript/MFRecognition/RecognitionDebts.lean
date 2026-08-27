@@ -1,6 +1,7 @@
 import GroupApproximation.Manuscript.MFRecognition.RecognitionAssembly
 import GroupApproximation.Manuscript.MFRecognition.RopeCodeFamilySemantics
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceNonunital
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerProof
 import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Higman.CurrentREBenign
 import GroupApproximation.Higman.OmegaDebt
@@ -16,8 +17,8 @@ top of them:
 
 * `shulmanTheorem16` — Shulman, Theorem 16 (amalgamated free products of
   separable `C*`-algebras are MF under compatible corona embeddings);
-* `uedaCornerMap` — Ueda, Proposition 2.4 (the universal `C*`-HNN algebra is
-  a full corner of the amalgam), blocked in-repo by the universe gap recorded
+* `uedaCornerMap` is no longer a debt: `HNNPermanenceUedaCornerProof` builds
+  Ueda's corner map coordinate by coordinate, around the universe gap recorded
   on `UedaCornerMapStatement`;
 * `omegaInput` — Higman's ω-closure, the one construction the benign-subgroup
   route to Higman's embedding theorem still owes; the debt is recorded once for
@@ -56,9 +57,12 @@ noncomputable section
 theorem shulmanTheorem16 : HNNPermanence.ShulmanTheorem16Statement := by
   sorry
 
-/-- **DEBT (literature).**  Ueda, Proposition 2.4, as the corner map. -/
-theorem uedaCornerMap : HNNPermanence.UedaCornerMapStatement := by
-  sorry
+/-- **Ueda, Proposition 2.4, as the corner map** — proved coordinate by
+coordinate in `HNNPermanenceUedaCornerProof`: the universal `C*`-HNN algebra
+maps injectively into the corner `ePe` of the full amalgam, carrying the base
+and the stable unitary to the printed elements. -/
+theorem uedaCornerMap : HNNPermanence.UedaCornerMapStatement :=
+  HNNPermanence.uedaCornerMap_proved
 
 /-- **`thm:hnn-permanence`, printed form, with a possibly nonunital `ι`.**
 Printed: *"an injective `*`-homomorphism `ι : A → 𝒬` and a unitary `W ∈ 𝒬`
