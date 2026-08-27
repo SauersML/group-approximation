@@ -1,9 +1,8 @@
 import GroupApproximation.Manuscript.NonMF.AcylindricallyHyperbolic
+import GroupApproximation.Manuscript.NonMF.FreeCommutatorWitness
 import GroupApproximation.Manuscript.NonMF.FournierFacioDoubleHNN
 import GroupApproximation.Sofic.ChiodoBelegradekTheorem
 import GroupApproximation.Kazhdan.TorsionFreeHyperbolicKazhdan
-import Mathlib.GroupTheory.Subgroup.Simple
-import Mathlib.GroupTheory.SpecificGroups.Cyclic
 
 /-!
 # The Fournier-Facio input paragraph of `thm:torsion-free`
@@ -13,18 +12,14 @@ the paragraph beginning
 
 > Following Fournier-Facio [FFF, §2], let `U` be a universal finitely presented
 > torsion-free group, one containing a copy of every finitely presented
-> torsion-free group [Chiodo]; let `S` be a finitely presented infinite simple
-> torsion-free group [HydeLodha]; and let `H₀` be a torsion-free hyperbolic
-> group with property (T), obtained from the density model at a parameter
-> between `1/3` and `1/2` [Kotowski, Ollivier].
+> torsion-free group [Chiodo], and let `H₀` be a torsion-free hyperbolic group
+> with property (T), obtained from the density model at a parameter between
+> `1/3` and `1/2` [Kotowski, Ollivier].
 
-and running to
+The revised proof uses `F₂` as the third factor and protects the explicit
+nonidentity commutator of its two free generators.
 
-> We run the construction with the prescribed finite subset containing an
-> element `s ≠ 1` of `S`.  Then `π(S) ≠ 1`, so `π|_S` is injective because `S`
-> is simple.
-
-Four objects are cited and not proved (`U`, `S`, `H₀`, `P`), as are the two
+Three objects are cited and not proved (`U`, `H₀`, `P`), as are the two
 theorems that produce `E`'s acylindrical hyperbolicity and Hull's common
 quotient.  Each is stated exactly as the manuscript uses it and collected as a
 field of `LiteratureInputs`; **nothing here inhabits that structure**, and every
@@ -35,8 +30,8 @@ the strength of those citations* is proved here, with no open leaves:
 * `kazhdan_of_fournierFacioQuotient` — "Consequently, `P` has property (T)."
 * `containsEveryFPTorsionFree_of_fournierFacioQuotient` — `P` inherits `U`'s
   universality along the embedding `U ↪ P`.
-* `exists_injective_prodProdSimple` — "By universality, `P` contains a subgroup
-  `P₁ × P₂ × S` with `Pᵢ ≅ P`."  The two closure facts it consumes are
+* `exists_injective_prodProdWitness` — by universality, `P` contains a subgroup
+  `P₁ × P₂ × F₂` with `Pᵢ ≅ P`.  The two closure facts it consumes are
   `ProductFinitePresentation.instProd` (direct products of finitely presented
   groups are finitely presented — proved in this repository, absent from
   Mathlib) and `IsPowerTorsionFree.prod`.
@@ -44,10 +39,9 @@ the strength of those citations* is proved here, with no open leaves:
   `uᵢ P uᵢ⁻¹ = Pᵢ`, with the two printed conjugation relations, finite
   presentation and torsion-freeness — all in the companion module
   `Manuscript.NonMF.FournierFacioDoubleHNN`.
-* `injective_of_map_ne_one` — "`π(S) ≠ 1`, so `π|_S` is injective because `S`
-  is simple."
-* `commutator_eq_top_of_infinite_simple` — the perfectness of `S` used by the
-  last sentence of `lem:simple-in-defect`.
+The protected element is the explicit nonidentity commutator of the two free
+generators.  This removes the infinite-simple-group input: the later argument
+saturates the normal closure of the image of `[F₂,F₂]` directly.
 
 The paragraph's output, in the form the printed proof of `thm:torsion-free`
 consumes it, is `Configuration`; `exists_configuration` assembles one from a
@@ -67,50 +61,7 @@ namespace TheoremC
 
 open scoped commutatorElement
 
-/-! ## Two elementary facts the paragraph uses -/
-
-/-- **An infinite simple group is perfect.**  `lem:simple-in-defect` ends "so
-`ρ(π(S)) ≅ S` is perfect"; this is that sentence.  The commutator subgroup is
-normal, so simplicity leaves `⊥` or `⊤`; `⊥` makes the group commutative, and a
-commutative simple group has prime order, hence is finite. -/
-theorem commutator_eq_top_of_infinite_simple (S : Type) [Group S]
-    [IsSimpleGroup S] [Infinite S] : commutator S = ⊤ := by
-  rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal (commutator S) inferInstance with
-    hbot | htop
-  · exfalso
-    have hcomm : ∀ a b : S, a * b = b * a := by
-      intro a b
-      have hmem : ⁅a, b⁆ ∈ commutator S := by
-        rw [commutator_eq_closure]
-        exact Subgroup.subset_closure ⟨a, b, rfl⟩
-      rw [hbot, Subgroup.mem_bot] at hmem
-      exact commutatorElement_eq_one_iff_mul_comm.mp hmem
-    letI : CommGroup S := { (inferInstance : Group S) with mul_comm := hcomm }
-    have hprime : (Nat.card S).Prime := IsSimpleGroup.prime_card
-    rw [Nat.card_eq_zero_of_infinite] at hprime
-    exact Nat.not_prime_zero hprime
-  · exact htop
-
-/-- **"`π(S) ≠ 1`, so `π|_S` is injective because `S` is simple."**  The kernel
-is normal, hence `⊥` or `⊤`; it is not `⊤` because one element survives. -/
-theorem injective_of_map_ne_one {S H : Type} [Group S] [Group H] [IsSimpleGroup S]
-    (f : S →* H) {x : S} (hx : f x ≠ 1) : Function.Injective f := by
-  rw [← MonoidHom.ker_eq_bot_iff]
-  rcases IsSimpleGroup.eq_bot_or_eq_top_of_normal f.ker inferInstance with hbot | htop
-  · exact hbot
-  · exfalso
-    apply hx
-    have hmem : x ∈ f.ker := by rw [htop]; exact Subgroup.mem_top x
-    exact MonoidHom.mem_ker.mp hmem
-
 /-! ## The literature inputs -/
-
-/-- **Hyde--Lodha's group `S`**: a finitely presented infinite simple
-torsion-free group. -/
-def HydeLodhaStatement : Prop :=
-  ∃ (S : Type) (_ : Group S),
-    Group.IsFinitelyPresented S ∧ Infinite S ∧ IsSimpleGroup S ∧
-      IsPowerTorsionFree S
 
 /-- **The density-model group `H₀`.**  This records the full group used in the
 manuscript: it is infinite, finitely presented, torsion-free, hyperbolic, and
@@ -137,7 +88,7 @@ def FournierFacioQuotientStatement : Prop :=
 
 /-- **Minasyan--Osin's tree criterion.**  "Its Bass--Serre action makes it
 acylindrically hyperbolic."  Stated exactly at the manuscript's `E`: the double
-HNN extension of `P` along the two `P`-factors of `P₁ × P₂ × S`. -/
+HNN extension of `P` along the two `P`-factors of `P₁ × P₂ × W`. -/
 def MinasyanOsinStatement : Prop :=
   ∀ (P S : Type) (_ : Group P) (_ : Group S) (f : (P × P × S) →* P)
     (hf : Function.Injective f),
@@ -162,7 +113,7 @@ def HullCommonQuotientStatement : Prop :=
                   TorsionFree.IsAcylindricallyHyperbolic G₀ ∧
                     Set.InjOn pi (F : Set E)
 
-/-- **The six statements the Fournier-Facio paragraph cites and does not
+/-- **The five statements the Fournier-Facio paragraph cites and does not
 prove.**  Nothing in this development inhabits this structure; every result
 downstream of the paragraph carries it as an explicit hypothesis, so the
 literature debt is visible in the type of each such result. -/
@@ -173,9 +124,6 @@ structure LiteratureInputs where
   as `GroupApproximation.ChiodoBelegradek.Statement`, and proves two of its
   three clauses there. -/
   chiodo : ChiodoBelegradek.Statement
-  /-- **Hyde--Lodha**: a finitely presented infinite simple torsion-free
-  group. -/
-  hydeLodha : HydeLodhaStatement
   /-- **Kotowski--Kotowski** and **Ollivier--Wise**: the density model at a
   parameter between `1/3` and `1/2` gives a torsion-free hyperbolic group with
   property (T). -/
@@ -208,18 +156,18 @@ theorem containsEveryFPTorsionFree_of_fournierFacioQuotient {U P : Type}
     ChiodoBelegradek.ContainsEveryFPTorsionFree P :=
   hU.comp e he
 
-/-- **"By universality, `P` contains a subgroup `P₁ × P₂ × S` with `Pᵢ ≅ P`."**
+/-- By universality, `P` contains a subgroup `P₁ × P₂ × W` with `Pᵢ ≅ P`.
 
-The proof is the printed one: `P × P × S` is finitely presented (Mathlib does
+The proof is the standard one: `P × P × W` is finitely presented (Mathlib does
 not close finite presentation under direct products; this repository does, in
 `ProductFinitePresentation.instProd`) and torsion-free
 (`IsPowerTorsionFree.prod`), so universality of `P` embeds it in `P`. -/
-theorem exists_injective_prodProdSimple {P S : Type} [Group P] [Group S]
-    [Group.IsFinitelyPresented P] [Group.IsFinitelyPresented S]
-    (hP : IsPowerTorsionFree P) (hS : IsPowerTorsionFree S)
+theorem exists_injective_prodProdWitness {P W : Type} [Group P] [Group W]
+    [Group.IsFinitelyPresented P] [Group.IsFinitelyPresented W]
+    (hP : IsPowerTorsionFree P) (hW : IsPowerTorsionFree W)
     (huniv : ChiodoBelegradek.ContainsEveryFPTorsionFree P) :
-    ∃ f : (P × P × S) →* P, Function.Injective f :=
-  huniv.embeds (P × P × S) (hP.prod (hP.prod hS))
+    ∃ f : (P × P × W) →* P, Function.Injective f :=
+  huniv.embeds (P × P × W) (hP.prod (hP.prod hW))
 
 /-! ## The output of the paragraph -/
 
@@ -228,12 +176,12 @@ paragraph.**
 
 Every field is a printed sentence of that paragraph, transported through `π`.
 `Ambient` is `G₀`; `core` is `π ∘ ι : P → G₀`, whose range is the printed
-`Γ = π(P)`; `simple` is `π|_S : S → G₀`, whose range is the printed `π(S)`; and
+`Γ = π(P)`; `witness` is the map `F₂ → G₀`; and
 `t` is the printed `t = π(u₁)`.
 
-`core_mem_of_simple` is "`π(S) ≤ Γ`" (already true before `π`, because `S ≤ P`);
-`t_compresses` is "`tΓt⁻¹ = π(P₁) ≤ Γ`"; and `simple_commute_conj` is the
-printed "`S` commutes with `P₁ = u₁ P u₁⁻¹`", from which `thm:torsion-free`'s
+`core_mem_of_witness` is the inclusion of its image in `Γ`;
+`t_compresses` is "`tΓt⁻¹ = π(P₁) ≤ Γ`"; and `witness_commute_conj` says the
+witness factor commutes with `P₁ = u₁ P u₁⁻¹`, from which `thm:torsion-free`'s
 "`J` centralizes `Γ`" is derived. -/
 structure Configuration where
   /-- `G₀`, Hull's common quotient. -/
@@ -246,13 +194,9 @@ structure Configuration where
   kazhdanAmbient : HasKazhdanPropertyT.{0, 0} Ambient
   /-- `G₀` is acylindrically hyperbolic. -/
   acylAmbient : TorsionFree.IsAcylindricallyHyperbolic Ambient
-  /-- The Hyde--Lodha simple group `S`. -/
-  Simple : Type
-  [groupSimple : Group Simple]
-  /-- `S` is simple. -/
-  simpleSimple : IsSimpleGroup Simple
-  /-- `S` is infinite. -/
-  infiniteSimple : Infinite Simple
+  /-- The finitely presented torsion-free witness group, here `F₂`. -/
+  Witness : Type
+  [groupWitness : Group Witness]
   /-- The Fournier-Facio base `P`. -/
   Core : Type
   [groupCore : Group Core]
@@ -260,19 +204,23 @@ structure Configuration where
   kazhdanCore : HasKazhdanPropertyT.{0, 0} Core
   /-- `π ∘ ι : P → G₀`; its range is `Γ = π(P)`. -/
   core : Core →* Ambient
-  /-- `π|_S : S → G₀`; its range is `π(S)`. -/
-  simple : Simple →* Ambient
-  /-- `π|_S` is injective. -/
-  simple_injective : Function.Injective simple
-  /-- `π(S) ≤ Γ`. -/
-  core_mem_of_simple : ∀ x : Simple, ∃ p : Core, simple x = core p
+  /-- The witness map `F₂ → G₀`. -/
+  witness : Witness →* Ambient
+  /-- The explicit protected commutator. -/
+  distinguished : Witness
+  /-- The distinguished element belongs to `[F₂,F₂]`. -/
+  distinguished_mem_commutator : distinguished ∈ commutator Witness
+  /-- Hull's quotient preserves the distinguished element. -/
+  distinguished_image_ne_one : witness distinguished ≠ 1
+  /-- The witness image lies in `Γ`. -/
+  core_mem_of_witness : ∀ x : Witness, ∃ p : Core, witness x = core p
   /-- `t = π(u₁)`. -/
   t : Ambient
   /-- `t Γ t⁻¹ = π(P₁) ≤ Γ`. -/
   t_compresses : ∀ p : Core, ∃ q : Core, t * core p * t⁻¹ = core q
-  /-- `[S, P₁] = 1`, transported: `π(S)` commutes with `t Γ t⁻¹`. -/
-  simple_commute_conj : ∀ (x : Simple) (p : Core),
-    Commute (simple x) (t * core p * t⁻¹)
+  /-- The witness factor commutes with `P₁`, transported to the quotient. -/
+  witness_commute_conj : ∀ (x : Witness) (p : Core),
+    Commute (witness x) (t * core p * t⁻¹)
 
 namespace Configuration
 
@@ -281,30 +229,22 @@ instance instGroupAmbient (C : Configuration) : Group C.Ambient := C.groupAmbien
 instance instFPAmbient (C : Configuration) :
     Group.IsFinitelyPresented C.Ambient := C.fpAmbient
 
-instance instGroupSimple (C : Configuration) : Group C.Simple := C.groupSimple
-
-instance instSimpleSimple (C : Configuration) : IsSimpleGroup C.Simple :=
-  C.simpleSimple
-
-instance instInfiniteSimple (C : Configuration) : Infinite C.Simple :=
-  C.infiniteSimple
+instance instGroupWitness (C : Configuration) : Group C.Witness := C.groupWitness
 
 instance instGroupCore (C : Configuration) : Group C.Core := C.groupCore
 
 instance instAcylAmbient (C : Configuration) :
     TorsionFree.IsAcylindricallyHyperbolic C.Ambient := C.acylAmbient
 
-/-- **"Then `π(S) ≠ 1`."**  `S` is simple, hence nontrivial, and `π|_S` is
-injective, so its range is not the trivial subgroup.  This is the hypothesis
-`lem:simple-in-defect` prints for `ρ = id`. -/
-theorem simpleRange_ne_bot (C : Configuration) : C.simple.range ≠ ⊥ := by
-  obtain ⟨x, hx⟩ := exists_ne (1 : C.Simple)
+/-- The witness image is nontrivial because it contains the protected
+commutator. -/
+theorem witnessRange_ne_bot (C : Configuration) : C.witness.range ≠ ⊥ := by
   intro hbot
-  apply hx
-  apply C.simple_injective
-  have hmem : C.simple x ∈ C.simple.range := MonoidHom.mem_range.mpr ⟨x, rfl⟩
+  apply C.distinguished_image_ne_one
+  have hmem : C.witness C.distinguished ∈ C.witness.range :=
+    MonoidHom.mem_range.mpr ⟨C.distinguished, rfl⟩
   rw [hbot, Subgroup.mem_bot] at hmem
-  rw [hmem, map_one]
+  exact hmem
 
 /-- `G₀` is countable: it is finitely presented. -/
 theorem countableAmbient (C : Configuration) : Countable C.Ambient :=
@@ -320,36 +260,33 @@ literature debt of the whole paragraph is exactly the hypothesis `I`. -/
 theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := by
   classical
   obtain ⟨U, instU, hUfp, hUtf, hUuniv⟩ := I.chiodo
-  obtain ⟨S, instS, hSfp, hSinf, hSsimple, hStf⟩ := I.hydeLodha
   obtain ⟨H₀, instH₀, hH₀inf, hH₀fp, hH₀tf, hH₀hyp, hH₀T⟩ :=
     I.kotowskiOllivier
   obtain ⟨P, instP, hPfp, hPtf, ⟨quot, hquot⟩, ⟨emb, hemb⟩⟩ :=
     I.smallCancellationQuotient H₀ U instH₀ instU hH₀inf hH₀fp hH₀tf
       hH₀hyp hH₀T hUfp hUtf
   letI := instU
-  letI := instS
   letI := instH₀
   letI := instP
-  haveI := hSfp
   haveI := hPfp
-  haveI := hSinf
-  haveI := hSsimple
+  haveI : Group.IsFinitelyPresented FreeCommutatorWitness :=
+    freeCommutatorWitness_finitelyPresented
   -- "Consequently, `P` has property (T)."
   have hPT : HasKazhdanPropertyT.{0, 0} P :=
     kazhdan_of_fournierFacioQuotient hH₀T quot hquot
-  -- "By universality, `P` contains a subgroup `P₁ × P₂ × S` with `Pᵢ ≅ P`."
+  -- By universality, `P` contains a subgroup `P₁ × P₂ × F₂`.
   have hPuniv : ChiodoBelegradek.ContainsEveryFPTorsionFree P :=
     containsEveryFPTorsionFree_of_fournierFacioQuotient hUuniv emb hemb
   obtain ⟨f, hf⟩ :=
-    exists_injective_prodProdSimple (P := P) (S := S) hPtf hStf hPuniv
+    exists_injective_prodProdWitness (P := P) (W := FreeCommutatorWitness)
+      hPtf freeCommutatorWitness_torsionFree hPuniv
   -- `E`, the double HNN extension, and its three printed properties.
   have hEfp : Group.IsFinitelyPresented (Skeleton f hf) :=
     skeleton_isFinitelyPresented f hf
   have hEtf : IsPowerTorsionFree (Skeleton f hf) := skeleton_torsionFree f hf hPtf
   have hEacyl : TorsionFree.IsAcylindricallyHyperbolic (Skeleton f hf) :=
-    I.minasyanOsin P S inferInstance inferInstance f hf
-  -- "the prescribed finite subset containing an element `s ≠ 1` of `S`"
-  obtain ⟨s, hs⟩ := exists_ne (1 : S)
+    I.minasyanOsin P FreeCommutatorWitness inferInstance inferInstance f hf
+  let s := freeWitnessCommutator
   obtain ⟨G₀, instG₀, pi, -, hG₀fp, hG₀tf, hG₀T, hG₀acyl, hinj⟩ :=
     I.hullCommonQuotient (Skeleton f hf) inferInstance H₀ instH₀ hEfp hEtf hEacyl
       hH₀inf hH₀fp hH₀tf hH₀hyp hH₀T
@@ -362,19 +299,16 @@ theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := 
   have hmems : skeletonIota f hf (factorSimple f s) ∈
       ((({1, skeletonIota f hf (factorSimple f s)} : Finset (Skeleton f hf)) :
         Set (Skeleton f hf))) := by simp
-  -- "Then `π(S) ≠ 1`, so `π|_S` is injective because `S` is simple."
+  -- Hull's injectivity on the protected pair preserves the free commutator.
   have hne : pi (skeletonIota f hf (factorSimple f s)) ≠ 1 := by
     intro hz
     have h1 : pi (skeletonIota f hf (factorSimple f s)) = pi 1 := by
       rw [hz, map_one]
     have h2 := hinj hmems hmem1 h1
-    apply hs
+    apply freeWitnessCommutator_ne_one
     apply factorSimple_injective f hf
     apply skeletonIota_injective f hf
     rw [h2, map_one, map_one]
-  have hsimpleInj : Function.Injective
-      ((pi.comp (skeletonIota f hf)).comp (factorSimple f)) :=
-    injective_of_map_ne_one _ (x := s) hne
   -- The compression relation, transported through `π`.
   have hconj : ∀ p : P, pi (skeletonU₁ f hf) *
       (pi.comp (skeletonIota f hf)) p * (pi (skeletonU₁ f hf))⁻¹
@@ -387,18 +321,18 @@ theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := 
     torsionFreeAmbient := hG₀tf
     kazhdanAmbient := hG₀T
     acylAmbient := hG₀acyl
-    Simple := S
-    simpleSimple := hSsimple
-    infiniteSimple := hSinf
+    Witness := FreeCommutatorWitness
     Core := P
     kazhdanCore := hPT
     core := pi.comp (skeletonIota f hf)
-    simple := (pi.comp (skeletonIota f hf)).comp (factorSimple f)
-    simple_injective := hsimpleInj
-    core_mem_of_simple := fun x => ⟨factorSimple f x, rfl⟩
+    witness := (pi.comp (skeletonIota f hf)).comp (factorSimple f)
+    distinguished := freeWitnessCommutator
+    distinguished_mem_commutator := freeWitnessCommutator_mem_commutator
+    distinguished_image_ne_one := hne
+    core_mem_of_witness := fun x => ⟨factorSimple f x, rfl⟩
     t := pi (skeletonU₁ f hf)
     t_compresses := fun p => ⟨factorOne f p, hconj p⟩
-    simple_commute_conj := ?_ }⟩
+    witness_commute_conj := ?_ }⟩
   intro x p
   rw [hconj p]
   exact (factorSimple_commute_factorOne f x p).map (pi.comp (skeletonIota f hf))
