@@ -14,6 +14,7 @@ import GroupApproximation.Sofic.FinitePacketCollapseCore
 import GroupApproximation.Sofic.FinitePacketFullCollapse
 import GroupApproximation.Sofic.FinitePacketStarAmalgam
 import GroupApproximation.Sofic.LiteralFinitePacketStarCollapse
+import GroupApproximation.Manuscript.NonMF.LiteralFinitePacketCollapse
 
 /-!
 # Kernel audit for the formalized finite-packet collapse layers
@@ -62,4 +63,9 @@ premise-free literal affine specialization.
 #print axioms GroupApproximation.LiteralFinitePacketStarCollapse.gamma_hasKazhdanPropertyT
 #print axioms GroupApproximation.LiteralFinitePacketStarCollapse.packetDegree_eq_index_add_one
 #print axioms GroupApproximation.LiteralFinitePacketStarCollapse.packetDegree_eq_nine_iff_index_eq_eight
+#print axioms GroupApproximation.LiteralAffineRangeIndexEight.doubledBase_index_eq_eight
+#print axioms GroupApproximation.LiteralAffineRangeIndexEight.conjD_range_index_eq_eight
+#print axioms GroupApproximation.LiteralFinitePacketStarCollapse.packetDegree_eq_nine
+#print axioms GroupApproximation.LiteralFinitePacketStarCollapse.packetEquivS9
 #print axioms GroupApproximation.LiteralFinitePacketStarCollapse.manuscriptLiteralAffineStarPacketCollapse
+#print axioms GroupApproximation.ManuscriptNonMF.manuscriptLiteralFinitePacketCollapse
