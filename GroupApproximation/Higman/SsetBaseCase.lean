@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.ClosuresAssembly
+import GroupApproximation.Higman.OperationClosureTau
 
 /-!
 # Higman's base case `S`
@@ -469,19 +470,16 @@ end Seq
 
 /-! ## 7.  What this removes from the assembly -/
 
-/-- **`OperationClosures` from five inputs.**
+/-- **`OperationClosures` after discharging the base case.**
 
-`Higman.ClosuresAssembly.operationClosures_of_inputs` takes six; `hbase` is
-`Seq.benignTF_ASub_Sset` and is no longer one of them.  What is left is
-`Omega.OmegaInput`, the `τ` closure, and the three benign rows. -/
-theorem operationClosures_of_five_inputs (k : Omega.OmegaInput)
-    (htau : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) →
-      BenignTF (Seq.ASub (Seq.tauOp B)))
+`hbase` is `Seq.benignTF_ASub_Sset`; what remains is `Omega.OmegaInput` and the
+three benign rows. -/
+theorem operationClosures_of_omega_and_rows (k : Omega.OmegaInput)
     (hhalf : BenignTF (Agree.rowSub Agree.piV))
     (hzetaRow : BenignTF (Agree.rowSub Agree.zetaV))
     (hevenRow : BenignTF (Agree.rowSub (MonoidHom.ker (Split.killOn Seq.evenIdx)))) :
     OperationClosures :=
-  operationClosures_of_inputs k htau Seq.benignTF_ASub_Sset hhalf hzetaRow hevenRow
+  operationClosures_of_inputs k Seq.benignTF_ASub_Sset hhalf hzetaRow hevenRow
 
 end Higman
 end GroupApproximation

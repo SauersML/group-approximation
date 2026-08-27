@@ -2,23 +2,24 @@ import GroupApproximation.Higman.BaseCases
 import GroupApproximation.Higman.ShiftOperation
 
 /-!
-# The nine Higman operations, and what closure under them gives
+# The Higman operations used by the formalized construction
 
-Higman's Section 2 says a subset of the sequence space is recursively
-enumerable exactly when it is built from two explicit sets, `Z = {0}` and
-`S = {(a, a+1) : a ∈ ℤ}`, by nine operations.  His Section 4 says the family of
-subsets whose subgroup `A_B` is benign contains those two and is closed under
-all nine.  Together they give his Theorem 4, which is the whole of
+The formalized Section 2 construction builds recursively enumerable subsets of
+the sequence space from two explicit sets, `Z = {0}` and
+`S = {(a, a+1) : a ∈ ℤ}`.  It never invokes coordinate transposition.  The
+inductive family below therefore exposes exactly the constructors used by the
+proof, so an unused operation cannot create a spurious closure hypothesis.
+Together with Section 4 these give the whole of
 `Higman.REBenignTF` apart from the transport of Section 5.
 
 This file:
 
-* defines the nine operations on `Set E`;
+* defines the classical operations on `Set E`;
 * defines `HigmanGenerated`, the inductive family built from `Z` and `S` by
   them;
-* records which closures are **proved** here --- `ι`, `υ` (`Seq.ASub_inter`,
+* records which used closures are **proved** here --- `ι`, `υ` (`Seq.ASub_inter`,
   `Seq.ASub_union`) and `σ` (`Seq.ASub_sigmaOp`, by an automorphism of `F₃`)
-  --- and states the remaining six as one structure, `OperationClosures`;
+  --- and states the remaining ones as one structure, `OperationClosures`;
 * proves the induction: the base cases plus the closures give benignness for
   every `HigmanGenerated` set.
 
@@ -28,11 +29,9 @@ Each is a separate, classical, independently attackable statement, and
 `benignTF_of_higmanGenerated` below is the proof that nothing else is needed to
 combine them.
 
-The count of remaining closures has since dropped from six to five: `ρ` is
-proved, by `Higman.FlipGroup` over `Higman.TorsionFreeImageClosure`, and
-`Higman.ClosuresAssembly` fills the field.  This file is left stated at
-Higman's own list, so `OperationClosures` below still carries `rho`; the
-smaller input list is `ClosuresAssembly.operationClosures_of_inputs`.
+The `ρ` closure is proved by `Higman.FlipGroup` over
+`Higman.TorsionFreeImageClosure`, and `Higman.ClosuresAssembly` fills that
+field; its smaller input list is `operationClosures_of_inputs`.
 -/
 
 namespace GroupApproximation
@@ -85,9 +84,11 @@ noncomputable def Sset : Set E := Set.range succSeq
 
 /-! ## 3.  The sets Higman builds -/
 
-/-- The subsets of the sequence space built from `Z` and `S` by the nine
-operations.  Higman's Section 2 is the statement that these are exactly the
-recursively enumerable ones. -/
+/-- The subsets of the sequence space built from `Z` and `S` by the operations
+actually used by the formalized Section 2 construction.  The coordinate
+transposition operation is deliberately absent: no generated-set proof in the
+repository uses it.  Keeping an unused constructor here imposed an unrelated
+group-theoretic closure obligation on the final theorem. -/
 inductive HigmanGenerated : Set E → Prop
   | zero : HigmanGenerated Zset
   | succ : HigmanGenerated Sset
@@ -97,7 +98,6 @@ inductive HigmanGenerated : Set E → Prop
       HigmanGenerated (B ∪ B')
   | rho {B : Set E} : HigmanGenerated B → HigmanGenerated (rhoOp B)
   | sigma {B : Set E} : HigmanGenerated B → HigmanGenerated (sigmaOp B)
-  | tau {B : Set E} : HigmanGenerated B → HigmanGenerated (tauOp B)
   | theta {B : Set E} : HigmanGenerated B → HigmanGenerated (thetaOp B)
   | zeta {B : Set E} : HigmanGenerated B → HigmanGenerated (zetaOp B)
   | pi {B : Set E} : HigmanGenerated B → HigmanGenerated (piOp B)
@@ -123,12 +123,12 @@ been proved: `Higman.FlipGroup` reduces it to `Seq.TorsionFreeImageClosure` and
 `Higman.TorsionFreeImageClosure` proves that, so
 `Higman.ClosuresAssembly.operationClosures_rho` fills the `rho` field outright.
 The same file's `operationClosures_of_inputs` builds the whole structure from
-what is genuinely still open, which is six things and not seven: the base case
-`S`, the `τ` closure, `Omega.OmegaInput`, and three benign rows.  Read that
+what is genuinely still open: the base case `S`, `Omega.OmegaInput`, and three
+benign rows.  Read that
 constructor, not this field list, for the current boundary.
 
-**Nothing inhabits this structure**, and nothing will until those six are
-supplied. -/
+The current constructor for this structure is in `CurrentOperationClosures`.
+-/
 structure OperationClosures where
   /-- Higman's base case `S`. -/
   base : BenignTF (Seq.ASub Seq.Sset)
@@ -136,8 +136,6 @@ structure OperationClosures where
   `Higman.ClosuresAssembly.operationClosures_rho`; it stays a field only so
   that this structure keeps Higman's own list intact. -/
   rho : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.rhoOp B))
-  /-- Closure under `τ`. -/
-  tau : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.tauOp B))
   /-- Closure under `θ`. -/
   theta : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) → BenignTF (Seq.ASub (Seq.thetaOp B))
   /-- Closure under `ζ`. -/
@@ -185,7 +183,6 @@ theorem benignTF_of_higmanGenerated (h : OperationClosures) {B : Set Seq.E}
   | union _ _ ih ih' => exact benignTF_ASub_union ih ih'
   | rho _ ih => exact h.rho _ ih
   | sigma _ ih => exact benignTF_ASub_sigmaOp ih
-  | tau _ ih => exact h.tau _ ih
   | theta _ ih => exact h.theta _ ih
   | zeta _ ih => exact h.zeta _ ih
   | pi _ ih => exact h.pi _ ih

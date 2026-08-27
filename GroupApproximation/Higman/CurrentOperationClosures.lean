@@ -10,24 +10,23 @@ stale arguments.
 
 * `base` is `Seq.benignTF_ASub_Sset`;
 * `rho` is `operationClosures_rho`;
-* `tau` remains the transposition closure;
+* the formalized generated-set construction never uses `tau`, so it is not a
+  constructor and creates no closure obligation;
 * the positive-half, `ζ`, and even-deletion rows are discharged by
   `RowDeletionGraph`;
 * `theta`, `zeta`, `pi`, and `omega` therefore need only `Omega.OmegaInput`.
 
-Thus `OperationClosures` currently costs exactly two inputs: `Omega.OmegaInput`
-and the transposition closure.
+Thus `OperationClosures` currently costs exactly one input:
+`Omega.OmegaInput`.
 -/
 
 namespace GroupApproximation
 namespace Higman
 
-/-- **`OperationClosures` from the two presently unresolved leaves.** -/
-theorem operationClosures_of_two_inputs (k : Omega.OmegaInput)
-    (htau : ∀ B : Set Seq.E, BenignTF (Seq.ASub B) →
-      BenignTF (Seq.ASub (Seq.tauOp B))) :
+/-- **`OperationClosures` from its sole presently unresolved leaf.** -/
+theorem operationClosures_of_omega (k : Omega.OmegaInput) :
     OperationClosures :=
-  operationClosures_of_five_inputs k htau benignTF_rowSub_piV
+  operationClosures_of_omega_and_rows k benignTF_rowSub_piV
     RowDeletionGraph.zeta_row_benignTF
     RowDeletionGraph.evenDeletion_row_benignTF
 
