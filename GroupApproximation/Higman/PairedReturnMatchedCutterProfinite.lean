@@ -3,6 +3,7 @@ import GroupApproximation.Higman.PairedReturnEdgeSeparable
 import GroupApproximation.Higman.FreeLampFiniteBaseProfinite
 import GroupApproximation.Higman.PairedReturnImageIntersectionRefinement
 import GroupApproximation.Higman.MatchedSubgroupAmalgamWordReflection
+import GroupApproximation.Higman.ProfiniteBenignProductSeparable
 
 /-!
 # Finite tests on the paired-return amalgam
@@ -26,6 +27,10 @@ subamalgam normal form. -/
 abbrev LeftProduct : Set PairedReturnGraphIntersection.P :=
   (Star.graphSub : Set PairedReturnGraphIntersection.P) *
     (PairedReturnGraphIntersection.M : Set PairedReturnGraphIntersection.P)
+
+/-- The canonical left vertex subgroup of the paired-return ambient. -/
+abbrev leftRange : Subgroup Ambient :=
+  (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC).range
 
 /-- The finite reader target attached to `q`. -/
 abbrev ProductTestTarget (Q : Type) [Group Q] :=
@@ -998,6 +1003,48 @@ theorem exists_rightEdgeScan_or_bad :
       · obtain ⟨pre, g, rest, tail, hl, hrest, hfail⟩ := hbad
         exact Or.inr ⟨⟨b, x⟩ :: pre, g, rest, tail,
           by simp [hl], hrest, hfail⟩
+
+/-- Outside the product of the left vertex and the matched cutter, the
+right-to-left scan must stop at a bad left syllable.  The terminal condition
+disappears because an arbitrary residual edge is absorbed by the left
+factor. -/
+theorem exists_rightBad_of_normalWord_not_mem_leftRange_mul_matchedCutter
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d)
+    (hw : w.prod ∉ (leftRange : Set Ambient) * (matchedCutter : Set Ambient)) :
+    ∃ (pre : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+        (g : PairedReturnGraphIntersection.P) (rest : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+        (tail : Edge),
+      w.toWord.toList = pre ++ ⟨false, g⟩ :: rest ∧
+      RightEdgeScan rest tail ∧
+      g * (tail : PairedReturnGraphIntersection.P) ∉
+        (PairedReturnGraphIntersection.M : Set _) *
+          (Star.graphSub : Set PairedReturnGraphIntersection.P) := by
+  rcases exists_rightEdgeScan_or_bad w.toWord.toList with hscan | hbad
+  · obtain ⟨head, hhead⟩ := hscan
+    obtain ⟨h, hh, hfac⟩ := factorization_of_rightEdgeScan hhead
+    exfalso
+    apply hw
+    refine ⟨
+      MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+        ((w.head : PairedReturnGraphIntersection.P) * (head : _)),
+      ⟨_, rfl⟩, h, hh, ?_⟩
+    have hword : PushoutI.ofCoprodI w.toWord.prod =
+        MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC
+          w.toWord.toList :=
+      MatchedSubgroupAmalgam.ofCoprodI_prod_eq_factorListProd
+        edgeToP edgeToC w.toWord
+    have hbase : PushoutI.base (Amalgam.famHom edgeToP edgeToC) w.head =
+        MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+          (w.head : PairedReturnGraphIntersection.P) :=
+      (PushoutI.of_apply_eq_base
+        (Amalgam.famHom edgeToP edgeToC) false w.head).symm
+    rw [PushoutI.NormalWord.prod, hword, hfac, hbase, ← mul_assoc,
+      ← map_mul]
+  · exact hbad
 
 /-- An excluded normal word has either a right-scan bad syllable or a
 terminal graph obstruction. -/
