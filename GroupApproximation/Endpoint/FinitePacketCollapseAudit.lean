@@ -12,13 +12,15 @@ import GroupApproximation.Sofic.FinitePacketDisplacementCocycle
 import GroupApproximation.Sofic.FinitePacketWordCovariance
 import GroupApproximation.Sofic.FinitePacketCollapseCore
 import GroupApproximation.Sofic.FinitePacketFullCollapse
+import GroupApproximation.Sofic.FinitePacketStarAmalgam
+import GroupApproximation.Sofic.LiteralFinitePacketStarCollapse
 
 /-!
 # Kernel audit for the formalized finite-packet collapse layers
 
 These are the unconditional finite-packet declarations, including the full
-generic corona-collapse endpoint.  The concrete `S₉` carrier remains a
-separate specialization.
+generic corona-collapse endpoint, its star-packet PushoutI carrier, and the
+premise-free literal affine specialization.
 -/
 
 #print axioms GroupApproximation.FinitePacketCovariance.exists_near_identity_exact_covariance
@@ -50,3 +52,14 @@ separate specialization.
 #print axioms GroupApproximation.FinitePacketCollapseCore.eventually_generator_eq_base_of_scaled_vanishing
 #print axioms GroupApproximation.FinitePacketFullCollapse.rankScaled_normalizedDisplacement_eq
 #print axioms GroupApproximation.FinitePacketFullCollapse.exists_cofinal_exact_packet_collapse
+#print axioms GroupApproximation.FinitePacketStarAmalgam.packetAction_orbit
+#print axioms GroupApproximation.FinitePacketStarAmalgam.orbit_sq
+#print axioms GroupApproximation.FinitePacketStarAmalgam.orbit_braid
+#print axioms GroupApproximation.FinitePacketStarAmalgam.orbit_alpha
+#print axioms GroupApproximation.FinitePacketStarAmalgam.covariance
+#print axioms GroupApproximation.FinitePacketStarAmalgam.compresses
+#print axioms GroupApproximation.FinitePacketStarAmalgam.coordinateCollapse
+#print axioms GroupApproximation.LiteralFinitePacketStarCollapse.gamma_hasKazhdanPropertyT
+#print axioms GroupApproximation.LiteralFinitePacketStarCollapse.packetDegree_eq_index_add_one
+#print axioms GroupApproximation.LiteralFinitePacketStarCollapse.packetDegree_eq_nine_iff_index_eq_eight
+#print axioms GroupApproximation.LiteralFinitePacketStarCollapse.manuscriptLiteralAffineStarPacketCollapse
