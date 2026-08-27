@@ -42,5 +42,14 @@ theorem reBenign_of_omega_boundedWindow
     (hOmega : Omega.OmegaInput) (hWindow : BoundedWindowRE) : REBenign :=
   reBenign_of_reBenignTF (reBenignTF_of_omega_boundedWindow hOmega hWindow)
 
+/-- The finitely generated Higman embedding theorem, with its complete current
+dependency surface exposed: only the Omega tower and bounded-window
+generation remain as inputs. -/
+theorem fpOvergroup_of_fgRecursive_of_omega_boundedWindow
+    (hOmega : Omega.OmegaInput) (hWindow : BoundedWindowRE)
+    {G : Type} [Group G] (p : FGRecursive G) : Nonempty (FPOvergroup G) :=
+  fpOvergroup_of_fgRecursive
+    (reBenign_of_omega_boundedWindow hOmega hWindow) p
+
 end Higman
 end GroupApproximation
