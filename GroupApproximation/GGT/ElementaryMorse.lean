@@ -284,6 +284,99 @@ theorem exists_close_on_chord_or_far_side {δ : ℝ}
   exists_close_on_other_side_of_geodesic_triangle hδ hδ0 hAB hAB0 hAB1
     hAC hAC0 hAC1 hCB hCB0 hCB1 ht
 
+/-! ## The chord is not far from the chain: the weak bound -/
+
+/-- **A chord point far from every chain vertex is at most `D/2 + δ·log₂ N`
+far.**
+
+No cut, no sub-chain: the whole chain is fed to
+`radius_le_add_clog_of_chain_avoids_ball` at `w := fAC s`, and the Gromov
+product the divergence estimate wants is *exactly zero*, because `y 0`, `y N`
+and `fAC s` all lie on one geodesic with `fAC s` between the ends.  That is the
+only place the chord is used, and it is what makes this bound cost nothing.
+
+The `log₂ N` is the defect, and the next two declarations are about removing
+it. -/
+theorem chord_depth_le_clog {δ D ρ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (y : ℕ → X) (N : ℕ) (hNpos : 0 < N)
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    {fAC : ℝ → X} (hAC : IsGeodesicSegment fAC 0 (dist (y 0) (y N)))
+    (hAC0 : fAC 0 = y 0) (hAC1 : fAC (dist (y 0) (y N)) = y N)
+    {s : ℝ} (hs : s ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)))
+    (havoid : ∀ i, i ≤ N → ρ ≤ dist (y i) (fAC s)) :
+    ρ ≤ D / 2 + Nat.clog 2 N * δ := by
+  have hzero : gromovProduct (y 0) (y N) (fAC s) = 0 := by
+    have h := gromovProduct_le_dist_of_mem_geodesic dist_nonneg hs hAC (fAC s)
+    rw [hAC0, hAC1, dist_self] at h
+    exact le_antisymm h (gromovProduct_nonneg _ _ _)
+  have hend : gromovProduct (y 0) (y N) (fAC s) ≤ 0 := le_of_eq hzero
+  have h := radius_le_add_clog_of_chain_avoids_ball hδ hδ0 (fAC s) y N hNpos
+    hedge havoid hend
+  linarith
+
+/-! ## The cut, and the bootstrap it unlocks -/
+
+/-- **The straddling cut.**  A sub-chain of length `O(ρ/l)` whose endpoints have
+small Gromov product at `p`.
+
+The two clauses pull against each other, and that is the whole difficulty: the
+length clause wants `a` and `b` close together, while the Gromov clause wants
+them on opposite sides of `p`, so that `d(y a, y b)` is nearly the sum of their
+distances to `p`.  Cutting at the ball `B(p, 2ρ)` — the obvious choice — gives
+the length clause and fails the Gromov clause, since two vertices in that ball
+have product up to `2ρ`, and `radius_le_of_chain_avoids_ball` then reads
+`ρ ≤ 2ρ + D/2 + kδ`, which is vacuous.  What the Gromov clause needs is a cut
+that follows the *chord parameter* rather than the distance to `p`. -/
+def StraddlingCut (y : ℕ → X) (N : ℕ) (p : X) (ρ l : ℝ) : Prop :=
+  ∃ a b : ℕ, a < b ∧ b ≤ N ∧
+    l * ((b - a : ℕ) : ℝ) ≤ 4 * ρ ∧
+    gromovProduct (y a) (y b) p ≤ ρ / 2
+
+/-- **The bootstrap: with the cut, the depth is bounded by a constant.**
+
+Applying the divergence estimate to the cut sub-chain gives
+`ρ/2 ≤ D/2 + δ·log₂ n` with `l·n ≤ 4ρ`, so `ρ` is compared against the logarithm
+of a multiple of itself — linear against logarithmic in `ρ` alone.  That is
+`exists_bound_of_linear_le_add_clog`, instantiated at `D := 4D/3` and
+`δ := 4δ`, and it is the same comparison `exists_bound_excursion_chain_length`
+already makes; no new estimate enters. -/
+theorem exists_bound_chord_depth_of_straddlingCut {δ D l : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D) (hl : 0 < l) :
+    ∃ K : ℝ, 0 ≤ K ∧ ∀ (ρ : ℝ) (p : X) (y : ℕ → X) (N : ℕ), 0 ≤ ρ →
+      (∀ i, i < N → dist (y i) (y (i + 1)) ≤ D) →
+      (∀ i, i ≤ N → ρ ≤ dist (y i) p) →
+      StraddlingCut y N p ρ l → ρ ≤ K := by
+  obtain ⟨M, hM⟩ :=
+    exists_bound_of_linear_le_add_clog (l := l) (D := 4 * D / 3) (δ := 4 * δ) hl
+  have hclogM : (0 : ℝ) ≤ (Nat.clog 2 M : ℝ) := Nat.cast_nonneg _
+  refine ⟨D + 2 * Nat.clog 2 M * δ, by nlinarith, ?_⟩
+  intro ρ p y N hρ0 hedge havoid hcut
+  obtain ⟨a, b, hab, hbN, hlen, hgp⟩ := hcut
+  set n : ℕ := b - a with hn
+  have han : a + n = b := by omega
+  have hnpos : 0 < n := by omega
+  have hedge' : ∀ i, i < n → dist (y (a + i)) (y (a + i + 1)) ≤ D := by
+    intro i hi
+    exact hedge (a + i) (by omega)
+  have havoid' : ∀ i, i ≤ n → ρ ≤ dist (y (a + i)) p := by
+    intro i hi
+    exact havoid (a + i) (by omega)
+  have hend' : gromovProduct (y (a + 0)) (y (a + n)) p ≤ ρ / 2 := by
+    rw [Nat.add_zero, han]
+    exact hgp
+  have hdiv := radius_le_add_clog_of_chain_avoids_ball hδ hδ0 p
+    (fun i => y (a + i)) n hnpos hedge' havoid' hend'
+  -- `ρ/2 ≤ D/2 + δ·log₂ n`, and `l·n ≤ 4ρ`
+  have hhalf : ρ / 2 ≤ D / 2 + Nat.clog 2 n * δ := by linarith
+  have hlenn : l * (n : ℝ) ≤ 4 * ρ := by rw [hn] at hlen ⊢; exact hlen
+  have hlinear : l * (n : ℝ) / 2 ≤ 3 * (4 * D / 3) / 2 + Nat.clog 2 n * (4 * δ) := by
+    nlinarith [hhalf, hlenn]
+  have hnM : n ≤ M := hM n hlinear
+  have hmono : (Nat.clog 2 n : ℝ) ≤ (Nat.clog 2 M : ℝ) := by
+    exact_mod_cast Nat.clog_mono_right 2 hnM
+  nlinarith [hhalf, hmono, hδ0]
+
 /-! ## What the two residues are waiting for -/
 
 /-- **The Morse lemma for orbit chains**, as a named residual: the orbit of a

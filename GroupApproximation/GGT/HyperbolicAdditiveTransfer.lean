@@ -112,9 +112,9 @@ theorem isHyperbolicSpace_of_additiveDistortion {C δ : ℝ} {f : X → Y}
     (hf : HasAdditiveDistortion C f) (hY : IsHyperbolicSpace δ Y) :
     IsHyperbolicSpace (δ + 3 * C) X := by
   intro w x y z
-  obtain ⟨hxy1, hxy2⟩ := abs_le.mp (abs_gromovProduct_sub_le hf x y w)
-  obtain ⟨hyz1, hyz2⟩ := abs_le.mp (abs_gromovProduct_sub_le hf y z w)
-  obtain ⟨hxz1, hxz2⟩ := abs_le.mp (abs_gromovProduct_sub_le hf x z w)
+  have hxy1 := (abs_le.mp (abs_gromovProduct_sub_le hf x y w)).1
+  have hyz1 := (abs_le.mp (abs_gromovProduct_sub_le hf y z w)).1
+  have hxz2 := (abs_le.mp (abs_gromovProduct_sub_le hf x z w)).2
   have hY' := hY (f w) (f x) (f y) (f z)
   have hml := min_le_left (gromovProduct x y w) (gromovProduct y z w)
   have hmr := min_le_right (gromovProduct x y w) (gromovProduct y z w)
@@ -144,7 +144,7 @@ theorem isLoxodromic_map {C : ℝ} (hC : 0 ≤ C) {f : X → Y}
   have h1 := hlin n
   have h2 := hf x ((g ^ n) • x)
   rw [hequiv (g ^ n) x] at h2
-  obtain ⟨h2a, h2b⟩ := abs_le.mp h2
+  have h2a := (abs_le.mp h2).1
   linarith
 
 /-- **Loxodromy pulls back**, at the same cost. -/
@@ -157,7 +157,7 @@ theorem isLoxodromic_of_map {C : ℝ} (hC : 0 ≤ C) {f : X → Y}
   have h1 := hlin n
   have h2 := hf x ((g ^ n) • x)
   rw [hequiv (g ^ n) x] at h2
-  obtain ⟨h2a, h2b⟩ := abs_le.mp h2
+  have h2b := (abs_le.mp h2).2
   linarith
 
 /-- **Independence pushes forward**, at the cost `C₀ ↦ C₀ + 3C/2`. -/
@@ -169,7 +169,7 @@ theorem independent_map {C : ℝ} {f : X → Y} (hf : HasAdditiveDistortion C f)
   intro n m
   have h := abs_gromovProduct_sub_le hf ((g₁ ^ n) • x) ((g₂ ^ m) • x) x
   rw [hequiv (g₁ ^ n) x, hequiv (g₂ ^ m) x] at h
-  obtain ⟨ha, hb⟩ := abs_le.mp h
+  have hb := (abs_le.mp h).2
   have h0 := hC₀ n m
   linarith
 
@@ -182,7 +182,7 @@ theorem independent_of_map {C : ℝ} {f : X → Y} (hf : HasAdditiveDistortion C
   intro n m
   have h := abs_gromovProduct_sub_le hf ((g₁ ^ n) • x) ((g₂ ^ m) • x) x
   rw [hequiv (g₁ ^ n) x, hequiv (g₂ ^ m) x] at h
-  obtain ⟨ha, hb⟩ := abs_le.mp h
+  have ha := (abs_le.mp h).1
   have h0 := hC₀ n m
   linarith
 
@@ -208,7 +208,7 @@ theorem isAcylindrical_of_additiveDistortion {C : ℝ} (hC : 0 ≤ C) {f : X →
   refine ⟨R + C, N, ?_⟩
   intro x y hxy
   have hfxy : R ≤ dist (f x) (f y) := by
-    obtain ⟨h1, h2⟩ := abs_le.mp (hf x y)
+    have h1 := (abs_le.mp (hf x y)).1
     linarith
   obtain ⟨hfin, hcard⟩ := hRN (f x) (f y) hfxy
   have hsub : {g : G | dist x (g • x) ≤ ε ∧ dist y (g • y) ≤ ε} ⊆
@@ -219,8 +219,8 @@ theorem isAcylindrical_of_additiveDistortion {C : ℝ} (hC : 0 ≤ C) {f : X →
     have e2 := hf y (g • y)
     rw [hequiv g x] at e1
     rw [hequiv g y] at e2
-    obtain ⟨e1a, e1b⟩ := abs_le.mp e1
-    obtain ⟨e2a, e2b⟩ := abs_le.mp e2
+    have e1b := (abs_le.mp e1).2
+    have e2b := (abs_le.mp e2).2
     exact ⟨by linarith, by linarith⟩
   exact ⟨hfin.subset hsub, le_trans (Set.ncard_le_ncard hsub hfin) hcard⟩
 
@@ -241,7 +241,7 @@ theorem isAcylindrical_of_additiveDistortion_of_dense {C : ℝ} (hC : 0 ≤ C)
   have hau : dist u (f a) ≤ C := by rwa [dist_comm]
   have hbv : dist v (f b) ≤ C := by rwa [dist_comm]
   have hab : R ≤ dist a b := by
-    obtain ⟨h1, h2⟩ := abs_le.mp (hf a b)
+    have h1 := (abs_le.mp (hf a b)).1
     have h3 := dist_triangle4 u (f a) (f b) v
     linarith
   obtain ⟨hfin, hcard⟩ := hRN a b hab
@@ -253,8 +253,8 @@ theorem isAcylindrical_of_additiveDistortion_of_dense {C : ℝ} (hC : 0 ≤ C)
     have e2 := hf b (g • b)
     rw [hequiv g a] at e1
     rw [hequiv g b] at e2
-    obtain ⟨e1a, e1b⟩ := abs_le.mp e1
-    obtain ⟨e2a, e2b⟩ := abs_le.mp e2
+    have e1a := (abs_le.mp e1).1
+    have e2a := (abs_le.mp e2).1
     have t1 := dist_triangle4 (f a) u (g • u) (g • f a)
     have t2 := dist_triangle4 (f b) v (g • v) (g • f b)
     have s1 : dist (g • u) (g • f a) = dist u (f a) := hisoY g u (f a)

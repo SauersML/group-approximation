@@ -65,6 +65,14 @@ theorem pt_surjective (φ : A ≃* B) : Function.Surjective (pt φ) := by
   show TreeSpace.of (tree_isTree φ) (vmk φ x) = p
   rw [hx, TreeSpace.of_val]
 
+@[simp] theorem pt_eq_iff (φ : A ≃* B) (x y : HNNExtension G A B φ) :
+    pt φ x = pt φ y ↔ vmk φ x = vmk φ y := Iff.rfl
+
+/-- Fixing a point of the metric tree is fixing the vertex. -/
+theorem smul_pt_eq_iff (φ : A ≃* B) (a x : HNNExtension G A B φ) :
+    a • pt φ x = pt φ x ↔ a • vmk φ x = vmk φ x := by
+  rw [smul_pt, pt_eq_iff, smul_vmk]
+
 /-- **The metric of the Bass--Serre tree is the syllable length.** -/
 @[simp] theorem dist_pt (φ : A ≃* B) (x y : HNNExtension G A B φ) :
     dist (pt φ x) (pt φ y) = (tLen φ (x⁻¹ * y) : ℝ) := by

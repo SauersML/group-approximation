@@ -34,12 +34,16 @@ the implication the manuscript needs, `(AH₃) ⇒ (AH₁)`, factors as
   — a loxodromic WPD element lies in a virtually cyclic hyperbolically embedded
   subgroup.  This is `(L₃) ⇒ (L₄)` of Osin's own Theorem 1.4, which he
   attributes to that paper; here it is `DGOTheorem68`.
-* `(AH₄) ⇒ (AH₁)`: Osin, Theorem 5.4, here `OsinTheorem54`, together with the
-  non-elementarity clause `RelativeCayleyNonElementary`.
+* `(AH₄) ⇒ (AH₁)`: Osin, Theorem 5.4, here `OsinTheorem54`, together with his
+  Lemma 5.12, here `RelativeCayleyNonElementary`.  Lemma 5.12 is in turn
+  assembled by `relativeCayleyNonElementary_of` from the three results its
+  proof cites: `DGOCorollary612`, `DGOTheorem614` and `OsinTheorem11`.
 
-`osinAH4ToAH1_of` proves `OsinAH4ToAH1` from those two, and `osinTheorem12_of`
-assembles `OsinTheorem12`.  Nothing in this development inhabits the three
-named literature propositions.
+`osinAH4ToAH1_of` proves `OsinAH4ToAH1` from Theorem 5.4 and Lemma 5.12, and
+`osinTheorem12_of` assembles `OsinTheorem12`.  Nothing in this development
+inhabits the named literature propositions; the five that remain are
+`DGOTheorem68`, `OsinTheorem54`, `DGOCorollary612`, `DGOTheorem614` and
+`OsinTheorem11`.
 
 ## What is proved
 
@@ -48,9 +52,12 @@ named literature propositions.
   hyperbolic group is a hyperbolic space on which some element is loxodromic
   and, by `isWPDAt_of_isAcylindrical`, WPD.  So the `(AH₃)` interface is not
   vacuous, and the named propositions above are the only debt.
-* `osinAH4ToAH1_of` — `(AH₄) ⇒ (AH₁)` from Osin's Theorem 5.4 and the
-  non-elementarity clause, the last step being a definitional unpacking of the
-  Cayley-graph form.
+* `osinAH4ToAH1_of` — `(AH₄) ⇒ (AH₁)` from Osin's Theorem 5.4 and his
+  Lemma 5.12, the last step being a definitional unpacking of the Cayley-graph
+  form.
+* `relativeCayleyNonElementary_of` — Lemma 5.12 from the three results its own
+  proof cites, so that the non-elementarity clause is no longer a citation in
+  its own right.
 * `infinite_of_mem_of_isLoxodromic` — a subgroup containing a loxodromic
   element is infinite, so the infinitude clause of `(AH₄)` is derived from the
   loxodromy `AH3Data` already records rather than asked of the citation.
@@ -189,8 +196,10 @@ theorem infinite_of_mem_of_isLoxodromic {G : Type u} [Group G] {X : Type v}
 
 /-! ## The literature inputs -/
 
-/-- **`(AH₃) ⇒ (AH₄)`: Dahmani--Guirardel--Osin.**  Osin states it as
-`(L₃) ⇒ (L₄)` of his Theorem 1.4 and attributes it to that paper:
+/-- **`(AH₃) ⇒ (AH₄)`: Dahmani--Guirardel--Osin, Theorem 6.8.**  The number is
+Osin's own: his proof of Theorem 1.2 reads *"the implication
+`(AH₃) ⟹ (AH₄)` was proved in [DGO, Theorem 6.8]"*.  He also states it per
+element, as `(L₃) ⇒ (L₄)` of his Theorem 1.4:
 
 > `(L₃)` There exists an action of `G` on a hyperbolic space such that `g` acts
 >   loxodromically and satisfies the WPD condition.
@@ -242,16 +251,86 @@ def OsinTheorem54 : Prop :=
     ∃ D' : RelGenSet G Unit, D.base ⊆ D'.base ∧ D'.fam = D.fam ∧
       D'.IsHyperbolicallyEmbedded ∧ IsAcylindrical G (Cayley D'.alphabet)
 
-/-- **The rest of Osin's proof of `(AH₄) ⇒ (AH₁)`**, beyond Theorem 5.4: on the
-enlarged generating set the action is not merely acylindrical but
-*non-elementary*, which is the third clause of Definition 1.1.  Properness and
-infinitude of the subgroup are exactly what rules out the two degenerate cases
-of Osin's Theorem 1.1 (bounded orbits; virtually cyclic). -/
+/-- **A non-degenerate subgroup**, in Osin's and Dahmani--Guirardel--Osin's
+sense: `H ↪_h G` holds trivially for `H = G` (take `X = ∅`) and for finite `H`,
+and those two cases are called *degenerate*.  Non-degenerate therefore means
+proper and infinite — exactly the hypothesis of `(AH₄)`. -/
+def IsNonDegenerate {G : Type u} [Group G] (H : Subgroup G) : Prop :=
+  H ≠ ⊤ ∧ (H : Set G).Infinite
+
+/-- **Osin, Lemma 5.12**, verbatim:
+
+> Let `G` be a group, `H` a subgroup of `G`, `X` a subset of `G`.  Suppose that
+> `H` is non-degenerate and `H ↪_h (G,X)`.  Then the action of `G` on
+> `Γ(G, X ⊔ H)` is non-elementary.
+
+This is the clause of `(AH₄) ⇒ (AH₁)` that Theorem 5.4 does not supply; Osin's
+proof of Theorem 1.2 applies it to the generating set Theorem 5.4 produces.
+
+Two remarks on the translation.  Osin's conclusion is `|∂Γ| > 2`; this
+repository has no Gromov boundary, and what is recorded here is
+`ActsNonElementarily`, *two independent loxodromic elements*.  Under the
+acylindricity hypothesis the two are equivalent by Osin's Theorem 1.1, and two
+independent loxodromics is what his proof actually produces.  That hypothesis
+is *added* rather than dropped — the assembly never uses this proposition
+without it — which makes this statement weaker than the printed lemma, hence a
+safe citation. -/
 def RelativeCayleyNonElementary : Prop :=
   ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
-    IsAcylindrical G (Cayley D.alphabet) → D.fam () ≠ ⊤ →
-      ((D.fam () : Set G)).Infinite →
-        ActsNonElementarily (⊤ : Subgroup G) (Cayley.base D.alphabet)
+    IsAcylindrical G (Cayley D.alphabet) → IsNonDegenerate (D.fam ()) →
+      ActsNonElementarily (⊤ : Subgroup G) (Cayley.base D.alphabet)
+
+/-! ### Lemma 5.12 from its three cited inputs -/
+
+/-- **Dahmani--Guirardel--Osin, Corollary 6.12**, as Osin's Lemma 5.12 cites
+it: a non-degenerate hyperbolically embedded subgroup makes `G` contain
+elements acting loxodromically on `Γ(G, X ⊔ H)`.
+
+No such element lies in `H` itself: by
+`RelGenSet.not_isLoxodromic_of_mem_fam`, coning off `H` makes every element of
+`H` elliptic.  So this citation is a statement about the rest of `G`. -/
+def DGOCorollary612 : Prop :=
+  ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
+    IsNonDegenerate (D.fam ()) →
+      ∃ g : G, IsLoxodromic g (Cayley.base D.alphabet)
+
+/-- **Dahmani--Guirardel--Osin, Theorem 6.14**, in the "in particular" form
+Osin uses it: *"by Theorem 6.14 from [DGO] `G` contains non-abelian free
+subgroups.  In particular, `G` is not virtually cyclic."*  Only the
+consequence is recorded, so this asks for less than the theorem gives. -/
+def DGOTheorem614 : Prop :=
+  ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
+    IsNonDegenerate (D.fam ()) → ¬ IsVirtuallyCyclic G
+
+/-- **Osin, Theorem 1.1**, in the form Lemma 5.12's proof uses it:
+
+> Let `G` be a group acting acylindrically on a hyperbolic space.  Then `G`
+> satisfies exactly one of the following three conditions.  (a) `G` has
+> bounded orbits.  (b) `G` is virtually cyclic and contains a loxodromic
+> element.  (c) `G` contains infinitely many independent loxodromic elements.
+
+Recorded as the two exclusions: a loxodromic element rules out (a), and
+non-virtual-cyclicity rules out (b), so (c) holds and in particular there are
+two independent loxodromics.  That consequence, not the trichotomy itself, is
+what is asked for. -/
+def OsinTheorem11 : Prop :=
+  ∀ (G : Type u) [Group G] (X : Type v) [PseudoMetricSpace X] [MulAction G X]
+    (δ : ℝ) (x : X), IsIsometricAction G X → IsHyperbolicSpace δ X →
+      IsAcylindrical G X → (∃ g : G, IsLoxodromic g x) →
+        ¬ IsVirtuallyCyclic G → ActsNonElementarily (⊤ : Subgroup G) x
+
+/-- **Osin's Lemma 5.12, assembled from the three results his proof cites**, in
+his order: loxodromic elements exist by Corollary 6.12, `G` is not virtually
+cyclic by Theorem 6.14, and the trichotomy of Theorem 1.1 then leaves only the
+non-elementary case. -/
+theorem relativeCayleyNonElementary_of (h11 : OsinTheorem11)
+    (h612 : DGOCorollary612) (h614 : DGOTheorem614) :
+    RelativeCayleyNonElementary := by
+  intro G _ D hemb hacy hnd
+  obtain ⟨δ, hδ⟩ := hemb.hyperbolic
+  exact h11 G (Cayley D.alphabet) δ (Cayley.base D.alphabet)
+    (isIsometricAction_cayley D.alphabet) hδ hacy (h612 G D hemb hnd)
+    (h614 G D hemb hnd)
 
 /-- **`(AH₄) ⇒ (AH₁)` from Theorem 5.4 and the non-elementarity clause.**
 
@@ -269,7 +348,7 @@ theorem osinAH4ToAH1_of (h54 : OsinTheorem54)
     exact congrFun hfam ()
   have hEne : D'.fam () ≠ ⊤ := by rw [hlam]; exact hE
   have hEinf : ((D'.fam () : Set G)).Infinite := by rw [hlam]; exact hinf
-  exact ⟨⟨D'.alphabet, δ, hδ, hacy, hne G D' hhyp' hacy hEne hEinf⟩⟩
+  exact ⟨⟨D'.alphabet, δ, hδ, hacy, hne G D' hhyp' hacy ⟨hEne, hEinf⟩⟩⟩
 
 /-- **Osin, Theorem 1.2, the implication `(AH₃) ⇒ (AH₁)`** — the form
 Minasyan--Osin cite as their Theorem 3.3. -/

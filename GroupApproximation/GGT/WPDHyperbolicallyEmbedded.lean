@@ -178,6 +178,44 @@ structure IsHyperbolicallyEmbedded (D : RelGenSet G Λ) : Prop where
   /-- Clause (b): each `(H λ, d̂_λ)` is locally finite. -/
   locallyFinite : ∀ (lam : Λ) (n : ℕ), (D.relBall lam n).Finite
 
+/-- **No element of `H λ` is loxodromic on `Γ(G, X ⊔ ⨆H)`.**
+
+Every element of `H λ` is a *letter*, so every one of its powers is a letter
+too, and the whole cyclic subgroup sits in the ball of radius `1` about the
+basepoint.  An element with a bounded orbit cannot have a positive linear lower
+bound on its displacement.
+
+This is the reason the loxodromic elements that Dahmani--Guirardel--Osin's
+Corollary 6.12 produces are necessarily *outside* the hyperbolically embedded
+subgroup: coning off `H` makes `H` elliptic, and the non-elementarity of the
+action on the cone-off is therefore a statement about the rest of `G`.  It
+holds for every family, degenerate or not, and needs neither hyperbolicity nor
+local finiteness. -/
+theorem not_isLoxodromic_of_mem_fam (D : RelGenSet G Λ) (lam : Λ) {h : G}
+    (hh : h ∈ D.fam lam) : ¬ IsLoxodromic h (Cayley.base D.alphabet) := by
+  intro hlox
+  obtain ⟨l, hl, B, -, hle⟩ := hlox
+  have hbound : ∀ n : ℕ, dist (Cayley.base D.alphabet)
+      ((h ^ n) • Cayley.base D.alphabet) ≤ 1 := by
+    intro n
+    have hmem : h ^ n ∈ D.alphabet.carrier :=
+      Set.mem_union_right _ (Set.mem_iUnion.mpr ⟨lam, pow_mem hh n⟩)
+    have hnorm : wordNorm D.alphabet.carrier (h ^ n) ≤ 1 :=
+      wordNorm_le_one_of_mem hmem
+    have hdist : dist (Cayley.base D.alphabet)
+        ((h ^ n) • Cayley.base D.alphabet)
+          = (wordDist D.alphabet.carrier 1 (h ^ n) : ℝ) := by
+      simp
+    rw [hdist, wordDist_one_left]
+    exact_mod_cast hnorm
+  obtain ⟨N, hN⟩ := exists_nat_gt ((1 + B) / l)
+  have hlin : 1 + B < l * (N : ℝ) := by
+    rw [div_lt_iff₀ hl] at hN
+    linarith
+  have hlow := hle N
+  have hhigh := hbound N
+  linarith
+
 end RelGenSet
 
 /-- **Dahmani--Guirardel--Osin, Corollary 4.27**, quoted by Osin as his

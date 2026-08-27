@@ -320,7 +320,7 @@ noncomputable def ah3Data (hj₁ : Function.Injective j₁)
     (hinter : ∀ p q : P, j₁ p = j₂ q → p = 1)
     (hcrit : BassSerreHNN.IsTreeWPDCriterion (Double j₁ j₂ hj₁ hj₂)
       (BassSerreHNN.tree_isTree (stageTwoEquiv j₁ j₂ hj₁ hj₂))) :
-    AH3Data (Double j₁ j₂ hj₁ hj₂) where
+    AH3Data.{0, 0} (Double j₁ j₂ hj₁ hj₂) where
   Space := BassSerreHNN.Space (stageTwoEquiv j₁ j₂ hj₁ hj₂)
   isometric := BassSerreHNN.isIsometricAction (stageTwoEquiv j₁ j₂ hj₁ hj₂)
   delta := 0

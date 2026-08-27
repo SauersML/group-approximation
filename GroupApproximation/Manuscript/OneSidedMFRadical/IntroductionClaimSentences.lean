@@ -166,7 +166,7 @@ two-generation witness directly, avoiding a second detour through finite
 presentation. -/
 theorem manuscriptAbstractTorsionFreeFullRadicalConstruction
     (I : NonMF.TheoremC.LiteratureInputs)
-    (hHull : NonMF.TorsionFree.HullInputs.{0}) :
+    (hHull : NonMF.HullCorrectedInputs.HullInputsCorrected.{0}) :
     AbstractTorsionFreeFullRadicalConstruction := by
   obtain ⟨Q, instQ, ⟨x, y, hxy⟩, hFP, hTF, -, hKazhdan, hRad, hquot, -⟩ :=
     NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical I hHull
