@@ -185,6 +185,27 @@ structure Stable (Z : Subgroup P) : Prop where
   /-- `φ⁻¹` does not leave `Z`. -/
   bwd : ∀ b : B, (b : P) ∈ Z → ((φ.symm b : A) : P) ∈ Z
 
+/-- Conjugating an element of the associated subgroup by the indicated
+stable-letter sign always returns to the base.  This is the algebraic part of
+pinch collapse, separated from any invariant-subgroup hypothesis. -/
+theorem exists_edge_collapse (u : ℤˣ) {g : P}
+    (hgu : g ∈ toSubgroup A B u) :
+    ∃ y : P, (t : HNNExtension P A B φ) ^ (u : ℤ) * of g
+        * ((t : HNNExtension P A B φ) ^ (u : ℤ))⁻¹ = of y := by
+  rcases Int.units_eq_one_or u with rfl | rfl
+  · rw [toSubgroup_one] at hgu
+    refine ⟨((φ ⟨g, hgu⟩ : B) : P), ?_⟩
+    have h := equiv_eq_conj (φ := φ) ⟨g, hgu⟩
+    have hu : ((1 : ℤˣ) : ℤ) = 1 := rfl
+    rw [hu, zpow_one]
+    exact h.symm
+  · rw [toSubgroup_neg_one] at hgu
+    refine ⟨((φ.symm ⟨g, hgu⟩ : A) : P), ?_⟩
+    have h := equiv_symm_eq_conj (φ := φ) ⟨g, hgu⟩
+    have hu : ((-1 : ℤˣ) : ℤ) = -1 := rfl
+    rw [hu, zpow_neg, zpow_one, inv_inv]
+    exact h.symm
+
 /-- **The defining relation, as a statement about a stable subgroup.**
 Conjugating an element of `Z ⊓ toSubgroup A B u` by `t^u` returns to the base,
 and lands again in `Z`. -/
@@ -223,6 +244,34 @@ theorem prod_cons_cons (u u' : ℤˣ) (g g' y : P) (l : List (ℤˣ × P))
   rw [← hy]
   simp only [mul_assoc]
 
+/-- **Collapse one displayed pinch without a stability hypothesis.**  The
+resulting word has exactly two fewer stable letters.  This is the induction
+step used by scans whose base invariant changes when a pinch is crossed. -/
+theorem exists_shorter_gword_of_pinch (z₀ : P)
+    (l₁ : List (ℤˣ × P)) (u u' : ℤˣ) (g g' : P)
+    (l₂ : List (ℤˣ × P)) (hu' : u' = -u)
+    (hgu : g ∈ toSubgroup A B u) :
+    ∃ (z₀' : P) (l' : List (ℤˣ × P)),
+      gword φ z₀ (l₁ ++ (u, g) :: (u', g') :: l₂) =
+        gword φ z₀' l' ∧
+      l'.length + 2 = (l₁ ++ (u, g) :: (u', g') :: l₂).length := by
+  obtain ⟨y, hy⟩ := exists_edge_collapse φ u hgu
+  rcases eq_nil_or_append_singleton l₁ with rfl | ⟨l₁', c, rfl⟩
+  · refine ⟨z₀ * (y * g'), l₂, ?_, by simp⟩
+    simp only [List.nil_append, gword]
+    rw [prod_cons_cons φ u u' g g' y l₂ hu' hy, ← mul_assoc, ← map_mul]
+  · obtain ⟨v, w₀⟩ := c
+    refine ⟨z₀, l₁' ++ (v, w₀ * (y * g')) :: l₂, ?_, ?_⟩
+    · have hlist : l₁' ++ [(v, w₀)] ++ (u, g) :: (u', g') :: l₂ =
+          l₁' ++ ((v, w₀) :: (u, g) :: (u', g') :: l₂) := by simp
+      rw [hlist]
+      apply gword_append_eq φ z₀ l₁'
+      rw [List.map_cons, List.prod_cons,
+        prod_cons_cons φ u u' g g' y l₂ hu' hy, ← mul_assoc,
+        letter_mul_of φ v w₀ (y * g'), List.map_cons, List.prod_cons]
+    · simp only [List.length_append, List.length_cons, List.length_nil]
+      omega
+
 /-! ## 3.  Britton's lemma, for words -/
 
 /-- **Britton's lemma.**  A word whose letters form a chain lies in the base
@@ -240,6 +289,34 @@ theorem eq_nil_of_isChain (z₀ : P) (l : List (ℤˣ × P))
     rw [hprod]
     exact hmem
   exact hnil
+
+/-- **A nonempty word that returns to the base contains a Britton pinch.**
+
+This is the non-stable counterpart of `descent`: it does not assume that a
+chosen base subgroup is preserved by the edge equivalence.  Instead it
+extracts the first local datum that any custom normal-form scan needs.  The
+two adjacent stable exponents are opposite, and the intervening base entry
+belongs to the associated subgroup selected by the first exponent. -/
+theorem exists_pinch_of_gword_mem_range {z₀ : P} {l : List (ℤˣ × P)}
+    (hne : l ≠ [])
+    (hmem : gword φ z₀ l ∈ (of : P →* HNNExtension P A B φ).range) :
+    ∃ (l₁ : List (ℤˣ × P)) (u u' : ℤˣ) (g g' : P)
+      (l₂ : List (ℤˣ × P)),
+      l = l₁ ++ (u, g) :: (u', g') :: l₂ ∧
+        g ∈ toSubgroup A B u ∧ u' = -u := by
+  by_contra hpinch
+  have hc : l.IsChain
+      (fun a b : ℤˣ × P => a.2 ∈ toSubgroup A B a.1 → a.1 = b.1) := by
+    by_contra hchain
+    obtain ⟨l₁, a, b, l₂, hl, hab⟩ := exists_not_rel l hchain
+    obtain ⟨u, g⟩ := a
+    obtain ⟨u', g'⟩ := b
+    have hg : g ∈ toSubgroup A B u := by
+      by_contra hg
+      exact hab fun hmem => absurd hmem hg
+    have huu' : u ≠ u' := fun heq => hab fun _ => heq
+    exact hpinch ⟨l₁, u, u', g, g', l₂, hl, hg, eq_neg_of_ne huu'⟩
+  exact hne (eq_nil_of_isChain φ z₀ l hc hmem)
 
 /-! ## 4.  Every element of `⟨Z, t⟩` is a word -/
 
