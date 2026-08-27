@@ -472,6 +472,99 @@ theorem exists_stableConjLift_mul_inAmbient
       simp only [map_inv]
       group
 
+@[simp] theorem baseRet_inLamp (k : FreeGroup α) :
+    FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)
+      (inLamp G M (FreeGroup α) k) = 1 := by
+  change PushoutI.lift _ _ _
+      (PushoutI.of (φ := lampMap G M (FreeGroup α)) false ((1 : M), k)) = 1
+  rw [PushoutI.lift_of]
+  rfl
+
+@[simp] theorem baseRet_stableConj
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (p : LampLabel (M := M) (α := α) d) :
+    FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)
+      (stableConj (M := M) d p) = 1 := by
+  simp only [stableConj, map_mul, map_inv,
+    FreeLampProfiniteEmbedding.baseRet_inAmbient, baseRet_inLamp]
+  group
+
+theorem baseRet_comp_stableConjLift
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    (FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)).comp
+        (stableConjLift (M := M) (α := α) d) = 1 := by
+  refine FreeGroup.ext_hom _ _ fun p => ?_
+  simp [stableConjLift]
+
+/-- The stable-coordinate subgroup is exactly the kernel of the canonical
+base retraction. -/
+theorem range_stableConjLift_eq_ker_baseRet
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    (stableConjLift (M := M) (α := α) d).range =
+      (FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)).ker := by
+  apply le_antisymm
+  · rintro z ⟨w, rfl⟩
+    rw [MonoidHom.mem_ker, ← MonoidHom.comp_apply,
+      baseRet_comp_stableConjLift]
+    rfl
+  · intro z hz
+    obtain ⟨w, g, hdecomp⟩ :=
+      exists_stableConjLift_mul_inAmbient (M := M) d z
+    have hz' := hz
+    rw [MonoidHom.mem_ker, hdecomp, map_mul,
+      ← MonoidHom.comp_apply, baseRet_comp_stableConjLift,
+      FreeLampProfiniteEmbedding.baseRet_inAmbient] at hz'
+    have hg : g = 1 := by simpa using hz'
+    subst g
+    rw [map_one, mul_one] at hdecomp
+    exact ⟨w, hdecomp.symm⟩
+
+/-- The free stable-coordinate basis, restricted to the retraction kernel. -/
+def kernelLift
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    FreeGroup (LampLabel (M := M) (α := α) d) →*
+      (FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)).ker :=
+  (stableConjLift (M := M) (α := α) d).codRestrict _ fun w ↦ by
+    rw [MonoidHom.mem_ker, ← MonoidHom.comp_apply,
+      baseRet_comp_stableConjLift]
+    rfl
+
+theorem kernelLift_bijective
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    Function.Bijective (kernelLift (M := M) (α := α) d) := by
+  constructor
+  · intro x y hxy
+    apply stableConjLift_injective (M := M) (α := α) d
+    exact Subtype.ext_iff.mp hxy
+  · rintro ⟨z, hz⟩
+    have hzrange : z ∈ (stableConjLift (M := M) (α := α) d).range := by
+      rw [range_stableConjLift_eq_ker_baseRet]
+      exact hz
+    obtain ⟨w, hw⟩ := hzrange
+    exact ⟨w, Subtype.ext hw⟩
+
+/-- The base-retraction kernel is intrinsically a free group. -/
+noncomputable def kernelEquiv
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    FreeGroup (LampLabel (M := M) (α := α) d) ≃*
+      (FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)).ker :=
+  MulEquiv.ofBijective (kernelLift (M := M) (α := α) d)
+    (kernelLift_bijective (M := M) (α := α) d)
+
+theorem kernelEquiv_comp_subtype
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    ((FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)).ker.subtype).comp
+        (kernelEquiv (M := M) (α := α) d).toMonoidHom =
+      stableConjLift (M := M) (α := α) d := by
+  ext w
+  rfl
+
+instance kernel_finiteIndex [Finite G] :
+    (FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)).ker.FiniteIndex := by
+  exact finiteIndex_comap_of_normal
+    (FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α))
+    (⊥ : Subgroup G)
+
 end
 
 end FreeLampFiniteBaseProfinite
