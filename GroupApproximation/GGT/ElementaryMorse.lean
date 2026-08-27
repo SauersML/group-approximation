@@ -123,6 +123,104 @@ not the tool for this one.
 Given `OrbitNearGeodesic`, both residues follow by the routes their own modules
 record, and neither needs anything else.
 
+## PROOF PLAN for `OrbitNearGeodesic` — steps 0–2 verified on paper, step 3
+## standard and not verified in detail; none of it formalized
+
+The route below closes.  It is *not* the one suggested by the index↔parameter
+relation, and that failure is worth recording first, because it is the same
+cancellation as the general case and the relation does not break it.
+
+**Why pinning indices to chord parameters does not help.**  Suppose the
+straddling pair is chosen by index, `a = j − s`, `b = j + s`, rather than pulled
+back from the chord.  The lower bound on the mutual distance comes from progress,
+`d(z a, z b) ≥ l'·2s`, and the upper bounds on the endpoint distances come from
+the step bound, `d(z a, p) ≤ ρ + D'·s`.  The Gromov product at `p` is then at
+most `ρ + s(D' − l')`, which is `≥ ρ` whenever `D' ≥ l'` — always.  Choosing `s`
+by `D'·s ≤ r` instead gives `ρ + r(1 − l'/D')`, again `≥ ρ`.  The two bounds are
+taken with different constants and the quasi-geodesic ratio `λ = D'/l'` sits
+between them, so no choice of offset beats `ρ`.  A two-point estimate cannot
+break the cancellation; hyperbolicity has to enter, through divergence.
+
+**Step 0: normalise the chain.**  `IsLoxodromic g x` gives `l > 0` and `B ≥ 0`
+with `l·n − B ≤ d(x, gⁿx)`; `dist_pow_le` gives `d(x, gⁿx) ≤ n·D` with
+`D = d(x, g·x)`.  The progress hypothesis of every chain lemma in
+`Sofic.HullSuitabilityGeometry` is the clean form `l·(b−a) ≤ d(y a, y b)`, with
+no additive slack, so `B` must be absorbed first.  Take `m := ⌈2B/l⌉ + 1` and
+subsample, `z i := g^{m i} x`.  Then for `k ≥ 1`,
+`d(z a, z b) ≥ l·m·k − B ≥ (l·m/2)·k` because `l·m/2 ≥ B`, and at `k = 0` both
+sides vanish; so `l' := l·m/2` and `D' := d(x, g^m x) ≤ m·D` are clean constants
+for the subsampled chain.  Nothing is lost downstream: a common power of `g^m`
+and `c` is a common power of `g` and `c` after multiplying one exponent by `m`.
+
+**Step 1: the chord is within `K₁` of the chain.**  Let `γ` be a geodesic from
+`z 0` to `z N`, let `p = γ s₀` be a chord point, and let `ρ` be the distance from
+`p` to the chain image, so every chain vertex is at distance `≥ ρ` from `p` and
+some vertex realises it up to any slack.  Let `p' = γ (s₀ − 2ρ)` and
+`p'' = γ (s₀ + 2ρ)`, clipped to `γ 0` and `γ L` at the ends.
+
+The object to feed to divergence is **not** a sub-chain of `z`.  That was the
+error the two obstruction theorems above record: chain vertices give endpoint
+Gromov product `2ρ` at `p`, and `radius_le_of_chain_avoids_ball` needs it below
+`ρ`.  Feed it instead the concatenated path
+
+    p' → (geodesic, length ≤ ρ) → z a → (chain) → z b → (geodesic, length ≤ ρ) → p''
+
+where `z a` and `z b` are vertices within `ρ` of `p'` and `p''`, supplied by
+maximality of `ρ` exactly as in `straddling_pair_of_dense_chord`.  Its two
+endpoints are `p'` and `p''`, both on `γ` with `p` between them, so
+`(p' | p'')_p = (2ρ + 2ρ − 4ρ)/2 = 0` — the same computation as
+`chord_depth_le_clog`, and the reason `C = 0` there and here.  Every point of the
+path is at distance `≥ ρ` from `p`: chain vertices by definition of `ρ`, and a
+point `u` of a connecting geodesic by `d(u,p) ≥ d(p,p') − d(p',u) ≥ 2ρ − ρ = ρ`.
+The path is discretised at step `D'` — `IsGeodesicSpace` supplies the two
+connecting geodesics and `IsGeodesicSegment.dist_eq` their sampling.
+
+Its length is linear in `ρ`: the two connecting pieces contribute `≤ 2ρ`, and
+`d(z a, z b) ≤ d(z a, p') + d(p', p'') + d(p'', z b) ≤ ρ + 4ρ + ρ = 6ρ`, so
+progress gives `b − a ≤ 6ρ/l'` and `dist_chain_le_nat_mul` gives chain length
+`≤ 6ρ·D'/l'`.  So the number of steps is `N'' ≤ (2ρ + 6ρ·D'/l')/D' =: c₀·ρ`.
+
+`radius_le_add_clog_of_chain_avoids_ball` at `w := p`, `R := ρ`, `C := 0` now
+gives `ρ ≤ D'/2 + clog₂(N'')·δ` with `N'' ≤ c₀·ρ` — linear against logarithmic
+**in `ρ` alone**, which is `exists_bound_of_linear_le_add_clog` after the same
+rescaling `exists_bound_chord_depth_of_straddlingCut` performs.  So
+`ρ ≤ K₁(δ, D', l')`.
+
+Boundary cases cost nothing: if `s₀ < 2ρ` take `p' := γ 0 = z 0`, which is itself
+a chain vertex, so the connecting piece is empty; `p` still lies between `p'` and
+`p''` on `γ`, so the Gromov product is still `0`, and the path still avoids
+`B(p, ρ)`.  Symmetrically at the far end.
+
+**Step 2: the chain is within `K₂` of the chord.**  Standard, and the constants
+are the quasi-geodesic ones: given step 1, every chord point has a chain vertex
+within `K₁`; for a vertex `z j` far from `γ`, take the largest `a ≤ j` and
+smallest `b ≥ j` whose vertices are within `K₁ + D'` of `γ`, note `z a` and `z b`
+are then within `2K₁ + 2D'` of each other along `γ`, and progress bounds `b − a`,
+so `d(z j, γ) ≤ K₁ + D' + D'·(b − a)`.  I have not checked this step in the
+detail of step 1; it is the routine half of Bridson–Haefliger III.H.1.7 and it
+introduces no new geometry.
+
+**Step 3: undo the subsampling.**  A vertex `gⁱx` with `i` not a multiple of `m`
+is within `d(x, g^{i mod m} x) ≤ m·D` of a subsampled vertex, so
+`K := K₂ + m·D` serves the original chain.
+
+**The statement, in final form.**  `OrbitNearGeodesic G X` as declared below is
+the shape to prove: for a loxodromic `g` at `x`, one constant `K ≥ 0` such that
+every orbit point `gᵏx` with `k ≤ n` lies within `K` of some point of any
+geodesic from `x` to `gⁿx`.  `K` may depend on `δ`, on `d(x, g·x)` and on the
+loxodromy constants of `g`, and on nothing else — in particular not on `n` or
+`k`, which is the whole content.
+
+**Lemmas consumed.**  From `Sofic.HullSuitabilityGeometry`:
+`radius_le_add_clog_of_chain_avoids_ball`, `exists_bound_of_linear_le_add_clog`,
+`gromovProduct_le_dist_of_mem_geodesic`, `IsGeodesicSpace`, `IsGeodesicSegment`,
+`IsGeodesicSegment.dist_eq`, `dist_chain_le_nat_mul`, `dist_pow_le`,
+`mul_le_dist_zpow`, `orbit_quasiIsometricEmbedding_of_isLoxodromic`,
+`dist_zpow_orbit`.  From this module: `chord_depth_le_clog` (the `C = 0`
+computation, reused verbatim), `straddling_pair_of_dense_chord` (the density
+pull-back), and `gromovProduct_straddling_le_two_mul` (as the record of what
+must *not* be done).  `exists_bound_chain_excursion_depth` is not used.
+
 ## Status
 
 **Not compiled**, written while builds were frozen, and unwired for that reason.
