@@ -123,8 +123,9 @@ not the tool for this one.
 Given `OrbitNearGeodesic`, both residues follow by the routes their own modules
 record, and neither needs anything else.
 
-## PROOF PLAN for `OrbitNearGeodesic` — steps 0–2 verified on paper, step 3
-## standard and not verified in detail; none of it formalized
+## PROOF PLAN for `GGT.Elementary.CentralizerOrbitNearAxis` — steps 0, 1, 3 and
+## 4 verified on paper, step 2 standard and not verified in detail; none of it
+## formalized
 
 The route below closes.  It is *not* the one suggested by the index↔parameter
 relation, and that failure is worth recording first, because it is the same
@@ -204,22 +205,65 @@ introduces no new geometry.
 is within `d(x, g^{i mod m} x) ≤ m·D` of a subsampled vertex, so
 `K := K₂ + m·D` serves the original chain.
 
+**Step 4: from `OrbitNearGeodesic` to `CentralizerOrbitNearAxis`.**  This is the
+statement the consumers actually want —
+`GGT.Elementary.CentralizerOrbitNearAxis` in `GGT/ElementaryCentralizerAxis.lean`:
+for a loxodromic `q`, one constant `K` such that for every `c` commuting with `q`
+and every `k` there is `j` with `d(cᵏx, qʲx) ≤ K`.  The uniformity in `k` is the
+content; the pointwise bound `d(qⁿ(cᵏx), qⁿx) = d(x, cᵏx)` is free by isometry
+and useless, since it blows up in `k`.
+
+Write `w := cᵏx` and `Δ := d(x, w)`, and let `ρ := d(w, {qʲx})`.  Because `c`
+commutes with `q`, `qⁿw = cᵏ(qⁿx)`, so `d(qⁿw, qⁿx) = Δ` for every `n`: the two
+orbit lines run at *constant* distance, which is the coordinate-free way of
+saying they share both endpoints.  Also `d(w, qⁿw) = d(x, qⁿx)`, so `q` is
+loxodromic at `w` with the *same* constants and steps 0–3 apply at `w` verbatim,
+with the same `K₁, K₂`.
+
+The naive comparison fails and it is worth saying why: the chords `γ` from
+`q⁻ⁿx` to `qⁿx` and `γ'` from `q⁻ⁿw` to `qⁿw` have endpoints `Δ`-apart, and
+geodesics with `Δ`-close endpoints are only `Δ + O(δ)`-close — a bound that grows
+with `k`.  What rescues it is that `w` sits in the *middle* of `γ'`, not near its
+ends, and quadrilaterals are thin: applying
+`exists_close_on_other_side_of_geodesic_triangle` twice gives
+`γ' ⊆ N_{6δ}([q⁻ⁿw, q⁻ⁿx] ∪ γ ∪ [qⁿx, qⁿw])`, and the two side pieces have length
+`Δ`.  So a point of `γ'` farther than `Δ + 6δ` from both ends of `γ'` cannot be
+accounted for by the side pieces and is within `6δ` of `γ`.
+
+Now choose `n` large enough — depending on `Δ`, which is harmless because `n` is
+existentially quantified inside the argument — that the point `p'` of `γ'` within
+`K₂` of `w` is farther than `Δ + 6δ` from both ends of `γ'`; possible because
+`d(w, q^{±n}w) = d(x, q^{±n}x) → ∞`.  Then `d(p', γ) ≤ 6δ`, so
+`d(w, γ) ≤ K₂ + 6δ`, and step 1 turns that into a bound against the orbit:
+
+    ρ ≤ K₁ + K₂ + 6δ.
+
+The right-hand side contains no `Δ`, no `k`, no `n` and no `c` — which is exactly
+the uniformity `CentralizerOrbitNearAxis` asks for, and exactly what the
+pigeonhole in `ElementaryCommonPower` and in `ElementaryCentralizerAxis`
+consumes.  Verified on paper.
+
 **The statement, in final form.**  `OrbitNearGeodesic G X` as declared below is
-the shape to prove: for a loxodromic `g` at `x`, one constant `K ≥ 0` such that
-every orbit point `gᵏx` with `k ≤ n` lies within `K` of some point of any
+the intermediate target: for a loxodromic `g` at `x`, one constant `K ≥ 0` such
+that every orbit point `gᵏx` with `k ≤ n` lies within `K` of some point of any
 geodesic from `x` to `gⁿx`.  `K` may depend on `δ`, on `d(x, g·x)` and on the
 loxodromy constants of `g`, and on nothing else — in particular not on `n` or
-`k`, which is the whole content.
+`k`.  `GGT.Elementary.CentralizerOrbitNearAxis` is the final target, reached
+from it by step 4.
 
 **Lemmas consumed.**  From `Sofic.HullSuitabilityGeometry`:
 `radius_le_add_clog_of_chain_avoids_ball`, `exists_bound_of_linear_le_add_clog`,
 `gromovProduct_le_dist_of_mem_geodesic`, `IsGeodesicSpace`, `IsGeodesicSegment`,
 `IsGeodesicSegment.dist_eq`, `dist_chain_le_nat_mul`, `dist_pow_le`,
 `mul_le_dist_zpow`, `orbit_quasiIsometricEmbedding_of_isLoxodromic`,
-`dist_zpow_orbit`.  From this module: `chord_depth_le_clog` (the `C = 0`
-computation, reused verbatim), `straddling_pair_of_dense_chord` (the density
-pull-back), and `gromovProduct_straddling_le_two_mul` (as the record of what
-must *not* be done).  `exists_bound_chain_excursion_depth` is not used.
+`dist_zpow_orbit`, and — for step 4 —
+`exists_close_on_other_side_of_geodesic_triangle`.  From this module:
+`chord_depth_le_clog` (the `C = 0` computation, reused verbatim),
+`straddling_pair_of_dense_chord` (the density pull-back),
+`exists_close_on_chord_or_far_side` (the relabelled thin-triangle step, applied
+twice for the quadrilateral of step 4), and
+`gromovProduct_straddling_le_two_mul` (as the record of what must *not* be
+done).  `exists_bound_chain_excursion_depth` is not used.
 
 ## Status
 

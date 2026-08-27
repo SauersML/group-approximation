@@ -135,7 +135,7 @@ of `H` whose long powers are the relator's `H`-letters.
 alphabet is elliptic (`HullSC.not_isLoxodromic_of_subgroup_subset`, the
 `Alphabet` form of `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`) and is not
 hyperbolically embedded over it either
-(`HullSC.not_isHypEmbeddedOf_self`).  Without `lox` this structure would be
+(`GGT.not_isHypEmbeddedOf_of_subset`).  Without `lox` this structure would be
 satisfied by `H = ⊥` and would give Theorem 5.1 nothing.  With it, `not_subset`
 below proves `H ⊄ A`, so the refutation does not apply and the citation is
 neither false nor vacuous.

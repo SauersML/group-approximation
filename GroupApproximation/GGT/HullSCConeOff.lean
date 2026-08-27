@@ -53,10 +53,17 @@ Everything in this module is proved; nothing is postulated.
 * `wordNorm_coneOff_le`, `coneOff_dist_le` -- the cone-off does not increase
   distances, and each coset of `H` has diameter at most one in it.  The second
   is the defining property of a cone: the coset is crushed.
-* `isHypEmbeddedOf_coneOff` -- **the cone-off is the witness for `H ↪_h (G,A)`**.
+* `isHypEmbeddedOf_coneOff` -- **the cone-off is the witness for `H ↪_h (G,X)`**.
   So what has to be established about `E(g)` in Hull's Theorem 5.1 is a
-  statement about `Cayley (coneOff A E(g)).alphabet` and about that relative
-  generating set's `relBall`, and nothing else.
+  statement about `Cayley (coneOff X E(g)).alphabet` and about that relative
+  generating set's `relBall`, and nothing else.  The refutation that pins the
+  base down -- an infinite subgroup contained in its own base is never
+  hyperbolically embedded over it -- is `GGT.not_isHypEmbeddedOf_of_subset`,
+  owned by the `GGT.WPDHyperbolicallyEmbedded` lane and used, not restated.
+* `not_isLoxodromic_of_subgroup_subset`, `not_subset_of_isLoxodromic` -- the
+  `Alphabet` counterpart of `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`: a
+  subgroup inside the alphabet is elliptic, so a subgroup with a loxodromic
+  element is *not* inside it and the refutation does not apply to it.
 
 One inherited convention, documented in `GGT/WPDHyperbolicallyEmbedded.lean` and
 recorded here because `coneOff` inherits it: the hyperbolicity clause is stated
@@ -293,7 +300,8 @@ sits in the unit ball, and a bounded orbit has no positive linear lower bound.
 
 This is the `Alphabet` form of `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`, and
 it is what decides whether `H ↪_h (G, X)` is available for a given `X`: a
-subgroup *contained* in `X` is elliptic, and by `not_isHypEmbeddedOf_self` is
+subgroup *contained* in `X` is elliptic, and by
+`GGT.not_isHypEmbeddedOf_of_subset` is
 not hyperbolically embedded over `X` either.  Contrapositively, a subgroup
 containing an element loxodromic on `Γ(G,X)` is **not** contained in `X`, so
 the refutation does not apply to it. -/
@@ -313,7 +321,8 @@ theorem not_isLoxodromic_of_subgroup_subset {G : Type u} [Group G]
   linarith
 
 /-- **A subgroup with a loxodromic element is not contained in the alphabet.**
-So `not_isHypEmbeddedOf_self` does not refute `H ↪_h (G, X)` for such an `H`,
+So `GGT.not_isHypEmbeddedOf_of_subset` does not refute `H ↪_h (G, X)` for such
+an `H`,
 and the elementary closure of a loxodromic element -- which is where Hull's
 relator's letters come from -- is exactly such an `H`. -/
 theorem not_subset_of_isLoxodromic {G : Type u} [Group G] (A : Alphabet G)
@@ -329,46 +338,12 @@ local finiteness of the cone-off *are* the hyperbolic embedding.
 
 **The alphabet here is Osin's `X`, not Hull's `A`.**  Hull's `A` is the
 *coned-off* alphabet `X ⊔ H`, and it therefore contains `H`, at which point the
-hypothesis below is unsatisfiable: `not_isHypEmbeddedOf_self` proves it. -/
+hypothesis below is unsatisfiable: `GGT.not_isHypEmbeddedOf_of_subset` proves
+it. -/
 theorem isHypEmbeddedOf_coneOff {G : Type u} [Group G] (X : Alphabet G)
     (H : Subgroup G) (h : (coneOff X H).IsHyperbolicallyEmbedded) :
     GGT.IsHypEmbeddedOf G X.carrier H :=
   ⟨coneOff X H, rfl, rfl, h⟩
-
-/-- **A subgroup is never hyperbolically embedded with respect to a relative
-generating set that already contains it**, unless it is finite.
-
-If `H ⊆ X` then every `h ∈ H` is spelled by the one-letter word `base h`, which
-is a legal letter and traverses no edge of `Γ_H` — being a base letter, not an
-`H`-letter.  So the relative ball of radius one about `1` is all of `H`, and
-local finiteness fails outright.
-
-This is why the statements above take Osin's base `X` and not Hull's alphabet
-`A = X ⊔ H`, and why `HullSC.HypEmbeddedCore` carries the decomposition of `A`
-rather than asserting `H ↪_h (G,A)`.  An earlier draft of this lane asserted
-the latter; it is refuted here. -/
-theorem not_isHypEmbeddedOf_self {G : Type u} [Group G] {X : Set G}
-    {H : Subgroup G} (hHX : (H : Set G) ⊆ X) (hinf : (H : Set G).Infinite) :
-    ¬ GGT.IsHypEmbeddedOf G X H := by
-  rintro ⟨D, hbase, hfam, hD⟩
-  refine hinf (Set.Finite.subset (hD.locallyFinite () 1) ?_)
-  intro h hh
-  rw [GGT.RelGenSet.mem_relBall]
-  refine ⟨?_, [GGT.RelLetter.base h], ?_, ?_, ?_, ?_⟩
-  · rw [hfam]
-    exact hh
-  · intro a ha
-    rw [List.mem_singleton] at ha
-    subst ha
-    show h ∈ D.base
-    rw [hbase]
-    exact hHX hh
-  · show ([GGT.RelLetter.base h].map GGT.RelLetter.val).prod = h
-    simp [GGT.RelLetter.val]
-  · refine ⟨?_, trivial⟩
-    rintro ⟨hc, -⟩
-    exact hc
-  · simp
 
 end HullSC
 end GroupApproximation

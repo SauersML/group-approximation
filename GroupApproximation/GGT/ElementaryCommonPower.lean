@@ -68,6 +68,16 @@ Neither is bookkeeping, and neither is attempted here.  What this module does is
 make the residue a single named proposition with the right quantifier order, and
 discharge everything on the pigeonhole side of it.
 
+## Superseded, in one lemma
+
+`injective_of_separated_of_matched` is
+`GGT.Elementary.exists_injective_separated_family` in
+`GGT/ElementaryCentralizerAxis.lean`, arrived at independently and wired there;
+prefer that name.  The rest of this module is not duplicated: the pigeonhole
+assembly `exists_common_zpow_of_fellowTravelMatching` is stated for a general
+non-independent pair, where the two-basepoint condition is *not* free, and so it
+is not subsumed by the commuting-case results of that file.
+
 ## Status
 
 **Not compiled**, written while builds were frozen, and unwired for that reason.

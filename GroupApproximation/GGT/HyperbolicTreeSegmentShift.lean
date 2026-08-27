@@ -61,16 +61,23 @@ universe u v
 
 /-! ## Distance zero -/
 
-/-- In a tree, vanishing distance is equality.  The geodesic has length zero,
-so its two endpoints are both its zeroth vertex. -/
+/-- In a tree, vanishing distance is equality.  The geodesic has length zero, so
+both of its endpoints are indexed vertices at an index bounded by zero, hence at
+the same index. -/
 theorem eq_of_dist_eq_zero {V : Type v} {H : SimpleGraph V} (hH : H.IsTree)
     {p q : V} (h : H.dist p q = 0) : p = q := by
-  have h0 : (geodesic H hH p q).getVert 0 = p :=
-    SimpleGraph.Walk.getVert_zero _
-  have h1 : (geodesic H hH p q).getVert ((geodesic H hH p q).length) = q :=
-    SimpleGraph.Walk.getVert_length _
-  rw [geodesic_length, h] at h1
-  exact h0.symm.trans h1
+  have hlen : (geodesic H hH p q).length = 0 := by
+    rw [geodesic_length]
+    exact h
+  obtain ⟨i, hi, hile⟩ :=
+    SimpleGraph.Walk.mem_support_iff_exists_getVert.mp
+      (geodesic H hH p q).end_mem_support
+  obtain ⟨j, hj, hjle⟩ :=
+    SimpleGraph.Walk.mem_support_iff_exists_getVert.mp
+      (geodesic H hH p q).start_mem_support
+  have hij : i = j := by omega
+  rw [hij] at hi
+  exact hj.symm.trans hi
 
 /-! ## The tripod alternative -/
 

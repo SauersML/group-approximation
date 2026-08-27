@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.RelHypDefinition
-import GroupApproximation.Sofic.GreendlingerRelativeTransfer
+import GroupApproximation.Sofic.OsinWeightedMetric
 
 /-!
 # Osin's Theorem 2.4, and the small-cancellation quotient of Fournier-Facio's
@@ -10,81 +10,81 @@ theorems*, Ann. of Math. 172 (2010) 1--39, Theorem 2.4; and
 Fournier-Facio et al., Proposition 2.3, which applies it to the relatively
 hyperbolic pair `(U ∗ H, U)`.
 
+## Which metric, and why it is not the syllable metric
+
+Osin's small cancellation is measured in the alphabet `X ⊔ ℋ`: a **peripheral**
+element is one letter, however long it is, and a non-peripheral element costs
+its `X`-word length.  Fournier-Facio's relators are `u_k · w_k⁻¹`, one
+peripheral letter followed by a long word in `H`, and their length is the
+length of `w_k`.
+
+Measuring instead in `Monoid.CoprodI` **syllables** — which is what
+`OsinSmallCancellation.wlen` does — collapses `w_k` to a single syllable, so
+`u_k · w_k⁻¹` has length two whatever `w_k` is.  That is not a technicality:
+the length floor and the fragment slack of the syllable lane both fail at
+length two, and the failure is a theorem of this repository rather than a
+suspicion.  `RelativeRouterEnvelope.not_partnerSurjective` and
+`OsinWeightedMetric.not_relativeLengthBound_of_light_tie` prove that at the
+syllable metric a relator identifying a source element with a partner element
+**refutes** the length bound: the `ℤ ∗ ℤ/3` witness recorded in
+`Sofic/GreendlingerRelativeTransfer` is exactly a relator of this shape.  So a
+design stated over `OsinSmallCancellation.wlen` with a length floor and a tie
+is not merely unproved -- it is unsatisfiable, and the repository refutes it.
+
+`Sofic/OsinWeightedMetric.lean` is the lane built for this, and it is the one
+used here.  Its `RelativeLength` carries exactly Osin's asymmetry as its fifth
+clause,
+
+    len_source_le_one : ∀ x : G false, len (CoprodI.of x) ≤ 1
+
+-- every element of the peripheral factor is a single letter, and nothing is
+assumed about the other factor -- and its relators are letter lists whose floor
+`42 ≤ r.length` counts letters, which a tie relator meets as soon as its
+partner element is long.
+
 ## What Osin's Theorem 2.4 says, and where its clauses already live
 
 Let `G` be hyperbolic relative to `{H_λ}` with finite relative generating set
-`X`.  Osin fixes `μ > 0` and `c ≥ 0`, and then for every `λ ∈ (0,1]` and
-`ε ≥ 0` produces `ρ > 0` such that every symmetrized set `R` of words over
-`X ⊔ ℋ` satisfying the relative small-cancellation condition
-`C(ε, μ, λ, c, ρ)` has, in `G/⟪R⟫`:
+`X`.  Osin produces, for suitable parameters, a `ρ` such that every symmetrized
+relator family satisfying `C(ε, μ, λ, c, ρ)` has, in `G/⟪R⟫`: (1) each `H_λ`
+still injects; (2) the quotient is again relatively hyperbolic; (3)--(4)
+structure of `⟪R⟫`; (5) every finite-order element is the image of one of the
+same order.  Clauses (1) and (5) are what the Fournier-Facio paragraph
+consumes, and `Sofic/OsinWeightedMetric.lean` has already cut them down to two
+named predicates on the relator family, `WeightedGreendlingerLeaf` and
+`WeightedTorsionLeaf`, both with proved instances.
 
-1. the restriction of `G → G/⟪R⟫` to each `H_λ` is **injective**;
-2. `G/⟪R⟫` is hyperbolic relative to the images of the `H_λ`;
-3.--(4) statements about `⟪R⟫` as a free product of conjugates;
-5. every element of finite order in `G/⟪R⟫` is the image of an element of the
-   same order in `G` -- so a torsion-free `G` has a **torsion-free** quotient.
-
-Clauses (1) and (5) are the two the Fournier-Facio paragraph consumes, and
-this repository already has them in the free-product model, with pieces
-measured in `Monoid.CoprodI` syllables: `Sofic/OsinRelativeSmallCancellation`
-proves that the length form of the Greendlinger conclusion gives the embedding
-clause and that the torsion classification gives torsion-freeness, and
-`Sofic/GreendlingerRelativeTransfer` cuts what remains down to two named
-predicates on the relator family and assembles the four conclusions in
-`osin_conclusion_of_metric`.
-
-So Theorem 2.4 is **not** restated here as a fresh monolithic citation.  It is
-stated as exactly the universal closure of those two repository leaves --
-
-    OsinTheorem24 = ∀ R lam, RelativeGreendlingerLeaf R lam
-                             ∧ RelativeTorsionLeaf R lam
-
--- which is faithful (each leaf carries Osin's own design hypotheses:
-symmetrization, cyclic reducedness, the metric condition with fragment slack,
-and, for the torsion leaf, no relator a proper power), is checkable against
-the definitions rather than against a docstring, and spends the ~800 lines of
-proved repository content instead of duplicating them.  The mathematics still
-open behind it is one van Kampen count, described at length in the docstrings
-of the two modules above; nothing here reopens it.
+So Theorem 2.4 is **not** restated here as a fresh monolithic citation.
+`OsinTheorem24` is the universal closure of those two leaves, which is faithful
+(each leaf carries Osin's own design hypotheses in its binders: geodesic
+spellings, symmetrization, cyclic reducedness, letters, fragment slack, the
+metric condition, and for the torsion leaf no relator a proper power), is
+checkable against definitions rather than against a docstring, and spends the
+repository's proved content instead of duplicating it.
 
 ## What Proposition 2.3 adds, and why it is a second input
 
-Osin's theorem is about relator families that satisfy the small-cancellation
-condition; it does not say that a *useful* such family exists.  Fournier-Facio's
-Proposition 2.3 supplies the family: over `G = U ∗ H` with peripheral `U`, take
-one relator `u_k w_k` for each generator `u_k` of `U`, where `w_k` is a long
-word in `H` chosen in general position -- Osin's §4 provides the general
-position, in a non-elementary relatively hyperbolic group, for any prescribed
-parameters.  In the quotient every `u_k` becomes equal to `w_k⁻¹`, an element
-of the image of `H`, so the image of `H` is everything.
+Osin's theorem is about families that satisfy the small-cancellation condition;
+it does not say a *useful* one exists.  Fournier-Facio's Proposition 2.3
+supplies it: over `G = U ∗ H` with peripheral `U`, one relator `u_k w_k` per
+generator of `U`, with `w_k` a long word in `H` in general position -- which is
+what Osin's §4 provides in a non-elementary relatively hyperbolic group, and is
+the only place hyperbolicity of `H` is really used.  In the quotient each `u_k`
+becomes `w_k⁻¹`, so the image of `H` is everything.
 
-`OsinRelatorDesign` is that clause, stated with the design certificates the
-repository's transfer layer actually consumes (finite, symmetrized, cyclically
-reduced, at least 42 syllables, `C'(1/7)`, no proper powers) and with the one
-extra property that the relator *shape* buys: each generator of `U` is
-identified with an element of the image of `H`.  Non-elementarity and relative
-hyperbolicity of `(U ∗ H, U)` are hypotheses of it, so the geometric input is
-visible in the type.
+`OsinWeightedMetric.WeightedRouterDesign` is precisely that package -- relator
+family, its six design certificates, and the **tie** field saying each source
+generator is identified with a partner element -- so `OsinRelatorDesign` asks
+for one, at the canonical two-factor model `pairFamily U H`.
 
 ## What is proved here
 
-`exists_smallCancellationQuotient`.  Given the two named inputs above and the
-geometric statement of `GGT/RelHypDefinition.lean`, the quotient
-`P = (U ∗ H)/⟪R⟫` is a finitely presented torsion-free group in which `U`
-embeds and onto which `H` surjects.  Four clauses, and each is a step this
-module proves rather than imports:
-
-* `U ↪ P` is `osin_conclusion_of_metric`'s embedding clause at index `false`;
-* `P` torsion-free is its fourth conclusion, over the torsion-free factors;
-* `P` finitely presented is `Group.IsFinitelyPresented.quotient` against
-  `CoprodIFinitePresentation.instCoprodI`, the relator family being finite --
-  Mathlib has the free product and the quotient step, this repository has the
-  indexed free product;
-* `H ↠ P` is `rightFactorHom_surjective`: the image of `H` is a subgroup
-  containing the image of a generating set of `U`, hence containing the image
-  of `U`, and the two factor images generate.  This is the step the relator
-  shape is designed for, and it is the only one that is not read off a
-  conclusion list.
+`exists_smallCancellationQuotient`: the four clauses
+`FournierFacioQuotientStatement` asks for, read off the design.  Three of them
+are already leaf-free theorems of `Sofic/OsinWeightedMetric.lean` --
+`finitelyPresented`, `partnerHom_surjective` (the surjection `H ↠ P`, which the
+tie buys with no diagram argument at all), and the ambient torsion-freeness --
+and the remaining two, `emb_injective` and `torsionFree`, spend one leaf each.
 -/
 
 namespace GroupApproximation
@@ -92,103 +92,56 @@ namespace GGT
 namespace RelHyp
 
 open Monoid Monoid.CoprodI
-open OsinSmallCancellation GreendlingerRelativeTransfer
+open OsinWeightedMetric
 
 /-! ## 1.  Osin's Theorem 2.4, clauses (1) and (5) -/
 
-/-- **Osin, Theorem 2.4(1) and 2.4(5)**, in the free-product model with pieces
-measured in syllables: for every relator family and every constant, the
-relative Greendlinger lemma and the relative torsion classification hold.
+/-- **Osin, Theorem 2.4(1) and 2.4(5)**, in the two-factor model at the
+weighted relative metric: for every relative length function, every relator
+family and every constant, the relative Greendlinger lemma and the relative
+torsion classification hold.
 
-Each conjunct is the corresponding leaf of
-`Sofic/GreendlingerRelativeTransfer`, which carries Osin's design hypotheses in
-its own binders -- symmetrization, cyclic reducedness, fragment slack, the
-metric condition, and (for the torsion clause) no relator a proper power -- so
-this `Prop` is the honest universal closure of the two open leaves and not a
-weakening of them. -/
+Each conjunct is the corresponding leaf of `Sofic/OsinWeightedMetric.lean`,
+which carries Osin's design hypotheses in its own binders, so this `Prop` is
+the honest universal closure of the two open leaves and not a weakening of
+them. -/
 def OsinTheorem24 : Prop :=
-  ∀ (ι : Type) (_ : DecidableEq ι) (G : ι → Type) (_ : ∀ i, Group (G i))
-    (_ : ∀ i, DecidableEq (G i)) (R : Set (Word G)) (lam : ℚ),
-      RelativeGreendlingerLeaf R lam ∧ RelativeTorsionLeaf R lam
+  ∀ (G : Bool → Type) (_ : ∀ b, Group (G b)) (L : RelativeLength G)
+    (R : Set (List (CoprodI G))) (lam : ℚ),
+      WeightedGreendlingerLeaf L R lam ∧ WeightedTorsionLeaf L R lam
 
-/-! ## 2.  The two factor images generate the quotient -/
+/-! ## 2.  The relator design of Proposition 2.3 -/
 
-/-- **The image of `H` fills the quotient**, once every generator of `U` has
-been identified with an element of it.
-
-The image of `H` is a subgroup, so it contains the image of the subgroup of `U`
-generated by `S`; that subgroup is all of `U`, and the two factor images
-generate `U ∗ H`, hence the quotient. -/
-theorem rightFactorHom_surjective {U H : Type} [Group U] [Group H]
-    (K : Subgroup (CoprodI (pairFamily U H))) [K.Normal] (S : Finset U)
-    (hS : Subgroup.closure (S : Set U) = ⊤)
-    (hSmem : ∀ u ∈ S, ∃ h : H, leftFactorHom K u = rightFactorHom K h) :
-    Function.Surjective (rightFactorHom K) := by
-  have hall : ∀ u : U, leftFactorHom K u ∈ (rightFactorHom K).range := by
-    have hgen : (S : Set U) ⊆
-        ((Subgroup.comap (leftFactorHom K) (rightFactorHom K).range :
-          Subgroup U) : Set U) := by
-      intro u hu
-      obtain ⟨h, hh⟩ := hSmem u (Finset.mem_coe.mp hu)
-      simp only [SetLike.mem_coe, Subgroup.mem_comap, MonoidHom.mem_range]
-      exact ⟨h, hh.symm⟩
-    have hle := (Subgroup.closure_le _).mpr hgen
-    rw [hS] at hle
-    intro u
-    have hmem := hle (Subgroup.mem_top u)
-    rwa [Subgroup.mem_comap] at hmem
-  rw [← MonoidHom.range_eq_top, eq_top_iff]
-  rintro q -
-  obtain ⟨g, rfl⟩ := QuotientGroup.mk'_surjective K q
-  induction g using CoprodI.induction_on with
-  | one =>
-      rw [map_one]
-      exact one_mem _
-  | of b x =>
-      cases b
-      · exact hall x
-      · exact ⟨x, rfl⟩
-  | mul y z hy hz =>
-      rw [map_mul]
-      exact mul_mem hy hz
-
-/-! ## 3.  The relator design of Proposition 2.3 -/
-
-/-- **Fournier-Facio, Proposition 2.3**: the choice of relators, and Osin's
-§4 general position behind it.
+/-- **Fournier-Facio, Proposition 2.3**: the choice of relators, and Osin's §4
+general position behind it.
 
 Over the relatively hyperbolic pair `(U ∗ H, U)` with `H` non-elementary
-hyperbolic, there is a finite symmetrized family of long cyclically reduced
-relators, no one of them a proper power, satisfying the metric condition, whose
-*shape* identifies every generator of `U` with an element of the image of `H`.
+hyperbolic, there is a weighted router design: a finite symmetrized family of
+letter-reduced relators of at least `42` letters, no one of them a proper
+power, satisfying `C'(1/8)`, together with a tie identifying each generator of
+the peripheral factor with an element of the other factor.
 
-The last clause is the one that makes the quotient a quotient of `H`; the
-others are exactly the design certificates
-`GreendlingerRelativeTransfer.osin_conclusion_of_metric` consumes, at its
-concrete pair `(1/7, 42)`.  The pair is free: any `lam < 1/6` with relators of
-at least `1/(1/6 - lam)` syllables does as well
-(`GreendlingerRelativeTransfer.fragmentSlack_of_le_seventh`). -/
+The ambient family is fixed to be `pairFamily U H`, the canonical model, rather
+than an arbitrary `G` with isomorphisms to `U` and `H`; the design's
+`sourceEquiv` and `partnerEquiv` are then the identity, and the relative
+hyperbolicity hypothesis is about the same group the design is built over.
+
+Non-elementarity and relative hyperbolicity are hypotheses, so the geometric
+input is visible in the type.  Osin's §4 is the only step that uses them, and
+it uses them to choose the `w_k` in general position: what makes the pieces
+short is that distinct long words in a non-elementary hyperbolic group can be
+chosen with small overlap, which is false in an elementary one -- in `ℤ` any
+two long words share almost all of their length. -/
 def OsinRelatorDesign : Prop :=
-  ∀ (U H : Type) (_ : Group U) (_ : Group H)
-    (_ : ∀ b, DecidableEq (pairFamily U H b)),
+  ∀ (U H : Type) (_ : Group U) (_ : Group H),
     Group.IsFinitelyPresented U → IsPowerTorsionFree U →
       Infinite H → Group.IsFinitelyPresented H → IsPowerTorsionFree H →
         IsNonElementaryHyperbolic H →
           IsRelativelyHyperbolic (CoprodI (pairFamily U H))
               (fun _ : Unit => freeProductPeripheral U H) →
-            ∃ R : Set (Word (pairFamily U H)),
-              R.Finite ∧
-                Symmetrized R ∧
-                (∀ r ∈ R, IsCyclicallyReduced r) ∧
-                (∀ r ∈ R, 42 ≤ wlen r) ∧
-                MetricSmallCancellation R (1 / 7) ∧
-                NoProperPower R ∧
-                ∃ S : Finset U, Subgroup.closure (S : Set U) = ⊤ ∧
-                  ∀ u ∈ S, ∃ h : H,
-                    leftFactorHom (relatorSubgroup R) u
-                      = rightFactorHom (relatorSubgroup R) h
+            Nonempty (WeightedRouterDesign U H (pairFamily U H))
 
-/-! ## 4.  The quotient -/
+/-! ## 3.  The quotient -/
 
 /-- **The small-cancellation quotient of Fournier-Facio's Proposition 2.3.**
 
@@ -198,7 +151,9 @@ embeds and onto which `H` surjects.
 
 Every hypothesis of `OsinRelatorDesign` is discharged here from the hypotheses
 of the theorem, so the only literature debt of the conclusion is the three
-named `Prop`s in the binder list. -/
+named `Prop`s in the binder list.  The surjection `H ↠ P` costs no leaf: it is
+the design's tie, and `OsinWeightedMetric.WeightedRouterDesign.partnerHom_surjective`
+proves it outright. -/
 theorem exists_smallCancellationQuotient
     (hOsin : OsinTheorem24) (hDesign : OsinRelatorDesign)
     (hRelHyp : FreeProductRelativelyHyperbolicStatement)
@@ -212,27 +167,17 @@ theorem exists_smallCancellationQuotient
         (∃ e : U →* P, Function.Injective e) := by
   haveI := hUfp
   haveI := hHfp
-  haveI hdec : ∀ b, DecidableEq (pairFamily U H b) := pairFamilyDecEq U H
   have hrh : IsRelativelyHyperbolic (CoprodI (pairFamily U H))
       (fun _ : Unit => freeProductPeripheral U H) :=
     hRelHyp U H inferInstance inferInstance hHne.1
-  obtain ⟨R, hRfin, hsym, hcyc, hlong, hmetric, hnpp, S, hSclosure, hSmem⟩ :=
-    hDesign U H inferInstance inferInstance hdec hUfp hUtf hHinf hHfp hHtf hHne
-      hrh
-  have hfree : ∀ b, IsPowerTorsionFree (pairFamily U H b) :=
-    isPowerTorsionFree_pairFamily hUtf hHtf
-  obtain ⟨-, -, hinj, hPtf⟩ :=
-    osin_conclusion_of_metric
-      (hOsin Bool inferInstance (pairFamily U H) inferInstance hdec R (1 / 7)).1
-      (hOsin Bool inferInstance (pairFamily U H) inferInstance hdec R (1 / 7)).2
-      hsym hcyc hlong hmetric hnpp hfree
-  refine ⟨CoprodI (pairFamily U H) ⧸ relatorSubgroup R, inferInstance, ?_, hPtf,
-    ⟨rightFactorHom (relatorSubgroup R), ?_⟩,
-    ⟨leftFactorHom (relatorSubgroup R), ?_⟩⟩
-  · exact Group.IsFinitelyPresented.quotient (relatorSubgroup R)
-      ⟨Word.prod '' R, hRfin.image Word.prod, rfl⟩
-  · exact rightFactorHom_surjective (relatorSubgroup R) S hSclosure hSmem
-  · exact hinj false
+  obtain ⟨D⟩ :=
+    hDesign U H inferInstance inferInstance hUfp hUtf hHinf hHfp hHtf hHne hrh
+  obtain ⟨hleafG, hleafT⟩ :=
+    hOsin (pairFamily U H) inferInstance D.relLength D.relators (1 / 7)
+  exact ⟨D.Routed, inferInstance, D.finitelyPresented,
+    D.torsionFree hleafT hUtf hHtf,
+    ⟨D.partnerHom, D.partnerHom_surjective⟩,
+    ⟨D.emb, D.emb_injective hleafG⟩⟩
 
 end RelHyp
 end GGT

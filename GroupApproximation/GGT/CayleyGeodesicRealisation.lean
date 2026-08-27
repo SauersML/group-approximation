@@ -198,19 +198,32 @@ theorem retractBase_zero (A : Alphabet G) (p : Point A) :
     if p.param ≤ 0 then vertex A p.base else p.withParam (p.param - 0)) = p
   rw [if_pos (le_refl (0 : ℝ))]
 
-theorem retractBase_end (A : Alphabet G) (p : Point A) :
-    retractBase A p p.param = vertex A p.base := by
+/-- The base retraction ends at distance zero from the base vertex.  It cannot
+end **at** it: when `p.param = 0` the path has length zero, so it is still `p`,
+which is at distance zero from the vertex without being equal to it. -/
+theorem dist_retractBase_end (A : Alphabet G) (p : Point A) :
+    dist (retractBase A p p.param) (vertex A p.base) = 0 := by
   by_cases h : p.param ≤ 0
   · have hp : p.param = 0 := le_antisymm h p.param_nonneg
-    show (if p.param ≤ 0 then p else
-      if p.param ≤ p.param then vertex A p.base
-        else p.withParam (p.param - p.param)) = vertex A p.base
-    rw [if_pos h]
-    exact Point.ext' rfl (by rw [hp] at *; exact ?_) (by rw [hp]; rfl)
-  · show (if p.param ≤ 0 then p else
-      if p.param ≤ p.param then vertex A p.base
-        else p.withParam (p.param - p.param)) = vertex A p.base
-    rw [if_neg h, if_pos (le_refl p.param)]
+    have hval : retractBase A p p.param = p := by
+      show (if p.param ≤ 0 then p else
+        if p.param ≤ p.param then vertex A p.base
+          else p.withParam (p.param - p.param)) = p
+      rw [if_pos h]
+    have hle : dist p (vertex A p.base) ≤ p.param := by
+      have h1 := Point.dist_withParam_base_le p p.param_nonneg p.param_le_one
+      rw [Point.withParam_self] at h1
+      exact h1
+    have hge : (0 : ℝ) ≤ dist p (vertex A p.base) := dist_nonneg
+    rw [hp] at hle
+    rw [hval]
+    linarith
+  · have hval : retractBase A p p.param = vertex A p.base := by
+      show (if p.param ≤ 0 then p else
+        if p.param ≤ p.param then vertex A p.base
+          else p.withParam (p.param - p.param)) = vertex A p.base
+      rw [if_neg h, if_pos (le_refl p.param)]
+    rw [hval, dist_self]
 
 theorem retractTip_zero (A : Alphabet G) (p : Point A) :
     retractTip A p 0 = p := by
@@ -218,19 +231,28 @@ theorem retractTip_zero (A : Alphabet G) (p : Point A) :
     if 1 - p.param ≤ 0 then vertex A p.tip else p.withParam (p.param + 0)) = p
   rw [if_pos (le_refl (0 : ℝ))]
 
-theorem retractTip_end (A : Alphabet G) (p : Point A) :
-    retractTip A p (1 - p.param) = vertex A p.tip := by
+/-- The far retraction ends at distance zero from the far vertex. -/
+theorem dist_retractTip_end (A : Alphabet G) (p : Point A) :
+    dist (retractTip A p (1 - p.param)) (vertex A p.tip) = 0 := by
   by_cases h : 1 - p.param ≤ 0
-  · have hp : p.param = 1 := le_antisymm p.param_le_one (by linarith)
-    show (if 1 - p.param ≤ 0 then p else
-      if 1 - p.param ≤ 1 - p.param then vertex A p.tip
-        else p.withParam (p.param + (1 - p.param))) = vertex A p.tip
-    rw [if_pos h]
-    exact Point.ext' rfl (by rfl) (by rw [hp]; rfl)
-  · show (if 1 - p.param ≤ 0 then p else
-      if 1 - p.param ≤ 1 - p.param then vertex A p.tip
-        else p.withParam (p.param + (1 - p.param))) = vertex A p.tip
-    rw [if_neg h, if_pos (le_refl (1 - p.param))]
+  · have hval : retractTip A p (1 - p.param) = p := by
+      show (if 1 - p.param ≤ 0 then p else
+        if 1 - p.param ≤ 1 - p.param then vertex A p.tip
+          else p.withParam (p.param + (1 - p.param))) = p
+      rw [if_pos h]
+    have hle : dist p (vertex A p.tip) ≤ 1 - p.param := by
+      have h1 := Point.dist_withParam_tip_le p p.param_nonneg p.param_le_one
+      rw [Point.withParam_self] at h1
+      exact h1
+    have hge : (0 : ℝ) ≤ dist p (vertex A p.tip) := dist_nonneg
+    rw [hval]
+    linarith
+  · have hval : retractTip A p (1 - p.param) = vertex A p.tip := by
+      show (if 1 - p.param ≤ 0 then p else
+        if 1 - p.param ≤ 1 - p.param then vertex A p.tip
+          else p.withParam (p.param + (1 - p.param))) = vertex A p.tip
+      rw [if_neg h, if_pos (le_refl (1 - p.param))]
+    rw [hval, dist_self]
 
 /-- The base retraction is `1`-Lipschitz on `[0, p.param]`. -/
 theorem retractBase_lipschitz (A : Alphabet G) (p : Point A) :
@@ -392,25 +414,21 @@ theorem retractTip_lipschitz (A : Alphabet G) (p : Point A) :
           p.param + s - (p.param + t) ≤ 0)] at h
         linarith
 
-/-- The distance from a point of the base retraction to the vertex it runs
-to. -/
-theorem dist_retractBase_vertex (A : Alphabet G) (p : Point A) {r : ℝ}
-    (h0 : 0 ≤ r) (h1 : r ≤ p.param) :
-    dist (retractBase A p r) (vertex A p.base) ≤ p.param - r := by
-  have hlip := retractBase_lipschitz A p r ⟨h0, h1⟩ p.param
-    ⟨p.param_nonneg, le_refl _⟩ h1
-  rw [retractBase_end] at hlip
-  exact hlip
+/-! ## Reversing a retraction -/
 
-/-- The distance from a point of the far retraction to the vertex it runs
-to. -/
-theorem dist_retractTip_vertex (A : Alphabet G) (p : Point A) {r : ℝ}
-    (h0 : 0 ≤ r) (h1 : r ≤ 1 - p.param) :
-    dist (retractTip A p r) (vertex A p.tip) ≤ 1 - p.param - r := by
-  have hlip := retractTip_lipschitz A p r ⟨h0, h1⟩ (1 - p.param)
-    ⟨by linarith [p.param_le_one], le_refl _⟩ h1
-  rw [retractTip_end] at hlip
-  exact hlip
+/-- Running a `1`-Lipschitz path backwards leaves it `1`-Lipschitz. -/
+theorem lipschitz_reverse {A : Alphabet G} {γ : ℝ → Point A} {L : ℝ}
+    (h : ∀ s ∈ Set.Icc (0 : ℝ) L, ∀ t ∈ Set.Icc (0 : ℝ) L, s ≤ t →
+      dist (γ s) (γ t) ≤ t - s) :
+    ∀ s ∈ Set.Icc (0 : ℝ) L, ∀ t ∈ Set.Icc (0 : ℝ) L, s ≤ t →
+      dist (γ (L - s)) (γ (L - t)) ≤ t - s := by
+  intro s hs t ht hst
+  obtain ⟨hs0, hs1⟩ := hs
+  obtain ⟨ht0, ht1⟩ := ht
+  have h' := h (L - t) ⟨by linarith, by linarith⟩ (L - s)
+    ⟨by linarith, by linarith⟩ (by linarith)
+  rw [dist_comm]
+  linarith
 
 /-! ## The three-piece path -/
 
@@ -421,65 +439,71 @@ distance.  Only `1`-Lipschitz bounds on the pieces are used, since
 `isGeodesicSegment_of_lipschitz` supplies the rest. -/
 theorem exists_geodesic_of_split (A : Alphabet G) (p q : Point A) (v w : G)
     (α ζ : ℝ) (hα : 0 ≤ α) (hζ : 0 ≤ ζ)
-    (γ₁ : ℝ → Point A) (hγ₁0 : γ₁ 0 = p) (hγ₁α : γ₁ α = vertex A v)
+    (γ₁ : ℝ → Point A) (hγ₁0 : γ₁ 0 = p)
+    (hγ₁α : dist (γ₁ α) (vertex A v) = 0)
     (hγ₁lip : ∀ s ∈ Set.Icc (0 : ℝ) α, ∀ t ∈ Set.Icc (0 : ℝ) α, s ≤ t →
       dist (γ₁ s) (γ₁ t) ≤ t - s)
-    (γ₃ : ℝ → Point A) (hγ₃0 : γ₃ 0 = vertex A w) (hγ₃ζ : γ₃ ζ = q)
+    (γ₃ : ℝ → Point A) (hγ₃0 : dist (γ₃ 0) (vertex A w) = 0) (hγ₃ζ : γ₃ ζ = q)
     (hγ₃lip : ∀ s ∈ Set.Icc (0 : ℝ) ζ, ∀ t ∈ Set.Icc (0 : ℝ) ζ, s ≤ t →
       dist (γ₃ s) (γ₃ t) ≤ t - s)
     (hd : dist p q = α + (wordDist A.carrier v w : ℝ) + ζ) :
     ∃ f : ℝ → Point A, IsGeodesicSegment f 0 (dist p q) ∧ f 0 = p ∧
       f (dist p q) = q := by
   classical
-  set β : ℝ := (wordDist A.carrier v w : ℝ) with hβdef
-  have hβ : 0 ≤ β := by positivity
   obtain ⟨γ₂, hγ₂geo, hγ₂0, hγ₂β⟩ :=
     exists_vertexGeodesic A (wordDist A.carrier v w) v w rfl
-  set d : ℝ := dist p q with hddef
-  have hd0 : 0 ≤ d := dist_nonneg
+  have hβ : (0 : ℝ) ≤ (wordDist A.carrier v w : ℝ) := by positivity
+  have hd0 : (0 : ℝ) ≤ dist p q := dist_nonneg
+  have hnot1 : ¬ dist p q ≤ α := by rw [hd]; linarith
+  have hnot2 : ¬ dist p q ≤ α + (wordDist A.carrier v w : ℝ) := by
+    rw [hd]; linarith
+  have hsub : dist p q - α - (wordDist A.carrier v w : ℝ) = ζ := by rw [hd]; ring
+  -- Distances from a point of each piece to the two junction vertices.
+  have hj1 : ∀ r : ℝ, 0 ≤ r → r ≤ α → dist (γ₁ r) (vertex A v) ≤ α - r := by
+    intro r hr0 hr1
+    have h := hγ₁lip r ⟨hr0, hr1⟩ α ⟨hα, le_refl α⟩ hr1
+    have h2 := dist_triangle (γ₁ r) (γ₁ α) (vertex A v)
+    rw [hγ₁α] at h2
+    linarith
+  have hj2 : ∀ r : ℝ, 0 ≤ r → r ≤ (wordDist A.carrier v w : ℝ) →
+      dist (vertex A v) (γ₂ r) ≤ r := by
+    intro r hr0 hr1
+    have h := hγ₂geo 0 ⟨le_refl 0, hβ⟩ r ⟨hr0, hr1⟩
+    rw [hγ₂0] at h
+    rw [h, abs_of_nonpos (by linarith)]
+    linarith
+  have hj3 : ∀ r : ℝ, 0 ≤ r → r ≤ (wordDist A.carrier v w : ℝ) →
+      dist (γ₂ r) (vertex A w) ≤ (wordDist A.carrier v w : ℝ) - r := by
+    intro r hr0 hr1
+    have h := hγ₂geo r ⟨hr0, hr1⟩ (wordDist A.carrier v w : ℝ) ⟨hβ, le_refl _⟩
+    rw [hγ₂β] at h
+    rw [h, abs_of_nonpos (by linarith)]
+    linarith
+  have hj4 : ∀ r : ℝ, 0 ≤ r → r ≤ ζ → dist (vertex A w) (γ₃ r) ≤ r := by
+    intro r hr0 hr1
+    have h := hγ₃lip 0 ⟨le_refl 0, hζ⟩ r ⟨hr0, hr1⟩ hr0
+    have h2 := dist_triangle (vertex A w) (γ₃ 0) (γ₃ r)
+    rw [dist_comm (vertex A w) (γ₃ 0), hγ₃0] at h2
+    linarith
+  have hvw : dist (vertex A v) (vertex A w) ≤ (wordDist A.carrier v w : ℝ) := by
+    have h := hγ₂geo 0 ⟨le_refl 0, hβ⟩ (wordDist A.carrier v w : ℝ)
+      ⟨hβ, le_refl _⟩
+    rw [hγ₂0, hγ₂β, abs_of_nonpos (by linarith)] at h
+    linarith
   refine ⟨fun r => if r ≤ α then γ₁ r else
-    if r ≤ α + β then γ₂ (r - α) else γ₃ (r - α - β), ?_, ?_, ?_⟩
+    if r ≤ α + (wordDist A.carrier v w : ℝ) then γ₂ (r - α)
+      else γ₃ (r - α - (wordDist A.carrier v w : ℝ)), ?_, ?_, ?_⟩
   · refine isGeodesicSegment_of_lipschitz hd0 ?_ ?_
-    · rw [if_pos hα]
-      have hnot1 : ¬ d ≤ α := by rw [hd]; linarith
-      have hnot2 : ¬ d ≤ α + β := by rw [hd]; linarith
-      rw [if_neg hnot1, if_neg hnot2, hγ₁0]
-      have hsub : d - α - β = ζ := by rw [hd]; ring
-      rw [hsub, hγ₃ζ]
+    · rw [if_pos hα, if_neg hnot1, if_neg hnot2, hγ₁0, hsub, hγ₃ζ]
     · intro s hs t ht hst
       obtain ⟨hs0, hs1⟩ := hs
       obtain ⟨ht0, ht1⟩ := ht
       rw [hd] at hs1 ht1
-      -- distances from a point of each piece to the two junction vertices
-      have hj1 : ∀ r : ℝ, 0 ≤ r → r ≤ α →
-          dist (γ₁ r) (vertex A v) ≤ α - r := by
-        intro r hr0 hr1
-        have h := hγ₁lip r ⟨hr0, hr1⟩ α ⟨hα, le_refl α⟩ hr1
-        rw [hγ₁α] at h
-        exact h
-      have hj2 : ∀ r : ℝ, 0 ≤ r → r ≤ β →
-          dist (vertex A v) (γ₂ r) ≤ r := by
-        intro r hr0 hr1
-        have h := hγ₂geo 0 ⟨le_refl 0, hβ⟩ r ⟨hr0, hr1⟩
-        rw [hγ₂0, h, abs_of_nonpos (by linarith)]
-        linarith
-      have hj3 : ∀ r : ℝ, 0 ≤ r → r ≤ β →
-          dist (γ₂ r) (vertex A w) ≤ β - r := by
-        intro r hr0 hr1
-        have h := hγ₂geo r ⟨hr0, hr1⟩ β ⟨hβ, le_refl β⟩ hr1
-        rw [hγ₂β, h, abs_of_nonpos (by linarith)]
-        linarith
-      have hj4 : ∀ r : ℝ, 0 ≤ r → r ≤ ζ →
-          dist (vertex A w) (γ₃ r) ≤ r := by
-        intro r hr0 hr1
-        have h := hγ₃lip 0 ⟨le_refl 0, hζ⟩ r ⟨hr0, hr1⟩ hr0
-        rw [hγ₃0] at h
-        linarith
       by_cases hsA : s ≤ α
       · by_cases htA : t ≤ α
         · rw [if_pos hsA, if_pos htA]
           exact hγ₁lip s ⟨hs0, hsA⟩ t ⟨ht0, htA⟩ hst
-        · by_cases htB : t ≤ α + β
+        · by_cases htB : t ≤ α + (wordDist A.carrier v w : ℝ)
           · rw [if_pos hsA, if_neg htA, if_pos htB]
             have h1 := hj1 s hs0 hsA
             have h2 := hj2 (t - α) (by linarith) (by linarith)
@@ -487,18 +511,16 @@ theorem exists_geodesic_of_split (A : Alphabet G) (p q : Point A) (v w : G)
             linarith
           · rw [if_pos hsA, if_neg htA, if_neg htB]
             have h1 := hj1 s hs0 hsA
-            have h2 := hj2 β hβ (le_refl β)
-            have h3 := hj4 (t - α - β) (by linarith) (by linarith)
-            have h4 := dist_triangle (γ₁ s) (vertex A v) (γ₃ (t - α - β))
-            have h5 := dist_triangle (vertex A v) (vertex A w) (γ₃ (t - α - β))
-            have h6 : dist (vertex A v) (vertex A w) ≤ β := by
-              have h := hγ₂geo 0 ⟨le_refl 0, hβ⟩ β ⟨hβ, le_refl β⟩
-              rw [hγ₂0, hγ₂β, abs_of_nonpos (by linarith)] at h
-              linarith
+            have h3 := hj4 (t - α - (wordDist A.carrier v w : ℝ))
+              (by linarith) (by linarith)
+            have h4 := dist_triangle (γ₁ s) (vertex A v)
+              (γ₃ (t - α - (wordDist A.carrier v w : ℝ)))
+            have h5 := dist_triangle (vertex A v) (vertex A w)
+              (γ₃ (t - α - (wordDist A.carrier v w : ℝ)))
             linarith
       · have htA : ¬ t ≤ α := fun h => hsA (le_trans hst h)
-        by_cases hsB : s ≤ α + β
-        · by_cases htB : t ≤ α + β
+        by_cases hsB : s ≤ α + (wordDist A.carrier v w : ℝ)
+        · by_cases htB : t ≤ α + (wordDist A.carrier v w : ℝ)
           · rw [if_neg hsA, if_pos hsB, if_neg htA, if_pos htB]
             have h := hγ₂geo (s - α) ⟨by linarith, by linarith⟩ (t - α)
               ⟨by linarith, by linarith⟩
@@ -506,36 +528,114 @@ theorem exists_geodesic_of_split (A : Alphabet G) (p q : Point A) (v w : G)
             linarith
           · rw [if_neg hsA, if_pos hsB, if_neg htA, if_neg htB]
             have h1 := hj3 (s - α) (by linarith) (by linarith)
-            have h2 := hj4 (t - α - β) (by linarith) (by linarith)
-            have h3 := dist_triangle (γ₂ (s - α)) (vertex A w) (γ₃ (t - α - β))
+            have h2 := hj4 (t - α - (wordDist A.carrier v w : ℝ))
+              (by linarith) (by linarith)
+            have h3 := dist_triangle (γ₂ (s - α)) (vertex A w)
+              (γ₃ (t - α - (wordDist A.carrier v w : ℝ)))
             linarith
-        · have htB : ¬ t ≤ α + β := fun h => hsB (le_trans hst h)
+        · have htB : ¬ t ≤ α + (wordDist A.carrier v w : ℝ) :=
+            fun h => hsB (le_trans hst h)
           rw [if_neg hsA, if_neg hsB, if_neg htA, if_neg htB]
-          exact hγ₃lip (s - α - β) ⟨by linarith, by linarith⟩ (t - α - β)
+          exact hγ₃lip (s - α - (wordDist A.carrier v w : ℝ))
+            ⟨by linarith, by linarith⟩
+            (t - α - (wordDist A.carrier v w : ℝ))
             ⟨by linarith, by linarith⟩ (by linarith)
   · rw [if_pos hα, hγ₁0]
-  · have hnot1 : ¬ d ≤ α := by rw [hd]; linarith
-    have hnot2 : ¬ d ≤ α + β := by rw [hd]; linarith
-    rw [if_neg hnot1, if_neg hnot2]
-    have hsub : d - α - β = ζ := by rw [hd]; ring
-    rw [hsub, hγ₃ζ]
+  · rw [if_neg hnot1, if_neg hnot2, hsub, hγ₃ζ]
 
 /-! ## The realisation is geodesic -/
 
 /-- **`IsGeodesicRealisation`, discharged.**  The case analysis is
 `pointDist_cases` — the distance is realised along a shared edge or through the
-vertices — and then `viaVertex_cases` and `toVertex_cases`, which name the
-endpoints the four ways go through. -/
+vertices — and then `viaVertex_cases` and `toVertex_cases`, which name the two
+endpoints the four ways go through.  In each leaf the length identity that
+`exists_geodesic_of_split` asks for is exactly what those `cases` lemmas
+say. -/
 theorem isGeodesicRealisation (A : Alphabet G) : IsGeodesicRealisation A := by
   classical
   intro p q
+  have hp0 := p.param_nonneg
+  have hp1 := p.param_le_one
+  have hq0 := q.param_nonneg
+  have hq1 := q.param_le_one
   rcases Point.pointDist_cases p q with hvia | ⟨⟨hb, hl⟩, hedge⟩
-  · -- The distance is realised through the vertices.
-    rcases Point.viaVertex_cases p q with hq | hq <;>
-      rcases Point.toVertex_cases p (if_pos rfl ▸ q.base) with hp | hp
-    all_goals sorry
+  · rcases Point.viaVertex_cases p q with hq | hq
+    · rcases Point.toVertex_cases p q.base with hpc | hpc
+      · exact exists_geodesic_of_split A p q p.base q.base p.param q.param
+          hp0 hq0
+          (retractBase A p) (retractBase_zero A p) (dist_retractBase_end A p)
+          (retractBase_lipschitz A p)
+          (fun u => retractBase A q (q.param - u))
+          (by simp only [sub_zero]; exact dist_retractBase_end A q)
+          (by simp only [sub_self]; exact retractBase_zero A q)
+          (lipschitz_reverse (retractBase_lipschitz A q))
+          (by show Point.pointDist p q = _; rw [hvia, hq, hpc])
+      · exact exists_geodesic_of_split A p q p.tip q.base (1 - p.param) q.param
+          (by linarith) hq0
+          (retractTip A p) (retractTip_zero A p) (dist_retractTip_end A p)
+          (retractTip_lipschitz A p)
+          (fun u => retractBase A q (q.param - u))
+          (by simp only [sub_zero]; exact dist_retractBase_end A q)
+          (by simp only [sub_self]; exact retractBase_zero A q)
+          (lipschitz_reverse (retractBase_lipschitz A q))
+          (by show Point.pointDist p q = _; rw [hvia, hq, hpc])
+    · rcases Point.toVertex_cases p q.tip with hpc | hpc
+      · exact exists_geodesic_of_split A p q p.base q.tip p.param (1 - q.param)
+          hp0 (by linarith)
+          (retractBase A p) (retractBase_zero A p) (dist_retractBase_end A p)
+          (retractBase_lipschitz A p)
+          (fun u => retractTip A q (1 - q.param - u))
+          (by simp only [sub_zero]; exact dist_retractTip_end A q)
+          (by simp only [sub_self]; exact retractTip_zero A q)
+          (lipschitz_reverse (retractTip_lipschitz A q))
+          (by show Point.pointDist p q = _; rw [hvia, hq, hpc])
+      · exact exists_geodesic_of_split A p q p.tip q.tip (1 - p.param)
+          (1 - q.param) (by linarith) (by linarith)
+          (retractTip A p) (retractTip_zero A p) (dist_retractTip_end A p)
+          (retractTip_lipschitz A p)
+          (fun u => retractTip A q (1 - q.param - u))
+          (by simp only [sub_zero]; exact dist_retractTip_end A q)
+          (by simp only [sub_self]; exact retractTip_zero A q)
+          (lipschitz_reverse (retractTip_lipschitz A q))
+          (by show Point.pointDist p q = _; rw [hvia, hq, hpc])
   · -- `p` and `q` share an edge and the distance is realised along it.
-    sorry
+    have hq_eq : p.withParam q.param = q :=
+      Point.ext' hb hl (Point.withParam_param p hq0 hq1)
+    have hdist : dist p q = |p.param - q.param| := hedge
+    rcases le_total p.param q.param with hle | hle
+    · have hd : dist p q = q.param - p.param := by
+        rw [hdist, abs_of_nonpos (by linarith)]
+        ring
+      refine ⟨fun r => p.withParam (p.param + r), ?_, ?_, ?_⟩
+      · refine isGeodesicSegment_of_lipschitz dist_nonneg ?_ ?_
+        · rw [add_zero, Point.withParam_self, hd]
+          have hpar : p.param + (q.param - p.param) = q.param := by ring
+          rw [hpar, hq_eq, hd]
+        · intro s hs t ht hst
+          rw [hd] at hs ht
+          exact le_trans (Point.dist_withParam_le p (by linarith [hs.1])
+            (by linarith [hs.2]) (by linarith [ht.1]) (by linarith [ht.2]))
+            (le_of_eq (by rw [abs_of_nonpos (by linarith)]; ring))
+      · rw [add_zero, Point.withParam_self]
+      · rw [hd]
+        have hpar : p.param + (q.param - p.param) = q.param := by ring
+        rw [hpar, hq_eq]
+    · have hd : dist p q = p.param - q.param := by
+        rw [hdist, abs_of_nonneg (by linarith)]
+      refine ⟨fun r => p.withParam (p.param - r), ?_, ?_, ?_⟩
+      · refine isGeodesicSegment_of_lipschitz dist_nonneg ?_ ?_
+        · rw [sub_zero, Point.withParam_self, hd]
+          have hpar : p.param - (p.param - q.param) = q.param := by ring
+          rw [hpar, hq_eq, hd]
+        · intro s hs t ht hst
+          rw [hd] at hs ht
+          exact le_trans (Point.dist_withParam_le p (by linarith [hs.2])
+            (by linarith [hs.1]) (by linarith [ht.2]) (by linarith [ht.1]))
+            (le_of_eq (by rw [abs_of_nonneg (by linarith)]; ring))
+      · rw [sub_zero, Point.withParam_self]
+      · rw [hd]
+        have hpar : p.param - (p.param - q.param) = q.param := by ring
+        rw [hpar, hq_eq]
 
 end CayleyGeodesicModel
 end GGT

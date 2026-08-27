@@ -47,6 +47,22 @@ quasi-geodesic lines with the *same* quasi-geodesic constants, since
 `d(cᴬx, gⁿ cᴬ x) = d(x, gⁿ x)` exactly, and they have the same pair of
 endpoints because `c` commutes with `g`.
 
+## Superseded
+
+`GGT/ElementaryCentralizerAxis.lean` (namespace `GroupApproximation.GGT.Elementary`)
+carries the wired form of everything here, arrived at independently:
+
+* `Elementary.CentralizerOrbitNearAxis` is the residual `OrbitFellowTravels`
+  names, in the better shape — one constant per loxodromic, chosen before the
+  commuting element and before its exponent;
+* `Elementary.dist_smul_of_commute_translate` is `dist_zpow_smul_of_commute`;
+* `Elementary.exists_common_zpow_of_commute_of_orbitNearAxis` is
+  `exists_common_zpow_of_orbitFellowTravels`.
+
+Prefer those names.  This module is kept for the docstrings — the account of why
+escaping is weaker than loxodromic, and of what the Morse input has to be — and
+not for its declarations.
+
 ## Status
 
 **Not compiled**, written while builds were frozen, and unwired for that reason.

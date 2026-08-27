@@ -371,7 +371,17 @@ lie in `E(g)`; both are infinite, because a common-power-free pair has both
 entries of infinite order; so Osin's Theorem 6.8 puts a nonzero power of `g`
 inside each, say `a ^ m = g ^ j` and `b ^ n = g ^ k` with `j, k ≠ 0`.  Then
 `a ^ (m k) = g ^ (j k) = b ^ (n j)`, and the pair forbids it unless `m = 0` —
-which would make `g ^ j = 1` for `j ≠ 0`, impossible for a loxodromic. -/
+which would make `g ^ j = 1` for `j ≠ 0`, impossible for a loxodromic.
+
+Two remarks for whoever discharges the input.  Only the **cyclic** case of
+`ElementaryClosureVirtuallyCyclic` is used here: the subgroups it is applied to
+are `Subgroup.zpowers a` and `Subgroup.zpowers b`, so a form quantified over
+cyclic `K` alone would still support this proof.  And the *other* route to
+properness in `GGT.Elementary` — through Osin's Corollary 6.9 on centralizers,
+which is strictly weaker than Theorem 6.8 — cannot be substituted here: it
+produces the element outside `E(g)` from two *independent loxodromics*, which
+is what this lemma exists to produce, whereas the pair `a, b` here is only
+known to be free of common powers. -/
 theorem exists_notMem_elementaryClosure_of_no_common_power
     {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
     {x : X} (hvc : Elementary.ElementaryClosureVirtuallyCyclic G x) {g : G}
