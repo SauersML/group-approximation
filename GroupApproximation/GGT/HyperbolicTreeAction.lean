@@ -172,7 +172,7 @@ cardinality count consumes and with no reference to fixed points, which need not
 exist. -/
 def HasSegmentShift (G : Type u) [Group G] {V : Type v} (H : SimpleGraph V)
     [MulAction G V] (L : ℕ) : Prop :=
-  ∀ (n : ℕ) (x y : V), L + 2 * n ≤ H.dist x y →
+  ∀ (n : ℕ) (x y : V), L + 2 * n + 2 ≤ H.dist x y →
     ∃ (u w : V) (Φ : G → ℤ), L ≤ H.dist u w ∧
       ∀ g : G, H.dist x (g • x) ≤ n → H.dist y (g • y) ≤ n →
         (Φ g).natAbs ≤ n ∧
@@ -184,7 +184,7 @@ def HasSegmentShift (G : Type u) [Group G] {V : Type v} (H : SimpleGraph V)
 /-- **A tree action with a shift datum and trivial segment stabilisers is
 acylindrical.**
 
-`R = L + 2⌈ε⌉` and `N` is the number of available shifts.  Trivial stabilisers
+`R = L + 2⌈ε⌉ + 2` and `N` is the number of available shifts.  Trivial stabilisers
 make the shift invariant *injective* on the `ε`-stabiliser of the pair, so the
 count is an injection into `{k : ℤ | |k| ≤ ⌈ε⌉}` and no coset arithmetic is
 needed. -/
@@ -206,10 +206,10 @@ theorem isAcylindrical_treeSpace {G : Type u} [Group G] {V : Type v}
     rcases Int.natAbs_eq k with hc | hc
     · exact Or.inl ⟨⟨k.natAbs, by omega⟩, hc.symm⟩
     · exact Or.inr ⟨⟨k.natAbs, by omega⟩, hc.symm⟩
-  refine ⟨((L + 2 * n : ℕ) : ℝ), {k : ℤ | k.natAbs ≤ n}.ncard, ?_⟩
+  refine ⟨((L + 2 * n + 2 : ℕ) : ℝ), {k : ℤ | k.natAbs ≤ n}.ncard, ?_⟩
   intro x y hxy
-  have hxyN : L + 2 * n ≤ H.dist (TreeSpace.val x) (TreeSpace.val y) := by
-    have h : ((L + 2 * n : ℕ) : ℝ)
+  have hxyN : L + 2 * n + 2 ≤ H.dist (TreeSpace.val x) (TreeSpace.val y) := by
+    have h : ((L + 2 * n + 2 : ℕ) : ℝ)
         ≤ ((H.dist (TreeSpace.val x) (TreeSpace.val y) : ℕ) : ℝ) := hxy
     exact_mod_cast h
   obtain ⟨u, w, Φ, hL, hΦ⟩ :=
