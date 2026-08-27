@@ -283,9 +283,8 @@ variable {V : Type u} [Fintype V] [DecidableEq V] (D : QuadrangleLinkData V)
 def deg : ℚ := D.ord + 1
 
 theorem deg_pos : 0 < D.deg := by
-  have h := D.ord_pos
   unfold deg
-  linarith
+  linarith [D.ord_pos]
 
 theorem deg_ne_zero : D.deg ≠ 0 := ne_of_gt D.deg_pos
 
@@ -300,9 +299,8 @@ theorem four_mu_deg_ord_pos : (0 : ℚ) < 4 * D.mu * D.deg * D.ord :=
   mul_pos (mul_pos (mul_pos (by norm_num) D.mu_pos) D.deg_pos) D.ord_pos
 
 theorem card_pos : (0 : ℚ) < (Fintype.card V : ℚ) := by
-  have h := D.ord_pos
   rw [D.card_eq]
-  nlinarith [sq_nonneg D.ord]
+  nlinarith [D.ord_pos, sq_nonneg D.ord]
 
 theorem card_ne_zero : (Fintype.card V : ℚ) ≠ 0 := ne_of_gt D.card_pos
 
@@ -327,8 +325,8 @@ theorem gapValue_gt_half : (1 : ℚ) / 2 < D.gapValue := by
   linarith
 
 theorem contraction_pos : 0 < D.contraction := by
-  have hord := D.ord_pos
-  have hnum : (0 : ℚ) < 2 * D.ord + D.mu ^ 2 := by nlinarith [sq_nonneg D.mu]
+  have hnum : (0 : ℚ) < 2 * D.ord + D.mu ^ 2 := by
+    nlinarith [D.ord_pos, sq_nonneg D.mu]
   exact div_pos hnum D.two_mu_deg_pos
 
 /-- The rank-one weight carried by the bipartition sign. -/
@@ -467,11 +465,11 @@ theorem sum_gramRow (v v' : V) :
   classical
   rw [Fintype.sum_sum_type]
   congr 1
-  · rw [← sum_block D D.factorA D.colA v v']
+  · rw [← sum_block D.factorA D.colA v v']
     exact Finset.sum_congr rfl fun p _ => by simp only [gramRow]
   · rw [Fintype.sum_sum_type]
     congr 1
-    · rw [← sum_block D D.factorC D.colC v v']
+    · rw [← sum_block D.factorC D.colC v v']
       exact Finset.sum_congr rfl fun p _ => by simp only [gramRow]
     · rw [Finset.sum_mul]
       exact Finset.sum_congr rfl fun k _ => by simp only [gramRow]; ring
@@ -489,15 +487,11 @@ theorem gram_residual (v v' : V) :
             - 1 / (Fintype.card V : ℚ))
         - ∑ row : QuadRow V, D.gramRow row v * D.gramRow row v' = 0 := by
   classical
-  have hord := D.ord_pos
-  have hd : D.ord + 1 ≠ 0 := by
-    refine ne_of_gt ?_
-    linarith
+  have hd : D.ord + 1 ≠ 0 := ne_of_gt (by linarith [D.ord_pos])
   have hq : D.ord ≠ 0 := D.ord_ne_zero
   have hm : D.mu ≠ 0 := D.mu_ne_zero
-  have hn : (2 : ℚ) * (D.ord + 1) * (D.ord ^ 2 + 1) ≠ 0 := by
-    refine ne_of_gt ?_
-    nlinarith [sq_nonneg D.ord]
+  have hn : (2 : ℚ) * (D.ord + 1) * (D.ord ^ 2 + 1) ≠ 0 :=
+    ne_of_gt (by nlinarith [D.ord_pos, sq_nonneg D.ord])
   have hK : (if v = v' then D.deg else 0)
       = D.deg * (if v = v' then (1 : ℚ) else 0) := by
     split_ifs <;> ring

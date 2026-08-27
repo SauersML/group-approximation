@@ -206,6 +206,27 @@ theorem infinite_of_mem_of_isLoxodromic {G : Type u} [Group G] {X : Type v}
       (not_isOfFinOrder_of_isLoxodromic hlox)
   exact Set.infinite_of_injective_forall_mem hinj fun n => Subgroup.zpow_mem E hg n
 
+/-- **Packaging an `(AH₃)` witness.**  The structure's `Space` field carries its
+own universe parameter, so the universe has to be chosen where the witness is
+built; this constructor is that choice, made once, with the instances taken as
+ordinary binders rather than left to synthesis at the call site.
+
+It consumes the three conclusions of an equivariant additive-distortion
+transfer directly: given `h : IsHyperbolicSpace δ X ∧ IsLoxodromic g x ∧
+IsWPDAt g x`, the witness is `AH3Data.ofData X hiso δ h.1 g x h.2.1 h.2.2`. -/
+def AH3Data.ofData {G : Type u} [Group G] (X : Type v) [PseudoMetricSpace X]
+    [MulAction G X] (hiso : IsIsometricAction G X) (δ : ℝ)
+    (hδ : IsHyperbolicSpace δ X) (g : G) (x : X) (hlox : IsLoxodromic g x)
+    (hwpd : IsWPDAt g x) : AH3Data.{u, v} G where
+  Space := X
+  isometric := hiso
+  delta := δ
+  hyperbolic := hδ
+  elt := g
+  base := x
+  loxodromic := hlox
+  wpd := hwpd
+
 /-! ## The literature inputs -/
 
 /-- **`(AH₃) ⇒ (AH₄)`: Dahmani--Guirardel--Osin, Theorem 6.8.**  The number is

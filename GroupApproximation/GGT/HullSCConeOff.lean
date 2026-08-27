@@ -69,6 +69,7 @@ of the relative metric `d̂λ`, whose balls about `1` are `relBall`.
 namespace GroupApproximation
 namespace HullSC
 
+open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
@@ -285,6 +286,40 @@ theorem injOn_cayleyBall_of_dist_lt {G : Type u} [Group G] {Q : Type v}
   have hcast : (wordNorm (coneOff A H).alphabet.carrier (x⁻¹ * y) : ℝ)
       ≤ 2 * (R : ℝ) := by exact_mod_cast hcone
   linarith
+
+/-- **A subgroup contained in the alphabet is elliptic.**  Every power of `h`
+then lies in the alphabet, so the whole orbit of the basepoint under `⟨h⟩`
+sits in the unit ball, and a bounded orbit has no positive linear lower bound.
+
+This is the `Alphabet` form of `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`, and
+it is what decides whether `H ↪_h (G, X)` is available for a given `X`: a
+subgroup *contained* in `X` is elliptic, and by `not_isHypEmbeddedOf_self` is
+not hyperbolically embedded over `X` either.  Contrapositively, a subgroup
+containing an element loxodromic on `Γ(G,X)` is **not** contained in `X`, so
+the refutation does not apply to it. -/
+theorem not_isLoxodromic_of_subgroup_subset {G : Type u} [Group G]
+    (A : Alphabet G) {H : Subgroup G} (hHA : (H : Set G) ⊆ A.carrier) {h : G}
+    (hh : h ∈ H) : ¬ IsLoxodromic h (Cayley.base A) := by
+  rintro ⟨l, hl, B, -, hle⟩
+  obtain ⟨n, hn⟩ := exists_nat_gt ((B + 1) / l)
+  have hbound : dist (Cayley.base A) ((h ^ n) • Cayley.base A) ≤ 1 := by
+    rw [dist_base_smul]
+    have hone : wordNorm A.carrier (h ^ n) ≤ 1 :=
+      wordNorm_le_one_of_mem (hHA (H.pow_mem hh n))
+    exact_mod_cast hone
+  have hlow := hle n
+  have hmul : B + 1 < (n : ℝ) * l := (div_lt_iff hl).mp hn
+  rw [mul_comm] at hmul
+  linarith
+
+/-- **A subgroup with a loxodromic element is not contained in the alphabet.**
+So `not_isHypEmbeddedOf_self` does not refute `H ↪_h (G, X)` for such an `H`,
+and the elementary closure of a loxodromic element -- which is where Hull's
+relator's letters come from -- is exactly such an `H`. -/
+theorem not_subset_of_isLoxodromic {G : Type u} [Group G] (A : Alphabet G)
+    {H : Subgroup G} {h : G} (hh : h ∈ H)
+    (hlox : IsLoxodromic h (Cayley.base A)) : ¬ (H : Set G) ⊆ A.carrier :=
+  fun hsub => not_isLoxodromic_of_subgroup_subset A hsub hh hlox
 
 /-- **The cone-off is the witness for `H ↪_h (G, X)`.**  Osin's definition asks
 for *some* relative generating set with base `X` and family `{H}` whose

@@ -126,46 +126,74 @@ end HullFillingQuotient
 
 /-! ## The two citations that replace `HullOneStepStatement` -/
 
-/-- **The hyperbolically embedded subgroup Hull's Theorem 5.1 runs over, with
-the decomposition of Hull's alphabet that makes it available.**
+/-- **The hyperbolically embedded subgroup Hull's Theorem 5.1 runs over.**
 
-Hull's `A` is the *coned-off* alphabet `X ⊔ H`, so it contains `H`, and
-`H ↪_h (G,A)` is therefore false whenever `H` is infinite --
-`HullSC.not_isHypEmbeddedOf_self` proves it.  What is true, and what Osin's
-Theorem 5.4 produces, is that `A` *is* the cone-off: there is a relative
-generating set `X` with `H ↪_h (G,X)` whose coned-off alphabet is `A`.  That
-decomposition is what this structure carries, and it is stated against
-`GGT.RelGenSet` so that no second notion of relative generating set is
-introduced. -/
+`H ↪_h (G, A)` over Hull's own alphabet, together with the loxodromic element
+of `H` whose long powers are the relator's `H`-letters.
+
+**Why the loxodromic field is not decoration.**  A subgroup *contained* in the
+alphabet is elliptic (`HullSC.not_isLoxodromic_of_subgroup_subset`, the
+`Alphabet` form of `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`) and is not
+hyperbolically embedded over it either
+(`HullSC.not_isHypEmbeddedOf_self`).  Without `lox` this structure would be
+satisfied by `H = ⊥` and would give Theorem 5.1 nothing.  With it, `not_subset`
+below proves `H ⊄ A`, so the refutation does not apply and the citation is
+neither false nor vacuous.
+
+An earlier draft of this lane asked instead that Hull's alphabet *be* the
+cone-off of a base along `H`.  That was an over-correction: it forces
+`H ⊆ A`, hence `H` elliptic, hence `H` useless as a source of relator letters.
+The subgroup `H₀` that Osin's Theorem 5.4 cones off to build `A`, and the
+subgroup `H = E(g)` the small cancellation runs over, are different subgroups
+-- the second contains a loxodromic of `Γ(G,A)` and so cannot be inside `A`. -/
 structure HypEmbeddedCore {G : Type u} [Group G] (A : HullGeneratingSet G)
     (N : Subgroup G) where
-  /-- Osin's relative generating set `X` with its family. -/
+  /-- The relative generating set, with Hull's alphabet as its base. -/
   rel : GGT.RelGenSet G Unit
+  /-- Its base is Hull's alphabet. -/
+  base_eq : rel.base = A.alphabet.carrier
   /-- The hyperbolically embedded subgroup. -/
   H : Subgroup G
   /-- It is the family of `rel`. -/
   fam_eq : rel.fam = fun _ => H
   /-- It lies inside the suitable subgroup, so the relator's `H`-letters do. -/
   le : H ≤ N
-  /-- `H ↪_h (G, X)`. -/
+  /-- `H ↪_h (G, A)`. -/
   embedded : rel.IsHyperbolicallyEmbedded
-  /-- **Hull's alphabet is the cone-off**: `A = X ⊔ H`. -/
-  alphabet_eq : A.alphabet.carrier = rel.alphabet.carrier
+  /-- The element whose long powers are the relator's `H`-letters. -/
+  lox : G
+  /-- It lies in `H`. -/
+  lox_mem : lox ∈ H
+  /-- It is loxodromic on `Γ(G,A)`. -/
+  lox_isLoxodromic : IsLoxodromic lox (Cayley.base A.alphabet)
 
 namespace HypEmbeddedCore
 
-/-- Every element of the hyperbolically embedded subgroup is a letter of Hull's
-alphabet.  This is the fact that makes `H ↪_h (G,A)` false and the
-decomposition necessary. -/
-theorem mem_alphabet {G : Type u} [Group G] {A : HullGeneratingSet G}
-    {N : Subgroup G} (E : HypEmbeddedCore A N) {h : G} (hh : h ∈ E.H) :
-    h ∈ A.alphabet.carrier := by
-  rw [E.alphabet_eq]
-  show h ∈ E.rel.base ∪ ⋃ lam : Unit, (E.rel.fam lam : Set G)
-  refine Or.inr ?_
-  refine Set.mem_iUnion.mpr ⟨(), ?_⟩
-  rw [E.fam_eq]
-  exact hh
+variable {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+
+/-- The core witnesses `H ↪_h (G, A)` in `GGT`'s vocabulary. -/
+theorem isHypEmbeddedOf (E : HypEmbeddedCore A N) :
+    GGT.IsHypEmbeddedOf G A.alphabet.carrier E.H :=
+  ⟨E.rel, E.base_eq, E.fam_eq, E.embedded⟩
+
+/-- **The core is not vacuous and not refuted**: its subgroup is not contained
+in Hull's alphabet, because it contains a loxodromic element. -/
+theorem not_subset (E : HypEmbeddedCore A N) :
+    ¬ (E.H : Set G) ⊆ A.alphabet.carrier :=
+  not_subset_of_isLoxodromic A.alphabet E.lox_mem E.lox_isLoxodromic
+
+/-- In particular the subgroup is nontrivial: a loxodromic element has infinite
+order. -/
+theorem ne_bot (E : HypEmbeddedCore A N) : E.H ≠ ⊥ := by
+  intro hbot
+  have h1 : E.lox = 1 := by
+    have hmem := E.lox_mem
+    rw [hbot, Subgroup.mem_bot] at hmem
+    exact hmem
+  have hfin : IsOfFinOrder E.lox := by
+    rw [h1]
+    exact isOfFinOrder_one
+  exact not_isOfFinOrder_of_isLoxodromic E.lox_isLoxodromic hfin
 
 end HypEmbeddedCore
 
