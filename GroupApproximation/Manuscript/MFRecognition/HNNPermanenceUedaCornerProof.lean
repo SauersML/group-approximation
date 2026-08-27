@@ -30,7 +30,7 @@ C-star structure of either bounded product is a search over a family indexed
 by concrete matrix algebras, and each such search exhausts the typeclass
 budget.  The one concrete input is that Ueda's projection survives every
 coordinate, which holds because a unital homomorphism out of `M₂(D)` killing
-`e₀₀` also kills `e₁₁ = e₁₀e₀₀e₀₁`, hence the unit.
+`e₀₀` also kills `e₁₁ = e₁₀e₀₀e₀₁`, and so the unit.
 
 Injectivity is the coordinate argument of the printed proof: composing with
 the evaluated corner map at an HNN coordinate `R` produces a lift of the same
@@ -247,8 +247,10 @@ def projectionAmbient (e : UniversalCStarAmalgam iA iB) :
       (u : CStarCorner e he_star he_mul) * pi (b : D) =
         pi ((theta b : B1) : D) * (u : CStarCorner e he_star he_mul))
     (hne : ∀ Q : CStarAmalgamRepresentation iA iB, cornerProjectionAt e Q ≠ 0) :
-    cornerLiftAmbient e he_star he_mul pi u hcov hne 1 = projectionAmbient e :=
-  rfl
+    cornerLiftAmbient e he_star he_mul pi u hcov hne 1 = projectionAmbient e := by
+  apply lp.ext
+  funext Q
+  exact rfl
 
 theorem projectionAmbient_star (e : UniversalCStarAmalgam iA iB)
     (he_star : star e = e) :
@@ -322,8 +324,10 @@ theorem projectionAmbient_mem (e : UniversalCStarAmalgam iA iB)
         (universalCStarHNNBaseAmbient B0 B1 theta d) =
       (universalCStarAmalgamSubalgebra iA iB).subtype
         ((pi d : CStarCorner e he_star he_mul) :
-          UniversalCStarAmalgam iA iB) :=
-  rfl
+          UniversalCStarAmalgam iA iB) := by
+  apply lp.ext
+  funext Q
+  exact rfl
 
 @[simp] theorem cornerLiftAmbient_stable
     [Nonempty (CStarHNNRepresentation B0 B1 theta)]
@@ -338,8 +342,10 @@ theorem projectionAmbient_mem (e : UniversalCStarAmalgam iA iB)
         ((universalCStarHNNStableAmbient B0 B1 theta :
           UniversalCStarHNNAmbient B0 B1 theta)) =
       (universalCStarAmalgamSubalgebra iA iB).subtype
-        ((u : CStarCorner e he_star he_mul) : UniversalCStarAmalgam iA iB) :=
-  rfl
+        ((u : CStarCorner e he_star he_mul) : UniversalCStarAmalgam iA iB) := by
+  apply lp.ext
+  funext Q
+  exact rfl
 
 /-- The ambient elements whose lift lies in the corner. -/
 def cornerLiftPreimage (e : UniversalCStarAmalgam iA iB)
@@ -574,7 +580,7 @@ variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
 variable (data : CoronaConjugator G S T phi A X)
 
 /-- A unital homomorphism out of `M₂(D)` does not kill `e₀₀`: it would then
-kill `e₁₁ = e₁₀e₀₀e₀₁`, hence the unit `e₀₀ + e₁₁`. -/
+kill `e₁₁ = e₁₀e₀₀e₀₁`, and so the unit `e₀₀ + e₁₁`. -/
 theorem map_matrixUnitTwo_zeroZero_ne_zero {D : Type} {K : Type}
     [CStarAlgebra D] [CStarAlgebra K] [Nontrivial K]
     (f : CStarMatrix (Fin 2) (Fin 2) D →⋆ₐ[ℂ] K) :
