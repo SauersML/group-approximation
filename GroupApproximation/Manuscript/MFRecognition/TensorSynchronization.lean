@@ -51,9 +51,8 @@ noncomputable section
 
 The "Consequently" clause of `lem:tensor-sync` is an application of
 `thm:hnn-permanence`, proved in an earlier section of the manuscript and
-formalized by the parallel `hnn-permanence` lane.  Nothing about it is proved
-or postulated here: the two statements that clause consumes are the fields of
-`HNNPermanenceInputs`, and every theorem below that needs it takes a term of
+formalized by the parallel `hnn-permanence` lane.  Its remaining theorem is
+the field of `HNNPermanenceInputs`, and every theorem below that needs it takes a term of
 that structure as its leading hypothesis, so the dependency is visible in the
 statement of each such theorem.  The corona-embedding step is proved below,
 so the structure now contains only the HNN-permanence theorem itself.  This is

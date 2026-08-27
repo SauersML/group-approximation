@@ -24,11 +24,11 @@ leaves in `PositiveBranchFiniteQuotients`.
 
 ## The citation binder `hIn`
 
-Both analytic steps the printed proof cites rest on one bundle,
-`TensorSynchronization.HNNPermanenceInputs`: its `hnnPermanence` field is
-`thm:hnn-permanence` itself, and its `unitalCoronaEmbedding` field supplies
-the printed "`ι` any injective `*`-homomorphism of `A` into a norm matrix
-corona".  `cor:central-hnn` is the printed specialization of the first at
+Both analytic steps the printed proof cites reduce to one remaining bundle,
+`TensorSynchronization.HNNPermanenceInputs`, whose sole field is
+`thm:hnn-permanence` itself.  The faithful unital corona embedding is now a
+theorem obtained from support-corner compression.  `cor:central-hnn` is the
+printed specialization of HNN permanence at
 `θ = ` the inclusion of `S` and `W = 1`, so a single `hIn` binder carries
 both.  It is threaded through every theorem below, and the conclusions are
 the printed statements.
@@ -45,7 +45,7 @@ namespace Recognition
 open GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit
 open GroupApproximation.SecondLevelIndexSets
 
-/-! ## 1.  The two analytic steps the printed proof cites -/
+/-! ## 1.  The analytic HNN step and its two applications -/
 
 /-- **`cor:central-hnn` (central HNN extensions).**
 
