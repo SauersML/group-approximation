@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.BenignDirectProductResiduallyFinite
+import GroupApproximation.Higman.BenignJoinExactGenerated
 import GroupApproximation.Higman.BenignJoinResiduallyFinite
 import GroupApproximation.Higman.BenignAmbient
 
