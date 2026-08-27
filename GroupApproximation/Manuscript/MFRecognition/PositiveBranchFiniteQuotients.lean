@@ -90,7 +90,7 @@ theorem proj_ne_one_eventually {p : P} (hp : p ≠ 1) :
     have hbot : p ∈ (⨅ n, T.sub n) := Subgroup.mem_iInf.mpr hall
     rw [T.iInf_eq_bot] at hbot
     exact Subgroup.mem_bot.mp hbot
-  push_neg at hmem
+  push Not at hmem
   obtain ⟨N, hN⟩ := hmem
   refine ⟨N, fun n hn hcon => hN ?_⟩
   exact T.sub_antitone hn ((T.proj_eq_one_iff n p).mp hcon)

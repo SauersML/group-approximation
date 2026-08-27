@@ -187,7 +187,7 @@ theorem RealFormula.holds_exList (φ : RealFormula) :
         refine ⟨σ, ?_, hφ⟩
         intro j hj
         rw [List.mem_cons] at hj
-        push_neg at hj
+        push Not at hj
         rw [hσ j hj.2, Function.update_apply, if_neg hj.1]
       · rintro ⟨σ, hσ, hφ⟩
         refine ⟨σ i, (ih (Function.update ρ i (σ i))).2 ⟨σ, ?_, hφ⟩⟩
@@ -198,7 +198,7 @@ theorem RealFormula.holds_exList (φ : RealFormula) :
         · rw [Function.update_apply, if_neg hji]
           refine hσ j ?_
           rw [List.mem_cons]
-          push_neg
+          push Not
           exact ⟨hji, hj⟩
 
 theorem RealFormula.holds_allList (φ : RealFormula) :
@@ -228,13 +228,13 @@ theorem RealFormula.holds_allList (φ : RealFormula) :
         · rw [Function.update_apply, if_neg hji]
           refine hσ j ?_
           rw [List.mem_cons]
-          push_neg
+          push Not
           exact ⟨hji, hj⟩
       · intro h r
         refine (ih (Function.update ρ i r)).2 fun σ hσ => h σ ?_
         intro j hj
         rw [List.mem_cons] at hj
-        push_neg at hj
+        push Not at hj
         rw [hσ j hj.2, Function.update_apply, if_neg hj.1]
 
 /-! ## Tarski's theorem, as an explicit hypothesis -/
@@ -266,6 +266,7 @@ sum of squared moduli into a matrix entry. -/
 theorem ofReal_normSq (z : ℂ) : ((Complex.normSq z : ℝ) : ℂ) = star z * z := by
   rw [Complex.star_def, mul_comm, Complex.mul_conj]
 
+omit [DecidableEq Y] in
 /-- The diagonal entry of `Aᴴ * A` is the squared mass of the `i`-th column. -/
 theorem column_mass_eq (A : Matrix Y Y ℂ) (i : Y) :
     ((∑ y : Y, Complex.normSq (A y i) : ℝ) : ℂ) = (Aᴴ * A) i i := by
@@ -273,6 +274,7 @@ theorem column_mass_eq (A : Matrix Y Y ℂ) (i : Y) :
   refine Finset.sum_congr rfl fun y _ => ?_
   rw [Matrix.conjTranspose_apply, ofReal_normSq]
 
+omit [DecidableEq Y] in
 /-- The `i`-th column of a matrix is `A *ᵥ e_i`, entrywise. -/
 theorem mulVec_column (A B : Matrix Y Y ℂ) (i : Y) (y : Y) :
     (A *ᵥ fun l => B l i) y = (A * B) y i := by
