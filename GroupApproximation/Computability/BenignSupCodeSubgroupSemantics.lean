@@ -143,6 +143,39 @@ theorem centralStageEquiv_stable {K : Type} [Group K]
       (central_mem_iff c words e L hL)
       (central_intertwines c words e L hL)
 
+/-- Under the transported central layer, the literal stable conjugate of an
+old raw word is the corresponding semantic stable conjugate. -/
+theorem centralStageEquiv_conjugate {K : Type} [Group K]
+    (c : PresentationCode) (words : List BenignSupCode.Raw)
+    (e : Carrier c ≃* K) (L : Subgroup K)
+    (hL : (wordSubgroup c words).map e.toMonoidHom = L)
+    (raw : BenignSupCode.Raw) :
+    centralStageEquiv c words e L hL
+        (evalWord (MikhailovaRopeCode.firstStageCode c words)
+          (MikhailovaRopeCode.firstStableConjugate c raw)) =
+      (HNNExtension.t : CentHNN L)⁻¹ *
+        HNNExtension.of (e (evalWord c raw)) * HNNExtension.t := by
+  have hs := centralStageEquiv_stable c words e L hL
+  change centralStageEquiv c words e L hL
+      (PresentedGroup.mk
+        (codeRels (MikhailovaRopeCode.firstStageCode c words))
+        (FreeGroup.of
+          (letterOf (MikhailovaRopeCode.firstStageCode c words)
+            (stableIndex c)))) = HNNExtension.t at hs
+  have hw := centralStageEquiv_oldWord c words e L hL raw
+  change centralStageEquiv c words e L hL
+      (PresentedGroup.mk
+        (codeRels (MikhailovaRopeCode.firstStageCode c words))
+        (wordOf (MikhailovaRopeCode.firstStageCode c words)
+          (DirectProductCode.leftWord c raw))) =
+    HNNExtension.of (e (evalWord c raw)) at hw
+  simp only [MikhailovaRopeCode.firstStableConjugate,
+    RawWord.wordOf_cons_neg, RawWord.wordOf_append,
+    RawWord.wordOf_cons_pos, RawWord.wordOf_nil, mul_one, map_mul, map_inv,
+    evalWord]
+  rw [hs, hw]
+  rfl
+
 end
 
 end BenignSupCodeSubgroupSemantics
