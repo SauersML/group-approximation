@@ -11,9 +11,10 @@ import GroupApproximation.Computability.BenignInfCodeSemantics
 > `e`.  Computability of the code follows from `lem:mikhailova` and
 > `lem:central-rope`."*
 
-This module builds the `RopeCodeFamily` datum of `RecognitionAssembly` from a
-marked Higman output family whose raw data is computable: the code of `R̂_e`
-is `Higman.MikhailovaRopeCode.compile` applied to
+This module builds the code itself and proves it computable from the raw
+marked Higman output; `RopeCodeFamilySemantics` proves that it presents `R̂_e`
+and assembles the `RopeCodeFamily` datum of `RecognitionAssembly`.  The code
+of `R̂_e` is `Higman.MikhailovaRopeCode.compile` applied to
 
 * the ambient code of `K_e = (F × F(X_e) × F(X_e)) × (F × P)`, a product of
   free-group codes;
@@ -24,9 +25,9 @@ is `Higman.MikhailovaRopeCode.compile` applied to
 * the marked words `i(x), i(y), i(t)`.
 
 Its semantics is `Higman.MikhailovaRopeCodeSemantics.compileEquivToRope` at
-the benign witness `RopeObjects.witness`, whose three hypotheses are proved
-here from `CentralRopeGenerators.Le_eq_closure_gens` and the generator
-computations of the product codes.
+the benign witness `Rope.RopeInput.witness`, whose three hypotheses are proved
+in `RopeCodeFamilySemantics` from `Rope.RopeInput.Le_eq_closure_gens` and the
+generator computations of the product codes.
 -/
 
 namespace GroupApproximation

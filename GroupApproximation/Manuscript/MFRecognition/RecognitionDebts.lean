@@ -10,10 +10,11 @@ import GroupApproximation.Higman.OmegaDebt
 # `thm:recognition`, closed: the remaining inputs as recorded debts
 
 `RecognitionAssembly.manuscriptRecognition_of` proves every printed clause of
-`thm:recognition` from four inputs.  This module records each of them as a
-declaration whose proof is `sorry`, so that the debt is visible in the
-kernel's axiom report instead of a leading binder, and closes the theorem on
-top of them:
+`thm:recognition` from four inputs.  This module names each of them as its own
+declaration, so that whatever is still owed is visible in the kernel's axiom
+report instead of a leading binder, and closes the theorem on top of them.
+Only `shulmanTheorem16` is still a `sorry` here; the ω-debt is recorded once
+for the repository in `Higman.OmegaDebt`, and the other inputs are proved:
 
 * `shulmanTheorem16` — Shulman, Theorem 16 (amalgamated free products of
   separable `C*`-algebras are MF under compatible corona embeddings);
