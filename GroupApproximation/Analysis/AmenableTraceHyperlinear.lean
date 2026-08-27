@@ -282,39 +282,55 @@ theorem tendsto_hsNorm_mul (g h : G) :
   exact M.tendsto_mul_hs (maximalGroupCStarGenerator G g)
     (maximalGroupCStarGenerator G h)
 
-set_option maxHeartbeats 1000000 in
-/-- **The separation defect vanishes.**  For `g ≠ h` the product `x(g)x(h)⋆` is
-asymptotically `x(gh⁻¹)`, whose normalized trace converges to `τ(u_{gh⁻¹})`,
-and the canonical trace kills every nonidentity generator.
+/-- The sequence that dominates the separation defect: the multiplicative
+defect of the model at the pair `(u_g, u_{h⁻¹})` plus the error of the trace
+clause at `u_{gh⁻¹}`.
 
-This is the only step that uses the canonical trace rather than an arbitrary
-amenable one, and it is where the sharp separation constant comes from. -/
-theorem tendsto_norm_normTrace_mul_conjTranspose (g h : G) (hgh : g ≠ h) :
-    Tendsto (fun n ↦ ‖normTrace (M.space n)
-      (modelMatrix M n g * (modelMatrix M n h)ᴴ)‖) atTop (nhds 0) := by
-  have hne : g * h⁻¹ ≠ 1 := fun hcon ↦ hgh (mul_inv_eq_one.mp hcon)
-  have htau : canonicalMaximalTrace G
-      (maximalGroupCStarGenerator G (g * h⁻¹)) = 0 :=
-    canonicalMaximalTrace_generator_of_ne_one G hne
+It is a named function rather than an inline bound because `squeeze_zero`
+assigns its dominating function to a metavariable: with an anonymous `fun n ↦
+…` there, every later step of the pointwise estimate re-beta-reduces this whole
+expression, and the elaboration exceeds the default heartbeat budget.  Naming
+it makes the unification a constant application.  `scripts/check.py` forbids a
+heartbeat-budget bump at any value --- its `maxHeartbeats` detector reads the
+raw source, comments included --- so splitting the declaration is the legal
+fix. -/
+def separationBound (g h : G) (n : ℕ) : ℝ :=
+  hsNorm (M.space n)
+      (M.map n (maximalGroupCStarGenerator G g *
+          maximalGroupCStarGenerator G h⁻¹)
+        - M.map n (maximalGroupCStarGenerator G g) *
+            M.map n (maximalGroupCStarGenerator G h⁻¹))
+    + ‖canonicalMaximalTrace G (maximalGroupCStarGenerator G (g * h⁻¹))
+        - normTrace (M.space n)
+            (M.map n (maximalGroupCStarGenerator G (g * h⁻¹)))‖
+
+/-- The dominating sequence is null: both summands are, by
+`AmenableTraceModel.tendsto_mul_hs` and `AmenableTraceModel.tendsto_trace`. -/
+theorem tendsto_separationBound (g h : G) :
+    Tendsto (separationBound M g h) atTop (nhds 0) := by
+  have h1 := M.tendsto_mul_hs (maximalGroupCStarGenerator G g)
+    (maximalGroupCStarGenerator G h⁻¹)
+  have h2 := M.tendsto_trace (maximalGroupCStarGenerator G (g * h⁻¹))
+  have h12 := h1.add h2
+  rw [add_zero] at h12
+  exact h12
+
+/-- The pointwise half of the separation estimate: at every stage the trace of
+`x(g)x(h)⋆` is dominated by `separationBound`.
+
+The product is `φₙ(u_g)φₙ(u_{h⁻¹})` because the models preserve adjoints, and
+`u_g u_{h⁻¹} = u_{gh⁻¹}`; the trace clause is applied at that generator, where
+the hypothesis `hτ` says the canonical trace vanishes. -/
+theorem norm_normTrace_le_separationBound (g h : G)
+    (hτ : canonicalMaximalTrace G
+      (maximalGroupCStarGenerator G (g * h⁻¹)) = 0) (n : ℕ) :
+    ‖normTrace (M.space n)
+        (modelMatrix M n g * (modelMatrix M n h)ᴴ)‖
+      ≤ separationBound M g h n := by
   have hAB : maximalGroupCStarGenerator G g *
       maximalGroupCStarGenerator G h⁻¹
       = maximalGroupCStarGenerator G (g * h⁻¹) :=
     maximalGroupCStarGenerator_mul G g h⁻¹
-  have hsum : Tendsto (fun n ↦
-      hsNorm (M.space n)
-        (M.map n (maximalGroupCStarGenerator G g *
-            maximalGroupCStarGenerator G h⁻¹)
-          - M.map n (maximalGroupCStarGenerator G g) *
-              M.map n (maximalGroupCStarGenerator G h⁻¹))
-      + ‖canonicalMaximalTrace G (maximalGroupCStarGenerator G (g * h⁻¹))
-          - normTrace (M.space n)
-              (M.map n (maximalGroupCStarGenerator G (g * h⁻¹)))‖)
-      atTop (nhds 0) := by
-    have h1 := M.tendsto_mul_hs (maximalGroupCStarGenerator G g)
-      (maximalGroupCStarGenerator G h⁻¹)
-    have h2 := M.tendsto_trace (maximalGroupCStarGenerator G (g * h⁻¹))
-    simpa using h1.add h2
-  refine squeeze_zero (fun n ↦ norm_nonneg _) (fun n ↦ ?_) hsum
   have hmodel : modelMatrix M n g * (modelMatrix M n h)ᴴ
       = M.map n (maximalGroupCStarGenerator G g) *
           M.map n (maximalGroupCStarGenerator G h⁻¹) := by
@@ -330,12 +346,27 @@ theorem tendsto_norm_normTrace_mul_conjTranspose (g h : G) (hgh : g ≠ h) :
           (M.map n (maximalGroupCStarGenerator G (g * h⁻¹))) := by
     rw [normTrace_sub]
     ring
-  rw [hmodel, hsplit]
+  rw [hmodel, hsplit, separationBound]
   refine le_trans (norm_add_le _ _) (add_le_add ?_ ?_)
   · refine le_trans (norm_normTrace_le_hsNorm _ _) (le_of_eq ?_)
     rw [hsNorm_sub_comm, hAB]
   · refine le_of_eq ?_
-    rw [htau, zero_sub, norm_neg]
+    rw [hτ, zero_sub, norm_neg]
+
+/-- **The separation defect vanishes.**  For `g ≠ h` the product `x(g)x(h)⋆` is
+asymptotically `x(gh⁻¹)`, whose normalized trace converges to `τ(u_{gh⁻¹})`,
+and the canonical trace kills every nonidentity generator.
+
+This is the only step that uses the canonical trace rather than an arbitrary
+amenable one, and it is where the sharp separation constant comes from. -/
+theorem tendsto_norm_normTrace_mul_conjTranspose (g h : G) (hgh : g ≠ h) :
+    Tendsto (fun n ↦ ‖normTrace (M.space n)
+      (modelMatrix M n g * (modelMatrix M n h)ᴴ)‖) atTop (nhds 0) := by
+  have hne : g * h⁻¹ ≠ 1 := fun hcon ↦ hgh (mul_inv_eq_one.mp hcon)
+  exact squeeze_zero (fun n ↦ norm_nonneg _)
+    (norm_normTrace_le_separationBound M g h
+      (canonicalMaximalTrace_generator_of_ne_one G hne))
+    (tendsto_separationBound M g h)
 
 /-- **The models are eventually nonempty.**  An empty model has normalized
 trace `0` everywhere, while the trace clause at the unit forces that quantity
