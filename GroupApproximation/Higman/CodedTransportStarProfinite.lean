@@ -182,6 +182,94 @@ def hgammaModel (hclosed : profiniteClosure fiveCutter = fiveCutter)
           BenignComapCode.transform
             (TransportStarCode.productOvergroupSyntax, C.coded)) := rfl
 
+/-! ## The exact special-Sup boundary -/
+
+/-- Closedness of the one literal two-HNN cutter used by TransportStar.  This
+is intentionally specialized to the graph/product intersection on the left
+and the fixed split first factor on the right. -/
+def SpecialJoinClosedObligation
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H) : Prop :=
+  ProfiniteBenignJoin.CutterClosedObligation
+    (hgammaModel hfive C).data botModel.data
+
+/-- The strengthened semantic join witness once its special cutter is known
+closed. -/
+def hjoinData
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (hclosed : SpecialJoinClosedObligation hfive C) :
+    ProfiniteBenignWitness
+      ((Star.graphSub ⊓ H.comap (MonoidHom.fst Conj.F₃ Conj.F₃)) ⊔
+        Star.ProdBot) :=
+  ProfiniteBenignJoin.witness (hgammaModel hfive C).data botModel.data hclosed
+
+/-- The literal Sup syntax at the graph/product stage. -/
+def hjoinSyntax
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H) :
+    BenignInfCode.WitnessSyntax :=
+  BenignSupCode.transform ((hgammaModel hfive C).coded, botModel.coded)
+
+/-- When the input model carries the padded syntax built from an original
+rank-three datum, this stage is definitionally the existing
+`TransportStarCode.hjoin`. -/
+theorem hjoinSyntax_eq_transportStar
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (x : TransportStarCode.Input)
+    (hC : C.coded = TransportStarCode.varyingProductSyntax x) :
+    hjoinSyntax hfive C = TransportStarCode.hjoin x := by
+  unfold hjoinSyntax
+  rw [hgammaModel_coded, hC]
+  rfl
+
+/-- The exact code-semantic facts still needed to identify the emitted
+`BenignSupCode` syntax with the special semantic join witness.  Existing
+`BenignSupCodeSemantics` proves the individual HNN word formulas; these three
+fields are precisely their missing two-stage assembly at the actual
+TransportStar inputs. -/
+structure SpecialJoinCodeSemantics
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (hclosed : SpecialJoinClosedObligation hfive C) where
+  ambientEquiv :
+    Carrier (hjoinSyntax hfive C).1 ≃*
+      (hjoinData hfive C hclosed).witness.K
+  cutter_eq :
+    (wordSubgroup (hjoinSyntax hfive C).1
+        (hjoinSyntax hfive C).2.1).map
+        ambientEquiv.toMonoidHom =
+      (hjoinData hfive C hclosed).witness.L
+  marked_eq : ∀ i : MarkCount,
+    ambientEquiv
+        (evalWord (hjoinSyntax hfive C).1
+          ((hjoinSyntax hfive C).2.2.getD i [])) =
+      (hjoinData hfive C hclosed).witness.emb (pMark i)
+
+/-- Assemble the actual coded special-Sup model from exactly the outstanding
+two-stage code semantics. -/
+def hjoinModel
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (hclosed : SpecialJoinClosedObligation hfive C)
+    (S : SpecialJoinCodeSemantics hfive C hclosed) :
+    Model pMark
+      ((Star.graphSub ⊓ H.comap (MonoidHom.fst Conj.F₃ Conj.F₃)) ⊔
+        Star.ProdBot) where
+  data := hjoinData hfive C hclosed
+  coded := hjoinSyntax hfive C
+  ambientEquiv := S.ambientEquiv
+  cutter_eq := S.cutter_eq
+  marked_eq := S.marked_eq
+
+@[simp] theorem hjoinModel_coded
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (hclosed : SpecialJoinClosedObligation hfive C)
+    (S : SpecialJoinCodeSemantics hfive C hclosed) :
+    (hjoinModel hfive C hclosed S).coded = hjoinSyntax hfive C := rfl
+
 end
 
 end CodedTransportStarProfinite
