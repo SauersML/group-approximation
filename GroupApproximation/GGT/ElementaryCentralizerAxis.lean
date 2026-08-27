@@ -259,32 +259,39 @@ theorem noIndependentPairInCentralizer_of_orbitNearAxis
   exact not_independent_of_common_zpow hiso ha (mul_ne_zero hp hr')
     (mul_ne_zero hp' hr) hcommon hind
 
-/-! ## Over a torsion-free ambient, Theorem 6.8 is not needed -/
+/-! ## The elementary closure is commensurable to the axis, elementwise
 
-/-- **Every nontrivial element of `E(g)` shares a nonzero power with `g`**, over
-a torsion-free ambient group, with no appeal to virtual cyclicity.
+Theorem 6.8 asserts that `⟨g⟩` has finite index in `E(g)`.  Its *finite-index*
+content is not available here --- an infinite subgroup of `E(g)` need not contain
+an infinite-order element without knowing the torsion of `E(g)` is finite, which
+is the theorem itself.  Its *elementwise* content is, and needs no
+torsion-freeness: an element of `E(g)` of infinite order shares a nonzero power
+with `g`.  That is all a cyclic subgroup ever needs, which is why the cyclic case
+of Theorem 6.8 is a theorem below rather than a citation. -/
 
-The square of the element commutes with a nonzero power of `g`, has infinite
-order, and is therefore loxodromic by Bowditch's dichotomy; the centralizer
-theorem above then supplies the common power. -/
-theorem exists_common_zpow_of_mem_elementaryClosure_of_axis
+/-- **An infinite-order element of `E(g)` shares a nonzero power with `g`.**
+
+Its square commutes with a nonzero power of `g` and again has infinite order, so
+Bowditch's dichotomy makes the square loxodromic; the centralizer theorem then
+supplies the common power.  No torsion hypothesis on the ambient group. -/
+theorem exists_common_zpow_of_mem_elementaryClosure_of_infiniteOrder
     (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X) {x : X}
     (hnear : CentralizerOrbitNearAxis G x) (hbow : EscapingIsLoxodromic G x)
-    (htf : IsPowerTorsionFree G) {g c : G} (hg : IsLoxodromic g x)
-    (hc : c ∈ elementaryClosure g) (hc1 : c ≠ 1) :
+    {g c : G} (hg : IsLoxodromic g x) (hc : c ∈ elementaryClosure g)
+    (hcfin : ¬ IsOfFinOrder c) :
     ∃ i m : ℤ, i ≠ 0 ∧ m ≠ 0 ∧ g ^ i = c ^ m := by
   obtain ⟨n, hn, hcomm⟩ :=
     exists_ne_zero_commute_sq_of_mem_elementaryClosure hiso hg hc
   have hgn : IsLoxodromic (g ^ n) x := isLoxodromic_zpow hiso hg hn
-  have hc2ne : c * c ≠ 1 := by
-    intro h
-    refine htf.not_isOfFinOrder hc1 ?_
-    refine isOfFinOrder_iff_pow_eq_one.mpr ⟨2, by norm_num, ?_⟩
-    rw [pow_two]
-    exact h
+  have hc2fin : ¬ IsOfFinOrder (c * c) := by
+    intro hfin
+    obtain ⟨k, hk, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    refine hcfin (isOfFinOrder_iff_pow_eq_one.mpr ⟨2 * k, by omega, ?_⟩)
+    rw [pow_mul, pow_two]
+    exact hpow
   have hc2lox : IsLoxodromic (c * c) x :=
     isLoxodromic_of_commute_of_escapingIsLoxodromic hiso hacy hbow (g ^ n)
-      (c * c) hgn hcomm (htf.not_isOfFinOrder hc2ne)
+      (c * c) hgn hcomm hc2fin
   obtain ⟨p, r, hp, hr, hpow⟩ :=
     exists_common_zpow_of_commute_of_orbitNearAxis hiso hacy hnear hgn hc2lox
       hcomm
@@ -296,6 +303,41 @@ theorem exists_common_zpow_of_mem_elementaryClosure_of_axis
     _ = (c * c) ^ p := hpow.symm
     _ = (c ^ (2 : ℤ)) ^ p := by rw [hsq]
     _ = c ^ (2 * p) := by rw [← zpow_mul]
+
+/-- The same over a torsion-free ambient group, where every nontrivial element
+has infinite order. -/
+theorem exists_common_zpow_of_mem_elementaryClosure_of_axis
+    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X) {x : X}
+    (hnear : CentralizerOrbitNearAxis G x) (hbow : EscapingIsLoxodromic G x)
+    (htf : IsPowerTorsionFree G) {g c : G} (hg : IsLoxodromic g x)
+    (hc : c ∈ elementaryClosure g) (hc1 : c ≠ 1) :
+    ∃ i m : ℤ, i ≠ 0 ∧ m ≠ 0 ∧ g ^ i = c ^ m :=
+  exists_common_zpow_of_mem_elementaryClosure_of_infiniteOrder hiso hacy hnear
+    hbow hg hc (htf.not_isOfFinOrder hc1)
+
+/-- **The cyclic case of Osin's Theorem 6.8, proved.**
+
+`ElementaryClosureVirtuallyCyclic` restricted to `K = ⟨c⟩`: an infinite-order
+element whose cyclic subgroup lies in `E(g)` has a nonzero power of `g` inside
+that cyclic subgroup.  The general case needs the finite-index content of
+Theorem 6.8 and is not available; the cyclic case needs only the elementwise
+content, and carries no torsion hypothesis on the ambient group.
+
+This is the only form `GGT.WPDAcylindricalHyperbolicity` consumes, at
+`⟨a⟩` and `⟨b⟩` for a common-power-free pair, and it is a drop-in for the
+`hvc g hg (Subgroup.zpowers a) _ _` calls there: the infinite-order hypothesis is
+the `¬ IsOfFinOrder a` those proofs already establish. -/
+theorem exists_zpow_mem_zpowers_of_mem_elementaryClosure
+    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X) {x : X}
+    (hnear : CentralizerOrbitNearAxis G x) (hbow : EscapingIsLoxodromic G x)
+    {g c : G} (hg : IsLoxodromic g x)
+    (hKle : Subgroup.zpowers c ≤ elementaryClosure g)
+    (hcfin : ¬ IsOfFinOrder c) :
+    ∃ j : ℤ, j ≠ 0 ∧ g ^ j ∈ Subgroup.zpowers c := by
+  obtain ⟨i, m, hi, -, he⟩ :=
+    exists_common_zpow_of_mem_elementaryClosure_of_infiniteOrder hiso hacy hnear
+      hbow hg (hKle (Subgroup.mem_zpowers c)) hcfin
+  exact ⟨i, hi, Subgroup.mem_zpowers_iff.mpr ⟨m, he.symm⟩⟩
 
 /-- **Two independent elementary closures share no infinite subgroup**, over a
 torsion-free ambient, from the centralizer theorem and Bowditch's dichotomy

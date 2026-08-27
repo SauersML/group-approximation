@@ -61,12 +61,29 @@ not normal, needs more: the conjugate `g c g⁻¹ ∈ N` that
 `exists_ne_one_mem_conj` also returns is what replaces normality there, and it
 goes unused below.
 
+## Superseded
+
+`GGT.Elementary` now carries all of this, and more: `GGT/ElementaryOsinSNormal`
+proves the three facts below in these exact shapes and does the **general**
+`s`-normal case — `osinNonElementary_of_geometry`, which is
+`HullInputsCorrected.osinNonElementary` verbatim modulo its inputs — where this
+module does only the normal case.  `GGT/ElementaryFillCentralizer` and
+`GGT/ElementaryFillConjugate` inhabit the first two facts, and
+`GGT/ElementaryProperClosure` weakens what the second of them costs.  So this
+module is kept as the record of the reduction, not as its implementation: it is
+the first statement of the split between the elementary-closure facts and the
+`s`-normal bookkeeping, and nothing imports it.
+
+Two things in it are still worth reading.  `exists_ne_one_mem_conj` is the half
+of `HullGeometry.exists_escaping_or_noncommuting_of_isSNormal` that keeps the
+commuting witness, and the observation recorded above — that for a normal `N`
+the `s`-normality hypothesis is spent only on "`N` contains an element other than
+the identity" — is what makes the normal case cost nothing beyond nontriviality.
+
 ## Status
 
 **Not compiled.**  Written while builds were frozen, and not in the root import
-list for that reason; add
-`import GroupApproximation.Manuscript.NonMF.HullFillOsinNormalReduction`
-once it has been checked.
+list for that reason.
 -/
 
 namespace GroupApproximation

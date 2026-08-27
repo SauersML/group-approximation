@@ -376,12 +376,20 @@ which would make `g ^ j = 1` for `j ≠ 0`, impossible for a loxodromic.
 Two remarks for whoever discharges the input.  Only the **cyclic** case of
 `ElementaryClosureVirtuallyCyclic` is used here: the subgroups it is applied to
 are `Subgroup.zpowers a` and `Subgroup.zpowers b`, so a form quantified over
-cyclic `K` alone would still support this proof.  And the *other* route to
-properness in `GGT.Elementary` — through Osin's Corollary 6.9 on centralizers,
-which is strictly weaker than Theorem 6.8 — cannot be substituted here: it
-produces the element outside `E(g)` from two *independent loxodromics*, which
-is what this lemma exists to produce, whereas the pair `a, b` here is only
-known to be free of common powers. -/
+cyclic `K` alone would still support this proof.
+
+And Theorem 6.8 can be avoided altogether, through the weaker Corollary 6.9 on
+centralizers that `GGT.Elementary` also records.  The route does not feed the
+pair `a, b` to Corollary 6.9 directly — they are not known to be loxodromic —
+but promotes them first: if every element lies in `E(g)` then `a²` and `b²`
+centralize a common nonzero power of `g`
+(`Elementary.exists_ne_zero_commute_sq_of_mem_elementaryClosure`); an element
+of infinite order commuting with a loxodromic is loxodromic, by Bowditch's
+dichotomy; `a², b²` inherit freedom from common powers, so
+`IndependentOfNoCommonZpow` — already a hypothesis of the theorem below —
+makes them independent; and two independent loxodromics in a centralizer
+contradict Corollary 6.9.  ggt-elementary is hosting that version, at which
+point this proof re-points at it and Theorem 6.8 leaves the chain. -/
 theorem exists_notMem_elementaryClosure_of_no_common_power
     {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
     {x : X} (hvc : Elementary.ElementaryClosureVirtuallyCyclic G x) {g : G}

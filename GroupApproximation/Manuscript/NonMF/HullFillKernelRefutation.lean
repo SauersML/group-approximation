@@ -44,22 +44,27 @@ the four printed clauses alone force `q` to be injective, and they do not.
 
 ## What it costs
 
-The refutation needs one acylindrically hyperbolic group, and
-`TheoremC.LiteratureInputs.minasyanOsin` supplies one: its statement is
-quantified over all `P` and `S`, so at `P = S = PUnit` it asserts that the
-double HNN extension of the trivial group — the free group on the two stable
-letters — is acylindrically hyperbolic.  So
+The refutation needs one acylindrically hyperbolic group and nothing further:
+the kernel clause is false outright, not false relative to some competing
+citation.  `false_of_hullInputs_of_isAcylindricallyHyperbolic` takes that group
+as an argument, and any acylindrically hyperbolic group whatever would serve.
+`TheoremC.LiteratureInputs.minasyanOsin` is only the cheapest supplier of one
+inside this repository: its statement is quantified over all `P` and `S`, so at
+`P = S = PUnit` it asserts that the double HNN extension of the trivial group —
+the free group on the two stable letters — is acylindrically hyperbolic.
+Minasyan–Osin's theorem is not in question here, and nothing below casts doubt
+on it.
 
-> `TheoremC.LiteratureInputs` and `TorsionFree.HullInputs` cannot both hold
-> (`false_of_literatureInputs_of_hullInputs`),
-
-and the two debts recorded in `Manuscript.NonMF.TheoremCDebts` cannot both be
-paid.  The one to repair is the kernel clause: it belongs to the construction,
-not to its output, so it belongs inside `HullQuotient` — as a further field of
-the structure that `HullInputs.smallCancellation` produces — rather than as a
-statement about arbitrary terms of that structure.
+`false_of_literatureInputs_of_hullInputs` is what that costs the development:
+the two bundles of `Manuscript.NonMF.TheoremCDebts` cannot both be paid, so the
+closed forms of Theorem C cannot stand on `TorsionFree.HullInputs`.  The clause
+to repair is the kernel one: it belongs to Hull's construction, not to its
+output, so it belongs inside the quotient — as a further field of the structure
+that the small cancellation theorem produces — rather than as a statement about
+arbitrary terms of that structure.
 `Manuscript.NonMF.HullFillCorrectedInputs` carries that repair and shows it
-still proves `lem:saturation`.
+still proves `lem:saturation`, and `Manuscript.NonMF.TheoremCDebts` closes
+Theorem C on the repaired bundle.
 -/
 
 namespace GroupApproximation
