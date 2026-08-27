@@ -14,6 +14,7 @@ import GroupApproximation.Computability.FreeSubgroupEnumeratedHardness
 import GroupApproximation.Computability.IsoInvariantSwitchHardness
 import GroupApproximation.Computability.HyperlinearUndecidabilityRoute
 import GroupApproximation.Computability.SoficRecognitionPi02
+import GroupApproximation.Computability.MFEnumeratedPi02
 import GroupApproximation.Meta.AxiomGuard
 
 /-!
@@ -22,8 +23,9 @@ import GroupApproximation.Meta.AxiomGuard
 Every conjunct below is proved elsewhere in `Computability`; this file
 collects them so that the ledger of
 `research/arithmetical-complexity-table-of-group-properties.md` has a
-single kernel-checked endpoint.  Four exact classifications on enumerated
-presentation codes (sofic, LEF, trivial, commutative), the strict
+single kernel-checked endpoint.  Exact classifications on enumerated
+presentation codes (sofic, LEF, trivial, commutative, perfect, torsion-free,
+and operator-MF with its `Σ⁰₂`-complete failure), the strict
 placement of soficity and of residual finiteness on finite presentation
 codes, second-level lower bounds for residual finiteness, amenability,
 torsion-freeness, perfectness, free-subgroup containment and Kazhdan's
@@ -48,6 +50,8 @@ theorem arithmetical_ledger :
     Pi02Complete (fun c : PresentationCode ↦
       PerfectEnumeratedHardness.IsPerfectGroup (Carrier c)) ∧
     Pi02Complete (fun c : PresentationCode ↦ IsPowerTorsionFree (Carrier c)) ∧
+    Pi02Complete (fun c : PresentationCode ↦ IsOperatorMF (Carrier c)) ∧
+    Sigma02Complete (fun c : PresentationCode ↦ ¬ IsOperatorMF (Carrier c)) ∧
     -- second-level lower bounds
     Pi02Hard (fun c : PresentationCode ↦ Group.ResiduallyFinite (Carrier c)) ∧
     Pi02Hard (fun c : PresentationCode ↦ Amenability.IsAmenable (Carrier c)) ∧
@@ -73,6 +77,8 @@ theorem arithmetical_ledger :
    AbelianEnumeratedPi02.comm_enum_pi02Complete,
    PerfectEnumeratedPi02.perfect_enum_pi02Complete,
    TorsionFreeEnumeratedPi02.torsionFree_enum_pi02Complete,
+   MFEnumeratedPi02.mf_enum_pi02Complete,
+   MFEnumeratedPi02.nonmf_enum_sigma02Complete,
    RFEnumeratedHardness.rfCode_pi02Hard,
    AmenableEnumeratedHardness.amenableCode_pi02Hard,
    TorsionFreeEnumeratedHardness.torsionFreeCode_pi02Hard,
@@ -94,6 +100,8 @@ def ArithmeticalLedgerHolds : Prop :=
     Pi02Complete (fun c : PresentationCode ↦
       PerfectEnumeratedHardness.IsPerfectGroup (Carrier c)) ∧
     Pi02Complete (fun c : PresentationCode ↦ IsPowerTorsionFree (Carrier c)) ∧
+    Pi02Complete (fun c : PresentationCode ↦ IsOperatorMF (Carrier c)) ∧
+    Sigma02Complete (fun c : PresentationCode ↦ ¬ IsOperatorMF (Carrier c)) ∧
     ProfinitelyClosedIndexSet.Pi03Complete ProfinitelyClosedIndexSet.ClosedIndex
 
 theorem arithmeticalLedgerHolds : ArithmeticalLedgerHolds :=
@@ -103,6 +111,8 @@ theorem arithmeticalLedgerHolds : ArithmeticalLedgerHolds :=
    AbelianEnumeratedPi02.comm_enum_pi02Complete,
    PerfectEnumeratedPi02.perfect_enum_pi02Complete,
    TorsionFreeEnumeratedPi02.torsionFree_enum_pi02Complete,
+   MFEnumeratedPi02.mf_enum_pi02Complete,
+   MFEnumeratedPi02.nonmf_enum_sigma02Complete,
    ProfinitelyClosedIndexSet.pi03Complete_closedIndex⟩
 
 #audit_closed_axioms GroupApproximation.ArithmeticalLedgerEndpoint.arithmeticalLedgerHolds
