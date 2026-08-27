@@ -7,7 +7,7 @@
       "id": "thm:compression-criterion",
       "environment": "mainthm",
       "title": "one-sided compression criterion",
-      "statement_sha256": "4ea0b3df0aed35e3d47643be6107329edb3fb30332c3c5ee1ead03c91fec0499",
+      "statement_sha256": "08f4c7b3ee1a4f96403b9ffd38886f9d8efa5f2c24601a8a2a03b05bb6d1e59c",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -23,6 +23,12 @@
           "module": "Manuscript/OneSidedMFRadical/PrintedCriterion",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptOneSidedCompressionCriterion",
           "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedCriterion",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalKillsMFTargets",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -30,7 +36,7 @@
       "id": "thm:headline",
       "environment": "mainthm",
       "title": "the binary Leavitt group",
-      "statement_sha256": "e04b9ec5b700f236c65bd56daea05be02cdabe48849b07244a68c9024eeb0132",
+      "statement_sha256": "83d0d818110806c4016118cf598ec8d6463d7bce29cfd7504462529ef20d0155",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -72,8 +78,8 @@
     {
       "id": "thm:torsion-free",
       "environment": "mainthm",
-      "title": "a torsion-free group with full MF radical",
-      "statement_sha256": "a118ec20e67c23e692f312bdac0e6e488233e27854b7752b382a98def5de0c11",
+      "title": "a torsion-free finitely presented example",
+      "statement_sha256": "0f22bdbc41845388688686999b9e05e6c3fac43b3e1710f3e6fccbf871c17b3c",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript. Its external inputs are listed explicitly.",
       "dependencies": [
@@ -91,9 +97,9 @@
     },
     {
       "id": "prop:mf-residual-calculus",
-      "environment": "proposition",
-      "title": "basic properties of the MF radical",
-      "statement_sha256": "33e21a9d7a7b619d5ba189c0ccf768f3c4cb29b8f3c1727fe20bf56162264488",
+      "environment": "lemma",
+      "title": "",
+      "statement_sha256": "e5dd2676a98da1a54758f0d3f6768d4dcbe3860bd320e763ce7df766cad73d71",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -178,7 +184,7 @@
       "id": "cor:defect-hs",
       "environment": "corollary",
       "title": "",
-      "statement_sha256": "d00080c95aae8eedc0df426fad4dbf5f878410a9cc6ad8714de099f325fcf324",
+      "statement_sha256": "9cd9906cadb9f40e44232f57408a57d8b86f3d5d1ab0e53f1e21f398047a5015",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -193,6 +199,12 @@
           "module": "Manuscript/OneSidedMFRadical/DefectHS",
           "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCompressionDefectHSInvisible",
           "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/OneSidedMFRadical/PrintedDefectShadow",
+          "declaration": "GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedDefectShadowInclusion",
+          "covers": "a printed conclusion of the proposition"
         }
       ]
     },
@@ -200,7 +212,7 @@
       "id": "lem:central-corona-corner",
       "environment": "lemma",
       "title": "central corona corners",
-      "statement_sha256": "747355e7c671d52f43ecb3c90e8529e86c00dc06ef6a3aefdf9b01c2e5bb82fa",
+      "statement_sha256": "515084ab069f7d5baceb948defdb9369786defa38aaa3e75590bc45172deaa17",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [],
@@ -219,8 +231,8 @@
     {
       "id": "thm:normal-kazhdan",
       "environment": "theorem",
-      "title": "normal Kazhdan radical theorem",
-      "statement_sha256": "f0bde8a7a0658a1fce8b090514b5a9df60e1e3ec47d010a1473077aab7f6567f",
+      "title": "normal Kazhdan subgroups",
+      "statement_sha256": "1f32f2e43a9d04319fb6417118bbdaae5a180732950356e487b908587e0f2d30",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
