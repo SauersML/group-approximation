@@ -66,7 +66,7 @@ We give a negative answer to the longstanding question whether every
 countable group is MF in the operator norm sense.
 Let $L\le G$ and
 $K\trianglelefteq G$ have property~\textup{(T)}.  If $K$ is contained in
-the one-sided compression defect of $L$, then $K$ lies in the MF radical of
+the compression--centralizer defect of $L$, then $K$ lies in the MF radical of
 $G$.  For $H=\EL_{12}(L_{\F_2}(1,2))$, this defect equals $H$.  The group
 $H$ is finitely generated, simple, has property~\textup{(T)}, and has
 trivial image under every homomorphism to an MF group.  Consequently,
@@ -115,7 +115,7 @@ The counterexample is
 \[
  H=\EL_{12}(L_{\F_2}(1,2)).
 \]
-Khanh--Thanh identify $H$ with the unit group of the binary Leavitt
+Khanh--Thanh show that $H$ is isomorphic to the unit group of the binary Leavitt
 algebra~\cite[Proposition~4.2 and Corollary~4.4]{KhanhThanh}, which OpenAI
 used to construct the first nonsofic group~\cite[Chapter~3]{OAI}.
 
@@ -130,9 +130,12 @@ and
  \limsup_n\opnorm{V_n(g)-1}>0
  \qquad(g\in G\setminus\{1\}).
 \]
-We use this operator norm convention throughout.  The strong convergence
-convention additionally requires the matrix models to recover the norms of
-the left regular representation~\cite{GaoEtAl,Schafhauser}.
+We use this operator norm convention throughout; the separation may
+equivalently be required along the full sequence with a constant
+independent of $g$~\cite[Propositions~2 and~7]{Korchagin}.  The strong
+convergence convention additionally requires the matrix models to recover
+the norms of the left regular representation~\cite{GaoEtAl,Schafhauser}, so
+a group that is not MF in the present sense is not MF in that sense either.
 
 Equivalently, $G$ embeds in the unitary group of the norm matrix corona
 associated to the sequence $\mathbf d=(d_n)$,
@@ -179,8 +182,9 @@ associated to the sequence $\mathbf d=(d_n)$,
  \mathcal Q_{\mathbf d}
  =\prod_nM_{d_n}(\C)\big/\bigoplus_nM_{d_n}(\C).
 \]
-Here $\bigoplus_nM_{d_n}(\C)$ is the ideal of sequences $(x_n)$ for which
-$\opnorm{x_n}\to0$.
+Here $\prod_nM_{d_n}(\C)$ is the $C^*$-algebra of bounded sequences, as
+every product of $C^*$-algebras below, and $\bigoplus_nM_{d_n}(\C)$ is its
+ideal of sequences $(x_n)$ with $\opnorm{x_n}\to0$.
 %<webmath object="n⨁" when="\bigoplus_nM_{d_n}(\C)" title="the matrix sequences that fade to zero">
 % The left side is a short name for the [[set]] described on the right.  A
 % member is a [[sequence]] \((x_1,x_2,x_3,\ldots)\) in which \(x_n\) is a
@@ -301,7 +305,8 @@ $\Rad_{\mathrm{MF}}(G)=G$.
 \end{mainthm}
 
 Every operator norm asymptotic representation is asymptotically trivial on
-$\mathfrak D_G(L)$ in normalized Hilbert--Schmidt norm:
+$\mathfrak D_G(L)$ in normalized Hilbert--Schmidt norm; in the notation of
+Section~\ref{sec:compression-radical},
 \[
  \mathfrak D_G(L)\le R_{\infty\to2}(G).
 \]
@@ -428,10 +433,11 @@ reduced group $C^*$-algebras.
 \leanverified{Manuscript/OneSidedMFRadical/CountableNonMF}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptNotEveryCountableGroupIsMF}
 Nonapproximability was known for the unnormalized Schatten $p$-norms when
 $1<p<\infty$~\cite{DGLT,LubotzkyOppenheim}, and Bachner--Dogon--Lubotzky
-settled $p=1$~\cite{BDL}.  The case $p=\infty$ remained open.  Their
-criterion reduces the operator norm case to normalized Hilbert--Schmidt
-stability~\cite[Proposition~1.5]{BDL}.  Under the compression relation,
-conjugation preserves the normalized Hilbert--Schmidt asymptotic commutant.
+settled $p=1$~\cite{BDL}.  The case $p=\infty$ remained open.  For groups of
+Deligne type, operator--Hilbert--Schmidt stability would imply that the group
+is not MF~\cite[Proposition~1.5]{BDL}.  Here the input is the compression
+relation: conjugation by the compressor preserves the normalized
+Hilbert--Schmidt asymptotic commutant.
 
 Leavitt introduced the algebras $L_K(1,n)$~\cite{Leavitt}.  The binary
 Leavitt algebra is purely infinite simple~\cite{AbramsAranda}, is an
@@ -441,6 +447,7 @@ Property~\textup{(T)} follows from
 Ershov--Jaikin-Zapirain~\cite[Theorem~1.1]{EJZ}.
 
 \section{One-sided compression and the MF radical}
+\label{sec:compression-radical}
 
 \subsection{The MF radical}
 
@@ -520,7 +527,10 @@ For such a sequence put
  K_2(V)=\{g\in G:\hsnorm{V_n(g)-1}\longrightarrow0\}.
 \]
 The operator norm defects also tend to zero in normalized
-Hilbert--Schmidt norm, so $K_2(V)$ is a normal subgroup of $G$.  Define
+Hilbert--Schmidt norm, and this norm is unitarily invariant; so
+$\hsnorm{V_n(gh)-1}\le\hsnorm{V_n(g)-1}+\hsnorm{V_n(h)-1}+o(1)$ and
+$\hsnorm{V_n(ghg^{-1})-1}=\hsnorm{V_n(h)-1}+o(1)$, and $K_2(V)$ is a normal
+subgroup of $G$.  Define
 %<webmath object="whole" when="R_{\infty\to2}(G)=\bigcap_VK_2(V)" title="the elements every operator-norm model loses in Hilbert--Schmidt norm">
 % The symbol \(R_{\infty\to2}(G)\) names the [[universal Hilbert–Schmidt
 % kernel]].  The large [[intersection]] runs over every operator norm
@@ -729,7 +739,8 @@ The two projections are unitarily equivalent.  Lemma~\ref{lem:stable-finite}
 then gives $U^*PU=P$: $U$ commutes with $P$, and both $U\xi$ and
 $U^*\xi$ are fixed by $\sigma(L)$.  Since $\omega$ was arbitrary, the
 corresponding Hilbert--Schmidt commutators converge to zero along the full
-sequence.
+sequence: a subsequence staying above some $\varepsilon>0$ would lie in a
+free ultrafilter and give a nonzero ultralimit.
 Thus $\operatorname{Ad}(V(u))$ and its inverse both preserve
 $\mathcal C_2(V,L)$, which proves the equality.
 \end{proof}
@@ -812,7 +823,8 @@ asymptotic representation
 \]
 with \(W_n(1)=I_{r_n}\).  In the corona over the retained coordinates, the
 class of \((J_nW_n(g)J_n^*)\) is the coordinate restriction of
-\(q\rho(g)\).
+\(q\rho(g)\), a unitary of the corner \(q\mathcal Q_{\mathbf d}q\) with
+unit \(q\).
 \leanverified{Manuscript/OneSidedMFRadical/CentralCoronaCorner}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptCentralCoronaCorner}
 \end{lemma}
 
@@ -836,7 +848,15 @@ commutation relation in the corona gives
  \qquad(g\in G).
 \]
 Consequently \(q_nU_n(g)q_n\), viewed on \(q_n\C^{d_n}\), has both unitarity
-defects converging to zero.  For each fixed \(g\), let
+defects converging to zero, and for \(g,h\in G\),
+\[
+\begin{aligned}
+ &\opnorm{q_nU_n(gh)q_n-q_nU_n(g)q_n\,q_nU_n(h)q_n}\\
+ &\qquad\le\opnorm{U_n(gh)-U_n(g)U_n(h)}+\opnorm{[q_n,U_n(h)]}\longrightarrow0,
+\end{aligned}
+\]
+because \(q_nU_n(g)U_n(h)q_n-q_nU_n(g)q_nU_n(h)q_n=q_nU_n(g)[U_n(h),q_n]q_n\)
+(compare~\cite[Proposition~2.4]{BDL}).  For each fixed \(g\), let
 \(\widetilde W_n(g)\) be its polar correction whenever both defects are at
 most \(1/2\), and set \(\widetilde W_n(g)=q_n\) at the finitely many earlier
 stages.  Then \(\widetilde W_n(g)\) is unitary in the corner and satisfies
@@ -924,7 +944,8 @@ is the coordinate restriction of \(g\mapsto q\Theta(g)\).
 
 Choose a finite Kazhdan set \(S\subseteq K\) and a Kazhdan
 constant \(\kappa>0\).  Represent \(\mathcal Q_{\mathbf r}\) faithfully.
-The Kazhdan projection of \(K\) under \(\widehat\Theta\) is zero, so
+Since \(q\) commutes with \(\Theta(K)\), the Kazhdan projection of \(K\)
+under \(\widehat\Theta\) is the coordinate restriction of \(qp=0\); so
 \(\widehat\Theta|_K\) has no nonzero fixed vectors, and the Kazhdan
 inequality gives, for the positive element
 %<webmath object="whole" when="b=\frac1{|S|}\sum_{s\in S}" title="b averages the squared movement caused by the Kazhdan set">
@@ -988,8 +1009,7 @@ $b_n-(\kappa^2/|S|)I_{r_n}$ converges to zero in operator norm.  Taking normaliz
 traces gives the displayed inequality.
 After passing to a subsequence, one fixed \(s_0\in S\) then stays a
 positive Hilbert--Schmidt distance from \(I_{r_n}\).  This
-contradicts \(s_0\in K\le R_{\infty\to2}(G)\), established after passing to
-\(\Theta(G)\).  Thus every corona homomorphism kills \(K\).
+contradicts \(s_0\in K\le R_{\infty\to2}(G)\) for the replaced group \(G\).  Thus every corona homomorphism kills \(K\).
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:compression-criterion}]
@@ -1342,28 +1362,30 @@ provided by Hull~\cite[Theorem~3.12]{Hull}.  A subgroup is \emph{suitable}
 if it acts non-elementarily on $\Gamma(G,A)$ and normalizes no nontrivial
 finite subgroup~\cite[Definition~1.4]{Hull}.  We use Hull's small
 cancellation theorem~\cite[Theorem~7.1]{Hull} as follows.  Given a finite
-set $F\subseteq G$, choose a ball in $\Gamma(G,A)$ containing $F$ and apply
-Hull's injectivity-radius formulation.  This gives the finite-set version
-recorded below.
+set $\Omega\subseteq G$, choose a ball in $\Gamma(G,A)$ containing $\Omega$
+and apply Hull's injectivity-radius formulation.  This gives the finite-set
+version below.
 
 \begin{theorem}[Hull's small cancellation theorem]\label{thm:hull}
 Let $G$ be acylindrically hyperbolic, let $N\le G$ be suitable with respect
-to $A$, and let $t_1,\dots,t_m\in G$ and a finite subset $F\subseteq G$ be
-given.  Then there is a surjective homomorphism $q\colon G\to Q$ such that
-$Q$ is acylindrically hyperbolic, $q|_F$ is injective, $q(t_i)\in q(N)$ for
-all $i$, and every element of finite order in $Q$ is the image of an
-element of the same order in $G$.
+to $A$, and let $g_1,\dots,g_m\in G$ and a finite subset $\Omega\subseteq G$
+be given.  Then there is a surjective homomorphism $\varphi\colon G\to Q$
+such that $Q$ is acylindrically hyperbolic, $\varphi|_\Omega$ is injective,
+$\varphi(g_i)\in\varphi(N)$ for all $i$, and every element of finite order
+in $Q$ is the image of an element of the same order in $G$.
 \end{theorem}
 
-Separately, inspection of Hull's construction, applied successively to
-$t_1,\dots,t_m$, shows that $\ker q$ is normally generated by $m$ elements.
+Hull's proof treats $m=1$ by passing to $G/\normal{W}_G$ for one word $W$
+and the general case by induction on $m$~\cite[proof of Theorem~7.1]{Hull},
+so $\ker\varphi$ is the normal closure of $m$ elements and $Q$ is finitely
+presented when $G$ is.
 
 \begin{lemma}[saturation]\label{lem:saturation}
 Let $G$ be finitely presented, torsion-free, and acylindrically hyperbolic,
-let $N\trianglelefteq G$ be nontrivial, and let $F\subseteq G$ be finite.
-Then there is a surjective homomorphism $q\colon G\to Q$ such that $Q$ is
-two-generated, finitely presented, torsion-free, and acylindrically
-hyperbolic, $q|_F$ is injective, and $q(N)=Q$.
+let $N\trianglelefteq G$ be nontrivial, and let $\Omega\subseteq G$ be finite.
+Then there is a surjective homomorphism $\varphi\colon G\to Q$ such that $Q$
+is two-generated, finitely presented, torsion-free, and acylindrically
+hyperbolic, $\varphi|_\Omega$ is injective, and $\varphi(N)=Q$.
 \end{lemma}
 
 \begin{proof}
@@ -1374,85 +1396,101 @@ $\Gamma(G,A)$ by Osin~\cite[Lemma~7.1]{Osin}.  Torsion-freeness makes $N$
 suitable.  By
 Hull~\cite[Corollary~5.7 and Lemma~5.8]{Hull}, $N$ contains two elements
 $h_1,h_2$ such that $N_0=\langle h_1,h_2\rangle$ is again suitable.  Apply
-Theorem~\ref{thm:hull} to $N_0$ with $t_1,\dots,t_m$ a finite generating
-set of $G$ and with the set $F$.  Then
+Theorem~\ref{thm:hull} to $N_0$ with $g_1,\dots,g_m$ a finite generating
+set of $G$ and with the set $\Omega$.  Then
 \[
- Q=\langle q(t_1),\dots,q(t_m)\rangle\le q(N_0)\le q(N)\le Q,
+ Q=\langle\varphi(g_1),\dots,\varphi(g_m)\rangle\le\varphi(N_0)\le\varphi(N)\le Q,
 \]
-so $Q=q(N_0)=\langle q(h_1),q(h_2)\rangle$ and $q(N)=Q$.  The quotient is
-torsion-free by Theorem~\ref{thm:hull} and finitely presented because
-$\ker q$ is normally generated by $m$ elements.
+so $Q=\varphi(N_0)=\langle\varphi(h_1),\varphi(h_2)\rangle$ and
+$\varphi(N)=Q$.  The quotient is torsion-free by Theorem~\ref{thm:hull} and
+finitely presented because $\ker\varphi$ is normally generated by $m$
+elements.
 \end{proof}
 
 Following Fournier-Facio~\cite[\S2]{FFF}, let $U$ be a universal finitely
 presented torsion-free group, one containing a copy of every finitely
 presented torsion-free group~\cite{Chiodo}; let $F=F(a,b)$ be the free group
-of rank two; and let $H_0$ be a
+of rank two; and let $B_0$ be a
 torsion-free hyperbolic group with property~\textup{(T)}, obtained from the
 density model at a parameter between $1/3$ and $1/2$~\cite{Kotowski,Ollivier}.
-Small cancellation over the relatively hyperbolic pair $(U*H_0,U)$ embeds
-$U$ in a finitely presented torsion-free quotient $P$ of $H_0$~\cite[Proposition~2.3]{FFFStability}; torsion-freeness is preserved by
+Small cancellation over the relatively hyperbolic pair $(U*B_0,U)$ gives a
+quotient $\Delta$ of $U*B_0$ in which $U$ embeds and each generator of $U$
+equals an element of the image of $B_0$; so $\Delta$ is a finitely
+presented torsion-free quotient of $B_0$~\cite[Proposition~2.3]{FFFStability}; torsion-freeness is preserved by
 Osin's embedding theorem~\cite[Theorem~2.4(5)]{OsinSmallCancellation}.
-Consequently, $P$ has
-property~\textup{(T)}.  By universality, $P$ contains a subgroup
-$P_1\times P_2\times F$ with $P_i\cong P$.  Let $E$ be the double HNN
-extension of $P$ with stable letters $u_1,u_2$ and $u_iPu_i^{-1}=P_i$; it is
-finitely presented and torsion-free, and its Bass--Serre action makes it
-acylindrically hyperbolic by the tree criterion of
-Minasyan--Osin~\cite{MinasyanOsin}.  Hull's
-common quotient theorem~\cite[Corollary~7.4]{Hull} applied to $E$ and
-$H_0$ gives a surjection $\pi\colon E\to G_0$ onto a finitely presented
-torsion-free group with property~\textup{(T)}, injective on a prescribed
-finite subset of $E$; since $E$ is finitely generated, the proof of that
-corollary produces $G_0$ acylindrically hyperbolic.  Put $w=[a,b]\ne1$ in
-$F$ and require the prescribed finite subset to contain $1$ and $w$.  Then
-$\pi(w)\ne1$.
+Consequently, $\Delta$ has
+property~\textup{(T)}.  By universality, $\Delta$ contains a subgroup
+$\Delta_1\times\Delta_2\times F$ with $\Delta_i\cong\Delta$.  Fix isomorphisms
+$\phi_i\colon\Delta\to\Delta_i$ and let $E$ be the double HNN extension of
+$\Delta$ with stable letters $u_1,u_2$ and relations $u_ipu_i^{-1}=\phi_i(p)$
+for $p\in\Delta$, so that $u_i\Delta u_i^{-1}=\Delta_i$.  It is finitely
+presented, and torsion-free because an element of finite order fixes a
+vertex of the Bass--Serre tree and so is conjugate into $\Delta$.  The action
+of $E$ on that tree is minimal and fixes no end, since $\Delta_1$ and
+$\Delta_2$ are proper subgroups of $\Delta$~\cite[\S2]{FFF}, and the
+pointwise stabilizer of the vertices $u_1\Delta$ and $u_2\Delta$ is
+$\Delta_1\cap\Delta_2=1$; so $E$ is acylindrically hyperbolic by
+Minasyan--Osin~\cite[Theorem~2.1]{MinasyanOsin}.  Hull's common quotient
+theorem~\cite[Corollary~7.4]{Hull}, applied to the finitely generated
+torsion-free acylindrically hyperbolic groups $E$ and $B_0$, gives an
+acylindrically hyperbolic group $G_0$ with surjections $\pi\colon E\to G_0$
+and $B_0\to G_0$, where $\pi$ is injective on a prescribed finite subset
+of $E$ because $E$ has no nontrivial finite normal subgroup.  In the proof
+of that corollary, $G_0$ is obtained from the free product $E*B_0$ by two
+applications of Theorem~\ref{thm:hull}, each with finitely many elements
+$g_i$; so $G_0$ is torsion-free and, by the remark after
+Theorem~\ref{thm:hull}, finitely presented.  It has property~\textup{(T)}
+as a quotient of $B_0$.  Put $w=[a,b]\ne1$ in $F$ and require the
+prescribed finite subset to contain $1$ and $w$.  Then $\pi(w)\ne1$.
 
-Put $\Gamma=\pi(P)$, $t=\pi(u_1)$, and $J=t^{-1}\pi(F)t$.  Since $F$ commutes
-with $P_1=u_1Pu_1^{-1}$, the subgroup $J$ centralizes $\Gamma$, and
-$t\Gamma t^{-1}=\pi(P_1)\le\Gamma$, so $t\in\operatorname{Comp}_{G_0}(\Gamma)$.
+Put $\Gamma=\pi(\Delta)$, $t=\pi(u_1)$, and $J=t^{-1}\pi(F)t$.  Since $F$
+commutes with $\Delta_1=u_1\Delta u_1^{-1}$, the subgroup $J$ centralizes
+$\Gamma$, and $t\Gamma t^{-1}=\pi(\Delta_1)\le\Gamma$, so
+$t\in\operatorname{Comp}_{G_0}(\Gamma)$.
 Moreover $tJt^{-1}=\pi(F)\le\Gamma$, and $\Gamma$ has
-property~\textup{(T)} as a quotient of $P$.
+property~\textup{(T)} as a quotient of $\Delta$.
 
 \begin{lemma}\label{lem:commutator-in-defect}
-For every homomorphism $\rho\colon G_0\to L$,
+For every homomorphism $\rho\colon G_0\to\bar G$,
 \[
- \rho\bigl(\pi([F,F])\bigr)\le\mathfrak D_L(\rho(\Gamma)).
+ \rho\bigl(\pi([F,F])\bigr)\le\mathfrak D_{\bar G}(\rho(\Gamma)).
 \]
 \end{lemma}
 
 \begin{proof}
-Write $\Gamma_L=\rho(\Gamma)$, $t_L=\rho(t)$, and $J_L=\rho(J)$.  Then
-$t_L\Gamma_Lt_L^{-1}\le\Gamma_L$, $J_L$ centralizes $\Gamma_L$, and
-$t_LJ_Lt_L^{-1}=\rho(\pi(F))\le\Gamma_L$.  For $c\in J_L$ and
-$\ell\in\Gamma_L$, the commutator $[t_Lct_L^{-1},\ell]$ lies in
-$\mathfrak D_L(\Gamma_L)$ by \eqref{eq:intrinsic-defect}.  As $c$ ranges
-over $J_L$, the element $t_Lct_L^{-1}$ ranges over $\rho(\pi(F))$, and
-$\ell$ may be taken in $\rho(\pi(F))\le\Gamma_L$.  Hence the image of
-$[F,F]$ lies in $\mathfrak D_L(\Gamma_L)$.
+Write $\bar\Gamma=\rho(\Gamma)$, $\bar t=\rho(t)$, and $\bar J=\rho(J)$.
+Then $\bar t\bar\Gamma\bar t^{-1}\le\bar\Gamma$, $\bar J$ centralizes
+$\bar\Gamma$, and $\bar t\bar J\bar t^{-1}=\rho(\pi(F))\le\bar\Gamma$.  For
+$c\in\bar J$ and $\ell\in\bar\Gamma$, the commutator $[\bar tc\bar t^{-1},\ell]$
+lies in $\mathfrak D_{\bar G}(\bar\Gamma)$ by \eqref{eq:intrinsic-defect}.  As
+$c$ ranges over $\bar J$, the element $\bar tc\bar t^{-1}$ ranges over
+$\rho(\pi(F))$, and $\ell$ may be taken in $\rho(\pi(F))\le\bar\Gamma$.  So
+the image of $[F,F]$ lies in $\mathfrak D_{\bar G}(\bar\Gamma)$.
 \end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{thm:torsion-free}]
 Let $N$ be the normal closure of $\pi([F,F])$ in $G_0$.  It is nontrivial
 because it contains $\pi(w)$.  Lemma~\ref{lem:saturation} applied to $G_0$,
 $N$, and the finite set $\{1,\pi(w)\}$
-gives $q\colon G_0\to Q$ with $Q$ two-generated, finitely presented,
-torsion-free, and acylindrically hyperbolic, $q(N)=Q$, and $q(\pi(w))\ne1$.
-The group $Q$ has property~\textup{(T)} as a quotient of $G_0$.
+gives $\varphi\colon G_0\to Q$ with $Q$ two-generated, finitely presented,
+torsion-free, and acylindrically hyperbolic, $\varphi(N)=Q$, and
+$\varphi(\pi(w))\ne1$.  The group $Q$ has property~\textup{(T)} as a
+quotient of $G_0$.
 
-Let $r\colon Q\to L$ be a surjection onto a nontrivial group and put
-$\rho=r\circ q$.  Since $q(N)=Q$, the normal closure of
-$\rho(\pi([F,F]))$ in $L$ is $\rho(N)=L$.  By
+Let $r\colon Q\to\bar G$ be a surjection onto a nontrivial group and put
+$\rho=r\circ\varphi$.  Since $\varphi(N)=Q$, the normal closure of
+$\rho(\pi([F,F]))$ in $\bar G$ is $\rho(N)=\bar G$.  By
 Lemma~\ref{lem:commutator-in-defect},
-$\rho(\pi([F,F]))\le\mathfrak D_L(\rho(\Gamma))$, and since
-$\mathfrak D_L(\rho(\Gamma))$ is normal in $L$ and contains a normal
-generating set of $L$, it equals $L$.  The group $L$ has
-property~\textup{(T)} as a quotient of $Q$, and $\rho(\Gamma)$ has
+$\rho(\pi([F,F]))\le\mathfrak D_{\bar G}(\rho(\Gamma))$, and since
+$\mathfrak D_{\bar G}(\rho(\Gamma))$ is normal in $\bar G$ and contains a
+normal generating set of $\bar G$, it equals $\bar G$.  The group $\bar G$
+has property~\textup{(T)} as a quotient of $Q$, and $\rho(\Gamma)$ has
 property~\textup{(T)} as a quotient of $\Gamma$.
-Theorem~\ref{thm:compression-criterion}, applied to $L$ with the subgroup
-$\rho(\Gamma)$ and $K=L$, gives $\Rad_{\mathrm{MF}}(L)=L$.  Taking $r$ the
-identity gives $\Rad_{\mathrm{MF}}(Q)=Q$, and a nontrivial group equal to
-its own MF radical is not MF\@.
+Theorem~\ref{thm:compression-criterion}, applied to $\bar G$ with the
+subgroup $\rho(\Gamma)$ and $K=\bar G$, gives
+$\Rad_{\mathrm{MF}}(\bar G)=\bar G$.  Taking $r$ the identity gives
+$\Rad_{\mathrm{MF}}(Q)=Q$, and a nontrivial group equal to its own MF
+radical is not MF\@.
 \end{proof}
 
 \section*{Acknowledgments}
@@ -1637,7 +1675,8 @@ Linear and Multilinear Algebra \textbf{70} (2022), no.~4, 705--713,
 C.~Schafhauser,
 \emph{Finite dimensional approximations of certain amalgamated free
 products of groups},
-preprint, 2023,
+Groups Geom. Dyn. \textbf{20} (2026), no.~2, 607--615,
+\doi{10.4171/GGD/826},
 \href{https://arxiv.org/abs/2306.02498}{arXiv:2306.02498}.
 
 \end{thebibliography}

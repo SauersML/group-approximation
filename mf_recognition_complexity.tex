@@ -37,7 +37,6 @@
 \theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
 \theoremstyle{plain}
-\theoremstyle{plain}
 \newtheorem{mainthm}{Theorem}
 \renewcommand{\themainthm}{\Alph{mainthm}}
 \newcommand{\F}{\mathbb F}
@@ -86,9 +85,9 @@ an explicitly coded rational unitary microstate with decidable norm
 certificates.  We also construct, computably from any program, a
 finite presentation that defines an MF group if and only if the program
 halts on infinitely many inputs.  If the program halts on only finitely
-many inputs, the presented group contains the non-MF group
-of~\cite{NonMF}; if it halts on infinitely many inputs, the group is MF
-by a permanence theorem for HNN extensions whose edge isomorphism is
+many inputs, the presented group contains the finitely presented non-MF
+group of~\cite[Theorem~C]{NonMF}; if it halts on infinitely many inputs,
+the group is MF by a permanence theorem for HNN extensions whose edge isomorphism is
 implemented by a unitary of a norm matrix corona.
 \end{abstract}
 
@@ -162,13 +161,12 @@ $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$
 
 Given a program index $e$, we construct a finite presentation
 $\widehat R_e$ in Section~\ref{sec:compiler}.  If the $e$-th partial function
-has finite domain, then the presented group contains $H$ and is not MF\@.
+has finite domain, then the presented group contains the finitely presented
+non-MF group $E$ of~\cite[Theorem~C]{NonMF} and is not MF\@.
 If its domain is infinite, the edge isomorphism in the defining HNN
 extension is implemented by a unitary of a norm matrix corona, and the
-presented group is MF by Theorem~\ref{thm:hnn-permanence}.
-Korchagin proved that the MF property is closed under direct
-limits~\cite[Proposition~13]{Korchagin}.  Consequently, every finitely
-generated non-MF group is a quotient of a finitely presented one.
+presented group is MF by Theorem~\ref{thm:hnn-permanence}.  The two sets
+of Theorem~\ref{thm:recognition} appear in bold in Figure~\ref{fig:levels}.
 
 \subsection*{Relation to prior work}
 
@@ -182,12 +180,11 @@ Adian--Rabin, undecidable; Theorem~\ref{thm:recognition} determines the
 exact level.
 A classical $\Pi^0_2$-complete recognition problem for finitely presented
 groups is torsion-freeness, by Lempp~\cite{Lempp}.  The first step of
-Section~\ref{sec:compiler} is an executable parametric finite-seed switch.
-The passage from recursive to finite
-presentations is where the operator algebra enters: a generic Higman
-embedding does not preserve the MF property, and the HNN extensions of
-Section~\ref{sec:compiler} are chosen so that
-Theorem~\ref{thm:hnn-permanence} applies to them.
+Section~\ref{sec:compiler} is a recursive presentation that is trivial or
+isomorphic to $E$ according to whether the $e$-th domain is infinite or
+finite.  The operator algebra enters in the passage from recursive to
+finite presentations: the HNN extensions of Section~\ref{sec:compiler} are
+chosen so that Theorem~\ref{thm:hnn-permanence} applies to them.
 
 \section{MF groups}\label{sec:prelim}
 
@@ -250,12 +247,12 @@ and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
 
 \begin{proof}
 Maps for an exhaustion $(F_n,1/n)$ of $G$, extended by $1$ outside
-$F_n$, form an MF model.  Conversely, Korchagin's amplification ---
-replacing $V_n(g)$ by a direct sum of its tensor powers --- raises the
-separation of finitely many nonidentity elements above $1$ while
-multiplying the defects by a constant~\cite[Proposition~7]{Korchagin}.
-A block direct sum of late amplified models, one summand for each
-$g\in F\setminus\{1\}$, gives the stated map.
+$F_n$, form an MF model.  Conversely, Korchagin's amplification --- replacing $V_n$ by an iterated
+adjoint representation $\operatorname{Ad}^k\circ V_n$ --- raises the
+separation of a fixed nonidentity element to $\sqrt2$ while multiplying
+the defects by a constant~\cite[Proposition~5]{Korchagin}, and a block
+direct sum of late amplified models, one summand for each
+$g\in F\setminus\{1\}$, gives the stated map~\cite[Proposition~7]{Korchagin}.
 \end{proof}
 
 We use the Kleene--Mostowski arithmetical hierarchy in its standard
@@ -271,8 +268,7 @@ Let $\mathrm{MF}_{\mathrm{fp}}$ be the set of codes $P$ such that $G_P$ is
 MF, and $\mathrm{NONMF}_{\mathrm{fp}}$ its complement.  Korchagin's
 Proposition~8~\cite{Korchagin} is the finite-presentation form of
 Lemma~\ref{lem:local-models}; the certificates below add normal-closure
-witnesses for the trivial words, which is what makes the relation
-decidable.
+witnesses for the trivial words, and the relation becomes decidable.
 
 \begin{proposition}[finite certificates]\label{prop:mf-upper-bound}
 There is a decidable relation $C(P,n,c)$ on triples of natural numbers
@@ -320,11 +316,12 @@ Gaussian-rational matrices for the generators, one upper-norm certificate
 for each relator, and one lower-norm certificate for each word of $W$.
 The matrix checker verifies exact unitarity.  For upper bounds it uses the
 power/Frobenius estimates for $X^*X$; for lower bounds it uses a coded
-rational vector.  Hence every field is finite data and the complete answer
-checker is primitive recursive.  Density and polar correction show that
-every strict matrix answer in~\eqref{eq:open-challenges} has such a coded
-rational answer, while soundness of the norm certificates gives the
-converse.
+rational vector.  So every field is finite data and the complete answer
+checker is primitive recursive.  Every strict matrix answer
+in~\eqref{eq:open-challenges} has such a coded rational answer: the Cayley
+transform $(1+ia)(1-ia)^{-1}$ of a Gaussian-rational Hermitian matrix $a$ is a
+Gaussian-rational unitary, and these unitaries are dense in $\U(d)$; soundness
+of the norm certificates gives the converse.
 
 Fix total computable decoders $n\mapsto(W_n,k_n)$ for challenges and
 $c\mapsto a_c$ for answers, both surjective, and let $C(P,n,c)$ mean that
@@ -361,8 +358,8 @@ $(A,\rho,\tau)$ if $A$ is a separable unital MF $C^*$-algebra,
 $\rho\colon G\to\U(A)$ is a homomorphism, and $\tau$ is a tracial state on
 $A$ with $\tau(\rho(g))=0$ for every $g\ne1$.  Since $\tau(1)=1$, such a
 group embeds in $\U(A)$, so it is MF\@.  Only the vanishing of $\tau$
-off the identity is used below; traciality is what the
-constructions below provide.
+off the identity is used below, and the constructions below produce
+tracial states.
 \leanverified{Manuscript/OneSidedMFRadical/HNNCoronaConjugatorSentenceAudit}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit.RegularRealizationData.rho_injective}
 \leanverified{Manuscript/OneSidedMFRadical/HNNCoronaConjugatorSentenceAudit}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit.RegularRealizationData.isOperatorMF}
 To embed an arbitrary norm matrix corona $\mathcal Q_{\mathbf d}$ in
@@ -440,7 +437,7 @@ inclusions
 \]
 and let $P=A_1*_CA_2$ be the full amalgamated free product, in which
 $A_1$ and $A_2$ embed~\cite[Section~2.1]{Shulman}.  Ueda proved that the
-universal HNN extension is a full corner of exactly this amalgamated free
+universal HNN extension is a full corner of this amalgamated free
 product~\cite[Proposition~2.4]{Ueda}: for the projection
 $e=\iota_A(1_D,0)=\iota_B(1_D,0)$ there is an isomorphism of $U$ onto
 $ePe$ carrying $d\in D$ to $\operatorname{diag}(d,0)$ and the unitary
@@ -628,9 +625,9 @@ Table~\ref{tab:objects} lists the objects of the construction.
 \begin{table}[htb]
 \centering\small
 \begin{tabular}{@{}l@{\qquad}p{0.66\linewidth}@{}}
-$E$ & a fixed finitely presented non-MF Shalom-cover group \\[1pt]
-$C_e$ & recursively presented; trivial for $e\in\mathrm{INF}$, contains
-  $E$ for $e\in\mathrm{FIN}$ \\[1pt]
+$E$ & the finitely presented non-MF group of~\cite[Theorem~C]{NonMF} \\[1pt]
+$C_e$ & recursively presented; trivial for $e\in\mathrm{INF}$, isomorphic
+  to $E$ for $e\in\mathrm{FIN}$ \\[1pt]
 $Q_e=F/N_e$ & three-generated recursively presented group containing
   $C_e$; here $F=F(x,y,t)$ \\[1pt]
 $Q_+=F/N_+$ & the value of $Q_e$ for trivial $C_e$; embeds in
@@ -659,10 +656,13 @@ There is a fixed finite presentation $P_-$ whose group $E=G_{P_-}$ is not MF.
 \end{lemma}
 
 \begin{proof}
-Use the finitely presented Shalom-cover marked-compression group.  Its
-distinguished nontrivial mark is killed by every homomorphism to an
-operator-norm matrix corona, so the group is not MF.  Fix one finite
-presentation code $P_-$ for this group.
+Theorem~C of~\cite{NonMF} gives a finitely presented torsion-free group
+that equals its own MF radical, and a nontrivial group equal to its own MF
+radical is not MF\@.  Fix one finite presentation code $P_-$ for this
+group.  Any finitely presented non-MF group serves here: Korchagin proved
+that the MF property is closed under direct
+limits~\cite[Proposition~13]{Korchagin}, so every finitely generated
+non-MF group, for instance $H$, is a quotient of a finitely presented one.
 \end{proof}
 \leanverified{Computability/PresentationCodeCompleteness}{GroupApproximation.PresentationCodes.not_isOperatorMF_negativeCode}
 
@@ -676,12 +676,25 @@ $e\in\mathrm{FIN}$.
 \end{lemma}
 
 \begin{proof}
-Apply the parametric finite-seed switch to the fixed code $P_-$ and the
-program index $e$.  Its relator enumerator is computable jointly in the seed
-code and $e$.  On an infinite domain every seed generator is eventually
-killed, giving the trivial group.  On a finite domain the construction has
-an explicit inverse pair of homomorphisms identifying the presented group
-with $G_{P_-}=E$.
+Write $P_-=\langle X\mid R\rangle$ with $X$ finite.  The generators of $C_e$
+are the symbols $x^{(k)}$ for $x\in X$ and $k\in\mathbb N$, one copy of $X$
+for each \emph{layer} $k$.  Run the $e$-th program on all inputs by
+dovetailing, and let $m_s$ be the number of elements of $W_e$ found by
+stage $s$, with $m_{-1}=0$.  The relators are enumerated in stages.  At
+stage $s$, enumerate the relators $R$ written in the layer $s$; if
+$m_s>m_{s-1}$, enumerate $x^{(k)}=1$ for all $x\in X$ and all $k\le s$; and
+otherwise enumerate $x^{(s)}=x^{(s+1)}$ for all $x\in X$.  The enumerator
+is computable in $P_-$ and $e$.
+
+If $e\in\mathrm{INF}$, then for every $k$ some stage $s\ge k$ has
+$m_s>m_{s-1}$, so every generator is killed and $C_e$ is trivial.  If
+$e\in\mathrm{FIN}$, let $s_*$ be the last stage with $m_s>m_{s-1}$, or
+$s_*=-1$ if there is none.  The layers $k\le s_*$ are killed; the stage
+$s_*$ identifies nothing, so layer $s_*$ is not identified with layer
+$s_*+1$; and every stage $s>s_*$ identifies layer $s$ with layer $s+1$.  So
+the layers $k>s_*$ are identified with one another, and $x^{(k)}\mapsto x$
+for $k>s_*$, $x^{(k)}\mapsto1$ for $k\le s_*$, is an isomorphism
+$C_e\to E$ with inverse $x\mapsto x^{(s_*+1)}$.
 \end{proof}
 \leanverified{Computability/ParametricRecursiveSwitchPresentation}{GroupApproximation.ParametricRecursiveSwitchPresentation.computable₂_parametricSwitchEnumeratorCode}
 \leanverified{Computability/ParametricRecursiveSwitchPresentation}{GroupApproximation.ParametricRecursiveSwitchPresentation.compiledCarrier_equiv_punit_of_infiniteDomain}
@@ -1003,7 +1016,7 @@ groups are MF\@.  So it applies to any group property that is
 closed under subgroups, given a finitely presented
 group without the property and an analogue of
 Lemma~\ref{lem:tensor-sync} for the twisted HNN extensions; the open
-problems below record which input is missing for soficity and for
+problems below state which input is missing for soficity and for
 hyperlinearity.
 \end{remark}
 
@@ -1045,7 +1058,7 @@ and matrix norms.
 
 \begin{thebibliography}{99}
 \bibitem[NMF]{NonMF}
-Sauers,
+\paperauthor,
 \emph{Non-MF Groups},
 2026, Palomar registry entry
 \url{https://palomar-registry.org/entry?id=PALOMAR-2026-08-24-000006&version=1}.
@@ -1095,12 +1108,6 @@ A.~I. Korchagin,
 Math. Notes \textbf{102} (2017), no.~2, 198--211,
 \doi{10.1134/S0001434617070227},
 \href{https://arxiv.org/abs/1704.06906}{arXiv:1704.06906}.
-
-\bibitem[Lev]{Leavitt}
-W.~G.~Leavitt,
-\emph{The module type of a ring},
-Trans. Amer. Math. Soc. \textbf{103} (1962), 113--130,
-\doi{10.1090/S0002-9947-1962-0132764-X}.
 
 \bibitem[Lem]{Lempp}
 S.~Lempp,
