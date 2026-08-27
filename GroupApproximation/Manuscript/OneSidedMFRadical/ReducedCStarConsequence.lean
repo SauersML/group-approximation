@@ -43,8 +43,8 @@ printed sentence.
 the reduced-C⋆ sentence was added to it, and it is now a proper subclaim: it
 carries nontriviality, simplicity, property `(T)`, `Rad_MF(H) = H`, triviality
 of every MF-target homomorphism, and failure of MF-ness, but says nothing about
-`C*_r(H)`.  The printed theorem also opens with "`H` is countable", which
-`HeadlineConclusion` does not assert either.
+`C*_r(H)`.  The printed theorem also opens with "`H` is finitely generated",
+which `HeadlineConclusion` does not assert either.
 
 `PrintedHeadline` restores both, so that the label `thm:headline` again has a
 single declaration stating exactly what it prints.  It is a conjunction of
@@ -218,28 +218,30 @@ theorem manuscriptNotEverySeparableStablyFiniteCStarAlgebraIsMF :
 /-! ## The printed theorem, whole -/
 
 /-- **`thm:headline` exactly as printed, as one proposition.**  With
-`R = L_{𝔽₂}(1,2)` and `H = EL₁₂(R)`: `H` is countable, nontrivial, simple, has
+`R = L_{𝔽₂}(1,2)` and `H = EL₁₂(R)`: `H` is finitely generated, nontrivial,
+simple, has
 property `(T)`, and `Rad_MF(H) = H` — equivalently every homomorphism from `H`
 to an MF group is trivial, so in particular `H` is not MF — and its reduced
 group C⋆-algebra `C*_r(H)` is separable and stably finite but is not MF.
 
-The three conjuncts are, in order, countability, the six clauses of
+The three conjuncts are, in order, finite generation, the six clauses of
 `RankTwelveEndpoint.HeadlineConclusion`, and the reduced-C⋆ clause
-`ReducedCStarConsequence`.  Countability is a separate conjunct because
+`ReducedCStarConsequence`.  Finite generation is a separate conjunct because
 `HeadlineConclusion` does not carry it, though the printed sentence states it
 first; the reduced-C⋆ clause is separate because `HeadlineConclusion` predates
 it.  Nothing here is proved that was not already proved upstream — see the
 module docstring for why the conjunction is nevertheless worth a name. -/
 def PrintedHeadline : Prop :=
-  Countable H ∧ HeadlineConclusion ∧ ReducedCStarConsequence
+  Group.FG H ∧ HeadlineConclusion ∧ ReducedCStarConsequence
 
 /-- **The printed theorem, proved, hypothesis-free.**  Each conjunct is
-discharged by the endpoint that already owns it: `RankTwelveEndpoint.countable`,
+discharged by the endpoint that already owns it:
+`RankTwelveEndpoint.finitelyGenerated`,
 `manuscriptBinaryLeavittHeadline` — which is where simplicity enters, via
 `RankTwelveEndpoint.manuscriptPropositionSimple` — and
 `manuscriptReducedCStarConsequence`. -/
 theorem manuscriptPrintedHeadline : PrintedHeadline :=
-  ⟨RankTwelveEndpoint.countable, manuscriptBinaryLeavittHeadline,
+  ⟨RankTwelveEndpoint.finitelyGenerated, manuscriptBinaryLeavittHeadline,
     manuscriptReducedCStarConsequence⟩
 
 end OneSidedMFRadical
