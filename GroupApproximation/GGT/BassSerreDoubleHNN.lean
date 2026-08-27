@@ -133,7 +133,7 @@ noncomputable def axisElt (hj₁ : Function.Injective j₁)
     ((HNNExtension.of : StageOne j₁ hj₁ →* Double j₁ j₂ hj₁ hj₂)
       HNNExtension.t)⁻¹
 
-theorem axisElt_eq (hj₁ : Function.Injective j₁)
+@[simp] theorem axisElt_eq (hj₁ : Function.Injective j₁)
     (hj₂ : Function.Injective j₂) :
     axisElt hj₁ hj₂
       = secondStableLetter j₁ j₂ hj₁ hj₂ *

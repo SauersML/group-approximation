@@ -520,7 +520,11 @@ theorem step (φ : A ≃* B) (g : G) (L : List (ℤˣ × G)) (v : ℤˣ) (c : G)
     · rw [hval, vmk_mul_of]
     · rw [hval, tLen_mul_of, tLen_eq φ hL rfl]
   · left
-    have hseamL := (List.isChain_append.1 hl).2.2
+    have hlchain : List.IsChain
+        (fun p q : ℤˣ × G =>
+          p.2 ∈ HNNExtension.toSubgroup A B p.1 → p.1 = q.1)
+        (L ++ [((v : ℤˣ), c)]) := hl
+    have hseamL := (List.isChain_append.1 hlchain).2.2
     have hnew1 : NoPinch A B (L ++ [(v, c * a)]) :=
       List.IsChain.append hL (noPinch_singleton _) (by
         intro p hp q hq hmem
@@ -540,7 +544,10 @@ theorem step (φ : A ≃* B) (g : G) (L : List (ℤˣ × G)) (v : ℤˣ) (c : G)
       rw [wordProd_concat, wordProd_concat, map_one, mul_one, hkey]
       group
     have hlen2 : ((L ++ [((v : ℤˣ), c * a)]) ++ [((u : ℤˣ), (1 : G))]).length
-        = L.length + 2 := by simp
+        = L.length + 2 := by
+      have e1 := length_concat (L ++ [((v : ℤˣ), c * a)]) ((u : ℤˣ), (1 : G))
+      have e2 := length_concat L ((v : ℤˣ), c * a)
+      omega
     rw [← hprod, tLen_eq φ hnew rfl, hlen2]
 
 /-- **The parent of a vertex is unique.**  Every vertex other than the base one

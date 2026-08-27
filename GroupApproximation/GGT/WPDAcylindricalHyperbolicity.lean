@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.ElementaryOsinSNormal
 import GroupApproximation.GGT.WPDElement
 import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 
@@ -36,14 +37,17 @@ the implication the manuscript needs, `(AH₃) ⇒ (AH₁)`, factors as
   attributes to that paper; here it is `DGOTheorem68`.
 * `(AH₄) ⇒ (AH₁)`: Osin, Theorem 5.4, here `OsinTheorem54`, together with his
   Lemma 5.12, here `RelativeCayleyNonElementary`.  Lemma 5.12 is in turn
-  assembled by `relativeCayleyNonElementary_of` from the three results its
-  proof cites: `DGOCorollary612`, `DGOTheorem614` and `OsinTheorem11`.
+  assembled by `relativeCayleyNonElementary_of` from `DGOCorollary612`,
+  `DGOTheorem614`, and the two facts of Osin's §6 that `GGT.Elementary`
+  records.  Its appeal to Osin's Theorem 1.1 is *proved* here, not cited.
 
 `osinAH4ToAH1_of` proves `OsinAH4ToAH1` from Theorem 5.4 and Lemma 5.12, and
 `osinTheorem12_of` assembles `OsinTheorem12`.  Nothing in this development
-inhabits the named literature propositions; the five that remain are
-`DGOTheorem68`, `OsinTheorem54`, `DGOCorollary612`, `DGOTheorem614` and
-`OsinTheorem11`.
+inhabits the named literature propositions; four remain here — `DGOTheorem68`,
+`OsinTheorem54`, `DGOCorollary612`, `DGOTheorem614` — and two are
+ggt-elementary's, `Elementary.IndependentOfNoCommonZpow` (Osin's Lemma 6.5 and
+Corollary 6.6) and `Elementary.ElementaryClosureVirtuallyCyclic` (his
+Theorem 6.8).
 
 ## What is proved
 
@@ -55,9 +59,17 @@ inhabits the named literature propositions; the five that remain are
 * `osinAH4ToAH1_of` — `(AH₄) ⇒ (AH₁)` from Osin's Theorem 5.4 and his
   Lemma 5.12, the last step being a definitional unpacking of the Cayley-graph
   form.
-* `relativeCayleyNonElementary_of` — Lemma 5.12 from the three results its own
-  proof cites, so that the non-elementarity clause is no longer a citation in
-  its own right.
+* `relativeCayleyNonElementary_of` — Lemma 5.12 from the results its own proof
+  cites, so that the non-elementarity clause is no longer a citation in its own
+  right.
+* `exists_notMem_elementaryClosure_of_no_common_power` — `E(g)` is a proper
+  subgroup as soon as some pair of elements has no common nonzero power.
+* `actsNonElementarily_of_no_common_power` — **the exclusion step of Osin's
+  Theorem 1.1, proved**: a loxodromic element and a common-power-free pair give
+  two independent loxodromics, namely `g` and its conjugate by an element
+  outside `E(g)`.
+* `infinite_zpowers_of_not_isOfFinOrder` — an element of infinite order
+  generates an infinite cyclic subgroup.
 * `infinite_of_mem_of_isLoxodromic` — a subgroup containing a loxodromic
   element is infinite, so the infinitude clause of `(AH₄)` is derived from the
   loxodromy `AH3Data` already records rather than asked of the citation.
@@ -280,7 +292,7 @@ def RelativeCayleyNonElementary : Prop :=
     IsAcylindrical G (Cayley D.alphabet) → IsNonDegenerate (D.fam ()) →
       ActsNonElementarily (⊤ : Subgroup G) (Cayley.base D.alphabet)
 
-/-! ### Lemma 5.12 from its three cited inputs -/
+/-! ### The two results Lemma 5.12's proof cites -/
 
 /-- **Dahmani--Guirardel--Osin, Corollary 6.12**, as Osin's Lemma 5.12 cites
 it: a non-degenerate hyperbolically embedded subgroup makes `G` contain
@@ -294,43 +306,127 @@ def DGOCorollary612 : Prop :=
     IsNonDegenerate (D.fam ()) →
       ∃ g : G, IsLoxodromic g (Cayley.base D.alphabet)
 
-/-- **Dahmani--Guirardel--Osin, Theorem 6.14**, in the "in particular" form
-Osin uses it: *"by Theorem 6.14 from [DGO] `G` contains non-abelian free
-subgroups.  In particular, `G` is not virtually cyclic."*  Only the
-consequence is recorded, so this asks for less than the theorem gives. -/
+/-- **Dahmani--Guirardel--Osin, Theorem 6.14**, in the form Osin's Lemma 5.12
+uses it: *"by Theorem 6.14 from [DGO] `G` contains non-abelian free subgroups.
+In particular, `G` is not virtually cyclic."*
+
+Recorded as the pair of free generators rather than as the free subgroup: two
+free generators of a non-abelian free subgroup satisfy `a ^ m = b ^ k → m = 0
+∧ k = 0`, so this is implied by the theorem.  Osin's own "in particular" is
+recovered from it by `not_isVirtuallyCyclic_of_no_common_power`, so nothing is
+lost by recording the pair, and the pair is what the argument below actually
+consumes. -/
 def DGOTheorem614 : Prop :=
   ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
-    IsNonDegenerate (D.fam ()) → ¬ IsVirtuallyCyclic G
+    IsNonDegenerate (D.fam ()) →
+      ∃ a b : G, ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0
 
-/-- **Osin, Theorem 1.1**, in the form Lemma 5.12's proof uses it:
+/-! ### The elementary closure supplies the exclusion Osin's Theorem 1.1 makes
 
-> Let `G` be a group acting acylindrically on a hyperbolic space.  Then `G`
-> satisfies exactly one of the following three conditions.  (a) `G` has
-> bounded orbits.  (b) `G` is virtually cyclic and contains a loxodromic
-> element.  (c) `G` contains infinitely many independent loxodromic elements.
+Osin's Lemma 5.12 finishes through his Theorem 1.1 — the trichotomy for
+acylindrical actions — to pass from "a loxodromic exists and `G` is not
+virtually cyclic" to non-elementarity.  That step does not have to be a
+citation here: `GGT.Elementary` records the two facts of Osin's §6 it rests on,
+`Elementary.IndependentOfNoCommonZpow` (Lemma 6.5 and Corollary 6.6) and
+`Elementary.ElementaryClosureVirtuallyCyclic` (Theorem 6.8), and the passage
+from them to two independent loxodromics is proved below.  Those two
+propositions are ggt-elementary's; nothing here restates them. -/
 
-Recorded as the two exclusions: a loxodromic element rules out (a), and
-non-virtual-cyclicity rules out (b), so (c) holds and in particular there are
-two independent loxodromics.  That consequence, not the trichotomy itself, is
-what is asked for. -/
-def OsinTheorem11 : Prop :=
-  ∀ (G : Type u) [Group G] (X : Type v) [PseudoMetricSpace X] [MulAction G X]
-    (δ : ℝ) (x : X), IsIsometricAction G X → IsHyperbolicSpace δ X →
-      IsAcylindrical G X → (∃ g : G, IsLoxodromic g x) →
-        ¬ IsVirtuallyCyclic G → ActsNonElementarily (⊤ : Subgroup G) x
+/-- The cyclic subgroup generated by an element of infinite order is infinite. -/
+theorem infinite_zpowers_of_not_isOfFinOrder {G : Type u} [Group G] {a : G}
+    (ha : ¬ IsOfFinOrder a) :
+    ((Subgroup.zpowers a : Subgroup G) : Set G).Infinite := by
+  refine Set.infinite_of_injective_forall_mem
+    (f := fun n : ℤ => a ^ n)
+    (injective_zpow_iff_not_isOfFinOrder.mpr ha) ?_
+  intro n
+  exact Subgroup.mem_zpowers_iff.mpr ⟨n, rfl⟩
 
-/-- **Osin's Lemma 5.12, assembled from the three results his proof cites**, in
-his order: loxodromic elements exist by Corollary 6.12, `G` is not virtually
-cyclic by Theorem 6.14, and the trichotomy of Theorem 1.1 then leaves only the
-non-elementary case. -/
-theorem relativeCayleyNonElementary_of (h11 : OsinTheorem11)
+/-- **The elementary closure of a loxodromic element is proper**, as soon as
+some pair of elements has no common nonzero power.
+
+If every element lay in `E(g)` then both cyclic subgroups `⟨a⟩` and `⟨b⟩` would
+lie in `E(g)`; both are infinite, because a common-power-free pair has both
+entries of infinite order; so Osin's Theorem 6.8 puts a nonzero power of `g`
+inside each, say `a ^ m = g ^ j` and `b ^ n = g ^ k` with `j, k ≠ 0`.  Then
+`a ^ (m k) = g ^ (j k) = b ^ (n j)`, and the pair forbids it unless `m = 0` —
+which would make `g ^ j = 1` for `j ≠ 0`, impossible for a loxodromic. -/
+theorem exists_notMem_elementaryClosure_of_no_common_power
+    {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
+    {x : X} (hvc : Elementary.ElementaryClosureVirtuallyCyclic G x) {g : G}
+    (hg : IsLoxodromic g x) {a b : G}
+    (hab : ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0) :
+    ∃ h : G, h ∉ Elementary.elementaryClosure g := by
+  by_contra hall
+  push_neg at hall
+  have hginj : Function.Injective (fun n : ℤ => g ^ n) :=
+    injective_zpow_iff_not_isOfFinOrder.mpr (not_isOfFinOrder_of_isLoxodromic hg)
+  have hafin : ¬ IsOfFinOrder a := by
+    intro hfin
+    obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    have h1 : a ^ (n : ℤ) = b ^ (0 : ℤ) := by
+      rw [zpow_zero, zpow_natCast, hpow]
+    have hz : (n : ℤ) = 0 := (hab (n : ℤ) 0 h1).1
+    omega
+  have hbfin : ¬ IsOfFinOrder b := by
+    intro hfin
+    obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    have h1 : a ^ (0 : ℤ) = b ^ (n : ℤ) := by
+      rw [zpow_zero, zpow_natCast, hpow]
+    have hz : (n : ℤ) = 0 := (hab 0 (n : ℤ) h1).2
+    omega
+  obtain ⟨j, hj, hjmem⟩ := hvc g hg (Subgroup.zpowers a)
+    (by intro y _; exact hall y) (infinite_zpowers_of_not_isOfFinOrder hafin)
+  obtain ⟨k, hk, hkmem⟩ := hvc g hg (Subgroup.zpowers b)
+    (by intro y _; exact hall y) (infinite_zpowers_of_not_isOfFinOrder hbfin)
+  obtain ⟨m, hm⟩ := Subgroup.mem_zpowers_iff.mp hjmem
+  obtain ⟨n, hn⟩ := Subgroup.mem_zpowers_iff.mp hkmem
+  have hkey : a ^ (m * k) = b ^ (n * j) := by
+    rw [zpow_mul, hm, zpow_mul, hn, ← zpow_mul, ← zpow_mul, mul_comm j k]
+  have hmk := (hab (m * k) (n * j) hkey).1
+  have hm0 : m = 0 := by
+    rcases mul_eq_zero.mp hmk with h0 | h0
+    · exact h0
+    · exact absurd h0 hk
+  have hgj : g ^ j = g ^ (0 : ℤ) := by
+    rw [← hm, hm0, zpow_zero, zpow_zero]
+  exact hj (hginj hgj)
+
+/-- **Osin's Theorem 1.1 exclusion, proved rather than cited.**  A loxodromic
+element together with a common-power-free pair gives two independent
+loxodromics: `g` and its conjugate by an element outside `E(g)`. -/
+theorem actsNonElementarily_of_no_common_power
+    {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
+    {x : X} (hiso : IsIsometricAction G X)
+    (hindep : Elementary.IndependentOfNoCommonZpow G x)
+    (hvc : Elementary.ElementaryClosureVirtuallyCyclic G x) {g : G}
+    (hg : IsLoxodromic g x) {a b : G}
+    (hab : ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0) :
+    ActsNonElementarily (⊤ : Subgroup G) x := by
+  obtain ⟨h, hh⟩ :=
+    exists_notMem_elementaryClosure_of_no_common_power hvc hg hab
+  exact Elementary.actsNonElementarily_of_notMem_elementaryClosure hiso hindep
+    (Subgroup.mem_top g) (Subgroup.mem_top h) hg hh
+
+/-- **Osin's Lemma 5.12, assembled.**  His proof runs: loxodromic elements
+exist by Dahmani--Guirardel--Osin's Corollary 6.12, non-abelian free subgroups
+by their Theorem 6.14, and the trichotomy of Osin's Theorem 1.1 then leaves
+only the non-elementary case.  The last step is
+`actsNonElementarily_of_no_common_power`, which is proved from the two facts of
+Osin's §6 that `GGT.Elementary` records, so the trichotomy is not carried here
+as a citation of its own. -/
+theorem relativeCayleyNonElementary_of
+    (hindep : ∀ (G : Type u) [Group G] (D : RelGenSet G Unit),
+      Elementary.IndependentOfNoCommonZpow G (Cayley.base D.alphabet))
+    (hvc : ∀ (G : Type u) [Group G] (D : RelGenSet G Unit),
+      Elementary.ElementaryClosureVirtuallyCyclic G (Cayley.base D.alphabet))
     (h612 : DGOCorollary612) (h614 : DGOTheorem614) :
     RelativeCayleyNonElementary := by
-  intro G _ D hemb hacy hnd
-  obtain ⟨δ, hδ⟩ := hemb.hyperbolic
-  exact h11 G (Cayley D.alphabet) δ (Cayley.base D.alphabet)
-    (isIsometricAction_cayley D.alphabet) hδ hacy (h612 G D hemb hnd)
-    (h614 G D hemb hnd)
+  intro G _ D hemb _hacy hnd
+  obtain ⟨g, hg⟩ := h612 G D hemb hnd
+  obtain ⟨a, b, hab⟩ := h614 G D hemb hnd
+  exact actsNonElementarily_of_no_common_power
+    (isIsometricAction_cayley D.alphabet) (hindep G D) (hvc G D) hg hab
 
 /-- **`(AH₄) ⇒ (AH₁)` from Theorem 5.4 and the non-elementarity clause.**
 

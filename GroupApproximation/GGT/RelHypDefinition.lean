@@ -2,6 +2,8 @@ import GroupApproximation.GGT.RelHypRelativeCayley
 import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Algebra.CoprodIFinitePresentation
 import GroupApproximation.Kazhdan.AmenableKazhdanFinite
+import Mathlib.GroupTheory.Index
+import Mathlib.GroupTheory.SpecificGroups.Cyclic
 
 /-!
 # Relative hyperbolicity, the free product `U ∗ H`, and non-elementarity
