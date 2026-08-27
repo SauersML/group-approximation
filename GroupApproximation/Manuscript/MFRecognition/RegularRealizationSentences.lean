@@ -1,5 +1,6 @@
 import GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit
 import GroupApproximation.Analysis.MFAlgebraMatrixAmplification
+import GroupApproximation.Analysis.ReducedProductMFPermanence
 import GroupApproximation.Sofic.LEFSofic
 import GroupApproximation.Sofic.HyperlinearNonScalar
 import GroupApproximation.Sofic.NormTraceGap
@@ -456,44 +457,19 @@ end HNNPermanenceSetup
 
 section ReducedProducts
 
-/-- **The reduced-products peer lane's cited input.**  Clause 1 of
-`lem:reduced-products`: "If every `B_n` is MF, then every separable
-`C*`-subalgebra of `∏ₙBₙ/⊕ₙBₙ` is MF."  The ambient reduced product itself
-(`PolarLiftingGeneralCStar.CStarProductCorona`, at the cofinite filter) is
-already in the repository; its bundled `CStarAlgebra`/`StarModule` instances
-(closedness and star-stability of the null-sequence ideal) and the fact that
-the closed subalgebra `C` inherits a genuine `NonUnitalCStarAlgebra`
-structure are the `reduced-products` lane's own construction, so they are
-supplied as data rather than found by instance search.  A consumer takes a
-term of this Prop as a hypothesis rather than finding a proof below. -/
-def ReducedProductSeparableSubalgebraIsMF
-    (B : ℕ → Type) [∀ n, CStarAlgebra (B n)] [∀ n, Nontrivial (B n)]
-    [CStarAlgebra (PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite)]
-    [StarModule ℂ (PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite)]
-    (C : StarSubalgebra ℂ
-      (PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite))
-    [NonUnitalCStarAlgebra C] : Prop :=
-  (∀ n, IsMFAlgebra (B n)) → IsClosed (C : Set (PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite)) →
-    TopologicalSpace.SeparableSpace C → IsMFAlgebra C
-
-/-- **Sentence `9f790b48eb4f` (attribution only).**  "The first assertion
+/-- **Sentence `9f790b48eb4f`.**  "The first assertion
 follows by diagonalization from the matrix-corona characterization of MF
 algebras (Blackadar--Kirchberg; see also [Chapter 11]{BrownOzawa}), and
-Korchagin uses it in this form [Proposition 6]{Korchagin}."  This is the
-lemma's own first clause, quoted here with its attribution, and consumed
-from `ReducedProductSeparableSubalgebraIsMF` as a leading hypothesis. -/
+Korchagin uses it in this form [Proposition 6]{Korchagin}." -/
 theorem reducedProduct_separableSubalgebra_isMF_sentence
     (B : ℕ → Type) [∀ n, CStarAlgebra (B n)] [∀ n, Nontrivial (B n)]
-    [CStarAlgebra (PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite)]
-    [StarModule ℂ (PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite)]
-    (C : StarSubalgebra ℂ
-      (PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite))
-    [NonUnitalCStarAlgebra C]
-    (hWiring : ReducedProductSeparableSubalgebraIsMF B C)
-    (hB : ∀ n, IsMFAlgebra (B n)) (hC : IsClosed (C : Set (PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite)))
-    (hCsep : TopologicalSpace.SeparableSpace C) :
-    IsMFAlgebra C :=
-  hWiring hB hC hCsep
+    (C : Type) [CStarAlgebra C] [TopologicalSpace.SeparableSpace C]
+    (i : C →⋆ₙₐ[ℂ]
+      PolarLiftingGeneralCStar.CStarProductCorona B Filter.cofinite)
+    (hi : Function.Injective i) (hB : ∀ n, IsMFAlgebra (B n)) :
+    IsMFAlgebra C := by
+  exact ReducedProductMFPermanence.isMFAlgebra_of_injective_reducedProduct
+    B i hi (fun n ↦ (hB n).2)
 
 /-- **Sentence `cc882ce8c806`.**  "The second holds because `M_k` of a norm
 matrix corona is the norm matrix corona of the dimension sequence multiplied
