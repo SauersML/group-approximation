@@ -1,5 +1,6 @@
 import GroupApproximation.Manuscript.MFRecognition.ReducedProductsWiring
 import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationConjugator
+import GroupApproximation.Analysis.NonUnitalMFSupportCornerEmbedding
 import GroupApproximation.Analysis.UniversalCStarHNN
 
 /-!
@@ -52,9 +53,11 @@ The "Consequently" clause of `lem:tensor-sync` is an application of
 `thm:hnn-permanence`, proved in an earlier section of the manuscript and
 formalized by the parallel `hnn-permanence` lane.  Nothing about it is proved
 or postulated here: the two statements that clause consumes are the fields of
-`HNNPermanenceInputs`, and every theorem below that needs them takes a term of
+`HNNPermanenceInputs`, and every theorem below that needs it takes a term of
 that structure as its leading hypothesis, so the dependency is visible in the
-statement of each such theorem.  This is the arrangement of
+statement of each such theorem.  The corona-embedding step is proved below,
+so the structure now contains only the HNN-permanence theorem itself.  This is
+the arrangement of
 `Manuscript/NonMF/HullSmallCancellation.HullInputs`, and it deliberately keeps
 this file independent of the `hnn-permanence` modules while they move: when
 that lane lands, one instance of this structure closes every row below.
@@ -63,8 +66,8 @@ The headline `manuscriptTensorSynchronization` — the printed conclusion of
 `lem:tensor-sync` up to but excluding "Consequently" — needs neither input and
 takes no such hypothesis. -/
 
-/-- The two statements the "Consequently" clause of `lem:tensor-sync`
-consumes. -/
+/-- The remaining theorem consumed by the "Consequently" clause of
+`lem:tensor-sync`. -/
 structure HNNPermanenceInputs : Prop where
   /-- **`thm:hnn-permanence` (HNN permanence with a corona conjugator)**, in
   the form the printed proof of `lem:tensor-sync` applies it.
@@ -87,15 +90,26 @@ structure HNNPermanenceInputs : Prop where
           star (W : NormMatrixCStarCorona (fun n ↦ X n)) =
         iota ((realization.rho ((phi s : T) : G) : unitary A) : A)) →
     IsRegularlyRealized (HNNExtension G S T phi)
-  /-- A separable unital MF algebra has a *unital* faithful norm-matrix-corona
-  embedding — the form in which the printed proof takes "`ι` any injective
-  `*`-homomorphism of `A` into a norm matrix corona", while `HasMFEmbedding`
-  supplies a possibly non-unital one. -/
-  unitalCoronaEmbedding : ∀ {A : Type} [CStarAlgebra A], IsMFAlgebra A →
-    ∃ (X : ℕ → FiniteModel) (hX : ∀ n, Nonempty (X n)),
-      letI : ∀ n, Nonempty (X n) := hX
-      ∃ iota : A →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
-        Function.Injective iota
+
+/-- A nonzero unital MF C-star algebra has a faithful unital corona
+representation.  The nontriviality hypothesis is necessary: the zero unital
+algebra cannot map unitally into a matrix corona.  Every use below obtains it
+from the tracial state in a regular realization. -/
+theorem unitalCoronaEmbedding :
+    ∀ {A : Type} [CStarAlgebra A] [Nontrivial A], IsMFAlgebra A →
+      ∃ (X : ℕ → FiniteModel) (hX : ∀ n, Nonempty (X n)),
+        letI : ∀ n, Nonempty (X n) := hX
+        ∃ iota : A →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
+          Function.Injective iota := by
+  intro A _ _ hA
+  rcases hA.2 with ⟨Y, hYne, _hYpos, _hYmono, e, he⟩
+  letI : ∀ n, Nonempty (Y n) := hYne
+  obtain ⟨X, hXne, E, hE⟩ :=
+    NonUnitalMFSupportCornerEmbedding.exists_injective_unital_supportCornerEmbedding
+      Y e he
+  exact ⟨X, hXne, E, hE⟩
+
+#audit_axioms unitalCoronaEmbedding
 
 /-! ## Applying `thm:hnn-permanence` -/
 
@@ -130,7 +144,8 @@ theorem isRegularlyRealized_hnn_of_conjugator (hIn : HNNPermanenceInputs)
       (W : A) * ((R.rho (s : G) : unitary A) : A) * star (W : A) =
         ((R.rho ((theta s : T) : G) : unitary A) : A)) :
     IsRegularlyRealized (HNNExtension G S T theta) := by
-  obtain ⟨X, hX, iota, hiota⟩ := hIn.unitalCoronaEmbedding R.mf
+  letI : Nontrivial A := regularRealization_nontrivial R
+  obtain ⟨X, hX, iota, hiota⟩ := unitalCoronaEmbedding R.mf
   letI : ∀ n, Nonempty (X n) := hX
   refine hIn.hnnPermanence theta R iota hiota
     (unitaryMapOfStarAlgHom iota W) ?_
