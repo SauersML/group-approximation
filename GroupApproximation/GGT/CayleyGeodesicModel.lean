@@ -48,13 +48,22 @@ the realisation is hyperbolic whenever `Γ(G,A)` is (`isHyperbolicSpace_point`),
 by pulling the four-point condition back along the base-vertex retraction, which
 has additive distortion `2`.
 
-Not proved, and isolated as the single residual `IsGeodesicRealisation`: that
-the realisation is a geodesic space.  Its content is that a word of length `n`
-realising `wordDist A x y` gives a path of `n` unit edges from `x` to `y`, whose
-piecewise-linear parametrisation is an isometry of `[0,n]`; the two ingredients
-are that every prefix of a minimal word is minimal, and that concatenating unit
-edge parametrisations is geodesic.  `model` takes it as a hypothesis, so
-everything else here is available without it.
+Also proved, and this is the geodesicity the consumers need:
+`exists_vertexGeodesic` — **between vertices the realisation is geodesic**, by
+induction on the word distance.  One step of a minimal word gives a unit edge
+(`exists_step`, `isGeodesicSegment_edgePath`), the rest is the inductive
+geodesic, and `isGeodesicSegment_glue` joins them, its hypothesis being two
+triangle inequalities — one through the intermediate vertex for the upper
+bound, one through the target for the lower.  `exists_geodesic_vertex` states
+it in the metric of the realisation.  That is the case
+`exists_long_fellow_geodesics_of_not_independent` uses: its basepoint is a
+vertex and its endpoints are orbit points of it, which are vertices too.
+
+Not proved, and left as `IsGeodesicRealisation`: geodesicity between *arbitrary*
+points, which `IsGeodesicSpace` asks for.  What is missing is only the two
+partial edges at the ends, glued to a vertex geodesic by
+`isGeodesicSegment_glue`.  `model` takes it as a hypothesis, so everything else
+here is available without it.
 
 ## Status
 
@@ -1188,9 +1197,13 @@ theorem exists_geodesic_vertex (A : Alphabet G) (x y : G) :
 
 /-! ## The model -/
 
-/-- **The residual.**  That the realisation is a geodesic space: a word of
-length `n` realising `wordDist A x y` gives a path of `n` unit edges, and its
-piecewise-linear parametrisation is an isometry of `[0,n]`. -/
+/-- **What is left of geodesicity.**  `exists_vertexGeodesic` proves it between
+vertices, which is the case every consumer uses; `IsGeodesicSpace` asks for it
+between arbitrary points, and the difference is the two partial edges at the
+ends — from `p` to whichever of its endpoints the distance is realised through,
+and from an endpoint of `q` into `q`.  `isGeodesicSegment_glue` is the tool for
+both, and `dist_edgePoint_edgePoint` settles the remaining case, where `p` and
+`q` share an edge and the distance is realised along it. -/
 def IsGeodesicRealisation (A : Alphabet G) : Prop := IsGeodesicSpace (Point A)
 
 /-- **The geodesic model of `Γ(G,A)`**, on that one residual. -/
