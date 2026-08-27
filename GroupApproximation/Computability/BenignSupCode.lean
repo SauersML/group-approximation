@@ -25,6 +25,9 @@ def generatorWords (c : PresentationCode) : List Raw :=
 def productBase (x : Input) : PresentationCode :=
   productCode (BenignInfCode.leftCode x) (BenignInfCode.rightCode x)
 
+def liftToLevel1 (x : Input) (w : Raw) : Raw :=
+  leftWord (productBase x) w
+
 def leftGeneratorWords (x : Input) : List Raw :=
   (generatorWords (BenignInfCode.leftCode x)).map
     (leftWord (BenignInfCode.leftCode x))
@@ -34,9 +37,15 @@ def m1Words (x : Input) : List Raw :=
     (generatorWords (BenignInfCode.rightCode x)).map
       (rightWord (BenignInfCode.leftCode x) (BenignInfCode.rightCode x))
 
-def m2Words (x : Input) : List Raw :=
+def m2BaseWords (x : Input) : List Raw :=
   leftGeneratorWords x ++
     BenignInfCode.rightCuttingWords x
+
+/-- The second central HNN layer reads words over `level1`, so the words from
+the original product base must be inserted through the normalized old-base
+alphabet. -/
+def m2Words (x : Input) : List Raw :=
+  (m2BaseWords x).map (liftToLevel1 x)
 
 def level1 (x : Input) : PresentationCode :=
   firstStageCode (productBase x) (m1Words x)
@@ -44,19 +53,26 @@ def level1 (x : Input) : PresentationCode :=
 def level2 (x : Input) : PresentationCode :=
   firstStageCode (level1 x) (m2Words x)
 
+def liftToLevel2 (x : Input) (w : Raw) : Raw :=
+  leftWord (level1 x) w
+
 def firstConjugates (x : Input) : List Raw :=
   (BenignInfCode.diagonalMarks x).map
-    (firstStableConjugate (productBase x))
+    (fun w => liftToLevel2 x (firstStableConjugate (productBase x) w))
 
 def secondConjugates (x : Input) : List Raw :=
   (BenignInfCode.diagonalMarks x).map
-    (firstStableConjugate (level1 x))
+    (fun w => firstStableConjugate (level1 x) (liftToLevel1 x w))
+
+def outputMarks (x : Input) : List Raw :=
+  (BenignInfCode.diagonalMarks x).map
+    (fun w => liftToLevel2 x (liftToLevel1 x w))
 
 /-- The complete six-mark join-witness syntax. -/
 def transform (x : Input) : Output :=
   (level2 x,
     (firstConjugates x ++ secondConjugates x,
-      BenignInfCode.diagonalMarks x))
+      outputMarks x))
 
 @[simp] theorem transform_code (x : Input) : (transform x).1 = level2 x := rfl
 
@@ -64,7 +80,7 @@ def transform (x : Input) : Output :=
     (transform x).2.1 = firstConjugates x ++ secondConjugates x := rfl
 
 @[simp] theorem transform_marks (x : Input) :
-    (transform x).2.2 = BenignInfCode.diagonalMarks x := rfl
+    (transform x).2.2 = outputMarks x := rfl
 
 theorem primrec_generatorWord :
     Primrec (fun i : ℕ => ([(i, true)] : Raw)) :=
@@ -120,9 +136,17 @@ theorem primrec_leftGeneratorWords : Primrec leftGeneratorWords :=
     (primrec_generatorWords.comp BenignInfCode.primrec_leftCode)
     primrec_leftGeneratorWord
 
-theorem primrec_m2Words : Primrec m2Words :=
+theorem primrec_m2BaseWords : Primrec m2BaseWords :=
   Primrec.list_append.comp primrec_leftGeneratorWords
     BenignInfCode.primrec_rightCuttingWords
+
+theorem primrec_m2LiftedWord : Primrec
+    (fun a : Input × Raw => leftWord (productBase a.1) a.2) :=
+  Primrec₂.comp primrec_leftWord
+    (primrec_productBase.comp Primrec.fst) Primrec.snd
+
+theorem primrec_m2Words : Primrec m2Words :=
+  Primrec.list_map primrec_m2BaseWords primrec_m2LiftedWord
 
 theorem primrec_level1 : Primrec level1 :=
   primrec_firstStageCode.comp (Primrec.pair primrec_productBase primrec_m1Words)
@@ -136,25 +160,45 @@ def firstConjugateInput (a : Input × Raw) : PresentationCode × Raw :=
 theorem primrec_firstConjugateInput : Primrec firstConjugateInput :=
   Primrec.pair (primrec_productBase.comp Primrec.fst) Primrec.snd
 
-theorem primrec_firstConjugates : Primrec firstConjugates :=
-  Primrec.list_map BenignInfCode.primrec_diagonalMarks
+def firstConjugate (a : Input × Raw) : Raw :=
+  leftWord (level1 a.1)
+    (firstStableConjugate (firstConjugateInput a).1
+      (firstConjugateInput a).2)
+
+theorem primrec_firstConjugate : Primrec firstConjugate :=
+  Primrec₂.comp primrec_leftWord
+    (primrec_level1.comp Primrec.fst)
     (primrec_firstStableConjugate.comp primrec_firstConjugateInput)
 
+theorem primrec_firstConjugates : Primrec firstConjugates :=
+  Primrec.list_map BenignInfCode.primrec_diagonalMarks
+    primrec_firstConjugate
+
 def secondConjugateInput (a : Input × Raw) : PresentationCode × Raw :=
-  (level1 a.1, a.2)
+  (level1 a.1, leftWord (productBase a.1) a.2)
 
 theorem primrec_secondConjugateInput : Primrec secondConjugateInput :=
-  Primrec.pair (primrec_level1.comp Primrec.fst) Primrec.snd
+  Primrec.pair (primrec_level1.comp Primrec.fst) primrec_m2LiftedWord
 
 theorem primrec_secondConjugates : Primrec secondConjugates :=
   Primrec.list_map BenignInfCode.primrec_diagonalMarks
     (primrec_firstStableConjugate.comp primrec_secondConjugateInput)
 
+def outputMark (a : Input × Raw) : Raw :=
+  leftWord (level1 a.1) (leftWord (productBase a.1) a.2)
+
+theorem primrec_outputMark : Primrec outputMark :=
+  Primrec₂.comp primrec_leftWord
+    (primrec_level1.comp Primrec.fst) primrec_m2LiftedWord
+
+theorem primrec_outputMarks : Primrec outputMarks :=
+  Primrec.list_map BenignInfCode.primrec_diagonalMarks primrec_outputMark
+
 theorem primrec_transform : Primrec transform :=
   Primrec.pair primrec_level2
     (Primrec.pair
       (Primrec.list_append.comp primrec_firstConjugates primrec_secondConjugates)
-      BenignInfCode.primrec_diagonalMarks)
+      primrec_outputMarks)
 
 theorem computable_transform : Computable transform :=
   primrec_transform.to_comp
