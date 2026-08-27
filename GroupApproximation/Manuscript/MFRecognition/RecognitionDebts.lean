@@ -2,6 +2,7 @@ import GroupApproximation.Manuscript.MFRecognition.RecognitionAssembly
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceNonunital
 import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Higman.CurrentREBenign
+import GroupApproximation.Higman.OmegaDebt
 
 /-!
 # `thm:recognition`, closed: the remaining inputs as recorded debts
@@ -18,8 +19,9 @@ top of them:
   a full corner of the amalgam), blocked in-repo by the universe gap recorded
   on `UedaCornerMapStatement`;
 * `omegaInput` — Higman's ω-closure, the one construction the benign-subgroup
-  route to Higman's embedding theorem still owes; with it Higman's theorem is
-  the theorem `reBenign` below;
+  route to Higman's embedding theorem still owes; the debt is recorded once for
+  the repository, in `Higman.OmegaDebt`, and with it Higman's theorem is the
+  theorem `reBenign` below;
 * `ropeCodeFamily` — the code of `eq:finite-rope`, computable from `e` and
   presenting `R̂_e`, from `Higman.MikhailovaRopeCode.compileRankThree` and
   `Higman.MikhailovaRopeCodeSemantics.compileEquivToRope`.
@@ -82,17 +84,14 @@ theorem manuscriptHNNPermanence_nonunital
 
 /-! ## Higman's embedding theorem -/
 
-/-- **DEBT (construction).**  Higman's ω-closure: the three-stage tower proving
-that `ω_m` preserves benignness. -/
-theorem omegaInput_nonempty : Nonempty Higman.Omega.OmegaInput := by
-  sorry
-
-/-- The ω-closure, as a term. -/
-def omegaInput : Higman.Omega.OmegaInput := omegaInput_nonempty.some
+/-- The ω-closure, as a term.  The debt itself is `Higman.OmegaDebt`, which the
+Theorem C lane imports too, so the statement carries one `sorry` for the whole
+repository rather than one per lane. -/
+def omegaInput : Higman.Omega.OmegaInput := Higman.OmegaDebt.omegaInput
 
 /-- **Higman's embedding theorem** (recursively enumerable normal subgroups of
 finitely generated free groups are benign), closed on the ω-debt. -/
-theorem reBenign : Higman.REBenign := Higman.reBenign_of_omega omegaInput
+theorem reBenign : Higman.REBenign := Higman.OmegaDebt.reBenign
 
 /-- **The effective marked form of Higman's theorem**: a computable compiler
 from recursive presentations on three generators to finite presentations with
