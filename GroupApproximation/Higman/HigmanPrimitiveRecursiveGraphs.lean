@@ -229,6 +229,114 @@ theorem higmanGenerated_natCompGraph {m n : ℕ}
           (natCompInnerCoord m i.val) (natGraph (G i)) (hG i)))
       (higmanGenerated_placeAt (n + 1) (natCompOuterCoord m n) (natGraph F) hF)
 
+/-- Write a vector of intermediate natural values into the fresh interval of
+the composition construction. -/
+private noncomputable def natCompWide {m n : ℕ} (f : E) (y : Fin n → ℕ) : E :=
+  f + ∑ i : Fin n, Finsupp.single ((m + 1 + i.val : ℕ) : ℤ) (y i : ℤ)
+
+private theorem finsupp_fintypeSum_apply {alpha : Type*} [Fintype alpha]
+    (u : alpha → E) (j : ℤ) : (∑ i, u i) j = ∑ i, u i j := by
+  classical
+  change (Finset.univ.sum u) j = Finset.univ.sum fun i => u i j
+  induction (Finset.univ : Finset alpha) using Finset.induction_on with
+  | empty => simp
+  | @insert a s ha ih => simp [ha, ih, Finsupp.add_apply]
+
+private theorem natCompWide_old {m n : ℕ} (f : E) (y : Fin n → ℕ) (j : ℕ)
+    (hj : j < m + 1) : natCompWide (m := m) f y (j : ℤ) = f (j : ℤ) := by
+  classical
+  unfold natCompWide
+  rw [Finsupp.add_apply]
+  have hz : (∑ i : Fin n,
+      Finsupp.single ((m + 1 + i.val : ℕ) : ℤ) (y i : ℤ)) (j : ℤ) = 0 := by
+    rw [finsupp_fintypeSum_apply]
+    simp only [Finsupp.single_apply]
+    apply Finset.sum_eq_zero
+    intro i hi
+    rw [if_neg]
+    omega
+  rw [hz, add_zero]
+
+private theorem natCompWide_aux {m n : ℕ} (f : E) (y : Fin n → ℕ)
+    (hf : f ∈ windowSupport (m + 1)) (i : Fin n) :
+    natCompWide (m := m) f y ((m + 1 + i.val : ℕ) : ℤ) = (y i : ℤ) := by
+  classical
+  unfold natCompWide
+  rw [Finsupp.add_apply]
+  have hf0 : f ((m + 1 + i.val : ℕ) : ℤ) = 0 :=
+    ((mem_windowSupport_iff (m + 1) f).mp hf).2 _ (by push_cast; omega)
+  rw [hf0, zero_add]
+  rw [finsupp_fintypeSum_apply]
+  simp only [Finsupp.single_apply]
+  rw [Finset.sum_eq_single i]
+  · simp
+  · intro j hj hji
+    rw [if_neg]
+    intro heq
+    have hnat : m + 1 + j.val = m + 1 + i.val := by exact_mod_cast heq
+    exact hji (Fin.ext (by omega))
+  · simp
+
+private theorem natCompWide_off {m n : ℕ} (f : E) (y : Fin n → ℕ) (j : ℤ)
+    (hj : ∀ i : Fin n, j ≠ ((m + 1 + i.val : ℕ) : ℤ)) :
+    natCompWide (m := m) f y j = f j := by
+  classical
+  unfold natCompWide
+  rw [Finsupp.add_apply]
+  have hz : (∑ i : Fin n,
+      Finsupp.single ((m + 1 + i.val : ℕ) : ℤ) (y i : ℤ)) j = 0 := by
+    rw [finsupp_fintypeSum_apply]
+    simp only [Finsupp.single_apply]
+    apply Finset.sum_eq_zero
+    intro i hi
+    rw [if_neg (hj i).symm]
+  rw [hz, add_zero]
+
+/-! ## Primitive recursion: the generated construction
+
+`recGraph` expects the step variables in the order
+`parameters, counter, old value, new value`.  `Nat.Primrec'.prec` supplies its
+step graph in the order `counter, old value, parameters, new value`, so one
+finite placement is the whole adapter between the two conventions.
+-/
+
+def natRecStepCoord (n : ℕ) (j : ℕ) : ℤ :=
+  if j = 0 then (n : ℤ)
+  else if j = 1 then ((n + 1 : ℕ) : ℤ)
+  else if j < n + 2 then ((j - 2 : ℕ) : ℤ)
+  else ((n + 2 : ℕ) : ℤ)
+
+noncomputable def natRecStep {n : ℕ}
+    (H : List.Vector ℕ (n + 2) → ℕ) : Set E :=
+  placeAt (n + 3) (natRecStepCoord n) (natGraph H) ∩ windowSupport (n + 3)
+
+noncomputable def natRecGraph {n : ℕ}
+    (F : List.Vector ℕ n → ℕ) (H : List.Vector ℕ (n + 2) → ℕ) : Set E :=
+  recGraph n (natGraph F) (natRecStep H)
+
+theorem nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
+  induction n with
+  | zero => norm_num
+  | succ n ih =>
+      rw [pow_succ]
+      have hp : 1 ≤ 2 ^ n := Nat.one_le_pow' n 1
+      omega
+
+/-- Primitive recursion preserves generation at the construction level. -/
+theorem higmanGenerated_natRecGraph {n : ℕ}
+    {F : List.Vector ℕ n → ℕ} {H : List.Vector ℕ (n + 2) → ℕ}
+    (hF : HigmanGenerated (natGraph F)) (hH : HigmanGenerated (natGraph H)) :
+    HigmanGenerated (natRecGraph F H) := by
+  have hstep : HigmanGenerated (natRecStep H) := by
+    unfold natRecStep
+    exact HigmanGenerated.inter
+      (higmanGenerated_placeAt (n + 3) (natRecStepCoord n) (natGraph H) hH)
+      (higmanGenerated_windowSupport (n + 3))
+  unfold natRecGraph
+  refine higmanGenerated_recGraph_of_generated n (2 ^ (n + 5)) (n + 5)
+    (nat_le_two_pow (n + 5)) ?_ (natGraph F) (natRecStep H) hF hstep
+  norm_num
+
 end Seq
 end Higman
 end GroupApproximation
