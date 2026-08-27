@@ -8,6 +8,7 @@ namespace GroupApproximation
 namespace NormCoronaAsymptoticLift
 
 open Filter
+open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 

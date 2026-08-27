@@ -68,7 +68,8 @@ def PrintedTorsionFreeSimplified : Prop :=
 inputs**, in the simplified statement: the radical form
 `manuscriptTorsionFreeFullMFRadical` followed by the two closing steps. -/
 theorem manuscriptTorsionFreeSimplified (I : LiteratureInputs)
-    (hHull : TorsionFree.HullInputs.{0}) : PrintedTorsionFreeSimplified := by
+    (hHull : HullCorrectedInputs.HullInputsCorrected.{0}) :
+    PrintedTorsionFreeSimplified := by
   obtain ⟨Q, instQ, h2, hfp, htf, hah, hT, hrad, _, _⟩ :=
     manuscriptTorsionFreeFullMFRadical I hHull
   letI := instQ

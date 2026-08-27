@@ -421,29 +421,37 @@ noncomputable def genConjHom : Cent3 P →* Cent3 P :=
 noncomputable def genConjHomInv : Cent3 P →* Cent3 P :=
   genLift3 P (genConjTargetInv P j) (fun _ hx => commute_genConjTargetInv P j hx)
 
-@[simp] theorem genConjHom_emb3 (x : G₀) : genConjHom P j (emb3 P x) = emb3 P x :=
-  genLift3_emb3 P _ _ x
+@[simp] theorem genConjHom_emb3 (x : G₀) : genConjHom P j (emb3 P x) = emb3 P x := by
+  unfold genConjHom
+  exact genLift3_emb3 P _ _ x
 
-@[simp] theorem genConjHom_gen1 : genConjHom P j (gen1 P) = genConjTarget P j :=
-  genLift3_gen1 P _ _
+@[simp] theorem genConjHom_gen1 : genConjHom P j (gen1 P) = genConjTarget P j := by
+  unfold genConjHom
+  exact genLift3_gen1 P _ _
 
-@[simp] theorem genConjHom_gen2 : genConjHom P j (gen2 P) = gen2 P :=
-  genLift3_gen2 P _ _
+@[simp] theorem genConjHom_gen2 : genConjHom P j (gen2 P) = gen2 P := by
+  unfold genConjHom
+  exact genLift3_gen2 P _ _
 
-@[simp] theorem genConjHom_gen3 : genConjHom P j (gen3 P) = gen3 P :=
-  genLift3_gen3 P _ _
+@[simp] theorem genConjHom_gen3 : genConjHom P j (gen3 P) = gen3 P := by
+  unfold genConjHom
+  exact genLift3_gen3 P _ _
 
-@[simp] theorem genConjHomInv_emb3 (x : G₀) : genConjHomInv P j (emb3 P x) = emb3 P x :=
-  genLift3_emb3 P _ _ x
+@[simp] theorem genConjHomInv_emb3 (x : G₀) : genConjHomInv P j (emb3 P x) = emb3 P x := by
+  unfold genConjHomInv
+  exact genLift3_emb3 P _ _ x
 
-@[simp] theorem genConjHomInv_gen1 : genConjHomInv P j (gen1 P) = genConjTargetInv P j :=
-  genLift3_gen1 P _ _
+@[simp] theorem genConjHomInv_gen1 : genConjHomInv P j (gen1 P) = genConjTargetInv P j := by
+  unfold genConjHomInv
+  exact genLift3_gen1 P _ _
 
-@[simp] theorem genConjHomInv_gen2 : genConjHomInv P j (gen2 P) = gen2 P :=
-  genLift3_gen2 P _ _
+@[simp] theorem genConjHomInv_gen2 : genConjHomInv P j (gen2 P) = gen2 P := by
+  unfold genConjHomInv
+  exact genLift3_gen2 P _ _
 
-@[simp] theorem genConjHomInv_gen3 : genConjHomInv P j (gen3 P) = gen3 P :=
-  genLift3_gen3 P _ _
+@[simp] theorem genConjHomInv_gen3 : genConjHomInv P j (gen3 P) = gen3 P := by
+  unfold genConjHomInv
+  exact genLift3_gen3 P _ _
 
 /-- **`g ↦ g^{hⱼ}` intertwines the second copy of the coding with
 `a ↦ a^{bⱼ}`.** -/
@@ -839,7 +847,8 @@ theorem zSub_le_succ (m : ℕ) (r : ℤ) : zSub m r ≤ zSub m (r + 1) := by
   exact ⟨f, lowSet_mono_succ hf, rfl⟩
 
 /-- **`Z_{r+1} = Z_r ⊔ V^{(r)}`.** -/
-theorem zSub_succ_eq (m : ℕ) (r : ℤ) : zSub m (r + 1) = zSub m r ⊔ vSub m r 0 := by
+theorem zSub_succ_eq (m : ℕ) {r : ℤ} (hr : 0 ≤ r) :
+    zSub m (r + 1) = zSub m r ⊔ vSub m r 0 := by
   apply le_antisymm
   · show Subgroup.closure (linkElem m '' lowSet (r + 1)) ≤ _
     refine Subgroup.closure_le.mpr ?_
@@ -898,7 +907,7 @@ theorem benignTF_zSub (m : ℕ) : ∀ r : ℕ, BenignTF (zSub m r)
       letI : Group.IsFinitelyPresented (LinkAmbient m) := inferInstance
       letI : Group.FG (LinkAmbient m) :=
         ProductFinitePresentation.fg_of_isFinitelyPresented (LinkAmbient m)
-      rw [Nat.cast_succ, zSub_succ_eq]
+      rw [Nat.cast_succ, zSub_succ_eq m (by omega)]
       exact BenignTF.sup (benignTF_zSub m r) (benignTF_vSub_zero m r)
 
 theorem lowSet_eq_blockSet (m : ℕ) : lowSet (m : ℤ) = blockSet m := by

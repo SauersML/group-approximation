@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.NonMF.FournierFacioInput
+import GroupApproximation.Manuscript.NonMF.HullFillCorrectedInputs
 import GroupApproximation.Manuscript.NonMF.Saturation
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedDefect
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedCriterion
@@ -340,12 +341,13 @@ def PrintedTorsionFreeFullMFRadical : Prop :=
 /-- **Theorem C, proved along the printed proof, from the paragraph's cited
 inputs.**
 
-The leading binder is the whole literature debt of the construction: the five
+The leading binders are the whole literature debt of the construction: the five
 statements Fournier-Facio's paragraph cites and does not prove
-(`TheoremC.LiteratureInputs`).  The conclusion is the printed statement of
-`thm:torsion-free` unchanged. -/
+(`TheoremC.LiteratureInputs`), and the two Hull cites
+(`HullCorrectedInputs.HullInputsCorrected`).  The conclusion is the printed
+statement of `thm:torsion-free` unchanged. -/
 theorem manuscriptTorsionFreeFullMFRadical (I : LiteratureInputs)
-    (hHull : TorsionFree.HullInputs.{0}) :
+    (hHull : HullCorrectedInputs.HullInputsCorrected.{0}) :
     PrintedTorsionFreeFullMFRadical := by
   obtain ⟨cfg⟩ := exists_configuration I
   haveI : Countable cfg.Ambient := cfg.countableAmbient

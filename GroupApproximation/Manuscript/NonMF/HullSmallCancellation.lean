@@ -10,10 +10,25 @@ fields of a single structure `HullInputs`.
 
 Nothing here is proved and nothing here is postulated.  `HullInputs` is a
 hypothesis: a consumer that wants the manuscript's conclusions takes a term of
-it as an argument, so every theorem downstream carries the four citations
-visibly in its own statement.  `Saturation.saturation` is the consumer, and
-`lem:saturation` reads there with `(hHull : HullInputs)` as its leading
-hypothesis.
+it as an argument, so every theorem downstream carries the citations visibly in
+its own statement.
+
+## `HullInputs` is superseded, and kept as a record
+
+One of its four fields — `kerNormallyGenerated` — is **false as recorded**, and
+`Manuscript.NonMF.HullFillKernelRefutation` proves it:
+`not_kerNormallyGeneratedStatement` refutes the field outright as soon as one
+acylindrically hyperbolic group exists.  The field quantifies over every term of
+`HullQuotient`, while the manuscript's remark is about the quotient Hull's
+construction produces, so the clause has moved into the output of the theorem
+(`HullCorrectedInputs.HullQuotientNG`) and the bundle has been replaced by
+`HullCorrectedInputs.HullInputsCorrected`, which has two fields.
+`Saturation.saturation` and both printed forms of Theorem C take that bundle.
+
+`HullQuotient` below is still the conclusion of `thm:hull`, unchanged and used
+by the corrected bundle.  `HullInputs` itself now has no consumer: it is kept so
+that the refutation has something to name, and so that what was recorded before
+the correction stays legible.
 
 ## The four cited results
 
@@ -35,7 +50,11 @@ hypothesis.
   its geometric half is this lemma of Osin's.
 * `HullInputs.twoGeneratedSuitable` — **Hull, Corollary 5.7 and Lemma 5.8**,
   used in the form *"`N` contains two elements `h₁, h₂` such that
-  `N₀ = ⟨h₁,h₂⟩` is again suitable"*.
+  `N₀ = ⟨h₁,h₂⟩` is again suitable"*.  This field is stated over a torsion-free
+  ambient group, where it is no longer a citation:
+  `Manuscript.NonMF.HullInputsProved.exists_pair_suitable_of_torsionFree` proves
+  it.  The corrected bundle drops the field for that reason, and
+  `Saturation.saturation` calls that theorem directly.
 
 ## The shape of `thm:hull`
 
@@ -166,13 +185,20 @@ structure HullInputs : Type where
   > By Hull [Corollary 5.7 and Lemma 5.8], `N` contains two elements `h₁, h₂`
   > such that `N₀ = ⟨h₁, h₂⟩` is again suitable.
 
-  `Sofic/HullSuitableDefectSubgroup.lean` proves the non-geometric hypotheses of
-  Hull's Lemma 5.8 — an element of infinite order generating a proper cyclic
-  subgroup — over a torsion-free ambient group; what is cited here is the
-  conclusion of the lemma, whose content is the hyperbolic embedding of
-  `⟨h⟩`. -/
-  twoGeneratedSuitable : ∀ {G : Type u} [Group G] (A : HullGeneratingSet G)
-    {N : Subgroup G}, Suitable A.alphabet N →
+  **Over a torsion-free ambient group this field is a theorem**, and the
+  torsion-free hypothesis is written into it because that is the only case
+  `lem:saturation` uses:
+  `Manuscript.NonMF.HullInputsProved.exists_pair_suitable_of_torsionFree`
+  proves it.  Non-elementarity is *contains two independent loxodromic
+  elements*, so the two elements it hands out already generate a non-elementary
+  subgroup; and Hull's Definition 1.4(3) is free over a torsion-free ambient
+  group, there being no nontrivial finite subgroup to normalize.  What Hull's
+  argument is for is the general case, where the two loxodromics have to be
+  chosen so that the subgroup they generate normalizes no nontrivial finite
+  subgroup — the hyperbolic embedding of `⟨h⟩` in his Lemma 5.8, which
+  torsion-freeness makes unnecessary. -/
+  twoGeneratedSuitable : ∀ {G : Type u} [Group G], IsPowerTorsionFree G →
+    ∀ (A : HullGeneratingSet G) {N : Subgroup G}, Suitable A.alphabet N →
       ∃ h₁ ∈ N, ∃ h₂ ∈ N,
         Suitable A.alphabet (Subgroup.closure ({h₁, h₂} : Set G))
 
