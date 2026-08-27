@@ -255,6 +255,56 @@ theorem supLevel2Equiv_outputMark
     supLevel1Equiv_liftToLevel1, supBaseEquiv_diagonalAt]
   rfl
 
+/-- The first emitted cutter family is conjugation by the first stable letter,
+followed by inclusion through the second HNN base. -/
+theorem supLevel2Equiv_firstConjugate
+    (C₁ : Model mark H₁) (C₂ : Model mark H₂)
+    (raw : BenignSupCode.Raw) :
+    supLevel2Equiv C₁ C₂
+        (evalWord (level2 (supInput C₁ C₂))
+          (liftToLevel2 (supInput C₁ C₂)
+            (Higman.MikhailovaRopeCode.firstStableConjugate
+              (productBase (supInput C₁ C₂)) raw))) =
+      HNNExtension.of
+        ((HNNExtension.t :
+          Higman.JoinLevel1 C₁.data.witness C₂.data.witness)⁻¹ *
+          HNNExtension.of (supBaseEquiv C₁ C₂
+            (evalWord (productBase (supInput C₁ C₂)) raw)) *
+          HNNExtension.t) := by
+  rw [supLevel2Equiv_liftToLevel2]
+  exact congrArg HNNExtension.of
+    (centralStageEquiv_conjugate _ _ _ _ _ raw)
+
+/-- The second emitted cutter family is conjugation by the second stable
+letter of the twice-embedded base word. -/
+theorem supLevel2Equiv_secondConjugate
+    (C₁ : Model mark H₁) (C₂ : Model mark H₂)
+    (raw : BenignSupCode.Raw) :
+    supLevel2Equiv C₁ C₂
+        (evalWord (level2 (supInput C₁ C₂))
+          (Higman.MikhailovaRopeCode.firstStableConjugate
+            (level1 (supInput C₁ C₂))
+            (liftToLevel1 (supInput C₁ C₂) raw))) =
+      (HNNExtension.t :
+        Higman.JoinLevel2 C₁.data.witness C₂.data.witness)⁻¹ *
+        HNNExtension.of
+          (HNNExtension.of (supBaseEquiv C₁ C₂
+            (evalWord (productBase (supInput C₁ C₂)) raw))) *
+        HNNExtension.t := by
+  change
+    centralStageEquiv
+      (level1 (supInput C₁ C₂)) (m2Words (supInput C₁ C₂))
+      (supLevel1Equiv C₁ C₂)
+      (Higman.joinM₂' C₁.data.witness C₂.data.witness)
+      (sup_m2_cutter_eq C₁ C₂)
+      (evalWord
+        (Higman.MikhailovaRopeCode.firstStageCode
+          (level1 (supInput C₁ C₂)) (m2Words (supInput C₁ C₂)))
+        (Higman.MikhailovaRopeCode.firstStableConjugate
+          (level1 (supInput C₁ C₂))
+          (liftToLevel1 (supInput C₁ C₂) raw))) = _
+  rw [centralStageEquiv_conjugate, supLevel1Equiv_liftToLevel1]
+
 end
 
 end Model
