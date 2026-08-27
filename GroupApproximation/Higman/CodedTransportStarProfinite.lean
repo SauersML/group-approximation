@@ -284,6 +284,152 @@ structure SpecialJoinCodeSemantics
         (Model.supLevel2Equiv (hgammaModel hfive C) botModel).toMonoidHom =
       (hjoinData hfive C hclosed).witness.L
 
+private theorem diagonal_mem (x : BenignSupCode.Input) (i : MarkCount) :
+    BenignInfCode.diagonalAt x i ∈ BenignInfCode.diagonalMarks x := by
+  fin_cases i <;> simp [BenignInfCode.diagonalMarks]
+
+private theorem exists_diagonalAt_of_mem {x : BenignSupCode.Input}
+    {raw : BenignSupCode.Raw} (hraw : raw ∈ BenignInfCode.diagonalMarks x) :
+    ∃ i : MarkCount, raw = BenignInfCode.diagonalAt x i := by
+  simp only [BenignInfCode.diagonalMarks, List.mem_cons] at hraw
+  rcases hraw with h | h | h | h | h | h
+  · exact ⟨0, h⟩
+  · exact ⟨1, h⟩
+  · exact ⟨2, h⟩
+  · exact ⟨3, h⟩
+  · exact ⟨4, h⟩
+  · exact ⟨5, h.resolve_right (by simp)⟩
+
+/-- The emitted two-family cutter is exactly Higman's semantic `joinL` for
+the actual six-generator TransportStar source. -/
+theorem hjoin_cutter_eq
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H) :
+    (wordSubgroup (hjoinSyntax hfive C).1
+        (hjoinSyntax hfive C).2.1).map
+        (Model.supLevel2Equiv (hgammaModel hfive C) botModel).toMonoidHom =
+      Higman.joinL (hgammaModel hfive C).data.witness
+        botModel.data.witness := by
+  let C₁ := hgammaModel hfive C
+  let C₂ := botModel
+  let x := Model.supInput C₁ C₂
+  let e := Model.supLevel2Equiv C₁ C₂
+  let S : Subgroup (Higman.JoinLevel2 C₁.data.witness C₂.data.witness) :=
+    (wordSubgroup (BenignSupCode.level2 x)
+      (BenignSupCode.firstConjugates x ++
+        BenignSupCode.secondConjugates x)).map e.toMonoidHom
+  change S = Higman.joinL C₁.data.witness C₂.data.witness
+  apply le_antisymm
+  · rintro z ⟨y, hy, rfl⟩
+    refine Subgroup.closure_induction
+      (p := fun y _ ↦ e y ∈ Higman.joinL C₁.data.witness C₂.data.witness)
+      ?_ ?_ ?_ ?_ hy
+    · rintro _ ⟨raw, hraw, rfl⟩
+      rcases List.mem_append.mp hraw with hraw | hraw
+      · obtain ⟨d, hd, rfl⟩ := List.mem_map.mp hraw
+        obtain ⟨i, rfl⟩ := exists_diagonalAt_of_mem hd
+        rw [Model.supLevel2Equiv_firstConjugate,
+          Model.supBaseEquiv_diagonalAt]
+        refine Subgroup.mem_sup_left ⟨Higman.joinEmb₂ C₁.data.witness
+          C₂.data.witness (pMark i), ⟨pMark i, Subgroup.mem_top _, rfl⟩, ?_⟩
+        simp [Higman.joinEmb₂]
+      · obtain ⟨d, hd, rfl⟩ := List.mem_map.mp hraw
+        obtain ⟨i, rfl⟩ := exists_diagonalAt_of_mem hd
+        rw [Model.supLevel2Equiv_secondConjugate,
+          Model.supBaseEquiv_diagonalAt]
+        refine Subgroup.mem_sup_right ⟨Higman.joinEmb₂ C₁.data.witness
+          C₂.data.witness (pMark i), ⟨pMark i, Subgroup.mem_top _, rfl⟩, ?_⟩
+        simp [Higman.joinEmb₂]
+    · simp
+    · intro a b _ _ ha hb
+      simpa using Subgroup.mul_mem _ ha hb
+    · intro a _ ha
+      simpa using Subgroup.inv_mem _ ha
+  · apply sup_le
+    · rintro _ ⟨z, ⟨g, -, rfl⟩, rfl⟩
+      let f₁ : P →* Higman.JoinLevel2 C₁.data.witness C₂.data.witness :=
+        (MulAut.conj
+          ((HNNExtension.of : Higman.JoinLevel1 C₁.data.witness
+            C₂.data.witness →* Higman.JoinLevel2 C₁.data.witness
+              C₂.data.witness) HNNExtension.t)⁻¹).toMonoidHom.comp
+          (Higman.joinEmb₂ C₁.data.witness C₂.data.witness)
+      change f₁ g ∈ S
+      have hg : g ∈ Subgroup.closure (Set.range pMark) := by
+        rw [pMark_closure_top]
+        exact Subgroup.mem_top g
+      refine Subgroup.closure_induction
+        (p := fun g _ ↦ f₁ g ∈ S)
+        ?_ ?_ ?_ ?_ hg
+      · rintro _ ⟨i, rfl⟩
+        refine ⟨evalWord (BenignSupCode.level2 x)
+          (BenignSupCode.liftToLevel2 x
+            (MikhailovaRopeCode.firstStableConjugate
+              (BenignSupCode.productBase x)
+              (BenignInfCode.diagonalAt x i))), ?_, ?_⟩
+        · exact evalWord_mem_wordSubgroup _ _
+            (List.mem_append_left _ (List.mem_map.mpr
+              ⟨_, diagonal_mem x i, rfl⟩))
+        · change Model.supLevel2Equiv C₁ C₂
+              (evalWord (BenignSupCode.level2 (Model.supInput C₁ C₂))
+                (BenignSupCode.liftToLevel2 (Model.supInput C₁ C₂)
+                  (MikhailovaRopeCode.firstStableConjugate
+                    (BenignSupCode.productBase (Model.supInput C₁ C₂))
+                    (BenignInfCode.diagonalAt (Model.supInput C₁ C₂) i)))) =
+              f₁ (pMark i)
+          rw [Model.supLevel2Equiv_firstConjugate,
+            Model.supBaseEquiv_diagonalAt]
+          simp [f₁, Higman.joinEmb₂]
+      · simp
+      · intro a b _ _ ha hb
+        simpa using Subgroup.mul_mem _ ha hb
+      · intro a _ ha
+        simpa using Subgroup.inv_mem _ ha
+    · rintro _ ⟨z, ⟨g, -, rfl⟩, rfl⟩
+      let f₂ : P →* Higman.JoinLevel2 C₁.data.witness C₂.data.witness :=
+        (MulAut.conj
+          (HNNExtension.t : Higman.JoinLevel2 C₁.data.witness
+            C₂.data.witness)⁻¹).toMonoidHom.comp
+          (Higman.joinEmb₂ C₁.data.witness C₂.data.witness)
+      change f₂ g ∈ S
+      have hg : g ∈ Subgroup.closure (Set.range pMark) := by
+        rw [pMark_closure_top]
+        exact Subgroup.mem_top g
+      refine Subgroup.closure_induction
+        (p := fun g _ ↦ f₂ g ∈ S)
+        ?_ ?_ ?_ ?_ hg
+      · rintro _ ⟨i, rfl⟩
+        refine ⟨evalWord (BenignSupCode.level2 x)
+          (MikhailovaRopeCode.firstStableConjugate
+            (BenignSupCode.level1 x)
+            (BenignSupCode.liftToLevel1 x
+              (BenignInfCode.diagonalAt x i))), ?_, ?_⟩
+        · exact evalWord_mem_wordSubgroup _ _
+            (List.mem_append_right _ (List.mem_map.mpr
+              ⟨_, diagonal_mem x i, rfl⟩))
+        · change Model.supLevel2Equiv C₁ C₂
+              (evalWord (BenignSupCode.level2 (Model.supInput C₁ C₂))
+                (MikhailovaRopeCode.firstStableConjugate
+                  (BenignSupCode.level1 (Model.supInput C₁ C₂))
+                  (BenignSupCode.liftToLevel1 (Model.supInput C₁ C₂)
+                    (BenignInfCode.diagonalAt (Model.supInput C₁ C₂) i)))) =
+              f₂ (pMark i)
+          rw [Model.supLevel2Equiv_secondConjugate,
+            Model.supBaseEquiv_diagonalAt]
+          rfl
+      · simp
+      · intro a b _ _ ha hb
+        simpa using Subgroup.mul_mem _ ha hb
+      · intro a _ ha
+        simpa using Subgroup.inv_mem _ ha
+
+/-- All special join code semantics are now unconditional. -/
+theorem specialJoinCodeSemantics
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (hclosed : SpecialJoinClosedObligation hfive C) :
+    SpecialJoinCodeSemantics hfive C hclosed where
+  cutter_eq := hjoin_cutter_eq hfive C
+
 /-- Assemble the actual coded special-Sup model from exactly the outstanding
 two-stage code semantics. -/
 def hjoinModel
