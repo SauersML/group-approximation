@@ -71,7 +71,28 @@ amalgam norm.  Nothing is left to choose but the models and the unitary; the
 carrier is a corona, so the MF clause is automatic.  Everything else in Theorem
 16 is proved in `Analysis/ShulmanFill*` — separability of the amalgam, the
 diagonal choice of a norming family, reduced-product permanence, the `ε/3`
-passage from a dense set to the whole amalgam, and the density of words. -/
+passage from a dense set to the whole amalgam, and the density of words.
+
+Two routes reach this point, and each ends at one analytic atom the repository
+does not have.  The debt is recorded on the first because its reduction chain
+is the one that is wired.
+
+* **The norming route**, `Analysis/ShulmanFillTheorem16` →
+  `ShulmanFillDenseNorming` → `ShulmanFillWordNorming` →
+  `ShulmanFillConjugatePair`, ending here.  Its atom is the word estimate:
+  the conjugated pair must reproduce, on a given word, the supremum over all
+  compatible pairs that defines the full amalgam norm.  That estimate is of
+  Haagerup--Thorbjørnsen type.
+* **Shulman's own route**, `Analysis/ShulmanSymmetricDoubleRoute` with
+  `ShulmanFillSymmetricDouble*` and `ShulmanFillSymmetricDoubleEmbed*`:
+  Theorem 16 is his Theorem 13 (the amalgam embeds in the symmetric double
+  `D *_C D`) followed by his Theorem 10 (`D *_C D` is MF for separable MF
+  `D`).  It has *two* atoms.  Theorem 10 needs his Theorem 4, the lifting
+  characterization of MF against the algebra `𝒟` of `*`-strongly convergent
+  matrix sequences, which the repository does not yet carry.  Theorem 13 is
+  Enders--Shulman, arXiv:2403.12224, Theorem 4.11, whose proof runs through
+  the Arveson extension theorem, the Stinespring dilation theorem and
+  Voiculescu's theorem in the Calkin algebra. -/
 theorem conjugateWordNorming : ShulmanFill.ConjugateWordNormingStatement := by
   sorry
 
