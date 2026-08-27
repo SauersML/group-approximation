@@ -1,0 +1,15 @@
+{
+  "method": "exact GAP GQuotients on MSI",
+  "targets": {
+    "A8": {"epimorphism_classes": 0, "order": 20160},
+    "A9": {"epimorphism_classes": 0, "order": 181440},
+    "A10": {"epimorphism_classes": 0, "order": 1814400},
+    "PSL3(4)": {"epimorphism_classes": 0, "order": 20160},
+    "PSU3(3)": {"epimorphism_classes": 0, "order": 6048},
+    "PSp4(3)": {"epimorphism_classes": 0, "order": 25920},
+    "M11": {"epimorphism_classes": 0, "order": 7920},
+    "M12": {"epimorphism_classes": 0, "order": 95040},
+    "Sp6(2)": {"epimorphism_classes": 0, "order": 1451520}
+  },
+  "vertex_orders_required": [60, 36, 24, 144]
+}

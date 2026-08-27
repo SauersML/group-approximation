@@ -1,0 +1,286 @@
+# Fast feedback for ordinary Lean development.
+#
+# Native Actions cache is intentionally used instead of workflow artifacts:
+# these files are reusable intermediate build state, not products to retain.
+#
+# The hot path is a one-file edit:
+#   1. reuse the repo's existing elan + Mathlib/Lake dependency caches;
+#   2. restore only the local OLean import closure for that file;
+#   3. `lake lean <file>` builds any stale imports, then elaborates the file
+#      without asking Lake to materialize that file's full leanArts target.
+#
+# The local project cache is content-addressed by the imported source closure,
+# not by git SHA. Editing the leaf itself therefore keeps an exact cache hit.
+name: Lean dev compile (fast)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - GroupApproximation.lean
+      - 'GroupApproximation/**/*.lean'
+      - lean-toolchain
+      - lakefile.toml
+      - lake-manifest.json
+      - scripts/lean_dev_plan.py
+      - .github/workflows/lean-dev-fast.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - GroupApproximation.lean
+      - 'GroupApproximation/**/*.lean'
+      - lean-toolchain
+      - lakefile.toml
+      - lake-manifest.json
+      - scripts/lean_dev_plan.py
+      - .github/workflows/lean-dev-fast.yml
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Optional Lean module or source path
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  pull-requests: read
+
+# Only the newest development verdict for a ref matters.
+concurrency:
+  group: lean-dev-fast-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compile:
+    name: Targeted Lean compile
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out only the development build surface
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          # Two commits makes the normal one-commit push diff local and avoids
+          # a GitHub API round trip. Multi-commit pushes fall back to compare.
+          fetch-depth: 2
+          # Non-cone mode avoids materializing unrelated root PDFs/research.
+          # Git still knows the full trees, so `git diff --name-only` is valid.
+          sparse-checkout: |
+            GroupApproximation
+            GroupApproximation.lean
+            scripts
+            metadata
+            docs
+            lean-toolchain
+            lakefile.toml
+            lake-manifest.json
+          sparse-checkout-cone-mode: false
+
+      - name: Find changed files
+        id: changed
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          REPOSITORY: ${{ github.repository }}
+          BEFORE: ${{ github.event.before }}
+          SHA: ${{ github.sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          MANUAL_TARGET: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/lean-dev-changed.txt"
+          : > "$out"
+
+          # Explicit dispatch target needs no diff discovery.
+          if [[ "$EVENT_NAME" == workflow_dispatch && -n "${MANUAL_TARGET//[[:space:]]/}" ]]; then
+            echo "manual target requested; skipping diff discovery"
+            echo "file=$out" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          if [[ "$EVENT_NAME" == pull_request ]]; then
+            if ! gh api --paginate \
+              "repos/$REPOSITORY/pulls/$PR_NUMBER/files?per_page=100" \
+              --jq '.[].filename' > "$out"; then
+              echo "::warning::could not enumerate PR files; checking the root"
+              echo '__FULL__' > "$out"
+            fi
+          elif [[ "$EVENT_NAME" == push ]]; then
+            # Common case: checkout depth 2 already contains the before commit.
+            if [[ -n "$BEFORE" && ! "$BEFORE" =~ ^0+$ ]] &&
+               git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
+              git diff --name-only "$BEFORE" "$SHA" > "$out"
+            elif [[ -z "$BEFORE" || "$BEFORE" =~ ^0+$ ]]; then
+              echo '__FULL__' > "$out"
+            elif ! gh api "repos/$REPOSITORY/compare/$BEFORE...$SHA" \
+              --jq '.files[].filename' > "$out"; then
+              echo "::warning::could not compare push endpoints; checking the root"
+              echo '__FULL__' > "$out"
+            fi
+          else
+            echo '__FULL__' > "$out"
+          fi
+
+          sort -u -o "$out" "$out"
+          echo "Changed paths:"
+          cat "$out"
+          echo "file=$out" >> "$GITHUB_OUTPUT"
+
+      - name: Plan minimal Lean checks and project cache
+        id: plan
+        shell: bash
+        env:
+          MANUAL_TARGET: ${{ inputs.target }}
+        run: |
+          set -euo pipefail
+          python3 scripts/lean_dev_plan.py \
+            --changed-file '${{ steps.changed.outputs.file }}' \
+            --manual-target "$MANUAL_TARGET" \
+            --github-output "$GITHUB_OUTPUT"
+
+      # These two cache families intentionally match the expensive prover/P13
+      # workflows, so the development lane does not pay a second cold start.
+      - name: Cache Lean toolchain
+        if: steps.plan.outputs.skip != 'true'
+        id: elan-cache
+        continue-on-error: true
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-${{ hashFiles('lean-toolchain') }}
+
+      - name: Install elan on a cold toolchain cache
+        if: steps.plan.outputs.skip != 'true' && steps.elan-cache.outputs.cache-hit != 'true'
+        shell: bash
+        run: curl https://raw.githubusercontent.com/leanprover/elan/464c9d28395000a2a0128e07081e4956d50eced2/elan-init.sh -sSf | sh -s -- -y
+
+      - name: Put Lean on PATH
+        if: steps.plan.outputs.skip != 'true'
+        run: echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Cache Lake packages and precompiled dependencies
+        if: steps.plan.outputs.skip != 'true'
+        id: lake-packages-cache
+        continue-on-error: true
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/packages
+          key: ${{ runner.os }}-lake-deps-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-deps-
+
+      - name: Cache Mathlib download archives
+        if: steps.plan.outputs.skip != 'true' && steps.lake-packages-cache.outputs.cache-hit != 'true'
+        continue-on-error: true
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/mathlib
+          key: ${{ runner.os }}-mathlib-archives-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}
+
+      - name: Fetch precompiled Mathlib when dependencies are cold or stale
+        if: steps.plan.outputs.skip != 'true' && steps.lake-packages-cache.outputs.cache-hit != 'true'
+        run: lake exe cache get
+
+      # This is the fast project cache: only OLean inputs needed by the selected
+      # files, content-addressed by that local import closure. A repeated edit of
+      # the leaf source itself normally hits this key exactly.
+      - name: Restore target-scoped OLean dependency cache
+        if: steps.plan.outputs.has_project_deps == 'true'
+        id: project-deps-cache
+        continue-on-error: true
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ${{ steps.plan.outputs.cache_paths }}
+          key: ${{ runner.os }}-${{ runner.arch }}-groupapprox-olean-deps-v1-${{ steps.plan.outputs.dep_set }}-${{ steps.plan.outputs.dep_content }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-groupapprox-olean-deps-v1-${{ steps.plan.outputs.dep_set }}-
+
+      # First use of a dependency set can borrow the full prover checkpoint.
+      # Subsequent edits restore the much narrower cache above instead.
+      - name: Bootstrap from the full prover project cache
+        if: >-
+          steps.plan.outputs.has_project_deps == 'true' &&
+          steps.project-deps-cache.outputs.cache-matched-key == ''
+        id: prover-project-cache
+        continue-on-error: true
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: .lake/build
+          key: ${{ runner.os }}-nonsofic-dev-bootstrap-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-nonsofic-build-${{ hashFiles('lean-toolchain', 'lake-manifest.json', 'lakefile.toml', 'GroupApproximation.lean', 'GroupApproximation/**/*.lean') }}-
+            ${{ runner.os }}-nonsofic-build-
+
+      - name: Mark project-cache baseline
+        if: steps.plan.outputs.has_project_deps == 'true'
+        run: touch "$RUNNER_TEMP/lean-dev-cache-marker"
+
+      # `lake lean` builds just the imports of each file, then elaborates the
+      # file itself. The helper mirrors this lean_lib's extra Lean args because
+      # Lake's command supplies package-level args automatically, not lean_lib
+      # args. This avoids materializing an edited leaf's full leanArts target.
+      - name: Elaborate selected Lean files
+        if: steps.plan.outputs.skip != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t files < .ci/fast-lean-files
+          mapfile -t extra_args < .ci/fast-lean-extra-args
+
+          for file in "${files[@]}"; do
+            echo "::group::lake lean $file"
+            if ((${#extra_args[@]})); then
+              time lake lean "$file" -- "${extra_args[@]}"
+            else
+              time lake lean "$file"
+            fi
+            echo "::endgroup::"
+          done
+
+      # Cache is an optimization, never the verdict. Save only a complete import
+      # closure, and only when there was no matching cache or Lake actually
+      # refreshed one of the tracked OLean artifacts. This avoids uploading a
+      # new project snapshot for every leaf edit.
+      - name: Decide whether the target cache improved
+        if: always() && steps.plan.outputs.has_project_deps == 'true'
+        id: project-cache-save
+        shell: bash
+        env:
+          MATCHED_KEY: ${{ steps.project-deps-cache.outputs.cache-matched-key }}
+        run: |
+          set -euo pipefail
+          marker="$RUNNER_TEMP/lean-dev-cache-marker"
+          complete=true
+          changed=false
+
+          while IFS= read -r path; do
+            [[ -n "$path" ]] || continue
+            if [[ ! -f "$path" ]]; then
+              complete=false
+              continue
+            fi
+            if [[ -f "$marker" && "$path" -nt "$marker" ]]; then
+              changed=true
+            fi
+          done < .ci/fast-lean-cache-paths
+
+          save=false
+          if [[ "$complete" == true &&
+                ( -z "$MATCHED_KEY" || "$changed" == true ) ]]; then
+            save=true
+          fi
+          echo "complete=$complete changed=$changed matched=${MATCHED_KEY:-none} save=$save"
+          echo "save=$save" >> "$GITHUB_OUTPUT"
+
+      - name: Save target-scoped OLean dependency cache
+        if: always() && steps.project-cache-save.outputs.save == 'true'
+        continue-on-error: true
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ${{ steps.plan.outputs.cache_paths }}
+          key: ${{ runner.os }}-${{ runner.arch }}-groupapprox-olean-deps-v1-${{ steps.plan.outputs.dep_set }}-${{ steps.plan.outputs.dep_content }}
+
+      - name: Nothing Lean-relevant changed
+        if: steps.plan.outputs.skip == 'true'
+        run: echo 'No current Lean module needs compiling for this change.'

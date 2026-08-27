@@ -1,0 +1,35 @@
+{
+  "ambient_group": "GL5(F2)",
+  "ambient_order": 9999360,
+  "chart_group": "GL4(F2)=A8",
+  "chart_order": 20160,
+  "packet_exact_relative_positions": 202,
+  "permutation_action_degree": 31,
+  "collision_19243_defect_squared_numerator_over_31_histogram": {
+    "32": 157,
+    "48": 45
+  },
+  "two_holonomy_energy_numerator_over_31_histogram": {
+    "96": 2,
+    "112": 8,
+    "128": 2,
+    "144": 67,
+    "160": 123
+  },
+  "joint_two_holonomy_collision_histogram": {
+    "E2_num=96,q_defect2_num=32": 1,
+    "E2_num=96,q_defect2_num=48": 1,
+    "E2_num=112,q_defect2_num=32": 7,
+    "E2_num=112,q_defect2_num=48": 1,
+    "E2_num=128,q_defect2_num=32": 1,
+    "E2_num=128,q_defect2_num=48": 1,
+    "E2_num=144,q_defect2_num=32": 52,
+    "E2_num=144,q_defect2_num=48": 15,
+    "E2_num=160,q_defect2_num=32": 96,
+    "E2_num=160,q_defect2_num=48": 27
+  },
+  "sharp_readout": {
+    "inequality": "E_2HOL <= 5 ||q_19243-1||_2^2",
+    "equality_positions": 96
+  }
+}

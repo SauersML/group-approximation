@@ -1,0 +1,12 @@
+import GroupApproximation.Meta.AxiomGuard
+import GroupApproximation.Domination.PaperStatements
+
+/-! Axiom audit for the paper-facing domination endpoints. -/
+
+#audit_axioms GroupApproximation.finiteActionCollapse_iff_linearPermutationDomination
+#audit_axioms GroupApproximation.finiteDimensionalCollapse_iff_linearUnitaryDomination
+#audit_axioms GroupApproximation.permutationDomination_of_unitaryDomination
+#audit_axioms GroupApproximation.characterDefect_eq_zero_of_soficPresentationInvisible
+#audit_axioms GroupApproximation.obstruction_requires_matrixDimensionEscape
+#audit_axioms GroupApproximation.boundedIrreducibleDegree_linearDomination
+#audit_axioms GroupApproximation.obstruction_requires_irreducibleDegreeEscape

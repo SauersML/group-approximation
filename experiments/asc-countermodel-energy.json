@@ -1,0 +1,41 @@
+{
+  "E_of_H": 0,
+  "E_of_trivial": 1516,
+  "H_order": 168,
+  "boundary_defect_sq": 0,
+  "covariance_energy_in_countermodel": 4,
+  "cyclic_max": {
+    "element_hex": "01000000010100000101010000000001",
+    "energy": 1796,
+    "order": 4
+  },
+  "cyclic_min": {
+    "element_hex": "01000000000100000001010000000001",
+    "energy": 998,
+    "order": 2
+  },
+  "cyclic_zero_energy_count": 0,
+  "elapsed_s": 71.8,
+  "equivalence_survived_pair_search": true,
+  "global_bound_1_over_14_holds": true,
+  "implied_lower_bound_on_C_prime": 686.0,
+  "interior_defect_sq": 2,
+  "left_ideal_rank": 20005,
+  "pair_subgroup_min": {
+    "a": "00000001000100000000010001000001",
+    "b": "00010000010101000101000000000001",
+    "energy": 0,
+    "order": 20160
+  },
+  "pair_zero_energy_below_H_order": [],
+  "queue_remaining": 0,
+  "raw_S3_letters_fix_m": [
+    false,
+    false
+  ],
+  "sum_linear_energy_in_countermodel": 1372,
+  "support_W_pkt": 101,
+  "support_in_stabilizer": 3,
+  "translations_processed": 120030,
+  "words_skipped_nontrivial_at_fold": []
+}

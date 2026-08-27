@@ -1,0 +1,29 @@
+{
+  "A8_centralizer_order": 3,
+  "A8_conjugacy_classes": 1,
+  "A8_normalizer_order": 120960,
+  "first_survivor": null,
+  "outer_marking_absorbed_by_normalizer": true,
+  "overgroup": "O8-(2)",
+  "overgroup_order": 197406720,
+  "post_s_0_first_failure_histogram": {
+    "c_19243": 3,
+    "s_11": 2762496,
+    "s_30": 2112,
+    "s_44": 168,
+    "s_55": 21
+  },
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "s_0_conjugacy_class_hits": 15,
+  "s_0_conjugacy_class_size": 1071,
+  "s_0_conjugator_fiber_candidates": 2764800,
+  "s_0_seed_centralizer_order": 184320,
+  "survivor_count": 0
+}

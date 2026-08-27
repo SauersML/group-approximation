@@ -1,0 +1,31 @@
+{
+  "character_order": [
+    "(-1, -1)",
+    "(-1, 1)",
+    "(1, -1)",
+    "(1, 1)"
+  ],
+  "raw_character_trace": "1/8",
+  "transported_B0_block_masses": [
+    ["21/256", "1/256", "1/256", "1/256"],
+    ["1/256", "21/256", "1/256", "1/256"],
+    ["1/256", "1/256", "21/256", "1/256"],
+    ["1/256", "1/256", "1/256", "21/256"]
+  ],
+  "transported_B1_block_masses": [
+    ["5/128", "1/128", "1/128", "1/128"],
+    ["1/128", "5/128", "1/128", "1/128"],
+    ["1/128", "1/128", "5/128", "1/128"],
+    ["1/128", "1/128", "1/128", "5/128"]
+  ],
+  "closed_forms": {
+    "transported_B0": "(20 I + J) / 256",
+    "transported_B1": "(4 I + J) / 128"
+  },
+  "raw_trace_normalized_substochastic_kernels": {
+    "transported_B0": "(20 I + J) / 32",
+    "transported_B1": "(4 I + J) / 16"
+  },
+  "survival_masses": ["3/4", "1/2"],
+  "centered_contraction_factors": ["5/8", "1/4"]
+}

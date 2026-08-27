@@ -1,0 +1,24 @@
+{
+  "backend": "SageMath 10.7 / GAP on MSI acn112",
+  "checks": [
+    {
+      "computed_order": 12,
+      "expected_psl2_order": 12,
+      "matches": true,
+      "p": 3
+    },
+    {
+      "computed_order": 60,
+      "expected_psl2_order": 60,
+      "matches": true,
+      "p": 5
+    },
+    {
+      "computed_order": 168,
+      "expected_psl2_order": 168,
+      "matches": true,
+      "p": 7
+    }
+  ],
+  "status": "bounded falsification check only; the uniform proof uses the Behr--Mennicke congruence presentation"
+}

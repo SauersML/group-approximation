@@ -1,0 +1,134 @@
+# Fast, ungated freshness path for the manuscript PDF.
+#
+# The attested release (build-non-mf-pdf.yml) is deliberately bound to a
+# successful Lean Prover run for the exact source revision; on high-velocity
+# days that gate can starve for hours, leaving the committed PDF stale while
+# the tex moves.  This workflow closes that gap: every tex push recompiles
+# the PDF and commits it as a DRAFT — no Lean build, no claim manifest, no
+# attestation.  The next successful attested run rebuilds and replaces it,
+# restoring full provenance.  The compile itself still refuses undefined
+# references, so a broken tex never replaces a working PDF.
+#
+# Staleness is bounded two ways (added 2026-08-15 after a ten-hour gap):
+#
+#   1. A running build is never cancelled.  Under a push storm,
+#      cancel-in-progress left zero completed builds for hours; now the
+#      in-flight build finishes, and publish_pdf_commit.py's unchanged-source
+#      guard refuses its publish only if the tex has already moved on, so a
+#      stale build can never overwrite a newer PDF.
+#   2. A quarter-hour schedule rebuilds whenever the committed PDF's last
+#      update predates the tex's last change.  Any build lost to a race, a
+#      refused publish, or runner starvation is therefore healed within
+#      about fifteen minutes of runners becoming available.
+name: Draft non-MF PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'non_mf_groups_exist.tex'
+  schedule:
+    # Catch-up pass: rebuild only if the PDF is older than the tex.
+    - cron: '3,18,33,48 * * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: draft-non-mf-pdf
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  TEX_FILE: non_mf_groups_exist.tex
+  PDF_FILE: non_mf_groups_exist.pdf
+  # TeX Live 2025, pinned by digest.  See the note in refresh-non-mf-pdf.yml:
+  # the 2026 image's tagpdf aborts at \tableofcontents on this source, and
+  # also garbles the contents page.  Keep the two workflows on the same pin.
+  TEXLIVE_IMAGE: ghcr.io/xu-cheng/texlive-alpine@sha256:556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
+
+jobs:
+  draft:
+    name: Compile and publish the draft PDF
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Decide whether the PDF is stale
+        id: gate
+        run: |
+          set -euo pipefail
+          tex_commit="$(git rev-list -1 HEAD -- "$TEX_FILE")"
+          pdf_commit="$(git rev-list -1 HEAD -- "$PDF_FILE" || true)"
+          if [ "${{ github.event_name }}" != "schedule" ]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+            echo "push or dispatch: always build"
+          elif [ -n "$pdf_commit" ] && \
+               git merge-base --is-ancestor "$tex_commit" "$pdf_commit"; then
+            echo "build=false" >> "$GITHUB_OUTPUT"
+            echo "PDF ($pdf_commit) already includes tex ($tex_commit): fresh"
+          else
+            echo "build=true" >> "$GITHUB_OUTPUT"
+            echo "PDF ($pdf_commit) predates tex ($tex_commit): stale, rebuild"
+          fi
+
+      - name: Install PDF tools
+        if: steps.gate.outputs.build == 'true'
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          retry='-o Acquire::Retries=5 -o Acquire::http::Timeout=30'
+          sudo apt-get $retry update
+          sudo apt-get $retry install --yes --no-install-recommends qpdf
+          docker pull "$TEXLIVE_IMAGE"
+
+      - name: Compile in pinned TeX Live
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          mkdir -p build
+          source_epoch="$(git log -1 --format=%ct -- "$TEX_FILE")"
+          docker run --rm \
+            -e SOURCE_DATE_EPOCH="$source_epoch" \
+            -e FORCE_SOURCE_DATE=1 -e TZ=UTC \
+            -v "$GITHUB_WORKSPACE:/work" -w /work \
+            "$TEXLIVE_IMAGE" \
+            latexmk -lualatex -outdir=build -interaction=nonstopmode \
+              -halt-on-error -file-line-error "$TEX_FILE"
+
+      - name: Refuse unresolved references
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          log_file="build/${TEX_FILE%.tex}.log"
+          test -s "$log_file"
+          if grep -Eq \
+            'LaTeX Warning: (Citation .* undefined|Reference .* undefined|There were undefined references|Label\(s\) may have changed)|Rerun to get cross-references right' \
+            "$log_file"; then
+            echo "Unresolved references or citations; keeping the previous PDF." >&2
+            exit 1
+          fi
+
+      - name: Normalize the PDF
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          qpdf --linearize --object-streams=disable --force-version=2.0 \
+            --deterministic-id "build/${TEX_FILE%.tex}.pdf" "${PDF_FILE}.tmp"
+          mv -- "${PDF_FILE}.tmp" "$PDF_FILE"
+          qpdf --check "$PDF_FILE"
+
+      - name: Commit and push the draft PDF
+        if: steps.gate.outputs.build == 'true'
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          python3 scripts/publish_pdf_commit.py self-test
+          python3 scripts/publish_pdf_commit.py publish-draft \
+            --source-sha "$(git rev-parse HEAD)" \
+            --source-file "$TEX_FILE" \
+            --pdf "$PDF_FILE" \
+            --message "build: update non-MF PDF (draft; unattested)"

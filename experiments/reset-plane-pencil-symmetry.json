@@ -1,0 +1,254 @@
+{
+  "matrix_size": 16,
+  "plane_count": 7,
+  "records": [
+    {
+      "plane_hex": [
+        "0x762",
+        "0x2b84",
+        "0x2ce6"
+      ],
+      "shear_similarity": false,
+      "signature": {
+        "characteristic_polynomial": "x**15 + x**14 + x**11 + x**9 + x**8 + x**5 + x**4 + x**3 + 1",
+        "primary_data": [
+          {
+            "factor": "x**3 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              3
+            ]
+          },
+          {
+            "factor": "x**4 + x**3 + 1",
+            "multiplicity": 1,
+            "nullities": [
+              4
+            ]
+          },
+          {
+            "factor": "x**8 + x**6 + x**5 + x**4 + x**2 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              8
+            ]
+          }
+        ]
+      },
+      "swap_similarity": false,
+      "third_is_xor": true,
+      "transition_invertible": true,
+      "translated_transition_invertible": true
+    },
+    {
+      "plane_hex": [
+        "0x762",
+        "0xb0eb",
+        "0xb789"
+      ],
+      "shear_similarity": false,
+      "signature": {
+        "characteristic_polynomial": "x**15 + x**14 + x**12 + x**11 + x**9 + x**8 + x**6 + x**5 + x**2 + x + 1",
+        "primary_data": [
+          {
+            "factor": "x**2 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              2
+            ]
+          },
+          {
+            "factor": "x**6 + x**5 + 1",
+            "multiplicity": 1,
+            "nullities": [
+              6
+            ]
+          },
+          {
+            "factor": "x**7 + x**6 + 1",
+            "multiplicity": 1,
+            "nullities": [
+              7
+            ]
+          }
+        ]
+      },
+      "swap_similarity": false,
+      "third_is_xor": true,
+      "transition_invertible": true,
+      "translated_transition_invertible": true
+    },
+    {
+      "plane_hex": [
+        "0x841",
+        "0x24a7",
+        "0x2ce6"
+      ],
+      "shear_similarity": false,
+      "signature": {
+        "characteristic_polynomial": "x**15 + x**12 + x**10 + x**8 + x**7 + x**6 + x**5 + x**4 + x**2 + x + 1",
+        "primary_data": [
+          {
+            "factor": "x**7 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              7
+            ]
+          },
+          {
+            "factor": "x**8 + x**5 + x**3 + x**2 + 1",
+            "multiplicity": 1,
+            "nullities": [
+              8
+            ]
+          }
+        ]
+      },
+      "swap_similarity": false,
+      "third_is_xor": true,
+      "transition_invertible": true,
+      "translated_transition_invertible": true
+    },
+    {
+      "plane_hex": [
+        "0x841",
+        "0xb0eb",
+        "0xb8aa"
+      ],
+      "shear_similarity": false,
+      "signature": {
+        "characteristic_polynomial": "x**15 + x**14 + x**13 + x**11 + x**10 + x**8 + x**5 + x**4 + 1",
+        "primary_data": [
+          {
+            "factor": "x**3 + x**2 + 1",
+            "multiplicity": 2,
+            "nullities": [
+              3,
+              6
+            ]
+          },
+          {
+            "factor": "x**9 + x**8 + x**6 + x**5 + 1",
+            "multiplicity": 1,
+            "nullities": [
+              9
+            ]
+          }
+        ]
+      },
+      "swap_similarity": false,
+      "third_is_xor": true,
+      "transition_invertible": true,
+      "translated_transition_invertible": true
+    },
+    {
+      "plane_hex": [
+        "0x24a7",
+        "0x9c0d",
+        "0xb8aa"
+      ],
+      "shear_similarity": false,
+      "signature": {
+        "characteristic_polynomial": "x**15 + x**14 + x**13 + x**12 + x**10 + x**9 + x**8 + x**5 + x**4 + x + 1",
+        "primary_data": [
+          {
+            "factor": "x**5 + x**2 + 1",
+            "multiplicity": 1,
+            "nullities": [
+              5
+            ]
+          },
+          {
+            "factor": "x**5 + x**3 + 1",
+            "multiplicity": 1,
+            "nullities": [
+              5
+            ]
+          },
+          {
+            "factor": "x**5 + x**4 + x**2 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              5
+            ]
+          }
+        ]
+      },
+      "swap_similarity": false,
+      "third_is_xor": true,
+      "transition_invertible": true,
+      "translated_transition_invertible": true
+    },
+    {
+      "plane_hex": [
+        "0x2b84",
+        "0x9c0d",
+        "0xb789"
+      ],
+      "shear_similarity": false,
+      "signature": {
+        "characteristic_polynomial": "x**15 + x**13 + x**11 + x**9 + x**7 + x**5 + x**2 + x + 1",
+        "primary_data": [
+          {
+            "factor": "x**2 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              2
+            ]
+          },
+          {
+            "factor": "x**13 + x**12 + x**11 + x**7 + x**6 + x**5 + 1",
+            "multiplicity": 1,
+            "nullities": [
+              13
+            ]
+          }
+        ]
+      },
+      "swap_similarity": false,
+      "third_is_xor": true,
+      "transition_invertible": true,
+      "translated_transition_invertible": true
+    },
+    {
+      "plane_hex": [
+        "0x2ce6",
+        "0x9c0d",
+        "0xb0eb"
+      ],
+      "shear_similarity": false,
+      "signature": {
+        "characteristic_polynomial": "x**15 + x**14 + x**13 + x**12 + x**10 + x**9 + x**7 + x**6 + x**4 + x + 1",
+        "primary_data": [
+          {
+            "factor": "x**2 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              2
+            ]
+          },
+          {
+            "factor": "x**4 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              4
+            ]
+          },
+          {
+            "factor": "x**9 + x**4 + x**3 + x + 1",
+            "multiplicity": 1,
+            "nullities": [
+              9
+            ]
+          }
+        ]
+      },
+      "swap_similarity": false,
+      "third_is_xor": true,
+      "transition_invertible": true,
+      "translated_transition_invertible": true
+    }
+  ],
+  "residual_size": 15,
+  "s3_symmetric_plane_count": 0
+}

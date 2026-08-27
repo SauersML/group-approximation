@@ -1,0 +1,220 @@
+# Piecewise signed-Hecke unitaries reduce the compiler to a projection atlas
+
+Status: exact algebraic construction and exact BCS criterion; not yet a
+nonhyperlinear-group proof.
+
+## 1. Why multiple double cosets are the right object
+
+Let `Gamma` be a group, let `q in C[Gamma]` be a nonzero algebraic
+projection, and use `q` as the unit of `q C[Gamma] q`.  The unitary
+compression lemma in `TRUE_AUGMENTATION_ZERO_HECKE_GATE.md` says that
+`qgq` can be a corner unitary only when `g` stabilizes `q`.  A genuinely
+nonnormal construction must therefore combine several group translates.
+
+There is an exact finite formula for doing this.  It is the group-ring
+analogue of a piecewise permutation.
+
+## 2. Piecewise-unitary lemma
+
+Let `(p_i)_(i in I)` and `(r_i)_(i in I)` be two finite orthogonal
+partitions of `q` by algebraic projections:
+
+```text
+p_i p_j=0=r_i r_j       (i!=j),
+sum_i p_i=q=sum_i r_i.                              (PSH1)
+```
+
+Suppose `g_i in Gamma` transports the corresponding pieces,
+
+```text
+g_i p_i g_i^(-1)=r_i.                               (PSH2)
+```
+
+Put
+
+```text
+v_i=g_i p_i=r_i g_i,
+V=sum_i v_i.                                        (PSH3)
+```
+
+Then `v_i` belongs to `q C[Gamma] q`, and
+
+```text
+v_i^*v_j=delta_(ij)p_i,
+v_i v_j^*=delta_(ij)r_i.                            (PSH4)
+```
+
+Indeed the initial projections are orthogonal, as are the range
+projections.  Summing `(PSH4)` gives
+
+```text
+V^*V=q=VV^*.                                        (PSH5)
+```
+
+Thus `V` is an algebraic unitary in the signed corner.  Its group support is
+contained in the union of the finitely many translates
+`g_i supp(p_i)`, so it is an explicit finite multi-double-coset operator.
+
+There is also an involutive version.  Suppose an involution `sigma:I->I`
+satisfies
+
+```text
+p_(sigma(i))=r_i,
+g_(sigma(i))=g_i^(-1).                              (PSH6)
+```
+
+Then `v_(sigma(i))=v_i^*`, so
+
+```text
+V=V^*,       V^2=q.                                 (PSH7)
+```
+
+Hence piecewise group transport produces exactly the self-adjoint corner
+involutions required by a BCS algebra.
+
+## 3. Two pieces are the first genuinely nonnormal case
+
+With one piece, `(PSH1)` forces `p_1=r_1=q`, so `(PSH2)` says that the group
+element stabilizes `q`.  This recovers the single-compression no-go.
+
+With two pieces, let
+
+```text
+q=p_0+p_1,
+g p_0 g^(-1)=p_1.                                   (PSH8)
+```
+
+No condition on `g p_1 g^(-1)` is needed.  The operator
+
+```text
+V=g p_0+g^(-1)p_1                                  (PSH9)
+```
+
+has the form `(PSH3)` with the two pieces exchanged.  Consequently
+
+```text
+V=V^*,       V^2=q.                                 (PSH10)
+```
+
+The element `g` need not stabilize `q`; the two terms repair its missing
+domain and range separately.  Therefore two double-coset pieces are not
+merely necessary in the nonnormal lane--they are already sufficient to
+produce a nonnormal corner involution.
+
+This is the smallest exact algebraic gadget left open by the earlier
+unitary-compression lemma.
+
+## 4. A BCS algebra is exactly a compatible projection atlas
+
+Let `B` be a finite Boolean constraint system with variables `X`, contexts
+`C`, and allowed assignment sets
+
+```text
+R_c subseteq {+1,-1}^(U_c),       c in C.
+```
+
+Suppose that, for every context `c`, the signed corner contains an
+orthogonal projection partition
+
+```text
+(p_(c,a))_(a in R_c),
+sum_(a in R_c) p_(c,a)=q.                            (PSH11)
+```
+
+For `x in U_c`, define the local coordinate involution
+
+```text
+V_(c,x)=sum_(a in R_c) a_x p_(c,a).                  (PSH12)
+```
+
+Assume only the overlap equations
+
+```text
+V_(c,x)=V_(d,x)       whenever x in U_c intersect U_d. (PSH13)
+```
+
+Then `(PSH12)` defines a context-independent element `V_x`.  Equations
+`(PSH11)--(PSH12)` imply
+
+```text
+V_x=V_x^*,       V_x^2=q,
+[V_x,V_y]=0      (x,y in one context).               (PSH14)
+```
+
+For a forbidden assignment `b notin R_c`, its joint atom is
+
+```text
+product_(x in U_c) (q+b_x V_x)/2=0.                  (PSH15)
+```
+
+Indeed, expanding with the orthogonal partition leaves a projection
+`p_(c,a)` only if `a=b`, and there is no such allowed index.  Therefore the
+assignment `x |-> V_x` gives a unital `*`-homomorphism
+
+```text
+mathscr A(B) -> q C[Gamma] q.                        (PSH16)
+```
+
+Conversely, the joint spectral projections of any corner representation of
+the BCS relations supply `(PSH11)--(PSH13)`.  Thus the remaining groupifier
+is exactly a finite compatible projection-atlas problem.
+
+## 5. Why no trace decoder remains
+
+Choose `B` so that `mathscr A(B)` has tracial states but no
+Connes-embeddable tracial state.  Once `(PSH16)` exists, the normalized
+canonical trace of `qL(Gamma)q` pulls back to a tracial state on
+`mathscr A(B)`.
+
+If `Gamma` were hyperlinear, this pulled-back trace would be Connes
+embeddable: its GNS von Neumann algebra is the subalgebra generated by the
+image of `(PSH16)` inside the CE corner.  This is impossible by the choice of
+`B`.  Therefore `(PSH11)--(PSH13)` in a positive algebraic group corner
+already prove that `Gamma` is nonhyperlinear.
+
+There is no requirement to reproduce a preselected game trace, no separate
+injectivity theorem, and no asymptotic decoder.  The canonical corner trace
+does all of that logical work automatically.
+
+## 6. Finite-type seed and transport arrows
+
+Take `q=z_rho`, where `rho` is a higher-dimensional irreducible
+representation of a finite subgroup `K<=Gamma`.  The finite block
+
+```text
+q C[K] q isomorphic M_(d_rho)(C)                     (PSH17)
+```
+
+contains explicit seed partitions for arbitrary predicates, as proved in
+`TRUE_AUGMENTATION_ZERO_HECKE_GATE.md`.  Group elements outside `K` can
+transport subprojections of this block back into `q` as in `(PSH2)`.  Such
+transports are the arrows of a finite representation-type quiver; sums
+along a complete family of arrows give the algebraic corner unitaries in
+`(PSH3)`.
+
+A concrete successful compiler may therefore be specified by finite data:
+
+1. one finite type `(K,rho)` with `dim(rho)>1`;
+2. finitely many algebraic subprojections of its block;
+3. finitely many group-word arrows satisfying `(PSH2)`; and
+4. finitely many overlap identities `(PSH13)`.
+
+All four items are group-ring identities with finite support.  The first
+three create the context partitions; the fourth is the genuinely
+higher-dimensional holonomy condition that ordinary Bass--Serre gluing
+cannot supply.
+
+## 7. Audited endpoint
+
+The signed-Hecke route is now reduced to the following exact target:
+
+> Find a finitely presented group `Gamma`, a finite irreducible type
+> `(K,rho)` with `dim(rho)>1`, and finitely many piecewise transport words
+> whose projection atlas satisfies `(PSH11)--(PSH13)` for one fixed BCS
+> algebra with tracial states but no CE tracial state.
+
+The trivial-type corner is impossible by augmentation.  Scalar central
+phases cannot prune nonlinear predicates.  Single compressed group elements
+remain in the selector stabilizer.  Piecewise transport is the first
+surviving algebraic mechanism, and the two-piece formula `(PSH9)` is its
+smallest nonnormal building block.

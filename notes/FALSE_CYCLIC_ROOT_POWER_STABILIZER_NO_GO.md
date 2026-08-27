@@ -1,0 +1,158 @@
+# Cyclic Laurent-root Bocksteins are stabilizer-killed at every depth
+
+Date: 2026-08-11
+
+## 1. Outcome
+
+The square-filling mechanism of
+`FALSE_NONCOMMUTING_BOCKSTEIN_STABILIZER_CANCELLATION.md` is not special to
+prime two or to the first congruence layer.  For every prime `p`, every
+depth `k>=1`, and every Laurent monomial, the standard cyclic mod-`p`
+Bockstein cycle of a single root element has an explicit lift in a
+polynomial double-coset stabilizer.
+
+Consequently, merely replacing the first-order `D_8` square class by a
+deeper cyclic root-power class cannot produce the marked relation-module
+charge.  A higher-congruence survivor must involve a genuinely noncyclic
+commutator/exterior interaction, not only the `p`-th power of one Laurent
+root.
+
+## 2. Setup and the root-power identity
+
+Let
+
+`R=Z[x_1^(+-1),...,x_d^(+-1)]`,
+`R_+=Z[x_1,...,x_d]`,
+`E=EL_r(R)`, `Gamma=EL_r(R_+)`, `r>=5`.               `(CRP1)`
+
+For a prime `p`, put
+
+`E_p=ker(E->EL_r(R/pR))`.                             `(CRP2)`
+
+The intermediate group used in the Laurent fold construction contains
+`E_p`; adjoining the Laurent element which creates the Jordan action does
+not change the argument below.  Denote any such intermediate subgroup by
+`B_p`.
+
+Fix `k>=1` and a Laurent monomial `x^v`.  Define
+
+`b=e_23(p^k x^v)`,
+`u=e_24(p^k x^v)`,
+`c=e_43(p)`.                                          `(CRP3)`
+
+All three elements belong to `E_p`, hence to `B_p`.  The Steinberg
+commutator relation and additivity in a root subgroup give
+
+`[u,c]=e_23(p^(k+1)x^v)=b^p`.                         `(CRP4)`
+
+Thus the `p`-th power relation of the deep root element is already filled
+by two elements of the first congruence subgroup.
+
+## 3. Simultaneous polynomial conjugation
+
+Choose the determinant-one Laurent diagonal `d_v` with exponent weights
+
+`lambda_2=0`, `lambda_3=lambda_4=-v`, `lambda_5=2v`,  `(CRP5)`
+
+and all remaining weights zero.  As in the prime-two note, stable
+elementary diagonal identities give `d_v in E`.  Conjugation yields
+
+`d_v^(-1)b d_v=e_23(p^k)`,
+`d_v^(-1)u d_v=e_24(p^k)`,
+`d_v^(-1)c d_v=e_43(p)`.                              `(CRP6)`
+
+Therefore
+
+`b,u,c in S_v:=B_p intersect d_v Gamma d_v^(-1)`.     `(CRP7)`
+
+The point of `(CRP7)` is simultaneous containment: both the deep root and
+the two elements filling its `p`-th power lie in one polynomial
+double-coset stabilizer.
+
+## 4. An explicit bar-cycle lift
+
+For group elements `x,y`, define the integral normalized bar chain
+
+`C(x,y)=[x^(-1)|x]+[y^(-1)|y]`
+`       -[x|y]-[xy|x^(-1)]-[xyx^(-1)|y^(-1)]`.       `(CRP8)`
+
+A direct telescoping computation gives
+
+`partial C(x,y)=[[x,y]]`.                             `(CRP9)`
+
+For an element `g`, put
+
+`T_p(g)=sum_(j=1)^(p-1) [g^j|g]`.                    `(CRP10)`
+
+Again by telescoping,
+
+`partial T_p(g)=p[g]-[g^p]`.                         `(CRP11)`
+
+Reduce coefficients modulo `p` and set
+
+`U_(p,k,v)=T_p(b)+C(u,c)`.                            `(CRP12)`
+
+Equations `(CRP4)`, `(CRP9)`, and `(CRP11)` imply
+
+`partial U_(p,k,v)=0 in C_1(S_v,F_p)`.                `(CRP13)`
+
+Suppose a finite quotient of `B_p` kills `u,c` and sends `b` to an element
+`bar b` of order `p`.  The commutator chain becomes degenerate in the
+normalized quotient complex, so
+
+`U_(p,k,v) |-> T_p(bar b)`.                           `(CRP14)`
+
+The right-hand side is the standard generator of
+
+`H_2(<bar b>,F_p) ~= F_p`,                            `(CRP15)`
+
+and its coefficient Bockstein is the class `[bar b]` in integral first
+homology.  Hence `(CRP12)` is an explicit stabilizer lift of the cyclic
+root-power Bockstein generator.
+
+## 5. Vanishing in the Laurent relation module
+
+Let
+
+`P=E/Gamma`, `I_P=Aug_(F_p)(P)`.                      `(CRP16)`
+
+Restricting `P` to `B_p`, Shapiro's lemma and
+
+`0->I_P->F_p[P]->F_p->0`                              `(CRP17)`
+
+give
+
+`directSum_(B_p d Gamma) H_2(B_p intersect dGamma d^(-1),F_p)`
+` -> H_2(B_p,F_p) --delta_P--> H_1(B_p,I_P)`.         `(CRP18)`
+
+By `(CRP7)` and `(CRP13)`, the class of `U_(p,k,v)` lies in the image of
+the `d_v` summand.  Exactness yields
+
+`delta_P([U_(p,k,v)])=0`.                             `(CRP19)`
+
+Thus its pairing with every class arising through the augmentation-module
+connecting map, including the marked Laurent fold fiber, is zero.
+
+## 6. Consequence for the search
+
+**Theorem.**  In the Laurent elementary-group fold, every mod-`p` cyclic
+Bockstein class obtained from the `p`-th power of one Laurent root element
+at any congruence depth is induced from polynomial double-coset stabilizer
+homology and has zero augmentation-module transgression.
+
+This rules out a large apparent escape from the finite-Jordan no-go.  The
+following replacement is insufficient:
+
+`first-order square class -> deeper p-th-power class`. `(CRP20)`
+
+The root-power relation always admits the uniform commutator repair
+`(CRP4)`, and the Laurent diagonal `(CRP5)` polynomializes that repair.
+What remains at higher depth must use information not generated by
+individual cyclic root powers, for example:
+
+1. exterior classes coupling two Laurent directions whose joint filling
+   cannot be polynomialized by one diagonal;
+2. nonabelian higher-congruence commutators with incompatible exponent
+   supports; or
+3. compatible infinite classes which do not factor through a finite
+   collection of cyclic root quotients.

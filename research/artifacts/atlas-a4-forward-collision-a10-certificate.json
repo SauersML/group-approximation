@@ -1,0 +1,29 @@
+{
+  "all_generators_even": true,
+  "all_relators_identity": true,
+  "atlas_multiplicity": 90,
+  "degree": 10,
+  "edge_group_orders": {
+    "A": 9,
+    "B": 2
+  },
+  "generator_images_one_based": {
+    "c": [1, 4, 6, 2, 7, 3, 5, 8, 10, 9],
+    "r": [1, 3, 5, 6, 2, 7, 4, 8, 9, 10],
+    "s": [2, 1, 3, 8, 9, 6, 10, 4, 5, 7],
+    "t": [1, 2, 5, 4, 9, 7, 10, 8, 3, 6],
+    "z": [1, 3, 5, 7, 2, 4, 6, 8, 9, 10]
+  },
+  "image": "A10",
+  "image_order": 1814400,
+  "regular_restriction_multiplicities": {
+    "C": 12600,
+    "F": 100800,
+    "K": 302400
+  },
+  "vertex_group_orders": {
+    "C": 144,
+    "F": 18,
+    "K": 6
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "all_depth_two_adic_harmonic_lifts": [
+    true,
+    true
+  ],
+  "augmented_ranks": [
+    11052,
+    11052
+  ],
+  "binary_rank": 11051,
+  "certified_modulus": 64,
+  "correction_variable_count": 30360,
+  "depth_certificate_sha256": "4335fad84b2056cbfc72e28ee1e3a50cca12a1d23c133ef7aac1a68537674af2",
+  "equation_count": 15132,
+  "free_cokernel_rank": 4080,
+  "prime": 61,
+  "projective_degree": 3783,
+  "rational_rank": 11052,
+  "rationally_compatible_harmonic_demands": [
+    true,
+    true
+  ],
+  "selected_section_basis_profiles": [
+    {
+      "basis_index": 0,
+      "centered_input_squared_norm": 148968,
+      "centered_output_squared_norm": 3233789,
+      "normalized_ratio": 0.5608991744365751,
+      "normalized_ratio_squared_denominator": 10278792,
+      "normalized_ratio_squared_numerator": 3233789
+    },
+    {
+      "basis_index": 1,
+      "centered_input_squared_norm": 143346,
+      "centered_output_squared_norm": 3243234,
+      "normalized_ratio": 0.5726269812461763,
+      "normalized_ratio_squared_denominator": 1648479,
+      "normalized_ratio_squared_numerator": 540539
+    }
+  ],
+  "two_primary_elementary_divisors": {
+    "4": 1
+  }
+}

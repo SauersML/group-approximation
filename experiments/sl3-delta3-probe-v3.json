@@ -1,0 +1,54 @@
+{
+ "orbits": 37,
+ "D0": 6.922434858716961,
+ "runs": [
+  {
+   "slack": 0.5,
+   "restart": 0,
+   "leak": 0.00115,
+   "unit_pen": 0.534262,
+   "defect": 6.968,
+   "trK": 0.20147
+  },
+  {
+   "slack": 0.5,
+   "restart": 1,
+   "leak": 0.00101,
+   "unit_pen": 0.741993,
+   "defect": 6.9358,
+   "trK": 0.0813
+  },
+  {
+   "slack": 1.0,
+   "restart": 0,
+   "leak": 0.0006,
+   "unit_pen": 0.587347,
+   "defect": 6.9304,
+   "trK": 0.11588
+  },
+  {
+   "slack": 1.0,
+   "restart": 1,
+   "leak": 0.00044,
+   "unit_pen": 0.74029,
+   "defect": 6.9291,
+   "trK": 0.08088
+  },
+  {
+   "slack": 2.0,
+   "restart": 0,
+   "leak": 0.00043,
+   "unit_pen": 0.578394,
+   "defect": 6.9262,
+   "trK": 0.15227
+  },
+  {
+   "slack": 2.0,
+   "restart": 1,
+   "leak": 0.00012,
+   "unit_pen": 0.740932,
+   "defect": 6.9227,
+   "trK": 0.04845
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "24_Reg_J_restricted_V4_copies": 72,
+  "H_order": 288,
+  "J_order": 12,
+  "Reg_H_restricted_V4_copies": 72,
+  "ambient_symmetric_degree": 288,
+  "carrier_order": 144,
+  "collision_reduces_to": "t*s*t^-1*s*t=1",
+  "common_V4_order": 4,
+  "first_support_order": 18,
+  "second_S3_order": 6
+}

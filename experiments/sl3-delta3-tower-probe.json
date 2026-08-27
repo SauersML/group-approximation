@@ -1,0 +1,14 @@
+{
+ "control": {
+  "restart": 2,
+  "raw_defect": 23.49215,
+  "leak_corr": 0.00251,
+  "abs_tr_K": 0.01767
+ },
+ "leak": {
+  "restart": 0,
+  "raw_defect": 23.49794,
+  "leak_corr": 0.00187,
+  "abs_tr_K": 0.01604
+ }
+}

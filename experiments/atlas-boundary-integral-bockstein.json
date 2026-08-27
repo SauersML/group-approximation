@@ -1,0 +1,27 @@
+{
+  "bockstein_basis_digest": "2acdc6d2ee7dea5936377ee4f77407d3bc3a8fc2486f180d343777e695e81298",
+  "bockstein_rank": 35,
+  "boundary_seeds": 234,
+  "bridge_a8_span_dimension_in_mod2_cokernel": 35,
+  "bridge_basis_digest": "95066a1bb194785f2d42389fd0dc7c0f2165e1976046ecdfc647f2b14c4b4951",
+  "bridge_remainder_weights": [
+    2,
+    2,
+    2,
+    2
+  ],
+  "bridge_span_is_entire_extra_sector": true,
+  "dependent_candidates": 100259,
+  "even_nonzero_smith_factors": 35,
+  "group": "A8 ~= GL4(F2)",
+  "group_order": 20160,
+  "mod2_basis_digest": "60f55cce183ff6c1f59b9cb4a8360f5800fbfd4843cca32980fbe1ae92f090b8",
+  "mod2_cokernel_dimension": 155,
+  "mod2_image_rank": 20005,
+  "rational_cokernel_rank": 120,
+  "rational_image_rank": 20040,
+  "raw_bockstein_values": 65654,
+  "smith_factors_divisible_by_four": 0,
+  "translated_candidates": 120030,
+  "two_primary_conclusion": "(Z/2)^35"
+}

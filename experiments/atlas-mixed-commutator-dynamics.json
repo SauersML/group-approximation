@@ -1,0 +1,32 @@
+{
+  "word": "h=[comb* X1 comb,raw]",
+  "commutator_metrics": {
+    "terms": 21,
+    "max_left_depth": 6,
+    "max_right_depth": 10,
+    "degree_range": [-8, 0],
+    "minimum_degree_term_count": 1
+  },
+  "commutator_minimum_degree_terms": [
+    ["00", "0010101010"]
+  ],
+  "distinct_powers_through_16": 17,
+  "power_term_counts": [
+    1, 21, 39, 59, 57, 81, 95, 97, 75,
+    103, 135, 157, 131, 141, 151, 135, 93
+  ],
+  "power_degree_ranges": [
+    [0, 0], [-8, 0], [-16, 0], [-24, 0], [-32, 0],
+    [-40, 0], [-48, 0], [-56, 0], [-64, 0], [-72, 0],
+    [-80, 0], [-88, 0], [-96, 0], [-104, 0], [-112, 0],
+    [-120, 0], [-128, 0]
+  ],
+  "unique_minimum_degree_term_through_16": true,
+  "minimum_degree_formula_through_16": true,
+  "source_cut_overlap_trace_histogram": {
+    "1/64": 16,
+    "1/8": 1
+  },
+  "source_cut_term_counts": [26],
+  "source_cut_return_exponents": [0]
+}

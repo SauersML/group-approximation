@@ -1,0 +1,13 @@
+{
+  "chart_normalizer_order": 40320,
+  "chart_order": 20160,
+  "conjugators_tested": 1451520,
+  "first_joint_survivor": null,
+  "overgroup": "Sp(6,2)",
+  "overgroup_order": 1451520,
+  "packet_and_collision_survivors": 0,
+  "packet_survivors": 280,
+  "packet_words": 30,
+  "s8_derived_a8_one_conjugacy_class": true,
+  "s8_maximal_subgroups": 36
+}

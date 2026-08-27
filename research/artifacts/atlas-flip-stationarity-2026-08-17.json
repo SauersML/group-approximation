@@ -1,0 +1,29 @@
+{
+ "active": {
+  "slice": "active",
+  "words": 72,
+  "raw_terms": 376,
+  "distinct_pairs_in_M": 0,
+  "surviving_pairs_in_A": 0,
+  "pair_level_cancellation": true,
+  "exact_hs_norm_sq_of_A": 0,
+  "stationary": true
+ },
+ "control": {
+  "slice": "control",
+  "words": 4564,
+  "raw_terms": 0,
+  "distinct_pairs_in_M": 0,
+  "surviving_pairs_in_A": 0,
+  "pair_level_cancellation": true,
+  "exact_hs_norm_sq_of_A": 0,
+  "stationary": true
+ },
+ "combined": {
+  "slice": "combined (equal weights, as the run's objective)",
+  "surviving_pairs_in_A": 0,
+  "exact_hs_norm_sq_of_A": 0,
+  "stationary": true
+ },
+ "predicted_riemannian_grad_norm": 0.0
+}

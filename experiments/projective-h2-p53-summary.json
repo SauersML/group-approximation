@@ -1,0 +1,24 @@
+{
+  "chart": "projective",
+  "chart_prime": 53,
+  "projective_degree": 2863,
+  "chain_dimensions": [11452, 28630, 57260],
+  "d2_nnz": 232070,
+  "d3_nnz": 1603070,
+  "d2_sha256": "9599922d091e1750429d4434afd3d443246394e7ff8274333d34daa7359ec362",
+  "d3_sha256": "25c6cb0e4f3ccce8eafefababbc0afb074b41c93ec41724cf028981416d48d66",
+  "chain_check": "structural_from_HAP_resolution_and_byte_validated_exporter",
+  "modular": [
+    {"field": "F_2", "d2_rank": 8589, "d3_rank": 20029, "h2_dimension": 12},
+    {"field": "F_3", "d2_rank": 8590, "d3_rank": 20038, "h2_dimension": 2},
+    {"field": "F_5", "d2_rank": 8590, "d3_rank": 20038, "h2_dimension": 2},
+    {"field": "F_7", "d2_rank": 8590, "d3_rank": 20038, "h2_dimension": 2},
+    {"field": "F_101", "d2_rank": 8590, "d3_rank": 20038, "h2_dimension": 2}
+  ],
+  "rational_h2_dimension": 2,
+  "rational_dimension_evidence": {
+    "upper_bound": "dim H2(F_101)=2",
+    "lower_bound": "Ash--Yasaki compute a two-dimensional cuspidal H^3 class at level 53; Poincare--Lefschetz duality injects it into rational H2"
+  },
+  "export_performance": {"elapsed_seconds": 13.43, "maximum_resident_kibibytes": 167316}
+}

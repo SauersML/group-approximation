@@ -1,0 +1,15 @@
+group_order=20160
+point_stabilizer_order=1344 index=15
+hyperplane_stabilizer_order=1344 index=15
+flag_stabilizer_order=168 index=120
+flag_is_GL3_order=true
+irreducible_degrees=[ 1, 7, 14, 20, 21, 21, 21, 28, 35, 45, 45, 56, 64, 70 ]
+point_multiplicities=[ 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+hyperplane_multiplicities=[ 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+nonincident_flag_multiplicities=[ 1, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0 ]
+point_commutant_dimension=2
+hyperplane_commutant_dimension=2
+flag_commutant_dimension=7
+point_hyperplane_intertwiner_dimension=2
+point_flag_intertwiner_dimension=3
+hyperplane_flag_intertwiner_dimension=3

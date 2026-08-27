@@ -1,0 +1,17 @@
+{
+  "left": {
+    "a": "2/3",
+    "b": "1/3"
+  },
+  "right": {
+    "x": "1/3",
+    "y": "2/3"
+  },
+  "allowed": [
+    ["a", "x"],
+    ["b", "x"],
+    ["b", "y"]
+  ],
+  "expected_hall_deficit": "1/3",
+  "expected_source_subset": ["a"]
+}

@@ -1,0 +1,37 @@
+{
+ "floor": 2.732233047033631,
+ "runs": [
+  {
+   "mu": 0.0,
+   "restart": 0,
+   "raw_defect": 6.96805,
+   "beyond_spectral": 4.23582,
+   "leak_corr": 0.23388,
+   "abs_trK": 0.0
+  },
+  {
+   "mu": 0.0,
+   "restart": 1,
+   "raw_defect": 6.97835,
+   "beyond_spectral": 4.24611,
+   "leak_corr": 0.32205,
+   "abs_trK": 0.00091
+  },
+  {
+   "mu": 300.0,
+   "restart": 0,
+   "raw_defect": 20.10691,
+   "beyond_spectral": 17.37468,
+   "leak_corr": 0.0036,
+   "abs_trK": 0.0
+  },
+  {
+   "mu": 300.0,
+   "restart": 1,
+   "raw_defect": 20.13722,
+   "beyond_spectral": 17.40498,
+   "leak_corr": 0.00364,
+   "abs_trK": 0.0
+  }
+ ]
+}

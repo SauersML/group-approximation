@@ -1,0 +1,159 @@
+# The cheapest gate in the repository, and the one that would have saved the
+# most time today.
+#
+# A root import naming a module that is not in the tree stops `lake build`
+# before it compiles anything: every Lean Prover CI run fails at "bad imports",
+# no run reaches a verdict, and the `verified` branch cannot advance.  Three
+# such imports landed on main today, each from a session that pushed the import
+# line before the module.  Each cost a seven-minute build to discover.
+#
+# This finds them in about ten seconds, on every push, and names the culprit.
+name: Root imports resolve
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# This check is a statement about the tip's TREE, not about a diff, so the
+# newest run's verdict subsumes every older one: a stale import that commit A
+# introduced still fails on commit B unless B fixed it.  The group therefore
+# holds one run per ref and GitHub cancels the superseded ones in its control
+# plane -- free, instant, and without occupying a runner.
+#
+# It used to key the group on `github.sha` as well, which made every group a
+# singleton, so nothing was ever superseded.  On 2026-08-17 that left 29 of
+# these queued at once behind a saturated account pool (this repository shares
+# a twenty-job pool with `gam`), each waiting to spend ten seconds.  A
+# ten-second check must never be what a certificate run is queued behind.
+concurrency:
+  group: root-imports-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  imports:
+    name: Every root import names a file
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Full history: the orphan ratchet below compares this push against the
+      # commit main pointed at before it, and `github.event.before` is not
+      # reachable from a shallow clone.
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          fetch-depth: 0
+
+      - name: Check
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, sys
+          root = pathlib.Path("GroupApproximation.lean")
+          src = root.read_text(encoding="utf-8")
+          imports = re.findall(r"^import\s+(GroupApproximation\.\S+)\s*$", src, re.M)
+          missing = []
+          for mod in imports:
+              rel = pathlib.Path(mod.replace(".", "/") + ".lean")
+              if not rel.is_file():
+                  missing.append(mod)
+          # A module that exists but is imported twice also breaks nothing, yet
+          # says two sessions edited the same list without looking; report it.
+          dupes = sorted({m for m in imports if imports.count(m) > 1})
+          for mod in missing:
+              print(f"::error file=GroupApproximation.lean::"
+                    f"root imports {mod}, which is not in the tree; push the "
+                    f"module or drop the import")
+          for mod in dupes:
+              print(f"::warning file=GroupApproximation.lean::"
+                    f"{mod} is imported twice")
+          print(f"{len(imports)} root imports, {len(missing)} missing, "
+                f"{len(dupes)} duplicated")
+
+          # A module can also be in the tree and reachable from nothing.  It is
+          # then committed but never compiled, so it rots silently and its
+          # breakage surfaces only when someone finally imports it.  Twelve such
+          # modules were on main at once today, ten of which no longer built.
+          # Walk the transitive closure and name the strays.
+          def module_of(path):
+              return str(path.with_suffix("")).replace("/", ".")
+
+          all_mods = {module_of(p) for p in
+                      pathlib.Path("GroupApproximation").rglob("*.lean")}
+          imp_re = re.compile(r"^import\s+(GroupApproximation\.\S+)\s*$", re.M)
+
+          def imports_of(mod):
+              f = pathlib.Path(mod.replace(".", "/") + ".lean")
+              if not f.is_file():
+                  return []
+              return imp_re.findall(f.read_text(encoding="utf-8"))
+
+          seen, stack = set(), [m for m in imports if m not in missing]
+          while stack:
+              m = stack.pop()
+              if m in seen:
+                  continue
+              seen.add(m)
+              stack.extend(i for i in imports_of(m) if i not in seen)
+
+          unreached = sorted(all_mods - seen)
+          for mod in unreached:
+              print(f"::warning::{mod} is in the tree but outside the root "
+                    f"import closure; nothing compiles it")
+          print(f"{len(all_mods)} modules, {len(unreached)} outside the closure")
+
+          sys.exit(1 if missing else 0)
+          PY
+
+      - name: The PDF toolchain pin has not been reverted
+        shell: bash
+        run: |
+          # This one-line pin has been reverted three times by whole-tree
+          # commits.  Each revert left the committed PDF stale for hours,
+          # because the release image cannot build this manuscript: tagpdf
+          # fails to name a sectioning level and feeds an unexpanded control
+          # sequence to \directlua, which kills lualatex at
+          # \tableofcontents.  A comment in the workflow did not stop it, so
+          # the digest now lives in two places and a revert of one fails here.
+          expected=556e2e2caa7d489ce155de0eb3f43e324e6502ed4e9871aa400662b156cf00ad
+          for wf in refresh-non-mf-pdf draft-non-mf-pdf; do
+            f=".github/workflows/${wf}.yml"
+            [ -f "$f" ] || continue
+            if ! grep -q "$expected" "$f"; then
+              echo "::error file=$f::the TeX Live pin in $wf does not match the known-good digest; if the change is deliberate, update the expected digest in check-root-imports.yml in the same commit"
+              grep -n TEXLIVE_IMAGE "$f" || true
+              exit 1
+            fi
+          done
+          echo "PDF toolchain pin intact in both PDF workflows"
+
+      # The orphan ratchet.  This is the cheapest place in the repository to
+      # learn that a module will never be compiled, and on 2026-08-17 it was
+      # learned in the most expensive place instead: the orphan set grew from 0
+      # to 15 over a day of modules landing without their root import, and
+      # because the Source scan fails on ANY orphan, every one of them failed
+      # every certificate.  `verified` sat 93 commits behind while the Lean
+      # itself compiled clean.  Ten seconds here would have stopped each one.
+      #
+      # Only an INCREASE fails, so the cleanup commits that drain the current
+      # backlog are never blocked by the part of it they have not reached.
+      - name: No push may add an orphan module
+        if: >-
+          github.event_name == 'push' &&
+          github.event.before != '0000000000000000000000000000000000000000'
+        shell: bash
+        run: |
+          set -euo pipefail
+          # A force-push or a freshly grafted history can leave `before`
+          # unreachable.  Fail open in that case: this gate exists to stop a
+          # regression, not to block work when it cannot compute one.
+          if ! git cat-file -e '${{ github.event.before }}^{commit}' 2>/dev/null; then
+            echo "::notice::${{ github.event.before }} is not reachable here; skipping the orphan ratchet for this push"
+            exit 0
+          fi
+          python3 scripts/check_import_regression.py \
+            --base '${{ github.event.before }}' \
+            --head '${{ github.sha }}'

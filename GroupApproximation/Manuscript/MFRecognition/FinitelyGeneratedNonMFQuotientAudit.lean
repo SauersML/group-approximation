@@ -1,0 +1,7 @@
+import GroupApproximation.Manuscript.MFRecognition.FinitelyGeneratedNonMFQuotient
+import GroupApproximation.Meta.AxiomGuard
+
+open GroupApproximation.Manuscript.MFRecognition.Sentences
+
+#audit_axioms isOperatorMF_of_directLimit_quotients
+#audit_axioms sentence_396318a13c21

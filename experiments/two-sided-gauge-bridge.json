@@ -1,0 +1,57 @@
+{
+  "all_checks_pass": true,
+  "remote": {
+    "node": "acn116",
+    "partition": "sioux",
+    "python_module": "python3/3.12.4_anaconda2024.06-1_libmamba",
+    "elapsed_seconds": 0.37,
+    "peak_rss_kb": 11520,
+    "shared_output": "/projects/standard/hsiehph/sauer354/cairn-signal/two-sided-gauge-bridge.json"
+  },
+  "records": [
+    {
+      "logical_bits": 1,
+      "private_gauge_bits": 1,
+      "logical_characters": 2,
+      "gauge_characters": 2,
+      "packet_dimension": 4,
+      "incidence_shape": [4, 5],
+      "incidence_rank": 4,
+      "kernel_dimension": 1,
+      "primitive_positive_ray": [1, 1, 4, 1, 1]
+    },
+    {
+      "logical_bits": 2,
+      "private_gauge_bits": 2,
+      "logical_characters": 4,
+      "gauge_characters": 4,
+      "packet_dimension": 16,
+      "incidence_shape": [8, 9],
+      "incidence_rank": 8,
+      "kernel_dimension": 1,
+      "primitive_positive_ray": [1, 1, 1, 1, 16, 1, 1, 1, 1]
+    },
+    {
+      "logical_bits": 3,
+      "private_gauge_bits": 3,
+      "logical_characters": 8,
+      "gauge_characters": 8,
+      "packet_dimension": 256,
+      "incidence_shape": [16, 17],
+      "incidence_rank": 16,
+      "kernel_dimension": 1,
+      "primitive_positive_ray": [1, 1, 1, 1, 1, 1, 1, 1, 256, 1, 1, 1, 1, 1, 1, 1, 1]
+    },
+    {
+      "logical_bits": 4,
+      "private_gauge_bits": 4,
+      "logical_characters": 16,
+      "gauge_characters": 16,
+      "packet_dimension": 65536,
+      "incidence_shape": [32, 33],
+      "incidence_rank": 32,
+      "kernel_dimension": 1,
+      "primitive_positive_ray": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 65536, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    }
+  ]
+}

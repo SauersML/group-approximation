@@ -1,0 +1,44 @@
+{
+  "central_basis": [
+    "J",
+    "z_e",
+    "z_f"
+  ],
+  "constant_eigenvalue": "1",
+  "eligible_mark_preserving_involutive_charts": 10,
+  "full_type_operator_certified": false,
+  "marked_character_order": [
+    "100",
+    "101",
+    "110",
+    "111"
+  ],
+  "transfer_matrix": [
+    [
+      "2/5",
+      "1/5",
+      "1/5",
+      "1/5"
+    ],
+    [
+      "1/5",
+      "2/5",
+      "1/5",
+      "1/5"
+    ],
+    [
+      "1/5",
+      "1/5",
+      "2/5",
+      "1/5"
+    ],
+    [
+      "1/5",
+      "1/5",
+      "1/5",
+      "2/5"
+    ]
+  ],
+  "transverse_eigenvalue": "1/5",
+  "transverse_multiplicity": 3
+}

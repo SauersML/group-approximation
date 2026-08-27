@@ -1,0 +1,25 @@
+{
+  "ambient_permutation_degree": 720,
+  "cycle_rank": 2,
+  "edge_regular_multiplicities": {
+    "collision_forward_B2": 360,
+    "first_packet_collision_c2": 360,
+    "first_packet_forward_A9": 80,
+    "rectangle_collision_S3": 120,
+    "rectangle_first_packet_S3": 120
+  },
+  "graph_edges": 5,
+  "graph_vertices": 4,
+  "vertex_orders": {
+    "collision_S4": 24,
+    "first_packet_S3xS3": 36,
+    "forward_fan_C144": 144,
+    "large_rectangle_A5": 60
+  },
+  "vertex_regular_copies": {
+    "collision_S4": 30,
+    "first_packet_S3xS3": 20,
+    "forward_fan_C144": 5,
+    "large_rectangle_A5": 12
+  }
+}

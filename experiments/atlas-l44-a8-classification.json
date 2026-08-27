@@ -1,0 +1,26 @@
+{
+  "a8_modular_irreducible_degrees_in_characteristic_two": [
+    1,
+    4,
+    4,
+    6,
+    14,
+    20,
+    20,
+    64
+  ],
+  "ambient_order": 987033600,
+  "automorphism_group_order": 40320,
+  "brauer_table_automorphism_order": 2,
+  "centralizer_order": 1,
+  "chart_order": 20160,
+  "degree_four_characters_are_dual": true,
+  "degree_four_irreducible_count": 2,
+  "normalizer_order": 20160,
+  "outer_marking_absorbed_by_normalizer": false,
+  "relative_marking_parities": 2,
+  "six_relator_l44_equality_endpoint_exhausted": true,
+  "six_relator_screen_survivors": 0,
+  "subgroup_conjugacy_class_count": 1,
+  "subgroup_conjugacy_class_size": 48960
+}

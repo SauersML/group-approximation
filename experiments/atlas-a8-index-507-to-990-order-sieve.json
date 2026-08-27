@@ -1,0 +1,111 @@
+{
+  "interior_and_endpoint_simple_groups": [
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 12,
+      "group": "L2(277)",
+      "order": 10626828
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 840,
+      "group": "L2(281)",
+      "order": 11093880
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 12,
+      "group": "L2(283)",
+      "order": 11332452
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 1440,
+      "group": "L2(289)",
+      "order": 12068640
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 84,
+      "group": "L2(293)",
+      "order": 12576732
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 2880,
+      "group": "U5(2)",
+      "order": 13685760
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 252,
+      "group": "L2(307)",
+      "order": 14467068
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 120,
+      "group": "L2(311)",
+      "order": 15039960
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 24,
+      "group": "L2(313)",
+      "order": 15331992
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 12,
+      "group": "L2(317)",
+      "order": 15927348
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 4032,
+      "group": "L3(8)",
+      "order": 16482816
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 960,
+      "group": "L2(256)",
+      "order": 16776960
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 2880,
+      "group": "2F4(2)'",
+      "order": 17971200
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 60,
+      "group": "L2(331)",
+      "order": 18132180
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 336,
+      "group": "L2(337)",
+      "order": 19136208
+    },
+    {
+      "divisible_by_A8_order": true,
+      "gcd_with_A8_order": 20160,
+      "group": "A11",
+      "order": 19958400
+    }
+  ],
+  "lower_endpoint": {
+    "group": "M23",
+    "index": 506,
+    "order": 10200960
+  },
+  "only_A8_divisible_order_after_M23_through_A11": "A11",
+  "upper_endpoint": {
+    "group": "A11",
+    "index": 990,
+    "order": 19958400
+  }
+}

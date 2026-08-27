@@ -1,0 +1,226 @@
+---
+rg: 2
+id: affine-leavitt-source-saturated-reynolds-checksum
+kind: claim
+title: Force one source-saturated cross-typed Reynolds checksum on the marked Leavitt carrier
+distinct_from:
+  paired-same-reservoir-boundary-lemma: that asks for a branchwise reservoir-or-boundary decomposition through arbitrary fixed depth; this asks for one scalar first-refinement checksum and uses the fixed source/target superrank gap immediately.
+  one-coarse-to-fine-prefix-isometry-closes-the-reservoir: that asks for one physical rectangular coefficient between authenticated minimal prefix corners; this asks for one adjoint Gram contraction between packet commutant ranges and avoids wordizing the fine physical selector.
+  one-common-intertwiner-carries-the-four-pauli-pi-bridge: that transports four target operators through one almost-unitary physical intertwiner; this transports only one adjoint overlap scalar and does not reconstruct a physical factor or its spectator.
+  balanced-controlled-whitehead-return-checksum: that computes a rank gap for the controlled-reflection extension of one two-qubit packet; this uses the actual source-versus-two-child Leavitt Weyl packets with superranks `p^(-2)` and `p^(-4)`.
+  canonical-marked-reynolds-return-is-subgroup-intersection: that computes every fixed group-word actuator in the canonical marked trace and rules out source saturation for all of them; this explicitly requires a nonlinear matrix-coordinate actuator instead.
+  leavitt-forward-morita-polar-misses-reynolds-return: that computes the polar of the native forward coefficient chart and shows it is either gauge-uncontrolled or the exact label-amplifying rectangular escape; this requires a reverse cross-typed return Gram instead.
+  leavitt-branch-reynolds-return-has-rectangular-gap: that names the canonical reverse candidate `R_1 Ad(U_0) R_s` and computes its exact source leakage; this asks for the new full-presentation estimate which pays that leakage.
+  leavitt-range-sum-fold-is-first-object-erasing-row: that identifies the three-path range-sum/diagonal-return fold as the first native word outside the typed Morita language; this asks for its finite-matrix same-output-root decoding into the Reynolds leakage.
+  leavitt-range-sum-fold-does-not-pay-reynolds: that satisfies the fold on independent central-character UT4 factors while retaining the rectangular Reynolds gap; this requires occurrence synchronization beyond scalar output equality.
+  leavitt-target-return-channel-count-firewall: that proves fewer than p squared supported target-return contractions cannot cover the source Reynolds range and that the threshold is sharp; this rules out aggregating the two native branch returns, while this claim requires one payload-coupled impossible return.
+---
+
+**OPEN; MINIMAL CROSS-TYPED LEAVITT TARGET.**  In every sufficiently accurate
+canonical normalized-HS microstate of the affine-Leavitt Steinberg
+presentation, spectrally select the prescribed nontrivial phase carrier `P`
+of the marked order-`p` root.  Exactify on `P` the fixed depth-zero source
+Heisenberg packet and depth-one two-child packet, and let `R_s,R_t` be their
+adjoint Reynolds projections on `End(PH)`.
+
+From the finite matrix tuple construct an approximation-dependent contraction
+`X_U` between the two adjoint Reynolds ranges,
+
+```text
+X_U=R_t X_U R_s,            ||X_U||_op<=1,
+tr_(ad,P)(X_U^*X_U)>=p^(-2)-omega(delta,sep).           (ASR1)
+```
+
+where `omega(delta,sep)->0` as the fixed presentation defect and fixed
+canonical trace-window error tend to zero.  The trace in `(ASR1)` is
+normalized on `End(PH)`.  Equivalently one may use the ambient adjoint trace
+and multiply the right side by `tr(P)^2`; marked separation supplies a fixed
+positive lower bound for `tr(P)`.
+
+The endpoint is complete and dimension independent.  Since the range of
+`X_U` lies in `Ran(R_t)`, finite rank always
+gives
+
+```text
+tr_(ad,P)(X_U^*X_U)<=tr_(ad,P)(R_t)=p^(-4),             (ASR2)
+```
+
+so `(ASR1)--(ASR2)` contradict sufficiently small defect by the fixed amount
+`p^(-2)-p^(-4)`.  No pointwise reconstruction of either commutant is
+required after `X_U` has been constructed.  This source-Gram trace is weaker
+than constructing an adjoint unitary: if such a unitary `T_U` is available,
+one simply takes `X_U=R_tT_UR_s`.
+
+The actuator cannot be `Ad(U(w))` for a fixed word `w`, nor a fixed finite
+convex average of word actuators.  In that case the overlap expands into
+fixed squared word traces, and
+`canonical-marked-reynolds-return-is-subgroup-intersection` gives the
+canonical limit at most `p^(-4)`.  Thus `(ASR1)` specifically asks for a
+nonlinear finite-coordinate extraction—such as the compressed polar/Gram map
+of a returned mixed coefficient—whose construction error is bounded by the
+named word defects.  This operation must have no functorial counterpart in
+the exact regular representation.
+
+The direction in `(ASR1)` is load bearing.  Replacing its right side by
+`p^(-4)-o(1)` gives target saturation, which is exactly realized by the
+rectangular counterpacket in
+`target-saturated-reynolds-return-does-not-lock-leavitt-reservoir`.
+
+All presently named typed Steinberg triangles fail to imply `(ASR1)`:
+`mixed-steinberg-loops-admit-morita-rectangular-model` satisfies them while
+keeping the two object identities distinct.  Thus the missing compiler must
+extract source saturation from a genuinely finite-matrix feature of the
+full presentation, or pay its failure as boundary leakage.  More typed
+associativity loops, separate PI fingerprints, fixed word returns, and
+preservation of every target invariant remain below the exact countermodel.
+
+The first explicit polar candidate is now refuted.
+`leavitt-forward-morita-polar-misses-reynolds-return` applies
+the native coefficient formula `A |-> sum_i x_iAy_i`.  Typed multiplication
+gives it an exact algebraic inverse but does not control its Hilbert adjoint,
+because arbitrary nonunitary target-object gauges preserve every coefficient
+relation.  After choosing a unitary gauge its polar is already an exact
+isometry, but it maps the source label algebra into the doubled target label
+algebra—the rectangular escape direction.  It does not map the larger source
+commutant into the smaller target commutant.  The live `X_U` must therefore
+come from a mixed **return** Gram which reverses the Morita arrow on the
+multiplicity coordinate, not from polarizing the forward `Phi` chart.
+
+The canonical reverse formula is now explicit.  With `U_0` the first branch
+transporter and `R_1` the transverse child Reynolds cut, put
+
+```text
+X_U=R_1 Ad(U_0) R_s.                                   (ASR3)
+```
+
+Branch covariance already places `Ad(U_0)R_s` in the first-child commutant,
+so `(ASR3)` lands in `R_0R_1=R_t` and has exactly the support required in
+`(ASR1)`.  However
+`leavitt-branch-reynolds-return-has-rectangular-gap` proves that the current
+packet relations give
+
+```text
+tr_(ad,P)(X_U^*X_U)=p^(-4),
+||(I-R_1)Ad(U_0)R_s||_(HS,ad)^2=p^(-2)-p^(-4)          (ASR4)
+```
+
+in the exact rectangular model.  Thus no search for a different polar
+formula is presently needed: the live assertion is precisely that the
+additional full affine-Leavitt relations pay the transverse leakage in
+`(ASR4)`.  The depth-one coefficient and packet tables do not.
+
+The smallest native relation which must participate in that payment is also
+now isolated.  `leavitt-range-sum-fold-is-first-object-erasing-row` compares, in
+one long root, the two target range paths `s_0t_0+s_1t_1` with one source
+diagonal return `t_0s_0`.  All shorter/well-typed triangle pastings preserve
+the `E` versus `E direct_sum E` object distinction.  Thus the sharp remaining
+inequality may be stated as
+
+```text
+||(I-R_1)Ad(U_0)R_s||_(HS,ad)^2
+ <= omega_fold(||r_fold(U)-I||_2,packet defect),         (ASR5)
+```
+
+for a dimension-independent modulus tending to zero.  The group-word
+defect of `r_fold` is already paid by the fixed presentation.  What is not
+proved is the finite-matrix promotion from equality of that one long-root
+observable to equality of the multiplicity reservoir on which its three
+coefficient paths were decoded.  This is the exact same-output-root decoder
+gate; no further search through ordinary typed Steinberg loops is needed.
+
+But `(ASR5)` is false from the displayed arguments alone.
+`leavitt-range-sum-fold-does-not-pay-reynolds` makes the fold and packet
+defects zero on independent central-character UT4 path factors while the
+left side stays `p^(-2)-p^(-4)`.  The live hypothesis must therefore add
+**occurrence synchronization**: the `s_i,t_i` occurrences in `r_fold` must
+be decoded as the same finite-matrix coefficient maps which generate
+`R_s,R_0,R_1`.  A scalar long-root fold or common marked carrier does not
+authenticate that reuse.
+
+The countermodel can even assign one literal unitary to every `s_0/t_0`
+outer occurrence and one literal middle unitary: a class-three
+`UT_4(F_p)` calculation still makes `D=C_0` a prescribed nontrivial scalar.
+Hence “occurrence synchronization” must be read as **payload-coupled**
+synchronization with the Weyl/Heisenberg packet, not merely equality,
+conjugacy, or a closed transporter graph among the fold occurrences.
+
+The first genuinely non-scalar occurrence is also below the payment
+threshold.  `partial-whitehead-cell-has-marked-finite-model` takes the full
+local table for `x=s_(00)t_0`, `y=s_0t_(00)`, including all support/product
+relations and the signed Whitehead word, and specializes
+`e=f=x=y=1` in the finite splitting field.  The active root survives and the
+Whitehead word becomes the standard order-four Weyl matrix.  Even the finite
+controlled-packet cyclic graft has faithful finite quotients.  Therefore the
+live occurrence synchronization in `(ASR5)` must use enough of the **second
+branch** to destroy this collapse specialization, and must couple that
+collapse-killing row to `R_s,R_0,R_1`.  One non-scalar partial equivalence,
+even with its complete local root authentication, cannot source-saturate the
+Reynolds return.
+
+The post-decoding coefficient payment can be reduced at the same time.
+`two-inverses-one-cross-have-quadratic-hs-floor` proves that contractions on
+one decoded carrier obey
+
+```text
+sqrt(tau(P))
+ <=2||t_0s_0-P||_2+2||t_1s_1-P||_2+||t_0s_1||_2.     (ASR5a)
+```
+
+Thus one does not need the range-sum row after the coefficient maps are on
+one object: two diagonal returns and one crossed-zero product already give a
+quadratic carrier collapse.  These three rows are support-minimal for
+excluding marked finite coefficient algebras, but the rectangular Morita
+model realizes them exactly with different source and target objects.
+Accordingly the unresolved content remains the same-object/payload decoder,
+now for this strictly smaller three-row cell.
+
+Even literal same-object identification is stronger than the endpoint needs.
+`rectangular-three-row-cell-forces-double-target-capacity` keeps the two
+objects `E,F` distinct and proves from these same rows that
+
+```text
+tau(F)>=2tau(E)-10sqrt(tau(E))epsilon_0
+                    -2sqrt(tau(E))epsilon_1-4eta^2.    (ASR5b)
+```
+
+Thus it is enough to make the three named occurrences act through one common
+source/target pair and obtain any payload-conditional estimate
+`tau(F)<=(2-kappa)tau(E)+o(1)`.  The rectangular Morita model is sharp at
+`kappa=0`, so a pure typed-root argument still cannot provide this datum.
+This reformulates the remaining object-erasure as a strict target-capacity
+deficit, not necessarily equality of source and target reservoirs.
+
+That scalar deficit is now explicit.
+`dyadic-pauli-payload-flags-supply-strict-target-capacity` extends each
+forbidden atom by `n` independent Pauli signs and names projections `E,F_n`
+for which
+
+```text
+tau(F_n)=(2-2^(1-n))tau(E),                            (ASR5c)
+```
+
+also after compression by a reducing carrier.  A maximal atom makes `E`
+positive in finite BCS microstates, while both projections vanish in the
+perfect model.  Hence one may take any fixed dyadic
+`kappa=2^(1-n)>0`; no orientation-flow or target-rank construction remains.
+The same claim's regular-trace fence shows why this is not already a proof:
+the two inverse maps and crossed product cannot be universal packet-word
+consequences on `(E,F_n)`.  Their matrix-only occurrence synchronization is
+the sole surviving three-row compiler.
+
+Nor can the two native branches be rescued by summing their return
+energies.  `leavitt-target-return-channel-count-firewall` proves for every
+pair of approximation-dependent contractions supported from `R_s` to
+`R_t` that
+
+```text
+tr_ad(X_0^*X_0+X_1^*X_1)<=2p^(-4)<p^(-2).             (ASR6)
+```
+
+More generally at least `p^2` unit-weight target-return channels are needed
+to cover the source trace, and at exactly `p^2` channels an abstract partial-
+isometry frame attains equality in the rectangular model.  Thus ordinary
+positive branch aggregation is either rank-deficient or, at the sharp
+threshold, vacuous.  The live checksum must make a payload-coupled returned
+channel pay the forbidden source mass; it cannot be assembled by adding the
+two range-sum branches.

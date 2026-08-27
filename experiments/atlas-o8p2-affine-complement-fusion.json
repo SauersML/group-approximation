@@ -1,0 +1,27 @@
+{
+  "action_degree": 135,
+  "ambient": "O8+(2)",
+  "ambient_order": 174182400,
+  "classes": [
+    {
+      "ambient_class_size": 4320,
+      "ambient_normalizer_order": 40320,
+      "ambient_normalizer_structure": "S8",
+      "carrier_normalizer_order": 20160,
+      "complement_order": 20160,
+      "containing_carriers_in_this_triality_class": 2
+    },
+    {
+      "ambient_class_size": 8640,
+      "ambient_normalizer_order": 20160,
+      "ambient_normalizer_structure": "A8",
+      "carrier_normalizer_order": 20160,
+      "complement_order": 20160,
+      "containing_carriers_in_this_triality_class": 1
+    }
+  ],
+  "local_classes_are_ambient_conjugate": false,
+  "local_complement_classes": 2,
+  "point_stabilizer_order": 1290240,
+  "translation_order": 64
+}

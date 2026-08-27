@@ -1,0 +1,108 @@
+{
+  "cell_orbit_dimensions": [
+    1,
+    1,
+    2,
+    1
+  ],
+  "fields": [
+    {
+      "boundary_ranks": {
+        "1": 1358,
+        "2": 2530,
+        "3": 1222
+      },
+      "boundary_squared_zero": {
+        "2": true,
+        "3": true
+      },
+      "characteristic": 2,
+      "homology_dimensions": {
+        "0": 1,
+        "1": 0,
+        "2": 16,
+        "3": 44
+      }
+    },
+    {
+      "boundary_ranks": {
+        "1": 1358,
+        "2": 2530,
+        "3": 1226
+      },
+      "boundary_squared_zero": {
+        "2": true,
+        "3": true
+      },
+      "characteristic": 3,
+      "homology_dimensions": {
+        "0": 1,
+        "1": 0,
+        "2": 12,
+        "3": 40
+      }
+    },
+    {
+      "boundary_ranks": {
+        "1": 1358,
+        "2": 2530,
+        "3": 1226
+      },
+      "boundary_squared_zero": {
+        "2": true,
+        "3": true
+      },
+      "characteristic": 5,
+      "homology_dimensions": {
+        "0": 1,
+        "1": 0,
+        "2": 12,
+        "3": 40
+      }
+    },
+    {
+      "boundary_ranks": {
+        "1": 1358,
+        "2": 2530,
+        "3": 1226
+      },
+      "boundary_squared_zero": {
+        "2": true,
+        "3": true
+      },
+      "characteristic": 7,
+      "homology_dimensions": {
+        "0": 1,
+        "1": 0,
+        "2": 12,
+        "3": 40
+      }
+    },
+    {
+      "boundary_ranks": {
+        "1": 1358,
+        "2": 2529,
+        "3": 1226
+      },
+      "boundary_squared_zero": {
+        "2": true,
+        "3": true
+      },
+      "characteristic": 13,
+      "homology_dimensions": {
+        "0": 1,
+        "1": 1,
+        "2": 13,
+        "3": 40
+      }
+    }
+  ],
+  "level": 169,
+  "projective_degree": 30927,
+  "rational_coinvariant_dimensions": [
+    1359,
+    3888,
+    3768,
+    1266
+  ]
+}

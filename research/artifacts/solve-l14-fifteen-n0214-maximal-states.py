@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+"""Exact all-maximal carrier states for fifteen-winner N(0;214)."""
+
+import argparse
+from importlib.util import module_from_spec, spec_from_file_location
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+
+
+def load(name, filename):
+    spec = spec_from_file_location(name, HERE / filename)
+    module = module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+BASE = load("fifteen_n0115_states",
+            "solve-l14-fifteen-n0115-maximal-states.py")
+C = load("fifteen_n0214_compression",
+         "compress-l14-fifteen-n0214-projections.py")
+P, ALG = BASE.P, BASE.ALG
+
+
+def solver(branch):
+    free = (("q", "r", "t", "u", "h") if branch == "I" else
+            ("q", "r", "s", "u", "h"))
+    return BASE.build_solver(C, branch, free, ("h",))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("branch", choices=("I", "II"))
+    parser.add_argument("equation", choices=("r0", "r4", "both", "boundary"))
+    args = parser.parse_args()
+    maximal, words, combine, _, _ = solver(args.branch)
+    if args.equation == "both":
+        left, left_intervals = maximal(words["r0"])
+        right, right_intervals = maximal(words["r4"])
+        states = tuple(sorted({combine(a, b) for a in left for b in right}))
+        print(f"branch={args.branch}")
+        print(f"r0_states={len(left)}")
+        print(f"r4_states={len(right)}")
+        print(f"cached_intervals={left_intervals + right_intervals}")
+        print(f"combined_coordinate_states={len(states)}")
+    else:
+        states, intervals = maximal(words[args.equation])
+        print(f"branch={args.branch}")
+        print(f"equation={args.equation}")
+        print(f"syllables={len(words[args.equation])}")
+        print(f"cached_intervals={intervals}")
+        print(f"coordinate_tietze_states={len(states)}")
+    print(f"abstract_presentations={len(set(r for r, _ in states))}")
+    for state in states[:100]:
+        print(state)
+
+
+if __name__ == "__main__":
+    main()

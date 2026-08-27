@@ -1,0 +1,29 @@
+{
+  "four_leaf_code": [
+    "00",
+    "01",
+    "10",
+    "11"
+  ],
+  "compressed_coefficient": "p_0 = s_0 t_0",
+  "heisenberg_order": 8,
+  "heisenberg_order_histogram": {
+    "1": 1,
+    "2": 5,
+    "4": 2
+  },
+  "central_commutator_relation": true,
+  "z13_central_in_heisenberg": true,
+  "raw_order": 2,
+  "raw_commutes_with_heisenberg": true,
+  "raw_outside_heisenberg": true,
+  "generated_product_order": 16,
+  "raw_coset_disjoint_from_heisenberg": true,
+  "generated_product_order_histogram": {
+    "1": 1,
+    "2": 11,
+    "4": 4
+  },
+  "regular_trace_z_minus_r_minus": "1/4",
+  "relative_trace_of_raw_negative_cut_in_z_minus_sector": "1/2"
+}

@@ -1,0 +1,80 @@
+{
+  "A8_order_divisible_maximals": [
+    {
+      "conjugacy_classes": 3,
+      "index": 120,
+      "order": 1451520,
+      "order_divisible_by_A8": true,
+      "structure": "S6(2)"
+    },
+    {
+      "conjugacy_classes": 3,
+      "index": 135,
+      "order": 1290240,
+      "order_divisible_by_A8": true,
+      "structure": "2^6:A8"
+    },
+    {
+      "conjugacy_classes": 3,
+      "index": 960,
+      "order": 181440,
+      "order_divisible_by_A8": true,
+      "structure": "A9"
+    }
+  ],
+  "ambient": "O8+(2)",
+  "ambient_index_over_A8": 8640,
+  "ambient_order": 174182400,
+  "maximal_subgroups": [
+    {
+      "conjugacy_classes": 3,
+      "index": 120,
+      "order": 1451520,
+      "order_divisible_by_A8": true,
+      "structure": "S6(2)"
+    },
+    {
+      "conjugacy_classes": 3,
+      "index": 135,
+      "order": 1290240,
+      "order_divisible_by_A8": true,
+      "structure": "2^6:A8"
+    },
+    {
+      "conjugacy_classes": 3,
+      "index": 960,
+      "order": 181440,
+      "order_divisible_by_A8": true,
+      "structure": "A9"
+    },
+    {
+      "conjugacy_classes": 3,
+      "index": 1120,
+      "order": 155520,
+      "order_divisible_by_A8": false,
+      "structure": "(3xU4(2)):2"
+    },
+    {
+      "conjugacy_classes": 1,
+      "index": 1575,
+      "order": 110592,
+      "order_divisible_by_A8": false,
+      "structure": "2^(1+8)+:(S3xS3xS3)"
+    },
+    {
+      "conjugacy_classes": 1,
+      "index": 11200,
+      "order": 15552,
+      "order_divisible_by_A8": false,
+      "structure": "3^4:2^3:S4"
+    },
+    {
+      "conjugacy_classes": 3,
+      "index": 12096,
+      "order": 14400,
+      "order_divisible_by_A8": false,
+      "structure": "(A5xA5):2^2"
+    }
+  ],
+  "source": "GAP CTblLib O8+(2) character-table information"
+}

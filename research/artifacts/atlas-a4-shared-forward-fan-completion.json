@@ -1,0 +1,14 @@
+{
+  "abelian_invariants": [3, 3],
+  "center_order": 1,
+  "composition_series_orders": [144, 48, 16, 8, 4, 2, 1],
+  "derived_element_order_histogram": {"1": 1, "2": 15},
+  "derived_series_orders": [144, 16, 1],
+  "generator_orders": [3, 3, 2],
+  "order": 144,
+  "presentation": "<r,z,b | r^3,z^3,b^2,[r,z],(rb)^3,(zb)^3>",
+  "rb_subgroup_order": 12,
+  "rz_conjugacy_orbit_of_b": 9,
+  "rz_subgroup_order": 9,
+  "zb_subgroup_order": 12
+}

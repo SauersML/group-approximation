@@ -1,0 +1,51 @@
+{
+  "A8_centralizer_order": 1,
+  "A8_conjugacy_classes": 1,
+  "A8_normalizer_order": 20160,
+  "overgroup": "M24",
+  "overgroup_order": 244823040,
+  "relative_markings": 2,
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "screens": [
+    {
+      "first_survivor": null,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 2,
+        "s_11": 601920,
+        "s_30": 176,
+        "s_44": 12,
+        "s_55": 2
+      },
+      "relative_marking": "inner",
+      "s_0_conjugacy_class_hits": 28,
+      "s_0_conjugacy_class_size": 11385,
+      "s_0_conjugator_fiber_candidates": 602112,
+      "s_0_seed_centralizer_order": 21504,
+      "survivor_count": 0
+    },
+    {
+      "first_survivor": null,
+      "post_s_0_first_failure_histogram": {
+        "c_19243": 0,
+        "s_11": 602096,
+        "s_30": 16,
+        "s_44": 0,
+        "s_55": 0
+      },
+      "relative_marking": "graph",
+      "s_0_conjugacy_class_hits": 28,
+      "s_0_conjugacy_class_size": 11385,
+      "s_0_conjugator_fiber_candidates": 602112,
+      "s_0_seed_centralizer_order": 21504,
+      "survivor_count": 0
+    }
+  ],
+  "total_survivors": 0
+}

@@ -1,0 +1,23 @@
+{
+  "affine_orbit_profiles": [
+    [
+      28,
+      35
+    ],
+    [
+      8,
+      56
+    ]
+  ],
+  "carrier": "2^6:A8 on the six-dimensional orthogonal A8 module",
+  "carrier_order": 1290240,
+  "complement_class_count": 2,
+  "complement_orders": [
+    20160,
+    20160
+  ],
+  "normalizer_orders_in_carrier": [
+    20160,
+    20160
+  ]
+}

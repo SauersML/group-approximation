@@ -1,0 +1,164 @@
+{
+  "A8_divisible_orders": [
+    "L3(9)",
+    "HS"
+  ],
+  "L3(9)_excluded_by": "2-rank(PGL3(9))<=2<4=2-rank(A8)",
+  "first_remaining_A8_overgroup": "HS",
+  "lower_endpoint": {
+    "group": "A11",
+    "index": 990,
+    "order": 19958400
+  },
+  "simple_groups_after_A11_through_HS": [
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 504,
+      "group": "L2(343)",
+      "order": 20176632
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 12,
+      "group": "L2(347)",
+      "order": 20890788
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 420,
+      "group": "L2(349)",
+      "order": 21254100
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 96,
+      "group": "L2(353)",
+      "order": 21993312
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 360,
+      "group": "L2(359)",
+      "order": 23133960
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 360,
+      "group": "L2(361)",
+      "order": 23522760
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 48,
+      "group": "L2(367)",
+      "order": 24715248
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 12,
+      "group": "L2(373)",
+      "order": 25947372
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 1260,
+      "group": "L2(379)",
+      "order": 27219780
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 192,
+      "group": "L2(383)",
+      "order": 28090752
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 60,
+      "group": "L2(389)",
+      "order": 29431740
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 36,
+      "group": "L2(397)",
+      "order": 31285188
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 240,
+      "group": "L2(401)",
+      "order": 32240400
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 320,
+      "group": "Sz(32)",
+      "order": 32537600
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 120,
+      "group": "L2(409)",
+      "order": 34208760
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 420,
+      "group": "L2(419)",
+      "order": 36779820
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 420,
+      "group": "L2(421)",
+      "order": 37309020
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 720,
+      "group": "L2(431)",
+      "order": 40031280
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 1008,
+      "group": "L2(433)",
+      "order": 40591152
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 120,
+      "group": "L2(439)",
+      "order": 42302040
+    },
+    {
+      "divisible_by_A8_order": true,
+      "gcd_with_A8_order": 20160,
+      "group": "L3(9)",
+      "order": 42456960
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 1440,
+      "group": "U3(9)",
+      "order": 42573600
+    },
+    {
+      "divisible_by_A8_order": false,
+      "gcd_with_A8_order": 12,
+      "group": "L2(443)",
+      "order": 43468932
+    },
+    {
+      "divisible_by_A8_order": true,
+      "gcd_with_A8_order": 20160,
+      "group": "HS",
+      "order": 44352000
+    }
+  ],
+  "upper_endpoint": {
+    "group": "HS",
+    "index": 2200,
+    "order": 44352000
+  }
+}

@@ -1,0 +1,12 @@
+{
+ "N_Q0": 262144,
+ "phi_undefined": 0,
+ "S1_norm2_times_N": 69468160,
+ "S2_overlap_times_N": 13893632,
+ "S3_phinorm2_times_N": 4980736,
+ "norm2_source": 265.0,
+ "overlap": 53.0,
+ "norm2_twisted": 19.0,
+ "note": "two-level descent: chi8 source vs chi2 twisted",
+ "cross_defect": 178.0
+}

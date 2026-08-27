@@ -1,0 +1,25 @@
+[
+ {"phase": "cold-weak-penalties", "beta": 4, "gamma": 4, "zeta": 1,
+  "records": [
+   {"d": 8, "restart": 0, "S_norm_sq": 0.32812, "E_C": 9.27307, "D_rel": 17.86039, "R_reg": 3.20737},
+   {"d": 8, "restart": 1, "S_norm_sq": 0.26469, "E_C": 8.58904, "D_rel": 17.34426, "R_reg": 3.46201},
+   {"d": 8, "restart": 2, "S_norm_sq": 0.41166, "E_C": 6.71117, "D_rel": 16.43292, "R_reg": 3.97514},
+   {"d": 8, "restart": 3, "S_norm_sq": 0.36801, "E_C": 7.66983, "D_rel": 17.39777, "R_reg": 3.16934},
+   {"d": 8, "restart": 4, "S_norm_sq": 0.33216, "E_C": 8.54894, "D_rel": 19.55589, "R_reg": 4.02575},
+   {"d": 8, "restart": 5, "S_norm_sq": 0.34081, "E_C": 9.05688, "D_rel": 19.45411, "R_reg": 3.74069}],
+  "note": "weak penalties: optimizer abandons centrality; vacuous minima at the generic-orthogonality value ~1/4"},
+ {"phase": "cold-strong-penalties-polar", "beta": 48, "gamma": 48, "zeta": 24,
+  "records": [
+   {"d": 8, "restart": 0, "S_norm_sq": 1.0, "E_C": 0.0, "D_rel": 2.68906, "R_reg": 1.66227},
+   {"d": 8, "restart": 1, "S_norm_sq": 1.0, "E_C": 0.0, "D_rel": 2.6509, "R_reg": 1.43126}],
+  "note": "polar retraction fixes the QR phase-jump stall; descent collapses k into the full commutant"},
+ {"phase": "warm-lambda-exact", "beta": 48, "gamma": 48, "zeta": 24,
+  "records": [
+   {"d": 14, "restart": 0, "S_norm_sq": 1.0, "E_C": 0.0, "D_rel": 1.28496, "R_reg": 3.4195},
+   {"d": 14, "restart": 1, "S_norm_sq": 1.0, "E_C": 0.0, "D_rel": 1.22962, "R_reg": 3.68047},
+   {"d": 28, "restart": 0, "S_norm_sq": 1.0, "E_C": 0.0, "D_rel": 1.19355, "R_reg": 2.81493}],
+  "note": "warm start on SL3(F2) permutation model (Lambda-exact variety): same collapse to isometry"},
+ {"target_enemy": 0.25595, "target_exact_models": 1.0,
+  "gradcheck": "PASS (rel err <= 8e-8 all variables)",
+  "selftest": "PASS (42 pairwise-distinct parahoric cosets, matching p(p+1)(p^2+p+1) at p=2)"}
+]

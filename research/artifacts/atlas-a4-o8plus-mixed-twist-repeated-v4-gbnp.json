@@ -1,0 +1,51 @@
+{
+  "statement": "Arbitrary direct-sum mixtures of the two natural Omega8+(2) Q1920 twists collapse the collision operator at every multiplicity",
+  "field": "F2",
+  "marked_Q_image": "Q=2^5:A5 of order 1920 in the singular parabolic of Omega8+(2)",
+  "base_modules": [
+    "H_A: natural eight-dimensional twist with dim End_A(H_A)=12",
+    "H_B: natural eight-dimensional twist with dim End_A(H_B)=20"
+  ],
+  "linear_reduction": {
+    "relation": "c^s=c^t",
+    "equivalent_commutation": "[c,s*t^-1]=1",
+    "L": "<A,s*t^-1> of order 48"
+  },
+  "restriction_inventory": {
+    "End_L(H_A)_dimension": 8,
+    "End_L(H_B)_dimension": 8,
+    "End_L(H_A+H_B)_dimension": 26,
+    "total_cross_Hom_dimension": 10,
+    "End_Q(H_A+H_B)_dimension": 18
+  },
+  "master_module": "M=H_A+H_B of dimension 16",
+  "multiplicity_centralizer": "End_L(M^m)=End_L(M) tensor M_m(F2)",
+  "generic_coefficient_algebra": "F2<x0,...,x25>",
+  "remaining_relations": [
+    "c^2=1",
+    "c*c^t=c^(t^2)"
+  ],
+  "gbnp_version": "1.1.0",
+  "sha256": {
+    "experiments/atlas_a4_q1920_o8plus_mixed_twist_inventory.g": "83bf64376937f2df006a92299e6085a4f4b8576e21a3182f1aad11e608dd669b",
+    "experiments/atlas_a4_q1920_o8p_discovery.g": "585406ebf0174950e1f223c975f2c14e32003af7da0a4f0b5ff42393e67259fa",
+    "experiments/atlas_a4_repeated_module_collision.g": "94ef2e7e74e7200924153659ff83309aa8c5b0ea94c9ba5dfba0ac09a5800776",
+    "research/artifacts/atlas-a4-o8plus-mixed-twist-repeated-v4-gbnp.txt": "0d944e6a09692c7d304c68687d0b097b502006b7da05c14bcd6aa37949ade13a"
+  },
+  "markings": [
+    {
+      "marking": 1,
+      "relation_count": 156,
+      "strong_two_sided_basis_count": 26,
+      "identity_forced": true
+    },
+    {
+      "marking": 2,
+      "relation_count": 154,
+      "strong_two_sided_basis_count": 26,
+      "identity_forced": true
+    }
+  ],
+  "unequal_multiplicity_argument": "A solution on H_A^a+H_B^b pads by identity collision operators on missing copies to a solution on (H_A+H_B)^max(a,b), so master-module collapse forces the original solution to be identity.",
+  "scope": "This covers every direct-sum mixture of the two natural orthogonal twists. It does not classify unrelated indecomposable F2[Q]-modules."
+}

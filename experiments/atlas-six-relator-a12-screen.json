@@ -1,0 +1,35 @@
+{
+  "A8_action": [
+    8,
+    1,
+    1,
+    1,
+    1
+  ],
+  "A8_centralizer_order": 12,
+  "A8_normalizer_order": 483840,
+  "first_survivor": null,
+  "outer_marking_absorbed_by_normalizer": true,
+  "overgroup": "A12",
+  "overgroup_order": 239500800,
+  "post_s_0_first_failure_histogram": {
+    "c_19243": 12,
+    "s_11": 27504,
+    "s_30": 96,
+    "s_44": 24,
+    "s_55": 12
+  },
+  "relators": [
+    "s_0",
+    "s_11",
+    "s_30",
+    "s_44",
+    "s_55",
+    "c_19243"
+  ],
+  "s_0_conjugacy_class_hits": 6,
+  "s_0_conjugacy_class_size": 51975,
+  "s_0_conjugator_fiber_candidates": 27648,
+  "s_0_seed_centralizer_order": 4608,
+  "survivor_count": 0
+}

@@ -1,0 +1,90 @@
+{
+  "commuting_separator_transport": {
+    "feasible_capacities": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "feasible_demands": {
+      "columns": [
+        1,
+        1
+      ],
+      "rows": [
+        1,
+        1
+      ]
+    },
+    "feasible_solutions": [
+      [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "infeasible_capacities": [
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ]
+    ],
+    "infeasible_demands": {
+      "columns": [
+        2,
+        0
+      ],
+      "rows": [
+        1,
+        1
+      ]
+    },
+    "infeasible_solutions": []
+  },
+  "transverse_pauli_separator": {
+    "common_commutant_basis": [
+      [
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    ],
+    "common_involution_positive_ranks": [
+      0,
+      2
+    ],
+    "endpoint_positive_ranks": [
+      1,
+      1
+    ],
+    "regauging_feasible": false
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "word": "compiled scalarized raw swap",
+  "source_syllables": 25,
+  "second_chart_syllables": 12,
+  "all_second_chart_syllables_lie_in_H": true,
+  "second_chart_H_letters": [
+    {
+      "source_position": 1,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 3,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 5,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 7,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 9,
+      "matrix_hex": "01000000000101000000010000000001"
+    },
+    {
+      "source_position": 11,
+      "matrix_hex": "01000000000101000000010000000001"
+    },
+    {
+      "source_position": 13,
+      "matrix_hex": "01000000000101000000010000000001"
+    },
+    {
+      "source_position": 15,
+      "matrix_hex": "01000000000101000000010000000001"
+    },
+    {
+      "source_position": 17,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 19,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 21,
+      "matrix_hex": "01000000000100000001010000000001"
+    },
+    {
+      "source_position": 23,
+      "matrix_hex": "01000000000100000001010000000001"
+    }
+  ],
+  "distinct_second_chart_H_letter_multiplicities": {
+    "01000000000100000001010000000001": 8,
+    "01000000000101000000010000000001": 4
+  },
+  "two_H_letter_subgroup": {
+    "order": 6,
+    "generator_orders": [
+      2,
+      2
+    ],
+    "product_order": 3,
+    "isomorphic_to": "S3 = GL(2,2)"
+  },
+  "first_chart_geometry_relative_to_S3": {
+    "distinct_letters": 4,
+    "generated_with_S3_order": 36,
+    "generated_group_isomorphic_to": "S3 x S3",
+    "commuting_complement_order": 6,
+    "commuting_complement_order_histogram": {
+      "1": 1,
+      "2": 3,
+      "3": 2
+    },
+    "factor_intersection_order": 1,
+    "letters": [
+      {
+        "matrix_hex": "00000001000100000000010001000000",
+        "multiplicity": 2,
+        "normalizes_S3": true,
+        "S3_double_coset_size": 6,
+        "S3_double_coset_id": "00000001000001000001000001000000",
+        "S3_times_commuting_S3_factorization": {
+          "raw_S3_factor_hex": "01000000000100000000010000000001",
+          "commuting_S3_factor_hex": "00000001000100000000010001000000"
+        }
+      },
+      {
+        "matrix_hex": "01000000000100000000010001000001",
+        "multiplicity": 4,
+        "normalizes_S3": true,
+        "S3_double_coset_size": 6,
+        "S3_double_coset_id": "01000000000001000001000001000001",
+        "S3_times_commuting_S3_factorization": {
+          "raw_S3_factor_hex": "01000000000100000000010000000001",
+          "commuting_S3_factor_hex": "01000000000100000000010001000001"
+        }
+      },
+      {
+        "matrix_hex": "01000001000100000000010000000001",
+        "multiplicity": 6,
+        "normalizes_S3": true,
+        "S3_double_coset_size": 6,
+        "S3_double_coset_id": "01000001000001000001000000000001",
+        "S3_times_commuting_S3_factorization": {
+          "raw_S3_factor_hex": "01000000000100000000010000000001",
+          "commuting_S3_factor_hex": "01000001000100000000010000000001"
+        }
+      },
+      {
+        "matrix_hex": "01000001000100000000010001000000",
+        "multiplicity": 1,
+        "normalizes_S3": true,
+        "S3_double_coset_size": 6,
+        "S3_double_coset_id": "01000001000001000001000001000000",
+        "S3_times_commuting_S3_factorization": {
+          "raw_S3_factor_hex": "01000000000100000000010000000001",
+          "commuting_S3_factor_hex": "01000001000100000000010001000000"
+        }
+      }
+    ]
+  },
+  "hard_class11_geometry_relative_to_S3": {
+    "letters": [
+      {
+        "name": "prefix",
+        "matrix_hex": "01010000000101000000010000000001",
+        "normalizes_S3": false,
+        "S3_double_coset_size": 18,
+        "generated_with_S3_order": 24,
+        "generated_group_isomorphic_to": "S4",
+        "generated_group_order_histogram": {
+          "1": 1,
+          "2": 9,
+          "3": 8,
+          "4": 6
+        }
+      },
+      {
+        "name": "next_letter",
+        "matrix_hex": "01000000010100000000010000000001",
+        "normalizes_S3": false,
+        "S3_double_coset_size": 18,
+        "generated_with_S3_order": 24,
+        "generated_group_isomorphic_to": "S4",
+        "generated_group_order_histogram": {
+          "1": 1,
+          "2": 9,
+          "3": 8,
+          "4": 6
+        }
+      }
+    ],
+    "S4_extension_intersection_order": 6,
+    "pair_generated_with_S3_order": 168
+  },
+  "word_after_replacing_chart_2_H_by_chart_1": [],
+  "replacement_count": 12,
+  "normalized_HS_consequence": "hsNorm(raw(U)-1) <= 12 * Delta_H",
+  "tracial_separation_consequence": "Delta_H >= sqrt(2)/12 - o(1)",
+  "two_generator_energy_consequence": "if a,b are the two H-displacements, a^2+b^2 >= 1/40-o(1)",
+  "reynolds_consequence": "1-hsNorm(E_H(U))^2 >= 1/13440 - o(1)",
+  "S3_reynolds_consequence": "1-hsNorm(E_S3(U))^2 >= 1/480 - o(1)"
+}

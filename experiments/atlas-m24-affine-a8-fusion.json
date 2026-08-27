@@ -1,0 +1,41 @@
+{
+  "ambient": "M24",
+  "ambient_centralizer_orders": [
+    1
+  ],
+  "ambient_class_sizes": [
+    12144
+  ],
+  "ambient_conjugacy_matrix": [
+    [
+      true
+    ]
+  ],
+  "ambient_normalizer_orders": [
+    20160
+  ],
+  "ambient_order": 244823040,
+  "canonical_octad": [
+    3,
+    5,
+    6,
+    9,
+    15,
+    19,
+    23,
+    24
+  ],
+  "carrier_complement_classes": 1,
+  "carrier_normalizer_orders": [
+    20160
+  ],
+  "natural_orbit_lengths": [
+    [
+      1,
+      8,
+      15
+    ]
+  ],
+  "octad_carrier_order": 322560,
+  "translation_socle_order": 16
+}

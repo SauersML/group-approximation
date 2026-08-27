@@ -1,0 +1,244 @@
+---
+rg: 2
+id: fanizza-matrix-coordinate-source-full-compression
+kind: claim
+title: Build a Fanizza cell whose finite microstates decode one source-full compression into the guarded smaller carrier
+artifacts:
+  - research/artifacts/fanizza-one-sided-compressed-rank-floor-2026-08-21.md
+distinct_from:
+  single-triangle-trace-cyclic-return-cell: that asks for two cyclic return products or its three-edge variants; this asks only for one source-Gram estimate into a strictly smaller guarded target.
+  finite-window-decoder: that decodes three Leavitt products on a positive corner; this asks for one compressed ambient unitary tied to the native C18/D8 carrier.
+  s3-active-packet-proper-corner-return: that places the S3 active isotypic sum and must manage all complementary exits; this is the minimal local source-fullness estimate on the single Fanizza triangle chord.
+---
+
+Construct one finitely presented native Fanizza triangle cell such that, for
+every sufficiently accurate finite-dimensional microstate, fixed packet
+exactification and a genuinely matrix-coordinate multiplicity rule produce
+projections
+
+```text
+H<=E,       F=E-H,
+```
+
+and an ambient unitary word `U` such that
+
+```text
+tr(H)=1/8+o(1),
+X=FUE,
+||X^*X-E||_2 <= omega(def),       omega(t)->0.          (OCR8)
+```
+
+The exact amplified HALT representation extends this cell with `E,F`
+infinite and `X` a proper isometry.  The inference producing `(OCR8)` is not
+valid in arbitrary finite tracial representations of the presentation; it
+must use finite integer multiplicities or an equivalent matrix-coordinate
+selection.
+
+## Attempts
+
+`fanizza-compressed-unitary-has-guarded-rank-floor` shows that `(OCR8)` is
+already semantically sufficient: its two displayed estimates contradict
+each other by a fixed constant.  It also proves that a literal
+group-algebra partial-isometry relation cannot supply `(OCR8)`, because the
+canonical regular trace would kill `H`.  The open step is therefore not
+another block identity or second cyclic product; it is a finite-coordinate
+decoder authenticating source fullness for the selected C18 multiplicity
+cut while preserving the one-sided infinite completion.
+
+The smallest root/selector backend is now sharply fenced.
+`local-steinberg-heisenberg-packets-are-coefficient-rank-blind` takes
+idempotents `e_r in M_n(F_2)` of every nonzero rank.  The roots
+`x_12(e_r),x_23(e_r),x_13(e_r)` always form the same D8 packet, and the
+ambient regular representation restricts to the same regular D8
+multiplicity profile.  Same-root additivity, the idempotency multiplication
+triangle, and every fixed abstract selector-automorphism table internal to
+the packet are identical while `r/n` ranges from `1/n` to `1`.  Thus mixed
+Steinberg additivity plus one finite Heisenberg packet cannot authenticate
+`(OCR8)`.
+
+The surviving coefficient route must expose a larger rank/Morita chart and
+prove characteristic-zero same-reservoir trace reflection, or activate an
+extensive matrix-dependent family of coefficient atoms.  Root additivity
+alone controls algebraic multiplication, not the complex adjoint Gram.
+
+There is now also a sharp fence on the first alternative when the proposed
+chart is fixed and semisimple.
+`semisimple-trace-charts-cannot-authenticate-proper-fullness` computes
+the reflected trace of a projection in
+`A=direct_sum_j M_(d_j)(C)` from the irreducible multiplicities.  A rank is
+independent of multiplicity exactly when its relative rank is the same in
+every simple sector.  If `g<=E` has the same trace as `E` in every finite
+representation, this criterion forces `g=E` inside the chart itself.
+
+Hence a fixed two-idempotent overlap table, four-root square, or finite
+shared-selector extension has only two outcomes: multiplicity escapes, or
+an algebraic fullness identity inherited by the infinite model.  The same
+calculation gives the sharp positive residue: a fixed faithful packet has a
+dimension-free smallest nonzero projection trace `gamma_A`.  It would
+suffice to authenticate the Gram deficiency `E-X^*X` as a projection in the
+packet's algebra coordinate; trace below `gamma_A` would force it to vanish.
+The packet relations do not distinguish that coordinate from the amplified
+multiplicity commutant.  The surviving terminal is therefore
+**algebra-factor localization of the Gram deficiency**, or else a growing
+matrix-coordinate family / genuinely finite-only non-semisimple law.
+
+The most economical proposed localization by a second fixed packet is now
+ruled out exactly.  In
+`two-fixed-packet-reynolds-actions-leave-a-gram-spectator`, two transverse
+D8/selector packets may generate the whole fixed label factor
+`M_4(C) tensor I_N`, but every projection `I_4 tensor Q_N` is fixed by all
+their Reynolds tests and has arbitrary trace.  Packet averaging lands in a
+commutant, not a bicommutant.  A second fixed semisimple packet cannot equal
+the full `I_4 tensor M_N` multiplicity algebra at unbounded `N`.
+
+Thus the localization gate specifically requires a **scalable** transverse
+algebra, or one mixed word which changes under every non-scalar spectator
+gauge.  A second bounded C18/D8 packet, even noncommuting and sharing the
+same selected carrier, does not suffice.
+
+The dual-prefix Pauli tower now gives a precise positive version of that
+alternative.  `kazhdan-transitive-pauli-actor-localizes-one-mixed-word`
+proves that if a uniformly gapped actor is transitive on the nonzero Weyl
+words and approximately fixes the decoded Gram, then one prototype mixed
+commutator controls the exact Pauli Reynolds square function.  The resulting
+distance from the full Pauli commutant has a constant independent of the
+depth `n`, rank `2^n`, dimension, and multiplicity.
+
+The bare Leavitt branches do not contain this actor.  If the transport area
+or inverse square-root actor gap grows with depth, arbitrary
+defect-versus-dimension schedules prevent choosing a supercritical packet.
+Thus the surviving one-word localization gate is specifically a
+**uniformly gapped transitive actor for the dual-prefix Weyl tower**, not a
+list of pointwise prefix commutators.
+
+The Toeplitz tape supplies a second, polynomial-cost localization interface
+which avoids actor exactification entirely.
+`toeplitz-coordinate-paulis-localize-cells-and-grams`
+proves directly that, when `E,H` commute with the old coordinate Paulis,
+
+```text
+dist_2(E-X^*X,old-spin commutant)
+ <=sqrt(2n) RMS_i([U,P_i],[U,Q_i]).
+```
+
+This channel is immune to the Clifford multiplicity twist which invalidates
+the claimed uniform Toeplitz expander rounding.  Polynomial depth loss is
+accepted by the geometric tape ledger.
+
+The incidence gate is now closed by
+`diagonal-difference-shift-propagates-pauli-incidence`.  With
+`c=tU^(-1)`, the finite base relations `[U,a]=[c,z]=[z,a]=1` propagate to
+all addressed coordinate Paulis and shifted C18/reset words, while the
+tensor-product exact model keeps the native chord and Toeplitz shift
+distinct.  Hence the decoded Gram is polynomially close to the old-spin
+commutant.  This is localization, not source fullness: the remaining step
+must still turn that commutant-valued Gram deficiency into a
+positive-density one-sided rank payment.
+
+The full translation reset does not supply that last turn.
+`translation-reset-leaves-a-compressed-gram-spectator` amplifies its unique
+label type ray by `C^N`, chooses a non-scalar residual projection `Q`, and
+constructs a chord for which
+
+```text
+q=E-X^*X=E_0 tensor Q,
+tr(q)=tr(H)=1/8.
+```
+
+Every reset/type-vector relation and every diagonal-difference addressed
+Pauli incidence is exact, while `q` lies outside the finite label algebra
+and saturates the guarded rank floor.  Thus the gap `gamma_A` cannot be
+invoked from these inputs.  The remaining decoder must contain a genuinely
+mixed chord--reset word which detects the scalar multiplicity coordinate;
+another local type-vector or Reynolds constraint cannot authenticate source
+fullness.
+
+The most direct mixed word overcorrects.
+`full-label-chord-normalization-kills-the-hilbert-hotel` adds commutators of
+the chord with a fixed Weyl/reset word basis spanning the label algebra.  It
+does give a dimension-free defect floor on the saturated spectator, and in
+every exact amplification it forces `U=u_0 tensor U_res`, so the Gram lies
+in the finite label algebra.  But the same tensor form preserves the finite
+label rank deficit and makes the required proper infinite source-full
+compression impossible.  Two or three fixed transverse charts have the
+same dichotomy: if their covariance controls the support cuts inside a fixed
+label algebra, finite label rank kills completeness; if it does not, the
+Gram coordinate remains unauthenticated.
+
+Accordingly the remaining mixed chord--reset constraint cannot be a fixed
+label normalizer/covariance table.  It must distinguish finite from properly
+infinite multiplicity while remaining non-functorial in the exact infinite
+marked representation.
+
+Covariance only modulo a Toeplitz range corner has the opposite failure.
+`toeplitz-range-commutator-has-a-balanced-mirror-exit` shows that the natural
+word `[R_E,T R_E T^*]=1` is compatible with the proper infinite inclusion,
+but in finite matrices it admits the exact decomposition
+
+```text
+E=F+H,             TET^*=F+C,             tr(C)=tr(H).
+```
+
+The chord fixes `F` and swaps `H,C`, so its compressed Gram deficiency is
+exactly `H` while the word defect is zero.  Trace cyclicity balances the two
+asymmetric cells rather than charging them.  Every word in the two range
+reflections has the same four-character blindness.  The remaining
+compressed-covariance target is therefore the oriented support block
+`(1-F)TE=0`, or a matrix-only payment for its mirror exit; the reflection
+normalizer word does not express it.
+
+There is a sharp positive endpoint once that orientation is genuinely
+authenticated.  `fanizza-full-reflection-row-has-sharp-mirror-floor` proves
+the exact identity
+
+```text
+||R_F U R_E U^*-I||_2^2
+ =8 tr(E-EU^*FUE)-4 tr(H) >=4 tr(H).
+```
+
+Equality is attained precisely by the balanced mirror exit `UEU^*=F+C`
+with `tr(C)=tr(H)`.  Thus the full selected reflection row charges even the
+optimal mirror by `2 sqrt(tr(H))`, giving `1/sqrt(2)-o(1)` on the native
+guard.  This reduces the remaining finite-matrix theorem to authenticating
+that one **selected oriented row**.  It does not permit adding the row as a
+literal relator: regular-trace faithfulness would then kill `H`.  The matrix
+coordinate must therefore be identified by mixed chord--reset data before
+the row estimate is invoked.
+
+The already installed mixed menu does not perform that identification.
+`existing-fanizza-mixed-menu-leaves-balanced-mirror-exit` combines the
+scalar-ray spectator with the sharp reflection formula: the translation
+reset, diagonal-difference Toeplitz incidences, all source-corner
+coefficient tests, and range-reflection commutation are simultaneously
+exact, while the selected oriented row has squared defect `4 tr(H)=1/2`.
+Full-label chord normalization detects this model but destroys the proper
+infinite return.  Hence the remaining decoder must introduce a new
+finite-coordinate incidence; it cannot be obtained by recombining the
+existing chord--reset relations.
+
+Nor is an arbitrarily sophisticated multiplicity selector by itself enough.
+`multiplicity-only-fanizza-row-selection-leaves-a-mirror` permits the decoder
+to inspect the complete integer packet profile, use congruences, Hall data,
+first-hit rules, or even the matrix dimension to choose a positive-density
+reducing block.  Once that block is announced, the free scalar chord
+coordinate swaps its guarded slice into an equal-rank complement and leaves
+all existing relations exact.  The new finite-coordinate ingredient must
+therefore be a **row-sensitive mixed incidence on the selected block**, not
+only a rule selecting which block to test.
+
+There is, however, a genuinely chord-sensitive moving-coordinate alternative
+to authenticating the full row.  For `Q=UEU^*`, the positive complement exit
+
+```text
+A=(1-E)Q(1-E)
+```
+
+has trace at least `tr(H)-||QH||_2^2`.  The theorem
+`wandering-complement-contractions-pay-fanizza-mirror` shows that `N` nearly
+orthogonal unitary conjugates of `A` force
+`tr(A)<=1/N+o(1)`.  The infinite Hilbert-hotel model has `Q=F` and `A=0`, so
+this test preserves exact completeness while excluding the finite balanced
+mirror.  The remaining syntax is isolated in
+`fanizza-mirror-exit-wanders-through-toeplitz-cells`: ordinary relations
+must place the decoded exit, not merely its Gram commutant, into an extensive
+family of addressed Toeplitz cells.

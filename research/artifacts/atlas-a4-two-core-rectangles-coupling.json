@@ -1,0 +1,15 @@
+{
+  "canonical_coupling_index_over_each_GL3": 120,
+  "collision_lies_in_second_rectangle": true,
+  "collision_word_equals_collision_involution": true,
+  "collision_word_order_in_canonical_coupling": 2,
+  "canonical_b_y_c_packet_order": 24,
+  "canonical_y_c_order": 3,
+  "canonical_b_y_c_product_order": 4,
+  "coupled_chart_A8_order": 20160,
+  "first_rectangle_GL3_order": 168,
+  "initial_overlap_S4xC2_order": 48,
+  "rectangle_intersection_S3_order": 6,
+  "second_rectangle_GL3_order": 168,
+  "second_rectangle_edge_word_orders": [3, 3, 3, 3]
+}
