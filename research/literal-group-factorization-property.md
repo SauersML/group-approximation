@@ -36,14 +36,22 @@ into `∏M_{kₙ}` (Brown, Theorem 3.1.7(2)).
 
 ## Why this is not automatic
 
-"Hyperlinear implies factorization property" is not a theorem.  By
-Kirchberg (Math. Ann. 299 (1994)) a Kazhdan group with the factorization
-property is residually finite, so that implication would make every
-hyperlinear Kazhdan group residually finite, and in particular would prove the
-manuscript's simple Kazhdan group `H` non-hyperlinear --- a non-hyperlinear
-group, which nobody has.  The lifting is automatic when `C*(E)` has
-Kirchberg's lifting property, which it does for free groups and which is
-not known for `E`.  This is `hyperlinear-groups-have-factorization-property`.
+Soficity does not give it: Thom (Groups Geom. Dyn. 4 (2010), arXiv:0810.2180)
+constructs LEF, hence sofic, Kazhdan groups that are not residually finite, and
+by Kirchberg's theorem (Math. Ann. 299 (1994): Kazhdan plus factorization
+property implies residually finite) they lack the factorization property.  So
+`hyperlinear-groups-have-factorization-property` is refuted and the generic
+route is dead.  The lifting is automatic when `C*(E)` has Kirchberg's local
+lifting property, which holds for free groups, amenable groups, limit groups,
+3-manifold groups, certain one-relator groups and right-angled Artin groups
+(Fournier-Facio--Willett, arXiv:2603.18456) but is not known for `E`
+(`literal-group-local-lifting-property`, route `literal-fp-via-llp`).
+
+Negative side: `E` is not itself Kazhdan (it is an HNN-type extension with a
+free stable letter), so Kirchberg's obstruction does not apply directly; a
+disproof would have to run the manuscript's compression-transport argument on
+completely positive Hilbert--Schmidt-approximate models, which the manuscript
+says it cannot do for merely bounded ones.
 
 Open.  Any proof must use the structure of `E` (an HNN-type extension of a
 Kazhdan--Clifford base with a telescope core that is locally residually
