@@ -103,8 +103,19 @@ jobs:
       # needs no toolchain -- so it answers in seconds where the prover answers
       # in minutes and only once it wins a runner.  Publishing a graph that has
       # not been validated is also just wrong on its own terms.
+      # 2026-08-27 (user order): an invalid research graph must not hold the
+      # paper edition hostage.  Validation still runs and still fails the
+      # PROVER's source scan (the certification gate is unchanged); here it
+      # only warns, and `bin/cairn site` below publishes with any broken
+      # nodes dropped, so the /paper/ edition always tracks the tex.
       - name: Validate the research graph
+        id: graphcheck
+        continue-on-error: true
         run: bin/cairn check
+
+      - name: Warn when the graph is invalid
+        if: ${{ steps.graphcheck.outcome == 'failure' }}
+        run: echo '::warning::research graph invalid; site published with broken nodes dropped (certification gate unaffected)'
 
       - name: Build the site
         run: bin/cairn site
