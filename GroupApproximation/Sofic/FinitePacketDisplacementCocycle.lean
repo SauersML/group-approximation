@@ -1,5 +1,6 @@
 import GroupApproximation.Sofic.FinitePacketRankWeight
 import GroupApproximation.Sofic.FinitePacketDelormeDiagonalization
+import GroupApproximation.Kazhdan.UltralimitGaussianBoundedness
 
 /-!
 # The normalized displacement cocycle of an exact finite packet
@@ -17,6 +18,7 @@ namespace FinitePacketDisplacementCocycle
 open Matrix Ultralimit KazhdanCornerMatrices
 open InvolutionCollapseCocycle InvolutionCollapseCenter
 open InvolutionMicrostateTools
+open UltralimitGaussian
 open FinitePacketRankWeight ScaledKazhdanTransport
 open scoped Matrix.Norms.L2Operator
 
@@ -24,7 +26,9 @@ attribute [local instance] InnerProductSpace.complexToReal
 
 noncomputable section
 
-variable {Γ : Type*} [Group Γ]
+universe u
+
+variable {Γ : Type u} [Group Γ]
 variable {Y : ℕ → Type*} [∀ n, Fintype (Y n)] [∀ n, DecidableEq (Y n)]
 
 /-- The flattened packet displacement, normalized by the square root of its
@@ -72,6 +76,19 @@ theorem norm_normalizedDisplacement_le
     nlinarith [Real.sq_sqrt (hC g), Real.sqrt_nonneg (C g)]
   · rw [normalizedDisplacement, if_neg hpos, norm_zero]
     exact Real.sqrt_nonneg _
+
+omit [(n : ℕ) → DecidableEq (Y n)] in
+/-- Squared-norm form of the normalized displacement bound. -/
+theorem norm_normalizedDisplacement_sq_le
+    (w : ℕ → ℝ)
+    (V : ∀ n, Γ → Matrix (Y n) (Y n) ℂ)
+    (C : Γ → ℝ) (hC : ∀ g, 0 ≤ C g)
+    (hmass : ∀ n g, matMass (V n g - V n 1) ≤ C g * w n)
+    (g : Γ) (n : ℕ) :
+    ‖normalizedDisplacement w V g n‖ ^ 2 ≤ C g := by
+  have hnorm := norm_normalizedDisplacement_le w V C hC hmass g n
+  nlinarith [norm_nonneg (normalizedDisplacement w V g n),
+    Real.sq_sqrt (hC g), Real.sqrt_nonneg (C g)]
 
 omit [(n : ℕ) → DecidableEq (Y n)] in
 /-- The normalized displacement orbit is bounded whenever its mass is
@@ -158,6 +175,61 @@ theorem seqNorm_cocycleDefect_eq_zero
   rw [hzero]
   exact seqNorm_eq_zero_of_vanishing isBoundedSeq_zero
     (fun ε hε ↦ ⟨0, fun n _ ↦ by simpa using hε.le⟩)
+
+/-- The exact normalized cocycle satisfies the limiting displacement identity
+used by the scalar Delorme--Gaussian bound. -/
+theorem profile_halmost
+    (w : ℕ → ℝ)
+    (V : ∀ n, Γ → Matrix (Y n) (Y n) ℂ)
+    (U : ∀ n, Γ → Matrix (Y n) (Y n) ℂ)
+    (hU : ∀ n g, U n g ∈ Matrix.unitaryGroup (Y n) ℂ)
+    (hcov : ∀ n a x,
+      V n (a * x) = U n a * V n x * (U n a)ᴴ)
+    (g h : Γ) :
+    ArchimedeanClass.stdPart
+        (Hyperreal.ofSeq fun n ↦
+          ‖normalizedDisplacement w V (g⁻¹ * h) n‖ ^ 2) =
+      ArchimedeanClass.stdPart
+        (Hyperreal.ofSeq fun n ↦
+          ‖normalizedDisplacement w V h n -
+            normalizedDisplacement w V g n‖ ^ 2) := by
+  have hseq : (fun n ↦
+      ‖normalizedDisplacement w V (g⁻¹ * h) n‖ ^ 2) =
+      fun n ↦ ‖normalizedDisplacement w V h n -
+        normalizedDisplacement w V g n‖ ^ 2 := by
+    funext n
+    have hc := normalizedDisplacement_cocycle w V U hcov n g h
+    have heq : normalizedDisplacement w V h n -
+        normalizedDisplacement w V g n =
+      adFlat (U n g) (normalizedDisplacement w V (g⁻¹ * h) n) := by
+      rw [hc]
+      abel
+    rw [heq, norm_adFlat (hU n g)]
+  rw [hseq]
+
+/-- Property `(T)` turns the elementwise rank-weight bound into one uniform
+bound for the full normalized packet profile. -/
+theorem exists_uniform_profile_bound
+    (w : ℕ → ℝ)
+    (V : ∀ n, Γ → Matrix (Y n) (Y n) ℂ)
+    (U : ∀ n, Γ → Matrix (Y n) (Y n) ℂ)
+    (hU : ∀ n g, U n g ∈ Matrix.unitaryGroup (Y n) ℂ)
+    (hcov : ∀ n a x,
+      V n (a * x) = U n a * V n x * (U n a)ᴴ)
+    (C : Γ → ℝ) (hC : ∀ g, 0 ≤ C g)
+    (hmass : ∀ n g, matMass (V n g - V n 1) ≤ C g * w n)
+    {Q : Finset Γ} {κ : ℝ} (hpair : IsKazhdanPair.{u, u} Γ Q κ) :
+    ∃ R : ℝ, 0 ≤ R ∧ ∀ g,
+      seqNormSq (normalizedDisplacement w V g) ≤ R := by
+  have hbdd : ∀ g : Γ, ∃ D : ℝ, ∀ n,
+      ‖normalizedDisplacement w V g n‖ ^ 2 ≤ D :=
+    fun g ↦ ⟨C g, norm_normalizedDisplacement_sq_le w V C hC hmass g⟩
+  have hone : ∀ n, normalizedDisplacement w V 1 n = 0 :=
+    normalizedDisplacement_one w V
+  obtain ⟨R, hR⟩ := profile_bounded_of_isKazhdanPair hpair hbdd hone
+    (profile_halmost w V U hU hcov)
+  refine ⟨max R 0, le_max_right _ _, fun g ↦ ?_⟩
+  exact (hR g).trans (le_max_left _ _)
 
 end
 
