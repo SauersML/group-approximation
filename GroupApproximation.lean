@@ -1921,6 +1921,9 @@ import GroupApproximation.Manuscript.MFRecognition.EffectiveHigmanCompiler
 import GroupApproximation.Manuscript.NonMF.Saturation
 import GroupApproximation.Manuscript.MFRecognition.MikhailovaConsequences
 import GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveSimplicitySentences
+import GroupApproximation.Manuscript.OneSidedMFRadical.LeavittSectionSentences
+import GroupApproximation.Manuscript.MFRecognition.RopeObjects
+import GroupApproximation.Manuscript.MFRecognition.CentralRope
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
