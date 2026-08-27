@@ -72,6 +72,7 @@ import GroupApproximation.Analysis.LanceDayEngine
 import GroupApproximation.Analysis.LanceMultiplicationOperator
 import GroupApproximation.Analysis.LanceHypertrace
 import GroupApproximation.Analysis.LanceCPApprox
+import GroupApproximation.Analysis.LanceCPContractiveUnitalization
 import GroupApproximation.Analysis.LanceNuclearity
 import GroupApproximation.Kazhdan.KazhdanUniverseDescent
 import GroupApproximation.Sofic.ChosenMaximalCStarInfinite
@@ -1325,6 +1326,7 @@ import GroupApproximation.Analysis.PolarLiftingHypothesisFree
 import GroupApproximation.Analysis.StablyFiniteAmplification
 import GroupApproximation.Analysis.MatrixCoronaDedekindFinite
 import GroupApproximation.Analysis.MFAlgebraMatrixAmplification
+import GroupApproximation.Analysis.ReducedProductMFPermanence
 import GroupApproximation.Analysis.CoronaProjectionOrder
 import GroupApproximation.Analysis.VectorHilbertUltraproduct
 import GroupApproximation.Analysis.VectorHilbertComplete
@@ -1912,7 +1914,6 @@ import GroupApproximation.Higman.TransportCodeRE
 import GroupApproximation.Leavitt.LeavittModuleRank
 import GroupApproximation.Manuscript.OneSidedMFRadical.CornerClassIdentificationAudit
 import GroupApproximation.Computability.SoficRecognitionSecondLevel
-import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedHeadlineExact
 import GroupApproximation.Manuscript.NonMF.AcylindricallyHyperbolic
 import GroupApproximation.Manuscript.NonMF.HullSmallCancellation
 import GroupApproximation.Manuscript.MFRecognition.MarkedHigmanOutput
