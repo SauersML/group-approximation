@@ -2102,6 +2102,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaEvaluatedCor
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaEvaluatedCornerBase
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaUniversalMapDef
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaUniversalMapProperties
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaEvaluatedCornerStable
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
