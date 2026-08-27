@@ -66,6 +66,27 @@ theorem not_mem_profiniteClosure {Q : Type} [Group Q] [Finite Q]
     t ∉ profiniteClosure Γ :=
   fun hmem => hsep (hmem Q ψ)
 
+/-- **Finite-quotient separation criterion for profinite closedness.**
+
+To prove that `Γ` is closed it is enough to exhibit, for each element outside
+`Γ`, one finite quotient in which that element remains outside the image of
+`Γ`.  This is the elementwise form consumed by the finite-cover arguments:
+the quotient and its finite target may depend on the element. -/
+theorem profiniteClosure_eq_of_forall_exists_finite_separating
+    (Γ : Subgroup G)
+    (hsep : ∀ t : G, t ∉ Γ →
+      ∃ (Q : Type) (_ : Group Q) (_ : Finite Q) (ψ : G →* Q),
+        ψ t ∉ Γ.map ψ) :
+    profiniteClosure Γ = Γ := by
+  apply le_antisymm
+  · intro t ht
+    by_contra htΓ
+    obtain ⟨Q, hQgroup, hQfinite, ψ, hψ⟩ := hsep t htΓ
+    letI : Group Q := hQgroup
+    letI : Finite Q := hQfinite
+    exact hψ (ht Q ψ)
+  · exact le_profiniteClosure Γ
+
 /-- The kernel form: a finite quotient killing `Γ` but not `t` places `t`
 outside the profinite closure.  This is the shape in which the criterion
 applies to split pairs: project away the factor containing `Γ` and separate
