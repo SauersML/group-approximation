@@ -1937,6 +1937,9 @@ import GroupApproximation.Manuscript.NonMF.FournierFacioDoubleHNN
 import GroupApproximation.Manuscript.NonMF.FournierFacioInput
 import GroupApproximation.Manuscript.NonMF.TorsionFreeTheoremC
 import GroupApproximation.Manuscript.MFRecognition.FiniteRope
+import GroupApproximation.Manuscript.MFRecognition.ThreeGeneratorBridgeFreeBasis
+import GroupApproximation.Manuscript.MFRecognition.RopeObjectsProfinite
+import GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanSentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
