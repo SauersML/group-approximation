@@ -389,6 +389,89 @@ theorem base_conj_stableConjLift_mem_range
       rw [heq]
       exact Subgroup.inv_mem _ hp
 
+/-! ## The free kernel -/
+
+/-- At the identity coset, stable-coordinate words are the original lamp
+words. -/
+theorem stableConjLift_map_oneLabel
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (k : FreeGroup α) :
+    stableConjLift (M := M) d
+        (FreeGroup.map (fun i ↦ (oneLabel M d, i)) k) =
+      inLamp G M (FreeGroup α) k := by
+  induction k using FreeGroup.induction_on with
+  | C1 => rw [map_one, map_one, map_one]
+  | of i =>
+      rw [FreeGroup.map.of]
+      change stableConj (M := M) d (cosetLabel M d 1, i) = _
+      simpa using stableConj_eq_conj_of_cosetLabel (M := M) d 1 i
+  | mul x y hx hy =>
+      rw [map_mul, map_mul, map_mul, hx, hy]
+  | inv_of i hi =>
+      rw [map_inv, map_inv, map_inv, hi]
+
+/-- Multiplication in the lamp factor splits into its edge and lamp parts. -/
+theorem rightFactor_eq_ambient_mul_lamp
+    (l : M) (k : FreeGroup α) :
+    PushoutI.of (φ := lampMap G M (FreeGroup α)) false (l, k) =
+      inAmbient G M (FreeGroup α) (l : G) *
+        inLamp G M (FreeGroup α) k := by
+  have hedge :
+      PushoutI.of (φ := lampMap G M (FreeGroup α)) false (l, 1) =
+        inAmbient G M (FreeGroup α) (l : G) := by
+    exact (PushoutI.of_apply_eq_base
+      (lampMap G M (FreeGroup α)) false l).trans
+      (PushoutI.of_apply_eq_base
+        (lampMap G M (FreeGroup α)) true l).symm
+  calc
+    PushoutI.of (φ := lampMap G M (FreeGroup α)) false (l, k) =
+        PushoutI.of (φ := lampMap G M (FreeGroup α)) false
+          ((l, 1) * ((1 : M), k)) := by
+            congr 1
+            apply Prod.ext
+            · exact (mul_one l).symm
+            · exact (one_mul k).symm
+    _ = PushoutI.of (φ := lampMap G M (FreeGroup α)) false (l, 1) *
+          PushoutI.of (φ := lampMap G M (FreeGroup α)) false ((1 : M), k) :=
+      map_mul _ _ _
+    _ = inAmbient G M (FreeGroup α) (l : G) *
+          inLamp G M (FreeGroup α) k := by rw [hedge]; rfl
+
+/-- Every free-lamp element is a stable-coordinate word followed by a base
+element. -/
+theorem exists_stableConjLift_mul_inAmbient
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (z : FreeLamp G M (FreeGroup α)) :
+    ∃ w g, z = stableConjLift (M := M) d w *
+      inAmbient G M (FreeGroup α) g := by
+  induction z using PushoutI.induction_on with
+  | of b p =>
+      cases b with
+      | false =>
+          change M × FreeGroup α at p
+          refine ⟨FreeGroup.map (fun i ↦ (oneLabel M d, i)) p.2,
+            (p.1 : G), ?_⟩
+          rw [stableConjLift_map_oneLabel]
+          rw [rightFactor_eq_ambient_mul_lamp]
+          rw [(inLamp_commute_inAmbient G M (FreeGroup α)
+            p.2 p.1.property).eq]
+      | true =>
+          exact ⟨1, p, by simp⟩
+  | base m =>
+      refine ⟨1, (m : G), ?_⟩
+      rw [map_one, one_mul]
+      exact (PushoutI.of_apply_eq_base
+        (lampMap G M (FreeGroup α)) true m).symm
+  | mul x y hx hy =>
+      obtain ⟨wx, gx, hx⟩ := hx
+      obtain ⟨wy, gy, hy⟩ := hy
+      obtain ⟨wy', hwy'⟩ :=
+        base_conj_stableConjLift_mem_range (M := M) d gx wy
+      refine ⟨wx * wy', gx * gy, ?_⟩
+      rw [map_mul, map_mul, hx, hy, hwy']
+      simp only [map_inv]
+      group
+
 end
 
 end FreeLampFiniteBaseProfinite
