@@ -173,15 +173,14 @@ The matrix corona is stably finite, and $U^*PU=P$ follows.  In terms of
 sequences, the vectors fixed by $L$ are the classes of $(x_n)$ with
 $\hsnorm{[V_n(\ell),x_n]}\to0$ for all $\ell\in L$, and $U^*PU=P$ means
 that conjugation by $V_n(u)$ maps this Hilbert--Schmidt asymptotic
-commutant of $L$ onto itself.  For $c\in C_G(L)$ the sequence $(V_n(c))$
-lies in the asymptotic commutant, so $(V_n(ucu^{-1}))$ does too, that is,
-$\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$ for all $\ell\in L$.  The elements
-with this property form a normal subgroup, which then contains
-$\mathfrak D_G(L)$.
+commutant of $L$ onto itself.  If $c$ centralizes $L$, then $(V_n(c))$
+lies in the asymptotic commutant of $L$, and by the previous sentence so
+does $(V_n(ucu^{-1}))$.  Asymptotic commutation of $V_n(ucu^{-1})$ with
+$V_n(\ell)$ in Hilbert--Schmidt norm means
+$\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$.  The elements with this property
+form a normal subgroup, which then contains $\mathfrak D_G(L)$.
 
-The hypothesis $K\le\mathfrak D_G(L)$ therefore gives
-$\hsnorm{V_n(k)-1}\to0$ for $k\in K$, and a second use of
-property~\textup{(T)}, now for $K$, gives triviality in operator norm.  Suppose that a corona homomorphism
+Suppose that a corona homomorphism
 $\Theta\colon G\to\U(\mathcal Q_{\mathbf d})$ is nontrivial on $K$.  Let
 $p\in\mathcal Q_{\mathbf d}$ be the Kazhdan projection of $K$, the
 projection onto the $K$-fixed vectors.  Then $p\ne1$, and $p$ commutes
@@ -191,10 +190,13 @@ and the compressed homomorphism lifts to an operator norm asymptotic
 representation $(W_n)$ of $G$ on smaller matrices.  The Kazhdan inequality
 for $K$ bounds the average of $\hsnorm{W_n(s)-1}^2$ over a Kazhdan set
 $S\subseteq K$ below by a positive constant, so some $s\in S$ stays a
-fixed Hilbert--Schmidt distance from $1$, against the vanishing on $K$
-applied to $(W_n)$.  Every corona homomorphism is therefore trivial on
-$K$, and by Lemma~\ref{prop:mf-residual-calculus} the same holds for
-every homomorphism to an MF group.
+fixed Hilbert--Schmidt distance from $1$; but $s\in K\le\mathfrak D_G(L)$,
+so $\hsnorm{W_n(s)-1}\to0$.  Every corona homomorphism is therefore
+trivial on $K$, and by Lemma~\ref{prop:mf-residual-calculus} the same
+holds for every homomorphism to an MF group.\footnote{A Hilbert--Schmidt
+bound on the multiplicative defect does not give an operator norm bound on
+the conjugation maps, so this argument does not apply to sofic or
+hyperlinear approximations.}
 \leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity}
 
 Compressors are easy to find: the stable letter of an ascending HNN
