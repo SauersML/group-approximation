@@ -242,7 +242,9 @@ def KGonDefect {R : Type*} [Ring R] {n : ℕ} [NeZero n]
 /-- **Every ordered pair of corners of a triangle is equal or cyclically
 adjacent.**  Nine cases. -/
 theorem three_pairs_adjacent (i j : Fin 3) :
-    j = i ∨ j = cyclicNext i ∨ i = cyclicNext j := by decide
+    j = i ∨ j = cyclicNext i ∨ i = cyclicNext j := by
+  revert i j
+  decide
 
 /-- **The defect vanishes for a triangle.** -/
 theorem kGonDefect_three {R : Type*} [Ring R] (adj : R → R) (c d : Fin 3 → R) :
@@ -426,8 +428,9 @@ possible at all. -/
 theorem gqEightFaceCount : 585 * 9 = 3 * 1755 := by norm_num
 
 /-- The order-`7` quadrangle clears the spectral threshold but fails the
-divisibility, which is why the witness is `q = 8` and not `q = 7`. -/
-theorem gqSevenFaceCountFails : ¬ (3 ∣ 400 * 8) := by decide
+divisibility `3 ∣ n * d`, which is why the witness is `q = 8` and not `q = 7`:
+`400 * 8 = 3200` leaves remainder `2`. -/
+theorem gqSevenFaceCountFails : 400 * 8 % 3 = 2 := by norm_num
 
 /-- **The link gap of `GQ(8,8)` clears the half-threshold.**  The incidence graph
 is `9`-regular with non-principal adjacency eigenvalues `±4` and `0`, so

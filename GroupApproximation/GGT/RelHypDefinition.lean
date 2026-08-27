@@ -80,8 +80,11 @@ extensions and passes from a finite-index subgroup to the whole group) and is
 named rather than proved because this repository's `Amenability.IsAmenable` is
 an invariant-mean definition with no finite-index permanence lemma yet.
 
-`GGT/RelHypFournierFacio.lean` proves, unconditionally, that the property-`(T)`
-hypothesis cannot simply be deleted from the manuscript's statement.
+`GGT/RelHypWithoutKazhdan.lean` proves, unconditionally, that the
+property-`(T)` hypothesis cannot simply be deleted from the manuscript's
+statement: at `H₀ = ℤ` -- infinite, finitely presented, torsion-free,
+hyperbolic, and elementary -- every quotient is commutative, so `F₂` embeds in
+none of them.
 -/
 
 namespace GroupApproximation
@@ -241,7 +244,7 @@ theorem not_isElementaryGroup_of_infinite_of_kazhdan
 
 /-- **The manuscript's `H₀` is a non-elementary hyperbolic group.**  Infinite,
 hyperbolic and Kazhdan is enough; without property `(T)` it is not, and
-`GGT/RelHypFournierFacio.lean` exhibits `ℤ` as the counterexample. -/
+`GGT/RelHypWithoutKazhdan.lean` exhibits `ℤ` as the counterexample. -/
 theorem isNonElementaryHyperbolic_of_kazhdan
     (hEA : ElementaryAmenableStatement) {G : Type} [Group G] [Infinite G]
     (hhyp : Hyperbolic.IsHyperbolicGroup G) (hT : HasKazhdanPropertyT.{0, 0} G) :

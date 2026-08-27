@@ -63,22 +63,31 @@ Cayley-graph form; the second half is what makes step (3) available.
 
 **(3) Elementary closures** (DGO Thm 6.8).  A loxodromic element `g` of an
 acylindrical action is WPD, its elementary closure
-`E(g) = {h : ∃ n > 0, h gⁿ h⁻¹ = g^{±n}}` is the unique maximal virtually
-cyclic subgroup containing `g`, and `E(g) ↪_h G`.  Stated, not proved, as
-`GGT.DGOTheorem68` in `GGT/WPDAcylindricalHyperbolicity.lean`, against
-`GGT.AH3Data` (an isometric action on a `δ`-hyperbolic space, a loxodromic
-element, and `IsWPDAt`) and `¬ GGT.IsVirtuallyCyclic G` -- and that last
-hypothesis is free here: `not_isVirtuallyCyclic_of_suitable` below derives it
-from clause (2) of Hull's Definition 1.4.
+`GGT.Elementary.elementaryClosure g` -- the `h` with `h gⁿ h⁻¹ = g^m` for some
+nonzero `n, m` -- is the unique maximal virtually cyclic subgroup containing
+`g`, and `E(g) ↪_h G`.  Stated, not proved, as `GGT.DGOTheorem68` in
+`GGT/WPDAcylindricalHyperbolicity.lean`, against `GGT.AH3Data` (an isometric
+action on a `δ`-hyperbolic space, a loxodromic element, and `IsWPDAt`) and
+`¬ GGT.IsVirtuallyCyclic G` -- and that last hypothesis is free here:
+`not_isVirtuallyCyclic_of_suitable` below derives it from clause (2) of Hull's
+Definition 1.4.
 
 Note what it does *not* give: its conclusion is `GGT.IsHypEmbedded G E`, i.e.
 `E ↪_h (G, X)` for *some* relative generating set `X`, not for Hull's `A`.
 Upgrading an arbitrary `X` to one containing `A`, with the action on the
 resulting coned-off graph still acylindrical, is exactly the content of (2),
 and it is the step that makes the alphabet of the quotient in (8) comparable
-with the alphabet of `G`.  Over a torsion-free ambient group `E(g) = ⟨g⟩`,
-which is why the torsion clauses of (6) are free in the lane this repository
-runs; that identification is owned by the `ggt-elementary` lane.
+with the alphabet of `G`.
+
+**`E(g) = ⟨g⟩` over a torsion-free ambient group is false**, and an earlier
+draft of this plan asserted it.  A torsion-free virtually cyclic group is
+infinite cyclic, so over a torsion-free `G` one gets `E(g) = ⟨h⟩` for a *root*
+`h` of `g` -- take any loxodromic `h` and set `g = h²`, and then `h ∈ E(g)` but
+`h ∉ ⟨g⟩`.  What is true, and what §5 actually consumes, is elementwise
+commensurability:
+`GGT.Elementary.exists_common_zpow_of_mem_elementaryClosure_of_torsionFree`
+gives, for `c ∈ E(g)` nontrivial, nonzero `i, m` with `g ^ i = c ^ m`.  The
+correction is the `ggt-elementary` lane's.
 
 **(4) The cone-off is hyperbolic, and the rotating family.**  Coning `Γ(G,A)`
 off along the cosets of `H = E(g)` leaves it hyperbolic (DGO §5, the

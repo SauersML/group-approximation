@@ -71,9 +71,12 @@ universe u v
 
 /-! ## The action on the metric space -/
 
-/-- A group acting on the vertices acts on the tree metric space. -/
-instance instMulActionTreeSpace {G : Type u} [Group G] {V : Type v}
-    {H : SimpleGraph V} [MulAction G V] (hH : H.IsTree) :
+/-- A group acting on the vertices acts on the tree metric space.  Declared at
+low priority so that a construction which carries its own action on its own
+vertex type --- as `GGT/BassSerreHNNAction.lean` does --- keeps that one, and
+lemmas stated against it continue to match syntactically. -/
+instance (priority := 100) instMulActionTreeSpace {G : Type u} [Group G]
+    {V : Type v} {H : SimpleGraph V} [MulAction G V] (hH : H.IsTree) :
     MulAction G (TreeSpace hH) :=
   inferInstanceAs (MulAction G V)
 

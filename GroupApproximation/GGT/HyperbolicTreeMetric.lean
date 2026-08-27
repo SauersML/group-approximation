@@ -276,15 +276,5 @@ theorem isHyperbolicSpace_zero {V : Type u} {H : SimpleGraph V}
   simp only [gromovProduct, TreeSpace.dist_eq]
   linarith
 
-/-- The Gromov product of a tree, evaluated: it is half the doubled product of
-the graph metric.  Recorded because every estimate below is stated at the level
-of `H.dist`. -/
-@[simp] theorem gromovProduct_treeSpace {V : Type u} {H : SimpleGraph V}
-    {hH : H.IsTree} (x y w : TreeSpace hH) :
-    gromovProduct x y w
-      = ((H.dist (TreeSpace.val x) (TreeSpace.val w) : ℝ)
-          + H.dist (TreeSpace.val y) (TreeSpace.val w)
-          - H.dist (TreeSpace.val x) (TreeSpace.val y)) / 2 := rfl
-
 end GGT
 end GroupApproximation

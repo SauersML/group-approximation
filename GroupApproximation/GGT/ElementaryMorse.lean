@@ -60,14 +60,32 @@ most `M` edges, and `dist_chain_le_nat_mul` converts that into
 The two scanners have no other consumer in the repository; this is the one they
 were written for.
 
-## What is left: one statement
+## What is left: one statement, and it is not a covering argument
 
-`OrbitNearGeodesic` below.  Passing from "the chain does not stray far from a
-ball it starts and ends in" to "the chain does not stray far from a geodesic
-joining its endpoints" needs the ball to be centred on the geodesic and the
-geodesic to be covered by such balls.  That is a covering argument along the
-chord, and it is the only thing between this module and the Morse lemma for
-orbits.  It is not written blind here.
+`exists_chord_point_near_chain_vertex` is the Morse conclusion already — a chain
+vertex within `r + 3δ` of the chord — with `r` any number exceeding the
+recursive-detour bound.  What is wrong with it is the constant: `kL, kR` are the
+dyadic depths of the two sides, so the bound carries a `δ·log₂ N` term and
+degrades with the length of the chain.
+
+**Removing that term is the whole residual, and no covering argument enters.**
+The classical route is the bootstrap the source lemma is shaped for: the two
+sampled vertices `y i` and `y (j+q)` that
+`exists_chain_vertices_across_far_vertex` returns are at chain-distance at most
+`(D + (kL+kR)δ + 6δ)/l`, so the sub-chain carrying the detour has length
+logarithmic in `N`; applying the same estimate to *that* sub-chain replaces
+`log₂ N` by `log₂ log₂ N`, and iterating stabilises, because `log₂` is
+eventually contracting.  That induction is the missing step.
+
+The engine `exists_bound_chain_excursion_depth` does **not** supply it, and the
+tempting route through it does not close: applying it at `w := γ t` needs both
+chain endpoints inside `B(γ t, R)`, and those endpoints are `γ 0` and `γ L`, at
+distances `t` and `L − t` from `γ t`.  So the hypothesis forces
+`R > max (t, L − t)`, and the conclusion `≤ R + K` is then a bound of order `L`
+— vacuous.  The engine bounds a detour relative to a ball the chain returns to,
+which is a different statement from a detour relative to a chord the chain only
+meets at its ends.  It remains the right tool for excursion arguments, and it is
+not the tool for this one.
 
 Given `OrbitNearGeodesic`, both residues follow by the routes their own modules
 record, and neither needs anything else.
@@ -184,6 +202,46 @@ theorem exists_bound_chain_excursion_depth {δ D l : ℝ}
   rw [dist_comm (y j) (y a)] at htri
   have hmul : ((j - a : ℕ) : ℝ) * D ≤ (M : ℝ) * D :=
     mul_le_mul_of_nonneg_right hjaM hD0
+  linarith
+
+/-! ## The Morse conclusion, with a length-dependent constant -/
+
+/-- **A chain vertex deeper than the recursive-detour bound is not deep at
+all.**  Contrapositive of `two_mul_progress_mul_far_radius_le`: if `r` exceeds
+that lemma's bound, then some point of the endpoint chord is within `r + 3δ` of
+`y j`.  This is the Morse conclusion — a chain vertex close to the chord — and
+the only thing wrong with it is the constant.
+
+`kL` and `kR` are dyadic depths of the two sides, so at `kL, kR ≈ log₂ N` the
+bound grows like `D·δ·log₂ N`: the estimate degrades with the length of the
+chain.  Removing that dependence is the residual recorded below. -/
+theorem exists_chord_point_near_chain_vertex {delta D l : ℝ}
+    (hdelta : IsHyperbolicSpace delta X) (hdelta0 : 0 ≤ delta)
+    (hD0 : 0 ≤ D) (hl : 0 < l)
+    (y : ℕ → X) {N j kL kR : ℕ} (hj0 : 0 < j) (hjN : j < N)
+    (hjpow : j ≤ 2 ^ kL) (hRpow : N - j ≤ 2 ^ kR)
+    (hedge : ∀ i, i < N → dist (y i) (y (i + 1)) ≤ D)
+    (hprogress : ∀ a b : ℕ, a ≤ b → b ≤ N →
+      l * ((b - a : ℕ) : ℝ) ≤ dist (y a) (y b))
+    {fAB fAC fCB : ℝ → X}
+    (hAB : IsGeodesicSegment fAB 0 (dist (y 0) (y j)))
+    (hAB0 : fAB 0 = y 0) (hAB1 : fAB (dist (y 0) (y j)) = y j)
+    (hAC : IsGeodesicSegment fAC 0 (dist (y 0) (y N)))
+    (hAC0 : fAC 0 = y 0) (hAC1 : fAC (dist (y 0) (y N)) = y N)
+    (hCB : IsGeodesicSegment fCB 0 (dist (y N) (y j)))
+    (hCB0 : fCB 0 = y N) (hCB1 : fCB (dist (y N) (y j)) = y j)
+    {r : ℝ} (hr0 : 0 ≤ r) (hrL : r ≤ dist (y 0) (y j))
+    (hrR : r ≤ dist (y N) (y j))
+    (hbig : D * (D + ((kL : ℝ) + (kR : ℝ)) * delta + 6 * delta) +
+      l * (D + ((kL : ℝ) + (kR : ℝ)) * delta) < 2 * l * r) :
+    ∃ s ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)),
+      dist (y j) (fAC s) ≤ r + 3 * delta := by
+  by_contra hcon
+  push_neg at hcon
+  have h2 := two_mul_progress_mul_far_radius_le hdelta hdelta0 hD0 hl y hj0 hjN
+    hjpow hRpow hedge hprogress hAB hAB0 hAB1 hAC hAC0 hAC1 hCB hCB0 hCB1
+    hr0 hrL hrR hcon
+  push_cast at h2 hbig
   linarith
 
 /-! ## What the two residues are waiting for -/
