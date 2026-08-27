@@ -2103,6 +2103,10 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaEvaluatedCor
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaUniversalMapDef
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaUniversalMapProperties
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaEvaluatedCornerStable
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaEvaluatedComposite
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaDirectEmbedding
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCitation
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceShulman
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
