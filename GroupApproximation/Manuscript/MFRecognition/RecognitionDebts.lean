@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.MFRecognition.RecognitionAssembly
+import GroupApproximation.Manuscript.MFRecognition.RopeCodeFamilySemantics
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceNonunital
 import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Higman.CurrentREBenign
@@ -21,10 +22,11 @@ top of them:
 * `omegaInput` — Higman's ω-closure, the one construction the benign-subgroup
   route to Higman's embedding theorem still owes; the debt is recorded once for
   the repository, in `Higman.OmegaDebt`, and with it Higman's theorem is the
-  theorem `reBenign` below;
-* `ropeCodeFamily` — the code of `eq:finite-rope`, computable from `e` and
-  presenting `R̂_e`, from `Higman.MikhailovaRopeCode.compileRankThree` and
-  `Higman.MikhailovaRopeCodeSemantics.compileEquivToRope`.
+  theorem `reBenign` below.
+
+The code of `eq:finite-rope` is not a debt either: `RopeCodes.ropeCodeFamilyOf`
+compiles it from the marked output of any effective Higman compiler and proves
+that it presents `R̂_e`, so `ropeCodeFamily` below is a term and not a `sorry`.
 
 The effective, marked form of Higman's theorem is not a separate debt: the
 compiler of `lem:mikhailova` is built from the ω-closure in
@@ -111,13 +113,20 @@ def markedOutputs : ∀ e, MarkedHigmanOutput (qcodeSeed e) :=
 
 /-! ## The finite-rope codes -/
 
-/-- **DEBT (effectivity).**  The code of `eq:finite-rope`, computable from
-`e`, presenting `R̂_e`. -/
-theorem ropeCodeFamily_nonempty : Nonempty (RopeCodeFamily markedOutputs) := by
-  sorry
+/-- **The code of `eq:finite-rope` exists.**  Not a debt: the code is built
+and proved correct in `RopeCodeFamilySemantics`. -/
+theorem ropeCodeFamily_nonempty : Nonempty (RopeCodeFamily markedOutputs) :=
+  ⟨RopeCodes.ropeCodeFamilyOf effectiveHigmanCompiler⟩
 
-/-- The rope codes, as a term. -/
-def ropeCodeFamily : RopeCodeFamily markedOutputs := ropeCodeFamily_nonempty.some
+/-- **The code of `eq:finite-rope`**, computable from `e` and presenting
+`R̂_e`: `Higman.MikhailovaRopeCode.compile` on the ambient code of `K_e`, the
+cutting words of `L_e` and the marked words `i(x), i(y), i(t)`, identified
+with `FiniteRope` by
+`Higman.MikhailovaRopeCodeSemantics.compileEquivToRope`.  Taken as the
+compiled term itself rather than through `ropeCodeFamily_nonempty.some`, so
+that `recognitionFamily.code` stays the concrete `e ↦ ropeCode (compile e)`. -/
+def ropeCodeFamily : RopeCodeFamily markedOutputs :=
+  RopeCodes.ropeCodeFamilyOf effectiveHigmanCompiler
 
 /-! ## `thm:recognition`, closed -/
 
