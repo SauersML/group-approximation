@@ -411,5 +411,24 @@ theorem signedSearchProjection_eq (n : ℕ)
       ring
 
 end Seq
+
+/-- **Higman's bounded-window arithmetic, without assumptions.** -/
+theorem boundedWindowRE : BoundedWindowRE := by
+  refine ⟨?_⟩
+  exact (Seq.boundedWindowRE_iff_coord Seq.primrec_intAdd).mpr fun n P hP => by
+    obtain ⟨search, hsearch, hspec⟩ := exists_primrec_of_rePred hP
+    have hgen := Seq.higmanGenerated_signedSearch n search hsearch
+    rw [Seq.signedSearchProjection_eq] at hgen
+    have hpred : (fun x => ∃ k, search x k = true) = P := by
+      funext x
+      exact propext (hspec x).symm
+    rw [hpred] at hgen
+    apply (Seq.coordHigman_iff n P).mpr
+    unfold Seq.WindowHigman
+    change Seq.HigmanGenerated
+      ({f : Seq.E | P (Seq.winVars n f)} ∩ Seq.windowSupport n)
+    rw [← Seq.winRel_eq_setOf_inter]
+    exact hgen
+
 end Higman
 end GroupApproximation
