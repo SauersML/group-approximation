@@ -340,51 +340,72 @@ noncomputable def genLift1 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x)
   HNNExtension.lift (emb3 P) y (fun x => by
     show y * emb3 P (x : G₀) = emb3 P (((MulEquiv.refl P) x : P) : G₀) * y
     rw [MulEquiv.refl_apply]
-    exact (hy x x.2).eq)
+    exact (hy (x : G₀) x.2).eq)
+
+/-- What level one does to the base copy.  Stating it separately keeps the
+level-two condition from having to rewrite underneath a subtype coercion. -/
+theorem genLift1_emb1 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x))
+    (x : G₀) : genLift1 P y hy (emb1 P x) = emb3 P x := by
+  unfold genLift1 emb1
+  rw [HNNExtension.lift_of]
+
+/-- **The level-two condition, at a membership rather than at a subtype.**
+`w` is an ordinary local variable here, so the witness equation can be
+substituted outright; that is what `genLift2` below needs, and it is why the
+condition is proved here rather than inline. -/
+theorem commute_gen2_genLift1 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x))
+    {w : Cent1 P} (hw : w ∈ push1 P) :
+    Commute (gen2 P) (genLift1 P y hy w) := by
+  obtain ⟨x, hx, hxw⟩ := hw
+  subst hxw
+  rw [genLift1_emb1]
+  exact commute_gen2 hx
 
 /-- Level two: `h` to `h`. -/
 noncomputable def genLift2 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x)) :
     Cent2 P →* Cent3 P :=
   HNNExtension.lift (genLift1 P y hy) (gen2 P) (fun z => by
-    obtain ⟨x, hx, hxz⟩ := z.2
     show gen2 P * genLift1 P y hy (z : Cent1 P)
       = genLift1 P y hy (((MulEquiv.refl (push1 P)) z : push1 P) : Cent1 P) * gen2 P
-    rw [MulEquiv.refl_apply, ← hxz]
-    change gen2 P * genLift1 P y hy (HNNExtension.of x)
-      = genLift1 P y hy (HNNExtension.of x) * gen2 P
-    unfold genLift1
-    rw [HNNExtension.lift_of]
-    exact (commute_gen2 hx).eq)
+    rw [MulEquiv.refl_apply]
+    exact (commute_gen2_genLift1 P y hy z.2).eq)
+
+/-- What level two does to the base copy, in the spelling the level-three
+condition produces. -/
+theorem genLift2_of_emb1 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x))
+    (x : G₀) :
+    genLift2 P y hy ((HNNExtension.of : Cent1 P →* Cent2 P) (emb1 P x))
+      = emb3 P x := by
+  unfold genLift2
+  rw [HNNExtension.lift_of, genLift1_emb1]
+
+/-- **The level-three condition, at a membership rather than at a subtype.** -/
+theorem commute_gen3_genLift2 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x))
+    {v : Cent2 P} (hv : v ∈ push2 P) :
+    Commute (gen3 P) (genLift2 P y hy v) := by
+  obtain ⟨w, hw, hwv⟩ := hv
+  subst hwv
+  obtain ⟨x, hx, hxw⟩ := hw
+  subst hxw
+  rw [genLift2_of_emb1]
+  exact commute_gen3 hx
 
 /-- Level three: `k` to `k`. -/
 noncomputable def genLift3 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x)) :
     Cent3 P →* Cent3 P :=
   HNNExtension.lift (genLift2 P y hy) (gen3 P) (fun w => by
-    obtain ⟨z, hz, hzw⟩ := w.2
-    obtain ⟨x, hx, hxz⟩ := hz
     show gen3 P * genLift2 P y hy (w : Cent2 P)
       = genLift2 P y hy (((MulEquiv.refl (push2 P)) w : push2 P) : Cent2 P) * gen3 P
-    rw [MulEquiv.refl_apply, ← hzw]
-    unfold genLift2
-    rw [HNNExtension.lift_of, ← hxz]
-    change gen3 P * genLift1 P y hy (HNNExtension.of x)
-      = genLift1 P y hy (HNNExtension.of x) * gen3 P
-    unfold genLift1
-    rw [HNNExtension.lift_of]
-    exact (commute_gen3 hx).eq)
+    rw [MulEquiv.refl_apply]
+    exact (commute_gen3_genLift2 P y hy w.2).eq)
 
 theorem genLift3_emb3 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x)) (x : G₀) :
     genLift3 P y hy (emb3 P x) = emb3 P x := by
   change genLift3 P y hy
     ((HNNExtension.of : Cent2 P →* Cent3 P)
-      ((HNNExtension.of : Cent1 P →* Cent2 P)
-        ((HNNExtension.of : G₀ →* Cent1 P) x))) = emb3 P x
+      ((HNNExtension.of : Cent1 P →* Cent2 P) (emb1 P x))) = emb3 P x
   unfold genLift3
-  rw [HNNExtension.lift_of]
-  unfold genLift2
-  rw [HNNExtension.lift_of]
-  unfold genLift1
-  rw [HNNExtension.lift_of]
+  rw [HNNExtension.lift_of, genLift2_of_emb1]
 
 theorem genLift3_gen1 (y : Cent3 P) (hy : ∀ x ∈ P, Commute y (emb3 P x)) :
     genLift3 P y hy (gen1 P) = y := by

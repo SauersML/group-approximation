@@ -14,8 +14,9 @@ import GroupApproximation.Analysis.ShulmanFillConjugatePair
 `thm:recognition` from four inputs.  This module names each of them as its own
 declaration, so that whatever is still owed is visible in the kernel's axiom
 report instead of a leading binder, and closes the theorem on top of them.
-Only `conjugateWordNorming` is still a `sorry` here; the ω-debt is recorded
-once for the repository in `Higman.OmegaDebt`, and the other inputs are proved:
+Only `conjugateWordNorming` is still a `sorry` here; the ω-closure is read once
+for the repository from `Higman.OmegaDebt`, where it is now a theorem, and the
+other inputs are proved:
 
 * `conjugateWordNorming` — the one remaining input of Shulman, Theorem 16
   (amalgamated free products of separable `C*`-algebras are MF under
@@ -27,10 +28,11 @@ once for the repository in `Higman.OmegaDebt`, and the other inputs are proved:
 * `uedaCornerMap` is no longer a debt: `HNNPermanenceUedaCornerProof` builds
   Ueda's corner map coordinate by coordinate, around the universe gap recorded
   on `UedaCornerMapStatement`;
-* `omegaInput` — Higman's ω-closure, the one construction the benign-subgroup
-  route to Higman's embedding theorem still owes; the debt is recorded once for
-  the repository, in `Higman.OmegaDebt`, and with it Higman's theorem is the
-  theorem `reBenign` below.
+* `omegaInput` — Higman's ω-closure, the last construction the benign-subgroup
+  route to Higman's embedding theorem needed; it is proved in
+  `Higman.OmegaFillLeadLinkBenign` and read once for the repository from
+  `Higman.OmegaDebt`, and with it Higman's theorem is the theorem `reBenign`
+  below.
 
 The code of `eq:finite-rope` is not a debt either: `RopeCodes.ropeCodeFamilyOf`
 compiles it from the marked output of any effective Higman compiler and proves
@@ -110,20 +112,20 @@ theorem manuscriptHNNPermanence_nonunital
 
 /-! ## Higman's embedding theorem -/
 
-/-- The ω-closure, as a term.  The debt itself is `Higman.OmegaDebt`, which the
-Theorem C lane imports too, so the statement carries one `sorry` for the whole
-repository rather than one per lane. -/
+/-- The ω-closure, as a term.  The statement itself is `Higman.OmegaDebt`, which
+the Theorem C lane imports too, so the repository proves it once rather than
+once per lane. -/
 def omegaInput : Higman.Omega.OmegaInput := Higman.OmegaDebt.omegaInput
 
 /-- **Higman's embedding theorem** (recursively enumerable normal subgroups of
-finitely generated free groups are benign), closed on the ω-debt. -/
+finitely generated free groups are benign), through the ω-closure. -/
 theorem reBenign : Higman.REBenign := Higman.OmegaDebt.reBenign
 
 /-- **The effective marked form of Higman's theorem**: a computable compiler
 from recursive presentations on three generators to finite presentations with
 marked embedding words.  Not a debt: it is `EffectiveCompilerOfOmega`, one
-fixed marked host for the free product of every rank-three input, closed on
-the ω-debt like `reBenign` above. -/
+fixed marked host for the free product of every rank-three input, running off
+the ω-closure like `reBenign` above. -/
 theorem effectiveHigmanCompiler_nonempty : Nonempty EffectiveHigmanCompiler :=
   EffectiveCompilerOfOmega.effectiveHigmanCompiler_of_omega omegaInput
 

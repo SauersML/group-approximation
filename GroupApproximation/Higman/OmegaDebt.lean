@@ -4,9 +4,10 @@ import GroupApproximation.Higman.OmegaFillLeadLinkBenign
 /-!
 # The ω-closure, once, for both lanes
 
-`Higman.Omega.OmegaInput` is the one construction the benign-subgroup route to
-Higman's embedding theorem still owes: the three-stage tower proving that
-Higman's operation `ωₘ` preserves benignness.  Everything else on that route is
+`Higman.Omega.OmegaInput` is the last construction the benign-subgroup route to
+Higman's embedding theorem needed: the three-stage tower proving that Higman's
+operation `ωₘ` preserves benignness.  It is proved in
+`Higman.OmegaFillLeadLinkBenign`.  Everything else on that route was already
 proved — `Higman.higmanTheoremThree`, `Higman.PairedReturnCutter.transportSectionFive`
 and `Higman.BridgePresentation.bridgeEffective` are unconditional, and
 `Higman.operationClosures_of_omega` reduces the remaining operation closures to
@@ -43,8 +44,8 @@ theorem omegaInput_nonempty : Nonempty Higman.Omega.OmegaInput :=
 noncomputable def omegaInput : Higman.Omega.OmegaInput := omegaInput_nonempty.some
 
 /-- **Higman's embedding theorem** — recursively enumerable normal subgroups of
-finitely generated free groups are benign — on the ω-debt.  Recorded here so
-that the two lanes share the consequence as well as the debt. -/
+finitely generated free groups are benign — through the ω-closure.  Recorded
+here so that the two lanes share the consequence as well as the statement. -/
 theorem reBenign : Higman.REBenign := Higman.reBenign_of_omega omegaInput
 
 end OmegaDebt

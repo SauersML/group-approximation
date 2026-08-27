@@ -19,20 +19,20 @@ recorded, and `Manuscript.NonMF.HullFillKernelRefutation` proves that, so
 `Saturation.saturation` and the two printed forms of Theorem C take
 `HullCorrectedInputs.HullInputsCorrected` instead.
 
-This module records what is still owed, one declaration per cited result, each
-proved by `sorry`, so that the debts are visible in the kernel's axiom report
-rather than hidden in a leading binder, and closes the two printed statements of
-Theorem C on top of them.  The names say which theorem of the literature each
-`sorry` stands for.
+This module records what is still owed, one declaration per cited result, the
+ones still owed proved by `sorry`, so that the debts are visible in the kernel's
+axiom report rather than hidden in a leading binder, and closes the two printed
+statements of Theorem C on top of them.  The names say which theorem of the
+literature each `sorry` stands for.
 
 ## The Chiodo field is no longer one of them
 
 `ChiodoOfHigman.chiodo_of_omega` proves Chiodo's Theorem 3.10 from Higman's
 ω-closure, so the first field of `LiteratureInputs` is discharged down to the
-single construction `Higman.Omega.OmegaInput`.  That construction is recorded
-once for the whole repository, in `Higman.OmegaDebt`, which the recognition
-lane's debt file imports as well: one `sorry` for one statement, shared by the
-two lanes that stand on it.
+single construction `Higman.Omega.OmegaInput`.  That construction is proved, in
+`Higman.OmegaFillLeadLinkBenign`, and read once for the whole repository from
+`Higman.OmegaDebt`, which the recognition lane's debt file imports as well: one
+theorem, shared by the two lanes that stand on it.
 
 ## What each remaining debt is
 
@@ -128,8 +128,8 @@ namespace TheoremC
 
 /-! ## Chiodo's Theorem 3.10, reduced to Higman's ω-closure -/
 
-/-- **Chiodo, Theorem 3.10 (= Belegradek, Theorem A.1)**, on the ω-debt rather
-than on a citation of its own: `chiodo_of_omega` proves it outright from
+/-- **Chiodo, Theorem 3.10 (= Belegradek, Theorem A.1)**, on the ω-closure
+rather than on a citation of its own: `chiodo_of_omega` proves it outright from
 Higman's ω-closure, and the ω-closure is `Higman.OmegaDebt.omegaInput`, the
 repository's single record of that construction. -/
 theorem chiodo : ChiodoBelegradek.Statement :=
