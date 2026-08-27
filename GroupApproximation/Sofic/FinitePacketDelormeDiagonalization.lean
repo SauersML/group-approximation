@@ -130,6 +130,59 @@ theorem exists_cofinal_vanishing_coboundary_primitive
   intro a ha j
   exact (hφgood j).1 a ha
 
+/-! ## Rank rescaling against an independently chosen mover
+
+The diagonal primitive is constructed using exact packet movers.  The
+ambient almost representation need not use those same coordinate lifts.
+The following form of the rank-rescaling estimate therefore accepts an
+arbitrary unitary mover.  It is the exact-mover analogue of
+`CollapseTransportDiagonalization.scaledMassVanishing_rankScaled`.
+-/
+
+variable {E : Type*} [Group E]
+
+/-- If a normalized displacement eventually vanishes and a primitive has
+vanishing coboundary defect against an arbitrary unitary mover, then the
+rank-rescaled primitive has scaled-mass-null displacement against that
+mover. -/
+theorem scaledMassVanishing_rankScaled_unitary
+    (B : OpAlmostRepresentation E)
+    (rho : ℕ → ℝ) (hrho : ∀ j, 0 ≤ rho j)
+    (A : ∀ j, Matrix.unitaryGroup (B.model j) ℂ)
+    (W b : ∀ j, EuclideanSpace ℂ (B.model j × B.model j))
+    (hb : ∃ N, ∀ j ≥ N, b j = 0)
+    (hdef : ∀ j,
+      ‖b j - (W j - adFlat (A j :
+        Matrix (B.model j) (B.model j) ℂ) (W j))‖ ^ 2 ≤
+        2 * (1 / ((j : ℝ) + 1))) :
+    ScaledKazhdanTransport.ScaledMassVanishing B rho (fun j ↦
+      ((Real.sqrt (rho j) : ℝ) : ℂ) • unflatE (W j) -
+        (A j : Matrix (B.model j) (B.model j) ℂ) *
+          (((Real.sqrt (rho j) : ℝ) : ℂ) • unflatE (W j)) *
+          (A j : Matrix (B.model j) (B.model j) ℂ)ᴴ) := by
+  obtain ⟨N, hN⟩ := hb
+  intro epsilon hepsilon
+  obtain ⟨J, hJ⟩ := exists_level_two_div_le hepsilon
+  refine ⟨max N J, fun j hj ↦ ?_⟩
+  have hjN : N ≤ j := le_trans (le_max_left _ _) hj
+  have hjJ : J ≤ j := le_trans (le_max_right _ _) hj
+  have hnormeq :
+      ‖W j - adFlat (A j : Matrix (B.model j) (B.model j) ℂ) (W j)‖ =
+        ‖b j - (W j - adFlat (A j :
+          Matrix (B.model j) (B.model j) ℂ) (W j))‖ := by
+    rw [hN j hjN, zero_sub, norm_neg]
+  have hsmall :
+      ‖W j - adFlat (A j : Matrix (B.model j) (B.model j) ℂ) (W j)‖ ^ 2
+        ≤ epsilon := by
+    rw [hnormeq]
+    exact (hdef j).trans (hJ j hjJ)
+  rw [matMass_smul_unflatE_displacement, Real.sq_sqrt (hrho j)]
+  calc
+    rho j * ‖W j - adFlat (A j :
+        Matrix (B.model j) (B.model j) ℂ) (W j)‖ ^ 2 ≤
+        rho j * epsilon := mul_le_mul_of_nonneg_left hsmall (hrho j)
+    _ = epsilon * rho j := mul_comm _ _
+
 end
 
 end FinitePacketDelormeDiagonalization
