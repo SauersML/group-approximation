@@ -84,8 +84,6 @@ theorem sigmaZero_covariance_generator
   rw [star_reducedLeftRegular, ← reducedLeftRegular_mul,
     ← reducedLeftRegular_mul, hgroup]
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 400000 in
 /-- Printed: *"The pair `(σ₀, λ_R(t))` satisfies the covariance relation
 `λ_R(t)σ₀(b)λ_R(t)* = σ₀(Θ(b))` for `b ∈ B₀`."* -/
 theorem sigmaZero_covariance (_hIn : HNNInputs)
@@ -139,7 +137,44 @@ theorem sigmaZero_covariance (_hIn : HNNInputs)
       sigmaZero data
         (((edgeIsomorphism data b : targetEdgeAlgebra data) :
           baseAlgebra data)) := hb
-  rw [← h, mul_assoc, hstar, mul_one]
+  -- `rw [← h, …]` here asks the unifier to build a motive over
+  -- `ReducedGroupCStar (HNNExtension …)`, an `abbrev` over a subalgebra, and
+  -- times out in `isDefEq`.  Each step below is a term with a stated type, so
+  -- nothing has to be abstracted.
+  symm
+  calc sigmaZero data
+          (((edgeIsomorphism data b : targetEdgeAlgebra data) :
+            baseAlgebra data)) *
+        (stableUnitary G S T phi :
+          ReducedGroupCStar (HNNExtension G S T phi))
+      = (stableUnitary G S T phi :
+              ReducedGroupCStar (HNNExtension G S T phi)) *
+            sigmaZero data ((b : baseAlgebra data)) *
+          star (stableUnitary G S T phi :
+              ReducedGroupCStar (HNNExtension G S T phi)) *
+        (stableUnitary G S T phi :
+          ReducedGroupCStar (HNNExtension G S T phi)) :=
+      congrArg (fun y : ReducedGroupCStar (HNNExtension G S T phi) ↦
+        y * (stableUnitary G S T phi :
+          ReducedGroupCStar (HNNExtension G S T phi))) h.symm
+    _ = (stableUnitary G S T phi :
+              ReducedGroupCStar (HNNExtension G S T phi)) *
+            sigmaZero data ((b : baseAlgebra data)) *
+          (star (stableUnitary G S T phi :
+              ReducedGroupCStar (HNNExtension G S T phi)) *
+            (stableUnitary G S T phi :
+              ReducedGroupCStar (HNNExtension G S T phi))) :=
+      mul_assoc _ _ _
+    _ = (stableUnitary G S T phi :
+              ReducedGroupCStar (HNNExtension G S T phi)) *
+            sigmaZero data ((b : baseAlgebra data)) * 1 :=
+      congrArg (fun y : ReducedGroupCStar (HNNExtension G S T phi) ↦
+        (stableUnitary G S T phi :
+              ReducedGroupCStar (HNNExtension G S T phi)) *
+            sigmaZero data ((b : baseAlgebra data)) * y) hstar
+    _ = (stableUnitary G S T phi :
+            ReducedGroupCStar (HNNExtension G S T phi)) *
+          sigmaZero data ((b : baseAlgebra data)) := mul_one _
 
 /-- The printed covariant pair `(σ₀, λ_R(t))`. -/
 def reducedCovariantRepresentation (hIn : HNNInputs)
@@ -166,8 +201,7 @@ def sigma (hIn : HNNInputs) (data : CoronaConjugator G S T phi A X) :
 @[simp] theorem sigma_stable (hIn : HNNInputs)
     (data : CoronaConjugator G S T phi A X) :
     sigma hIn data
-        ((universalStable data : unitary (universalHNN data)) :
-          universalHNN data) =
+        (universalStable data : universalHNN data) =
       (stableUnitary G S T phi :
         ReducedGroupCStar (HNNExtension G S T phi)) :=
   rfl
@@ -193,8 +227,7 @@ theorem universalBaseUnitary_covariance
   have hgen := congrArg
     (fun z : targetEdgeAlgebra data ↦
       universalBase data ((z : baseAlgebra data)) *
-        ((universalStable data : unitary (universalHNN data)) :
-          universalHNN data))
+        (universalStable data : universalHNN data))
     (edgeIsomorphism_generator data s)
   exact h.trans hgen
 
@@ -214,8 +247,6 @@ def groupLift (data : CoronaConjugator G S T phi A X) :
     groupLift data HNNExtension.t = universalStable data :=
   universalCStarHNNGroupLift_t _ _ _ _ _ _
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 400000 in
 /-- Printed: *"`σ ∘ j = λ_R`"*. -/
 theorem groupLiftEval_eq_regular (hIn : HNNInputs)
     (data : CoronaConjugator G S T phi A X) :
@@ -229,15 +260,15 @@ theorem groupLiftEval_eq_regular (hIn : HNNInputs)
   · refine MonoidHom.ext fun g ↦ ?_
     apply Subtype.ext
     show sigma hIn data
-        ((groupLift data (HNNExtension.of g) : unitary (universalHNN data)) :
-          universalHNN data) =
+        (groupLift data (HNNExtension.of g) : universalHNN data) =
       reducedLeftRegular (HNNExtension G S T phi) (HNNExtension.of g)
-    rw [groupLift_of]
-    exact sigmaZero_apply data g
+    exact (congrArg
+        (fun u : unitary (universalHNN data) ↦
+          sigma hIn data (u : universalHNN data))
+        (groupLift_of data g)).trans (sigmaZero_apply data g)
   · apply Subtype.ext
     show sigma hIn data
-        ((groupLift data HNNExtension.t : unitary (universalHNN data)) :
-          universalHNN data) =
+        (groupLift data HNNExtension.t : universalHNN data) =
       reducedLeftRegular (HNNExtension G S T phi) HNNExtension.t
     exact congrArg
       (fun u : unitary (universalHNN data) ↦
@@ -265,18 +296,14 @@ def universalTrace (hIn : HNNInputs)
     (HNNExtension G S T phi)).toTracialState).compStarAlgHom
       (sigma hIn data)
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 400000 in
 /-- Printed: *"`τ'(j(r)) = τ_R(λ_R(r)) = 0` for `r ≠ 1`."* -/
 theorem universalTrace_regular (hIn : HNNInputs)
     (data : CoronaConjugator G S T phi A X)
     (r : HNNExtension G S T phi) (hr : r ≠ 1) :
     universalTrace hIn data
-        (((groupLift data r : unitary (universalHNN data)) :
-          universalHNN data)) = 0 := by
+        ((groupLift data r : universalHNN data)) = 0 := by
   have hlambda : sigma hIn data
-      (((groupLift data r : unitary (universalHNN data)) :
-        universalHNN data)) =
+      ((groupLift data r : universalHNN data)) =
       reducedLeftRegular (HNNExtension G S T phi) r := by
     have h := congrArg (fun f : HNNExtension G S T phi →*
         unitary (ReducedGroupCStar (HNNExtension G S T phi)) ↦ f r)
@@ -285,8 +312,7 @@ theorem universalTrace_regular (hIn : HNNInputs)
   show ((canonicalFaithfulTracialState
       (HNNExtension G S T phi)).toTracialState)
       (sigma hIn data
-        (((groupLift data r : unitary (universalHNN data)) :
-          universalHNN data))) = 0
+        ((groupLift data r : universalHNN data))) = 0
   rw [hlambda]
   exact canonicalCoefficientAtOne_reducedLeftRegular_of_ne_one
     (HNNExtension G S T phi) hr

@@ -80,7 +80,7 @@ theorem toCoprod_b2_zpow (m : ℤ) :
   simp [b2, e]
 
 theorem listProd_expand (c : ℤ) (l : List (ℕ × ℤ)) :
-    listProd (M := fun _ : Fin 2 ↦ FreeGroup Unit) (altList 0 (expand c l))
+    listProd (N := fun _ : Fin 2 ↦ FreeGroup Unit) (altList 0 (expand c l))
       = CoprodI.of (i := (0 : Fin 2)) (e ^ c) * freeGroupEquivCoprodI (uProd l) := by
   induction l generalizing c with
   | nil =>
@@ -150,7 +150,7 @@ theorem uProd_ne_one (l : List (ℕ × ℤ)) (hne : l ≠ [])
     refine expand_letters_ne_one 0 l hexp hchain (fun h ↦ absurd h hne) ?_
     intro k n _
     omega
-  have hprod : listProd (M := fun _ : Fin 2 ↦ FreeGroup Unit)
+  have hprod : listProd (N := fun _ : Fin 2 ↦ FreeGroup Unit)
       (altList 0 (expand 0 l)) = 1 := by
     rw [listProd_expand, hcon, map_one, mul_one, zpow_zero, map_one]
   refine prod_altWord_ne_one (0 : Fin 2) (expand 0 l) hletters
