@@ -2095,6 +2095,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerCovari
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerStableUnitary
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerCovariance
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerNontrivial
+import GroupApproximation.Analysis.AmenableTraceHyperlinear
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
