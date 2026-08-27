@@ -1,4 +1,6 @@
 import GroupApproximation.Manuscript.MFRecognition.RecognitionAssembly
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceNonunital
+import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Higman.CurrentREBenign
 
 /-!
@@ -18,14 +20,18 @@ top of them:
 * `omegaInput` — Higman's ω-closure, the one construction the benign-subgroup
   route to Higman's embedding theorem still owes; with it Higman's theorem is
   the theorem `reBenign` below;
-* `effectiveHigmanCompiler` — the effective, marked form of Higman's theorem
-  (Mikaelian's algorithm) on the rank-three family;
 * `ropeCodeFamily` — the code of `eq:finite-rope`, computable from `e` and
   presenting `R̂_e`, from `Higman.MikhailovaRopeCode.compileRankThree` and
   `Higman.MikhailovaRopeCodeSemantics.compileEquivToRope`.
 
-The printed nonunital form of `thm:hnn-permanence` is recorded the same way:
-its passage from the unital form is the corner compression `p𝒬p ≅ 𝒬'`.
+The effective, marked form of Higman's theorem is not a separate debt: the
+compiler of `lem:mikhailova` is built from the ω-closure in
+`EffectiveCompilerOfOmega`, so `effectiveHigmanCompiler_nonempty` below is a
+proof and not a `sorry`.
+
+The printed nonunital form of `thm:hnn-permanence` is not a debt: its passage
+from the unital form is the corner compression `p𝒬p ≅ 𝒬'`, proved in
+`HNNPermanenceNonunital`.
 -/
 
 set_option warningAsError false
@@ -52,9 +58,10 @@ theorem uedaCornerMap : HNNPermanence.UedaCornerMapStatement := by
 
 /-- **`thm:hnn-permanence`, printed form, with a possibly nonunital `ι`.**
 Printed: *"an injective `*`-homomorphism `ι : A → 𝒬` and a unitary `W ∈ 𝒬`
-with `W ιρ(s) W* = ιρ(θ(s))`."*  **DEBT (proof):** the passage from the
-unital form is the compression of `𝒬` to the corner `p𝒬p`, `p = ι(1)`, which
-is again a norm matrix corona. -/
+with `W ιρ(s) W* = ιρ(θ(s))`."*  The passage from the unital form is the
+compression of `𝒬` to the corner `p𝒬p`, `p = ι(1)`, which is again a norm
+matrix corona; it is proved in `HNNPermanenceNonunital`, so this form rests
+on the same two citations as the unital one. -/
 theorem manuscriptHNNPermanence_nonunital
     {G : Type} [Group G] [Countable G]
     {S T : Subgroup G} (phi : S ≃* T)
@@ -68,8 +75,10 @@ theorem manuscriptHNNPermanence_nonunital
             iota ((realization.rho (s : G) : unitary A) : A) *
           star (W : NormMatrixCStarCorona (fun n ↦ X n)) =
         iota ((realization.rho ((phi s : T) : G) : unitary A) : A)) :
-    IsRegularlyRealized (HNNExtension G S T phi) := by
-  sorry
+    IsRegularlyRealized (HNNExtension G S T phi) :=
+  HNNPermanenceNonunital.manuscriptHNNPermanence_nonunital
+    (HNNPermanence.hnnInputs_of_citations shulmanTheorem16 uedaCornerMap)
+    phi realization iota hiota W hW
 
 /-! ## Higman's embedding theorem -/
 
@@ -85,11 +94,13 @@ def omegaInput : Higman.Omega.OmegaInput := omegaInput_nonempty.some
 finitely generated free groups are benign), closed on the ω-debt. -/
 theorem reBenign : Higman.REBenign := Higman.reBenign_of_omega omegaInput
 
-/-- **DEBT (construction).**  The effective marked form of Higman's theorem
-(Mikaelian's algorithm): a computable compiler from recursive presentations on
-three generators to finite presentations with marked embedding words. -/
-theorem effectiveHigmanCompiler_nonempty : Nonempty EffectiveHigmanCompiler := by
-  sorry
+/-- **The effective marked form of Higman's theorem**: a computable compiler
+from recursive presentations on three generators to finite presentations with
+marked embedding words.  Not a debt: it is `EffectiveCompilerOfOmega`, one
+fixed marked host for the free product of every rank-three input, closed on
+the ω-debt like `reBenign` above. -/
+theorem effectiveHigmanCompiler_nonempty : Nonempty EffectiveHigmanCompiler :=
+  EffectiveCompilerOfOmega.effectiveHigmanCompiler_of_omega omegaInput
 
 /-- The compiler, as a term. -/
 def effectiveHigmanCompiler : EffectiveHigmanCompiler :=
