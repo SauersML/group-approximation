@@ -1,5 +1,6 @@
 import GroupApproximation.Higman.HNNSubextensionFiniteBaseProfinite
 import GroupApproximation.Higman.FreeLampFinitePresentation
+import GroupApproximation.Higman.FreeLampProfiniteEmbedding
 
 /-!
 # Finite-base free lamps are subgroup separable
@@ -51,6 +52,11 @@ def basePerm
     (d : HNNExtension.NormalWord.TransversalPair G M M)
     (g x : G) (w : FreeGroup (LampLabel (M := M) (α := α) d)) :
     basePerm (M := M) (α := α) d g (x, w) = (g * x, w) := rfl
+
+@[simp] theorem basePerm_inv_apply
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (g x : G) (w : FreeGroup (LampLabel (M := M) (α := α) d)) :
+    (basePerm (M := M) (α := α) d g)⁻¹ (x, w) = (g⁻¹ * x, w) := rfl
 
 /-- A lamp word writes a copy of itself tagged by the current edge coset. -/
 def lampPerm
@@ -198,6 +204,190 @@ def action
   change basePerm (M := M) (α := α) d 1 * lampPerm (M := M) d k = _
   rw [show basePerm (M := M) (α := α) d 1 = 1 by
     exact map_one (basePermHom (M := M) (α := α) d), one_mul]
+
+/-! ## Stable-conjugate coordinates -/
+
+/-- The label of the base coset, represented by the identity. -/
+def oneLabel
+    (d : HNNExtension.NormalWord.TransversalPair G M M) : Label M d :=
+  cosetLabel M d 1
+
+/-- A lamp generator conjugated by a chosen edge-coset representative. -/
+def stableConj
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (p : LampLabel (M := M) (α := α) d) :
+    FreeLamp G M (FreeGroup α) :=
+  inAmbient G M (FreeGroup α) (p.1 : G)⁻¹ *
+    inLamp G M (FreeGroup α) (FreeGroup.of p.2) *
+      inAmbient G M (FreeGroup α) (p.1 : G)
+
+/-- The free group on coset-tagged lamp generators maps to their stable
+conjugates. -/
+def stableConjLift
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    FreeGroup (LampLabel (M := M) (α := α) d) →*
+      FreeLamp G M (FreeGroup α) :=
+  FreeGroup.lift (stableConj (M := M) d)
+
+/-- A chosen stable conjugate writes its own label at the distinguished
+state. -/
+theorem action_stableConj_apply_one
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (p : LampLabel (M := M) (α := α) d)
+    (w : FreeGroup (LampLabel (M := M) (α := α) d)) :
+    action (M := M) (α := α) d (stableConj (M := M) d p) (1, w) =
+      (1, FreeGroup.of p * w) := by
+  simp only [stableConj, map_mul, map_inv, Equiv.Perm.mul_apply,
+    action_inAmbient, action_inLamp, basePerm_apply, lampPerm_apply,
+    basePerm_inv_apply, map_inv, mul_one]
+  rw [show cosetLabel M d (p.1 : G) = p.1 by
+    exact CentralHNNFreeLabel.label_self M d p.1]
+  apply Prod.ext
+  · simp
+  · rw [FreeGroup.map.of]
+
+/-- Stable-coordinate words act by left multiplication on the free-label
+coordinate while fixing the distinguished base coordinate. -/
+theorem action_stableConjLift_apply
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (w v : FreeGroup (LampLabel (M := M) (α := α) d)) :
+    action (M := M) (α := α) d (stableConjLift (M := M) d w)
+        (1, v) = (1, w * v) := by
+  induction w using FreeGroup.induction_on generalizing v with
+  | C1 => simp
+  | of p => simpa [stableConjLift] using
+      action_stableConj_apply_one (M := M) d p v
+  | mul x y hx hy =>
+      rw [map_mul, map_mul, Equiv.Perm.mul_apply, hy]
+      rw [hx]
+      congr 1
+      group
+  | inv_of p hp =>
+      rw [map_inv, map_inv]
+      apply (action (M := M) (α := α) d
+        (stableConjLift (M := M) d (FreeGroup.of p))).symm_apply_eq.mpr
+      simpa [stableConjLift, mul_assoc] using
+        (action_stableConj_apply_one (M := M) d p
+          ((FreeGroup.of p)⁻¹ * v)).symm
+
+/-- Evaluation at the distinguished state reads back a stable-conjugate word
+verbatim. -/
+theorem action_stableConjLift_apply_one
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (w : FreeGroup (LampLabel (M := M) (α := α) d)) :
+    action (M := M) (α := α) d (stableConjLift (M := M) d w)
+        (1, (1 : FreeGroup (LampLabel (M := M) (α := α) d))) =
+      (1, w) := by
+  simpa using action_stableConjLift_apply (M := M) d w 1
+
+/-- Stable conjugates are freely based by `(edge coset, lamp generator)`. -/
+theorem stableConjLift_injective
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    Function.Injective (stableConjLift (M := M) (α := α) d) := by
+  intro x y hxy
+  have hact := congrArg (action (M := M) (α := α) d) hxy
+  have hpoint := DFunLike.congr_fun hact
+    ((1 : G), (1 : FreeGroup (LampLabel (M := M) (α := α) d)))
+  rw [action_stableConjLift_apply_one, action_stableConjLift_apply_one] at hpoint
+  exact congrArg Prod.snd hpoint
+
+/-- A stable conjugate can be written using any representative of its right
+edge coset. -/
+theorem stableConj_eq_conj_of_cosetLabel
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (s : G) (i : α) :
+    stableConj (M := M) d (cosetLabel M d s, i) =
+      inAmbient G M (FreeGroup α) s⁻¹ *
+        inLamp G M (FreeGroup α) (FreeGroup.of i) *
+          inAmbient G M (FreeGroup α) s := by
+  let e := (d.compl (1 : ℤˣ)).equiv s
+  have hs : (e.1 : G) * (e.2 : G) = s :=
+    (d.compl (1 : ℤˣ)).equiv_fst_mul_equiv_snd s
+  have hc := inLamp_commute_inAmbient G M (FreeGroup α)
+    (FreeGroup.of i) e.1.property
+  change inAmbient G M (FreeGroup α) (e.2 : G)⁻¹ *
+      inLamp G M (FreeGroup α) (FreeGroup.of i) *
+        inAmbient G M (FreeGroup α) (e.2 : G) = _
+  rw [← hs, map_mul, map_inv, mul_inv_rev]
+  simp only [map_mul, map_inv]
+  symm
+  calc
+    (inAmbient G M (FreeGroup α) (e.2 : G))⁻¹ *
+          (inAmbient G M (FreeGroup α) (e.1 : G))⁻¹ *
+            inLamp G M (FreeGroup α) (FreeGroup.of i) *
+              inAmbient G M (FreeGroup α) (e.1 : G) *
+                inAmbient G M (FreeGroup α) (e.2 : G) =
+        (inAmbient G M (FreeGroup α) (e.2 : G))⁻¹ *
+          (inAmbient G M (FreeGroup α) (e.1 : G))⁻¹ *
+            (inLamp G M (FreeGroup α) (FreeGroup.of i) *
+              inAmbient G M (FreeGroup α) (e.1 : G)) *
+                inAmbient G M (FreeGroup α) (e.2 : G) := by group
+    _ = (inAmbient G M (FreeGroup α) (e.2 : G))⁻¹ *
+          (inAmbient G M (FreeGroup α) (e.1 : G))⁻¹ *
+            (inAmbient G M (FreeGroup α) (e.1 : G) *
+              inLamp G M (FreeGroup α) (FreeGroup.of i)) *
+                inAmbient G M (FreeGroup α) (e.2 : G) := by rw [hc.eq]
+    _ = (inAmbient G M (FreeGroup α) (e.2 : G))⁻¹ *
+          inLamp G M (FreeGroup α) (FreeGroup.of i) *
+            inAmbient G M (FreeGroup α) (e.2 : G) := by group
+
+/-- Conjugating a stable coordinate by a base element merely changes its
+coset label. -/
+theorem base_conj_stableConj
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (g : G) (p : LampLabel (M := M) (α := α) d) :
+    inAmbient G M (FreeGroup α) g * stableConj (M := M) d p *
+        inAmbient G M (FreeGroup α) g⁻¹ =
+      stableConj (M := M) d
+        (cosetLabel M d ((p.1 : G) * g⁻¹), p.2) := by
+  rw [stableConj_eq_conj_of_cosetLabel]
+  dsimp [stableConj]
+  simp only [map_mul, map_inv]
+  group
+
+/-- The stable-coordinate subgroup is normalized by the canonical base. -/
+theorem base_conj_stableConjLift_mem_range
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (g : G) (w : FreeGroup (LampLabel (M := M) (α := α) d)) :
+    inAmbient G M (FreeGroup α) g * stableConjLift (M := M) d w *
+        inAmbient G M (FreeGroup α) g⁻¹ ∈
+      (stableConjLift (M := M) (α := α) d).range := by
+  induction w using FreeGroup.induction_on with
+  | C1 => simp
+  | of p =>
+      change inAmbient G M (FreeGroup α) g * stableConj (M := M) d p *
+          inAmbient G M (FreeGroup α) g⁻¹ ∈ _
+      rw [base_conj_stableConj]
+      exact ⟨FreeGroup.of
+        (cosetLabel M d ((p.1 : G) * g⁻¹), p.2), by
+          exact FreeGroup.lift_apply_of⟩
+  | mul x y hx hy =>
+      rw [map_mul]
+      have heq :
+          inAmbient G M (FreeGroup α) g *
+              (stableConjLift (M := M) d x * stableConjLift (M := M) d y) *
+                inAmbient G M (FreeGroup α) g⁻¹ =
+            (inAmbient G M (FreeGroup α) g * stableConjLift (M := M) d x *
+                inAmbient G M (FreeGroup α) g⁻¹) *
+              (inAmbient G M (FreeGroup α) g * stableConjLift (M := M) d y *
+                inAmbient G M (FreeGroup α) g⁻¹) := by
+          rw [map_inv]
+          group
+      rw [heq]
+      exact Subgroup.mul_mem _ hx hy
+  | inv_of p hp =>
+      rw [map_inv]
+      have heq :
+          inAmbient G M (FreeGroup α) g *
+              (stableConjLift (M := M) d (FreeGroup.of p))⁻¹ *
+                inAmbient G M (FreeGroup α) g⁻¹ =
+            (inAmbient G M (FreeGroup α) g *
+              stableConjLift (M := M) d (FreeGroup.of p) *
+                inAmbient G M (FreeGroup α) g⁻¹)⁻¹ := by
+          rw [map_inv]
+          group
+      rw [heq]
+      exact Subgroup.inv_mem _ hp
 
 end
 
