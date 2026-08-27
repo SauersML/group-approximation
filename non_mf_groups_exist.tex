@@ -475,28 +475,20 @@ unit \(q\).
 \begin{proof}
 Lift \(q\) to projections \(q_n\) by spectral rounding, and lift each
 \(\rho(g)\) to unitaries \(U_n(g)\) by polar correction, with
-\(U_n(1)=I_{d_n}\).  The commutation relation in the corona gives
-\(\opnorm{q_nU_n(g)-U_n(g)q_n}\to0\) for each \(g\).  So
-\(q_nU_n(g)q_n\), viewed on \(q_n\C^{d_n}\), has both unitarity defects
-converging to zero, and for \(g,h\in G\),
-\[
-\begin{aligned}
- &\opnorm{q_nU_n(gh)q_n-q_nU_n(g)q_n\,q_nU_n(h)q_n}\\
- &\qquad\le\opnorm{U_n(gh)-U_n(g)U_n(h)}+\opnorm{[q_n,U_n(h)]}\longrightarrow0,
-\end{aligned}
-\]
-because \(q_nU_n(g)U_n(h)q_n-q_nU_n(g)q_nU_n(h)q_n=q_nU_n(g)[U_n(h),q_n]q_n\)
-(compare~\cite[Proposition~2.4]{BDL}).  For each fixed \(g\), let
-\(\widetilde W_n(g)\) be the polar correction of \(q_nU_n(g)q_n\) in the
-corner whenever both defects are at most \(1/2\), and \(q_n\) at the
-finitely many earlier stages.  Then \(\widetilde W_n(g)\) is unitary in the
-corner, \(\opnorm{\widetilde W_n(g)-q_nU_n(g)q_n}\to0\), and
-\(\widetilde W_n(1)=q_n\).  Since \(q\ne0\), infinitely many \(q_n\) are
-nonzero.  Retain those coordinates, choose unitaries
-\(J_n\colon\C^{r_n}\to q_n\C^{d_n}\), and put
+\(U_n(1)=I_{d_n}\).  Since \(q\ne0\), infinitely many \(q_n\) are nonzero.
+Retain those coordinates and put \(r_n=\operatorname{rank}(q_n)\).  The
+commutation relation in the corona gives
+\(\opnorm{q_nU_n(g)-U_n(g)q_n}\to0\) for each \(g\), so
+\cite[Proposition~2.4]{BDL} with \(p=\infty\) gives an operator norm
+asymptotic representation \(\widetilde W_n\) of \(G\) by unitaries of the
+corner \(q_nM_{d_n}(\C)q_n\) with
+\(\opnorm{\widetilde W_n(g)-q_nU_n(g)q_n}\to0\).  Replacing
+\(\widetilde W_n(1)\) by \(q_n\) changes it by \(o(1)\).  Choose unitaries
+\(J_n\colon\C^{r_n}\to q_n\C^{d_n}\) and put
 \(W_n(g)=J_n^*\widetilde W_n(g)J_n\).  Conjugation by \(J_n\) preserves
-operator norms and multiplicative defects, so \((W_n)\) is an operator norm
-asymptotic representation, and the estimates identify the class of
+operator norms and multiplicative defects, so \((W_n)\) is an operator
+norm asymptotic representation with \(W_n(1)=I_{r_n}\), and
+\(\opnorm{J_nW_n(g)J_n^*-q_nU_n(g)q_n}\to0\) identifies the class of
 \((J_nW_n(g)J_n^*)\) with the coordinate restriction of \(q\rho(g)\).
 \end{proof}
 
