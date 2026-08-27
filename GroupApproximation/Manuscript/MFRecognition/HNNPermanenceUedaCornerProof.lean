@@ -609,8 +609,11 @@ theorem cornerUnit_cornerProjectionAt_ne_zero
 induces a star-algebra homomorphism `U → ePe`. -/
 def uedaCornerLift : universalHNN data →⋆ₐ[ℂ]
     CStarCorner (cornerUnit data) (cornerUnit_star data)
-      (cornerUnit_mul data) :=
-  cornerLift (cornerUnit data) (cornerUnit_star data) (cornerUnit_mul data)
+      (cornerUnit_mul data) := by
+  letI : Nonempty (CStarAmalgamRepresentation
+      (amalgamLeftInclusion data) (amalgamRightInclusion data)) :=
+    ⟨coronaAmalgamRepresentation data⟩
+  exact cornerLift (cornerUnit data) (cornerUnit_star data) (cornerUnit_mul data)
     (cornerBaseMap data) (cornerStableUnitary data)
     (cornerStableUnitary_covariance data)
     (cornerUnit_cornerProjectionAt_ne_zero data)
