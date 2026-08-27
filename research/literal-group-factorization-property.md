@@ -7,6 +7,8 @@ distinct_from:
   literal-group-sofic: that is permutation approximation of E in normalized Hamming distance; this asks that the canonical trace of C*(E) be amenable in Brown's sense, which is soficity plus a u.c.p. lifting of the resulting tracial-ultraproduct representation, and the lifting is the whole content.
   literal-central-mark-corona-invisible: that is an operator-norm obstruction; this is a Hilbert--Schmidt-norm approximation property with a lifting clause, and the two are independent.
 artifacts:
+  - GroupApproximation/Analysis/AmenableTraceHyperlinear.lean
+  - GroupApproximation/Manuscript/NinetyNineProblems/FactorizationHyperlinearTheorem.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/FactorizationImpliesHyperlinear.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
@@ -66,10 +68,11 @@ as `IsAmenableTrace` of the canonical trace of `C*(E)`; no inhabitant.
 General form: `NinetyNineProblems.HasFactorizationProperty G` (`GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean`), with
 `literalFactorizationProperty_iff` identifying the two.
 
-Direction already machine-checked: a factorization-property group has a
-hyperlinear canonical trace
-(`isHyperlinearTrace_canonicalMaximal_of_hasFactorizationProperty`, `GroupApproximation/Manuscript/NinetyNineProblems/FactorizationImpliesHyperlinear.lean`);
-the group-level "factorization property ⟹ hyperlinear" (Brown 3.1.7) is a
-typed input there until the Hilbert--Schmidt polar-correction lemma
-(`∃ u unitary, hsNorm(u − x) ≤ hsNorm(xᴴx − 1)`, no contraction hypothesis)
-lands in `Analysis/HilbertSchmidtPolarCorrection.lean`.
+Direction machine-checked end to end: the factorization property implies
+hyperlinearity, as a THEOREM with no literature input and no countability
+hypothesis (`AmenableTraceHyperlinear.isHyperlinear_of_isAmenableTrace_canonicalMaximal`
+in `GroupApproximation/Analysis/AmenableTraceHyperlinear.lean`, through the Hilbert--Schmidt
+polar correction `HilbertSchmidtPolar.exists_unitary_hsNorm_sub_le`; the typed
+Brown input is discharged premise-free in `GroupApproximation/Manuscript/NinetyNineProblems/FactorizationHyperlinearTheorem.lean`).
+So this leaf sits strictly above `literal-group-sofic` in strength, and Thom's
+examples show the gap is real.
