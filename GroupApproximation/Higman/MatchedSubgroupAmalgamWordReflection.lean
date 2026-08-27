@@ -1,13 +1,11 @@
 import GroupApproximation.Higman.MatchedSubgroupAmalgam
 
 /-!
-# Letter reflection for matched sub-amalgams
+# Carry traces for amalgam word normalization
 
-Normalizing a reduced amalgam word only transfers edge elements between
-adjacent letters.  Consequently membership of every letter in prescribed
-factor subgroups containing the edge is invariant under normalization.  This
-is the local normal-form input for reflecting membership in a matched
-sub-amalgam.
+Normalizing a reduced amalgam word transfers explicit edge elements from
+right to left.  Recording those transfers gives the comparison theorem used
+to reflect a reduced spelling from a matched sub-amalgam.
 -/
 
 namespace GroupApproximation
@@ -21,20 +19,29 @@ universe uι uH uG
 variable {ι : Type uι} {H : Type uH} {G : ι → Type uG}
   [Group H] [∀ i, Group (G i)]
 
-/-- Every reduced word admits a normal representative, and normalization
-preserves the property that all letters belong to factor subgroups containing
-the edge images. -/
-theorem Reduced.exists_normalWord_prod_eq_mem_iff
+/-- A right-to-left normalization trace.  The final carry is `1`; at each
+letter the equation `g * φ tail = φ head * n` records the edge element
+transferred across that letter. -/
+inductive RightNormalizeTrace (φ : ∀ i, H →* G i) :
+    List (Σ i, G i) → List (Σ i, G i) → H → Prop
+  | nil : RightNormalizeTrace φ [] [] 1
+  | cons (i : ι) (g n : G i) (raw normal : List (Σ i, G i))
+      (head tail : H)
+      (heq : g * φ i tail = φ i head * n)
+      (htrace : RightNormalizeTrace φ raw normal tail) :
+      RightNormalizeTrace φ
+        (⟨i, g⟩ :: raw) (⟨i, n⟩ :: normal) head
+
+/-- The normal-form construction for a reduced word, strengthened by the
+complete finite carry trace relating its original and normalized letters. -/
+theorem Reduced.exists_normalWord_prod_eq_with_trace
     (φ : ∀ i, H →* G i)
-    (d : PushoutI.NormalWord.Transversal φ)
-    (S : ∀ i, Subgroup (G i))
-    (hbase : ∀ i, (φ i).range ≤ S i) :
+    (d : PushoutI.NormalWord.Transversal φ) :
     ∀ {w : CoprodI.Word G}, PushoutI.Reduced φ w →
       ∃ w' : PushoutI.NormalWord d,
         w'.prod = PushoutI.ofCoprodI w.prod ∧
         w'.toList.map Sigma.fst = w.toList.map Sigma.fst ∧
-        ((∀ l ∈ w'.toList, l.2 ∈ S l.1) ↔
-          ∀ l ∈ w.toList, l.2 ∈ S l.1) := by
+        RightNormalizeTrace φ w.toList w'.toList w'.head := by
   classical
   intro w hw
   induction w using CoprodI.Word.consRecOn with
@@ -42,9 +49,9 @@ theorem Reduced.exists_normalWord_prod_eq_mem_iff
       refine ⟨PushoutI.NormalWord.empty, ?_, rfl, ?_⟩
       · simp [PushoutI.NormalWord.prod, CoprodI.Word.empty,
           CoprodI.Word.prod]
-      simp [CoprodI.Word.empty]
+      exact RightNormalizeTrace.nil
   | @cons i g w hidx hg ih =>
-      obtain ⟨w', hwprod, hwidx, hwmem⟩ :=
+      obtain ⟨w', hwprod, hwidx, hwtrace⟩ :=
         ih (fun l hl ↦ hw l (List.mem_cons_of_mem _ hl))
       let n := (d.compl i).equiv (g * φ i w'.head)
       let nw := PushoutI.NormalWord.cons g w' (by
@@ -58,38 +65,16 @@ theorem Reduced.exists_normalWord_prod_eq_mem_iff
       · have hnprod : (n.1 : G i) * (n.2 : G i) =
             g * φ i w'.head :=
           (d.compl i).equiv_fst_mul_equiv_snd _
-        have hbaseLeft : (n.1 : G i) ∈ S i := hbase i n.1.property
-        have hbaseRight : φ i w'.head ∈ S i :=
-          hbase i ⟨w'.head, rfl⟩
-        have hgn_iff : g ∈ S i ↔ (n.2 : G i) ∈ S i := by
-          constructor
-          · intro hgS
-            rw [← mul_mem_cancel_left hbaseLeft,
-              hnprod, mul_mem_cancel_right hbaseRight]
-            exact hgS
-          · intro hnS
-            rw [← mul_mem_cancel_right hbaseRight,
-              ← hnprod, mul_mem_cancel_left hbaseLeft]
-            exact hnS
-        constructor
-        · intro hnwall l hl
-          rcases List.mem_cons.mp hl with rfl | hl
-          · apply hgn_iff.mpr
-            exact hnwall ⟨i, (n.2 : G i)⟩ (by
-              simp [nw, PushoutI.NormalWord.cons, n])
-          · apply hwmem.mp
-              (fun l hl ↦ hnwall l (by
-                simp [nw, PushoutI.NormalWord.cons, hl])) l hl
-        · intro hwall l hl
-          have hgS : g ∈ S i := hwall ⟨i, g⟩ List.mem_cons_self
-          have htail : ∀ l ∈ w'.toList, l.2 ∈ S l.1 :=
-            hwmem.mpr (fun l hl ↦
-              hwall l (List.mem_cons_of_mem _ hl))
-          rw [show nw.toList = ⟨i, (n.2 : G i)⟩ :: w'.toList by
-            rfl] at hl
-          rcases List.mem_cons.mp hl with rfl | hl
-          · exact hgn_iff.mp hgS
-          · exact htail l hl
+        have hnhead : nw.head =
+            (MonoidHom.ofInjective (d.injective i)).symm n.1 := rfl
+        have hphiHead : φ i nw.head = (n.1 : G i) := by
+          rw [hnhead, MonoidHom.apply_ofInjective_symm]
+        have hnlist : nw.toList =
+            ⟨i, (n.2 : G i)⟩ :: w'.toList := rfl
+        rw [hnlist]
+        exact RightNormalizeTrace.cons i g (n.2 : G i)
+          w.toList w'.toList nw.head w'.head
+          (hnprod.symm.trans (by rw [hphiHead])) hwtrace
 
 end MatchedSubgroupAmalgamWordReflection
 end GroupApproximation
