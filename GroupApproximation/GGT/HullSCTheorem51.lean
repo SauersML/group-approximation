@@ -66,6 +66,7 @@ namespace GroupApproximation
 namespace HullSC
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u
@@ -145,7 +146,14 @@ cone-off of a base along `H`.  That was an over-correction: it forces
 `H ⊆ A`, hence `H` elliptic, hence `H` useless as a source of relator letters.
 The subgroup `H₀` that Osin's Theorem 5.4 cones off to build `A`, and the
 subgroup `H = E(g)` the small cancellation runs over, are different subgroups
--- the second contains a loxodromic of `Γ(G,A)` and so cannot be inside `A`. -/
+-- the second contains a loxodromic of `Γ(G,A)` and so cannot be inside `A`.
+
+Two independent guards now rule that mistake out.  `not_subset` below derives
+`H ⊄ A` from the loxodromic field; and
+`GGT.RelGenSet.not_isHyperbolicallyEmbedded_of_base_supset_alphabet` -- a
+subgroup cannot be coned off twice -- refutes `embedded` outright for anyone who
+composes Osin's Theorem 5.4 with DGO's Theorem 6.8 and reuses the same
+family. -/
 structure HypEmbeddedCore {G : Type u} [Group G] (A : HullGeneratingSet G)
     (N : Subgroup G) where
   /-- The relative generating set, with Hull's alphabet as its base. -/
@@ -181,6 +189,32 @@ in Hull's alphabet, because it contains a loxodromic element. -/
 theorem not_subset (E : HypEmbeddedCore A N) :
     ¬ (E.H : Set G) ⊆ A.alphabet.carrier :=
   not_subset_of_isLoxodromic A.alphabet E.lox_mem E.lox_isLoxodromic
+
+/-- **Hull's alphabet is a subset of the coned-off alphabet.**  It is the base
+of `rel`, and a base is contained in the alphabet it generates. -/
+theorem base_subset_alphabet (E : HypEmbeddedCore A N) :
+    A.alphabet.carrier ⊆ E.rel.alphabet.carrier := by
+  rw [← E.base_eq]
+  show E.rel.base ⊆ E.rel.base ∪ ⋃ lam : Unit, (E.rel.fam lam : Set G)
+  exact Set.subset_union_left
+
+/-- **Balls of `Γ(G,A)` sit inside balls of the cone-off, at the same radius.**
+
+This is the direction Hull's Theorem 5.1 is consumed along: the small
+cancellation geometry lives on `Γ(G, A ⊔ H)`, so its injectivity radius is a
+statement there, and it restricts to `Γ(G,A)` because coning off only shortens
+words.  It is also the check that `base_eq` is the right field: had the core
+identified `A` with the *coned-off* alphabet instead of with the base, this
+inclusion would be an equality carrying no information, and the subgroup would
+be elliptic and useless. -/
+theorem cayleyBall_subset (E : HypEmbeddedCore A N) (R : ℕ) :
+    cayleyBall A.alphabet R ⊆ cayleyBall E.rel.alphabet R := by
+  intro x hx
+  rw [mem_cayleyBall_iff] at hx ⊢
+  refine le_trans ?_ hx
+  unfold wordDist
+  exact wordNorm_mono E.base_subset_alphabet
+    (wordLengths_nonempty A.alphabet.symmetricGenerating _)
 
 /-- In particular the subgroup is nontrivial: a loxodromic element has infinite
 order. -/

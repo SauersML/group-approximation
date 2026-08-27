@@ -131,7 +131,41 @@ input is visible in the type.  Osin's §4 is the only step that uses them, and
 it uses them to choose the `w_k` in general position: what makes the pieces
 short is that distinct long words in a non-elementary hyperbolic group can be
 chosen with small overlap, which is false in an elementary one -- in `ℤ` any
-two long words share almost all of their length. -/
+two long words share almost all of their length.
+
+## Which non-elementarity, and why it is a hypothesis on `H` and not on the pair
+
+Two different conditions travel under the name.  Osin's Theorem 2.4 itself
+needs neither: it is a statement about an arbitrary relatively hyperbolic pair
+and an arbitrary family satisfying the small-cancellation condition.  What
+needs a non-elementarity hypothesis is the *existence* of a good family, §4,
+and there are two candidates for it.
+
+* **Non-elementarity of the pair** -- the action of `U ∗ H` on the coned-off
+  graph has two independent loxodromics, `HullGeometry.ActsNonElementarily` in
+  this repository's vocabulary.
+* **Non-elementarity of `H` as a group** -- `¬ IsElementaryGroup H`, which is
+  what `IsNonElementaryHyperbolic H` carries.
+
+The hypothesis here is the second, and deliberately so: the first is too weak
+for this application.  Take `H = ℤ` and `U = F₂`.  The pair `(F₂ ∗ ℤ, F₂)` is
+relatively hyperbolic and its coned-off graph is quasi-isometric to a tree on
+which `F₂ ∗ ℤ` acts non-elementarily, so the pair passes the first test; but
+the `w_k` must be chosen inside `H`, every element of `ℤ` is a power of one
+generator, and any two long `w`'s overlap in almost their whole length.  No
+`C'(1/8)` family of the required shape exists, and indeed none can:
+`GGT/RelHypWithoutKazhdan.lean` proves that `F₂` embeds in no quotient of `ℤ`.
+So it is `H` that must be non-elementary, and the pair's non-elementarity is
+not a substitute.
+
+Nothing is lost in the other direction, so the hypothesis is not too strong
+either: if `H` is non-elementary then so is the pair, since two independent
+loxodromics of `H` remain independent and loxodromic in the coned-off graph,
+the `H`-vertex space being quasi-isometrically embedded once the `U`-cosets are
+crushed.  Adding the pair's non-elementarity as a second hypothesis would
+therefore be redundant -- and would be actively harmful here, since it is a
+hypothesis this development would then have to discharge before it could use
+the input, which would open a gap rather than close one. -/
 def OsinRelatorDesign : Prop :=
   ∀ (U H : Type) (_ : Group U) (_ : Group H),
     Group.IsFinitelyPresented U → IsPowerTorsionFree U →
