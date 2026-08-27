@@ -21,8 +21,8 @@ elements of `R` sharing a two-letter prefix, that is, two distinct corners of
 the table with the same ordered pair of consecutive letters.  In the
 presentation link that is a repeated edge: `directedAdjacencyCount` counts
 exactly those corners, so two of them give an edge of multiplicity at least two.
-**A simple link therefore forces every piece to have length one**, and a
-length-three relator is then a product of exactly three pieces and of no fewer:
+**So a simple link forces every piece to have length one**, and a length-three
+relator is then a product of exactly three pieces and of no fewer:
 `C(3)` holds.  `corner_unique_of_linkSimple` below is that argument.
 
 **`T(q)` is link girth `≥ q`.**  In a reduced van Kampen diagram an interior
@@ -131,26 +131,26 @@ theorem corner_unique_of_linkSimple
     p = p' := by
   classical
   by_contra hne
-  set u := T p.1 p.2 with hu
-  set v := TriangularHodgeLayer.inverseSigned
-    (T p.1 (TriangularHodgeLayer.nextCorner p.2)) with hv
-  set s : Finset (TriangleIndex × Fin 3) :=
-    (Finset.univ : Finset (TriangleIndex × Fin 3)).filter fun r =>
-      T r.1 r.2 = u ∧
-        TriangularHodgeLayer.inverseSigned
-          (T r.1 (TriangularHodgeLayer.nextCorner r.2)) = v with hs
-  have hp : p ∈ s := by
-    rw [hs, Finset.mem_filter]
-    exact ⟨Finset.mem_univ p, hu.symm, hv.symm⟩
-  have hp' : p' ∈ s := by
-    rw [hs, Finset.mem_filter]
-    refine ⟨Finset.mem_univ p', ?_, ?_⟩
-    · rw [hu, h1]
-    · rw [hv, h2]
-  have hcard : 1 < s.card := Finset.one_lt_card.mpr ⟨p, hp, p', hp', hne⟩
-  have hdir : 1 < TriangularHodgeLayer.directedAdjacencyCount T u v := hcard
-  have hle := hsimple u v
-  rw [TriangularHodgeLayer.adjacencyCount] at hle
+  have hmem : ∀ r : TriangleIndex × Fin 3,
+      T r.1 r.2 = T p.1 p.2 →
+      T r.1 (TriangularHodgeLayer.nextCorner r.2)
+          = T p.1 (TriangularHodgeLayer.nextCorner p.2) →
+      r ∈ (Finset.univ : Finset (TriangleIndex × Fin 3)).filter
+        (fun r => T r.1 r.2 = T p.1 p.2 ∧
+          TriangularHodgeLayer.inverseSigned
+              (T r.1 (TriangularHodgeLayer.nextCorner r.2))
+            = TriangularHodgeLayer.inverseSigned
+              (T p.1 (TriangularHodgeLayer.nextCorner p.2))) := by
+    intro r hr1 hr2
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ r, hr1, by rw [hr2]⟩
+  have hcard : 1 < TriangularHodgeLayer.directedAdjacencyCount T (T p.1 p.2)
+      (TriangularHodgeLayer.inverseSigned
+        (T p.1 (TriangularHodgeLayer.nextCorner p.2))) :=
+    Finset.one_lt_card.mpr ⟨p, hmem p rfl rfl, p', hmem p' h1.symm h2.symm, hne⟩
+  have hle := hsimple (T p.1 p.2)
+    (TriangularHodgeLayer.inverseSigned
+      (T p.1 (TriangularHodgeLayer.nextCorner p.2)))
+  simp only [TriangularHodgeLayer.adjacencyCount] at hle
   omega
 
 /-! ## The decidable checks on a table -/
@@ -181,7 +181,6 @@ def TableChecks
     [Fintype TriangleIndex] [DecidableEq TriangleIndex]
     (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) (q : ℕ) :
     Prop :=
-  2 ≤ q ∧
   7 ≤ q ∧
   (∀ j k, (T j k).2 = true) ∧
   (∀ u, TriangularHodgeLayer.degree T u = q + 1) ∧
@@ -219,7 +218,7 @@ theorem TableChecks.regular
     {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator} {q : ℕ}
     (h : TableChecks T q) :
     ∀ u, TriangularHodgeLayer.degree T u = q + 1 :=
-  h.2.2.2.1
+  h.2.2.1
 
 /-- A checked table has a simple link, so by `corner_unique_of_linkSimple` all
 its pieces are single letters and it satisfies `C(3)`. -/
@@ -229,7 +228,7 @@ theorem TableChecks.simple
     {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator} {q : ℕ}
     (h : TableChecks T q) :
     ∀ u v, TriangularHodgeLayer.adjacencyCount T u v ≤ 1 :=
-  h.2.2.2.2.1
+  h.2.2.2.1
 
 /-- A checked table has order at least `7`, which is the spectral threshold
 `(q-3)² > 8` for the quadrangle. -/
@@ -238,7 +237,7 @@ theorem TableChecks.ord_ge_seven
     [Fintype TriangleIndex] [DecidableEq TriangleIndex]
     {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator} {q : ℕ}
     (h : TableChecks T q) : 7 ≤ q :=
-  h.2.1
+  h.1
 
 /-! ## The three statements this repository does not prove -/
 
@@ -297,13 +296,10 @@ The module docstring explains why this cannot be folded into `TableChecks`:
 Kangaslampi and Vdovina exhibit `23` torsion-free and `168` torsion groups whose
 tables all have the same simple link, and a simple link already excludes the
 proper-power criterion, so no condition on the link alone separates them.  The
-predicate is therefore stated on the table with an unspecified extra
-condition `extra`, which is exactly the criterion their classification uses. -/
+predicate is stated on the table with an unspecified extra condition `extra`,
+which is exactly the criterion their classification uses. -/
 def TableTorsionFree
-    (extra : ∀ (Generator TriangleIndex : Type), [Fintype Generator] →
-      [DecidableEq Generator] → [Fintype TriangleIndex] →
-      [DecidableEq TriangleIndex] →
-      (TriangleIndex → TriangularHodgeLayer.Triangle Generator) → Prop) :
+    (extra : ∀ (G TI : Type), (TI → TriangularHodgeLayer.Triangle G) → Prop) :
     Prop :=
   ∀ (Generator TriangleIndex : Type) (_ : Fintype Generator)
     (_ : DecidableEq Generator) (_ : Nonempty Generator)
@@ -330,7 +326,6 @@ theorem hasKazhdanPropertyT_of_tableChecks
     (h.regular) ?_ hadj
   rw [← hdeg]
   push_cast
-  ring
 
 /-- **`SharpExistence` from a table that passes the checks.**
 
@@ -341,10 +336,7 @@ bridge is bookkeeping.  A computational lane that exhibits a table passing
 `TableChecks` at `q = 8` --- `585` generators, `1755` triangles --- supplies the
 only thing that is not a theorem. -/
 theorem sharpExistence_of_tableChecks
-    {extra : ∀ (Generator TriangleIndex : Type), [Fintype Generator] →
-      [DecidableEq Generator] → [Fintype TriangleIndex] →
-      [DecidableEq TriangleIndex] →
-      (TriangleIndex → TriangularHodgeLayer.Triangle Generator) → Prop}
+    {extra : ∀ (G TI : Type), (TI → TriangularHodgeLayer.Triangle G) → Prop}
     (hbridge : QuadrangleDataOfChecks)
     (hhyp : CThreeTEightHyperbolicity)
     (hinf : CThreeTEightInfinite)
