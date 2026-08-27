@@ -1957,6 +1957,14 @@ import GroupApproximation.Manuscript.MFRecognition.MarkedHigmanRopeInput
 import GroupApproximation.Manuscript.MFRecognition.MarkedHigmanRopeProfinite
 import GroupApproximation.Manuscript.MFRecognition.CentralRopeCore
 import GroupApproximation.Manuscript.MFRecognition.NegativeBranch
+import GroupApproximation.Manuscript.MFRecognition.PositiveBranchFiniteQuotients
+import GroupApproximation.Manuscript.MFRecognition.PositiveBranch
+import GroupApproximation.Manuscript.MFRecognition.RecognitionMainTheorem
+import GroupApproximation.Manuscript.MFRecognition.PrintedTarskiCertificateSyntax
+import GroupApproximation.Analysis.ContinuousImageClosure
+import GroupApproximation.Analysis.StarSubalgebraMapEquiv
+import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationData
+import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationConjugator
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
