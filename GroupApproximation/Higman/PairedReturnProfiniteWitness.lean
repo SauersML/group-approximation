@@ -1,5 +1,7 @@
 import GroupApproximation.Higman.FreeLampProfiniteEmbedding
 import GroupApproximation.Higman.PairedReturnAmbientResiduallyFinite
+import GroupApproximation.Higman.PairedReturnMatchedCutterProfinite
+import GroupApproximation.Higman.ProfiniteBenignFactorizationReflection
 
 /-!
 # Profinite data of the paired-return benign witness
@@ -85,6 +87,19 @@ def witness
   cutterClosed := hclosed
   embCofinal := leftEmbedding_cofinal
   embClosed := profiniteClosure_leftEmbedding
+
+/-- The concrete paired-return witness reflects every prescribed finite
+quotient across a collision of the left copy with the five-cutter. -/
+theorem witness_factorizationReflecting
+    (hclosed : profiniteClosure fiveCutter = fiveCutter) :
+    (witness hclosed).FactorizationReflecting := by
+  intro Q _ _ q
+  obtain ⟨R, hRgroup, hRfinite, p, hp⟩ :=
+    PairedReturnMatchedCutterProfinite.exists_finite_ambient_hom_factorization_reflecting
+      Q q
+  refine ⟨R, hRgroup, hRfinite, p, ?_⟩
+  intro g hg
+  exact hp g hg
 
 end
 
