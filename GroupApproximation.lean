@@ -1992,6 +1992,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceCoronaRepresenta
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniversalDef
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniversalMapping
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceSetupUniversal
+import GroupApproximation.Manuscript.MFRecognition.FinitelyGeneratedNonMFQuotient
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
