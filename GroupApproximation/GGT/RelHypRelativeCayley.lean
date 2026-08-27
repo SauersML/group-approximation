@@ -46,11 +46,21 @@ Everything below is proved; nothing is postulated.
   single letter, so a coset `gH_λ` has diameter at most one.  This is the
   defining property of the combinatorial cone-off, and it is what makes the
   relative metric a genuinely different object from the word metric of `X`.
-* `avoiding`, `avoiding_subset_alphabet` -- the alphabet of paths that avoid
-  one peripheral subgroup.  This is the alphabet in which the second clause of
-  Osin's (equivalently Dahmani--Guirardel--Osin's) definition -- that the
-  induced metric on each `H_λ` is locally finite -- is stated, and
-  `GGT/RelHypDefinition.lean` states it there.
+* `AvoidsPeripheral`, `peripheralLengths` -- relative paths that avoid the
+  subgraph spanned by one peripheral subgroup, and their lengths.  This is the
+  object Dahmani--Guirardel--Osin's second clause -- that the induced metric
+  `d̂_λ` on each `H_λ` is locally finite -- is a statement about;
+  `GGT/RelHypDefinition.lean` states the clause there.
+
+  The definition is a condition on the *path*, not on the alphabet, and that
+  distinction is the whole content of the clause.  Forbidding the letters of
+  `H_λ` outright would be a different and much weaker demand, and would certify
+  `ℤ² = ⟨a⟩ × ⟨b⟩` as hyperbolic relative to `⟨a⟩`, which it is not: the coned
+  graph `Γ(ℤ², {b} ⊔ ⟨a⟩)` is quasi-isometric to a line, hence hyperbolic, and
+  the only reason `⟨a⟩` is not hyperbolically embedded is that the three-step
+  path `b, aⁿ, b⁻¹` joins `1` to `aⁿ` *through the other coset* `b⟨a⟩` for every
+  `n`, so the balls of `d̂` are infinite.  A step across a different coset is
+  legal; only a step both of whose endpoints lie in `H_λ` is not.
 
 The single-subgroup case of `alphabet` is `HullSC.conedAlphabet` of
 `GGT/HullSCConeOff.lean`, written for Hull's hyperbolically embedded virtually
@@ -215,37 +225,69 @@ theorem relativeCayley_dist (X : RelativeGeneratingSet G H)
     dist x y = (X.relDist (Cayley.val x) (Cayley.val y) : ℝ) :=
   Cayley.dist_eq x y
 
-/-- **The letters available to a path avoiding the `l`-th peripheral
-subgroup**: everything except the letters of `H l` itself.
+/-- **A relative path avoiding the `l`-th peripheral subgraph.**
 
-Dahmani--Guirardel--Osin's second clause, and Osin's local finiteness of the
-induced metric on a peripheral subgroup, are statements about the word metric
-of this alphabet restricted to `H l`. -/
-def avoiding (X : RelativeGeneratingSet G H) (l : ι) : Set G :=
-  X.carrier ∪ ⋃ (m : ι) (_ : m ≠ l), (H m : Set G)
+The vertices of the path spelled by `w` are its partial products
+`1 = p₀, p₁, …, p_k`, and an edge of the complete subgraph spanned by `H l` is a
+step both of whose endpoints lie in `H l`.  So avoiding that subgraph is
+exactly the condition below: no two consecutive vertices both lie in `H l`.
 
-theorem avoiding_subset_alphabet (X : RelativeGeneratingSet G H) (l : ι) :
-    X.avoiding l ⊆ X.alphabet.carrier := by
-  intro g hg
-  rcases hg with hg | hg
-  · exact X.subset_alphabet hg
-  · rw [Set.mem_iUnion] at hg
-    obtain ⟨m, hm⟩ := hg
-    rw [Set.mem_iUnion] at hm
-    obtain ⟨-, hm⟩ := hm
-    exact X.peripheral_subset_alphabet m hm
+What is *not* forbidden is a step across a different coset `gH l`, and that is
+the whole point -- see the module docstring for the `ℤ²` example, where
+forbidding those too would wrongly certify a relatively hyperbolic pair. -/
+def AvoidsPeripheral (H : ι → Subgroup G) (l : ι) (w : List G) : Prop :=
+  ∀ i : ℕ, i + 1 ≤ w.length →
+    ¬ ((w.take i).prod ∈ H l ∧ (w.take (i + 1)).prod ∈ H l)
 
-/-- The avoiding alphabet is symmetric, as the relative alphabet is; it is
-*not* claimed to generate, and in general it does not. -/
-theorem avoiding_inv_mem (X : RelativeGeneratingSet G H) (l : ι) {g : G}
-    (hg : g ∈ X.avoiding l) : g⁻¹ ∈ X.avoiding l := by
-  rcases hg with hg | hg
-  · exact Or.inl (X.inv_mem g hg)
-  · rw [Set.mem_iUnion] at hg
-    obtain ⟨m, hm⟩ := hg
-    rw [Set.mem_iUnion] at hm
-    obtain ⟨hml, hm⟩ := hm
-    exact Or.inr (Set.mem_iUnion.mpr ⟨m, Set.mem_iUnion.mpr ⟨hml, (H m).inv_mem hm⟩⟩)
+/-- The empty path avoids everything: it has no steps. -/
+theorem avoidsPeripheral_nil (H : ι → Subgroup G) (l : ι) :
+    AvoidsPeripheral H l [] := by
+  intro i hi
+  rw [List.length_nil] at hi
+  exact absurd hi (by omega)
+
+/-- **A single non-peripheral letter is a legal path.**  Its one step goes from
+`1` to a vertex outside `H l`, so it is not an edge of the peripheral
+subgraph. -/
+theorem avoidsPeripheral_singleton (H : ι → Subgroup G) (l : ι) {x : G}
+    (hx : x ∉ H l) : AvoidsPeripheral H l [x] := by
+  intro i hi
+  rw [List.length_singleton] at hi
+  have hi0 : i = 0 := by omega
+  subst hi0
+  rintro ⟨-, h2⟩
+  exact hx (by simpa using h2)
+
+/-- **A single peripheral letter is not.**  Both its endpoints lie in `H l`, so
+it is precisely an edge of the subgraph being avoided.  This is what makes the
+induced metric a genuinely different object from the relative metric, in which
+the same element has length one. -/
+theorem not_avoidsPeripheral_singleton (H : ι → Subgroup G) (l : ι) {x : G}
+    (hx : x ∈ H l) : ¬ AvoidsPeripheral H l [x] := by
+  intro hav
+  refine hav 0 (by simp) ⟨?_, ?_⟩
+  · simp
+  · simpa using hx
+
+/-- **The lengths of relative paths from `1` to `g` avoiding the `l`-th
+peripheral subgraph.**  Empty when there is no such path, which is the `∞` of
+Dahmani--Guirardel--Osin's `d̂_λ`. -/
+def peripheralLengths (X : RelativeGeneratingSet G H) (l : ι) (g : G) : Set ℕ :=
+  {n | ∃ w : List G, IsWord X.alphabet.carrier w g ∧ AvoidsPeripheral H l w ∧
+    w.length = n}
+
+theorem mem_peripheralLengths_iff (X : RelativeGeneratingSet G H) (l : ι) (g : G)
+    (n : ℕ) :
+    n ∈ X.peripheralLengths l g ↔
+      ∃ w : List G, IsWord X.alphabet.carrier w g ∧ AvoidsPeripheral H l w ∧
+        w.length = n :=
+  Iff.rfl
+
+/-- **The identity is at distance zero from itself**, so the induced metric is
+not everywhere infinite. -/
+theorem zero_mem_peripheralLengths (X : RelativeGeneratingSet G H) (l : ι) :
+    0 ∈ X.peripheralLengths l 1 :=
+  ⟨[], isWord_nil _, avoidsPeripheral_nil H l, rfl⟩
 
 end RelativeGeneratingSet
 

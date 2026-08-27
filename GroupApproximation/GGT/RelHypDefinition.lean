@@ -22,10 +22,14 @@ them.
   leaves a peripheral coset.
 * `PeripheralMetricLocallyFinite` -- the second clause, in the
   Dahmani--Guirardel--Osin form for a hyperbolically embedded family: the
-  metric induced on each `H_λ` by paths **avoiding** `H_λ` is locally finite,
-  i.e. each of its balls is a finite set.  This is the clause that fails in
-  Farb's examples, and it is stated here over
-  `RelativeGeneratingSet.avoiding` with no new geometry.
+  metric `d̂_λ` induced on each `H_λ` by relative paths **avoiding the subgraph
+  spanned by `H_λ`** is locally finite, i.e. each of its balls is a finite set.
+  This is the clause that fails in Farb's examples, and it is stated here over
+  `RelativeGeneratingSet.peripheralLengths` with no new geometry.  In
+  `ℤ² = ⟨a⟩ × ⟨b⟩` with peripheral `⟨a⟩` the coned graph is quasi-isometric to
+  a line and so hyperbolic, while `d̂(1, aⁿ) ≤ 3` for every `n` by the path
+  `b, aⁿ, b⁻¹` through the coset `b⟨a⟩`, so every ball is infinite and this
+  clause fails -- which is the whole reason it is here.
 * `IsRelativelyHyperbolic` -- both together.  Equivalently, and this is Osin's
   own definition, `G` has a linear relative Dehn function with respect to
   `{H_λ}`; that equivalence is Osin's Memoirs, Theorem 1.5 and is not proved
@@ -108,15 +112,15 @@ def IsWeaklyRelativelyHyperbolic (G : Type u) [Group G] {ι : Type v}
 /-- **The second clause**: the metric induced on a peripheral subgroup by paths
 avoiding it is locally finite.
 
-`h` ranges over `H l`; the set is the `n`-ball of that induced metric, its
-second condition being the requirement that `h` be spellable at all in the
-avoiding alphabet -- without it the junk value of `wordNorm` would put every
-unspellable element in every ball. -/
+`h` ranges over `H l` and the set is the `n`-ball of `d̂_l` about the identity.
+The ball is written as "some avoiding path of length at most `n` exists" rather
+than as a `wordNorm` bound, because `d̂_l` takes the value `∞` -- there need be
+no avoiding path at all -- and an infimum over an empty set of lengths would
+put every unreachable element in every ball. -/
 def PeripheralMetricLocallyFinite {G : Type u} [Group G] {ι : Type v}
     {H : ι → Subgroup G} (X : RelativeGeneratingSet G H) : Prop :=
   ∀ (l : ι) (n : ℕ),
-    {h : G | h ∈ H l ∧ (wordLengths (X.avoiding l) h).Nonempty ∧
-      wordNorm (X.avoiding l) h ≤ n}.Finite
+    {h : G | h ∈ H l ∧ ∃ m ∈ X.peripheralLengths l h, m ≤ n}.Finite
 
 /-- **A relatively hyperbolic pair.**  Both clauses, at the same relative
 generating set. -/

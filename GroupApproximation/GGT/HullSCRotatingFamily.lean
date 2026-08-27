@@ -40,12 +40,17 @@ Proved: the elementary consequences of the definitions.
   the annulus, when `δ > 0`.
 * `eq_of_dist_lt_of_isSeparated` -- two apices closer than `ρ` coincide.
 
-Stated and cited, not proved: `DGOQuotientStatement`, DGO's Theorem 5.3.  Its
-two clauses used downstream are recorded, and its clause that the normal
-closure `K = ⟨⟨Rot c : c ∈ C⟩⟩` is the *free product* of a family of conjugates
-of the rotation subgroups is not, because nothing above it consumes the free
-splitting; only the two consequences recorded here are used, and carrying an
-unconsumed clause would put weight on a statement no proof checks.
+Stated and cited, not proved: `DGOQuotientStatement`, DGO's Theorem 5.3.  The
+clauses used downstream are recorded -- the kernel, the dichotomy for its
+elements, the lifting of finite order, and the injectivity radius -- and its
+clause that the normal closure `K = ⟨⟨Rot c : c ∈ C⟩⟩` is the *free product* of
+a family of conjugates of the rotation subgroups is not, because nothing above
+it consumes the free splitting, and carrying an unconsumed clause would put
+weight on a statement no proof checks.
+
+The injectivity radius is the clause Hull's Theorem 5.1 turns into injectivity
+on a ball of `Γ(G,A)`; `HullSC.injOn_cayleyBall_of_dist_lt` is that conversion,
+and it is proved.
 
 `torsionFree_of_dgoQuotient` is the consumer: over a torsion-free `G` the
 quotient by a very rotating family is torsion-free, which is the clause of
@@ -175,8 +180,16 @@ of that theorem which the small cancellation theory above it consumes:
 The second clause is recorded in the element form the rest of this repository
 uses -- every element of finite order lifts to an element of the same order --
 because that is the form `Saturation.torsionFree_of_finiteOrder_lift` consumes
-and the form the manuscript's `thm:hull` prints. -/
-structure RotatingQuotient (C : Set X) (Rot : X → Subgroup G) where
+and the form the manuscript's `thm:hull` prints.
+
+The last two fields are the **injectivity radius**, and they are what Hull's
+Theorem 5.1 consumes to get injectivity on a ball.  DGO's estimate is that it
+grows with the separation `ρ` of the family, so `ρ` is a parameter of this
+structure and `separation_le_injRadius` records the estimate in the only form
+used downstream: the radius is at least the separation.  Making `ρ` as large as
+one likes is what "take the relator deep enough" does, and it is why the
+injectivity radius of Hull's theorem can be prescribed. -/
+structure RotatingQuotient (ρ : ℝ) (C : Set X) (Rot : X → Subgroup G) where
   /-- The quotient group `G / K`. -/
   Q : Type u
   /-- Its group structure. -/
@@ -194,16 +207,25 @@ structure RotatingQuotient (C : Set X) (Rot : X → Subgroup G) where
   /-- Finite order lifts, with the order preserved. -/
   finiteOrder_lift :
     ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
+  /-- The injectivity radius of the quotient map. -/
+  injRadius : ℝ
+  /-- It is at least the separation of the family. -/
+  separation_le_injRadius : ρ ≤ injRadius
+  /-- Nothing that moves a point by less than the injectivity radius is
+  killed. -/
+  ne_one_of_dist_lt : ∀ g : G, g ≠ 1 → ∀ y : X,
+    dist y (g • y) < injRadius → q g ≠ 1
 
-instance instGroupRotatingQuotient {C : Set X} {Rot : X → Subgroup G}
-    (D : RotatingQuotient C Rot) : Group D.Q := D.group
+instance instGroupRotatingQuotient {ρ : ℝ} {C : Set X} {Rot : X → Subgroup G}
+    (D : RotatingQuotient ρ C Rot) : Group D.Q := D.group
 
 /-- **The quotient by a very rotating family of a torsion-free group is
 torsion-free.**  This is the finite-order clause with the ambient
 torsion-freeness, and it is the clause of Hull's Theorem 5.1 that the
 torsion-free lane of this repository consumes. -/
-theorem torsionFree_of_rotatingQuotient {C : Set X} {Rot : X → Subgroup G}
-    (hG : IsPowerTorsionFree G) (D : RotatingQuotient C Rot) :
+theorem torsionFree_of_rotatingQuotient {ρ : ℝ} {C : Set X}
+    {Rot : X → Subgroup G}
+    (hG : IsPowerTorsionFree G) (D : RotatingQuotient ρ C Rot) :
     IsPowerTorsionFree D.Q :=
   torsionFree_of_finiteOrder_lift hG D.q D.finiteOrder_lift
 
@@ -225,7 +247,7 @@ def DGOQuotientStatement : Prop :=
     (δ ρ : ℝ) (C : Set X) (Rot : X → Subgroup G),
       0 < δ → 200 * δ ≤ ρ → IsHyperbolicSpace δ X →
         IsRotatingFamily G X C Rot → IsSeparated C ρ →
-          IsVeryRotating G X δ C Rot → Nonempty (RotatingQuotient C Rot)
+          IsVeryRotating G X δ C Rot → Nonempty (RotatingQuotient ρ C Rot)
 
 /-- The consumer of `DGOQuotientStatement`: from DGO's theorem, a separated
 very rotating family on a torsion-free group has a torsion-free quotient by the

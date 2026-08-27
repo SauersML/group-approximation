@@ -237,6 +237,55 @@ theorem mem_cayleyBall_one_coneOff {G : Type u} [Group G] (A : Alphabet G)
   rw [mem_cayleyBall_iff, wordDist_one_left]
   exact wordNorm_le_one_of_mem (mem_coneOff_of_mem A hh)
 
+/-- The displacement of the basepoint of a Cayley graph is the word length. -/
+theorem dist_base_smul {G : Type u} [Group G] (B : Alphabet G) (g : G) :
+    dist (Cayley.base B) (g • Cayley.base B) = (wordNorm B.carrier g : ℝ) := by
+  simp only [Cayley.dist_eq, Cayley.val_smul, Cayley.val_base, mul_one]
+  rw [wordDist_one_left]
+
+/-- **Injectivity on a ball from an injectivity radius in the cone-off.**
+
+If no nontrivial element displacing the basepoint of the cone-off by less than
+`L` is killed, and `L` exceeds `2R`, then the quotient map is injective on the
+`R`-ball of `Γ(G,A)`: two points of that ball differ by an element of `A`-word
+length at most `2R`, coning off does not increase word length, and the
+displacement of the basepoint is the word length.
+
+This is how the injectivity-radius clause of the small cancellation theorem is
+consumed.  The hypothesis is a statement about the cone-off -- which is where
+the rotating family lives, and so where the estimate is available -- and the
+conclusion is about `Γ(G,A)`, which is where the theorem is stated. -/
+theorem injOn_cayleyBall_of_dist_lt {G : Type u} [Group G] {Q : Type v}
+    [Group Q] (A : Alphabet G) (H : Subgroup G) (q : G →* Q) {L : ℝ} (R : ℕ)
+    (hL : 2 * (R : ℝ) < L)
+    (hker : ∀ g : G, g ≠ 1 →
+      dist (Cayley.base (coneOff A H).alphabet)
+        (g • Cayley.base (coneOff A H).alphabet) < L → q g ≠ 1) :
+    Set.InjOn q (cayleyBall A R) := by
+  intro x hx y hy hxy
+  by_contra hne
+  have h1 : x⁻¹ * y ≠ 1 := fun h => hne (inv_mul_eq_one.mp h)
+  have hq : q (x⁻¹ * y) = 1 := by
+    rw [map_mul, map_inv, hxy]
+    simp
+  refine hker _ h1 ?_ hq
+  have hxA : wordNorm A.carrier x ≤ R := by
+    have hmem := (mem_cayleyBall_iff A R x).mp hx
+    rwa [wordDist_one_left] at hmem
+  have hyA : wordNorm A.carrier y ≤ R := by
+    have hmem := (mem_cayleyBall_iff A R y).mp hy
+    rwa [wordDist_one_left] at hmem
+  have hmul : wordNorm A.carrier (x⁻¹ * y) ≤ 2 * R := by
+    have hsub := wordNorm_mul_le A.symmetricGenerating x⁻¹ y
+    rw [wordNorm_inv A.symmetricGenerating x] at hsub
+    omega
+  have hcone : wordNorm (coneOff A H).alphabet.carrier (x⁻¹ * y) ≤ 2 * R :=
+    le_trans (wordNorm_coneOff_le A H (x⁻¹ * y)) hmul
+  rw [dist_base_smul]
+  have hcast : (wordNorm (coneOff A H).alphabet.carrier (x⁻¹ * y) : ℝ)
+      ≤ 2 * (R : ℝ) := by exact_mod_cast hcone
+  linarith
+
 /-- **The cone-off is the witness for `H ↪_h (G, A)`.**  Osin's definition
 asks for *some* relative generating set with base `A` and family `{H}` whose
 relative Cayley graph is hyperbolic and whose relative metric is locally

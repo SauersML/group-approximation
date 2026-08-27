@@ -244,6 +244,32 @@ theorem exists_chord_point_near_chain_vertex {delta D l : ℝ}
   push_cast at h2 hbig
   linarith
 
+/-! ## Sampled vertices against the chord -/
+
+/-- **A point on a side is `3δ`-close to the chord or to the far side.**
+
+`exists_chain_vertices_across_far_vertex` locates its two sampled vertices
+against the *sides* `fAB` and `fCB` of the triangle `y 0, y j, y N`, never
+against the chord `fAC`, so any argument that wants their distance to the chord
+needs this step.  It is `exists_close_on_other_side_of_geodesic_triangle` with
+the triangle relabelled — the side `A–B` played by that lemma's `A–C` — and the
+hypotheses are then exactly the ones the far-vertex lemma already carries, in
+the same order and with the same three geodesics. -/
+theorem exists_close_on_chord_or_far_side {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) {A B C : X}
+    {fAB fAC fCB : ℝ → X}
+    (hAB : IsGeodesicSegment fAB 0 (dist A B)) (hAB0 : fAB 0 = A)
+    (hAB1 : fAB (dist A B) = B)
+    (hAC : IsGeodesicSegment fAC 0 (dist A C)) (hAC0 : fAC 0 = A)
+    (hAC1 : fAC (dist A C) = C)
+    (hCB : IsGeodesicSegment fCB 0 (dist C B)) (hCB0 : fCB 0 = C)
+    (hCB1 : fCB (dist C B) = B)
+    {t : ℝ} (ht : t ∈ Set.Icc (0 : ℝ) (dist A B)) :
+    (∃ s ∈ Set.Icc (0 : ℝ) (dist A C), dist (fAB t) (fAC s) ≤ 3 * δ) ∨
+      (∃ s ∈ Set.Icc (0 : ℝ) (dist C B), dist (fAB t) (fCB s) ≤ 3 * δ) :=
+  exists_close_on_other_side_of_geodesic_triangle hδ hδ0 hAB hAB0 hAB1
+    hAC hAC0 hAC1 hCB hCB0 hCB1 ht
+
 /-! ## What the two residues are waiting for -/
 
 /-- **The Morse lemma for orbit chains**, as a named residual: the orbit of a
