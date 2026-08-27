@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.LanceCPApprox
 import GroupApproximation.Analysis.CStarTakesakiDense
+import GroupApproximation.Analysis.BlackadarKirchbergFiniteDirectSumLift
 import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order
 import Mathlib.Analysis.InnerProductSpace.GramMatrix
@@ -151,6 +152,45 @@ theorem one_sub_map_one_nonneg_of_completelyPositive_contractive
   exact sub_nonneg.mpr
     ((CStarAlgebra.norm_le_one_iff_of_nonneg (phi (1 : A)) hpos).mp hnorm)
 
+/-! ## Additive unitalization -/
+
+/-- Add the state-valued unit defect to a linear map. -/
+def additiveUnitalization
+    {A : Type u} {B : Type v} [CStarAlgebra A] [CStarAlgebra B]
+    (phi : A →ₗ[ℂ] B) (omega : CStarState.State A) : A →ₗ[ℂ] B :=
+  phi + stateSmulLinearMap omega (1 - phi 1)
+
+@[simp] theorem additiveUnitalization_apply
+    {A : Type u} {B : Type v} [CStarAlgebra A] [CStarAlgebra B]
+    (phi : A →ₗ[ℂ] B) (omega : CStarState.State A) (a : A) :
+    additiveUnitalization phi omega a =
+      phi a + omega.toCLM a • (1 - phi 1) := rfl
+
+/-- **Additive UCP repair.**  A completely positive contraction becomes a
+unital completely positive map after adding its unit defect, weighted by any
+state of the source. -/
+theorem additiveUnitalization_completelyPositive_unital
+    {A : Type u} {B : Type v} [CStarAlgebra A] [CStarAlgebra B]
+    [Nontrivial A]
+    (phi : A →ₗ[ℂ] B) (omega : CStarState.State A)
+    (hphi : IsCompletelyPositive phi)
+    (hcontract : ∀ a : A, ‖phi a‖ ≤ ‖a‖) :
+    IsCompletelyPositive (additiveUnitalization phi omega) ∧
+      additiveUnitalization phi omega 1 = 1 := by
+  letI : PartialOrder A := CStarAlgebra.spectralOrder A
+  letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
+  letI : PartialOrder B := CStarAlgebra.spectralOrder B
+  letI : StarOrderedRing B := CStarAlgebra.spectralOrderedRing B
+  have hdefect : 0 ≤ (1 : B) - phi 1 :=
+    one_sub_map_one_nonneg_of_completelyPositive_contractive
+      phi hphi hcontract
+  have hfactor : ∃ c : B, (1 : B) - phi 1 = star c * c :=
+    CStarAlgebra.nonneg_iff_eq_star_mul_self.mp hdefect
+  refine ⟨BlackadarKirchberg.CStarExactness.IsCompletelyPositive.add hphi
+      (isCompletelyPositive_stateSmulLinearMap omega hfactor), ?_⟩
+  rw [additiveUnitalization_apply, omega.map_one, one_smul]
+  abel
+
 /-- Approximation at the unit controls the outgoing unit defect. -/
 theorem norm_one_sub_second_one_le_of_cp_contractions
     {A : Type u} {D : Type v} {B : Type w}
@@ -236,3 +276,4 @@ open GroupApproximation.CStarExactness
 #audit_axioms norm_second_incoming_unit_defect_le_of_cp_contractions
 #audit_axioms exists_matrix_star_mul_self_eq_gram
 #audit_axioms isCompletelyPositive_stateSmulLinearMap
+#audit_axioms additiveUnitalization_completelyPositive_unital
