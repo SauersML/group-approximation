@@ -47,10 +47,20 @@ families in groups acting on hyperbolic spaces*, Mem. Amer. Math. Soc. 245
 
 ## What is proved
 
-`relBall_zero`, the sanity check that the radius-`0` ball is `{1}`.  Everything
-else here is a definition.  The theorems *about* hyperbolically embedded
-subgroups — Dahmani--Guirardel--Osin's Theorem 6.8 and Osin's `(AH₄) ⇒ (AH₁)`
-— are stated, as named propositions, in `GGT.WPDAcylindricalHyperbolicity`.
+* `relBall_zero` — the radius-`0` ball is `{1}`.
+* `RelGenSet.not_isHyperbolicallyEmbedded_of_fam_subset_base` and
+  `not_isHypEmbeddedOf_of_subset` — **the hygiene invariant**: an infinite
+  `H λ` contained in the base `X` is never hyperbolically embedded, because
+  every element of it is then reachable from `1` by a single `X`-letter, which
+  is not an edge of `Γ_{H λ}`.  So the relative generating set to name is the
+  base that was coned off, never the coned-off alphabet, which contains `H`.
+* `RelGenSet.not_isLoxodromic_of_mem_fam` — no element of `H λ` is loxodromic
+  on the relative Cayley graph.
+
+Everything else here is a definition.  The theorems *about* hyperbolically
+embedded subgroups — Dahmani--Guirardel--Osin's Theorem 6.8 and Osin's
+`(AH₄) ⇒ (AH₁)` — are stated, as named propositions, in
+`GGT.WPDAcylindricalHyperbolicity`.
 -/
 
 namespace GroupApproximation
@@ -178,6 +188,36 @@ structure IsHyperbolicallyEmbedded (D : RelGenSet G Λ) : Prop where
   /-- Clause (b): each `(H λ, d̂_λ)` is locally finite. -/
   locallyFinite : ∀ (lam : Λ) (n : ℕ), (D.relBall lam n).Finite
 
+/-- **A relative generating set must not contain its own family.**
+
+If `H λ ⊆ X` and `H λ` is infinite, the family is not hyperbolically embedded.
+For `h ∈ H λ ⊆ X` the one-letter word `RelLetter.base h` is admissible, spells
+`h`, and traverses no edge of `Γ_{H λ}` — an `X`-letter never does, whatever its
+endpoints — so the whole of `H λ` lies in the `d̂_λ`-ball of radius `1` and
+local finiteness fails.
+
+This is the hygiene invariant of the definition: coning off `H` is only
+meaningful when `H` is *not* already part of the base alphabet.  It is the
+reason `↪_h (G, X)` for a prescribed `X` cannot be read off an alphabet that
+already contains `H`. -/
+theorem not_isHyperbolicallyEmbedded_of_fam_subset_base (D : RelGenSet G Λ)
+    (lam : Λ) (hsub : (D.fam lam : Set G) ⊆ D.base)
+    (hinf : (D.fam lam : Set G).Infinite) : ¬ D.IsHyperbolicallyEmbedded := by
+  intro hD
+  refine hinf (Set.Finite.subset (hD.locallyFinite lam 1) ?_)
+  intro h hh
+  rw [mem_relBall]
+  refine ⟨hh, [RelLetter.base h], ?_, ?_, ?_, ?_⟩
+  · intro a ha
+    have hae : a = RelLetter.base h := List.eq_of_mem_singleton ha
+    rw [hae]
+    exact hsub hh
+  · simp [RelLetter.listVal, RelLetter.val]
+  · refine ⟨?_, trivial⟩
+    rintro ⟨hc, -⟩
+    exact hc
+  · simp
+
 /-- **No element of `H λ` is loxodromic on `Γ(G, X ⊔ ⨆H)`.**
 
 Every element of `H λ` is a *letter*, so every one of its powers is a letter
@@ -252,6 +292,24 @@ def IsHypEmbedded (G : Type u) [Group G] (H : Subgroup G) : Prop :=
 theorem IsHypEmbeddedOf.isHypEmbedded {G : Type u} [Group G] {X : Set G}
     {H : Subgroup G} (h : IsHypEmbeddedOf G X H) : IsHypEmbedded G H :=
   ⟨X, h⟩
+
+/-- **An infinite subgroup is never hyperbolically embedded with respect to a
+relative generating set that already contains it.**  The single-subgroup form
+of `RelGenSet.not_isHyperbolicallyEmbedded_of_fam_subset_base`.
+
+The trap this closes is a real one: an alphabet produced by coning off `H`
+*contains* `H`, so `H ↪_h (G, A)` is false for that `A` — the relative
+generating set to name is the base `X` that was coned off, never the result. -/
+theorem not_isHypEmbeddedOf_of_subset {G : Type u} [Group G] {X : Set G}
+    {H : Subgroup G} (hsub : (H : Set G) ⊆ X) (hinf : (H : Set G).Infinite) :
+    ¬ IsHypEmbeddedOf G X H := by
+  rintro ⟨D, hbase, hfam, hD⟩
+  have hlam : D.fam () = H := congrFun hfam ()
+  refine RelGenSet.not_isHyperbolicallyEmbedded_of_fam_subset_base D () ?_ ?_ hD
+  · rw [hlam, hbase]
+    exact hsub
+  · rw [hlam]
+    exact hinf
 
 end GGT
 end GroupApproximation
