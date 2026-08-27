@@ -2,6 +2,7 @@ import GroupApproximation.Sofic.FinitePacketStarAmalgam
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 import GroupApproximation.Monsters.LiteralBaseCompleteness
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
+import GroupApproximation.Sofic.LiteralAffineRangeIndexEight
 
 /-!
 # The literal affine star-packet collapse
@@ -10,10 +11,8 @@ This file specializes the finite star-packet amalgam to conjugation by the
 doubling matrix in the literal affine group.  The carrier, packet action,
 ascending-HNN factor, amalgam, and analytic collapse theorem have no inputs.
 
-The available arithmetic proves that the packet has one more site than the
-index of the compressed range.  Consequently its degree is nine exactly when
-that index is eight.  The latter equality is kept as a separate arithmetic
-statement; it is not an input to the collapse theorem.
+The compressed range has index eight, so the packet has exactly nine sites.
+The index calculation is independent of the analytic collapse theorem.
 -/
 
 namespace GroupApproximation
@@ -61,6 +60,31 @@ theorem packetDegree_eq_nine_iff_index_eq_eight :
     Nat.card (Sites alpha) = 9 ↔ alpha.range.index = 8 := by
   rw [packetDegree_eq_index_add_one]
   omega
+
+/-- The literal compressed range has index eight. -/
+theorem alpha_range_index_eq_eight : alpha.range.index = 8 :=
+  LiteralAffineRangeIndexEight.conjD_range_index_eq_eight
+
+/-- The literal packet has exactly nine sites. -/
+theorem packetDegree_eq_nine : Nat.card (Sites alpha) = 9 :=
+  packetDegree_eq_nine_iff_index_eq_eight.mpr alpha_range_index_eq_eight
+
+/-- The same cardinality in the packet's chosen `Fintype` structure. -/
+theorem packetFintypeCard_eq_nine : Fintype.card (Sites alpha) = 9 := by
+  rw [← Nat.card_eq_fintype_card]
+  exact packetDegree_eq_nine
+
+/-- A fixed enumeration of the nine packet sites. -/
+noncomputable def siteEquivFinNine : Sites alpha ≃ Fin 9 :=
+  Fintype.equivFinOfCardEq packetFintypeCard_eq_nine
+
+/-- The literal packet is the symmetric group `S₉`. -/
+noncomputable def packetEquivS9 : Sigma ≃* Equiv.Perm (Fin 9) :=
+  { siteEquivFinNine.permCongr with
+    map_mul' := by
+      intro p q
+      ext i
+      simp [Equiv.permCongr_apply, Equiv.Perm.mul_apply] }
 
 /-- **Premise-free literal affine star-packet collapse.**  Every
 operator-norm almost representation of the concrete amalgam has, along a
