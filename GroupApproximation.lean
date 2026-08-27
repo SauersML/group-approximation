@@ -1963,6 +1963,10 @@ import GroupApproximation.Analysis.ContinuousImageClosure
 import GroupApproximation.Analysis.StarSubalgebraMapEquiv
 import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationData
 import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationConjugator
+import GroupApproximation.Manuscript.MFRecognition.PrintedTarskiCertificateDerivation
+import GroupApproximation.Manuscript.MFRecognition.PrintedTarskiCertificateDecision
+import GroupApproximation.Manuscript.MFRecognition.PrintedTarskiCertificate
+import GroupApproximation.Manuscript.MFRecognition.LeavittSeedPresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
