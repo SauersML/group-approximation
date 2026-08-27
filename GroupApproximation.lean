@@ -2072,6 +2072,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerUnitRi
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerUnitRight
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerCommonImages
 import GroupApproximation.Manuscript.NinetyNineProblems.StablyFinite
+import GroupApproximation.Manuscript.NinetyNineProblems.ProblemX
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
