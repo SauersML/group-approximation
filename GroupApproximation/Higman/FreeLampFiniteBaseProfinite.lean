@@ -565,6 +565,72 @@ instance kernel_finiteIndex [Finite G] :
     (FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α))
     (⊥ : Subgroup G)
 
+/-! ## Faithfulness and subgroup separability -/
+
+/-- An element acting trivially is the identity. -/
+theorem eq_one_of_action_eq_one
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    {z : FreeLamp G M (FreeGroup α)}
+    (hz : action (M := M) (α := α) d z = 1) : z = 1 := by
+  obtain ⟨w, g, hdecomp⟩ :=
+    exists_stableConjLift_mul_inAmbient (M := M) d z
+  have happ := DFunLike.congr_fun hz
+    (g⁻¹, (1 : FreeGroup (LampLabel (M := M) (α := α) d)))
+  rw [hdecomp, map_mul, Equiv.Perm.mul_apply, action_inAmbient,
+    basePerm_apply, mul_inv_cancel,
+    action_stableConjLift_apply_one] at happ
+  have hg_inv : g⁻¹ = 1 := by
+    simpa using (congrArg Prod.fst happ).symm
+  have hg : g = 1 := inv_eq_one.mp hg_inv
+  have hw : w = 1 := by simpa using congrArg Prod.snd happ
+  subst g
+  subst w
+  simpa using hdecomp
+
+/-- The free-label action of a free lamp is faithful for every base group. -/
+theorem action_injective
+    (d : HNNExtension.NormalWord.TransversalPair G M M) :
+    Function.Injective (action (M := M) (α := α) d) := by
+  refine (MonoidHom.ker_eq_bot_iff (action (M := M) (α := α) d)).mp ?_
+  apply le_antisymm
+  · intro z hz
+    have hz1 := eq_one_of_action_eq_one (M := M) (α := α) d hz
+    simp [hz1]
+  · exact bot_le
+
+/-- **A free lamp over a finite base is LERF.**  Its canonical base
+retraction has free finite-index kernel, so Hall's theorem promotes through
+the finite extension. -/
+theorem profiniteClosure_eq_of_fg [Finite G]
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (H : Subgroup (FreeLamp G M (FreeGroup α))) (hH : H.FG) :
+    profiniteClosure H = H := by
+  let K : Subgroup (FreeLamp G M (FreeGroup α)) :=
+    (FreeLampProfiniteEmbedding.baseRet G M (FreeGroup α)).ker
+  let e := kernelEquiv (M := M) (α := α) d
+  apply profiniteClosure_eq_of_normal_finiteIndex_lerf K ?_ H hH
+  intro L hL
+  let P : Subgroup (FreeGroup (LampLabel (M := M) (α := α) d)) :=
+    L.map e.symm.toMonoidHom
+  have hPfg : P.FG := Higman.fg_map hL e.symm.toMonoidHom
+  have hPclosed : profiniteClosure P = P :=
+    FreeGroupHall.profiniteClosure_eq_of_fg P hPfg
+  haveI : Group.ResiduallyFinite K := residuallyFinite_of_mulEquiv e.symm
+  have hmapped := profiniteClosure_map_eq_of_split_closed e.toMonoidHom
+    e.symm.toMonoidHom (by ext w; simp) P hPclosed
+  have hPe : P.map e.toMonoidHom = L := by
+    ext x
+    constructor
+    · rintro ⟨p, hp, hpx⟩
+      obtain ⟨l, hl, hlp⟩ := hp
+      subst p
+      have hlx : l = x := by simpa using hpx
+      rwa [hlx] at hl
+    · intro hx
+      refine ⟨e.symm x, ⟨x, hx, rfl⟩, ?_⟩
+      simp
+  rwa [hPe] at hmapped
+
 end
 
 end FreeLampFiniteBaseProfinite
