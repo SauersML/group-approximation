@@ -454,6 +454,24 @@ def hjoinModel
     (S : SpecialJoinCodeSemantics hfive C hclosed) :
     (hjoinModel hfive C hclosed S).coded = hjoinSyntax hfive C := rfl
 
+/-- The actual coded strengthened witness produced by the special TransportStar
+join.  Its sole semantic hypothesis is now the exact profinite closedness of
+the semantic `joinL` cutter. -/
+def hjoinModelOfClosed
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (hclosed : SpecialJoinClosedObligation hfive C) :
+    Model pMark
+      ((Star.graphSub ⊓ H.comap (MonoidHom.fst Conj.F₃ Conj.F₃)) ⊔
+        Star.ProdBot) :=
+  hjoinModel hfive C hclosed (specialJoinCodeSemantics hfive C hclosed)
+
+@[simp] theorem hjoinModelOfClosed_coded
+    (hfive : profiniteClosure fiveCutter = fiveCutter)
+    {H : Subgroup Conj.F₃} (C : Model sourceMark H)
+    (hclosed : SpecialJoinClosedObligation hfive C) :
+    (hjoinModelOfClosed hfive C hclosed).coded = hjoinSyntax hfive C := rfl
+
 end
 
 end CodedTransportStarProfinite
