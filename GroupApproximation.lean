@@ -2100,6 +2100,8 @@ import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationHyperlinear
 import GroupApproximation.Manuscript.NinetyNineProblems.KazhdanQuasidiagonalTraces
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaEvaluatedCornerDef
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaEvaluatedCornerBase
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaUniversalMapDef
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaUniversalMapProperties
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
