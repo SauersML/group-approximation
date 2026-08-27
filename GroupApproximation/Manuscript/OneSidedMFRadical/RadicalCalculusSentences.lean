@@ -190,17 +190,13 @@ theorem actualCoronaMFQuotient_isResiduallyOperatorMF
     manuscriptSentence_3a8a0f98943e G M hM f g hfg
   exact ⟨M, instM, instC, hM, fBar, hfBar⟩
 
-/-- **LITERATURE INPUT (assumed): Korchagin, Proposition 6.**  A countable
+/- **Korchagin, Proposition 6.**  A countable
 residually-MF group is MF.  The printed proof of `prop:mf-residual-calculus`
 cites this fact rather than re-proving it.  The tree's existing unconditional
 proof that `G ⧸ Rad_MF(G)` is MF
 (`ActualCoronaMFRadical.actualCoronaMFQuotient_isCDEOperatorMF`) is a
 different argument (direct diagonalization of a marked almost-representation)
-and is deliberately not substituted here, so that this file's dependency
-graph matches the printed proof's own. -/
--- LITERATURE INPUT (assumed): Korchagin, Proposition 6
-def KorchaginResiduallyMFCriterion : Prop :=
-  ∀ (Q : Type) [Group Q] [Countable Q], IsResiduallyOperatorMF Q → IsCDEOperatorMF Q
+and supplies an unconditional proof of the cited conclusion. -/
 
 /-- **Sentence `ed55ca682c3d`, both clauses.** -/
 def RadicalQuotientResiduallyMFAndMF : Prop :=
@@ -208,11 +204,11 @@ def RadicalQuotientResiduallyMFAndMF : Prop :=
     IsResiduallyOperatorMF (G ⧸ actualCoronaMFResidual G) ∧
       IsCDEOperatorMF (G ⧸ actualCoronaMFResidual G)
 
-theorem manuscriptSentence_ed55ca682c3d (hKorchagin : KorchaginResiduallyMFCriterion) :
+theorem manuscriptSentence_ed55ca682c3d :
     RadicalQuotientResiduallyMFAndMF := by
   intro G _ _
   have hres := actualCoronaMFQuotient_isResiduallyOperatorMF G
-  exact ⟨hres, hKorchagin _ hres⟩
+  exact ⟨hres, actualCoronaMFQuotient_isCDEOperatorMF⟩
 
 /-! ## Sentence `248778b8c409`
 
@@ -239,13 +235,13 @@ def PrintedRadicalTrivialIffMF : Prop :=
     (IsCDEOperatorMF G → actualCoronaMFResidual G = ⊥) ∧
       (actualCoronaMFResidual G = ⊥ → IsCDEOperatorMF G)
 
-theorem manuscriptSentence_248778b8c409 (hKorchagin : KorchaginResiduallyMFCriterion) :
+theorem manuscriptSentence_248778b8c409 :
     PrintedRadicalTrivialIffMF := by
   intro G _ _
   refine ⟨fun hG ↦ isCDEOperatorMF_iff_actualCoronaMFResidual_eq_bot.mp hG, ?_⟩
   intro hbot
   have hMFquot : IsCDEOperatorMF (G ⧸ actualCoronaMFResidual G) :=
-    (manuscriptSentence_ed55ca682c3d hKorchagin G).2
+    (manuscriptSentence_ed55ca682c3d G).2
   have hinj : Function.Injective (QuotientGroup.mk' (actualCoronaMFResidual G)) := by
     rw [← MonoidHom.ker_eq_bot_iff, QuotientGroup.ker_mk']
     exact hbot
@@ -265,13 +261,12 @@ def PrintedResidualCalculusProofCurrent : Prop :=
     RadicalQuotientResiduallyMFAndMF ∧
     PrintedRadicalTrivialIffMF
 
-theorem manuscriptPrintedResidualCalculusProofCurrent
-    (hKorchagin : KorchaginResiduallyMFCriterion) :
+theorem manuscriptPrintedResidualCalculusProofCurrent :
     PrintedResidualCalculusProofCurrent :=
   ⟨manuscriptSentence_6b6db6812331, manuscriptSentence_c607d5888749,
     manuscriptSentence_895c79044a40, manuscriptSentence_3a8a0f98943e,
-    manuscriptSentence_ed55ca682c3d hKorchagin,
-    manuscriptSentence_248778b8c409 hKorchagin⟩
+    manuscriptSentence_ed55ca682c3d,
+    manuscriptSentence_248778b8c409⟩
 
 end
 
