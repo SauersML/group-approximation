@@ -145,8 +145,8 @@ structure TwoStageHull71Output where
   secondProtected : Set.InjOn finish
     (ambient '' ({1, amplifiedDefectData.s} : Set Ambient))
 
-/-- The exact remaining analytic theorem.  This is a proposition, not an
-axiom or an input to any unconditional endpoint in this module. -/
+/-- The exact remaining analytic theorem.  This is a proposition, and
+neither a postulate nor an input to any unconditional endpoint here. -/
 def SpecializedHull71 : Prop := Nonempty TwoStageHull71Output
 
 namespace TwoStageHull71Output

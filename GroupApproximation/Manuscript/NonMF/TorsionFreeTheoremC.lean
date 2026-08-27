@@ -20,11 +20,19 @@ The third factor `F₂` commutes with `P₁ = u₁Pu₁⁻¹`.  Hence its conjug
 The corresponding theorems are `centralizes_core`, `t_mem_compressionSet`,
 `conj_conj_witness`, `witnessRange_le_coreRange`, and `kazhdan_coreRange`.
 
-## 2.  The commutator subgroup lies in the defect
+## 2.  `lem:commutator-in-defect`
 
-For `c = t_L⁻¹ρ(π(x))t_L` and `ℓ = ρ(π(y))`, the printed defect generator
-`[t_Lct_L⁻¹,ℓ]` equals `[ρ(π(x)),ρ(π(y))]`.  Therefore the image of
-`[F₂,F₂]` lies in the defect.  No simplicity or perfectness input is needed.
+> For every homomorphism `ρ : G₀ → L`, `ρ(π([F,F])) ≤ 𝔇_L(ρ(Γ))`.
+
+`manuscriptWitnessCommutatorInDefect`, with the printed quantifiers: `ρ` is an
+arbitrary homomorphism, neither surjective nor assumed nontrivial on the
+witness.  The printed proof is followed step for step — for `c = t_L⁻¹ρ(π(x))t_L`
+and `ℓ = ρ(π(y))`, the defect generator `[t_Lct_L⁻¹,ℓ]` equals
+`[ρ(π(x)),ρ(π(y))]` (`map_defect_generator_mem`, `commutator_mem_printedDefect`),
+so the image of `[F,F]` lies in the defect
+(`map_map_witnessCommutator_le_printedDefect`, in the printed nested-image
+spelling).  No simplicity or perfectness input is needed; the superseded
+`lem:simple-in-defect` route is gone.
 
 ## 3.  `thm:torsion-free` (Theorem C)
 
@@ -183,7 +191,8 @@ theorem commutator_le_printedDefect :
   obtain ⟨y, rfl⟩ := hv
   exact commutator_mem_printedDefect C rho x y
 
-/-- The image of the witness commutator subgroup lies in the printed defect. -/
+/-- **`lem:commutator-in-defect`**, with the two maps composed:
+`ρ(π([F,F]))` written as the image of `[F,F]` under `ρ ∘ π`. -/
 theorem map_witnessCommutator_le_printedDefect :
     (commutator C.Witness).map (rho.comp C.witness) ≤
       OneSidedMFRadical.printedDefect (C.core.range.map rho) := by
@@ -197,15 +206,34 @@ theorem map_witnessCommutator_le_printedDefect :
     exact commutator_mem_printedDefect C rho a b
   exact Subgroup.map_le_iff_le_comap.mpr hsub
 
+/-- **`lem:commutator-in-defect`, in the printed spelling.**
+
+> For every homomorphism `ρ : G₀ → L`, `ρ(π([F,F])) ≤ 𝔇_L(ρ(Γ))`.
+
+`π([F,F])` is `(commutator W).map C.witness` and `ρ(-)` is a second
+`Subgroup.map`, so the printed left-hand side is a nested image; the composed
+form above is the same subgroup by `Subgroup.map_map`. -/
+theorem map_map_witnessCommutator_le_printedDefect :
+    ((commutator C.Witness).map C.witness).map rho ≤
+      OneSidedMFRadical.printedDefect (C.core.range.map rho) := by
+  rw [Subgroup.map_map]
+  exact map_witnessCommutator_le_printedDefect C rho
+
 end WitnessInDefect
 
-/-- The source commutator subgroup maps into the compression defect. -/
+/-- **`lem:commutator-in-defect`, as one closed proposition.**
+
+> For every homomorphism `ρ : G₀ → L`, `ρ(π([F,F])) ≤ 𝔇_L(ρ(Γ))`.
+
+The printed lemma has no hypothesis on `ρ` beyond being a homomorphism: the
+superseded `lem:simple-in-defect` needed surjectivity and a nontrivial image,
+and this one needs neither. -/
 def PrintedWitnessCommutatorInDefect : Prop :=
   ∀ (cfg : Configuration) (L : Type) (_ : Group L) (rho : cfg.Ambient →* L),
     (commutator cfg.Witness).map (rho.comp cfg.witness) ≤
         OneSidedMFRadical.printedDefect (cfg.core.range.map rho)
 
-/-- The commutator-defect containment, proved. -/
+/-- `lem:commutator-in-defect`, proved. -/
 theorem manuscriptWitnessCommutatorInDefect :
     PrintedWitnessCommutatorInDefect := by
   intro cfg L _ rho
@@ -236,11 +264,7 @@ theorem printedDefect_eq_top_of_normallyGenerating {L : Type} [Group L]
       (↑((commutator C.Witness).map C.witness) : Set C.Ambient)).map rho
       = ⊤) :
     OneSidedMFRadical.printedDefect (C.core.range.map rho) = ⊤ := by
-  have hcontain : ((commutator C.Witness).map C.witness).map rho ≤
-      OneSidedMFRadical.printedDefect (C.core.range.map rho) :=
-    by
-      rw [Subgroup.map_map]
-      exact manuscriptWitnessCommutatorInDefect C L inferInstance rho
+  have hcontain := map_map_witnessCommutator_le_printedDefect C rho
   have hNle : Subgroup.normalClosure
       (↑((commutator C.Witness).map C.witness) : Set C.Ambient) ≤
       (OneSidedMFRadical.printedDefect (C.core.range.map rho)).comap rho := by

@@ -355,7 +355,6 @@ noncomputable def pullbackRealFunction (e : X ≃ₜ X)
     (f : CompactlySupportedContinuousMap X ℝ) (chi : X) :
     pullbackRealFunction P e f chi = f (e chi) := rfl
 
-set_option maxHeartbeats 400000 in
 /-- The inverse character action and inverse restricted conjugation commute
 with the inverse Gelfand transform. -/
 theorem spectralLift_pullback_characterHomeomorph_symm
@@ -378,20 +377,22 @@ theorem spectralLift_pullback_characterHomeomorph_symm
               (characterHomeomorph S u hforward hbackward).symm f)) =
         CommutativeStateSpectralMeasure.complexifyRealFunction
           (pullbackRealFunction P
-            (characterHomeomorph S u hforward hbackward).symm f) := by
-    exact (gelfandStarTransform S).apply_symm_apply _
+            (characterHomeomorph S u hforward hbackward).symm f) :=
+    (gelfandStarTransform S).apply_symm_apply _
   rw [hleft]
   apply ContinuousMap.ext
   intro chi
   have hGelfand :
       (gelfandStarTransform S)
           (CommutativeStateSpectralMeasure.spectralLift f) =
-        CommutativeStateSpectralMeasure.complexifyRealFunction f := by
-    exact (gelfandStarTransform S).apply_symm_apply
+        CommutativeStateSpectralMeasure.complexifyRealFunction f :=
+    (gelfandStarTransform S).apply_symm_apply
       (CommutativeStateSpectralMeasure.complexifyRealFunction f)
-  change (f ((characterHomeomorph S u hforward hbackward).symm chi) : ℂ) =
-    chi ((restrictConjStarAlgEquiv S u hforward hbackward).symm
-      (CommutativeStateSpectralMeasure.spectralLift f))
+  -- One `change`, not two.  This proof used to pass through an intermediate
+  -- form that nothing then referred to, and each `change` is a full defeq check
+  -- of the whole goal against a large pattern over the Gelfand transform and
+  -- the restricted conjugation.  Defeq is transitive, so the first was pure
+  -- cost.
   change (f ((characterHomeomorph S u hforward hbackward).symm chi) : ℂ) =
     ((gelfandStarTransform S)
       (CommutativeStateSpectralMeasure.spectralLift f))
