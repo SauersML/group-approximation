@@ -174,8 +174,6 @@ theorem corner_isMFAlgebra (hShulman : ShulmanTheorem16Statement)
     (cornerUnit_star data) (cornerUnit_mul data)
     (amalgam_isMFAlgebra hShulman data)
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 400000 in
 /-- Printed: *"as is its `C*`-subalgebra `ePe ≅ U`"*, in the form used by
 Step 3: the universal `C*`-HNN algebra `U` is MF. -/
 theorem universalHNN_isMFAlgebra

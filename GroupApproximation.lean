@@ -2176,6 +2176,7 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.TensorSynchronizationMFGe
 import GroupApproximation.Manuscript.OneSidedMFRadical.TensorSynchronizationMFManuscriptCore
 import GroupApproximation.Manuscript.OneSidedMFRadical.TensorSynchronizationMFRepresentationCore
 import GroupApproximation.Manuscript.OneSidedMFRadical.TensorSynchronizationTraceCore
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniversalInstances
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

@@ -82,7 +82,6 @@ def spreadCoord (f : ∀ n, Matrix (X n) (X n) ℂ) (k : ℕ) :
       (f hex.choose)
   else 0
 
-set_option maxHeartbeats 800000 in
 /-- **The one place `spreadCoord`'s `dite` is unfolded on the hit branch.**
 Every other lemma about `spreadCoord` at a hit position is proved by
 rewriting with this (and `spreadCoord_of_miss` on the miss branch), never by
@@ -97,7 +96,6 @@ theorem spreadCoord_of_hit
         (f hex.choose) :=
   dif_pos hex
 
-set_option maxHeartbeats 800000 in
 /-- **The one place `spreadCoord`'s `dite` is unfolded on the miss branch.** -/
 theorem spreadCoord_of_miss
     (f : ∀ n, Matrix (X n) (X n) ℂ) {k : ℕ}

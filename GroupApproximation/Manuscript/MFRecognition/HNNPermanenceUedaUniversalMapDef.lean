@@ -1,5 +1,6 @@
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerCovariance
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerNontrivial
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniversalInstances
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniversalMapping
 
 /-! # The universal HNN map into Ueda's corner -/
@@ -15,8 +16,6 @@ variable {G : Type} [Group G] {S T : Subgroup G} {phi : S ≃* T}
 variable {A : Type} [CStarAlgebra A]
 variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 400000 in
 /-- Printed Step 1: *"the covariant pair `(d ↦ diag(d,0), e₁₂f₂₁)` in `ePe`
 induces an injective `*`-homomorphism `U → ePe`"*.
 
@@ -53,8 +52,6 @@ def UedaCornerMapStatement : Prop :=
           ↑(cornerStableUnitary data) ∧
         Function.Injective f
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 400000 in
 /-- Printed: *"the induced map `U → ePe`"*. -/
 def uedaCornerMap (hUeda : UedaCornerMapStatement)
     (data : CoronaConjugator G S T phi A X) :

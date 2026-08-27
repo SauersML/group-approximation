@@ -13,8 +13,6 @@ variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
 
 /-! ## The direct Ueda corner embedding -/
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 400000 in
 /-- Printed: *"In particular `U` embeds in `P`."*  The corner inclusion is not
 unital, since the corner's unit is `e`, not the unit of `P`. -/
 theorem universalHNN_embeds_amalgam (hUeda : UedaCornerMapStatement)

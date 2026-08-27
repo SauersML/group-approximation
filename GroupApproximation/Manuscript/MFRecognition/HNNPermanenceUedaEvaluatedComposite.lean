@@ -38,14 +38,13 @@ def cornerComp {E K : Type} [CStarAlgebra E] [CStarAlgebra K]
 
 variable (data : CoronaConjugator G S T phi A X)
 
-set_option maxHeartbeats 1000000 in
-set_option synthInstance.maxHeartbeats 400000 in
 /-- Coordinate evaluation of the Ueda corner map.
 
-Three things this proof has to supply that the elaborator cannot find on its
-own.  The two `Semiring` searches in the statement run over the `lp` behind
-`universalHNN`, so they need the budget.  The composite with `R.base` goes
-through `cornerComp`, for the reason recorded there.  And the corner of
+Two things this proof has to supply that the elaborator cannot find on its
+own.  (The `Semiring` searches over the `lp` behind `universalHNN` are served
+by the shortcut instances in `HNNPermanenceUniversalInstances`.)  The composite
+with `R.base` goes through `cornerComp`, for the reason recorded there.  And
+the corner of
 `M₂(R.carrier)` is nontrivial because `cStarUpperLeftCornerMap` is injective
 and `R.carrier` is nontrivial; that is a fact, not a search. -/
 theorem evaluatedCornerMap_comp_uedaCornerMap
@@ -71,18 +70,12 @@ theorem evaluatedCornerMap_comp_uedaCornerMap
         using h)).unique ?_ ?_
   · constructor
     · intro d
-      have h : universalCStarHNNBase (sourceEdgeAlgebra data)
-            (targetEdgeAlgebra data) (edgeIsomorphism data) d =
-          universalBase data d := rfl
-      rw [h, StarAlgHom.comp_apply, uedaCornerMap_base, evaluatedCornerMap_base,
-        cornerComp_apply]
-    · have h : ((universalCStarHNNStable (sourceEdgeAlgebra data)
-            (targetEdgeAlgebra data) (edgeIsomorphism data) :
-          unitary (universalHNN data)) : universalHNN data) =
-          ((universalStable data : unitary (universalHNN data)) :
-            universalHNN data) := rfl
-      rw [h, StarAlgHom.comp_apply, uedaCornerMap_stable, evaluatedCornerMap_stable,
-        coe_unitaryMapOfStarAlgHom]
+      exact (congrArg (evaluatedCornerMap data R)
+        (uedaCornerMap_base hUeda data d)).trans
+        (evaluatedCornerMap_base data R d)
+    · exact (congrArg (evaluatedCornerMap data R)
+        (uedaCornerMap_stable hUeda data)).trans
+        (evaluatedCornerMap_stable data R)
   · constructor
     · intro d
       simp
