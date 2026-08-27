@@ -101,6 +101,56 @@ theorem exists_finite_hom_reflecting_leftProduct_list
   · exact ⟨a₀, ha₀, m₀, hm₀, rfl⟩
   · simpa only [map_mul] using ham
 
+/-- A point outside the conjugator graph remains outside its image in one
+finite quotient. -/
+theorem exists_finite_hom_reflecting_graph
+    {z : PairedReturnGraphIntersection.P} (hz : z ∉ Star.graphSub) :
+    ∃ (Q : Type) (_ : Group Q) (_ : Finite Q)
+        (q : PairedReturnGraphIntersection.P →* Q),
+      q z ∉ Star.graphSub.map q := by
+  by_contra hnone
+  have hzClosure : z ∈ profiniteClosure Star.graphSub := by
+    intro Q _ _ q
+    by_contra hout
+    apply hnone
+    exact ⟨Q, inferInstance, inferInstance, q, hout⟩
+  rw [ConjugatorGraphProfinite.profiniteClosure_graphSub] at hzClosure
+  exact hz hzClosure
+
+/-- One product quotient simultaneously preserves all offending left
+syllables and a terminal failure to lie in the conjugator graph. -/
+theorem exists_finite_hom_reflecting_leftProduct_list_and_graph
+    (l : List PairedReturnGraphIntersection.P)
+    (hout : ∀ z ∈ l, z ∉ LeftProduct)
+    {e : PairedReturnGraphIntersection.P} (he : e ∉ Star.graphSub) :
+    ∃ (Q : Type) (_ : Group Q) (_ : Finite Q)
+        (q : PairedReturnGraphIntersection.P →* Q),
+      (∀ z ∈ l,
+        q z ∉ (Star.graphSub.map q : Set Q) *
+          (PairedReturnGraphIntersection.M.map q : Set Q)) ∧
+      q e ∉ Star.graphSub.map q := by
+  obtain ⟨Q, hQgroup, hQfinite, q, hq⟩ :=
+    exists_finite_hom_reflecting_leftProduct_list l hout
+  letI : Group Q := hQgroup
+  letI : Finite Q := hQfinite
+  obtain ⟨R, hRgroup, hRfinite, r, hr⟩ :=
+    exists_finite_hom_reflecting_graph he
+  letI : Group R := hRgroup
+  letI : Finite R := hRfinite
+  refine ⟨Q × R, inferInstance, inferInstance, q.prod r, ?_, ?_⟩
+  · intro z hz hmem
+    obtain ⟨a, ha, m, hm, ham⟩ := hmem
+    obtain ⟨a₀, ha₀, rfl⟩ := Subgroup.mem_map.mp ha
+    obtain ⟨m₀, hm₀, rfl⟩ := Subgroup.mem_map.mp hm
+    apply hq z hz
+    refine ⟨q a₀, ⟨a₀, ha₀, rfl⟩,
+      q m₀, ⟨m₀, hm₀, rfl⟩, ?_⟩
+    exact congrArg Prod.fst ham
+  · intro hmem
+    obtain ⟨g, hg, hge⟩ := Subgroup.mem_map.mp hmem
+    apply hr
+    exact ⟨g, hg, congrArg Prod.snd hge⟩
+
 /-! ## The label-preserving finite-base quotient -/
 
 /-- Restrict a quotient of `P` to the image of the paired edge. -/
