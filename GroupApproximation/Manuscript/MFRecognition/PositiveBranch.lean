@@ -63,11 +63,10 @@ theorem manuscriptCentralHNN (hIn : TensorSynchronization.HNNPermanenceInputs)
   obtain ⟨A, instA, ⟨realization⟩⟩ := hG
   letI : CStarAlgebra A := instA
   letI : Nontrivial A :=
-    GroupApproximation.Manuscript.OneSidedMFRadical.TensorSynchronizationAssembly.regularRealization_nontrivial
+    OneSidedMFRadical.TensorSynchronizationAssembly.regularRealization_nontrivial
       realization
   obtain ⟨X, hX, iota, hiota⟩ :=
-    GroupApproximation.Manuscript.MFRecognition.TensorSynchronization.unitalCoronaEmbedding
-      realization.mf
+    TensorSynchronization.unitalCoronaEmbedding realization.mf
   letI : ∀ n, Nonempty (X n) := hX
   refine hIn.hnnPermanence (MulEquiv.refl S) realization iota hiota 1 ?_
   intro s

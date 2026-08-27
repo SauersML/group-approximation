@@ -1,5 +1,6 @@
 import GroupApproximation.Computability.ExactSwitchAlgorithmicConsequences
 import GroupApproximation.Computability.MFRecognitionSecondLevel
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanence
 import GroupApproximation.Manuscript.MFRecognition.NegativeBranch
 import GroupApproximation.Manuscript.MFRecognition.PositiveBranch
 
@@ -55,6 +56,23 @@ open ArithmeticalHierarchy
 open GroupApproximation.SecondLevelIndexSets
 open GroupApproximation.PresentationCodes
 open GroupApproximation.MFRecognitionSecondLevel
+
+/-! ## 0.  The analytic citation, from the HNN-permanence lane's bundle -/
+
+/-- **One hypothesis, not two.**
+
+The two statements the "Consequently" clause of `lem:tensor-sync` consumes are
+both already among the ones the `hnn-permanence` lane bundles: that lane's
+`manuscriptHNNPermanence` *is* `thm:hnn-permanence`, in the very binder order
+the tensor-sync bundle asks for, and its `unitalCoronaEmbedding` field is
+literally `UnitalCoronaEmbeddingStatement`, the same proposition.  So a caller
+holding the single `HNNPermanence.HNNInputs` needs no second hypothesis to
+build the family below. -/
+theorem hnnPermanenceInputs_of_hnnInputs (hIn : HNNPermanence.HNNInputs) :
+    TensorSynchronization.HNNPermanenceInputs where
+  hnnPermanence := by
+    intro G _ _ S T phi A _ realization X _ iota hiota W hW
+    exact HNNPermanence.manuscriptHNNPermanence hIn phi realization iota hiota W hW
 
 /-! ## 1.  The computable family `e ↦ R̂_e` -/
 

@@ -2039,6 +2039,8 @@ import GroupApproximation.Manuscript.MFRecognition.HNNTraceReducedSurjection
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceReducedSubgroupCore
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceReducedSubgroup
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceCovariantBase
+import GroupApproximation.Manuscript.MFRecognition.PositiveBranch
+import GroupApproximation.Manuscript.MFRecognition.RecognitionMainTheorem
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
