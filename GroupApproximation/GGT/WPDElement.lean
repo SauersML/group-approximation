@@ -30,10 +30,14 @@ general a subgroup, so it is defined here as a set.
   element WPD**.  This is the easy half of Osin's Theorem 1.2 in the direction
   `(AH₁) ⇒ (AH₃)`, and it is what keeps the WPD interface from being vacuous:
   the Cayley graph of an acylindrically hyperbolic group supplies WPD elements.
+* `isWPDAt_of_cosetCover` and `isWPDAt_of_pairStab_cover` — the bookkeeping
+  half of Minasyan--Osin's Corollary 4.3: an `ε`-stabilizer covered by finitely
+  many translates of a finite pointwise stabilizer is finite, so a tree
+  argument only has to produce the inclusion their Lemma 4.2 provides.
 * `IsWPDAt.conj` — WPD is a conjugation-invariant condition.
 
-Nothing here is a citation: Definition 3.5 is a definition, and the four
-results above are proved.
+Nothing here is a citation: Definition 3.5 is a definition, and the results
+above are proved.
 -/
 
 namespace GroupApproximation
@@ -176,6 +180,63 @@ theorem isWPDAt_of_isAcylindrical (hacy : IsAcylindrical G X) {g : G} {x : X}
   intro k hk
   rw [mem_pairStab] at hk
   exact ⟨by linarith [hk.1], by linarith [hk.2]⟩
+
+/-- **A pair of points whose stabilizers meet trivially has finite — indeed
+trivial — pointwise stabilizer.**
+
+This is the bridge between the *algebraic* input of Minasyan--Osin's criterion,
+two vertex stabilizers intersecting trivially, and the *geometric* hypothesis
+`PStab_G({u,v})` finite that their Corollary 4.3 consumes.  A tree argument
+supplies the two stabilizer descriptions; the group theory supplies `hAB`. -/
+theorem pairStab_zero_finite_of_trivial_intersection {u v : X} {A B : Subgroup G}
+    (hu : ∀ k : G, dist u (k • u) ≤ 0 → k ∈ A)
+    (hv : ∀ k : G, dist v (k • v) ≤ 0 → k ∈ B)
+    (hAB : ∀ k : G, k ∈ A → k ∈ B → k = 1) :
+    (pairStab G 0 u v).Finite := by
+  refine Set.Finite.subset (Set.finite_singleton (1 : G)) ?_
+  intro k hk
+  rw [mem_pairStab] at hk
+  rw [Set.mem_singleton_iff]
+  exact hAB k (hu k hk.1) (hv k hk.2)
+
+/-! ## The packaging step of Minasyan--Osin's Corollary 4.3 -/
+
+/-- **A finitely-covered `ε`-stabilizer gives the WPD condition.**
+
+Minasyan--Osin's Lemma 4.2 bounds the pointwise `ε`-stabilizer of a distant
+pair by *at most `2(2ε+1)` left cosets* of the honest pointwise stabilizer of a
+pair of interior points, and their Corollary 4.3 then reads off the WPD
+condition.  This lemma is the bookkeeping half of that step, stated so that the
+geometric half — the inclusion — is all a tree argument has to supply. -/
+theorem isWPDAt_of_cosetCover {g : G} {x : X}
+    (h : ∀ ε : ℝ, 0 ≤ ε → ∃ (M : ℕ) (T K : Set G), T.Finite ∧ K.Finite ∧
+      pairStab G ε x ((g ^ M) • x) ⊆
+        (fun p : G × G => p.1 * p.2) '' (T ×ˢ K)) :
+    IsWPDAt g x := by
+  intro ε hε
+  obtain ⟨M, T, K, hT, hK, hsub⟩ := h ε hε
+  exact ⟨M, ((hT.prod hK).image _).subset hsub⟩
+
+/-- **Minasyan--Osin's Corollary 4.3, in the shape a tree action delivers it.**
+
+> Let `G` be a group acting on a simplicial tree `T` and let `h ∈ G` be a
+> hyperbolic element.  Suppose that for some vertices `u, v ∈ axis(h)`, the
+> pointwise stabilizer `PStab_G({u,v})` is finite (the possibility `u = v` is
+> allowed).  Then `h` satisfies the WPD condition.
+
+`PStab_G({u,v})` is `pairStab G 0 u v`, the `ε = 0` case of the same family of
+sets.  What a tree argument has to produce, for each `ε`, is a power `g ^ M`, a
+pair `u, v` with finite pointwise stabilizer, and the finite set of translating
+elements Lemma 4.2 provides. -/
+theorem isWPDAt_of_pairStab_cover {g : G} {x : X}
+    (h : ∀ ε : ℝ, 0 ≤ ε → ∃ (M : ℕ) (T : Set G) (u v : X), T.Finite ∧
+      (pairStab G 0 u v).Finite ∧
+      pairStab G ε x ((g ^ M) • x) ⊆
+        (fun p : G × G => p.1 * p.2) '' (T ×ˢ pairStab G 0 u v)) :
+    IsWPDAt g x := by
+  refine isWPDAt_of_cosetCover fun ε hε => ?_
+  obtain ⟨M, T, u, v, hT, hfin, hsub⟩ := h ε hε
+  exact ⟨M, T, pairStab G 0 u v, hT, hfin, hsub⟩
 
 /-! ## Conjugation -/
 

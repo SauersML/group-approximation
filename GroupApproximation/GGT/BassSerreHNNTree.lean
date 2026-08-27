@@ -70,11 +70,20 @@ instance instMulActionVertex (φ : A ≃* B) :
 
 theorem vmk_eq_iff (φ : A ≃* B) (x y : HNNExtension G A B φ) :
     vmk φ x = vmk φ y ↔
-      x⁻¹ * y ∈ (HNNExtension.of : G →* HNNExtension G A B φ).range :=
-  QuotientGroup.eq
+      x⁻¹ * y ∈ (HNNExtension.of : G →* HNNExtension G A B φ).range := by
+  show (QuotientGroup.mk x : HNNExtension G A B φ ⧸
+      (HNNExtension.of : G →* HNNExtension G A B φ).range)
+        = QuotientGroup.mk y ↔
+      x⁻¹ * y ∈ (HNNExtension.of : G →* HNNExtension G A B φ).range
+  exact QuotientGroup.eq
 
-theorem vmk_surjective (φ : A ≃* B) : Function.Surjective (vmk φ) :=
-  fun v => QuotientGroup.mk_surjective v
+theorem vmk_surjective (φ : A ≃* B) : Function.Surjective (vmk φ) := by
+  intro v
+  obtain ⟨x, hx⟩ := QuotientGroup.mk_surjective
+    (s := (HNNExtension.of : G →* HNNExtension G A B φ).range)
+    (show HNNExtension G A B φ ⧸
+      (HNNExtension.of : G →* HNNExtension G A B φ).range from v)
+  exact ⟨x, hx⟩
 
 @[simp] theorem vmk_mul_of (φ : A ≃* B) (x : HNNExtension G A B φ) (g : G) :
     vmk φ (x * HNNExtension.of g) = vmk φ x := by
@@ -84,16 +93,12 @@ theorem vmk_surjective (φ : A ≃* B) : Function.Surjective (vmk φ) :=
 theorem vmk_eq_one_iff (φ : A ≃* B) (x : HNNExtension G A B φ) :
     vmk φ x = vmk φ 1 ↔
       x ∈ (HNNExtension.of : G →* HNNExtension G A B φ).range := by
-  rw [vmk_eq_iff]
+  rw [vmk_eq_iff, mul_one]
   constructor
   · rintro ⟨g, hg⟩
-    refine ⟨g⁻¹, ?_⟩
-    rw [map_inv, ← hg]
-    group
+    exact ⟨g⁻¹, by rw [map_inv, hg, inv_inv]⟩
   · rintro ⟨g, hg⟩
-    refine ⟨g⁻¹, ?_⟩
-    rw [map_inv, ← hg]
-    group
+    exact ⟨g⁻¹, by rw [map_inv, hg]⟩
 
 /-- The stable letter is outside the base copy. -/
 theorem t_notMem_range (φ : A ≃* B) :
@@ -229,6 +234,11 @@ def smulHom (φ : A ≃* B) (a : HNNExtension G A B φ) : tree φ →g tree φ w
 
 /-! ## Connectivity -/
 
+theorem reachable_of_eq (φ : A ≃* B) {v w : Vertex φ} (h : v = w) :
+    (tree φ).Reachable v w := by
+  subst h
+  exact SimpleGraph.Reachable.refl v
+
 theorem reachable_vmk_one (φ : A ≃* B) (x : HNNExtension G A B φ) :
     (tree φ).Reachable (vmk φ 1) (vmk φ x) := by
   induction x using HNNExtension.induction_on with
@@ -236,7 +246,7 @@ theorem reachable_vmk_one (φ : A ≃* B) (x : HNNExtension G A B φ) :
       have h : vmk φ (HNNExtension.of g) = vmk φ 1 := by
         rw [vmk_eq_one_iff]
         exact ⟨g, rfl⟩
-      rw [h]
+      exact reachable_of_eq φ h.symm
   | t =>
       have h := adj_vmk_mul_t φ (1 : HNNExtension G A B φ)
       rw [one_mul] at h
@@ -285,7 +295,7 @@ theorem dist_vmk_mul_wordProd_le (φ : A ≃* B) :
   | nil =>
       intro x g
       rw [wordProd_nil, vmk_mul_of]
-      simp
+      simp [SimpleGraph.dist_self]
   | cons bb L ih =>
       intro x g
       obtain ⟨u, h⟩ := bb
@@ -406,7 +416,7 @@ theorem mem_stabilizer_edge_iff (φ : A ≃* B) (a x : HNNExtension G A B φ) :
   rw [hrw, mem_range_and_conj_iff]
   constructor
   · rintro ⟨b, hb, hbe⟩
-    exact ⟨b, hb, by rw [← hbe]; group⟩
+    exact ⟨b, hb, by rw [hbe]; group⟩
   · rintro ⟨b, hb, rfl⟩
     exact ⟨b, hb, by group⟩
 
@@ -438,7 +448,7 @@ base finishes.  This reproves `HNNBritton.isPowerTorsionFree_hnn`. -/
 theorem isPowerTorsionFree_via_tree (φ : A ≃* B) (hG : IsPowerTorsionFree G) :
     IsPowerTorsionFree (HNNExtension G A B φ) := by
   intro x n hn hx
-  obtain ⟨v, hv⟩ := exists_fixed_vertex_of_pow_eq_one φ (Nat.pos_iff.1 hn).ne' hx
+  obtain ⟨v, hv⟩ := exists_fixed_vertex_of_pow_eq_one φ hn.ne' hx
   obtain ⟨y, rfl⟩ := vmk_surjective φ v
   obtain ⟨g, hg⟩ := (mem_stabilizer_vmk_iff' φ x y).1
     (MulAction.mem_stabilizer_iff.2 hv)
@@ -474,7 +484,7 @@ theorem step (φ : A ≃* B) (g : G) (L : List (ℤˣ × G)) (v : ℤˣ) (c : G)
           HNNExtension.of (c * a) *
           (HNNExtension.t : HNNExtension G A B φ) ^ (u : ℤ)) := by
     rw [wordProd_concat, map_mul]
-    group
+    simp only [mul_assoc]
   by_cases hpinch : c * a ∈ HNNExtension.toSubgroup A B v ∧ u = -v
   · right
     obtain ⟨hca, rfl⟩ := hpinch

@@ -149,7 +149,7 @@ theorem mem_elementaryClosure {g h : G} :
 
 /-- `g` lies in its own elementary closure. -/
 theorem self_mem_elementaryClosure (g : G) : g ∈ elementaryClosure g :=
-  ⟨1, 1, one_ne_zero, one_ne_zero, by group⟩
+  mem_elementaryClosure.mpr ⟨1, 1, one_ne_zero, one_ne_zero, by group⟩
 
 /-- Every power of `g` lies in `E(g)`. -/
 theorem zpowers_le_elementaryClosure (g : G) :
@@ -160,7 +160,7 @@ theorem zpowers_le_elementaryClosure (g : G) :
 witness `(1, 1)`. -/
 theorem mem_elementaryClosure_of_commute {g c : G} (hc : Commute c g) :
     c ∈ elementaryClosure g := by
-  refine ⟨1, 1, one_ne_zero, one_ne_zero, ?_⟩
+  refine mem_elementaryClosure.mpr ⟨1, 1, one_ne_zero, one_ne_zero, ?_⟩
   rw [zpow_one, zpow_one, hc.eq, mul_inv_cancel_right]
 
 /-! ## Equivariance -/
@@ -168,8 +168,8 @@ theorem mem_elementaryClosure_of_commute {g c : G} (hc : Commute c g) :
 /-- `E(·)` is equivariant for conjugation. -/
 theorem mem_elementaryClosure_conj {g h a : G} (hh : h ∈ elementaryClosure g) :
     a * h * a⁻¹ ∈ elementaryClosure (a * g * a⁻¹) := by
-  obtain ⟨n, m, hn, hm, heq⟩ := hh
-  refine ⟨n, m, hn, hm, ?_⟩
+  obtain ⟨n, m, hn, hm, heq⟩ := mem_elementaryClosure.mp hh
+  refine mem_elementaryClosure.mpr ⟨n, m, hn, hm, ?_⟩
   have hgn : (a * g * a⁻¹) ^ n = a * g ^ n * a⁻¹ := (conj_zpow_eq a g n).symm
   have hgm : (a * g * a⁻¹) ^ m = a * g ^ m * a⁻¹ := (conj_zpow_eq a g m).symm
   rw [hgn, hgm, ← heq]
@@ -200,7 +200,7 @@ theorem mem_elementaryClosure_of_conj_mem {g h a : G}
 commutes with that common power. -/
 theorem mem_elementaryClosure_of_common_zpow {a b : G} {p q : ℤ}
     (hp : p ≠ 0) (hab : a ^ p = b ^ q) : b ∈ elementaryClosure a := by
-  refine ⟨p, p, hp, hp, ?_⟩
+  refine mem_elementaryClosure.mpr ⟨p, p, hp, hp, ?_⟩
   rw [hab]
   group
 
@@ -209,8 +209,9 @@ theorem elementaryClosure_le_of_common_zpow {a b : G} {p q : ℤ}
     (hq : q ≠ 0) (hab : a ^ p = b ^ q) :
     elementaryClosure a ≤ elementaryClosure b := by
   intro h hh
-  obtain ⟨n, m, hn, hm, heq⟩ := hh
-  refine ⟨q * n, q * m, mul_ne_zero hq hn, mul_ne_zero hq hm, ?_⟩
+  obtain ⟨n, m, hn, hm, heq⟩ := mem_elementaryClosure.mp hh
+  refine mem_elementaryClosure.mpr
+    ⟨q * n, q * m, mul_ne_zero hq hn, mul_ne_zero hq hm, ?_⟩
   have hbq : ∀ k : ℤ, b ^ (q * k) = a ^ (p * k) := by
     intro k
     rw [zpow_mul, zpow_mul, hab]
@@ -240,14 +241,14 @@ theorem elementaryClosure_zpow (g : G) {k : ℤ} (hk : k ≠ 0) :
 theorem mem_elementaryClosure_of_common_zpow_conj {g h : G} {p q : ℤ}
     (hp : p ≠ 0) (hq : q ≠ 0) (heq : g ^ p = (h * g * h⁻¹) ^ q) :
     h ∈ elementaryClosure g :=
-  ⟨q, p, hq, hp, (conj_zpow_eq h g q).trans heq.symm⟩
+  mem_elementaryClosure.mpr ⟨q, p, hq, hp, (conj_zpow_eq h g q).trans heq.symm⟩
 
 /-- The same with the inverted conjugate, which is the shape the repository's
 ping-pong lemma `exists_loxodromic_commutator_of_independent_conjugate` uses. -/
 theorem mem_elementaryClosure_of_common_zpow_conj_inv {g h : G} {p q : ℤ}
     (hp : p ≠ 0) (hq : q ≠ 0) (heq : g ^ p = (h * g⁻¹ * h⁻¹) ^ q) :
     h ∈ elementaryClosure g := by
-  refine ⟨-q, p, neg_ne_zero.mpr hq, hp, ?_⟩
+  refine mem_elementaryClosure.mpr ⟨-q, p, neg_ne_zero.mpr hq, hp, ?_⟩
   have hginv : (g⁻¹) ^ q = g ^ (-q) := by rw [inv_zpow, zpow_neg]
   have hc : h * g ^ (-q) * h⁻¹ = (h * g⁻¹ * h⁻¹) ^ q := by
     rw [← hginv]
@@ -441,7 +442,7 @@ theorem natAbs_eq_of_mem_elementaryClosure (hiso : IsIsometricAction G X)
 theorem conj_zpow_eq_or_of_mem_elementaryClosure (hiso : IsIsometricAction G X)
     {g h : G} {x : X} (hg : IsLoxodromic g x) (hh : h ∈ elementaryClosure g) :
     ∃ n : ℤ, n ≠ 0 ∧ (h * g ^ n * h⁻¹ = g ^ n ∨ h * g ^ n * h⁻¹ = g ^ (-n)) := by
-  obtain ⟨n, m, hn, hm, heq⟩ := hh
+  obtain ⟨n, m, hn, hm, heq⟩ := mem_elementaryClosure.mp hh
   have habs := natAbs_eq_of_mem_elementaryClosure hiso hg hn hm heq
   have hcase : n = m ∨ n = -m := by omega
   refine ⟨n, hn, ?_⟩
@@ -477,7 +478,7 @@ theorem not_independent_of_common_zpow (hiso : IsIsometricAction G X)
 theorem not_independent_conj_of_mem_elementaryClosure
     (hiso : IsIsometricAction G X) {g h : G} {x : X} (hg : IsLoxodromic g x)
     (hh : h ∈ elementaryClosure g) : ¬ Independent g (h * g * h⁻¹) x := by
-  obtain ⟨n, m, hn, hm, heq⟩ := hh
+  obtain ⟨n, m, hn, hm, heq⟩ := mem_elementaryClosure.mp hh
   refine not_independent_of_common_zpow hiso hg (p := m) (q := n) hm hn ?_
   rw [← conj_zpow_eq h g n]
   exact heq.symm

@@ -1,4 +1,5 @@
 import GroupApproximation.Manuscript.NonMF.HullBallForm
+import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 
 /-!
 # The cone-off of a Cayley graph, and word length along a homomorphism
@@ -20,16 +21,17 @@ cone-off has a purely combinatorial model: it is the Cayley graph of `G` with
 respect to the enlarged alphabet `A ∪ H`.  Adding every element of `H` as a
 letter collapses each coset `gH` to a set of diameter one, which is exactly
 what the cone of radius one does, and no metric on a quotient of `Y × [0,r]`
-has to be built.  That model is `conedAlphabet` below, and it is the alphabet
-in which the phrase
+has to be built.  That alphabet is the one in which the phrase
 
 > `{Hλ} ↪_h (G, X)`, i.e. `Γ(G, X ⊔ ⊔ Hλ)` is hyperbolic and each `Hλ`
 > carries a locally finite relative metric
 
-of Osin's definition of a hyperbolically embedded subgroup is stated.  So the
-combinatorial cone-off is not an approximation to the object Hull uses: it is
-the object, and `Alphabet`/`Cayley` of
-`Manuscript.NonMF.AcylindricallyHyperbolic` already carries it.
+of Osin's definition of a hyperbolically embedded subgroup is stated, so it is
+already in the repository: it is `GGT.RelGenSet.alphabet` of
+`GGT/WPDHyperbolicallyEmbedded.lean`, and this module does not restate it.
+`HullSC.coneOff` is that relative generating set for the one-element family
+`{H}`.  The combinatorial cone-off is not an approximation to the object Hull
+uses: it is the object.
 
 ## What is proved here
 
@@ -44,12 +46,13 @@ Everything in this module is proved; nothing is postulated.
   tower of quotients possible at all: without it the injectivity radius of the
   composite of two Hull quotients cannot be controlled, because the balls of
   `Γ(G,A)` are infinite when `A` is (and Hull's `A` is infinite in general).
-* `conedAlphabet` -- the cone-off alphabet `A ∪ H`, with its symmetry and
-  generation proved, so that `Cayley (conedAlphabet A H)` is the coned-off
-  Cayley graph as a pseudometric space with a `G`-action by isometries.
-* `wordNorm_conedAlphabet_le`, `coneOff_dist_le` -- the cone-off does not
-  increase distances, and each coset of `H` has diameter at most one in it.
-  The second is the defining property of a cone: the coset is crushed.
+* `coneOff`, `coneOff_carrier` -- the cone-off as a `GGT.RelGenSet`, with its
+  symmetry and generation proved, so that `Cayley (coneOff A H).alphabet` is
+  the coned-off Cayley graph as a pseudometric space with a `G`-action by
+  isometries.
+* `wordNorm_coneOff_le`, `coneOff_dist_le` -- the cone-off does not increase
+  distances, and each coset of `H` has diameter at most one in it.  The second
+  is the defining property of a cone: the coset is crushed.
 -/
 
 namespace GroupApproximation
@@ -141,19 +144,26 @@ theorem injOn_comp_of_image_subset {G : Type u} {Q : Type v} {P : Type*}
 
 /-! ## The cone-off alphabet -/
 
-/-- **The cone-off of `Γ(G,A)` along the cosets of `H`**, as an alphabet:
-every element of `H` is adjoined as a letter.
+/-- **The cone-off of `Γ(G,A)` along the cosets of `H`**, as a relative
+generating set in the sense of `GGT.RelGenSet`: base `A`, and the one-element
+family `{H}`.
 
-This is Osin's `X ⊔ H`, the alphabet in which `Γ(G, X ⊔ H)` -- the space whose
-hyperbolicity is the first clause of `H ↪_h (G,X)` -- is written.  For a family
-`{Hλ}` the same definition with `⋃ λ, Hλ` in place of `H` is the coned-off
-graph of DGO; Hull's Theorem 7.1 uses a single hyperbolically embedded
-virtually cyclic subgroup, so the single-subgroup form is the one carried
-here. -/
-def conedAlphabet {G : Type u} [Group G] (A : Alphabet G) (H : Subgroup G) :
-    Alphabet G where
-  carrier := A.carrier ∪ (H : Set G)
+The alphabet it carries, `GGT.RelGenSet.alphabet`, is Osin's `X ⊔ H` -- the
+alphabet in which `Γ(G, X ⊔ H)`, the space whose hyperbolicity is the first
+clause of `H ↪_h (G,X)`, is written.  The definition of the relative generating
+set and of `↪_h` belongs to the `GGT.WPDHyperbolicallyEmbedded` lane and is
+used here rather than restated; what this module adds is the reading of that
+alphabet as a *cone-off*, which is what DGO's rotating families act on. -/
+def coneOff {G : Type u} [Group G] (A : Alphabet G) (H : Subgroup G) :
+    GGT.RelGenSet G Unit where
+  base := A.carrier
+  fam := fun _ => H
   symmetricGenerating := by
+    show IsSymmetricGeneratingSet (A.carrier ∪ ⋃ _ : Unit, (H : Set G))
+    have hconst : (⋃ _ : Unit, (H : Set G)) = (H : Set G) := by
+      ext x
+      simp
+    rw [hconst]
     refine ⟨?_, ?_⟩
     · intro x hx
       rcases hx with hx | hx
@@ -163,44 +173,58 @@ def conedAlphabet {G : Type u} [Group G] (A : Alphabet G) (H : Subgroup G) :
       rw [← A.symmetricGenerating.closure_eq]
       exact Subgroup.closure_mono Set.subset_union_left
 
-@[simp] theorem conedAlphabet_carrier {G : Type u} [Group G] (A : Alphabet G)
+/-- The letters of the cone-off are the letters of `A` together with the
+elements of `H`. -/
+theorem coneOff_carrier {G : Type u} [Group G] (A : Alphabet G)
     (H : Subgroup G) :
-    (conedAlphabet A H).carrier = A.carrier ∪ (H : Set G) := rfl
+    (coneOff A H).alphabet.carrier = A.carrier ∪ (H : Set G) := by
+  have hconst : (⋃ _ : Unit, (H : Set G)) = (H : Set G) := by
+    ext x
+    simp
+  show A.carrier ∪ (⋃ _ : Unit, (H : Set G)) = A.carrier ∪ (H : Set G)
+  rw [hconst]
 
 /-- The letters of `A` are letters of the cone-off. -/
-theorem subset_conedAlphabet {G : Type u} [Group G] (A : Alphabet G)
-    (H : Subgroup G) : A.carrier ⊆ (conedAlphabet A H).carrier :=
-  Set.subset_union_left
+theorem subset_coneOff {G : Type u} [Group G] (A : Alphabet G)
+    (H : Subgroup G) : A.carrier ⊆ (coneOff A H).alphabet.carrier := by
+  rw [coneOff_carrier]
+  exact Set.subset_union_left
+
+/-- Every element of `H` is a letter of the cone-off. -/
+theorem mem_coneOff_of_mem {G : Type u} [Group G] (A : Alphabet G)
+    {H : Subgroup G} {h : G} (hh : h ∈ H) :
+    h ∈ (coneOff A H).alphabet.carrier := by
+  rw [coneOff_carrier]
+  exact Or.inr hh
 
 /-- **Coning off does not increase distances.**  Every `A`-word is a word in
 the larger alphabet. -/
-theorem wordNorm_conedAlphabet_le {G : Type u} [Group G] (A : Alphabet G)
+theorem wordNorm_coneOff_le {G : Type u} [Group G] (A : Alphabet G)
     (H : Subgroup G) (g : G) :
-    wordNorm (conedAlphabet A H).carrier g ≤ wordNorm A.carrier g :=
-  wordNorm_mono (subset_conedAlphabet A H)
+    wordNorm (coneOff A H).alphabet.carrier g ≤ wordNorm A.carrier g :=
+  wordNorm_mono (subset_coneOff A H)
     (wordLengths_nonempty A.symmetricGenerating g)
 
 /-- **The cone crushes the coset.**  Two points of the same coset of `H` are at
 distance at most one in the cone-off, whatever their distance in `Γ(G,A)`.
-This is the property that the hyperbolic cone of DGO is built to have, and it
-is a one-line consequence of the combinatorial model. -/
+This is the property that the hyperbolic cone of DGO is built to have, and in
+the combinatorial model it is one line. -/
 theorem coneOff_dist_le {G : Type u} [Group G] (A : Alphabet G) (H : Subgroup G)
     (g : G) {h : G} (hh : h ∈ H) :
-    wordDist (conedAlphabet A H).carrier g (g * h) ≤ 1 := by
-  have hstep : wordDist (conedAlphabet A H).carrier (g * 1) (g * h)
-      = wordDist (conedAlphabet A H).carrier 1 h :=
+    wordDist (coneOff A H).alphabet.carrier g (g * h) ≤ 1 := by
+  have hstep : wordDist (coneOff A H).alphabet.carrier (g * 1) (g * h)
+      = wordDist (coneOff A H).alphabet.carrier 1 h :=
     wordDist_left_invariant _ g 1 h
   rw [mul_one] at hstep
   rw [hstep, wordDist_one_left]
-  exact wordNorm_le_one_of_mem (Or.inr hh)
+  exact wordNorm_le_one_of_mem (mem_coneOff_of_mem A hh)
 
-/-- Each element of `H` is a letter of the cone-off, so lies in its unit
-ball. -/
-theorem mem_cayleyBall_one_conedAlphabet {G : Type u} [Group G] (A : Alphabet G)
-    (H : Subgroup G) {h : G} (hh : h ∈ H) :
-    h ∈ cayleyBall (conedAlphabet A H) 1 := by
+/-- Each element of `H` lies in the unit ball of the cone-off. -/
+theorem mem_cayleyBall_one_coneOff {G : Type u} [Group G] (A : Alphabet G)
+    {H : Subgroup G} {h : G} (hh : h ∈ H) :
+    h ∈ cayleyBall (coneOff A H).alphabet 1 := by
   rw [mem_cayleyBall_iff, wordDist_one_left]
-  exact wordNorm_le_one_of_mem (Or.inr hh)
+  exact wordNorm_le_one_of_mem (mem_coneOff_of_mem A hh)
 
 end HullSC
 end GroupApproximation

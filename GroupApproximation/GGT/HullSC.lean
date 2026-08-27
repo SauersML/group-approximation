@@ -40,11 +40,13 @@ word metric of `A` and the translation action.  Four-point hyperbolicity is
 **(1) Hyperbolically embedded subgroups** (Osin, *Acylindrically hyperbolic
 groups*, Def. 4.25; DGO §4).  `{Hλ} ↪_h (G, X)` when `X ∪ ⋃ Hλ` generates `G`,
 the coned-off graph `Γ(G, X ⊔ ⊔ Hλ)` is hyperbolic, and each `Hλ` carries a
-locally finite relative metric.  The coned-off graph is
-`HullSC.conedAlphabet` of `GGT/HullSCConeOff.lean` -- adjoining every element
-of `Hλ` as a letter is exactly the cone of radius one over each coset, and
-`HullSC.coneOff_dist_le` proves the crushing.  The *definition* of `↪_h` is
-owned by the `ggt-wpd` lane and is not restated here.
+locally finite relative metric.  The definition is `GGT.IsHypEmbedded` and
+`GGT.RelGenSet.IsHyperbolicallyEmbedded` of
+`GGT/WPDHyperbolicallyEmbedded.lean`, and it is used, not restated;
+`HullSC.coneOff` of `GGT/HullSCConeOff.lean` is the relative generating set for
+a single subgroup, read as a cone-off -- adjoining every element of `H` as a
+letter is exactly the cone of radius one over each coset, and
+`HullSC.coneOff_dist_le` proves the crushing.
 
 **(2) Hull's Theorem 3.12** (after Osin, Thm 1.2 and DGO Thm 4.42).  An
 acylindrically hyperbolic `G` has a generating set `A`, in general infinite,
@@ -119,7 +121,7 @@ The reduction (8) ⟹ (9) ⟹ (10), with the kernel bookkeeping.  Everything bel
 (8) is definitions and elementary lemmas, in the two companion modules; (8)
 itself is the citation, and it is the only one.  The arithmetic of the kernel
 -- that `m` steps, each killing one element, leave a kernel normally generated
-by `m` elements -- is `exists_normalClosure_ker_comp` and is proved, so the
+by `m` elements -- is `ker_comp_eq` and is proved, so the
 manuscript's separate remark on Hull's construction is a citation only at
 `m = 1`.
 -/

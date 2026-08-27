@@ -158,6 +158,22 @@ structure AH3Data (G : Type u) [Group G] where
   /-- The distinguished element satisfies the WPD condition. -/
   wpd : IsWPDAt elt base
 
+/-- **A subgroup containing a loxodromic element is infinite.**  A loxodromic
+element has infinite order (`HullGeometry.not_isOfFinOrder_of_isLoxodromic`), so
+its integer powers are pairwise distinct and all lie in the subgroup.
+
+This discharges the infinitude clause of `(AH₄)` from the loxodromy already
+recorded in `AH3Data`, so `DGOTheorem68` below does not have to carry it: the
+citation is asked for strictly less. -/
+theorem infinite_of_mem_of_isLoxodromic {G : Type u} [Group G] {X : Type v}
+    [PseudoMetricSpace X] [MulAction G X] {g : G} {x : X}
+    (hlox : IsLoxodromic g x) {E : Subgroup G} (hg : g ∈ E) :
+    (E : Set G).Infinite := by
+  have hinj : Function.Injective (fun n : ℤ => g ^ n) :=
+    injective_zpow_iff_not_isOfFinOrder.mpr
+      (not_isOfFinOrder_of_isLoxodromic hlox)
+  exact Set.infinite_of_injective_forall_mem hinj fun n => Subgroup.zpow_mem E hg n
+
 /-! ## The two literature inputs -/
 
 /-- **Dahmani--Guirardel--Osin, Theorem 6.8**, in the form Osin's Theorem 1.2
@@ -166,13 +182,13 @@ hyperbolic space is contained in a hyperbolically embedded subgroup `E(g)`,
 which is virtually cyclic — hence infinite, since a loxodromic element has
 infinite order, and proper as soon as `G` is not virtually cyclic.
 
-The properness and infinitude clauses are the trivial deductions from `E(g)`
-being virtually cyclic and containing the loxodromic `g`; they are folded into
-the statement so that the consumer needs nothing else. -/
+Properness is the trivial deduction from `E(g)` being virtually cyclic while
+`G` is not, and is folded in.  Infinitude is *not* folded in: it is derived
+from loxodromy by `infinite_of_mem_of_isLoxodromic`, so this proposition asks
+the literature for strictly less than `(AH₄)` consumes. -/
 def DGOTheorem68 : Prop :=
-  ∀ (G : Type u) [Group G] (D : AH3Data.{u, v} G), ¬ IsVirtuallyCyclic G →
-    ∃ E : Subgroup G, D.elt ∈ E ∧ E ≠ ⊤ ∧ (E : Set G).Infinite ∧
-      IsHypEmbedded G E
+  ∀ (G : Type u) [Group G] (D : AH3Data G), ¬ IsVirtuallyCyclic G →
+    ∃ E : Subgroup G, D.elt ∈ E ∧ E ≠ ⊤ ∧ IsHypEmbedded G E
 
 /-- **Osin, Theorem 1.2, the implication `(AH₄) ⇒ (AH₁)`** (proved in §5 of
 *Acylindrically hyperbolic groups*): a proper infinite hyperbolically embedded
@@ -185,15 +201,18 @@ def OsinAH4ToAH1 : Prop :=
 /-- **Osin, Theorem 1.2, the implication `(AH₃) ⇒ (AH₁)`** — the form
 Minasyan--Osin cite as their Theorem 3.3. -/
 def OsinTheorem12 : Prop :=
-  ∀ (G : Type u) [Group G], AH3Data.{u, v} G → ¬ IsVirtuallyCyclic G →
+  ∀ (G : Type u) [Group G], AH3Data G → ¬ IsVirtuallyCyclic G →
     IsAcylindricallyHyperbolic G
 
-/-- `(AH₃) ⇒ (AH₁)` is the composite of the two cited steps. -/
+/-- `(AH₃) ⇒ (AH₁)` is the composite of the two cited steps, with the
+infinitude of `E(g)` supplied by loxodromy rather than by the citation. -/
 theorem osinTheorem12_of (h68 : DGOTheorem68) (h4 : OsinAH4ToAH1) :
     OsinTheorem12 := by
   intro G _ D hvc
-  obtain ⟨E, _, hne, hinf, hemb⟩ := h68 G D hvc
-  exact h4 G E hne hinf hemb
+  letI := D.metricSpace
+  letI := D.mulAction
+  obtain ⟨E, hmem, hne, hemb⟩ := h68 G D hvc
+  exact h4 G E hne (infinite_of_mem_of_isLoxodromic D.loxodromic hmem) hemb
 
 /-! ## The converse, proved -/
 
