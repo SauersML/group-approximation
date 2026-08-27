@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.PairedReturnGraphIntersection
+import GroupApproximation.Higman.CoordCalculus
 import GroupApproximation.Sofic.ProfiniteRetract
 
 /-!
