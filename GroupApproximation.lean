@@ -2016,6 +2016,10 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCoronaFactor
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCompatibility
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaFactorMaps
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaRepresentation
+import GroupApproximation.Analysis.HNNTraceGeneratedDensity
+import GroupApproximation.Analysis.HNNTraceStarAlgHomDescent
+import GroupApproximation.Analysis.HNNTraceTracialStateContinuous
+import GroupApproximation.Manuscript.MFRecognition.HNNTraceBaseTransport
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
