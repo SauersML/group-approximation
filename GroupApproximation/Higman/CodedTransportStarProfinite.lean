@@ -2,6 +2,7 @@ import GroupApproximation.Computability.CodedProfiniteWitness
 import GroupApproximation.Higman.PairedReturnProfiniteWitness
 import GroupApproximation.Higman.PairedReturnCutterCode
 import GroupApproximation.Higman.TransportStarCode
+import GroupApproximation.Higman.TransportStarProdBotProfinite
 
 /-!
 # The coded profinite prefix of TransportStar
@@ -104,6 +105,52 @@ def productOvergroupModel :
   marks := pGeneratorWords
   ambientEquiv := pEquiv
   marked_eq := pMark_source_raw
+
+private theorem bot_cutter_eq :
+    (wordSubgroup pCode (pGeneratorWords.take 3)).map pEquiv.toMonoidHom =
+      Star.ProdBot := by
+  rw [map_wordSubgroup_eq_closure_eval]
+  change Subgroup.closure
+      {g : P | ∃ w ∈ pGeneratorWords.take 3,
+        PairedReturnCutterCode.evalPRaw w = g} = Star.ProdBot
+  have hset :
+      {g : P | ∃ w ∈ pGeneratorWords.take 3,
+        PairedReturnCutterCode.evalPRaw w = g} =
+      Set.range (MonoidHom.inl Conj.F₃ Conj.F₃ ∘
+        (FreeGroup.of : Fin 3 → Conj.F₃)) := by
+    ext g
+    simp [pGeneratorWords, pGenerators, Function.comp_def]
+    constructor
+    · rintro (h | h | h)
+      · exact ⟨0, h⟩
+      · exact ⟨1, h⟩
+      · exact ⟨2, h⟩
+    · rintro ⟨i, hi⟩
+      fin_cases i
+      · exact Or.inl hi
+      · exact Or.inr (Or.inl hi)
+      · exact Or.inr (Or.inr hi)
+  have hrange :
+      Set.range (MonoidHom.inl Conj.F₃ Conj.F₃ ∘
+          (FreeGroup.of : Fin 3 → Conj.F₃)) =
+        (MonoidHom.inl Conj.F₃ Conj.F₃ : Conj.F₃ → P) ''
+          Set.range (FreeGroup.of : Fin 3 → Conj.F₃) :=
+    Set.range_comp (fun x : Conj.F₃ => MonoidHom.inl Conj.F₃ Conj.F₃ x)
+      (FreeGroup.of : Fin 3 → Conj.F₃)
+  rw [hset, hrange, ← MonoidHom.map_closure,
+    FreeGroup.closure_range_of, Star.map_inl_top]
+
+/-- The literal fixed `botSyntax` is the coded form of the canonical
+profinite witness for `F₃ × 1`. -/
+def botModel : Model pMark Star.ProdBot where
+  data := Star.prodBotWitness
+  coded := TransportStarCode.botSyntax
+  ambientEquiv := pEquiv
+  cutter_eq := bot_cutter_eq
+  marked_eq := pMark_source_raw
+
+@[simp] theorem botModel_coded :
+    botModel.coded = TransportStarCode.botSyntax := rfl
 
 /-- The first concrete TransportStar step, exactly `hprod`: preimage along
 the first projection, with code produced by `BenignComapCode.transform`. -/
