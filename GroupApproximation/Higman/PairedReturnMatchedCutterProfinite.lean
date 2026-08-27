@@ -574,6 +574,69 @@ theorem exists_bad_or_terminal_of_normalWord_not_mem
       (normalWord_mem_matchedCutter_of_edgeScan w tail htail ht)
   · exact Or.inl hbad
 
+/-- A finite quotient preserves one of the two exact obstructions exposed by
+an excluded normal word. -/
+def PreservedObstruction
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d) : Prop :=
+  (∃ (pre : List
+        (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+      (carry : Edge) (g : PairedReturnGraphIntersection.P)
+      (rest : List
+        (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b)),
+    w.toWord.toList = pre ++ ⟨false, g⟩ :: rest ∧
+    EdgeScan w.head pre carry ∧
+    q ((carry : PairedReturnGraphIntersection.P) * g) ∉
+      (Star.graphSub.map q : Set Q) *
+        (PairedReturnGraphIntersection.M.map q : Set Q)) ∨
+  ∃ tail, EdgeScan w.head w.toWord.toList tail ∧
+    q (tail : PairedReturnGraphIntersection.P) ∉ Star.graphSub.map q
+
+/-- Every element outside the matched cutter has a normal word and one finite
+base quotient preserving its first failed carry test (or terminal graph
+test). -/
+theorem exists_finite_hom_preserving_normalObstruction
+    {z : Ambient} (hz : z ∉ matchedCutter) :
+    ∃ (d : PushoutI.NormalWord.Transversal
+          (Amalgam.famHom edgeToP edgeToC))
+      (w : PushoutI.NormalWord d)
+      (Q : Type) (_ : Group Q) (_ : Finite Q)
+      (q : PairedReturnGraphIntersection.P →* Q),
+      w.prod = z ∧ PreservedObstruction Q q w := by
+  classical
+  letI : ∀ b : Bool,
+      DecidableEq (Amalgam.fam PairedReturnGraphIntersection.P C b) :=
+    fun _ ↦ Classical.decEq _
+  obtain ⟨d⟩ := PushoutI.NormalWord.transversal_nonempty
+    (Amalgam.famHom edgeToP edgeToC)
+    (Amalgam.famHom_injective edgeToP edgeToC
+      edgeToP_injective edgeToC_injective)
+  let w : PushoutI.NormalWord d := PushoutI.NormalWord.equiv z
+  have hwprod : w.prod = z :=
+    (PushoutI.NormalWord.equiv (d := d)).symm_apply_apply z
+  have hwout : w.prod ∉ matchedCutter := by rwa [hwprod]
+  rcases exists_bad_or_terminal_of_normalWord_not_mem w hwout with
+      hbad | hterminal
+  · obtain ⟨pre, carry, g, rest, hlist, hscan, hfail⟩ := hbad
+    obtain ⟨Q, hQgroup, hQfinite, q, hq⟩ :=
+      exists_finite_hom_reflecting_leftProduct_list
+        [(carry : PairedReturnGraphIntersection.P) * g] (by
+          intro x hx
+          rw [List.mem_singleton] at hx
+          subst x
+          exact hfail)
+    refine ⟨d, w, Q, hQgroup, hQfinite, q, hwprod, Or.inl
+      ⟨pre, carry, g, rest, hlist, hscan, ?_⟩⟩
+    exact hq ((carry : PairedReturnGraphIntersection.P) * g) (by simp)
+  · obtain ⟨tail, hscan, htail⟩ := hterminal
+    obtain ⟨Q, hQgroup, hQfinite, q, hq⟩ :=
+      exists_finite_hom_reflecting_graph htail
+    exact ⟨d, w, Q, hQgroup, hQfinite, q, hwprod,
+      Or.inr ⟨tail, hscan, hq⟩⟩
+
 /-- The same quotient in the iterated-central-HNN model used by the finite
 free-label action. -/
 def ambientToFiniteStage2 (Q : Type) [Group Q]
