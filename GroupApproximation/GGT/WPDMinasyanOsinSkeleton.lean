@@ -217,7 +217,17 @@ admits an action on a hyperbolic space with a loxodromic WPD element.
 The intended witness is the Bass--Serre tree of the one-vertex two-loop graph
 of groups with vertex group `P`, the element `u₁u₂⁻¹`, and the base vertex;
 `skeleton_eq_one_of_mem_both_conjugates` is the finite pointwise stabilizer
-that Minasyan--Osin's Corollary 4.3 turns into the WPD condition. -/
+that Minasyan--Osin's Corollary 4.3 turns into the WPD condition.
+
+The four pieces of that witness now exist in the repository and only have to be
+assembled: the tree and its `0`-hyperbolicity in the four-point sense
+(`GGT.isHyperbolicSpace_zero` on `GGT.TreeSpace`, wired for HNN extensions in
+`GGT.BassSerreHNNAction`); the packaging `GGT.AH3Data.ofData`, which fixes the
+universe once; `GGT.pairStab_zero_finite_of_trivial_intersection`, which turns
+two vertex stabilizers meeting trivially into the finite pointwise stabilizer;
+and `GGT.isWPDAt_of_pairStab_cover`, which turns Minasyan--Osin's Lemma 4.2
+covering inclusion into `IsWPDAt`.  What is left is tree geometry: loxodromy of
+`u₁u₂⁻¹`, and that covering inclusion. -/
 def SkeletonAH3Input : Prop :=
   ∀ (P S : Type) (_ : Group P) (_ : Group S) (f : (P × P × S) →* P)
     (hf : Function.Injective f), Nonempty (AH3Data (Skeleton f hf))
