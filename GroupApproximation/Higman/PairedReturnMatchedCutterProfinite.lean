@@ -755,6 +755,21 @@ theorem mem_leftFactors {g : PairedReturnGraphIntersection.P} :
       rw [leftFactors] at h
       exact List.mem_cons_of_mem _ (mem_leftFactors h)
 
+theorem left_mem_leftFactors {g : PairedReturnGraphIntersection.P} :
+    ∀ {l}, ⟨false, g⟩ ∈ l → g ∈ leftFactors l
+  | [], h => by simp at h
+  | ⟨false, x⟩ :: l, h => by
+      rw [leftFactors]
+      rcases List.mem_cons.mp h with h | h
+      · cases h
+        exact List.mem_cons_self
+      · exact List.mem_cons_of_mem _ (left_mem_leftFactors h)
+  | ⟨true, x⟩ :: l, h => by
+      rw [leftFactors]
+      rcases List.mem_cons.mp h with h | h
+      · simp at h
+      · exact left_mem_leftFactors h
+
 /-- Every displayed left syllable of a normal word is outside the paired
 edge. -/
 theorem leftFactors_not_mem_edge
@@ -768,6 +783,91 @@ theorem leftFactors_not_mem_edge
     (Amalgam.famHom edgeToP edgeToC) d w
   apply hred ⟨false, g⟩ (mem_leftFactors hg)
   exact ⟨⟨g, hgedge⟩, rfl⟩
+
+/-- Map a literal source syllable into the corresponding (oppositely indexed)
+factor of the quotient free lamp. -/
+def quotientLetter (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q) :
+    (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b) →
+      (Σ b, LampFactor Q (PairedReturnGraphIntersection.M.map q) Sync b)
+  | ⟨false, g⟩ => ⟨true, q g⟩
+  | ⟨true, c⟩ => ⟨false, rightToImageLamp Q q c⟩
+
+/-- If no displayed left syllable becomes an edge syllable, the literal
+quotient spelling is still a coproduct word. -/
+def quotientWord
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (w : Monoid.CoprodI.Word
+      (Amalgam.fam PairedReturnGraphIntersection.P C))
+    (hred : PushoutI.Reduced
+      (Amalgam.famHom edgeToP edgeToC) w)
+    (hedge : ∀ g ∈ leftFactors w.toList,
+      q g ∉ PairedReturnGraphIntersection.M.map q) :
+    Monoid.CoprodI.Word
+      (LampFactor Q (PairedReturnGraphIntersection.M.map q) Sync) where
+  toList := w.toList.map (quotientLetter Q q)
+  ne_one := by
+    intro l hl
+    obtain ⟨l₀, hl₀, rfl⟩ := List.mem_map.mp hl
+    rcases l₀ with ⟨b, x⟩
+    cases b with
+    | false =>
+        change q x ≠ 1
+        intro hx
+        apply hedge x (left_mem_leftFactors hl₀)
+        rw [hx]
+        exact Subgroup.one_mem _
+    | true =>
+        change rightToImageLamp Q q x ≠ 1
+        intro hx
+        have hs := congrArg Prod.snd hx
+        change x.2 = 1 at hs
+        apply hred ⟨true, x⟩ hl₀
+        refine ⟨x.1, ?_⟩
+        exact Prod.ext rfl hs.symm
+  chain_ne := by
+    rw [List.isChain_map]
+    refine w.chain_ne.imp ?_
+    rintro ⟨b, x⟩ ⟨c, y⟩ h
+    cases b <;> cases c <;> simp_all [quotientLetter]
+
+/-- The quotient word is reduced in the target amalgam: left reducedness is
+the finite edge test, while right reducedness is protected by the unchanged
+synchronization coordinate. -/
+theorem quotientWord_reduced
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (w : Monoid.CoprodI.Word
+      (Amalgam.fam PairedReturnGraphIntersection.P C))
+    (hred : PushoutI.Reduced
+      (Amalgam.famHom edgeToP edgeToC) w)
+    (hedge : ∀ g ∈ leftFactors w.toList,
+      q g ∉ PairedReturnGraphIntersection.M.map q) :
+    PushoutI.Reduced
+      (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+      (quotientWord Q q w hred hedge) := by
+  intro l hl hrange
+  obtain ⟨l₀, hl₀, heq⟩ := List.mem_map.mp hl
+  cases heq
+  rcases l₀ with ⟨b, x⟩
+  cases b with
+  | false =>
+      obtain ⟨m, hm⟩ := hrange
+      apply hedge x (left_mem_leftFactors hl₀)
+      change (m : Q) = q x at hm
+      rw [← hm]
+      exact m.property
+  | true =>
+      obtain ⟨m, hm⟩ := hrange
+      apply hred ⟨true, x⟩ hl₀
+      refine ⟨x.1, ?_⟩
+      change (m, (1 : Sync)) =
+        (edgeToImage Q q x.1, x.2) at hm
+      have hs : 1 = x.2 := congrArg Prod.snd hm
+      apply Prod.ext
+      · rfl
+      · exact hs
 
 /-- A quotient preserves the source scan obstruction and prevents every
 left normal syllable from collapsing into the target edge. -/
