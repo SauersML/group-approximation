@@ -42,6 +42,33 @@ def HasCompatibleFiniteQuotients : Prop :=
         HNNBritton.NoPinch (A.map q) (B.map q)
           (HNNSubextension.mapList q l)
 
+/-- A quotient preserves a Britton-reduced spelling as soon as it preserves
+every edge nonmembership occurring at a seam.  This is the non-central
+analogue of the finite-list lemma used by
+`CentralHNNResiduallyFinite`. -/
+theorem noPinch_mapList_of_separates {Q : Type} [Group Q] (q : G →* Q) :
+    ∀ (l : List (ℤˣ × G)),
+      HNNBritton.NoPinch A B l →
+      (∀ p ∈ l,
+        p.2 ∉ HNNExtension.toSubgroup A B p.1 →
+          q p.2 ∉ HNNExtension.toSubgroup (A.map q) (B.map q) p.1) →
+      HNNBritton.NoPinch (A.map q) (B.map q)
+        (HNNSubextension.mapList q l)
+  | [], _, _ => HNNBritton.noPinch_nil
+  | [_], _, _ => HNNBritton.noPinch_singleton _
+  | x :: y :: l, hred, hsep => by
+      rw [HNNSubextension.mapList_cons, HNNSubextension.mapList_cons]
+      refine HNNBritton.noPinch_cons_cons ?_
+        (noPinch_mapList_of_separates q (y :: l) hred.tail ?_)
+      · intro hmem
+        by_contra hsign
+        have hx : x.2 ∉ HNNExtension.toSubgroup A B x.1 := by
+          intro hx
+          exact hsign (hred.seam y (by simp) hx)
+        exact hsep x (by simp) hx hmem
+      · intro p hp
+        exact hsep p (by simp [hp])
+
 /-- Map an HNN extension to a compatible HNN extension of a quotient base. -/
 def mapHNN {Q : Type} [Group Q] (q : G →* Q)
     (φq : A.map q ≃* B.map q) (hcompat : IntertwinesQuotient φ q φq) :
