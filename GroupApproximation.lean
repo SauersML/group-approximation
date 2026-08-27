@@ -1993,6 +1993,8 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniversalDef
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniversalMapping
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceSetupUniversal
 import GroupApproximation.Manuscript.MFRecognition.FinitelyGeneratedNonMFQuotient
+import GroupApproximation.Manuscript.MFRecognition.SwitchGroupBCRRelators
+import GroupApproximation.Manuscript.MFRecognition.CompilerIntroSentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
