@@ -32,6 +32,18 @@ inductive RightNormalizeTrace (φ : ∀ i, H →* G i) :
       RightNormalizeTrace φ
         (⟨i, g⟩ :: raw) (⟨i, n⟩ :: normal) head
 
+/-- A right-to-left edge-carry comparison between two reduced spellings with
+the same factor pattern. -/
+inductive RightCarryComparison (φ : ∀ i, H →* G i) :
+    List (Σ i, G i) → List (Σ i, G i) → H → Prop
+  | nil : RightCarryComparison φ [] [] 1
+  | cons (i : ι) (g s : G i) (raw small : List (Σ i, G i))
+      (head tail : H)
+      (heq : g * φ i tail = φ i head * s)
+      (hcompare : RightCarryComparison φ raw small tail) :
+      RightCarryComparison φ
+        (⟨i, g⟩ :: raw) (⟨i, s⟩ :: small) head
+
 /-- The normal-form construction for a reduced word, strengthened by the
 complete finite carry trace relating its original and normalized letters. -/
 theorem Reduced.exists_normalWord_prod_eq_with_trace
@@ -75,6 +87,45 @@ theorem Reduced.exists_normalWord_prod_eq_with_trace
         exact RightNormalizeTrace.cons i g (n.2 : G i)
           w.toList w'.toList nw.head w'.head
           (hnprod.symm.trans (by rw [hphiHead])) hwtrace
+
+/-- Two normalization traces ending in the same normal word compose to an
+explicit carry comparison between the original spellings. -/
+theorem RightNormalizeTrace.compare
+    (φ : ∀ i, H →* G i) :
+    ∀ {raw small normal : List (Σ i, G i)} {a b : H},
+      RightNormalizeTrace φ raw normal a →
+      RightNormalizeTrace φ small normal b →
+      RightCarryComparison φ raw small (a * b⁻¹) := by
+  intro raw small normal a b hraw
+  induction hraw generalizing small b with
+  | nil =>
+      intro hsmall
+      cases hsmall
+      simpa using RightCarryComparison.nil (φ := φ)
+  | cons i g n raw normal head tail heq htrace ih =>
+      intro hsmall
+      cases hsmall with
+      | cons _ s _ small _ _ btail hsmallEq hsmallTrace =>
+          have htail := ih hsmallTrace
+          have hsmallSolve : n =
+              (φ i b)⁻¹ * s * φ i btail := by
+            calc
+              n = (φ i b)⁻¹ * (φ i b * n) := by group
+              _ = (φ i b)⁻¹ * (s * φ i btail) := by rw [← hsmallEq]
+              _ = (φ i b)⁻¹ * s * φ i btail := by group
+          apply RightCarryComparison.cons i g s raw small
+            (head * b⁻¹) (tail * btail⁻¹) _ htail
+          calc
+            g * φ i (tail * btail⁻¹) =
+                (g * φ i tail) * (φ i btail)⁻¹ := by
+              rw [map_mul, map_inv, mul_assoc]
+            _ = (φ i head * n) * (φ i btail)⁻¹ := by rw [heq]
+            _ = (φ i head *
+                ((φ i b)⁻¹ * s * φ i btail)) *
+                  (φ i btail)⁻¹ := by rw [hsmallSolve]
+            _ = φ i (head * b⁻¹) * s := by
+              rw [map_mul, map_inv]
+              group
 
 end MatchedSubgroupAmalgamWordReflection
 end GroupApproximation
