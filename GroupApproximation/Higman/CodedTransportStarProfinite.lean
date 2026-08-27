@@ -40,6 +40,49 @@ def pMark (i : MarkCount) : P := pGenerators.getD i 1
 then three identities. -/
 def sourceMark (i : MarkCount) : Conj.F₃ := (pMark i).1
 
+/-- The six canonical marks generate the whole source double. -/
+theorem pMark_closure_top :
+    Subgroup.closure (Set.range pMark) = (⊤ : Subgroup P) := by
+  apply top_unique
+  rintro ⟨x, y⟩ -
+  have hleft : (x, 1) ∈ Subgroup.closure (Set.range pMark) := by
+    have hx : x ∈ Subgroup.closure
+        (Set.range (FreeGroup.of : Fin 3 → Conj.F₃)) := by
+      rw [FreeGroup.closure_range_of]
+      exact Subgroup.mem_top x
+    refine Subgroup.closure_induction
+      (p := fun z _ ↦ (z, 1) ∈ Subgroup.closure (Set.range pMark))
+      ?_ ?_ ?_ ?_ hx
+    · rintro _ ⟨i, rfl⟩
+      fin_cases i
+      · exact Subgroup.subset_closure ⟨⟨0, by omega⟩, by rfl⟩
+      · exact Subgroup.subset_closure ⟨⟨1, by omega⟩, by rfl⟩
+      · exact Subgroup.subset_closure ⟨⟨2, by omega⟩, by rfl⟩
+    · exact Subgroup.one_mem _
+    · intro a b _ _ ha hb
+      simpa using Subgroup.mul_mem _ ha hb
+    · intro a _ ha
+      simpa using Subgroup.inv_mem _ ha
+  have hright : (1, y) ∈ Subgroup.closure (Set.range pMark) := by
+    have hy : y ∈ Subgroup.closure
+        (Set.range (FreeGroup.of : Fin 3 → Conj.F₃)) := by
+      rw [FreeGroup.closure_range_of]
+      exact Subgroup.mem_top y
+    refine Subgroup.closure_induction
+      (p := fun z _ ↦ (1, z) ∈ Subgroup.closure (Set.range pMark))
+      ?_ ?_ ?_ ?_ hy
+    · rintro _ ⟨i, rfl⟩
+      fin_cases i
+      · exact Subgroup.subset_closure ⟨⟨3, by omega⟩, by rfl⟩
+      · exact Subgroup.subset_closure ⟨⟨4, by omega⟩, by rfl⟩
+      · exact Subgroup.subset_closure ⟨⟨5, by omega⟩, by rfl⟩
+    · exact Subgroup.one_mem _
+    · intro a b _ _ ha hb
+      simpa using Subgroup.mul_mem _ ha hb
+    · intro a _ ha
+      simpa using Subgroup.inv_mem _ ha
+  simpa using Subgroup.mul_mem _ hleft hright
+
 /-- Mapping a coded word-subgroup through its ambient equivalence gives the
 closure of the corresponding semantic evaluations. -/
 theorem map_wordSubgroup_eq_closure_eval
