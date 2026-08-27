@@ -119,28 +119,28 @@ theorem genCode_not_commute_of_not_mem (P : Subgroup G₀) (β : E) (x : G₀)
   have ht : Commute (t : Cent1 P) (of x) := by simpa using hdrop
   exact hx ((commute_t_of_iff P x).mp ht)
 
-/-- A coded row word with a nonzero active-window coordinate is not in the
-outside associated subgroup. -/
+/-- A coded row word with a nonzero coordinate before the right-tail cutoff
+is not in the associated subgroup. -/
 theorem basisHom_elt_not_mem_rowOut {m : ℕ} {l : E} {i : ℤ}
-    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) (hli : l i ≠ 0) :
+    (hi : i < (m : ℤ)) (hli : l i ≠ 0) :
     Row.basisHom (elt l) ∉ rowOut m := by
   intro hmem
   have hidx := (basisHom_mem_rowOut_iff m (elt l)).mp hmem
   have hkill := RowDeletionGraph.killOn_eq_self_of_mem_indexSub
-    (fun j : ℤ => j ∉ Finset.Ico (0 : ℤ) (m : ℤ)) hidx
+    (fun j : ℤ => (m : ℤ) ≤ j) hidx
   rw [Split.killOn_elt] at hkill
   have hfilt : Finsupp.filter
-      (fun j : ℤ => j ∉ Finset.Ico (0 : ℤ) (m : ℤ)) l = l :=
+      (fun j : ℤ => (m : ℤ) ≤ j) l = l :=
     elt_injective hkill
   have hat := congrArg (fun f : E => f i) hfilt
-  have hout : ¬ (i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) := fun h => h hi
+  have hout : ¬ ((m : ℤ) ≤ i) := by omega
   rw [Finsupp.filter_apply, if_neg hout] at hat
   exact hli hat.symm
 
 /-- **Conjugated-code survival.**  If `l` has a nonzero coordinate in the
 active window, `g_β` cannot commute with `b_l`. -/
 theorem slimGenCode_not_commute_bWord {m : ℕ} (β l : E) {i : ℤ}
-    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) (hli : l i ≠ 0) :
+    (hi : i < (m : ℤ)) (hli : l i ≠ 0) :
     ¬ Commute (slimGenCode m β)
       (emb3 (rowOut m) (Row.basisHom (elt l))) := by
   exact genCode_not_commute_of_not_mem (rowOut m) β _
@@ -894,7 +894,7 @@ first-stage pinch `t⁻¹ b_l t` in the row base.  Britton then puts `b_l` in
 `rowOut`, contradicting the active coordinate. -/
 theorem slimBase_mul_gen_mul_rowInv_not_mem_slimLink
     {m : ℕ} {β l : E} (hβ : β ∈ blockSet m) {i : ℤ}
-    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) (hli : l i ≠ 0)
+    (hi : i < (m : ℤ)) (hli : l i ≠ 0)
     (q : ↥Conj.K) :
     slimBaseCode m l * slimGenCode m β * (slimKBase m q)⁻¹ ∉ slimLink m := by
   intro hlink
@@ -946,7 +946,7 @@ noncomputable def slimCodeLabel (m : ℕ) (l β : E) :
 label range. -/
 theorem slimCodeLabel_not_mem_rowLabel_range
     {m : ℕ} {β l : E} (hβ : β ∈ blockSet m) {i : ℤ}
-    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) (hli : l i ≠ 0) :
+    (hi : i < (m : ℤ)) (hli : l i ≠ 0) :
     slimCodeLabel m l β ∉ Set.range (slimRowLabel m) := by
   rintro ⟨q, hq⟩
   apply slimBase_mul_gen_mul_rowInv_not_mem_slimLink hβ hi hli q
@@ -980,7 +980,7 @@ theorem slimGen_conj_aElt_eq_stableConj
 in the active window. -/
 theorem slimGen_conj_aElt_not_mem_F3Range
     {m : ℕ} {β l : E} (hβ : β ∈ blockSet m) {i : ℤ}
-    (hi : i ∈ Finset.Ico (0 : ℤ) (m : ℤ)) (hli : l i ≠ 0) :
+    (hi : i < (m : ℤ)) (hli : l i ≠ 0) :
     (slimPiOf m (slimGenCode m β))⁻¹ * slimPiF3Hom m (aElt l) *
         slimPiOf m (slimGenCode m β) ∉ (slimPiF3Hom m).range := by
   rintro ⟨x, hx⟩
@@ -1024,12 +1024,12 @@ theorem slimGen_conj_aElt_not_mem_F3Range
   exact slimCodeLabel_not_mem_rowLabel_range hβ hi hli
     (CentralHNNFreeLabel.Coordinate.index_mem_of_of_mem_closure hsupport)
 
-/-- **Case-1 collapse at the second stage.**  If `l` is supported outside the
-active window, then `g_β` commutes past its row code, so conjugating `a_l` by
+/-- **Case-1 collapse at the second stage.**  If `l` is supported in the
+right tail, then `g_β` commutes past its row code, so conjugating `a_l` by
 `g_β` simply inserts the selected block conjugate `a_β`. -/
-theorem slimGen_conj_aElt_eq_rowConj_of_outside
+theorem slimGen_conj_aElt_eq_rowConj_of_rightTail
     {m : ℕ} {β l : E} (hβ : β ∈ blockSet m)
-    (hl : ∀ i : ℤ, l i ≠ 0 → i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) :
+    (hl : ∀ i : ℤ, l i ≠ 0 → (m : ℤ) ≤ i) :
     (slimPiOf m (slimGenCode m β))⁻¹ * slimPiF3Hom m (aElt l) *
         slimPiOf m (slimGenCode m β) =
       (slimPiF3Hom m (bElt l))⁻¹ * slimPiF3Hom m (aElt β) *
@@ -1063,20 +1063,21 @@ theorem slimGen_conj_aElt_eq_rowConj_of_outside
       rw [slim_conj_gen m β hβ]
 
 /-- The two one-letter cases form an exact seam test: the conjugated code
-returns to the embedded `F₃` exactly when its row conjugator is supported
-outside the active window. -/
+returns to the embedded `F₃` exactly when its row conjugator is supported in
+the right tail. -/
 theorem slimGen_conj_aElt_mem_F3Range_iff
     {m : ℕ} {β l : E} (hβ : β ∈ blockSet m) :
     ((slimPiOf m (slimGenCode m β))⁻¹ * slimPiF3Hom m (aElt l) *
         slimPiOf m (slimGenCode m β) ∈ (slimPiF3Hom m).range) ↔
-      ∀ i : ℤ, l i ≠ 0 → i ∉ Finset.Ico (0 : ℤ) (m : ℤ) := by
+      ∀ i : ℤ, l i ≠ 0 → (m : ℤ) ≤ i := by
   constructor
-  · intro hmem i hli hi
-    exact slimGen_conj_aElt_not_mem_F3Range hβ hi hli hmem
+  · intro hmem i hli
+    by_contra hi
+    exact slimGen_conj_aElt_not_mem_F3Range hβ (by omega) hli hmem
   · intro hout
     refine ⟨(bElt l)⁻¹ * aElt β * bElt l, ?_⟩
     rw [map_mul, map_mul, map_inv]
-    exact (slimGen_conj_aElt_eq_rowConj_of_outside hβ hout).symm
+    exact (slimGen_conj_aElt_eq_rowConj_of_rightTail hβ hout).symm
 
 /-- **Cases 2 and 3 in one seam test.**  A sandwich with possibly different
 selected code letters returns to the embedded `F₃` precisely when the two
@@ -1088,7 +1089,7 @@ theorem slimGen_inv_mul_aElt_mul_gen_mem_F3Range_iff
     ((slimPiOf m (slimGenCode m β))⁻¹ * slimPiF3Hom m (aElt l) *
         slimPiOf m (slimGenCode m γ) ∈ (slimPiF3Hom m).range) ↔
       β = γ ∧ ∀ i : ℤ, l i ≠ 0 →
-        i ∉ Finset.Ico (0 : ℤ) (m : ℤ) := by
+        (m : ℤ) ≤ i := by
   constructor
   · rintro ⟨x, hx⟩
     have hmid : slimPiBaseRet m (slimPiF3Hom m (aElt l)) = 1 := by

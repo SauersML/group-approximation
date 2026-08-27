@@ -229,6 +229,16 @@ theorem jQFst_Theta (a b : FreeGroup ℤ) : jQFst (Theta (a, b)) = yFreeHom a :=
 theorem jQSnd_Theta (a b : FreeGroup ℤ) : jQSnd (Theta (a, b)) = yFreeHom b := by
   rw [Theta_apply, map_mul, jQSnd_qyHom, jQSnd_qtHom, one_mul]
 
+/-- **`lem:bridge` (3).**  "`j` restricted to `N_0` is an isomorphism onto the
+product of these two normal closures."  Read through the printed identification
+`N_0 = F(y_n) × F(t_m)` of `nzeroModel_eq_Nzero`, the map `j` is `yFreeHom` in
+each coordinate; `range_yFreeHom_eq_normalClosure` identifies the image of each
+coordinate with the printed normal closure, and `yFreeHom_injective` with
+`Theta_injective` make the restriction an isomorphism onto it. -/
+theorem jQ_Theta_eq (a b : FreeGroup ℤ) :
+    jQ (Theta (a, b)) = (yFreeHom a, yFreeHom b) :=
+  Prod.ext (jQFst_Theta a b) (jQSnd_Theta a b)
+
 /-- The printed conclusion of the `N_0` computation, in the form the final
 argument consumes: an element of `N_0` killed by `j` is trivial, because each of
 its two coordinates is a word in the printed free basis of a normal closure. -/
@@ -262,6 +272,13 @@ theorem Theta_injective : Function.Injective Theta := by
   have ha : a = 1 := yFreeHom_injective (by rw [h1, map_one])
   have hb : b = 1 := yFreeHom_injective (by rw [h2, map_one])
   exact Prod.ext ha hb
+
+/-- **`lem:bridge` (3).**  "So `N_0 = F(y_n : n ∈ ℤ) × F(t_m : m ∈ ℤ)`": the map
+from the direct product of the two free groups on the printed families is
+injective with image exactly `N_0`. -/
+theorem nzero_eq_free_prod :
+    Function.Injective Theta ∧ Theta.range = Nzero :=
+  ⟨Theta_injective, nzeroModel_eq_Nzero⟩
 
 /-- **`j` is injective on `N_0`.** -/
 theorem eq_one_of_jQ_eq_one_of_mem_Nzero {h : Qplus} (hh : h ∈ Nzero)
@@ -338,6 +355,29 @@ theorem epsQ_split {h : Qplus} (hh : h ∈ Nzero) (k : ℤ) :
   have h1 : epsQ h = 1 := Nzero_le_ker_epsQ hh
   rw [map_mul, map_zpow, epsQ_qx, h1, one_mul]
 
+/-- **`lem:bridge` (3).**  "`Q_+/N_0 = ⟨x⟩` is infinite cyclic", and the printed
+consequence "`j(x)^k ∉ j(N_0)` for `k ≠ 0`": no nonzero power of `x` meets `N_0`,
+by the exponent sum of `x_1`. -/
+theorem qx_zpow_mem_Nzero_iff (k : ℤ) : qx ^ k ∈ Nzero ↔ k = 0 := by
+  constructor
+  · intro hk
+    have h1 : epsQ (qx ^ k) = 1 := Nzero_le_ker_epsQ hk
+    rw [map_zpow, epsQ_qx] at h1
+    exact (zpow_ofAdd_one_eq_one_iff k).mp h1
+  · intro hk
+    rw [hk, zpow_zero]
+    exact Subgroup.one_mem _
+
+/-- **`lem:bridge` (3), the printed splitting.**  "Then `Q_+/N_0 = ⟨x⟩` is
+infinite cyclic and the extension splits, so `Q_+ = N_0 ⋊ ⟨x⟩`": every element
+factors as `h · x^k` with `h ∈ N_0`, and the cyclic complement meets `N_0`
+trivially, so the quotient is infinite cyclic and the factorization is
+unique. -/
+theorem qplus_semidirect :
+    (∀ u : Qplus, ∃ h ∈ Nzero, ∃ k : ℤ, u = h * qx ^ k) ∧
+      (∀ k : ℤ, qx ^ k ∈ Nzero ↔ k = 0) :=
+  ⟨exists_split, qx_zpow_mem_Nzero_iff⟩
+
 /-! ## 4.  Clause (3) -/
 
 /-- **`lem:bridge` (3).**  "The assignment `x ↦ (x_1,x_2)`, `y ↦ (y,1)`,
@@ -355,6 +395,22 @@ theorem jQ_injective : Function.Injective jQ := by
   have hk0 : k = 0 := (zpow_ofAdd_one_eq_one_iff k).mp hk
   rw [hk0, zpow_zero, mul_one] at hu ⊢
   exact eq_one_of_jQ_eq_one_of_mem_Nzero hh hu
+
+/-- **`lem:bridge` (3).**  "`j(x) = (x_1,x_2)` has infinite order."  The
+operative half of that sentence --- `j(x)^k ∉ j(N_0)` for `k ≠ 0` --- is
+`qx_zpow_mem_Nzero_iff`, which the injectivity proof consumes; infinite order
+itself is read off afterwards. -/
+theorem jQ_qx_zpow_eq_one_iff (k : ℤ) : jQ qx ^ k = 1 ↔ k = 0 := by
+  rw [← map_zpow]
+  constructor
+  · intro h
+    have hone : qx ^ k = 1 := jQ_injective (by rw [h, map_one])
+    have hmem : qx ^ k ∈ Nzero := by
+      rw [hone]
+      exact Subgroup.one_mem _
+    exact (qx_zpow_mem_Nzero_iff k).mp hmem
+  · intro hk
+    rw [hk, zpow_zero, map_one]
 
 /-- Mathlib's residual finiteness of free groups, in the development's
 predicate. -/

@@ -19,12 +19,8 @@ theorem amalgamRightInclusion_one_zero_eq_matrixUnitRight
     amalgamRight data (amalgamRightInclusion data
         ((1 : sourceEdgeAlgebra data), (0 : targetEdgeAlgebra data))) =
       matrixUnitRight data 0 0 := by
-  change amalgamRight data (amalgamRightInclusion data
-      ((1 : sourceEdgeAlgebra data), (0 : targetEdgeAlgebra data))) =
-    amalgamRight data
-      (cStarMatrixUnitTwo 0 0 (1 : sourceEdgeAlgebra data))
-  exact congrArg (amalgamRight data)
-    (amalgamRightInclusion_one_zero_eq_matrixUnit data)
+  unfold matrixUnitRight
+  rw [amalgamRightInclusion_one_zero_eq_matrixUnit]
 
 end
 

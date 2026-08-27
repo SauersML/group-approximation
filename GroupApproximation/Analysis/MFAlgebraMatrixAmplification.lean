@@ -259,15 +259,22 @@ theorem isMFAlgebra_cstarMatrix
     (hA : IsMFAlgebra A) :
     IsMFAlgebra (CStarMatrix (Fin m) (Fin m) A) := by
   letI : TopologicalSpace.SeparableSpace A := hA.1
-  letI : ∀ _ : Fin m, TopologicalSpace.SeparableSpace A :=
-    fun _ ↦ hA.1
-  letI : ∀ _ : Fin m,
+  let hrow : ∀ _ : Fin m,
       TopologicalSpace.SeparableSpace (Fin m → A) :=
-    fun _ ↦ inferInstance
+    fun _ ↦
+      @TopologicalSpace.instSeparableSpaceForallOfCountable
+        (Fin m) (fun _ ↦ A) (fun _ ↦ inferInstance)
+        (fun _ ↦ hA.1) inferInstance
+  letI : ∀ _ : Fin m,
+      TopologicalSpace.SeparableSpace (Fin m → A) := hrow
+  let hmatrix : TopologicalSpace.SeparableSpace
+      (Matrix (Fin m) (Fin m) A) :=
+    @TopologicalSpace.instSeparableSpaceForallOfCountable
+      (Fin m) (fun _ ↦ Fin m → A) (fun _ ↦ inferInstance)
+      hrow inferInstance
   letI : TopologicalSpace.SeparableSpace
       (CStarMatrix (Fin m) (Fin m) A) :=
-    inferInstanceAs (TopologicalSpace.SeparableSpace
-      (Matrix (Fin m) (Fin m) A))
+    hmatrix
   exact ⟨inferInstance, hasMFEmbedding_cstarMatrix m hA.2⟩
 
 end MFPermanence

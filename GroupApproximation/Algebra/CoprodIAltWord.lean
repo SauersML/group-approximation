@@ -103,13 +103,16 @@ words drags the proof terms along.  `listProd` is the same product taken on the
 bare list, so the computation can be done first and the word assembled only at
 the end, where nontriviality is actually needed. -/
 
-/-- The product of a list of letters. -/
-def listProd (l : List (Σ i, M i)) : CoprodI M :=
+/-- The product of a list of letters in an arbitrary indexed free product. -/
+def listProd {ι : Type*} {N : ι → Type*} [∀ i, Group (N i)]
+    (l : List (Σ i, N i)) : CoprodI N :=
   (l.map fun p ↦ CoprodI.of p.2).prod
 
-@[simp] theorem listProd_nil : listProd ([] : List (Σ i, M i)) = 1 := rfl
+@[simp] theorem listProd_nil {ι : Type*} {N : ι → Type*}
+    [∀ i, Group (N i)] : listProd ([] : List (Σ i, N i)) = 1 := rfl
 
-@[simp] theorem listProd_cons (p : Σ i, M i) (l : List (Σ i, M i)) :
+@[simp] theorem listProd_cons {ι : Type*} {N : ι → Type*}
+    [∀ i, Group (N i)] (p : Σ i, N i) (l : List (Σ i, N i)) :
     listProd (p :: l) = CoprodI.of p.2 * listProd l := by
   simp [listProd]
 

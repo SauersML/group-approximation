@@ -1,4 +1,4 @@
-import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaAmalgamInjective
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaAmalgamRight
 
 namespace GroupApproximation
 namespace Manuscript

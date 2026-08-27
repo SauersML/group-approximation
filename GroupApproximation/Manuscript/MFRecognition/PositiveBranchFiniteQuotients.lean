@@ -367,7 +367,7 @@ theorem ropeLambda_of (L0 : Subgroup K0) (psi : F →* P) (r : P →* C)
 theorem ropeLambda_stable (L0 : Subgroup K0) (psi : F →* P) (r : P →* C) :
     ropeLambda L0 psi r (ropeStable L0 psi) = sigmaElt C := by
   unfold ropeLambda ropeStable
-  rw [HNNExtension.lift_t]
+  rw [map_inv, HNNExtension.lift_t, sigmaElt_inv]
 
 /-- `σ` has order two, so the printed value `λ_n(v) = σ` is unchanged if the
 manuscript's stable letter `v` is realized as the inverse of Mathlib's

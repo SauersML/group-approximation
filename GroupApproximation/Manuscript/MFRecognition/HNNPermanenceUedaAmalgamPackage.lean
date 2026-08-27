@@ -1,4 +1,4 @@
-import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCompatibility
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaAmalgamPackageType
 
 /-!
 # The bundled full amalgam used by Ueda's corner model
@@ -18,29 +18,16 @@ variable {G : Type} [Group G] {S T : Subgroup G} {phi : S ≃* T}
 variable {A : Type} [CStarAlgebra A]
 variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
 
-structure PackagedCStarAlgebra where
-  carrier : Type 1
-  instCStarAlgebra : CStarAlgebra carrier
-
-instance : CoeSort PackagedCStarAlgebra (Type 1) :=
-  ⟨PackagedCStarAlgebra.carrier⟩
-
-noncomputable instance (P : PackagedCStarAlgebra) : CStarAlgebra P :=
-  P.instCStarAlgebra
-
 /-- Printed: *"let `P = A₁ *_C A₂` be the full amalgamated free product"*. -/
 def amalgam (data : CoronaConjugator G S T phi A X) :
-    PackagedCStarAlgebra where
-  carrier := @UniversalCStarAmalgam
-    (edgeSumAlgebra data) (matrixBaseAlgebra data) (matrixEdgeAlgebra data)
-    inferInstance inferInstance inferInstance
-    (amalgamLeftInclusion data) (amalgamRightInclusion data)
+    PackagedCStarAlgebra := by
+  letI : Nonempty (CStarAmalgamRepresentation
+      (amalgamLeftInclusion data) (amalgamRightInclusion data)) :=
     ⟨coronaAmalgamRepresentation data⟩
-  instCStarAlgebra := @universalCStarAmalgamCStarAlgebra
-    (edgeSumAlgebra data) (matrixBaseAlgebra data) (matrixEdgeAlgebra data)
-    inferInstance inferInstance inferInstance
-    (amalgamLeftInclusion data) (amalgamRightInclusion data)
-    ⟨coronaAmalgamRepresentation data⟩
+  exact
+    { carrier := UniversalCStarAmalgam
+        (amalgamLeftInclusion data) (amalgamRightInclusion data)
+      instCStarAlgebra := inferInstance }
 
 end
 

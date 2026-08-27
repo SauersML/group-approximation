@@ -19,9 +19,9 @@ Write `ℰ_m` for the sequences supported on the window `[0, m)` --- the possibl
 The tower is
 
 * `Σ = ⟨b, c⟩ ∗_{B₀ₘ} (g, h, k)`: three new free generators `g, h, k`, each
-  *centralizing* `B₀ₘ = ⟨bᵢ : i ∉ [0, m)⟩`, the rows outside the window.  This
+  *centralizing* the right-tail rows `⟨bᵢ : m ≤ i⟩`.  This
   is what makes `g_β` --- the analogue of `a_β` built from `g, h, k` instead of
-  `a, b, c` --- commute with `b_l` for every `l` supported off the window.
+  `a, b, c` --- commute with `b_l` for every `l` supported to its right.
 * `Π = Σ ∗_L a`: the generator `a` re-entered as a stable letter *centralizing*
   `L = ⟨g_β b_β⁻¹ : β ∈ ℰ_m⟩`.  Centralizing `L` is exactly the statement
   `a^{g_β} = a^{b_β} = a_β` for every block `β`.
@@ -41,7 +41,7 @@ relations**, which are exactly the three bullets above:
 
 * `conj_stable` --- `stable` conjugates `emb` by `shiftAut^m`;
 * `conj_gen` --- `(gen β)⁻¹ · a · gen β = a_β` for `β ∈ ℰ_m`;
-* `commute_row` --- `gen β` commutes with the rows outside the window.
+* `commute_row` --- `gen β` commutes with the rows to the right of the window.
 
 Given a tower, the **easy half of the computation is proved in full**:
 
@@ -50,7 +50,7 @@ Given a tower, the **easy half of the computation is proved in full**:
 That is `emb_aElt_mem_W`, and it is not a formality.  It is the induction
 Mikaelian runs on his worked example: peel the block at index `0` off `l` with
 `conj_gen` (legal because `gen β` commutes with the rest of `b_l`, which is
-supported off the window --- `commute_gen_bElt`), push the remaining tail down
+supported to the right --- `commute_gen_bElt`), push the remaining tail down
 by one block with `conj_stable`, and recurse.  The bookkeeping that makes it an
 induction --- that the tail, unshifted, has one fewer block and still has all
 its blocks in `B` (this is where `0 ∈ B` is spent, on the blocks the unshift
@@ -360,9 +360,11 @@ structure Tower (m : ℕ) where
   says exactly that conjugating `a` by `g_β` is the same as conjugating it by
   `b_β`, i.e. gives `a_β`. -/
   conj_gen : ∀ β ∈ blockSet m, (gen β)⁻¹ * emb a * gen β = emb (aElt β)
-  /-- **First stage.**  `g, h, k` centralize `B₀ₘ = ⟨bᵢ : i ∉ [0, m)⟩`, so
-  every `g_β` commutes with every row outside the window. -/
-  commute_row : ∀ β ∈ blockSet m, ∀ i : ℤ, i ∉ Finset.Ico (0 : ℤ) (m : ℤ) →
+  /-- **First stage.**  `g, h, k` centralize the right-tail subgroup
+  `⟨bᵢ : m ≤ i⟩`, so every `g_β` commutes with every row strictly after the
+  active block.  The one-sided condition is essential: centralizing negative
+  rows would destroy the order information used by the descent. -/
+  commute_row : ∀ β ∈ blockSet m, ∀ i : ℤ, (m : ℤ) ≤ i →
     Commute (gen β) (emb (rowElt i))
 
 attribute [instance] Tower.group
@@ -394,15 +396,15 @@ theorem emb_aElt_eq {m : ℕ} (T : Tower m) (f : E) :
   unfold aElt
   rw [map_mul, map_mul, map_inv]
 
-/-- **`gen β` commutes with the code of anything supported off the window.**
-The rows outside `[0, m)` generate a subgroup, and commuting with a fixed
-element is a subgroup condition, so the generator-level relation
+/-- **`gen β` commutes with the code of anything supported to the right of
+the window.**  The rows at indices at least `m` generate a subgroup, and
+commuting with a fixed element is a subgroup condition, so the generator-level relation
 `Tower.commute_row` propagates. -/
 theorem commute_gen_bElt {m : ℕ} (T : Tower m) {β : E} (hβ : β ∈ blockSet m)
-    {f : E} (hf : ∀ i : ℤ, f i ≠ 0 → i ∉ Finset.Ico (0 : ℤ) (m : ℤ)) :
+    {f : E} (hf : ∀ i : ℤ, f i ≠ 0 → (m : ℤ) ≤ i) :
     Commute (T.gen β) (T.emb (bElt f)) := by
   have hmem : elt f ∈ Subgroup.closure
-      (FreeGroup.of '' {i : ℤ | i ∉ Finset.Ico (0 : ℤ) (m : ℤ)}) :=
+      (FreeGroup.of '' {i : ℤ | (m : ℤ) ≤ i}) :=
     Split.elt_mem_closure fun i hi => hf i (Finsupp.mem_support_iff.mp hi)
   unfold bElt
   refine Subgroup.closure_induction
@@ -438,7 +440,7 @@ This is the one step of the argument that uses all three relations at once:
 `aElt_split_block` writes `a_l` as `a_β` conjugated by the tail's code,
 `conj_gen` replaces `a_β` by `a` conjugated by `gen β`, and `commute_row` --- via
 `commute_gen_bElt` --- lets the two conjugations be swapped, because the tail is
-supported off the window. -/
+supported to the right of the window. -/
 theorem emb_aElt_eq_conj {m : ℕ} (T : Tower m) {l : E}
     (hl : ∀ i : ℤ, l i ≠ 0 → 0 ≤ i) :
     T.emb (aElt l)
@@ -446,9 +448,9 @@ theorem emb_aElt_eq_conj {m : ℕ} (T : Tower m) {l : E}
           * T.gen (blockAt m 0 l) := by
   have hcomm : Commute (T.gen (blockAt m 0 l)) (T.emb (bElt (tailFrom m l))) := by
     refine commute_gen_bElt T (blockAt_mem_blockSet m 0 l) ?_
-    intro i hi hmem
-    rw [Finset.mem_Ico] at hmem
-    exact hi (tailFrom_apply_of_lt hmem.2)
+    intro i hi
+    by_contra hlt
+    exact hi (tailFrom_apply_of_lt (by omega))
   calc T.emb (aElt l)
       = (T.emb (bElt (tailFrom m l)))⁻¹ * T.emb (aElt (blockAt m 0 l))
           * T.emb (bElt (tailFrom m l)) := by

@@ -1,6 +1,6 @@
 import GroupApproximation.Manuscript.MFRecognition.ReducedProductsWiring
 import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationConjugator
-import GroupApproximation.Analysis.NonUnitalMFSupportCornerEmbedding
+import GroupApproximation.Analysis.MFAlgebraUnitalCoronaEmbedding
 import GroupApproximation.Analysis.UniversalCStarHNN
 
 /-!
@@ -90,26 +90,6 @@ structure HNNPermanenceInputs : Prop where
         iota ((realization.rho ((phi s : T) : G) : unitary A) : A)) →
     IsRegularlyRealized (HNNExtension G S T phi)
 
-/-- A nonzero unital MF C-star algebra has a faithful unital corona
-representation.  The nontriviality hypothesis is necessary: the zero unital
-algebra cannot map unitally into a matrix corona.  Every use below obtains it
-from the tracial state in a regular realization. -/
-theorem unitalCoronaEmbedding :
-    ∀ {A : Type} [CStarAlgebra A] [Nontrivial A], IsMFAlgebra A →
-      ∃ (X : ℕ → FiniteModel) (hX : ∀ n, Nonempty (X n)),
-        letI : ∀ n, Nonempty (X n) := hX
-        ∃ iota : A →⋆ₐ[ℂ] NormMatrixCStarCorona (fun n ↦ X n),
-          Function.Injective iota := by
-  intro A _ _ hA
-  rcases hA.2 with ⟨Y, hYne, _hYpos, _hYmono, e, he⟩
-  letI : ∀ n, Nonempty (Y n) := hYne
-  obtain ⟨X, hXne, E, hE⟩ :=
-    NonUnitalMFSupportCornerEmbedding.exists_injective_unital_supportCornerEmbedding
-      Y e he
-  exact ⟨X, hXne, E, hE⟩
-
-#audit_axioms unitalCoronaEmbedding
-
 /-! ## Applying `thm:hnn-permanence` -/
 
 /-- Conjugating by the image of a unitary is the image of conjugating by that
@@ -144,7 +124,8 @@ theorem isRegularlyRealized_hnn_of_conjugator (hIn : HNNPermanenceInputs)
         ((R.rho ((theta s : T) : G) : unitary A) : A)) :
     IsRegularlyRealized (HNNExtension G S T theta) := by
   letI : Nontrivial A := regularRealization_nontrivial R
-  obtain ⟨X, hX, iota, hiota⟩ := unitalCoronaEmbedding R.mf
+  obtain ⟨X, hX, iota, hiota⟩ :=
+    MFAlgebraUnitalCoronaEmbedding.exists_injective_unital_coronaEmbedding R.mf
   letI : ∀ n, Nonempty (X n) := hX
   refine hIn.hnnPermanence theta R iota hiota
     (unitaryMapOfStarAlgHom iota W) ?_

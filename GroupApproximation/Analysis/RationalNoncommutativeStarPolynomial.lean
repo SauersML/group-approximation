@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.RatComplexSubfield
 import Mathlib.Analysis.CStarAlgebra.Hom
+import Mathlib.Tactic.DeriveCountable
 
 /-!
 # Countable rational noncommutative star polynomials
@@ -32,6 +33,8 @@ inductive Polynomial where
   | star : Polynomial → Polynomial
   deriving DecidableEq, Countable
 
+instance : Inhabited Polynomial := ⟨.zero⟩
+
 /-- One more than every generator index occurring in a polynomial. -/
 def generatorBound : Polynomial → ℕ
   | .zero => 0
@@ -40,6 +43,12 @@ def generatorBound : Polynomial → ℕ
   | .add p q => max (generatorBound p) (generatorBound q)
   | .mul p q => max (generatorBound p) (generatorBound q)
   | .star p => generatorBound p
+
+/-- Formal additive inverse, using the rational scalar `-1`. -/
+def neg (p : Polynomial) : Polynomial := .smul (-1, 0) p
+
+/-- Formal subtraction. -/
+def sub (p q : Polynomial) : Polynomial := .add p (neg q)
 
 /-- Evaluation in a complex star algebra at a countable family. -/
 def eval {A : Type*} [NonUnitalCStarAlgebra A] (a : ℕ → A) :
@@ -72,6 +81,18 @@ def eval {A : Type*} [NonUnitalCStarAlgebra A] (a : ℕ → A) :
 @[simp] theorem eval_star {A : Type*} [NonUnitalCStarAlgebra A]
     (a : ℕ → A) (p : Polynomial) :
     eval a (.star p) = star (eval a p) := rfl
+
+@[simp] theorem eval_neg {A : Type*} [NonUnitalCStarAlgebra A]
+    (a : ℕ → A) (p : Polynomial) : eval a (neg p) = -eval a p := by
+  change RationalHermitian.ofRatPair (-1, 0) • eval a p = -eval a p
+  have hscalar : RationalHermitian.ofRatPair (-1, 0) = (-1 : ℂ) := by
+    apply Complex.ext <;> simp [RationalHermitian.ofRatPair]
+  rw [hscalar, neg_one_smul]
+
+@[simp] theorem eval_sub {A : Type*} [NonUnitalCStarAlgebra A]
+    (a : ℕ → A) (p q : Polynomial) :
+    eval a (sub p q) = eval a p - eval a q := by
+  rw [sub, eval_add, eval_neg, sub_eq_add_neg]
 
 /-- Evaluation is functorial for nonunital star homomorphisms. -/
 theorem map_eval {A B : Type*} [NonUnitalCStarAlgebra A]

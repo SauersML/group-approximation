@@ -13,12 +13,12 @@ variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
 
 /-- The canonical copy of `A₂ = M₂(B₀)` in `P`. -/
 def amalgamRight (data : CoronaConjugator G S T phi A X) :
-    matrixEdgeAlgebra data →⋆ₐ[ℂ] amalgam data :=
-  @universalCStarAmalgamRight
-    (edgeSumAlgebra data) (matrixBaseAlgebra data) (matrixEdgeAlgebra data)
-    inferInstance inferInstance inferInstance
-    (amalgamLeftInclusion data) (amalgamRightInclusion data)
+    matrixEdgeAlgebra data →⋆ₐ[ℂ] amalgam data := by
+  letI : Nonempty (CStarAmalgamRepresentation
+      (amalgamLeftInclusion data) (amalgamRightInclusion data)) :=
     ⟨coronaAmalgamRepresentation data⟩
+  exact universalCStarAmalgamRight
+    (amalgamLeftInclusion data) (amalgamRightInclusion data)
 
 end
 

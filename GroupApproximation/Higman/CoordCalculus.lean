@@ -280,6 +280,54 @@ theorem Aset_mul_subgroup {S : Set F₃} (hS : S ⊆ (K : Set F₃)) {U : Subgro
     · exact Subgroup.mem_sup_left (conjA_mem_Aset hs)
     · exact Subgroup.mem_sup_right hu
 
+/-- The kernel of the retraction killing `a` is exactly the free subgroup on
+the conjugates `a^k`, indexed by `k ∈ K`.  Keeping this structural identity
+in the coordinate module lets finite-quotient arguments use it without
+importing any of the omega-tower machinery. -/
+theorem ker_retK_eq_cbHom_range :
+    MonoidHom.ker retK = cbHom.range := by
+  have hS : ({1} : Set F₃) ⊆ (K : Set F₃) := by
+    intro x hx
+    rw [Set.mem_singleton_iff] at hx
+    subst x
+    exact Subgroup.one_mem _
+  have hsup : Aset ({1} : Set F₃) ⊔ K = ⊤ := by
+    apply top_unique
+    rw [← FreeGroup.closure_range_of (Fin 3)]
+    refine (Subgroup.closure_le _).mpr ?_
+    rintro x ⟨i, rfl⟩
+    fin_cases i
+    · change a ∈ Aset ({1} : Set F₃) ⊔ K
+      apply Subgroup.mem_sup_left
+      have ha : conjA 1 = a := by simp [conjA]
+      rw [← ha]
+      exact conjA_mem_Aset rfl
+    · change b ∈ Aset ({1} : Set F₃) ⊔ K
+      exact Subgroup.mem_sup_right b_mem_K
+    · change c ∈ Aset ({1} : Set F₃) ⊔ K
+      exact Subgroup.mem_sup_right c_mem_K
+  have hprod : ({1} : Set F₃) * (K : Set F₃) = (K : Set F₃) := by
+    ext x
+    constructor
+    · rintro ⟨u, hu, v, hv, rfl⟩
+      rw [Set.mem_singleton_iff] at hu
+      subst u
+      simpa using hv
+    · intro hx
+      exact ⟨1, rfl, x, hx, one_mul x⟩
+  have hker := Aset_mul_subgroup hS (show K ≤ K from le_rfl)
+  rw [hsup, top_inf_eq, hprod] at hker
+  rw [hker, Aset_eq_map (show (K : Set F₃) ⊆ K from fun _ h => h)]
+  have htoK : toK (K : Set F₃) = Set.univ := by
+    ext x
+    simp [toK]
+  rw [htoK, Set.image_univ, FreeGroup.closure_range_of]
+  apply le_antisymm
+  · rintro x ⟨w, -, rfl⟩
+    exact ⟨w, rfl⟩
+  · rintro x ⟨w, rfl⟩
+    exact ⟨w, Subgroup.mem_top w, rfl⟩
+
 /-- **Right translation by a benign subgroup of `K` preserves benignness.**
 This is the one new construction the operation closures need. -/
 theorem benignTF_Aset_mul {S : Set F₃} (hS : S ⊆ (K : Set F₃)) {U : Subgroup F₃}

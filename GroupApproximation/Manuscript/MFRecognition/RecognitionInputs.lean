@@ -1,5 +1,6 @@
 import GroupApproximation.Computability.SecondLevelIndexSets
 import GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit
+import GroupApproximation.Manuscript.OneSidedMFRadical.TensorSynchronizationCore
 import GroupApproximation.Sofic.ChiodoBelegradekTheorem
 import Mathlib.GroupTheory.HNNExtension
 
@@ -79,7 +80,7 @@ abbrev CentralRope {K0 F P : Type} [Group K0] [Group F] [Group P]
 /-- The printed stable letter `v` of `eq:central-rope`. -/
 def ropeStable {K0 F P : Type} [Group K0] [Group F] [Group P]
     (L0 : Subgroup K0) (psi : F →* P) : CentralRope L0 psi :=
-  HNNExtension.t
+  (HNNExtension.t)⁻¹
 
 /-- `i(f) = (i^0_e(f), (f,1))`, read in `K_e`. -/
 def ropeEmbedding {K0 F P : Type} [Group K0] [Group F] [Group P]
@@ -162,7 +163,7 @@ def ropeGenConjS {K0 F P : Type} [Group K0] [Group F] [Group P]
 /-- The left edge map `s ↦ (s,1)` of `eq:twisted-rope`. -/
 def edgeSource {Gamma : Type} [Group Gamma] (S : Subgroup Gamma) (Q : Type)
     [Group Q] : ↥S →* Gamma × Q :=
-  (MonoidHom.inl Gamma Q).comp S.subtype
+  S.subtype.prod (1 : ↥S →* Q)
 
 /-- The right edge map `s ↦ (s,τ(s))` of `eq:twisted-rope`. -/
 def edgeTarget {Gamma Q : Type} [Group Gamma] [Group Q] (S : Subgroup Gamma)
@@ -192,14 +193,30 @@ def edgeSubgroupTarget {Gamma Q : Type} [Group Gamma] [Group Q]
     (S : Subgroup Gamma) (tau : ↥S →* Q) : Subgroup (Gamma × Q) :=
   (edgeTarget S tau).range
 
-/-- The printed edge isomorphism `(s,1) ↦ (s,τ(s))` of `eq:twisted-rope`.
-Both edge maps are injective because their first coordinate is the inclusion
-of `S`, so each edge group is a copy of `S`. -/
+/-- Both edge maps are injective because their first coordinate is the
+inclusion of `S`, so both kernels are trivial. -/
+theorem edgeSource_ker_eq_edgeTarget_ker {Gamma Q : Type} [Group Gamma]
+    [Group Q] (S : Subgroup Gamma) (tau : ↥S →* Q) :
+    (edgeSource S Q).ker = (edgeTarget S tau).ker :=
+  ((MonoidHom.ker_eq_bot_iff (edgeSource S Q)).mpr
+      (edgeSource_injective S Q)).trans
+    ((MonoidHom.ker_eq_bot_iff (edgeTarget S tau)).mpr
+      (edgeTarget_injective S tau)).symm
+
+/-- The printed edge isomorphism `(s,1) ↦ (s,τ(s))` of `eq:twisted-rope`:
+each edge group is a copy of `S`, so the two images are canonically
+isomorphic.
+
+This is built by the same construction, from the same two edge maps, as
+`TensorSynchronization.edgeMulEquiv`, so `TwistedHNN` below is definitionally
+the HNN extension that `lem:tensor-sync` concludes about and no transport is
+needed between the two readings. -/
 noncomputable def edgeMulEquiv {Gamma Q : Type} [Group Gamma] [Group Q]
     (S : Subgroup Gamma) (tau : ↥S →* Q) :
     ↥(edgeSubgroupSource S Q) ≃* ↥(edgeSubgroupTarget S tau) :=
-  (MonoidHom.ofInjective (edgeSource_injective S Q)).symm.trans
-    (MonoidHom.ofInjective (edgeTarget_injective S tau))
+  OneSidedMFRadical.TensorSynchronizationCore.rangeMulEquivOfKerEq
+    (edgeSource S Q) (edgeTarget S tau)
+    (edgeSource_ker_eq_edgeTarget_ker S tau)
 
 /-- **`eq:twisted-rope`.**  The group
 `⟨Γ × Q, u | u(s,1)u⁻¹ = (s,τ(s)) (s ∈ S)⟩`.  This is also the group named in

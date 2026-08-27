@@ -18,10 +18,31 @@ open Filter
 open PolarLiftingGeneralCStar
 open RationalNoncommutativeStarPolynomial
 open ReducedProductMFDiagonalData
+open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 
 universe u v
+
+noncomputable local instance matrixBlockCStarAlgebraForFiniteSelection
+    (Z : Type*) [Fintype Z] [DecidableEq Z] [Nonempty Z] :
+    CStarAlgebra (Matrix Z Z ℂ) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+noncomputable local instance boundedMatrixSequenceCStarAlgebraForFiniteSelection
+    (X : ℕ → Type*) [∀ n, Fintype (X n)] [∀ n, DecidableEq (X n)]
+    [∀ n, Nonempty (X n)] : CStarAlgebra (BoundedMatrixSequence X) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
 
 variable (B : ℕ → Type u) [∀ n, CStarAlgebra (B n)]
   [∀ n, Nontrivial (B n)]
@@ -35,34 +56,59 @@ zero stage while still tending to zero. -/
 def stageError (n : ℕ) : ℝ := ((n + 1 : ℕ) : ℝ)⁻¹
 
 theorem stageError_pos (n : ℕ) : 0 < stageError n := by
-  simp [stageError]
+  unfold stageError
+  positivity
+
+theorem tendsto_stageError : Tendsto stageError atTop (nhds 0) := by
+  have h := tendsto_one_div_add_atTop_nhds_zero_nat (𝕜 := ℝ)
+  change Tendsto (fun n : ℕ ↦ (((n + 1 : ℕ) : ℝ))⁻¹) atTop (nhds 0)
+  simpa only [one_div, Nat.cast_add, Nat.cast_one] using h
 
 private theorem innerPolynomial_norm_bounded (n : ℕ) (p : Polynomial) :
     IsBoundedUnder (· ≤ ·) atTop
-      (fun k ↦ ‖eval (fun j ↦ innerGeneratorLift B i a hB n j k) p‖) := by
+      (fun k ↦ ‖eval (fun j ↦ innerGeneratorLift B hB i a n j k) p‖) := by
   let s : BoundedMatrixSequence (fun k ↦ innerModel B hB n k) :=
-    eval (innerGeneratorLift B i a hB n) p
-  refine ⟨‖s‖, Eventually.of_forall fun k ↦ ?_⟩
+    eval (innerGeneratorLift B hB i a n) p
+  refine ⟨‖s‖, show ∀ᶠ k : ℕ in atTop,
+      ‖eval (fun j ↦ innerGeneratorLift B hB i a n j k) p‖ ≤ ‖s‖ from
+    Eventually.of_forall fun (k : ℕ) ↦ ?_⟩
   have h := boundedMatrixSequence_coord_norm_le
     (fun r ↦ innerModel B hB n r) s k
-  simpa [s, NormMatrixCoronaPolynomialLifts.eval_generatorLift_apply] using h
+  have heval := congrArg norm
+    (NormMatrixCoronaPolynomialLifts.eval_generatorLift_apply
+      (fun r ↦ innerModel B hB n r) (innerEmbedding B hB n)
+      (fun j ↦ reducedProductGeneratorLift B i a j n) p k)
+  calc
+    ‖eval (fun j ↦ innerGeneratorLift B hB i a n j k) p‖ =
+        ‖eval (innerGeneratorLift B hB i a n) p k‖ := by
+      change
+        ‖eval (fun j ↦
+            NormMatrixCoronaPolynomialLifts.generatorLift
+              (fun r ↦ innerModel B hB n r) (innerEmbedding B hB n)
+              (fun r ↦ reducedProductGeneratorLift B i a r n) j k) p‖ =
+          ‖eval
+            (NormMatrixCoronaPolynomialLifts.generatorLift
+              (fun r ↦ innerModel B hB n r) (innerEmbedding B hB n)
+              (fun r ↦ reducedProductGeneratorLift B i a r n)) p k‖
+      exact heval.symm
+    _ ≤ ‖s‖ := by simpa only [s] using h
 
 /-- There is one threshold beyond which the upper norm estimate holds for all
 of the first `n+1` polynomials. -/
 theorem exists_commonUpperThreshold (n : ℕ) :
     ∃ K : ℕ, ∀ k, K ≤ k → ∀ r : Fin (n + 1),
-      ‖eval (fun j ↦ innerGeneratorLift B i a hB n j k) (enumeration r)‖ <
+      ‖eval (fun j ↦ innerGeneratorLift B hB i a n j k) (enumeration r)‖ <
         ‖eval (fun j ↦ reducedProductGeneratorLift B i a j n)
           (enumeration r)‖ + stageError n := by
   have hall : ∀ᶠ k in atTop, ∀ r : Fin (n + 1),
-      ‖eval (fun j ↦ innerGeneratorLift B i a hB n j k) (enumeration r)‖ <
+      ‖eval (fun j ↦ innerGeneratorLift B hB i a n j k) (enumeration r)‖ <
         ‖eval (fun j ↦ reducedProductGeneratorLift B i a j n)
           (enumeration r)‖ + stageError n := by
     apply Filter.eventually_all.mpr
     intro r
-    have hlim := norm_innerPolynomial_eq_limsup B i a hB n (enumeration r)
+    have hlim := norm_innerPolynomial_eq_limsup B hB i a n (enumeration r)
     have hev : ∀ᶠ k in cofinite,
-        ‖eval (fun j ↦ innerGeneratorLift B i a hB n j k) (enumeration r)‖ <
+        ‖eval (fun j ↦ innerGeneratorLift B hB i a n j k) (enumeration r)‖ <
           ‖eval (fun j ↦ reducedProductGeneratorLift B i a j n)
             (enumeration r)‖ + stageError n := by
       apply Filter.eventually_lt_of_limsup_lt
@@ -80,60 +126,10 @@ def commonUpperThreshold (n : ℕ) : ℕ :=
 
 theorem commonUpperThreshold_spec (n k : ℕ)
     (hk : commonUpperThreshold B i a hB n ≤ k) (r : Fin (n + 1)) :
-    ‖eval (fun j ↦ innerGeneratorLift B i a hB n j k) (enumeration r)‖ <
+    ‖eval (fun j ↦ innerGeneratorLift B hB i a n j k) (enumeration r)‖ <
       ‖eval (fun j ↦ reducedProductGeneratorLift B i a j n)
         (enumeration r)‖ + stageError n :=
   Classical.choose_spec (exists_commonUpperThreshold B i a hB n) k hk r
-
-/-- Beyond the common threshold, each designated polynomial has a coordinate
-where its lower estimate is attained. -/
-theorem exists_designatedCoordinate (n : ℕ) (r : Fin (n + 1)) :
-    ∃ k : ℕ, commonUpperThreshold B i a hB n ≤ k ∧
-      ‖eval (fun j ↦ reducedProductGeneratorLift B i a j n)
-          (enumeration r)‖ - stageError n <
-        ‖eval (fun j ↦ innerGeneratorLift B i a hB n j k) (enumeration r)‖ := by
-  have hlim := norm_innerPolynomial_eq_limsup B i a hB n (enumeration r)
-  have hcob : IsCoboundedUnder (· ≤ ·) cofinite
-      (fun k ↦ ‖eval (fun j ↦ innerGeneratorLift B i a hB n j k)
-        (enumeration r)‖) :=
-    Filter.isCoboundedUnder_le_of_le cofinite fun k ↦ norm_nonneg _
-  have hfreq : ∃ᶠ k in cofinite,
-      ‖eval (fun j ↦ reducedProductGeneratorLift B i a j n)
-          (enumeration r)‖ - stageError n <
-        ‖eval (fun j ↦ innerGeneratorLift B i a hB n j k) (enumeration r)‖ := by
-    apply Filter.frequently_lt_of_lt_limsup hcob
-    rw [← hlim]
-    linarith [stageError_pos n]
-  have htail : ∀ᶠ k in cofinite, commonUpperThreshold B i a hB n ≤ k := by
-    simpa only [Nat.cofinite_eq_atTop] using
-      Filter.eventually_ge_atTop (commonUpperThreshold B i a hB n)
-  obtain ⟨k, hlower, hk⟩ := (hfreq.and_eventually htail).exists
-  exact ⟨k, hk, hlower⟩
-
-/-- The selected inner coordinate `k_p` for a polynomial in the finite stage. -/
-def designatedCoordinate (n : ℕ) (r : Fin (n + 1)) : ℕ :=
-  Classical.choose (exists_designatedCoordinate B i a hB n r)
-
-theorem designatedCoordinate_ge (n : ℕ) (r : Fin (n + 1)) :
-    commonUpperThreshold B i a hB n ≤ designatedCoordinate B i a hB n r :=
-  (Classical.choose_spec (exists_designatedCoordinate B i a hB n r)).1
-
-theorem designatedCoordinate_lower (n : ℕ) (r : Fin (n + 1)) :
-    ‖eval (fun j ↦ reducedProductGeneratorLift B i a j n)
-        (enumeration r)‖ - stageError n <
-      ‖eval (fun j ↦ innerGeneratorLift B i a hB n j
-        (designatedCoordinate B i a hB n r)) (enumeration r)‖ :=
-  (Classical.choose_spec (exists_designatedCoordinate B i a hB n r)).2
-
-/-- Every selected block satisfies every finite-stage upper bound because all
-selected coordinates lie beyond the common threshold. -/
-theorem designatedCoordinate_upper (n : ℕ) (r s : Fin (n + 1)) :
-    ‖eval (fun j ↦ innerGeneratorLift B i a hB n j
-        (designatedCoordinate B i a hB n s)) (enumeration r)‖ <
-      ‖eval (fun j ↦ reducedProductGeneratorLift B i a j n)
-        (enumeration r)‖ + stageError n :=
-  commonUpperThreshold_spec B i a hB n _
-    (designatedCoordinate_ge B i a hB n s) r
 
 end
 

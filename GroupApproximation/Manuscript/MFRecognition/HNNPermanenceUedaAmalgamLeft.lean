@@ -15,12 +15,12 @@ variable (data : CoronaConjugator G S T phi A X)
 
 /-- The canonical copy of `A₁ = M₂(D)` in `P`. -/
 def amalgamLeft :
-    matrixBaseAlgebra data →⋆ₐ[ℂ] amalgam data :=
-  @universalCStarAmalgamLeft
-    (edgeSumAlgebra data) (matrixBaseAlgebra data) (matrixEdgeAlgebra data)
-    inferInstance inferInstance inferInstance
-    (amalgamLeftInclusion data) (amalgamRightInclusion data)
+    matrixBaseAlgebra data →⋆ₐ[ℂ] amalgam data := by
+  letI : Nonempty (CStarAmalgamRepresentation
+      (amalgamLeftInclusion data) (amalgamRightInclusion data)) :=
     ⟨coronaAmalgamRepresentation data⟩
+  exact universalCStarAmalgamLeft
+    (amalgamLeftInclusion data) (amalgamRightInclusion data)
 
 end
 

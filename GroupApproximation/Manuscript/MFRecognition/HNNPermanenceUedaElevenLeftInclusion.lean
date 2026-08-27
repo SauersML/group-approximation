@@ -19,11 +19,8 @@ theorem amalgamLeftInclusion_zero_one_eq_matrixUnitLeft
     amalgamLeft data (amalgamLeftInclusion data
         ((0 : sourceEdgeAlgebra data), (1 : targetEdgeAlgebra data))) =
       matrixUnitLeft data 1 1 := by
-  change amalgamLeft data (amalgamLeftInclusion data
-      ((0 : sourceEdgeAlgebra data), (1 : targetEdgeAlgebra data))) =
-    amalgamLeft data (cStarMatrixUnitTwo 1 1 (1 : baseAlgebra data))
-  exact congrArg (amalgamLeft data)
-    (amalgamLeftInclusion_zero_one_eq_matrixUnit data)
+  unfold matrixUnitLeft
+  rw [amalgamLeftInclusion_zero_one_eq_matrixUnit]
 
 end
 

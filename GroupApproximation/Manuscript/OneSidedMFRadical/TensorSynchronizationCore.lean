@@ -97,7 +97,12 @@ theorem exists_leftRegular_intertwiner_of_ker_eq [Fintype E]
   refine ⟨W, ?_⟩
   intro s x
   have h := DFunLike.congr_fun (hW s) (W x)
-  simpa [Equiv.Perm.mul_apply] using h
+  change W (f s * W⁻¹ (W x)) = g s * W x at h
+  have hcancel : W⁻¹ (W x) = x := by
+    change W.symm (W x) = x
+    exact W.symm_apply_apply x
+  rw [hcancel] at h
+  exact h
 
 end
 

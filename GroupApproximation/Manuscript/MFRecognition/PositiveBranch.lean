@@ -66,7 +66,8 @@ theorem manuscriptCentralHNN (hIn : TensorSynchronization.HNNPermanenceInputs)
     OneSidedMFRadical.TensorSynchronizationAssembly.regularRealization_nontrivial
       realization
   obtain ⟨X, hX, iota, hiota⟩ :=
-    TensorSynchronization.unitalCoronaEmbedding realization.mf
+    MFAlgebraUnitalCoronaEmbedding.exists_injective_unital_coronaEmbedding
+      realization.mf
   letI : ∀ n, Nonempty (X n) := hX
   refine hIn.hnnPermanence (MulEquiv.refl S) realization iota hiota 1 ?_
   intro s

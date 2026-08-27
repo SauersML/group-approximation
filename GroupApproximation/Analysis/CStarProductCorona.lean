@@ -175,6 +175,7 @@ private theorem cStarProductCorona_norm_mk_le (a : BoundedCStarSequence A) :
 private def cStarSequenceFilterNorm (a : BoundedCStarSequence A) : ℝ :=
   Filter.limsup (fun n ↦ ‖a n‖) l
 
+omit [∀ n, Nontrivial (A n)] in
 private theorem cStarNorm_isBoundedUnder (a : BoundedCStarSequence A) :
     IsBoundedUnder (· ≤ ·) l (fun n : ℕ ↦ ‖a n‖) :=
   ⟨‖a‖, show ∀ᶠ n : ℕ in l, ‖a n‖ ≤ ‖a‖ from
@@ -186,6 +187,7 @@ private theorem cStarNorm_isCoboundedUnder [l.NeBot]
     IsCoboundedUnder (· ≤ ·) l (fun n : ℕ ↦ ‖a n‖) :=
   Filter.isCoboundedUnder_le_of_le l fun n ↦ norm_nonneg (a n)
 
+omit [∀ n, Nontrivial (A n)] in
 private theorem cStarSequenceFilterNorm_nonneg [l.NeBot]
     (a : BoundedCStarSequence A) : 0 ≤ cStarSequenceFilterNorm A l a := by
   apply (Filter.le_limsup_iff
@@ -244,6 +246,7 @@ private theorem eventually_cStarNorm_lt_of_sub_isNull
   filter_upwards [hev] with n hn
   exact (cStarNorm_le_norm_add_norm_sub A a b n).trans_lt (by linarith)
 
+omit [∀ n, Nontrivial (A n)] in
 private theorem cStarSequenceFilterNorm_le_norm_of_sub_isNull [l.NeBot]
     (a b : BoundedCStarSequence A)
     (hab : IsNullCStarSequence A l (a - b)) :

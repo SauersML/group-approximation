@@ -142,6 +142,27 @@ basepoints — so a single canonical choice suffices. -/
 def Cayley.base {G : Type u} [Group G] (A : Alphabet G) : Cayley A :=
   Cayley.of A 1
 
+@[simp] theorem Cayley.val_base {G : Type u} [Group G] (A : Alphabet G) :
+    Cayley.val (Cayley.base A) = 1 := rfl
+
+/-- **"Given a finite set `F ⊆ G`, choose a ball in `Γ(G,A)` containing `F`."**
+
+This is the first clause of the manuscript's reduction of Hull's published
+injectivity-radius formulation to the finite-set formulation recorded as
+`thm:hull`: a finite subset of `G` lies in a ball of `Γ(G,A)` about the
+basepoint, at radius the largest of its word lengths.  The second clause —
+applying Hull's formulation at that radius — is what the citation
+`HullInputs.smallCancellation` carries, and it is a citation rather than a
+proof. -/
+theorem exists_ball_containing {G : Type u} [Group G] (A : Alphabet G)
+    {F : Set G} (hF : F.Finite) :
+    ∃ R : ℕ, ∀ x ∈ F, dist (Cayley.base A) (Cayley.of A x) ≤ (R : ℝ) := by
+  obtain ⟨R, hR⟩ := (hF.image fun x : G => wordDist A.carrier 1 x).bddAbove
+  refine ⟨R, fun x hx => ?_⟩
+  have hle : wordDist A.carrier 1 x ≤ R := hR ⟨x, hx, rfl⟩
+  simp only [Cayley.dist_eq, Cayley.val_base, Cayley.val_of]
+  exact_mod_cast hle
+
 /-! ## Acylindrical hyperbolicity -/
 
 /-- **An acylindrically hyperbolic group** (Osin), in the Cayley-graph

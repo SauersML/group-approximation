@@ -17,7 +17,28 @@ open RationalNoncommutativeStarPolynomial
 
 open scoped Matrix.Norms.L2Operator
 
-variable (Y Z : FiniteModel)
+@[reducible] private noncomputable def
+    matrixBlockCStarAlgebraForPolynomialBlockDiagonal
+    (W : Type*) [Fintype W] [DecidableEq W] [Nonempty W] :
+    CStarAlgebra (Matrix W W ℂ) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+variable (Y Z : FiniteModel) [Nonempty Y] [Nonempty Z]
+
+noncomputable local instance : CStarAlgebra (Matrix Y Y ℂ) :=
+  matrixBlockCStarAlgebraForPolynomialBlockDiagonal Y
+
+noncomputable local instance : CStarAlgebra (Matrix Z Z ℂ) :=
+  matrixBlockCStarAlgebraForPolynomialBlockDiagonal Z
+
+noncomputable local instance : CStarAlgebra
+    (Matrix (blockSumModel Y Z) (blockSumModel Y Z) ℂ) :=
+  matrixBlockCStarAlgebraForPolynomialBlockDiagonal (blockSumModel Y Z)
 
 theorem eval_blockDiag (left : ℕ → Matrix Y Y ℂ)
     (right : ℕ → Matrix Z Z ℂ) (p : Polynomial) :
@@ -26,7 +47,7 @@ theorem eval_blockDiag (left : ℕ → Matrix Y Y ℂ)
   induction p with
   | zero =>
       rw [eval_zero, eval_zero, eval_zero]
-      exact MFAlgebraDimension.blockDiagMatrix_zero Y Z
+      exact (MFAlgebraDimension.blockDiagMatrix_zero Y Z).symm
   | generator j => rfl
   | smul q p hp =>
       rw [eval_smul, hp, eval_smul, eval_smul]
@@ -36,7 +57,7 @@ theorem eval_blockDiag (left : ℕ → Matrix Y Y ℂ)
       exact MFAlgebraDimension.blockDiagMatrix_add Y Z _ _ _ _
   | mul p q hp hq =>
       rw [eval_mul, hp, hq, eval_mul, eval_mul]
-      exact (blockDiagMatrix_mul Y Z _ _ _ _).symm
+      exact blockDiagMatrix_mul Y Z _ _ _ _
   | star p hp =>
       rw [eval_star, hp, eval_star, eval_star, Matrix.star_eq_conjTranspose]
       exact blockDiagMatrix_conjTranspose Y Z _ _
