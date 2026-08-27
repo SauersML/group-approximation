@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.ProfiniteBenignProductSeparable
+import GroupApproximation.Higman.ProfiniteBenignInfProductSeparable
 import GroupApproximation.Higman.ConjugatorGraphProfinite
 
 /-!
@@ -78,6 +79,67 @@ theorem graph_mul_coord_fstComap (T : Set ↑K) :
   apply graph_mul_fstComap
   rintro _ ⟨w, -, rfl⟩
   exact ⟨w, rfl⟩
+
+/-- The source quotient used above also synchronizes the two ambient cutter
+factorizations.  The fixed graph side may reflect every prescribed quotient;
+the varying hprod side only needs coordinate reflection, because this
+detector factors through `retK ∘ fst`. -/
+theorem graph_fstComap_infSynchronizing
+    (H : Subgroup F₃) (hH : H ≤ cbHom.range)
+    (uGraph : ProfiniteBenignWitness Star.graphSub)
+    (hGraph : uGraph.FactorizationReflecting)
+    (uH : ProfiniteBenignWitness H)
+    (hU : uH.FactorizationReflecting) :
+    uGraph.InfSynchronizing
+      (ProfiniteBenignWitness.comap
+        (ProfiniteBenignWitness.selfOvergroup (G := F₃ × F₃))
+        (MonoidHom.fst F₃ F₃) uH) := by
+  intro x hx
+  have hret : Coord.retK x.1 ≠ 1 := by
+    intro hret
+    have hxrange : x.1 ∈ cbHom.range := by
+      rw [← Coord.ker_retK_eq_cbHom_range]
+      exact MonoidHom.mem_ker.mpr hret
+    obtain ⟨w, hw⟩ := hxrange
+    apply hx
+    refine ⟨Star.graphHom w, Star.mem_graphSub.mpr ⟨w, rfl⟩,
+      ((1 : F₃), (Star.evalHom w)⁻¹ * x.2), ?_, ?_⟩
+    · apply Subgroup.mem_comap.mpr
+      exact Subgroup.one_mem H
+    · apply Prod.ext
+      · simpa [Star.graphHom_apply] using hw
+      · simp [Star.graphHom_apply]
+  obtain ⟨N, hN⟩ :=
+    Group.exists_finiteIndexNormalSubgroup_notMem (Coord.retK x.1) hret
+  letI := N.isNormal'
+  letI := N.isFiniteIndex'
+  let Q := F₃ ⧸ N.toSubgroup
+  letI : Finite Q := Subgroup.finite_quotient_of_finiteIndex
+  let q₀ : F₃ →* Q := QuotientGroup.mk' N.toSubgroup
+  let q : F₃ × F₃ →* Q :=
+    (q₀.comp Coord.retK).comp (MonoidHom.fst F₃ F₃)
+  refine ⟨Q, inferInstance, inferInstance, q, ?_, hGraph Q q, ?_⟩
+  · intro hmem
+    obtain ⟨a, ha, b, hb, hab⟩ := hmem
+    obtain ⟨a₀, ha₀, rfl⟩ := Subgroup.mem_map.mp ha
+    obtain ⟨b₀, hb₀, rfl⟩ := Subgroup.mem_map.mp hb
+    have haRet : Coord.retK a₀.1 = 1 := by
+      exact MonoidHom.mem_ker.mp
+        (PairedReturnGraphIntersection.graphSub_le_retK_fst_ker ha₀)
+    have hbRange : b₀.1 ∈ cbHom.range :=
+      hH (Subgroup.mem_comap.mp hb₀)
+    have hbRet : Coord.retK b₀.1 = 1 := by
+      rw [← Coord.ker_retK_eq_cbHom_range] at hbRange
+      exact MonoidHom.mem_ker.mp hbRange
+    have hqx : q x = 1 := by
+      rw [← hab]
+      change q₀ (Coord.retK a₀.1) * q₀ (Coord.retK b₀.1) = 1
+      simp [haRet, hbRet]
+    apply hN
+    exact (QuotientGroup.eq_one_iff (Coord.retK x.1)).mp hqx
+  · exact ProfiniteBenignWitness.FactorizationReflecting.comap_coordinate_at
+      uH hU (ProfiniteBenignWitness.selfOvergroup (G := F₃ × F₃))
+        (MonoidHom.fst F₃ F₃) Prod.fst_surjective Q (q₀.comp Coord.retK)
 
 end
 
