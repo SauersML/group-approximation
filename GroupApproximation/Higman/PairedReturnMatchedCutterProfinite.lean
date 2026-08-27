@@ -1,4 +1,5 @@
 import GroupApproximation.Higman.PairedReturnLeftProductProfinite
+import GroupApproximation.Higman.FreeLampFiniteBaseProfinite
 
 /-!
 # Finite tests on the paired-return amalgam
@@ -310,6 +311,21 @@ theorem ambientToFiniteStage2_right_eq (Q : Type) [Group Q]
     (PushoutI.of_apply_eq_base (Amalgam.famHom edgeToP edgeToC) true m).trans
       (PushoutI.of_apply_eq_base (Amalgam.famHom edgeToP edgeToC) false m).symm
   rw [hedge, ambientToFiniteStage2_left]
+
+/-- Every finitely generated subgroup of the finite-base quotient free lamp
+is profinitely closed. -/
+theorem imageLamp_profiniteClosure_eq_of_fg
+    (Q : Type) [Group Q] [Finite Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (H : Subgroup
+      (FreeLamp Q (PairedReturnGraphIntersection.M.map q) Sync))
+    (hH : H.FG) :
+    profiniteClosure H = H := by
+  obtain ⟨d⟩ := HNNExtension.NormalWord.TransversalPair.nonempty Q
+    (PairedReturnGraphIntersection.M.map q)
+    (PairedReturnGraphIntersection.M.map q)
+  exact FreeLampFiniteBaseProfinite.profiniteClosure_eq_of_fg_of_lampEquiv
+    (M := PairedReturnGraphIntersection.M.map q) d syncEquivFree H hH
 
 end PairedReturnMatchedCutterProfinite
 end Higman
