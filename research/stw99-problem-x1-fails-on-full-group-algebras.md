@@ -3,6 +3,7 @@ rg: 2
 id: stw99-problem-x1-fails-on-full-group-algebras
 kind: claim
 title: Some countable group has an amenable canonical trace on C*(G) that is not quasidiagonal
+root: true
 distinct_from:
   stw99-problem-x1-amenable-traces-quasidiagonal: that is the universal question; this is its negation restricted to the canonical traces of full group C*-algebras, carried as a separate node because both sides have live routes.
   literal-central-mark-corona-invisible: that is the operator-norm corona obstruction for one group; this is the trace-level consequence, which needs in addition that the canonical trace of that group be amenable.

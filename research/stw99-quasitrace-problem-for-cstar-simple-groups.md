@@ -3,6 +3,7 @@ rg: 2
 id: stw99-quasitrace-problem-for-cstar-simple-groups
 kind: claim
 title: The reduced C*-algebra of every C*-simple group has a unique quasitrace
+root: true
 distinct_from:
   stw99-problem-i-quasitraces-are-traces: that is the universal Kaplansky question; this is its instance for reduced group C*-algebras of C*-simple groups, where uniqueness of the trace (Breuillard--Kalantar--Kennedy--Ozawa) makes it a uniqueness statement.
 artifacts:
