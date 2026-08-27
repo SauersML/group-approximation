@@ -115,6 +115,7 @@ def blockTransportedInvolution
     Matrix (Fin (d i)) (Fin (d i)) ℂ :=
   transportedInvolution e (blockSingle d i x) i
 
+omit [Fintype I] [∀ i, Nonempty (Fin (d i))] in
 /-- The transported involution of a block-supported element remains
 block-supported. -/
 theorem transportedInvolution_single
@@ -148,6 +149,7 @@ theorem transportedInvolution_single
   · have hj := congrFun hsupp j
     simpa [coordinateIdempotent, h] using hj
 
+omit [Fintype I] [∀ i, Nonempty (Fin (d i))] in
 /-- Every coordinate of the global transported involution is obtained by
 applying the corresponding restricted block involution. -/
 theorem transportedInvolution_apply
@@ -183,6 +185,7 @@ theorem blockTransportedInvolution_zero
   rw [blockTransportedInvolution, hz, transportedInvolution_zero]
   rfl
 
+omit [Fintype I] [∀ i, Nonempty (Fin (d i))] in
 theorem blockTransportedInvolution_one
     {D : Type*} [CStarAlgebra D] (e : D ≃ₐ[ℂ] DirectMatrixSum d)
     (i : I) : blockTransportedInvolution d e i 1 = 1 := by
@@ -256,6 +259,7 @@ theorem blockTransportedInvolution_smul
           rw [transportedInvolution_smul]
           rfl
 
+omit [Fintype I] [∀ i, Nonempty (Fin (d i))] in
 theorem blockTransportedInvolution_involutive
     {D : Type*} [CStarAlgebra D] (e : D ≃ₐ[ℂ] DirectMatrixSum d)
     (i : I) (x : Matrix (Fin (d i)) (Fin (d i)) ℂ) :
@@ -266,6 +270,7 @@ theorem blockTransportedInvolution_involutive
   rw [transportedInvolution_involutive] at h
   simpa [blockTransportedInvolution] using h.symm
 
+omit [Fintype I] [∀ i, Nonempty (Fin (d i))] in
 theorem blockTransportedInvolution_gram_eq_zero_iff
     {D : Type*} [CStarAlgebra D] (e : D ≃ₐ[ℂ] DirectMatrixSum d)
     (i : I) (x : Matrix (Fin (d i)) (Fin (d i)) ℂ) :
@@ -337,6 +342,7 @@ def blockFullMatrixInvolutionData
     · rintro rfl
       simp [blockTransportedInvolution_zero]
 
+omit [Fintype I] in
 /-- Each block admits an algebra automorphism intertwining its restricted
 transported involution with the ordinary matrix adjoint. -/
 theorem exists_blockIntertwiningAlgEquiv
@@ -370,6 +376,7 @@ theorem exists_blockIntertwiningAlgEquiv
 
 /-! ## Product gluing -/
 
+omit [Fintype I] in
 /-- Every algebraic Wedderburn equivalence from a C-star algebra to a finite
 product of nonzero full matrix algebras can be corrected blockwise to a
 star-algebra equivalence. -/
