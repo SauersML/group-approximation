@@ -216,6 +216,34 @@ theorem RightCarryComparison.exists_at_append
             ?_, heq, htail⟩
           simp [hsmall]
 
+/-- At a position following a nonempty raw prefix, the corresponding prefix
+of the comparison word is also nonempty. -/
+theorem RightCarryComparison.exists_at_append_nonempty
+    (φ : ∀ i, H →* G i) :
+    ∀ {pre : List (Σ i, G i)} {i : ι} {g : G i}
+      {rest small : List (Σ i, G i)} {head : H},
+      pre ≠ [] →
+      RightCarryComparison φ (pre ++ ⟨i, g⟩ :: rest) small head →
+      ∃ (smallPre : List (Σ i, G i)) (s : G i)
+          (smallRest : List (Σ i, G i)) (current tail : H),
+        small = smallPre ++ ⟨i, s⟩ :: smallRest ∧
+        smallPre ≠ [] ∧
+        g * φ i tail = φ i current * s ∧
+        RightCarryComparison φ rest smallRest tail := by
+  intro pre
+  cases pre with
+  | nil => simp
+  | cons p pre =>
+      intro i g rest small head _ hcompare
+      cases hcompare with
+      | cons j rawHead smallHead rawTail smallTail current₀ tail₀ heq₀ htail₀ =>
+          obtain ⟨smallPre, s, smallRest, current, tail,
+            hsmall, heq, htail⟩ :=
+            RightCarryComparison.exists_at_append φ htail₀
+          refine ⟨⟨j, smallHead⟩ :: smallPre, s, smallRest,
+            current, tail, ?_, by simp, heq, htail⟩
+          simp [hsmall]
+
 /-- Equality of two base-prefixed reduced words produces an explicit carry
 comparison.  The initial carry is the discrepancy between their displayed
 base prefixes, and the terminal carry is `1`. -/
@@ -255,6 +283,114 @@ theorem Reduced.rightCarryComparison_of_eq
         rw [hheads]
       _ = rawHead⁻¹ * smallHead := by group
   rwa [hcarry] at hcompare
+
+/-- Prepending one arbitrary factor element to a reduced word whose letters
+lie in prescribed factor subgroups admits a reduced spelling in which only
+the first surviving syllable may leave those subgroups.  Edge collapses can
+carry the arbitrary prefix to the right, but each collapse consumes a
+syllable, so the invariant is stable. -/
+theorem Reduced.exists_factor_mul_spelling_tail_mem
+    (phi : ∀ i, H →* G i) (S : ∀ i, Subgroup (G i)) :
+    ∀ (small : CoprodI.Word G), PushoutI.Reduced phi small →
+      (∀ x ∈ small.toList, x.2 ∈ S x.1) →
+      ∀ (i : ι) (a : G i),
+        ∃ (head : H) (out : CoprodI.Word G),
+          PushoutI.Reduced phi out ∧
+          PushoutI.of (φ := phi) i a * PushoutI.ofCoprodI small.prod =
+            PushoutI.base phi head * PushoutI.ofCoprodI out.prod ∧
+          ∀ x ∈ out.toList.tail, x.2 ∈ S x.1 := by
+  classical
+  intro small hred hsmall
+  induction small using CoprodI.Word.consRecOn with
+  | empty =>
+      intro i a
+      by_cases ha : a ∈ (phi i).range
+      · obtain ⟨head, rfl⟩ := ha
+        refine ⟨head, CoprodI.Word.empty, ?_, ?_, by simp⟩
+        · intro l hl
+          simp at hl
+        · simp [CoprodI.Word.prod, PushoutI.of_apply_eq_base]
+      · have haone : a ≠ 1 := by
+          intro haone
+          apply ha
+          exact ⟨1, by simp [haone]⟩
+        let out := CoprodI.Word.cons a CoprodI.Word.empty
+          (by simp [CoprodI.Word.fstIdx]) haone
+        refine ⟨1, out, ?_, ?_, ?_⟩
+        · intro l hl
+          have hl' : l = ⟨i, a⟩ := by
+            simpa [out, CoprodI.Word.cons] using hl
+          subst l
+          exact ha
+        · simp [out, CoprodI.Word.prod]
+        · simp [out, CoprodI.Word.cons]
+  | @cons j s rest hidx hs ih =>
+      intro i a
+      have hrestRed : PushoutI.Reduced phi rest := by
+        intro l hl
+        exact hred l (List.mem_cons_of_mem _ hl)
+      have hrestSmall : ∀ x ∈ rest.toList, x.2 ∈ S x.1 := by
+        intro x hx
+        exact hsmall x (List.mem_cons_of_mem _ hx)
+      have ih' := ih hrestRed hrestSmall
+      by_cases hij : i = j
+      · subst j
+        obtain ⟨head, out, houtRed, houtEq, houtTail⟩ := ih' i (a * s)
+        refine ⟨head, out, houtRed, ?_, houtTail⟩
+        calc
+          PushoutI.of (φ := phi) i a *
+                PushoutI.ofCoprodI
+                  (CoprodI.Word.cons s rest hidx hs).prod =
+              PushoutI.of (φ := phi) i a *
+                (PushoutI.of (φ := phi) i s *
+                  PushoutI.ofCoprodI rest.prod) := by
+                    rw [CoprodI.Word.prod_cons, map_mul,
+                      PushoutI.ofCoprodI_of]
+          _ = PushoutI.of (φ := phi) i (a * s) *
+                PushoutI.ofCoprodI rest.prod := by
+                  rw [map_mul]
+                  group
+          _ = _ := houtEq
+      · by_cases ha : a ∈ (phi i).range
+        · obtain ⟨edge, hedge⟩ := ha
+          obtain ⟨head, out, houtRed, houtEq, houtTail⟩ :=
+            ih' j (phi j edge * s)
+          refine ⟨head, out, houtRed, ?_, houtTail⟩
+          calc
+            PushoutI.of (φ := phi) i a *
+                  PushoutI.ofCoprodI
+                    (CoprodI.Word.cons s rest hidx hs).prod =
+                PushoutI.base phi edge *
+                  (PushoutI.of (φ := phi) j s *
+                    PushoutI.ofCoprodI rest.prod) := by
+                      rw [CoprodI.Word.prod_cons, map_mul,
+                        PushoutI.ofCoprodI_of, ← hedge,
+                        PushoutI.of_apply_eq_base]
+            _ = PushoutI.of (φ := phi) j (phi j edge * s) *
+                  PushoutI.ofCoprodI rest.prod := by
+                    rw [← PushoutI.of_apply_eq_base phi j edge, map_mul]
+                    group
+            _ = _ := houtEq
+        · have haone : a ≠ 1 := by
+            intro haone
+            apply ha
+            exact ⟨1, by simp [haone]⟩
+          let current := CoprodI.Word.cons s rest hidx hs
+          have hcurrentIdx : current.fstIdx ≠ some i := by
+            simp only [current, CoprodI.Word.fstIdx, CoprodI.Word.cons,
+              List.head?_cons, Option.map_some]
+            exact fun hji ↦ hij (Option.some.inj hji).symm
+          let out := CoprodI.Word.cons a current hcurrentIdx haone
+          refine ⟨1, out, ?_, ?_, ?_⟩
+          · intro l hl
+            rw [show out.toList = ⟨i, a⟩ :: current.toList from rfl] at hl
+            rcases List.mem_cons.mp hl with rfl | hl
+            · exact ha
+            · exact hred _ hl
+          · simp [out, current, CoprodI.Word.prod]
+          · intro x hx
+            change x ∈ current.toList at hx
+            exact hsmall x hx
 
 /-! ## Indexed matched subgroups -/
 
@@ -523,6 +659,70 @@ theorem exists_rightCarryComparison_of_mem_range
     rw [← hprodImage, hwprod, hy]
   exact ⟨d, w, Reduced.rightCarryComparison_of_eq
     phi hphi hraw hwmred rawHead (Delta.subtype w.head) heqProd⟩
+
+/-- A reduced spelling equal to one arbitrary factor element times a matched
+subamalgam element has a carry comparison with a spelling whose syllables
+after the first lie in the displayed matched factor subgroups. -/
+theorem exists_rightCarryComparison_of_eq_factor_mul_matchedMap
+    (phi : ∀ i, M →* F i) (S : ∀ i, Subgroup (F i))
+    (Delta : Subgroup M) (hphi : ∀ i, Function.Injective (phi i))
+    (hcomap : ∀ i, (S i).comap (phi i) = Delta)
+    (raw : CoprodI.Word F) (hraw : PushoutI.Reduced phi raw)
+    (rawHead : M) (i : I) (a : F i)
+    (y : PushoutI (smallEdge phi S Delta hcomap))
+    (heq : PushoutI.base phi rawHead * PushoutI.ofCoprodI raw.prod =
+      PushoutI.of (φ := phi) i a * matchedMap phi S Delta hcomap y) :
+    ∃ (small : List (Σ i, F i)) (smallHead : M),
+      RightCarryComparison phi raw.toList small
+        (rawHead⁻¹ * smallHead) ∧
+      ∀ x ∈ small.tail, x.2 ∈ S x.1 := by
+  classical
+  obtain ⟨d⟩ := PushoutI.NormalWord.transversal_nonempty
+    (smallEdge phi S Delta hcomap) (fun j ↦ by
+      intro x z hxz
+      exact Subtype.ext (hphi j (congrArg Subtype.val hxz)))
+  let w : PushoutI.NormalWord d := PushoutI.NormalWord.equiv y
+  have hwprod : w.prod = y :=
+    (PushoutI.NormalWord.equiv (d := d)).symm_apply_apply y
+  let wm := PushoutEmbedding.wordMap (factorInclusion S)
+    (fun _ ↦ Subtype.val_injective) w.toWord
+  have hwred : PushoutI.Reduced (smallEdge phi S Delta hcomap) w.toWord :=
+    PushoutEmbedding.normalWord_reduced _ d w
+  have hwmred : PushoutI.Reduced phi wm := by
+    intro l hl
+    obtain ⟨l', hl', rfl⟩ := List.mem_map.mp hl
+    exact fun hrange ↦ hwred l' hl'
+      (factorInclusion_reflects_range
+        phi S Delta hcomap l'.1 l'.2 hrange)
+  have hwmSmall : ∀ x ∈ wm.toList, x.2 ∈ S x.1 := by
+    intro x hx
+    obtain ⟨x', -, rfl⟩ := List.mem_map.mp hx
+    exact x'.2.property
+  have hprodImage : matchedMap phi S Delta hcomap w.prod =
+      PushoutI.base phi (Delta.subtype w.head) *
+        PushoutI.ofCoprodI wm.prod := by
+    rw [PushoutI.NormalWord.prod, map_mul, matchedMap,
+      PushoutBaseChange.map_base, PushoutBaseChange.map_ofCoprodI_prod]
+  obtain ⟨smallHead, out, houtRed, houtEq, houtTail⟩ :=
+    Reduced.exists_factor_mul_spelling_tail_mem phi S wm hwmred hwmSmall i
+      (a * phi i (Delta.subtype w.head))
+  refine ⟨out.toList, smallHead, ?_, houtTail⟩
+  apply Reduced.rightCarryComparison_of_eq phi hphi hraw houtRed
+  calc
+    PushoutI.base phi rawHead * PushoutI.ofCoprodI raw.prod =
+        PushoutI.of (φ := phi) i a *
+          matchedMap phi S Delta hcomap y := heq
+    _ = PushoutI.of (φ := phi) i a *
+          (PushoutI.base phi (Delta.subtype w.head) *
+            PushoutI.ofCoprodI wm.prod) := by rw [← hprodImage, hwprod]
+    _ = PushoutI.of (φ := phi) i
+          (a * phi i (Delta.subtype w.head)) *
+            PushoutI.ofCoprodI wm.prod := by
+      rw [← PushoutI.of_apply_eq_base phi i (Delta.subtype w.head),
+        map_mul]
+      group
+    _ = PushoutI.base phi smallHead *
+          PushoutI.ofCoprodI out.prod := houtEq
 
 end IndexedMatched
 
