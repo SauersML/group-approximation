@@ -117,6 +117,41 @@ def rightToImageLamp (Q : Type) [Group Q]
   ((edgeToImage Q q).comp (MonoidHom.fst Edge Sync)).prod
     (MonoidHom.snd Edge Sync)
 
+/-- The image of the synchronized right subgroup in the quotient lamp
+factor. -/
+def imageRightSub (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q) :
+    Subgroup (PairedReturnGraphIntersection.M.map q × Sync) :=
+  PairedReturnCutter.Q.map (rightToImageLamp Q q)
+
+/-- Retaining the synchronization coordinate prevents new right pinches:
+if an image of the synchronized right subgroup lands in the target edge,
+then its edge coordinate already lies in the mapped conjugator graph. -/
+theorem imageRightSub_comap_edge_le_graph
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q) :
+    (imageRightSub Q q).comap
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync false) ≤
+      (Star.graphSub.map q).comap
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync true) := by
+  rintro d hd
+  obtain ⟨c, hc, hcd⟩ := Subgroup.mem_map.mp hd
+  obtain ⟨w, rfl⟩ := hc
+  have hpair :
+      (edgeToImage Q q (PairedReturnGraphIntersection.muToM w),
+          PairedFoldKernel.fold Sync w) = (d, 1) := hcd
+  have hfold : PairedFoldKernel.fold Sync w = 1 :=
+    congrArg Prod.snd hpair
+  have hdelta : PairedReturnGraphIntersection.mu w ∈
+      PairedReturnGraphIntersection.deltaSub :=
+    PairedReturnGraphIntersection.fold_ker_le_mu_comap_deltaSub
+      (MonoidHom.mem_ker.mpr hfold)
+  refine ⟨PairedReturnGraphIntersection.mu w,
+    PairedReturnGraphIntersection.deltaSub_le_graphSub hdelta, ?_⟩
+  have hfirst := congrArg Prod.fst hpair
+  change q (PairedReturnGraphIntersection.mu w) = (d : Q)
+  exact congrArg Subtype.val hfirst
+
 /-- The two source-factor maps into the quotient free lamp. -/
 def imageLampFactors (Q : Type) [Group Q]
     (q : PairedReturnGraphIntersection.P →* Q) : ∀ b,
