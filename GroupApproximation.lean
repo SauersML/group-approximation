@@ -1979,6 +1979,7 @@ import GroupApproximation.Manuscript.NonMF.TheoremCDebts
 import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
 import GroupApproximation.Manuscript.NonMF.HullInputsProved
 import GroupApproximation.Manuscript.MFRecognition.SeedFromTheoremC
+import GroupApproximation.Manuscript.MFRecognition.SeedRemarkTheoremC
 import GroupApproximation.Manuscript.MFRecognition.RecognitionDebts
 import GroupApproximation.Manuscript.MFRecognition.CentralRopeBritton
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceSetup
