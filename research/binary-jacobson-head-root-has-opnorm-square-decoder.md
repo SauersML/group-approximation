@@ -172,3 +172,25 @@ finite Clifford rank from literal finitary roots, but places the entire tower
 and all monomial transports inside the amenable marked-MF subgroup `K`.
 Therefore the common return must visibly consume the raw nonmonomial root at
 the generation seam.
+
+The first representation-dependent polar at that seam is also fenced.
+`binary-jacobson-first-opposite-polar-package-is-finite` adjoins one raw
+opposite root to the literal balanced S/T involution and to an arbitrary fixed
+finitary Clifford packet.  The S/T/root actor is dihedral, so its finite orbit
+of the packet stays in a finite marked group.  The compressed opposite-root
+operator and its S/T conjugate both have nonzero polar parts in the faithful
+regular model, but cannot carry the terminal common PI intertwiner there.
+Thus the missing selector must use at least one further raw incidence; taking
+the polar decomposition of the first opposite-root compression is not enough.
+
+The literal closing fold now sharpens the remaining choice still further.
+`binary-jacobson-tail-phase-cannot-correct-closing-fold` proves that its
+positive `x_13(ST)` sector is already a canonical nonzero degree-two PI
+source on the raw range, whereas its negative sector stays degree four.  No
+phase from the tail spectral algebra restores the erased first Pauli row.
+Moreover `binary-jacobson-constant-opposite-polar-is-finite-s3` shows that
+the bare `x_31(1)` correction on the associated constant negative cut is a
+fixed polynomial in a finite `S_3` block.  Hence the only unfenced operation
+is a polar or intersection that uses `x_31(1)` **jointly with the raw
+`x_13(SQ)` range projection**.  The source PI degree, target PI degree, and
+tail-sector selection are no longer open.

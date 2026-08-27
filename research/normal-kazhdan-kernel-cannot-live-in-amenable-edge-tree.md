@@ -6,8 +6,6 @@ title: A torsion-free group with a nontrivial minimal amenable-edge tree action 
 distinct_from:
   titz-witzel-soficity-is-one-finite-csp: That seeks permutation models for a Kazhdan group which has property FA; this excludes manufacturing the desired normal Kazhdan kernel by sofic amalgam or HNN permanence.
   literal-mf-radical-has-no-infinite-kazhdan-subgroup: That uses the particular Clifford-block Bass--Serre decomposition of the literal MF radical; this is an abstract normal-subgroup theorem for every minimal tree action with amenable edge stabilizers.
-artifacts:
-  - research/artifacts/alternate-sofic-kernel-audit-round3-2026-08-26.md
 ---
 
 Let a group `G` act minimally and without a global fixed point on a
@@ -37,3 +35,4 @@ the Bass--Serre edge remains cyclic and the same theorem applies.
 
 DERIVATION
 normal-kazhdan-kernel-amenable-edge-tree-proof
+

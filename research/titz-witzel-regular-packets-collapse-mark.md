@@ -6,10 +6,6 @@ title: Regular nonabelian fibre packets cannot tile a positive Titz--Witzel mode
 distinct_from:
   titz-witzel-central-square-lifts-collapse-mark: That excludes abelian and central-square voltage lifts; this allows arbitrary finite nonabelian packet groups and proves that regularity itself quantizes the relator defects too strongly.
   titz-witzel-sparse-defect-needs-dense-generator-surgery: That rules out small edge edits from a union of arbitrary exact finite actions; this directly treats unions of inexact regular voltage packets and charges every marked packet to a failed relator component.
-artifacts:
-  - research/artifacts/titz-witzel-nonabelian-fibre-lifts-2026-08-26.md
-  - research/artifacts/titz-witzel-regular-fibre-lift-check.py
-  - research/artifacts/titz_witzel_two_block_lift_search.cpp
 ---
 
 **THEOREM.**  In the C2-block system `(TWC1)--(TWC6)`, suppose that

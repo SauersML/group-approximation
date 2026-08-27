@@ -84,17 +84,6 @@ triangle inequality with the `c^2` defect proves the first inequality.
 Substituting the second identity in (4) into
 `titz-witzel-central-square-lifts-collapse-mark` proves the second one.
 
-For `(TWC10)`, suppose instead that all eight component permutations in the
-four lines of `(TWC5)` are identity.  Then `e,u` define an exact action of
-the presented group on `X times C2`.  Its infinite simple index-two subgroup
-`K` maps trivially to every finite symmetric group, so the element `u^8 in K`
-acts trivially, contrary to the hypothesis.  Thus some component is a
-nonidentity element of `H` and moves at least `lambda(H)|X|` points.  Its
-parent relator therefore moves at least `lambda(H)/2` of the two-block
-carrier.  If a separated sequence had `lambda(H_n)` bounded below on an
-infinite subsequence, `(TWC10)` would keep one of four relator defects
-bounded below there; hence `lambda(H_n)->0` is necessary.
-
 The attached checker independently evaluates the free words in the wreath
 product, verifies every component formula in `(TWC3)--(TWC6)`, and tests the
 metric identities on random finite permutations.

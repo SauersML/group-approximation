@@ -98,25 +98,8 @@ mu <= delta_c+6 d_X(P Q,Q P).                            (TWC9)
 
 Hence any positive C2-block construction needs both `P` versus `Q` and
 `P Q` versus `Q P` to disagree on positive density.  This is an exact
-normal form and a necessary-condition theorem.
-
-There is a further representation-theoretic obstruction.  If `H<=Sym(X)`
-contains `P,Q`, put
-
-```text
-lambda(H)=min {d_X(g,1) : 1!=g in H}.
-```
-
-Whenever `u^8!=1`, at least one of the four relators satisfies
-
-```text
-max(delta_c,delta_0,delta_P,delta_J) >= lambda(H)/2.      (TWC10)
-```
-
-Consequently any successful sequence of constant-voltage C2-block models
-must use monodromy actions with `lambda(H_n)->0`.  In particular no family
-of regular actions can work.  These results do not construct the required
-approximate models.
+normal form and a necessary-condition theorem; it does not construct the
+required approximate models.
 
 ---
 

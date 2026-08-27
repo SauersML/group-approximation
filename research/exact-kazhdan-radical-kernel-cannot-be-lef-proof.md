@@ -41,3 +41,4 @@ property-`(T)` marked limit with no nontrivial finite quotient proves the
 announced exclusion of the alternating-mother program.  In particular, an
 infinite simple marked limit cannot occur there: simplicity would eliminate
 all nontrivial finite quotients, contradicting `(EKL2)`.
+

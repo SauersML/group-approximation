@@ -1019,6 +1019,7 @@ theorem exists_rightBad_of_normalWord_not_mem_leftRange_mul_matchedCutter
           (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
         (tail : Edge),
       w.toWord.toList = pre ++ ⟨false, g⟩ :: rest ∧
+      pre ≠ [] ∧
       RightEdgeScan rest tail ∧
       g * (tail : PairedReturnGraphIntersection.P) ∉
         (PairedReturnGraphIntersection.M : Set _) *
@@ -1044,7 +1045,33 @@ theorem exists_rightBad_of_normalWord_not_mem_leftRange_mul_matchedCutter
         (Amalgam.famHom edgeToP edgeToC) false w.head).symm
     rw [PushoutI.NormalWord.prod, hword, hfac, hbase, ← mul_assoc,
       ← map_mul]
-  · exact hbad
+  · obtain ⟨pre, g, rest, tail, hlist, hscan, hfail⟩ := hbad
+    refine ⟨pre, g, rest, tail, hlist, ?_, hscan, hfail⟩
+    intro hpre
+    subst pre
+    obtain ⟨h, hh, hfac⟩ := factorization_of_rightEdgeScan hscan
+    apply hw
+    refine ⟨
+      MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+        ((w.head : PairedReturnGraphIntersection.P) * g * (tail : _)),
+      ⟨_, rfl⟩, h, hh, ?_⟩
+    have hword : PushoutI.ofCoprodI w.toWord.prod =
+        MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC
+          w.toWord.toList :=
+      MatchedSubgroupAmalgam.ofCoprodI_prod_eq_factorListProd
+        edgeToP edgeToC w.toWord
+    have hbase : PushoutI.base (Amalgam.famHom edgeToP edgeToC) w.head =
+        MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+          (w.head : PairedReturnGraphIntersection.P) :=
+      (PushoutI.of_apply_eq_base
+        (Amalgam.famHom edgeToP edgeToC) false w.head).symm
+    rw [PushoutI.NormalWord.prod, hword, hlist, List.nil_append,
+      MatchedSubgroupAmalgam.factorListProd, hfac, hbase]
+    have hg : PushoutI.of
+          (φ := Amalgam.famHom edgeToP edgeToC) false g =
+        MatchedSubgroupAmalgam.bigInA edgeToP edgeToC g := rfl
+    rw [hg]
+    simp only [map_mul, mul_assoc]
 
 /-- An excluded normal word has either a right-scan bad syllable or a
 terminal graph obstruction. -/
@@ -1524,6 +1551,74 @@ theorem exists_target_rightCarryComparison_of_map_mem
         change x ∈ imageRightSub Q q
         rw [← hs]
         exact s.property
+
+/-- Membership in the product of the mapped left vertex and mapped cutter
+produces a target carry comparison whose syllables after the first lie in the
+two mapped matched factor subgroups. -/
+theorem exists_target_rightCarryComparison_of_map_leftRange_mul_mem
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d)
+    (hred : PushoutI.Reduced
+      (Amalgam.famHom edgeToP edgeToC) w.toWord)
+    (hedge : ∀ g ∈ leftFactors w.toWord.toList,
+      q g ∉ PairedReturnGraphIntersection.M.map q)
+    (hinter : Star.graphSub.map q ⊓
+        PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q)
+    (hmem : ambientToImageLamp Q q w.prod ∈
+      (leftRange.map (ambientToImageLamp Q q) :
+          Set (FreeLamp Q
+            (PairedReturnGraphIntersection.M.map q) Sync)) *
+        (matchedCutter.map (ambientToImageLamp Q q) : Set _)) :
+    ∃ (small : List (Σ b,
+          LampFactor Q (PairedReturnGraphIntersection.M.map q) Sync b))
+      (smallHead : PairedReturnGraphIntersection.M.map q),
+      MatchedSubgroupAmalgamWordReflection.RightCarryComparison
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (quotientWord Q q w.toWord hred hedge).toList small
+        ((edgeToImage Q q w.head)⁻¹ * smallHead) ∧
+      ∀ x ∈ small.tail,
+        x.2 ∈ imageMatchedFactorSubgroup Q q x.1 := by
+  obtain ⟨a, ha, l, hl, hal⟩ := hmem
+  obtain ⟨a₀, ⟨g, rfl⟩, rfl⟩ := Subgroup.mem_map.mp ha
+  have hlrange : l ∈
+      (MatchedSubgroupAmalgamWordReflection.IndexedMatched.matchedMap
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+        (imageMatchedFactorSubgroup_comap_edge Q q hinter)).range := by
+    rw [← map_matchedCutter_eq_imageMatchedMap_range Q q hinter]
+    exact hl
+  obtain ⟨y, hy⟩ := hlrange
+  apply
+    MatchedSubgroupAmalgamWordReflection.IndexedMatched.exists_rightCarryComparison_of_eq_factor_mul_matchedMap
+      (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+      (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+      (lampMap_injective Q (PairedReturnGraphIntersection.M.map q) Sync)
+      (imageMatchedFactorSubgroup_comap_edge Q q hinter)
+      (quotientWord Q q w.toWord hred hedge)
+      (quotientWord_reduced Q q w.toWord hred hedge)
+      (edgeToImage Q q w.head) true (q g) y
+  calc
+    PushoutI.base
+          (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+          (edgeToImage Q q w.head) *
+        PushoutI.ofCoprodI
+          (quotientWord Q q w.toWord hred hedge).prod =
+      ambientToImageLamp Q q w.prod :=
+        (ambientToImageLamp_normalWord_prod Q q w hred hedge).symm
+    _ = ambientToImageLamp Q q
+          (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC g) * l := hal.symm
+    _ = PushoutI.of
+          (φ := lampMap Q
+            (PairedReturnGraphIntersection.M.map q) Sync) true (q g) *
+        MatchedSubgroupAmalgamWordReflection.IndexedMatched.matchedMap
+          (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+          (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+          (imageMatchedFactorSubgroup_comap_edge Q q hinter) y := by
+      rw [ambientToImageLamp_left, hy]
     | true =>
         obtain ⟨s, hs⟩ := hrange
         change Star.graphSub.map q at s

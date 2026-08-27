@@ -48,3 +48,4 @@ every such limit is LEF.  This closes the alternating-mother branch outright.
 It also shows that an explicit finite-permutation construction of the kernel
 cannot proceed through exact local models; genuinely Hamming-approximate,
 non-LEF sofic models are compulsory.
+
