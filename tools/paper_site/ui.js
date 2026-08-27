@@ -9,6 +9,9 @@
 const MACROS = typeof window !== 'undefined'
   ? window.CAIRN_MATH_MACROS
   : require('../math_macros.js');
+const NORMALIZE = typeof window !== 'undefined'
+  ? window.CAIRN_MATH_NORMALIZE
+  : require('../math_normalize.js');
 
 function resolveMathRefs(src) {
   src = src.replace(/\\qedhere\b/g, '');
@@ -22,7 +25,7 @@ function resolveMathRefs(src) {
 }
 
 function tex2html(src, display) {
-  src = resolveMathRefs(src);
+  src = NORMALIZE(resolveMathRefs(src));
   try {
     katex.__parse(src, { macros: Object.assign({}, MACROS), displayMode: !!display, strict: false });
   } catch (e) {

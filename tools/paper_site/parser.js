@@ -236,6 +236,17 @@ function mkAnchor(prefix, hint) {
   return a;
 }
 
+// true when `buf`, the text of the paragraph being accumulated, has an
+// unmatched inline-math `$` (a `\$` in text does not count)
+function insideInlineMath(buf) {
+  let open = false;
+  for (let k = 0; k < buf.length; k++) {
+    if (buf[k] === '\\') { k++; continue; }
+    if (buf[k] === '$') open = !open;
+  }
+  return open;
+}
+
 function parseBlocks(src, C) {
   // returns array of nodes
   const nodes = [];
@@ -300,6 +311,11 @@ function parseBlocks(src, C) {
     if (m[3]) {  // \begin{ENV}
       const env = m[3];
       const endTok = '\\end{' + env + '}';
+      if (insideInlineMath(paraBuf)) {
+        // inside $...$: the environment is part of the formula (psmallmatrix,
+        // aligned, ...), not a block; KaTeX gets the whole span later
+        paraBuf += m[0]; i += m[0].length; continue;
+      }
       if (env in THM_ENVS) {
         flushPara();
         let j = i + m[0].length;
@@ -560,3 +576,5 @@ function parsePaper(tex) {
   const bib = parseBib(doc.bib);
   return { abstract: doc.abstract, nodes, bib, counters: C };
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = { parsePaper, parseBlocks, DIAG };

@@ -486,7 +486,8 @@ def main():
     polish_css = read(HERE / 'polish.css')
     validate_authored_styles(site_css + '\n' + polish_css)
     parser_js = read(HERE / 'parser.js')
-    ui_js = read(REPO / 'tools' / 'math_macros.js') + '\n' + read(HERE / 'ui.js')
+    ui_js = (read(REPO / 'tools' / 'math_macros.js') + '\n'
+             + read(REPO / 'tools' / 'math_normalize.js') + '\n' + read(HERE / 'ui.js'))
     enhance_js = read(HERE / 'enhance.js') + '\n' + read(REPO / 'tools' / 'math_explainer.js')
     freshness_js = read(HERE / 'freshness.js').replace(
         '/*__BUILD_ID_JSON__*/', json.dumps(args.build_id))
