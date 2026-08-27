@@ -613,10 +613,15 @@ def uedaCornerLift : universalHNN data →⋆ₐ[ℂ]
   letI : Nonempty (CStarAmalgamRepresentation
       (amalgamLeftInclusion data) (amalgamRightInclusion data)) :=
     ⟨coronaAmalgamRepresentation data⟩
-  exact cornerLift (cornerUnit data) (cornerUnit_star data) (cornerUnit_mul data)
-    (cornerBaseMap data) (cornerStableUnitary data)
-    (cornerStableUnitary_covariance data)
-    (cornerUnit_cornerProjectionAt_ne_zero data)
+  exact cornerLift
+    (B0 := sourceEdgeAlgebra data) (B1 := targetEdgeAlgebra data)
+    (theta := edgeIsomorphism data)
+    (iA := amalgamLeftInclusion data) (iB := amalgamRightInclusion data)
+    (e := cornerUnit data) (he_star := cornerUnit_star data)
+    (he_mul := cornerUnit_mul data) (pi := cornerBaseMap data)
+    (u := cornerStableUnitary data)
+    (hcov := cornerStableUnitary_covariance data)
+    (hne := cornerUnit_cornerProjectionAt_ne_zero data)
 
 @[simp] theorem uedaCornerLift_base (d : baseAlgebra data) :
     uedaCornerLift data (universalBase data d) = cornerBaseMap data d :=

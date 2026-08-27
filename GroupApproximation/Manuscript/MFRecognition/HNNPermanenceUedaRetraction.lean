@@ -229,7 +229,12 @@ theorem evaluatedCornerMap_comp_uedaCornerMap (R : HNNCoordinate data) :
     simp [evaluatedCornerMap_base]
   · simp [evaluatedCornerMap_stable]
 
-theorem uedaCornerMap_injective : Function.Injective (uedaCornerMap data) := by
+/-- Superseded name.  This module is an earlier copy of the evaluated-corner
+chain and is outside the root import closure; the live `uedaCornerMap_injective`
+is the one in `HNNPermanenceUedaDirectEmbedding`, whose `uedaCornerMap` takes
+the citation as its first argument. -/
+theorem uedaCornerMap_injective_ofRetraction :
+    Function.Injective (uedaCornerMap data) := by
   intro x y hxy
   apply universalCStarHNN_eq_of_forall_eval_eq
   intro R
@@ -249,7 +254,7 @@ def DirectUedaCornerEmbedding : Prop :=
 
 theorem directUedaCornerEmbedding : DirectUedaCornerEmbedding := by
   intro G _ S T phi A _ X _ data
-  exact uedaCornerMap_injective data
+  exact uedaCornerMap_injective_ofRetraction data
 
 end
 
