@@ -445,6 +445,25 @@ abbrev ImageMatchedGeneratorSet (Q : Type) [Group Q]
     (inAmbient Q (PairedReturnGraphIntersection.M.map q) Sync ''
       (Star.graphSub.map q : Set Q))
 
+/-- The two matched factor subgroups in the quotient free-lamp diagram. -/
+def imageMatchedFactorSubgroup (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q) : ∀ b,
+    Subgroup (LampFactor Q (PairedReturnGraphIntersection.M.map q) Sync b)
+  | false => imageRightSub Q q
+  | true => Star.graphSub.map q
+
+theorem imageMatchedFactorSubgroup_comap_edge
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (hinter : Star.graphSub.map q ⊓
+        PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q) :
+    ∀ b, (imageMatchedFactorSubgroup Q q b).comap
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync b) =
+      imageDelta Q q
+  | false => imageRightSub_comap_edge_eq_imageDelta Q q hinter
+  | true => imageGraph_comap_edge_eq_imageDelta Q q hinter
+
 /-- The two source-factor maps into the quotient free lamp. -/
 def imageLampFactors (Q : Type) [Group Q]
     (q : PairedReturnGraphIntersection.P →* Q) : ∀ b,
@@ -588,6 +607,42 @@ theorem map_matchedCutter_eq_imageGeneratorClosure
       refine ⟨MatchedSubgroupAmalgam.bigInA edgeToP edgeToC g,
         Or.inl ⟨g, hg, rfl⟩, ?_⟩
       exact ambientToImageLamp_left Q q g
+
+/-- Under exact mapped edge intersection, the mapped cutter is literally the
+range of the corresponding matched small-amalgam embedding. -/
+theorem map_matchedCutter_eq_imageMatchedMap_range
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (hinter : Star.graphSub.map q ⊓
+        PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q) :
+    matchedCutter.map (ambientToImageLamp Q q) =
+      (MatchedSubgroupAmalgamWordReflection.IndexedMatched.matchedMap
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+        (imageMatchedFactorSubgroup_comap_edge Q q hinter)).range := by
+  rw [map_matchedCutter_eq_imageGeneratorClosure,
+    MatchedSubgroupAmalgamWordReflection.IndexedMatched.matchedMap_range_eq_closure
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+        (imageMatchedFactorSubgroup_comap_edge Q q hinter)]
+  congr 1
+  ext x
+  constructor
+  · rintro (hx | hx)
+    · obtain ⟨s, hs, rfl⟩ := hx
+      exact ⟨false, ⟨s, hs⟩, rfl⟩
+    · obtain ⟨g, hg, rfl⟩ := hx
+      exact ⟨true, ⟨g, hg⟩, rfl⟩
+  · rintro ⟨b, s, rfl⟩
+    cases b with
+    | false =>
+        change imageRightSub Q q at s
+        exact Or.inl ⟨(s :
+          PairedReturnGraphIntersection.M.map q × Sync), s.property, rfl⟩
+    | true =>
+        change Star.graphSub.map q at s
+        exact Or.inr ⟨(s : Q), s.property, rfl⟩
 
 /-! ## Edge-carry scanning -/
 
@@ -1105,6 +1160,106 @@ theorem quotientWord_reduced
       · rfl
       · exact hs
 
+/-- The quotient homomorphism evaluates a source factor list as the reversed-
+index quotient factor list. -/
+def imageFactorListProd (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q) :
+    List (Σ b, LampFactor Q
+      (PairedReturnGraphIntersection.M.map q) Sync b) →
+      FreeLamp Q (PairedReturnGraphIntersection.M.map q) Sync
+  | [] => 1
+  | ⟨b, x⟩ :: l =>
+      PushoutI.of
+        (φ := lampMap Q (PairedReturnGraphIntersection.M.map q) Sync) b x *
+        imageFactorListProd Q q l
+
+theorem ambientToImageLamp_factorListProd
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q) :
+    ∀ l : List (Σ b,
+        Amalgam.fam PairedReturnGraphIntersection.P C b),
+      ambientToImageLamp Q q
+          (MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) =
+        imageFactorListProd Q q (l.map (quotientLetter Q q))
+  | [] => by simp [MatchedSubgroupAmalgam.factorListProd,
+      imageFactorListProd]
+  | ⟨b, x⟩ :: l => by
+      cases b with
+      | false =>
+          change ambientToImageLamp Q q
+              (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC x *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) = _
+          rw [map_mul, ambientToImageLamp_left,
+            ambientToImageLamp_factorListProd Q q l]
+          simp [imageFactorListProd, quotientLetter]
+      | true =>
+          change ambientToImageLamp Q q
+              (MatchedSubgroupAmalgam.bigInB edgeToP edgeToC x *
+                MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC l) = _
+          rw [map_mul, ambientToImageLamp_right,
+            ambientToImageLamp_factorListProd Q q l]
+          simp [imageFactorListProd, quotientLetter]
+
+theorem imageFactorListProd_eq_ofCoprodI_prod
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (w : Monoid.CoprodI.Word
+      (LampFactor Q (PairedReturnGraphIntersection.M.map q) Sync)) :
+    imageFactorListProd Q q w.toList = PushoutI.ofCoprodI w.prod := by
+  induction w using Monoid.CoprodI.Word.consRecOn with
+  | empty => simp [imageFactorListProd, Monoid.CoprodI.Word.prod]
+  | @cons i g w hidx hg ih =>
+      rw [Monoid.CoprodI.Word.prod_cons, map_mul,
+        PushoutI.ofCoprodI_of]
+      change PushoutI.of
+          (φ := lampMap Q (PairedReturnGraphIntersection.M.map q) Sync) i g *
+          imageFactorListProd Q q w.toList = _
+      rw [ih]
+
+/-- Evaluation of a source normal word agrees with the explicit reduced
+quotient spelling and the mapped edge head. -/
+theorem ambientToImageLamp_normalWord_prod
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d)
+    (hred : PushoutI.Reduced
+      (Amalgam.famHom edgeToP edgeToC) w.toWord)
+    (hedge : ∀ g ∈ leftFactors w.toWord.toList,
+      q g ∉ PairedReturnGraphIntersection.M.map q) :
+    ambientToImageLamp Q q w.prod =
+      PushoutI.base
+          (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+          (edgeToImage Q q w.head) *
+        PushoutI.ofCoprodI (quotientWord Q q w.toWord hred hedge).prod := by
+  rw [PushoutI.NormalWord.prod, map_mul]
+  have hhead : ambientToImageLamp Q q
+        (PushoutI.base (Amalgam.famHom edgeToP edgeToC) w.head) =
+      PushoutI.base
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (edgeToImage Q q w.head) := by
+    rw [← PushoutI.of_apply_eq_base
+      (Amalgam.famHom edgeToP edgeToC) false w.head,
+      show PushoutI.of (φ := Amalgam.famHom edgeToP edgeToC) false
+          (Amalgam.famHom edgeToP edgeToC false w.head) =
+        MatchedSubgroupAmalgam.bigInA edgeToP edgeToC
+          (edgeToP w.head) from rfl,
+      ambientToImageLamp_left]
+    exact PushoutI.of_apply_eq_base
+      (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync) true
+      (edgeToImage Q q w.head)
+  rw [hhead,
+    MatchedSubgroupAmalgam.ofCoprodI_prod_eq_factorListProd
+      edgeToP edgeToC,
+    ambientToImageLamp_factorListProd]
+  change PushoutI.base
+      (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+      (edgeToImage Q q w.head) *
+      imageFactorListProd Q q
+        (quotientWord Q q w.toWord hred hedge).toList = _
+  rw [imageFactorListProd_eq_ofCoprodI_prod]
+
 /-- A quotient preserves the source scan obstruction and prevents every
 left normal syllable from collapsing into the target edge. -/
 def PreservedObstruction
@@ -1179,6 +1334,406 @@ theorem exists_finite_hom_preserving_normalObstruction
       Or.inr ⟨tail, hscan, ?_⟩, hedgeq⟩
     exact hgraph (tail : PairedReturnGraphIntersection.P) (by simp)
 
+/-- A refined finite quotient preserves a right-scan obstruction, keeps the
+displayed word reduced, and has exact graph/edge image intersection. -/
+def RightPreservedObstruction
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d) : Prop :=
+  ((∃ (pre : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+        (g : PairedReturnGraphIntersection.P) (rest : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+        (tail : Edge),
+      w.toWord.toList = pre ++ ⟨false, g⟩ :: rest ∧
+      RightEdgeScan rest tail ∧
+      q ((g * (tail : PairedReturnGraphIntersection.P))⁻¹) ∉
+        (Star.graphSub.map q : Set Q) *
+          (PairedReturnGraphIntersection.M.map q : Set Q)) ∨
+    ∃ head, RightEdgeScan w.toWord.toList head ∧
+      q ((w.head : PairedReturnGraphIntersection.P) * (head : _)) ∉
+        Star.graphSub.map q) ∧
+  ∀ g ∈ leftFactors w.toWord.toList,
+    q g ∉ PairedReturnGraphIntersection.M.map q
+
+/-- A source right scan maps to a carry comparison whose comparison word lies
+letterwise in the two target matched factor subgroups. -/
+theorem exists_image_rightCarryComparison_of_rightEdgeScan
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q) :
+    ∀ {l : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b)}
+      {head : Edge}, RightEdgeScan l head →
+      ∃ small : List
+          (Σ b, LampFactor Q
+            (PairedReturnGraphIntersection.M.map q) Sync b),
+        MatchedSubgroupAmalgamWordReflection.RightCarryComparison
+          (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+          (l.map (quotientLetter Q q)) small (edgeToImage Q q head) ∧
+        ∀ x ∈ small, x.2 ∈ imageMatchedFactorSubgroup Q q x.1 := by
+  intro l head hscan
+  induction hscan with
+  | nil =>
+      refine ⟨[], ?_, by simp⟩
+      simpa using
+        (MatchedSubgroupAmalgamWordReflection.RightCarryComparison.nil
+          (φ := lampMap Q (PairedReturnGraphIntersection.M.map q) Sync))
+  | left head tail g z l hz heq hscan ih =>
+      obtain ⟨small, hcompare, hsmall⟩ := ih
+      refine ⟨⟨true, q z⟩ :: small, ?_, ?_⟩
+      · apply MatchedSubgroupAmalgamWordReflection.RightCarryComparison.cons
+          true (q g) (q z) _ _ (edgeToImage Q q head)
+            (edgeToImage Q q tail) _ hcompare
+        change q g * q (tail : PairedReturnGraphIntersection.P) =
+          q (head : PairedReturnGraphIntersection.P) * q z
+        simpa only [map_mul] using congrArg q heq
+      · intro x hx
+        rcases List.mem_cons.mp hx with rfl | hx
+        · exact ⟨z, hz, rfl⟩
+        · exact hsmall x hx
+  | right head tail c t l ht heq hscan ih =>
+      obtain ⟨small, hcompare, hsmall⟩ := ih
+      refine ⟨⟨false, rightToImageLamp Q q t⟩ :: small, ?_, ?_⟩
+      · apply MatchedSubgroupAmalgamWordReflection.RightCarryComparison.cons
+          false (rightToImageLamp Q q c) (rightToImageLamp Q q t)
+            _ _ (edgeToImage Q q head) (edgeToImage Q q tail) _ hcompare
+        change rightToImageLamp Q q c *
+            rightToImageLamp Q q (edgeToC tail) =
+          rightToImageLamp Q q (edgeToC head) * rightToImageLamp Q q t
+        simpa only [map_mul] using congrArg (rightToImageLamp Q q) heq
+      · intro x hx
+        rcases List.mem_cons.mp hx with rfl | hx
+        · exact ⟨t, ht, rfl⟩
+        · exact hsmall x hx
+
+/-- Membership in the mapped cutter produces a target carry comparison with
+a word lying letterwise in the two mapped matched factor subgroups. -/
+theorem exists_target_rightCarryComparison_of_map_mem
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d)
+    (hred : PushoutI.Reduced
+      (Amalgam.famHom edgeToP edgeToC) w.toWord)
+    (hedge : ∀ g ∈ leftFactors w.toWord.toList,
+      q g ∉ PairedReturnGraphIntersection.M.map q)
+    (hinter : Star.graphSub.map q ⊓
+        PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q)
+    (hmem : ambientToImageLamp Q q w.prod ∈
+      matchedCutter.map (ambientToImageLamp Q q)) :
+    ∃ (small : List (Σ b,
+          LampFactor Q (PairedReturnGraphIntersection.M.map q) Sync b))
+      (smallHead : PairedReturnGraphIntersection.M.map q),
+      MatchedSubgroupAmalgamWordReflection.RightCarryComparison
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (quotientWord Q q w.toWord hred hedge).toList small
+        ((edgeToImage Q q w.head)⁻¹ * smallHead) ∧
+      smallHead ∈ imageDelta Q q ∧
+      ∀ x ∈ small, x.2 ∈ imageMatchedFactorSubgroup Q q x.1 := by
+  have hrange : ambientToImageLamp Q q w.prod ∈
+      (MatchedSubgroupAmalgamWordReflection.IndexedMatched.matchedMap
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+        (imageMatchedFactorSubgroup_comap_edge Q q hinter)).range := by
+    rw [← map_matchedCutter_eq_imageMatchedMap_range Q q hinter]
+    exact hmem
+  rw [ambientToImageLamp_normalWord_prod Q q w hred hedge] at hrange
+  obtain ⟨dsmall, wsmall, hcompare⟩ :=
+    MatchedSubgroupAmalgamWordReflection.IndexedMatched.exists_rightCarryComparison_of_mem_range
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+        (lampMap_injective Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup_comap_edge Q q hinter)
+        (quotientWord Q q w.toWord hred hedge)
+        (quotientWord_reduced Q q w.toWord hred hedge)
+        (edgeToImage Q q w.head) hrange
+  let small := (PushoutEmbedding.wordMap
+    (MatchedSubgroupAmalgamWordReflection.IndexedMatched.factorInclusion
+      (imageMatchedFactorSubgroup Q q))
+    (fun _ ↦ Subtype.val_injective)
+    wsmall.toWord).toList
+  let smallHead : PairedReturnGraphIntersection.M.map q :=
+    (imageDelta Q q).subtype wsmall.head
+  refine ⟨small, smallHead, ?_, wsmall.head.property, ?_⟩
+  · dsimp [small, smallHead]
+    exact hcompare
+  · intro x hx
+    have hrange :=
+      MatchedSubgroupAmalgamWordReflection.wordMap_letter_mem_range
+        (MatchedSubgroupAmalgamWordReflection.IndexedMatched.factorInclusion
+          (imageMatchedFactorSubgroup Q q))
+        (fun _ ↦ Subtype.val_injective)
+        wsmall.toWord x hx
+    rcases x with ⟨b, x⟩
+    cases b with
+    | false =>
+        obtain ⟨s, hs⟩ := hrange
+        change imageRightSub Q q at s
+        change (s : PairedReturnGraphIntersection.M.map q × Sync) = x at hs
+        change x ∈ imageRightSub Q q
+        rw [← hs]
+        exact s.property
+    | true =>
+        obtain ⟨s, hs⟩ := hrange
+        change Star.graphSub.map q at s
+        change (s : Q) = x at hs
+        change x ∈ Star.graphSub.map q
+        rw [← hs]
+        exact s.property
+
+/-- Every excluded element has a reduced normal spelling and a finite refined
+quotient preserving its right-scan obstruction with exact mapped edge
+intersection. -/
+theorem exists_finite_refinement_preserving_rightObstruction
+    {z : Ambient} (hz : z ∉ matchedCutter) :
+    ∃ (d : PushoutI.NormalWord.Transversal
+          (Amalgam.famHom edgeToP edgeToC))
+      (w : PushoutI.NormalWord d)
+      (Q : Type) (_ : Group Q) (_ : Finite Q)
+      (q : PairedReturnGraphIntersection.P →* Q),
+      w.prod = z ∧ w.prod ∉ matchedCutter ∧
+      RightPreservedObstruction Q q w ∧
+      Star.graphSub.map q ⊓ PairedReturnGraphIntersection.M.map q =
+        PairedReturnGraphIntersection.deltaSub.map q := by
+  classical
+  letI : ∀ b : Bool,
+      DecidableEq (Amalgam.fam PairedReturnGraphIntersection.P C b) :=
+    fun _ ↦ Classical.decEq _
+  obtain ⟨d⟩ := PushoutI.NormalWord.transversal_nonempty
+    (Amalgam.famHom edgeToP edgeToC)
+    (Amalgam.famHom_injective edgeToP edgeToC
+      edgeToP_injective edgeToC_injective)
+  let w : PushoutI.NormalWord d := PushoutI.NormalWord.equiv z
+  have hwprod : w.prod = z :=
+    (PushoutI.NormalWord.equiv (d := d)).symm_apply_apply z
+  have hwout : w.prod ∉ matchedCutter := by rwa [hwprod]
+  have hedge := leftFactors_not_mem_edge w
+  rcases exists_rightBad_or_terminal_of_normalWord_not_mem w hwout with
+      hbad | hterminal
+  · obtain ⟨pre, g, rest, tail, hlist, hscan, hfail⟩ := hbad
+    have hinv : (g * (tail : PairedReturnGraphIntersection.P))⁻¹ ∉
+        LeftProduct := by
+      intro hmem
+      obtain ⟨a, ha, m, hm, ham⟩ := hmem
+      apply hfail
+      refine ⟨m⁻¹, PairedReturnGraphIntersection.M.inv_mem hm,
+        a⁻¹, Star.graphSub.inv_mem ha, ?_⟩
+      have hinvEq := congrArg Inv.inv ham
+      simpa using hinvEq
+    obtain ⟨Q₀, hQgroup, hQfinite, q₀, hleft, _, hedge₀⟩ :=
+      exists_finite_hom_reflecting_obstruction_lists
+        [(g * (tail : PairedReturnGraphIntersection.P))⁻¹] []
+        (leftFactors w.toWord.toList) (by
+          intro x hx
+          rw [List.mem_singleton] at hx
+          subst x
+          exact hinv) (by simp) hedge
+    letI : Group Q₀ := hQgroup
+    letI : Finite Q₀ := hQfinite
+    let q :=
+      PairedReturnImageIntersectionRefinement.refineHom Q₀ q₀
+    letI : Group
+        (PairedReturnImageIntersectionRefinement.Target Q₀ q₀) :=
+      inferInstance
+    letI : Finite
+        (PairedReturnImageIntersectionRefinement.Target Q₀ q₀) :=
+      inferInstance
+    refine ⟨d, w, _, inferInstance, inferInstance, q,
+      hwprod, hwout, ?_, ?_⟩
+    · constructor
+      · left
+        refine ⟨pre, g, rest, tail, hlist, hscan, ?_⟩
+        intro hmem
+        obtain ⟨a, ha, m, hm, ham⟩ := hmem
+        obtain ⟨a₀, ha₀, rfl⟩ := Subgroup.mem_map.mp ha
+        obtain ⟨m₀, hm₀, rfl⟩ := Subgroup.mem_map.mp hm
+        apply hleft ((g * (tail : PairedReturnGraphIntersection.P))⁻¹) (by simp)
+        refine ⟨q₀ a₀, ⟨a₀, ha₀, rfl⟩,
+          q₀ m₀, ⟨m₀, hm₀, rfl⟩, ?_⟩
+        exact congrArg Prod.fst ham
+      · intro x hx hmem
+        obtain ⟨m, hm, hmx⟩ := Subgroup.mem_map.mp hmem
+        apply hedge₀ x hx
+        exact ⟨m, hm, congrArg Prod.fst hmx⟩
+    · exact
+        PairedReturnImageIntersectionRefinement.map_graph_inf_map_edge_eq_map_delta
+          Q₀ q₀
+  · obtain ⟨head, hscan, hfail⟩ := hterminal
+    let terminal :=
+      (w.head : PairedReturnGraphIntersection.P) * (head : _)
+    obtain ⟨Q₀, hQgroup, hQfinite, q₀, _, hgraph, hedge₀⟩ :=
+      exists_finite_hom_reflecting_obstruction_lists [] [terminal]
+        (leftFactors w.toWord.toList) (by simp) (by
+          intro x hx
+          rw [List.mem_singleton] at hx
+          subst x
+          exact hfail) hedge
+    letI : Group Q₀ := hQgroup
+    letI : Finite Q₀ := hQfinite
+    let q :=
+      PairedReturnImageIntersectionRefinement.refineHom Q₀ q₀
+    letI : Group
+        (PairedReturnImageIntersectionRefinement.Target Q₀ q₀) :=
+      inferInstance
+    letI : Finite
+        (PairedReturnImageIntersectionRefinement.Target Q₀ q₀) :=
+      inferInstance
+    refine ⟨d, w, _, inferInstance, inferInstance, q,
+      hwprod, hwout, ?_, ?_⟩
+    · constructor
+      · right
+        refine ⟨head, hscan, ?_⟩
+        intro hmem
+        obtain ⟨a, ha, hax⟩ := Subgroup.mem_map.mp hmem
+        apply hgraph terminal (by simp)
+        exact ⟨a, ha, congrArg Prod.fst hax⟩
+      · intro x hx hmem
+        obtain ⟨m, hm, hmx⟩ := Subgroup.mem_map.mp hmem
+        apply hedge₀ x hx
+        exact ⟨m, hm, congrArg Prod.fst hmx⟩
+    · exact
+        PairedReturnImageIntersectionRefinement.map_graph_inf_map_edge_eq_map_delta
+          Q₀ q₀
+
+/-- A preserved right obstruction rejects membership in the mapped cutter.
+The two carry comparisons have the same literal quotient word.  Exact mapped
+edge intersection forces their carries to differ in the mapped returning
+subgroup, which contradicts either the displayed bad left syllable or the
+terminal graph obstruction. -/
+theorem not_mem_map_matchedCutter_of_rightPreservedObstruction
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d)
+    (hinter : Star.graphSub.map q ⊓
+        PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q)
+    (hpres : RightPreservedObstruction Q q w) :
+    ambientToImageLamp Q q w.prod ∉
+      matchedCutter.map (ambientToImageLamp Q q) := by
+  classical
+  have hred := PushoutEmbedding.normalWord_reduced
+    (Amalgam.famHom edgeToP edgeToC) d w
+  have hedge := hpres.2
+  intro hmem
+  obtain ⟨small, smallHead, htarget, hsmallHead, hsmall⟩ :=
+    exists_target_rightCarryComparison_of_map_mem Q q w hred hedge hinter hmem
+  have hcomap := imageMatchedFactorSubgroup_comap_edge Q q hinter
+  rcases hpres.1 with hbad | hterminal
+  · obtain ⟨pre, g, rest, tail, hlist, hscan, hout⟩ := hbad
+    obtain ⟨sourceSmall, hsource, hsourceSmall⟩ :=
+      exists_image_rightCarryComparison_of_rightEdgeScan Q q hscan
+    have hquotientList :
+        (quotientWord Q q w.toWord hred hedge).toList =
+          pre.map (quotientLetter Q q) ++
+            ⟨true, q g⟩ :: rest.map (quotientLetter Q q) := by
+      change w.toWord.toList.map (quotientLetter Q q) = _
+      rw [hlist, List.map_append]
+      rfl
+    rw [hquotientList] at htarget
+    obtain ⟨smallPre, s, smallRest, current, targetTail,
+        hsmallEq, heq, htargetRest⟩ :=
+      MatchedSubgroupAmalgamWordReflection.RightCarryComparison.exists_at_append
+          (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync) htarget
+    change Q at s
+    have hs : s ∈ Star.graphSub.map q := by
+      have hs' : (⟨true, s⟩ : Σ b,
+          LampFactor Q (PairedReturnGraphIntersection.M.map q) Sync b).2 ∈
+          imageMatchedFactorSubgroup Q q true := by
+        exact hsmall ⟨true, s⟩ (by
+        rw [hsmallEq]
+        exact List.mem_append.mpr
+          (Or.inr (List.mem_cons_self)))
+      exact hs'
+    have hsmallRest : ∀ x ∈ smallRest,
+        x.2 ∈ imageMatchedFactorSubgroup Q q x.1 := by
+      intro x hx
+      apply hsmall x
+      rw [hsmallEq]
+      exact List.mem_append.mpr
+        (Or.inr (List.mem_cons_of_mem _ hx))
+    have hdelta :
+        (edgeToImage Q q tail)⁻¹ * targetTail ∈ imageDelta Q q :=
+      MatchedSubgroupAmalgamWordReflection.RightCarryComparison.head_div_mem
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup Q q) (imageDelta Q q) hcomap
+        hsource htargetRest hsourceSmall hsmallRest
+    have hdeltaGraph :
+        ((edgeToImage Q q tail)⁻¹ * targetTail :
+          PairedReturnGraphIntersection.M.map q) ∈
+            (Star.graphSub.map q).comap
+              (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync true) := by
+      rw [imageGraph_comap_edge_eq_imageDelta Q q hinter]
+      exact hdelta
+    apply hout
+    refine ⟨
+      (((edgeToImage Q q tail)⁻¹ * targetTail :
+          PairedReturnGraphIntersection.M.map q) : Q) * s⁻¹,
+      (Star.graphSub.map q).mul_mem hdeltaGraph
+        ((Star.graphSub.map q).inv_mem hs),
+      ((current : PairedReturnGraphIntersection.M.map q) : Q)⁻¹,
+      (PairedReturnGraphIntersection.M.map q).inv_mem current.property, ?_⟩
+    change q g * (targetTail : Q) =
+      (current : Q) * (show Q from s) at heq
+    change (((edgeToImage Q q tail :
+        PairedReturnGraphIntersection.M.map q) : Q)⁻¹ *
+        (targetTail : Q)) * s⁻¹ * (current : Q)⁻¹ = _
+    have hedgeq : (((edgeToImage Q q tail :
+        PairedReturnGraphIntersection.M.map q) : Q)) =
+        q (tail : PairedReturnGraphIntersection.P) := rfl
+    have htailEq : (targetTail : Q) =
+        (q g)⁻¹ * (current : Q) * s := by
+      calc
+        (targetTail : Q) = (q g)⁻¹ * (q g * (targetTail : Q)) := by group
+        _ = (q g)⁻¹ * ((current : Q) * s) := by rw [heq]
+        _ = (q g)⁻¹ * (current : Q) * s := by group
+    rw [map_inv, map_mul, hedgeq, htailEq]
+    group
+  · obtain ⟨head, hscan, hout⟩ := hterminal
+    obtain ⟨sourceSmall, hsource, hsourceSmall⟩ :=
+      exists_image_rightCarryComparison_of_rightEdgeScan Q q hscan
+    have hsource' :
+        MatchedSubgroupAmalgamWordReflection.RightCarryComparison
+          (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+          (quotientWord Q q w.toWord hred hedge).toList sourceSmall
+          (edgeToImage Q q head) := by
+      simpa [quotientWord] using hsource
+    have hdelta : (edgeToImage Q q head)⁻¹ *
+          ((edgeToImage Q q w.head)⁻¹ * smallHead) ∈ imageDelta Q q :=
+      MatchedSubgroupAmalgamWordReflection.RightCarryComparison.head_div_mem
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup Q q) (imageDelta Q q) hcomap
+        hsource' htarget hsourceSmall hsmall
+    have hdeltaGraph :
+        ((edgeToImage Q q head)⁻¹ *
+          ((edgeToImage Q q w.head)⁻¹ * smallHead) :
+            PairedReturnGraphIntersection.M.map q) ∈
+          (Star.graphSub.map q).comap
+            (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync true) := by
+      rw [imageGraph_comap_edge_eq_imageDelta Q q hinter]
+      exact hdelta
+    have hsmallHeadGraph : smallHead ∈
+        (Star.graphSub.map q).comap
+          (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync true) := by
+      rw [imageGraph_comap_edge_eq_imageDelta Q q hinter]
+      exact hsmallHead
+    apply hout
+    have hprodGraph := (Star.graphSub.map q).mul_mem hsmallHeadGraph
+      ((Star.graphSub.map q).inv_mem hdeltaGraph)
+    convert hprodGraph using 1
+    rw [map_mul]
+    change q (w.head : PairedReturnGraphIntersection.P) *
+        q (head : PairedReturnGraphIntersection.P) =
+      (smallHead : Q) *
+        ((q (head : PairedReturnGraphIntersection.P))⁻¹ *
+          ((q (w.head : PairedReturnGraphIntersection.P))⁻¹ *
+            (smallHead : Q)))⁻¹
+    group
 /-- The same quotient in the iterated-central-HNN model used by the finite
 free-label action. -/
 def ambientToFiniteStage2 (Q : Type) [Group Q]
@@ -1319,6 +1874,181 @@ theorem not_mem_profiniteClosure_matchedCutter_of_image
   intro R _ _ r
   have h := hzClosure R (r.comp (ambientToImageLamp Q q))
   rwa [Subgroup.map_map]
+
+/-- The concrete matched cutter is profinitely closed. -/
+theorem profiniteClosure_matchedCutter :
+    profiniteClosure matchedCutter = matchedCutter := by
+  apply le_antisymm
+  · intro z hz
+    by_contra hout
+    obtain ⟨d, w, Q, hQgroup, hQfinite, q,
+        hwprod, -, hpres, hinter⟩ :=
+      exists_finite_refinement_preserving_rightObstruction hout
+    letI : Group Q := hQgroup
+    letI : Finite Q := hQfinite
+    have hImage : ambientToImageLamp Q q z ∉
+        matchedCutter.map (ambientToImageLamp Q q) := by
+      rw [← hwprod]
+      exact not_mem_map_matchedCutter_of_rightPreservedObstruction
+        Q q w hinter hpres
+    exact (not_mem_profiniteClosure_matchedCutter_of_image Q q hImage) hz
+  · exact le_profiniteClosure matchedCutter
+
+/-- The original five-generator paired-return cutter is profinitely closed. -/
+theorem profiniteClosure_fiveCutter :
+    profiniteClosure fiveCutter = fiveCutter := by
+  rw [fiveCutter_eq_matchedCutter]
+  exact profiniteClosure_matchedCutter
+
+/-- A finite list of points outside a closed subgroup can be kept outside
+simultaneously in one finite product quotient. -/
+theorem exists_finite_hom_reflecting_list_of_closed
+    {G : Type} [Group G] (H : Subgroup G)
+    (hclosed : profiniteClosure H = H) :
+    ∀ l : List G, (∀ x ∈ l, x ∉ H) →
+      ∃ (Q : Type) (_ : Group Q) (_ : Finite Q) (q : G →* Q),
+        ∀ x ∈ l, q x ∉ H.map q
+  | [] => by
+      intro _
+      exact ⟨PUnit, inferInstance, inferInstance, 1, by simp⟩
+  | x :: l => by
+      intro hout
+      have hxClosure : x ∉ profiniteClosure H := by
+        rw [hclosed]
+        exact hout x List.mem_cons_self
+      have hxSep : ∃ (Q : Type) (_ : Group Q) (_ : Finite Q)
+          (q : G →* Q), q x ∉ H.map q := by
+        by_contra hnone
+        apply hxClosure
+        intro Q _ _ q
+        by_contra hq
+        apply hnone
+        exact ⟨Q, inferInstance, inferInstance, q, hq⟩
+      obtain ⟨Q, hQgroup, hQfinite, q, hqx⟩ := hxSep
+      letI : Group Q := hQgroup
+      letI : Finite Q := hQfinite
+      obtain ⟨R, hRgroup, hRfinite, r, hr⟩ :=
+        exists_finite_hom_reflecting_list_of_closed H hclosed l
+          (fun y hy ↦ hout y (List.mem_cons_of_mem x hy))
+      letI : Group R := hRgroup
+      letI : Finite R := hRfinite
+      refine ⟨Q × R, inferInstance, inferInstance, q.prod r, ?_⟩
+      intro y hy hmem
+      obtain ⟨z, hz, hzy⟩ := Subgroup.mem_map.mp hmem
+      rcases List.mem_cons.mp hy with rfl | hy
+      · apply hqx
+        exact ⟨z, hz, congrArg Prod.fst hzy⟩
+      · apply hr y hy
+        exact ⟨z, hz, congrArg Prod.snd hzy⟩
+
+/-- In an exact-intersection image free lamp, membership of a displayed base
+element in the mapped cutter reflects membership in the mapped graph. -/
+theorem imageLamp_left_mem_map_matchedCutter_iff
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (hinter : Star.graphSub.map q ⊓
+        PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q)
+    (g : Q) :
+    inAmbient Q (PairedReturnGraphIntersection.M.map q) Sync g ∈
+        matchedCutter.map (ambientToImageLamp Q q) ↔
+      g ∈ Star.graphSub.map q := by
+  constructor
+  · intro hg
+    rw [map_matchedCutter_eq_imageMatchedMap_range Q q hinter] at hg
+    obtain ⟨y, hy⟩ := hg
+    have hyFactor :
+        MatchedSubgroupAmalgamWordReflection.IndexedMatched.matchedMap
+            (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+            (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+            (imageMatchedFactorSubgroup_comap_edge Q q hinter) y ∈
+          (PushoutI.of
+            (φ := lampMap Q
+              (PairedReturnGraphIntersection.M.map q) Sync) true).range := by
+      rw [hy]
+      exact ⟨g, rfl⟩
+    obtain ⟨s, hs⟩ :=
+      MatchedSubgroupAmalgamWordReflection.IndexedMatched.matchedMap_reflects_factor_range
+          (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+          (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+          (lampMap_injective Q
+            (PairedReturnGraphIntersection.M.map q) Sync)
+          (imageMatchedFactorSubgroup_comap_edge Q q hinter) true y hyFactor
+    change Star.graphSub.map q at s
+    have hmap :=
+      MatchedSubgroupAmalgamWordReflection.IndexedMatched.matchedMap_of
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
+        (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
+        (imageMatchedFactorSubgroup_comap_edge Q q hinter) true s
+    rw [hs, hy] at hmap
+    have hsg : (s : Q) = g :=
+      (inAmbient_injective Q
+        (PairedReturnGraphIntersection.M.map q) Sync) hmap.symm
+    rw [← hsg]
+    exact s.property
+  · intro hg
+    rw [map_matchedCutter_eq_imageGeneratorClosure]
+    exact Subgroup.subset_closure
+      (Or.inr ⟨g, hg, rfl⟩)
+
+/-- Prescribed finite-quotient reflection for the concrete left embedding
+and five-generator cutter. -/
+theorem exists_finite_ambient_hom_factorization_reflecting
+    (Q₀ : Type) [Group Q₀] [Finite Q₀]
+    (q₀ : PairedReturnGraphIntersection.P →* Q₀) :
+    ∃ (R : Type) (_ : Group R) (_ : Finite R) (p : Ambient →* R),
+      ∀ g : PairedReturnGraphIntersection.P,
+        p (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC g) ∈
+            fiveCutter.map p →
+          q₀ g ∈ Star.graphSub.map q₀ := by
+  classical
+  let q := PairedReturnImageIntersectionRefinement.refineHom Q₀ q₀
+  let T := PairedReturnImageIntersectionRefinement.Target Q₀ q₀
+  letI : Fintype T := Fintype.ofFinite T
+  let L : Subgroup
+      (FreeLamp T (PairedReturnGraphIntersection.M.map q) Sync) :=
+    matchedCutter.map (ambientToImageLamp T q)
+  let bad : List (FreeLamp T
+      (PairedReturnGraphIntersection.M.map q) Sync) :=
+    ((Finset.univ.filter fun a : T ↦
+      a ∉ Star.graphSub.map q).image fun a ↦
+        inAmbient T (PairedReturnGraphIntersection.M.map q) Sync a).toList
+  have hinter : Star.graphSub.map q ⊓
+      PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q :=
+    PairedReturnImageIntersectionRefinement.map_graph_inf_map_edge_eq_map_delta Q₀ q₀
+  have hbad : ∀ x ∈ bad, x ∉ L := by
+    intro x hx
+    rw [Finset.mem_toList] at hx
+    obtain ⟨a, ha, rfl⟩ := Finset.mem_image.mp hx
+    have haout : a ∉ Star.graphSub.map q :=
+      (Finset.mem_filter.mp ha).2
+    exact fun hmem ↦ haout
+      ((imageLamp_left_mem_map_matchedCutter_iff T q hinter a).mp hmem)
+  have hLclosed : profiniteClosure L = L :=
+    profiniteClosure_map_matchedCutter T q
+  obtain ⟨R, hRgroup, hRfinite, r, hr⟩ :=
+    exists_finite_hom_reflecting_list_of_closed L hLclosed bad hbad
+  refine ⟨R, hRgroup, hRfinite,
+    r.comp (ambientToImageLamp T q), ?_⟩
+  intro g hmem
+  by_contra hq₀
+  have hq : q g ∉ Star.graphSub.map q := by
+    rintro ⟨a, ha, haq⟩
+    apply hq₀
+    exact ⟨a, ha, congrArg Prod.fst haq⟩
+  have hbadmem : inAmbient T
+      (PairedReturnGraphIntersection.M.map q) Sync (q g) ∈ bad := by
+    rw [Finset.mem_toList]
+    apply Finset.mem_image.mpr
+    exact ⟨q g, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hq⟩, rfl⟩
+  apply hr _ hbadmem
+  change r (ambientToImageLamp T q
+      (MatchedSubgroupAmalgam.bigInA edgeToP edgeToC g)) ∈
+    fiveCutter.map (r.comp (ambientToImageLamp T q)) at hmem
+  rw [ambientToImageLamp_left, fiveCutter_eq_matchedCutter,
+    ← Subgroup.map_map] at hmem
+  exact hmem
 
 end PairedReturnMatchedCutterProfinite
 end Higman
