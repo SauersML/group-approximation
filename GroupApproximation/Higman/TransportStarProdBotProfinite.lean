@@ -58,6 +58,43 @@ theorem profiniteClosure_prodBot :
 def prodBotWitness : ProfiniteBenignWitness ProdBot :=
   ProfiniteBenignWitness.ofClosedFG prodBot_fg profiniteClosure_prodBot
 
+/-- The particular subgroup joined with `ProdBot` in TransportStar is
+exactly the product of the full first factor with the transported output.
+This is the semantic reason the special join can be closed on the positive
+branch even though no arbitrary join-closedness theorem is possible. -/
+theorem special_sup_eq (T : Set ↥K) :
+    (Star.graphSub ⊓
+        ((Star.coordSub T).map Conj.cbHom).comap
+          (MonoidHom.fst F₃ F₃)) ⊔ ProdBot =
+      (⊤ : Subgroup F₃).prod ((Star.coordSub T).map Star.evalHom) := by
+  rw [← Star.prod_top_eq_comap_fst, ← Star.map_graphHom_eq]
+  exact Star.sup_prod_bot_eq T
+
+/-- Closedness of the transported output makes the subgroup cut out by the
+special join closed in the original double.  This supplies the necessary
+source-side hypothesis for the remaining finite-cover proof of cutter
+closedness. -/
+theorem special_sup_closed_of_eval_closed (T : Set ↥K)
+    (hclosed : profiniteClosure ((Star.coordSub T).map Star.evalHom) =
+      (Star.coordSub T).map Star.evalHom) :
+    profiniteClosure
+        ((Star.graphSub ⊓
+            ((Star.coordSub T).map Conj.cbHom).comap
+              (MonoidHom.fst F₃ F₃)) ⊔ ProdBot) =
+      (Star.graphSub ⊓
+          ((Star.coordSub T).map Conj.cbHom).comap
+            (MonoidHom.fst F₃ F₃)) ⊔ ProdBot := by
+  rw [special_sup_eq]
+  have hprod :
+      (⊤ : Subgroup F₃).prod ((Star.coordSub T).map Star.evalHom) =
+        ((Star.coordSub T).map Star.evalHom).comap
+          (MonoidHom.snd F₃ F₃) := by
+    ext z
+    simp [Subgroup.mem_prod]
+  rw [hprod]
+  exact profiniteClosure_comap_eq_of_closed
+    ((Star.coordSub T).map Star.evalHom) (MonoidHom.snd F₃ F₃) hclosed
+
 /-- Closedness of the literal join cutter would force closedness of the
 subgroup it cuts out in `F₃ × F₃`.  Thus a special join proof must use the
 actual closed output subgroup; no theorem quantified over an arbitrary left
