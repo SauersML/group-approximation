@@ -5,38 +5,26 @@ import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedCriterion
 import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 
 /-!
-# `lem:simple-in-defect` and Theorem C (`thm:torsion-free`)
+# The commutator-defect lemma and Theorem C (`thm:torsion-free`)
 
 `non_mf_groups_exist.tex`, Section "A torsion-free group with full MF radical".
 
 This module carries three printed items and nothing else.
 
-## 1.  The paragraph "Put `Γ = π(P)`, `t = π(u₁)`, `J = t⁻¹π(S)t`"
+## 1.  The compressed core and the free witness
 
-> Since `S` commutes with `P₁ = u₁Pu₁⁻¹`, the subgroup `J` centralizes `Γ`, and
-> `tΓt⁻¹ = π(P₁) ≤ Γ`, so `t ∈ Comp_{G₀}(Γ)`.  Moreover `tJt⁻¹ = π(S) ≤ Γ`, and
-> `Γ` has property (T) as a quotient of `P`.
+The third factor `F₂` commutes with `P₁ = u₁Pu₁⁻¹`.  Hence its conjugate by
+`t⁻¹` centralizes `Γ`, while `tΓt⁻¹ = π(P₁) ≤ Γ`.  Its image also lies in
+`Γ`, which has property (T) as a quotient of `P`.
 
-one theorem per printed clause: `centralizes_core`, `t_mem_compressionSet`,
-`conj_conj_simple`, `simpleRange_le_coreRange`, `kazhdan_coreRange`.
+The corresponding theorems are `centralizes_core`, `t_mem_compressionSet`,
+`conj_conj_witness`, `witnessRange_le_coreRange`, and `kazhdan_coreRange`.
 
-## 2.  `lem:simple-in-defect`
+## 2.  The commutator subgroup lies in the defect
 
-> Let `ρ : G₀ → L` be a surjective homomorphism with `ρ(π(S)) ≠ 1`.  Then
-> `ρ(π(S)) ≤ 𝔇_L(ρ(Γ))`.
-
-`manuscriptSimpleInDefect`, proved by the printed argument: the printed defect
-generator `[t_L c t_L⁻¹, ℓ]` with `c = t_L⁻¹ ρ(π(x)) t_L ∈ J_L` and
-`ℓ = ρ(π(y)) ∈ ρ(π(S)) ≤ Γ_L` is the commutator `[ρ(π(x)), ρ(π(y))]`, so the
-commutator subgroup of `ρ(π(S))` lies in the defect; and `S` is perfect
-(`commutator_eq_top_of_infinite_simple`), so all of `ρ(π(S))` does.
-
-The printed hypotheses — surjectivity of `ρ` and nontriviality of `ρ(π(S))` —
-are carried in the named proposition `PrintedSimpleInDefect` so that the Lean
-statement is the printed one; the containment itself
-(`map_simpleRange_le_printedDefect`) needs neither, exactly as
-`Manuscript.NonMF.SimpleInDefect` already records at the
-`FournierFacioDefectData` interface.
+For `c = t_L⁻¹ρ(π(x))t_L` and `ℓ = ρ(π(y))`, the printed defect generator
+`[t_Lct_L⁻¹,ℓ]` equals `[ρ(π(x)),ρ(π(y))]`.  Therefore the image of
+`[F₂,F₂]` lies in the defect.  No simplicity or perfectness input is needed.
 
 ## 3.  `thm:torsion-free` (Theorem C)
 
@@ -47,9 +35,9 @@ statement is the printed one; the containment itself
 
 `manuscriptTorsionFreeFullMFRadical`, with `TheoremC.LiteratureInputs` as a
 leading binder and the printed statement as its conclusion, proved along the
-printed proof: `N = ⟪π(S)⟫`, `lem:saturation` at `F = {1, π(s)}`, `ρ = r ∘ q`,
-`ρ(π(S)) ≠ 1`, `lem:simple-in-defect`, normality of the defect plus a normal
-generating set, property (T) for `L` and for `ρ(Γ)`, then
+proof with `N` the normal closure of the image of `[F₂,F₂]`, protecting one
+explicit nonidentity commutator.  Normality of the defect and saturation give
+the whole quotient; property (T) for `L` and for `ρ(Γ)` then feed
 `thm:compression-criterion` with `K = L`, then `r = id`.
 
 `lem:saturation` itself is the parallel hull-saturation lane's
@@ -77,30 +65,28 @@ theorem t_mem_compressionSet : C.t ∈ compressionSet C.core.range := by
   obtain ⟨q, hq⟩ := C.t_compresses p
   exact MonoidHom.mem_range.mpr ⟨q, hq.symm⟩
 
-/-- **"the subgroup `J` centralizes `Γ`"**, in element form: every element
-`t⁻¹π(x)t` of `J = t⁻¹π(S)t` commutes with every element `π(p)` of `Γ`.  The
-printed reason is `[S, P₁] = 1`. -/
-theorem centralizes_core (x : C.Simple) (p : C.Core) :
-    Commute (C.t⁻¹ * C.simple x * C.t) (C.core p) := by
-  show (C.t⁻¹ * C.simple x * C.t) * C.core p
-    = C.core p * (C.t⁻¹ * C.simple x * C.t)
-  have h := (C.simple_commute_conj x p).eq
-  calc (C.t⁻¹ * C.simple x * C.t) * C.core p
-      = C.t⁻¹ * (C.simple x * (C.t * C.core p * C.t⁻¹)) * C.t := by group
-    _ = C.t⁻¹ * ((C.t * C.core p * C.t⁻¹) * C.simple x) * C.t := by rw [h]
-    _ = C.core p * (C.t⁻¹ * C.simple x * C.t) := by group
+/-- Every conjugated witness element commutes with the compressed core. -/
+theorem centralizes_core (x : C.Witness) (p : C.Core) :
+    Commute (C.t⁻¹ * C.witness x * C.t) (C.core p) := by
+  show (C.t⁻¹ * C.witness x * C.t) * C.core p
+    = C.core p * (C.t⁻¹ * C.witness x * C.t)
+  have h := (C.witness_commute_conj x p).eq
+  calc (C.t⁻¹ * C.witness x * C.t) * C.core p
+      = C.t⁻¹ * (C.witness x * (C.t * C.core p * C.t⁻¹)) * C.t := by group
+    _ = C.t⁻¹ * ((C.t * C.core p * C.t⁻¹) * C.witness x) * C.t := by rw [h]
+    _ = C.core p * (C.t⁻¹ * C.witness x * C.t) := by group
 
-/-- **"`tJt⁻¹ = π(S)`"**, in element form. -/
-theorem conj_conj_simple (x : C.Simple) :
-    C.t * (C.t⁻¹ * C.simple x * C.t) * C.t⁻¹ = C.simple x := by
+/-- Conjugating the witness element back recovers its image. -/
+theorem conj_conj_witness (x : C.Witness) :
+    C.t * (C.t⁻¹ * C.witness x * C.t) * C.t⁻¹ = C.witness x := by
   group
 
-/-- **"`π(S) ≤ Γ`"**. -/
-theorem simpleRange_le_coreRange : C.simple.range ≤ C.core.range := by
+/-- The witness image lies in the core image. -/
+theorem witnessRange_le_coreRange : C.witness.range ≤ C.core.range := by
   rintro y hy
   rw [MonoidHom.mem_range] at hy
   obtain ⟨x, rfl⟩ := hy
-  obtain ⟨p, hp⟩ := C.core_mem_of_simple x
+  obtain ⟨p, hp⟩ := C.core_mem_of_witness x
   exact MonoidHom.mem_range.mpr ⟨p, hp.symm⟩
 
 /-- **"`Γ` has property (T) as a quotient of `P`."** -/
@@ -108,9 +94,9 @@ theorem kazhdan_coreRange : HasKazhdanPropertyT.{0, 0} ↥C.core.range :=
   HasKazhdanPropertyT.of_surjective C.core.rangeRestrict
     C.core.rangeRestrict_surjective C.kazhdanCore
 
-/-! ## 2.  `lem:simple-in-defect` -/
+/-! ## 2.  The witness commutator subgroup lies in the defect -/
 
-section SimpleInDefect
+section WitnessInDefect
 
 variable {L : Type} [Group L] (rho : C.Ambient →* L)
 
@@ -130,9 +116,9 @@ theorem map_t_mem_compressionSet :
 
 /-- `J_L = ρ(J)` centralizes `Γ_L = ρ(Γ)`: the second sentence of the printed
 proof. -/
-theorem map_centralizes_core (x : C.Simple) :
+theorem map_centralizes_core (x : C.Witness) :
     ∀ δ ∈ C.core.range.map rho,
-      Commute ((rho C.t)⁻¹ * rho (C.simple x) * rho C.t) δ := by
+      Commute ((rho C.t)⁻¹ * rho (C.witness x) * rho C.t) δ := by
   intro δ hδ
   rw [Subgroup.mem_map] at hδ
   obtain ⟨z, hz, rfl⟩ := hδ
@@ -141,108 +127,136 @@ theorem map_centralizes_core (x : C.Simple) :
   have h := (centralizes_core C x p).map rho
   simpa using h
 
+/-- Conjugating the mapped witness element back recovers its image. -/
+theorem map_conj_conj_witness (x : C.Witness) :
+    rho C.t * ((rho C.t)⁻¹ * rho (C.witness x) * rho C.t) * (rho C.t)⁻¹
+      = rho (C.witness x) := by
+  group
+
+/-- The mapped witness image lies in the mapped core. -/
+theorem map_witnessRange_le_coreRange :
+    C.witness.range.map rho ≤ C.core.range.map rho :=
+  Subgroup.map_mono (witnessRange_le_coreRange C)
+
+/-- **"For `c ∈ J_L` and `ℓ ∈ Γ_L`, the commutator `[t_L c t_L⁻¹, ℓ]` lies in
+`𝔇_L(Γ_L)` by `eq:intrinsic-defect`."**  The three inputs are exactly the three
+clauses of the previous sentence. -/
+theorem map_defect_generator_mem (x : C.Witness) {ℓ : L}
+    (hℓ : ℓ ∈ C.core.range.map rho) :
+    ⁅rho C.t * ((rho C.t)⁻¹ * rho (C.witness x) * rho C.t) * (rho C.t)⁻¹, ℓ⁆ ∈
+      OneSidedMFRadical.printedDefect (C.core.range.map rho) :=
+  OneSidedMFRadical.printedDefect_generator_mem (C.core.range.map rho)
+    (map_t_mem_compressionSet C rho) (map_centralizes_core C rho x) hℓ
+
 /-- The printed defect generator, computed: for `c = t_L⁻¹ρ(π(x))t_L ∈ J_L` and
-`ℓ = ρ(π(y)) ∈ ρ(π(S)) ≤ Γ_L`, the generator `[t_L c t_L⁻¹, ℓ]` is the
+`ℓ = ρ(π(y))` in the mapped witness image, the generator `[t_L c t_L⁻¹, ℓ]` is the
 commutator `[ρ(π(x)), ρ(π(y))]`. -/
-theorem commutator_mem_printedDefect (x y : C.Simple) :
-    ⁅rho (C.simple x), rho (C.simple y)⁆ ∈
+theorem commutator_mem_printedDefect (x y : C.Witness) :
+    ⁅rho (C.witness x), rho (C.witness y)⁆ ∈
       OneSidedMFRadical.printedDefect (C.core.range.map rho) := by
-  have hy : rho (C.simple y) ∈ C.core.range.map rho := by
-    obtain ⟨p, hp⟩ := C.core_mem_of_simple y
+  have hy : rho (C.witness y) ∈ C.core.range.map rho := by
+    obtain ⟨p, hp⟩ := C.core_mem_of_witness y
     refine Subgroup.mem_map.mpr ⟨C.core p, MonoidHom.mem_range.mpr ⟨p, rfl⟩, ?_⟩
     rw [← hp]
   have hkey := OneSidedMFRadical.printedDefect_generator_mem
     (C.core.range.map rho) (u := rho C.t)
-    (c := (rho C.t)⁻¹ * rho (C.simple x) * rho C.t)
-    (ℓ := rho (C.simple y))
+    (c := (rho C.t)⁻¹ * rho (C.witness x) * rho C.t)
+    (ℓ := rho (C.witness y))
     (map_t_mem_compressionSet C rho) (map_centralizes_core C rho x) hy
-  have hrw : rho C.t * ((rho C.t)⁻¹ * rho (C.simple x) * rho C.t) *
-      (rho C.t)⁻¹ = rho (C.simple x) := by group
+  have hrw : rho C.t * ((rho C.t)⁻¹ * rho (C.witness x) * rho C.t) *
+      (rho C.t)⁻¹ = rho (C.witness x) := by group
   rwa [hrw] at hkey
 
-/-- **The containment of `lem:simple-in-defect`.**  `S` is perfect, so the
-commutator subgroup of `ρ(π(S))` is all of it, and the previous theorem puts
-every commutator in the defect.
-
-Neither surjectivity of `ρ` nor nontriviality of `ρ(π(S))` is used; both are
-retained in `PrintedSimpleInDefect` below so that the printed statement is
-formalized with its printed hypotheses. -/
-theorem map_simpleRange_le_printedDefect :
-    C.simple.range.map rho ≤
+/-- The commutator subgroup of the mapped witness image lies in the defect.  It
+is generated by the
+commutators just placed in the defect. -/
+theorem commutator_le_printedDefect :
+    ⁅C.witness.range.map rho, C.witness.range.map rho⁆ ≤
       OneSidedMFRadical.printedDefect (C.core.range.map rho) := by
-  have hperf : commutator C.Simple = ⊤ :=
-    commutator_eq_top_of_infinite_simple C.Simple
-  have hsub : commutator C.Simple ≤
+  rw [Subgroup.commutator_le]
+  intro g hg h hh
+  rw [Subgroup.mem_map] at hg hh
+  obtain ⟨u, hu, rfl⟩ := hg
+  obtain ⟨v, hv, rfl⟩ := hh
+  rw [MonoidHom.mem_range] at hu hv
+  obtain ⟨x, rfl⟩ := hu
+  obtain ⟨y, rfl⟩ := hv
+  exact commutator_mem_printedDefect C rho x y
+
+/-- The image of the witness commutator subgroup lies in the printed defect. -/
+theorem map_witnessCommutator_le_printedDefect :
+    (commutator C.Witness).map (rho.comp C.witness) ≤
+      OneSidedMFRadical.printedDefect (C.core.range.map rho) := by
+  have hsub : commutator C.Witness ≤
       (OneSidedMFRadical.printedDefect (C.core.range.map rho)).comap
-        (rho.comp C.simple) := by
+        (rho.comp C.witness) := by
     rw [commutator_eq_closure, Subgroup.closure_le]
     rintro w ⟨a, b, rfl⟩
     simp only [SetLike.mem_coe, Subgroup.mem_comap, MonoidHom.coe_comp,
       Function.comp_apply, map_commutatorElement]
     exact commutator_mem_printedDefect C rho a b
-  intro g hg
-  rw [Subgroup.mem_map] at hg
-  obtain ⟨z, hz, rfl⟩ := hg
-  rw [MonoidHom.mem_range] at hz
-  obtain ⟨x, rfl⟩ := hz
-  exact hsub (by rw [hperf]; exact Subgroup.mem_top x)
+  exact Subgroup.map_le_iff_le_comap.mpr hsub
 
-end SimpleInDefect
+end WitnessInDefect
 
-/-- **`lem:simple-in-defect`, with its printed hypotheses.**
-
-> Let `ρ : G₀ → L` be a surjective homomorphism with `ρ(π(S)) ≠ 1`.  Then
-> `ρ(π(S)) ≤ 𝔇_L(ρ(Γ))`. -/
-def PrintedSimpleInDefect : Prop :=
+/-- The source commutator subgroup maps into the compression defect. -/
+def PrintedWitnessCommutatorInDefect : Prop :=
   ∀ (cfg : Configuration) (L : Type) (_ : Group L) (rho : cfg.Ambient →* L),
-    Function.Surjective rho → cfg.simple.range.map rho ≠ ⊥ →
-      cfg.simple.range.map rho ≤
+    (commutator cfg.Witness).map (rho.comp cfg.witness) ≤
         OneSidedMFRadical.printedDefect (cfg.core.range.map rho)
 
-/-- `lem:simple-in-defect`, proved. -/
-theorem manuscriptSimpleInDefect : PrintedSimpleInDefect := by
-  intro cfg L _ rho _ _
-  exact map_simpleRange_le_printedDefect cfg rho
+/-- The commutator-defect containment, proved. -/
+theorem manuscriptWitnessCommutatorInDefect :
+    PrintedWitnessCommutatorInDefect := by
+  intro cfg L _ rho
+  exact map_witnessCommutator_le_printedDefect cfg rho
 
 /-! ## 3.  The proof of `thm:torsion-free` -/
 
-/-- **"the normal closure of `ρ(π(S))` in `L` is `ρ(N) = L`; as `L ≠ 1`, this
-forces `ρ(π(S)) ≠ 1`."** -/
-theorem map_simpleRange_ne_bot {L : Type} [Group L] [Nontrivial L]
+/-- **"The group `Q` has property (T) as a quotient of `G₀`"** — and, applied
+again, **"the group `L` has property (T) as a quotient of `Q`"**: property (T)
+passes to every quotient of the ambient group. -/
+theorem kazhdan_of_ambient_quotient {Q : Type} [Group Q] (q : C.Ambient →* Q)
+    (hq : Function.Surjective q) : HasKazhdanPropertyT.{0, 0} Q :=
+  HasKazhdanPropertyT.of_surjective q hq C.kazhdanAmbient
+
+/-- **"`ρ(Γ)` has property (T) as a quotient of `Γ`."** -/
+theorem kazhdan_map_coreRange {L : Type} [Group L] (rho : C.Ambient →* L) :
+    HasKazhdanPropertyT.{0, 0} ↥(C.core.range.map rho) := by
+  rw [← MonoidHom.range_comp]
+  exact HasKazhdanPropertyT.of_surjective (rho.comp C.core).rangeRestrict
+    (rho.comp C.core).rangeRestrict_surjective C.kazhdanCore
+
+/-- **"since `𝔇_L(ρ(Γ))` is normal in `L` and contains a normal generating set
+of `L`, it equals `L`."**  The normal generating subgroup is the image of the
+source commutator subgroup, which the preceding lemma places in the defect. -/
+theorem printedDefect_eq_top_of_normallyGenerating {L : Type} [Group L]
     (rho : C.Ambient →* L)
-    (hgen : (Subgroup.normalClosure (↑C.simple.range : Set C.Ambient)).map rho
-      = ⊤) : C.simple.range.map rho ≠ ⊥ := by
-  intro hbot
-  have hle : Subgroup.normalClosure (↑C.simple.range : Set C.Ambient) ≤
-      rho.ker := by
+    (hgen : (Subgroup.normalClosure
+      (↑((commutator C.Witness).map C.witness) : Set C.Ambient)).map rho
+      = ⊤) :
+    OneSidedMFRadical.printedDefect (C.core.range.map rho) = ⊤ := by
+  have hcontain : ((commutator C.Witness).map C.witness).map rho ≤
+      OneSidedMFRadical.printedDefect (C.core.range.map rho) :=
+    by
+      rw [Subgroup.map_map]
+      exact manuscriptWitnessCommutatorInDefect C L inferInstance rho
+  have hNle : Subgroup.normalClosure
+      (↑((commutator C.Witness).map C.witness) : Set C.Ambient) ≤
+      (OneSidedMFRadical.printedDefect (C.core.range.map rho)).comap rho := by
     apply Subgroup.normalClosure_le_normal
     intro y hy
-    have hy' : y ∈ C.simple.range := hy
-    have hmem : rho y ∈ C.simple.range.map rho :=
-      Subgroup.mem_map_of_mem rho hy'
-    rw [hbot, Subgroup.mem_bot] at hmem
-    exact MonoidHom.mem_ker.mpr hmem
-  have hmapbot :
-      (Subgroup.normalClosure (↑C.simple.range : Set C.Ambient)).map rho = ⊥ := by
-    rw [eq_bot_iff]
-    intro z hz
-    rw [Subgroup.mem_map] at hz
-    obtain ⟨w, hw, rfl⟩ := hz
-    exact MonoidHom.mem_ker.mp (hle hw)
-  rw [hgen] at hmapbot
-  obtain ⟨x, hx⟩ := exists_ne (1 : L)
-  apply hx
-  have hmem : x ∈ (⊤ : Subgroup L) := Subgroup.mem_top x
-  rw [hmapbot, Subgroup.mem_bot] at hmem
-  exact hmem
+    exact hcontain (Subgroup.mem_map_of_mem rho hy)
+  refine top_unique ?_
+  rw [← hgen]
+  exact Subgroup.map_le_iff_le_comap.mpr hNle
 
 /-- **The body of the printed proof of `thm:torsion-free`.**
 
-For a surjection `ρ : G₀ → L` onto a nontrivial group under which the normal
-closure of `π(S)` maps onto `L`:
+For a surjection `ρ : G₀ → L` under which the saturated normal closure maps
+onto `L`:
 
-* `ρ(π(S)) ≠ 1`;
-* `lem:simple-in-defect` puts `ρ(π(S))` in `𝔇_L(ρ(Γ))`;
+* the image of the source commutator subgroup lies in `𝔇_L(ρ(Γ))`;
 * `𝔇_L(ρ(Γ))` is normal and contains a normal generating set of `L`, so it
   equals `L`;
 * `L` has property (T) as a quotient of `G₀`, and `ρ(Γ)` has property (T) as a
@@ -252,32 +266,32 @@ closure of `π(S)` maps onto `L`:
 theorem coronaMFResidual_eq_top_of_normallyGenerating
     {L : Type} [Group L] [Countable L] [Nontrivial L]
     (rho : C.Ambient →* L) (hrho : Function.Surjective rho)
-    (hgen : (Subgroup.normalClosure (↑C.simple.range : Set C.Ambient)).map rho
+    (hgen : (Subgroup.normalClosure
+      (↑((commutator C.Witness).map C.witness) : Set C.Ambient)).map rho
       = ⊤) : manuscriptCoronaMFResidual L = ⊤ := by
-  have hSne : C.simple.range.map rho ≠ ⊥ := map_simpleRange_ne_bot C rho hgen
-  have hcontain : C.simple.range.map rho ≤
-      OneSidedMFRadical.printedDefect (C.core.range.map rho) :=
-    manuscriptSimpleInDefect C L inferInstance rho hrho hSne
-  have hNle : Subgroup.normalClosure (↑C.simple.range : Set C.Ambient) ≤
-      (OneSidedMFRadical.printedDefect (C.core.range.map rho)).comap rho := by
-    apply Subgroup.normalClosure_le_normal
-    intro y hy
-    have hy' : y ∈ C.simple.range := hy
-    exact hcontain (Subgroup.mem_map_of_mem rho hy')
-  have hTtop : OneSidedMFRadical.printedDefect (C.core.range.map rho) = ⊤ := by
-    refine top_unique ?_
-    rw [← hgen]
-    exact Subgroup.map_le_iff_le_comap.mpr hNle
-  have hGammaT : HasKazhdanPropertyT.{0, 0} ↥(C.core.range.map rho) := by
-    rw [← MonoidHom.range_comp]
-    exact HasKazhdanPropertyT.of_surjective (rho.comp C.core).rangeRestrict
-      (rho.comp C.core).rangeRestrict_surjective C.kazhdanCore
+  have hTtop := printedDefect_eq_top_of_normallyGenerating C rho hgen
+  have hGammaT := kazhdan_map_coreRange C rho
   have hLT : HasKazhdanPropertyT.{0, 0} L :=
-    HasKazhdanPropertyT.of_surjective rho hrho C.kazhdanAmbient
+    kazhdan_of_ambient_quotient C rho hrho
   obtain ⟨-, -, hsat⟩ :=
     OneSidedMFRadical.manuscriptOneSidedCompressionCriterion L
       (C.core.range.map rho) hGammaT
   exact hsat hLT hTtop
+
+/-- The normal closure of the image of the witness commutator subgroup is
+nontrivial because it contains the protected commutator. -/
+theorem witnessCommutatorNormalClosure_ne_bot :
+    Subgroup.normalClosure
+      (↑((commutator C.Witness).map C.witness) : Set C.Ambient) ≠ ⊥ := by
+  intro hbot
+  apply C.distinguished_image_ne_one
+  have hin : C.witness C.distinguished ∈
+      (↑((commutator C.Witness).map C.witness) : Set C.Ambient) :=
+    SetLike.mem_coe.mpr
+      (Subgroup.mem_map_of_mem C.witness C.distinguished_mem_commutator)
+  have hmem := Subgroup.subset_normalClosure hin
+  rw [hbot] at hmem
+  simpa using hmem
 
 /-- **`thm:torsion-free` (Theorem C), exactly as printed.**
 
@@ -302,7 +316,7 @@ def PrintedTorsionFreeFullMFRadical : Prop :=
 /-- **Theorem C, proved along the printed proof, from the paragraph's cited
 inputs.**
 
-The leading binder is the whole literature debt of the construction: the six
+The leading binder is the whole literature debt of the construction: the five
 statements Fournier-Facio's paragraph cites and does not prove
 (`TheoremC.LiteratureInputs`).  The conclusion is the printed statement of
 `thm:torsion-free` unchanged. -/
@@ -311,42 +325,34 @@ theorem manuscriptTorsionFreeFullMFRadical (I : LiteratureInputs)
     PrintedTorsionFreeFullMFRadical := by
   obtain ⟨cfg⟩ := exists_configuration I
   haveI : Countable cfg.Ambient := cfg.countableAmbient
-  obtain ⟨s, hs⟩ := exists_ne (1 : cfg.Simple)
-  have hsne : cfg.simple s ≠ 1 := by
-    intro h
-    apply hs
-    apply cfg.simple_injective
-    rw [h, map_one]
-  -- `N`, the normal closure of `π(S)` in `G₀`, is nontrivial.
-  have hNne : Subgroup.normalClosure (↑cfg.simple.range : Set cfg.Ambient) ≠ ⊥ := by
-    intro hbot
-    apply hsne
-    have hin : cfg.simple s ∈ (↑cfg.simple.range : Set cfg.Ambient) :=
-      SetLike.mem_coe.mpr (MonoidHom.mem_range.mpr ⟨s, rfl⟩)
-    have hmem := Subgroup.subset_normalClosure hin
-    rw [hbot] at hmem
-    simpa using hmem
-  -- `lem:saturation` applied to `G₀`, `N` and `F = {1, π(s)}`.
-  have hFin : ({1, cfg.simple s} : Set cfg.Ambient).Finite :=
-    (Set.finite_singleton (cfg.simple s)).insert 1
+  let W : Subgroup cfg.Ambient := (commutator cfg.Witness).map cfg.witness
+  -- `N`, the normal closure of the witness commutator image, is nontrivial.
+  have hNne := witnessCommutatorNormalClosure_ne_bot cfg
+  -- Protect the explicit nonidentity commutator during saturation.
+  have hFin : ({1, cfg.witness cfg.distinguished} : Set cfg.Ambient).Finite :=
+    (Set.finite_singleton (cfg.witness cfg.distinguished)).insert 1
   -- SINGLE CALL SITE for `TorsionFree.saturation`, which carries Hull's cited
   -- inputs as its leading hypothesis `hHull`.
   obtain ⟨SQ⟩ := TorsionFree.saturation hHull cfg.torsionFreeAmbient
-    (Subgroup.normalClosure (↑cfg.simple.range : Set cfg.Ambient)) hNne hFin
+    (Subgroup.normalClosure (↑W : Set cfg.Ambient)) hNne hFin
   haveI : Countable SQ.Q := SQ.surjective.countable
   -- "The group `Q` has property (T) as a quotient of `G₀`."
   have hQT : HasKazhdanPropertyT.{0, 0} SQ.Q :=
     HasKazhdanPropertyT.of_surjective SQ.q SQ.surjective cfg.kazhdanAmbient
-  have hmem1 : (1 : cfg.Ambient) ∈ ({1, cfg.simple s} : Set cfg.Ambient) :=
+  have hmem1 : (1 : cfg.Ambient) ∈
+      ({1, cfg.witness cfg.distinguished} : Set cfg.Ambient) :=
     Set.mem_insert _ _
-  have hmems : cfg.simple s ∈ ({1, cfg.simple s} : Set cfg.Ambient) :=
+  have hmems : cfg.witness cfg.distinguished ∈
+      ({1, cfg.witness cfg.distinguished} : Set cfg.Ambient) :=
     Set.mem_insert_of_mem _ rfl
-  have hqs : SQ.q (cfg.simple s) ≠ 1 := by
+  have hqs : SQ.q (cfg.witness cfg.distinguished) ≠ 1 := by
     intro hz
-    apply hsne
-    have h1 : SQ.q (cfg.simple s) = SQ.q 1 := by rw [hz, map_one]
+    apply cfg.distinguished_image_ne_one
+    have h1 : SQ.q (cfg.witness cfg.distinguished) = SQ.q 1 := by
+      rw [hz, map_one]
     exact SQ.injOn hmems hmem1 h1
-  haveI : Nontrivial SQ.Q := ⟨⟨SQ.q (cfg.simple s), 1, hqs⟩⟩
+  haveI : Nontrivial SQ.Q :=
+    ⟨⟨SQ.q (cfg.witness cfg.distinguished), 1, hqs⟩⟩
   -- The printed main step, for every nontrivial quotient `L` of `Q`.
   have hmain : ∀ (L : Type) (_ : Group L) (r : SQ.Q →* L),
       Function.Surjective r → Nontrivial L →
