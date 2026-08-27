@@ -690,7 +690,7 @@ DECL_DEF = re.compile(
     r"^\s*(?:@\[[^\]]*\]\s*)?(?:private\s+|protected\s+|noncomputable\s+|"
     r"nonrec\s+|partial\s+|unsafe\s+)*"
     r"(?:theorem|lemma|def|abbrev|structure|instance|inductive|class)\s+"
-    r"([A-Za-z_][A-Za-z0-9_'!?.]*)")
+    r"([^\W\d][\w'!?.]*)", re.UNICODE)
 
 
 def declared_names() -> set[str]:

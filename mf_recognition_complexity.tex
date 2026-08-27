@@ -83,9 +83,9 @@ impossible to construct an algorithm that decides from a finite
 presentation whether the group it defines is MF, and impossible even to
 enumerate the presentations of MF groups, or those of non-MF groups.  A
 presentation defines an MF group if and only if, for every accuracy,
-finitely many unitary matrices satisfy its relators to within that
-accuracy while keeping prescribed nontrivial words away from the
-identity; whether such matrices exist is decidable, by Tarski's theorem.  We also construct, computably from any program, a
+every finite word challenge has either a finite word-problem witness or
+an explicitly coded rational unitary microstate with decidable norm
+certificates.  We also construct, computably from any program, a
 finite presentation that defines an MF group if and only if the program
 halts on infinitely many inputs.  If the program halts on only finitely
 many inputs, the presented group contains the non-MF group
@@ -137,12 +137,10 @@ and only if the $e$-th partial computable function has infinite domain.
   {$\mathrm{INF}$; $\mathrm{TOT}$\\ torsion-freeness\\
    $\boldsymbol{\mathrm{MF}_{\mathrm{fp}}}$};
 \node[probs, anchor=east] at (-3.0,1.5) {halting\\ problem};
-\node[probs, below=2mm of d1]
-  {word problem in $H$ (Lemma~\ref{lem:seed})};
 \end{tikzpicture}
 \caption{The arithmetical hierarchy.  Lines indicate inclusions, and each
-listed problem is complete at its level; the word problem in $H$ is
-decidable.  The two sets from Theorem~\ref{thm:recognition} appear in
+listed problem is complete at its level.  The two sets from
+Theorem~\ref{thm:recognition} appear in
 bold.  $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ by finite certificates
 (Section~\ref{sec:local}).  The
 family $\widehat R_e$ reduces $\mathrm{INF}$ to
@@ -151,15 +149,15 @@ $\mathrm{NONMF}_{\mathrm{fp}}$ (Section~\ref{sec:compiler}).}
 \label{fig:levels}
 \end{figure}
 
-For each $n$, a certificate consists of a dimension $d$, a label for every
-word of length at most $n$, and a normal-closure proof for every word
-labelled trivial.  It is valid if there are unitaries
-$U_1,\dots,U_k\in\U(d)$ such that $\opnorm{r_i(U)-1}\le2^{-n}$ for each
-relator $r_i$ and $\opnorm{w(U)-1}\ge1/4$ for every word labelled
-nontrivial.  These conditions are polynomial equations and inequalities
-over the real numbers, so whether a certificate is valid is decidable,
-by Tarski's theorem.  A finite presentation defines an MF group if and only if it has
-a valid certificate for every $n$.  So
+Encode a finite challenge as a pair $(W,k)$, where $W$ is a finite list of
+words and $k$ is a reciprocal precision index.  An answer either supplies
+a word of $W$ together with a finite word-problem search witness proving
+that it is trivial, or supplies Gaussian-rational unitary matrices for the
+generators together with finite certificates that every relator has norm
+defect less than $1/(k+1)$ and every word of $W$ has norm displacement
+greater than $1/3$.  All checks are primitive recursive.  A finite
+presentation defines an MF group if and only if every coded challenge has
+an accepted coded answer.  So
 $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and
 $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$
 (Section~\ref{sec:local}).
@@ -185,10 +183,9 @@ presented non-MF group exists, the MF property is Markov and so, by
 Adian--Rabin, undecidable; Theorem~\ref{thm:recognition} determines the
 exact level.
 A classical $\Pi^0_2$-complete recognition problem for finitely presented
-groups is torsion-freeness, by Lempp~\cite{Lempp}.  For recursively presented groups,
-Bilanovic--Chubb--Roven proved that every Markov property is
-$\Pi^0_2$-hard to recognize~\cite{BCR}; their construction is the first
-step of Section~\ref{sec:compiler}.  The passage from recursive to finite
+groups is torsion-freeness, by Lempp~\cite{Lempp}.  The first step of
+Section~\ref{sec:compiler} is an executable parametric finite-seed switch.
+The passage from recursive to finite
 presentations is where the operator algebra enters: a generic Higman
 embedding does not preserve the MF property, and the HNN extensions of
 Section~\ref{sec:compiler} are chosen so that
@@ -288,72 +285,65 @@ $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$.
 \end{proposition}
 
 \begin{proof}
-Let $P=\langle x_1,\dots,x_k\mid r_1,\dots,r_m\rangle$.  A
-\emph{certificate at scale $n$} is a triple $c=(d,\ell,\pi)$ consisting of
-a dimension $d\ge1$, a labelling $\ell$ of every reduced word of length at
-most $n$ in $x_1^{\pm1},\dots,x_k^{\pm1}$ by one of the symbols
-$\mathsf T$ and $\mathsf S$, and, for every word $w$ labelled $\mathsf T$,
-an expression of $w$ as a product of conjugates of the relators and their
-inverses that freely reduces to $w$.  Such an expression is checkable, and
-its existence forces $w=1$ in $G_P$.  Let $\Phi(P,n,c)$ be the statement
-that there are $U_1,\dots,U_k\in\U(d)$ with
-$\opnorm{r_i(U)-1}\le2^{-n}$ for $i\le m$ and $\opnorm{w(U)-1}\ge1/4$ for
-every word $w$ labelled $\mathsf S$, where $w(U)$ is the evaluation of $w$
-at $U_1,\dots,U_k$ with $x_j^{-1}\mapsto U_j^{*}$.  Writing
-$U_j=A_j+iB_j$ with real matrices, unitarity is a system of polynomial
-equations, and a bound $\opnorm{X}\le t$ or $\opnorm{X}\ge t$ on a matrix
-whose entries are polynomials in the variables is a semialgebraic
-condition.  Indeed, $\opnorm{X}\le t$ holds precisely when $t^2-X^*X$ is
-positive semidefinite, while, for $t\ge0$, $\opnorm{X}\ge t$ holds precisely
-when there is a vector $v$ with $\opnorm{v}=1$ and
-$\opnorm{Xv}^2\ge t^2$.  Thus $\Phi(P,n,c)$ is a sentence of the
-first-order theory of the ordered field of real numbers, and its truth is
-decidable by Tarski's theorem~\cite{Tarski}.  Let $C(P,n,c)$ hold when $c$
-is a well-formed certificate at scale $n$ whose $\mathsf T$-expressions
-check and $\Phi(P,n,c)$ holds.  Then $C$ is decidable.
-
-Suppose that $G_P$ is MF.  Fix $n$, let
-$L=\max\bigl(\{1,n\}\cup\{\lvert r_i\rvert:1\le i\le m\}\bigr)$,
-let $F$ be the set of images in $G_P$ of all words of length at most $L$,
-together with their inverses, and let $\varepsilon=2^{-n}/(4L)$.
-Lemma~\ref{lem:local-models} gives $V\colon F\to\U(d)$ with $V(1)=1$,
-defect at most $\varepsilon$ on $F$, and $\opnorm{V(g)-1}\ge1$ for
-$g\in F\setminus\{1\}$.  Put $U_j=V(\bar x_j)$, where $\bar w$ denotes
-the image of a word $w$ in $G_P$.  For $g\in F$ we have $g^{-1}\in F$ and
-$\opnorm{V(g)V(g^{-1})-1}\le\varepsilon$, so
-$\opnorm{V(g^{-1})-V(g)^*}\le\varepsilon$.  For a word $w=y_1\cdots y_\ell$
-of length $\ell\le L$, all of whose prefixes have images in $F$, induction
-on $\ell$ gives $\opnorm{w(U)-V(\bar w)}\le2\ell\varepsilon$.  In
-particular $\opnorm{r_i(U)-1}\le2L\varepsilon\le2^{-n}$.  Label a word $w$
-of length at most $n$ by $\mathsf T$ if $\bar w=1$, with a normal-closure
-expression as witness, and by $\mathsf S$ otherwise; for the latter,
-$\opnorm{w(U)-1}\ge\opnorm{V(\bar w)-1}-2n\varepsilon\ge1-\tfrac12\ge\tfrac14$.
-So $C(P,n,c)$ holds for this certificate.
-
-Conversely, suppose that for every $n$ some certificate $c_n=(d_n,\ell_n,\pi_n)$
-satisfies $C(P,n,c_n)$, and choose $U^{(n)}\in\U(d_n)^k$ witnessing
-$\Phi(P,n,c_n)$.  For each $g\in G_P$ fix a reduced word $w_g$ representing $g$,
-with $w_1$ the empty word, and put $V_n(g)=w_g(U^{(n)})$.  Then
-$V_n(1)=1$.  For $g,h\in G_P$ the word $t=w_gw_hw_{gh}^{-1}$ is trivial in
-$G_P$, so it is freely equal to a product of $A$ conjugates of relators and
-their inverses, for some $A$ depending on $g$ and $h$ but not on $n$.
-Since evaluation is a homomorphism on the free group, since the operator
-norm is unitarily invariant, and since
-$\opnorm{xy-1}\le\opnorm{x-1}+\opnorm{y-1}$ for unitaries $x,y$,
+Let $P=\langle x_1,\dots,x_s\mid r_1,\dots,r_m\rangle$.  A
+\emph{challenge} is a pair $(W,k)$, where $W$ is a finite list of words in
+the generators and $k\in\mathbb N$.  Say that the challenge is answered if
+either
+\begin{enumerate}
+\item some $w\in W$ represents $1$ in $G_P$, or
+\item there are unitary matrices $U_1,\dots,U_s$ such that
 \[
- \opnorm{V_n(g)V_n(h)-V_n(gh)}
- =\opnorm{t(U^{(n)})-1}
- \le A\,2^{-n}\longrightarrow0.
+  \opnorm{r_i(U)-1}<\frac1{k+1}\quad(1\le i\le m),
+  \qquad
+  \opnorm{w(U)-1}>\frac13\quad(w\in W).
 \]
-For $g\ne1$ the word $w_g$ is nontrivial in $G_P$, so for
-$n\ge\lvert w_g\rvert$ the certificate $c_n$ cannot label it $\mathsf T$,
-so labels it $\mathsf S$, and $\opnorm{V_n(g)-1}\ge1/4$.  Thus
-$\limsup_n\opnorm{V_n(g)-1}\ge1/4>0$, and $G_P$ is MF.
+\end{enumerate}
+The local characterization of MF gives
+\begin{equation}\label{eq:open-challenges}
+  G_P\text{ is MF}
+  \quad\Longleftrightarrow\quad
+  \text{every finite challenge $(W,k)$ is answered}.
+\end{equation}
+For the forward implication, apply Lemma~\ref{lem:local-models} to the
+finite set represented by $W$ and to a sufficiently fine multiplicative
+scale; if one of the challenged words is trivial, use the first answer,
+and otherwise retain slack in the two strict inequalities.  Conversely,
+choose a word representative of each element of $G_P$.  Applying the
+second answer to finite lists of pairwise quotient words gives uniformly
+separated finite models.  The relator bounds, together with a fixed finite
+normal-closure expression for each multiplication word, make their
+multiplicative defects tend to zero.  This is the MF condition.
 
-The displayed equivalence exhibits $\mathrm{MF}_{\mathrm{fp}}$ as
-$\{P:\forall n\,\exists c\,C(P,n,c)\}$, a $\Pi^0_2$ set, and its
-complement as a $\Sigma^0_2$ set.
+We now replace the existential matrix statement by finite discrete data.
+A \emph{void answer} consists of a word $w\in W$ and a finite search witness
+exhibiting $w$ as a product of conjugates of the relators and their
+inverses.  A \emph{matrix answer} consists of a positive dimension,
+Gaussian-rational matrices for the generators, one upper-norm certificate
+for each relator, and one lower-norm certificate for each word of $W$.
+The matrix checker verifies exact unitarity.  For upper bounds it uses the
+power/Frobenius estimates for $X^*X$; for lower bounds it uses a coded
+rational vector.  Hence every field is finite data and the complete answer
+checker is primitive recursive.  Density and polar correction show that
+every strict matrix answer in~\eqref{eq:open-challenges} has such a coded
+rational answer, while soundness of the norm certificates gives the
+converse.
+
+Fix total computable decoders $n\mapsto(W_n,k_n)$ for challenges and
+$c\mapsto a_c$ for answers, both surjective, and let $C(P,n,c)$ mean that
+the Boolean answer checker accepts $a_c$ for $(W_n,k_n)$.  Then $C$ is
+primitive recursive and~\eqref{eq:open-challenges} becomes
+\[
+  P\in\mathrm{MF}_{\mathrm{fp}}
+  \quad\Longleftrightarrow\quad
+  \forall n\,\exists c\ C(P,n,c).
+\]
+Thus $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$, and taking complements gives
+$\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$.
 \end{proof}
+\leanverified{Computability/MFRecognitionPi02}{GroupApproximation.MFRecognitionPi02.primrec_MFChecker}
+\leanverified{Computability/MFRecognitionPi02}{GroupApproximation.MFRecognitionPi02.isOperatorMF_iff_forall_exists_MFChecker}
+\leanverified{Computability/MFRecognitionPi02}{GroupApproximation.MFRecognitionPi02.operatorMFCode_pi02}
+\leanverified{Computability/MFRecognitionPi02}{GroupApproximation.MFRecognitionPi02.nonOperatorMFCode_sigma02}
 
 \section{HNN extensions with a corona conjugator}\label{sec:hnn}
 
@@ -624,10 +614,11 @@ Write $W_e$ for the domain of the $e$-th partial computable function and
 \]
 The set $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is
 $\Sigma^0_2$-complete~\cite[Chapter~IV]{Soare}.  The construction
-combines the non-MF group $H$ of~\cite{NonMF} with Theorem~\ref{thm:hnn-permanence}: it
+combines a fixed finitely presented non-MF group $E$ with
+Theorem~\ref{thm:hnn-permanence}: it
 produces a computable map
 $e\mapsto\widehat R_e$ into finite presentations such that the
-presented group contains $H$ when $e\in\mathrm{FIN}$ and satisfies the
+presented group contains $E$ when $e\in\mathrm{FIN}$ and satisfies the
 hypotheses of Theorem~\ref{thm:hnn-permanence} when $e\in\mathrm{INF}$,
 so that it is
 MF if and only if $e\in\mathrm{INF}$.
@@ -639,9 +630,9 @@ Table~\ref{tab:objects} lists the objects of the construction.
 \begin{table}[htb]
 \centering\small
 \begin{tabular}{@{}l@{\qquad}p{0.66\linewidth}@{}}
-$H$ & the non-MF group $\EL_{12}(L_{\F_2}(1,2))$ of~\cite{NonMF} \\[1pt]
+$E$ & a fixed finitely presented non-MF Shalom-cover group \\[1pt]
 $C_e$ & recursively presented; trivial for $e\in\mathrm{INF}$, contains
-  $H$ for $e\in\mathrm{FIN}$ \\[1pt]
+  $E$ for $e\in\mathrm{FIN}$ \\[1pt]
 $Q_e=F/N_e$ & three-generated recursively presented group containing
   $C_e$; here $F=F(x,y,t)$ \\[1pt]
 $Q_+=F/N_+$ & the value of $Q_e$ for trivial $C_e$; embeds in
@@ -663,60 +654,40 @@ $\widehat R_e$ & the finite presentation of
 \label{tab:objects}
 \end{table}
 
-\subsection*{A recursive presentation of \texorpdfstring{$H$}{H}}
+\subsection*{A finitely presented non-MF seed}
 
-\begin{lemma}[a recursive presentation of $H$]\label{lem:seed}
-The group $H=\EL_{12}(L_{\F_2}(1,2))$ is finitely generated and has decidable word
-problem.  In particular, it has a recursive presentation on finitely many
-generators.
+\begin{lemma}[the finite seed]\label{lem:seed}
+There is a fixed finite presentation $P_-$ whose group $E=G_{P_-}$ is not MF.
 \end{lemma}
 
 \begin{proof}
-Let $Y$ be the set of elements $e_{ij}(a)$ with $i\ne j$ and
-$a\in\{1,s_0,s_1,t_0,t_1\}$.  Since
-$e_{ij}(a+b)=e_{ij}(a)e_{ij}(b)$ and
-$[e_{ik}(a),e_{kj}(b)]=e_{ij}(ab)$ for distinct $i,j,k$, induction on
-monomial length shows that $H=\langle Y\rangle$.  The monomials in
-$s_0,s_1,t_0,t_1$ that contain no subword $t_is_j$ and no subword
-$s_1t_1$ form the standard reduced $\F_2$-basis of
-$L_{\F_2}(1,2)$~\cite{Leavitt}.
-Indeed, with the orientation $t_is_j\to\delta_{ij}$ and
-$s_1t_1\to1+s_0t_0$, the two critical words $t_is_1t_1$ and $s_1t_1s_j$
-resolve to a common value, and the Diamond Lemma~\cite{Bergman} gives
-these monomials as a basis.
-Products of reduced monomials are computed by the defining reductions, so
-equality in $L_{\F_2}(1,2)$ is decidable.  So a word in $Y^{\pm1}$
-evaluates to an explicit $12\times12$ matrix over
-$L_{\F_2}(1,2)$, and it represents $1$ in $H$ if and only
-if that matrix is the identity.  The set of words representing $1$ is
-decidable, so recursively enumerable, and $\langle Y\mid\text{that set}\rangle$
-is a recursive presentation of $H$.
+Use the finitely presented Shalom-cover marked-compression group.  Its
+distinguished nontrivial mark is killed by every homomorphism to an
+operator-norm matrix corona, so the group is not MF.  Fix one finite
+presentation code $P_-$ for this group.
 \end{proof}
+\leanverified{Computability/PresentationCodeCompleteness}{GroupApproximation.PresentationCodes.not_isOperatorMF_negativeCode}
 
 \subsection*{The group \texorpdfstring{$C_e$}{C-e}}
 
 \begin{lemma}[the group $C_e$]\label{lem:switch}
 There is an algorithm that computes from $e$ a recursive presentation, on
 a computable set of generators, of a group $C_e$ such that $C_e$ is
-trivial if $e\in\mathrm{INF}$ and $H$ embeds in $C_e$ if
+trivial if $e\in\mathrm{INF}$ and $C_e\cong E$ if
 $e\in\mathrm{FIN}$.
 \end{lemma}
 
 \begin{proof}
-Apply the construction of Bilanovic--Chubb--Roven~\cite[Theorem~3.1]{BCR}
-to the trivial group and $H$.
-Let $\langle Y\mid T\rangle$ be the recursive presentation of $H$ from
-Lemma~\ref{lem:seed}.  Take generators $y_{i,\ell}$ for $i\ge1$ and
-$\ell\in Y$, one copy $Y_i$ of $Y$ for each $i$, and as relators all
-words of $T$ rewritten in each copy $Y_i$, together with every generator
-$y_{i,\ell}$ for which $i\le\lvert W_e\rvert$.  The last family is
-recursively enumerable uniformly in $e$: enumerate $W_e$, and whenever its
-$i$-th element appears, enumerate all of $Y_i$.  The group presented is
-the free product of the copies $H_i\cong H$, $i\ge1$, with the first
-$\lvert W_e\rvert$ copies killed.  If $W_e$ is infinite every copy is
-killed and $C_e$ is trivial; if $W_e$ is finite, $C_e$ is the free product
-of the remaining copies and contains $H$.
+Apply the parametric finite-seed switch to the fixed code $P_-$ and the
+program index $e$.  Its relator enumerator is computable jointly in the seed
+code and $e$.  On an infinite domain every seed generator is eventually
+killed, giving the trivial group.  On a finite domain the construction has
+an explicit inverse pair of homomorphisms identifying the presented group
+with $G_{P_-}=E$.
 \end{proof}
+\leanverified{Computability/ParametricRecursiveSwitchPresentation}{GroupApproximation.ParametricRecursiveSwitchPresentation.computable₂_parametricSwitchEnumeratorCode}
+\leanverified{Computability/ParametricRecursiveSwitchPresentation}{GroupApproximation.ParametricRecursiveSwitchPresentation.compiledCarrier_equiv_punit_of_infiniteDomain}
+\leanverified{Computability/ParametricRecursiveSwitchPresentation}{GroupApproximation.ParametricRecursiveSwitchPresentation.compiledCarrier_equiv_seed_of_finiteDomain}
 
 \subsection*{A three-generator embedding}
 
@@ -779,13 +750,16 @@ So $j$ is injective on $N_0\rtimes\langle x\rangle$.  Free groups are
 residually finite and residual finiteness passes to direct products and
 subgroups, so $Q_+$ is residually finite.
 \end{proof}
+\leanverified{Manuscript/MFRecognition/ThreeGeneratorBridgeRecursive}{GroupApproximation.Manuscript.MFRecognition.Bridge.manuscriptBridge_one}
+\leanverified{Manuscript/MFRecognition/ThreeGeneratorBridgeQuotient}{GroupApproximation.Manuscript.MFRecognition.Bridge.manuscriptBridge_two}
+\leanverified{Manuscript/MFRecognition/ThreeGeneratorBridgeInjective}{GroupApproximation.Manuscript.MFRecognition.Bridge.manuscriptBridge_three}
 
 For $e\in\mathbb N$ let $Q_e=B(C_e)=F/N_e$ with $C_e$ the group of
 Lemma~\ref{lem:switch}, and write $q_e\colon F\to Q_e$.  By
 Lemmas~\ref{lem:switch} and~\ref{lem:bridge}, a recursive presentation of
 $Q_e$ on $x,y,t$ is computable from $e$; $N_e\le N_+$; if $e\in\mathrm{INF}$
 then $Q_e=Q_+$, $N_e=N_+$ and $q_e=q_+$; and if $e\in\mathrm{FIN}$ then
-$H\le C_e\le Q_e$.
+$E\le C_e\le Q_e$.
 
 \subsection*{Detecting \texorpdfstring{$N_e$}{N-e} inside a finitely presented group}
 
@@ -818,7 +792,7 @@ Let $M_e$ be the subgroup of $F(X_e)\times F(X_e)$ generated by the
 pairs $(z,z)$, $z\in X_e$, and $(r,1)$, $r\in R_e$; then
 $M_e=\{(u,v):u=v\text{ in }\Lambda_e\}$ by Mihailova's
 lemma~\cite{Mihailova}.  The first coordinate makes $i_e$
-\leanverified{Manuscript/OneSidedMFRadical/ComputabilityConstructionClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.ComputabilityConstruction.manuscriptPrintedMihailovaFiberProductPackage}
+\leanverified{Manuscript/MFRecognition/MarkedHigmanOutput}{GroupApproximation.Manuscript.MFRecognition.HigmanCompiler.MarkedHigmanOutput.mem_mihailova_iff}
 injective, and $(f,w_f,1)\in F\times M_e$ if and only if $w_f=1$ in
 $\Lambda_e$, if and only if $q_e(f)=1$ because the embedding is
 injective, if and only if $f\in N_e$.
@@ -944,16 +918,16 @@ code follows from Lemmas~\ref{lem:mikhailova} and~\ref{lem:central-rope}.
 \end{proof}
 
 \begin{lemma}[the case $e\in\mathrm{FIN}$]\label{lem:negative-branch}
-If $e\in\mathrm{FIN}$, then $H$ embeds in $\widehat R_e$, and
+If $e\in\mathrm{FIN}$, then $E$ embeds in $\widehat R_e$, and
 $\widehat R_e$ is not MF\@.
 \end{lemma}
 
 \begin{proof}
-For $e\in\mathrm{FIN}$ we have $H\le C_e\le Q_e\le\Gamma_e\times Q_e\le R_e\cong\widehat R_e$
+For $e\in\mathrm{FIN}$ we have $E\le C_e\le Q_e\le\Gamma_e\times Q_e\le R_e\cong\widehat R_e$
 by Lemmas~\ref{lem:switch},~\ref{lem:bridge}(1), and~\ref{lem:finite-rope}, and
 Britton's lemma for~\eqref{eq:twisted-rope}.  Restricting MF models to a
-subgroup shows that subgroups of MF groups are MF, and $H$ is not MF
-by~\cite[Theorem~B]{NonMF}.
+subgroup shows that subgroups of MF groups are MF, and $E$ is not MF by
+Lemma~\ref{lem:seed}.
 \leanverified{Manuscript/OneSidedMFRadical/ComputabilityConstructionClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.ComputabilityConstruction.manuscriptPrintedNonMFEmbeddingObstruction}
 \end{proof}
 
@@ -1025,10 +999,10 @@ enumerable, and in particular neither is decidable.
 \end{proof}
 
 \begin{remark}\label{rem:template}
-The construction uses only these properties of $H$: it is finitely
-generated, recursively presented, and not MF, while subgroups of MF
+The construction uses only these properties of $E$: it is finitely
+presented and not MF, while subgroups of MF
 groups are MF\@.  So it applies to any group property that is
-closed under subgroups, given a finitely generated recursively presented
+closed under subgroups, given a finitely presented
 group without the property and an analogue of
 Lemma~\ref{lem:tensor-sync} for the twisted HNN extensions; the open
 problems below record which input is missing for soficity and for
@@ -1088,18 +1062,6 @@ Sauers,
 S.~I. Adian,
 \emph{Algorithmic unsolvability of problems of recognition of certain properties of groups},
 Dokl. Akad. Nauk SSSR \textbf{103} (1955), 533--535.
-
-\bibitem[BCR]{BCR}
-I.~Bilanovic, J.~Chubb, and S.~Roven,
-\emph{Detecting properties from descriptions of groups},
-Arch. Math. Logic \textbf{59} (2020), no.~3--4, 293--312,
-\doi{10.1007/s00153-019-00690-x}.
-
-\bibitem[Ber]{Bergman}
-G.~M. Bergman,
-\emph{The diamond lemma for ring theory},
-Adv. Math. \textbf{29} (1978), no.~2, 178--218,
-\doi{10.1016/0001-8708(78)90010-5}.
 
 \bibitem[BK]{BK}
 B.~Blackadar and E.~Kirchberg,
@@ -1191,11 +1153,6 @@ preprint, 2026,
 R.~I. Soare,
 \emph{Recursively enumerable sets and degrees},
 Perspectives in Mathematical Logic, Springer-Verlag, Berlin, 1987.
-
-\bibitem[Ta]{Tarski}
-A.~Tarski,
-\emph{A decision method for elementary algebra and geometry},
-2nd ed., University of California Press, Berkeley, 1951.
 
 \bibitem[Ue]{Ueda}
 Y.~Ueda,
