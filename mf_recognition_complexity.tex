@@ -72,23 +72,21 @@
 \keywords{MF groups, arithmetical hierarchy, finitely presented groups, HNN extensions, Higman embedding, norm matrix coronas}
 
 \begin{abstract}
-A countable group is MF if it admits finite-dimensional unitary models
-that are asymptotically multiplicative and asymptotically separate
-nonidentity elements in operator norm.  We show that deciding whether a
-finite presentation defines an MF group is $\Pi^0_2$-complete.  So it is
-impossible to construct an algorithm that decides from a finite
-presentation whether the group it defines is MF, and impossible even to
-enumerate the presentations of MF groups, or those of non-MF groups.  A
-presentation defines an MF group if and only if, for every accuracy,
-every finite word challenge has either a finite word-problem witness or
-an explicitly coded rational unitary microstate with decidable norm
-certificates.  We also construct, computably from any program, a
-finite presentation that defines an MF group if and only if the program
-halts on infinitely many inputs.  If the program halts on only finitely
-many inputs, the presented group contains the finitely presented non-MF
-group of~\cite[Theorem~C]{NonMF}; if it halts on infinitely many inputs,
-the group is MF by a permanence theorem for HNN extensions whose edge isomorphism is
-implemented by a unitary of a norm matrix corona.
+A countable group is MF if it has finite-dimensional unitary models that
+are asymptotically multiplicative and separate nonidentity elements in
+operator norm.  Deciding whether a finite presentation defines an MF group
+is $\Pi^0_2$-complete: it is impossible to construct an algorithm that
+decides from a finite presentation whether the group it defines is MF, or
+even one that enumerates the presentations of MF groups or those of non-MF
+groups.  A presentation defines an MF group if and only if every finite word
+challenge has a word-problem witness or a Gaussian-rational unitary model
+with decidable norm certificates.  In the other direction, a computable
+family of finite presentations $\widehat R_e$ defines MF groups if and only
+if the $e$-th program halts on infinitely many inputs: for finitely many
+inputs the group contains the finitely presented non-MF group
+of~\cite[Theorem~C]{NonMF}, and for infinitely many inputs it is MF by a
+permanence theorem for HNN extensions whose edge isomorphism is implemented
+by a unitary of a norm matrix corona.
 \end{abstract}
 
 \maketitle
@@ -96,10 +94,12 @@ implemented by a unitary of a norm matrix corona.
 
 \section{Introduction}
 
-Not every countable group is MF: \emph{Non-MF Groups}~\cite{NonMF}
-constructs a finitely generated simple group $H=\EL_{12}(L_{\F_2}(1,2))$
-with property~\textup{(T)} such that every homomorphism from $H$ to an MF
-group is trivial.  We turn to the recognition problem for finitely presented groups.
+Not every countable group is MF~\cite{NonMF}: the group
+$H=\EL_{12}(L_{\F_2}(1,2))$ is finitely generated and simple, has
+property~\textup{(T)}, and every homomorphism from $H$ to an MF group is
+trivial, and there is a finitely presented torsion-free group $E$ with the
+same last property~\cite[Theorem~C]{NonMF}.  This paper determines the
+complexity of recognizing MF groups from finite presentations.
 
 \begin{mainthm}[MF recognition is $\Pi^0_2$-complete]\label{thm:recognition}
 Deciding whether a finite presentation defines an MF group is
@@ -136,37 +136,37 @@ and only if the $e$-th partial computable function has infinite domain.
 \node[probs, anchor=east] at (-3.0,1.5) {halting\\ problem};
 \end{tikzpicture}
 \caption{The arithmetical hierarchy.  Lines indicate inclusions, and each
-listed problem is complete at its level.  The two sets from
-Theorem~\ref{thm:recognition} appear in
-bold.  $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ by finite certificates
-(Section~\ref{sec:local}).  The
-family $\widehat R_e$ reduces $\mathrm{INF}$ to
+listed problem is complete at its level.  The two sets of
+Theorem~\ref{thm:recognition} appear in bold:
+$\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ by the finite certificates of
+Section~\ref{sec:local}, and the family $\widehat R_e$ of
+Section~\ref{sec:compiler} reduces $\mathrm{INF}$ to
 $\mathrm{MF}_{\mathrm{fp}}$ and $\mathrm{FIN}$ to
-$\mathrm{NONMF}_{\mathrm{fp}}$ (Section~\ref{sec:compiler}).}
+$\mathrm{NONMF}_{\mathrm{fp}}$.}
 \label{fig:levels}
 \end{figure}
 
-Encode a finite challenge as a pair $(W,k)$, where $W$ is a finite list of
-words and $k$ is a reciprocal precision index.  An answer either supplies
-a word of $W$ together with a finite word-problem search witness proving
-that it is trivial, or supplies Gaussian-rational unitary matrices for the
-generators together with finite certificates that every relator has norm
-defect less than $1/(k+1)$ and every word of $W$ has norm displacement
-greater than $1/3$.  All checks are primitive recursive.  A finite
-presentation defines an MF group if and only if every coded challenge has
-an accepted coded answer.  So
+A finite challenge is a pair $(W,k)$, where $W$ is a finite list of words
+and $k$ is a precision index.  An answer supplies a word of $W$ together
+with a finite word-problem witness that it is trivial, or Gaussian-rational
+unitary matrices for the generators together with finite certificates that
+every relator has norm defect less than $1/(k+1)$ and every word of $W$ has
+norm displacement greater than $1/3$.  All checks are primitive recursive,
+and a finite presentation defines an MF group if and only if every coded
+challenge has an accepted coded answer.  So
 $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$ and
 $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$
 (Section~\ref{sec:local}).
 
-Given a program index $e$, we construct a finite presentation
-$\widehat R_e$ in Section~\ref{sec:compiler}.  If the $e$-th partial function
-has finite domain, then the presented group contains the finitely presented
-non-MF group $E$ of~\cite[Theorem~C]{NonMF} and is not MF\@.
-If its domain is infinite, the edge isomorphism in the defining HNN
-extension is implemented by a unitary of a norm matrix corona, and the
-presented group is MF by Theorem~\ref{thm:hnn-permanence}.  The two sets
-of Theorem~\ref{thm:recognition} appear in bold in Figure~\ref{fig:levels}.
+The presentation $\widehat R_e$ of Section~\ref{sec:compiler} is an HNN
+extension of a direct product $\Gamma_e\times F$, where $\Gamma_e$ is a
+central HNN extension of a product of free groups over a subgroup built from
+a Mihailova subgroup, which detects the word problem of a three-generator
+recursively presented group $Q_e$; and $Q_e$ is residually finite or
+contains $E$ according to whether the $e$-th domain is infinite or finite.  If the domain is finite, then $\widehat R_e$ contains
+$E$ and is not MF\@.  If the domain is infinite, the edge isomorphism of the
+HNN extension is implemented by a unitary of a norm matrix corona, and
+$\widehat R_e$ is MF by Theorem~\ref{thm:hnn-permanence}.
 
 \subsection*{Relation to prior work}
 
@@ -174,17 +174,22 @@ Decision problems for finitely presented groups go back to Dehn, and the
 theorem of Adian and Rabin~\cite{Adian,Rabin} shows that no Markov
 property (one that some finitely presented group has and that no group
 containing some fixed finitely presented group has) can be recognized
-from a finite presentation.  Once a finitely
-presented non-MF group exists, the MF property is Markov and so, by
-Adian--Rabin, undecidable; Theorem~\ref{thm:recognition} determines the
-exact level.
-A classical $\Pi^0_2$-complete recognition problem for finitely presented
-groups is torsion-freeness, by Lempp~\cite{Lempp}.  The first step of
-Section~\ref{sec:compiler} is a recursive presentation that is trivial or
-isomorphic to $E$ according to whether the $e$-th domain is infinite or
-finite.  The operator algebra enters in the passage from recursive to
-finite presentations: the HNN extensions of Section~\ref{sec:compiler} are
-chosen so that Theorem~\ref{thm:hnn-permanence} applies to them.
+from a finite presentation.  Once a finitely presented non-MF group exists,
+the MF property is Markov and so undecidable; Theorem~\ref{thm:recognition}
+determines the exact level.  A classical $\Pi^0_2$-complete recognition
+problem for finitely presented groups is torsion-freeness, by
+Lempp~\cite{Lempp}.  Korchagin proved that the MF property is closed under
+direct limits~\cite[Proposition~13]{Korchagin}, so every finitely generated
+non-MF group is a quotient of a finitely presented one; the seed $E$ used
+below is the explicit finitely presented group of~\cite[Theorem~C]{NonMF}.
+The operator algebra enters in the passage from recursive to finite
+presentations: the HNN extensions of Section~\ref{sec:compiler} are chosen
+so that Theorem~\ref{thm:hnn-permanence} applies to them.
+
+The certificate checker of Section~\ref{sec:local} and the constructions of
+Section~\ref{sec:compiler} are formalized in Lean~4~\cite{LeanDev}.  Proofs
+whose remaining verification is routine are given in outline and refer
+there.
 
 \section{MF groups}\label{sec:prelim}
 
@@ -200,18 +205,19 @@ and
  \qquad(g\in G\setminus\{1\}).
 \]
 This is the operator norm notion of MF group introduced by
-Carri\'on--Dadarlat--Eckhardt~\cite{CDE}.  Here, MF group
-always means this operator-norm local-approximation property.  The
-strong-convergence convention also requires the matrix models to recover
-the norms of the left regular representation~\cite{GaoEtAl,Schafhauser}.
-Equivalently, $G$ embeds in the
-unitary group of the norm matrix corona associated to the sequence
+Carri\'on--Dadarlat--Eckhardt~\cite{CDE}, and MF group always means this
+notion below.  The strong convergence convention also requires the matrix
+models to recover the norms of the left regular
+representation~\cite{GaoEtAl,Schafhauser}, so a group that is not MF in the
+present sense is not MF in that sense either.  Equivalently, $G$ embeds in
+the unitary group of the norm matrix corona associated to the sequence
 $\mathbf d=(d_n)$,
 \[
  \mathcal Q_{\mathbf d}
  =\prod_nM_{d_n}(\C)\big/\bigoplus_nM_{d_n}(\C),
 \]
-where $\bigoplus_nM_{d_n}(\C)$ is the $c_0$-direct sum of the sequences with
+where $\prod_nM_{d_n}(\C)$ is the $C^*$-algebra of bounded sequences and
+$\bigoplus_nM_{d_n}(\C)$ is its ideal of sequences with
 $\opnorm{x_n}\to0$.  A separable $C^*$-algebra is called MF if it embeds as
 a $C^*$-subalgebra of a norm matrix corona~\cite{BK}.  Restricting models
 to a subgroup shows that subgroups of MF groups are MF\@.
@@ -222,17 +228,16 @@ Throughout, the binary Leavitt algebra $L_{\F_2}(1,2)$ is the unital
 $\F_2$-algebra generated by $s_0,s_1,t_0,t_1$ subject to $t_is_j=\delta_{ij}$
 and $s_0t_0+s_1t_1=1$, and $H=\EL_{12}(L_{\F_2}(1,2))$ is the subgroup of
 $\GL_{12}(L_{\F_2}(1,2))$ generated by the elementary matrices
-$e_{ij}(a)=1+aE_{ij}$, $i\ne j$.  By~\cite[Theorem~B]{NonMF}, every homomorphism from
-$H$ to an MF group is trivial; in particular $H$ is not MF\@.
+$e_{ij}(a)=1+aE_{ij}$, $i\ne j$.  By~\cite[Theorem~B]{NonMF}, every
+homomorphism from $H$ to an MF group is trivial; in particular $H$ is not
+MF\@.
 
 \section{Locality and finite certificates}\label{sec:local}
 
 The MF property is defined through sequences of models on all of $G$,
-but it is determined by finite data with a fixed separation constant.
-The reformulation is due to Korchagin~\cite{Korchagin}.
-
-The following finite-domain formulation is derived from
-Korchagin~\cite[Proposition~7]{Korchagin}.
+and it is determined by finite data with a fixed separation constant.  The
+following formulation is derived from
+Korchagin~\cite[Propositions~5 and~7]{Korchagin}.
 
 \begin{lemma}[locality with fixed separation]\label{lem:local-models}
 A countable group $G$ is MF if and only if for every finite set
@@ -247,11 +252,11 @@ and a map $V\colon F\to\U(d)$ with $V(1)=1$ such that
 
 \begin{proof}
 Maps for an exhaustion $(F_n,1/n)$ of $G$, extended by $1$ outside
-$F_n$, form an MF model.  Conversely, Korchagin's amplification --- replacing $V_n$ by an iterated
-adjoint representation $\operatorname{Ad}^k\circ V_n$ --- raises the
-separation of a fixed nonidentity element to $\sqrt2$ while multiplying
-the defects by a constant~\cite[Proposition~5]{Korchagin}, and a block
-direct sum of late amplified models, one summand for each
+$F_n$, form an MF model.  Conversely, Korchagin's amplification --- replacing
+$V_n$ by an iterated adjoint representation $\operatorname{Ad}^k\circ V_n$
+--- raises the separation of a fixed nonidentity element to $\sqrt2$ while
+multiplying the defects by a constant~\cite[Proposition~5]{Korchagin}, and a
+block direct sum of late amplified models, one summand for each
 $g\in F\setminus\{1\}$, gives the stated map~\cite[Proposition~7]{Korchagin}.
 \end{proof}
 
@@ -281,7 +286,7 @@ $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$.
 \begin{proof}
 Let $P=\langle x_1,\dots,x_s\mid r_1,\dots,r_m\rangle$.  A
 \emph{challenge} is a pair $(W,k)$, where $W$ is a finite list of words in
-the generators and $k\in\mathbb N$.  Say that the challenge is answered if
+the generators and $k\in\mathbb N$.  The challenge is answered if
 either
 \begin{enumerate}
 \item some $w\in W$ represents $1$ in $G_P$, or
@@ -292,47 +297,48 @@ either
   \opnorm{w(U)-1}>\frac13\quad(w\in W).
 \]
 \end{enumerate}
-The local characterization of MF gives
+Then
 \begin{equation}\label{eq:open-challenges}
   G_P\text{ is MF}
   \quad\Longleftrightarrow\quad
   \text{every finite challenge $(W,k)$ is answered}.
 \end{equation}
 For the forward implication, apply Lemma~\ref{lem:local-models} to the
-finite set represented by $W$ and to a sufficiently fine multiplicative
-scale; if one of the challenged words is trivial, use the first answer,
-and otherwise retain slack in the two strict inequalities.  Conversely,
-choose a word representative of each element of $G_P$.  Applying the
-second answer to finite lists of pairwise quotient words gives uniformly
-separated finite models.  The relator bounds, together with a fixed finite
-normal-closure expression for each multiplication word, make their
-multiplicative defects tend to zero.  This is the MF condition.
+finite set of elements represented by the prefixes of the relators and of
+the words of $W$, at a scale $\varepsilon$ small against the lengths of
+those words; if one of the challenged words is trivial, use the first
+answer, and otherwise the two strict inequalities hold with room to spare.
+Conversely, choose a word representative of each element of $G_P$.  For a
+finite set of elements, the second answer to the challenge formed by their
+pairwise quotient words gives models separated by $1/3$, and the relator
+bounds, together with a fixed finite normal-closure expression for each
+multiplication word, make the multiplicative defects tend to zero.  This
+is the MF condition.
 
-We now replace the existential matrix statement by finite discrete data.
-A \emph{void answer} consists of a word $w\in W$ and a finite search witness
-exhibiting $w$ as a product of conjugates of the relators and their
-inverses.  A \emph{matrix answer} consists of a positive dimension,
-Gaussian-rational matrices for the generators, one upper-norm certificate
-for each relator, and one lower-norm certificate for each word of $W$.
-The matrix checker verifies exact unitarity.  For upper bounds it uses the
-power/Frobenius estimates for $X^*X$; for lower bounds it uses a coded
-rational vector.  So every field is finite data and the complete answer
-checker is primitive recursive.  Every strict matrix answer
+The matrix answers are coded as finite data.  A \emph{void answer} is a
+word $w\in W$ and a finite search witness exhibiting $w$ as a product of
+conjugates of the relators and their inverses.  A \emph{matrix answer} is
+a positive dimension, Gaussian-rational matrices for the generators, one
+upper-norm certificate for each relator, and one lower-norm certificate for
+each word of $W$.  The checker verifies exact unitarity; for upper bounds it
+uses the power and Frobenius estimates for $X^*X$, and for lower bounds a
+coded rational vector.  So every field is finite data and the complete
+answer checker is primitive recursive.  Every strict matrix answer
 in~\eqref{eq:open-challenges} has such a coded rational answer: the Cayley
-transform $(1+ia)(1-ia)^{-1}$ of a Gaussian-rational Hermitian matrix $a$ is a
-Gaussian-rational unitary, and these unitaries are dense in $\U(d)$; soundness
-of the norm certificates gives the converse.
+transform $(1+ia)(1-ia)^{-1}$ of a Gaussian-rational Hermitian matrix $a$ is
+a Gaussian-rational unitary, and these unitaries are dense in $\U(d)$;
+soundness of the norm certificates gives the converse.
 
 Fix total computable decoders $n\mapsto(W_n,k_n)$ for challenges and
 $c\mapsto a_c$ for answers, both surjective, and let $C(P,n,c)$ mean that
-the Boolean answer checker accepts $a_c$ for $(W_n,k_n)$.  Then $C$ is
-primitive recursive and~\eqref{eq:open-challenges} becomes
+the answer checker accepts $a_c$ for $(W_n,k_n)$.  Then $C$ is primitive
+recursive and~\eqref{eq:open-challenges} becomes
 \[
   P\in\mathrm{MF}_{\mathrm{fp}}
   \quad\Longleftrightarrow\quad
   \forall n\,\exists c\ C(P,n,c).
 \]
-Thus $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$, and taking complements gives
+So $\mathrm{MF}_{\mathrm{fp}}\in\Pi^0_2$, and taking complements gives
 $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$.
 \end{proof}
 \leanverified{Computability/MFRecognitionPi02}{GroupApproximation.MFRecognitionPi02.primrec_MFChecker}
@@ -342,16 +348,13 @@ $\mathrm{NONMF}_{\mathrm{fp}}\in\Sigma^0_2$.
 
 \section{HNN extensions with a corona conjugator}\label{sec:hnn}
 
-In~\cite{NonMF} we prove non-approximability using one-sided
-conjugation in a norm matrix corona.  If the edge isomorphism
-of an HNN extension is implemented by a
-unitary of a norm matrix corona, then the HNN extension is MF\@.  For
+If the edge isomorphism of an HNN extension is implemented by a unitary of
+a norm matrix corona, then the HNN extension is MF\@.  For
 $\theta=\mathrm{id}$ this is close to Shulman's theorem on central HNN
 extensions~\cite{Shulman}; the version below assumes a tracial state
 vanishing off the identity and allows a nontrivial edge isomorphism.  The
-corona unitary implements the edge isomorphism, while the trace and the left
-regular representation prove that the group embeds in the resulting
-algebra.
+corona unitary implements the edge isomorphism, and the trace and the left
+regular representation show that the group embeds in the resulting algebra.
 
 A countable group $G$ \emph{admits a tracial MF realization}
 $(A,\rho,\tau)$ if $A$ is a separable unital MF $C^*$-algebra,
@@ -366,10 +369,9 @@ To embed an arbitrary norm matrix corona $\mathcal Q_{\mathbf d}$ in
 $\prod_kM_k(\C)/\bigoplus_kM_k(\C)$, choose a strictly increasing sequence
 $(m_n)$ with $m_n\ge d_n$, embed $M_{d_n}(\C)$ as a corner of
 $M_{m_n}(\C)$, and put zero in the unused coordinates.  The resulting map
-on reduced products is an isometric $*$-homomorphism,
-so the MF algebras of Section~\ref{sec:prelim} are exactly the
-separable $C^*$-algebras that embed in the latter corona, as
-in~\cite{BK,Shulman}.
+on reduced products is an isometric $*$-homomorphism, so the MF algebras of
+Section~\ref{sec:prelim} are the separable $C^*$-algebras that embed in the
+latter corona, as in~\cite{BK,Shulman}.
 
 \begin{lemma}[residually finite groups]\label{lem:rf-regular}
 Every countable residually finite group admits a tracial MF realization.
@@ -421,11 +423,11 @@ $d$ and $u$ for the images of $d\in D$ and $u$ in $U$.  By construction,
 $U$ has the following universal property: whenever $\pi\colon D\to E$ is a
 unital $*$-homomorphism into a unital $C^*$-algebra and $v\in\U(E)$
 satisfies $v\pi(b)v^*=\pi(\Theta(b))$ for $b\in B_0$, there is a unique
-$*$-homomorphism $U\to E$ extending $\pi$ and sending $u$ to $v$.  We
+$*$-homomorphism $U\to E$ extending $\pi$ and sending $u$ to $v$.
 \leanverified{Manuscript/OneSidedMFRadical/HNNCoronaConjugatorSentenceAudit}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit.universalCStarHNN_mappingProperty}
-first embed $U$ in an amalgamated free product, which Shulman's criterion
-shows to be MF, and then construct the required tracial state on the copy
-of $R$ inside $U$.
+The algebra $U$ embeds in an amalgamated free product, which Shulman's
+criterion shows to be MF, and the copy of $R$ inside $U$ carries a tracial
+state.
 
 \emph{Step 1: $U$ embeds in an amalgamated free product.}  Let
 $C=B_0\oplus B_1$, $A_1=M_2(D)$, and $A_2=M_2(B_0)$, with the unital
@@ -473,7 +475,7 @@ $T$, the vectors $\xi_g=\iota\rho(g)\xi_T$, $g\in G$, are orthonormal,
 because $\langle\xi_g,\xi_h\rangle=T(\iota\rho(h^{-1}g))$.  Their closed
 \leanverified{Manuscript/OneSidedMFRadical/HNNCoronaConjugatorSentenceAudit}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit.regularCharacterGNS_orbit_orthonormal}
 span is invariant under $D$, and on it $\iota\rho(g)$ acts as the left
-regular representation $\lambda_G(g)$ of $G$.  Thus there is a
+regular representation $\lambda_G(g)$ of $G$.  So there is a
 \leanverified{Manuscript/OneSidedMFRadical/HNNCoronaConjugatorSentenceAudit}{GroupApproximation.Manuscript.OneSidedMFRadical.HNNCoronaConjugatorSentenceAudit.regularCharacterGNS_left_translation}
 $*$-homomorphism $\pi\colon D\to C^*_{\mathrm r}(G)$ with
 $\pi(\iota\rho(g))=\lambda_G(g)$.  Since $G\le R$, the space
@@ -504,9 +506,9 @@ $\tau'(j(r))=\tau_R(\lambda_R(r))=0$ for $r\ne1$.  So $(A',j,\tau')$
 is a tracial MF realization of $R$.
 \end{proof}
 
-Injectivity of $j$ follows from $\sigma\circ j=\lambda_R$, not from the
-covariant pair $(\iota\rho,W)$, which need not be faithful; in the
-applications below it is not.
+Injectivity of $j$ comes from $\sigma\circ j=\lambda_R$; the covariant pair
+$(\iota\rho,W)$ need not be faithful on $R$, and in
+Section~\ref{sec:compiler} it is not.
 
 \begin{corollary}[central HNN extensions]\label{cor:central-hnn}
 If $G$ admits a tracial MF realization and $S\le G$ is any subgroup, then
@@ -520,9 +522,10 @@ corona, and with $W=1$.
 \end{proof}
 
 The positive branch of the reduction below produces tracial MF
-realizations inside norm reduced products.  For $C^*$-algebras $B_n$, $n\ge1$, write
-$\prod_nB_n/\bigoplus_nB_n$ for the quotient of the bounded sequences by
-the sequences with $\opnorm{x_n}\to0$; its norm is $\limsup_n\opnorm{x_n}$.
+realizations inside norm reduced products.  For $C^*$-algebras $B_n$,
+$n\ge1$, write $\prod_nB_n/\bigoplus_nB_n$ for the quotient of the bounded
+sequences by the sequences with $\opnorm{x_n}\to0$; its norm is
+$\limsup_n\opnorm{x_n}$.
 
 \begin{lemma}[reduced products of MF algebras]\label{lem:reduced-products}
 If every $B_n$ is MF, then every separable $C^*$-subalgebra of
@@ -532,12 +535,13 @@ $B$ is.
 \leanverified{Analysis/MFAlgebraMatrixAmplification}{GroupApproximation.MFAlgebraMatrixAmplification.isMFAlgebra_cstarMatrix}
 \end{lemma}
 
+\begin{proof}
 The first assertion follows by diagonalization from the matrix-corona
-characterization of MF algebras (Blackadar--Kirchberg~\cite{BK}; see
-also~\cite[Chapter~11]{BrownOzawa}), and Korchagin uses it in this
+characterization of MF algebras~\cite{BK}, and Korchagin uses it in this
 form~\cite[Proposition~6]{Korchagin}.  The second holds because $M_k$ of
 a norm matrix corona is the norm matrix corona of the dimension sequence
 multiplied by $k$.
+\end{proof}
 
 \begin{lemma}[tensor synchronization]\label{lem:tensor-sync}
 Let $\Gamma$ be a countable group with a tracial MF realization
@@ -592,14 +596,13 @@ for $s\in S$.  Let $A$ be the $C^*$-algebra generated by $V(\Gamma\times Q)$
 and $W$; it is separable and unital, and MF by
 Lemma~\ref{lem:reduced-products}.  The triple $(A,V,T|_A)$ is a tracial
 MF realization of $\Gamma\times Q$.  For the last assertion, apply
-Theorem~\ref{thm:hnn-permanence} to this realization.  Let $\iota$ be an
-injective $*$-homomorphism of $A$ into a norm matrix corona and put
-$p=\iota(1)$.  The element $\widetilde W=\iota(W)+(1-p)$ is a unitary of the
-full corona and implements the required covariance on $\iota(A)$, so it is
-the required conjugator.
+Theorem~\ref{thm:hnn-permanence} to this realization: for an injective
+$*$-homomorphism $\iota$ of $A$ into a norm matrix corona with
+$p=\iota(1)$, the element $\widetilde W=\iota(W)+(1-p)$ is a unitary of the
+full corona and implements the required covariance on $\iota(A)$.
 \end{proof}
 
-\section{The complexity of recognizing MF groups}\label{sec:compiler}
+\section{The reduction}\label{sec:compiler}
 
 Write $W_e$ for the domain of the $e$-th partial computable function and
 \[
@@ -608,19 +611,12 @@ Write $W_e$ for the domain of the $e$-th partial computable function and
  \mathrm{FIN}=\{e:W_e\text{ is finite}\}.
 \]
 The set $\mathrm{INF}$ is $\Pi^0_2$-complete and $\mathrm{FIN}$ is
-$\Sigma^0_2$-complete~\cite[Chapter~IV]{Soare}.  The construction
-combines a fixed finitely presented non-MF group $E$ with
-Theorem~\ref{thm:hnn-permanence}: it
-produces a computable map
-$e\mapsto\widehat R_e$ into finite presentations such that the
-presented group contains $E$ when $e\in\mathrm{FIN}$ and satisfies the
-hypotheses of Theorem~\ref{thm:hnn-permanence} when $e\in\mathrm{INF}$,
-so that it is
-MF if and only if $e\in\mathrm{INF}$.
-For $e\in\mathrm{FIN}$, the group $\widehat R_e$ is not MF; for
-$e\in\mathrm{INF}$, Lemma~\ref{lem:positive-branch} proves that it is
-MF.
-Table~\ref{tab:objects} lists the objects of the construction.
+$\Sigma^0_2$-complete~\cite[Chapter~IV]{Soare}.  This section constructs a
+computable map $e\mapsto\widehat R_e$ into finite presentations such that
+the presented group contains the non-MF group $E$ when $e\in\mathrm{FIN}$
+and satisfies the hypotheses of Theorem~\ref{thm:hnn-permanence} when
+$e\in\mathrm{INF}$.  Table~\ref{tab:objects} lists the objects of the
+construction.
 
 \begin{table}[htb]
 \centering\small
@@ -649,9 +645,9 @@ $\widehat R_e$ & the finite presentation of
 \label{tab:objects}
 \end{table}
 
-\subsection*{A finitely presented non-MF seed}
+\subsection*{The seed}
 
-\begin{lemma}[the finite seed]\label{lem:seed}
+\begin{lemma}[the seed]\label{lem:seed}
 There is a fixed finite presentation $P_-$ whose group $E=G_{P_-}$ is not MF.
 \end{lemma}
 
@@ -659,14 +655,11 @@ There is a fixed finite presentation $P_-$ whose group $E=G_{P_-}$ is not MF.
 Theorem~C of~\cite{NonMF} gives a finitely presented torsion-free group
 that equals its own MF radical, and a nontrivial group equal to its own MF
 radical is not MF\@.  Fix one finite presentation code $P_-$ for this
-group.  Any finitely presented non-MF group serves here: Korchagin proved
-that the MF property is closed under direct
-limits~\cite[Proposition~13]{Korchagin}, so every finitely generated
-non-MF group, for instance $H$, is a quotient of a finitely presented one.
+group.
 \end{proof}
 \leanverified{Computability/PresentationCodeCompleteness}{GroupApproximation.PresentationCodes.not_isOperatorMF_negativeCode}
 
-\subsection*{The group \texorpdfstring{$C_e$}{C-e}}
+\subsection*{The switch}
 
 \begin{lemma}[the group $C_e$]\label{lem:switch}
 There is an algorithm that computes from $e$ a recursive presentation, on
@@ -727,39 +720,28 @@ In particular, $Q_+$ is residually finite.
 
 \begin{proof}
 (1) The elements $y_i$, $i\in\mathbb Z$, freely generate the normal
-closure of $y$ in $F(x,y)$~\cite[Chapter~I]{LyndonSchupp}.  The retraction
-$C*F(x,y)\to F(x,y)$ killing $C$ sends $c_iy_i$ to $y_i$, so a nontrivial
-reduced word in the $c_iy_i$ maps to a nontrivial word in the $y_i$; so
-the $c_iy_i$ freely generate a free subgroup, and $y_i\mapsto c_iy_i$ is an
-isomorphism between two free subgroups of the base.  Thus~\eqref{eq:bridge}
-is an HNN extension, and the base, and with it $C$, embeds by Britton's lemma.
-The relation $c_i=ty_it^{-1}y_i^{-1}$ shows that $x,y,t$ generate $B(C)$,
-and substituting this expression for $c_i$ into the relators of $C$ and
-into~\eqref{eq:bridge} produces a recursive presentation on $x,y,t$,
-uniformly in the presentation of $C$.
+closure of $y$ in $F(x,y)$~\cite[Chapter~I]{LyndonSchupp}, and the
+retraction $C*F(x,y)\to F(x,y)$ killing $C$ sends $c_iy_i$ to $y_i$, so the
+$c_iy_i$ freely generate a free subgroup and $y_i\mapsto c_iy_i$ is an
+isomorphism between two free subgroups of the base.  So~\eqref{eq:bridge}
+is an HNN extension, and the base, and with it $C$, embeds by Britton's
+lemma.  The relation $c_i=ty_it^{-1}y_i^{-1}$ shows that $x,y,t$ generate
+$B(C)$, and substituting this expression for $c_i$ into the relators of
+$C$ produces a recursive presentation on $x,y,t$, uniformly in the
+presentation of $C$.
 
-(2) The relators of~\eqref{eq:bridge} map to the relators $[t,y_i]$ of
-$Q_+$ when every $c_i$ is sent to $1$, and the map is the identity on
-$x,y,t$.
+(2) Killing every $c_i$ sends the relators of~\eqref{eq:bridge} to the
+relators $[t,y_i]$ of $Q_+$ and is the identity on $x,y,t$.
 
 (3) The relators $[t,y_i]$ are sent to $[(1,t),(x_1^iyx_1^{-i},1)]=1$, so
-$j$ is a homomorphism.  Let $N_0$ be the normal closure of $\{y,t\}$ in
-$Q_+$.  Then $Q_+/N_0=\langle x\rangle$ is infinite cyclic and the
-extension splits, so $Q_+=N_0\rtimes\langle x\rangle$.  Rewriting the
-presentation of $Q_+$ over the transversal $\{x^n\}$ by the
-Reidemeister--Schreier method~\cite[Chapter~II]{LyndonSchupp} presents
-$N_0$ on the generators $y_n=x^nyx^{-n}$ and $t_m=x^mtx^{-m}$, $n,m\in\mathbb Z$,
-with relators the conjugates $x^m[t,y_n]x^{-m}=[t_m,y_{n+m}]$, that is,
-all commutators $[t_m,y_n]$.  So $N_0=F(y_n:n\in\mathbb Z)\times F(t_m:m\in\mathbb Z)$.
-Now $j(y_n)=(x_1^nyx_1^{-n},1)$ and $j(t_m)=(1,x_2^mtx_2^{-m})$, and the
-elements $x_1^nyx_1^{-n}$ freely generate the normal closure of $y$ in
-$F(x_1,y)$, and likewise for $t$; so $j$ restricted to $N_0$ is an
-isomorphism onto the product of these two normal closures.  Finally
-$j(x)=(x_1,x_2)$ has infinite order and $j(x)^k\notin j(N_0)$ for $k\ne0$,
-because, for $h\in N_0$, the exponent sum of $x_1$ in $j(x^k h)$ is $k$.
-So $j$ is injective on $N_0\rtimes\langle x\rangle$.  Free groups are
-residually finite and residual finiteness passes to direct products and
-subgroups, so $Q_+$ is residually finite.
+$j$ is a homomorphism.  The normal closure $N_0$ of $\{y,t\}$ in $Q_+$ is
+$F(y_n:n\in\mathbb Z)\times F(t_m:m\in\mathbb Z)$ with $y_n=x^nyx^{-n}$ and
+$t_m=x^mtx^{-m}$, by the Reidemeister--Schreier method over the transversal
+$\{x^n\}$~\cite[Chapter~II]{LyndonSchupp}; $j$ carries these bases to
+free bases of the normal closures of $y$ in $F(x_1,y)$ and of $t$ in
+$F(x_2,t)$, and the exponent sum of $x_1$ in $j(x^kh)$, $h\in N_0$, is
+$k$.  So $j$ is injective~\cite{LeanDev}.  Free groups are residually
+finite, and residual finiteness passes to direct products and subgroups.
 \end{proof}
 \leanverified{Manuscript/MFRecognition/ThreeGeneratorBridgeRecursive}{GroupApproximation.Manuscript.MFRecognition.Bridge.manuscriptBridge_one}
 \leanverified{Manuscript/MFRecognition/ThreeGeneratorBridgeQuotient}{GroupApproximation.Manuscript.MFRecognition.Bridge.manuscriptBridge_two}
@@ -795,18 +777,16 @@ $i_e(f)\in L^0_e$ if and only if $f\in N_e$.
 
 \begin{proof}
 Higman's embedding theorem~\cite{Higman} embeds every finitely generated
-recursively presented group in a finitely presented group, and its proof
-is effective; an explicit algorithm producing the finite presentation and
-the embedding words from a recursive presentation is given by
-Mikaelian~\cite{Mikaelian}.  Apply it to the presentation of $Q_e$.
-Let $M_e$ be the subgroup of $F(X_e)\times F(X_e)$ generated by the
-pairs $(z,z)$, $z\in X_e$, and $(r,1)$, $r\in R_e$; then
-$M_e=\{(u,v):u=v\text{ in }\Lambda_e\}$ by Mihailova's
-lemma~\cite{Mihailova}.  The first coordinate makes $i_e$
+recursively presented group in a finitely presented group, and
+Mikaelian~\cite{Mikaelian} gives an explicit algorithm producing the finite
+presentation and the embedding words from the recursive presentation.
+Apply it to the presentation of $Q_e$.  Let $M_e$ be the subgroup of
+$F(X_e)\times F(X_e)$ generated by the pairs $(z,z)$, $z\in X_e$, and
+$(r,1)$, $r\in R_e$; then $M_e=\{(u,v):u=v\text{ in }\Lambda_e\}$ by
+Mihailova's lemma~\cite{Mihailova}.  The first coordinate makes $i_e$
 \leanverified{Manuscript/MFRecognition/MarkedHigmanOutput}{GroupApproximation.Manuscript.MFRecognition.HigmanCompiler.MarkedHigmanOutput.mem_mihailova_iff}
 injective, and $(f,w_f,1)\in F\times M_e$ if and only if $w_f=1$ in
-$\Lambda_e$, if and only if $q_e(f)=1$ because the embedding is
-injective, if and only if $f\in N_e$.
+$\Lambda_e$, if and only if $q_e(f)=1$, if and only if $f\in N_e$.
 \end{proof}
 
 \subsection*{The two HNN extensions}
@@ -818,7 +798,6 @@ Lemma~\ref{lem:bridge}, and put
  \qquad
  L^{\mathrm g}=\{(f,\,jq_+(f)):f\in F\},
 \]
-and define
 \[
  K_e=K^0_e\times K^{\mathrm g},
  \qquad
@@ -850,15 +829,14 @@ $\alpha_e(i(f))=q_e(f)$ and $\alpha_e(v\,i(f)\,v^{-1})=1$ for $f\in F$.
 
 \begin{proof}
 (1) $K_e=F\times F(X_e)\times F(X_e)\times F\times P$ is a product of six
-free groups of finite rank, so it is finitely presented, and residually
-finite because free groups are.  The subgroup $L_e$ is generated by the
-basis of the first factor, the generators of $M_e$ from
-Lemma~\ref{lem:mikhailova}, and the elements $(a,jq_+(a))$ for
-$a\in\{x,y,t\}$, so it is finitely generated.  Injectivity of $i$ is clear
-from the first coordinate.  An element $i(f)$ lies in $L_e$ if and only if
+free groups of finite rank, so it is finitely presented and residually
+finite.  The subgroup $L_e$ is generated by the basis of the first factor,
+the generators of $M_e$ from Lemma~\ref{lem:mikhailova}, and the elements
+$(a,jq_+(a))$ for $a\in\{x,y,t\}$.  Injectivity of $i$ comes from the first
+coordinate.  An element $i(f)$ lies in $L_e$ if and only if
 $i_e(f)\in L^0_e$ and $(f,1)\in L^{\mathrm g}$; the first holds if and only
-if $f\in N_e$ by Lemma~\ref{lem:mikhailova}, and the second if and only if
-$jq_+(f)=1$, that is, $f\in N_+$.  Since $N_e\le N_+$, the intersection is
+if $f\in N_e$ by Lemma~\ref{lem:mikhailova}, and the second if and only
+if $jq_+(f)=1$, that is, $f\in N_+$.  Since $N_e\le N_+$, the intersection is
 $i(N_e)$.
 
 (2) The presentation~\eqref{eq:central-rope} is finite once $[v,\ell]=1$ is
@@ -892,7 +870,7 @@ presentation~\eqref{eq:twisted-rope} lists the recursively enumerable
 relators of $Q_e$.  Its finite replacement is
 \begin{equation}\label{eq:finite-rope}
 \begin{aligned}
- \widehat R_e=\Bigl\langle\Gamma_e\times F,\ u\ \Bigm|\ 
+ \widehat R_e=\Bigl\langle\Gamma_e\times F,\ u\ \Bigm|\
  &u\bigl(i(a),1\bigr)u^{-1}=\bigl(i(a),a\bigr),\\
  &u\bigl(v\,i(a)\,v^{-1},1\bigr)u^{-1}=\bigl(v\,i(a)\,v^{-1},1\bigr)
  \quad(a\in\{x,y,t\})\Bigr\rangle,
@@ -921,12 +899,15 @@ the factor $F$ of $\widehat R_e$ factors through $Q_e=F/N_e$, and the
 relations of~\eqref{eq:finite-rope} become $u(s,1)u^{-1}=(s,\alpha_e(s))$
 for $s$ in the generating set $\{i(a),\,v\,i(a)\,v^{-1}:a\in\{x,y,t\}\}$
 of $S_e$; both sides define homomorphisms on $S_e$, so the relations hold
-for all $s\in S_e$.  This defines a homomorphism $R_e\to\widehat R_e$; conversely, the
-relations of~\eqref{eq:finite-rope} hold in $R_e$ after $F\to Q_e$,
-because $\alpha_e(i(a))=q_e(a)$ and $\alpha_e(v\,i(a)\,v^{-1})=1$.  The two
-homomorphisms are mutually inverse on generators.  Computability of the
-code follows from Lemmas~\ref{lem:mikhailova} and~\ref{lem:central-rope}.
+for all $s\in S_e$.  This defines a homomorphism $R_e\to\widehat R_e$;
+conversely, the relations of~\eqref{eq:finite-rope} hold in $R_e$ after
+$F\to Q_e$, because $\alpha_e(i(a))=q_e(a)$ and
+$\alpha_e(v\,i(a)\,v^{-1})=1$.  The two homomorphisms are mutually inverse
+on generators.  Computability of the code follows from
+Lemmas~\ref{lem:mikhailova} and~\ref{lem:central-rope}.
 \end{proof}
+
+\subsection*{The two branches}
 
 \begin{lemma}[the case $e\in\mathrm{FIN}$]\label{lem:negative-branch}
 If $e\in\mathrm{FIN}$, then $E$ embeds in $\widehat R_e$, and
@@ -936,9 +917,8 @@ $\widehat R_e$ is not MF\@.
 \begin{proof}
 For $e\in\mathrm{FIN}$ we have $E\le C_e\le Q_e\le\Gamma_e\times Q_e\le R_e\cong\widehat R_e$
 by Lemmas~\ref{lem:switch},~\ref{lem:bridge}(1), and~\ref{lem:finite-rope}, and
-Britton's lemma for~\eqref{eq:twisted-rope}.  Restricting MF models to a
-subgroup shows that subgroups of MF groups are MF, and $E$ is not MF by
-Lemma~\ref{lem:seed}.
+Britton's lemma for~\eqref{eq:twisted-rope}.  Subgroups of MF groups are
+MF, and $E$ is not MF by Lemma~\ref{lem:seed}.
 \leanverified{Manuscript/OneSidedMFRadical/ComputabilityConstructionClosure}{GroupApproximation.Manuscript.OneSidedMFRadical.ComputabilityConstruction.manuscriptPrintedNonMFEmbeddingObstruction}
 \end{proof}
 
@@ -992,6 +972,10 @@ being homomorphisms that agree on generators.  So
 which is the hypothesis of Lemma~\ref{lem:tensor-sync}.
 \end{proof}
 
+The second coordinate of $G_n$ is needed: with $\lambda_n(v)=1$ the two
+copies of $F$ in $S_e$ would have the same image, and the kernel condition
+would fail on $i(f)\,v\,i(f)^{-1}v^{-1}$ for $f\notin N_+$.
+
 \begin{proof}[Proof of Theorem~\ref{thm:recognition}]
 By Lemma~\ref{lem:finite-rope} the map $e\mapsto\widehat R_e$ is
 computable, by Lemma~\ref{lem:positive-branch} the presented group is MF
@@ -1010,42 +994,30 @@ enumerable, and in particular neither is decidable.
 \end{proof}
 
 \begin{remark}\label{rem:template}
-The construction uses only these properties of $E$: it is finitely
-presented and not MF, while subgroups of MF
-groups are MF\@.  So it applies to any group property that is
-closed under subgroups, given a finitely presented
-group without the property and an analogue of
-Lemma~\ref{lem:tensor-sync} for the twisted HNN extensions; the open
-problems below state which input is missing for soficity and for
-hyperlinearity.
+The construction uses two properties of $E$: it is finitely presented, and
+it embeds in no MF group.  So it applies to any group property that is
+closed under subgroups, given a finitely presented group without the
+property and an analogue of Lemma~\ref{lem:tensor-sync} for the twisted
+HNN extensions; the open problems below state which input is missing for
+soficity and for hyperlinearity.
 \end{remark}
-
-The homomorphism $V$ of Lemma~\ref{lem:tensor-sync} does not extend
-faithfully to $R_e$ in the corona: the finite maps $\lambda_n$ are trivial
-on the Mihailova factor, so $W$ commutes with $V(\gamma,1)$ for every
-$\gamma\in K^0_e$, although $u$ does not commute with $(\gamma,1)$ in
-$R_e$.  Injectivity is obtained in Theorem~\ref{thm:hnn-permanence} from
-the universal algebra.
 
 \subsection*{Open problems}
 
-We do not know
-whether the models of $\widehat R_e$ can be chosen to converge to
-$C^*_{\mathrm r}(\widehat R_e)$ in operator norm, so that the reduced
-$C^*$-algebra itself is MF; the argument produces only a tracial state on
-an abstract MF algebra.  We do not know whether
-$\widehat R_e$ is hyperlinear for $e\in\mathrm{INF}$; placing
-hyperlinearity recognition at the same level would also require a
-finitely presented non-hyperlinear group, and none is known.  We do not know whether an analogous family of finitely presented groups
-exists for soficity; such a construction would require a
-permutation-model replacement for Lemma~\ref{lem:tensor-sync}.  Finally,
-we do not know the complexity of MF recognition under the strong
+We do not know whether the models of $\widehat R_e$ can be chosen to
+converge to $C^*_{\mathrm r}(\widehat R_e)$ in operator norm, so that the
+reduced $C^*$-algebra itself is MF; the argument produces a tracial state
+on an abstract MF algebra.  We do not know whether $\widehat R_e$ is
+hyperlinear for $e\in\mathrm{INF}$; placing hyperlinearity recognition at
+the same level would also require a finitely presented non-hyperlinear
+group, and none is known.  We do not know whether an analogous family of
+finitely presented groups exists for soficity; such a construction would
+require a permutation-model replacement for Lemma~\ref{lem:tensor-sync}.
+Finally, we do not know the complexity of MF recognition under the strong
 convergence convention of~\cite{GaoEtAl,Schafhauser}: the norms
 $\opnorm{\lambda(w)}$ in the left regular representation are not in
 general computable from a finite presentation, so
 Proposition~\ref{prop:mf-upper-bound} does not apply.
-
-
 
 \section*{Acknowledgments}
 
@@ -1063,6 +1035,12 @@ and matrix norms.
 2026, Palomar registry entry
 \url{https://palomar-registry.org/entry?id=PALOMAR-2026-08-24-000006&version=1}.
 
+\bibitem[Lean]{LeanDev}
+\paperauthor,
+\emph{Group approximation: a Lean~4 development},
+2026,
+\url{https://github.com/SauersML/group-approximation}.
+
 \bibitem[Ad]{Adian}
 S.~I. Adian,
 \emph{Algorithmic unsolvability of problems of recognition of certain properties of groups},
@@ -1078,12 +1056,6 @@ Math. Ann. \textbf{307} (1997), no.~3, 343--380,
 J.~L. Britton,
 \emph{The word problem},
 Ann. of Math. (2) \textbf{77} (1963), 16--32.
-
-\bibitem[BO]{BrownOzawa}
-N.~P. Brown and N.~Ozawa,
-\emph{$C^*$-algebras and finite-dimensional approximations},
-Graduate Studies in Mathematics \textbf{88},
-American Mathematical Society, Providence, RI, 2008.
 
 \bibitem[CDE]{CDE}
 J.~R. Carri\'on, M.~Dadarlat, and C.~Eckhardt,
@@ -1139,7 +1111,8 @@ Ann. of Math. (2) \textbf{67} (1958), 172--194.
 C.~Schafhauser,
 \emph{Finite dimensional approximations of certain amalgamated free
 products of groups},
-preprint, 2023,
+Groups Geom. Dyn. \textbf{20} (2026), no.~2, 607--615,
+\doi{10.4171/GGD/826},
 \href{https://arxiv.org/abs/2306.02498}{arXiv:2306.02498}.
 
 \bibitem[Sh]{Shulman}
