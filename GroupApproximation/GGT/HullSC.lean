@@ -54,14 +54,25 @@ letter is exactly the cone of radius one over each coset,
 `HullSC.isHypEmbeddedOf_coneOff` proves that the cone-off is the witness for
 `H ↪_h (G,A)`.
 
-**(2) Hull's Theorem 3.12** (after Osin, Thm 1.2 and DGO Thm 4.42).  An
-acylindrically hyperbolic `G` has a generating set `A`, in general infinite,
-with `Γ(G,A)` hyperbolic, the translation action acylindrical, and `G`
-non-elementary; and any hyperbolically embedded family can be arranged inside
-it.  The first half is
+**(2) Osin's Theorem 5.4** (`GGT.OsinTheorem54`; Hull cites it as his
+Theorem 3.12).  An acylindrically hyperbolic `G` has a generating set `A`, in
+general infinite, with `Γ(G,A)` hyperbolic, the translation action
+acylindrical, and `G` non-elementary.  The first half is
 `Manuscript.NonMF.TorsionFree.exists_hullGeneratingSet`, which is a *proof*
 rather than a citation because acylindrical hyperbolicity is taken in the
-Cayley-graph form; the second half is what makes step (3) available.
+Cayley-graph form.
+
+The second half is the one that has to be cited, and it is sharper than it
+looks: **`Γ(G, X ⊔ H)` is not acylindrical in general**, even when
+`H ↪_h (G,X)`.  Osin's counterexample is `G = (K × ℤ) * H` with `K` infinite
+and `X = K ∪ {x}`; every element of `K` moves the whole ray of positive powers
+of `x` a distance at most one.  Theorem 5.4 *enlarges* `X` to a `Y` for which
+the coned-off action is acylindrical, and the enlargement is in general
+infinite -- `K × ℤ` against `K ∪ {x}` -- so `GGT.DGOCorollary427`, which says
+hyperbolic embeddedness is invariant under finite symmetric difference of the
+base, does not bridge it.  Hull's `A` is `Y ⊔ H`, and that is why (8) needs
+`HullSC.HypEmbeddedCore` -- the decomposition of `A` as a cone-off -- rather
+than the false `H ↪_h (G,A)`.
 
 **(3) Elementary closures** (DGO Thm 6.8).  A loxodromic element `g` of an
 acylindrical action is WPD, its elementary closure
@@ -91,12 +102,15 @@ commensurability:
 gives, for `c ∈ E(g)` nontrivial, nonzero `i, m` with `g ^ i = c ^ m`.  The
 correction is the `ggt-elementary` lane's.
 
-**(4) The cone-off is hyperbolic, and the rotating family.**  Coning `Γ(G,A)`
-off along the cosets of `H = E(g)` leaves it hyperbolic (DGO §5, the
-hyperbolic cone-off); the conjugates of a subgroup `⟨⟨W⟩⟩ ≤ H` then form a
-separated *very rotating family* on the cone-off, with the cosets `aH` as
-apices and `a ⟨⟨W⟩⟩ a⁻¹` as rotation subgroups.  Definitions and the
-elementary displacement estimates: `GGT/HullSCRotatingFamily.lean`.
+**(4) The cone-off carries the rotating family.**  The space is
+`Γ(G, X ⊔ H) = Γ(G, A)` -- Hull's alphabet already *is* the cone-off, by (2) --
+and it is hyperbolic because that is clause (a) of `H ↪_h (G, X)`.  The
+conjugates of a subgroup `⟨⟨W⟩⟩ ≤ H` form a separated *very rotating family* on
+it, with the cosets `aH` as apices and `a ⟨⟨W⟩⟩ a⁻¹` as rotation subgroups.
+Definitions and the elementary displacement estimates:
+`GGT/HullSCRotatingFamily.lean`.  Note that acylindricity of this action is
+*not* used by DGO's Theorem 5.3 and is not assumed anywhere below -- only
+hyperbolicity is, which is what (2)'s counterexample makes worth saying.
 
 **(5) DGO, Theorem 5.3.**  For a separated very rotating family the quotient by
 `K = ⟨⟨Rot c⟩⟩` satisfies: `K` is a free product of conjugates of the rotation

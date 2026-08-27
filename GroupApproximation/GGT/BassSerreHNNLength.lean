@@ -328,16 +328,15 @@ theorem tLen_mul_le (φ : A ≃* B) (x y : HNNExtension G A B φ) :
 
 @[simp] theorem tLen_t (φ : A ≃* B) :
     tLen φ (HNNExtension.t : HNNExtension G A B φ) = 1 := by
+  have h1 : wordProd φ (1 : G) [((1 : ℤˣ), (1 : G))]
+      = wordProd φ (1 : G) ([] : List (ℤˣ × G)) *
+        ((HNNExtension.t : HNNExtension G A B φ) ^ (((1 : ℤˣ)) : ℤ) *
+          HNNExtension.of (1 : G)) :=
+    wordProd_concat φ (1 : G) ([] : List (ℤˣ × G)) (1 : ℤˣ) (1 : G)
+  have hv : (((1 : ℤˣ)) : ℤ) = 1 := rfl
   have hp : wordProd φ (1 : G) [((1 : ℤˣ), (1 : G))]
       = (HNNExtension.t : HNNExtension G A B φ) := by
-    have h1 : wordProd φ (1 : G) [((1 : ℤˣ), (1 : G))]
-        = HNNExtension.of (1 : G) *
-          ((HNNExtension.t : HNNExtension G A B φ) ^ (((1 : ℤˣ)) : ℤ) *
-            HNNExtension.of (1 : G)) := by
-      have h2 := wordProd_concat φ (1 : G) ([] : List (ℤˣ × G)) (1 : ℤˣ) (1 : G)
-      rw [h2, wordProd_nil]
-    have hv : (((1 : ℤˣ)) : ℤ) = 1 := rfl
-    rw [h1, hv, zpow_one, map_one, one_mul, mul_one]
+    rw [h1, wordProd_nil, hv, zpow_one, map_one, one_mul, mul_one]
   have h := tLen_eq φ (noPinch_singleton ((1 : ℤˣ), (1 : G))) hp
   simpa using h
 

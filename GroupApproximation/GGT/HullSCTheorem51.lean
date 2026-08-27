@@ -126,26 +126,71 @@ end HullFillingQuotient
 
 /-! ## The two citations that replace `HullOneStepStatement` -/
 
-/-- **Hull, Corollary 5.7 with Lemma 5.8** (after DGO, Theorem 6.14): a
-suitable subgroup contains a subgroup that is hyperbolically embedded in the
-ambient group with respect to Hull's alphabet.
+/-- **The hyperbolically embedded subgroup Hull's Theorem 5.1 runs over, with
+the decomposition of Hull's alphabet that makes it available.**
 
-This is what makes Theorem 5.1 applicable inside `N`.  It is close to, but not
-the same as, `GGT.DGOTheorem68`: that theorem produces `E(g) ↪_h (G, X)` for
-*some* relative generating set `X`, while the statement below asks for the
-hyperbolic embedding over Hull's `A`, which is what the injectivity radius of
-the quotient is measured against.  Bridging the two is Hull's Theorem 3.12,
-step (2) of the plan in `GGT/HullSC.lean`. -/
+Hull's `A` is the *coned-off* alphabet `X ⊔ H`, so it contains `H`, and
+`H ↪_h (G,A)` is therefore false whenever `H` is infinite --
+`HullSC.not_isHypEmbeddedOf_self` proves it.  What is true, and what Osin's
+Theorem 5.4 produces, is that `A` *is* the cone-off: there is a relative
+generating set `X` with `H ↪_h (G,X)` whose coned-off alphabet is `A`.  That
+decomposition is what this structure carries, and it is stated against
+`GGT.RelGenSet` so that no second notion of relative generating set is
+introduced. -/
+structure HypEmbeddedCore {G : Type u} [Group G] (A : HullGeneratingSet G)
+    (N : Subgroup G) where
+  /-- Osin's relative generating set `X` with its family. -/
+  rel : GGT.RelGenSet G Unit
+  /-- The hyperbolically embedded subgroup. -/
+  H : Subgroup G
+  /-- It is the family of `rel`. -/
+  fam_eq : rel.fam = fun _ => H
+  /-- It lies inside the suitable subgroup, so the relator's `H`-letters do. -/
+  le : H ≤ N
+  /-- `H ↪_h (G, X)`. -/
+  embedded : rel.IsHyperbolicallyEmbedded
+  /-- **Hull's alphabet is the cone-off**: `A = X ⊔ H`. -/
+  alphabet_eq : A.alphabet.carrier = rel.alphabet.carrier
+
+namespace HypEmbeddedCore
+
+/-- Every element of the hyperbolically embedded subgroup is a letter of Hull's
+alphabet.  This is the fact that makes `H ↪_h (G,A)` false and the
+decomposition necessary. -/
+theorem mem_alphabet {G : Type u} [Group G] {A : HullGeneratingSet G}
+    {N : Subgroup G} (E : HypEmbeddedCore A N) {h : G} (hh : h ∈ E.H) :
+    h ∈ A.alphabet.carrier := by
+  rw [E.alphabet_eq]
+  show h ∈ E.rel.base ∪ ⋃ lam : Unit, (E.rel.fam lam : Set G)
+  refine Or.inr ?_
+  refine Set.mem_iUnion.mpr ⟨(), ?_⟩
+  rw [E.fam_eq]
+  exact hh
+
+end HypEmbeddedCore
+
+/-- **Hull, Corollary 5.7 with Lemma 5.8** (after DGO, Theorem 6.14, and Osin,
+Theorem 5.4): a suitable subgroup contains a subgroup that is hyperbolically
+embedded in the ambient group, over a relative generating set whose cone-off is
+Hull's alphabet.
+
+This is what makes Theorem 5.1 applicable inside `N`.  It is strictly stronger
+than `GGT.DGOTheorem68`, which produces `E(g) ↪_h (G, X)` for *some* `X` with
+no relation to a prescribed alphabet; the enlargement that makes the coned-off
+action acylindrical is `GGT.OsinTheorem54`, and it is in general infinite, so
+`GGT.DGOCorollary427` -- hyperbolic embeddedness is invariant under finite
+symmetric difference of the base -- does not bridge the gap.  Recorded as a
+separate citation for that reason rather than derived from `GGT.DGOTheorem68`. -/
 def ExistsHypEmbeddedInSuitable : Prop :=
   ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G},
-    Suitable A.alphabet N →
-      ∃ H : Subgroup G, H ≤ N ∧ GGT.IsHypEmbeddedOf G A.alphabet.carrier H
+    Suitable A.alphabet N → Nonempty (HypEmbeddedCore A N)
 
 /-- **Hull, Theorem 5.1 with the relator of his §6.**
 
-> Let `G` be acylindrically hyperbolic with Hull's alphabet `A`, let
-> `H ≤ N ≤ G` with `H ↪_h (G, A)` and `N` suitable, let `S₁, …, S_k ≤ G` be
-> suitable, let `t ∈ G` and let `R` be a radius.  Then there is `u ∈ N` such
+> Let `G` be acylindrically hyperbolic with Hull's alphabet `A`, let `N` be
+> suitable and let `H ≤ N` be hyperbolically embedded over a base whose
+> cone-off is `A`, let `S₁, …, S_k ≤ G` be suitable, let `t ∈ G` and let `R` be
+> a radius.  Then there is `u ∈ N` such
 > that the quotient of `G` by the normal closure of the single relator `t⁻¹u`
 > is acylindrically hyperbolic over an alphabet containing the image of `A`, is
 > injective on the `R`-ball of `Γ(G,A)`, carries `N` and every `Sⱼ` to suitable
@@ -159,9 +204,9 @@ loxodromics are supplied by
 is proved; what is cited is that the exponents can be chosen, and that the
 resulting quotient has the listed properties. -/
 def HullTheorem51Statement : Prop :=
-  ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) (H N : Subgroup G),
-    GGT.IsHypEmbeddedOf G A.alphabet.carrier H → H ≤ N →
-      Suitable A.alphabet N → ∀ {k : ℕ} (S : Fin k → Subgroup G),
+  ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) (N : Subgroup G),
+    HypEmbeddedCore A N → Suitable A.alphabet N →
+      ∀ {k : ℕ} (S : Fin k → Subgroup G),
         (∀ j : Fin k, Suitable A.alphabet (S j)) → ∀ (t : G) (R : ℕ),
           ∃ u ∈ N, Nonempty (HullFillingQuotient A N S (t⁻¹ * u) R)
 
@@ -185,8 +230,8 @@ closes Hull's Corollary 7.4. -/
 theorem hullOneStep_of_theorem51 (hEmb : ExistsHypEmbeddedInSuitable.{u})
     (h51 : HullTheorem51Statement.{u}) : HullOneStepStatement.{u} := by
   intro G _ A N hN k S hS t R
-  obtain ⟨H, hHN, hHemb⟩ := hEmb A hN
-  obtain ⟨u, huN, ⟨D⟩⟩ := h51 A H N hHemb hHN hN S hS t R
+  obtain ⟨E⟩ := hEmb A hN
+  obtain ⟨u, huN, ⟨D⟩⟩ := h51 A N E hN S hS t R
   have hrel : D.q (t⁻¹ * u) = 1 := by
     rw [← MonoidHom.mem_ker, D.ker_eq]
     exact Subgroup.subset_normalClosure rfl

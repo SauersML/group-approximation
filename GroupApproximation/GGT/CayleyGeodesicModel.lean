@@ -675,6 +675,517 @@ theorem isHyperbolicSpace_point (A : Alphabet G) {δ : ℝ}
   have hEq : δ + 3 * (2 : ℝ) = δ + 6 := by norm_num
   rwa [hEq] at h
 
+/-! ## One step of a minimal word -/
+
+/-- The word distance from `x` to `x * a` is the word length of `a`. -/
+theorem wordDist_mul_right (A : Alphabet G) (x a : G) :
+    wordDist A.carrier x (x * a) = wordNorm A.carrier a := by
+  show wordNorm A.carrier (x⁻¹ * (x * a)) = wordNorm A.carrier a
+  rw [← mul_assoc, inv_mul_cancel, one_mul]
+
+/-- An alphabet letter other than the identity is one step away. -/
+theorem wordDist_step_eq_one (A : Alphabet G) (x : G) {a : G}
+    (ha : a ∈ A.carrier) (hane : a ≠ 1) : wordDist A.carrier x (x * a) = 1 := by
+  rw [wordDist_mul_right]
+  exact le_antisymm (wordNorm_le_one_of_mem ha)
+    (one_le_wordNorm A.symmetricGenerating hane)
+
+/-- **One step along a minimal word.**  If `x` is `n + 1` away from `y` then
+some letter of the alphabet takes `x` to a point `n` away, and that letter is
+not the identity. -/
+theorem exists_step (A : Alphabet G) {x y : G} {n : ℕ}
+    (hn : wordDist A.carrier x y = n + 1) :
+    ∃ a ∈ A.carrier, a ≠ 1 ∧ wordDist A.carrier (x * a) y = n := by
+  have hS := A.symmetricGenerating
+  obtain ⟨l, hl, hlen⟩ := exists_isWord_length_eq hS (x⁻¹ * y)
+  have hlen' : l.length = n + 1 := by
+    rw [hlen]
+    exact hn
+  cases l with
+  | nil =>
+      rw [List.length_nil] at hlen'
+      exact absurd hlen'.symm (Nat.succ_ne_zero n)
+  | cons a l' =>
+      have ha : a ∈ A.carrier := hl.letters a (List.mem_cons_self a l')
+      have hprod : a * l'.prod = x⁻¹ * y := by
+        have h := hl.prod_eq
+        rwa [List.prod_cons] at h
+      have hkey : l'.prod = (x * a)⁻¹ * y := by
+        rw [mul_inv_rev, mul_assoc, ← hprod, ← mul_assoc, inv_mul_cancel, one_mul]
+      have hl'word : IsWord A.carrier l' ((x * a)⁻¹ * y) :=
+        ⟨fun z hz => hl.letters z (List.mem_cons_of_mem a hz), hkey⟩
+      have hlen'' : l'.length = n := by
+        rw [List.length_cons] at hlen'
+        omega
+      have hle : wordDist A.carrier (x * a) y ≤ n := by
+        have h : wordNorm A.carrier ((x * a)⁻¹ * y) ≤ l'.length :=
+          wordNorm_le_length hl'word
+        rw [hlen''] at h
+        exact h
+      have hone : wordDist A.carrier x (x * a) ≤ 1 := by
+        rw [wordDist_mul_right]
+        exact wordNorm_le_one_of_mem ha
+      have htri := wordDist_triangle hS x (x * a) y
+      have hane : a ≠ 1 := by
+        intro h1
+        rw [h1, mul_one] at hle
+        omega
+      exact ⟨a, ha, hane, by omega⟩
+
+/-! ## Points along one edge -/
+
+/-- The point `σ` of the way along the edge from `x` labelled `a`.  The
+parameter is clamped, so that the definition is total. -/
+noncomputable def edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    (σ : ℝ) : Point A where
+  base := x
+  letter := a
+  letter_mem := Set.mem_insert_of_mem _ ha
+  param := min 1 (max 0 σ)
+  param_nonneg := le_min (by norm_num) (le_max_left _ _)
+  param_le_one := min_le_left _ _
+
+@[simp] theorem edgePoint_base (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    (σ : ℝ) : (edgePoint A x a ha σ).base = x := rfl
+
+@[simp] theorem edgePoint_letter (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    (σ : ℝ) : (edgePoint A x a ha σ).letter = a := rfl
+
+@[simp] theorem edgePoint_tip (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    (σ : ℝ) : (edgePoint A x a ha σ).tip = x * a := rfl
+
+theorem edgePoint_param (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier) {σ : ℝ}
+    (h0 : 0 ≤ σ) (h1 : σ ≤ 1) : (edgePoint A x a ha σ).param = σ := by
+  show min 1 (max 0 σ) = σ
+  rw [max_eq_right h0, min_eq_right h1]
+
+theorem toVertex_edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    {σ : ℝ} (h0 : 0 ≤ σ) (h1 : σ ≤ 1) (v : G) :
+    (edgePoint A x a ha σ).toVertex v
+      = min (σ + (wordDist A.carrier x v : ℝ))
+        (1 - σ + (wordDist A.carrier (x * a) v : ℝ)) := by
+  show min ((edgePoint A x a ha σ).param + (wordDist A.carrier x v : ℝ))
+      (1 - (edgePoint A x a ha σ).param + (wordDist A.carrier (x * a) v : ℝ))
+    = min (σ + (wordDist A.carrier x v : ℝ))
+      (1 - σ + (wordDist A.carrier (x * a) v : ℝ))
+  rw [edgePoint_param A x a ha h0 h1]
+
+/-- Against a vertex, the four ways collapse to the distance to that vertex. -/
+theorem viaVertex_vertex_right {A : Alphabet G} (p : Point A) (v : G) :
+    Point.viaVertex p (vertex A v) = p.toVertex v := by
+  show min (p.toVertex (vertex A v).base + (vertex A v).param)
+      (p.toVertex (vertex A v).tip + (1 - (vertex A v).param)) = p.toVertex v
+  rw [vertex_base, vertex_tip, vertex_param]
+  exact min_eq_left (by linarith)
+
+/-- Against a vertex on a different edge, the distance is the distance to that
+vertex. -/
+theorem pointDist_vertex_right {A : Alphabet G} (p : Point A) (v : G)
+    (hcond : ¬ (p.base = v ∧ p.letter = 1)) :
+    Point.pointDist p (vertex A v) = p.toVertex v := by
+  unfold Point.pointDist
+  rw [if_neg hcond, viaVertex_vertex_right]
+
+/-- **The far endpoint is `1 - σ` away.** -/
+theorem dist_edgePoint_tip (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    (hane : a ≠ 1) {σ : ℝ} (h0 : 0 ≤ σ) (h1 : σ ≤ 1) :
+    dist (edgePoint A x a ha σ) (vertex A (x * a)) = 1 - σ := by
+  have hstep := wordDist_step_eq_one A x ha hane
+  have hne : x ≠ x * a := by
+    intro h
+    rw [← h, wordDist_self] at hstep
+    exact absurd hstep (by norm_num)
+  have hcond : ¬ ((edgePoint A x a ha σ).base = x * a ∧
+      (edgePoint A x a ha σ).letter = 1) := by
+    intro h
+    exact hne h.1
+  show Point.pointDist (edgePoint A x a ha σ) (vertex A (x * a)) = 1 - σ
+  rw [pointDist_vertex_right _ _ hcond, toVertex_edgePoint A x a ha h0 h1,
+    hstep, wordDist_self]
+  push_cast
+  exact min_eq_right (by linarith)
+
+/-- **The base vertex is `σ` away.** -/
+theorem dist_vertex_edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    (hane : a ≠ 1) {σ : ℝ} (h0 : 0 ≤ σ) (h1 : σ ≤ 1) :
+    dist (vertex A x) (edgePoint A x a ha σ) = σ := by
+  have hstep := wordDist_step_eq_one A x ha hane
+  have hcomm : wordDist A.carrier (x * a) x = 1 := by
+    rw [wordDist_comm A.symmetricGenerating]
+    exact hstep
+  have hcond : ¬ ((edgePoint A x a ha σ).base = x ∧
+      (edgePoint A x a ha σ).letter = 1) := by
+    intro h
+    exact hane h.2
+  show Point.pointDist (vertex A x) (edgePoint A x a ha σ) = σ
+  rw [Point.pointDist_comm, pointDist_vertex_right _ _ hcond,
+    toVertex_edgePoint A x a ha h0 h1, wordDist_self, hcomm]
+  push_cast
+  exact min_eq_left (by linarith)
+
+/-- **Two points of one edge are `|σ - τ|` apart.** -/
+theorem dist_edgePoint_edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    (hane : a ≠ 1) {σ τ : ℝ} (h0 : 0 ≤ σ) (h1 : σ ≤ 1) (k0 : 0 ≤ τ)
+    (k1 : τ ≤ 1) :
+    dist (edgePoint A x a ha σ) (edgePoint A x a ha τ) = |σ - τ| := by
+  have hstep := wordDist_step_eq_one A x ha hane
+  have hcomm : wordDist A.carrier (x * a) x = 1 := by
+    rw [wordDist_comm A.symmetricGenerating]
+    exact hstep
+  have hbase : (edgePoint A x a ha σ).toVertex x = σ := by
+    rw [toVertex_edgePoint A x a ha h0 h1, wordDist_self, hcomm]
+    push_cast
+    exact min_eq_left (by linarith)
+  have htip : (edgePoint A x a ha σ).toVertex (x * a) = 1 - σ := by
+    rw [toVertex_edgePoint A x a ha h0 h1, hstep, wordDist_self]
+    push_cast
+    exact min_eq_right (by linarith)
+  have hvia : Point.viaVertex (edgePoint A x a ha σ) (edgePoint A x a ha τ)
+      = min (σ + τ) (1 - σ + (1 - τ)) := by
+    show min ((edgePoint A x a ha σ).toVertex (edgePoint A x a ha τ).base
+        + (edgePoint A x a ha τ).param)
+      ((edgePoint A x a ha σ).toVertex (edgePoint A x a ha τ).tip
+        + (1 - (edgePoint A x a ha τ).param)) = _
+    rw [edgePoint_base, edgePoint_tip, edgePoint_param A x a ha k0 k1, hbase,
+      htip]
+  have hle : |σ - τ| ≤ min (σ + τ) (1 - σ + (1 - τ)) :=
+    le_min (abs_le.mpr ⟨by linarith, by linarith⟩)
+      (abs_le.mpr ⟨by linarith, by linarith⟩)
+  show Point.pointDist (edgePoint A x a ha σ) (edgePoint A x a ha τ) = |σ - τ|
+  unfold Point.pointDist
+  rw [if_pos ⟨rfl, rfl⟩, edgePoint_param A x a ha h0 h1,
+    edgePoint_param A x a ha k0 k1, hvia]
+  exact min_eq_left hle
+
+/-- **A vertex further along is `wordDist - σ` away**, when the far endpoint of
+the edge is one step closer to it. -/
+theorem dist_edgePoint_vertex (A : Alphabet G) (x a y : G) (ha : a ∈ A.carrier)
+    (hane : a ≠ 1)
+    (hfar : wordDist A.carrier x y = wordDist A.carrier (x * a) y + 1)
+    {σ : ℝ} (h0 : 0 ≤ σ) (h1 : σ ≤ 1) :
+    dist (edgePoint A x a ha σ) (vertex A y)
+      = (wordDist A.carrier x y : ℝ) - σ := by
+  have hne : x ≠ y := by
+    intro h
+    rw [h, wordDist_self] at hfar
+    omega
+  have hcond : ¬ ((edgePoint A x a ha σ).base = y ∧
+      (edgePoint A x a ha σ).letter = 1) := by
+    intro h
+    exact hne h.1
+  have hcast : ((wordDist A.carrier x y : ℕ) : ℝ)
+      = ((wordDist A.carrier (x * a) y : ℕ) : ℝ) + 1 := by
+    rw [hfar]
+    push_cast
+    ring
+  show Point.pointDist (edgePoint A x a ha σ) (vertex A y)
+    = (wordDist A.carrier x y : ℝ) - σ
+  rw [pointDist_vertex_right _ _ hcond, toVertex_edgePoint A x a ha h0 h1,
+    hcast]
+  exact min_eq_right (by linarith)
+
+/-! ## The unit edge, parametrised from its base -/
+
+/-- The edge from `x` labelled `a`, parametrised on `[0,1]` so that it starts at
+the vertex `x` and ends at the vertex `x * a` — rather than at the points
+`(x,a,0)` and `(x,a,1)`, which are only at distance zero from them.  The
+endpoints have to be hit on the nose, because `IsGeodesicSpace` asks for
+equality there. -/
+noncomputable def edgePath (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier) :
+    ℝ → Point A :=
+  fun r => if r ≤ 0 then vertex A x else
+    if 1 ≤ r then vertex A (x * a) else edgePoint A x a ha r
+
+theorem edgePath_of_nonpos (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    {r : ℝ} (h : r ≤ 0) : edgePath A x a ha r = vertex A x := by
+  show (if r ≤ 0 then vertex A x else
+    if 1 ≤ r then vertex A (x * a) else edgePoint A x a ha r) = vertex A x
+  rw [if_pos h]
+
+theorem edgePath_of_one_le (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    {r : ℝ} (h : 1 ≤ r) : edgePath A x a ha r = vertex A (x * a) := by
+  have h0 : ¬ r ≤ 0 := by linarith
+  show (if r ≤ 0 then vertex A x else
+    if 1 ≤ r then vertex A (x * a) else edgePoint A x a ha r) = vertex A (x * a)
+  rw [if_neg h0, if_pos h]
+
+theorem edgePath_of_mem (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    {r : ℝ} (h0 : 0 < r) (h1 : r < 1) :
+    edgePath A x a ha r = edgePoint A x a ha r := by
+  have hz : ¬ r ≤ 0 := by linarith
+  have ho : ¬ (1 : ℝ) ≤ r := by linarith
+  show (if r ≤ 0 then vertex A x else
+    if 1 ≤ r then vertex A (x * a) else edgePoint A x a ha r)
+    = edgePoint A x a ha r
+  rw [if_neg hz, if_neg ho]
+
+theorem edgePath_zero (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier) :
+    edgePath A x a ha 0 = vertex A x :=
+  edgePath_of_nonpos A x a ha (le_refl 0)
+
+theorem edgePath_one (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier) :
+    edgePath A x a ha 1 = vertex A (x * a) :=
+  edgePath_of_one_le A x a ha (le_refl 1)
+
+/-- The distance from a point of the edge to its far endpoint. -/
+theorem dist_edgePath_tip (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
+    (hane : a ≠ 1) {s : ℝ} (h0 : 0 ≤ s) (h1 : s ≤ 1) :
+    dist (edgePath A x a ha s) (vertex A (x * a)) = 1 - s := by
+  have hstep := wordDist_step_eq_one A x ha hane
+  by_cases hz : s ≤ 0
+  · have hs0 : s = 0 := le_antisymm hz h0
+    rw [edgePath_of_nonpos A x a ha hz, hs0]
+    show Point.pointDist (vertex A x) (vertex A (x * a)) = 1 - 0
+    rw [pointDist_vertex, hstep]
+    norm_num
+  · by_cases ho : (1 : ℝ) ≤ s
+    · have hs1 : s = 1 := le_antisymm h1 ho
+      rw [edgePath_of_one_le A x a ha ho, hs1]
+      show Point.pointDist (vertex A (x * a)) (vertex A (x * a)) = 1 - 1
+      rw [Point.pointDist_self]
+      norm_num
+    · rw [edgePath_of_mem A x a ha (by linarith) (by linarith)]
+      exact dist_edgePoint_tip A x a ha hane h0 h1
+
+/-- The distance from a point of the edge to a vertex the edge points at. -/
+theorem dist_edgePath_vertex (A : Alphabet G) (x a y : G) (ha : a ∈ A.carrier)
+    (hane : a ≠ 1)
+    (hfar : wordDist A.carrier x y = wordDist A.carrier (x * a) y + 1)
+    {s : ℝ} (h0 : 0 ≤ s) (h1 : s ≤ 1) :
+    dist (edgePath A x a ha s) (vertex A y)
+      = (wordDist A.carrier x y : ℝ) - s := by
+  have hcast : ((wordDist A.carrier x y : ℕ) : ℝ)
+      = ((wordDist A.carrier (x * a) y : ℕ) : ℝ) + 1 := by
+    rw [hfar]
+    push_cast
+    ring
+  by_cases hz : s ≤ 0
+  · have hs0 : s = 0 := le_antisymm hz h0
+    rw [edgePath_of_nonpos A x a ha hz, hs0]
+    show Point.pointDist (vertex A x) (vertex A y)
+      = (wordDist A.carrier x y : ℝ) - 0
+    rw [pointDist_vertex]
+    norm_num
+  · by_cases ho : (1 : ℝ) ≤ s
+    · have hs1 : s = 1 := le_antisymm h1 ho
+      rw [edgePath_of_one_le A x a ha ho, hs1]
+      show Point.pointDist (vertex A (x * a)) (vertex A y)
+        = (wordDist A.carrier x y : ℝ) - 1
+      rw [pointDist_vertex, hcast]
+      ring
+    · rw [edgePath_of_mem A x a ha (by linarith) (by linarith)]
+      exact dist_edgePoint_vertex A x a y ha hane hfar h0 h1
+
+/-- **The edge is a geodesic segment of length one.** -/
+theorem isGeodesicSegment_edgePath (A : Alphabet G) (x a : G)
+    (ha : a ∈ A.carrier) (hane : a ≠ 1) :
+    IsGeodesicSegment (edgePath A x a ha) 0 1 := by
+  have hstep := wordDist_step_eq_one A x ha hane
+  have key : ∀ s ∈ Set.Icc (0 : ℝ) 1, ∀ t ∈ Set.Icc (0 : ℝ) 1, s ≤ t →
+      dist (edgePath A x a ha s) (edgePath A x a ha t) = t - s := by
+    intro s hs t ht hst
+    obtain ⟨hs0, hs1⟩ := hs
+    obtain ⟨ht0, ht1⟩ := ht
+    by_cases hsz : s ≤ 0
+    · have hs0' : s = 0 := le_antisymm hsz hs0
+      rw [edgePath_of_nonpos A x a ha hsz]
+      by_cases htz : t ≤ 0
+      · have ht0' : t = 0 := le_antisymm htz ht0
+        rw [edgePath_of_nonpos A x a ha htz, hs0', ht0']
+        show Point.pointDist (vertex A x) (vertex A x) = 0 - 0
+        rw [Point.pointDist_self]
+        norm_num
+      · by_cases hto : (1 : ℝ) ≤ t
+        · have ht1' : t = 1 := le_antisymm ht1 hto
+          rw [edgePath_of_one_le A x a ha hto, hs0', ht1']
+          show Point.pointDist (vertex A x) (vertex A (x * a)) = 1 - 0
+          rw [pointDist_vertex, hstep]
+          norm_num
+        · rw [edgePath_of_mem A x a ha (by linarith) (by linarith), hs0',
+            sub_zero]
+          exact dist_vertex_edgePoint A x a ha hane ht0 ht1
+    · by_cases hso : (1 : ℝ) ≤ s
+      · have hs1' : s = 1 := le_antisymm hs1 hso
+        have ht1' : t = 1 := le_antisymm ht1 (by linarith)
+        rw [edgePath_of_one_le A x a ha hso,
+          edgePath_of_one_le A x a ha (by linarith : (1 : ℝ) ≤ t), hs1', ht1']
+        show Point.pointDist (vertex A (x * a)) (vertex A (x * a)) = 1 - 1
+        rw [Point.pointDist_self]
+        norm_num
+      · rw [edgePath_of_mem A x a ha (by linarith) (by linarith)]
+        by_cases hto : (1 : ℝ) ≤ t
+        · have ht1' : t = 1 := le_antisymm ht1 hto
+          rw [edgePath_of_one_le A x a ha hto, ht1']
+          exact dist_edgePoint_tip A x a ha hane hs0 hs1
+        · rw [edgePath_of_mem A x a ha (by linarith) (by linarith),
+            dist_edgePoint_edgePoint A x a ha hane hs0 hs1 ht0 ht1,
+            abs_of_nonpos (by linarith)]
+          ring
+  intro s hs t ht
+  rcases le_total s t with h | h
+  · rw [key s hs t ht h, abs_of_nonpos (by linarith)]
+    ring
+  · rw [dist_comm, key t ht s hs h, abs_of_nonneg (by linarith)]
+
+/-! ## Gluing two geodesic segments -/
+
+/-- **Concatenation.**  Two geodesic segments whose points are at the sum of
+their distances to the junction concatenate to a geodesic segment.  The two
+junction values need not be equal: in a pseudometric space it is enough that
+they are at distance zero, which is the case `s = L`, `t = 0` of `hfar`. -/
+theorem isGeodesicSegment_glue {X : Type*} [PseudoMetricSpace X] {f g : ℝ → X}
+    {L M : ℝ} (hL : 0 ≤ L) (hM : 0 ≤ M)
+    (hf : IsGeodesicSegment f 0 L) (hg : IsGeodesicSegment g 0 M)
+    (hfar : ∀ s ∈ Set.Icc (0 : ℝ) L, ∀ t ∈ Set.Icc (0 : ℝ) M,
+      dist (f s) (g t) = L - s + t) :
+    IsGeodesicSegment (fun r => if r ≤ L then f r else g (r - L)) 0 (L + M) := by
+  have key : ∀ s ∈ Set.Icc (0 : ℝ) (L + M), ∀ t ∈ Set.Icc (0 : ℝ) (L + M),
+      s ≤ t →
+      dist (if s ≤ L then f s else g (s - L))
+        (if t ≤ L then f t else g (t - L)) = t - s := by
+    intro s hs t ht hst
+    obtain ⟨hs0, hs1⟩ := hs
+    obtain ⟨ht0, ht1⟩ := ht
+    by_cases hsL : s ≤ L
+    · by_cases htL : t ≤ L
+      · rw [if_pos hsL, if_pos htL, hf s ⟨hs0, hsL⟩ t ⟨ht0, htL⟩,
+          abs_of_nonpos (by linarith)]
+        ring
+      · rw [if_pos hsL, if_neg htL,
+          hfar s ⟨hs0, hsL⟩ (t - L) ⟨by linarith, by linarith⟩]
+        ring
+    · have htL : ¬ t ≤ L := fun h => hsL (le_trans hst h)
+      rw [if_neg hsL, if_neg htL,
+        hg (s - L) ⟨by linarith, by linarith⟩ (t - L)
+          ⟨by linarith, by linarith⟩, abs_of_nonpos (by linarith)]
+      ring
+  intro s hs t ht
+  rcases le_total s t with h | h
+  · rw [key s hs t ht h, abs_of_nonpos (by linarith)]
+    ring
+  · rw [dist_comm, key t ht s hs h, abs_of_nonneg (by linarith)]
+
+/-! ## Geodesics between vertices -/
+
+/-- **The realisation is geodesic between vertices.**  Induction on the word
+distance: one step of a minimal word gives a unit edge, the rest is the
+inductive geodesic, and `isGeodesicSegment_glue` joins them.  The hypothesis of
+that lemma is the two triangle inequalities through the intermediate vertex and
+through the target — the upper bound and the lower bound of `hfar`. -/
+theorem exists_vertexGeodesic (A : Alphabet G) :
+    ∀ (n : ℕ) (x y : G), wordDist A.carrier x y = n →
+      ∃ f : ℝ → Point A, IsGeodesicSegment f 0 (n : ℝ) ∧
+        f 0 = vertex A x ∧ f (n : ℝ) = vertex A y := by
+  intro n
+  induction n with
+  | zero =>
+      intro x y hxy
+      have hxy' : x = y :=
+        (wordDist_eq_zero_iff A.symmetricGenerating x y).mp hxy
+      refine ⟨fun _ => vertex A x, ?_, rfl, ?_⟩
+      · intro s hs t ht
+        have hs0 : s = 0 := le_antisymm (by simpa using hs.2) hs.1
+        have ht0 : t = 0 := le_antisymm (by simpa using ht.2) ht.1
+        rw [hs0, ht0]
+        show Point.pointDist (vertex A x) (vertex A x) = |(0 : ℝ) - 0|
+        rw [Point.pointDist_self]
+        norm_num
+      · rw [hxy']
+  | succ n ih =>
+      intro x y hxy
+      have hxy' : wordDist A.carrier x y = n + 1 := hxy
+      obtain ⟨a, ha, hane, hstep⟩ := exists_step A hxy'
+      obtain ⟨f', hf'geo, hf'0, hf'n⟩ := ih (x * a) y hstep
+      have hn0 : (0 : ℝ) ≤ (n : ℝ) := by positivity
+      have hfarStep : wordDist A.carrier x y
+          = wordDist A.carrier (x * a) y + 1 := by
+        rw [hstep, hxy']
+      have hcast : ((wordDist A.carrier x y : ℕ) : ℝ) = (n : ℝ) + 1 := by
+        rw [hxy']
+        push_cast
+        ring
+      -- The distance from a point of the tail to the junction and to the target.
+      have htail_tip : ∀ t ∈ Set.Icc (0 : ℝ) (n : ℝ),
+          dist (f' t) (vertex A (x * a)) = t := by
+        intro t ht
+        have h := hf'geo 0 ⟨le_refl 0, hn0⟩ t ht
+        rw [hf'0] at h
+        rw [dist_comm, h, abs_of_nonpos (by linarith [ht.1])]
+        ring
+      have htail_far : ∀ t ∈ Set.Icc (0 : ℝ) (n : ℝ),
+          dist (f' t) (vertex A y) = (n : ℝ) - t := by
+        intro t ht
+        have h := hf'geo t ht (n : ℝ) ⟨hn0, le_refl _⟩
+        rw [hf'n] at h
+        rw [h, abs_of_nonpos (by linarith [ht.2])]
+        ring
+      have hfar : ∀ s ∈ Set.Icc (0 : ℝ) 1, ∀ t ∈ Set.Icc (0 : ℝ) (n : ℝ),
+          dist (edgePath A x a ha s) (f' t) = 1 - s + t := by
+        intro s hs t ht
+        have hup : dist (edgePath A x a ha s) (f' t) ≤ 1 - s + t := by
+          have h1 := dist_edgePath_tip A x a ha hane hs.1 hs.2
+          have h2 := htail_tip t ht
+          have h3 := dist_triangle (edgePath A x a ha s) (vertex A (x * a)) (f' t)
+          rw [dist_comm (vertex A (x * a)) (f' t)] at h3
+          linarith
+        have hdown : 1 - s + t ≤ dist (edgePath A x a ha s) (f' t) := by
+          have h1 := dist_edgePath_vertex A x a y ha hane hfarStep hs.1 hs.2
+          have h2 := htail_far t ht
+          have h3 := dist_triangle (edgePath A x a ha s) (f' t) (vertex A y)
+          rw [hcast] at h1
+          linarith
+        linarith
+      have hglue := isGeodesicSegment_glue (f := edgePath A x a ha) (g := f')
+        (L := 1) (M := (n : ℝ)) (by norm_num) hn0
+        (isGeodesicSegment_edgePath A x a ha hane) hf'geo hfar
+      refine ⟨fun r => if r ≤ 1 then edgePath A x a ha r else f' (r - 1), ?_,
+        ?_, ?_⟩
+      · have hL : (1 : ℝ) + (n : ℝ) = ((n + 1 : ℕ) : ℝ) := by
+          push_cast
+          ring
+        rwa [hL] at hglue
+      · show (if (0 : ℝ) ≤ 1 then edgePath A x a ha 0 else f' (0 - 1))
+          = vertex A x
+        rw [if_pos (by norm_num : (0 : ℝ) ≤ 1), edgePath_zero]
+      · by_cases hzero : n = 0
+        · have hy : x * a = y :=
+            (wordDist_eq_zero_iff A.symmetricGenerating (x * a) y).mp
+              (by rw [hstep, hzero])
+          have hone : ((n + 1 : ℕ) : ℝ) = 1 := by
+            rw [hzero]
+            norm_num
+          show (if ((n + 1 : ℕ) : ℝ) ≤ 1 then edgePath A x a ha ((n + 1 : ℕ) : ℝ)
+            else f' (((n + 1 : ℕ) : ℝ) - 1)) = vertex A y
+          rw [hone, if_pos (le_refl (1 : ℝ)), edgePath_one, hy]
+        · have hn1 : (1 : ℝ) ≤ (n : ℝ) := by
+            have : 1 ≤ n := Nat.one_le_iff_ne_zero.mpr hzero
+            exact_mod_cast this
+          have hnot : ¬ ((n + 1 : ℕ) : ℝ) ≤ 1 := by
+            push_cast
+            linarith
+          have hsub : ((n + 1 : ℕ) : ℝ) - 1 = (n : ℝ) := by
+            push_cast
+            ring
+          show (if ((n + 1 : ℕ) : ℝ) ≤ 1 then edgePath A x a ha ((n + 1 : ℕ) : ℝ)
+            else f' (((n + 1 : ℕ) : ℝ) - 1)) = vertex A y
+          rw [if_neg hnot, hsub, hf'n]
+
+/-- **Geodesics between vertices, in the metric of the realisation.**  This is
+the case the fellow-travelling lemma of `Sofic.HullSuitabilityGeometry` needs:
+its basepoint is a vertex and its endpoints are orbit points of it, which are
+vertices too, since the action carries vertices to vertices. -/
+theorem exists_geodesic_vertex (A : Alphabet G) (x y : G) :
+    ∃ f : ℝ → Point A,
+      IsGeodesicSegment f 0 (dist (vertex A x) (vertex A y)) ∧
+        f 0 = vertex A x ∧
+        f (dist (vertex A x) (vertex A y)) = vertex A y := by
+  obtain ⟨f, hgeo, h0, hn⟩ :=
+    exists_vertexGeodesic A (wordDist A.carrier x y) x y rfl
+  have hdist : dist (vertex A x) (vertex A y)
+      = ((wordDist A.carrier x y : ℕ) : ℝ) := pointDist_vertex A x y
+  rw [hdist]
+  exact ⟨f, hgeo, h0, hn⟩
+
 /-! ## The model -/
 
 /-- **The residual.**  That the realisation is a geodesic space: a word of

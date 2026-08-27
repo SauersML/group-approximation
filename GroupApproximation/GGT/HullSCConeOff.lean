@@ -286,20 +286,54 @@ theorem injOn_cayleyBall_of_dist_lt {G : Type u} [Group G] {Q : Type v}
       ≤ 2 * (R : ℝ) := by exact_mod_cast hcone
   linarith
 
-/-- **The cone-off is the witness for `H ↪_h (G, A)`.**  Osin's definition
-asks for *some* relative generating set with base `A` and family `{H}` whose
+/-- **The cone-off is the witness for `H ↪_h (G, X)`.**  Osin's definition asks
+for *some* relative generating set with base `X` and family `{H}` whose
 relative Cayley graph is hyperbolic and whose relative metric is locally
-finite; `coneOff A H` is that relative generating set, so hyperbolicity and
+finite; `coneOff X H` is that relative generating set, so hyperbolicity and
 local finiteness of the cone-off *are* the hyperbolic embedding.
 
-This is the bridge between the geometry of this module and the predicate
-`GGT.IsHypEmbeddedOf` that Hull's Theorem 5.1 consumes: what has to be
-established about `E(g)` is a statement about `Cayley (coneOff A E(g)).alphabet`
-and about `(coneOff A E(g)).relBall`, and nothing else. -/
-theorem isHypEmbeddedOf_coneOff {G : Type u} [Group G] (A : Alphabet G)
-    (H : Subgroup G) (h : (coneOff A H).IsHyperbolicallyEmbedded) :
-    GGT.IsHypEmbeddedOf G A.carrier H :=
-  ⟨coneOff A H, rfl, rfl, h⟩
+**The alphabet here is Osin's `X`, not Hull's `A`.**  Hull's `A` is the
+*coned-off* alphabet `X ⊔ H`, and it therefore contains `H`, at which point the
+hypothesis below is unsatisfiable: `not_isHypEmbeddedOf_self` proves it. -/
+theorem isHypEmbeddedOf_coneOff {G : Type u} [Group G] (X : Alphabet G)
+    (H : Subgroup G) (h : (coneOff X H).IsHyperbolicallyEmbedded) :
+    GGT.IsHypEmbeddedOf G X.carrier H :=
+  ⟨coneOff X H, rfl, rfl, h⟩
+
+/-- **A subgroup is never hyperbolically embedded with respect to a relative
+generating set that already contains it**, unless it is finite.
+
+If `H ⊆ X` then every `h ∈ H` is spelled by the one-letter word `base h`, which
+is a legal letter and traverses no edge of `Γ_H` — being a base letter, not an
+`H`-letter.  So the relative ball of radius one about `1` is all of `H`, and
+local finiteness fails outright.
+
+This is why the statements above take Osin's base `X` and not Hull's alphabet
+`A = X ⊔ H`, and why `HullSC.HypEmbeddedCore` carries the decomposition of `A`
+rather than asserting `H ↪_h (G,A)`.  An earlier draft of this lane asserted
+the latter; it is refuted here. -/
+theorem not_isHypEmbeddedOf_self {G : Type u} [Group G] {X : Set G}
+    {H : Subgroup G} (hHX : (H : Set G) ⊆ X) (hinf : (H : Set G).Infinite) :
+    ¬ GGT.IsHypEmbeddedOf G X H := by
+  rintro ⟨D, hbase, hfam, hD⟩
+  refine hinf (Set.Finite.subset (hD.locallyFinite () 1) ?_)
+  intro h hh
+  rw [GGT.RelGenSet.mem_relBall]
+  refine ⟨?_, [GGT.RelLetter.base h], ?_, ?_, ?_, ?_⟩
+  · rw [hfam]
+    exact hh
+  · intro a ha
+    rw [List.mem_singleton] at ha
+    subst ha
+    show h ∈ D.base
+    rw [hbase]
+    exact hHX hh
+  · show ([GGT.RelLetter.base h].map GGT.RelLetter.val).prod = h
+    simp [GGT.RelLetter.val]
+  · refine ⟨?_, trivial⟩
+    rintro ⟨hc, -⟩
+    exact hc
+  · simp
 
 end HullSC
 end GroupApproximation
