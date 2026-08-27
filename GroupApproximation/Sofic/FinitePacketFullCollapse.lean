@@ -31,25 +31,6 @@ universe u
 variable {F : Type u} [Group F] [Fintype F]
 variable {Gamma E : Type} [Group Gamma] [Group E]
 
-/-- Rescaling a vector defect with squared norm `O(1/j)` makes its matrix
-mass vanish at the same nonnegative weight. -/
-theorem scaledMassVanishing_rankScaled_defect
-    (B : OpAlmostRepresentation E)
-    (rho : ℕ → ℝ) (hrho : ∀ j, 0 ≤ rho j)
-    (d : ∀ j, EuclideanSpace ℂ (B.model j × B.model j))
-    (hd : ∀ j, ‖d j‖ ^ 2 ≤ 2 * (1 / ((j : ℝ) + 1))) :
-    ScaledMassVanishing B rho (fun j ↦
-      ((Real.sqrt (rho j) : ℝ) : ℂ) • unflatE (d j)) := by
-  intro epsilon hepsilon
-  obtain ⟨J, hJ⟩ := exists_level_two_div_le hepsilon
-  refine ⟨J, fun j hj ↦ ?_⟩
-  rw [matMass_smul_unflatE, Real.sq_sqrt (hrho j)]
-  calc
-    rho j * ‖d j‖ ^ 2 ≤ rho j * (2 * (1 / ((j : ℝ) + 1))) :=
-      mul_le_mul_of_nonneg_left (hd j) (hrho j)
-    _ ≤ rho j * epsilon := mul_le_mul_of_nonneg_left (hJ j hj) (hrho j)
-    _ = epsilon * rho j := mul_comm _ _
-
 /-- At the packet rank weight, rescaling the normalized displacement recovers
 the original generator displacement, including the zero-weight stages. -/
 theorem rankScaled_normalizedDisplacement_eq
@@ -132,9 +113,12 @@ theorem exists_cofinal_exact_packet_collapse
           ∃ N, ∀ j ≥ N, ∀ a ∈ S,
             V (phi j) (orbit a) = V (phi j) (orbit 1) := by
   classical
-  obtain ⟨V, Uhat, hVlift, hUlift, hcovExact, hterminal⟩ :=
-    exists_exact_covariant_coordinates_with_terminal_collapse
-      B packet (fun a : ↥S ↦ iota (a : Gamma)) beta hcov orbit S hinv hbraid
+  have hmodel : ∀ n, Nonempty (B.model n) :=
+    fun n ↦ Fintype.card_pos_iff.mp (B.modelNonempty n)
+  obtain ⟨V, Uhat, hVlift, hUlift, hcovExact⟩ :=
+    FinitePacketCoronaCovariance.exists_exact_covariant_coordinate_lifts_of_ambient
+      hmodel (OpAlmostRepresentation.coronaHom B) packet
+      (fun a : ↥S ↦ iota (a : Gamma)) beta hcov
   let W : ∀ n, Gamma → Matrix (B.model n) (B.model n) ℂ :=
     fun n g ↦ V n (orbit g)
   let U0 : Gamma → ∀ n, Matrix.unitaryGroup (B.model n) ℂ :=
