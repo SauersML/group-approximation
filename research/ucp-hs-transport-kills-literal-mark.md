@@ -6,6 +6,7 @@ title: Unital completely positive Hilbert--Schmidt models of the literal group k
 distinct_from:
   literal-central-mark-corona-invisible: that is the operator-norm statement, proved in the tree; this asks the same conclusion for u.c.p. models that are only Hilbert--Schmidt asymptotically multiplicative, which is strictly harder and known to FAIL for merely bounded models because E is sofic.
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -47,3 +48,10 @@ corners are permutation corners on which the Clifford sign is invisible.
 
 Open in both directions; failure of (i)-(iii) is not evidence for
 `literal-group-factorization-property` either.
+
+The absolute (T) case is now typed and consumed:
+`KirchbergKazhdanQuasidiagonalInput` (Brown Lemma 4.1.11 / Prop 4.1.12) in
+`GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean` yields `problemX1_restricted_to_kazhdan` and
+`not_hasFactorizationProperty_of_kazhdan_not_operatorMF`.  What this claim
+asks beyond it is exactly the RELATIVE version: running the rigidity of the
+Kazhdan base of `E` through models of the whole non-Kazhdan group.

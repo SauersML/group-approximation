@@ -10,6 +10,7 @@ distinct_from:
   mf-implies-hyperlinear: that compares two approximation properties of a group; this compares two approximation properties of a single trace on an arbitrary C*-algebra.
   stw99-problem-ix1-nuclear-faithful-trace-quasidiagonal: that asks only about faithful traces on separable nuclear algebras and concludes quasidiagonality of the algebra; this asks about every amenable trace and concludes quasidiagonality of the trace, and it is the stronger question (route stw99-x1-implies-ix1).
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
@@ -73,3 +74,8 @@ Lean statement: `NinetyNineProblems.ProblemX1Statement` (`GroupApproximation/Man
 module proves `isHyperlinearTrace_of_isAmenableTrace` (an amenable trace is a
 hyperlinear trace) and the conditional refutation
 `not_problemX1Statement_of_literalFactorizationProperty`.
+
+Positive instance machine-checked: on Kazhdan full group C\*-algebras the
+answer is YES (`problemX1_restricted_to_kazhdan`, `GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean`, from Brown Prop
+4.1.12 as a typed input); any group-algebra counterexample must be
+non-Kazhdan, which the literal group `E` is designed to be.

@@ -7,6 +7,7 @@ distinct_from:
   literal-group-factorization-property: that is the open question for the non-Kazhdan literal group E; this is the decided negative for the manuscript's Kazhdan simple group H, decided by Kirchberg's theorem.
   thom-sofic-kazhdan-groups-without-factorization-property: that is Thom's family of sofic Kazhdan non-residually-finite groups; this is the manuscript's own group, which is Kazhdan, simple and infinite, and whose soficity is not claimed.
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean
 ---
@@ -29,3 +30,9 @@ stably finite non-MF algebra, but the canonical trace of `C*(H)` is not
 amenable, so `H` is not a candidate for an amenable non-quasidiagonal trace.
 The candidate is the sofic literal group `E`, whose factorization property is
 open.
+
+Second proof, independent of residual finiteness:
+`rankTwelveLeavitt_not_isOperatorMF` (unconditional, new operator-MF form of
+Theorem B) plus Kirchberg rigidity gives
+`rankTwelveLeavitt_not_hasFactorizationProperty'` (`GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean`).  The two routes
+share no hypothesis beyond (T), so their agreement is a genuine cross-check.
