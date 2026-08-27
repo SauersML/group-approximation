@@ -4,6 +4,7 @@ import GroupApproximation.Higman.PairedReturnProfiniteWitness
 import GroupApproximation.Higman.PairedReturnCutterCode
 import GroupApproximation.Higman.TransportStarCode
 import GroupApproximation.Higman.TransportStarProdBotProfinite
+import GroupApproximation.Higman.ProfiniteBenignProductSeparable
 
 /-!
 # The coded profinite prefix of TransportStar
@@ -202,6 +203,15 @@ def hprodModel {H : Subgroup Conj.F₃} (C : Model sourceMark H) :
     Model pMark (H.comap (MonoidHom.fst Conj.F₃ Conj.F₃)) :=
   Model.comap (ProfiniteBenignWitness.selfOvergroup (G := P))
     (MonoidHom.fst Conj.F₃ Conj.F₃) productOvergroupModel C
+
+/-- The product-separation invariant passes through the actual `hprod`
+preimage because first projection is surjective. -/
+theorem hprodModel_productSeparable {H : Subgroup Conj.F₃}
+    (C : Model sourceMark H) (hC : C.data.ProductSeparable) :
+    (hprodModel C).data.ProductSeparable := by
+  exact ProfiniteBenignWitness.ProductSeparable.comap_of_surjective
+    C.data hC (ProfiniteBenignWitness.selfOvergroup (G := P))
+      (MonoidHom.fst Conj.F₃ Conj.F₃) Prod.fst_surjective
 
 @[simp] theorem hprodModel_coded {H : Subgroup Conj.F₃}
     (C : Model sourceMark H) :
