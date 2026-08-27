@@ -8,6 +8,7 @@ distinct_from:
   amenable-implies-operator-mf: that is the group case with the UCT available through Tu's theorem; this drops the UCT, which is exactly what remains after Tikuisis--White--Winter.
   stw99-problem-vii-blackadar-kirchberg: that assumes only stable finiteness; this assumes a faithful trace, which is stronger outside the simple case, so this is the easier special case (route stw99-vii-implies-ix1).
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -29,3 +30,6 @@ In the repository's vocabulary the conclusion is `IsNFAlgebra A`
 ∀ (A : Type u) [CStarAlgebra A], SeparableSpace A → IsNuclearCStarAlgebra A →
   (FaithfulTracialState A) → IsNFAlgebra A.
 ```
+
+Lean statement: `NinetyNineProblems.ProblemIX1Statement`
+(`GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean`).

@@ -6,6 +6,7 @@ title: A faithful trace forces stable finiteness
 target: stw99-problem-ix1-nuclear-faithful-trace-quasidiagonal
 requires: [stw99-problem-vii-blackadar-kirchberg]
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -17,3 +18,10 @@ for every `n`, i.e. `A` is stably finite, and Problem VII applies.
 Formalizable over `FaithfulTracialState` with a definition of stable
 finiteness in matrix amplifications; a Lean module for this route is being
 authored under `GroupApproximation/Manuscript/NinetyNineProblems/`.
+
+**Formalized.**  `GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean`:
+`isStablyFiniteCStarAlgebra_of_faithfulTracialState` (assembled from the
+repository's `FaithfulTracialState.matrix` amplification and
+`mul_star_eq_one_of_star_mul_eq_one`), the two named statements
+`ProblemVIIStatement` and `ProblemIX1Statement`, and
+`problemIX1Statement_of_problemVIIStatement`.  Axiom-clean; landed b6103bc6f.

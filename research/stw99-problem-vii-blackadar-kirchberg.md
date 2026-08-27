@@ -8,6 +8,7 @@ distinct_from:
   kun-thom-wreath-stably-finite: that establishes stable finiteness of one group algebra; this asks whether stable finiteness forces quasidiagonality across all separable nuclear algebras.
   non-hyperlinear-group: that asks for a group whose von Neumann algebra escapes R^ω; this is the nuclear quasidiagonality question, whose non-nuclear analogue is already refuted by MIP*=RE.
 artifacts:
+  - GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
@@ -25,3 +26,6 @@ Special cases: Problem IX(1) (faithful trace) and, for group algebras, the
 Rosenberg conjecture, now Tikuisis--White--Winter's Theorem C.  Faithful
 traces force stable finiteness, so this problem implies IX(1)
 (`stw99-vii-implies-ix1`).
+
+Lean statement: `NinetyNineProblems.ProblemVIIStatement`
+(`GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean`).
