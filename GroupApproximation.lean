@@ -1941,6 +1941,9 @@ import GroupApproximation.Manuscript.MFRecognition.ThreeGeneratorBridgeFreeBasis
 import GroupApproximation.Manuscript.MFRecognition.RopeObjectsProfinite
 import GroupApproximation.Manuscript.OneSidedMFRadical.NormalKazhdanSentences
 import GroupApproximation.Manuscript.MFRecognition.LocalityAndCertificates
+import GroupApproximation.Manuscript.OneSidedMFRadical.RadicalCalculusSentences
+import GroupApproximation.Manuscript.OneSidedMFRadical.IntroductionClaimSentences
+import GroupApproximation.Manuscript.OneSidedMFRadical.KazhdanTransportSentences
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
