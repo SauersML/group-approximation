@@ -193,6 +193,20 @@ coordinates and its output is the retained coordinate `m`. -/
 def natCompOuterCoord (m n : ℕ) (j : ℕ) : ℤ :=
   if j < n then ((m + 1 + j : ℕ) : ℤ) else (m : ℤ)
 
+@[simp] theorem natCompInnerCoord_input (m i j : ℕ) (hj : j < m) :
+    natCompInnerCoord m i j = (j : ℤ) := by simp [natCompInnerCoord, hj]
+
+@[simp] theorem natCompInnerCoord_output (m i : ℕ) :
+    natCompInnerCoord m i m = ((m + 1 + i : ℕ) : ℤ) := by
+  simp [natCompInnerCoord]
+
+@[simp] theorem natCompOuterCoord_input (m n j : ℕ) (hj : j < n) :
+    natCompOuterCoord m n j = ((m + 1 + j : ℕ) : ℤ) := by
+  simp [natCompOuterCoord, hj]
+
+@[simp] theorem natCompOuterCoord_output (m n : ℕ) :
+    natCompOuterCoord m n n = (m : ℤ) := by simp [natCompOuterCoord]
+
 /-- The wide relation simultaneously carrying all inner computations and the
 outer computation. -/
 noncomputable def natCompAssembly {m n : ℕ}
@@ -291,6 +305,84 @@ private theorem natCompWide_off {m n : ℕ} (f : E) (y : Fin n → ℕ) (j : ℤ
     intro i hi
     rw [if_neg (hj i).symm]
   rw [hz, add_zero]
+
+/-- The composition construction is exactly the ordinary n-ary composite. -/
+theorem natCompGraph_eq {m n : ℕ}
+    (F : List.Vector ℕ n → ℕ) (G : Fin n → List.Vector ℕ m → ℕ) :
+    natCompGraph F G =
+      natGraph (fun x => F (List.Vector.ofFn fun i : Fin n => G i x)) := by
+  classical
+  ext f
+  constructor
+  · rintro ⟨⟨⟨g, ⟨hinners, houter⟩, hfg⟩, hfw⟩, hnat⟩
+    refine ⟨hfw, (mem_natInputs_iff m f).mp hnat, ?_⟩
+    let x : List.Vector ℕ m :=
+      List.Vector.ofFn fun j : Fin m => (f (j.val : ℤ)).toNat
+    have hold (j : ℕ) (hj : j < m + 1) : g (j : ℤ) = f (j : ℤ) := by
+      symm
+      exact hfg (j : ℤ) (by intro a ha; omega)
+    have hinner (i : Fin n) :
+        g ((m + 1 + i.val : ℕ) : ℤ) = (G i x : ℤ) := by
+      obtain ⟨w, hw, hplace⟩ :=
+        Set.mem_iInter₂.mp hinners i (Finset.mem_univ i)
+      have hout := hplace m (by omega)
+      simp [natCompInnerCoord] at hout
+      rw [hw.2.2] at hout
+      have hargs : (List.Vector.ofFn fun j : Fin m => (w (j.val : ℤ)).toNat) = x := by
+        congr 1
+        funext j
+        have hin := hplace j.val (by omega)
+        rw [natCompInnerCoord_input _ _ _ j.isLt, hold j.val (by omega)] at hin
+        simpa [x] using congrArg Int.toNat hin.symm
+      rw [hargs] at hout
+      simpa only [Nat.cast_add, Nat.cast_one] using hout
+    obtain ⟨w, hw, hplace⟩ := houter
+    have hout := hplace n (by omega)
+    rw [natCompOuterCoord_output, hw.2.2] at hout
+    have hargs : (List.Vector.ofFn fun i : Fin n => (w (i.val : ℤ)).toNat) =
+        List.Vector.ofFn fun i : Fin n => G i x := by
+      congr 1
+      funext i
+      have hin := hplace i.val (by omega)
+      rw [natCompOuterCoord_input _ _ _ i.isLt] at hin
+      simpa using congrArg Int.toNat (hin.symm.trans (hinner i))
+    rw [hargs] at hout
+    simpa [x] using (hold m (by omega)).symm.trans hout
+  · rintro hf
+    let x : List.Vector ℕ m :=
+      List.Vector.ofFn fun j : Fin m => (f (j.val : ℤ)).toNat
+    let y : Fin n → ℕ := fun i => G i x
+    let g : E := natCompWide (m := m) f y
+    refine ⟨⟨⟨g, ?_, ?_⟩, hf.1⟩, (mem_natInputs_iff m f).mpr hf.2.1⟩
+    · constructor
+      · refine Set.mem_iInter₂.mpr fun i _ => ?_
+        refine ⟨natGraphSeq (G i) x, natGraphSeq_mem (G i) x, fun j hj => ?_⟩
+        by_cases hjm : j < m
+        · rw [natCompInnerCoord_input _ _ _ hjm,
+            natCompWide_old f y j (by omega)]
+          rw [natGraphSeq_input (G i) x ⟨j, hjm⟩]
+          simp only [x, List.Vector.get_ofFn,
+            Int.toNat_of_nonneg (hf.2.1 ⟨j, hjm⟩)]
+        · have hjm' : j = m := by omega
+          subst j
+          rw [natCompInnerCoord_output, natCompWide_aux f y hf.1 i,
+            natGraphSeq_output]
+      · refine ⟨natGraphSeq F (List.Vector.ofFn y),
+          natGraphSeq_mem F (List.Vector.ofFn y), fun j hj => ?_⟩
+        by_cases hjn : j < n
+        · rw [natCompOuterCoord_input _ _ _ hjn,
+            natCompWide_aux f y hf.1 ⟨j, hjn⟩,
+            natGraphSeq_input F (List.Vector.ofFn y) ⟨j, hjn⟩]
+          simp only [List.Vector.get_ofFn]
+        · have hjn' : j = n := by omega
+          subst j
+          rw [natCompOuterCoord_output, natCompWide_old f y m (by omega),
+            natGraphSeq_output]
+          exact hf.2.2
+    · intro j hj
+      apply (natCompWide_off f y j ?_).symm
+      intro i
+      exact hj i.val i.isLt
 
 /-! ## Primitive recursion: the generated construction
 
