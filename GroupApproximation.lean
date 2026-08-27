@@ -2076,6 +2076,7 @@ import GroupApproximation.Manuscript.NinetyNineProblems.ProblemX
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXImpliesIX
 import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationProperty
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXGroups
+import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationImpliesHyperlinear
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
