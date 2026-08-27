@@ -203,6 +203,81 @@ theorem natRecGraph_eq_iteratedGraph {n : ℕ}
     rw [← hout'] at hrun
     exact hrun
 
+/-! ## Structural closure of primitive-recursive graphs -/
+
+/-- Reorder `counter, parameters` into `parameters, counter`. -/
+def precReorder {n : ℕ} (i : Fin (n + 1))
+    (v : List.Vector ℕ (n + 1)) : ℕ :=
+  if hi : i.val < n then v.get ⟨i.val + 1, by omega⟩ else v.head
+
+theorem primitiveRecursionFunction_precReorder {n : ℕ}
+    (F : List.Vector ℕ n → ℕ) (H : List.Vector ℕ (n + 2) → ℕ)
+    (v : List.Vector ℕ (n + 1)) :
+    primitiveRecursionFunction F H
+        (List.Vector.ofFn fun i : Fin (n + 1) => precReorder i v) =
+      v.head.rec (F v.tail) fun k old => H (k ::ᵥ old ::ᵥ v.tail) := by
+  have htail : (List.Vector.ofFn fun i : Fin n =>
+      ((natRecParameters (List.Vector.ofFn fun i : Fin (n + 1) => precReorder i v)
+        i.val).toNat)) = v.tail := by
+    rw [← List.Vector.ofFn_get v.tail]
+    congr 1
+    funext i
+    simp only [natRecParameters, dif_pos i.isLt, List.Vector.get_ofFn,
+      precReorder, Int.toNat_natCast]
+    exact (List.Vector.get_tail v i).symm
+  unfold primitiveRecursionFunction
+  have hcount : (List.Vector.ofFn fun i : Fin (n + 1) => precReorder i v).get
+      ⟨n, by omega⟩ = v.head := by
+    simp [precReorder]
+  rw [hcount]
+  induction v.head with
+  | zero => simp [iteratedNatRecValue, htail]
+  | succ k ih =>
+      rw [iteratedNatRecValue]
+      rw [ih]
+      congr 1
+      apply List.Vector.eq
+      simp [natRecArgs, htail]
+
+/-- Every Mathlib n-ary primitive-recursive function has a generated natural graph. -/
+theorem higmanGenerated_natGraph_of_primrec' {n : ℕ}
+    {F : List.Vector ℕ n → ℕ} (hF : Nat.Primrec' F) :
+    HigmanGenerated (natGraph F) := by
+  induction hF with
+  | zero => exact higmanGenerated_natGraph_zero
+  | succ => exact higmanGenerated_natGraph_succ
+  | get i => exact higmanGenerated_natGraph_get i
+  | @comp m n F G _ _ hOuter hInner =>
+      rw [← natCompGraph_eq F G]
+      exact higmanGenerated_natCompGraph hOuter hInner
+  | @prec n F H _ _ hBase hStep =>
+      have hRec : HigmanGenerated (natGraph (primitiveRecursionFunction F H)) := by
+        rw [← natRecGraph_eq_iteratedGraph F H]
+        exact higmanGenerated_natRecGraph hBase hStep
+      let G : Fin (n + 1) → List.Vector ℕ (n + 1) → ℕ := precReorder
+      have hG : ∀ i, HigmanGenerated (natGraph (G i)) := by
+        intro i
+        unfold G precReorder
+        by_cases hi : i.val < n
+        · simpa [hi] using higmanGenerated_natGraph_get
+            (⟨i.val + 1, by omega⟩ : Fin (n + 1))
+        · have hval : i.val = n :=
+            Nat.le_antisymm (Nat.le_of_lt_succ i.isLt) (Nat.le_of_not_gt hi)
+          have hin : i = Fin.last n := Fin.ext hval
+          subst i
+          simpa [List.Vector.head, precReorder] using
+            higmanGenerated_natGraph_get (⟨0, by omega⟩ : Fin (n + 1))
+      have hc := higmanGenerated_natCompGraph hRec hG
+      rw [natCompGraph_eq] at hc
+      have hfun : (fun v => primitiveRecursionFunction F H
+          (List.Vector.ofFn fun i : Fin (n + 1) => G i v)) =
+          (fun v : List.Vector ℕ (n + 1) =>
+            v.head.rec (F v.tail) fun k old => H (k ::ᵥ old ::ᵥ v.tail)) := by
+        funext v
+        exact primitiveRecursionFunction_precReorder F H v
+      rw [hfun] at hc
+      exact hc
+
 end Seq
 end Higman
 end GroupApproximation
