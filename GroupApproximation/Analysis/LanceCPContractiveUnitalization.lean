@@ -21,9 +21,11 @@ repair usable.  If `beta (alpha 1)` is within `delta` of `1`, then both the
 outgoing defect `1 - beta 1` and the image `beta (1 - alpha 1)` of the incoming
 defect have norm at most `delta`.
 
-No finite-dimensional structure is used here.  The remaining step is to add
-state-valued rank-one completely positive corrections and then transport the
-finite-dimensional algebra through its Wedderburn decomposition.
+No finite-dimensional structure is used here.  We add state-valued rank-one
+completely positive corrections and show that repairing both legs changes a
+unit-ball approximation bound from `delta` to at most `4 * delta`.  Transport
+of an arbitrary finite-dimensional algebra to the operator-algebra target used
+by the Lance route remains a separate Wedderburn/injectivity step.
 -/
 
 namespace GroupApproximation
@@ -264,6 +266,136 @@ theorem norm_second_incoming_unit_defect_le_of_cp_contractions
     _ = ‖beta (alpha 1) - 1‖ := by rw [← norm_neg, neg_sub]
     _ ≤ delta := hunit
 
+/-! ## Quantitative two-sided repair -/
+
+/-- **Quantitative additive UCP repair.**  Suppose two completely positive
+contractions nearly fix both the unit and a unit-ball element after
+composition.  Additively unitalizing both maps with arbitrary source states
+then still nearly fixes that element, with loss by a factor of at most four.
+
+The three error terms are the original error, the image of the incoming unit
+defect, and the outgoing unit defect.  The first two cost `delta`; the last
+costs `2 * delta` because the repaired incoming map has norm at most two on the
+unit ball. -/
+theorem norm_additiveUnitalization_comp_sub_le_four_mul
+    {A : Type u} {D : Type v}
+    [CStarAlgebra A] [CStarAlgebra D]
+    [Nontrivial A] [Nontrivial D]
+    (alpha : A →ₗ[ℂ] D) (beta : D →ₗ[ℂ] A)
+    (omegaA : CStarState.State A) (omegaD : CStarState.State D)
+    (halpha : IsCompletelyPositive alpha)
+    (hbeta : IsCompletelyPositive beta)
+    (halphaContract : ∀ a : A, ‖alpha a‖ ≤ ‖a‖)
+    (hbetaContract : ∀ d : D, ‖beta d‖ ≤ ‖d‖)
+    {delta : ℝ} (hunit : ‖beta (alpha 1) - 1‖ ≤ delta)
+    (a : A) (ha : ‖a‖ ≤ 1)
+    (happrox : ‖beta (alpha a) - a‖ ≤ delta) :
+    ‖additiveUnitalization beta omegaD
+        (additiveUnitalization alpha omegaA a) - a‖ ≤ 4 * delta := by
+  letI : PartialOrder A := CStarAlgebra.spectralOrder A
+  letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
+  letI : PartialOrder D := CStarAlgebra.spectralOrder D
+  letI : StarOrderedRing D := CStarAlgebra.spectralOrderedRing D
+  have hAlphaDefectPos : 0 ≤ (1 : D) - alpha 1 :=
+    one_sub_map_one_nonneg_of_completelyPositive_contractive
+      alpha halpha halphaContract
+  have hAlphaOnePos : 0 ≤ alpha (1 : A) :=
+    map_nonneg_of_completelyPositive halpha zero_le_one
+  have hAlphaDefectNorm : ‖(1 : D) - alpha 1‖ ≤ 1 :=
+    (CStarAlgebra.norm_le_one_iff_of_nonneg
+      ((1 : D) - alpha 1) hAlphaDefectPos).2
+        (sub_le_self (1 : D) hAlphaOnePos)
+  have hOmegaA : ‖omegaA.toCLM a‖ ≤ ‖a‖ := by
+    calc
+      ‖omegaA.toCLM a‖ ≤ ‖omegaA.toCLM‖ * ‖a‖ :=
+        omegaA.toCLM.le_opNorm a
+      _ ≤ 1 * ‖a‖ :=
+        mul_le_mul_of_nonneg_right omegaA.norm_le (norm_nonneg a)
+      _ = ‖a‖ := one_mul _
+  have hAlphaRepairNorm :
+      ‖additiveUnitalization alpha omegaA a‖ ≤ 2 := by
+    calc
+      ‖additiveUnitalization alpha omegaA a‖ =
+          ‖alpha a + omegaA.toCLM a • ((1 : D) - alpha 1)‖ := rfl
+      _ ≤ ‖alpha a‖ + ‖omegaA.toCLM a • ((1 : D) - alpha 1)‖ :=
+        norm_add_le _ _
+      _ = ‖alpha a‖ + ‖omegaA.toCLM a‖ * ‖(1 : D) - alpha 1‖ := by
+        rw [norm_smul]
+      _ ≤ ‖a‖ + ‖omegaA.toCLM a‖ * ‖(1 : D) - alpha 1‖ :=
+        add_le_add (halphaContract a) le_rfl
+      _ ≤ ‖a‖ + ‖a‖ * ‖(1 : D) - alpha 1‖ :=
+        add_le_add le_rfl
+          (mul_le_mul_of_nonneg_right hOmegaA (norm_nonneg _))
+      _ ≤ ‖a‖ + ‖a‖ * 1 :=
+        add_le_add le_rfl
+          (mul_le_mul_of_nonneg_left hAlphaDefectNorm (norm_nonneg a))
+      _ ≤ 2 := by nlinarith [norm_nonneg a]
+  have hOmegaD :
+      ‖omegaD.toCLM (additiveUnitalization alpha omegaA a)‖ ≤ 2 := by
+    calc
+      ‖omegaD.toCLM (additiveUnitalization alpha omegaA a)‖ ≤
+          ‖omegaD.toCLM‖ * ‖additiveUnitalization alpha omegaA a‖ :=
+        omegaD.toCLM.le_opNorm _
+      _ ≤ 1 * ‖additiveUnitalization alpha omegaA a‖ :=
+        mul_le_mul_of_nonneg_right omegaD.norm_le (norm_nonneg _)
+      _ ≤ 2 := by simpa using hAlphaRepairNorm
+  have hIncoming : ‖beta ((1 : D) - alpha 1)‖ ≤ delta :=
+    norm_second_incoming_unit_defect_le_of_cp_contractions
+      alpha beta halpha hbeta halphaContract hbetaContract hunit
+  have hOutgoing : ‖(1 : A) - beta 1‖ ≤ delta :=
+    norm_one_sub_second_one_le_of_cp_contractions
+      alpha beta halpha hbeta halphaContract hbetaContract hunit
+  have hTermIncoming :
+      ‖omegaA.toCLM a • beta ((1 : D) - alpha 1)‖ ≤ delta := by
+    rw [norm_smul]
+    calc
+      ‖omegaA.toCLM a‖ * ‖beta ((1 : D) - alpha 1)‖ ≤
+          1 * ‖beta ((1 : D) - alpha 1)‖ :=
+        mul_le_mul_of_nonneg_right (hOmegaA.trans ha) (norm_nonneg _)
+      _ ≤ 1 * delta :=
+        mul_le_mul_of_nonneg_left hIncoming zero_le_one
+      _ = delta := one_mul _
+  have hTermOutgoing :
+      ‖omegaD.toCLM (additiveUnitalization alpha omegaA a) •
+          ((1 : A) - beta 1)‖ ≤ 2 * delta := by
+    rw [norm_smul]
+    calc
+      ‖omegaD.toCLM (additiveUnitalization alpha omegaA a)‖ *
+          ‖(1 : A) - beta 1‖ ≤ 2 * ‖(1 : A) - beta 1‖ :=
+        mul_le_mul_of_nonneg_right hOmegaD (norm_nonneg _)
+      _ ≤ 2 * delta := mul_le_mul_of_nonneg_left hOutgoing (by positivity)
+  have hexpand :
+      additiveUnitalization beta omegaD
+          (additiveUnitalization alpha omegaA a) - a =
+        (beta (alpha a) - a) +
+          omegaA.toCLM a • beta ((1 : D) - alpha 1) +
+          omegaD.toCLM (additiveUnitalization alpha omegaA a) •
+            ((1 : A) - beta 1) := by
+    have hbetaRepair :
+        beta (additiveUnitalization alpha omegaA a) =
+          beta (alpha a) +
+            omegaA.toCLM a • beta ((1 : D) - alpha 1) := by
+      rw [additiveUnitalization_apply, map_add, map_smul]
+    change
+      (beta (additiveUnitalization alpha omegaA a) +
+          omegaD.toCLM (additiveUnitalization alpha omegaA a) •
+            ((1 : A) - beta 1)) - a = _
+    rw [hbetaRepair]
+    abel
+  rw [hexpand]
+  calc
+    ‖(beta (alpha a) - a) +
+        omegaA.toCLM a • beta ((1 : D) - alpha 1) +
+        omegaD.toCLM (additiveUnitalization alpha omegaA a) •
+          ((1 : A) - beta 1)‖ ≤
+        ‖beta (alpha a) - a‖ +
+          ‖omegaA.toCLM a • beta ((1 : D) - alpha 1)‖ +
+          ‖omegaD.toCLM (additiveUnitalization alpha omegaA a) •
+            ((1 : A) - beta 1)‖ := by
+      exact (norm_add_le _ _).trans (add_le_add (norm_add_le _ _) le_rfl)
+    _ ≤ delta + delta + 2 * delta := by gcongr
+    _ = 4 * delta := by ring
+
 end
 
 end CStarExactness
@@ -277,3 +409,4 @@ open GroupApproximation.CStarExactness
 #audit_axioms exists_matrix_star_mul_self_eq_gram
 #audit_axioms isCompletelyPositive_stateSmulLinearMap
 #audit_axioms additiveUnitalization_completelyPositive_unital
+#audit_axioms norm_additiveUnitalization_comp_sub_le_four_mul
