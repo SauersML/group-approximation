@@ -23,7 +23,7 @@ namespace GroupApproximation
 namespace FinitePacketCoronaCollapse
 
 open Matrix FinitePacketCoronaCovariance FinitePacketCollapseCore
-open InvolutionRankMass ScaledKazhdanTransport
+open FinitePacketRankWeight InvolutionRankMass ScaledKazhdanTransport
 open scoped Matrix.Norms.L2Operator
 
 noncomputable section
@@ -118,6 +118,98 @@ theorem exists_exact_covariant_coordinates_with_terminal_collapse
   refine ⟨N, fun n hn a ha ↦ ?_⟩
   apply Subtype.ext
   simpa only [W] using hN n hn a ha
+
+/-- **The rank and mass profile is automatic after generator covariance.**
+
+Here movers are indexed by the chosen finite generating set.  Compatibility
+of their packet automorphisms with the orbit map turns the internally
+constructed exact covariance into the hypotheses of the finite-packet word
+bound.  Consequently both the integer rank estimate and its Frobenius-mass
+counterpart are conclusions, not additional caller data. -/
+theorem exists_exact_generator_packet_with_rank_bounds
+    (B : OpAlmostRepresentation E)
+    (packet : F →* E)
+    (orbit : Γ → F)
+    (S : Finset Γ)
+    (hgen : WordMetric.IsSymmetricGeneratingSet (S : Set Γ))
+    (mover : ↥S → E)
+    (β : ↥S → F ≃* F)
+    (hcov : ∀ a f,
+      mover a * packet f * (mover a)⁻¹ = packet (β a f))
+    (horbit : ∀ a : ↥S, ∀ g : Γ,
+      β a (orbit g) = orbit ((a : Γ) * g)) :
+    ∃ V : ∀ n, F →* Matrix.unitaryGroup (B.model n) ℂ,
+      ∃ Uhat : ↥S → ∀ n, Matrix.unitaryGroup (B.model n) ℂ,
+        (∀ f, QuotientGroup.mk (fun n ↦ V n f) =
+          (OpAlmostRepresentation.coronaHom B) (packet f)) ∧
+        (∀ a, (QuotientGroup.mk (Uhat a) :
+          NormMatrixCoronaUnitary B.model) =
+            (OpAlmostRepresentation.coronaHom B) (mover a)) ∧
+        (∀ n a f, Uhat a n * V n f * (Uhat a n)⁻¹ = V n (β a f)) ∧
+        (∀ n g,
+          displacementRank
+              (fun γ ↦ (V n (orbit γ) :
+                Matrix (B.model n) (B.model n) ℂ)) g ≤
+            WordMetric.wordNorm (S : Set Γ) g *
+              generatorRankWeight
+                (fun γ ↦ (V n (orbit γ) :
+                  Matrix (B.model n) (B.model n) ℂ)) S) ∧
+        (∀ n g,
+          matMass
+              ((V n (orbit g) : Matrix (B.model n) (B.model n) ℂ) -
+                (V n (orbit 1) : Matrix (B.model n) (B.model n) ℂ)) ≤
+            4 * WordMetric.wordNorm (S : Set Γ) g *
+              generatorRankWeight
+                (fun γ ↦ (V n (orbit γ) :
+                  Matrix (B.model n) (B.model n) ℂ)) S) := by
+  classical
+  have hmodel : ∀ n, Nonempty (B.model n) :=
+    fun n ↦ Fintype.card_pos_iff.mp (B.modelNonempty n)
+  obtain ⟨V, Uhat, hVlift, hUlift, hcovExact⟩ :=
+    exists_exact_covariant_coordinate_lifts_of_ambient
+      hmodel (OpAlmostRepresentation.coronaHom B) packet mover β hcov
+  refine ⟨V, Uhat, hVlift, hUlift, hcovExact, ?_, ?_⟩
+  · intro n g
+    let W : Γ → Matrix (B.model n) (B.model n) ℂ :=
+      fun γ ↦ V n (orbit γ)
+    let U : Γ → Matrix (B.model n) (B.model n) ℂ := fun γ ↦
+      if hγ : γ ∈ S then Uhat ⟨γ, hγ⟩ n else 1
+    have hU : ∀ a ∈ S, U a ∈ Matrix.unitaryGroup (B.model n) ℂ := by
+      intro a ha
+      simp only [U, dif_pos ha]
+      exact (Uhat ⟨a, ha⟩ n).prop
+    have hWcov : ∀ a ∈ S, ∀ x : Γ,
+        W (a * x) = U a * W x * (U a)ᴴ := by
+      intro a ha x
+      have hc := hcovExact n ⟨a, ha⟩ (orbit x)
+      have hcval := congrArg Subtype.val hc
+      rw [horbit ⟨a, ha⟩ x] at hcval
+      dsimp only [W, U]
+      simp only [dif_pos ha]
+      exact hcval.symm
+    exact displacementRank_le_wordNorm_mul W U S hgen hU hWcov g
+  · intro n g
+    let W : Γ → Matrix (B.model n) (B.model n) ℂ :=
+      fun γ ↦ V n (orbit γ)
+    let U : Γ → Matrix (B.model n) (B.model n) ℂ := fun γ ↦
+      if hγ : γ ∈ S then Uhat ⟨γ, hγ⟩ n else 1
+    have hVunit : ∀ γ, W γ ∈ Matrix.unitaryGroup (B.model n) ℂ :=
+      fun γ ↦ (V n (orbit γ)).prop
+    have hU : ∀ a ∈ S, U a ∈ Matrix.unitaryGroup (B.model n) ℂ := by
+      intro a ha
+      simp only [U, dif_pos ha]
+      exact (Uhat ⟨a, ha⟩ n).prop
+    have hWcov : ∀ a ∈ S, ∀ x : Γ,
+        W (a * x) = U a * W x * (U a)ᴴ := by
+      intro a ha x
+      have hc := hcovExact n ⟨a, ha⟩ (orbit x)
+      have hcval := congrArg Subtype.val hc
+      rw [horbit ⟨a, ha⟩ x] at hcval
+      dsimp only [W, U]
+      simp only [dif_pos ha]
+      exact hcval.symm
+    exact displacementMass_le_four_mul_wordNorm_mul_weight
+      (hmodel n) W U S hgen hVunit hU hWcov g
 
 end
 
