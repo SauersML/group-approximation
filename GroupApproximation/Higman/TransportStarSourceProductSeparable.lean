@@ -71,6 +71,14 @@ theorem graph_mul_fstComap
   apply hN
   exact (QuotientGroup.eq_one_iff (Coord.retK x.1)).mp hqx
 
+/-- Instantiation at the literal coordinate subgroup used by TransportStar. -/
+theorem graph_mul_coord_fstComap (T : Set ↑K) :
+    SetProductSeparable Star.graphSub
+      (((Star.coordSub T).map cbHom).comap (MonoidHom.fst F₃ F₃)) := by
+  apply graph_mul_fstComap
+  rintro _ ⟨w, -, rfl⟩
+  exact ⟨w, rfl⟩
+
 end
 
 end TransportStarSourceProductSeparable
