@@ -505,6 +505,113 @@ theorem recBaseAt_natGraph_iff {n : ℕ} (F : List.Vector ℕ n → ℕ)
     · rw [natGraphSeq_output]
       exact hu.symm
 
+def natRecArgs {n : ℕ} (x : ℕ → ℤ) (r u : ℤ) : List.Vector ℕ (n + 2) :=
+  r.toNat ::ᵥ u.toNat ::ᵥ
+    List.Vector.ofFn fun i : Fin n => (x i.val).toNat
+
+@[simp] theorem natRecArgs_count {n : ℕ} (x : ℕ → ℤ) (r u : ℤ) :
+    (natRecArgs (n := n) x r u).get ⟨0, by omega⟩ = r.toNat := by
+  simp [natRecArgs]
+
+@[simp] theorem natRecArgs_old {n : ℕ} (x : ℕ → ℤ) (r u : ℤ) :
+    (natRecArgs (n := n) x r u).get ⟨1, by omega⟩ = u.toNat := by
+  have hi : (⟨1, by omega⟩ : Fin (n + 2)) = (⟨0, by omega⟩ : Fin (n + 1)).succ :=
+    Fin.ext rfl
+  unfold natRecArgs
+  rw [hi, List.Vector.get_cons_succ]
+  exact List.Vector.get_cons_zero _ _
+
+@[simp] theorem natRecArgs_param {n : ℕ} (x : ℕ → ℤ) (r u : ℤ)
+    (j : ℕ) (hj : j < n) :
+    (natRecArgs (n := n) x r u).get ⟨j + 2, by omega⟩ = (x j).toNat := by
+  have hi : (⟨j + 2, by omega⟩ : Fin (n + 2)) = (⟨j, hj⟩ : Fin n).succ.succ :=
+    Fin.ext (by simp)
+  unfold natRecArgs
+  rw [hi, List.Vector.get_cons_succ, List.Vector.get_cons_succ]
+  exact List.Vector.get_ofFn _ _
+
+theorem recStepAt_natRecStep_iff {n : ℕ} (H : List.Vector ℕ (n + 2) → ℕ)
+    (x : ℕ → ℤ) (r u v : ℤ) :
+    recStepAt n (natRecStep H) x r u v ↔
+      (∀ j : ℕ, j < n → 0 ≤ x j) ∧ 0 ≤ r ∧ 0 ≤ u ∧
+        v = (H (natRecArgs (n := n) x r u) : ℤ) := by
+  constructor
+  · rintro ⟨w, ⟨⟨q, hq, hplace⟩, _⟩, hparam, hcount, hold, hout⟩
+    have hr : 0 ≤ r := by
+      have h := hq.2.1 (⟨0, by omega⟩ : Fin (n + 2))
+      rw [← hplace 0 (by omega), natRecStepCoord_count, hcount] at h
+      exact h
+    have hu : 0 ≤ u := by
+      have h := hq.2.1 (⟨1, by omega⟩ : Fin (n + 2))
+      rw [← hplace 1 (by omega), natRecStepCoord_old] at h
+      have hold' : w (((n + 1 : ℕ) : ℤ)) = u := by
+        simpa only [Nat.cast_add, Nat.cast_one] using hold
+      rw [hold'] at h
+      exact h
+    have hx : ∀ j : ℕ, j < n → 0 ≤ x j := by
+      intro j hj
+      have h := hq.2.1 (⟨j + 2, by omega⟩ : Fin (n + 2))
+      rw [← hplace (j + 2) (by omega), natRecStepCoord_param n j hj,
+        hparam j hj] at h
+      exact h
+    have hargs : (List.Vector.ofFn fun i : Fin (n + 2) => (q (i.val : ℤ)).toNat) =
+        natRecArgs (n := n) x r u := by
+      rw [← List.Vector.ofFn_get (natRecArgs (n := n) x r u)]
+      congr 1
+      funext i
+      refine Fin.cases ?_ (fun i' => Fin.cases ?_ (fun j => ?_) i') i
+      · have h := hplace 0 (by omega)
+        rw [natRecStepCoord_count] at h
+        calc
+          (q (0 : ℤ)).toNat = (w (n : ℤ)).toNat :=
+            congrArg Int.toNat h.symm
+          _ = r.toNat := congrArg Int.toNat hcount
+          _ = (natRecArgs (n := n) x r u).get ⟨0, by omega⟩ :=
+            (natRecArgs_count x r u).symm
+      · have h := hplace 1 (by omega)
+        rw [natRecStepCoord_old] at h
+        have hold' : w (((n + 1 : ℕ) : ℤ)) = u := by
+          simpa only [Nat.cast_add, Nat.cast_one] using hold
+        calc
+          (q (1 : ℤ)).toNat = (w (((n + 1 : ℕ) : ℤ))).toNat :=
+            congrArg Int.toNat h.symm
+          _ = u.toNat := congrArg Int.toNat hold'
+          _ = (natRecArgs (n := n) x r u).get ⟨1, by omega⟩ :=
+            (natRecArgs_old x r u).symm
+      · have h := hplace (j.val + 2) (by omega)
+        rw [natRecStepCoord_param n j.val j.isLt] at h
+        calc
+          (q ((j.val + 2 : ℕ) : ℤ)).toNat =
+              (w (j.val : ℤ)).toNat := congrArg Int.toNat h.symm
+          _ = (x j.val).toNat := congrArg Int.toNat (hparam j.val j.isLt)
+          _ = (natRecArgs (n := n) x r u).get
+              ⟨j.val + 2, by omega⟩ :=
+            (natRecArgs_param x r u j.val j.isLt).symm
+    refine ⟨hx, hr, hu, ?_⟩
+    calc
+      v = w ((n : ℤ) + 2) := hout.symm
+      _ = q ((n + 2 : ℕ) : ℤ) := by
+        simpa only [natRecStepCoord_output, Nat.cast_add, Nat.cast_ofNat] using
+          hplace (n + 2) (by omega)
+      _ = (H (List.Vector.ofFn fun i : Fin (n + 2) => (q (i.val : ℤ)).toNat) : ℤ) := hq.2.2
+      _ = (H (natRecArgs (n := n) x r u) : ℤ) := by rw [hargs]
+  · rintro ⟨hx, hr, hu, hv⟩
+    let a := natRecArgs (n := n) x r u
+    refine ⟨natRecNativeSeq H a, natRecNativeSeq_mem H a, fun j hj => ?_, ?_, ?_, ?_⟩
+    · rw [natRecNativeSeq_param H a j hj]
+      dsimp only [a]
+      rw [natRecArgs_param x r u j hj, Int.toNat_of_nonneg (hx j hj)]
+    · rw [natRecNativeSeq_count]
+      change ((natRecArgs (n := n) x r u).get ⟨0, by omega⟩ : ℤ) = r
+      rw [natRecArgs_count, Int.toNat_of_nonneg hr]
+    · have h := natRecNativeSeq_old H a
+      dsimp only [a] at h
+      rw [natRecArgs_old, Int.toNat_of_nonneg hu] at h
+      simpa only [Nat.cast_add, Nat.cast_one] using h
+    · have h := natRecNativeSeq_output H a
+      dsimp only [a] at h
+      exact (by simpa only [Nat.cast_add, Nat.cast_ofNat] using h.trans hv.symm)
+
 theorem nat_le_two_pow (n : ℕ) : n ≤ 2 ^ n := by
   induction n with
   | zero => norm_num
