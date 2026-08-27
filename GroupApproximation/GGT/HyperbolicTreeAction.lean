@@ -197,10 +197,15 @@ theorem isAcylindrical_treeSpace {G : Type u} [Group G] {V : Type v}
   intro ε _hε
   obtain ⟨n, hn⟩ : ∃ n : ℕ, ε ≤ (n : ℝ) := ⟨⌈ε⌉₊, Nat.le_ceil ε⟩
   have hfin : {k : ℤ | k.natAbs ≤ n}.Finite := by
-    refine Set.Finite.subset (Set.finite_Icc (-(n : ℤ)) (n : ℤ)) ?_
+    refine Set.Finite.subset
+      (Set.Finite.union
+        (Set.finite_range (fun m : Fin (n + 1) => ((m : ℕ) : ℤ)))
+        (Set.finite_range (fun m : Fin (n + 1) => -((m : ℕ) : ℤ)))) ?_
     intro k hk
     have hk' : k.natAbs ≤ n := hk
-    constructor <;> omega
+    rcases Int.natAbs_eq k with hc | hc
+    · exact Or.inl ⟨⟨k.natAbs, by omega⟩, hc.symm⟩
+    · exact Or.inr ⟨⟨k.natAbs, by omega⟩, hc.symm⟩
   refine ⟨((L + 2 * n : ℕ) : ℝ), {k : ℤ | k.natAbs ≤ n}.ncard, ?_⟩
   intro x y hxy
   have hxyN : L + 2 * n ≤ H.dist (TreeSpace.val x) (TreeSpace.val y) := by

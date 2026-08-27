@@ -369,6 +369,11 @@ theorem dist_vmk (φ : A ≃* B) (x y : HNNExtension G A B φ) :
 
 /-! ## Stabilisers -/
 
+theorem smul_vmk_eq_iff (φ : A ≃* B) (a x : HNNExtension G A B φ) :
+    a • vmk φ x = vmk φ x ↔
+      x⁻¹ * a * x ∈ (HNNExtension.of : G →* HNNExtension G A B φ).range := by
+  rw [smul_vmk, eq_comm, vmk_eq_iff, ← mul_assoc]
+
 theorem mem_stabilizer_vmk_iff (φ : A ≃* B) (a x : HNNExtension G A B φ) :
     a ∈ MulAction.stabilizer (HNNExtension G A B φ) (vmk φ x) ↔
       x⁻¹ * a * x ∈ (HNNExtension.of : G →* HNNExtension G A B φ).range := by
@@ -409,6 +414,24 @@ theorem mem_stabilizer_edge_iff (φ : A ≃* B) (a x : HNNExtension G A B φ) :
           (vmk φ (x * HNNExtension.t))) ↔
       ∃ b : G, b ∈ B ∧ a = x * HNNExtension.of b * x⁻¹ := by
   rw [mem_stabilizer_vmk_iff, mem_stabilizer_vmk_iff]
+  have hrw : (x * HNNExtension.t)⁻¹ * a * (x * HNNExtension.t)
+      = (HNNExtension.t : HNNExtension G A B φ)⁻¹ * (x⁻¹ * a * x) *
+        HNNExtension.t := by
+    group
+  rw [hrw, mem_range_and_conj_iff]
+  constructor
+  · rintro ⟨b, hb, hbe⟩
+    exact ⟨b, hb, by rw [hbe]; group⟩
+  · rintro ⟨b, hb, rfl⟩
+    exact ⟨b, hb, by group⟩
+
+/-- **The pointwise stabiliser of an edge**, in the fixed-point form the
+WPD interface consumes. -/
+theorem smul_edge_eq_iff (φ : A ≃* B) (a x : HNNExtension G A B φ) :
+    (a • vmk φ x = vmk φ x ∧
+        a • vmk φ (x * HNNExtension.t) = vmk φ (x * HNNExtension.t)) ↔
+      ∃ b : G, b ∈ B ∧ a = x * HNNExtension.of b * x⁻¹ := by
+  rw [smul_vmk_eq_iff, smul_vmk_eq_iff]
   have hrw : (x * HNNExtension.t)⁻¹ * a * (x * HNNExtension.t)
       = (HNNExtension.t : HNNExtension G A B φ)⁻¹ * (x⁻¹ * a * x) *
         HNNExtension.t := by

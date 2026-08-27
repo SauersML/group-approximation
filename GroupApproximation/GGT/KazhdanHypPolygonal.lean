@@ -82,8 +82,8 @@ Tutte--Coxeter graph: `3`-regular on `30` vertices with adjacency spectrum
     kappa = 1 - 2/3 = 1/3 < 1/2 .
 ```
 
-Ballmann--Swiatkowski Corollary 1 and Zuk's criterion therefore say nothing
-about these groups, and thickness `2` is far below any large-thickness building
+So Ballmann--Swiatkowski Corollary 1 and Zuk's criterion say nothing about
+these groups, and thickness `2` is far below any large-thickness building
 hypothesis.  **This module does not inherit that property `(T)` claim**, and no
 declaration below depends on it.  `tutteCoxeterGap_lt_half` records the
 arithmetic that rules the criterion out.
@@ -156,8 +156,8 @@ own algebra rather than in the literature.  `TriangularHodgeLayer` proves
 where `c i` is the `i`-th Fox corner of a relator.  Expanding the left side
 gives `2 ∑_i adj(c i) d i` plus the sum over **cyclically adjacent ordered
 pairs**, while `adj(∑c)(∑d)` is the sum over **all** ordered pairs.  The
-identity therefore holds precisely because in `ℤ/3` every ordered pair of
-distinct indices is cyclically adjacent.  For a `k`-gon with `k ≥ 4` it fails,
+identity holds precisely because in `ℤ/3` every ordered pair of distinct
+indices is cyclically adjacent.  For a `k`-gon with `k ≥ 4` it fails,
 by exactly
 
 ```
@@ -441,8 +441,8 @@ theorem gqEightGap_gt_half : (1 : ℚ) / 2 < 1 - 4 / 9 := by norm_num
 incidence graph of the smallest thick generalized quadrangle `GQ(2,2)`,
 `3`-regular with non-principal eigenvalues `±2` and `0`, so `kappa = 1/3`.  This
 is the arithmetic that rules Zuk's criterion out for the
-Kangaslampi--Vdovina polyhedra, whose property `(T)` claim is therefore not
-inherited here. -/
+Kangaslampi--Vdovina polyhedra, so their property `(T)` claim is not inherited
+here. -/
 theorem tutteCoxeterGap_lt_half : (1 : ℚ) - 2 / 3 < 1 / 2 := by norm_num
 
 /-! ## The three certificates of the witness -/
