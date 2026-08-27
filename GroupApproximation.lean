@@ -1995,6 +1995,9 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceSetupUniversal
 import GroupApproximation.Manuscript.MFRecognition.FinitelyGeneratedNonMFQuotient
 import GroupApproximation.Manuscript.MFRecognition.SwitchGroupBCRRelators
 import GroupApproximation.Manuscript.MFRecognition.CompilerIntroSentences
+import GroupApproximation.Manuscript.MFRecognition.TensorSynchronization
+import GroupApproximation.Manuscript.MFRecognition.SwitchGroupBCR
+import GroupApproximation.Manuscript.MFRecognition.CoronaEmbeddingRemark
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
