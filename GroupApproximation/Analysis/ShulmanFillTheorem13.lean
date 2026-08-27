@@ -42,17 +42,34 @@ Their proof builds the pair in three steps:
 
 None of the three is stated below as a named `Prop`, and that is deliberate.
 Each is true only with `B(H)` as the target — Arveson needs an injective
-target, Voiculescu needs the compacts — and this repository has no `B(H)`, no
-compact-operator ideal and no Calkin quotient.  A version of them abstracted
-over an arbitrary ambient algebra and an arbitrary ideal would be *false*, and
-a false hypothesis is worse than a missing one: it cannot be discharged, and
-it would silently make every theorem standing on it vacuous.  So the three are
-recorded here in prose, with their exact roles, and the one statement carried
-as a `Prop` is the existence of the pair they build, which is an existence
-statement and so is at worst hard.
+target, Voiculescu needs the compacts — and the Calkin algebra is not
+expressible yet.  A version of them abstracted over an arbitrary ambient
+algebra and an arbitrary ideal would be *false*, and a false hypothesis is
+worse than a missing one: it cannot be discharged, and it would silently make
+every theorem standing on it vacuous.  So the three are recorded here in prose,
+with their exact roles, and the one statement carried as a `Prop` is the
+existence of the pair they build, which is an existence statement and so is at
+worst hard.
 
-Building `B(H)`, its compacts and the Calkin quotient is the construction task
-this route needs — the same kind of task as the algebra `𝒟` of `*`-strongly
+What is and is not available, checked against the pinned Mathlib:
+
+* `B(H)` **is** there.  `Mathlib/Analysis/CStarAlgebra/ContinuousLinearMap`
+  gives `CStarAlgebra (E →L[ℂ] E)` for a complex Hilbert space `E`, on top of
+  `CStarRing (E →L[𝕜] E)` in `Mathlib/Analysis/InnerProductSpace/Adjoint`.
+* The compact operators are there as a *submodule*, `compactOperator` in
+  `Mathlib/Analysis/Normed/Operator/Compact/Basic`; they are not bundled as a
+  closed two-sided ideal.
+* The quotient is **not** there.  Mathlib carries no `CStarRing` instance on
+  any quotient — the full list of its `CStarRing` instances is `ℝ`, `RCLike`,
+  quaternions, products, pi types, `Eᵐᵒᵖ`, `CStarMatrix`, multipliers,
+  unitizations, `E →L[𝕜] E`, `lp ∞`, and the various continuous-function
+  algebras — and there is no `Analysis/CStarAlgebra/Quotient.lean`.
+
+So the Calkin algebra needs its C-star structure built by hand, exactly as
+this repository already builds the matrix corona's: the
+`filterMatrixCoronaAlgebra*` instances of `Analysis/NormMatrixCorona` are that
+same construction at a different quotient, and are the pattern to copy.  It is
+a construction task of the same kind as the algebra `𝒟` of `*`-strongly
 convergent matrix sequences that Theorem 10 needs.
 
 This module is not in the root import list.  It was authored while builds were
