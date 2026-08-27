@@ -341,7 +341,7 @@ noncomputable def ah3Data (hj₁ : Function.Injective j₁)
     rw [BassSerreHNN.smul_pt_eq_iff] at hf0
     rw [BassSerreHNN.smul_pt_eq_iff] at hf1
     rw [BassSerreHNN.smul_pt_eq_iff] at hf2
-    exact eq_one_of_fixes_axis_segment hj₁ hj₂ hinter g hf0 hf1 hf2
+    exact eq_one_of_fixes_axis_segment hj₁ hj₂ hinter g hf0 hf1 hf2)
 
 /-- **`E` is acylindrically hyperbolic**, granted the two named literature
 inputs. -/

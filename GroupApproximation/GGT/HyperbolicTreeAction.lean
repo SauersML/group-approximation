@@ -258,12 +258,13 @@ bounded size.  The reason the statement below asserts only the *consequence*
 invariant of bounded size whose level sets agree on the ends of the middle
 segment.
 
-Sketch of the missing proof.  Both `m_i` for `n ≤ i ≤ d(x,y) - n` and `g·m_i`
-lie on the geodesic `[g·x, g·y]`, because each is within `n` of an endpoint's
-image; on a geodesic a point is determined by its distance to one end;
-`d(g·x, g·m_i) = i` while `d(g·x, m_i) = i + k` with
-`k = d(x,g·x) - 2 (g·x | y)_x` independent of `i`; so `g·m_i = m_{i-k}` and
-`|k| ≤ n`.  Formalising it is a `Walk` and geodesic exercise, not a new idea. -/
+**This is now a theorem**: `GGT/HyperbolicTreeSegmentShift.lean` proves it as
+`segmentShiftStatement`, with the invariant `Φ g = d(x,y) - d(x, g·y)`.  Nothing
+downstream needs to carry it as a hypothesis; `isAcylindrical_treeSpace_of_adj`
+in that module is the resulting unconditional criterion.  The statement is kept
+here because it is what `isAcylindrical_treeSpace` consumes, and keeping the
+consumer independent of the proof keeps this module free of the geodesic
+combinatorics. -/
 def SegmentShiftStatement : Prop :=
   ∀ (G : Type) [Group G] (V : Type) (H : SimpleGraph V) [MulAction G V]
     (L : ℕ), H.IsTree →
@@ -274,11 +275,14 @@ def SegmentShiftStatement : Prop :=
 rather than trivial segment stabilisers, written down as the statement this
 module does not prove.
 
-It follows from `SegmentShiftStatement` by a coset count: the level sets of the
-shift invariant on the `ε`-stabiliser of the pair are cosets of the pointwise
-stabiliser of the middle segment, so the stabiliser has at most
-`(2⌈ε⌉ + 1) · N` elements.  `isAcylindrical_treeSpace` is the case `N = 1`,
-where the count degenerates to an injection and is proved outright. -/
+Its geometric half is no longer missing --- `SegmentShiftStatement` is proved in
+`GGT/HyperbolicTreeSegmentShift.lean`.  What remains is purely a count: the
+level sets of the shift invariant on the `ε`-stabiliser of the pair are cosets
+of the pointwise stabiliser of the middle segment, so that stabiliser has at
+most `(2⌈ε⌉ + 1) · N` elements.  `isAcylindrical_treeSpace` is the case `N = 1`,
+where the count degenerates to an injection and is proved outright; the general
+case needs the cardinality of a set that injects into a product, which is the
+one step not carried out. -/
 def TreeAcylindricityStatement : Prop :=
   ∀ (G : Type) [Group G] (V : Type) (H : SimpleGraph V) [MulAction G V]
     (hH : H.IsTree) (L N : ℕ),

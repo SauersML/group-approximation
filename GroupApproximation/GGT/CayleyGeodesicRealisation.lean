@@ -46,6 +46,14 @@ branch returning `p` itself and a far branch snapping to the vertex.  `Point.ext
 is what turns the parameter equation into an equality of points; the proof
 fields of `Point` are propositions, so they take care of themselves.
 
+## What it closes
+
+With `isGeodesicRealisation` proved, `CayleyGeodesicModel.model` needs no
+hypothesis: `hasGeodesicModel_of_hullGeneratingSet` builds the geodesic model of
+`Γ(G,A)` outright.  Of the two residuals `Manuscript.NonMF.HullFillAxisDichotomy`
+left for `AxisDichotomy`, that was one; `axisDichotomy_cayley_of_commonPower`
+records that the other, `CommonPowerInGeodesicSpace`, is now the whole cost.
+
 ## Status
 
 **Not compiled.**  Written while builds were frozen, and not in the root import
@@ -59,6 +67,8 @@ namespace CayleyGeodesicModel
 open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
+open GroupApproximation.Manuscript.NonMF.OsinNormalReduction
+open GroupApproximation.Manuscript.NonMF.AxisDichotomyRoute
 open scoped Classical
 
 universe u
@@ -616,6 +626,24 @@ theorem isGeodesicRealisation (A : Alphabet G) : IsGeodesicRealisation A := by
       · rw [hd]
         have hpar : p.param - (p.param - q.param) = q.param := by ring
         rw [hpar, hq_eq]
+
+/-! ## What the model now costs -/
+
+/-- **The geodesic model of `Γ(G,A)` exists, unconditionally.**
+`CayleyGeodesicModel.hasGeodesicModel` asked for `IsGeodesicRealisation`; it is
+`isGeodesicRealisation`. -/
+theorem hasGeodesicModel_of_hullGeneratingSet (A : HullGeneratingSet G) :
+    HasGeodesicModel A.alphabet :=
+  hasGeodesicModel A (isGeodesicRealisation A.alphabet)
+
+/-- **`AxisDichotomy` at `Γ(G,A)` now costs one theorem.**  Of the two
+residuals of `Manuscript.NonMF.HullFillAxisDichotomy`, the model is built here,
+so `CommonPowerInGeodesicSpace` — the common-power theorem in a geodesic space —
+is all that is left. -/
+theorem axisDichotomy_cayley_of_commonPower (A : HullGeneratingSet G)
+    (hCP : CommonPowerInGeodesicSpace.{u, u}) :
+    AxisDichotomy G (Cayley.base A.alphabet) :=
+  axisDichotomy_cayley A hCP (hasGeodesicModel_of_hullGeneratingSet A)
 
 end CayleyGeodesicModel
 end GGT

@@ -54,6 +54,12 @@ families in groups acting on hyperbolic spaces*, Mem. Amer. Math. Soc. 245
   every element of it is then reachable from `1` by a single `X`-letter, which
   is not an edge of `Γ_{H λ}`.  So the relative generating set to name is the
   base that was coned off, never the coned-off alphabet, which contains `H`.
+* `RelGenSet.not_isHyperbolicallyEmbedded_of_base_supset_alphabet` — **a
+  subgroup cannot be coned off twice**: taking the alphabet of one relative
+  generating set as the base of a second and coning off the same infinite
+  family again is vacuous.  Composing two coning-off steps — Osin's
+  Theorem 5.4 and then Dahmani--Guirardel--Osin's Theorem 6.8 — must cone off
+  *different* subgroups at the two stages.
 * `RelGenSet.not_isLoxodromic_of_mem_fam` — no element of `H λ` is loxodromic
   on the relative Cayley graph.
 
