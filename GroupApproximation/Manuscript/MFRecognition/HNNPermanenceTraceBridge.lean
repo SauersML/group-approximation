@@ -1,7 +1,8 @@
 import GroupApproximation.Analysis.MaximalGroupCStarTrace
 import GroupApproximation.Analysis.ReducedGroupCStarMFObstruction
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceCitations
-import GroupApproximation.Manuscript.MFRecognition.HNNTraceBaseTransport
+import GroupApproximation.Manuscript.MFRecognition.HNNTraceBaseTrace
+import GroupApproximation.Manuscript.MFRecognition.HNNTraceCovariantBase
 
 /-!
 # `thm:hnn-permanence`, Step 3: the tracial state
@@ -20,18 +21,24 @@ This module assembles the printed Step 3 of `thm:hnn-permanence`:
 > and let `τ' = τ_R ∘ σ|_{A'}` ... So `(A', j, τ')` is a tracial MF
 > realization of `R`.
 
-It is deliberately thin, and it consumes only *landed* modules: the four
-`HNNTrace*` modules on main, `HNNPermanenceShulman` (Steps 1 and 2), and the
-`HNNPermanenceSetup*` chain.  It does not touch `HNNPermanenceTrace.lean` or
-the unlanded `HNNTrace*` modules, which are being developed separately; when
-those land, the two `HNNInputs` fields consumed below — `reducedFactorisation`
-and `reducedSubgroupHom` — can be replaced by their theorems without changing
-anything else here.
+It is deliberately thin, and it consumes only *landed* modules.  Most of the
+paragraph is now proved elsewhere on main and simply reused here:
 
-The first printed sentence is **proved** rather than assumed: the landed
-`HNNTraceBaseTransport` supplies `HNNTraceBaseRecovery`, the inverse of `ι` on
-`D`, so `T = τ ∘ ι⁻¹` is a definition and `T(ιρ(g)) = 0` follows from the
-regularity of `τ`.
+* `T = τ ∘ ι⁻¹` and its regularity are `HNNTraceBaseTrace.baseTrace` and
+  `baseTrace_regular`, resting on `HNNTraceBaseTransport.HNNTraceBaseRecovery`,
+  the inverse of `ι` on `D`;
+* `π : D → C*_r(G)` is `HNNTraceReducedFactorization.reducedFactorisation`;
+* the coset decomposition giving `C*_r(G) → C*_r(R)` is
+  `HNNTraceReducedSubgroup.reducedSubgroupHom`, whose module also proves
+  `hnnExtension_countable`;
+* `σ₀` and `λ_R(t)` are `HNNTraceCovariantBase.sigmaZero` and `stableUnitary`.
+
+What remains here is the assembly: the covariance relation, the lift `σ`, the
+group representation `j`, its faithfulness, the trace `τ'`, and the realization
+`(A', j, τ')`.  Exactly one printed sentence of the paragraph is still assumed
+rather than proved — *"two `*`-homomorphisms that agree on generators agree on
+`B₀`"*, the field `HNNInputs.edgeDensity`, used once, in
+`sigmaZero_covariance`.
 -/
 
 namespace GroupApproximation
@@ -48,100 +55,20 @@ variable {G : Type} [Group G] {S T : Subgroup G} {phi : S ≃* T}
 variable {A : Type} [CStarAlgebra A]
 variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
 
-/-! ## `T = τ ∘ ι⁻¹`, proved -/
-
-/-- Printed: *"The functional `T = τ ∘ ι⁻¹` is a tracial state on `ι(A) ⊇ D`."*
-`HNNTraceBaseRecovery` is `ι⁻¹` on `D`, so this is a definition. -/
-def baseTrace (data : CoronaConjugator G S T phi A X) :
-    TracialState (baseAlgebra data) :=
-  data.realization.tau.compStarAlgHom (HNNTraceBaseRecovery data)
-
-/-- Printed: *"with `T(ιρ(g)) = 0` for `g ≠ 1`."* -/
-theorem baseTrace_regular (data : CoronaConjugator G S T phi A X) (g : G)
-    (hg : g ≠ 1) :
-    baseTrace data
-        (((baseUnitaryHom data g : unitary (baseAlgebra data)) :
-          baseAlgebra data)) = 0 := by
-  show data.realization.tau
-      (HNNTraceBaseRecovery data
-        (((baseUnitaryHom data g : unitary (baseAlgebra data)) :
-          baseAlgebra data))) = 0
-  rw [HNNTraceBaseRecovery_generator]
-  exact data.realization.regular g hg
-
-/-! ## `π : D → C*_r(G)` and `C*_r(G) → C*_r(R)` -/
-
-/-- The printed homomorphism `π : D → C*_r(G)`. -/
-def reducedFactorisation (hIn : HNNInputs)
-    (data : CoronaConjugator G S T phi A X) :
-    baseAlgebra data →⋆ₐ[ℂ] ReducedGroupCStar G :=
-  (hIn.reducedFactorisation data).choose
-
-@[simp] theorem reducedFactorisation_apply (hIn : HNNInputs)
-    (data : CoronaConjugator G S T phi A X) (g : G) :
-    reducedFactorisation hIn data
-        (((baseUnitaryHom data g : unitary (baseAlgebra data)) :
-          baseAlgebra data)) = reducedLeftRegular G g :=
-  (hIn.reducedFactorisation data).choose_spec g
-
-/-- The printed homomorphism `C*_r(G) → C*_r(R)`. -/
-def reducedSubgroupHom (hIn : HNNInputs) (H : Type) [Group H]
-    (S₀ T₀ : Subgroup H) (psi : S₀ ≃* T₀) :
-    ReducedGroupCStar H →⋆ₐ[ℂ] ReducedGroupCStar (HNNExtension H S₀ T₀ psi) :=
-  (hIn.reducedSubgroupHom H S₀ T₀ psi).choose
-
-@[simp] theorem reducedSubgroupHom_apply (hIn : HNNInputs) (H : Type)
-    [Group H] (S₀ T₀ : Subgroup H) (psi : S₀ ≃* T₀) (g : H) :
-    reducedSubgroupHom hIn H S₀ T₀ psi (reducedLeftRegular H g) =
-      reducedLeftRegular (HNNExtension H S₀ T₀ psi) (HNNExtension.of g) :=
-  (hIn.reducedSubgroupHom H S₀ T₀ psi).choose_spec g
-
-/-- The printed group `R` of `eq:hnn` is countable. -/
-theorem hnnExtension_countable (hIn : HNNInputs) (H : Type) [Group H]
-    [Countable H] (S₀ T₀ : Subgroup H) (psi : S₀ ≃* T₀) :
-    Countable (HNNExtension H S₀ T₀ psi) :=
-  hIn.hnnCountable H S₀ T₀ psi
-
-/-! ## `σ₀ : D → C*_r(R)` -/
-
-/-- Printed: *"Composing, we obtain `σ₀ : D → C*_r(R)` with
-`σ₀(ιρ(g)) = λ_R(g)`."* -/
-def sigmaZero (hIn : HNNInputs) (data : CoronaConjugator G S T phi A X) :
-    baseAlgebra data →⋆ₐ[ℂ] ReducedGroupCStar (HNNExtension G S T phi) :=
-  (reducedSubgroupHom hIn G S T phi).comp (reducedFactorisation hIn data)
-
-@[simp] theorem sigmaZero_apply (hIn : HNNInputs)
-    (data : CoronaConjugator G S T phi A X) (g : G) :
-    sigmaZero hIn data
-        (((baseUnitaryHom data g : unitary (baseAlgebra data)) :
-          baseAlgebra data)) =
-      reducedLeftRegular (HNNExtension G S T phi) (HNNExtension.of g) := by
-  show reducedSubgroupHom hIn G S T phi
-      (reducedFactorisation hIn data
-        (((baseUnitaryHom data g : unitary (baseAlgebra data)) :
-          baseAlgebra data))) = _
-  rw [reducedFactorisation_apply, reducedSubgroupHom_apply]
-
-/-- The stable unitary `λ_R(t)` of `C*_r(R)`. -/
-def stableUnitary (H : Type) [Group H] (S₀ T₀ : Subgroup H)
-    (psi : S₀ ≃* T₀) :
-    unitary (ReducedGroupCStar (HNNExtension H S₀ T₀ psi)) :=
-  reducedLeftRegularUnitary (HNNExtension H S₀ T₀ psi) HNNExtension.t
-
 /-! ## The covariance relation -/
 
 /-- The printed identity *"on the generators `ιρ(s)` both sides equal
 `λ_R(θ(s))`, because `tst⁻¹ = θ(s)` in `R`"*. -/
-theorem sigmaZero_covariance_generator (hIn : HNNInputs)
+theorem sigmaZero_covariance_generator
     (data : CoronaConjugator G S T phi A X) (s : S) :
     (stableUnitary G S T phi :
             ReducedGroupCStar (HNNExtension G S T phi)) *
-          sigmaZero hIn data
+          sigmaZero data
             (((baseUnitaryHom data (s : G) : unitary (baseAlgebra data)) :
               baseAlgebra data)) *
         star (stableUnitary G S T phi :
           ReducedGroupCStar (HNNExtension G S T phi)) =
-      sigmaZero hIn data
+      sigmaZero data
         (((baseUnitaryHom data (edgeHom phi s) :
           unitary (baseAlgebra data)) : baseAlgebra data)) := by
   have hgroup : (HNNExtension.t : HNNExtension G S T phi) *
@@ -167,8 +94,8 @@ theorem sigmaZero_covariance (hIn : HNNInputs)
     (b : sourceEdgeAlgebra data) :
     (stableUnitary G S T phi :
           ReducedGroupCStar (HNNExtension G S T phi)) *
-        sigmaZero hIn data ((b : baseAlgebra data)) =
-      sigmaZero hIn data
+        sigmaZero data ((b : baseAlgebra data)) =
+      sigmaZero data
           (((edgeIsomorphism data b : targetEdgeAlgebra data) :
             baseAlgebra data)) *
         (stableUnitary G S T phi :
@@ -176,27 +103,27 @@ theorem sigmaZero_covariance (hIn : HNNInputs)
   have hfg :
       (Unitary.conjStarAlgAut ℂ (ReducedGroupCStar (HNNExtension G S T phi))
               (stableUnitary G S T phi)).toStarAlgHom.comp
-          ((sigmaZero hIn data).comp (sourceEdgeAlgebra data).subtype) =
-        (sigmaZero hIn data).comp
+          ((sigmaZero data).comp (sourceEdgeAlgebra data).subtype) =
+        (sigmaZero data).comp
           ((targetEdgeAlgebra data).subtype.comp
             (edgeIsomorphism data).toStarAlgHom) := by
     refine hIn.edgeDensity data _ _ ?_
     intro s
     show (stableUnitary G S T phi :
               ReducedGroupCStar (HNNExtension G S T phi)) *
-            sigmaZero hIn data
+            sigmaZero data
               ((((sourceGenerator data s :
                 unitary (sourceEdgeAlgebra data)) : sourceEdgeAlgebra data) :
                 baseAlgebra data)) *
           star (stableUnitary G S T phi :
             ReducedGroupCStar (HNNExtension G S T phi)) =
-      sigmaZero hIn data
+      sigmaZero data
         (((edgeIsomorphism data
             (((sourceGenerator data s : unitary (sourceEdgeAlgebra data)) :
               sourceEdgeAlgebra data)) : targetEdgeAlgebra data) :
           baseAlgebra data))
     rw [edgeIsomorphism_generator, coe_sourceGenerator, coe_targetGenerator]
-    exact sigmaZero_covariance_generator hIn data s
+    exact sigmaZero_covariance_generator data s
   have hb := congrArg
     (fun F : sourceEdgeAlgebra data →⋆ₐ[ℂ]
         ReducedGroupCStar (HNNExtension G S T phi) ↦ F b) hfg
@@ -207,10 +134,10 @@ theorem sigmaZero_covariance (hIn : HNNInputs)
     (stableUnitary G S T phi).property.1
   have h : (stableUnitary G S T phi :
             ReducedGroupCStar (HNNExtension G S T phi)) *
-          sigmaZero hIn data ((b : baseAlgebra data)) *
+          sigmaZero data ((b : baseAlgebra data)) *
         star (stableUnitary G S T phi :
           ReducedGroupCStar (HNNExtension G S T phi)) =
-      sigmaZero hIn data
+      sigmaZero data
         (((edgeIsomorphism data b : targetEdgeAlgebra data) :
           baseAlgebra data)) := hb
   rw [← h, mul_assoc, hstar, mul_one]
@@ -222,7 +149,7 @@ def reducedCovariantRepresentation (hIn : HNNInputs)
       (edgeIsomorphism data) :=
   CStarHNNRepresentation.ofCovariantPair (sourceEdgeAlgebra data)
     (targetEdgeAlgebra data) (edgeIsomorphism data)
-    (sigmaZero hIn data) (stableUnitary G S T phi)
+    (sigmaZero data) (stableUnitary G S T phi)
     (sigmaZero_covariance hIn data)
 
 /-- Printed: *"The universal property of `U` gives `σ : U → C*_r(R)` with
@@ -234,7 +161,7 @@ def sigma (hIn : HNNInputs) (data : CoronaConjugator G S T phi A X) :
 
 @[simp] theorem sigma_base (hIn : HNNInputs)
     (data : CoronaConjugator G S T phi A X) (d : baseAlgebra data) :
-    sigma hIn data (universalBase data d) = sigmaZero hIn data d :=
+    sigma hIn data (universalBase data d) = sigmaZero data d :=
   rfl
 
 @[simp] theorem sigma_stable (hIn : HNNInputs)
@@ -307,7 +234,7 @@ theorem groupLiftEval_eq_regular (hIn : HNNInputs)
           universalHNN data) =
       reducedLeftRegular (HNNExtension G S T phi) (HNNExtension.of g)
     rw [groupLift_of]
-    exact sigmaZero_apply hIn data g
+    exact sigmaZero_apply data g
   · apply Subtype.ext
     show sigma hIn data
         ((groupLift data HNNExtension.t : unitary (universalHNN data)) :
@@ -377,7 +304,7 @@ def hnnRegularRealization (hIn : HNNInputs) [Countable G]
     RegularRealizationData (HNNExtension G S T phi)
       (groupGeneratedCStar (groupLift data)) := by
   letI : Countable (HNNExtension G S T phi) :=
-    hnnExtension_countable hIn G S T phi
+    hnnExtension_countable G S T phi
   exact generatedRegularRealization
     (hIn.universalHNNIsMF data).2
     (groupLift data) (universalTrace hIn data)

@@ -86,7 +86,7 @@ theorem manuscriptHNNPermanence (hIn : HNNInputs) {G : Type} [Group G] [Countabl
         iota ((realization.rho ((phi s : T) : G) : unitary A) : A)) :
     IsRegularlyRealized (HNNExtension G S T phi) := by
   letI : Countable (HNNExtension G S T phi) :=
-    hnnExtension_countable hIn G S T phi
+    hnnExtension_countable G S T phi
   exact hIn.regularRealizationDescent
     (hnnRegularRealization hIn
       ({ realization := realization
@@ -111,7 +111,7 @@ theorem manuscriptHNNPermanence_isOperatorMF (hIn : HNNInputs) {G : Type} [Group
         iota ((realization.rho ((phi s : T) : G) : unitary A) : A)) :
     IsOperatorMF (HNNExtension G S T phi) := by
   letI : Countable (HNNExtension G S T phi) :=
-    hnnExtension_countable hIn G S T phi
+    hnnExtension_countable G S T phi
   exact isOperatorMF_of_isRegularlyRealized
     (manuscriptHNNPermanence hIn phi realization
       iota hiota W hW)
