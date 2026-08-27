@@ -42,7 +42,8 @@ theorem norming_of_dense_norming
     ∃ R : CStarAmalgamRepresentation iA iB,
       HasMFEmbedding R.carrier ∧
         ‖x‖ - ε ≤ ‖universalCStarAmalgamEval iA iB R x‖ := by
-  obtain ⟨y, hyD, hy⟩ := hD.exists_dist_lt x (ε := ε / 3) (by linarith)
+  obtain ⟨y, hyD, hy⟩ :=
+    Metric.mem_closure_iff.mp (hD x) (ε / 3) (by linarith)
   obtain ⟨R, hRMF, hR⟩ := hdense y hyD (ε / 3) (by linarith)
   refine ⟨R, hRMF, ?_⟩
   have hxy : ‖x - y‖ < ε / 3 := by
