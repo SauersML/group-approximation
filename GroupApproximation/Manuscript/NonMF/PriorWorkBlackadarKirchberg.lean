@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.NFAlgebra
 import GroupApproximation.Analysis.FiniteDimensionalCStarWedderburn
 import GroupApproximation.Analysis.LanceNFUnitalCPAP
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # `Relation to prior work`: the Blackadar--Kirchberg NF characterization
@@ -19,8 +20,9 @@ repository's independent finite-local NF predicate `IsNFAlgebra`, at
 ## Which input is cited, and why
 
 Exactly one: **the converse half of Blackadar--Kirchberg's characterization** —
-a separable nuclear MF `C*`-algebra is NF.  That is the single `sorry` of this
-file, `blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra`.
+a separable nuclear MF `C*`-algebra is NF.  It is exposed below as the leading
+binder `BlackadarKirchbergNFConverseInput`; no theorem in this file hides the
+citation behind `sorry` or an axiom.
 
 The forward half is *not* cited.  `IsNFAlgebra` is defined in
 `Analysis/NFAlgebra.lean` independently of nuclearity and of MF — its data are
@@ -71,10 +73,10 @@ open CStarExactness ReducedGroupCStarTrace
 
 universe u
 
--- LITERATURE INPUT (sorry): Blackadar--Kirchberg, Generalized inductive limits
+-- LITERATURE INPUT: Blackadar--Kirchberg, Generalized inductive limits
 -- of finite-dimensional C*-algebras, Math. Ann. 307 (1997), no. 3, 343--380;
 -- the converse half of the NF characterization.
-/-- **Blackadar--Kirchberg, converse half.**
+/-- **The exact Blackadar--Kirchberg converse interface.**
 
 A separable nuclear MF `C*`-algebra is NF.  Separability is carried inside
 `IsMFAlgebra`.
@@ -86,12 +88,19 @@ Blackadar and Kirchberg combine them into downward maps that are approximately
 multiplicative on a prescribed finite set.  The repository supplies the
 finite-dimensional structure theory and the completely positive lifting used in
 that combination — see the module docstring — but not the combination
-itself. -/
+itself.  Every type and structure binder is inside this proposition, so a
+consumer must carry this citation explicitly. -/
+def BlackadarKirchbergNFConverseInput : Prop :=
+  ∀ (A : Type u) [CStarAlgebra A],
+    IsNuclearCStarAlgebra A → IsMFAlgebra A → IsNFAlgebra A
+
+/-- Apply the exact cited converse interface at one C-star algebra. -/
 theorem blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra
+    (bk : BlackadarKirchbergNFConverseInput.{u})
     {A : Type u} [CStarAlgebra A]
-    (_hnuc : IsNuclearCStarAlgebra A) (_hMF : IsMFAlgebra A) :
+    (hnuc : IsNuclearCStarAlgebra A) (hMF : IsMFAlgebra A) :
     IsNFAlgebra A :=
-  sorry
+  bk A hnuc hMF
 
 /-- **Blackadar--Kirchberg CPAP/NF connected to the Lance interface.**
 
@@ -106,12 +115,13 @@ Thus the only cited content in this composite is still the existing BK
 converse above; the contractive-to-unital and matrix/operator steps introduce
 no further input. -/
 theorem blackadarKirchberg_nuclearReducedCPAP_of_isNuclear_of_isMFAlgebra
+    (bk : BlackadarKirchbergNFConverseInput.{0})
     (G : Type) [Group G]
     (hnuc : IsNuclearCStarAlgebra (ReducedGroupCStar G))
     (hMF : IsMFAlgebra (ReducedGroupCStar G)) :
     NuclearReducedCPAP G :=
   nuclearReducedCPAP_of_isNFAlgebra G
-    (blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra hnuc hMF)
+    (blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra bk hnuc hMF)
 
 /-- **The printed sentence.**
 
@@ -124,16 +134,24 @@ with the corona-embedding half of `IsNFAlgebra.isMFAlgebra`.  The converse is
 the cited half, applied to `⟨hsep, hmf⟩ : IsMFAlgebra A`, which is where the
 printed separability hypothesis is spent. -/
 theorem blackadarKirchberg_nfAlgebra_iff {A : Type u} [CStarAlgebra A]
+    (bk : BlackadarKirchbergNFConverseInput.{u})
     (hsep : TopologicalSpace.SeparableSpace A) :
     IsNFAlgebra A ↔ IsNuclearCStarAlgebra A ∧ HasMFEmbedding A := by
   constructor
   · intro hA
     exact ⟨hA.isNuclearCStarAlgebra, hA.isMFAlgebra.2⟩
   · rintro ⟨hnuc, hmf⟩
-    exact blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra hnuc
+    exact blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra bk hnuc
       ⟨hsep, hmf⟩
 
 end PriorWork
 end NonMF
 end Manuscript
 end GroupApproximation
+
+open GroupApproximation.Manuscript.NonMF.PriorWork
+
+#audit_axioms BlackadarKirchbergNFConverseInput
+#audit_axioms blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra
+#audit_axioms blackadarKirchberg_nuclearReducedCPAP_of_isNuclear_of_isMFAlgebra
+#audit_axioms blackadarKirchberg_nfAlgebra_iff
