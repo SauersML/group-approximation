@@ -1,5 +1,6 @@
 import GroupApproximation.Higman.CurrentOperationClosures
 import GroupApproximation.Higman.EnumeratedRangeExtract
+import GroupApproximation.Higman.HigmanBoundedWindowRE
 import GroupApproximation.Higman.PairedReturnCutter
 import GroupApproximation.Higman.TheoremFour
 
@@ -50,6 +51,22 @@ theorem fpOvergroup_of_fgRecursive_of_omega_boundedWindow
     {G : Type} [Group G] (p : FGRecursive G) : Nonempty (FPOvergroup G) :=
   fpOvergroup_of_fgRecursive
     (reBenign_of_omega_boundedWindow hOmega hWindow) p
+
+/-- With bounded-window arithmetic discharged, Omega is the sole remaining
+input to the torsion-free recursively-enumerable benign theorem. -/
+theorem reBenignTF_of_omega (hOmega : Omega.OmegaInput) : REBenignTF :=
+  reBenignTF_of_omega_boundedWindow hOmega boundedWindowRE
+
+/-- Ordinary recursively-enumerable benignity now depends only on Omega. -/
+theorem reBenign_of_omega (hOmega : Omega.OmegaInput) : REBenign :=
+  reBenign_of_reBenignTF (reBenignTF_of_omega hOmega)
+
+/-- The current finitely-generated embedding theorem has exactly the Omega
+tower as its remaining input. -/
+theorem fpOvergroup_of_fgRecursive_of_omega
+    (hOmega : Omega.OmegaInput) {G : Type} [Group G]
+    (p : FGRecursive G) : Nonempty (FPOvergroup G) :=
+  fpOvergroup_of_fgRecursive (reBenign_of_omega hOmega) p
 
 end Higman
 end GroupApproximation
