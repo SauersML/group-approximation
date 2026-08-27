@@ -9,6 +9,7 @@ import GroupApproximation.Sofic.StarTranspositionRankMass
 import GroupApproximation.Sofic.FinitePacketDelormeCenter
 import GroupApproximation.Sofic.FinitePacketDelormeDiagonalization
 import GroupApproximation.Sofic.FinitePacketDisplacementCocycle
+import GroupApproximation.Sofic.FinitePacketWordCovariance
 import GroupApproximation.Sofic.FinitePacketCollapseCore
 
 /-!
@@ -38,5 +39,6 @@ are formalized.
 #print axioms GroupApproximation.FinitePacketDelormeDiagonalization.exists_cofinal_vanishing_coboundary_primitive
 #print axioms GroupApproximation.FinitePacketDisplacementCocycle.isBoundedSeq_normalizedDisplacement
 #print axioms GroupApproximation.FinitePacketDisplacementCocycle.seqNorm_cocycleDefect_eq_zero
+#print axioms GroupApproximation.FinitePacketWordCovariance.covariance_wordMover
 #print axioms GroupApproximation.FinitePacketCollapseCore.eventually_packetRankWeight_eq_zero_of_scaled_vanishing
 #print axioms GroupApproximation.FinitePacketCollapseCore.eventually_generator_eq_base_of_scaled_vanishing
