@@ -631,6 +631,33 @@ theorem profiniteClosure_eq_of_fg [Finite G]
       simp
   rwa [hPe] at hmapped
 
+/-- LERF transported to a lamp group presented as a free group. -/
+theorem profiniteClosure_eq_of_fg_of_lampEquiv
+    {K : Type} [Group K] [Finite G]
+    (d : HNNExtension.NormalWord.TransversalPair G M M)
+    (e : K ≃* FreeGroup α)
+    (H : Subgroup (FreeLamp G M K)) (hH : H.FG) :
+    profiniteClosure H = H := by
+  let E : FreeLamp G M K ≃* FreeLamp G M (FreeGroup α) :=
+    FreeLampFinitePresentation.freeLampEquivOfLampEquiv G M e
+  let P : Subgroup (FreeLamp G M (FreeGroup α)) := H.map E.toMonoidHom
+  have hPfg : P.FG := Higman.fg_map hH E.toMonoidHom
+  have hPclosed : profiniteClosure P = P :=
+    profiniteClosure_eq_of_fg (M := M) d P hPfg
+  apply le_antisymm
+  · intro x hx
+    have hex : E x ∈ profiniteClosure P := by
+      intro Q _ _ q
+      obtain ⟨h, hh, heq⟩ := hx Q (q.comp E.toMonoidHom)
+      refine ⟨E h, ⟨h, hh, rfl⟩, ?_⟩
+      change q (E.toMonoidHom h) = q (E.toMonoidHom x)
+      simpa only [MonoidHom.comp_apply] using heq
+    rw [hPclosed] at hex
+    obtain ⟨h, hh, heq⟩ := hex
+    have : h = x := E.injective heq
+    rwa [← this]
+  · exact le_profiniteClosure H
+
 end
 
 end FreeLampFiniteBaseProfinite
