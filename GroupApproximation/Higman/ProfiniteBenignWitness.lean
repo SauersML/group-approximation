@@ -181,6 +181,15 @@ namespace ProfiniteBenignWitness
 
 variable {H₁ H₂ : Subgroup G}
 
+/-- Forget the cutter while retaining the residually finite, profinitely full
+overgroup carried by a strengthened benign witness. -/
+def toProfiniteFPOvergroup {H : Subgroup G} (u : ProfiniteBenignWitness H) :
+    ProfiniteFPOvergroup G where
+  overgroup := u.witness.toFPOvergroup
+  ambientRF := u.ambientRF
+  embCofinal := u.embCofinal
+  embClosed := u.embClosed
+
 /-- A finitely generated, profinitely closed subgroup of an RF finitely
 presented group has the tautological strengthened witness. -/
 def ofClosedFG [Group.IsFinitelyPresented G] [Group.ResiduallyFinite G]
@@ -419,14 +428,27 @@ theorem embedding_closed :
         JoinLevel1 u₁.witness u₂.witness)) hbase1
   simpa only [joinEmb₂, MonoidHom.range_comp] using hbase2
 
+/-- Once the literal join cutter is profinitely closed, all four strengthened
+fields assemble into a profinite benign witness for the join.  This is the
+direct plug-in point for the finite-cover theorem proved for Higman's paired
+return cutter. -/
+def witness [Group.FG G] (hclosed : CutterClosedObligation u₁ u₂) :
+    ProfiniteBenignWitness (A₁ ⊔ A₂) where
+  witness := joinWitness u₁.witness u₂.witness
+  ambientRF := ambient_residuallyFinite u₁ u₂
+  cutterClosed := hclosed
+  embCofinal := embedding_cofinal u₁ u₂
+  embClosed := embedding_closed u₁ u₂
+
 /-!
-At this point the join has two of the three fields of a
-`ProfiniteBenignWitness`.  The exact missing statement is
+At this point every field of a `ProfiniteBenignWitness` is proved except the
+single exact statement
 
 `CutterClosedObligation u₁ u₂`.
 
 It needs finite-cover subgroup separability; it does not follow merely from
-residual finiteness of the join ambient.  No conditional endpoint is declared.
+residual finiteness of the join ambient.  The constructor `witness` above
+makes that dependency explicit and immediately usable.
 -/
 
 end ProfiniteBenignJoin
