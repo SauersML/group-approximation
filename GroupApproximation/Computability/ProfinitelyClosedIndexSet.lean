@@ -564,7 +564,6 @@ theorem exists_dyadicCheck_iff (g : ℕ × ℕ → Code) (em : ℕ × ℕ) :
 theorem primrec₂_natPow : Primrec₂ ((· ^ ·) : ℕ → ℕ → ℕ) :=
   Primrec₂.unpaired'.1 Nat.Primrec.pow
 
-set_option maxHeartbeats 400000 in
 theorem computable_dyadicCheck {g : ℕ × ℕ → Code} (hg : Computable g) :
     Computable₂ (dyadicCheck g) := by
   have hm : Primrec fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) => z.1.2 :=
@@ -600,9 +599,14 @@ theorem computable_dyadicCheck {g : ℕ × ℕ → Code} (hg : Computable g) :
       evalnBool (g (z.1.1, z.2.1)) (z.2.2.2.1, z.2.2.2.2) :=
     primrec₂_evalnBool.to_comp.comp (hg.comp (Computable.pair he hx.to_comp))
       (Computable.pair hn.to_comp hs.to_comp)
-  exact Computable.of_eq
-    (Primrec.or.to_comp.comp hzero.to_comp
-      (Primrec.and.to_comp.comp hcond.to_comp hev)) fun _ => rfl
+  have hbody : Computable fun z : (ℕ × ℕ) × (ℕ × ℕ × ℕ × ℕ) =>
+      decide (z.1.2 = 0) ||
+        (decide (z.1.2 = 2 ^ z.2.1 * (2 * z.2.2.1 + 1)) &&
+            decide (z.2.2.1 < z.2.2.2.1) &&
+          evalnBool (g (z.1.1, z.2.1)) (z.2.2.2.1, z.2.2.2.2)) :=
+    Primrec.or.to_comp.comp hzero.to_comp
+      (Primrec.and.to_comp.comp hcond.to_comp hev)
+  exact hbody.of_eq fun _ => rfl
 
 /-! ### The two halves of the dyadic argument -/
 

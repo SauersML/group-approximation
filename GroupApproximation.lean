@@ -2231,6 +2231,7 @@ import GroupApproximation.Computability.BenignSupCodeSemantics
 import GroupApproximation.Analysis.CStarMatrixTwoByTwo
 import GroupApproximation.Analysis.RepresentedRootPlaneSpectralQuasiInvariant
 import GroupApproximation.Computability.BenignSupCodeSubgroupSemantics
+import GroupApproximation.Computability.ParametricRecursiveSwitchPresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

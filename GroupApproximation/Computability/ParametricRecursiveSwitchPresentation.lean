@@ -39,6 +39,19 @@ def parametricCopyGeneratorEquivNat (seed : PresentationCode) :
       stage * genCount seed + (g : ℕ) :=
   rfl
 
+/-- Relabel the letters of a raw word by the affine total map
+`i ↦ base + i % modulus`.
+
+This is the body of `copyRaw` with the presentation code abstracted away.  It
+exists so that the `List.map` inside `copyRaw` can be shown primitive recursive
+at the carrier `(ℕ × ℕ) × RawWord`, whose encoding is three levels of naturals
+and booleans, instead of at `((PresentationCode × ℕ) × RawWord) × (ℕ × Bool)`,
+which buries a `List (List (ℕ × Bool))` four levels deep.  `Primrec.list_map`
+projects `Primcodable.prim` out of that instance, and reducing it was the
+elaboration cost this module used to buy with a heartbeat budget. -/
+def shiftLetters (base modulus : ℕ) (w : RawWord) : RawWord :=
+  w.map fun p => (base + p.1 % modulus, p.2)
+
 /-- Move a coded seed word into the copy at `stage`.  The modulo is the same
 total letter-decoding convention used by `PresentationCodes.wordOf`. -/
 def copyRaw (seed : PresentationCode) (stage : ℕ) (w : RawWord) : RawWord :=
@@ -100,32 +113,87 @@ def rawParametricSwitchRelator (seed : PresentationCode) (c : Code)
   else
     bif dovetailEvent c data.1 then killRaw seed data.1 data.2 else []
 
+/-! ### The three address fields, named
+
+`Nat.unpair n` is `let s := sqrt n; if n - s * s < s then … else …`, so any
+attempt to reduce `(Nat.unpair address).1` has to decide an `ite` whose
+condition is stuck on a variable, over a well-founded `Nat.sqrt`.  Every
+`Primrec` statement below therefore names its address field instead of
+spelling the projection out.  `whnf` will not look through the names on its
+own, so a unifier comparing two of these statements has nothing to reduce.
+Reducing them is what the heartbeat budget used to pay for. -/
+
+/-- Which of the three relator families an address selects. -/
+def addressFamily (address : ℕ) : ℕ := (Nat.unpair address).1 % 3
+
+/-- The stage an address selects. -/
+def addressStage (address : ℕ) : ℕ := (Nat.unpair (Nat.unpair address).2).1
+
+/-- The family-specific argument an address carries. -/
+def addressArg (address : ℕ) : ℕ := (Nat.unpair (Nat.unpair address).2).2
+
+/-- The enumerator with its two `let`s expanded and its address fields named.
+
+`Primrec.of_eq` below needs the enumerator in exactly this shape.  Asking for
+it definitionally, inside the primitive-recursiveness proof, makes `whnf`
+reduce `rawParametricSwitchRelator` through both `let`s and the `Nat.unpair`
+projections while a `Primrec` unification problem is open.  Here the same
+equation is a *rewrite* by the definition's own equation lemma, at a goal with
+no `Primcodable` instance in sight, and the proof downstream is a term. -/
+theorem rawParametricSwitchRelator_eq (seed : PresentationCode) (c : Code)
+    (address : ℕ) :
+    rawParametricSwitchRelator seed c address =
+      (if addressFamily address = 0 then
+        copyRaw seed (addressStage address)
+          (seed.2.getD (addressArg address) [])
+      else if addressFamily address = 1 then
+        (bif dovetailEvent c (addressStage address) then []
+          else bridgeRaw seed (addressStage address) (addressArg address))
+      else
+        (bif dovetailEvent c (addressStage address) then
+          killRaw seed (addressStage address) (addressArg address)
+        else [])) := by
+  simp only [rawParametricSwitchRelator, addressFamily, addressStage,
+    addressArg]
+
 /-! ## Joint primitive recursiveness -/
 
-set_option maxHeartbeats 800000 in
+/-- The affine relabelling is primitive recursive.  Proved at the small
+carrier: the only list here is the raw word itself. -/
+theorem primrec_shiftLetters :
+    Primrec fun z : (ℕ × ℕ) × RawWord => shiftLetters z.1.1 z.1.2 z.2 := by
+  have hbase : Primrec fun z : ((ℕ × ℕ) × RawWord) × (ℕ × Bool) =>
+      z.1.1.1 :=
+    Primrec.fst.comp (Primrec.fst.comp Primrec.fst)
+  have hmodulus : Primrec fun z : ((ℕ × ℕ) × RawWord) × (ℕ × Bool) =>
+      z.1.1.2 :=
+    Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
+  have hindex : Primrec fun z : ((ℕ × ℕ) × RawWord) × (ℕ × Bool) =>
+      z.2.1 :=
+    Primrec.fst.comp Primrec.snd
+  have hletter : Primrec fun z : ((ℕ × ℕ) × RawWord) × (ℕ × Bool) =>
+      (z.1.1.1 + z.2.1 % z.1.1.2, z.2.2) :=
+    Primrec.pair
+      (Primrec.nat_add.comp hbase (Primrec.nat_mod.comp hindex hmodulus))
+      (Primrec.snd.comp Primrec.snd)
+  exact (Primrec.list_map Primrec.snd hletter.to₂).of_eq fun _ => rfl
+
 theorem primrec_copyRaw :
     Primrec fun z : (PresentationCode × ℕ) × RawWord =>
       copyRaw z.1.1 z.1.2 z.2 := by
-  have hn : Primrec fun z : ((PresentationCode × ℕ) × RawWord) ×
-      (ℕ × Bool) => genCount z.1.1.1 :=
+  have hn : Primrec fun z : (PresentationCode × ℕ) × RawWord =>
+      genCount z.1.1 :=
     Primrec.nat_add.comp
-      (Primrec.fst.comp (Primrec.fst.comp (Primrec.fst.comp Primrec.fst)))
+      (Primrec.fst.comp (Primrec.fst.comp Primrec.fst))
       (Primrec.const 1)
-  have hstage : Primrec fun z : ((PresentationCode × ℕ) × RawWord) ×
-      (ℕ × Bool) => z.1.1.2 :=
-    Primrec.snd.comp (Primrec.fst.comp Primrec.fst)
-  have hindex : Primrec fun z : ((PresentationCode × ℕ) × RawWord) ×
-      (ℕ × Bool) => z.2.1 :=
-    Primrec.fst.comp Primrec.snd
-  have hletter : Primrec fun z : ((PresentationCode × ℕ) × RawWord) ×
-      (ℕ × Bool) =>
-      (z.1.1.2 * genCount z.1.1.1 + z.2.1 % genCount z.1.1.1, z.2.2) := by
-    exact Primrec.pair
-      (Primrec.nat_add.comp
-        (Primrec.nat_mul.comp hstage hn)
-        (Primrec.nat_mod.comp hindex hn))
-      (Primrec.snd.comp Primrec.snd)
-  exact (Primrec.list_map Primrec.snd hletter.to₂).of_eq fun _ => rfl
+  have hstage : Primrec fun z : (PresentationCode × ℕ) × RawWord =>
+      z.1.2 :=
+    Primrec.snd.comp Primrec.fst
+  have hbase : Primrec fun z : (PresentationCode × ℕ) × RawWord =>
+      z.1.2 * genCount z.1.1 :=
+    Primrec.nat_mul.comp hstage hn
+  exact (primrec_shiftLetters.comp
+    (Primrec.pair (Primrec.pair hbase hn) Primrec.snd)).of_eq fun _ => rfl
 
 theorem primrec_bridgeRaw :
     Primrec fun z : (PresentationCode × ℕ) × ℕ =>
@@ -171,66 +239,104 @@ theorem primrec_killRaw :
     (Primrec.pair hindex (Primrec.const true)) (Primrec.const [])).of_eq
       fun _ => rfl
 
-set_option maxHeartbeats 800000 in
+/-! ### The address fields and the three branches, one declaration each
+
+Each lemma below elaborates in its own declaration with a two-line context, so
+no statement is elaborated twice and a residual cost names the branch it
+belongs to. -/
+
+/-- The joint carrier: seed code, source program, relator address. -/
+abbrev SwitchInput : Type := (PresentationCode × Code) × ℕ
+
+theorem primrec_addressFamily : Primrec addressFamily :=
+  Primrec.nat_mod.comp (Primrec.fst.comp Primrec.unpair) (Primrec.const 3)
+
+theorem primrec_addressStage : Primrec addressStage :=
+  Primrec.fst.comp (Primrec.unpair.comp (Primrec.snd.comp Primrec.unpair))
+
+theorem primrec_addressArg : Primrec addressArg :=
+  Primrec.snd.comp (Primrec.unpair.comp (Primrec.snd.comp Primrec.unpair))
+
+theorem primrec_switchSeed : Primrec fun z : SwitchInput => z.1.1 :=
+  Primrec.fst.comp Primrec.fst
+
+theorem primrec_switchCode : Primrec fun z : SwitchInput => z.1.2 :=
+  Primrec.snd.comp Primrec.fst
+
+theorem primrec_switchFamily :
+    Primrec fun z : SwitchInput => addressFamily z.2 :=
+  primrec_addressFamily.comp Primrec.snd
+
+theorem primrec_switchStage :
+    Primrec fun z : SwitchInput => addressStage z.2 :=
+  primrec_addressStage.comp Primrec.snd
+
+theorem primrec_switchArg :
+    Primrec fun z : SwitchInput => addressArg z.2 :=
+  primrec_addressArg.comp Primrec.snd
+
+theorem primrec_switchEvent :
+    Primrec fun z : SwitchInput => dovetailEvent z.1.2 (addressStage z.2) :=
+  primrec_dovetailEvent.comp primrec_switchCode primrec_switchStage
+
+/-- The copied-seed-relator branch. -/
+theorem primrec_copyBranch :
+    Primrec fun z : SwitchInput =>
+      copyRaw z.1.1 (addressStage z.2)
+        (z.1.1.2.getD (addressArg z.2) []) := by
+  have hfixed : Primrec fun z : SwitchInput =>
+      z.1.1.2.getD (addressArg z.2) [] :=
+    Primrec.list_getD ([] : RawWord) |>.comp
+      (Primrec.snd.comp primrec_switchSeed) primrec_switchArg
+  exact primrec_copyRaw.comp
+    (Primrec.pair (Primrec.pair primrec_switchSeed primrec_switchStage)
+      hfixed)
+
+/-- The bridge branch, gated by the dovetail event. -/
+theorem primrec_bridgeBranch :
+    Primrec fun z : SwitchInput =>
+      bif dovetailEvent z.1.2 (addressStage z.2) then []
+        else bridgeRaw z.1.1 (addressStage z.2) (addressArg z.2) := by
+  have hbridge : Primrec fun z : SwitchInput =>
+      bridgeRaw z.1.1 (addressStage z.2) (addressArg z.2) :=
+    primrec_bridgeRaw.comp
+      (Primrec.pair (Primrec.pair primrec_switchSeed primrec_switchStage)
+        primrec_switchArg)
+  exact Primrec.cond primrec_switchEvent (Primrec.const []) hbridge
+
+/-- The kill branch, gated by the dovetail event. -/
+theorem primrec_killBranch :
+    Primrec fun z : SwitchInput =>
+      bif dovetailEvent z.1.2 (addressStage z.2) then
+        killRaw z.1.1 (addressStage z.2) (addressArg z.2)
+      else [] := by
+  have hkill : Primrec fun z : SwitchInput =>
+      killRaw z.1.1 (addressStage z.2) (addressArg z.2) :=
+    primrec_killRaw.comp
+      (Primrec.pair (Primrec.pair primrec_switchSeed primrec_switchStage)
+        primrec_switchArg)
+  exact Primrec.cond primrec_switchEvent hkill (Primrec.const [])
+
+/-- The first family test, stated once so `Primrec.ite` takes it as given. -/
+theorem primrecPred_familyZero :
+    PrimrecPred fun z : SwitchInput => addressFamily z.2 = 0 :=
+  Primrec.eq.comp primrec_switchFamily (Primrec.const 0)
+
+/-- The second family test. -/
+theorem primrecPred_familyOne :
+    PrimrecPred fun z : SwitchInput => addressFamily z.2 = 1 :=
+  Primrec.eq.comp primrec_switchFamily (Primrec.const 1)
+
 /-- The total raw enumerator is primitive recursive jointly in seed, source
-program, and relator address. -/
+program, and relator address.  Two `Primrec.ite`s over the branch lemmas, then
+the named unfolding. -/
 theorem primrec_rawParametricSwitchRelator :
     Primrec fun z : (PresentationCode × Code) × ℕ =>
-      rawParametricSwitchRelator z.1.1 z.1.2 z.2 := by
-  have hseed : Primrec fun z : (PresentationCode × Code) × ℕ => z.1.1 :=
-    Primrec.fst.comp Primrec.fst
-  have hc : Primrec fun z : (PresentationCode × Code) × ℕ => z.1.2 :=
-    Primrec.snd.comp Primrec.fst
-  have ho : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      Nat.unpair z.2 := Primrec.unpair.comp Primrec.snd
-  have hfamily : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      (Nat.unpair z.2).1 % 3 :=
-    Primrec.nat_mod.comp (Primrec.fst.comp ho) (Primrec.const 3)
-  have hdata : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      Nat.unpair (Nat.unpair z.2).2 :=
-    Primrec.unpair.comp (Primrec.snd.comp ho)
-  have hj : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      (Nat.unpair (Nat.unpair z.2).2).1 := Primrec.fst.comp hdata
-  have ha : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      (Nat.unpair (Nat.unpair z.2).2).2 := Primrec.snd.comp hdata
-  have hrels : Primrec fun z : (PresentationCode × Code) × ℕ => z.1.1.2 :=
-    Primrec.snd.comp hseed
-  have hfixed : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      z.1.1.2.getD (Nat.unpair (Nat.unpair z.2).2).2 [] :=
-    Primrec.list_getD ([] : RawWord) |>.comp hrels ha
-  have hcopy : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      copyRaw z.1.1 (Nat.unpair (Nat.unpair z.2).2).1
-        (z.1.1.2.getD (Nat.unpair (Nat.unpair z.2).2).2 []) :=
-    primrec_copyRaw.comp (Primrec.pair (Primrec.pair hseed hj) hfixed)
-  have hevent : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      dovetailEvent z.1.2 (Nat.unpair (Nat.unpair z.2).2).1 :=
-    primrec_dovetailEvent.comp hc hj
-  have hbridge : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      bridgeRaw z.1.1 (Nat.unpair (Nat.unpair z.2).2).1
-        (Nat.unpair (Nat.unpair z.2).2).2 :=
-    primrec_bridgeRaw.comp (Primrec.pair (Primrec.pair hseed hj) ha)
-  have hkill : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      killRaw z.1.1 (Nat.unpair (Nat.unpair z.2).2).1
-        (Nat.unpair (Nat.unpair z.2).2).2 :=
-    primrec_killRaw.comp (Primrec.pair (Primrec.pair hseed hj) ha)
-  have hbridgeCase : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      bif dovetailEvent z.1.2 (Nat.unpair (Nat.unpair z.2).2).1 then []
-        else bridgeRaw z.1.1 (Nat.unpair (Nat.unpair z.2).2).1
-          (Nat.unpair (Nat.unpair z.2).2).2 :=
-    Primrec.cond hevent (Primrec.const []) hbridge
-  have hkillCase : Primrec fun z : (PresentationCode × Code) × ℕ =>
-      bif dovetailEvent z.1.2 (Nat.unpair (Nat.unpair z.2).2).1 then
-        killRaw z.1.1 (Nat.unpair (Nat.unpair z.2).2).1
-          (Nat.unpair (Nat.unpair z.2).2).2 else [] :=
-    Primrec.cond hevent hkill (Primrec.const [])
-  have hzero : PrimrecPred fun z : (PresentationCode × Code) × ℕ =>
-      (Nat.unpair z.2).1 % 3 = 0 :=
-    Primrec.eq.comp hfamily (Primrec.const 0)
-  have hone : PrimrecPred fun z : (PresentationCode × Code) × ℕ =>
-      (Nat.unpair z.2).1 % 3 = 1 :=
-    Primrec.eq.comp hfamily (Primrec.const 1)
-  exact (Primrec.ite hzero hcopy
-    (Primrec.ite hone hbridgeCase hkillCase)).of_eq fun _ => rfl
+      rawParametricSwitchRelator z.1.1 z.1.2 z.2 :=
+  (Primrec.ite primrecPred_familyZero primrec_copyBranch
+    (Primrec.ite primrecPred_familyOne primrec_bridgeBranch
+      primrec_killBranch)).of_eq
+    fun z => (rawParametricSwitchRelator_eq z.1.1 z.1.2 z.2).symm
 
 theorem computable_rawParametricSwitchRelator :
     Computable fun z : (PresentationCode × Code) × ℕ =>
