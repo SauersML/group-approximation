@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.NFAlgebra
 import GroupApproximation.Analysis.FiniteDimensionalCStarWedderburn
+import GroupApproximation.Analysis.LanceNFUnitalCPAP
 
 /-!
 # `Relation to prior work`: the Blackadar--Kirchberg NF characterization
@@ -66,7 +67,7 @@ namespace Manuscript
 namespace NonMF
 namespace PriorWork
 
-open CStarExactness
+open CStarExactness ReducedGroupCStarTrace
 
 universe u
 
@@ -91,6 +92,26 @@ theorem blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra
     (_hnuc : IsNuclearCStarAlgebra A) (_hMF : IsMFAlgebra A) :
     IsNFAlgebra A :=
   sorry
+
+/-- **Blackadar--Kirchberg CPAP/NF connected to the Lance interface.**
+
+For a reduced group C-star algebra, the cited converse half of the
+Blackadar--Kirchberg characterization turns nuclearity together with an MF
+model into finite-local NF data.  The unconditional
+`nuclearReducedCPAP_of_isNFAlgebra` theorem then repairs the CPC factorization
+to a UCP factorization and transports its matrix block to the operator-algebra
+target required by `NuclearReducedCPAP`.
+
+Thus the only cited content in this composite is still the existing BK
+converse above; the contractive-to-unital and matrix/operator steps introduce
+no further input. -/
+theorem blackadarKirchberg_nuclearReducedCPAP_of_isNuclear_of_isMFAlgebra
+    (G : Type) [Group G]
+    (hnuc : IsNuclearCStarAlgebra (ReducedGroupCStar G))
+    (hMF : IsMFAlgebra (ReducedGroupCStar G)) :
+    NuclearReducedCPAP G :=
+  nuclearReducedCPAP_of_isNFAlgebra G
+    (blackadarKirchberg_isNFAlgebra_of_isNuclear_of_isMFAlgebra hnuc hMF)
 
 /-- **The printed sentence.**
 
