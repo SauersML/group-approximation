@@ -1929,6 +1929,7 @@ import GroupApproximation.Manuscript.NonMF.PriorWorkBlackadarKirchberg
 import GroupApproximation.Manuscript.NonMF.PriorWorkConnesEmbedding
 import GroupApproximation.Manuscript.NonMF.PriorWorkErshovJaikinZapirain
 import GroupApproximation.Manuscript.NonMF.PriorWorkShulmanAmalgam
+import GroupApproximation.Manuscript.MFRecognition.TensorSynchronizationCoronaTrace
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
