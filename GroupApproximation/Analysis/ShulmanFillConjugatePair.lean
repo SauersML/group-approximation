@@ -97,11 +97,11 @@ def unitaryConj (u : unitary D) : D →⋆ₐ[ℂ] D where
   toFun x := (u : D) * x * star (u : D)
   map_one' := by
     rw [mul_one]
-    exact unitary.mul_star_self_of_mem u.2
+    exact Unitary.mul_star_self_of_mem u.2
   map_mul' x y := by
     show (u : D) * (x * y) * star (u : D)
       = ((u : D) * x * star (u : D)) * ((u : D) * y * star (u : D))
-    have hu : star (u : D) * (u : D) = 1 := unitary.star_mul_self_of_mem u.2
+    have hu : star (u : D) * (u : D) = 1 := Unitary.star_mul_self_of_mem u.2
     calc (u : D) * (x * y) * star (u : D)
         = (u : D) * x * (star (u : D) * (u : D)) * y * star (u : D) := by
           rw [hu, mul_one]
@@ -119,7 +119,7 @@ def unitaryConj (u : unitary D) : D →⋆ₐ[ℂ] D where
     show (u : D) * algebraMap ℂ D c * star (u : D) = algebraMap ℂ D c
     have hcomm : (u : D) * algebraMap ℂ D c = algebraMap ℂ D c * (u : D) :=
       (Algebra.commutes c (u : D)).symm
-    rw [hcomm, mul_assoc, unitary.mul_star_self_of_mem u.2, mul_one]
+    rw [hcomm, mul_assoc, Unitary.mul_star_self_of_mem u.2, mul_one]
   map_star' x := by
     show (u : D) * star x * star (u : D) = star ((u : D) * x * star (u : D))
     rw [star_mul, star_mul, star_star, mul_assoc]
@@ -144,7 +144,7 @@ theorem unitaryConj_comp_compatible
   intro c
   have hc : l (iA c) = r (iB c) := DFunLike.congr_fun hlr c
   show l (iA c) = (u : D) * r (iB c) * star (u : D)
-  rw [← hc, hu c, mul_assoc, unitary.mul_star_self_of_mem u.2, mul_one]
+  rw [← hc, hu c, mul_assoc, Unitary.mul_star_self_of_mem u.2, mul_one]
 
 /-- The compatible representation carried by a conjugated pair. -/
 def conjugateRepresentation [Nontrivial D]
