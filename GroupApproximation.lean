@@ -1944,6 +1944,7 @@ import GroupApproximation.Manuscript.MFRecognition.LocalityAndCertificates
 import GroupApproximation.Manuscript.OneSidedMFRadical.RadicalCalculusSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.IntroductionClaimSentences
 import GroupApproximation.Manuscript.OneSidedMFRadical.KazhdanTransportSentences
+import GroupApproximation.Manuscript.MFRecognition.ReducedProductsPermanenceWiring
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

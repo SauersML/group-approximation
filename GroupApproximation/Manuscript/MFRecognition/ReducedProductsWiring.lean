@@ -74,5 +74,3 @@ end MFRecognition
 end Manuscript
 end GroupApproximation
 
-#print axioms GroupApproximation.Manuscript.MFRecognition.TensorSynchronization.reducedProduct_separableSubalgebra_isMF
-#print axioms GroupApproximation.Manuscript.MFRecognition.TensorSynchronization.matrixAmplification_isMF
