@@ -521,6 +521,59 @@ theorem exists_edgeScan_or_bad (e : Edge) :
             · simp [hl]
             · exact EdgeScan.right e m carry x t pre ht hem hpref
 
+/-- A successful scan with graph-valued terminal edge reconstructs an
+element of the matched cutter. -/
+theorem normalWord_mem_matchedCutter_of_edgeScan
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d) (tail : Edge)
+    (hscan : EdgeScan w.head w.toWord.toList tail)
+    (htail : (tail : PairedReturnGraphIntersection.P) ∈ Star.graphSub) :
+    w.prod ∈ matchedCutter := by
+  obtain ⟨h, hh, hfac⟩ := factorization_of_edgeScan hscan
+  have hword :
+      PushoutI.ofCoprodI w.toWord.prod =
+        MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC
+          w.toWord.toList :=
+    MatchedSubgroupAmalgam.ofCoprodI_prod_eq_factorListProd
+      edgeToP edgeToC w.toWord
+  have hprod : w.prod =
+      MatchedSubgroupAmalgam.bigInA edgeToP edgeToC (w.head : _) *
+        MatchedSubgroupAmalgam.factorListProd edgeToP edgeToC
+          w.toWord.toList := by
+    rw [PushoutI.NormalWord.prod, hword]
+    congr 1
+    exact (PushoutI.of_apply_eq_base
+      (Amalgam.famHom edgeToP edgeToC) false w.head).symm
+  rw [hprod, hfac]
+  exact matchedCutter.mul_mem hh
+    (Subgroup.subset_closure (Or.inl
+      ⟨(tail : PairedReturnGraphIntersection.P), htail, rfl⟩))
+
+/-- An excluded normal word exposes either a bad carried left syllable or a
+terminal edge outside the graph. -/
+theorem exists_bad_or_terminal_of_normalWord_not_mem
+    {d : PushoutI.NormalWord.Transversal
+      (Amalgam.famHom edgeToP edgeToC)}
+    (w : PushoutI.NormalWord d) (hw : w.prod ∉ matchedCutter) :
+    (∃ (pre : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b))
+        (carry : Edge) (g : PairedReturnGraphIntersection.P)
+        (rest : List
+          (Σ b, Amalgam.fam PairedReturnGraphIntersection.P C b)),
+      w.toWord.toList = pre ++ ⟨false, g⟩ :: rest ∧
+      EdgeScan w.head pre carry ∧
+      (carry : PairedReturnGraphIntersection.P) * g ∉ LeftProduct) ∨
+    ∃ tail, EdgeScan w.head w.toWord.toList tail ∧
+      (tail : PairedReturnGraphIntersection.P) ∉ Star.graphSub := by
+  rcases exists_edgeScan_or_bad w.head w.toWord.toList with hscan | hbad
+  · obtain ⟨tail, htail⟩ := hscan
+    right
+    refine ⟨tail, htail, ?_⟩
+    exact fun ht ↦ hw
+      (normalWord_mem_matchedCutter_of_edgeScan w tail htail ht)
+  · exact Or.inl hbad
+
 /-- The same quotient in the iterated-central-HNN model used by the finite
 free-label action. -/
 def ambientToFiniteStage2 (Q : Type) [Group Q]
