@@ -1,6 +1,7 @@
 import GroupApproximation.Higman.PairedReturnLeftProductProfinite
 import GroupApproximation.Higman.PairedReturnEdgeSeparable
 import GroupApproximation.Higman.FreeLampFiniteBaseProfinite
+import GroupApproximation.Higman.PairedReturnImageIntersectionRefinement
 
 /-!
 # Finite tests on the paired-return amalgam
@@ -362,6 +363,69 @@ theorem imageRightSub_comap_edge_le_graph
   have hfirst := congrArg Prod.fst hpair
   change q (PairedReturnGraphIntersection.mu w) = (d : Q)
   exact congrArg Subtype.val hfirst
+
+/-- The returning subgroup, intrinsically inside the mapped edge. -/
+def imageDelta (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q) :
+    Subgroup (PairedReturnGraphIntersection.M.map q) :=
+  (PairedReturnGraphIntersection.deltaSub.map q).comap
+    (PairedReturnGraphIntersection.M.map q).subtype
+
+/-- Exact graph/edge intersection, expressed as the left edge-comap needed
+by the matched-subamalgam theorem. -/
+theorem imageGraph_comap_edge_eq_imageDelta
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (hinter : Star.graphSub.map q ⊓
+        PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q) :
+    (Star.graphSub.map q).comap
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync true) =
+      imageDelta Q q := by
+  ext d
+  constructor
+  · intro hd
+    change (d : Q) ∈ Star.graphSub.map q at hd
+    change (d : Q) ∈ PairedReturnGraphIntersection.deltaSub.map q
+    rw [← hinter]
+    exact Subgroup.mem_inf.mpr ⟨hd, d.property⟩
+  · intro hd
+    change (d : Q) ∈ PairedReturnGraphIntersection.deltaSub.map q at hd
+    change (d : Q) ∈ Star.graphSub.map q
+    rw [← hinter] at hd
+    exact (Subgroup.mem_inf.mp hd).1
+
+/-- Exact graph/edge intersection also forces the synchronized right image
+to have precisely the same edge-comap. -/
+theorem imageRightSub_comap_edge_eq_imageDelta
+    (Q : Type) [Group Q]
+    (q : PairedReturnGraphIntersection.P →* Q)
+    (hinter : Star.graphSub.map q ⊓
+        PairedReturnGraphIntersection.M.map q =
+      PairedReturnGraphIntersection.deltaSub.map q) :
+    (imageRightSub Q q).comap
+        (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync false) =
+      imageDelta Q q := by
+  apply le_antisymm
+  · rw [← imageGraph_comap_edge_eq_imageDelta Q q hinter]
+    exact imageRightSub_comap_edge_le_graph Q q
+  · intro d hd
+    change (d : Q) ∈ PairedReturnGraphIntersection.deltaSub.map q at hd
+    obtain ⟨p, hp, hpd⟩ := Subgroup.mem_map.mp hd
+    have hpM : p ∈ PairedReturnGraphIntersection.M :=
+      PairedReturnGraphIntersection.deltaSub_le_M hp
+    let m : Edge := ⟨p, hpM⟩
+    have hmDelta : m ∈ PairedReturnGraphIntersection.Delta := hp
+    have hcQ : edgeToC m ∈ PairedReturnCutter.Q := by
+      have hmComap : m ∈ PairedReturnCutter.Q.comap edgeToC := by
+        rw [PairedReturnCutter.Q_comap_edgeToC_eq_Delta]
+        exact hmDelta
+      exact hmComap
+    refine Subgroup.mem_map.mpr ⟨edgeToC m, hcQ, ?_⟩
+    apply Prod.ext
+    · apply Subtype.ext
+      exact hpd
+    · rfl
 
 /-- Inclusion of the target lamp factor. -/
 def imageRightInclusion (Q : Type) [Group Q]
