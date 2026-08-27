@@ -2096,6 +2096,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerStable
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerCovariance
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerNontrivial
 import GroupApproximation.Analysis.AmenableTraceHyperlinear
+import GroupApproximation.Manuscript.NinetyNineProblems.FactorizationHyperlinearTheorem
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
