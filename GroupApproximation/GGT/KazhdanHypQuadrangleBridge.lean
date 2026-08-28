@@ -483,5 +483,39 @@ theorem sharpExistence_of_checkedTable
     Hyperbolic.SharpExistence :=
   sharpExistence_of_tableChecks quadrangleDataOfChecks hhyp hinf htf T q h hextra
 
+/-! ## The whole remaining obligation, as one statement -/
+
+/-- **What the route still owes, in one `Prop`.**  A triangle table passing the
+finite checks whose group is infinite, torsion-free and hyperbolic.
+
+This is strictly weaker than the four hypotheses of
+`sharpExistence_of_tableChecks`, which quantify over *every* table passing the
+checks: here the three group-theoretic clauses are asked of the one table that
+is exhibited.  Property `(T)` and finite presentation do not appear, because
+they are theorems --- `hasKazhdanPropertyT_of_checkedTable` and the
+presentation itself.
+
+Nothing here proves it and nothing assumes it.  Two of its four clauses are
+what `C(3)`-`T(8)` small cancellation is for, the third is the
+Kangaslampi--Vdovina criterion, and the table itself is a construction that the
+sources consulted do not record at order `8`. -/
+def CheckedTableWitness : Prop :=
+  ∃ (Generator TriangleIndex : Type) (_ : Fintype Generator)
+    (_ : DecidableEq Generator) (_ : Nonempty Generator)
+    (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex)
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) (q : ℕ),
+    TableChecks T q ∧
+      Infinite (TriangularHodgeLayer.Presented T) ∧
+      IsPowerTorsionFree (TriangularHodgeLayer.Presented T) ∧
+      Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T)
+
+/-- **`SharpExistence` from the one remaining obligation.**  Property `(T)` is
+supplied by the checks alone, so this reduction consumes nothing else. -/
+theorem sharpExistence_of_checkedTableWitness (h : CheckedTableWitness) :
+    Hyperbolic.SharpExistence := by
+  obtain ⟨Generator, TriangleIndex, fg, dg, ng, ft, dt, T, q, hchecks, hinf, htf, hhyp⟩ := h
+  exact ⟨TriangularHodgeLayer.Presented T, inferInstance, hinf, inferInstance, htf,
+    hhyp, hasKazhdanPropertyT_of_checkedTable T q hchecks⟩
+
 end KazhdanHyp
 end GroupApproximation
