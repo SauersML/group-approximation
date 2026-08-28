@@ -351,7 +351,7 @@ theorem not_infinite_le_inf_elementaryClosure_of_torsionFree
     (hKinf : ((K : Subgroup G) : Set G).Infinite) : False := by
   obtain ⟨c, hcK, hc1⟩ : ∃ c : G, c ∈ K ∧ c ≠ 1 := by
     by_contra hnone
-    push_neg at hnone
+    push Not at hnone
     refine hKinf (Set.Finite.subset (Set.finite_singleton (1 : G)) ?_)
     intro y hy
     rw [Set.mem_singleton_iff]
@@ -391,7 +391,7 @@ theorem actsNonElementarily_of_isSNormal_of_torsionFree
   obtain ⟨g, hgN, hg⟩ := hlox N (not_bddOrbit_of_isSNormal hiso hacy hN hg₁)
   obtain ⟨h, hhN, hh⟩ : ∃ h : G, h ∈ N ∧ h ∉ elementaryClosure g := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     have hNle : N ≤ elementaryClosure g := by
       intro y hy
       exact hcon y hy

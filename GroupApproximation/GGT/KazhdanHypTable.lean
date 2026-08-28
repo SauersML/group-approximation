@@ -326,6 +326,7 @@ theorem hasKazhdanPropertyT_of_tableChecks
     (h.regular) ?_ hadj
   rw [← hdeg]
   push_cast
+  rfl
 
 /-- **`SharpExistence` from a table that passes the checks.**
 

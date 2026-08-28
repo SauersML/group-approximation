@@ -115,7 +115,7 @@ twisted intersection at `1` is the subgroup itself. -/
 theorem exists_ne_one_mem_of_isSNormal {N : Subgroup G}
     (hN : HullSuitable.IsSNormal N) : ∃ c : G, c ∈ N ∧ c ≠ 1 := by
   by_contra hnone
-  push_neg at hnone
+  push Not at hnone
   refine (infinite_twistedIntersection hN 1)
     (Set.Finite.subset (Set.finite_singleton (1 : G)) ?_)
   intro y hy
@@ -169,7 +169,7 @@ theorem actsNonElementarily_of_mem_of_isSNormal_of_torsionFree
     noIndependentPairInCentralizer_of_orbitNearAxis hiso hacy hnear
   obtain ⟨h, hhN, hh⟩ : ∃ h : G, h ∈ N ∧ h ∉ elementaryClosure g := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     have hNle : N ≤ elementaryClosure g := by
       intro y hy
       exact hcon y hy

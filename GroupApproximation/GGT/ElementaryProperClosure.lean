@@ -168,7 +168,7 @@ theorem exists_notMem_elementaryClosure_of_centralizer
     ∃ f : G, f ∉ elementaryClosure q := by
   obtain ⟨a, -, b, -, ha, hb, hab⟩ := hG
   by_contra hall
-  push_neg at hall
+  push Not at hall
   obtain ⟨n₁, hn₁, hc₁⟩ :=
     exists_ne_zero_commute_sq_of_mem_elementaryClosure hiso hq (hall a)
   obtain ⟨n₂, hn₂, hc₂⟩ :=
@@ -289,7 +289,7 @@ theorem exists_notMem_elementaryClosure_of_no_common_zpow
     (hab : ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0) :
     ∃ f : G, f ∉ elementaryClosure g := by
   by_contra hall
-  push_neg at hall
+  push Not at hall
   obtain ⟨n₁, hn₁, hc₁⟩ :=
     exists_ne_zero_commute_sq_of_mem_elementaryClosure hiso hg (hall a)
   obtain ⟨n₂, hn₂, hc₂⟩ :=
@@ -354,11 +354,11 @@ theorem actsNonElementarily_of_isSNormal_of_centralizer
     (hG : ActsNonElementarily (⊤ : Subgroup G) x)
     {N : Subgroup G} (hN : HullSuitable.IsSNormal N) :
     ActsNonElementarily N x := by
-  obtain ⟨g₁, -, -, -, hg₁, -, -⟩ := hG
+  obtain ⟨g₁, -, -, -, hg₁, -, -⟩ := id hG
   obtain ⟨g, hgN, hg⟩ := hlox N (not_bddOrbit_of_isSNormal hiso hacy hN hg₁)
   obtain ⟨h, hhN, hh⟩ : ∃ h : G, h ∈ N ∧ h ∉ elementaryClosure g := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     have hNle : N ≤ elementaryClosure g := by
       intro y hy
       exact hcon y hy

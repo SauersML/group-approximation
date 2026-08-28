@@ -135,6 +135,7 @@ rotation about every apex.  DGO's Theorem 5.3 is about the quotient by it. -/
 def rotationNormalClosure (C : Set X) (Rot : X → Subgroup G) : Subgroup G :=
   Subgroup.normalClosure {g : G | ∃ c ∈ C, g ∈ Rot c}
 
+omit [PseudoMetricSpace X] [MulAction G X] in
 /-- A rotation about an apex lies in the subgroup the rotations generate. -/
 theorem mem_rotationNormalClosure {C : Set X} {Rot : X → Subgroup G} {c : X}
     (hc : c ∈ C) {g : G} (hg : g ∈ Rot c) :
@@ -267,7 +268,7 @@ theorem not_rotation_or_loxodromic_of_empty {Rot : X → Subgroup G} (x : X)
   have h1 : (1 : G) ∈ rotationNormalClosure (∅ : Set X) Rot := one_mem _
   rcases h 1 h1 with ⟨-, c, hc, -⟩ | hlox
   · simp at hc
-  · exact not_isOfFinOrder_of_isLoxodromic (hlox x) isOfFinOrder_one
+  · exact not_isOfFinOrder_of_isLoxodromic (hlox x) IsOfFinOrder.one
 
 /-! ## The quotient of DGO's Theorem 5.3 -/
 
