@@ -49,6 +49,7 @@ variable {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G 
 
 /-! ## Orbit chains -/
 
+omit [PseudoMetricSpace X] in
 /-- Two commuting elements act commutingly. -/
 theorem smul_smul_comm_of_commute {a b : G} (hab : Commute a b) (x : X) :
     a • (b • x) = b • (a • x) := by
@@ -82,10 +83,12 @@ theorem orbitChain_prog (hiso : IsIsometricAction G X) {q : G} {z : X}
   rw [h, zpow_natCast]
   exact hz (j - i)
 
+omit [PseudoMetricSpace X] in
 theorem orbitChain_self (q : G) (z : X) (n : ℕ) : orbitChain q z n n = z := by
   unfold orbitChain
   rw [sub_self, zpow_zero, one_smul]
 
+omit [PseudoMetricSpace X] in
 /-- The orbit chain through a translate by a commuting element is the translate
 of the orbit chain. -/
 theorem orbitChain_smul_of_commute {c q : G} (hcq : Commute c q) (k : ℤ) (x : X)
