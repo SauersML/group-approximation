@@ -45,22 +45,35 @@ the same input.
   together with two-sided linear comparison between the `F₂`-word length and
   the `X`-word length of the image, i.e. the free subgroup is undistorted.
 
-The relative small-cancellation design consumes the **first**, and this is
-worth stating flatly because the natural expectation is the second.  The reason
-is that `OsinWeightedMetric.LetterMetricSmallCancellation` is a condition on the
-*letter lists* a design supplies -- `p.length < lam * r.length`, list lengths on
-both sides -- and those lists are chosen by the design, not read off geodesics.
-So a piece is a common prefix of two chosen lists, the bound on it is pure word
-combinatorics on the exponent blocks, and the only thing needed of the ambient
-group is that distinct letter symbols name distinct group elements, which is
-exactly injectivity of `φ`.  Undistortedness would be needed to transport a
-small-cancellation condition *between* two metrics; the design never does that.
+**BOTH are needed, and an earlier version of this docstring said otherwise.**
+The correction is recorded here rather than silently edited away, because the
+mistake is the natural one and the reasoning that produced it is still half
+right.
 
-The quantitative form is stated anyway, because a lane that does want to
-compare the two metrics should consume a name rather than invent one, and
-because the proof plans differ: existence is ping-pong on high powers alone,
-while undistortedness needs the Morse lemma on top of it.  Do not prove the
-quantitative form to serve the qualitative one.
+What is right: the *piece* condition needs only the qualitative form.
+`OsinWeightedMetric.LetterMetricSmallCancellation` compares list lengths on both
+sides of `p.length < lam * r.length`, and those lists are chosen by the design,
+not read off geodesics, so the bound on a piece is word combinatorics and the
+only thing needed of the ambient group is that distinct letter symbols name
+distinct elements -- injectivity of `φ`.
+
+What is wrong: the piece condition is not the only clause.
+`GGT/RelHypOsinTheorem24Refuted.lean` shows `WeightedGreendlingerLeaf` is FALSE
+without a further clause, namely that each relator be a **geodesic word**,
+`LetterGeodesic L r : r.length = L.len r.prod`.  And geodesicity is exactly a
+*lower* bound on the alphabet-length of the element a relator spells, which is
+undistortedness of the subgroup the relator is built in.  A design whose
+relators are words in `⟨a, b⟩` is geodesic only if `⟨a, b⟩` is undistorted in
+the ambient generating set; otherwise a shorter spelling exists outside the
+subgroup and the relator's 42 letters overstate its relative length.  That is
+precisely the witness of the refutation, at `⟨t⟩ ≤ ℤ` with `t^42` in the
+alphabet.
+
+So: `PingPongFreeSubgroup` is what the metric certificate needs, and
+`UndistortedPingPongFreeSubgroup` is what the geodesicity certificate needs.
+Prove both.  They are still different theorems with different proofs -- ping-pong
+on high powers, versus ping-pong plus the Morse lemma -- and a lane that needs
+only the first should still take only the first.
 
 ## The proof plan
 
@@ -112,8 +125,16 @@ def PingPongFreeSubgroup : Prop :=
 
 /-- **The input, action form.**  A group acting by isometries on a hyperbolic
 space with two independent loxodromics contains a free subgroup of rank two.
-This is the form ggt-wpd's geometry is stated in, and the group form is its
-special case at the action of a hyperbolic group on its own Cayley graph. -/
+The group form is its special case at the action of a hyperbolic group on its
+own Cayley graph.
+
+**This form currently has no consumer**, and the reason is worth recording.  It
+was offered to ggt-wpd, whose lane sits strictly *upstream* of non-elementarity:
+their consumer is Osin's Lemma 5.12, whose conclusion is
+`ActsNonElementarily ⊤ (Cayley.base _)`, so feeding them a statement that takes
+`ActsNonElementarily` as a hypothesis would assume what they are proving.  Any
+lane below non-elementarity should take this form; any lane above it, or at it,
+must not. -/
 def PingPongFreeSubgroupGeometric : Prop :=
   ∀ (G : Type) (_ : Group G) (X : Type) (_ : PseudoMetricSpace X)
     (_ : MulAction G X) (delta : ℝ) (x : X),
@@ -126,10 +147,12 @@ def PingPongFreeSubgroupGeometric : Prop :=
 metrics: the free subgroup is undistorted, with explicit two-sided constants
 against the word metric of a finite alphabet `S`.
 
-Read the module docstring before consuming this: the relative
-small-cancellation design does **not** need it, and proving it is strictly
-harder -- it is ping-pong plus the Morse lemma, where the qualitative form is
-ping-pong alone. -/
+This is what the **geodesicity** clause of the repaired Greendlinger leaf needs:
+`LetterGeodesic L r` is a lower bound on the alphabet-length of the element `r`
+spells, and a relator built inside `⟨a, b⟩` meets it only if `⟨a, b⟩` is
+undistorted.  It is strictly harder than the qualitative form -- ping-pong plus
+the Morse lemma, against ping-pong alone -- so a lane that needs only the metric
+certificate should still take `PingPongFreeSubgroup`. -/
 def UndistortedPingPongFreeSubgroup : Prop :=
   ∀ (H : Type) (_ : Group H) (S : Finset H),
     WordMetric.IsSymmetricGeneratingSet (S : Set H) →

@@ -2338,6 +2338,7 @@ import GroupApproximation.GGT.RelHypDefinition
 import GroupApproximation.GGT.PingPongFreeSubgroup
 import GroupApproximation.GGT.RelHypLetterPieces
 import GroupApproximation.GGT.RelHypAbelianPartnerNoGo
+import GroupApproximation.GGT.RelHypOsinTheorem24Repaired
 import GroupApproximation.GGT.RelHypElementaryAmenable
 import GroupApproximation.GGT.RelHypFournierFacio
 import GroupApproximation.GGT.RelHypFreeProductPeripheral
