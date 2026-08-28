@@ -101,6 +101,19 @@ theorem wordNorm_of_retraction {E : Type u} {Gam : Type u} [Group E] [Group Gam]
     rw [hρι, hlen] at h
     exact h
 
+/-- **Word length is carried by an isomorphism.**  The special case of
+`wordNorm_of_retraction` in which the retraction is the inverse: this is what
+moves a computation between the binary free product `Monoid.Coprod E H` and the
+indexed one, along `Higman.coprodEquiv`, so that Mathlib's normal form for
+`Monoid.CoprodI` is available on the alphabet of the binary product. -/
+theorem wordNorm_of_mulEquiv {E : Type u} {Gam : Type u} [Group E] [Group Gam]
+    {A : Set E} {C : Set Gam} (hA : IsSymmetricGeneratingSet A)
+    (hC : IsSymmetricGeneratingSet C) (e : E ≃* Gam)
+    (hAC : ∀ a ∈ A, e a ∈ C) (hCA : ∀ x ∈ C, e.symm x ∈ A) (w : E) :
+    wordNorm C (e w) = wordNorm A w :=
+  wordNorm_of_retraction hA hC e.toMonoidHom e.symm.toMonoidHom
+    (fun v => e.symm_apply_apply v) hAC (fun x hx => Or.inl (hCA x hx)) w
+
 /-! ## Distances in the Cayley graph, from the basepoint -/
 
 /-- `d(1, u·1) = |u|`. -/
