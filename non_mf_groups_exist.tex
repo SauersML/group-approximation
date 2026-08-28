@@ -291,10 +291,12 @@ is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
  \qquad(g,h\in G).
 \]
 The elements $g$ with $\hsnorm{V_n(g)-1}\to0$ form a normal subgroup of
-$G$, because $\hsnorm{a}\le\opnorm{a}$ and the Hilbert--Schmidt norm is
-unitarily invariant:
+$G$, because $\hsnorm{a}\le\opnorm{a}$, the Hilbert--Schmidt norm is
+invariant under adjoints and unitary conjugation, and
+$\opnorm{V_n(g^{-1})-V_n(g)^*}\to0$:
 \begin{gather*}
  \hsnorm{V_n(gh)-1}\le\hsnorm{V_n(g)-1}+\hsnorm{V_n(h)-1}+o(1),\\
+ \hsnorm{V_n(g^{-1})-1}=\hsnorm{V_n(g)-1}+o(1),\qquad
  \hsnorm{V_n(ghg^{-1})-1}=\hsnorm{V_n(h)-1}+o(1).
 \end{gather*}
 For $L\le G$, let
