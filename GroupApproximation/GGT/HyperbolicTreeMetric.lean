@@ -77,7 +77,7 @@ variable (hH : H.IsTree)
 /-- **Adjacent vertices of a tree are at different distances from any root.**
 The two cases are whether the geodesic from `v` to the root already meets `u`.
 -/
-theorem dist_ne_of_adj (r : V) {u v : V} (huv : H.Adj u v) :
+theorem dist_ne_of_adj (hH : H.IsTree) (r : V) {u v : V} (huv : H.Adj u v) :
     H.dist r u ≠ H.dist r v := by
   classical
   intro heq
@@ -104,7 +104,7 @@ theorem dist_ne_of_adj (r : V) {u v : V} (huv : H.Adj u v) :
 
 /-- **Distance from a root flips parity across every edge**, so along a walk it
 changes by the length of the walk, modulo two. -/
-theorem dist_add_dist_add_length_even (r : V) {x y : V} (p : H.Walk x y) :
+theorem dist_add_dist_add_length_even (hH : H.IsTree) (r : V) {x y : V} (p : H.Walk x y) :
     (H.dist r x + H.dist r y + p.length) % 2 = 0 := by
   induction p with
   | nil =>
@@ -121,7 +121,7 @@ theorem dist_add_dist_add_length_even (r : V) {x y : V} (p : H.Walk x y) :
 
 /-- **Every Gromov product of a tree is an integer**: the doubled product
 `d(r,x) + d(r,y) - d(x,y)` is even. -/
-theorem dist_parity (r x y : V) :
+theorem dist_parity (hH : H.IsTree) (r x y : V) :
     (H.dist r x + H.dist r y + H.dist x y) % 2 = 0 := by
   have h := dist_add_dist_add_length_even H hH r (geodesic H hH x y)
   rwa [geodesic_length] at h
@@ -131,7 +131,7 @@ theorem dist_parity (r x y : V) :
 /-- **The four-point inequality for a tree, with no slack.**  This is
 `TreeGraphGeometry.graphDist_fourPoint_one` run at the exact half of `min A B`,
 which `dist_parity` makes an integer. -/
-theorem graphDist_fourPoint_zero (w x y z : V) :
+theorem graphDist_fourPoint_zero (hH : H.IsTree) (w x y z : V) :
     min (H.dist x w + H.dist y w - H.dist x y)
         (H.dist y w + H.dist z w - H.dist y z) ≤
       H.dist x w + H.dist z w - H.dist x z := by
@@ -179,7 +179,7 @@ theorem graphDist_fourPoint_zero (w x y z : V) :
 
 /-- The four-point inequality of a tree, cast to `ℝ` and divided by two: this
 is Gromov's condition on the products themselves, at `δ = 0`. -/
-theorem gromovProduct_fourPoint_zero_real (w x y z : V) :
+theorem gromovProduct_fourPoint_zero_real (hH : H.IsTree) (w x y z : V) :
     min (((H.dist x w : ℝ) + H.dist y w - H.dist x y) / 2)
         (((H.dist y w : ℝ) + H.dist z w - H.dist y z) / 2)
       ≤ ((H.dist x w : ℝ) + H.dist z w - H.dist x z) / 2 := by
