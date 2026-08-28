@@ -1402,6 +1402,7 @@ import GroupApproximation.Algebra.FreeProductCyclicWord
 import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Algebra.HyperbolicInteger
 import GroupApproximation.Algebra.HyperbolicQuasiIsometry
+import GroupApproximation.Algebra.HyperbolicSlimFourPoint
 import GroupApproximation.Algebra.HyperbolicSlimTriangles
 import GroupApproximation.Algebra.TorsionFreeQuotient
 import GroupApproximation.Algebra.TorsionFreeRadical
@@ -2277,6 +2278,7 @@ import GroupApproximation.GGT.ElementaryMorse
 import GroupApproximation.GGT.ElementaryMorseChord
 import GroupApproximation.GGT.ElementaryMorseOrbit
 import GroupApproximation.GGT.ElementaryIndependence
+import GroupApproximation.GGT.ElementaryBowditchProof
 import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.ElementaryOsinSNormal
 import GroupApproximation.GGT.ElementaryProperClosure

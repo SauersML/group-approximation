@@ -199,6 +199,15 @@ theorem actsNonElementarily_range_of_wordDist_eq (ι : E →* Gam)
 
 end Map
 
+/-- **A group acts non-elementarily as soon as one of its subgroups does.**  The
+two independent loxodromics of the subgroup are two independent loxodromics of
+the whole group. -/
+theorem actsNonElementarily_top_of_subgroup {G : Type u} [Group G] {X : Type v}
+    [PseudoMetricSpace X] [MulAction G X] {S : Subgroup G} {x : X}
+    (h : ActsNonElementarily S x) : ActsNonElementarily (⊤ : Subgroup G) x := by
+  obtain ⟨g, -, k, -, hg, hk, hind⟩ := h
+  exact ⟨g, Subgroup.mem_top g, k, Subgroup.mem_top k, hg, hk, hind⟩
+
 /-! ## The two factors of a free product -/
 
 section Coprod
@@ -214,6 +223,43 @@ def UnionCarrier (A₀ : Alphabet E) (B₀ : Alphabet H) : Set (Monoid.Coprod E 
     ((Monoid.Coprod.inr : H →* Monoid.Coprod E H) : H → Monoid.Coprod E H)
       '' B₀.carrier
 
+/-- **A subgroup of a free product containing both factors is everything.**
+`Monoid.Coprod.lift` of the two corestrictions is a section of the inclusion of
+the subgroup, and `Monoid.Coprod.hom_ext` identifies the composite with the
+identity. -/
+theorem eq_top_of_inl_inr_mem {K : Subgroup (Monoid.Coprod E H)}
+    (hinl : ∀ a : E, (Monoid.Coprod.inl a : Monoid.Coprod E H) ∈ K)
+    (hinr : ∀ b : H, (Monoid.Coprod.inr b : Monoid.Coprod E H) ∈ K) :
+    K = ⊤ := by
+  rw [Subgroup.eq_top_iff']
+  intro x
+  have hid : K.subtype.comp (Monoid.Coprod.lift
+        (MonoidHom.codRestrict Monoid.Coprod.inl K hinl)
+        (MonoidHom.codRestrict Monoid.Coprod.inr K hinr))
+      = MonoidHom.id (Monoid.Coprod E H) := by
+    refine Monoid.Coprod.hom_ext ?_ ?_
+    · refine MonoidHom.ext fun a => ?_
+      show K.subtype (Monoid.Coprod.lift
+          (MonoidHom.codRestrict Monoid.Coprod.inl K hinl)
+          (MonoidHom.codRestrict Monoid.Coprod.inr K hinr)
+          (Monoid.Coprod.inl a)) = Monoid.Coprod.inl a
+      rw [Monoid.Coprod.lift_apply_inl]
+      rfl
+    · refine MonoidHom.ext fun b => ?_
+      show K.subtype (Monoid.Coprod.lift
+          (MonoidHom.codRestrict Monoid.Coprod.inl K hinl)
+          (MonoidHom.codRestrict Monoid.Coprod.inr K hinr)
+          (Monoid.Coprod.inr b)) = Monoid.Coprod.inr b
+      rw [Monoid.Coprod.lift_apply_inr]
+      rfl
+  have hx : K.subtype (Monoid.Coprod.lift
+      (MonoidHom.codRestrict Monoid.Coprod.inl K hinl)
+      (MonoidHom.codRestrict Monoid.Coprod.inr K hinr) x) = x :=
+    DFunLike.congr_fun hid x
+  rw [← hx]
+  exact (Monoid.Coprod.lift (MonoidHom.codRestrict Monoid.Coprod.inl K hinl)
+    (MonoidHom.codRestrict Monoid.Coprod.inr K hinr) x).2
+
 /-- Membership in the union alphabet, unfolded once so that the proofs below
 never have to see through the definition. -/
 theorem mem_unionCarrier {x : Monoid.Coprod E H} :
@@ -221,6 +267,47 @@ theorem mem_unionCarrier {x : Monoid.Coprod E H} :
       (∃ a ∈ A.carrier, (Monoid.Coprod.inl a : Monoid.Coprod E H) = x) ∨
         (∃ b ∈ B.carrier, (Monoid.Coprod.inr b : Monoid.Coprod E H) = x) :=
   Iff.rfl
+
+/-- **The union alphabet generates the free product.**  Each factor alphabet
+generates its factor, so the closure of the union contains both factors, and a
+subgroup containing both factors is everything. -/
+theorem closure_unionCarrier (A₀ : Alphabet E) (B₀ : Alphabet H) :
+    Subgroup.closure (UnionCarrier A₀ B₀) = ⊤ := by
+  refine eq_top_of_inl_inr_mem ?_ ?_
+  · intro a
+    have hle : (Monoid.Coprod.inl : E →* Monoid.Coprod E H).range
+        ≤ Subgroup.closure (UnionCarrier A₀ B₀) := by
+      rw [MonoidHom.range_eq_map, ← A₀.symmetricGenerating.closure_eq,
+        MonoidHom.map_closure]
+      exact Subgroup.closure_mono Set.subset_union_left
+    exact hle (MonoidHom.mem_range.mpr ⟨a, rfl⟩)
+  · intro b
+    have hle : (Monoid.Coprod.inr : H →* Monoid.Coprod E H).range
+        ≤ Subgroup.closure (UnionCarrier A₀ B₀) := by
+      rw [MonoidHom.range_eq_map, ← B₀.symmetricGenerating.closure_eq,
+        MonoidHom.map_closure]
+      exact Subgroup.closure_mono Set.subset_union_right
+    exact hle (MonoidHom.mem_range.mpr ⟨b, rfl⟩)
+
+/-- **The union alphabet**, as an alphabet of the free product: symmetric
+because both factor alphabets are, and generating by `closure_unionCarrier`. -/
+def unionAlphabet (A₀ : Alphabet E) (B₀ : Alphabet H) :
+    Alphabet (Monoid.Coprod E H) where
+  carrier := UnionCarrier A₀ B₀
+  symmetricGenerating :=
+    { inv_mem := by
+        intro x hx
+        rcases mem_unionCarrier.mp hx with ⟨a, ha, rfl⟩ | ⟨b, hb, rfl⟩
+        · refine mem_unionCarrier.mpr
+            (Or.inl ⟨a⁻¹, A₀.symmetricGenerating.inv_mem a ha, ?_⟩)
+          rw [map_inv]
+        · refine mem_unionCarrier.mpr
+            (Or.inr ⟨b⁻¹, B₀.symmetricGenerating.inv_mem b hb, ?_⟩)
+          rw [map_inv]
+      closure_eq := closure_unionCarrier A₀ B₀ }
+
+@[simp] theorem unionAlphabet_carrier (A₀ : Alphabet E) (B₀ : Alphabet H) :
+    (unionAlphabet A₀ B₀).carrier = UnionCarrier A₀ B₀ := rfl
 
 /-- **The left factor is isometrically embedded in the union alphabet.**  The
 retraction is `Monoid.Coprod.lift (id) 1`, which kills the letters of the right
@@ -345,6 +432,68 @@ theorem hullCommonQuotient_of_oneStep_of_union (h : HullOneStepStatement.{0})
     Manuscript.NonMF.TheoremC.HullCommonQuotientStatement :=
   hullCommonQuotient_of_oneStep_of_alphabet h
     (freeProductAlphabetStatement_of_union hunion)
+
+/-! ## The residue, with the alphabet constructed -/
+
+/-- **Two geometric clauses, and nothing else.**
+
+`FreeProductUnionAlphabetStatement` still asks for a `HullGeneratingSet` on the
+free product, whose three fields are hyperbolicity, acylindricity and
+non-elementarity, and whose alphabet has to be symmetric and generating.  Two of
+those five are theorems: the union alphabet is symmetric and generating
+(`unionAlphabet`), and `E ∗ H` acts non-elementarily on it because either factor
+does (`actsNonElementarily_top_of_subgroup`).  What is left is the pair
+
+* `Γ(E ∗ H, A ⊔ B)` is hyperbolic;
+* the translation action on it is acylindrical.
+
+Both are statements about the tree of spaces obtained by replacing each vertex
+of the Bass-Serre tree by a copy of `Γ(E, A)` or `Γ(H, B)`.  This is the
+smallest form the free product input takes: by
+`hullCommonQuotient_of_oneStep_of_geometry` it is all that Hull's Corollary 7.4
+needs beyond Hull's Theorem 7.1 for a single relator. -/
+def FreeProductUnionGeometryStatement : Prop :=
+  ∀ (E H : Type) [Group E] [Group H],
+    Group.IsFinitelyPresented E → Group.IsFinitelyPresented H →
+      IsPowerTorsionFree E → IsPowerTorsionFree H →
+        IsAcylindricallyHyperbolic E → Infinite H →
+          GroupApproximation.Hyperbolic.IsHyperbolicGroup H →
+            HasKazhdanPropertyT.{0, 0} H →
+              ∃ (A : HullGeneratingSet E) (B : HullGeneratingSet H) (δ : ℝ),
+                IsHyperbolicSpace δ
+                    (Cayley (unionAlphabet A.alphabet B.alphabet)) ∧
+                  IsAcylindrical (Monoid.Coprod E H)
+                    (Cayley (unionAlphabet A.alphabet B.alphabet))
+
+/-- **The union alphabet is a Hull generating set** once its Cayley graph is
+hyperbolic and the action on it is acylindrical: the third field comes from the
+left factor. -/
+theorem freeProductUnionAlphabetStatement_of_geometry
+    (h : FreeProductUnionGeometryStatement) :
+    FreeProductUnionAlphabetStatement := by
+  intro E H instE instH hEfp hHfp hEtf hHtf hEah hHinf hHhyp hHT
+  letI := instE
+  letI := instH
+  obtain ⟨A, B, δ, hhyp, hacyl⟩ := h E H hEfp hHfp hEtf hHtf hEah hHinf hHhyp hHT
+  have hcar : (unionAlphabet A.alphabet B.alphabet).carrier
+      = UnionCarrier A.alphabet B.alphabet := rfl
+  have hne : ActsNonElementarily
+      (Monoid.Coprod.inl : E →* Monoid.Coprod E H).range
+      (Cayley.base (unionAlphabet A.alphabet B.alphabet)) :=
+    actsNonElementarily_range_of_wordDist_eq
+      (Monoid.Coprod.inl : E →* Monoid.Coprod E H)
+      (wordDist_inl_eq hcar) A.nonElementary
+  exact ⟨A, B,
+    ⟨unionAlphabet A.alphabet B.alphabet, δ, hhyp, hacyl,
+      actsNonElementarily_top_of_subgroup hne⟩, hcar⟩
+
+/-- **Hull's Corollary 7.4, from Hull's Theorem 7.1 for one relator and two
+clauses about one Cayley graph.** -/
+theorem hullCommonQuotient_of_oneStep_of_geometry (h : HullOneStepStatement.{0})
+    (hgeom : FreeProductUnionGeometryStatement) :
+    Manuscript.NonMF.TheoremC.HullCommonQuotientStatement :=
+  hullCommonQuotient_of_oneStep_of_union h
+    (freeProductUnionAlphabetStatement_of_geometry hgeom)
 
 end HullSC
 end GroupApproximation
