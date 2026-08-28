@@ -2350,6 +2350,7 @@ import GroupApproximation.GGT.RelHypFreeProductPeripheral
 import GroupApproximation.GGT.RelHypKazhdanNonElementary
 import GroupApproximation.GGT.RelHypOsinTheorem24
 import GroupApproximation.GGT.RelHypOsinTheorem24Refuted
+import GroupApproximation.GGT.CayleyFourPointBridge
 import GroupApproximation.GGT.RelHypRelativeCayley
 import GroupApproximation.GGT.RelHypWithoutKazhdan
 import GroupApproximation.GGT.WPDAcylindricalHyperbolicity
