@@ -17,17 +17,19 @@ namespace Higman
 namespace Omega
 
 open GroupApproximation.Higman.Seq
+open GroupApproximation.Higman.Conj (F₃)
 
 /-- Every element of the present fat link graph has trivial original-base
 retraction in its first coordinate. -/
 theorem baseRet3_fst_eq_one_of_mem_fatBlockLink
     {m : ℕ} {z : FatCent3 m × F₃} (hz : z ∈ fatBlockLink m) :
     baseRet3 (fatOutside m) z.1 = 1 := by
-  obtain ⟨p, hp, rfl⟩ := hz
+  obtain ⟨p, -, rfl⟩ := hz
+  have hcomp :=
+    DFunLike.congr_fun (baseRet3_comp_genHom (fatOutside m)) (flipAHom p.1)
   change baseRet3 (fatOutside m)
       (genHom (fatOutside m) (flipAHom p.1)) = 1
-  rw [← MonoidHom.comp_apply, baseRet3_comp_genHom]
-  rfl
+  simpa using hcomp
 
 theorem fatBaseRow_ne_one_of_block_ne_zero
     {m : ℕ} {beta : E} (hbeta : beta ≠ 0) :
@@ -35,7 +37,8 @@ theorem fatBaseRow_ne_one_of_block_ne_zero
   intro h
   have hrow : Row.basisHom (elt beta) = 1 := by
     apply (rowOutWitness m).witness.emb_injective
-    simpa using h
+    rw [map_one]
+    exact h
   have helt : elt beta = 1 := by
     apply Row.basisHom_injective
     simpa using hrow
@@ -47,13 +50,17 @@ theorem slimFatSemanticBaseEmb_slimLinkElem_not_mem_fatBlockLink
     {m : ℕ} {beta : E} (hbeta : beta ≠ 0) :
     slimFatSemanticBaseEmb m (slimLinkElem m beta) ∉ fatBlockLink m := by
   intro hmem
+  have hgen :
+      baseRet3 (fatOutside m) (genHom (fatOutside m) (aElt beta)) = 1 := by
+    have hcomp :=
+      DFunLike.congr_fun (baseRet3_comp_genHom (fatOutside m)) (aElt beta)
+    simpa using hcomp
   have hret := baseRet3_fst_eq_one_of_mem_fatBlockLink hmem
   change baseRet3 (fatOutside m)
       (slimFatCanonical3 m (slimLinkElem m beta)) = 1 at hret
-  rw [slimFatCanonical3_slimLinkElem, map_mul, map_inv,
-    fatGenCode, ← MonoidHom.comp_apply, baseRet3_comp_genHom,
-    fatCent3Emb, baseRet3_emb3] at hret
-  simp only [one_mul, inv_eq_one] at hret
+  rw [slimFatCanonical3_slimLinkElem, map_mul, map_inv, fatGenCode, hgen,
+    fatCent3Emb, MonoidHom.comp_apply, baseRet3_emb3, one_mul,
+    inv_eq_one] at hret
   exact fatBaseRow_ne_one_of_block_ne_zero hbeta hret
 
 end Omega

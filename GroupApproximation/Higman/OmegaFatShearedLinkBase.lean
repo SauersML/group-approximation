@@ -13,6 +13,7 @@ namespace Higman
 namespace Omega
 
 open GroupApproximation.Higman.Seq
+open GroupApproximation.Higman.Conj (F₃)
 
 theorem fatShearedBlockLink_zero_eq :
     fatShearedBlockLink 0 =
