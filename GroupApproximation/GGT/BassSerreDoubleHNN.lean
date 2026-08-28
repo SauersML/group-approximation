@@ -48,12 +48,17 @@ so the computation the manuscript records --- the printed sentence
 * `not_isVirtuallyCyclic` --- the two stable letters have no common nonzero
   power, by the exponent-sum grading of the outer extension together with
   Britton at the inner one.
+* `dist_pt_axisElt_pow` --- the base point lies on the axis: `u₂u₁⁻¹` moves it
+  by exactly `n` at the `n`-th power.  This is what
+  `BassSerreHNN.IsTreeWPDCriterion` asks for, and what loxodromy alone does not
+  give.
 * `ah3Data`, `isAcylindricallyHyperbolic_of` --- the assembly.  Given
   `BassSerreHNN.IsTreeWPDCriterion` (the tree-geometry step named in
-  `GGT/BassSerreHNNAction.lean`) and `GGT.OsinTheorem12` (the literature input
-  named in `GGT/WPDAcylindricalHyperbolicity.lean`), `E` is acylindrically
-  hyperbolic.  Those two propositions are the entire remaining debt; every
-  group-theoretic ingredient above is proved.
+  `GGT/BassSerreHNNAction.lean`, and proved in `GGT/TreeWPDAxis.lean`) and
+  `GGT.OsinTheorem12` (the literature input named in
+  `GGT/WPDAcylindricalHyperbolicity.lean`), `E` is acylindrically hyperbolic.
+  Only the second of those is still owed; every group-theoretic ingredient above
+  is proved.
 -/
 
 namespace GroupApproximation
@@ -158,6 +163,22 @@ theorem isLoxodromic_axisElt (hj₁ : Function.Injective j₁)
   have h := BassSerreHNN.isLoxodromic_cyclicWord
     (stageTwoEquiv j₁ j₂ hj₁ hj₂) (axisWord (j₂ := j₂) hj₁)
   rwa [axisWord_elem] at h
+
+/-- **The base point lies on the axis of `u₂u₁⁻¹`**: the element moves it by
+exactly `n` at the `n`-th power, not merely by at least `l · n - B`.  This is
+the hypothesis `BassSerreHNN.IsTreeWPDCriterion` asks for, and loxodromy does
+not supply it. -/
+theorem dist_pt_axisElt_pow (hj₁ : Function.Injective j₁)
+    (hj₂ : Function.Injective j₂) (n : ℕ) :
+    dist (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
+        ((axisElt hj₁ hj₂ ^ n) •
+          BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
+      = ((n * 1 : ℕ) : ℝ) := by
+  have h := BassSerreHNN.tLen_cyclicWord_pow (stageTwoEquiv j₁ j₂ hj₁ hj₂)
+    (axisWord (j₂ := j₂) hj₁) n
+  have hlen : ((axisWord (j₂ := j₂) hj₁).letters).length = 1 := rfl
+  rw [axisWord_elem, hlen, mul_one] at h
+  rw [BassSerreHNN.smul_pt, mul_one, BassSerreHNN.dist_pt_one, h, Nat.mul_one]
 
 /-! ## The two edges of the axis -/
 
@@ -313,8 +334,8 @@ theorem not_isVirtuallyCyclic (hj₁ : Function.Injective j₁)
 
 /-- **The Bass--Serre `(AH₃)` datum of `E`.**  The tree, the element `u₂u₁⁻¹`,
 and the base vertex.  Hyperbolicity is `δ = 0`; loxodromy is the one-syllable
-cyclic word; the WPD clause is the named tree criterion applied to the trivial
-segment stabiliser. -/
+cyclic word; the WPD clause is the named tree criterion applied to the axis
+datum `dist_pt_axisElt_pow` and the trivial segment stabiliser. -/
 noncomputable def ah3Data (hj₁ : Function.Injective j₁)
     (hj₂ : Function.Injective j₂)
     (hinter : ∀ p q : P, j₁ p = j₂ q → p = 1)
@@ -329,7 +350,7 @@ noncomputable def ah3Data (hj₁ : Function.Injective j₁)
     refine hcrit (axisElt hj₁ hj₂)
       (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
       (BassSerreHNN.isIsometricAction (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-      (isLoxodromic_axisElt hj₁ hj₂) ?_
+      ⟨1, Nat.one_pos, dist_pt_axisElt_pow hj₁ hj₂⟩ ?_
     intro g hg
     have hf0 := hg 0 (by omega)
     have hf1 := hg 1 (by omega)

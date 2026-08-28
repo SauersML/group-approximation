@@ -7,10 +7,10 @@ import GroupApproximation.GGT.HyperbolicTreeSegmentShift
 `GGT/BassSerreHNNWPDInput.lean` names the tree half of the manuscript's
 Minasyan--Osin citation as `GGT.TreeCorollary43`, and
 `GGT/BassSerreHNNAction.lean` names a variant of it as
-`GGT.BassSerreHNN.IsTreeWPDCriterion`.  Both are stated with `IsLoxodromic h x`
-as the only hypothesis relating `h` to the basepoint `x`, and **both are false
-in that form**.  This module proves the true statement and, from it,
-`GGT.SkeletonAH3Input` outright.
+`GGT.BassSerreHNN.IsTreeWPDCriterion`.  Both were first stated with
+`IsLoxodromic h x` as the only hypothesis relating `h` to the basepoint `x`, and
+**both are false in that form**.  Both now carry the axis hypothesis instead,
+and this module proves them, together with `GGT.SkeletonAH3Input` outright.
 
 ## Why the loxodromy hypothesis alone is not enough
 
@@ -56,17 +56,23 @@ downstream is weakened by the repair.
   of the given one.
 * `isWPDAt_of_pairStab_zero_finite` --- the same in the `pairStab` shape
   `TreeCorollary43` is written in.
+* `treeCorollary43` and `isTreeWPDCriterion_tree` --- **the two named
+  propositions, proved**, in their repaired form.  The criterion asks for the
+  pointwise stabiliser of three consecutive axis vertices; Corollary 4.3 asks
+  for the two ends only, and displacement convexity supplies the middle vertex,
+  so the two meet.
 * `BassSerreDoubleHNN.isWPDAt_axisElt_unconditional` --- `u₂u₁⁻¹` is a WPD
   element for the Bass--Serre action of `E`, with no hypothesis but
   `Δ₁ ∩ Δ₂ = 1`.
-* `BassSerreDoubleHNN.skeletonAH3Input` --- **`GGT.SkeletonAH3Input`, proved**.
+* `BassSerreDoubleHNN.skeletonAH3Input_unconditional` ---
+  **`GGT.SkeletonAH3Input`, proved**.
 
 ## What remains of the manuscript's citation
 
-`minasyanOsinStatement_of_osin`: the Minasyan--Osin input of `thm:torsion-free`
-now rests on `GGT.OsinTheorem12` alone --- Osin's `(AH₃) ⇒ (AH₁)`, which
-`GGT/WPDAcylindricalHyperbolicity.lean` reduces further to
-Dahmani--Guirardel--Osin's Theorem 6.8 and Osin's Theorem 5.4.  Nothing about
+`minasyanOsinStatement_of_osinTheorem12`: the Minasyan--Osin input of
+`thm:torsion-free` now rests on `GGT.OsinTheorem12` alone --- Osin's
+`(AH₃) ⇒ (AH₁)`, which `GGT/WPDAcylindricalHyperbolicity.lean` reduces further
+to Dahmani--Guirardel--Osin's Theorem 6.8 and Osin's Theorem 5.4.  Nothing about
 trees is left in it.
 -/
 
@@ -286,6 +292,80 @@ theorem isWPDAt_of_pairStab_zero_finite (hH : H.IsTree)
 
 end Trees
 
+/-! ## The two named propositions, proved -/
+
+/-- **`GGT.TreeCorollary43`, proved.**  The proposition carries the axis
+hypothesis rather than bare loxodromy, which is what Minasyan--Osin's
+`u, v ∈ axis(h)` amounts to and what the statement needs to be true. -/
+theorem treeCorollary43 : TreeCorollary43 := by
+  intro Γ _ V H hH _ hiso g x N hax hfin
+  obtain ⟨ℓ, hℓ, haxis⟩ := hax
+  exact isWPDAt_of_pairStab_zero_finite hH hiso g x ℓ N hℓ haxis hfin
+
+/-- **`GGT.BassSerreHNN.IsTreeWPDCriterion`, proved**, for every action on every
+tree.
+
+The criterion asks for the pointwise stabiliser of three *consecutive* axis
+vertices to be trivial, and Corollary 4.3 for the two ends of that segment: the
+middle vertex is not needed as an input, because displacement convexity
+(`GGT.dist_smul_le_max_of_between`) puts it in the stabiliser as soon as the two
+ends are, so the two hypotheses meet. -/
+theorem isTreeWPDCriterion_tree {Γ : Type u} [Group Γ] {V : Type u}
+    {H : SimpleGraph V} (hH : H.IsTree) [MulAction Γ V] :
+    BassSerreHNN.IsTreeWPDCriterion Γ hH := by
+  intro h x hiso hax hstab
+  obtain ⟨ℓ, hℓ, haxis⟩ := hax
+  have hisoV : ∀ (a : Γ) (p q : V), H.dist (a • p) (a • q) = H.dist p q := by
+    intro a p q
+    have hd : ((H.dist (a • p) (a • q) : ℕ) : ℝ) = ((H.dist p q : ℕ) : ℝ) :=
+      hiso a (TreeSpace.of hH p) (TreeSpace.of hH q)
+    exact_mod_cast hd
+  have haxisV : ∀ n : ℕ,
+      H.dist (TreeSpace.val x) ((h ^ n) • TreeSpace.val x) = n * ℓ := by
+    intro n
+    have hd : ((H.dist (TreeSpace.val x)
+        ((h ^ n) • TreeSpace.val x) : ℕ) : ℝ) = ((n * ℓ : ℕ) : ℝ) := haxis n
+    exact_mod_cast hd
+  have hfin : {k : Γ | k • TreeSpace.val x = TreeSpace.val x ∧
+      k • ((h ^ 2) • TreeSpace.val x) = (h ^ 2) • TreeSpace.val x}.Finite := by
+    refine Set.Finite.subset (Set.finite_singleton (1 : Γ)) ?_
+    rintro k ⟨hk0, hk2⟩
+    have hsq : (h ^ 2) • TreeSpace.val x = h • (h • TreeSpace.val x) := by
+      rw [pow_two, mul_smul]
+    have hB : H.dist (h • TreeSpace.val x) ((h ^ 2) • TreeSpace.val x)
+        = H.dist (TreeSpace.val x) (h • TreeSpace.val x) := by
+      rw [hsq]
+      exact hisoV h (TreeSpace.val x) (h • TreeSpace.val x)
+    have hb : H.dist (TreeSpace.val x) (h • TreeSpace.val x)
+        + H.dist (h • TreeSpace.val x) ((h ^ 2) • TreeSpace.val x)
+        = H.dist (TreeSpace.val x) ((h ^ 2) • TreeSpace.val x) := by
+      have h1 := haxisV 1
+      have h2 := haxisV 2
+      rw [pow_one] at h1
+      rw [hB, h1, h2]
+      omega
+    have hmid : k • (h • TreeSpace.val x) = h • TreeSpace.val x := by
+      have hd := dist_smul_le_max_of_between hH hisoV k hb
+      rw [hk0, hk2, SimpleGraph.dist_self, SimpleGraph.dist_self,
+        max_self] at hd
+      exact (eq_of_dist_eq_zero hH (Nat.le_zero.1 hd)).symm
+    refine Set.mem_singleton_iff.2 (hstab k ?_)
+    intro i hi
+    rcases Nat.lt_or_ge i 1 with hlt | hge
+    · have hi0 : i = 0 := by omega
+      subst hi0
+      rw [pow_zero, one_smul]
+      exact hk0
+    · rcases Nat.lt_or_ge i 2 with hlt2 | hge2
+      · have hi1 : i = 1 := by omega
+        subst hi1
+        rw [pow_one]
+        exact hmid
+      · have hi2 : i = 2 := by omega
+        subst hi2
+        exact hk2
+  exact isWPDAt_of_axis_pairStab_finite hH hisoV hℓ haxisV hfin
+
 /-! ## At the manuscript's `E` -/
 
 namespace BassSerreDoubleHNN
@@ -295,20 +375,6 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 open GroupApproximation.Manuscript.NonMF.TheoremC
 
 variable {P : Type} [Group P] {j₁ j₂ : P →* P}
-
-/-- **The base vertex lies on the axis of `u₂u₁⁻¹`**: the element translates it
-by exactly one at every power.  This is `tLen_axisElt_pow` read through
-`BassSerreHNN.dist_vmk`, and it is the hypothesis Corollary 4.3 needs and
-`IsLoxodromic` does not supply. -/
-theorem dist_vmk_axisElt_pow (hj₁ : Function.Injective j₁)
-    (hj₂ : Function.Injective j₂) (m : ℕ) :
-    (BassSerreHNN.tree (stageTwoEquiv j₁ j₂ hj₁ hj₂)).dist
-        (BassSerreHNN.vmk (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
-        ((axisElt hj₁ hj₂ ^ m) •
-          BassSerreHNN.vmk (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
-      = m * 1 := by
-  rw [BassSerreHNN.smul_vmk, BassSerreHNN.dist_vmk_one, mul_one,
-    tLen_axisElt_pow hj₁ hj₂ m, Nat.mul_one]
 
 /-- **`PStab_E({x₀, h²·x₀}) = 1`**, in the vertex-fixing shape Corollary 4.3
 consumes.  The two vertices are the ends of a segment of the axis, and the
@@ -356,7 +422,7 @@ theorem isWPDAt_axisElt_unconditional (hj₁ : Function.Injective j₁)
 `f : P × P × S →* P`, the group `E` acts on the Bass--Serre tree of its second
 HNN splitting --- a `0`-hyperbolic space --- with `u₂u₁⁻¹` loxodromic and WPD.
 So the `(AH₃)` datum of `E` is no longer a hypothesis anywhere. -/
-theorem skeletonAH3Input : SkeletonAH3Input.{0} := by
+theorem skeletonAH3Input_unconditional : SkeletonAH3Input.{0} := by
   intro P S instP instS f hf
   exact ⟨ah3DataOfWPD (factorOne_injective f hf) (factorTwo_injective f hf)
     (isWPDAt_axisElt_unconditional (factorOne_injective f hf)
@@ -364,16 +430,16 @@ theorem skeletonAH3Input : SkeletonAH3Input.{0} := by
 
 /-- **The manuscript's Minasyan--Osin citation, reduced to Osin's Theorem 1.2
 alone.**  The tree half is proved; `(AH₃) ⇒ (AH₁)` is what is left. -/
-theorem minasyanOsinStatement_of_osin (hOsin : OsinTheorem12.{0, 0}) :
+theorem minasyanOsinStatement_of_osinTheorem12 (hOsin : OsinTheorem12.{0, 0}) :
     MinasyanOsinStatement :=
-  minasyanOsinStatement_of hOsin skeletonAH3Input
+  minasyanOsinStatement_of hOsin skeletonAH3Input_unconditional
 
 /-- `E` is acylindrically hyperbolic, on Osin's Theorem 1.2 and nothing else. -/
 theorem skeleton_isAcylindricallyHyperbolic_of_osin {Q R : Type} [Group Q]
     [Group R] (f : (Q × Q × R) →* Q) (hf : Function.Injective f)
     (hOsin : OsinTheorem12.{0, 0}) :
     IsAcylindricallyHyperbolic (Skeleton f hf) :=
-  minasyanOsinStatement_of_osin hOsin Q R inferInstance inferInstance f hf
+  minasyanOsinStatement_of_osinTheorem12 hOsin Q R inferInstance inferInstance f hf
 
 end BassSerreDoubleHNN
 

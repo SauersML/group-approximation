@@ -127,32 +127,31 @@ theorem isLoxodromic_cyclicWord (φ : A ≃* B)
 /-- **The tree criterion for weak proper discontinuity**, as a named
 statement.
 
-A loxodromic isometry of a simplicial tree whose axis carries three consecutive
-vertices with trivial pointwise stabiliser is a WPD element.  In the literature
-this is Bestvina--Fujiwara's observation, used by Minasyan--Osin in §3 of
-*Acylindrical hyperbolicity of groups acting on trees*.  Its proof is tree
-geometry --- convexity of the displacement function along a geodesic, and the
-finitely many possible translation amounts along a long sub-segment --- and is
-not carried out in this development.
+An isometry of a simplicial tree that translates its basepoint along a geodesic
+--- `d(x, hⁿ·x) = n · ℓ` for a fixed `ℓ > 0`, which is what it means for `x` to
+lie on the axis of `h` --- and whose axis carries three consecutive vertices with
+trivial pointwise stabiliser is a WPD element.  In the literature this is
+Bestvina--Fujiwara's observation, used by Minasyan--Osin in §3 of *Acylindrical
+hyperbolicity of groups acting on trees*.
 
-Everything this criterion consumes about the manuscript's `E` is proved in
-`GGT/BassSerreDoubleHNN.lean`.
+`GGT.isTreeWPDCriterion_tree` in `GGT/TreeWPDAxis.lean` proves it, for every
+action on every tree; everything it consumes about the manuscript's `E` is
+proved in `GGT/BassSerreDoubleHNN.lean`.
 
-**This criterion is false as stated, and is superseded.**  The three vertices
-have to lie on the axis of `h`, and `IsLoxodromic h x` does not put them there:
-for `Γ = K × ℤ` with `K` infinite, acting on the line `ℤ` with one extra leaf
-`ℓ_γ` for each `γ ∈ Γ` joined to the vertex `π γ`, the basepoint `x = ℓ_1` has
-trivial stabiliser --- so the pointwise stabiliser of `{x, h·x, h²·x}` is trivial
---- while every `k ∈ K` moves `x` and `h^M·x` by exactly `2`, so `h` is not a WPD
-element.  With the axis hypothesis `∀ m, d(x, hᵐ·x) = m · ℓ`, `0 < ℓ`, the
-criterion is proved in `GGT/TreeWPDAxis.lean`, and
-`GGT.BassSerreDoubleHNN.isWPDAt_axisElt_unconditional` supplies the WPD clause
-of `ah3Data` outright, so nothing needs this proposition any more. -/
+**The axis hypothesis replaces `IsLoxodromic h x`, which does not suffice.**
+Loxodromy is the lower bound `l · n - B ≤ d(x, hⁿ·x)`, and a basepoint hanging
+off the axis satisfies it too, where a small stabiliser of `x` says nothing
+about the stabiliser of the axis.  With loxodromy in place of the axis condition
+the criterion is false: take `Γ = K × ℤ` with `K` infinite, acting on the line
+`ℤ` with one extra leaf `ℓ_γ` for each `γ ∈ Γ` joined to the vertex `π γ`.  The
+basepoint `x = ℓ_1` has trivial stabiliser, so the pointwise stabiliser of
+`{x, h·x, h²·x}` is trivial, while every `k ∈ K` moves `x` and `h^M·x` by
+exactly `2`, so `h` is not a WPD element. -/
 def IsTreeWPDCriterion (Γ : Type u) [Group Γ] {V : Type u} {H : SimpleGraph V}
     (hH : H.IsTree) [MulAction Γ (TreeSpace hH)] : Prop :=
   ∀ (h : Γ) (x : TreeSpace hH),
     IsIsometricAction Γ (TreeSpace hH) →
-    IsLoxodromic h x →
+    (∃ ℓ : ℕ, 0 < ℓ ∧ ∀ n : ℕ, dist x ((h ^ n) • x) = ((n * ℓ : ℕ) : ℝ)) →
     (∀ g : Γ, (∀ i : ℕ, i ≤ 2 → g • ((h ^ i) • x) = (h ^ i) • x) → g = 1) →
     IsWPDAt h x
 

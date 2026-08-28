@@ -313,7 +313,7 @@ basepoint to lie on the axis — and `E` is never virtually cyclic.  So the
 `(AH₃)` datum of `E` is unconditional and the citation reduces to Osin's
 Theorem 1.2. -/
 theorem minasyanOsin : MinasyanOsinStatement :=
-  GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osin osinTheorem12
+  GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osinTheorem12 osinTheorem12
 
 /-- **DEBT (literature).**  Hull, *Small cancellation in acylindrically
 hyperbolic groups*, Corollary 7.4: the common quotient theorem. -/
