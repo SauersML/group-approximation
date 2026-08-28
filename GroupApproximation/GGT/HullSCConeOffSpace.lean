@@ -174,12 +174,15 @@ theorem isVeryRotating_apexRot {G : Type u} [Group G] {X : Type v}
     (hvr : ∀ g k : G, k ∈ K → g * k * g⁻¹ ≠ 1 → ∀ x y : X,
       20 * δ ≤ dist x (g • c₀) → dist x (g • c₀) ≤ 40 * δ →
         20 * δ ≤ dist y (g • c₀) → dist y (g • c₀) ≤ 40 * δ →
-          gromovProduct x ((g * k * g⁻¹) • y) (g • c₀) ≤ 5 * δ) :
+          dist ((g * k * g⁻¹) • x) y ≤ 15 * δ →
+            ∀ f : ℝ → X, IsGeodesicSegment f 0 (dist x y) → f 0 = x →
+              f (dist x y) = y →
+                ∃ s ∈ Set.Icc (0 : ℝ) (dist x y), f s = g • c₀) :
     IsVeryRotating G X δ (apexOrbit (G := G) c₀) (apexRot K c₀ hnorm) := by
-  intro c _ h hh hne x y h1 h2 h3 h4
+  intro c _ h hh hne x y h1 h2 h3 h4 h5 f hf hf0 hf1
   rcases mem_apexRot.mp hh with ⟨g, hg, k, hk, rfl⟩ | rfl
   · subst hg
-    exact hvr g k hk hne x y h1 h2 h3 h4
+    exact hvr g k hk hne x y h1 h2 h3 h4 h5 f hf hf0 hf1
   · exact absurd rfl hne
 
 /-! ## What the rotations generate -/
@@ -284,11 +287,16 @@ structure ConeOffData {G : Type u} [Group G] (A : Alphabet G) (K : Subgroup G)
   separated : ∀ g g' : G, g • apex ≠ g' • apex → sep ≤ dist (g • apex) (g' • apex)
   /-- The basepoint is `sep`-far from every apex. -/
   base_far : ∀ g : G, sep ≤ dist base (g • apex)
-  /-- The conjugates of `K` rotate very much about the corresponding apices. -/
+  /-- The conjugates of `K` rotate very much about the corresponding apices,
+  in the sense of DGO Definition 2.12(c): coupled annulus points are separated
+  by the apex on every geodesic between them. -/
   veryRotating : ∀ g k : G, k ∈ K → g * k * g⁻¹ ≠ 1 → ∀ x y : Space,
     20 * delta ≤ dist x (g • apex) → dist x (g • apex) ≤ 40 * delta →
       20 * delta ≤ dist y (g • apex) → dist y (g • apex) ≤ 40 * delta →
-        gromovProduct x ((g * k * g⁻¹) • y) (g • apex) ≤ 5 * delta
+        dist ((g * k * g⁻¹) • x) y ≤ 15 * delta →
+          ∀ f : ℝ → Space, IsGeodesicSegment f 0 (dist x y) → f 0 = x →
+            f (dist x y) = y →
+              ∃ s ∈ Set.Icc (0 : ℝ) (dist x y), f s = g • apex
 
 namespace ConeOffData
 

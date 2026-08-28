@@ -18,26 +18,30 @@ set `C ⊆ X` of *apices* together with, for each apex `c`, a *rotation subgroup
 `Rot (g · c) = g (Rot c) g⁻¹`.  It is **ρ-separated** when distinct apices are
 at distance at least `ρ`.
 
-It is **very rotating** when a nontrivial rotation about `c` sends any point of
-the annulus `20δ ≤ d(·, c) ≤ 40δ` to the far side of `c`: the Gromov product at
-`c` of `x` and `g · y` is at most `5δ`, i.e. every geodesic from `x` to `g · y`
-passes close to the apex.  This is DGO's condition in Gromov-product form; the
-geometric reading -- *geodesics between annulus points and their rotates go
-through the apex* -- is what the condition is for, and
-`dist_le_dist_smul_of_veryRotating` below is that reading as an inequality.
+It is **very rotating** in the sense of DGO Definition 2.12(c), transcribed
+verbatim: for a nontrivial rotation `g` about `c` and points `x`, `y` of the
+annulus `20δ ≤ d(·, c) ≤ 40δ` with `d(g·x, y) ≤ 15δ`, *any geodesic between `x`
+and `y` contains `c`*.  An earlier form dropped the coupling hypothesis and
+stated a Gromov product bound in place of the geodesic conclusion; neither half
+was the paper's, and a family built to satisfy the paper would not have met it.
 
 ## What is proved, and what is stated
 
 Proved: the elementary consequences of the definitions.
 
 * `dist_smul_apex_eq` -- a rotation about `c` preserves distance to `c`.
-* `dist_le_dist_smul_of_veryRotating` -- **a nontrivial rotation displaces the
-  annulus by twice the radius**: `2 d(x,c) - 10δ ≤ d(x, g·x)`.  This is the
-  whole force of the very rotating condition; it is what makes the normal
-  closure of the rotations behave like a free product, and what makes the
-  quotient map injective on balls.
+* `dist_smul_eq_two_mul_of_veryRotating` -- **a nontrivial rotation displaces a
+  point of the annulus by exactly twice its distance to the apex**:
+  `d(x, g·x) = 2 d(x,c)`.  Apply the condition at `y = g·x`: the coupling
+  `d(g·x, g·x) = 0 ≤ 15δ` is free, and `g·x` is in the annulus because a
+  rotation preserves the distance to its apex, so a geodesic from `x` to `g·x`
+  passes through `c` and the two halves are equal.  This is the whole force of
+  the condition, and the equality is sharper than the `2 d(x,c) - 10δ` the
+  Gromov-product form gave.  `dist_le_dist_smul_of_veryRotating` is the
+  inequality form, kept for the citations that name it.
 * `ne_of_veryRotating` -- consequently a nontrivial rotation fixes no point of
-  the annulus, when `δ > 0`.
+  the annulus, when `δ > 0`.  All three carry `IsGeodesicSpace`: the conclusion
+  of 2.12(c) is about geodesics and says nothing where none exist.
 * `eq_of_dist_lt_of_isSeparated` -- two apices closer than `ρ` coincide.
 * `eq_one_of_dist_lt_everywhere`, `not_rotation_or_loxodromic_of_empty` -- **two
   refutations**, which is why `RotatingQuotient` has the shape it has.  The
@@ -101,20 +105,30 @@ structure IsRotatingFamily (G : Type u) (X : Type v) [Group G]
 def IsSeparated (C : Set X) (ρ : ℝ) : Prop :=
   ∀ c ∈ C, ∀ c' ∈ C, c ≠ c' → ρ ≤ dist c c'
 
-/-- **A very rotating family** (DGO), in Gromov-product form: for a nontrivial
-rotation `g` about an apex `c` and any two points `x`, `y` of the annulus of
-radii `20δ` and `40δ` about `c`, the Gromov product of `x` and `g · y` at `c`
-is at most `5δ`.
+/-- **A very rotating family**, Dahmani-Guirardel-Osin Definition 2.12(c),
+verbatim: for `c ∈ C`, `g ∈ Rot c \ {1}` and `x, y` with `d(x,c)` and `d(y,c)`
+in `[20δ, 40δ]` **and `d(g·x, y) ≤ 15δ`**, any geodesic between `x` and `y`
+contains `c`.
 
-Equivalently, and this is the picture: any geodesic from `x` to `g · y` passes
-within `5δ` of the apex, so the rotation cannot be undone by moving inside the
-annulus. -/
+An earlier form of this definition dropped the coupling hypothesis
+`d(g·x, y) ≤ 15δ` and replaced the geodesic conclusion by the Gromov product
+bound `(x | g·y)_c ≤ 5δ`.  Neither half was DGO's, and a family built to satisfy
+the paper need not have satisfied it: dropping a hypothesis from a hypothesis
+makes the condition harder to meet.  The reading recorded here is the paper's.
+
+"Any geodesic between `x` and `y` contains `c`" is a statement about every
+parametrisation realising the distance, which is why it is quantified over `f`
+rather than asserted of one chosen geodesic; and it is only usable in a space
+where such an `f` exists, which is why every consumer below carries
+`IsGeodesicSpace`. -/
 def IsVeryRotating (G : Type u) (X : Type v) [Group G] [PseudoMetricSpace X]
     [MulAction G X] (δ : ℝ) (C : Set X) (Rot : X → Subgroup G) : Prop :=
   ∀ c ∈ C, ∀ g ∈ Rot c, g ≠ 1 → ∀ x y : X,
     20 * δ ≤ dist x c → dist x c ≤ 40 * δ →
       20 * δ ≤ dist y c → dist y c ≤ 40 * δ →
-        gromovProduct x (g • y) c ≤ 5 * δ
+        dist (g • x) y ≤ 15 * δ →
+          ∀ f : ℝ → X, IsGeodesicSegment f 0 (dist x y) → f 0 = x →
+            f (dist x y) = y → ∃ s ∈ Set.Icc (0 : ℝ) (dist x y), f s = c
 
 /-- **The subgroup generated by the rotations**: the normal closure of every
 rotation about every apex.  DGO's Theorem 5.3 is about the quotient by it. -/
@@ -145,27 +159,58 @@ distance to the apex, up to `10δ`.
 This is the inequality the very rotating condition exists to provide: a point
 and its rotate lie on opposite sides of the apex, so the distance between them
 is the sum of the two radii up to bounded error. -/
-theorem dist_le_dist_smul_of_veryRotating {δ : ℝ} {C : Set X}
-    {Rot : X → Subgroup G} (hfam : IsRotatingFamily G X C Rot)
-    (hvr : IsVeryRotating G X δ C Rot) {c : X} (hc : c ∈ C) {g : G}
-    (hg : g ∈ Rot c) (hg1 : g ≠ 1) {x : X} (hlow : 20 * δ ≤ dist x c)
-    (hhigh : dist x c ≤ 40 * δ) :
-    2 * dist x c - 10 * δ ≤ dist x (g • x) := by
-  have hprod : gromovProduct x (g • x) c ≤ 5 * δ :=
-    hvr c hc g hg hg1 x x hlow hhigh hlow hhigh
+theorem dist_smul_eq_two_mul_of_veryRotating {δ : ℝ} {C : Set X}
+    {Rot : X → Subgroup G} (hgeo : IsGeodesicSpace X)
+    (hfam : IsRotatingFamily G X C Rot) (hvr : IsVeryRotating G X δ C Rot)
+    {c : X} (hc : c ∈ C) {g : G} (hg : g ∈ Rot c) (hg1 : g ≠ 1) {x : X}
+    (hlow : 20 * δ ≤ dist x c) (hhigh : dist x c ≤ 40 * δ) :
+    dist x (g • x) = 2 * dist x c := by
+  have hδ0 : (0 : ℝ) ≤ δ := by
+    have hnn : (0 : ℝ) ≤ dist x c := dist_nonneg
+    linarith
   have hrad : dist (g • x) c = dist x c := dist_smul_apex_eq hfam hc hg x
-  unfold gromovProduct at hprod
-  rw [hrad] at hprod
+  obtain ⟨f, hf, hf0, hf1⟩ := hgeo x (g • x)
+  obtain ⟨s, hs, hfs⟩ := hvr c hc g hg hg1 x (g • x) hlow hhigh
+    (by rw [hrad]; exact hlow) (by rw [hrad]; exact hhigh)
+    (by rw [dist_self]; linarith) f hf hf0 hf1
+  have hA : dist x c = s := by
+    have h := hf 0 ⟨le_refl 0, dist_nonneg⟩ s hs
+    rw [hf0, hfs, zero_sub, abs_neg, abs_of_nonneg hs.1] at h
+    exact h
+  have hB : dist c (g • x) = dist x (g • x) - s := by
+    have h := hf s hs (dist x (g • x)) ⟨dist_nonneg, le_refl _⟩
+    rw [hfs, hf1, abs_of_nonpos (by linarith [hs.2])] at h
+    linarith
+  have hC : dist c (g • x) = dist x c := by
+    rw [dist_comm]
+    exact hrad
+  linarith
+
+/-- **The displacement estimate, in the inequality form the plan cites.**  A
+weakening of the equality above, kept because `10δ` of slack is what the
+argument downstream actually needs and what DGO's own estimate leaves. -/
+theorem dist_le_dist_smul_of_veryRotating {δ : ℝ} {C : Set X}
+    {Rot : X → Subgroup G} (hgeo : IsGeodesicSpace X)
+    (hfam : IsRotatingFamily G X C Rot) (hvr : IsVeryRotating G X δ C Rot)
+    {c : X} (hc : c ∈ C) {g : G} (hg : g ∈ Rot c) (hg1 : g ≠ 1) {x : X}
+    (hlow : 20 * δ ≤ dist x c) (hhigh : dist x c ≤ 40 * δ) :
+    2 * dist x c - 10 * δ ≤ dist x (g • x) := by
+  have heq := dist_smul_eq_two_mul_of_veryRotating hgeo hfam hvr hc hg hg1
+    hlow hhigh
+  have hδ0 : (0 : ℝ) ≤ δ := by
+    have hnn : (0 : ℝ) ≤ dist x c := dist_nonneg
+    linarith
   linarith
 
 /-- A nontrivial rotation fixes no point of the annulus about its apex. -/
-theorem ne_of_veryRotating {δ : ℝ} (hδ : 0 < δ) {C : Set X}
-    {Rot : X → Subgroup G} (hfam : IsRotatingFamily G X C Rot)
+theorem ne_of_veryRotating {δ : ℝ} (hδ : 0 < δ) (hgeo : IsGeodesicSpace X)
+    {C : Set X} {Rot : X → Subgroup G} (hfam : IsRotatingFamily G X C Rot)
     (hvr : IsVeryRotating G X δ C Rot) {c : X} (hc : c ∈ C) {g : G}
     (hg : g ∈ Rot c) (hg1 : g ≠ 1) {x : X} (hlow : 20 * δ ≤ dist x c)
     (hhigh : dist x c ≤ 40 * δ) : g • x ≠ x := by
   intro hfix
-  have hdisp := dist_le_dist_smul_of_veryRotating hfam hvr hc hg hg1 hlow hhigh
+  have hdisp := dist_smul_eq_two_mul_of_veryRotating hgeo hfam hvr hc hg hg1
+    hlow hhigh
   rw [hfix, dist_self] at hdisp
   linarith
 

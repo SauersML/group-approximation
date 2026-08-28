@@ -180,7 +180,26 @@ in the making of it.**
   order-preserving half of the lift.  Stating it faithfully means a `CoprodI`
   over a set of orbit representatives and a new import into
   `GGT/HullSCRotatingFamily.lean`, for a clause with no consumer until that half
-  is attempted.  It is left out, and this paragraph is the record of why.
+  is attempted.
+
+  **The order-preserving half of `finiteOrder_lift` is therefore still owed, and
+  it rests on the splitting.**  `conj_into_rot_of_isOfFinOrder` gets a
+  finite-order element of the kernel conjugated into a rotation subgroup; it does
+  not produce a preimage *of the same order*, which is what the field asserts.
+  Until that is proved the field is a citation with no source in Theorem 5.3 --
+  do not read it as fully attributed.  Whoever attempts it should start from
+  this statement rather than re-derive it:
+
+      freeSplitting : ∃ (T : Type u) (apex : T → X) (conj : T → G)
+        (φ : Monoid.CoprodI (fun i : T => ↥(Rot (apex i))) →* G),
+          (∀ i, apex i ∈ C) ∧ Function.Injective φ ∧
+            φ.range = rotationNormalClosure C Rot ∧
+            ∀ (i : T) (x : ↥(Rot (apex i))),
+              φ (Monoid.CoprodI.of x) = conj i * (x : G) * (conj i)⁻¹
+
+  and the route to the field is the Bass-Serre tree of that splitting: a finite
+  subgroup acting on a tree fixes a point, so it is conjugate into a vertex
+  stabiliser, which is a conjugate of some `Rot c`.
 
 ## The plan for §5, in dependency order
 
