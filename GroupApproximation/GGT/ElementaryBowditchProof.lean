@@ -45,7 +45,7 @@ constants for `ε`.  Because `dₙ/n → 0` there is, for every `η > 0`, a cons
 most `2S + 1` unit boxes; since `(2S+1)(N+1) < V`, some box holds `N + 2` of the
 `V` indices (`exists_large_fiber`).  Writing `i₀` for the least of them,
 `m = Q + i₀` and the exponents `j = i − i₀`, we get `N + 2` distinct powers `cʲ`
-with `|dₘ − d_{m+j}| ≤ 1`, hence `N + 2` distinct elements moving the midpoint
+with `|dₘ − d_{m+j}| ≤ 1`, so `N + 2` distinct elements moving the midpoint
 `z` of `[x, cᵐ x]` by at most `ε`.
 
 **The second point.**  Powers of `c` commute, so `cʲ` moves `c^A z` exactly as
