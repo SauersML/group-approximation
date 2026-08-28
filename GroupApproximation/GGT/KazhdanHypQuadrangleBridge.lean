@@ -66,6 +66,16 @@ private theorem bool_eq_false_of_ne_true {b : Bool} (h : b ≠ true) : b = false
   · rfl
   · exact absurd rfl h
 
+private theorem bool_ne_cases {b c : Bool} (h : b ≠ c) :
+    (b = true ∧ c = false) ∨ (b = false ∧ c = true) := by
+  cases b
+  · cases c
+    · exact absurd rfl h
+    · exact Or.inr ⟨rfl, rfl⟩
+  · cases c
+    · exact Or.inl ⟨rfl, rfl⟩
+    · exact absurd rfl h
+
 private theorem nat_mul_self_of_le_one {n : ℕ} (h : n ≤ 1) : n * n = n := by
   rcases Nat.eq_zero_or_pos n with h0 | h0
   · rw [h0]
@@ -84,12 +94,9 @@ def tableSign {Generator : Type} (u : Generator × Bool) : ℚ :=
 /-- The sign is valued in `±1`. -/
 theorem tableSign_sq {Generator : Type} (u : Generator × Bool) :
     tableSign u * tableSign u = 1 := by
-  unfold tableSign
   by_cases hu : u.2 = true
-  · rw [if_pos hu]
-    norm_num
-  · rw [if_neg hu]
-    norm_num
+  · norm_num [tableSign, hu]
+  · norm_num [tableSign, bool_eq_false_of_ne_true hu]
 
 /-- Vertices on the same side carry the same sign. -/
 theorem tableSign_congr {Generator : Type} {u v : Generator × Bool}
@@ -100,18 +107,9 @@ theorem tableSign_congr {Generator : Type} {u v : Generator × Bool}
 /-- Vertices on opposite sides carry opposite signs. -/
 theorem tableSign_eq_neg {Generator : Type} {u v : Generator × Bool}
     (h : u.2 ≠ v.2) : tableSign u = -tableSign v := by
-  unfold tableSign
-  by_cases hu : u.2 = true
-  · have hv : v.2 ≠ true := by
-      intro hv
-      exact h (by rw [hu, hv])
-    rw [if_pos hu, if_neg hv]
-    norm_num
-  · have hv : v.2 = true := by
-      by_contra hv
-      exact h (by rw [bool_eq_false_of_ne_true hu, bool_eq_false_of_ne_true hv])
-    rw [if_neg hu, if_pos hv]
-    norm_num
+  rcases bool_ne_cases h with ⟨hu, hv⟩ | ⟨hu, hv⟩
+  · norm_num [tableSign, hu, hv]
+  · norm_num [tableSign, hu, hv]
 
 /-- The sign product on one side is `1`. -/
 theorem tableSign_mul_same {Generator : Type} {u v : Generator × Bool}
@@ -400,11 +398,11 @@ def quadrangleDataOfParts
           · have hu' : u.2 ≠ v'.2 := by
               rw [hu]
               exact hside
-            have hz : collinearityCount T u v * collinearityCount T u v' = 0 :=
-              mul_eq_zero_of_right _ (hcross u v' hu')
+            have hz : collinearityCount T u v * collinearityCount T u v' = 0 := by
+              simp [hcross u v' hu']
             exact_mod_cast hz
-          · have hz : collinearityCount T u v * collinearityCount T u v' = 0 :=
-              mul_eq_zero_of_left (hcross u v hu) _
+          · have hz : collinearityCount T u v * collinearityCount T u v' = 0 := by
+              simp [hcross u v hu]
             exact_mod_cast hz
         rw [Finset.sum_eq_zero fun u _ => hzero u, hif, hsign,
           hcross v v' hside]
