@@ -174,6 +174,7 @@ theorem exists_loxodromic_mem_of_isSNormal {G : Type u} [Group G] {X : Type v}
   · by_cases hmn : m = n
     · subst hmn
       have hcomm : Commute c (g ^ m) := by
+        show c * g ^ m = g ^ m * c
         have hstep := congrArg (fun y : G => y * c) hpow
         simpa [mul_assoc] using hstep
       exact ⟨c, hcN, hEC1 (g ^ m) c (isLoxodromic_zpow hiso hg hm) hcomm hcinf⟩
@@ -194,7 +195,7 @@ theorem actsNonElementarily_of_isSNormal {G : Type u} [Group G] {X : Type v}
     (hne : ActsNonElementarily (⊤ : Subgroup G) x)
     {N : Subgroup G} [N.Normal] (hsn : HullSuitable.IsSNormal N) :
     ActsNonElementarily N x := by
-  obtain ⟨g, _, _, _, hg, _, _⟩ := hne
+  obtain ⟨g, _, _, _, hg, _, _⟩ := id hne
   obtain ⟨q, hqN, hq⟩ :=
     exists_loxodromic_mem_of_isSNormal hδ hδ0 hiso htf hEC1 hEC3 hg hsn
   obtain ⟨a, hindA⟩ := hEC2 hne q hq

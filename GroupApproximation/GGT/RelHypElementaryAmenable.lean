@@ -68,7 +68,8 @@ namespace RelHyp
 `zpowersHom`, and amenability passes to images. -/
 theorem hasInvariantMean_of_isCyclic (A : Type) [Group A] [IsCyclic A] :
     Amenability.HasInvariantMean A := by
-  obtain ⟨g, hg⟩ := IsCyclic.exists_generator
+  obtain ⟨g, hg⟩ : ∃ g : A, ∀ x : A, x ∈ Subgroup.zpowers g :=
+    IsCyclic.exists_generator
   refine Amenability.hasInvariantMean_of_surjective (zpowersHom A g) ?_
     Amenability.hasInvariantMean_int
   intro x

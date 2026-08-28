@@ -241,8 +241,9 @@ theorem isAcylindrical_of_additiveDistortion_of_dense {C : ℝ} (hC : 0 ≤ C)
   have hau : dist u (f a) ≤ C := by rwa [dist_comm]
   have hbv : dist v (f b) ≤ C := by rwa [dist_comm]
   have hab : R ≤ dist a b := by
-    have h1 := (abs_le.mp (hf a b)).1
+    have h1 := (abs_le.mp (hf a b)).2
     have h3 := dist_triangle4 u (f a) (f b) v
+    have h4 : dist (f b) v = dist v (f b) := dist_comm _ _
     linarith
   obtain ⟨hfin, hcard⟩ := hRN a b hab
   have hsub : {g : G | dist u (g • u) ≤ ε ∧ dist v (g • v) ≤ ε} ⊆

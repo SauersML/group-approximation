@@ -178,7 +178,8 @@ theorem letterNoProperPower_of_tie {G : Bool → Type} [∀ b, Group (G b)]
   have hyinv : y⁻¹ ≠ 1 := inv_ne_one.mpr hy
   have hu : ((NeWord.singleton x hx).append hfalse
       (NeWord.singleton y⁻¹ hyinv)).prod = CoprodI.of x * (CoprodI.of y)⁻¹ := by
-    rw [NeWord.append_prod, ← map_inv]
+    rw [NeWord.append_prod, NeWord.prod_singleton, NeWord.prod_singleton,
+      map_inv]
   rw [hprod, ← hu]
   exact not_properPower_of_neWord hfalse _ rfl s k hk
 

@@ -305,7 +305,7 @@ theorem exists_bound_chain_excursion_depth {δ D l : ℝ}
   intro y N w R hedge hprog h0 hNlt j hjN
   by_cases hin : dist (y j) w < R
   · linarith
-  push_neg at hin
+  push Not at hin
   -- the two scans out of `j` to the boundary of the exterior component
   have hstepL : ∀ i, i < j → dist (y (i + 1)) w ≤ dist (y i) w + D := by
     intro i hi
@@ -412,11 +412,10 @@ theorem exists_chord_point_near_chain_vertex {delta D l : ℝ}
     ∃ s ∈ Set.Icc (0 : ℝ) (dist (y 0) (y N)),
       dist (y j) (fAC s) ≤ r + 3 * delta := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   have h2 := two_mul_progress_mul_far_radius_le hdelta hdelta0 hD0 hl y hj0 hjN
     hjpow hRpow hedge hprogress hAB hAB0 hAB1 hAC hAC0 hAC1 hCB hCB0 hCB1
     hr0 hrL hrR hcon
-  push_cast at h2 hbig
   linarith
 
 /-! ## Sampled vertices against the chord -/
@@ -550,7 +549,7 @@ vertices, with no assumption that the chain is anywhere near the chord.
 
 Both conclusions are uniform in `r`, and that is the point of the next
 remark. -/
-theorem straddling_pair_of_dense_chord {ρ r s₀ : ℝ} (hρ0 : 0 ≤ ρ) (hr0 : 0 ≤ r)
+theorem straddling_pair_of_dense_chord {ρ r s₀ : ℝ} (_hρ0 : 0 ≤ ρ) (hr0 : 0 ≤ r)
     (y : ℕ → X) (N : ℕ) {fAC : ℝ → X}
     (hAC : IsGeodesicSegment fAC 0 (dist (y 0) (y N)))
     (hlo : 0 ≤ s₀ - r) (hhi : s₀ + r ≤ dist (y 0) (y N))
@@ -588,7 +587,6 @@ theorem straddling_pair_of_dense_chord {ρ r s₀ : ℝ} (hρ0 : 0 ≤ ρ) (hr0 
     have h2 := dist_triangle (y a) (y b) (fAC (s₀ + r))
     rw [hLR] at h1
     rw [dist_comm (fAC (s₀ - r)) (y a)] at h1
-    rw [dist_comm (y b) (fAC (s₀ + r))] at h2
     linarith
 
 /-- **`2ρ` is a floor, so `StraddlingCut` as stated is not reachable this way.**
@@ -604,7 +602,7 @@ this route — nor can anything below `ρ`, which is what
 That is a genuine obstruction rather than a gap in the write-up, and it applies
 to the maximality route as a whole, not to a particular parametrisation of
 it. -/
-theorem gromovProduct_straddling_le_two_mul {ρ r s₀ : ℝ} {y : ℕ → X} {N a b : ℕ}
+theorem gromovProduct_straddling_le_two_mul {ρ r s₀ : ℝ} {y : ℕ → X} {_N a b : ℕ}
     {fAC : ℝ → X}
     (ha : dist (y a) (fAC s₀) ≤ ρ + r) (hb : dist (y b) (fAC s₀) ≤ ρ + r)
     (hab : 2 * r - 2 * ρ ≤ dist (y a) (y b)) :

@@ -361,6 +361,7 @@ theorem linkCertificateChecks_of_kgonChecks_three
       simp only [TriangularHodgeLayer.rationalLinkLaplacian,
         TriangularHodgeLayer.linkLaplacian]
       push_cast [apply_ite (fun z : ℤ => (z : ℚ))]
+      rfl
     rw [h1, hdeg u]
   refine ⟨hdnat, hgap, hdeg, ?_⟩
   intro u v

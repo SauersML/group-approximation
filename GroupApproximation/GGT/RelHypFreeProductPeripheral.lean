@@ -159,6 +159,7 @@ theorem headIdx_of {i : ι} {z : G i} (hz : z ≠ 1) :
 theorem headIdx_one : headIdx (1 : CoprodI G) = none := by
   simp [headIdx_eq, FreeProductCyclic.equiv_one, Word.empty]
 
+omit [DecidableEq ι] [(i : ι) → Group (G i)] [(i : ι) → DecidableEq (G i)] in
 /-- Replacing the head letter of a nonempty word by another letter of the same
 factor does not move the index of its last letter. -/
 theorem getLast?_map_fst_cons {i : ι} (y y' : G i) (l : List (Σ i, G i)) :
@@ -274,7 +275,7 @@ theorem eq_one_of_headsPartner_of_mem {g : CoprodI G} (hgood : HeadsPartner g)
     obtain ⟨u, rfl⟩ := mem_pairPeripheral.mp hmem
     by_cases hu : u = 1
     · rw [hu, map_one, headIdx_one] at h
-      exact Option.noConfusion h
+      simp at h
     · rw [headIdx_of hu] at h
       exact Bool.noConfusion (Option.some.inj h)
 
@@ -306,7 +307,7 @@ theorem headsPartner_mul {g a : CoprodI G} (hg : HeadsPartner g)
   · have hg1 : g ≠ 1 := by
       intro hcon
       rw [hcon, headIdx_one] at hhead
-      exact Option.noConfusion hhead
+      simp at hhead
     by_cases hzero : g * (CoprodI.of z : CoprodI G) = 1
     · exact Or.inl hzero
     · refine Or.inr ?_
@@ -379,7 +380,7 @@ def pairRelGen (S : Finset (G true))
     rintro x ⟨s, hs, rfl⟩
     exact ⟨s⁻¹, hS.inv_mem s hs, by simp⟩
   closure_eq := by
-    refine Subgroup.eq_top_iff'.mpr ?_
+    refine (Subgroup.eq_top_iff' _).mpr ?_
     intro g
     induction g using Monoid.CoprodI.induction_on with
     | one => exact one_mem _

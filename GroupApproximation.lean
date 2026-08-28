@@ -2370,6 +2370,7 @@ import GroupApproximation.Higman.OmegaFillLinkPreimage
 import GroupApproximation.Higman.OmegaFatSlimCanonicalOne
 import GroupApproximation.Higman.OmegaFatSlimCanonicalTwo
 import GroupApproximation.Higman.OmegaFatSlimCanonicalThree
+import GroupApproximation.Manuscript.NonMF.HullFillOsinNormalReduction
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

@@ -104,9 +104,10 @@ def IsCompOf (lam : Λ) : RelLetter G Λ → Prop
   | comp mu _ => mu = lam
 
 /-- The element spelled by a word: the ordered product of its letters. -/
-def listVal (w : List (RelLetter G Λ)) : G := (w.map RelLetter.val).prod
+def listVal [Group G] (w : List (RelLetter G Λ)) : G := (w.map RelLetter.val).prod
 
-theorem listVal_nil : listVal ([] : List (RelLetter G Λ)) = 1 := rfl
+theorem listVal_nil [Group G] :
+    listVal ([] : List (RelLetter G Λ)) = 1 := rfl
 
 end RelLetter
 
