@@ -49,16 +49,15 @@ so the computation the manuscript records --- the printed sentence
   power, by the exponent-sum grading of the outer extension together with
   Britton at the inner one.
 * `dist_pt_axisElt_pow` --- the base point lies on the axis: `u₂u₁⁻¹` moves it
-  by exactly `n` at the `n`-th power.  This is what
-  `BassSerreHNN.IsTreeWPDCriterion` asks for, and what loxodromy alone does not
-  give.
-* `ah3Data`, `isAcylindricallyHyperbolic_of` --- the assembly.  Given
-  `BassSerreHNN.IsTreeWPDCriterion` (the tree-geometry step named in
-  `GGT/BassSerreHNNAction.lean`, and proved in `GGT/TreeWPDAxis.lean`) and
-  `GGT.OsinTheorem12` (the literature input named in
-  `GGT/WPDAcylindricalHyperbolicity.lean`), `E` is acylindrically hyperbolic.
-  Only the second of those is still owed; every group-theoretic ingredient above
-  is proved.
+  by exactly `n` at the `n`-th power, which is what Minasyan--Osin's
+  Corollary 4.3 asks for and what loxodromy alone does not give.
+
+The assembly is no longer here.  `GGT/TreeWPDAxis.lean` proves Corollary 4.3 and
+assembles the `(AH₃)` datum of `E` unconditionally
+(`skeletonAH3Input_unconditional`), and its
+`skeleton_isAcylindricallyHyperbolic_of_osin` makes `E` acylindrically
+hyperbolic on `GGT.OsinTheorem12` alone.  Every group-theoretic ingredient below
+is proved.
 -/
 
 namespace GroupApproximation
@@ -166,8 +165,8 @@ theorem isLoxodromic_axisElt (hj₁ : Function.Injective j₁)
 
 /-- **The base point lies on the axis of `u₂u₁⁻¹`**: the element moves it by
 exactly `n` at the `n`-th power, not merely by at least `l · n - B`.  This is
-the hypothesis `BassSerreHNN.IsTreeWPDCriterion` asks for, and loxodromy does
-not supply it. -/
+the hypothesis Minasyan--Osin's Corollary 4.3 asks for, and loxodromy does not
+supply it. -/
 theorem dist_pt_axisElt_pow (hj₁ : Function.Injective j₁)
     (hj₂ : Function.Injective j₂) (n : ℕ) :
     dist (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
@@ -330,52 +329,6 @@ theorem not_isVirtuallyCyclic (hj₁ : Function.Injective j₁)
     (b := firstStableLetter j₁ j₂ hj₁ hj₂)
     (no_common_power hj₁ hj₂)
 
-/-! ## The `(AH₃)` datum -/
-
-/-- **The Bass--Serre `(AH₃)` datum of `E`.**  The tree, the element `u₂u₁⁻¹`,
-and the base vertex.  Hyperbolicity is `δ = 0`; loxodromy is the one-syllable
-cyclic word; the WPD clause is the named tree criterion applied to the axis
-datum `dist_pt_axisElt_pow` and the trivial segment stabiliser. -/
-noncomputable def ah3Data (hj₁ : Function.Injective j₁)
-    (hj₂ : Function.Injective j₂)
-    (hinter : ∀ p q : P, j₁ p = j₂ q → p = 1)
-    (hcrit : BassSerreHNN.IsTreeWPDCriterion (Double j₁ j₂ hj₁ hj₂)
-      (BassSerreHNN.tree_isTree (stageTwoEquiv j₁ j₂ hj₁ hj₂))) :
-    AH3Data.{0, 0} (Double j₁ j₂ hj₁ hj₂) :=
-  AH3Data.ofData (BassSerreHNN.Space (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-    (BassSerreHNN.isIsometricAction (stageTwoEquiv j₁ j₂ hj₁ hj₂)) 0
-    (BassSerreHNN.isHyperbolicSpace_zero_space (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-    (axisElt hj₁ hj₂) (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
-    (isLoxodromic_axisElt hj₁ hj₂) (by
-    refine hcrit (axisElt hj₁ hj₂)
-      (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
-      (BassSerreHNN.isIsometricAction (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-      ⟨1, Nat.one_pos, dist_pt_axisElt_pow hj₁ hj₂⟩ ?_
-    intro g hg
-    have hf0 := hg 0 (by omega)
-    have hf1 := hg 1 (by omega)
-    have hf2 := hg 2 (by omega)
-    rw [pow_zero, one_smul] at hf0
-    rw [pow_one] at hf1
-    rw [BassSerreHNN.smul_pt, mul_one] at hf1
-    rw [BassSerreHNN.smul_pt, mul_one] at hf2
-    rw [BassSerreHNN.smul_pt_eq_iff] at hf0
-    rw [BassSerreHNN.smul_pt_eq_iff] at hf1
-    rw [BassSerreHNN.smul_pt_eq_iff] at hf2
-    exact eq_one_of_fixes_axis_segment hj₁ hj₂ hinter g hf0 hf1 hf2)
-
-/-- **`E` is acylindrically hyperbolic**, granted the two named literature
-inputs. -/
-theorem isAcylindricallyHyperbolic_of (hj₁ : Function.Injective j₁)
-    (hj₂ : Function.Injective j₂)
-    (hinter : ∀ p q : P, j₁ p = j₂ q → p = 1)
-    (hcrit : BassSerreHNN.IsTreeWPDCriterion (Double j₁ j₂ hj₁ hj₂)
-      (BassSerreHNN.tree_isTree (stageTwoEquiv j₁ j₂ hj₁ hj₂)))
-    (hosin : OsinTheorem12.{0, 0}) :
-    IsAcylindricallyHyperbolic (Double j₁ j₂ hj₁ hj₂) :=
-  hosin (Double j₁ j₂ hj₁ hj₂) (ah3Data hj₁ hj₂ hinter hcrit)
-    (not_isVirtuallyCyclic hj₁ hj₂)
-
 /-! ## At the manuscript's data -/
 
 section Skeleton
@@ -417,19 +370,6 @@ theorem skeleton_eq_one_of_fixes_axis_segment
 theorem skeleton_not_isVirtuallyCyclic :
     ¬ IsVirtuallyCyclic (Skeleton f hf) :=
   not_isVirtuallyCyclic (factorOne_injective f hf) (factorTwo_injective f hf)
-
-/-- **`E` is acylindrically hyperbolic.**  Everything group-theoretic is
-proved; the two hypotheses are the tree-geometry step named in
-`GGT/BassSerreHNNAction.lean` and Osin's Theorem 1.2 named in
-`GGT/WPDAcylindricalHyperbolicity.lean`. -/
-theorem skeleton_isAcylindricallyHyperbolic
-    (hcrit : BassSerreHNN.IsTreeWPDCriterion (Skeleton f hf)
-      (BassSerreHNN.tree_isTree (stageTwoEquiv (factorOne f) (factorTwo f)
-        (factorOne_injective f hf) (factorTwo_injective f hf))))
-    (hosin : OsinTheorem12.{0, 0}) :
-    IsAcylindricallyHyperbolic (Skeleton f hf) :=
-  isAcylindricallyHyperbolic_of (factorOne_injective f hf)
-    (factorTwo_injective f hf) (skeleton_inter f hf) hcrit hosin
 
 end Skeleton
 

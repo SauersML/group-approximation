@@ -4,13 +4,13 @@ import GroupApproximation.GGT.HyperbolicTreeSegmentShift
 /-!
 # Minasyan--Osin's Corollary 4.3, proved, and the hypothesis it needs
 
-`GGT/BassSerreHNNWPDInput.lean` names the tree half of the manuscript's
-Minasyan--Osin citation as `GGT.TreeCorollary43`, and
-`GGT/BassSerreHNNAction.lean` names a variant of it as
-`GGT.BassSerreHNN.IsTreeWPDCriterion`.  Both were first stated with
-`IsLoxodromic h x` as the only hypothesis relating `h` to the basepoint `x`, and
-**both are false in that form**.  Both now carry the axis hypothesis instead,
-and this module proves them, together with `GGT.SkeletonAH3Input` outright.
+The tree half of the manuscript's Minasyan--Osin citation used to be carried by
+two named propositions, `TreeCorollary43` in `GGT/BassSerreHNNWPDInput.lean` and
+`IsTreeWPDCriterion` in `GGT/BassSerreHNNAction.lean`.  Both stated Corollary 4.3
+with `IsLoxodromic h x` as the only hypothesis relating `h` to the basepoint `x`,
+and **both were false in that form**.  This module proves Corollary 4.3 with the
+hypothesis it needs, and `GGT.SkeletonAH3Input` outright; the two propositions
+are deleted.
 
 ## Why the loxodromy hypothesis alone is not enough
 
@@ -54,13 +54,8 @@ downstream is weakened by the repair.
   element.  Given `ε`, the power used is `g^(N + 2⌈ε⌉ + 2)` and the middle pair
   is `(g^(⌈ε⌉+1)·x, g^(⌈ε⌉+1+N)·x)`, whose pointwise stabiliser is a conjugate
   of the given one.
-* `isWPDAt_of_pairStab_zero_finite` --- the same in the `pairStab` shape
-  `TreeCorollary43` is written in.
-* `treeCorollary43` and `isTreeWPDCriterion_tree` --- **the two named
-  propositions, proved**, in their repaired form.  The criterion asks for the
-  pointwise stabiliser of three consecutive axis vertices; Corollary 4.3 asks
-  for the two ends only, and displacement convexity supplies the middle vertex,
-  so the two meet.
+* `isWPDAt_of_pairStab_zero_finite` --- the same with the finiteness hypothesis
+  written as a `pairStab`, which is the shape a tree action delivers it in.
 * `BassSerreDoubleHNN.isWPDAt_axisElt_unconditional` --- `u₂u₁⁻¹` is a WPD
   element for the Bass--Serre action of `E`, with no hypothesis but
   `Δ₁ ∩ Δ₂ = 1`.
@@ -274,10 +269,10 @@ theorem isWPDAt_of_axis_pairStab_finite (hH : H.IsTree)
       (k • ((g ^ (N + 2 * n + 2)) • x)) : ℕ) : ℝ) ≤ ε := h2
   exact ⟨by exact_mod_cast le_trans e1 hn, by exact_mod_cast le_trans e2 hn⟩
 
-/-- **Corollary 4.3 in the `pairStab` shape** `GGT.TreeCorollary43` is written
-in, with the axis hypothesis added.  Everything else is the same: a tree, an
-action preserving the graph metric, and one pair `(x, g^N·x)` with finite
-pointwise stabiliser. -/
+/-- **Corollary 4.3 with the finiteness hypothesis as a `pairStab`**, which is
+the shape a tree action delivers it in: a tree, an action preserving the graph
+metric, an axis basepoint, and one pair `(x, g^N·x)` with finite pointwise
+stabiliser. -/
 theorem isWPDAt_of_pairStab_zero_finite (hH : H.IsTree)
     (hiso : ∀ (a : Γ) (p q : V), H.dist (a • p) (a • q) = H.dist p q)
     (g : Γ) (x : V) (ℓ N : ℕ) (hℓ : 0 < ℓ)
@@ -291,80 +286,6 @@ theorem isWPDAt_of_pairStab_zero_finite (hH : H.IsTree)
   exact (mem_pairStab_zero_tree (u := x) (w := (g ^ N) • x) hH).2 hk
 
 end Trees
-
-/-! ## The two named propositions, proved -/
-
-/-- **`GGT.TreeCorollary43`, proved.**  The proposition carries the axis
-hypothesis rather than bare loxodromy, which is what Minasyan--Osin's
-`u, v ∈ axis(h)` amounts to and what the statement needs to be true. -/
-theorem treeCorollary43 : TreeCorollary43 := by
-  intro Γ _ V H hH _ hiso g x N hax hfin
-  obtain ⟨ℓ, hℓ, haxis⟩ := hax
-  exact isWPDAt_of_pairStab_zero_finite hH hiso g x ℓ N hℓ haxis hfin
-
-/-- **`GGT.BassSerreHNN.IsTreeWPDCriterion`, proved**, for every action on every
-tree.
-
-The criterion asks for the pointwise stabiliser of three *consecutive* axis
-vertices to be trivial, and Corollary 4.3 for the two ends of that segment: the
-middle vertex is not needed as an input, because displacement convexity
-(`GGT.dist_smul_le_max_of_between`) puts it in the stabiliser as soon as the two
-ends are, so the two hypotheses meet. -/
-theorem isTreeWPDCriterion_tree {Γ : Type u} [Group Γ] {V : Type u}
-    {H : SimpleGraph V} (hH : H.IsTree) [MulAction Γ V] :
-    BassSerreHNN.IsTreeWPDCriterion Γ hH := by
-  intro h x hiso hax hstab
-  obtain ⟨ℓ, hℓ, haxis⟩ := hax
-  have hisoV : ∀ (a : Γ) (p q : V), H.dist (a • p) (a • q) = H.dist p q := by
-    intro a p q
-    have hd : ((H.dist (a • p) (a • q) : ℕ) : ℝ) = ((H.dist p q : ℕ) : ℝ) :=
-      hiso a (TreeSpace.of hH p) (TreeSpace.of hH q)
-    exact_mod_cast hd
-  have haxisV : ∀ n : ℕ,
-      H.dist (TreeSpace.val x) ((h ^ n) • TreeSpace.val x) = n * ℓ := by
-    intro n
-    have hd : ((H.dist (TreeSpace.val x)
-        ((h ^ n) • TreeSpace.val x) : ℕ) : ℝ) = ((n * ℓ : ℕ) : ℝ) := haxis n
-    exact_mod_cast hd
-  have hfin : {k : Γ | k • TreeSpace.val x = TreeSpace.val x ∧
-      k • ((h ^ 2) • TreeSpace.val x) = (h ^ 2) • TreeSpace.val x}.Finite := by
-    refine Set.Finite.subset (Set.finite_singleton (1 : Γ)) ?_
-    rintro k ⟨hk0, hk2⟩
-    have hsq : (h ^ 2) • TreeSpace.val x = h • (h • TreeSpace.val x) := by
-      rw [pow_two, mul_smul]
-    have hB : H.dist (h • TreeSpace.val x) ((h ^ 2) • TreeSpace.val x)
-        = H.dist (TreeSpace.val x) (h • TreeSpace.val x) := by
-      rw [hsq]
-      exact hisoV h (TreeSpace.val x) (h • TreeSpace.val x)
-    have hb : H.dist (TreeSpace.val x) (h • TreeSpace.val x)
-        + H.dist (h • TreeSpace.val x) ((h ^ 2) • TreeSpace.val x)
-        = H.dist (TreeSpace.val x) ((h ^ 2) • TreeSpace.val x) := by
-      have h1 := haxisV 1
-      have h2 := haxisV 2
-      rw [pow_one] at h1
-      rw [hB, h1, h2]
-      omega
-    have hmid : k • (h • TreeSpace.val x) = h • TreeSpace.val x := by
-      have hd := dist_smul_le_max_of_between hH hisoV k hb
-      rw [hk0, hk2, SimpleGraph.dist_self, SimpleGraph.dist_self,
-        max_self] at hd
-      exact (eq_of_dist_eq_zero hH (Nat.le_zero.1 hd)).symm
-    refine Set.mem_singleton_iff.2 (hstab k ?_)
-    intro i hi
-    rcases Nat.lt_or_ge i 1 with hlt | hge
-    · have hi0 : i = 0 := by omega
-      subst hi0
-      rw [pow_zero, one_smul]
-      exact hk0
-    · rcases Nat.lt_or_ge i 2 with hlt2 | hge2
-      · have hi1 : i = 1 := by omega
-        subst hi1
-        rw [pow_one]
-        exact hmid
-      · have hi2 : i = 2 := by omega
-        subst hi2
-        exact hk2
-  exact isWPDAt_of_axis_pairStab_finite hH hisoV hℓ haxisV hfin
 
 /-! ## At the manuscript's `E` -/
 

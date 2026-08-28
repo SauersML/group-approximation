@@ -3,30 +3,25 @@ import GroupApproximation.GGT.HyperbolicTreeAction
 import GroupApproximation.GGT.WPDMinasyanOsinSkeleton
 
 /-!
-# `SkeletonAH3Input` from the Bass--Serre tree, modulo Minasyan--Osin's
-Corollary 4.3
+# The Bass--Serre tree data of `E`: the axis, and the trivial pair stabiliser
 
 `GGT/WPDMinasyanOsinSkeleton.lean` reduces the manuscript's Minasyan--Osin
 citation to two propositions: Osin's Theorem 1.2, and `SkeletonAH3Input` --- a
-`GGT.AH3Data` for `Skeleton f hf`.  This module supplies the second one from the
-Bass--Serre tree of `GGT/BassSerreHNNTree.lean`, with a single named gap.
+`GGT.AH3Data` for `Skeleton f hf`.  This module supplies what the Bass--Serre
+tree of `GGT/BassSerreHNNTree.lean` contributes to the second one; the
+assembly is `GGT.BassSerreDoubleHNN.skeletonAH3Input_unconditional` in
+`GGT/TreeWPDAxis.lean`, which is unconditional.
 
-## What the gap is, and what it is not
+## What is here
 
-Three of the four geometric fields of `AH3Data` are unconditional here:
-`isometric` and `hyperbolic` (`δ = 0`, through `GGT.isHyperbolicSpace_zero` on
-`tree_isTree`) and `loxodromic` (`u₂u₁⁻¹` is a one-syllable cyclically reduced
-word, so it translates by one).  The fourth, `wpd`, is
-`TreeCorollary43` applied to the pair `(x₀, h²·x₀)`:
-
-> **Minasyan--Osin, Corollary 4.3.**  Let `G` act on a simplicial tree and let
-> `h ∈ G` be hyperbolic.  If `PStab_G({u,v})` is finite for some vertices
-> `u, v` on the axis of `h`, then `h` satisfies the WPD condition.
-
-Its engine is their Lemma 4.2 --- an `ε`-stabiliser of a distant pair sits in
-boundedly many left cosets of the pointwise stabiliser of a middle pair --- and
-that is the part this development does not carry out.  Everything Corollary 4.3
-*consumes* is proved below, unconditionally:
+Three of the four geometric fields of `AH3Data` are immediate: `isometric` and
+`hyperbolic` (`δ = 0`, through `GGT.isHyperbolicSpace_zero` on `tree_isTree`)
+and `loxodromic` (`u₂u₁⁻¹` is a one-syllable cyclically reduced word, so it
+translates by one).  The fourth, `wpd`, is Minasyan--Osin's Corollary 4.3 --- a
+loxodromic whose axis carries a pair of vertices with finite pointwise
+stabiliser is a WPD element --- proved in `GGT/TreeWPDAxis.lean` as
+`GGT.isWPDAt_of_axis_pairStab_finite`.  What Corollary 4.3 *consumes* is proved
+below:
 
 * `pairStab_axis_finite` --- **`PStab_E({x₀, h²·x₀}) = 1`.**  Displacement
   convexity in a tree (`GGT.dist_smul_le_max_of_between`, proved by
@@ -102,58 +97,6 @@ theorem smul_vmk_eq_of_dist_le_zero (φ : A ≃* B)
 
 end BassSerreHNN
 
-/-! ## Minasyan--Osin's Corollary 4.3, named -/
-
-/-- **Not used by any chain.**  `GGT.BassSerreDoubleHNN.skeletonAH3Input`
-supersedes this proposition: it discharges `SkeletonAH3Input` outright, so
-nothing depends on the statement below and it is not outstanding debt.  It is
-kept because it is the honest general form of Corollary 4.3 --- an arbitrary
-loxodromic and a merely finite pair stabiliser --- whereas what the manuscript
-needs is the special case where the translation length is one and the
-stabiliser is trivial, which `GGT.isWPDAt_of_axis` proves.
-
-**Minasyan--Osin, *Acylindrical hyperbolicity of groups acting on trees*,
-Math. Ann. 362 (2015), Corollary 4.3**, verbatim:
-
-> Let `G` act on a simplicial tree `T` and let `h ∈ G` be hyperbolic.  Suppose
-> that for some vertices `u, v ∈ axis(h)`, `PStab_G({u,v})` is finite (`u = v`
-> is allowed).  Then `h` satisfies the WPD condition.
-
-Here the two axis vertices are taken to be `x` and `hᴺ·x`, which are on the
-axis for free once `h` is loxodromic at `x`.  The proof in the source is their
-Lemma 4.2: for `d(x,y) > 2ε` the set `PStab^ε_G({x,y})` is contained in at most
-`2(2ε+1)` left cosets of `PStab_G({u,v})` for suitable interior `u,v`, which is
-the tree geometry this development does not carry out.
-`GGT.isWPDAt_of_pairStab_cover` is the bookkeeping half, and it is proved.
-
-Everything this proposition consumes about `Skeleton f hf` is proved in
-`BassSerreDoubleHNN` below.
-
-**The axis hypothesis `∀ n, d(x, gⁿ·x) = n · ℓ`, `0 < ℓ`, is Minasyan--Osin's
-`u, v ∈ axis(h)`, and it cannot be dropped.**  The proposition was first written
-here with `IsLoxodromic g x` in its place, and in that form it is false:
-loxodromy is only the lower bound `l · n - B ≤ d(x, gⁿ·x)`, which a basepoint
-hanging off the axis also satisfies, and off the axis the stabiliser of `x` says
-nothing about the stabiliser of the axis.  Counterexample: `Γ = K × ℤ` with `K`
-infinite acting on the line `ℤ` with one extra leaf `ℓ_γ` for each `γ ∈ Γ`, the
-leaf `ℓ_γ` joined to the vertex `π γ`; at the basepoint `x = ℓ_1` and `g` a
-generator of `ℤ`, `g` is loxodromic and `PStab_Γ({x, g^N·x})` is trivial for
-every `N`, while every `k ∈ K` moves `x` and `g^M·x` by exactly `2`, so `g` is
-not WPD.
-
-The application supplies the axis hypothesis through `tLen_axisElt_pow`, at
-`ℓ = 1`, so nothing downstream is weakened; and with it the proposition is a
-theorem, `GGT.treeCorollary43` in `GGT/TreeWPDAxis.lean`. -/
-def TreeCorollary43 : Prop :=
-  ∀ (Γ : Type) [Group Γ] (V : Type) (H : SimpleGraph V) (hH : H.IsTree)
-    [MulAction Γ V],
-    (∀ (a : Γ) (p q : V), H.dist (a • p) (a • q) = H.dist p q) →
-    ∀ (g : Γ) (x : V) (N : ℕ),
-      (∃ ℓ : ℕ, 0 < ℓ ∧ ∀ n : ℕ, H.dist x ((g ^ n) • x) = n * ℓ) →
-      (pairStab Γ 0 (TreeSpace.of hH x)
-        ((g ^ N) • TreeSpace.of hH x)).Finite →
-      IsWPDAt g (TreeSpace.of hH x)
-
 namespace BassSerreDoubleHNN
 
 open GroupApproximation.HullGeometry
@@ -182,8 +125,10 @@ theorem tLen_axisElt (hj₁ : Function.Injective j₁)
   rwa [pow_one] at h
 
 /-- **The base vertex lies on the axis of `u₂u₁⁻¹`**, in the graph-metric shape
-`TreeCorollary43` asks for: the orbit of `x₀` under the powers of `u₂u₁⁻¹` is an
-arithmetic progression of step one along a geodesic. -/
+Minasyan--Osin's Corollary 4.3 asks for: the orbit of `x₀` under the powers of
+`u₂u₁⁻¹` is an arithmetic progression of step one along a geodesic.  Loxodromy
+alone does not give this, and the difference is not cosmetic --- see the
+counterexample in the docstring of `GGT/TreeWPDAxis.lean`. -/
 theorem dist_vmk_axisElt_pow (hj₁ : Function.Injective j₁)
     (hj₂ : Function.Injective j₂) (n : ℕ) :
     (BassSerreHNN.tree (stageTwoEquiv j₁ j₂ hj₁ hj₂)).dist
@@ -277,23 +222,7 @@ theorem pairStab_axis_finite (hj₁ : Function.Injective j₁)
   exact Set.Finite.subset (Set.finite_singleton _)
     (pairStab_axis_subset_one hj₁ hj₂ hinter)
 
-/-! ## The `(AH₃)` datum, and `SkeletonAH3Input` -/
-
-/-- **`u₂u₁⁻¹` is a WPD element**, granted Minasyan--Osin's Corollary 4.3. -/
-theorem isWPDAt_axisElt (hcor : TreeCorollary43)
-    (hj₁ : Function.Injective j₁) (hj₂ : Function.Injective j₂)
-    (hinter : ∀ p q : P, j₁ p = j₂ q → p = 1) :
-    IsWPDAt (axisElt hj₁ hj₂)
-      (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1) :=
-  hcor (Double j₁ j₂ hj₁ hj₂)
-    (BassSerreHNN.Vertex (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-    (BassSerreHNN.tree (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-    (BassSerreHNN.tree_isTree (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-    (BassSerreHNN.graph_dist_smul (stageTwoEquiv j₁ j₂ hj₁ hj₂))
-    (axisElt hj₁ hj₂)
-    (BassSerreHNN.vmk (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1) 2
-    ⟨1, Nat.one_pos, dist_vmk_axisElt_pow hj₁ hj₂⟩
-    (pairStab_axis_finite hj₁ hj₂ hinter)
+/-! ## The `(AH₃)` datum -/
 
 /-- **The `(AH₃)` datum of `E`**, from the WPD element. -/
 noncomputable def ah3DataOfWPD (hj₁ : Function.Injective j₁)
@@ -306,24 +235,6 @@ noncomputable def ah3DataOfWPD (hj₁ : Function.Injective j₁)
     (BassSerreHNN.isHyperbolicSpace_zero_space (stageTwoEquiv j₁ j₂ hj₁ hj₂))
     (axisElt hj₁ hj₂) (BassSerreHNN.pt (stageTwoEquiv j₁ j₂ hj₁ hj₂) 1)
     (isLoxodromic_axisElt hj₁ hj₂) hwpd
-
-/-- **`SkeletonAH3Input` from the Bass--Serre tree.**  This is the target
-`GGT/WPDMinasyanOsinSkeleton.lean` names; with it and Osin's Theorem 1.2 the
-manuscript's Minasyan--Osin citation is discharged. -/
-theorem skeletonAH3Input_of (hcor : TreeCorollary43) : SkeletonAH3Input.{0} := by
-  intro P S instP instS f hf
-  exact ⟨ah3DataOfWPD (factorOne_injective f hf) (factorTwo_injective f hf)
-    (isWPDAt_axisElt hcor (factorOne_injective f hf) (factorTwo_injective f hf)
-      (skeleton_inter f hf))⟩
-
-/-- **The manuscript's Minasyan--Osin citation, from two named inputs.**
-
-Superseded, like `skeletonAH3Input_of` above, by
-`GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osin_axis`, which takes only
-Osin's Theorem 1.2.  Nothing consumes this version. -/
-theorem minasyanOsinStatement_of_tree (hOsin : OsinTheorem12.{0, 0})
-    (hcor : TreeCorollary43) : MinasyanOsinStatement :=
-  minasyanOsinStatement_of hOsin (skeletonAH3Input_of hcor)
 
 end BassSerreDoubleHNN
 end GGT
