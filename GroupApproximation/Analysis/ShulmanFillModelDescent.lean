@@ -75,6 +75,9 @@ namespace GroupApproximation
 namespace ShulmanFill
 
 open Filter
+-- the operator norm on each `Matrix (X n) (X n) ℂ`, and with it the ring and
+-- norm structure of `BoundedMatrixSequence`, live in this scope
+open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 
@@ -113,6 +116,7 @@ def seq (M : AsymptoticModel (A := A) X) (a : A) :
     rintro _ ⟨n, rfl⟩
     exact M.contractive n a⟩⟩
 
+omit [∀ n, Nonempty (X n)] in
 @[simp] theorem seq_apply (M : AsymptoticModel (A := A) X) (a : A) (n : ℕ) :
     M.seq a n = M.map n a := rfl
 
@@ -145,7 +149,21 @@ def toCoronaHom (M : AsymptoticModel (A := A) X) :
       exact Filter.Tendsto.congr hfun M.zero
     rw [h, map_zero]
   map_add' a b := by
-    rw [← map_add]
+    -- The field's goal is a beta-redex, so `show` first; `map_smul'` and
+    -- `map_star'` below do the same.  `map_add` is then used as a *term* under
+    -- a written-out type rather than as a rewrite rule: as a rewrite rule its
+    -- `AddHomClass F ?M ?N` argument is searched for with `M` and `N` still
+    -- unknown, which does not terminate over this `lp` quotient, while the
+    -- ascription fixes both by unification.  `NormCoronaAsymptoticLiftCore`
+    -- uses exactly this idiom over the same types.
+    show normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq (a + b)) =
+      normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq a) +
+        normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq b)
+    have hadd : normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq a + M.seq b) =
+        normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq a) +
+          normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq b) :=
+      _root_.map_add (normMatrixCStarCoronaMk (fun n ↦ X n)) (M.seq a) (M.seq b)
+    rw [← hadd]
     refine mk_eq_of_tendsto _ _ ?_
     have hfun : ∀ n, ‖M.map n (a + b) - (M.map n a + M.map n b)‖ =
         ‖M.seq (a + b) n - (M.seq a + M.seq b) n‖ := by
@@ -153,7 +171,14 @@ def toCoronaHom (M : AsymptoticModel (A := A) X) :
       simp only [seq_apply, lp.coeFn_add, Pi.add_apply]
     exact Filter.Tendsto.congr hfun (M.add a b)
   map_mul' a b := by
-    rw [← map_mul]
+    show normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq (a * b)) =
+      normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq a) *
+        normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq b)
+    have hmul : normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq a * M.seq b) =
+        normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq a) *
+          normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq b) :=
+      _root_.map_mul (normMatrixCStarCoronaMk (fun n ↦ X n)) (M.seq a) (M.seq b)
+    rw [← hmul]
     refine mk_eq_of_tendsto _ _ ?_
     have hfun : ∀ n, ‖M.map n (a * b) - M.map n a * M.map n b‖ =
         ‖M.seq (a * b) n - (M.seq a * M.seq b) n‖ := by
@@ -171,12 +196,14 @@ def toCoronaHom (M : AsymptoticModel (A := A) X) :
       simp only [seq_apply, lp.coeFn_smul, Pi.smul_apply]
     exact Filter.Tendsto.congr hfun (M.smul c a)
   map_star' a := by
-    show normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq (star a)) =
-      star (normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq a))
+    -- inside `namespace AsymptoticModel` the bare name `star` is the structure's
+    -- own field, so the operation is written `Star.star` here
+    show normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq (Star.star a)) =
+      Star.star (normMatrixCStarCoronaMk (fun n ↦ X n) (M.seq a))
     rw [normMatrixCStarCorona_star_mk]
     refine mk_eq_of_tendsto _ _ ?_
-    have hfun : ∀ n, ‖M.map n (star a) - star (M.map n a)‖ =
-        ‖M.seq (star a) n - (star (M.seq a)) n‖ := by
+    have hfun : ∀ n, ‖M.map n (Star.star a) - Star.star (M.map n a)‖ =
+        ‖M.seq (Star.star a) n - (Star.star (M.seq a)) n‖ := by
       intro n
       simp only [seq_apply, lp.coeFn_star, Pi.star_apply]
     exact Filter.Tendsto.congr hfun (M.star a)
