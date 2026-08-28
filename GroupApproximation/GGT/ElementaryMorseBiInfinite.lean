@@ -134,6 +134,94 @@ def ChordsFellowTravelAwayFromEnds (X : Type v) [PseudoMetricSpace X] : Prop :=
         ∀ s : ℝ, E + C ≤ s → s + E + C ≤ Lp →
           ∃ t ∈ Set.Icc (0 : ℝ) Lq, dist (p s) (q t) ≤ C
 
+
+/-! ### The localisation step, proved
+
+Not a leaf after all.  The quadrilateral splits along the diagonal from `p 0` to
+`q Lq` into two triangles and `3δ`-thinness is applied once in each.  Both
+alternatives that would fail are killed by the same inequality: the point `p s`
+is at distance `s` from `p 0` and `Lp - s` from `p Lp`, and the hypotheses put
+both above `E + C`, while landing on a short side would put one of them below
+`3δ + E` or `6δ + E`.  With `C = 6δ + 1` those are incompatible.
+
+The surviving branch gives `3δ + 3δ`, and `E` occurs in neither conclusion ---
+only inside the two contradictions.  That is the localisation: the failure is
+confined to within `E` of the ends, so the constant that comes out has no `E`
+in it. -/
+
+/-- **The quadrilateral localisation step**, from `3δ`-thin geodesic triangles. -/
+theorem chordsFellowTravelAwayFromEnds_of_geodesic {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X) :
+    ChordsFellowTravelAwayFromEnds X := by
+  refine ⟨6 * δ + 1, by linarith, ?_⟩
+  intro E Lp Lq hE hLp hLq p q hp hq h0 h1 s hs1 hs2
+  have hs0 : 0 ≤ s := by linarith
+  have hsLp : s ≤ Lp := by linarith
+  have hLpe : dist (p 0) (p Lp) = Lp := by
+    rw [hp.dist_endpoints hLp, sub_zero]
+  have hLqe : dist (q 0) (q Lq) = Lq := by
+    rw [hq.dist_endpoints hLq, sub_zero]
+  have hE1 : dist (q Lq) (p Lp) ≤ E := by rw [dist_comm]; exact h1
+  -- the two distances from `p s` to the ends of `p`
+  have hpend : dist (p s) (p Lp) = Lp - s := by
+    rw [hp s ⟨hs0, hsLp⟩ Lp ⟨hLp, le_rfl⟩,
+      abs_of_nonpos (by linarith : s - Lp ≤ 0)]
+    ring
+  have hpstart : dist (p s) (p 0) = s := by
+    rw [hp s ⟨hs0, hsLp⟩ 0 ⟨le_rfl, hLp⟩,
+      abs_of_nonneg (by linarith : (0 : ℝ) ≤ s - 0)]
+    ring
+  -- the diagonal and the two short sides
+  obtain ⟨g, hg, hg0, hg1⟩ := hgeo (p 0) (q Lq)
+  obtain ⟨e1, he1, he10, he11⟩ := hgeo (q Lq) (p Lp)
+  obtain ⟨e2, he2, he20, he21⟩ := hgeo (p 0) (q 0)
+  have hde1 : ∀ u ∈ Set.Icc (0 : ℝ) (dist (q Lq) (p Lp)),
+      dist (e1 u) (p Lp) ≤ E := by
+    intro u hu
+    have h := he1 u hu (dist (q Lq) (p Lp)) ⟨dist_nonneg, le_rfl⟩
+    rw [he11] at h
+    rw [h, abs_of_nonpos (by linarith [hu.2] : u - dist (q Lq) (p Lp) ≤ 0)]
+    linarith [hu.1]
+  have hde2 : ∀ w ∈ Set.Icc (0 : ℝ) (dist (p 0) (q 0)),
+      dist (e2 w) (p 0) ≤ E := by
+    intro w hw
+    have h := he2 w hw 0 ⟨le_rfl, dist_nonneg⟩
+    rw [he20] at h
+    rw [h, abs_of_nonneg (by linarith [hw.1] : (0 : ℝ) ≤ w - 0)]
+    linarith [hw.2]
+  -- `p` and `q` re-parametrised by their own endpoint distances
+  have hpAC : IsGeodesicSegment p 0 (dist (p 0) (p Lp)) := by rw [hLpe]; exact hp
+  have hpAC1 : p (dist (p 0) (p Lp)) = p Lp := by rw [hLpe]
+  have hqBC : IsGeodesicSegment q 0 (dist (q 0) (q Lq)) := by rw [hLqe]; exact hq
+  have hqBC1 : q (dist (q 0) (q Lq)) = q Lq := by rw [hLqe]
+  have hsmem : s ∈ Set.Icc (0 : ℝ) (dist (p 0) (p Lp)) := by
+    rw [hLpe]; exact ⟨hs0, hsLp⟩
+  -- first triangle: vertices `p 0`, `q Lq`, `p Lp`
+  rcases exists_close_on_other_side_of_geodesic_triangle hδ hδ0
+      hpAC rfl hpAC1 hg hg0 hg1 he1 he10 he11 hsmem with
+    ⟨u, hu, hpu⟩ | ⟨u, hu, hpu⟩
+  · -- second triangle: vertices `p 0`, `q 0`, `q Lq`
+    rcases exists_close_on_other_side_of_geodesic_triangle hδ hδ0
+        hg hg0 hg1 he2 he20 he21 hqBC rfl hqBC1 hu with
+      ⟨w, hw, hgw⟩ | ⟨w, hw, hgw⟩
+    · -- the diagonal point is near the short side `[p 0, q 0]`: impossible
+      exfalso
+      have htri := dist_triangle4 (p s) (g u) (e2 w) (p 0)
+      have hbad := hde2 w hw
+      rw [hpstart] at htri
+      linarith
+    · -- the diagonal point is near `q`: this is the conclusion
+      refine ⟨w, ?_, ?_⟩
+      · rw [← hLqe]; exact hw
+      · have htri := dist_triangle (p s) (g u) (q w)
+        linarith
+  · -- `p s` is near the short side `[q Lq, p Lp]`: impossible
+    exfalso
+    have htri := dist_triangle (p s) (e1 u) (p Lp)
+    have hbad := hde1 u hu
+    rw [hpend] at htri
+    linarith
+
 end ElementaryMorse
 end GGT
 end GroupApproximation
