@@ -106,7 +106,9 @@ theorem CommutesWith.smul {S : Set D} {x : D} (hx : CommutesWith S x) (c : ℂ) 
 theorem CommutesWith.star {S : Set D} (hS : ∀ s ∈ S, star s ∈ S) {x : D}
     (hx : CommutesWith S x) : CommutesWith S (star x) := by
   intro s hs
-  have h := congrArg star (hx (star s) (hS s hs))
+  -- inside `CommutesWith.star` the bare name `star` is this very theorem, and
+  -- `_root_.star` is not a declaration: the operation itself is `Star.star`.
+  have h := congrArg Star.star (hx (Star.star s) (hS s hs))
   rw [star_mul, star_mul, star_star] at h
   exact h.symm
 
@@ -133,7 +135,10 @@ theorem star_mem_range_amalgamated (iA : C →⋆ₐ[ℂ] A) (l : A →⋆ₐ[�
     ∀ s ∈ Set.range fun c : C ↦ l (iA c),
       star s ∈ Set.range fun c : C ↦ l (iA c) := by
   rintro _ ⟨c, rfl⟩
-  exact ⟨star c, by rw [map_star, map_star]⟩
+  refine ⟨star c, ?_⟩
+  -- the membership goal is a beta-redex, which `map_star` cannot match.
+  show l (iA (star c)) = star (l (iA c))
+  rw [map_star, map_star]
 
 /-- **The hypothesis of `conjugateRepresentation`, as commutant membership.**
 A unitary commuting with the image of the amalgamated algebra may be applied to

@@ -97,8 +97,12 @@ theorem norm_unitary_mul_left (u : unitary M) (x : M) :
 
 @[simp] theorem norm_unitaryConj (u : unitary M) (x : M) :
     ‖unitaryConj u x‖ = ‖x‖ := by
+  -- `norm_mul_unitary_right _ (star u)` is stated at `↑(star u)`, which is
+  -- `star ↑u` only up to unfolding the coercion, so the goal is put in that form.
+  have hcoe : ((star u : unitary M) : M) = star (u : M) := Unitary.coe_star
   show ‖(u : M) * x * star (u : M)‖ = ‖x‖
-  rw [norm_mul_unitary_right ((u : M) * x) (star u), norm_unitary_mul_left u x]
+  rw [← hcoe, norm_mul_unitary_right ((u : M) * x) (star u),
+    norm_unitary_mul_left u x]
 
 /-- The displacement under conjugation is the commutator, exactly. -/
 theorem norm_unitaryConj_sub_self (u : unitary M) (a : M) :
@@ -107,8 +111,9 @@ theorem norm_unitaryConj_sub_self (u : unitary M) (a : M) :
       ((u : M) * a - a * (u : M)) * star (u : M) := by
     rw [sub_mul, mul_assoc a (u : M) (star (u : M)),
       Unitary.mul_star_self_of_mem u.2, mul_one]
+  have hcoe : ((star u : unitary M) : M) = star (u : M) := Unitary.coe_star
   show ‖(u : M) * a * star (u : M) - a‖ = ‖(u : M) * a - a * (u : M)‖
-  rw [hfac, norm_mul_unitary_right _ (star u)]
+  rw [hfac, ← hcoe, norm_mul_unitary_right _ (star u)]
 
 /-! ## The estimate on page 8 -/
 
@@ -155,11 +160,14 @@ theorem tendsto_norm_unitaryConj_sub {C : Type} [CStarAlgebra C]
     have htri : ‖phi k c - phi k (a j)‖ ≤
         ‖phi k (c - a j)‖ +
           ‖phi k (c - a j) - (phi k c - phi k (a j))‖ := by
-      have hrw : phi k c - phi k (a j) =
-          phi k (c - a j) - (phi k (c - a j) - (phi k c - phi k (a j))) := by
-        abel
-      rw [hrw]
-      exact norm_sub_le _ _
+      -- rewriting the goal by `hrw` would also hit the copy of
+      -- `phi k c - phi k (a j)` inside the right-hand side, so the triangle
+      -- inequality is rewritten instead.
+      have h := norm_sub_le (phi k (c - a j))
+        (phi k (c - a j) - (phi k c - phi k (a j)))
+      have hrw : phi k (c - a j) - (phi k (c - a j) - (phi k c - phi k (a j)))
+          = phi k c - phi k (a j) := by abel
+      rwa [hrw] at h
     have hbound : ‖phi k (c - a j)‖ ≤ ‖c - a j‖ := hcontract k (c - a j)
     linarith
   have hsplit : ‖unitaryConj (V k) (phi k c) - phi k c‖ ≤

@@ -106,7 +106,7 @@ theorem IsStarStrongLimit.add {S₁ S₂ : ℕ → H →L[ℂ] H} {T₁ T₂ : H
   · intro v
     exact (h₁.1 v).add (h₂.1 v)
   · intro v
-    simpa only [star_add] using (h₁.2 v).add (h₂.2 v)
+    simpa only [star_add, _root_.add_apply] using (h₁.2 v).add (h₂.2 v)
 
 theorem IsStarStrongLimit.smul {S : ℕ → H →L[ℂ] H} {T : H →L[ℂ] H} (c : ℂ)
     (h : IsStarStrongLimit S T) :
@@ -115,8 +115,9 @@ theorem IsStarStrongLimit.smul {S : ℕ → H →L[ℂ] H} {T : H →L[ℂ] H} (
   · intro v
     exact (h.1 v).const_smul c
   · intro v
-    simpa only [star_smul] using (h.2 v).const_smul (star c)
+    simpa only [star_smul, _root_.smul_apply] using (h.2 v).const_smul (Star.star c)
 
+omit [CompleteSpace H] in
 /-- A uniformly bounded sequence of operators may be evaluated along a
 convergent sequence of vectors.  The bound is what controls the diagonal error
 `Sₙ(wₙ - w₀)`. -/
@@ -153,8 +154,9 @@ theorem IsStarStrongLimit.mul {S₁ S₂ : ℕ → H →L[ℂ] H} {T₁ T₂ : H
   · intro v
     have h := tendsto_apply_of_norm_le
       (fun n ↦ norm_star_le_of_norm_le (hC₂ n)) h₂.2 (h₁.2 v)
-    simpa only [star_mul] using h
+    simpa only [star_mul, _root_.mul_apply_eq_comp] using h
 
+omit [CompleteSpace H] in
 /-- Pointwise Cauchy-ness is inherited from uniform approximants.  This is the
 `ε/3` argument, and it is the only analytic input the closure of `𝒟` needs:
 the middle third is the approximant's own Cauchy-ness, and the two outer
@@ -185,6 +187,7 @@ theorem cauchySeq_apply_of_approx {S : ℕ → H →L[ℂ] H} {v : H}
 
 /-! ## Existence of the limit operator -/
 
+omit [CompleteSpace H] in
 /-- A pointwise limit of a uniformly bounded sequence of operators is again a
 bounded operator: it is linear because limits are, and bounded by the uniform
 bound. -/

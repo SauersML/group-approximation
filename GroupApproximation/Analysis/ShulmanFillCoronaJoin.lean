@@ -83,7 +83,10 @@ theorem joinSeq_zero : joinSeq Z W 0 0 = 0 := by
   simp only [lp.coeFn_zero, Pi.zero_apply]
   exact MFAlgebraDimension.blockDiagMatrix_zero (Z n) (W n)
 
-theorem joinSeq_one : joinSeq Z W 1 1 = 1 := by
+-- `1` on a bounded matrix sequence needs `NormOneClass` of every block, which
+-- for `Matrix Y Y ℂ` is exactly nonemptiness of `Y`.
+theorem joinSeq_one [∀ n, Nonempty (Z n)] [∀ n, Nonempty (W n)] :
+    joinSeq Z W 1 1 = 1 := by
   refine lp.ext (funext fun n ↦ ?_)
   have h : blockDiagMatrix (Z n) (W n) 1 1 = 1 := blockDiagMatrix_one (Z n) (W n)
   simpa using h
@@ -110,7 +113,10 @@ theorem joinSeq_mul (a c : BoundedMatrixSequence (fun n ↦ Z n))
   simp only [lp.infty_coeFn_mul, Pi.mul_apply]
   exact (blockDiagMatrix_mul (Z n) (W n) (a n) (c n) (b n) (d n)).symm
 
-theorem joinSeq_smul (c : ℂ) (a : BoundedMatrixSequence (fun n ↦ Z n))
+-- as for `joinSeq_one`, the scalar action on the join family is found only once
+-- the blocks are known to be nonempty
+theorem joinSeq_smul [∀ n, Nonempty (Z n)] [∀ n, Nonempty (W n)] (c : ℂ)
+    (a : BoundedMatrixSequence (fun n ↦ Z n))
     (b : BoundedMatrixSequence (fun n ↦ W n)) :
     joinSeq Z W (c • a) (c • b) = c • joinSeq Z W a b := by
   refine lp.ext (funext fun n ↦ ?_)
@@ -202,13 +208,15 @@ theorem rightSeq_mul (b d : BoundedMatrixSequence (fun n ↦ W n)) :
   rw [mul_zero] at h
   exact h
 
-theorem leftSeq_smul (c : ℂ) (a : BoundedMatrixSequence (fun n ↦ Z n)) :
+theorem leftSeq_smul [∀ n, Nonempty (Z n)] [∀ n, Nonempty (W n)] (c : ℂ)
+    (a : BoundedMatrixSequence (fun n ↦ Z n)) :
     leftSeq Z W (c • a) = c • leftSeq Z W a := by
   have h := joinSeq_smul Z W c a 0
   rw [smul_zero] at h
   exact h
 
-theorem rightSeq_smul (c : ℂ) (b : BoundedMatrixSequence (fun n ↦ W n)) :
+theorem rightSeq_smul [∀ n, Nonempty (Z n)] [∀ n, Nonempty (W n)] (c : ℂ)
+    (b : BoundedMatrixSequence (fun n ↦ W n)) :
     rightSeq Z W (c • b) = c • rightSeq Z W b := by
   have h := joinSeq_smul Z W c 0 b
   rw [smul_zero] at h
@@ -266,6 +274,7 @@ def rightCorona (y : NormMatrixCStarCorona (fun n ↦ W n)) :
   normMatrixCStarCoronaMk (fun n ↦ joinModel Z W n)
     (rightSeq Z W (MFAlgebraDimension.coronaLift W y))
 
+omit [∀ n, Nonempty (W n)] in
 /-- Two lifts of the same class differ by a null sequence, whose left leg is
 null, so the choice of lift does not matter. -/
 theorem leftCorona_mk (a : BoundedMatrixSequence (fun n ↦ Z n)) :
@@ -525,24 +534,34 @@ theorem norm_le_norm_join_left (x : NormMatrixCStarCorona (fun n ↦ Z n))
         = 0 := by
       rw [leftCoronaHom_mul_rightCoronaHom, zero_mul]
     rw [mul_add, add_mul, h1, h2, add_zero]
+  -- rewriting the goal by `hcompress` would also hit the copy of
+  -- `leftCoronaHom Z W x` inside the right-hand side, so the compression is
+  -- used as the first step of a calculation instead.
+  have hL1 : ‖leftCoronaHom Z W 1‖ ≤ 1 := norm_leftCoronaHom_one_le_one Z W
+  have hS : (0 : ℝ) ≤ ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ :=
+    norm_nonneg _
+  have hprod : ‖leftCoronaHom Z W 1‖ *
+      ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ ≤
+      ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ := by nlinarith [hL1, hS]
   have hbound : ‖leftCoronaHom Z W x‖ ≤
-      ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ := by
-    rw [← hcompress]
-    have h1 : ‖leftCoronaHom Z W 1 *
-          (leftCoronaHom Z W x + rightCoronaHom Z W y) *
-        leftCoronaHom Z W 1‖ ≤
-        ‖leftCoronaHom Z W 1 *
-          (leftCoronaHom Z W x + rightCoronaHom Z W y)‖ *
-          ‖leftCoronaHom Z W 1‖ := norm_mul_le _ _
-    have h2 : ‖leftCoronaHom Z W 1 *
-          (leftCoronaHom Z W x + rightCoronaHom Z W y)‖ ≤
-        ‖leftCoronaHom Z W 1‖ *
-          ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ := norm_mul_le _ _
-    nlinarith [norm_leftCoronaHom_one_le_one Z W,
-      norm_nonneg (leftCoronaHom Z W 1),
-      norm_nonneg (leftCoronaHom Z W x + rightCoronaHom Z W y),
-      norm_nonneg (leftCoronaHom Z W 1 *
-        (leftCoronaHom Z W x + rightCoronaHom Z W y)), h1, h2]
+      ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ :=
+    calc ‖leftCoronaHom Z W x‖
+        = ‖leftCoronaHom Z W 1 *
+            (leftCoronaHom Z W x + rightCoronaHom Z W y) *
+              leftCoronaHom Z W 1‖ := by rw [hcompress]
+      _ ≤ ‖leftCoronaHom Z W 1 *
+            (leftCoronaHom Z W x + rightCoronaHom Z W y)‖ *
+              ‖leftCoronaHom Z W 1‖ := norm_mul_le _ _
+      _ ≤ (‖leftCoronaHom Z W 1‖ *
+            ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖) *
+              ‖leftCoronaHom Z W 1‖ :=
+          mul_le_mul_of_nonneg_right (norm_mul_le _ _) (norm_nonneg _)
+      _ ≤ ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ *
+              ‖leftCoronaHom Z W 1‖ :=
+          mul_le_mul_of_nonneg_right hprod (norm_nonneg _)
+      _ ≤ ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ * 1 :=
+          mul_le_mul_of_nonneg_left hL1 hS
+      _ = ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ := mul_one _
   rw [← norm_leftCoronaHom Z W x]
   exact hbound
 
@@ -561,24 +580,31 @@ theorem norm_le_norm_join_right (x : NormMatrixCStarCorona (fun n ↦ Z n))
         = 0 := by
       rw [rightCoronaHom_mul_leftCoronaHom, zero_mul]
     rw [mul_add, add_mul, h1, h2, zero_add]
+  have hR1 : ‖rightCoronaHom Z W 1‖ ≤ 1 := norm_rightCoronaHom_one_le_one Z W
+  have hS : (0 : ℝ) ≤ ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ :=
+    norm_nonneg _
+  have hprod : ‖rightCoronaHom Z W 1‖ *
+      ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ ≤
+      ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ := by nlinarith [hR1, hS]
   have hbound : ‖rightCoronaHom Z W y‖ ≤
-      ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ := by
-    rw [← hcompress]
-    have h1 : ‖rightCoronaHom Z W 1 *
-          (leftCoronaHom Z W x + rightCoronaHom Z W y) *
-        rightCoronaHom Z W 1‖ ≤
-        ‖rightCoronaHom Z W 1 *
-          (leftCoronaHom Z W x + rightCoronaHom Z W y)‖ *
-          ‖rightCoronaHom Z W 1‖ := norm_mul_le _ _
-    have h2 : ‖rightCoronaHom Z W 1 *
-          (leftCoronaHom Z W x + rightCoronaHom Z W y)‖ ≤
-        ‖rightCoronaHom Z W 1‖ *
-          ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ := norm_mul_le _ _
-    nlinarith [norm_rightCoronaHom_one_le_one Z W,
-      norm_nonneg (rightCoronaHom Z W 1),
-      norm_nonneg (leftCoronaHom Z W x + rightCoronaHom Z W y),
-      norm_nonneg (rightCoronaHom Z W 1 *
-        (leftCoronaHom Z W x + rightCoronaHom Z W y)), h1, h2]
+      ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ :=
+    calc ‖rightCoronaHom Z W y‖
+        = ‖rightCoronaHom Z W 1 *
+            (leftCoronaHom Z W x + rightCoronaHom Z W y) *
+              rightCoronaHom Z W 1‖ := by rw [hcompress]
+      _ ≤ ‖rightCoronaHom Z W 1 *
+            (leftCoronaHom Z W x + rightCoronaHom Z W y)‖ *
+              ‖rightCoronaHom Z W 1‖ := norm_mul_le _ _
+      _ ≤ (‖rightCoronaHom Z W 1‖ *
+            ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖) *
+              ‖rightCoronaHom Z W 1‖ :=
+          mul_le_mul_of_nonneg_right (norm_mul_le _ _) (norm_nonneg _)
+      _ ≤ ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ *
+              ‖rightCoronaHom Z W 1‖ :=
+          mul_le_mul_of_nonneg_right hprod (norm_nonneg _)
+      _ ≤ ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ * 1 :=
+          mul_le_mul_of_nonneg_left hR1 hS
+      _ = ‖leftCoronaHom Z W x + rightCoronaHom Z W y‖ := mul_one _
   rw [← norm_rightCoronaHom Z W y]
   exact hbound
 

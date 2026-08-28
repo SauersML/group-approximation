@@ -62,6 +62,10 @@ suspended and has not been elaborated.
 namespace GroupApproximation
 namespace ShulmanFill
 
+-- the operator norm on each `Matrix (Z n) (Z n) ℂ`, and with it the ring and
+-- norm structure of `BoundedMatrixSequence`, live in this scope
+open scoped Matrix.Norms.L2Operator
+
 noncomputable section
 
 variable {C A₁ A₂ : Type} [CStarAlgebra C] [CStarAlgebra A₁] [CStarAlgebra A₂]
@@ -75,6 +79,16 @@ variable {C A₁ A₂ : Type} [CStarAlgebra C] [CStarAlgebra A₁] [CStarAlgebra
   (hu : ∀ c : C,
     (u : NormMatrixCStarCorona (fun n ↦ Z n)) * l (iA c) =
       l (iA c) * (u : NormMatrixCStarCorona (fun n ↦ Z n)))
+
+/-- The `ℓ∞` product of the models' matrix algebras is a `ℂ`-star module.  This
+is Mathlib's own `lp` instance, registered here at the model-indexed family:
+`StarAlgebra.adjoin ℂ` below asks for it twice, and rediscovering it from the
+`lp` instance graph each time overruns the instance-search budget.  The proof is
+Mathlib's, transported through `lp.ext`. -/
+noncomputable instance boundedMatrixSequenceStarModule :
+    StarModule ℂ (BoundedMatrixSequence (fun n ↦ Z n)) where
+  star_smul _ _ :=
+    lp.ext (star_smul (R := ℂ) (A := ∀ n, Matrix (Z n) (Z n) ℂ) _ _)
 
 /-! ## The evaluation of the conjugated pair, on generators -/
 
