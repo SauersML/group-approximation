@@ -214,20 +214,38 @@ end Skeleton
 /-- **The tree input.**  For every `P`, `S` and injective `f`, the group `E`
 admits an action on a hyperbolic space with a loxodromic WPD element.
 
-The intended witness is the Bass--Serre tree of the one-vertex two-loop graph
-of groups with vertex group `P`, the element `u₁u₂⁻¹`, and the base vertex;
-`skeleton_eq_one_of_mem_both_conjugates` is the finite pointwise stabilizer
-that Minasyan--Osin's Corollary 4.3 turns into the WPD condition.
+**This proposition is discharged.**  `GGT.BassSerreDoubleHNN.skeletonAH3Input`
+proves it with no hypothesis, so it is not a debt and must not be recorded as
+one; `minasyanOsinStatement_of` below is consumed by
+`GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osin`, leaving Osin's
+Theorem 1.2 as the manuscript's only remaining input for this citation.
 
-The four pieces of that witness now exist in the repository and only have to be
-assembled: the tree and its `0`-hyperbolicity in the four-point sense
-(`GGT.isHyperbolicSpace_zero` on `GGT.TreeSpace`, wired for HNN extensions in
-`GGT.BassSerreHNNAction`); the packaging `GGT.AH3Data.ofData`, which fixes the
-universe once; `GGT.pairStab_zero_finite_of_trivial_intersection`, which turns
-two vertex stabilizers meeting trivially into the finite pointwise stabilizer;
-and `GGT.isWPDAt_of_pairStab_cover`, which turns Minasyan--Osin's Lemma 4.2
-covering inclusion into `IsWPDAt`.  What is left is tree geometry: loxodromy of
-`u₁u₂⁻¹`, and that covering inclusion. -/
+That discharge was checked against the counterexample that refuted the general
+tree criterion once stated alongside it.  In `K × ℤ` acting on a line with
+leaves attached, the basepoint is a leaf: `d(x, hⁿ x) = n + 2` rather than
+`n·ℓ`, so the on-axis hypothesis of the lemma actually used
+(`∀ m, d(x, hᵐ x) = m·ℓ`) already excludes it, and for genuine axis pairs the
+pointwise stabilizer is the infinite `K`, so its trivial-stabilizer hypothesis
+fails there too.  The refuted statement differed exactly by permitting an
+off-axis basepoint.  For `E` the on-axis datum holds with `ℓ = 1`.
+
+The witness built there is the Bass--Serre tree of the *outer* HNN splitting
+`E = HNN(E₁, ι(P), ι(P₂))`, whose vertices are the cosets of `E₁` — not the
+one-vertex two-loop tree this module's prose first envisaged.  The two agree on
+everything the argument uses: the edge stabilizers are the conjugates of `ι(P)`
+either way, so `skeleton_eq_one_of_mem_both_conjugates` is the same algebra.
+What changes is bookkeeping — on the coarser vertex set the axial element is
+`u₂u₁⁻¹` with translation length `1` rather than `2`, though the segment
+carrying the trivial pointwise stabilizer spans two edges either way.  The
+outer splitting is preferable because it is Mathlib's single-letter
+`HNNExtension` directly and needs no multi-letter Britton lemma.
+
+`GGT.AH3Data.ofData` fixes the universe for the packaging.  The WPD field was
+obtained by proving injectivity of a displacement invariant on the
+`ε`-stabilizer outright, so `GGT.isWPDAt_of_pairStab_cover` and
+`GGT.pairStab_zero_finite_of_trivial_intersection` are not on that path; they
+remain the tools for the case where the segment stabilizer is merely finite
+rather than trivial. -/
 def SkeletonAH3Input : Prop :=
   ∀ (P S : Type) (_ : Group P) (_ : Group S) (f : (P × P × S) →* P)
     (hf : Function.Injective f), Nonempty (AH3Data (Skeleton f hf))
