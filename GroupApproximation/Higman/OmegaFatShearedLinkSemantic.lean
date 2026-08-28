@@ -16,6 +16,7 @@ namespace Higman
 namespace Omega
 
 open GroupApproximation.Higman.Seq
+open GroupApproximation.Higman.Conj (F₃)
 
 /-- The natural injective semantic-base map retaining both the genuine
 first-stage embedding and the row coordinate. -/
@@ -66,13 +67,20 @@ theorem fatShearedBlockLink_comap_slimFatSemanticBaseEmb (m : ℕ) :
         (bElt beta)⁻¹) := by
   apply Prod.ext
   · exact slimFatCanonical3_slimLinkElem m beta
-  · simp only [slimFatSemanticBaseEmb, MonoidHom.prod_apply,
-      MonoidHom.comp_apply, slimLinkElem, map_mul, map_inv, slimGenCode,
-      slimBaseCode, ← MonoidHom.comp_apply, baseRet3_comp_genHom,
-      baseRet3_emb3, one_mul]
+  · have hgen : baseRet3 (rowOut m) (genHom (rowOut m) (aElt beta)) = 1 := by
+      have hcomp :=
+        DFunLike.congr_fun (baseRet3_comp_genHom (rowOut m)) (aElt beta)
+      simpa using hcomp
+    have hbase :
+        baseRet3 (rowOut m) (emb3 (rowOut m) (Row.basisHom (elt beta)))
+          = Row.basisHom (elt beta) :=
+      baseRet3_emb3 (rowOut m) _
     have h := DFunLike.congr_fun rowIntoF3_comp_basisHom (elt beta)
     change rowIntoF3 (Row.basisHom (elt beta)) = bElt beta at h
-    rw [h]
+    show (rowIntoF3.comp (baseRet3 (rowOut m))) (slimLinkElem m beta)
+      = (bElt beta)⁻¹
+    simp only [MonoidHom.comp_apply, slimLinkElem, slimGenCode, slimBaseCode,
+      map_mul, map_inv, map_one, hgen, hbase, one_mul, h]
 
 theorem slimFatSemanticBaseEmb_slimLinkElem_mem
     {m : ℕ} {beta : E} (hbeta : beta ∈ blockSet m) :

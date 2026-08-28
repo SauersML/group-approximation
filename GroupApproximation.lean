@@ -2376,6 +2376,7 @@ import GroupApproximation.GGT.HullSCUnionGeometryNormalForm
 import GroupApproximation.Higman.OmegaTowerSelectedRowWord
 import GroupApproximation.Higman.OmegaTowerSelectedAbstractEndpointFactors
 import GroupApproximation.GGT.HullSCUnionGeometryFourPoint
+import GroupApproximation.Higman.OmegaFatShearedLinkSemantic
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
