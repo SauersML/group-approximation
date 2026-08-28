@@ -82,6 +82,20 @@ noncomputable section
 
 variable {E : Type} [CStarAlgebra E]
 
+/-- The two-by-two matrices over a C-star algebra form a C-star algebra.
+Mathlib assembles this out of the positivity order of `E`, so `PartialOrder E`
+and `StarOrderedRing E` have to be available while the instance is built.  They
+are introduced by `letI` *inside this proof* rather than as ambient instances:
+as ambient instances they enter the `Semiring`/`StarRing` paths of `E` itself
+and make later goals ill-typed at `instances` transparency.  This mirrors
+`MFRecognition.HNNPermanenceUedaOperations.matrixTwoCStarAlgebra`, which is not
+in this module's import closure. -/
+noncomputable instance flipMatrixTwoCStarAlgebra :
+    CStarAlgebra (CStarMatrix (Fin 2) (Fin 2) E) := by
+  letI : PartialOrder E := CStarAlgebra.spectralOrder E
+  letI : StarOrderedRing E := CStarAlgebra.spectralOrderedRing E
+  exact inferInstance
+
 /-! ## The flip -/
 
 /-- The flip `((0,1),(1,0))` of a two-by-two C-star matrix algebra. -/
@@ -98,8 +112,7 @@ theorem flip2_mul_flip2 :
     (flip2 : CStarMatrix (Fin 2) (Fin 2) E) * flip2 = 1 := by
   ext p q
   fin_cases p <;> fin_cases q <;>
-    simp [flip2, cStarMatrixUnit2, CStarMatrix.mul_apply, CStarMatrix.add_apply,
-      CStarMatrix.one_apply, Matrix.single_apply, Fin.sum_univ_two]
+    simp [flip2, cStarMatrixUnit2, CStarMatrix.mul_apply, Matrix.single_apply]
 
 /-- The flip, as a unitary. -/
 def flipUnitary : unitary (CStarMatrix (Fin 2) (Fin 2) E) :=
@@ -121,8 +134,7 @@ theorem flip2_conj_diagonal2 (x y : E) :
   ext p q
   fin_cases p <;> fin_cases q <;>
     simp [flip2, cStarMatrixUnit2, cStarDiagonal2, CStarMatrix.mul_apply,
-      CStarMatrix.add_apply, Matrix.single_apply, Matrix.diagonal_apply,
-      Fin.sum_univ_two]
+      Matrix.single_apply, Matrix.diagonal_apply]
 
 theorem unitaryConj_flipUnitary_diagonal2 (x y : E) :
     unitaryConj (flipUnitary : unitary (CStarMatrix (Fin 2) (Fin 2) E))
@@ -143,8 +155,7 @@ theorem flip2_commutes_diagonal2_self (x : E) :
   ext p q
   fin_cases p <;> fin_cases q <;>
     simp [flip2, cStarMatrixUnit2, cStarDiagonal2, CStarMatrix.mul_apply,
-      CStarMatrix.add_apply, Matrix.single_apply, Matrix.diagonal_apply,
-      Fin.sum_univ_two]
+      Matrix.single_apply, Matrix.diagonal_apply]
 
 /-- The flip lies in the commutant of the diagonal image of `C`, in the form
 `ShulmanFill.conjugateRepresentationOfCommutant` consumes. -/
