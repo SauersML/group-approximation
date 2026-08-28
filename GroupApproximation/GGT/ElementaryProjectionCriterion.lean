@@ -55,16 +55,19 @@ elements of `H` moving `s` by at most `n/α`, and properness makes that finite.
 So the projection-complex machinery is needed for (41) and for hyperbolicity,
 and for nothing else on this side.
 
-## Transcription note
+## Transcription note, resolved
 
-`GeometricallySeparatedAt` is transcribed from the *use* of Definition 4.40 in
-Remark 4.41 (p.55), not from Definition 4.40 itself, which is on an earlier page
-I have not read.  Remark 4.41 uses it in the form: for every `ε > 0` and some
-`s`, there is `R = R(ε) > 0` such that
-`diam (H_μ(s) ∩ (g H_λ(s))^{+ε}) ≥ R` forces `λ = μ` and `g ∈ H_λ`.  In the
-single-subgroup case the `λ = μ` clause is vacuous and only `g ∈ H` survives.
-This should be checked against Definition 4.40 before anything is proved *from*
-it; nothing here is.
+`GeometricallySeparatedAt` has been checked against Definition 4.40 itself
+(p.54), quoted at the definition below, and one defect was found and repaired.
+The rendering of `diam ≥ R` had used `∀ D ≤ R`, which is *not* implied by
+`diam ≥ R` --- the supremum need not be attained.  That strengthens the
+hypothesis of the implication and so weakens the predicate, which would have
+made `DGOTheorem442` claim strictly more than Dahmani--Guirardel--Osin prove.
+It now reads `∀ D < R`.
+
+The remaining deviation is deliberate and is licensed by Remark 4.41 (p.55):
+Definition 4.40 quantifies over every basepoint, this predicate fixes one, and
+that remark shows one basepoint suffices.
 
 ## The remaining leaf for the finite-index half, and why it is that one
 
@@ -115,13 +118,32 @@ def IsQuasiconvexOrbitAt (H : Subgroup G) (s : S) : Prop :=
         ∀ t ∈ Set.Icc (0 : ℝ) (dist (a • s) (b • s)),
           ∃ c : G, c ∈ H ∧ dist (f t) (c • s) ≤ σ
 
-/-- **Geometric separation**, single-subgroup case, transcribed from the use of
-Definition 4.40 in Remark 4.41 (p.55): distinct translates of the orbit have
-uniformly bounded coarse intersection.  See the transcription note in the module
-docstring --- this is read off a remark rather than off the definition. -/
+/-- **Geometric separation** (Dahmani--Guirardel--Osin, Definition 4.40, p.54),
+single-subgroup case at one basepoint.  Verbatim:
+
+> Let `G` be a group acting on a space `(S,d)`.  A collection of subgroups
+> `{H_λ}_{λ∈Λ}` of `G` is called *geometrically separated* if for every `ε > 0`
+> and every `s ∈ S`, there exists `R > 0` such that the following holds.
+> Suppose that for some `g ∈ G` and `λ, μ ∈ Λ` we have
+>
+>     diam (H_μ(s) ∩ (g H_λ(s))^{+ε}) ≥ R.                              (40)
+>
+> Then `λ = μ` and `g ∈ H_λ`.
+
+Three points of the transcription.  The `λ = μ` clause is vacuous for a single
+subgroup.  Definition 4.40 quantifies over *every* `s`, while this predicate
+fixes one; Remark 4.41 (p.55) shows that verifying it at a single `s` suffices,
+which is why the one-basepoint form is the one worth stating.
+
+And `diam ≥ R` is rendered as "for every `D < R` some pair of the intersection
+is at distance at least `D`", which is what `diam ≥ R` gives --- the supremum
+need not be attained, so a pair at distance `≥ R` itself is *not* available.
+Using `D ≤ R` there would strengthen the hypothesis of the implication, hence
+weaken this predicate, hence make `DGOTheorem442` claim strictly more than the
+source. The strict inequality is what keeps the citation faithful. -/
 def GeometricallySeparatedAt (H : Subgroup G) (s : S) : Prop :=
   ∀ ε : ℝ, 0 < ε → ∃ R : ℝ, 0 < R ∧ ∀ g : G,
-    (∀ D : ℝ, D ≤ R → ∃ a b : G, a ∈ H ∧ b ∈ H ∧
+    (∀ D : ℝ, D < R → ∃ a b : G, a ∈ H ∧ b ∈ H ∧
       D ≤ dist (a • s) (b • s) ∧
       (∃ c : G, c ∈ H ∧ dist (a • s) ((g * c) • s) ≤ ε) ∧
       (∃ c : G, c ∈ H ∧ dist (b • s) ((g * c) • s) ≤ ε)) →

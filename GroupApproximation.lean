@@ -2334,6 +2334,8 @@ import GroupApproximation.GGT.KazhdanHypTable
 import GroupApproximation.GGT.KazhdanHypTorsionCriterion
 import GroupApproximation.GGT.RelHypDefinition
 import GroupApproximation.GGT.PingPongFreeSubgroup
+import GroupApproximation.GGT.RelHypLetterPieces
+import GroupApproximation.GGT.RelHypAbelianPartnerNoGo
 import GroupApproximation.GGT.RelHypElementaryAmenable
 import GroupApproximation.GGT.RelHypFournierFacio
 import GroupApproximation.GGT.RelHypFreeProductPeripheral
