@@ -79,7 +79,7 @@ def mk : (H →L[ℂ] H) → Calkin H := Ideal.Quotient.mk (compactIdeal H)
 
 /-- Schauder in the form the quotient's star consumes.  Supplying this is
 exactly supplying `CompactStarClosedStatement`. -/
-def isStarIdeal_of_compactStarClosed (h : CompactStarClosedStatement) :
+theorem isStarIdeal_of_compactStarClosed (h : CompactStarClosedStatement) :
     CStarQuotient.IsStarIdeal (compactIdeal H) :=
   ⟨fun ha ↦ h H _ ha⟩
 

@@ -33,7 +33,7 @@ def diagonalHom2 : E →⋆ₐ[ℂ] CStarMatrix (Fin 2) (Fin 2) E where
   toFun x := cStarDiagonal2 x x
   map_one' := by
     ext p q
-    fin_cases p <;> fin_cases q <;> simp [CStarMatrix.one_apply]
+    fin_cases p <;> fin_cases q <;> simp
   map_mul' x y := by
     ext p q
     fin_cases p <;> fin_cases q <;> simp [CStarMatrix.mul_apply, Fin.sum_univ_two]
@@ -46,8 +46,7 @@ def diagonalHom2 : E →⋆ₐ[ℂ] CStarMatrix (Fin 2) (Fin 2) E where
   commutes' z := by
     ext p q
     fin_cases p <;> fin_cases q <;>
-      simp [Algebra.algebraMap_eq_smul_one, CStarMatrix.smul_apply,
-        CStarMatrix.one_apply]
+      simp [Algebra.algebraMap_eq_smul_one, CStarMatrix.smul_apply]
   map_star' x := by
     ext p q
     fin_cases p <;> fin_cases q <;> simp [CStarMatrix.star_apply]
