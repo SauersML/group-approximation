@@ -2264,6 +2264,7 @@ import GroupApproximation.GGT.ElementaryMorse
 import GroupApproximation.GGT.ElementaryMorseChord
 import GroupApproximation.GGT.ElementaryMorseOrbit
 import GroupApproximation.GGT.ElementaryIndependence
+import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.ElementaryOsinSNormal
 import GroupApproximation.GGT.ElementaryProperClosure
 import GroupApproximation.GGT.ElementaryTransfer

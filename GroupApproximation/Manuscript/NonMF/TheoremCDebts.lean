@@ -3,6 +3,7 @@ import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
 import GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected
 import GroupApproximation.Manuscript.NonMF.HullInputsProved
 import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
+import GroupApproximation.GGT.ElementaryOsinNormalClosed
 
 /-!
 # Theorem C, closed: the cited inputs as recorded debts
@@ -96,8 +97,10 @@ theorem hullTheorem71 :
           Nonempty (HullCorrectedInputs.HullQuotientNG N t F) := by
   sorry
 
-/-- **DEBT (literature).**  Osin, *Acylindrically hyperbolic groups*, Lemma
-7.1: an `s`-normal subgroup of an acylindrically hyperbolic group acts
+/-- **Osin, *Acylindrically hyperbolic groups*, Lemma 7.1, proved**
+(`GGT.Elementary.osinLemma71_closed`: the Morse theorem, the common-power
+theorem and the acylindrical pigeonhole, with no Bowditch dichotomy): an
+`s`-normal subgroup of an acylindrically hyperbolic group acts
 non-elementarily.  Recorded in the case `lem:saturation` uses it — a normal
 subgroup of a torsion-free group — which is also the case the repository's
 partial machinery is stated for
@@ -110,8 +113,8 @@ theorem osinLemma71 :
     ∀ {G : Type} [Group G] (A : HullGeneratingSet G),
       IsPowerTorsionFree G → ∀ (N : Subgroup G) [N.Normal],
         HullSuitable.IsSNormal N →
-          ActsNonElementarily N (Cayley.base A.alphabet) := by
-  sorry
+          ActsNonElementarily N (Cayley.base A.alphabet) :=
+  GGT.Elementary.osinLemma71_closed
 
 /-- Hull's inputs, as a term: the two debts above, and nothing else.  Hull's
 Corollary 5.7 with Lemma 5.8 is not a field of the corrected bundle — over a
