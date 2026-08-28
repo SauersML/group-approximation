@@ -342,6 +342,7 @@ theorem gram_residual (v v' : V) :
     have := D.sq_sub_pos
     linarith
   have hsz : (2 : ℚ) * (D.deg ^ 2 - D.ev) ≠ 0 := ne_of_gt hszpos
+  have hsub : (D.deg ^ 2 - D.ev : ℚ) ≠ 0 := ne_of_gt D.sq_sub_pos
   have hK : (if v = v' then D.deg else 0) = D.deg * (if v = v' then (1 : ℚ) else 0) := by
     split_ifs <;> ring
   rw [hK, D.sum_gramRow v v', D.sum_colB_mul_colB v v', D.sum_sq_wFactor]
@@ -418,8 +419,11 @@ def linkAdj : P × Bool → P × Bool → ℚ := fun u v =>
   if u.2 then (if v.2 then 0 else Pl.inc u.1 v.1)
   else (if v.2 then Pl.inc v.1 u.1 else 0)
 
-/-- The bipartition sign of the incidence graph. -/
-def linkSign : P × Bool → ℚ := fun u => if u.2 then 1 else -1
+/-- The bipartition sign of the incidence graph.  The plane is carried as an
+explicit argument, unused in the value, so that the sign is attached to the
+incidence graph of `Pl` exactly as `linkAdj` is. -/
+def linkSign (_Pl : ProjectivePlaneData P) : P × Bool → ℚ :=
+  fun u => if u.2 then 1 else -1
 
 theorem linkAdj_tt (x y : P) : Pl.linkAdj (x, true) (y, true) = 0 := rfl
 
@@ -633,6 +637,7 @@ theorem linkCertificateChecks_of_linkData
       simp only [TriangularHodgeLayer.rationalLinkLaplacian,
         TriangularHodgeLayer.linkLaplacian]
       push_cast [apply_ite (fun z : ℤ => (z : ℚ))]
+      rfl
     rw [h1, hdeg u, hadj u v, hdegval]
   refine ⟨hdpos, D.gapValue_gt_half, hdeg, ?_⟩
   intro u v

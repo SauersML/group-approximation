@@ -140,18 +140,13 @@ theorem E_inj {m n : ℤ} (h : E m = E n) : m = n := by
     em_injective h
   exact Multiplicative.ofAdd.injective h'
 
-theorem E_add (m n : ℤ) : E (m + n) = E m * E n := by
-  show em (Multiplicative.ofAdd (m + n))
-      = em (Multiplicative.ofAdd m) * em (Multiplicative.ofAdd n)
-  rw [Multiplicative.ofAdd_add, map_mul]
+theorem E_add (m n : ℤ) : E (m + n) = E m * E n :=
+  map_mul em (Multiplicative.ofAdd m) (Multiplicative.ofAdd n)
 
-theorem E_zero : E 0 = 1 := by
-  show em (Multiplicative.ofAdd (0 : ℤ)) = 1
-  rw [Multiplicative.ofAdd_zero, map_one]
+theorem E_zero : E 0 = 1 := map_one em
 
-theorem E_neg (n : ℤ) : E (-n) = (E n)⁻¹ := by
-  show em (Multiplicative.ofAdd (-n)) = (em (Multiplicative.ofAdd n))⁻¹
-  rw [Multiplicative.ofAdd_neg, map_inv]
+theorem E_neg (n : ℤ) : E (-n) = (E n)⁻¹ :=
+  map_inv em (Multiplicative.ofAdd n)
 
 theorem E_ne_one {n : ℤ} (h : n ≠ 0) : E n ≠ 1 := by
   intro hc
@@ -163,8 +158,6 @@ theorem E_pow (n : ℕ) : (E 1) ^ n = E (n : ℤ) := by
   | succ k ih =>
       rw [pow_succ, ih, ← E_add]
       congr 1
-      push_cast
-      ring
 
 /-! ## 2.  Osin's alphabet, at five exponents -/
 
@@ -184,13 +177,13 @@ theorem mem_alph_iff {n : ℤ} :
 
 theorem E_mem_closure (n : ℤ) : E n ∈ Subgroup.closure alph := by
   induction n using Int.induction_on with
-  | hz =>
+  | zero =>
       rw [E_zero]
       exact one_mem _
-  | hp k ih =>
+  | succ k ih =>
       rw [E_add]
       exact mul_mem ih (Subgroup.subset_closure ⟨1, by norm_num, rfl⟩)
-  | hn k ih =>
+  | pred k ih =>
       have hsplit : (-(k : ℤ) - 1) = (-(k : ℤ)) + (-1) := by ring
       rw [hsplit, E_add]
       exact mul_mem ih (Subgroup.subset_closure ⟨-1, by norm_num, rfl⟩)
@@ -206,7 +199,7 @@ theorem alph_symmGen : IsSymmetricGeneratingSet alph := by
     refine ⟨-n, ?_, ?_⟩
     · rcases hn with h | h | h | h | h <;> rw [h] <;> norm_num
     · rw [E_neg]
-  · refine Subgroup.eq_top_iff'.mpr ?_
+  · refine (Subgroup.eq_top_iff' _).mpr ?_
     intro g
     induction g using Monoid.CoprodI.induction_on with
     | one => exact one_mem _
@@ -216,9 +209,8 @@ theorem alph_symmGen : IsSymmetricGeneratingSet alph := by
             rw [fam_false_eq_one x, map_one]
             exact one_mem _
         | true =>
-            have hx : (CoprodI.of x : CoprodI Fam) = E (Multiplicative.toAdd x) := by
-              show em x = em (Multiplicative.ofAdd (Multiplicative.toAdd x))
-              rw [Multiplicative.ofAdd_toAdd]
+            have hx : (CoprodI.of x : CoprodI Fam)
+                = E (Multiplicative.toAdd x) := rfl
             rw [hx]
             exact E_mem_closure _
     | mul _ _ ha hb => exact mul_mem ha hb

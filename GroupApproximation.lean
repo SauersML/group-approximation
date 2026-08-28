@@ -2373,6 +2373,8 @@ import GroupApproximation.Higman.OmegaFatSlimCanonicalThree
 import GroupApproximation.Manuscript.NonMF.HullFillOsinNormalReduction
 import GroupApproximation.Analysis.NormCoronaAsymptoticLiftRestriction
 import GroupApproximation.GGT.HullSCUnionGeometryNormalForm
+import GroupApproximation.Higman.OmegaTowerSelectedRowWord
+import GroupApproximation.Higman.OmegaTowerSelectedAbstractEndpointFactors
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
