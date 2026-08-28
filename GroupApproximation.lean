@@ -2306,6 +2306,7 @@ import GroupApproximation.GGT.KazhdanHypPolygonal
 import GroupApproximation.GGT.KazhdanHypQuadrangle
 import GroupApproximation.GGT.KazhdanHypQuadrangleBridge
 import GroupApproximation.GGT.KazhdanHypTable
+import GroupApproximation.GGT.KazhdanHypTorsionCriterion
 import GroupApproximation.GGT.RelHypDefinition
 import GroupApproximation.GGT.PingPongFreeSubgroup
 import GroupApproximation.GGT.RelHypElementaryAmenable
