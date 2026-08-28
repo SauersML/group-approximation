@@ -61,7 +61,19 @@ the three approximations: `pk` to `q₁`, `p` to its point of `[b,c]`, and the
 point of `[b,c]` to the side of the second triangle.  No attempt is made to
 sharpen it; every consumer quantifies the constant existentially.
 
-`FourPointImpliesSlim`, the converse, is untouched and remains open.
+## The converse, and the equivalence
+
+`FourPointImpliesSlim` is proved too, at `4δ`, and it needs no transition
+argument: two applications of the four-point condition at the vertex `x` bound
+the Gromov product `(p·q)_x` of a point `p` of `[x,y]` and the point `q` of
+`[x,z]` at the same distance from `x`, and `d(p,q)` is what is left over.  The
+case `d(x,p) > (y·z)_x` is the same argument run from `y`, since
+`(y·z)_x + (x·z)_y = d(x,y)`.
+
+So `exists_isSlimTriangles_iff_exists_isFourPointHyperbolic`: over a fixed
+symmetric generating set the two conditions are equivalent, with constants
+`3δ + 1` and `4δ`.  Both statements that
+`Algebra/HyperbolicSlimTriangles.lean` records as open are now theorems.
 -/
 
 set_option linter.unusedSectionVars false
@@ -212,6 +224,98 @@ theorem isHyperbolicGroup_of_isSlimTriangles {S : Finset G} {δ : ℕ}
     (hS : IsSymmetricGeneratingSet (S : Set G))
     (hslim : IsSlimTriangles (S : Set G) δ) : IsHyperbolicGroup G :=
   ⟨S, hS, 3 * δ + 1, isFourPointHyperbolic_of_isSlimTriangles hS hslim⟩
+
+/-! ## The converse
+
+`FourPointImpliesSlim` is the other statement
+`Algebra/HyperbolicSlimTriangles.lean` records as open.  It is the easier
+direction here, and it is pure arithmetic: the Gromov product of the two
+candidate points is bounded below by two applications of the four-point
+condition, and the distance between them is what is left over. -/
+
+/-- **A point on `[x,y]` no further from `x` than the Gromov product `(y·z)_x`
+is `4δ` from the point of `[x,z]` at the same distance.**
+
+Two applications of the four-point condition at `x`: the first, with the
+auxiliary point `y`, bounds `(p·z)_x` below by `min ((p·y)_x, (y·z)_x) - δ`,
+which is `d(x,p) - δ` because `p` lies on `[x,y]` and `d(x,p) ≤ (y·z)_x`; the
+second, with the auxiliary point `z`, bounds `(p·q)_x` below by
+`d(x,p) - 2δ` because `q` lies on `[x,z]` at distance `d(x,p)`.  Then
+`d(p,q) = d(x,p) + d(x,q) - 2 (p·q)_x ≤ 4δ`.  Everything is doubled, so no
+division appears. -/
+theorem exists_isBetween_close_of_fourPoint {S : Set G} {δ : ℕ}
+    (hS : IsSymmetricGeneratingSet S) (hδ : IsFourPointHyperbolic S δ)
+    (x y z p : G) (hp : IsBetween S x p y)
+    (ht : 2 * (wordDist S x p : ℤ) ≤ twiceGromovProduct S x y z) :
+    ∃ q : G, IsBetween S x q z ∧ wordDist S p q ≤ 4 * δ := by
+  have hgp := (isFourPointHyperbolic_iff_gromovProduct hS δ).mp hδ
+  have hp' : wordDist S x p + wordDist S p y = wordDist S x y := hp
+  have hcomm_yz : wordDist S z y = wordDist S y z := wordDist_comm hS z y
+  have hxy_tri : wordDist S x y ≤ wordDist S x z + wordDist S z y :=
+    wordDist_triangle hS x z y
+  simp only [twiceGromovProduct] at ht
+  have hle : wordDist S x p ≤ wordDist S x z := by omega
+  obtain ⟨q, hq, hqd⟩ := exists_isBetween hS x z hle
+  have hq' : wordDist S x q + wordDist S q z = wordDist S x z := hq
+  have h1 := hgp x p z y
+  have h2 := hgp x p q z
+  have hA : 2 * (wordDist S x p : ℤ)
+      ≤ min (twiceGromovProduct S x p y) (twiceGromovProduct S x z y) := by
+    refine le_min ?_ ?_
+    · simp only [twiceGromovProduct]
+      omega
+    · simp only [twiceGromovProduct]
+      omega
+  have hB : 2 * (wordDist S x p : ℤ) - 2 * δ ≤ twiceGromovProduct S x p z := by omega
+  have hC : 2 * (wordDist S x p : ℤ) - 2 * δ
+      ≤ min (twiceGromovProduct S x p z) (twiceGromovProduct S x q z) := by
+    refine le_min hB ?_
+    simp only [twiceGromovProduct]
+    omega
+  have hD : 2 * (wordDist S x p : ℤ) - 4 * δ ≤ twiceGromovProduct S x p q := by omega
+  refine ⟨q, hq, ?_⟩
+  simp only [twiceGromovProduct] at hD
+  omega
+
+/-- **Gromov's four-point condition makes triangles slim**, at `4δ`.  The point
+`p` is compared with the side `[x,z]` when it is on the `x` half of `[x,y]`,
+and with `[z,y]` otherwise; the two halves are separated by the Gromov product
+`(y·z)_x`, and `(x·z)_y` is what is left of `d(x,y)`. -/
+theorem isSlimTriangles_of_isFourPointHyperbolic {S : Set G} {δ : ℕ}
+    (hS : IsSymmetricGeneratingSet S) (hδ : IsFourPointHyperbolic S δ) :
+    IsSlimTriangles S (4 * δ) := by
+  intro x y z p hp
+  by_cases hcase : 2 * (wordDist S x p : ℤ) ≤ twiceGromovProduct S x y z
+  · obtain ⟨q, hq, hd⟩ := exists_isBetween_close_of_fourPoint hS hδ x y z p hp hcase
+    exact Or.inl ⟨q, hq, hd⟩
+  · have hp' : wordDist S x p + wordDist S p y = wordDist S x y := hp
+    have hcomm_yp : wordDist S y p = wordDist S p y := wordDist_comm hS y p
+    have hcomm_yx : wordDist S y x = wordDist S x y := wordDist_comm hS y x
+    have hcase' : 2 * (wordDist S y p : ℤ) ≤ twiceGromovProduct S y x z := by
+      simp only [twiceGromovProduct] at hcase ⊢
+      omega
+    obtain ⟨q, hq, hd⟩ :=
+      exists_isBetween_close_of_fourPoint hS hδ y x z p (IsBetween.symm hS hp) hcase'
+    exact Or.inr ⟨q, IsBetween.symm hS hq, hd⟩
+
+/-- **`FourPointImpliesSlim`, discharged.** -/
+theorem fourPointImpliesSlim : FourPointImpliesSlim := by
+  intro H inst S δ hS hδ
+  exact ⟨4 * δ, isSlimTriangles_of_isFourPointHyperbolic hS hδ⟩
+
+/-- **The two conditions are equivalent**, in the repository's discrete
+setting: over a fixed symmetric generating set, having slim triangles at some
+constant and satisfying the four-point condition at some constant are the same
+statement.  Both directions are proved here, with the constants `3δ + 1` and
+`4δ`. -/
+theorem exists_isSlimTriangles_iff_exists_isFourPointHyperbolic {S : Set G}
+    (hS : IsSymmetricGeneratingSet S) :
+    (∃ δ : ℕ, IsSlimTriangles S δ) ↔ (∃ δ : ℕ, IsFourPointHyperbolic S δ) := by
+  constructor
+  · rintro ⟨δ, h⟩
+    exact ⟨3 * δ + 1, isFourPointHyperbolic_of_isSlimTriangles hS h⟩
+  · rintro ⟨δ, h⟩
+    exact ⟨4 * δ, isSlimTriangles_of_isFourPointHyperbolic hS h⟩
 
 end Hyperbolic
 end GroupApproximation
