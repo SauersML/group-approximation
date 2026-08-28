@@ -2396,6 +2396,9 @@ import GroupApproximation.Analysis.ShulmanFillNormingConjugation
 import GroupApproximation.Analysis.ShulmanFillNormingDCStar
 import GroupApproximation.GGT.OsinTheorem54Lemma24
 import GroupApproximation.GGT.OsinLemma512Torsion
+import GroupApproximation.GGT.HullSCRelatorSeparationBall
+import GroupApproximation.GGT.HullSCRelatorSeparationGaps
+import GroupApproximation.GGT.HullSCRelatorSeparationBlock
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
