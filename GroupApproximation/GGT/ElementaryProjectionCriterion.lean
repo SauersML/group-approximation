@@ -233,6 +233,91 @@ def ElementaryClosureCoarseTranslation (G : Type u) [Group G] {X : Type v}
       ∃ (e : ℤ) (c : ℤ), (e = 1 ∨ e = -1) ∧
         ∀ m : ℤ, dist ((g * h ^ m) • x) ((h ^ (e * m + c)) • x) ≤ K
 
+
+/-! ### The WPD bookkeeping, proved
+
+What the leaf is for.  Once an element of `E(h)` is known to move the `h`-orbit
+along itself by at most `K`, subtracting the shift produces an element that
+almost fixes *every* point of the orbit, in particular the two points `x` and
+`h^M x` that `IsWPDAt` separates.  So the whole subgroup meets only finitely
+many cosets of `⟨h⟩`, which is the finite-index half.
+
+This is the derivation from the leaf, and it is unconditional in everything
+else. -/
+
+/-- **From bounded shift to a finite transversal.**  An element `g` that carries
+the `h`-orbit to itself with shift `c` and error `K` differs from `h^c` by an
+element of the `K`-pair-stabiliser of `x` and `h^M x`, which `IsWPDAt` makes
+finite.  So all such `g` lie in finitely many cosets of `⟨h⟩`.
+
+No loxodromy, no acylindricity and no hyperbolicity are used: the entire content
+is `IsWPDAt` plus the isometry of the action. -/
+theorem exists_finite_transversal_of_coarseTranslation
+    (hiso : IsIsometricAction G X) {h : G} {x : X} (hwpd : IsWPDAt h x)
+    {K : ℝ} (hK : 0 ≤ K) :
+    ∃ F : Set G, F.Finite ∧
+      ∀ g : G, (∃ c : ℤ, ∀ m : ℤ,
+          dist ((g * h ^ m) • x) ((h ^ (m + c)) • x) ≤ K) →
+        ∃ (c : ℤ) (f : G), f ∈ F ∧ g = h ^ c * f := by
+  obtain ⟨M, hMfin⟩ := hwpd K hK
+  refine ⟨pairStab G K x ((h ^ M) • x), hMfin, ?_⟩
+  rintro g ⟨c, hc⟩
+  refine ⟨c, h ^ (-c) * g, ?_, by group⟩
+  rw [mem_pairStab]
+  constructor
+  · have h0 := hc 0
+    rw [zpow_zero, mul_one, zero_add] at h0
+    have hl : (h ^ (-c)) • (g • x) = (h ^ (-c) * g) • x := (mul_smul _ _ _).symm
+    have hr : (h ^ (-c)) • ((h ^ c) • x) = x := by
+      rw [← mul_smul, ← zpow_add]
+      simp
+    have hshift := hiso (h ^ (-c)) (g • x) ((h ^ c) • x)
+    rw [hl, hr] at hshift
+    rw [dist_comm, hshift]
+    exact h0
+  · have hM := hc (M : ℤ)
+    have hl : (h ^ (-c)) • ((g * h ^ (M : ℤ)) • x)
+        = (h ^ (-c) * g) • ((h ^ M) • x) := by
+      rw [← mul_smul, ← mul_smul, zpow_natCast, mul_assoc]
+    have hr : (h ^ (-c)) • ((h ^ ((M : ℤ) + c)) • x) = (h ^ M) • x := by
+      rw [← mul_smul, ← zpow_add]
+      have he : -c + ((M : ℤ) + c) = (M : ℤ) := by ring
+      rw [he, zpow_natCast]
+    have hshift := hiso (h ^ (-c)) ((g * h ^ (M : ℤ)) • x)
+      ((h ^ ((M : ℤ) + c)) • x)
+    rw [hl, hr] at hshift
+    rw [dist_comm, hshift]
+    exact hM
+
+/-- **The leaf and the transversal, packaged at one constant.**
+
+The leaf supplies, for each `g ∈ E(h)`, a sign and a shift with error `K`; the
+transversal theorem consumes exactly the sign-`+1` case at that same `K`.  Both
+are returned together so a consumer can take an element of `E(h)`, read off its
+sign, and in the orientation-preserving case land it in finitely many cosets of
+`⟨h⟩`.
+
+The orientation-reversing case is an index-at-most-two argument — a product of
+two reversing elements preserves orientation, so they form at most one further
+coset — and is not carried out here.  It is bookkeeping about the sign rather
+than geometry, and with the leaf available it is the only part of
+Dahmani--Guirardel--Osin's Lemma 6.5 still open. -/
+theorem exists_finite_transversal_of_positivePart
+    (hiso : IsIsometricAction G X) {h : G} {x : X} (hwpd : IsWPDAt h x)
+    (hlox : IsLoxodromic h x)
+    (hct : ElementaryClosureCoarseTranslation G x) :
+    ∃ (K : ℝ) (F : Set G), 0 ≤ K ∧ F.Finite ∧
+      (∀ g : G, g ∈ elementaryClosure h →
+        ∃ e c : ℤ, (e = 1 ∨ e = -1) ∧
+          ∀ m : ℤ, dist ((g * h ^ m) • x) ((h ^ (e * m + c)) • x) ≤ K) ∧
+      (∀ g : G, (∃ c : ℤ, ∀ m : ℤ,
+          dist ((g * h ^ m) • x) ((h ^ (m + c)) • x) ≤ K) →
+        ∃ (c : ℤ) (f : G), f ∈ F ∧ g = h ^ c * f) := by
+  obtain ⟨K, hK0, hK⟩ := hct h hlox
+  obtain ⟨F, hFfin, hF⟩ :=
+    exists_finite_transversal_of_coarseTranslation hiso hwpd hK0
+  exact ⟨K, F, hK0, hFfin, hK, hF⟩
+
 end Leaf
 
 end Elementary
