@@ -41,7 +41,7 @@ theorem omegaInput_nonempty : Nonempty Higman.Omega.OmegaInput :=
   Higman.Omega.omegaInput_nonempty
 
 /-- The ω-closure, as a term. -/
-noncomputable def omegaInput : Higman.Omega.OmegaInput := omegaInput_nonempty.some
+theorem omegaInput : Higman.Omega.OmegaInput := omegaInput_nonempty.some
 
 /-- **Higman's embedding theorem** — recursively enumerable normal subgroups of
 finitely generated free groups are benign — through the ω-closure.  Recorded

@@ -216,7 +216,7 @@ theorem triangularKazhdanWitness_of_checkedTableWitness (h : CheckedTableWitness
     quadrangleDataOfChecks Generator TriangleIndex fg dg ng ft dt T q hchecks
   have hdq : ((q + 1 : ℕ) : ℚ) = Q.deg := by
     rw [← hdegval]
-    push_cast <;> ring
+    push_cast; ring
   exact ⟨Generator, TriangleIndex, QuadRow (Generator × Bool), fg, dg, ng, ft, dt,
     inferInstance, T, q + 1, Q.gapValue, Q.gramRow, hchecks.regular,
     QuadrangleLinkData.linkCertificateChecks_kgon_of_quadrangle T Q (q + 1) hdq hadj,
