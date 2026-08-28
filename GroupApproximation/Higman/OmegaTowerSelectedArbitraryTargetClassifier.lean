@@ -21,6 +21,7 @@ namespace Omega
 open GroupApproximation.Higman.Conj
 open GroupApproximation.Higman.Seq
 open BinarySyllableNormalizer
+open Monoid
 
 theorem selectedNonzeroCount_toWord_le_two_of_factor_equation
     {m : ℕ} {B : Set E} {v : FreeGroup (SelectedBlock m B)}
@@ -66,12 +67,14 @@ theorem endpointFactors_ne_one_of_nonzero_pair
   · intro hleft
     have hlen := congrArg List.length hnorm
     by_cases hright : right = 1 <;>
-      simp [normalize, prepend, hleft, hright, hcode] at hlen
+      simp [BinarySyllableNormalizer.normalize_cons, prepend, hleft, hright,
+        hcode] at hlen
     all_goals omega
   · intro hright
     have hlen := congrArg List.length hnorm
     by_cases hleft : left = 1 <;>
-      simp [normalize, prepend, hleft, hright, hcode] at hlen
+      simp [BinarySyllableNormalizer.normalize_cons, prepend, hleft, hright,
+        hcode] at hlen
     all_goals omega
 
 theorem target_eq_add_of_selectedRowLetter_pos
@@ -123,7 +126,8 @@ theorem target_eq_add_of_selectedRowLetter_pair
       (bK (beta : E) * bK t) * q⁻¹ := by
     simpa [hlt, bK_add_rightTail beta.property.2 htTail] using hratio
   have hcancel : (bK (gamma : E))⁻¹ = bK t * q⁻¹ := by
-    exact mul_left_cancel (by simpa [mul_assoc] using hratio')
+    exact mul_left_cancel (a := bK (beta : E))
+      (by simpa [mul_assoc] using hratio')
   calc
     q = (bK t * q⁻¹)⁻¹ * bK t := by group
     _ = ((bK (gamma : E))⁻¹)⁻¹ * bK t := by rw [← hcancel]
@@ -164,14 +168,14 @@ theorem exists_canonical_target_of_selected_equations
             have hvHead : v.toWord = (beta, true) :: Z₂ := by simpa using hv
             have hstart :=
               (selectedStartsWithRow_iff_leftFactor_ne_one hvHead hEq).mpr hne
-            exact (by simpa [selectedStartsWithRow] using hstart)
+            simp [selectedStartsWithRow] at hstart
           · obtain ⟨z, Z, rfl⟩ := List.exists_cons_of_ne_nil hZ₁nil
             have hz : (z.1 : E) = 0 := hZ₁ z (by simp)
             have hvHead : v.toWord = z :: (Z ++ (beta, true) :: Z₂) := by
               simpa using hv
             have hstart :=
               (selectedStartsWithRow_iff_leftFactor_ne_one hvHead hEq).mpr hne
-            exact (by simpa [selectedStartsWithRow, hz] using hstart)
+            simp [selectedStartsWithRow, hz] at hstart
         have hlTail :=
           (lowRowFactor_elt_eq_one_iff_rightTailSet m l).mp hleft
         let f : E := (beta : E) + l
@@ -187,15 +191,17 @@ theorem exists_canonical_target_of_selected_equations
             have hvLast : v.toWord = Z₁ ++ [(beta, false)] := by simpa using hv
             have hend :=
               (selectedEndsWithRow_iff_rightFactor_ne_one hvLast hEq).mpr hne
-            exact (by simpa [selectedEndsWithRow] using hend)
-          · obtain ⟨Z, z, rfl⟩ := List.exists_append_cons_of_ne_nil hZ₂nil
+            simp [selectedEndsWithRow] at hend
+          · obtain ⟨Z, z, rfl⟩ : ∃ Z z, Z₂ = Z ++ [z] :=
+              ⟨Z₂.dropLast, Z₂.getLast hZ₂nil,
+                (List.dropLast_append_getLast hZ₂nil).symm⟩
             have hz : (z.1 : E) = 0 := hZ₂ z (by simp)
             have hvLast : v.toWord =
                 (Z₁ ++ (beta, false) :: Z) ++ [z] := by
               simpa [List.append_assoc] using hv
             have hend :=
               (selectedEndsWithRow_iff_rightFactor_ne_one hvLast hEq).mpr hne
-            exact (by simpa [selectedEndsWithRow, hz] using hend)
+            simp [selectedEndsWithRow, hz] at hend
         have hleft : lowRowFactor m (elt l) ≠ 1 := by
           intro hleft
           have hnorm := normalize_selected_eq_factors hEq
@@ -208,7 +214,8 @@ theorem exists_canonical_target_of_selected_equations
             rfl
           rw [hcount] at hlower
           have hlen := congrArg List.length hnorm
-          simp [normalize, prepend, hleft, hright, hcode] at hlen
+          rw [hleft, hright] at hlen
+          simp [BinarySyllableNormalizer.normalize_cons, prepend, hcode] at hlen
           omega
         have hZ₁nil : Z₁ = [] := by
           by_contra hne
@@ -218,7 +225,7 @@ theorem exists_canonical_target_of_selected_equations
             simpa using hv
           have hstart :=
             (selectedStartsWithRow_iff_leftFactor_ne_one hvHead hEq).mpr hleft
-          exact (by simpa [selectedStartsWithRow, hz] using hstart)
+          simp [selectedStartsWithRow, hz] at hstart
         subst Z₁
         have hvHead : v.toWord = (beta, false) :: Z₂ := by simpa using hv
         have hstart : selectedStartsWithRow (beta, false) :=
@@ -242,17 +249,18 @@ theorem exists_canonical_target_of_selected_equations
         simpa using hv
       have hstart :=
         (selectedStartsWithRow_iff_leftFactor_ne_one hvHead hEq).mpr hends.1
-      exact (by simpa [selectedStartsWithRow, hz] using hstart)
+      simp [selectedStartsWithRow, hz] at hstart
     have hZ₂nil : Z₂ = [] := by
       by_contra hne
-      obtain ⟨Z, z, rfl⟩ := List.exists_append_cons_of_ne_nil hne
+      obtain ⟨Z, z, rfl⟩ : ∃ Z z, Z₂ = Z ++ [z] :=
+        ⟨Z₂.dropLast, Z₂.getLast hne, (List.dropLast_append_getLast hne).symm⟩
       have hz : (z.1 : E) = 0 := hZ₂ z (by simp)
       have hvLast : v.toWord =
           (Z₀ ++ p :: (Z₁ ++ r :: Z)) ++ [z] := by
         simpa [List.append_assoc] using hv
       have hend :=
         (selectedEndsWithRow_iff_rightFactor_ne_one hvLast hEq).mpr hends.2
-      exact (by simpa [selectedEndsWithRow, hz] using hend)
+      simp [selectedEndsWithRow, hz] at hend
     subst Z₀
     subst Z₂
     have hvHead : v.toWord = p :: (Z₁ ++ [r]) := by simpa using hv
