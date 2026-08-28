@@ -284,7 +284,8 @@ theorem escapingIsLoxodromic_of_geodesic {δ : ℝ} (hδ : IsHyperbolicSpace δ 
   have hNpos : (0:ℝ) < (N : ℝ) + 1 := by positivity
   have hKV : K * (N + 1) < V := by
     have hstep : 2 * η * ((N : ℝ) + 1) * (V : ℝ) ≤ (V : ℝ) / 2 := by
-      nlinarith [hηN, hVnn]
+      have hmul := mul_le_mul_of_nonneg_right hηN hVnn
+      linarith
     have hprod : (2 * S + 1) * ((N : ℝ) + 1)
         = (2 * M + 1) * ((N : ℝ) + 1) + 2 * η * ((N : ℝ) + 1) * (V : ℝ) := by
       rw [hSdef]; ring
