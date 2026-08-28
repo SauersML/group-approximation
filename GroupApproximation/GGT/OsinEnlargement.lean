@@ -215,7 +215,7 @@ def OsinEnlargementBasepoint : Prop :=
                 ≤ ε}.ncard ≤ N
 
 /-- **The reduced leaf implies Theorem 5.4.** -/
-theorem osinTheorem54_of_basepoint (h : OsinEnlargementBasepoint) :
+theorem osinTheorem54_of_basepoint (h : OsinEnlargementBasepoint.{u}) :
     OsinTheorem54.{u} := by
   intro G _inst D hD
   obtain ⟨D', hbase, hfam, hemb, hacy⟩ := h G D hD

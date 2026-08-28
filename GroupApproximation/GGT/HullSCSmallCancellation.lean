@@ -195,6 +195,7 @@ theorem exists_naive_piece_of_rotate (D : GGT.RelGenSet G Λ)
   · rw [List.append_nil]
   · exact listVal_rotate v hn
 
+omit [Group G] in
 /-- **What the missing clause would cost.**  `pieces_small` at `u = v` reads
 `|v| < μ |v|`, which is impossible for `μ ≤ 1` and `v` of positive length. -/
 theorem false_of_pieces_small_self {mu : ℝ} (hmu : mu ≤ 1)
