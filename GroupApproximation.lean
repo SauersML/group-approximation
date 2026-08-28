@@ -2311,6 +2311,7 @@ import GroupApproximation.GGT.ElementaryMorseAlphabet
 import GroupApproximation.GGT.ElementaryMorseBiInfinite
 import GroupApproximation.GGT.ElementaryHypEmbedded
 import GroupApproximation.GGT.ElementaryProjectionCriterion
+import GroupApproximation.GGT.ElementaryProperFromTransversal
 import GroupApproximation.GGT.ElementaryOsinSNormal
 import GroupApproximation.GGT.ElementaryProperClosure
 import GroupApproximation.GGT.ElementaryTransfer

@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.ElementaryHypEmbedded
+import GroupApproximation.GGT.WPDElement
 
 /-!
 # Dahmani--Guirardel--Osin's Theorem 4.42, and what it buys for `E(g)`
