@@ -2321,6 +2321,7 @@ import GroupApproximation.GGT.HullSCCommonQuotientCorrected
 import GroupApproximation.GGT.HullSCConeOff
 import GroupApproximation.GGT.HullSCConeOffSpace
 import GroupApproximation.GGT.HullSCFilling
+import GroupApproximation.GGT.HullSCInjectivityTransfer
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCHypEmbedded
 import GroupApproximation.GGT.HullSCRelatorFamily
