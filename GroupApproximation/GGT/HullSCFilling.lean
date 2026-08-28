@@ -258,6 +258,22 @@ structure RotatingData {G : Type u} [Group G] (A : Alphabet G) (w : G)
   family is killing `w`. -/
   rotationNormalClosure_eq :
     rotationNormalClosure apices rot = Subgroup.normalClosure ({w} : Set G)
+  /-- **The injectivity radius, and it is Hull's §5 rather than DGO's.**
+
+  Nothing that moves the basepoint by less than the separation is killed, for
+  any quotient by the normal closure of the relator.
+
+  This was a field of `HullSC.RotatingQuotient` until the clauses of DGO's
+  Theorem 5.3 were read against the source: that theorem concludes the free
+  splitting and the dichotomy, and the injectivity radius follows from neither
+  -- loxodromy is asymptotic and gives no bound at the first power, and the
+  splitting is not metric.  So it belongs with the family Hull builds, where
+  `base` and `sep` are in scope, and it is stated at the basepoint rather than
+  at every point because `HullSC.eq_one_of_dist_lt_everywhere` refutes the
+  unrestricted form: a rotation fixes its apex and lies in the kernel. -/
+  injOn_of_dist : ∀ {Q : Type u} [Group Q] (q : G →* Q),
+    q.ker = Subgroup.normalClosure ({w} : Set G) →
+      ∀ g : G, g ≠ 1 → dist base (g • base) < sep → q g ≠ 1
 
 namespace RotatingData
 
@@ -332,10 +348,11 @@ family Hull builds.**
 
 Seven of the ten fields of `HullFillingQuotient` come out of
 `RotatingQuotient`: the group, the map, its surjectivity, the kernel (through
-`RotatingData.rotationNormalClosure_eq`), the lifting of finite order, and
-injectivity on the ball -- the last through `injOn_cayleyBall_of_action`, with
-the injectivity radius bounded below by the separation of the family and the
-separation prescribed above `2R`.  The remaining three are the alphabet
+`RotatingData.rotationNormalClosure_eq`) and the lifting of finite order.
+Injectivity on the ball comes from `RotatingData.injOn_of_dist` through
+`injOn_cayleyBall_of_action`, with the separation prescribed above `2R` --
+that clause is Hull's §5 and not DGO's, which is why it is a field of the
+family data rather than of the quotient.  The remaining three are the alphabet
 clauses, and they are the second conjunct of `HullFillingDataStatement`. -/
 theorem hullQuotient_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
     (hdata : HullFillingDataStatement.{u}) : HullQuotientStatement.{u} := by
@@ -344,21 +361,17 @@ theorem hullQuotient_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
   refine ⟨eps, rho, mu, hmu, ?_⟩
   intro W v hv hsc
   obtain ⟨⟨D⟩, halph⟩ := hgood W v hv hsc
-  obtain ⟨P⟩ := hDGO D.delta D.sep D.apices D.rot D.base D.delta_pos D.sep_ge
-    D.hyperbolic D.isRotatingFamily D.isSeparated D.isVeryRotating D.base_far
+  obtain ⟨P⟩ := hDGO D.delta D.sep D.apices D.rot D.delta_pos D.sep_ge
+    D.hyperbolic D.isRotatingFamily D.isSeparated D.isVeryRotating
   have hker : P.q.ker
       = Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G) := by
     rw [P.ker_eq, D.rotationNormalClosure_eq]
   obtain ⟨F⟩ := halph P.q P.surjective hker
-  have hL : 2 * (R : ℝ) < P.injRadius := by
-    have h1 := D.lt_sep
-    have h2 := P.separation_le_injRadius
-    linarith
   have hinj : Set.InjOn P.q (cayleyBall A.alphabet R) := by
     refine injOn_cayleyBall_of_action D.isometric A.alphabet D.base
-      D.letter_dist P.q (L := P.injRadius) R hL ?_
+      D.letter_dist P.q (L := D.sep) R D.lt_sep ?_
     intro g hg hdist
-    exact P.ne_one_of_dist_lt g hg hdist
+    exact D.injOn_of_dist P.q hker g hg hdist
   exact ⟨{ Q := P.Q
            group := P.group
            q := P.q

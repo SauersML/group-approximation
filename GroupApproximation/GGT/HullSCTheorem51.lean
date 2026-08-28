@@ -41,14 +41,15 @@ statement below therefore quantifies over `u ∈ N` and takes the relator to be
 `t⁻¹u ∈ G`, which is where Hull's small cancellation condition, not filling,
 is the input.
 
-## What is proved here from DGO's Theorem 5.3
+## Where the injectivity clause went
 
-`injOn_cayleyBall_of_rotatingQuotient`: the injectivity-on-a-ball clause of
-Theorem 5.1 follows from the injectivity radius of `RotatingQuotient`, because
-the cone-off does not increase word length and the displacement of the
-basepoint of a Cayley graph is the word length
-(`HullSC.injOn_cayleyBall_of_dist_lt`).  Choosing the separation `ρ` above
-`2R` -- that is, taking the relator deep enough -- prescribes the radius.
+This module used to derive the injectivity-on-a-ball clause of Theorem 5.1 from
+an injectivity radius carried by `RotatingQuotient`.  It no longer does, and the
+route is `HullSCFilling.injOn_cayleyBall_of_action` from
+`HullSCFilling.RotatingData.injOn_of_dist`: reading DGO's Theorem 5.3 against
+the source shows it concludes the free splitting and the dichotomy and nothing
+metric, so the injectivity radius is Hull's §5 and belongs with the family Hull
+builds.  `GGT/HullSCDGO.lean` carries the audit.
 
 What DGO's Theorem 5.3 does **not** give, and what stays inside
 `HullTheorem51Statement`, is everything about the *alphabet*: that the quotient
@@ -309,45 +310,6 @@ theorem hullOneStep_of_theorem51 (hEmb : ExistsHypEmbeddedInSuitable.{u})
     exact Subgroup.mem_map_of_mem _ huN
   · show D.q.ker = Subgroup.normalClosure ((({t⁻¹ * u} : Finset G)) : Set G)
     rw [D.ker_eq, Finset.coe_singleton]
-
-/-! ## What DGO's Theorem 5.3 supplies -/
-
-/-- **The injectivity clause of Theorem 5.1, from DGO's Theorem 5.3.**
-
-The rotating family of Hull's proof lives on the cone-off of `Γ(G,A)` along the
-cosets of the hyperbolically embedded `H`, so DGO's injectivity radius is a
-statement about displacement in the cone-off.  Coning off does not increase
-word length and the displacement of the basepoint of a Cayley graph *is* the
-word length, so an injectivity radius above `2R` in the cone-off is injectivity
-on the `R`-ball of `Γ(G,A)`.  Taking the separation `ρ` above `2R` -- which is
-what "take the relator deep enough" does -- prescribes the radius.
-
-This is the one clause of Theorem 5.1 that DGO's Theorem 5.3 gives outright.
-The alphabet clauses do not follow from it; see the module header.
-
-The basepoint of `RotatingQuotient` is the identity vertex of the cone-off,
-which is the point the injectivity-on-a-ball argument measures displacement at.
-It is also the point that cannot be an apex, which is what
-`HullSC.eq_one_of_dist_lt_everywhere` forces the structure to record.
-
-**This lemma has no non-degenerate instance over a Cayley graph of `G`.**
-`HullSCFilling.rot_eq_bot_of_cayley` proves that a rotating family on `Γ(G,B)`
-has trivial rotation subgroups, the translation action being free, so a
-`RotatingQuotient` handed back by DGO's theorem on this space has trivial
-kernel.  `HullSCFilling.injOn_cayleyBall_of_action` is the version over an
-abstract space, and it is the one Hull's Theorem 5.1 is consumed through. -/
-theorem injOn_cayleyBall_of_rotatingQuotient {G : Type u} [Group G]
-    (A : HullGeneratingSet G) (H : Subgroup G) {ρ : ℝ} (R : ℕ)
-    (hρ : 2 * (R : ℝ) < ρ)
-    {C : Set (Cayley (coneOff A.alphabet H).alphabet)}
-    {Rot : Cayley (coneOff A.alphabet H).alphabet → Subgroup G}
-    (D : RotatingQuotient ρ C Rot (Cayley.base (coneOff A.alphabet H).alphabet)) :
-    Set.InjOn D.q (cayleyBall A.alphabet R) := by
-  refine injOn_cayleyBall_of_dist_lt (L := D.injRadius) A.alphabet H D.q R ?_ ?_
-  · have hsep := D.separation_le_injRadius
-    linarith
-  · intro g hg hdist
-    exact D.ne_one_of_dist_lt g hg hdist
 
 end HullSC
 end GroupApproximation

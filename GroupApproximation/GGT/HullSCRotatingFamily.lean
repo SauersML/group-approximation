@@ -238,23 +238,21 @@ uses -- every element of finite order lifts to an element of the same order --
 because that is the form `Saturation.torsionFree_of_finiteOrder_lift` consumes
 and the form the manuscript's `thm:hull` prints.
 
-The last two fields are the **injectivity radius**, and they are what Hull's
-Theorem 5.1 consumes to get injectivity on a ball.  DGO's estimate is that it
-grows with the separation `ρ` of the family, so `ρ` is a parameter of this
-structure and `separation_le_injRadius` records the estimate in the only form
-used downstream: the radius is at least the separation.  Making `ρ` as large as
-one likes is what "take the relator deep enough" does, and it is why the
-injectivity radius of Hull's theorem can be prescribed.
+**The injectivity radius is no longer here.**  It was a field, with a basepoint
+parameter to carry it, until the clauses were read against the source: DGO's
+Theorem 5.3 concludes the free splitting and the dichotomy and nothing metric,
+and the injectivity radius follows from neither -- loxodromy is asymptotic and
+gives no bound at the first power, and the splitting is not metric.  It is
+Hull's §5, so it now lives with Hull's family data as
+`HullSCFilling.RotatingData.injOn_of_dist`, where the cone-off and its basepoint
+are in scope.  `GGT/HullSCDGO.lean` carries the audit and the counterexample
+that the misattributed clause made possible.
 
-**The displacement clause is at a basepoint, not at every point**, and the
-dichotomy is for the elements of `K` other than `1`.  Both restrictions are
-forced: `eq_one_of_dist_lt_everywhere` and `not_rotation_or_loxodromic_of_empty`
-above refute the unrestricted forms.  The basepoint `y₀` is a parameter of the
-structure rather than a field of it because the consumer chooses it -- Hull
-needs the identity vertex of `Γ(G,A)`, not whatever point DGO's proof would
-hand back. -/
-structure RotatingQuotient (ρ : ℝ) (C : Set X) (Rot : X → Subgroup G)
-    (y₀ : X) where
+The dichotomy is for the elements of `K` other than `1`, and that restriction is
+forced: `not_rotation_or_loxodromic_of_empty` above refutes the unrestricted
+form.  `eq_one_of_dist_lt_everywhere`, which refuted the displacement clause
+stated at every point, now applies to the clause in its new home. -/
+structure RotatingQuotient (C : Set X) (Rot : X → Subgroup G) where
   /-- The quotient group `G / K`. -/
   Q : Type u
   /-- Its group structure. -/
@@ -271,30 +269,41 @@ structure RotatingQuotient (ρ : ℝ) (C : Set X) (Rot : X → Subgroup G)
   rotation_or_loxodromic : ∀ g ∈ rotationNormalClosure C Rot, g ≠ 1 →
     (∃ (a : G) (c : X), c ∈ C ∧ a⁻¹ * g * a ∈ Rot c) ∨
       ∀ x : X, IsLoxodromic g x
-  /-- Finite order lifts, with the order preserved. -/
+  /-- Finite order lifts, with the order preserved.  **Not a conclusion of
+  Theorem 5.3**: see the provenance note in `GGT/HullSCDGO.lean`.  Its first
+  step is `conj_into_rot_of_isOfFinOrder` below, which is a consequence of the
+  dichotomy; the order-preserving half of the lift is what DGO's free splitting
+  5.3(a) would be needed for, and that clause is not recorded here. -/
   finiteOrder_lift :
     ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
-  /-- The injectivity radius of the quotient map. -/
-  injRadius : ℝ
-  /-- It is at least the separation of the family. -/
-  separation_le_injRadius : ρ ≤ injRadius
-  /-- Nothing that moves the basepoint by less than the injectivity radius is
-  killed.  At the apices this is false — `eq_one_of_dist_lt_everywhere` — so it
-  is a clause about `y₀`, which `DGOQuotientStatement` keeps `ρ`-far from every
-  apex. -/
-  ne_one_of_dist_lt : ∀ g : G, g ≠ 1 →
-    dist y₀ (g • y₀) < injRadius → q g ≠ 1
 
-instance instGroupRotatingQuotient {ρ : ℝ} {C : Set X} {Rot : X → Subgroup G}
-    {y₀ : X} (D : RotatingQuotient ρ C Rot y₀) : Group D.Q := D.group
+instance instGroupRotatingQuotient {C : Set X} {Rot : X → Subgroup G}
+    (D : RotatingQuotient C Rot) : Group D.Q := D.group
+
+/-- **A finite-order element of the kernel is conjugate into a rotation
+subgroup.**
+
+This is the dichotomy 5.3(b) with the loxodromic branch excluded: a loxodromic
+element has infinite order.  It is the first step of the finite-order lifting
+clause, and it is the reason the dichotomy is not dead weight -- an earlier
+audit in `GGT/HullSCDGO.lean` recorded it as unconsumed, having checked only
+the consumers that existed at the time. -/
+theorem conj_into_rot_of_isOfFinOrder {C : Set X} {Rot : X → Subgroup G}
+    (D : RotatingQuotient C Rot) (x : X) {g : G}
+    (hmem : g ∈ rotationNormalClosure C Rot) (hg1 : g ≠ 1)
+    (hfin : IsOfFinOrder g) :
+    ∃ (a : G) (c : X), c ∈ C ∧ a⁻¹ * g * a ∈ Rot c := by
+  rcases D.rotation_or_loxodromic g hmem hg1 with h | h
+  · exact h
+  · exact absurd hfin (not_isOfFinOrder_of_isLoxodromic (h x))
 
 /-- **The quotient by a very rotating family of a torsion-free group is
 torsion-free.**  This is the finite-order clause with the ambient
 torsion-freeness, and it is the clause of Hull's Theorem 5.1 that the
 torsion-free lane of this repository consumes. -/
-theorem torsionFree_of_rotatingQuotient {ρ : ℝ} {C : Set X}
-    {Rot : X → Subgroup G} {y₀ : X}
-    (hG : IsPowerTorsionFree G) (D : RotatingQuotient ρ C Rot y₀) :
+theorem torsionFree_of_rotatingQuotient {C : Set X}
+    {Rot : X → Subgroup G}
+    (hG : IsPowerTorsionFree G) (D : RotatingQuotient C Rot) :
     IsPowerTorsionFree D.Q :=
   torsionFree_of_finiteOrder_lift hG D.q D.finiteOrder_lift
 
@@ -313,11 +322,10 @@ a separated very rotating family on it, and the Greendlinger-type lemmas of
 DGO §5 give the clauses above. -/
 def DGOQuotientStatement : Prop :=
   ∀ {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
-    (δ ρ : ℝ) (C : Set X) (Rot : X → Subgroup G) (y₀ : X),
+    (δ ρ : ℝ) (C : Set X) (Rot : X → Subgroup G),
       0 < δ → 200 * δ ≤ ρ → IsHyperbolicSpace δ X →
         IsRotatingFamily G X C Rot → IsSeparated C ρ →
-          IsVeryRotating G X δ C Rot → (∀ c ∈ C, ρ ≤ dist y₀ c) →
-            Nonempty (RotatingQuotient ρ C Rot y₀)
+          IsVeryRotating G X δ C Rot → Nonempty (RotatingQuotient C Rot)
 
 /-- The consumer of `DGOQuotientStatement`: from DGO's theorem, a separated
 very rotating family on a torsion-free group has a torsion-free quotient by the
@@ -325,14 +333,13 @@ rotations, and that quotient's kernel is exactly the subgroup the rotations
 generate. -/
 theorem torsionFree_of_dgoQuotient (hDGO : DGOQuotientStatement.{u, v})
     {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
-    {δ ρ : ℝ} {C : Set X} {Rot : X → Subgroup G} {y₀ : X} (hδ : 0 < δ)
+    {δ ρ : ℝ} {C : Set X} {Rot : X → Subgroup G} (hδ : 0 < δ)
     (hρ : 200 * δ ≤ ρ) (hhyp : IsHyperbolicSpace δ X)
     (hfam : IsRotatingFamily G X C Rot) (hsep : IsSeparated C ρ)
-    (hvr : IsVeryRotating G X δ C Rot) (hfar : ∀ c ∈ C, ρ ≤ dist y₀ c)
-    (hG : IsPowerTorsionFree G) :
+    (hvr : IsVeryRotating G X δ C Rot) (hG : IsPowerTorsionFree G) :
     ∃ (Q : Type u) (_ : Group Q) (q : G →* Q), Function.Surjective q ∧
       q.ker = rotationNormalClosure C Rot ∧ IsPowerTorsionFree Q := by
-  obtain ⟨D⟩ := hDGO δ ρ C Rot y₀ hδ hρ hhyp hfam hsep hvr hfar
+  obtain ⟨D⟩ := hDGO δ ρ C Rot hδ hρ hhyp hfam hsep hvr
   exact ⟨D.Q, D.group, D.q, D.surjective, D.ker_eq,
     torsionFree_of_rotatingQuotient hG D⟩
 

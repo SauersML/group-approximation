@@ -40,13 +40,24 @@ and `q g = 1` for every `g`; while for `g ≠ 1` the trivial action gives
 `dist y₀ (g · y₀) = 0 < ρ ≤ injRadius`, so `ne_one_of_dist_lt` demands
 `q g ≠ 1`.  No `RotatingQuotient` exists.
 
-`not_rotatingQuotient_of_fixes_basepoint` below is that contradiction,
-formalized, and it is sharper than the counterexample: **the conclusion of
-Theorem 5.3 as stated is unsatisfiable whenever any nontrivial element of the
-rotation closure fixes the basepoint.**  Only the claim that the displayed
-configuration satisfies all the hypotheses is left unformalized, and that is the
-part needing a bespoke two-point pseudometric space; it is written out above in
-full so that it can be checked by hand or formalized later.
+The contradiction is sharper than the counterexample: **the conclusion was
+unsatisfiable whenever any nontrivial element of the rotation closure fixes the
+basepoint**, with no hypothesis on the space, the family or `δ`.
+
+**This is now resolved, and by removing the clause rather than by adding a
+hypothesis.**  The provenance audit below shows `ne_one_of_dist_lt` was never
+DGO's, so it has moved to `HullSCFilling.RotatingData.injOn_of_dist`.
+`DGOQuotientStatement` no longer carries a metric clause, and the configuration
+above no longer refutes it: with the kernel everything and the quotient trivial,
+the dichotomy and the finite-order clause both hold vacuously.  The statement
+was false exactly because it claimed something its citation does not prove.
+
+What the counterexample now bears on is the clause in its new home: it shows
+that `injOn_of_dist` has to be *proved* by Hull's §5 and cannot be inherited,
+since a family can satisfy every rotating hypothesis and still fix the
+basepoint.  The two formalized lemmas that recorded the contradiction are gone
+with the clause; the configuration is written out above in full so that it can
+be checked by hand or formalized against the new home.
 
 ## Why the previous two repairs did not catch it
 
@@ -149,18 +160,27 @@ So the structure is carrying one clause of DGO's that nothing consumes, is
 missing the clause of DGO's that another of its clauses depends on, and is
 attributing to DGO a metric clause that appears to be Hull's own §5 work.
 
-The repair this points to, and which is not made here because
-`hullQuotient_of_fillingData` is another lane's consumer:
+**The repair has been made, and one line of the audit above needed correcting
+in the making of it.**
 
-1. add 5.3(a), the free splitting, to `RotatingQuotient` -- it is what the
-   theorem actually concludes, and it is what `finiteOrder_lift` rests on;
-2. keep `finiteOrder_lift`, re-attributed as a corollary of (a) rather than as
-   a citation of 5.3;
-3. move `injRadius` and `ne_one_of_dist_lt` out of the DGO citation and into
-   Hull's §5 -- `HullFillingDataStatement` -- since that is where a proof of
-   them would have to live;
-4. keep `rotation_or_loxodromic`, unconsumed, because it is what the theorem
-   says.
+* `injRadius`, `separation_le_injRadius` and `ne_one_of_dist_lt` are out of
+  `RotatingQuotient` and into `HullSCFilling.RotatingData.injOn_of_dist`, where
+  the cone-off and its basepoint are in scope.  With them went the basepoint
+  parameter and the separation parameter of the structure, neither of which any
+  remaining clause mentions -- DGO's conclusion has no basepoint.
+* `rotation_or_loxodromic` is **not** dead weight, and the audit was wrong to
+  imply it.  `HullSCRotatingFamily.conj_into_rot_of_isOfFinOrder` derives from
+  it that a finite-order element of the kernel is conjugate into a rotation
+  subgroup -- a loxodromic element has infinite order -- and that is the first
+  step of the finite-order lifting clause.  It was unconsumed only because
+  nothing had yet been proved from it.
+* 5.3(a), the free splitting, is **not** added.  The audit said
+  `finiteOrder_lift` rests on it; the conjugacy step turns out to come from the
+  dichotomy instead, so what the splitting is needed for is the narrower
+  order-preserving half of the lift.  Stating it faithfully means a `CoprodI`
+  over a set of orbit representatives and a new import into
+  `GGT/HullSCRotatingFamily.lean`, for a clause with no consumer until that half
+  is attempted.  It is left out, and this paragraph is the record of why.
 
 ## The plan for §5, in dependency order
 
@@ -249,8 +269,8 @@ is consumed, and the one whose absence let three statements of this lane be
 landed refuted.  It says nothing about `DGOQuotientStatement`, which quantifies
 over all families and is false; it says that the *shape* of the conclusion is
 sound and that the defect is in the hypotheses. -/
-def rotatingQuotientEmpty (ρ : ℝ) (Rot : X → Subgroup G) (y₀ : X) :
-    RotatingQuotient ρ (∅ : Set X) Rot y₀ where
+def rotatingQuotientEmpty (Rot : X → Subgroup G) :
+    RotatingQuotient (∅ : Set X) Rot where
   Q := G
   group := inferInstance
   q := MonoidHom.id G
@@ -264,54 +284,10 @@ def rotatingQuotientEmpty (ρ : ℝ) (Rot : X → Subgroup G) (y₀ : X) :
     rw [rotationNormalClosure_empty, Subgroup.mem_bot] at hg
     exact absurd hg hg1
   finiteOrder_lift := fun y _ => ⟨y, rfl, rfl⟩
-  injRadius := ρ
-  separation_le_injRadius := le_refl ρ
-  ne_one_of_dist_lt := fun g hg _ => hg
 
-theorem nonempty_rotatingQuotient_empty (ρ : ℝ) (Rot : X → Subgroup G)
-    (y₀ : X) : Nonempty (RotatingQuotient ρ (∅ : Set X) Rot y₀) :=
-  ⟨rotatingQuotientEmpty ρ Rot y₀⟩
-
-/-! ## The defect: a fixed basepoint makes the conclusion unsatisfiable -/
-
-/-- **The conclusion of Theorem 5.3 as stated is unsatisfiable whenever a
-nontrivial element of the rotation closure fixes the basepoint.**
-
-`g` lies in the kernel, so `q g = 1`; and `g` fixes `y₀`, so it displaces it by
-`0 < ρ ≤ injRadius`, and `ne_one_of_dist_lt` demands `q g ≠ 1`.
-
-This is the heart of the refutation in the module header, and it is sharper
-than the counterexample there: it needs no hypothesis on the space, on the
-family or on `δ`.  What the counterexample adds is that the hypotheses of
-`DGOQuotientStatement` do not exclude this configuration -- with a trivial
-action on a space whose distances miss the annulus `[20δ, 40δ]`, the very
-rotating condition is vacuous and every point is fixed. -/
-theorem not_rotatingQuotient_of_fixes_basepoint {ρ : ℝ} (hρ : 0 < ρ)
-    {C : Set X} {Rot : X → Subgroup G} {y₀ : X} {g : G} (hg1 : g ≠ 1)
-    (hmem : g ∈ rotationNormalClosure C Rot) (hfix : g • y₀ = y₀) :
-    IsEmpty (RotatingQuotient ρ C Rot y₀) := by
-  constructor
-  intro D
-  have hker : D.q g = 1 := by
-    rw [← MonoidHom.mem_ker, D.ker_eq]
-    exact hmem
-  have hdist : dist y₀ (g • y₀) < D.injRadius := by
-    rw [hfix, dist_self]
-    have hsep := D.separation_le_injRadius
-    linarith
-  exact D.ne_one_of_dist_lt g hg1 hdist hker
-
-/-- **Contrapositive, as the constraint the hypotheses must deliver.**  If
-Theorem 5.3 produces a quotient at all, then every nontrivial element of the
-rotation closure moves the basepoint.  That is a conclusion about the *action*,
-so it can only come from hypotheses about the action -- and the very rotating
-condition, which constrains one annulus about each apex, does not reach a
-basepoint `ρ`-far from all of them without a geodesic to interpolate along. -/
-theorem smul_ne_of_rotatingQuotient {ρ : ℝ} (hρ : 0 < ρ) {C : Set X}
-    {Rot : X → Subgroup G} {y₀ : X} (D : RotatingQuotient ρ C Rot y₀) {g : G}
-    (hg1 : g ≠ 1) (hmem : g ∈ rotationNormalClosure C Rot) : g • y₀ ≠ y₀ :=
-  fun hfix =>
-    (not_rotatingQuotient_of_fixes_basepoint hρ hg1 hmem hfix).false D
+theorem nonempty_rotatingQuotient_empty (Rot : X → Subgroup G) :
+    Nonempty (RotatingQuotient (∅ : Set X) Rot) :=
+  ⟨rotatingQuotientEmpty Rot⟩
 
 end Family
 
@@ -332,15 +308,15 @@ theorem exists_dist_eq_of_geodesic {X : Type v} [PseudoMetricSpace X]
 
 The counterexample of the module header works by making the annulus
 `20δ ≤ dist · c ≤ 40δ` contain no point at all, so that `IsVeryRotating` holds
-vacuously and constrains nothing.  Adding `IsGeodesicSpace X` closes exactly
-that hole: the basepoint is at distance at least `ρ ≥ 200δ` from the apex, a
-geodesic from the apex to it realises every distance up to that, and `30δ` is
-one of them.
+vacuously and constrains nothing.  A geodesic closes exactly that hole: a point
+at distance at least `ρ ≥ 200δ` from the apex is joined to it by a geodesic
+realising every distance up to that, and `30δ` is one of them.
 
-So this is not a repair chosen because it happens to block one counterexample —
-it is the hypothesis that makes `dist_le_dist_smul_of_veryRotating` applicable,
-which is the step DGO's argument turns on.  With `C` empty there is no annulus
-to populate and `nonempty_rotatingQuotient_empty` covers the case directly. -/
+This is what makes `dist_le_dist_smul_of_veryRotating` applicable, which is the
+step DGO's argument turns on, and it is why `DGOQuotientStatementGeodesic` keeps
+the geodesic hypothesis even though the counterexample no longer refutes the
+statement: the hypothesis is now needed for provability rather than for truth.
+Hull's §5 needs it too, to prove `RotatingData.injOn_of_dist` in its new home. -/
 theorem exists_mem_annulus {X : Type v} [PseudoMetricSpace X]
     (hgeo : IsGeodesicSpace X) {δ ρ : ℝ} (hδ : 0 < δ) (hρ : 200 * δ ≤ ρ)
     {c y₀ : X} (hfar : ρ ≤ dist y₀ c) :
@@ -356,8 +332,8 @@ theorem exists_mem_annulus {X : Type v} [PseudoMetricSpace X]
 
 `HullSC.DGOQuotientStatement` with `IsGeodesicSpace X` added.  DGO work in
 geodesic spaces throughout; without one the very rotating condition constrains
-an annulus that can be empty, and `not_rotatingQuotient_of_fixes_basepoint`
-turns that into a refutation.
+an annulus that can be empty, which is how the counterexample of the module
+header got through before the misattributed metric clause was moved out.
 
 A geodesic supplies the point `x` at distance `30δ` from the apex on `[y₀, c]`
 that `dist_le_dist_smul_of_veryRotating` needs, which is the step the argument
@@ -369,20 +345,20 @@ Applying this at the cone-off needs the geometric realisation of
 vertex model is not geodesic. -/
 def DGOQuotientStatementGeodesic : Prop :=
   ∀ {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
-    (δ ρ : ℝ) (C : Set X) (Rot : X → Subgroup G) (y₀ : X),
+    (δ ρ : ℝ) (C : Set X) (Rot : X → Subgroup G),
       0 < δ → 200 * δ ≤ ρ → IsHyperbolicSpace δ X → IsGeodesicSpace X →
         IsRotatingFamily G X C Rot → IsSeparated C ρ →
-          IsVeryRotating G X δ C Rot → (∀ c ∈ C, ρ ≤ dist y₀ c) →
-            Nonempty (RotatingQuotient ρ C Rot y₀)
+          IsVeryRotating G X δ C Rot → Nonempty (RotatingQuotient C Rot)
 
 /-- The uncorrected statement implies the corrected one: the repair only adds a
 hypothesis.  Recorded so the direction of the correction is visible.  The
-converse is not available, and `not_rotatingQuotient_of_fixes_basepoint` with
-the counterexample of the module header is why. -/
+converse is not available: DGO's proof of §5 uses geodesics throughout, and the
+counterexample of the module header shows what a non-geodesic space lets
+through. -/
 theorem dgoQuotientStatementGeodesic_of_dgoQuotientStatement
     (h : DGOQuotientStatement.{u, v}) : DGOQuotientStatementGeodesic.{u, v} := by
-  intro G _ X _ _ δ ρ C Rot y₀ hδ hρ hhyp _ hfam hsep hvr hfar
-  exact h δ ρ C Rot y₀ hδ hρ hhyp hfam hsep hvr hfar
+  intro G _ X _ _ δ ρ C Rot hδ hρ hhyp _ hfam hsep hvr
+  exact h δ ρ C Rot hδ hρ hhyp hfam hsep hvr
 
 end HullSC
 end GroupApproximation
