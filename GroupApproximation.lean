@@ -2380,6 +2380,13 @@ import GroupApproximation.Higman.OmegaFatShearedLinkSemantic
 import GroupApproximation.Higman.OmegaFatShearedLinkBase
 import GroupApproximation.Higman.OmegaFatLinkEmbeddingObstruction
 import GroupApproximation.Higman.OmegaTowerSelectedArbitraryReturnWitness
+import GroupApproximation.Analysis.ShulmanFillNormingCoronaRoute
+import GroupApproximation.Analysis.ShulmanFillNormingAmalgamWitness
+import GroupApproximation.Analysis.ShulmanFillNormingAsymptotic
+import GroupApproximation.Analysis.ShulmanFillNormingPrefixBlock
+import GroupApproximation.Analysis.ShulmanFillNormingFactorImages
+import GroupApproximation.Analysis.ShulmanFillNormingFamily
+import GroupApproximation.Analysis.ShulmanFillNormingResiduallyFinite
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
