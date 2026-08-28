@@ -140,7 +140,7 @@ theorem compactOfStarMulSelf : CompactOfStarMulSelfStatement := by
       have hpos : (0 : ℝ) < ε ^ 2 := by positivity
       linarith
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     nlinarith [hlt, hcon, hε.le, norm_nonneg (S x - S x')]
   have hStb' :
       TotallyBounded ((S : H →L[ℂ] H).toLinearMap '' Metric.ball (0 : H) 1) :=
@@ -165,7 +165,7 @@ theorem compactStarClosed : CompactStarClosedStatement :=
 /-- The adjoint form, at one operator. -/
 theorem isCompactOperator_star {H : Type} [NormedAddCommGroup H]
     [InnerProductSpace ℂ H] [CompleteSpace H] {T : H →L[ℂ] H}
-    (hT : IsCompactOperator T) : IsCompactOperator (star T) :=
+    (hT : IsCompactOperator T) : IsCompactOperator (star T : H →L[ℂ] H) :=
   compactStarClosed H T hT
 
 end

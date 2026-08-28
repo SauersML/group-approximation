@@ -39,7 +39,7 @@ approximants are dilations of exactly such maps.
 
 This module is in the root import list.  It was authored while builds were
 suspended and has not been elaborated.  The names carrying risk are
-`tendsto_finset_sum`, `ge_of_tendsto`, `Complex.continuous_re`,
+`tendsto_finsetSum`, `ge_of_tendsto`, `Complex.continuous_re`,
 `Filter.Tendsto.mono_left`, `tendsto_nhds_unique` and `ext_inner_left`.
 -/
 
@@ -81,8 +81,8 @@ theorem arvesonLimit_of_weakCluster (hcl : WeakClusterStatement) :
           ⟪v i, Psi n (star (a i) * a j) (v j)⟫_ℂ) (u : Filter ℕ)
         (𝓝 (∑ i : Fin m, ∑ j : Fin m,
           ⟪v i, Ψ (star (a i) * a j) (v j)⟫_ℂ)) := by
-      refine tendsto_finset_sum _ fun i _ ↦ ?_
-      exact tendsto_finset_sum _ fun j _ ↦ hlim (star (a i) * a j) (v i) (v j)
+      refine tendsto_finsetSum _ fun i _ ↦ ?_
+      exact tendsto_finsetSum _ fun j _ ↦ hlim (star (a i) * a j) (v i) (v j)
     have hre := (Complex.continuous_re.tendsto _).comp hsum
     refine ge_of_tendsto hre ?_
     filter_upwards with n

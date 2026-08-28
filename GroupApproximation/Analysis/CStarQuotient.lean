@@ -83,7 +83,7 @@ private theorem real_mul_continuousAt (x y : ℝ) :
 /-- The quotient seminorm is submultiplicative.  Transplanted verbatim from
 `filterMatrixCoronaAlgebraSeminormedRing`; nothing in the argument mentions
 sequences. -/
-def seminormedRing : SeminormedRing (A ⧸ I) where
+@[reducible] def seminormedRing : SeminormedRing (A ⧸ I) where
   dist_eq := dist_eq_norm_neg_add
   norm_mul_le x y := _root_.le_of_forall_pos_le_add fun ε hε ↦ by
     obtain ⟨δ, hδ, hbound⟩ :=
@@ -119,11 +119,15 @@ def seminormedRing : SeminormedRing (A ⧸ I) where
           simpa only [ha_eq, hb_eq] using hupper.le
 
 /-- Because the ideal is closed, the quotient seminorm is a norm. -/
-def normedRing : NormedRing (A ⧸ I) :=
+@[reducible] def normedRing : NormedRing (A ⧸ I) :=
   { seminormedRing A I, Submodule.Quotient.normedAddCommGroup I with }
 
+-- the uniformity of `A ⧸ I` is reached through
+-- `Submodule.Quotient.seminormedAddCommGroup`, which needs neither
+-- two-sidedness nor closedness; only the *norm* goes through the closed route
+omit [I.IsTwoSided] hIclosed in
 /-- The quotient of a complete space by a closed submodule is complete. -/
-def completeSpace : CompleteSpace (A ⧸ I) :=
+theorem completeSpace : CompleteSpace (A ⧸ I) :=
   Submodule.Quotient.completeSpace I
 
 /-! ## The descended involution -/
@@ -133,6 +137,7 @@ variable [IsStarIdeal I]
 private def starHom : A →+ A ⧸ I :=
   (Ideal.Quotient.mk I).toAddMonoidHom.comp starAddEquiv.toAddMonoidHom
 
+omit hIclosed in
 private theorem le_star_ker : I.toAddSubgroup ≤ (starHom A I).ker := by
   intro a ha
   change Ideal.Quotient.mk I (star a) = 0
@@ -140,16 +145,17 @@ private theorem le_star_ker : I.toAddSubgroup ≤ (starHom A I).ker := by
   exact IsStarIdeal.star_mem ha
 
 /-- The involution descends to the quotient. -/
-def starInstance : Star (A ⧸ I) where
+@[reducible] def starInstance : Star (A ⧸ I) where
   star := QuotientAddGroup.lift I.toAddSubgroup (starHom A I) (le_star_ker A I)
 
+omit hIclosed in
 @[simp] theorem star_mk (a : A) :
     letI := starInstance A I
     star (Ideal.Quotient.mk I a) = Ideal.Quotient.mk I (star a) :=
   QuotientAddGroup.lift_mk _ _ _
 
 /-- The descended involution is involutive. -/
-def involutiveStar : InvolutiveStar (A ⧸ I) :=
+@[reducible] def involutiveStar : InvolutiveStar (A ⧸ I) :=
   letI := starInstance A I
   { star := star
     star_involutive := fun x ↦ by
@@ -158,8 +164,14 @@ def involutiveStar : InvolutiveStar (A ⧸ I) :=
         change star (star (Ideal.Quotient.mk I a)) = Ideal.Quotient.mk I a
         rw [star_mk, star_mk, star_star] }
 
-/-- The descended involution is a ring involution. -/
-def starRing : StarRing (A ⧸ I) :=
+/-- The descended involution is a ring involution.
+
+The two fields are proved by transporting the ambient involution's laws along
+the quotient map, rather than by rewriting with `star_mk`: inside this
+structure the involution is reached through `InvolutiveStar.toStar`, so the
+rewrite has no syntactic match, while `Ideal.Quotient.mk I (star a)` *is* the
+descended star of `Ideal.Quotient.mk I a` by definition. -/
+@[reducible] def starRing : StarRing (A ⧸ I) :=
   letI := seminormedRing A I
   letI := involutiveStar A I
   { star_add := fun x y ↦ by
@@ -167,23 +179,23 @@ def starRing : StarRing (A ⧸ I) :=
       | _ a =>
         induction y using QuotientAddGroup.induction_on with
         | _ b =>
-          change star (Ideal.Quotient.mk I (a + b)) =
-            star (Ideal.Quotient.mk I a) + star (Ideal.Quotient.mk I b)
-          rw [star_mk, star_mk, star_mk, star_add]
-          rfl
+          exact (congrArg (fun z : A ↦ Ideal.Quotient.mk I z) (star_add a b)).trans
+            (map_add (Ideal.Quotient.mk I) (star a) (star b))
     star_mul := fun x y ↦ by
       induction x using QuotientAddGroup.induction_on with
       | _ a =>
         induction y using QuotientAddGroup.induction_on with
         | _ b =>
-          change star (Ideal.Quotient.mk I (a * b)) =
-            star (Ideal.Quotient.mk I b) * star (Ideal.Quotient.mk I a)
-          rw [star_mk, star_mk, star_mk,
-            show star (a * b) = star b * star a from StarMul.star_mul a b]
-          rfl }
+          exact (congrArg (fun z : A ↦ Ideal.Quotient.mk I z)
+              (StarMul.star_mul a b)).trans
+            (map_mul (Ideal.Quotient.mk I) (star b) (star a)) }
 
-/-- The descended involution is norm-contractive, hence isometric. -/
-def normedStarGroup : letI := normedRing A I; letI := starRing A I;
+/-- The descended involution is norm-contractive, hence isometric.
+
+`star (Ideal.Quotient.mk I a)` *is* `Ideal.Quotient.mk I (star a)` by
+definition, so `norm_mk_le` applies to the goal as it stands; rewriting with
+`star_mk` first would have to see through `StarRing.toStarMul`. -/
+theorem normedStarGroup : letI := normedRing A I; letI := starRing A I;
     NormedStarGroup (A ⧸ I) :=
   letI := normedRing A I
   letI := starRing A I
@@ -191,19 +203,21 @@ def normedStarGroup : letI := normedRing A I; letI := starRing A I;
       apply _root_.le_of_forall_pos_le_add
       intro ε hε
       obtain ⟨a, rfl, ha⟩ := exists_rep_norm_lt A I x hε
-      rw [star_mk]
       exact ((norm_mk_le A I (star a)).trans_lt (by simpa using ha)).le }
 
 /-! ## The complex structure -/
 
 /-- The quotient's complex algebra structure is compatible with the quotient
-norm. -/
-def normedAlgebra : letI := normedRing A I; NormedAlgebra ℂ (A ⧸ I) :=
+norm.  The `ℂ`-module structure and the scalar-norm bound are the ones Mathlib
+already puts on a submodule quotient; `Ideal.Quotient.normedAlgebra` assembles
+them the same way, but only for a commutative ambient ring. -/
+@[reducible] def normedAlgebra : letI := normedRing A I; NormedAlgebra ℂ (A ⧸ I) :=
   letI := normedRing A I
-  ⟨fun z x ↦ (norm_smul z x).le⟩
+  { Submodule.Quotient.normedSpace I ℂ, Ideal.Quotient.algebra ℂ with }
 
+omit hIclosed in
 /-- The descended involution is conjugate-linear. -/
-def starModule : letI := starInstance A I; StarModule ℂ (A ⧸ I) :=
+theorem starModule : letI := starInstance A I; StarModule ℂ (A ⧸ I) :=
   letI := starInstance A I
   { star_smul := fun z x ↦ by
       induction x using QuotientAddGroup.induction_on with
