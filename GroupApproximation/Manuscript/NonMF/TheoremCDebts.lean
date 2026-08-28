@@ -5,6 +5,7 @@ import GroupApproximation.Manuscript.NonMF.HullInputsProved
 import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
 import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.HullSCFilling
+import GroupApproximation.GGT.HullSCHypEmbedded
 
 /-!
 # Theorem C, closed: the cited inputs as recorded debts
@@ -57,7 +58,7 @@ theorem, shared by the two lanes that stand on it.
   leaves as `hullTheorem71` does, together with the free product input;
   `HullSC.hullCommonQuotient_of_oneStep` is that reduction, and
   `HullSC.FreeProductStatement` is the extra input.
-* `hullHypEmbeddedInSuitable`, `dgoTheorem53`, `hullFillingData`,
+* `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullFillingData`,
   `hullSection6Relator` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
   Theorem 5.3 separated out of the first of them.  **`hullTheorem71` is not one
   of the debts any longer**, and neither is `hullTheorem51`: the first is proved
@@ -116,9 +117,20 @@ Not derivable from `GGT.DGOTheorem68` either, which produces `E(g) ↪_h (G,X)`
 for an `X` with no relation to a prescribed alphabet: the enlargement of `X`
 that makes the coned-off action acylindrical is Osin's Theorem 5.4 and is in
 general infinite, so `GGT.DGOCorollary427` — invariance under finite symmetric
-difference of the base — does not bridge it. -/
-theorem hullHypEmbeddedInSuitable : HullSC.ExistsHypEmbeddedInSuitable.{0} := by
+difference of the base — does not bridge it.
+
+Recorded on the cone-off, which is the statement with no bookkeeping in it:
+three conditions on one subgroup.  `HullSC.existsHypEmbeddedConeOff_of_core`
+proves the converse, so nothing has been strengthened. -/
+theorem hullHypEmbeddedConeOff : HullSC.ExistsHypEmbeddedConeOff.{0} := by
   sorry
+
+/-- Hull's §5 leaf in the form Theorem 5.1 consumes it, from the cone-off form
+above: `HullSC.HypEmbeddedCore` adds a relative generating set and two equations
+pinning its base and its family, and `HullSC.HypEmbeddedCore.ofConeOff` supplies
+both by `rfl`. -/
+theorem hullHypEmbeddedInSuitable : HullSC.ExistsHypEmbeddedInSuitable.{0} :=
+  HullSC.existsHypEmbeddedInSuitable_of_coneOff hullHypEmbeddedConeOff
 
 /-- **DEBT (literature).**  Dahmani–Guirardel–Osin, *Hyperbolically embedded
 subgroups and rotating families*, Theorem 5.3: the quotient of a group acting
