@@ -2285,6 +2285,7 @@ import GroupApproximation.GGT.ElementaryBowditchProof
 import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.ElementaryMorseAlphabet
 import GroupApproximation.GGT.ElementaryHypEmbedded
+import GroupApproximation.GGT.ElementaryProjectionCriterion
 import GroupApproximation.GGT.ElementaryOsinSNormal
 import GroupApproximation.GGT.ElementaryProperClosure
 import GroupApproximation.GGT.ElementaryTransfer
