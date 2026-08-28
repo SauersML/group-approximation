@@ -497,7 +497,7 @@ theorem hullTower_of_oneStep (h : HullOneStepStatement.{u}) :
           (Subgroup.normalClosure_le_normal (Set.empty_subset _)) bot_le
       have hker : (MonoidHom.id G).ker = ⊥ := by
         ext x
-        simp [MonoidHom.mem_ker]
+        simp
       refine ⟨{
         step :=
           { Q := G
