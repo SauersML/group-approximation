@@ -2348,6 +2348,7 @@ import GroupApproximation.GGT.WPDAcylindricalHyperbolicity
 import GroupApproximation.GGT.WPDElement
 import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 import GroupApproximation.GGT.WPDMinasyanOsinSkeleton
+import GroupApproximation.GGT.WPDElementaryEmbedding
 import GroupApproximation.GGT.OsinComponents
 import GroupApproximation.GGT.OsinEnlargement
 import GroupApproximation.GGT.OsinSeparatingCosets
