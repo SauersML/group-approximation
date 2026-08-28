@@ -102,7 +102,7 @@ theorem compactOfStarMulSelf : CompactOfStarMulSelfStatement := by
       rw [hg]
       exact dif_pos hPy
     have hspec := hPy.choose_spec
-    set x' := hPy.choose with hx'def
+    set x' := hPy.choose
     obtain ⟨hx'mem, hTx'mem⟩ := hspec
     refine Set.mem_iUnion₂.mpr ⟨g y, ⟨y, hy, rfl⟩, ?_⟩
     rw [Metric.mem_ball, dist_eq_norm, hfy]
