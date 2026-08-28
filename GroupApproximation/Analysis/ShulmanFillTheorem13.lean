@@ -40,37 +40,44 @@ Their proof builds the pair in three steps:
    `K(H)` — which is what makes the two legs agree on `C` in the Calkin
    quotient, so that they form a compatible pair.
 
-None of the three is stated below as a named `Prop`, and that is deliberate.
-Each is true only with `B(H)` as the target — Arveson needs an injective
-target, Voiculescu needs the compacts — and the Calkin algebra is not
-expressible yet.  A version of them abstracted over an arbitrary ambient
-algebra and an arbitrary ideal would be *false*, and a false hypothesis is
-worse than a missing one: it cannot be discharged, and it would silently make
-every theorem standing on it vacuous.  So the three are recorded here in prose,
-with their exact roles, and the one statement carried as a `Prop` is the
-existence of the pair they build, which is an existence statement and so is at
-worst hard.
+None of the three is stated below as a named `Prop`.  Each is true only with
+`B(H)` as the target — Arveson needs an injective target, Voiculescu needs the
+compacts — and a version of them abstracted over an arbitrary ambient algebra
+and an arbitrary ideal would be *false*, and a false hypothesis is worse than a
+missing one: it cannot be discharged, and it would silently make every theorem
+standing on it vacuous.  So the three are recorded here in prose, with their
+exact roles, and the one statement carried as a `Prop` is the existence of the
+pair they build, which is an existence statement and so is at worst hard.
 
-What is and is not available, checked against the pinned Mathlib:
+An earlier version of this paragraph gave a second reason, that the Calkin
+algebra was not expressible.  That reason no longer holds, and the record of
+what is available was wrong on two further counts.  Checked against the tree:
 
-* `B(H)` **is** there.  `Mathlib/Analysis/CStarAlgebra/ContinuousLinearMap`
-  gives `CStarAlgebra (E →L[ℂ] E)` for a complex Hilbert space `E`, on top of
-  `CStarRing (E →L[𝕜] E)` in `Mathlib/Analysis/InnerProductSpace/Adjoint`.
-* The compact operators are there as a *submodule*, `compactOperator` in
-  `Mathlib/Analysis/Normed/Operator/Compact/Basic`; they are not bundled as a
-  closed two-sided ideal.
-* The quotient is **not** there.  Mathlib carries no `CStarRing` instance on
-  any quotient — the full list of its `CStarRing` instances is `ℝ`, `RCLike`,
-  quaternions, products, pi types, `Eᵐᵒᵖ`, `CStarMatrix`, multipliers,
-  unitizations, `E →L[𝕜] E`, `lp ∞`, and the various continuous-function
-  algebras — and there is no `Analysis/CStarAlgebra/Quotient.lean`.
+* `B(H)` **is** in Mathlib.  `Mathlib/Analysis/CStarAlgebra/ContinuousLinearMap`
+  gives `CStarAlgebra (E →L[ℂ] E)` for a complex Hilbert space `E`.
+* The compact operators are in Mathlib only as a *submodule*; the closed
+  two-sided ideal is `Analysis/CalkinCompactIdeal.compactIdeal`, and it is
+  star-stable by Schauder's theorem, proved in
+  `Analysis/CalkinSchauderProof.compactStarClosed`.
+* The quotient C-star structure is **not** in Mathlib but **is** in this
+  repository, root-imported and elaborated:
+  `Analysis/CStarIdealApproximateUnit` constructs the approximate unit of any
+  closed star-stable two-sided ideal and with it
+  `CStarTensor.instCStarAlgebraQuotient`.  `Analysis/CalkinCStarAlgebra`
+  assembles the two, so `Q(H)` is a C-star algebra with no hypothesis.
+* **Stinespring's dilation theorem is in this repository** and root-imported:
+  `Analysis/CStarStinespringHom.stinespringRepHom`, with the compression
+  identity `stinespring_dilation_repHom`.
+* **Arveson's extension theorem is in this repository for matrix targets
+  only**: `Analysis/LanceMatrixArveson.exists_ucp_extension`.  The `B(H)` case
+  for infinite-dimensional `H` is not there.
+* **Voiculescu's theorem is not in this repository in any form**, and it is the
+  step this module's `CompatibleTargetPairStatement` is really waiting on.
 
-So the Calkin algebra needs its C-star structure built by hand, exactly as
-this repository already builds the matrix corona's: the
-`filterMatrixCoronaAlgebra*` instances of `Analysis/NormMatrixCorona` are that
-same construction at a different quotient, and are the pattern to copy.  It is
-a construction task of the same kind as the algebra `𝒟` of `*`-strongly
-convergent matrix sequences that Theorem 10 needs.
+The algebra `𝒟` that Theorem 10 needs is likewise no longer missing:
+`Analysis/StarStrongMatrixSequencesAlgebra` builds it and its limit map, and
+`Analysis/StarStrongLimitNorm` proves the direction of Theorem 4 that Theorem
+10 ends with.
 
 This module is not in the root import list.  It was authored while builds were
 suspended, so it is kept out of the closure until it has been elaborated.
