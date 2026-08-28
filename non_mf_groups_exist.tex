@@ -292,11 +292,10 @@ is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
 The elements $g$ with $\hsnorm{V_n(g)-1}\to0$ form a normal subgroup of
 $G$, because $\hsnorm{a}\le\opnorm{a}$ and the Hilbert--Schmidt norm is
 unitarily invariant:
-\[
- \hsnorm{V_n(gh)-1}\le\hsnorm{V_n(g)-1}+\hsnorm{V_n(h)-1}+o(1),
- \qquad
+\begin{gather*}
+ \hsnorm{V_n(gh)-1}\le\hsnorm{V_n(g)-1}+\hsnorm{V_n(h)-1}+o(1),\\
  \hsnorm{V_n(ghg^{-1})-1}=\hsnorm{V_n(h)-1}+o(1).
-\]
+\end{gather*}
 For $L\le G$, let
 \[
  \mathcal C_2(V,L)
@@ -406,10 +405,11 @@ by Lemma~\ref{lem:kazhdan-projection-order}, and
 by Lemma~\ref{lem:stable-finite}, since the two projections are unitarily
 equivalent.  So $U$ commutes with $P$, and
 \[
- U\xi,\ U^*\xi\in\operatorname{Fix}\sigma(L),
- \qquad\text{that is,}\qquad
- \lim_\omega\hsnorm{[V_n(\ell),V_n(u)^{\pm1}x_nV_n(u)^{\mp1}]}=0
- \quad(\ell\in L).
+\begin{aligned}
+ &U\xi,\ U^*\xi\in\operatorname{Fix}\sigma(L),\qquad\text{that is,}\\
+ &\lim_\omega\hsnorm{[V_n(\ell),V_n(u)^{\pm1}x_nV_n(u)^{\mp1}]}=0
+ \qquad(\ell\in L).
+\end{aligned}
 \]
 Since $\omega$ was arbitrary, the limits hold along the full sequence: a
 subsequence staying above some $\varepsilon>0$ would lie in a free
@@ -573,7 +573,8 @@ Put $q=upu^{*}$, so that $pq=qp=p$, $up(1-q)=0$, and
 $pu^{*}(1-q)=pu^{*}-pu^{*}upu^{*}=0$.  Then
 \begin{align*}
  s^{*}s&=upu^{*}+up(1-q)+(1-q)pu^{*}+(1-q)=q+(1-q)=1,\\
- ss^{*}&=pu^{*}up+pu^{*}(1-q)+(1-q)up+(1-q)=p+(1-q)=1-(q-p)\ne1.
+ ss^{*}&=pu^{*}up+pu^{*}(1-q)+(1-q)up+(1-q)\\
+       &=p+(1-q)=1-(q-p)\ne1.
 \end{align*}
 A unital $C^*$-algebra containing a nonunitary isometry is not finite, and
 neither is any matrix algebra over it, since the isometry embeds in the
