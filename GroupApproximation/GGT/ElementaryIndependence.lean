@@ -68,6 +68,7 @@ variable {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G 
 /-- The forward orbit chain `i ↦ aⁱ x`. -/
 def fwdChain (a : G) (x : X) (i : ℕ) : X := (a ^ i) • x
 
+omit [PseudoMetricSpace X] in
 theorem fwdChain_zero (a : G) (x : X) : fwdChain a x 0 = x := by
   unfold fwdChain
   rw [pow_zero, one_smul]
@@ -82,7 +83,8 @@ theorem fwdChain_dist (hiso : IsIsometricAction G X) (a : G) (x : X) {i j : ℕ}
 
 theorem fwdChain_edge (hiso : IsIsometricAction G X) (a : G) (x : X) (i : ℕ) :
     dist (fwdChain a x i) (fwdChain a x (i + 1)) = dist x (a • x) := by
-  rw [fwdChain_dist hiso a x (Nat.le_succ i), Nat.add_sub_cancel_left, pow_one]
+  rw [fwdChain_dist hiso a x (Nat.le_add_right i 1),
+    Nat.add_sub_cancel_left, pow_one]
 
 theorem fwdChain_prog (hiso : IsIsometricAction G X) {a : G} {x : X} {l B : ℝ}
     (hlox : ∀ n : ℕ, l * n - B ≤ dist x ((a ^ n) • x)) {i j : ℕ} (hij : i ≤ j) :
@@ -135,7 +137,7 @@ theorem exists_index_near_of_steps {u : ℕ → ℝ} {D : ℝ} (hD : 0 ≤ D)
     by_cases hm : ρ ≤ u m
     · obtain ⟨j, hj, h1, h2⟩ := ih hm
       exact ⟨j, Nat.le_succ_of_le hj, h1, h2⟩
-    · push_neg at hm
+    · push Not at hm
       refine ⟨m + 1, le_refl _, h, ?_⟩
       have := hstep m
       linarith
@@ -293,14 +295,14 @@ theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
   have hDa_pos : 0 < dist x (a • x) := by
     have h := dist_pow_le hiso a x n
     by_contra hle
-    push_neg at hle
+    push Not at hle
     have h0 : dist x (a • x) = 0 := le_antisymm hle hDa0
     rw [h0, mul_zero] at h
     linarith
   have hDb_pos : 0 < dist x (b • x) := by
     have h := dist_pow_le hiso b x m
     by_contra hle
-    push_neg at hle
+    push Not at hle
     have h0 : dist x (b • x) = 0 := le_antisymm hle hDb0
     rw [h0, mul_zero] at h
     linarith
@@ -527,7 +529,7 @@ theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
 /-- An integer power is a natural power of the element or of its inverse. -/
 theorem zpow_eq_pow_toNat_or_inv (a : G) (n : ℤ) :
     (0 ≤ n ∧ a ^ n = a ^ n.toNat) ∨ (n < 0 ∧ a ^ n = a⁻¹ ^ (-n).toNat) := by
-  rcases le_or_lt 0 n with h | h
+  rcases le_or_gt 0 n with h | h
   · left
     refine ⟨h, ?_⟩
     rw [← zpow_natCast, Int.toNat_of_nonneg h]
@@ -583,7 +585,7 @@ theorem commonPowerInGeodesicSpace :
     Manuscript.NonMF.AxisDichotomyRoute.CommonPowerInGeodesicSpace.{u, v} := by
   intro G _ Y _ _ δ hδ hδ0 hgeo hiso hacy g h y hg hh hnind
   by_contra hnp
-  push_neg at hnp
+  push Not at hnp
   exact hnind (independentOfNoCommonZpow_of_geodesic hδ hδ0 hgeo hiso hacy y g h hg hh
     hnp)
 

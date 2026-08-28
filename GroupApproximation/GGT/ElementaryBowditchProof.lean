@@ -76,7 +76,7 @@ theorem exists_large_fiber {V K n : ℕ} (f : ℕ → ℕ)
     (hf : ∀ i, i < V → f i < K) (hlt : K * n < V) :
     ∃ y : ℕ, n < (Finset.filter (fun i => f i = y) (Finset.range V)).card := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   have hmaps : ∀ i ∈ Finset.range V, f i ∈ Finset.range K := fun i hi =>
     Finset.mem_range.mpr (hf i (Finset.mem_range.mp hi))
   have hcard := Finset.card_le_mul_card_image_of_maps_to hmaps n (fun b _ => hcon b)
@@ -116,7 +116,7 @@ theorem exists_sublinear_dist_bound (hiso : IsIsometricAction G X) {c : G} {x : 
       have h : dist x ((c ^ n) • x) / (n : ℝ) < η := hJ n hnJ
       rw [div_lt_iff₀ hnR] at h
       linarith
-    · push_neg at hnJ
+    · push Not at hnJ
       have hle := dist_pow_le hiso c x n
       have hnJ' : (n : ℝ) ≤ (J : ℝ) := by exact_mod_cast hnJ.le
       have hd1 : (0:ℝ) ≤ dist x (c • x) := dist_nonneg
