@@ -1402,7 +1402,6 @@ import GroupApproximation.Algebra.FreeProductCyclicWord
 import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Algebra.HyperbolicInteger
 import GroupApproximation.Algebra.HyperbolicQuasiIsometry
-import GroupApproximation.Algebra.HyperbolicSlimFourPoint
 import GroupApproximation.Algebra.HyperbolicSlimTriangles
 import GroupApproximation.Algebra.TorsionFreeQuotient
 import GroupApproximation.Algebra.TorsionFreeRadical
@@ -2290,6 +2289,7 @@ import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCHypEmbedded
 import GroupApproximation.GGT.HullSCRotatingFamily
+import GroupApproximation.GGT.HullSCDGO
 import GroupApproximation.GGT.HullSCSmallCancellation
 import GroupApproximation.GGT.HullSCTheorem51
 import GroupApproximation.GGT.KazhdanHyp
