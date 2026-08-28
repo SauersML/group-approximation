@@ -200,7 +200,7 @@ statement needs. -/
 theorem exists_mem_base_notMem_fam (D : RelGenSet G Unit)
     (hne : D.fam () ≠ ⊤) : ∃ a ∈ D.base, a ∉ D.fam () := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   apply hne
   have hsub : D.base ∪ ⋃ lam : Unit, ((D.fam lam : Subgroup G) : Set G)
       ⊆ ((D.fam () : Subgroup G) : Set G) := by
@@ -236,8 +236,8 @@ finite intersection from Proposition 4.33, and Theorem 6.11 then supplies the
 element `ah`.
 
 So `DGOCorollary612` is no longer a primitive citation of this development. -/
-theorem dgoCorollary612_of (h611 : DGOTheorem611) (h433 : DGOProposition433) :
-    DGOCorollary612 := by
+theorem dgoCorollary612_of (h611 : DGOTheorem611.{u})
+    (h433 : DGOProposition433.{u}) : DGOCorollary612.{u} := by
   intro G _ D hemb hnd
   obtain ⟨a, haB, haH⟩ := exists_mem_base_notMem_fam D hnd.1
   obtain ⟨h, -, hlox⟩ :=
@@ -281,7 +281,7 @@ theorem notMem_elementaryClosure_of_mem_fam (D : RelGenSet G Unit) {δ : ℝ}
   have hglox : IsLoxodromic (g ^ i) (Cayley.base D.alphabet) :=
     isLoxodromic_zpow (isIsometricAction_cayley D.alphabet) hg hi
   rw [hpow] at hglox
-  exact D.not_isLoxodromic_of_mem_fam () (Subgroup.zpow_mem hh m) hglox
+  exact D.not_isLoxodromic_of_mem_fam () (Subgroup.zpow_mem _ hh m) hglox
 
 /-- **Two independent loxodromics from one loxodromic and one infinite-order
 peripheral element.**  The pair is `g` and its conjugate by the peripheral
@@ -306,7 +306,7 @@ end NoFreeSubgroup
 subgroup has an element of infinite order.  `DGOTheorem614` does not appear, and
 neither does any free subgroup. -/
 theorem relativeCayleyNonElementary_of_612_of_infiniteOrder
-    (h612 : DGOCorollary612) (G : Type u) [Group G] (D : RelGenSet G Unit)
+    (h612 : DGOCorollary612.{u}) (G : Type u) [Group G] (D : RelGenSet G Unit)
     (hemb : D.IsHyperbolicallyEmbedded)
     (hacy : IsAcylindrical G (Cayley D.alphabet))
     (hnd : IsNonDegenerate (D.fam ()))
@@ -326,7 +326,7 @@ any of §6.2.
 Recorded because `PingPong.FreeRankTwo` has consumers of its own, not because
 Lemma 5.12 needs it. -/
 theorem freeRankTwo_of_612_of_infiniteOrder
-    (hpp : PingPongFreeRankTwoGeometric) (h612 : DGOCorollary612)
+    (hpp : PingPongFreeRankTwoGeometric.{u, u}) (h612 : DGOCorollary612.{u})
     (G : Type u) [Group G] (D : RelGenSet G Unit)
     (hemb : D.IsHyperbolicallyEmbedded)
     (hacy : IsAcylindrical G (Cayley D.alphabet))
@@ -384,8 +384,8 @@ subgroup.**  Osin's Theorem 5.4 supplies the alphabet, its clause (a) the
 hyperbolicity and clause (b) the acylindricity, and Lemma 5.12 is
 `relativeCayleyNonElementary_of_612_of_infiniteOrder` rather than
 `relativeCayleyNonElementary_of`. -/
-theorem osinAH4ToAH1WithInfiniteOrder_of (h54 : OsinTheorem54)
-    (h612 : DGOCorollary612) : OsinAH4ToAH1WithInfiniteOrder := by
+theorem osinAH4ToAH1WithInfiniteOrder_of (h54 : OsinTheorem54.{u})
+    (h612 : DGOCorollary612.{u}) : OsinAH4ToAH1WithInfiniteOrder.{u} := by
   intro G _ E hE hinf hord hemb
   obtain ⟨_X, D, -, hfam, hhyp⟩ := hemb
   obtain ⟨D', -, hfam', hhyp', hacy⟩ := h54 G D hhyp
@@ -409,8 +409,8 @@ The two `letI`s are needed rather than decorative: `AH3Data`'s metric and action
 are instance-implicit *fields*, and the type of `D.loxodromic` mentions them, so
 without them the instance arguments of `infinite_of_mem_of_isLoxodromic` do not
 resolve.  This is the shape of `osinTheorem12_of`. -/
-theorem osinTheorem12_of_infiniteOrder (h68 : DGOTheorem68)
-    (h4 : OsinAH4ToAH1WithInfiniteOrder) : OsinTheorem12 := by
+theorem osinTheorem12_of_infiniteOrder (h68 : DGOTheorem68.{u, v})
+    (h4 : OsinAH4ToAH1WithInfiniteOrder.{u}) : OsinTheorem12.{u, v} := by
   intro G _ D hnvc
   letI := D.metricSpace
   letI := D.mulAction
@@ -423,8 +423,8 @@ theorem osinTheorem12_of_infiniteOrder (h68 : DGOTheorem68)
 corollary of `DGOTheorem611` and `DGOProposition433` by `dgoCorollary612_of`, so
 the standing debt of this chain is four named statements, none of them
 `DGOTheorem614`. -/
-theorem osinTheorem12_of_612 (h68 : DGOTheorem68) (h54 : OsinTheorem54)
-    (h612 : DGOCorollary612) : OsinTheorem12 :=
+theorem osinTheorem12_of_612 (h68 : DGOTheorem68.{u, v})
+    (h54 : OsinTheorem54.{u}) (h612 : DGOCorollary612.{u}) : OsinTheorem12.{u, v} :=
   osinTheorem12_of_infiniteOrder h68 (osinAH4ToAH1WithInfiniteOrder_of h54 h612)
 
 end GGT

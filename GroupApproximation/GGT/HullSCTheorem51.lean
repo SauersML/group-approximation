@@ -227,7 +227,7 @@ theorem ne_bot (E : HypEmbeddedCore A N) : E.H ≠ ⊥ := by
     exact hmem
   have hfin : IsOfFinOrder E.lox := by
     rw [h1]
-    exact isOfFinOrder_one
+    exact IsOfFinOrder.one
   exact not_isOfFinOrder_of_isLoxodromic E.lox_isLoxodromic hfin
 
 end HypEmbeddedCore
