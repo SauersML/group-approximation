@@ -1385,6 +1385,7 @@ import GroupApproximation.Manuscript.NonMF.QuestionOneOpenness
 import GroupApproximation.Manuscript.NonMF.QuestionTwoRemainder
 import GroupApproximation.Sofic.FournierFacioUniversalGroup
 import GroupApproximation.Sofic.GreendlingerInduction
+import GroupApproximation.Sofic.GreendlingerIsoperimetric
 import GroupApproximation.Sofic.GreendlingerMinimal
 import GroupApproximation.Sofic.GreendlingerMirror
 import GroupApproximation.Sofic.GreendlingerOverlap
