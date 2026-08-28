@@ -2347,6 +2347,7 @@ import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 import GroupApproximation.GGT.WPDMinasyanOsinSkeleton
 import GroupApproximation.GGT.OsinEnlargement
 import GroupApproximation.GGT.OsinSeparatingCosets
+import GroupApproximation.GGT.OsinPenetration
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
