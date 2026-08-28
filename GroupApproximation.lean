@@ -1402,6 +1402,7 @@ import GroupApproximation.Algebra.FreeProductCyclicWord
 import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Algebra.HyperbolicInteger
 import GroupApproximation.Algebra.HyperbolicQuasiIsometry
+import GroupApproximation.Algebra.HyperbolicSlimFourPoint
 import GroupApproximation.Algebra.HyperbolicSlimTriangles
 import GroupApproximation.Algebra.TorsionFreeQuotient
 import GroupApproximation.Algebra.TorsionFreeRadical
