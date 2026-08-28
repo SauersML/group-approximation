@@ -25,7 +25,11 @@ def factorToSymmetricTargetRepresentation
       intro c
       change e (universalCStarAmalgamLeft gamma gamma (alpha (iA c))) =
         e (universalCStarAmalgamRight gamma gamma (beta (iB c)))
-      rw [DFunLike.congr_fun hA c, DFunLike.congr_fun hB c]
+      -- `DFunLike.congr_fun hA c` is stated at `(alpha.comp iA) c`, which the
+      -- `change` above has already reduced, so it is re-typed before rewriting.
+      have hAc : alpha (iA c) = gamma c := DFunLike.congr_fun hA c
+      have hBc : beta (iB c) = gamma c := DFunLike.congr_fun hB c
+      rw [hAc, hBc]
       exact congrArg e
         (DFunLike.congr_fun
           (universalCStarAmalgam_compatible gamma gamma) c))

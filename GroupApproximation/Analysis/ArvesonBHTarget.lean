@@ -111,6 +111,7 @@ def isometryCompress (J : K →L[ℂ] H) (Φ : B →ₗ[ℂ] (H →L[ℂ] H)) :
       = z • (ContinuousLinearMap.adjoint J) ((Φ b) (J v))
     rw [map_smul]
 
+omit [StarRing B] in
 @[simp] theorem isometryCompress_apply (J : K →L[ℂ] H)
     (Φ : B →ₗ[ℂ] (H →L[ℂ] H)) (b : B) (v : K) :
     isometryCompress J Φ b v =
@@ -140,6 +141,7 @@ def isometryDilate (J : K →L[ℂ] H) (Θ : B →ₗ[ℂ] (K →L[ℂ] K)) :
       = z • J ((Θ b) ((ContinuousLinearMap.adjoint J) v))
     rw [map_smul]
 
+omit [StarRing B] in
 @[simp] theorem isometryDilate_apply (J : K →L[ℂ] H)
     (Θ : B →ₗ[ℂ] (K →L[ℂ] K)) (b : B) (v : H) :
     isometryDilate J Θ b v =
@@ -179,6 +181,7 @@ theorem isFormCP_isometryDilate (J : K →L[ℂ] H) (Θ : B →ₗ[ℂ] (K →L[
   simp only [hterm]
   exact hΘ m a fun i ↦ (ContinuousLinearMap.adjoint J) (v i)
 
+omit [StarRing B] in
 /-- The compression of a unital map by an isometry is unital. -/
 theorem isometryCompress_one (J : K →L[ℂ] H) (Φ : B →ₗ[ℂ] (H →L[ℂ] H))
     (hJ : ∀ v : K, (ContinuousLinearMap.adjoint J) (J v) = v)
@@ -191,21 +194,27 @@ theorem isometryCompress_one (J : K →L[ℂ] H) (Φ : B →ₗ[ℂ] (H →L[ℂ
 theorem isometryCompress_star (J : K →L[ℂ] H) (Φ : B →ₗ[ℂ] (H →L[ℂ] H))
     (hstar : ∀ b : B, Φ (star b) = star (Φ b)) (b : B) :
     isometryCompress J Φ (star b) = star (isometryCompress J Φ b) := by
-  symm
-  rw [ContinuousLinearMap.star_eq_adjoint, ContinuousLinearMap.eq_adjoint_iff]
-  intro x y
-  have hleft : ⟪isometryCompress J Φ b x, y⟫_ℂ = ⟪Φ b (J x), J y⟫_ℂ := by
-    rw [isometryCompress_apply]
-    exact ContinuousLinearMap.adjoint_inner_left J y ((Φ b) (J x))
-  have hright : ⟪x, isometryCompress J Φ (star b) y⟫_ℂ
-      = ⟪J x, Φ (star b) (J y)⟫_ℂ := by
-    rw [isometryCompress_apply]
-    exact ContinuousLinearMap.adjoint_inner_right J x ((Φ (star b)) (J y))
-  have hmid : ⟪J x, Φ (star b) (J y)⟫_ℂ = ⟪Φ b (J x), J y⟫_ℂ := by
-    rw [hstar b, ContinuousLinearMap.star_eq_adjoint]
-    exact ContinuousLinearMap.adjoint_inner_right (Φ b) (J x) (J y)
-  rw [hleft, hright, hmid]
+  -- `eq_adjoint_iff` reads a goal of the shape `X = adjoint Y`, so it is the
+  -- *starred* identity that is proved first; the statement follows by
+  -- `star_star`.  Handing it the goal in the other orientation makes it unify
+  -- `adjoint ?B` with a compression, which does not terminate.
+  have key : isometryCompress J Φ b = star (isometryCompress J Φ (star b)) := by
+    rw [ContinuousLinearMap.star_eq_adjoint, ContinuousLinearMap.eq_adjoint_iff]
+    intro x y
+    have hleft : ⟪isometryCompress J Φ b x, y⟫_ℂ = ⟪Φ b (J x), J y⟫_ℂ := by
+      rw [isometryCompress_apply]
+      exact ContinuousLinearMap.adjoint_inner_left J y ((Φ b) (J x))
+    have hright : ⟪x, isometryCompress J Φ (star b) y⟫_ℂ
+        = ⟪J x, Φ (star b) (J y)⟫_ℂ := by
+      rw [isometryCompress_apply]
+      exact ContinuousLinearMap.adjoint_inner_right J x ((Φ (star b)) (J y))
+    have hmid : ⟪J x, Φ (star b) (J y)⟫_ℂ = ⟪Φ b (J x), J y⟫_ℂ := by
+      rw [hstar b, ContinuousLinearMap.star_eq_adjoint]
+      exact ContinuousLinearMap.adjoint_inner_right (Φ b) (J x) (J y)
+    rw [hleft, hright, hmid]
+  rw [key, star_star]
 
+omit [StarRing B] in
 /-- Dilating by a contraction does not increase the norm. -/
 theorem norm_isometryDilate_le (J : K →L[ℂ] H) (hJnorm : ‖J‖ ≤ 1)
     (Θ : B →ₗ[ℂ] (K →L[ℂ] K)) (b : B) :
@@ -298,6 +307,10 @@ theorem arvesonBH_of_limit (hlimit : ArvesonLimitStatement)
         IsCompletelyPositive Θ ∧ Θ 1 = 1 ∧
           ∀ c : ↥C, Θ (c : A) = isometryCompress (J n) Φ c := by
     intro n
+    -- `exists_ucp_extension` is stated over an ordered C⋆-algebra; the order is
+    -- the spectral one, which Mathlib supplies but does not register.
+    letI : PartialOrder A := CStarAlgebra.spectralOrder A
+    letI : StarOrderedRing A := CStarAlgebra.spectralOrderedRing A
     refine exists_ucp_extension C hC (isometryCompress (J n) Φ) ?_ ?_ ?_
     · exact isFormCP_isometryCompress (J n) Φ hform
     · exact fun c ↦ isometryCompress_star (J n) Φ hstar c

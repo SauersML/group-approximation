@@ -83,6 +83,7 @@ def compactIdeal : Ideal (H →L[ℂ] H) where
   add_mem' := fun ha hb ↦ ha.add hb
   smul_mem' := fun b _ ha ↦ ha.clm_comp b
 
+omit [CompleteSpace H] in
 @[simp] theorem mem_compactIdeal {T : H →L[ℂ] H} :
     T ∈ compactIdeal H ↔ IsCompactOperator T := Iff.rfl
 
@@ -107,7 +108,7 @@ what consumes it.  Not in Mathlib; see this module's header for the cheap
 Hilbert-space proof. -/
 def CompactStarClosedStatement : Prop :=
   ∀ (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
-    (T : H →L[ℂ] H), IsCompactOperator T → IsCompactOperator (star T)
+    (T : H →L[ℂ] H), IsCompactOperator T → IsCompactOperator (star T : H →L[ℂ] H)
 
 /-! The C-star identity for the quotient is deliberately *not* stated here, and
 the reason is the finding itself: `A ⧸ I` carries no norm and no star until

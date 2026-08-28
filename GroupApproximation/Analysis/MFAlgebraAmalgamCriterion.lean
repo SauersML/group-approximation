@@ -57,29 +57,19 @@ theorem exists_compatible_asymptotic_amalgam_model
             (NormCoronaAsymptoticLift.model
               right.toNonUnitalStarAlgHom).map n b‖)
           atTop (nhds 0)) := by
-  dsimp only
-  let R : CStarAmalgamRepresentation iA iB :=
-    CStarAmalgamRepresentation.ofCompatiblePair iA iB left right hcompatible
+  -- `R` is introduced from the statement's own `let`, so the `Nonempty`
+  -- instance carried by the goal and the one used below are the same term.
+  intro R
   letI : Nonempty (CStarAmalgamRepresentation iA iB) := ⟨R⟩
-  let Φ : UniversalCStarAmalgam iA iB →⋆ₐ[ℂ]
-      NormMatrixCStarCorona (fun n ↦ (X n).carrier) :=
-    universalCStarAmalgamEval iA iB R
-  let M : NormCoronaAsymptoticLift.Model (X := X)
-      (UniversalCStarAmalgam iA iB) :=
-    NormCoronaAsymptoticLift.model Φ.toNonUnitalStarAlgHom
-  refine ⟨Φ, M, ?_, ?_⟩
-  · intro a
-    exact NormCoronaAsymptoticLift.tendsto_model_map_sub_of_comp_eq
-      X (universalCStarAmalgamLeft iA iB) Φ left (by
-        apply StarAlgHom.ext
-        intro x
-        rfl) a
-  · intro b
-    exact NormCoronaAsymptoticLift.tendsto_model_map_sub_of_comp_eq
-      X (universalCStarAmalgamRight iA iB) Φ right (by
-        apply StarAlgHom.ext
-        intro x
-        rfl) b
+  refine ⟨universalCStarAmalgamEval iA iB R,
+    NormCoronaAsymptoticLift.model
+      (universalCStarAmalgamEval iA iB R).toNonUnitalStarAlgHom, ?_, ?_⟩
+  · exact fun a ↦ NormCoronaAsymptoticLift.tendsto_model_map_sub_of_comp_eq X
+      (universalCStarAmalgamLeft iA iB) (universalCStarAmalgamEval iA iB R) left
+      (StarAlgHom.ext fun x ↦ universalCStarAmalgamEval_left iA iB R x) a
+  · exact fun b ↦ NormCoronaAsymptoticLift.tendsto_model_map_sub_of_comp_eq X
+      (universalCStarAmalgamRight iA iB) (universalCStarAmalgamEval iA iB R) right
+      (StarAlgHom.ext fun x ↦ universalCStarAmalgamEval_right iA iB R x) b
 
 end
 

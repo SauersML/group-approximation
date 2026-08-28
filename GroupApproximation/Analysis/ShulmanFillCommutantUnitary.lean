@@ -61,6 +61,9 @@ namespace GroupApproximation
 namespace ShulmanFill
 
 open Filter
+-- the operator norm on each `Matrix (X n) (X n) ℂ`, and with it the ring and
+-- norm structure of `BoundedMatrixSequence`, live in this scope
+open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 

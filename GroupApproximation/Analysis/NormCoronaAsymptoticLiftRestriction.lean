@@ -12,7 +12,10 @@ open scoped Matrix.Norms.L2Operator
 
 noncomputable section
 
-variable {A U : Type} [CStarAlgebra A] [CStarAlgebra U]
+-- The two algebras are at independent universes: the universal amalgam of
+-- algebras in `Type u` lives in `Type (u + 1)`, so a consumer restricting a
+-- corona homomorphism along a factor map has `A` and `U` one level apart.
+variable {A U : Type*} [CStarAlgebra A] [CStarAlgebra U]
 
 /-- If a corona homomorphism restricts exactly to another corona
 homomorphism, their chosen coordinate lifts agree asymptotically in norm. -/
