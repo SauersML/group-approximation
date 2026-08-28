@@ -2287,6 +2287,7 @@ import GroupApproximation.GGT.KazhdanHypTable
 import GroupApproximation.GGT.RelHypDefinition
 import GroupApproximation.GGT.RelHypElementaryAmenable
 import GroupApproximation.GGT.RelHypFournierFacio
+import GroupApproximation.GGT.RelHypFreeProductPeripheral
 import GroupApproximation.GGT.RelHypKazhdanNonElementary
 import GroupApproximation.GGT.RelHypOsinTheorem24
 import GroupApproximation.GGT.RelHypRelativeCayley
