@@ -16,6 +16,7 @@ namespace Omega
 
 open GroupApproximation.Higman.Conj
 open GroupApproximation.Higman.Seq
+open Monoid
 
 /-- The row-basis word carried by a selected signed block word. -/
 noncomputable def selectedRowIndexInvHom (m : ℕ) (B : Set E) :
@@ -109,6 +110,10 @@ theorem exists_selected_orbit_word_of_rightLabel_rowLabelK_eq
       (FreeGroup.map (selectedBlockIncl m B) v)
     rw [MonoidHom.comp_apply, MonoidHom.comp_apply] at hmap
     change ((blockKInvHom m
+        (FreeGroup.map (selectedBlockIncl m B) v) : ↥Conj.K) : F₃) =
+      rowIntoF3 (blockRowInvHom m
+        (FreeGroup.map (selectedBlockIncl m B) v)) at hmap
+    change ((blockKInvHom m
       (FreeGroup.map (selectedBlockIncl m B) v) : ↥Conj.K) : F₃) = _
     rw [hmap]
     have hbase : blockRowInvHom m
@@ -118,6 +123,7 @@ theorem exists_selected_orbit_word_of_rightLabel_rowLabelK_eq
       simp only [map_mul, map_inv, baseRet3_emb3, slimBaseCode,
         baseRet3_eq_one_of_mem_slimGenSub hg, mul_one, slimKBase,
         MonoidHom.comp_apply]
+      rfl
     rw [hbase, map_mul, map_inv]
     have hl := DFunLike.congr_fun rowIntoF3_comp_basisHom (elt l)
     change rowIntoF3 (Row.basisHom (elt l)) = rowHom (elt l) at hl
@@ -134,12 +140,23 @@ theorem exists_selected_orbit_word_of_rightLabel_rowLabelK_eq
   rw [indexCanonical3_indexEmb3]
   change emb3 (rowOut m) (Row.basisHom w) =
     emb3 (rowOut m) (Seq.retract (rowHom w))
-  rw [← MonoidHom.comp_apply, retract_comp_rowHom]
+  have hretract := DFunLike.congr_fun retract_comp_rowHom w
+  rw [MonoidHom.comp_apply] at hretract
+  rw [hretract]
 
 @[simp] theorem lowStableProjection3_indexEmb3
     (m : ℕ) (w : FreeGroup ℤ) :
     lowStableProjection3 m (indexEmb3 m w) = lowRowProjection m w := by
   simp [indexEmb3, indexEmb2, indexEmb1]
+
+/-- The applied form of `lowStableProjection3_comp_genHom`.  The composite
+equation cannot fire under `simp`, which only ever sees the projection
+already applied to an index code. -/
+theorem lowStableProjection3_indexGenHom (m : ℕ) (x : F₃) :
+    lowStableProjection3 m (indexGenHom m x) = stableFreeHom m x := by
+  have h := DFunLike.congr_fun (lowStableProjection3_comp_genHom m) x
+  rw [MonoidHom.comp_apply] at h
+  exact h
 
 /-- The full arbitrary-row return witness in the binary indexed free
 product.  Its right factor is the explicit reconstructed row-basis word. -/
@@ -182,7 +199,7 @@ theorem exists_selected_arbitrary_indexed_return_witness
     change selectedIndexedLinkHom m B v = _ at hproject
     simpa only [map_mul, map_inv, lowStableProjection3_indexBaseCode,
       lowStableToIndexed_lowRowProjection, selectedIndexCodeHom,
-      MonoidHom.comp_apply, lowStableProjection3_comp_genHom,
+      MonoidHom.comp_apply, lowStableProjection3_indexGenHom,
       lowStableToIndexed_stableFreeHom, lowStableProjection3_indexEmb3]
       using hproject
   exact ⟨v, hwq, hindexed, hvRow⟩
