@@ -160,43 +160,20 @@ Hilbert--Schmidt inner product, because
 $\opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B}$.
 Property~\textup{(T)} applies to unitary representations on Hilbert
 spaces, so it applies to this one, and its conclusions are estimates in
-Hilbert--Schmidt norm.  In an ultraproduct of these Hilbert spaces the
-maps $\operatorname{Ad}(V_n(g))$ become a unitary representation of $G$.
-Let $P$ be the projection onto the vectors fixed by $L$, which is the
-Kazhdan projection of $L$, and let $U$ be the unitary of the compressor
-$u$.  If $\xi$ is fixed by $L$, then so is $U^*\xi$, because
-$\ell\cdot U^*\xi=U^*\bigl((u\ell u^{-1})\cdot\xi\bigr)$ for $\ell\in L$
-and $u\ell u^{-1}\in L$ fixes $\xi$.  Therefore $U^*PU\le P$.  The projections
-$P$ and $U^*PU$ are conjugate by the unitary $U$, and in a stably finite
-$C^*$-algebra two equivalent projections, one below the other, are equal.
-The matrix corona is stably finite, and $U^*PU=P$ follows.  In terms of
-sequences, the vectors fixed by $L$ are the classes of $(x_n)$ with
-$\hsnorm{[V_n(\ell),x_n]}\to0$ for all $\ell\in L$, and $U^*PU=P$ means
-that conjugation by $V_n(u)$ maps this Hilbert--Schmidt asymptotic
-commutant of $L$ onto itself.  If $c$ centralizes $L$, then $(V_n(c))$
-lies in the asymptotic commutant of $L$, and by this invariance so does
-$(V_n(ucu^{-1}))$.  Asymptotic commutation of $V_n(ucu^{-1})$ with
-$V_n(\ell)$ in Hilbert--Schmidt norm means
-$\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$.  The elements with this property
-form a normal subgroup, which then contains $\mathfrak D_G(L)$.
-
-Suppose that a corona homomorphism
-$\Theta\colon G\to\U(\mathcal Q_{\mathbf d})$ is nontrivial on $K$.  Let
-$p\in\mathcal Q_{\mathbf d}$ be the Kazhdan projection of $K$, the
-projection onto the $K$-fixed vectors.  Then $p\ne1$, and $p$ commutes
-with $\Theta(G)$ because $K$ is normal.  The homomorphism $\Theta$ then
-compresses to the corner $(1-p)\mathcal Q_{\mathbf d}(1-p)$, where $K$ has no fixed vectors,
-and the compressed homomorphism lifts to an operator norm asymptotic
-representation $(W_n)$ of $G$ on smaller matrices.  The Kazhdan inequality
-for $K$ bounds the average of $\hsnorm{W_n(s)-1}^2$ over a Kazhdan set
-$S\subseteq K$ below by a positive constant, so some $s\in S$ stays a
-fixed Hilbert--Schmidt distance from $1$, but $s\in K\le\mathfrak D_G(L)$,
-so $\hsnorm{W_n(s)-1}\to0$.  Every corona homomorphism is therefore
-trivial on $K$, and by Lemma~\ref{prop:mf-residual-calculus} the same
-holds for every homomorphism to an MF group.\footnote{A Hilbert--Schmidt
-bound on the multiplicative defect does not give an operator norm bound on
-the conjugation maps, so this argument does not apply to sofic or
-hyperlinear approximations.}
+Hilbert--Schmidt norm.  The unitary $U$ of the compressor $u$ satisfies
+$U^*PU\le P$ for the Kazhdan projection $P$ of $L$, because $uLu^{-1}\le L$
+has fewer constraints and more fixed vectors, and stable finiteness of the
+matrix corona forces $U^*PU=P$.  So conjugation by $u$ preserves the
+Hilbert--Schmidt asymptotic commutant of $L$, and every element of
+$\mathfrak D_G(L)$ tends to $1$ in Hilbert--Schmidt norm in every operator
+norm asymptotic representation (Corollary~\ref{cor:defect-hs}).
+Property~\textup{(T)} of $K$ turns this into triviality in operator norm:
+a corona homomorphism nontrivial on $K$ compresses to the corner where $K$
+has no fixed vectors, and the Kazhdan inequality there contradicts the
+Hilbert--Schmidt triviality (Theorem~\ref{thm:normal-kazhdan}).\footnote{A
+Hilbert--Schmidt bound on the multiplicative defect does not give an
+operator norm bound on the conjugation maps, so this argument does not
+apply to sofic or hyperlinear approximations.}
 \leanverified{Manuscript/OneSidedMFRadical/PrintedRemarks}{GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptFullRadicalsDoNotEntailNonsoficity}
 
 The stable letter of an ascending HNN extension of a property-\textup{(T)}
@@ -313,10 +290,14 @@ is a sequence of maps $V_n\colon G\to\U(d_n)$ such that $V_n(1)=1$ and
  \qquad(g,h\in G).
 \]
 The elements $g$ with $\hsnorm{V_n(g)-1}\to0$ form a normal subgroup of
-$G$: the operator norm defects also tend to zero in normalized
-Hilbert--Schmidt norm, and this norm is unitarily invariant, so
-$\hsnorm{V_n(gh)-1}\le\hsnorm{V_n(g)-1}+\hsnorm{V_n(h)-1}+o(1)$ and
-$\hsnorm{V_n(ghg^{-1})-1}=\hsnorm{V_n(h)-1}+o(1)$.  For $L\le G$, let
+$G$, because $\hsnorm{a}\le\opnorm{a}$ and the Hilbert--Schmidt norm is
+unitarily invariant:
+\[
+ \hsnorm{V_n(gh)-1}\le\hsnorm{V_n(g)-1}+\hsnorm{V_n(h)-1}+o(1),
+ \qquad
+ \hsnorm{V_n(ghg^{-1})-1}=\hsnorm{V_n(h)-1}+o(1).
+\]
+For $L\le G$, let
 \[
  \mathcal C_2(V,L)
  =\left\{(x_n)\ \middle|\
@@ -389,42 +370,51 @@ representation of $G$.  Then
 \end{theorem}
 
 \begin{proof}
-Fix $x=(x_n)\in\mathcal C_2(V,L)$ and a free ultrafilter $\omega$.  Regard
-$M_{d_n}(\C)$ as a Hilbert space with its normalized Hilbert--Schmidt inner
-product, and form the ultraproduct of Hilbert spaces $\mathcal K_\omega$.
-Since
+Fix $x=(x_n)\in\mathcal C_2(V,L)$ and a free ultrafilter $\omega$, and let
+$\mathcal K_\omega$ be the ultraproduct of the Hilbert spaces
+$(M_{d_n}(\C),\hsnorm{\,\cdot\,})$.  For unitaries $A,B$,
 \[
- \opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}
- \le2\opnorm{A-B}
+ \opnorm{\operatorname{Ad}(A)-\operatorname{Ad}(B)}\le2\opnorm{A-B},
 \]
-for unitaries $A,B$, the conjugation operators $\operatorname{Ad}(V_n(g))$
-are multiplicative modulo $c_0$, so they define a unitary representation
-$\sigma$ of $G$ on $\mathcal K_\omega$, and the class $\xi=[x_n]_\omega$ is
-fixed by $\sigma(L)$.
-
-For $g\in G$, let $\widetilde\sigma(g)$ be the class of the coordinate
-operators $\operatorname{Ad}(V_n(g))$ in the norm matrix corona
+so the maps $\operatorname{Ad}(V_n(g))$ are asymptotically multiplicative
+in operator norm, and
 \[
+ \sigma(g)=\lim_\omega\operatorname{Ad}(V_n(g))
+\]
+is a unitary representation of $G$ on $\mathcal K_\omega$ with
+$\xi=[x_n]_\omega\in\operatorname{Fix}\sigma(L)$.  The same estimate makes
+\[
+ \widetilde\sigma(g)=[\operatorname{Ad}(V_n(g))]_n\in\U(\mathcal B),
+ \qquad
  \mathcal B=\prod_nB(M_{d_n}(\C))\big/\bigoplus_nB(M_{d_n}(\C)),
 \]
-which is a norm matrix corona with coordinate sizes $d_n^2$ after choosing
-matrix units on each $M_{d_n}(\C)$.  By the estimate above,
-$g\mapsto\widetilde\sigma(g)$ is a homomorphism $G\to\U(\mathcal B)$, so its
-restriction to $L$ extends to a $*$-homomorphism
-$C^*_{\max}(L)\to\mathcal B$.  Let $P\in\mathcal B$ be the image of the
-Kazhdan projection~\cite{AkemannWalter}.  Under the natural representation
-of $\mathcal B$ on $\mathcal K_\omega$, its range is
-$\operatorname{Fix}\sigma(L)$.  Since $uLu^{-1}\le L$, the unitary
-$U=\widetilde\sigma(u)$ satisfies the hypothesis of
-Lemma~\ref{lem:kazhdan-projection-order}, so $U^*PU\le P$ inside
-$\mathcal B$.  The two projections are unitarily equivalent, so
-Lemma~\ref{lem:stable-finite} gives $U^*PU=P$: $U$ commutes with $P$, and
-both $U\xi$ and $U^*\xi$ are fixed by $\sigma(L)$.  Since $\omega$ was
-arbitrary, the corresponding Hilbert--Schmidt commutators converge to zero
-along the full sequence: a subsequence staying above some $\varepsilon>0$
-would lie in a free ultrafilter and give a nonzero ultralimit.  So
-$\operatorname{Ad}(V(u))$ and its inverse both preserve
-$\mathcal C_2(V,L)$.
+a homomorphism, and $\mathcal B$ is a norm matrix corona with coordinate
+sizes $d_n^2$ after a choice of matrix units.  Let $P\in\mathcal B$ be the
+image of the Kazhdan projection of $L$~\cite{AkemannWalter} under
+$C^*_{\max}(L)\to\mathcal B$.  On $\mathcal K_\omega$ its range is
+$\operatorname{Fix}\sigma(L)$.  Put $U=\widetilde\sigma(u)$.  Since
+$uLu^{-1}\le L$,
+\[
+ U\widetilde\sigma(L)U^*\subseteq\widetilde\sigma(L),
+ \qquad\text{so}\qquad
+ U^*PU\le P
+\]
+by Lemma~\ref{lem:kazhdan-projection-order}, and
+\[
+ U^*PU=P
+\]
+by Lemma~\ref{lem:stable-finite}, since the two projections are unitarily
+equivalent.  So $U$ commutes with $P$, and
+\[
+ U\xi,\ U^*\xi\in\operatorname{Fix}\sigma(L),
+ \qquad\text{that is,}\qquad
+ \lim_\omega\hsnorm{[V_n(\ell),V_n(u)^{\pm1}x_nV_n(u)^{\mp1}]}=0
+ \quad(\ell\in L).
+\]
+Since $\omega$ was arbitrary, the limits hold along the full sequence: a
+subsequence staying above some $\varepsilon>0$ would lie in a free
+ultrafilter and give a nonzero ultralimit.  So $\operatorname{Ad}(V(u))$
+and its inverse both preserve $\mathcal C_2(V,L)$.
 \end{proof}
 
 \begin{corollary}\label{cor:defect-hs}
@@ -439,15 +429,21 @@ norm asymptotic representation of $G$.  Then
 \end{corollary}
 
 \begin{proof}
-Let $u\in\operatorname{Comp}_G(L)$, $c\in C_G(L)$, and $\ell\in L$.  Since
-$c$ commutes with $L$, the sequence $(V_n(c))$ lies in
-$\mathcal C_2(V,L)$, and by Theorem~\ref{thm:transport} so does
-$(V_n(u)V_n(c)V_n(u)^*)$, which asymptotic multiplicativity identifies in
-operator norm with $(V_n(ucu^{-1}))$.  So
+Let $u\in\operatorname{Comp}_G(L)$, $c\in C_G(L)$, and $\ell\in L$, and
+write $\mathcal C_2=\mathcal C_2(V,L)$.  Then
+\[
+ (V_n(c))\in\mathcal C_2
+ \ \Longrightarrow\
+ (V_n(u)V_n(c)V_n(u)^*)\in\mathcal C_2
+ \ \Longrightarrow\
+ (V_n(ucu^{-1}))\in\mathcal C_2,
+\]
+the first membership because $c$ commutes with $L$, the first implication
+by Theorem~\ref{thm:transport}, and the second because
+$\opnorm{V_n(u)V_n(c)V_n(u)^*-V_n(ucu^{-1})}\to0$.  So
 $\hsnorm{[V_n(\ell),V_n(ucu^{-1})]}\to0$, that is,
 $\hsnorm{V_n([ucu^{-1},\ell])-1}\to0$.  The elements with this property
-form a normal subgroup of $G$, so it contains
-$\mathfrak D_G(L)$.
+form a normal subgroup of $G$, so it contains $\mathfrak D_G(L)$.
 \end{proof}
 
 \subsection{From Hilbert--Schmidt to operator norm}
@@ -513,18 +509,19 @@ hypothesis, because every operator norm asymptotic representation of
 \(\Theta(G)\) pulls back along \(G\to\Theta(G)\) to one of \(G\).
 
 Let \(p\in\mathcal Q_{\mathbf d}\) be the image of the Kazhdan projection
-of \(K\); under any faithful representation of the corona, \(p\) is the
-projection onto the \(K\)-fixed vectors.  Normality of \(K\) gives
-\(\Theta(g)p\Theta(g)^*=p\) for all \(g\), because \(gKg^{-1}=K\).  Put
-\(q=1-p\), which is nonzero because \(p=1\) would make every element of
-\(K\) act trivially.  Lemma~\ref{lem:central-corona-corner} gives an operator
+of \(K\), the projection onto the \(K\)-fixed vectors in any faithful
+representation of the corona.  Since \(gKg^{-1}=K\),
+\[
+ \Theta(g)p\Theta(g)^*=p\qquad(g\in G),
+\]
+and \(q=1-p\) is nonzero, because \(p=1\) would make every element of \(K\)
+act trivially.  Lemma~\ref{lem:central-corona-corner} gives an operator
 norm asymptotic representation \(W_n\colon G\to\U(r_n)\) whose corona
 homomorphism \(\widehat\Theta\) is the coordinate restriction of
-\(g\mapsto q\Theta(g)\).  Since \(q\) commutes with \(\Theta(K)\), the
-Kazhdan projection of \(K\) under \(\widehat\Theta\) is the coordinate
-restriction of \(qp=0\), so \(\widehat\Theta|_K\) has no nonzero fixed
-vectors, and for a finite Kazhdan set \(S\subseteq K\) with constant
-\(\kappa>0\) the Kazhdan inequality gives
+\(g\mapsto q\Theta(g)\).  The Kazhdan projection of \(K\) under
+\(\widehat\Theta\) is the coordinate restriction of \(qp=0\), so
+\(\widehat\Theta|_K\) has no nonzero fixed vectors, and for a finite
+Kazhdan set \(S\subseteq K\) with constant \(\kappa>0\),
 \[
  b=\frac1{|S|}\sum_{s\in S}
        (\widehat\Theta(s)-1)^*(\widehat\Theta(s)-1)
@@ -533,6 +530,8 @@ vectors, and for a finite Kazhdan set \(S\subseteq K\) with constant
 in \(\mathcal Q_{\mathbf r}\).  The coordinates
 \(b_n=\frac1{|S|}\sum_{s\in S}(W_n(s)-I_{r_n})^*(W_n(s)-I_{r_n})\)
 represent \(b\), so the negative part of \(b_n-(\kappa^2/|S|)I_{r_n}\)
+tends to zero in operator norm, and normalized traces on \(M_{r_n}(\C)\)
+give
 tends to zero in operator norm, and taking normalized traces on
 \(M_{r_n}(\C)\) gives
 \[
@@ -570,15 +569,17 @@ tracial state.
 \end{lemma}
 
 \begin{proof}
-Put $q=upu^{*}$ and $r=pu^{*}$, so that $pq=qp=p$, $r^{*}r=q$, and
-$rr^{*}=p$.  The cross terms in $s^{*}s$ and $ss^{*}$ vanish:
-$up(1-q)=0$ and $(1-q)pu^{*}=0$ because $p(1-q)=0$, while
-$pu^{*}(1-q)=pu^{*}-pu^{*}upu^{*}=0$ and its adjoint likewise.  So
-$s^{*}s=q+(1-q)=1$ while $ss^{*}=p+(1-q)=1-(q-p)\ne1$.  A unital
-$C^*$-algebra containing a nonunitary isometry is not finite, and neither
-is any matrix algebra over it, since the isometry embeds in the corner.  A
-tracial state $\tau$ has $\tau(q-p)=\tau(s^{*}s)-\tau(ss^{*})=0$ with
-$q-p$ a nonzero positive element, so no tracial state on $A$ is faithful.
+Put $q=upu^{*}$, so that $pq=qp=p$, $up(1-q)=0$, and
+$pu^{*}(1-q)=pu^{*}-pu^{*}upu^{*}=0$.  Then
+\begin{align*}
+ s^{*}s&=upu^{*}+up(1-q)+(1-q)pu^{*}+(1-q)=q+(1-q)=1,\\
+ ss^{*}&=pu^{*}up+pu^{*}(1-q)+(1-q)up+(1-q)=p+(1-q)=1-(q-p)\ne1.
+\end{align*}
+A unital $C^*$-algebra containing a nonunitary isometry is not finite, and
+neither is any matrix algebra over it, since the isometry embeds in the
+corner.  A tracial state $\tau$ has
+$\tau(q-p)=\tau(s^{*}s)-\tau(ss^{*})=0$ with $q-p$ a nonzero positive
+element, so no tracial state on $A$ is faithful.
 \end{proof}
 
 \begin{proposition}[proper one-sided compression]\label{prop:max-infinite}
@@ -728,6 +729,20 @@ in $H$.  Then
 \begin{proof}
 The Steinberg relations give $[e_{ij}(a),e_{34}(1)]=1$ for
 $i,j\in\{0,1,2\}$, and these matrices generate $L$, so $c\in C_H(L)$.
+Since $\tau=\operatorname{diag}(X,Y)$ and $E_{34}$ is supported in the
+first six coordinates, $\tau E_{34}\tau^{-1}=\operatorname{diag}(XE_{34}Y,0)$
+with $E_{34}$ read in $M_6(R)$, and with $\varepsilon_0,\varepsilon_1,\varepsilon_2$
+the standard basis of $R^3$,
+\[
+ XE_{34}Y
+ =\begin{pmatrix}s_1t_0\varepsilon_0\\ t_1\varepsilon_0\end{pmatrix}
+  \begin{pmatrix}s_0t_1\varepsilon_1^{\mathsf T}& s_1\varepsilon_1^{\mathsf T}\end{pmatrix}
+ =\begin{pmatrix}s_1t_1E_{01}&0\\0&E_{01}\end{pmatrix}
+\]
+by~\eqref{eq:leavitt}.  So
+\[
+ \tau c\tau^{-1}=1+qE_{01}+E_{34}=e_{01}(q)e_{34}(1).
+\]
 Direct multiplication of the matrices in~\eqref{eq:tau} gives
 \[
  \tau c\tau^{-1}=e_{01}(q)e_{34}(1).
@@ -754,6 +769,11 @@ $\U(\mathcal Q_{\mathbf d})$.
 Finally, the compression~\eqref{eq:compresses-L} is strict: by
 \eqref{eq:corner-conjugation} and~\eqref{eq:matrix-compression}, every
 off-diagonal entry of a matrix in $\tau L\tau^{-1}$ has the form
+$s_0at_0$, and
+\[
+ t_1(s_0at_0)s_1=0\ne1=t_1\cdot1\cdot s_1,
+\]
+so $e_{12}(1)\in L\setminus\tau L\tau^{-1}$.
 $s_0at_0$, and $t_1(s_0at_0)s_1=0$ while $t_1\cdot1\cdot s_1=1$, so
 $e_{12}(1)\in L\setminus\tau L\tau^{-1}$.
 Proposition~\ref{prop:max-infinite}, applied to $L\le H$ and $\tau$,
