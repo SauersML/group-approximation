@@ -287,8 +287,8 @@ rather than cited:
 
 Everything else is passed through from Theorem 5.1 unchanged.  With
 `HullSC.hullTower_of_oneStep` above this closes the manuscript's `thm:hull` for
-every `m`, and with `HullSCCommonQuotient.hullCommonQuotient_of_tower` it
-closes Hull's Corollary 7.4. -/
+every `m`, and with `HullSC.hullCommonQuotient_of_tower_corrected` it closes
+Hull's Corollary 7.4. -/
 theorem hullOneStep_of_theorem51 (hEmb : ExistsHypEmbeddedInSuitable.{u})
     (h51 : HullTheorem51Statement.{u}) : HullOneStepStatement.{u} := by
   intro G _ A N hN k S hS t R

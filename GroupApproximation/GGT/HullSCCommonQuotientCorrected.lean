@@ -176,27 +176,13 @@ theorem not_freeProductStatement : ¬ FreeProductStatement := by
 
 /-! ## The corrected statement -/
 
-/-- **The free product input, with the hypotheses that make it true.**
+/-! ## `FreeProductStatementCorrected` and `hullCommonQuotient_of_tower_corrected`
 
-`FreeProductStatement` with the two clauses `HullCommonQuotientStatement`
-supplies about `H₀` and `hullCommonQuotient_of_tower` throws away: that it is
-hyperbolic and that it has property `(T)`.  Together with `Infinite H` the
-second of them makes `H` non-elementary --- an infinite virtually cyclic group
-has an infinite cyclic quotient and property `(T)` would descend to it --- which
-is what `FreeProductInput.suitable'` needs and what
-`not_freeProductStatement` shows cannot be dispensed with.
-
-Nothing else changes: the conclusion is the same `FreeProductInput`, so the
-construction asked for is the same one, the free product with an alphabet in
-which both factors are suitable. -/
-def FreeProductStatementCorrected : Prop :=
-  ∀ (E H : Type) [Group E] [Group H],
-    Group.IsFinitelyPresented E → Group.IsFinitelyPresented H →
-      IsPowerTorsionFree E → IsPowerTorsionFree H →
-        IsAcylindricallyHyperbolic E → Infinite H →
-          GroupApproximation.Hyperbolic.IsHyperbolicGroup H →
-            HasKazhdanPropertyT.{0, 0} H →
-              Nonempty (FreeProductInput E H)
+Both now live in `GGT/HullSCCommonQuotient.lean`, next to the statement they
+correct and the theorem they supersede, by team-lead's routing call.  This
+module keeps what only it can carry: the refutation of `FreeProductStatement`,
+the one-way implication between the two statements, the `m = 1` composition,
+and the four `FreeProductInput` fields that are theorems. -/
 
 /-- The false statement implies the corrected one: the repair only adds
 hypotheses.  Recorded so that the direction of the correction is visible --- the
@@ -208,114 +194,6 @@ theorem freeProductStatementCorrected_of_freeProductStatement
   letI := instE
   letI := instH
   exact h E H hEfp hHfp hEtf hHtf hEah hHinf
-
-/-! ## Corollary 7.4 over the corrected input -/
-
-/-- **Hull's Corollary 7.4**, in the form
-`Manuscript.NonMF.TheoremC.HullCommonQuotientStatement` records it, from Hull's
-Theorem 7.1 and the *corrected* free product input.
-
-This is `hullCommonQuotient_of_tower` with the two hypotheses on `H₀` that its
-`intro` pattern discards passed on to the free product input instead.  The proof
-is otherwise unchanged: two applications of Theorem 7.1, the first absorbing all
-of `Γ` into the image of `E`, the second absorbing all of `Q₁` into the image of
-`H₀`, which is legitimate because the tower keeps a prescribed suitable subgroup
-suitable (`HullStep.suitable_map_family`). -/
-theorem hullCommonQuotient_of_tower_corrected (htower : HullTowerStatement.{0})
-    (hfree : FreeProductStatementCorrected) :
-    Manuscript.NonMF.TheoremC.HullCommonQuotientStatement := by
-  classical
-  intro E instE H₀ instH₀ hEfp hEtf hEah hH₀inf hH₀fp hH₀tf hH₀hyp hH₀T F
-  letI := instE
-  letI := instH₀
-  -- `Γ = E ∗ H₀`, with both factors suitable.
-  obtain ⟨I⟩ := hfree E H₀ hEfp hH₀fp hEtf hH₀tf hEah hH₀inf hH₀hyp hH₀T
-  -- a ball of `Γ(Γ, 𝒜)` containing the image of the prescribed finite set
-  have hFfin : ((I.emb : E → I.Gamma) '' (F : Set E)).Finite :=
-    Set.Finite.image _ F.finite_toSet
-  obtain ⟨R₁, hR₁⟩ := exists_subset_cayleyBall I.alphabet.alphabet hFfin
-  -- a finite generating family of `Γ`
-  obtain ⟨m, t, htop⟩ := exists_finite_generating_family I.Gamma
-  -- **First application**: absorb all of `Γ` into the image of `E`.
-  obtain ⟨D₁⟩ := htower (S := fun _ : Fin 1 => I.emb'.range) I.alphabet
-    I.suitable (fun _ => I.suitable') t R₁
-  have hq₁top : I.emb.range.map D₁.step.q = ⊤ :=
-    map_eq_top_of_generators_mem D₁.step.q D₁.step.surjective htop D₁.mem_map
-  have hQ₁tf : IsPowerTorsionFree D₁.step.Q :=
-    torsionFree_of_finiteOrder_lift I.torsionFree D₁.step.q
-      D₁.step.finiteOrder_lift
-  obtain ⟨T₁, -, hT₁ker⟩ := D₁.kerNormallyGenerated
-  haveI : Group.IsFinitelyPresented D₁.step.Q :=
-    Group.IsFinitelyPresented.of_surjective D₁.step.q D₁.step.surjective
-      ⟨(T₁ : Set I.Gamma), T₁.finite_toSet, hT₁ker.symm⟩
-  -- a ball of `Γ(Q₁, 𝒜₁)` containing the image of the prescribed finite set
-  have hFfin₂ : ((D₁.step.q : I.Gamma → D₁.step.Q) ''
-      ((I.emb : E → I.Gamma) '' (F : Set E))).Finite := hFfin.image _
-  obtain ⟨R₂, hR₂⟩ :=
-    exists_subset_cayleyBall D₁.step.hullSet.alphabet hFfin₂
-  -- a finite generating family of `Q₁`
-  obtain ⟨m₂, t₂, htop₂⟩ := exists_finite_generating_family D₁.step.Q
-  -- **Second application**: absorb all of `Q₁` into the image of `H₀`.
-  obtain ⟨D₂⟩ := htower (S := fun j : Fin 0 => Fin.elim0 j) D₁.step.hullSet
-    (D₁.step.suitable_map_family 0) (fun j : Fin 0 => Fin.elim0 j) t₂ R₂
-  have hq₂top : (I.emb'.range.map D₁.step.q).map D₂.step.q = ⊤ :=
-    map_eq_top_of_generators_mem D₂.step.q D₂.step.surjective htop₂ D₂.mem_map
-  have hQ₂tf : IsPowerTorsionFree D₂.step.Q :=
-    torsionFree_of_finiteOrder_lift hQ₁tf D₂.step.q D₂.step.finiteOrder_lift
-  obtain ⟨T₂, -, hT₂ker⟩ := D₂.kerNormallyGenerated
-  haveI hQ₂fp : Group.IsFinitelyPresented D₂.step.Q :=
-    Group.IsFinitelyPresented.of_surjective D₂.step.q D₂.step.surjective
-      ⟨(T₂ : Set D₁.step.Q), T₂.finite_toSet, hT₂ker.symm⟩
-  -- the composite `Γ ↠ Q₂`
-  have hcomp : ∀ (K : Subgroup I.Gamma),
-      (K.map D₁.step.q).map D₂.step.q
-        = K.map (D₂.step.q.comp D₁.step.q) := by
-    intro K
-    rw [Subgroup.map_map]
-  -- `E ↠ Q₂`
-  have hEtop : I.emb.range.map (D₂.step.q.comp D₁.step.q) = ⊤ := by
-    rw [← hcomp, hq₁top]
-    exact Subgroup.map_top_of_surjective D₂.step.q D₂.step.surjective
-  -- `H₀ ↠ Q₂`
-  have hHtop : I.emb'.range.map (D₂.step.q.comp D₁.step.q) = ⊤ := by
-    rw [← hcomp]
-    exact hq₂top
-  have hsurj : ∀ (K : Type) [Group K] (e : K →* I.Gamma),
-      e.range.map (D₂.step.q.comp D₁.step.q) = ⊤ →
-        Function.Surjective ((D₂.step.q.comp D₁.step.q).comp e) := by
-    intro K _ e hK y
-    have hy : y ∈ e.range.map (D₂.step.q.comp D₁.step.q) := by
-      rw [hK]
-      exact Subgroup.mem_top y
-    obtain ⟨g, hg, hgy⟩ := Subgroup.mem_map.mp hy
-    obtain ⟨x, hx⟩ := MonoidHom.mem_range.mp hg
-    refine ⟨x, ?_⟩
-    show (D₂.step.q.comp D₁.step.q) (e x) = y
-    rw [hx]
-    exact hgy
-  -- property (T) travels along `H₀ ↠ Q₂`
-  have hQ₂T : HasKazhdanPropertyT.{0, 0} D₂.step.Q :=
-    HasKazhdanPropertyT.of_surjective ((D₂.step.q.comp D₁.step.q).comp I.emb')
-      (hsurj H₀ I.emb' hHtop) hH₀T
-  refine ⟨D₂.step.Q, D₂.step.group,
-    (D₂.step.q.comp D₁.step.q).comp I.emb,
-    hsurj E I.emb hEtop, hQ₂fp, hQ₂tf, hQ₂T,
-    isAcylindricallyHyperbolic_of_hullGeneratingSet D₂.step.hullSet, ?_⟩
-  -- injectivity on the prescribed finite set
-  intro x hx y hy hxy
-  have hx₁ : I.emb x ∈ cayleyBall I.alphabet.alphabet R₁ :=
-    hR₁ (Set.mem_image_of_mem _ hx)
-  have hy₁ : I.emb y ∈ cayleyBall I.alphabet.alphabet R₁ :=
-    hR₁ (Set.mem_image_of_mem _ hy)
-  have hx₂ : D₁.step.q (I.emb x) ∈ cayleyBall D₁.step.hullSet.alphabet R₂ :=
-    hR₂ (Set.mem_image_of_mem _ (Set.mem_image_of_mem _ hx))
-  have hy₂ : D₁.step.q (I.emb y) ∈ cayleyBall D₁.step.hullSet.alphabet R₂ :=
-    hR₂ (Set.mem_image_of_mem _ (Set.mem_image_of_mem _ hy))
-  have hstep₂ : D₂.step.q (D₁.step.q (I.emb x))
-      = D₂.step.q (D₁.step.q (I.emb y)) := hxy
-  have hstep₁ : D₁.step.q (I.emb x) = D₁.step.q (I.emb y) :=
-    D₂.step.injOn hx₂ hy₂ hstep₂
-  exact I.inj (D₁.step.injOn hx₁ hy₁ hstep₁)
 
 /-- **Hull's Corollary 7.4 from Hull's Theorem 7.1 for one relator**, over the
 corrected free product input.  This is the form that composes with the rest of

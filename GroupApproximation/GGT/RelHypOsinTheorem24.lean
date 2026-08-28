@@ -23,7 +23,7 @@ Measuring instead in `Monoid.CoprodI` **syllables** — which is what
 `u_k · w_k⁻¹` has length two whatever `w_k` is.  That is not a technicality:
 the length floor and the fragment slack of the syllable lane both fail at
 length two, and the failure is a theorem of this repository rather than a
-suspicion.  `RelativeRouterEnvelope.not_partnerSurjective` and
+suspicion.  `RelativeRouterEnvelope.RelativeRouterDesign.not_partnerSurjective` and
 `OsinWeightedMetric.not_relativeLengthBound_of_light_tie` prove that at the
 syllable metric a relator identifying a source element with a partner element
 **refutes** the length bound: the `ℤ ∗ ℤ/3` witness recorded in
@@ -80,11 +80,13 @@ for one, at the canonical two-factor model `pairFamily U H`.
 ## What is proved here
 
 `exists_smallCancellationQuotient`: the four clauses
-`FournierFacioQuotientStatement` asks for, read off the design.  Three of them
-are already leaf-free theorems of `Sofic/OsinWeightedMetric.lean` --
-`finitelyPresented`, `partnerHom_surjective` (the surjection `H ↠ P`, which the
-tie buys with no diagram argument at all), and the ambient torsion-freeness --
-and the remaining two, `emb_injective` and `torsionFree`, spend one leaf each.
+`FournierFacioQuotientStatement` asks for, read off the design.  Two of them are
+already leaf-free theorems of `Sofic/OsinWeightedMetric.lean` --
+`finitelyPresented` and `partnerHom_surjective` (the surjection `H ↠ P`, which
+the tie buys with no diagram argument at all) -- and the remaining two,
+`emb_injective` and `torsionFree`, spend one leaf each.  The ambient
+torsion-freeness `ambient_torsionFree` is a further leaf-free input to the
+second of those, not a clause of the conclusion.
 -/
 
 namespace GroupApproximation

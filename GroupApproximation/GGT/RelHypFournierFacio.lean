@@ -22,7 +22,7 @@ and nothing else:
 
 * `OsinTheorem24` -- clauses (1) and (5) of Osin's small cancellation theorem,
   which `GGT/RelHypOsinTheorem24.lean` states as the universal closure of the
-  two open leaves of `Sofic/GreendlingerRelativeTransfer`;
+  two open leaves of `Sofic/OsinWeightedMetric.lean`;
 * `OsinRelatorDesign` -- Fournier-Facio's own Proposition 2.3, the choice of
   relators;
 * `FreeProductRelativelyHyperbolicStatement` -- that `U ∗ H` is hyperbolic
