@@ -2406,6 +2406,18 @@ import GroupApproximation.GGT.HullSCRelatorSeparationValues
 import GroupApproximation.GGT.HullSCRelatorSeparationRefuted
 import GroupApproximation.GGT.HullSCRelatorSeparationRepair
 import GroupApproximation.GGT.OsinTheorem54SepRuns
+import GroupApproximation.GGT.HullSCUnionGeometryCoprod
+import GroupApproximation.GGT.HullSCUnionGeometryAcylindrical
+import GroupApproximation.GGT.HullSCUnionGeometryConcat
+import GroupApproximation.GGT.HullSCUnionGeometryCrossing
+import GroupApproximation.GGT.HullSCUnionGeometryLineal
+import GroupApproximation.GGT.HullSCUnionGeometryPrefix
+import GroupApproximation.GGT.HullSCUnionGeometryElliptic
+import GroupApproximation.GGT.HullSCUnionGeometryLongSyllable
+import GroupApproximation.GGT.HullSCUnionGeometryFactorBranch
+import GroupApproximation.GGT.HullSCUnionGeometryCyclic
+import GroupApproximation.GGT.HullSCUnionGeometryTrichotomy
+import GroupApproximation.GGT.HullSCUnionGeometryHyperbolicFactor
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
