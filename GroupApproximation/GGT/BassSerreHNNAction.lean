@@ -136,7 +136,18 @@ finitely many possible translation amounts along a long sub-segment --- and is
 not carried out in this development.
 
 Everything this criterion consumes about the manuscript's `E` is proved in
-`GGT/BassSerreDoubleHNN.lean`. -/
+`GGT/BassSerreDoubleHNN.lean`.
+
+**This criterion is false as stated, and is superseded.**  The three vertices
+have to lie on the axis of `h`, and `IsLoxodromic h x` does not put them there:
+for `Γ = K × ℤ` with `K` infinite, acting on the line `ℤ` with one extra leaf
+`ℓ_γ` for each `γ ∈ Γ` joined to the vertex `π γ`, the basepoint `x = ℓ_1` has
+trivial stabiliser --- so the pointwise stabiliser of `{x, h·x, h²·x}` is trivial
+--- while every `k ∈ K` moves `x` and `h^M·x` by exactly `2`, so `h` is not a WPD
+element.  With the axis hypothesis `∀ m, d(x, hᵐ·x) = m · ℓ`, `0 < ℓ`, the
+criterion is proved in `GGT/TreeWPDAxis.lean`, and
+`GGT.BassSerreDoubleHNN.isWPDAt_axisElt_unconditional` supplies the WPD clause
+of `ah3Data` outright, so nothing needs this proposition any more. -/
 def IsTreeWPDCriterion (Γ : Type u) [Group Γ] {V : Type u} {H : SimpleGraph V}
     (hH : H.IsTree) [MulAction Γ (TreeSpace hH)] : Prop :=
   ∀ (h : Γ) (x : TreeSpace hH),

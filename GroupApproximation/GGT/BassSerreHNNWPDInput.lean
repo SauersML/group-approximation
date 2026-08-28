@@ -119,7 +119,22 @@ the tree geometry this development does not carry out.
 `GGT.isWPDAt_of_pairStab_cover` is the bookkeeping half, and it is proved.
 
 Everything this proposition consumes about `Skeleton f hf` is proved in
-`BassSerreDoubleHNN` below. -/
+`BassSerreDoubleHNN` below.
+
+**This proposition is false as stated, and is superseded.**  Minasyan--Osin ask
+for the two vertices to lie on the *axis* of `h`; `IsLoxodromic g x` is only the
+lower bound `l · n - B ≤ d(x, gⁿ·x)`, which a basepoint hanging off the axis
+also satisfies, and off the axis the stabiliser of `x` says nothing about the
+stabiliser of the axis.  Counterexample: `Γ = K × ℤ` with `K` infinite acting on
+the line `ℤ` with one extra leaf `ℓ_γ` for each `γ ∈ Γ`, the leaf `ℓ_γ` joined to
+the vertex `π γ`; at the basepoint `x = ℓ_1` and `g` a generator of `ℤ`, `g` is
+loxodromic and `PStab_Γ({x, g^N·x})` is trivial for every `N`, while every
+`k ∈ K` moves `x` and `g^M·x` by exactly `2`, so `g` is not WPD.  The repair is
+the axis hypothesis `∀ m, d(x, gᵐ·x) = m · ℓ` with `0 < ℓ`, which the
+application supplies through `tLen_axisElt_pow`; with it the statement is proved
+in `GGT/TreeWPDAxis.lean` (`GGT.isWPDAt_of_pairStab_zero_finite`), and
+`GGT.BassSerreDoubleHNN.skeletonAH3Input` closes `SkeletonAH3Input` without any
+hypothesis, so nothing needs this proposition any more. -/
 def TreeCorollary43 : Prop :=
   ∀ (Γ : Type) [Group Γ] (V : Type) (H : SimpleGraph V) (hH : H.IsTree)
     [MulAction Γ V],
