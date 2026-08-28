@@ -61,12 +61,25 @@ below is that statement with the datum kept.
 ## What is left, exactly
 
 * `DGOTheorem611` --- the real content of Corollary 6.12.  Its proof occupies
-  pp. 90--93 of the memoir and runs on the isolated-component machinery of §4:
-  Proposition 4.14 (bounded total length of isolated components in a geodesic
-  polygon, "*plays a central role in our paper*") and Lemma 4.21.  None of that
-  is in this repository.
-* `DGOProposition433` --- almost malnormality.  Its proof is one geodesic
-  quadrilateral plus Proposition 4.14, so it too waits on 4.14.
+  pp. 90--93 of the memoir and runs on the isolated-component machinery of §4.2,
+  "Isolated components in geodesic polygons": the bound on an isolated component
+  of an `n`-gon, together with Lemma 4.21.
+* `DGOProposition433` --- almost malnormality.  Its proof is shorter: one
+  geodesic quadrilateral `c = a⁻¹ p b q` built from a shortest word for `a`, in
+  which the `H_λ`-edge `p` is isolated, and then the same bound at `n = 4`.
+
+Both therefore rest on the same thing, and it is **already named in this
+repository**: `GGT.OsinComponents.IsolatedComponentBound` is Osin's Lemma 4.2,
+which he introduces as "*a simplified version of [DGO, Proposition 4.13]*" ---
+that is, of the §4.2 bound.  `GGT/OsinComponents.lean` also supplies the
+component vocabulary those proofs are written in (`IsComp`, `IsCompStart`,
+`Connected`, `IsIsolated`, `vertex`, and the equivalence lemmas for
+`Connected`).  What is *not* there is the polygon theory:
+`IsolatedComponentBound` carries `IsQuasiGeodesicPolygon` as an abstract
+predicate, so discharging either leaf means both instantiating that predicate
+and building the quadrilateral (for 4.33) or the `(ahᵢ)^N` polygon (for 6.11)
+against it.  The reduction to state is 4.33 and 6.11 *over*
+`IsolatedComponentBound`, not over nothing.
 * `PingPongFreeRankTwoGeometric` --- needed only for the free subgroup, not for
   Lemma 5.12.  `PingPong.PingPongFreeSubgroupGeometric` states this at `Type 0`
   and so cannot be applied to `Cayley D.alphabet` for `G : Type u`; the
