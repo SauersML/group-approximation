@@ -47,8 +47,11 @@ too narrow.
 Everything above the family is proved here, so the whole `𝒟` instance and the
 isometry data of `Analysis/ArvesonBHTarget` rest on that one construction.
 
-This module is in the root import list.  It was authored while builds were
-suspended and has not been elaborated.
+This module is in the root import list.  Its first elaboration found one error,
+in `map_star'`: `ContinuousLinearMap.eq_adjoint_iff` matches `A = adjoint B`, so
+the goal has to be oriented with the adjoint on the *right*, which `symm` gets
+backwards.  The inner-product computation is unchanged; it now proves
+`J T J* = (J T* J*)*` and the field follows by `adjoint_adjoint`.
 -/
 
 namespace GroupApproximation
@@ -102,30 +105,35 @@ def blockHom (J : F →L[ℂ] E)
           (J (T ((ContinuousLinearMap.adjoint J) v)))))
     rw [hJ]
   map_star' T := by
-    symm
-    rw [ContinuousLinearMap.star_eq_adjoint, ContinuousLinearMap.eq_adjoint_iff]
-    intro x y
-    have hleft : ⟪J (T ((ContinuousLinearMap.adjoint J) x)), y⟫_ℂ
-        = ⟪T ((ContinuousLinearMap.adjoint J) x),
-            (ContinuousLinearMap.adjoint J) y⟫_ℂ :=
-      (ContinuousLinearMap.adjoint_inner_right J
-        (T ((ContinuousLinearMap.adjoint J) x)) y).symm
-    have hright : ⟪x, J ((star T) ((ContinuousLinearMap.adjoint J) y))⟫_ℂ
-        = ⟪(ContinuousLinearMap.adjoint J) x,
-            (star T) ((ContinuousLinearMap.adjoint J) y)⟫_ℂ :=
-      (ContinuousLinearMap.adjoint_inner_left J
-        ((star T) ((ContinuousLinearMap.adjoint J) y)) x).symm
-    have hmid : ⟪T ((ContinuousLinearMap.adjoint J) x),
-          (ContinuousLinearMap.adjoint J) y⟫_ℂ
-        = ⟪(ContinuousLinearMap.adjoint J) x,
-            (star T) ((ContinuousLinearMap.adjoint J) y)⟫_ℂ := by
-      rw [ContinuousLinearMap.star_eq_adjoint]
-      exact (ContinuousLinearMap.adjoint_inner_right T
-        ((ContinuousLinearMap.adjoint J) x)
-        ((ContinuousLinearMap.adjoint J) y)).symm
-    show ⟪J (T ((ContinuousLinearMap.adjoint J) x)), y⟫_ℂ
-      = ⟪x, J ((star T) ((ContinuousLinearMap.adjoint J) y))⟫_ℂ
-    rw [hleft, hright, hmid]
+    have key : J.comp (T.comp (ContinuousLinearMap.adjoint J))
+        = ContinuousLinearMap.adjoint
+            (J.comp ((star T).comp (ContinuousLinearMap.adjoint J))) := by
+      rw [ContinuousLinearMap.eq_adjoint_iff]
+      intro x y
+      have hleft : ⟪J (T ((ContinuousLinearMap.adjoint J) x)), y⟫_ℂ
+          = ⟪T ((ContinuousLinearMap.adjoint J) x),
+              (ContinuousLinearMap.adjoint J) y⟫_ℂ :=
+        (ContinuousLinearMap.adjoint_inner_right J
+          (T ((ContinuousLinearMap.adjoint J) x)) y).symm
+      have hright : ⟪x, J ((star T) ((ContinuousLinearMap.adjoint J) y))⟫_ℂ
+          = ⟪(ContinuousLinearMap.adjoint J) x,
+              (star T) ((ContinuousLinearMap.adjoint J) y)⟫_ℂ :=
+        (ContinuousLinearMap.adjoint_inner_left J
+          ((star T) ((ContinuousLinearMap.adjoint J) y)) x).symm
+      have hmid : ⟪T ((ContinuousLinearMap.adjoint J) x),
+            (ContinuousLinearMap.adjoint J) y⟫_ℂ
+          = ⟪(ContinuousLinearMap.adjoint J) x,
+              (star T) ((ContinuousLinearMap.adjoint J) y)⟫_ℂ := by
+        rw [ContinuousLinearMap.star_eq_adjoint]
+        exact (ContinuousLinearMap.adjoint_inner_right T
+          ((ContinuousLinearMap.adjoint J) x)
+          ((ContinuousLinearMap.adjoint J) y)).symm
+      show ⟪J (T ((ContinuousLinearMap.adjoint J) x)), y⟫_ℂ
+        = ⟪x, J ((star T) ((ContinuousLinearMap.adjoint J) y))⟫_ℂ
+      rw [hleft, hright, hmid]
+    rw [ContinuousLinearMap.star_eq_adjoint
+      (J.comp (T.comp (ContinuousLinearMap.adjoint J))), key,
+      ContinuousLinearMap.adjoint_adjoint]
 
 @[simp] theorem blockHom_apply (J : F →L[ℂ] E)
     (hJ : ∀ v : F, (ContinuousLinearMap.adjoint J) (J v) = v)
@@ -199,9 +207,11 @@ with their range projections tending strongly to `1`.  This is the only
 concrete input the whole `𝒟` instance needs, and the same data
 `Analysis/ArvesonBHTarget.arvesonBH_of_limit` takes.
 
-Left as a statement: building it is `J n x = ∑ i, lp.single 2 i (x i)` together
-with its adjoint and the strong convergence, and the `lp` lemmas that
-computation needs have no precedent in this repository. -/
+`Analysis/EllTwoBlockFamily` discharges it: `J n x = ∑ i, lp.single 2 i (x i)`,
+a finite sum of point masses, with its adjoint the restriction to the first `n`
+coordinates and the strong convergence read off `lp.hasSum_single`.  It is
+stated here rather than there because this module is the one that consumes
+it. -/
 def EllTwoBlockFamilyStatement : Prop :=
   ∃ J : ∀ n : ℕ,
       EuclideanSpace ℂ (Fin n) →L[ℂ] lp (fun _ : ℕ ↦ ℂ) 2,
