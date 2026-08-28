@@ -116,7 +116,7 @@ theorem stageTwoTarget_ne_top (hj₁ : Function.Injective j₁) :
 /-- The one-syllable cyclically reduced word spelling `u₂u₁⁻¹`.  Its seam
 condition is vacuous: a single syllable is its own predecessor and successor,
 so the sign agreement it demands is `1 = 1`. -/
-def axisWord (hj₁ : Function.Injective j₁) :
+noncomputable def axisWord (hj₁ : Function.Injective j₁) :
     HNNTorsionFree.CyclicWord (StageOne j₁ hj₁) (stageOneBase j₁ hj₁)
       (stageTwoTarget j₁ j₂ hj₁) where
   letters := [((1 : ℤˣ), (HNNExtension.t : StageOne j₁ hj₁)⁻¹)]
@@ -335,6 +335,7 @@ section Skeleton
 
 variable {S : Type} [Group S] (f : (P × P × S) →* P) (hf : Function.Injective f)
 
+include hf in
 /-- `P₁ ∩ P₂ = 1`, in the shape the segment computation consumes. -/
 theorem skeleton_inter :
     ∀ p q : P, factorOne f p = factorTwo f q → p = 1 :=

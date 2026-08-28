@@ -88,6 +88,8 @@ namespace GGT
 open GroupApproximation.Manuscript.NonMF.TheoremC
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
+universe v
+
 /-! ## The two `P`-factors intersect trivially -/
 
 section Factors
@@ -252,22 +254,23 @@ remain the tools for the case where the segment stabilizer is merely finite
 rather than trivial. -/
 def SkeletonAH3Input : Prop :=
   ∀ (P S : Type) (_ : Group P) (_ : Group S) (f : (P × P × S) →* P)
-    (hf : Function.Injective f), Nonempty (AH3Data (Skeleton f hf))
+    (hf : Function.Injective f), Nonempty (AH3Data.{0, v} (Skeleton f hf))
 
 /-- **The manuscript's Minasyan--Osin citation, reduced to two inputs**: Osin's
 Theorem 1.2 in the implication `(AH₃) ⇒ (AH₁)`, and the Bass--Serre tree action
 of `E` with its WPD element.  Non-virtual-cyclicity, the third hypothesis of
 `(AH₃)`, is proved here rather than assumed. -/
-theorem minasyanOsinStatement_of (hOsin : OsinTheorem12)
-    (hTree : SkeletonAH3Input) : MinasyanOsinStatement := by
+theorem minasyanOsinStatement_of (hOsin : OsinTheorem12.{0, v})
+    (hTree : SkeletonAH3Input.{v}) : MinasyanOsinStatement := by
   intro P S instP instS f hf
   obtain ⟨D⟩ := hTree P S instP instS f hf
   exact hOsin (Skeleton f hf) D (not_isVirtuallyCyclic_skeleton f hf)
 
 /-- The same, with Osin's Theorem 1.2 unfolded into its two published steps:
 Dahmani--Guirardel--Osin's Theorem 6.8 and Osin's `(AH₄) ⇒ (AH₁)`. -/
-theorem minasyanOsinStatement_of_dgo (h68 : DGOTheorem68) (h4 : OsinAH4ToAH1)
-    (hTree : SkeletonAH3Input) : MinasyanOsinStatement :=
+theorem minasyanOsinStatement_of_dgo (h68 : DGOTheorem68.{0, v})
+    (h4 : OsinAH4ToAH1.{0}) (hTree : SkeletonAH3Input.{v}) :
+    MinasyanOsinStatement :=
   minasyanOsinStatement_of (osinTheorem12_of h68 h4) hTree
 
 end GGT
