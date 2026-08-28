@@ -268,6 +268,7 @@ variable {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X]
 
 /-! ## The conclusion is consistent: the empty family is a model -/
 
+omit [PseudoMetricSpace X] [MulAction G X] in
 /-- With no apices there are no rotations, so the subgroup they generate is
 trivial. -/
 theorem rotationNormalClosure_empty (Rot : X → Subgroup G) :
@@ -297,7 +298,7 @@ def rotatingQuotientEmpty (Rot : X → Subgroup G) :
   ker_eq := by
     rw [rotationNormalClosure_empty]
     ext x
-    simp [MonoidHom.mem_ker]
+    simp
   rotation_or_loxodromic := by
     intro g hg hg1
     rw [rotationNormalClosure_empty, Subgroup.mem_bot] at hg

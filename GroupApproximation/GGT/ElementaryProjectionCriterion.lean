@@ -96,6 +96,7 @@ namespace GGT
 namespace Elementary
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
 

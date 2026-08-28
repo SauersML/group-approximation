@@ -191,6 +191,7 @@ theorem directedAdjacencyCount_eq_zero_of_same_side
     rw [← h2]
     show (!(T p.1 (TriangularHodgeLayer.nextCorner p.2)).2) = false
     rw [hpos]
+    rfl
   rw [hu, hv] at h
   exact Bool.noConfusion h
 
@@ -367,7 +368,8 @@ def quadrangleDataOfParts
           = ((TriangularHodgeLayer.adjacencyCount T u v
               * TriangularHodgeLayer.adjacencyCount T u v' : ℕ) : ℚ) := by
       intro u
-      push_cast <;> ring
+      push_cast
+      ring
     rw [Finset.sum_congr rfl fun u _ => hterm u]
     by_cases hvv : v = v'
     · subst hvv
@@ -376,7 +378,8 @@ def quadrangleDataOfParts
             * TriangularHodgeLayer.adjacencyCount T u v : ℕ) : ℚ)) = (q : ℚ) + 1 := by
         exact_mod_cast sum_adjacency_diag hsimple hdeg v
       rw [hif, hsum, collinearityCount_self T v]
-      push_cast <;> ring
+      push_cast
+      ring
     · have hif : (if v = v' then (1 : ℚ) else 0) = 0 := if_neg hvv
       have hsum : (∑ u, ((TriangularHodgeLayer.adjacencyCount T u v
             * TriangularHodgeLayer.adjacencyCount T u v' : ℕ) : ℚ))
@@ -395,7 +398,8 @@ def quadrangleDataOfParts
         ((collinearityCount T u v : ℕ) : ℚ) * ((collinearityCount T u v' : ℕ) : ℚ)
           = ((collinearityCount T u v * collinearityCount T u v' : ℕ) : ℚ) := by
       intro u
-      push_cast <;> ring
+      push_cast
+      ring
     rw [Finset.sum_congr rfl fun u _ => hterm u]
     by_cases hvv : v = v'
     · subst hvv
@@ -404,7 +408,8 @@ def quadrangleDataOfParts
           = (q : ℚ) * ((q : ℚ) + 1) := by
         exact_mod_cast hcolsq v
       rw [hif, hsum, collinearityCount_self T v, tableSign_sq v]
-      push_cast <;> ring
+      push_cast
+      ring
     · by_cases hside : v.2 = v'.2
       · have hif : (if v = v' then (1 : ℚ) else 0) = 0 := if_neg hvv
         have hsign : tableSign v * tableSign v' = 1 := tableSign_mul_same hside
@@ -441,16 +446,19 @@ def quadrangleDataOfParts
             exact_mod_cast hz
         rw [Finset.sum_eq_zero fun u _ => hzero u, hif, hsign,
           hcross v v' hside]
-        push_cast <;> ring
+        push_cast
+        ring
   card_eq := by
     show ((Fintype.card (Generator × Bool) : ℕ) : ℚ)
         = 2 * ((q : ℚ) + 1) * ((q : ℚ) ^ 2 + 1)
     have h : ((Fintype.card (Generator × Bool) : ℕ) : ℚ)
         = ((Fintype.card Generator : ℕ) : ℚ) * 2 := by
       rw [Fintype.card_prod, Fintype.card_bool]
-      push_cast <;> ring
+      push_cast
+      ring
     rw [h, hcard]
-    push_cast <;> ring
+    push_cast
+    ring
   ord_pos := by
     have h : (7 : ℚ) ≤ (q : ℚ) := by exact_mod_cast hq
     show (0 : ℚ) < (q : ℚ)
