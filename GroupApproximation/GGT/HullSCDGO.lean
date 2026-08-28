@@ -112,6 +112,56 @@ and it is not done here, because the geodesic form is unstateable until the
 space is known to be geodesic -- which is the same prerequisite as above, and
 which is why the two repairs should land together rather than separately.
 
+## A third finding: which clauses are actually DGO's, and which are used
+
+Read Theorem 5.3 against the source and `hullQuotient_of_fillingData` against
+this repository, and the attribution comes out inverted.  **Theorem 5.3 has
+exactly two conclusions:**
+
+> (a) There exists a (usually infinite) subset `T ⊆ G` such that
+>     `⟨⟨H⟩⟩^G = ∗_{t ∈ T} t⁻¹ H t`.
+> (b) Every element `h ∈ ⟨⟨H⟩⟩^G` either is conjugate to an element of `H`, or
+>     is loxodromic with respect to the action on `𝕏`.
+
+Against the six clauses of `RotatingQuotient`:
+
+* `ker_eq` and `surjective` -- by construction, not cited.
+* `rotation_or_loxodromic` -- **this is 5.3(b), correctly attributed, and it is
+  never used.**  `hullQuotient_of_fillingData` consumes `Q`, `group`, `q`,
+  `surjective`, `ker_eq`, `injRadius`, `separation_le_injRadius`,
+  `ne_one_of_dist_lt` and `finiteOrder_lift`.  It does not touch the dichotomy.
+* `finiteOrder_lift` -- **not a conclusion of Theorem 5.3**, and it is used.
+  It is a corollary of 5.3(a): the normal closure is a free product of
+  conjugates of `H`, so it acts on the Bass-Serre tree of that splitting with
+  the conjugates as vertex stabilizers, and a finite subgroup of a group acting
+  on a tree fixes a point, hence is conjugate into a factor.  That is the
+  standard route and it goes through the splitting, not through the dichotomy.
+* `injRadius`, `separation_le_injRadius`, `ne_one_of_dist_lt` -- **not a
+  conclusion of Theorem 5.3, and not derivable from either of its two.**  The
+  dichotomy gives loxodromy, which is an asymptotic lower bound on
+  `d(y, gⁿ·y)` with an additive constant, and no bound at `n = 1`; the splitting
+  says nothing metric.  The nearest statement in the paper is Theorem 2.17(b),
+  *the quotient map `𝕏 → 𝕏/⟨⟨H⟩⟩^G` is a local isometry away from the apices* --
+  which is about the quotient of the **space**, not about the kernel of the
+  quotient of the **group**, and those are different statements.
+
+So the structure is carrying one clause of DGO's that nothing consumes, is
+missing the clause of DGO's that another of its clauses depends on, and is
+attributing to DGO a metric clause that appears to be Hull's own §5 work.
+
+The repair this points to, and which is not made here because
+`hullQuotient_of_fillingData` is another lane's consumer:
+
+1. add 5.3(a), the free splitting, to `RotatingQuotient` -- it is what the
+   theorem actually concludes, and it is what `finiteOrder_lift` rests on;
+2. keep `finiteOrder_lift`, re-attributed as a corollary of (a) rather than as
+   a citation of 5.3;
+3. move `injRadius` and `ne_one_of_dist_lt` out of the DGO citation and into
+   Hull's §5 -- `HullFillingDataStatement` -- since that is where a proof of
+   them would have to live;
+4. keep `rotation_or_loxodromic`, unconsumed, because it is what the theorem
+   says.
+
 ## The plan for §5, in dependency order
 
 Once the statement is repaired, DGO's proof is the following chain.  Nothing
