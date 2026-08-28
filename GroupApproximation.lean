@@ -2315,6 +2315,7 @@ import GroupApproximation.GGT.HullSC
 import GroupApproximation.GGT.HullSCCommonQuotient
 import GroupApproximation.GGT.HullSCCommonQuotientCorrected
 import GroupApproximation.GGT.HullSCConeOff
+import GroupApproximation.GGT.HullSCConeOffSpace
 import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCHypEmbedded

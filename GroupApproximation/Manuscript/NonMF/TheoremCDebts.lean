@@ -7,6 +7,7 @@ import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCHypEmbedded
 import GroupApproximation.GGT.HullSCRelatorFamily
+import GroupApproximation.GGT.HullSCConeOffSpace
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.TreeWPDAxis
 
@@ -72,7 +73,7 @@ theorem, shared by the two lanes that stand on it.
   (`HullSCCommonQuotientCorrected.not_freeProductStatement`): it omits the
   non-elementarity of `H₀`, which `HullCommonQuotientStatement` supplies twice
   over.
-* `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullFillingData`,
+* `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullConeOff`,
   `hullRelatorChoice` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
   Theorem 5.3 separated out of the first of them.  **`hullTheorem71` is not one
   of the debts any longer**, and neither is `hullTheorem51`: the first is proved
@@ -180,8 +181,17 @@ The space carrying the family is abstract, and it has to be:
 `HullSC.rot_eq_bot_of_cayley` proves that a rotating family on a Cayley graph of
 `G` has trivial rotation subgroups, since the translation action is free, so
 Theorem 5.3 applied on `Γ(G, A ⊔ H)` would produce only the identity. -/
-theorem hullFillingData : HullSC.HullFillingDataStatement.{0} := by
+theorem hullConeOff : HullSC.HullConeOffStatement.{0} := by
   sorry
+
+/-- Hull's §5 in the form Theorem 5.1 consumes it, from the cone-off above.  The
+rotating family is not among the data: its apices are the orbit of the cone
+point, its rotations are the conjugates of the cyclic group on the relator, and
+`HullSC.isRotatingFamily_apexRot` with `HullSC.rotationNormalClosure_apexRot`
+and `HullSC.normalClosure_zpowers` proves the three axioms and the
+identification of the kernel with the normal closure of the relator. -/
+theorem hullFillingData : HullSC.HullFillingDataStatement.{0} :=
+  HullSC.hullFillingDataStatement_of_coneOff hullConeOff
 
 /-- **Hull, Theorem 5.1**, proved rather than cited: the two debts above give
 it through `HullSC.hullQuotient_of_fillingData`, which supplies seven of the ten
