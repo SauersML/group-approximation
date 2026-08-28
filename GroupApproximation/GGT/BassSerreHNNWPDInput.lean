@@ -104,7 +104,15 @@ end BassSerreHNN
 
 /-! ## Minasyan--Osin's Corollary 4.3, named -/
 
-/-- **Minasyan--Osin, *Acylindrical hyperbolicity of groups acting on trees*,
+/-- **Not used by any chain.**  `GGT.BassSerreDoubleHNN.skeletonAH3Input`
+supersedes this proposition: it discharges `SkeletonAH3Input` outright, so
+nothing depends on the statement below and it is not outstanding debt.  It is
+kept because it is the honest general form of Corollary 4.3 --- an arbitrary
+loxodromic and a merely finite pair stabiliser --- whereas what the manuscript
+needs is the special case where the translation length is one and the
+stabiliser is trivial, which `GGT.isWPDAt_of_axis` proves.
+
+**Minasyan--Osin, *Acylindrical hyperbolicity of groups acting on trees*,
 Math. Ann. 362 (2015), Corollary 4.3**, verbatim:
 
 > Let `G` act on a simplicial tree `T` and let `h ∈ G` be hyperbolic.  Suppose
@@ -308,7 +316,11 @@ theorem skeletonAH3Input_of (hcor : TreeCorollary43) : SkeletonAH3Input.{0} := b
     (isWPDAt_axisElt hcor (factorOne_injective f hf) (factorTwo_injective f hf)
       (skeleton_inter f hf))⟩
 
-/-- **The manuscript's Minasyan--Osin citation, from two named inputs.** -/
+/-- **The manuscript's Minasyan--Osin citation, from two named inputs.**
+
+Superseded, like `skeletonAH3Input_of` above, by
+`GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osin_axis`, which takes only
+Osin's Theorem 1.2.  Nothing consumes this version. -/
 theorem minasyanOsinStatement_of_tree (hOsin : OsinTheorem12.{0, 0})
     (hcor : TreeCorollary43) : MinasyanOsinStatement :=
   minasyanOsinStatement_of hOsin (skeletonAH3Input_of hcor)
