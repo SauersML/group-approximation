@@ -6,6 +6,7 @@ import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
 import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCHypEmbedded
+import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.TreeWPDAxis
 
 /-!
