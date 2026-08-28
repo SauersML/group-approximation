@@ -78,17 +78,9 @@ theorem exists_large_fiber {V K n : ℕ} (f : ℕ → ℕ)
   push_neg at hcon
   have hmaps : ∀ i ∈ Finset.range V, f i ∈ Finset.range K := fun i hi =>
     Finset.mem_range.mpr (hf i (Finset.mem_range.mp hi))
-  have hsum := Finset.card_eq_sum_card_fiberwise hmaps
-  rw [Finset.card_range] at hsum
-  have hbound : ∑ y ∈ Finset.range K,
-      (Finset.filter (fun i => f i = y) (Finset.range V)).card
-        ≤ ∑ _y ∈ Finset.range K, n :=
-    Finset.sum_le_sum fun y _ => hcon y
-  have hconst : ∑ _y ∈ Finset.range K, n = (Finset.range K).card * n :=
-    Finset.sum_const_nat (fun _ _ => rfl)
-  rw [hconst, Finset.card_range] at hbound
-  have hle : V ≤ K * n := by rw [hsum]; exact hbound
-  exact absurd hle (not_le.mpr hlt)
+  have hcard := Finset.card_le_mul_card_image_of_maps_to hmaps n (fun b _ => hcon b)
+  rw [Finset.card_range, Finset.card_range, Nat.mul_comm n K] at hcard
+  exact absurd hcard (not_le.mpr hlt)
 
 section Action
 
@@ -495,7 +487,7 @@ theorem escapingIsLoxodromic_of_geodesic {δ : ℝ} (hδ : IsHyperbolicSpace δ 
     omega
   have hcount := Set.ncard_le_ncard_of_injOn (fun i : ℕ => c ^ (i - i₀)) hmaps
     hinj hfin
-  rw [Set.ncard_coe_Finset] at hcount
+  rw [Set.ncard_coe_finset] at hcount
   have hle : F.card ≤ N := le_trans hcount hcard
   omega
 
