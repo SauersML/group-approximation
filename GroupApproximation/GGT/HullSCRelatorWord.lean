@@ -54,10 +54,12 @@ section Spelling
 
 variable {G : Type u} [Group G] {Λ : Type*}
 
+omit [Group G] in
 /-- The element a base letter names. -/
 theorem val_base (g : G) :
     (GGT.RelLetter.base g : GGT.RelLetter G Λ).val = g := rfl
 
+omit [Group G] in
 /-- The element a component letter names. -/
 theorem val_comp (lam : Λ) (h : G) :
     (GGT.RelLetter.comp lam h : GGT.RelLetter G Λ).val = h := rfl
@@ -256,7 +258,7 @@ theorem relatorChoice_of_relatorSeparation (h : RelatorSeparation.{u}) :
   obtain ⟨n, hn⟩ := exists_nat_gt ((B : ℝ) / mu)
   obtain ⟨p, ms, hpbase, hpprod, hlen, hdeep, hsep⟩ := hB (max rho n)
   have hBL : (B : ℝ) < mu * (max rho n : ℕ) := by
-    have h1 : (B : ℝ) < (n : ℝ) * mu := (div_lt_iff hmu).mp hn
+    have h1 : (B : ℝ) < (n : ℝ) * mu := (div_lt_iff₀ hmu).mp hn
     have h2 : (n : ℝ) ≤ ((max rho n : ℕ) : ℝ) := by
       exact_mod_cast Nat.le_max_right rho n
     have h3 : (n : ℝ) * mu ≤ ((max rho n : ℕ) : ℝ) * mu :=
