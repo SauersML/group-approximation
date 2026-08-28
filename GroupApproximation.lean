@@ -2310,6 +2310,7 @@ import GroupApproximation.GGT.WPDAcylindricalHyperbolicity
 import GroupApproximation.GGT.WPDElement
 import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 import GroupApproximation.GGT.WPDMinasyanOsinSkeleton
+import GroupApproximation.GGT.OsinEnlargement
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
