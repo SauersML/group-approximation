@@ -357,7 +357,19 @@ nonzero power that the argument below consumes is extracted from it by
 `PingPong.exists_noCommonZpow_of_freeRankTwo`, and Osin's own "in particular,
 `G` is not virtually cyclic" comes back from the same pair through
 `not_isVirtuallyCyclic_of_no_common_power`.  Neither derivation belongs in the
-citation, so the citation states what the theorem states. -/
+citation, so the citation states what the theorem states.
+
+**This proposition is off the chain's critical path and should not be proved
+on its account.**  `GGT.WPDDGOReduction` obtains Lemma 5.12 from
+`DGOCorollary612` alone whenever the peripheral subgroup contains an element
+of infinite order: such an element cannot lie in `E(g)`, since sharing a
+nonzero power with the loxodromic `g` would make a power of it loxodromic
+while `RelGenSet.not_isLoxodromic_of_mem_fam` makes every element of the
+family elliptic.  The chain always supplies that element — `DGOTheorem68`
+returns a subgroup containing the loxodromic `D.elt` — so Theorem 6.14 is
+needed here only for an infinite *torsion* peripheral subgroup, a case that
+does not arise.  The proposition is kept rather than deleted because that case
+is real in general. -/
 def DGOTheorem614 : Prop :=
   ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
     IsNonDegenerate (D.fam ()) → PingPong.FreeRankTwo G
@@ -466,7 +478,13 @@ by their Theorem 6.14, and the trichotomy of Osin's Theorem 1.1 then leaves
 only the non-elementary case.  The last step is
 `actsNonElementarily_of_no_common_power`, which is proved from the two facts of
 Osin's §6 that `GGT.Elementary` records, so the trichotomy is not carried here
-as a citation of its own. -/
+as a citation of its own.
+
+This is Osin's own route and is kept for that reason, but it is not the
+cheapest one: `GGT.WPDDGOReduction.relativeCayleyNonElementary_of_612_of_infiniteOrder`
+reaches the same conclusion from `DGOCorollary612` alone, given an
+infinite-order element of the peripheral subgroup, and the chain always has
+one.  Prefer that route; see the note on `DGOTheorem614`. -/
 theorem relativeCayleyNonElementary_of (h612 : DGOCorollary612)
     (h614 : DGOTheorem614) : RelativeCayleyNonElementary := by
   intro G _ D hemb hacy hnd
