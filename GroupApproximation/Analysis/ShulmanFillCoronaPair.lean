@@ -18,10 +18,9 @@ property, so the compatible representation built from a corona pair by
 `CStarAmalgamRepresentation.ofCompatiblePair` has an MF carrier by
 construction.
 
-This module is not in the root import list.  It was authored while builds
-were suspended and has not been elaborated; keeping it unwired means a
-mistake here cannot redden the root build, and the two modules it rests on
-are both verified.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated; the two modules it rests on are both
+verified.
 -/
 
 namespace GroupApproximation

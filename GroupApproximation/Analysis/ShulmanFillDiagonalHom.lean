@@ -16,8 +16,8 @@ grouped in this module, apart from the assembly in
 `Analysis/ShulmanFillSymmetricDouble`, so that a wrong coordinate lemma name
 cannot take the assembly down with it.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

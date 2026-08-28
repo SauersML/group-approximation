@@ -44,8 +44,8 @@ and `Analysis/CompatibleCoronaSupportCorner` already unitalizes them by passing
 to the common support corner, which is the cheaper of the two routes named in
 the lane brief.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

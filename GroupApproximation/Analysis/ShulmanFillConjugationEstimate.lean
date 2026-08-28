@@ -62,8 +62,8 @@ null sequences.  The estimate below is likewise needed only on the `𝒟` route;
 on the corona route the flip commutes exactly and the two families agree on
 `C` on the nose.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

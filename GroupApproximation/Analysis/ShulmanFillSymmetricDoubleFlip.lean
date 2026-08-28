@@ -60,12 +60,19 @@ check asymptotic agreement on `C` (the estimate on p. 8, whose shape is
 `ShulmanDenseCompatibility.tendsto_norm_sub_of_dense`), glue by Lemma 7, and
 conclude by Theorem 4 again.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.  The
-entrywise proofs below all use one idiom — `ext`, `fin_cases`, `simp` with the
-`CStarMatrix` coordinate lemmas — copied from `Analysis/CStarMatrixTwoByTwo`;
-if a coordinate simp lemma is named differently they fail together and are
-fixed together.
+`Analysis/ShulmanFillFlipUnitary` carried a second `ShulmanFill.flipUnitary`,
+with `flip`/`coe_flipUnitary`/`flip_mul_diagonal2_mul_flip`/
+`flip_commute_diagonal2` in place of `flip2`/`flipUnitary_coe`/
+`flip2_conj_diagonal2`/`flip2_commutes_diagonal2_self` here.  Nothing imported
+it and every one of its declarations has a counterpart above, so it was retired
+rather than wired: two modules declaring `GroupApproximation.ShulmanFill.
+flipUnitary` cannot both be in one import closure.
+
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.  The entrywise proofs below all use one
+idiom — `ext`, `fin_cases`, `simp` with the `CStarMatrix` coordinate lemmas —
+copied from `Analysis/CStarMatrixTwoByTwo`; if a coordinate simp lemma is named
+differently they fail together and are fixed together.
 -/
 
 namespace GroupApproximation

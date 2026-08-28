@@ -65,8 +65,8 @@ of `Analysis/CStarMatrixTwoByTwo`, it is
 `cStarMatrixUnit2 0 1 + cStarMatrixUnit2 1 0`, and what has to be checked is
 that it is a self-adjoint unitary commuting with every `cStarDiagonal2 x x`.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

@@ -46,8 +46,8 @@ where `π₁` and `π₂` take their values.  So Theorem 4 — or some other dev
 that produces a faithful evaluation — is genuinely needed, and it is exactly
 what the statement below isolates.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

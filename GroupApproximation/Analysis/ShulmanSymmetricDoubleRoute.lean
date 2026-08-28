@@ -71,8 +71,8 @@ named below.  This module proves the passage from them to the MF property of
 the amalgam; instantiating `D` and handling the non-unital case are the
 remaining glue, and neither is an estimate.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

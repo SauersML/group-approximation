@@ -15,9 +15,9 @@ Composing the two, the whole of Theorem 16 rests on the norming statement for
 *unital* compatible pairs, which is the form in which the symmetric-double
 argument is carried out.
 
-This module is deliberately not in the root import list: it depends on
-`Analysis/CompatibleCoronaSupportCorner`, which is not yet wired there either.
-Wiring the two together is a one-line change once that module lands.
+This module is in the root import list, together with
+`Analysis/CompatibleCoronaSupportCorner` that it depends on.  It was authored
+while builds were suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

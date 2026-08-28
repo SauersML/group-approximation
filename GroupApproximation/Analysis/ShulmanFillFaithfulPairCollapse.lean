@@ -72,8 +72,8 @@ construction-and-proof work: build `𝒟`, and `B(H)`'s compacts and Calkin
 quotient if they turn out to be expressible, and prove Theorem 4 and Theorem
 13's Voiculescu step; or discharge the norming atom.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

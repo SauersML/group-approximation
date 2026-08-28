@@ -58,8 +58,8 @@ does not mention the Calkin algebra, amplifications or corners, only that
 *some* target detects `Φ`.  Anything that produces a faithful compatible pair
 for `(D, D)` extending the given one discharges it.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation
