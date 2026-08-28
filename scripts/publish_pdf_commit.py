@@ -214,9 +214,20 @@ def require_fresher_draft_source(
         raise RuntimeError(
             f"{source_file} has no history at draft source {source}"
         )
-    pdf_updated = git(
-        root, "rev-list", "-1", current_main, "--", pdf
-    ).stdout.strip()
+    # Only a PDF that this publisher wrote can "cover" a source state.  A
+    # hand-landed PDF (observed 2026-08-27: a whole-working-tree commit
+    # carried a stale local build over the bot's fresh one) is newer than
+    # the tex in history but was not built from it; treating it as current
+    # left main stale until the next tex push.
+    publisher = git(root, "config", "user.name", check=False).stdout.strip()
+    pdf_updated = ""
+    for line in git(
+        root, "log", "--format=%H%x09%an", current_main, "--", pdf
+    ).stdout.splitlines():
+        sha, _, author = line.partition("\t")
+        if author == publisher:
+            pdf_updated = sha
+            break
     if not pdf_updated:
         return
     stale = git(

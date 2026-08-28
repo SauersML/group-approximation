@@ -27,6 +27,9 @@ on:
     branches: [main]
     paths:
       - 'non_mf_groups_exist.tex'
+      # A PDF landed by hand triggers a rebuild too.  The bot's own PDF
+      # commits use GITHUB_TOKEN, and those never trigger workflows.
+      - 'non_mf_groups_exist.pdf'
   schedule:
     # Catch-up pass: rebuild only if the PDF is older than the tex.
     - cron: '3,18,33,48 * * * *'
@@ -64,7 +67,9 @@ jobs:
         run: |
           set -euo pipefail
           tex_commit="$(git rev-list -1 HEAD -- "$TEX_FILE")"
-          pdf_commit="$(git rev-list -1 HEAD -- "$PDF_FILE" || true)"
+          # Only the bot's own PDF commits count as builds; a PDF landed by
+          # hand (e.g. a whole-working-tree commit) may be a stale local copy.
+          pdf_commit="$(git log -1 --format=%H --author='github-actions\[bot\]' HEAD -- "$PDF_FILE" || true)"
           if [ "${{ github.event_name }}" != "schedule" ]; then
             echo "build=true" >> "$GITHUB_OUTPUT"
             echo "push or dispatch: always build"
