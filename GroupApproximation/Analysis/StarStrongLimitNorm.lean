@@ -31,9 +31,10 @@ Theorem 4 that his Theorem 10 ends with.
 The other direction — from `B` MF to the existence of a lift with faithful
 `*`-strong limit — is *not* here, and it is the one Theorem 10 begins with.
 
-## A correction: `MFLiftingCharacterization` is false as stated
+## A correction: the biconditional form of Theorem 4 is false
 
-`Analysis/StarStrongMatrixSequencesShulman` records Shulman's Theorem 4 as
+`Analysis/StarStrongMatrixSequencesShulman` used to record Shulman's Theorem 4
+as
 
     `∀ (ι : ∀ n, M n →⋆ₙₐ[ℂ] B(H)) (hnorm) (hone) (A), IsMFAlgebra A ↔ …`
 
@@ -52,8 +53,9 @@ The repair is not to weaken the biconditional but to name the models: what
 Theorem 4 is about is `M n = M_{k_n}`, and the content the recognition lane
 uses is the implication, at models that are themselves MF.  That implication is
 `isMFAlgebra_of_starStrongLift` below, proved here with no hypothesis on the
-family beyond `HasMFEmbedding (A n)`, which the matrix models satisfy.  Nothing
-in this module cites the refuted biconditional.
+family beyond `HasMFEmbedding (A n)`, which the matrix models satisfy.  It is
+what `StarStrongMatrixSequencesShulman.MFOfStarStrongLiftStatement` now names,
+in place of the refuted biconditional.
 
 This module is in the root import list.  It was authored while builds were
 suspended and has not been elaborated.  The names it uses that have no other
