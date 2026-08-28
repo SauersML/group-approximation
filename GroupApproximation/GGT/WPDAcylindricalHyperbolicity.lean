@@ -234,10 +234,25 @@ def AH3Data.ofData {G : Type u} [Group G] (X : Type v) [PseudoMetricSpace X]
 
 /-! ## The literature inputs -/
 
-/-- **`(AH₃) ⇒ (AH₄)`: Dahmani--Guirardel--Osin, Theorem 6.8.**  The number is
-Osin's own: his proof of Theorem 1.2 reads *"the implication
-`(AH₃) ⟹ (AH₄)` was proved in [DGO, Theorem 6.8]"*.  He also states it per
-element, as `(L₃) ⇒ (L₄)` of his Theorem 1.4:
+/-- **`(AH₃) ⇒ (AH₄)`: Dahmani--Guirardel--Osin.**  The name of this
+proposition is Osin's citation — his proof of Theorem 1.2 reads *"the
+implication `(AH₃) ⟹ (AH₄)` was proved in [DGO, Theorem 6.8]"* — but the
+statement to build against is Dahmani--Guirardel--Osin's own **Corollary 2.9**,
+verbatim:
+
+> Let `G` be a group acting on a hyperbolic space and let `h` be a loxodromic
+> WPD element.  Then `h` is contained in a unique maximal virtually cyclic
+> subgroup of `G`, denoted `E(h)`, and `E(h) ↪_h G`.
+
+They record its provenance in the line before it: *"This corollary summarizes
+Lemma 6.5 and a particular case of Theorem 6.8.  To prove it, we verify that
+`H = E(h)` satisfies all assumptions of Theorem 2.7"* — their Theorem 2.7 being
+Theorem 4.42, that a geometrically separated subgroup acting properly with a
+quasiconvex orbit is hyperbolically embedded.  So Theorem 6.8 alone is not the
+citable statement; Corollary 2.9 is, and it is strictly what this proposition
+asks for.
+
+Osin also states it per element, as `(L₃) ⇒ (L₄)` of his Theorem 1.4:
 
 > `(L₃)` There exists an action of `G` on a hyperbolic space such that `g` acts
 >   loxodromically and satisfies the WPD condition.
