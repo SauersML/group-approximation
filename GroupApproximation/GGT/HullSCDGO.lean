@@ -265,6 +265,41 @@ theorem smul_ne_of_rotatingQuotient {ρ : ℝ} (hρ : 0 < ρ) {C : Set X}
 
 end Family
 
+/-! ## Why the geodesic hypothesis is the repair -/
+
+/-- **A geodesic realises every intermediate distance.**  On a geodesic from `c`
+to `y`, the point at parameter `r` is at distance exactly `r` from `c`. -/
+theorem exists_dist_eq_of_geodesic {X : Type v} [PseudoMetricSpace X]
+    (hgeo : IsGeodesicSpace X) (c y : X) {r : ℝ} (hr0 : 0 ≤ r)
+    (hr : r ≤ dist c y) : ∃ x : X, dist x c = r := by
+  obtain ⟨f, hf, hf0, -⟩ := hgeo c y
+  refine ⟨f r, ?_⟩
+  have h := hf r ⟨hr0, hr⟩ 0 ⟨le_refl 0, dist_nonneg⟩
+  rw [hf0, sub_zero, abs_of_nonneg hr0] at h
+  exact h
+
+/-- **In the repaired statement the annulus is never empty.**
+
+The counterexample of the module header works by making the annulus
+`20δ ≤ dist · c ≤ 40δ` contain no point at all, so that `IsVeryRotating` holds
+vacuously and constrains nothing.  Adding `IsGeodesicSpace X` closes exactly
+that hole: the basepoint is at distance at least `ρ ≥ 200δ` from the apex, a
+geodesic from the apex to it realises every distance up to that, and `30δ` is
+one of them.
+
+So this is not a repair chosen because it happens to block one counterexample —
+it is the hypothesis that makes `dist_le_dist_smul_of_veryRotating` applicable,
+which is the step DGO's argument turns on.  With `C` empty there is no annulus
+to populate and `nonempty_rotatingQuotient_empty` covers the case directly. -/
+theorem exists_mem_annulus {X : Type v} [PseudoMetricSpace X]
+    (hgeo : IsGeodesicSpace X) {δ ρ : ℝ} (hδ : 0 < δ) (hρ : 200 * δ ≤ ρ)
+    {c y₀ : X} (hfar : ρ ≤ dist y₀ c) :
+    ∃ x : X, 20 * δ ≤ dist x c ∧ dist x c ≤ 40 * δ := by
+  have hcy : ρ ≤ dist c y₀ := by rwa [dist_comm] at hfar
+  obtain ⟨x, hx⟩ := exists_dist_eq_of_geodesic hgeo c y₀ (r := 30 * δ)
+    (by linarith) (by linarith)
+  exact ⟨x, by rw [hx]; linarith, by rw [hx]; linarith⟩
+
 /-! ## The repaired statement -/
 
 /-- **DGO, Theorem 5.3, with the hypothesis the transcription dropped.**
