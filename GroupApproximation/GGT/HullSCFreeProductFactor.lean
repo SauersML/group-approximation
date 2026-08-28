@@ -525,19 +525,18 @@ needs beyond Hull's Theorem 7.1 for a single relator.
 
 Write `Γ = E ∗ H`, `A` for the union alphabet, `|·|` for its word length.
 
-**(0) The syllable-sum formula.**  `|g| = Σᵢ |gᵢ|_{A_i}` over the syllables of
-the normal form of `g` — Mathlib's `Monoid.CoprodI.Word.equiv`, after the binary
-to indexed identification `Higman.toCoprodI`.  Both inequalities are elementary
-and neither needs geometry: `≤` spells each syllable by a geodesic word of its
-own factor and concatenates, `≥` is `WordMetric.wordNorm_le_length` against the
-weight `Σᵢ |gᵢ|`, which is subadditive and at most one on letters — the argument
-`OsinWeightedMetric.RelativeLength.len_prod_le` runs for the syllable count.
-This is the only step that needs normal forms, and everything else is arithmetic
-on top of it.
+**(0) The syllable-sum formula — DONE.**  `|g| = Σᵢ |gᵢ|_{A_i}` over the
+syllables of the normal form of `g`:
+`Algebra/FreeProductUnionNorm.wordNorm_eq_syllableNorm`, proved at `CoprodI`
+generality over an arbitrary family of factor alphabets, so that the relative
+lane shares it — Osin's `X ∪ U` is this alphabet with the peripheral `S i` taken
+to be the whole factor.  The binary free product reaches it along
+`Higman.coprodEquiv` through `wordNorm_of_mulEquiv`.  This is the only step that
+needs normal forms, and everything else is arithmetic on top of it.
 
-**(1) Reduce to the identity.**  `isHyperbolicSpace_cayley_of_base`, proved
-above: the word metric is left invariant, so the four-point condition at an
-arbitrary basepoint is the four-point condition at `1`, which is where the
+**(1) Reduce to the identity — DONE.**  `isHyperbolicSpace_cayley_of_base`,
+proved above: the word metric is left invariant, so the four-point condition at
+an arbitrary basepoint is the four-point condition at `1`, which is where the
 normal form lives.
 
 **(2) The Gromov product at `1`, in syllables.**  Let `x, y ∈ Γ` have normal
@@ -552,25 +551,47 @@ where the second term is the Gromov product of `Γ(F, A_F)`.  The computation is
 the syllables on either side lie in the other factor — fed into
 `gromovProduct_base_eq`.
 
-**(3) Hyperbolicity at `δ = max δ_E δ_H`.**  Feed (2) into (1).  For `x, y, z`
-the three common prefixes obey the tree ultrametric exactly; the only defect is
-the case where two of the three pairs branch inside the *same* factor at the
-*same* node, and there the defect is that factor's four-point defect.  So the
-case split is on whether the three normal forms diverge at a common syllable.
+**(3) The four-point condition at `Δ = max δ_E δ_H`.**  Feed (2) into (1).  For
+`x, y, z` the three common prefixes obey the tree ultrametric exactly; the only
+defect is the case where two of the three pairs branch inside the *same* factor
+at the *same* node, and there the defect is that factor's four-point defect.  So
+the case split is on whether the three normal forms diverge at a common syllable.
 
-**(4) Acylindricity.**  Given `ε`, let `R_E, N_E` and `R_H, N_H` be what the two
-factors' acylindricity supplies at `ε`, and take `R = 2ε + R_E + R_H + 2` and
-`N = max N_E N_H`.  If `d(x,y) ≥ R` then the geodesic from `x` to `y` crosses a
-syllable boundary, and a `g` displacing both `x` and `y` by at most `ε` cannot
-move that boundary: crossing it costs a whole syllable, and the syllables in
-between are longer than `2ε`.  So `g` fixes the branch point, hence lies in a
-single vertex group `w F w⁻¹`, and the count is that factor's count at `ε`.  The
-step that makes this an equality rather than a bound is that the Bass-Serre tree
-of a free product has trivial edge stabilisers, so nothing survives the crossing.
+State the output as `Hyperbolic.IsFourPointHyperbolic (unionCarrier S) Δ`, the
+`ℕ`-valued condition on the word metric, and not as
+`HullGeometry.IsHyperbolicSpace`: the conversion from the one to the other at a
+Cayley graph does not exist in the repository — `isHyperbolicSpace_zero_cayley`
+does only the tree-like `δ = 0` case through `IsTreeLike` — and the relative
+lane needs the same conversion, so it is being built once, there.
 
-Step (4) is the one whose constants have to be checked against the definition
-rather than read off; `HullGeometry.IsAcylindrical` quantifies `R` and `N` after
-`ε`, which is the order this plan uses. -/
+**(4′) Acylindricity, without ever counting a ball.**  Hull's alphabets are
+infinite, so the ball `{g : |g| ≤ ε}` is infinite: **no step of this argument may
+bound a set of elements by its diameter.**  Every bound has to come from a
+two-point stabiliser, and the two-point stabilisers are available because each
+factor's own action is acylindrical — that is the `acylindrical` field of its
+`HullGeneratingSet`.
+
+Given `ε`, let `R_E, N_E` and `R_H, N_H` be what the two factors' acylindricity
+supplies at `ε`, and take `R = 2ε + max R_E R_H + 2` and `N = max N_E N_H`.  Let
+`d(x,y) ≥ R` and let `D = {g : d(x, g·x) ≤ ε ∧ d(y, g·y) ≤ ε}`.  Two cases on the
+syllable geodesic from `x` to `y`:
+
+* `x` and `y` lie in one vertex coset, at distance at least `R` inside it.
+  Conjugating by that coset's representative reduces `D` to the two-point
+  displacement set of the factor's own action at `ε`, at two points at distance
+  at least `R_F`, so `D` is finite with `|D| ≤ N_F`.
+* the geodesic crosses a syllable boundary.  A `g` displacing both `x` and `y` by
+  at most `ε` cannot move the branch points at the ends of the crossing —
+  moving either costs a whole syllable, and the crossed syllables are longer than
+  `2ε` because `d(x,y) ≥ R` — so `g` fixes both.  Trivial edge stabilisers make
+  the pointwise stabiliser of two branch points a whole syllable apart a subgroup
+  of a single vertex group, and inside that vertex space the count is again the
+  factor's `N_F` at `ε`, at the two branch points.
+
+So `N = max N_E N_H`, and no ball is enumerated anywhere.  The constants still
+have to be checked against `HullGeometry.IsAcylindrical`, which quantifies `R`
+and `N` after `ε` — the order this plan uses — and the crossing estimate is the
+step where the plan is likeliest to need repair. -/
 def FreeProductUnionGeometryStatement : Prop :=
   ∀ (E H : Type) [Group E] [Group H],
     Group.IsFinitelyPresented E → Group.IsFinitelyPresented H →
