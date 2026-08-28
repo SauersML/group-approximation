@@ -10,11 +10,14 @@
   const html = document.documentElement;
   let checking = false;
 
-  function check() {
+  // hide: blank the page while checking (first load, tab switch).  Periodic
+  // re-checks of an open tab pass false so the page does not flicker; a
+  // stale result still reloads.
+  function check(hide) {
     if (checking) return;
     checking = true;
     html.classList.remove('freshness-error');
-    html.classList.add('freshness-check');
+    if (hide) html.classList.add('freshness-check');
 
     fetch(root + 'version.json?_=' + Date.now(), { cache: 'no-store' })
       .then(r => r.ok ? r.json() : Promise.reject(new Error('version check failed')))
@@ -51,10 +54,15 @@
       });
   }
 
-  check();
+  check(true);
   addEventListener('pagehide', () => html.classList.add('freshness-check'));
-  addEventListener('pageshow', ev => { if (ev.persisted) check(); });
+  addEventListener('pageshow', ev => { if (ev.persisted) check(true); });
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') check();
+    if (document.visibilityState === 'visible') check(true);
   });
+  // A tab left open during an editing session never fires the events above,
+  // so poll while visible; the deploy cadence is minutes, so a minute is enough.
+  setInterval(() => {
+    if (document.visibilityState === 'visible') check(false);
+  }, 60000);
 })();
