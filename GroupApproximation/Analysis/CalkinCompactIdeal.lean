@@ -54,8 +54,16 @@ So the Calkin algebra is three theorems away, not one construction away, and
 two of the three (Schauder, the quotient C-star identity) are results Mathlib
 does not have.  The ideal itself, below, is unconditional.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+Item 1 is now a theorem: `Analysis/CalkinSchauderProof.compactStarClosed`.  Items
+2 and 3 turned out not to be owed at all — `Analysis/CStarIdealQuotient`,
+`Analysis/CStarSeminormQuotient` and `Analysis/CStarIdealApproximateUnit` already
+carry the quotient's ring, norm, star and C-star identity for every closed
+star-stable two-sided ideal, and they are root-imported.
+`Analysis/CalkinCStarAlgebra` assembles the three.
+
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated, so the first build after the suspension
+is where its names are checked.
 -/
 
 namespace GroupApproximation

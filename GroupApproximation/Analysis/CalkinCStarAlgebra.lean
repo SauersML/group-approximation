@@ -37,9 +37,8 @@ algebra, so `Analysis/ShulmanFillTheorem13`'s three atoms can be written as
 statements about `*`-homomorphisms and completely positive maps into it, rather
 than left in prose.
 
-This module is deliberately not in the root import list: it was authored while
-builds were suspended, so it is kept out of the closure until it has been
-elaborated, like the `Analysis/Calkin*` modules it extends.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

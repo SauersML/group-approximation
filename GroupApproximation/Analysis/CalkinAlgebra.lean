@@ -30,8 +30,16 @@ Still owed after that: the C-star identity,
 algebra rather than a normed star algebra, and only then can Arveson,
 Stinespring and Voiculescu be stated against it.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+Both of those are now discharged, and neither the way this module expected.
+Schauder is `Analysis/CalkinSchauderProof.compactStarClosed`, installed as an
+instance in `Analysis/CalkinAlgebraStar`.  The C-star identity is not owed at
+all: `Analysis/CStarIdealApproximateUnit`, root-imported, proves it for every
+closed star-stable two-sided ideal, and `Analysis/CalkinCStarAlgebra` builds
+`Q(H)` on that instead of on the hand-built quotient below.
+
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated, so the first build after the suspension
+is where its names are checked.
 -/
 
 namespace GroupApproximation

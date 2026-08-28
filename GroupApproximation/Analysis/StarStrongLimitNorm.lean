@@ -55,9 +55,10 @@ uses is the implication, at models that are themselves MF.  That implication is
 family beyond `HasMFEmbedding (A n)`, which the matrix models satisfy.  Nothing
 in this module cites the refuted biconditional.
 
-This module is deliberately not in the root import list: it was authored while
-builds were suspended, so it is kept out of the closure until it has been
-elaborated, like the `Analysis/StarStrong*` modules it extends.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.  The names it uses that have no other
+precedent in the repository, and so are where the first build should look first,
+are `Filter.Frequently.and_eventually` and `Filter.Frequently.exists`.
 -/
 
 namespace GroupApproximation

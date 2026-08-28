@@ -39,9 +39,12 @@ The estimate is the whole content; the neighbourhood form of
 `isCompactOperator_iff_image_ball_subset_compact`, the same route
 `Analysis/CompactIntegralOperator` uses.
 
-This module is deliberately not in the root import list: it was authored while
-builds were suspended, so it is kept out of the closure until it has been
-elaborated, exactly like the `Analysis/Calkin*` modules it extends.
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.  The names it uses that have no other
+precedent in the repository, and so are where the first build should look first,
+are `isCompact_iff_totallyBounded_isComplete`, `IsClosed.isComplete`,
+`TotallyBounded.closure`, `TotallyBounded.subset`, `IsCompact.totallyBounded`
+and `Metric.totallyBounded_iff`.
 -/
 
 namespace GroupApproximation

@@ -16,9 +16,14 @@ and Voiculescu can be stated against it as maps of C-star algebras, is the
 quotient C-star identity `CStarQuotient.CStarIdentityStatement`, whose standard
 proof runs through an approximate unit of the ideal.
 
-This module is deliberately not in the root import list: it was authored while
-builds were suspended, so it is kept out of the closure until it has been
-elaborated, like the `Analysis/Calkin*` modules it extends.
+`Analysis/CalkinCStarAlgebra` supersedes this route: it builds `Q(H)` on the
+root-imported quotient machinery, which already carries the C-star identity, so
+nothing is left owed there.  This module is kept because
+`Analysis/CalkinAlgebra`'s opaque `Calkin H` still exists and its star should not
+rest on a hypothesis.
+
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated.
 -/
 
 namespace GroupApproximation

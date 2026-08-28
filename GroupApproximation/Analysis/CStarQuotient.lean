@@ -34,8 +34,22 @@ through an approximate unit of the ideal, and it does not follow from the
 corona's argument: that one is a `limsup` computation available only because
 that quotient is an `ℓ^∞` product modulo a null ideal.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+## This module duplicates work that was already done
+
+The construction below was written without noticing that the repository already
+had it, in another vocabulary and in the root import closure:
+`Analysis/CStarIdealQuotient` supplies the quotient's `SeminormedRing`,
+`NormedRing`, `NormedStarGroup` and `NormedAlgebra`,
+`Analysis/CStarSeminormQuotient` the descended involution for a star-stable
+ideal, and `Analysis/CStarIdealApproximateUnit` the approximate unit and with it
+`CStarTensor.instCStarRingQuotient` and `CStarTensor.instCStarAlgebraQuotient`.
+So `CStarIdentityStatement` below is not owed: the quotient C-star identity is
+proved, unconditionally, in `CStarTensor`.  New consumers should use those
+instances; `Analysis/CalkinCStarAlgebra` is the pattern.
+
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated, so the first build after the suspension
+is where its names are checked.
 -/
 
 namespace GroupApproximation

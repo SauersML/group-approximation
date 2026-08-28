@@ -39,8 +39,13 @@ that form is a genuine argument about neighbourhoods rather than a rewrite.
 It is one statement about one operator, with no amalgams, coronas or ideals in
 it, and Mathlib has nothing of the shape `S*S` compact implies `S` compact.
 
-This module is not in the root import list.  It was authored while builds were
-suspended, so it is kept out of the closure until it has been elaborated.
+The residual is no longer left unproved: `Analysis/CalkinSchauderProof` proves it,
+so `compactStarClosed_of_compactOfStarMulSelf` is applied there and Schauder's
+theorem is unconditional.
+
+This module is in the root import list.  It was authored while builds were
+suspended and has not been elaborated, so the first build after the suspension
+is where its names are checked.
 -/
 
 namespace GroupApproximation
