@@ -57,6 +57,7 @@ theorem exists_relWord (D : RelGenSet G Λ) :
           · exact hx
           · exact hw1 a ha'
         · rw [listVal_cons, hw2, List.prod_cons]
+          rfl
         · simp [hw3]
       · rw [Set.mem_iUnion] at hx
         obtain ⟨lam, hlam⟩ := hx
@@ -66,6 +67,7 @@ theorem exists_relWord (D : RelGenSet G Λ) :
           · exact hlam
           · exact hw1 a ha'
         · rw [listVal_cons, hw2, List.prod_cons]
+          rfl
         · simp [hw3]
 
 /-- **`ExistsGeodesicWord` holds, for every relative generating set.**  The
@@ -81,6 +83,7 @@ theorem existsGeodesicWord (D : RelGenSet G Λ) : ExistsGeodesicWord D := by
   · rw [hw2, hl.prod_eq]
     group
   · rw [hw3, hlen, wordDist]
+    rfl
 
 /-- `S(f,g;D)` is finite for every pair, with no geodesic supplied by the
 caller: `existsGeodesicWord` produces one.  This is what makes `sepCard`
