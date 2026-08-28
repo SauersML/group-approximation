@@ -167,7 +167,8 @@ theorem connected_trans {H : Λ → Subgroup G} {lam : Λ} {v : G}
 theorem connected_smul {H : Λ → Subgroup G} {lam : Λ} {v : G}
     {w : List (RelLetter G Λ)} {i j : ℕ} (a : G) :
     Connected H lam (a * v) w i j ↔ Connected H lam v w i j := by
-  show (vertex (a * v) w i)⁻¹ * vertex (a * v) w j ∈ H lam ↔ _
+  show (vertex (a * v) w i)⁻¹ * vertex (a * v) w j ∈ H lam ↔
+    (vertex v w i)⁻¹ * vertex v w j ∈ H lam
   rw [vertex_smul, vertex_smul]
   have h : (a * vertex v w i)⁻¹ * (a * vertex v w j)
       = (vertex v w i)⁻¹ * vertex v w j := by group

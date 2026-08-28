@@ -138,6 +138,7 @@ theorem revInv_revInv (v : List (GGT.RelLetter G Λ)) : revInv (revInv v) = v :=
   | nil => rfl
   | cons a t ih =>
       rw [revInv_cons, revInv_append, revInv_singleton, inv_inv_letter, ih]
+      rfl
 
 /-- A letter of the formal inverse is the formal inverse of a letter. -/
 theorem inv_mem_of_mem_revInv {a : GGT.RelLetter G Λ}
@@ -212,25 +213,25 @@ theorem Sym.length_eq {v w : List (GGT.RelLetter G Λ)} (h : Sym v w) :
     w.length = v.length := by
   induction h with
   | base => rfl
-  | rot _w _n _hw ih =>
+  | rot _n _hw ih =>
       rw [List.length_rotate]
       exact ih
-  | inv _w _hw ih =>
+  | inv _hw ih =>
       rw [length_revInv]
       exact ih
 
 /-- Every letter of every member is a letter of the relator or the formal
 inverse of one. -/
 theorem Sym.letters {v w : List (GGT.RelLetter G Λ)} (h : Sym v w) :
-    ∀ a ∈ w, a ∈ v ∨ inv a ∈ v := by
+    ∀ a ∈ w, a ∈ v ∨ RelWord.inv a ∈ v := by
   induction h with
   | base => exact fun a ha => Or.inl ha
-  | rot _w _n _hw ih =>
+  | rot _n _hw ih =>
       intro a ha
       exact ih a (List.mem_rotate.mp ha)
-  | inv _w _hw ih =>
+  | inv _hw ih =>
       intro a ha
-      rcases ih (inv a) (inv_mem_of_mem_revInv ha) with h1 | h1
+      rcases ih (RelWord.inv a) (inv_mem_of_mem_revInv ha) with h1 | h1
       · exact Or.inr h1
       · rw [inv_inv_letter] at h1
         exact Or.inl h1
@@ -242,13 +243,13 @@ theorem Sym.exists_rotate {v w : List (GGT.RelLetter G Λ)} (h : Sym v w) :
     (∃ n : ℕ, w = v.rotate n) ∨ (∃ n : ℕ, w = (revInv v).rotate n) := by
   induction h with
   | base => exact Or.inl ⟨0, (List.rotate_zero v).symm⟩
-  | rot _w n _hw ih =>
+  | rot n _hw ih =>
       rcases ih with ⟨m, hm⟩ | ⟨m, hm⟩
       · refine Or.inl ⟨m + n, ?_⟩
         rw [hm, List.rotate_rotate]
       · refine Or.inr ⟨m + n, ?_⟩
         rw [hm, List.rotate_rotate]
-  | inv _w _hw ih =>
+  | inv _hw ih =>
       rcases ih with ⟨m, hm⟩ | ⟨m, hm⟩
       · obtain ⟨k, hk⟩ := exists_revInv_rotate v m
         refine Or.inr ⟨k, ?_⟩
@@ -320,7 +321,7 @@ theorem pieces_small_of_longMatch {D : GGT.RelGenSet G Λ}
   by_cases hbig : B < u.length
   · exact absurd
       (hmatch w w' u u' hsw hsw' hpre ⟨s', hw'eq⟩ hbig y z hy hz hval) hexcl
-  · push_neg at hbig
+  · push Not at hbig
     have h1 : (u.length : ℝ) ≤ (B : ℝ) := by exact_mod_cast hbig
     rw [hlen]
     linarith
