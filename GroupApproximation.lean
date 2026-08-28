@@ -2399,6 +2399,9 @@ import GroupApproximation.GGT.OsinLemma512Torsion
 import GroupApproximation.GGT.HullSCRelatorSeparationBall
 import GroupApproximation.GGT.HullSCRelatorSeparationGaps
 import GroupApproximation.GGT.HullSCRelatorSeparationBlock
+import GroupApproximation.GGT.OsinTheorem54SeparatingCosets
+import GroupApproximation.GGT.OsinTheorem54SepReversal
+import GroupApproximation.GGT.OsinTheorem54SepComponents
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
