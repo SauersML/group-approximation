@@ -259,7 +259,7 @@ theorem exists_notMem_elementaryClosure (hiso : IsIsometricAction G X) {x : X}
     ∃ f : G, f ∉ elementaryClosure g := by
   obtain ⟨a, -, b, -, ha, hb, hab⟩ := hG
   by_contra hall
-  push_neg at hall
+  push Not at hall
   have hkey : ∀ c : G, IsLoxodromic c x →
       ∃ j m : ℤ, j ≠ 0 ∧ m ≠ 0 ∧ g ^ j = c ^ m := by
     intro c hc
@@ -360,7 +360,7 @@ theorem actsNonElementarily_of_isSNormal (hiso : IsIsometricAction G X)
     hlox N (not_bddOrbit_of_isSNormal hiso hacy hN hg₁)
   obtain ⟨h, hhN, hh⟩ : ∃ h : G, h ∈ N ∧ h ∉ elementaryClosure g := by
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     have hNle : N ≤ elementaryClosure g := by
       intro y hy
       exact hcon y hy

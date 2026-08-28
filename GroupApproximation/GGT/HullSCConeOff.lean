@@ -316,7 +316,7 @@ theorem not_isLoxodromic_of_subgroup_subset {G : Type u} [Group G]
       wordNorm_le_one_of_mem (hHA (H.pow_mem hh n))
     exact_mod_cast hone
   have hlow := hle n
-  have hmul : B + 1 < (n : ℝ) * l := (div_lt_iff hl).mp hn
+  have hmul : B + 1 < (n : ℝ) * l := (div_lt_iff₀ hl).mp hn
   rw [mul_comm] at hmul
   linarith
 

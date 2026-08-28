@@ -298,10 +298,12 @@ theorem two_mu_deg_pos : (0 : ℚ) < 2 * D.mu * D.deg :=
 theorem four_mu_deg_ord_pos : (0 : ℚ) < 4 * D.mu * D.deg * D.ord :=
   mul_pos (mul_pos (mul_pos (by norm_num) D.mu_pos) D.deg_pos) D.ord_pos
 
+include D in
 theorem card_pos : (0 : ℚ) < (Fintype.card V : ℚ) := by
   rw [D.card_eq]
   nlinarith [D.ord_pos, sq_nonneg D.ord]
 
+include D in
 theorem card_ne_zero : (Fintype.card V : ℚ) ≠ 0 := ne_of_gt D.card_pos
 
 /-- The contraction constant `s = (2q + mu²)/(2 mu (q+1))`, which is
@@ -446,6 +448,7 @@ noncomputable def gramRow : QuadRow V → V → ℚ
   | Sum.inr (Sum.inl p), v => D.factorC p.2 * D.colC p.1 v
   | Sum.inr (Sum.inr k), v => D.factorW k * D.sign v
 
+omit [DecidableEq V] in
 private theorem sum_block (a : Fin 4 → ℚ) (B : V → V → ℚ) (v v' : V) :
     ∑ p : V × Fin 4, (a p.2 * B p.1 v) * (a p.2 * B p.1 v')
       = (∑ k, a k ^ 2) * (∑ u, B u v * B u v') := by

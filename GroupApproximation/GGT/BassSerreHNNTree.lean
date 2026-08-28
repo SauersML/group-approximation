@@ -135,8 +135,14 @@ theorem treeAdj_irrefl (φ : A ≃* B) (v : Vertex φ) : ¬ treeAdj φ v v := by
 /-- **The Bass--Serre graph of `HNNExtension G A B φ`.** -/
 def tree (φ : A ≃* B) : SimpleGraph (Vertex φ) where
   Adj := treeAdj φ
-  symm := fun _ _ h => treeAdj_symm φ h
-  loopless := fun v h => treeAdj_irrefl φ v h
+  symm := by
+    constructor
+    intro v w h
+    exact treeAdj_symm φ h
+  loopless := by
+    constructor
+    intro v h
+    exact treeAdj_irrefl φ v h
 
 @[simp] theorem tree_adj_iff (φ : A ≃* B) (v w : Vertex φ) :
     (tree φ).Adj v w ↔ treeAdj φ v w := Iff.rfl

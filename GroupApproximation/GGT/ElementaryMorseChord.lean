@@ -196,7 +196,7 @@ theorem exists_left_anchor {δ r L : ℝ} (hδ0 : 0 ≤ δ) (hr : 2 * δ < r)
     unfold gromovProduct
     rw [hd]
     linarith
-  · push_neg at hw
+  · push Not at hw
     refine ⟨0, 0, Nat.zero_le N, le_refl 0, hs₀.1, by linarith, ?_, ?_⟩
     · rw [hf0, dist_self]
       linarith
@@ -234,7 +234,7 @@ theorem exists_right_anchor {δ r L : ℝ} (hδ0 : 0 ≤ δ) (hr : 2 * δ < r)
     unfold gromovProduct
     rw [hd]
     linarith
-  · push_neg at hw
+  · push Not at hw
     refine ⟨N, L, le_refl N, hs₀.2, le_refl L, by linarith, ?_, ?_⟩
     · rw [hfL, dist_self]
       linarith
@@ -270,7 +270,7 @@ theorem exists_bound_radius_of_chord_point {δ D l B : ℝ}
   by_cases hr2 : r ≤ 2 * δ
   · have := mul_nonneg hclogM hδ0
     linarith
-  push_neg at hr2
+  push Not at hr2
   obtain ⟨a, s₁, haN, hs₁0, hs₁s₀, hs₁w, ha, hga⟩ :=
     exists_left_anchor hδ0 hr2 y N hf hf0 hs₀ havoid hdense
   obtain ⟨b, s₂, hbN, hs₀s₂, hs₂L, hs₂w, hb, hgb⟩ :=
@@ -354,12 +354,12 @@ theorem exists_bound_chord_near_chain {δ D l B : ℝ}
     intro t ht
     obtain ⟨i, hiN, hi⟩ := ((hmemT r).mp hrT).2 t ht
     exact ⟨i, hiN, by linarith⟩
-  · push_neg at hcase
+  · push Not at hcase
     exfalso
     have hpoint : ∃ t₀ ∈ Set.Icc (0 : ℝ) L,
         ∀ i, i ≤ N → sInf T / 2 ≤ dist (y i) (f t₀) := by
       by_contra hcon
-      push_neg at hcon
+      push Not at hcon
       have hmem : sInf T / 2 ∈ T := by
         refine (hmemT _).mpr ⟨by linarith, fun t ht => ?_⟩
         obtain ⟨i, hiN, hi⟩ := hcon t ht
@@ -427,10 +427,10 @@ theorem exists_bound_chain_near_chord {δ D l B : ℝ}
       refine ⟨min (sSup S + 1) L, ht₂I, min_le_left _ _, hτt₂.le, i₂, hi₂N, ?_,
         hi₂⟩
       by_contra hlt
-      push_neg at hlt
+      push Not at hlt
       have hmem : min (sSup S + 1) L ∈ S := (hmemS _).mpr ⟨ht₂I, i₂, hlt, hi₂⟩
       exact absurd (le_csSup hbdd hmem) (not_le.mpr hτt₂)
-    · push_neg at hτ
+    · push Not at hτ
       refine ⟨L, ⟨hL, le_refl L⟩, by linarith, hτL, N, le_refl N, hjN, ?_⟩
       rw [hfL, dist_self]
       exact hK₁0
