@@ -433,6 +433,61 @@ theorem hullCommonQuotient_of_oneStep_of_union (h : HullOneStepStatement.{0})
   hullCommonQuotient_of_oneStep_of_alphabet h
     (freeProductAlphabetStatement_of_union hunion)
 
+/-! ## The four-point condition on a Cayley graph is a condition at the identity -/
+
+/-- **The Gromov product at the basepoint of `Γ(G,A)`**, in word lengths. -/
+theorem gromovProduct_base_eq {G : Type u} [Group G] (A : Alphabet G) (x y : G) :
+    gromovProduct (Cayley.of A x) (Cayley.of A y) (Cayley.base A)
+      = ((wordNorm A.carrier x : ℝ) + (wordNorm A.carrier y : ℝ)
+          - (wordDist A.carrier x y : ℝ)) / 2 := by
+  have hx : dist (Cayley.of A x) (Cayley.base A)
+      = (wordNorm A.carrier x : ℝ) := by
+    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_base,
+      wordDist_comm A.symmetricGenerating, wordDist_one_left]
+  have hy : dist (Cayley.of A y) (Cayley.base A)
+      = (wordNorm A.carrier y : ℝ) := by
+    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_base,
+      wordDist_comm A.symmetricGenerating, wordDist_one_left]
+  have hxy : dist (Cayley.of A x) (Cayley.of A y)
+      = (wordDist A.carrier x y : ℝ) := by
+    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_of]
+  unfold gromovProduct
+  rw [hx, hy, hxy]
+
+/-- **The four-point condition on a Cayley graph is a condition at the
+identity.**
+
+The word metric is left invariant, so translating by `w⁻¹` carries an arbitrary
+basepoint to the basepoint `1`; the Gromov products of the translated points are
+the Gromov products of the original ones.  So hyperbolicity of `Γ(G,A)` has to be
+checked only at the identity, which is where a normal form is available. -/
+theorem isHyperbolicSpace_cayley_of_base {G : Type u} [Group G] (A : Alphabet G)
+    {δ : ℝ}
+    (h : ∀ x y z : G,
+      min (gromovProduct (Cayley.of A x) (Cayley.of A y) (Cayley.base A))
+          (gromovProduct (Cayley.of A y) (Cayley.of A z) (Cayley.base A)) - δ
+        ≤ gromovProduct (Cayley.of A x) (Cayley.of A z) (Cayley.base A)) :
+    IsHyperbolicSpace δ (Cayley A) := by
+  intro w x y z
+  have key : ∀ a b : Cayley A, dist a b
+      = dist (Cayley.of A ((Cayley.val w)⁻¹ * Cayley.val a))
+          (Cayley.of A ((Cayley.val w)⁻¹ * Cayley.val b)) := by
+    intro a b
+    rw [Cayley.dist_eq, Cayley.dist_eq, Cayley.val_of, Cayley.val_of]
+    exact_mod_cast (wordDist_left_invariant A.carrier (Cayley.val w)⁻¹
+      (Cayley.val a) (Cayley.val b)).symm
+  have hw : Cayley.of A ((Cayley.val w)⁻¹ * Cayley.val w) = Cayley.base A := by
+    rw [inv_mul_cancel]
+    rfl
+  have hgp : ∀ a b : Cayley A, gromovProduct a b w
+      = gromovProduct (Cayley.of A ((Cayley.val w)⁻¹ * Cayley.val a))
+          (Cayley.of A ((Cayley.val w)⁻¹ * Cayley.val b)) (Cayley.base A) := by
+    intro a b
+    unfold gromovProduct
+    rw [key a w, key b w, key a b, hw]
+  rw [hgp x y, hgp y z, hgp x z]
+  exact h _ _ _
+
 /-! ## The residue, with the alphabet constructed -/
 
 /-- **Two geometric clauses, and nothing else.**
@@ -451,7 +506,58 @@ Both are statements about the tree of spaces obtained by replacing each vertex
 of the Bass-Serre tree by a copy of `Γ(E, A)` or `Γ(H, B)`.  This is the
 smallest form the free product input takes: by
 `hullCommonQuotient_of_oneStep_of_geometry` it is all that Hull's Corollary 7.4
-needs beyond Hull's Theorem 7.1 for a single relator. -/
+needs beyond Hull's Theorem 7.1 for a single relator.
+
+## The plan for the two clauses
+
+Write `Γ = E ∗ H`, `A` for the union alphabet, `|·|` for its word length.
+
+**(0) The syllable-sum formula.**  `|g| = Σᵢ |gᵢ|_{A_i}` over the syllables of
+the normal form of `g` — Mathlib's `Monoid.CoprodI.Word.equiv`, after the binary
+to indexed identification `Higman.toCoprodI`.  Both inequalities are elementary
+and neither needs geometry: `≤` spells each syllable by a geodesic word of its
+own factor and concatenates, `≥` is `WordMetric.wordNorm_le_length` against the
+weight `Σᵢ |gᵢ|`, which is subadditive and at most one on letters — the argument
+`OsinWeightedMetric.RelativeLength.len_prod_le` runs for the syllable count.
+This is the only step that needs normal forms, and everything else is arithmetic
+on top of it.
+
+**(1) Reduce to the identity.**  `isHyperbolicSpace_cayley_of_base`, proved
+above: the word metric is left invariant, so the four-point condition at an
+arbitrary basepoint is the four-point condition at `1`, which is where the
+normal form lives.
+
+**(2) The Gromov product at `1`, in syllables.**  Let `x, y ∈ Γ` have normal
+forms with maximal common syllable prefix `p`, and let `u, v` be the syllables
+that follow.  By (0),
+
+    (x|y)₁ = |p| + (u|v)₁^F   when `u` and `v` lie in the same factor `F`,
+    (x|y)₁ = |p|              otherwise,
+
+where the second term is the Gromov product of `Γ(F, A_F)`.  The computation is
+`|x⁻¹y| = |x''| + |u⁻¹v| + |y''|` — no cancellation across the seams, because
+the syllables on either side lie in the other factor — fed into
+`gromovProduct_base_eq`.
+
+**(3) Hyperbolicity at `δ = max δ_E δ_H`.**  Feed (2) into (1).  For `x, y, z`
+the three common prefixes obey the tree ultrametric exactly; the only defect is
+the case where two of the three pairs branch inside the *same* factor at the
+*same* node, and there the defect is that factor's four-point defect.  So the
+case split is on whether the three normal forms diverge at a common syllable.
+
+**(4) Acylindricity.**  Given `ε`, let `R_E, N_E` and `R_H, N_H` be what the two
+factors' acylindricity supplies at `ε`, and take `R = 2ε + R_E + R_H + 2` and
+`N = max N_E N_H`.  If `d(x,y) ≥ R` then the geodesic from `x` to `y` crosses a
+syllable boundary, and a `g` displacing both `x` and `y` by at most `ε` cannot
+move that boundary: crossing it costs a whole syllable, and the syllables in
+between are longer than `2ε`.  So `g` fixes the branch point, hence lies in a
+single vertex group `w F w⁻¹`, and the count is that factor's count at `ε`.  The
+step that makes this an equality rather than a bound is that the Bass-Serre tree
+of a free product has trivial edge stabilisers, so nothing survives the crossing.
+
+Step (4) is the one whose constants have to be checked against the definition
+rather than read off; `HullGeometry.IsAcylindrical` quantifies `R` and `N` after
+`ε`, which is the order this plan uses. -/
 def FreeProductUnionGeometryStatement : Prop :=
   ∀ (E H : Type) [Group E] [Group H],
     Group.IsFinitelyPresented E → Group.IsFinitelyPresented H →
