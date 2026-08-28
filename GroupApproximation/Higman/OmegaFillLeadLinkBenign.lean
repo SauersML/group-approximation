@@ -485,8 +485,10 @@ theorem genConjHom_comp_genHom :
     rfl
   · show genConjHom P j (genHom P b) = genHom P (rowConjHom j b)
     rw [genHom_b, genConjHom_gen2, rowConjHom_b]
+    exact (genHom_b P).symm
   · show genConjHom P j (genHom P c) = genHom P (rowConjHom j c)
     rw [genHom_c, genConjHom_gen3, rowConjHom_c]
+    exact (genHom_c P).symm
 
 theorem genConjHomInv_comp_genHom :
     (genConjHomInv P j).comp (genHom P) = (genHom P).comp (rowConjHomInv j) := by
@@ -497,8 +499,10 @@ theorem genConjHomInv_comp_genHom :
     rfl
   · show genConjHomInv P j (genHom P b) = genHom P (rowConjHomInv j b)
     rw [genHom_b, genConjHomInv_gen2, rowConjHomInv_b]
+    exact (genHom_b P).symm
   · show genConjHomInv P j (genHom P c) = genHom P (rowConjHomInv j c)
     rw [genHom_c, genConjHomInv_gen3, rowConjHomInv_c]
+    exact (genHom_c P).symm
 
 theorem genConjHom_genHom (y : F₃) :
     genConjHom P j (genHom P y) = genHom P (rowConjHom j y) :=

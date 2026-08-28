@@ -2389,6 +2389,7 @@ import GroupApproximation.Analysis.ShulmanFillNormingFamily
 import GroupApproximation.Analysis.ShulmanFillNormingResiduallyFinite
 import GroupApproximation.Higman.OmegaTowerSelectedArbitraryTargetClassifier
 import GroupApproximation.GGT.CayleyGeodesicQuotient
+import GroupApproximation.Higman.OmegaFillLeadLinkBenign
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
