@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.LanceMatrixArveson
 import GroupApproximation.Analysis.CStarCompletelyPositiveForm
+import GroupApproximation.Analysis.CStarUnitalCPContractive
 
 /-!
 # Arveson's extension theorem at a `B(H)` target, reduced to the limit step
@@ -205,6 +206,24 @@ theorem isometryCompress_star (J : K →L[ℂ] H) (Φ : B →ₗ[ℂ] (H →L[�
     exact ContinuousLinearMap.adjoint_inner_right (Φ b) (J x) (J y)
   rw [hleft, hright, hmid]
 
+/-- Dilating by a contraction does not increase the norm. -/
+theorem norm_isometryDilate_le (J : K →L[ℂ] H) (hJnorm : ‖J‖ ≤ 1)
+    (Θ : B →ₗ[ℂ] (K →L[ℂ] K)) (b : B) :
+    ‖isometryDilate J Θ b‖ ≤ ‖Θ b‖ := by
+  have hadj : ‖(ContinuousLinearMap.adjoint J : H →L[ℂ] K)‖ = ‖J‖ :=
+    ContinuousLinearMap.adjoint.norm_map J
+  have h1 : ‖isometryDilate J Θ b‖
+      ≤ ‖J‖ * ‖(Θ b).comp (ContinuousLinearMap.adjoint J)‖ :=
+    ContinuousLinearMap.opNorm_comp_le _ _
+  have h2 : ‖(Θ b).comp (ContinuousLinearMap.adjoint J)‖
+      ≤ ‖Θ b‖ * ‖(ContinuousLinearMap.adjoint J : H →L[ℂ] K)‖ :=
+    ContinuousLinearMap.opNorm_comp_le _ _
+  rw [hadj] at h2
+  have h3 : ‖(Θ b).comp (ContinuousLinearMap.adjoint J)‖ ≤ ‖Θ b‖ := by
+    nlinarith [norm_nonneg (Θ b), norm_nonneg J, h2, hJnorm]
+  nlinarith [norm_nonneg J, norm_nonneg (Θ b),
+    norm_nonneg ((Θ b).comp (ContinuousLinearMap.adjoint J)), h1, h3, hJnorm]
+
 end Transport
 
 /-! ## Step 4, as one named statement -/
@@ -216,13 +235,24 @@ subalgebra has a form-positive limit, unital, agreeing there.
 This is the Banach--Alaoglu step of the classical proof, in the only form the
 compression argument needs.  It is the whole of what `arvesonBH_of_limit` below
 still owes.  Note that the approximants are *not* assumed unital: the dilations
-that feed it satisfy `Ψₙ(1) = Pₙ`, and unitality appears only in the limit. -/
+that feed it satisfy `Ψₙ(1) = Pₙ`, and unitality appears only in the limit.
+
+The uniform bound is a hypothesis and not a consequence of `IsFormCP`: form
+positivity bounds a map only together with a bound on its value at `1`, through
+Kadison--Schwarz, and this repository has that bound only for *unital*
+completely positive maps
+(`CStarUnitalCPContractive.IsCompletelyPositive.norm_apply_le_of_unital`).  An
+earlier version of this statement omitted it, which left it without the one
+estimate any weak-limit construction needs; `arvesonBH_of_limit` discharges it
+at the call site, where the approximants are dilations of unital completely
+positive maps. -/
 def ArvesonLimitStatement : Prop :=
   ∀ {A : Type} [CStarAlgebra A] {H : Type} [NormedAddCommGroup H]
     [InnerProductSpace ℂ H] [CompleteSpace H]
     (C : StarSubalgebra ℂ A) (Φ : ↥C →ₗ[ℂ] (H →L[ℂ] H))
     (Psi : ℕ → (A →ₗ[ℂ] (H →L[ℂ] H))),
     (∀ n, IsFormCP (Psi n)) →
+      (∀ (n : ℕ) (x : A), ‖Psi n x‖ ≤ ‖x‖) →
       (∀ v w : H,
         Tendsto (fun n ↦ ⟪v, Psi n 1 w⟫_ℂ) atTop (𝓝 ⟪v, w⟫_ℂ)) →
         (∀ (c : ↥C) (v w : H),
@@ -248,6 +278,7 @@ theorem arvesonBH_of_limit (hlimit : ArvesonLimitStatement)
     (J : ∀ n, EuclideanSpace ℂ (Fin (k n)) →L[ℂ] H)
     (hJ : ∀ (n : ℕ) (v : EuclideanSpace ℂ (Fin (k n))),
       (ContinuousLinearMap.adjoint (J n)) (J n v) = v)
+    (hJnorm : ∀ n : ℕ, ‖J n‖ ≤ 1)
     (hWOTone : ∀ v w : H,
       Tendsto (fun n ↦
         ⟪v, ((J n).comp (ContinuousLinearMap.adjoint (J n))) w⟫_ℂ)
@@ -273,10 +304,13 @@ theorem arvesonBH_of_limit (hlimit : ArvesonLimitStatement)
     · exact isometryCompress_one (J n) Φ (hJ n) hone
   choose Θ hΘcp hΘone hΘext using hstep
   -- Step 3: dilate back to `H`, and read off the three inputs of step 4.
-  refine hlimit C Φ (fun n ↦ isometryDilate (J n) (Θ n)) ?_ ?_ ?_
+  refine hlimit C Φ (fun n ↦ isometryDilate (J n) (Θ n)) ?_ ?_ ?_ ?_
   · intro n
     exact isFormCP_isometryDilate (J n) (Θ n)
       (isFormCP_of_isCompletelyPositive (hΘcp n))
+  · intro n x
+    refine (norm_isometryDilate_le (J n) (hJnorm n) (Θ n) x).trans ?_
+    exact (hΘcp n).norm_apply_le_of_unital (hΘone n) x
   · intro v w
     have hrw : ∀ n : ℕ, ∀ x : H,
         isometryDilate (J n) (Θ n) (1 : A) x

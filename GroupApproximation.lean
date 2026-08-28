@@ -2015,6 +2015,7 @@ import GroupApproximation.Analysis.ArvesonBHTarget
 import GroupApproximation.Analysis.VoiculescuPlan
 import GroupApproximation.Analysis.StarStrongBlockModel
 import GroupApproximation.Analysis.EllTwoBlockFamily
+import GroupApproximation.Analysis.ArvesonWeakLimit
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceNonunital
 import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedForms
