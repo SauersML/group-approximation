@@ -2252,6 +2252,7 @@ import GroupApproximation.GGT.BassSerreHNNIsTree
 import GroupApproximation.GGT.BassSerreHNNAction
 import GroupApproximation.GGT.BassSerreDoubleHNN
 import GroupApproximation.GGT.BassSerreHNNWPDInput
+import GroupApproximation.GGT.TreeWPDAxis
 import GroupApproximation.GGT.CayleyGeodesicModel
 import GroupApproximation.GGT.CayleyGeodesicRealisation
 import GroupApproximation.GGT.ElementaryBowditch
