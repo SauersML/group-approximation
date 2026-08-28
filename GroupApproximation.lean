@@ -2418,6 +2418,10 @@ import GroupApproximation.GGT.HullSCUnionGeometryFactorBranch
 import GroupApproximation.GGT.HullSCUnionGeometryCyclic
 import GroupApproximation.GGT.HullSCUnionGeometryTrichotomy
 import GroupApproximation.GGT.HullSCUnionGeometryHyperbolicFactor
+import GroupApproximation.GGT.OsinTheorem54SepTransport
+import GroupApproximation.GGT.OsinTheorem54SepSplit
+import GroupApproximation.GGT.OsinTheorem54SepFinite
+import GroupApproximation.GGT.OsinTheorem54SepSymmetric
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

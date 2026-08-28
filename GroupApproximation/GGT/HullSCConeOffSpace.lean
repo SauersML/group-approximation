@@ -228,8 +228,9 @@ theorem normalClosure_zpowers {G : Type u} [Group G] (w : G) :
   · refine Subgroup.normalClosure_le_normal ?_
     intro x hx
     obtain ⟨n, rfl⟩ := Subgroup.mem_zpowers_iff.mp hx
-    exact SetLike.mem_coe.mpr
-      (Subgroup.zpow_mem _ (Subgroup.subset_normalClosure rfl) n)
+    have hw : w ∈ Subgroup.normalClosure ({w} : Set G) :=
+      Subgroup.subset_normalClosure rfl
+    exact SetLike.mem_coe.mpr (Subgroup.zpow_mem _ hw n)
   · refine Subgroup.normalClosure_mono ?_
     intro x hx
     rw [Set.mem_singleton_iff] at hx
@@ -287,6 +288,19 @@ structure ConeOffData {G : Type u} [Group G] (A : Alphabet G) (K : Subgroup G)
   separated : ∀ g g' : G, g • apex ≠ g' • apex → sep ≤ dist (g • apex) (g' • apex)
   /-- The basepoint is `sep`-far from every apex. -/
   base_far : ∀ g : G, sep ≤ dist base (g • apex)
+  /-- **The injectivity radius, and it is Hull's §5 rather than DGO's.**
+  Nothing that moves the basepoint by less than the separation is killed, for
+  any quotient by the normal closure of `K`.
+
+  This is the one clause of `HullSCFilling.RotatingData` that is not geometry of
+  the cone-off, and it is not derivable from the fields above: DGO's Theorem 5.3
+  concludes the free splitting and the dichotomy, and the injectivity radius
+  follows from neither -- loxodromy is asymptotic and gives no bound at the
+  first power, and the splitting is not metric.  So it is asked of the cone-off,
+  which is where Hull proves it, and `toRotatingData` passes it through. -/
+  injOn_of_dist : ∀ {Q : Type u} [Group Q] (q : G →* Q),
+    q.ker = Subgroup.normalClosure (K : Set G) →
+      ∀ g : G, g ≠ 1 → dist base (g • base) < sep → q g ≠ 1
   /-- The conjugates of `K` rotate very much about the corresponding apices,
   in the sense of DGO Definition 2.12(c): coupled annulus points are separated
   by the apex on every geodesic between them. -/
@@ -337,6 +351,9 @@ def toRotatingData {G : Type u} [Group G] {A : Alphabet G} {K : Subgroup G}
     exact P.base_far g
   rotationNormalClosure_eq := by
     rw [rotationNormalClosure_apexRot, hK]
+  injOn_of_dist := by
+    intro Q _ q hker g hg hdist
+    exact P.injOn_of_dist q (hker.trans hK.symm) g hg hdist
 
 end ConeOffData
 
