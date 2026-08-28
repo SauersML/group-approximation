@@ -7,22 +7,33 @@ LITERATURE INPUT: D. Enders and T. Shulman, *On the (Local) Lifting Property*,
 arXiv:2403.12224, Theorem 4.11, cited as Theorem 13 of T. Shulman,
 arXiv:2603.13564v2.
 
-`Analysis/ShulmanFillSymmetricDoubleEmbedTheorem13` already carries the formal
-half: the map `Φ = φ_A * φ_B` is `symmetricDoubleEmbedding` (the peer lane's
-`factorAmalgamToSymmetricTarget` at `e = id`, with both generator formulas
-`rfl`), `factorAmalgamToSymmetricTarget_eq_comp` factors the peer's map at a
-general target as `e ∘ Φ`, and `injective_symmetricDoubleEmbedding_of_witness`
-is step 5 of their proof — a map whose composite with something is injective is
-injective.  Nothing here restates those.
+`Analysis/ShulmanFillSymmetricDoubleEmbedTheorem13` used to carry a formal
+half: the map `Φ = φ_A * φ_B` as `symmetricDoubleEmbedding`, the factorisation
+of the peer's map through it, and step 5 of Enders--Shulman's proof.  All of
+that has been **deleted**: `Φ` cannot be typed, because
+`MFAlgebraAmalgamCriterion.factorAmalgamToSymmetricTarget` fixes its target in
+`Type` while `UniversalCStarAmalgam gamma gamma` lies one universe up.  That
+module's docstring records the obstruction in full.
 
-What this module adds is the *shape* of the witness.  In Enders--Shulman the
-target is not arbitrary: it is a compatible pair of representations of `(D, D)`
-over `C`, namely `γ = (q ∘ Ad(1 ⊕ u) ∘ σ_A^{⊕∞}) * (q ∘ σ_B^{⊕∞})`.
+What survives here is the *shape of the witness*.  In Enders--Shulman the
+target is not arbitrary: it is a compatible pair of representations of
+`(D, D)` over `C`, namely
+`γ = (q ∘ Ad(1 ⊕ u) ∘ σ_A^{⊕∞}) * (q ∘ σ_B^{⊕∞})`.
 `CompatibleTargetPairStatement` below is exactly that shape, and
 `calkinWitness_of_compatibleTargetPair` proves the previously named
-`CalkinWitnessStatement` from it through the universal property.  So the
-remaining input mentions only a compatible pair, which is what the three
-analytic theorems are used to build.
+`CalkinWitnessStatement` from it through the universal property.  Both are
+well-typed: their targets are already in `Type`.
+
+`amalgamEmbedsSymmetricDouble_of_compatibleTargetPair` has been deleted with
+the rest of the void chain.  Neither statement here is sufficient for the MF
+conclusion on its own — each supplies *one* target, chosen by whoever
+discharges it, whereas MF-ness of the amalgam needs an MF-embeddable target,
+and the paper's is the Calkin algebra, which is not stably finite.  The
+operative input is the `∀`-form in
+`Analysis/ShulmanFillNormingAmalgamWitness`, which says the factor map is
+faithful at *every* faithful `Type`-valued target — that is "`Φ` is injective"
+stated without naming `Φ`, and it is what Enders--Shulman's argument actually
+delivers.
 
 ## The three atoms, and why they are not Props here
 
@@ -130,15 +141,6 @@ theorem calkinWitness_of_compatibleTargetPair
   letI : CStarAlgebra T := hTalg
   haveI : Nontrivial T := hTnt
   exact ⟨T, hTalg, hTnt, _, hinj⟩
-
-/-- **Theorem 13 from the pair witness.**  Composing with the reduction
-already proved, `AmalgamEmbedsSymmetricDoubleStatement` — the form Shulman's
-route consumes — follows from the existence of the compatible pair alone. -/
-theorem amalgamEmbedsSymmetricDouble_of_compatibleTargetPair
-    (h : CompatibleTargetPairStatement) :
-    AmalgamEmbedsSymmetricDoubleStatement :=
-  amalgamEmbedsSymmetricDouble_of_calkinWitness
-    (calkinWitness_of_compatibleTargetPair h)
 
 end
 

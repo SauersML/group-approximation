@@ -2,7 +2,7 @@ import GroupApproximation.Analysis.MFAlgebraAmalgamFactorMapProperties
 import GroupApproximation.Analysis.ShulmanSymmetricDoubleRoute
 
 /-!
-# Theorem 13, reduced to one Calkin-algebra witness
+# Theorem 13: its Calkin witness, and the universe obstruction to `Φ`
 
 LITERATURE INPUT: D. Enders and T. Shulman, *On the (Local) Lifting Property*,
 arXiv:2403.12224, Theorem 4.11 — cited as Theorem 13 of T. Shulman, *The MF
@@ -15,9 +15,9 @@ property for amalgamated free products*, arXiv:2603.13564v2.
 
 ## Their proof, and the one place it is analytic
 
-Write `Φ = φ_A * φ_B : A *_C B → D *_C D` — in this repository
-`symmetricDoubleEmbedding`, the peer lane's `factorAmalgamToSymmetricTarget`
-taken at `e = id`.  Enders and Shulman prove `Φ` injective as follows.
+Write `Φ = φ_A * φ_B : A *_C B → D *_C D`.  Enders and Shulman prove `Φ`
+injective as follows.  (`Φ` is not a term of this repository; see the universe
+obstruction below.)
 
 1. Choose an embedding `α : A *_C B → B(H)` whose composition with the Calkin
    quotient `q : B(H) → Q(H)` is still injective; `α := j^{⊕∞}` for any
@@ -40,23 +40,53 @@ Step 5 is the only step that touches `Φ`, and it is formal: a `*`-homomorphism
 whose composite with something is injective is injective.  Steps 1–4 are
 analytic and none of Arveson, Stinespring or Voiculescu is available here.
 
-## What this module does
+## The universe obstruction: `Φ` cannot be typed
 
-It performs step 5 and names steps 1–4 as one existence statement.
+Step 5 above is formal, but `Φ` itself does not exist as a term of this
+repository's amalgam.  `MFAlgebraAmalgamCriterion.factorAmalgamToSymmetricTarget`
+is `universalCStarAmalgamEval` at a `CStarAmalgamRepresentation`, whose
+`carrier` lies in the same universe as `C`, `A`, `B` — so its target is fixed in
+`Type`.  `UniversalCStarAmalgam gamma gamma` lies one universe *up*, being a
+subalgebra of a product indexed by a `Type`-valued structure.  Taking `e = id`
+therefore does not typecheck, and universe-polymorphising the carrier cannot
+help: it would need `v = max (u + 1) (v + 1)`.
 
-* `symmetricDoubleEmbedding` is `Φ`;
-* `factorAmalgamToSymmetricTarget_eq_comp` says the peer's map at a general
-  `e` is `e ∘ Φ`, by the uniqueness half of the amalgam's universal property;
-* `injective_symmetricDoubleEmbedding_of_witness` is step 5;
-* `CalkinWitnessStatement` is steps 1–4: some `*`-homomorphism out of the
-  symmetric double composes with `Φ` to an injective map;
-* `amalgamEmbedsSymmetricDouble_of_calkinWitness` turns that into
-  `AmalgamEmbedsSymmetricDoubleStatement`, the form the route consumes.
+So `symmetricDoubleEmbedding`, `symmetricDoubleEmbedding_left`/`_right`,
+`factorAmalgamToSymmetricTarget_eq_comp`,
+`injective_symmetricDoubleEmbedding_of_witness` and
+`amalgamEmbedsSymmetricDouble_of_calkinWitness` have been **deleted**: they were
+ill-typed, not merely unproved.  Nothing outside this module and
+`Analysis/ShulmanFillTheorem13` used them.
 
-The witness statement is deliberately weaker than what the paper builds: it
-does not mention the Calkin algebra, amplifications or corners, only that
-*some* target detects `Φ`.  Anything that produces a faithful compatible pair
-for `(D, D)` extending the given one discharges it.
+## What this module does now
+
+It names steps 1–4 and nothing else.
+
+* `universalCStarAmalgamLeft_symmetric_injective` and
+  `nontrivial_universalCStarSymmetricAmalgam` are unaffected and kept;
+* `CalkinWitnessStatement` is steps 1–4, and is well-typed as written: its
+  target `E` is already in `Type`.
+
+## The repaired reduction, and why the witness is not enough
+
+`Analysis/ShulmanFillNormingAmalgamWitness` carries the repair.  The consumer
+never wanted `Φ`: `isMFAlgebra_of_injective_into_symmetricDouble` immediately
+composed it with the corona embedding that MF-ness of the double supplies, and
+*that composite* is `factorAmalgamToSymmetricTarget` at a `Type`-valued target,
+which is well-typed.  The operative hypothesis is therefore
+
+> for every `Type`-valued `E` and every faithful
+> `g : D *_C D →⋆ₐ[ℂ] E`, the map
+> `factorAmalgamToSymmetricTarget iA iB gamma alpha beta hA hB g` is faithful,
+
+which is exactly "`Φ` is injective" said without naming `Φ`, and is what
+Enders--Shulman's argument delivers.
+
+`CalkinWitnessStatement` below is *not* sufficient for that conclusion, and is
+kept only as the record of steps 1–4.  It provides one target `E`, chosen by
+whoever discharges it, and MF-ness of the amalgam needs the target to be
+MF-embeddable; in the paper `E = Q(H^{⊕∞})` is the Calkin algebra, which is not
+even stably finite.  The `∀`-form above is what the route consumes.
 
 This module is in the root import list.  It was authored while builds were
 suspended and has not been elaborated.
@@ -95,66 +125,7 @@ instance nontrivial_universalCStarSymmetricAmalgam :
     universalCStarAmalgamLeft gamma gamma y,
     fun h ↦ hxy (universalCStarAmalgamLeft_symmetric_injective gamma h)⟩⟩
 
-/-! ## `Φ = φ_A * φ_B`, and the factorization of the peer's map through it -/
-
-/-- **The map of Theorem 13.**  `Φ : A *_C B → D *_C D`, sending the left
-factor through `alpha` into the first copy of `D` and the right factor through
-`beta` into the second. -/
-def symmetricDoubleEmbedding :
-    UniversalCStarAmalgam iA iB →⋆ₐ[ℂ] UniversalCStarAmalgam gamma gamma :=
-  factorAmalgamToSymmetricTarget iA iB gamma alpha beta hA hB
-    (StarAlgHom.id ℂ (UniversalCStarAmalgam gamma gamma))
-
-@[simp] theorem symmetricDoubleEmbedding_left (a : A) :
-    symmetricDoubleEmbedding iA iB gamma alpha beta hA hB
-        (universalCStarAmalgamLeft iA iB a) =
-      universalCStarAmalgamLeft gamma gamma (alpha a) := rfl
-
-@[simp] theorem symmetricDoubleEmbedding_right (b : B) :
-    symmetricDoubleEmbedding iA iB gamma alpha beta hA hB
-        (universalCStarAmalgamRight iA iB b) =
-      universalCStarAmalgamRight gamma gamma (beta b) := rfl
-
-/-- The peer lane's factor map at a general target is `e ∘ Φ`.  Both sides are
-`*`-homomorphisms out of the amalgam agreeing on the two factor images, so the
-uniqueness half of `universalCStarAmalgam_existsUnique_lift` identifies
-them. -/
-theorem factorAmalgamToSymmetricTarget_eq_comp
-    {E : Type} [CStarAlgebra E] [Nontrivial E]
-    (e : UniversalCStarAmalgam gamma gamma →⋆ₐ[ℂ] E) :
-    factorAmalgamToSymmetricTarget iA iB gamma alpha beta hA hB e =
-      e.comp (symmetricDoubleEmbedding iA iB gamma alpha beta hA hB) := by
-  have hcompat :
-      (e.comp ((universalCStarAmalgamLeft gamma gamma).comp alpha)).comp iA =
-        (e.comp ((universalCStarAmalgamRight gamma gamma).comp beta)).comp iB := by
-    apply StarAlgHom.ext
-    intro c
-    change e (universalCStarAmalgamLeft gamma gamma (alpha (iA c))) =
-      e (universalCStarAmalgamRight gamma gamma (beta (iB c)))
-    rw [DFunLike.congr_fun hA c, DFunLike.congr_fun hB c]
-    exact congrArg e
-      (DFunLike.congr_fun (universalCStarAmalgam_compatible gamma gamma) c)
-  obtain ⟨_, _, huniq⟩ :=
-    universalCStarAmalgam_existsUnique_lift iA iB
-      (e.comp ((universalCStarAmalgamLeft gamma gamma).comp alpha))
-      (e.comp ((universalCStarAmalgamRight gamma gamma).comp beta)) hcompat
-  exact (huniq _ ⟨fun _ ↦ rfl, fun _ ↦ rfl⟩).trans
-    (huniq _ ⟨fun _ ↦ rfl, fun _ ↦ rfl⟩).symm
-
-/-! ## Step 5, and the witness that steps 1–4 supply -/
-
-/-- **Step 5 of Enders--Shulman, Theorem 4.11.**  If some target detects the
-amalgam through the symmetric double, then `Φ` is injective. -/
-theorem injective_symmetricDoubleEmbedding_of_witness
-    {E : Type} [CStarAlgebra E] [Nontrivial E]
-    (e : UniversalCStarAmalgam gamma gamma →⋆ₐ[ℂ] E)
-    (he : Function.Injective
-      (factorAmalgamToSymmetricTarget iA iB gamma alpha beta hA hB e)) :
-    Function.Injective
-      (symmetricDoubleEmbedding iA iB gamma alpha beta hA hB) := by
-  rw [factorAmalgamToSymmetricTarget_eq_comp] at he
-  intro x y hxy
-  exact he (congrArg e hxy)
+/-! ## The witness that steps 1–4 supply -/
 
 /-- **Steps 1–4 of Enders--Shulman, Theorem 4.11**, as one existence
 statement: the Calkin-algebra construction, with everything about the Calkin
@@ -172,30 +143,6 @@ def CalkinWitnessStatement : Prop :=
           ∃ e : UniversalCStarAmalgam gamma gamma →⋆ₐ[ℂ] E,
             Function.Injective
               (factorAmalgamToSymmetricTarget iA iB gamma alpha beta hA hB e)
-
-/-- **Theorem 13 from the Calkin witness.**  Everything except the witness is
-proved. -/
-theorem amalgamEmbedsSymmetricDouble_of_calkinWitness
-    (hwitness : CalkinWitnessStatement) :
-    AmalgamEmbedsSymmetricDoubleStatement := by
-  intro C A₁ A₂ D _ _ _ _ iA iB k phiA phiB _ _ hC hphiA hphiB hkA hkB
-  haveI : Nontrivial D := by
-    obtain ⟨x, y, hxy⟩ := exists_pair_ne A₁
-    exact ⟨⟨phiA x, phiA y, fun h ↦ hxy (hphiA h)⟩⟩
-  have hA : phiA.comp iA = k := by
-    apply StarAlgHom.ext
-    intro c
-    exact hkA c
-  have hB : phiB.comp iB = k := by
-    apply StarAlgHom.ext
-    intro c
-    exact hkB c
-  obtain ⟨E, hEalg, hEnt, e, he⟩ :=
-    hwitness iA iB k phiA phiB hA hB hC hphiA hphiB
-  letI : CStarAlgebra E := hEalg
-  haveI : Nontrivial E := hEnt
-  exact ⟨symmetricDoubleEmbedding iA iB k phiA phiB hA hB,
-    injective_symmetricDoubleEmbedding_of_witness iA iB k phiA phiB hA hB e he⟩
 
 end
 
