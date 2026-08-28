@@ -2350,6 +2350,7 @@ import GroupApproximation.GGT.OsinComponents
 import GroupApproximation.GGT.OsinEnlargement
 import GroupApproximation.GGT.OsinSeparatingCosets
 import GroupApproximation.GGT.OsinPenetration
+import GroupApproximation.GGT.OsinGeodesicWord
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
