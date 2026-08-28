@@ -103,7 +103,7 @@ theorem exists_not_shift_of_not_isVirtuallyCyclic
     ∃ a : G, ¬ ∃ c : ℤ, ∀ m : ℤ,
       dist ((a * h ^ m) • x) ((h ^ (m + c)) • x) ≤ K := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   exact false_of_forall_shift_of_not_isVirtuallyCyclic hiso hwpd hK hcon hnvc
 
 end Transversal

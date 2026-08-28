@@ -265,7 +265,7 @@ virtual cyclicity is used only to make the subgroup proper, and properness is
 asked for directly.  So this proposition asks the literature for strictly less
 than `(AH₄)` consumes. -/
 def DGOTheorem68 : Prop :=
-  ∀ (G : Type u) [Group G] (D : AH3Data G), ¬ IsVirtuallyCyclic G →
+  ∀ (G : Type u) [Group G] (D : AH3Data.{u, v} G), ¬ IsVirtuallyCyclic G →
     ∃ E : Subgroup G, D.elt ∈ E ∧ E ≠ ⊤ ∧ IsHypEmbedded G E
 
 /-- **Osin, Theorem 1.2, the implication `(AH₄) ⇒ (AH₁)`**: a proper infinite
@@ -431,7 +431,7 @@ theorem exists_notMem_elementaryClosure_of_no_common_power
     (hab : ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0) :
     ∃ h : G, h ∉ Elementary.elementaryClosure g := by
   by_contra hall
-  push_neg at hall
+  push Not at hall
   have hafin : ¬ IsOfFinOrder a := by
     intro hfin
     obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
@@ -485,8 +485,8 @@ cheapest one: `GGT.WPDDGOReduction.relativeCayleyNonElementary_of_612_of_infinit
 reaches the same conclusion from `DGOCorollary612` alone, given an
 infinite-order element of the peripheral subgroup, and the chain always has
 one.  Prefer that route; see the note on `DGOTheorem614`. -/
-theorem relativeCayleyNonElementary_of (h612 : DGOCorollary612)
-    (h614 : DGOTheorem614) : RelativeCayleyNonElementary := by
+theorem relativeCayleyNonElementary_of (h612 : DGOCorollary612.{u})
+    (h614 : DGOTheorem614.{u}) : RelativeCayleyNonElementary.{u} := by
   intro G _ D hemb hacy hnd
   obtain ⟨δ, hδ⟩ := hemb.hyperbolic
   obtain ⟨g, hg⟩ := h612 G D hemb hnd
@@ -504,8 +504,8 @@ theorem relativeCayleyNonElementary_of (h612 : DGOCorollary612)
 The last step is a definitional unpacking: `IsAcylindricallyHyperbolic` is the
 Cayley-graph form, and Theorem 5.4's `Y` supplies the alphabet, its clause (a)
 the hyperbolicity, its clause (b) the acylindricity. -/
-theorem osinAH4ToAH1_of (h54 : OsinTheorem54)
-    (hne : RelativeCayleyNonElementary) : OsinAH4ToAH1 := by
+theorem osinAH4ToAH1_of (h54 : OsinTheorem54.{u})
+    (hne : RelativeCayleyNonElementary.{u}) : OsinAH4ToAH1.{u} := by
   intro G _ E hE hinf hemb
   obtain ⟨_X, D, -, hfam, hhyp⟩ := hemb
   obtain ⟨D', -, hfam', hhyp', hacy⟩ := h54 G D hhyp
@@ -520,13 +520,13 @@ theorem osinAH4ToAH1_of (h54 : OsinTheorem54)
 /-- **Osin, Theorem 1.2, the implication `(AH₃) ⇒ (AH₁)`** — the form
 Minasyan--Osin cite as their Theorem 3.3. -/
 def OsinTheorem12 : Prop :=
-  ∀ (G : Type u) [Group G], AH3Data G → ¬ IsVirtuallyCyclic G →
+  ∀ (G : Type u) [Group G], AH3Data.{u, v} G → ¬ IsVirtuallyCyclic G →
     IsAcylindricallyHyperbolic G
 
 /-- `(AH₃) ⇒ (AH₁)` is the composite of the two cited steps, with the
 infinitude of `E(g)` supplied by loxodromy rather than by the citation. -/
-theorem osinTheorem12_of (h68 : DGOTheorem68) (h4 : OsinAH4ToAH1) :
-    OsinTheorem12 := by
+theorem osinTheorem12_of (h68 : DGOTheorem68.{u, v}) (h4 : OsinAH4ToAH1.{u}) :
+    OsinTheorem12.{u, v} := by
   intro G _ D hnvc
   letI := D.metricSpace
   letI := D.mulAction
