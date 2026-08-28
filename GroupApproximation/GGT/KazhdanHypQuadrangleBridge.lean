@@ -51,6 +51,41 @@ that the collinearity table vanishes across the two sides.
 It does not produce a table, and it touches none of the three genuinely open
 residuals of the route: `CThreeTEightHyperbolicity`, `CThreeTEightInfinite` and
 `TableTorsionFree` are exactly as they were, and so is `GQEightTableExists`.
+`CheckedTableWitness` at the end of this module is what all four come to for a
+single table.
+
+## The checks are decidable and not evaluable as stated
+
+`TableChecks` is a decidable predicate, and `GGT/KazhdanHypTable.lean` says a
+computational lane discharges it by exhibiting bytes.  At the intended order
+that is not so, by a count worth recording before anyone spends a lane on it.
+
+At `q = 8` the link has `n = 2 * 585 = 1170` vertices and the table has
+`3 * 1755 = 5265` corners, and one entry `adjacencyCount T u v` is the
+cardinality of a filter over those corners, taken twice.  So
+
+* the simplicity clause is `n² ≈ 1.4 * 10⁶` entries, each costing about
+  `10⁴` corner comparisons;
+* the four-cycle clause sums `n` entries for each of `n²` pairs: about
+  `3 * 10⁹` entry evaluations;
+* the six-cycle clause sums `n²` products for each of `n²` pairs: about
+  `5 * 10¹²` entry evaluations.
+
+No kernel evaluation reaches the third, and `native_decide` is not an option
+that this repository will take.  The clauses are stated *globally*, over all
+pairs of link vertices, while the properties they express are *local*: girth at
+least `8` says that the ball of radius `3` around each vertex is a tree, which
+is `n * d * (d-1) * (d-1) ≈ 7 * 10⁵` steps at `d = 9`, and no four-cycle says
+that the `d` neighbours of each vertex have pairwise at most one common
+neighbour, which is of the same size.
+
+So a witness has two honest routes and evaluation of the present clauses is
+neither: restate the girth clauses over neighbour lists and precompute the link
+as data, or --- better, since the table has to come from somewhere ---
+describe the link algebraically, as the incidence graph of the symplectic
+quadrangle `W(8)`, and prove the clauses from the quadrangle axioms rather than
+counting.  Nothing in this module depends on which is taken: the bridge
+consumes `TableChecks` and not its proof.
 -/
 
 set_option linter.unusedSectionVars false
