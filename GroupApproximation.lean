@@ -1399,6 +1399,7 @@ import GroupApproximation.Computability.AdianRabinGeneral
 import GroupApproximation.Analysis.CStarChoiMap
 import GroupApproximation.Algebra.CoprodIPresentation
 import GroupApproximation.Algebra.FreeProductCyclicWord
+import GroupApproximation.Algebra.FreeProductUnionNorm
 import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Algebra.HyperbolicInteger
 import GroupApproximation.Algebra.HyperbolicQuasiIsometry
