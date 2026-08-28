@@ -111,7 +111,7 @@ theorem not_actsNonElementarily_of_zpowers {G : Type u} [Group G] {X : Type v}
   obtain ⟨-, ha⟩ := eq_zero_of_common_zpow_of_independent hiso hg hh hind hmk
   refine not_isOfFinOrder_of_isLoxodromic hg ?_
   rw [ha, zpow_zero]
-  exact isOfFinOrder_one
+  exact IsOfFinOrder.one
 
 /-- **The image of an infinite cyclic group is a group of powers.**  The
 generator of `FreeGroup (Fin 1)` is `FreeGroup.of 0`, and `FreeGroup.of` has a
