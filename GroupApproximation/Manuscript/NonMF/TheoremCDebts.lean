@@ -315,10 +315,23 @@ Theorem 1.2. -/
 theorem minasyanOsin : MinasyanOsinStatement :=
   GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osinTheorem12 osinTheorem12
 
-/-- **DEBT (literature).**  Hull, *Small cancellation in acylindrically
-hyperbolic groups*, Corollary 7.4: the common quotient theorem. -/
-theorem hullCommonQuotient : HullCommonQuotientStatement := by
+/-- **DEBT (geometry).**  The one clause of Hull's Corollary 7.4 still owed:
+the Cayley graph of `E * H₀` over the union of two Hull alphabets is
+hyperbolic and the translation action on it is acylindrical — the tree of
+spaces.  Everything else of the corollary is proved in
+`GGT/HullSCFreeProductFactor.lean` and `GGT/HullSCCommonQuotient.lean`. -/
+theorem hullFreeProductUnionGeometry : HullSC.FreeProductUnionGeometryStatement := by
   sorry
+
+/-- **Hull, *Small cancellation in acylindrically hyperbolic groups*,
+Corollary 7.4, on the recorded debts**: his Theorem 7.1 in one-step form
+(`TorsionFree`'s three §5/§6 leaves) applied twice over the free product,
+with the union-alphabet geometry the only further input. -/
+theorem hullCommonQuotient : HullCommonQuotientStatement :=
+  HullSC.hullCommonQuotient_of_oneStep_of_geometry
+    (HullSC.hullOneStep_of_relator_of_quotient TorsionFree.hullHypEmbeddedInSuitable
+      TorsionFree.hullSection6Relator TorsionFree.hullTheorem51)
+    hullFreeProductUnionGeometry
 
 /-- The cited inputs, as a term.  The first field is proved; the other four are
 the debts above. -/
