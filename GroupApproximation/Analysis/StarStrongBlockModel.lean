@@ -27,20 +27,25 @@ it is the same transport `Analysis/ArvesonBHTarget` uses, with its unit and
 product clauses added.  The same family is what `arvesonBH_of_limit` takes as
 data, so one construction serves both.
 
-## What is left concrete, and why it is a `Prop` here
+## The one concrete input, and where it is built
 
 `EllTwoBlockFamilyStatement` is the existence of that family on `ℓ²` at
-`kₙ = n`.  It is left as a named statement rather than built, because building
-it means `J n x = ∑ i, lp.single 2 i (x i)` together with an explicit
-computation of its adjoint and of the strong convergence `Pₙ → 1`, and the `lp`
-lemmas that computation needs (`lp.single_add`, `lp.inner_single_left`,
-`lp.hasSum_single`) have no precedent in this repository, so authoring them
-blind would be guessing at names rather than proving anything.  `lp.single`
-itself does have a precedent, in
-`Manuscript/OneSidedMFRadical/FaithfulCornerCoronaRepresentation`.
+`kₙ = n`.  `Analysis/EllTwoBlockFamily` proves it: `J n x = ∑ i, lp.single 2 i
+(x i)`, a finite sum of point masses, with its adjoint the restriction to the
+first `n` coordinates and the strong convergence read off `lp.hasSum_single`.
+
+An earlier version of this paragraph said the family was left unbuilt because
+`lp.single_add`, `lp.inner_single_left` and `lp.hasSum_single` had no precedent
+in this repository.  That was wrong about the last two: `lp.inner_single_left`
+is used in six modules and `lp.hasSum_single` in three, along with
+`lp.evalCLM`, `lp.single_apply_self`, `lp.single_apply_ne`, `lp.norm_single`
+and `PiLp.inner_apply`.  Only `lp.single_add` is genuinely absent, and
+`EllTwoBlockFamily` proves it coordinatewise instead of assuming it.  The
+lesson is that "no precedent" is a claim about a search, and that search was
+too narrow.
 
 Everything above the family is proved here, so the whole `𝒟` instance and the
-isometry data of `Analysis/ArvesonBHTarget` reduce to that one statement.
+isometry data of `Analysis/ArvesonBHTarget` rest on that one construction.
 
 This module is in the root import list.  It was authored while builds were
 suspended and has not been elaborated.
