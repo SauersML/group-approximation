@@ -2346,6 +2346,7 @@ import GroupApproximation.GGT.RelHypOsinTheorem24Refuted
 import GroupApproximation.GGT.RelHypRelativeCayley
 import GroupApproximation.GGT.RelHypWithoutKazhdan
 import GroupApproximation.GGT.WPDAcylindricalHyperbolicity
+import GroupApproximation.GGT.WPDDGOReduction
 import GroupApproximation.GGT.WPDElement
 import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 import GroupApproximation.GGT.WPDMinasyanOsinSkeleton
