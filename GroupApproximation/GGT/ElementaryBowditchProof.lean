@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.ElementaryIndependence
+import GroupApproximation.GGT.ElementaryBowditch
 
 /-!
 # Bowditch's dichotomy: an acylindrical action has no parabolic elements
@@ -491,6 +492,25 @@ theorem escapingIsLoxodromic_of_geodesic {δ : ℝ} (hδ : IsHyperbolicSpace δ 
   rw [Set.ncard_coe_finset] at hcount
   have hle : F.card ≤ N := le_trans hcount hcard
   omega
+
+/-- **The local estimate of `GGT.ElementaryBowditch` is a theorem.**  Its
+`EscapingBoundedTurn` asked for one power of an escaping element with a bounded
+turn; loxodromy produces one outright, through
+`exists_power_local_backtracking_gap`, with the turn itself as the constant. -/
+theorem escapingBoundedTurn_of_geodesic {δ : ℝ} (hδ : IsHyperbolicSpace δ X)
+    (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hacy : IsAcylindrical G X) (x : X) :
+    Elementary.EscapingBoundedTurn G δ x := by
+  intro c hc
+  have hlox : IsLoxodromic c x :=
+    escapingIsLoxodromic_of_geodesic hδ hδ0 hgeo hiso hacy x c hc
+  obtain ⟨k, hk, hgap⟩ := exists_power_local_backtracking_gap hiso hδ0 hlox
+  have hpow : (c ^ k) ^ 2 = c ^ (2 * k) := by
+    rw [← pow_mul, Nat.mul_comm k 2]
+  refine ⟨k, gromovProduct x ((c ^ (2 * k)) • x) ((c ^ k) • x), hk, ?_, hgap, ?_⟩
+  · have hnn := gromovProduct_nonneg x ((c ^ (2 * k)) • x) ((c ^ k) • x)
+    linarith
+  · exact le_of_eq (by rw [hpow])
 
 end Action
 
