@@ -90,7 +90,7 @@ theorem wordProd_cons (φ : A ≃* B) (g : G) (u : ℤˣ) (h : G)
 /-- The length of a list with one entry appended. -/
 theorem length_concat {X : Type*} (L : List X) (b : X) :
     (L ++ [b]).length = L.length + 1 := by
-  rw [List.length_append]
+  simp
 
 /-! ## Signed powers of the stable letter -/
 

@@ -289,22 +289,27 @@ noncomputable def expHom (f : α → ℤ) : FreeGroup α →* Multiplicative ℤ
 noncomputable def expVal (f : α → ℤ) (g : FreeGroup α) : ℤ :=
   Multiplicative.toAdd (expHom f g)
 
+omit [DecidableEq α] in
 theorem expVal_one (f : α → ℤ) : expVal f 1 = 0 :=
   congrArg Multiplicative.toAdd (map_one (expHom f))
 
+omit [DecidableEq α] in
 theorem expVal_mul (f : α → ℤ) (u v : FreeGroup α) :
     expVal f (u * v) = expVal f u + expVal f v :=
   congrArg Multiplicative.toAdd (map_mul (expHom f) u v)
 
+omit [DecidableEq α] in
 theorem expVal_inv (f : α → ℤ) (u : FreeGroup α) :
     expVal f u⁻¹ = -expVal f u :=
   congrArg Multiplicative.toAdd (map_inv (expHom f) u)
 
+omit [DecidableEq α] in
 theorem expVal_of (f : α → ℤ) (c : α) : expVal f (FreeGroup.of c) = f c :=
   congrArg Multiplicative.toAdd
     (show expHom f (FreeGroup.of c) = Multiplicative.ofAdd (f c) from
       FreeGroup.lift_apply_of)
 
+omit [DecidableEq α] in
 theorem expVal_zpow (f : α → ℤ) (u : FreeGroup α) (n : ℤ) :
     expVal f (u ^ n) = n * expVal f u := by
   have h : expHom f (u ^ n) = (expHom f u) ^ n := map_zpow (expHom f) u n

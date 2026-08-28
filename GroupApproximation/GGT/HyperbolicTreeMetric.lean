@@ -68,7 +68,7 @@ theorem isPath_cons {u v w : V} (h : H.Adj u v) {p : H.Walk v w}
     (SimpleGraph.Walk.cons h p).IsPath := by
   rw [SimpleGraph.Walk.isPath_def, SimpleGraph.Walk.support_cons,
     List.nodup_cons]
-  exact ⟨hu, SimpleGraph.Walk.isPath_def.mp hp⟩
+  exact ⟨hu, (SimpleGraph.Walk.isPath_def p).mp hp⟩
 
 /-! ## Parity of the graph metric of a tree -/
 

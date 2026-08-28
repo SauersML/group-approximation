@@ -37,13 +37,13 @@ theorem BenignTF.comapEmb {G N : Type} [Group G] [Group N] (θ : G →* N)
   have hcomap : v.witness.L.comap (v.witness.emb.comp θ) = S.comap θ := by
     rw [← Subgroup.comap_comap, v.witness.comap_eq]
   exact ⟨{ witness :=
-      { K := v.witness.K
-        emb := v.witness.emb.comp θ
-        emb_injective := v.witness.emb_injective.comp hθ
-        L := v.witness.L
-        L_fg := v.witness.L_fg
-        comap_eq := hcomap }
-    torsionFree := v.torsionFree }⟩
+             { K := v.witness.K
+               emb := v.witness.emb.comp θ
+               emb_injective := v.witness.emb_injective.comp hθ
+               L := v.witness.L
+               L_fg := v.witness.L_fg
+               comap_eq := hcomap }
+           torsionFree := v.torsionFree }⟩
 
 /-- The same, stated at a subgroup already known to be the preimage. -/
 theorem benignTF_of_comap_eq {G N : Type} [Group G] [Group N] (θ : G →* N)

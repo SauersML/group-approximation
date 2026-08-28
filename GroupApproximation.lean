@@ -2366,6 +2366,7 @@ import GroupApproximation.GGT.OsinEnlargement
 import GroupApproximation.GGT.OsinSeparatingCosets
 import GroupApproximation.GGT.OsinPenetration
 import GroupApproximation.GGT.OsinGeodesicWord
+import GroupApproximation.Higman.OmegaFillLinkPreimage
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

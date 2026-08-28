@@ -161,7 +161,7 @@ witness `(1, 1)`. -/
 theorem mem_elementaryClosure_of_commute {g c : G} (hc : Commute c g) :
     c ∈ elementaryClosure g := by
   refine mem_elementaryClosure.mpr ⟨1, 1, one_ne_zero, one_ne_zero, ?_⟩
-  rw [zpow_one, zpow_one, hc.eq, mul_inv_cancel_right]
+  rw [zpow_one, hc.eq, mul_inv_cancel_right]
 
 /-! ## Equivariance -/
 
@@ -407,7 +407,7 @@ theorem stableTranslation_zpow_natAbs (hiso : IsIsometricAction G X) (g : G)
     (x : X) {k : ℤ} (hk : k ≠ 0) :
     stableTranslation (g ^ k) x = (k.natAbs : ℝ) * stableTranslation g x := by
   have hjpos : 0 < k.natAbs := Int.natAbs_pos.mpr hk
-  rcases le_or_lt 0 k with hk0 | hk0
+  rcases le_or_gt 0 k with hk0 | hk0
   · have h2 : g ^ k = g ^ k.natAbs := by
       rw [← zpow_natCast g k.natAbs, Int.natAbs_of_nonneg hk0]
     rw [h2, stableTranslation_pow hiso g x hjpos]

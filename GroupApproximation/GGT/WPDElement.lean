@@ -250,6 +250,7 @@ theorem pow_conj (a g : G) (n : ℕ) : (a * g * a⁻¹) ^ n = a * g ^ n * a⁻¹
       rw [pow_succ, pow_succ, ih]
       group
 
+omit [PseudoMetricSpace X] in
 /-- Conjugating the acting element and the basepoint together. -/
 theorem smul_conj (a k : G) (x : X) : (a * k * a⁻¹) • (a • x) = a • (k • x) := by
   have h : a * k * a⁻¹ * a = a * k := by group

@@ -108,7 +108,7 @@ demanded number, at two points at least any demanded distance apart.
 The order of the quantifiers is forced by the pigeonhole: `ε` is fixed by the
 geometry, `R` and `N` are returned by acylindricity at that `ε`, and the pairs
 are produced last. -/
-def FellowTravelMatching (g h : G) (y : X) : Prop :=
+def FellowTravelMatching (g h : G) (_y : X) : Prop :=
   ∃ ε : ℝ, 0 < ε ∧ ∀ (R : ℝ) (n : ℕ), ∃ y₁ y₂ : X,
     R ≤ dist y₁ y₂ ∧ MatchedPairs g h y₁ y₂ ε n
 
