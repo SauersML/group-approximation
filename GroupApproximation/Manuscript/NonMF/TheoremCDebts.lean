@@ -4,7 +4,7 @@ import GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected
 import GroupApproximation.Manuscript.NonMF.HullInputsProved
 import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
 import GroupApproximation.GGT.ElementaryOsinNormalClosed
-import GroupApproximation.GGT.HullSCSmallCancellation
+import GroupApproximation.GGT.HullSCFilling
 
 /-!
 # Theorem C, closed: the cited inputs as recorded debts
@@ -53,14 +53,17 @@ theorem, shared by the two lanes that stand on it.
   (`Manuscript.NonMF.FournierFacioDoubleHNN`) but no group action on a tree and
   no criterion for `TorsionFree.IsAcylindricallyHyperbolic`.
 * `hullCommonQuotient` — Hull's Corollary 7.4, which is Hull's Theorem 7.1
-  applied to the free product of `E` with `H₀`, so it rests on the same three
+  applied to the free product of `E` with `H₀`, so it rests on the same four
   leaves as `hullTheorem71` does, together with the free product input;
   `HullSC.hullCommonQuotient_of_oneStep` is that reduction, and
   `HullSC.FreeProductStatement` is the extra input.
-* `hullHypEmbeddedInSuitable`, `hullTheorem51`, `hullSection6Relator` — Hull's
-  §5 and §6.  **`hullTheorem71` is not one of the debts any longer**: it is
-  proved from these three, through `HullSC.hullOneStep_of_relator_of_quotient`
-  and `HullSC.hullBallFormNG_of_oneStep`.  What the reduction contributes is the
+* `hullHypEmbeddedInSuitable`, `dgoTheorem53`, `hullFillingData`,
+  `hullSection6Relator` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
+  Theorem 5.3 separated out of the first of them.  **`hullTheorem71` is not one
+  of the debts any longer**, and neither is `hullTheorem51`: the first is proved
+  through `HullSC.hullOneStep_of_relator_of_quotient` and
+  `HullSC.hullBallFormNG_of_oneStep`, the second through
+  `HullSC.hullQuotient_of_fillingData`.  What the reduction contributes is the
   whole of the manuscript's own bookkeeping — the induction on `m`, the two
   clauses that mention the targets `t₁, …, t_m`, and the arithmetic of the
   kernel (`HullSC.ker_comp_eq`), so that the manuscript's separate remark on
@@ -117,20 +120,45 @@ difference of the base — does not bridge it. -/
 theorem hullHypEmbeddedInSuitable : HullSC.ExistsHypEmbeddedInSuitable.{0} := by
   sorry
 
-/-- **DEBT (literature).**  Hull, Theorem 5.1: the quotient by a small
-cancellation family.  For every radius and every prescribed family of suitable
-subgroups there are parameters `ε, μ, ρ` such that killing any word of any
-`C(ε, μ, ρ)` family over the hyperbolically embedded subgroup leaves a quotient
-that is acylindrically hyperbolic over an alphabet containing the image of `A`,
-injective on the `R`-ball of `Γ(G,A)`, keeps the prescribed subgroups suitable,
-and lifts finite order.
+/-- **DEBT (literature).**  Dahmani–Guirardel–Osin, *Hyperbolically embedded
+subgroups and rotating families*, Theorem 5.3: the quotient of a group acting
+on a hyperbolic space by a separated very rotating family.  The clauses
+recorded are the ones Hull's §5 consumes — the kernel is the subgroup the
+rotations generate, its elements are rotations up to conjugacy or loxodromic,
+finite order lifts with the order preserved, and the injectivity radius is at
+least the separation. -/
+theorem dgoTheorem53 : HullSC.DGOQuotientStatement.{0, 0} := by
+  sorry
+
+/-- **DEBT (literature).**  Hull, §5, with Dahmani–Guirardel–Osin's Theorem 5.3
+taken out of it: for every radius and every prescribed family of suitable
+subgroups there are parameters `ε, μ, ρ` such that every `C(ε, μ, ρ)` family
+gives a separated very rotating family on the cone-off, with separation above
+`2R` and with the rotations generating the normal closure of the relator; and
+every quotient by that normal closure carries a Hull alphabet containing the
+image of `A` in which the images of the prescribed subgroups are suitable.
 
 The small cancellation condition is not an opaque predicate here:
 `HullSC.RelWord.IsSmallCancellation` has a body — symmetrized, admissible, long,
 `H`-letters outside `GGT.RelGenSet.relBall ρ`, `ε`-pieces shorter than `μ` times
-their word — so this citation and its consumer cannot drift apart. -/
-theorem hullTheorem51 : HullSC.HullQuotientStatement.{0} := by
+their word — so this citation and its consumer cannot drift apart.
+
+The space carrying the family is abstract, and it has to be:
+`HullSC.rot_eq_bot_of_cayley` proves that a rotating family on a Cayley graph of
+`G` has trivial rotation subgroups, since the translation action is free, so
+Theorem 5.3 applied on `Γ(G, A ⊔ H)` would produce only the identity. -/
+theorem hullFillingData : HullSC.HullFillingDataStatement.{0} := by
   sorry
+
+/-- **Hull, Theorem 5.1**, proved rather than cited: the two debts above give
+it through `HullSC.hullQuotient_of_fillingData`, which supplies seven of the ten
+clauses of the filling quotient from Dahmani–Guirardel–Osin's theorem — the
+quotient group and map, surjectivity, the kernel, the lifting of finite order,
+and injectivity on the `R`-ball of `Γ(G,A)` through
+`HullSC.injOn_cayleyBall_of_action`.  Only the three alphabet clauses are
+carried by `hullFillingData`. -/
+theorem hullTheorem51 : HullSC.HullQuotientStatement.{0} :=
+  HullSC.hullQuotient_of_fillingData dgoTheorem53 hullFillingData
 
 /-- **DEBT (literature).**  Hull, §6: the relator can be chosen.  For any
 parameters `ε, μ, ρ` there is `u ∈ N` and a `C(ε, μ, ρ)` family containing a
@@ -147,7 +175,7 @@ generated by `m` elements.  The remark is a field of the quotient
 (`HullCorrectedInputs.HullQuotientNG`) because it is a property of the
 construction rather than of an arbitrary quotient with the printed properties.
 
-**No longer a citation of its own.**  Everything between the three leaves above
+**No longer a citation of its own.**  Everything between the four leaves above
 and this statement is proved in `GGT/HullSC*.lean`:
 
 * `HullSC.hullOneStep_of_relator_of_quotient` — Hull's §6 relator fed to his
