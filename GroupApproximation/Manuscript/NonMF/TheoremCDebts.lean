@@ -6,6 +6,7 @@ import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
 import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCHypEmbedded
+import GroupApproximation.GGT.HullSCRelatorFamily
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.TreeWPDAxis
 
@@ -72,7 +73,7 @@ theorem, shared by the two lanes that stand on it.
   non-elementarity of `H₀`, which `HullCommonQuotientStatement` supplies twice
   over.
 * `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullFillingData`,
-  `hullSection6Relator` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
+  `hullRelatorChoice` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
   Theorem 5.3 separated out of the first of them.  **`hullTheorem71` is not one
   of the debts any longer**, and neither is `hullTheorem51`: the first is proved
   through `HullSC.hullOneStep_of_relator_of_quotient` and
@@ -205,9 +206,24 @@ names the conjugate of what the word names, by the prefix it moves, and for a
 first letter of the base that prefix has base-length one — so `pieces_small`
 read `|v| < μ|v|` and nothing with `μ ≤ 1` satisfied the condition.
 `HullSC.RelWord.exists_naive_piece_of_rotate` and
-`HullSC.RelWord.false_of_pieces_small_self` are that refutation. -/
-theorem hullSection6Relator : HullSC.HullRelatorStatement.{0} := by
+`HullSC.RelWord.false_of_pieces_small_self` are that refutation.
+
+Recorded with the family bookkeeping removed: the family is the symmetrized
+closure of one relator, so five of the six clauses of `C(eps, mu, rho)` are
+`HullSC.RelWord.isSmallCancellation_symmetrized`, and the sixth is
+`HullSC.RelWord.pieces_small_of_longMatch` applied to a length bound.  What is
+left is Olshanskii's separation -- every `eps`-match of a prefix longer than `B`
+is a global translation of the relator -- together with the constant `B`, which
+does not grow with the relator, so `mu` leaves the estimate. -/
+theorem hullRelatorChoice : HullSC.RelatorChoice.{0} := by
   sorry
+
+/-- Hull's §6 in the form Theorem 5.1 consumes it, from the estimate above:
+`HullSC.hullRelatorStatement_of_relatorChoice` builds the symmetrized closure of
+the relator and discharges every clause of `C(eps, mu, rho)` but the
+separation. -/
+theorem hullSection6Relator : HullSC.HullRelatorStatement.{0} :=
+  HullSC.hullRelatorStatement_of_relatorChoice hullRelatorChoice
 
 /-- **Hull, *Small cancellation in acylindrically hyperbolic groups*, Theorem
 7.1**, in the finite-set formulation the manuscript records, together with the
