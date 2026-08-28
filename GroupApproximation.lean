@@ -2294,6 +2294,7 @@ import GroupApproximation.GGT.HullSCConeOff
 import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCHypEmbedded
+import GroupApproximation.GGT.HullSCRelatorFamily
 import GroupApproximation.GGT.HullSCRotatingFamily
 import GroupApproximation.GGT.HullSCDGO
 import GroupApproximation.GGT.HullSCSmallCancellation
