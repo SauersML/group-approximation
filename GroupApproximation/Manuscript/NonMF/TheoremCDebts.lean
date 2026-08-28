@@ -7,6 +7,7 @@ import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCHypEmbedded
 import GroupApproximation.GGT.HullSCRelatorFamily
+import GroupApproximation.GGT.HullSCRelatorWord
 import GroupApproximation.GGT.HullSCConeOffSpace
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.TreeWPDAxis
@@ -74,7 +75,7 @@ theorem, shared by the two lanes that stand on it.
   non-elementarity of `H₀`, which `HullCommonQuotientStatement` supplies twice
   over.
 * `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullConeOff`,
-  `hullRelatorChoice` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
+  `hullRelatorSeparation` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
   Theorem 5.3 separated out of the first of them.  **`hullTheorem71` is not one
   of the debts any longer**, and neither is `hullTheorem51`: the first is proved
   through `HullSC.hullOneStep_of_relator_of_quotient` and
@@ -225,8 +226,22 @@ closure of one relator, so five of the six clauses of `C(eps, mu, rho)` are
 left is Olshanskii's separation -- every `eps`-match of a prefix longer than `B`
 is a global translation of the relator -- together with the constant `B`, which
 does not grow with the relator, so `mu` leaves the estimate. -/
-theorem hullRelatorChoice : HullSC.RelatorChoice.{0} := by
+theorem hullRelatorSeparation : HullSC.RelatorSeparation.{0} := by
   sorry
+
+/-- Hull's §6 with the relator written down, from the separation above.  The
+relator is a base spelling of `t⁻¹` followed by deep powers of `E.lox`, so `u`
+is the power of the sum of the exponents, which lies in `E.H` and hence in `N`;
+the letters are legal; the depth clause holds because `relBall rho` is finite
+and `E.lox` has infinite order (`HullSC.exists_deep_pow`); the length is
+whatever the exponent list gives; and `mu` is met by taking the relator long,
+the estimate producing its constant `B` before the length.
+`HullSC.relatorChoice_of_relatorSeparation` is that reduction, and
+`HullSC.exists_base_spelling` with `HullSC.exists_deep_relator_exponents`
+certify that every clause of the separation statement other than the separation
+itself can always be met. -/
+theorem hullRelatorChoice : HullSC.RelatorChoice.{0} :=
+  HullSC.relatorChoice_of_relatorSeparation hullRelatorSeparation
 
 /-- Hull's §6 in the form Theorem 5.1 consumes it, from the estimate above:
 `HullSC.hullRelatorStatement_of_relatorChoice` builds the symmetrized closure of
