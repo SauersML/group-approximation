@@ -71,6 +71,7 @@ namespace GGT
 namespace Elementary
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
 
@@ -116,7 +117,7 @@ theorem subset_relBall_one_of_subset_base {g : G} (D : RelGenSet G Unit)
     rw [List.mem_singleton] at ha
     subst ha
     exact hbase hh
-  · simp [RelLetter.listVal]
+  · simp [RelLetter.listVal, RelLetter.val]
   · refine ⟨?_, trivial⟩
     rintro ⟨hcomp, -⟩
     exact hcomp
@@ -182,7 +183,7 @@ theorem dist_smul_listVal_le_length_mul (hiso : IsIsometricAction G X) (x : X)
         simp
     | cons a t ih =>
         intro hcons
-        have hhead : dist x (a.val • x) ≤ C := hcons a (List.mem_cons_self a t)
+        have hhead : dist x (a.val • x) ≤ C := hcons a List.mem_cons_self
         have htail := ih (fun b hb => hcons b (List.mem_cons_of_mem a hb))
         simp only [List.map_cons, List.sum_cons, List.length_cons]
         push_cast
