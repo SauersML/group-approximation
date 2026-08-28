@@ -64,8 +64,12 @@ theorem, shared by the two lanes that stand on it.
 * `hullCommonQuotient` — Hull's Corollary 7.4, which is Hull's Theorem 7.1
   applied to the free product of `E` with `H₀`, so it rests on the same four
   leaves as `hullTheorem71` does, together with the free product input;
-  `HullSC.hullCommonQuotient_of_oneStep` is that reduction, and
-  `HullSC.FreeProductStatement` is the extra input.
+  `HullSCCommonQuotientCorrected.hullCommonQuotient_of_oneStep_corrected` is
+  that reduction, and `HullSC.FreeProductStatementCorrected` is the extra
+  input.  The uncorrected `HullSC.FreeProductStatement` is **refuted**
+  (`HullSCCommonQuotientCorrected.not_freeProductStatement`): it omits the
+  non-elementarity of `H₀`, which `HullCommonQuotientStatement` supplies twice
+  over.
 * `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullFillingData`,
   `hullSection6Relator` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
   Theorem 5.3 separated out of the first of them.  **`hullTheorem71` is not one
@@ -191,7 +195,16 @@ theorem hullTheorem51 : HullSC.HullQuotientStatement.{0} :=
 parameters `ε, μ, ρ` there is `u ∈ N` and a `C(ε, μ, ρ)` family containing a
 word spelling `t⁻¹u` — Hull takes `u = h₁^{n₁} h₂^{n₂} ⋯` in two independent
 loxodromics of `N` with the exponents large, which is what puts the `H`-letters
-outside the relative ball of radius `ρ` and makes the `ε`-pieces short. -/
+outside the relative ball of radius `ρ` and makes the `ε`-pieces short.
+
+This statement was false until Olshanskii's exclusion clause was put back into
+`HullSC.RelWord.IsPiece`.  Without it a family closed under cyclic permutation
+has every one of its words as an `ε`-piece of itself — a cyclic permutation
+names the conjugate of what the word names, by the prefix it moves, and for a
+first letter of the base that prefix has base-length one — so `pieces_small`
+read `|v| < μ|v|` and nothing with `μ ≤ 1` satisfied the condition.
+`HullSC.RelWord.exists_naive_piece_of_rotate` and
+`HullSC.RelWord.false_of_pieces_small_self` are that refutation. -/
 theorem hullSection6Relator : HullSC.HullRelatorStatement.{0} := by
   sorry
 

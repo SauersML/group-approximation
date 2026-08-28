@@ -37,9 +37,26 @@ is either a letter of the base or a letter of the hyperbolically embedded
 subgroup.  Against that:
 
 * `RelWord.IsPiece D W ε u w` -- `u` is an **`ε`-piece** of `w`: `w` begins with
-  `u`, some *other* member of the family begins with a `u'`, and `u'` and `u`
-  differ by `X`-words of length at most `ε` on either side.  This is Olshanskii's
-  and Osin's notion, transcribed.
+  `u`, some *other* member of the family begins with a `u'`, `u'` and `u`
+  differ by `X`-words of length at most `ε` on either side, and the two members
+  are not the same one translated by that `X`-word.  This is Olshanskii's and
+  Osin's notion, transcribed, the last clause included.
+
+  **That clause was missing and its absence broke the pair of statements
+  below.**  `RelWord.exists_naive_piece_of_rotate` proves that without it the
+  whole of a word is an `ε`-piece of itself in any family closed under cyclic
+  permutation: `RelWord.listVal_rotate` says a cyclic permutation names the
+  conjugate of what the word names by the prefix it moves, and for a first
+  letter of the base that prefix has base-length one.  Then
+  `RelWord.false_of_pieces_small_self` closes it: `pieces_small` at `u = v`
+  reads `|v| < μ |v|`, so at `μ ≤ 1` no family containing a word of positive
+  length whose letters are not all equal satisfies the condition.  Then
+  `HullRelatorStatement` is false at every `μ ≤ 1`, and `HullQuotientStatement`
+  is true at those `μ` for the empty reason, so
+  `hullTheorem51_of_relator_of_quotient` composes two statements one of which is
+  false and the other vacuous.  Raising `μ` above `1` does not help: the piece
+  clause then says nothing at all and `HullQuotientStatement` becomes a claim
+  about arbitrary families.
 * `RelWord.IsSmallCancellation D W ε μ ρ` -- the family is symmetrized, every
   member is admissible and has at least `ρ` letters, every `H`-letter of every
   member is **deep**: outside the relative ball of radius `ρ` about `1` -- and
@@ -97,15 +114,100 @@ def revInv (v : List (GGT.RelLetter G Λ)) : List (GGT.RelLetter G Λ) :=
 def IsAdmissible (D : GGT.RelGenSet G Λ) (v : List (GGT.RelLetter G Λ)) : Prop :=
   ∀ a ∈ v, D.IsLetter a
 
+/-! ### Words, appends and cyclic permutations
+
+The three lemmas below are what shows the exclusion clause of `IsPiece` is not
+optional.  A cyclic permutation of a word names the conjugate of what the word
+names, by the prefix that was moved — so a family closed under cyclic
+permutation always contains a member whose value is a short conjugate of `v`'s,
+and without the exclusion the *whole* of `v` would be an `ε`-piece of itself. -/
+
+/-- The element a concatenation names is the product. -/
+theorem listVal_append (v w : List (GGT.RelLetter G Λ)) :
+    GGT.RelLetter.listVal (v ++ w)
+      = GGT.RelLetter.listVal v * GGT.RelLetter.listVal w := by
+  show ((v ++ w).map GGT.RelLetter.val).prod
+    = (v.map GGT.RelLetter.val).prod * (w.map GGT.RelLetter.val).prod
+  rw [List.map_append, List.prod_append]
+
+/-- **A cyclic permutation names a conjugate**, by the prefix it moves. -/
+theorem listVal_rotate (v : List (GGT.RelLetter G Λ)) {n : ℕ}
+    (hn : n ≤ v.length) :
+    GGT.RelLetter.listVal (v.rotate n)
+      = (GGT.RelLetter.listVal (v.take n))⁻¹ * GGT.RelLetter.listVal v *
+          GGT.RelLetter.listVal (v.take n) := by
+  have hsplit : GGT.RelLetter.listVal v
+      = GGT.RelLetter.listVal (v.take n) * GGT.RelLetter.listVal (v.drop n) := by
+    conv_lhs => rw [← List.take_append_drop n v]
+    rw [listVal_append]
+  rw [List.rotate_eq_drop_append_take hn, listVal_append, hsplit,
+    inv_mul_cancel_left]
+
 /-- **An `ε`-piece.**  `u` is an `ε`-piece of `v` when `v` begins with `u`, some
 other member `v'` of the family begins with a `u'`, and `u'` and `u` name group
-elements differing by base words of length at most `ε` on either side. -/
+elements differing by base words of length at most `ε` on either side — with the
+two members not the same one translated by that base word.
+
+**The last clause is Olshanskii's, and it is not optional.**  Without it the
+whole of `v` is an `ε`-piece of `v` in any family closed under cyclic
+permutation: `listVal_rotate` says `v.rotate n` names
+`p⁻¹ (listVal v) p` for `p` the prefix moved, so with `y = p⁻¹` and `z = p` the
+value clause holds, and for `n = 1` at a letter of the base `p` has base-length
+at most one.  `exists_naive_piece_of_rotate` below proves exactly that, and
+`false_of_pieces_small_self` proves what it costs: `pieces_small` at `u = v`
+would read `|v| < μ |v|`, so no family with `μ ≤ 1` and a word of positive
+length could satisfy the condition, `HullRelatorStatement` would be false, and
+at `μ > 1` the piece clause is vacuous and `HullQuotientStatement` would be
+false instead.
+
+With the clause, the degenerate witness is excluded and nothing else is:
+`z` is determined by `y` through the value clause, and the excluded case is
+exactly `z = y⁻¹`. -/
 def IsPiece (D : GGT.RelGenSet G Λ) (W : Set (List (GGT.RelLetter G Λ)))
     (eps : ℕ) (u v : List (GGT.RelLetter G Λ)) : Prop :=
   v ∈ W ∧ (∃ s, v = u ++ s) ∧
     ∃ v' ∈ W, v' ≠ v ∧ ∃ u' s', v' = u' ++ s' ∧
       ∃ y z : G, wordNorm D.base y ≤ eps ∧ wordNorm D.base z ≤ eps ∧
-        GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z
+        GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∧
+        GGT.RelLetter.listVal v'
+          ≠ y * GGT.RelLetter.listVal v * y⁻¹
+
+/-- **The witness the exclusion clause kills.**  Every clause of `IsPiece` at
+`u = v` other than the exclusion is met by the cyclic permutation of `v` by
+`n` letters, as soon as that permutation is a different word and the prefix it
+moves is base-short in both directions.
+
+At `n = 1` and a first letter of the base both hypotheses hold with `ε ≥ 1`,
+the base of Hull's relative generating set being `A.alphabet.carrier`, which is
+symmetric. -/
+theorem exists_naive_piece_of_rotate (D : GGT.RelGenSet G Λ)
+    {W : Set (List (GGT.RelLetter G Λ))} (eps : ℕ)
+    {v : List (GGT.RelLetter G Λ)} (hrot : ∀ n : ℕ, v.rotate n ∈ W) {n : ℕ}
+    (hn : n ≤ v.length) (hne : v.rotate n ≠ v)
+    (hy : wordNorm D.base (GGT.RelLetter.listVal (v.take n))⁻¹ ≤ eps)
+    (hz : wordNorm D.base (GGT.RelLetter.listVal (v.take n)) ≤ eps) :
+    ∃ v' ∈ W, v' ≠ v ∧ ∃ u' s', v' = u' ++ s' ∧
+      ∃ y z : G, wordNorm D.base y ≤ eps ∧ wordNorm D.base z ≤ eps ∧
+        GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal v * z := by
+  refine ⟨v.rotate n, hrot n, hne, v.rotate n, [], ?_,
+    (GGT.RelLetter.listVal (v.take n))⁻¹, GGT.RelLetter.listVal (v.take n),
+    hy, hz, ?_⟩
+  · rw [List.append_nil]
+  · exact listVal_rotate v hn
+
+/-- **What the missing clause would cost.**  `pieces_small` at `u = v` reads
+`|v| < μ |v|`, which is impossible for `μ ≤ 1` and `v` of positive length. -/
+theorem false_of_pieces_small_self {mu : ℝ} (hmu : mu ≤ 1)
+    {v : List (GGT.RelLetter G Λ)} (hv : v ≠ [])
+    (h : (v.length : ℝ) < mu * v.length) : False := by
+  have hne0 : v.length ≠ 0 := fun h0 => hv (List.length_eq_zero_iff.mp h0)
+  have hpos : (0 : ℝ) < (v.length : ℝ) := by
+    have hp : 0 < v.length := Nat.pos_of_ne_zero hne0
+    exact_mod_cast hp
+  have hle : mu * (v.length : ℝ) ≤ 1 * (v.length : ℝ) :=
+    mul_le_mul_of_nonneg_right hmu (le_of_lt hpos)
+  rw [one_mul] at hle
+  linarith
 
 /-- **Hull's condition `C(ε, μ, ρ)`** for a symmetrized family `W` of words over
 the relative generating set `D`. -/
