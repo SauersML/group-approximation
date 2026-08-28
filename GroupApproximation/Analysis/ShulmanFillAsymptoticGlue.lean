@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.CStarProductCorona
+import GroupApproximation.Analysis.ShulmanCoronaNontrivial
 import GroupApproximation.Analysis.ShulmanFillModelDescent
 
 /-!
@@ -91,6 +92,7 @@ def seq (F : SeqAsymptoticHom A D) (a : A) :
     rintro _ ⟨n, rfl⟩
     exact F.contractive n a⟩⟩
 
+omit [Nontrivial D] in
 @[simp] theorem seq_apply (F : SeqAsymptoticHom A D) (a : A) (n : ℕ) :
     F.seq a n = F.map n a := rfl
 
@@ -174,14 +176,19 @@ def toQuotientHom (F : SeqAsymptoticHom A D) :
           simp only [seq_apply, lp.infty_coeFn_one, Pi.one_apply]
         exact Filter.Tendsto.congr hfun F.one
       rw [h, map_one]
-    rw [halg, hsmul, hone, Algebra.algebraMap_eq_smul_one, smul_eq_mul, mul_one]
+    -- the four rewrites leave `z • 1 = z • 1`, which `rw` closes; `smul_eq_mul`
+    -- has no `?a • ?b` to match, the scalar and the vector being of two types
+    rw [halg, hsmul, hone, Algebra.algebraMap_eq_smul_one]
   map_star' a := by
-    show cStarProductCoronaQuotient (fun _ : ℕ ↦ D) cofinite (F.seq (star a)) =
-      star (cStarProductCoronaQuotient (fun _ : ℕ ↦ D) cofinite (F.seq a))
+    -- inside `namespace SeqAsymptoticHom` the bare name `star` is the
+    -- structure's own field, so the operation is written `Star.star` here
+    show cStarProductCoronaQuotient (fun _ : ℕ ↦ D) cofinite
+        (F.seq (Star.star a)) =
+      Star.star (cStarProductCoronaQuotient (fun _ : ℕ ↦ D) cofinite (F.seq a))
     rw [← map_star]
     refine quotient_eq_of_tendsto _ _ ?_
-    have hfun : ∀ n, ‖F.map n (star a) - star (F.map n a)‖ =
-        ‖F.seq (star a) n - (star (F.seq a)) n‖ := by
+    have hfun : ∀ n, ‖F.map n (Star.star a) - Star.star (F.map n a)‖ =
+        ‖F.seq (Star.star a) n - (Star.star (F.seq a)) n‖ := by
       intro n
       simp only [seq_apply, lp.coeFn_star, Pi.star_apply]
     exact Filter.Tendsto.congr hfun (F.star a)
