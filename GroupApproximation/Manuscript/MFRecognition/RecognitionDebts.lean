@@ -89,10 +89,38 @@ is the one that is wired.
   `D *_C D`) followed by his Theorem 10 (`D *_C D` is MF for separable MF
   `D`).  It has *two* atoms.  Theorem 10 needs his Theorem 4, the lifting
   characterization of MF against the algebra `𝒟` of `*`-strongly convergent
-  matrix sequences, which the repository does not yet carry.  Theorem 13 is
-  Enders--Shulman, arXiv:2403.12224, Theorem 4.11, whose proof runs through
-  the Arveson extension theorem, the Stinespring dilation theorem and
-  Voiculescu's theorem in the Calkin algebra. -/
+  matrix sequences.  Theorem 13 is Enders--Shulman, arXiv:2403.12224,
+  Theorem 4.11, whose proof runs through the Arveson extension theorem, the
+  Stinespring dilation theorem and Voiculescu's theorem in the Calkin
+  algebra.
+
+An earlier reading of this docstring said that neither `𝒟` nor the Calkin
+algebra was available and that all three of Theorem 13's ingredients were
+missing.  Three of those four claims are now wrong, so the second route is
+shorter than recorded:
+
+* `𝒟` and its limit map `q` are built in
+  `Analysis/StarStrongMatrixSequencesAlgebra`, and the direction of Theorem 4
+  that Theorem 10 ends with — a `*`-homomorphic lift into `𝒟` with faithful
+  `*`-strong limit makes a separable algebra MF — is proved in
+  `Analysis/StarStrongLimitNorm.isMFAlgebra_of_starStrongLift`.  The direction
+  Theorem 10 *begins* with, from MF to the existence of such a lift, is still
+  owed.
+* The Calkin algebra is a C-star algebra: `Analysis/CalkinSchauderProof` proves
+  Schauder's theorem, so the compacts are a closed star-stable two-sided ideal,
+  and `Analysis/CStarIdealApproximateUnit` — root-imported and elaborated —
+  already carries the quotient C-star identity for every such ideal.
+  `Analysis/CalkinCStarAlgebra` assembles the two.
+* Stinespring's dilation theorem is in the repository and root-imported:
+  `Analysis/CStarStinespringHom.stinespringRepHom` with
+  `stinespring_dilation_repHom`.
+* Arveson's extension theorem is in the repository only for *matrix* targets,
+  `Analysis/LanceMatrixArveson.exists_ucp_extension`.  The case of `B(H)` for
+  infinite-dimensional `H` is not there.
+* Voiculescu's theorem is not in the repository in any form.
+
+So what the second route still owes is Arveson at a `B(H)` target,
+Voiculescu's theorem, and the lifting direction of Theorem 4. -/
 theorem conjugateWordNorming : ShulmanFill.ConjugateWordNormingStatement := by
   sorry
 
