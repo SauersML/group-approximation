@@ -4,7 +4,7 @@
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{\PassOptionsToPackage{expansion=false}{microtype}}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{etoolbox}
-\usepackage[letterpaper,textwidth=6in,textheight=\textheight,hmarginratio=1:1]{geometry}
+\usepackage[letterpaper,textwidth=5.6in,textheight=\textheight,hmarginratio=1:1]{geometry}
 \usepackage[nopatch=footnote]{microtype}
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
@@ -49,6 +49,7 @@
 
 \makeatletter
 \patchcmd{\abstract}{\item[\hskip\labelsep\scshape\abstractname.]}{\item[]}{}{\PackageError{self-compression}{Could not remove abstract heading}{}}
+\patchcmd{\abstract}{\leftmargin3pc \rightmargin\leftmargin}{\leftmargin4.5pc \rightmargin\leftmargin}{}{\PackageError{self-compression}{Could not narrow the abstract}{}}
 \makeatother
 \newcommand{\draftnotice}{%
   \begin{center}
