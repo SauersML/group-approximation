@@ -89,18 +89,41 @@ transported to the realisation and the conclusion transported back along the
 vertex inclusion.  That transfer is a lane of its own and it is a prerequisite,
 not a detail.
 
+## A second finding: `IsVeryRotating` is not DGO's condition
+
+Read against the paper (arXiv:1111.7048), **Definition 2.12(c)** -- the very
+rotating condition -- says: for `c ∈ C`, `g ∈ G_c \ {1}` and `x, y` with
+`d(x,c), d(y,c) ∈ [20δ, 40δ]` **and `d(g·x, y) ≤ 15δ`**, *any geodesic between
+`x` and `y` contains `c`*.
+
+`HullSC.IsVeryRotating` differs in both halves.  It drops the coupling
+hypothesis `d(g·x, y) ≤ 15δ`, quantifying over every pair in the annulus; and
+it replaces "every geodesic from `x` to `y` passes through `c`" by the Gromov
+product bound `(x | g·y)_c ≤ 5δ`.  Dropping a hypothesis from a *hypothesis* of
+the theorem makes the condition harder to satisfy, so `DGOQuotientStatement`
+was, in this respect, weaker than DGO's theorem and still false -- the
+counterexample above satisfies the strengthened condition vacuously either way.
+But it matters for anyone *building* a family: a family satisfying DGO's
+Definition 2.12(c) need not satisfy `IsVeryRotating`, so the construction has to
+be checked against the definition in this repository and not against the paper.
+
+Restating `IsVeryRotating` as Definition 2.12(c) verbatim is the natural repair
+and it is not done here, because the geodesic form is unstateable until the
+space is known to be geodesic -- which is the same prerequisite as above, and
+which is why the two repairs should land together rather than separately.
+
 ## The plan for §5, in dependency order
 
 Once the statement is repaired, DGO's proof is the following chain.  Nothing
-below is formalized here; this is the map.
+below is formalized here; this is the map, and the numbering is the paper's.
 
-**(1) The rotating family acts on a hyperbolic space with a `ρ`-separated set of
-apices, `ρ` large against `δ`.**  Definitions and the elementary displacement
-estimates are already in `GGT/HullSCRotatingFamily.lean`:
+**(1) The definitions.**  DGO Definition 2.12(a) is the rotating family, 2.12(b)
+is `ρ`-separation, 2.12(c) is the very rotating condition.  Those and the
+elementary displacement estimates are in `GGT/HullSCRotatingFamily.lean`:
 `dist_smul_apex_eq`, `dist_le_dist_smul_of_veryRotating`, `ne_of_veryRotating`,
 `eq_of_dist_lt_of_isSeparated`.
 
-**(2) Windmills** (DGO §5.2).  The inductive object of the proof: a subspace
+**(2) Windmills** (DGO §5.1).  The inductive object of the proof: a subspace
 built by attaching, at each stage, the apices within a controlled distance of
 what is already there together with their rotation orbits.  A windmill is
 quasi-convex with a constant independent of the stage, and the group generated
@@ -108,25 +131,38 @@ by the rotations at its apices acts on it.  This is the induction that replaces
 the van Kampen diagram of classical small cancellation, and it is where the
 hyperbolicity constant is spent.
 
-**(3) The Greendlinger-type lemma for very rotating families** (DGO §5.3).  A
-nontrivial element of `K = ⟨⟨Rot c⟩⟩` that is not conjugate into a single
-`Rot c` moves every point of a windmill a definite amount.  This is the
-statement that gives, at one stroke: the dichotomy `rotation_or_loxodromic`,
-the injectivity radius `ne_one_of_dist_lt`, and -- via a windmill containing a
-lift of a finite-order element -- the lifting clause `finiteOrder_lift`.
+**(3) The Greendlinger-type lemmas** (DGO §5.1.3).  A nontrivial element of
+`K = ⟨⟨Rot c⟩⟩` that is not conjugate into a single `Rot c` moves every point of
+a windmill a definite amount.  This is what gives, at one stroke, the dichotomy
+`rotation_or_loxodromic`, the injectivity radius `ne_one_of_dist_lt`, and --
+through a windmill containing a lift of a finite-order element -- the lifting
+clause `finiteOrder_lift`.
 
-**(4) The free splitting** (DGO Thm 5.3(1)).  `K` is the free product of a
-family of conjugates of the `Rot c`, one per orbit of apices.  Not recorded in
-`RotatingQuotient`, because nothing above it consumes the splitting; it is the
-strongest conclusion and the one to add last, if ever.
+**(4) The theorem.**  DGO **Theorem 5.3**, restated for `α`-rotating subgroups
+with `α ≥ 200` as their **Theorem 2.14**, which is where the `200 * δ ≤ ρ` of
+`DGOQuotientStatement` comes from.  Its two printed conclusions are
+`⟨⟨H⟩⟩^G = ∗_{t ∈ T} t⁻¹ H t` -- the free splitting -- and *every element of
+`⟨⟨H⟩⟩^G` is either conjugate into `H` or loxodromic*, which is
+`rotation_or_loxodromic`.  **`finiteOrder_lift` and the injectivity radius are
+not among those two clauses**, so before they are proved someone has to find
+where in §5 they come from; they may be corollaries of the free splitting rather
+than of the dichotomy.  That is the first thing to check and it is not yet
+checked.
 
-**(5) The quotient clauses.**  `ker_eq` is by construction; `surjective` is the
-quotient map; the other three are (3).
+**(5) The free splitting.**  Not recorded in `RotatingQuotient`, because nothing
+above it consumes the splitting -- but see (4): if the lifting clause is a
+corollary of the splitting rather than of the Greendlinger lemma, it has to be
+added after all.
 
-A realistic ordering for formalizing this is (1) then (3) with the windmill
-induction of (2) stated as a named `Prop` and consumed, rather than (2) proved
-first: the windmill construction is the longest part of DGO §5 and the
-Greendlinger lemma is what the four clauses actually need.
+A realistic ordering is (1) then (3), with the windmill induction of (2) stated
+as a named `Prop` and consumed rather than proved first: the windmill
+construction is the longest part of §5 and the Greendlinger lemmas are what the
+clauses need.
+
+The numbering above is read off the ar5iv rendering of arXiv:1111.7048 rather
+than the published Memoir, and the two differ: what the rendering shows as
+Theorem 2.14 it also identifies as Theorem 5.3 in the body.  Where a docstring
+below cites a number, it cites that source.
 -/
 
 namespace GroupApproximation
