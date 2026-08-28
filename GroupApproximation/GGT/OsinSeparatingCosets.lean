@@ -42,25 +42,33 @@ The facts about `|S(·,·;D)|` that the proof uses are:
 ## What this module does
 
 `SepData` bundles exactly those facts, one field per cited lemma, and
-`SepData.isAcylindrical_of_core` proves clause (b) from them together with a
-single residue, `SepData.AcylindricalCore`.  The bridge is Lemma 5.10 read in
-both directions: it converts every hypothesis and conclusion of acylindricity
-between the enlarged word metric and the separating-coset count, and
-`GGT.OsinEnlargement.isAcylindrical_cayley_of_basepoint` supplies the reduction
-to the identity vertex.  So the geometric obligation shrinks to:
+`SepData.isAcylindrical_of_core` proves clause (b) from them together with one
+residue, `SepData.AcylindricalCore`, and one further citation, `OsinLemma24`.
+The obligation is:
 
-> for each `m` there are `R`, `N` such that whenever `|S(1,z;D)| ≥ R`, at most
-> `N` elements `k` satisfy `|S(1,k;D)| ≤ m` and `|S(z,kz;D)| ≤ m`.
+> for each `m` there are `R > 0`, `N` such that for every `z` with
+> `d_{Y⊔ℋ}(1,z) = R` exactly, at most `N` elements `k` have `d_{Y⊔ℋ}(1,k) ≤ m`
+> and `d_{Y⊔ℋ}(1, z⁻¹kz) ≤ m`.
 
-That is the content of Lemma 5.11, and it is the only part of §5 not reduced to
-bookkeeping here.  It is where the linear order of Lemma 4.8 and the local
-finiteness of `d̂_λ` do their work: an element almost fixing both ends of a long
-chain of separating cosets must almost preserve the chain, and a coset
-stabiliser is `d̂`-locally finite.
+Two things about that shape are deliberate.  It is an *equation* `= R`, not
+`≥ R`, because that is what Osin proves --- his (35) fixes `|g|_{Y⊔ℋ} = 18ε+11`
+--- and Lemma 2.4 is what carries it back to acylindricity; an earlier version
+of this file asked for `≥ R` and was therefore a strictly stronger statement
+than the source establishes.  And it is stated in the enlarged word metric, not
+in `sep`, because the *conclusion* of Lemma 5.11 is about `Γ(G, Y ⊔ ℋ)`; the
+separating-coset count enters only inside its proof, which is where the linear
+order of Lemma 4.8 and the local finiteness of `d̂_λ` do their work.
 
-Nothing in this module inhabits `SepData` or `AcylindricalCore`.  Constructing
-the separating cosets themselves needs the component machinery of `Γ(G, X ⊔ ℋ)`,
-which this repository does not have.
+Two reductions are used to get there and they are different statements:
+`GGT.OsinEnlargement.isAcylindrical_cayley_of_basepoint` and its exact-distance
+twin `exactAcylindrical_of_basepoint` remove the quantifier over the first
+vertex and need no hyperbolicity --- Osin takes that step silently ---
+while `OsinLemma24` replaces `d(x,z) = R` by `R ≤ d(x,z)` and does need it.
+
+Nothing in this module inhabits `SepData` or `AcylindricalCore`.  The component
+machinery the separating cosets are built from is
+`GGT/OsinComponents.lean` and `GGT/OsinPenetration.lean`; `sep` itself is
+`OsinComponents.sepCard`, available once `LemmaFourEight` is proved.
 -/
 
 namespace GroupApproximation
@@ -106,6 +114,85 @@ structure SepData (D : RelGenSet G Unit) where
   sep_le_dist : ∀ f g : G,
     sep f g ≤ 3 * wordDist enlarged.alphabet.carrier f g
 
+/-- **Osin, *Acylindrically hyperbolic groups*, Lemma 2.4**, verbatim:
+
+> The action of a group `G` on a hyperbolic space `S` is acylindrical if and
+> only if for every `ε > 0` there exist `R, N > 0` such that for every two
+> points `x, z` satisfying `d(x,z) = R`, we have
+> `♯{g ∈ G | max{d(x,gx), d(z,gz)} ≤ ε} ≤ N`.
+
+Only the direction that is used is carried: the exact-distance condition
+implies acylindricity.  That direction is not free --- passing from pairs at
+distance exactly `R` to all pairs at distance at least `R` needs the space to be
+hyperbolic, through the Rips condition --- which is why `δ` and the four-point
+hypothesis appear, and why this is a citation rather than bookkeeping.
+
+It is a *different* reduction from `isAcylindrical_cayley_of_basepoint`, which
+needs no hyperbolicity: that one removes the quantifier over the first vertex,
+this one replaces `R ≤ d(x,z)` by `d(x,z) = R`.  Both are used, and Osin states
+only this one; the basepoint step he takes silently inside Lemma 5.11.
+
+(The source prints `d(y,gz)` where `d(z,gz)` is meant; no `y` occurs.) -/
+def OsinLemma24 : Prop :=
+  ∀ (Γ : Type u) [Group Γ] (X : Type u) [PseudoMetricSpace X] [MulAction Γ X]
+    (δ : ℝ), IsHyperbolicSpace δ X → IsIsometricAction Γ X →
+    (∀ ε : ℝ, 0 < ε → ∃ (R : ℝ) (N : ℕ), 0 < R ∧ ∀ x z : X, dist x z = R →
+      {g : Γ | dist x (g • x) ≤ ε ∧ dist z (g • z) ≤ ε}.Finite ∧
+        {g : Γ | dist x (g • x) ≤ ε ∧ dist z (g • z) ≤ ε}.ncard ≤ N) →
+    IsAcylindrical Γ X
+
+/-- The basepoint reduction in the exact-distance form Lemma 2.4 consumes.  The
+argument is the one of `isAcylindrical_cayley_of_basepoint`: the `ε`-stabiliser
+of `(x,z)` is carried by `k ↦ x k x⁻¹` from the `ε`-stabiliser of `(1, x⁻¹z)`,
+and `d(x,z) = d(1, x⁻¹z)`.  Here it is an inclusion rather than an equality,
+because the real bound `ε` is relaxed to the integer `⌈ε⌉₊`, which is all the
+count needs. -/
+theorem exactAcylindrical_of_basepoint (A : Alphabet G) (ε : ℝ) (R₀ N : ℕ)
+    (h : ∀ z : G, wordDist A.carrier 1 z = R₀ →
+      {k : G | wordDist A.carrier 1 k ≤ ⌈ε⌉₊ ∧
+          wordDist A.carrier 1 (z⁻¹ * k * z) ≤ ⌈ε⌉₊}.Finite ∧
+        {k : G | wordDist A.carrier 1 k ≤ ⌈ε⌉₊ ∧
+          wordDist A.carrier 1 (z⁻¹ * k * z) ≤ ⌈ε⌉₊}.ncard ≤ N) :
+    ∀ x z : Cayley A, dist x z = ((R₀ : ℕ) : ℝ) →
+      {g : G | dist x (g • x) ≤ ε ∧ dist z (g • z) ≤ ε}.Finite ∧
+        {g : G | dist x (g • x) ≤ ε ∧ dist z (g • z) ≤ ε}.ncard ≤ N := by
+  intro x z hxz
+  have hzd : wordDist A.carrier 1 ((Cayley.val x)⁻¹ * Cayley.val z) = R₀ := by
+    have h1 : ((wordDist A.carrier 1
+        ((Cayley.val x)⁻¹ * Cayley.val z) : ℕ) : ℝ) = ((R₀ : ℕ) : ℝ) := by
+      rw [← dist_val]
+      exact hxz
+    exact_mod_cast h1
+  obtain ⟨hfin, hcard⟩ := h _ hzd
+  have hsub : {g : G | dist x (g • x) ≤ ε ∧ dist z (g • z) ≤ ε}
+      ⊆ (fun k : G => Cayley.val x * k * (Cayley.val x)⁻¹) ''
+        {k : G | wordDist A.carrier 1 k ≤ ⌈ε⌉₊ ∧
+          wordDist A.carrier 1
+            (((Cayley.val x)⁻¹ * Cayley.val z)⁻¹ * k *
+              ((Cayley.val x)⁻¹ * Cayley.val z)) ≤ ⌈ε⌉₊} := by
+    rintro g ⟨hg1, hg2⟩
+    refine ⟨(Cayley.val x)⁻¹ * g * Cayley.val x, ⟨?_, ?_⟩, by group⟩
+    · have h1 : ((wordDist A.carrier 1
+          ((Cayley.val x)⁻¹ * g * Cayley.val x) : ℕ) : ℝ)
+          ≤ ((⌈ε⌉₊ : ℕ) : ℝ) := by
+        rw [← dist_smul_val]
+        exact le_trans hg1 (Nat.le_ceil ε)
+      exact_mod_cast h1
+    · have hconj : ((Cayley.val x)⁻¹ * Cayley.val z)⁻¹ *
+            ((Cayley.val x)⁻¹ * g * Cayley.val x) *
+            ((Cayley.val x)⁻¹ * Cayley.val z)
+          = (Cayley.val z)⁻¹ * g * Cayley.val z := by group
+      rw [hconj]
+      have h2 : ((wordDist A.carrier 1
+          ((Cayley.val z)⁻¹ * g * Cayley.val z) : ℕ) : ℝ)
+          ≤ ((⌈ε⌉₊ : ℕ) : ℝ) := by
+        rw [← dist_smul_val]
+        exact le_trans hg2 (Nat.le_ceil ε)
+      exact_mod_cast h2
+  refine ⟨(hfin.image _).subset hsub, ?_⟩
+  exact le_trans (Set.ncard_le_ncard hsub (hfin.image _))
+    (le_trans (Set.ncard_image_le hfin) hcard)
+
 namespace SepData
 
 variable {D : RelGenSet G Unit} (S : SepData D)
@@ -120,57 +207,43 @@ theorem sep_one_inv (y : G) : S.sep 1 y⁻¹ = S.sep 1 y := by
   rw [mul_one, mul_inv_cancel] at h1
   rw [← h1, S.sep_comm]
 
-/-- **Osin's Lemma 5.11, with the geometry removed.**  The residue: for each
-`m` a radius and a bound, in terms of the separating-coset count. -/
+/-- **Osin's Lemma 5.11, with the geometry removed**, in the exact-distance
+form his proof actually establishes: he fixes `|g|_{Y⊔ℋ} = 18ε + 11`, an
+equation, because Lemma 2.4 lets him check only pairs at one distance.
+
+An earlier version of this statement asked for the bound at every `z` with
+`sep 1 z ≥ R`.  That is strictly stronger than what Osin proves, so it was the
+wrong target; the exact-distance form is the right one, and `OsinLemma24` is
+what carries it back to acylindricity.  Stated in the enlarged word metric
+rather than in `sep`, because the conclusion of Lemma 5.11 is about
+`Γ(G, Y ⊔ ℋ)`; the separating-coset count enters only inside its proof. -/
 def AcylindricalCore : Prop :=
-  ∀ m : ℕ, ∃ R N : ℕ, ∀ z : G, R ≤ S.sep 1 z →
-    {k : G | S.sep 1 k ≤ m ∧ S.sep z (k * z) ≤ m}.Finite ∧
-      {k : G | S.sep 1 k ≤ m ∧ S.sep z (k * z) ≤ m}.ncard ≤ N
+  ∀ m : ℕ, ∃ R N : ℕ, 0 < R ∧ ∀ z : G,
+    wordDist S.enlarged.alphabet.carrier 1 z = R →
+      {k : G | wordDist S.enlarged.alphabet.carrier 1 k ≤ m ∧
+          wordDist S.enlarged.alphabet.carrier 1 (z⁻¹ * k * z) ≤ m}.Finite ∧
+        {k : G | wordDist S.enlarged.alphabet.carrier 1 k ≤ m ∧
+          wordDist S.enlarged.alphabet.carrier 1
+            (z⁻¹ * k * z) ≤ m}.ncard ≤ N
 
 /-- **Clause (b) of Theorem 5.4 from the residue.**
 
-Lemma 5.10 converts each hypothesis and each conclusion between the enlarged
-word metric and the separating-coset count, and
-`isAcylindrical_cayley_of_basepoint` removes the quantifier over the first
-vertex. -/
-theorem isAcylindrical_of_core (hcore : S.AcylindricalCore) :
+`exactAcylindrical_of_basepoint` removes the quantifier over the first vertex
+--- the step Osin takes silently --- and `OsinLemma24` passes from pairs at one
+distance to all distant pairs, which is where hyperbolicity is used.  The
+hyperbolicity constant is the one `IsHyperbolicallyEmbedded` already carries,
+so no new input is needed for it. -/
+theorem isAcylindrical_of_core (h24 : OsinLemma24.{u})
+    (hcore : S.AcylindricalCore) :
     IsAcylindrical G (Cayley S.enlarged.alphabet) := by
-  refine isAcylindrical_cayley_of_basepoint S.enlarged.alphabet ?_
+  obtain ⟨δ, hδ⟩ := S.emb.hyperbolic
+  refine h24 G (Cayley S.enlarged.alphabet) δ hδ
+    (isIsometricAction_cayley S.enlarged.alphabet) ?_
   intro ε hε
-  obtain ⟨R, N, hRN⟩ := hcore (3 * ⌈ε⌉₊)
-  refine ⟨((2 * R + 1 : ℕ) : ℝ), N, ?_⟩
-  intro z hz
-  -- the hypothesis on `z`, transported by the left half of Lemma 5.10
-  have hzd : 2 * R + 1 ≤ wordDist S.enlarged.alphabet.carrier 1 z := by
-    exact_mod_cast hz
-  have hzs : R ≤ S.sep 1 z := by
-    have h := S.dist_le_sep 1 z
-    omega
-  obtain ⟨hfin, hcard⟩ := hRN z hzs
-  -- the two ε-conditions, transported by the right half of Lemma 5.10
-  have hsub : {k : G |
-        ((wordDist S.enlarged.alphabet.carrier 1 k : ℕ) : ℝ) ≤ ε ∧
-        ((wordDist S.enlarged.alphabet.carrier 1 (z⁻¹ * k * z) : ℕ) : ℝ) ≤ ε}
-      ⊆ {k : G | S.sep 1 k ≤ 3 * ⌈ε⌉₊ ∧ S.sep z (k * z) ≤ 3 * ⌈ε⌉₊} := by
-    rintro k ⟨hk1, hk2⟩
-    have hc1 : wordDist S.enlarged.alphabet.carrier 1 k ≤ ⌈ε⌉₊ := by
-      have h : ((wordDist S.enlarged.alphabet.carrier 1 k : ℕ) : ℝ)
-          ≤ ((⌈ε⌉₊ : ℕ) : ℝ) := le_trans hk1 (Nat.le_ceil ε)
-      exact_mod_cast h
-    have hc2 : wordDist S.enlarged.alphabet.carrier 1 (z⁻¹ * k * z) ≤ ⌈ε⌉₊ := by
-      have h : ((wordDist S.enlarged.alphabet.carrier 1 (z⁻¹ * k * z) : ℕ) : ℝ)
-          ≤ ((⌈ε⌉₊ : ℕ) : ℝ) := le_trans hk2 (Nat.le_ceil ε)
-      exact_mod_cast h
-    refine ⟨?_, ?_⟩
-    · have h := S.sep_le_dist 1 k
-      omega
-    · have h := S.sep_le_dist 1 (z⁻¹ * k * z)
-      have hmove : S.sep (z * 1) (z * (z⁻¹ * k * z)) = S.sep 1 (z⁻¹ * k * z) :=
-        S.sep_smul z 1 (z⁻¹ * k * z)
-      have he : z * (z⁻¹ * k * z) = k * z := by group
-      rw [mul_one, he] at hmove
-      omega
-  exact ⟨hfin.subset hsub, le_trans (Set.ncard_le_ncard hsub hfin) hcard⟩
+  obtain ⟨R, N, hRpos, hRN⟩ := hcore ⌈ε⌉₊
+  refine ⟨((R : ℕ) : ℝ), N, ?_, ?_⟩
+  · exact_mod_cast hRpos
+  · exact exactAcylindrical_of_basepoint S.enlarged.alphabet ε R N hRN
 
 end SepData
 
@@ -184,12 +257,12 @@ def SepDataStatement : Prop :=
 /-- **`OsinEnlargementBasepoint` from the separating-coset data.**  With
 `osinTheorem54_of_basepoint` this reduces Osin's Theorem 5.4 to
 `SepDataStatement`. -/
-theorem osinEnlargementBasepoint_of (h : SepDataStatement.{u}) :
-    OsinEnlargementBasepoint.{u} := by
+theorem osinEnlargementBasepoint_of (h24 : OsinLemma24.{u})
+    (h : SepDataStatement.{u}) : OsinEnlargementBasepoint.{u} := by
   intro G _inst D hD
   obtain ⟨S, hcore⟩ := h G D hD
   refine ⟨S.enlarged, S.base_subset, S.fam_eq, S.emb, ?_⟩
-  have hacy := S.isAcylindrical_of_core hcore
+  have hacy := S.isAcylindrical_of_core h24 hcore
   intro ε hε
   obtain ⟨R, N, hRN⟩ := hacy ε hε
   refine ⟨R, N, ?_⟩
@@ -216,9 +289,9 @@ theorem osinEnlargementBasepoint_of (h : SepDataStatement.{u}) :
   exact ⟨hfin, hcard⟩
 
 /-- **Theorem 5.4 from the separating-coset data.** -/
-theorem osinTheorem54_of_sepData (h : SepDataStatement.{u}) :
-    OsinTheorem54.{u} :=
-  osinTheorem54_of_basepoint (osinEnlargementBasepoint_of h)
+theorem osinTheorem54_of_sepData (h24 : OsinLemma24.{u})
+    (h : SepDataStatement.{u}) : OsinTheorem54.{u} :=
+  osinTheorem54_of_basepoint (osinEnlargementBasepoint_of h24 h)
 
 end OsinEnlargement
 end GGT
