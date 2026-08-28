@@ -88,7 +88,7 @@ theorem getLast?_cons_ne_nil {α : Type*} (a : α) {l : List α} (hl : l ≠ [])
     (a :: l).getLast? = l.getLast? := by
   cases l with
   | nil => exact absurd rfl hl
-  | cons _ _ => rfl
+  | cons _ _ => exact List.getLast?_cons_cons
 
 /-! ## 1.  The first and last letters of a reduced word
 
@@ -133,7 +133,7 @@ theorem toList_of_smul_of_fstIdx_ne {i : ι} {z : G i} (hz : z ≠ 1) {w : Word 
       = (⟨i, z⟩ : Σ i, G i) :: w.toList := by
   have h : (CoprodI.of z : CoprodI G) • w = Word.cons z w hne hz :=
     (Word.cons_eq_smul (m := z) (ls := w) (h1 := hne) (h2 := hz)).symm
-  simp only [h, Word.cons_toList]
+  exact congrArg Word.toList h
 
 /-- The reduced word of a nontrivial element is not empty. -/
 theorem toList_ne_nil {g : CoprodI G} (hg : g ≠ 1) :
