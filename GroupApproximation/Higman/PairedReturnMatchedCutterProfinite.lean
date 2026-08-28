@@ -1551,6 +1551,13 @@ theorem exists_target_rightCarryComparison_of_map_mem
         change x ∈ imageRightSub Q q
         rw [← hs]
         exact s.property
+    | true =>
+        obtain ⟨s, hs⟩ := hrange
+        change Star.graphSub.map q at s
+        change (s : Q) = x at hs
+        change x ∈ Star.graphSub.map q
+        rw [← hs]
+        exact s.property
 
 /-- Membership in the product of the mapped left vertex and mapped cutter
 produces a target carry comparison whose syllables after the first lie in the
@@ -1618,14 +1625,7 @@ theorem exists_target_rightCarryComparison_of_map_leftRange_mul_mem
           (lampMap Q (PairedReturnGraphIntersection.M.map q) Sync)
           (imageMatchedFactorSubgroup Q q) (imageDelta Q q)
           (imageMatchedFactorSubgroup_comap_edge Q q hinter) y := by
-      rw [ambientToImageLamp_left, hy]
-    | true =>
-        obtain ⟨s, hs⟩ := hrange
-        change Star.graphSub.map q at s
-        change (s : Q) = x at hs
-        change x ∈ Star.graphSub.map q
-        rw [← hs]
-        exact s.property
+      rw [ambientToImageLamp_left, hy, inAmbient_apply]
 
 /-- Every excluded element has a reduced normal spelling and a finite refined
 quotient preserving its right-scan obstruction with exact mapped edge
