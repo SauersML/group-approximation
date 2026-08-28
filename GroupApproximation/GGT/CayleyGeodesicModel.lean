@@ -447,7 +447,7 @@ theorem pointDist_triangle (p q r : Point A) :
       have hsplit : p.param - r.param
           = (p.param - q.param) + (q.param - r.param) := by ring
       rw [hsplit]
-      exact abs_add _ _
+      exact abs_add_le _ _
     linarith
 
 end Point
@@ -715,7 +715,7 @@ theorem exists_step (A : Alphabet G) {x y : G} {n : ℕ}
       rw [List.length_nil] at hlen'
       exact absurd hlen'.symm (Nat.succ_ne_zero n)
   | cons a l' =>
-      have ha : a ∈ A.carrier := hl.letters a (List.mem_cons_self a l')
+      have ha : a ∈ A.carrier := hl.letters a List.mem_cons_self
       have hprod : a * l'.prod = x⁻¹ * y := by
         have h := hl.prod_eq
         rwa [List.prod_cons] at h
@@ -784,16 +784,18 @@ theorem viaVertex_vertex_right {A : Alphabet G} (p : Point A) (v : G) :
     Point.viaVertex p (vertex A v) = p.toVertex v := by
   show min (p.toVertex (vertex A v).base + (vertex A v).param)
       (p.toVertex (vertex A v).tip + (1 - (vertex A v).param)) = p.toVertex v
-  rw [vertex_base, vertex_tip, vertex_param]
-  exact min_eq_left (by linarith)
+  rw [vertex_base, vertex_tip, vertex_param, min_def]
+  split_ifs with h <;> linarith
 
 /-- Against a vertex on a different edge, the distance is the distance to that
 vertex. -/
 theorem pointDist_vertex_right {A : Alphabet G} (p : Point A) (v : G)
     (hcond : ¬ (p.base = v ∧ p.letter = 1)) :
     Point.pointDist p (vertex A v) = p.toVertex v := by
+  have hcond' : ¬ (p.base = (vertex A v).base ∧
+      p.letter = (vertex A v).letter) := hcond
   unfold Point.pointDist
-  rw [if_neg hcond, viaVertex_vertex_right]
+  rw [if_neg hcond', viaVertex_vertex_right]
 
 /-- **The far endpoint is `1 - σ` away.** -/
 theorem dist_edgePoint_tip (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
@@ -812,7 +814,8 @@ theorem dist_edgePoint_tip (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
   rw [pointDist_vertex_right _ _ hcond, toVertex_edgePoint A x a ha h0 h1,
     hstep, wordDist_self]
   push_cast
-  exact min_eq_right (by linarith)
+  rw [min_def]
+  split_ifs with h <;> linarith
 
 /-- **The base vertex is `σ` away.** -/
 theorem dist_vertex_edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
@@ -830,7 +833,8 @@ theorem dist_vertex_edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
   rw [Point.pointDist_comm, pointDist_vertex_right _ _ hcond,
     toVertex_edgePoint A x a ha h0 h1, wordDist_self, hcomm]
   push_cast
-  exact min_eq_left (by linarith)
+  rw [min_def]
+  split_ifs with h <;> linarith
 
 /-- **Two points of one edge are `|σ - τ|` apart.** -/
 theorem dist_edgePoint_edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrier)
@@ -844,11 +848,13 @@ theorem dist_edgePoint_edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrie
   have hbase : (edgePoint A x a ha σ).toVertex x = σ := by
     rw [toVertex_edgePoint A x a ha h0 h1, wordDist_self, hcomm]
     push_cast
-    exact min_eq_left (by linarith)
+    rw [min_def]
+    split_ifs with h <;> linarith
   have htip : (edgePoint A x a ha σ).toVertex (x * a) = 1 - σ := by
     rw [toVertex_edgePoint A x a ha h0 h1, hstep, wordDist_self]
     push_cast
-    exact min_eq_right (by linarith)
+    rw [min_def]
+    split_ifs with h <;> linarith
   have hvia : Point.viaVertex (edgePoint A x a ha σ) (edgePoint A x a ha τ)
       = min (σ + τ) (1 - σ + (1 - τ)) := by
     show min ((edgePoint A x a ha σ).toVertex (edgePoint A x a ha τ).base
@@ -869,7 +875,7 @@ theorem dist_edgePoint_edgePoint (A : Alphabet G) (x a : G) (ha : a ∈ A.carrie
 /-- **A vertex further along is `wordDist - σ` away**, when the far endpoint of
 the edge is one step closer to it. -/
 theorem dist_edgePoint_vertex (A : Alphabet G) (x a y : G) (ha : a ∈ A.carrier)
-    (hane : a ≠ 1)
+    (_hane : a ≠ 1)
     (hfar : wordDist A.carrier x y = wordDist A.carrier (x * a) y + 1)
     {σ : ℝ} (h0 : 0 ≤ σ) (h1 : σ ≤ 1) :
     dist (edgePoint A x a ha σ) (vertex A y)
@@ -890,8 +896,8 @@ theorem dist_edgePoint_vertex (A : Alphabet G) (x a y : G) (ha : a ∈ A.carrier
   show Point.pointDist (edgePoint A x a ha σ) (vertex A y)
     = (wordDist A.carrier x y : ℝ) - σ
   rw [pointDist_vertex_right _ _ hcond, toVertex_edgePoint A x a ha h0 h1,
-    hcast]
-  exact min_eq_right (by linarith)
+    hcast, min_def]
+  split_ifs with h <;> linarith
 
 /-! ## The unit edge, parametrised from its base -/
 
@@ -1043,7 +1049,7 @@ their distances to the junction concatenate to a geodesic segment.  The two
 junction values need not be equal: in a pseudometric space it is enough that
 they are at distance zero, which is the case `s = L`, `t = 0` of `hfar`. -/
 theorem isGeodesicSegment_glue {X : Type*} [PseudoMetricSpace X] {f g : ℝ → X}
-    {L M : ℝ} (hL : 0 ≤ L) (hM : 0 ≤ M)
+    {L M : ℝ} (_hL : 0 ≤ L) (_hM : 0 ≤ M)
     (hf : IsGeodesicSegment f 0 L) (hg : IsGeodesicSegment g 0 M)
     (hfar : ∀ s ∈ Set.Icc (0 : ℝ) L, ∀ t ∈ Set.Icc (0 : ℝ) M,
       dist (f s) (g t) = L - s + t) :
@@ -1232,7 +1238,8 @@ theorem hasGeodesicModel (A : HullGeneratingSet G)
     (hgeo : IsGeodesicRealisation A.alphabet) :
     HasGeodesicModel A.alphabet :=
   ⟨model A.alphabet A.hyperbolic
-    (nonneg_of_isHyperbolicSpace A.hyperbolic (Cayley.base A.alphabet)) hgeo⟩
+    (GroupApproximation.Manuscript.NonMF.OsinNormalReduction.nonneg_of_isHyperbolicSpace
+      A.hyperbolic (Cayley.base A.alphabet)) hgeo⟩
 
 end CayleyGeodesicModel
 end GGT
