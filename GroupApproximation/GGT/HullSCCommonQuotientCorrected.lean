@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCCommonQuotient
 import GroupApproximation.GGT.HyperbolicFreeGroupAH
+import GroupApproximation.Higman.CoprodTorsion
 import GroupApproximation.Kazhdan.FreeGroupSharpProfile
 
 /-!
@@ -66,6 +67,19 @@ factors act non-elementarily because they already do on their own vertex space,
 and the tree structure is what keeps the whole hyperbolic and the action
 acylindrical.  Whoever discharges `FreeProductStatementCorrected` has to build
 that; the Bass-Serre tree alone will not do it.
+
+## What is left, and it is one alphabet
+
+`FreeProductAlphabetStatement` is the residue, and
+`freeProductStatementCorrected_of_alphabet` proves that it is the whole of it.
+The ambient group is pinned to `Monoid.Coprod E H` --- `FreeProductInput.Gamma`
+is an arbitrary type, so the abstract input never had to be the free product ---
+and the four fields that are not geometry are proved: finite presentation of a
+free product, torsion-freeness (`Higman.isPowerTorsionFree_coprod`), the
+embedding of the first factor (`coprod_inl_injective`), and the third clause of
+Hull's Definition 1.4, which is free over a torsion-free ambient group.  So
+Corollary 7.4 is owed exactly one alphabet on `E ∗ H₀` with two independent
+loxodromics in each factor: `hullCommonQuotient_of_oneStep_of_alphabet`.
 -/
 
 namespace GroupApproximation
@@ -313,6 +327,91 @@ theorem hullCommonQuotient_of_oneStep_corrected (h : HullOneStepStatement.{0})
     (hfree : FreeProductStatementCorrected) :
     Manuscript.NonMF.TheoremC.HullCommonQuotientStatement :=
   hullCommonQuotient_of_tower_corrected (hullTowerStatement_of_oneStep h) hfree
+
+/-! ## The free product itself: everything but the alphabet is a theorem -/
+
+/-- **A free factor embeds in the binary free product.**  `Monoid.Coprod.lift`
+of the identity and the trivial homomorphism retracts `Monoid.Coprod E H` onto
+`E` along `inl`. -/
+theorem coprod_inl_injective {E H : Type} [Group E] [Group H] :
+    Function.Injective (Monoid.Coprod.inl : E →* Monoid.Coprod E H) := by
+  intro a b hab
+  have h : (Monoid.Coprod.lift (MonoidHom.id E) (1 : H →* E))
+        (Monoid.Coprod.inl a)
+      = (Monoid.Coprod.lift (MonoidHom.id E) (1 : H →* E))
+        (Monoid.Coprod.inl b) := by
+    rw [hab]
+  rwa [Monoid.Coprod.lift_apply_inl, Monoid.Coprod.lift_apply_inl,
+    MonoidHom.id_apply, MonoidHom.id_apply] at h
+
+/-- **The geometric residue of the free product input.**
+
+`FreeProductStatementCorrected` asks for a whole `FreeProductInput`; this asks
+only for Hull's alphabet on the free product itself, together with the two
+clauses that say the free factors are non-elementary on it.  Everything else
+`FreeProductInput` records is a theorem about `Monoid.Coprod E H`:
+
+* finite presentation --- the free product of two finitely presented groups;
+* torsion-freeness --- `Higman.isPowerTorsionFree_coprod`, Kurosh's theorem in
+  the form this repository proves it;
+* the embedding of the first factor --- `coprod_inl_injective`;
+* the third clause of Hull's Definition 1.4 for both factors --- free over a
+  torsion-free ambient group, `suitable_of_torsionFree`.
+
+`freeProductStatementCorrected_of_alphabet` supplies all four, so this is what
+Hull's Corollary 7.4 is still owed, and nothing more.  Pinning the ambient group
+to `Monoid.Coprod E H` is part of the sharpening: `FreeProductInput.Gamma` is an
+arbitrary type, so the abstract statement does not commit to the free product at
+all. -/
+def FreeProductAlphabetStatement : Prop :=
+  ∀ (E H : Type) [Group E] [Group H],
+    Group.IsFinitelyPresented E → Group.IsFinitelyPresented H →
+      IsPowerTorsionFree E → IsPowerTorsionFree H →
+        IsAcylindricallyHyperbolic E → Infinite H →
+          GroupApproximation.Hyperbolic.IsHyperbolicGroup H →
+            HasKazhdanPropertyT.{0, 0} H →
+              ∃ A : HullGeneratingSet (Monoid.Coprod E H),
+                ActsNonElementarily
+                    (Monoid.Coprod.inl : E →* Monoid.Coprod E H).range
+                    (Cayley.base A.alphabet) ∧
+                  ActsNonElementarily
+                    (Monoid.Coprod.inr : H →* Monoid.Coprod E H).range
+                    (Cayley.base A.alphabet)
+
+/-- **The corrected free product input, from the alphabet alone.**  The
+remaining four fields are proved here rather than asked for. -/
+theorem freeProductStatementCorrected_of_alphabet
+    (h : FreeProductAlphabetStatement) : FreeProductStatementCorrected := by
+  intro E H instE instH hEfp hHfp hEtf hHtf hEah hHinf hHhyp hHT
+  letI := instE
+  letI := instH
+  haveI := hEfp
+  haveI := hHfp
+  obtain ⟨A, hEne, hHne⟩ :=
+    h E H hEfp hHfp hEtf hHtf hEah hHinf hHhyp hHT
+  have htf : IsPowerTorsionFree (Monoid.Coprod E H) :=
+    Higman.isPowerTorsionFree_coprod hEtf hHtf
+  exact ⟨{ Gamma := Monoid.Coprod E H
+           group := inferInstance
+           fp := inferInstance
+           torsionFree := htf
+           emb := Monoid.Coprod.inl
+           emb' := Monoid.Coprod.inr
+           inj := coprod_inl_injective
+           alphabet := A
+           suitable := suitable_of_torsionFree htf hEne
+           suitable' := suitable_of_torsionFree htf hHne }⟩
+
+/-- **Hull's Corollary 7.4 from his §5 and §6 and one alphabet.**  The sharpest
+form the reduction takes: `HullOneStepStatement` is Hull's Theorem 7.1 for a
+single relator, which `HullSC.hullOneStep_of_relator_of_quotient` proves from
+his Theorem 5.1 and his §6, and `FreeProductAlphabetStatement` is a statement
+about one generating set of `E ∗ H₀`. -/
+theorem hullCommonQuotient_of_oneStep_of_alphabet (h : HullOneStepStatement.{0})
+    (halph : FreeProductAlphabetStatement) :
+    Manuscript.NonMF.TheoremC.HullCommonQuotientStatement :=
+  hullCommonQuotient_of_oneStep_corrected h
+    (freeProductStatementCorrected_of_alphabet halph)
 
 end HullSC
 end GroupApproximation
