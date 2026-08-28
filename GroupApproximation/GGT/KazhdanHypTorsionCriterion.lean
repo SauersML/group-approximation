@@ -130,8 +130,11 @@ theorem cornerValue_cube_eq_one
     simp only [TriangularHodgeLayer.cornerValue, h01, h12]
   have h := TriangularHodgeLayer.cornerValue_mul_cornerValue_mul_cornerValue T j
   rw [e1, e2] at h
-  have hthree : (3 : ℕ) = 2 + 1 := rfl
-  rw [hthree, pow_succ, pow_two]
+  -- `rw` on the numeral would also hit the `3` of the `Fin 3` corner index,
+  -- breaking the `NeZero` instance in the motive; `show` retypes only the
+  -- exponent, which is definitionally `2 + 1`.
+  show (TriangularHodgeLayer.cornerValue T j 0) ^ (2 + 1) = 1
+  rw [pow_succ, pow_two]
   exact h
 
 /-- **The criterion is necessary.**  If a table has a triangle with three equal
