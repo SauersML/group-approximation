@@ -1,12 +1,21 @@
 import GroupApproximation.GGT.CayleyGeodesicModel
+import GroupApproximation.GGT.CayleyGeodesicQuotient
 
 /-!
 # The realisation of `Γ(G,A)` is a geodesic space
 
 `GGT.CayleyGeodesicModel` proves that the metric realisation of `Γ(G,A)` is
-geodesic **between vertices** (`exists_vertexGeodesic`) and leaves
-`IsGeodesicRealisation` — geodesicity between arbitrary points — as its one
-residual.  This module discharges it.
+geodesic **between vertices** (`exists_vertexGeodesic`) and leaves geodesicity
+between arbitrary points as its one residual.  This module discharges it, on the
+metric identification `GGT.CayleyGeodesicQuotient.PointQuot`.
+
+`IsGeodesicSpace (Point A)` on the nose is false, and not by an oversight: the
+edges of the realisation are doubled rather than quotiented, so the two ends
+`⟨x, 1, 0⟩` and `⟨x, 1, 1⟩` of the loop that `Letters A = insert 1 A.carrier`
+adjoins at every vertex are distinct points at distance zero, and no `f` can have
+both `f 0 = p` and `f (dist p q) = q`.  Every segment built below has its
+endpoints right **up to distance zero**, which is exactly what the identification
+turns into geodesicity.
 
 ## Only upper bounds are needed
 
@@ -48,9 +57,10 @@ fields of `Point` are propositions, so they take care of themselves.
 
 ## What it closes
 
-With `isGeodesicRealisation` proved, `CayleyGeodesicModel.model` needs no
-hypothesis: `hasGeodesicModel_of_hullGeneratingSet` builds the geodesic model of
-`Γ(G,A)` outright.  Of the two residuals `Manuscript.NonMF.HullFillAxisDichotomy`
+With `isGeodesicRealisationQuot` proved, the model needs no hypothesis:
+`hasGeodesicModel_of_hullGeneratingSet` builds the geodesic model of `Γ(G,A)`
+outright, on `PointQuot`.  Its statement is unchanged, and `HasGeodesicModel`
+quantifies the model space existentially, so no consumer moves.  Of the two residuals `Manuscript.NonMF.HullFillAxisDichotomy`
 left for `AxisDichotomy`, that was one; `axisDichotomy_cayley_of_commonPower`
 records that the other, `CommonPowerInGeodesicSpace`, is now the whole cost.
 
@@ -437,16 +447,13 @@ theorem exists_geodesic_of_split (A : Alphabet G) (p q : Point A) (v w : G)
     (hγ₃lip : ∀ s ∈ Set.Icc (0 : ℝ) ζ, ∀ t ∈ Set.Icc (0 : ℝ) ζ, s ≤ t →
       dist (γ₃ s) (γ₃ t) ≤ t - s)
     (hd : dist p q = α + (wordDist A.carrier v w : ℝ) + ζ) :
-    ∃ f : ℝ → Point A, IsGeodesicSegment f 0 (dist p q) ∧ f 0 = p ∧
-      f (dist p q) = q := by
+    ∃ f : ℝ → Point A, IsGeodesicSegment f 0 (dist p q) ∧
+      dist (f 0) p = 0 ∧ dist (f (dist p q)) q = 0 := by
   classical
   obtain ⟨γ₂, hγ₂geo, hγ₂0, hγ₂β⟩ :=
     exists_vertexGeodesic A (wordDist A.carrier v w) v w rfl
   have hβ : (0 : ℝ) ≤ (wordDist A.carrier v w : ℝ) := by positivity
   have hd0 : (0 : ℝ) ≤ dist p q := dist_nonneg
-  have hnot1 : ¬ dist p q ≤ α := by rw [hd]; linarith
-  have hnot2 : ¬ dist p q ≤ α + (wordDist A.carrier v w : ℝ) := by
-    rw [hd]; linarith
   have hsub : dist p q - α - (wordDist A.carrier v w : ℝ) = ζ := by rw [hd]; ring
   -- Distances from a point of each piece to the two junction vertices.
   have hj1 : ∀ r : ℝ, 0 ≤ r → r ≤ α → dist (γ₁ r) (vertex A v) ≤ α - r := by
@@ -480,11 +487,44 @@ theorem exists_geodesic_of_split (A : Alphabet G) (p q : Point A) (v w : G)
       ⟨hβ, le_refl _⟩
     rw [hγ₂0, hγ₂β, abs_of_nonpos (by linarith)] at h
     linarith
+  have hwq : dist (vertex A w) q ≤ ζ := by
+    have h := hj4 ζ hζ (le_refl ζ)
+    rwa [hγ₃ζ] at h
+  have hzero : dist (if (0 : ℝ) ≤ α then γ₁ 0 else
+      if (0 : ℝ) ≤ α + (wordDist A.carrier v w : ℝ) then γ₂ (0 - α)
+        else γ₃ (0 - α - (wordDist A.carrier v w : ℝ))) p = 0 := by
+    rw [if_pos hα, hγ₁0, dist_self]
+  have hend : dist (if dist p q ≤ α then γ₁ (dist p q) else
+      if dist p q ≤ α + (wordDist A.carrier v w : ℝ) then γ₂ (dist p q - α)
+        else γ₃ (dist p q - α - (wordDist A.carrier v w : ℝ))) q = 0 := by
+    by_cases h1 : dist p q ≤ α
+    · rw [if_pos h1]
+      have hβ0 : (wordDist A.carrier v w : ℝ) = 0 := by rw [hd] at h1; linarith
+      have hζ0 : ζ = 0 := by rw [hd] at h1; linarith
+      have hdα : dist p q = α := by rw [hd, hβ0, hζ0]; ring
+      rw [hdα]
+      have t1 : dist (γ₁ α) q ≤ dist (γ₁ α) (vertex A v) + dist (vertex A v) q :=
+        dist_triangle _ _ _
+      have t2 : dist (vertex A v) q
+          ≤ dist (vertex A v) (vertex A w) + dist (vertex A w) q :=
+        dist_triangle _ _ _
+      have t3 : (0 : ℝ) ≤ dist (γ₁ α) q := dist_nonneg
+      linarith
+    · rw [if_neg h1]
+      by_cases h2 : dist p q ≤ α + (wordDist A.carrier v w : ℝ)
+      · rw [if_pos h2]
+        have hζ0 : ζ = 0 := by rw [hd] at h2; linarith
+        have hdβ : dist p q - α = (wordDist A.carrier v w : ℝ) := by
+          rw [hd, hζ0]; ring
+        rw [hdβ, hγ₂β]
+        have t3 : (0 : ℝ) ≤ dist (vertex A w) q := dist_nonneg
+        linarith
+      · rw [if_neg h2, hsub, hγ₃ζ, dist_self]
   refine ⟨fun r => if r ≤ α then γ₁ r else
     if r ≤ α + (wordDist A.carrier v w : ℝ) then γ₂ (r - α)
       else γ₃ (r - α - (wordDist A.carrier v w : ℝ)), ?_, ?_, ?_⟩
   · refine isGeodesicSegment_of_lipschitz hd0 ?_ ?_
-    · rw [if_pos hα, if_neg hnot1, if_neg hnot2, hγ₁0, hsub, hγ₃ζ]
+    · exact dist_congr hzero hend
     · intro s hs t ht hst
       obtain ⟨hs0, hs1⟩ := hs
       obtain ⟨ht0, ht1⟩ := ht
@@ -526,22 +566,29 @@ theorem exists_geodesic_of_split (A : Alphabet G) (p q : Point A) (v w : G)
         · have htB : ¬ t ≤ α + (wordDist A.carrier v w : ℝ) :=
             fun h => hsB (le_trans hst h)
           rw [if_neg hsA, if_neg hsB, if_neg htA, if_neg htB]
-          exact hγ₃lip (s - α - (wordDist A.carrier v w : ℝ))
+          have h := hγ₃lip (s - α - (wordDist A.carrier v w : ℝ))
             ⟨by linarith, by linarith⟩
             (t - α - (wordDist A.carrier v w : ℝ))
             ⟨by linarith, by linarith⟩ (by linarith)
-  · rw [if_pos hα, hγ₁0]
-  · rw [if_neg hnot1, if_neg hnot2, hsub, hγ₃ζ]
+          linarith
+  · exact hzero
+  · exact hend
 
 /-! ## The realisation is geodesic -/
 
-/-- **`IsGeodesicRealisation`, discharged.**  The case analysis is
-`pointDist_cases` — the distance is realised along a shared edge or through the
-vertices — and then `viaVertex_cases` and `toVertex_cases`, which name the two
-endpoints the four ways go through.  In each leaf the length identity that
-`exists_geodesic_of_split` asks for is exactly what those `cases` lemmas
-say. -/
-theorem isGeodesicRealisation (A : Alphabet G) : IsGeodesicRealisation A := by
+/-- **Segments between arbitrary points, with endpoints right up to distance
+zero.**  The case analysis is `pointDist_cases` — the distance is realised along
+a shared edge or through the vertices — and then `viaVertex_cases` and
+`toVertex_cases`, which name the two endpoints the four ways go through.  In each
+leaf the length identity that `exists_geodesic_of_split` asks for is exactly what
+those `cases` lemmas say.
+
+The endpoints are stated up to distance zero because that is the strongest form
+the doubled edges allow; `isGeodesicRealisationQuot` reads it downstairs. -/
+theorem exists_geodesic_dist_zero (A : Alphabet G) :
+    ∀ p q : Point A, ∃ f : ℝ → Point A,
+      IsGeodesicSegment f 0 (dist p q) ∧ dist (f 0) p = 0 ∧
+        dist (f (dist p q)) q = 0 := by
   classical
   intro p q
   have hp0 := p.param_nonneg
@@ -606,10 +653,12 @@ theorem isGeodesicRealisation (A : Alphabet G) : IsGeodesicRealisation A := by
           exact le_trans (Point.dist_withParam_le p (by linarith [hs.1])
             (by linarith [hs.2]) (by linarith [ht.1]) (by linarith [ht.2]))
             (le_of_eq (by rw [abs_of_nonpos (by linarith)]; ring))
-      · rw [add_zero, Point.withParam_self]
+      · show dist (p.withParam (p.param + 0)) p = 0
+        rw [add_zero, Point.withParam_self, dist_self]
       · rw [hd]
+        show dist (p.withParam (p.param + (q.param - p.param))) q = 0
         have hpar : p.param + (q.param - p.param) = q.param := by ring
-        rw [hpar, hq_eq]
+        rw [hpar, hq_eq, dist_self]
     · have hd : dist p q = p.param - q.param := by
         rw [hdist, abs_of_nonneg (by linarith)]
       refine ⟨fun r => p.withParam (p.param - r), ?_, ?_, ?_⟩
@@ -622,19 +671,34 @@ theorem isGeodesicRealisation (A : Alphabet G) : IsGeodesicRealisation A := by
           exact le_trans (Point.dist_withParam_le p (by linarith [hs.2])
             (by linarith [hs.1]) (by linarith [ht.2]) (by linarith [ht.1]))
             (le_of_eq (by rw [abs_of_nonneg (by linarith)]; ring))
-      · rw [sub_zero, Point.withParam_self]
+      · show dist (p.withParam (p.param - 0)) p = 0
+        rw [sub_zero, Point.withParam_self, dist_self]
       · rw [hd]
+        show dist (p.withParam (p.param - (p.param - q.param))) q = 0
         have hpar : p.param - (p.param - q.param) = q.param := by ring
-        rw [hpar, hq_eq]
+        rw [hpar, hq_eq, dist_self]
 
 /-! ## What the model now costs -/
 
-/-- **The geodesic model of `Γ(G,A)` exists, unconditionally.**
-`CayleyGeodesicModel.hasGeodesicModel` asked for `IsGeodesicRealisation`; it is
-`isGeodesicRealisation`. -/
+/-- **The metric identification of `Γ(G,A)` is a geodesic space.**  The segments
+built above have their endpoints right up to distance zero, which is all that
+survives the doubling of the edges, and `isGeodesicSpace_pointQuot` turns that
+into geodesicity of `PointQuot A`.
+
+`IsGeodesicSpace (Point A)` itself --- the `IsGeodesicRealisation` of
+`CayleyGeodesicModel` --- is false: the two ends `⟨x, 1, 0⟩` and `⟨x, 1, 1⟩` of
+the loop that `Letters A` adjoins at every vertex are distinct points at distance
+zero, so no `f` has both `f 0 = p` and `f (dist p q) = q`. -/
+theorem isGeodesicRealisationQuot (A : Alphabet G) :
+    IsGeodesicSpace (PointQuot A) :=
+  isGeodesicSpace_pointQuot (exists_geodesic_dist_zero A)
+
+/-- **The geodesic model of `Γ(G,A)` exists, unconditionally.**  The statement is
+unchanged; only the model space is, and `HasGeodesicModel` quantifies it
+existentially, so nothing downstream moves. -/
 theorem hasGeodesicModel_of_hullGeneratingSet (A : HullGeneratingSet G) :
     HasGeodesicModel A.alphabet :=
-  hasGeodesicModel A (isGeodesicRealisation A.alphabet)
+  hasGeodesicModelQuot A (isGeodesicRealisationQuot A.alphabet)
 
 /-- **`AxisDichotomy` at `Γ(G,A)` now costs one theorem.**  Of the two
 residuals of `Manuscript.NonMF.HullFillAxisDichotomy`, the model is built here,
