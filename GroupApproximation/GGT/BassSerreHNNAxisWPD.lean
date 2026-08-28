@@ -5,13 +5,15 @@ import GroupApproximation.GGT.HyperbolicTreeSegmentShift
 # Minasyan--Osin's Corollary 4.3 along an axis, and `SkeletonAH3Input`
 unconditionally
 
-`GGT/BassSerreHNNWPDInput.lean` reduced the manuscript's tree obligation to the
-named proposition `TreeCorollary43`.  ggt-hyperbolic has since proved the tree
+`GGT/BassSerreHNNWPDInput.lean` once reduced the manuscript's tree obligation to
+a named proposition: Corollary 4.3 in general, for an arbitrary loxodromic and a
+merely finite pair stabiliser.  ggt-hyperbolic has since proved the tree
 geometry that proposition was hiding --- `between_tripod`, `between_unique`,
 `between_smul_of_middle`, `smul_eq_smul_of_dist_eq` and `exists_middle_pair` in
-`GGT/HyperbolicTreeSegmentShift.lean` --- so the gap closes.  This module proves
-Corollary 4.3 in the case the Bass--Serre argument uses, and with it
-`SkeletonAH3Input` with **no** tree hypothesis left.
+`GGT/HyperbolicTreeSegmentShift.lean` --- so the gap closed and the proposition
+has since been deleted as dead.  This module proves Corollary 4.3 in the case
+the Bass--Serre argument uses, and with it `SkeletonAH3Input` with **no** tree
+hypothesis left.
 
 ## The proof
 
