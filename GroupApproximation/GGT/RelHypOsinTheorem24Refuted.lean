@@ -57,16 +57,22 @@ are cycles in the relative Cayley graph whose subpaths are quasi-geodesic
 (*Small cancellations over relatively hyperbolic groups*, §2), and that is the
 clause that is absent here.
 
-A second, independent defect is visible from the same construction and is not
-repaired by adding geodesicity: `LetterIsPiece` is a **syntactic** common
-prefix, while Osin's pieces are subpaths that are equal *in the group*.  Two
-relators `u₁ · C₁` and `u₂ · C₂` with `C₁` and `C₂` distinct geodesic letter
-lists spelling the same element of the partner factor have no common letter, so
-they satisfy `LetterMetricSmallCancellation` vacuously, while
-`r₁.prod · r₂.prod⁻¹ = u₁u₂⁻¹` is one letter long.  Repairing the leaf therefore
-means replacing the piece notion as well, and the design's `metric` field has to
-be restated over the repaired notion at the same time -- a `C'(1/8)` proof for
-syntactic pieces does not give one for group pieces.
+`not_geodesic_w` proves that the witness fails exactly that clause, so the
+diagnosis is checked and not asserted.
+
+A second defect is **not** formalized here, and is recorded as an analysis:
+`LetterIsPiece` is a *syntactic* common prefix, while Osin's pieces are
+subpaths that are equal *in the group*.  Two relators `u₁ · C₁` and `u₂ · C₂`
+with `C₁` and `C₂` distinct geodesic letter lists spelling the same element of
+the partner factor have no common letter, so they satisfy
+`LetterMetricSmallCancellation` vacuously and geodesically, while
+`r₁.prod · r₂.prod⁻¹ = u₁u₂⁻¹` is one letter long.  Writing that family down needs
+a partner group with two disjoint geodesic spellings of one element, which is
+why it is described rather than built.  `LetterIsGroupPiece` and
+`LetterMetricGroupSmallCancellation` name the repaired condition, and
+`letterMetricSmallCancellation_of_group` checks that it is the stronger of the
+two -- so the design's `metric` field has to be restated over it, a `C'(1/8)`
+proof for syntactic pieces not being one for group pieces.
 
 ## What is not claimed
 
@@ -394,6 +400,61 @@ theorem not_osinTheorem24 : ¬ OsinTheorem24 := by
     rw [OsinRefutation.w_prod]
     exact OsinRefutation.len_le_one (by norm_num)
   have h2 : r.length = 42 := OsinRefutation.length_of_mem hr
+  omega
+
+/-! ## 6.  The clause the leaf is missing -/
+
+section Repair
+
+variable {G : Bool → Type} [∀ b, Group (G b)]
+
+/-- **A relator is a geodesic word**: its letter count is the relative length of
+the element it spells.  Osin's relators are cycles whose subpaths are
+quasi-geodesic; this is the linear form of that clause, and
+`WeightedGreendlingerLeaf` does not ask for it. -/
+def LetterGeodesic (L : RelativeLength G) (r : List (CoprodI G)) : Prop :=
+  r.length = L.len r.prod
+
+/-- **Osin's piece**, as opposed to the syntactic one: a prefix of one relator
+that equals, *in the group*, a prefix of another. -/
+def LetterIsGroupPiece (R : Set (List (CoprodI G))) (p : List (CoprodI G)) :
+    Prop :=
+  ∃ r₁ ∈ R, ∃ r₂ ∈ R, r₁ ≠ r₂ ∧ p <+: r₁ ∧
+    ∃ q, q <+: r₂ ∧ p.prod = q.prod
+
+/-- The metric condition over Osin's pieces. -/
+def LetterMetricGroupSmallCancellation (R : Set (List (CoprodI G))) (lam : ℚ) :
+    Prop :=
+  ∀ p, LetterIsGroupPiece R p → ∀ r ∈ R, p <+: r →
+    (p.length : ℚ) < lam * (r.length : ℚ)
+
+/-- **The repaired condition is the stronger one**: a syntactic piece is a group
+piece, taken with `q = p`.  So a design certifying `C'(1/8)` over
+`LetterIsPiece` has certified strictly less than the repaired leaf consumes, and
+`WeightedRouterDesign.metric` has to be restated, not reused. -/
+theorem letterMetricSmallCancellation_of_group {R : Set (List (CoprodI G))}
+    {lam : ℚ} (h : LetterMetricGroupSmallCancellation R lam) :
+    LetterMetricSmallCancellation R lam := by
+  intro p hp r hr hpre
+  obtain ⟨r₁, h₁, r₂, h₂, hne, hp₁, hp₂⟩ := hp
+  exact h p ⟨r₁, h₁, r₂, h₂, hne, hp₁, p, hp₂, rfl⟩ r hr hpre
+
+end Repair
+
+/-- **The witness fails the missing clause, and only that one.**  `w` has `42`
+letters and spells an element of relative length at most `1`, so it is not a
+geodesic word.  Everything else `WeightedGreendlingerLeaf` asks of it holds, so
+this is the whole of what has to be added. -/
+theorem not_geodesic_w :
+    ¬ LetterGeodesic OsinRefutation.L OsinRefutation.w := by
+  intro hgeo
+  have hg : OsinRefutation.w.length
+      = OsinRefutation.L.len OsinRefutation.w.prod := hgeo
+  have h1 : OsinRefutation.w.length = 42 :=
+    OsinRefutation.length_of_mem OsinRefutation.w_mem
+  have h2 : OsinRefutation.L.len OsinRefutation.w.prod ≤ 1 := by
+    rw [OsinRefutation.w_prod]
+    exact OsinRefutation.len_le_one (by norm_num)
   omega
 
 end RelHyp

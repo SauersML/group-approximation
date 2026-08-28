@@ -2302,7 +2302,6 @@ import GroupApproximation.GGT.HullSCDGO
 import GroupApproximation.GGT.HullSCSmallCancellation
 import GroupApproximation.GGT.HullSCTheorem51
 import GroupApproximation.GGT.KazhdanHyp
-import GroupApproximation.GGT.KazhdanHypGirthEight
 import GroupApproximation.GGT.KazhdanHypLinkGap
 import GroupApproximation.GGT.KazhdanHypPolygonal
 import GroupApproximation.GGT.KazhdanHypQuadrangle
