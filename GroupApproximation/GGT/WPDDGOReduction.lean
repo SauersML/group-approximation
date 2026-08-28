@@ -365,5 +365,67 @@ theorem infiniteOrder_of_dgoTheorem68 {G : Type u} [Group G] (D : AH3Data G)
   letI := D.mulAction
   exact ⟨D.elt, hmem, not_isOfFinOrder_of_isLoxodromic D.loxodromic⟩
 
+/-! ## The chain with Theorem 6.14 retired
+
+The two theorems below are the assembly `WPDAcylindricalHyperbolicity` cannot
+carry: that file is imported *by* this one, so it cannot mention
+`OsinAH4ToAH1WithInfiniteOrder` or `relativeCayleyNonElementary_of_612_of_infiniteOrder`.
+They mirror `osinAH4ToAH1_of` and `osinTheorem12_of` line for line, with the
+infinite-order element threaded through the same `D'.fam () = E` rewrite that
+already carries properness and infinitude.
+
+The result is `OsinTheorem12` --- the implication Minasyan--Osin cite as their
+Theorem 3.3, and what `GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osin`
+consumes --- from `DGOTheorem68`, `OsinTheorem54` and `DGOCorollary612`.
+`DGOTheorem614` does not appear. -/
+
+/-- **`(AH₄) ⇒ (AH₁)` with the infinite-order datum kept, and no free
+subgroup.**  Osin's Theorem 5.4 supplies the alphabet, its clause (a) the
+hyperbolicity and clause (b) the acylindricity, and Lemma 5.12 is
+`relativeCayleyNonElementary_of_612_of_infiniteOrder` rather than
+`relativeCayleyNonElementary_of`. -/
+theorem osinAH4ToAH1WithInfiniteOrder_of (h54 : OsinTheorem54)
+    (h612 : DGOCorollary612) : OsinAH4ToAH1WithInfiniteOrder := by
+  intro G _ E hE hinf hord hemb
+  obtain ⟨_X, D, -, hfam, hhyp⟩ := hemb
+  obtain ⟨D', -, hfam', hhyp', hacy⟩ := h54 G D hhyp
+  obtain ⟨δ, hδ⟩ := hhyp'.hyperbolic
+  have hlam : D'.fam () = E := by
+    rw [hfam']
+    exact congrFun hfam ()
+  have hEne : D'.fam () ≠ ⊤ := by rw [hlam]; exact hE
+  have hEinf : ((D'.fam () : Set G)).Infinite := by rw [hlam]; exact hinf
+  have hEord : ∃ h ∈ D'.fam (), ¬ IsOfFinOrder h := by rw [hlam]; exact hord
+  exact ⟨⟨D'.alphabet, δ, hδ, hacy,
+    relativeCayleyNonElementary_of_612_of_infiniteOrder h612 G D' hhyp' hacy
+      ⟨hEne, hEinf⟩ hEord⟩⟩
+
+/-- **Osin's Theorem 1.2, `(AH₃) ⇒ (AH₁)`, without Theorem 6.14.**  The
+subgroup `DGOTheorem68` returns contains the loxodromic `D.elt`, which supplies
+both the infinitude clause (`infinite_of_mem_of_isLoxodromic`) and the
+infinite-order element (`infiniteOrder_of_dgoTheorem68`).
+
+The two `letI`s are needed rather than decorative: `AH3Data`'s metric and action
+are instance-implicit *fields*, and the type of `D.loxodromic` mentions them, so
+without them the instance arguments of `infinite_of_mem_of_isLoxodromic` do not
+resolve.  This is the shape of `osinTheorem12_of`. -/
+theorem osinTheorem12_of_infiniteOrder (h68 : DGOTheorem68)
+    (h4 : OsinAH4ToAH1WithInfiniteOrder) : OsinTheorem12 := by
+  intro G _ D hnvc
+  letI := D.metricSpace
+  letI := D.mulAction
+  obtain ⟨E, hmem, hne, hemb⟩ := h68 G D hnvc
+  exact h4 G E hne (infinite_of_mem_of_isLoxodromic D.loxodromic hmem)
+    (infiniteOrder_of_dgoTheorem68 D hmem) hemb
+
+/-- **The three citations `OsinTheorem12` now costs.**  `DGOTheorem68`,
+`OsinTheorem54` and `DGOCorollary612` --- and the last of these is itself a
+corollary of `DGOTheorem611` and `DGOProposition433` by `dgoCorollary612_of`, so
+the standing debt of this chain is four named statements, none of them
+`DGOTheorem614`. -/
+theorem osinTheorem12_of_612 (h68 : DGOTheorem68) (h54 : OsinTheorem54)
+    (h612 : DGOCorollary612) : OsinTheorem12 :=
+  osinTheorem12_of_infiniteOrder h68 (osinAH4ToAH1WithInfiniteOrder_of h54 h612)
+
 end GGT
 end GroupApproximation
