@@ -1990,6 +1990,7 @@ import GroupApproximation.Analysis.StarStrongLimitNorm
 import GroupApproximation.Analysis.StarStrongMatrixSequencesShulman
 import GroupApproximation.Analysis.ArvesonBHTarget
 import GroupApproximation.Analysis.VoiculescuPlan
+import GroupApproximation.Analysis.StarStrongBlockModel
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceNonunital
 import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Manuscript.OneSidedMFRadical.PrintedForms
