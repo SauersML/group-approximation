@@ -103,11 +103,11 @@ theorem succSeq_apply (n i : ℤ) :
   unfold succSeq
   rw [Finsupp.add_apply, hs0, hs1]
 
-theorem succSeq_apply_zero (n : ℤ) : succSeq n 0 = n := by
+private theorem succSeq_apply_zero (n : ℤ) : succSeq n 0 = n := by
   rw [succSeq_apply, if_pos (rfl : (0 : ℤ) = 0),
     if_neg (by omega : ¬ (1 : ℤ) = (0 : ℤ)), add_zero]
 
-theorem succSeq_apply_one (n : ℤ) : succSeq n 1 = n + 1 := by
+private theorem succSeq_apply_one (n : ℤ) : succSeq n 1 = n + 1 := by
   rw [succSeq_apply, if_neg (by omega : ¬ (0 : ℤ) = (1 : ℤ)),
     if_pos (rfl : (1 : ℤ) = 1), zero_add]
 
