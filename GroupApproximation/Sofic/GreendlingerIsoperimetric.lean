@@ -68,7 +68,7 @@ def IsConjugateProduct (R : Set (FreeGroup α)) : ℕ → FreeGroup α → Prop
 /-- **The linear isoperimetric inequality** at constant `K`: every element of
 the relator subgroup is a product of at most `K * |g|` conjugates of
 relators. -/
-def LinearIsoperimetric (R : Set (FreeGroup α)) (K : ℕ) : Prop :=
+def LinearIsoperimetric [DecidableEq α] (R : Set (FreeGroup α)) (K : ℕ) : Prop :=
   ∀ g ∈ Subgroup.normalClosure R,
     ∃ n ≤ K * FreeGroup.norm g, IsConjugateProduct R n g
 
@@ -134,14 +134,14 @@ theorem linearIsoperimetric_of_greendlinger [DecidableEq α]
           have hnorm' : FreeGroup.norm (FreeGroup.mk (a ++ FreeGroup.invRev v ++ b))
               < FreeGroup.norm g := by
             have h1 : FreeGroup.norm (FreeGroup.mk (a ++ FreeGroup.invRev v ++ b))
-                ≤ (a ++ FreeGroup.invRev v ++ b).length := FreeGroup.norm_mk_le _
+                ≤ (a ++ FreeGroup.invRev v ++ b).length := FreeGroup.norm_mk_le
             have h2 : (a ++ FreeGroup.invRev v ++ b).length
                 = a.length + v.length + b.length := by
-              simp [FreeGroup.invRev]
+              simp [FreeGroup.invRev, Nat.add_assoc]
             have h3 : FreeGroup.norm g = g.toWord.length := rfl
             have h4 : g.toWord.length = a.length + u.length + b.length := by
               rw [← hab]
-              simp
+              simp [Nat.add_assoc]
             omega
           -- and it still lies in the relator subgroup
           have hrmem : FreeGroup.mk r ∈ Subgroup.normalClosure (FreeGroup.mk '' R) := by
