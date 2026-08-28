@@ -117,6 +117,12 @@ theorem isStarStrongLimit_mul {ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H)
   exact (IsStarStrongLimit.mul hC₁ hC₂ hS hT).congr fun n ↦
     (map_mul (ι n) (a n) (b n)).symm
 
+-- `1` on the bounded product needs `NormOneClass` of every factor, which for a
+-- C-star algebra is exactly nontriviality.  From here on every statement
+-- mentions either the unit or the subalgebra, so the variable is introduced
+-- here rather than in the block above.
+variable [∀ n, Nontrivial (A n)]
+
 /-- The unit of the bounded product converges `*`-strongly to `1` exactly when
 the embeddings exhaust `H`. -/
 theorem isStarStrongLimit_one {ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H)}
@@ -128,7 +134,10 @@ theorem isStarStrongLimit_one {ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H)
     intro n
     rw [← map_star]
     congr 1
-    exact star_one
+    -- the goal is about the coordinate of the product's unit, and `star_one`
+    -- takes its algebra explicitly
+    show star (1 : A n) = (1 : A n)
+    exact star_one (A n)
   constructor
   · intro v
     exact hone v
@@ -321,7 +330,8 @@ theorem starStrongLimit_eq_zero_of_tendsto_norm_zero
     show Tendsto (fun n ↦ ι n ((x : BoundedStarSequence A) n) v) atTop
       (𝓝 (0 : H))
     rw [tendsto_zero_iff_norm_tendsto_zero]
-    refine squeeze_zero (fun n ↦ norm_nonneg _) (fun n ↦ ?_) ?_
+    refine squeeze_zero (g := fun n ↦ ‖(x : BoundedStarSequence A) n‖ * ‖v‖)
+      (fun n ↦ norm_nonneg _) (fun n ↦ ?_) ?_
     · exact ((ι n ((x : BoundedStarSequence A) n)).le_opNorm v).trans
         (mul_le_mul_of_nonneg_right
           (hnorm n ((x : BoundedStarSequence A) n)) (norm_nonneg v))
@@ -331,7 +341,8 @@ theorem starStrongLimit_eq_zero_of_tendsto_norm_zero
     show Tendsto (fun n ↦ (star (ι n ((x : BoundedStarSequence A) n))) v) atTop
       (𝓝 (0 : H))
     rw [tendsto_zero_iff_norm_tendsto_zero]
-    refine squeeze_zero (fun n ↦ norm_nonneg _) (fun n ↦ ?_) ?_
+    refine squeeze_zero (g := fun n ↦ ‖(x : BoundedStarSequence A) n‖ * ‖v‖)
+      (fun n ↦ norm_nonneg _) (fun n ↦ ?_) ?_
     · exact ((star (ι n ((x : BoundedStarSequence A) n))).le_opNorm v).trans
         (mul_le_mul_of_nonneg_right
           (norm_star_le_of_norm_le (hnorm n ((x : BoundedStarSequence A) n)))

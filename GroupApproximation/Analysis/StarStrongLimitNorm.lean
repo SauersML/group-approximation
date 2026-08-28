@@ -74,7 +74,10 @@ universe u v
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 variable [CompleteSpace H]
-variable {A : ℕ → Type u} [∀ n, CStarAlgebra (A n)]
+-- `starStrongSubalgebra` lives in the bounded product, whose unit needs
+-- `NormOneClass` of every factor, i.e. nontriviality; every statement below
+-- mentions it, so the binder is declared with the family
+variable {A : ℕ → Type u} [∀ n, CStarAlgebra (A n)] [∀ n, Nontrivial (A n)]
 variable (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
 variable (hnorm : ∀ (n : ℕ) (x : A n), ‖ι n x‖ ≤ ‖x‖)
 variable (hone : ∀ v : H, Tendsto (fun n ↦ ι n (1 : A n) v) atTop (𝓝 v))
@@ -103,7 +106,7 @@ theorem norm_starStrongLimit_le_of_frequently
       (hnorm n ((x : BoundedStarSequence A) n)).trans hn
     exact h1.trans (mul_le_mul_of_nonneg_right h2 (norm_nonneg v))
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   set L : ℝ := ‖starStrongLimit ι hnorm hone x v‖
   have hgap : 0 < L - c * ‖v‖ := by linarith
   obtain ⟨N, hN⟩ := Metric.tendsto_atTop.mp hlim (L - c * ‖v‖) hgap
@@ -130,8 +133,6 @@ theorem norm_starStrongLimit_le (x : starStrongSubalgebra ι hnorm hone) :
       lp.norm_apply_le_norm ENNReal.top_ne_zero (x : BoundedStarSequence A) n)
 
 /-! ## `𝒟` over the reduced product -/
-
-variable [∀ n, Nontrivial (A n)]
 
 /-- `𝒟` sits inside the bounded product, so it maps to the reduced product
 `∏ₙ Aₙ / ⨁ₙ Aₙ`. -/

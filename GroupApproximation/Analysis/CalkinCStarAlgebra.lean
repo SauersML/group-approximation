@@ -82,7 +82,8 @@ variable [Nontrivial H]
 closed star-stable two-sided ideal of `B(H)`, and the quotient of a C-star
 algebra by such an ideal is a C-star algebra by
 `CStarTensor.instCStarAlgebraQuotient`. -/
-def calkinCStarAlgebra : CStarAlgebra (CalkinQuotient H) := inferInstance
+@[reducible] def calkinCStarAlgebra : CStarAlgebra (CalkinQuotient H) :=
+  inferInstance
 
 /-- **The C-star identity in `Q(H)`**, spelled out: the statement
 `Analysis/CStarQuotient` records as its one residual, at the Calkin algebra and
@@ -95,6 +96,7 @@ theorem calkin_cstar_identity (x : CalkinQuotient H) :
 def essential : (H →L[ℂ] H) →+* CalkinQuotient H :=
   Ideal.Quotient.mk (compactIdeal H)
 
+omit [CompleteSpace H] [Nontrivial H] in
 /-- An operator has vanishing essential image exactly when it is compact. -/
 theorem essential_eq_zero_iff (T : H →L[ℂ] H) :
     essential H T = 0 ↔ IsCompactOperator T :=
