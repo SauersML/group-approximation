@@ -2402,6 +2402,9 @@ import GroupApproximation.GGT.HullSCRelatorSeparationBlock
 import GroupApproximation.GGT.OsinTheorem54SeparatingCosets
 import GroupApproximation.GGT.OsinTheorem54SepReversal
 import GroupApproximation.GGT.OsinTheorem54SepComponents
+import GroupApproximation.GGT.HullSCRelatorSeparationValues
+import GroupApproximation.GGT.HullSCRelatorSeparationRefuted
+import GroupApproximation.GGT.HullSCRelatorSeparationRepair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
