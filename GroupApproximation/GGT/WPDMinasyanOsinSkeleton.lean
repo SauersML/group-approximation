@@ -238,7 +238,11 @@ What changes is bookkeeping — on the coarser vertex set the axial element is
 `u₂u₁⁻¹` with translation length `1` rather than `2`, though the segment
 carrying the trivial pointwise stabilizer spans two edges either way.  The
 outer splitting is preferable because it is Mathlib's single-letter
-`HNNExtension` directly and needs no multi-letter Britton lemma.
+`HNNExtension` directly and needs no multi-letter Britton lemma — a fact about
+the library rather than about the mathematics.  The two-loop picture is how
+Minasyan--Osin present the construction, and it is the one the printed
+sentence about `u₁ P u₁⁻¹` and `u₂ P u₂⁻¹` describes; nothing is wrong with it,
+it is simply not what Mathlib ships.
 
 `GGT.AH3Data.ofData` fixes the universe for the packaging.  The WPD field was
 obtained by proving injectivity of a displacement invariant on the
