@@ -2314,6 +2314,7 @@ import GroupApproximation.GGT.RelHypFournierFacio
 import GroupApproximation.GGT.RelHypFreeProductPeripheral
 import GroupApproximation.GGT.RelHypKazhdanNonElementary
 import GroupApproximation.GGT.RelHypOsinTheorem24
+import GroupApproximation.GGT.RelHypOsinTheorem24Refuted
 import GroupApproximation.GGT.RelHypRelativeCayley
 import GroupApproximation.GGT.RelHypWithoutKazhdan
 import GroupApproximation.GGT.WPDAcylindricalHyperbolicity
@@ -2322,7 +2323,6 @@ import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 import GroupApproximation.GGT.WPDMinasyanOsinSkeleton
 import GroupApproximation.GGT.OsinEnlargement
 import GroupApproximation.GGT.OsinSeparatingCosets
-import GroupApproximation.GGT.OsinComponents
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
