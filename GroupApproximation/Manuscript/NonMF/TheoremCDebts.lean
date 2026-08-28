@@ -6,6 +6,7 @@ import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
 import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCHypEmbedded
+import GroupApproximation.GGT.TreeWPDAxis
 
 /-!
 # Theorem C, closed: the cited inputs as recorded debts
@@ -48,11 +49,18 @@ theorem, shared by the two lanes that stand on it.
 * `smallCancellationQuotient` — Osin's Theorem 2.4(5) on small cancellation
   over relatively hyperbolic groups.  Nothing here constructs a quotient of a
   hyperbolic group in which a prescribed subgroup embeds.
-* `minasyanOsin` — acylindrical hyperbolicity of a group acting on a tree,
-  applied to the Bass–Serre tree of the double HNN extension `E`.  This
-  repository has the Bass–Serre-free algebra of `E`
-  (`Manuscript.NonMF.FournierFacioDoubleHNN`) but no group action on a tree and
-  no criterion for `TorsionFree.IsAcylindricallyHyperbolic`.
+* `osinTheorem12` — Osin's Theorem 1.2 in the implication `(AH₃) ⇒ (AH₁)`, which
+  is what is left of the Minasyan–Osin citation.  `minasyanOsin` is no longer a
+  citation of its own: `E` acts on the Bass–Serre tree of its second HNN
+  splitting (`GGT.BassSerreHNN`), the tree is `0`-hyperbolic, `u₂u₁⁻¹` is
+  loxodromic on it, and `GGT.BassSerreDoubleHNN.isWPDAt_axisElt_unconditional`
+  proves it satisfies the WPD condition — Minasyan–Osin's Corollary 4.3, proved
+  in `GGT/TreeWPDAxis.lean` from the shift invariant of a tree action.  `E` is
+  never virtually cyclic (`GGT.BassSerreDoubleHNN.not_isVirtuallyCyclic`), so
+  the `(AH₃)` datum of `E` is unconditional and only the passage from it to the
+  Cayley-graph form remains.  `GGT/WPDAcylindricalHyperbolicity.lean` reduces
+  that passage further, to Dahmani–Guirardel–Osin's Theorem 6.8 and Osin's
+  Theorem 5.4 with his Lemma 5.12.
 * `hullCommonQuotient` — Hull's Corollary 7.4, which is Hull's Theorem 7.1
   applied to the free product of `E` with `H₀`, so it rests on the same four
   leaves as `hullTheorem71` does, together with the free product input;
@@ -136,9 +144,16 @@ theorem hullHypEmbeddedInSuitable : HullSC.ExistsHypEmbeddedInSuitable.{0} :=
 subgroups and rotating families*, Theorem 5.3: the quotient of a group acting
 on a hyperbolic space by a separated very rotating family.  The clauses
 recorded are the ones Hull's §5 consumes — the kernel is the subgroup the
-rotations generate, its elements are rotations up to conjugacy or loxodromic,
-finite order lifts with the order preserved, and the injectivity radius is at
-least the separation. -/
+rotations generate, its nonidentity elements are rotations up to conjugacy or
+loxodromic, finite order lifts with the order preserved, and the injectivity
+radius at a basepoint `ρ`-far from the apices is at least the separation.
+
+Two of those restrictions are forced rather than chosen.
+`HullSC.eq_one_of_dist_lt_everywhere` refutes the displacement clause stated at
+every point of the space — a rotation fixes its apex and lies in the kernel — and
+`HullSC.not_rotation_or_loxodromic_of_empty` refutes the dichotomy stated for
+every element of the kernel, the identity being neither conjugate into a
+rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatement.{0, 0} := by
   sorry
 
@@ -267,10 +282,25 @@ Theorem 2.4(5). -/
 theorem smallCancellationQuotient : FournierFacioQuotientStatement := by
   sorry
 
-/-- **DEBT (literature).**  Minasyan–Osin, acylindrical hyperbolicity of groups
-acting on trees, at the Bass–Serre tree of the double HNN extension `E`. -/
-theorem minasyanOsin : MinasyanOsinStatement := by
+/-- **DEBT (literature).**  Osin, *Acylindrically hyperbolic groups*, Theorem
+1.2, in the implication `(AH₃) ⇒ (AH₁)`: a group that is not virtually cyclic
+and acts on a hyperbolic space with a loxodromic WPD element is acylindrically
+hyperbolic.  This is the theorem Minasyan–Osin cite as their Theorem 3.3, and
+after `GGT/TreeWPDAxis.lean` it is all that is left of their tree criterion at
+`E`.  `GGT.osinTheorem12_of` splits it into Dahmani–Guirardel–Osin's Theorem
+6.8 and Osin's `(AH₄) ⇒ (AH₁)`. -/
+theorem osinTheorem12 : GGT.OsinTheorem12.{0, 0} := by
   sorry
+
+/-- **Minasyan–Osin at `E`, no longer a citation of its own.**  The tree half is
+proved: `E` acts on the Bass–Serre tree of its second HNN splitting, `u₂u₁⁻¹` is
+loxodromic on it and satisfies the WPD condition by Minasyan–Osin's Corollary
+4.3 — which `GGT/TreeWPDAxis.lean` proves, in the form that asks for the
+basepoint to lie on the axis — and `E` is never virtually cyclic.  So the
+`(AH₃)` datum of `E` is unconditional and the citation reduces to Osin's
+Theorem 1.2. -/
+theorem minasyanOsin : MinasyanOsinStatement :=
+  GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osin osinTheorem12
 
 /-- **DEBT (literature).**  Hull, *Small cancellation in acylindrically
 hyperbolic groups*, Corollary 7.4: the common quotient theorem. -/

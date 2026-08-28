@@ -56,6 +56,15 @@ so nothing is refuted -- but a `RotatingQuotient` coming from DGO's theorem
 does, and over a Cayley graph of `G` that forces the kernel to be trivial.  So
 the injectivity clause has to be routed through an abstract space, which is
 what `injOn_cayleyBall_of_action` does.
+
+The second thing the abstract space has to supply is that the basepoint is not
+an apex, and not near one: `HullSC.eq_one_of_dist_lt_everywhere` shows that a
+displacement clause holding at every point of the space would force every
+rotation subgroup to be trivial, since a rotation fixes its apex and lies in the
+kernel.  `RotatingData.base_far` is that separation, and it is free in the
+construction -- the identity vertex of `Γ(G,A)` sits at the cone radius from the
+nearest apex, and `sep` may be shrunk to match, `IsSeparated` being a lower
+bound.
 -/
 
 namespace GroupApproximation
@@ -80,6 +89,9 @@ theorem dist_smul_le_length {G : Type u} [Group G] {X : Type v}
   induction l with
   | nil =>
       intro _
+      have h1 : (List.nil : List G).prod • y = y := by
+        rw [List.prod_nil, one_smul]
+      rw [h1, dist_self]
       simp
   | cons a t ih =>
       intro hmem
@@ -93,7 +105,7 @@ theorem dist_smul_le_length {G : Type u} [Group G] {X : Type v}
       have hstep : dist (a • y) (a • (t.prod • y)) = dist y (t.prod • y) :=
         hiso a y (t.prod • y)
       have hlen : (((a :: t).length : ℕ) : ℝ) = (t.length : ℝ) + 1 := by
-        simp
+        rw [List.length_cons, Nat.cast_add, Nat.cast_one]
       have htail := ih ht
       have hone := hS a ha
       rw [hprod]
@@ -160,11 +172,12 @@ theorem rot_eq_bot_of_cayley {G : Type u} [Group G] {B : Alphabet G}
   intro g hg
   have hfix : g • c = c := hfam.rot_fix hc g hg
   have hv : g * Cayley.val c = Cayley.val c := by
-    have h := congrArg Cayley.val hfix
+    have h : Cayley.val (g • c) = Cayley.val c := by rw [hfix]
     rwa [Cayley.val_smul] at h
   have hg1 : g = 1 := by
-    have h := congrArg (fun z : G => z * (Cayley.val c)⁻¹) hv
-    simpa [mul_assoc] using h
+    have h : g * Cayley.val c * (Cayley.val c)⁻¹
+        = Cayley.val c * (Cayley.val c)⁻¹ := by rw [hv]
+    rwa [mul_inv_cancel_right, mul_inv_cancel] at h
   rw [Subgroup.mem_bot]
   exact hg1
 
@@ -234,6 +247,13 @@ structure RotatingData {G : Type u} [Group G] (A : Alphabet G) (w : G)
   isSeparated : IsSeparated apices sep
   /-- It is very rotating. -/
   isVeryRotating : IsVeryRotating G Space delta apices rot
+  /-- The basepoint is `sep`-far from every apex.  It is a vertex of `Γ(G,A)`
+  and the apices are cone points, so it is far from all of them; and `sep` may
+  be shrunk freely, `IsSeparated` being a lower bound, so this can be arranged
+  together with the two lower bounds on `sep` above.  It is what DGO's theorem
+  needs of a basepoint: `HullSC.eq_one_of_dist_lt_everywhere` shows the
+  displacement clause is false at an apex. -/
+  base_far : ∀ c ∈ apices, sep ≤ dist base c
   /-- The rotations generate the normal closure of the relator: killing the
   family is killing `w`. -/
   rotationNormalClosure_eq :
@@ -279,7 +299,8 @@ structure FillingAlphabetData {G : Type u} [Group G] (A : HullGeneratingSet G)
 > let `S₁, …, S_k` be suitable and let `R` be a radius.  Then there are
 > `ε, μ, ρ` such that for every family `W` satisfying `C(ε, μ, ρ)` over `H` and
 > every `v ∈ W`: the conjugates of the relator form a separated very rotating
-> family on the cone-off, with separation above `2R`, generating the normal
+> family on the cone-off, with separation above `2R` and below the distance from
+> the basepoint to the apices, generating the normal
 > closure of the relator; and every quotient of `G` by that normal closure
 > carries a Hull alphabet containing the image of `A` in which the images of
 > `N` and of the `Sⱼ` are suitable.
@@ -323,8 +344,8 @@ theorem hullQuotient_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
   refine ⟨eps, rho, mu, hmu, ?_⟩
   intro W v hv hsc
   obtain ⟨⟨D⟩, halph⟩ := hgood W v hv hsc
-  obtain ⟨P⟩ := hDGO D.delta D.sep D.apices D.rot D.delta_pos D.sep_ge
-    D.hyperbolic D.isRotatingFamily D.isSeparated D.isVeryRotating
+  obtain ⟨P⟩ := hDGO D.delta D.sep D.apices D.rot D.base D.delta_pos D.sep_ge
+    D.hyperbolic D.isRotatingFamily D.isSeparated D.isVeryRotating D.base_far
   have hker : P.q.ker
       = Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G) := by
     rw [P.ker_eq, D.rotationNormalClosure_eq]
@@ -337,7 +358,7 @@ theorem hullQuotient_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
     refine injOn_cayleyBall_of_action D.isometric A.alphabet D.base
       D.letter_dist P.q (L := P.injRadius) R hL ?_
     intro g hg hdist
-    exact P.ne_one_of_dist_lt g hg _ hdist
+    exact P.ne_one_of_dist_lt g hg hdist
   exact ⟨{ Q := P.Q
            group := P.group
            q := P.q
