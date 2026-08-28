@@ -155,9 +155,11 @@ def starStrongSubalgebra (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
     exact ⟨S + T, isStarStrongLimit_add hS hT⟩
   algebraMap_mem' c := by
     refine ⟨c • 1, ?_⟩
-    refine (isStarStrongLimit_smul c (isStarStrongLimit_one hone)).congr fun n ↦ ?_
+    refine (isStarStrongLimit_smul c
+      (isStarStrongLimit_one hone)).congr fun n ↦ ?_
     exact congrArg (fun z : BoundedStarSequence A ↦ ι n (z n))
-      (Algebra.algebraMap_eq_smul_one (R := ℂ) (A := BoundedStarSequence A) c).symm
+      (Algebra.algebraMap_eq_smul_one
+        (R := ℂ) (A := BoundedStarSequence A) c).symm
   star_mem' {a} ha := by
     obtain ⟨S, hS⟩ := ha
     exact ⟨star S, isStarStrongLimit_star hS⟩
@@ -186,7 +188,8 @@ theorem starStrongSubalgebra_isClosed (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L
   have hchoice : ∀ (v : H) (ε : ℝ), 0 < ε → ∃ k, ‖a - u k‖ * ‖v‖ ≤ ε := by
     intro v ε hε
     have h0 : Tendsto (fun k ↦ ‖a - u k‖) atTop (𝓝 0) :=
-      (tendsto_iff_norm_sub_tendsto_zero.mp hlim).congr fun k ↦ norm_sub_rev (u k) a
+      (tendsto_iff_norm_sub_tendsto_zero.mp hlim).congr fun k ↦
+        norm_sub_rev (u k) a
     have h1 : Tendsto (fun k ↦ ‖a - u k‖ * ‖v‖) atTop (𝓝 0) := by
       simpa using h0.mul_const ‖v‖
     obtain ⟨N, hN⟩ := Metric.tendsto_atTop.mp h1 ε hε
@@ -219,7 +222,8 @@ theorem starStrongSubalgebra_isClosed (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L
       rw [← star_sub, hsub k n]
     rw [hstarsub]
     exact (mul_le_mul_of_nonneg_right
-      (norm_star_le (norm_ι_apply_le ι hnorm (a - u k) n)) (norm_nonneg v)).trans hk
+      (norm_star_le_of_norm_le (norm_ι_apply_le ι hnorm (a - u k) n))
+      (norm_nonneg v)).trans hk
 
 /-! ## The limit map `q` -/
 
@@ -284,9 +288,11 @@ def starStrongLimitHom (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
       Algebra.algebraMap_eq_smul_one c
     rw [hlim]
     refine starStrongLimit_eq ι hnorm hone (algebraMap ℂ _ c) ?_
-    refine (isStarStrongLimit_smul c (isStarStrongLimit_one hone)).congr fun n ↦ ?_
+    refine (isStarStrongLimit_smul c
+      (isStarStrongLimit_one hone)).congr fun n ↦ ?_
     exact congrArg (fun z : BoundedStarSequence A ↦ ι n (z n))
-      (Algebra.algebraMap_eq_smul_one (R := ℂ) (A := BoundedStarSequence A) c).symm
+      (Algebra.algebraMap_eq_smul_one
+        (R := ℂ) (A := BoundedStarSequence A) c).symm
   map_star' x :=
     starStrongLimit_eq ι hnorm hone (star x)
       (isStarStrongLimit_star (starStrongLimit_spec ι hnorm hone x))
@@ -312,7 +318,8 @@ theorem starStrongLimit_eq_zero_of_tendsto_norm_zero
   refine starStrongLimit_eq ι hnorm hone x ?_
   constructor
   · intro v
-    show Tendsto (fun n ↦ ι n ((x : BoundedStarSequence A) n) v) atTop (𝓝 (0 : H))
+    show Tendsto (fun n ↦ ι n ((x : BoundedStarSequence A) n) v) atTop
+      (𝓝 (0 : H))
     rw [tendsto_zero_iff_norm_tendsto_zero]
     refine squeeze_zero (fun n ↦ norm_nonneg _) (fun n ↦ ?_) ?_
     · exact ((ι n ((x : BoundedStarSequence A) n)).le_opNorm v).trans
@@ -327,7 +334,7 @@ theorem starStrongLimit_eq_zero_of_tendsto_norm_zero
     refine squeeze_zero (fun n ↦ norm_nonneg _) (fun n ↦ ?_) ?_
     · exact ((star (ι n ((x : BoundedStarSequence A) n))).le_opNorm v).trans
         (mul_le_mul_of_nonneg_right
-          (norm_star_le (hnorm n ((x : BoundedStarSequence A) n)))
+          (norm_star_le_of_norm_le (hnorm n ((x : BoundedStarSequence A) n)))
           (norm_nonneg v))
     · simpa using hnull.mul_const ‖v‖
 

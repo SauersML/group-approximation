@@ -63,7 +63,8 @@ variable [CompleteSpace H]
 
 /-- The adjoint is an isometry, so a bound on an operator is a bound on its
 adjoint. -/
-theorem norm_star_le {A : H →L[ℂ] H} {C : ℝ} (h : ‖A‖ ≤ C) : ‖star A‖ ≤ C := by
+theorem norm_star_le_of_norm_le {A : H →L[ℂ] H} {C : ℝ} (h : ‖A‖ ≤ C) :
+    ‖star A‖ ≤ C := by
   rw [ContinuousLinearMap.star_eq_adjoint]
   exact (le_of_eq (ContinuousLinearMap.adjoint.norm_map A)).trans h
 
@@ -150,8 +151,8 @@ theorem IsStarStrongLimit.mul {S₁ S₂ : ℕ → H →L[ℂ] H} {T₁ T₂ : H
   · intro v
     exact tendsto_apply_of_norm_le hC₁ h₁.1 (h₂.1 v)
   · intro v
-    have h := tendsto_apply_of_norm_le (fun n ↦ norm_star_le (hC₂ n)) h₂.2
-      (h₁.2 v)
+    have h := tendsto_apply_of_norm_le
+      (fun n ↦ norm_star_le_of_norm_le (hC₂ n)) h₂.2 (h₁.2 v)
     simpa only [star_mul] using h
 
 /-- Pointwise Cauchy-ness is inherited from uniform approximants.  This is the
@@ -228,7 +229,7 @@ theorem exists_isStarStrongLimit {S : ℕ → H →L[ℂ] H} {C : ℝ}
         Classical.choose_spec (cauchySeq_tendsto_of_complete (hcauchy' v))⟩
   obtain ⟨T, hT⟩ := exists_continuousLinearMap_of_tendsto hC hf
   obtain ⟨G, hG⟩ := exists_continuousLinearMap_of_tendsto
-    (fun n ↦ norm_star_le (hC n)) hg
+    (fun n ↦ norm_star_le_of_norm_le (hC n)) hg
   have hfT : ∀ v : H, Tendsto (fun n ↦ S n v) atTop (𝓝 (T v)) := by
     intro v
     rw [hT v]
