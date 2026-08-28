@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.HyperbolicFreeGroupAH
 import GroupApproximation.Manuscript.NonMF.FournierFacioInput
 import GroupApproximation.Manuscript.NonMF.HullSmallCancellation
 
@@ -55,9 +56,24 @@ the free group on the two stable letters — is acylindrically hyperbolic.
 Minasyan–Osin's theorem is not in question here, and nothing below casts doubt
 on it.
 
-`false_of_literatureInputs_of_hullInputs` is what that costs the development:
-the two bundles of `Manuscript.NonMF.TheoremCDebts` cannot both be paid, so the
-closed forms of Theorem C cannot stand on `TorsionFree.HullInputs`.  The clause
+`not_nonempty_hullInputs` is the refutation with nothing assumed at all.
+`GGT/HyperbolicFreeGroupAH.lean` proves that a free group of rank two is
+acylindrically hyperbolic — the first instance of the class in this repository —
+so the group the argument needs is now available outright, and
+`TorsionFree.HullInputs` is **false**, not merely incompatible with a
+neighbouring bundle.  `false_of_literatureInputs_of_hullInputs` is the weaker
+statement, kept because it is the one that does not depend on that instance.
+
+That dependency is worth stating plainly: everything else in this module rests
+only on the definitions of `HullQuotient` and `HullInputs`, while
+`not_nonempty_hullInputs` rests on
+`GGT.instIsAcylindricallyHyperbolicFreeGroupFinTwo`.  If that instance ever
+moves or is restated, this is the declaration that follows it.
+
+The consequence for the development is unchanged in kind and sharper in degree:
+the two bundles of `Manuscript.NonMF.TheoremCDebts` cannot both be paid, and the
+Hull one cannot be paid at all, so the closed forms of Theorem C cannot stand on
+`TorsionFree.HullInputs`.  The clause
 to repair is the kernel one: it belongs to Hull's construction, not to its
 output, so it belongs inside the quotient — as a further field of the structure
 that the small cancellation theorem produces — rather than as a statement about
@@ -204,6 +220,24 @@ theorem not_nonempty_hullInputs_of_literatureInputs
     (I : TheoremC.LiteratureInputs) : ¬ Nonempty HullInputs.{0} := by
   rintro ⟨h⟩
   exact false_of_literatureInputs_of_hullInputs I h
+
+/-! ## The refutation, with nothing assumed -/
+
+/-- **`TorsionFree.HullInputs` is false.**
+
+The bundle asserts, through its kernel clause, that the four printed clauses of
+`thm:hull` force `q` to be injective at `m = 0`; `splitQuotient` refutes that as
+soon as one acylindrically hyperbolic group exists, and
+`GGT.instIsAcylindricallyHyperbolicFreeGroupFinTwo` supplies one — the free
+group of rank two, with its basis as alphabet, its Cayley graph a tree, and two
+basis letters as independent loxodromics.
+
+So no hypothesis is needed: not `TheoremC.LiteratureInputs`, not
+Minasyan–Osin's statement, nothing.  This is the sharp form of everything above,
+and the reason the Hull bundle had to be restated rather than proved. -/
+theorem not_nonempty_hullInputs : ¬ Nonempty HullInputs.{0} := by
+  rintro ⟨h⟩
+  exact false_of_hullInputs_of_isAcylindricallyHyperbolic h (FreeGroup (Fin 2))
 
 end HullKernelRefutation
 end NonMF
