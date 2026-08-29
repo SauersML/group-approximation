@@ -2434,6 +2434,13 @@ import GroupApproximation.Analysis.ShulmanFillNormingBlockHom
 import GroupApproximation.Analysis.ShulmanFillNormingCoronaMap
 import GroupApproximation.Analysis.ShulmanFillNormingSeqHom
 import GroupApproximation.Analysis.ShulmanFillNormingProductMF
+import GroupApproximation.GGT.HullSCRelatorSeparation2Word
+import GroupApproximation.GGT.HullSCRelatorSeparation2Component
+import GroupApproximation.GGT.HullSCRelatorSeparation2Gaps
+import GroupApproximation.GGT.HullSCRelatorSeparation2Design
+import GroupApproximation.GGT.HullSCRelatorSeparation2Rigid
+import GroupApproximation.GGT.HullSCRelatorSeparation2Core
+import GroupApproximation.GGT.HullSCRelatorSeparation2Statement
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
