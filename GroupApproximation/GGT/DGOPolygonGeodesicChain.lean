@@ -35,6 +35,16 @@ only a quasi-geodesic chain and the constant is Morse's;
 the same progress form `l · (j - i) - B ≤ d(y i, y j)`, but over `ℝ` and against
 an `IsGeodesicSegment` chord, which the vertex model of `Γ(G, X ⊔ ℋ)` does not
 carry.
+
+## The corner offset lives here too
+
+`notMem_coset_of_offset` and `notMem_coset_vertex_of_offset` are the selection
+device of Lemma 4.16, and they are stated here because they need nothing but the
+word metric and `wordDist_le_one_of_mem_fam`: a point of the coset `x · H lam`
+is one alphabet letter from `x`, so choosing the offset point at distance
+`θ + 2` from the corner puts the whole `θ`-ball around it outside the coset.
+No thinness, no polygon and no hyperbolicity is used --- those are what supply
+the offset point and bound the connector, not what makes the count work.
 -/
 
 namespace GroupApproximation
@@ -88,6 +98,52 @@ theorem exists_geodesicChain_of_isQuasiGeodesicPolygon (D : RelGenSet G Λ)
       ≤ wordDist D.alphabet.carrier (vertex v w (c s + i))
           (vertex v w (c s + j)) := by
     exact_mod_cast hlow
+  omega
+
+/-! ## The corner offset -/
+
+/-- **The corner offset excludes the coset.**  If `u` is chosen at distance at
+least `θ + 2` from a corner `x`, then nothing within `θ` of `u` lies in the coset
+`x · H lam`: a point of that coset is joined to `x` by a single letter of the
+alphabet, so it would put `x` within `1 + θ` of `u`.
+
+This is the whole of Dahmani--Guirardel--Osin's device for making the connector
+of their Lemma 4.16 usable, and it answers the question their proof is usually
+read as begging.  The connector is a geodesic between two points of the polygon
+and is **not** required to avoid `Γ_{H lam}`, nor are the thinness points
+required to lie outside the coset.  What has to be excluded is only that some
+component *of the connector* is connected to the distinguished component, and
+the offset is chosen one unit above what such a connection would force. -/
+theorem notMem_coset_of_offset (D : RelGenSet G Λ) {lam : Λ} {x u z : G}
+    {θ : ℕ} (hoff : θ + 2 ≤ wordDist D.alphabet.carrier x u)
+    (hz : wordDist D.alphabet.carrier u z ≤ θ) :
+    x⁻¹ * z ∉ D.fam lam := by
+  intro hmem
+  have h1 : wordDist D.alphabet.carrier x z ≤ 1 :=
+    wordDist_le_one_of_mem_fam D hmem
+  have h2 := wordDist_triangle D.alphabet.symmetricGenerating x z u
+  have h3 : wordDist D.alphabet.carrier z u = wordDist D.alphabet.carrier u z :=
+    wordDist_comm D.alphabet.symmetricGenerating z u
+  omega
+
+/-- **No vertex of a short connector meets the coset of a distant corner.**  The
+connector is read from `u` and its `m`-th vertex is at most `m` letters away, so
+`notMem_coset_of_offset` applies to all of them at once.
+
+Read against the cycle Lemma 4.16 assembles, this says that the only `lam`-letter
+of the connector that could sit at a vertex of the distinguished component's
+coset would have to sit at a vertex that is not there --- so the connector
+contributes no component connected to the distinguished one, which is what
+`OsinComponents.IsIsolated` asks of the assembled cycle. -/
+theorem notMem_coset_vertex_of_offset (D : RelGenSet G Λ) {lam : Λ} {x u : G}
+    {θ : ℕ} {r : List (RelLetter G Λ)} (hlet : ∀ a ∈ r, D.IsLetter a)
+    (hlen : r.length ≤ θ)
+    (hoff : θ + 2 ≤ wordDist D.alphabet.carrier x u)
+    {m : ℕ} (hm : m ≤ r.length) :
+    x⁻¹ * vertex u r m ∉ D.fam lam := by
+  refine notMem_coset_of_offset D hoff ?_
+  have h := wordDist_vertex_le' D hlet u (Nat.zero_le m) hm
+  rw [vertex_zero] at h
   omega
 
 end OsinComponents
