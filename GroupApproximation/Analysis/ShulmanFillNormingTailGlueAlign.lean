@@ -67,14 +67,28 @@ def StarStrongTailLift.withCut (φ : StarStrongTailLift ι hnorm hone π)
     (φ : StarStrongTailLift ι hnorm hone π) (c : ℕ → ℕ)
     (hc : ∀ t, φ.cut t ≤ c t) : (φ.withCut c hc).toFun = φ.toFun := rfl
 
-/-- Two lifts, aligned at the pointwise maximum of their cuts. -/
-def commonCut (φ₁ φ₂ : StarStrongTailLift ι hnorm hone π) : ℕ → ℕ :=
+/-- **Two lifts, aligned at the pointwise maximum of their cuts.**
+
+The two may lift different representations, of different algebras: only their
+cuts are read.  That generality is the point rather than a flourish --- the
+gluing's two legs lift `ρ₁` and `ρ₂`, so a version stated for two lifts of one
+representation cannot be applied to them. -/
+def commonCut {B₁ B₂ : Type v} [CStarAlgebra B₁] [CStarAlgebra B₂]
+    {π₁ : B₁ →⋆ₐ[ℂ] (H →L[ℂ] H)} {π₂ : B₂ →⋆ₐ[ℂ] (H →L[ℂ] H)}
+    (φ₁ : StarStrongTailLift ι hnorm hone π₁)
+    (φ₂ : StarStrongTailLift ι hnorm hone π₂) : ℕ → ℕ :=
   fun t ↦ max (φ₁.cut t) (φ₂.cut t)
 
-theorem le_commonCut_left (φ₁ φ₂ : StarStrongTailLift ι hnorm hone π) (t : ℕ) :
+theorem le_commonCut_left {B₁ B₂ : Type v} [CStarAlgebra B₁] [CStarAlgebra B₂]
+    {π₁ : B₁ →⋆ₐ[ℂ] (H →L[ℂ] H)} {π₂ : B₂ →⋆ₐ[ℂ] (H →L[ℂ] H)}
+    (φ₁ : StarStrongTailLift ι hnorm hone π₁)
+    (φ₂ : StarStrongTailLift ι hnorm hone π₂) (t : ℕ) :
     φ₁.cut t ≤ commonCut φ₁ φ₂ t := le_max_left _ _
 
-theorem le_commonCut_right (φ₁ φ₂ : StarStrongTailLift ι hnorm hone π) (t : ℕ) :
+theorem le_commonCut_right {B₁ B₂ : Type v} [CStarAlgebra B₁] [CStarAlgebra B₂]
+    {π₁ : B₁ →⋆ₐ[ℂ] (H →L[ℂ] H)} {π₂ : B₂ →⋆ₐ[ℂ] (H →L[ℂ] H)}
+    (φ₁ : StarStrongTailLift ι hnorm hone π₁)
+    (φ₂ : StarStrongTailLift ι hnorm hone π₂) (t : ℕ) :
     φ₂.cut t ≤ commonCut φ₁ φ₂ t := le_max_right _ _
 
 variable (ι hnorm hone)
