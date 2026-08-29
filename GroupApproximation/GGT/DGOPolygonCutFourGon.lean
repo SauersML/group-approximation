@@ -141,6 +141,69 @@ theorem exists_fourGon_cut (D : RelGenSet G Λ) (v : G)
         rwa [he] at hkey
       exact_mod_cast hcast
 
+/-! ## Case A of Lemma 4.17 -/
+
+/-- **Case A**: the distinguished component is isolated in the cut 4-gon.
+
+DGO cut the `n`-gon by a geodesic `q` from `x₃` to `x₀`, and the near side of the
+cut is the 4-gon `p₀ p₁ p₂ q`.  Its first side still carries the distinguished
+component, by `isComp_joinWord`, and that component is still isolated, by
+`isIsolated_joinWord`, exactly when no component of the chord is connected to it
+--- which is the hypothesis `hchord` defining Case A.  The 4-gon base case then
+bounds the span, with no dependence on `n`.
+
+`c 1 < c 3` is what keeps the component maximal after the cut: the letter at
+`c 1` must still be a letter of `w`.  `DGOPolygonJoin.baseCase_of_dropEmpty`
+supplies it by shedding trivial sides first. -/
+theorem span_mem_relBall_of_noChordConnection (D : RelGenSet G Λ) (C : ℕ)
+    (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
+      (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
+      c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
+      (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+          ≤ ((wordDist D.alphabet.carrier (vertex v w p)
+              (vertex v w q) : ℕ) : ℝ)) →
+      IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
+        (vertex v w (c 0))⁻¹ * vertex v w (c 1) ∈ D.relBall lam (C * 4))
+    (v : G) {w : List (RelLetter G Λ)} {c : ℕ → ℕ} {n : ℕ}
+    {q : List (RelLetter G Λ)} (lam : Λ)
+    (hlet : ∀ a ∈ w, D.IsLetter a)
+    (hc0 : c 0 = 0) (hcn : c n = w.length) (hcmono : ∀ s : ℕ, c s ≤ c (s + 1))
+    (h3n : 3 ≤ n)
+    (hcqg : ∀ s : ℕ, s < n → s ≠ 0 → ∀ p q' : ℕ, c s ≤ p → p ≤ q' →
+      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / 1 - 0
+        ≤ ((wordDist D.alphabet.carrier (vertex v w p)
+            (vertex v w q') : ℕ) : ℝ))
+    (hcomp : IsComp lam w (c 0) (c 1)) (hiso : IsIsolated D.fam lam v w (c 0))
+    (hq : IsGeodesicWord D (vertex v w (c 3)) v q) (hc13 : c 1 < c 3)
+    (hchord : ∀ t : ℕ, IsCompStart lam q t →
+      ¬ Connected D.fam lam v (joinWord w (c 3) q) (c 0) (c 3 + t)) :
+    (vertex v w (c 0))⁻¹ * vertex v w (c 1) ∈ D.relBall lam (C * 4) := by
+  have hmono : Monotone c := monotone_nat_of_le_succ hcmono
+  have hc3w : c 3 ≤ w.length := by
+    have h := hmono h3n
+    rw [hcn] at h
+    exact h
+  obtain ⟨d, hd0, hd1, hd4, hdmono, hdqg⟩ :=
+    exists_fourGon_cut D v hc0 hcn hcmono h3n hcqg hq
+  have hd0c : d 0 = c 0 := by rw [hd0, hc0]
+  have hqval : RelLetter.listVal q = (vertex v w (c 3))⁻¹ * v :=
+    eq_inv_mul_of_mul_eq hq.2.1
+  have hcompJ : IsComp lam (joinWord w (c 3) q) (c 0) (c 1) :=
+    isComp_joinWord lam hc3w hcomp hc13
+  have hisoJ : IsIsolated D.fam lam v (joinWord w (c 3) q) (c 0) :=
+    isIsolated_joinWord D lam v hc3w (by omega) ⟨_, hcompJ⟩ hiso hchord
+  have hkey := hbase v (joinWord w (c 3) q) d
+    (letters_joinWord D hlet (c 3) hq.1)
+    (listVal_joinWord_eq_one v w (c 3) q hqval) hd0 hd4 hdmono lam hdqg
+    (by rw [hd0c, hd1]; exact hcompJ) (by rw [hd0c]; exact hisoJ)
+  have hv0 : vertex v (joinWord w (c 3) q) (d 0) = vertex v w (c 0) := by
+    rw [hd0c, vertex_joinWord_le v w q hc3w (c 0) (by omega)]
+  have hv1 : vertex v (joinWord w (c 3) q) (d 1) = vertex v w (c 1) := by
+    rw [hd1, vertex_joinWord_le v w q hc3w (c 1) (by omega)]
+  rw [← hv0, ← hv1]
+  exact hkey
+
 end OsinComponents
 end GGT
 end GroupApproximation
