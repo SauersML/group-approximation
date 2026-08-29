@@ -2667,6 +2667,8 @@ import GroupApproximation.Analysis.ShulmanFillNormingPrintedPairRefuted
 import GroupApproximation.Analysis.ShulmanFillNormingPrintedPairCharacter
 import GroupApproximation.GGT.DGOPolygonEdgeGon
 import GroupApproximation.GGT.DGOPolygonLemma417
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyBlock
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplySpelling
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
