@@ -65,17 +65,26 @@ universe u w
 variable {G : Type u} [Group G] {Λ : Type w}
 
 /-- **Both gaps of a matched pair of blocks are short, from one reading of the
-polygon.**
+polygon**, with the gaps NAMED.
+
+The two elements are the polygon's own: `(vertex 1 s j)⁻¹ * (listVal p *
+vertex 1 q i)` from the end of the `s`-component back to the start of the
+`q`-component, and `(listVal p * vertex 1 q k)⁻¹ * vertex 1 s l` the other way
+round.  A consumer that has to recognise them --- to conjugate by one, or to
+read its own equation off the other --- cannot do it through an existential,
+which is why this is the form the chain uses and
+`exists_two_block_conj_of_rot` is the corollary.
+
+`lam` is quantified INSIDE the existential: `connector_mem_relBall` produces one
+constant for all indices at once, so there is no reason to make a caller carry a
+separate `C` per subgroup of the family, and a caller matching two components in
+different `H_λ` needs them compared against the same radius.
 
 Both gaps come from one application each of the innermost end-to-start cut,
-flipped by `connector_inv_mem_relBall`, and `block_span_conj` puts them either
-side of the deep span --- which stays between them and is never folded in, being
-unbounded while they are not.
-
-The quasi-geodesic hypothesis is the clause at the quadrilateral's own corners,
-which is what a caller verifies anyway and is strictly more than the packaged
-predicate says. -/
-theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
+flipped by `connector_inv_mem_relBall`.  The deep span stays between them and is
+never folded in, being unbounded while they are not; `block_span_conj` is what
+puts it there, and it is used only in the corollary. -/
+theorem two_block_conj_named (D : RelGenSet G Λ)
     (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
         IsQuasiGeodesicPolygon D mu b n v u →
@@ -84,7 +93,7 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
     (hb : 0 ≤ b) :
     ∃ C : ℕ, 0 < C ∧
-      ∀ (p q r s : List (RelLetter G Λ)) (i k j l : ℕ),
+      ∀ (lam : Λ) (p q r s : List (RelLetter G Λ)) (i k j l : ℕ),
         RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q
             * RelLetter.listVal r →
         (∀ a ∈ p ++ q ++ r ++ revWord s, D.IsLetter a) →
@@ -113,13 +122,14 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
           IsCompStart lam (p ++ q ++ r ++ revWord s) o →
           ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
             (p.length + q.length + r.length + (s.length - l)) o) →
-        ∃ x x' : G, x ∈ D.relBall lam (C * 4) ∧ x' ∈ D.relBall lam (C * 4) ∧
-          x * ((vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k) * x'
-            = (vertex (1 : G) s j)⁻¹ * vertex (1 : G) s l := by
+        ((vertex (1 : G) s j)⁻¹ * (RelLetter.listVal p * vertex (1 : G) q i)
+            ∈ D.relBall lam (C * 4)) ∧
+          ((RelLetter.listVal p * vertex (1 : G) q k)⁻¹ * vertex (1 : G) s l
+            ∈ D.relBall lam (C * 4)) := by
   obtain ⟨C, hCpos, hC⟩ := connector_mem_relBall D hbound mu b hmu hb
   refine ⟨C, hCpos, ?_⟩
-  intro p q r s i k j l hclose hlet hp hr hp0 hqg hcompq hkq hcomps hlq hconn
-    hinner hother
+  intro lam p q r s i k j l hclose hlet hp hr hp0 hqg hcompq hkq hcomps hlq
+    hconn hinner hother
   -- the polygon, and the same polygon read from the corner between `q` and `r`
   have hpoly := isQuasiGeodesicPolygon_fourGon p q r s D hlet hclose hqg
   have hpoly₂ := isQuasiGeodesicPolygon_fourGon_rot p q r s D hlet hclose hqg
@@ -258,7 +268,61 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
     hrotS hrotQ (by omega) hconn₂ hinner₂
   have hflip2 := connector_inv_mem_relBall D lam hsymm happ2
   rw [hvE, hvQ] at hflip2
-  exact ⟨_, _, hflip2, hflip1, block_span_conj p q s i k j l⟩
+  exact ⟨hflip2, hflip1⟩
+
+/-- **The same, as the existential a consumer states its conclusion with.**
+
+`x * v_q * x' = v_s` with `x`, `x'` short: `block_span_conj` between the two
+named gaps.  The names are thrown away here, so a consumer that needs them takes
+`two_block_conj_named` instead. -/
+theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
+    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (p q r s : List (RelLetter G Λ)) (i k j l : ℕ),
+        RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q
+            * RelLetter.listVal r →
+        (∀ a ∈ p ++ q ++ r ++ revWord s, D.IsLetter a) →
+        (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
+        (∀ a ∈ r, ∃ x : G, a = RelLetter.base x) →
+        0 < p.length →
+        (∀ t : ℕ, t < 4 → ∀ x y : ℕ, fourGonCut p q r s t ≤ x → x ≤ y →
+          y ≤ fourGonCut p q r s (t + 1) →
+          ((y - x : ℕ) : ℝ) / mu - b
+            ≤ ((wordDist D.alphabet.carrier
+                (vertex (1 : G) (p ++ q ++ r ++ revWord s) x)
+                (vertex (1 : G) (p ++ q ++ r ++ revWord s) y) : ℕ) : ℝ)) →
+        IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
+        IsComp lam s j l → (l < s.length ∨ 0 < r.length) →
+        Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
+            (p.length + q.length + r.length + (s.length - l)) →
+        (∀ t : ℕ, p.length + i < t →
+          t < p.length + q.length + r.length + (s.length - l) →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) t →
+          ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+            (p.length + i) t) →
+        (∀ o : ℕ,
+          (p.length + q.length + r.length + (s.length - l) < o
+              ∧ o < (p ++ q ++ r ++ revWord s).length)
+            ∨ o < p.length + i →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) o →
+          ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+            (p.length + q.length + r.length + (s.length - l)) o) →
+        ∃ x x' : G, x ∈ D.relBall lam (C * 4) ∧ x' ∈ D.relBall lam (C * 4) ∧
+          x * ((vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k) * x'
+            = (vertex (1 : G) s j)⁻¹ * vertex (1 : G) s l := by
+  obtain ⟨C, hCpos, hC⟩ := two_block_conj_named D hbound hsymm mu b hmu hb
+  refine ⟨C, hCpos, ?_⟩
+  intro p q r s i k j l hclose hlet hp hr hp0 hqg hcompq hkq hcomps hlq hconn
+    hinner hother
+  obtain ⟨hx, hx'⟩ := hC lam p q r s i k j l hclose hlet hp hr hp0 hqg hcompq
+    hkq hcomps hlq hconn hinner hother
+  exact ⟨_, _, hx, hx', block_span_conj p q s i k j l⟩
 
 end OsinComponents
 end GGT
