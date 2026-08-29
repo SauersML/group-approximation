@@ -96,10 +96,18 @@ The separation's match clause, threaded through the modules below, keeps
 exactly these and no others:
 
 * `hbound` -- item 1, at this chain's `(mu, b)`;
-* `hqg` -- item 2, as the `fourGonCut` clause for
-  `py ++ u₀ ++ pz ++ revWord u₀'`;
+* `hqg` -- item 2, and it is spent in THREE places, all instances of the cyclic
+  form and none of them an extra debt: the `fourGonCut` clause for
+  `py ++ u₀ ++ pz ++ revWord u₀'`, and separately the per-side clauses for `u₀`
+  and for `u₀'` that the pinning and the gap estimate read;
 * the two same-side exclusions -- item 3;
-* `0 < |py|` and `0 < |pz|` -- the piece side conditions.
+* torsion-freeness -- item 5, which is what the design's diagonal clause
+  `hdiag` is built from, through `HullSC.noCommute_of_torsionFree`.
+
+The design's other clauses -- `hnodup`, `hinj`, `hsep`, `hdeep`, and the
+symmetry of the base -- are discharged by the instantiation and are not standing
+hypotheses of the finished statement.  `0 < |py|` and `0 < |pz|` were on this
+list and are not any longer: see the padding remark below.
 
 `Connected` at the matched pair and both configuration clauses of the packaged
 theorem were binders and are not any longer: the first comes from
@@ -118,14 +126,28 @@ unsound without them.
   base arc, where `HullSC.exists_block_of_long_prefix_rotate` has nothing to
   say -- a window of more than `|p|` letters meets the run, and a shorter one
   need not.
-* **(C2) The piece threshold.**  `B := |p| + 2(eps + 1) + 2`, which is what
-  puts two block letters in every piece, separated by more than `2(eps + 1)` --
-  the separation `GGT.OsinComponents.exists_two_block_connector_of_deep` asks
-  for, and what the mixed cases need in order to see an orientation at all.
-* **(C3) The run is long.**  `L` past `2(2(eps + 1) + 1) + |p| + c + 2`, which
-  is what `HullSC.false_of_span_mixed`'s length clause
+* **(C2) The piece threshold.**  `B := |p| + 2(eps + 1 + b) + 2`, with
+  `b = |p| + c` the block-count constant, which is what puts two block letters
+  in every piece separated by more than `2(eps + 1 + b)` -- the separation
+  `GGT.OsinComponents.lt_of_two_connectors_qg` asks for, and what the mixed
+  cases need in order to see an orientation at all.
+
+  The `+ b` is not slack.  The geodesic pinning
+  `GGT.OsinComponents.index_le_of_connector` would give `2(eps + 1)`, but it
+  reads `wordNorm (vertex 1 q i) = i` off the side being geodesic, and these
+  sides are only `(1, b)`-quasi-geodesic, where that identity fails in both
+  directions.  What survives is
+  `GGT.OsinComponents.index_le_of_connector_qg`, the same statement with `b`
+  added, and the separation has to be taken against it.  Without an order
+  between the two matches the mixed cases cannot be closed at all: one match
+  alone is consistent with an inversion, and
+  `GGT.OsinComponents.wordDist_match_le` bounds the distance between two
+  matches while saying nothing about the sign.
+* **(C3) The run is long.**  `L` past `2(2(eps + 1 + b) + 1) + b + 2`, which is
+  what `HullSC.false_of_span_mixed`'s length clause
   `2(i₂ - i₁) + gapSlack < |R|` becomes once the two blocks are chosen at
-  `i₂ := i₁ + 2(eps + 1) + 1` and `gapSlack := |p| + c + 2`.  Free: `|R|` is
+  `i₂ := i₁ + 2(eps + 1 + b) + 1` and `gapSlack := b + 2`, the shape
+  `GGT.OsinComponents.gap_and_order_of_two_matches` returns.  Free: `|R|` is
   `|p| + |ms|` and `|ms|` is whatever `L` asks for.
 
 The two side conditions `0 < |py|`, `0 < |pz|` are met by padding the
