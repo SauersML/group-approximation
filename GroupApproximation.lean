@@ -2578,6 +2578,8 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Diff
 import GroupApproximation.GGT.HullSCRelatorSeparation2PowFam
 import GroupApproximation.GGT.HullSCRelatorSeparation2Join
 import GroupApproximation.GGT.OsinTheorem54SepSegmentComp
+import GroupApproximation.GGT.HullSCRelatorSeparation2Tails
+import GroupApproximation.GGT.HullSCRelatorSeparation2Window
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
