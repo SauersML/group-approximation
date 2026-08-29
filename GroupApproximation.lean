@@ -2540,6 +2540,7 @@ import GroupApproximation.GGT.OsinTheorem54SepSmul
 import GroupApproximation.Analysis.BlackadarKirchbergScalarCoordinateStateDensity
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceCovariance
 import GroupApproximation.Manuscript.MFRecognition.HNNTraceCovariantRepresentation
+import GroupApproximation.Sofic.Osin24FoldedWalk
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
