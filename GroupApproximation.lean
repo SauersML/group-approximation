@@ -2659,6 +2659,7 @@ import GroupApproximation.GGT.DGOPolygonCutFourGon
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNamed
 import GroupApproximation.GGT.HullSCRelatorSeparation2Apply
 import GroupApproximation.GGT.DGOPolygonFarGon
+import GroupApproximation.Analysis.ShulmanFillNormingTailAsymptotic
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
