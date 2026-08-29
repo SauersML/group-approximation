@@ -2662,6 +2662,7 @@ import GroupApproximation.GGT.DGOPolygonFarGon
 import GroupApproximation.Analysis.ShulmanFillNormingTailAsymptotic
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyComp
 import GroupApproximation.Analysis.ShulmanFillNormingTailAsymptoticMF
+import GroupApproximation.Analysis.ShulmanFillNormingTailPrinted
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
