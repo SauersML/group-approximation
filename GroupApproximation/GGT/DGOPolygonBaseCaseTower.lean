@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.DGOPolygonLemma417
 import GroupApproximation.GGT.DGOIsolatedComponentSideForm
+import GroupApproximation.GGT.DGOIsolatedComponentSideZero
 
 /-!
 # The tower of side counts, and the isolated-component bound it gives
@@ -31,10 +32,20 @@ here.
 
 ## What is still assumed
 
-The base case at four sides, at `(μ,b) = (1,0)`.  The general `(μ,b)` reduction
-is not in this chain: every clause here is quoted at `μ = 1`, `b = 0`, and the
-statement below is the `(1,0)` instance of what `connector_mem_relBall`'s
-`hbound` binder asks for at all `(μ,b)`.
+Nothing beyond four-point hyperbolicity of `Γ(G, X ⊔ ℋ)` and a symmetric base:
+`DGOIsolatedComponentBoundFourGon.span_mem_relBall_of_sideZero` is the base case
+at four sides, and the last theorem here discharges the binder with it.
+
+What is NOT covered is general `(μ,b)`: every clause here is quoted at `μ = 1`,
+`b = 0`, because the base case is.  The `(1,0)` statement is the instance of
+`connector_mem_relBall`'s `hbound` binder that its geodesic-polygon applications
+use.  Nor is unbounded `n`: each step of Lemma 4.17 costs `C ↦ C₁ + C₂`, so
+iterating to `n` sides gives a radius quadratic in `n`, and the linear form
+`C · n` at a fixed `C` for ALL `n` --- which is what
+`OsinComponents.IsolatedComponentBound` asks --- is out of reach of the
+recursion.  That is why Dahmani--Guirardel--Osin prove their Lemma 4.16 by the
+corner-offset construction and use 4.17 only to extend it to boundedly many
+sides.
 -/
 
 namespace GroupApproximation
@@ -279,6 +290,29 @@ theorem isolatedComponentBound_of_sideZeroBase (D : RelGenSet G Λ)
     omega
   exact isolatedComponent_span_of_sideZeroBase D hsymm C hbase hn6 ht hti hit
     ht' htk hkt' htt' hlet hclosed hc0 hcn hcmono hcqg hcomp hiso
+
+/-! ## The bound, with nothing left assumed -/
+
+/-- **Dahmani--Guirardel--Osin's isolated-component bound for polygons of at most
+six sides, from four-point hyperbolicity alone.**
+
+`DGOIsolatedComponentBoundFourGon.span_mem_relBall_of_sideZero` is their Lemma
+4.16 at four sides, with `C = 25 (δ + 1)`; `baseCase_of_sideZero_at` puts it in
+the binder shape, and everything above turns it into the bound for an arbitrary
+isolated component of a `(1,0)`-quasi-geodesic `n`-gon, `n ≤ 6`.
+
+No hypothesis remains but the two the base case itself carries: a base closed
+under inversion, and `Γ(G, X ⊔ ℋ)` four-point hyperbolic. -/
+theorem isolatedComponentBound_of_fourPointHyperbolic (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ}
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) :
+    ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D 1 0 n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+        (vertex v u i)⁻¹ * vertex v u k
+          ∈ D.relBall nu (15 * (25 * (δ + 1)) * n) :=
+  isolatedComponentBound_of_sideZeroBase D hsymm (25 * (δ + 1))
+    (baseCase_of_sideZero_at D hsymm hδ rfl)
 
 end OsinComponents
 end GGT
