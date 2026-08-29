@@ -2711,6 +2711,8 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyQuantified
 import GroupApproximation.Analysis.ShulmanFillNormingTailPad
 import GroupApproximation.GGT.OsinTheorem54SepSixBound
 import GroupApproximation.Analysis.ShulmanFillNormingTailPrintedMF
+import GroupApproximation.GGT.OsinTheorem54SepHypForms
+import GroupApproximation.GGT.OsinTheorem54SepGeodesicSides
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
