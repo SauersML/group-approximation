@@ -2611,6 +2611,7 @@ import GroupApproximation.GGT.DGOIsolatedComponentRecut
 import GroupApproximation.GGT.DGOIsolatedComponentSplit
 import GroupApproximation.GGT.HullSCRelatorSeparation2Rigidity
 import GroupApproximation.Analysis.ShulmanFillNormingEllTwoTheorem10
+import GroupApproximation.GGT.DGOIsolatedComponentNormalise
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
