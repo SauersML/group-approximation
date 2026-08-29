@@ -121,6 +121,13 @@ theorem padSeq_injective (c : ℕ) :
     exact hxk
   exact hgen (m + c - c) (Nat.add_sub_cancel m c) hkey
 
+/-- MF-embeddability of the bounded product passes to the relabelled one. -/
+theorem hasMFEmbedding_of_pad
+    (h : HasMFEmbedding (StarStrong.BoundedStarSequence A)) (c : ℕ) :
+    HasMFEmbedding (StarStrong.BoundedStarSequence (shiftModel (A := A) c)) :=
+  h.of_injective_nonUnitalStarAlgHom (padSeq (A := A) c)
+    (padSeq_injective (A := A) c)
+
 end
 
 end ShulmanFill
