@@ -2519,6 +2519,7 @@ import GroupApproximation.GGT.RelHypOsin24CollapseModel
 import GroupApproximation.GGT.OsinTheorem54SepFourGon
 import GroupApproximation.GGT.OsinTheorem54SepFourGonSide
 import GroupApproximation.Analysis.ShulmanFillNormingDoubledFlip
+import GroupApproximation.Sofic.Osin24FoldWitnessLegality
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
