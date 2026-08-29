@@ -2521,6 +2521,8 @@ import GroupApproximation.GGT.OsinTheorem54SepFourGonSide
 import GroupApproximation.Analysis.ShulmanFillNormingDoubledFlip
 import GroupApproximation.Sofic.Osin24FoldWitnessLegality
 import GroupApproximation.GGT.DGOCorollary612Malnormal
+import GroupApproximation.GGT.HullSCRelatorSeparation2FillingData
+import GroupApproximation.GGT.HullSCRelatorSeparation2Assembly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

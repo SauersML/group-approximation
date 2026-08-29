@@ -14,15 +14,24 @@ indexed where the family indexes it:
 * one apex per index, fixed by its own subgroup and normal in its own
   stabiliser;
 * separation between *all* apices, across indices as well as within one orbit;
-* the injectivity radius `injOn_of_dist`, against the normal closure of the
+* the injectivity radius `kernel_moves`, against the normal closure of the
   whole family.
 
-Two fields deserve comment.
+Three fields deserve comment.
 
-`injOn_of_dist` is Hull's §5 and not DGO's Theorem 5.3, exactly as over one
+`kernel_moves` is Hull's §5 and not DGO's Theorem 5.3, exactly as over one
 subgroup: the free splitting and the dichotomy do not give an injectivity
 radius, loxodromy is asymptotic and says nothing at the first power, and the
-splitting is not metric.  It is mirrored here rather than claimed.
+splitting is not metric.  It is mirrored here rather than claimed.  It is
+stated at the basepoint and over the subgroup the family generates, which is
+the honest domain: an element outside that subgroup may fix the basepoint
+without harm, and `HullSC.eq_one_of_dist_lt_everywhere` refutes the form
+quantified over every point.
+
+`isGeodesic` is what the repaired form of DGO's Theorem 5.3 asks for.  Without
+a geodesic the very rotating condition constrains an annulus that can be empty,
+which is the defect recorded in `GGT/HullSCDGO.lean`; it is also why the family
+has to live on a geometric realisation rather than on the vertex model.
 
 `apex_ne` is new, and it is the one clause a family needs that a single subgroup
 does not: the orbits of the apices must not meet, or the rotation subgroup at a
@@ -42,8 +51,8 @@ universe u v w
 /-- **The cone-off along a family, with the data Theorem 5.1 consumes.**
 
 `L` is the displacement below which the quotient has to be faithful.  As over
-one subgroup, the lower bounds on the separation are all arranged the same way:
-they are met by taking the relator deep enough. -/
+one subgroup, the lower bounds on the separation and on the injectivity radius
+are all arranged the same way: they are met by taking the relator deep enough. -/
 structure ConeOffData₂ {G : Type u} [Group G] {Λ : Type w} (A : Alphabet G)
     (K : Λ → Subgroup G) (L : ℝ) where
   /-- The cone-off. -/
@@ -75,25 +84,28 @@ structure ConeOffData₂ {G : Type u} [Group G] {Λ : Type w} (A : Alphabet G)
   delta_pos : 0 < delta
   /-- The cone-off is hyperbolic. -/
   hyperbolic : IsHyperbolicSpace delta Space
+  /-- **The cone-off is geodesic.**  The repaired form of DGO's Theorem 5.3
+  asks for it: without a geodesic the very rotating condition constrains an
+  annulus that can be empty. -/
+  isGeodesic : IsGeodesicSpace Space
   /-- The separation of the apices. -/
   sep : ℝ
   /-- Dahmani-Guirardel-Osin's Theorem 5.3 asks for separation above `200 δ`. -/
   sep_ge : 200 * delta ≤ sep
-  /-- The separation exceeds the prescribed displacement. -/
-  lt_sep : L < sep
   /-- Distinct apices are `sep` apart, across indices as well as within one. -/
   separated : ∀ (lam mu : Λ) (g g' : G), g • apex lam ≠ g' • apex mu →
     sep ≤ dist (g • apex lam) (g' • apex mu)
-  /-- The basepoint is `sep`-far from every apex. -/
-  base_far : ∀ (lam : Λ) (g : G), sep ≤ dist base (g • apex lam)
-  /-- **The injectivity radius, and it is Hull's §5 rather than DGO's.**
-  Nothing that moves the basepoint by less than the separation is killed, for
-  any quotient by the normal closure of the whole family.  As over one subgroup
-  this is not derivable from the fields above, so it is asked of the cone-off,
-  which is where Hull proves it. -/
-  injOn_of_dist : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-    q.ker = Subgroup.normalClosure (⋃ lam : Λ, (K lam : Set G)) →
-      ∀ g : G, g ≠ 1 → dist base (g • base) < sep → q g ≠ 1
+  /-- The injectivity radius. -/
+  injRadius : ℝ
+  /-- It exceeds the prescribed displacement. -/
+  lt_injRadius : L < injRadius
+  /-- **The kernel moves the basepoint, and this is Hull's §5 rather than
+  DGO's.**  Every nontrivial element of the subgroup the family generates moves
+  the basepoint by at least the injectivity radius.  As over one subgroup this
+  is not derivable from the fields above, so it is asked of the cone-off, which
+  is where Hull proves it. -/
+  kernel_moves : ∀ g ∈ Subgroup.normalClosure (⋃ lam : Λ, (K lam : Set G)),
+    g ≠ 1 → injRadius ≤ dist base (g • base)
   /-- The conjugates of each `K lam` rotate very much about the corresponding
   apices, in the sense of DGO Definition 2.12(c). -/
   veryRotating : ∀ (lam : Λ) (g k : G), k ∈ K lam → g * k * g⁻¹ ≠ 1 →
