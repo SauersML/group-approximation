@@ -2550,6 +2550,7 @@ import GroupApproximation.GGT.DGOIsolatedComponentBridge
 import GroupApproximation.Analysis.ShulmanFillNormingScalarMF
 import GroupApproximation.Analysis.ShulmanFillNormingTheorem4Refuted
 import GroupApproximation.GGT.OsinTheorem54SepFourGonQuasi
+import GroupApproximation.Higman.CodedTransportStarRankThree
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
