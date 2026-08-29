@@ -2523,6 +2523,9 @@ import GroupApproximation.Sofic.Osin24FoldWitnessLegality
 import GroupApproximation.GGT.DGOCorollary612Malnormal
 import GroupApproximation.GGT.HullSCRelatorSeparation2FillingData
 import GroupApproximation.GGT.HullSCRelatorSeparation2Assembly
+import GroupApproximation.GGT.HullSCRelatorSeparation2Quotient
+import GroupApproximation.GGT.HullSCRelatorSeparation2ListFacts
+import GroupApproximation.GGT.HullSCRelatorSeparation2Rotation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
