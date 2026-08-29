@@ -26,8 +26,9 @@ sides and `p`, `r` the two short ones.  A component of the side `q` is a run of
   all**, so two of those four cases are empty.
 * `exists_other_component_fourGon` --- the isolated-component form: a
   non-isolated component of `q` is connected either to another component of `q`
-  itself, or to a component of `s`, and in the second case with the named
-  connector.
+  itself, or to a component of `s`, with the connector named in both branches
+  (`exists_connector_fourGon_side` for the first, `exists_connector_fourGon`
+  for the second).
 
 ## What is *not* proved here, and why the disjunction stays
 
@@ -137,6 +138,37 @@ theorem exists_connector_fourGon (D : RelGenSet G Λ) (lam : Λ)
     (connected_fourGon_iff D lam p q r s hclose hi).mp hconn, ?_⟩
   group
 
+/-- **Connectedness between two components of the *same* long side**, in that
+side's own coordinates.  The short side `p` translates both vertices, so it
+cancels and no `listVal p` survives. -/
+theorem connected_fourGon_side_iff (D : RelGenSet G Λ) (lam : Λ)
+    (p q r s : List (RelLetter G Λ)) {i i' : ℕ} (hi : i ≤ q.length)
+    (hi' : i' ≤ q.length) :
+    Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
+        (p.length + i')
+      ↔ (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' ∈ D.fam lam := by
+  show (vertex (1 : G) (p ++ q ++ r ++ revWord s) (p.length + i))⁻¹ *
+      vertex (1 : G) (p ++ q ++ r ++ revWord s) (p.length + i')
+        ∈ D.fam lam ↔ _
+  rw [vertex_fourGon_side p q r s 1 hi, vertex_fourGon_side p q r s 1 hi']
+  have hg : (1 * RelLetter.listVal p * vertex (1 : G) q i)⁻¹ *
+      (1 * RelLetter.listVal p * vertex (1 : G) q i')
+      = (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' := by
+    group
+  rw [hg]
+
+/-- **The connector between two components of the same side is named too.** -/
+theorem exists_connector_fourGon_side (D : RelGenSet G Λ) (lam : Λ)
+    (p q r s : List (RelLetter G Λ)) {i i' : ℕ} (hi : i ≤ q.length)
+    (hi' : i' ≤ q.length)
+    (hconn : Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
+      (p.length + i')) :
+    ∃ h : G, h ∈ D.fam lam ∧
+      vertex (1 : G) q i * h = vertex (1 : G) q i' := by
+  refine ⟨(vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i',
+    (connected_fourGon_side_iff D lam p q r s hi hi').mp hconn, ?_⟩
+  group
+
 /-! ## Which side an index lies in -/
 
 /-- **The four sides cover the indices.**  The ranges overlap at the corners,
@@ -224,7 +256,7 @@ theorem not_isCompStart_fourGon_third (p q r s : List (RelLetter G Λ))
 
 /-- **A non-isolated component of the long side `q` is connected either to
 another component of `q` or to a component of the opposite side `s`**, and in
-the second case its connector is named.
+either case its connector is named.
 
 The two short sides are excluded because they are spelled by base letters and
 so carry no components at all.  The first branch cannot be excluded in this
@@ -243,8 +275,8 @@ theorem exists_other_component_fourGon (D : RelGenSet G Λ) (lam : Λ)
       (p.length + i)) :
     (∃ i' : ℕ, i' ≤ q.length ∧ i' ≠ i ∧
         IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') ∧
-        Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
-          (p.length + i'))
+        ∃ h : G, h ∈ D.fam lam ∧
+          vertex (1 : G) q i * h = vertex (1 : G) q i')
       ∨ (∃ j : ℕ, j ≤ s.length ∧
         IsCompStart lam (p ++ q ++ r ++ revWord s)
           (p.length + q.length + r.length + (s.length - j)) ∧
@@ -262,7 +294,8 @@ theorem exists_other_component_fourGon (D : RelGenSet G Λ) (lam : Λ)
   rcases fourGon_index_cases p q r s (le_of_lt hnlt) with
     hc | ⟨i', hi', rfl⟩ | ⟨m, hm, rfl⟩ | ⟨j, hj, rfl⟩
   · exact absurd hnstart (not_isCompStart_fourGon_first p q r s lam hp hc)
-  · exact Or.inl ⟨i', hi', by omega, hnstart, hnconn⟩
+  · exact Or.inl ⟨i', hi', by omega, hnstart,
+      exists_connector_fourGon_side D lam p q r s hi hi' hnconn⟩
   · exact absurd hnstart (not_isCompStart_fourGon_third p q r s lam hr hm)
   · exact Or.inr ⟨j, hj, hnstart,
       exists_connector_fourGon D lam p q r s hclose hi hnconn⟩
