@@ -2595,6 +2595,7 @@ import GroupApproximation.GGT.DGOPolygonGeodesicChain
 import GroupApproximation.GGT.HullSCRelatorSeparation2NoCommute
 import GroupApproximation.GGT.HullSCRelatorSeparation2Ledger
 import GroupApproximation.GGT.OsinTheorem54SepInhabit
+import GroupApproximation.GGT.DGOShortIsolatingCycle
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
