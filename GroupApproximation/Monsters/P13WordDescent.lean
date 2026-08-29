@@ -41,11 +41,6 @@ noncomputable section
 def sigma (W : List Letter) (b : Fin 3 → ℤ) (j : ℕ) : ℕ :=
   vnorm (vecOf (W.drop j) b)
 
-theorem sigma_length (W : List Letter) (b : Fin 3 → ℤ) :
-    sigma W b W.length = vnorm b := by
-  unfold sigma
-  rw [List.drop_length, vecOf_nil]
-
 @[simp] theorem sigma_cons_succ (l : Letter) (W : List Letter) (b : Fin 3 → ℤ)
     (j : ℕ) : sigma (l :: W) b (j + 1) = sigma W b j := rfl
 
@@ -137,12 +132,6 @@ theorem lam_pos {W : List Letter} {b : Fin 3 → ℤ} {j : ℕ}
     (hv : Viol W b j) : 0 < lam W b :=
   lt_of_lt_of_le (by have := hv.2; omega) (le_lam hv)
 
-theorem no_viol_of_lam_eq_zero {W : List Letter} {b : Fin 3 → ℤ}
-    (h : lam W b = 0) : ∀ j, ¬ Viol W b j := by
-  intro j hv
-  have := lam_pos hv
-  omega
-
 /-- Some violation attains the largest height, when violations exist. -/
 theorem exists_top {W : List Letter} {b : Fin 3 → ℤ} {j₀ : ℕ}
     (hv : Viol W b j₀) :
@@ -187,19 +176,6 @@ theorem sigma_append_deep (A C : List Letter) (b : Fin 3 → ℤ) (t : ℕ) :
     rw [← List.drop_drop, List.drop_left]
   rw [h]
 
-/-- Trajectory values in the shallow part depend only on the deep
-evaluation, hence agree across a deep rewrite with equal value. -/
-theorem sigma_append_shallow (A C C' : List Letter) (b : Fin 3 → ℤ)
-    (hE : eval C = eval C') (j : ℕ) (hj : j ≤ A.length) :
-    sigma (A ++ C) b j = sigma (A ++ C') b j := by
-  unfold sigma
-  have hdrop : ∀ (D : List Letter),
-      (A ++ D).drop j = A.drop j ++ D := fun D =>
-    List.drop_append_of_le_length hj
-  rw [hdrop C, hdrop C']
-  unfold vecOf
-  rw [eval_append, eval_append, hE]
-
 /-! ## Inverse spellings of the remaining swaps -/
 
 theorem w_inv_word : w⁻¹ = x 0 (-1) * x 2 1 * x 0 (-1) := by
@@ -243,65 +219,6 @@ theorem vnorm_act_inv {m : P13}
 
 In each block the anti-aligned pair collapses onto the block Weyl
 element by bare cancellation of the third braid letter. -/
-
-/-- `x_pos(c) · x_neg(−c) = wblk(c) · x_pos(−c)` for the `12`-block:
-both sides are `x_pos(c) x_neg(−c)` after the trailing letters
-cancel. -/
-theorem braid_pair_w (c : ℤ) :
-    x 0 c * x 2 (-c) = (x 0 c * x 2 (-c) * x 0 c) * x 0 (-c) := by
-  rw [mul_assoc (x 0 c * x 2 (-c)), x_add]
-  simp
-
-theorem braid_pair_w_rev (c : ℤ) :
-    x 2 c * x 0 (-c) = x 0 c * (x 0 (-c) * x 2 c * x 0 (-c)) := by
-  rw [show x 0 c * (x 0 (-c) * x 2 c * x 0 (-c)) =
-      (x 0 c * x 0 (-c)) * x 2 c * x 0 (-c) from by group, x_add]
-  simp
-
-theorem braid_pair_w13 (c : ℤ) :
-    x 1 c * x 4 (-c) = (x 1 c * x 4 (-c) * x 1 c) * x 1 (-c) := by
-  rw [mul_assoc (x 1 c * x 4 (-c)), x_add]
-  simp
-
-theorem braid_pair_w13_rev (c : ℤ) :
-    x 4 c * x 1 (-c) = x 1 c * (x 1 (-c) * x 4 c * x 1 (-c)) := by
-  rw [show x 1 c * (x 1 (-c) * x 4 c * x 1 (-c)) =
-      (x 1 c * x 1 (-c)) * x 4 c * x 1 (-c) from by group, x_add]
-  simp
-
-theorem braid_pair_w23 (c : ℤ) :
-    x 3 c * x 5 (-c) = (x 3 c * x 5 (-c) * x 3 c) * x 3 (-c) := by
-  rw [mul_assoc (x 3 c * x 5 (-c)), x_add]
-  simp
-
-theorem braid_pair_w23_rev (c : ℤ) :
-    x 5 c * x 3 (-c) = x 3 c * (x 3 (-c) * x 5 c * x 3 (-c)) := by
-  rw [show x 3 c * (x 3 (-c) * x 5 c * x 3 (-c)) =
-      (x 3 c * x 3 (-c)) * x 5 c * x 3 (-c) from by group, x_add]
-  simp
-
-/-- The braid words at unit exponents are the signed swaps or their
-inverses. -/
-theorem braid_word_w : ∀ c : ℤ, c = 1 ∨ c = -1 →
-    x 0 c * x 2 (-c) * x 0 c = if c = 1 then w else w⁻¹ := by
-  rintro c (rfl | rfl)
-  · rfl
-  · rw [if_neg (by norm_num), w_inv_word]
-    norm_num
-
-theorem braid_word_w13 : ∀ c : ℤ, c = 1 ∨ c = -1 →
-    x 1 c * x 4 (-c) * x 1 c = if c = 1 then w13 else w13⁻¹ := by
-  rintro c (rfl | rfl)
-  · rfl
-  · rw [if_neg (by norm_num), w13_inv_word]
-    norm_num
-
-theorem braid_word_w23 : ∀ c : ℤ, c = 1 ∨ c = -1 →
-    x 3 c * x 5 (-c) * x 3 c = if c = 1 then w23 else w23⁻¹ := by
-  rintro c (rfl | rfl)
-  · rfl
-  · rw [if_neg (by norm_num), w23_inv_word]
-    norm_num
 
 /-! ## The generic splice measure decrease
 

@@ -37,8 +37,8 @@ def e23 : Base := x⁻¹ * y⁻¹ * x * z * y⁻¹
 /-- The short rotation word whose lattice action is `E₃₂`. -/
 def e32 : Base := x⁻¹ * z * y⁻¹ * x⁻¹ * y⁻¹ * x⁻¹
 
-theorem e13_mem_rotations : e13 ∈ rotations := by
-  exact rotations.mul_mem
+theorem e13_mem_rotations : e13 ∈ rotations :=
+  rotations.mul_mem
     (rotations.mul_mem
       (rotations.mul_mem
         (rotations.mul_mem x_mem_rotations z_mem_rotations)
@@ -46,8 +46,8 @@ theorem e13_mem_rotations : e13 ∈ rotations := by
       (rotations.inv_mem x_mem_rotations))
     (rotations.inv_mem y_mem_rotations)
 
-theorem e23_mem_rotations : e23 ∈ rotations := by
-  exact rotations.mul_mem
+theorem e23_mem_rotations : e23 ∈ rotations :=
+  rotations.mul_mem
     (rotations.mul_mem
       (rotations.mul_mem
         (rotations.mul_mem
@@ -57,8 +57,8 @@ theorem e23_mem_rotations : e23 ∈ rotations := by
       z_mem_rotations)
     (rotations.inv_mem y_mem_rotations)
 
-theorem e32_mem_rotations : e32 ∈ rotations := by
-  exact rotations.mul_mem
+theorem e32_mem_rotations : e32 ∈ rotations :=
+  rotations.mul_mem
     (rotations.mul_mem
       (rotations.mul_mem
         (rotations.mul_mem
@@ -302,12 +302,6 @@ private theorem e13_zpow_conj_v3 (n : ℤ) :
     (translations_commute v1_mem_translations v3_mem_translations)
     e13_conj_v3 n
 
-private theorem e13_zpow_conj_v2 (n : ℤ) :
-    e13 ^ n * v2 * (e13 ^ n)⁻¹ = v2 := by
-  have hcomm := commute_of_conj_eq_self e13_conj_v2
-  rw [(hcomm.zpow_left n).eq]
-  group
-
 private theorem e23_zpow_conj_v3 (n : ℤ) :
     e23 ^ n * v3 * (e23 ^ n)⁻¹ = v2 ^ n * v3 :=
   zpow_conj_of_transvection
@@ -377,7 +371,6 @@ theorem latticeTranslation_eq_two_rotation_conjugates
     map_zpow, latticeToBase_basis_zero, latticeToBase_basis_one,
     latticeToBase_basis_two, hr, hs]
   dsimp only [m, n, k]
-  have h23 := translations_commute v2_mem_translations v3_mem_translations
   calc
     v1 ^ a.toAdd 0 * v2 ^ a.toAdd 1 * v3 ^ a.toAdd 2 =
         v1 ^ a.toAdd 0 * (v2 ^ (a.toAdd 1 - 1) * v2) *
@@ -395,7 +388,8 @@ theorem latticeTranslation_eq_two_rotation_conjugates
             v1 ^ a.toAdd 0 * v2 ^ (a.toAdd 1 - 1) * (v2 * v3) *
               v3 ^ (a.toAdd 2 - 1) := by group
         _ = v1 ^ a.toAdd 0 * v2 ^ (a.toAdd 1 - 1) * (v3 * v2) *
-              v3 ^ (a.toAdd 2 - 1) := by rw [h23.eq]
+              v3 ^ (a.toAdd 2 - 1) := by
+          rw [(translations_commute v2_mem_translations v3_mem_translations).eq]
         _ = (v1 ^ a.toAdd 0 * v2 ^ (a.toAdd 1 - 1) * v3) *
               (v2 * v3 ^ (a.toAdd 2 - 1)) := by group
 
@@ -435,16 +429,15 @@ private theorem norm_conjugate_displacement_eq
     (hfixed : ∀ r : rotations, rho (r : Base) p = p)
     (r : rotations) (v : Base) :
     ‖rho ((r : Base) * v * (r : Base)⁻¹) p - p‖ = ‖rho v p - p‖ := by
-  have hr : rho (r : Base) p = p := hfixed r
   have hri : (rho (r : Base))⁻¹ p = p := by
-    have h := congrArg (fun q : E ↦ (rho (r : Base))⁻¹ q) hr
+    have h := congrArg (fun q : E ↦ (rho (r : Base))⁻¹ q) (hfixed r)
     simpa using h.symm
   calc
     ‖rho ((r : Base) * v * (r : Base)⁻¹) p - p‖ =
         ‖rho (r : Base) (rho v p - p)‖ := by
       congr 1
       simp only [map_mul, map_inv, LinearIsometryEquiv.coe_mul,
-        Function.comp_apply, map_sub, hri, hr]
+        Function.comp_apply, map_sub, hri, hfixed r]
     _ = ‖rho v p - p‖ := (rho (r : Base)).norm_map _
 
 /-- A vector fixed by all literal rotations has uniformly bounded

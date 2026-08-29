@@ -87,17 +87,16 @@ theorem exists_pair_on_generators
     (hwordMem q) hnearLe
   rw [hwordProd q] at hword
   have hlengthReal : ((word q).length : ℝ) ≤ L := by exact_mod_cast hlength
-  have hL : (0 : ℝ) ≤ L := by positivity
   have hbound : (word q).length * δ ≤ L * δ :=
     mul_le_mul_of_nonneg_right hlengthReal hδ.le
   have hstrict : (L : ℝ) * δ < ε := by
     dsimp [δ]
     rw [div_eq_mul_inv]
     have hden : (0 : ℝ) < L + 1 := by positivity
-    have hfrac : (L : ℝ) / (L + 1) < 1 := by
-      exact (div_lt_one hden).2 (by linarith)
+    have hfrac : (L : ℝ) / (L + 1) < 1 :=
+      (div_lt_one hden).2 (lt_add_one _)
     rw [div_eq_mul_inv] at hfrac
-    nlinarith [hQ.1]
+    nlinarith only [hfrac, hQ.1]
   exact hword.trans_lt (hbound.trans_lt hstrict)
 
 end KazhdanGenerators

@@ -1,6 +1,5 @@
 import GroupApproximation.Sofic.IntegralLinearResiduallyFinite
 import Mathlib.GroupTheory.CoprodI
-import Mathlib.LinearAlgebra.Matrix.ToLin
 
 /-!
 # Free products of sign groups are residually finite
@@ -28,10 +27,8 @@ namespace FreeProductSignReflection
 open Monoid Finset
 open scoped symmDiff
 
-set_option linter.unusedSectionVars true
-
-variable {I : Type} [DecidableEq I] [Fintype I]
-variable {B : I → Type} [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)]
+variable {I : Type}
+variable {B : I → Type}
 
 /-- The sign group at index `i`: functions from `B i` to `ℤ/2`, written
 multiplicatively so that `Monoid.CoprodI` applies directly. -/
@@ -50,36 +47,32 @@ abbrev V (B : I → Type) : Type :=
 /-- The basepoint vector. -/
 def basepoint : V B := fun x => if x = none then 1 else 0
 
-omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 @[simp] theorem basepoint_none : (basepoint : V B) none = 1 := rfl
 
-omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
 @[simp]
 theorem basepoint_some (p : (i : I) × B i) :
     (basepoint : V B) (some p) = 0 := rfl
+
+@[simp]
+theorem mul_linearEquiv_apply (e f : V B ≃ₗ[ℤ] V B) (v : V B) :
+    (e * f) v = e (f v) := rfl
+
+variable [DecidableEq I]
+variable [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)]
 
 /-- The set of coordinates belonging to block `i`. -/
 def blockSet (i : I) : Finset (Coord B) :=
   (univ : Finset (B i)).image fun b => some ⟨i, b⟩
 
-omit [Fintype I] in
 theorem mem_blockSet_iff {i : I} {x : Coord B} :
     x ∈ blockSet i ↔ ∃ b : B i, x = some ⟨i, b⟩ := by
-  constructor
-  · intro hx
-    rw [blockSet, mem_image] at hx
-    obtain ⟨b, _, rfl⟩ := hx
-    exact ⟨b, rfl⟩
-  · rintro ⟨b, rfl⟩
-    exact mem_image.mpr ⟨b, mem_univ b, rfl⟩
+  simp only [blockSet, mem_image, mem_univ, true_and, eq_comm]
 
-omit [Fintype I] in
 theorem none_notMem_blockSet (i : I) : (none : Coord B) ∉ blockSet i := by
   intro h
   obtain ⟨b, hb⟩ := mem_blockSet_iff.mp h
   exact Option.some_ne_none _ hb.symm
 
-omit [Fintype I] in
 theorem blockSet_disjoint {i j : I} (hij : i ≠ j) :
     Disjoint (blockSet (B := B) i) (blockSet j) := by
   rw [Finset.disjoint_left]
@@ -93,7 +86,6 @@ def suppSet (i : I) (g : SignGroup B i) : Finset (Coord B) :=
   ((univ : Finset (B i)).filter fun b =>
     Multiplicative.toAdd (g b) = 1).image fun b => some ⟨i, b⟩
 
-omit [Fintype I] in
 theorem suppSet_subset_blockSet (i : I) (g : SignGroup B i) :
     suppSet i g ⊆ blockSet i := by
   intro x hx
@@ -101,7 +93,6 @@ theorem suppSet_subset_blockSet (i : I) (g : SignGroup B i) :
   obtain ⟨b, _, rfl⟩ := hx
   exact mem_blockSet_iff.mpr ⟨b, rfl⟩
 
-omit [Fintype I] in
 theorem some_mk_mem_suppSet_iff {i : I} {g : SignGroup B i} {b : B i} :
     (some ⟨i, b⟩ : Coord B) ∈ suppSet i g ↔
       Multiplicative.toAdd (g b) = 1 := by
@@ -113,14 +104,12 @@ theorem some_mk_mem_suppSet_iff {i : I} {g : SignGroup B i} {b : B i} :
     exact (mem_filter.mp hb').2
   · exact fun hb => ⟨b, mem_filter.mpr ⟨mem_univ b, hb⟩, rfl⟩
 
-omit [Fintype I] in
 theorem suppSet_one (i : I) : suppSet i (1 : SignGroup B i) = ∅ := by
   rw [suppSet, Finset.image_eq_empty, Finset.filter_eq_empty_iff]
   intro b _
   simp only [Pi.one_apply, toAdd_one]
   decide
 
-omit [Fintype I] in
 theorem suppSet_nonempty_of_ne_one {i : I} {g : SignGroup B i}
     (hg : g ≠ 1) : (suppSet i g).Nonempty := by
   have hb : ∃ b : B i, g b ≠ 1 := by
@@ -136,7 +125,6 @@ theorem suppSet_nonempty_of_ne_one {i : I} {g : SignGroup B i}
   revert a
   decide
 
-omit [Fintype I] in
 theorem suppSet_mul (i : I) (g h : SignGroup B i) :
     suppSet i (g * h) = suppSet i g ∆ suppSet i h := by
   have hxor : ∀ a b : ZMod 2, a + b = 1 ↔
@@ -149,7 +137,7 @@ theorem suppSet_mul (i : I) (g h : SignGroup B i) :
     have : Multiplicative.toAdd ((g * h) b)
         = Multiplicative.toAdd (g b) + Multiplicative.toAdd (h b) := rfl
     rw [this, hxor]
-    tauto
+    grind
   · constructor
     · intro hmem
       exact absurd (suppSet_subset_blockSet i (g * h) hmem) hx
@@ -164,16 +152,30 @@ theorem suppSet_mul (i : I) (g h : SignGroup B i) :
 def blockSum (i : I) (v : V B) : ℤ :=
   ∑ x ∈ blockSet (B := B) i, v x
 
-/-- The sum of the coordinates of `v` over the blocks other than `i`;
-the basepoint coordinate is not included. -/
-def otherSum (i : I) (v : V B) : ℤ :=
-  ∑ j ∈ (univ : Finset I).erase i, blockSum j v
-
-omit [Fintype I] in
 theorem blockSum_add (i : I) (v w : V B) :
     blockSum i (v + w) = blockSum i v + blockSum i w := by
   unfold blockSum
   simp [Finset.sum_add_distrib]
+
+theorem blockSum_smul (i : I) (c : ℤ) (v : V B) :
+    blockSum i (c • v) = c * blockSum i v := by
+  unfold blockSum
+  simp [Finset.mul_sum]
+
+theorem blockSum_basepoint (i : I) : blockSum i (basepoint : V B) = 0 := by
+  unfold blockSum
+  refine Finset.sum_eq_zero fun x hx => ?_
+  obtain ⟨b, rfl⟩ := mem_blockSet_iff.mp hx
+  rfl
+
+section FiniteIndex
+
+variable [Fintype I]
+
+/-- The sum of the coordinates of `v` over the blocks other than `i`;
+the basepoint coordinate is not included. -/
+def otherSum (i : I) (v : V B) : ℤ :=
+  ∑ j ∈ (univ : Finset I).erase i, blockSum j v
 
 theorem otherSum_add (i : I) (v w : V B) :
     otherSum i (v + w) = otherSum i v + otherSum i w := by
@@ -181,24 +183,11 @@ theorem otherSum_add (i : I) (v w : V B) :
   rw [← Finset.sum_add_distrib]
   exact Finset.sum_congr rfl fun j _ => blockSum_add j v w
 
-omit [Fintype I] in
-theorem blockSum_smul (i : I) (c : ℤ) (v : V B) :
-    blockSum i (c • v) = c * blockSum i v := by
-  unfold blockSum
-  simp [Finset.mul_sum]
-
 theorem otherSum_smul (i : I) (c : ℤ) (v : V B) :
     otherSum i (c • v) = c * otherSum i v := by
   unfold otherSum
   rw [Finset.mul_sum]
   exact Finset.sum_congr rfl fun j _ => blockSum_smul j c v
-
-omit [Fintype I] in
-theorem blockSum_basepoint (i : I) : blockSum i (basepoint : V B) = 0 := by
-  unfold blockSum
-  refine Finset.sum_eq_zero fun x hx => ?_
-  obtain ⟨b, rfl⟩ := mem_blockSet_iff.mp hx
-  rfl
 
 theorem otherSum_basepoint (i : I) : otherSum i (basepoint : V B) = 0 := by
   unfold otherSum
@@ -317,10 +306,6 @@ def reflEquiv (i : I) (s : Finset (Coord B)) (hs : s ⊆ blockSet i) :
   left_inv := reflFun_reflFun hs
   right_inv := reflFun_reflFun hs
 
-@[simp] theorem reflEquiv_apply (i : I) (s : Finset (Coord B))
-    (hs : s ⊆ blockSet i) (v : V B) :
-    reflEquiv i s hs v = reflFun i s v := rfl
-
 /-- The factor homomorphism: a sign vector acts by the reflection at its
 support. -/
 def signHom (i : I) : SignGroup B i →* (V B ≃ₗ[ℤ] V B) where
@@ -356,15 +341,19 @@ def GoodAt (i₀ : I) (v : V B) : Prop :=
     2 + otherSum i₀ v ≤ blockSum i₀ v ∧
     ∀ j, j ≠ i₀ → blockSum j v + 2 ≤ otherSum j v
 
-omit [Fintype I] in
+end FiniteIndex
+
 theorem single_le_blockSum {i : I} {v : V B} (hv : ∀ x, 0 ≤ v x)
     {b : B i} : v (some ⟨i, b⟩) ≤ blockSum i v :=
   Finset.single_le_sum (fun x _ => hv x) (mem_blockSet_iff.mpr ⟨b, rfl⟩)
 
-omit [Fintype I] in
 theorem blockSum_nonneg {i : I} {v : V B} (hv : ∀ x, 0 ≤ v x) :
     0 ≤ blockSum i v :=
   Finset.sum_nonneg fun x _ => hv x
+
+section FiniteIndex
+
+variable [Fintype I]
 
 theorem restSum_nonneg {i j : I} {v : V B} (hv : ∀ x, 0 ≤ v x) :
     0 ≤ restSum i j v :=
@@ -399,7 +388,7 @@ different block moves the invariant to the new block. -/
 theorem goodAt_reflFun {i i₀ : I} (hne : i ≠ i₀) {g : SignGroup B i}
     (hg : g ≠ 1) {v : V B} (hv : GoodAt i₀ v) :
     GoodAt i (reflFun i (suppSet i g) v) := by
-  obtain ⟨hnone, hpos, hfirst, hrest⟩ := hv
+  obtain ⟨hnone, hpos, _, hrest⟩ := hv
   set s := suppSet i g with hsdef
   have hs : s ⊆ blockSet i := suppSet_subset_blockSet i g
   have hcard : 1 ≤ (s.card : ℤ) := by
@@ -417,8 +406,6 @@ theorem goodAt_reflFun {i i₀ : I} (hne : i ≠ i₀) {g : SignGroup B i}
   have hsub : ∑ x ∈ s, v x ≤ blockSum i v := by
     unfold blockSum
     exact Finset.sum_le_sum_of_subset_of_nonneg hs fun x _ _ => hpos x
-  have hsubpos : 0 ≤ ∑ x ∈ s, v x :=
-    Finset.sum_nonneg fun x _ => hpos x
   -- closed form of the new i-block sum
   have hself := blockSum_reflFun_self hs v
   rw [hnone] at hself
@@ -430,7 +417,7 @@ theorem goodAt_reflFun {i i₀ : I} (hne : i ≠ i₀) {g : SignGroup B i}
       have hxle : v x ≤ blockSum i v := by
         obtain ⟨b, rfl⟩ := mem_blockSet_iff.mp (hs hx)
         exact single_le_blockSum hpos
-      linarith [blockSum_nonneg (i := i) hpos, hislack]
+      linarith only [blockSum_nonneg (i := i) hpos, hislack, hxle]
     · rw [hv'def, reflFun_apply_notMem hx]
       exact hpos x
   -- growth of the i-block sum
@@ -438,15 +425,16 @@ theorem goodAt_reflFun {i i₀ : I} (hne : i ≠ i₀) {g : SignGroup B i}
     Finset.sum_nonneg fun j _ => blockSum_nonneg hpos
   have hprod : 2 * (1 + otherSum i v)
       ≤ (s.card : ℤ) * (2 * (1 + otherSum i v)) :=
-    le_mul_of_one_le_left (by linarith) hcard
+    le_mul_of_one_le_left
+      (mul_nonneg (by norm_num) (add_nonneg (by norm_num) hosnn)) hcard
   have hgrow : blockSum i v + (2 + 2 * otherSum i v - 2 * blockSum i v)
       ≤ blockSum i v' := by
     rw [hself]
-    linarith [hsub, hsubpos, hprod]
+    linarith only [hsub, hprod]
   refine ⟨by rw [hnone', hnone], hpos', ?_, ?_⟩
   · -- the new first-block inequality
     rw [hother']
-    linarith [hgrow, hislack]
+    linarith only [hgrow, hislack]
   · -- the reverse inequality at every other block
     intro j hj
     by_cases hji₀ : j = i₀
@@ -455,8 +443,6 @@ theorem goodAt_reflFun {i i₀ : I} (hne : i ≠ i₀) {g : SignGroup B i}
         otherSum_eq_blockSum_add_restSum (fun h => hne h.symm) v
       have hsplitv' : otherSum j v' = blockSum i v' + restSum j i v' :=
         otherSum_eq_blockSum_add_restSum (Ne.symm hj) v'
-      have hsplitvj : otherSum j v = blockSum i v + restSum j i v :=
-        otherSum_eq_blockSum_add_restSum (Ne.symm hj) v
       have hrestsame : restSum j i v' = restSum j i v := by
         unfold restSum
         refine Finset.sum_congr rfl fun k hk => ?_
@@ -470,7 +456,7 @@ theorem goodAt_reflFun {i i₀ : I} (hne : i ≠ i₀) {g : SignGroup B i}
         restSum_nonneg (i := i) (j := j) hpos
       rw [hrs]
       -- goal: blockSum j v + 2 ≤ blockSum i v' + restSum i j v
-      linarith [hgrow, hsplitv, hislack, hrnn]
+      linarith only [hgrow, hsplitv, hislack, hrnn]
     · have hbj' : blockSum j v' = blockSum j v := hblock' j hj
       have hsplitv' : otherSum j v'
           = blockSum i v' + restSum j i v' :=
@@ -482,11 +468,11 @@ theorem goodAt_reflFun {i i₀ : I} (hne : i ≠ i₀) {g : SignGroup B i}
         refine Finset.sum_congr rfl fun k hk => ?_
         exact hblock' k (Finset.ne_of_mem_erase hk)
       have hgrow' : blockSum i v ≤ blockSum i v' := by
-        linarith [hgrow, hislack]
+        linarith only [hgrow, hislack]
       rw [hbj', hsplitv', hrestsame]
       have hjrest := hrest j hji₀
       rw [hsplitvj] at hjrest
-      linarith [hgrow']
+      exact hjrest.trans (add_le_add_left hgrow' _)
 
 /-- The base case: one nontrivial reflection applied to the basepoint. -/
 theorem goodAt_basepoint {i : I} {g : SignGroup B i} (hg : g ≠ 1) :
@@ -530,14 +516,17 @@ theorem goodAt_basepoint {i : I} {g : SignGroup B i} (hg : g ≠ 1) :
   have hblockj : ∀ j, j ≠ i → blockSum j v' = 0 := by
     intro j hj
     rw [hv'def, blockSum_reflFun_of_ne hj hs, blockSum_basepoint]
+  have htwice : 2 ≤ 2 * (s.card : ℤ) := by
+    simpa only [mul_one] using
+      (mul_le_mul_of_nonneg_left hcard (by norm_num : (0 : ℤ) ≤ 2))
   refine ⟨hnone', hpos', ?_, ?_⟩
   · rw [hother', hblocki]
-    linarith
+    exact htwice
   · intro j hj
     rw [hblockj j hj,
       otherSum_eq_blockSum_add_restSum (fun h => hj h.symm) v', hblocki]
     have := restSum_nonneg (i := j) (j := i) hpos'
-    linarith
+    exact htwice.trans (le_add_of_nonneg_right this)
 
 /-! ## The word induction and injectivity -/
 
@@ -553,11 +542,6 @@ theorem listProd_cons (p : (i : I) × SignGroup B i)
     (L : List ((i : I) × SignGroup B i)) :
     listProd (p :: L) = signHom p.1 p.2 * listProd L := by
   simp [listProd]
-
-omit [DecidableEq I] [Fintype I] [∀ i, DecidableEq (B i)] [∀ i, Fintype (B i)] in
-@[simp]
-theorem mul_linearEquiv_apply (e f : V B ≃ₗ[ℤ] V B) (v : V B) :
-    (e * f) v = e (f v) := rfl
 
 theorem goodAt_listProd :
     ∀ (L : List ((i : I) × SignGroup B i)),
@@ -601,9 +585,7 @@ theorem rho_injective :
   have hlist : w.toList ≠ [] := by
     intro hempty
     apply hg
-    have hwempty : w = CoprodI.Word.empty := by
-      apply CoprodI.Word.ext
-      exact hempty
+    have hwempty : w = CoprodI.Word.empty := CoprodI.Word.ext hempty
     rw [← hprod, hwempty, CoprodI.Word.prod_empty]
   have hrho : rho g = listProd w.toList := by
     rw [← hprod]
@@ -649,6 +631,8 @@ theorem residuallyFinite_coprodI_signGroup :
     Group.ResiduallyFinite (CoprodI (SignGroup B)) := by
   haveI := generalLinearGroup_int_residuallyFinite (Coord B)
   exact residuallyFinite_of_injective toGL toGL_injective
+
+end FiniteIndex
 
 end FreeProductSignReflection
 end GroupApproximation

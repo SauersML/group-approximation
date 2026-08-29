@@ -1,5 +1,4 @@
 import GroupApproximation.Sofic.LiteralP13HodgeResidual
-import GroupApproximation.Kazhdan.KazhdanUniverse
 
 /-! # Exact unconditional P13 Hodge certificate -/
 
@@ -13,78 +12,6 @@ open LiteralP13HodgeData LiteralP13Presentation
 open scoped BigOperators
 
 noncomputable section
-
-/-- Mutation-resistant identification of the ordered generators and all
-thirteen relators of the printed P13 presentation. -/
-structure ManuscriptP13Presentation : Prop where
-  generator_definition : ∀ i, p13Generator i = PresentedGroup.of i
-  relator_definition : ∀ i,
-    p13Relator i = PresentedGroupRelatorReplay.word (p13RelatorLetters i)
-  relators_definition : p13Relators = Finset.univ.image p13Relator
-  presented_group_definition :
-    P13 = PresentedGroup (p13Relators : Set (FreeGroup P13Generator))
-  generator_0 : p13Generator 0 = E12
-  generator_1 : p13Generator 1 = E13
-  generator_2 : p13Generator 2 = E21
-  generator_3 : p13Generator 3 = E23
-  generator_4 : p13Generator 4 = E31
-  generator_5 : p13Generator 5 = E32
-  relator_0 : p13RelatorLetters 0 =
-    [(0, true), (3, true), (0, false), (3, false), (1, false)]
-  relator_1 : p13RelatorLetters 1 =
-    [(1, true), (5, true), (1, false), (5, false), (0, false)]
-  relator_2 : p13RelatorLetters 2 =
-    [(2, true), (1, true), (2, false), (1, false), (3, false)]
-  relator_3 : p13RelatorLetters 3 =
-    [(3, true), (4, true), (3, false), (4, false), (2, false)]
-  relator_4 : p13RelatorLetters 4 =
-    [(4, true), (0, true), (4, false), (0, false), (5, false)]
-  relator_5 : p13RelatorLetters 5 =
-    [(5, true), (2, true), (5, false), (2, false), (4, false)]
-  relator_6 : p13RelatorLetters 6 =
-    [(0, true), (1, true), (0, false), (1, false)]
-  relator_7 : p13RelatorLetters 7 =
-    [(0, true), (5, true), (0, false), (5, false)]
-  relator_8 : p13RelatorLetters 8 =
-    [(1, true), (3, true), (1, false), (3, false)]
-  relator_9 : p13RelatorLetters 9 =
-    [(2, true), (3, true), (2, false), (3, false)]
-  relator_10 : p13RelatorLetters 10 =
-    [(2, true), (4, true), (2, false), (4, false)]
-  relator_11 : p13RelatorLetters 11 =
-    [(4, true), (5, true), (4, false), (5, false)]
-  relator_12 : p13RelatorLetters 12 =
-    [(0, true), (2, false), (0, true),
-     (0, true), (2, false), (0, true),
-     (0, true), (2, false), (0, true),
-     (0, true), (2, false), (0, true)]
-
-theorem manuscriptP13Presentation : ManuscriptP13Presentation := by
-  exact {
-    generator_definition := fun _ ↦ rfl
-    relator_definition := fun _ ↦ rfl
-    relators_definition := rfl
-    presented_group_definition := rfl
-    generator_0 := rfl
-    generator_1 := rfl
-    generator_2 := rfl
-    generator_3 := rfl
-    generator_4 := rfl
-    generator_5 := rfl
-    relator_0 := rfl
-    relator_1 := rfl
-    relator_2 := rfl
-    relator_3 := rfl
-    relator_4 := rfl
-    relator_5 := rfl
-    relator_6 := rfl
-    relator_7 := rfl
-    relator_8 := rfl
-    relator_9 := rfl
-    relator_10 := rfl
-    relator_11 := rfl
-    relator_12 := rfl
-  }
 
 private def residualBlockL1Numerator : Fin 6 → Fin 6 → ℕ
   | 0, 0 => 11626413589061
@@ -226,46 +153,9 @@ theorem cleanP13Certificate :
   residual_column_l1 k :=
     (exactCertificate.residual_column_l1 k).trans (by norm_num)
 
-/-- The human-facing consequence of the exact P13 sum-of-squares data:
-the represented degree-one Hodge Laplacian is bounded below by `1/500`. -/
-theorem p13_hodge_gap
-    {E : Type w} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-    (rho : P13 →* (E ≃ₗᵢ[ℝ] E)) (z : Fin 6 → E) :
-    (1 / 500 : ℝ) * familyNormSq z ≤
-      matrixEnergy rho
-        (hodgeMatrix LiteralP13HodgeData.D LiteralP13HodgeData.B) z := by
-  convert cleanP13Certificate.hodge_gap rho z using 1 ; norm_num
-
-/-- Testing the clean Hodge estimate on exact coboundaries gives the clean
-quadratic gap `A² ≥ (1/500) A` for the six-generator Laplacian. -/
-theorem p13_generatorLaplacian_quadratic_gap
-    {E : Type w} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-    (rho : P13 →* (E ≃ₗᵢ[ℝ] E)) (x : E) :
-    (1 / 500 : ℝ) * PositiveOperatorGap.energy
-        (generatorLaplacianOperator p13Generator rho) x ≤
-      ‖generatorLaplacianOperator p13Generator rho x‖ ^ 2 := by
-  convert cleanP13Certificate.generatorLaplacian_quadratic_gap
-    p13Generator rho x using 1 ; norm_num
-
 theorem p13_hasKazhdanPropertyT : HasKazhdanPropertyT.{0, 0} P13 :=
   cleanP13Certificate.hasKazhdanPropertyT (by exact ⟨0⟩) p13Generator
     closure_range_p13Generator
-
-theorem p13_hasKazhdanPropertyTReal : HasKazhdanPropertyT.{0, w} P13 :=
-  p13_hasKazhdanPropertyT.liftUniverse
-
-theorem p13_hasKazhdanPropertyTComplex :
-    HasKazhdanPropertyTComplex.{0, w} P13 :=
-  hasKazhdanPropertyT_iff_textbook.mp p13_hasKazhdanPropertyTReal
-
-/-- The exact manuscript-facing conclusion for the displayed P13
-presentation, simultaneously in the real and textbook complex formulations. -/
-theorem manuscriptP13PropertyT :
-    ManuscriptP13Presentation ∧
-      HasKazhdanPropertyT.{0, w} P13 ∧
-      HasKazhdanPropertyTComplex.{0, w} P13 :=
-  ⟨manuscriptP13Presentation, p13_hasKazhdanPropertyTReal,
-    p13_hasKazhdanPropertyTComplex⟩
 
 end
 end LiteralP13HodgeCertificate

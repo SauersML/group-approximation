@@ -28,25 +28,17 @@ open LiteralNonMFPresentation
 the literal twenty-relator affine base. -/
 theorem base_hasKazhdanPropertyT_of_p13
     (hP13 : HasKazhdanPropertyT.{0, 0} P13) :
-    HasKazhdanPropertyT.{0, 0} Base := by
-  apply base_hasKazhdanPropertyT_of_rotation
-  exact HasKazhdanPropertyT.of_surjective p13ToRotation
+    HasKazhdanPropertyT.{0, 0} Base :=
+  base_hasKazhdanPropertyT_of_rotation
+    (HasKazhdanPropertyT.of_surjective p13ToRotation
     p13ToRotation_surjective hP13
+    )
 
 /-- The literal twenty-relator affine base has property `(T)`. -/
 theorem base_hasKazhdanPropertyT :
     HasKazhdanPropertyT.{0, 0} Base :=
   base_hasKazhdanPropertyT_of_p13
     LiteralP13HodgeCertificate.p13_hasKazhdanPropertyT
-
-/-- The premise-free property-`(T)` conclusion for the literal base, exposed
-both in the small real formulation used internally and in the
-universe-polymorphic textbook complex formulation printed in the manuscript. -/
-theorem manuscriptBaseHasKazhdanPropertyT :
-    HasKazhdanPropertyT.{0, 0} Base ∧
-      HasKazhdanPropertyTComplex.{0, w} Base :=
-  ⟨base_hasKazhdanPropertyT,
-    hasKazhdanPropertyT_iff_textbook.mp base_hasKazhdanPropertyT⟩
 
 end LiteralBaseP13PropertyTBridge
 end GroupApproximation

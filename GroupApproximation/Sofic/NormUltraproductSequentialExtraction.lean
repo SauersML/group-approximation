@@ -64,16 +64,15 @@ theorem normUltraproduct_lift_eventually_marked_separated
   have hz1 : rho z ≠ rho 1 := by simpa using hz
   have hnot : (lift 1)⁻¹ * lift z ∉ nullOpSubgroup U X := by
     intro hc
-    apply hz1
-    rw [← hlift z, ← hlift 1]
-    exact (QuotientGroup.eq.mpr hc).symm
+    exact hz1 (by
+      rw [← hlift z, ← hlift 1]
+      exact (QuotientGroup.eq.mpr hc).symm)
   have hex : ∃ δ : ℝ, 0 < δ ∧ ¬ (∀ᶠ i in (U : Filter I),
       opLength (X i) (((lift 1)⁻¹ * lift z) i) < δ) := by
     by_contra hcon
-    apply hnot
-    intro δ hδ
-    by_contra hbad
-    exact hcon ⟨δ, hδ, hbad⟩
+    exact hnot fun δ hδ ↦ by
+      by_contra hbad
+      exact hcon ⟨δ, hδ, hbad⟩
   obtain ⟨δ, hδ, hnotEventually⟩ := hex
   refine ⟨δ, hδ, ?_⟩
   have hcompl := (Ultrafilter.eventually_not (p := fun i ↦
@@ -163,10 +162,11 @@ theorem exists_markedOpAlmostRepresentation_of_ne_one
     dsimp [η]
     have hNen : (Ne : ℝ) ≤ (n : ℝ) := by
       exact_mod_cast (le_max_right (max Ng Nh) Ne).trans hn
-    have hlt : (1 : ℝ) / ε < (n : ℝ) + 1 := by linarith
+    have hlt : (1 : ℝ) / ε < (n : ℝ) + 1 := by
+      linarith only [hNe, hNen]
     rw [div_le_iff₀ (by positivity)]
     rw [div_lt_iff₀ hε] at hlt
-    linarith
+    linarith only [hlt]
   exact ((hstage n).1 (g, h) (Finset.mem_product.mpr ⟨hg, hh⟩)).trans hsmall
 
 /-- To prove that a marked element is invisible in every arbitrary norm

@@ -1,5 +1,4 @@
 import GroupApproximation.Sofic.KazhdanCornerMatrices
-import Mathlib.Analysis.Matrix.PosDef
 
 /-!
 # Polar correction for finite matrix corners
@@ -17,15 +16,16 @@ namespace KazhdanCornerMatrices
 open Matrix
 open scoped Matrix.Norms.L2Operator
 
-variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+variable {Y : Type*} [Fintype Y]
 
 /-- The positive Gram matrix of a square complex matrix. -/
 def cornerGram (C : Matrix Y Y ℂ) : Matrix Y Y ℂ := Cᴴ * C
 
-omit [DecidableEq Y] in
 theorem cornerGram_isHermitian (C : Matrix Y Y ℂ) :
-    (cornerGram C).IsHermitian := by
-  exact Matrix.isHermitian_conjTranspose_mul_self C
+    (cornerGram C).IsHermitian :=
+  Matrix.isHermitian_conjTranspose_mul_self C
+
+variable [DecidableEq Y]
 
 /-- Diagonal matrix of the real eigenvalues of a Hermitian matrix. -/
 noncomputable def hermitianEigenvalueDiagonal {P : Matrix Y Y ℂ}
@@ -95,15 +95,15 @@ theorem abs_hermitianEigenvalue_sub_one_le {P : Matrix Y Y ℂ}
     rw [hi]
     simp
     ring
-  have happly := ContinuousLinearMap.le_opNorm
-    ((Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) (P - 1)) x
-  rw [heigen, norm_smul, hx, mul_one,
-    Matrix.l2_opNorm_toEuclideanCLM] at happly
   calc
     |hP.eigenvalues i - 1| =
         ‖((hP.eigenvalues i - 1 : ℝ) : ℂ)‖ := by
           rw [Complex.norm_real, Real.norm_eq_abs]
-    _ ≤ ‖P - 1‖ := by simpa only [mul_one] using happly
+    _ ≤ ‖P - 1‖ := by
+      simpa only [heigen, norm_smul, hx, mul_one,
+        Matrix.l2_opNorm_toEuclideanCLM] using
+        ContinuousLinearMap.le_opNorm
+          ((Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) (P - 1)) x
 
 /-- Uniform scalar estimate for reciprocal square roots near `1`. -/
 theorem abs_inv_sqrt_sub_one_le_two_mul {lambda delta : ℝ}
@@ -115,27 +115,28 @@ theorem abs_inv_sqrt_sub_one_le_two_mul {lambda delta : ℝ}
   have hrsq : r ^ 2 = lambda := Real.sq_sqrt hlambda.le
   have hlower : 1 / 2 ≤ lambda := by
     have := (neg_le_of_abs_le hclose)
-    linarith
+    linarith only [this, hdeltaHalf]
   have hrhalf : 1 / 2 ≤ r := by
-    nlinarith
+    nlinarith only [hrsq, hlower, hr0]
   have hrpos : 0 < r := lt_of_lt_of_le (by norm_num) hrhalf
   rcases le_total r 1 with hrle | honele
   · have hnumer : 0 ≤ 1 - r := sub_nonneg.mpr hrle
     have hsmall : 1 - r ≤ delta := by
       have hbelow := neg_le_of_abs_le hclose
-      nlinarith [mul_nonneg hr0 (sub_nonneg.mpr hrle)]
+      nlinarith only [hbelow, hrsq,
+        mul_nonneg hr0 (sub_nonneg.mpr hrle)]
     rw [show r⁻¹ - 1 = (1 - r) / r by field_simp]
     rw [abs_of_nonneg (div_nonneg hnumer hr0), div_le_iff₀ hrpos]
-    nlinarith
-  · have hnonpos : r⁻¹ - 1 ≤ 0 := by
-      exact sub_nonpos.mpr ((inv_le_one₀ hrpos).2 honele)
+    nlinarith only [hsmall, hrhalf, hdelta]
+  · have hnonpos : r⁻¹ - 1 ≤ 0 :=
+      sub_nonpos.mpr ((inv_le_one₀ hrpos).2 honele)
     have hsmall : r - 1 ≤ delta := by
       have hupper := le_of_abs_le hclose
-      nlinarith
+      nlinarith only [hupper, hrsq, honele]
     rw [abs_of_nonpos hnonpos]
     rw [show -(r⁻¹ - 1) = (r - 1) / r by field_simp; ring]
     rw [div_le_iff₀ hrpos]
-    nlinarith
+    nlinarith only [hsmall, hrhalf, hdelta]
 
 /-- A Gram matrix within `1/2` of the identity has strictly positive
 spectrum. -/
@@ -148,7 +149,7 @@ theorem cornerGram_eigenvalues_pos_of_norm_sub_one_le
   have habs : |hP.eigenvalues i - 1| ≤ delta :=
     (abs_hermitianEigenvalue_sub_one_le hP i).trans hclose
   have hbelow := neg_le_of_abs_le habs
-  linarith
+  linarith only [hbelow, hdeltaHalf]
 
 /-- The diagonal inverse-square-root correction is uniformly close to the
 identity when the underlying Hermitian matrix is. -/
@@ -162,7 +163,7 @@ theorem norm_hermitianInvSqrtDiagonal_sub_one_le
     have habs : |hP.eigenvalues i - 1| ≤ delta :=
       (abs_hermitianEigenvalue_sub_one_le hP i).trans hclose
     have hbelow := neg_le_of_abs_le habs
-    linarith
+    linarith only [hbelow, hdeltaHalf]
   have hdiag : hermitianInvSqrtDiagonal hP - 1 =
       Matrix.diagonal (fun i ↦
         ((Real.sqrt (hP.eigenvalues i) : ℂ)⁻¹ - 1)) := by
@@ -188,14 +189,6 @@ noncomputable def cornerGramInvSqrt (C : Matrix Y Y ℂ)
     (hP : (cornerGram C).IsHermitian) : Matrix Y Y ℂ :=
   let U : Matrix Y Y ℂ := hP.eigenvectorUnitary
   U * hermitianInvSqrtDiagonal hP * Uᴴ
-
-theorem cornerGramInvSqrt_conjTranspose (C : Matrix Y Y ℂ)
-    (hP : (cornerGram C).IsHermitian) :
-    (cornerGramInvSqrt C hP)ᴴ = cornerGramInvSqrt C hP := by
-  rw [cornerGramInvSqrt, Matrix.conjTranspose_mul,
-    Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose,
-    hermitianInvSqrtDiagonal_conjTranspose]
-  simp only [mul_assoc]
 
 /-- The full inverse-square-root correction has the same dimension-free
 distance bound as its diagonal form. -/
@@ -246,10 +239,10 @@ theorem polarCorrect_mem_unitaryGroup (C : Matrix Y Y ℂ)
     (hpos : ∀ i, 0 < hP.eigenvalues i) :
     polarCorrect C hP ∈ Matrix.unitaryGroup Y ℂ := by
   let U : Matrix Y Y ℂ := hP.eigenvectorUnitary
-  have hUU : Uᴴ * U = 1 := by
-    exact Unitary.star_mul_self_of_mem hP.eigenvectorUnitary.2
-  have hUUstar : U * Uᴴ = 1 := by
-    exact Unitary.mul_star_self_of_mem hP.eigenvectorUnitary.2
+  have hUU : Uᴴ * U = 1 :=
+    Unitary.star_mul_self_of_mem hP.eigenvectorUnitary.2
+  have hUUstar : U * Uᴴ = 1 :=
+    Unitary.mul_star_self_of_mem hP.eigenvectorUnitary.2
   have hPdiag : cornerGram C =
       U * hermitianEigenvalueDiagonal hP * Uᴴ := by
     calc
@@ -276,8 +269,8 @@ theorem polarCorrect_mem_unitaryGroup (C : Matrix Y Y ℂ)
           (U * hermitianInvSqrtDiagonal hP * Uᴴ) =
         (U * hermitianInvSqrtDiagonal hP * Uᴴ) *
           (U * hermitianEigenvalueDiagonal hP * Uᴴ) *
-          (U * hermitianInvSqrtDiagonal hP * Uᴴ) := by
-    exact congrArg (fun P : Matrix Y Y ℂ ↦
+          (U * hermitianInvSqrtDiagonal hP * Uᴴ) :=
+    congrArg (fun P : Matrix Y Y ℂ ↦
       (U * hermitianInvSqrtDiagonal hP * Uᴴ) * P *
         (U * hermitianInvSqrtDiagonal hP * Uᴴ)) hPdiag
   rw [hreplace]
@@ -287,8 +280,8 @@ theorem polarCorrect_mem_unitaryGroup (C : Matrix Y Y ℂ)
         (U * hermitianInvSqrtDiagonal hP * Uᴴ) =
         U * (hermitianInvSqrtDiagonal hP *
           hermitianEigenvalueDiagonal hP *
-          hermitianInvSqrtDiagonal hP) * Uᴴ := by
-      exact unitary_conjugate_three_mul hUU
+          hermitianInvSqrtDiagonal hP) * Uᴴ :=
+      unitary_conjugate_three_mul hUU
     _ = U * Uᴴ := by
       rw [hermitianInvSqrtDiagonal_mul_eigenvalueDiagonal hP hpos]
       simp

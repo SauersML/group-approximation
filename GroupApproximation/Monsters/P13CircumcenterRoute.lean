@@ -48,11 +48,10 @@ namespace P13CircumcenterRoute
 universe u v
 
 variable {G : Type u} [Group G]
-variable {E : Type v} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+variable {E : Type v} [NormedAddCommGroup E]
 
 /-! ## Circumcenters of bounded sets, quantitatively -/
 
-omit [InnerProductSpace ℝ E] in
 /-- A point of a bounded set lies within any radius that already covers the
 set from a member of it — in particular the circumcenter of a bounded set
 containing `x` is within `delta` of `x` as soon as the set lies in the closed
@@ -67,6 +66,8 @@ theorem dist_center_le_of_covered {S : Set E} (hne : S.Nonempty)
     exact (Circumcenter.chebyshevRadius_le hne hbdd x).trans
       (Circumcenter.coveringRadius_le hne hcover)
   exact (Circumcenter.dist_le_coveringRadius hbdd c hxS).trans hcenter
+
+variable [InnerProductSpace ℝ E]
 
 /-- Two points realizing the Chebyshev radius of a nonempty bounded set in a
 complete real inner product space coincide: this is the uniqueness half of

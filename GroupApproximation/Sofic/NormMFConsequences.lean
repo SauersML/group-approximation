@@ -45,70 +45,7 @@ variable {G : Type u} [Group G]
 
 /-! ## Pulling approximability back along injective homomorphisms -/
 
-/-- Operator-norm approximability pulls back along an injective
-homomorphism: finite matrix models restrict, and injectivity preserves the
-separation requirement.  Manuscript Lemma `lem:permanence`(1) in its natural
-generality. -/
-theorem IsNormApproximable.comap {H : Type v} [Group H] {δ : ℝ}
-    (hG : IsNormApproximable G δ) (ι : H →* G)
-    (hι : Function.Injective ι) : IsNormApproximable H δ := by
-  classical
-  intro F ε hε
-  obtain ⟨M⟩ := hG (F.image ι) ε hε
-  refine ⟨{
-    carrier := M.carrier
-    nonempty := M.nonempty
-    map := fun h => M.map (ι h)
-    isUnitary := fun h => M.isUnitary (ι h)
-    multiplicative := ?_
-    separated := ?_ }⟩
-  · intro g hg h hh
-    have hM := M.multiplicative (ι g) (Finset.mem_image_of_mem ι hg)
-      (ι h) (Finset.mem_image_of_mem ι hh)
-    rwa [← map_mul] at hM
-  · intro g hg h hh hne
-    exact M.separated (ι g) (Finset.mem_image_of_mem ι hg)
-      (ι h) (Finset.mem_image_of_mem ι hh) (fun e => hne (hι e))
-
-/-- Weak-MF pulls back along injective homomorphisms. -/
-theorem IsWeakMF.comap {H : Type v} [Group H] (hG : IsWeakMF G)
-    (ι : H →* G) (hι : Function.Injective ι) : IsWeakMF H := by
-  obtain ⟨δ, hδ, hap⟩ := hG
-  exact ⟨δ, hδ, hap.comap ι hι⟩
-
-/-- Every subgroup of a weak-MF group is weak-MF (manuscript Lemma
-`lem:permanence`(1)). -/
-theorem IsWeakMF.subgroup (hG : IsWeakMF G) (H : Subgroup G) :
-    IsWeakMF H :=
-  hG.comap H.subtype (fun _ _ hab => Subtype.ext hab)
-
-/-- Contrapositive form: a group containing a non-weak-MF subgroup is not
-weak-MF. -/
-theorem not_isWeakMF_of_subgroup {H : Subgroup G} (hH : ¬ IsWeakMF H) :
-    ¬ IsWeakMF G :=
-  fun hG => hH (hG.subgroup H)
-
 /-! ## No faithful ultraproduct representations -/
-
-/-- A group with a nontrivial MF-invisible element admits no injective
-homomorphism into any operator-norm matrix ultraproduct: the group-level
-content of manuscript Corollary `cor:nofaithful`.  No countability is
-needed. -/
-theorem not_injective_of_normMFInvisible {x : G}
-    (hx : NormMFInvisible x) (hne : x ≠ 1) {I : Type} (U : Ultrafilter I)
-    (X : I → FiniteModel) (rho : G →* UniversalWeakMF U X) :
-    ¬ Function.Injective rho := by
-  intro hinj
-  exact hne (hinj (by rw [hx I U X rho, map_one]))
-
-/-- Radical portability endpoint (manuscript Lemma `lem:portable`): if an
-MF-invisible element of `G` survives under a homomorphism to a countable
-group `H`, then `H` is not weak-MF.  The manuscript's Proposition `prop:W`
-is this lemma applied to the marked word and the witness homomorphism. -/
-theorem not_isWeakMF_of_map_ne_one {H : Type v} [Group H] [Countable H]
-    {x : G} (hx : NormMFInvisible x) (f : G →* H) (hne : f x ≠ 1) :
-    ¬ IsWeakMF H :=
-  not_isWeakMF_of_normMFInvisible (hx.map f) hne
 
 /-! ## Uniform invisibility -/
 
@@ -172,13 +109,12 @@ theorem uniform_invisibility [Countable G] {x : G}
     have hKpos : (0 : ℝ) < (K : ℝ) + 1 := by positivity
     have hkpos : (0 : ℝ) < (k : ℝ) + 1 := by positivity
     have hcast : ((K : ℝ) + 1) ≤ ((k : ℝ) + 1) := by
-      have := (Nat.cast_le (α := ℝ)).mpr hKk
-      linarith
+      exact_mod_cast Nat.add_le_add_right hKk 1
     have hεK : 1 / ((K : ℝ) + 1) < ε' := by
       rw [div_lt_iff₀ hKpos]
       have hK' : 1 / ε' < (K : ℝ) := hK
       rw [div_lt_iff₀ hε'] at hK'
-      nlinarith
+      nlinarith only [hK', hε']
     calc 1 / ((k : ℝ) + 1) ≤ 1 / ((K : ℝ) + 1) :=
           one_div_le_one_div_of_le hKpos hcast
       _ < ε' := hεK

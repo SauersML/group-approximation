@@ -1,6 +1,3 @@
-import GroupApproximation.Sofic.LiteralTranslationOrbit
-import GroupApproximation.Sofic.LiteralBaseRotationRetract
-import GroupApproximation.Kazhdan.HilbertConvexFixedPoint
 import GroupApproximation.Monsters.P13CircumcenterRouteStep3
 
 /-!
@@ -52,15 +49,14 @@ universe uE
 private abbrev Base := LiteralNonMFPresentation.Base
 
 local instance : DecidableEq Base := Classical.decEq Base
-local instance : DecidableEq rotations := Classical.decEq rotations
 
 private def baseControlSet (S : Finset rotations) : Finset Base :=
   (S.image fun r : rotations ↦ (r : Base)) ∪
     {LiteralBaseRelations.v2, LiteralBaseRelations.v3}
 
 private theorem mem_baseControlSet_of_mem {S : Finset rotations}
-    {r : rotations} (hr : r ∈ S) : (r : Base) ∈ baseControlSet S := by
-  exact Finset.mem_union_left _ (Finset.mem_image_of_mem _ hr)
+    {r : rotations} (hr : r ∈ S) : (r : Base) ∈ baseControlSet S :=
+  Finset.mem_union_left _ (Finset.mem_image_of_mem _ hr)
 
 private theorem v2_mem_baseControlSet (S : Finset rotations) :
     LiteralBaseRelations.v2 ∈ baseControlSet S := by
@@ -84,7 +80,7 @@ private theorem norm_displacement_at_near
         ‖rho g (p - x)‖ + ‖rho g x - x‖ + ‖x - p‖ := by
       have h1 := norm_add_le (rho g (p - x) + (rho g x - x)) (x - p)
       have h2 := norm_add_le (rho g (p - x)) (rho g x - x)
-      linarith
+      exact h1.trans (add_le_add h2 le_rfl)
     _ = ‖rho g x - x‖ + 2 * ‖p - x‖ := by
       rw [(rho g).norm_map, norm_sub_rev]
       ring
@@ -109,8 +105,7 @@ private theorem movingProjection_norm_lt_one_div_sixtyFour
   · let w : KazhdanFixedSpace.subgroupMovingSubspace rho rotations := ⟨m, hmMem⟩
     have hw : w ≠ 0 := by
       intro hw
-      apply hm
-      exact congrArg Subtype.val hw
+      exact hm (congrArg Subtype.val hw)
     haveI : CompleteSpace
         (KazhdanFixedSpace.subgroupMovingSubspace rho rotations) :=
       (Submodule.isClosed_orthogonal _).completeSpace_coe
@@ -128,7 +123,7 @@ private theorem movingProjection_norm_lt_one_div_sixtyFour
     have hgap : kappa * ‖m‖ ≤ ‖rho (q : Base) m - m‖ := by
       simpa [w, m] using hmove
     have hkappa : 0 < kappa := hS.1
-    nlinarith [hgap.trans_lt (hprojected.trans_lt hsmall)]
+    nlinarith only [hgap.trans_lt (hprojected.trans_lt hsmall), hkappa]
 
 private theorem exists_global_fixed_near
     {E : Type uE} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -154,7 +149,8 @@ private theorem exists_global_fixed_near
     intro r
     exact (KazhdanFixedSpace.mem_fixedSubspace_iff rho rotations p).mp
       hpRot r r.2
-  have hkappa64 : kappa / 64 ≤ 1 / 64 := by nlinarith
+  have hkappa64 : kappa / 64 ≤ 1 / 64 :=
+    div_le_div_of_nonneg_right hkappaOne (by norm_num)
   have hv2x : ‖rho LiteralBaseRelations.v2 x - x‖ < kappa / 64 :=
     hnear LiteralBaseRelations.v2 (v2_mem_baseControlSet S)
   have hv3x : ‖rho LiteralBaseRelations.v3 x - x‖ < kappa / 64 :=
@@ -162,18 +158,18 @@ private theorem exists_global_fixed_near
   have hv2p : ‖rho LiteralBaseRelations.v2 p - p‖ < 3 / 64 := by
     have h := norm_displacement_at_near rho LiteralBaseRelations.v2 x p
     rw [hpx] at h
-    nlinarith
+    nlinarith only [h, hv2x, hm, hkappa64]
   have hv3p : ‖rho LiteralBaseRelations.v3 p - p‖ < 3 / 64 := by
     have h := norm_displacement_at_near rho LiteralBaseRelations.v3 x p
     rw [hpx] at h
-    nlinarith
+    nlinarith only [h, hv3x, hm, hkappa64]
   have hbasis := P13CircumcenterRouteStep3.t3_04_basis_displacement_lt
     rho p hpFixed hv2p hv3p
   have htranslation : ∀ t : translations, ‖rho t.1 p - p‖ ≤ 1 / 8 := by
     intro t
     have h := P13CircumcenterRouteStep3.t3_02_norm_translation_displacement_le
       rho p hpFixed hbasis t
-    linarith
+    linarith only [h]
   obtain ⟨z, hzTrans, hzp⟩ :=
     P13CircumcenterRouteStep3.t3_11_exists_near_translationFixedSubspace
       rho p htranslation
@@ -195,10 +191,10 @@ private theorem exists_global_fixed_near
       (translations ⊔ rotations) p).property
   have hyGlobal : ∀ g : Base, rho g y = y := by
     intro g
-    apply (KazhdanFixedSpace.mem_fixedSubspace_iff rho
-      (translations ⊔ rotations) y).mp hySup
-    rw [translations_sup_rotations]
-    exact Subgroup.mem_top g
+    exact (KazhdanFixedSpace.mem_fixedSubspace_iff rho
+      (translations ⊔ rotations) y).mp hySup g (by
+        rw [translations_sup_rotations]
+        exact Subgroup.mem_top g)
   have hyp : ‖y - p‖ ≤ 1 / 8 := by
     let U := KazhdanFixedSpace.fixedSubspace rho translations
     letI : CompleteSpace U :=
@@ -216,7 +212,7 @@ private theorem exists_global_fixed_near
   calc
     ‖y - x‖ = ‖(y - p) + (p - x)‖ := by congr 1 ; abel
     _ ≤ ‖y - p‖ + ‖p - x‖ := norm_add_le _ _
-    _ < 1 := by rw [hpx]; nlinarith
+    _ < 1 := by rw [hpx]; nlinarith only [hyp, hm]
 
 /-- **Exact affine property-`(T)` reduction.**  If the abstract rotation
 presentation has property `(T)`, then the literal twenty-relator affine base
@@ -239,7 +235,7 @@ theorem base_hasKazhdanPropertyT_of_rotation
   have hy : y ≠ 0 := by
     intro hy0
     rw [hy0, zero_sub, norm_neg, hx] at hyNear
-    linarith
+    exact (lt_irrefl 1 hyNear)
   exact ⟨y, hy, hyFixed⟩
 
 end

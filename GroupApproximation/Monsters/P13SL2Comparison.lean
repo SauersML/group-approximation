@@ -31,10 +31,6 @@ def sl2ToP13Gen : Fin 2 → P13
 
 private theorem lift_relator_zero :
     FreeGroup.lift sl2ToP13Gen (sl2Relator 0) = 1 := by
-  have hb : (x 0 1 : P13) * x 2 (-1) * x 0 1 *
-      (x 2 (-1) * x 0 1 * x 2 (-1))⁻¹ = 1 := by
-    rw [braid]
-    group
   calc FreeGroup.lift sl2ToP13Gen (sl2Relator 0)
       = x 0 1 * x 2 (-1) * x 0 1 *
         (x 2 (-1) * x 0 1 * x 2 (-1))⁻¹ := by
@@ -42,13 +38,12 @@ private theorem lift_relator_zero :
           List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
           cond_true, cond_false, sl2ToP13Gen]
         group
-    _ = 1 := hb
+    _ = 1 := by
+      rw [braid]
+      group
 
 private theorem lift_relator_one :
     FreeGroup.lift sl2ToP13Gen (sl2Relator 1) = 1 := by
-  have h4 : (x 0 1 : P13) * x 2 (-1) * x 0 1 *
-      (x 0 1 * x 2 (-1) * x 0 1) * (x 0 1 * x 2 (-1) * x 0 1) *
-      (x 0 1 * x 2 (-1) * x 0 1) = 1 := w_pow_four
   calc FreeGroup.lift sl2ToP13Gen (sl2Relator 1)
       = x 0 1 * x 2 (-1) * x 0 1 *
         (x 0 1 * x 2 (-1) * x 0 1) * (x 0 1 * x 2 (-1) * x 0 1) *
@@ -57,7 +52,7 @@ private theorem lift_relator_one :
           List.map_cons, List.map_nil, List.prod_cons, List.prod_nil,
           cond_true, sl2ToP13Gen]
         group
-    _ = 1 := h4
+    _ = 1 := w_pow_four
 
 theorem lift_sl2ToP13Gen_relator_eq_one (i : Fin 2) :
     FreeGroup.lift sl2ToP13Gen (sl2Relator i) = 1 := by

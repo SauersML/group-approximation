@@ -30,9 +30,7 @@ theorem residual_part_sum_2_5_3 : initialPart 2 5 3 + finalChunk 2 5 = 242007161
   have hpart : initialPart 2 5 3 =
       ∑ u : Fin 9, Residual25Part3.expected u := by
     unfold initialPart
-    apply Finset.sum_congr rfl
-    intro u _
-    exact Residual25Part3.all u
+    exact Finset.sum_congr rfl fun u _ ↦ Residual25Part3.all u
   rw [hpart, Residual25Part3.final]
   decide +kernel
 

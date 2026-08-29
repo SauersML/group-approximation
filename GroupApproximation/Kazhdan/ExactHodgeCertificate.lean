@@ -1,6 +1,5 @@
 import GroupApproximation.Kazhdan.KazhdanDisplacementCriterion
 import GroupApproximation.Kazhdan.PositiveOperatorGap
-import Mathlib.Algebra.MonoidAlgebra.Basic
 
 /-!
 # Exact finite Hodge certificates for Kazhdan pairs
@@ -31,10 +30,14 @@ open scoped BigOperators MonoidAlgebra
 
 universe u v
 
-variable {G : Type u} [Group G]
+variable {G : Type u}
 
 /-- The rational group ring used by the certificate. -/
-abbrev RatGroupRing (G : Type u) [Group G] := MonoidAlgebra ℚ G
+abbrev RatGroupRing (G : Type u) := MonoidAlgebra ℚ G
+
+section GroupStructure
+
+variable [Group G]
 
 /-- The coefficient involution `(∑ a_g g)⁺ = ∑ a_g g⁻¹`. -/
 noncomputable def adjoint (a : RatGroupRing G) : RatGroupRing G :=
@@ -59,19 +62,6 @@ theorem adjoint_sum {I : Type*} [Fintype I]
   | insert i s hi ih =>
       rw [Finset.sum_insert hi, Finset.sum_insert hi, adjoint_add, ih]
 
-/-- The coefficient involution reverses multiplication. -/
-@[simp] theorem adjoint_mul (a b : RatGroupRing G) :
-    adjoint (a * b) = adjoint b * adjoint a := by
-  induction a using MonoidAlgebra.induction_linear with
-  | zero => simp
-  | add a b ha hb => simp [add_mul, ha, hb, mul_add]
-  | single g q =>
-      induction b using MonoidAlgebra.induction_linear with
-      | zero => simp
-      | add a b ha hb => simp [mul_add, ha, hb, add_mul]
-      | single h r =>
-          simp [adjoint, MonoidAlgebra.single_mul_single, mul_comm]
-
 @[simp] theorem adjoint_neg (a : RatGroupRing G) :
     adjoint (-a) = -adjoint a := by
   ext g
@@ -88,6 +78,8 @@ theorem adjoint_sum {I : Type*} [Fintype I]
 
 @[simp] theorem adjoint_one : adjoint (1 : RatGroupRing G) = 1 := by
   simp [MonoidAlgebra.one_def]
+
+end GroupStructure
 
 /-- Exact coefficient `ℓ1` norm.  This is rational, so a concrete
 certificate can discharge its bounds by normalization of rational
@@ -126,6 +118,8 @@ theorem l1_sum_le {I : Type*} [Fintype I]
   exact Finset.le_sum_of_subadditive l1 (by simp [l1]) l1_add_le
     Finset.univ a
 
+variable [Group G]
+
 /-- A real orthogonal representation, read as a monoid homomorphism into
 linear endomorphisms. -/
 noncomputable def linearRepresentation
@@ -149,11 +143,6 @@ noncomputable def evaluate
     (rho : G →* (E ≃ₗᵢ[ℝ] E)) (g : G) (q : ℚ) (x : E) :
     evaluate rho (MonoidAlgebra.single g q) x = (q : ℝ) • rho g x := by
   simp [evaluate, linearRepresentation]
-
-@[simp] theorem evaluate_one_apply
-    {E : Type v} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-    (rho : G →* (E ≃ₗᵢ[ℝ] E)) (x : E) :
-    evaluate rho 1 x = x := by simp [evaluate]
 
 @[simp] theorem evaluate_zero_apply
     {E : Type v} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
@@ -203,11 +192,11 @@ theorem inner_evaluate_adjoint
       simp only [adjoint_single]
       rw [evaluate_single_apply, evaluate_single_apply]
       simp only [inner_smul_left, inner_smul_right]
-      have hiso := (rho g).inner_map_map (rho g⁻¹ x) y
       have hadj : inner ℝ (rho g⁻¹ x) y = inner ℝ x (rho g y) := by
         calc
           inner ℝ (rho g⁻¹ x) y =
-              inner ℝ (rho g (rho g⁻¹ x)) (rho g y) := hiso.symm
+              inner ℝ (rho g (rho g⁻¹ x)) (rho g y) :=
+            ((rho g).inner_map_map (rho g⁻¹ x) y).symm
           _ = inner ℝ x (rho g y) := by simp
       simpa [map_inv] using congrArg (fun t : ℝ ↦ (q : ℝ) * t) hadj
 
@@ -381,8 +370,8 @@ theorem neg_rowL1_mul_familyNormSq_le_matrixEnergy
         intro j hj
         have huv : ‖z i‖ * ‖z j‖ ≤
             (‖z i‖ ^ 2 + ‖z j‖ ^ 2) / 2 := by
-          nlinarith [sq_nonneg (‖z i‖ - ‖z j‖)]
-        nlinarith [hl1nonneg i j]
+          nlinarith only [sq_nonneg (‖z i‖ - ‖z j‖)]
+        nlinarith only [hl1nonneg i j, huv]
       _ = ((∑ i, ∑ j, (l1 (R i j) : ℝ) * ‖z i‖ ^ 2) +
           (∑ i, ∑ j, (l1 (R i j) : ℝ) * ‖z j‖ ^ 2)) / 2 := by
         calc
@@ -434,15 +423,15 @@ theorem neg_rowL1_mul_familyNormSq_le_matrixEnergy
     calc
       -((r : ℝ) * familyNormSq z) ≤
           -|∑ i, ∑ j, inner ℝ (z i)
-            (evaluate rho (R i j) (z j))| := by
-        exact neg_le_neg (habs.trans hweighted)
+            (evaluate rho (R i j) (z j))| :=
+        neg_le_neg (habs.trans hweighted)
       _ ≤ ∑ i, ∑ j, inner ℝ (z i)
           (evaluate rho (R i j) (z j)) := neg_abs_le _
   simpa [matrixEnergy] using hnegative
 
 /-- The degree-one Hodge matrix `B⁺B + DD⁺`. -/
 noncomputable def hodgeMatrix
-    {I J : Type*} [Fintype I] [Fintype J]
+    {I J : Type*} [Fintype J]
     (D : I → RatGroupRing G) (B : J → I → RatGroupRing G) :
     I → I → RatGroupRing G :=
   fun i k ↦
@@ -494,7 +483,7 @@ theorem matrixEnergy_hodge_coboundary_eq
 
 /-- The scalar identity matrix over the rational group ring. -/
 noncomputable def scalarMatrix
-    {I : Type*} [Fintype I] [DecidableEq I]
+    {I : Type*} [DecidableEq I]
     (c : ℚ) : I → I → RatGroupRing G :=
   fun i k ↦ if i = k then MonoidAlgebra.single 1 c else 0
 
@@ -559,8 +548,8 @@ theorem Certificate.hodge_gap
       fun i k ↦ scalarMatrix c i k + Gram i k + R i k := by
     funext i k
     simpa [Gram, add_assoc] using C.decomposition i k
-  have hgram : 0 ≤ matrixEnergy rho Gram z := by
-    exact matrixEnergy_gram_nonneg rho q z
+  have hgram : 0 ≤ matrixEnergy rho Gram z :=
+    matrixEnergy_gram_nonneg rho q z
   have hres : -(r : ℝ) * familyNormSq z ≤
       matrixEnergy rho R z :=
     neg_rowL1_mul_familyNormSq_le_matrixEnergy rho R z r
@@ -568,7 +557,7 @@ theorem Certificate.hodge_gap
   rw [hdecomp, matrixEnergy_add, matrixEnergy_add,
     matrixEnergy_scalarMatrix]
   push_cast
-  linarith
+  linarith only [hgram, hres]
 
 /-- The group-ring coboundary attached to a finite generator tuple. -/
 noncomputable def generatorCoboundary
@@ -883,22 +872,21 @@ theorem Certificate.isKazhdanPair
   have hgeneratorUpper : 0 < generatorUpper := by
     dsimp [generatorUpper]
     positivity
-  have hgammaUpper : gamma ≤ upper := by
-    exact le_max_left _ _
-  have hgeneratorUpper_le : generatorUpper ≤ upper := by
-    exact le_max_right _ _
+  have hgammaUpper : gamma ≤ upper := le_max_left _ _
+  have hgeneratorUpper_le : generatorUpper ≤ upper := le_max_right _ _
   have hupper : 0 < upper :=
     hgeneratorUpper.trans_le hgeneratorUpper_le
   have hratio0 : 0 ≤ 1 - gamma / upper := by
     rw [sub_nonneg, div_le_one hupper]
     exact hgammaUpper
-  have hratio1 : 1 - gamma / upper < 1 := by
-    exact sub_lt_self _ (div_pos hgamma hupper)
+  have hratio1 : 1 - gamma / upper < 1 :=
+    sub_lt_self _ (div_pos hgamma hupper)
   have hsqrt0 : 0 ≤ Real.sqrt (1 - gamma / upper) := Real.sqrt_nonneg _
   have hsqrtSq : Real.sqrt (1 - gamma / upper) ^ 2 =
       1 - gamma / upper := Real.sq_sqrt hratio0
   have hsqrt1 : Real.sqrt (1 - gamma / upper) < 1 := by
-    nlinarith [sq_nonneg (Real.sqrt (1 - gamma / upper) - 1)]
+    nlinarith only [hsqrt0, hsqrtSq, hratio1,
+      sq_nonneg (Real.sqrt (1 - gamma / upper) - 1)]
   have hspectralLower : 0 < spectralLower := by
     dsimp [spectralLower]
     exact mul_pos hgamma (sub_pos.mpr hsqrt1)
@@ -932,11 +920,10 @@ theorem Certificate.isKazhdanPair
   have hlower (y : E) :
       gamma * PositiveOperatorGap.energy A y ≤ ‖A y‖ ^ 2 := by
     simpa [A, gamma] using C.generatorLaplacian_quadratic_gap s rho y
-  have hsymm (y z : E) : inner ℝ (A y) z = inner ℝ y (A z) := by
-    exact generatorLaplacian_symmetric s rho y z
-  have hker (y : E) (hy : A y = 0) : y = 0 := by
-    apply hno y
-    exact invariant_of_generatorLaplacian_eq_zero s hgen rho y hy
+  have hsymm (y z : E) : inner ℝ (A y) z = inner ℝ y (A z) :=
+    generatorLaplacian_symmetric s rho y z
+  have hker (y : E) (hy : A y = 0) : y = 0 :=
+    hno y (invariant_of_generatorLaplacian_eq_zero s hgen rho y hy)
   have hnorm := PositiveOperatorGap.norm_le_of_quadratic_gap
     A hgamma hupper hgammaUpper hsymm henergy hlower hformUpper
       hnormUpper hker x
@@ -948,8 +935,8 @@ theorem Certificate.isKazhdanPair
           hspectralLower.le
       _ = ‖A x‖ := by field_simp [ne_of_gt hspectralLower]
   have htotal : spectralLower * ‖x‖ ≤
-      2 * ∑ i, ‖rho (s i) x - x‖ := by
-    exact hspectralNorm.trans (norm_generatorLaplacian_le_two_sum s rho x)
+      2 * ∑ i, ‖rho (s i) x - x‖ :=
+    hspectralNorm.trans (norm_generatorLaplacian_le_two_sum s rho x)
   have hexists : ∃ i : I,
       epsilon * ‖x‖ ≤ ‖rho (s i) x - x‖ := by
     by_contra h

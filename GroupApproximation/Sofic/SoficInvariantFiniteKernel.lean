@@ -1,6 +1,4 @@
-import GroupApproximation.Sofic.SoficDirectedUnion
 import GroupApproximation.Sofic.SoficFiniteKernelSemidirect
-import GroupApproximation.Sofic.SoficTransfer
 
 /-!
 # Semidirect products with a locally finite invariant kernel
@@ -98,30 +96,5 @@ theorem inclSemidirect_injective (φ : G →* MulAut N) (K : Subgroup N)
   have hright : (a.right : G) = (b.right : G) :=
     congrArg SemidirectProduct.right hab
   exact SemidirectProduct.ext (Subtype.ext hleft) (Subtype.ext hright)
-
-/-- **Soficity for a locally finite invariant kernel.** -/
-theorem isSofic_semidirectProduct_of_invariant_finite
-    (φ : G →* MulAut N)
-    (hlocal : ∀ F : Finset (N ⋊[φ] G), ∃ (K : Subgroup N) (H : Subgroup G),
-      Finite K ∧ IsSofic H ∧ (∀ h ∈ H, ∀ n ∈ K, φ h n ∈ K) ∧
-        (∀ g ∈ F, g.left ∈ K ∧ g.right ∈ H)) :
-    IsSofic (N ⋊[φ] G) := by
-  classical
-  apply isSofic_of_every_finset_mem_sofic_subgroup
-  intro F
-  obtain ⟨K, H, hKfin, hHsofic, hinv, hmem⟩ := hlocal F
-  haveI : Finite K := hKfin
-  refine ⟨(inclSemidirect φ K H hinv).range, ?_, ?_⟩
-  · have hmodel : IsSofic (K ⋊[restrictAut φ K H hinv] H) :=
-      isSofic_finiteKernel_semidirectProduct _ hHsofic
-    have hequiv : (K ⋊[restrictAut φ K H hinv] H) ≃*
-        (inclSemidirect φ K H hinv).range :=
-      MonoidHom.ofInjective (inclSemidirect_injective φ K H hinv)
-    exact isSofic_of_injective hequiv.symm.toMonoidHom hequiv.symm.injective
-      hmodel
-  · intro g hg
-    obtain ⟨hleft, hright⟩ := hmem g hg
-    refine ⟨⟨⟨g.left, hleft⟩, ⟨g.right, hright⟩⟩, ?_⟩
-    rw [inclSemidirect_apply]
 
 end GroupApproximation

@@ -67,13 +67,9 @@ theorem sigma_block (A P C : List Letter) (b : Fin 3 → ℤ) (t : ℕ)
 letters between the shallow and deep parts. -/
 theorem word_split (V : List Letter) (v : ℕ) (hv : v + 1 < V.length) :
     V = V.take v ++ [V[v], V[v + 1]] ++ V.drop (v + 2) := by
-  have h1 : V.drop v = V[v] :: V.drop (v + 1) :=
-    List.drop_eq_getElem_cons (by omega)
-  have h2 : V.drop (v + 1) = V[v + 1] :: V.drop (v + 2) :=
-    List.drop_eq_getElem_cons hv
   calc V = V.take v ++ V.drop v := (List.take_append_drop v V).symm
     _ = V.take v ++ [V[v], V[v + 1]] ++ V.drop (v + 2) := by
-        rw [h1, h2]
+        rw [List.drop_eq_getElem_cons (by lia), List.drop_eq_getElem_cons hv]
         simp
 
 /-! ## Bridges at the violation -/
@@ -196,9 +192,8 @@ theorem w_inv_conj_letter (l : Letter) :
   have key : ∀ l' : Letter, w⁻¹ * letterVal (wConj l') * w =
       letterVal l' := by
     intro l'
-    have h := w_conj_letter l'
     calc w⁻¹ * letterVal (wConj l') * w
-        = w⁻¹ * (w * letterVal l' * w⁻¹) * w := by rw [h]
+        = w⁻¹ * (w * letterVal l' * w⁻¹) * w := by rw [w_conj_letter]
       _ = letterVal l' := by group
   fin_cases i
   · have := key (2, -a)
@@ -227,9 +222,6 @@ private theorem eval_triple (l₁ l₂ l₃ : Letter) :
     eval [l₁, l₂, l₃] = letterVal l₁ * letterVal l₂ * letterVal l₃ := by
   rw [eval_cons, eval_pair']
   group
-
-@[simp] private theorem letterVal_mk (i : Fin 6) (c : ℤ) :
-    letterVal (i, c) = x i c := rfl
 
 private theorem unit_neg {c : ℤ} (hc : c = 1 ∨ c = -1) :
     -c = 1 ∨ -c = -1 := by omega
@@ -263,14 +255,6 @@ private theorem unitWord_triple {l₁ l₂ l₃ : Letter}
   rcases List.mem_cons.mp hl with rfl | hl
   · exact h₁
   · exact unitWord_pair h₂ h₃ l hl
-
-private theorem unitWord_take {V : List Letter} (hU : UnitWord V)
-    (n : ℕ) : UnitWord (V.take n) :=
-  fun l hl => hU l (List.take_subset n V hl)
-
-private theorem unitWord_drop {V : List Letter} (hU : UnitWord V)
-    (n : ℕ) : UnitWord (V.drop n) :=
-  fun l hl => hU l (List.drop_subset n V hl)
 
 private theorem unitWord_append {A B : List Letter}
     (hA : UnitWord A) (hB : UnitWord B) : UnitWord (A ++ B) := by
@@ -374,29 +358,23 @@ private theorem pi_w23_neg : x 3 (-1) * x 5 1 * x 3 (-1) = w23⁻¹ :=
 /-- The inverted braid relations, from the displayed ones. -/
 private theorem braid_neg :
     x 0 (-1) * x 2 1 * x 0 (-1) = x 2 1 * x 0 (-1) * x 2 1 := by
-  have h2 : (x 0 1 * x 2 (-1) * x 0 1)⁻¹ =
-      (x 2 (-1) * x 0 1 * x 2 (-1))⁻¹ := by rw [braid]
   calc x 0 (-1) * x 2 1 * x 0 (-1)
       = (x 0 1 * x 2 (-1) * x 0 1)⁻¹ := by simp only [x]; group
-    _ = (x 2 (-1) * x 0 1 * x 2 (-1))⁻¹ := h2
+    _ = (x 2 (-1) * x 0 1 * x 2 (-1))⁻¹ := by rw [braid]
     _ = x 2 1 * x 0 (-1) * x 2 1 := by simp only [x]; group
 
 private theorem braid13_neg :
     x 1 (-1) * x 4 1 * x 1 (-1) = x 4 1 * x 1 (-1) * x 4 1 := by
-  have h2 : (x 1 1 * x 4 (-1) * x 1 1)⁻¹ =
-      (x 4 (-1) * x 1 1 * x 4 (-1))⁻¹ := by rw [braid13]
   calc x 1 (-1) * x 4 1 * x 1 (-1)
       = (x 1 1 * x 4 (-1) * x 1 1)⁻¹ := by simp only [x]; group
-    _ = (x 4 (-1) * x 1 1 * x 4 (-1))⁻¹ := h2
+    _ = (x 4 (-1) * x 1 1 * x 4 (-1))⁻¹ := by rw [braid13]
     _ = x 4 1 * x 1 (-1) * x 4 1 := by simp only [x]; group
 
 private theorem braid23_neg :
     x 3 (-1) * x 5 1 * x 3 (-1) = x 5 1 * x 3 (-1) * x 5 1 := by
-  have h2 : (x 3 1 * x 5 (-1) * x 3 1)⁻¹ =
-      (x 5 (-1) * x 3 1 * x 5 (-1))⁻¹ := by rw [braid23]
   calc x 3 (-1) * x 5 1 * x 3 (-1)
       = (x 3 1 * x 5 (-1) * x 3 1)⁻¹ := by simp only [x]; group
-    _ = (x 5 (-1) * x 3 1 * x 5 (-1))⁻¹ := h2
+    _ = (x 5 (-1) * x 3 1 * x 5 (-1))⁻¹ := by rw [braid23]
     _ = x 5 1 * x 3 (-1) * x 5 1 := by simp only [x]; group
 
 /-- The ν-led braid words are the inverse-signed swaps. -/
@@ -642,13 +620,6 @@ private theorem vnorm_act_w23inv (z : Fin 3 → ℤ) :
 
 /-! ## Generic braid-b identity -/
 
-private theorem braid_b_generic (π ν : Fin 6) (c : ℤ) :
-    x ν c * x π (-c) = x π c * (x π (-c) * x ν c * x π (-c)) := by
-  calc x ν c * x π (-c)
-      = (x π c * x π (-c)) * x ν c * x π (-c) := by
-        rw [x_add, show c + -c = 0 from by ring, x_zero, one_mul]
-    _ = x π c * (x π (-c) * x ν c * x π (-c)) := by group
-
 /-! ## Corrected emission existence for the ν-led pairs
 
 For six Steinberg pairs the emission spelling of the case table emits
@@ -656,7 +627,6 @@ the ν-led braid word, whose transported base is the inverse-signed
 swap action; these variants restate the existence disjunctions with
 the matching bases. -/
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_15_pp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 5 1)) u)) <
       vnorm (act (toSL3 (x 5 1)) u))
@@ -682,7 +652,6 @@ private theorem exist_st_15_pp' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_15_pm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 5 (-1))) u)) <
       vnorm (act (toSL3 (x 5 (-1))) u))
@@ -708,7 +677,6 @@ private theorem exist_st_15_pm' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_15_mp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 5 1)) u)) <
       vnorm (act (toSL3 (x 5 1)) u))
@@ -734,7 +702,6 @@ private theorem exist_st_15_mp' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_15_mm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 5 (-1))) u)) <
       vnorm (act (toSL3 (x 5 (-1))) u))
@@ -784,7 +751,6 @@ private theorem exist_st_15' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   exacts [exist_st_15_pp' u hviol hside, exist_st_15_pm' u hviol hside,
     exist_st_15_mp' u hviol hside, exist_st_15_mm' u hviol hside]
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_34_pp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 4 1)) u)) <
       vnorm (act (toSL3 (x 4 1)) u))
@@ -810,7 +776,6 @@ private theorem exist_st_34_pp' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_34_pm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 4 (-1))) u)) <
       vnorm (act (toSL3 (x 4 (-1))) u))
@@ -836,7 +801,6 @@ private theorem exist_st_34_pm' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_34_mp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 4 1)) u)) <
       vnorm (act (toSL3 (x 4 1)) u))
@@ -862,7 +826,6 @@ private theorem exist_st_34_mp' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_34_mm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 4 (-1))) u)) <
       vnorm (act (toSL3 (x 4 (-1))) u))
@@ -912,7 +875,6 @@ private theorem exist_st_34' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   exacts [exist_st_34_pp' u hviol hside, exist_st_34_pm' u hviol hside,
     exist_st_34_mp' u hviol hside, exist_st_34_mm' u hviol hside]
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_52_pp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 2 1)) u)) <
       vnorm (act (toSL3 (x 2 1)) u))
@@ -938,7 +900,6 @@ private theorem exist_st_52_pp' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_52_pm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 2 (-1))) u)) <
       vnorm (act (toSL3 (x 2 (-1))) u))
@@ -964,7 +925,6 @@ private theorem exist_st_52_pm' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_52_mp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 2 1)) u)) <
       vnorm (act (toSL3 (x 2 1)) u))
@@ -990,7 +950,6 @@ private theorem exist_st_52_mp' (u : Fin 3 → ℤ)
       at hviol hside ⊢
   omega
 
-set_option linter.unusedSimpArgs false in
 private theorem exist_st_52_mm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 2 (-1))) u)) <
       vnorm (act (toSL3 (x 2 (-1))) u))
@@ -1086,13 +1045,11 @@ private theorem step_plain (V : List Letter) (b : Fin 3 → ℤ)
     · -- shallow
       intro j hj
       show sigma (A ++ P' ++ C) b j = sigma V b j
-      have h1 : sigma (A ++ (P' ++ C)) b j =
-          sigma (A ++ ([p, q] ++ C)) b j :=
-        sigma_shallow_of_actEq A (P' ++ C) ([p, q] ++ C) b b
-          (by rw [hEpair]) j hj
       calc sigma (A ++ P' ++ C) b j
           = sigma (A ++ (P' ++ C)) b j := by rw [List.append_assoc]
-        _ = sigma (A ++ ([p, q] ++ C)) b j := h1
+        _ = sigma (A ++ ([p, q] ++ C)) b j :=
+          sigma_shallow_of_actEq A (P' ++ C) ([p, q] ++ C) b b
+            (by rw [hEpair]) j hj
         _ = sigma (A ++ [p, q] ++ C) b j := by rw [← List.append_assoc]
         _ = sigma V b j := by rw [← hsplit]
     · -- deep
@@ -1168,19 +1125,17 @@ private theorem step_emit (V : List Letter) (b : Fin 3 → ℤ)
         sigma V b j
       have hAct : act (toSL3 (eval (P' ++ C.map f)))
           (act (toSL3 wv) b) = act (toSL3 (eval ([p, q] ++ C))) b := by
-        have hM : toSL3 (eval (P' ++ C.map f)) * toSL3 wv =
-            toSL3 (eval ([p, q] ++ C)) := by
-          rw [← map_mul, hE2]
         calc act (toSL3 (eval (P' ++ C.map f))) (act (toSL3 wv) b)
             = act (toSL3 (eval (P' ++ C.map f)) * toSL3 wv) b := by
               rw [act_mul]
-          _ = act (toSL3 (eval ([p, q] ++ C))) b := by rw [hM]
-      have h1 := sigma_shallow_of_actEq A (P' ++ C.map f)
-        ([p, q] ++ C) (act (toSL3 wv) b) b hAct j hj
+          _ = act (toSL3 (eval ([p, q] ++ C))) b := by
+            rw [← map_mul, hE2]
       calc sigma (A ++ P' ++ C.map f) (act (toSL3 wv) b) j
           = sigma (A ++ (P' ++ C.map f)) (act (toSL3 wv) b) j := by
             rw [List.append_assoc]
-        _ = sigma (A ++ ([p, q] ++ C)) b j := h1
+        _ = sigma (A ++ ([p, q] ++ C)) b j :=
+          sigma_shallow_of_actEq A (P' ++ C.map f) ([p, q] ++ C)
+            (act (toSL3 wv) b) b hAct j hj
         _ = sigma (A ++ [p, q] ++ C) b j := by rw [← List.append_assoc]
         _ = sigma V b j := by rw [← hsplit]
     · -- deep
@@ -1210,7 +1165,6 @@ private theorem step_emit (V : List Letter) (b : Fin 3 → ℤ)
       rw [vecOf_map_conj wv f hf]
       exact hcut t ht0 htl
   exact meas_lt_of_splice V b D F
-
 
 /-! ## Full-package route builders
 
@@ -2610,12 +2564,6 @@ theorem descent_normal_form (W : List Letter) (hUW : UnitWord W) :
 theorem toSL3_injective : Function.Injective toSL3 := by
   rw [injective_iff_map_eq_one]
   exact toSL3_ker_eq_bot descent_normal_form
-
-/-- **Completeness of the thirteen-relator presentation:** the
-canonical homomorphism is an isomorphism `P13 ≃* SL₃(ℤ)`. -/
-noncomputable def p13CompletenessEquiv : P13 ≃* SL3 :=
-  MulEquiv.ofBijective toSL3
-    ⟨toSL3_injective, SL3ElementaryGeneration.toSL3_surjective⟩
 
 end
 

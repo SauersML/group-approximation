@@ -1,7 +1,5 @@
 import GroupApproximation.Sofic.LocallyFiniteMF
 import Mathlib.GroupTheory.FiniteAbelian.Basic
-import Mathlib.GroupTheory.QuotientGroup.Finite
-import Mathlib.GroupTheory.Subgroup.Centralizer
 
 /-!
 # Finiteness of Clifford-type subgroups
@@ -147,11 +145,9 @@ theorem finite_closure_of_central_involution {z : G} (hz : z ^ 2 = 1)
     have hmapker : ∀ x : f.ker, ((x : H) : G) ∈ Z := fun x ↦
       (QuotientGroup.eq_one_iff _).mp (MonoidHom.mem_ker.mp x.2)
     have hinj : Function.Injective
-        (fun x : f.ker ↦ (⟨((x : H) : G), hmapker x⟩ : Z)) := by
+      (fun x : f.ker ↦ (⟨((x : H) : G), hmapker x⟩ : Z)) := by
       intro a b hab
-      apply Subtype.ext
-      apply Subtype.ext
-      exact congrArg (fun w : Z ↦ (w : G)) hab
+      exact Subtype.ext (Subtype.ext (congrArg (fun w : Z ↦ (w : G)) hab))
     exact Finite.of_injective _ hinj
   haveI : Finite (H ⧸ f.ker) :=
     Finite.of_equiv _ (QuotientGroup.quotientKerEquivRange f).symm.toEquiv

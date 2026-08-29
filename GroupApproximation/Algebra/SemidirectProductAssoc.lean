@@ -109,8 +109,5 @@ def assocEquiv :
       · show p.right * q.right = p.right * q.right
         rfl
 
-@[simp] theorem assocEquiv_apply (p : (A ⋊[baseAction g f] B) ⋊[outerAction g f] Z) :
-    assocEquiv g f p = ⟨p.left.left, ⟨p.left.right, p.right⟩⟩ := rfl
-
 end SemidirectAssoc
 end GroupApproximation

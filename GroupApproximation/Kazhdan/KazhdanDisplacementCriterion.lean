@@ -63,40 +63,5 @@ theorem of_noInvariant_displacement_mul_norm
   obtain ⟨q, hq, hfar⟩ := hmove E ρ hno x hx0
   exact ⟨q, hq, by simpa [hx] using hfar⟩
 
-/-- The defining almost-invariant-vector formulation is equivalent to the
-uniform displacement formulation used by spectral-gap proofs. -/
-theorem iff_noInvariant_displacement :
-    IsKazhdanPair.{u, v} G Q ε ↔
-      0 < ε ∧
-        ∀ (E : Type v) [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-          [CompleteSpace E],
-          ∀ ρ : G →* (E ≃ₗᵢ[ℝ] E),
-            HasNoInvariantVectors G ρ →
-            ∀ x : E, ‖x‖ = 1 →
-              ∃ q ∈ Q, ε ≤ ‖ρ q x - x‖ := by
-  constructor
-  · intro hQ
-    exact ⟨hQ.1, fun E _ _ _ ρ hno x hx ↦
-      hQ.exists_moved_of_noInvariant ρ hno x hx⟩
-  · rintro ⟨hε, hmove⟩
-    exact of_noInvariant_displacement hε hmove
-
-/-- Homogeneous version of `iff_noInvariant_displacement`. -/
-theorem iff_noInvariant_displacement_mul_norm :
-    IsKazhdanPair.{u, v} G Q ε ↔
-      0 < ε ∧
-        ∀ (E : Type v) [NormedAddCommGroup E] [InnerProductSpace ℝ E]
-          [CompleteSpace E],
-          ∀ ρ : G →* (E ≃ₗᵢ[ℝ] E),
-            HasNoInvariantVectors G ρ →
-            ∀ x : E, x ≠ 0 →
-              ∃ q ∈ Q, ε * ‖x‖ ≤ ‖ρ q x - x‖ := by
-  constructor
-  · intro hQ
-    exact ⟨hQ.1, fun E _ _ _ ρ hno x hx ↦
-      hQ.exists_moved_mul_norm_of_noInvariant ρ hno x hx⟩
-  · rintro ⟨hε, hmove⟩
-    exact of_noInvariant_displacement_mul_norm hε hmove
-
 end IsKazhdanPair
 end GroupApproximation

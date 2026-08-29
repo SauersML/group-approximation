@@ -1,5 +1,4 @@
 import Mathlib.Data.ZMod.Basic
-import Mathlib.Algebra.Group.TypeTags.Hom
 
 /-!
 # Homomorphisms out of finite cyclic groups

@@ -272,11 +272,6 @@ theorem toSL2_injective : Function.Injective toSL2 := by
       _ = negOne ^ k := by rw [← hm]
       _ = 1 := hkneg
 
-/-- **Completeness of the rank-two braid presentation.**  The braid
-presentation `⟨a, b ∣ aba = bab, (aba)⁴⟩` presents `SL₂(ℤ)`. -/
-noncomputable def sl2BraidEquiv : SL2P ≃* SL2 :=
-  MulEquiv.ofBijective toSL2 ⟨toSL2_injective, toSL2_surjective⟩
-
 end
 
 end SL2Completeness

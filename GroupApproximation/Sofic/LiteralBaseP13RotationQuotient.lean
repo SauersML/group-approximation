@@ -1,17 +1,10 @@
 import GroupApproximation.Sofic.LiteralBaseP13Replay
 import GroupApproximation.Sofic.LiteralP13Presentation
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.S123
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.S132
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.S213
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.S231
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.S312
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.S321
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.O12_13
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.O12_32
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.O13_23
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.O21_23
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.O21_31
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.O31_32
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.Torsion
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.RangeZ
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.RangeXY
@@ -129,24 +122,6 @@ def p13ToRotation : P13 →* Rotation :=
 private theorem p13ToRotation_generator (i : P13Generator) :
     p13ToRotation (PresentedGroup.of i) = p13GeneratorToRotation i := by
   simp [p13ToRotation]
-
-@[simp] theorem p13ToRotation_E12 : p13ToRotation E12 = rotationWord e12Word :=
-  p13ToRotation_generator 0
-
-@[simp] theorem p13ToRotation_E13 : p13ToRotation E13 = rotationWord e13Word :=
-  p13ToRotation_generator 1
-
-@[simp] theorem p13ToRotation_E21 : p13ToRotation E21 = rotationWord e21Word :=
-  p13ToRotation_generator 2
-
-@[simp] theorem p13ToRotation_E23 : p13ToRotation E23 = rotationWord e23Word :=
-  p13ToRotation_generator 3
-
-@[simp] theorem p13ToRotation_E31 : p13ToRotation E31 = rotationWord e31Word :=
-  p13ToRotation_generator 4
-
-@[simp] theorem p13ToRotation_E32 : p13ToRotation E32 = rotationWord e32Word :=
-  p13ToRotation_generator 5
 
 private def p13ZPreimageFree : FreeGroup P13Generator :=
   word [(0, true), (2, false), (4, false), (0, true),

@@ -25,13 +25,12 @@ namespace ApproxInvolutionCorner
 open Matrix
 open scoped Matrix.Norms.L2Operator
 
-variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+variable {Y : Type*}
 
 /-- Hermitian part of a square complex matrix. -/
 noncomputable def hermitianPart (U : Matrix Y Y ℂ) : Matrix Y Y ℂ :=
   ((2 : ℂ)⁻¹) • (U + Uᴴ)
 
-omit [Fintype Y] [DecidableEq Y] in
 /-- The Hermitian part is exactly self-adjoint. -/
 theorem hermitianPart_conjTranspose (U : Matrix Y Y ℂ) :
     (hermitianPart U)ᴴ = hermitianPart U := by
@@ -40,11 +39,12 @@ theorem hermitianPart_conjTranspose (U : Matrix Y Y ℂ) :
   have hstar : star ((2 : ℂ)⁻¹) = (2 : ℂ)⁻¹ := by norm_num
   rw [hstar, add_comm]
 
-omit [Fintype Y] [DecidableEq Y] in
 /-- The Hermitian part, in Mathlib's predicate form. -/
 theorem hermitianPart_isHermitian (U : Matrix Y Y ℂ) :
     (hermitianPart U).IsHermitian :=
   hermitianPart_conjTranspose U
+
+variable [Fintype Y] [DecidableEq Y]
 
 /-- For a unitary matrix, failure to be self-adjoint is exactly its
 involution defect.  Right multiplication by `Uᴴ` is isometric. -/
@@ -106,14 +106,15 @@ theorem abs_signed_sub_le_abs_sq_sub_one {lambda : ℝ}
   have hlower : -1 ≤ lambda := (abs_le.mp hlambda).1
   have hupper : lambda ≤ 1 := (abs_le.mp hlambda).2
   have hsq : lambda ^ 2 ≤ 1 := by
-    nlinarith [mul_nonneg (show 0 ≤ lambda + 1 by linarith)
-      (show 0 ≤ 1 - lambda by linarith)]
+    nlinarith only [mul_nonneg
+      (show 0 ≤ lambda + 1 by linarith only [hlower])
+      (sub_nonneg.mpr hupper)]
   rw [abs_of_nonpos (sub_nonpos.mpr hsq)]
   by_cases hpos : 0 < lambda
   · rw [if_pos hpos, abs_of_nonneg (sub_nonneg.mpr hupper)]
-    nlinarith
-  · rw [if_neg hpos, abs_of_nonpos (by linarith)]
-    nlinarith
+    nlinarith only [hupper, hpos]
+  · rw [if_neg hpos, abs_of_nonpos (by linarith only [hlower])]
+    nlinarith only [hlower, hpos]
 
 /-- Squaring the Hermitian part averages the involution defect with its
 adjoint. -/
@@ -198,10 +199,8 @@ theorem abs_hermitianEigenvalue_le_norm
   have hx : ‖x‖ = 1 := hH.eigenvectorBasis.orthonormal.1 i
   have heigen :
       (Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) H x =
-        ((hH.eigenvalues i : ℝ) : ℂ) • x := by
-    apply PiLp.ext
-    intro j
-    exact congrFun (hH.mulVec_eigenvectorBasis i) j
+        ((hH.eigenvalues i : ℝ) : ℂ) • x :=
+    PiLp.ext fun j ↦ congrFun (hH.mulVec_eigenvectorBasis i) j
   have happly := ContinuousLinearMap.le_opNorm
     ((Matrix.toEuclideanCLM (n := Y) (𝕜 := ℂ)) H) x
   rw [heigen, norm_smul, hx, mul_one,
@@ -220,73 +219,10 @@ noncomputable def positiveProjection (U : Matrix Y Y ℂ) : Matrix Y Y ℂ :=
 noncomputable def negativeProjection (U : Matrix Y Y ℂ) : Matrix Y Y ℂ :=
   1 - positiveProjection U
 
-/-- The positive spectral cutoff is an orthogonal projection. -/
-theorem positiveProjection_isOrthogonalProjection (U : Matrix Y Y ℂ) :
-    KazhdanCornerMatrices.IsOrthogonalProjectionMatrix
-      (positiveProjection U) :=
-  KazhdanCornerMatrices.spectralAbove_isOrthogonalProjection
-    (hermitianPart U) (hermitianPart_isHermitian U) 0
-
-/-- The negative spectral cutoff is an orthogonal projection. -/
-theorem negativeProjection_isOrthogonalProjection (U : Matrix Y Y ℂ) :
-    KazhdanCornerMatrices.IsOrthogonalProjectionMatrix
-      (negativeProjection U) := by
-  exact KazhdanCornerMatrices.one_sub_isOrthogonalProjection
-    (positiveProjection_isOrthogonalProjection U)
-
-/-- The two spectral sectors sum to the identity. -/
-theorem positiveProjection_add_negativeProjection (U : Matrix Y Y ℂ) :
-    positiveProjection U + negativeProjection U = 1 := by
-  simp [negativeProjection]
-
-/-- The two spectral sectors are orthogonal. -/
-theorem positiveProjection_mul_negativeProjection (U : Matrix Y Y ℂ) :
-    positiveProjection U * negativeProjection U = 0 := by
-  rw [negativeProjection, Matrix.mul_sub, Matrix.mul_one,
-    (positiveProjection_isOrthogonalProjection U).2, sub_self]
-
-/-- Orthogonality in the reverse order. -/
-theorem negativeProjection_mul_positiveProjection (U : Matrix Y Y ℂ) :
-    negativeProjection U * positiveProjection U = 0 := by
-  rw [negativeProjection, Matrix.sub_mul, Matrix.one_mul,
-    (positiveProjection_isOrthogonalProjection U).2, sub_self]
-
 /-- Exact sign of the Hermitian part: `+1` on the positive sector and `-1`
 on its complement. -/
 noncomputable def roundedInvolution (U : Matrix Y Y ℂ) : Matrix Y Y ℂ :=
   (2 : ℂ) • positiveProjection U - 1
-
-/-- The rounded sign is self-adjoint. -/
-theorem roundedInvolution_conjTranspose (U : Matrix Y Y ℂ) :
-    (roundedInvolution U)ᴴ = roundedInvolution U := by
-  rw [roundedInvolution, Matrix.conjTranspose_sub,
-    Matrix.conjTranspose_smul, Matrix.conjTranspose_one,
-    (positiveProjection_isOrthogonalProjection U).1]
-  norm_num
-
-/-- The rounded sign squares exactly to the identity. -/
-theorem roundedInvolution_sq (U : Matrix Y Y ℂ) :
-    roundedInvolution U * roundedInvolution U = 1 := by
-  rw [roundedInvolution]
-  have hP := (positiveProjection_isOrthogonalProjection U).2
-  simp only [two_smul]
-  calc
-    (positiveProjection U + positiveProjection U - 1) *
-          (positiveProjection U + positiveProjection U - 1) =
-        positiveProjection U * positiveProjection U +
-          positiveProjection U * positiveProjection U +
-          positiveProjection U * positiveProjection U +
-          positiveProjection U * positiveProjection U -
-          positiveProjection U - positiveProjection U -
-          positiveProjection U - positiveProjection U + 1 := by
-            noncomm_ring
-    _ = 1 := by rw [hP]; abel
-
-/-- The rounded sign is an exact unitary matrix. -/
-theorem roundedInvolution_mem_unitaryGroup (U : Matrix Y Y ℂ) :
-    roundedInvolution U ∈ Matrix.unitaryGroup Y ℂ := by
-  rw [Matrix.mem_unitaryGroup_iff, Matrix.star_eq_conjTranspose,
-    roundedInvolution_conjTranspose, roundedInvolution_sq]
 
 /-- The rounded sign differs from the Hermitian part by no more than the
 Hermitian square defect. -/
@@ -397,24 +333,9 @@ theorem roundedInvolution_eq_one_of_negativeProjection_eq_zero
   have h := negativeProjection_eq_one_sub_rounded U
   rw [hneg] at h
   have hscalar : ((2 : ℂ)⁻¹) ≠ 0 := by norm_num
-  have hone : 1 - roundedInvolution U = 0 := by
-    exact (smul_eq_zero.mp h.symm).resolve_left hscalar
+  have hone : 1 - roundedInvolution U = 0 :=
+    (smul_eq_zero.mp h.symm).resolve_left hscalar
   exact (sub_eq_zero.mp hone).symm
-
-/-- The rounded involution acts by `-1` on its negative sector. -/
-theorem roundedInvolution_mul_negativeProjection (U : Matrix Y Y ℂ) :
-    roundedInvolution U * negativeProjection U = -negativeProjection U := by
-  rw [roundedInvolution, negativeProjection]
-  have hP := (positiveProjection_isOrthogonalProjection U).2
-  simp only [two_smul]
-  calc
-    (positiveProjection U + positiveProjection U - 1) *
-          (1 - positiveProjection U) =
-        positiveProjection U + positiveProjection U -
-          positiveProjection U * positiveProjection U -
-          positiveProjection U * positiveProjection U - 1 +
-          positiveProjection U := by noncomm_ring
-    _ = -(1 - positiveProjection U) := by rw [hP]; abel
 
 section AlmostRepresentation
 
@@ -455,8 +376,8 @@ theorem negativeProjection_eventually_ne_zero_of_separated
         (A.map n z : Matrix (A.model n) (A.model n) ℂ) ≠ 0 := by
   have hround := roundedInvolution_sub_map_vanishing A hz
   have hone := KazhdanCornerMatrices.map_one_vanishing A
-  obtain ⟨Nr, hNr⟩ := hround (delta / 4) (by linarith)
-  obtain ⟨N1, hN1⟩ := hone (delta / 4) (by linarith)
+  obtain ⟨Nr, hNr⟩ := hround (delta / 4) (by positivity)
+  obtain ⟨N1, hN1⟩ := hone (delta / 4) (by positivity)
   obtain ⟨Ns, hNs⟩ := hsep
   refine ⟨max (max Nr N1) Ns, fun n hn hzero ↦ ?_⟩
   have hnNr : Nr ≤ n := (le_max_left Nr N1).trans
@@ -504,19 +425,8 @@ theorem negativeProjection_eventually_ne_zero_of_separated
             -((A.map n 1 : Matrix (A.model n) (A.model n) ℂ) - 1) by abel,
             norm_neg]
           exact hN1 n hnN1
-      _ < delta := by linarith
+      _ < delta := by linarith only [hdelta]
   exact (not_lt_of_ge (hNs n hnNs)) hstrict
-
-/-- Weak-MF separation is a convenient special case of marked separation. -/
-theorem negativeProjection_eventually_ne_zero
-    (A : WeakMFApproximation G) {z : G} (hz : z * z = 1)
-    (hne : z ≠ 1) :
-    ∃ N, ∀ n ≥ N,
-      negativeProjection
-        (A.map n z : Matrix (A.model n) (A.model n) ℂ) ≠ 0 :=
-  negativeProjection_eventually_ne_zero_of_separated
-    A.toOpAlmostRepresentation hz A.separation_pos
-      (A.separatedEventually z 1 hne)
 
 /-- An exact commutation relation in the group becomes operator-norm
 commutation of the corresponding almost-representation matrices. -/
@@ -564,33 +474,6 @@ theorem roundedInvolution_commute_map_vanishing
   apply (hleft.add hmiddle |>.add hright).congr
   intro n
   dsimp [U, V, Z]
-  noncomm_ring
-
-/-- The rounded negative spectral projection asymptotically commutes with
-every fixed group element centralizing the marked involution. -/
-theorem negativeProjection_commute_map_vanishing
-    (A : OpAlmostRepresentation G) {z g : G} (hz : z * z = 1)
-    (hcomm : z * g = g * z) :
-    KazhdanCornerMatrices.OpNormVanishing A (fun n ↦
-      negativeProjection
-          (A.map n z : Matrix (A.model n) (A.model n) ℂ) *
-            (A.map n g : Matrix (A.model n) (A.model n) ℂ) -
-        (A.map n g : Matrix (A.model n) (A.model n) ℂ) *
-          negativeProjection
-            (A.map n z : Matrix (A.model n) (A.model n) ℂ)) := by
-  have hrounded :=
-    (roundedInvolution_commute_map_vanishing A hz hcomm).neg.smul
-      ((2 : ℂ)⁻¹)
-  apply hrounded.congr
-  intro n
-  rw [negativeProjection_eq_one_sub_rounded]
-  let Z : Matrix (A.model n) (A.model n) ℂ :=
-    roundedInvolution (A.map n z)
-  let V : Matrix (A.model n) (A.model n) ℂ := A.map n g
-  change (2 : ℂ)⁻¹ • -(Z * V - V * Z) =
-    ((2 : ℂ)⁻¹ • (1 - Z)) * V - V * ((2 : ℂ)⁻¹ • (1 - Z))
-  rw [Matrix.smul_mul, Matrix.mul_smul, ← smul_sub]
-  congr 1
   noncomm_ring
 
 end AlmostRepresentation

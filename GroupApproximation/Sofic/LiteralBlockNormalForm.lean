@@ -1,10 +1,4 @@
-import GroupApproximation.Sofic.LiteralNonMFPresentation
-import GroupApproximation.Sofic.LiteralBaseRelations
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
-import GroupApproximation.Sofic.MappingTelescopeFiniteOrbits
-import Mathlib.GroupTheory.SemidirectProduct
-import Mathlib.GroupTheory.GroupAction.Quotient
-import Mathlib.GroupTheory.Commensurable
 
 /-!
 # The normal form of the literal forty-one-relator group
@@ -311,8 +305,6 @@ def Adjacent (ξ η : Site) : Prop :=
   (∃ g : Vertical, g • siteA = ξ ∧ g • siteB = η) ∨
     (∃ g : Vertical, g • siteA = η ∧ g • siteB = ξ)
 
-theorem Adjacent.flip {ξ η : Site} (h : Adjacent ξ η) : Adjacent η ξ := h.symm
-
 theorem adjacent_marked : Adjacent siteA siteB :=
   Or.inl ⟨1, one_smul _ _, one_smul _ _⟩
 
@@ -341,9 +333,6 @@ theorem vBeta_mem_blockSubgroup : vBeta ∈ blockSubgroup :=
 /-- The block set `I = V/K`. -/
 abbrev Block : Type := Vertical ⧸ blockSubgroup
 
-instance : MulAction Vertical Block :=
-  inferInstanceAs (MulAction Vertical (Vertical ⧸ blockSubgroup))
-
 /-- The fibration of sites over blocks. -/
 def blockOf (ξ : Site) : Block :=
   Quotient.liftOn' ξ (fun g ↦ (QuotientGroup.mk g : Block))
@@ -359,11 +348,6 @@ theorem blockOf_surjective : Function.Surjective blockOf := by
   intro b
   obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective b
   exact ⟨QuotientGroup.mk g, rfl⟩
-
-theorem blockOf_smul (v : Vertical) (ξ : Site) :
-    blockOf (v • ξ) = v • blockOf ξ := by
-  obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective ξ
-  rw [smul_mk, blockOf_mk, blockOf_mk, MulAction.Quotient.smul_mk, smul_eq_mul]
 
 /-- Adjacent sites lie in a common block. -/
 theorem blockOf_eq_of_adjacent {ξ η : Site} (h : Adjacent ξ η) :
@@ -596,16 +580,6 @@ theorem inl_lampSign_central (m : Model) :
     rw [inr_conj_inl, lampAutHom_sign]
   rw [← SemidirectProduct.inl_left_mul_inr_right m]
   exact (hleft m.left).mul_right (hright m.right)
-
-/-- The image of `inl` is normal: it is the kernel of the projection. -/
-instance inl_range_normal :
-    ((SemidirectProduct.inl : LampFactor →* Model).range).Normal := by
-  constructor
-  rintro _ ⟨n, rfl⟩ m
-  rw [← SemidirectProduct.inl_left_mul_inr_right m]
-  refine ⟨m.left * lampAutHom m.right n * (m.left)⁻¹, ?_⟩
-  rw [map_mul, map_mul, map_inv, ← inr_conj_inl]
-  group
 
 /-! ## The presented group maps to the model -/
 
@@ -1002,26 +976,6 @@ theorem toModel_comp_fromModel :
       SemidirectProduct.inr v
     rw [fromModel_inr, toModel_verticalToE]
 
-/-- **The normal-form theorem.**  The canonical map from the literal
-forty-one-relator group into the block model is injective.  Injectivity is
-exactly the statement that the presented group has no relations beyond those
-visible in the model: a word in the eight letters is trivial in `E` precisely
-when its vertical part is trivial in `V` and its Clifford part reduces to `1`
-in the Clifford group of the orbital graph. -/
-theorem toModel_injective : Function.Injective toModel := by
-  intro a b hab
-  have ha := DFunLike.congr_fun fromModel_comp_toModel a
-  have hb := DFunLike.congr_fun fromModel_comp_toModel b
-  simp only [MonoidHom.coe_comp, Function.comp_apply, MonoidHom.id_apply]
-    at ha hb
-  rw [← ha, ← hb, hab]
-
-theorem toModel_surjective : Function.Surjective toModel := by
-  intro m
-  refine ⟨fromModel m, ?_⟩
-  have h := DFunLike.congr_fun toModel_comp_fromModel m
-  simpa using h
-
 /-- **The literal group is the block model.**  `E ≅ C(𝒢) ⋊ V`: the lamp kernel
 is the Clifford group of the orbital graph on `X = V/B`, the vertical
 complement is the seven-letter ascending HNN quotient, and the marked word is
@@ -1029,9 +983,6 @@ the central sign. -/
 def markedGroupEquivModel : MarkedGroup ≃* Model :=
   MonoidHom.toMulEquiv toModel fromModel fromModel_comp_toModel
     toModel_comp_fromModel
-
-@[simp] theorem markedGroupEquivModel_apply (g : MarkedGroup) :
-    markedGroupEquivModel g = toModel g := rfl
 
 /-! ## The lamp kernel -/
 
@@ -1044,50 +995,6 @@ instance : lampKernel.Normal := Subgroup.normalClosure_normal
 
 theorem lamp_mem_lampKernel : lamp ∈ lampKernel :=
   Subgroup.subset_normalClosure rfl
-
-theorem siteLamp_mem_lampKernel (ξ : Site) : siteLamp ξ ∈ lampKernel := by
-  obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective ξ
-  rw [siteLamp_mk]
-  exact (inferInstance : lampKernel.Normal).conj_mem lamp lamp_mem_lampKernel _
-
-theorem mark_mem_lampKernel : mark ∈ lampKernel := by
-  have hd : stable * lamp * stable⁻¹ ∈ lampKernel :=
-    (inferInstance : lampKernel.Normal).conj_mem lamp lamp_mem_lampKernel stable
-  have he : baseMap (PresentedGroup.of v1Index) * (stable * lamp * stable⁻¹) *
-      (baseMap (PresentedGroup.of v1Index))⁻¹ ∈ lampKernel :=
-    (inferInstance : lampKernel.Normal).conj_mem _ hd _
-  rw [mark_eq_markedCompressionWord, markedCompressionWord,
-    commutatorElement_def]
-  exact lampKernel.mul_mem
-    (lampKernel.mul_mem (lampKernel.mul_mem hd he) (lampKernel.inv_mem hd))
-    (lampKernel.inv_mem he)
-
-/-- **The lamp kernel is the Clifford factor.**  Under the isomorphism
-`E ≅ C(𝒢) ⋊ V` the normal closure of the lamp letter is carried exactly onto
-the Clifford group of the orbital graph. -/
-theorem lampKernel_map_toModel :
-    lampKernel.map toModel =
-      (SemidirectProduct.inl : LampFactor →* Model).range := by
-  refine le_antisymm ?_ ?_
-  · rw [Subgroup.map_le_iff_le_comap]
-    refine Subgroup.normalClosure_le_normal ?_
-    rintro g rfl
-    show toModel lamp ∈ (SemidirectProduct.inl : LampFactor →* Model).range
-    rw [toModel_lamp]
-    exact ⟨lampAt origin, rfl⟩
-  · rintro _ ⟨n, rfl⟩
-    have hmem : n ∈ (lampKernel.map toModel).comap
-        (SemidirectProduct.inl : LampFactor →* Model) := by
-      refine mem_of_generators _ (fun j ↦ ?_) n
-      match j with
-      | Sum.inl () =>
-          show (SemidirectProduct.inl lampSign : Model) ∈ lampKernel.map toModel
-          exact ⟨mark, mark_mem_lampKernel, toModel_mark⟩
-      | Sum.inr ξ =>
-          show (SemidirectProduct.inl (lampAt ξ) : Model) ∈
-            lampKernel.map toModel
-          exact ⟨siteLamp ξ, siteLamp_mem_lampKernel ξ, manuscriptSiteLampImage ξ⟩
-    exact hmem
 
 /-- The vertical group receives the lamp-killed quotient of `E`. -/
 def verticalToQuot : Vertical →* MarkedGroup ⧸ lampKernel := by
@@ -1137,122 +1044,10 @@ theorem lampKernel_eq : lampKernel = MonoidHom.ker retract := by
     rw [hg, map_one] at h
     exact (QuotientGroup.eq_one_iff g).mp h.symm
 
-/-- The lamp kernel, as a group, is the Clifford group of the orbital
-graph. -/
-def lampKernelEquiv : lampKernel ≃* LampFactor :=
-  ((lampKernel.equivMapOfInjective toModel toModel_injective).trans
-      (MulEquiv.subgroupCongr lampKernel_map_toModel)).trans
-    (MonoidHom.ofInjective
-      (SemidirectProduct.inl_injective (N := LampFactor) (G := Vertical)
-        (φ := lampAutHom))).symm
-
 /-! ## Finite block support
 
 The first fact the soficity tower consumes: a finite subset of the lamp kernel
 involves only finitely many blocks. -/
-
-local instance blockDecEq : DecidableEq Block := Classical.decEq _
-
-local instance markedGroupDecEq : DecidableEq MarkedGroup := Classical.decEq _
-
-/-- The subgroup of `E` spanned by the marked word and the site lamps of a
-finite set of blocks. -/
-def blockSpan (J : Finset Block) : Subgroup MarkedGroup :=
-  Subgroup.closure
-    ({mark} ∪ {g | ∃ ξ : Site, blockOf ξ ∈ J ∧ g = siteLamp ξ})
-
-/-- The corresponding subgroup of the Clifford factor. -/
-def lampSpan (J : Finset Block) : Subgroup LampFactor :=
-  Subgroup.closure
-    ({lampSign} ∪ {n | ∃ ξ : Site, blockOf ξ ∈ J ∧ n = lampAt ξ})
-
-theorem blockSpan_mono {J J' : Finset Block} (h : J ⊆ J') :
-    blockSpan J ≤ blockSpan J' := by
-  refine Subgroup.closure_mono ?_
-  rintro g (hg | ⟨ξ, hξ, rfl⟩)
-  · exact Or.inl hg
-  · exact Or.inr ⟨ξ, h hξ, rfl⟩
-
-theorem lampSpan_mono {J J' : Finset Block} (h : J ⊆ J') :
-    lampSpan J ≤ lampSpan J' := by
-  refine Subgroup.closure_mono ?_
-  rintro n (hn | ⟨ξ, hξ, rfl⟩)
-  · exact Or.inl hn
-  · exact Or.inr ⟨ξ, h hξ, rfl⟩
-
-/-- The elements of the Clifford factor with finite block support. -/
-def lampSupported : Subgroup LampFactor where
-  carrier := {n | ∃ J : Finset Block, n ∈ lampSpan J}
-  one_mem' := ⟨∅, one_mem _⟩
-  mul_mem' := by
-    rintro a b ⟨J, hJ⟩ ⟨J', hJ'⟩
-    exact ⟨J ∪ J', mul_mem (lampSpan_mono Finset.subset_union_left hJ)
-      (lampSpan_mono Finset.subset_union_right hJ')⟩
-  inv_mem' := by
-    rintro a ⟨J, hJ⟩
-    exact ⟨J, inv_mem hJ⟩
-
-theorem exists_lampSpan (n : LampFactor) : ∃ J : Finset Block, n ∈ lampSpan J := by
-  refine mem_of_generators lampSupported (fun j ↦ ?_) n
-  match j with
-  | Sum.inl () =>
-      exact ⟨∅, Subgroup.subset_closure (Or.inl rfl)⟩
-  | Sum.inr ξ =>
-      exact ⟨{blockOf ξ}, Subgroup.subset_closure
-        (Or.inr ⟨ξ, Finset.mem_singleton_self _, rfl⟩)⟩
-
-theorem blockSpan_map (J : Finset Block) :
-    (blockSpan J).map toModel =
-      (lampSpan J).map (SemidirectProduct.inl : LampFactor →* Model) := by
-  rw [blockSpan, lampSpan, MonoidHom.map_closure, MonoidHom.map_closure]
-  congr 1
-  ext m
-  constructor
-  · rintro ⟨g, hg, rfl⟩
-    rcases hg with hg | ⟨ξ, hξ, rfl⟩
-    · rw [Set.mem_singleton_iff] at hg
-      subst hg
-      exact ⟨lampSign, Or.inl rfl, toModel_mark.symm⟩
-    · exact ⟨lampAt ξ, Or.inr ⟨ξ, hξ, rfl⟩, (manuscriptSiteLampImage ξ).symm⟩
-  · rintro ⟨x, hx, rfl⟩
-    rcases hx with hx | ⟨ξ, hξ, rfl⟩
-    · rw [Set.mem_singleton_iff] at hx
-      subst hx
-      exact ⟨mark, Or.inl rfl, toModel_mark⟩
-    · exact ⟨siteLamp ξ, Or.inr ⟨ξ, hξ, rfl⟩, manuscriptSiteLampImage ξ⟩
-
-/-- Every element of the lamp kernel is supported on finitely many blocks. -/
-theorem exists_blockSpan {g : MarkedGroup} (hg : g ∈ lampKernel) :
-    ∃ J : Finset Block, g ∈ blockSpan J := by
-  have hmem : toModel g ∈ (SemidirectProduct.inl : LampFactor →* Model).range := by
-    rw [← lampKernel_map_toModel]
-    exact ⟨g, hg, rfl⟩
-  obtain ⟨n, hn⟩ := hmem
-  obtain ⟨J, hJ⟩ := exists_lampSpan n
-  refine ⟨J, ?_⟩
-  have hin : toModel g ∈ (blockSpan J).map toModel := by
-    rw [blockSpan_map, ← hn]
-    exact ⟨n, hJ, rfl⟩
-  obtain ⟨k, hk, hkg⟩ := hin
-  rwa [toModel_injective hkg] at hk
-
-/-- **Finite block support.**  Every finite subset of the lamp kernel lies in
-the subgroup generated by the marked word together with the site lamps of
-finitely many blocks.  This is the input the soficity tower needs in order to
-approximate the lamp kernel by its finite block sub-amalgams. -/
-theorem exists_blockSpan_finset (S : Finset MarkedGroup)
-    (hS : ∀ g ∈ S, g ∈ lampKernel) :
-    ∃ J : Finset Block, ∀ g ∈ S, g ∈ blockSpan J := by
-  induction S using Finset.induction_on with
-  | empty => exact ⟨∅, by simp⟩
-  | insert a s ha ih =>
-      obtain ⟨J, hJ⟩ := ih (fun g hg ↦ hS g (Finset.mem_insert_of_mem hg))
-      obtain ⟨J', hJ'⟩ := exists_blockSpan (hS a (Finset.mem_insert_self a s))
-      refine ⟨J ∪ J', ?_⟩
-      intro g hg
-      rcases Finset.mem_insert.mp hg with rfl | hg
-      · exact blockSpan_mono Finset.subset_union_right hJ'
-      · exact blockSpan_mono Finset.subset_union_left (hJ g hg)
 
 /-! ## Finite telescope-level orbits on blocks
 
@@ -1262,236 +1057,6 @@ finite index there because the doubled subgroup has finite index in the literal
 base — the eight parity cosets of `LiteralBaseDoublingIndex`, an unconditional
 count.  Hence the whole vertical group commensurates the base, and the
 commensurated-subgroup criterion gives finite orbits. -/
-
-@[simp] theorem compressedBaseWord_v1 : compressedBaseWord v1Index = bv1 ^ 2 := rfl
-@[simp] theorem compressedBaseWord_v2 : compressedBaseWord v2Index = bv2 ^ 2 := rfl
-@[simp] theorem compressedBaseWord_v3 : compressedBaseWord v3Index = bv3 ^ 2 := rfl
-@[simp] theorem compressedBaseWord_x : compressedBaseWord xIndex = bx := rfl
-@[simp] theorem compressedBaseWord_y : compressedBaseWord yIndex = bY := rfl
-@[simp] theorem compressedBaseWord_z : compressedBaseWord zIndex = bz := rfl
-
-theorem baseWord_compressed_mem (i : BaseGenerator) :
-    LiteralBaseRelations.baseWord (compressedBaseWord i) ∈
-      LiteralBaseDoublingIndex.doubledBase := by
-  have hv1 : LiteralBaseRelations.baseWord (compressedBaseWord v1Index) ∈
-      LiteralBaseDoublingIndex.doubledBase := by
-    rw [compressedBaseWord_v1, map_pow, LiteralBaseRelations.baseWord_of]
-    exact LiteralBaseDoublingIndex.v1sq_mem_doubledBase
-  have hv2 : LiteralBaseRelations.baseWord (compressedBaseWord v2Index) ∈
-      LiteralBaseDoublingIndex.doubledBase := by
-    rw [compressedBaseWord_v2, map_pow, LiteralBaseRelations.baseWord_of]
-    exact LiteralBaseDoublingIndex.v2sq_mem_doubledBase
-  have hv3 : LiteralBaseRelations.baseWord (compressedBaseWord v3Index) ∈
-      LiteralBaseDoublingIndex.doubledBase := by
-    rw [compressedBaseWord_v3, map_pow, LiteralBaseRelations.baseWord_of]
-    exact LiteralBaseDoublingIndex.v3sq_mem_doubledBase
-  have hx : LiteralBaseRelations.baseWord (compressedBaseWord xIndex) ∈
-      LiteralBaseDoublingIndex.doubledBase := by
-    rw [compressedBaseWord_x, LiteralBaseRelations.baseWord_of]
-    exact LiteralBaseDoublingIndex.x_mem_doubledBase
-  have hy : LiteralBaseRelations.baseWord (compressedBaseWord yIndex) ∈
-      LiteralBaseDoublingIndex.doubledBase := by
-    rw [compressedBaseWord_y, LiteralBaseRelations.baseWord_of]
-    exact LiteralBaseDoublingIndex.y_mem_doubledBase
-  have hz : LiteralBaseRelations.baseWord (compressedBaseWord zIndex) ∈
-      LiteralBaseDoublingIndex.doubledBase := by
-    rw [compressedBaseWord_z, LiteralBaseRelations.baseWord_of]
-    exact LiteralBaseDoublingIndex.z_mem_doubledBase
-  fin_cases i
-  · exact hv1
-  · exact hv2
-  · exact hv3
-  · exact hx
-  · exact hy
-  · exact hz
-
-/-- The base, conjugated by the stable letter. -/
-def conjStable : Base →* Vertical :=
-  (MulAut.conj vStable).toMonoidHom.comp verticalBase
-
-@[simp] theorem conjStable_apply (u : Base) :
-    conjStable u = vStable * verticalBase u * vStable⁻¹ := rfl
-
-theorem conjStable_of (i : BaseGenerator) :
-    conjStable (PresentedGroup.of i) =
-      verticalBase (LiteralBaseRelations.baseWord (compressedBaseWord i)) := by
-  rw [conjStable_apply]
-  exact vertical_stable_relation i
-
-theorem conjStable_range_le :
-    conjStable.range ≤
-      LiteralBaseDoublingIndex.doubledBase.map verticalBase := by
-  rintro _ ⟨u, rfl⟩
-  have hmem : u ∈ (LiteralBaseDoublingIndex.doubledBase.map
-      verticalBase).comap conjStable := by
-    refine mem_of_generators _ (fun i ↦ ?_) u
-    show conjStable (PresentedGroup.of i) ∈
-      LiteralBaseDoublingIndex.doubledBase.map verticalBase
-    rw [conjStable_of]
-    exact ⟨_, baseWord_compressed_mem i, rfl⟩
-  exact hmem
-
-theorem doubledBase_map_le_conjStable_range :
-    LiteralBaseDoublingIndex.doubledBase.map verticalBase ≤
-      conjStable.range := by
-  have hcl : LiteralBaseDoublingIndex.doubledBase =
-      Subgroup.closure ({LiteralBaseRelations.x, LiteralBaseRelations.y,
-        LiteralBaseRelations.z, LiteralBaseRelations.v1 ^ 2,
-        LiteralBaseRelations.v2 ^ 2, LiteralBaseRelations.v3 ^ 2} :
-          Set Base) := rfl
-  rw [hcl, MonoidHom.map_closure, Subgroup.closure_le]
-  rintro _ ⟨g, hg, rfl⟩
-  simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hg
-  rcases hg with rfl | rfl | rfl | rfl | rfl | rfl
-  · exact ⟨PresentedGroup.of xIndex, by
-      rw [conjStable_of, compressedBaseWord_x,
-        LiteralBaseRelations.baseWord_of]⟩
-  · exact ⟨PresentedGroup.of yIndex, by
-      rw [conjStable_of, compressedBaseWord_y,
-        LiteralBaseRelations.baseWord_of]⟩
-  · exact ⟨PresentedGroup.of zIndex, by
-      rw [conjStable_of, compressedBaseWord_z,
-        LiteralBaseRelations.baseWord_of]⟩
-  · exact ⟨PresentedGroup.of v1Index, by
-      rw [conjStable_of, compressedBaseWord_v1, map_pow,
-        LiteralBaseRelations.baseWord_of, map_pow]⟩
-  · exact ⟨PresentedGroup.of v2Index, by
-      rw [conjStable_of, compressedBaseWord_v2, map_pow,
-        LiteralBaseRelations.baseWord_of, map_pow]⟩
-  · exact ⟨PresentedGroup.of v3Index, by
-      rw [conjStable_of, compressedBaseWord_v3, map_pow,
-        LiteralBaseRelations.baseWord_of, map_pow]⟩
-
-theorem conjStable_range_eq :
-    conjStable.range = LiteralBaseDoublingIndex.doubledBase.map verticalBase :=
-  le_antisymm conjStable_range_le doubledBase_map_le_conjStable_range
-
-theorem map_doubledBase_le_baseSubgroup :
-    LiteralBaseDoublingIndex.doubledBase.map verticalBase ≤ baseSubgroup := by
-  rintro _ ⟨u, -, rfl⟩
-  exact ⟨u, rfl⟩
-
-/-- Conjugating the vertical base by the stable letter gives the image of the
-doubled subgroup. -/
-theorem stable_smul_baseSubgroup :
-    ConjAct.toConjAct vStable • baseSubgroup =
-      LiteralBaseDoublingIndex.doubledBase.map verticalBase := by
-  rw [← conjStable_range_eq]
-  ext v
-  constructor
-  · intro hv
-    obtain ⟨b, hb, hbv⟩ :=
-      (Subgroup.mem_smul_pointwise_iff_exists v
-        (ConjAct.toConjAct vStable) baseSubgroup).mp hv
-    obtain ⟨u, rfl⟩ := hb
-    refine ⟨u, ?_⟩
-    rw [conjStable_apply]
-    simpa [ConjAct.toConjAct_smul] using hbv
-  · rintro ⟨u, rfl⟩
-    rw [conjStable_apply]
-    have hsm : vStable * verticalBase u * vStable⁻¹ =
-        ConjAct.toConjAct vStable • verticalBase u := by
-      simp [ConjAct.toConjAct_smul]
-    rw [hsm]
-    exact Subgroup.smul_mem_pointwise_smul _ _ _ ⟨u, rfl⟩
-
-theorem finite_quotient_stable_conj :
-    Finite (↥baseSubgroup ⧸
-      (LiteralBaseDoublingIndex.doubledBase.map verticalBase).subgroupOf
-        baseSubgroup) := by
-  apply Finite.of_surjective
-    (fun e : Fin 3 → Fin 2 ↦
-      (QuotientGroup.mk
-        (⟨verticalBase
-            (LiteralBaseDoublingIndex.parityRep (fun i ↦ ((e i : ℕ) : ℤ))),
-          ⟨LiteralBaseDoublingIndex.parityRep (fun i ↦ ((e i : ℕ) : ℤ)),
-            rfl⟩⟩ : ↥baseSubgroup) :
-        ↥baseSubgroup ⧸
-          (LiteralBaseDoublingIndex.doubledBase.map verticalBase).subgroupOf
-            baseSubgroup))
-  intro q
-  obtain ⟨u, rfl⟩ := QuotientGroup.mk_surjective q
-  obtain ⟨g, hg⟩ := u.2
-  obtain ⟨e, h, hh, hgeq⟩ := LiteralBaseDoublingIndex.exists_parity_coset g
-  refine ⟨e, ?_⟩
-  refine QuotientGroup.eq.mpr ?_
-  rw [Subgroup.mem_subgroupOf]
-  show (verticalBase
-      (LiteralBaseDoublingIndex.parityRep (fun i ↦ ((e i : ℕ) : ℤ))))⁻¹ *
-    (u : Vertical) ∈ LiteralBaseDoublingIndex.doubledBase.map verticalBase
-  rw [← hg, hgeq, map_mul]
-  exact ⟨h, hh, by group⟩
-
-theorem relIndex_ne_zero_stable :
-    (LiteralBaseDoublingIndex.doubledBase.map verticalBase).relIndex
-      baseSubgroup ≠ 0 := by
-  haveI := finite_quotient_stable_conj
-  exact Subgroup.index_ne_zero_of_finite
-
-theorem commensurable_stable :
-    Subgroup.Commensurable (ConjAct.toConjAct vStable • baseSubgroup)
-      baseSubgroup := by
-  rw [stable_smul_baseSubgroup]
-  refine ⟨relIndex_ne_zero_stable, ?_⟩
-  rw [Subgroup.relIndex_eq_one.mpr map_doubledBase_le_baseSubgroup]
-  exact one_ne_zero
-
-/-- **The vertical group commensurates the base.** -/
-theorem top_le_commensurator :
-    (⊤ : Subgroup Vertical) ≤
-      Subgroup.Commensurable.commensurator baseSubgroup := by
-  intro v _
-  refine mem_of_generators _ (fun j ↦ ?_) v
-  rcases generator_cases j with ⟨i, rfl⟩ | rfl | rfl
-  · rw [Subgroup.Commensurable.commensurator_mem_iff]
-    have hmem : (PresentedGroup.of (Generator.base i) : Vertical) ∈
-        baseSubgroup := ⟨PresentedGroup.of i, verticalBase_of i⟩
-    rw [Subgroup.conjAct_pointwise_smul_eq_self
-      (baseSubgroup.le_normalizer hmem)]
-  · rw [Subgroup.Commensurable.commensurator_mem_iff]
-    exact commensurable_stable
-  · rw [verticalOf_lamp_eq_one]
-    exact Subgroup.one_mem _
-
-/-- Every conjugate of the vertical base has finite orbits on sites. -/
-theorem finite_conj_site_orbit (g : Vertical) (ξ : Site) :
-    (MulAction.orbit ↥(ConjAct.toConjAct g • baseSubgroup) ξ).Finite :=
-  MappingTelescopeFiniteOrbits.finite_orbit_on_quotient_of_commensurated
-    (ConjAct.toConjAct g • baseSubgroup) baseSubgroup
-    ((Subgroup.Commensurable.commensurator_mem_iff baseSubgroup g).mp
-      (top_le_commensurator (Subgroup.mem_top g)))
-    top_le_commensurator ξ
-
-/-- Telescope level `n`: the conjugate `t⁻ⁿ B tⁿ` of the vertical base. -/
-def telescopeLevel (n : ℕ) : Subgroup Vertical :=
-  ConjAct.toConjAct ((vStable ^ n)⁻¹) • baseSubgroup
-
-/-- **Manuscript `prop:blocknormalform`.**  Every telescope level has finite
-orbits on sites.  Binders after the colon, and a single name, for the reason
-given at `manuscriptSiteLampImage`. -/
-theorem manuscriptFiniteLevelSiteOrbit :
-    ∀ (n : ℕ) (ξ : Site), (MulAction.orbit ↥(telescopeLevel n) ξ).Finite :=
-  fun _ ξ ↦ finite_conj_site_orbit _ ξ
-
-/-- **Finite telescope-level orbits on blocks.**  Each level of the mapping
-telescope moves any block into only finitely many blocks.  This is the second
-input the soficity tower needs: it is what makes the level-invariant lamp
-sub-amalgams finite. -/
-theorem finite_telescopeLevel_block_orbit (n : ℕ) (b : Block) :
-    (MulAction.orbit ↥(telescopeLevel n) b).Finite := by
-  obtain ⟨ξ, rfl⟩ := blockOf_surjective b
-  have himg : MulAction.orbit (telescopeLevel n) (blockOf ξ) =
-      blockOf '' MulAction.orbit (telescopeLevel n) ξ := by
-    ext c
-    simp only [MulAction.mem_orbit_iff, Set.mem_image]
-    constructor
-    · rintro ⟨h, rfl⟩
-      exact ⟨(h : Vertical) • ξ, ⟨h, rfl⟩, blockOf_smul _ _⟩
-    · rintro ⟨y, ⟨h, rfl⟩, rfl⟩
-      exact ⟨h, (blockOf_smul _ _).symm⟩
-  rw [himg]
-  exact (manuscriptFiniteLevelSiteOrbit n ξ).image _
-
 
 end
 

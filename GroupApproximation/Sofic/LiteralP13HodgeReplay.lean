@@ -1,4 +1,3 @@
-import GroupApproximation.GroupTheory.PresentedGroupRelatorReplay
 import GroupApproximation.Kazhdan.FoxBoundary
 import GroupApproximation.Sofic.LiteralP13Presentation
 
@@ -2282,35 +2281,6 @@ theorem reduction53 :
   rw [← map_inv, ← map_mul, ← hfree]
   simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction53Block0_eq_one
 
-/-- Checked P13 coefficient merge 54 (`prefix`). -/
-def reduction54Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 6, inverted := false }]
-
-def reduction54Chunk0Word : FreeGroup P13Generator :=
-  word [(0, true), (1, true), (0, false), (1, false)]
-
-theorem reduction54Chunk0_eq_one : p13Word reduction54Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction54Chunk0Word reduction54Chunk0Atoms
-  decide
-
-def reduction54Block0Word : FreeGroup P13Generator :=
-  word [(0, true), (1, true), (0, false), (1, false)]
-
-theorem reduction54Block0_eq_one : p13Word reduction54Block0Word = 1 := by
-  have hfree : reduction54Block0Word = ([reduction54Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction54Chunk0_eq_one
-
-theorem reduction54 :
-    p13Word (word [(0, true), (1, true), (0, false), (1, false)]) = p13Word (word []) := by
-  have hfree : ([reduction54Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(0, true), (1, true), (0, false), (1, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction54Block0_eq_one
-
 /-- Checked P13 coefficient merge 55 (`prefix`). -/
 def reduction55Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
   [{ conjugator := [], relatorIndex := 0, inverted := false }]
@@ -2339,35 +2309,6 @@ theorem reduction55 :
   apply eq_of_mul_inv_eq_one
   rw [← map_inv, ← map_mul, ← hfree]
   simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction55Block0_eq_one
-
-/-- Checked P13 coefficient merge 56 (`prefix`). -/
-def reduction56Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 7, inverted := false }]
-
-def reduction56Chunk0Word : FreeGroup P13Generator :=
-  word [(0, true), (5, true), (0, false), (5, false)]
-
-theorem reduction56Chunk0_eq_one : p13Word reduction56Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction56Chunk0Word reduction56Chunk0Atoms
-  decide
-
-def reduction56Block0Word : FreeGroup P13Generator :=
-  word [(0, true), (5, true), (0, false), (5, false)]
-
-theorem reduction56Block0_eq_one : p13Word reduction56Block0Word = 1 := by
-  have hfree : reduction56Block0Word = ([reduction56Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction56Chunk0_eq_one
-
-theorem reduction56 :
-    p13Word (word [(0, true), (5, true), (0, false), (5, false)]) = p13Word (word []) := by
-  have hfree : ([reduction56Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(0, true), (5, true), (0, false), (5, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction56Block0_eq_one
 
 /-- Checked P13 coefficient merge 57 (`product`). -/
 def reduction57Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
@@ -2458,35 +2399,6 @@ theorem reduction59 :
   apply eq_of_mul_inv_eq_one
   rw [← map_inv, ← map_mul, ← hfree]
   simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction59Block0_eq_one
-
-/-- Checked P13 coefficient merge 60 (`prefix`). -/
-def reduction60Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 8, inverted := false }]
-
-def reduction60Chunk0Word : FreeGroup P13Generator :=
-  word [(1, true), (3, true), (1, false), (3, false)]
-
-theorem reduction60Chunk0_eq_one : p13Word reduction60Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction60Chunk0Word reduction60Chunk0Atoms
-  decide
-
-def reduction60Block0Word : FreeGroup P13Generator :=
-  word [(1, true), (3, true), (1, false), (3, false)]
-
-theorem reduction60Block0_eq_one : p13Word reduction60Block0Word = 1 := by
-  have hfree : reduction60Block0Word = ([reduction60Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction60Chunk0_eq_one
-
-theorem reduction60 :
-    p13Word (word [(1, true), (3, true), (1, false), (3, false)]) = p13Word (word []) := by
-  have hfree : ([reduction60Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(1, true), (3, true), (1, false), (3, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction60Block0_eq_one
 
 /-- Checked P13 coefficient merge 61 (`prefix`). -/
 def reduction61Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
@@ -2619,93 +2531,6 @@ theorem reduction62 :
   rw [← map_inv, ← map_mul, ← hfree]
   simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction62Block0_eq_one
 
-/-- Checked P13 coefficient merge 63 (`prefix`). -/
-def reduction63Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 2, inverted := false }]
-
-def reduction63Chunk0Word : FreeGroup P13Generator :=
-  word [(2, true), (1, true), (2, false), (1, false), (3, false)]
-
-theorem reduction63Chunk0_eq_one : p13Word reduction63Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction63Chunk0Word reduction63Chunk0Atoms
-  decide
-
-def reduction63Block0Word : FreeGroup P13Generator :=
-  word [(2, true), (1, true), (2, false), (1, false), (3, false)]
-
-theorem reduction63Block0_eq_one : p13Word reduction63Block0Word = 1 := by
-  have hfree : reduction63Block0Word = ([reduction63Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction63Chunk0_eq_one
-
-theorem reduction63 :
-    p13Word (word [(2, true), (1, true), (2, false), (1, false)]) = p13Word (word [(3, true)]) := by
-  have hfree : ([reduction63Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(2, true), (1, true), (2, false), (1, false)] * (word [(3, true)])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction63Block0_eq_one
-
-/-- Checked P13 coefficient merge 64 (`prefix`). -/
-def reduction64Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 9, inverted := false }]
-
-def reduction64Chunk0Word : FreeGroup P13Generator :=
-  word [(2, true), (3, true), (2, false), (3, false)]
-
-theorem reduction64Chunk0_eq_one : p13Word reduction64Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction64Chunk0Word reduction64Chunk0Atoms
-  decide
-
-def reduction64Block0Word : FreeGroup P13Generator :=
-  word [(2, true), (3, true), (2, false), (3, false)]
-
-theorem reduction64Block0_eq_one : p13Word reduction64Block0Word = 1 := by
-  have hfree : reduction64Block0Word = ([reduction64Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction64Chunk0_eq_one
-
-theorem reduction64 :
-    p13Word (word [(2, true), (3, true), (2, false), (3, false)]) = p13Word (word []) := by
-  have hfree : ([reduction64Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(2, true), (3, true), (2, false), (3, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction64Block0_eq_one
-
-/-- Checked P13 coefficient merge 65 (`prefix`). -/
-def reduction65Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 10, inverted := false }]
-
-def reduction65Chunk0Word : FreeGroup P13Generator :=
-  word [(2, true), (4, true), (2, false), (4, false)]
-
-theorem reduction65Chunk0_eq_one : p13Word reduction65Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction65Chunk0Word reduction65Chunk0Atoms
-  decide
-
-def reduction65Block0Word : FreeGroup P13Generator :=
-  word [(2, true), (4, true), (2, false), (4, false)]
-
-theorem reduction65Block0_eq_one : p13Word reduction65Block0Word = 1 := by
-  have hfree : reduction65Block0Word = ([reduction65Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction65Chunk0_eq_one
-
-theorem reduction65 :
-    p13Word (word [(2, true), (4, true), (2, false), (4, false)]) = p13Word (word []) := by
-  have hfree : ([reduction65Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(2, true), (4, true), (2, false), (4, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction65Block0_eq_one
-
 /-- Checked P13 coefficient merge 66 (`product`). -/
 def reduction66Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
   [{ conjugator := [(3, true), (4, false), (3, false)], relatorIndex := 3, inverted := true }]
@@ -2824,93 +2649,6 @@ theorem reduction69 :
   apply eq_of_mul_inv_eq_one
   rw [← map_inv, ← map_mul, ← hfree]
   simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction69Block0_eq_one
-
-/-- Checked P13 coefficient merge 70 (`prefix`). -/
-def reduction70Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 4, inverted := false }]
-
-def reduction70Chunk0Word : FreeGroup P13Generator :=
-  word [(4, true), (0, true), (4, false), (0, false), (5, false)]
-
-theorem reduction70Chunk0_eq_one : p13Word reduction70Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction70Chunk0Word reduction70Chunk0Atoms
-  decide
-
-def reduction70Block0Word : FreeGroup P13Generator :=
-  word [(4, true), (0, true), (4, false), (0, false), (5, false)]
-
-theorem reduction70Block0_eq_one : p13Word reduction70Block0Word = 1 := by
-  have hfree : reduction70Block0Word = ([reduction70Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction70Chunk0_eq_one
-
-theorem reduction70 :
-    p13Word (word [(4, true), (0, true), (4, false), (0, false)]) = p13Word (word [(5, true)]) := by
-  have hfree : ([reduction70Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(4, true), (0, true), (4, false), (0, false)] * (word [(5, true)])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction70Block0_eq_one
-
-/-- Checked P13 coefficient merge 71 (`prefix`). -/
-def reduction71Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 11, inverted := false }]
-
-def reduction71Chunk0Word : FreeGroup P13Generator :=
-  word [(4, true), (5, true), (4, false), (5, false)]
-
-theorem reduction71Chunk0_eq_one : p13Word reduction71Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction71Chunk0Word reduction71Chunk0Atoms
-  decide
-
-def reduction71Block0Word : FreeGroup P13Generator :=
-  word [(4, true), (5, true), (4, false), (5, false)]
-
-theorem reduction71Block0_eq_one : p13Word reduction71Block0Word = 1 := by
-  have hfree : reduction71Block0Word = ([reduction71Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction71Chunk0_eq_one
-
-theorem reduction71 :
-    p13Word (word [(4, true), (5, true), (4, false), (5, false)]) = p13Word (word []) := by
-  have hfree : ([reduction71Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(4, true), (5, true), (4, false), (5, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction71Block0_eq_one
-
-/-- Checked P13 coefficient merge 72 (`prefix`). -/
-def reduction72Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 5, inverted := false }]
-
-def reduction72Chunk0Word : FreeGroup P13Generator :=
-  word [(5, true), (2, true), (5, false), (2, false), (4, false)]
-
-theorem reduction72Chunk0_eq_one : p13Word reduction72Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction72Chunk0Word reduction72Chunk0Atoms
-  decide
-
-def reduction72Block0Word : FreeGroup P13Generator :=
-  word [(5, true), (2, true), (5, false), (2, false), (4, false)]
-
-theorem reduction72Block0_eq_one : p13Word reduction72Block0Word = 1 := by
-  have hfree : reduction72Block0Word = ([reduction72Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction72Chunk0_eq_one
-
-theorem reduction72 :
-    p13Word (word [(5, true), (2, true), (5, false), (2, false)]) = p13Word (word [(4, true)]) := by
-  have hfree : ([reduction72Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(5, true), (2, true), (5, false), (2, false)] * (word [(4, true)])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction72Block0_eq_one
 
 /-- Checked P13 coefficient merge 73 (`product`). -/
 def reduction73Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
@@ -3500,35 +3238,6 @@ theorem reduction79 :
   rw [← map_inv, ← map_mul, ← hfree]
   simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction79Block0_eq_one
 
-/-- Checked P13 coefficient merge 80 (`prefix`). -/
-def reduction80Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 2, inverted := false }]
-
-def reduction80Chunk0Word : FreeGroup P13Generator :=
-  word [(2, true), (1, true), (2, false), (1, false), (3, false)]
-
-theorem reduction80Chunk0_eq_one : p13Word reduction80Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction80Chunk0Word reduction80Chunk0Atoms
-  decide
-
-def reduction80Block0Word : FreeGroup P13Generator :=
-  word [(2, true), (1, true), (2, false), (1, false), (3, false)]
-
-theorem reduction80Block0_eq_one : p13Word reduction80Block0Word = 1 := by
-  have hfree : reduction80Block0Word = ([reduction80Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction80Chunk0_eq_one
-
-theorem reduction80 :
-    p13Word (word [(2, true), (1, true), (2, false), (1, false), (3, false)]) = p13Word (word []) := by
-  have hfree : ([reduction80Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(2, true), (1, true), (2, false), (1, false), (3, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction80Block0_eq_one
-
 /-- Checked P13 coefficient merge 81 (`product`). -/
 def reduction81Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
   [{ conjugator := [(3, true), (4, false), (3, false)], relatorIndex := 3, inverted := true },
@@ -3660,64 +3369,6 @@ theorem reduction82 :
   apply eq_of_mul_inv_eq_one
   rw [← map_inv, ← map_mul, ← hfree]
   simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction82Block0_eq_one
-
-/-- Checked P13 coefficient merge 83 (`prefix`). -/
-def reduction83Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 4, inverted := false }]
-
-def reduction83Chunk0Word : FreeGroup P13Generator :=
-  word [(4, true), (0, true), (4, false), (0, false), (5, false)]
-
-theorem reduction83Chunk0_eq_one : p13Word reduction83Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction83Chunk0Word reduction83Chunk0Atoms
-  decide
-
-def reduction83Block0Word : FreeGroup P13Generator :=
-  word [(4, true), (0, true), (4, false), (0, false), (5, false)]
-
-theorem reduction83Block0_eq_one : p13Word reduction83Block0Word = 1 := by
-  have hfree : reduction83Block0Word = ([reduction83Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction83Chunk0_eq_one
-
-theorem reduction83 :
-    p13Word (word [(4, true), (0, true), (4, false), (0, false), (5, false)]) = p13Word (word []) := by
-  have hfree : ([reduction83Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(4, true), (0, true), (4, false), (0, false), (5, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction83Block0_eq_one
-
-/-- Checked P13 coefficient merge 84 (`prefix`). -/
-def reduction84Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
-  [{ conjugator := [], relatorIndex := 5, inverted := false }]
-
-def reduction84Chunk0Word : FreeGroup P13Generator :=
-  word [(5, true), (2, true), (5, false), (2, false), (4, false)]
-
-theorem reduction84Chunk0_eq_one : p13Word reduction84Chunk0Word = 1 := by
-  apply mk_eq_one_of_replay p13Relator
-    (fun i ↦ Finset.mem_coe.mpr (p13Relator_mem i))
-    reduction84Chunk0Word reduction84Chunk0Atoms
-  decide
-
-def reduction84Block0Word : FreeGroup P13Generator :=
-  word [(5, true), (2, true), (5, false), (2, false), (4, false)]
-
-theorem reduction84Block0_eq_one : p13Word reduction84Block0Word = 1 := by
-  have hfree : reduction84Block0Word = ([reduction84Chunk0Word] : List (FreeGroup P13Generator)).prod := by decide
-  rw [hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction84Chunk0_eq_one
-
-theorem reduction84 :
-    p13Word (word [(5, true), (2, true), (5, false), (2, false), (4, false)]) = p13Word (word []) := by
-  have hfree : ([reduction84Block0Word] : List (FreeGroup P13Generator)).prod =
-      word [(5, true), (2, true), (5, false), (2, false), (4, false)] * (word [])⁻¹ := by decide
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, ← hfree]
-  simpa only [List.prod_cons, List.prod_nil, mul_one] using reduction84Block0_eq_one
 
 /-- Checked P13 coefficient merge 85 (`product`). -/
 def reduction85Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=
@@ -12263,12 +11914,6 @@ theorem reduction143 :
   rw [← map_inv, ← map_mul, ← hfree]
   simp only [List.prod_cons, List.prod_nil, mul_one, map_mul, reduction143Block0_eq_one, reduction143Block1_eq_one, reduction143Block2_eq_one]
 
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay26 :
-    p13Word (word [(0, true), (1, true), (0, false)]) = p13Word (supportFreeWord (18 : Fin 22)) := by
-  rw [show supportFreeWord (18 : Fin 22) = word [(1, true)] by decide]
-  exact reduction26
-
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue26 :
     p13Generator 0 * (p13Generator 1 * ((p13Generator 0)⁻¹)) = p13Generator 1 := by
@@ -12276,12 +11921,6 @@ theorem reduction143 :
     rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
     exact reduction26
   simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay28 :
-    p13Word (word [(0, true), (5, true), (0, false)]) = p13Word (supportFreeWord (13 : Fin 22)) := by
-  rw [show supportFreeWord (13 : Fin 22) = word [(5, true)] by decide]
-  exact reduction28
 
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue28 :
@@ -12291,12 +11930,6 @@ theorem reduction143 :
     exact reduction28
   simpa [wordValue, letterValue] using h
 
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay30 :
-    p13Word (word [(1, true), (3, true), (1, false)]) = p13Word (supportFreeWord (15 : Fin 22)) := by
-  rw [show supportFreeWord (15 : Fin 22) = word [(3, true)] by decide]
-  exact reduction30
-
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue30 :
     p13Generator 1 * (p13Generator 3 * ((p13Generator 1)⁻¹)) = p13Generator 3 := by
@@ -12304,12 +11937,6 @@ theorem reduction143 :
     rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
     exact reduction30
   simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay33 :
-    p13Word (word [(2, true), (1, true), (2, false)]) = p13Word (supportFreeWord (19 : Fin 22)) := by
-  rw [show supportFreeWord (19 : Fin 22) = word [(0, true), (3, true), (0, false)] by decide]
-  exact reduction33
 
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue33 :
@@ -12319,12 +11946,6 @@ theorem reduction143 :
     exact reduction33
   simpa [wordValue, letterValue] using h
 
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay34 :
-    p13Word (word [(2, true), (3, true), (2, false)]) = p13Word (supportFreeWord (15 : Fin 22)) := by
-  rw [show supportFreeWord (15 : Fin 22) = word [(3, true)] by decide]
-  exact reduction34
-
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue34 :
     p13Generator 2 * (p13Generator 3 * ((p13Generator 2)⁻¹)) = p13Generator 3 := by
@@ -12332,12 +11953,6 @@ theorem reduction143 :
     rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
     exact reduction34
   simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay35 :
-    p13Word (word [(2, true), (4, true), (2, false)]) = p13Word (supportFreeWord (14 : Fin 22)) := by
-  rw [show supportFreeWord (14 : Fin 22) = word [(4, true)] by decide]
-  exact reduction35
 
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue35 :
@@ -12347,12 +11962,6 @@ theorem reduction143 :
     exact reduction35
   simpa [wordValue, letterValue] using h
 
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay38 :
-    p13Word (word [(4, true), (0, true), (4, false)]) = p13Word (supportFreeWord (21 : Fin 22)) := by
-  rw [show supportFreeWord (21 : Fin 22) = word [(1, true), (5, true), (1, false)] by decide]
-  exact reduction38
-
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue38 :
     p13Generator 4 * (p13Generator 0 * ((p13Generator 4)⁻¹)) = p13Generator 1 * (p13Generator 5 * ((p13Generator 1)⁻¹)) := by
@@ -12360,12 +11969,6 @@ theorem reduction143 :
     rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
     exact reduction38
   simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay39 :
-    p13Word (word [(4, true), (5, true), (4, false)]) = p13Word (supportFreeWord (13 : Fin 22)) := by
-  rw [show supportFreeWord (13 : Fin 22) = word [(5, true)] by decide]
-  exact reduction39
 
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue39 :
@@ -12375,12 +11978,6 @@ theorem reduction143 :
     exact reduction39
   simpa [wordValue, letterValue] using h
 
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay40 :
-    p13Word (word [(5, true), (2, true), (5, false)]) = p13Word (supportFreeWord (17 : Fin 22)) := by
-  rw [show supportFreeWord (17 : Fin 22) = word [(3, true), (4, true), (3, false)] by decide]
-  exact reduction40
-
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue40 :
     p13Generator 5 * (p13Generator 2 * ((p13Generator 5)⁻¹)) = p13Generator 3 * (p13Generator 4 * ((p13Generator 3)⁻¹)) := by
@@ -12388,26 +11985,6 @@ theorem reduction143 :
     rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
     exact reduction40
   simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay54 :
-    p13Word (word [(0, true), (1, true), (0, false), (1, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction54
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue54 :
-    p13Generator 0 * (p13Generator 1 * ((p13Generator 0)⁻¹ * ((p13Generator 1)⁻¹))) = 1 := by
-  have h : wordValue p13Generator [(0, true), (1, true), (0, false), (1, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction54
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay55 :
-    p13Word (word [(0, true), (3, true), (0, false), (3, false)]) = p13Word (supportFreeWord (18 : Fin 22)) := by
-  rw [show supportFreeWord (18 : Fin 22) = word [(1, true)] by decide]
-  exact reduction55
 
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue55 :
@@ -12417,40 +11994,6 @@ theorem reduction143 :
     exact reduction55
   simpa [wordValue, letterValue] using h
 
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay56 :
-    p13Word (word [(0, true), (5, true), (0, false), (5, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction56
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue56 :
-    p13Generator 0 * (p13Generator 5 * ((p13Generator 0)⁻¹ * ((p13Generator 5)⁻¹))) = 1 := by
-  have h : wordValue p13Generator [(0, true), (5, true), (0, false), (5, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction56
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay60 :
-    p13Word (word [(1, true), (3, true), (1, false), (3, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction60
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue60 :
-    p13Generator 1 * (p13Generator 3 * ((p13Generator 1)⁻¹ * ((p13Generator 3)⁻¹))) = 1 := by
-  have h : wordValue p13Generator [(1, true), (3, true), (1, false), (3, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction60
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay61 :
-    p13Word (word [(1, true), (5, true), (1, false), (5, false)]) = p13Word (supportFreeWord (20 : Fin 22)) := by
-  rw [show supportFreeWord (20 : Fin 22) = word [(0, true)] by decide]
-  exact reduction61
-
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue61 :
     p13Generator 1 * (p13Generator 5 * ((p13Generator 1)⁻¹ * ((p13Generator 5)⁻¹))) = p13Generator 0 := by
@@ -12458,54 +12001,6 @@ theorem reduction143 :
     rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
     exact reduction61
   simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay63 :
-    p13Word (word [(2, true), (1, true), (2, false), (1, false)]) = p13Word (supportFreeWord (15 : Fin 22)) := by
-  rw [show supportFreeWord (15 : Fin 22) = word [(3, true)] by decide]
-  exact reduction63
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue63 :
-    p13Generator 2 * (p13Generator 1 * ((p13Generator 2)⁻¹ * ((p13Generator 1)⁻¹))) = p13Generator 3 := by
-  have h : wordValue p13Generator [(2, true), (1, true), (2, false), (1, false)] = wordValue p13Generator [(3, true)] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction63
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay64 :
-    p13Word (word [(2, true), (3, true), (2, false), (3, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction64
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue64 :
-    p13Generator 2 * (p13Generator 3 * ((p13Generator 2)⁻¹ * ((p13Generator 3)⁻¹))) = 1 := by
-  have h : wordValue p13Generator [(2, true), (3, true), (2, false), (3, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction64
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay65 :
-    p13Word (word [(2, true), (4, true), (2, false), (4, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction65
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue65 :
-    p13Generator 2 * (p13Generator 4 * ((p13Generator 2)⁻¹ * ((p13Generator 4)⁻¹))) = 1 := by
-  have h : wordValue p13Generator [(2, true), (4, true), (2, false), (4, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction65
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay69 :
-    p13Word (word [(3, true), (4, true), (3, false), (4, false)]) = p13Word (supportFreeWord (16 : Fin 22)) := by
-  rw [show supportFreeWord (16 : Fin 22) = word [(2, true)] by decide]
-  exact reduction69
 
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue69 :
@@ -12515,54 +12010,6 @@ theorem reduction143 :
     exact reduction69
   simpa [wordValue, letterValue] using h
 
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay70 :
-    p13Word (word [(4, true), (0, true), (4, false), (0, false)]) = p13Word (supportFreeWord (13 : Fin 22)) := by
-  rw [show supportFreeWord (13 : Fin 22) = word [(5, true)] by decide]
-  exact reduction70
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue70 :
-    p13Generator 4 * (p13Generator 0 * ((p13Generator 4)⁻¹ * ((p13Generator 0)⁻¹))) = p13Generator 5 := by
-  have h : wordValue p13Generator [(4, true), (0, true), (4, false), (0, false)] = wordValue p13Generator [(5, true)] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction70
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay71 :
-    p13Word (word [(4, true), (5, true), (4, false), (5, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction71
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue71 :
-    p13Generator 4 * (p13Generator 5 * ((p13Generator 4)⁻¹ * ((p13Generator 5)⁻¹))) = 1 := by
-  have h : wordValue p13Generator [(4, true), (5, true), (4, false), (5, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction71
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay72 :
-    p13Word (word [(5, true), (2, true), (5, false), (2, false)]) = p13Word (supportFreeWord (14 : Fin 22)) := by
-  rw [show supportFreeWord (14 : Fin 22) = word [(4, true)] by decide]
-  exact reduction72
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue72 :
-    p13Generator 5 * (p13Generator 2 * ((p13Generator 5)⁻¹ * ((p13Generator 2)⁻¹))) = p13Generator 4 := by
-  have h : wordValue p13Generator [(5, true), (2, true), (5, false), (2, false)] = wordValue p13Generator [(4, true)] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction72
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay74 :
-    p13Word (word [(0, true), (3, true), (0, false), (3, false), (1, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction74
-
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue74 :
     p13Generator 0 * (p13Generator 3 * ((p13Generator 0)⁻¹ * ((p13Generator 3)⁻¹ * ((p13Generator 1)⁻¹)))) = 1 := by
@@ -12570,12 +12017,6 @@ theorem reduction143 :
     rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
     exact reduction74
   simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay76 :
-    p13Word (word [(1, true), (5, true), (1, false), (5, false), (0, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction76
 
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue76 :
@@ -12585,26 +12026,6 @@ theorem reduction143 :
     exact reduction76
   simpa [wordValue, letterValue] using h
 
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay80 :
-    p13Word (word [(2, true), (1, true), (2, false), (1, false), (3, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction80
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue80 :
-    p13Generator 2 * (p13Generator 1 * ((p13Generator 2)⁻¹ * ((p13Generator 1)⁻¹ * ((p13Generator 3)⁻¹)))) = 1 := by
-  have h : wordValue p13Generator [(2, true), (1, true), (2, false), (1, false), (3, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction80
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay82 :
-    p13Word (word [(3, true), (4, true), (3, false), (4, false), (2, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction82
-
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue82 :
     p13Generator 3 * (p13Generator 4 * ((p13Generator 3)⁻¹ * ((p13Generator 4)⁻¹ * ((p13Generator 2)⁻¹)))) = 1 := by
@@ -12612,40 +12033,6 @@ theorem reduction143 :
     rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
     exact reduction82
   simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay83 :
-    p13Word (word [(4, true), (0, true), (4, false), (0, false), (5, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction83
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue83 :
-    p13Generator 4 * (p13Generator 0 * ((p13Generator 4)⁻¹ * ((p13Generator 0)⁻¹ * ((p13Generator 5)⁻¹)))) = 1 := by
-  have h : wordValue p13Generator [(4, true), (0, true), (4, false), (0, false), (5, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction83
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay84 :
-    p13Word (word [(5, true), (2, true), (5, false), (2, false), (4, false)]) = p13Word (supportFreeWord (12 : Fin 22)) := by
-  rw [show supportFreeWord (12 : Fin 22) = word [] by decide]
-  exact reduction84
-
-/-- Group evaluation of the same checked Fox-prefix replay. -/
-@[simp] theorem prefixValue84 :
-    p13Generator 5 * (p13Generator 2 * ((p13Generator 5)⁻¹ * ((p13Generator 2)⁻¹ * ((p13Generator 4)⁻¹)))) = 1 := by
-  have h : wordValue p13Generator [(5, true), (2, true), (5, false), (2, false), (4, false)] = wordValue p13Generator [] := by
-    rw [← p13Word_word_eq_wordValue, ← p13Word_word_eq_wordValue]
-    exact reduction84
-  simpa [wordValue, letterValue] using h
-
-/-- Checked canonicalization of a Fox prefix. -/
-@[simp] theorem prefixReplay139 :
-    p13Word (word [(0, true), (2, false), (0, true), (0, true), (2, false), (0, true), (0, true), (2, false), (0, true), (0, true), (2, false)]) = p13Word (supportFreeWord (6 : Fin 22)) := by
-  rw [show supportFreeWord (6 : Fin 22) = word [(0, false)] by decide]
-  exact reduction139
 
 /-- Group evaluation of the same checked Fox-prefix replay. -/
 @[simp] theorem prefixValue139 :

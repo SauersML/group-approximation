@@ -96,10 +96,9 @@ theorem w13_conj_31 (a : ℤ) : w13 * x 4 a * w13⁻¹ = x 1 (-a) := by
 /-- The braid relation for `x₁₃(1)` and `x₃₁(-1)`. -/
 theorem braid13 :
     x 1 1 * x 4 (-1) * x 1 1 = x 4 (-1) * x 1 1 * x 4 (-1) := by
-  have h : w13 * x 1 1 * w13⁻¹ = x 4 (-1) := w13_conj_13 1
   have h2 : w13 * x 1 1 = x 4 (-1) * w13 := by
     calc w13 * x 1 1 = (w13 * x 1 1 * w13⁻¹) * w13 := by group
-      _ = x 4 (-1) * w13 := by rw [h]
+      _ = x 4 (-1) * w13 := by rw [w13_conj_13]
   have h3 : (x 1 1 * x 4 (-1) * x 1 1) * x 1 1 =
       x 4 (-1) * (x 1 1 * x 4 (-1) * x 1 1) := h2
   calc x 1 1 * x 4 (-1) * x 1 1

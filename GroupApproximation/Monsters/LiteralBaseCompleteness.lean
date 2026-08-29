@@ -1,7 +1,6 @@
 import GroupApproximation.Monsters.P13DescentMaster
 import GroupApproximation.Sofic.LiteralBaseP13RotationQuotient
 import GroupApproximation.Sofic.LiteralBaseAffineQuotient
-import GroupApproximation.Sofic.LiteralBaseTranslationNormal
 
 /-!
 # Completeness of the literal base presentation
@@ -65,12 +64,6 @@ theorem yU_inv : yU⁻¹ = yU * yU := by
   rw [pow_succ, pow_two] at h
   exact h
 
-theorem zU_inv : zU⁻¹ = zU := by
-  apply inv_eq_of_mul_eq_one_left
-  have h := zU_sq
-  rw [pow_two] at h
-  exact h
-
 /-! ## The rotation matrix model -/
 
 def rotUnit : RotationGenerator → Matˣ
@@ -91,21 +84,18 @@ local macro "verify_unit_matrix" : tactic =>
          norm_num [Matrix.mul_apply, Matrix.one_apply, pow_succ,
            Fin.sum_univ_succ, xU, yU, zU, xM, yM, zM]))
 
-set_option linter.unusedSimpArgs false in
 private theorem rotUnit_kills_xzcube :
     FreeGroup.lift rotUnit relXZCube = 1 := by
   simp only [relXZCube, map_pow, map_mul, FreeGroup.lift_apply_of,
-    rotUnit_zero, rotUnit_one, rotUnit_two]
+    rotUnit_zero, rotUnit_two]
   verify_unit_matrix
 
-set_option linter.unusedSimpArgs false in
 private theorem rotUnit_kills_yzcube :
     FreeGroup.lift rotUnit relYZCube = 1 := by
   simp only [relYZCube, map_pow, map_mul, FreeGroup.lift_apply_of,
-    rotUnit_zero, rotUnit_one, rotUnit_two]
+    rotUnit_one, rotUnit_two]
   verify_unit_matrix
 
-set_option linter.unusedSimpArgs false in
 private theorem rotUnit_kills_xinvzxy :
     FreeGroup.lift rotUnit relXInvZXY = 1 := by
   simp only [relXInvZXY, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of,
@@ -113,7 +103,6 @@ private theorem rotUnit_kills_xinvzxy :
   rw [xU_inv]
   verify_unit_matrix
 
-set_option linter.unusedSimpArgs false in
 private theorem rotUnit_kills_yinvzyx :
     FreeGroup.lift rotUnit relYInvZYX = 1 := by
   simp only [relYInvZYX, map_pow, map_mul, map_inv, FreeGroup.lift_apply_of,
@@ -121,11 +110,10 @@ private theorem rotUnit_kills_yinvzyx :
   rw [yU_inv]
   verify_unit_matrix
 
-set_option linter.unusedSimpArgs false in
 private theorem rotUnit_kills_xysix :
     FreeGroup.lift rotUnit relXYSix = 1 := by
   simp only [relXYSix, map_pow, map_mul, FreeGroup.lift_apply_of,
-    rotUnit_zero, rotUnit_one, rotUnit_two]
+    rotUnit_zero, rotUnit_one]
   verify_unit_matrix
 
 theorem rotUnit_kills :
@@ -271,32 +259,6 @@ def blockEmbed4 : SL3 →* Matˣ where
     (blockEmbed4 A).val =
       blockMonoid (castMat (A : Matrix (Fin 3) (Fin 3) ℤ)) := rfl
 
-theorem symm_fin0 :
-    (finSumFinEquiv (m := 3) (n := 1)).symm (0 : Fin 4) = Sum.inl (0 : Fin 3) := by
-  decide
-
-theorem symm_fin1 :
-    (finSumFinEquiv (m := 3) (n := 1)).symm (1 : Fin 4) = Sum.inl (1 : Fin 3) := by
-  decide
-
-theorem symm_fin2 :
-    (finSumFinEquiv (m := 3) (n := 1)).symm (2 : Fin 4) = Sum.inl (2 : Fin 3) := by
-  decide
-
-theorem symm_fin3 :
-    (finSumFinEquiv (m := 3) (n := 1)).symm (3 : Fin 4) = Sum.inr (0 : Fin 1) := by
-  decide
-
-theorem blockMonoid_apply (M : Matrix (Fin 3) (Fin 3) ℚ)
-    (i4 j4 : Fin 4) :
-    blockMonoid M i4 j4 =
-      Matrix.fromBlocks M (0 : Matrix (Fin 3) (Fin 1) ℚ)
-        (0 : Matrix (Fin 1) (Fin 3) ℚ) (1 : Matrix (Fin 1) (Fin 1) ℚ)
-        ((finSumFinEquiv (m := 3) (n := 1)).symm i4)
-        ((finSumFinEquiv (m := 3) (n := 1)).symm j4) := by
-  simp [blockMonoid, Matrix.submatrix_apply]
-
-set_option linter.unusedSimpArgs false in
 /-- Explicit entries of the block embedding. -/
 theorem blockEmbed4_val_explicit (A : SL3) :
     ((blockEmbed4 A : Matˣ) : Mat) =
@@ -314,65 +276,7 @@ theorem blockEmbed4_val_explicit (A : SL3) :
   refine Matrix.ext fun i j => ?_
   fin_cases i <;> fin_cases j <;>
     simp [blockMonoid, Matrix.submatrix_apply, Matrix.fromBlocks,
-      finSumFinEquiv, Fin.addCases, castMat, Matrix.map_apply,
-      Matrix.one_apply]
-
-set_option linter.unusedSimpArgs false in
-theorem blockEmbed4_eq_one {A : SL3} (h : blockEmbed4 A = 1) :
-    A = 1 := by
-  have hval := congrArg (fun u : Matˣ => (u : Mat)) h
-  rw [blockEmbed4_val_explicit] at hval
-  have hent : ∀ i4 j4 : Fin 4,
-      (!![((A : Matrix (Fin 3) (Fin 3) ℤ) 0 0 : ℚ),
-          ((A : Matrix (Fin 3) (Fin 3) ℤ) 0 1 : ℚ),
-          ((A : Matrix (Fin 3) (Fin 3) ℤ) 0 2 : ℚ), 0;
-        ((A : Matrix (Fin 3) (Fin 3) ℤ) 1 0 : ℚ),
-          ((A : Matrix (Fin 3) (Fin 3) ℤ) 1 1 : ℚ),
-          ((A : Matrix (Fin 3) (Fin 3) ℤ) 1 2 : ℚ), 0;
-        ((A : Matrix (Fin 3) (Fin 3) ℤ) 2 0 : ℚ),
-          ((A : Matrix (Fin 3) (Fin 3) ℤ) 2 1 : ℚ),
-          ((A : Matrix (Fin 3) (Fin 3) ℤ) 2 2 : ℚ), 0;
-        0, 0, 0, 1] : Mat) i4 j4 = (1 : Mat) i4 j4 := by
-    intro i4 j4
-    rw [hval, Units.val_one]
-  ext i j
-  match i, j with
-  | 0, 0 =>
-      have hE := hent 0 0
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
-  | 0, 1 =>
-      have hE := hent 0 1
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
-  | 0, 2 =>
-      have hE := hent 0 2
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
-  | 1, 0 =>
-      have hE := hent 1 0
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
-  | 1, 1 =>
-      have hE := hent 1 1
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
-  | 1, 2 =>
-      have hE := hent 1 2
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
-  | 2, 0 =>
-      have hE := hent 2 0
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
-  | 2, 1 =>
-      have hE := hent 2 1
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
-  | 2, 2 =>
-      have hE := hent 2 2
-      simp [Matrix.one_apply] at hE ⊢
-      exact_mod_cast hE
+      finSumFinEquiv, Fin.addCases, castMat, Matrix.map_apply]
 
 /-! ## The compatibility square -/
 
@@ -529,7 +433,6 @@ private theorem rotationToMat_p13_5 :
   rw [yU_inv, xU_inv]
   verify_word_matrix
 
-
 /-- The Steinberg letters evaluate through the rotation words to the
 block elementary matrices. -/
 theorem rotationToMat_p13 (i : P13Generator) :
@@ -558,23 +461,6 @@ theorem rotationToMat_comp_p13ToRotation :
       rw [toSL3_of, rotationToMat_p13]
   | inv_of i h => simpa only [map_inv] using congrArg Inv.inv h
   | mul a b ha hb => simpa only [map_mul] using congrArg₂ (· * ·) ha hb
-
-/-- **Rotation injectivity.**  The eight-relator rotation presentation
-injects into the matrices, by presentation completeness of the Steinberg
-model. -/
-theorem rotationToMat_injective : Function.Injective rotationToMat := by
-  rw [injective_iff_map_eq_one]
-  intro r hr
-  obtain ⟨p, rfl⟩ := p13ToRotation_surjective r
-  have h2 : blockEmbed4 (toSL3 p) = 1 := by
-    have := DFunLike.congr_fun rotationToMat_comp_p13ToRotation p
-    simp only [MonoidHom.comp_apply] at this
-    rw [← this]
-    exact hr
-  have h3 : toSL3 p = 1 := blockEmbed4_eq_one h2
-  have h4 : p = 1 :=
-    (injective_iff_map_eq_one toSL3).mp P13DescentMaster.toSL3_injective p h3
-  rw [h4, map_one]
 
 /-! ## The translation units -/
 
@@ -906,10 +792,8 @@ theorem affineQuotient_injective : Function.Injective affineQuotient := by
         Matrix.cons_val_three, Matrix.head_cons, Matrix.tail_cons] at hE
       exact_mod_cast hE
   obtain ⟨rfl, rfl, rfl⟩ := habc0
-  have hτ1 : g * ρ⁻¹ = 1 := by
-    rw [habc]; simp
   calc g = (g * ρ⁻¹) * ρ := by group
-    _ = 1 := by rw [hτ1, hρ1, one_mul]
+    _ = 1 := by rw [habc, hρ1]; simp
 
 /-- **The literal base is the affine group**: the presented group on the
 twenty displayed relators is isomorphic to the explicit affine matrix

@@ -1,7 +1,5 @@
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.TorsionTrace1
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.O12_13
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.O12_32
 
 namespace GroupApproximation.LiteralBaseP13RotationReplay
 

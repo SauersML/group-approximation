@@ -54,7 +54,7 @@ private theorem lin_ne_zero {c d : ℤ} (h : ¬(c = 0 ∧ d = 0)) {x : ℝ}
     have hc' : (c : ℝ) ≠ 0 := Int.cast_ne_zero.mpr hc
     rw [eq_div_iff hc']
     push_cast
-    linarith
+    linarith only [hzero]
 
 private theorem bottom_row_ne_zero (M : SL2) :
     ¬((M : Matrix (Fin 2) (Fin 2) ℤ) 1 0 = 0 ∧
@@ -98,7 +98,7 @@ theorem moebiusVal_irrational (M : SL2) {x : ℝ} (hx : Irrational x) :
   have hdetR : (a : ℝ) * d - b * c = 1 := by exact_mod_cast hdet
   have hden2 : (a : ℝ) - (c : ℝ) * y ≠ 0 := by
     intro hzero
-    have hay : (a : ℝ) = c * y := by linarith
+    have hay : (a : ℝ) = c * y := by linarith only [hzero]
     have hby : (d : ℝ) * y = b := by linear_combination hclear + x * hay
     have hcontra : (0 : ℝ) = 1 := by
       linear_combination hdetR - d * hay - c * hby
@@ -174,10 +174,6 @@ def rep : SL2 →* Equiv.Perm Irr where
   map_mul' M N := Equiv.ext fun x => by
     simp only [Equiv.Perm.mul_apply]
     exact (moebius_mul M N x).symm
-
-@[simp] theorem rep_apply (M : SL2) (x : Irr) :
-    rep M x = moebius M x :=
-  rfl
 
 end
 

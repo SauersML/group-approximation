@@ -25,6 +25,20 @@ on:
   push:
     paths:
       - 'Palomar/**'
+      - 'PalomarSolution.lean'
+      - 'scripts/check_palomar_submission.py'
+      - 'scripts/check_palomar_statement_match.sh'
+      - 'scripts/PalomarChallengeType.lean'
+      - 'scripts/PalomarSolutionType.lean'
+      - 'formalization.yaml'
+      - 'lakefile.toml'
+      - 'lean-toolchain'
+      - 'lake-manifest.json'
+      - '.github/workflows/palomar-check.yml'
+  pull_request:
+    paths:
+      - 'Palomar/**'
+      - 'PalomarSolution.lean'
       - 'scripts/check_palomar_submission.py'
       - 'scripts/check_palomar_statement_match.sh'
       - 'scripts/PalomarChallengeType.lean'

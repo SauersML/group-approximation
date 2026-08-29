@@ -1,6 +1,5 @@
 import GroupApproximation.Sofic.ApproxInvolutionCorner
 import GroupApproximation.Sofic.KazhdanCornerModel
-import GroupApproximation.Sofic.KazhdanCornerPolar
 
 /-!
 # The negative corner of an approximate central involution
@@ -227,7 +226,7 @@ theorem norm_negBlock_le_half_commutator (U M : Matrix Y Y ℂ) :
   rw [coordinateBlock_sign_commutator, norm_smul] at hb
   have hnorm2 : ‖(-2 : ℂ)‖ = 2 := by norm_num
   rw [hnorm2] at hb
-  linarith
+  linarith only [hb]
 
 /-- Corner leakage bound for the mirrored block. -/
 theorem norm_posBlock_le_half_commutator (U M : Matrix Y Y ℂ) :
@@ -238,7 +237,7 @@ theorem norm_posBlock_le_half_commutator (U M : Matrix Y Y ℂ) :
   rw [coordinateBlock_sign_commutator', norm_smul] at hb
   have hnorm2 : ‖(2 : ℂ)‖ = 2 := by norm_num
   rw [hnorm2] at hb
-  linarith
+  linarith only [hb]
 
 /-- A nonzero negative projection yields a corner coordinate. -/
 theorem nonempty_negPredicate_of_negativeProjection_ne_zero
@@ -330,7 +329,7 @@ theorem cornerMicrostate_multiplicative_eventually
         cornerMicrostate A z n g * cornerMicrostate A z n h‖ ≤ ε := by
   intro ε hε
   obtain ⟨Nm, hNm⟩ := A.asymptoticallyMultiplicative g h (ε / 2)
-    (by linarith)
+    (half_pos hε)
   obtain ⟨Nc, hNc⟩ := sign_commutator_vanishing A hz (hcentral g) ε hε
   refine ⟨max Nm Nc, fun n hn => ?_⟩
   letI : Nonempty (A.model n) := Fintype.card_pos_iff.mp (A.modelNonempty n)
@@ -345,7 +344,7 @@ theorem cornerMicrostate_multiplicative_eventually
       (fun i => ¬ negPredicate U i) (signMicrostate A z n g)‖ ≤ ε / 2 := by
     refine (norm_negBlock_le_half_commutator U _).trans ?_
     have hc := hNc n ((le_max_right _ _).trans hn)
-    linarith
+    linarith only [hc]
   have hcrossh : ‖coordinateBlock (fun i => ¬ negPredicate U i)
       (negPredicate U) (signMicrostate A z n h)‖ ≤ 1 := by
     refine (norm_coordinateBlock_le _ _ _).trans ?_
@@ -365,7 +364,7 @@ theorem cornerMicrostate_multiplicative_eventually
           (signMicrostate A z n h)‖ :=
       norm_principalBlock_mul_defect_le _ _ _ _
     _ ≤ ε / 2 + (ε / 2) * 1 := add_le_add hmul
-        (mul_le_mul hcrossg hcrossh (norm_nonneg _) (by linarith))
+        (mul_le_mul hcrossg hcrossh (norm_nonneg _) (half_pos hε).le)
     _ = ε := by ring
 
 /-- Gram defect of the corner compression vanishes for every fixed group
@@ -392,11 +391,11 @@ theorem cornerMicrostate_gram_eventually (A : OpAlmostRepresentation G)
     have hc := hN n hn
     change ‖signDiagonal U * signMicrostate A z n g -
       signMicrostate A z n g * signDiagonal U‖ ≤ Real.sqrt ε at hc
-    linarith [Real.sqrt_nonneg ε]
+    linarith only [hc, Real.sqrt_nonneg ε]
   refine hgram.trans ?_
   have hnonneg : (0 : ℝ) ≤ ‖coordinateBlock (fun i => ¬ negPredicate U i)
       (negPredicate U) (signMicrostate A z n g)‖ := norm_nonneg _
-  nlinarith [Real.sq_sqrt hε.le]
+  nlinarith only [hblock, hnonneg, Real.sq_sqrt hε.le]
 
 /-- The corner value of the involution converges to `-1`. -/
 theorem cornerMicrostate_involution_eventually
@@ -478,7 +477,7 @@ theorem norm_add_one_le_of_close {Y : Type*} [Fintype Y] [DecidableEq Y]
   calc ‖P + 1‖ = ‖(P - C) + (C + 1)‖ := by rw [hsplit]
     _ ≤ ‖P - C‖ + ‖C + 1‖ := norm_add_le _ _
     _ ≤ ε / 2 + ε / 2 := add_le_add h1 h2
-    _ = ε := by linarith
+    _ = ε := by ring
 
 /-- Eventual nonemptiness of the corner, from separation of the central
 involution. -/
@@ -571,7 +570,7 @@ theorem cornerUnitary_close_eventually (A : OpAlmostRepresentation G)
     (delta := min (ε / 2) (1 / 2)) (by positivity)
     (min_le_right _ _) (hN n hn)
   have hmin : min (ε / 2) (1 / 2) ≤ ε / 2 := min_le_left _ _
-  linarith
+  linarith only [hb, hmin]
 
 /-- On the corner, the marked involution's polar-corrected unitary converges
 to `-1`. -/
@@ -621,13 +620,13 @@ noncomputable def cornerModel (A : OpAlmostRepresentation G) (z : G)
   asymptoticallyMultiplicative := by
     intro g h ε hε
     obtain ⟨Nm, hNm⟩ := cornerMicrostate_multiplicative_eventually A hz
-      hcentral g h (ε / 4) (by linarith)
+      hcentral g h (ε / 4) (div_pos hε (by norm_num))
     obtain ⟨Ng, hNg⟩ := cornerUnitary_close_eventually A hz hcentral g
-      (ε / 4) (by linarith)
+      (ε / 4) (div_pos hε (by norm_num))
     obtain ⟨Nh, hNh⟩ := cornerUnitary_close_eventually A hz hcentral h
-      (ε / 4) (by linarith)
+      (ε / 4) (div_pos hε (by norm_num))
     obtain ⟨Ngh, hNgh⟩ := cornerUnitary_close_eventually A hz hcentral
-      (g * h) (ε / 4) (by linarith)
+      (g * h) (ε / 4) (div_pos hε (by norm_num))
     refine ⟨max (max Nm Ng) (max Nh Ngh), fun n hn => ?_⟩
     have hm : Nm ≤ max n N₀ := le_trans
       ((le_max_left Nm Ng).trans ((le_max_left _ _).trans hn))
@@ -651,15 +650,6 @@ noncomputable def cornerModel (A : OpAlmostRepresentation G) (z : G)
       (hNgh _ hgh) (hNm _ hm) (hNg _ hg) (hNh _ hh)
       (norm_le_one_of_mem_unitaryGroup (cornerUnitary A z (max n N₀) h).2)
       (norm_cornerMicrostate_le_one A z (max n N₀) g)
-
-@[simp] theorem cornerModel_map (A : OpAlmostRepresentation G) (z : G)
-    (hz : z * z = 1) (hcentral : ∀ g : G, z * g = g * z) (N₀ : ℕ)
-    (hN₀ : ∀ n ≥ N₀, Nonempty
-      {i : A.model n //
-        negPredicate (A.map n z : Matrix (A.model n) (A.model n) ℂ) i})
-    (n : ℕ) (g : G) :
-    (cornerModel A z hz hcentral N₀ hN₀).map n g =
-      cornerUnitary A z (max n N₀) g := rfl
 
 /-- **The negative corner of a separated approximate central involution is
 an operator-norm almost representation on which the involution converges to

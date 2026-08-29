@@ -1,6 +1,5 @@
 import Mathlib.Algebra.Group.Subgroup.Basic
 import Mathlib.Data.Finset.Basic
-import Mathlib.Tactic.Group
 
 /-!
 # Words in a symmetric generating set

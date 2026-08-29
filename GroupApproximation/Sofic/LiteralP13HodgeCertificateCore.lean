@@ -1,6 +1,5 @@
 import GroupApproximation.Sofic.LiteralP13HodgeData
 import GroupApproximation.Sofic.LiteralP13HodgePairTable
-import GroupApproximation.Sofic.LiteralP13HodgeReplay
 
 /-!
 # Kernel-checked core of the exact P13 Hodge certificate
@@ -73,8 +72,8 @@ theorem gramCoefficient_eq_direct (i k : Fin 6) (c : Fin 293) :
       integerConvolution LiteralP13HodgeReplay.productClassIndex
           (qNumerator row i) (qNumerator row k) c =
         ∑ pair ∈ LiteralP13HodgePairTable.classPairs c,
-          qNumerator row i pair.1 * qNumerator row k pair.2 := by
-    exact LiteralP13HodgePairTable.integerConvolution_eq_classPairs
+          qNumerator row i pair.1 * qNumerator row k pair.2 :=
+    LiteralP13HodgePairTable.integerConvolution_eq_classPairs
       (qNumerator row i) (qNumerator row k) c
   have hpairsQ :
       (∑ pair ∈ LiteralP13HodgePairTable.classPairs c,
@@ -82,8 +81,7 @@ theorem gramCoefficient_eq_direct (i k : Fin 6) (c : Fin 293) :
           (qNumerator row i pair.1 : ℚ) * qNumerator row k pair.2) =
         ∑ pair ∈ LiteralP13HodgePairTable.classPairs c,
           (gramPairNumerator i k pair : ℚ) := by
-    apply Finset.sum_congr rfl
-    intro pair hpair
+    refine Finset.sum_congr rfl fun pair hpair ↦ ?_
     norm_cast
     exact sum_fin102_chunks _
   simp_rw [hconv]
@@ -140,13 +138,6 @@ def initialChunk (i k : Fin 6) (j : Fin 36) : ℕ :=
 def finalChunk (i k : Fin 6) : ℕ :=
   ∑ u : Fin 5,
     (residualNumerator i k (Fin.natAdd 288 u)).natAbs
-
-theorem sum_fin9_explicit {M : Type*} [AddCommMonoid M] (f : Fin 9 → M) :
-    ∑ u, f u =
-      (((((((f 0 + f 1) + f 2) + f 3) + f 4) + f 5) + f 6) + f 7) + f 8 := by
-  rw [Fin.sum_univ_add (a := 8) (b := 1), Fin.sum_univ_eight,
-    Fin.sum_univ_one]
-  simp
 
 /-- Four bounded subtotals of nine initial chunks each.  This second level of
 partitioning keeps the final kernel arithmetic within the ordinary elaborator

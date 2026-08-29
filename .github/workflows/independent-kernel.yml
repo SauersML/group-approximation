@@ -150,27 +150,13 @@ jobs:
           JSON
           cat nanoda-config.json
 
-      # Only the headline theorems and their transitive dependencies, not the
-      # whole environment: exporting just their closure keeps the run inside a
-      # standard runner's memory.  The roster is EXTRACTED from
-      # `scripts/Audit.lean`'s `headlineTheorems` at run time rather than
-      # duplicated here -- a hand copy of the list drifted once (14 of 23
-      # names) while the comment claimed parity.  Every entry of that list
-      # resolves inside the `GroupApproximation` namespace, so the prefix is
-      # uniform; an entry that stops resolving fails the export loudly, which
-      # is the check.  Streamed over a pipe so the export never has to be
-      # materialised on disk.
+      # Export only the Palomar theorem and its transitive dependencies. This
+      # keeps the independent-kernel run inside a standard runner's memory.
       - name: Export and re-check with nanoda
         run: |
           set -euo pipefail
-          roster="$(sed -n '/^def headlineTheorems/,/\]/p' scripts/Audit.lean \
-            | grep -oE '``[A-Za-z0-9_.]+' | sed 's/^``//' \
-            | sed 's/^/GroupApproximation./')"
-          test -n "$roster"
-          echo "roster ($(wc -l <<<"$roster") roots):"; echo "$roster"
-          # shellcheck disable=SC2086
-          lake env ../lean4export/.lake/build/bin/lean4export GroupApproximation -- \
-            $roster \
+          lake env ../lean4export/.lake/build/bin/lean4export PalomarSolution -- \
+            ExplicitNonMF.explicit_sofic_not_MF \
           | ../nanoda_lib/target/release/nanoda_bin nanoda-config.json
 
       # Negative calibration: the checker must be able to say NO.  A planted

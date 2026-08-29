@@ -1,5 +1,4 @@
 import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Topology.MetricSpace.Bounded
 
 /-!
 # The Chebyshev center of a bounded set in a Hilbert space
@@ -16,38 +15,32 @@ orbit fixes the circumcenter of that orbit.
 namespace GroupApproximation
 namespace Circumcenter
 
-variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+variable {E : Type*} [NormedAddCommGroup E]
 
 /-- The covering radius of a set from a point. -/
 noncomputable def coveringRadius (S : Set E) (x : E) : ℝ :=
   sSup ((fun s ↦ dist x s) '' S)
 
-omit [InnerProductSpace ℝ E] in
 theorem dist_le_coveringRadius {S : Set E} (hbdd : Bornology.IsBounded S)
     (x : E) {s : E} (hs : s ∈ S) : dist x s ≤ coveringRadius S x := by
-  apply le_csSup
-  · obtain ⟨R, hR⟩ := (Metric.isBounded_iff_subset_closedBall x).1 hbdd
-    exact ⟨R, by
-      rintro _ ⟨t, ht, rfl⟩
-      exact Metric.mem_closedBall'.mp (hR ht)⟩
-  · exact ⟨s, hs, rfl⟩
+  refine le_csSup ?_ ⟨s, hs, rfl⟩
+  obtain ⟨R, hR⟩ := (Metric.isBounded_iff_subset_closedBall x).1 hbdd
+  exact ⟨R, by
+    rintro _ ⟨t, ht, rfl⟩
+    exact Metric.mem_closedBall'.mp (hR ht)⟩
 
-omit [InnerProductSpace ℝ E] in
 theorem coveringRadius_le {S : Set E} (hne : S.Nonempty) {x : E} {r : ℝ}
     (h : ∀ s ∈ S, dist x s ≤ r) : coveringRadius S x ≤ r := by
-  apply csSup_le
-  · exact hne.image _
-  · rintro _ ⟨s, hs, rfl⟩
-    exact h s hs
+  refine csSup_le (hne.image _) ?_
+  rintro _ ⟨s, hs, rfl⟩
+  exact h s hs
 
-omit [InnerProductSpace ℝ E] in
 theorem coveringRadius_nonneg {S : Set E} (hne : S.Nonempty)
     (hbdd : Bornology.IsBounded S) (x : E) :
     0 ≤ coveringRadius S x := by
   obtain ⟨s, hs⟩ := hne
   exact le_trans dist_nonneg (dist_le_coveringRadius hbdd x hs)
 
-omit [InnerProductSpace ℝ E] in
 theorem coveringRadius_lipschitz {S : Set E} (hne : S.Nonempty)
     (hbdd : Bornology.IsBounded S) (x y : E) :
     coveringRadius S x ≤ coveringRadius S y + dist x y := by
@@ -58,6 +51,10 @@ theorem coveringRadius_lipschitz {S : Set E} (hne : S.Nonempty)
     _ ≤ dist x y + coveringRadius S y :=
       add_le_add le_rfl (dist_le_coveringRadius hbdd y hs)
     _ = coveringRadius S y + dist x y := by ring
+
+section
+
+variable [InnerProductSpace ℝ E]
 
 /-- The parallelogram estimate for covering radii: the radius at a
 midpoint improves quadratically in the separation. -/
@@ -90,12 +87,10 @@ theorem coveringRadius_midpoint_sq {S : Set E} (hne : S.Nonempty)
       abel
     have hx' : ‖x - s‖ = dist x s := (dist_eq_norm x s).symm
     have hy' : ‖y - s‖ = dist y s := (dist_eq_norm y s).symm
-    have hxsq : dist x s ^ 2 ≤ coveringRadius S x ^ 2 := by
-      have h0 : (0 : ℝ) ≤ dist x s := dist_nonneg
-      nlinarith
-    have hysq : dist y s ^ 2 ≤ coveringRadius S y ^ 2 := by
-      have h0 : (0 : ℝ) ≤ dist y s := dist_nonneg
-      nlinarith
+    have hxsq : dist x s ^ 2 ≤ coveringRadius S x ^ 2 :=
+      pow_le_pow_left₀ dist_nonneg hxs 2
+    have hysq : dist y s ^ 2 ≤ coveringRadius S y ^ 2 :=
+      pow_le_pow_left₀ dist_nonneg hys 2
     have hxn : ‖x - s‖ ^ 2 ≤ coveringRadius S x ^ 2 := by
       rw [hx']
       exact hxsq
@@ -105,7 +100,7 @@ theorem coveringRadius_midpoint_sq {S : Set E} (hne : S.Nonempty)
     rw [hmids]
     rw [div_pow]
     rw [hd]
-    nlinarith [hpar, hxn, hyn, sq_nonneg (dist x y)]
+    nlinarith only [hpar, hxn, hyn, sq_nonneg (dist x y)]
   have h2 : coveringRadius S (midpoint ℝ x y) ^ 2 ≤
       (coveringRadius S x ^ 2 + coveringRadius S y ^ 2) / 2 -
         dist x y ^ 2 / 4 := by
@@ -117,35 +112,32 @@ theorem coveringRadius_midpoint_sq {S : Set E} (hne : S.Nonempty)
       apply coveringRadius_le hne
       intro s hs
       have := hmid s hs
-      have h0 : (0 : ℝ) ≤ dist (midpoint ℝ x y) s := dist_nonneg
       calc
         dist (midpoint ℝ x y) s =
             Real.sqrt (dist (midpoint ℝ x y) s ^ 2) := by
-          rw [Real.sqrt_sq h0]
+          rw [Real.sqrt_sq dist_nonneg]
         _ ≤ Real.sqrt ((coveringRadius S x ^ 2 +
             coveringRadius S y ^ 2) / 2 - dist x y ^ 2 / 4) :=
           Real.sqrt_le_sqrt this
     have hsqrtnn : (0 : ℝ) ≤ (coveringRadius S x ^ 2 +
         coveringRadius S y ^ 2) / 2 - dist x y ^ 2 / 4 := by
       obtain ⟨s, hs⟩ := hne
-      have := hmid s hs
-      nlinarith [sq_nonneg (dist (midpoint ℝ x y) s)]
+      nlinarith only [hmid s hs, sq_nonneg (dist (midpoint ℝ x y) s)]
     calc
       coveringRadius S (midpoint ℝ x y) ^ 2 ≤
           Real.sqrt ((coveringRadius S x ^ 2 +
-            coveringRadius S y ^ 2) / 2 - dist x y ^ 2 / 4) ^ 2 := by
-        have := hbound
-        nlinarith [Real.sqrt_nonneg ((coveringRadius S x ^ 2 +
-          coveringRadius S y ^ 2) / 2 - dist x y ^ 2 / 4)]
+            coveringRadius S y ^ 2) / 2 - dist x y ^ 2 / 4) ^ 2 :=
+        pow_le_pow_left₀ hrad0 hbound 2
       _ = (coveringRadius S x ^ 2 + coveringRadius S y ^ 2) / 2 -
           dist x y ^ 2 / 4 := Real.sq_sqrt hsqrtnn
-  linarith
+  linarith only [h2]
+
+end
 
 /-- The Chebyshev radius of a set. -/
 noncomputable def chebyshevRadius (S : Set E) : ℝ :=
   ⨅ x : E, coveringRadius S x
 
-omit [InnerProductSpace ℝ E] in
 theorem coveringRadius_bddBelow (S : Set E) (hne : S.Nonempty)
     (hbdd : Bornology.IsBounded S) :
     BddBelow (Set.range (coveringRadius S)) := by
@@ -153,13 +145,11 @@ theorem coveringRadius_bddBelow (S : Set E) (hne : S.Nonempty)
   rintro _ ⟨y, rfl⟩
   exact coveringRadius_nonneg hne hbdd y
 
-omit [InnerProductSpace ℝ E] in
 theorem chebyshevRadius_le {S : Set E} (hne : S.Nonempty)
     (hbdd : Bornology.IsBounded S) (x : E) :
     chebyshevRadius S ≤ coveringRadius S x :=
   ciInf_le (coveringRadius_bddBelow S hne hbdd) x
 
-omit [InnerProductSpace ℝ E] in
 theorem exists_coveringRadius_lt {S : Set E} (hE : Nonempty E) {r : ℝ}
     (hr : chebyshevRadius S < r) :
     ∃ x : E, coveringRadius S x < r := by
@@ -167,7 +157,11 @@ theorem exists_coveringRadius_lt {S : Set E} (hE : Nonempty E) {r : ℝ}
   by_contra hall
   push Not at hall
   have hge : r ≤ chebyshevRadius S := le_ciInf hall
-  linarith
+  exact (not_lt_of_ge hge) hr
+
+section
+
+variable [InnerProductSpace ℝ E]
 
 /-- **Existence and uniqueness of the Chebyshev center** of a nonempty
 bounded set in a complete real inner product space. -/
@@ -185,7 +179,7 @@ theorem existsUnique_center [CompleteSpace E] {S : Set E}
     intro n
     apply exists_coveringRadius_lt ⟨s₀⟩
     have hpos : (0 : ℝ) < 1 / ((n : ℝ) + 1) := by positivity
-    linarith
+    exact lt_add_of_pos_right ρ hpos
   choose x hx using hseq
   have hsep : ∀ y z : E, dist y z ^ 2 ≤
       2 * coveringRadius S y ^ 2 + 2 * coveringRadius S z ^ 2 -
@@ -196,7 +190,7 @@ theorem existsUnique_center [CompleteSpace E] {S : Set E}
       chebyshevRadius_le hne hbdd _
     have hmidnn : 0 ≤ coveringRadius S (midpoint ℝ y z) :=
       coveringRadius_nonneg hne hbdd _
-    nlinarith
+    nlinarith only [hmid, hmin, hmidnn, hρ0]
   have hdist_sq : ∀ m n : ℕ, dist (x m) (x n) ^ 2 ≤
       8 * (ρ + 1) * (1 / (m + 1) + 1 / (n + 1)) := by
     intro m n
@@ -211,11 +205,11 @@ theorem existsUnique_center [CompleteSpace E] {S : Set E}
     have hn1 : (0 : ℝ) < 1 / ((n : ℝ) + 1) := by positivity
     have hm2 : 1 / ((m : ℝ) + 1) ≤ 1 := by
       rw [div_le_one (by positivity)]
-      linarith [(Nat.cast_nonneg m : (0 : ℝ) ≤ (m : ℝ))]
+      linarith only [(Nat.cast_nonneg m : (0 : ℝ) ≤ (m : ℝ))]
     have hn2 : 1 / ((n : ℝ) + 1) ≤ 1 := by
       rw [div_le_one (by positivity)]
-      linarith [(Nat.cast_nonneg n : (0 : ℝ) ≤ (n : ℝ))]
-    nlinarith
+      linarith only [(Nat.cast_nonneg n : (0 : ℝ) ≤ (n : ℝ))]
+    nlinarith only [h1, h2, h3, h4, h5, hm1, hn1, hm2, hn2, hρ0]
   have hcauchy : CauchySeq x := by
     rw [Metric.cauchySeq_iff]
     intro ε hε
@@ -225,23 +219,23 @@ theorem existsUnique_center [CompleteSpace E] {S : Set E}
       apply one_div_le_one_div_of_le
       · positivity
       · have : (N : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
-        linarith
+        linarith only [this]
     have hn1 : 1 / ((m : ℝ) + 1) ≤ 1 / ((N : ℝ) + 1) := by
       apply one_div_le_one_div_of_le
       · positivity
       · have : (N : ℝ) ≤ (m : ℝ) := by exact_mod_cast hm
-        linarith
+        linarith only [this]
     have hd := hdist_sq n m
     have hNpos : (0 : ℝ) < (N : ℝ) + 1 := by positivity
     have hkey : 16 * (ρ + 1) / ((N : ℝ) + 1) < ε ^ 2 := by
       rw [div_lt_iff₀ hNpos]
-      have h16 : (0 : ℝ) < 16 * (ρ + 1) := by nlinarith
+      have h16 : (0 : ℝ) < 16 * (ρ + 1) := by positivity
       have hN2 : 16 * (ρ + 1) / ε ^ 2 < (N : ℝ) := hN
       have hε2 : (0 : ℝ) < ε ^ 2 := by positivity
       rw [div_lt_iff₀ hε2] at hN2
-      nlinarith
+      nlinarith only [hN2, h16, hε2]
     have hd2 : dist (x n) (x m) ^ 2 < ε ^ 2 := by
-      have h8 : (0 : ℝ) ≤ 8 * (ρ + 1) := by nlinarith
+      have h8 : (0 : ℝ) ≤ 8 * (ρ + 1) := by positivity
       calc
         dist (x n) (x m) ^ 2 ≤
             8 * (ρ + 1) * (1 / (n + 1) + 1 / (m + 1)) := hd
@@ -250,11 +244,11 @@ theorem existsUnique_center [CompleteSpace E] {S : Set E}
               2 / ((N : ℝ) + 1) := by
             rw [show (2 : ℝ) / ((N : ℝ) + 1) =
               1 / ((N : ℝ) + 1) + 1 / ((N : ℝ) + 1) by ring]
-            linarith
-          nlinarith
+            linarith only [hm1, hn1]
+          exact mul_le_mul_of_nonneg_left this h8
         _ = 16 * (ρ + 1) / ((N : ℝ) + 1) := by ring
         _ < ε ^ 2 := hkey
-    nlinarith [dist_nonneg (x := x n) (y := x m)]
+    nlinarith only [hd2, dist_nonneg (x := x n) (y := x m), hε]
   obtain ⟨c, hc⟩ := cauchySeq_tendsto_of_complete hcauchy
   have hrc : coveringRadius S c = ρ := by
     apply le_antisymm
@@ -263,40 +257,40 @@ theorem existsUnique_center [CompleteSpace E] {S : Set E}
       set η := coveringRadius S c - ρ with hη
       have hηpos : 0 < η := by
         rw [hη]
-        linarith
+        exact sub_pos.mpr hgt
       obtain ⟨n, hn1, hn2⟩ : ∃ n : ℕ, 1 / ((n : ℝ) + 1) < η / 2 ∧
           dist c (x n) < η / 2 := by
         obtain ⟨n₁, hn₁⟩ := exists_nat_gt (2 / η)
-        have hd := Metric.tendsto_atTop.1 hc (η / 2) (by linarith)
+        have hd := Metric.tendsto_atTop.1 hc (η / 2) (by positivity)
         obtain ⟨n₂, hn₂⟩ := hd
         refine ⟨max n₁ n₂, ?_, ?_⟩
         · have hle : (n₁ : ℝ) ≤ ((max n₁ n₂ : ℕ) : ℝ) := by
             exact_mod_cast le_max_left n₁ n₂
           rw [div_lt_iff₀ (by positivity)]
           rw [div_lt_iff₀ hηpos] at hn₁
-          nlinarith
+          nlinarith only [hn₁, hle, hηpos]
         · rw [dist_comm]
           exact hn₂ (max n₁ n₂) (le_max_right n₁ n₂)
-      have hlip := coveringRadius_lipschitz hne hbdd c (x n)
-      have := (hx n).le
       have : coveringRadius S c ≤ ρ + 1 / (n + 1) + dist c (x n) := by
         calc
           coveringRadius S c ≤ coveringRadius S (x n) + dist c (x n) :=
-            hlip
-          _ ≤ ρ + 1 / (n + 1) + dist c (x n) := by linarith
+            coveringRadius_lipschitz hne hbdd c (x n)
+          _ ≤ ρ + 1 / (n + 1) + dist c (x n) := by
+            linarith only [hx n]
       rw [hη] at hηpos hn1
-      linarith
+      linarith only [this, hn1, hn2, hηpos]
     · exact chebyshevRadius_le hne hbdd c
   refine ⟨c, hrc, ?_⟩
   intro c' hc'
   have hd := hsep c' c
   rw [hrc, hc'] at hd
-  have : dist c' c ^ 2 ≤ 0 := by linarith
+  have : dist c' c ^ 2 ≤ 0 := by nlinarith only [hd]
   have : dist c' c = 0 := by
-    nlinarith [dist_nonneg (x := c') (y := c)]
+    nlinarith only [this, dist_nonneg (x := c') (y := c)]
   exact dist_eq_zero.1 this
 
-omit [InnerProductSpace ℝ E] in
+end
+
 /-- Covering radii transform along isometries. -/
 theorem coveringRadius_image {f : E → E} (hf : Isometry f)
     (S : Set E) (x : E) :
@@ -309,36 +303,6 @@ theorem coveringRadius_image {f : E → E} (hf : Isometry f)
     exact ⟨s, hs, (hf.dist_eq x s).symm⟩
   · rintro ⟨s, hs, rfl⟩
     exact ⟨f s, ⟨s, hs, rfl⟩, hf.dist_eq x s⟩
-
-/-- **Every isometric action with a bounded orbit has a fixed point**:
-the Chebyshev center of the orbit. -/
-theorem exists_fixed_of_bounded_orbit [CompleteSpace E] {G : Type*}
-    [Group G] (φ : G → E → E) (hiso : ∀ g, Isometry (φ g))
-    (hmul : ∀ g h x, φ (g * h) x = φ g (φ h x))
-    (hone : ∀ x : E, φ 1 x = x) (x₀ : E)
-    (hbdd : Bornology.IsBounded (Set.range fun g ↦ φ g x₀)) :
-    ∃ c : E, ∀ g : G, φ g c = c := by
-  set S := Set.range fun g ↦ φ g x₀ with hS
-  have hne : S.Nonempty := ⟨x₀, 1, hone x₀⟩
-  have hinv : ∀ g : G, φ g '' S = S := by
-    intro g
-    ext y
-    constructor
-    · rintro ⟨_, ⟨h, rfl⟩, rfl⟩
-      refine ⟨g * h, ?_⟩
-      show φ (g * h) x₀ = φ g (φ h x₀)
-      exact hmul g h x₀
-    · rintro ⟨h, rfl⟩
-      exact ⟨φ (g⁻¹ * h) x₀, ⟨g⁻¹ * h, rfl⟩, by
-        rw [← hmul, mul_inv_cancel_left]⟩
-  obtain ⟨c, hc, hcuniq⟩ := existsUnique_center hne hbdd
-  refine ⟨c, fun g ↦ ?_⟩
-  apply hcuniq
-  calc
-    coveringRadius S (φ g c) = coveringRadius (φ g '' S) (φ g c) := by
-      rw [hinv g]
-    _ = coveringRadius S c := coveringRadius_image (hiso g) S c
-    _ = chebyshevRadius S := hc
 
 end Circumcenter
 end GroupApproximation

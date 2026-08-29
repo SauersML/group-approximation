@@ -1,4 +1,3 @@
-import GroupApproximation.Kazhdan.KazhdanProjection
 import GroupApproximation.Sofic.OpAlmostRepresentation
 import Mathlib.Analysis.Matrix.Spectrum
 
@@ -51,8 +50,8 @@ theorem OpNormVanishing.add {A : OpAlmostRepresentation G}
     (hx : OpNormVanishing A x) (hy : OpNormVanishing A y) :
     OpNormVanishing A (fun n ↦ x n + y n) := by
   intro ε hε
-  obtain ⟨Nx, hNx⟩ := hx (ε / 2) (by linarith)
-  obtain ⟨Ny, hNy⟩ := hy (ε / 2) (by linarith)
+  obtain ⟨Nx, hNx⟩ := hx (ε / 2) (half_pos hε)
+  obtain ⟨Ny, hNy⟩ := hy (ε / 2) (half_pos hε)
   refine ⟨max Nx Ny, fun n hn ↦ ?_⟩
   calc
     ‖x n + y n‖ ≤ ‖x n‖ + ‖y n‖ := norm_add_le _ _
@@ -82,7 +81,7 @@ theorem OpNormVanishing.smul {A : OpAlmostRepresentation G}
     _ ≤ ε := by
       rw [show ‖c‖ * (ε / (‖c‖ + 1)) =
         (‖c‖ * ε) / (‖c‖ + 1) by ring, div_le_iff₀ hden]
-      nlinarith [norm_nonneg c]
+      nlinarith only [norm_nonneg c, hε.le]
 
 theorem OpNormVanishing.mul_left_of_norm_le_one
     {A : OpAlmostRepresentation G}
@@ -132,8 +131,8 @@ theorem multiplicativeDefect_vanishing (A : OpAlmostRepresentation G)
     (g h : G) :
     OpNormVanishing A (fun n ↦
       (A.map n (g * h) : Matrix (A.model n) (A.model n) ℂ) -
-        (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h) := by
-  exact A.asymptoticallyMultiplicative g h
+        (A.map n g : Matrix (A.model n) (A.model n) ℂ) * A.map n h) :=
+  A.asymptoticallyMultiplicative g h
 
 /-- Unitary weak-MF microstates send the identity to the identity
 asymptotically in operator norm. -/
@@ -159,8 +158,8 @@ theorem map_inv_vanishing (A : OpAlmostRepresentation G) (g : G) :
       (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ) -
         (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ) := by
   intro ε hε
-  obtain ⟨Nm, hNm⟩ := A.asymptoticallyMultiplicative g⁻¹ g (ε / 2) (by linarith)
-  obtain ⟨N1, hN1⟩ := map_one_vanishing A (ε / 2) (by linarith)
+  obtain ⟨Nm, hNm⟩ := A.asymptoticallyMultiplicative g⁻¹ g (ε / 2) (half_pos hε)
+  obtain ⟨N1, hN1⟩ := map_one_vanishing A (ε / 2) (half_pos hε)
   refine ⟨max Nm N1, fun n hn ↦ ?_⟩
   let U : Matrix (A.model n) (A.model n) ℂ := A.map n g
   let V : Matrix (A.model n) (A.model n) ℂ := A.map n g⁻¹
@@ -194,8 +193,8 @@ theorem map_inv_mul_vanishing (A : OpAlmostRepresentation G) (g h : G) :
         (A.map n g : Matrix (A.model n) (A.model n) ℂ)ᴴ * A.map n h) := by
   intro ε hε
   obtain ⟨Nm, hNm⟩ :=
-    A.asymptoticallyMultiplicative g⁻¹ h (ε / 2) (by linarith)
-  obtain ⟨Ni, hNi⟩ := map_inv_vanishing A g (ε / 2) (by linarith)
+    A.asymptoticallyMultiplicative g⁻¹ h (ε / 2) (half_pos hε)
+  obtain ⟨Ni, hNi⟩ := map_inv_vanishing A g (ε / 2) (half_pos hε)
   refine ⟨max Nm Ni, fun n hn ↦ ?_⟩
   let V : Matrix (A.model n) (A.model n) ℂ := A.map n g⁻¹
   let Ustar : Matrix (A.model n) (A.model n) ℂ :=
@@ -265,8 +264,8 @@ theorem matrixAverage_selfAdjoint_vanishing (A : OpAlmostRepresentation G)
   classical
   have hinvsum (n : ℕ) :
       (∑ g ∈ S, (A.map n g⁻¹ : Matrix (A.model n) (A.model n) ℂ)) =
-        ∑ g ∈ S, (A.map n g : Matrix (A.model n) (A.model n) ℂ) := by
-    exact Finset.sum_bij'
+        ∑ g ∈ S, (A.map n g : Matrix (A.model n) (A.model n) ℂ) :=
+    Finset.sum_bij'
       (fun g _ ↦ g⁻¹) (fun g _ ↦ g⁻¹)
       (fun g hg ↦ hsymm g hg) (fun g hg ↦ hsymm g hg)
       (fun g _ ↦ by simp) (fun g _ ↦ by simp) (fun g _ ↦ rfl)
@@ -328,8 +327,8 @@ theorem norm_hermitianAverage_le_one (A : OpAlmostRepresentation G)
     _ = (1 / 2 : ℝ) * (2 * ‖matrixAverage A S n‖) := by
       rw [← Matrix.star_eq_conjTranspose, norm_star]
       ring
-    _ ≤ 1 := by
-      nlinarith [norm_matrixAverage_le_one A S n]
+    _ = ‖matrixAverage A S n‖ := by ring
+    _ ≤ 1 := norm_matrixAverage_le_one A S n
 
 /-- The exact Hermitian average is asymptotically equal to the original
 weak-MF average. -/
@@ -421,11 +420,6 @@ theorem one_sub_isOrthogonalProjection {Y : Type*} [Fintype Y]
   · calc
       (1 - P) * (1 - P) = 1 - P - P + P * P := by noncomm_ring
       _ = 1 - P := by rw [hP.2]; abel
-
-theorem spectralBelow_isOrthogonalProjection {Y : Type*} [Fintype Y]
-    [DecidableEq Y] (H : Matrix Y Y ℂ) (hH : H.IsHermitian) (t : ℝ) :
-    IsOrthogonalProjectionMatrix (spectralBelow H hH t) :=
-  one_sub_isOrthogonalProjection (spectralAbove_isOrthogonalProjection H hH t)
 
 end KazhdanCornerMatrices
 end GroupApproximation

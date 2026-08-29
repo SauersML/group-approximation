@@ -48,36 +48,6 @@ theorem word_commute (D : MarkedCompressionInclusionData Γ E) (g : E) :
     Commute D.word g :=
   D.word_central g
 
-theorem word_inv_eq (D : MarkedCompressionInclusionData Γ E) :
-    D.word⁻¹ = D.word := by
-  have h := D.word_sq
-  rw [pow_two] at h
-  exact inv_eq_of_mul_eq_one_left h
-
 end MarkedCompressionInclusionData
-
-namespace MarkedCompressionData
-
-variable {Γ : Type} {E : Type u} [Group Γ] [Group E]
-
-/-- Every endomorphism-based compression supplies the weaker image-inclusion
-data.  This is a lossless conversion for the analytic theorem. -/
-def toInclusionData (D : MarkedCompressionData Γ E) :
-    MarkedCompressionInclusionData Γ E where
-  iota := D.iota
-  t := D.t
-  c := D.c
-  a := D.a
-  kazhdan := D.kazhdan
-  compresses γ := ⟨D.alpha γ, D.compress γ⟩
-  comm_c := D.comm_c
-  word_sq := D.word_sq
-  word_central := D.word_central
-
-@[simp] theorem toInclusionData_word (D : MarkedCompressionData Γ E) :
-    D.toInclusionData.word = D.word :=
-  rfl
-
-end MarkedCompressionData
 
 end GroupApproximation

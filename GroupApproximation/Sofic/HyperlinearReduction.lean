@@ -1,6 +1,4 @@
 import GroupApproximation.Sofic.Hyperlinear
-import GroupApproximation.Sofic.SoficTransfer
-import GroupApproximation.Sofic.LEFSofic
 import GroupApproximation.Sofic.FreeGroupResiduallyFinite
 
 /-!
@@ -29,74 +27,6 @@ This does not decide the question.  It says the general case follows from the
 finitely generated one.
 -/
 
-namespace GroupApproximation
-
-open scoped Pointwise
-
-variable {G : Type} [Group G]
-
-/-- **Soficity is local**, by the same extension as for hyperlinearity. -/
-theorem isSofic_of_local
-    (h : ∀ F : Finset G, ∃ (H : Type) (_ : Group H) (ι : H →* G),
-      Function.Injective ι ∧ IsSofic H ∧ ∀ g ∈ F, g ∈ Set.range ι) :
-    IsSofic G := by
-  classical
-  intro F ε hε
-  obtain ⟨H, _, ι, hinj, hH, hcov⟩ := h F
-  set ψ : G → H := Function.invFun ι with hψ
-  have hψι : ∀ x : H, ψ (ι x) = x := fun x ↦ Function.leftInverse_invFun hinj x
-  have hιψ : ∀ g ∈ Set.range ι, ι (ψ g) = g := by
-    rintro g ⟨x, rfl⟩
-    rw [hψι]
-  set F' : Finset H := F.image ψ with hF'
-  obtain ⟨M⟩ := hH F' ε hε
-  have hmemF' : ∀ g ∈ F, ψ g ∈ F' := fun g hg ↦ Finset.mem_image_of_mem ψ hg
-  refine ⟨{
-    carrier := M.carrier
-    nonempty := M.nonempty
-    map := fun g ↦ if g ∈ Set.range ι then M.map (ψ g) else 1
-    multiplicative := ?_
-    separated := ?_ }⟩
-  · intro g hg h hh
-    have hgr : g ∈ Set.range ι := hcov g hg
-    have hhr : h ∈ Set.range ι := hcov h hh
-    have hghr : g * h ∈ Set.range ι := by
-      obtain ⟨a, rfl⟩ := hgr
-      obtain ⟨b, rfl⟩ := hhr
-      exact ⟨a * b, by rw [map_mul]⟩
-    have hpsi : ψ (g * h) = ψ g * ψ h := by
-      apply hinj
-      rw [hιψ _ hghr, map_mul, hιψ _ hgr, hιψ _ hhr]
-    simp only [if_pos hgr, if_pos hhr, if_pos hghr, hpsi]
-    exact M.multiplicative _ (hmemF' g hg) _ (hmemF' h hh)
-  · intro g hg h hh hne
-    have hgr : g ∈ Set.range ι := hcov g hg
-    have hhr : h ∈ Set.range ι := hcov h hh
-    simp only [if_pos hgr, if_pos hhr]
-    refine M.separated _ (hmemF' g hg) _ (hmemF' h hh) ?_
-    intro hcon
-    exact hne (by rw [← hιψ _ hgr, ← hιψ _ hhr, hcon])
-
-/-- **Question 3.4 reduces to finitely generated groups.**  If every finitely
-generated hyperlinear group is sofic, then every hyperlinear group is sofic. -/
-theorem isSofic_of_isHyperlinear_of_fg_case
-    (hfg : ∀ (H : Type) (_ : Group H), Group.FG H → IsHyperlinear H → IsSofic H)
-    (hG : IsHyperlinear G) : IsSofic G := by
-  classical
-  refine isSofic_of_local (fun F ↦ ?_)
-  refine ⟨↥(Subgroup.closure (F : Set G)), inferInstance,
-    (Subgroup.closure (F : Set G)).subtype, Subgroup.subtype_injective _, ?_, ?_⟩
-  · refine hfg _ _ ?_ (isHyperlinear_of_injective _
-      (Subgroup.subtype_injective _) hG)
-    rw [Group.fg_iff]
-    refine ⟨((↑) : Subgroup.closure (F : Set G) → G) ⁻¹' (F : Set G), ?_, ?_⟩
-    · exact Subgroup.closure_closure_coe_preimage
-    · exact Set.Finite.preimage
-        (Set.injOn_of_injective (Subgroup.subtype_injective _)) F.finite_toSet
-  · intro g hg
-    exact ⟨⟨g, Subgroup.subset_closure hg⟩, rfl⟩
-
-
 /-! ## The two useful forms of the reduction
 
 The reduction is worth stating twice more, because the forms one reaches for are
@@ -113,16 +43,6 @@ without loss, which is not obvious from the definitions since neither property i
 visibly inherited upward.
 -/
 
-/-- **Question 3.4 is equivalent to its finitely generated case.** -/
-theorem isHyperlinear_imp_isSofic_iff_fg :
-    (∀ (H : Type) (_ : Group H), Group.FG H → IsHyperlinear H → IsSofic H)
-      ↔ (∀ (H : Type) (_ : Group H), IsHyperlinear H → IsSofic H) := by
-  constructor
-  · intro hfg H _ hH
-    exact isSofic_of_isHyperlinear_of_fg_case hfg hH
-  · intro hall H _ _ hH
-    exact hall H inferInstance hH
-
 /-! ## Universal hyperlinearity is also local
 
 The same argument does not require a sofic conclusion.  If some group of any
@@ -134,33 +54,6 @@ substantive gate is proving that the ambient abstract group is nonhyperlinear
 in the first place.
 -/
 
-/-- **A nonhyperlinear group exists iff a finitely generated one exists.**
-This is the direct contrapositive of locality, with no soficity hypothesis. -/
-theorem exists_not_isHyperlinear_iff_exists_fg :
-    (∃ (H : Type) (_ : Group H), ¬ IsHyperlinear H)
-      ↔ (∃ (H : Type) (_ : Group H), Group.FG H ∧ ¬ IsHyperlinear H) := by
-  constructor
-  · rintro ⟨G, hG, hnG⟩
-    by_contra hno
-    apply hnG
-    refine isHyperlinear_of_local (fun F ↦ ?_)
-    let K : Subgroup G := Subgroup.closure (F : Set G)
-    have hfg : Group.FG K := by
-      rw [Group.fg_iff]
-      refine ⟨((↑) : K → G) ⁻¹' (F : Set G), ?_, ?_⟩
-      · exact Subgroup.closure_closure_coe_preimage
-      · exact Set.Finite.preimage
-          (Set.injOn_of_injective (Subgroup.subtype_injective K)) F.finite_toSet
-    have hK : IsHyperlinear K := by
-      by_contra hnK
-      exact hno ⟨K, inferInstance, hfg, hnK⟩
-    refine ⟨K, inferInstance, K.subtype, Subgroup.subtype_injective K,
-      hK, ?_⟩
-    intro g hg
-    exact ⟨⟨g, Subgroup.subset_closure hg⟩, rfl⟩
-  · rintro ⟨H, hH, _, hnH⟩
-    exact ⟨H, hH, hnH⟩
-
 /-! ## Arbitrary quotient permanence is the whole problem
 
 Every group is a quotient of the free group on its underlying type, and free
@@ -171,58 +64,6 @@ representation of a hyperlinear group does not by itself produce a
 nonhyperlinear group: promoting that representation to quotient permanence is
 already equivalent to solving the universal problem positively.
 -/
-
-/-- **Every group is hyperlinear iff hyperlinearity is closed under arbitrary
-surjective homomorphisms.** -/
-theorem all_groups_isHyperlinear_iff_quotient_closed :
-    (∀ (H : Type) (_ : Group H), IsHyperlinear H) ↔
-      (∀ (G H : Type) (_ : Group G) (_ : Group H) (f : G →* H),
-        Function.Surjective f → IsHyperlinear G → IsHyperlinear H) := by
-  constructor
-  · intro hall G H _ hH _ _ _
-    exact hall H hH
-  · intro hquot H hH
-    letI := hH
-    apply hquot (FreeGroup H) H inferInstance inferInstance
-      (FreeGroup.lift (id : H → H))
-    · intro h
-      exact ⟨FreeGroup.of h, by simp⟩
-    · exact isHyperlinear_of_isSofic (isSofic_freeGroup H)
-
-/-- **A nonhyperlinear group exists iff a hyperlinear group has a
-nonhyperlinear quotient.**  In the forward direction the source can be taken
-to be a free group. -/
-theorem exists_not_isHyperlinear_iff_exists_hyperlinear_quotient :
-    (∃ (H : Type) (_ : Group H), ¬ IsHyperlinear H) ↔
-      (∃ (G H : Type) (_ : Group G) (_ : Group H) (f : G →* H),
-        Function.Surjective f ∧ IsHyperlinear G ∧ ¬ IsHyperlinear H) := by
-  constructor
-  · rintro ⟨H, hH, hnH⟩
-    letI := hH
-    refine ⟨FreeGroup H, H, inferInstance, inferInstance,
-      FreeGroup.lift (id : H → H), ?_,
-      isHyperlinear_of_isSofic (isSofic_freeGroup H), hnH⟩
-    intro h
-    exact ⟨FreeGroup.of h, by simp⟩
-  · rintro ⟨_, H, _, hH, _, _, _, hnH⟩
-    exact ⟨H, hH, hnH⟩
-
-/-- **A counterexample exists exactly when a finitely generated one does.**  The
-contrapositive of the reduction: a search for a hyperlinear nonsofic group may
-restrict to finitely generated groups without loss. -/
-theorem exists_counterexample_iff_exists_fg :
-    (∃ (H : Type) (_ : Group H), IsHyperlinear H ∧ ¬ IsSofic H)
-      ↔ (∃ (H : Type) (_ : Group H), Group.FG H ∧ IsHyperlinear H
-          ∧ ¬ IsSofic H) := by
-  constructor
-  · rintro ⟨G, hG, hhyp, hnsofic⟩
-    by_contra hcon
-    refine hnsofic (isSofic_of_isHyperlinear_of_fg_case ?_ hhyp)
-    intro H hH hfg hhypH
-    by_contra hns
-    exact hcon ⟨H, hH, hfg, hhypH, hns⟩
-  · rintro ⟨H, hH, _, hhyp, hns⟩
-    exact ⟨H, hH, hhyp, hns⟩
 
 /-! ## The profile of a counterexample
 
@@ -237,43 +78,6 @@ infinite, a finite group being residually finite.  These are exactly the
 constraints assembled below.
 -/
 
-/-- Residual finiteness implies soficity, through local embeddability. -/
-theorem isSofic_of_residuallyFinite [Group.ResiduallyFinite G] : IsSofic G :=
-  isSofic_of_isLEF isLEF_of_residuallyFinite
-
-/-- A point-separating family of finite permutation actions makes a group
-residually finite.  This is the algebraic endpoint of the profinite-action
-argument: once finite invariant partitions separate every nonidentity group
-element, their atom actions are the required finite quotients. -/
-theorem residuallyFinite_of_separating_finite_actions
-    {I : Type} (X : I → Type) [(i : I) → Fintype (X i)]
-    (rho : (i : I) → G →* Equiv.Perm (X i))
-    (hsep : ∀ g : G, g ≠ 1 → ∃ i : I, rho i g ≠ 1) :
-    Group.ResiduallyFinite G := by
-  apply Group.residuallyFinite_of_forall_exists_finite_monoidHom
-  intro g hg
-  obtain ⟨i, hi⟩ := hsep g hg
-  exact ⟨Equiv.Perm (X i), inferInstance, inferInstance, rho i, hi⟩
-
-/-- **A counterexample is not locally embeddable into finite groups**, hence not
-residually finite. -/
-theorem not_isLEF_of_hyperlinear_not_isSofic (hns : ¬ IsSofic G) : ¬ IsLEF G :=
-  fun hlef ↦ hns (isSofic_of_isLEF hlef)
-
-/-- **A counterexample may be taken finitely generated and non-residually-finite.**
-The full profile in one statement: the reduction supplies the generation
-hypothesis, and residual finiteness would supply soficity. -/
-theorem exists_counterexample_iff_exists_fg_not_residuallyFinite :
-    (∃ (H : Type) (_ : Group H), IsHyperlinear H ∧ ¬ IsSofic H)
-      ↔ (∃ (H : Type) (_ : Group H), Group.FG H ∧ IsHyperlinear H
-          ∧ ¬ IsSofic H ∧ ¬ IsLEF H) := by
-  rw [exists_counterexample_iff_exists_fg]
-  constructor
-  · rintro ⟨H, hH, hfg, hhyp, hns⟩
-    exact ⟨H, hH, hfg, hhyp, hns, not_isLEF_of_hyperlinear_not_isSofic hns⟩
-  · rintro ⟨H, hH, hfg, hhyp, hns, _⟩
-    exact ⟨H, hH, hfg, hhyp, hns⟩
-
 /-! ## Monotonicity in the accuracy
 
 Both local definitions quantify over all positive `ε`, and both model types get
@@ -287,51 +91,6 @@ depend on which `ε` are tested, and several arguments below quietly need that
 they do not.
 -/
 
-/-- A sofic model is a model at any worse accuracy. -/
-def SoficModel.mono {F : Finset G} {ε ε' : ℝ} (h : ε ≤ ε')
-    (M : SoficModel G F ε) : SoficModel G F ε' where
-  carrier := M.carrier
-  nonempty := M.nonempty
-  map := M.map
-  multiplicative := fun g hg h' hh ↦ le_trans (M.multiplicative g hg h' hh) h
-  separated := fun g hg h' hh hne ↦
-    le_trans (by linarith) (M.separated g hg h' hh hne)
-
-/-- A hyperlinear model is a model at any worse accuracy. -/
-def HyperlinearModel.mono {F : Finset G} {ε ε' : ℝ} (h : ε ≤ ε')
-    (M : HyperlinearModel G F ε) : HyperlinearModel G F ε' where
-  carrier := M.carrier
-  nonempty := M.nonempty
-  map := M.map
-  isUnitary := M.isUnitary
-  multiplicative := fun g hg h' hh ↦ le_trans (M.multiplicative g hg h' hh) h
-  separated := fun g hg h' hh hne ↦
-    le_trans (by linarith) (M.separated g hg h' hh hne)
-
-/-- **Soficity may be tested on any accuracies accumulating at `0`.** -/
-theorem isSofic_of_forall_small (h : ∀ (F : Finset G) (n : ℕ),
-    Nonempty (SoficModel G F (1 / (n + 1 : ℝ)))) : IsSofic G := by
-  intro F ε hε
-  obtain ⟨n, hn⟩ := exists_nat_gt (1 / ε)
-  obtain ⟨M⟩ := h F n
-  refine ⟨M.mono ?_⟩
-  have hn0 : (0 : ℝ) < (n : ℝ) + 1 := by positivity
-  rw [div_le_iff₀ hn0]
-  rw [div_lt_iff₀ hε] at hn
-  nlinarith [hn, hε]
-
-/-- **Hyperlinearity may be tested on any accuracies accumulating at `0`.** -/
-theorem isHyperlinear_of_forall_small (h : ∀ (F : Finset G) (n : ℕ),
-    Nonempty (HyperlinearModel G F (1 / (n + 1 : ℝ)))) : IsHyperlinear G := by
-  intro F ε hε
-  obtain ⟨n, hn⟩ := exists_nat_gt (1 / ε)
-  obtain ⟨M⟩ := h F n
-  refine ⟨M.mono ?_⟩
-  have hn0 : (0 : ℝ) < (n : ℝ) + 1 := by positivity
-  rw [div_le_iff₀ hn0]
-  rw [div_lt_iff₀ hε] at hn
-  nlinarith [hn, hε]
-
 /-! ## The textbook convention for hyperlinearity
 
 `isSofic_iff_productRestricted` records that requiring multiplicativity for all
@@ -343,62 +102,6 @@ The argument is the sofic one verbatim: nothing about the metric enters, only
 that enlarging the test set makes the hypothesis stronger and the products
 available.
 -/
-
-/-- The textbook local hyperlinear model, with multiplicativity required only
-when the tested product remains in the finite test set. -/
-structure ProductRestrictedHyperlinearModel (G : Type*) [Group G]
-    (F : Finset G) (ε : ℝ) where
-  carrier : FiniteModel
-  nonempty : 0 < Fintype.card carrier
-  map : G → Matrix carrier carrier ℂ
-  isUnitary : ∀ g, map g ∈ Matrix.unitaryGroup carrier ℂ
-  multiplicative : ∀ g ∈ F, ∀ h ∈ F, g * h ∈ F →
-    hsDistSq carrier (map (g * h)) (map g * map h) ≤ ε
-  separated : ∀ g ∈ F, ∀ h ∈ F, g ≠ h →
-    2 - ε ≤ hsDistSq carrier (map g) (map h)
-
-/-- Hyperlinearity in the product-restricted textbook convention. -/
-def IsHyperlinearProductRestricted (G : Type*) [Group G] : Prop :=
-  ∀ (F : Finset G) (ε : ℝ), 0 < ε →
-    Nonempty (ProductRestrictedHyperlinearModel G F ε)
-
-/-- **The two conventions agree**, by the same enlargement that settles the
-sofic case. -/
-theorem isHyperlinear_iff_productRestricted (G : Type*) [Group G] :
-    IsHyperlinear G ↔ IsHyperlinearProductRestricted G := by
-  classical
-  constructor
-  · intro h F ε hε
-    obtain ⟨M⟩ := h F ε hε
-    exact ⟨{
-      carrier := M.carrier
-      nonempty := M.nonempty
-      map := M.map
-      isUnitary := M.isUnitary
-      multiplicative := fun g hg h hh _ ↦ M.multiplicative g hg h hh
-      separated := M.separated }⟩
-  · intro h F ε hε
-    let T : Finset G := F ∪ F * F
-    obtain ⟨M⟩ := h T ε hε
-    refine ⟨{
-      carrier := M.carrier
-      nonempty := M.nonempty
-      map := M.map
-      isUnitary := M.isUnitary
-      multiplicative := ?_
-      separated := ?_ }⟩
-    · intro g hg h hh
-      exact M.multiplicative g (by simp [T, hg]) h (by simp [T, hh])
-        (Finset.mem_union_right F (Finset.mul_mem_mul hg hh))
-    · intro g hg h hh hgh
-      exact M.separated g (by simp [T, hg]) h (by simp [T, hh]) hgh
-
-/-- A closed witness, so `IsHyperlinearProductRestricted` is not a certificate
-nothing satisfies: the trivial group. -/
-theorem isHyperlinearProductRestricted_trivial :
-    IsHyperlinearProductRestricted (PUnit : Type) :=
-  (isHyperlinear_iff_productRestricted (PUnit : Type)).mp
-    (isHyperlinear_of_finite (PUnit : Type))
 
 /-! ## The separation constant: where the two sides part
 
@@ -414,64 +117,6 @@ maximally separated, and have equal fourth tensor powers.  Accordingly the
 formal API records only the direction proved in this corpus.
 -/
 
-/-- A hyperlinear model with separation pinned at a constant `δ` rather than
-driven to the maximum. -/
-structure WeakHyperlinearModel (G : Type*) [Group G] (F : Finset G) (δ ε : ℝ) where
-  carrier : FiniteModel
-  nonempty : 0 < Fintype.card carrier
-  map : G → Matrix carrier carrier ℂ
-  isUnitary : ∀ g, map g ∈ Matrix.unitaryGroup carrier ℂ
-  multiplicative : ∀ g ∈ F, ∀ h ∈ F,
-    hsDistSq carrier (map (g * h)) (map g * map h) ≤ ε
-  separated : ∀ g ∈ F, ∀ h ∈ F, g ≠ h →
-    δ ≤ hsDistSq carrier (map g) (map h)
-
-/-- Hyperlinearity with the separation pinned at a constant `δ`. -/
-def IsHyperlinearWeak (G : Type*) [Group G] (δ : ℝ) : Prop :=
-  ∀ (F : Finset G) (ε : ℝ), 0 < ε → Nonempty (WeakHyperlinearModel G F δ ε)
-
-/-- **The easy direction.**  A model separated to `2 - ε` is separated to any
-fixed `δ < 2`, once `ε` is small enough -- and `ε` is ours to shrink. -/
-theorem isHyperlinearWeak_of_isHyperlinear {δ : ℝ} (hδ : δ < 2)
-    (h : IsHyperlinear G) : IsHyperlinearWeak G δ := by
-  intro F ε hε
-  obtain ⟨M⟩ := h F (min ε (2 - δ)) (lt_min hε (by linarith))
-  refine ⟨{
-    carrier := M.carrier
-    nonempty := M.nonempty
-    map := M.map
-    isUnitary := M.isUnitary
-    multiplicative := fun g hg h' hh ↦
-      le_trans (M.multiplicative g hg h' hh) (min_le_left _ _)
-    separated := ?_ }⟩
-  intro g hg h' hh hne
-  refine le_trans ?_ (M.separated g hg h' hh hne)
-  have := min_le_right ε (2 - δ)
-  linarith
-
-/-- A closed weak model, so `WeakHyperlinearModel` is not a certificate nothing
-satisfies: the one-point model of the trivial group, exact on both counts, with
-separation vacuous because the test set is a subsingleton. -/
-def trivialWeakHyperlinearModel (F : Finset PUnit) (δ : ℝ) :
-    WeakHyperlinearModel PUnit F δ 0 where
-  carrier := ⟨PUnit, inferInstance, inferInstance⟩
-  nonempty := by simp
-  map := fun _ ↦ 1
-  isUnitary := fun _ ↦ Submonoid.one_mem _
-  multiplicative := by
-    intro g _ h _
-    simp [hsDistSq]
-  separated := by
-    intro g _ h _ hne
-    exact absurd (Subsingleton.elim g h) hne
-
-/-- A closed witness, so `IsHyperlinearWeak` is not a certificate nothing
-satisfies. -/
-theorem isHyperlinearWeak_trivial_one :
-    IsHyperlinearWeak (PUnit : Type) 1 :=
-  isHyperlinearWeak_of_isHyperlinear (by norm_num)
-    (isHyperlinear_of_finite (PUnit : Type))
-
 /-! ## The reduction discharges the countability hypothesis
 
 `exists_hyperlinearApproximation_of_isHyperlinear` carries a `[Countable G]`
@@ -480,36 +125,3 @@ that hypothesis free of charge: a finitely generated group is countable, being a
 surjective image of a free group on finitely many generators, so a counterexample
 may be taken countable.
 -/
-
-/-- A finitely generated group is countable. -/
-theorem countable_of_fg (h : Group.FG G) : Countable G := by
-  classical
-  obtain ⟨S, hS⟩ := Group.fg_def.mp h
-  haveI : Finite ↥(S : Set G) := S.finite_toSet.to_subtype
-  haveI : Countable (FreeGroup ↥(S : Set G)) :=
-    inferInstanceAs (Countable (Quot <| @FreeGroup.Red.Step ↥(S : Set G)))
-  have hsurj : Function.Surjective (FreeGroup.lift (fun x : ↥(S : Set G) ↦ (x : G))) := by
-    intro g
-    have hsub : Subgroup.closure (S : Set G)
-        ≤ (FreeGroup.lift (fun x : ↥(S : Set G) ↦ (x : G))).range := by
-      rw [Subgroup.closure_le]
-      intro x hx
-      exact ⟨FreeGroup.of ⟨x, hx⟩, by simp⟩
-    exact hsub (by rw [hS]; trivial)
-  exact hsurj.countable
-
-/-- **A counterexample may be taken countable**, so the countability hypothesis
-of the ultraproduct picture costs nothing. -/
-theorem exists_counterexample_iff_exists_countable :
-    (∃ (H : Type) (_ : Group H), IsHyperlinear H ∧ ¬ IsSofic H)
-      ↔ (∃ (H : Type) (_ : Group H), Countable H ∧ IsHyperlinear H
-          ∧ ¬ IsSofic H) := by
-  rw [exists_counterexample_iff_exists_fg]
-  constructor
-  · rintro ⟨H, hH, hfg, hhyp, hns⟩
-    exact ⟨H, hH, countable_of_fg hfg, hhyp, hns⟩
-  · rintro ⟨H, hH, hc, hhyp, hns⟩
-    rw [← exists_counterexample_iff_exists_fg]
-    exact ⟨H, hH, hhyp, hns⟩
-
-end GroupApproximation

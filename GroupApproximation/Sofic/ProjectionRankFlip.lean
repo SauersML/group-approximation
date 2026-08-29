@@ -22,11 +22,10 @@ namespace KazhdanCornerMatrices
 open Matrix
 open scoped Matrix.Norms.L2Operator
 
-variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+variable {Y : Type*} [Fintype Y]
 
 /-! ## Generic quadratic-form bridges -/
 
-omit [DecidableEq Y] in
 /-- The entrywise squared Euclidean norm of a matrix–vector product is the
 real part of the Gram quadratic form, for an arbitrary finite coordinate
 type. -/
@@ -44,6 +43,10 @@ theorem sum_normSq_mulVec_eq_re_gram_general (X : Matrix Y Y ℂ) (x : Y → ℂ
     Complex.normSq z = ((Complex.normSq z : ℝ) : ℂ).re := by simp
     _ = (star z * z).re :=
       congrArg Complex.re Complex.normSq_eq_conj_mul_self
+
+section Decidable
+
+variable [DecidableEq Y]
 
 /-- The identity-matrix case of the Gram bridge: the quadratic form of `1` is
 the squared Euclidean norm. -/
@@ -64,14 +67,11 @@ theorem sum_normSq_proj_split {r : Matrix Y Y ℂ}
   have hc' : (1 - r)ᴴ * (1 - r) = 1 - r := by rw [hc.1, hc.2]
   rw [sum_normSq_mulVec_eq_re_gram_general, sum_normSq_mulVec_eq_re_gram_general,
     hr', hc', ← re_dotProduct_self]
-  have hsplit : r *ᵥ x + (1 - r) *ᵥ x = x := by
-    rw [← Matrix.add_mulVec]
-    simp
   calc
     (star x ⬝ᵥ (r *ᵥ x)).re + (star x ⬝ᵥ ((1 - r) *ᵥ x)).re =
         (star x ⬝ᵥ (r *ᵥ x + (1 - r) *ᵥ x)).re := by
       rw [dotProduct_add, Complex.add_re]
-    _ = (star x ⬝ᵥ x).re := by rw [hsplit]
+    _ = (star x ⬝ᵥ x).re := by rw [← Matrix.add_mulVec]; simp
 
 /-- An orthogonal projection matrix contracts squared Euclidean norms. -/
 theorem sum_normSq_mulVec_proj_le {r : Matrix Y Y ℂ}
@@ -80,7 +80,7 @@ theorem sum_normSq_mulVec_proj_le {r : Matrix Y Y ℂ}
   have h := sum_normSq_proj_split hr x
   have hnn : 0 ≤ ∑ i : Y, Complex.normSq (((1 - r) *ᵥ x) i) :=
     Finset.sum_nonneg fun i _ ↦ Complex.normSq_nonneg _
-  linarith
+  linarith only [h, hnn]
 
 /-- Squared-norm preservation under a matrix with orthonormal columns. -/
 theorem sum_normSq_mulVec_of_star_mul_self {U : Matrix Y Y ℂ}
@@ -89,9 +89,10 @@ theorem sum_normSq_mulVec_of_star_mul_self {U : Matrix Y Y ℂ}
   rw [sum_normSq_mulVec_eq_re_gram_general, hU]
   simpa using re_dotProduct_self x
 
+end Decidable
+
 /-! ## Range membership -/
 
-omit [DecidableEq Y] in
 /-- Vectors in the range of an orthogonal projection matrix are fixed by it.
 -/
 theorem mulVec_eq_self_of_mem_range {p : Matrix Y Y ℂ}
@@ -100,6 +101,10 @@ theorem mulVec_eq_self_of_mem_range {p : Matrix Y Y ℂ}
   obtain ⟨u, rfl⟩ := hx
   show p *ᵥ (p *ᵥ u) = p *ᵥ u
   rw [Matrix.mulVec_mulVec, hp.2]
+
+section Decidable
+
+variable [DecidableEq Y]
 
 /-- For a vector in the range of `p`, the compression by `q` loses at most the
 leakage `‖(1 - q) * p‖`. -/
@@ -125,7 +130,7 @@ theorem sum_normSq_compress_ge {p q : Matrix Y Y ℂ}
         exact mul_le_mul_of_nonneg_right hsq
           (Finset.sum_nonneg fun i _ ↦ Complex.normSq_nonneg _)
   have hsplit := sum_normSq_proj_split hq x
-  nlinarith [Finset.sum_nonneg
+  nlinarith only [hbound, hsplit, Finset.sum_nonneg
     (fun i (_ : i ∈ Finset.univ) ↦ Complex.normSq_nonneg (x i))]
 
 /-! ## The flip -/
@@ -143,7 +148,8 @@ theorem norm_one_sub_mul_flip {p q : Matrix Y Y ℂ}
     (hleak : ‖(1 - q) * p‖ ≤ ε) :
     ‖(1 - p) * q‖ ≤ ε / Real.sqrt (1 - ε ^ 2) := by
   classical
-  have hden : (0 : ℝ) < 1 - ε ^ 2 := by nlinarith
+  have hden : (0 : ℝ) < 1 - ε ^ 2 := by
+    nlinarith only [hε0, hε1]
   have hc0 : 0 ≤ ε / Real.sqrt (1 - ε ^ 2) :=
     div_nonneg hε0 (Real.sqrt_nonneg _)
   -- the compression map between the two ranges
@@ -165,7 +171,7 @@ theorem norm_one_sub_mul_flip {p q : Matrix Y Y ℂ}
     have hxzero : ∑ i : Y, Complex.normSq ((x : Y → ℂ) i) = 0 := by
       have hnn : 0 ≤ ∑ i : Y, Complex.normSq ((x : Y → ℂ) i) :=
         Finset.sum_nonneg fun i _ ↦ Complex.normSq_nonneg _
-      nlinarith
+      nlinarith only [hlow, hnn, hden]
     have hxz : (x : Y → ℂ) = 0 := by
       funext i
       have hi : Complex.normSq ((x : Y → ℂ) i) = 0 := by
@@ -261,22 +267,6 @@ theorem norm_one_sub_mul_flip {p q : Matrix Y Y ℂ}
 
 /-! ## Companions -/
 
-/-- The two one-sided leakages bound the full projection distance. -/
-theorem norm_proj_sub_le {p q : Matrix Y Y ℂ}
-    (hp : IsOrthogonalProjectionMatrix p)
-    (hq : IsOrthogonalProjectionMatrix q) :
-    ‖p - q‖ ≤ ‖(1 - q) * p‖ + ‖(1 - p) * q‖ := by
-  have hdecomp : p - q = p * (1 - q) - (1 - p) * q := by noncomm_ring
-  have hswap : ‖p * (1 - q)‖ = ‖(1 - q) * p‖ := by
-    have hct : p * (1 - q) = ((1 - q) * p)ᴴ := by
-      rw [Matrix.conjTranspose_mul, hp.1,
-        (one_sub_isOrthogonalProjection hq).1]
-    rw [hct, ← Matrix.star_eq_conjTranspose, norm_star]
-  calc
-    ‖p - q‖ = ‖p * (1 - q) - (1 - p) * q‖ := by rw [hdecomp]
-    _ ≤ ‖p * (1 - q)‖ + ‖(1 - p) * q‖ := norm_sub_le _ _
-    _ = ‖(1 - q) * p‖ + ‖(1 - p) * q‖ := by rw [hswap]
-
 /-- Unitary determinants are units. -/
 theorem isUnit_det_of_mem_unitaryGroup {u : Matrix Y Y ℂ}
     (hu : u ∈ Matrix.unitaryGroup Y ℂ) : IsUnit u.det := by
@@ -304,6 +294,8 @@ theorem rank_unitary_conj {u : Matrix Y Y ℂ}
     (u * p * uᴴ).rank = (u * p).rank :=
       Matrix.rank_mul_eq_left_of_isUnit_det uᴴ (u * p) hdet_ustar
     _ = p.rank := Matrix.rank_mul_eq_right_of_isUnit_det u p hdet_u
+
+end Decidable
 
 end KazhdanCornerMatrices
 end GroupApproximation

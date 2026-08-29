@@ -73,25 +73,6 @@ as `Subgroup.normalClosure {lamp}` inside `MarkedGroup`. -/
 @[simp] theorem lampKernel_agree :
     LiteralBlockNormalForm.lampKernel = LiteralLampKernelSplit.lampKernel := rfl
 
-/-- **The two retractions have the same kernel.** -/
-theorem ker_agree :
-    MonoidHom.ker LiteralBlockNormalForm.retract
-      = MonoidHom.ker LiteralLampKernelSplit.retraction := by
-  rw [← LiteralBlockNormalForm.lampKernel_eq, lampKernel_agree,
-    LiteralLampKernelSplit.lampKernel_eq_ker]
-
-/-- The presented vertical retraction is surjective: it fixes every generator
-of the presented target. -/
-theorem retract_surjective :
-    Function.Surjective LiteralBlockNormalForm.retract := by
-  rw [← MonoidHom.range_eq_top]
-  refine eq_top_iff.mpr ?_
-  rw [← PresentedGroup.closure_range_of
-    (rels := LiteralBlockNormalForm.verticalRelators)]
-  refine (Subgroup.closure_le _).mpr ?_
-  rintro _ ⟨j, rfl⟩
-  exact ⟨PresentedGroup.of j, LiteralBlockNormalForm.retract_of j⟩
-
 /-! ## The comparison maps
 
 Both directions are composites of maps the two lanes already build. -/
@@ -187,14 +168,6 @@ def verticalEquiv :
 
 @[simp] theorem verticalEquiv_apply (v : LiteralBlockNormalForm.Vertical) :
     verticalEquiv v = toV v := rfl
-
-@[simp] theorem verticalEquiv_symm_apply (v : LiteralLampKernelSplit.V) :
-    verticalEquiv.symm v = fromV v := rfl
-
-theorem verticalEquiv_retract (g : MarkedGroup) :
-    verticalEquiv (LiteralBlockNormalForm.retract g)
-      = LiteralLampKernelSplit.retraction g :=
-  toV_retract g
 
 /-! ## The base subgroups correspond
 

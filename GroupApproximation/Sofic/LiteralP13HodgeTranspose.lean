@@ -62,8 +62,8 @@ theorem inverseClass_involutive_all :
 
 /-- Reversing product classes twice is the identity. -/
 theorem inverseClass_involutive (c : Fin 293) :
-    inverseClass (inverseClass c) = c := by
-  exact inverseClass_involutive_all c
+    inverseClass (inverseClass c) = c :=
+  inverseClass_involutive_all c
 
 /-- Product-class inversion as a finite equivalence. -/
 def inverseClassEquiv : Fin 293 ≃ Fin 293 where
@@ -131,9 +131,7 @@ theorem gramNumerator_inverse (i k : Fin 6) (c : Fin 293) :
     gramNumerator k i (inverseClass c) = gramNumerator i k c := by
   unfold gramNumerator
   rw [classPairs_inverse, Finset.sum_map]
-  apply Finset.sum_congr rfl
-  intro pair _
-  exact gramPairNumerator_swap i k pair
+  exact Finset.sum_congr rfl fun pair _ ↦ gramPairNumerator_swap i k pair
 
 theorem hodgeNumerator_inverse (i k : Fin 6) (c : Fin 293) :
     hodgeNumerator k i (inverseClass c) = hodgeNumerator i k c := by

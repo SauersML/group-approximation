@@ -2,7 +2,6 @@ import GroupApproximation.Sofic.KazhdanCompressorCorner
 import GroupApproximation.Sofic.MarkedCompressionInclusionData
 import GroupApproximation.Sofic.MarkedCompressionVectorChain
 import GroupApproximation.Sofic.NegativeCornerModel
-import GroupApproximation.Sofic.NormUltraproductSequentialExtraction
 import GroupApproximation.Sofic.OperatorMF
 
 /-!
@@ -74,7 +73,7 @@ theorem re_star_dotProduct_le {Y : Type*} [Fintype Y]
             δ⁻¹ * ((b i).re * (b i).re) := by
         field_simp
         ring
-      nlinarith [hkey, hexp]
+      nlinarith only [hkey, hexp]
     have e2 : (a i).im * (b i).im ≤
         (2 : ℝ)⁻¹ * (δ * ((a i).im * (a i).im) +
           δ⁻¹ * ((b i).im * (b i).im)) := by
@@ -85,8 +84,8 @@ theorem re_star_dotProduct_le {Y : Type*} [Fintype Y]
             δ⁻¹ * ((b i).im * (b i).im) := by
         field_simp
         ring
-      nlinarith [hkey, hexp]
-    nlinarith [e1, e2]
+      nlinarith only [hkey, hexp]
+    nlinarith only [e1, e2]
   calc
     (star a ⬝ᵥ b).re = ∑ i : Y, ((star a) i * b i).re := by
       rw [dotProduct, Complex.re_sum]
@@ -117,16 +116,13 @@ theorem sum_normSq_le_card_mul_sq (Y : FiniteModel) (M : Matrix Y Y ℂ) :
   · have hpos : (0 : ℝ) < Fintype.card Y := by
       exact_mod_cast Nat.pos_of_ne_zero hzero
     rw [div_le_iff₀ hpos] at h
-    have hsimp : ∀ i j : Y, M i j - (0 : Matrix Y Y ℂ) i j = M i j := by
-      intro i j
-      simp
     calc
       ∑ i : Y, ∑ j : Y, Complex.normSq (M i j) =
           ∑ i : Y, ∑ j : Y,
             Complex.normSq (M i j - (0 : Matrix Y Y ℂ) i j) := by
         refine Finset.sum_congr rfl fun i _ ↦
           Finset.sum_congr rfl fun j _ ↦ ?_
-        rw [hsimp i j]
+        simp
       _ ≤ ‖M‖ ^ 2 * Fintype.card Y := h
       _ = Fintype.card Y * ‖M‖ ^ 2 := by ring
 
@@ -223,21 +219,6 @@ theorem norm_le_one_of_mem_unitary {Y : Type*} [Fintype Y] [DecidableEq Y]
 
 /-! ## Vectorization linearity -/
 
-@[simp] theorem matVec_sub {Y : Type*}
-    (A C : Matrix Y Y ℂ) : rowVec (A - C) = rowVec A - rowVec C := by
-  funext p
-  rfl
-
-@[simp] theorem matVec_smul {Y : Type*}
-    (c : ℂ) (A : Matrix Y Y ℂ) : rowVec (c • A) = c • rowVec A := by
-  funext p
-  rfl
-
-@[simp] theorem matVec_add {Y : Type*}
-    (A C : Matrix Y Y ℂ) : rowVec (A + C) = rowVec A + rowVec C := by
-  funext p
-  rfl
-
 theorem matVec_sum {Y : Type*}
     {I : Type*} (s : Finset I) (A : I → Matrix Y Y ℂ) :
     rowVec (∑ i ∈ s, A i) = ∑ i ∈ s, rowVec (A i) := by
@@ -246,8 +227,7 @@ theorem matVec_sum {Y : Type*}
 
 theorem sum_mulVec {Y : Type*} [Fintype Y] {I : Type*} (s : Finset I)
     (A : I → Matrix Y Y ℂ) (x : Y → ℂ) :
-    (∑ i ∈ s, A i) *ᵥ x = ∑ i ∈ s, A i *ᵥ x := by
-  exact Matrix.sum_mulVec s A x
+    (∑ i ∈ s, A i) *ᵥ x = ∑ i ∈ s, A i *ᵥ x := Matrix.sum_mulVec s A x
 
 /-! ## Group-word microstate telescopes -/
 
@@ -555,28 +535,20 @@ theorem gammaAdjoint_mulVec_gammaRowVec (B : OpAlmostRepresentation E)
       gammaRowVec B n X =
         gammaRowVec B n
           ((B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ) * X *
-            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) := by
-  exact conjDouble_mulVec_rowVec _ _
+            (B.map n (C.iota s) : Matrix (B.model n) (B.model n) ℂ)ᴴ) :=
+  conjDouble_mulVec_rowVec _ _
 
 theorem sum_normSq_gammaRowVec (B : OpAlmostRepresentation E)
     (n : ℕ)
     (X : Matrix (B.model n) (B.model n) ℂ) :
     ∑ p : B.adjoint.model n,
         Complex.normSq (gammaRowVec B n X p) =
-      ∑ i : B.model n, ∑ j : B.model n, Complex.normSq (X i j) := by
-  exact sum_normSq_rowVec X
+      ∑ i : B.model n, ∑ j : B.model n, Complex.normSq (X i j) := sum_normSq_rowVec X
 
 @[simp] theorem gammaRowVec_smul (B : OpAlmostRepresentation E)
     (n : ℕ) (c : ℂ)
     (X : Matrix (B.model n) (B.model n) ℂ) :
     gammaRowVec B n (c • X) = c • gammaRowVec B n X := by
-  rfl
-
-@[simp] theorem gammaRowVec_add (B : OpAlmostRepresentation E)
-    (n : ℕ)
-    (X Y : Matrix (B.model n) (B.model n) ℂ) :
-    gammaRowVec B n (X + Y) =
-      gammaRowVec B n X + gammaRowVec B n Y := by
   rfl
 
 @[simp] theorem gammaRowVec_sub (B : OpAlmostRepresentation E)
@@ -590,8 +562,7 @@ theorem gammaRowVec_sum (B : OpAlmostRepresentation E)
     (n : ℕ)
     {I : Type*} (s : Finset I) (X : I → Matrix (B.model n) (B.model n) ℂ) :
     gammaRowVec B n (∑ i ∈ s, X i) =
-      ∑ i ∈ s, gammaRowVec B n (X i) := by
-  exact matVec_sum s X
+      ∑ i ∈ s, gammaRowVec B n (X i) := matVec_sum s X
 
 /-- The Laplacian displacement of an arbitrary flattened matrix is the
 flattening of its explicit averaged conjugation defect.  Unlike the original
@@ -657,8 +628,8 @@ theorem matrix_laplacian_matVec (B : OpAlmostRepresentation E)
           Matrix ((gammaAdjoint B C).model n)
             ((gammaAdjoint B C).model n) ℂ) *ᵥ rowVec Vc =
         rowVec (Uᴴ * Vc * U)
-      have hraw := conjDouble_mulVec_rowVec Uᴴ Vc
-      simpa only [Matrix.conjTranspose_conjTranspose] using hraw
+      simpa only [Matrix.conjTranspose_conjTranspose] using
+        conjDouble_mulVec_rowVec Uᴴ Vc
     exact (congrArg (fun M : Matrix ((gammaAdjoint B C).model n)
       ((gammaAdjoint B C).model n) ℂ ↦ M *ᵥ gammaRowVec B n Vc) hmap).trans hconj
   -- expand the Hermitian average applied to the flattened lamp
@@ -792,7 +763,7 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
       hsDistSq (B.model n) (commutatorMatrix B D n) 1 ≤ ε := by
   classical
   intro ε hε
-  have hθpos : 0 < 1 - θ := by linarith
+  have hθpos : 0 < 1 - θ := sub_pos.mpr hθ1
   -- ε-BUDGET COUPLING (exactly tight, zero slack): the final `linarith`
   -- consumes 8·(ε/24) + 64·(ε/192) + 64·(ε/192) = ε against the committed
   -- 8/64/64 constants of the vector-chain lemmas.  Changing any constant on
@@ -800,8 +771,8 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
   -- together.
   set η : ℝ := (1 - θ) * ε / 192 with hηdef
   have hηpos : 0 < η := by positivity
-  have he₂ : (0 : ℝ) < ε / 192 := by linarith
-  have he₃ : (0 : ℝ) < ε / 24 := by linarith
+  have he₂ : (0 : ℝ) < ε / 192 := div_pos hε (by norm_num)
+  have he₃ : (0 : ℝ) < ε / 24 := div_pos hε (by norm_num)
   have hfix : ∀ s ∈ S, ∀ ε' : ℝ, 0 < ε' → ∃ N, ∀ n ≥ N,
       ‖(B.map n (D.iota s) : Matrix (B.model n) (B.model n) ℂ) *
         B.map n D.c *
@@ -946,7 +917,7 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
           refine Finset.sum_le_sum fun s hs ↦ ?_
           calc
             ‖_ + _‖ ≤ ‖_‖ + ‖_‖ := norm_add_le _ _
-            _ ≤ 2 * η := by linarith [hterm s hs, htermStar s hs]
+            _ ≤ 2 * η := (add_le_add (hterm s hs) (htermStar s hs)).trans_eq (by ring)
         _ = S.card * (2 * η) := by
           rw [Finset.sum_const, nsmul_eq_mul]
     rw [norm_smul, norm_smul]
@@ -978,8 +949,8 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
   let ξ : (gammaAdjoint B D.toKazhdanCompressionCore).model n → ℂ :=
     gammaRowVec B n
       (B.map n D.c : Matrix (B.model n) (B.model n) ℂ)
-  have hHherm : H.IsHermitian := by
-    exact hermitianAverage_conjTranspose (gammaAdjoint B D.toKazhdanCompressionCore) S n
+  have hHherm : H.IsHermitian :=
+    hermitianAverage_conjTranspose (gammaAdjoint B D.toKazhdanCompressionCore) S n
   have hHnorm : ‖H‖ ≤ 1 := norm_hermitianAverage_le_one _ S n
   have hresidual :
       ∑ i : (gammaAdjoint B D.toKazhdanCompressionCore).model n,
@@ -1008,14 +979,13 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
     exact sum_normSq_of_mem_unitary _ (B.map n D.c).2
   have henergy : (star ξ ⬝ᵥ (ξ - H *ᵥ ξ)).re ≤
       η * Fintype.card (B.model n) := by
-    have hamgm := re_star_dotProduct_le hηpos ξ (ξ - H *ᵥ ξ)
-    rw [hxiMass] at hamgm
     calc
       (star ξ ⬝ᵥ (ξ - H *ᵥ ξ)).re ≤
           (2 : ℝ)⁻¹ *
             (η * Fintype.card (B.model n) + η⁻¹ *
               ∑ i : (gammaAdjoint B D.toKazhdanCompressionCore).model n,
-                Complex.normSq ((ξ - H *ᵥ ξ) i)) := hamgm
+                Complex.normSq ((ξ - H *ᵥ ξ) i)) := by
+        simpa only [hxiMass] using re_star_dotProduct_le hηpos ξ (ξ - H *ᵥ ξ)
       _ ≤ (2 : ℝ)⁻¹ *
             (η * Fintype.card (B.model n) + η⁻¹ *
               (Fintype.card (B.model n) * η ^ 2)) := by
@@ -1040,7 +1010,7 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
         Complex.normSq (((1 - P) *ᵥ ξ) i) ≤
         η * Fintype.card (B.model n) := hcaptureRaw.trans henergy
     rw [hηdef] at hscaled
-    nlinarith
+    nlinarith only [hscaled, hθpos]
   have hstage := MarkedCompressionVectorChain.marked_commutator_hsDistSq_le
     hr (B.map n (D.iota D.a)).2 (B.map n D.t).2 (B.map n D.c).2
     (cornerProjection_isOrthogonalProjection B D.toKazhdanCompressionCore S θ n)
@@ -1055,7 +1025,7 @@ theorem commutatorMatrix_hsDistSq_vanishing {κ : ℝ} {S : Finset Γ} {θ : ℝ
     simpa [lampMatrix, conjLampMatrix, commutatorMatrix, gammaAdjoint,
       OpAlmostRepresentation.adjoint_map, P] using hstage
   rw [hsqrt₂, hsqrt₃] at hstage'
-  linarith
+  linarith only [hstage']
 
 /-! ## Step 12: the marked word cannot converge to the negative identity -/
 
@@ -1081,10 +1051,10 @@ theorem false_of_marked_word_tends_to_neg_one
   let θ : ℝ := (c₀ + 1) / 2
   have hθ4 : 1 - κ ^ 2 / (4 * S.card) < θ := by
     dsimp [c₀, θ]
-    linarith
+    linarith only [hgap]
   have hθ1 : θ < 1 := by
     dsimp [c₀, θ]
-    linarith
+    linarith only [hgap]
   obtain ⟨N₁, hN₁⟩ := commutatorMatrix_hsDistSq_vanishing B D hpair hone
     hκone hsymm hgen hθ4 hθ1 (1 / 16) (by norm_num)
   obtain ⟨N₂, hN₂⟩ := (commutatorMatrix_defect_vanishing B D)
@@ -1101,22 +1071,18 @@ theorem false_of_marked_word_tends_to_neg_one
   let M : Matrix Y Y ℂ := commutatorMatrix B D n
   have hY : 0 < Fintype.card Y := B.modelNonempty n
   have hcomm : hsDistSq Y M 1 ≤ 1 / 16 := hN₁ n hn₁
-  have hdefNorm : ‖M - W‖ ≤ 1 / 4 := hN₂ n hn₂
-  have hnegNorm : ‖W + 1‖ ≤ 1 / 4 := hN₃ n hn₃
   have hdef : hsDistSq Y M W ≤ 1 / 16 := by
-    have h := hsDistSq_le_sq_l2_opNorm Y M W
     calc
-      hsDistSq Y M W ≤ ‖M - W‖ ^ 2 := h
-      _ ≤ (1 / 4 : ℝ) ^ 2 := by
-        nlinarith [norm_nonneg (M - W)]
+      hsDistSq Y M W ≤ ‖M - W‖ ^ 2 := hsDistSq_le_sq_l2_opNorm Y M W
+      _ ≤ (1 / 4 : ℝ) ^ 2 :=
+        (pow_le_pow_left₀ (norm_nonneg _) (hN₂ n hn₂)) 2
       _ = 1 / 16 := by norm_num
   have hneg : hsDistSq Y W (-1) ≤ 1 / 16 := by
-    have h := hsDistSq_le_sq_l2_opNorm Y W (-1)
-    rw [sub_neg_eq_add] at h
     calc
-      hsDistSq Y W (-1) ≤ ‖W + 1‖ ^ 2 := h
-      _ ≤ (1 / 4 : ℝ) ^ 2 := by
-        nlinarith [norm_nonneg (W + 1)]
+      hsDistSq Y W (-1) ≤ ‖W + 1‖ ^ 2 := by
+        simpa only [sub_neg_eq_add] using hsDistSq_le_sq_l2_opNorm Y W (-1)
+      _ ≤ (1 / 4 : ℝ) ^ 2 :=
+        (pow_le_pow_left₀ (norm_nonneg _) (hN₃ n hn₃)) 2
       _ = 1 / 16 := by norm_num
   have htriangle₁ := hsDistSq_le_two_add_two Y
     (1 : Matrix Y Y ℂ) (-1) M
@@ -1124,7 +1090,7 @@ theorem false_of_marked_word_tends_to_neg_one
   have honeNeg : hsDistSq Y (1 : Matrix Y Y ℂ) (-1) = 4 :=
     hsDistSq_one_neg_one Y hY
   rw [honeNeg, hsDistSq_comm Y 1 M] at htriangle₁
-  nlinarith
+  linarith only [htriangle₁, htriangle₂, hcomm, hdef, hneg]
 
 /-- Every sequential operator-norm almost representation in which the marked
 word stays uniformly separated from the identity is impossible.  Cutting the
@@ -1166,28 +1132,6 @@ theorem word_normMFInvisible [Countable E]
     (D : MarkedCompressionInclusionData Γ E) : NormMFInvisible D.word :=
   normMFInvisible_of_no_markedOpAlmostRepresentation
     (false_of_markedOpAlmostRepresentation D)
-
-/-- A countable marked-compression group with nontrivial marked word is not
-weak/operator-norm MF. -/
-theorem not_isWeakMF [Countable E]
-    (D : MarkedCompressionInclusionData Γ E) (hne : D.word ≠ 1) :
-    ¬ IsWeakMF E :=
-  not_isWeakMF_of_normMFInvisible D.word_normMFInvisible hne
-
-/-- A countable marked-compression group with nontrivial marked word is not MF
-in the standard cofinite norm-matrix-corona sense. -/
-theorem not_isOperatorMF [Countable E]
-    (D : MarkedCompressionInclusionData Γ E) (hne : D.word ≠ 1) :
-    ¬ IsOperatorMF E :=
-  not_isOperatorMF_of_no_markedOpAlmostRepresentation
-    (false_of_markedOpAlmostRepresentation D) hne
-
-/-- Package the proved kill theorem with a nontriviality witness as the
-marked-compression certificate. -/
-noncomputable def normCertificate [Countable E]
-    (D : MarkedCompressionInclusionData Γ E) (hne : D.word ≠ 1) :
-    MarkedCompressionNormCertificate E :=
-  ⟨D.t, D.iota D.a, D.c, hne, D.word_normMFInvisible⟩
 
 end MarkedCompressionInclusionData
 

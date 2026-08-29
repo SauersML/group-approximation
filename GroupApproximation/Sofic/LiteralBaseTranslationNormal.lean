@@ -1,5 +1,4 @@
 import GroupApproximation.Sofic.LiteralBaseRelations
-import Mathlib.Algebra.Group.Subgroup.Pointwise
 
 /-!
 # The translation subgroup of the literal base is normal
@@ -117,7 +116,7 @@ theorem conj_mem_translations_of_generators
 
 theorem x_conj_mem_translations {u : Base} (hu : u ∈ translations) :
     x * u * x⁻¹ ∈ translations := by
-  apply conj_mem_translations_of_generators x _ hu
+  refine conj_mem_translations_of_generators x ?_ hu
   intro a ha
   rcases ha with rfl | rfl | rfl
   · rw [x_conj_v1]; exact v3_mem_translations
@@ -126,7 +125,7 @@ theorem x_conj_mem_translations {u : Base} (hu : u ∈ translations) :
 
 theorem y_conj_mem_translations {u : Base} (hu : u ∈ translations) :
     y * u * y⁻¹ ∈ translations := by
-  apply conj_mem_translations_of_generators y _ hu
+  refine conj_mem_translations_of_generators y ?_ hu
   intro a ha
   rcases ha with rfl | rfl | rfl
   · rw [y_conj_v1]; exact v1_mem_translations
@@ -139,7 +138,7 @@ theorem y_conj_mem_translations {u : Base} (hu : u ∈ translations) :
 
 theorem z_conj_mem_translations {u : Base} (hu : u ∈ translations) :
     z * u * z⁻¹ ∈ translations := by
-  apply conj_mem_translations_of_generators z _ hu
+  refine conj_mem_translations_of_generators z ?_ hu
   intro a ha
   rcases ha with rfl | rfl | rfl
   · rw [z_conj_v1]
@@ -149,27 +148,6 @@ theorem z_conj_mem_translations {u : Base} (hu : u ∈ translations) :
     exact translations.mul_mem v1_mem_translations
       (translations.inv_mem v3_mem_translations)
   · exact z_conj_v3.symm ▸ translations.inv_mem v3_mem_translations
-
-theorem x_inv : x⁻¹ = x * x := by
-  have h : x * x * x = 1 := by simpa [pow_succ] using x_cube
-  calc
-    x⁻¹ = x⁻¹ * 1 := by rw [mul_one]
-    _ = x⁻¹ * (x * x * x) := by rw [h]
-    _ = x * x := by group
-
-theorem y_inv : y⁻¹ = y * y := by
-  have h : y * y * y = 1 := by simpa [pow_succ] using y_cube
-  calc
-    y⁻¹ = y⁻¹ * 1 := by rw [mul_one]
-    _ = y⁻¹ * (y * y * y) := by rw [h]
-    _ = y * y := by group
-
-theorem z_inv : z⁻¹ = z := by
-  have h : z * z = 1 := by simpa [pow_two] using z_sq
-  calc
-    z⁻¹ = z⁻¹ * 1 := by rw [mul_one]
-    _ = z⁻¹ * (z * z) := by rw [h]
-    _ = z := by group
 
 theorem x_mem_normalizer : x ∈ Subgroup.normalizer translations := by
   rw [Subgroup.mem_normalizer_iff]
@@ -225,11 +203,10 @@ theorem z_mem_normalizer : z ∈ Subgroup.normalizer translations := by
 /-- Every element of the literal base normalizes its translation subgroup. -/
 theorem normalizer_translations_eq_top :
     Subgroup.normalizer (translations : Set Base) = ⊤ := by
-  apply top_unique
-  intro g _
-  apply PresentedGroup.generated_by
+  refine top_unique fun g _ => ?_
+  refine PresentedGroup.generated_by
     (baseRelators : Set (FreeGroup BaseGenerator))
-    (Subgroup.normalizer (translations : Set Base)) _ g
+    (Subgroup.normalizer (translations : Set Base)) ?_ g
   intro i
   fin_cases i
   · exact translations.le_normalizer v1_mem_translations
@@ -241,11 +218,10 @@ theorem normalizer_translations_eq_top :
 
 /-- The translation and rotation subgroups generate the whole literal base. -/
 theorem translations_sup_rotations : translations ⊔ rotations = ⊤ := by
-  apply top_unique
-  intro g _
-  apply PresentedGroup.generated_by
+  refine top_unique fun g _ => ?_
+  refine PresentedGroup.generated_by
     (baseRelators : Set (FreeGroup BaseGenerator))
-    (translations ⊔ rotations) _ g
+    (translations ⊔ rotations) ?_ g
   intro i
   fin_cases i
   · exact (show translations ≤ translations ⊔ rotations from le_sup_left)
@@ -254,12 +230,9 @@ theorem translations_sup_rotations : translations ⊔ rotations = ⊤ := by
       v2_mem_translations
   · exact (show translations ≤ translations ⊔ rotations from le_sup_left)
       v3_mem_translations
-  · exact (show rotations ≤ translations ⊔ rotations from le_sup_right)
-      (Subgroup.subset_closure (by simp))
-  · exact (show rotations ≤ translations ⊔ rotations from le_sup_right)
-      (Subgroup.subset_closure (by simp))
-  · exact (show rotations ≤ translations ⊔ rotations from le_sup_right)
-      (Subgroup.subset_closure (by simp))
+  · exact (show rotations ≤ translations ⊔ rotations from le_sup_right) x_mem_rotations
+  · exact (show rotations ≤ translations ⊔ rotations from le_sup_right) y_mem_rotations
+  · exact (show rotations ≤ translations ⊔ rotations from le_sup_right) z_mem_rotations
 
 /-- Every element has a translation--rotation factorization.  Uniqueness is
 the remaining algebraic ingredient required for presentation completeness. -/

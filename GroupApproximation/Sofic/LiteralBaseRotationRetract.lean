@@ -1,5 +1,4 @@
 import GroupApproximation.Sofic.LiteralBaseTranslationNormal
-import Mathlib.GroupTheory.SemidirectProduct
 
 /-!
 # The CRW rotation presentation is a retract of the literal affine base
@@ -15,12 +14,9 @@ namespace GroupApproximation
 namespace LiteralBaseRotationRetract
 
 open LiteralBaseRelations LiteralBaseTranslationNormal
-open LiteralNonMFPresentation hiding x y z v1 v2 v3
+open LiteralNonMFPresentation
 
 noncomputable section
-
-local instance rotationDecidableEq {α : Type*} : DecidableEq α :=
-  Classical.decEq α
 
 abbrev RotationGenerator := Fin 3
 abbrev rx : FreeGroup RotationGenerator := FreeGroup.of 0
@@ -69,9 +65,6 @@ theorem mem_rotationRelators_iff (r : FreeGroup RotationGenerator) :
 rotation relators. -/
 abbrev Rotation : Type :=
   PresentedGroup (rotationRelators : Set (FreeGroup RotationGenerator))
-
-instance rotation_finitelyPresented : Group.IsFinitelyPresented Rotation :=
-  inferInstance
 
 abbrev rotationWord : FreeGroup RotationGenerator →* Rotation :=
   PresentedGroup.mk (rotationRelators : Set (FreeGroup RotationGenerator))
@@ -228,18 +221,6 @@ theorem baseToRotation_comp_rotationToBase :
   | inv_of i hi => simpa only [map_inv] using congrArg Inv.inv hi
   | mul a b ha hb => simpa only [map_mul] using congrArg₂ (· * ·) ha hb
 
-/-- Consequently the abstract eight-relator rotation presentation embeds in
-the literal base. -/
-theorem rotationToBase_injective : Function.Injective rotationToBase := by
-  apply Function.LeftInverse.injective
-  intro r
-  exact DFunLike.congr_fun baseToRotation_comp_rotationToBase r
-
-theorem baseToRotation_surjective : Function.Surjective baseToRotation := by
-  intro r
-  refine ⟨rotationToBase r, ?_⟩
-  exact DFunLike.congr_fun baseToRotation_comp_rotationToBase r
-
 /-- Killing translations really kills their whole generated subgroup. -/
 theorem translations_le_baseToRotation_ker :
     translations ≤ baseToRotation.ker := by
@@ -303,95 +284,7 @@ theorem baseToRotation_ker_eq_translations :
     exact ha
   · exact translations_le_baseToRotation_ker
 
-theorem translations_inf_rotations : translations ⊓ rotations = ⊥ := by
-  apply le_antisymm
-  · intro g hg
-    have hker : g ∈ baseToRotation.ker := by
-      rw [baseToRotation_ker_eq_translations]
-      exact hg.1
-    have hrange : g ∈ rotationToBase.range := by
-      rw [rotationToBase_range]
-      exact hg.2
-    obtain ⟨q, hq⟩ := hrange
-    have hleft := DFunLike.congr_fun baseToRotation_comp_rotationToBase q
-    change baseToRotation (rotationToBase q) = q at hleft
-    rw [hq, MonoidHom.mem_ker.mp hker] at hleft
-    rw [← hq, ← hleft]
-    simp
-  · exact bot_le
-
 /-! ## Exact internal semidirect-product form -/
-
-instance translations_normal : translations.Normal where
-  conj_mem := by
-    intro u hu g
-    have hg : g ∈ Subgroup.normalizer translations := by
-      rw [normalizer_translations_eq_top]
-      exact Subgroup.mem_top g
-    exact ((Subgroup.mem_normalizer_iff.mp hg) u).mp hu
-
-/-- Each base element has a unique translation--rotation factorization. -/
-theorem translations_isComplement_rotations :
-    translations.IsComplement' rotations := by
-  apply Subgroup.isComplement'_of_disjoint_and_mul_eq_univ
-  · rw [disjoint_iff_inf_le, translations_inf_rotations]
-  · have hnorm : rotations ≤ Subgroup.normalizer (translations : Set Base) := by
-      rw [normalizer_translations_eq_top]
-      exact le_top
-    rw [← Subgroup.coe_mul_of_right_le_normalizer_left
-      translations rotations hnorm]
-    rw [translations_sup_rotations]
-    rfl
-
-/-- The literal base is exactly the internal semidirect product determined
-by conjugation of translations by rotations. -/
-noncomputable def internalSemidirectEquiv :
-    translations ⋊[
-      (translations.normalizerMonoidHom).comp
-        (Subgroup.inclusion
-          (translations.normalizer_eq_top ▸
-            (show rotations ≤ (⊤ : Subgroup Base) from le_top)))] rotations ≃*
-      Base :=
-  SemidirectProduct.mulEquivSubgroup translations_isComplement_rotations
-
-@[simp] theorem internalSemidirectEquiv_apply
-    (g : translations ⋊[
-      (translations.normalizerMonoidHom).comp
-        (Subgroup.inclusion
-          (translations.normalizer_eq_top ▸
-            (show rotations ≤ (⊤ : Subgroup Base) from le_top)))] rotations) :
-    internalSemidirectEquiv g = (g.left : Base) * (g.right : Base) :=
-  rfl
-
-/-- The abstract rotation presentation is multiplicatively equivalent to
-the internal rotation subgroup. -/
-noncomputable def rotationEquivRotations : Rotation ≃* rotations :=
-  MulEquiv.ofBijective
-    (rotationToBase.codRestrict rotations fun r => by
-      rw [← rotationToBase_range]
-      exact ⟨r, rfl⟩)
-    ⟨fun _ _ h => rotationToBase_injective (congrArg Subtype.val h), by
-      intro r
-      have hr : (r : Base) ∈ rotationToBase.range := by
-        rw [rotationToBase_range]
-        exact r.property
-      rcases hr with ⟨q, hq⟩
-      exact ⟨q, Subtype.ext hq⟩⟩
-
-@[simp] theorem rotationEquivRotations_X :
-    (rotationEquivRotations X : Base) = LiteralBaseRelations.x := by
-  change rotationToBase X = LiteralBaseRelations.x
-  exact rotationToBase_X
-
-@[simp] theorem rotationEquivRotations_Y :
-    (rotationEquivRotations Y : Base) = LiteralBaseRelations.y := by
-  change rotationToBase Y = LiteralBaseRelations.y
-  exact rotationToBase_Y
-
-@[simp] theorem rotationEquivRotations_Z :
-    (rotationEquivRotations Z : Base) = LiteralBaseRelations.z := by
-  change rotationToBase Z = LiteralBaseRelations.z
-  exact rotationToBase_Z
 
 end
 

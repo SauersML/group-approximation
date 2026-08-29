@@ -57,18 +57,16 @@ theorem abs_hermitianEigenvalue_le_norm {Z : Type*} [Fintype Z]
   have hx : ‖x‖ = 1 := hH.eigenvectorBasis.orthonormal.1 i
   have heigen :
       (Matrix.toEuclideanCLM (n := Z) (𝕜 := ℂ)) H x =
-        ((hH.eigenvalues i : ℝ) : ℂ) • x := by
-    apply PiLp.ext
-    intro j
-    exact congrFun (hH.mulVec_eigenvectorBasis i) j
-  have happly := ContinuousLinearMap.le_opNorm
-    ((Matrix.toEuclideanCLM (n := Z) (𝕜 := ℂ)) H) x
-  rw [heigen, norm_smul, hx, mul_one,
-    Matrix.l2_opNorm_toEuclideanCLM] at happly
+        ((hH.eigenvalues i : ℝ) : ℂ) • x :=
+    PiLp.ext fun j ↦ congrFun (hH.mulVec_eigenvectorBasis i) j
   calc
     |hH.eigenvalues i| = ‖((hH.eigenvalues i : ℝ) : ℂ)‖ := by
       rw [Complex.norm_real, Real.norm_eq_abs]
-    _ ≤ ‖H‖ := by simpa only [mul_one] using happly
+    _ ≤ ‖H‖ := by
+      simpa only [heigen, norm_smul, hx, mul_one,
+        Matrix.l2_opNorm_toEuclideanCLM] using
+        ContinuousLinearMap.le_opNorm
+          ((Matrix.toEuclideanCLM (n := Z) (𝕜 := ℂ)) H) x
 
 /-- On a spectral cutoff whose retained eigenvalues lie within `delta` of
 `1`, the Hermitian displacement from the identity has norm at most `delta`.
@@ -133,8 +131,8 @@ theorem norm_sub_one_mul_spectralAbove_le
     have hupper : hH.eigenvalues i ≤ 1 := by
       have habs := (abs_hermitianEigenvalue_le_norm H hH i).trans hHnorm
       exact (le_abs_self _).trans habs
-    rw [abs_of_nonpos (by linarith)]
-    linarith [hnear i hi]
+    rw [abs_of_nonpos (by linarith only [hupper])]
+    linarith only [hnear i hi]
   · simp [hi, hdelta]
 
 /-- The entrywise squared Euclidean norm is the real part of the Gram
@@ -173,21 +171,19 @@ theorem norm_sq_le_norm_of_posSemidef_sub (X K : Matrix Y Y ℂ)
       simp only [Matrix.sub_mulVec, dotProduct_sub, map_sub] at hquad
       change 0 ≤ (star x ⬝ᵥ (K *ᵥ x)).re -
         (star x ⬝ᵥ ((Xᴴ * X) *ᵥ x)).re at hquad
-      linarith
+      linarith only [hquad]
     have hinner : (star x ⬝ᵥ (K *ᵥ x)).re =
         RCLike.re (inner ℂ xE KxE) := by
       simp only [xE, KxE, EuclideanSpace.inner_eq_star_dotProduct]
       rw [dotProduct_comm]
       rfl
-    have hKx : ‖KxE‖ ≤ ‖K‖ * ‖xE‖ := by
-      exact Matrix.l2_opNorm_mulVec K xE
     calc
       ∑ i : Y, Complex.normSq ((X *ᵥ x) i)
           ≤ (star x ⬝ᵥ (K *ᵥ x)).re := hgram
       _ = RCLike.re (inner ℂ xE KxE) := hinner
       _ ≤ ‖xE‖ * ‖KxE‖ := re_inner_le_norm _ _
       _ ≤ ‖xE‖ * (‖K‖ * ‖xE‖) :=
-        mul_le_mul_of_nonneg_left hKx (norm_nonneg _)
+        mul_le_mul_of_nonneg_left (Matrix.l2_opNorm_mulVec K xE) (norm_nonneg _)
       _ = ‖K‖ * (∑ i : Y, Complex.normSq (x i)) := by
         rw [← euclidean_norm_sq Y x]
         ring
@@ -208,11 +204,10 @@ theorem posSemidef_finset_sum_sub_of_mem {I : Type*} [DecidableEq I]
     ((∑ j ∈ s, F j) - F i).PosSemidef := by
   have hsplit : (∑ j ∈ s, F j) - F i = ∑ j ∈ s.erase i, F j := by
     rw [← Finset.sum_erase_add _ _ hi]
-    abel
+    abel_nf
   rw [hsplit]
-  apply Matrix.posSemidef_sum
-  intro j hj
-  exact hF j (Finset.mem_of_mem_erase hj)
+  exact Matrix.posSemidef_sum (s.erase i) fun j hj ↦
+    hF j (Finset.mem_of_mem_erase hj)
 
 section WeakMF
 
@@ -234,62 +229,16 @@ theorem hermitianAverage_eventually_top_spectral_residual
             (hermitianAverage_conjTranspose A S n) t‖ ≤ delta := by
   obtain ⟨N, hN⟩ :=
     WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues
-      hQ S hQS hone hepsilonOne hsymm A ht (by linarith : 1 - delta < 1)
+      hQ S hQS hone hepsilonOne hsymm A ht
+        (by linarith only [hdelta] : 1 - delta < 1)
   refine ⟨N, fun n hn ↦ ?_⟩
-  let H := hermitianAverage A S n
-  let hH := hermitianAverage_conjTranspose A S n
-  apply norm_sub_one_mul_spectralAbove_le H hH t delta hdelta.le
-    (norm_hermitianAverage_le_one A S n)
+  refine norm_sub_one_mul_spectralAbove_le (hermitianAverage A S n)
+    (hermitianAverage_conjTranspose A S n) t delta hdelta.le
+    (norm_hermitianAverage_le_one A S n) ?_
   intro i hi
   have hnot := hN n hn i
   by_contra hnear
-  apply hnot
-  exact ⟨hi.le, le_of_not_ge hnear⟩
-
-/-- The original weak-MF orbit average converges to the identity in operator
-norm on the retained top spectral subspace. -/
-theorem matrixAverage_sub_one_mul_spectralAbove_vanishing
-    {Q : Finset G} {epsilon : ℝ}
-    (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
-    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
-    (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : OpAlmostRepresentation G) {t : ℝ}
-    (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) :
-    OpNormVanishing A (fun n ↦
-      (matrixAverage A S n - 1) *
-        spectralAbove (hermitianAverage A S n)
-          (hermitianAverage_conjTranspose A S n) t) := by
-  intro eta heta
-  obtain ⟨NH, hNH⟩ := hermitianAverage_eventually_top_spectral_residual
-    hQ S hQS hone hepsilonOne hsymm A ht (show 0 < eta / 2 by linarith)
-  obtain ⟨NM, hNM⟩ := matrixAverage_sub_hermitian_vanishing A S hsymm
-    (eta / 2) (by linarith)
-  refine ⟨max NH NM, fun n hn ↦ ?_⟩
-  let P := spectralAbove (hermitianAverage A S n)
-    (hermitianAverage_conjTranspose A S n) t
-  have hP : ‖P‖ ≤ 1 := norm_spectralAbove_le_one _ _ _
-  change ‖(matrixAverage A S n - 1) * P‖ ≤ eta
-  have hsplit :
-      (matrixAverage A S n - 1) * P =
-        (matrixAverage A S n - hermitianAverage A S n) * P +
-          (hermitianAverage A S n - 1) * P := by
-    noncomm_ring
-  rw [hsplit]
-  calc
-    ‖(matrixAverage A S n - hermitianAverage A S n) * P +
-        (hermitianAverage A S n - 1) * P‖ ≤
-        ‖(matrixAverage A S n - hermitianAverage A S n) * P‖ +
-          ‖(hermitianAverage A S n - 1) * P‖ := norm_add_le _ _
-    _ ≤ eta / 2 + eta / 2 := add_le_add
-      (calc
-        ‖(matrixAverage A S n - hermitianAverage A S n) * P‖ ≤
-            ‖matrixAverage A S n - hermitianAverage A S n‖ * ‖P‖ :=
-          Matrix.l2_opNorm_mul _ _
-        _ ≤ (eta / 2) * 1 := mul_le_mul
-          (hNM n ((le_max_right _ _).trans hn)) hP (norm_nonneg _) (by linarith)
-        _ = eta / 2 := mul_one _)
-      (hNH n ((le_max_left _ _).trans hn))
-    _ = eta := by ring
+  exact hnot ⟨hi.le, le_of_not_ge hnear⟩
 
 /-- Displacement of the top spectral subspace by one weak-MF microstate. -/
 noncomputable def topSpectralDisplacement (A : OpAlmostRepresentation G)
@@ -339,7 +288,7 @@ theorem sum_topSpectralDisplacement_gram
     rw [show (Uᴴ - 1) * (U - 1) = Uᴴ * U - Uᴴ - U + 1 by
       noncomm_ring, hU]
     simp only [two_smul]
-    abel
+    abel_nf
   simp_rw [hterm]
   have hinner :
       (∑ g ∈ S,
@@ -451,71 +400,13 @@ theorem topSpectralDisplacement_vanishing
   let X := topSpectralDisplacement A S t n g
   let K := ∑ h ∈ S, (topSpectralDisplacement A S t n h)ᴴ *
     topSpectralDisplacement A S t n h
-  have hdom : (K - Xᴴ * X).PosSemidef := by
-    apply posSemidef_finset_sum_sub_of_mem S
-    · intro h hh
-      exact Matrix.posSemidef_conjTranspose_mul_self _
-    · exact hg
+  have hdom : (K - Xᴴ * X).PosSemidef :=
+    posSemidef_finset_sum_sub_of_mem S _
+      (fun h _ ↦ Matrix.posSemidef_conjTranspose_mul_self _) hg
   have hsq : ‖X‖ ^ 2 ≤ ‖K‖ :=
     norm_sq_le_norm_of_posSemidef_sub X K hdom
   have hK : ‖K‖ ≤ eta ^ 2 := hN n hn
-  nlinarith [norm_nonneg X]
-
-/-- Generator control propagates to every element of the subgroup generated
-by the symmetric finite set.  Unlike the top-level specialization below,
-this statement does not require the set to generate the ambient group. -/
-theorem topSpectralDisplacement_vanishing_of_mem_closure
-    {Q : Finset G} {epsilon : ℝ}
-    (hQ : IsKazhdanPair.{0, 0} G Q epsilon)
-    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S)
-    (hepsilonOne : epsilon ≤ 1) (hsymm : ∀ g ∈ S, g⁻¹ ∈ S)
-    (A : OpAlmostRepresentation G) {t : ℝ}
-    (ht : 1 - epsilon ^ 2 / (4 * S.card) < t) {g : G}
-    (hg : g ∈ Subgroup.closure (S : Set G)) :
-    OpNormVanishing A (fun n ↦ topSpectralDisplacement A S t n g) := by
-  classical
-  let P : ∀ n, Matrix (A.model n) (A.model n) ℂ := fun n ↦
-    spectralAbove (hermitianAverage A S n)
-      (hermitianAverage_conjTranspose A S n) t
-  have hP : ∀ n, ‖P n‖ ≤ 1 := fun n ↦ norm_spectralAbove_le_one _ _ _
-  let good : G → Prop := fun k ↦
-    OpNormVanishing A (fun n ↦ topSpectralDisplacement A S t n k)
-  have hgoodS : ∀ k ∈ (S : Set G), good k := by
-    intro k hk
-    exact topSpectralDisplacement_vanishing
-      hQ S hQS hone hepsilonOne hsymm A ht hk
-  have hgoodOne : good 1 := by
-    have h := (map_one_vanishing A).mul_right_of_norm_le_one P hP
-    exact h.congr fun n ↦ by rfl
-  have hgoodMul : ∀ a b, good a → good b → good (a * b) := by
-    intro a b ha hb
-    have hdef :=
-      (multiplicativeDefect_vanishing A a b).mul_right_of_norm_le_one P hP
-    have hb' := hb.mul_left_of_norm_le_one
-      (fun n ↦ (A.map n a : Matrix (A.model n) (A.model n) ℂ))
-      (fun n ↦ by
-        letI : Nonempty (A.model n) :=
-          Fintype.card_pos_iff.mp (A.modelNonempty n)
-        rw [CStarRing.norm_of_mem_unitary (A.map n a).2])
-    exact (hdef.add (hb'.add ha)).congr fun n ↦ by
-      simp only [topSpectralDisplacement, P]
-      noncomm_ring
-  have hSinv : (S : Set G)⁻¹ ⊆ (S : Set G) := by
-    intro k hk
-    rw [Set.mem_inv] at hk
-    have hk' : k⁻¹ ∈ S := by simpa using hk
-    simpa using hsymm k⁻¹ hk'
-  have hunion : (S : Set G) ∪ (S : Set G)⁻¹ = (S : Set G) :=
-    Set.union_eq_left.mpr hSinv
-  have hmclosure :
-      Submonoid.closure (S : Set G) =
-        (Subgroup.closure (S : Set G)).toSubmonoid := by
-    rw [Subgroup.closure_toSubmonoid, hunion]
-  have hg' : g ∈ Submonoid.closure (S : Set G) := by
-    rw [hmclosure]
-    exact hg
-  exact Submonoid.closure_induction hgoodS hgoodOne
-    (fun a b _ha _hb ↦ hgoodMul a b) hg'
+  nlinarith only [hsq, hK, norm_nonneg X, heta]
 
 /-- Generator control propagates to every group element when the symmetric
 finite set generates the group. -/

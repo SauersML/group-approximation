@@ -168,8 +168,7 @@ theorem closure_Z_XY_eq_top :
   have hx : X ∈ H := by
     have hxy : X * Y ∈ H := hv
     simpa only [mul_inv_cancel_right] using H.mul_mem hxy (H.inv_mem hy)
-  apply top_unique
-  intro g _
+  refine top_unique fun g _ ↦ ?_
   obtain ⟨w, rfl⟩ := PresentedGroup.mk_surjective
     (rotationRelators : Set (FreeGroup RotationGenerator)) g
   induction w using FreeGroup.induction_on with

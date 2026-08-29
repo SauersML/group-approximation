@@ -1,6 +1,5 @@
 import GroupApproximation.Monsters.ExplicitLinearModel
 import GroupApproximation.Sofic.IntegralLinearResiduallyFinite
-import GroupApproximation.Sofic.OperatorMFPositiveControls
 
 /-!
 # The literal affine base over the integers
@@ -126,16 +125,6 @@ theorem gammaBar_residuallyFinite : Group.ResiduallyFinite gammaBar := by
     generalLinearGroup_int_residuallyFinite (Fin 4)
   letI : Group.ResiduallyFinite gammaInt := inferInstance
   exact residuallyFinite_of_mulEquiv gammaIntEquivGammaBar
-
-/-- Closed soficity theorem for the concrete affine base. -/
-theorem gammaBar_isSofic : IsSofic gammaBar := by
-  letI : Group.ResiduallyFinite gammaBar := gammaBar_residuallyFinite
-  exact isSofic_of_isLEF isLEF_of_residuallyFinite
-
-/-- Closed operator-MF theorem for the concrete affine base. -/
-theorem gammaBar_isOperatorMF : IsOperatorMF gammaBar := by
-  letI : Group.ResiduallyFinite gammaBar := gammaBar_residuallyFinite
-  exact isOperatorMF_of_residuallyFinite
 
 end ExplicitIntegralLinearModel
 end GroupApproximation

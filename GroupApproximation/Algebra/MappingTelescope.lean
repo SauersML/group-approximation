@@ -1,6 +1,5 @@
 import Mathlib.Algebra.Group.End
 import Mathlib.Algebra.Group.Subgroup.Ker
-import Mathlib.Data.Countable.Basic
 import Mathlib.Tactic.Group
 
 /-!
@@ -170,17 +169,6 @@ theorem one_eq_mk (n : ℕ) : (1 : Telescope α hα) = mk α hα n 1 := by
 theorem mk_congr_level {n m : ℕ} (h : n = m) (x : Γ) :
     mk α hα n x = mk α hα m x := by rw [h]
 
-/-- Any two elements admit representatives at one common level. -/
-theorem exists_common_level (a b : Telescope α hα) :
-    ∃ (N : ℕ) (x y : Γ), a = mk α hα N x ∧ b = mk α hα N y := by
-  induction a using Quotient.inductionOn with | h p =>
-  induction b using Quotient.inductionOn with | h q =>
-  obtain ⟨n, x⟩ := p; obtain ⟨m, y⟩ := q
-  refine ⟨n + m, iterateHom α m x, iterateHom α n y, ?_, ?_⟩
-  · exact mk_add_iterate α hα n m x
-  · exact (mk_add_iterate α hα m n y).trans
-      (mk_congr_level α hα (Nat.add_comm m n) _)
-
 /-- Any three elements admit representatives at one common level. -/
 theorem exists_common_level₃ (a b c : Telescope α hα) :
     ∃ (N : ℕ) (x y w : Γ),
@@ -281,14 +269,11 @@ def shift : Telescope α hα ≃* Telescope α hα where
       mk α hα n (α x) * mk α hα m (α y)
     rw [mk_mul_mk, map_mul, iterateHom_apply_hom, iterateHom_apply_hom]
 
-@[simp] theorem shift_apply_mk (n : ℕ) (x : Γ) :
-    shift α hα (mk α hα n x) = mk α hα n (α x) := rfl
-
 @[simp] theorem shift_symm_apply_mk (n : ℕ) (x : Γ) :
     (shift α hα).symm (mk α hα n x) = mk α hα (n + 1) x := rfl
 
 /-- The shift compresses each level copy of `Γ` along `α`. -/
-@[simp] theorem shift_level (n : ℕ) (x : Γ) :
+theorem shift_level (n : ℕ) (x : Γ) :
     shift α hα (level α hα n x) = level α hα n (α x) := rfl
 
 include hα in
@@ -304,9 +289,6 @@ theorem level_succ_mem_range_level_iff (n : ℕ) (x : Γ) :
     exact ⟨y, iterateHom_injective hα n hy⟩
   · rintro ⟨y, rfl⟩
     exact ⟨y, (level_succ_apply_hom α hα n y).symm⟩
-
-instance [Countable Γ] : Countable (Telescope α hα) :=
-  Function.Surjective.countable (mk_surjective α hα)
 
 /-! ## The universal property
 
@@ -368,7 +350,7 @@ def lift (f : ℕ → (Γ →* H)) (hf : ∀ n, (f (n + 1)).comp α = f n) :
     rw [map_mul, h1, show n + m = m + n from Nat.add_comm n m, h2]
 
 include hα in
-@[simp] theorem lift_level (f : ℕ → (Γ →* H))
+theorem lift_level (f : ℕ → (Γ →* H))
     (hf : ∀ n, (f (n + 1)).comp α = f n) (n : ℕ) (x : Γ) :
     lift α hα f hf (level α hα n x) = f n x := rfl
 
@@ -393,7 +375,7 @@ def liftConj (g : Γ →* H) (c : H) (hc : ∀ x, g (α x) = c * g x * c⁻¹) :
     group)
 
 include hα in
-@[simp] theorem liftConj_level (g : Γ →* H) (c : H)
+theorem liftConj_level (g : Γ →* H) (c : H)
     (hc : ∀ x, g (α x) = c * g x * c⁻¹) (n : ℕ) (x : Γ) :
     liftConj α hα g c hc (level α hα n x) = (c ^ n)⁻¹ * g x * c ^ n := by
   rw [liftConj, lift_level, conjFamily_apply]

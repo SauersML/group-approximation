@@ -1,5 +1,5 @@
+import GroupApproximation.Monsters.SL2Completeness
 import GroupApproximation.Monsters.SL3BlockEmbedding
-import GroupApproximation.Monsters.P13BlockSL2
 import GroupApproximation.Monsters.P13LowerUnipotentInjectivity
 
 /-!
@@ -23,7 +23,7 @@ namespace P13ParabolicKernel
 
 open LiteralP13Presentation LiteralP13MatrixModel P13SteinbergCalculus
 open P13SL2Comparison SL3BlockEmbedding SL2BraidPresentation
-open P13UnipotentInjectivity P13LowerUnipotentInjectivity P13BlockSL2
+open P13UnipotentInjectivity P13LowerUnipotentInjectivity
 open SL2Completeness
 
 noncomputable section

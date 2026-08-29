@@ -1,7 +1,5 @@
 import GroupApproximation.Kazhdan.FiniteSupportHodgeCertificate
-import GroupApproximation.Kazhdan.FoxBoundary
 import GroupApproximation.Sofic.LiteralP13HodgeReplay
-import GroupApproximation.Sofic.LiteralP13Presentation
 
 /-!
 # Exact concrete data for the P13 Hodge certificate
@@ -1148,12 +1146,6 @@ private theorem commute_2_4 :
   rw [← mul_inv_eq_one]
   simpa only [mul_assoc, commute_1_3.inv_inv.eq] using prefixValue74
 
-@[simp] private theorem prefixValue74_reordered :
-    p13Generator 0 *
-      (p13Generator 3 * ((p13Generator 0)⁻¹ *
-        ((p13Generator 1)⁻¹ * (p13Generator 3)⁻¹))) = 1 := by
-  simpa only [commute_1_3.inv_inv.eq] using prefixValue74
-
 @[simp] private theorem prefixValue76_short :
     p13Generator 1 *
       (p13Generator 5 * ((p13Generator 1)⁻¹ * (p13Generator 0)⁻¹)) =
@@ -1161,24 +1153,12 @@ private theorem commute_2_4 :
   rw [← mul_inv_eq_one]
   simpa only [mul_assoc, commute_0_5.inv_inv.eq] using prefixValue76
 
-@[simp] private theorem prefixValue76_reordered :
-    p13Generator 1 *
-      (p13Generator 5 * ((p13Generator 1)⁻¹ *
-        ((p13Generator 0)⁻¹ * (p13Generator 5)⁻¹))) = 1 := by
-  simpa only [commute_0_5.inv_inv.eq] using prefixValue76
-
 @[simp] private theorem prefixValue82_short :
     p13Generator 3 *
       (p13Generator 4 * ((p13Generator 3)⁻¹ * (p13Generator 2)⁻¹)) =
         p13Generator 4 := by
   rw [← mul_inv_eq_one]
   simpa only [mul_assoc, commute_2_4.inv_inv.eq] using prefixValue82
-
-@[simp] private theorem prefixValue82_reordered :
-    p13Generator 3 *
-      (p13Generator 4 * ((p13Generator 3)⁻¹ *
-        ((p13Generator 2)⁻¹ * (p13Generator 4)⁻¹))) = 1 := by
-  simpa only [commute_2_4.inv_inv.eq] using prefixValue82
 
 private theorem B_eq_coordinateSum_0 (root : Fin 6) :
     B 0 root = coordinateSum support (boundaryCoefficient 0 root) := by

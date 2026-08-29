@@ -1,4 +1,3 @@
-import Mathlib.GroupTheory.FinitelyPresentedGroup
 import GroupApproximation.GroupTheory.PresentedGroupRelatorReplay
 
 /-!
@@ -24,8 +23,6 @@ namespace LiteralP13Presentation
 open PresentedGroupRelatorReplay
 
 noncomputable section
-
-local instance p13DecidableEq {A : Type*} : DecidableEq A := Classical.decEq A
 
 /-- The six elementary-root letters, in the exact certificate order. -/
 abbrev P13Generator := Fin 6
@@ -72,8 +69,6 @@ theorem mem_p13Relators_iff (r : FreeGroup P13Generator) :
 abbrev P13 : Type :=
   PresentedGroup (p13Relators : Set (FreeGroup P13Generator))
 
-instance p13_finitelyPresented : Group.IsFinitelyPresented P13 := inferInstance
-
 abbrev p13Word : FreeGroup P13Generator →* P13 :=
   PresentedGroup.mk (p13Relators : Set (FreeGroup P13Generator))
 
@@ -89,8 +84,8 @@ def p13Generator : Fin 6 → P13 := PresentedGroup.of
 
 /-- The six displayed letters generate the presented group. -/
 theorem closure_range_p13Generator :
-    Subgroup.closure (Set.range p13Generator) = ⊤ := by
-  exact PresentedGroup.closure_range_of
+    Subgroup.closure (Set.range p13Generator) = ⊤ :=
+  PresentedGroup.closure_range_of
     (p13Relators : Set (FreeGroup P13Generator))
 
 end

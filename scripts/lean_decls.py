@@ -19,6 +19,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 LEAN_ROOTS = (
     REPO_ROOT / "GroupApproximation",
     REPO_ROOT / "GroupApproximation.lean",
+    REPO_ROOT / "Palomar",
+    REPO_ROOT / "PalomarSolution.lean",
     REPO_ROOT / "scripts",
 )
 
@@ -120,7 +122,7 @@ def build_index(repo: Path | None = None) -> dict[str, Path]:
     """
     base = Path(repo) if repo is not None else REPO_ROOT
     roots = (base / "GroupApproximation", base / "GroupApproximation.lean",
-             base / "scripts")
+             base / "Palomar", base / "PalomarSolution.lean", base / "scripts")
     index: dict[str, Path] = {}
     for root in roots:
         if not root.exists():

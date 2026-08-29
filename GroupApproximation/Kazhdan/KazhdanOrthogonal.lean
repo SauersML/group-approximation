@@ -1,6 +1,5 @@
 import GroupApproximation.Kazhdan.Kazhdan
 import Mathlib.Analysis.InnerProductSpace.Orthogonal
-import Mathlib.Analysis.InnerProductSpace.LinearMap
 
 /-!
 # The invariant-vector orthogonal complement
@@ -68,10 +67,6 @@ def orthogonalOperator (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (g : G) :
     simp
   norm_map' x := (ρ g).norm_map x.1
 
-@[simp] theorem orthogonalOperator_apply_coe
-    (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (g : G) (x : (invariantSubmodule ρ)ᗮ) :
-    ((orthogonalOperator ρ g x : (invariantSubmodule ρ)ᗮ) : E) = ρ g x := rfl
-
 /-- The orthogonal restrictions form a group representation. -/
 def orthogonalRepresentation (ρ : G →* (E ≃ₗᵢ[ℝ] E)) :
     G →* ((invariantSubmodule ρ)ᗮ ≃ₗᵢ[ℝ] (invariantSubmodule ρ)ᗮ) where
@@ -106,8 +101,8 @@ theorem norm_orbitAverage_orthogonal_le [CompleteSpace E]
     (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
     (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (x : (invariantSubmodule ρ)ᗮ) :
     ‖IsKazhdanPair.orbitAverage S (orthogonalRepresentation ρ) x‖ ≤
-      (1 - ε ^ 2 / (4 * S.card)) * ‖x‖ := by
-  exact hQ.norm_orbitAverage_le S hQS hone hεone
+      (1 - ε ^ 2 / (4 * S.card)) * ‖x‖ :=
+  hQ.norm_orbitAverage_le S hQS hone hεone
     (orthogonalRepresentation ρ)
     (orthogonalRepresentation_hasNoInvariantVectors ρ) x
 
@@ -135,25 +130,6 @@ theorem norm_orbitAverage_le_of_mem_orthogonal [CompleteSpace E]
   let x' : (invariantSubmodule ρ)ᗮ := ⟨x, hx⟩
   have h := norm_orbitAverage_orthogonal_le hQ S hQS hone hεone ρ x'
   simpa [x'] using h
-
-/-- Homogeneous Kazhdan displacement for a vector orthogonal to the
-invariant subspace of an arbitrary representation. -/
-theorem exists_moved_mul_norm_of_mem_orthogonal [CompleteSpace E]
-    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, v} G Q ε)
-    (ρ : G →* (E ≃ₗᵢ[ℝ] E)) {x : E}
-    (hxorth : x ∈ (invariantSubmodule ρ)ᗮ) (hx : x ≠ 0) :
-    ∃ q ∈ Q, ε * ‖x‖ ≤ ‖ρ q x - x‖ := by
-  let x' : (invariantSubmodule ρ)ᗮ := ⟨x, hxorth⟩
-  have hx' : x' ≠ 0 := by
-    intro hzero
-    apply hx
-    exact congrArg Subtype.val hzero
-  obtain ⟨q, hq, hmove⟩ :=
-    hQ.exists_moved_mul_norm_of_noInvariant (orthogonalRepresentation ρ)
-      (orthogonalRepresentation_hasNoInvariantVectors ρ) x' hx'
-  refine ⟨q, hq, ?_⟩
-  change ε * ‖x‖ ≤ ‖ρ q x - x‖ at hmove
-  exact hmove
 
 /-- Subtracting a vector from its orbit average removes its invariant
 component. -/
@@ -193,9 +169,9 @@ theorem norm_orbitAverage_average_sub_le [CompleteSpace E]
     ‖IsKazhdanPair.orbitAverage S ρ
         (IsKazhdanPair.orbitAverage S ρ x - x)‖ ≤
       (1 - ε ^ 2 / (4 * S.card)) *
-        ‖IsKazhdanPair.orbitAverage S ρ x - x‖ := by
-  apply norm_orbitAverage_le_of_mem_orthogonal hQ S hQS hone hεone ρ
-  exact orbitAverage_sub_mem_orthogonal S hone ρ x
+        ‖IsKazhdanPair.orbitAverage S ρ x - x‖ :=
+  norm_orbitAverage_le_of_mem_orthogonal hQ S hQS hone hεone ρ
+    (orbitAverage_sub_mem_orthogonal S hone ρ x)
 
 /-- Orbit averaging is additive with respect to subtraction. -/
 theorem orbitAverage_sub (S : Finset G) (ρ : G →* (E ≃ₗᵢ[ℝ] E))
@@ -205,19 +181,6 @@ theorem orbitAverage_sub (S : Finset G) (ρ : G →* (E ≃ₗᵢ[ℝ] E))
         IsKazhdanPair.orbitAverage S ρ y := by
   classical
   simp [IsKazhdanPair.orbitAverage, Finset.sum_sub_distrib, smul_sub]
-
-/-- Equivalent second-difference form of Kun's orbit-average estimate. -/
-theorem norm_orbitAverage_sq_sub_le [CompleteSpace E]
-    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{u, v} G Q ε)
-    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (x : E) :
-    ‖IsKazhdanPair.orbitAverage S ρ
-        (IsKazhdanPair.orbitAverage S ρ x) -
-      IsKazhdanPair.orbitAverage S ρ x‖ ≤
-      (1 - ε ^ 2 / (4 * S.card)) *
-        ‖IsKazhdanPair.orbitAverage S ρ x - x‖ := by
-  rw [← orbitAverage_sub]
-  exact norm_orbitAverage_average_sub_le hQ S hQS hone hεone ρ x
 
 /-- The Kazhdan contraction iterates: successive orbit averages converge
 geometrically, with the first displacement as scale.  This is the Hilbert
@@ -234,17 +197,17 @@ theorem norm_iterate_orbitAverage_succ_sub_le [CompleteSpace E]
   have hcardNat : 0 < S.card := Finset.card_pos.mpr ⟨1, hone⟩
   have hcard : (0 : ℝ) < S.card := by exact_mod_cast hcardNat
   have hεsq : ε ^ 2 ≤ 1 := by
-    nlinarith [sq_nonneg ε, hQ.1, hεone]
+    nlinarith only [sq_nonneg ε, hQ.1, hεone]
   have hden : (0 : ℝ) < 4 * S.card := mul_pos (by norm_num) hcard
   have hcardOne : (1 : ℝ) ≤ S.card := by exact_mod_cast hcardNat
   have hdenOne : (1 : ℝ) ≤ 4 * S.card := by
-    nlinarith
+    nlinarith only [hcardOne]
   have hfrac : ε ^ 2 / (4 * S.card) ≤ 1 := by
     rw [div_le_one hden]
     exact hεsq.trans hdenOne
   have hc : 0 ≤ c := by
     dsimp [c]
-    linarith
+    exact sub_nonneg.mpr hfrac
   induction k with
   | zero =>
       simp
@@ -255,7 +218,7 @@ theorem norm_iterate_orbitAverage_succ_sub_le [CompleteSpace E]
       change ‖A (A ((A^[k]) x)) - A ((A^[k]) x)‖ ≤
         c * ‖A ((A^[k]) x) - (A^[k]) x‖ at hstep
       dsimp only at ih
-      rw [show k + 1 = k.succ by omega, Function.iterate_succ_apply'] at ih
+      rw [show k + 1 = k.succ from rfl, Function.iterate_succ_apply'] at ih
       change ‖A ((A^[k]) x) - (A^[k]) x‖ ≤
         c ^ k * ‖A x - x‖ at ih
       dsimp only

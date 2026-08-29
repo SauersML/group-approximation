@@ -1,6 +1,5 @@
 import GroupApproximation.Kazhdan.Kazhdan
 import Mathlib.Analysis.InnerProductSpace.l2Space
-import Mathlib.GroupTheory.GroupAction.Quotient
 
 /-!
 # Property `(T)` forces finite generation
@@ -68,10 +67,6 @@ noncomputable def lpCongrLeft (e : α ≃ β) :
     rw [lp.inner_eq_tsum, lp.inner_eq_tsum]
     exact Equiv.tsum_eq e.symm fun a ↦ ⟪f a, g a⟫_ℝ)
 
-@[simp] theorem lpCongrLeft_apply (e : α ≃ β)
-    (f : lp (fun _ : α ↦ ℝ) 2) (b : β) :
-    lpCongrLeft e f b = f (e.symm b) := rfl
-
 /-- Reindexing transports point masses. -/
 theorem lpCongrLeft_single [DecidableEq α] [DecidableEq β]
     (e : α ≃ β) (i : α) (c : ℝ) :
@@ -112,10 +107,6 @@ noncomputable def permutationRepresentation :
     apply congrArg
     change (g * h)⁻¹ • b = h⁻¹ • (g⁻¹ • b)
     rw [mul_inv_rev, mul_smul]
-
-@[simp] theorem permutationRepresentation_apply (g : G)
-    (f : lp (fun _ : A ↦ ℝ) 2) (b : A) :
-    permutationRepresentation G A g f b = f (g⁻¹ • b) := rfl
 
 /-- Property `(T)` produces a finite symmetric generating set containing the
 identity.  The Kazhdan pair is tested on the `ℓ²` permutation representation
@@ -213,14 +204,6 @@ theorem exists_symmetric_generating_finset
       exact QuotientGroup.eq.1 hout
     have := mul_mem houtS (hHle hmemH)
     simpa using this
-
-/-- Every group with property `(T)` is finitely generated.  The proof is the
-coset-`ℓ²` argument above; this endpoint only packages its generating finset
-as Mathlib's `Group.FG` proposition. -/
-theorem fg_of_hasKazhdanPropertyT
-    (hT : HasKazhdanPropertyT.{u, u} G) : Group.FG G := by
-  obtain ⟨S, _, _, hS⟩ := exists_symmetric_generating_finset G hT
-  exact Group.fg_def.mpr ⟨S, hS⟩
 
 end KazhdanFiniteGeneration
 

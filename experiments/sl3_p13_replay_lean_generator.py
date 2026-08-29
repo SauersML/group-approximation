@@ -19,6 +19,12 @@ EXPECTED_REPLAY_SHA256 = (
     "66255b59016bdeefd1fddd5de5069e5c32810543039f31da3930f43ce7cb5916"
 )
 
+UNUSED_REDUCTIONS = frozenset({54, 56, 60, 63, 64, 65, 70, 71, 72, 80, 83, 84})
+UNUSED_PREFIX_REPLAYS = frozenset({
+    26, 28, 30, 33, 34, 35, 38, 39, 40, 54, 55, 56, 60, 61,
+    63, 64, 65, 69, 70, 71, 72, 74, 76, 80, 82, 83, 84, 139,
+})
+
 
 def load_replay_helpers(path):
     specification = importlib.util.spec_from_file_location(
@@ -147,7 +153,6 @@ def validate(data, helper):
 
 def emit(data, helper, certificate, output):
     output.write(
-        "import GroupApproximation.GroupTheory.PresentedGroupRelatorReplay\n"
         "import GroupApproximation.Kazhdan.FoxBoundary\n"
         "import GroupApproximation.Sofic.LiteralP13Presentation\n\n"
         "/-!\n"
@@ -190,6 +195,8 @@ def emit(data, helper, certificate, output):
     chunk_size = 12
     for reduction in data["reductions"]:
         index = reduction["target_index"]
+        if index in UNUSED_REDUCTIONS:
+            continue
         output.write(
             "/-- Checked P13 coefficient merge %d (`%s`). -/\n" %
             (index, reduction["kind"]))
@@ -274,14 +281,17 @@ def emit(data, helper, certificate, output):
             continue
         index = reduction["target_index"]
         target = support_index[tuple(reduction["right"])]
-        output.write(
-            "/-- Checked canonicalization of a Fox prefix. -/\n"
-            "@[simp] theorem prefixReplay%d :\n"
-            "    p13Word (word %s) = p13Word (supportFreeWord (%d : Fin 22)) := by\n"
-            "  rw [show supportFreeWord (%d : Fin 22) = word %s by decide]\n"
-            "  exact reduction%d\n\n" %
-            (index, lean_word(reduction["left"]), target,
-             target, lean_word(reduction["right"]), index))
+        if index not in UNUSED_PREFIX_REPLAYS:
+            output.write(
+                "/-- Checked canonicalization of a Fox prefix. -/\n"
+                "@[simp] theorem prefixReplay%d :\n"
+                "    p13Word (word %s) = p13Word (supportFreeWord (%d : Fin 22)) := by\n"
+                "  rw [show supportFreeWord (%d : Fin 22) = word %s by decide]\n"
+                "  exact reduction%d\n\n" %
+                (index, lean_word(reduction["left"]), target,
+                 target, lean_word(reduction["right"]), index))
+        if index in UNUSED_REDUCTIONS:
+            continue
         output.write(
             "/-- Group evaluation of the same checked Fox-prefix replay. -/\n"
             "@[simp] theorem prefixValue%d :\n"

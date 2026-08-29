@@ -1,11 +1,6 @@
 import GroupApproximation.Algebra.PresentedGroupEvaluation
 import GroupApproximation.Sofic.CompressionDefectSquare
-import GroupApproximation.Sofic.NormMFResidualDetector
-import Mathlib.GroupTheory.FinitelyPresentedGroup
 import Mathlib.GroupTheory.FreeGroup.Reduce
-import Mathlib.GroupTheory.PresentedGroup
-import Mathlib.Logic.Equiv.Fin.Basic
-import Mathlib.Tactic.Group
 
 /-!
 # The literal eight-generator presentation from the non-MF manuscript
@@ -36,15 +31,6 @@ open scoped commutatorElement
 
 noncomputable section
 
-/-- Catch-all decidable equality for alphabets and free groups that have no
-computable instance in scope.  It sits in the discrimination tree's catch-all
-bucket, so any specific instance — `instDecidableEqFin` on the alphabets,
-`FreeGroup.instDecidableEq` on the free groups — takes precedence over it.
-The relator-count section at the end of this file depends on that: kernel
-evaluation of a reduced-word normal form needs the computable instances. -/
-local instance literalDecidableEq {α : Type*} : DecidableEq α :=
-  Classical.decEq α
-
 instance literalFreeGroupCountable {α : Type*} [Countable α] :
     Countable (FreeGroup α) := by
   have hsurj : Function.Surjective (FreeGroup.mk : List (α × Bool) → _) := by
@@ -72,13 +58,6 @@ abbrev Generator.base (i : BaseGenerator) : Generator := Sum.inl i
 abbrev Generator.stable : Generator := Sum.inr 0
 abbrev Generator.lamp : Generator := Sum.inr 1
 
-theorem generator_card : Fintype.card Generator = 8 := by decide
-
-/-- The printed ordering `v1,v2,v3,x,y,z,t,c` as the standard rank-eight
-alphabet. -/
-def generatorEquivFin8 : Generator ≃ Fin 8 :=
-  finSumFinEquiv.trans (finCongr (by decide))
-
 /-! ## Free words -/
 
 abbrev bv1 : FreeGroup BaseGenerator := FreeGroup.of v1Index
@@ -92,11 +71,6 @@ abbrev vertexLetter (i : BaseGenerator) : FreeGroup Generator :=
   FreeGroup.of (Generator.base i)
 
 abbrev v1Word : FreeGroup Generator := vertexLetter v1Index
-abbrev v2Word : FreeGroup Generator := vertexLetter v2Index
-abbrev v3Word : FreeGroup Generator := vertexLetter v3Index
-abbrev xWord : FreeGroup Generator := vertexLetter xIndex
-abbrev yWord : FreeGroup Generator := vertexLetter yIndex
-abbrev zWord : FreeGroup Generator := vertexLetter zIndex
 abbrev stableWord : FreeGroup Generator := FreeGroup.of Generator.stable
 abbrev lampWord : FreeGroup Generator := FreeGroup.of Generator.lamp
 
@@ -173,13 +147,6 @@ noncomputable abbrev Base : Type :=
   PresentedGroup ((baseRelators : Finset (FreeGroup BaseGenerator)) :
     Set (FreeGroup BaseGenerator))
 
-instance base_finitelyPresented : Group.IsFinitelyPresented Base := inferInstance
-
-noncomputable instance base_countable : Countable Base :=
-  (PresentedGroup.mk_surjective
-    ((baseRelators : Finset (FreeGroup BaseGenerator)) :
-      Set (FreeGroup BaseGenerator))).countable
-
 /-! ## The remaining displayed relators -/
 
 /-- The right-hand side of the stable-letter relation, before embedding it
@@ -233,9 +200,6 @@ noncomputable abbrev MarkedGroup : Type :=
   PresentedGroup ((relators : Finset (FreeGroup Generator)) :
     Set (FreeGroup Generator))
 
-instance markedGroup_finitelyPresented : Group.IsFinitelyPresented MarkedGroup :=
-  inferInstance
-
 noncomputable instance markedGroup_countable : Countable MarkedGroup :=
   (PresentedGroup.mk_surjective
     ((relators : Finset (FreeGroup Generator)) :
@@ -245,12 +209,6 @@ noncomputable abbrev wordInMarkedGroup : FreeGroup Generator →* MarkedGroup :=
   PresentedGroup.mk ((relators : Finset (FreeGroup Generator)) :
     Set (FreeGroup Generator))
 
-noncomputable abbrev v1 : MarkedGroup := wordInMarkedGroup v1Word
-noncomputable abbrev v2 : MarkedGroup := wordInMarkedGroup v2Word
-noncomputable abbrev v3 : MarkedGroup := wordInMarkedGroup v3Word
-noncomputable abbrev x : MarkedGroup := wordInMarkedGroup xWord
-noncomputable abbrev y : MarkedGroup := wordInMarkedGroup yWord
-noncomputable abbrev z : MarkedGroup := wordInMarkedGroup zWord
 noncomputable abbrev stable : MarkedGroup := wordInMarkedGroup stableWord
 noncomputable abbrev lamp : MarkedGroup := wordInMarkedGroup lampWord
 noncomputable abbrev mark : MarkedGroup := wordInMarkedGroup markedWord
@@ -300,8 +258,8 @@ noncomputable def baseMap : Base →* MarkedGroup := by
     (Finset.mem_image.mpr ⟨r, Finset.mem_coe.mp hr, rfl⟩)))
 
 @[simp] theorem baseMap_generator (i : BaseGenerator) :
-    baseMap (PresentedGroup.of i) = wordInMarkedGroup (vertexLetter i) := by
-  exact PresentedGroup.toGroup.of _
+    baseMap (PresentedGroup.of i) = wordInMarkedGroup (vertexLetter i) :=
+  PresentedGroup.toGroup.of _
 
 theorem baseMap_mk (w : FreeGroup BaseGenerator) :
     baseMap (PresentedGroup.mk _ w) =
@@ -479,8 +437,8 @@ theorem realization_eval_base {M : Type*} [Group M]
 @[simp] theorem realization_eval_compressed {M : Type*} [Group M]
     (R : Realization M) (i : BaseGenerator) :
     FreeGroup.lift (realizationGenerator R) (compressedGeneratorWord i) =
-      FreeGroup.lift R.baseGenerator (compressedBaseWord i) := by
-  exact realization_eval_base R (compressedBaseWord i)
+      FreeGroup.lift R.baseGenerator (compressedBaseWord i) :=
+  realization_eval_base R (compressedBaseWord i)
 
 @[simp] theorem realization_eval_marked {M : Type*} [Group M]
     (R : Realization M) :
@@ -528,7 +486,7 @@ noncomputable def realizationHom {M : Type*} [Group M]
     exact commutatorElement_eq_one_iff_commute.mpr
       (R.marked_central (realizationGenerator R i))
 
-@[simp] theorem realizationHom_base_generator {M : Type*} [Group M]
+theorem realizationHom_base_generator {M : Type*} [Group M]
     (R : Realization M) (i : BaseGenerator) :
     realizationHom R (baseMap (PresentedGroup.of i)) = R.baseGenerator i := by
   rw [baseMap_generator]
@@ -562,227 +520,6 @@ theorem mark_ne_one_of_realization {M : Type*} [Group M]
   intro h
   apply hR
   rw [← realizationHom_mark R, h, map_one]
-
-/-- Everything about the literal presentation that is independent of its
-Kazhdan theorem and its separating realization. -/
-theorem literal_algebraic_package :
-    Group.IsFinitelyPresented MarkedGroup ∧
-      (∀ g : Base, stable * baseMap g * stable⁻¹ ∈ baseMap.range) ∧
-      (∀ g : Base, Commute lamp (baseMap g)) ∧
-      mark ^ 2 = 1 ∧
-      (∀ g : MarkedGroup, Commute mark g) := by
-  exact ⟨inferInstance, stable_conjugates_base_into_base,
-    lamp_commutes_base, mark_sq, mark_central⟩
-
-/-! ## Exact relator counts
-
-The manuscript advertises twenty relators for the six-generator base and
-forty-one relators for the displayed eight-generator presentation.  Both
-numbers are properties of the finite *sets* `baseRelators` and `relators`,
-not of the displayed lists, so they are genuine theorems: the printed words
-have to be pairwise distinct in the relevant free group.
-
-Everything above uses the classical `DecidableEq` instance, under which no
-`Finset` cardinality computes.  The section below therefore switches that
-instance off, re-presents each relator family as an explicit `List`, and
-proves the lists duplicate free by kernel evaluation of the reduced-word
-normal form.  The counts are then transferred through
-`List.toFinset_card_of_nodup`.  Nothing in the statements is
-decidability-sensitive: `List.Nodup` mentions no instance, and the `Finset`
-identities are proved by extensionality, so the classical instance baked
-into `baseRelators` and `relators` is irrelevant to them. -/
-
-section Counting
-
-attribute [-instance] literalDecidableEq
-
-/-- The six base letters `v₁,v₂,v₃,x,y,z` as a list. -/
-def baseGeneratorList : List BaseGenerator := List.finRange 6
-
-@[simp] theorem mem_baseGeneratorList (i : BaseGenerator) :
-    i ∈ baseGeneratorList :=
-  List.mem_finRange i
-
-/-- The eight letters `v₁,v₂,v₃,x,y,z,t,c` as a list. -/
-def generatorList : List Generator :=
-  (List.finRange 6).map Sum.inl ++ (List.finRange 2).map Sum.inr
-
-@[simp] theorem mem_generatorList (i : Generator) : i ∈ generatorList := by
-  obtain (j | j) := i <;> simp [generatorList]
-
-/-- The twenty displayed base relators, in the printed order. -/
-def baseRelatorList : List (FreeGroup BaseGenerator) :=
-  [baseRelXCube, baseRelYCube, baseRelZSq, baseRelXZCube,
-   baseRelYZCube, baseRelXInvZXY, baseRelYInvZYX, baseRelXYSix,
-   baseRelV12, baseRelV13, baseRelV23,
-   baseRelXV1, baseRelXV2, baseRelXV3,
-   baseRelYV1, baseRelYV2, baseRelYV3,
-   baseRelZV1, baseRelZV2, baseRelZV3]
-
-@[simp] theorem baseRelatorList_length : baseRelatorList.length = 20 := rfl
-
-/-- The twenty displayed base relators are pairwise distinct elements of the
-free group on the six base letters. -/
-theorem baseRelatorList_nodup : baseRelatorList.Nodup :=
-  List.Nodup.of_map FreeGroup.toWord (by decide)
-
-theorem mem_baseRelators_iff_mem_list (r : FreeGroup BaseGenerator) :
-    r ∈ baseRelators ↔ r ∈ baseRelatorList := by
-  simp only [baseRelators, baseRelatorList, List.mem_toFinset]
-
-theorem baseRelators_eq_toFinset :
-    baseRelators = baseRelatorList.toFinset := by
-  ext r
-  rw [List.mem_toFinset]
-  exact mem_baseRelators_iff_mem_list r
-
-/-- **The literal base presentation has exactly twenty relators.** -/
-theorem baseRelators_card : baseRelators.card = 20 := by
-  rw [baseRelators_eq_toFinset,
-    List.toFinset_card_of_nodup baseRelatorList_nodup, baseRelatorList_length]
-
-/-- The twenty transported base relators, as words in the eight letters. -/
-def transportedBaseRelatorList : List (FreeGroup Generator) :=
-  baseRelatorList.map embedBaseWord
-
-/-- The six stable-letter relators. -/
-def stableRelatorList : List (FreeGroup Generator) :=
-  baseGeneratorList.map stableRelator
-
-/-- The seven lamp relators: the involution relation and six commutators. -/
-def lampRelatorList : List (FreeGroup Generator) :=
-  lampWord ^ 2 ::
-    baseGeneratorList.map (fun i ↦ commutatorWord lampWord (vertexLetter i))
-
-/-- The eight centrality relators for the marked word. -/
-def markedRelatorList : List (FreeGroup Generator) :=
-  generatorList.map (fun i ↦ commutatorWord markedWord (FreeGroup.of i))
-
-/-- All forty-one displayed relators, in the printed order. -/
-def relatorList : List (FreeGroup Generator) :=
-  transportedBaseRelatorList ++ stableRelatorList ++ lampRelatorList ++
-    markedRelatorList
-
-@[simp] theorem relatorList_length : relatorList.length = 41 := rfl
-
-/-- The forty-one displayed relators are pairwise distinct elements of the
-free group on the eight letters. -/
-theorem relatorList_nodup : relatorList.Nodup :=
-  List.Nodup.of_map FreeGroup.toWord (by decide)
-
-theorem mem_transportedBaseRelators_iff (r : FreeGroup Generator) :
-    r ∈ transportedBaseRelators ↔ r ∈ transportedBaseRelatorList := by
-  simp only [transportedBaseRelators, transportedBaseRelatorList,
-    Finset.mem_image, List.mem_map, mem_baseRelators_iff_mem_list]
-
-theorem mem_stableRelators_iff (r : FreeGroup Generator) :
-    r ∈ stableRelators ↔ r ∈ stableRelatorList := by
-  simp only [stableRelators, stableRelatorList, Finset.mem_image,
-    Finset.mem_univ, true_and, List.mem_map, mem_baseGeneratorList]
-
-theorem mem_lampRelators_iff (r : FreeGroup Generator) :
-    r ∈ lampRelators ↔ r ∈ lampRelatorList := by
-  simp only [lampRelators, lampRelatorList, Finset.mem_union,
-    Finset.mem_singleton, Finset.mem_image, Finset.mem_univ, true_and,
-    List.mem_cons, List.mem_map, mem_baseGeneratorList]
-
-theorem mem_markedRelators_iff (r : FreeGroup Generator) :
-    r ∈ markedRelators ↔ r ∈ markedRelatorList := by
-  simp only [markedRelators, markedRelatorList, Finset.mem_image,
-    Finset.mem_univ, true_and, List.mem_map, mem_generatorList]
-
-theorem mem_relators_iff_mem_list (r : FreeGroup Generator) :
-    r ∈ relators ↔ r ∈ relatorList := by
-  simp only [relators, Finset.mem_union, mem_transportedBaseRelators_iff,
-    mem_stableRelators_iff, mem_lampRelators_iff, mem_markedRelators_iff,
-    relatorList, List.mem_append]
-
-theorem relators_eq_toFinset : relators = relatorList.toFinset := by
-  ext r
-  rw [List.mem_toFinset]
-  exact mem_relators_iff_mem_list r
-
-/-- **The literal eight-generator presentation has exactly forty-one
-relators.** -/
-theorem relators_card : relators.card = 41 := by
-  rw [relators_eq_toFinset,
-    List.toFinset_card_of_nodup relatorList_nodup, relatorList_length]
-
-end Counting
-
-/-- The fixed literal object is an eight-generator finitely presented group.
-This compact identity theorem is kept separate from the exact relator package
-and from the mathematical conclusions of Theorem A. -/
-theorem literalEightGeneratorPresentation :
-    Fintype.card Generator = 8 ∧
-      Group.IsFinitelyPresented MarkedGroup :=
-  ⟨generator_card, inferInstance⟩
-
-/-- Exact object-and-relator package for the manuscript's displayed
-eight-generator presentation.  The first two conjuncts pin the alphabet and
-the presented quotient itself; the remaining conjuncts record the relations
-used immediately after the definition in the manuscript. -/
-theorem manuscriptLiteralPresentation :
-    Fintype.card Generator = 8 ∧
-      (v1Index = 0 ∧ v2Index = 1 ∧ v3Index = 2 ∧
-        xIndex = 3 ∧ yIndex = 4 ∧ zIndex = 5 ∧
-        (Generator.stable : Generator) = Sum.inr 0 ∧
-        (Generator.lamp : Generator) = Sum.inr 1) ∧
-      baseRelators =
-        [bx ^ 3, bY ^ 3, bz ^ 2, (bx * bz) ^ 3, (bY * bz) ^ 3,
-          (bx⁻¹ * bz * bx * bY) ^ 2,
-          (bY⁻¹ * bz * bY * bx) ^ 2, (bx * bY) ^ 6,
-          bv1 * bv2 * bv1⁻¹ * bv2⁻¹,
-          bv1 * bv3 * bv1⁻¹ * bv3⁻¹,
-          bv2 * bv3 * bv2⁻¹ * bv3⁻¹,
-          bx * bv1 * bx⁻¹ * bv3⁻¹,
-          bx * bv2 * bx⁻¹ * bv1⁻¹,
-          bx * bv3 * bx⁻¹ * bv2⁻¹,
-          bY * bv1 * bY⁻¹ * bv1⁻¹,
-          bY * bv2 * bY⁻¹ * (bv2⁻¹ * bv3)⁻¹,
-          bY * bv3 * bY⁻¹ * (bv1 * bv2⁻¹)⁻¹,
-          bz * bv1 * bz⁻¹ * (bv2 * bv3⁻¹)⁻¹,
-          bz * bv2 * bz⁻¹ * (bv1 * bv3⁻¹)⁻¹,
-          bz * bv3 * bz⁻¹ * (bv3⁻¹)⁻¹].toFinset ∧
-      baseRelators.card = 20 ∧
-      transportedBaseRelators = baseRelators.image embedBaseWord ∧
-      (compressedBaseWord v1Index = bv1 ^ 2 ∧
-        compressedBaseWord v2Index = bv2 ^ 2 ∧
-        compressedBaseWord v3Index = bv3 ^ 2 ∧
-        compressedBaseWord xIndex = bx ∧
-        compressedBaseWord yIndex = bY ∧
-        compressedBaseWord zIndex = bz) ∧
-      stableRelators = Finset.univ.image (fun i : BaseGenerator ↦
-        stableWord * vertexLetter i * stableWord⁻¹ *
-          (embedBaseWord (compressedBaseWord i))⁻¹) ∧
-      lampRelators =
-        {lampWord ^ 2} ∪ Finset.univ.image (fun i : BaseGenerator ↦
-          lampWord * vertexLetter i * lampWord⁻¹ * (vertexLetter i)⁻¹) ∧
-      markedWord =
-        (let displaced := stableWord * lampWord * stableWord⁻¹
-         displaced * (v1Word * displaced * v1Word⁻¹) * displaced⁻¹ *
-           (v1Word * displaced * v1Word⁻¹)⁻¹) ∧
-      markedRelators =
-        Finset.univ.image (fun i : Generator ↦
-          markedWord * FreeGroup.of i * markedWord⁻¹ *
-            (FreeGroup.of i)⁻¹) ∧
-      relators =
-        transportedBaseRelators ∪ stableRelators ∪ lampRelators ∪
-          markedRelators ∧
-      relators.card = 41 ∧
-      MarkedGroup =
-        PresentedGroup ((relators : Finset (FreeGroup Generator)) :
-          Set (FreeGroup Generator)) ∧
-      Group.IsFinitelyPresented MarkedGroup ∧
-      (mark ^ 2 = 1 ∧ ∀ g : MarkedGroup, Commute mark g) ∧
-      (∀ g : Base, stable * baseMap g * stable⁻¹ ∈ baseMap.range) ∧
-      (∀ g : Base, Commute lamp (baseMap g)) := by
-  exact ⟨generator_card,
-    ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩, rfl, baseRelators_card, rfl,
-    ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩, rfl, rfl, rfl, rfl, rfl, relators_card, rfl,
-    inferInstance,
-    ⟨mark_sq, mark_central⟩, stable_conjugates_base_into_base,
-    lamp_commutes_base⟩
 
 end
 

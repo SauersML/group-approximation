@@ -69,8 +69,10 @@ theorem energy_relax_le
   calc
     energy A x - 2 * M⁻¹ * ‖A x‖ ^ 2 +
         (M⁻¹) ^ 2 * energy A (A x) ≤
-        energy A x - M⁻¹ * ‖A x‖ ^ 2 := by linarith
-    _ ≤ (1 - c * M⁻¹) * energy A x := by linarith
+        energy A x - M⁻¹ * ‖A x‖ ^ 2 := by
+      linarith only [hthirdScaled]
+    _ ≤ (1 - c * M⁻¹) * energy A x := by
+      linarith only [hscaled]
 
 /-- Iterating the relaxed operator gives geometric decay of its quadratic
 energy. -/
@@ -128,9 +130,9 @@ theorem norm_le_of_quadratic_gap [CompleteSpace E]
   have hs0 : 0 ≤ s := Real.sqrt_nonneg _
   have hsSq : s ^ 2 = r := Real.sq_sqrt hr0
   have hs1 : s < 1 := by
-    nlinarith [sq_nonneg (s - 1)]
-  have henergyIter (n : ℕ) : energy A (u n) ≤ r ^ n * energy A x := by
-    exact energy_relax_pow_le A hM hcM hsymm hlower hformUpper x n
+    nlinarith only [hsSq, hr1, hs0, sq_nonneg (s - 1)]
+  have henergyIter (n : ℕ) : energy A (u n) ≤ r ^ n * energy A x :=
+    energy_relax_pow_le A hM hcM hsymm hlower hformUpper x n
   have henergyX : energy A x ≤ ‖A x‖ ^ 2 / c := by
     apply (le_div_iff₀ hc).2
     simpa [mul_comm] using hlower x
@@ -152,16 +154,17 @@ theorem norm_le_of_quadratic_gap [CompleteSpace E]
         _ ≤ M * (r ^ n * (‖A x‖ ^ 2 / c)) := by
           gcongr
         _ = (M / c) * r ^ n * ‖A x‖ ^ 2 := by ring
-    have hcoef : (M / c) ≤ (M / c) ^ 2 := by nlinarith
+    have hcoef : (M / c) ≤ (M / c) ^ 2 := by
+      nlinarith only [hratio1]
     have hsquare :
         (M / c) * r ^ n * ‖A x‖ ^ 2 ≤
           ((M / c) * s ^ n * ‖A x‖) ^ 2 := by
       rw [mul_pow, mul_pow, hspowSq]
       exact mul_le_mul_of_nonneg_right
         (mul_le_mul_of_nonneg_right hcoef hrpow0) (sq_nonneg ‖A x‖)
-    apply (sq_le_sq₀ (norm_nonneg _)
+    exact (sq_le_sq₀ (norm_nonneg _)
       (mul_nonneg (mul_nonneg hratio0 (pow_nonneg hs0 n)) (norm_nonneg _))).mp
-    exact hsq.trans hsquare
+        (hsq.trans hsquare)
   have hdiff (n : ℕ) : d n = M⁻¹ • A (u n) := by
     dsimp [d, u]
     rw [pow_succ']
@@ -195,8 +198,8 @@ theorem norm_le_of_quadratic_gap [CompleteSpace E]
         dsimp [d]
         abel
   have hsumTendsto : Filter.Tendsto
-      (fun n ↦ ∑ i ∈ Finset.range n, d i) Filter.atTop (nhds z) := by
-    exact hdSummable.hasSum.tendsto_sum_nat
+      (fun n ↦ ∑ i ∈ Finset.range n, d i) Filter.atTop (nhds z) :=
+    hdSummable.hasSum.tendsto_sum_nat
   have huTendsto : Filter.Tendsto u Filter.atTop (nhds (x - z)) := by
     have h := hsumTendsto.const_sub x
     simpa only [hpartial, sub_sub_cancel] using h

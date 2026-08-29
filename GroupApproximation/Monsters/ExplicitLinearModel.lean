@@ -1,7 +1,4 @@
 import Mathlib.LinearAlgebra.Matrix.Notation
-import Mathlib.Algebra.Group.Subgroup.Basic
-import Mathlib.Data.Countable.Basic
-import Mathlib.Data.Rat.Encodable
 import Mathlib.Tactic.Group
 
 /-!
@@ -388,25 +385,7 @@ theorem v1G_not_mem_range : v1G ∉ Set.range conjD := by
     exact_mod_cast h2
   omega
 
-/-- The two structural conclusions of the manuscript's explicit linear
-model: conjugation by the displayed doubling matrix is injective on the
-base subgroup, and the marked translation has no preimage under it. -/
-theorem doubling_linear_model_package :
-    Function.Injective conjD ∧ v1G ∉ Set.range conjD :=
-  ⟨conjD_injective, v1G_not_mem_range⟩
-
 /-! ## Countability -/
-
-private theorem mat_countable : Countable Mat := by
-  change Countable (Fin 4 → Fin 4 → ℚ)
-  infer_instance
-
-instance : Countable Mat := mat_countable
-
-instance : Countable Matˣ :=
-  Units.val_injective.countable
-
-instance : Countable gammaBar := Subtype.countable
 
 end ExplicitLinearModel
 end GroupApproximation

@@ -1,6 +1,4 @@
-import GroupApproximation.Sofic.HyperlinearAmplification
 import GroupApproximation.Sofic.KazhdanCornerModel
-import GroupApproximation.Sofic.OpAlmostRepresentation
 
 /-!
 # Finite adjoint representations
@@ -23,7 +21,7 @@ open scoped Matrix.Norms.L2Operator
 
 universe u
 
-variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+variable {Y : Type*}
 
 /-- Row-major vectorization, matching the coordinate convention of
 `conjDouble`. -/
@@ -34,14 +32,12 @@ variable {Y : Type*} [Fintype Y] [DecidableEq Y]
 @[simp] def rowMat (x : Y × Y → ℂ) : Matrix Y Y ℂ :=
   Matrix.of fun i j ↦ x (i, j)
 
-omit [Fintype Y] [DecidableEq Y] in
 theorem rowVec_rowMat (x : Y × Y → ℂ) : rowVec (rowMat x) = x := by
   funext p
   simp
 
-omit [DecidableEq Y] in
 /-- `conjDouble U` acts on row-vectorized matrices by conjugation. -/
-theorem conjDouble_mulVec_rowVec (U X : Matrix Y Y ℂ) :
+theorem conjDouble_mulVec_rowVec [Fintype Y] (U X : Matrix Y Y ℂ) :
     conjDouble U *ᵥ rowVec X = rowVec (U * X * Uᴴ) := by
   ext p
   simp only [Matrix.mulVec, dotProduct, conjDouble_apply, rowVec,
@@ -57,17 +53,15 @@ theorem conjDouble_mulVec_rowVec (U X : Matrix Y Y ℂ) :
 
 /-! ## Frobenius mass under vectorization -/
 
-omit [DecidableEq Y] in
 /-- Row-vectorized squared Euclidean mass is the Frobenius mass. -/
-theorem sum_normSq_rowVec (X : Matrix Y Y ℂ) :
+theorem sum_normSq_rowVec [Fintype Y] (X : Matrix Y Y ℂ) :
     ∑ p : Y × Y, Complex.normSq (rowVec X p) =
       ∑ i : Y, ∑ j : Y, Complex.normSq (X i j) := by
   rw [Fintype.sum_prod_type]
   rfl
 
-omit [DecidableEq Y] in
 /-- Frobenius mass is invariant under conjugate transpose. -/
-theorem sum_normSq_conjTranspose (X : Matrix Y Y ℂ) :
+theorem sum_normSq_conjTranspose [Fintype Y] (X : Matrix Y Y ℂ) :
     ∑ i : Y, ∑ j : Y, Complex.normSq (Xᴴ i j) =
       ∑ i : Y, ∑ j : Y, Complex.normSq (X i j) := by
   rw [Finset.sum_comm]
@@ -75,7 +69,8 @@ theorem sum_normSq_conjTranspose (X : Matrix Y Y ℂ) :
   simp [Matrix.conjTranspose_apply]
 
 /-- Left multiplication contracts Frobenius mass by the operator norm. -/
-theorem sum_normSq_mul_left_le (A X : Matrix Y Y ℂ) :
+theorem sum_normSq_mul_left_le [Fintype Y] [DecidableEq Y]
+    (A X : Matrix Y Y ℂ) :
     ∑ i : Y, ∑ j : Y, Complex.normSq ((A * X) i j) ≤
       ‖A‖ ^ 2 * ∑ i : Y, ∑ j : Y, Complex.normSq (X i j) := by
   rw [Finset.sum_comm (γ := Y) (s := Finset.univ) (t := Finset.univ)
@@ -96,7 +91,8 @@ theorem sum_normSq_mul_left_le (A X : Matrix Y Y ℂ) :
       sum_normSq_mulVec_le_general A _
 
 /-- Right multiplication contracts Frobenius mass by the operator norm. -/
-theorem sum_normSq_mul_right_le (X B : Matrix Y Y ℂ) :
+theorem sum_normSq_mul_right_le [Fintype Y] [DecidableEq Y]
+    (X B : Matrix Y Y ℂ) :
     ∑ i : Y, ∑ j : Y, Complex.normSq ((X * B) i j) ≤
       ‖B‖ ^ 2 * ∑ i : Y, ∑ j : Y, Complex.normSq (X i j) := by
   have hct : ∑ i : Y, ∑ j : Y, Complex.normSq ((X * B) i j) =
@@ -119,18 +115,11 @@ conjugations. -/
 def conjMixed (A B : Matrix Y Y ℂ) : Matrix (Y × Y) (Y × Y) ℂ :=
   fun p q ↦ A p.1 q.1 * (starRingEnd ℂ) (B p.2 q.2)
 
-omit [Fintype Y] [DecidableEq Y] in
 @[simp] theorem conjMixed_apply (A B : Matrix Y Y ℂ) (p q : Y × Y) :
     conjMixed A B p q = A p.1 q.1 * (starRingEnd ℂ) (B p.2 q.2) := rfl
 
-omit [Fintype Y] [DecidableEq Y] in
-theorem conjMixed_self (A : Matrix Y Y ℂ) : conjMixed A A = conjDouble A := by
-  ext p q
-  simp
-
-omit [DecidableEq Y] in
 /-- The mixed kernel acts on row-vectorized matrices as `X ↦ A X Bᴴ`. -/
-theorem conjMixed_mulVec_rowVec (A B X : Matrix Y Y ℂ) :
+theorem conjMixed_mulVec_rowVec [Fintype Y] (A B X : Matrix Y Y ℂ) :
     conjMixed A B *ᵥ rowVec X = rowVec (A * X * Bᴴ) := by
   ext p
   simp only [Matrix.mulVec, dotProduct, conjMixed_apply, rowVec,
@@ -146,7 +135,8 @@ theorem conjMixed_mulVec_rowVec (A B X : Matrix Y Y ℂ) :
 
 /-- The mixed kernel is bounded by the product of the operator norms,
 independently of the dimension. -/
-theorem l2_opNorm_conjMixed_le (A B : Matrix Y Y ℂ) :
+theorem l2_opNorm_conjMixed_le [Fintype Y] [DecidableEq Y]
+    (A B : Matrix Y Y ℂ) :
     ‖conjMixed A B‖ ≤ ‖A‖ * ‖B‖ := by
   refine l2_opNorm_le_of_sum_normSq_general _
     (mul_nonneg (norm_nonneg _) (norm_nonneg _)) fun x ↦ ?_
@@ -165,7 +155,6 @@ theorem l2_opNorm_conjMixed_le (A B : Matrix Y Y ℂ) :
       rw [← Matrix.star_eq_conjTranspose, norm_star]
       ring
 
-omit [Fintype Y] [DecidableEq Y] in
 /-- Differences of conjugations linearize through the mixed kernel. -/
 theorem conjDouble_sub_eq (U V : Matrix Y Y ℂ) :
     conjDouble U - conjDouble V =
@@ -174,6 +163,8 @@ theorem conjDouble_sub_eq (U V : Matrix Y Y ℂ) :
   simp only [conjDouble_apply, conjMixed_apply, Matrix.sub_apply,
     Matrix.add_apply, map_sub]
   ring
+
+variable [Fintype Y] [DecidableEq Y]
 
 /-- The conjugate double is `2`-Lipschitz on the unitary group, independently
 of the matrix dimension.  This is the finite-dimensional estimate
@@ -214,7 +205,7 @@ theorem l2_opNorm_conjDouble_defect_le {W U V : Matrix Y Y ℂ}
   calc
     ‖conjDouble W - conjDouble (U * V)‖ ≤ 2 * ‖W - U * V‖ :=
       l2_opNorm_conjDouble_sub_le_two hW (mul_mem hU hV)
-    _ ≤ 2 * ε := by linarith
+    _ ≤ 2 * ε := mul_le_mul_of_nonneg_left h (by norm_num)
 
 namespace OpAlmostRepresentation
 
@@ -241,10 +232,6 @@ def adjoint (A : OpAlmostRepresentation G) : OpAlmostRepresentation G where
     have htwo : (2 : ℝ) * (ε / 2) = ε := by ring
     rw [htwo] at hd
     exact hd
-
-@[simp] theorem adjoint_model (A : OpAlmostRepresentation G) (n : ℕ) :
-    (A.adjoint.model n : Type) =
-      Prod (A.model n : Type) (A.model n : Type) := rfl
 
 @[simp] theorem adjoint_map (A : OpAlmostRepresentation G) (n : ℕ) (g : G) :
     ((A.adjoint.map n g : Matrix (A.adjoint.model n) (A.adjoint.model n) ℂ)) =

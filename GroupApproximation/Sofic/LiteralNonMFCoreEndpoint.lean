@@ -1,5 +1,4 @@
 import GroupApproximation.Sofic.LiteralBaseP13PropertyTBridge
-import GroupApproximation.Sofic.LiteralNonMFLinearWitness
 import GroupApproximation.Sofic.MarkedCompressionSequentialKill
 
 /-!

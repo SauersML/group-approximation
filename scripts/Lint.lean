@@ -1,4 +1,5 @@
 import GroupApproximation
+import PalomarSolution
 import Batteries.Tactic.Lint
 
 /-!
@@ -16,4 +17,5 @@ also fails on a missing docstring trains people to ignore it.  Run under
 
 open Batteries.Tactic.Lint
 
-#lint only unusedArguments defLemma dupNamespace simpNF simpVarHead
+#lint only unusedArguments unusedHavesSuffices simpNF in GroupApproximation
+#lint only unusedArguments unusedHavesSuffices simpNF in PalomarSolution

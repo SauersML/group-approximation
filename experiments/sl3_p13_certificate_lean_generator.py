@@ -219,9 +219,7 @@ def emit_part(output, core_module, residual, i, k, part):
         "  have hpart : initialPart %d %d %d =\n" % (i, k, part),
         "      ∑ u : Fin 9, %s.expected u := by\n" % namespace,
         "    unfold initialPart\n",
-        "    apply Finset.sum_congr rfl\n",
-        "    intro u _\n",
-        "    exact %s.all u\n" % namespace,
+        "    exact Finset.sum_congr rfl fun u _ ↦ %s.all u\n" % namespace,
     ])
     if part == 3:
         out.extend([

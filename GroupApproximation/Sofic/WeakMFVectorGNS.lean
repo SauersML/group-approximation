@@ -1,5 +1,4 @@
 import GroupApproximation.Kazhdan.KazhdanGNS
-import GroupApproximation.Sofic.KazhdanCornerMatrices
 import GroupApproximation.Sofic.FiniteStageRobustGap
 
 /-!
@@ -67,17 +66,6 @@ variable {G : Type} [Group G]
 structure UnitVectorSequence (A : OpAlmostRepresentation G) where
   vec : ∀ n, EuclideanSpace ℂ (A.model n)
   norm_eq_one : ∀ n, ‖vec n‖ = 1
-
-/-- Every weak-MF approximation has a canonical sequence of coordinate unit
-vectors.  The positive model cardinality stored in the approximation supplies
-the coordinate at each stage. -/
-noncomputable def UnitVectorSequence.coordinate
-    (A : OpAlmostRepresentation G) : UnitVectorSequence A where
-  vec n := EuclideanSpace.single
-    (Classical.choice (Fintype.card_pos_iff.mp (A.modelNonempty n))) 1
-  norm_eq_one n := by
-    rw [PiLp.norm_single]
-    norm_num
 
 /-- The unitary assigned to a group element, acting on its Euclidean model. -/
 noncomputable def translate (A : OpAlmostRepresentation G) (n : ℕ) (g : G)
@@ -253,11 +241,11 @@ theorem correlation_sub_gram_tendsto_zero (A : OpAlmostRepresentation G)
     Tendsto (fun n ↦ correlation A v n (g⁻¹ * h) -
       gramCorrelation A v n g h) atTop (nhds 0) := by
   refine Metric.tendsto_atTop.mpr fun ε hε ↦ ?_
-  obtain ⟨N, hN⟩ := map_inv_mul_vanishing A g h (ε / 2) (by linarith)
+  obtain ⟨N, hN⟩ := map_inv_mul_vanishing A g h (ε / 2) (half_pos hε)
   refine ⟨N, fun n hn ↦ ?_⟩
   rw [dist_zero_right, Real.norm_eq_abs]
   exact (abs_correlation_sub_gram_le A v n g h).trans_lt
-    ((hN n hn).trans_lt (by linarith))
+    ((hN n hn).trans_lt (half_lt_self hε))
 
 /-! ## The limiting positive-definite function -/
 
@@ -272,8 +260,8 @@ noncomputable def gramCorrelationHyperreal (A : OpAlmostRepresentation G)
 theorem correlationHyperreal_finite (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g : G) :
     0 ≤ ArchimedeanClass.mk (correlationHyperreal A v g) := by
-  apply ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
-    Hyperreal.coeRingHom (r := (-1 : ℝ)) (s := (1 : ℝ))
+  refine ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
+    Hyperreal.coeRingHom (r := (-1 : ℝ)) (s := (1 : ℝ)) ?_ ?_
   · change Hyperreal.ofSeq (fun _ : ℕ ↦ (-1 : ℝ)) ≤
       Hyperreal.ofSeq (fun n ↦ correlation A v n g)
     rw [Hyperreal.ofSeq_le_ofSeq]
@@ -288,8 +276,8 @@ theorem correlationHyperreal_finite (A : OpAlmostRepresentation G)
 theorem gramCorrelationHyperreal_finite (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g h : G) :
     0 ≤ ArchimedeanClass.mk (gramCorrelationHyperreal A v g h) := by
-  apply ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
-    Hyperreal.coeRingHom (r := (-1 : ℝ)) (s := (1 : ℝ))
+  refine ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
+    Hyperreal.coeRingHom (r := (-1 : ℝ)) (s := (1 : ℝ)) ?_ ?_
   · change Hyperreal.ofSeq (fun _ : ℕ ↦ (-1 : ℝ)) ≤
       Hyperreal.ofSeq (fun n ↦ gramCorrelation A v n g h)
     rw [Hyperreal.ofSeq_le_ofSeq]
@@ -303,10 +291,8 @@ theorem gramCorrelationHyperreal_finite (A : OpAlmostRepresentation G)
 
 theorem gramCorrelationHyperreal_comm (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g h : G) :
-    gramCorrelationHyperreal A v g h = gramCorrelationHyperreal A v h g := by
-  apply congrArg Hyperreal.ofSeq
-  funext n
-  exact gramCorrelation_comm A v n g h
+    gramCorrelationHyperreal A v g h = gramCorrelationHyperreal A v h g :=
+  congrArg Hyperreal.ofSeq (funext fun n ↦ gramCorrelation_comm A v n g h)
 
 theorem correlationHyperreal_sub_gram_mk_pos
     (A : OpAlmostRepresentation G) (v : UnitVectorSequence A) (g h : G) :
@@ -315,10 +301,8 @@ theorem correlationHyperreal_sub_gram_mk_pos
         gramCorrelationHyperreal A v g h) := by
   change 0 < ArchimedeanClass.mk (Hyperreal.ofSeq (fun n ↦
     correlation A v n (g⁻¹ * h) - gramCorrelation A v n g h))
-  apply Hyperreal.archimedeanClassMk_pos_of_tendsto
-  rw [Hyperreal.tendsto_ofSeq]
-  exact (correlation_sub_gram_tendsto_zero A v g h).mono_left
-    Nat.hyperfilter_le_atTop
+  exact Hyperreal.archimedeanClassMk_pos_of_tendsto (Hyperreal.tendsto_ofSeq.2
+    ((correlation_sub_gram_tendsto_zero A v g h).mono_left Nat.hyperfilter_le_atTop))
 
 noncomputable def limitingCorrelation (A : OpAlmostRepresentation G)
     (v : UnitVectorSequence A) (g : G) : ℝ :=
@@ -491,13 +475,11 @@ theorem combinationNormSqHyperreal_eq_ofSeq {I : Type*}
 theorem combinationNormSqHyperreal_finite {I : Type*}
     (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
     (F : Finset I) (w : I → G) (a : I → ℝ) :
-    0 ≤ ArchimedeanClass.mk (combinationNormSqHyperreal A v F w a) := by
-  apply hyperreal_finset_sum_finite F
-  intro i hi
-  apply hyperreal_finset_sum_finite F
-  intro j hj
-  exact hyperreal_mul_finite (hyperreal_coe_finite (a i * a j))
-    (gramCorrelationHyperreal_finite A v (w i) (w j))
+    0 ≤ ArchimedeanClass.mk (combinationNormSqHyperreal A v F w a) :=
+  hyperreal_finset_sum_finite F _ fun i _ ↦
+    hyperreal_finset_sum_finite F _ fun j _ ↦
+      hyperreal_mul_finite (hyperreal_coe_finite (a i * a j))
+        (gramCorrelationHyperreal_finite A v (w i) (w j))
 
 theorem stdPart_combinationNormSqHyperreal {I : Type*}
     (A : OpAlmostRepresentation G) (v : UnitVectorSequence A)
@@ -554,8 +536,8 @@ theorem combinationNormSqHyperreal_displacement_eq_ofSeq
     let d := KazhdanGNS.averagingDisplacementCoefficients S k
     combinationNormSqHyperreal A v d.support id d =
       Hyperreal.ofSeq (fun n ↦
-        finiteAveragingDisplacementNormSq A n (v.vec n) S k) := by
-  exact combinationNormSqHyperreal_eq_ofSeq A v
+        finiteAveragingDisplacementNormSq A n (v.vec n) S k) :=
+  combinationNormSqHyperreal_eq_ofSeq A v
     (KazhdanGNS.averagingDisplacementCoefficients S k).support id
     (KazhdanGNS.averagingDisplacementCoefficients S k)
 
@@ -605,33 +587,28 @@ theorem stdPart_averagingDisplacementNormSq_le
   have hcardNat : 0 < S.card := Finset.card_pos.mpr ⟨1, hone⟩
   have hcard : (0 : ℝ) < S.card := by exact_mod_cast hcardNat
   have hεsq : ε ^ 2 ≤ 1 := by
-    nlinarith [sq_nonneg ε, hQ.1, hεone]
+    nlinarith only [sq_nonneg ε, hQ.1, hεone]
   have hden : (0 : ℝ) < 4 * S.card := mul_pos (by norm_num) hcard
   have hdenOne : (1 : ℝ) ≤ 4 * S.card := by
     have : (1 : ℝ) ≤ S.card := by exact_mod_cast hcardNat
-    nlinarith
+    nlinarith only [this]
   have hfrac : ε ^ 2 / (4 * S.card) ≤ 1 := by
     rw [div_le_one hden]
     exact hεsq.trans hdenOne
-  have hfactor : 0 ≤ factor := by dsimp [factor]; linarith
+  have hfactor : 0 ≤ factor := sub_nonneg.mpr hfrac
   have hsq :
       ‖(Av^[k + 1]) (KazhdanGNS.kernelVector p 1) -
           (Av^[k]) (KazhdanGNS.kernelVector p 1)‖ ^ 2 ≤
         factor ^ (2 * k) *
           ‖Av (KazhdanGNS.kernelVector p 1) -
             KazhdanGNS.kernelVector p 1‖ ^ 2 := by
-    have hleft : 0 ≤ ‖(Av^[k + 1]) (KazhdanGNS.kernelVector p 1) -
-        (Av^[k]) (KazhdanGNS.kernelVector p 1)‖ := norm_nonneg _
-    have hright : 0 ≤ factor ^ k *
-        ‖Av (KazhdanGNS.kernelVector p 1) -
-          KazhdanGNS.kernelVector p 1‖ :=
-      mul_nonneg (pow_nonneg hfactor k) (norm_nonneg _)
-    have hsquare := (sq_le_sq₀ hleft hright).2 hnorm
     calc
       ‖(Av^[k + 1]) (KazhdanGNS.kernelVector p 1) -
           (Av^[k]) (KazhdanGNS.kernelVector p 1)‖ ^ 2 ≤
           (factor ^ k * ‖Av (KazhdanGNS.kernelVector p 1) -
-            KazhdanGNS.kernelVector p 1‖) ^ 2 := hsquare
+            KazhdanGNS.kernelVector p 1‖) ^ 2 :=
+        (sq_le_sq₀ (norm_nonneg _)
+          (mul_nonneg (pow_nonneg hfactor k) (norm_nonneg _))).2 hnorm
       _ = factor ^ (2 * k) *
           ‖Av (KazhdanGNS.kernelVector p 1) -
             KazhdanGNS.kernelVector p 1‖ ^ 2 := by ring
@@ -639,73 +616,6 @@ theorem stdPart_averagingDisplacementNormSq_le
   rw [stdPart_averagingDisplacementNormSq,
     stdPart_averagingDisplacementNormSq]
   simpa [Av, p] using hsq
-
-/-- Uniform Kazhdan contraction for exact-word displacement vectors in all
-sufficiently late weak-MF models. -/
-theorem finiteAveragingDisplacementNormSq_eventually_lt
-    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} G Q ε)
-    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (A : OpAlmostRepresentation G) (k : ℕ) (δ : ℝ) (hδ : 0 < δ) :
-    ∃ N : ℕ, ∀ n ≥ N, ∀ x : EuclideanSpace ℂ (A.model n), ‖x‖ = 1 →
-      finiteAveragingDisplacementNormSq A n x S k <
-        (1 - ε ^ 2 / (4 * S.card)) ^ (2 * k) *
-          finiteAveragingDisplacementNormSq A n x S 0 + δ := by
-  classical
-  by_contra h
-  push Not at h
-  choose φ hφ x hx hbad using h
-  let B := A.reindex φ hφ
-  let v : UnitVectorSequence B := ⟨fun n ↦ x n, hx⟩
-  let dk := KazhdanGNS.averagingDisplacementCoefficients S k
-  let d0 := KazhdanGNS.averagingDisplacementCoefficients S 0
-  let factor : ℝ := (1 - ε ^ 2 / (4 * S.card)) ^ (2 * k)
-  let Hk : Hyperreal := combinationNormSqHyperreal B v dk.support id dk
-  let H0 : Hyperreal := combinationNormSqHyperreal B v d0.support id d0
-  have hHkfinite : 0 ≤ ArchimedeanClass.mk Hk :=
-    combinationNormSqHyperreal_finite B v dk.support id dk
-  have hH0finite : 0 ≤ ArchimedeanClass.mk H0 :=
-    combinationNormSqHyperreal_finite B v d0.support id d0
-  have hfactorfinite : 0 ≤ ArchimedeanClass.mk ((factor : ℝ) : Hyperreal) :=
-    hyperreal_coe_finite factor
-  have hprodFinite :
-      0 ≤ ArchimedeanClass.mk (((factor : ℝ) : Hyperreal) * H0) :=
-    hyperreal_mul_finite hfactorfinite hH0finite
-  have hdiffFinite :
-      0 ≤ ArchimedeanClass.mk (Hk - ((factor : ℝ) : Hyperreal) * H0) :=
-    KazhdanGNS.hyperreal_sub_finite hHkfinite hprodFinite
-  have hhyper : ((δ : ℝ) : Hyperreal) ≤
-      Hk - ((factor : ℝ) : Hyperreal) * H0 := by
-    rw [show Hk = Hyperreal.ofSeq (fun n ↦
-        finiteAveragingDisplacementNormSq B n (v.vec n) S k) by
-          exact combinationNormSqHyperreal_displacement_eq_ofSeq B v S k,
-      show H0 = Hyperreal.ofSeq (fun n ↦
-        finiteAveragingDisplacementNormSq B n (v.vec n) S 0) by
-          exact combinationNormSqHyperreal_displacement_eq_ofSeq B v S 0]
-    change Hyperreal.ofSeq (fun _ : ℕ ↦ δ) ≤ Hyperreal.ofSeq (fun n ↦
-      finiteAveragingDisplacementNormSq B n (v.vec n) S k -
-        factor * finiteAveragingDisplacementNormSq B n (v.vec n) S 0)
-    rw [Hyperreal.ofSeq_le_ofSeq]
-    exact Filter.Eventually.of_forall fun n ↦ by
-      have hn := hbad n
-      change factor * finiteAveragingDisplacementNormSq B n (v.vec n) S 0 + δ ≤
-        finiteAveragingDisplacementNormSq B n (v.vec n) S k at hn
-      linarith
-  have hstdLower : δ ≤ ArchimedeanClass.stdPart
-      (Hk - ((factor : ℝ) : Hyperreal) * H0) :=
-    ArchimedeanClass.le_stdPart_of_le Hyperreal.coeRingHom hdiffFinite hhyper
-  have hstdDiff : ArchimedeanClass.stdPart
-      (Hk - ((factor : ℝ) : Hyperreal) * H0) =
-      ArchimedeanClass.stdPart Hk -
-        factor * ArchimedeanClass.stdPart H0 := by
-    rw [ArchimedeanClass.stdPart_sub hHkfinite hprodFinite,
-      ArchimedeanClass.stdPart_mul hfactorfinite hH0finite,
-      Hyperreal.stdPart_coe]
-  have hcontract := stdPart_averagingDisplacementNormSq_le
-    hQ S hQS hone hεone B v k
-  change ArchimedeanClass.stdPart Hk ≤
-    factor * ArchimedeanClass.stdPart H0 at hcontract
-  rw [hstdDiff] at hstdLower
-  linarith
 
 /-! ## Exact-word combinations versus powers of the matrix average -/
 
@@ -1067,27 +977,6 @@ structure HermitianEigenpairSequence (A : OpAlmostRepresentation G)
       (hermitianAverage A S n) (vector.vec n) =
         (value n : ℂ) • vector.vec n
 
-/-- A canonical finite-stage eigenpair sequence, obtained by taking the first
-available vector in the orthonormal eigenbasis of each Hermitian average. -/
-noncomputable def HermitianEigenpairSequence.coordinate
-    (A : OpAlmostRepresentation G) (S : Finset G) :
-    HermitianEigenpairSequence A S := by
-  let hH : ∀ n, (hermitianAverage A S n).IsHermitian := fun n ↦
-    hermitianAverage_conjTranspose A S n
-  let i : ∀ n, A.model n := fun n ↦
-    Classical.choice (Fintype.card_pos_iff.mp (A.modelNonempty n))
-  exact {
-    vector := {
-      vec := fun n ↦ (hH n).eigenvectorBasis (i n)
-      norm_eq_one := fun n ↦ (hH n).eigenvectorBasis.orthonormal.1 (i n) }
-    value := fun n ↦ (hH n).eigenvalues (i n)
-    eigen := by
-      intro n
-      apply PiLp.ext
-      intro j
-      exact congrFun ((hH n).mulVec_eigenvectorBasis (i n)) j
-    }
-
 theorem HermitianEigenpairSequence.abs_value_le_one
     {A : OpAlmostRepresentation G} {S : Finset G}
     (e : HermitianEigenpairSequence A S) (n : ℕ) : |e.value n| ≤ 1 := by
@@ -1146,9 +1035,8 @@ theorem eigen_displacementNormSq_sub_scalar_tendsto_zero
       atTop (nhds 0) := by
   let d := KazhdanGNS.averagingDisplacementCoefficients S k
   let B : ℝ := ∑ g ∈ d.support, |d g|
-  have hB : 0 < B + 2 := by
-    have : 0 ≤ B := Finset.sum_nonneg fun g _ ↦ abs_nonneg _
-    linarith
+  have hB : 0 < B + 2 :=
+    add_pos_of_nonneg_of_pos (Finset.sum_nonneg fun g _ ↦ abs_nonneg _) (by norm_num)
   have hv := averagingDisplacement_sub_hermitianPowers_vanishing A S hsymm k
   refine Metric.tendsto_atTop.mpr fun η hη ↦ ?_
   obtain ⟨N, hN⟩ := hv (η / (2 * (B + 2))) (by positivity)
@@ -1179,12 +1067,12 @@ theorem eigen_displacementNormSq_sub_scalar_tendsto_zero
     |finiteAveragingDisplacementNormSq A n (e.vector.vec n) S k -
         (e.value n ^ (k + 1) - e.value n ^ k) ^ 2| ≤
         ‖C - D‖ * (‖C‖ + ‖D‖) := hpert
-    _ ≤ (η / (2 * (B + 2))) * (B + 2) := by
-      exact mul_le_mul (hN n hn) (add_le_add hC hD)
+    _ ≤ (η / (2 * (B + 2))) * (B + 2) :=
+      mul_le_mul (hN n hn) (add_le_add hC hD)
         (add_nonneg (norm_nonneg _) (norm_nonneg _)) (by positivity)
     _ < η := by
       rw [show η / (2 * (B + 2)) * (B + 2) = η / 2 by field_simp]
-      linarith
+      exact half_lt_self hη
 
 noncomputable def HermitianEigenpairSequence.valueHyperreal
     {A : OpAlmostRepresentation G} {S : Finset G}
@@ -1195,8 +1083,8 @@ theorem HermitianEigenpairSequence.valueHyperreal_finite
     {A : OpAlmostRepresentation G} {S : Finset G}
     (e : HermitianEigenpairSequence A S) :
     0 ≤ ArchimedeanClass.mk e.valueHyperreal := by
-  apply ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
-    Hyperreal.coeRingHom (r := (-1 : ℝ)) (s := (1 : ℝ))
+  refine ArchimedeanClass.mk_nonneg_of_le_of_le_of_archimedean
+    Hyperreal.coeRingHom (r := (-1 : ℝ)) (s := (1 : ℝ)) ?_ ?_
   · change Hyperreal.ofSeq (fun _ : ℕ ↦ (-1 : ℝ)) ≤
       Hyperreal.ofSeq e.value
     rw [Hyperreal.ofSeq_le_ofSeq]
@@ -1268,10 +1156,9 @@ theorem stdPart_displacement_eq_eigenvaluePolynomial
     change 0 < ArchimedeanClass.mk (Hyperreal.ofSeq (fun n ↦
       finiteAveragingDisplacementNormSq A n (e.vector.vec n) S k -
         (e.value n ^ (k + 1) - e.value n ^ k) ^ 2))
-    apply Hyperreal.archimedeanClassMk_pos_of_tendsto
-    rw [Hyperreal.tendsto_ofSeq]
-    exact (eigen_displacementNormSq_sub_scalar_tendsto_zero
-      A S hsymm e k).mono_left Nat.hyperfilter_le_atTop
+    exact Hyperreal.archimedeanClassMk_pos_of_tendsto (Hyperreal.tendsto_ofSeq.2
+      ((eigen_displacementNormSq_sub_scalar_tendsto_zero
+        A S hsymm e k).mono_left Nat.hyperfilter_le_atTop))
   have hzero : ArchimedeanClass.stdPart (H - P) = 0 :=
     ArchimedeanClass.stdPart_eq_zero.mpr hsmall.ne'
   have hsub := ArchimedeanClass.stdPart_sub hHfinite hPfinite
@@ -1315,11 +1202,8 @@ theorem hermitianAverage_eventually_no_intermediate_eigenvalues :
       vec := fun n ↦ (hH n).eigenvectorBasis (i n)
       norm_eq_one := fun n ↦ (hH n).eigenvectorBasis.orthonormal.1 (i n) }
     value := fun n ↦ (hH n).eigenvalues (i n)
-    eigen := by
-      intro n
-      apply PiLp.ext
-      intro j
-      exact congrFun ((hH n).mulVec_eigenvectorBasis (i n)) j
+    eigen := fun n ↦ PiLp.ext fun j ↦
+      congrFun ((hH n).mulVec_eigenvectorBasis (i n)) j
     }
   let L := e.valueHyperreal
   let ell : ℝ := ArchimedeanClass.stdPart L
@@ -1356,23 +1240,23 @@ theorem hermitianAverage_eventually_no_intermediate_eigenvalues :
   have hcardNat : 0 < S.card := Finset.card_pos.mpr ⟨1, hone⟩
   have hcard : (0 : ℝ) < S.card := by exact_mod_cast hcardNat
   have hεsq : ε ^ 2 ≤ 1 := by
-    nlinarith [sq_nonneg ε, hQ.1, hεone]
+    nlinarith only [sq_nonneg ε, hQ.1, hεone]
   have hdenOne : (1 : ℝ) ≤ 4 * S.card := by
     have : (1 : ℝ) ≤ S.card := by exact_mod_cast hcardNat
-    nlinarith
+    nlinarith only [this]
   have hc0 : 0 ≤ 1 - ε ^ 2 / (4 * S.card) := by
     rw [sub_nonneg, div_le_one (by positivity)]
     exact hεsq.trans hdenOne
   have helllt : ell < 1 := hellb.trans_lt hb
   have hcell : 1 - ε ^ 2 / (4 * S.card) < ell := ha.trans_le haell
-  have hne : 0 < (ell - 1) ^ 2 := sq_pos_of_ne_zero (by linarith)
+  have hne : 0 < (ell - 1) ^ 2 := sq_pos_of_ne_zero (sub_ne_zero.mpr helllt.ne)
   have hsquares : ell ^ 2 ≤
       (1 - ε ^ 2 / (4 * S.card)) ^ 2 := by
     have hfactor : (ell ^ 2 - ell) ^ 2 = ell ^ 2 * (ell - 1) ^ 2 := by ring
     have hfactor0 : (ell ^ 1 - ell ^ 0) ^ 2 = (ell - 1) ^ 2 := by ring
     rw [hfactor, hfactor0] at hcontract'
-    nlinarith
-  nlinarith
+    nlinarith only [hcontract', hne]
+  nlinarith only [hcell, hc0, hsquares]
 
 /-! ## The explicit estimate downstream of the one non-effective step
 
@@ -1381,55 +1265,6 @@ finite-stage proof.  Past it, the appendix's displacement estimate holds at
 each single coordinate with the printed constant `√(2|S|δ)`, by the
 ultrafilter-free argument of
 `GroupApproximation/Sofic/FiniteStageRobustGap.lean`. -/
-
-/-- **The appendix's estimate (i), assembled.**  Beyond a single
-(non-effective) stage `N`, every unit eigenvector of the Hermitian average
-whose eigenvalue is retained by the threshold `θ` is displaced by each
-generator by at most the explicit amount `√(2|S|δ)`; the eigenvalue band
-comes from `hermitianAverage_eventually_no_intermediate_eigenvalues` and the
-constant from `FiniteStageRobustGap.norm_act_sub_sq_le_of_eigenvector`. -/
-theorem hermitianAverage_eventually_eigenvector_displacement_le
-    {Q : Finset G} {ε : ℝ} (hQ : IsKazhdanPair.{0, 0} G Q ε)
-    (S : Finset G) (hQS : Q ⊆ S) (hone : 1 ∈ S) (hεone : ε ≤ 1)
-    (hsymm : ∀ g ∈ S, g⁻¹ ∈ S) (A : OpAlmostRepresentation G) {θ δ : ℝ}
-    (hθ : 1 - ε ^ 2 / (4 * S.card) < θ) (hδ : 0 < δ) :
-    ∃ N : ℕ, ∀ n ≥ N, ∀ i : A.model n,
-      θ ≤ Matrix.IsHermitian.eigenvalues
-          (hermitianAverage_conjTranspose A S n) i →
-        ∀ g ∈ S,
-          ‖FiniteStageRobustGap.act A n g
-              (Matrix.IsHermitian.eigenvectorBasis
-                (hermitianAverage_conjTranspose A S n) i) -
-            Matrix.IsHermitian.eigenvectorBasis
-              (hermitianAverage_conjTranspose A S n) i‖ ≤
-            Real.sqrt (2 * (S.card : ℝ) * δ) := by
-  have hS : S.Nonempty := ⟨1, hone⟩
-  obtain ⟨N, hN⟩ :=
-    hermitianAverage_eventually_no_intermediate_eigenvalues hQ S hQS hone
-      hεone hsymm A hθ (show 1 - δ < 1 by linarith)
-  refine ⟨N, fun n hn i hi g hg ↦ ?_⟩
-  have hHerm : (hermitianAverage A S n).IsHermitian :=
-    hermitianAverage_conjTranspose A S n
-  have hv : ‖hHerm.eigenvectorBasis i‖ = 1 :=
-    hHerm.eigenvectorBasis.orthonormal.1 i
-  have heig : FiniteStageRobustGap.applyMat (hermitianAverage A S n)
-      (hHerm.eigenvectorBasis i) =
-      ((hHerm.eigenvalues i : ℝ) : ℂ) • hHerm.eigenvectorBasis i := by
-    apply PiLp.ext
-    intro j
-    exact congrFun (hHerm.mulVec_eigenvectorBasis i) j
-  have hband : 1 - δ < hHerm.eigenvalues i := by
-    by_contra hcon
-    push Not at hcon
-    exact hN n hn i ⟨hi, hcon⟩
-  have hsq := FiniteStageRobustGap.norm_act_sub_sq_le_of_eigenvector
-    A S n hS hv heig hg
-  have hcard : (0 : ℝ) ≤ 2 * (S.card : ℝ) := by positivity
-  have hstep : 2 * (S.card : ℝ) * (1 - hHerm.eigenvalues i) ≤
-      2 * (S.card : ℝ) * δ :=
-    mul_le_mul_of_nonneg_left (by linarith) hcard
-  have hroot := Real.sqrt_le_sqrt (hsq.trans hstep)
-  rwa [Real.sqrt_sq (norm_nonneg _)] at hroot
 
 end WeakMFVectorGNS
 end GroupApproximation

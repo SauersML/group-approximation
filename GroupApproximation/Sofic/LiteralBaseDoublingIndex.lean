@@ -151,11 +151,6 @@ theorem finite_quotient_doubledBase : Finite (Base ⧸ doubledBase) := by
   rw [hg]
   simpa using hh
 
-/-- **The doubled subgroup has finite index.** -/
-instance doubledBase_finiteIndex : doubledBase.FiniteIndex := by
-  haveI := finite_quotient_doubledBase
-  exact Subgroup.finiteIndex_of_finite_quotient
-
 /-! ## Transport to the affine matrix model
 
 The affine quotient is surjective, so the eight parity cosets cover the
@@ -202,13 +197,13 @@ theorem map_doubledBase_le_conjD_range :
 theorem finite_quotient_map_doubledBase :
     Finite (gammaBar ⧸ doubledBase.map affineQuotient) := by
   haveI := finite_quotient_doubledBase
-  apply Finite.of_surjective
+  refine Finite.of_surjective
     (fun q : Base ⧸ doubledBase ↦
       Quotient.map' affineQuotient
         (by
           intro a b hab
           rw [QuotientGroup.leftRel_apply] at hab ⊢
-          exact ⟨a⁻¹ * b, hab, by rw [map_mul, map_inv]⟩) q)
+          exact ⟨a⁻¹ * b, hab, by rw [map_mul, map_inv]⟩) q) ?_
   intro q
   obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective q
   obtain ⟨h, rfl⟩ := affineQuotient_surjective g

@@ -27,9 +27,7 @@ theorem residual_part_sum_4_5_0 : initialPart 4 5 0 = 1381317206 := by
   have hpart : initialPart 4 5 0 =
       ∑ u : Fin 9, Residual45Part0.expected u := by
     unfold initialPart
-    apply Finset.sum_congr rfl
-    intro u _
-    exact Residual45Part0.all u
+    exact Finset.sum_congr rfl fun u _ ↦ Residual45Part0.all u
   rw [hpart]
   decide +kernel
 

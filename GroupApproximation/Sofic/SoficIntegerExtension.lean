@@ -38,7 +38,7 @@ variable {N : Type*} [Group N]
 
 section Level
 
-variable {Y : Type*} {L : ℕ} [NeZero L]
+variable {Y : Type*} {L : ℕ}
 
 /-- The permutation of `Y × ZMod L` that applies the level-indexed
 permutation `p` and then shifts the level by `c`. -/
@@ -51,11 +51,9 @@ def levelPerm (p : ZMod L → Equiv.Perm Y) (c : ZMod L) :
   right_inv z := by
     apply Prod.ext <;> simp
 
-omit [NeZero L] in
 @[simp] theorem levelPerm_apply (p : ZMod L → Equiv.Perm Y) (c : ZMod L)
     (z : Y × ZMod L) : levelPerm p c z = (p z.2 z.1, z.2 + c) := rfl
 
-omit [NeZero L] in
 /-- Level permutations compose to level permutations. -/
 theorem levelPerm_mul (p q : ZMod L → Equiv.Perm Y) (c d : ZMod L) :
     levelPerm p c * levelPerm q d =
@@ -126,8 +124,7 @@ theorem hammingDistance_levelPerm_of_shift_ne (Y : FiniteModel) {L : ℕ}
   classical
   have hdis : hammingDisagreement (levelPerm p c) (levelPerm q d) =
       Finset.univ := by
-    apply Finset.eq_univ_of_forall
-    intro z
+    refine Finset.eq_univ_of_forall fun z ↦ ?_
     rw [mem_hammingDisagreement]
     intro hz
     exact hcd (add_left_cancel (congrArg Prod.snd hz))
@@ -203,7 +200,7 @@ theorem card_badLevels_le {L : ℕ} [NeZero L] (k : ℤ) :
       k.natAbs := by
     have hle : (Finset.univ.filter fun u : ZMod L ↦ u.val < k.natAbs).card ≤
         (Finset.range k.natAbs).card := by
-      apply Finset.card_le_card_of_injOn (fun u ↦ u.val)
+      refine Finset.card_le_card_of_injOn (fun u ↦ u.val) ?_ ?_
       · intro u hu
         exact Finset.mem_range.mpr (hmemA u hu)
       · intro a _ b _ hab
@@ -266,24 +263,24 @@ def shiftOf (g : N ⋊[φ] Multiplicative ℤ) : ℤ := Multiplicative.toAdd g.r
 @[simp] theorem shiftOf_mul (g h : N ⋊[φ] Multiplicative ℤ) :
     shiftOf φ (g * h) = shiftOf φ g + shiftOf φ h := rfl
 
-@[simp] theorem left_mul (g h : N ⋊[φ] Multiplicative ℤ) :
+theorem left_mul (g h : N ⋊[φ] Multiplicative ℤ) :
     (g * h).left = g.left * tw φ (shiftOf φ g) h.left := rfl
 
 variable {Y : Type*}
 
 /-- The label used on the fibre whose *destination* level is `r`. -/
-def labelAt (L : ℕ) [NeZero L] (g : N ⋊[φ] Multiplicative ℤ) (r : ZMod L) :
+def labelAt (L : ℕ) (g : N ⋊[φ] Multiplicative ℤ) (r : ZMod L) :
     N :=
   tw φ (-(r.val : ℤ)) g.left
 
 /-- The truncated induced permutation: apply the level label, then shift the
 level by the integer part. -/
-def modelPerm (L : ℕ) [NeZero L] (σ : N → Equiv.Perm Y)
+def modelPerm (L : ℕ) (σ : N → Equiv.Perm Y)
     (g : N ⋊[φ] Multiplicative ℤ) : Equiv.Perm (Y × ZMod L) :=
   levelPerm (fun i ↦ σ (labelAt φ L g (i + ((shiftOf φ g : ℤ) : ZMod L))))
     ((shiftOf φ g : ℤ) : ZMod L)
 
-theorem modelPerm_mul_left (L : ℕ) [NeZero L] (σ : N → Equiv.Perm Y)
+theorem modelPerm_mul_left (L : ℕ) (σ : N → Equiv.Perm Y)
     (g h : N ⋊[φ] Multiplicative ℤ) :
     modelPerm φ L σ g * modelPerm φ L σ h =
       levelPerm (fun i ↦
@@ -293,7 +290,7 @@ theorem modelPerm_mul_left (L : ℕ) [NeZero L] (σ : N → Equiv.Perm Y)
         (((shiftOf φ h : ℤ) : ZMod L) + ((shiftOf φ g : ℤ) : ZMod L)) := by
   rw [modelPerm, modelPerm, levelPerm_mul]
 
-theorem modelPerm_mul_right (L : ℕ) [NeZero L] (σ : N → Equiv.Perm Y)
+theorem modelPerm_mul_right (L : ℕ) (σ : N → Equiv.Perm Y)
     (g h : N ⋊[φ] Multiplicative ℤ) :
     modelPerm φ L σ (g * h) =
       levelPerm (fun i ↦
@@ -349,8 +346,9 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
     exact lt_trans hL₀ hstep
   have h4K : 4 * (K : ℝ) < ε * L := by
     have := (div_lt_iff₀ hε).mp hLbig
-    linarith
-  have hboundary : 2 * (K : ℝ) ≤ (ε / 2) * L := by linarith
+    simpa [mul_comm] using this
+  have hboundary : 2 * (K : ℝ) ≤ (ε / 2) * L := by
+    linarith only [h4K]
   -- the twisted test set for the base model
   set T : Finset N :=
     (F ×ˢ Finset.range L).image (fun p ↦ tw φ (-(p.2 : ℤ)) p.1.left) with hTdef
@@ -358,7 +356,7 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
     intro g hg r
     refine Finset.mem_image.mpr ⟨(g, r.val), ?_, rfl⟩
     exact Finset.mem_product.mpr ⟨hg, Finset.mem_range.mpr (ZMod.val_lt r)⟩
-  obtain ⟨M⟩ := hN T (ε / 2) (by linarith)
+  obtain ⟨M⟩ := hN T (ε / 2) (half_pos hε)
   have hcardModel : Fintype.card (levelModel M.carrier L) =
       Fintype.card M.carrier * L := by
     show Fintype.card (M.carrier × ZMod L) = _
@@ -390,7 +388,7 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
       simpa [hBAD] using hi
     have hBADcard : BAD.card ≤ 2 * K := by
       have h1 : BAD.card ≤ (badLevels L (shiftOf φ g)).card := by
-        apply Finset.card_le_card_of_injOn (fun i ↦ i + sh)
+        refine Finset.card_le_card_of_injOn (fun i ↦ i + sh) ?_ ?_
         · intro i hi
           exact hmemBAD i (Finset.mem_coe.mp hi)
         · intro a _ b _ hab
@@ -427,10 +425,10 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
         rw [ZMod.card] at hle
         exact_mod_cast hle
       have hBADR : (BAD.card : ℝ) ≤ 2 * K := by exact_mod_cast hBADcard
-      have hεpos : (0 : ℝ) < ε / 2 := by linarith
-      nlinarith
+      have hεpos : (0 : ℝ) < ε / 2 := half_pos hε
+      nlinarith only [hsplit, hb, hc, hcard, hBADR, hεpos]
     rw [div_le_iff₀ hLR]
-    linarith
+    linarith only [hsum, hboundary]
   · -- separation
     intro g hg h hh hne
     by_cases hs : ((shiftOf φ g : ℤ) : ZMod L) = ((shiftOf φ h : ℤ) : ZMod L)
@@ -448,13 +446,15 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
         have hLZ : (0 : ℤ) < (L : ℤ) := by exact_mod_cast hLpos
         rcases lt_trichotomy c 0 with hneg | hzero | hpos
         · exfalso
-          have : (L : ℤ) * c ≤ -(L : ℤ) := by nlinarith
-          linarith [hgb.1, hgb.2, hhb.1, hhb.2]
+          have hcL : (L : ℤ) * c ≤ -(L : ℤ) := by
+            nlinarith only [hneg, hLZ]
+          linarith only [hc, hcL, hgb.1, hgb.2, hhb.1, hhb.2, hKLZ]
         · rw [hzero, mul_zero] at hc
-          linarith
+          linarith only [hc]
         · exfalso
-          have : (L : ℤ) ≤ (L : ℤ) * c := by nlinarith
-          linarith [hgb.1, hgb.2, hhb.1, hhb.2]
+          have hcL : (L : ℤ) ≤ (L : ℤ) * c := by
+            nlinarith only [hpos, hLZ]
+          linarith only [hc, hcL, hgb.1, hgb.2, hhb.1, hhb.2, hKLZ]
       have hright : g.right = h.right :=
         Multiplicative.toAdd.injective hkeq
       have hleft : g.left ≠ h.left := fun heq ↦
@@ -477,10 +477,10 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
         rw [Finset.sum_const, nsmul_eq_mul, Finset.card_univ, ZMod.card] at hconst
         exact hconst
       rw [le_div_iff₀ hLR]
-      nlinarith
+      nlinarith only [hsum, hε, hLR]
     · rw [modelPerm, modelPerm,
         hammingDistance_levelPerm_of_shift_ne M.carrier _ _ hs M.nonempty]
-      linarith
+      exact sub_le_self 1 hε.le
 
 end IntExtension
 

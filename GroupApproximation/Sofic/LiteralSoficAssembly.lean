@@ -97,9 +97,6 @@ abbrev BlockSites (b : Block) : Type := {ξ : Site // blockOf ξ = b}
 /-- The site carried by a fibred pair. -/
 def siteOf (p : (b : Block) × BlockSites b) : Site := (p.2 : Site)
 
-@[simp] theorem blockOf_siteOf (p : (b : Block) × BlockSites b) :
-    blockOf (siteOf p) = p.1 := p.2.2
-
 /-- The fibred pair carried by a site. -/
 def pairOf (ξ : Site) : (b : Block) × BlockSites b := ⟨blockOf ξ, ⟨ξ, rfl⟩⟩
 
@@ -110,9 +107,6 @@ def pairOf (ξ : Site) : (b : Block) × BlockSites b := ⟨blockOf ξ, ⟨ξ, rf
   obtain ⟨b, ξ, hξ⟩ := p
   subst hξ
   rfl
-
-theorem pairOf_injective : Function.Injective pairOf :=
-  Function.LeftInverse.injective siteOf_pairOf
 
 /-! ## The blocks are finite
 
@@ -141,11 +135,6 @@ instance finite_blockSites (b : Block) : Finite (BlockSites b) := by
 
 instance fintype_blockSites (b : Block) : Fintype (BlockSites b) :=
   Fintype.ofFinite _
-
-instance decEq_blockSites (b : Block) : DecidableEq (BlockSites b) :=
-  Classical.decEq _
-
-instance decEq_block : DecidableEq Block := Classical.decEq _
 
 /-- The block-Clifford group of the fibred literal site set. -/
 abbrev LiteralBlockClifford : Type := BlockClifford Block BlockSites

@@ -107,7 +107,7 @@ theorem mk_eq_mk_of_replay
     (atoms : List (Atom Generator RelatorIndex))
     (hreplay : replayWord relator atoms = left * right⁻¹) :
     PresentedGroup.mk relators left = PresentedGroup.mk relators right := by
-  apply eq_of_mul_inv_eq_one
+  refine eq_of_mul_inv_eq_one ?_
   rw [← map_inv, ← map_mul]
   exact mk_eq_one_of_replay relator relator_mem _ atoms hreplay
 
@@ -121,74 +121,6 @@ relator, and `PathValid` checks the corresponding free-group equality at every
 step.  Thus a search program may discover the path, but it cannot contribute a
 trusted equality.
 -/
-
-/-- One step of a proof-producing rewrite path. -/
-structure Step (Generator : Type u) (RelatorIndex : Type v) where
-  next : SignedWord Generator
-  atom : Atom Generator RelatorIndex
-deriving Repr, DecidableEq
-
-/-- The endpoint obtained by following a list of rewrite steps. -/
-def pathEndpoint (start : SignedWord Generator) :
-    List (Step Generator RelatorIndex) → SignedWord Generator
-  | [] => start
-  | step :: steps => pathEndpoint step.next steps
-
-/-- Every path step must exhibit the exact free-group quotient between its
-current and next words as the stated relator atom. -/
-def PathValid (relator : RelatorIndex → FreeGroup Generator) :
-    SignedWord Generator → List (Step Generator RelatorIndex) → Prop
-  | _, [] => True
-  | current, step :: steps =>
-      word current * (word step.next)⁻¹ = atomWord relator step.atom ∧
-        PathValid relator step.next steps
-
-section Stepwise
-
-variable {relators : Set (FreeGroup Generator)}
-variable (relator : RelatorIndex → FreeGroup Generator)
-variable (relator_mem : ∀ i, relator i ∈ relators)
-
-include relator_mem
-
-private theorem mk_word_eq_mk_word_of_valid_step
-    (current : SignedWord Generator)
-    (step : Step Generator RelatorIndex)
-    (hstep : word current * (word step.next)⁻¹ =
-      atomWord relator step.atom) :
-    PresentedGroup.mk relators (word current) =
-      PresentedGroup.mk relators (word step.next) := by
-  apply eq_of_mul_inv_eq_one
-  rw [← map_inv, ← map_mul, hstep]
-  exact mk_atomWord_eq_one relator relator_mem step.atom
-
-/-- A valid stepwise replay proves equality of its start and computed endpoint
-in the presented group. -/
-theorem mk_word_eq_pathEndpoint
-    (start : SignedWord Generator)
-    (steps : List (Step Generator RelatorIndex))
-    (hvalid : PathValid relator start steps) :
-    PresentedGroup.mk relators (word start) =
-      PresentedGroup.mk relators (word (pathEndpoint start steps)) := by
-  induction steps generalizing start with
-  | nil => rfl
-  | cons step steps ih =>
-      exact (mk_word_eq_mk_word_of_valid_step relator relator_mem start step
-        hvalid.1).trans (ih step.next hvalid.2)
-
-/-- A checked stepwise path ending at the requested literal word proves the
-corresponding equality in the presented group. -/
-theorem mk_word_eq_word_of_path
-    (start finish : SignedWord Generator)
-    (steps : List (Step Generator RelatorIndex))
-    (hvalid : PathValid relator start steps)
-    (hfinish : pathEndpoint start steps = finish) :
-    PresentedGroup.mk relators (word start) =
-      PresentedGroup.mk relators (word finish) := by
-  subst finish
-  exact mk_word_eq_pathEndpoint relator relator_mem start steps hvalid
-
-end Stepwise
 
 end PresentedGroupRelatorReplay
 end GroupApproximation

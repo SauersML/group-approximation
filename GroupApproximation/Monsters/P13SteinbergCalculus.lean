@@ -49,75 +49,49 @@ private theorem relator_eq_one (i : Fin 13) :
 private theorem conj_of_relator {u v z : P13}
     (h : u * v * u⁻¹ * v⁻¹ * z⁻¹ = 1) : u * v * u⁻¹ = z * v := by
   have h' : (u * v * u⁻¹) * (v⁻¹ * z⁻¹) = 1 := by rw [← h]; group
-  have h2 := mul_eq_one_iff_eq_inv.mp h'
-  simpa [mul_inv_rev] using h2
+  simpa [mul_inv_rev] using mul_eq_one_iff_eq_inv.mp h'
 
-theorem conj_unit_0 : E12 * E23 * E12⁻¹ = E13 * E23 := by
-  apply conj_of_relator
-  show p13Word (p13Relator 0) = 1
-  exact relator_eq_one 0
+theorem conj_unit_0 : E12 * E23 * E12⁻¹ = E13 * E23 :=
+  conj_of_relator (relator_eq_one 0)
 
-theorem conj_unit_1 : E13 * E32 * E13⁻¹ = E12 * E32 := by
-  apply conj_of_relator
-  show p13Word (p13Relator 1) = 1
-  exact relator_eq_one 1
+theorem conj_unit_1 : E13 * E32 * E13⁻¹ = E12 * E32 :=
+  conj_of_relator (relator_eq_one 1)
 
-theorem conj_unit_2 : E21 * E13 * E21⁻¹ = E23 * E13 := by
-  apply conj_of_relator
-  show p13Word (p13Relator 2) = 1
-  exact relator_eq_one 2
+theorem conj_unit_2 : E21 * E13 * E21⁻¹ = E23 * E13 :=
+  conj_of_relator (relator_eq_one 2)
 
-theorem conj_unit_3 : E23 * E31 * E23⁻¹ = E21 * E31 := by
-  apply conj_of_relator
-  show p13Word (p13Relator 3) = 1
-  exact relator_eq_one 3
+theorem conj_unit_3 : E23 * E31 * E23⁻¹ = E21 * E31 :=
+  conj_of_relator (relator_eq_one 3)
 
-theorem conj_unit_4 : E31 * E12 * E31⁻¹ = E32 * E12 := by
-  apply conj_of_relator
-  show p13Word (p13Relator 4) = 1
-  exact relator_eq_one 4
+theorem conj_unit_4 : E31 * E12 * E31⁻¹ = E32 * E12 :=
+  conj_of_relator (relator_eq_one 4)
 
-theorem conj_unit_5 : E32 * E21 * E32⁻¹ = E31 * E21 := by
-  apply conj_of_relator
-  show p13Word (p13Relator 5) = 1
-  exact relator_eq_one 5
+theorem conj_unit_5 : E32 * E21 * E32⁻¹ = E31 * E21 :=
+  conj_of_relator (relator_eq_one 5)
 
-theorem commute_12_13 : Commute E12 E13 := by
-  apply commutatorElement_eq_one_iff_commute.mp
-  show p13Word (p13Relator 6) = 1
-  exact relator_eq_one 6
+theorem commute_12_13 : Commute E12 E13 :=
+  commutatorElement_eq_one_iff_commute.mp (relator_eq_one 6)
 
-theorem commute_12_32 : Commute E12 E32 := by
-  apply commutatorElement_eq_one_iff_commute.mp
-  show p13Word (p13Relator 7) = 1
-  exact relator_eq_one 7
+theorem commute_12_32 : Commute E12 E32 :=
+  commutatorElement_eq_one_iff_commute.mp (relator_eq_one 7)
 
-theorem commute_13_23 : Commute E13 E23 := by
-  apply commutatorElement_eq_one_iff_commute.mp
-  show p13Word (p13Relator 8) = 1
-  exact relator_eq_one 8
+theorem commute_13_23 : Commute E13 E23 :=
+  commutatorElement_eq_one_iff_commute.mp (relator_eq_one 8)
 
-theorem commute_21_23 : Commute E21 E23 := by
-  apply commutatorElement_eq_one_iff_commute.mp
-  show p13Word (p13Relator 9) = 1
-  exact relator_eq_one 9
+theorem commute_21_23 : Commute E21 E23 :=
+  commutatorElement_eq_one_iff_commute.mp (relator_eq_one 9)
 
-theorem commute_21_31 : Commute E21 E31 := by
-  apply commutatorElement_eq_one_iff_commute.mp
-  show p13Word (p13Relator 10) = 1
-  exact relator_eq_one 10
+theorem commute_21_31 : Commute E21 E31 :=
+  commutatorElement_eq_one_iff_commute.mp (relator_eq_one 10)
 
-theorem commute_31_32 : Commute E31 E32 := by
-  apply commutatorElement_eq_one_iff_commute.mp
-  show p13Word (p13Relator 11) = 1
-  exact relator_eq_one 11
+theorem commute_31_32 : Commute E31 E32 :=
+  commutatorElement_eq_one_iff_commute.mp (relator_eq_one 11)
 
 /-- The killed Weyl fourth power: `(e₁₂ e₂₁⁻¹ e₁₂)⁴ = 1` in `P13`. -/
 theorem weyl_fourth_power :
     E12 * E21⁻¹ * E12 * (E12 * E21⁻¹ * E12) * (E12 * E21⁻¹ * E12) *
-      (E12 * E21⁻¹ * E12) = 1 := by
-  show p13Word (p13Relator 12) = 1
-  exact relator_eq_one 12
+      (E12 * E21⁻¹ * E12) = 1 :=
+  relator_eq_one 12
 
 /-! ## The conjugation engine -/
 
@@ -132,9 +106,8 @@ private theorem conj_inv (h : u * v * u⁻¹ = z * v) (huz : Commute u z) :
   apply mul_left_cancel (a := z)
   have hz1 : z * (z⁻¹ * v) = v := by group
   rw [hz1]
-  have hzu : z * u⁻¹ = u⁻¹ * z := (huz.inv_left.eq).symm
   calc z * (u⁻¹ * v * u) = (z * u⁻¹) * v * u := by group
-    _ = (u⁻¹ * z) * v * u := by rw [hzu]
+    _ = (u⁻¹ * z) * v * u := by rw [← huz.inv_left.eq]
     _ = u⁻¹ * (z * v) * u := by group
     _ = u⁻¹ * (u * v * u⁻¹) * u := by rw [h]
     _ = v := by group
@@ -146,28 +119,26 @@ private theorem conj_step (h : u * v * u⁻¹ = z * v) (huz : Commute u z) :
   induction a using Int.induction_on with
   | zero => simp
   | succ n ih =>
-      have hzn : (u ^ (n : ℤ)) * z = z * (u ^ (n : ℤ)) :=
-        ((huz.symm.zpow_right (n : ℤ)).eq).symm
       calc u ^ ((n : ℤ) + 1) * v * (u ^ ((n : ℤ) + 1))⁻¹
           = u ^ (n : ℤ) * (u * v * u⁻¹) * (u ^ (n : ℤ))⁻¹ := by
             rw [zpow_add_one]; group
         _ = u ^ (n : ℤ) * (z * v) * (u ^ (n : ℤ))⁻¹ := by rw [h]
         _ = (u ^ (n : ℤ) * z) * v * (u ^ (n : ℤ))⁻¹ := by group
-        _ = (z * u ^ (n : ℤ)) * v * (u ^ (n : ℤ))⁻¹ := by rw [hzn]
+        _ = (z * u ^ (n : ℤ)) * v * (u ^ (n : ℤ))⁻¹ := by
+            rw [(huz.zpow_left (n : ℤ)).eq]
         _ = z * (u ^ (n : ℤ) * v * (u ^ (n : ℤ))⁻¹) := by group
         _ = z * (z ^ (n : ℤ) * v) := by rw [ih]
         _ = z ^ ((n : ℤ) + 1) * v := by
             rw [add_comm, zpow_add, zpow_one]; group
   | pred n ih =>
-      have hzn : (u ^ (-(n : ℤ))) * z⁻¹ = z⁻¹ * (u ^ (-(n : ℤ))) :=
-        ((huz.symm.inv_left.zpow_right (-(n : ℤ))).eq).symm
       calc u ^ (-(n : ℤ) - 1) * v * (u ^ (-(n : ℤ) - 1))⁻¹
           = u ^ (-(n : ℤ)) * (u⁻¹ * v * u) * (u ^ (-(n : ℤ)))⁻¹ := by
             rw [sub_eq_add_neg, zpow_add, zpow_neg_one]; group
         _ = u ^ (-(n : ℤ)) * (z⁻¹ * v) * (u ^ (-(n : ℤ)))⁻¹ := by
             rw [conj_inv h huz]
         _ = (u ^ (-(n : ℤ)) * z⁻¹) * v * (u ^ (-(n : ℤ)))⁻¹ := by group
-        _ = (z⁻¹ * u ^ (-(n : ℤ))) * v * (u ^ (-(n : ℤ)))⁻¹ := by rw [hzn]
+        _ = (z⁻¹ * u ^ (-(n : ℤ))) * v * (u ^ (-(n : ℤ)))⁻¹ := by
+            rw [((huz.zpow_left (-(n : ℤ))).inv_right).eq]
         _ = z⁻¹ * (u ^ (-(n : ℤ)) * v * (u ^ (-(n : ℤ)))⁻¹) := by group
         _ = z⁻¹ * (z ^ (-(n : ℤ)) * v) := by rw [ih]
         _ = z ^ (-(n : ℤ) - 1) * v := by

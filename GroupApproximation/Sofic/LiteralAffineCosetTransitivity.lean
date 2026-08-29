@@ -122,10 +122,6 @@ theorem x_mul_v1 : x * v1 = v3 * x := by
   rw [← x_conj_v1]
   group
 
-theorem x_mul_v2 : x * v2 = v1 * x := by
-  rw [← x_conj_v2]
-  group
-
 theorem x_mul_v3 : x * v3 = v2 * x := by
   rw [← x_conj_v3]
   group
@@ -226,21 +222,20 @@ theorem core_110 : (v1 * v2)⁻¹ * (y * x * v1) = (v2 ^ 2)⁻¹ * (y * x) := by
 
 theorem core_111 : (v1 * (v2 * v3))⁻¹ * (y * y * x * v1)
     = (v3 ^ 2)⁻¹ * (y * y * x) := by
-  have hc : v2⁻¹ * v3⁻¹ = v3⁻¹ * v2⁻¹ :=
-    (commute_v2_v3.inv_left.inv_right).eq
   rw [rot_yyx]
   calc (v1 * (v2 * v3))⁻¹ * (v1 * v3⁻¹ * v2 * (y * y * x))
       = v3⁻¹ * (v2⁻¹ * v3⁻¹) * v2 * (y * y * x) := by group
-    _ = v3⁻¹ * (v3⁻¹ * v2⁻¹) * v2 * (y * y * x) := by rw [hc]
+    _ = v3⁻¹ * (v3⁻¹ * v2⁻¹) * v2 * (y * y * x) := by
+      rw [(commute_v2_v3.inv_left.inv_right).eq]
     _ = (v3 ^ 2)⁻¹ * (y * y * x) := by group
 
 theorem core_101 : (v1 * v3)⁻¹ * (x * y * x * v1)
     = (v1 ^ 2)⁻¹ * (x * y * x) := by
-  have hc : v1⁻¹ * v3 = v3 * v1⁻¹ := (commute_v1_v3.inv_left).eq
   rw [rot_xyx]
   calc (v1 * v3)⁻¹ * (v3 * v1⁻¹ * (x * y * x))
       = v3⁻¹ * (v1⁻¹ * v3) * v1⁻¹ * (x * y * x) := by group
-    _ = v3⁻¹ * (v3 * v1⁻¹) * v1⁻¹ * (x * y * x) := by rw [hc]
+    _ = v3⁻¹ * (v3 * v1⁻¹) * v1⁻¹ * (x * y * x) := by
+      rw [(commute_v1_v3.inv_left).eq]
     _ = (v1 ^ 2)⁻¹ * (x * y * x) := by group
 
 /-! ## 5.  The seven witnesses lie in the doubled subgroup -/
@@ -337,9 +332,8 @@ theorem exists_witness (e : Fin 3 → Fin 2)
           rw [h0, h1, h2, cast_fin2_zero, cast_fin2_one, zpow_zero, zpow_one,
             zpow_zero, mul_one, one_mul]
         rw [hp]
-        refine ⟨affineQuotient (x * x), conjD_fix_mul conjD_fix_x conjD_fix_x,
-          ?_⟩
-        exact witness_of_base d_010_mem core_010
+        exact ⟨affineQuotient (x * x), conjD_fix_mul conjD_fix_x conjD_fix_x,
+          witness_of_base d_010_mem core_010⟩
       · -- class `011`, rotation word `z`
         have hp : v1 ^ ((e 0 : ℤ)) *
             (v2 ^ ((e 1 : ℤ)) * v3 ^ ((e 2 : ℤ)))
@@ -366,10 +360,9 @@ theorem exists_witness (e : Fin 3 → Fin 2)
           rw [h0, h1, h2, cast_fin2_zero, cast_fin2_one, zpow_one, zpow_zero,
             zpow_one, one_mul]
         rw [hp]
-        refine ⟨affineQuotient (x * y * x),
+        exact ⟨affineQuotient (x * y * x),
           conjD_fix_mul (conjD_fix_mul conjD_fix_x conjD_fix_y) conjD_fix_x,
-          ?_⟩
-        exact witness_of_base d_101_mem core_101
+          witness_of_base d_101_mem core_101⟩
     · rcases hcase (e 2) with h2 | h2
       · -- class `110`, rotation word `yx`
         have hp : v1 ^ ((e 0 : ℤ)) *
@@ -378,19 +371,17 @@ theorem exists_witness (e : Fin 3 → Fin 2)
           rw [h0, h1, h2, cast_fin2_zero, cast_fin2_one, zpow_one, zpow_one,
             zpow_zero, mul_one]
         rw [hp]
-        refine ⟨affineQuotient (y * x), conjD_fix_mul conjD_fix_y conjD_fix_x,
-          ?_⟩
-        exact witness_of_base d_110_mem core_110
+        exact ⟨affineQuotient (y * x), conjD_fix_mul conjD_fix_y conjD_fix_x,
+          witness_of_base d_110_mem core_110⟩
       · -- class `111`, rotation word `y²x`
         have hp : v1 ^ ((e 0 : ℤ)) *
             (v2 ^ ((e 1 : ℤ)) * v3 ^ ((e 2 : ℤ)))
             = v1 * (v2 * v3) := by
           rw [h0, h1, h2, cast_fin2_one, zpow_one, zpow_one, zpow_one]
         rw [hp]
-        refine ⟨affineQuotient (y * y * x),
+        exact ⟨affineQuotient (y * y * x),
           conjD_fix_mul (conjD_fix_mul conjD_fix_y conjD_fix_y) conjD_fix_x,
-          ?_⟩
-        exact witness_of_base d_111_mem core_111
+          witness_of_base d_111_mem core_111⟩
 
 /-! ## 8.  The transitivity statement -/
 

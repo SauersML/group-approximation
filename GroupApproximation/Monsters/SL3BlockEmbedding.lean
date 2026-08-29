@@ -1,5 +1,4 @@
 import GroupApproximation.Monsters.P13SL2Comparison
-import GroupApproximation.Monsters.P13UnipotentInjectivity
 
 /-!
 # The top-left block embedding of the matrix models
@@ -80,20 +79,6 @@ theorem toSL3_sl2ToP13 (g : SL2P) :
     toSL3 (sl2ToP13 g) = blockEmbed (toSL2 g) := by
   have h := congrArg (fun φ : SL2P →* SL3 => φ g) toSL3_comp_sl2ToP13
   simpa using h
-
-/-- The block embedding is injective. -/
-theorem blockEmbed_injective : Function.Injective blockEmbed := by
-  intro A B hAB
-  have h := congrArg
-    (fun M : SL3 => (M : Matrix (Fin 3) (Fin 3) ℤ)) hAB
-  simp only [blockEmbed_coe] at h
-  apply Subtype.ext
-  ext p q
-  fin_cases p <;> fin_cases q
-  · exact congrArg (fun M : Matrix (Fin 3) (Fin 3) ℤ => M 0 0) h
-  · exact congrArg (fun M : Matrix (Fin 3) (Fin 3) ℤ => M 0 1) h
-  · exact congrArg (fun M : Matrix (Fin 3) (Fin 3) ℤ => M 1 0) h
-  · exact congrArg (fun M : Matrix (Fin 3) (Fin 3) ℤ => M 1 1) h
 
 end
 

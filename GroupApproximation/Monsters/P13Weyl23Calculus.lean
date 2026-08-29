@@ -49,6 +49,14 @@ private theorem conj_of_commute {G : Type*} [Group G] {u g : G}
     (h : Commute u g) : u * g * u⁻¹ = g := by
   rw [h.eq]; group
 
+private theorem conj_mul {G : Type*} [Group G] (u g h : G) :
+    u * (g * h) * u⁻¹ = (u * g * u⁻¹) * (u * h * u⁻¹) := by
+  group
+
+private theorem conj_inv {G : Type*} [Group G] (u g : G) :
+    u * g⁻¹ * u⁻¹ = (u * g * u⁻¹)⁻¹ := by
+  group
+
 /-! ## Reverse conjugations -/
 
 /-- `x₂₃(b) x₁₂(a) x₂₃(b)⁻¹ = x₁₃(-(a b)) x₁₂(a)`. -/
@@ -97,13 +105,11 @@ theorem w23_conj_12 (a : ℤ) : w23 * x 0 a * w23⁻¹ = x 1 (-a) := by
   refine w23_conj_via (k := x 1 (-a))
     (x_conj_rev_23_12 1 a) ?_
     (conj_of_commute (x_commute_13_23 (-a) 1).symm)
-  have h05 : x 5 (-1) * x 0 a * (x 5 (-1))⁻¹ = x 0 a :=
-    conj_of_commute (x_commute_12_32 a (-1)).symm
   calc x 5 (-1) * (x 1 (-(a * 1)) * x 0 a) * (x 5 (-1))⁻¹
       = (x 5 (-1) * x 1 (-(a * 1)) * (x 5 (-1))⁻¹) *
         (x 5 (-1) * x 0 a * (x 5 (-1))⁻¹) := by group
     _ = (x 0 (-(-(a * 1) * -1)) * x 1 (-(a * 1))) * x 0 a := by
-        rw [x_conj_rev_32_13 (-1) (-(a * 1)), h05]
+        rw [x_conj_rev_32_13, conj_of_commute (x_commute_12_32 a (-1)).symm]
     _ = x 0 (-a) * x 1 (-a) * x 0 a := by norm_num
     _ = x 1 (-a) * (x 0 (-a) * x 0 a) := by
         rw [((x_commute_12_13 (-a) (-a)).eq)]
@@ -115,13 +121,11 @@ theorem w23_conj_21 (a : ℤ) : w23 * x 2 a * w23⁻¹ = x 4 (-a) := by
   refine w23_conj_via (k := x 4 (-1 * a) * x 2 a)
     (conj_of_commute (x_commute_21_23 a 1).symm)
     (x_conj_32_21 (-1) a) ?_
-  have h23 : x 3 1 * x 2 a * (x 3 1)⁻¹ = x 2 a :=
-    conj_of_commute (x_commute_21_23 a 1).symm
   calc x 3 1 * (x 4 (-1 * a) * x 2 a) * (x 3 1)⁻¹
       = (x 3 1 * x 4 (-1 * a) * (x 3 1)⁻¹) *
         (x 3 1 * x 2 a * (x 3 1)⁻¹) := by group
     _ = (x 2 (1 * (-1 * a)) * x 4 (-1 * a)) * x 2 a := by
-        rw [x_conj_23_31 1 (-1 * a), h23]
+        rw [x_conj_23_31, conj_of_commute (x_commute_21_23 a 1).symm]
     _ = x 2 (-a) * x 4 (-a) * x 2 a := by norm_num
     _ = x 4 (-a) * (x 2 (-a) * x 2 a) := by
         rw [((x_commute_21_31 (-a) (-a)).eq)]
@@ -132,13 +136,11 @@ theorem w23_conj_21 (a : ℤ) : w23 * x 2 a * w23⁻¹ = x 4 (-a) := by
 theorem w23_conj_31 (a : ℤ) : w23 * x 4 a * w23⁻¹ = x 2 a := by
   refine w23_conj_via (k := x 2 a) (x_conj_23_31 1 a) ?_
     (conj_of_commute (x_commute_21_23 a 1).symm)
-  have h45 : x 5 (-1) * x 4 a * (x 5 (-1))⁻¹ = x 4 a :=
-    conj_of_commute (x_commute_31_32 a (-1)).symm
   calc x 5 (-1) * (x 2 (1 * a) * x 4 a) * (x 5 (-1))⁻¹
       = (x 5 (-1) * x 2 (1 * a) * (x 5 (-1))⁻¹) *
         (x 5 (-1) * x 4 a * (x 5 (-1))⁻¹) := by group
     _ = (x 4 (-1 * (1 * a)) * x 2 (1 * a)) * x 4 a := by
-        rw [x_conj_32_21 (-1) (1 * a), h45]
+        rw [x_conj_32_21, conj_of_commute (x_commute_31_32 a (-1)).symm]
     _ = x 4 (-a) * x 2 a * x 4 a := by norm_num
     _ = x 2 a * (x 4 (-a) * x 4 a) := by
         rw [((x_commute_21_31 a (-a)).eq).symm]
@@ -175,19 +177,11 @@ theorem w23_conj_23 (a : ℤ) : w23 * x 3 a * w23⁻¹ = x 5 (-a) := by
     have := congrArg (· * (x 1 1)⁻¹) h
     simpa [mul_assoc, mul_one] using this.symm
   rw [hcomm]
-  have hw : ∀ g h : P13, w23 * (g * h) * w23⁻¹ =
-      (w23 * g * w23⁻¹) * (w23 * h * w23⁻¹) := by
-    intro g h; group
-  have hwinv : ∀ g : P13, w23 * g⁻¹ * w23⁻¹ = (w23 * g * w23⁻¹)⁻¹ := by
-    intro g; group
-  rw [hw, hw, hw, hwinv, hwinv, w23_conj_21, w23_conj_13]
+  rw [conj_mul, conj_mul, conj_mul, conj_inv, conj_inv, w23_conj_21, w23_conj_13]
   have h := x_conj_31_12 (-a) 1
   have := congrArg (· * (x 0 1)⁻¹) h
-  have hres : x 4 (-a) * x 0 1 * (x 4 (-a))⁻¹ * (x 0 1)⁻¹ =
-      x 5 (-a * 1) := by
-    simpa [mul_assoc, mul_one] using this
   calc x 4 (-a) * x 0 1 * (x 4 (-a))⁻¹ * (x 0 1)⁻¹
-      = x 5 (-a * 1) := hres
+      = x 5 (-a * 1) := by simpa [mul_assoc, mul_one] using this
     _ = x 5 (-a) := by norm_num
 
 theorem w23_conj_32 (a : ℤ) : w23 * x 5 a * w23⁻¹ = x 3 (-a) := by
@@ -196,19 +190,11 @@ theorem w23_conj_32 (a : ℤ) : w23 * x 5 a * w23⁻¹ = x 3 (-a) := by
     have := congrArg (· * (x 0 1)⁻¹) h
     simpa [mul_assoc, mul_one] using this.symm
   rw [hcomm]
-  have hw : ∀ g h : P13, w23 * (g * h) * w23⁻¹ =
-      (w23 * g * w23⁻¹) * (w23 * h * w23⁻¹) := by
-    intro g h; group
-  have hwinv : ∀ g : P13, w23 * g⁻¹ * w23⁻¹ = (w23 * g * w23⁻¹)⁻¹ := by
-    intro g; group
-  rw [hw, hw, hw, hwinv, hwinv, w23_conj_31, w23_conj_12]
+  rw [conj_mul, conj_mul, conj_mul, conj_inv, conj_inv, w23_conj_31, w23_conj_12]
   have h := x_conj_21_13 a (-1)
   have := congrArg (· * (x 1 (-1))⁻¹) h
-  have hres : x 2 a * x 1 (-1) * (x 2 a)⁻¹ * (x 1 (-1))⁻¹ =
-      x 3 (a * -1) := by
-    simpa [mul_assoc, mul_one] using this
   calc x 2 a * x 1 (-1) * (x 2 a)⁻¹ * (x 1 (-1))⁻¹
-      = x 3 (a * -1) := hres
+      = x 3 (a * -1) := by simpa [mul_assoc, mul_one] using this
     _ = x 3 (-a) := by norm_num
 
 /-! ## The braid relation and the third swap -/
@@ -232,11 +218,8 @@ theorem braid23 :
 signed swap `w₁₃ = x₁₃(1) x₃₁(-1) x₁₃(1)`. -/
 theorem w_conj_w23 :
     w * w23 * w⁻¹ = x 1 1 * x 4 (-1) * x 1 1 := by
-  have hw : ∀ g h : P13, w * (g * h) * w⁻¹ =
-      (w * g * w⁻¹) * (w * h * w⁻¹) := by
-    intro g h; group
   unfold w23
-  rw [hw, hw, w_conj_23, w_conj_32]
+  rw [conj_mul, conj_mul, w_conj_23, w_conj_32]
 
 end
 

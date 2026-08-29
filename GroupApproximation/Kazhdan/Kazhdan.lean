@@ -1,5 +1,4 @@
 import Mathlib.Analysis.InnerProductSpace.Basic
-import Mathlib.Data.Finset.Image
 
 /-!
 # Kazhdan's property (T)
@@ -47,18 +46,18 @@ theorem norm_add_le_of_norm_sub_ge
   have hpara := parallelogram_law_with_norm ℝ x y
   have hx0 : 0 ≤ ‖x‖ := norm_nonneg x
   have hsum0 : 0 ≤ ‖x + y‖ := norm_nonneg _
-  have hcoef : 0 ≤ 2 - a ^ 2 / 4 := by nlinarith
+  have hcoef : 0 ≤ 2 - a ^ 2 / 4 := by nlinarith only [ha0, ha1, sq_nonneg a]
   have hamul : 0 ≤ a * ‖x‖ := mul_nonneg ha0 hx0
-  have hmoveSq : (a * ‖x‖) ^ 2 ≤ ‖y - x‖ ^ 2 := by
-    exact (sq_le_sq₀ hamul (norm_nonneg _)).2 hmove
+  have hmoveSq : (a * ‖x‖) ^ 2 ≤ ‖y - x‖ ^ 2 :=
+    (sq_le_sq₀ hamul (norm_nonneg _)).2 hmove
   have hsub : ‖y - x‖ = ‖x - y‖ := by
     rw [show y - x = -(x - y) by abel, norm_neg]
   rw [hnorm] at hpara
   rw [hsub] at hmoveSq
   have hfirst : ‖x + y‖ ^ 2 ≤ (4 - a ^ 2) * ‖x‖ ^ 2 := by
-    nlinarith
+    nlinarith only [hpara, hmoveSq]
   have hcoefsquare : 4 - a ^ 2 ≤ (2 - a ^ 2 / 4) ^ 2 := by
-    nlinarith [sq_nonneg (a ^ 2)]
+    nlinarith only [sq_nonneg (a ^ 2)]
   have hsquare : ‖x + y‖ ^ 2 ≤
       ((2 - a ^ 2 / 4) * ‖x‖) ^ 2 := by
     calc
@@ -97,8 +96,8 @@ theorem norm_sum_le_of_pair_separated
           (by rw [hnorm j hj, hnorm i hi])
           (by simpa [hnorm i hi] using hmove)
       _ = (2 - a ^ 2 / 4) * r := by rw [hnorm i hi]
-  have hrestSubset : rest ⊆ s := by
-    exact (Finset.erase_subset j (s.erase i)).trans (Finset.erase_subset i s)
+  have hrestSubset : rest ⊆ s :=
+    (Finset.erase_subset j (s.erase i)).trans (Finset.erase_subset i s)
   have hrest : ‖∑ k ∈ rest, z k‖ ≤ rest.card * r := by
     calc
       ‖∑ k ∈ rest, z k‖ ≤ ∑ k ∈ rest, ‖z k‖ := norm_sum_le _ _
@@ -111,7 +110,7 @@ theorem norm_sum_le_of_pair_separated
     have hcardI := Finset.card_erase_add_one hi
     have hcardJ := Finset.card_erase_add_one hjrest
     change ((s.erase i).erase j).card + 2 = s.card
-    omega
+    lia
   have hcardReal : (rest.card : ℝ) + 2 = s.card := by exact_mod_cast hcard
   rw [hsum]
   calc
@@ -212,8 +211,7 @@ theorem norm_orbitAverage_le
   have hsum := norm_sum_le_of_pair_separated S (fun g ↦ ρ g x)
     hone hqS hqne hQ.1.le hεone
     (fun g _ ↦ (ρ g).norm_map x) (by simpa using hmove)
-  have hcardNat : 0 < S.card := Finset.card_pos.mpr ⟨1, hone⟩
-  have hcard : (0 : ℝ) < S.card := by exact_mod_cast hcardNat
+  have hcard : (0 : ℝ) < S.card := by exact_mod_cast Finset.card_pos.mpr ⟨1, hone⟩
   rw [orbitAverage, norm_smul, Real.norm_eq_abs,
     abs_of_pos (inv_pos.mpr hcard)]
   calc
@@ -242,27 +240,8 @@ theorem exists_identity_pair (hG : HasKazhdanPropertyT.{u, w} G) :
   have hεa : ε ≤ a := min_le_left _ _
   have hεone : ε ≤ 1 := min_le_right _ _
   refine ⟨S, ε, by simp [S], hεpos, hεone, ?_⟩
-  apply IsKazhdanPair.mono (IsKazhdanPair.shrink ha hεpos hεa)
-  exact Finset.subset_insert 1 Q
-
-/-- Property `(T)` is invariant under group isomorphism. -/
-theorem of_mulEquiv (e : G ≃* H) (hH : HasKazhdanPropertyT.{v, w} H) :
-    HasKazhdanPropertyT.{u, w} G := by
-  obtain ⟨Q, ε, hε, hQ⟩ := hH
-  let QG : Finset G := Q.map e.symm.toEmbedding
-  refine ⟨QG, ε, hε, ?_⟩
-  intro E _ _ _ ρ x hx hnear
-  let ρH : H →* (E ≃ₗᵢ[ℝ] E) := ρ.comp e.symm.toMonoidHom
-  have hnearH : ∀ q ∈ Q, ‖ρH q x - x‖ < ε := by
-    intro q hq
-    apply hnear (e.symm q)
-    exact Finset.mem_map.mpr ⟨q, hq, rfl⟩
-  obtain ⟨y, hy, hinv⟩ := hQ E ρH x hx hnearH
-  exact ⟨y, hy, fun g ↦ by simpa [ρH] using hinv (e g)⟩
-
-theorem mulEquiv_iff (e : G ≃* H) :
-    HasKazhdanPropertyT.{u, w} G ↔ HasKazhdanPropertyT.{v, w} H :=
-  ⟨fun hG ↦ of_mulEquiv e.symm hG, fun hH ↦ of_mulEquiv e hH⟩
+  exact IsKazhdanPair.mono (IsKazhdanPair.shrink ha hεpos hεa)
+    (Finset.subset_insert 1 Q)
 
 /-- Property `(T)` passes to quotients. -/
 theorem of_surjective (f : G →* H) (hf : Function.Surjective f)

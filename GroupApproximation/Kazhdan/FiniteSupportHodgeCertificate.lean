@@ -17,35 +17,18 @@ open scoped BigOperators MonoidAlgebra
 
 universe u
 
-variable {G : Type u} [Group G]
+variable {G : Type u}
 
 /-- Interpret a finite rational coefficient vector in the group ring. -/
 noncomputable def coordinateSum {C : Type*} [Fintype C]
     (basis : C → G) (coefficient : C → ℚ) : RatGroupRing G :=
   ∑ c, MonoidAlgebra.single (basis c) (coefficient c)
 
-@[simp] theorem coordinateSum_zero {C : Type*} [Fintype C]
-    (basis : C → G) :
-    coordinateSum basis (fun _ ↦ 0) = 0 := by
-  simp [coordinateSum]
-
 theorem coordinateSum_add {C : Type*} [Fintype C]
     (basis : C → G) (left right : C → ℚ) :
     coordinateSum basis (fun c ↦ left c + right c) =
       coordinateSum basis left + coordinateSum basis right := by
   simp [coordinateSum, MonoidAlgebra.single_add, Finset.sum_add_distrib]
-
-theorem coordinateSum_neg {C : Type*} [Fintype C]
-    (basis : C → G) (coefficient : C → ℚ) :
-    coordinateSum basis (fun c ↦ -coefficient c) =
-      -coordinateSum basis coefficient := by
-  simp [coordinateSum]
-
-theorem coordinateSum_sub {C : Type*} [Fintype C]
-    (basis : C → G) (left right : C → ℚ) :
-    coordinateSum basis (fun c ↦ left c - right c) =
-      coordinateSum basis left - coordinateSum basis right := by
-  simp [sub_eq_add_neg, coordinateSum_add, coordinateSum_neg]
 
 theorem coordinateSum_sum {C J : Type*} [Fintype C] [Fintype J]
     (basis : C → G) (coefficient : J → C → ℚ) :
@@ -76,17 +59,17 @@ theorem l1_coordinateSum_le {C : Type*} [Fintype C]
 
 /-- Collect all pairs of support coordinates according to a supplied product
 class table. -/
-def convolution {S C : Type*} [Fintype S] [Fintype C] [DecidableEq C]
+def convolution {S C : Type*} [Fintype S] [DecidableEq C]
     (productClass : S → S → C) (left right : S → ℚ) (c : C) : ℚ :=
   ∑ a, ∑ b, if productClass a b = c then left a * right b else 0
 
 /-- Integer numerator version of `convolution`. -/
-def integerConvolution {S C : Type*} [Fintype S] [Fintype C] [DecidableEq C]
+def integerConvolution {S C : Type*} [Fintype S] [DecidableEq C]
     (productClass : S → S → C) (left right : S → ℤ) (c : C) : ℤ :=
   ∑ a, ∑ b, if productClass a b = c then left a * right b else 0
 
 theorem convolution_int_div
-    {S C : Type*} [Fintype S] [Fintype C] [DecidableEq C]
+    {S C : Type*} [Fintype S] [DecidableEq C]
     (productClass : S → S → C) (left right : S → ℤ)
     (denominator : ℚ) (c : C) :
     convolution productClass
@@ -150,6 +133,8 @@ theorem coordinateSum_convolution
         simp [hc.symm]
       · simp
 
+variable [Group G]
+
 /-- Product of two support expansions, when the supplied class table is
 verified in the group.  The left expansion is adjointed. -/
 theorem adjoint_coordinateSum_mul_coordinateSum
@@ -175,7 +160,7 @@ theorem adjoint_coordinateSum_mul_coordinateSum
 /-- Coefficients of the degree-one Hodge matrix in the collected product
 basis. -/
 def hodgeCoefficient
-    {I J S C : Type*} [Fintype J] [Fintype S] [Fintype C] [DecidableEq C]
+    {I J S C : Type*} [Fintype J] [Fintype S] [DecidableEq C]
     (productClass : S → S → C)
     (boundaryCoefficient : J → I → S → ℚ)
     (adjointCoboundaryCoefficient : I → S → ℚ)
@@ -187,7 +172,7 @@ def hodgeCoefficient
 
 /-- Coefficients of a finite Gram factor in the collected product basis. -/
 def gramCoefficient
-    {I K S C : Type*} [Fintype K] [Fintype S] [Fintype C] [DecidableEq C]
+    {I K S C : Type*} [Fintype K] [Fintype S] [DecidableEq C]
     (productClass : S → S → C)
     (qCoefficient : K → I → S → ℚ)
     (i k : I) (c : C) : ℚ :=
@@ -201,7 +186,7 @@ def scalarCoefficient
   if i = k ∧ c = identityClass then gap else 0
 
 theorem hodgeMatrix_eq_coordinateSum
-    {I J S C : Type*} [Fintype I] [Fintype J]
+    {I J S C : Type*} [Fintype J]
     [Fintype S] [Fintype C] [DecidableEq C]
     (D : I → RatGroupRing G) (B : J → I → RatGroupRing G)
     (support : S → G) (basis : C → G)
@@ -260,7 +245,7 @@ theorem gramMatrix_eq_coordinateSum
     adjoint_coordinateSum_mul_coordinateSum support basis productClass hproduct]
 
 theorem scalarMatrix_eq_coordinateSum
-    {I C : Type*} [Fintype I] [Fintype C] [DecidableEq I] [DecidableEq C]
+    {I C : Type*} [Fintype C] [DecidableEq I] [DecidableEq C]
     (basis : C → G) (identityClass : C) (hone : basis identityClass = 1)
     (gap : ℚ) (i k : I) :
     scalarMatrix gap i k = coordinateSum basis
@@ -321,9 +306,7 @@ theorem certificate_of_finite_support
         qCoefficient hq,
       scalarMatrix_eq_coordinateSum basis identityClass hone,
       ← coordinateSum_add, ← coordinateSum_add]
-    apply congrArg (coordinateSum basis)
-    funext c
-    exact hcoefficient i k c
+    exact congrArg (coordinateSum basis) (funext fun c ↦ hcoefficient i k c)
   · intro i
     exact (Finset.sum_le_sum fun k _ ↦
       l1_coordinateSum_le basis (residualCoefficient i k)).trans (hrow i)

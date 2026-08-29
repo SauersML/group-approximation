@@ -1,4 +1,3 @@
-import GroupApproximation.Sofic.LiteralBaseP13RotationReplay
 import GroupApproximation.Sofic.LiteralBaseP13RotationReplay.S321Trace1
 
 namespace GroupApproximation.LiteralBaseP13RotationReplay

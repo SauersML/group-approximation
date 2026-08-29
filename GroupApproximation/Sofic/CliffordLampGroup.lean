@@ -1,9 +1,6 @@
 import Mathlib.GroupTheory.PresentedGroup
-import Mathlib.GroupTheory.Commutator.Basic
 import Mathlib.Data.ZMod.Basic
-import Mathlib.Algebra.CharP.Two
 import Mathlib.Data.Finsupp.Basic
-import Mathlib.SetTheory.Cardinal.Order
 import Mathlib.Tactic.Group
 import Mathlib.Tactic.Abel
 
@@ -24,8 +21,8 @@ Two facts are proved without ever claiming injectivity for the presentation:
   strictly-ordered crossing form of a linear order on `X` (any linear order;
   one always exists by the well-ordering theorem).
 
-* `permHom : Equiv.Perm X →* MulAut (CliffordLamp X)`: every permutation of
-  `X` acts on the presented group fixing `sign` and permuting the lamps —
+* `permHom : Equiv.Perm X →* MulAut (LampGroup X)`: every permutation of
+`X` acts on the presented lamp group fixing `sign` and permuting the lamps —
   the relator set is permutation invariant.
 
 No faithfulness claim for the model map is made or needed: the downstream
@@ -63,14 +60,13 @@ inductive IsRelator : FreeGroup (Generator X) → Prop
 def relators : Set (FreeGroup (Generator X)) := {w | IsRelator X w}
 
 /- The presented Clifford lamp group. -/
-set_option linter.dupNamespace false in
-abbrev CliffordLamp := PresentedGroup (relators X)
+abbrev LampGroup := PresentedGroup (relators X)
 
 /-- The central sign. -/
-def sign : CliffordLamp X := PresentedGroup.of (Sum.inl ())
+def sign : LampGroup X := PresentedGroup.of (Sum.inl ())
 
 /-- The lamp generator at `x`. -/
-def lamp (x : X) : CliffordLamp X := PresentedGroup.of (Sum.inr x)
+def lamp (x : X) : LampGroup X := PresentedGroup.of (Sum.inr x)
 
 /-! ## Relations holding in the group -/
 
@@ -94,34 +90,16 @@ theorem commutator_lamp_lamp {x y : X} (h : x ≠ y) :
     ⁅lamp X x, lamp X y⁆ = sign X := by
   have h1 := PresentedGroup.one_of_mem (IsRelator.braiding (X := X) h)
   rw [map_mul, map_inv, map_commutatorElement] at h1
-  have h2 : ⁅lamp X x, lamp X y⁆ * (sign X)⁻¹ = 1 := h1
+  change ⁅lamp X x, lamp X y⁆ * (sign X)⁻¹ = 1 at h1
   calc ⁅lamp X x, lamp X y⁆
       = ⁅lamp X x, lamp X y⁆ * (sign X)⁻¹ * sign X := by group
-    _ = 1 * sign X := by rw [h2]
+    _ = 1 * sign X := by rw [h1]
     _ = sign X := one_mul _
 
-/-- **Derived Clifford phase.**  Commuting one lamp with the product of it
-and a distinct lamp gives the same central sign.  This is the algebraic
-identity used by the Kun--Thom phase lock: if the first commutator becomes
-`lamp x * lamp y`, then one more commutator with `lamp x` is exactly `sign`.
--/
-theorem commutator_lamp_lamp_mul_lamp {x y : X} (h : x ≠ y) :
-    ⁅lamp X x, lamp X x * lamp X y⁆ = sign X := by
-  have hxx : lamp X x * lamp X x = 1 := by
-    simpa [pow_two] using lamp_sq X x
-  have hxinv : (lamp X x)⁻¹ = lamp X x :=
-    inv_eq_of_mul_eq_one_left hxx
-  calc
-    ⁅lamp X x, lamp X x * lamp X y⁆ = ⁅lamp X y, lamp X x⁆ := by
-      simp only [commutatorElement_def, mul_inv_rev, hxinv]
-      rw [← mul_assoc (lamp X x) (lamp X x) (lamp X y), hxx, one_mul]
-      simp only [mul_assoc]
-    _ = sign X := commutator_lamp_lamp X h.symm
-
 /-- The sign is central. -/
-theorem sign_commute (g : CliffordLamp X) : Commute (sign X) g := by
+theorem sign_commute (g : LampGroup X) : Commute (sign X) g := by
   have hmem : g ∈ Subgroup.centralizer {sign X} := by
-    apply PresentedGroup.generated_by (relators X)
+    refine PresentedGroup.generated_by (relators X)
       (Subgroup.centralizer {sign X}) (fun j => ?_) g
     rw [Subgroup.mem_centralizer_singleton_iff]
     match j with
@@ -134,10 +112,10 @@ theorem sign_commute (g : CliffordLamp X) : Commute (sign X) g := by
 Clifford lamp group.  This is the elimination principle used when proving
 surjectivity of the manuscript's affine--Clifford witness map. -/
 theorem mem_subgroup_of_sign_mem_of_lamp_mem
-    (H : Subgroup (CliffordLamp X))
+    (H : Subgroup (LampGroup X))
     (hsign : sign X ∈ H) (hlamp : ∀ x, lamp X x ∈ H)
-    (g : CliffordLamp X) : g ∈ H := by
-  apply PresentedGroup.generated_by (relators X) H
+    (g : LampGroup X) : g ∈ H := by
+  refine PresentedGroup.generated_by (relators X) H ?_ g
   intro j
   cases j with
   | inl u => cases u; exact hsign
@@ -237,9 +215,6 @@ instance : Inv (SignedModel X) :=
 @[simp] theorem mul_def (p q : SignedModel X) :
     p * q = ⟨p.signPart + q.signPart + crossing X p.config q.config,
       p.config + q.config⟩ := rfl
-
-omit [LinearOrder X] in
-@[simp] theorem one_def : (1 : SignedModel X) = ⟨0, 0⟩ := rfl
 
 @[simp] theorem inv_def (p : SignedModel X) :
     p⁻¹ = ⟨p.signPart + crossing X p.config p.config, p.config⟩ := rfl
@@ -381,14 +356,10 @@ theorem modelGenerator_kills :
       exact mul_inv_cancel _
 
 /-- The presentation homomorphism onto the signed model. -/
-def toModel : CliffordLamp X →* SignedModel X :=
+def toModel : LampGroup X →* SignedModel X :=
   PresentedGroup.toGroup (modelGenerator_kills X)
 
 @[simp] theorem toModel_sign : toModel X (sign X) = modelSign X :=
-  PresentedGroup.toGroup.of _
-
-@[simp] theorem toModel_lamp (x : X) :
-    toModel X (lamp X x) = modelLamp X x :=
   PresentedGroup.toGroup.of _
 
 /-- The sign survives the presentation: the model separates it from `1`. -/
@@ -413,7 +384,7 @@ theorem sign_ne_one : sign X ≠ 1 := by
 /-! ## The permutation action -/
 
 /-- Generator images under a permutation of the index set. -/
-def permGenerator (e : Equiv.Perm X) : Generator X → CliffordLamp X :=
+def permGenerator (e : Equiv.Perm X) : Generator X → LampGroup X :=
   Sum.elim (fun _ => sign X) (fun x => lamp X (e x))
 
 theorem permGenerator_kills (e : Equiv.Perm X) :
@@ -439,7 +410,7 @@ theorem permGenerator_kills (e : Equiv.Perm X) :
       exact mul_inv_cancel _
 
 /-- The endomorphism of the lamp group induced by a permutation. -/
-def permMap (e : Equiv.Perm X) : CliffordLamp X →* CliffordLamp X :=
+def permMap (e : Equiv.Perm X) : LampGroup X →* LampGroup X :=
   PresentedGroup.toGroup (permGenerator_kills X e)
 
 @[simp] theorem permMap_sign (e : Equiv.Perm X) :
@@ -450,7 +421,7 @@ def permMap (e : Equiv.Perm X) : CliffordLamp X →* CliffordLamp X :=
     permMap X e (lamp X x) = lamp X (e x) :=
   PresentedGroup.toGroup.of _
 
-theorem permMap_comp_permMap (e₁ e₂ : Equiv.Perm X) (g : CliffordLamp X) :
+theorem permMap_comp_permMap (e₁ e₂ : Equiv.Perm X) (g : LampGroup X) :
     permMap X e₁ (permMap X e₂ g) = permMap X (e₁ * e₂) g := by
   have h : (permMap X e₁).comp (permMap X e₂) = permMap X (e₁ * e₂) := by
     apply PresentedGroup.ext
@@ -467,8 +438,8 @@ theorem permMap_comp_permMap (e₁ e₂ : Equiv.Perm X) (g : CliffordLamp X) :
         rfl
   exact DFunLike.congr_fun h g
 
-theorem permMap_one_apply (g : CliffordLamp X) : permMap X 1 g = g := by
-  have h : permMap X 1 = MonoidHom.id (CliffordLamp X) := by
+theorem permMap_one_apply (g : LampGroup X) : permMap X 1 g = g := by
+  have h : permMap X 1 = MonoidHom.id (LampGroup X) := by
     apply PresentedGroup.ext
     intro j
     match j with
@@ -483,7 +454,7 @@ theorem permMap_one_apply (g : CliffordLamp X) : permMap X 1 g = g := by
   rfl
 
 /-- The automorphism of the lamp group induced by a permutation. -/
-def permAut (e : Equiv.Perm X) : MulAut (CliffordLamp X) :=
+def permAut (e : Equiv.Perm X) : MulAut (LampGroup X) :=
   MonoidHom.toMulEquiv (permMap X e) (permMap X e⁻¹)
     (by
       apply PresentedGroup.ext
@@ -508,11 +479,11 @@ def permAut (e : Equiv.Perm X) : MulAut (CliffordLamp X) :=
           rw [permMap_lamp, permMap_lamp]
           simp)
 
-@[simp] theorem permAut_apply (e : Equiv.Perm X) (g : CliffordLamp X) :
+@[simp] theorem permAut_apply (e : Equiv.Perm X) (g : LampGroup X) :
     permAut X e g = permMap X e g := rfl
 
 /-- The permutation action on the presented Clifford lamp group. -/
-def permHom : Equiv.Perm X →* MulAut (CliffordLamp X) where
+def permHom : Equiv.Perm X →* MulAut (LampGroup X) where
   toFun := permAut X
   map_one' := by
     apply MulEquiv.ext
@@ -538,17 +509,6 @@ def permHom : Equiv.Perm X →* MulAut (CliffordLamp X) where
   rw [permAut_apply, permMap_lamp]
 
 /-! ## Countability -/
-
-instance freeGroupCountable {β : Type u} [Countable β] :
-    Countable (FreeGroup β) := by
-  have hsurj : Function.Surjective (FreeGroup.mk : List (β × Bool) → _) := by
-    intro g
-    obtain ⟨L, hL⟩ := Quot.exists_rep g
-    exact ⟨L, by rw [← FreeGroup.quot_mk_eq_mk, hL]⟩
-  exact hsurj.countable
-
-instance [Countable X] : Countable (CliffordLamp X) :=
-  (PresentedGroup.mk_surjective (relators X)).countable
 
 end CliffordLamp
 end GroupApproximation

@@ -250,7 +250,7 @@ theorem corner_fix {v : Fin 3 → ℤ} (hv : IsCorner v) (l : Letter)
   rcases hv with ⟨ε, hε, rfl⟩ | ⟨ε, hε, rfl⟩ | ⟨ε, hε, rfl⟩ <;>
     rcases hε with rfl | rfl <;>
     fin_cases i <;>
-      (refine vec3_ext ?_ ?_ ?_ <;> simp_all [vnorm])
+      (refine vec3_ext ?_ ?_ ?_ <;> simp [vnorm] at h ⊢ <;> assumption)
 
 /-! ## Words of stabilizing letters -/
 
@@ -310,14 +310,14 @@ theorem eval_mem_Hpar_of_all_fix {W : List Letter}
 theorem eq_zero_of_vnorm_zero {v : Fin 3 → ℤ} (h : vnorm v = 0) :
     v = fun _ => 0 := by
   unfold vnorm at h
-  refine vec3_ext ?_ ?_ ?_ <;> omega
+  refine vec3_ext ?_ ?_ ?_ <;> lia
 
 /-- Images of a nonzero column under the matrix model are nonzero. -/
 theorem vnorm_vecOf_pos (W : List Letter) {b : Fin 3 → ℤ}
     (hb1 : vnorm b = 1) : 1 ≤ vnorm (vecOf W b) := by
   by_contra hlt
   push Not at hlt
-  have h0 : vnorm (vecOf W b) = 0 := by omega
+  have h0 : vnorm (vecOf W b) = 0 := by lia
   have hz : vecOf W b = fun _ => 0 := eq_zero_of_vnorm_zero h0
   have hinv : act ((toSL3 (eval W))⁻¹)
       (act (toSL3 (eval W)) b) = b := by

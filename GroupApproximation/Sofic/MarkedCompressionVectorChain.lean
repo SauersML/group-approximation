@@ -36,7 +36,7 @@ namespace MarkedCompressionVectorChain
 open Matrix KazhdanCornerMatrices
 open scoped Matrix.Norms.L2Operator
 
-variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+variable {Y : Type*} [Fintype Y]
 
 /-! ## Squared Euclidean mass -/
 
@@ -44,11 +44,9 @@ variable {Y : Type*} [Fintype Y] [DecidableEq Y]
 noncomputable def vecMass (x : Y → ℂ) : ℝ :=
   ∑ i : Y, Complex.normSq (x i)
 
-omit [DecidableEq Y] in
 theorem vecMass_nonneg (x : Y → ℂ) : 0 ≤ vecMass x :=
   Finset.sum_nonneg fun i _ ↦ Complex.normSq_nonneg (x i)
 
-omit [DecidableEq Y] in
 theorem vecMass_add_le (x y : Y → ℂ) :
     vecMass (x + y) ≤ 2 * vecMass x + 2 * vecMass y := by
   unfold vecMass
@@ -56,10 +54,12 @@ theorem vecMass_add_le (x y : Y → ℂ) :
       2 * Complex.normSq (x i) + 2 * Complex.normSq (y i) := by
     intro i
     simp only [Complex.normSq_apply, Complex.add_re, Complex.add_im]
-    nlinarith [sq_nonneg ((x i).re - (y i).re),
+    nlinarith only [sq_nonneg ((x i).re - (y i).re),
       sq_nonneg ((x i).im - (y i).im)]
   rw [Finset.mul_sum, Finset.mul_sum, ← Finset.sum_add_distrib]
   exact Finset.sum_le_sum fun i _ ↦ hpoint i
+
+variable [DecidableEq Y]
 
 /-- Operator norm controls squared Euclidean mass, with no dimension factor. -/
 theorem vecMass_mulVec_le (M : Matrix Y Y ℂ) (x : Y → ℂ) :
@@ -69,9 +69,8 @@ theorem vecMass_mulVec_le (M : Matrix Y Y ℂ) (x : Y → ℂ) :
 /-- A unitary matrix preserves squared Euclidean mass. -/
 theorem vecMass_unitary_mulVec {U : Matrix Y Y ℂ}
     (hU : U ∈ Matrix.unitaryGroup Y ℂ) (x : Y → ℂ) :
-    vecMass (U *ᵥ x) = vecMass x := by
-  apply sum_normSq_mulVec_of_star_mul_self
-  exact Unitary.star_mul_self_of_mem hU
+    vecMass (U *ᵥ x) = vecMass x :=
+  sum_normSq_mulVec_of_star_mul_self (Unitary.star_mul_self_of_mem hU) x
 
 /-- Conjugate transpose preserves the unitary group. -/
 theorem conjTranspose_mem_unitaryGroup {U : Matrix Y Y ℂ}
@@ -172,17 +171,16 @@ theorem transported_displacement_le
                 ‖(1 - P) * Q‖ ^ 2 * vecMass y := vecMass_mulVec_le _ _
             _ ≤ ε ^ 2 * vecMass y := by
               have hsq : ‖(1 - P) * Q‖ ^ 2 ≤ ε ^ 2 := by
-                nlinarith [norm_nonneg ((1 - P) * Q)]
+                nlinarith only [hreverse', norm_nonneg ((1 - P) * Q)]
               exact mul_le_mul_of_nonneg_right hsq (vecMass_nonneg y)
         · exact sum_normSq_mulVec_proj_le hPcomp _
       _ ≤ 2 * ε ^ 2 * vecMass x + 2 * κ := by
         rw [hyMass]
-        linarith
+        linarith only [hQcapture]
   have hAone : ‖A - 1‖ ≤ 2 := by
-    have hAnorm : ‖A‖ = 1 := CStarRing.norm_of_mem_unitary hA
     calc
       ‖A - 1‖ ≤ ‖A‖ + ‖1‖ := norm_sub_le _ _
-      _ = 2 := by rw [hAnorm, norm_one]; norm_num
+      _ = 2 := by rw [CStarRing.norm_of_mem_unitary hA, norm_one]; norm_num
   have hdisp : A *ᵥ y - y =
       ((A - 1) * P) *ᵥ y + (A - 1) *ᵥ ((1 - P) *ᵥ y) := by
     have hy : A *ᵥ y - y = (A - 1) *ᵥ y := by
@@ -211,7 +209,7 @@ theorem transported_displacement_le
               ‖(A - 1) * P‖ ^ 2 * vecMass y := vecMass_mulVec_le _ _
           _ ≤ δ ^ 2 * vecMass y := by
             have hsq : ‖(A - 1) * P‖ ^ 2 ≤ δ ^ 2 := by
-              nlinarith [norm_nonneg ((A - 1) * P)]
+              nlinarith only [hfix, norm_nonneg ((A - 1) * P)]
             exact mul_le_mul_of_nonneg_right hsq (vecMass_nonneg y)
       · calc
           vecMass ((A - 1) *ᵥ ((1 - P) *ᵥ y)) ≤
@@ -219,13 +217,13 @@ theorem transported_displacement_le
             vecMass_mulVec_le _ _
           _ ≤ 4 * vecMass ((1 - P) *ᵥ y) := by
             have hsquare : ‖A - 1‖ ^ 2 ≤ (2 : ℝ) ^ 2 := by
-              nlinarith [norm_nonneg (A - 1)]
+              nlinarith only [hAone, norm_nonneg (A - 1)]
             norm_num at hsquare
             exact mul_le_mul_of_nonneg_right hsquare
               (vecMass_nonneg ((1 - P) *ᵥ y))
     _ ≤ (2 * δ ^ 2 + 16 * ε ^ 2) * vecMass x + 16 * κ := by
       rw [hyMass]
-      nlinarith [hcompMass]
+      nlinarith only [hcompMass]
 
 /-! ## Translation back to the original matrix model -/
 
@@ -356,7 +354,7 @@ theorem marked_commutator_hsDistSq_le
   have hdisp := conjugated_transport_hsDistSq_le hY hUa hUt hC hP
     hfix hreverse hcapture
   have hcomm := hsDistSq_commutator_le_four hY hD hE
-  nlinarith [hdisp, hcomm]
+  nlinarith only [hdisp, hcomm]
 
 end MarkedCompressionVectorChain
 end GroupApproximation

@@ -127,7 +127,7 @@ theorem sigma_neg_of_pos {x : Irr} (hx : 0 < x.1) :
   push_cast
   rw [show (0 : ℝ) * x.1 + 1 = 1 from by ring,
     show (-1 : ℝ) * x.1 + 0 = -x.1 from by ring]
-  exact div_neg_of_pos_of_neg one_pos (by linarith)
+  exact div_neg_of_pos_of_neg one_pos (neg_lt_zero.mpr hx)
 
 /-- The rotation sends negative irrationals to positive ones. -/
 theorem rho_pos_of_neg {x : Irr} (hx : x.1 < 0) :
@@ -137,7 +137,7 @@ theorem rho_pos_of_neg {x : Irr} (hx : x.1 < 0) :
   push_cast
   rw [show (0 : ℝ) * x.1 + 1 = 1 from by ring,
     show (-1 : ℝ) * x.1 + 1 = 1 - x.1 from by ring]
-  exact div_pos one_pos (by linarith)
+  exact div_pos one_pos (sub_pos.mpr (hx.trans zero_lt_one))
 
 /-- The squared rotation sends negative irrationals to positive ones. -/
 theorem rho_sq_pos_of_neg {x : Irr} (hx : x.1 < 0) :
@@ -150,7 +150,7 @@ theorem rho_sq_pos_of_neg {x : Irr} (hx : x.1 < 0) :
   push_cast
   rw [show (-1 : ℝ) * x.1 + 1 = 1 - x.1 from by ring,
     show (-1 : ℝ) * x.1 + 0 = -x.1 from by ring]
-  exact div_pos (by linarith) (by linarith)
+  exact div_pos (sub_pos.mpr (hx.trans zero_lt_one)) (neg_pos.mpr hx)
 
 /-! ## The free-product family -/
 
@@ -183,7 +183,7 @@ theorem pingSet_nonempty : ∀ i, (pingSet i).Nonempty := by
   match i with
   | 0 => exact ⟨⟨-Real.sqrt 2, irrational_sqrt_two.neg⟩, by
       show -Real.sqrt 2 < 0
-      linarith⟩
+      exact neg_lt_zero.mpr h2⟩
   | 1 => exact ⟨⟨Real.sqrt 2, irrational_sqrt_two⟩, h2⟩
 
 theorem pingSet_disjoint : Pairwise (Function.onFun Disjoint pingSet) := by
@@ -195,13 +195,13 @@ theorem pingSet_disjoint : Pairwise (Function.onFun Disjoint pingSet) := by
       intro x hx0 hx1
       have h0 : x.1 < 0 := hx0
       have h1 : 0 < x.1 := hx1
-      linarith
+      exact (not_lt_of_ge h1.le) h0
   | 1, 0, _ =>
       refine Set.disjoint_left.mpr ?_
       intro x hx1 hx0
       have h0 : x.1 < 0 := hx0
       have h1 : 0 < x.1 := hx1
-      linarith
+      exact (not_lt_of_ge h1.le) h0
   | 1, 1, hij => exact absurd rfl hij
 
 theorem card_fam_one : 3 ≤ Cardinal.mk (fam 1) := by

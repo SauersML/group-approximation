@@ -1,7 +1,6 @@
 import GroupApproximation.Sofic.MarkedCompressionGroup
 import GroupApproximation.Sofic.SoficTelescope
 import Mathlib.GroupTheory.Commensurable
-import Mathlib.GroupTheory.GroupAction.Quotient
 
 /-!
 # Finite telescope-level orbits
@@ -36,8 +35,7 @@ theorem level_succ_relIndex_eq (n : ℕ) :
       α.range.map (level α hα (n + 1)) := by
     rw [← MonoidHom.range_comp, level_succ_comp]
   have hs : (level α hα (n + 1)).range =
-      (⊤ : Subgroup Γ).map (level α hα (n + 1)) := by
-    exact MonoidHom.range_eq_map _
+      (⊤ : Subgroup Γ).map (level α hα (n + 1)) := MonoidHom.range_eq_map _
   rw [hn, hs,
     Subgroup.relIndex_map_map_of_injective _ _ (level_injective α hα (n + 1)),
     Subgroup.relIndex_top_right]
@@ -52,7 +50,7 @@ theorem level_relIndex_ne_zero [α.range.FiniteIndex] {n m : ℕ} (hnm : n ≤ m
   | succ k ih =>
       apply Subgroup.relIndex_ne_zero_trans
         (ih (Nat.le_add_right n k))
-      rw [show n + (k + 1) = (n + k) + 1 by omega,
+      rw [show n + (k + 1) = (n + k) + 1 from (Nat.add_assoc n k 1).symm,
         level_succ_relIndex_eq]
       exact Subgroup.FiniteIndex.index_ne_zero
 
@@ -96,8 +94,7 @@ theorem verticalLevel_commensurable_base [α.range.FiniteIndex] (n : ℕ) :
   -- Mapping both levels through the injective left inclusion preserves their
   -- relative indices; spelling this directly avoids any choice of coset reps.
   constructor
-  ·
-    rw [Subgroup.relIndex_map_map_of_injective _ _ inl_injective]
+  · rw [Subgroup.relIndex_map_map_of_injective _ _ inl_injective]
     exact (level_commensurable_zero α hα n).1
   ·
     rw [Subgroup.relIndex_map_map_of_injective _ _ inl_injective]
@@ -177,11 +174,9 @@ theorem stabilizer_quotient_eq_comap {G : Type*} [Group G]
     ConjAct.ofConjAct_inv, ConjAct.ofConjAct_toConjAct]
   constructor
   · intro h
-    have := B.inv_mem h
-    simpa [mul_assoc] using this
+    simpa [mul_assoc] using B.inv_mem h
   · intro h
-    have := B.inv_mem h
-    simpa [mul_assoc] using this
+    simpa [mul_assoc] using B.inv_mem h
 
 /-- A subgroup commensurable with every conjugate of `B` has finite orbits
 on `G/B`. -/
@@ -218,8 +213,8 @@ theorem finite_orbit_on_quotient_of_commensurated {G : Type*} [Group G]
 /-- **Finite telescope-level site orbits.** -/
 theorem finite_verticalLevel_orbit [α.range.FiniteIndex] (n : ℕ)
     (x : Cosets α hα) :
-    (Set.range fun h : verticalLevel α hα n ↦ (h : Vertical α hα) • x).Finite := by
-  exact finite_orbit_on_quotient_of_commensurated
+    (Set.range fun h : verticalLevel α hα n ↦ (h : Vertical α hα) • x).Finite :=
+  finite_orbit_on_quotient_of_commensurated
     (verticalLevel α hα n) (baseSubgroup α hα)
     (verticalLevel_commensurable_base α hα n)
     (vertical_le_commensurator α hα) x

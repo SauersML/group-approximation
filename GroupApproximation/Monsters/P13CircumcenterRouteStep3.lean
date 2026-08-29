@@ -183,36 +183,9 @@ theorem t3_02_norm_translation_displacement_le
   have h := norm_translation_displacement_le_of_rotations_fixed rho p hfixed t.2
   have h2 := hbasis LiteralBaseRelations.v2 (by simp)
   have h3 := hbasis LiteralBaseRelations.v3 (by simp)
-  linarith
+  linarith only [h, h2, h3]
 
 /-! ## T3.11 — the circumcenter of the bounded translation orbit -/
-
-/-- **T3.11, first clause.**  *"The orbit of `p` under the translation subgroup
-is bounded."* -/
-theorem t3_11_translationOrbit_isBounded
-    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (p : E)
-    (hbound : ∀ t : translations, ‖rho t.1 p - p‖ ≤ 1 / 8) :
-    Bornology.IsBounded (Set.range fun t : translations ↦ rho t.1 p) :=
-  P13CircumcenterRoute.isBounded_orbit rho translations p hbound
-
-/-- **T3.11.**  *"…so the Hilbert-space circumcenter argument gives a
-translation-fixed vector `q` with `‖q-p‖ ≤ 1/8`."*  The witness is the
-circumcenter of the translation orbit of `p`: the centre of the smallest
-enclosing ball, characterized as the unique minimizer of the covering radius.
-
-The extra conjunct records that the witness genuinely realizes the Chebyshev
-radius of the orbit, so the printed object is the one produced. -/
-theorem t3_11_exists_translation_fixed_circumcenter [CompleteSpace E]
-    (rho : Base →* (E ≃ₗᵢ[ℝ] E)) (p : E)
-    (hbound : ∀ t : translations, ‖rho t.1 p - p‖ ≤ 1 / 8) :
-    ∃ q : E,
-      Circumcenter.coveringRadius
-          (Set.range fun t : translations ↦ rho t.1 p) q =
-        Circumcenter.chebyshevRadius
-          (Set.range fun t : translations ↦ rho t.1 p) ∧
-      (∀ t : translations, rho t.1 q = q) ∧ ‖q - p‖ ≤ 1 / 8 :=
-  P13CircumcenterRoute.exists_circumcenter_fixed_norm_sub_le rho translations p
-    hbound
 
 /-- **T3.11, in the shape the bridge consumes.**  Signature-identical to
 `HilbertConvexFixedPoint.exists_near_fixedSubspace rho translations p`, and it
@@ -238,9 +211,6 @@ def rotationToRotations : Rotation →* rotations :=
     rw [← rotationToBase_range]
     exact ⟨r, rfl⟩
 
-@[simp] theorem rotationToRotations_coe (r : Rotation) :
-    (rotationToRotations r : Base) = rotationToBase r := rfl
-
 /-- **T3.01.**  *"`R` maps to the linear subgroup of `B` they generate"* — and
 the map is onto, since the range of `rotationToBase` is exactly `rotations`. -/
 theorem rotationToRotations_surjective :
@@ -263,16 +233,6 @@ theorem t3_01_rotations_hasKazhdanPropertyT
     rotationToRotations_surjective hRotation
 
 /-! ## T3.03 — the `κ ≤ 1` normalization, derived rather than assumed -/
-
-/-- **T3.03.**  The printed Step 3 offers only *"a `κ>0` forming a Kazhdan
-pair"*, while the displayed constant `3/64` of item 2 needs `κ ≤ 1`.  The gap
-is not a hypothesis: shrinking the tolerance of a Kazhdan pair leaves it a
-Kazhdan pair, so `min κ 1` is available for free. -/
-theorem t3_03_kazhdanPair_min_one {S : Finset rotations} {kappa : ℝ}
-    (hS : IsKazhdanPair.{0, w} rotations S kappa) :
-    IsKazhdanPair.{0, w} rotations S (min kappa 1) ∧ min kappa 1 ≤ 1 :=
-  ⟨IsKazhdanPair.shrink hS (lt_min hS.1 zero_lt_one) (min_le_left _ _),
-    min_le_right _ _⟩
 
 /-- **T3.03, at the point Step 2 hands over to Step 3.**  Step 2's conclusion
 already delivers a normalized Kazhdan pair for the linear subgroup: a finite

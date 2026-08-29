@@ -1,5 +1,4 @@
 import GroupApproximation.Sofic.AdjointMatrix
-import GroupApproximation.Sofic.ProjectionRankFlip
 import GroupApproximation.Sofic.SpectralCapture
 import GroupApproximation.Sofic.KazhdanCompressionCore
 
@@ -413,7 +412,7 @@ theorem one_sub_moved_mul_corner_vanishing {κ : ℝ}
       ‖((1 : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ) -
           movedProjection B C S θ n) * cornerProjection B C S θ n‖ ≤ ε := by
   intro ε hε
-  have hθpos : 0 < 1 - θ := by linarith
+  have hθpos : 0 < 1 - θ := sub_pos.mpr hθ1
   obtain ⟨N, hN⟩ := rotated_laplacian_vanishing B C θ hQ hone hκ1 hsymm hgen
     hθ4 ((1 - θ) * ε ^ 2) (by positivity)
   refine ⟨N, fun n hn ↦ ?_⟩
@@ -478,12 +477,12 @@ theorem one_sub_moved_mul_corner_vanishing {κ : ℝ}
         exact hdisp
   have hnormsq : ‖spectralBelow (hermitianAverage (gammaAdjoint B C) S n)
       (hermitianAverage_conjTranspose (gammaAdjoint B C) S n) θ *
-      (Tᴴ * P)‖ ^ 2 ≤ ε ^ 2 := by
-    exact le_of_mul_le_mul_left hsq hθpos
+      (Tᴴ * P)‖ ^ 2 ≤ ε ^ 2 :=
+    le_of_mul_le_mul_left hsq hθpos
   have hnn : 0 ≤ ‖spectralBelow (hermitianAverage (gammaAdjoint B C) S n)
       (hermitianAverage_conjTranspose (gammaAdjoint B C) S n) θ *
       (Tᴴ * P)‖ := norm_nonneg _
-  nlinarith [hnormsq, hnn, hε.le]
+  nlinarith only [hnormsq, hnn, hε.le]
 
 /-! ## Step 10: the equal-rank flip -/
 
@@ -499,7 +498,7 @@ theorem one_sub_corner_mul_moved_vanishing {κ : ℝ}
           cornerProjection B C S θ n) * movedProjection B C S θ n‖ ≤ ε := by
   intro ε hε
   set ε' : ℝ := min (1 / 2) (ε / 2) with hε'
-  have hε'pos : 0 < ε' := lt_min (by norm_num) (by linarith)
+  have hε'pos : 0 < ε' := lt_min (by norm_num) (half_pos hε)
   have hε'half : ε' ≤ 1 / 2 := min_le_left _ _
   have hε'lt1 : ε' < 1 := lt_of_le_of_lt hε'half (by norm_num)
   obtain ⟨N, hN⟩ := one_sub_moved_mul_corner_vanishing B C θ hQ hone hκ1
@@ -511,16 +510,18 @@ theorem one_sub_corner_mul_moved_vanishing {κ : ℝ}
     (movedProjection_rank B C S θ n).symm hε'pos.le hε'lt1 (hN n hn)
   -- the constant: `ε' / √(1 - ε'²) ≤ 2 ε' ≤ ε`
   have hsqrt : (1 : ℝ) / 2 ≤ Real.sqrt (1 - ε' ^ 2) := by
-    have h34 : (1 : ℝ) / 4 ≤ 1 - ε' ^ 2 := by nlinarith [hε'half, hε'pos.le]
+    have h34 : (1 : ℝ) / 4 ≤ 1 - ε' ^ 2 := by
+      nlinarith only [hε'half, hε'pos.le]
     calc
       (1 : ℝ) / 2 = Real.sqrt (1 / 4) := by
         rw [show (1 : ℝ) / 4 = (1 / 2) ^ 2 by norm_num,
           Real.sqrt_sq (by norm_num)]
       _ ≤ Real.sqrt (1 - ε' ^ 2) := Real.sqrt_le_sqrt h34
-  have hsqrtpos : 0 < Real.sqrt (1 - ε' ^ 2) := by linarith
+  have hsqrtpos : 0 < Real.sqrt (1 - ε' ^ 2) :=
+    lt_of_lt_of_le (by norm_num) hsqrt
   have hdivbound : ε' / Real.sqrt (1 - ε' ^ 2) ≤ 2 * ε' := by
     rw [div_le_iff₀ hsqrtpos]
-    nlinarith [hsqrt, hε'pos.le]
+    nlinarith only [hsqrt, hε'pos.le]
   calc
     ‖((1 : Matrix (B.adjoint.model n) (B.adjoint.model n) ℂ) -
         cornerProjection B C S θ n) * movedProjection B C S θ n‖ ≤
@@ -529,8 +530,8 @@ theorem one_sub_corner_mul_moved_vanishing {κ : ℝ}
     _ ≤ ε := by
       have := min_le_right (1 / 2 : ℝ) (ε / 2)
       calc
-        2 * ε' ≤ 2 * (ε / 2) := by
-          exact mul_le_mul_of_nonneg_left (min_le_right _ _) (by norm_num)
+        2 * ε' ≤ 2 * (ε / 2) :=
+          mul_le_mul_of_nonneg_left (min_le_right _ _) (by norm_num)
         _ = ε := by ring
 
 end KazhdanCompressorCorner

@@ -21,18 +21,18 @@ namespace KazhdanCornerMatrices
 open Matrix
 open scoped Matrix.Norms.L2Operator
 
-variable {Y : Type*} [Fintype Y] [DecidableEq Y]
+variable {Y : Type*} [Fintype Y]
 
 /-! ## Dot-product bridges -/
 
 /-- Isometries of the dot product from orthonormal columns. -/
 theorem star_mulVec_dotProduct_mulVec {U : Matrix Y Y ℂ}
+    [DecidableEq Y]
     (hU : Uᴴ * U = 1) (w v : Y → ℂ) :
     star (U *ᵥ w) ⬝ᵥ (U *ᵥ v) = star w ⬝ᵥ v := by
   rw [Matrix.star_mulVec, Matrix.dotProduct_mulVec, Matrix.vecMul_vecMul,
     hU, Matrix.vecMul_one]
 
-omit [DecidableEq Y] in
 /-- Cauchy–Schwarz for the complex dot product, in `normSq`-sum form. -/
 theorem re_star_dotProduct_le_sqrt (y z : Y → ℂ) :
     (star y ⬝ᵥ z).re ≤
@@ -53,6 +53,8 @@ theorem re_star_dotProduct_le_sqrt (y z : Y → ℂ) :
     _ ≤ ‖yE‖ * ‖zE‖ := re_inner_le_norm _ _
     _ = Real.sqrt (∑ i : Y, Complex.normSq (y i)) *
         Real.sqrt (∑ i : Y, Complex.normSq (z i)) := by rw [hyE, hzE]
+
+variable [DecidableEq Y]
 
 /-! ## The quadratic-form capture bound -/
 
@@ -149,39 +151,16 @@ theorem spectralBelow_quadratic_bound {H : Matrix Y Y ℂ}
     have hup : hH.eigenvalues i ≤ 1 + δ :=
       le_trans (le_abs_self _)
         ((abs_hermitianEigenvalue_le_norm H hH i).trans hHnorm)
-    have hcoef : 0 ≤ 1 - hH.eigenvalues i + δ := by linarith
-    nlinarith [mul_nonneg hcoef hnn]
+    have hcoef : 0 ≤ 1 - hH.eigenvalues i + δ := by
+      linarith only [hup]
+    nlinarith only [mul_nonneg hcoef hnn]
   · simp only [hi, if_false, one_mul]
     have hi' : hH.eigenvalues i ≤ t := not_lt.mp hi
-    have hcoef : 1 - t ≤ 1 - hH.eigenvalues i := by linarith
-    nlinarith [mul_le_mul_of_nonneg_right hcoef hnn, mul_nonneg hδ hnn]
+    have hcoef : 1 - t ≤ 1 - hH.eigenvalues i := by
+      linarith only [hi']
+    nlinarith only [mul_le_mul_of_nonneg_right hcoef hnn, mul_nonneg hδ hnn]
 
 /-! ## The vector form -/
-
-/-- **Vector capture.**  An almost-fixed vector of an almost-contractive
-Hermitian matrix is almost supported above every threshold below `1`. -/
-theorem spectralBelow_mulVec_capture {H : Matrix Y Y ℂ}
-    (hH : H.IsHermitian) {δ t : ℝ} (hδ : 0 ≤ δ) (hHnorm : ‖H‖ ≤ 1 + δ)
-    (ξ : Y → ℂ) :
-    (1 - t) * ∑ i : Y, Complex.normSq ((spectralBelow H hH t *ᵥ ξ) i) ≤
-      Real.sqrt (∑ i : Y, Complex.normSq ((ξ - H *ᵥ ξ) i)) *
-        Real.sqrt (∑ i : Y, Complex.normSq (ξ i)) +
-        δ * ∑ i : Y, Complex.normSq (ξ i) := by
-  have hvec : (1 - H) *ᵥ ξ = ξ - H *ᵥ ξ := by
-    rw [Matrix.sub_mulVec, Matrix.one_mulVec]
-  have hcore := spectralBelow_quadratic_bound hH hδ hHnorm (t := t) ξ
-  have hCS : (star ξ ⬝ᵥ ((1 - H) *ᵥ ξ)).re ≤
-      Real.sqrt (∑ i : Y, Complex.normSq ((ξ - H *ᵥ ξ) i)) *
-        Real.sqrt (∑ i : Y, Complex.normSq (ξ i)) := by
-    rw [hvec]
-    calc
-      (star ξ ⬝ᵥ (ξ - H *ᵥ ξ)).re ≤
-          Real.sqrt (∑ i : Y, Complex.normSq (ξ i)) *
-            Real.sqrt (∑ i : Y, Complex.normSq ((ξ - H *ᵥ ξ) i)) :=
-        re_star_dotProduct_le_sqrt _ _
-      _ = Real.sqrt (∑ i : Y, Complex.normSq ((ξ - H *ᵥ ξ) i)) *
-          Real.sqrt (∑ i : Y, Complex.normSq (ξ i)) := mul_comm _ _
-  linarith
 
 /-! ## The operator form -/
 
@@ -195,7 +174,7 @@ theorem norm_spectralBelow_mul_sq_le {H : Matrix Y Y ℂ}
     (ht : t < 1) {C : Matrix Y Y ℂ} (hC : ‖C‖ ≤ 1) :
     (1 - t) * ‖spectralBelow H hH t * C‖ ^ 2 ≤ ‖C - H * C‖ + δ := by
   classical
-  have h1t : (0 : ℝ) < 1 - t := by linarith
+  have h1t : (0 : ℝ) < 1 - t := sub_pos.mpr ht
   have hnum : (0 : ℝ) ≤ ‖C - H * C‖ + δ := by positivity
   have hpoint : ∀ x : Y → ℂ,
       (1 - t) *
@@ -216,7 +195,8 @@ theorem norm_spectralBelow_mul_sq_le {H : Matrix Y Y ℂ}
             ‖C‖ ^ 2 * ∑ i : Y, Complex.normSq (x i) :=
           sum_normSq_mulVec_le_general C x
         _ ≤ 1 * ∑ i : Y, Complex.normSq (x i) := by
-          have h1 : ‖C‖ ^ 2 ≤ 1 := by nlinarith [norm_nonneg C]
+          have h1 : ‖C‖ ^ 2 ≤ 1 := by
+            nlinarith only [hC, norm_nonneg C]
           exact mul_le_mul_of_nonneg_right h1 hNx_nonneg
         _ = ∑ i : Y, Complex.normSq (x i) := one_mul _
     have hcore := spectralBelow_quadratic_bound hH hδ hHnorm (t := t) y
