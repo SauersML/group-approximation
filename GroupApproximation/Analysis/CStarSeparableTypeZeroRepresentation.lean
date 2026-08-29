@@ -8,9 +8,10 @@ import GroupApproximation.Analysis.ShulmanFillNormingRecognitionWiring
 # Gelfand--Naimark on a separable Hilbert space in `Type 0`
 
 `ShulmanFill.SeparableFaithfulRepresentationStatement` was the last cited input
-of the recognition route.  This module proves it, so
-`ShulmanFill.conjugateWordNorming_of_printedPair_of_compatible` comes to rest on
-the two Props the manuscript itself cites and on nothing else.
+of the recognition route.  This module proves it, and then restates the
+conclusion of `ShulmanFill.conjugateWordNorming_of_printedPair_of_compatible`
+with that hypothesis discharged, so the route comes to rest on the two Props the
+manuscript itself cites and on nothing else.
 
 The statement is delicate in exactly one respect and it is a universe one: the
 algebra may be large --- the only one it is applied to is
@@ -198,10 +199,10 @@ end Descent
 
 /-! ## The recognition route's last cited input, discharged -/
 
-/-- **`ShulmanFill.SeparableFaithfulRepresentationStatement` is a theorem.**  With
-it, `ShulmanFill.conjugateWordNorming_of_printedPair_of_compatible` rests on
-`Theorem4PrintedPairStatement` and `CompatibleTargetPairStatement` alone --- the
-two the manuscript itself cites. -/
+/-- **`ShulmanFill.SeparableFaithfulRepresentationStatement` is a theorem.**  It
+is the hypothesis `conjugateWordNorming_of_printedPair_of_compatible'` below
+discharges, which leaves `Theorem4PrintedPairStatement` and
+`CompatibleTargetPairStatement` --- the two the manuscript itself cites. -/
 theorem separableFaithfulRepresentation :
     ShulmanFill.SeparableFaithfulRepresentationStatement.{u} := by
   intro B _ _ _
@@ -210,4 +211,30 @@ theorem separableFaithfulRepresentation :
 end
 
 end CStarState
+
+/-! ## The recognition route, with two hypotheses instead of three -/
+
+namespace ShulmanFill
+
+/-- **The recognition statement from the two Props the manuscript cites.**
+
+`conjugateWordNorming_of_printedPair_of_compatible` carries a third hypothesis,
+`SeparableFaithfulRepresentationStatement`, because Gelfand--Naimark on a
+separable Hilbert space was neither in the tree nor in Mathlib at the pinned
+revision.  `CStarState.separableFaithfulRepresentation` proves it, so the third
+hypothesis can be discharged where it stands, leaving Shulman's Theorem 4 in its
+printed-pair form and his Theorem 13 in its compatible-target-pair form.
+
+The universe is pinned at `1` because the algebra the representation is built
+for is the symmetric double `D *_C D`, which lies one universe above `C` and `D`
+while its Hilbert space has to stay in `Type 0`. -/
+theorem conjugateWordNorming_of_printedPair_of_compatible'
+    [∀ m, Nontrivial (DoubledModel EllTwoCoefficient m)]
+    (hT4 : Theorem4PrintedPairStatement)
+    (hCTP : ShulmanSymmetricDouble.CompatibleTargetPairStatement) :
+    ConjugateWordNormingStatement :=
+  conjugateWordNorming_of_printedPair_of_compatible hT4 hCTP
+    CStarState.separableFaithfulRepresentation.{1}
+
+end ShulmanFill
 end GroupApproximation
