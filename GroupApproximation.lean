@@ -2613,6 +2613,8 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Rigidity
 import GroupApproximation.Analysis.ShulmanFillNormingEllTwoTheorem10
 import GroupApproximation.GGT.DGOIsolatedComponentNormalise
 import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftPrinted
+import GroupApproximation.GGT.DGOFourGonThin
+import GroupApproximation.GGT.DGOShortCycleIndices
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
