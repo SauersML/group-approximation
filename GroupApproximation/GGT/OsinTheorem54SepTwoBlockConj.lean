@@ -31,11 +31,23 @@ that starts at the far end of `s`, those two identifications are computations in
 the vertex calculus, and a consumer with concrete short sides discharges them
 directly.
 
-Deriving the second hypothesis from the first is a rotation lemma for
-`IsQuasiGeodesicPolygon` --- rebasing at a cut point and cycling the cut
-function --- which is not in this development.  It is stated as a hypothesis
-rather than smuggled in: the cut bound is only ever applied to something the
-caller has certified is a quasi-geodesic polygon.
+The second reading is a rotation, and it is derivable rather than fundamental.
+The reading has to begin in the arc between the end of the `q`-component and the
+start of the `s`-component, and that arc always contains the corner `|p| + |q|`:
+the component of `q` ends at or before it, and the component of the reversed `s`
+starts at or after `|p| + |q| + |r|`.  Rotation at a corner is available ---
+`DGOIsolatedComponentRotateCut.exists_rot_cut`, packaged back into the predicate
+by `OsinTheorem54SepRotatePolygon.isQuasiGeodesicPolygon_rotWord` --- and it
+keeps the number of sides, so the rotated quadrilateral is a quadrilateral.
+
+What is still to be written is the transfer of the two components and their
+vertices into the rotated word (`isComp_rotWord`, `vertex_rotWord_le` and
+`vertex_rotWord_add` are what it would run on).  Until that is done the second
+reading stays a hypothesis rather than something smuggled in: the cut bound is
+only ever applied to what the caller has certified is a quasi-geodesic polygon.
+Its own innermost clause is genuinely new information in any case --- it is
+about the component starts in the OTHER arc --- and no rotation lemma supplies
+that.
 
 ## What is not claimed
 
