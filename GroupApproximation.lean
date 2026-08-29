@@ -2554,6 +2554,7 @@ import GroupApproximation.Higman.CodedTransportStarRankThree
 import GroupApproximation.GGT.HyperbolicThinTriangles
 import GroupApproximation.GGT.DGOIsolatedComponentReduce
 import GroupApproximation.GGT.HullSCRelatorSeparation2Cross
+import GroupApproximation.GGT.OsinTheorem54SepFourGonInterface
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
