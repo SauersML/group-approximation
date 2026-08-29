@@ -2615,6 +2615,8 @@ import GroupApproximation.GGT.DGOIsolatedComponentNormalise
 import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftPrinted
 import GroupApproximation.GGT.DGOFourGonThin
 import GroupApproximation.GGT.DGOShortCycleIndices
+import GroupApproximation.GGT.OsinTheorem54SepDistPrefix
+import GroupApproximation.GGT.OsinTheorem54SepDistSuffix
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
