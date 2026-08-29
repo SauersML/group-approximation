@@ -2425,6 +2425,11 @@ import GroupApproximation.GGT.OsinTheorem54SepSymmetric
 import GroupApproximation.GGT.HullSCRelatorSeparationLetters
 import GroupApproximation.GGT.OsinTheorem54SepPolygon
 import GroupApproximation.GGT.OsinTheorem54SepCommRefuted
+import GroupApproximation.GGT.HullSCRelatorSeparationComponent
+import GroupApproximation.GGT.HullSCRelatorSeparationSpacing
+import GroupApproximation.GGT.HullSCRelatorSeparationConnector
+import GroupApproximation.GGT.HullSCRelatorSeparationNotQG
+import GroupApproximation.GGT.HullSCRelatorSeparationRotation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
