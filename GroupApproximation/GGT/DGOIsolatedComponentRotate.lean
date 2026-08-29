@@ -263,11 +263,17 @@ theorem exists_isCompStart_of_rotWord (D : RelGenSet G Λ) (lam : Λ) (v : G)
         exact hprevn hprevw
     exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
 
-/-- **Rotation preserves isolatedness of the distinguished component.** -/
+/-- **Rotation preserves isolatedness of the distinguished component.**
+
+No lower bound on `i` is needed: at `i = 0` the rotation is `w ++ []` and the
+statement is the hypothesis.  `0 < i` is needed only to *derive* `hwrap`, in
+`notMem_wrap_of_isIsolated`, and a caller at `i = 0` supplies it another way —
+vacuously if `k < w.length`, and if `k = w.length` the component is the whole
+closed word, whose span is `1`. -/
 theorem isIsolated_rotWord (D : RelGenSet G Λ) (lam : Λ) (v : G)
     {w : List (RelLetter G Λ)} (hlet : ∀ a ∈ w, D.IsLetter a)
     (hclosed : RelLetter.listVal w = 1) {i k : ℕ} (hcomp : IsComp lam w i k)
-    (hiso : IsIsolated D.fam lam v w i) (_hi : 0 < i)
+    (hiso : IsIsolated D.fam lam v w i)
     (hwrap : ∀ h0 : 0 < w.length, k = w.length → ¬ (w[0]'h0).IsCompOf lam) :
     IsIsolated D.fam lam (vertex v w i) (rotWord w i) 0 := by
   have hik : i < k := hcomp.1
