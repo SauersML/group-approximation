@@ -2555,6 +2555,7 @@ import GroupApproximation.GGT.HyperbolicThinTriangles
 import GroupApproximation.GGT.DGOIsolatedComponentReduce
 import GroupApproximation.GGT.HullSCRelatorSeparation2Cross
 import GroupApproximation.GGT.OsinTheorem54SepFourGonInterface
+import GroupApproximation.GGT.HullSCRelatorSeparation2Centralizer
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
