@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.CStarHilbertCountableBasis
+import GroupApproximation.Analysis.CStarInfiniteDimensionalGNS
 import GroupApproximation.Analysis.CStarHilbertTransport
 import GroupApproximation.Analysis.CStarSeparableFaithfulRepresentation
 import GroupApproximation.Analysis.CStarTakesakiDense
@@ -135,6 +136,7 @@ theorem exists_typeZero_faithful_representation :
       ∃ hinner : InnerProductSpace ℂ H,
         letI : InnerProductSpace ℂ H := hinner
         ∃ (_ : CompleteSpace H) (_ : TopologicalSpace.SeparableSpace H)
+          (_ : ¬ FiniteDimensional ℂ H)
           (π : A →⋆ₐ[ℂ] (H →L[ℂ] H)), Function.Injective π := by
   classical
   -- A countable separating family of states, reindexed by `ℕ`.
@@ -187,9 +189,16 @@ theorem exists_typeZero_faithful_representation :
   -- Gram--Schmidt down to a small index, and the transport.
   set b := CStarHilbertCountableBasis.countableGramSchmidtBasis F hFtotal
   refine ⟨lp (fun _ : {i : ℕ | gramSchmidtNormed ℂ F i ≠ 0} ↦ ℂ) 2,
-    inferInstance, inferInstance, inferInstance, ?_, ?_⟩
+    inferInstance, inferInstance, inferInstance, ?_, ?_, ?_⟩
   · exact CStarHilbertCountableBasis.separableSpace_of_hilbertBasis
       (HilbertBasis.ofRepr (LinearIsometryEquiv.refl ℂ _))
+  · -- The sum carries an orthonormal sequence, and `b.repr` is an isometry, so
+    -- the clause transports.  `Theorem4TailPairStatement` asks for it because
+    -- the printed models cannot be placed on a finite-dimensional space.
+    intro hfd
+    haveI := hfd
+    exact not_finiteDimensional_familyGNSSpace ψ'
+      (LinearEquiv.finiteDimensional b.repr.symm.toLinearEquiv)
   · exact ⟨(CStarHilbertTransport.conjStarAlgHom b.repr).comp
       (familyGNSStarAlgHom ψ'),
       CStarHilbertTransport.injective_comp_conjStarAlgHom b.repr
@@ -206,7 +215,9 @@ discharges, which leaves `Theorem4PrintedPairStatement` and
 theorem separableFaithfulRepresentation :
     ShulmanFill.SeparableFaithfulRepresentationStatement.{u} := by
   intro B _ _ _
-  exact exists_typeZero_faithful_representation
+  obtain ⟨H, hgroup, hinner, hcomplete, hsep, _hfd, π, hπ⟩ :=
+    exists_typeZero_faithful_representation (A := B)
+  exact ⟨H, hgroup, hinner, hcomplete, hsep, π, hπ⟩
 
 end
 

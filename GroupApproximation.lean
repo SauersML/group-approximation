@@ -2700,6 +2700,7 @@ import GroupApproximation.Analysis.ShulmanFillNormingTailPrintedPair
 import GroupApproximation.Analysis.ShulmanFillNormingTailRecognition
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyIface
 import GroupApproximation.Analysis.CStarInfiniteDimensionalGNS
+import GroupApproximation.Analysis.CStarInfiniteFaithfulRepresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
