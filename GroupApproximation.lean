@@ -2539,6 +2539,9 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Locate
 import GroupApproximation.GGT.OsinTheorem54SepSmul
 import GroupApproximation.Analysis.BlackadarKirchbergScalarCoordinateStateDensity
 import GroupApproximation.Sofic.Osin24FoldedWalk
+import GroupApproximation.GGT.OsinTheorem54SepFourGonGeneral
+import GroupApproximation.GGT.OsinTheorem54SepFourGonPinning
+import GroupApproximation.GGT.OsinTheorem54SepCommIndex
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
