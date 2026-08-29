@@ -88,6 +88,33 @@ theorem exists_typeZero_linearIsometryEquiv (f : ℕ → E)
     ⟨(countableGramSchmidtBasis f hf).repr⟩⟩
 
 omit [CompleteSpace E] in
+/-- **A Hilbert space with a countable Hilbert basis is separable.**
+
+Needed because `ShulmanFill.Theorem4PrintedPairStatement` asks its Hilbert space
+to be separable, and that hypothesis cannot be dropped: `hone` says the printed
+models exhaust `H`, so `H` is a countable increasing union of finite-rank ranges
+and is separable of necessity — a version of the binder without it would be
+false.
+
+Mathlib has no separability theory for `lp`, but it does not need one here.
+`TopologicalSpace.IsSeparable.span` turns the countable basis into a separable
+span, `IsSeparable.closure` into a separable closure, and the closure is
+everything by `HilbertBasis.dense_span`. -/
+theorem separableSpace_of_hilbertBasis {ι : Type*} [Countable ι]
+    (b : HilbertBasis ι ℂ E) : TopologicalSpace.SeparableSpace E := by
+  refine TopologicalSpace.isSeparable_univ_iff.1 ?_
+  have hspan : TopologicalSpace.IsSeparable
+      (closure ((span ℂ (Set.range (⇑b)) : Submodule ℂ E) : Set E)) :=
+    ((Set.countable_range (⇑b)).isSeparable.span (R := ℂ)).closure
+  have htop : ((span ℂ (Set.range (⇑b))).topologicalClosure : Set E)
+      = (Set.univ : Set E) := by
+    rw [b.dense_span]
+    rfl
+  rwa [show closure ((span ℂ (Set.range (⇑b)) : Submodule ℂ E) : Set E)
+      = ((span ℂ (Set.range (⇑b))).topologicalClosure : Set E) from rfl,
+    htop] at hspan
+
+omit [CompleteSpace E] in
 /-- **Triviality of the orthogonal complement from a spanning family**, in the
 form the C-star side produces it: it is enough that every vector orthogonal to
 each `f n` is zero. -/
