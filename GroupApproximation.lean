@@ -2536,6 +2536,7 @@ import GroupApproximation.GGT.DGOIsolatedComponentWitness
 import GroupApproximation.GGT.DGOIsolatedComponentCoset
 import GroupApproximation.GGT.RelHypOsin24CayleyWitness
 import GroupApproximation.GGT.HullSCRelatorSeparation2Locate
+import GroupApproximation.GGT.OsinTheorem54SepSmul
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
