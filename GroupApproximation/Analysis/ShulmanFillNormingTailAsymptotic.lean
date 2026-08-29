@@ -75,19 +75,25 @@ theorem TailNull.mono {cut : ℕ → ℕ} {X Y : ℕ → StarStrong.BoundedStarS
   intro ε hε
   exact (hX ε hε).mono fun t ht n hn ↦ (h t n).trans (ht n hn)
 
-/-- **What the consumer reads off a tail-vanishing family.**  A selection of
-coordinates past the cut turns tail vanishing into vanishing of the diagonal,
-which is the hypothesis the reduced-product transfer lemma of
+/-- **What the consumer reads off a tail-vanishing family.**  A diagonal that
+runs out in the member index and stays past the cut in the coordinate index
+turns tail vanishing into vanishing along that diagonal, which is the hypothesis
+the reduced-product transfer lemma of
 `Analysis/ShulmanFillNormingAsymptoticMF` consumes.  This is the whole reason
-the cut is one function rather than one per pair. -/
-theorem TailNull.tendsto_diag {cut nsel : ℕ → ℕ}
+the cut is one function rather than one per pair.
+
+The member index is a selection rather than the identity because the pointwise
+lift clause only makes late members norming, so the consumer's diagonal has to
+run along late members too. -/
+theorem TailNull.tendsto_diag {cut tsel nsel : ℕ → ℕ}
     {X : ℕ → StarStrong.BoundedStarSequence A} (hX : TailNull cut X)
-    (hsel : ∀ m, cut m ≤ nsel m) :
-    Tendsto (fun m ↦ ‖X m (nsel m)‖) atTop (𝓝 0) := by
+    (htsel : Tendsto tsel atTop atTop) (hsel : ∀ m, cut (tsel m) ≤ nsel m) :
+    Tendsto (fun m ↦ ‖X (tsel m) (nsel m)‖) atTop (𝓝 0) := by
   refine Metric.tendsto_atTop.mpr fun ε hε ↦ ?_
   obtain ⟨T, hT⟩ := eventually_atTop.mp (hX (ε / 2) (by linarith))
-  refine ⟨T, fun m hm ↦ ?_⟩
-  have hbound := hT m hm (nsel m) (hsel m)
+  obtain ⟨M, hM⟩ := eventually_atTop.mp (htsel.eventually_ge_atTop T)
+  refine ⟨M, fun m hm ↦ ?_⟩
+  have hbound := hT (tsel m) (hM m hm) (nsel m) (hsel m)
   rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)]
   linarith
 
