@@ -18,10 +18,22 @@ namespace Higman
 namespace Omega
 
 open HNNExtension
+open GroupApproximation.Higman.Conj (F₃)
+
+/-- The first factor inclusion of a direct product is injective.  Mathlib has
+no `MonoidHom.inl_injective` at this revision. -/
+theorem fatShearedPair_inl_injective (A B : Type) [Group A] [Group B] :
+    Function.Injective (MonoidHom.inl A B) :=
+  fun _ _ hxy ↦ congrArg Prod.fst hxy
+
+/-- The second factor inclusion of a direct product is injective. -/
+theorem fatShearedPair_inr_injective (A B : Type) [Group A] [Group B] :
+    Function.Injective (MonoidHom.inr A B) :=
+  fun _ _ hxy ↦ congrArg Prod.snd hxy
 
 /-- The source singleton edge in the left semantic copy. -/
 noncomputable def fatShearedFirstPairSource
-    (m : ℕ) (hm : 1 ≤ m) :
+    (m : ℕ) (_hm : 1 ≤ m) :
     FreeGroup ↥(blockSet 0) →*
       (FatCent3 m × F₃) × (FatCent3 m × F₃) :=
   (fatShearedCoordinateSource m 0 (Nat.zero_le m)).prod 1
@@ -119,7 +131,7 @@ theorem fatShearedFirstSemanticSourceEmb_injective
     Function.Injective (fatShearedFirstSemanticSourceEmb m hm) :=
   (HNNExtension.of_injective
       (φ := ExplicitFreeEdge.edgeEquiv (fatShearedFirstPairEdge m hm))).comp
-    MonoidHom.inl_injective
+    (fatShearedPair_inl_injective (FatCent3 m × F₃) (FatCent3 m × F₃))
 
 theorem fatShearedFirstSemanticTargetEmb_injective
     (m : ℕ) (hm : 1 ≤ m) :
@@ -128,7 +140,7 @@ theorem fatShearedFirstSemanticTargetEmb_injective
       (t : FatShearedFirstSemanticExtension m hm)⁻¹).injective.comp
     ((HNNExtension.of_injective
       (φ := ExplicitFreeEdge.edgeEquiv (fatShearedFirstPairEdge m hm))).comp
-        MonoidHom.inr_injective)
+        (fatShearedPair_inr_injective (FatCent3 m × F₃) (FatCent3 m × F₃)))
 
 /-- **Matched semantic identity.**  On the common abstract singleton word,
 the left source embedding and the conjugated right target embedding agree
@@ -146,9 +158,8 @@ theorem fatShearedFirstSemantic_restrict_eq
       of (fatShearedFirstPairSource m hm (FreeGroup.of beta)) * t⁻¹ =
     of (fatShearedFirstPairTarget m hm (FreeGroup.of beta)) at h
   change t⁻¹ *
-      of (1, fatShearedCoordinateTarget m 0 hm (FreeGroup.of beta)) * t =
-    of (fatShearedCoordinateSource m 0 (Nat.zero_le m)
-      (FreeGroup.of beta), 1)
+      of (fatShearedFirstPairTarget m hm (FreeGroup.of beta)) * t =
+    of (fatShearedFirstPairSource m hm (FreeGroup.of beta))
   rw [← h]
   group
 
@@ -168,7 +179,8 @@ theorem fatShearedFirstSemanticExtension_finitelyPresented
   letI : Group.FG
       ↥(ExplicitFreeEdge.sourceSubgroup (fatShearedFirstPairEdge m hm)) :=
     Group.fg_of_surjective
-      (ExplicitFreeEdge.sourceEquiv (fatShearedFirstPairEdge m hm)).toMonoidHom
+      (f := (ExplicitFreeEdge.sourceEquiv
+        (fatShearedFirstPairEdge m hm)).toMonoidHom)
       (ExplicitFreeEdge.sourceEquiv (fatShearedFirstPairEdge m hm)).surjective
   exact HNNFinitePresentation.isFinitelyPresented_hnnExtension
     (ExplicitFreeEdge.edgeEquiv (fatShearedFirstPairEdge m hm))
@@ -203,11 +215,12 @@ theorem fatShearedFirstPairSource_fg
   letI : Finite ↥(blockSet 0) := Finite.of_injective
     (fun _ : ↥(blockSet 0) => ()) (fun _ _ _ => Subsingleton.elim _ _)
   letI : Group.FG (FreeGroup ↥(blockSet 0)) := inferInstance
-  exact Group.fg_of_surjective
-    (ExplicitFreeEdge.sourceEquiv
-      (fatShearedFirstPairEdge m hm)).toMonoidHom
-    (ExplicitFreeEdge.sourceEquiv
-      (fatShearedFirstPairEdge m hm)).surjective
+  exact (Group.fg_iff_subgroup_fg _).mp
+    (Group.fg_of_surjective
+      (f := (ExplicitFreeEdge.sourceEquiv
+        (fatShearedFirstPairEdge m hm)).toMonoidHom)
+      (ExplicitFreeEdge.sourceEquiv
+        (fatShearedFirstPairEdge m hm)).surjective)
 
 theorem fatShearedFirstSemanticCutter_fg
     (m : ℕ) (hm : 1 ≤ m) :
@@ -241,6 +254,7 @@ theorem fatShearedFirstSemanticCutter_eq_target
       of a
     rw [h]
     group
+    rfl
   · rintro _ ⟨_, ⟨b, hb, rfl⟩, rfl⟩
     let bb : ExplicitFreeEdge.targetSubgroup
         (fatShearedFirstPairEdge m hm) := ⟨b, hb⟩
@@ -254,15 +268,11 @@ theorem fatShearedFirstSemanticCutter_eq_target
           ExplicitFreeEdge.targetSubgroup
             (fatShearedFirstPairEdge m hm)) :
           (FatCent3 m × F₃) × (FatCent3 m × F₃)) = b := by
-      change (((ExplicitFreeEdge.edgeEquiv
-        (fatShearedFirstPairEdge m hm)).apply
-          ((ExplicitFreeEdge.edgeEquiv
-            (fatShearedFirstPairEdge m hm)).symm bb) :
-              ExplicitFreeEdge.targetSubgroup
-                (fatShearedFirstPairEdge m hm)) :
-            (FatCent3 m × F₃) × (FatCent3 m × F₃)) = b
-      rw [MulEquiv.apply_symm_apply]
-      rfl
+      have happ :
+          ExplicitFreeEdge.edgeEquiv (fatShearedFirstPairEdge m hm) a = bb :=
+        (ExplicitFreeEdge.edgeEquiv
+          (fatShearedFirstPairEdge m hm)).apply_symm_apply bb
+      exact congrArg Subtype.val happ
     rw [hab] at h
     change of (a : (FatCent3 m × F₃) × (FatCent3 m × F₃)) =
       t⁻¹ * of b * t
