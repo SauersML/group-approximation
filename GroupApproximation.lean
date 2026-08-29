@@ -2636,6 +2636,7 @@ import GroupApproximation.GGT.DGOIsolatedComponentSideForm
 import GroupApproximation.GGT.OsinTheorem54SepFourGonOpposite
 import GroupApproximation.GGT.OsinTheorem54SepTwoBlockConj
 import GroupApproximation.GGT.OsinTheorem54SepDeepSixForm
+import GroupApproximation.Analysis.CStarSeparableFaithfulRepresentation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
