@@ -2456,6 +2456,8 @@ import GroupApproximation.GGT.OsinTheorem54SepTransportFam
 import GroupApproximation.GGT.OsinTheorem54SepFiniteFam
 import GroupApproximation.GGT.OsinTheorem54SepSymmetricFam
 import GroupApproximation.GGT.OsinTheorem54Family
+import GroupApproximation.GGT.HullSCRelatorSeparation2ConeOffSpace
+import GroupApproximation.GGT.HullSCRelatorSeparation2RotatingFamily
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
