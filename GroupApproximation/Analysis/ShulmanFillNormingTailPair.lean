@@ -36,6 +36,8 @@ open Filter Topology
 
 noncomputable section
 
+universe u
+
 section TailPair
 
 /-! ## Tail vanishing under pairing
@@ -48,7 +50,10 @@ coefficients, and its C-star structure is reached through the Loewner order, so
 
 section CutMono
 
-variable {A : ℕ → Type} [∀ n, CStarAlgebra (A n)]
+-- `TailNull` is polymorphic and `StarStrongTailLift`'s family lives in `Type u`,
+-- so this lemma has to be stated there too; the doubling below is `Type 0` only,
+-- because `doubledPairSeq` is.
+variable {A : ℕ → Type u} [∀ n, CStarAlgebra (A n)]
 
 /-- A larger cut asks for less. -/
 theorem TailNull.mono_cut {cut cut' : ℕ → ℕ}
