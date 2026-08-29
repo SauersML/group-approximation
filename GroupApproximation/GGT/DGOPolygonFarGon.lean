@@ -218,7 +218,7 @@ theorem isCompStart_of_farWord_add (lam : Λ) {q w : List (RelLetter G Λ)}
     (hjstart : IsCompStart lam (farWord q w m) j) (hmt : m + t < w.length) :
     IsCompStart lam w (m + t) := by
   obtain ⟨k, hjk, hkF, hrange, hprev, -⟩ := hjstart
-  have hjlen : j < (farWord q w m).length := by omega
+  have hjlen : j < (farWord q w m).length := lt_of_lt_of_le hjk hkF
   have hcj : ((farWord q w m)[j]'hjlen).IsCompOf lam := hrange j le_rfl hjk hjlen
   rw [getElem_farWord_add hjt hjlen hmt] at hcj
   obtain ⟨i₀, k₀, hi₀, hk₀, hcomp₀⟩ := exists_isComp_of_isCompOf lam w (m + t) hmt hcj
