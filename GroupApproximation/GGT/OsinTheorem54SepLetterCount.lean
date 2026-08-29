@@ -11,9 +11,25 @@ Cayley graph, iterating the defect-two triangle inequality over `n` steps gives
 
   `sep(x₀,xₙ) ≤ Σᵢ sep(xᵢ,xᵢ₊₁) + 2(n-1)`,
 
-and each single step contributes at most one, so the total is at most
-`n + 2(n-1) = 3n - 2`.  That is where the `3` comes from, and it confirms the
-field's constant rather than assuming it.
+and each single step contributes at most one **per `λ`**, so the total is at
+most `n + 2(n-1) = 3n - 2` **provided no single letter is deep for two indices
+at once**.
+
+That proviso is not vacuous and I first stated this without it.  `sep` is the
+`Λ`-SUM, and a letter lying in `H_λ` and `H_μ` for `λ ≠ μ` and deep for both
+contributes the two DISTINCT cosets `1·H_λ` and `1·H_μ`, so that step
+contributes two rather than one.  In general a step contributes at most
+`m := #{λ | the letter is in H_λ and deep for λ}`, and the iteration gives
+`(m+2)·n − 2`; the field's constant `3` is the case `m ≤ 1`.
+
+Both lemmas below are per `λ` and are unaffected.  What needs the proviso is the
+summed version, which is why `hmult` appears as a hypothesis where the sum is
+taken.  Its provenance: for a hyperbolically embedded family the pairwise
+intersections `H_λ ∩ H_μ` are finite --- Dahmani--Guirardel--Osin's
+Proposition 4.35, which is NOT in this repository and is named here as the fact
+`hmult` reduces to --- so with `Λ` finite and `Dc` chosen above the `d̂`-radius
+of every pairwise intersection, no element is deep for two indices and `hmult`
+is discharged by a choice of `Dc` rather than by a new leaf.
 
 This module supplies the per-step half, which needs nothing but Lemma 4.8: a
 letter is at word distance at most one from the identity, and a geodesic of
