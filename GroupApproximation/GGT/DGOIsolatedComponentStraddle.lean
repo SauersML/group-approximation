@@ -116,40 +116,45 @@ theorem sub_side_of_straddle_recut {c : ℕ → ℕ} {n t t' i k : ℕ} (ht : t 
 /-- **Osin's Lemma 4.2 form from Dahmani--Guirardel--Osin's side form, with no
 hypothesis on where the component sits.**
 
-The first binder is the side form of the §4.2 bound *in DGO's Definition 4.13
-shape*: the quasi-geodesic clause is required only of the sides `s ≠ t`, `t` the
-distinguished component's side.  Everything after it is proved.
+`hside` is the side form of the §4.2 bound *in DGO's Definition 4.13 shape* — the
+quasi-geodesic clause required only of the sides `s ≠ t₀`, `t₀` the distinguished
+side — and it is taken at the ONE side count the recut produces, not at all
+`N ≤ 6`.  That matters: a base case proved only at `N = 4` can be fed to this
+theorem whenever the recut happens to yield four sides, which it does exactly when
+the component straddles two corners.  Everything after `hside` is proved.
 
 The component may straddle any number of corners; the consumer supplies the side
-`t` carrying its start and the side `t'` carrying its end.  The conclusion is at
-`C * (n + 2)`, the refined polygon having `n + 2 - (t' - t) ≤ n + 2` sides.
+`t` carrying its start and the side `t'` carrying its end.  The refined polygon
+has `n + 2 - (t' - t)` sides, and that is the count in the conclusion; weaken it
+with `relBall_mono_radius` if a uniform `C * (n+2)` is wanted.
 
 With the clause demanded on *every* side this is false, and sharply so: at
 `(1,0)` a run straddling one corner has one letter on each side of it, and the
 side `[i,k]` would need `2 ≤ d ≤ 1`. That is the whole reason the exempt form is
 the right hypothesis, and it is the form Dahmani--Guirardel--Osin state. -/
 theorem span_mem_relBall_of_sideForm_straddle (D : RelGenSet G Λ) (mu b : ℝ)
-    (C : ℕ)
-    (hside : ∀ (N : ℕ), N ≤ 6 → ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
+    (C : ℕ) {n : ℕ} {v : G} {w : List (RelLetter G Λ)} {c : ℕ → ℕ} {lam : Λ}
+    {i k t t' : ℕ} (ht : t < n) (hti : c t ≤ i) (hit : i ≤ c (t + 1))
+    (ht' : t' < n) (htk : c t' ≤ k) (hkt' : k ≤ c (t' + 1)) (htt' : t ≤ t')
+    (hside : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
-      c N = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) →
-      ∀ (lam : Λ) (t : ℕ), t < N →
-      (∀ s : ℕ, s < N → s ≠ t → ∀ p q : ℕ, c s ≤ p → p ≤ q →
+      c (n + 2 - (t' - t)) = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) →
+      ∀ (lam : Λ) (t₀ : ℕ), t₀ < n + 2 - (t' - t) →
+      (∀ s : ℕ, s < n + 2 - (t' - t) → s ≠ t₀ → ∀ p q : ℕ, c s ≤ p → p ≤ q →
         q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
-      IsComp lam w (c t) (c (t + 1)) → IsIsolated D.fam lam v w (c t) →
-        (vertex v w (c t))⁻¹ * vertex v w (c (t + 1)) ∈ D.relBall lam (C * N))
-    {n : ℕ} (hn : n ≤ 4) {v : G} {w : List (RelLetter G Λ)} {c : ℕ → ℕ}
+      IsComp lam w (c t₀) (c (t₀ + 1)) → IsIsolated D.fam lam v w (c t₀) →
+        (vertex v w (c t₀))⁻¹ * vertex v w (c (t₀ + 1))
+          ∈ D.relBall lam (C * (n + 2 - (t' - t))))
     (hlet : ∀ a ∈ w, D.IsLetter a) (hclosed : RelLetter.listVal w = 1)
     (hc0 : c 0 = 0) (hcn : c n = w.length) (hcmono : ∀ s : ℕ, c s ≤ c (s + 1))
     (hcqg : ∀ s : ℕ, s < n → ∀ p q : ℕ, c s ≤ p → p ≤ q → q ≤ c (s + 1) →
       ((q - p : ℕ) : ℝ) / mu - b
         ≤ ((wordDist D.alphabet.carrier (vertex v w p) (vertex v w q) : ℕ) : ℝ))
-    {lam : Λ} {i k t t' : ℕ} (ht : t < n) (hti : c t ≤ i) (hit : i ≤ c (t + 1))
-    (ht' : t' < n) (htk : c t' ≤ k) (hkt' : k ≤ c (t' + 1)) (htt' : t ≤ t')
     (hcomp : IsComp lam w i k) (hiso : IsIsolated D.fam lam v w i) :
-    (vertex v w i)⁻¹ * vertex v w k ∈ D.relBall lam (C * (n + 2)) := by
+    (vertex v w i)⁻¹ * vertex v w k
+      ∈ D.relBall lam (C * (n + 2 - (t' - t))) := by
   have hik : i < k := hcomp.1
   set cc : ℕ → ℕ := fun s => if s ≤ t then c s else if s ≤ t + 1 then i
     else if s ≤ t + 2 then k else c (s - 2 + (t' - t))
@@ -204,13 +209,12 @@ theorem span_mem_relBall_of_sideForm_straddle (D : RelGenSet G Λ) (mu b : ℝ)
     rw [← hccv (s + 1)] at hge
     exact hcqg s₀ hs₀ p q (le_trans hle hp) hpq (le_trans hq hge)
   -- the component is the side `t + 1` of the refined polygon
-  have hgoal := hside (n + 2 - (t' - t)) (by omega) v w cc hlet hclosed hcc0 hccN
-    hccmono lam (t + 1) (by omega) hccqg
+  have hgoal := hside v w cc hlet hclosed hcc0 hccN hccmono lam (t + 1)
+    (by omega) hccqg
     (by rw [hcc1, show t + 1 + 1 = t + 2 from by omega, hcc2]; exact hcomp)
     (by rw [hcc1]; exact hiso)
   rw [hcc1, show t + 1 + 1 = t + 2 from by omega, hcc2] at hgoal
-  refine relBall_mono_radius D lam ?_ hgoal
-  exact Nat.mul_le_mul le_rfl (by omega)
+  exact hgoal
 
 end OsinComponents
 end GGT
