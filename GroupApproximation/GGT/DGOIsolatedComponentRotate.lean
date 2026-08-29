@@ -174,102 +174,188 @@ theorem notMem_wrap_of_isIsolated (D : RelGenSet G Λ) (lam : Λ) (v : G)
   exact hspan
 
 omit [Group G] in
-/-- **The component at the rotation point becomes the component at `0`.** -/
+/-- **A component survives a rotation at any index at or before its start.**
+
+The rotation at `j ≤ i` sends the component `[i,k)` to `[i-j, k-j)`.  Maximality
+at the left end is inherited from `w` when `i > j`, and is vacuous when `i = j`;
+at the right end it is inherited unless the component ends at `w.length`, which is
+the wrap case `hwrap` excludes. -/
+theorem isComp_rotWord_of_le (lam : Λ) {w : List (RelLetter G Λ)} {i k j : ℕ}
+    (hcomp : IsComp lam w i k) (hji : j ≤ i) (hjw : j ≤ w.length)
+    (hwrap : ∀ h0 : 0 < w.length, k = w.length → ¬ (w[0]'h0).IsCompOf lam) :
+    IsComp lam (rotWord w j) (i - j) (k - j) := by
+  have hik : i < k := hcomp.1
+  have hkw : k ≤ w.length := hcomp.2.1
+  have hrange := hcomp.2.2.1
+  have hprev := hcomp.2.2.2.1
+  have hnext := hcomp.2.2.2.2
+  have hlen : (rotWord w j).length = w.length := length_rotWord w hjw
+  refine ⟨by omega, by omega, ?_, ?_, ?_⟩
+  · intro p hp1 hp2 hpw
+    rw [getElem_rotWord_lt w hjw p (j + p) rfl (by omega) hpw (by omega)]
+    exact hrange (j + p) (by omega) (by omega) (by omega)
+  · intro p hp hpw hc
+    rw [getElem_rotWord_lt w hjw p (j + p) rfl (by omega) hpw (by omega)] at hc
+    exact hprev (j + p) (by omega) (by omega) hc
+  · intro hk hc
+    rcases Nat.lt_or_ge (k - j) (w.length - j) with hlt | hge
+    · -- the letter at `k` of `w`, which maximality forbids
+      rw [getElem_rotWord_lt w hjw (k - j) k (by omega) hlt hk (by omega)] at hc
+      exact hnext (by omega) hc
+    · -- past the seam: the letter at `0` of `w`, which isolation forbids
+      have hkk : k = w.length := by omega
+      rw [getElem_rotWord_add w hjw (k - j) 0 (by omega) (by omega) hk
+        (by omega)] at hc
+      exact hwrap (by omega) hkk hc
+
+omit [Group G] in
+/-- **The component at the rotation point becomes the component at `0`.**  The
+case `j = i` of `isComp_rotWord_of_le`. -/
 theorem isComp_rotWord (lam : Λ) {w : List (RelLetter G Λ)} {i k : ℕ}
     (hcomp : IsComp lam w i k) (hi : i ≤ w.length)
     (hwrap : ∀ h0 : 0 < w.length, k = w.length → ¬ (w[0]'h0).IsCompOf lam) :
     IsComp lam (rotWord w i) 0 (k - i) := by
-  have hik : i < k := hcomp.1
-  have hkw : k ≤ w.length := hcomp.2.1
-  have hrange := hcomp.2.2.1
-  have hnext := hcomp.2.2.2.2
-  have hlen : (rotWord w i).length = w.length := length_rotWord w hi
-  refine ⟨by omega, by omega, ?_, ?_, ?_⟩
-  · intro j _ hj2 hjw
-    rw [getElem_rotWord_lt w hi j (i + j) rfl (by omega) hjw (by omega)]
-    exact hrange (i + j) (by omega) (by omega) (by omega)
-  · intro j hj
-    exact absurd hj (by omega)
-  · intro hk hc
-    rcases Nat.lt_or_ge (k - i) (w.length - i) with hlt | hge
-    · -- the letter at `k` of `w`, which maximality forbids
-      rw [getElem_rotWord_lt w hi (k - i) k (by omega) hlt hk (by omega)] at hc
-      exact hnext (by omega) hc
-    · -- past the seam: the letter at `0` of `w`, which isolation forbids
-      have hkk : k = w.length := by omega
-      rw [getElem_rotWord_add w hi (k - i) 0 (by omega) (by omega) hk
-        (by omega)] at hc
-      exact hwrap (by omega) hkk hc
+  have h := isComp_rotWord_of_le lam hcomp le_rfl hi hwrap
+  rwa [Nat.sub_self] at h
 
 /-! ## Isolation -/
 
-/-- **Every other component start of the rotated word comes from one of `w`, at
-the same vertex.**
+/-- **Every component start of the rotated word other than the two special ones
+comes from one of `w`, at the same vertex.**
 
-Before the seam the correspondence is `j ↦ i + j`; after it, `j ↦ j - (|w| - i)`.
-The seam itself is the one place where two components of `w` can merge into one
-of the rotated word, and the merged component's start is still a component start
-of `w`: it is `0`, whose predecessor in `w` does not exist. -/
+Before the seam the correspondence is `p ↦ j + p`; after it, `p ↦ p - (|w| - j)`.
+Two indices are excluded: `p = 0`, whose run in `w` may have started before the
+rotation point and so need not begin at `j` (that case is handled directly in
+`isIsolated_rotWord_of_le`, where only the coset matters), and `p = i - j`, which
+is the distinguished component itself.  The seam is the one place where two
+components of `w` merge into one of the rotated word, and the merged component's
+start is still a component start of `w`: it is `0`, whose predecessor in `w` does
+not exist. -/
+theorem exists_isCompStart_of_rotWord_of_le (_D : RelGenSet G Λ) (lam : Λ) (v : G)
+    {w : List (RelLetter G Λ)} (hclosed : RelLetter.listVal w = 1) {i k j : ℕ}
+    (hcomp : IsComp lam w i k) (hji : j ≤ i) {p : ℕ}
+    (hpstart : IsCompStart lam (rotWord w j) p) (hp0 : p ≠ 0) (hpi : p ≠ i - j) :
+    ∃ q : ℕ, IsCompStart lam w q ∧ q ≠ i ∧
+      vertex (vertex v w j) (rotWord w j) p = vertex v w q := by
+  have hik : i < k := hcomp.1
+  have hkw : k ≤ w.length := hcomp.2.1
+  have hjw : j ≤ w.length := by omega
+  have hlen : (rotWord w j).length = w.length := length_rotWord w hjw
+  obtain ⟨p2, hp2⟩ := hpstart
+  have hp12 : p < p2 := hp2.1
+  have hp2len : p2 ≤ (rotWord w j).length := hp2.2.1
+  have hprange := hp2.2.2.1
+  have hpprev := hp2.2.2.2.1
+  have hplen : p < (rotWord w j).length := by omega
+  have hcp := hprange p le_rfl hp12 hplen
+  have hp1len : p - 1 < (rotWord w j).length := by omega
+  have hprevn := hpprev (p - 1) (by omega) hp1len
+  rcases Nat.lt_or_ge p (w.length - j) with hlt | hge
+  · -- before the seam
+    rw [getElem_rotWord_lt w hjw p (j + p) rfl hlt hplen (by omega)] at hcp
+    refine ⟨j + p, ?_, by omega, vertex_rotWord_le v w hjw p (by omega)⟩
+    obtain ⟨i₀, k₀, hi₀le, hjk₀, hcomp₀⟩ :=
+      exists_isComp_of_isCompOf lam w (j + p) (by omega) hcp
+    have hi₀ : i₀ = j + p := by
+      by_contra hne
+      have hprevw := hcomp₀.2.2.1 (j + (p - 1)) (by omega) (by omega) (by omega)
+      rw [getElem_rotWord_lt w hjw (p - 1) (j + (p - 1)) rfl (by omega) hp1len
+        (by omega)] at hprevn
+      exact hprevn hprevw
+    exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
+  · -- at or after the seam
+    have hpr : p = w.length - j + (p - (w.length - j)) := by omega
+    have hrlt : p - (w.length - j) < j := by omega
+    rw [getElem_rotWord_add w hjw p (p - (w.length - j)) hpr hrlt hplen
+      (by omega)] at hcp
+    refine ⟨p - (w.length - j), ?_, by omega,
+      vertex_rotWord_add v w hjw hclosed p (p - (w.length - j)) hpr (by omega)⟩
+    obtain ⟨i₀, k₀, hi₀le, hjk₀, hcomp₀⟩ :=
+      exists_isComp_of_isCompOf lam w (p - (w.length - j)) (by omega) hcp
+    have hi₀ : i₀ = p - (w.length - j) := by
+      rcases Nat.eq_zero_or_pos (p - (w.length - j)) with h0 | hpos
+      · -- the seam itself: the run starts at `0` of `w`, which has no predecessor
+        omega
+      · by_contra hne
+        have hprevw := hcomp₀.2.2.1 (p - (w.length - j) - 1) (by omega) (by omega)
+          (by omega)
+        rw [getElem_rotWord_add w hjw (p - 1) (p - (w.length - j) - 1) (by omega)
+          (by omega) hp1len (by omega)] at hprevn
+        exact hprevn hprevw
+    exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
+
+/-- **Every other component start of the rotated word comes from one of `w`, at
+the same vertex.**  The case `j = i` of `exists_isCompStart_of_rotWord_of_le`,
+where the two excluded indices coincide. -/
 theorem exists_isCompStart_of_rotWord (D : RelGenSet G Λ) (lam : Λ) (v : G)
     {w : List (RelLetter G Λ)} (_hlet : ∀ a ∈ w, D.IsLetter a)
     (hclosed : RelLetter.listVal w = 1) {i k : ℕ} (hcomp : IsComp lam w i k)
     {j : ℕ} (hjstart : IsCompStart lam (rotWord w i) j) (hj0 : j ≠ 0) :
     ∃ p : ℕ, IsCompStart lam w p ∧ p ≠ i ∧
-      vertex (vertex v w i) (rotWord w i) j = vertex v w p := by
+      vertex (vertex v w i) (rotWord w i) j = vertex v w p :=
+  exists_isCompStart_of_rotWord_of_le D lam v hclosed hcomp le_rfl hjstart hj0
+    (by omega)
+
+/-- **Rotation at any index at or before the component preserves isolatedness.**
+
+Two cases.  A rotated component start `p ≥ 1` comes from a component start of `w`
+at the same vertex, so a connection in the rotated word is one in `w`.  A rotated
+component start at `p = 0` is the `w`-run through the rotation point `j`, whose
+own start may lie before `j`; there the vertex is not preserved, but the coset is,
+and that is all isolatedness needs — the start of that run is `Connected` to `j`
+by `span_mem_fam`, so a connection to the distinguished component composes into
+one in `w`.  It is `hpi` that keeps that run from being the distinguished one:
+`p = 0` with `j = i` would be the excluded index. -/
+theorem isIsolated_rotWord_of_le (D : RelGenSet G Λ) (lam : Λ) (v : G)
+    {w : List (RelLetter G Λ)} (hlet : ∀ a ∈ w, D.IsLetter a)
+    (hclosed : RelLetter.listVal w = 1) {i k j : ℕ} (hcomp : IsComp lam w i k)
+    (hiso : IsIsolated D.fam lam v w i) (hji : j ≤ i) (hjw : j ≤ w.length)
+    (hwrap : ∀ h0 : 0 < w.length, k = w.length → ¬ (w[0]'h0).IsCompOf lam) :
+    IsIsolated D.fam lam (vertex v w j) (rotWord w j) (i - j) := by
   have hik : i < k := hcomp.1
   have hkw : k ≤ w.length := hcomp.2.1
-  have hi : i ≤ w.length := by omega
-  have hlen : (rotWord w i).length = w.length := length_rotWord w hi
-  obtain ⟨j2, hj2⟩ := hjstart
-  have hj12 : j < j2 := hj2.1
-  have hj2len : j2 ≤ (rotWord w i).length := hj2.2.1
-  have hjrange := hj2.2.2.1
-  have hjprev := hj2.2.2.2.1
-  have hjlen : j < (rotWord w i).length := by omega
-  have hcj := hjrange j le_rfl hj12 hjlen
-  have hj1len : j - 1 < (rotWord w i).length := by omega
-  have hprevn := hjprev (j - 1) (by omega) hj1len
-  rcases Nat.lt_or_ge j (w.length - i) with hlt | hge
-  · -- before the seam
-    rw [getElem_rotWord_lt w hi j (i + j) rfl hlt hjlen (by omega)] at hcj
-    refine ⟨i + j, ?_, by omega, vertex_rotWord_le v w hi j (by omega)⟩
+  have hlen : (rotWord w j).length = w.length := length_rotWord w hjw
+  have hvi : vertex (vertex v w j) (rotWord w j) (i - j) = vertex v w i := by
+    rw [vertex_rotWord_le v w hjw (i - j) (by omega),
+      show j + (i - j) = i from by omega]
+  refine ⟨⟨k - j, isComp_rotWord_of_le lam hcomp hji hjw hwrap⟩, ?_⟩
+  intro p hpi hpstart hconn
+  have hmem : (vertex (vertex v w j) (rotWord w j) (i - j))⁻¹ *
+      vertex (vertex v w j) (rotWord w j) p ∈ D.fam lam := hconn
+  rcases Nat.eq_zero_or_pos p with hp0 | hppos
+  · -- the run through the rotation point: the coset is preserved, the vertex is not
+    subst hp0
+    have hjlt : j < w.length := by omega
+    have hv0 : vertex (vertex v w j) (rotWord w j) 0 = vertex v w j := by
+      rw [vertex_rotWord_le v w hjw 0 (by omega), Nat.add_zero]
+    obtain ⟨p2, hp2⟩ := hpstart
+    have hcj : (w[j]'hjlt).IsCompOf lam := by
+      have h := hp2.2.2.1 0 le_rfl hp2.1 (by omega)
+      rwa [getElem_rotWord_lt w hjw 0 (j + 0) rfl (by omega) (by omega)
+        (by omega)] at h
     obtain ⟨i₀, k₀, hi₀le, hjk₀, hcomp₀⟩ :=
-      exists_isComp_of_isCompOf lam w (i + j) (by omega) hcj
-    have hi₀ : i₀ = i + j := by
-      by_contra hne
-      have hprevw := hcomp₀.2.2.1 (i + (j - 1)) (by omega) (by omega) (by omega)
-      rw [getElem_rotWord_lt w hi (j - 1) (i + (j - 1)) rfl (by omega) hj1len
-        (by omega)] at hprevn
-      exact hprevn hprevw
-    exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
-  · -- at or after the seam
-    have hjr : j = w.length - i + (j - (w.length - i)) := by omega
-    have hrlt : j - (w.length - i) < i := by omega
-    rw [getElem_rotWord_add w hi j (j - (w.length - i)) hjr hrlt hjlen
-      (by omega)] at hcj
-    refine ⟨j - (w.length - i), ?_, by omega,
-      vertex_rotWord_add v w hi hclosed j (j - (w.length - i)) hjr (by omega)⟩
-    obtain ⟨i₀, k₀, hi₀le, hjk₀, hcomp₀⟩ :=
-      exists_isComp_of_isCompOf lam w (j - (w.length - i)) (by omega) hcj
-    have hi₀ : i₀ = j - (w.length - i) := by
-      rcases Nat.eq_zero_or_pos (j - (w.length - i)) with h0 | hpos
-      · -- the seam itself: the run starts at `0` of `w`, which has no predecessor
-        omega
-      · by_contra hne
-        have hprevw := hcomp₀.2.2.1 (j - (w.length - i) - 1) (by omega) (by omega)
-          (by omega)
-        rw [getElem_rotWord_add w hi (j - 1) (j - (w.length - i) - 1) (by omega)
-          (by omega) hj1len (by omega)] at hprevn
-        exact hprevn hprevw
-    exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
+      exists_isComp_of_isCompOf lam w j hjlt hcj
+    have hconn₀ : (vertex v w i₀)⁻¹ * vertex v w j ∈ D.fam lam :=
+      span_mem_fam D lam v hlet j (by omega) i₀ hi₀le
+        (fun m hm1 hm2 hm3 => hcomp₀.2.2.1 m hm1 (by omega) hm3)
+    rw [hvi, hv0] at hmem
+    refine hiso.2 i₀ (by omega) ⟨k₀, hcomp₀⟩ ?_
+    have hrw : (vertex v w i)⁻¹ * vertex v w i₀
+        = ((vertex v w i)⁻¹ * vertex v w j) *
+          ((vertex v w i₀)⁻¹ * vertex v w j)⁻¹ := by
+      group
+    show (vertex v w i)⁻¹ * vertex v w i₀ ∈ D.fam lam
+    rw [hrw]
+    exact mul_mem hmem (inv_mem hconn₀)
+  · -- every other rotated start comes from one of `w` at the same vertex
+    obtain ⟨q, hqstart, hqi, hvq⟩ :=
+      exists_isCompStart_of_rotWord_of_le D lam v hclosed hcomp hji hpstart
+        (by omega) hpi
+    rw [hvi, hvq] at hmem
+    exact hiso.2 q hqi hqstart hmem
 
-/-- **Rotation preserves isolatedness of the distinguished component.**
-
-No lower bound on `i` is needed: at `i = 0` the rotation is `w ++ []` and the
-statement is the hypothesis.  `0 < i` is needed only to *derive* `hwrap`, in
-`notMem_wrap_of_isIsolated`, and a caller at `i = 0` supplies it another way —
-vacuously if `k < w.length`, and if `k = w.length` the component is the whole
-closed word, whose span is `1`. -/
+/-- **Rotation preserves isolatedness of the distinguished component.**  The case
+`j = i` of `isIsolated_rotWord_of_le`. -/
 theorem isIsolated_rotWord (D : RelGenSet G Λ) (lam : Λ) (v : G)
     {w : List (RelLetter G Λ)} (hlet : ∀ a ∈ w, D.IsLetter a)
     (hclosed : RelLetter.listVal w = 1) {i k : ℕ} (hcomp : IsComp lam w i k)
@@ -278,16 +364,9 @@ theorem isIsolated_rotWord (D : RelGenSet G Λ) (lam : Λ) (v : G)
     IsIsolated D.fam lam (vertex v w i) (rotWord w i) 0 := by
   have hik : i < k := hcomp.1
   have hkw : k ≤ w.length := hcomp.2.1
-  have hiw : i ≤ w.length := by omega
-  refine ⟨⟨k - i, isComp_rotWord lam hcomp hiw hwrap⟩, ?_⟩
-  intro j hj0 hjstart hconn
-  obtain ⟨p, hpstart, hpi, hvp⟩ :=
-    exists_isCompStart_of_rotWord D lam v hlet hclosed hcomp hjstart hj0
-  -- the connection transfers to `w`, where isolatedness forbids it
-  have hmem : (vertex (vertex v w i) (rotWord w i) 0)⁻¹ *
-      vertex (vertex v w i) (rotWord w i) j ∈ D.fam lam := hconn
-  rw [vertex_rotWord_le v w hiw 0 (Nat.zero_le _), hvp, Nat.add_zero] at hmem
-  exact hiso.2 p hpi hpstart hmem
+  have h := isIsolated_rotWord_of_le D lam v hlet hclosed hcomp hiso le_rfl
+    (by omega) hwrap
+  rwa [Nat.sub_self] at h
 
 end OsinComponents
 end GGT
