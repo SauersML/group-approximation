@@ -236,7 +236,7 @@ seam needs no separate case, because a run starting exactly at `m` has `w[m-1]`
 before it in the joined word, and that letter not being a `lam`-letter is what
 makes `0` a component start of the chord.  A run may straddle the seam, and then
 its start is in the `w` half, which is the first case. -/
-theorem exists_isCompStart_of_joinWord (D : RelGenSet G Λ) (lam : Λ) (v : G)
+theorem exists_isCompStart_of_joinWord (_D : RelGenSet G Λ) (lam : Λ) (_v : G)
     {w : List (RelLetter G Λ)} {m : ℕ} {q : List (RelLetter G Λ)}
     (hm : m ≤ w.length) {p : ℕ}
     (hpstart : IsCompStart lam (joinWord w m q) p) :
