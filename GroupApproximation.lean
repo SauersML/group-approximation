@@ -2620,6 +2620,7 @@ import GroupApproximation.GGT.OsinTheorem54SepDistSuffix
 import GroupApproximation.GGT.DGOIsolatedComponentCut
 import GroupApproximation.Analysis.ShulmanFillNormingFactorMapComp
 import GroupApproximation.GGT.DGOTwoConnectorSplice
+import GroupApproximation.GGT.OsinTheorem54SepDistStep
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
