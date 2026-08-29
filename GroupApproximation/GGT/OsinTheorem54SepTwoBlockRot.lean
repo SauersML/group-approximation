@@ -28,18 +28,25 @@ produced here rather than assumed:
   `q`, which lies before it;
 * the connectedness and the two vertex identifications --- `vertex_rotWord_le`
   and `vertex_rotWord_add`, the second of which is where the closing relation is
-  spent.
+  spent;
+* the innermost clause of the second reading, translated out of the rotated
+  word's coordinates by `exists_isCompStart_of_rotWord_of_le`, so that the
+  caller states it about `p ++ q ++ r ++ revWord s` and never meets `rotWord`
+  at all.
 
 ## What is still assumed, and why it is not a debt
 
-The innermost clause of the second reading.  It says that no component start
-lying in the OTHER arc --- the one running from the end of the `s`-component,
-through the basepoint, to the start of the `q`-component --- is connected to the
-`s`-component.  That is information about the configuration, not about the
-geometry: it is the same kind of hypothesis as the innermost clause of the first
-reading, which `DGOIsolatedComponentCut.connector_mem_relBall` requires and
-which no theorem supplies either.  It is stated in the rotated word's own
-coordinates because that is where the cut bound reads it.
+The innermost clause itself, in the caller's own coordinates: no component start
+of the quadrilateral lying in the OTHER arc --- past the `s`-component, through
+the end of the word and back to the start of the `q`-component --- is connected
+to the `s`-component.  The two ranges of that hypothesis are exactly the two
+halves of the rotated word, which is why the translation is an implication and
+not an accident.
+
+That is information about the configuration, not about the geometry: the same
+kind of hypothesis as the innermost clause of the first reading, which
+`DGOIsolatedComponentCut.connector_mem_relBall` requires and which no theorem
+supplies either.
 
 `0 < p.length` is the other addition, and it is one hypothesis doing two jobs:
 it puts a base letter at the polygon's basepoint, which is what stops the
@@ -99,26 +106,20 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
           IsCompStart lam (p ++ q ++ r ++ revWord s) t →
           ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
             (p.length + i) t) →
-        (∀ t : ℕ,
-          p.length + q.length + r.length + (s.length - l)
-              - (p.length + q.length) < t →
-          t < (p ++ q ++ r ++ revWord s).length - (p.length + q.length)
-              + (p.length + i) →
-          IsCompStart lam
-            (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length)) t →
-          ¬ Connected D.fam lam
-              (vertex (1 : G) (p ++ q ++ r ++ revWord s)
-                (p.length + q.length))
-              (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length))
-              (p.length + q.length + r.length + (s.length - l)
-                - (p.length + q.length)) t) →
+        (∀ o : ℕ,
+          (p.length + q.length + r.length + (s.length - l) < o
+              ∧ o < (p ++ q ++ r ++ revWord s).length)
+            ∨ o < p.length + i →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) o →
+          ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+            (p.length + q.length + r.length + (s.length - l)) o) →
         ∃ x x' : G, x ∈ D.relBall lam (C * 4) ∧ x' ∈ D.relBall lam (C * 4) ∧
           x * ((vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k) * x'
             = (vertex (1 : G) s j)⁻¹ * vertex (1 : G) s l := by
   obtain ⟨C, hCpos, hC⟩ := connector_mem_relBall D hbound mu b hmu hb
   refine ⟨C, hCpos, ?_⟩
   intro p q r s i k j l hclose hlet hp hr hp0 hqg hcompq hkq hcomps hlq hconn
-    hinner hinner₂
+    hinner hother
   -- the polygon, and the same polygon read from the corner between `q` and `r`
   have hpoly := isQuasiGeodesicPolygon_fourGon p q r s D hlet hclose hqg
   have hpoly₂ := isQuasiGeodesicPolygon_fourGon_rot p q r s D hlet hclose hqg
@@ -142,19 +143,26 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
   have hrotS := isComp_rotWord_after lam hcW hbridges (by omega) hwrap
   have hrotQ := isComp_rotWord_before lam hcW hbridgeq (by omega) (by omega)
   -- the three vertex identifications
+  have hvSw : vertex (vertex (1 : G) (p ++ q ++ r ++ revWord s)
+        (p.length + q.length))
+      (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length))
+      (p.length + q.length + r.length + (s.length - l)
+        - (p.length + q.length))
+      = vertex (1 : G) (p ++ q ++ r ++ revWord s)
+        (p.length + q.length + r.length + (s.length - l)) := by
+    rw [vertex_rotWord_le 1 (p ++ q ++ r ++ revWord s) hcW
+        (p.length + q.length + r.length + (s.length - l)
+          - (p.length + q.length)) (by omega),
+      show p.length + q.length + (p.length + q.length + r.length
+          + (s.length - l) - (p.length + q.length))
+        = p.length + q.length + r.length + (s.length - l) from by omega]
   have hvS : vertex (vertex (1 : G) (p ++ q ++ r ++ revWord s)
         (p.length + q.length))
       (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length))
       (p.length + q.length + r.length + (s.length - l)
         - (p.length + q.length))
       = vertex (1 : G) s l := by
-    rw [vertex_rotWord_le 1 (p ++ q ++ r ++ revWord s) hcW
-        (p.length + q.length + r.length + (s.length - l)
-          - (p.length + q.length)) (by omega),
-      show p.length + q.length + (p.length + q.length + r.length
-          + (s.length - l) - (p.length + q.length))
-        = p.length + q.length + r.length + (s.length - l) from by omega,
-      vertex_fourGon_opposite_closed p q r s hclose l]
+    rw [hvSw, vertex_fourGon_opposite_closed p q r s hclose l]
   have hvE : vertex (vertex (1 : G) (p ++ q ++ r ++ revWord s)
         (p.length + q.length))
       (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length))
@@ -210,6 +218,33 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
   have hflip1 := connector_inv_mem_relBall D lam hsymm happ1
   rw [vertex_fourGon_side p q r s 1 hkle, one_mul,
     vertex_fourGon_opposite_closed p q r s hclose l] at hflip1
+  -- the other arc's clause, carried into the rotated reading
+  have hinner₂ : ∀ t : ℕ,
+      p.length + q.length + r.length + (s.length - l)
+          - (p.length + q.length) < t →
+      t < (p ++ q ++ r ++ revWord s).length - (p.length + q.length)
+          + (p.length + i) →
+      IsCompStart lam
+        (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length)) t →
+      ¬ Connected D.fam lam
+          (vertex (1 : G) (p ++ q ++ r ++ revWord s) (p.length + q.length))
+          (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length))
+          (p.length + q.length + r.length + (s.length - l)
+            - (p.length + q.length)) t := by
+    intro t ht1 ht2 hstart hconnt
+    obtain ⟨o, hostart, hbranch, hvo⟩ :=
+      exists_isCompStart_of_rotWord_of_le lam 1 hclosedW hcW hstart (by omega)
+    have hmem : (vertex (vertex (1 : G) (p ++ q ++ r ++ revWord s)
+          (p.length + q.length))
+        (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length))
+        (p.length + q.length + r.length + (s.length - l)
+          - (p.length + q.length)))⁻¹ *
+        vertex (vertex (1 : G) (p ++ q ++ r ++ revWord s)
+            (p.length + q.length))
+          (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length)) t
+        ∈ D.fam lam := hconnt
+    rw [hvSw, hvo] at hmem
+    exact hother o (by omega) hostart hmem
   -- the gap through the basepoint, in the rotated reading
   have happ2 := hC 4 (by omega)
     (vertex (1 : G) (p ++ q ++ r ++ revWord s) (p.length + q.length))

@@ -106,6 +106,74 @@ theorem notIsCompOf_fourGon_zero (p q r s : List (RelLetter G Λ)) (lam : Λ)
   rw [hx] at hc
   exact hc
 
+
+/-! ## Component starts, from the rotated word back to the word -/
+
+/-- **Every component start of the rotated word, other than the seam's own, is a
+component start of `w` at the corresponding index.**
+
+This is `DGOIsolatedComponentRotate.exists_isCompStart_of_rotWord` with two
+changes, and it should replace it: its hypothesis `IsComp lam w i k` --- a
+component AT the rotation point --- is used in that proof for nothing but
+`i ≤ w.length`, which is all that is assumed here; and the conclusion keeps the
+branch, so a caller learns WHERE the index came from and can place it in an arc.
+Without that the correspondence is unusable for anything but isolation, where
+every index is equally forbidden.
+
+The proof is fp-geometry's, unchanged: before the seam the correspondence is
+`j ↦ i + j` and the previous letter is the previous letter; after it,
+`j ↦ j - (|w| - i)`; and at the seam itself the index is `0` of `w`, which
+starts a component because nothing precedes it. -/
+theorem exists_isCompStart_of_rotWord_of_le (lam : Λ) (v : G)
+    {w : List (RelLetter G Λ)} (hclosed : RelLetter.listVal w = 1) {i : ℕ}
+    (hi : i ≤ w.length) {j : ℕ} (hjstart : IsCompStart lam (rotWord w i) j)
+    (hj0 : j ≠ 0) :
+    ∃ o : ℕ, IsCompStart lam w o ∧
+      ((j < w.length - i ∧ o = i + j)
+        ∨ (w.length - i ≤ j ∧ o = j - (w.length - i))) ∧
+      vertex (vertex v w i) (rotWord w i) j = vertex v w o := by
+  have hlen : (rotWord w i).length = w.length := length_rotWord w hi
+  obtain ⟨j2, hj2⟩ := hjstart
+  have hj12 : j < j2 := hj2.1
+  have hj2len : j2 ≤ (rotWord w i).length := hj2.2.1
+  have hjrange := hj2.2.2.1
+  have hjprev := hj2.2.2.2.1
+  have hjlen : j < (rotWord w i).length := by omega
+  have hcj := hjrange j le_rfl hj12 hjlen
+  have hj1len : j - 1 < (rotWord w i).length := by omega
+  have hprevn := hjprev (j - 1) (by omega) hj1len
+  rcases Nat.lt_or_ge j (w.length - i) with hlt | hge
+  · rw [getElem_rotWord_lt w hi j (i + j) rfl hlt hjlen (by omega)] at hcj
+    refine ⟨i + j, ?_, Or.inl ⟨hlt, rfl⟩,
+      vertex_rotWord_le v w hi j (by omega)⟩
+    obtain ⟨i₀, k₀, hi₀le, hjk₀, hcomp₀⟩ :=
+      exists_isComp_of_isCompOf lam w (i + j) (by omega) hcj
+    have hi₀ : i₀ = i + j := by
+      by_contra hne
+      have hprevw := hcomp₀.2.2.1 (i + (j - 1)) (by omega) (by omega) (by omega)
+      rw [getElem_rotWord_lt w hi (j - 1) (i + (j - 1)) rfl (by omega) hj1len
+        (by omega)] at hprevn
+      exact hprevn hprevw
+    exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
+  · have hjr : j = w.length - i + (j - (w.length - i)) := by omega
+    have hrlt : j - (w.length - i) < i := by omega
+    rw [getElem_rotWord_add w hi j (j - (w.length - i)) hjr hrlt hjlen
+      (by omega)] at hcj
+    refine ⟨j - (w.length - i), ?_, Or.inr ⟨hge, rfl⟩,
+      vertex_rotWord_add v w hi hclosed j (j - (w.length - i)) hjr (by omega)⟩
+    obtain ⟨i₀, k₀, hi₀le, hjk₀, hcomp₀⟩ :=
+      exists_isComp_of_isCompOf lam w (j - (w.length - i)) (by omega) hcj
+    have hi₀ : i₀ = j - (w.length - i) := by
+      rcases Nat.eq_zero_or_pos (j - (w.length - i)) with h0 | hpos
+      · omega
+      · by_contra hne
+        have hprevw := hcomp₀.2.2.1 (j - (w.length - i) - 1) (by omega)
+          (by omega) (by omega)
+        rw [getElem_rotWord_add w hi (j - 1) (j - (w.length - i) - 1) (by omega)
+          (by omega) hj1len (by omega)] at hprevn
+        exact hprevn hprevw
+    exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
+
 end OsinComponents
 end GGT
 end GroupApproximation
