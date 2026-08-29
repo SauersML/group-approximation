@@ -280,7 +280,9 @@ theorem isWPDAt_of_pairStab_zero_finite (hH : H.IsTree)
     (hfin : (pairStab Γ 0 (TreeSpace.of hH x)
       ((g ^ N) • TreeSpace.of hH x)).Finite) :
     IsWPDAt g (TreeSpace.of hH x) := by
-  refine isWPDAt_of_axis_pairStab_finite hH hiso hℓ haxis ?_
+  -- `N` occurs only in the finiteness hypothesis, which is the hole, so it is
+  -- not determined by unification and has to be given.
+  refine isWPDAt_of_axis_pairStab_finite (N := N) hH hiso hℓ haxis ?_
   refine hfin.subset ?_
   intro k hk
   exact (mem_pairStab_zero_tree (u := x) (w := (g ^ N) • x) hH).2 hk
