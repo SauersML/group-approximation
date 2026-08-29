@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyIface
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyMatch
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNarrow
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNarrowGap
@@ -8,18 +9,15 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNarrowGap
 Both sides of the isolated-component bound now stand on four-point
 hyperbolicity of the RELATIVE Cayley graph `Γ(G, X ⊔ ℋ)` --- the object
 hyperbolic embeddedness is defined against, not `Γ(G, X)`.  These are the two
-entry points in that shape, so that the wrapper above them names `hδ` and
-nothing else geometric.
+producers in that shape, so that everything above them names `hδ` and nothing
+else geometric.
 
-* `exists_deep_match_hyp` --- the match side, through
-  `GGT.OsinComponents.exists_other_component_of_deep_six_hyp`.  The constant the
-  tower supplies does not depend on the index, so the maximum over `Bool` is a
-  formality; it is kept only so that this and the `hbound` version have the same
-  shape.
-* `exists_eps_matchedPair_hyp` --- the gap side, through
-  `GGT.OsinComponents.two_block_conj_named_hyp`, with the polygon's two
-  configuration clauses discharged from the two same-side exclusions on the way
-  past.
+Each returns one of the two interfaces of
+`GGT/HullSCRelatorSeparation2ApplyIface.lean`, which is the whole point: the
+consumers name the same two interfaces, so producer and consumer cannot drift
+apart.  They did drift once --- the quasi-geodesic constant was written `0` in
+five restatements while the producer delivered `|p| + c` --- and every file
+still compiled, because a hypothesis is a hypothesis.
 
 Both fix `mu = 1` and `b` natural, which is what the block-count route gives and
 what the tower proves; the multiplicative case is not reachable and is not
@@ -38,29 +36,15 @@ section Entry
 
 variable {G : Type u} [Group G]
 
-/-- **The match side, with four-point hyperbolicity in place of the bound.** -/
+/-- **The match side, with four-point hyperbolicity in place of the bound.**
+
+The constant the tower supplies does not depend on the index, so the maximum
+over `Bool` is a formality; it is kept so that this and the `hbound` version
+have the same shape. -/
 theorem exists_deep_match_hyp (D : RelGenSet G Bool)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (bn : ℕ)
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) :
-    ∃ C : ℕ, 0 < C ∧
-      ∀ (lam : Bool) (rho : ℕ) (p q r s : List (RelLetter G Bool)) (i : ℕ),
-        C * 4 ≤ rho →
-        RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q
-            * RelLetter.listVal r →
-        (∀ x ∈ p, ∃ g : G, x = RelLetter.base g) →
-        (∀ x ∈ r, ∃ g : G, x = RelLetter.base g) →
-        0 < r.length →
-        IsQuasiGeodesicPolygon D 1 (bn : ℝ) 4 1 (p ++ q ++ r ++ revWord s) →
-        IsComp lam q i (i + 1) →
-        (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q (i + 1)
-          ∉ D.relBall lam rho →
-        (∀ i' : ℕ, i' ≤ q.length → i' ≠ i →
-          (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' ∉ D.fam lam) →
-        ∃ j : ℕ, 0 < j ∧ j ≤ s.length ∧
-          (∃ x : G, s[j - 1]? = some (RelLetter.comp lam x)) ∧
-          ∃ h : G, h ∈ D.fam lam ∧
-            RelLetter.listVal p * vertex (1 : G) q i * h
-              = vertex (1 : G) s j := by
+    ∃ C : ℕ, 0 < C ∧ DeepMatchOutput D C bn := by
   obtain ⟨C₀, h₀, hC₀⟩ :=
     exists_other_component_of_deep_six_hyp D false hsymm bn hδ
   obtain ⟨C₁, h₁, hC₁⟩ :=
@@ -93,36 +77,14 @@ theorem exists_deep_match_hyp (D : RelGenSet G Bool)
   exact ⟨j, hj0, hj,
     exists_comp_of_isCompStart_rev p q r s lam hj0 hj hstart, hconn⟩
 
-/-- **The gap side, with four-point hyperbolicity in place of the bound.** -/
+/-- **The gap side, with four-point hyperbolicity in place of the bound.**
+
+The polygon's two configuration clauses are discharged from the two same-side
+exclusions on the way past, so they never reach a caller. -/
 theorem exists_eps_matchedPair_hyp (D : RelGenSet G Bool)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (bn : ℕ)
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) :
-    ∃ eps : ℕ, 0 < eps ∧
-      ∀ (lam : Bool) (p q r s : List (RelLetter G Bool)) (i j : ℕ),
-        RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q
-            * RelLetter.listVal r →
-        (∀ a ∈ p ++ q ++ r ++ revWord s, D.IsLetter a) →
-        (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
-        (∀ a ∈ r, ∃ x : G, a = RelLetter.base x) →
-        0 < p.length →
-        (∀ t : ℕ, t < 4 → ∀ x y : ℕ, fourGonCut p q r s t ≤ x → x ≤ y →
-          y ≤ fourGonCut p q r s (t + 1) →
-          ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
-            ≤ ((wordDist D.alphabet.carrier
-                (vertex (1 : G) (p ++ q ++ r ++ revWord s) x)
-                (vertex (1 : G) (p ++ q ++ r ++ revWord s) y) : ℕ) : ℝ)) →
-        IsComp lam q i (i + 1) → (i + 1 < q.length ∨ 0 < r.length) →
-        IsComp lam s j (j + 1) → (j + 1 < s.length ∨ 0 < r.length) →
-        Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
-            (p.length + q.length + r.length + (s.length - (j + 1))) →
-        (∀ i' : ℕ, i' ≤ q.length → i' ≠ i →
-          (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' ∉ D.fam lam) →
-        (∀ m : ℕ, m ≤ s.length → m ≠ j + 1 →
-          (vertex (1 : G) s (j + 1))⁻¹ * vertex (1 : G) s m ∉ D.fam lam) →
-        ((vertex (1 : G) s j)⁻¹ * (RelLetter.listVal p * vertex (1 : G) q i)
-            ∈ D.relBall lam eps) ∧
-          ((RelLetter.listVal p * vertex (1 : G) q (i + 1))⁻¹ *
-            vertex (1 : G) s (j + 1) ∈ D.relBall lam eps) := by
+    ∃ eps : ℕ, 0 < eps ∧ MatchedPairOutput D eps bn := by
   obtain ⟨C, hC0, hC⟩ := two_block_conj_named_hyp D hsymm bn hδ
   refine ⟨C * 4, by omega, ?_⟩
   intro lam p q r s i j hclose hlet hp hr hp0 hqg hcompq hkq hcomps hlq hmatch

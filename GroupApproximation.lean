@@ -2698,6 +2698,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNarrowPair
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyPiece
 import GroupApproximation.Analysis.ShulmanFillNormingTailPrintedPair
 import GroupApproximation.Analysis.ShulmanFillNormingTailRecognition
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyIface
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyIface
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyDispatch
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyExp
 
@@ -133,41 +134,7 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
     (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
-    (hpair : ∀ (lam : Bool) (P Q R S : List (GGT.RelLetter G Bool)) (i j : ℕ),
-      GGT.RelLetter.listVal S = GGT.RelLetter.listVal P *
-          GGT.RelLetter.listVal Q * GGT.RelLetter.listVal R →
-      (∀ x ∈ P ++ Q ++ R ++ GGT.OsinComponents.revWord S, D.IsLetter x) →
-      (∀ x ∈ P, ∃ g : G, x = GGT.RelLetter.base g) →
-      (∀ x ∈ R, ∃ g : G, x = GGT.RelLetter.base g) →
-      0 < P.length →
-      (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
-        GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
-        y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
-          ≤ ((wordDist D.alphabet.carrier
-              (GGT.OsinComponents.vertex (1 : G)
-                (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
-              (GGT.OsinComponents.vertex (1 : G)
-                (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) y) : ℕ) : ℝ)) →
-      GGT.OsinComponents.IsComp lam Q i (i + 1) →
-      (i + 1 < Q.length ∨ 0 < R.length) →
-      GGT.OsinComponents.IsComp lam S j (j + 1) →
-      (j + 1 < S.length ∨ 0 < R.length) →
-      GGT.OsinComponents.Connected D.fam lam 1
-          (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) (P.length + i)
-          (P.length + Q.length + R.length + (S.length - (j + 1))) →
-      (∀ i' : ℕ, i' ≤ Q.length → i' ≠ i →
-        (GGT.OsinComponents.vertex (1 : G) Q i)⁻¹ *
-          GGT.OsinComponents.vertex (1 : G) Q i' ∉ D.fam lam) →
-      (∀ m : ℕ, m ≤ S.length → m ≠ j + 1 →
-        (GGT.OsinComponents.vertex (1 : G) S (j + 1))⁻¹ *
-          GGT.OsinComponents.vertex (1 : G) S m ∉ D.fam lam) →
-      ((GGT.OsinComponents.vertex (1 : G) S j)⁻¹ *
-          (GGT.RelLetter.listVal P * GGT.OsinComponents.vertex (1 : G) Q i)
-          ∈ D.relBall lam eps) ∧
-        ((GGT.RelLetter.listVal P *
-            GGT.OsinComponents.vertex (1 : G) Q (i + 1))⁻¹ *
-          GGT.OsinComponents.vertex (1 : G) S (j + 1) ∈ D.relBall lam eps))
+    (hpair : GGT.OsinComponents.MatchedPairOutput D eps bn)
     {p : List G} {c c' d j : ℕ} (hp0 : 0 < p.length)
     {py pz u u' tl tl' : List (GGT.RelLetter G Bool)}
     (hw : (relatorWord₂ p (a false) (a true) ms).rotate c = u ++ tl)
@@ -259,41 +226,7 @@ theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
     (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
-    (hpair : ∀ (lam : Bool) (P Q R S : List (GGT.RelLetter G Bool)) (i j : ℕ),
-      GGT.RelLetter.listVal S = GGT.RelLetter.listVal P *
-          GGT.RelLetter.listVal Q * GGT.RelLetter.listVal R →
-      (∀ x ∈ P ++ Q ++ R ++ GGT.OsinComponents.revWord S, D.IsLetter x) →
-      (∀ x ∈ P, ∃ g : G, x = GGT.RelLetter.base g) →
-      (∀ x ∈ R, ∃ g : G, x = GGT.RelLetter.base g) →
-      0 < P.length →
-      (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
-        GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
-        y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
-          ≤ ((wordDist D.alphabet.carrier
-              (GGT.OsinComponents.vertex (1 : G)
-                (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
-              (GGT.OsinComponents.vertex (1 : G)
-                (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) y) : ℕ) : ℝ)) →
-      GGT.OsinComponents.IsComp lam Q i (i + 1) →
-      (i + 1 < Q.length ∨ 0 < R.length) →
-      GGT.OsinComponents.IsComp lam S j (j + 1) →
-      (j + 1 < S.length ∨ 0 < R.length) →
-      GGT.OsinComponents.Connected D.fam lam 1
-          (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) (P.length + i)
-          (P.length + Q.length + R.length + (S.length - (j + 1))) →
-      (∀ i' : ℕ, i' ≤ Q.length → i' ≠ i →
-        (GGT.OsinComponents.vertex (1 : G) Q i)⁻¹ *
-          GGT.OsinComponents.vertex (1 : G) Q i' ∉ D.fam lam) →
-      (∀ m : ℕ, m ≤ S.length → m ≠ j + 1 →
-        (GGT.OsinComponents.vertex (1 : G) S (j + 1))⁻¹ *
-          GGT.OsinComponents.vertex (1 : G) S m ∉ D.fam lam) →
-      ((GGT.OsinComponents.vertex (1 : G) S j)⁻¹ *
-          (GGT.RelLetter.listVal P * GGT.OsinComponents.vertex (1 : G) Q i)
-          ∈ D.relBall lam eps) ∧
-        ((GGT.RelLetter.listVal P *
-            GGT.OsinComponents.vertex (1 : G) Q (i + 1))⁻¹ *
-          GGT.OsinComponents.vertex (1 : G) S (j + 1) ∈ D.relBall lam eps))
+    (hpair : GGT.OsinComponents.MatchedPairOutput D eps bn)
     {p : List G} {c c' d j : ℕ} (hp0 : 0 < p.length)
     {py pz u u' tl tl' : List (GGT.RelLetter G Bool)}
     (hw : (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c
