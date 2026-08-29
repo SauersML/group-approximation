@@ -2512,6 +2512,8 @@ import GroupApproximation.Manuscript.MFRecognition.PrintedTarskiCertificateDeriv
 import GroupApproximation.Manuscript.MFRecognition.PrintedTarskiCertificateSyntax
 import GroupApproximation.Manuscript.MFRecognition.PrintedTarskiCertificateDecision
 import GroupApproximation.Manuscript.MFRecognition.PrintedTarskiCertificate
+import GroupApproximation.GGT.RelHypOsin24CayleyLeaf
+import GroupApproximation.GGT.RelHypOsin24CayleyEndpoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
