@@ -2572,6 +2572,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCoordinateCo
 import GroupApproximation.GGT.OsinTheorem54SepLemma55
 import GroupApproximation.GGT.OsinTheorem54SepLetterCount
 import GroupApproximation.Higman.OmegaFatShearedFirstSemanticMatched
+import GroupApproximation.GGT.OsinTheorem54SepOrder
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
