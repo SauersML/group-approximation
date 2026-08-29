@@ -1,5 +1,5 @@
-import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNamed
 import GroupApproximation.GGT.HullSCRelatorSeparation2OtherArc
+import GroupApproximation.GGT.OsinTheorem54SepTwoBlockRot
 
 /-!
 # The polygon, applied: the three shapes of step (c)
@@ -11,8 +11,8 @@ of the piece's two connectors.  Its two long sides are the matched prefixes, not
 single letters, and the matched pair is a block letter of `u` against a block
 letter of `u'`.
 
-`GGT.OsinComponents.two_block_conj_mem_relBall` puts both gaps of such a pair in
-a relative ball and, unlike the existential form, keeps their names:
+`GGT.OsinComponents.two_block_conj_named` puts both gaps of such a pair in a
+relative ball and, unlike the existential form, keeps their names:
 
 * `x  = (vertex 1 u' j)⁻¹ * (listVal py * vertex 1 u i)`, start to start;
 * `x' = (listVal py * vertex 1 u (i+1))⁻¹ * vertex 1 u' (j+1)`, end to end.
