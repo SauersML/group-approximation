@@ -2702,6 +2702,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyIface
 import GroupApproximation.Analysis.CStarInfiniteDimensionalGNS
 import GroupApproximation.Analysis.CStarInfiniteFaithfulRepresentation
 import GroupApproximation.Analysis.ShulmanFillNormingTailRoute
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyTwoBlock
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
