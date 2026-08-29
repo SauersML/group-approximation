@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2Ball
 import GroupApproximation.GGT.HullSCRelatorSeparation2MirrorClose
+import GroupApproximation.GGT.OsinTheorem54SepReversal
 
 /-!
 # The mirrored aligned case in ball currency
@@ -11,32 +12,20 @@ inverse, and one thing changes that is not bookkeeping.
 
 The letters of `RelWord.revInv` carry inverses, so the packaged theorem's
 relation arrives with an inverse on BOTH sides: `x · (a^e)⁻¹ · x' = (a^f)⁻¹`.
-Neither existing clause of the design is in that shape — the mirrored half of
-the separation clause is `x · a^i · x' ≠ (a^j)⁻¹`, with a direct power on the
-left — so this case needs the two inverted clauses `hsepInv` and `hdiagInv`,
-carried here as hypotheses.  They are genuine new obligations on the design, not
-restatements of old ones, and I would rather name them than quietly invert
-something.
+Neither clause of the design is in that shape -- the mirrored half of the
+separation clause is `x · a^i · x' ≠ (a^j)⁻¹`, with a direct power on the left.
 
-The word-norm route did not need them because a word norm is inversion
-invariant, so `GGT/HullSCRelatorSeparation2MirrorClose.lean` could invert the
-relation and use the direct clauses.  In ball currency that step needs the
-relative ball to be closed under inverses, which is TRUE but is a small theorem
-rather than a rewrite: for `x ∈ H_λ`, the word `revInv w` spells `x⁻¹`, is
-admissible when the base is symmetric, and still avoids `Γ_{H λ}` because its
-vertices are the original ones right-translated by `x⁻¹ ∈ H_λ`, which does not
-change whether a vertex lies in `H_λ`.  Either route closes the case; this file
-takes the one that adds hypotheses rather than the one that adds a theorem, so
-that whoever supplies the design decides which.
+Rather than burden the design with two more clauses, the relation is inverted:
+`x' ⁻¹ · a^e · x⁻¹ = a^f` is the direct shape, and the direct clauses apply to
+it once the two gaps are known to be in the ball again.  That is
+`inv_mem_relBall`, and it holds for the reason the relative metric is
+left-invariant on `H_λ`: the reversed word spells the inverse, is admissible
+when the base is symmetric, and avoids `Γ_{H λ}` from the far end exactly when
+the original avoids it from the near end -- `avoidsFrom_revWord` -- after which
+translating the basepoint back by `x⁻¹ ∈ H_λ` is `avoidsFrom_smul_left`.
 
-How it is produced, so that the obligation is not left vague: the inverted
-diagonal for `(x, x')` at `i` is the direct diagonal for `(x'⁻¹, x⁻¹)` at `i`,
-so the exponents it forbids are those of `HullSC.diagonalBad a (T ∪ T⁻¹)`, which
-is finite by `HullSC.finite_diagonalBad` — the ball need not be closed under
-inverses, since the union is finite either way — and the leaf that clause rests
-on extends to inverses by `Commute.inv_left`, an element and its inverse
-commuting with exactly the same things.  The greedy step then avoids it as it
-avoids the direct one.
+So the design owes nothing new, and the mirrored case runs on the same clauses
+as the direct one.
 -/
 
 namespace GroupApproximation
@@ -52,37 +41,63 @@ section MirrorBall
 
 variable {G : Type u} [Group G]
 
+/-- **The relative ball is closed under inverses.**
+
+The reversed word spells the inverse and is admissible when the base is
+symmetric; it avoids `Γ_{H λ}` from the far end exactly when the original avoids
+it from the near end, and the far end is `x`, which lies in `H λ`, so
+translating the basepoint back to `1` is left-invariance on `H λ`. -/
+theorem inv_mem_relBall {Λ : Type*} {D : GGT.RelGenSet G Λ} {lam : Λ} {n : ℕ}
+    (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base) {x : G} (hx : x ∈ D.relBall lam n) :
+    x⁻¹ ∈ D.relBall lam n := by
+  rw [GGT.RelGenSet.mem_relBall] at hx ⊢
+  obtain ⟨hfam, w, hlet, hval, havoid, hlen⟩ := hx
+  refine ⟨inv_mem hfam, GGT.OsinComponents.revWord w,
+    GGT.OsinComponents.isLetter_of_mem_revWord D hsymm hlet, ?_, ?_, ?_⟩
+  · rw [GGT.OsinComponents.listVal_revWord, hval]
+  · have hrev : GGT.AvoidsFrom D.fam lam
+        (GGT.OsinComponents.revWord w) x := by
+      have h := (GGT.OsinComponents.avoidsFrom_revWord D lam w hlet 1).mpr havoid
+      rwa [one_mul, hval] at h
+    have hshift := GGT.OsinComponents.avoidsFrom_smul_left (H := D.fam)
+      (lam := lam) (c := x⁻¹) (inv_mem hfam) (GGT.OsinComponents.revWord w) x
+    rw [inv_mul_cancel] at hshift
+    exact hshift.mpr hrev
+  · rw [GGT.OsinComponents.length_revWord]
+    exact hlen
+
 /-- **At a matched block of the mirrored aligned case the connectors are
 trivial**, from ball membership. -/
 theorem trivial_connector_of_mirroredAlignedMatch_ball
     {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ} {ms : List ℕ}
     {s : Bool}
-    (hsepInv : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x * (a t ^ i)⁻¹ * x' ≠ (a t ^ j)⁻¹)
-    (hdiagInv : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * (a t ^ i)⁻¹ * x' ≠ (a t ^ i)⁻¹)
+    (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base)
+    (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
+      ∀ x' ∈ D.relBall t eps,
+        x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
+    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
+      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' : G}
     (hx : x ∈ D.relBall s eps) (hx' : x' ∈ D.relBall s eps)
     (hconn : x * (a s ^ e)⁻¹ * x' = (a s ^ f)⁻¹) : e = f ∧ x = 1 ∧ x' = 1 := by
-  have hef : e = f := by
-    by_contra hij
-    exact hsepInv e he f hf hij s x hx x' hx' hconn
-  subst hef
-  have hx1 : x = 1 := by
-    by_contra hne
-    exact hdiagInv e he s x hx x' hx' hne hconn
-  refine ⟨rfl, hx1, ?_⟩
-  rw [hx1, one_mul] at hconn
-  exact mul_eq_left.mp hconn
+  have hinvrel : x'⁻¹ * a s ^ e * x⁻¹ = a s ^ f := by
+    have h := congrArg (fun g : G => g⁻¹) hconn
+    simpa [mul_inv_rev, mul_assoc] using h
+  obtain ⟨hef, hx'1, hx1⟩ :=
+    trivial_connector_of_alignedMatch_ball hsep hdiag he hf
+      (inv_mem_relBall hsymm hx') (inv_mem_relBall hsymm hx) hinvrel
+  exact ⟨hef, inv_eq_one.mp hx1, inv_eq_one.mp hx'1⟩
 
 /-- **The mirrored aligned case, closed from the packaged theorem's output.** -/
 theorem listVal_conj_of_mirroredAlignedMatch_ball {D : GGT.RelGenSet G Bool}
     {a : Bool → G} {eps : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
-    (hsepInv : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x * (a t ^ i)⁻¹ * x' ≠ (a t ^ j)⁻¹)
-    (hdiagInv : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * (a t ^ i)⁻¹ * x' ≠ (a t ^ i)⁻¹)
+    (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base)
+    (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
+      ∀ x' ∈ D.relBall t eps,
+        x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
+    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
+      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {p : List G} {c c' i j : ℕ}
     (hi : i < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     (hj : j < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
@@ -102,7 +117,7 @@ theorem listVal_conj_of_mirroredAlignedMatch_ball {D : GGT.RelGenSet G Bool}
       = y * GGT.RelLetter.listVal
           ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c) * y⁻¹ := by
   obtain ⟨hef, -, hx'1⟩ :=
-    trivial_connector_of_mirroredAlignedMatch_ball hsepInv hdiagInv he hf hx hx' hconn
+    trivial_connector_of_mirroredAlignedMatch_ball hsymm hsep hdiag he hf hx hx' hconn
   rw [hx'1, mul_one] at hy
   have hinj' : ∀ t : Bool,
       Function.Injective (fun n : ℕ => (if t then a true else a false) ^ n) := by
