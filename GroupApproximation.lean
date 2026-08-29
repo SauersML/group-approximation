@@ -2669,6 +2669,7 @@ import GroupApproximation.GGT.DGOPolygonEdgeGon
 import GroupApproximation.GGT.DGOPolygonLemma417
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyBlock
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplySpelling
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyGap
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
