@@ -2605,6 +2605,7 @@ import GroupApproximation.GGT.OsinTheorem54SepRigidityTrivial
 import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftFaithful
 import GroupApproximation.GGT.DGOCycleSplice
 import GroupApproximation.GGT.DGOCycleAssembly
+import GroupApproximation.GGT.OsinTheorem54SepDistBase
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
