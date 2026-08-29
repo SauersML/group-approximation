@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.DGOThinPolygonVertex
 import GroupApproximation.GGT.OsinTheorem54SepFourGonPinning
 import GroupApproximation.GGT.OsinTheorem54SepPolygonVertex
+import GroupApproximation.GGT.DGOIsolatedComponentBridge
 
 /-!
 # The sides of a `(1,0)`-quasi-geodesic polygon are geodesic chains
@@ -145,6 +146,62 @@ theorem notMem_coset_vertex_of_offset (D : RelGenSet G Λ) {lam : Λ} {x u : G}
   have h := wordDist_vertex_le' D hlet u (Nat.zero_le m) hm
   rw [vertex_zero] at h
   omega
+
+/-! ## Four-gons with named corners -/
+
+/-- **A `(1,0)`-quasi-geodesic 4-gon with its cut function named.**  The content
+is that of `IsQuasiGeodesicPolygon D 1 0 4 v w`, with the cut function carried
+rather than existentially bound.  Lemma 4.16's construction names the corners
+`vertex v w (c t)` in four different cases and compares them with each other, so
+it cannot re-open an existential consistently. -/
+structure GeodesicFourGon (D : RelGenSet G Λ) (v : G)
+    (w : List (RelLetter G Λ)) (c : ℕ → ℕ) : Prop where
+  /-- Every letter is admissible. -/
+  letters : ∀ a ∈ w, D.IsLetter a
+  /-- The path closes up. -/
+  closed : RelLetter.listVal w = 1
+  /-- The first corner is the basepoint. -/
+  start : c 0 = 0
+  /-- The last corner closes the word. -/
+  finish : c 4 = w.length
+  /-- The corners are in order. -/
+  mono : Monotone c
+  /-- Each of the four sides is geodesic. -/
+  geodesic : ∀ t : ℕ, t < 4 → IsGeodesicChain D.alphabet.carrier
+    (fun m => vertex v w (c t + m)) (c (t + 1) - c t)
+
+/-- **Every `(1,0)`-quasi-geodesic 4-gon is one, with its cut function named.** -/
+theorem exists_geodesicFourGon_of_isQuasiGeodesicPolygon (D : RelGenSet G Λ)
+    {v : G} {w : List (RelLetter G Λ)}
+    (hP : IsQuasiGeodesicPolygon D 1 0 4 v w) :
+    ∃ c : ℕ → ℕ, GeodesicFourGon D v w c := by
+  obtain ⟨c, hc0, hc4, hmono, hchain⟩ :=
+    exists_geodesicChain_of_isQuasiGeodesicPolygon D hP
+  exact ⟨c, hP.1, hP.2.1, hc0, hc4, hmono, hchain⟩
+
+/-- **The side of a geodesic 4-gon carrying a component is a single letter.**
+
+This is Dahmani--Guirardel--Osin's normalisation of the distinguished component
+to one edge, and at `μ = 1`, `b = 0` it costs nothing: the span of a component
+lies in `H lam`, hence is one letter of the alphabet, so the two ends of the
+side are at distance at most one, while a geodesic side realises its length as
+that distance.
+
+For general `(μ, b)` a side may carry a long run and the normalisation has to be
+performed, changing neither `d̂_lam` of the span nor isolatedness.  Here it is a
+consequence. -/
+theorem GeodesicFourGon.isComp_side_succ (D : RelGenSet G Λ) {v : G}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
+    {lam : Λ} {t : ℕ} (ht : t < 4)
+    (hcomp : IsComp lam w (c t) (c (t + 1))) :
+    c (t + 1) = c t + 1 := by
+  have hcs : c t ≤ c (t + 1) := hQ.mono (Nat.le_succ t)
+  have hEq : c t + (c (t + 1) - c t) = c (t + 1) := by omega
+  have h0 : wordDist D.alphabet.carrier (vertex v w (c t + 0))
+      (vertex v w (c t + (c (t + 1) - c t))) = c (t + 1) - c t - 0 :=
+    hQ.geodesic t ht 0 (c (t + 1) - c t) (Nat.zero_le _) le_rfl
+  rw [Nat.add_zero, hEq, Nat.sub_zero] at h0
+  exact isComp_eq_succ_of_geodesic D lam v hQ.letters hcomp (le_of_eq h0.symm)
 
 end OsinComponents
 end GGT
