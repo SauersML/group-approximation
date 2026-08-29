@@ -1,3 +1,4 @@
+import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaBaseCornerMap
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaMatrixIdentities
 import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUniversalDef
 import GroupApproximation.Meta.AxiomGuard
@@ -52,22 +53,36 @@ theorem compatible_matrixUnitOne_mul {K : Type} [CStarAlgebra K]
   rw [cStarMatrixUnitTwo_mul]
   simp
 
+/-- The two diagonal matrix units add up to the unit of `M₂`. -/
+theorem compatible_matrixUnitOne_add {K : Type} [CStarAlgebra K] :
+    cStarMatrixUnitTwo 0 0 (1 : K) + cStarMatrixUnitTwo 1 1 (1 : K) = 1 := by
+  rw [← cStarDiagonalTwo_one_zero, ← cStarDiagonalTwo_zero_one,
+    ← cStarDiagonalTwo_one (K := K)]
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp
+
+omit [Nontrivial E] in
 theorem compatibleCornerUnit_star :
     star (compatibleCornerUnit data left) = compatibleCornerUnit data left := by
   exact (map_star left _).symm.trans
     (congrArg left (compatible_matrixUnitOne_star 0 0))
 
+omit [Nontrivial E] in
 theorem compatibleCornerUnit_mul :
     compatibleCornerUnit data left * compatibleCornerUnit data left =
       compatibleCornerUnit data left := by
   exact (map_mul left _ _).symm.trans
     (congrArg left (compatible_matrixUnitOne_mul 0 0 0))
 
+omit [Nontrivial E] in
+include compatible in
 theorem compatible_common_apply (c : edgeSumAlgebra data) :
     left (amalgamLeftInclusion data c) =
       right (amalgamRightInclusion data c) := by
   exact congrArg (fun f : edgeSumAlgebra data →⋆ₐ[ℂ] E ↦ f c) compatible
 
+omit [Nontrivial E] in
+include compatible in
 theorem compatibleCornerUnit_eq_right :
     compatibleCornerUnit data left = compatibleMatrixUnitRight data right 0 0 := by
   have h := compatible_common_apply data left right compatible
@@ -86,6 +101,8 @@ theorem compatibleCornerUnit_eq_right :
     exact cStarDiagonalTwo_one_zero
   exact (congrArg left hL.symm).trans (h.trans (congrArg right hR))
 
+omit [Nontrivial E] in
+include compatible in
 theorem compatibleMatrixUnit_one_one_common :
     compatibleMatrixUnitLeft data left 1 1 =
       compatibleMatrixUnitRight data right 1 1 := by
@@ -108,6 +125,50 @@ theorem compatibleMatrixUnit_one_one_common :
 abbrev CompatibleCorner := CStarCorner (compatibleCornerUnit data left)
   (compatibleCornerUnit_star data left) (compatibleCornerUnit_mul data left)
 
+/-- The corner unit is not zero.  In `M₂` it is one of two matrix units
+summing to `1`, and `e₁₀ = e₁₀e₀₀`, `e₁₁ = e₁₀e₀₁`, so killing `e₀₀` would kill
+`e₁₀`, then `e₁₁`, then `1` — impossible in a nontrivial `E` because `left` is
+unital.  This is exactly what `CStarHNNRepresentation.ofCovariantPair` needs of
+its carrier, and no `Nontrivial` instance for a C*-corner can hold without
+it. -/
+theorem compatibleCornerUnit_ne_zero :
+    compatibleCornerUnit data left ≠ 0 := by
+  intro h
+  have h00 : left (cStarMatrixUnitTwo 0 0 (1 : baseAlgebra data)) = 0 := h
+  have hmul10 :
+      left (cStarMatrixUnitTwo 1 0 (1 : baseAlgebra data)) *
+          left (cStarMatrixUnitTwo 0 0 (1 : baseAlgebra data)) =
+        left (cStarMatrixUnitTwo 1 0 (1 : baseAlgebra data)) :=
+    (map_mul left _ _).symm.trans
+      (congrArg left (compatible_matrixUnitOne_mul 1 0 0))
+  have h10 : left (cStarMatrixUnitTwo 1 0 (1 : baseAlgebra data)) = 0 := by
+    rw [← hmul10, h00, mul_zero]
+  have hmul11 :
+      left (cStarMatrixUnitTwo 1 0 (1 : baseAlgebra data)) *
+          left (cStarMatrixUnitTwo 0 1 (1 : baseAlgebra data)) =
+        left (cStarMatrixUnitTwo 1 1 (1 : baseAlgebra data)) :=
+    (map_mul left _ _).symm.trans
+      (congrArg left (compatible_matrixUnitOne_mul 1 0 1))
+  have h11 : left (cStarMatrixUnitTwo 1 1 (1 : baseAlgebra data)) = 0 := by
+    rw [← hmul11, h10, zero_mul]
+  have hsum :
+      left (cStarMatrixUnitTwo 0 0 (1 : baseAlgebra data)) +
+          left (cStarMatrixUnitTwo 1 1 (1 : baseAlgebra data)) = 1 :=
+    ((map_add left _ _).symm.trans
+      (congrArg left compatible_matrixUnitOne_add)).trans (map_one left)
+  rw [h00, h11, add_zero] at hsum
+  exact one_ne_zero hsum.symm
+
+/-- The Ueda corner of a compatible coordinate is nontrivial. -/
+instance compatibleCornerNontrivial :
+    Nontrivial (CompatibleCorner data left) := by
+  refine ⟨⟨1, 0, ?_⟩⟩
+  intro hone
+  have hval := congrArg Subtype.val hone
+  exact compatibleCornerUnit_ne_zero data left hval
+
+omit [Nontrivial E] in
+include compatible in
 theorem exists_compatibleCornerWord_unitary :
     ∃ w : unitary (CompatibleCorner data left),
       ((w : CompatibleCorner data left) : E) =
@@ -198,6 +259,8 @@ def compatibleCornerBaseMap : baseAlgebra data →⋆ₐ[ℂ]
 def compatibleCornerStableUnitary : unitary (CompatibleCorner data left) :=
   (exists_compatibleCornerWord_unitary data left right compatible).choose
 
+omit [Nontrivial E] in
+include compatible in
 theorem compatible_diagonal_source_zero_common (b : sourceEdgeAlgebra data) :
     left (cStarDiagonalTwo (b : baseAlgebra data) 0) =
       right (cStarDiagonalTwo b 0) := by
@@ -209,6 +272,8 @@ theorem compatible_diagonal_source_zero_common (b : sourceEdgeAlgebra data) :
       ((edgeIsomorphism data).symm (0 : targetEdgeAlgebra data))) at h
   simpa only [ZeroMemClass.coe_zero, map_zero] using h
 
+omit [Nontrivial E] in
+include compatible in
 theorem compatible_zero_diagonal_edge_common (b : sourceEdgeAlgebra data) :
     right (cStarDiagonalTwo 0 b) =
       left (cStarDiagonalTwo 0
@@ -224,24 +289,31 @@ theorem compatible_zero_diagonal_edge_common (b : sourceEdgeAlgebra data) :
       ((edgeIsomorphism data).symm (edgeIsomorphism data b))) at h
   simpa only [ZeroMemClass.coe_zero, StarAlgEquiv.symm_apply_apply] using h.symm
 
+omit [Nontrivial E] in
 theorem compatible_right_source_sandwich (b : sourceEdgeAlgebra data) :
     compatibleMatrixUnitRight data right 1 0 *
         right (cStarDiagonalTwo b 0) *
       compatibleMatrixUnitRight data right 0 1 =
         right (cStarDiagonalTwo 0 b) := by
-  exact (map_mul right _ _).symm.trans ((congrArg right
-    (matrixUnit_ten_diagonal_zero_zeroOne b)).trans (by
-      rw [map_mul right, map_mul right]))
+  change right (cStarMatrixUnitTwo 1 0 1) *
+      right (cStarDiagonalTwo b 0) * right (cStarMatrixUnitTwo 0 1 1) = _
+  rw [← map_mul right, ← map_mul right]
+  exact congrArg right (matrixUnit_ten_diagonal_zero_zeroOne b)
 
+omit [Nontrivial E] in
 theorem compatible_left_target_sandwich (c : targetEdgeAlgebra data) :
     compatibleMatrixUnitLeft data left 0 1 *
         left (cStarDiagonalTwo 0 (c : baseAlgebra data)) *
       compatibleMatrixUnitLeft data left 1 0 =
         left (cStarDiagonalTwo (c : baseAlgebra data) 0) := by
-  exact (map_mul left _ _).symm.trans ((congrArg left
-    (matrixUnit_zeroOne_zeroDiagonal_ten (c : baseAlgebra data))).trans (by
-      rw [map_mul left, map_mul left]))
+  change left (cStarMatrixUnitTwo 0 1 1) *
+      left (cStarDiagonalTwo 0 (c : baseAlgebra data)) *
+      left (cStarMatrixUnitTwo 1 0 1) = _
+  rw [← map_mul left, ← map_mul left]
+  exact congrArg left (matrixUnit_zeroOne_zeroDiagonal_ten (c : baseAlgebra data))
 
+omit [Nontrivial E] in
+include compatible in
 theorem compatibleCornerWord_covariance_ambient (b : sourceEdgeAlgebra data) :
     (compatibleMatrixUnitLeft data left 0 1 *
         compatibleMatrixUnitRight data right 1 0) *
@@ -279,6 +351,7 @@ theorem compatibleCornerWord_covariance_ambient (b : sourceEdgeAlgebra data) :
       rw [compatible_zero_diagonal_edge_common data left right compatible]
     _ = _ := compatible_left_target_sandwich data left (edgeIsomorphism data b)
 
+omit [Nontrivial E] in
 theorem compatibleCornerStable_covariance_conj (b : sourceEdgeAlgebra data) :
     (compatibleCornerStableUnitary data left right compatible :
         CompatibleCorner data left) *
@@ -289,9 +362,18 @@ theorem compatibleCornerStable_covariance_conj (b : sourceEdgeAlgebra data) :
         ((edgeIsomorphism data b : targetEdgeAlgebra data) :
           baseAlgebra data) := by
   apply Subtype.ext
-  simpa only [(exists_compatibleCornerWord_unitary data left right compatible).choose_spec]
-    using compatibleCornerWord_covariance_ambient data left right compatible b
+  have hw : (((compatibleCornerStableUnitary data left right compatible :
+          unitary (CompatibleCorner data left)) :
+        CompatibleCorner data left) : E) =
+      compatibleMatrixUnitLeft data left 0 1 *
+        compatibleMatrixUnitRight data right 1 0 :=
+    (exists_compatibleCornerWord_unitary data left right compatible).choose_spec
+  have hambient :=
+    compatibleCornerWord_covariance_ambient data left right compatible b
+  rw [← hw] at hambient
+  exact hambient
 
+omit [Nontrivial E] in
 theorem compatibleCornerStable_covariance (b : sourceEdgeAlgebra data) :
     (compatibleCornerStableUnitary data left right compatible :
         CompatibleCorner data left) *
@@ -331,7 +413,7 @@ def ExplicitCompatibleCoordinateCorner : Prop :=
     {E : Type} [CStarAlgebra E] [Nontrivial E]
     (left : matrixBaseAlgebra data →⋆ₐ[ℂ] E)
     (right : matrixEdgeAlgebra data →⋆ₐ[ℂ] E)
-    (compatible : left.comp (amalgamLeftInclusion data) =
+    (_compatible : left.comp (amalgamLeftInclusion data) =
       right.comp (amalgamRightInclusion data)),
       Nonempty (CStarHNNRepresentation
         (sourceEdgeAlgebra data) (targetEdgeAlgebra data)
