@@ -2534,6 +2534,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2MirrorRun
 import GroupApproximation.Higman.OmegaFatShearedCoordinateEdge
 import GroupApproximation.GGT.DGOIsolatedComponentWitness
 import GroupApproximation.GGT.DGOIsolatedComponentCoset
+import GroupApproximation.GGT.RelHypOsin24CayleyWitness
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
