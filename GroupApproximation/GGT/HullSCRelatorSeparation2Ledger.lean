@@ -16,11 +16,11 @@ followed by an alternating run of deep powers of two independent loxodromics.
 
 ## The standing hypotheses, and who owes them
 
-**1. The isolated-component bound, at four sides.**  `hgeo` and `hgeoInv` --
-that a short conjugation carrying one deep power onto another leaves both
-conjugators in the subgroup -- are no longer hypotheses of this chain.  They
-reduce to fp-geometry's `IsolatedComponentBound`, through
-`GGT.OsinComponents.mem_fam_of_conj_of_deep` and the bridge
+**1. The isolated-component bound, in the six-sided form.**  `hgeo` and
+`hgeoInv` -- that a short conjugation carrying one deep power onto another
+leaves both conjugators in the subgroup -- are no longer hypotheses of this
+chain.  They reduce to fp-geometry's bound, through
+`GGT.OsinComponents.mem_fam_of_conj_of_deep_six` and
 `HullSC.exists_hgeo_of_bound`, which produces them in the shape
 `HullSC.exponent_eq_of_blockMatch₂` and
 `HullSC.exponent_eq_of_mirroredBlockMatch₂` consume.  What the bridge asks in
