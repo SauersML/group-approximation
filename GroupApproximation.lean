@@ -2459,6 +2459,10 @@ import GroupApproximation.GGT.OsinTheorem54Family
 import GroupApproximation.GGT.HullSCRelatorSeparation2ConeOffSpace
 import GroupApproximation.GGT.HullSCRelatorSeparation2RotatingFamily
 import GroupApproximation.GGT.HullSCUnionGeometryFactorDichotomy
+import GroupApproximation.GGT.HullSCUnionGeometryBranchPoint
+import GroupApproximation.GGT.HullSCUnionGeometryFactorInput
+import GroupApproximation.GGT.HullSCUnionGeometryShortBranch
+import GroupApproximation.GGT.HullSCUnionGeometryAssembly
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
