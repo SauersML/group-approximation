@@ -39,20 +39,25 @@ The three nontriviality instances the printed route needs are all read off `π`:
 `B(H ⊕ H)` because `hBlockOp` is injective
 (`Analysis/ShulmanFillNormingExistentialLiftFaithful.hBlockOp_injective`).
 
-## What is still cited rather than proved
+## Where Gelfand--Naimark comes from
 
-`SeparableFaithfulRepresentationStatement` — Gelfand--Naimark on a separable
-Hilbert space.  This is a standard theorem that is simply not in the tree.  It
-is not in Mathlib at the pinned revision either: there is no `GelfandNaimark`
+`SeparableFaithfulRepresentationStatement` is a hypothesis of both theorems
+below, but it is not a cited input: it is a theorem of the tree, proved as
+`CStarState.separableFaithfulRepresentation` in
+`Analysis/CStarSeparableTypeZeroRepresentation`.  It stays a hypothesis *here*
+only because that module imports this one — it needs this Prop to state its own
+conclusion — so the discharge is written there, as
+`conjugateWordNorming_of_printedPair_of_compatible'`, which is this module's
+last theorem with the third binder gone.
+
+Mathlib supplies nothing at the pinned revision: there is no `GelfandNaimark`
 anywhere in it, and no statement of the form
-`∃ f : A →⋆ₐ[ℂ] (H →L[ℂ] H), Function.Injective f`.  What the repository does
-have is the per-state half of the construction, in
-`Analysis/CStarStateGNS`: `State.GNSSpace`, `State.gnsRep`, `State.gnsVector`,
-`State.norm_gnsRep_apply_le`, and `eq_zero_of_forall_state_inner_eq_zero`, which
-says the states separate points.  What is missing is the assembly — the direct
-sum of the GNS representations over a family of states that separates points,
-together with the countable choice of such a family that keeps the resulting
-Hilbert space separable.  Neither step is deep; neither is written.
+`∃ f : A →⋆ₐ[ℂ] (H →L[ℂ] H), Function.Injective f`.  The proof is built from the
+per-state half of the construction that `Analysis/CStarStateGNS` already had —
+`State.GNSSpace`, `State.gnsRep`, `State.gnsVector`,
+`State.norm_gnsRep_apply_le` — by summing the GNS representations over a
+countable separating family of states and Gram--Schmidting a countable total
+sequence inside that sum down to an index in `Type 0`.
 -/
 
 namespace GroupApproximation
@@ -70,10 +75,11 @@ universe w
 Hilbert space.**  Gelfand--Naimark, restricted to what the recognition route
 uses.
 
-This is cited, not proved.  It is absent from Mathlib at the pinned revision,
-and the repository has only the per-state half of the construction in
-`Analysis/CStarStateGNS`; the direct sum over a separating family of states, and
-the countable choice of such a family, are the missing steps.
+This is a hypothesis here and a theorem elsewhere:
+`CStarState.separableFaithfulRepresentation`, in
+`Analysis/CStarSeparableTypeZeroRepresentation`, proves it, and that module —
+which imports this one — discharges it in
+`conjugateWordNorming_of_printedPair_of_compatible'`.
 
 The algebra is left in its own universe and the Hilbert space is not.  That
 asymmetry is the statement, not a convenience: the one algebra this is applied
@@ -250,7 +256,7 @@ theorem factorMapInjective_of_compatibleTargetPair
   exact injective_factorAmalgamToSymmetricTarget_of_injective_target
     iA iB gamma alpha beta hA hB _ hinj g hg
 
-/-! ## The recognition debt, from three cited inputs -/
+/-! ## The recognition debt, from three binders -/
 
 /-- **`ConjugateWordNormingStatement` from exactly three binders.**
 
@@ -265,10 +271,12 @@ Everything else on the route is proved.  The three are:
 * `SeparableFaithfulRepresentationStatement` — Gelfand--Naimark on a separable
   Hilbert space, which produces the faithful pair Theorem 10 is applied to.
 
-The first two are what the manuscript cites.  The third is a standard theorem
-that is simply not in the tree, and not in Mathlib at the pinned revision
-either; see its docstring above for exactly which half of the GNS construction
-`Analysis/CStarStateGNS` already has. -/
+The first two are what the manuscript cites.  The third is not cited: it is
+proved in `Analysis/CStarSeparableTypeZeroRepresentation`, which imports this
+module and so discharges the binder there rather than here, in
+`conjugateWordNorming_of_printedPair_of_compatible'`.  That is the form to
+quote; this one is kept because the discharge cannot be written until the
+Prop it discharges exists. -/
 theorem conjugateWordNorming_of_printedPair_of_compatible
     [∀ m, Nontrivial (DoubledModel EllTwoCoefficient m)]
     (hT4 : Theorem4PrintedPairStatement)
