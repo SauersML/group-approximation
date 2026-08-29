@@ -110,8 +110,24 @@ Hull's §5, that the cone-off along a pair exists with the data
 carries a geodesic, `GGT/HullSCDGO.lean` having refuted the transcribed one.
 
 **5. Torsion-freeness.**  A hypothesis about the groups the manuscript studies,
-not a leaf, and the chain's only use of it is
-`HullSC.noCommute_of_torsionFree`.
+not a leaf.  It no longer buys the diagonal clause; see item 6.
+
+**6. The diagonal leaf.**  That no nontrivial element of a relative ball
+commutes with a positive power of the loxodromic:
+
+    ∀ e s, ∀ x ∈ relBall s e, x ≠ 1 → ∀ d, 0 < d → ¬ Commute x (lox s ^ d)
+
+carried as `hnc` by `HullSC.separationNe₂_clause_of_inputs`, and spent twice
+inside `HullSC.exists_separated_relator_exponents₂_diagonal` --- once to make
+the bad exponents finite, once to exclude them.
+
+  It is not a consequence of torsion-freeness.  Both `x` and the loxodromic lie
+  in `H λ`, so where `H λ` is abelian --- and `E(g)` in a torsion-free group is
+  infinite cyclic --- every `x` commutes with every power, and the clause fails
+  for every nontrivial `x` of the ball.  What it asks is that `relBall λ eps`
+  meet the centralizer of `lox λ` trivially: a condition on the CORE, to be met
+  by choosing the two subgroups, not a property of the ambient group.  Recorded
+  as an open item rather than a discharged one.
 
 ## The composition's binders
 
@@ -126,8 +142,8 @@ exactly these and no others:
   `py ++ u₀ ++ pz ++ revWord u₀'`, and separately the per-side clauses for `u₀`
   and for `u₀'` that the pinning and the gap estimate read;
 * the two same-side exclusions -- item 3;
-* torsion-freeness -- item 5, which is what the design's diagonal clause
-  `hdiag` is built from, through `HullSC.noCommute_of_torsionFree`.
+* `hnc` -- item 6, the diagonal leaf, carried because the route named for it
+  cannot be instantiated here.
 
 The design's other clauses -- `hnodup`, `hinj`, `hsep`, `hdeep`, and the
 symmetry of the base -- are discharged by the instantiation and are not standing
@@ -219,10 +235,17 @@ remains unwritten is only the composition that spends it.
 
 ## What is discharged, and by what
 
-* The diagonal of the separation -- no short pair carries a deep power onto
-  itself -- from torsion-freeness, `HullSC.noCommute_of_torsionFree` over
-  `GGT/OsinTheorem54SepElementaryBall.lean`.  It holds for every loxodromic;
-  nothing has to be chosen.
+* NOT the diagonal of the separation.  This entry read "from torsion-freeness,
+  `HullSC.noCommute_of_torsionFree`; it holds for every loxodromic, nothing has
+  to be chosen", and that is wrong here.  The lemma asks its element to be
+  loxodromic in the RELATIVE graph, and the relator's letters are powers of
+  `E.lox b`, which `lox_mem` puts inside `H b`.  An element of the family is a
+  single letter of the relative alphabet, so its orbit of the basepoint has
+  diameter at most one and it is elliptic --- which the tree already proved, at
+  the file that defines the relative generating set:
+  `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`.  The instance at the core is
+  `HullSC.not_isLoxodromic_lox₂`.  The route is closed for every group and
+  every core, so the clause is carried, as item 6 below.
 * The rigidity input, from the bound: `HullSC.exists_hgeo_of_bound`.  Its
   degenerate branch needs no geometry -- with the second conjugator trivial,
   `x · a^i · 1 = a^j` gives `x = a^j (a^i)⁻¹`, a product of peripheral
@@ -295,18 +318,30 @@ They are recorded because each closed a route that looks reasonable on paper.
   end-to-start element is bounded.  The rigidity consumes exactly two such, one
   per orientation of the boundary.
 
-## What is not yet composed
+## The composition, and what is above it
 
-`HullSC.listVal_conj_of_sym_pieces` is the separation's conclusion at one
-quadrilateral, with the conjugator the value of the four-gon's first side.  The
-separation's own clause quantifies over `w`, `w'`, `u₀`, `u₀'`, `y` and `z`,
-and fixes `B` and the exponent list before them, so what is left is the
-outermost composition: choose `p` by (C1), `B` by (C2) and the run by (C3);
-spell `y` and `z` as padded base words with
-`HullSC.exists_side_spelling₂`, which is what supplies `py`, `pz` and their
-positivity; and supply items 2 and 3 at the quadrilateral those choices
-produce.  None of that is a new mathematical step --- the two open items are
-carried as hypotheses through it, exactly as they are carried now.
+`HullSC.separationNe₂_clause_of_inputs` is the corrected separation at one
+core: it chooses `p` by (C1), `B` by (C2) and the run by (C3), spells `y` and
+`z` as padded base words with `HullSC.exists_side_spelling₂`, proves the
+four-gon's letter clause (a member of the symmetrized closure is admissible
+because the relator is, and admissibility survives rotation, formal inverse and
+reversal), and hands the quadrilateral to
+`HullSC.listVal_conj_of_sym_pieces`.  Its whole hypothesis list is `hδ`,
+`hqgeo`, `hexcl` and `hnc` --- items 1's residue, 2, 3 and 6 --- together with
+the core, suitability, and the block-count constant.
+
+The exponent list comes from
+`HullSC.exists_separated_relator_exponents₂_diagonal` at radius
+`max rho (Cm * 4)`, which is the given `rho` enlarged to what the matching step
+asks for; `HullSC.notMem_relBall_of_le` gives the statement's own `rho` back.
+That one call discharges `hnodup`, `hsep`, `hdiag` and the deep clause
+together.
+
+Two things remain above it.  The clause is proved at a FIXED core, while
+`hullRelatorStatement₂_of_separationNe₂` consumes the form quantified over
+every `G`, `A`, `N` and `E`; supplying that means quantifying the four
+hypotheses the same way, which is bookkeeping.  And items 2, 3 and 6 are still
+hypotheses, which is not.
 
 ## One correction worth keeping
 
