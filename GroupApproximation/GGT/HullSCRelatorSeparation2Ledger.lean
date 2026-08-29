@@ -50,7 +50,16 @@ number of sides is not used and is not going to be proved.
   form INSTEAD is not available: at `mu > 1` the multiplicative defect cannot be
   absorbed into an additive one, and the tower says nothing there.
 
-  So what item 1 now owes is a narrowing, not a theorem.
+  **The narrowing is done, and item 1 is closed.**
+  `GGT.OsinComponents.exists_other_component_of_deep_six_at` states the
+  deep-six step at this chain's own pair, and
+  `GGT.OsinComponents.exists_deep_match_hyp` discharges it from four-point
+  hyperbolicity outright.  `GGT.OsinComponents.two_block_conj_named_at` and
+  `GGT.OsinComponents.two_block_conj_named_hyp` do the same on the gap side,
+  and `GGT.OsinComponents.exists_eps_matchedPair_hyp` packages that one.  Both
+  producers deliver the interfaces of
+  `GGT/HullSCRelatorSeparation2ApplyIface.lean`, so the composition takes `hδ`
+  and no longer carries `hbound` at all.
 
 **2. `hcount` -- the block count, CYCLICALLY.**  That the distance between two
 vertices of the relator is at least the number of block letters between them,
@@ -109,7 +118,9 @@ not a leaf, and the chain's only use of it is
 The separation's match clause, threaded through the modules below, keeps
 exactly these and no others:
 
-* `hbound` -- item 1, at this chain's `(mu, b)`;
+* `hδ` -- item 1: four-point hyperbolicity of the RELATIVE Cayley graph
+  `Γ(G, X ⊔ ℋ)`, which is what the two producers consume and all that is left
+  of the bound;
 * `hqg` -- item 2, and it is spent in THREE places, all instances of the cyclic
   form and none of them an extra debt: the `fourGonCut` clause for
   `py ++ u₀ ++ pz ++ revWord u₀'`, and separately the per-side clauses for `u₀`
@@ -140,11 +151,24 @@ unsound without them.
   base arc, where `HullSC.exists_block_of_long_prefix_rotate` has nothing to
   say -- a window of more than `|p|` letters meets the run, and a shorter one
   need not.
-* **(C2) The piece threshold.**  `B := |p| + 2(eps + 1 + b) + 2`, with
-  `b = |p| + c` the block-count constant, which is what puts two block letters
-  in every piece separated by more than `2(eps + 1 + b)` -- the separation
+* **(C2) The piece threshold.**  `B := |p| + 2(eps + 1 + b) + 2`, that is
+  `|p| + blockSeparation + 2`, with `b = |p| + c` the block-count constant.
+  This is what puts two block letters in every piece separated by more than
+  `blockSeparation` -- the separation
   `GGT.OsinComponents.lt_of_two_connectors_qg` asks for, and what the mixed
   cases need in order to see an orientation at all.
+
+  It is a theorem and not an estimate:
+  `HullSC.exists_two_blocks_of_long_prefix_rotate` and `..._revInv` produce the
+  two offsets from a window of `|p| + blockSeparation + 2` letters, by writing
+  them down in three branches according to where the rotation starts.  The
+  branch that fixes the constant is the one where the window starts inside the
+  run with fewer than `blockSeparation + 1` letters of tail left: it crosses
+  the base arc and re-enters the run, and the tail's shortness is what bounds
+  the second offset.  The count also returns `d₂ ≤ |p| + blockSeparation + 1`,
+  which is what (C3) is read from.  Choosing `d₂ := d₁ + blockSeparation + 1`
+  instead of finding it would be unsound -- that position can lie in the base
+  arc, where there is no letter to match.
 
   The `+ b` is not slack.  The geodesic pinning
   `GGT.OsinComponents.index_le_of_connector` would give `2(eps + 1)`, but it
@@ -157,14 +181,17 @@ unsound without them.
   alone is consistent with an inversion, and
   `GGT.OsinComponents.wordDist_match_le` bounds the distance between two
   matches while saying nothing about the sign.
-* **(C3) The run is long.**  `L` past `5 · blockSeparation + 2`.  The two mixed
-  orders ask slightly different things --- the direct one
+* **(C3) The run is long.**  `L` past `|p| + 5 · blockSeparation + 2`.  The two
+  mixed orders ask slightly different things --- the direct one
   `2(d₂ - d₁) + blockSeparation < |R|`, the inverted one
   `2(d₂ - d₁) + 3 · blockSeparation < |R|`, because there the length clause is
   about the MATCHES' indices and each is within `blockSeparation` of its
-  source --- and the second implies the first, so one number serves both.  With
-  the blocks at `d₂ := d₁ + blockSeparation + 1` it is `5 · blockSeparation + 2`.
-  Free: `|R|` is `|p| + |ms|` and `|ms|` is whatever `L` asks for.
+  source --- and the second implies the first, so one number serves both.  The
+  count of (C2) bounds `d₂ - d₁` by `d₂ ≤ |p| + blockSeparation + 1`, and `|R|`
+  is `|p| + |ms|`, so the inverted clause follows from
+  `|p| + 5 · blockSeparation + 2 < |ms|`.  Free: `|ms|` is whatever `L` asks
+  for.  The `|p|` in the threshold is not slack --- it is the length of the
+  base arc the window may have to cross to find its second letter.
 
   The slack is `blockSeparation` in BOTH orders, and not the sharper `b + 2`
   that `GGT.OsinComponents.gap_and_order_of_two_matches` returns, because that
@@ -207,7 +234,11 @@ written.
   first gap being trivial SAYS once the gap is known to be
   `(vertex 1 s j)⁻¹ · (listVal p · vertex 1 q i)`.
 * That a piece longer than `|p|` carries a block letter, direct and mirrored:
-  `HullSC.exists_block_of_long_prefix_rotate` and `..._revInv`.
+  `HullSC.exists_block_of_long_prefix_rotate` and `..._revInv`; and that a
+  piece longer than `|p| + k + 1` carries TWO of them more than `k` apart, at
+  a second offset of at most `|p| + k + 1`:
+  `HullSC.exists_two_blocks_of_long_prefix_rotate` and `..._revInv`, which is
+  what the mixed cases run on.
 * That the block letter is a component of the matched prefix:
   `HullSC.isComp_prefix_rotate_relatorWord₂` and `..._revInv_...`.  Neither
   passage is free -- under a rotation the neighbour of the first block letter
@@ -224,6 +255,16 @@ written.
   `HullSC.listVal_conj_of_mirroredAlignedMatch_pair` for the aligned ones,
   `HullSC.false_of_span_mixed` and `HullSC.false_of_mixedMatch_gap_inv` for the
   two mixed orders, dispatched by `HullSC.listVal_conj_of_sym_cases`.
+* All four cases FROM A PIECE, which is the form the separation applies them
+  in: `HullSC.listVal_conj_of_alignedMatch_piece`,
+  `HullSC.listVal_conj_of_mirroredAlignedMatch_piece`,
+  `HullSC.false_of_mixedMatch_piece` and `..._inv`.  Each runs the window
+  count, spends the design's depth clause on the span it finds, and matches
+  across; the mixed pair runs the count twice and compares.
+* The four cases at one quadrilateral: `HullSC.listVal_conj_of_sym_pieces`,
+  which is the dispatch fed by those four.  What it still takes as hypotheses
+  is item 2 in its three places, item 3, and the two spellings with their
+  positivity -- the same list as the binders above, and nothing else.
 * `0 < |p|`, which the wrap-around argument of
   `GGT/HullSCRelatorSeparation2Locate.lean` spends, from
   `HullSC.exists_long_base_spelling₂`.
@@ -250,6 +291,18 @@ They are recorded because each closed a route that looks reasonable on paper.
 * Lemma 4.21 in the start-to-start form is FALSE; only the innermost
   end-to-start element is bounded.  The rigidity consumes exactly two such, one
   per orientation of the boundary.
+
+## What is not yet composed
+
+`HullSC.listVal_conj_of_sym_pieces` is the separation's conclusion at one
+quadrilateral, with the conjugator the value of the four-gon's first side.  The
+separation's own clause quantifies over `w`, `w'`, `u₀`, `u₀'`, `y` and `z`,
+and fixes `B` and the exponent list before them, so what is left is the
+outermost composition: choose `p` by (C1), `B` by (C2) and the run by (C3);
+spell `y` and `z` as padded base words, which is what supplies `py`, `pz` and
+their positivity; and supply items 2 and 3 at the quadrilateral those choices
+produce.  None of that is a new mathematical step --- the two open items are
+carried as hypotheses through it, exactly as they are carried now.
 
 ## One correction worth keeping
 
