@@ -2639,6 +2639,7 @@ import GroupApproximation.GGT.OsinTheorem54SepDeepSixForm
 import GroupApproximation.Analysis.CStarSeparableFaithfulRepresentation
 import GroupApproximation.Analysis.CStarHilbertTransport
 import GroupApproximation.GGT.HullSCRelatorSeparation2Ball
+import GroupApproximation.GGT.HullSCRelatorSeparation2MirrorBall
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
