@@ -89,9 +89,20 @@ The statement is now a theorem of three named inputs:
   matrix algebra and `M₂(ℂ)` would acquire a character; and its exhaustion
   clause fails on a finite-dimensional space.  The statement is stronger than
   Shulman's, whose defects live in the reduced product and whose lift agrees
-  with the representation only pointwise in the limit.  Until the binder is
-  repaired to that form, the reduction below is a true implication from a
-  false hypothesis and certifies nothing;
+  with the representation only pointwise in the limit.  The repair is built:
+  `ShulmanFill.Theorem4TailPairStatement`
+  (`Analysis/ShulmanFillNormingTailPrinted`) is the printed pair statement in
+  the tail vocabulary — defects controlled past a cut carried as data, the
+  paper's pointwise lift clause, an infinite-dimensional space — and both
+  counter-models die against it; the refuted form implies it, so the repair
+  only removes.  `Analysis/ShulmanFillNormingTailRoute` proves the
+  conjugate-word norming statement from the repaired pair statement, the
+  compatible-target pair statement and the MF-ness of the relabelled printed
+  models (`ShulmanFill.ShiftedPrintedMFStatement`, the same input the
+  unshifted route carries and `EllTwoTheorem10` discharges there;
+  its relabelled discharge is recorded as owed in
+  `Analysis/ShulmanFillNormingTailPrintedPair`).  The reduction below through
+  the refuted form is kept only as the record of the route it replaced;
 * `ShulmanSymmetricDouble.CompatibleTargetPairStatement`
   (`Analysis/ShulmanFillTheorem13`): the output of Enders--Shulman,
   arXiv:2403.12224, Theorem 4.11 — a compatible target through which the
