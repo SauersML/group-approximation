@@ -75,6 +75,18 @@ theorem TailNull.mono {cut : ℕ → ℕ} {X Y : ℕ → StarStrong.BoundedStarS
   intro ε hε
   exact (hX ε hε).mono fun t ht n hn ↦ (h t n).trans (ht n hn)
 
+/-- **Domination across two coefficient families.**  `TailNull.mono` compares
+two families over the same coefficients; a doubling compares a family over `A`
+with one over the doubled models, and that needs this.  Hoisted here out of the
+`have` it was living in inside `Analysis/ShulmanFillNormingTailDoubleMF`. -/
+theorem TailNull.mono₂ {cut : ℕ → ℕ}
+    {A' : ℕ → Type u} [∀ n, CStarAlgebra (A' n)]
+    {X : ℕ → StarStrong.BoundedStarSequence A}
+    {Y : ℕ → StarStrong.BoundedStarSequence A'}
+    (hX : TailNull cut X) (h : ∀ t n, ‖Y t n‖ ≤ ‖X t n‖) : TailNull cut Y := by
+  intro ε hε
+  exact (hX ε hε).mono fun t ht n hn ↦ (h t n).trans (ht n hn)
+
 /-- **What the consumer reads off a tail-vanishing family.**  A diagonal that
 runs out in the member index and stays past the cut in the coordinate index
 turns tail vanishing into vanishing along that diagonal, which is the hypothesis
