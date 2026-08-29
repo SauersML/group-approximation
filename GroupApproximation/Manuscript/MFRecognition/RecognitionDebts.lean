@@ -102,7 +102,8 @@ The statement is now a theorem of three named inputs:
   `Analysis/CStarHilbertCountableBasis` moves the representation to `ℓ²`
   over a small index along `Analysis/CStarHilbertTransport`.
 
-So the debt rests on the first two inputs alone.  The route itself is Shulman's own: Theorem 13 embeds the amalgam in the
+So the debt rests on the first two inputs alone.  The route itself is
+Shulman's own: Theorem 13 embeds the amalgam in the
 symmetric double `D *_C D`, Theorem 10 makes the double MF from the printed
 pair statement (`isMFAlgebra_amalgam_of_printedPair`), and the injective
 factor map turns the MF double into the type-zero witness that
