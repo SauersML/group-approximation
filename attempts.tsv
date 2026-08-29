@@ -234,3 +234,4 @@
 33175162539	2026-08-28T13:24:03Z	GroupApproximation/Sofic/ChiodoUniversalHost.lean	torsionOrders_eq_empty_iff
 33219671171	2026-08-28T23:13:59Z	GroupApproximation/Sofic/ChosenMarkedCylinder.lean	reindexed_relator_mem_chosenPoint
 33233200562	2026-08-29T04:11:46Z	GroupApproximation/Sofic/ChosenMarkedPresentation.lean	coverData_nonempty
+33249449295	2026-08-29T11:09:55Z	GroupApproximation/Sofic/ChosenMarkedPresentation.lean	chosenFinitelyPresented_markedPackage
