@@ -2463,6 +2463,7 @@ import GroupApproximation.GGT.HullSCUnionGeometryBranchPoint
 import GroupApproximation.GGT.HullSCUnionGeometryFactorInput
 import GroupApproximation.GGT.HullSCUnionGeometryShortBranch
 import GroupApproximation.GGT.HullSCUnionGeometryAssembly
+import GroupApproximation.Analysis.ShulmanFillNormingDoubleMF
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
