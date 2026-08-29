@@ -2544,6 +2544,7 @@ import GroupApproximation.GGT.OsinTheorem54SepFourGonPinning
 import GroupApproximation.GGT.OsinTheorem54SepCommIndex
 import GroupApproximation.GGT.HullSCRelatorSeparation2MirrorGap
 import GroupApproximation.GGT.HullSCRelatorSeparation2Aligned
+import GroupApproximation.Analysis.ShulmanFillNormingEllTwoModels
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

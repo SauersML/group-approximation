@@ -3,9 +3,11 @@ import GroupApproximation.Analysis.ShulmanFillSymmetricDoubleEmbedTheorem13
 /-!
 # Theorem 13: the shape Enders--Shulman's construction produces
 
-LITERATURE INPUT: D. Enders and T. Shulman, *On the (Local) Lifting Property*,
-arXiv:2403.12224, Theorem 4.11, cited as Theorem 13 of T. Shulman,
-arXiv:2603.13564v2.
+The statement carried here is Theorem 4.11 of D. Enders and T. Shulman, *On
+the (Local) Lifting Property*, arXiv:2403.12224, which T. Shulman,
+arXiv:2603.13564v2, cites as Theorem 13.  It is carried as a `Prop` and
+discharged nowhere in this repository; the citation records whose theorem it
+is, not a licence to assume it.
 
 `Analysis/ShulmanFillSymmetricDoubleEmbedTheorem13` used to carry a formal
 half: the map `Φ = φ_A * φ_B` as `symmetricDoubleEmbedding`, the factorisation
@@ -108,10 +110,19 @@ symmetric double detects the amalgam.
 
 This is `CalkinWitnessStatement` with the target's structure exposed: their
 `γ` is the pair `(q ∘ Ad(1 ⊕ u) ∘ σ_A^{⊕∞}, q ∘ σ_B^{⊕∞})`, whose two legs
-agree on `C` precisely because Voiculescu's theorem supplied `u`. -/
+agree on `C` precisely because Voiculescu's theorem supplied `u`.
+
+`A` and `B` are required separable, not just `C`.  Voiculescu's theorem is
+applied to two representations of `C`, so `C` separable is what that step reads
+off; but the representations it compares are the restrictions of representations
+of the amalgam, and those live on separable Hilbert spaces only when `A` and `B`
+are separable too.  Asking only for `C` would make this `Prop` claim more than
+Enders--Shulman prove.  It costs the consumer nothing:
+`ShulmanFill.isMFAlgebra_of_factorMap_injective` already carries both. -/
 def CompatibleTargetPairStatement : Prop :=
   ∀ {C A B D : Type} [CStarAlgebra C] [CStarAlgebra A] [CStarAlgebra B]
     [CStarAlgebra D] [Nontrivial D]
+    [TopologicalSpace.SeparableSpace A] [TopologicalSpace.SeparableSpace B]
     (iA : C →⋆ₐ[ℂ] A) (iB : C →⋆ₐ[ℂ] B)
     [Nonempty (CStarAmalgamRepresentation iA iB)]
     (gamma : C →⋆ₐ[ℂ] D) (alpha : A →⋆ₐ[ℂ] D) (beta : B →⋆ₐ[ℂ] D)
@@ -135,7 +146,9 @@ representations of `D` induces a `*`-homomorphism on the symmetric double, by
 the universal property. -/
 theorem calkinWitness_of_compatibleTargetPair
     (h : CompatibleTargetPairStatement) : CalkinWitnessStatement := by
-  intro C A B D _ _ _ _ _ iA iB _ gamma alpha beta hA hB hC halpha hbeta
+  -- Seven anonymous binders before `iA`: the four `CStarAlgebra`s, `Nontrivial D`,
+  -- and the two `SeparableSpace`s that the Voiculescu step needs.
+  intro C A B D _ _ _ _ _ _ _ iA iB _ gamma alpha beta hA hB hC halpha hbeta
   obtain ⟨T, hTalg, hTnt, sigmaA, sigmaB, hsigma, hinj⟩ :=
     h iA iB gamma alpha beta hA hB hC halpha hbeta
   letI : CStarAlgebra T := hTalg

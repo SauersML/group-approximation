@@ -98,6 +98,7 @@ theorem shulmanTheorem16_of_typeZeroWitness
     (hDouble : ShulmanSymmetricDouble.SymmetricDoubleMFStatement)
     (hwit : ∀ {C A B D : Type} [CStarAlgebra C] [CStarAlgebra A]
       [CStarAlgebra B] [CStarAlgebra D] [Nontrivial D]
+      [TopologicalSpace.SeparableSpace A] [TopologicalSpace.SeparableSpace B]
       (iA : C →⋆ₐ[ℂ] A) (iB : C →⋆ₐ[ℂ] B)
       [Nonempty (CStarAmalgamRepresentation iA iB)]
       (gamma : C →⋆ₐ[ℂ] D) (alpha : A →⋆ₐ[ℂ] D) (beta : B →⋆ₐ[ℂ] D)
@@ -155,6 +156,7 @@ theorem conjugateWordNorming_of_typeZeroWitness
     (hDouble : ShulmanSymmetricDouble.SymmetricDoubleMFStatement)
     (hwit : ∀ {C A B D : Type} [CStarAlgebra C] [CStarAlgebra A]
       [CStarAlgebra B] [CStarAlgebra D] [Nontrivial D]
+      [TopologicalSpace.SeparableSpace A] [TopologicalSpace.SeparableSpace B]
       (iA : C →⋆ₐ[ℂ] A) (iB : C →⋆ₐ[ℂ] B)
       [Nonempty (CStarAmalgamRepresentation iA iB)]
       (gamma : C →⋆ₐ[ℂ] D) (alpha : A →⋆ₐ[ℂ] D) (beta : B →⋆ₐ[ℂ] D)

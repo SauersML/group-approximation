@@ -34,18 +34,45 @@ an equivalence), Theorem 16 from Theorems 10 and 13
 `ShulmanSymmetricDouble.CompatibleTargetPairStatement`, and Theorem 10 from the
 three items above.  Two of those three are the same construction task — the
 `M₂` amplification of the `𝒟` data, which supplies the flip — and the third is
-the lifting direction of Theorem 4:
+the lifting direction of Theorem 4.
+
+## Theorem 4's lifting direction: the form to use, and the form that is false
+
+An earlier version of this header recorded that input with the model quantified
+*first*: for every `H`, `A`, `ι`, `hnorm`, `hone` with MF coefficients, and then
+for every separable MF `B` and faithful `π`, a lift.  **That is false**, and
+`Analysis/ShulmanFillNormingTheorem4Refuted` proves it: `not_theorem4ModelFirst`
+refutes `Theorem4ModelFirstStatement` there, through
+`commute_of_theorem4ModelFirst`, which shows the model-first form forces every
+separable MF algebra with a faithful representation to be commutative.  The
+scalar model `A n = ℂ`, `ι n z = z • 1` makes `𝒟` commutative while the `lift`
+clause of `StarStrongAsymptoticLift` is exact, and that is the whole argument.
+
+The honest form puts the model after the representation, which is what
+Blackadar--Kirchberg supply — the matricial model is built to fit `π`:
 
     ∀ {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
-      {A : ℕ → Type} [∀ n, CStarAlgebra (A n)] [∀ n, Nontrivial (A n)]
-      (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
-      (hnorm : ∀ n x, ‖ι n x‖ ≤ ‖x‖)
-      (hone : ∀ v : H, Tendsto (fun n ↦ ι n (1 : A n) v) atTop (𝓝 v)),
-      (∀ n, HasMFEmbedding (A n)) →
-      ∀ (B : Type) [CStarAlgebra B] [TopologicalSpace.SeparableSpace B],
-        IsMFAlgebra B →
-        ∀ (π : B →⋆ₐ[ℂ] (H →L[ℂ] H)), Function.Injective π →
+      [TopologicalSpace.SeparableSpace H]
+      (B : Type) [CStarAlgebra B] [TopologicalSpace.SeparableSpace B],
+      IsMFAlgebra B →
+      ∀ (π : B →⋆ₐ[ℂ] (H →L[ℂ] H)), Function.Injective π →
+        ∃ (A : ℕ → Type) (_ : ∀ n, CStarAlgebra (A n))
+          (_ : ∀ n, Nontrivial (A n)) (_ : ∀ n, HasMFEmbedding (A n))
+          (ι : ∀ n, A n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
+          (hnorm : ∀ n x, ‖ι n x‖ ≤ ‖x‖)
+          (hone : ∀ v : H, Tendsto (fun n ↦ ι n (1 : A n) v) atTop (𝓝 v)),
           Nonempty (ShulmanFill.StarStrongAsymptoticLift ι hnorm hone π)
+
+`isMFAlgebra_amalgam_of_glue` can consume that form, because it takes `ι`,
+`hnorm` and `hone` as section variables and so may instantiate them from the
+existential.  And only ONE lift is needed, not two:
+`Analysis/ShulmanFillNormingDoubledData` doubles any model to `M₂(A n)` on
+`H ⊕ H` with `HasMFEmbedding` preserved,
+`Analysis/ShulmanFillNormingDoubledFlip` supplies the flip as a unitary of the
+doubled `𝒟`, `t ↦ diag (φ_t b, φ_t b)` carries the lift across, and
+`ShulmanFill.conjugate` makes the second leg from the first.  The bridge lemma
+for that transport is not yet written; until it is, the binder consumed below is
+the two-lift one.
 -/
 
 namespace GroupApproximation

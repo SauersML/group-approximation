@@ -4,9 +4,11 @@ import GroupApproximation.Analysis.ShulmanSymmetricDoubleRoute
 /-!
 # Theorem 13: its Calkin witness, and the universe obstruction to `Φ`
 
-LITERATURE INPUT: D. Enders and T. Shulman, *On the (Local) Lifting Property*,
-arXiv:2403.12224, Theorem 4.11 — cited as Theorem 13 of T. Shulman, *The MF
-property for amalgamated free products*, arXiv:2603.13564v2.
+The statement below is Theorem 4.11 of D. Enders and T. Shulman, *On the
+(Local) Lifting Property*, arXiv:2403.12224, cited as Theorem 13 of T. Shulman,
+*The MF property for amalgamated free products*, arXiv:2603.13564v2.  It is
+carried here as a `Prop` and discharged nowhere in this repository; the citation
+records whose theorem it is, not a licence to assume it.
 
 > Let `A`, `B`, `D` be unital `C*`-algebras and `C` separable unital.  Let
 > `θ_A : C → A`, `θ_B : C → B`, `φ_A : A → D`, `φ_B : B → D` be unital
@@ -133,6 +135,7 @@ algebra forgotten except its conclusion. -/
 def CalkinWitnessStatement : Prop :=
   ∀ {C A B D : Type} [CStarAlgebra C] [CStarAlgebra A] [CStarAlgebra B]
     [CStarAlgebra D] [Nontrivial D]
+    [TopologicalSpace.SeparableSpace A] [TopologicalSpace.SeparableSpace B]
     (iA : C →⋆ₐ[ℂ] A) (iB : C →⋆ₐ[ℂ] B)
     [Nonempty (CStarAmalgamRepresentation iA iB)]
     (gamma : C →⋆ₐ[ℂ] D) (alpha : A →⋆ₐ[ℂ] D) (beta : B →⋆ₐ[ℂ] D)
