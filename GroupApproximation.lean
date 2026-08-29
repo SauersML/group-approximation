@@ -2444,6 +2444,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Statement
 import GroupApproximation.GGT.HullSCUnionGeometrySyllableSplit
 import GroupApproximation.GGT.HullSCUnionGeometryWitness
 import GroupApproximation.GGT.HullSCUnionGeometryVirtuallyCyclic
+import GroupApproximation.Analysis.ShulmanFillNormingConjugationLift
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

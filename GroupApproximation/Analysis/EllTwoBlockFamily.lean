@@ -34,18 +34,23 @@ the index), `lp.norm_single`, `lp.inner_single_left` (the single on the *left*),
 `lp.hasSum_single`, `PiLp.inner_apply`, `EuclideanSpace.norm_eq`.
 
 An earlier header of `Analysis/StarStrongBlockModel` claimed `lp.single_add`,
-`lp.inner_single_left` and `lp.hasSum_single` had no precedent here.  That was
-wrong about the last two, which are used in half a dozen modules; only
-`lp.single_add` is genuinely absent, and it is proved below coordinatewise
-rather than assumed.
+`lp.inner_single_left` and `lp.hasSum_single` had no precedent here.  Two of
+those three are used in half a dozen modules of this repository, and the third,
+`lp.single_add`, is in Mathlib at the pinned revision along with
+`lp.single_smul` — it was only absent from *this* repository.  Both wrappers
+below are now one line each.  The lesson is that "no precedent" was a claim
+about a search of the repository, and the library was never searched at all.
 
 The names carrying real risk, and so the first places a build should look, are
 `RCLike.inner_apply` (used once, in `complex_inner_eq`, to read `⟪a, b⟫_ℂ` as
 `conj a * b`), `ext_inner_left`, `HasSum.tendsto_sum_nat` and
-`Fin.sum_univ_eq_sum_range`.  One further assumption is structural rather than
-nominal: `blockRestrict` builds an element of `EuclideanSpace ℂ (Fin n)` from a
-bare function, which is definitional while `PiLp` is a type synonym.  If that
-changes upstream it needs `WithLp.equiv`, and nothing else here moves.
+`Fin.sum_univ_eq_sum_range`.  One further point is structural rather than
+nominal: `WithLp` is a structure in this Mathlib, not a type synonym, so
+`blockRestrict` builds its element of `EuclideanSpace ℂ (Fin n)` through
+`WithLp.toLp 2`, the way `Analysis/VectorHilbertUltraproduct`'s `evec` does.
+Reading a coordinate `v i` is unaffected — it is the structure projection
+followed by application — and `blockRestrict_apply` is still `rfl`, as
+`evec_apply` is there.
 
 This module is in the root import list.
 -/
@@ -70,28 +75,20 @@ theorem ellTwo_sum_apply {ι : Type} (s : Finset ι) (f : ι → EllTwo) (m : �
     (∑ i ∈ s, f i) m = ∑ i ∈ s, (f i) m :=
   map_sum (lp.evalCLM ℂ (fun _ : ℕ ↦ ℂ) 2 m) f s
 
-/-- `lp.single` is additive in its value.  Proved coordinatewise, because the
-bundled lemma is not available here. -/
+/-- `lp.single` is additive in its value.  The ascription to `EllTwo` is what
+fixes the family `E`: without an expected type the elaborator leaves it a
+metavariable and cannot solve `?E i =?= ℂ`. -/
 theorem ellTwo_single_add (i : ℕ) (a b : ℂ) :
-    lp.single 2 i (a + b) = lp.single 2 i a + lp.single 2 i b := by
-  refine lp.ext (funext fun m ↦ ?_)
-  by_cases h : m = i
-  · subst h
-    rw [lp.coeFn_add, Pi.add_apply, lp.single_apply_self, lp.single_apply_self,
-      lp.single_apply_self]
-  · rw [lp.coeFn_add, Pi.add_apply, lp.single_apply_ne 2 i (a + b) h,
-      lp.single_apply_ne 2 i a h, lp.single_apply_ne 2 i b h, add_zero]
+    (lp.single 2 i (a + b) : EllTwo)
+      = lp.single 2 i a + lp.single 2 i b :=
+  lp.single_add (E := fun _ : ℕ ↦ ℂ) 2 i a b
 
-/-- `lp.single` is homogeneous in its value. -/
+/-- `lp.single` is homogeneous in its value.  `c * a` is `c • a` for `ℂ`, so
+this is the library's `lp.single_smul`. -/
 theorem ellTwo_single_smul (i : ℕ) (c a : ℂ) :
-    lp.single 2 i (c * a) = c • lp.single 2 i a := by
-  refine lp.ext (funext fun m ↦ ?_)
-  by_cases h : m = i
-  · subst h
-    rw [lp.coeFn_smul, Pi.smul_apply, lp.single_apply_self,
-      lp.single_apply_self, smul_eq_mul]
-  · rw [lp.coeFn_smul, Pi.smul_apply, lp.single_apply_ne 2 i (c * a) h,
-      lp.single_apply_ne 2 i a h, smul_zero]
+    (lp.single 2 i (c * a) : EllTwo) = c • lp.single 2 i a := by
+  rw [← smul_eq_mul]
+  exact lp.single_smul (E := fun _ : ℕ ↦ ℂ) 2 i c a
 
 /-! ## The inclusion of the first `n` coordinates -/
 
@@ -101,14 +98,10 @@ def blockInclLinear (n : ℕ) : EuclideanSpace ℂ (Fin n) →ₗ[ℂ] EllTwo wh
   toFun v := ∑ i : Fin n, lp.single 2 (i : ℕ) (v i)
   map_add' v w := by
     rw [← Finset.sum_add_distrib]
-    refine Finset.sum_congr rfl fun i _ ↦ ?_
-    show lp.single 2 (i : ℕ) (v i + w i) = _
-    exact ellTwo_single_add (i : ℕ) (v i) (w i)
+    exact Finset.sum_congr rfl fun i _ ↦ ellTwo_single_add (i : ℕ) (v i) (w i)
   map_smul' c v := by
     rw [RingHom.id_apply, Finset.smul_sum]
-    refine Finset.sum_congr rfl fun i _ ↦ ?_
-    show lp.single 2 (i : ℕ) (c * v i) = _
-    exact ellTwo_single_smul (i : ℕ) c (v i)
+    exact Finset.sum_congr rfl fun i _ ↦ ellTwo_single_smul (i : ℕ) c (v i)
 
 @[simp] theorem blockInclLinear_apply (n : ℕ) (v : EuclideanSpace ℂ (Fin n)) :
     blockInclLinear n v = ∑ i : Fin n, lp.single 2 (i : ℕ) (v i) := rfl
@@ -118,9 +111,9 @@ theorem blockInclLinear_coord (n : ℕ) (v : EuclideanSpace ℂ (Fin n))
     (j : Fin n) : (blockInclLinear n v) (j : ℕ) = v j := by
   rw [blockInclLinear_apply, ellTwo_sum_apply]
   rw [Finset.sum_eq_single j]
-  · exact lp.single_apply_self 2 (j : ℕ) (v j)
+  · exact lp.single_apply_self (E := fun _ : ℕ ↦ ℂ) 2 (j : ℕ) (v j)
   · intro i _ hij
-    refine lp.single_apply_ne 2 (i : ℕ) (v i) ?_
+    refine lp.single_apply_ne (E := fun _ : ℕ ↦ ℂ) 2 (i : ℕ) (v i) ?_
     intro hcoe
     exact hij (Fin.ext hcoe.symm)
   · intro hj
@@ -144,7 +137,8 @@ theorem norm_blockInclLinear_le (n : ℕ) (v : EuclideanSpace ℂ (Fin n)) :
     ‖blockInclLinear n v‖ ≤ (n : ℝ) * ‖v‖ := by
   rw [blockInclLinear_apply]
   refine (norm_sum_le _ _).trans ?_
-  have hterm : ∀ i : Fin n, ‖lp.single 2 (i : ℕ) (v i)‖ ≤ ‖v‖ := by
+  have hterm : ∀ i : Fin n,
+      ‖(lp.single 2 (i : ℕ) (v i) : EllTwo)‖ ≤ ‖v‖ := by
     intro i
     rw [lp.norm_single (by norm_num)]
     exact euclidean_coord_norm_le v i
@@ -168,7 +162,7 @@ theorem blockIncl_coord (n : ℕ) (v : EuclideanSpace ℂ (Fin n)) (j : Fin n) :
 /-- The scalar inner product of `ℂ`, in the shape `lp.inner_single_left`
 produces. -/
 theorem complex_inner_eq (a b : ℂ) : ⟪a, b⟫_ℂ = (starRingEnd ℂ) a * b :=
-  RCLike.inner_apply a b
+  (RCLike.inner_apply a b).trans (mul_comm _ _)
 
 /-- **`Jₙ` preserves inner products.**  The double sum collapses to its
 diagonal, the off-diagonal terms vanishing because a point mass is supported at
@@ -209,7 +203,7 @@ theorem norm_blockIncl_le_one (n : ℕ) : ‖blockIncl n‖ ≤ 1 := by
 
 /-- The restriction of an `ℓ²` vector to its first `n` coordinates. -/
 def blockRestrict (n : ℕ) (w : EllTwo) : EuclideanSpace ℂ (Fin n) :=
-  fun i ↦ w (i : ℕ)
+  WithLp.toLp 2 fun i : Fin n ↦ w (i : ℕ)
 
 @[simp] theorem blockRestrict_apply (n : ℕ) (w : EllTwo) (i : Fin n) :
     blockRestrict n w i = w (i : ℕ) := rfl
@@ -222,7 +216,7 @@ theorem adjoint_blockIncl_apply (n : ℕ) (w : EllTwo) :
   rw [ContinuousLinearMap.adjoint_inner_right, blockIncl_apply, sum_inner,
     PiLp.inner_apply]
   refine Finset.sum_congr rfl fun i _ ↦ ?_
-  rw [lp.inner_single_left, complex_inner_eq, blockRestrict_apply]
+  rw [lp.inner_single_left, blockRestrict_apply]
 
 /-- `Jₙ Jₙ* w` is the `n`-th partial sum of the point-mass expansion of `w`. -/
 theorem blockIncl_adjoint_apply (n : ℕ) (w : EllTwo) :
