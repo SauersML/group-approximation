@@ -2557,6 +2557,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Cross
 import GroupApproximation.GGT.OsinTheorem54SepFourGonInterface
 import GroupApproximation.GGT.HullSCRelatorSeparation2Centralizer
 import GroupApproximation.GGT.HullSCRelatorSeparation2Power
+import GroupApproximation.GGT.OsinTheorem54SepCommSet
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
