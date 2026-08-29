@@ -30,6 +30,11 @@ form is not in the tree; `Connected` itself is only about component starts.
 * `wordDist_vertex_le_one_of_connected` --- any vertex of one component and any
   vertex of a component connected to it are at most one letter apart.
 
+At the two component *starts* no wrapper is needed at all: `Connected` unfolds to
+`wordDist_le_one_of_mem_fam`'s hypothesis, so `wordDist_le_one_of_mem_fam D hconn`
+typechecks directly, and a restatement of that was removed from this module rather
+than carried.  What is here is the case where the vertices are not the starts.
+
 None of the three needs a polygon, hyperbolicity, or isolation: connectedness is
 membership in one coset of `H lam`, and a coset difference is a single letter of
 `X ⊔ ℋ`.
@@ -104,15 +109,6 @@ theorem wordDist_vertex_le_one_of_connected (D : RelGenSet G Λ) (lam : Λ) (v :
   rw [hrw]
   exact mul_mem (inv_mem h1) (mul_mem hconn' h2)
 
-/-- **The connected form, read at the two component starts.**  The special case
-`p = i`, `q = i'` of `wordDist_vertex_le_one_of_connected`, which needs no
-components at all --- `Connected` already says the two vertices differ by an
-element of `H lam`. -/
-theorem wordDist_vertex_le_one_of_connected_start (D : RelGenSet G Λ) {lam : Λ}
-    {v : G} {w : List (RelLetter G Λ)} {i j : ℕ}
-    (hconn : Connected D.fam lam v w i j) :
-    wordDist D.alphabet.carrier (vertex v w i) (vertex v w j) ≤ 1 :=
-  wordDist_le_one_of_mem_fam D hconn
 
 end OsinComponents
 end GGT
