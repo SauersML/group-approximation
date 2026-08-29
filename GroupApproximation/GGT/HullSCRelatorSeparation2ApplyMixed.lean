@@ -110,7 +110,7 @@ theorem mixed_data_of_found_match {D : GGT.RelGenSet G Bool}
     (hsside : ∀ m : ℕ, m ≤ u'.length → m ≠ k →
       (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b) :
-    ∃ (f : ℕ) (X X' : G),
+    ∃ (f : ℕ) (X X' : G), f ∈ ms ∧
       ((RelWord.revInv
           (relatorWord₂ p (a false) (a true) ms)).rotate c')[k - 1]?
         = some (GGT.RelLetter.comp b
@@ -128,7 +128,7 @@ theorem mixed_data_of_found_match {D : GGT.RelGenSet G Bool}
       = some (GGT.RelLetter.comp b x) := by
     rw [hw']
     exact (List.getElem?_append_left (by omega : k - 1 < u'.length)).trans hx
-  obtain ⟨f, -, hxf⟩ := exponent_of_comp_rotate_revInv hxR
+  obtain ⟨f, hf, hxf⟩ := exponent_of_comp_rotate_revInv hxR
   have hletk : ((RelWord.revInv
       (relatorWord₂ p (a false) (a true) ms)).rotate c')[k - 1]?
       = some (GGT.RelLetter.comp b
@@ -162,7 +162,7 @@ theorem mixed_data_of_found_match {D : GGT.RelGenSet G Bool}
     hqg hcompu (Or.inr hpz0) hcompu' (Or.inr hpz0) hConn hqside hsside'
   have hid := conj_of_matchedPair_letters (py := py) hlu hlu'
   rw [ite_apply_eq a b] at hid
-  exact ⟨f, _, _, hletk, hxb, hx'b, hid⟩
+  exact ⟨f, _, _, hf, hletk, hxb, hx'b, hid⟩
 
 end Mixed
 
