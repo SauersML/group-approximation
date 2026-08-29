@@ -18,8 +18,9 @@ An earlier reading of this lane recorded Theorem 13 as "formal, no
 approximation", inferred from the shape of its statement.  That is wrong.
 Shulman attributes Theorem 13 to
 
-LITERATURE INPUT: D. Enders and T. Shulman, *On the (Local) Lifting Property*,
-arXiv:2403.12224, Theorem 4.11,
+D. Enders and T. Shulman, *On the (Local) Lifting Property*, arXiv:2403.12224,
+Theorem 4.11 (a citation, not a licence: the statement is discharged nowhere
+in this development and is consumed only as a named hypothesis),
 
 and their proof is analytic.  It fixes an embedding `α : A *_C B → B(H)` that
 stays injective after the Calkin quotient, extends `α_A` off `φ_A(A)` to a ccp
