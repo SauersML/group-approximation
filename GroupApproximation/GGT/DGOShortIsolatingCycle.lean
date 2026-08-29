@@ -50,25 +50,44 @@ variable {G : Type u} [Group G] {Λ : Type w}
 
 /-! ## Corners -/
 
-/-- **A non-exempt side realises the gap between its corners.**  Side `0` is
-exempt from the geodesic clause, so it is excluded: the distinguished component
-may be a long run whose ends are one alphabet letter apart. -/
-theorem GeodesicFourGon.side_dist (D : RelGenSet G Λ) {v : G}
-    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
+/-- **A non-exempt side estimates the gap between any two of its vertices**, at
+`(1,b)`: the index difference less `b` from below, and the index difference from
+above.  Side `0` is exempt, so it is excluded: the distinguished component may
+be a long run whose ends are one alphabet letter apart.
+
+The chain is applied through an ascribed `have` at the beta-reduced type rather
+than positionally, since the lambda is already in the field's type and no
+metavariable is being instantiated. -/
+theorem GeodesicFourGon.side_dist_of_mem (D : RelGenSet G Λ) {b : ℕ} {v : G}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D b v w c)
+    {t : ℕ} (ht : t < 4) (ht0 : t ≠ 0) {p q : ℕ} (hp : c t ≤ p) (hpq : p ≤ q)
+    (hq : q ≤ c (t + 1)) :
+    (q - p) - b ≤ wordDist D.alphabet.carrier (vertex v w p) (vertex v w q) ∧
+      wordDist D.alphabet.carrier (vertex v w p) (vertex v w q) ≤ q - p := by
+  have h : (q - c t - (p - c t)) - b
+        ≤ wordDist D.alphabet.carrier (vertex v w (c t + (p - c t)))
+          (vertex v w (c t + (q - c t))) ∧
+      wordDist D.alphabet.carrier (vertex v w (c t + (p - c t)))
+          (vertex v w (c t + (q - c t))) ≤ q - c t - (p - c t) :=
+    hQ.geodesic t ht ht0 (p - c t) (q - c t) (by omega) (by omega)
+  rwa [show c t + (p - c t) = p from by omega,
+    show c t + (q - c t) = q from by omega,
+    show q - c t - (p - c t) = q - p from by omega] at h
+
+/-- **A non-exempt side estimates the gap between its corners.** -/
+theorem GeodesicFourGon.side_dist (D : RelGenSet G Λ) {b : ℕ} {v : G}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D b v w c)
     {t : ℕ} (ht : t < 4) (ht0 : t ≠ 0) :
-    wordDist D.alphabet.carrier (vertex v w (c t)) (vertex v w (c (t + 1)))
-      = c (t + 1) - c t := by
-  have hcs : c t ≤ c (t + 1) := hQ.mono (Nat.le_succ t)
-  have hEq : c t + (c (t + 1) - c t) = c (t + 1) := by omega
-  have h0 : wordDist D.alphabet.carrier (vertex v w (c t + 0))
-      (vertex v w (c t + (c (t + 1) - c t))) = c (t + 1) - c t - 0 :=
-    hQ.geodesic t ht ht0 0 (c (t + 1) - c t) (Nat.zero_le _) le_rfl
-  rw [Nat.add_zero, hEq, Nat.sub_zero] at h0
-  exact h0
+    (c (t + 1) - c t) - b
+        ≤ wordDist D.alphabet.carrier (vertex v w (c t))
+          (vertex v w (c (t + 1))) ∧
+      wordDist D.alphabet.carrier (vertex v w (c t)) (vertex v w (c (t + 1)))
+        ≤ c (t + 1) - c t :=
+  hQ.side_dist_of_mem D ht ht0 le_rfl (hQ.mono (Nat.le_succ t)) le_rfl
 
 /-- **The fourth corner is the basepoint**, the path being closed. -/
-theorem GeodesicFourGon.vertex_last (D : RelGenSet G Λ) {v : G}
-    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c) :
+theorem GeodesicFourGon.vertex_last (D : RelGenSet G Λ) {b : ℕ} {v : G}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D b v w c) :
     vertex v w (c 4) = v := by
   rw [hQ.finish, vertex_eq_mul_listVal_take, List.take_length, hQ.closed, mul_one]
 
@@ -82,11 +101,12 @@ The distinguished side is exempt from the geodesic clause, so its length `c 1`
 is not bounded by the distance between its ends and has to be supplied: `hc01`
 says the component has already been collapsed to a single letter, which
 `DGOIsolatedComponentNormalise.normWord` arranges. -/
-theorem GeodesicFourGon.length_le_of_corners_close (D : RelGenSet G Λ) {v : G}
-    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
+theorem GeodesicFourGon.length_le_of_corners_close (D : RelGenSet G Λ) {b : ℕ}
+    {v : G} {w : List (RelLetter G Λ)} {c : ℕ → ℕ}
+    (hQ : GeodesicFourGon D b v w c)
     {lam : Λ} (hcomp : IsComp lam w (c 0) (c 1)) (hc01 : c 1 = c 0 + 1) {θ : ℕ}
     (h12 : c 2 - c 1 ≤ θ + 1) (h34 : c 4 - c 3 ≤ θ + 1) :
-    w.length ≤ 4 * θ + 6 := by
+    w.length ≤ 4 * θ + 6 + b := by
   have hsymm := D.alphabet.symmetricGenerating
   have hst : c 0 = 0 := hQ.start
   have hlen : w.length = c 4 := hQ.finish.symm
@@ -99,12 +119,17 @@ theorem GeodesicFourGon.length_le_of_corners_close (D : RelGenSet G Λ) {v : G}
   have hd01 : wordDist D.alphabet.carrier (vertex v w (c 0)) (vertex v w (c 1))
       ≤ 1 :=
     wordDist_le_one_of_mem_fam D (span_mem_fam_of_isComp D v hQ.letters hcomp)
+  -- side 1 and side 3 from above, side 2 from below: the far side is bounded
+  -- through the other three, and only side 2's lower bound costs the `b`.
+  -- Each is ascribed with the index normalised: `side_dist` at `t` produces
+  -- `c (t + 1)`, and `omega` treats `c (1 + 1)` and `c 2` as unrelated atoms.
   have hs1 : wordDist D.alphabet.carrier (vertex v w (c 1)) (vertex v w (c 2))
-      = c 2 - c 1 := hQ.side_dist D (by omega : (1 : ℕ) < 4) (by omega)
-  have hs2 : wordDist D.alphabet.carrier (vertex v w (c 2)) (vertex v w (c 3))
-      = c 3 - c 2 := hQ.side_dist D (by omega : (2 : ℕ) < 4) (by omega)
+      ≤ c 2 - c 1 := (hQ.side_dist D (by omega : (1 : ℕ) < 4) (by omega)).2
+  have hs2 : (c 3 - c 2) - b
+      ≤ wordDist D.alphabet.carrier (vertex v w (c 2)) (vertex v w (c 3)) :=
+    (hQ.side_dist D (by omega : (2 : ℕ) < 4) (by omega)).1
   have hs3 : wordDist D.alphabet.carrier (vertex v w (c 3)) (vertex v w (c 4))
-      = c 4 - c 3 := hQ.side_dist D (by omega : (3 : ℕ) < 4) (by omega)
+      ≤ c 4 - c 3 := (hQ.side_dist D (by omega : (3 : ℕ) < 4) (by omega)).2
   rw [hclose] at hs3
   have hc21 : wordDist D.alphabet.carrier (vertex v w (c 2)) (vertex v w (c 1))
       = wordDist D.alphabet.carrier (vertex v w (c 1)) (vertex v w (c 2)) :=

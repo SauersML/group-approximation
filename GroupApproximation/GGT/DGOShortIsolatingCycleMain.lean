@@ -93,12 +93,13 @@ The cut function is `c' t = 1 + (c t - c 1) - (1 - t)`, which is `0` at `t = 0`
 and `1 + (c t - c 1)` afterwards.  It is introduced through its two defining
 equations and never unfolded again: the closed form exists only so that no `if`
 reaches `omega`, which does not split one. -/
-theorem GeodesicFourGon.exists_unit_side_zero (D : RelGenSet G Λ) {v : G}
-    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
+theorem GeodesicFourGon.exists_unit_side_zero (D : RelGenSet G Λ) {b : ℕ}
+    {v : G} {w : List (RelLetter G Λ)} {c : ℕ → ℕ}
+    (hQ : GeodesicFourGon D b v w c)
     {lam : Λ} (hcomp : IsComp lam w (c 0) (c 1))
     (hiso : IsIsolated D.fam lam v w (c 0)) :
     ∃ (w' : List (RelLetter G Λ)) (c' : ℕ → ℕ),
-      GeodesicFourGon D v w' c' ∧ c' 1 = 1 ∧
+      GeodesicFourGon D b v w' c' ∧ c' 1 = 1 ∧
         IsComp lam w' 0 1 ∧ IsIsolated D.fam lam v w' 0 ∧
         (vertex v w' 0)⁻¹ * vertex v w' 1
           = (vertex v w (c 0))⁻¹ * vertex v w (c 1) := by
@@ -161,23 +162,30 @@ theorem GeodesicFourGon.exists_unit_side_zero (D : RelGenSet G Λ) {v : G}
       have hcab : c a ≤ c b := hQ.mono hab
       rw [hc'pos a (by omega), hc'pos b hb]
       omega
-  · intro t ht ht0 a b hab hbn
+  · intro t ht ht0 p q hpq hqn
     have hct1 : c 1 ≤ c t := hQ.mono (show (1 : ℕ) ≤ t by omega)
     have hct : c t ≤ c (t + 1) := hQ.mono (Nat.le_succ t)
     have hc't : c' t = 1 + (c t - c 1) := hc'pos t ht0
     have hc't1 : c' (t + 1) = 1 + (c (t + 1) - c 1) := hc'pos (t + 1) (by omega)
-    have hbn' : b ≤ c (t + 1) - c t := by omega
-    have hg := hQ.geodesic t ht ht0 a b hab hbn'
-    show wordDist D.alphabet.carrier
-        (vertex v (normWord w lam 0 (c 1)
-          (RelLetter.listVal ((w.drop 0).take (c 1 - 0)))) (c' t + a))
-        (vertex v (normWord w lam 0 (c 1)
-          (RelLetter.listVal ((w.drop 0).take (c 1 - 0)))) (c' t + b)) = b - a
-    rw [show c' t + a = 1 + ((c t - c 1) + a) from by omega,
-      show c' t + b = 1 + ((c t - c 1) + b) from by omega,
-      hvadd ((c t - c 1) + a), hvadd ((c t - c 1) + b),
-      show c 1 + ((c t - c 1) + a) = c t + a from by omega,
-      show c 1 + ((c t - c 1) + b) = c t + b from by omega]
+    have hqn' : q ≤ c (t + 1) - c t := by omega
+    have hg := hQ.geodesic t ht ht0 p q hpq hqn'
+    show (q - p) - b
+        ≤ wordDist D.alphabet.carrier
+          (vertex v (normWord w lam 0 (c 1)
+            (RelLetter.listVal ((w.drop 0).take (c 1 - 0)))) (c' t + p))
+          (vertex v (normWord w lam 0 (c 1)
+            (RelLetter.listVal ((w.drop 0).take (c 1 - 0)))) (c' t + q)) ∧
+      wordDist D.alphabet.carrier
+          (vertex v (normWord w lam 0 (c 1)
+            (RelLetter.listVal ((w.drop 0).take (c 1 - 0)))) (c' t + p))
+          (vertex v (normWord w lam 0 (c 1)
+            (RelLetter.listVal ((w.drop 0).take (c 1 - 0)))) (c' t + q))
+        ≤ q - p
+    rw [show c' t + p = 1 + ((c t - c 1) + p) from by omega,
+      show c' t + q = 1 + ((c t - c 1) + q) from by omega,
+      hvadd ((c t - c 1) + p), hvadd ((c t - c 1) + q),
+      show c 1 + ((c t - c 1) + p) = c t + p from by omega,
+      show c 1 + ((c t - c 1) + q) = c t + q from by omega]
     exact hg
   · rw [hv0, hv1, hst]
 
@@ -190,15 +198,18 @@ facts. -/
 theorem short_cycle_at (D : RelGenSet G Λ) (lam : Λ) (v : G)
     {w : List (RelLetter G Λ)} (hlet : ∀ a ∈ w, D.IsLetter a)
     (hcl : RelLetter.listVal w = 1) (hcomp : IsComp lam w 0 1)
-    (hiso : IsIsolated D.fam lam v w 0) {δ m j : ℕ} (hmj : m ≤ j)
+    (hiso : IsIsolated D.fam lam v w 0) {δ b m j : ℕ} (hmj : m ≤ j)
     (hjw : j ≤ w.length)
-    (hd : wordDist D.alphabet.carrier (vertex v w m) (vertex v w j) ≤ 10 * δ)
-    (hoff : 10 * δ + 2 ≤ wordDist D.alphabet.carrier v (vertex v w m) ∨
-      10 * δ + 2 ≤ wordDist D.alphabet.carrier v (vertex v w j))
-    (hN : m + 10 * δ + (w.length - j) ≤ 80 * δ + 14) :
+    (hd : wordDist D.alphabet.carrier (vertex v w m) (vertex v w j)
+      ≤ 12 * δ + 2 * b)
+    (hoff : 12 * δ + 2 * b + 2
+        ≤ wordDist D.alphabet.carrier v (vertex v w m) ∨
+      12 * δ + 2 * b + 2 ≤ wordDist D.alphabet.carrier v (vertex v w j))
+    (hN : m + (12 * δ + 2 * b) + (w.length - j) ≤ 96 * δ + 21 * b + 14) :
     ∃ q : List (RelLetter G Λ),
       (∀ a ∈ q, D.IsLetter a) ∧ RelLetter.listVal q = 1 ∧
-      q.length ≤ 80 * δ + 14 ∧ IsComp lam q 0 1 ∧ IsIsolated D.fam lam v q 0 ∧
+      q.length ≤ 96 * δ + 21 * b + 14 ∧ IsComp lam q 0 1 ∧
+      IsIsolated D.fam lam v q 0 ∧
       (vertex v q 0)⁻¹ * vertex v q 1 = (vertex v w 0)⁻¹ * vertex v w 1 :=
   short_cycle_of_indices D lam v hlet hcl hcomp hiso hmj hjw hd hoff hN
 
@@ -209,13 +220,14 @@ side is already one letter.**  The four branches are described in the module
 header; the worst is `80 delta + 14`. -/
 theorem exists_short_isolating_cycle_of_unit (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (lam : Λ) {v : G}
-    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} {δ : ℕ}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} {δ b : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
-    (hQ : GeodesicFourGon D v w c) (hc1 : c 1 = 1)
+    (hQ : GeodesicFourGon D b v w c) (hc1 : c 1 = 1)
     (hcomp : IsComp lam w 0 1) (hiso : IsIsolated D.fam lam v w 0) :
     ∃ q : List (RelLetter G Λ),
       (∀ a ∈ q, D.IsLetter a) ∧ RelLetter.listVal q = 1 ∧
-      q.length ≤ 80 * δ + 14 ∧ IsComp lam q 0 1 ∧ IsIsolated D.fam lam v q 0 ∧
+      q.length ≤ 96 * δ + 21 * b + 14 ∧ IsComp lam q 0 1 ∧
+      IsIsolated D.fam lam v q 0 ∧
       (vertex v q 0)⁻¹ * vertex v q 1 = (vertex v w 0)⁻¹ * vertex v w 1 := by
   have hS := D.alphabet.symmetricGenerating
   have hst : c 0 = 0 := hQ.start
@@ -227,12 +239,6 @@ theorem exists_short_isolating_cycle_of_unit (D : RelGenSet G Λ)
   have hcompc : IsComp lam w (c 0) (c 1) := by
     rw [hst, hc1]
     exact hcomp
-  have hg1 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 1 + m))
-      (c 2 - c 1) := hQ.geodesic 1 (by omega) (by omega)
-  have hg2 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 2 + m))
-      (c 3 - c 2) := hQ.geodesic 2 (by omega) (by omega)
-  have hg3 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 3 + m))
-      (c 4 - c 3) := hQ.geodesic 3 (by omega) (by omega)
   -- the two ends of the distinguished side are one alphabet letter apart
   have hd01 : wordDist D.alphabet.carrier v (vertex v w (c 1)) ≤ 1 := by
     have h := wordDist_le_one_of_mem_fam D
@@ -242,108 +248,96 @@ theorem exists_short_isolating_cycle_of_unit (D : RelGenSet G Λ)
   have hcm1 : wordDist D.alphabet.carrier (vertex v w (c 1)) v
       = wordDist D.alphabet.carrier v (vertex v w (c 1)) :=
     wordDist_comm hS (vertex v w (c 1)) v
-  -- distances along the three non-exempt sides
+  -- the three non-exempt sides, each as a two-sided estimate; the indices are
+  -- ascribed so that `omega` never meets `c (1 + 1)` beside `c 2`
   have hs1 : ∀ x : ℕ, c 1 ≤ x → x ≤ c 2 →
-      wordDist D.alphabet.carrier (vertex v w (c 1)) (vertex v w x)
-        = x - c 1 := by
-    intro x h1 h2
-    have h := hg1 0 (x - c 1) (by omega) (by omega)
-    beta_reduce at h
-    rwa [Nat.add_zero, Nat.sub_zero,
-      show c 1 + (x - c 1) = x from by omega] at h
+      (x - c 1) - b
+          ≤ wordDist D.alphabet.carrier (vertex v w (c 1)) (vertex v w x) ∧
+        wordDist D.alphabet.carrier (vertex v w (c 1)) (vertex v w x)
+          ≤ x - c 1 := fun x h1 h2 =>
+    hQ.side_dist_of_mem D (by omega : (1 : ℕ) < 4) (by omega) le_rfl h1 h2
   have hs2 : ∀ x y : ℕ, c 2 ≤ x → x ≤ y → y ≤ c 3 →
-      wordDist D.alphabet.carrier (vertex v w x) (vertex v w y) = y - x := by
-    intro x y h1 h2 h3
-    have h := hg2 (x - c 2) (y - c 2) (by omega) (by omega)
-    beta_reduce at h
-    rwa [show c 2 + (x - c 2) = x from by omega,
-      show c 2 + (y - c 2) = y from by omega,
-      show y - c 2 - (x - c 2) = y - x from by omega] at h
+      (y - x) - b
+          ≤ wordDist D.alphabet.carrier (vertex v w x) (vertex v w y) ∧
+        wordDist D.alphabet.carrier (vertex v w x) (vertex v w y)
+          ≤ y - x := fun x y h1 h2 h3 =>
+    hQ.side_dist_of_mem D (by omega : (2 : ℕ) < 4) (by omega) h1 h2 h3
   have hs3 : ∀ x : ℕ, c 3 ≤ x → x ≤ c 4 →
-      wordDist D.alphabet.carrier (vertex v w x) v = c 4 - x := by
+      (c 4 - x) - b ≤ wordDist D.alphabet.carrier (vertex v w x) v ∧
+        wordDist D.alphabet.carrier (vertex v w x) v ≤ c 4 - x := by
     intro x h1 h2
-    have h := hg3 (x - c 3) (c 4 - c 3) (by omega) (by omega)
-    beta_reduce at h
-    rwa [show c 3 + (x - c 3) = x from by omega,
-      show c 3 + (c 4 - c 3) = c 4 from by omega,
-      show c 4 - c 3 - (x - c 3) = c 4 - x from by omega, hlast] at h
-  rcases Nat.lt_or_ge (c 2 - c 1) (10 * δ + 3) with hL1 | hL1
-  · rcases Nat.lt_or_ge (c 4 - c 3) (10 * δ + 3) with hL3 | hL3
+    have h := hQ.side_dist_of_mem D (by omega : (3 : ℕ) < 4) (by omega) h1 h2
+      le_rfl
+    rwa [hlast] at h
+  rcases Nat.lt_or_ge (c 2 - c 1) (12 * δ + 3 * b + 3) with hL1 | hL1
+  · rcases Nat.lt_or_ge (c 4 - c 3) (12 * δ + 3 * b + 3) with hL3 | hL3
     · -- **Both flanks short.**  The polygon is its own cycle.
       refine ⟨w, hQ.letters, hQ.closed, ?_, hcomp, hiso, rfl⟩
-      have hle : w.length ≤ 4 * (10 * δ + 1) + 6 :=
+      have hle : w.length ≤ 4 * (12 * δ + 3 * b + 1) + 6 + b :=
         hQ.length_le_of_corners_close D hcompc (by omega) (by omega) (by omega)
       omega
     · -- **Side 3 long, side 1 short.**  Offset backwards along side 3.
-      have hjr : c 3 ≤ c 4 - (10 * δ + 3) := by omega
-      have hdj : wordDist D.alphabet.carrier (vertex v w (c 4 - (10 * δ + 3))) v
-          = 10 * δ + 3 := by
-        have h := hs3 (c 4 - (10 * δ + 3)) (by omega) (by omega)
-        rwa [show c 4 - (c 4 - (10 * δ + 3)) = 10 * δ + 3 from by omega] at h
-      have hdjv : wordDist D.alphabet.carrier v
-          (vertex v w (c 4 - (10 * δ + 3))) = 10 * δ + 3 := by
-        rw [wordDist_comm hS]
-        exact hdj
+      have hjr : c 3 ≤ c 4 - (12 * δ + 3 * b + 3) := by omega
+      obtain ⟨hdjl, hdju⟩ := hs3 (c 4 - (12 * δ + 3 * b + 3)) (by omega)
+        (by omega)
+      have hcmj := wordDist_comm hS (vertex v w (c 4 - (12 * δ + 3 * b + 3))) v
       rcases hQ.exists_index_close_side_three D hδ
-          (i := c 4 - (10 * δ + 3)) (by omega) (by omega) with
+          (i := c 4 - (12 * δ + 3 * b + 3)) (by omega) (by omega) with
         ⟨p, hdp, hpr⟩ | ⟨q0, hq0, hdq0⟩
-      · -- the near vertex is on side 1 or side 2
-        have hpc3 : p ≤ c 3 := by
+      · have hpc3 : p ≤ c 3 := by
           rcases hpr with ⟨-, h2⟩ | ⟨-, h2⟩
           · omega
           · omega
         have hdpv : wordDist D.alphabet.carrier v (vertex v w p)
-            ≤ 20 * δ + 3 := by
+            ≤ 24 * δ + 5 * b + 3 := by
           have htri := wordDist_triangle hS v
-            (vertex v w (c 4 - (10 * δ + 3))) (vertex v w p)
+            (vertex v w (c 4 - (12 * δ + 3 * b + 3))) (vertex v w p)
           omega
-        have hpb : p ≤ 40 * δ + 9 := by
+        have hpb : p ≤ 48 * δ + 12 * b + 9 := by
           rcases hpr with ⟨h1, h2⟩ | ⟨h1, h2⟩
           · omega
           · have hdv2 : wordDist D.alphabet.carrier v (vertex v w (c 2))
-                ≤ 10 * δ + 3 := by
-              have hx := hs1 (c 2) (by omega) (by omega)
+                ≤ 12 * δ + 3 * b + 3 := by
+              obtain ⟨-, hx⟩ := hs1 (c 2) (by omega) (by omega)
               have htri := wordDist_triangle hS v (vertex v w (c 1))
                 (vertex v w (c 2))
               omega
-            have hgap := hs2 (c 2) p (by omega) (by omega) (by omega)
+            obtain ⟨hgap, -⟩ := hs2 (c 2) p (by omega) (by omega) (by omega)
             have htri := wordDist_triangle hS (vertex v w (c 2)) v
               (vertex v w p)
             have hcm := wordDist_comm hS v (vertex v w (c 2))
             omega
         refine short_cycle_at D lam v hQ.letters hQ.closed hcomp hiso
-          (m := p) (j := c 4 - (10 * δ + 3)) (by omega) (by omega) ?_
+          (m := p) (j := c 4 - (12 * δ + 3 * b + 3)) (by omega) (by omega) ?_
           (Or.inr (by omega)) (by omega)
         rw [wordDist_comm hS]
         exact hdp
-      · -- the near vertex would be on the exempt side: excluded by the offset
-        exfalso
+      · exfalso
         have hb : wordDist D.alphabet.carrier v q0 +
             wordDist D.alphabet.carrier q0 (vertex v w (c 1))
             = wordDist D.alphabet.carrier v (vertex v w (c 1)) := hq0
-        have hcm := wordDist_comm hS (vertex v w (c 4 - (10 * δ + 3))) q0
+        have hcm := wordDist_comm hS
+          (vertex v w (c 4 - (12 * δ + 3 * b + 3))) q0
         have htri := wordDist_triangle hS v q0
-          (vertex v w (c 4 - (10 * δ + 3)))
+          (vertex v w (c 4 - (12 * δ + 3 * b + 3)))
         omega
   · -- **Side 1 long.**  Offset forwards along side 1.
-    have hmr : c 1 + (10 * δ + 3) ≤ c 2 := by omega
-    have hdm : wordDist D.alphabet.carrier (vertex v w (c 1))
-        (vertex v w (c 1 + (10 * δ + 3))) = 10 * δ + 3 := by
-      have h := hs1 (c 1 + (10 * δ + 3)) (by omega) (by omega)
-      rwa [show c 1 + (10 * δ + 3) - c 1 = 10 * δ + 3 from by omega] at h
+    have hmr : c 1 + (12 * δ + 3 * b + 3) ≤ c 2 := by omega
+    obtain ⟨hdml, hdmu⟩ := hs1 (c 1 + (12 * δ + 3 * b + 3)) (by omega)
+      (by omega)
     have htri1 := wordDist_triangle hS (vertex v w (c 1)) v
-      (vertex v w (c 1 + (10 * δ + 3)))
+      (vertex v w (c 1 + (12 * δ + 3 * b + 3)))
     have htri2 := wordDist_triangle hS v (vertex v w (c 1))
-      (vertex v w (c 1 + (10 * δ + 3)))
-    have hoffm : 10 * δ + 2 ≤ wordDist D.alphabet.carrier v
-        (vertex v w (c 1 + (10 * δ + 3))) := by omega
+      (vertex v w (c 1 + (12 * δ + 3 * b + 3)))
+    have hoffm : 12 * δ + 2 * b + 2 ≤ wordDist D.alphabet.carrier v
+        (vertex v w (c 1 + (12 * δ + 3 * b + 3))) := by omega
     have hupm : wordDist D.alphabet.carrier v
-        (vertex v w (c 1 + (10 * δ + 3))) ≤ 10 * δ + 4 := by omega
+        (vertex v w (c 1 + (12 * δ + 3 * b + 3))) ≤ 12 * δ + 3 * b + 4 := by
+      omega
     rcases hQ.exists_index_close_side_one D hδ
-        (i := c 1 + (10 * δ + 3)) (by omega) (by omega) with
+        (i := c 1 + (12 * δ + 3 * b + 3)) (by omega) (by omega) with
       ⟨p, hdp, hpr⟩ | ⟨q0, hq0, hdq0⟩
-    · -- the near vertex is on side 2 or side 3
-      have hpc2 : c 2 ≤ p := by
+    · have hpc2 : c 2 ≤ p := by
         rcases hpr with ⟨h1, -⟩ | ⟨h1, -⟩
         · omega
         · omega
@@ -352,93 +346,91 @@ theorem exists_short_isolating_cycle_of_unit (D : RelGenSet G Λ)
         · omega
         · omega
       have hdpv : wordDist D.alphabet.carrier v (vertex v w p)
-          ≤ 20 * δ + 4 := by
+          ≤ 24 * δ + 5 * b + 4 := by
         have htri := wordDist_triangle hS v
-          (vertex v w (c 1 + (10 * δ + 3))) (vertex v w p)
+          (vertex v w (c 1 + (12 * δ + 3 * b + 3))) (vertex v w p)
         omega
-      rcases Nat.lt_or_ge (c 4 - c 3) (10 * δ + 3) with hL3 | hL3
+      rcases Nat.lt_or_ge (c 4 - c 3) (12 * δ + 3 * b + 3) with hL3 | hL3
       · -- side 3 is short: the tail is bounded through it
-        have htail : w.length - p ≤ 40 * δ + 8 := by
+        have htail : w.length - p ≤ 48 * δ + 12 * b + 8 := by
           rcases hpr with ⟨h1, h2⟩ | ⟨h1, h2⟩
-          · have hgap := hs2 p (c 3) (by omega) (by omega) (by omega)
-            have hd3 := hs3 (c 3) (by omega) (by omega)
-            have hcm3 := wordDist_comm hS (vertex v w (c 3)) v
+          · obtain ⟨hgap, -⟩ := hs2 p (c 3) (by omega) (by omega) (by omega)
+            obtain ⟨-, hd3⟩ := hs3 (c 3) (by omega) (by omega)
             have htri := wordDist_triangle hS (vertex v w p) v
               (vertex v w (c 3))
             have hcmp := wordDist_comm hS v (vertex v w p)
+            have hcm3 := wordDist_comm hS v (vertex v w (c 3))
             omega
-          · omega
+          · obtain ⟨hd3, -⟩ := hs3 p (by omega) (by omega)
+            have hcmp := wordDist_comm hS (vertex v w p) v
+            omega
         exact short_cycle_at D lam v hQ.letters hQ.closed hcomp hiso
-          (m := c 1 + (10 * δ + 3)) (j := p) (by omega) (by omega) hdp
+          (m := c 1 + (12 * δ + 3 * b + 3)) (j := p) (by omega) (by omega) hdp
           (Or.inl hoffm) (by omega)
       · -- side 3 is long as well
         rcases hpr with ⟨hp1, hp2⟩ | ⟨hp1, hp2⟩
         · -- the first near vertex is on side 2; take the second offset
-          have hjr : c 3 ≤ c 4 - (10 * δ + 3) := by omega
-          have hdj : wordDist D.alphabet.carrier
-              (vertex v w (c 4 - (10 * δ + 3))) v = 10 * δ + 3 := by
-            have h := hs3 (c 4 - (10 * δ + 3)) (by omega) (by omega)
-            rwa [show c 4 - (c 4 - (10 * δ + 3)) = 10 * δ + 3
-              from by omega] at h
-          have hdjv : wordDist D.alphabet.carrier v
-              (vertex v w (c 4 - (10 * δ + 3))) = 10 * δ + 3 := by
-            rw [wordDist_comm hS]
-            exact hdj
+          have hjr : c 3 ≤ c 4 - (12 * δ + 3 * b + 3) := by omega
+          obtain ⟨hdjl, hdju⟩ := hs3 (c 4 - (12 * δ + 3 * b + 3)) (by omega)
+            (by omega)
+          have hcmj := wordDist_comm hS
+            (vertex v w (c 4 - (12 * δ + 3 * b + 3))) v
           rcases hQ.exists_index_close_side_three D hδ
-              (i := c 4 - (10 * δ + 3)) (by omega) (by omega) with
+              (i := c 4 - (12 * δ + 3 * b + 3)) (by omega) (by omega) with
             ⟨p', hdp', hpr'⟩ | ⟨q0, hq0, hdq0⟩
           · have hdp'v : wordDist D.alphabet.carrier v (vertex v w p')
-                ≤ 20 * δ + 3 := by
+                ≤ 24 * δ + 5 * b + 3 := by
               have htri := wordDist_triangle hS v
-                (vertex v w (c 4 - (10 * δ + 3))) (vertex v w p')
+                (vertex v w (c 4 - (12 * δ + 3 * b + 3))) (vertex v w p')
               omega
             rcases hpr' with ⟨hq1, hq2⟩ | ⟨hq1, hq2⟩
             · -- the second near vertex is on side 1: one connector suffices
-              have hpb : p' ≤ 20 * δ + 5 := by
-                have hgap := hs1 p' (by omega) (by omega)
+              have hpb : p' ≤ 24 * δ + 6 * b + 5 := by
+                obtain ⟨hgap, -⟩ := hs1 p' (by omega) (by omega)
                 have htri := wordDist_triangle hS (vertex v w (c 1)) v
                   (vertex v w p')
                 omega
               refine short_cycle_at D lam v hQ.letters hQ.closed hcomp hiso
-                (m := p') (j := c 4 - (10 * δ + 3)) (by omega) (by omega) ?_
-                (Or.inr (by omega)) (by omega)
+                (m := p') (j := c 4 - (12 * δ + 3 * b + 3)) (by omega)
+                (by omega) ?_ (Or.inr (by omega)) (by omega)
               rw [wordDist_comm hS]
               exact hdp'
             · -- both near vertices are on side 2: two connectors
               obtain ⟨r, hrlet, hrval, hrlen, hrcos⟩ :=
                 exists_connector D lam v hdp (Or.inl hoffm)
               have hdp'' : wordDist D.alphabet.carrier (vertex v w p')
-                  (vertex v w (c 4 - (10 * δ + 3))) ≤ 10 * δ := by
+                  (vertex v w (c 4 - (12 * δ + 3 * b + 3)))
+                  ≤ 12 * δ + 2 * b := by
                 rw [wordDist_comm hS]
                 exact hdp'
               obtain ⟨r', hr'let, hr'val, hr'len, hr'cos⟩ :=
                 exists_connector D lam v hdp'' (Or.inr (by omega))
               rcases Nat.lt_or_ge p' p with hint | hint
               · -- the two pairs interleave: the six-block splice
-                have hgp : p - p' ≤ 40 * δ + 7 := by
-                  have hd2 := hs2 p' p (by omega) (by omega) (by omega)
+                have hgp : p - p' ≤ 48 * δ + 11 * b + 7 := by
+                  obtain ⟨hd2, -⟩ := hs2 p' p (by omega) (by omega) (by omega)
                   have htri := wordDist_triangle hS (vertex v w p') v
                     (vertex v w p)
                   have hcm' := wordDist_comm hS v (vertex v w p')
                   omega
                 obtain ⟨q, hk1, hk2, hk3, hk4, hk5, hk6⟩ :=
                   cycle_of_reversed_splice D hsymm lam v hQ.letters hQ.closed
-                    hcomp hiso (m := c 1 + (10 * δ + 3)) (j := p') (m' := p)
-                    (j' := c 4 - (10 * δ + 3))
+                    hcomp hiso (m := c 1 + (12 * δ + 3 * b + 3)) (j := p')
+                    (m' := p) (j' := c 4 - (12 * δ + 3 * b + 3))
                     (by omega) (by omega) (by omega) (by omega) hrlet hrval
                     hrcos hr'let hr'val hr'cos
                 exact ⟨q, hk1, hk2, by omega, hk4, hk5, hk6⟩
               · -- the two pairs do not interleave: splice twice
-                have hgp : p' - p ≤ 40 * δ + 7 := by
-                  have hd2 := hs2 p p' (by omega) (by omega) (by omega)
+                have hgp : p' - p ≤ 48 * δ + 11 * b + 7 := by
+                  obtain ⟨hd2, -⟩ := hs2 p p' (by omega) (by omega) (by omega)
                   have htri := wordDist_triangle hS (vertex v w p) v
                     (vertex v w p')
                   have hcm' := wordDist_comm hS v (vertex v w p)
                   omega
                 obtain ⟨q, hk1, hk2, hk3, hk4, hk5, hk6⟩ :=
                   cycle_of_two_connectors D lam v hQ.letters hQ.closed hcomp
-                    hiso (m := c 1 + (10 * δ + 3)) (j₁ := p) (m₂ := p')
-                    (j₂ := c 4 - (10 * δ + 3))
+                    hiso (m := c 1 + (12 * δ + 3 * b + 3)) (j₁ := p) (m₂ := p')
+                    (j₂ := c 4 - (12 * δ + 3 * b + 3))
                     (by omega) (by omega) (by omega) (by omega) hrlet hrval
                     hrcos hr'let hr'val hr'cos
                 exact ⟨q, hk1, hk2, by omega, hk4, hk5, hk6⟩
@@ -447,26 +439,27 @@ theorem exists_short_isolating_cycle_of_unit (D : RelGenSet G Λ)
                 wordDist D.alphabet.carrier q0 (vertex v w (c 1))
                 = wordDist D.alphabet.carrier v (vertex v w (c 1)) := hq0
             have hcm := wordDist_comm hS
-              (vertex v w (c 4 - (10 * δ + 3))) q0
+              (vertex v w (c 4 - (12 * δ + 3 * b + 3))) q0
             have htri := wordDist_triangle hS v q0
-              (vertex v w (c 4 - (10 * δ + 3)))
+              (vertex v w (c 4 - (12 * δ + 3 * b + 3)))
             omega
         · -- the first near vertex is on side 3: one connector suffices
-          have htail : w.length - p ≤ 20 * δ + 4 := by
-            have hd3 := hs3 p (by omega) (by omega)
+          have htail : w.length - p ≤ 24 * δ + 6 * b + 4 := by
+            obtain ⟨hd3, -⟩ := hs3 p (by omega) (by omega)
             have hcmp := wordDist_comm hS (vertex v w p) v
             omega
           exact short_cycle_at D lam v hQ.letters hQ.closed hcomp hiso
-            (m := c 1 + (10 * δ + 3)) (j := p) (by omega) (by omega) hdp
-            (Or.inl hoffm) (by omega)
+            (m := c 1 + (12 * δ + 3 * b + 3)) (j := p) (by omega) (by omega)
+            hdp (Or.inl hoffm) (by omega)
     · -- the near vertex would be on the exempt side: excluded by the offset
       exfalso
       have hb : wordDist D.alphabet.carrier v q0 +
           wordDist D.alphabet.carrier q0 (vertex v w (c 1))
           = wordDist D.alphabet.carrier v (vertex v w (c 1)) := hq0
-      have hcm := wordDist_comm hS (vertex v w (c 1 + (10 * δ + 3))) q0
+      have hcm := wordDist_comm hS
+        (vertex v w (c 1 + (12 * δ + 3 * b + 3))) q0
       have htri := wordDist_triangle hS v q0
-        (vertex v w (c 1 + (10 * δ + 3)))
+        (vertex v w (c 1 + (12 * δ + 3 * b + 3)))
       omega
 
 /-! ## Lemma 4.16 -/
@@ -485,13 +478,14 @@ collapse and the splices are stated at a named basepoint and a consumer should
 not have to know it is unchanged. -/
 theorem exists_short_isolating_cycle (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (lam : Λ) {v : G}
-    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} {δ : ℕ}
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} {δ b : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
-    (hQ : GeodesicFourGon D v w c) (hcomp : IsComp lam w (c 0) (c 1))
+    (hQ : GeodesicFourGon D b v w c) (hcomp : IsComp lam w (c 0) (c 1))
     (hiso : IsIsolated D.fam lam v w (c 0)) :
     ∃ (u : G) (q : List (RelLetter G Λ)),
       (∀ a ∈ q, D.IsLetter a) ∧ RelLetter.listVal q = 1 ∧
-      q.length ≤ 100 * (δ + 1) ∧ IsComp lam q 0 1 ∧ IsIsolated D.fam lam u q 0 ∧
+      q.length ≤ 100 * (δ + b + 1) ∧ IsComp lam q 0 1 ∧
+      IsIsolated D.fam lam u q 0 ∧
       (vertex u q 0)⁻¹ * vertex u q 1
         = (vertex v w (c 0))⁻¹ * vertex v w (c 1) := by
   obtain ⟨w', c', hQ', hc'1, hcomp', hiso', hspan'⟩ :=

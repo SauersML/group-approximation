@@ -66,13 +66,14 @@ never from `μ` or `b`: a base case at `(μ,b)` with radius `C · 4` yields
 ## What is still assumed
 
 The base case, and nothing else.  `isolatedComponentBound_of_sideZeroBase` takes
-it as a binder at `(μ,b)`, and `isolatedComponentBound_of_fourPointHyperbolic`
-discharges that binder at `(1,0)` with
+it as a binder at `(μ,b)`, and `isolatedComponentBound_of_fourPointHyperbolic_at`
+discharges that binder at `(1,b)` with
 `DGOIsolatedComponentBoundFourGon.span_mem_relBall_of_sideZero`, which is proved
-there from a symmetric base and four-point hyperbolicity.  A base case at
-general `(μ,b)` --- Dahmani--Guirardel--Osin's Lemma 4.15, quasi-geodesic
-stability at `θ = ϰ(μ,b) + 2δ`, inside their 4.16 --- instantiates the same
-binder and gives the same conclusion at `(μ,b)`, with nothing here to change.
+there from a symmetric base and four-point hyperbolicity, with constant
+`25 (δ + b + 1)` off their `12δ + 2b` thinness.  A base case at general `μ` ---
+Dahmani--Guirardel--Osin's Lemma 4.15, quasi-geodesic stability at
+`θ = ϰ(μ,b) + 2δ`, inside their 4.16 --- instantiates the same binder and gives
+the same conclusion at `(μ,b)`, with nothing here to change.
 
 `n ≤ 6` stays.  Each step of Lemma 4.17 costs `C ↦ C₁ + C₂`, so iterating to `n`
 sides gives a radius quadratic in `n`, and the linear form `C · n` at a fixed
@@ -338,12 +339,29 @@ theorem isolatedComponentBound_of_sideZeroBase (D : RelGenSet G Λ)
 six sides, from four-point hyperbolicity alone.**
 
 `DGOIsolatedComponentBoundFourGon.span_mem_relBall_of_sideZero` is their Lemma
-4.16 at four sides, with `C = 25 (δ + 1)`; `baseCase_of_sideZero_at` puts it in
-the binder shape, and everything above turns it into the bound for an arbitrary
-isolated component of a `(1,0)`-quasi-geodesic `n`-gon, `n ≤ 6`.
+4.16 at four sides, with `C = 25 (δ + b + 1)`; `baseCase_of_sideZero_at` puts it
+in the binder shape, and everything above turns it into the bound for an
+arbitrary isolated component of a `(1,b)`-quasi-geodesic `n`-gon, `n ≤ 6`.
 
 No hypothesis remains but the two the base case itself carries: a base closed
-under inversion, and `Γ(G, X ⊔ ℋ)` four-point hyperbolic. -/
+under inversion, and `Γ(G, X ⊔ ℋ)` four-point hyperbolic.  The `b` enters only
+through their thinness constant `12δ + 2b`; nothing between the base case and
+here reads it, which is why the chain above is stated at a free `(mu, b)`. -/
+theorem isolatedComponentBound_of_fourPointHyperbolic_at (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) :
+    ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D 1 (b : ℝ) n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+        (vertex v u i)⁻¹ * vertex v u k
+          ∈ D.relBall nu (15 * (25 * (δ + b + 1)) * n) :=
+  isolatedComponentBound_of_sideZeroBase D hsymm 1 (b : ℝ) le_rfl
+    (Nat.cast_nonneg b) (25 * (δ + b + 1))
+    (baseCase_of_sideZero_at D hsymm hδ (b := b) rfl)
+
+/-- **The geodesic case**, `b = 0`: the shape the geodesic-polygon applications
+use.  Only the cast `((0 : ℕ) : ℝ) = 0` separates it from the statement
+above. -/
 theorem isolatedComponentBound_of_fourPointHyperbolic (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) :
@@ -351,10 +369,13 @@ theorem isolatedComponentBound_of_fourPointHyperbolic (D : RelGenSet G Λ)
       IsQuasiGeodesicPolygon D 1 0 n v u →
       ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
         (vertex v u i)⁻¹ * vertex v u k
-          ∈ D.relBall nu (15 * (25 * (δ + 1)) * n) :=
-  isolatedComponentBound_of_sideZeroBase D hsymm 1 0 le_rfl le_rfl
-    (25 * (δ + 1))
-    (baseCase_of_sideZero_at D hsymm hδ rfl)
+          ∈ D.relBall nu (15 * (25 * (δ + 1)) * n) := by
+  intro n hn6 v u hpoly nu i k hcomp hiso
+  have hpoly' : IsQuasiGeodesicPolygon D 1 ((0 : ℕ) : ℝ) n v u := by
+    rwa [Nat.cast_zero]
+  have h := isolatedComponentBound_of_fourPointHyperbolic_at D hsymm 0 hδ n hn6
+    v u hpoly' nu i k hcomp hiso
+  rwa [show δ + 0 + 1 = δ + 1 from by omega] at h
 
 end OsinComponents
 end GGT

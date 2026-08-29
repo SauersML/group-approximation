@@ -51,31 +51,32 @@ variable {G : Type u} [Group G] {Λ : Type w}
 /-- **dgo-cycle's base case, in the shape the transfers take.**
 
 Their `span_mem_relBall_of_sideZero` with `lam` moved before the clause, the
-constant written `25 (δ+1) * N`, and the side count carried as a variable equal
-to `4`. -/
+constant written `25 (δ+b+1) * N`, and the side count carried as a variable
+equal to `4`.  The `b` is theirs: their thinness is `12δ + 2b`, so what was
+`25 (δ+1)` at `b = 0` is `25 (δ+b+1)` in general. -/
 theorem baseCase_of_sideZero_at (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ}
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ b : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) {N : ℕ}
     (hN : N = 4) :
     ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c N = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < N → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - (b : ℝ)
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
         (vertex v w (c 0))⁻¹ * vertex v w (c 1)
-          ∈ D.relBall lam (25 * (δ + 1) * N) := by
+          ∈ D.relBall lam (25 * (δ + b + 1) * N) := by
   subst hN
   intro v w c hlet hclosed hc0 hc4 hcmono lam hcqg hcomp hiso
-  rw [show 25 * (δ + 1) * 4 = 100 * (δ + 1) from by ring]
+  rw [show 25 * (δ + b + 1) * 4 = 100 * (δ + b + 1) from by ring]
   exact span_mem_relBall_of_sideZero D hsymm hδ v w c hlet hclosed hc0 hc4 hcmono
     hcqg lam hcomp hiso
 
 /-! ## The component is a side -/
 
-/-- **The bound for a component that is a side of a `(1,0)`-quasi-geodesic 4-gon,
+/-- **The bound for a component that is a side of a `(1,b)`-quasi-geodesic 4-gon,
 at any index.**
 
 The base case has it at the side `0`; `sideForm_of_baseCase` rotates the polygon
@@ -83,33 +84,32 @@ so that any side `t` becomes the first.  Nothing else changes: the span is the
 same group element, and the clause is asked of `s ≠ t` before and of `s ≠ 0`
 after. -/
 theorem span_mem_relBall_of_isSide (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ}
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ b : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) (v : G)
     (w : List (RelLetter G Λ)) (c : ℕ → ℕ) (hlet : ∀ a ∈ w, D.IsLetter a)
     (hclosed : RelLetter.listVal w = 1) (hc0 : c 0 = 0) (hc4 : c 4 = w.length)
     (hcmono : ∀ s : ℕ, c s ≤ c (s + 1)) (lam : Λ) (t : ℕ) (ht : t < 4)
     (hcqg : ∀ s : ℕ, s < 4 → s ≠ t → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-      q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+      q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - (b : ℝ)
         ≤ ((wordDist D.alphabet.carrier (vertex v w p) (vertex v w q) : ℕ) : ℝ))
     (hcomp : IsComp lam w (c t) (c (t + 1)))
     (hiso : IsIsolated D.fam lam v w (c t)) :
     (vertex v w (c t))⁻¹ * vertex v w (c (t + 1))
-      ∈ D.relBall lam (25 * (δ + 1) * 4) :=
-  sideForm_of_baseCase D 1 0 (25 * (δ + 1))
+      ∈ D.relBall lam (25 * (δ + b + 1) * 4) :=
+  sideForm_of_baseCase D 1 (b : ℝ) (25 * (δ + b + 1))
     (baseCase_of_sideZero_at D hsymm hδ rfl) v w c hlet hclosed hc0 hc4 hcmono
     lam t ht hcqg hcomp hiso
 
 /-! ## The component straddles two corners -/
 
 /-- **The bound for a component straddling two corners of a
-`(1,0)`-quasi-geodesic 4-gon.**
+`(1,b)`-quasi-geodesic 4-gon.**
 
 The recut makes it a side of a polygon with `4 + 2 - (t' - t) = 4` sides, so the
-same base case applies.  This is the one straddling case that needs no side count
-beyond four, and at `(1,0)` such a run has at most three letters --- one on each
-side it meets. -/
+same base case applies.  This is the one straddling case that needs no side
+count beyond four. -/
 theorem span_mem_relBall_of_straddle_two (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ}
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ b : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) {v : G}
     {w : List (RelLetter G Λ)} {c : ℕ → ℕ} {lam : Λ} {i k t t' : ℕ}
     (ht : t < 4) (hti : c t ≤ i) (hit : i ≤ c (t + 1)) (ht' : t' < 4)
@@ -117,12 +117,14 @@ theorem span_mem_relBall_of_straddle_two (D : RelGenSet G Λ)
     (hlet : ∀ a ∈ w, D.IsLetter a) (hclosed : RelLetter.listVal w = 1)
     (hc0 : c 0 = 0) (hc4 : c 4 = w.length) (hcmono : ∀ s : ℕ, c s ≤ c (s + 1))
     (hcqg : ∀ s : ℕ, s < 4 → ∀ p q : ℕ, c s ≤ p → p ≤ q → q ≤ c (s + 1) →
-      ((q - p : ℕ) : ℝ) / 1 - 0
+      ((q - p : ℕ) : ℝ) / 1 - (b : ℝ)
         ≤ ((wordDist D.alphabet.carrier (vertex v w p) (vertex v w q) : ℕ) : ℝ))
     (hcomp : IsComp lam w i k) (hiso : IsIsolated D.fam lam v w i) :
-    (vertex v w i)⁻¹ * vertex v w k ∈ D.relBall lam (25 * (δ + 1) * 4) := by
+    (vertex v w i)⁻¹ * vertex v w k
+      ∈ D.relBall lam (25 * (δ + b + 1) * 4) := by
   have hN : 4 + 2 - (t' - t) = 4 := by omega
-  have h := isolatedComponent_span_of_baseCase D 1 0 (25 * (δ + 1)) ht hti hit
+  have h := isolatedComponent_span_of_baseCase D 1 (b : ℝ) (25 * (δ + b + 1))
+    ht hti hit
     ht' htk hkt' (by omega) (baseCase_of_sideZero_at D hsymm hδ hN) hlet hclosed
     hc0 hc4 hcmono hcqg hcomp hiso
   rwa [hN] at h

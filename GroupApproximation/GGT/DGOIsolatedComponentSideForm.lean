@@ -32,13 +32,13 @@ case alone: `isolatedComponent_span_of_baseCase`.
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
         (vertex v w (c 0))⁻¹ * vertex v w (c 1) ∈ D.relBall lam (C * N)
 
-`dgo-cycle`'s `span_mem_relBall_of_sideZero` is this at `N = 4`, `(μ,b) = (1,0)`,
-with `C := 25 * (δ + 1)`; the two differences are that they bind `lam` after the
-clause rather than before it, and that their constant is written `100 * (δ + 1)`
-rather than `C * N`.  The adapter is therefore one term:
+`dgo-cycle`'s `span_mem_relBall_of_sideZero` is this at `N = 4`, `μ = 1` and
+their `b`, with `C := 25 * (δ + b + 1)`; the two differences are that they bind
+`lam` after the clause rather than before it, and that their constant is written
+`100 * (δ + b + 1)` rather than `C * N`.  The adapter is therefore one term:
 
     fun v w c hlet hcl h0 hN hm lam hclause hcomp hiso => by
-      simpa [show 25 * (δ + 1) * 4 = 100 * (δ + 1) from by ring] using
+      simpa [show 25 * (δ + b + 1) * 4 = 100 * (δ + b + 1) from by ring] using
         span_mem_relBall_of_sideZero D hsymm hδ v w c hlet hcl h0 hN hm hclause
           lam hcomp hiso
 
