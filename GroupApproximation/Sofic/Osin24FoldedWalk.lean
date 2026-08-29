@@ -61,9 +61,56 @@ original order `C < A < B`, which is exactly why the chord `C–B` straddles the
 chord `A–D`.
 
 `ordOne` and `ordTwo` below are that order, written out, and the four theorems
-of section 4 are the model test: in the identity order the transfer straddles,
+of section 6 are the model test: in the identity order the transfer straddles,
 in the folded order it does not.  Both are decidable arithmetic on the pairs,
 in the style `MatchingFoldObstruction` established.
+
+## Folding does not preserve outerplanarity, and that bounds what can be claimed
+
+The unrestricted claim -- that the fold transfer is non-crossing in *some* order
+for every minimal expression -- is **not available**, and the reason is
+structural rather than a defect of a particular statement.
+
+The cactus has every letter on its boundary walk, which is why
+`MatchingChordGraph` gets non-crossing for free.  The folded object is a genuine
+disk diagram, and a disk diagram with an **interior** region -- one meeting no
+boundary letter -- has a wheel in its dual: the hub, and the cycle of its
+neighbours.  A wheel contains `K₄` as a minor, and no linear order makes the
+chords of a `K₄` non-crossing.  So no `ord` exists there.
+
+That is not a corner case.  `one_shell_of_counts` carries the number `s` of
+relator blocks meeting no boundary letter as a free variable, and
+`CurvatureAssembly`'s header says the seven-runs bound exists precisely for
+those blocks.  The `s > 0` branch is the branch the count is built for.
+
+What is *not* claimed: no `C'(1/6)` instance with an interior region has been
+built here.  Consecutive neighbours of an interior region meet at a vertex and
+need not share an arc, so a wheel is not *forced* by an interior region -- it is
+merely not excluded, and it is what an ordinary patch looks like.  The honest
+status is that the unrestricted claim is strictly stronger than planarity and
+fails for ordinary configurations, not that it is refuted.
+
+## The split this forces, and it is clean
+
+`s = 0` -- every relator block meets the boundary -- is exactly the case with no
+enclosed area, since a ring of regions would enclose one, and a simply connected
+diagram must fill it with regions that then meet no boundary letter.  So `s = 0`
+is exactly the tree-like case, which is exactly where the folded order exists.
+The two conditions coincide, which is the sign that the analysis is right rather
+than an artefact of the statement.
+
+And the arithmetic follows the same split, both halves proved in section 5:
+
+* at `s = 0` the **outerplanar** bound closes the count outright
+  (`one_shell_of_counts_boundary`), so that branch needs only
+  `Osin24FactorEdgeBound`'s `hE` and no fold at all on the counting side;
+* at `s > 0` the **planar** bound `E ≤ 3V − 6` closes it with no case split
+  (`one_shell_of_planar_counts`), and nothing weaker will do.
+
+`FoldedOuterplanarBoundary` is therefore stated for `s = 0` only, and
+`FoldedPlanarEdgeBound` names the planar input the other branch needs, so that
+the remaining debt of the free gate is two `Prop`s and not a research programme
+with no edges.
 -/
 
 namespace GroupApproximation
@@ -111,32 +158,41 @@ def blockOfPos {α : Type*} [DecidableEq α]
   | some z => z.2
   | none => Block.boundary
 
-/-- **Folded planarity: the claim the fold has to be replaced by.**
+/-- The folded vertex of a position: the factor of its relator block, and
+`e.length` for the boundary.  Conjugator and stem letters never occur in the
+transfer, so their value is never consumed. -/
+def foldedVertex {α : Type*} [DecidableEq α]
+    (e : List (FreeGroup α × List (α × Bool)))
+    (w : List (α × Bool)) (i : ℕ) : ℕ :=
+  match blockOfPos e w i with
+  | Block.relator k => k
+  | _ => e.length
 
-The naive fold asks the transfer to be non-crossing in the original order, and
-`MatchingFoldObstruction` refutes that.  This asks only that the transfer be
-non-crossing in *some* order, which is all the count needs: the outerplanar
-bound `NonCrossing.card_add_three_le_two_mul_card` consumes ordered,
-pairwise non-straddling chords and asks nothing about how the labelling relates
-to the original positions.
+/-- **Folded planarity, at the boundary case.**
 
-Every hypothesis is written out.  The first four are this lane's standing ones —
-the matching is the free-cancellation matching of the labelled word, and the
-expression is shortest-then-lightest.  The last five are what `labelledFactor`
-makes true of the mirror: it is symmetric and single-valued, it joins the
-conjugator block of a factor to the stem block of that same factor, every
-conjugator and stem letter has a partner, and two mirror pairs never cross.
+The claim the naive fold has to be replaced by, restricted to the case in which
+it can hold.  The unrestricted form is not available -- see the header: a disk
+diagram with an interior region has a wheel in its dual, and a wheel has no
+non-crossing linear layout -- so the last hypothesis asks that every relator
+block meet the boundary, which is exactly the tree-like case.
 
-The minimality hypothesis cannot be dropped and cannot be weakened to the
-metric condition: the two instances in the header satisfy `C'(1/6)` and are
-excluded only by minimality.
-Whether the *pairwise* form of minimality suffices is open, and is why the
-conclusion is stated as an existential rather than with a constructed order —
-constructing the order canonically from the matching is the work of proving
-this. -/
-def FoldedOuterplanar (α : Type*) [DecidableEq α] : Prop :=
+Every other hypothesis is written out too.  The first four are this lane's
+standing ones: the matching is the free-cancellation matching of the labelled
+word, and the expression is shortest-then-lightest.  The six on `mir` are what
+`labelledFactor` makes true of the mirror -- symmetric, single-valued, joining
+the conjugator block of a factor to the stem block of that same factor, every
+conjugator and stem letter has a partner, and two mirror pairs never cross --
+and `hM` says `M` lists the transfer.
+
+The minimality hypothesis cannot be dropped and cannot be weakened to the metric
+condition: the two instances in the header satisfy `C'(1/6)` and are excluded
+only by minimality.  The conclusion is an existential rather than a constructed
+order because constructing the order canonically from the matching IS the
+proof. -/
+def FoldedOuterplanarBoundary (α : Type*) [DecidableEq α] : Prop :=
   ∀ (R : Set (List (α × Bool))) (e : List (FreeGroup α × List (α × Bool)))
-    (w : List (α × Bool)) (T : DTree ((α × Bool) × Block)) (mir : ℕ → ℕ → Prop),
+    (w : List (α × Bool)) (T : DTree ((α × Bool) × Block)) (mir : ℕ → ℕ → Prop)
+    (M : List (ℕ × ℕ)),
     IsMinimalConjExpr R e (FreeGroup.mk w) →
     FreeGroup.IsReduced w → w ≠ [] →
     T.word = labelledWord e w →
@@ -148,12 +204,75 @@ def FoldedOuterplanar (α : Type*) [DecidableEq α] : Prop :=
     (∀ i k, blockOfPos e w i = Block.conj k → ∃ j, mir i j) →
     (∀ i k, blockOfPos e w i = Block.stem k → ∃ j, mir i j) →
     (∀ i j k l, mir i j → mir k l → i < j → k < l → ¬ Straddles (i, j) (k, l)) →
-    ∃ ord : ℕ → ℕ, ∀ i j k l : ℕ,
-      Transfer (fun a b => (a, b) ∈ T.pairIdx) mir i j →
-      Transfer (fun a b => (a, b) ∈ T.pairIdx) mir k l →
-      ¬ Straddles (ord i, ord j) (ord k, ord l)
+    (∀ i j, (i, j) ∈ M ↔ Transfer (fun a b => (a, b) ∈ T.pairIdx) mir i j) →
+    (∀ k < e.length, ∃ i j, (i, j) ∈ M ∧
+      blockOfPos e w i = Block.relator k ∧ blockOfPos e w j = Block.boundary) →
+    ∃ ord : ℕ → ℕ, NonCrossingAt ord M
 
-/-! ## 4.  The model test, at both instances
+/-- **The planar input the interior branch needs, named.**
+
+At `s > 0` no order exists and outerplanarity is the wrong tool; what closes the
+count there is Euler's bound `E ≤ 3·V − 6` for the folded diagram, which at
+`V = e.length + 1` reads `E + 3 ≤ 3·e.length`.  That is this statement, with the
+edges counted as the distinct chords the transfer induces on `foldedVertex`, and
+it is exactly the shape `one_shell_of_planar_counts` consumes.
+
+This is the whole remaining debt of the interior branch, and it is an
+infrastructure debt rather than a small-cancellation one: neither this
+repository nor Mathlib has planar graph theory -- no embedding, no Euler
+formula -- and the folded diagram is not currently an object at all.  The
+repository's existing edge bound, `NonCrossing.card_add_three_le_two_mul_card`,
+is the outerplanar one and was proved from scratch for a case where the linear
+order is given; here it is not. -/
+def FoldedPlanarEdgeBound (α : Type*) [DecidableEq α] : Prop :=
+  ∀ (R : Set (List (α × Bool))) (e : List (FreeGroup α × List (α × Bool)))
+    (w : List (α × Bool)) (T : DTree ((α × Bool) × Block)) (mir : ℕ → ℕ → Prop)
+    (M : List (ℕ × ℕ)),
+    IsMinimalConjExpr R e (FreeGroup.mk w) →
+    FreeGroup.IsReduced w → w ≠ [] →
+    T.word = labelledWord e w →
+    (∀ p ∈ T.pairs, (p.2).1 = invLetter ((p.1).1)) →
+    (∀ i j, mir i j → mir j i) →
+    (∀ i j j', mir i j → mir i j' → j = j') →
+    (∀ i j, mir i j → i < j →
+      ∃ k, blockOfPos e w i = Block.conj k ∧ blockOfPos e w j = Block.stem k) →
+    (∀ i k, blockOfPos e w i = Block.conj k → ∃ j, mir i j) →
+    (∀ i k, blockOfPos e w i = Block.stem k → ∃ j, mir i j) →
+    (∀ i j k l, mir i j → mir k l → i < j → k < l → ¬ Straddles (i, j) (k, l)) →
+    (∀ i j, (i, j) ∈ M ↔ Transfer (fun a b => (a, b) ∈ T.pairIdx) mir i j) →
+    ((M.map fun p =>
+        (foldedVertex e w p.1, foldedVertex e w p.2)).toFinset).card + 3
+      ≤ 3 * e.length
+
+/-! ## 5.  The count, on both branches
+
+Neither theorem is about folding: they are the arithmetic that says which edge
+bound each branch needs, and they are proved.  Together they say the free gate's
+remaining debt is exactly one planar bound. -/
+
+/-- **The boundary branch closes on the outerplanar bound alone.**
+
+At `s = 0` -- every relator block meets the boundary -- `one_shell_of_counts`
+needs nothing but the edge bound `Osin24FactorEdgeBound` already supplies:
+`t = n` and `5·n ≤ dT` give `6·n ≤ 2·e`, hence `e ≥ 3·n`, against `e ≤ 2·n − 1`.
+No fold enters the counting side of this branch. -/
+theorem one_shell_of_counts_boundary {n t e dT : ℕ}
+    (hst : t = n) (hE : e + 1 ≤ 2 * n) (hsum : t + dT = 2 * e)
+    (hdT : 5 * t ≤ dT) : False := by
+  omega
+
+/-- **The planar bound closes the count with no case split.**
+
+`E ≤ 3·V − 6` at `V = n + 1` is `e + 3 ≤ 3·n`, and then
+`6·t + 7·s ≤ 2·e ≤ 6·n − 6 = 6·(s + t) − 6` gives `s + 6 ≤ 0`.  So
+`FoldedPlanarEdgeBound` subsumes both branches, and the interior branch needs
+nothing beyond it. -/
+theorem one_shell_of_planar_counts {n s t e dS dT : ℕ}
+    (hst : s + t = n) (hE : e + 3 ≤ 3 * n) (hsum : t + dS + dT = 2 * e)
+    (hdS : 7 * s ≤ dS) (hdT : 5 * t ≤ dT) : False := by
+  omega
+
+/-! ## 6.  The model test, at both instances
 
 The transfers and the folded orders of the two instances in the header, and the
 two facts that matter: in the original order the transfer straddles, and in the
@@ -212,8 +331,12 @@ theorem transferTwo_noncrossing_folded : NonCrossingAt ordTwo transferTwo := by
 
 /-- **Both instances, in one statement.**  The naive fold fails at each, and the
 same reordering repairs each: neither is a counterexample to
-`FoldedOuterplanar`, and neither is repaired by the metric condition or by the
-order-blind pairwise lemma. -/
+`FoldedOuterplanarBoundary`, and neither is repaired by the metric condition or
+by the order-blind pairwise lemma.
+
+Both instances have interior relator blocks -- only `E` meets the boundary -- so
+they lie in the `s > 0` branch and do not test the boundary case.  What they
+test is the reordering itself, which is the part shared by both branches. -/
 theorem foldedWalk_model_test :
     (¬ NonCrossingAt id transferOne ∧ NonCrossingAt ordOne transferOne) ∧
       (¬ NonCrossingAt id transferTwo ∧ NonCrossingAt ordTwo transferTwo) :=
