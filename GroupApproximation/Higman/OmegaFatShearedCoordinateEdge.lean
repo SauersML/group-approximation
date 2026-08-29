@@ -16,6 +16,7 @@ namespace Higman
 namespace Omega
 
 open GroupApproximation.Higman.Seq
+open GroupApproximation.Higman.Conj (F₃)
 
 theorem blockSet_mono {j m : ℕ} (hjm : j ≤ m) :
     blockSet j ⊆ blockSet m := by
@@ -35,7 +36,8 @@ def shearedBlockIncl {j m : ℕ} (hjm : j ≤ m) :
 theorem shearedBlockIncl_injective {j m : ℕ} (hjm : j ≤ m) :
     Function.Injective (shearedBlockIncl hjm) := by
   intro beta gamma h
-  exact Subtype.ext (congrArg Subtype.val h)
+  have hv := congrArg Subtype.val h
+  exact Subtype.ext hv
 
 /-- Increase the first coordinate outside the source window. -/
 noncomputable def shearedBlockStep (j : ℕ) :
