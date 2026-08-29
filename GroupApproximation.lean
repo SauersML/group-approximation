@@ -2564,6 +2564,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Diagonal
 import GroupApproximation.Manuscript.MFRecognition.PositiveBranchResidualFiniteness
 import GroupApproximation.Higman.OmegaFatShearedCoordinateBase
 import GroupApproximation.Higman.OmegaFatShearedCoordinateShift
+import GroupApproximation.GGT.HullSCRelatorSeparation2Aperiodic
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
