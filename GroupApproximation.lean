@@ -2430,6 +2430,10 @@ import GroupApproximation.GGT.HullSCRelatorSeparationSpacing
 import GroupApproximation.GGT.HullSCRelatorSeparationConnector
 import GroupApproximation.GGT.HullSCRelatorSeparationNotQG
 import GroupApproximation.GGT.HullSCRelatorSeparationRotation
+import GroupApproximation.Analysis.ShulmanFillNormingBlockHom
+import GroupApproximation.Analysis.ShulmanFillNormingCoronaMap
+import GroupApproximation.Analysis.ShulmanFillNormingSeqHom
+import GroupApproximation.Analysis.ShulmanFillNormingProductMF
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
