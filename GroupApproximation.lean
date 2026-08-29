@@ -2586,6 +2586,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2AlignedClose
 import GroupApproximation.GGT.DGOThinPolygonVertex
 import GroupApproximation.GGT.OsinTheorem54SepSegmentVertex
 import GroupApproximation.GGT.OsinTheorem54SepLemma59
+import GroupApproximation.GGT.HullSCRelatorSeparation2Segment
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
