@@ -86,6 +86,100 @@ theorem IsGeodesicChain.isBetween {S : Set G} {y : ℕ → G} {n : ℕ}
   show wordDist S (y 0) (y i) + wordDist S (y i) (y n) = wordDist S (y 0) (y n)
   omega
 
+/-! ## Quasi-geodesic chains at `μ = 1` -/
+
+/-- **A `(1,b)`-quasi-geodesic chain.**  Both bounds are carried, because a side
+of a polygon satisfies both and the argument needs both: the lower one is the
+quasi-geodesic clause at `μ = 1`, the upper one is automatic for a side of a
+word (`OsinComponents.wordDist_vertex_le'`, consecutive vertices being one
+letter apart) but is not automatic for an abstract `y : ℕ → G`.
+
+At `b = 0` this is `IsGeodesicChain`, in both directions
+(`IsGeodesicChain.toQuasi`, `IsQuasiGeodesicChain.isGeodesicChain`), which is
+how the `(1,0)` statements below are recovered rather than duplicated. -/
+def IsQuasiGeodesicChain (S : Set G) (b : ℕ) (y : ℕ → G) (n : ℕ) : Prop :=
+  ∀ i j : ℕ, i ≤ j → j ≤ n →
+    (j - i) - b ≤ wordDist S (y i) (y j) ∧ wordDist S (y i) (y j) ≤ j - i
+
+/-- A geodesic chain is a `(1,0)`-quasi-geodesic chain. -/
+theorem IsGeodesicChain.toQuasi {S : Set G} {y : ℕ → G} {n : ℕ}
+    (hy : IsGeodesicChain S y n) : IsQuasiGeodesicChain S 0 y n := by
+  intro i j hij hjn
+  have h := hy i j hij hjn
+  omega
+
+/-- And back: a `(1,0)`-quasi-geodesic chain is geodesic. -/
+theorem IsQuasiGeodesicChain.isGeodesicChain {S : Set G} {y : ℕ → G} {n : ℕ}
+    (hy : IsQuasiGeodesicChain S 0 y n) : IsGeodesicChain S y n := by
+  intro i j hij hjn
+  obtain ⟨hlow, hup⟩ := hy i j hij hjn
+  omega
+
+/-- **`p` lies `b`-almost between `x` and `z`.**  The `b = 0` case is
+`Hyperbolic.IsBetween`; nothing here needs a path, which is what lets the whole
+development stay in the vertex model of `Γ(G, X ⊔ ℋ)`. -/
+def IsAlmostBetween (S : Set G) (b : ℕ) (x p z : G) : Prop :=
+  wordDist S x p + wordDist S p z ≤ wordDist S x z + b
+
+/-- A between-point is `0`-almost between. -/
+theorem isAlmostBetween_of_isBetween {S : Set G} {x p z : G}
+    (h : Hyperbolic.IsBetween S x p z) : IsAlmostBetween S 0 x p z := by
+  have h' : wordDist S x p + wordDist S p z = wordDist S x z := h
+  show wordDist S x p + wordDist S p z ≤ wordDist S x z + 0
+  omega
+
+/-- **Every vertex of a `(1,b)`-chain is `b`-almost between its endpoints.**
+
+This is the whole of the Morse lemma that this development needs, and it uses no
+hyperbolicity at all: the two upper bounds give
+`d(y 0, y i) + d(y i, y n) ≤ i + (n - i) = n`, and the lower bound at the
+endpoints gives `n ≤ d(y 0, y n) + b`.
+
+`GGT/ElementaryMorseChord` proves the real Morse lemma, in both directions, but
+each half requires an `IsGeodesicSegment f : ℝ → X` joining the chain's
+endpoints, and no such thing exists here: the vertex model has natural-number
+distances, so a segment of length at least one would have to realise `1/2`
+(`Manuscript.NonMF.HullFillAxisDichotomy.not_isGeodesicSpace_cayley`), and the
+metric realisation's `IsGeodesicRealisation` is false for every group and
+alphabet.  At `μ = 1` none of that is needed. -/
+theorem IsQuasiGeodesicChain.isAlmostBetween {S : Set G} {b : ℕ} {y : ℕ → G}
+    {n : ℕ} (hy : IsQuasiGeodesicChain S b y n) {i : ℕ} (hi : i ≤ n) :
+    IsAlmostBetween S b (y 0) (y i) (y n) := by
+  obtain ⟨-, hup1⟩ := hy 0 i (Nat.zero_le i) hi
+  obtain ⟨-, hup2⟩ := hy i n hi le_rfl
+  obtain ⟨hlow, -⟩ := hy 0 n (Nat.zero_le n) le_rfl
+  show wordDist S (y 0) (y i) + wordDist S (y i) (y n)
+    ≤ wordDist S (y 0) (y n) + b
+  omega
+
+/-- **A `b`-almost-between point is `b + 2δ` from a genuine between-point.**
+
+Take `q` between `x` and `z` at distance `min (d(x,p)) (d(x,z))` from `x` ---
+`Hyperbolic.exists_isBetween` supplies one at every prescribed distance, which
+is the sense in which the Cayley graph is a geodesic space.  One application of
+the four-point condition at `(x, z, p, q)` finishes it: the first competing
+pairing is `d(x,p) + d(q,z)`, which is `d(x,z)` when `d(x,p) ≤ d(x,z)` and at
+most `d(x,z) + b` otherwise; the second is `d(x,q) + d(p,z)`, at most
+`d(x,p) + d(p,z) ≤ d(x,z) + b`.  So the maximum is `d(x,z) + b` and `b + 2δ` is
+what is left for `d(p,q)`.
+
+This replaces the Morse lemma wholesale for `μ = 1`. -/
+theorem exists_isBetween_near_of_isAlmostBetween {S : Set G} {δ b : ℕ}
+    (hS : IsSymmetricGeneratingSet S)
+    (hδ : Hyperbolic.IsFourPointHyperbolic S δ) {x p z : G}
+    (hp : IsAlmostBetween S b x p z) :
+    ∃ q : G, Hyperbolic.IsBetween S x q z ∧ wordDist S p q ≤ b + 2 * δ := by
+  have hp' : wordDist S x p + wordDist S p z ≤ wordDist S x z + b := hp
+  have hkle : min (wordDist S x p) (wordDist S x z) ≤ wordDist S x z :=
+    min_le_right _ _
+  obtain ⟨q, hq, hqd⟩ := Hyperbolic.exists_isBetween hS x z hkle
+  refine ⟨q, hq, ?_⟩
+  have hq' : wordDist S x q + wordDist S q z = wordDist S x z := hq
+  have h4 := hδ x z p q
+  have hc1 := wordDist_comm hS z q
+  have hc2 := wordDist_comm hS z p
+  omega
+
 /-! ## The half-step: from a between-point to a vertex -/
 
 /-- **Two between-points at the same distance from an endpoint are `2δ` apart.**
@@ -105,23 +199,48 @@ theorem wordDist_le_two_mul_of_isBetween {S : Set G} {δ : ℕ}
   have hzq : wordDist S z q = wordDist S q z := wordDist_comm hS z q
   omega
 
-/-- **A between-point is `2δ` from an indexed vertex of the chain.**  The index
-is the distance from the initial vertex, which is what makes the two points
-comparable by `wordDist_le_two_mul_of_isBetween`. -/
+/-- **A between-point is `2δ + b` from an indexed vertex of a `(1,b)`-chain.**
+
+The index is again the distance from the initial vertex, which is at most `n`
+because the chain's upper bound gives `d(y 0, y n) ≤ n`.  One application of the
+four-point condition at `(y 0, y n, q, y j)`: the first competing pairing is
+`d(y 0, q) + d(y j, y n) ≤ j + (n - j) = n ≤ d(y 0, y n) + b`, the second is
+`d(y 0, y j) + d(q, y n) ≤ j + (d(y 0, y n) - j) = d(y 0, y n)`.  So the maximum
+is `d(y 0, y n) + b` and `b + 2δ` is what is left for `d(q, y j)`.
+
+`wordDist_le_two_mul_of_isBetween` is not used: at `b > 0` the chain vertex is
+not between the endpoints, so the two-between-points lemma does not apply and
+the four-point condition is invoked directly. -/
+theorem exists_index_wordDist_le_of_isBetween_quasi {S : Set G} {δ b : ℕ}
+    (hS : IsSymmetricGeneratingSet S)
+    (hδ : Hyperbolic.IsFourPointHyperbolic S δ)
+    {y : ℕ → G} {n : ℕ} (hy : IsQuasiGeodesicChain S b y n) {q : G}
+    (hq : Hyperbolic.IsBetween S (y 0) q (y n)) :
+    ∃ j : ℕ, j ≤ n ∧ wordDist S q (y j) ≤ 2 * δ + b := by
+  have hq' : wordDist S (y 0) q + wordDist S q (y n)
+      = wordDist S (y 0) (y n) := hq
+  obtain ⟨hlow, hup⟩ := hy 0 n (Nat.zero_le n) le_rfl
+  have hjn : wordDist S (y 0) q ≤ n := by omega
+  refine ⟨wordDist S (y 0) q, hjn, ?_⟩
+  obtain ⟨-, hup2⟩ := hy 0 (wordDist S (y 0) q) (Nat.zero_le _) hjn
+  obtain ⟨-, hup3⟩ := hy (wordDist S (y 0) q) n hjn le_rfl
+  have h4 := hδ (y 0) (y n) q (y (wordDist S (y 0) q))
+  have hc1 := wordDist_comm hS (y n) (y (wordDist S (y 0) q))
+  have hc2 := wordDist_comm hS (y n) q
+  omega
+
+/-- **A between-point is `2δ` from an indexed vertex of a geodesic chain.**  The
+`b = 0` case of `exists_index_wordDist_le_of_isBetween_quasi`, which is how the
+landed consumers keep their constant. -/
 theorem exists_index_wordDist_le_of_isBetween {S : Set G} {δ : ℕ}
     (hS : IsSymmetricGeneratingSet S)
     (hδ : Hyperbolic.IsFourPointHyperbolic S δ)
     {y : ℕ → G} {n : ℕ} (hy : IsGeodesicChain S y n) {q : G}
     (hq : Hyperbolic.IsBetween S (y 0) q (y n)) :
     ∃ j : ℕ, j ≤ n ∧ wordDist S q (y j) ≤ 2 * δ := by
-  have hxz : wordDist S (y 0) (y n) = n := by
-    simpa using hy 0 n (Nat.zero_le n) le_rfl
-  have hq' : wordDist S (y 0) q + wordDist S q (y n) = wordDist S (y 0) (y n) := hq
-  refine ⟨wordDist S (y 0) q, by omega, ?_⟩
-  have hjn : wordDist S (y 0) q ≤ n := by omega
-  have h1 : wordDist S (y 0) (y (wordDist S (y 0) q)) = wordDist S (y 0) q := by
-    simpa using hy 0 (wordDist S (y 0) q) (Nat.zero_le _) hjn
-  exact wordDist_le_two_mul_of_isBetween hS hδ hq (hy.isBetween hjn) h1.symm
+  obtain ⟨j, hjn, hj⟩ :=
+    exists_index_wordDist_le_of_isBetween_quasi hS hδ hy.toQuasi hq
+  exact ⟨j, hjn, by omega⟩
 
 /-! ## Thin triangles at the vertices -/
 
