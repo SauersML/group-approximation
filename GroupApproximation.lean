@@ -2573,6 +2573,7 @@ import GroupApproximation.GGT.OsinTheorem54SepLemma55
 import GroupApproximation.GGT.OsinTheorem54SepLetterCount
 import GroupApproximation.Higman.OmegaFatShearedFirstSemanticMatched
 import GroupApproximation.GGT.OsinTheorem54SepOrder
+import GroupApproximation.GGT.OsinTheorem54SepSubGeodesic
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
