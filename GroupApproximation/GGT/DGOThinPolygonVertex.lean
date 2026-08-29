@@ -160,6 +160,50 @@ theorem exists_index_wordDist_le_of_triangle {S : Set G} {δ : ℕ}
     have htri := wordDist_triangle hS (a i) q (c j)
     omega
 
+/-! ## Thin quadrangles, before the half-step -/
+
+/-- **Dahmani--Guirardel--Osin's Lemma 4.15 for a quadrangle, in the
+between-vocabulary.**  For four corners `x₁ → x₂ → x₃ → x₄ → x₁` and a point `p`
+between `x₁` and `x₂`, there is a point of one of the other three sides within
+`8δ` of `p`, given as a *between-point* rather than as an index.
+
+This is the whole geometric content of
+`exists_index_wordDist_le_of_quadrangle`: two applications of slimness, once
+across the diagonal `[x₁,x₃]` and once across `[x₁,x₄]`, so that no diagonal
+chain has to be built.  What that theorem adds is the half-step
+`exists_index_wordDist_le_of_isBetween`, which converts a between-point into an
+indexed vertex --- and *that* step is the one that needs the side to be a
+geodesic chain.
+
+Keeping the two apart is what lets a side of the polygon be **exempt** from the
+quasi-geodesic clause.  Dahmani--Guirardel--Osin's Definition 4.13 exempts the
+sides that are components of the polygon, and the corner-offset construction of
+their Lemma 4.16 never uses an index on the distinguished side: it *discards*
+that alternative by the offset count.  A between-point is all the discard needs,
+so the exempt side may be an arbitrary run of `lam`-letters.
+
+The constant is `4δ` for the alternative reached by one cut and `8δ` for the two
+reached by two; the half-step costs a further `2δ`, which is where the `10δ` of
+the indexed form comes from. -/
+theorem exists_isBetween_of_quadrangle {S : Set G} {δ : ℕ}
+    (hS : IsSymmetricGeneratingSet S)
+    (hδ : Hyperbolic.IsFourPointHyperbolic S δ) {x₁ x₂ x₃ x₄ p : G}
+    (hp : Hyperbolic.IsBetween S x₁ p x₂) :
+    (∃ q : G, Hyperbolic.IsBetween S x₂ q x₃ ∧ wordDist S p q ≤ 4 * δ) ∨
+      (∃ q : G, Hyperbolic.IsBetween S x₃ q x₄ ∧ wordDist S p q ≤ 8 * δ) ∨
+        (∃ q : G, Hyperbolic.IsBetween S x₄ q x₁ ∧ wordDist S p q ≤ 8 * δ) := by
+  have hslim := Hyperbolic.isSlimTriangles_of_isFourPointHyperbolic hS hδ
+  rcases hslim x₁ x₂ x₃ p hp with ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩
+  · -- `q` lies on the diagonal `[x₁, x₃]`; cut a second time across `[x₁, x₄]`
+    rcases hslim x₁ x₃ x₄ q hq with ⟨r, hr, hdr⟩ | ⟨r, hr, hdr⟩
+    · refine Or.inr (Or.inr ⟨r, Hyperbolic.IsBetween.symm hS hr, ?_⟩)
+      have h1 := wordDist_triangle hS p q r
+      omega
+    · refine Or.inr (Or.inl ⟨r, Hyperbolic.IsBetween.symm hS hr, ?_⟩)
+      have h1 := wordDist_triangle hS p q r
+      omega
+  · exact Or.inl ⟨q, Hyperbolic.IsBetween.symm hS hq, hd⟩
+
 /-! ## Thin quadrangles at the vertices -/
 
 /-- **Dahmani--Guirardel--Osin's Lemma 4.15, at the vertices and at `μ = 1`,

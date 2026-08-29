@@ -3,11 +3,11 @@ import GroupApproximation.GGT.DGOCycleAssembly
 /-!
 # Thinness of a geodesic four-gon, at absolute indices
 
-`exists_index_wordDist_le_of_quadrangle` is stated for four abstract geodesic
-chains closing up.  Lemma 4.16 needs it for the sides of a `GeodesicFourGon`,
-with the answer as an index into `w` rather than into a side, because the cycle
-it builds is cut out of `w` at absolute positions.  This module supplies the two
-instances the construction uses.
+`exists_isBetween_of_quadrangle` is stated for four abstract corners and a point
+between the first two.  Lemma 4.16 needs it for the sides of a
+`GeodesicFourGon`, with the answer as an index into `w` rather than into a side,
+because the cycle it builds is cut out of `w` at absolute positions.  This
+module supplies the two instances the construction uses.
 
 ## Why two, and only two
 
@@ -18,6 +18,28 @@ order starting at its own side --- `(1,2,3,0)` and `(3,0,1,2)` --- and those two
 orders are written out here rather than being obtained from a rotation lemma.
 Dahmani--Guirardel--Osin get both from "changing the enumeration of the sides";
 two explicit instances are cheaper than formalising that.
+
+## Why the answer is a disjunction of two kinds
+
+Side `0` is **exempt** from the geodesic clause of `GeodesicFourGon`, so no
+index can be produced on it: the half-step `exists_index_wordDist_le_of_isBetween`
+from a between-point to a vertex is exactly what needs a geodesic chain.  Both
+instances therefore return *either* an index on one of the two non-exempt sides
+they can reach, *or* a point between the basepoint `v` and the far end
+`vertex v w (c 1)` of the distinguished side.
+
+That is enough, because the second alternative is never used --- it is
+*discarded*.  The two ends of the distinguished side lie in one coset of
+`H lam`, so they are one alphabet letter apart, so every point between them is
+within `1` of `v`; and the offset that produced the source vertex put it at
+least `θ + 2` from `v`.  The near point of the thinness cannot be there.  This is
+where the exemption is paid for, and the price is one line of arithmetic in
+`exists_short_isolating_cycle`.
+
+The two orders differ in *which* alternative of `exists_isBetween_of_quadrangle`
+is the exempt one: reading from side `1` the exempt side is the fourth, reading
+from side `3` it is the second.  Both are normalised to the same conclusion
+here, so the case tree sees one shape.
 
 Three of the four corner identities in each instance are index arithmetic on the
 cut function.  The fourth is the closure of the path, `vertex v w (c 4) = v`,
@@ -40,7 +62,8 @@ theorem vertex_congr (v : G) (w : List (RelLetter G Λ)) {x y : ℕ} (h : x = y)
     vertex v w x = vertex v w y := by rw [h]
 
 /-- **Thinness at the side following the component.**  A vertex of side `1` is
-within `10 δ` of a vertex of side `2`, side `3` or side `0`.
+within `10 δ` of a vertex of side `2` or side `3`, or else within `10 δ` of a
+point between the basepoint and the far end of the exempt side `0`.
 
 The four sides are named with their lengths written as `c 2 - c 1` rather than
 `c (1 + 1) - c 1`.  That is not cosmetic: the field `GeodesicFourGon.geodesic`
@@ -52,74 +75,107 @@ theorem GeodesicFourGon.exists_index_close_side_one (D : RelGenSet G Λ) {v : G}
     {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
     {δ : ℕ} (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
     {i : ℕ} (hi1 : c 1 ≤ i) (hi2 : i ≤ c 2) :
-    ∃ p : ℕ, wordDist D.alphabet.carrier (vertex v w i) (vertex v w p) ≤ 10 * δ
-      ∧ ((c 2 ≤ p ∧ p ≤ c 3) ∨ (c 3 ≤ p ∧ p ≤ c 4) ∨ p ≤ c 1) := by
+    (∃ p : ℕ,
+        wordDist D.alphabet.carrier (vertex v w i) (vertex v w p) ≤ 10 * δ ∧
+          ((c 2 ≤ p ∧ p ≤ c 3) ∨ (c 3 ≤ p ∧ p ≤ c 4))) ∨
+      (∃ q : G, Hyperbolic.IsBetween D.alphabet.carrier v q (vertex v w (c 1)) ∧
+        wordDist D.alphabet.carrier (vertex v w i) q ≤ 10 * δ) := by
   have hS := D.alphabet.symmetricGenerating
-  have hm0 : c 0 ≤ c 1 := hQ.mono (by omega : (0 : ℕ) ≤ 1)
   have hm1 : c 1 ≤ c 2 := hQ.mono (by omega : (1 : ℕ) ≤ 2)
   have hm2 : c 2 ≤ c 3 := hQ.mono (by omega : (2 : ℕ) ≤ 3)
   have hm3 : c 3 ≤ c 4 := hQ.mono (by omega : (3 : ℕ) ≤ 4)
-  have hg0 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 0 + m))
-      (c 1 - c 0) := hQ.geodesic 0 (by omega)
   have hg1 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 1 + m))
-      (c 2 - c 1) := hQ.geodesic 1 (by omega)
+      (c 2 - c 1) := hQ.geodesic 1 (by omega) (by omega)
   have hg2 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 2 + m))
-      (c 3 - c 2) := hQ.geodesic 2 (by omega)
+      (c 3 - c 2) := hQ.geodesic 2 (by omega) (by omega)
   have hg3 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 3 + m))
-      (c 4 - c 3) := hQ.geodesic 3 (by omega)
-  have hclose : vertex v w (c 0 + 0) = vertex v w (c 3 + (c 4 - c 3)) := by
-    rw [vertex_congr v w (by omega : c 3 + (c 4 - c 3) = c 4), hQ.vertex_last D,
-      vertex_congr v w (by omega : c 0 + 0 = c 0), hQ.start, vertex_zero]
-  have hres := exists_index_wordDist_le_of_quadrangle hS hδ hg1 hg2 hg3 hg0
-    (vertex_congr v w (by omega : c 2 + 0 = c 1 + (c 2 - c 1)))
-    (vertex_congr v w (by omega : c 3 + 0 = c 2 + (c 3 - c 2)))
-    hclose
-    (vertex_congr v w (by omega : c 0 + (c 1 - c 0) = c 1 + 0))
-    (by omega : i - c 1 ≤ c 2 - c 1)
-  have hiv : vertex v w (c 1 + (i - c 1)) = vertex v w i :=
-    vertex_congr v w (by omega)
-  rcases hres with ⟨j, hj, hd⟩ | ⟨j, hj, hd⟩ | ⟨j, hj, hd⟩
-  · exact ⟨c 2 + j, by rw [← hiv]; exact hd, Or.inl ⟨by omega, by omega⟩⟩
-  · exact ⟨c 3 + j, by rw [← hiv]; exact hd, Or.inr (Or.inl ⟨by omega, by omega⟩)⟩
-  · exact ⟨c 0 + j, by rw [← hiv]; exact hd, Or.inr (Or.inr (by omega))⟩
+      (c 4 - c 3) := hQ.geodesic 3 (by omega) (by omega)
+  have hlast : vertex v w (c 4) = v := hQ.vertex_last D
+  have hp : Hyperbolic.IsBetween D.alphabet.carrier (vertex v w (c 1))
+      (vertex v w i) (vertex v w (c 2)) := by
+    have h := hg1.isBetween (show i - c 1 ≤ c 2 - c 1 by omega)
+    rwa [show c 1 + 0 = c 1 from by omega,
+      show c 1 + (i - c 1) = i from by omega,
+      show c 1 + (c 2 - c 1) = c 2 from by omega] at h
+  rcases exists_isBetween_of_quadrangle hS hδ hp (x₃ := vertex v w (c 3))
+      (x₄ := v) with ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩
+  · -- the near point is on side `2`
+    have hq' : Hyperbolic.IsBetween D.alphabet.carrier (vertex v w (c 2 + 0)) q
+        (vertex v w (c 2 + (c 3 - c 2))) := by
+      rw [show c 2 + 0 = c 2 from by omega,
+        show c 2 + (c 3 - c 2) = c 3 from by omega]
+      exact hq
+    obtain ⟨j, hjn, hj⟩ := exists_index_wordDist_le_of_isBetween hS hδ hg2 hq'
+    refine Or.inl ⟨c 2 + j, ?_, Or.inl ⟨by omega, by omega⟩⟩
+    have htri := wordDist_triangle hS (vertex v w i) q (vertex v w (c 2 + j))
+    omega
+  · -- the near point is on side `3`
+    have hq' : Hyperbolic.IsBetween D.alphabet.carrier (vertex v w (c 3 + 0)) q
+        (vertex v w (c 3 + (c 4 - c 3))) := by
+      rw [show c 3 + 0 = c 3 from by omega,
+        show c 3 + (c 4 - c 3) = c 4 from by omega, hlast]
+      exact hq
+    obtain ⟨j, hjn, hj⟩ := exists_index_wordDist_le_of_isBetween hS hδ hg3 hq'
+    refine Or.inl ⟨c 3 + j, ?_, Or.inr ⟨by omega, by omega⟩⟩
+    have htri := wordDist_triangle hS (vertex v w i) q (vertex v w (c 3 + j))
+    omega
+  · -- the near point is on the exempt side `0`
+    exact Or.inr ⟨q, hq, by omega⟩
 
 /-- **Thinness at the side preceding the component.**  A vertex of side `3` is
-within `10 δ` of a vertex of side `0`, side `1` or side `2`.  The chains are
-ascribed their normalised lengths for the reason given above. -/
+within `10 δ` of a vertex of side `1` or side `2`, or else within `10 δ` of a
+point between the basepoint and the far end of the exempt side `0`.  The chains
+are ascribed their normalised lengths for the reason given above. -/
 theorem GeodesicFourGon.exists_index_close_side_three (D : RelGenSet G Λ) {v : G}
     {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
     {δ : ℕ} (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
     {i : ℕ} (hi1 : c 3 ≤ i) (hi2 : i ≤ c 4) :
-    ∃ p : ℕ, wordDist D.alphabet.carrier (vertex v w i) (vertex v w p) ≤ 10 * δ
-      ∧ (p ≤ c 1 ∨ (c 1 ≤ p ∧ p ≤ c 2) ∨ (c 2 ≤ p ∧ p ≤ c 3)) := by
+    (∃ p : ℕ,
+        wordDist D.alphabet.carrier (vertex v w i) (vertex v w p) ≤ 10 * δ ∧
+          ((c 1 ≤ p ∧ p ≤ c 2) ∨ (c 2 ≤ p ∧ p ≤ c 3))) ∨
+      (∃ q : G, Hyperbolic.IsBetween D.alphabet.carrier v q (vertex v w (c 1)) ∧
+        wordDist D.alphabet.carrier (vertex v w i) q ≤ 10 * δ) := by
   have hS := D.alphabet.symmetricGenerating
-  have hm0 : c 0 ≤ c 1 := hQ.mono (by omega : (0 : ℕ) ≤ 1)
   have hm1 : c 1 ≤ c 2 := hQ.mono (by omega : (1 : ℕ) ≤ 2)
   have hm2 : c 2 ≤ c 3 := hQ.mono (by omega : (2 : ℕ) ≤ 3)
   have hm3 : c 3 ≤ c 4 := hQ.mono (by omega : (3 : ℕ) ≤ 4)
-  have hg0 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 0 + m))
-      (c 1 - c 0) := hQ.geodesic 0 (by omega)
   have hg1 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 1 + m))
-      (c 2 - c 1) := hQ.geodesic 1 (by omega)
+      (c 2 - c 1) := hQ.geodesic 1 (by omega) (by omega)
   have hg2 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 2 + m))
-      (c 3 - c 2) := hQ.geodesic 2 (by omega)
+      (c 3 - c 2) := hQ.geodesic 2 (by omega) (by omega)
   have hg3 : IsGeodesicChain D.alphabet.carrier (fun m => vertex v w (c 3 + m))
-      (c 4 - c 3) := hQ.geodesic 3 (by omega)
-  have hclose : vertex v w (c 0 + 0) = vertex v w (c 3 + (c 4 - c 3)) := by
-    rw [vertex_congr v w (by omega : c 3 + (c 4 - c 3) = c 4), hQ.vertex_last D,
-      vertex_congr v w (by omega : c 0 + 0 = c 0), hQ.start, vertex_zero]
-  have hres := exists_index_wordDist_le_of_quadrangle hS hδ hg3 hg0 hg1 hg2
-    hclose
-    (vertex_congr v w (by omega : c 1 + 0 = c 0 + (c 1 - c 0)))
-    (vertex_congr v w (by omega : c 2 + 0 = c 1 + (c 2 - c 1)))
-    (vertex_congr v w (by omega : c 2 + (c 3 - c 2) = c 3 + 0))
-    (by omega : i - c 3 ≤ c 4 - c 3)
-  have hiv : vertex v w (c 3 + (i - c 3)) = vertex v w i :=
-    vertex_congr v w (by omega)
-  rcases hres with ⟨j, hj, hd⟩ | ⟨j, hj, hd⟩ | ⟨j, hj, hd⟩
-  · exact ⟨c 0 + j, by rw [← hiv]; exact hd, Or.inl (by omega)⟩
-  · exact ⟨c 1 + j, by rw [← hiv]; exact hd, Or.inr (Or.inl ⟨by omega, by omega⟩)⟩
-  · exact ⟨c 2 + j, by rw [← hiv]; exact hd, Or.inr (Or.inr ⟨by omega, by omega⟩)⟩
+      (c 4 - c 3) := hQ.geodesic 3 (by omega) (by omega)
+  have hlast : vertex v w (c 4) = v := hQ.vertex_last D
+  have hp : Hyperbolic.IsBetween D.alphabet.carrier (vertex v w (c 3))
+      (vertex v w i) v := by
+    have h := hg3.isBetween (show i - c 3 ≤ c 4 - c 3 by omega)
+    rwa [show c 3 + 0 = c 3 from by omega,
+      show c 3 + (i - c 3) = i from by omega,
+      show c 3 + (c 4 - c 3) = c 4 from by omega, hlast] at h
+  rcases exists_isBetween_of_quadrangle hS hδ hp (x₃ := vertex v w (c 1))
+      (x₄ := vertex v w (c 2)) with ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩
+  · -- the near point is on the exempt side `0`
+    exact Or.inr ⟨q, hq, by omega⟩
+  · -- the near point is on side `1`
+    have hq' : Hyperbolic.IsBetween D.alphabet.carrier (vertex v w (c 1 + 0)) q
+        (vertex v w (c 1 + (c 2 - c 1))) := by
+      rw [show c 1 + 0 = c 1 from by omega,
+        show c 1 + (c 2 - c 1) = c 2 from by omega]
+      exact hq
+    obtain ⟨j, hjn, hj⟩ := exists_index_wordDist_le_of_isBetween hS hδ hg1 hq'
+    refine Or.inl ⟨c 1 + j, ?_, Or.inl ⟨by omega, by omega⟩⟩
+    have htri := wordDist_triangle hS (vertex v w i) q (vertex v w (c 1 + j))
+    omega
+  · -- the near point is on side `2`
+    have hq' : Hyperbolic.IsBetween D.alphabet.carrier (vertex v w (c 2 + 0)) q
+        (vertex v w (c 2 + (c 3 - c 2))) := by
+      rw [show c 2 + 0 = c 2 from by omega,
+        show c 2 + (c 3 - c 2) = c 3 from by omega]
+      exact hq
+    obtain ⟨j, hjn, hj⟩ := exists_index_wordDist_le_of_isBetween hS hδ hg2 hq'
+    refine Or.inl ⟨c 2 + j, ?_, Or.inr ⟨by omega, by omega⟩⟩
+    have htri := wordDist_triangle hS (vertex v w i) q (vertex v w (c 2 + j))
+    omega
 
 end OsinComponents
 end GGT

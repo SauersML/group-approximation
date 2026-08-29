@@ -50,17 +50,19 @@ variable {G : Type u} [Group G] {Λ : Type w}
 
 /-! ## Corners -/
 
-/-- **A side realises the gap between its corners.** -/
+/-- **A non-exempt side realises the gap between its corners.**  Side `0` is
+exempt from the geodesic clause, so it is excluded: the distinguished component
+may be a long run whose ends are one alphabet letter apart. -/
 theorem GeodesicFourGon.side_dist (D : RelGenSet G Λ) {v : G}
     {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
-    {t : ℕ} (ht : t < 4) :
+    {t : ℕ} (ht : t < 4) (ht0 : t ≠ 0) :
     wordDist D.alphabet.carrier (vertex v w (c t)) (vertex v w (c (t + 1)))
       = c (t + 1) - c t := by
   have hcs : c t ≤ c (t + 1) := hQ.mono (Nat.le_succ t)
   have hEq : c t + (c (t + 1) - c t) = c (t + 1) := by omega
   have h0 : wordDist D.alphabet.carrier (vertex v w (c t + 0))
       (vertex v w (c t + (c (t + 1) - c t))) = c (t + 1) - c t - 0 :=
-    hQ.geodesic t ht 0 (c (t + 1) - c t) (Nat.zero_le _) le_rfl
+    hQ.geodesic t ht ht0 0 (c (t + 1) - c t) (Nat.zero_le _) le_rfl
   rw [Nat.add_zero, hEq, Nat.sub_zero] at h0
   exact h0
 
@@ -74,17 +76,20 @@ theorem GeodesicFourGon.vertex_last (D : RelGenSet G Λ) {v : G}
 
 /-- **When both corners flanking the component are close, the polygon is already
 short.**  The far side is bounded through the other three, using that the
-component's span is one letter of the alphabet, so `d(x₁,x₂) ≤ 1`. -/
+component's span is one letter of the alphabet, so `d(x₁,x₂) ≤ 1`.
+
+The distinguished side is exempt from the geodesic clause, so its length `c 1`
+is not bounded by the distance between its ends and has to be supplied: `hc01`
+says the component has already been collapsed to a single letter, which
+`DGOIsolatedComponentNormalise.normWord` arranges. -/
 theorem GeodesicFourGon.length_le_of_corners_close (D : RelGenSet G Λ) {v : G}
     {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
-    {lam : Λ} (hcomp : IsComp lam w (c 0) (c 1)) {θ : ℕ}
+    {lam : Λ} (hcomp : IsComp lam w (c 0) (c 1)) (hc01 : c 1 = c 0 + 1) {θ : ℕ}
     (h12 : c 2 - c 1 ≤ θ + 1) (h34 : c 4 - c 3 ≤ θ + 1) :
     w.length ≤ 4 * θ + 6 := by
   have hsymm := D.alphabet.symmetricGenerating
   have hst : c 0 = 0 := hQ.start
   have hlen : w.length = c 4 := hQ.finish.symm
-  have hc01 : c 1 = c 0 + 1 :=
-    GeodesicFourGon.isComp_side_succ D hQ (by omega) hcomp
   have hm0 : c 0 ≤ c 1 := hQ.mono (by omega : (0 : ℕ) ≤ 1)
   have hm1 : c 1 ≤ c 2 := hQ.mono (by omega : (1 : ℕ) ≤ 2)
   have hm2 : c 2 ≤ c 3 := hQ.mono (by omega : (2 : ℕ) ≤ 3)
@@ -95,11 +100,11 @@ theorem GeodesicFourGon.length_le_of_corners_close (D : RelGenSet G Λ) {v : G}
       ≤ 1 :=
     wordDist_le_one_of_mem_fam D (span_mem_fam_of_isComp D v hQ.letters hcomp)
   have hs1 : wordDist D.alphabet.carrier (vertex v w (c 1)) (vertex v w (c 2))
-      = c 2 - c 1 := hQ.side_dist D (by omega : (1 : ℕ) < 4)
+      = c 2 - c 1 := hQ.side_dist D (by omega : (1 : ℕ) < 4) (by omega)
   have hs2 : wordDist D.alphabet.carrier (vertex v w (c 2)) (vertex v w (c 3))
-      = c 3 - c 2 := hQ.side_dist D (by omega : (2 : ℕ) < 4)
+      = c 3 - c 2 := hQ.side_dist D (by omega : (2 : ℕ) < 4) (by omega)
   have hs3 : wordDist D.alphabet.carrier (vertex v w (c 3)) (vertex v w (c 4))
-      = c 4 - c 3 := hQ.side_dist D (by omega : (3 : ℕ) < 4)
+      = c 4 - c 3 := hQ.side_dist D (by omega : (3 : ℕ) < 4) (by omega)
   rw [hclose] at hs3
   have hc21 : wordDist D.alphabet.carrier (vertex v w (c 2)) (vertex v w (c 1))
       = wordDist D.alphabet.carrier (vertex v w (c 1)) (vertex v w (c 2)) :=

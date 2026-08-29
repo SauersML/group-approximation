@@ -149,11 +149,27 @@ theorem notMem_coset_vertex_of_offset (D : RelGenSet G Λ) {lam : Λ} {x u : G}
 
 /-! ## Four-gons with named corners -/
 
-/-- **A `(1,0)`-quasi-geodesic 4-gon with its cut function named.**  The content
-is that of `IsQuasiGeodesicPolygon D 1 0 4 v w`, with the cut function carried
-rather than existentially bound.  Lemma 4.16's construction names the corners
-`vertex v w (c t)` in four different cases and compares them with each other, so
-it cannot re-open an existential consistently. -/
+/-- **A 4-gon with its cut function named, and its first side exempt.**  The
+content is that of `IsQuasiGeodesicPolygon D 1 0 4 v w` with the cut function
+carried rather than existentially bound --- Lemma 4.16's construction names the
+corners `vertex v w (c t)` in four different cases and compares them with each
+other, so it cannot re-open an existential consistently --- **and with side `0`
+exempt from the geodesic clause**.
+
+The exemption is Dahmani--Guirardel--Osin's, not a weakening for convenience.
+Their Definition 4.13 asks the sides of a polygon to be quasi-geodesic *except*
+for those that are components of it, and side `0` is where the distinguished
+`H lam`-component sits.  Demanding the clause of it as well is what forced the
+recut of a straddling component to pay `b ↦ b + 1`, and it is not available in
+the first place: a component is a run of `lam`-letters whose endpoints are one
+alphabet letter apart, so a run of length `n > 1` is never a geodesic chain.
+
+What the exemption costs is the thinness instance for side `0`: the quadrangle
+lemma feeds all four sides in, and only three of them are chains now.
+`exists_isBetween_of_quadrangle` is the form that survives --- it produces a
+between-point on the exempt side instead of an index, which is all the
+corner-offset count needs, since that alternative is discarded rather than
+used. -/
 structure GeodesicFourGon (D : RelGenSet G Λ) (v : G)
     (w : List (RelLetter G Λ)) (c : ℕ → ℕ) : Prop where
   /-- Every letter is admissible. -/
@@ -166,40 +182,44 @@ structure GeodesicFourGon (D : RelGenSet G Λ) (v : G)
   finish : c 4 = w.length
   /-- The corners are in order. -/
   mono : Monotone c
-  /-- Each of the four sides is geodesic. -/
-  geodesic : ∀ t : ℕ, t < 4 → IsGeodesicChain D.alphabet.carrier
+  /-- Each side other than the distinguished one is geodesic. -/
+  geodesic : ∀ t : ℕ, t < 4 → t ≠ 0 → IsGeodesicChain D.alphabet.carrier
     (fun m => vertex v w (c t + m)) (c (t + 1) - c t)
 
-/-- **Every `(1,0)`-quasi-geodesic 4-gon is one, with its cut function named.** -/
+/-- **Every `(1,0)`-quasi-geodesic 4-gon is one, with its cut function named.**
+The exempt form is weaker, so a polygon all of whose sides are geodesic is one
+of these; the converse is what the exemption buys and is not claimed. -/
 theorem exists_geodesicFourGon_of_isQuasiGeodesicPolygon (D : RelGenSet G Λ)
     {v : G} {w : List (RelLetter G Λ)}
     (hP : IsQuasiGeodesicPolygon D 1 0 4 v w) :
     ∃ c : ℕ → ℕ, GeodesicFourGon D v w c := by
   obtain ⟨c, hc0, hc4, hmono, hchain⟩ :=
     exists_geodesicChain_of_isQuasiGeodesicPolygon D hP
-  exact ⟨c, hP.1, hP.2.1, hc0, hc4, hmono, hchain⟩
+  exact ⟨c, hP.1, hP.2.1, hc0, hc4, hmono, fun t ht _ => hchain t ht⟩
 
-/-- **The side of a geodesic 4-gon carrying a component is a single letter.**
+/-- **A component filling a *non-exempt* side of a geodesic 4-gon is a single
+letter.**
 
-This is Dahmani--Guirardel--Osin's normalisation of the distinguished component
-to one edge, and at `μ = 1`, `b = 0` it costs nothing: the span of a component
+This is Dahmani--Guirardel--Osin's normalisation of a component to one edge, and
+on a geodesic side at `μ = 1`, `b = 0` it costs nothing: the span of a component
 lies in `H lam`, hence is one letter of the alphabet, so the two ends of the
 side are at distance at most one, while a geodesic side realises its length as
 that distance.
 
-For general `(μ, b)` a side may carry a long run and the normalisation has to be
-performed, changing neither `d̂_lam` of the span nor isolatedness.  Here it is a
-consequence. -/
+The hypothesis `t ≠ 0` is the exemption showing through, and it is not a defect:
+side `0` is exactly the side that may carry a long run, and collapsing that run
+is what `DGOIsolatedComponentNormalise.normWord` does.  For general `(μ, b)` the
+same collapse is needed on every side. -/
 theorem GeodesicFourGon.isComp_side_succ (D : RelGenSet G Λ) {v : G}
     {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
-    {lam : Λ} {t : ℕ} (ht : t < 4)
+    {lam : Λ} {t : ℕ} (ht : t < 4) (ht0 : t ≠ 0)
     (hcomp : IsComp lam w (c t) (c (t + 1))) :
     c (t + 1) = c t + 1 := by
   have hcs : c t ≤ c (t + 1) := hQ.mono (Nat.le_succ t)
   have hEq : c t + (c (t + 1) - c t) = c (t + 1) := by omega
   have h0 : wordDist D.alphabet.carrier (vertex v w (c t + 0))
       (vertex v w (c t + (c (t + 1) - c t))) = c (t + 1) - c t - 0 :=
-    hQ.geodesic t ht 0 (c (t + 1) - c t) (Nat.zero_le _) le_rfl
+    hQ.geodesic t ht ht0 0 (c (t + 1) - c t) (Nat.zero_le _) le_rfl
   rw [Nat.add_zero, hEq, Nat.sub_zero] at h0
   exact isComp_eq_succ_of_geodesic D lam v hQ.letters hcomp (le_of_eq h0.symm)
 
