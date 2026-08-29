@@ -2596,6 +2596,10 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2NoCommute
 import GroupApproximation.GGT.HullSCRelatorSeparation2Ledger
 import GroupApproximation.GGT.OsinTheorem54SepInhabit
 import GroupApproximation.GGT.DGOShortIsolatingCycle
+import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftDouble
+import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftFlip
+import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftPair
+import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftTwoLeg
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
