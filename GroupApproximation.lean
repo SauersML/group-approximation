@@ -2646,6 +2646,9 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Span
 import GroupApproximation.GGT.DGOReversedSplice
 import GroupApproximation.GGT.DGOShortIsolatingCycleMain
 import GroupApproximation.GGT.DGOIsolatedComponentBoundFourGon
+import GroupApproximation.GGT.OsinTheorem54SepFourGonPolygon
+import GroupApproximation.GGT.OsinTheorem54SepRotateComponent
+import GroupApproximation.GGT.OsinTheorem54SepTwoBlockRot
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
