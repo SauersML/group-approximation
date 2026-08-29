@@ -94,11 +94,15 @@ The statement is now a theorem of three named inputs:
   (`Analysis/ShulmanFillNormingRecognitionWiring`): a separable `C*`-algebra
   has a faithful representation on a Hilbert space in `Type`.  The algebra is
   quantified one universe up because the universal amalgam lives there; the
-  space stays small.  Its proof is the direct sum of the GNS representations
-  of `Analysis/CStarStateGNS` over a countable separating family of states
-  and is in progress.
+  space stays small.  This one is a theorem,
+  `CStarState.separableFaithfulRepresentation` in
+  `Analysis/CStarSeparableTypeZeroRepresentation`: the GNS sum over a
+  countable separating family of states carries a countable total sequence,
+  and the countable Gram--Schmidt basis of
+  `Analysis/CStarHilbertCountableBasis` moves the representation to `ℓ²`
+  over a small index along `Analysis/CStarHilbertTransport`.
 
-The route itself is Shulman's own: Theorem 13 embeds the amalgam in the
+So the debt rests on the first two inputs alone.  The route itself is Shulman's own: Theorem 13 embeds the amalgam in the
 symmetric double `D *_C D`, Theorem 10 makes the double MF from the printed
 pair statement (`isMFAlgebra_amalgam_of_printedPair`), and the injective
 factor map turns the MF double into the type-zero witness that
