@@ -73,54 +73,37 @@ carrier is a corona, so the MF clause is automatic.  Everything else in Theorem
 diagonal choice of a norming family, reduced-product permanence, the `ε/3`
 passage from a dense set to the whole amalgam, and the density of words.
 
-Two routes reach this point, and each ends at one analytic atom the repository
-does not have.  The debt is recorded on the first because its reduction chain
-is the one that is wired.
+The statement is now a theorem of three named inputs:
+`ShulmanFill.conjugateWordNorming_of_printedPair_of_compatible` in
+`Analysis/ShulmanFillNormingRecognitionWiring` proves it from
 
-* **The norming route**, `Analysis/ShulmanFillTheorem16` →
-  `ShulmanFillDenseNorming` → `ShulmanFillWordNorming` →
-  `ShulmanFillConjugatePair`, ending here.  Its atom is the word estimate:
-  the conjugated pair must reproduce, on a given word, the supremum over all
-  compatible pairs that defines the full amalgam norm.  That estimate is of
-  Haagerup--Thorbjørnsen type.
-* **Shulman's own route**, `Analysis/ShulmanSymmetricDoubleRoute` with
-  `ShulmanFillSymmetricDouble*` and `ShulmanFillSymmetricDoubleEmbed*`:
-  Theorem 16 is his Theorem 13 (the amalgam embeds in the symmetric double
-  `D *_C D`) followed by his Theorem 10 (`D *_C D` is MF for separable MF
-  `D`).  It has *two* atoms.  Theorem 10 needs his Theorem 4, the lifting
-  characterization of MF against the algebra `𝒟` of `*`-strongly convergent
-  matrix sequences.  Theorem 13 is Enders--Shulman, arXiv:2403.12224,
-  Theorem 4.11, whose proof runs through the Arveson extension theorem, the
-  Stinespring dilation theorem and Voiculescu's theorem in the Calkin
-  algebra.
+* `ShulmanFill.Theorem4PrintedPairStatement`
+  (`Analysis/ShulmanFillNormingExistentialLiftPrinted`): the lifting direction
+  of Shulman's Theorem 4 in the form the printed proof of Theorem 10 uses, a
+  compatible pair of lifts into the algebra `𝒟` of `*`-strongly convergent
+  matrix sequences with faithful limit.  The model-first reading of Theorem 4,
+  a single lift into fixed matrix models, is refuted in
+  `Analysis/ShulmanFillNormingTheorem4Refuted` and is not what is asked;
+* `ShulmanSymmetricDouble.CompatibleTargetPairStatement`
+  (`Analysis/ShulmanFillTheorem13`): the output of Enders--Shulman,
+  arXiv:2403.12224, Theorem 4.11 — a compatible target through which the
+  factor map of the symmetric double is injective — whose printed proof runs
+  through the Arveson extension theorem, the Stinespring dilation theorem and
+  Voiculescu's theorem in the Calkin algebra;
+* `ShulmanFill.SeparableFaithfulRepresentationStatement.{1}`
+  (`Analysis/ShulmanFillNormingRecognitionWiring`): a separable `C*`-algebra
+  has a faithful representation on a Hilbert space in `Type`.  The algebra is
+  quantified one universe up because the universal amalgam lives there; the
+  space stays small.  Its proof is the direct sum of the GNS representations
+  of `Analysis/CStarStateGNS` over a countable separating family of states
+  and is in progress.
 
-An earlier reading of this docstring said that neither `𝒟` nor the Calkin
-algebra was available and that all three of Theorem 13's ingredients were
-missing.  Three of those four claims are now wrong, so the second route is
-shorter than recorded:
-
-* `𝒟` and its limit map `q` are built in
-  `Analysis/StarStrongMatrixSequencesAlgebra`, and the direction of Theorem 4
-  that Theorem 10 ends with — a `*`-homomorphic lift into `𝒟` with faithful
-  `*`-strong limit makes a separable algebra MF — is proved in
-  `Analysis/StarStrongLimitNorm.isMFAlgebra_of_starStrongLift`.  The direction
-  Theorem 10 *begins* with, from MF to the existence of such a lift, is still
-  owed.
-* The Calkin algebra is a C-star algebra: `Analysis/CalkinSchauderProof` proves
-  Schauder's theorem, so the compacts are a closed star-stable two-sided ideal,
-  and `Analysis/CStarIdealApproximateUnit` — root-imported and elaborated —
-  already carries the quotient C-star identity for every such ideal.
-  `Analysis/CalkinCStarAlgebra` assembles the two.
-* Stinespring's dilation theorem is in the repository and root-imported:
-  `Analysis/CStarStinespringHom.stinespringRepHom` with
-  `stinespring_dilation_repHom`.
-* Arveson's extension theorem is in the repository only for *matrix* targets,
-  `Analysis/LanceMatrixArveson.exists_ucp_extension`.  The case of `B(H)` for
-  infinite-dimensional `H` is not there.
-* Voiculescu's theorem is not in the repository in any form.
-
-So what the second route still owes is Arveson at a `B(H)` target,
-Voiculescu's theorem, and the lifting direction of Theorem 4. -/
+The route itself is Shulman's own: Theorem 13 embeds the amalgam in the
+symmetric double `D *_C D`, Theorem 10 makes the double MF from the printed
+pair statement (`isMFAlgebra_amalgam_of_printedPair`), and the injective
+factor map turns the MF double into the type-zero witness that
+`shulmanTheorem16_of_typeZeroWitness` consumes.  Until the three inputs are
+theorems the debt stays recorded here. -/
 theorem conjugateWordNorming : ShulmanFill.ConjugateWordNormingStatement := by
   sorry
 
