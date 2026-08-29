@@ -30,34 +30,13 @@ about a monotone `c`, not about the polygon: the general-position construction
 (choosing a corner offset) is a different and harder thing, and is not used
 here.
 
-## What is still assumed
+## Where the `(μ,b)` genericity comes from
 
-Nothing beyond four-point hyperbolicity of `Γ(G, X ⊔ ℋ)` and a symmetric base:
-`DGOIsolatedComponentBoundFourGon.span_mem_relBall_of_sideZero` is the base case
-at four sides, and the last theorem here discharges the binder with it.
+The chain is generic in `(μ,b)`, and it is cheap for two reasons.
 
-What is NOT covered is general `(μ,b)`: every clause here is quoted at `μ = 1`,
-`b = 0`, because the base case is.  The `(1,0)` statement is the instance of
-`connector_mem_relBall`'s `hbound` binder that its geodesic-polygon applications
-use.  Nor is unbounded `n`: each step of Lemma 4.17 costs `C ↦ C₁ + C₂`, so
-iterating to `n` sides gives a radius quadratic in `n`, and the linear form
-`C · n` at a fixed `C` for ALL `n` --- which is what
-`OsinComponents.IsolatedComponentBound` asks --- is out of reach of the
-recursion.  That is why Dahmani--Guirardel--Osin prove their Lemma 4.16 by the
-corner-offset construction and use 4.17 only to extend it to boundedly many
-sides.
-
-## What a `(μ,b)` reduction would need, exactly
-
-The chain is pinned at `(μ,b) = (1,0)` in one syntactic place: the clause
-`((q - p : ℕ) : ℝ) / 1 - 0 ≤ …`, in the binders and conclusions of this file and
-of `DGOPolygon{CutFourGon,FarGon,EdgeGon,Lemma417}` --- twenty-two occurrences.
-Two things it is NOT pinned by.
-
-*The recut and side-form chain needs no change at all.*
+*The recut and side-form chain was already generic.*
 `DGOIsolatedComponent{Recut,Straddle,Rotate,RotateCut,SideForm}` and
-`DGOPolygonJoin` are already stated with `(mu b : ℝ)` free, and contain no
-`/ 1 - 0`.
+`DGOPolygonJoin` have always been stated with `(mu b : ℝ)` free.
 
 *Lemma 4.17 never reads the clause of the sides it inherits.*  Sides `1 … n-1`
 of the original polygon are quoted verbatim into the cut polygons and used only
@@ -66,30 +45,41 @@ of a geodesic word are single letters, which is exactly what fails when a side
 is only `(μ,b)`-quasi-geodesic --- is not used anywhere in this chain, and
 neither is any `IsGeodesicChain` statement.
 
-The only metric input is the CHORD, which the proof constructs itself with
+The only metric input is the CHORD, which the proof builds itself with
 `existsGeodesicWord` and which is geodesic whatever the sides are.  It is read
 three times, each `sub_le_wordDist_vertex` applied to `q`: the chord component
-is the chord's last letter (`|q| - t ≤ d(s₋, v)`); a component start on the far
-polygon's chord block has index `≤ 1`; a component start on the edge polygon's
-chord block has index `t - 1`.
+is the chord's last letter; a component start on the far polygon's chord block
+has index at most one; one on the edge polygon's chord block has index `t - 1`.
+Where those three deliver the chord's own side of a cut polygon, the clause is
+discharged by
 
-So the reduction is a signature change plus one arithmetic lemma,
+    x / mu - b ≤ x / mu ≤ x ≤ d        (`sub_le_self`, then `div_le_self`)
 
-    ((x : ℕ) : ℝ) / mu - b ≤ ((d : ℕ) : ℝ)   from  x ≤ d,  1 ≤ mu,  0 ≤ b
+and that is the whole arithmetic cost of the generalisation: every other clause
+in the chain is quoted rather than proved.
 
---- `div_le_self` then `sub_le_self` --- to be used at the three sites where the
-chord's own side of a cut polygon is discharged, which today read
-`rw [div_one, sub_zero]`.  Every other clause in the chain is quoted rather than
-proved, so it changes shape and nothing else.
-
-The constants are untouched.  They come from the recursion (`C₁ + C₂` per step)
-and from this file's slack (`5·C` over the tower, `15·C` over the recut), and
-never from `μ` or `b`; a base case at `(μ,b)` with radius `C · 4` yields
+The constants are untouched by it.  They come from the recursion (`C₁ + C₂` per
+step) and from this file's slack (`5·C` over the tower, `15·C` over the recut),
+never from `μ` or `b`: a base case at `(μ,b)` with radius `C · 4` yields
 `(C₁ + C₂) · n` exactly as at `(1,0)`.
 
-What is out of this file's reach is the base case itself at `(μ,b)`: that is
-Dahmani--Guirardel--Osin's Lemma 4.15, quasi-geodesic stability at
-`θ = ϰ(μ,b) + 2δ`, used inside their 4.16.
+## What is still assumed
+
+The base case, and nothing else.  `isolatedComponentBound_of_sideZeroBase` takes
+it as a binder at `(μ,b)`, and `isolatedComponentBound_of_fourPointHyperbolic`
+discharges that binder at `(1,0)` with
+`DGOIsolatedComponentBoundFourGon.span_mem_relBall_of_sideZero`, which is proved
+there from a symmetric base and four-point hyperbolicity.  A base case at
+general `(μ,b)` --- Dahmani--Guirardel--Osin's Lemma 4.15, quasi-geodesic
+stability at `θ = ϰ(μ,b) + 2δ`, inside their 4.16 --- instantiates the same
+binder and gives the same conclusion at `(μ,b)`, with nothing here to change.
+
+`n ≤ 6` stays.  Each step of Lemma 4.17 costs `C ↦ C₁ + C₂`, so iterating to `n`
+sides gives a radius quadratic in `n`, and the linear form `C · n` at a fixed
+`C` for ALL `n` --- which is what `OsinComponents.IsolatedComponentBound` asks
+--- is out of reach of the recursion.  That is why Dahmani--Guirardel--Osin
+prove their Lemma 4.16 by the corner-offset construction and use 4.17 only to
+extend it to boundedly many sides.
 -/
 
 namespace GroupApproximation
@@ -187,12 +177,13 @@ ask for.**
 one step each.  The constants of the chain are `2C, C, 2C, 3C, 4C, 5C`; `5 · C`
 dominates all six, so the statement carries one constant. -/
 theorem baseCase_of_sideCount (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (C : ℕ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) (C : ℕ)
     (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -202,37 +193,40 @@ theorem baseCase_of_sideCount (D : RelGenSet G Λ)
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c N = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < N → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
         (vertex v w (c 0))⁻¹ * vertex v w (c 1)
           ∈ D.relBall lam (5 * C * N) := by
-  have h7 := span_mem_relBall_of_recursionStep D hsymm C (C + (C + C))
-    (n := 7) (N := 6) (by omega) (by omega) hbase
-    (span_mem_relBall_of_sixGon D hsymm C hbase)
+  have h7 := span_mem_relBall_of_recursionStep D hsymm mu b hmu hb C
+    (C + (C + C)) (n := 7) (N := 6) (by omega) (by omega) hbase
+    (span_mem_relBall_of_sixGon D hsymm mu b hmu hb C hbase)
   interval_cases N
   · intro v w c hlet hclosed hc0 hcN hcmono lam hcqg hcomp hiso
     exact relBall_mono_radius D lam (by omega)
-      (baseCase_of_pad D 1 0 le_rfl C (N := 3) rfl hbase v w c hlet hclosed hc0
+      (baseCase_of_pad D mu b hb C (N := 3) rfl hbase v w c hlet hclosed hc0
         hcN hcmono lam hcqg hcomp hiso)
   · intro v w c hlet hclosed hc0 hcN hcmono lam hcqg hcomp hiso
     exact relBall_mono_radius D lam (by omega)
       (hbase v w c hlet hclosed hc0 hcN hcmono lam hcqg hcomp hiso)
   · intro v w c hlet hclosed hc0 hcN hcmono lam hcqg hcomp hiso
     exact relBall_mono_radius D lam (by omega)
-      (span_mem_relBall_of_fiveGon D hsymm C hbase v w c hlet hclosed hc0 hcN
+      (span_mem_relBall_of_fiveGon D hsymm mu b hmu hb C hbase v w c hlet
+        hclosed hc0 hcN
         hcmono lam hcqg hcomp hiso)
   · intro v w c hlet hclosed hc0 hcN hcmono lam hcqg hcomp hiso
     exact relBall_mono_radius D lam (by omega)
-      (span_mem_relBall_of_sixGon D hsymm C hbase v w c hlet hclosed hc0 hcN
+      (span_mem_relBall_of_sixGon D hsymm mu b hmu hb C hbase v w c hlet
+        hclosed hc0 hcN
         hcmono lam hcqg hcomp hiso)
   · intro v w c hlet hclosed hc0 hcN hcmono lam hcqg hcomp hiso
     exact relBall_mono_radius D lam (by omega)
       (h7 v w c hlet hclosed hc0 hcN hcmono lam hcqg hcomp hiso)
   · intro v w c hlet hclosed hc0 hcN hcmono lam hcqg hcomp hiso
     exact relBall_mono_radius D lam (by omega)
-      (span_mem_relBall_of_recursionStep D hsymm C (C + (C + (C + C)))
+      (span_mem_relBall_of_recursionStep D hsymm mu b hmu hb C
+        (C + (C + (C + C)))
         (n := 8) (N := 7) (by omega) (by omega) hbase h7 v w c hlet
         hclosed hc0 hcN hcmono lam hcqg hcomp hiso)
 
@@ -266,12 +260,13 @@ straddling several.  The recut of `DGOIsolatedComponentStraddle` turns it into a
 side of an `(n + 2 - (t' - t))`-gon, `baseCase_of_sideCount` supplies the base
 case there, and `5 · C · (n + 2 - (t' - t)) ≤ 15 · C · n` for `1 ≤ n`. -/
 theorem isolatedComponent_span_of_sideZeroBase (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (C : ℕ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) (C : ℕ)
     (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -282,13 +277,14 @@ theorem isolatedComponent_span_of_sideZeroBase (D : RelGenSet G Λ)
     (hlet : ∀ a ∈ w, D.IsLetter a) (hclosed : RelLetter.listVal w = 1)
     (hc0 : c 0 = 0) (hcn : c n = w.length) (hcmono : ∀ s : ℕ, c s ≤ c (s + 1))
     (hcqg : ∀ s : ℕ, s < n → ∀ p q : ℕ, c s ≤ p → p ≤ q → q ≤ c (s + 1) →
-      ((q - p : ℕ) : ℝ) / 1 - 0
+      ((q - p : ℕ) : ℝ) / mu - b
         ≤ ((wordDist D.alphabet.carrier (vertex v w p) (vertex v w q) : ℕ) : ℝ))
     (hcomp : IsComp lam w i k) (hiso : IsIsolated D.fam lam v w i) :
     (vertex v w i)⁻¹ * vertex v w k ∈ D.relBall lam (15 * C * n) := by
-  have hkey := isolatedComponent_span_of_baseCase D 1 0 (5 * C) ht hti hit ht'
+  have hkey := isolatedComponent_span_of_baseCase D mu b (5 * C) ht hti hit ht'
     htk hkt' htt'
-    (baseCase_of_sideCount D hsymm C hbase (N := n + 2 - (t' - t)) (by omega)
+    (baseCase_of_sideCount D hsymm mu b hmu hb C hbase
+      (N := n + 2 - (t' - t)) (by omega)
       (by omega))
     hlet hclosed hc0 hcn hcmono hcqg hcomp hiso
   refine relBall_mono_radius D lam ?_ hkey
@@ -303,18 +299,19 @@ This is the `(μ,b) = (1,0)` instance of the `hbound` binder of
 the component starts and ends on is located by `exists_side_of_index`; a polygon
 with no sides has no letters, so no components, and the case is vacuous. -/
 theorem isolatedComponentBound_of_sideZeroBase (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (C : ℕ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) (C : ℕ)
     (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
         (vertex v w (c 0))⁻¹ * vertex v w (c 1) ∈ D.relBall lam (C * 4)) :
     ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
-      IsQuasiGeodesicPolygon D 1 0 n v u →
+      IsQuasiGeodesicPolygon D mu b n v u →
       ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
         (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (15 * C * n) := by
   intro n hn6 v u hpoly nu i k hcomp hiso
@@ -332,8 +329,8 @@ theorem isolatedComponentBound_of_sideZeroBase (D : RelGenSet G Λ)
     by_contra hcon
     have h : c (t' + 1) ≤ c t := hmono (by omega)
     omega
-  exact isolatedComponent_span_of_sideZeroBase D hsymm C hbase hn6 ht hti hit
-    ht' htk hkt' htt' hlet hclosed hc0 hcn hcmono hcqg hcomp hiso
+  exact isolatedComponent_span_of_sideZeroBase D hsymm mu b hmu hb C hbase hn6
+    ht hti hit ht' htk hkt' htt' hlet hclosed hc0 hcn hcmono hcqg hcomp hiso
 
 /-! ## The bound, with nothing left assumed -/
 
@@ -355,7 +352,8 @@ theorem isolatedComponentBound_of_fourPointHyperbolic (D : RelGenSet G Λ)
       ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
         (vertex v u i)⁻¹ * vertex v u k
           ∈ D.relBall nu (15 * (25 * (δ + 1)) * n) :=
-  isolatedComponentBound_of_sideZeroBase D hsymm (25 * (δ + 1))
+  isolatedComponentBound_of_sideZeroBase D hsymm 1 0 le_rfl le_rfl
+    (25 * (δ + 1))
     (baseCase_of_sideZero_at D hsymm hδ rfl)
 
 end OsinComponents

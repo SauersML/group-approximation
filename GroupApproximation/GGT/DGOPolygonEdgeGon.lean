@@ -227,12 +227,13 @@ by the `s₊` argument --- and it lies in the coset of `v`.  The edge from `x₁
 The conclusion is the second factor of the Case B split: together with the far
 polygon's `v⁻¹ · s₋` it multiplies to `(vertex v w (c 0))⁻¹ · vertex v w (c 1)`,
 the label of the distinguished component. -/
-theorem span_mem_relBall_of_edgeGon (D : RelGenSet G Λ) (C : ℕ)
+theorem span_mem_relBall_of_edgeGon (D : RelGenSet G Λ) (mu b : ℝ)
+    (hmu : 1 ≤ mu) (hb : 0 ≤ b) (C : ℕ)
     (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -243,7 +244,7 @@ theorem span_mem_relBall_of_edgeGon (D : RelGenSet G Λ) (C : ℕ)
     (hc0 : c 0 = 0) (hcn : c n = w.length) (hcmono : ∀ s : ℕ, c s ≤ c (s + 1))
     (h3n : 3 ≤ n)
     (hcqg : ∀ s : ℕ, s < n → s ≠ 0 → ∀ p q' : ℕ, c s ≤ p → p ≤ q' →
-      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / 1 - 0
+      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / mu - b
         ≤ ((wordDist D.alphabet.carrier (vertex v w p)
             (vertex v w q') : ℕ) : ℝ))
     (hcomp : IsComp lam w (c 0) (c 1)) (hiso : IsIsolated D.fam lam v w (c 0))
@@ -311,7 +312,7 @@ theorem span_mem_relBall_of_edgeGon (D : RelGenSet G Λ) (C : ℕ)
         · exact le_of_eq (by rw [hghi s (by omega), hghi (s + 1) (by omega)])
   -- the quasi-geodesic clause
   have hclause : ∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q' : ℕ, g s ≤ p → p ≤ q' →
-      q' ≤ g (s + 1) → ((q' - p : ℕ) : ℝ) / 1 - 0
+      q' ≤ g (s + 1) → ((q' - p : ℕ) : ℝ) / mu - b
         ≤ ((wordDist D.alphabet.carrier
             (vertex x (edgeWord a w (c 1) (c 3) q t) p)
             (vertex x (edgeWord a w (c 1) (c 3) q t) q') : ℕ) : ℝ) := by
@@ -341,14 +342,15 @@ theorem span_mem_relBall_of_edgeGon (D : RelGenSet G Λ) (C : ℕ)
           (q' - (1 + (c 3 - c 1))) (by omega) (by omega)]
       have hgeo := sub_le_wordDist_vertex D hq (p - (1 + (c 3 - c 1)))
         (q' - (1 + (c 3 - c 1))) (by omega) (by omega)
-      rw [div_one, sub_zero]
       have hcast : (q' - p : ℕ)
           ≤ wordDist D.alphabet.carrier
             (vertex (vertex v w (c 3)) q (p - (1 + (c 3 - c 1))))
             (vertex (vertex v w (c 3)) q (q' - (1 + (c 3 - c 1)))) := by
         rwa [show q' - (1 + (c 3 - c 1)) - (p - (1 + (c 3 - c 1))) = q' - p from by
           omega] at hgeo
-      exact_mod_cast hcast
+      exact le_trans (sub_le_self _ hb)
+        (le_trans (div_le_self (Nat.cast_nonneg _) hmu)
+          (by exact_mod_cast hcast))
   -- the edge is a component of the 4-gon
   have hcompE : IsComp lam (edgeWord a w (c 1) (c 3) q t) 0 1 := by
     refine ⟨by omega, by omega, ?_, ?_, ?_⟩

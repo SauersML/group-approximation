@@ -254,12 +254,13 @@ and index `1` is excluded by `not_isCompOf_farWord_one`.  A component start past
 the chord is a component start of `w`, connected to the distinguished component,
 which isolation in `w` forbids. -/
 theorem span_mem_relBall_of_farGon (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (C : ℕ) {N : ℕ}
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) (C : ℕ) {N : ℕ}
     (hprev : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c N = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < N → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -270,7 +271,7 @@ theorem span_mem_relBall_of_farGon (D : RelGenSet G Λ)
     (hc0 : c 0 = 0) (hcn : c n = w.length) (hcmono : ∀ s : ℕ, c s ≤ c (s + 1))
     (hnN : n = N + 1) (h3N : 3 ≤ N)
     (hcqg : ∀ s : ℕ, s < n → s ≠ 0 → ∀ p q' : ℕ, c s ≤ p → p ≤ q' →
-      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / 1 - 0
+      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / mu - b
         ≤ ((wordDist D.alphabet.carrier (vertex v w p)
             (vertex v w q') : ℕ) : ℝ))
     (hcomp : IsComp lam w (c 0) (c 1)) (hiso : IsIsolated D.fam lam v w (c 0))
@@ -319,7 +320,7 @@ theorem span_mem_relBall_of_farGon (D : RelGenSet G Λ)
         omega
   -- the quasi-geodesic clause
   have hclause : ∀ s : ℕ, s < N → s ≠ 0 → ∀ p q' : ℕ, e s ≤ p → p ≤ q' →
-      q' ≤ e (s + 1) → ((q' - p : ℕ) : ℝ) / 1 - 0
+      q' ≤ e (s + 1) → ((q' - p : ℕ) : ℝ) / mu - b
         ≤ ((wordDist D.alphabet.carrier (vertex v (farWord q w (c 3)) p)
             (vertex v (farWord q w (c 3)) q') : ℕ) : ℝ) := by
     intro s hs hs0 p q' hp hpq hq'
@@ -331,8 +332,9 @@ theorem span_mem_relBall_of_farGon (D : RelGenSet G Λ)
         (by rw [length_revWord]; omega)
       rw [← vertex_farWord_le (q := q) (w := w) (m := c 3) v p (by omega),
         ← vertex_farWord_le (q := q) (w := w) (m := c 3) v q' (by omega)] at hgeo
-      rw [div_one, sub_zero]
-      exact_mod_cast hgeo
+      exact le_trans (sub_le_self _ hb)
+        (le_trans (div_le_self (Nat.cast_nonneg _) hmu)
+          (by exact_mod_cast hgeo))
     · -- a side of the original polygon, read at the same vertices
       rw [hege s (by omega)] at hp
       rw [hege (s + 1) (by omega)] at hq'

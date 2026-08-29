@@ -57,13 +57,14 @@ The three cases are: a trivial side, which sheds; no chord component connected
 to the distinguished one, which is the near 4-gon; and one connected, which is
 the split. -/
 theorem span_mem_relBall_of_recursionStep (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (C₁ C₂ : ℕ) {n N : ℕ}
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) (C₁ C₂ : ℕ) {n N : ℕ}
     (hnN : n = N + 1) (h4N : 4 ≤ N)
     (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -72,7 +73,7 @@ theorem span_mem_relBall_of_recursionStep (D : RelGenSet G Λ)
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c N = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < N → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -81,7 +82,7 @@ theorem span_mem_relBall_of_recursionStep (D : RelGenSet G Λ)
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c n = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < n → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -101,7 +102,8 @@ theorem span_mem_relBall_of_recursionStep (D : RelGenSet G Λ)
     by_cases hchord : ∀ t : ℕ, IsCompStart lam q t →
         ¬ Connected D.fam lam v (joinWord w (c 3) q) (c 0) (c 3 + t)
     · -- Case A: the distinguished component survives the cut isolated
-      have hA := span_mem_relBall_of_noChordConnection D C₁ hbase v lam hlet hc0
+      have hA := span_mem_relBall_of_noChordConnection D mu b hmu hb C₁ hbase v
+        lam hlet hc0
         hcn hcmono (by omega) hcqg hcomp hiso hq hc13 hchord
       refine relBall_mono_radius D lam ?_ hA
       exact Nat.mul_le_mul (by omega) (by omega)
@@ -134,9 +136,11 @@ theorem span_mem_relBall_of_recursionStep (D : RelGenSet G Λ)
       rw [ht, hk] at hcompt
       rw [ht] at hmem
       -- the two halves of the split
-      have hfar := span_mem_relBall_of_farGon D hsymm C₂ hprev v lam hlet
+      have hfar := span_mem_relBall_of_farGon D hsymm mu b hmu hb C₂ hprev v
+        lam hlet
         hclosed hc0 hcn hcmono hnN (by omega) hcqg hcomp hiso hq hc13 hcompt hmem
-      have hedge := span_mem_relBall_of_edgeGon D C₁ hbase v lam hlet hc0 hcn
+      have hedge := span_mem_relBall_of_edgeGon D mu b hmu hb C₁ hbase v lam
+        hlet hc0 hcn
         hcmono (by omega) hcqg hcomp hiso hq hc13 hcompt hmem
       have hsplit := span_mem_relBall_of_split D lam hfar hedge
       rw [show (vertex v w (c 0))⁻¹ * vertex v w (c 1)
@@ -147,7 +151,7 @@ theorem span_mem_relBall_of_recursionStep (D : RelGenSet G Λ)
       calc C₂ * N + C₁ * 4 ≤ C₂ * n + C₁ * n := Nat.add_le_add e1 e2
         _ = (C₁ + C₂) * n := by ring
   · -- sides `1` and `2` are both trivial; shed side `1`
-    have hT := baseCase_of_dropEmpty D 1 0 C₂ hprev v w c hlet hclosed hc0
+    have hT := baseCase_of_dropEmpty D mu b C₂ hprev v w c hlet hclosed hc0
       (by rw [← hnN]; exact hcn) hcmono lam
       (fun s hs hs0 p q' hp hpq hq' => hcqg s (by omega) hs0 p q' hp hpq hq')
       hcomp hiso (j := 1) (by omega) (by omega)
@@ -158,12 +162,13 @@ theorem span_mem_relBall_of_recursionStep (D : RelGenSet G Λ)
 /-- **The 5-gon case**, from the 4-gon case alone: the far polygon of a 5-gon is
 a 4-gon, so one step suffices. -/
 theorem span_mem_relBall_of_fiveGon (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (C : ℕ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) (C : ℕ)
     (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -172,23 +177,24 @@ theorem span_mem_relBall_of_fiveGon (D : RelGenSet G Λ)
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 5 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 5 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
         (vertex v w (c 0))⁻¹ * vertex v w (c 1) ∈ D.relBall lam ((C + C) * 5) :=
-  span_mem_relBall_of_recursionStep D hsymm C C (N := 4) (by norm_num)
-    (by norm_num) hbase hbase
+  span_mem_relBall_of_recursionStep D hsymm mu b hmu hb C C (N := 4)
+    (by norm_num) (by norm_num) hbase hbase
 
 /-- **The 6-gon case**, from the 4-gon case: its far polygon is the 5-gon just
 proved. -/
 theorem span_mem_relBall_of_sixGon (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (C : ℕ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) (C : ℕ)
     (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -197,14 +203,15 @@ theorem span_mem_relBall_of_sixGon (D : RelGenSet G Λ)
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 6 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 6 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
         (vertex v w (c 0))⁻¹ * vertex v w (c 1)
           ∈ D.relBall lam ((C + (C + C)) * 6) :=
-  span_mem_relBall_of_recursionStep D hsymm C (C + C) (N := 5) (by norm_num)
-    (by norm_num) hbase (span_mem_relBall_of_fiveGon D hsymm C hbase)
+  span_mem_relBall_of_recursionStep D hsymm mu b hmu hb C (C + C) (N := 5)
+    (by norm_num) (by norm_num) hbase
+    (span_mem_relBall_of_fiveGon D hsymm mu b hmu hb C hbase)
 
 end OsinComponents
 end GGT

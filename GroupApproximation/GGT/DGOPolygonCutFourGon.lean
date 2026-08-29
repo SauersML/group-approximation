@@ -75,18 +75,19 @@ theorem isComp_joinWord (lam : Λ) {w : List (RelLetter G Λ)} {m : ℕ}
 Its corners are `0, c 1, c 2, c 3` and the far end of the chord.  Sides `1` and
 `2` quote the original clause; side `3` is the chord and quotes
 `sub_le_wordDist_vertex`. -/
-theorem exists_fourGon_cut (D : RelGenSet G Λ) (v : G)
+theorem exists_fourGon_cut (D : RelGenSet G Λ) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b) (v : G)
     {w : List (RelLetter G Λ)} {c : ℕ → ℕ} {n : ℕ} {q : List (RelLetter G Λ)}
     (hc0 : c 0 = 0) (hcn : c n = w.length) (hcmono : ∀ s : ℕ, c s ≤ c (s + 1))
     (h3n : 3 ≤ n)
     (hclause : ∀ s : ℕ, s < n → s ≠ 0 → ∀ p q' : ℕ, c s ≤ p → p ≤ q' →
-      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / 1 - 0
+      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / mu - b
         ≤ ((wordDist D.alphabet.carrier (vertex v w p) (vertex v w q') : ℕ) : ℝ))
     (hq : IsGeodesicWord D (vertex v w (c 3)) v q) :
     ∃ d : ℕ → ℕ, d 0 = 0 ∧ d 1 = c 1 ∧
       d 4 = (joinWord w (c 3) q).length ∧ (∀ s : ℕ, d s ≤ d (s + 1)) ∧
       ∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q' : ℕ, d s ≤ p → p ≤ q' →
-        q' ≤ d (s + 1) → ((q' - p : ℕ) : ℝ) / 1 - 0
+        q' ≤ d (s + 1) → ((q' - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier
               (vertex v (joinWord w (c 3) q) p)
               (vertex v (joinWord w (c 3) q) q') : ℕ) : ℝ) := by
@@ -132,14 +133,15 @@ theorem exists_fourGon_cut (D : RelGenSet G Λ) (v : G)
         (by omega)
       rw [vertex_joinWord_add v w q hc3w p (p - c 3) (by omega),
         vertex_joinWord_add v w q hc3w q' (q' - c 3) (by omega)]
-      rw [div_one, sub_zero]
       have hcast : (q' - p : ℕ)
           ≤ wordDist D.alphabet.carrier
             (vertex (vertex v w (c 3)) q (p - c 3))
             (vertex (vertex v w (c 3)) q (q' - c 3)) := by
         have he : q' - c 3 - (p - c 3) = q' - p := by omega
         rwa [he] at hkey
-      exact_mod_cast hcast
+      exact le_trans (sub_le_self _ hb)
+        (le_trans (div_le_self (Nat.cast_nonneg _) hmu)
+          (by exact_mod_cast hcast))
 
 /-! ## Case A of Lemma 4.17 -/
 
@@ -155,12 +157,13 @@ bounds the span, with no dependence on `n`.
 `c 1 < c 3` is what keeps the component maximal after the cut: the letter at
 `c 1` must still be a letter of `w`.  `DGOPolygonJoin.baseCase_of_dropEmpty`
 supplies it by shedding trivial sides first. -/
-theorem span_mem_relBall_of_noChordConnection (D : RelGenSet G Λ) (C : ℕ)
+theorem span_mem_relBall_of_noChordConnection (D : RelGenSet G Λ) (mu b : ℝ)
+    (hmu : 1 ≤ mu) (hb : 0 ≤ b) (C : ℕ)
     (hbase : ∀ (v : G) (w : List (RelLetter G Λ)) (c : ℕ → ℕ),
       (∀ a ∈ w, D.IsLetter a) → RelLetter.listVal w = 1 → c 0 = 0 →
       c 4 = w.length → (∀ s : ℕ, c s ≤ c (s + 1)) → ∀ lam : Λ,
       (∀ s : ℕ, s < 4 → s ≠ 0 → ∀ p q : ℕ, c s ≤ p → p ≤ q →
-        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / 1 - 0
+        q ≤ c (s + 1) → ((q - p : ℕ) : ℝ) / mu - b
           ≤ ((wordDist D.alphabet.carrier (vertex v w p)
               (vertex v w q) : ℕ) : ℝ)) →
       IsComp lam w (c 0) (c 1) → IsIsolated D.fam lam v w (c 0) →
@@ -171,7 +174,7 @@ theorem span_mem_relBall_of_noChordConnection (D : RelGenSet G Λ) (C : ℕ)
     (hc0 : c 0 = 0) (hcn : c n = w.length) (hcmono : ∀ s : ℕ, c s ≤ c (s + 1))
     (h3n : 3 ≤ n)
     (hcqg : ∀ s : ℕ, s < n → s ≠ 0 → ∀ p q' : ℕ, c s ≤ p → p ≤ q' →
-      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / 1 - 0
+      q' ≤ c (s + 1) → ((q' - p : ℕ) : ℝ) / mu - b
         ≤ ((wordDist D.alphabet.carrier (vertex v w p)
             (vertex v w q') : ℕ) : ℝ))
     (hcomp : IsComp lam w (c 0) (c 1)) (hiso : IsIsolated D.fam lam v w (c 0))
@@ -185,7 +188,7 @@ theorem span_mem_relBall_of_noChordConnection (D : RelGenSet G Λ) (C : ℕ)
     rw [hcn] at h
     exact h
   obtain ⟨d, hd0, hd1, hd4, hdmono, hdqg⟩ :=
-    exists_fourGon_cut D v hc0 hcn hcmono h3n hcqg hq
+    exists_fourGon_cut D mu b hmu hb v hc0 hcn hcmono h3n hcqg hq
   have hd0c : d 0 = c 0 := by rw [hd0, hc0]
   have hqval : RelLetter.listVal q = (vertex v w (c 3))⁻¹ * v :=
     eq_inv_mul_of_mul_eq hq.2.1
