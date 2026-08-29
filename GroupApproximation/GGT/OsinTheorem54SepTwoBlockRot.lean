@@ -1,20 +1,28 @@
-import GroupApproximation.GGT.OsinTheorem54SepTwoBlockConj
+import GroupApproximation.GGT.DGOIsolatedComponentCut
+import GroupApproximation.GGT.OsinTheorem54SepBlockConj
+import GroupApproximation.GGT.OsinTheorem54SepFourGonOpposite
 import GroupApproximation.GGT.OsinTheorem54SepFourGonPolygon
 import GroupApproximation.GGT.OsinTheorem54SepRotateComponent
 
 /-!
 # The second reading of the quadrilateral, derived
 
-`exists_two_block_conj_of_innermost` bounds both gaps between two matched
-blocks, and assumes the second linearisation of the polygon: a quasi-geodesic
-polygon `(v₂,u₂)` carrying the two components in the other order.  That
-assumption is discharged here.
+Two components of a quadrilateral, one on each long side, matched to each
+other, with BOTH connecting elements in a relative ball of radius `4C`, and
+`x * v_q * x' = v_s` between them.
 
-Everything it asked for is now produced from the first reading:
+The two gaps are the two arcs of a CYCLIC object, and a word is a linearisation:
+it cuts one of them.  Whichever arrangement of the four sides is written down,
+one gap runs from the end of one component to the start of the other INSIDE the
+word --- `DGOIsolatedComponentCut.connector_mem_relBall` bounds it --- while the
+other runs through the basepoint, where no ordering of indices exhibits it as an
+end-to-start pair.  So the polygon is read twice, and the second reading is
+produced here rather than assumed:
 
 * the polygon --- `isQuasiGeodesicPolygon_fourGon_rot`, the quadrilateral turned
   round at the corner `|p| + |q|`, which always lies in the arc between the two
-  components, so the rotation costs no sides;
+  components (the `q`-component ends at or before it, the reversed-`s` component
+  starts at or after `|p| + |q| + |r|`), so the rotation costs no sides;
 * the two components --- `isComp_rotWord_after` for the one on the reversed side
   `s`, which lies past the corner, and `isComp_rotWord_before` for the one on
   `q`, which lies before it;
@@ -52,10 +60,14 @@ variable {G : Type u} [Group G] {Λ : Type w}
 /-- **Both gaps of a matched pair of blocks are short, from one reading of the
 polygon.**
 
-`exists_two_block_conj_of_innermost` with its second polygon supplied rather
-than assumed.  The quasi-geodesic hypothesis is the clause at the
-quadrilateral's own corners, which is what a caller verifies anyway and is
-strictly more than the packaged predicate says. -/
+Both gaps come from one application each of the innermost end-to-start cut,
+flipped by `connector_inv_mem_relBall`, and `block_span_conj` puts them either
+side of the deep span --- which stays between them and is never folded in, being
+unbounded while they are not.
+
+The quasi-geodesic hypothesis is the clause at the quadrilateral's own corners,
+which is what a caller verifies anyway and is strictly more than the packaged
+predicate says. -/
 theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
     (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
@@ -103,8 +115,7 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
         ∃ x x' : G, x ∈ D.relBall lam (C * 4) ∧ x' ∈ D.relBall lam (C * 4) ∧
           x * ((vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k) * x'
             = (vertex (1 : G) s j)⁻¹ * vertex (1 : G) s l := by
-  obtain ⟨C, hCpos, hC⟩ :=
-    exists_two_block_conj_of_innermost D lam hbound hsymm mu b hmu hb
+  obtain ⟨C, hCpos, hC⟩ := connector_mem_relBall D hbound mu b hmu hb
   refine ⟨C, hCpos, ?_⟩
   intro p q r s i k j l hclose hlet hp hr hp0 hqg hcompq hkq hcomps hlq hconn
     hinner hinner₂
@@ -190,16 +201,29 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
         vertex (1 : G) (p ++ q ++ r ++ revWord s) (p.length + i)
       ∈ D.fam lam := hsym
     rwa [hvS', hvQ'] at hsym'
-  exact hC p q r s i k j l hclose hp hr hpoly hcompq hkq hcomps hlq hconn hinner
+  -- the gap from the end of the `q`-block to the start of the `s`-block
+  have happ1 := hC 4 (by omega) 1 (p ++ q ++ r ++ revWord s) hpoly lam
+    (p.length + i) (p.length + k)
+    (p.length + q.length + r.length + (s.length - l))
+    (p.length + q.length + r.length + (s.length - j))
+    hbridgeq hbridges (by omega) hconn hinner
+  have hflip1 := connector_inv_mem_relBall D lam hsymm happ1
+  rw [vertex_fourGon_side p q r s 1 hkle, one_mul,
+    vertex_fourGon_opposite_closed p q r s hclose l] at hflip1
+  -- the gap through the basepoint, in the rotated reading
+  have happ2 := hC 4 (by omega)
     (vertex (1 : G) (p ++ q ++ r ++ revWord s) (p.length + q.length))
-    (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length))
+    (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length)) hpoly₂ lam
     (p.length + q.length + r.length + (s.length - l) - (p.length + q.length))
     (p.length + q.length + r.length + (s.length - j) - (p.length + q.length))
     ((p ++ q ++ r ++ revWord s).length - (p.length + q.length)
       + (p.length + i))
     ((p ++ q ++ r ++ revWord s).length - (p.length + q.length)
       + (p.length + k))
-    hpoly₂ hrotS hrotQ (by omega) hconn₂ hinner₂ hvE hvQ
+    hrotS hrotQ (by omega) hconn₂ hinner₂
+  have hflip2 := connector_inv_mem_relBall D lam hsymm happ2
+  rw [hvE, hvQ] at hflip2
+  exact ⟨_, _, hflip2, hflip1, block_span_conj p q s i k j l⟩
 
 end OsinComponents
 end GGT
