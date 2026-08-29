@@ -98,10 +98,12 @@ The statement is now a theorem of three named inputs:
   only removes.  `Analysis/ShulmanFillNormingTailRoute` proves the
   conjugate-word norming statement from the repaired pair statement, the
   compatible-target pair statement and the MF-ness of the relabelled printed
-  models (`ShulmanFill.ShiftedPrintedMFStatement`, the same input the
-  unshifted route carries and `EllTwoTheorem10` discharges there;
-  its relabelled discharge is recorded as owed in
-  `Analysis/ShulmanFillNormingTailPrintedPair`).  The reduction below through
+  models — and that last input is a theorem,
+  `ShulmanFill.shiftedPrintedMF` in `Analysis/ShulmanFillNormingTailPrintedMF`,
+  by padding the shifted bounded product into the unshifted one.  So
+  `ShulmanFill.conjugateWordNorming_of_tailPair_of_compatible'` rests on the
+  repaired pair statement and the compatible-target pair statement alone.
+  The reduction below through
   the refuted form is kept only as the record of the route it replaced;
 * `ShulmanSymmetricDouble.CompatibleTargetPairStatement`
   (`Analysis/ShulmanFillTheorem13`): the output of Enders--Shulman,
