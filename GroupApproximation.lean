@@ -2561,6 +2561,7 @@ import GroupApproximation.GGT.OsinTheorem54SepCommSet
 import GroupApproximation.GGT.DGOIsolatedComponentTransport
 import GroupApproximation.GGT.OsinTheorem54SepFourGonMeet
 import GroupApproximation.GGT.HullSCRelatorSeparation2Diagonal
+import GroupApproximation.Manuscript.MFRecognition.PositiveBranchResidualFiniteness
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

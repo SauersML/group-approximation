@@ -66,7 +66,7 @@ theorem synchronized_edge_ker_eq
       exact congrArg (fun z : (G₀ × P₀) × B₀ => z.1.1) hs
     have hp : p (s : Gamma) = 1 := by
       exact congrArg (fun z : (G₀ × P₀) × B₀ => z.1.2) hs
-    exact Prod.ext (Prod.ext hlambda hp) rfl
+    exact Prod.ext (Prod.ext hlambda hp) (map_one beta)
 
 /-- The quotient edge isomorphism induced by the equal-kernel theorem. -/
 def synchronizedEdgeEquiv
@@ -95,15 +95,24 @@ value. -/
     (lambda : Gamma →* G₀) (p : Gamma →* P₀) (beta : Q →* B₀)
     (hker : (lambda.comp S.subtype).ker ≤ (beta.comp tau).ker)
     (s : S) :
-    (((synchronizedEdgeEquiv S tau lambda p beta hker
+    ((synchronizedEdgeEquiv S tau lambda p beta hker
       ⟨synchronizedBaseQuotient lambda p beta (edgeSource S Q s),
         ⟨edgeSource S Q s, ⟨s, rfl⟩, rfl⟩⟩ :
         (edgeSubgroupTarget S tau).map
           (synchronizedBaseQuotient lambda p beta)) :
       (G₀ × P₀) × B₀) =
         synchronizedBaseQuotient lambda p beta (edgeTarget S tau s) := by
-  simp [synchronizedEdgeEquiv,
-    rangeMulEquivOfKerEq_rangeRestrict]
+  have hres :
+      rangeMulEquivOfKerEq
+          ((synchronizedBaseQuotient lambda p beta).comp (edgeSource S Q))
+          ((synchronizedBaseQuotient lambda p beta).comp (edgeTarget S tau))
+          (synchronized_edge_ker_eq S tau lambda p beta hker)
+          (((synchronizedBaseQuotient lambda p beta).comp
+            (edgeSource S Q)).rangeRestrict s) =
+        ((synchronizedBaseQuotient lambda p beta).comp
+          (edgeTarget S tau)).rangeRestrict s :=
+    rangeMulEquivOfKerEq_rangeRestrict _ _ _ s
+  exact congrArg Subtype.val hres
 
 end
 
