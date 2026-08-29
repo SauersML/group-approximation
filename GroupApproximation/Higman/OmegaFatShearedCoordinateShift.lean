@@ -51,11 +51,9 @@ noncomputable def shearedCoordinateShiftEquiv (j : ℕ) :
   left_inv beta := by
     rw [shearedCoordinateTranslate_add]
     norm_num
-    exact shearedCoordinateTranslate_zero j beta
   right_inv beta := by
     rw [shearedCoordinateTranslate_add]
     norm_num
-    exact shearedCoordinateTranslate_zero j beta
 
 /-- Embed the preceding window as the zero last-coordinate slice. -/
 def shearedCoordinateZeroSlice (j : ℕ) :
