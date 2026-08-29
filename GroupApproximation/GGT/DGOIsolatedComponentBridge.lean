@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.DGOIsolatedComponentCoset
 import GroupApproximation.GGT.OsinTheorem54SepRuns
 import GroupApproximation.GGT.OsinTheorem54SepSplit
+import GroupApproximation.GGT.OsinTheorem54SepFourGonGeneral
 
 /-!
 # Reading avoidance off positions, and what isolatedness forbids
@@ -146,9 +147,9 @@ general `(μ, b)` — but at `b = 0` it collapses the run apparatus to "position
 carries a `lam`-letter and its neighbours do not", which is what Lemma 4.8 at
 `n = 2` and Lemma 4.9 at `n = 3` consume.
 
-The distance bound inlined here is two lines over `WordMetric.wordNorm_le_one_of_mem`
-and `fam_subset_alphabet`; when `OsinTheorem54SepFourGonGeneral` lands it is
-osin-ah4's `wordDist_le_one_of_mem_fam` and should be replaced by it. -/
+The distance bound is osin-ah4's `wordDist_le_one_of_mem_fam`
+(`OsinTheorem54SepFourGonGeneral`), which takes exactly the span that
+`span_mem_fam_of_isComp` produces. -/
 theorem isComp_eq_succ_of_geodesic (D : RelGenSet G Λ) (lam : Λ) (v : G)
     {w : List (RelLetter G Λ)} (hlet : ∀ a ∈ w, D.IsLetter a) {i k : ℕ}
     (hcomp : IsComp lam w i k)
@@ -156,9 +157,8 @@ theorem isComp_eq_succ_of_geodesic (D : RelGenSet G Λ) (lam : Λ) (v : G)
     k = i + 1 := by
   have hspan : (vertex v w i)⁻¹ * vertex v w k ∈ D.fam lam :=
     span_mem_fam_of_isComp D v hlet hcomp
-  have hone : wordDist D.alphabet.carrier (vertex v w i) (vertex v w k) ≤ 1 := by
-    show wordNorm D.alphabet.carrier ((vertex v w i)⁻¹ * vertex v w k) ≤ 1
-    exact wordNorm_le_one_of_mem (RelGenSet.fam_subset_alphabet D lam hspan)
+  have hone : wordDist D.alphabet.carrier (vertex v w i) (vertex v w k) ≤ 1 :=
+    wordDist_le_one_of_mem_fam D hspan
   have hik : i < k := hcomp.1
   omega
 
