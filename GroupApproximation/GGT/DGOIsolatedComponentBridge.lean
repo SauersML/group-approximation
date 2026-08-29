@@ -36,6 +36,23 @@ a component (`exists_isComp_of_isCompOf`), whose start is `Connected` to it by
 same coset.  `isComp_end_unique` is what rules out the remaining case, that the
 second component is the first one under another name: a component is determined
 by where it starts.
+
+## Lemma 4.6, and where its two hypotheses are spent
+
+`relBall_of_isolated_of_closed` is the conversion device of
+Dahmani--Guirardel--Osin's §4.2: an isolated `H lam`-component of a *closed*
+admissible word of length `n` has `d̂_lam(a₋, a₊) ≤ n`.  Every later step of that
+section manufactures a short cycle carrying the component and then calls this
+one; nothing else in §4.2 produces a `d̂_lam` bound.  It needs no hyperbolicity,
+no relative presentation and no polygon theory, which is why it is proved here
+rather than waiting on them.
+
+The path is the complement `c.drop k ++ c.take i`.  Closedness is what joins the
+tail to the head --- the tail ends at `v · listVal c = v`, where the head starts
+--- and isolatedness, through `notMem_coset_of_isIsolated`, is what makes the
+join avoid `Γ_{H lam}`.  Isolatedness is spent on *edges*: the complement may
+enter the coset as often as it likes, and is forbidden only to read a
+`lam`-letter there.
 -/
 
 namespace GroupApproximation
@@ -161,6 +178,126 @@ theorem isComp_eq_succ_of_geodesic (D : RelGenSet G Λ) (lam : Λ) (v : G)
     wordDist_le_one_of_mem_fam D hspan
   have hik : i < k := hcomp.1
   omega
+
+
+/-! ## 5.  The complement of an isolated component: Lemma 4.6 -/
+
+/-- **A vertex past `k` is a vertex of the tail.**  Reading `w` for `k + j`
+letters is reading it for `k` and then reading `w.drop k` for `j`.  The prefix
+identity behind it is `List.take_add`.  No bound on `k` or `j` is needed: past
+the end of the word both sides stall. -/
+theorem vertex_drop_eq (w : List (RelLetter G Λ)) (v : G) (k j : ℕ) :
+    vertex v w k * vertex (1 : G) (w.drop k) j = vertex v w (k + j) := by
+  rw [vertex_eq_mul_listVal_take w v k,
+    vertex_eq_mul_listVal_take (w.drop k) 1 j,
+    vertex_eq_mul_listVal_take w v (k + j), List.take_add, listVal_append,
+    one_mul, mul_assoc]
+
+/-- **Dahmani--Guirardel--Osin, Lemma 4.6.**  *An isolated `H lam`-component of
+a cycle of length `C` in `Γ(G, X ⊔ ℋ)` has `d̂_lam(a₋, a₊) ≤ C`.*
+
+This is the only device in their §4.2 that turns geometry into a bound on
+`d̂_lam`.  Everything later in that section --- the corner-offset construction of
+their Lemma 4.16, the split move of their Lemma 4.17, the Ol'shanskii cut behind
+Proposition 4.14 --- exists to manufacture a *short* cycle in which the given
+component is still isolated, and then calls this.  It is itself unconditional:
+no hyperbolicity, no relative presentation, no polygon theory.
+
+The path is the complement of the component, read from `a₊` round to `a₋`, which
+is the word `c.drop k ++ c.take i`.  Two hypotheses do the work.
+
+*Closedness* is what lets the tail be followed by the head: `c.drop k` ends at
+`v · listVal c = v`, which is where `c.take i` starts.  In the proof this is
+`hB`, that the tail spells the inverse of the head.
+
+*Isolatedness* is what makes the complement avoid `Γ_{H lam}`: a `lam`-letter of
+`c` at a position outside `[i, k)` read at a vertex of the coset
+`(vertex v c i) · H lam` would start a second component of that coset, and
+`notMem_coset_of_isIsolated` forbids it.  Note where the hypothesis is spent ---
+on *edges*, not on vertices.  The complement may pass through the coset as often
+as it likes; what it may not do is read a `lam`-letter there.
+
+The conclusion is stated for the span, while the complement spells its inverse,
+so `relBall_inv` turns the path round at the end.  That is the only use of the
+symmetry hypothesis on `D.base`, and
+`OsinTheorem54SepSymmetric.exists_symmetric_base` supplies it. -/
+theorem relBall_of_isolated_of_closed (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (lam : Λ) (v : G)
+    {c : List (RelLetter G Λ)} (hlet : ∀ a ∈ c, D.IsLetter a)
+    (hcl : RelLetter.listVal c = 1) {i k : ℕ}
+    (hcomp : IsComp lam c i k) (hiso : IsIsolated D.fam lam v c i) :
+    (vertex v c i)⁻¹ * vertex v c k ∈ D.relBall lam c.length := by
+  have hik : i < k := hcomp.1
+  have hkc : k ≤ c.length := hcomp.2.1
+  have hic : i ≤ c.length := by omega
+  have hspan : (vertex v c i)⁻¹ * vertex v c k ∈ D.fam lam :=
+    span_mem_fam_of_isComp D v hlet hcomp
+  -- the cycle closes: the tail spells the inverse of the head
+  have hAB : RelLetter.listVal (c.take k) * RelLetter.listVal (c.drop k) = 1 := by
+    rw [← listVal_append, List.take_append_drop]
+    exact hcl
+  have hB : RelLetter.listVal (c.drop k) = (RelLetter.listVal (c.take k))⁻¹ := by
+    have hA : RelLetter.listVal (c.take k) = (RelLetter.listVal (c.drop k))⁻¹ :=
+      eq_inv_of_mul_eq_one_left hAB
+    rw [hA, inv_inv]
+  -- what isolatedness forbids, read from the far end of the component
+  have hkey : ∀ p : ℕ, ∀ hp : p < c.length, (c[p]'hp).IsCompOf lam →
+      (p < i ∨ k ≤ p) → (vertex v c k)⁻¹ * vertex v c p ∉ D.fam lam := by
+    intro p hp hcp hout hmem
+    have hik' : Connected D.fam lam v c i k := hspan
+    have hkp : Connected D.fam lam v c k p := hmem
+    exact notMem_coset_of_isIsolated D lam v hlet hcomp hiso hp hcp hout
+      (connected_trans hik' hkp)
+  -- the tail avoids `Γ_{H lam}`
+  have hdrop : AvoidsFrom D.fam lam (c.drop k) 1 := by
+    refine (avoidsFrom_iff_forall D.fam lam (c.drop k) 1).mpr ?_
+    intro j hj hcj
+    have hjlen : j < c.length - k := by
+      simpa only [List.length_drop] using hj
+    have hp : k + j < c.length := by omega
+    have hcp : (c[k + j]'hp).IsCompOf lam := by
+      simpa only [List.getElem_drop] using hcj
+    have hv : vertex (1 : G) (c.drop k) j
+        = (vertex v c k)⁻¹ * vertex v c (k + j) := by
+      rw [← vertex_drop_eq c v k j, inv_mul_cancel_left]
+    rw [hv]
+    exact hkey (k + j) hp hcp (Or.inr (Nat.le_add_right k j))
+  -- the head avoids it too, read from the vertex the tail ends at
+  have htake : AvoidsFrom D.fam lam (c.take i)
+      (1 * RelLetter.listVal (c.drop k)) := by
+    refine (avoidsFrom_iff_forall D.fam lam (c.take i)
+      (1 * RelLetter.listVal (c.drop k))).mpr ?_
+    intro m hm hcm
+    have hmlt : m < i ∧ m < c.length := by
+      simpa only [List.length_take, Nat.lt_min] using hm
+    obtain ⟨hmi, hp⟩ := hmlt
+    have hcp : (c[m]'hp).IsCompOf lam := by
+      simpa only [List.getElem_take] using hcm
+    have hv : vertex (1 * RelLetter.listVal (c.drop k)) (c.take i) m
+        = (vertex v c k)⁻¹ * vertex v c m := by
+      rw [vertex_take_eq (1 * RelLetter.listVal (c.drop k)) c i m (le_of_lt hmi),
+        hB, vertex_eq_mul_listVal_take c (1 * (RelLetter.listVal (c.take k))⁻¹) m,
+        vertex_eq_mul_listVal_take c v k, vertex_eq_mul_listVal_take c v m]
+      group
+    rw [hv]
+    exact hkey m hp hcp (Or.inl hmi)
+  -- assemble the complement, then turn it round
+  have hinv : ((vertex v c i)⁻¹ * vertex v c k)⁻¹ ∈ D.relBall lam c.length := by
+    refine ⟨inv_mem hspan, c.drop k ++ c.take i, ?_, ?_, ?_, ?_⟩
+    · intro a ha
+      rcases List.mem_append.mp ha with h | h
+      · exact hlet a (List.drop_subset k c h)
+      · exact hlet a (List.take_subset i c h)
+    · rw [listVal_append, hB, vertex_eq_mul_listVal_take c v i,
+        vertex_eq_mul_listVal_take c v k]
+      group
+    · exact (avoidsFrom_append D.fam lam (c.drop k) (c.take i) 1).mpr
+        ⟨hdrop, htake⟩
+    · rw [List.length_append, List.length_drop, List.length_take,
+        Nat.min_eq_left hic]
+      omega
+  have hfinal := relBall_inv D lam hsymm hinv
+  rwa [inv_inv] at hfinal
 
 end OsinComponents
 end GGT
