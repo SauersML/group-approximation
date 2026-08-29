@@ -31,6 +31,17 @@ is used.
 both in it.  That is also what makes `IsComp lam q 0 1` free --- the letter at
 index `1` of `q` is `w[1]`, which the original component's maximality already
 says is not a `lam`-letter.
+
+## Supplying the connector
+
+`exists_connector` produces the `r` that `cycle_of_connector` consumes, from
+`OsinGeodesicWord.existsGeodesicWord`, and adds the only thing that lemma does
+not give: that no vertex of the connector lies in the coset.  It takes the
+offset hypothesis as a disjunction over the two endpoints, because a vertex at
+parameter `p` of a geodesic word of length `L` is `p` from the start and `L - p`
+from the finish --- so the count runs from whichever end is far from `v`.  That
+disjunction is what lets the cases which offset along the side *preceding* the
+component reuse the same assembly instead of reversing the word.
 -/
 
 namespace GroupApproximation
@@ -146,6 +157,68 @@ theorem cycle_of_connector (D : RelGenSet G Λ) (lam : Λ) (v : G)
         exact notMem_coset_of_isIsolated_zero D lam v hlet hcomp hiso
           (p := j + (i - m - r.length)) (by omega) hci (by omega)
   · rw [hv1 0 (by omega), hv1 1 (by omega)]
+
+/-! ## The connector -/
+
+/-- **The connector between two vertices, with its coset-freeness, in either
+orientation.**
+
+`OsinGeodesicWord.existsGeodesicWord` supplies an admissible word of length
+exactly the distance; what has to be added is that none of its vertices lies in
+the coset of the basepoint.  That is the corner offset, and it works from either
+end: a vertex at parameter `p` of a geodesic word of length `L` is `p` letters
+from the start and `L - p` from the finish, so `θ + 2 ≤ d(v, ·)` at *either*
+endpoint clears the whole connector.  Both orientations occur in Lemma 4.16 ---
+the cases that offset along the side following the component read the connector
+forwards, the cases that offset along the side preceding it read it backwards,
+and only this lemma has to know the difference. -/
+theorem exists_connector (D : RelGenSet G Λ) (lam : Λ) (v : G)
+    {w : List (RelLetter G Λ)} {m j θ : ℕ}
+    (hd : wordDist D.alphabet.carrier (vertex v w m) (vertex v w j) ≤ θ)
+    (hoff : θ + 2 ≤ wordDist D.alphabet.carrier v (vertex v w m) ∨
+      θ + 2 ≤ wordDist D.alphabet.carrier v (vertex v w j)) :
+    ∃ r : List (RelLetter G Λ), (∀ a ∈ r, D.IsLetter a) ∧
+      RelLetter.listVal r = (vertex v w m)⁻¹ * vertex v w j ∧
+      r.length ≤ θ ∧
+      ∀ p : ℕ, p ≤ r.length →
+        v⁻¹ * vertex (vertex v w m) r p ∉ D.fam lam := by
+  obtain ⟨r, hrlet, hrprod, hrlen⟩ :=
+    existsGeodesicWord D (vertex v w m) (vertex v w j)
+  have hrval : RelLetter.listVal r = (vertex v w m)⁻¹ * vertex v w j := by
+    rw [← hrprod, inv_mul_cancel_left]
+  have hrle : r.length ≤ θ := by
+    rw [hrlen]
+    exact hd
+  refine ⟨r, hrlet, hrval, hrle, ?_⟩
+  intro p hp
+  rcases hoff with hstart | hend
+  · exact notMem_coset_vertex_of_offset D hrlet hrle hstart hp
+  · refine notMem_coset_of_offset D hend ?_
+    have hsplit : RelLetter.listVal (r.take p) * RelLetter.listVal (r.drop p)
+        = RelLetter.listVal r := by
+      rw [← listVal_append, List.take_append_drop]
+    have hvp : vertex (vertex v w m) r p
+        = vertex v w m * RelLetter.listVal (r.take p) :=
+      vertex_eq_mul_listVal_take r (vertex v w m) p
+    have hj : vertex v w j = vertex v w m * (RelLetter.listVal (r.take p)
+        * RelLetter.listVal (r.drop p)) := by
+      rw [hsplit, hrval]
+      group
+    have hkey : (vertex (vertex v w m) r p)⁻¹ * vertex v w j
+        = RelLetter.listVal (r.drop p) := by
+      rw [hvp, hj]
+      group
+    have hnorm : wordDist D.alphabet.carrier (vertex (vertex v w m) r p)
+        (vertex v w j) ≤ θ := by
+      show wordNorm D.alphabet.carrier
+        ((vertex (vertex v w m) r p)⁻¹ * vertex v w j) ≤ θ
+      rw [hkey]
+      have hle := wordNorm_listVal_le D (r.drop p)
+        (fun a ha => hrlet a (List.drop_subset p r ha))
+      rw [List.length_drop] at hle
+      omega
+    rw [wordDist_comm D.alphabet.symmetricGenerating]
+    exact hnorm
 
 end OsinComponents
 end GGT
