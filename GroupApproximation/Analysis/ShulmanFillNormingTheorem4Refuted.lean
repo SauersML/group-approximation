@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.MFAlgebra
 import GroupApproximation.Analysis.ShulmanFillNormingAsymptotic
+import GroupApproximation.Analysis.ShulmanFillNormingScalarMF
 
 /-!
 # The model-first form of Theorem 4's lifting direction is false
@@ -31,13 +32,11 @@ quantifier order — with the model fixed first, `range q` is fixed before `π` 
 chosen — so the repair is to make the model existential, built to fit `π`, which
 is what Blackadar--Kirchberg actually give.
 
-`HasMFEmbedding ℂ` is carried as an explicit hypothesis rather than used
-silently: it is true and standard, but this repository does not package it (the
-`HasMFEmbedding` introduction lemmas here are
-`MFAlgebraMatrixAmplification.hasMFEmbedding_cstarMatrix`,
-`MFAlgebraDimensionNormalization.hasMFEmbedding_iff` and
-`ShulmanFill.hasMFEmbedding_boundedMatrixSequence`, none of which is stated for
-the scalars).  Naming it keeps the refutation honest about what it assumes.
+The refutation is unconditional.  `HasMFEmbedding ℂ` was carried as an explicit
+hypothesis while the repository lacked it — its three introduction lemmas all
+start from an algebra that already has the property — and it is now
+`Analysis/ShulmanFillNormingScalarMF.hasMFEmbedding_complex`, so nothing here
+assumes anything.
 -/
 
 namespace GroupApproximation
@@ -122,8 +121,7 @@ def Theorem4ModelFirstStatement : Prop :=
 /-- **What the model-first statement really says.**  It forces every separable
 MF algebra with a faithful representation to be commutative, because the scalar
 model makes `𝒟` commutative while the `lift` clause is exact. -/
-theorem commute_of_theorem4ModelFirst (hscalar : HasMFEmbedding ℂ)
-    (h : Theorem4ModelFirstStatement)
+theorem commute_of_theorem4ModelFirst (h : Theorem4ModelFirstStatement)
     {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     {B : Type} [CStarAlgebra B] [TopologicalSpace.SeparableSpace B]
     (hB : IsMFAlgebra B) (π : B →⋆ₐ[ℂ] (H →L[ℂ] H))
@@ -134,7 +132,7 @@ theorem commute_of_theorem4ModelFirst (hscalar : HasMFEmbedding ℂ)
   -- which is just as well, since naming a binder of a `def … : Prop` requires
   -- the elaborator to unfold it first.
   obtain ⟨φ⟩ := h (fun _ : ℕ ↦ scalarIota H) (norm_scalarIota_le H)
-    (tendsto_scalarIota_one H) (fun _ ↦ hscalar) B hB π hπ
+    (tendsto_scalarIota_one H) (fun _ ↦ hasMFEmbedding_complex) B hB π hπ
   have key : (⟨φ.toFun 0 b, φ.mem 0 b⟩ :
         StarStrong.starStrongSubalgebra (fun _ : ℕ ↦ scalarIota H)
           (norm_scalarIota_le H)
@@ -147,13 +145,13 @@ theorem commute_of_theorem4ModelFirst (hscalar : HasMFEmbedding ℂ)
 /-- **The model-first statement is false.**  Any non-commuting pair in any
 separable MF algebra with a faithful representation refutes it; `M₂(ℂ)` and
 `C*_r(F₂)` are both such. -/
-theorem not_theorem4ModelFirst (hscalar : HasMFEmbedding ℂ)
+theorem not_theorem4ModelFirst
     {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     {B : Type} [CStarAlgebra B] [TopologicalSpace.SeparableSpace B]
     (hB : IsMFAlgebra B) (π : B →⋆ₐ[ℂ] (H →L[ℂ] H))
     (hπ : Function.Injective π) {b c : B} (hbc : b * c ≠ c * b) :
     ¬ Theorem4ModelFirstStatement :=
-  fun h ↦ hbc (commute_of_theorem4ModelFirst hscalar h hB π hπ b c)
+  fun h ↦ hbc (commute_of_theorem4ModelFirst h hB π hπ b c)
 
 end
 
