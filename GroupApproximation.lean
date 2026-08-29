@@ -2448,6 +2448,7 @@ import GroupApproximation.Analysis.ShulmanFillNormingConjugationLift
 import GroupApproximation.GGT.HullSCRelatorSeparation2QuasiGeodesic
 import GroupApproximation.GGT.HullSCRelatorSeparation2Theorem51
 import GroupApproximation.GGT.HullSCRelatorSeparation2ConeOff
+import GroupApproximation.GGT.HullSCUnionGeometrySyllableCount
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
