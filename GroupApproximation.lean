@@ -2529,6 +2529,8 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Rotation
 import GroupApproximation.Sofic.Osin24FactorEdgeBound
 import GroupApproximation.GGT.OsinTheorem54SepFourGonCorner
 import GroupApproximation.GGT.RelHypOsin24Collapse
+import GroupApproximation.GGT.HullSCRelatorSeparation2Mirror
+import GroupApproximation.GGT.HullSCRelatorSeparation2MirrorRun
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
