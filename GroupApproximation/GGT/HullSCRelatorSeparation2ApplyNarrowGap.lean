@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.DGOPolygonBaseCaseTower
 import GroupApproximation.GGT.OsinTheorem54SepTwoBlockRot
 
 /-!
@@ -228,6 +229,56 @@ theorem two_block_conj_named_at (D : RelGenSet G Λ)
   have hflip2 := connector_inv_mem_relBall D lam hsymm happ2
   rw [hvE, hvQ] at hflip2
   exact ⟨hflip2, hflip1⟩
+
+
+/-- **The two-block conjugation from four-point hyperbolicity alone.**  The
+innermost-cut bound is no longer a hypothesis: `connector_mem_relBall_at` takes
+the isolated-component bound at the pair `(1, bn)`, which fp-geometry's tower
+proves from `hδ` --- four-point hyperbolicity of the RELATIVE Cayley graph
+`Γ(G, X ⊔ ℋ)` --- so the gap side of the chain now stands on `hδ` exactly as
+the match side does. -/
+theorem two_block_conj_named_hyp (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (bn : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) :
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (lam : Λ) (p q r s : List (RelLetter G Λ)) (i k j l : ℕ),
+        RelLetter.listVal s = RelLetter.listVal p * RelLetter.listVal q
+            * RelLetter.listVal r →
+        (∀ a ∈ p ++ q ++ r ++ revWord s, D.IsLetter a) →
+        (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
+        (∀ a ∈ r, ∃ x : G, a = RelLetter.base x) →
+        0 < p.length →
+        (∀ t : ℕ, t < 4 → ∀ x y : ℕ, fourGonCut p q r s t ≤ x → x ≤ y →
+          y ≤ fourGonCut p q r s (t + 1) →
+          ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
+            ≤ ((wordDist D.alphabet.carrier
+                (vertex (1 : G) (p ++ q ++ r ++ revWord s) x)
+                (vertex (1 : G) (p ++ q ++ r ++ revWord s) y) : ℕ) : ℝ)) →
+        IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
+        IsComp lam s j l → (l < s.length ∨ 0 < r.length) →
+        Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
+            (p.length + q.length + r.length + (s.length - l)) →
+        (∀ t : ℕ, p.length + i < t →
+          t < p.length + q.length + r.length + (s.length - l) →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) t →
+          ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+            (p.length + i) t) →
+        (∀ o : ℕ,
+          (p.length + q.length + r.length + (s.length - l) < o
+              ∧ o < (p ++ q ++ r ++ revWord s).length)
+            ∨ o < p.length + i →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) o →
+          ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s)
+            (p.length + q.length + r.length + (s.length - l)) o) →
+        ((vertex (1 : G) s j)⁻¹ * (RelLetter.listVal p * vertex (1 : G) q i)
+            ∈ D.relBall lam (C * 4)) ∧
+          ((RelLetter.listVal p * vertex (1 : G) q k)⁻¹ * vertex (1 : G) s l
+            ∈ D.relBall lam (C * 4)) :=
+  two_block_conj_named_at D hsymm 1 (bn : ℝ)
+    (connector_mem_relBall_at D 1 (bn : ℝ) le_rfl
+      (Nat.cast_nonneg bn)
+      ⟨15 * (25 * (δ + bn + 1)), by omega,
+        isolatedComponentBound_of_fourPointHyperbolic_at D hsymm bn hδ⟩)
 
 end OsinComponents
 end GGT
