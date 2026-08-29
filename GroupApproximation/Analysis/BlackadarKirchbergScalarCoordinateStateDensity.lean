@@ -160,6 +160,21 @@ local instance boundedMatrixSequenceCStarAlgebraForScalarStateDensity :
     change star (c • x n) = star c • star (x n)
     rw [star_smul]
 
+/-- The bundled C*-algebra structure on one matrix block at the L2 operator
+norm.  The pinned mathlib scopes the normed ring, the complex normed algebra
+and the C*-identity on `Matrix Z Z ℂ` separately but never assembles them, so
+every field here is an instance already.  It is `local` because registering a
+bundled `CStarAlgebra` globally would decide the matrix norm for every file. -/
+local instance matrixBlockCStarAlgebraForScalarStateDensity
+    (Z : Type u) [Fintype Z] [DecidableEq Z] [Nonempty Z] :
+    CStarAlgebra (Matrix Z Z ℂ) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
 /-- Every scalar state on the bounded product satisfies the coordinate-state
 support inequality, up to an arbitrarily small loss, on a self-adjoint
 element. -/
@@ -175,9 +190,9 @@ theorem exists_coordinate_state_support_selfAdjoint
     h + ((‖h‖ : ℝ) : ℂ) • (1 : BoundedMatrixSequence X)
   obtain ⟨n, hn⟩ := exists_coordinate_norm_add_gt shifted hdelta
   have hhn : IsSelfAdjoint (h n) := by
-    rw [IsSelfAdjoint]
-    have hs := hh.star_eq
-    exact congrFun (congrArg DFunLike.coe hs) n
+    have hs : star (h n) = h n := by
+      rw [← lp.star_apply, hh.star_eq]
+    exact hs
   have hcoordBound : ‖h n‖ ≤ ‖h‖ :=
     boundedMatrixSequence_coord_norm_le X h n
   let shiftedCoord : Matrix (X n) (X n) ℂ :=
@@ -210,7 +225,7 @@ theorem exists_coordinate_state_support_selfAdjoint
     simp
   rw [hstateShifted] at hstateUpper
   rw [hcoordNorm, hcoordinateShifted] at hnear
-  simp only [map_add, Complex.add_re, Complex.ofReal_re] at hstateUpper hnear
+  simp only [Complex.add_re, Complex.ofReal_re] at hstateUpper hnear
   linarith
 
 end

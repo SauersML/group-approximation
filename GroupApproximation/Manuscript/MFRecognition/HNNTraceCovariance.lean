@@ -14,6 +14,22 @@ open ReducedGroupCStarTrace
 
 noncomputable section
 
+/-- Move a conjugation relation to a commutation relation, in a bare monoid.
+
+Stated abstractly on purpose: at the concrete ambient
+`ReducedGroupCStar (HNNExtension G S T phi)` the two rewrites this replaces
+(`mul_assoc`/`mul_one` and the substitution of the conjugation hypothesis)
+both drove `isDefEq` past its heartbeat budget, because every occurrence of
+the stable unitary carries the full unitary-subtype coercion. Here the
+carrier is a variable, so the rewrites cost nothing and the one expensive
+unification happens once, at the application site. -/
+theorem mul_eq_mul_of_conj_eq {R : Type*} [Monoid R] {u v x y : R}
+    (hvu : v * u = 1) (h : u * x * v = y) : u * x = y * u := by
+  calc
+    u * x = u * x * (v * u) := by rw [hvu, mul_one]
+    _ = u * x * v * u := by rw [← mul_assoc]
+    _ = y * u := by rw [h]
+
 variable {G : Type} [Group G] {S T : Subgroup G} {phi : S ≃* T}
 variable {A : Type} [CStarAlgebra A]
 variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
@@ -71,23 +87,7 @@ theorem sigmaZero_covariance
       sigmaZero data
         (((edgeIsomorphism data b : targetEdgeAlgebra data) :
           baseAlgebra data)) := hb
-  calc
-    (stableUnitary G S T phi :
-          ReducedGroupCStar (HNNExtension G S T phi)) *
-        sigmaZero data ((b : baseAlgebra data)) =
-      ((stableUnitary G S T phi :
-            ReducedGroupCStar (HNNExtension G S T phi)) *
-          sigmaZero data ((b : baseAlgebra data)) *
-        star (stableUnitary G S T phi :
-          ReducedGroupCStar (HNNExtension G S T phi))) *
-          (stableUnitary G S T phi :
-            ReducedGroupCStar (HNNExtension G S T phi)) := by
-              rw [mul_assoc, hstar, mul_one]
-    _ = sigmaZero data
-          (((edgeIsomorphism data b : targetEdgeAlgebra data) :
-            baseAlgebra data)) *
-        (stableUnitary G S T phi :
-          ReducedGroupCStar (HNNExtension G S T phi)) := by rw [h]
+  exact mul_eq_mul_of_conj_eq hstar h
 
 end
 
