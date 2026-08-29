@@ -19,7 +19,7 @@ namespace Omega
 open GroupApproximation.Higman.Seq
 
 /-- The block supported at coordinate zero with value `n`. -/
-def blockSetOneOfInt (n : ℤ) : ↥(blockSet 1) :=
+noncomputable def blockSetOneOfInt (n : ℤ) : ↥(blockSet 1) :=
   ⟨Finsupp.single 0 n, by
     intro i hi
     rw [Finsupp.single_apply]
@@ -29,7 +29,7 @@ def blockSetOneOfInt (n : ℤ) : ↥(blockSet 1) :=
     · rw [if_neg hzero]⟩
 
 /-- Evaluation at zero identifies the one-coordinate alphabet with `ℤ`. -/
-def blockSetOneEquivInt : ↥(blockSet 1) ≃ ℤ where
+noncomputable def blockSetOneEquivInt : ↥(blockSet 1) ≃ ℤ where
   toFun beta := beta.1 0
   invFun := blockSetOneOfInt
   left_inv beta := by
@@ -43,22 +43,25 @@ def blockSetOneEquivInt : ↥(blockSet 1) ≃ ℤ where
         have hbounds := Finset.mem_Ico.mp hmem
         omega
       rw [beta.2 i houtside]
-      simp [blockSetOneOfInt, Finsupp.single_apply, hi]
+      simp [blockSetOneOfInt, hi]
   right_inv n := by
     simp [blockSetOneOfInt]
 
 /-- Recenter the one-coordinate alphabet so that coefficient `n` has label
 zero. -/
-def blockSetOneCenteredEquivInt (n : ℤ) : ↥(blockSet 1) ≃ ℤ where
+noncomputable def blockSetOneCenteredEquivInt (n : ℤ) : ↥(blockSet 1) ≃ ℤ where
   toFun beta := beta.1 0 - n
   invFun z := blockSetOneOfInt (z + n)
   left_inv beta := by
-    apply Subtype.ext
-    apply (blockSetOneEquivInt.injective)
-    change beta.1 0 - n + n = beta.1 0
-    omega
+    show blockSetOneOfInt (beta.1 0 - n + n) = beta
+    have harg : beta.1 0 - n + n = beta.1 0 := by ring
+    rw [harg]
+    exact blockSetOneEquivInt.symm_apply_apply beta
   right_inv z := by
-    change z + n - n = z
+    show (blockSetOneOfInt (z + n)).1 0 - n = z
+    have hval : (blockSetOneOfInt (z + n)).1 0 = z + n := by
+      simp [blockSetOneOfInt]
+    rw [hval]
     omega
 
 /-- The free alphabet, recentered at coefficient `n`. -/
@@ -119,7 +122,9 @@ theorem map_firstCoordinateSliceSubgroup (n : ℤ) :
     refine ⟨FreeGroup.of (blockSetOneOfInt n), ?_, ?_⟩
     · exact ⟨blockSetOneOfInt n, by simp [firstCoordinateSlice,
         blockSetOneOfInt], rfl⟩
-    · simp
+    · have hval : (blockSetOneOfInt n).1 0 = n := by
+        simp [blockSetOneOfInt]
+      rw [firstCoordinateMatchedEmb_of, hval, sub_self]
 
 /-- Exact comap: the common finite cutter cuts precisely the requested
 coefficient slice under the centered embedding. -/
@@ -131,7 +136,7 @@ theorem firstCoordinateMatchedCutter_comap (n : ℤ) :
     (firstCoordinateMatchedEmb_injective n) _
 
 /-- A coefficient slice as a copy of the width-zero singleton alphabet. -/
-def firstCoordinateSliceIncl (n : ℤ) :
+noncomputable def firstCoordinateSliceIncl (n : ℤ) :
     ↥(blockSet 0) → ↥(blockSet 1) :=
   fun _ => blockSetOneOfInt n
 
