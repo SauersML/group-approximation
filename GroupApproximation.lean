@@ -2517,6 +2517,7 @@ import GroupApproximation.GGT.RelHypOsin24CayleyEndpoint
 import GroupApproximation.GGT.OsinTheorem54SepPolygonVertex
 import GroupApproximation.GGT.RelHypOsin24CollapseModel
 import GroupApproximation.GGT.OsinTheorem54SepFourGon
+import GroupApproximation.GGT.OsinTheorem54SepFourGonSide
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
