@@ -30,9 +30,9 @@ The order comes out without `⪯` because both sides are read from the same
 basepoint `1`.  For a polygon whose long sides do not share endpoints this
 argument says nothing, and there the order really is Lemma 4.8's content.
 
-Conditional on `OsinComponents.IsolatedComponentBound` exactly where
-`exists_other_component_of_deep` is, and on nothing else; the pinning estimate
-itself is unconditional.
+Conditional on Osin's Lemma 4.2 in the six-side form exactly where
+`exists_other_component_of_deep_six` is, and on nothing else; the pinning
+estimate itself is unconditional.
 -/
 
 namespace GroupApproximation
@@ -192,8 +192,8 @@ on `s` with a named connector.  The pinning estimate puts each `j` within
 That order is what detects orientation: one match alone is consistent with an
 inversion, which is why the two-block form is the one a caller needs.
 
-`IsolatedComponentBound` is the leading binder, exactly as in
-`exists_other_component_of_deep`; nothing else is assumed.
+Osin's Lemma 4.2 in the six-side form is the leading binder, exactly as in
+`exists_other_component_of_deep_six`; nothing else is assumed.
 
 **Warning.**  The connector this produces joins two component STARTS, and
 start-to-start connectors are **not bounded by any polygon statement** ---
@@ -204,9 +204,14 @@ start-to-start element `h`, ranging over all of `H_lam` against a finite
 Lemma 4.21).  A consumer needing a bounded connector must match on
 `(vertex 1 s j)⁻¹ * (listVal p * vertex 1 q k)`, with `k` the component END. -/
 theorem exists_two_block_connector_of_deep (D : RelGenSet G Λ)
-    (hbound : IsolatedComponentBound (IsQuasiGeodesicPolygon D) D) (lam : Λ)
-    {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
-    ∃ C : ℕ, 0 < C ∧ ∀ (n rho eps : ℕ) (p q r s : List (RelLetter G Λ)),
+    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (lam : Λ) {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧ ∀ (n rho eps : ℕ), n ≤ 6 →
+      ∀ p q r s : List (RelLetter G Λ),
       RelLetter.listVal s
           = RelLetter.listVal p * RelLetter.listVal q * RelLetter.listVal r →
       wordNorm D.alphabet.carrier (RelLetter.listVal p) ≤ eps →
@@ -227,17 +232,17 @@ theorem exists_two_block_connector_of_deep (D : RelGenSet G Λ)
             (∃ h₂ : G, h₂ ∈ D.fam lam ∧
               RelLetter.listVal p * vertex (1 : G) q i₂ * h₂
                 = vertex (1 : G) s j₂) := by
-  obtain ⟨C, hCpos, hC⟩ := exists_other_component_of_deep D hbound lam hmu hb
+  obtain ⟨C, hCpos, hC⟩ := exists_other_component_of_deep_six D hbound lam hmu hb
   refine ⟨C, hCpos, ?_⟩
-  intro n rho eps p q r s hclose hple hq hs hp hr hpoly i₁ k₁ i₂ k₂ hc₁ hc₂
+  intro n rho eps hn p q r s hclose hple hq hs hp hr hpoly i₁ k₁ i₂ k₂ hc₁ hc₂
     hk₁ hk₂ hsep hrho hd₁ hd₂
   have key : ∀ i k : ℕ, IsComp lam q i k → k < q.length →
       (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉ D.relBall lam rho →
       ∃ j : ℕ, j ≤ s.length ∧ ∃ h : G, h ∈ D.fam lam ∧
         RelLetter.listVal p * vertex (1 : G) q i * h = vertex (1 : G) s j := by
     intro i k hcomp hk hdeep
-    rcases hC n rho p q r s hclose hp hr hpoly i k hcomp (Or.inl hk) hrho hdeep
-      with ⟨i', hi', hne, hstart', hconn⟩ | ⟨j, hj, -, hconn⟩
+    rcases hC n rho hn p q r s hclose hp hr hpoly i k hcomp (Or.inl hk) hrho
+      hdeep with ⟨i', hi', hne, hstart', hconn⟩ | ⟨j, hj, -, hconn⟩
     · obtain ⟨hh, hhmem, heq⟩ := hconn
       exact (not_connected_qBlock_of_isComp D lam p q r s hq hcomp hi' hne
         hstart' hhmem heq).elim

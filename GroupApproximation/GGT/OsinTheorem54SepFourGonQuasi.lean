@@ -107,7 +107,8 @@ The conclusion carries the gap bound in both directions, and each connector
 with its word-norm bound --- which is `1`, every element of `H_λ` being a single
 letter of `X ⊔ ℋ`.
 
-`IsolatedComponentBound` is the leading binder, as everywhere in this chain.
+Osin's Lemma 4.2 in the six-side form is the leading binder, as everywhere in
+this chain.
 
 **Warning.**  The connector this produces joins two component STARTS, and
 start-to-start connectors are **not bounded by any polygon statement** ---
@@ -118,9 +119,14 @@ start-to-start element `h`, ranging over all of `H_lam` against a finite
 Lemma 4.21).  A consumer needing a bounded connector must match on
 `(vertex 1 s j)⁻¹ * (listVal p * vertex 1 q k)`, with `k` the component END. -/
 theorem exists_two_block_connector_of_deep_quasi (D : RelGenSet G Λ)
-    (hbound : IsolatedComponentBound (IsQuasiGeodesicPolygon D) D) (lam : Λ)
-    {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
-    ∃ C : ℕ, 0 < C ∧ ∀ (n rho : ℕ) (p q r s : List (RelLetter G Λ)),
+    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (lam : Λ) {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧ ∀ (n rho : ℕ), n ≤ 6 →
+      ∀ p q r s : List (RelLetter G Λ),
       RelLetter.listVal s
           = RelLetter.listVal p * RelLetter.listVal q * RelLetter.listVal r →
       (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
@@ -150,9 +156,10 @@ theorem exists_two_block_connector_of_deep_quasi (D : RelGenSet G Λ)
               wordNorm D.alphabet.carrier h₂ ≤ 1 ∧
               RelLetter.listVal p * vertex (1 : G) q i₂ * h₂
                 = vertex (1 : G) s j₂) := by
-  obtain ⟨C, hCpos, hC⟩ := exists_other_component_of_deep D hbound lam hmu hb
+  obtain ⟨C, hCpos, hC⟩ :=
+    exists_other_component_of_deep_six D hbound lam hmu hb
   refine ⟨C, hCpos, ?_⟩
-  intro n rho p q r s hclose hp hr hqlet hpoly hsqg hnoself i₁ k₁ i₂ k₂ hc₁ hc₂
+  intro n rho hn p q r s hclose hp hr hqlet hpoly hsqg hnoself i₁ k₁ i₂ k₂ hc₁ hc₂
     hk₁ hk₂ hi12 hrho hd₁ hd₂
   have key : ∀ i k : ℕ, IsComp lam q i k → k < q.length →
       (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉ D.relBall lam rho →
@@ -164,8 +171,8 @@ theorem exists_two_block_connector_of_deep_quasi (D : RelGenSet G Λ)
       omega
     have hbridge := isComp_fourGon_of_isComp_side p q r s lam hp hr hcomp
       (Or.inl hk)
-    rcases hC n rho p q r s hclose hp hr hpoly i k hcomp (Or.inl hk) hrho hdeep
-      with ⟨i', hi', hne, hstart', hconn⟩ | ⟨j, hj, -, hconn⟩
+    rcases hC n rho hn p q r s hclose hp hr hpoly i k hcomp (Or.inl hk) hrho
+      hdeep with ⟨i', hi', hne, hstart', hconn⟩ | ⟨j, hj, -, hconn⟩
     · obtain ⟨hval, hhmem, heq⟩ := hconn
       refine absurd ?_ (hnoself i i' hiq hi' (Ne.symm hne)
         ⟨p.length + k, hbridge⟩ hstart')

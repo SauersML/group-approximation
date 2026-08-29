@@ -1,109 +1,51 @@
 import GroupApproximation.GGT.OsinTheorem54SepRigidityReduction
 
 /-!
-# The deep-component lemmas over the six-side form of the bound
+# The rigidity clause over the six-side form of the bound
 
-`GGT/OsinTheorem54SepFourGonSide.lean` and
-`GGT/OsinTheorem54SepRigidityReduction.lean` carry Osin's Lemma 4.2 as
-`IsolatedComponentBound`, which asserts the bound at EVERY number of sides.
-`GGT/DGOIsolatedComponentCut.lean` consumes a weaker hypothesis: the same bound
-restricted to `n ≤ 6`, which is all its cut argument needs and --- this is the
-point --- all that is proved anywhere in this repository.
+`GGT/OsinTheorem54SepFourGonSide.lean` carries Osin's Lemma 4.2 in the form
+`DGOIsolatedComponentCut` consumes and fp-geometry proves: the bound asserted
+only for `n ≤ 6`.  This module states the rigidity clause over it.
 
-This module restates the two deep-component lemmas over that weaker hypothesis,
-so that a consumer's chain rests on the six-side form alone.  Nothing else
-changes: the conclusions gain the restriction `n ≤ 6`, which every caller
-already satisfies, the quadrilateral being a four-gon.
+The unrestricted variants that stood here and in
+`GGT/OsinTheorem54SepRigidityReduction.lean` are gone.  They carried
+`IsolatedComponentBound`, which asserts the bound at EVERY number of sides and
+is nowhere proved; once their only consumer switched to the six-side form there
+was no reason to keep a strictly stronger hypothesis in the tree, where the next
+caller might reach for it by accident.  Nothing is lost in the other direction:
+the unrestricted hypothesis gives the six-side one by ignoring the restriction,
+which is a one-line adapter if a caller ever holds it.
 
-`six_form_of_isolatedComponentBound` is the trivial weakening in the other
-direction, for a caller that still holds the unrestricted hypothesis: it turns
-that into the six-side form in one application, so the older lemmas and these
-can be fed from the same place while the switch is made.
+What stays here is the reduction itself, and the two lemmas it runs on ---
+`isComp_singleton` and `vertex_singleton_one` --- are next door.
 -/
 
 namespace GroupApproximation
 namespace GGT
 namespace OsinComponents
 
-universe u w
+universe u
 
 variable {G : Type u} [Group G]
 
-section General
-
-variable {Λ : Type w}
-
-/-- **The unrestricted bound gives the six-side form.**  The one direction that
-holds: a hypothesis about all `n` covers `n ≤ 6`. -/
-theorem six_form_of_isolatedComponentBound (D : RelGenSet G Λ)
-    (hbound : IsolatedComponentBound (IsQuasiGeodesicPolygon D) D) :
-    ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
-      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
-        IsQuasiGeodesicPolygon D mu b n v u →
-        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
-          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n) := by
-  intro mu b hmu hb
-  obtain ⟨C, hCpos, hC⟩ := hbound mu b hmu hb
-  exact ⟨C, hCpos, fun n _ v u hpoly nu i k hcomp hiso =>
-    hC n v u hpoly nu i k hcomp hiso⟩
-
-/-- **A deep component of one long side is connected to another component of
-the quadrilateral**, over the six-side form of the bound.
-
-Word for word `exists_other_component_of_deep`, with the leading binder
-weakened and the resulting restriction `n ≤ 6` carried into the conclusion. -/
-theorem exists_other_component_of_deep_six (D : RelGenSet G Λ)
-    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
-      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
-        IsQuasiGeodesicPolygon D mu b n v u →
-        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
-          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
-    (lam : Λ) {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
-    ∃ C : ℕ, 0 < C ∧ ∀ (n rho : ℕ), n ≤ 6 →
-      ∀ p q r s : List (RelLetter G Λ),
-      RelLetter.listVal s
-          = RelLetter.listVal p * RelLetter.listVal q * RelLetter.listVal r →
-      (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
-      (∀ a ∈ r, ∃ x : G, a = RelLetter.base x) →
-      IsQuasiGeodesicPolygon D mu b n 1 (p ++ q ++ r ++ revWord s) →
-      ∀ i k : ℕ, IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
-        C * n ≤ rho →
-        (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉ D.relBall lam rho →
-          (∃ i' : ℕ, i' ≤ q.length ∧ i' ≠ i ∧
-              IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') ∧
-              ∃ h : G, h ∈ D.fam lam ∧
-                vertex (1 : G) q i * h = vertex (1 : G) q i')
-            ∨ (∃ j : ℕ, j ≤ s.length ∧
-              IsCompStart lam (p ++ q ++ r ++ revWord s)
-                (p.length + q.length + r.length + (s.length - j)) ∧
-              ∃ h : G, h ∈ D.fam lam ∧
-                RelLetter.listVal p * vertex (1 : G) q i * h
-                  = vertex (1 : G) s j) := by
-  obtain ⟨C, hCpos, hC⟩ := hbound mu b hmu hb
-  refine ⟨C, hCpos, ?_⟩
-  intro n rho hn p q r s hclose hp hr hpoly i k hcomp hk hrho hdeep
-  have hbridge := isComp_fourGon_of_isComp_side p q r s lam hp hr hcomp hk
-  have hiq : i ≤ q.length := by
-    obtain ⟨hik, hkl, -, -, -⟩ := hcomp
-    omega
-  have hkl : k ≤ q.length := by
-    obtain ⟨-, hkl, -, -, -⟩ := hcomp
-    exact hkl
-  refine exists_other_component_of_isComp_side D lam p q r s hclose hp hr
-    hcomp hk ?_
-  intro hiso
-  have hspan := hC n hn 1 (p ++ q ++ r ++ revWord s) hpoly lam (p.length + i)
-    (p.length + k) hbridge hiso
-  rw [span_fourGon_side p q r s hiq hkl] at hspan
-  exact hdeep (relBall_mono_radius D lam hrho hspan)
-
-end General
-
 /-- **The rigidity clause, over the six-side form of the bound.**
 
-Word for word `mem_fam_of_conj_of_deep`, with the leading binder weakened.  The
-restriction `n ≤ 6` is no restriction on the caller: the polygon it supplies is
-the quadrilateral `x · a^i · x' · (a^j)⁻¹`. -/
+A short conjugation carrying one deep peripheral power onto another puts both
+conjugators in `H_s`.  The equation IS a closed quadrilateral --- `x · a^i · x'
+· (a^j)⁻¹` --- with the two deep powers as its long sides and the two short
+conjugators as its short ones, and each power is a single peripheral letter,
+hence a one-letter component; the deep side is therefore matched to another
+component of the quadrilateral, and the short sides carry none, so the match
+lands on the opposite side with a connector in `H_s`.
+
+The matched vertex of the opposite side is `1` or `a s ^ j`, both in `H_s`, and
+the `q`-vertex is `1`; so the naming equation puts `listVal px` in `H_s`, and
+`x'` falls out of the caller's own equation.  This is the one place where the
+start-to-start connector's unboundedness costs nothing: the conclusion is a
+MEMBERSHIP, not a bound.
+
+The restriction `n ≤ 6` is no restriction on the caller, whose polygon is that
+quadrilateral. -/
 theorem mem_fam_of_conj_of_deep_six (D : RelGenSet G Bool)
     (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Bool)),

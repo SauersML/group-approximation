@@ -3,9 +3,9 @@ import GroupApproximation.GGT.OsinTheorem54SepRigidityReduction
 /-!
 # The rigidity clause when the second conjugator is known trivial
 
-Split out of `GGT/OsinTheorem54SepRigidityReduction.lean` so that the bounded
-lemma there --- `mem_fam_of_conj_of_deep`, which is what a consumer actually
-needs --- does not wait on this.
+Split out of the rigidity clause --- now `mem_fam_of_conj_of_deep_six` in
+`GGT/OsinTheorem54SepDeepSixForm.lean`, which is what a consumer actually
+needs --- so that it did not wait on this.
 
 **This does not substitute for the bounded lemma in a consumer's aligned case.**
 There, triviality of the connector is a CONCLUSION reached by applying the
@@ -51,7 +51,7 @@ no deepness hypothesis, and no constant.
 There, triviality of the connector is a CONCLUSION reached by applying the
 rigidity clause twice --- exponent equality, then membership, then the diagonal
 clause --- so assuming it here would be circular.  This lemma is for a consumer
-that knows triviality independently; `mem_fam_of_conj_of_deep` is the
+that knows triviality independently; `mem_fam_of_conj_of_deep_six` is the
 deliverable. -/
 theorem mem_fam_of_conj_trivial (D : RelGenSet G Bool) {a : Bool → G}
     (s : Bool) {i j : ℕ} (px : List (RelLetter G Bool))

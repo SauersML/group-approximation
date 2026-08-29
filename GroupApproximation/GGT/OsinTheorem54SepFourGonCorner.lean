@@ -34,7 +34,7 @@ rather than by the isolated-component machinery:
 The price of covering the corner is that the second branch no longer asserts
 that the vertex of `s` it names *starts* a component of the quadrilateral: in
 the corner it does not, being interior to the run that began in `q`.  Where
-that clause is wanted, `exists_other_component_of_deep` still supplies it under
+that clause is wanted, `exists_other_component_of_deep_six` still supplies it under
 the `k < q.length ∨ 0 < r.length` hypothesis.
 -/
 
@@ -162,8 +162,8 @@ the connector over directly.  The two cases are decided by the one condition
 that matters, whether the polygon letter at the end of the run is an
 `H_λ`-letter, and neither needs the caller to know which holds.
 
-`IsolatedComponentBound` is the leading binder, as in
-`exists_other_component_of_deep`; the corner branch does not use it.
+Osin's Lemma 4.2 in the six-side form is the leading binder, as in
+`exists_other_component_of_deep_six`; the corner branch does not use it.
 
 **Warning.**  The connector this produces joins two component STARTS, and
 start-to-start connectors are **not bounded by any polygon statement** ---

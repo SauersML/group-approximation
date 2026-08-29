@@ -182,12 +182,17 @@ component is that it is *deep* --- its span escapes `D.relBall lam rho` for a
 threshold `rho` depending only on `mu`, `b` and the number of sides --- and the
 conclusion names an element of `H_lam` joining it to another component.
 
-`IsolatedComponentBound` is carried as a leading binder.  It is Osin's Lemma
-4.2, this repository's existing statement of Dahmani--Guirardel--Osin's
-Proposition 4.13, and it is not proved anywhere here; the chain under
-`GGT.OsinEnlargement.SepDataStatement` already rests on it, so nothing new is
-assumed by consuming it, and the theorem below adds no leaf of its own.  What is
-proved here is everything between it and the named connector: that the
+Osin's Lemma 4.2 is carried as a leading binder, in the SIX-SIDE form: the bound
+asserted only for `n ≤ 6`.  That is the form
+`DGOIsolatedComponentCut.connector_mem_relBall` consumes, and it is the form
+fp-geometry proves; the unrestricted `IsolatedComponentBound` of
+`GGT/OsinComponents.lean` implies it by ignoring the restriction, so a caller
+holding that hypothesis loses nothing, while a caller holding only what is
+actually available can still use this.  The restriction reappears as `n ≤ 6` on
+the conclusion, which costs no consumer anything: the polygon here is a
+quadrilateral.
+
+What is proved is everything between the bound and the named connector: that the
 component of the side is a component of the quadrilateral, that its span is
 unchanged by the passage, that the two short sides carry no components, and
 that the connector can be written down.
@@ -195,10 +200,15 @@ that the connector can be written down.
 The direction used is the contrapositive: Lemma 4.2 bounds the span of an
 *isolated* component, so a component whose span escapes the bound is not
 isolated. -/
-theorem exists_other_component_of_deep (D : RelGenSet G Λ)
-    (hbound : IsolatedComponentBound (IsQuasiGeodesicPolygon D) D) (lam : Λ)
-    {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
-    ∃ C : ℕ, 0 < C ∧ ∀ (n rho : ℕ) (p q r s : List (RelLetter G Λ)),
+theorem exists_other_component_of_deep_six (D : RelGenSet G Λ)
+    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (lam : Λ) {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧ ∀ (n rho : ℕ), n ≤ 6 →
+      ∀ p q r s : List (RelLetter G Λ),
       RelLetter.listVal s
           = RelLetter.listVal p * RelLetter.listVal q * RelLetter.listVal r →
       (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
@@ -219,7 +229,7 @@ theorem exists_other_component_of_deep (D : RelGenSet G Λ)
                   = vertex (1 : G) s j) := by
   obtain ⟨C, hCpos, hC⟩ := hbound mu b hmu hb
   refine ⟨C, hCpos, ?_⟩
-  intro n rho p q r s hclose hp hr hpoly i k hcomp hk hrho hdeep
+  intro n rho hn p q r s hclose hp hr hpoly i k hcomp hk hrho hdeep
   have hbridge := isComp_fourGon_of_isComp_side p q r s lam hp hr hcomp hk
   have hiq : i ≤ q.length := by
     obtain ⟨hik, hkl, -, -, -⟩ := hcomp
@@ -230,7 +240,7 @@ theorem exists_other_component_of_deep (D : RelGenSet G Λ)
   refine exists_other_component_of_isComp_side D lam p q r s hclose hp hr
     hcomp hk ?_
   intro hiso
-  have hspan := hC n 1 (p ++ q ++ r ++ revWord s) hpoly lam (p.length + i)
+  have hspan := hC n hn 1 (p ++ q ++ r ++ revWord s) hpoly lam (p.length + i)
     (p.length + k) hbridge hiso
   rw [span_fourGon_side p q r s hiq hkl] at hspan
   exact hdeep (relBall_mono_radius D lam hrho hspan)
