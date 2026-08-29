@@ -125,14 +125,53 @@ def sepSet (D : RelGenSet G Λ) (lam : Λ) (Dc : ℕ) (f g : G) :
     IsGeodesicWord D f g w ∧ EssentiallyPenetrates D lam Dc f w i k ∧
       c = QuotientGroup.mk (vertex f w i)}
 
-/-- **Osin, Lemma 4.8**, the half finiteness needs: *every* geodesic from `f`
-to `g` penetrates *all* the `(f,g,D)`-separating cosets.  The linear order `⪯`
-of the full statement is not carried here. -/
+/-- **The index at which a geodesic essentially penetrates a coset.**  Vocabulary
+for the ordering half of Lemma 4.8. -/
+def PenetratesAt (D : RelGenSet G Λ) (lam : Λ) (Dc : ℕ) (f : G)
+    (w : List (RelLetter G Λ)) (i : ℕ) (c : G ⧸ D.fam lam) : Prop :=
+  (∃ k : ℕ, EssentiallyPenetrates D lam Dc f w i k) ∧
+    c = QuotientGroup.mk (vertex f w i)
+
+/-- **Osin, Lemma 4.8**, both halves.
+
+> `⪯` linearly orders `S(f,g;D)`, and every geodesic from `f` to `g` penetrates
+> the separating cosets in that order.
+
+The first conjunct is the *penetration* half: every geodesic penetrates every
+separating coset, so the set does not depend on which geodesic realises it.  The
+second is the *ordering* half: two geodesics with the same endpoints penetrate
+any two separating cosets in the same relative order.  It is stated as
+geodesic-independence of the order rather than by exhibiting `⪯`, which is the
+content and avoids choosing a representative geodesic to define the order by.
+
+Both halves are needed downstream and neither is proved here.  What is known
+about their cost:
+
+* The penetration half reduces to the isolated-component bound at `n = 2`.  Two
+  geodesics from `f` to `g` form a geodesic bigon; a coset essentially
+  penetrated by one has a component whose span escapes `D.relBall lam Dc`, so
+  past the constant of `OsinComponents.IsolatedComponentBound` at `n = 2` that
+  component is not isolated in the bigon, and it cannot be connected to another
+  component of its own side, that side being geodesic
+  (`not_connected_of_isCompStart_of_geodesic`).  So it is connected to a
+  component of the other geodesic, and connected components name the same coset
+  (`mk_eq_mk_of_connected`).  What is left is the comparison showing the second
+  penetration is essential too.
+* The ordering half is the bigon-ordering argument, over the same bound.
+
+So Lemma 4.8 is not an independent debt: both halves sit downstream of the
+`n = 2` case of the §4.2 bound. -/
 def LemmaFourEight (D : RelGenSet G Λ) (lam : Λ) (Dc : ℕ) : Prop :=
-  ∀ (f g : G) (w : List (RelLetter G Λ)), IsGeodesicWord D f g w →
+  (∀ (f g : G) (w : List (RelLetter G Λ)), IsGeodesicWord D f g w →
     ∀ c ∈ sepSet D lam Dc f g, ∃ i k : ℕ,
       EssentiallyPenetrates D lam Dc f w i k ∧
-        c = QuotientGroup.mk (vertex f w i)
+        c = QuotientGroup.mk (vertex f w i))
+  ∧ (∀ (f g : G) (w w' : List (RelLetter G Λ)),
+      IsGeodesicWord D f g w → IsGeodesicWord D f g w' →
+      ∀ (c c' : G ⧸ D.fam lam) (i j i' j' : ℕ),
+        PenetratesAt D lam Dc f w i c → PenetratesAt D lam Dc f w j c' →
+        PenetratesAt D lam Dc f w' i' c → PenetratesAt D lam Dc f w' j' c' →
+        (i < j ↔ i' < j'))
 
 /-- Every pair of elements is joined by a geodesic word over `RelLetter`.
 Routine from `WordMetric.exists_isWord_length_eq`; see the module docstring. -/
@@ -152,7 +191,7 @@ theorem sepSet_finite {D : RelGenSet G Λ} {lam : Λ} {Dc : ℕ}
     ((Set.finite_Iio w.length).image
       (fun i : ℕ => (QuotientGroup.mk (vertex f w i) : G ⧸ D.fam lam))) ?_
   intro c hc
-  obtain ⟨i, k, hpen, hceq⟩ := h48 f g w hw c hc
+  obtain ⟨i, k, hpen, hceq⟩ := h48.1 f g w hw c hc
   obtain ⟨hik, hkw, -, -, -⟩ := hpen.1
   exact ⟨i, by simp only [Set.mem_Iio]; omega, hceq.symm⟩
 
