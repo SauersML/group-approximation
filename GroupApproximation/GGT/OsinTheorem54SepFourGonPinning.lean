@@ -245,6 +245,105 @@ theorem exists_two_block_connector_of_deep (D : RelGenSet G Λ)
   obtain ⟨-, hB⟩ := index_le_of_connector D hq hs hi₂ hj₂ hple hh₂ he₂
   exact ⟨j₁, j₂, by omega, hj₂, ⟨h₁, hh₁, he₁⟩, ⟨h₂, hh₂, he₂⟩⟩
 
+/-! ## The gap between two matches, for sides that are only quasi-geodesic -/
+
+/-- **Splitting a prefix.**  `Init`'s `List` API has no `take_take` at this
+revision, so the identity `take j = take i ++ (drop i).take (j - i)` is proved
+here by induction rather than assembled. -/
+theorem listVal_take_split : ∀ (w : List (RelLetter G Λ)) (i j : ℕ), i ≤ j →
+    RelLetter.listVal (w.take i)
+        * RelLetter.listVal ((w.drop i).take (j - i))
+      = RelLetter.listVal (w.take j) := by
+  intro w
+  induction w with
+  | nil =>
+      intro i j _
+      simp [RelLetter.listVal_nil]
+  | cons a t ih =>
+      intro i j hij
+      cases i with
+      | zero => simp [RelLetter.listVal_nil]
+      | succ i' =>
+          cases j with
+          | zero => exact absurd hij (by omega)
+          | succ j' =>
+              have hij' : i' ≤ j' := by omega
+              simp only [List.take_succ_cons, List.drop_succ_cons,
+                Nat.succ_sub_succ]
+              rw [listVal_cons, listVal_cons, mul_assoc, ih i' j' hij']
+
+/-- **A segment of a word bounds the distance between its endpoints.**
+
+The upper half that a quasi-geodesic hypothesis does not give: whatever the
+word, the vertices at `i` and `j` are at most `j - i` letters apart, because the
+segment between them spells the difference. -/
+theorem wordDist_vertex_le (D : RelGenSet G Λ) {w : List (RelLetter G Λ)}
+    (hlet : ∀ a ∈ w, D.IsLetter a) {i j : ℕ} (hij : i ≤ j) (_hj : j ≤ w.length) :
+    wordDist D.alphabet.carrier (vertex (1 : G) w i) (vertex (1 : G) w j)
+      ≤ j - i := by
+  have hval : (vertex (1 : G) w i)⁻¹ * vertex (1 : G) w j
+      = RelLetter.listVal ((w.drop i).take (j - i)) := by
+    rw [vertex_eq_mul_listVal_take w 1 i, vertex_eq_mul_listVal_take w 1 j,
+      one_mul, one_mul, ← listVal_take_split w i j hij]
+    group
+  show wordNorm D.alphabet.carrier
+    ((vertex (1 : G) w i)⁻¹ * vertex (1 : G) w j) ≤ j - i
+  rw [hval]
+  have hle := wordNorm_listVal_le D ((w.drop i).take (j - i))
+    (fun a ha => hlet a (List.drop_subset i w (List.take_subset (j - i) _ ha)))
+  rw [List.length_take, List.length_drop] at hle
+  omega
+
+/-- **The short side cancels between two matches.**
+
+If two vertices `u`, `v` match `u'`, `v'` through the *same* prefix `lp` and
+connectors in `H_λ`, then the distance between the matched pair differs from
+the distance between the original pair by at most `2` --- one for each
+connector.  The prefix drops out entirely: `u'⁻¹v' = h₁⁻¹ (u⁻¹v) h₂`.
+
+So the estimate controlling the *gap* between two matches does not involve
+`eps` at all, only the two connectors.  This is stronger than the pinning
+estimate `index_le_of_connector` gives when applied twice, and it is what the
+quasi-geodesic case needs, since there the pinning of a single index is
+multiplicative in `mu` while the gap estimate is not. -/
+theorem wordDist_connector_pair (D : RelGenSet G Λ) {lam : Λ}
+    {lp u v u' v' h₁ h₂ : G} (hh₁ : h₁ ∈ D.fam lam) (hh₂ : h₂ ∈ D.fam lam)
+    (he₁ : lp * u * h₁ = u') (he₂ : lp * v * h₂ = v') :
+    wordDist D.alphabet.carrier u' v'
+      ≤ wordDist D.alphabet.carrier u v + 2 := by
+  have hsym := D.alphabet.symmetricGenerating
+  have hn₁ : wordNorm D.alphabet.carrier h₁ ≤ 1 := by
+    have hstep := wordDist_le_one_of_mem_fam D (lam := lam) (x := (1 : G))
+      (y := h₁) (by rw [inv_one, one_mul]; exact hh₁)
+    rwa [wordDist_one_left] at hstep
+  have hn₂ : wordNorm D.alphabet.carrier h₂ ≤ 1 := by
+    have hstep := wordDist_le_one_of_mem_fam D (lam := lam) (x := (1 : G))
+      (y := h₂) (by rw [inv_one, one_mul]; exact hh₂)
+    rwa [wordDist_one_left] at hstep
+  have hkey : u'⁻¹ * v' = h₁⁻¹ * (u⁻¹ * v) * h₂ := by
+    rw [← he₁, ← he₂]
+    group
+  show wordNorm D.alphabet.carrier (u'⁻¹ * v')
+    ≤ wordNorm D.alphabet.carrier (u⁻¹ * v) + 2
+  rw [hkey]
+  have hA : wordNorm D.alphabet.carrier (h₁⁻¹ * (u⁻¹ * v) * h₂)
+      ≤ wordNorm D.alphabet.carrier (h₁⁻¹ * (u⁻¹ * v))
+        + wordNorm D.alphabet.carrier h₂ := wordNorm_mul_le hsym _ _
+  have hB : wordNorm D.alphabet.carrier (h₁⁻¹ * (u⁻¹ * v))
+      ≤ wordNorm D.alphabet.carrier h₁⁻¹
+        + wordNorm D.alphabet.carrier (u⁻¹ * v) := wordNorm_mul_le hsym _ _
+  rw [wordNorm_inv hsym] at hB
+  omega
+
+/-- **Every connector is one letter long.**  An element of `H_λ` is a letter of
+`X ⊔ ℋ`, so no bound on a connector beyond `1` is ever needed in the alphabet
+metric. -/
+theorem wordNorm_connector_le_one (D : RelGenSet G Λ) {lam : Λ} {h : G}
+    (hh : h ∈ D.fam lam) : wordNorm D.alphabet.carrier h ≤ 1 := by
+  have hstep := wordDist_le_one_of_mem_fam D (lam := lam) (x := (1 : G)) (y := h)
+    (by rw [inv_one, one_mul]; exact hh)
+  rwa [wordDist_one_left] at hstep
+
 end OsinComponents
 end GGT
 end GroupApproximation
