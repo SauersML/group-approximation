@@ -30,13 +30,14 @@ built to consume.  The depth radius is the reduction's: it yields a `C` and
 wants `4C ≤ rho`, so a caller designs at `max rho (4C)` and weakens with
 `HullSC.notMem_relBall_of_le`.
 
-  The bound is asked for in its unrestricted form -- `IsolatedComponentBound`
-  quantifies over every number of sides -- while every consumer uses it at a
-  bounded one: this chain at `n = 4`, and `GGT/DGOIsolatedComponentCut.lean` at
-  `n ≤ 6`, whose own hypothesis is the same statement restricted to `n ≤ 6`.
-  So the honest hypothesis of the chain is the bound at `n ≤ 6`, and the
-  unrestricted form is asked for only because that is how
-  `GGT.OsinComponents.mem_fam_of_conj_of_deep` states its binder.
+  The bound is taken in the six-sided form throughout -- one spelling, the one
+  `GGT/DGOIsolatedComponentCut.lean` states: for polygons of at most six sides,
+  an isolated component's span lies in `relBall lam (C · n)`.  That is what
+  fp-geometry proves, what the Cut consumes, and what
+  `GGT.OsinComponents.mem_fam_of_conj_of_deep_six` and this chain's bridge take;
+  the bridge instantiates it at four.  The unrestricted
+  `IsolatedComponentBound` over every number of sides is not used and is not
+  going to be proved.
 
 **2. `hcount` -- the block count.**  That the distance between two vertices of
 the relator is at least the number of block letters between them, less a

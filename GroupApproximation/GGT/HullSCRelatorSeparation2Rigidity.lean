@@ -1,14 +1,20 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2Rigid
-import GroupApproximation.GGT.OsinTheorem54SepRigidityReduction
+import GroupApproximation.GGT.OsinTheorem54SepDeepSixForm
 
 /-!
 # The rigidity input, over the bound
 
 `GGT/HullSCRelatorSeparation2Rigid.lean` takes `hgeo` -- that a short
 conjugation carrying one deep power onto another leaves both conjugators in the
-subgroup -- as a named hypothesis.  `GGT/OsinTheorem54SepRigidityReduction.lean`
-proves it from fp-geometry's bound, and this module is the bridge: it produces
-`hgeo` in exactly the shape the rigidity consumes.
+subgroup -- as a named hypothesis.
+`GGT/OsinTheorem54SepDeepSixForm.lean` proves it from fp-geometry's bound, and
+this module is the bridge: it produces `hgeo` in exactly the shape the rigidity
+consumes.
+
+The bound is taken in the six-sided form, spelled exactly as
+`GGT/DGOIsolatedComponentCut.lean` states it, so that one hypothesis runs
+through the chain: fp-geometry proves the bound for polygons of at most six
+sides, the Cut consumes it there, and this bridge instantiates it at four.
 
 Three things the bridge has to do, and one of them is not bookkeeping.
 
@@ -59,8 +65,13 @@ radius past `4C`, with the quadrilateral's quasi-geodesicity as the hypothesis
 that replaces it. -/
 theorem exists_hgeo_of_bound {D : GGT.RelGenSet G Bool}
     (hbase : IsSymmetricGeneratingSet D.base)
-    (hbound : GGT.OsinComponents.IsolatedComponentBound
-      (GGT.OsinComponents.IsQuasiGeodesicPolygon D) D)
+    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ n : ℕ, n ≤ 6 → ∀ (v : G) (u : List (GGT.RelLetter G Bool)),
+        GGT.OsinComponents.IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Bool) (i k : ℕ), GGT.OsinComponents.IsComp nu u i k →
+          GGT.OsinComponents.IsIsolated D.fam nu v u i →
+            (GGT.OsinComponents.vertex v u i)⁻¹ *
+                GGT.OsinComponents.vertex v u k ∈ D.relBall nu (C * n))
     {a : Bool → G} (hmem : ∀ t : Bool, a t ∈ D.fam t) (s : Bool)
     {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
     ∃ C : ℕ, 0 < C ∧ ∀ rho eps : ℕ, C * 4 ≤ rho →
@@ -78,7 +89,7 @@ theorem exists_hgeo_of_bound {D : GGT.RelGenSet G Bool}
             a s ^ j ∉ D.relBall s rho → x * a s ^ i * x' = a s ^ j →
               x ∈ D.fam s ∧ x' ∈ D.fam s := by
   obtain ⟨C, hCpos, hred⟩ :=
-    GGT.OsinComponents.mem_fam_of_conj_of_deep D hbound hmem s hmu hb
+    GGT.OsinComponents.mem_fam_of_conj_of_deep_six D hbound hmem s hmu hb
   refine ⟨C, hCpos, ?_⟩
   intro rho eps hrho hpoly i j x x' _hx _hx' hdi _hdj heq
   by_cases hx'1 : x' = 1
@@ -121,7 +132,7 @@ theorem exists_hgeo_of_bound {D : GGT.RelGenSet G Bool}
           (l'.map (GGT.RelLetter.base : G → GGT.RelLetter G Bool)) = a s ^ j := by
       rw [hpx, hrx]
       exact heq
-    obtain ⟨h1, h2⟩ := hred 4 rho i j _ _ hbasepx hbaserx hne heq'
+    obtain ⟨h1, h2⟩ := hred 4 rho i j (by omega) _ _ hbasepx hbaserx hne heq'
       (hpoly i j _ _ hbasepx hbaserx heq') hrho hdi
     rw [hpx] at h1
     rw [hrx] at h2
