@@ -1,6 +1,8 @@
 import GroupApproximation.Analysis.ShulmanFillNormingAmalgamWitness
 import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftFaithful
 import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftPrinted
+import GroupApproximation.Analysis.ShulmanFillNormingFactorMapRange
+import GroupApproximation.Analysis.ShulmanFillTheorem13
 import GroupApproximation.Analysis.ShulmanSymmetricDoubleRoute
 
 /-!
@@ -56,7 +58,7 @@ Hilbert space separable.  Neither step is deep; neither is written.
 namespace GroupApproximation
 namespace ShulmanFill
 
-open Filter Topology
+open Filter Topology MFAlgebraAmalgamCriterion
 
 noncomputable section
 
@@ -205,6 +207,77 @@ theorem symmetricDoubleMF_of_printedPair
   apply hπ
   exact (eval_limitRep_eq_of_comp k π hρ x).symm.trans
     (hxy.trans (eval_limitRep_eq_of_comp k π hρ y))
+
+/-! ## Theorem 13's witness, at every faithful target -/
+
+/-- **The witness hypothesis of `shulmanTheorem16_of_typeZeroWitness`, from the
+compatible-pair form of Theorem 13.**
+
+The two differ in one quantifier.  `CompatibleTargetPairStatement` produces a
+single target `T` with a compatible pair of representations on it, and asserts
+that the factor map into `T` separates.  `shulmanTheorem16_of_typeZeroWitness`
+asks for the factor map into *every* faithful `Type`-valued image of the double.
+`MFAlgebraAmalgamCriterion.injective_factorAmalgamToSymmetricTarget_of_injective_target`
+of `Analysis/ShulmanFillNormingFactorMapRange` closes the gap, and note that it
+asks nothing of the produced target beyond the injectivity of its own factor
+map — which is all Enders--Shulman claim, since
+their `T` is an evaluation at a compatible pair and is not asserted to be
+faithful. -/
+theorem factorMapInjective_of_compatibleTargetPair
+    (hCTP : ShulmanSymmetricDouble.CompatibleTargetPairStatement) :
+    ∀ {C A B D : Type} [CStarAlgebra C] [CStarAlgebra A]
+      [CStarAlgebra B] [CStarAlgebra D] [Nontrivial D]
+      [TopologicalSpace.SeparableSpace A] [TopologicalSpace.SeparableSpace B]
+      (iA : C →⋆ₐ[ℂ] A) (iB : C →⋆ₐ[ℂ] B)
+      [Nonempty (CStarAmalgamRepresentation iA iB)]
+      (gamma : C →⋆ₐ[ℂ] D) (alpha : A →⋆ₐ[ℂ] D) (beta : B →⋆ₐ[ℂ] D)
+      (hA : alpha.comp iA = gamma) (hB : beta.comp iB = gamma),
+        TopologicalSpace.SeparableSpace C →
+        Function.Injective alpha → Function.Injective beta →
+          ∀ (E : Type) (_ : CStarAlgebra E) (_ : Nontrivial E)
+            (g : UniversalCStarAmalgam gamma gamma →⋆ₐ[ℂ] E),
+            Function.Injective g →
+              Function.Injective (factorAmalgamToSymmetricTarget iA iB gamma
+                alpha beta hA hB g) := by
+  intro C A B D _ _ _ _ _ _ _ iA iB _ gamma alpha beta hA hB hC halpha hbeta E instE
+    ntE g hg
+  letI : CStarAlgebra E := instE
+  haveI : Nontrivial E := ntE
+  obtain ⟨T, hTalg, hTnt, sigmaA, sigmaB, hsigma, hinj⟩ :=
+    hCTP iA iB gamma alpha beta hA hB hC halpha hbeta
+  letI : CStarAlgebra T := hTalg
+  haveI : Nontrivial T := hTnt
+  exact injective_factorAmalgamToSymmetricTarget_of_injective_target
+    iA iB gamma alpha beta hA hB _ hinj g hg
+
+/-! ## The recognition debt, from three cited inputs -/
+
+/-- **`ConjugateWordNormingStatement` from exactly three binders.**
+
+Everything else on the route is proved.  The three are:
+
+* `Theorem4PrintedPairStatement` — Shulman's Theorem 4, Remark 6 and Lemma 9 as
+  one package at the printed models, which gives Theorem 10 through
+  `symmetricDoubleMF_of_printedPair`;
+* `ShulmanSymmetricDouble.CompatibleTargetPairStatement` — Enders--Shulman's
+  Theorem 4.11, which gives the witness through
+  `factorMapInjective_of_compatibleTargetPair`;
+* `SeparableFaithfulRepresentationStatement` — Gelfand--Naimark on a separable
+  Hilbert space, which produces the faithful pair Theorem 10 is applied to.
+
+The first two are what the manuscript cites.  The third is a standard theorem
+that is simply not in the tree, and not in Mathlib at the pinned revision
+either; see its docstring above for exactly which half of the GNS construction
+`Analysis/CStarStateGNS` already has. -/
+theorem conjugateWordNorming_of_printedPair_of_compatible
+    [∀ m, Nontrivial (DoubledModel EllTwoCoefficient m)]
+    (hT4 : Theorem4PrintedPairStatement)
+    (hCTP : ShulmanSymmetricDouble.CompatibleTargetPairStatement)
+    (hGNS : SeparableFaithfulRepresentationStatement.{1}) :
+    ConjugateWordNormingStatement :=
+  conjugateWordNorming_of_typeZeroWitness
+    (symmetricDoubleMF_of_printedPair hT4 hGNS)
+    (factorMapInjective_of_compatibleTargetPair hCTP)
 
 end
 
