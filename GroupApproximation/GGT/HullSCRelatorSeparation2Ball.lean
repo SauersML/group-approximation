@@ -3,7 +3,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2AlignedClose
 /-!
 # The rigidity in the currency the polygon actually pays in
 
-`GGT.OsinComponents.exists_two_block_conj_of_innermost` delivers its two gaps as
+`GGT.OsinComponents.exists_two_block_conj_of_rot` delivers its two gaps as
 **members of `D.relBall lam (C · 4)`**, not as elements with a word-norm bound.
 That is the better currency, and it shortens the chain rather than lengthening
 it: the design's separation and diagonal clauses are themselves stated over the

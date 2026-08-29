@@ -6,7 +6,7 @@ import GroupApproximation.GGT.OsinTheorem54SepReversal
 # The mirrored aligned case in ball currency
 
 `GGT/HullSCRelatorSeparation2Ball.lean` puts the aligned case in the currency
-`GGT.OsinComponents.exists_two_block_conj_of_innermost` pays in.  This module
+`GGT.OsinComponents.exists_two_block_conj_of_rot` pays in.  This module
 does the same for the case where both members are rotations of the formal
 inverse, and one thing changes that is not bookkeeping.
 
