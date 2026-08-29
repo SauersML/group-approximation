@@ -2678,6 +2678,8 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyPair
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyClose
 import GroupApproximation.Analysis.ShulmanFillNormingTailCorner
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyRotate
+import GroupApproximation.Analysis.ShulmanFillNormingTailShift
+import GroupApproximation.Analysis.ShulmanFillNormingTailShiftLimit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
