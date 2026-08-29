@@ -2633,6 +2633,9 @@ import GroupApproximation.GGT.OsinTheorem54SepAssembleFull
 import GroupApproximation.GGT.DGOIsolatedComponentRotateCut
 import GroupApproximation.GGT.DGOIsolatedComponentCollapseCut
 import GroupApproximation.GGT.DGOIsolatedComponentSideForm
+import GroupApproximation.GGT.OsinTheorem54SepFourGonOpposite
+import GroupApproximation.GGT.OsinTheorem54SepTwoBlockConj
+import GroupApproximation.GGT.OsinTheorem54SepDeepSixForm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
