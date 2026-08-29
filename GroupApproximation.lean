@@ -2609,6 +2609,7 @@ import GroupApproximation.GGT.OsinTheorem54SepDistBase
 import GroupApproximation.GGT.DGOIsolatedComponentVertexDist
 import GroupApproximation.GGT.DGOIsolatedComponentRecut
 import GroupApproximation.GGT.DGOIsolatedComponentSplit
+import GroupApproximation.GGT.HullSCRelatorSeparation2Rigidity
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

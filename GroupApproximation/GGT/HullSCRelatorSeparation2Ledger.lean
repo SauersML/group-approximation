@@ -16,14 +16,19 @@ followed by an alternating run of deep powers of two independent loxodromics.
 
 ## The standing hypotheses, and who owes them
 
-**1. `hgeo` and `hgeoInv` -- the isolated-component input.**  That a short
-conjugation carrying one deep power onto another leaves both conjugators in the
-subgroup: `x · a_s^i · x' = a_s^j` with `x`, `x'` short forces `x, x' ∈ H_s`,
-and the same with the right side inverted.  Consumed by
+**1. The isolated-component bound, at four sides.**  `hgeo` and `hgeoInv` --
+that a short conjugation carrying one deep power onto another leaves both
+conjugators in the subgroup -- are no longer hypotheses of this chain.  They
+reduce to fp-geometry's `IsolatedComponentBound`, through
+`GGT.OsinComponents.mem_fam_of_conj_of_deep` and the bridge
+`HullSC.exists_hgeo_of_bound`, which produces them in the shape
 `HullSC.exponent_eq_of_blockMatch₂` and
-`HullSC.exponent_eq_of_mirroredBlockMatch₂`.  Open; it is Osin's Lemma 4.2
-territory, and whether one of the landed `OsinTheorem54Sep*` modules already
-yields it is a question about their hypotheses, not about this chain.
+`HullSC.exponent_eq_of_mirroredBlockMatch₂` consume.  What the bridge asks in
+their place is that the quadrilateral `px ++ [a_s^i] ++ rx ++ revWord [a_s^j]`
+be quasi-geodesic -- the same species as (2), and what the polygon theory is
+built to consume.  The depth radius is the reduction's: it yields a `C` and
+wants `4C ≤ rho`, so a caller designs at `max rho (4C)` and weakens with
+`HullSC.notMem_relBall_of_le`.
 
 **2. `hcount` -- the block count.**  That the distance between two vertices of
 the relator is at least the number of block letters between them, less a
@@ -53,6 +58,12 @@ not a leaf, and the chain's only use of it is
   itself -- from torsion-freeness, `HullSC.noCommute_of_torsionFree` over
   `GGT/OsinTheorem54SepElementaryBall.lean`.  It holds for every loxodromic;
   nothing has to be chosen.
+* The rigidity input, from the bound: `HullSC.exists_hgeo_of_bound`.  Its
+  degenerate branch needs no geometry -- with the second conjugator trivial,
+  `x · a^i · 1 = a^j` gives `x = a^j (a^i)⁻¹`, a product of peripheral
+  elements -- and the norm bounds on the conjugators are not used at all:
+  the reduction wants them base-spelled, and shortness enters only through the
+  quadrilateral's quasi-geodesicity.
 * The same-side exclusion at adjacent components, from a deep power not lying
   in the other subgroup: `HullSC.notMem_fam_of_crossDeep`.
 * The same-side exclusion over the window, from the design:
