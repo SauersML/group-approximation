@@ -204,6 +204,67 @@ theorem exists_isBetween_of_quadrangle {S : Set G} {δ : ℕ}
       omega
   · exact Or.inl ⟨q, Hyperbolic.IsBetween.symm hS hq, hd⟩
 
+/-- **The same, for five corners.**  One more slimness cut, on the triangle
+`x₄ x₅ x₁`: the last alternative of the quadrangle is a point of the *diagonal*
+`[x₄, x₁]`, which in a pentagon is not a side, and cutting it once splits it into
+the two remaining sides.  The constant rises by `4δ`, and all four alternatives
+are stated at the worst of them, `12δ`, since a consumer that discards one
+alternative by a distance count wants one number. -/
+theorem exists_isBetween_of_pentagon {S : Set G} {δ : ℕ}
+    (hS : IsSymmetricGeneratingSet S)
+    (hδ : Hyperbolic.IsFourPointHyperbolic S δ) {x₁ x₂ x₃ x₄ x₅ p : G}
+    (hp : Hyperbolic.IsBetween S x₁ p x₂) :
+    (∃ q : G, Hyperbolic.IsBetween S x₂ q x₃ ∧ wordDist S p q ≤ 12 * δ) ∨
+      (∃ q : G, Hyperbolic.IsBetween S x₃ q x₄ ∧ wordDist S p q ≤ 12 * δ) ∨
+        (∃ q : G, Hyperbolic.IsBetween S x₄ q x₅ ∧ wordDist S p q ≤ 12 * δ) ∨
+          (∃ q : G, Hyperbolic.IsBetween S x₅ q x₁ ∧ wordDist S p q ≤ 12 * δ) := by
+  have hslim := Hyperbolic.isSlimTriangles_of_isFourPointHyperbolic hS hδ
+  rcases exists_isBetween_of_quadrangle hS hδ hp (x₃ := x₃) (x₄ := x₄) with
+    ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩ | ⟨r, hr, hdr⟩
+  · exact Or.inl ⟨q, hq, by omega⟩
+  · exact Or.inr (Or.inl ⟨q, hq, by omega⟩)
+  · rcases hslim x₄ x₁ x₅ r hr with ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩
+    · refine Or.inr (Or.inr (Or.inl ⟨q, hq, ?_⟩))
+      have h1 := wordDist_triangle hS p r q
+      omega
+    · refine Or.inr (Or.inr (Or.inr ⟨q, hq, ?_⟩))
+      have h1 := wordDist_triangle hS p r q
+      omega
+
+/-- **The same, for six corners.**  The pentagon's last alternative is again a
+diagonal, `[x₅, x₁]`, and one further cut on the triangle `x₅ x₆ x₁` splits it.
+The constant is `16δ`, and `18δ` once the half-step
+`exists_index_wordDist_le_of_isBetween` has turned a between-point into an
+indexed vertex.
+
+Six is the count the straddle-recut can reach: making a component that lies
+strictly inside a side of a 4-gon into a side of its own costs two extra
+corners. -/
+theorem exists_isBetween_of_hexagon {S : Set G} {δ : ℕ}
+    (hS : IsSymmetricGeneratingSet S)
+    (hδ : Hyperbolic.IsFourPointHyperbolic S δ) {x₁ x₂ x₃ x₄ x₅ x₆ p : G}
+    (hp : Hyperbolic.IsBetween S x₁ p x₂) :
+    (∃ q : G, Hyperbolic.IsBetween S x₂ q x₃ ∧ wordDist S p q ≤ 16 * δ) ∨
+      (∃ q : G, Hyperbolic.IsBetween S x₃ q x₄ ∧ wordDist S p q ≤ 16 * δ) ∨
+        (∃ q : G, Hyperbolic.IsBetween S x₄ q x₅ ∧ wordDist S p q ≤ 16 * δ) ∨
+          (∃ q : G, Hyperbolic.IsBetween S x₅ q x₆ ∧ wordDist S p q ≤ 16 * δ) ∨
+            (∃ q : G, Hyperbolic.IsBetween S x₆ q x₁ ∧
+              wordDist S p q ≤ 16 * δ) := by
+  have hslim := Hyperbolic.isSlimTriangles_of_isFourPointHyperbolic hS hδ
+  rcases exists_isBetween_of_pentagon hS hδ hp (x₃ := x₃) (x₄ := x₄)
+      (x₅ := x₅) with
+    ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩ | ⟨r, hr, hdr⟩
+  · exact Or.inl ⟨q, hq, by omega⟩
+  · exact Or.inr (Or.inl ⟨q, hq, by omega⟩)
+  · exact Or.inr (Or.inr (Or.inl ⟨q, hq, by omega⟩))
+  · rcases hslim x₅ x₁ x₆ r hr with ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩
+    · refine Or.inr (Or.inr (Or.inr (Or.inl ⟨q, hq, ?_⟩)))
+      have h1 := wordDist_triangle hS p r q
+      omega
+    · refine Or.inr (Or.inr (Or.inr (Or.inr ⟨q, hq, ?_⟩)))
+      have h1 := wordDist_triangle hS p r q
+      omega
+
 /-! ## Thin quadrangles at the vertices -/
 
 /-- **Dahmani--Guirardel--Osin's Lemma 4.15, at the vertices and at `μ = 1`,
