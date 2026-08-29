@@ -2654,6 +2654,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2OtherArc
 import GroupApproximation.GGT.DGOIsolatedComponentSideZero
 import GroupApproximation.GGT.DGOGeodesicChainComponents
 import GroupApproximation.GGT.DGOSafeBlock
+import GroupApproximation.GGT.DGOPolygonJoin
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
