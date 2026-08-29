@@ -10,6 +10,7 @@ import GroupApproximation.GGT.HullSCRelatorFamily
 import GroupApproximation.GGT.HullSCRelatorWord
 import GroupApproximation.GGT.HullSCConeOffSpace
 import GroupApproximation.GGT.HullSCFreeProductFactor
+import GroupApproximation.GGT.HullSCUnionGeometryAssembly
 import GroupApproximation.GGT.TreeWPDAxis
 
 /-!
@@ -357,13 +358,16 @@ Theorem 1.2. -/
 theorem minasyanOsin : MinasyanOsinStatement :=
   GGT.BassSerreDoubleHNN.minasyanOsinStatement_of_osinTheorem12 osinTheorem12
 
-/-- **DEBT (geometry).**  The one clause of Hull's Corollary 7.4 still owed:
-the Cayley graph of `E * H₀` over the union of two Hull alphabets is
-hyperbolic and the translation action on it is acylindrical — the tree of
-spaces.  Everything else of the corollary is proved in
-`GGT/HullSCFreeProductFactor.lean` and `GGT/HullSCCommonQuotient.lean`. -/
-theorem hullFreeProductUnionGeometry : HullSC.FreeProductUnionGeometryStatement := by
-  sorry
+/-- **Proved.**  The last clause of Hull's Corollary 7.4: the Cayley graph of
+`E * H₀` over the union of two Hull alphabets is hyperbolic and the translation
+action on it is acylindrical.  Hyperbolicity is the four-point condition on
+the syllable normal form (`GGT/HullSCUnionGeometryCoprod`), acylindricity is
+the branch-point estimate with constant zero together with the factors' own
+acylindricity at a long syllable (`GGT/HullSCUnionGeometryAssembly`); the
+naive tree inequality this replaces is refuted in
+`GGT/HullSCUnionGeometryAcylindrical`. -/
+theorem hullFreeProductUnionGeometry : HullSC.FreeProductUnionGeometryStatement :=
+  HullSCUnionGeometry.freeProductUnionGeometryStatement_unconditional
 
 /-- **Hull, *Small cancellation in acylindrically hyperbolic groups*,
 Corollary 7.4, on the recorded debts**: his Theorem 7.1 in one-step form
