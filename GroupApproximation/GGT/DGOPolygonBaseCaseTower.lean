@@ -46,6 +46,50 @@ iterating to `n` sides gives a radius quadratic in `n`, and the linear form
 recursion.  That is why Dahmani--Guirardel--Osin prove their Lemma 4.16 by the
 corner-offset construction and use 4.17 only to extend it to boundedly many
 sides.
+
+## What a `(μ,b)` reduction would need, exactly
+
+The chain is pinned at `(μ,b) = (1,0)` in one syntactic place: the clause
+`((q - p : ℕ) : ℝ) / 1 - 0 ≤ …`, in the binders and conclusions of this file and
+of `DGOPolygon{CutFourGon,FarGon,EdgeGon,Lemma417}` --- twenty-two occurrences.
+Two things it is NOT pinned by.
+
+*The recut and side-form chain needs no change at all.*
+`DGOIsolatedComponent{Recut,Straddle,Rotate,RotateCut,SideForm}` and
+`DGOPolygonJoin` are already stated with `(mu b : ℝ)` free, and contain no
+`/ 1 - 0`.
+
+*Lemma 4.17 never reads the clause of the sides it inherits.*  Sides `1 … n-1`
+of the original polygon are quoted verbatim into the cut polygons and used only
+as clause-suppliers.  In particular `isComp_eq_succ_of_geodesic` --- components
+of a geodesic word are single letters, which is exactly what fails when a side
+is only `(μ,b)`-quasi-geodesic --- is not used anywhere in this chain, and
+neither is any `IsGeodesicChain` statement.
+
+The only metric input is the CHORD, which the proof constructs itself with
+`existsGeodesicWord` and which is geodesic whatever the sides are.  It is read
+three times, each `sub_le_wordDist_vertex` applied to `q`: the chord component
+is the chord's last letter (`|q| - t ≤ d(s₋, v)`); a component start on the far
+polygon's chord block has index `≤ 1`; a component start on the edge polygon's
+chord block has index `t - 1`.
+
+So the reduction is a signature change plus one arithmetic lemma,
+
+    ((x : ℕ) : ℝ) / mu - b ≤ ((d : ℕ) : ℝ)   from  x ≤ d,  1 ≤ mu,  0 ≤ b
+
+--- `div_le_self` then `sub_le_self` --- to be used at the three sites where the
+chord's own side of a cut polygon is discharged, which today read
+`rw [div_one, sub_zero]`.  Every other clause in the chain is quoted rather than
+proved, so it changes shape and nothing else.
+
+The constants are untouched.  They come from the recursion (`C₁ + C₂` per step)
+and from this file's slack (`5·C` over the tower, `15·C` over the recut), and
+never from `μ` or `b`; a base case at `(μ,b)` with radius `C · 4` yields
+`(C₁ + C₂) · n` exactly as at `(1,0)`.
+
+What is out of this file's reach is the base case itself at `(μ,b)`: that is
+Dahmani--Guirardel--Osin's Lemma 4.15, quasi-geodesic stability at
+`θ = ϰ(μ,b) + 2δ`, used inside their 4.16.
 -/
 
 namespace GroupApproximation
