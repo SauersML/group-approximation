@@ -663,6 +663,29 @@ theorem connector_mem_relBall (D : RelGenSet G Λ)
           (vertex v w i')⁻¹ * vertex v w k ∈ D.relBall lam (C * n) :=
   connector_mem_relBall_at D mu b hmu hb (hbound mu b hmu hb)
 
+/-- **Lemma 4.21 with the bound asked at multiplicative constant one only.**
+Nothing in the tree feeds a `μ > 1` polygon --- the relator chain runs at
+`(1, |p| + c)` and Osin's own polygons at `(1, 0)` --- and at `μ = 1` the
+six-sided bound is a theorem (`sixBound_one_of_fourPointHyperbolic`), so this
+is the binder consumers should hold: it is dischargeable outright from a
+symmetric base and four-point hyperbolicity. -/
+theorem connector_mem_relBall_one (D : RelGenSet G Λ)
+    (hbound : ∀ b : ℝ, 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D 1 b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (b : ℝ) (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 5 → ∀ (v : G) (w : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D 1 b n v w →
+        ∀ (lam : Λ) (i k i' k' : ℕ), IsComp lam w i k → IsComp lam w i' k' →
+          i < i' → Connected D.fam lam v w i i' →
+          (∀ p : ℕ, i < p → p < i' → IsCompStart lam w p →
+            ¬ Connected D.fam lam v w i p) →
+          (vertex v w i')⁻¹ * vertex v w k ∈ D.relBall lam (C * n) :=
+  connector_mem_relBall_at D 1 b le_rfl hb (hbound b hb)
+
 /-- **The connector in the other orientation**, for a base closed under inverses
 --- which `OsinTheorem54SepSymmetric.exists_symmetric_base` supplies.  `d̂_lam` is
 symmetric (`relBall_inv`), so the element from the start of the second component
