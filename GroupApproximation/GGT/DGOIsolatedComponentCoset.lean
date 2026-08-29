@@ -11,15 +11,14 @@ it to the basepoint gives a `d̂_lam`-path and the span lands in a relative ball
 This module proves the coset half of that, and records the reason isolatedness
 cannot be dropped.
 
-## Vertices inside a component
+## The coset half is already proved
 
-`connected_of_mem_comp`: if `[i,k)` is an `H lam`-component of `w`, then every
-vertex between `i` and `k` is `Connected` to `vertex v w i` --- the letters
-crossed are `lam`-letters, and an admissible `lam`-letter has its value in
-`H lam`, so the running product stays in one left coset.  That is what makes
-`Connected` the right relation to state isolatedness with, and it is the step
-the bridge uses to turn a `lam`-letter of the complement into a statement about
-the component it belongs to.
+`OsinComponents.span_mem_fam` puts `(vertex v w i)⁻¹ * vertex v w k` in `H lam`
+whenever the letters between `i` and `k` are `lam`-letters, which is exactly
+`Connected D.fam lam v w i k` unfolded, and `exists_isCompStart_connected` reads
+a `lam`-letter of a path back to the start of its component.  Both are on main
+in `OsinTheorem54SepComponents` and `OsinTheorem54SepRuns`, so nothing here
+reproves them.
 
 ## Why `IsIsolated` is a hypothesis and not a convenience
 
@@ -51,42 +50,7 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
-/-! ## 1.  A component stays in one left coset -/
-
-/-- **Every vertex of a component is connected to its start.**  Induction along
-the component: each letter crossed is an admissible `lam`-letter, so it
-multiplies the running product by an element of `H lam`. -/
-theorem connected_of_mem_comp (D : RelGenSet G Λ) (lam : Λ) (v : G)
-    {w : List (RelLetter G Λ)} (hlet : ∀ a ∈ w, D.IsLetter a) {i k : ℕ}
-    (hcomp : IsComp lam w i k) :
-    ∀ j : ℕ, i ≤ j → j ≤ k → Connected D.fam lam v w i j := by
-  obtain ⟨hik, hkw, hrun, -, -⟩ := hcomp
-  intro j
-  induction j with
-  | zero =>
-      intro hij _
-      have hi0 : i = 0 := Nat.le_zero.mp hij
-      subst hi0
-      exact connected_refl _ _ _ _ _
-  | succ m ih =>
-      intro hij hjk
-      rcases Nat.lt_or_ge m i with hlt | hge
-      · have him : i = m + 1 := by omega
-        subst him
-        exact connected_refl _ _ _ _ _
-      · have hmk : m < k := by omega
-        have hmw : m < w.length := by omega
-        have hprev : Connected D.fam lam v w i m := ih hge (by omega)
-        have hval : (w[m]'hmw).val ∈ D.fam lam :=
-          val_mem_fam_of_isCompOf D (hlet _ (List.getElem_mem hmw))
-            (hrun m hge hmk hmw)
-        have hstep : vertex v w (m + 1) = vertex v w m * (w[m]'hmw).val :=
-          vertex_succ w v m hmw
-        show (vertex v w i)⁻¹ * vertex v w (m + 1) ∈ D.fam lam
-        rw [hstep, ← mul_assoc]
-        exact mul_mem hprev hval
-
-/-! ## 2.  The configuration that isolatedness excludes -/
+/-! ## The configuration that isolatedness excludes -/
 
 /-- **Two components of one closed path, connected.**  The vertex at index `3`
 of `[comp lam a, base x, base x⁻¹, comp lam a⁻¹]` is `a`, which lies in
