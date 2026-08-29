@@ -210,9 +210,12 @@ connectors' base spellings with a letter and its inverse
 and `z⁻¹`).  Padding changes neither what the spelling names nor its word norm,
 and nothing downstream reads the LENGTH of a short side -- the pinning estimate
 reads `wordNorm (listVal p) ≤ eps` -- so the degenerate branches `y = 1` and
-`z = 1` need no separate treatment.  Recorded as a clause of the construction
-rather than as a proved step: the composition that spends it is not yet
-written.
+`z = 1` need no separate treatment.  This is a proved step and not a clause:
+`HullSC.exists_side_spelling_of_base_eq` returns the padded word with its
+letters, its positive length, its value, and its RELATIVE norm, the last by
+monotonicity of the word length in the alphabet, and
+`HullSC.exists_side_spelling₂` is the form over the two-subgroup core.  What
+remains unwritten is only the composition that spends it.
 
 ## What is discharged, and by what
 
@@ -299,8 +302,9 @@ quadrilateral, with the conjugator the value of the four-gon's first side.  The
 separation's own clause quantifies over `w`, `w'`, `u₀`, `u₀'`, `y` and `z`,
 and fixes `B` and the exponent list before them, so what is left is the
 outermost composition: choose `p` by (C1), `B` by (C2) and the run by (C3);
-spell `y` and `z` as padded base words, which is what supplies `py`, `pz` and
-their positivity; and supply items 2 and 3 at the quadrilateral those choices
+spell `y` and `z` as padded base words with
+`HullSC.exists_side_spelling₂`, which is what supplies `py`, `pz` and their
+positivity; and supply items 2 and 3 at the quadrilateral those choices
 produce.  None of that is a new mathematical step --- the two open items are
 carried as hypotheses through it, exactly as they are carried now.
 
