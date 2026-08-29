@@ -2583,6 +2583,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Window
 import GroupApproximation.GGT.OsinTheorem54SepBlockConj
 import GroupApproximation.Analysis.ShulmanFillNormingExistentialLift
 import GroupApproximation.GGT.HullSCRelatorSeparation2AlignedClose
+import GroupApproximation.GGT.DGOThinPolygonVertex
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
