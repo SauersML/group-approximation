@@ -211,7 +211,16 @@ end Descent
 /-- **`ShulmanFill.SeparableFaithfulRepresentationStatement` is a theorem.**  It
 is the hypothesis `conjugateWordNorming_of_printedPair_of_compatible'` below
 discharges, which leaves `Theorem4PrintedPairStatement` and
-`CompatibleTargetPairStatement` --- the two the manuscript itself cites. -/
+`CompatibleTargetPairStatement` --- the two the manuscript itself cites.
+
+That reading is no longer available: `Theorem4PrintedPairStatement` is refuted
+by `Analysis/ShulmanFillNormingPrintedPairRefuted` and
+`Analysis/ShulmanFillNormingPrintedPairCharacter`, so this theorem is a true
+implication out of a false hypothesis and establishes nothing about
+`ConjugateWordNormingStatement`.  The statement to quote is
+`ShulmanFill.conjugateWordNorming_of_tailPair_of_compatible`
+(`Analysis/ShulmanFillNormingTailRoute`), which is this theorem on the repaired
+binder.  This one is kept because it is what the refutation is about. -/
 theorem separableFaithfulRepresentation :
     ShulmanFill.SeparableFaithfulRepresentationStatement.{u} := by
   intro B _ _ _
