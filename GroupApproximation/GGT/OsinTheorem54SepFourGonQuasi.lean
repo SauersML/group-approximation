@@ -107,7 +107,16 @@ The conclusion carries the gap bound in both directions, and each connector
 with its word-norm bound --- which is `1`, every element of `H_λ` being a single
 letter of `X ⊔ ℋ`.
 
-`IsolatedComponentBound` is the leading binder, as everywhere in this chain. -/
+`IsolatedComponentBound` is the leading binder, as everywhere in this chain.
+
+**Warning.**  The connector this produces joins two component STARTS, and
+start-to-start connectors are **not bounded by any polygon statement** ---
+fp-geometry's witness `[comp lam h, base x, base x⁻¹, comp lam h⁻¹]` is a
+`(1,0)`-quasi-geodesic 4-gon whose two components are connected with
+start-to-start element `h`, ranging over all of `H_lam` against a finite
+`relBall`.  Only the innermost END-to-START element is bounded (their
+Lemma 4.21).  A consumer needing a bounded connector must match on
+`(vertex 1 s j)⁻¹ * (listVal p * vertex 1 q k)`, with `k` the component END. -/
 theorem exists_two_block_connector_of_deep_quasi (D : RelGenSet G Λ)
     (hbound : IsolatedComponentBound (IsQuasiGeodesicPolygon D) D) (lam : Λ)
     {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :

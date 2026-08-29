@@ -193,7 +193,16 @@ That order is what detects orientation: one match alone is consistent with an
 inversion, which is why the two-block form is the one a caller needs.
 
 `IsolatedComponentBound` is the leading binder, exactly as in
-`exists_other_component_of_deep`; nothing else is assumed. -/
+`exists_other_component_of_deep`; nothing else is assumed.
+
+**Warning.**  The connector this produces joins two component STARTS, and
+start-to-start connectors are **not bounded by any polygon statement** ---
+fp-geometry's witness `[comp lam h, base x, base x⁻¹, comp lam h⁻¹]` is a
+`(1,0)`-quasi-geodesic 4-gon whose two components are connected with
+start-to-start element `h`, ranging over all of `H_lam` against a finite
+`relBall`.  Only the innermost END-to-START element is bounded (their
+Lemma 4.21).  A consumer needing a bounded connector must match on
+`(vertex 1 s j)⁻¹ * (listVal p * vertex 1 q k)`, with `k` the component END. -/
 theorem exists_two_block_connector_of_deep (D : RelGenSet G Λ)
     (hbound : IsolatedComponentBound (IsQuasiGeodesicPolygon D) D) (lam : Λ)
     {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :

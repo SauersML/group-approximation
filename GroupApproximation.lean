@@ -2577,6 +2577,7 @@ import GroupApproximation.GGT.OsinTheorem54SepSubGeodesic
 import GroupApproximation.GGT.HullSCRelatorSeparation2Diff
 import GroupApproximation.GGT.HullSCRelatorSeparation2PowFam
 import GroupApproximation.GGT.HullSCRelatorSeparation2Join
+import GroupApproximation.GGT.OsinTheorem54SepSegmentComp
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
