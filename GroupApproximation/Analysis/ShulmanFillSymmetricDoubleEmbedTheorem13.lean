@@ -60,6 +60,14 @@ So `symmetricDoubleEmbedding`, `symmetricDoubleEmbedding_left`/`_right`,
 ill-typed, not merely unproved.  Nothing outside this module and
 `Analysis/ShulmanFillTheorem13` used them.
 
+`factorAmalgamToSymmetricTarget_eq_comp` in particular cannot be restated in any
+form that mentions `e`, since `e` is the ill-typed map itself.  Its usable
+replacement is functoriality in the *target*,
+`MFAlgebraAmalgamCriterion.factorAmalgamToSymmetricTarget_comp` of
+`Analysis/ShulmanFillNormingFactorMapComp`, which says post-composing the
+homomorphism out of the double post-composes the factor map, and never names the
+double outside that homomorphism's type.
+
 ## What this module does now
 
 It names steps 1–4 and nothing else.

@@ -24,9 +24,19 @@ The consumer never wanted the embedding itself.
 `isMFAlgebra_of_injective_into_symmetricDouble` takes `e : A *_C B → D *_C D`
 and an MF structure on `D *_C D`, and immediately *composes* `e` with the
 corona embedding that MF structure provides.  That composite has a `Type`
-target, and `factorAmalgamToSymmetricTarget` produces exactly it —
-`factorAmalgamToSymmetricTarget_eq_comp` says the composite *is* `g ∘ e`
-whenever `e` exists.  So the honest hypothesis is
+target, and `factorAmalgamToSymmetricTarget` produces exactly it.
+
+An earlier version of this paragraph said that a lemma
+`factorAmalgamToSymmetricTarget_eq_comp` identifies the composite with `g ∘ e`.
+No such lemma exists, and none can: `e` is precisely the map this module's next
+paragraph shows is untypable, so `g ∘ e` cannot be written down either.  What is
+true, and provable without naming `e`, is functoriality in the *target* —
+`MFAlgebraAmalgamCriterion.factorAmalgamToSymmetricTarget_comp` of
+`Analysis/ShulmanFillNormingFactorMapComp`:
+
+    `factorAmalgamToSymmetricTarget … (h.comp g) = h.comp (factorAmalgamToSymmetricTarget … g)`
+
+which is what the argument below actually uses.  So the honest hypothesis is
 
 > whenever the symmetric double embeds faithfully in a `Type`-valued C-star
 > algebra, the factor map of the amalgam into that same algebra is faithful,
