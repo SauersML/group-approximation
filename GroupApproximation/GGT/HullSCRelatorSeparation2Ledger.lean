@@ -27,16 +27,30 @@ for polygons of at most six sides, an isolated component's span lies in
 `relBall lam (C · n)`.  The unrestricted `IsolatedComponentBound` over every
 number of sides is not used and is not going to be proved.
 
-  **Proved at `(mu, b) = (1, 0)`, owed at `b > 0`.**  fp-geometry's
-  `GGT.OsinComponents.isolatedComponentBound_of_fourPointHyperbolic` proves the
-  six-sided statement outright for `IsQuasiGeodesicPolygon D 1 0 n v u`, from a
+  **The mathematics is discharged; a quantifier prefix is not.**  fp-geometry's
+  `GGT.DGOPolygonBaseCaseTower.isolatedComponentBound_of_fourPointHyperbolic_at`
+  proves the six-sided statement outright for
+  `IsQuasiGeodesicPolygon D 1 (b : ℝ) n v u` at every NATURAL `b`, from a
   symmetric base and four-point hyperbolicity alone, at radius
-  `15 · (25 · (δ + 1)) · n`.  This chain's quadrilateral is
-  `(1, |p| + c)`-quasi-geodesic and not `(1, 0)`, so the binder still stands
-  HERE, at this `(mu, b)`.  Two things would close it and neither is resolved
-  in this file: the base case at general `(mu, b)`, which is what dgo-cycle is
-  costing, or re-cutting the quadrilateral's sides to geodesics, which changes
-  what item 2 has to supply.
+  `15 · (25 · (δ + b + 1)) · n`.  This chain's quadrilateral is
+  `(1, |p| + c)`-quasi-geodesic, and `|p| + c` is a natural, so the instance the
+  chain actually uses is proved.  Four-point hyperbolicity of `Γ(G, X ⊔ ℋ)`
+  takes its place as the standing geometric hypothesis.
+
+  What is not yet discharged is the SHAPE the chain spells the bound in.  The
+  binder carried from `GGT/DGOIsolatedComponentCut.lean` down through
+  `GGT.OsinComponents.exists_other_component_of_deep_six` is
+  `∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C, 0 < C ∧ …` --- universally quantified over
+  every REAL pair --- while the tower supplies `mu = 1` and `b` natural.  The
+  gap is not mathematical: every consumer along the chain spends the binder at
+  exactly ONE pair (`exists_other_component_of_deep_six` at its line 230), and
+  the pair this chain picks is `(1, ((|p| + c : ℕ) : ℝ))`.  So the binder
+  over-quantifies, and narrowing it to `∃ C, 0 < C ∧ …` at the chain's own pair
+  makes the tower discharge it outright.  Supplying the universally quantified
+  form INSTEAD is not available: at `mu > 1` the multiplicative defect cannot be
+  absorbed into an additive one, and the tower says nothing there.
+
+  So what item 1 now owes is a narrowing, not a theorem.
 
 **2. `hcount` -- the block count, CYCLICALLY.**  That the distance between two
 vertices of the relator is at least the number of block letters between them,
@@ -143,12 +157,25 @@ unsound without them.
   alone is consistent with an inversion, and
   `GGT.OsinComponents.wordDist_match_le` bounds the distance between two
   matches while saying nothing about the sign.
-* **(C3) The run is long.**  `L` past `2(2(eps + 1 + b) + 1) + b + 2`, which is
-  what `HullSC.false_of_span_mixed`'s length clause
-  `2(i₂ - i₁) + gapSlack < |R|` becomes once the two blocks are chosen at
-  `i₂ := i₁ + 2(eps + 1 + b) + 1` and `gapSlack := b + 2`, the shape
-  `GGT.OsinComponents.gap_and_order_of_two_matches` returns.  Free: `|R|` is
-  `|p| + |ms|` and `|ms|` is whatever `L` asks for.
+* **(C3) The run is long.**  `L` past `5 · blockSeparation + 2`.  The two mixed
+  orders ask slightly different things --- the direct one
+  `2(d₂ - d₁) + blockSeparation < |R|`, the inverted one
+  `2(d₂ - d₁) + 3 · blockSeparation < |R|`, because there the length clause is
+  about the MATCHES' indices and each is within `blockSeparation` of its
+  source --- and the second implies the first, so one number serves both.  With
+  the blocks at `d₂ := d₁ + blockSeparation + 1` it is `5 · blockSeparation + 2`.
+  Free: `|R|` is `|p| + |ms|` and `|ms|` is whatever `L` asks for.
+
+  The slack is `blockSeparation` in BOTH orders, and not the sharper `b + 2`
+  that `GGT.OsinComponents.gap_and_order_of_two_matches` returns, because that
+  lemma asks both connectors to lie in one `H_λ` and in the mixed case they do
+  not: `HullSC.blockWord_index_alternates` makes consecutive block letters carry
+  opposite indices, so two blocks share an index exactly when the distance
+  between them is even, and `blockSeparation + 1` is odd.  `b₁ = b₂` is
+  therefore false here, not merely unproved.  Nothing is lost by it --- the
+  common index was never used for anything, both estimates reading a connector
+  only through `wordNorm h ≤ 1`, which holds for an element of any `H_λ` --- so
+  each match is pinned separately and the gap bounded at both ends.
 
 The two side conditions `0 < |py|`, `0 < |pz|` are met by padding the
 connectors' base spellings with a letter and its inverse
