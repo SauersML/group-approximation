@@ -2691,6 +2691,7 @@ import GroupApproximation.Analysis.ShulmanFillNormingTailGlueAlign
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyMixedClose
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyMixedInv
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNarrow
+import GroupApproximation.Analysis.ShulmanFillNormingTailGluing
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
