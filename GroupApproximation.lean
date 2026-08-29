@@ -2628,6 +2628,8 @@ import GroupApproximation.GGT.OsinTheorem54SepAssemble
 import GroupApproximation.GGT.DGOIsolatedComponentRotate
 import GroupApproximation.Analysis.ShulmanFillNormingFactorMapRange
 import GroupApproximation.Analysis.ShulmanFillNormingRecognitionWiring
+import GroupApproximation.GGT.OsinTheorem54SepLemma510Right
+import GroupApproximation.GGT.OsinTheorem54SepAssembleFull
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
