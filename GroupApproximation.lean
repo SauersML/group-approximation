@@ -2707,6 +2707,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyFourWay
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyShortSide
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyLoxGap
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyCompose
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyQuantified
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

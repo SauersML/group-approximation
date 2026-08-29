@@ -337,11 +337,22 @@ asks for; `HullSC.notMem_relBall_of_le` gives the statement's own `rho` back.
 That one call discharges `hnodup`, `hsep`, `hdiag` and the deep clause
 together.
 
-Two things remain above it.  The clause is proved at a FIXED core, while
-`hullRelatorStatement₂_of_separationNe₂` consumes the form quantified over
-every `G`, `A`, `N` and `E`; supplying that means quantifying the four
-hypotheses the same way, which is bookkeeping.  And items 2, 3 and 6 are still
-hypotheses, which is not.
+`HullSC.separationNe₂_of_inputs` quantifies that over every `G`, `A`, `N` and
+`E`, in the shape `hullRelatorStatement₂_of_separationNe₂` consumes, with the
+four clauses quantified the same way and the two constants `cnt` and `δ` inside
+the quantifier as existentials --- they belong to the core, and a chain that
+fixed them once for all cores would be claiming more than it has.  Composing
+the two gives `HullSC.hullRelatorStatement₂_of_inputs`, which is the relator
+half of Hull's Theorem 5.1 conditional on exactly four clauses:
+
+    hδ     item 1's residue: four-point hyperbolicity of Γ(G, X ⊔ ℋ)
+    hqgeo  item 2: the cyclic quasi-geodesicity, in its three places
+    hexcl  item 3: the two same-side exclusions
+    hnc    item 6: the diagonal leaf
+
+and on nothing else.  That is the whole standing debt of the chain, and the
+first of the four is a hypothesis about the ambient geometry rather than a gap:
+items 2, 3 and 6 are the ones that still owe a proof.
 
 ## One correction worth keeping
 
