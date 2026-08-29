@@ -2452,6 +2452,10 @@ import GroupApproximation.GGT.HullSCUnionGeometrySyllableCount
 import GroupApproximation.Analysis.ShulmanFillNormingBlockLimit
 import GroupApproximation.Analysis.ShulmanFillNormingGluing
 import GroupApproximation.Analysis.ShulmanFillNormingMatrixFlatten
+import GroupApproximation.GGT.OsinTheorem54SepTransportFam
+import GroupApproximation.GGT.OsinTheorem54SepFiniteFam
+import GroupApproximation.GGT.OsinTheorem54SepSymmetricFam
+import GroupApproximation.GGT.OsinTheorem54Family
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
