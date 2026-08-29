@@ -33,19 +33,23 @@ are unchanged.
 
 ## The status of `Theorem4TwoLegStatement`
 
-It is an **open named `Prop`**, deliberately: with
-`ShulmanSymmetricDouble.CompatibleTargetPairStatement` it is one of the two
-analytic inputs the recognition paper still cites rather than proves.  It is the
-honest form of Blackadar--Kirchberg's Theorem 4 — the matricial field is built
-to fit the representations, never before them — and
-`theorem4RepresentationFirst_of_twoLeg` records that it implies the one-leg
-form of `Analysis/ShulmanFillNormingExistentialLift`, which in turn is implied
-by the refuted model-first form.  The chain of strengths is therefore
+It is an open named `Prop`, and it is **too weak to be the lane's input**: it
+lacks the agreement clause on `C` that `isMFAlgebra_amalgam_of_doubleLR`
+consumes, so it cannot drive Theorem 10.  `ShulmanFill.Theorem4PrintedPairStatement`
+of `Analysis/ShulmanFillNormingExistentialLiftPrinted` supersedes it, and with
+`ShulmanSymmetricDouble.CompatibleTargetPairStatement` that one is the analytic
+input the recognition route cites rather than proves.
+
+Nothing here is deleted, because this statement is the record of where the
+weaker forms sit: `theorem4RepresentationFirst_of_twoLeg` shows it implies the
+one-leg form of `Analysis/ShulmanFillNormingExistentialLift`, which in turn is
+implied by the refuted model-first form.  The chain of strengths is
 
     `Theorem4ModelFirstStatement`  (FALSE, `not_theorem4ModelFirst`)
       ⟹ `Theorem4TwoLegStatement`  ⟹ `Theorem4RepresentationFirstStatement` ,
 
-and the middle one is where the lane now sits.
+with `Theorem4PrintedPairStatement` off to the side of it — stronger than the
+two-leg form in the agreement clause, and narrower in the coefficients.
 
 ## What a prescribed-model form would buy, and why it is not stated here
 
@@ -79,9 +83,22 @@ limit map.
 
 The single model is the whole point: the flip that exchanges the two legs of a
 symmetric double is a unitary of one sequence algebra, so the two lifts have to
-live in the same one.  With
-`ShulmanSymmetricDouble.CompatibleTargetPairStatement` this is one of the two
-analytic inputs the recognition route still cites rather than proves.
+live in the same one.
+
+**Too weak, and superseded.**  This binder produces two lifts into one model and
+says nothing relating them on `C`, whereas
+`ShulmanFill.isMFAlgebra_amalgam_of_doubleLR` needs
+`∀ c, ‖φ₁_t (k c) - φ₂_t (k c)‖ → 0` — Shulman's Lemma 9, the clause the Halmos
+dilation and Pedersen's commutator inequality are for in the paper.  It is part
+of the same package as Theorem 4 and Remark 6, not something a consumer can be
+asked to supply, so this statement cannot drive Theorem 10.
+`ShulmanFill.Theorem4PrintedPairStatement` of
+`Analysis/ShulmanFillNormingExistentialLiftPrinted` is the repair: it carries
+the agreement clause, and by pinning the coefficients to the printed family it
+also makes the `hD` hypothesis of Theorem 10 a theorem rather than an
+assumption.  Nothing below is deleted, because
+`theorem4RepresentationFirst_of_twoLeg` is the record of where this form sits in
+the chain of strengths.
 
 The model-first form, in which `A` and `ι` are quantified before `B`, `ρ₁` and
 `ρ₂`, is `Theorem4ModelFirstStatement` and is refuted by
