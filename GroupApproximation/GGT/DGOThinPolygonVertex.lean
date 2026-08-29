@@ -160,5 +160,64 @@ theorem exists_index_wordDist_le_of_triangle {S : Set G} {δ : ℕ}
     have htri := wordDist_triangle hS (a i) q (c j)
     omega
 
+/-! ## Thin quadrangles at the vertices -/
+
+/-- **Dahmani--Guirardel--Osin's Lemma 4.15, at the vertices and at `μ = 1`,
+`b = 0`.**  Four geodesic chains closing up into a quadrangle
+`x₁ → x₂ → x₃ → x₄ → x₁`, with `x₁ = a 0`, `x₂ = a na = b 0`, `x₃ = b nb = c 0`
+and `x₄ = c nc = e 0`: every vertex of the first side is within `10δ` of a
+vertex of one of the other three.
+
+Slimness is applied twice in the between-vocabulary --- once across the diagonal
+`[x₁,x₃]`, once across `[x₁,x₄]` --- so no diagonal *chain* has to be built, and
+the half-step to an actual vertex is applied once, at the end.  The diagonal is
+auxiliary in Dahmani--Guirardel--Osin's argument too: what their Lemma 4.16
+consumes is only that the near point lies on a *side* of the polygon, since the
+cycle it assembles is made of segments of sides and their safety comes from the
+distinguished component being isolated in that polygon. -/
+theorem exists_index_wordDist_le_of_quadrangle {S : Set G} {δ : ℕ}
+    (hS : IsSymmetricGeneratingSet S)
+    (hδ : Hyperbolic.IsFourPointHyperbolic S δ)
+    {a b c e : ℕ → G} {na nb nc ne : ℕ}
+    (ha : IsGeodesicChain S a na) (hb : IsGeodesicChain S b nb)
+    (hc : IsGeodesicChain S c nc) (he : IsGeodesicChain S e ne)
+    (hab : b 0 = a na) (hbc : c 0 = b nb) (hce : e 0 = c nc)
+    (hea : e ne = a 0)
+    {i : ℕ} (hi : i ≤ na) :
+    (∃ j : ℕ, j ≤ nb ∧ wordDist S (a i) (b j) ≤ 10 * δ) ∨
+      (∃ j : ℕ, j ≤ nc ∧ wordDist S (a i) (c j) ≤ 10 * δ) ∨
+        (∃ j : ℕ, j ≤ ne ∧ wordDist S (a i) (e j) ≤ 10 * δ) := by
+  have hslim := Hyperbolic.isSlimTriangles_of_isFourPointHyperbolic hS hδ
+  rcases hslim (a 0) (a na) (b nb) (a i) (ha.isBetween hi) with
+    ⟨q, hq, hd⟩ | ⟨q, hq, hd⟩
+  · -- `q` lies on the diagonal `[x₁, x₃]`; cut a second time across `[x₁, x₄]`
+    rcases hslim (a 0) (b nb) (c nc) q hq with ⟨r, hr, hdr⟩ | ⟨r, hr, hdr⟩
+    · refine Or.inr (Or.inr ?_)
+      have hr' : Hyperbolic.IsBetween S (e 0) r (e ne) := by
+        rw [hea, hce]
+        exact Hyperbolic.IsBetween.symm hS hr
+      obtain ⟨j, hjn, hj⟩ := exists_index_wordDist_le_of_isBetween hS hδ he hr'
+      refine ⟨j, hjn, ?_⟩
+      have h1 := wordDist_triangle hS (a i) q r
+      have h2 := wordDist_triangle hS (a i) r (e j)
+      omega
+    · refine Or.inr (Or.inl ?_)
+      have hr' : Hyperbolic.IsBetween S (c 0) r (c nc) := by
+        rw [hbc]
+        exact Hyperbolic.IsBetween.symm hS hr
+      obtain ⟨j, hjn, hj⟩ := exists_index_wordDist_le_of_isBetween hS hδ hc hr'
+      refine ⟨j, hjn, ?_⟩
+      have h1 := wordDist_triangle hS (a i) q r
+      have h2 := wordDist_triangle hS (a i) r (c j)
+      omega
+  · refine Or.inl ?_
+    have hq' : Hyperbolic.IsBetween S (b 0) q (b nb) := by
+      rw [hab]
+      exact Hyperbolic.IsBetween.symm hS hq
+    obtain ⟨j, hjn, hj⟩ := exists_index_wordDist_le_of_isBetween hS hδ hb hq'
+    refine ⟨j, hjn, ?_⟩
+    have htri := wordDist_triangle hS (a i) q (b j)
+    omega
+
 end GGT
 end GroupApproximation
