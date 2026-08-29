@@ -2602,6 +2602,7 @@ import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftPair
 import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftTwoLeg
 import GroupApproximation.GGT.OsinTheorem54SepRigidityReduction
 import GroupApproximation.GGT.OsinTheorem54SepRigidityTrivial
+import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftFaithful
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
