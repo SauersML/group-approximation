@@ -103,6 +103,38 @@ theorem theorem4TailPair_of_printedPair_data
   ⟨φ₁.toTail, φ₂.toTail, rfl,
     fun c ↦ tailNull_of_tendsto_norm _ (hagree c)⟩
 
+/-! ## The counter-models do not reach the repaired binder -/
+
+/-- The space `not_theorem4PrintedPair` is instantiated at. -/
+theorem finiteDimensional_euclidean_one :
+    FiniteDimensional ℂ (EuclideanSpace ℂ (Fin 1)) := inferInstance
+
+/-- The space `not_theorem4PrintedPair_of_character` is instantiated at. -/
+theorem finiteDimensional_euclidean_two :
+    FiniteDimensional ℂ (EuclideanSpace ℂ (Fin 2)) := inferInstance
+
+/-- **Neither counter-model satisfies the repaired binder's hypotheses.**
+
+Both are instantiated at a finite-dimensional `H` --- `ℂ¹` for
+`not_theorem4PrintedPair` and `ℂ²` for `not_theorem4PrintedPair_of_character`
+--- and `Theorem4TailPairStatement` asks for `¬ FiniteDimensional ℂ H`.  So
+neither refutation transfers, and the two lemmas above are the whole of what can
+be checked here.
+
+The rest is an argument about a proof rather than about an instance, and is
+recorded as such.  The character argument does not merely fail to apply at these
+two spaces: it has no tail analogue at any `H`.  It runs by fixing a coordinate
+`n` and reading the five defects of `(φ_t ·)ₙ` off the sup norm, and `TailNull`
+bounds no fixed coordinate --- at every `t` past which it says anything, it says
+it only of coordinates `n ≥ cut t`.  There is therefore no statement
+corresponding to `exists_nonUnitalStarAlgHom_coord` to be made in the repaired
+vocabulary, which is why the repair is the removal of the sup norm and not a
+restriction on `H`. -/
+theorem counterModels_are_finiteDimensional :
+    FiniteDimensional ℂ (EuclideanSpace ℂ (Fin 1)) ∧
+      FiniteDimensional ℂ (EuclideanSpace ℂ (Fin 2)) :=
+  ⟨finiteDimensional_euclidean_one, finiteDimensional_euclidean_two⟩
+
 end
 
 end ShulmanFill
