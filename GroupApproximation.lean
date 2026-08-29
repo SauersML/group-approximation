@@ -2650,6 +2650,7 @@ import GroupApproximation.GGT.OsinTheorem54SepRotateComponent
 import GroupApproximation.GGT.OsinTheorem54SepTwoBlockRot
 import GroupApproximation.GGT.HullSCRelatorSeparation2Extract
 import GroupApproximation.Analysis.CStarSeparableTypeZeroRepresentation
+import GroupApproximation.GGT.HullSCRelatorSeparation2OtherArc
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
