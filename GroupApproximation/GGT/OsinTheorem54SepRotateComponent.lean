@@ -124,7 +124,7 @@ The proof is fp-geometry's, unchanged: before the seam the correspondence is
 `j ↦ i + j` and the previous letter is the previous letter; after it,
 `j ↦ j - (|w| - i)`; and at the seam itself the index is `0` of `w`, which
 starts a component because nothing precedes it. -/
-theorem exists_isCompStart_of_rotWord_of_le (lam : Λ) (v : G)
+theorem exists_isCompStart_of_rotWord_of_length_le (lam : Λ) (v : G)
     {w : List (RelLetter G Λ)} (hclosed : RelLetter.listVal w = 1) {i : ℕ}
     (hi : i ≤ w.length) {j : ℕ} (hjstart : IsCompStart lam (rotWord w i) j)
     (hj0 : j ≠ 0) :

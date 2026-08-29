@@ -30,7 +30,7 @@ produced here rather than assumed:
   and `vertex_rotWord_add`, the second of which is where the closing relation is
   spent;
 * the innermost clause of the second reading, translated out of the rotated
-  word's coordinates by `exists_isCompStart_of_rotWord_of_le`, so that the
+  word's coordinates by `exists_isCompStart_of_rotWord_of_length_le`, so that the
   caller states it about `p ++ q ++ r ++ revWord s` and never meets `rotWord`
   at all.
 
@@ -233,7 +233,7 @@ theorem exists_two_block_conj_of_rot (D : RelGenSet G Λ) (lam : Λ)
             - (p.length + q.length)) t := by
     intro t ht1 ht2 hstart hconnt
     obtain ⟨o, hostart, hbranch, hvo⟩ :=
-      exists_isCompStart_of_rotWord_of_le lam 1 hclosedW hcW hstart (by omega)
+      exists_isCompStart_of_rotWord_of_length_le lam 1 hclosedW hcW hstart (by omega)
     have hmem : (vertex (vertex (1 : G) (p ++ q ++ r ++ revWord s)
           (p.length + q.length))
         (rotWord (p ++ q ++ r ++ revWord s) (p.length + q.length))
