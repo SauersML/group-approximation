@@ -126,7 +126,7 @@ after which the assembled closer applies.  `j - 1 + 1 = j` is where the index
 convention of the reversed side is spent: the match is returned at `j` and the
 component of the far side is `[j - 1, j)`. -/
 theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
-    {a : Bool → G} {eps : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
+    {a : Bool → G} {eps bn : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
@@ -143,7 +143,7 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
       (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
         GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
         y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - 0
+        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
           ≤ ((wordDist D.alphabet.carrier
               (GGT.OsinComponents.vertex (1 : G)
                 (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
@@ -191,7 +191,7 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
     (hqg : ∀ t : ℕ, t < 4 → ∀ z y : ℕ,
       GGT.OsinComponents.fourGonCut py u pz u' t ≤ z → z ≤ y →
       y ≤ GGT.OsinComponents.fourGonCut py u pz u' (t + 1) →
-      ((y - z : ℕ) : ℝ) / 1 - 0
+      ((y - z : ℕ) : ℝ) / 1 - (bn : ℝ)
         ≤ ((wordDist D.alphabet.carrier
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)
@@ -251,7 +251,7 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
 inverse; the matched letter is read by `HullSC.exponent_of_comp_rotate_revInv`,
 which returns it as the inverse of a power, and the mirrored closer applies. -/
 theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
-    {a : Bool → G} {eps : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
+    {a : Bool → G} {eps bn : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
     (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base)
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
@@ -269,7 +269,7 @@ theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
       (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
         GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
         y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - 0
+        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
           ≤ ((wordDist D.alphabet.carrier
               (GGT.OsinComponents.vertex (1 : G)
                 (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
@@ -321,7 +321,7 @@ theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
     (hqg : ∀ t : ℕ, t < 4 → ∀ z y : ℕ,
       GGT.OsinComponents.fourGonCut py u pz u' t ≤ z → z ≤ y →
       y ≤ GGT.OsinComponents.fourGonCut py u pz u' (t + 1) →
-      ((y - z : ℕ) : ℝ) / 1 - 0
+      ((y - z : ℕ) : ℝ) / 1 - (bn : ℝ)
         ≤ ((wordDist D.alphabet.carrier
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)

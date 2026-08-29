@@ -140,7 +140,7 @@ variable {G : Type u} [Group G]
 the formal inverse; the letters carry inverses and the mirrored closer is the
 one that applies. -/
 theorem listVal_conj_of_mirroredAlignedMatch_assembled
-    {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ} {ms : List ℕ}
+    {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps bn : ℕ} {ms : List ℕ}
     (hnodup : ms.Nodup)
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
     (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base)
@@ -159,7 +159,7 @@ theorem listVal_conj_of_mirroredAlignedMatch_assembled
       (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
         GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
         y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - 0
+        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
           ≤ ((wordDist D.alphabet.carrier
               (GGT.OsinComponents.vertex (1 : G)
                 (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
@@ -204,7 +204,7 @@ theorem listVal_conj_of_mirroredAlignedMatch_assembled
     (hqg : ∀ t : ℕ, t < 4 → ∀ x y : ℕ,
       GGT.OsinComponents.fourGonCut py u pz u' t ≤ x → x ≤ y →
       y ≤ GGT.OsinComponents.fourGonCut py u pz u' (t + 1) →
-      ((y - x : ℕ) : ℝ) / 1 - 0
+      ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
         ≤ ((wordDist D.alphabet.carrier
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') x)

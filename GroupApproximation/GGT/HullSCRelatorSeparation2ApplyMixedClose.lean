@@ -79,7 +79,7 @@ variable {G : Type u} [Group G]
 
 /-- **The mixed case, closed from two found matches.** -/
 theorem false_of_mixedMatch_found {D : GGT.RelGenSet G Bool} {a : Bool → G}
-    {eps : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
+    {eps bn : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
@@ -94,7 +94,7 @@ theorem false_of_mixedMatch_found {D : GGT.RelGenSet G Bool} {a : Bool → G}
       (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
         GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
         y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - 0
+        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
           ≤ ((wordDist D.alphabet.carrier
               (GGT.OsinComponents.vertex (1 : G)
                 (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
@@ -134,7 +134,7 @@ theorem false_of_mixedMatch_found {D : GGT.RelGenSet G Bool} {a : Bool → G}
     (hqg : ∀ t : ℕ, t < 4 → ∀ z y : ℕ,
       GGT.OsinComponents.fourGonCut py u pz u' t ≤ z → z ≤ y →
       y ≤ GGT.OsinComponents.fourGonCut py u pz u' (t + 1) →
-      ((y - z : ℕ) : ℝ) / 1 - 0
+      ((y - z : ℕ) : ℝ) / 1 - (bn : ℝ)
         ≤ ((wordDist D.alphabet.carrier
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)

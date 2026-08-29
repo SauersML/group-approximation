@@ -46,7 +46,7 @@ The source side carries the inverses and the target side the direct powers, so
 the relation comes out as `X · (a_b^f)⁻¹ · X' = a_b^e`, which is the shape
 `HullSC.false_of_mixedMatch_gap_inv` reads. -/
 theorem mixed_data_of_found_match_inv {D : GGT.RelGenSet G Bool}
-    {a : Bool → G} {eps : ℕ} {ms : List ℕ}
+    {a : Bool → G} {eps bn : ℕ} {ms : List ℕ}
     (hpair : ∀ (lam : Bool) (P Q R S : List (GGT.RelLetter G Bool)) (i j : ℕ),
       GGT.RelLetter.listVal S = GGT.RelLetter.listVal P *
           GGT.RelLetter.listVal Q * GGT.RelLetter.listVal R →
@@ -57,7 +57,7 @@ theorem mixed_data_of_found_match_inv {D : GGT.RelGenSet G Bool}
       (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
         GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
         y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - 0
+        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
           ≤ ((wordDist D.alphabet.carrier
               (GGT.OsinComponents.vertex (1 : G)
                 (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
@@ -108,7 +108,7 @@ theorem mixed_data_of_found_match_inv {D : GGT.RelGenSet G Bool}
     (hqg : ∀ t : ℕ, t < 4 → ∀ z y : ℕ,
       GGT.OsinComponents.fourGonCut py u pz u' t ≤ z → z ≤ y →
       y ≤ GGT.OsinComponents.fourGonCut py u pz u' (t + 1) →
-      ((y - z : ℕ) : ℝ) / 1 - 0
+      ((y - z : ℕ) : ℝ) / 1 - (bn : ℝ)
         ≤ ((wordDist D.alphabet.carrier
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)
@@ -177,7 +177,7 @@ theorem mixed_data_of_found_match_inv {D : GGT.RelGenSet G Bool}
 The gap is bounded by pinning at both ends rather than by the connector-pair
 estimate, which is why the slack is `blockSeparation` and not `b + 2`. -/
 theorem false_of_mixedMatch_found_inv {D : GGT.RelGenSet G Bool} {a : Bool → G}
-    {eps : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
+    {eps bn : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
     (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base)
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
@@ -193,7 +193,7 @@ theorem false_of_mixedMatch_found_inv {D : GGT.RelGenSet G Bool} {a : Bool → G
       (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
         GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
         y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - 0
+        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
           ≤ ((wordDist D.alphabet.carrier
               (GGT.OsinComponents.vertex (1 : G)
                 (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
@@ -233,7 +233,7 @@ theorem false_of_mixedMatch_found_inv {D : GGT.RelGenSet G Bool} {a : Bool → G
     (hqg : ∀ t : ℕ, t < 4 → ∀ z y : ℕ,
       GGT.OsinComponents.fourGonCut py u pz u' t ≤ z → z ≤ y →
       y ≤ GGT.OsinComponents.fourGonCut py u pz u' (t + 1) →
-      ((y - z : ℕ) : ℝ) / 1 - 0
+      ((y - z : ℕ) : ℝ) / 1 - (bn : ℝ)
         ≤ ((wordDist D.alphabet.carrier
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') z)

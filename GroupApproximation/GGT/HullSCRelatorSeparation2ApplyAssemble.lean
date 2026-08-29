@@ -76,7 +76,7 @@ variable {G : Type u} [Group G]
 Both members rotations of the relator.  The polygon's output is taken at a fixed
 radius so that the design's clauses can be stated at the same one. -/
 theorem listVal_conj_of_alignedMatch_assembled {D : GGT.RelGenSet G Bool}
-    {a : Bool → G} {eps : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
+    {a : Bool → G} {eps bn : ℕ} {ms : List ℕ} (hnodup : ms.Nodup)
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
@@ -93,7 +93,7 @@ theorem listVal_conj_of_alignedMatch_assembled {D : GGT.RelGenSet G Bool}
       (∀ t : ℕ, t < 4 → ∀ x y : ℕ,
         GGT.OsinComponents.fourGonCut P Q R S t ≤ x → x ≤ y →
         y ≤ GGT.OsinComponents.fourGonCut P Q R S (t + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - 0
+        ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
           ≤ ((wordDist D.alphabet.carrier
               (GGT.OsinComponents.vertex (1 : G)
                 (P ++ Q ++ R ++ GGT.OsinComponents.revWord S) x)
@@ -136,7 +136,7 @@ theorem listVal_conj_of_alignedMatch_assembled {D : GGT.RelGenSet G Bool}
     (hqg : ∀ t : ℕ, t < 4 → ∀ x y : ℕ,
       GGT.OsinComponents.fourGonCut py u pz u' t ≤ x → x ≤ y →
       y ≤ GGT.OsinComponents.fourGonCut py u pz u' (t + 1) →
-      ((y - x : ℕ) : ℝ) / 1 - 0
+      ((y - x : ℕ) : ℝ) / 1 - (bn : ℝ)
         ≤ ((wordDist D.alphabet.carrier
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') x)
