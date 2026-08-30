@@ -206,66 +206,8 @@ repairs all cutdowns inside their hereditary supports.  If pieces carrying
 the same new label are orthogonal across original colours, they merge into
 one global order-zero map.  This bypasses the scalar depth floor and reduces
 the universal extension problem to constructing these coupled partitions
-from ideal--quotient geometry.  However, a second obstruction shows that
-partitioning the **whole multiplier unit** is still too strong:
-`stw82-traces-block-unit-coupled-colour-reduction` proves by a tracial
-double count that `d` such labels can cover at most `d` original colours.
-Thus the full-unit version cannot reduce colours in a tracial middle
-algebra.
-
-The support-relative repair is now also exact.
-`stw82-support-local-coupled-covers-merge-colours` replaces the full-unit
-partition identity by the strictly weaker requirement that the sum of one
-colour's cutters act as the identity only on its order-zero support.  The
-same cone-projective repair and orthogonal-band merger work.  This removes
-the tracial counting barrier and identifies the sharp remaining global
-hinge: construct same-labelled orthogonal cutters which cover each outgoing
-support, not the whole multiplier unit, from arbitrary extension geometry.
-
-Two new capacity results delimit that hinge.  Exact norm coverage charges
-the whole range projection of each outgoing support, not merely its tracial
-amplitude: `stw82-spectral-support-hall-capacity` proves weighted Hall
-inequalities for support projections and approximate inequalities for upper
-spectral cuts.  Complementary scalar supports already show that total
-amplitude at most `max(p,q)+1` is not sufficient.  Even all such support
-trace inequalities are not sufficient.  By
-`stw82-minimal-support-coupled-cover-number`, arbitrary operator-valued
-subdivision of minimal supports has exact label capacity equal to the
-chromatic number of their nonorthogonality graph.  Three rank-one supports
-in `M_2` pass every two-label span-capacity inequality but form a triangle
-and require three labels.  These are fixed-family local obstructions, not
-extension counterexamples: a universal proof may still replace the outgoing
-maps.  It must, however, control noncommutative support incidence in addition
-to tracial capacity.
-
-There is now a positive replacement theorem which can remove that incidence
-obstruction.  `stw82-zero-dimensional-central-supports-recolour-pointwise`
-shows that, when the outgoing supports lie in a common zero-dimensional
-abelian multiplier algebra centralizing all outgoing ranges, their optimal
-asymptotic coupled-cover number is the maximum number active at one spectral
-point.  A clopen refinement permits the label matching to vary from block to
-block, and central projection cutdowns preserve order zero exactly.  Thus
-three supports whose global overlap graph is a triangle can split and
-recombine into two colours when its three edges occur on different central
-atoms.  Any nuclear approximation scheme with pointwise multiplicity at
-most `r+1` therefore proves nuclear dimension at most `r`.  What remains
-unknown for arbitrary extensions is whether their outgoing approximations
-can always be replaced by ones with this central zero-dimensional geometry;
-the tracial Hall bounds alone do not provide such a replacement.
-
-Finite-dimensional support spectra now also have an explicit replacement
-bound.  `stw82-finite-dimensional-central-spectrum-colour-bound` combines
-Ostrand's discrete-family characterization of covering dimension with the
-pointwise support matching above.  If the common compact metrizable support
-spectrum has dimension at most `n` and at most `m` outgoing supports are
-active at any point, the family splits, to arbitrary accuracy, into
-`(n+1)m` order-zero colours.  The partition-of-unity omission error is still
-the chosen tolerance, with no cover-cardinality loss, while discreteness
-makes equal-labelled cutters exactly orthogonal.  Thus any nuclear
-approximation scheme with this geometry gives
-`dim_nuc(A)<=(n+1)m-1`.  This is a rigorous positive selection theorem, not
-an assertion that arbitrary essential extensions admit the required common
-support algebra or that the product bound is sharp for `n>0`.
+from ideal--quotient geometry.  That construction is not yet known in an
+arbitrary extension.
 
 The one-dimensional product loss can now be removed for a concrete support
 geometry.  `stw82-tree-connected-supports-have-optimal-covers` proves that
@@ -281,5 +223,5 @@ of this kind with depth at most `r+1` prove nuclear dimension at most `r`,
 improving the general one-dimensional central-spectrum bound from `2m` to
 `m`.  For connected cozero supports the common-centralizer hypothesis remains
 unnecessary, recovering the earlier theorem.  This is an identifiable
-positive class, not a claim that arbitrary essential extensions have compact
-R-tree support geometry.
+positive class, not a claim that arbitrary essential extensions have
+compact R-tree support geometry.
