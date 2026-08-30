@@ -73,22 +73,28 @@ This is **STW Problem LXIII and remains open at the audit boundary
   rank theorem.  Thus every `B(H)`, without a separability assumption on
   `H`, has uniqueness.  Product closure gives the same result for every
   atomic type-I von Neumann algebra.
+- **Every von Neumann codomain is eliminated.**
+  `stw63-all-von-neumann-codomains-have-uniqueness` places the two ranges in
+  their countably generated W-star envelope.  Elliott--Zsido decompose that
+  envelope as a direct product of separable-predual W-star algebras;
+  separably acting uniqueness and product closure then give norm approximate
+  unitary equivalence in the original von Neumann algebra.  Hence
+  `stw63-counterexamples-invisible-in-all-vn-shadows` rules out every von
+  Neumann shadow, with no type, center, predual, or cardinality restriction.
 - **All von Neumann rank and norm-ideal invariants collapse.**
   `stw63-all-vn-rank-and-ideal-data-collapse` proves, without any countability
   or type assumption, that the two embeddings have equal elementwise
   von Neumann rank and that every nonzero image element is norm-full.  Hence
-  the remaining W-star boundary is precisely a missing nonseparable
-  rank-to-norm-uniqueness theorem on properly infinite semifinite assembly,
-  including non-countably-decomposable type-II-infinity and diffuse central
-  pieces; see `stw63-remaining-vn-boundary-is-semifinite-nonsep`.
+  this independently explains why projection cardinality and proper norm
+  ideals cannot obstruct the universal von Neumann theorem.
 - **Sigma-finite type-II-infinity factors need not have separable predual.**
   `stw63-sigmafinite-type2inf-factor-uniqueness` combines the global rank
   collapse with Li--Hadwin--Liu's factor-specific Corollary 1, whose target
   hypothesis is sigma-finiteness rather than separable action.  It therefore
   closes every countably decomposable type-II-infinity factor, and product
-  closure handles arbitrary products of such factors.  Only genuinely
-  non-countably-decomposable factors and non-product diffuse central
-  assemblies remain in this lane.
+  closure handles arbitrary products of such factors.  The countably
+  generated-envelope theorem above then removes the remaining factor and
+  diffuse-center restrictions by a different argument.
 - **Asymptotic upgrade.**  Even after approximate uniqueness, coherent paths
   are a separate issue.  `approximate-to-asymptotic-via-central-paths`
   isolates a sufficient quantitative contraction property for the transition
