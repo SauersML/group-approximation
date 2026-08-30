@@ -43,3 +43,15 @@ IX(1) has a positive answer when the given faithful trace belongs to the
 weak-star closed convex hull of the MF traces.  The proof selects finitely
 many trace models to norm each prescribed finite packet and block-sums their
 far-out coordinates; it uses neither the UCT nor Problem VII or X(1).
+
+**Unconditional quasidiagonal-extension subclass.**
+`stw09-local-mf-corner-traces-across-qd-extension-force-qd` gives a distinct
+local-to-global criterion.  Suppose an ideal `I` has an increasing
+quasicentral approximate unit of projections `(p_n)`, the normalized
+restrictions of the given faithful trace to every nonzero corner
+`p_n A p_n` are MF traces, and `A/I` is quasidiagonal.  Faithfulness makes
+each corner algebra MF; nuclearity makes it quasidiagonal.  Compression to a
+large `p_n` and the quotient map then give two u.c.p. matrix blocks which
+together recover the ambient norm.  The corner traces need not extend
+tracially to `A`, so this case is not a reformulation of the weak-star
+closed-convex-hull criterion for ambient MF traces.
