@@ -24,7 +24,7 @@ YxzYX, xzYXY, Yxyxz, XYxzY, xYxzYx, XzYXYX.
 Then
 
 ```text
-kappaB=1/(64*sqrt(3000))=0.000285272165367274...
+kappaB=1/(5*sqrt(3000)+2)=0.0036250103839215835...
 ```
 
 makes `(Q_B,kappaB)` a Kazhdan pair for real orthogonal representations of
@@ -32,12 +32,14 @@ makes `(Q_B,kappaB)` a Kazhdan pair for real orthogonal representations of
 normalized `S_B`-average contracts the moving subspace by at most
 
 ```text
-1-kappaB^2/68 = 1-1/835584000.
+1-kappaB^2/68
+  =1-1/(68*(5*sqrt(3000)+2)^2).
 ```
 
 For comparison, the already-packaged generic declaration
-`ExactHodgeCertificate.Certificate.isKazhdanPair` gives the weaker but still
-explicit fallback tolerance
+`ExactHodgeCertificate.Certificate.isKazhdanPair`, followed by the
+hard-coded affine bridge, gives the weaker but still explicit fallback
+tolerance
 
 ```text
 (1-sqrt(11999/12000))/384000
