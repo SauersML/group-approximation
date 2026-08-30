@@ -80,6 +80,30 @@ theorem norm_defect_le (Wc : K →L[ℂ] H) (hWc : ‖Wc‖ ≤ 1) (S : H →L[�
       _ = ‖S‖ := one_mul _
   linarith
 
+omit [CompleteSpace K] in
+/-- Compactness extends from a dense sequence when the defect is additive and
+uniformly norm-controlled.  Keeping this closure argument separate gives its
+elaboration an independent heartbeat budget. -/
+theorem isCompactOperator_of_dense_defect
+    {E : Type} [NormedAddCommGroup E] (d : ℕ → E) (hd : DenseRange d)
+    (D : E → (K →L[ℂ] H))
+    (hcompact : ∀ k, IsCompactOperator (D (d k)))
+    (hsub : ∀ a b, D a - D b = D (a - b))
+    (hbound : ∀ c, ‖D c‖ ≤ 2 * ‖c‖) :
+    ∀ a, IsCompactOperator (D a) := by
+  intro a
+  have hmem : D a ∈ closure {T : K →L[ℂ] H | IsCompactOperator T} := by
+    rw [Metric.mem_closure_iff]
+    intro ε hε
+    obtain ⟨k, hk⟩ := Metric.denseRange_iff.mp hd a (ε / 3) (by positivity)
+    refine ⟨D (d k), hcompact k, ?_⟩
+    rw [dist_eq_norm, hsub a (d k)]
+    have hlt : ‖a - d k‖ < ε / 3 := by
+      simpa only [dist_eq_norm] using hk
+    have hb := hbound (a - d k)
+    nlinarith
+  rwa [isClosed_setOf_isCompactOperator.closure_eq] at hmem
+
 /-- **(V4) over block-diagonal representations, with the hypotheses the
 construction consumes**: a representation decomposing into finite-dimensional
 invariant blocks is contained, modulo the compacts, in any essential subalgebra
@@ -95,7 +119,6 @@ def SeparableBlockDiagonalAbsorptionStatement : Prop :=
           ∃ W : K →L[ℂ] H, ContinuousLinearMap.adjoint W ∘L W = 1 ∧
             ∀ a : ↥A, IsCompactOperator ((a : H →L[ℂ] H) ∘L W - W ∘L rho a)
 
-set_option maxHeartbeats 800000 in
 /-- **The block-diagonal case of (V4), proved.** -/
 theorem separableBlockDiagonalAbsorption_of_intertwiningStep
     (hIS : IntertwiningStepStatement) :
@@ -182,26 +205,9 @@ theorem separableBlockDiagonalAbsorption_of_intertwiningStep
       = ((a - b : ↥A) : H →L[ℂ] H) ∘L Wc - Wc ∘L rho (a - b)
     rw [hcoe, map_sub]
     exact defect_sub Wc _ _ _ _
-  have hDbound : ∀ c : ↥A, ‖Dm c‖ ≤ 2 * ‖(c : H →L[ℂ] H)‖ := fun c ↦
+  have hDbound : ∀ c : ↥A, ‖Dm c‖ ≤ 2 * ‖c‖ := fun c ↦
     norm_defect_le Wc hWcnorm _ _ (hrho c)
-  -- density
-  intro a
-  have hmem : Dm a ∈ closure {T : K →L[ℂ] H | IsCompactOperator T} := by
-    rw [Metric.mem_closure_iff]
-    intro ε hε
-    obtain ⟨k, hk⟩ := Metric.denseRange_iff.mp hd a (ε / 3) (by positivity)
-    refine ⟨Dm (d k), hcompact_d k, ?_⟩
-    rw [dist_eq_norm, hDlin a (d k)]
-    have hlt : ‖(a : H →L[ℂ] H) - (d k : H →L[ℂ] H)‖ < ε / 3 := by
-      rw [dist_eq_norm] at hk
-      exact hk
-    have hcoe : ((a - d k : ↥A) : H →L[ℂ] H)
-        = (a : H →L[ℂ] H) - (d k : H →L[ℂ] H) := rfl
-    calc ‖Dm (a - d k)‖ ≤ 2 * ‖((a - d k : ↥A) : H →L[ℂ] H)‖ := hDbound _
-      _ = 2 * ‖(a : H →L[ℂ] H) - (d k : H →L[ℂ] H)‖ := by rw [hcoe]
-      _ < 2 * (ε / 3) := by linarith
-      _ < ε := by linarith
-  rwa [isClosed_setOf_isCompactOperator.closure_eq] at hmem
+  exact isCompactOperator_of_dense_defect d hd Dm hcompact_d hDlin hDbound
 
 /-- **The conclusion embeds the source isometrically.**  Carried over from the
 retired statement, since the check is about the conclusion and not about the
