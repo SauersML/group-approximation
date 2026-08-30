@@ -2,7 +2,7 @@
 rg: 2
 id: stw96-countable-zstable-filtrations-have-generators-proof
 kind: route
-title: Glue Z-stability through successor extensions and countable limit stages
+title: Glue Z-stability through successor extensions and stabilize uncountable-cofinality limits
 target: stw96-countable-zstable-filtrations-have-generators
 requires: []
 ---
@@ -20,13 +20,38 @@ hypothesis.  Toms--Winter, [Theorem
 quotient to a separable extension.  The Jiang--Su algebra has the required
 properties, so `I_(alpha+1)` is `Z`-stable.
 
-Let `beta` be a nonzero limit stage.  Since `beta` is a countable ordinal, it
-has an increasing cofinal sequence `(alpha_n)`.  Continuity of the filtration
-identifies `I_beta` with the sequential inductive limit of the inclusions
-among the `I_(alpha_n)`.  Each term is `Z`-stable by induction, and
-Toms--Winter, Corollary 3.4, says that `Z`-stability passes to sequential
-inductive limits of separable C*-algebras.  Hence `I_beta` is `Z`-stable.
-This completes the induction and proves that `A = I_gamma` is `Z`-stable.
+Let `beta` be a nonzero limit stage.  If `cf(beta)=omega`, choose an increasing
+cofinal sequence `(alpha_n)`.  Continuity of the filtration identifies
+`I_beta` with the sequential inductive limit of the inclusions among the
+`I_(alpha_n)`.  Each term is `Z`-stable by induction, and Toms--Winter,
+Corollary 3.4, says that `Z`-stability passes to sequential inductive limits
+of separable C*-algebras.  Hence `I_beta` is `Z`-stable.
+
+Suppose instead that `cf(beta)>omega`.  The separable algebra `I_beta` has a
+dense sequence `(x_n)`.  For every `n,k`, continuity lets us choose
+
+```text
+y_(n,k) in I_(alpha(n,k)),    alpha(n,k)<beta,
+norm(x_n-y_(n,k))<1/k.
+```
+
+Set
+
+```text
+delta=sup_(n,k)(alpha(n,k)+1).
+```
+
+Uncountable cofinality gives `delta<beta`.  Every `y_(n,k)` lies in
+`I_delta`, so closedness of `I_delta` and approximation at all precisions put
+every `x_n` in `I_delta`.  Density now gives
+
+```text
+I_beta=I_delta.
+```
+
+Thus this limit stage has actually stabilized at an earlier stage and is
+`Z`-stable by induction.  This completes the transfinite induction for an
+arbitrary ordinal and proves that `A = I_gamma` is `Z`-stable.
 Hannes Thiel, [Theorem
 5.3](https://arxiv.org/abs/2006.08404), now applies to the separable,
 real-rank-zero algebra `A` and gives generator rank one, with generators a

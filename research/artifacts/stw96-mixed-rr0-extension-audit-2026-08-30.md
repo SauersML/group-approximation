@@ -7,7 +7,7 @@ nowhere-scattered, real-rank-zero case in which the algebra has a nonzero
 purely infinite simple subquotient but is not itself purely infinite.  The
 mixed case is not intrinsically an obstruction: every such algebra with
 finitely many ideals, and more generally every such algebra admitting a
-continuous countable composition series, has generator rank one.
+continuous ordinal composition series, has generator rank one.
 
 The useful operation is to glue `Z`-stability along the ideal filtration and
 invoke real rank zero only after the gluing is complete.  Trying to glue
@@ -46,12 +46,15 @@ search removes the ideal-filtration boundary below.
 
 ## New reduction
 
-For a continuous filtration indexed by a countable ordinal, successor stages
-are handled by extension permanence of `Z`-stability.  At a limit stage,
-countability supplies a cofinal sequence, so continuity presents that ideal as
-a sequential inductive limit and Corollary 3.4 applies.  Transfinite induction
-therefore makes the total algebra `Z`-stable.  If the total algebra has real
-rank zero, Thiel's theorem gives generator rank one.
+For a continuous filtration indexed by an arbitrary ordinal, successor stages
+are handled by extension permanence of `Z`-stability.  A limit of countable
+cofinality is a sequential inductive limit, so Corollary 3.4 applies.  At a
+limit of uncountable cofinality, separability forces actual stabilization:
+choose approximants at every precision to a countable dense set, and the
+supremum of their stage indices is still below the limit ordinal.  The limit
+ideal therefore equals one earlier ideal.  Transfinite induction makes the
+total algebra `Z`-stable, and real rank zero lets Thiel's theorem give
+generator rank one.
 
 In the nowhere-scattered finite-nuclear-dimension setting, every simple layer
 is non-elementary and of finite nuclear dimension, hence `Z`-stable by
@@ -62,7 +65,7 @@ their type does not enter the induction.
 
 Any counterexample in the finite-nuclear-dimension, nowhere-scattered,
 real-rank-zero class must have infinitely many ideals and must fail to admit a
-continuous countable composition series by simple subquotients.  In
+continuous ordinal composition series by simple subquotients.  In
 particular, merely inserting a purely infinite simple subquotient into a
 finite extension cannot produce a counterexample.
 
