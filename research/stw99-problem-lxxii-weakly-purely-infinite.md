@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw72-transfinite-composition-collapse-audit-2026-08-30.md
   - research/artifacts/stw72-chain-ideal-cover-collapse-audit-2026-08-30.md
   - research/artifacts/stw72-purely-infinite-radical-audit-2026-08-30.md
+  - research/artifacts/stw72-morita-hereditary-core-audit-2026-08-30.md
 ---
 
 **Problem LXXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -121,3 +122,23 @@ infinite—a contradiction.  Thus `A` is purely infinite
 language, every nonempty closed subspace need only contain a nonempty
 relatively open chain subspace.  This permits the useful patch to appear
 only after quotienting and so is not an open-cover hypothesis on `A`.
+
+The radical-free obstruction can be localized further than ideals.  Every
+nonzero hereditary subalgebra of `A/P_pi(A)` is weakly purely infinite,
+non-purely-infinite, and itself has zero purely infinite radical: a purely
+infinite ideal in such a corner would be full hereditary in a nonzero purely
+infinite ideal of the ambient algebra.  Hence any counterexample yields a
+stable sigma-unital counterexample `Her(b) tensor K` with the same property.
+Moreover, if `n` is the weak-pure exponent, every nonzero hereditary corner
+contains `x` with
+
+```text
+x < 2x <= ... <= nx = infinity x.
+```
+
+Thus finite saturation and failure of Cuntz idempotence coexist locally in
+every corner, and no corner can conceal a Global-Glimm or chain-ideal patch
+(`stw72-morita-hereditary-radical-core`).  The remaining quotient seam is
+sharp: a purely infinite patch can still be created in a quotient by a
+non-purely-infinite lower ideal, so radical-freeness is not asserted for all
+quotients.
