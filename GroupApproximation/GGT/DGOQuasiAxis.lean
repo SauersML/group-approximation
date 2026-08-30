@@ -158,6 +158,16 @@ def IsQuasiGeodesicAxis (lam c : ℝ) (h : G) (x : X) (f : ℝ → X) : Prop :=
     |p.coordinate - q.coordinate| / lam - c ≤ dist p.value q.value ∧
       dist p.value q.value ≤ lam * |p.coordinate - q.coordinate| + c
 
+/-- A unit-speed geodesic parametrization of an axis on which `h` acts by
+translation through the fundamental displacement `d(x,hx)`.  This is the
+axial case treated explicitly in the proof of Bestvina--Fujiwara,
+Proposition 6. -/
+def IsParametrizedAxis (h : G) (x : X) (a : ℝ → X) : Prop :=
+  a 0 = x ∧
+    (∀ s t : ℝ, dist (a s) (a t) = |s - t|) ∧
+    ∀ (n : ℤ) (t : ℝ),
+      (h ^ n) • a t = a (t + (n : ℝ) * dist x (h • x))
+
 /-- An oriented segment of a translated concatenated axis.  Its path length
 is the difference of the two arclength coordinates. -/
 structure AxisSegment (h : G) (x : X) (f : ℝ → X) where
@@ -222,6 +232,11 @@ structure PowerAxisSegment (h : G) (x : X) where
 namespace PowerAxisSegment
 
 variable {h : G} {x : X}
+
+/-- The unit-speed path on a translated parametrized axis beginning at the
+initial vertex of a power-axis segment. -/
+def parametrizedPath (a : ℝ → X) (p : PowerAxisSegment h x) : ℝ → X :=
+  fun t => p.translate • a ((p.start : ℝ) * dist x (h • x) + t)
 
 /-- Power vertex on the translated axis at an arbitrary integer coordinate. -/
 def vertex (p : PowerAxisSegment h x) (n : ℤ) : X :=
@@ -308,6 +323,53 @@ theorem length_eq_steps_mul (p : PowerAxisSegment h x) :
 /-- The path length of an oriented power-axis segment is nonnegative. -/
 theorem length_nonneg (p : PowerAxisSegment h x) : 0 ≤ p.length := by
   exact mul_nonneg (by exact_mod_cast sub_nonneg.mpr p.start_le_stop) dist_nonneg
+
+/-- A parametrized axis restricts to a geodesic path of the recorded segment
+length on every translated power-axis segment. -/
+theorem isGeodesicSegment_parametrizedPath
+    (hiso : IsIsometricAction G X) {a : ℝ → X}
+    (ha : IsParametrizedAxis h x a) (p : PowerAxisSegment h x) :
+    IsGeodesicSegment (parametrizedPath a p) 0 p.length := by
+  intro s hs t ht
+  dsimp [parametrizedPath]
+  rw [hiso, ha.2.1]
+  congr 1
+  ring
+
+/-- Integer multiples of the fundamental displacement on a parametrized
+segment are exactly its translated power vertices. -/
+theorem parametrizedPath_eq_vertex
+    {a : ℝ → X} (ha : IsParametrizedAxis h x a)
+    (p : PowerAxisSegment h x) (n : ℤ) :
+    parametrizedPath a p ((n : ℝ) * dist x (h • x)) =
+      p.vertex (p.start + n) := by
+  have haxis :
+      a (((p.start + n : ℤ) : ℝ) * dist x (h • x)) =
+        (h ^ (p.start + n)) • x := by
+    simpa [ha.1] using (ha.2.2 (p.start + n) 0).symm
+  dsimp [parametrizedPath]
+  rw [show (p.start : ℝ) * dist x (h • x) +
+      (n : ℝ) * dist x (h • x) =
+      ((p.start + n : ℤ) : ℝ) * dist x (h • x) by
+        push_cast
+        ring]
+  rw [haxis]
+  rw [vertex, mul_smul]
+
+/-- The translated parametrized path starts at the segment's initial vertex. -/
+theorem parametrizedPath_zero
+    {a : ℝ → X} (ha : IsParametrizedAxis h x a)
+    (p : PowerAxisSegment h x) :
+    parametrizedPath a p 0 = p.initial := by
+  simpa [initial, vertex] using parametrizedPath_eq_vertex ha p 0
+
+/-- The translated parametrized path ends at the segment's terminal vertex. -/
+theorem parametrizedPath_length
+    {a : ℝ → X} (ha : IsParametrizedAxis h x a)
+    (p : PowerAxisSegment h x) :
+    parametrizedPath a p p.length = p.terminal := by
+  simpa [length, terminal, vertex] using
+    parametrizedPath_eq_vertex ha p (p.stop - p.start)
 
 /-- A quasi-geodesic lower bound on the axis gives the corresponding metric
 displacement lower bound for every translated power-vertex segment. -/
@@ -692,6 +754,62 @@ def HasUniformVertexBlockFellowTravel (B : ℝ) (h : G) (x : X) : Prop :=
       ∃ J : ℤ, ∀ n : ℕ, n ≤ R →
         dist (p.vertex (p.start + (n : ℤ)))
           (q.vertex (q.start + J + (n : ℤ))) ≤ C
+
+/-- Bestvina--Fujiwara Proposition 6 in the axial case: oriented-close
+geodesic-axis segments contain synchronous blocks of uniformly close power
+vertices.  The endpoint fellow-travelling estimate is DGO Lemma 6.4's thin
+quadrilateral argument. -/
+theorem hasUniformVertexBlockFellowTravel_of_parametrizedAxis
+    {δ B : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) {a : ℝ → X} (ha : IsParametrizedAxis h x a)
+    (hstep : 0 < dist x (h • x)) :
+    HasUniformVertexBlockFellowTravel B h x := by
+  let C : ℝ := 3 * B + 12 * δ
+  have hC : 0 ≤ C := by
+    dsimp [C]
+    linarith
+  refine ⟨C, hC, ?_⟩
+  intro R
+  let L : ℝ := ((R : ℝ) + 1) * dist x (h • x)
+  have hL : 0 < L := by
+    dsimp [L]
+    positivity
+  refine ⟨L, hL, ?_⟩
+  intro p q hpLength hqLength hclose
+  let P : ℝ → X := parametrizedPath a p
+  let Q : ℝ → X := parametrizedPath a q
+  have hP : IsGeodesicSegment P 0 p.length := by
+    exact isGeodesicSegment_parametrizedPath hiso ha p
+  have hQ : IsGeodesicSegment Q 0 q.length := by
+    exact isGeodesicSegment_parametrizedPath hiso ha q
+  have h0 : dist (P 0) (Q 0) ≤ B := by
+    rw [show P 0 = p.initial by exact parametrizedPath_zero ha p,
+      show Q 0 = q.initial by exact parametrizedPath_zero ha q]
+    exact hclose.1
+  have h1 : dist (P p.length) (Q q.length) ≤ B := by
+    rw [show P p.length = p.terminal by exact parametrizedPath_length ha p,
+      show Q q.length = q.terminal by exact parametrizedPath_length ha q]
+    exact hclose.2
+  refine ⟨0, ?_⟩
+  intro n hn
+  have hnR : (n : ℝ) ≤ (R : ℝ) := by exact_mod_cast hn
+  have hnL : (n : ℝ) * dist x (h • x) ≤ L := by
+    have hmul := mul_le_mul_of_nonneg_right hnR hstep.le
+    dsimp [L]
+    nlinarith
+  have hcloseAt := dist_same_parameter_le_of_geodesic_endpoints_close
+    hδ hδ0 hgeo hB hP p.length_nonneg hQ q.length_nonneg h0 h1
+    (t := (n : ℝ) * dist x (h • x))
+    ⟨mul_nonneg (Nat.cast_nonneg n) hstep.le, hnL.trans hpLength⟩
+    ⟨mul_nonneg (Nat.cast_nonneg n) hstep.le, hnL.trans hqLength⟩
+  rw [show P ((n : ℝ) * dist x (h • x)) =
+      p.vertex (p.start + (n : ℤ)) by
+        exact parametrizedPath_eq_vertex ha p (n : ℤ),
+    show Q ((n : ℝ) * dist x (h • x)) =
+      q.vertex (q.start + (n : ℤ)) by
+        exact parametrizedPath_eq_vertex ha q (n : ℤ)] at hcloseAt
+  simpa only [zero_add, add_zero, add_assoc] using hcloseAt
 
 /-- A uniform fellow-travelling vertex block supplies all asynchronous
 monotone samples required by the WPD pigeonhole argument. -/
