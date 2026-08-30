@@ -150,3 +150,33 @@ commute with the range.  This proves LXXVII for every `B(H)` target without a
 nuclear-dimension assumption.  The imported boundary is Voiculescu's
 noncommutative Weyl--von Neumann absorption theorem; the central-isometry
 calculation is internal.
+
+## Product-coordinate comparison mechanism
+
+Finite nuclear dimension gives a positive class beyond AF range, `B(H)`
+targets, and the zero-colour support criteria.  Let
+
+```text
+B=product_lambda B_lambda,
+```
+
+where every `B_lambda` is unital, simple, and has almost-unperforated Cuntz
+semigroup.  If the product unit is properly infinite, then so is every
+coordinate unit.  This excludes normalized coordinate quasitraces, and the
+simple almost-unperforated dichotomy makes every factor purely, hence
+strongly purely, infinite.  Finite nuclear dimension makes each coordinate
+map nuclear, so the existing nuclear-map absorption theorem makes every
+coordinate map O-infinity-stable.
+
+The new step is the reverse passage from coordinates to the product.  For a
+fixed finite domain packet and tolerance, choose centralizing orthogonal
+isometries in every coordinate at half that tolerance.  Their product is an
+exact pair of orthogonal isometries, and the product norm is the supremum of
+the coordinate norms.  Thus the same tolerance holds uniformly and the
+finite-set centralization defect in the product vanishes.
+
+This argument works for arbitrary, including uncountable, products and does
+not assume any central splitting of the outgoing nuclear-dimension colours.
+It also needs only proper infiniteness of the image unit, rather than of every
+nonzero image positive.  Arbitrary products of simple purely infinite
+algebras give concrete nonsimple and generally nonseparable examples.
