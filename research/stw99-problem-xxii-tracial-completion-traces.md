@@ -159,6 +159,20 @@ metrizability nor a common ambient factor and covers every compact
 scattered boundary as well as perfect zero-dimensional boundaries.  The
 remaining Bauer frontier begins in positive covering dimension.
 
+For positive-dimensional arbitrary factorial bundles, the remaining input
+is now separated cleanly from the topological colouring step.
+`stw22-intrinsic-local-replication-colouring-reduction` shows that no common
+ambient factor, fixed comparison corners, or local trivializations are needed
+after exact local replication tuples exist.  Over a `d`-dimensional compact
+metrizable base, a `(d+1)`-coloured refinement gives a range bound `d+1`
+independent of the replication number and kills every gap trace.  In
+dimension one this is a two-colour bound.  The intrinsic weighted correction
+lemma already proves lower semicontinuity of the fibrewise solution relation,
+but its existential polar-fill step does not select an exact tuple
+continuously on a neighbourhood.  Promoting that lower semicontinuity to a
+bundle-valued nonconvex local selection--or exhibiting its failure--is the
+precise one-dimensional frontier.
+
 ## Attempts
 
 For a Bauer-style central bundle, disintegrate an extreme trace over the

@@ -54,6 +54,15 @@ W\*-bundle with all fibres `R` is globally trivial, in every base
 dimension.  The chartwise argument is retained as cocycle-local proof
 technology.
 
+For arbitrary factorial bundles over finite-dimensional compact metrizable
+bases, `stw22-intrinsic-local-replication-colouring-reduction` removes all
+global-corner and local-triviality assumptions from the colouring step.  Its
+only hypothesis is an exact continuous local tuple of orthogonal weighted
+copies.  The existing intrinsic correction lemma makes the corresponding
+fibre solution relation lower semicontinuous, but does not continuously
+select its polar-fill corrections on a positive-dimensional neighbourhood.
+This bundle-valued local selection is now the exact one-dimensional hinge.
+
 ## Attempts
 
 * **Central disintegration (general Bauer case).**  For `X` Bauer, `M` is a
