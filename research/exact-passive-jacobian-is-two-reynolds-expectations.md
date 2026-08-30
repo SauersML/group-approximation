@@ -2,7 +2,7 @@
 rg: 2
 id: exact-passive-jacobian-is-two-reynolds-expectations
 kind: claim
-title: The exact passive Jacobian is a pair of order-three Reynolds expectations
+title: The exact passive Jacobian is output-isometric to a constrained pair of order-three Reynolds expectations
 distinct_from:
   iwahori-uniform-infinitesimal-rigidity: that proves a uniform Hilbert-space quotient gap after assembling the two modular vertices; this identifies the concrete operator-space map whose cb inverse is still required.
   full-core-central-relative-tangent-is-zero-near-first-cubic: that eliminates the overcentralized tangent sector; this computes the Jacobian on the genuine fixed-R tangent space.
@@ -23,6 +23,15 @@ The genuine relative tangent space is
 ```text
 E_(R,X)={h:h^*=-h, [h,R]=0, XhX=-h}.                   (EPJ2)
 ```
+
+For completely bounded norms, use the complexified tangent
+
+```text
+E_(R,X)^C={h:[h,R]=0, XhX=-h};                         (EPJ2C)
+```
+
+the space in `(EPJ2)` is its skew-adjoint real part, and the derivative
+below extends complex-linearly to `(EPJ2C)`.
 
 For the chart `X_h(t)=X exp(th)`, define
 
@@ -56,14 +65,26 @@ E_B=(I+Ad_B+Ad_B^2)/3                                  (EPJ5)
 ```
 
 are trace-preserving conditional expectations onto `{A}'` and `{B}'`.
-Thus, up to two unitary complete isometries, the exact passive Jacobian is
-the column map
+Thus the exact passive Jacobian is literally the shifted column
 
 ```text
-h |-> 3(E_A h,E_B h)                                   (EPJ6)
+h |-> 3(E_A Ad_(S^(-2))h,E_B Ad_(S^(-1))h).            (EPJ6)
 ```
 
-restricted to `(EPJ2)`.  Its cb norm is universally bounded.  The open
+The two shifts cannot be discarded as separate changes of the one common
+domain variable.  There is instead a common-domain normal form.  Applying
+the codomain map `Ad_(S^2) direct_sum Ad_S` gives
+
+```text
+h |-> 3(E_(S^2 X)h,E_(S X R)h).                        (EPJ6A)
+```
+
+Indeed `S^2AS^(-2)=S^2X` and `SBS^(-1)=SXR`; both are
+order-three conjugates of `A` and `B`.  On the two-row maximum
+operator-space norm the codomain map is a complete isometry, and on the
+Hilbert direct sum it is unitary.  Hence `(EPJ6)` and `(EPJ6A)` have the
+same kernel and the same normal-inverse norms without moving the constrained
+tangent domain.  The cb norm is universally bounded.  The open
 operator-space content is exactly whether its gauge-normal inverse on its
 range has cb norm bounded uniformly over finite congruence endpoints and
 all multiplicity amplifications.
@@ -93,7 +114,8 @@ At a left-regular endpoint, the apparent remaining matrix-coefficient issue
 also collapses.  By
 `right-displacement-reynolds-scalar-cb-complete`,
 `B(l2(Q))` is the orthogonal sum of right-displacement fibers
-`M_f rho(z)`, `(EPJ6)` is the identical scalar column on every fiber, and
+`M_f rho(z)`, the original-coordinate column `(EPJ6)` is the identical
+scalar column on every fiber, and
 its Moore--Penrose inverse is a row of left convolutions.  The full cb norm
 of that row equals its ordinary infinity norm on the diagonal fiber.
 Accordingly the exact cb question is the scalar arithmetic inequality:
