@@ -104,3 +104,33 @@ original unit, while all lower matrix levels remain projectionless.
 This normal form isolates a genuinely finite, locally stationary descent
 failure: the remaining problem is not to create a projection at some matrix
 level, but to lower a persistent minimal level `m>=2` to level one.
+
+### Algebraic Cuntz semigroups close the hinge
+
+There is a comparison-free positive class not covered by the weak-omega or
+almost-unperforation routes.  Under the LXXIV projection hypothesis,
+
+```text
+A is purely infinite  iff  Cu(A) is algebraic.
+```
+
+For the new direction, algebraicity puts a nonzero compact class below every
+nonzero Cuntz class.  The standard compact-class realization theorem for
+simple C-star algebras represents that class by a stabilized projection.
+The LXXIV hypothesis makes this projection properly infinite; fullness then
+makes its class equal to the unit class.  It follows that every nonzero Cuntz
+class is the unit class, and in particular every nonzero hereditary
+subalgebra contains a projection.  The converse is immediate because the
+Cuntz semigroup of a unital purely infinite simple algebra has only zero and
+the compact unit class.
+
+The compact-class realization input is recalled explicitly in the
+preliminaries of Andrew Toms, *Homotopies of constant Cuntz class*,
+<https://arxiv.org/abs/2202.10428>, with the original references there.  No
+classification, nuclearity, separability, real-rank, stable-rank, comparison,
+or cancellation theorem enters the LXXIV-specific argument.
+
+This also sharpens the counterexample obstruction.  A positive element in
+the projectionless hereditary corner has a finite multiple equal to the unit
+class, but its entire lower interval contains no nonzero compact element.
+Thus every counterexample fails algebraicity at a single finite unit root.
