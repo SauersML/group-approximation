@@ -47,11 +47,29 @@ continuity.  The group specialization
 trace compatibility and proves simplicity when all subgroup stages are
 C*-simple.
 
-Since every group is the directed union of its finitely generated subgroups,
-the contrapositive says that failure of canonical strict comparison always
-reflects to a finitely generated subgroup.  The reflecting subgroup need not
-be C*-simple, so this is a finite-localization theorem rather than a reduction
-of XC to finitely generated C*-simple groups.
+The negative localization can be made strictly more concrete than this
+contrapositive.  Starting from `d_tau(a)<d_tau(b)` and `a not <=_Cu b`, choose
+a rational `r>0` so that `(a-4r)_+ not <=_Cu b` and
+
+```text
+d_tau(a)<d_tau((b-2r)_+).
+```
+
+Approximate the square roots by finite group-ring matrices and put
+`x=z*z`, `y=w*w`.  The perturbation lemma gives
+
+```text
+(a-4r)_+ <=_Cu (x-3r)_+ <=_Cu (a-2r)_+,
+(b-2r)_+ <=_Cu (y-r)_+  <=_Cu b.
+```
+
+Thus `X=(x-3r)_+` and `Y=(y-r)_+` retain both the strict dimension gap and
+noncomparison.  The finite supports of `z,w` generate a finitely generated
+subgroup, reduced inclusions preserve its canonical trace, and comparison in
+the subgroup would imply comparison in the ambient algebra.  Every failure
+therefore has a two-square, one-rational-cutoff group-ring certificate.  The
+support subgroup need not be C*-simple, so this is a sharp finite-localization
+theorem rather than a reduction of XC to finitely generated C*-simple groups.
 
 An explicit application not of tensor-product form is
 `SL_infinity(Z)=union_m SL_{2m+1}(Z)`.  Vigdorovich settles every odd-rank
