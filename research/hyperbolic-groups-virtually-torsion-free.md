@@ -29,4 +29,3 @@ separation problem.
   `hyperbolic-finite-residual-is-torsion-free`.  The reduction is exact; the
   remaining assertion is open.  In particular, residual finiteness is a
   sufficient condition but is not silently assumed.
-

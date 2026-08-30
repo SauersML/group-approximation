@@ -50,4 +50,3 @@ Phi = product_(t in T) phi_t : G -> product_(t in T) Q_t
 has finite target and kills no nonidentity element of any `F_i`; its
 restriction to every `F_i` is therefore injective.  This closes the cycle of
 implications.
-

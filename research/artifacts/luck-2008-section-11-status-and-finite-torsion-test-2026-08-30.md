@@ -84,4 +84,3 @@ finiteness.
   *Automorphisms of relatively hyperbolic groups and the Farrell--Jones
   conjecture*, including the current virtual-torsion-freeness status:
   https://arxiv.org/abs/2311.14036
-

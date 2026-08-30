@@ -29,4 +29,3 @@ Then the following are equivalent:
 
 Thus virtual torsion-freeness is controlled by finitely many elements, even
 when `G` is very far from residually finite.
-

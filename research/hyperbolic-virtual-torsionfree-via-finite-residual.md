@@ -31,4 +31,3 @@ The distinction from residual finiteness is sharp: the criterion permits an
 arbitrary torsion-free finite residual.  Any counterexample to the target,
 on the other hand, must exhibit a specific finite-order element invisible in
 every finite quotient.
-

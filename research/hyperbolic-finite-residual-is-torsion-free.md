@@ -30,4 +30,3 @@ virtually torsion-free.  It is deliberately not strengthened to
   set `union_i(F_i minus {1})` in finite quotients.  No known property of an
   arbitrary hyperbolic group supplies those quotients: invoking residual
   finiteness here would simply assume Lück 11.1(ii), a stronger open problem.
-
