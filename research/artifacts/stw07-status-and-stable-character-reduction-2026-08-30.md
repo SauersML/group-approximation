@@ -116,3 +116,27 @@ but it does not give nuclearity, because nuclearity is not inherited by
 arbitrary C-star subalgebras.  Infinite products are not used; a product of
 quasidiagonal algebras need not supply finite-dimensional approximations of a
 separable subalgebra uniformly across all coordinates.
+
+## Primitive-quotient trace separation
+
+The MF-trace separation theorem gives a different local-to-global mechanism.
+For each primitive ideal `P`, suppose `A/P` has a faithful MF trace `tau_P`.
+Its pullback to `A` is still an MF trace.  Given `0!=a in A`, some irreducible
+representation does not kill `a`; its primitive kernel `P` has
+`q_P(a*a)!=0`, and faithfulness gives
+
+```text
+tau_P(q_P(a*a))>0.
+```
+
+Thus the pulled-back MF traces jointly separate `A`, so finite direct sums of
+their matrix coordinates make `A` MF.  Nuclearity then makes `A`
+quasidiagonal.  No topology or measurable selection on `Prim(A)` is needed.
+
+For a concrete fibrewise class, assume `A` is separable, unital and nuclear,
+and every primitive quotient carries a faithful trace and satisfies the UCT.
+Nuclearity makes each such trace amenable, and the UCT quasidiagonality
+theorem makes it an MF trace.  The preceding separation argument therefore
+gives quasidiagonality of `A`.  The extra fibrewise hypothesis is essential
+to this proof: a primitive quotient need not be simple, and stable finiteness
+alone does not manufacture a faithful trace on it.
