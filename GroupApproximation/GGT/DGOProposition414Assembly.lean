@@ -262,9 +262,9 @@ theorem sumBound_linear_of_chordPartnerTraversal (D : RelGenSet G Λ)
 /-- **Sound Proposition 4.14 assembly with unordered chord partners.**
 
 The published proof's linear traversal assertion is deliberately not used.
-Instead, partner injectivity (`partners.Nodup`) and the fact that every partner
-starts on the `chordLength`-edge chord give the unconditional quadratic bound
-`chordTraversalCost partners ≤ chordLength²`.  The resulting cycle-size
+Instead, the component-surgery constructor supplies the unconditional
+quadratic bound `chordTraversalCost partners ≤ chordLength²` through
+`exists_greedy_incidenceEnumeration_quadratic`.  The resulting cycle-size
 overhead is allowed to be squared-logarithmic; the robust form of Lemma 4.19
 only asks that the number-of-pieces overhead plus the size overhead is
 eventually smaller than the square-root gain.
@@ -289,8 +289,7 @@ theorem sumBound_linear_of_quadraticChordTraversal (D : RelGenSet G Λ)
             (n : ℝ) + 6 * (chordLength * chordLength)) ∧
         (6 * (chordLength * chordLength) : ℝ) ≤ sizeOverhead n ∧
         (∀ i, (m i : ℝ) ≤ α * n) ∧
-        partners.Nodup ∧
-        (∀ y ∈ partners, y < chordLength) ∧
+        ChordPartnerQuadraticTraversalBound chordLength partners ∧
         SumBound D (b : ℝ) n (∑ i, sumCost D hsymm b hδ (m i))) :
     ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n) := by
   obtain ⟨L, hlinear⟩ :=
@@ -299,10 +298,7 @@ theorem sumBound_linear_of_quadraticChordTraversal (D : RelGenSet G Λ)
       hα0 hα1 hε0 hgain hthresh (by
         intro n hn
         obtain ⟨k, m, chordLength, partners, hk, hnle, hsize, hquadratic,
-          hm, hnodup, hrange, hbound⟩ := H n hn
-        have htraversal :
-            ChordPartnerQuadraticTraversalBound chordLength partners :=
-          chordPartnerQuadraticTraversalBound_of_nodup_lt hnodup hrange
+          hm, htraversal, hbound⟩ := H n hn
         have hsumle : (∑ i, (m i : ℝ)) ≤ (n : ℝ) + sizeOverhead n :=
           (hsize htraversal).trans (by
             simpa using (add_le_add_left hquadratic (n : ℝ)))

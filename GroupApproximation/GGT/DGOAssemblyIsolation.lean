@@ -657,6 +657,79 @@ theorem chordPartnerQuadraticTraversalBound_of_nodup_lt
     (fun y hy => le_of_lt (hrange y hy))).trans
       (Nat.mul_le_mul hcard le_rfl)
 
+/-- **Quadratic traversal for the greedily enumerated partner list.**
+
+This is the producer-shaped version used by the Proposition 4.14 assembly.
+The enumeration is ordered by the broken polygon components, not by their
+partners on the chord.  Nevertheless, injectivity of the partner assignment
+and the fact that every selected partner starts on an `L`-edge chord imply
+that there are at most `L` entries.  Every jump has length at most `L`, hence
+the actual greedily ordered list has traversal cost at most `L²`.
+
+No monotonicity or planar ordering of the partners is asserted here. -/
+theorem chordPartnerQuadraticTraversalBound_of_enumeration
+    (I : Finset ℕ) (partner : ℕ → ℕ) (partners : List ℕ) (L : ℕ)
+    (hlength : partners.length = I.card)
+    (hentries : ∀ j : ℕ, ∀ hj : j < partners.length,
+      ∃ s ∈ I, partners[j] = partner s)
+    (hinj : Set.InjOn partner (↑I : Set ℕ))
+    (hrange : ∀ s ∈ I, partner s < L) :
+    ChordPartnerQuadraticTraversalBound L partners := by
+  have himage : (I.image partner).card = I.card := by
+    exact Finset.card_image_iff.mpr fun s hs t ht heq =>
+      hinj (by simpa using hs) (by simpa using ht) heq
+  have hsubset : I.image partner ⊆ Finset.range L := by
+    intro y hy
+    obtain ⟨s, hs, rfl⟩ := Finset.mem_image.mp hy
+    exact Finset.mem_range.mpr (hrange s hs)
+  have hcard : partners.length ≤ L := by
+    rw [hlength, ← himage]
+    simpa using Finset.card_le_card hsubset
+  have hupper : ∀ y ∈ partners, y ≤ L := by
+    intro y hy
+    obtain ⟨j, hj, rfl⟩ := List.mem_iff_getElem.mp hy
+    obtain ⟨s, hs, heq⟩ := hentries j hj
+    rw [heq]
+    exact le_of_lt (hrange s hs)
+  unfold ChordPartnerQuadraticTraversalBound
+  exact (chordTraversalCost_le_length_mul hupper).trans
+    (Nat.mul_le_mul hcard le_rfl)
+
+/-- **The greedy incidence constructor already supplies the quadratic
+traversal input.**
+
+This packages `exists_greedy_incidenceEnumeration` with partner injectivity
+and the chord-start range.  It is the exact bridge from the component-surgery
+constructor to `sumBound_linear_of_quadraticChordTraversal`: all ordering and
+no-intervening-source conclusions are retained, while the partner list gets
+the unconditional quadratic traversal certificate. -/
+theorem exists_greedy_incidenceEnumeration_quadratic (I : Finset ℕ)
+    (pos partner : ℕ → ℕ) (L : ℕ)
+    (hpos : Set.InjOn pos (↑I : Set ℕ))
+    (hpartner : Set.InjOn partner (↑I : Set ℕ))
+    (hrange : ∀ s ∈ I, partner s < L) :
+    ∃ xs ys : List ℕ,
+      xs.length = I.card ∧ ys.length = xs.length ∧
+      xs.Pairwise (· ≤ ·) ∧ xs.Nodup ∧
+      (∀ x : ℕ, x ∈ xs ↔ ∃ s ∈ I, pos s = x) ∧
+      (∀ j : ℕ, ∀ hj : j < xs.length,
+        ∃ s ∈ I, xs[j] = pos s ∧ ys[j]? = some (partner s)) ∧
+      ChordPartnerQuadraticTraversalBound L ys ∧
+      (∀ j : ℕ, ∀ hj : j + 1 < xs.length, ∀ s ∈ I,
+        ¬ (xs[j]'(by omega) < pos s ∧ pos s < xs[j + 1]'hj)) := by
+  obtain ⟨xs, ys, hxs, hys, horder, hnodup, hmem, hentries, hgap⟩ :=
+    exists_greedy_incidenceEnumeration I pos partner hpos
+  have hquadratic : ChordPartnerQuadraticTraversalBound L ys := by
+    apply chordPartnerQuadraticTraversalBound_of_enumeration I partner ys L
+      (hys.trans hxs) _ hpartner hrange
+    intro j hj
+    obtain ⟨s, hs, _hx, hy⟩ := hentries j (by omega)
+    refine ⟨s, hs, ?_⟩
+    rw [List.getElem?_eq_getElem hj] at hy
+    exact Option.some.inj hy
+  exact ⟨xs, ys, hxs, hys, horder, hnodup, hmem, hentries,
+    hquadratic, hgap⟩
+
 /-- Monotone partner order inside one chord interval supplies the named
 bounded-variation premise. -/
 theorem chordPartnerTraversalBound_of_pairwise {partners : List ℕ} {a L : ℕ}
