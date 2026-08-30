@@ -96,6 +96,10 @@ This is **STW Problem LXIII and remains open at the audit boundary
   rank one of `D` suffices).  Stable rank one of the original codomain is not
   claimed to pass to this relative commutant.
 - **Strict comparison needs no unique quasitrace for uniqueness.**
+  `stw63-sr1-return-is-cu-equality` first gives the exact stable-rank-one
+  boundary: two Jiang--Su embeddings into any stable-rank-one algebra are
+  approximately unitarily equivalent exactly when their `Cu` maps agree,
+  by Robert's Theorems 1.0.1 and 3.2.2(i).
   `stw63-strict-comparison-sr1-uniqueness` proves that a unital simple
   stable-rank-one codomain with nonempty normalized 2-quasitrace space and
   strict comparison has at most one Jiang--Su embedding up to approximate

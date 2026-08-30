@@ -228,6 +228,10 @@ audit.
     unit.  For a soft class `r`, strict comparison applies to every
     `r_k<r`; taking suprema removes the deliberate strict gap.  This proves
     equality on all of `Cu(Z)` without assuming a unique quasitrace.
+    More generally, Robert's exact map theorem says that for every unital
+    stable-rank-one target, with no other target regularity assumption,
+    equality of the two `Cu` maps is equivalent to approximate unitary
+    equivalence of the Jiang--Su embeddings.
 15. A stationary simple AF algebra with incidence matrix
     `[[2,1],[1,2]]` shows why deconvexification cannot follow from generic
     regularity.  Rank-one projections in the two stage summands have equal
