@@ -130,3 +130,40 @@ The proof uses operator-norm matrix-unit stability and cannot be applied to
 the Hilbert--Schmidt models supplied merely by hyperfiniteness.  It invokes
 no exactness, UCT, nuclearity, local lifting, quotient descent, or norm
 density of the CAR core.
+
+# X(2): matrix-corner normal form
+
+Once `D_n isomorphic to M_d` lies in a model's multiplicative domain, the
+model has no further degrees of freedom on that core.  With `p=e_11` and
+`B=pAp`, the exact coordinate isomorphism is
+
+```text
+A -> M_d(B),                   a |-> [e_1i a e_j1]_(i,j),
+[b_ij] |-> sum_(i,j) e_i1 b_ij e_1j.
+```
+
+A unital representation of `M_d` on the target forces target dimension
+`dm`.  After a target unitary, multiplicative-domain bimodularity makes the
+whole u.c.p. map exactly `id_(M_d) tensor chi`, where
+`chi:B -> M_m` is the compression to the `E_11` target corner.
+
+For coordinates `[b_ij]` and `[c_ij]`, the `(i,j)` block of the ambient
+multiplication defect is exactly
+
+```text
+sum_ell [chi(b_iell c_ellj)-chi(b_iell)chi(c_ellj)].
+```
+
+Coordinate defects at most `eta` therefore give ambient defect at most
+`d^2 eta`.  Conversely, the diagonal embedding
+`b |-> sum_i e_i1 b e_1i` transfers corner multiplication defects back with
+constant one.  If `tau_B=d tau|B`, then
+`tau=tr_d tensor tau_B`; the ambient trace discrepancy is the average of
+the diagonal corner discrepancies, and the diagonal embedding again gives
+the exact reverse transfer.
+
+Combining this algebraic normal form with finite-core exactification reduces
+the X(2) finite packet entirely to u.c.p. models of `p_n R p_n`.  It does not
+assert that the corner models exist: the corner is again isomorphic to `R`.
+Its gain is that target multiplicity, trace normalization, and every defect
+constant are explicit, and no approximate action on the CAR stage remains.
