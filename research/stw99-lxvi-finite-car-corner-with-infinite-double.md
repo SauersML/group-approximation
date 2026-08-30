@@ -28,3 +28,8 @@ not work.  If `M_2(A)` is infinite, then the unital inclusion of `M_2(A)` into
 must therefore insert a coherent CAR tower non-tensorially, while preventing
 the isometries in every finite amplification from becoming isometries of the
 limit unit.
+
+There is also no tracial route: `stw99-lxvi-finite-seed-has-no-quasitrace`
+shows that every nonzero bounded quasitrace is excluded.  In particular the
+unique trace of the embedded CAR algebra cannot extend even as a quasitrace
+to the ambient finite corner.
