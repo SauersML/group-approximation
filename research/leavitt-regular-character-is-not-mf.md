@@ -12,7 +12,7 @@ artifacts:
   - research/artifacts/leavitt-defect-floor-experiment-2026-08-26.md
 ---
 
-**OPEN.**  Let `R=L_(F_2)(1,2)` and `H=EL_n(R)`, `n>=3` (equivalently
+Let `R=L_(F_2)(1,2)` and `H=EL_n(R)`, `n>=3` (equivalently
 `n=12` or `n=20`; all are isomorphic).  There is no sequence of maps
 `V_k:H->U(d_k)` with
 
@@ -23,16 +23,18 @@ artifacts:
 Equivalently, `delta_e` is not a pointwise limit of normalized traces of
 operator-norm asymptotic unitary representations of `H`.
 
-By `property-t-free-el20-collapse-via-regular-character` this single
-statement is equivalent to the Property-`(T)`-free full MF radical of `H`,
-hence to every retained manuscript endpoint.  Every character-level,
+The plain statement follows from the established full MF radical by
+`leavitt-regular-character-not-mf-from-full-radical`.  The stronger request
+for a proof avoiding Property `(T)` is the separate open claim
+`leavitt-regular-character-not-mf-without-property-t`; only that node feeds
+`property-t-free-el20-collapse-via-regular-character`.  Every character-level,
 finite-subgroup-level and `K`-theoretic invariant of a corona
 representation is consistent with `(RNM1)`, because `delta_e` is a genuine
 character of `H` and the regular representations of the finite subgroups
 realize all such invariants exactly; a proof must find an operator-norm
 invariant of finite-dimensional approximants that `delta_e` violates.
 
-## Attempts
+## Property-`(T)`-free attempts
 
 * **Blind numerical optimisation is not a probe.**  The radius-2
   vocabulary-closed truncation, mark pinned at half or quarter rank,
