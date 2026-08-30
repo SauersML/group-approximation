@@ -96,6 +96,22 @@ reduced free products preserve selflessness, and
 `C*_r(G*H)` is selfless whenever both factor reduced group algebras are.
 No exactness, PHP, linearity, or rapid-decay assumption enters this argument.
 
+The free- and tensor-product mechanisms can be interleaved along any
+cograph.  Let `Gamma` be nonempty, countable, and `P_4`-free, with exact selfless vertex
+groups.  Every finite induced subgraph has a recursive decomposition by
+disjoint unions and joins.  These become group free products and direct
+products; reduced-free-product permanence handles the former, while exact
+ordinary-selfless tensor permanence handles the latter.  Exactness survives
+both operations, so the induction can alternate them without losing its
+hypothesis.  The full countable graph product is the directed union of its
+finite induced graph products and is therefore selfless.  This gives
+`stw91-cograph-products-preserve-selflessness`.
+
+The cograph condition marks the present boundary.  Removing a vertex from a
+general graph product produces an amalgamated product over its link subgroup,
+and no amalgamated selflessness theorem follows from the ordinary free-product
+splitting.  No such extension is asserted.
+
 # Trust boundary
 
 Imported results are explicitly isolated: Robert's directed-union and

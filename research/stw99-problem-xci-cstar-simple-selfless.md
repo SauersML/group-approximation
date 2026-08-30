@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw91-selfless-group-frontier-2026-08-30.md
+  - research/artifacts/stw91-cograph-product-permanence-audit-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
@@ -59,6 +60,15 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
   ultrapower, verifies freeness of the factor ultrapowers, and regroups the
   resulting four free copies.  Hence free products of groups already known
   to satisfy XCI again satisfy XCI.
+- `stw91-cograph-products-preserve-selflessness` combines reduced-free-product
+  permanence with exact tensor permanence and directed unions.  If a
+  countable commutation graph has no induced `P_4` and every vertex group has
+  exact selfless reduced algebra, then its graph product has exact selfless
+  reduced algebra.  Finite cographs recursively alternate disjoint
+  union/free product and join/direct product; countable graphs are exhausted
+  by finite induced cographs.  General graph products remain outside this
+  argument because vertex removal introduces amalgamation over link
+  subgroups.
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete negative
   certificate in ordered `K_0` using averaging projections of finite
   subgroups.
