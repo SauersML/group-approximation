@@ -236,3 +236,18 @@ and require three labels.  These are fixed-family local obstructions, not
 extension counterexamples: a universal proof may still replace the outgoing
 maps.  It must, however, control noncommutative support incidence in addition
 to tracial capacity.
+
+There is now a positive replacement theorem which can remove that incidence
+obstruction.  `stw82-zero-dimensional-central-supports-recolour-pointwise`
+shows that, when the outgoing supports lie in a common zero-dimensional
+abelian multiplier algebra centralizing all outgoing ranges, their optimal
+asymptotic coupled-cover number is the maximum number active at one spectral
+point.  A clopen refinement permits the label matching to vary from block to
+block, and central projection cutdowns preserve order zero exactly.  Thus
+three supports whose global overlap graph is a triangle can split and
+recombine into two colours when its three edges occur on different central
+atoms.  Any nuclear approximation scheme with pointwise multiplicity at
+most `r+1` therefore proves nuclear dimension at most `r`.  What remains
+unknown for arbitrary extensions is whether their outgoing approximations
+can always be replaced by ones with this central zero-dimensional geometry;
+the tracial Hall bounds alone do not provide such a replacement.
