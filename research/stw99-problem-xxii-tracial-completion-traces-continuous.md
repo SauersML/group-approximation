@@ -28,6 +28,12 @@ New here: yes, with no property Γ hypothesis, for W\*-bundles whose base is
 a countable compact space with finitely many limit points
 (`trace-problem-holds-over-convergent-sequence-boundaries`).
 
+Also new here: yes for every locally trivial hyperfinite W\*-bundle over a
+finite-dimensional compact metrizable base
+(`stw22-locally-trivial-finite-dimensional-bundles`).  Chartwise weighted
+purifications glue after a `(d+1)`-coloured refinement, without trivializing
+the `Aut(R)` transition cocycle.
+
 ## Attempts
 
 * **Central disintegration (general Bauer case).**  For `X` Bauer, `M` is a
