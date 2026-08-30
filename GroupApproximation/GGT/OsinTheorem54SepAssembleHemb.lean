@@ -19,10 +19,10 @@ four-point form and `sixBound_one_of_fourPointHyperbolic` produces the bound.
 ## What is left
 
 One condition: `h511`, the remaining geometry in Osin's Lemma 5.11.  It is
-`OsinComponents.Lemma511Geometry`, consisting of setwise Lemma 4.9 and the
-entrance-gap estimate (38).  Equation (37), the choice of the shared separator
-outside `S(1,k;D)`, the `3R` entrance enumeration, and the final finite counting
-are proved in `OsinTheorem54SepLemma511Intersection` and
+`OsinComponents.Lemma511Geometry`, the entrance-gap estimate (38).  Setwise
+Lemma 4.9, equation (37), the choice of the shared separator outside
+`S(1,k;D)`, the `3R` entrance enumeration, and the final finite counting are
+proved in `OsinTheorem54SepLemma511Intersection` and
 `OsinTheorem54SepLemma511Count`.
 The local finiteness of the enlarged relative metrics is now
 `OsinComponents.relBall_enlargedY_finite`, the completed Lemma 5.8 assembly.
@@ -56,7 +56,8 @@ theorem exists_sepDataFam_of_hemb [Fintype Λ] (D : RelGenSet G Λ)
   obtain ⟨C, hCpos, hbnd⟩ :=
     sixBound_one_of_fourPointHyperbolic D hsymm hδ 0 le_rfl
   refine ⟨C, hCpos, fun Dc hDc hthr h511 => ?_⟩
-  obtain ⟨h48, hcover, hgap⟩ := h511
+  obtain ⟨h48, hgap⟩ := h511
+  have hcover := lemmaFourNineCover_of_bound D hsymm hbnd hthr h48
   have h49 := lemmaFourNine_of_bound D hsymm hbnd hthr h48
   have hdist := dist_le_sep_enlargedY D hDc hsymm h48
   have hsle := sep_le_dist_enlargedY D hDc hsymm h48

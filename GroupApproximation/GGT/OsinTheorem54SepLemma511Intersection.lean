@@ -85,6 +85,161 @@ def LemmaFourNineCover [Fintype Λ] (D : RelGenSet G Λ) (Dc : ℕ)
     sepFinset D Dc h48 f g ⊆
       (sepFinset D Dc h48 f h ∪ sepFinset D Dc h48 g h) ∪ F
 
+/-- **The setwise form of Osin's Lemma 4.9, from the polygon bound.**
+
+The two exceptional cosets are the separators entered at the pivot index `m`
+and at the next used index `m'`.  An index belongs to at most one peripheral
+family, so each contributes at most one tagged coset. -/
+theorem lemmaFourNineCover_of_bound [Fintype Λ] (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {C Dc : ℕ}
+    (hbnd : ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D 1 0 n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+        (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (hDc : C * 4 ≤ Dc) (h48 : ∀ lam : Λ, LemmaFourEight D lam Dc) :
+    LemmaFourNineCover D Dc h48 := by
+  classical
+  intro f g h
+  obtain ⟨p, hp⟩ := existsGeodesicWord D f g
+  obtain ⟨r, hr⟩ := existsGeodesicWord D f h
+  obtain ⟨q, hq⟩ := existsGeodesicWord D h g
+  have hqrev : IsGeodesicWord D g h (revWord q) :=
+    isGeodesicWord_revWord D hsymm hq
+  have hAcomp : ∀ (lam : Λ) (n : ℕ), n ∈ sepIndexSet D lam Dc f g p →
+      IsComp lam p n (n + 1) ∧
+      (QuotientGroup.mk (vertex f p n) : G ⧸ D.fam lam) ∈
+        sepSet D lam Dc f g := by
+    rintro lam n ⟨c, hc, ⟨k, hk⟩, hcc⟩
+    have hk1 : k = n + 1 := isComp_eq_succ_of_isGeodesicWord D lam hp hk
+    subst hk1
+    refine ⟨hk, ?_⟩
+    rw [← hcc]
+    exact hc
+  have hdisj : ∀ (lam mu : Λ) (n : ℕ), n ∈ sepIndexSet D lam Dc f g p →
+      n ∈ sepIndexSet D mu Dc f g p → lam = mu := by
+    intro lam mu n hn hn'
+    have h1 := (hAcomp lam n hn).1
+    have h2 := (hAcomp mu n hn').1
+    have hnp : n < p.length := by
+      have hb := h1.2.1
+      omega
+    exact isCompOf_unique (h1.2.2.1 n (le_refl n) (by omega) hnp)
+      (h2.2.2.1 n (le_refl n) (by omega) hnp)
+  obtain ⟨m, hmpos, hmmax⟩ := exists_greatest_pivot
+    (fun n => ∃ lam : Λ, n ∈ sepIndexSet D lam Dc f g p ∧
+      IsComp lam r n (n + 1) ∧
+      (QuotientGroup.mk (vertex f p n) : G ⧸ D.fam lam)
+        = QuotientGroup.mk (vertex f r n)) p.length
+  have hP1 : ∀ (lam : Λ) (n : ℕ), n ∈ sepIndexSet D lam Dc f g p → n < m →
+      (QuotientGroup.mk (vertex f p n) : G ⧸ D.fam lam) ∈
+        sepSet D lam Dc f h := by
+    intro lam n hn hnm
+    obtain ⟨mu, hmmu, hpivr, hcosr⟩ := hmpos (by omega)
+    obtain ⟨hcompm, hcm⟩ := hAcomp mu m hmmu
+    obtain ⟨hcompn, hcn⟩ := hAcomp lam n hn
+    obtain ⟨w, hw, hessw, hpivw, hwn, hwm⟩ :=
+      exists_witness_and_pivot D lam mu Dc (h48 mu) hp hcompn hcn hcompm hcm
+    have hres := sepSet_of_essentiallyPenetrates_of_lt_pivot D lam mu Dc hw hr
+      hnm hessw hpivw hpivr (hwm.trans hcosr)
+    rwa [hwn] at hres
+  obtain ⟨m', hP2, hP3⟩ : ∃ m' : ℕ,
+      (∀ (lam : Λ) (n : ℕ), n ∈ sepIndexSet D lam Dc f g p → m' < n →
+        (QuotientGroup.mk (vertex f p n) : G ⧸ D.fam lam) ∈
+          sepSet D lam Dc g h) ∧
+      (∀ (lam : Λ) (n : ℕ), n ∈ sepIndexSet D lam Dc f g p →
+        m ≤ n → n ≤ m' → n = m ∨ n = m') := by
+    by_cases hex : ∃ n : ℕ, m < n ∧ ∃ lam : Λ,
+        n ∈ sepIndexSet D lam Dc f g p
+    · obtain ⟨m', hmlt, ⟨mu, hm'mu⟩, hmin⟩ := exists_least_above
+        (fun n => ∃ lam : Λ, n ∈ sepIndexSet D lam Dc f g p) m hex
+      obtain ⟨hcompm', hcm'⟩ := hAcomp mu m' hm'mu
+      have hm'p : m' + 1 ≤ p.length := hcompm'.2.1
+      have hqpen : ∃ j : ℕ, IsComp mu (revWord q) j (j + 1) ∧
+          (QuotientGroup.mk (vertex f p m') : G ⧸ D.fam mu)
+            = QuotientGroup.mk (vertex g (revWord q) j) := by
+        rcases pivot_dichotomy D mu hsymm hbnd hDc hp hr hq hcompm' hcm' with
+          hleft | hright
+        · exfalso
+          have := hmmax m' (by omega) ⟨mu, hm'mu, hleft.1, hleft.2⟩
+          omega
+        · exact hright
+      obtain ⟨j, hpivq, hcosq⟩ := hqpen
+      refine ⟨m', ?_, ?_⟩
+      · intro lam n hn hm'n
+        obtain ⟨hcompn, hcn⟩ := hAcomp lam n hn
+        obtain ⟨w, hw, hessw, hpivw, hwn, hwm'⟩ :=
+          exists_witness_and_pivot D lam mu Dc (h48 mu) hp hcompn hcn hcompm' hcm'
+        have hres := sepSet_of_essentiallyPenetrates_of_pivot_lt D lam mu Dc hsymm
+          hw hqrev hm'n hessw hpivw hpivq (hwm'.trans hcosq)
+        rwa [hwn] at hres
+      · intro lam n hn hmn hnm'
+        by_cases hEq : n = m
+        · exact Or.inl hEq
+        · have hlt : m < n := by omega
+          have hge := hmin n hlt ⟨lam, hn⟩
+          exact Or.inr (by omega)
+    · refine ⟨m, ?_, ?_⟩
+      · intro lam n hn hmn
+        exact absurd ⟨n, hmn, lam, hn⟩ hex
+      · intro lam n hn hmn hnm
+        exact Or.inl (by omega)
+  let exceptionalAt (t : ℕ) : Finset (TaggedSepCoset D) :=
+    (Finset.univ.filter fun lam : Λ => t ∈ sepIndexSet D lam Dc f g p).image
+      fun lam => Sigma.mk lam
+        (QuotientGroup.mk (vertex f p t) : G ⧸ D.fam lam)
+  let F := exceptionalAt m ∪ exceptionalAt m'
+  have hexceptionalAt : ∀ t : ℕ, (exceptionalAt t).card ≤ 1 := by
+    intro t
+    apply le_trans Finset.card_image_le
+    refine Finset.card_le_one.mpr ?_
+    intro lam hlam mu hmu
+    exact hdisj lam mu t (Finset.mem_filter.mp hlam).2
+      (Finset.mem_filter.mp hmu).2
+  have hFcard : F.card ≤ 2 := by
+    have hU := Finset.card_union_le (exceptionalAt m) (exceptionalAt m')
+    have hmcard := hexceptionalAt m
+    have hm'card := hexceptionalAt m'
+    change (exceptionalAt m ∪ exceptionalAt m').card ≤ 2
+    omega
+  refine ⟨F, hFcard, ?_⟩
+  rintro ⟨lam, c⟩ hc
+  have hcsep : c ∈ sepSet D lam Dc f g :=
+    (mem_sepFinset D Dc h48 lam c f g).mp hc
+  rw [sepSet_eq_image D lam Dc (h48 lam) hp] at hcsep
+  obtain ⟨n, hn, hnc⟩ := hcsep
+  by_cases hnm : n < m
+  · apply Finset.mem_union.mpr
+    apply Or.inl
+    apply Finset.mem_union.mpr
+    apply Or.inl
+    apply (mem_sepFinset D Dc h48 lam c f h).mpr
+    rw [← hnc]
+    exact hP1 lam n hn hnm
+  · by_cases hm'n : m' < n
+    · apply Finset.mem_union.mpr
+      apply Or.inl
+      apply Finset.mem_union.mpr
+      apply Or.inr
+      apply (mem_sepFinset D Dc h48 lam c g h).mpr
+      rw [← hnc]
+      exact hP2 lam n hn hm'n
+    · have hmid := hP3 lam n hn (by omega) (by omega)
+      apply Finset.mem_union.mpr
+      apply Or.inr
+      rcases hmid with rfl | rfl
+      · apply Finset.mem_union.mpr
+        apply Or.inl
+        change Sigma.mk lam c ∈ exceptionalAt n
+        rw [← hnc]
+        exact Finset.mem_image.mpr ⟨lam,
+          Finset.mem_filter.mpr ⟨Finset.mem_univ _, hn⟩, rfl⟩
+      · apply Finset.mem_union.mpr
+        apply Or.inr
+        change Sigma.mk lam c ∈ exceptionalAt n
+        rw [← hnc]
+        exact Finset.mem_image.mpr ⟨lam,
+          Finset.mem_filter.mpr ⟨Finset.mem_univ _, hn⟩, rfl⟩
+
 /-- **Equation (37) of Osin's Lemma 5.11.** -/
 theorem card_sharedSeparators_lower_bound [Fintype Λ]
     (D Y : RelGenSet G Λ) (Dc : ℕ)
@@ -171,11 +326,11 @@ def Lemma511SharedGap [Fintype Λ] (D Y : RelGenSet G Λ) (Dc : ℕ)
           a ∈ ⋃ lam : Λ, D.relBall lam (3 * Dc) ∧
             k = entrance c * a * (entrance c')⁻¹
 
-/-- The exact remaining geometry of Lemma 5.11: setwise Lemma 4.9 and the
-entrance-gap estimate (38), at the already proved Lemma 4.8 interface. -/
+/-- The exact remaining geometry of Lemma 5.11: the entrance-gap estimate
+(38), at the already proved Lemma 4.8 interface. -/
 def Lemma511Geometry [Fintype Λ] (D Y : RelGenSet G Λ) (Dc : ℕ) : Prop :=
   ∃ h48 : ∀ lam : Λ, LemmaFourEight D lam Dc,
-    LemmaFourNineCover D Dc h48 ∧ Lemma511SharedGap D Y Dc h48
+    Lemma511SharedGap D Y Dc h48
 
 /-- A nonempty finite set of at most `n` elements can be enumerated by
 `Fin n`.  The unused indices are filled with one element of the set. -/
