@@ -68,6 +68,7 @@ def HypEmbeddedCore₂.powCore (E : HypEmbeddedCore₂ A N) {M : ℕ} (hM : 0 < 
   fam_eq := E.fam_eq
   le := E.le
   embedded := E.embedded
+  disjoint := E.disjoint
   lox := fun b => E.lox b ^ M
   lox_mem := fun b => pow_mem (E.lox_mem b) M
   lox_isLoxodromic := fun b => isLoxodromic_pow (E.lox_isLoxodromic b) hM

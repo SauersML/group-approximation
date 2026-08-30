@@ -65,7 +65,8 @@ def HypEmbeddedCore₂.ofConeOff {G : Type u} [Group G] {A : HullGeneratingSet G
     (hemb : (coneOffFamily A.alphabet K).IsHyperbolicallyEmbedded)
     (g : Bool → G) (hgK : ∀ b : Bool, g b ∈ K b)
     (hglox : ∀ b : Bool, IsLoxodromic (g b) (Cayley.base A.alphabet))
-    (hind : Independent (g false) (g true) (Cayley.base A.alphabet)) :
+    (hind : Independent (g false) (g true) (Cayley.base A.alphabet))
+    (hdisj : ∀ x : G, x ∈ K false → x ∈ K true → x = 1) :
     HypEmbeddedCore₂ A N where
   rel := coneOffFamily A.alphabet K
   base_eq := rfl
@@ -77,6 +78,7 @@ def HypEmbeddedCore₂.ofConeOff {G : Type u} [Group G] {A : HullGeneratingSet G
   lox_mem := hgK
   lox_isLoxodromic := hglox
   lox_independent := hind
+  disjoint := hdisj
 
 /-- **Hull, Corollary 5.7 with Lemma 5.8, for a pair.**
 
@@ -87,7 +89,12 @@ The independence clause is what puts the two elements in different members of
 the family, and so is what keeps consecutive letters of Hull's relator in
 different components (`HullSC.isComp_relatorWord₂`).  Without it the pair
 degenerates to the single-subgroup case that
-`HullSC.not_quasiGeodesic_relatorWord` refutes. -/
+`HullSC.not_quasiGeodesic_relatorWord` refutes.
+
+The last clause is Hull's (W4), that the two subgroups meet trivially.  It is
+part of what §5 delivers --- Corollary 5.7 gives `E(hᵢ) = ⟨hᵢ⟩` and
+independence separates them --- and it is recorded in the citation rather than
+derived here; `HullSC.HypEmbeddedCore₂.disjoint` carries it downstream. -/
 def ExistsHypEmbeddedConeOff₂ : Prop :=
   ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G},
     Suitable A.alphabet N →
@@ -95,15 +102,16 @@ def ExistsHypEmbeddedConeOff₂ : Prop :=
         (coneOffFamily A.alphabet K).IsHyperbolicallyEmbedded ∧
           ∃ g : Bool → G, (∀ b : Bool, g b ∈ K b) ∧
             (∀ b : Bool, IsLoxodromic (g b) (Cayley.base A.alphabet)) ∧
-              Independent (g false) (g true) (Cayley.base A.alphabet)
+              Independent (g false) (g true) (Cayley.base A.alphabet) ∧
+                ∀ x : G, x ∈ K false → x ∈ K true → x = 1
 
 /-- **The structured leaf follows from the plain one**, through
 `HypEmbeddedCore₂.ofConeOff`. -/
 theorem nonempty_hypEmbeddedCore₂_of_coneOff (h : ExistsHypEmbeddedConeOff₂.{u})
     {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G}
     (hN : Suitable A.alphabet N) : Nonempty (HypEmbeddedCore₂ A N) := by
-  obtain ⟨K, hle, hemb, g, hgK, hglox, hind⟩ := h A hN
-  exact ⟨HypEmbeddedCore₂.ofConeOff K hle hemb g hgK hglox hind⟩
+  obtain ⟨K, hle, hemb, g, hgK, hglox, hind, hdisj⟩ := h A hN
+  exact ⟨HypEmbeddedCore₂.ofConeOff K hle hemb g hgK hglox hind hdisj⟩
 
 end HullSC
 end GroupApproximation

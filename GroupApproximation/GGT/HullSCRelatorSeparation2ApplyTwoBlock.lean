@@ -105,6 +105,59 @@ theorem exists_two_offsets_lt (P M c k : ℕ) (hM : k + 2 ≤ M) :
     · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
     · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
 
+/-! ## Three consecutive offsets -/
+
+/-- **Three consecutive offsets into the arc `[P, P + M)`**, the last at most
+`P + 4`.  What the aligned case needs: a component of the run with a successor,
+twice over, from one window. -/
+theorem exists_three_offsets_ge (P M c : ℕ) (hM : 5 ≤ M) :
+    ∃ d q : ℕ, d + 2 ≤ P + 4 ∧ P ≤ q ∧ q + 2 < P + M ∧
+      (c + d) % (P + M) = q ∧ (c + (d + 1)) % (P + M) = q + 1 ∧
+      (c + (d + 2)) % (P + M) = q + 2 := by
+  obtain ⟨r, hr⟩ : ∃ r : ℕ, c % (P + M) = r := ⟨_, rfl⟩
+  have hlt : r < P + M := by
+    rw [← hr]
+    exact Nat.mod_lt _ (by omega)
+  rcases Nat.lt_or_ge r P with hcase | hcase
+  · refine ⟨P - r, P, by omega, le_rfl, by omega, ?_, ?_, ?_⟩
+    · exact add_mod_of_sum_eq (by omega) (by omega)
+    · exact add_mod_of_sum_eq (by omega) (by omega)
+    · exact add_mod_of_sum_eq (by omega) (by omega)
+  rcases Nat.lt_or_ge (r + 2) (P + M) with hcase2 | hcase2
+  · refine ⟨0, r, by omega, hcase, by omega, ?_, ?_, ?_⟩
+    · exact add_mod_of_sum_eq (by omega) (by omega)
+    · exact add_mod_of_sum_eq (by omega) (by omega)
+    · exact add_mod_of_sum_eq (by omega) (by omega)
+  · refine ⟨P + M - r + P, P, by omega, le_rfl, by omega, ?_, ?_, ?_⟩
+    · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+    · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+    · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+
+/-- **Three consecutive offsets into the arc `[0, M)`**, the last at most
+`P + 4`.  The arithmetic behind the formal inverse. -/
+theorem exists_three_offsets_lt (P M c : ℕ) (hM : 5 ≤ M) :
+    ∃ d q : ℕ, d + 2 ≤ P + 4 ∧ q + 2 < M ∧
+      (c + d) % (P + M) = q ∧ (c + (d + 1)) % (P + M) = q + 1 ∧
+      (c + (d + 2)) % (P + M) = q + 2 := by
+  obtain ⟨r, hr⟩ : ∃ r : ℕ, c % (P + M) = r := ⟨_, rfl⟩
+  have hlt : r < P + M := by
+    rw [← hr]
+    exact Nat.mod_lt _ (by omega)
+  rcases Nat.lt_or_ge r M with hcase | hcase
+  · rcases Nat.lt_or_ge (r + 2) M with hcase2 | hcase2
+    · refine ⟨0, r, by omega, by omega, ?_, ?_, ?_⟩
+      · exact add_mod_of_sum_eq (by omega) (by omega)
+      · exact add_mod_of_sum_eq (by omega) (by omega)
+      · exact add_mod_of_sum_eq (by omega) (by omega)
+    · refine ⟨P + M - r, 0, by omega, by omega, ?_, ?_, ?_⟩
+      · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+      · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+      · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+  · refine ⟨P + M - r, 0, by omega, by omega, ?_, ?_, ?_⟩
+    · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+    · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+    · exact add_mod_of_sum_eq_wrap (by omega) (by omega) (by omega)
+
 /-! ## A letter at an offset -/
 
 section Block
@@ -217,6 +270,69 @@ theorem exists_two_blocks_of_long_prefix_rotate_revInv {p : List G} {h₀ h₁ :
   obtain ⟨b₂, e₂, he₂, hb₂⟩ := block_of_offset_lt h₀ h₁ hq₂
     (show d₂ < p.length + ms.length from by omega) hmod₂
   exact ⟨d₁, d₂, b₁, b₂, e₁, e₂, hsep, by omega, hd₂P, he₁, he₂, hb₁,
+    hb₂⟩
+
+/-! ## Three consecutive block letters -/
+
+/-- **A window of `|p| + 5` letters of a rotation of the relator carries three
+CONSECUTIVE block letters**, the last at an offset of at most `|p| + 4`.
+
+Two overlapping pairs, which is what the aligned case reads: a component with a
+successor, and then its successor with one of its own. -/
+theorem exists_three_blocks_of_long_prefix_rotate {p : List G} {h₀ h₁ : G}
+    {ms : List ℕ} {c n : ℕ} (hms : 5 ≤ ms.length) (hn : p.length + 4 < n) :
+    ∃ (d : ℕ) (b₀ b₁ b₂ : Bool) (e₀ e₁ e₂ : ℕ), d + 2 < n ∧
+      e₀ ∈ ms ∧ e₁ ∈ ms ∧ e₂ ∈ ms ∧
+      ((relatorWord₂ p h₀ h₁ ms).rotate c)[d]?
+          = some (GGT.RelLetter.comp b₀ ((if b₀ then h₁ else h₀) ^ e₀)) ∧
+      ((relatorWord₂ p h₀ h₁ ms).rotate c)[d + 1]?
+          = some (GGT.RelLetter.comp b₁ ((if b₁ then h₁ else h₀) ^ e₁)) ∧
+      ((relatorWord₂ p h₀ h₁ ms).rotate c)[d + 2]?
+          = some (GGT.RelLetter.comp b₂ ((if b₂ then h₁ else h₀) ^ e₂)) := by
+  obtain ⟨d, q, hd, hqP, hqL, hm₀, hm₁, hm₂⟩ :=
+    exists_three_offsets_ge p.length ms.length c hms
+  obtain ⟨i, hi⟩ : ∃ i : ℕ, q = p.length + i := ⟨q - p.length, by omega⟩
+  subst hi
+  have hm₁' : (c + (d + 1)) % (p.length + ms.length) = p.length + (i + 1) :=
+    hm₁
+  have hm₂' : (c + (d + 2)) % (p.length + ms.length) = p.length + (i + 2) :=
+    hm₂
+  obtain ⟨b₀, e₀, he₀, hb₀⟩ := block_of_offset_ge h₀ h₁
+    (show i < ms.length from by omega)
+    (show d < p.length + ms.length from by omega) hm₀
+  obtain ⟨b₁, e₁, he₁, hb₁⟩ := block_of_offset_ge h₀ h₁
+    (show i + 1 < ms.length from by omega)
+    (show d + 1 < p.length + ms.length from by omega) hm₁'
+  obtain ⟨b₂, e₂, he₂, hb₂⟩ := block_of_offset_ge h₀ h₁
+    (show i + 2 < ms.length from by omega)
+    (show d + 2 < p.length + ms.length from by omega) hm₂'
+  exact ⟨d, b₀, b₁, b₂, e₀, e₁, e₂, by omega, he₀, he₁, he₂, hb₀, hb₁,
+    hb₂⟩
+
+/-- **The mirrored form.** -/
+theorem exists_three_blocks_of_long_prefix_rotate_revInv {p : List G}
+    {h₀ h₁ : G} {ms : List ℕ} {c n : ℕ} (hms : 5 ≤ ms.length)
+    (hn : p.length + 4 < n) :
+    ∃ (d : ℕ) (b₀ b₁ b₂ : Bool) (e₀ e₁ e₂ : ℕ), d + 2 < n ∧
+      e₀ ∈ ms ∧ e₁ ∈ ms ∧ e₂ ∈ ms ∧
+      ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c)[d]?
+          = some (GGT.RelLetter.comp b₀ (((if b₀ then h₁ else h₀) ^ e₀)⁻¹)) ∧
+      ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c)[d + 1]?
+          = some (GGT.RelLetter.comp b₁ (((if b₁ then h₁ else h₀) ^ e₁)⁻¹)) ∧
+      ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c)[d + 2]?
+          = some (GGT.RelLetter.comp b₂ (((if b₂ then h₁ else h₀) ^ e₂)⁻¹)) := by
+  obtain ⟨d, q, hd, hqL, hm₀, hm₁, hm₂⟩ :=
+    exists_three_offsets_lt p.length ms.length c hms
+  obtain ⟨b₀, e₀, he₀, hb₀⟩ := block_of_offset_lt h₀ h₁
+    (show q < ms.length from by omega)
+    (show d < p.length + ms.length from by omega) hm₀
+  obtain ⟨b₁, e₁, he₁, hb₁⟩ := block_of_offset_lt h₀ h₁
+    (show q + 1 < ms.length from by omega)
+    (show d + 1 < p.length + ms.length from by omega) hm₁
+  obtain ⟨b₂, e₂, he₂, hb₂⟩ := block_of_offset_lt h₀ h₁
+    (show q + 2 < ms.length from by omega)
+    (show d + 2 < p.length + ms.length from by omega) hm₂
+  exact ⟨d, b₀, b₁, b₂, e₀, e₁, e₂, by omega, he₀, he₁, he₂, hb₀, hb₁,
     hb₂⟩
 
 end Block

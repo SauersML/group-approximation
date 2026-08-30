@@ -53,6 +53,21 @@ structure HypEmbeddedCore₂ {G : Type u} [Group G] (A : HullGeneratingSet G)
   family and so keeps consecutive letters of the relator in different
   components. -/
   lox_independent : Independent (lox false) (lox true) (Cayley.base A.alphabet)
+  /-- **Hull's (W4): the two subgroups meet trivially.**
+
+  In Hull's §5 this is not an assumption but a consequence: Corollary 5.7 gives
+  `E(hᵢ) = ⟨hᵢ⟩` for the suitable powers, independence separates the two cyclic
+  groups, and Dahmani--Guirardel--Osin's 6.8 and 6.14 make `E(h₀) ∩ E(h₁)`
+  finite --- which is trivial in the torsion-free ambient this programme
+  studies.  That derivation is not in this repository; the clause is recorded
+  here as an input.
+
+  It is what makes the aligned case's second connector trivial.  Without it the
+  chain excluded the diagonal by a design clause about commutation, which
+  `GGT/HullSCRelatorSeparation2ApplyLoxGap.lean` shows cannot be discharged at
+  this core --- and which Hull never needs, because his pieces exclude the
+  conjugacy identity syntactically. -/
+  disjoint : ∀ x : G, x ∈ H false → x ∈ H true → x = 1
 
 section Core
 
