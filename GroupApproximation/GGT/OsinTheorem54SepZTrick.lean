@@ -177,7 +177,9 @@ theorem exists_word_of_word_relGenSetZ (D : RelGenSet G Λ) {Dc : ℕ}
                     · intro b hb
                       rw [List.mem_singleton.mp hb]
                       exact hxfam
-                    · rw [listVal_cons, RelLetter.listVal_nil, mul_one]
+                    · have hcb : (RelLetter.comp mu x : RelLetter G Λ).val
+                          = (RelLetter.base x : RelLetter G Λ).val := rfl
+                      rw [listVal_cons, RelLetter.listVal_nil, mul_one, hcb]
                     · refine ⟨?_, trivial⟩
                       rintro ⟨-, hvmem⟩
                       exact hv hvmem
@@ -187,7 +189,9 @@ theorem exists_word_of_word_relGenSetZ (D : RelGenSet G Λ) {Dc : ℕ}
                   · intro b hb
                     rw [List.mem_singleton.mp hb]
                     exact hxfam
-                  · rw [listVal_cons, RelLetter.listVal_nil, mul_one]
+                  · have hcb : (RelLetter.comp mu x : RelLetter G Λ).val
+                        = (RelLetter.base x : RelLetter G Λ).val := rfl
+                    rw [listVal_cons, RelLetter.listVal_nil, mul_one, hcb]
                   · refine ⟨?_, trivial⟩
                     rintro ⟨hc, -⟩
                     exact hml hc

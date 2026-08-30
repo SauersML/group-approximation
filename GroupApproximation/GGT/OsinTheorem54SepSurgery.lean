@@ -151,14 +151,17 @@ theorem exists_pieces_of_enlargedWord (D : RelGenSet G Λ) {Dc : ℕ}
                 rw [listVal_demote]
                 have := hp.2.1
                 rwa [one_mul] at this
+              have hinv : wordDist D.alphabet.carrier u (u * y)
+                  = wordDist D.alphabet.carrier 1 y := by
+                have h1 := wordDist_left_invariant D.alphabet.carrier u 1 y
+                rwa [mul_one] at h1
               refine ⟨?_, ?_, ?_⟩
               · intro b hb
                 obtain ⟨x, rfl, hx⟩ := hbase b hb
                 exact hx
               · rw [hvalp]
-              · rw [hlenp, hvalp, hp.2.2,
-                  wordDist_left_invariant (relGenSetZ D Dc).alphabet.carrier u 1 y,
-                  alphabet_carrier_relGenSetZ D Dc, mul_one]
+              · rw [hlenp, hvalp, alphabet_carrier_relGenSetZ D Dc, hinv]
+                exact hp.2.2
             · rw [listVal_demote]
               have := hp.2.1
               rwa [one_mul] at this
