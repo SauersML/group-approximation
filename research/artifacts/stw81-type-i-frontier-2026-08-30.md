@@ -63,14 +63,17 @@ all type-I C-star algebras.  The relevant established inputs are:
    nuclear-dimension algebra with `topdim(A)<=1<dim_nuc(A)`.  This isolates
    the exact missing theorem: the one-dimensional type-I comparison between
    these two dimension theories.
-11. The invariant is exactly continuous under countable increasing
+11. The invariant is exactly continuous under arbitrary upward-directed
     hereditary exhaustions:
-    `ctdim(closure(union_n B_n))=sup_n ctdim(B_n)`.  Hence the LXXXI shadow
-    hypothesis is preserved and reflected by sequential inductive limits
-    with injective hereditary-image connecting maps.  The proof cuts every
-    continuous-trace subquotient by the stage hereditary algebras, passes to
-    the generated open-spectrum ideals, and applies the metric countable
-    closed-sum theorem.
+    `ctdim(closure(union_lambda B_lambda))=sup_lambda ctdim(B_lambda)` for a
+    separable limit.  Hence the LXXXI shadow hypothesis is preserved and
+    reflected by arbitrarily indexed inductive limits with injective
+    hereditary-image connecting maps.  Separability selects an increasing
+    sequence of stages with dense union, after which the proof cuts every
+    continuous-trace subquotient by those stages, passes to the generated
+    open-spectrum ideals, and applies the metric countable closed-sum theorem
+    for covering dimension.  Thus arbitrary ordinal chains, including those
+    of uncountable cofinality, require no uncountable union theorem.
 12. There is a genuinely non-type-I positive extension class which does not
     rely on Problem LXXXII.  If the extension is full, the ideal is separable
     stable AF, and the nonzero quotient is separable nuclear and
@@ -83,8 +86,9 @@ all type-I C-star algebras.  The relevant established inputs are:
     fullness.
 
 No maximum formula for arbitrary extensions is assumed, and no universal
-solution of Problem LXXXI is claimed.  No continuity statement for
-arbitrary injective inductive systems is claimed.  The full-extension class
-uses Evington's theorem only under its stated stability, fullness, and
+solution of Problem LXXXI is claimed.  The directed-limit theorem requires
+hereditary images and a separable limit; it gives no continuity statement
+for arbitrary injective inductive systems.  The full-extension class uses
+Evington's theorem only under its stated stability, fullness, and
 O-infinity-stability hypotheses; it does not assert color collapse for a
 general extension.

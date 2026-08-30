@@ -59,18 +59,21 @@ for every separable extension.  Therefore any discrepancy in Problems
 LXXXI--LXXXII occurs strictly above the continuous-trace shadow layer; it
 cannot be explained by topological dimension appearing only after gluing.
 
-This exact behavior persists through countably many hereditary layers.
-`stw81-ctdim-countable-hereditary-continuity` proves the stronger statement
-that whenever a separable algebra is the closure of an increasing sequence
-of hereditary subalgebras `B_n`,
+This exact behavior persists through arbitrary directed hereditary
+exhaustions.  `stw81-ctdim-directed-hereditary-continuity` proves that if a
+separable algebra is the closure of an upward-directed union of hereditary
+subalgebras `B_lambda`, then
 
 ```text
-ctdim(A) = sup_n ctdim(B_n).
+ctdim(A) = sup_lambda ctdim(B_lambda).
 ```
 
-Thus the shadow hypothesis is both preserved and reflected by sequential
-inductive limits whose injective connecting maps have hereditary images.  No
-continuity assertion is made for arbitrary injective connecting maps.
+Thus the shadow hypothesis is both preserved and reflected by arbitrarily
+indexed inductive limits whose injective connecting maps have hereditary
+images, provided the limit is separable.  No countability, ordinal
+continuity, or cofinality assumption is needed: separability extracts an
+increasing sequence which is already dense.  No assertion is made for
+arbitrary injective connecting maps without hereditary images.
 
 The counterexample search can also be normalized:
 `stw81-counterexamples-reduce-to-stable-and-unital` shows that any separable
