@@ -9,6 +9,7 @@ refuted_by:
 artifacts:
   - research/artifacts/stw99-presentations-cartan-cluster-2026-08-30.md
   - research/artifacts/stw47-normalizer-full-group-audit-2026-08-30.md
+  - research/artifacts/stw47-paper-folding-refutation-2026-08-30.md
 ---
 ## Resolution (2026-08-30)
 
@@ -34,7 +35,7 @@ extension property — STW record that no non-AF Cantor DIAGONAL in an
 AF algebra is known.  Kopsacheilis--Winter's paper-folding diagonal now refutes that candidate
 criterion inside the CAR algebra.
 
-## Attempts
+## Historical attempts
 
 * Positive strategy: a Cantor diagonal gives a principal étale
   groupoid model of the AF algebra; AF-ness of the algebra plus
@@ -57,9 +58,8 @@ criterion inside the CAR algebra.
   normalizers is subhomogeneous.  The proof
   identifies this quotient with the topological full group, builds the AF
   relation from its finite subgroups, and coherently trivializes every twist
-  over that AF relation.  Thus the ambient-AF question has a finite witness:
-  a counterexample must contain finitely many normalizing unitaries whose
-  images generate an infinite group.  What remains open is precisely why
-  finite-dimensional approximation of the ambient algebra should rule out
-  such a packet; ordinary AF approximation need not preserve `D` or its
-  normalizers.
+  over that AF relation.  Thus the ambient-AF question had a finite witness: a counterexample had to
+  contain finitely many normalizing unitaries whose images generate an
+  infinite group.  The paper-folding example now realizes this alternative;
+  ordinary AF approximation of the ambient algebra does not preserve `D` or
+  its normalizers.
