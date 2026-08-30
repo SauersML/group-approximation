@@ -176,6 +176,38 @@ both destroys some commutative packets and discards every noncommutative
 packet.  Neither calculation excludes a recovery argument that reorganizes
 the approximation before applying the expectation.
 
+Normalized property-A Schur localization does not provide such a
+reorganization.  More generally, the diagonal expectation is the unique
+bounded diagonal-bimodule retraction onto `ell^infinity(X)`.  Hence every
+bounded diagonal-bimodular localization `S` that fixes the diagonal satisfies
+
+```text
+E_X S=E_X.
+```
+
+The controlled-support Schur multipliers associated to normalized property-A
+kernels have exactly these properties.  They may localize the off-diagonal
+matrix coefficients of a nuclear-dimension return map, but subsequent
+diagonal averaging is literally unchanged.  The exact `1/2` commutative gap
+and exact `1` matrix-colour gap therefore persist after every such
+localization.  This leaves open only methods that use non-diagonal support
+information before averaging, or that break diagonal bimodularity in a
+quantitatively controlled way.
+
+There is a sharp obstruction to making that break small.  If a diagonal-valued
+c.p.c. map has norm defect `delta_D` from the identity on the diagonal and
+singleton-corner bimodule defect `delta_c`, then coordinatewise compression
+gives
+
+```text
+norm(R-E_X)<=delta_D+delta_c.
+```
+
+Consequently preservation of the commutative two-point packet as order zero
+forces `delta_D+delta_c>=1/2`, and preservation of a canonical matrix packet
+forces `delta_D+delta_c>=1`.  Thus no asymptotically diagonal-bimodular
+perturbation of the Schur-localization route can recover the colours.
+
 ## Z2 boundary and limit-operator firewall
 
 The natural periodic-quotient route is unavailable even for `Z^2`.

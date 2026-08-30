@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw87-invariant-mean-retraction-audit-2026-08-30.md
   - research/artifacts/stw87-z2-boundary-limit-operator-audit-2026-08-30.md
   - research/artifacts/stw87-minimal-boundary-dimension-collapse-audit-2026-08-30.md
+  - research/artifacts/stw87-diagonal-bimodular-localization-no-go-audit-2026-08-30.md
 ---
 
 **Problem LXXXVII of Schafhauser--Tikuisis--White, arXiv:2506.10902** (Willett--Winter, [449, Question 9.5]).  For a
@@ -58,6 +59,21 @@ zero, and the diagonal expectation on a canonical finite matrix corner has
 exact distance one from all such maps
 (`stw87-diagonal-order-zero-maps-annihilate-matrix-colours`).  Hence diagonal
 averaging cannot retain any noncommutative colour at all.
+
+Property-A metric localization does not bypass this firewall.  The diagonal
+expectation is the unique bounded diagonal-bimodule retraction, and every
+normalized diagonal-bimodular Schur localization `S` satisfies `E_X S=E_X`.
+Consequently even finite-propagation Schur localization before averaging
+leaves the exact one-half and one order-zero gaps unchanged
+(`stw87-diagonal-bimodular-localization-no-go`).  Any successful cover
+extraction must therefore either retain genuinely non-diagonal support
+information or leave the normalized diagonal-bimodular framework by a
+macroscopic amount.
+This obstruction is stable: any diagonal-valued c.p.c. map retaining the
+commutative packet as order zero has combined diagonal-fixing and
+singleton-corner bimodularity defect at least `1/2`, while retaining a matrix
+packet forces defect at least `1`
+(`stw87-approximate-diagonal-bimodularity-order-zero-threshold`).
 
 For amenable groups there is another natural attempt: an invariant mean
 averages crossed-product coefficients and gives a conditional expectation

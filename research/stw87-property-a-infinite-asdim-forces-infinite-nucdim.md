@@ -23,3 +23,15 @@ Transfinite nuclear-dimension bounds likewise do not give an ordinary nuclear
 lower bound.  The coarse-embedding corner reduction would suffice if `X`
 coarsely contained spaces with unbounded uniform Roe nuclear dimension, but
 no such finite-dimensional seeds beyond value one are known here.
+Nor can the property-A kernels themselves turn nuclear approximations into
+diagonal-dimension approximations by Schur-localizing the return maps and then
+averaging: normalized Schur localization leaves the diagonal expectation
+exactly unchanged (`stw87-diagonal-bimodular-localization-no-go`).  Replacing
+exact bimodularity by approximate singleton-corner bimodularity does not make
+this route perturbative: retaining the basic order-zero packets requires a
+fixed defect of at least `1/2`, and of `1` for a matrix packet
+(`stw87-approximate-diagonal-bimodularity-order-zero-threshold`).
+Single metric-sparsification cutdowns do not evade the threshold: a proper
+subset cutdown has norm-one defect from the identity on the global diagonal.
+This leaves open multi-corner recombinations, including ones that deliberately
+incur the macroscopic defect detected above.
