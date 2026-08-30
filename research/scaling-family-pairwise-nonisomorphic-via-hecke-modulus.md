@@ -76,9 +76,10 @@ where `W_(Gamma_m)` is the right-angled Coxeter group on the resulting
 
 The graph is locally finite.  Indeed `B` is commensurated in `H_m`, so the
 stabilizer in `B` of either endpoint of an edge has finite index; transitivity
-then gives finite constant degree.  Hence the Davis cubing of
-`W_(Gamma_m)` is finite-dimensional.  The action of `H_m` on the defining
-graph extends to the cubing, so (2) acts cubically on it.
+then gives finite constant degree.  Hence the clique number is finite and the
+Davis cubing of `W_(Gamma_m)` is finite-dimensional.  (The cubing itself is
+not locally finite: `X_m` is infinite.)  The action of `H_m` on the
+defining graph extends to the cubing, so (2) acts cubically on it.
 
 ## 2. Property (T) pushes every copy of the base back into the affine part
 
@@ -90,11 +91,14 @@ group.  Therefore `K intersect Z_m=1`, and the image `bar K` of `K` in
 `bar E_m` is again isomorphic to `B` and has property `(T)`.
 
 Niblo--Reeves, *Groups acting on CAT(0) cube complexes*,
-[arXiv:math/9702231](https://arxiv.org/abs/math/9702231), prove that a
-property-`(T)` group has no unbounded action on a finite-dimensional CAT(0)
-cube complex.  The locally finite Davis cubing is complete, so the bounded
-orbit has a fixed point and hence stabilizes its minimal cube.  Thus `bar K`
-fixes a cube.  After conjugation, the stabilizer of that cube has the form
+[arXiv:math/9702231](https://arxiv.org/abs/math/9702231), prove the
+finite-dimensional cubical fixed-point consequence of property `(T)`
+(property `FW`).  Applying it here, `bar K` fixes a point and hence
+stabilizes the unique open cube containing that point.  Equivalently, one may
+combine their bounded-orbit theorem with the standard completeness of the
+finite-dimensional unit-cube Davis realization.  Every cube is a
+`W_(Gamma_m)`-translate of a standard clique cube.  After conjugating by
+such a Coxeter element, its stabilizer has the form
 
 ```text
 W_T semidirect (H_m)_T,                                 (3)
@@ -142,11 +146,13 @@ prove that every infinite subgroup of the higher-rank nonuniform lattice
 [L:P]<infinity.                                         (6)
 ```
 
-Because `K_0` has finite index in a copy of
-`Z^3 semidirect SL_3(Z)`, it contains a normal free-abelian subgroup `A`
-of rank three.  The image of `A` in `P` is an abelian normal subgroup.
-The Margulis normal subgroup theorem makes that image finite; replacing
-`A` by its finite-index kernel puts `A` inside `U_m`.
+Transport the canonical translation subgroup `R~=Z^3` of the abstract
+copy `K~=B`, and put `A_0=K_0 intersect R`.  Since `K_0` has finite
+index in `K`, the subgroup `A_0` is normal in `K_0), free abelian of
+rank three.  Its image in `P` is abelian and normal.  The Margulis normal
+subgroup theorem makes that image finite.  Define `A` to be its kernel.
+Then `A` is still normal and rank three, has finite index in `A_0), and
+lies inside `U_m`.
 
 The rational span of `A` in `Q^3` is nonzero and `P`-invariant.  Since a
 finite-index subgroup of `SL_3(Z)` is Zariski dense and the standard
@@ -161,7 +167,10 @@ K_0 <= m^(-r)Z^3 semidirect L = t^(-r) B t^r.
 ```
 
 The full lattice `A<=K_0` and (6) show that this inclusion has finite index.
-Therefore `K_0`, hence `K`, is commensurable with `B`.  This proves Fact 1.
+Therefore the conjugated `K_0), and hence the conjugated `K`, is
+commensurable with `B`.  Undoing the conjugation replaces `B` by one of
+its conjugates; since `B` is commensurated by all of `E_m`, every such
+conjugate is commensurable with `B`.  This proves Fact 1.
 
 ## 4. Index calculus recovers `m`
 
@@ -172,14 +181,21 @@ Delta_C(g)=
  [C:C intersect gCg^(-1)] / [gCg^(-1):C intersect gCg^(-1)].   (7)
 ```
 
-Index multiplication shows that this is a homomorphism
-`G->Q_(>0)`.  It is unchanged when `C` is replaced by a commensurable
-subgroup: insert `C'`, `C`, `gCg^(-1)`, and `gC'g^(-1)` in the relative
-index product; the two endpoint factors cancel.  It is also functorial under
-abstract group isomorphisms.
+Write `[A:D]_rel=[A:A intersect D]/[D:A intersect D]` for commensurable
+subgroups.  Multiplicativity of relative index shows that (7) is a
+homomorphism.  If `C'` is commensurable with `C`, then
+`
+[ C' : gC'g^(-1) ]_rel
+ = [ C' : C ]_rel [ C : gCg^(-1) ]_rel
+   [ gCg^(-1) : gC'g^(-1) ]_rel.
+`
+The first and last factors are inverse because conjugation preserves relative
+index.  Thus `Delta_(C')=Delta_C`.  The same formula also proves
+functoriality under abstract group isomorphisms.
 
-For the displayed `B<=E_m`, every generator other than `t` has relative
-modulus one, while (1) gives
+For the displayed `B<=E_m`, each of the six base generators normalizes
+`B`, and the lamp generator `c` centralizes `B`; all seven therefore
+have relative modulus one.  The remaining generator `t` satisfies (1), so
 
 ```text
 Delta_B(t)=m^3,       Delta_B(E_m)=<m^3>.               (8)
