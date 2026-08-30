@@ -8,6 +8,7 @@ distinct_from:
   stw96-simple-stable-rank-one-single-generation-frontier: real rank zero is a different regularity condition and this formulation does not assume simplicity.
 artifacts:
   - research/artifacts/stw96-regular-rank-single-generation-audit-2026-08-30.md
+  - research/artifacts/stw96-mixed-rr0-extension-audit-2026-08-30.md
 ---
 
 Does every separable real-rank-zero C*-algebra have a single generator?
@@ -37,5 +38,10 @@ simple subquotient gives generator rank one; in particular finite decomposition
 rank suffices.  Nuclear purely infinite real-rank-zero algebras also have
 generator rank one, so the remaining finite-nuclear-dimension residue must have
 a purely infinite simple subquotient while the total algebra is not purely
-infinite.  The unrestricted real-rank-zero frontier remains open beyond this
-corridor.
+infinite.  The further reduction
+`stw96-countable-zstable-filtrations-have-generators` removes every such mixed
+case with finitely many ideals, and every case admitting a continuous
+countable composition series: `Z`-stability glues without the generator-rank
+extension loss.  Thus a counterexample in this corridor must have infinitely
+many ideals and no such composition series.  The unrestricted real-rank-zero
+frontier remains open beyond these reductions.
