@@ -168,6 +168,33 @@ def IsParametrizedAxis (h : G) (x : X) (a : ℝ → X) : Prop :=
     ∀ (n : ℤ) (t : ℝ),
       (h ^ n) • a t = a (t + (n : ℝ) * dist x (h • x))
 
+/-- A global parametrized axis restricts to the fundamental connector used in
+DGO Definition 6.3. -/
+theorem IsParametrizedAxis.isAxisConnector {h : G} {x : X} {a : ℝ → X}
+    (ha : IsParametrizedAxis h x a) : IsAxisConnector h x a := by
+  refine ⟨?_, ha.1, ?_⟩
+  · intro s hs t ht
+    exact ha.2.1 s t
+  · simpa [ha.1] using (ha.2.2 (1 : ℤ) 0).symm
+
+/-- The concatenated-axis coordinates induced by a global parametrized axis
+are a `(1,0)`-quasi-geodesic (in fact, an isometric embedding). -/
+theorem IsParametrizedAxis.isQuasiGeodesicAxis {h : G} {x : X} {a : ℝ → X}
+    (ha : IsParametrizedAxis h x a) : IsQuasiGeodesicAxis 1 0 h x a := by
+  intro p q
+  have hp : p.value = a p.coordinate := by
+    dsimp [AxisPoint.value, AxisPoint.coordinate]
+    rw [ha.2.2]
+    congr 1
+    ring
+  have hq : q.value = a q.coordinate := by
+    dsimp [AxisPoint.value, AxisPoint.coordinate]
+    rw [ha.2.2]
+    congr 1
+    ring
+  rw [hp, hq, ha.2.1]
+  constructor <;> norm_num
+
 /-- An oriented segment of a translated concatenated axis.  Its path length
 is the difference of the two arclength coordinates. -/
 structure AxisSegment (h : G) (x : X) (f : ℝ → X) where
@@ -897,6 +924,20 @@ theorem hasMonotoneVertexSampling_of_uniformVertexBlockFellowTravel
     simpa only [A, D, Nat.cast_add, Int.ofNat_eq_natCast, add_assoc,
       add_left_comm, add_comm] using hK (M + i.val) hMi
 
+/-- A global geodesic axis supplies the complete monotone-sampling input of
+Bestvina--Fujiwara Proposition 6, with no additional geometric hypothesis. -/
+theorem hasMonotoneVertexSampling_of_parametrizedAxis
+    {δ B : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) {a : ℝ → X} (ha : IsParametrizedAxis h x a)
+    (hstep : 0 < dist x (h • x)) :
+    HasMonotoneVertexSampling B h x := by
+  apply hasMonotoneVertexSampling_of_uniformVertexBlockFellowTravel
+    hB (by norm_num : (0 : ℝ) < 1) le_rfl hiso
+    ha.isAxisConnector ha.isQuasiGeodesicAxis
+  exact hasUniformVertexBlockFellowTravel_of_parametrizedAxis
+    hδ hδ0 hgeo hiso hB ha hstep
+
 /-- **DGO Lemma 6.7 for power-vertex segments, reduced exactly to the cited
 Bestvina--Fujiwara monotone-sampling proposition.**  The length threshold is
 uniform over both translated axes. -/
@@ -919,6 +960,24 @@ theorem exists_equal_positive_powers_of_long_powerSegments
   obtain ⟨K, A, D, hA, hD, hbase0, hbaseM, hsamples0, hsamplesM⟩ :=
     hsampleL p q hpLen hqLen hclose
   exact hN p q hbase0 K hbaseM A D hA hD hsamples0 hsamplesM
+
+/-- **DGO Lemma 6.7 for power-vertex segments in the axial case.**  This is
+the explicit case proved in Bestvina--Fujiwara Proposition 6, including the
+positive-power conclusion. -/
+theorem exists_equal_positive_powers_of_long_powerSegments_of_parametrizedAxis
+    {δ B : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) {a : ℝ → X} (ha : IsParametrizedAxis h x a)
+    (hstep : 0 < dist x (h • x))
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) :
+    ∃ L : ℝ, 0 < L ∧ ∀ (p q : PowerAxisSegment h x),
+      L ≤ p.length → L ≤ q.length → OrientedClose B p q →
+      ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+        p.conjugate ^ r = q.conjugate ^ s := by
+  apply exists_equal_positive_powers_of_long_powerSegments
+    hδ hδ0 hgeo hiso hlox hwpd
+  exact hasMonotoneVertexSampling_of_parametrizedAxis
+    hδ hδ0 hgeo hiso hB ha hstep
 
 /-- Oriented closeness is symmetric in the two segments. -/
 theorem orientedClose_comm {B : ℝ} (p q : PowerAxisSegment h x) :
@@ -1077,6 +1136,25 @@ theorem exists_equal_positive_powers_of_long_axisSegments
   refine ⟨r, s, hr, hs, ?_⟩
   dsimp [AxisSegment.conjugate, PowerAxisSegment.conjugate] at hrs ⊢
   rwa [hpTranslate, hqTranslate] at hrs
+
+/-- **DGO Lemma 6.7 for arbitrary segments of a global geodesic axis.**
+Trimming arbitrary endpoints and the axial Bestvina--Fujiwara argument are
+assembled here without the abstract monotone-sampling assumption. -/
+theorem exists_equal_positive_powers_of_long_axisSegments_of_parametrizedAxis
+    {δ B : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) {a : ℝ → X} (ha : IsParametrizedAxis h x a)
+    (hstep : 0 < dist x (h • x))
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) :
+    ∃ L : ℝ, 0 < L ∧ ∀ (p q : AxisSegment h x a),
+      L ≤ p.length → L ≤ q.length → AxisSegment.OrientedClose B p q →
+      ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+        p.conjugate ^ r = q.conjugate ^ s := by
+  have hB' : 0 ≤ B + 2 * dist x (h • x) := by positivity
+  apply exists_equal_positive_powers_of_long_axisSegments
+    hδ hδ0 hgeo hiso ha.isAxisConnector hstep hlox hwpd
+  exact hasMonotoneVertexSampling_of_parametrizedAxis
+    hδ hδ0 hgeo hiso hB' ha hstep
 
 end PowerAxisSegment
 
