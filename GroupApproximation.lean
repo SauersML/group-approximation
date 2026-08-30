@@ -2984,3 +2984,6 @@ import GroupApproximation.GGT.DGOWindmillExhaust
 import GroupApproximation.Analysis.VoiculescuSpectralOrderBridge
 import GroupApproximation.GGT.HullEeMinimalWord
 import GroupApproximation.GGT.HullEeSplice
+import GroupApproximation.GGT.DGOQuasiAxis
+import GroupApproximation.GGT.RelHypOsin24CayleyTwoInput
+import GroupApproximation.GGT.RelHypOsin24Greendlinger
