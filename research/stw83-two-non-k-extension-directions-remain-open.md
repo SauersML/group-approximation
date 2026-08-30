@@ -62,4 +62,12 @@ two-colour approximation.  The reduction
 adaptive colour supported in a deep plateau would suffice, but a uniform
 block-diagonal approximation of the whole matrix-over-circle corner is
 impossible because it would make a complementary circle corner
-zero-dimensional.
+zero-dimensional.  The remaining escape is narrower still.  By
+`stw83-circle-unitary-order-zero-plus-constants-gap`, there is a uniform
+positive distance between the circle generator and the sum of a constant
+with one finite-dimensional order-zero range.  Therefore, even if the second
+inner colour has arbitrary off-diagonal entries crossing a rank-one plateau,
+it cannot leave its plateau diagonal scalar: on the finite set containing the
+corner circle generator, the first plateau colour plus that scalar diagonal
+has a fixed error floor.  Any successful adaptive colour must transport
+coefficient variation as well as matrix entries across the support split.

@@ -340,3 +340,31 @@ no-go for the finite-set buffer idea itself: a successful second colour must
 carry the scalar off-diagonal terms crossing the plateau boundary, while only
 the coefficient-varying compact terms are localized.  Constructing that
 adaptive completely positive approximation is now the exact remaining task.
+
+## A quantitative finite-set obstruction beyond block diagonality
+
+The off-diagonal escape above has a further necessary condition.  Let `z` be
+the coordinate unitary of `C(T)`.  There is a universal `delta>0` such that
+
+```text
+norm(z-c-eta(b)) >= delta
+```
+
+for every scalar `c`, every contraction `b` in a finite-dimensional algebra,
+and every cpc order-zero map `eta` from that algebra to `C(T)`.  Indeed, such
+an order-zero map vanishes on noncommutative matrix summands and has the form
+`sum lambda_j h_j`, where the positive functions `h_j` are pairwise
+orthogonal.  If constants plus such functions converged to `z`, remove the
+small arc on which `z` is close to the constant.  Its connected complement
+must lie in the support of one `h_j`, forcing a punctured circle, after a
+subsequence, into a single line segment.  This is impossible.
+
+Apply this in a constant rank-one plateau corner `eM_r(C(T))e`.  Even if the
+second inner colour has completely unrestricted off-diagonal terms relative
+to `e`, compression shows that it cannot have scalar `e`-diagonal on the
+input approximating `ze`: the first colour and that diagonal would violate
+the uniform separation above.  Thus the next construction cannot merely use
+the second colour as an off-diagonal carrier.  It must simultaneously encode
+genuine circle variation on the plateau diagonal.  This is a finite-set
+quantitative obstruction and does not assume that the second colour commutes
+with the plateau projection.

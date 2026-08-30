@@ -137,4 +137,12 @@ It also proves that one cannot obtain this by approximating the whole
 one-colour approximation of a nonzero matrix algebra over `C(T)`.  Any
 successful two-colour proof must therefore be finite-set adaptive and use its
 second inner colour to carry scalar off-diagonal terms across the plateau
-boundary.
+boundary.  Even that transport is not sufficient if its plateau diagonal
+remains coefficient-blind.  The quantitative separation theorem
+`stw83-circle-unitary-order-zero-plus-constants-gap` gives a universal
+`delta>0`: in a rank-one plateau corner, the circle generator cannot be
+approximated within `delta` by one finite-dimensional order-zero colour plus
+a constant.  This permits arbitrary off-diagonal entries in the second
+colour.  Hence a successful adaptive construction must make the second
+colour carry both cross-boundary matrix terms and genuinely circle-varying
+information on the plateau diagonal.
