@@ -68,3 +68,21 @@ and the split exact sequence
 The stable-finiteness argument is written explicitly.  The root remains
 open: the reduction supplies no quasidiagonal approximation of an arbitrary
 stable kernel.
+
+## Norm-local positive mechanism
+
+Quasidiagonality itself is norm-local.  If every finite subset of a unital
+algebra is approximated by a quasidiagonal unital subalgebra, Arveson
+extension carries a finite-dimensional approximation of the local algebra
+to the ambient algebra.  Product and norm-recovery errors remain controlled
+by contractivity.
+
+Combining this with the two strongest solved cases gives a mixed local
+positive class.  It is enough that each finite set be approximated by a
+subalgebra which is either traceless, or is nuclear, UCT, and has a faithful
+trace.  The ambient algebra need not have a faithful trace and the choice of
+the two types may vary with the finite set.
+
+This argument applies in particular to injective directed limits.  It does
+not apply to arbitrary noninjective connecting maps: images are quotients,
+and quasidiagonality is not quotient-permanent.
