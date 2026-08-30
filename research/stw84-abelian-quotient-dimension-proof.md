@@ -37,4 +37,3 @@ The compact-group dimension formula is proved directly in Sidney Morris,
 [*Pontryagin Duality and the Structure of Locally Compact Abelian
 Groups*](https://sidneymorris.net/Pontryagin_Duality.pdf), Theorem 30 and its
 fourth corollary.  No finite-generation hypothesis is present.
-

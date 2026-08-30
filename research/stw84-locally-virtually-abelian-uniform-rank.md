@@ -27,4 +27,3 @@ dim_Q(Q tensor_Z G_ab)=r,
 then equality holds in (1).  This extends the exact virtually-abelian
 calculation to directed unions which need not themselves possess any abelian
 subgroup of finite index.
-

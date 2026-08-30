@@ -15,4 +15,3 @@ dim_nuc(C*(L times H))=dim_nuc(C*(H)).
 This equality includes the value `infinity`.  Thus arbitrary locally finite
 direct factors are invisible to nuclear dimension even when `L` is infinite,
 nonabelian, and has finite subgroups of unbounded order.
-

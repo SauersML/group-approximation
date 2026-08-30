@@ -22,4 +22,3 @@ including when the common value is infinite.
 The character hypothesis is the exact source of the lower bound: without a
 one-dimensional quotient, tensoring by a zero-dimensional algebra can erase
 parts of the primitive spectrum and need not admit this quotient argument.
-

@@ -25,4 +25,3 @@ dim_nuc(C*(G)) <= liminf_n dim_nuc(C*(G_n)).
 
 In particular, any uniform finite bound on the subgroup algebras is inherited
 by `C*(G)`.
-

@@ -16,4 +16,3 @@ The value may be infinite.  This computes Problem LXXXIV for a class that
 contains many non-finitely-generated and non-virtually-abelian amenable
 groups; neither noncommutativity nor unbounded finite subgroup complexity in
 the `L` coordinate changes the answer.
-

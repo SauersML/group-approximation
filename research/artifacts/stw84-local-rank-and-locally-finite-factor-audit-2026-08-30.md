@@ -72,4 +72,3 @@ general finite-Hirsch-length elementary amenable groups.  The direct-factor
 proof uses the augmentation quotient and therefore does not extend formally
 to a semidirect product.  The directed-union theorem needs a uniform stage
 bound; it cannot turn unbounded finite-stage dimensions into a finite limit.
-

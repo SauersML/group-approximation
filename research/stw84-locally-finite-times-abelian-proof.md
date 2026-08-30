@@ -24,4 +24,3 @@ dim(A_hat)=dim_Q(Q tensor_Z A).
 
 Combining these equalities proves the claim, including infinite rational
 rank.
-

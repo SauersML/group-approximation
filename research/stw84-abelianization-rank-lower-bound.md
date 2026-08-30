@@ -21,4 +21,3 @@ For amenable `G`, full and reduced group C*-algebras agree, so the same bound
 applies to the group algebra in STW Problem LXXXIV.  In particular, an
 amenable group with infinite-rank abelianization has group C*-algebra of
 infinite nuclear dimension.
-

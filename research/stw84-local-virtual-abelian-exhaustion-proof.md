@@ -31,4 +31,3 @@ The uniformity hypothesis is essential to this argument: finite nuclear
 dimension is not preserved by an exhaustion whose stage dimensions tend to
 infinity.  The conclusion also does not assert that every finite-Hirsch-length
 elementary amenable group is locally virtually abelian.
-

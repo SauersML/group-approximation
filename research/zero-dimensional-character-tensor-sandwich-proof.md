@@ -33,4 +33,3 @@ dim_nuc(B)<=dim_nuc(A tensor_min B).                   (2)
 Equations (1)--(2) prove equality when `d` is finite.  If
 `dim_nuc(B)=infinity`, (2) forces the tensor product to have infinite nuclear
 dimension as well.
-

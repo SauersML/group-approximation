@@ -29,4 +29,3 @@ C*-algebras for `G` and every `G_n`, giving the displayed full-algebra limit.
 Nuclear dimension is upper semicontinuous for inductive limits.  Applying the
 standard finite-set approximation proof to any cofinal subsequence on which
 the dimensions realize their liminf gives the asserted inequality.
-
