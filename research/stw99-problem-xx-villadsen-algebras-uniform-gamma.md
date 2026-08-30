@@ -5,8 +5,9 @@ kind: claim
 title: The Villadsen algebras of the first type have uniform property Gamma (STW Problem XX)
 root: true
 distinct_from:
-  stw99-problem-xix-uniform-gamma-stably-finite-nuclear: that is the general CETW question; this is its designated test case, where a negative answer is expected by some of the STW authors and would refute the general problem.
+  stw99-problem-xix-uniform-gamma-stably-finite-nuclear: that universal CETW question is false by Toms's different higher-stable-rank AH example; this stable-rank-one Villadsen family is positive by Vaccaro.
 artifacts:
+  - research/artifacts/stw99-xix-xx-literature-status-2026-08-30.md
   - research/artifacts/stw99-xix-xx-uniform-gamma-recon-2026-08-30.md
   - research/artifacts/stw99-xx-point-dominated-diagonal-gamma-2026-08-30.md
   - research/artifacts/stw99-xx-clustered-eigenmap-gamma-2026-08-30.md
@@ -20,14 +21,21 @@ algebras with diagonal connecting maps, positive asymptotic
 identity-coordinate weight, and positive radius of comparison) have
 uniform property Γ?
 
-Evidence recorded by STW: Elliott--Niu show the canonical diagonal Cartan
-`D ⊆ A` fails relative uniform Γ — no Γ-witnessing projections can be
-found in `\bar D^{T(A)}` — ruling out the natural commutative selection,
-and "some of the authors view this as evidence" for a negative answer,
-which would refute
-`stw99-problem-xix-uniform-gamma-stably-finite-nuclear`.
+**ESTABLISHED IN THE CURRENT LITERATURE (status checked 2026-08-30).**
+Vaccaro, arXiv:2604.24682v2, Theorem A and Corollary 4.1, proves that every
+simple unital non-elementary AH algebra of stable rank one has uniform
+property Γ and explicitly names the Villadsen algebras of the first type.
+The paper states that this solves STW Problem XX affirmatively.  Toms,
+arXiv:2606.12188v2, independently records the same positive status in its
+introduction.
 
-## Attempts
+The earlier negative status reported in the May 2026 STW addendum came from a
+superseded version of Elliott--Niu, arXiv:2504.03611.  Its current v3
+(2026-08-13) no longer asserts the ambient-uniform-Γ equivalence for diagonal
+AH algebras.  The exact version reconciliation is in the literature-status
+artifact.
+
+## Historical attack record
 
 * **Cheap positive fails.**  Block-subset projections (unions of
   connecting-map blocks at a deep stage) are exactly central against
@@ -55,9 +63,10 @@ which would refute
   zero and the multiplicity tends to infinity.  Distinct point evaluations
   are balanced on each finite test set by vector discrepancy; only the
   coordinate blocks contribute a uniform-in-the-base error.  Thus wild
-  point-evaluation data is not the obstruction.  What remains in the
-  classical Villadsen regime is positive asymptotic coordinate mass carried
-  by independently variable, low-multiplicity eigenmaps.
+  point-evaluation data is not the obstruction.  What remained outside that
+  internal theorem was the classical Villadsen regime with positive
+  asymptotic coordinate mass carried by independently variable,
+  low-multiplicity eigenmaps.
 * **Positive coordinate weight is not by itself an obstruction.**
   `asymptotically-clustered-diagonal-ah-has-uniform-gamma` proves uniform
   Gamma when almost all eigenmaps can be grouped into fixed-size packets
@@ -67,8 +76,10 @@ which would refute
   one and includes the concrete case where the number of distinct
   eigenmaps is sublinear in total multiplicity.  These witnesses are
   off-diagonal and evade the canonical-Cartan obstruction.  Independently
-  variable multiplicity-one coordinate maps fail the packet hypothesis,
-  so the positive-radius Villadsen case remains open.
+  variable multiplicity-one coordinate maps fail the packet hypothesis, so
+  this internal sufficient condition did not reach the positive-radius
+  Villadsen case.  Vaccaro closes it by a different
+  stable-rank-one/tracial-local-homogeneity argument.
 * **Metric entropy is the intrinsic packet threshold.**
   `sublinear-eigenmap-metric-entropy-implies-uniform-gamma` replaces exact
   eigenmap repetition by a sublinear covering-number condition for the
@@ -76,14 +87,14 @@ which would refute
   broader: all eigenmaps may be distinct but lie in `o(L)` shrinking
   clusters.  Conversely, independent coordinate projections are uniformly
   separated by any scalar test function with nonzero oscillation, so their
-  covering number remains linear.  Thus this refinement identifies, but
-  does not cross, the classical Villadsen boundary.
+  covering number remains linear.  Thus this refinement identifies, but does
+  not itself cross, the classical Villadsen boundary.
 * **Continuous phase variation cannot repair an independent pair.**
   `stw20-two-coordinate-variable-mixing-tradeoff` computes an exact local
   obstruction.  For a rank-one mixer over two coordinate blocks separated
   by a scalar function of oscillation `Delta`, the commutator error `C` and
   pointwise mixed-trace-halving error `E` obey
   `C^2+4E^2=Delta^2/4`.  Thus a fibre-dependent phase cannot make both
-  errors small.  This fences pairwise pointwise constructions only: the
-  actual problem remains a uniform-2-norm question over limit traces, and
-  a many-block projection need not preserve any fixed pair.
+  errors small.  This fenced pairwise pointwise constructions only: it did
+  not settle the full uniform-2-norm question over limit traces, which is
+  now settled positively by the cited theorem.
