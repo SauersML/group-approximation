@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/stw87-lxxxvii-uniform-roe-nuclear-dimension-audit-2026-08-30.md
   - research/artifacts/stw87-invariant-mean-retraction-audit-2026-08-30.md
   - research/artifacts/stw87-z2-boundary-limit-operator-audit-2026-08-30.md
+  - research/artifacts/stw87-minimal-boundary-dimension-collapse-audit-2026-08-30.md
 ---
 
 **Problem LXXXVII of Schafhauser--Tikuisis--White, arXiv:2506.10902** (Willett--Winter, [449, Question 9.5]).  For a
@@ -78,3 +79,22 @@ expected rank-two topology but only as arbitrary subalgebras; nuclear
 dimension is not upward monotone from them.  Thus limit operators and Bott
 classes expose the correct two-dimensional core without giving it the
 quotient or hereditary variance needed for the missing lower bound.
+
+Passing from the full boundary to a minimal subsystem loses even more
+information.  Every minimal closed invariant `M subset beta Z^d` gives a
+canonical quotient
+
+```text
+C*_u(Z^d) ->> C(M) crossed_product_r Z^d
+```
+
+whose nuclear dimension is exactly one, for every `d>=1`
+(`stw87-zero-dimensional-minimal-actions-have-dimension-one`).  The proof
+preserves freeness and minimality in metrizable zero-dimensional factors,
+collapses each separable factor's finite nuclear dimension to at most one,
+and extends the incoming c.p.c. maps back to the full quotient; a Pimsner--
+Voiculescu index excludes zero.  The theorem in fact applies to every infinite
+finitely generated nilpotent group.  These maps already factor through the
+uniform Roe corona.  Thus for `d>=2` no minimal boundary quotient can carry
+the desired rank-`d` nuclear-dimension lower bound.  Nonminimal quotients and
+genuinely ambient lower-bound invariants remain open.

@@ -214,6 +214,34 @@ quotient.  Hence crossed-product quotients, limit operators, K-theory, and
 dynamic-asymptotic-dimension restrictions all stop at the same variance
 barrier; none supplies `dim_nuc(C*_u(Z^2))>=2`.
 
+## Minimal boundary quotients collapse to dimension one
+
+There is a sharper endpoint for the boundary-quotient route.  If `d>=1` and
+`M` is any minimal nonempty closed `Z^d`-invariant subset of `beta Z^d`, then
+
+```text
+dim_nuc(C(M) crossed_product_r Z^d)=1.
+```
+
+More generally this holds for every free minimal action of `Z^d` on a compact
+zero-dimensional Hausdorff space, without metrizability—and, in fact, for
+every infinite finitely generated nilpotent acting this way.  For each finite
+crossed-product packet, adjoining countably many clopen displacement witnesses
+produces a compact metrizable zero-dimensional factor whose action is still
+free and minimal.  Szabo--Wu--Zacharias give finite nuclear dimension to that
+separable factor crossed product, and the simple-algebra theorem collapses it
+to at most one.  Injectivity of finite-dimensional operator systems extends
+the incoming c.p.c. maps to the original algebra, preserving the one-colour
+bound.  The Pimsner--Voiculescu boundary of a canonical group unitary is the
+nonzero unit class, excluding zero.
+
+Restriction of coefficients gives a quotient from `C*_u(Z^d)` onto this
+dimension-one algebra, and it factors through the uniform Roe corona because
+it annihilates `c_0(Z^d) crossed_product_r Z^d=K(ell^2(Z^d))`.  Thus, for
+`d>=2`, every canonical minimal boundary quotient erases the higher-
+dimensional lower bound rather than detecting it.  This does not exclude
+larger nuclear dimension in a nonminimal quotient.
+
 ## Exact remaining frontier
 
 The cases not covered by the preceding established results are:
