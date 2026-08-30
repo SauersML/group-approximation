@@ -259,6 +259,64 @@ theorem sumBound_linear_of_chordPartnerTraversal (D : RelGenSet G Λ)
       simpa [add_comm] using (add_le_add_left hchord (n : ℝ)))
   exact ⟨k, m, hk, hnle, hsumle, hm, hbound⟩
 
+/-- **Sound Proposition 4.14 assembly with unordered chord partners.**
+
+The published proof's linear traversal assertion is deliberately not used.
+Instead, partner injectivity (`partners.Nodup`) and the fact that every partner
+starts on the `chordLength`-edge chord give the unconditional quadratic bound
+`chordTraversalCost partners ≤ chordLength²`.  The resulting cycle-size
+overhead is allowed to be squared-logarithmic; the robust form of Lemma 4.19
+only asks that the number-of-pieces overhead plus the size overhead is
+eventually smaller than the square-root gain.
+
+Thus this theorem is the repair path for DGO Proposition 4.14.  The preceding
+`sumBound_linear_of_chordPartnerTraversal` remains as an explicit record of the
+stronger, unproved line in the source. -/
+theorem sumBound_linear_of_quadraticChordTraversal (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    (pieceOverhead sizeOverhead : ℕ → ℝ) (N : ℕ) (α ε : ℝ) (M₁ : ℕ)
+    (hα0 : 0 < α) (hα1 : α < 1) (hε0 : 0 < ε)
+    (hgain : Real.sqrt α * (1 + ε) ≤ 1)
+    (hthresh : ∀ n : ℕ, M₁ < n →
+      sizeOverhead n + pieceOverhead n ≤ ε * Real.sqrt n)
+    (H : ∀ n : ℕ, N < n →
+      ∃ (k : ℕ) (m : Fin k → ℕ) (chordLength : ℕ) (partners : List ℕ),
+        (k : ℝ) ≤ pieceOverhead n ∧
+        (n : ℝ) ≤ ∑ i, (m i : ℝ) ∧
+        (ChordPartnerQuadraticTraversalBound chordLength partners →
+          (∑ i, (m i : ℝ)) ≤
+            (n : ℝ) + 6 * (chordLength * chordLength)) ∧
+        (6 * (chordLength * chordLength) : ℝ) ≤ sizeOverhead n ∧
+        (∀ i, (m i : ℝ) ≤ α * n) ∧
+        partners.Nodup ∧
+        (∀ y ∈ partners, y < chordLength) ∧
+        SumBound D (b : ℝ) n (∑ i, sumCost D hsymm b hδ (m i))) :
+    ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n) := by
+  obtain ⟨L, hlinear⟩ :=
+    DGO.nat_linear_of_subdivision_of_sqrt_overhead
+      (sumCost D hsymm b hδ) pieceOverhead sizeOverhead N α ε M₁
+      hα0 hα1 hε0 hgain hthresh (by
+        intro n hn
+        obtain ⟨k, m, chordLength, partners, hk, hnle, hsize, hquadratic,
+          hm, hnodup, hrange, hbound⟩ := H n hn
+        have htraversal :
+            ChordPartnerQuadraticTraversalBound chordLength partners :=
+          chordPartnerQuadraticTraversalBound_of_nodup_lt hnodup hrange
+        have hsumle : (∑ i, (m i : ℝ)) ≤ (n : ℝ) + sizeOverhead n :=
+          (hsize htraversal).trans (by
+            simpa using (add_le_add_left hquadratic (n : ℝ)))
+        have hcostNat : sumCost D hsymm b hδ n ≤
+            ∑ i, sumCost D hsymm b hδ (m i) :=
+          sumCost_le D hsymm b hδ hbound
+        have hcost : (sumCost D hsymm b hδ n : ℝ) ≤
+            ∑ i, (sumCost D hsymm b hδ (m i) : ℝ) := by
+          exact_mod_cast hcostNat
+        exact ⟨k, m, hk, hcost, hnle, hsumle, hm⟩)
+  refine ⟨L, ?_⟩
+  intro n hn
+  exact SumBound.mono (sumBound_sumCost D hsymm b hδ n) (hlinear n hn)
+
 end DGOProposition414
 end GGT
 end GroupApproximation

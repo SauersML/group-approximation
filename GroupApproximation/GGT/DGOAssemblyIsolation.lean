@@ -595,6 +595,64 @@ minimal numerical fact consumed by `∑ n_j ≤ n + 6L`. -/
 def ChordPartnerTraversalBound (L : ℕ) (partners : List ℕ) : Prop :=
   chordTraversalCost partners ≤ L
 
+/-- **The traversal bound actually forced by finite chord incidence.**
+
+Unlike `ChordPartnerTraversalBound`, this does not assert that the partners
+occur monotonically.  It records the unconditional quadratic estimate: a list
+of distinct starts on an `L`-edge chord has at most `L` entries, and every jump
+between two starts costs at most `L`.
+
+This is the faithful replacement for the unproved linear-traversal step in the
+published proof of Proposition 4.14. -/
+def ChordPartnerQuadraticTraversalBound (L : ℕ) (partners : List ℕ) : Prop :=
+  chordTraversalCost partners ≤ L * L
+
+/-- If every entry is at most `L`, each transition costs at most `L`, so the
+total traversal is at most `partners.length * L`.  No order premise occurs. -/
+theorem chordTraversalCost_le_length_mul {partners : List ℕ} {L : ℕ}
+    (hupper : ∀ y ∈ partners, y ≤ L) :
+    chordTraversalCost partners ≤ partners.length * L := by
+  induction partners with
+  | nil => simp [chordTraversalCost]
+  | cons x xs ih =>
+      cases xs with
+      | nil => simp [chordTraversalCost]
+      | cons y ys =>
+          have hx : x ≤ L := hupper x (by simp)
+          have hy : y ≤ L := hupper y (by simp)
+          have hdist : Nat.dist x y ≤ L := by
+            rcases le_total x y with hxy | hyx
+            · rw [Nat.dist_eq_sub_of_le hxy]
+              omega
+            · rw [Nat.dist_comm, Nat.dist_eq_sub_of_le hyx]
+              omega
+          have htail : chordTraversalCost (y :: ys) ≤ (y :: ys).length * L :=
+            ih (fun z hz => hupper z (by simp [hz]))
+          simp only [chordTraversalCost, List.length_cons]
+          rw [Nat.add_mul]
+          omega
+
+/-- **Quadratic traversal from the data supplied by the chord construction.**
+
+`partners.Nodup` is partner injectivity, and `y < L` says that `y` is the
+start of a component on the `L`-edge chord.  These imply the quadratic bound
+without any planar or monotonicity assumption. -/
+theorem chordPartnerQuadraticTraversalBound_of_nodup_lt
+    {partners : List ℕ} {L : ℕ} (hnodup : partners.Nodup)
+    (hrange : ∀ y ∈ partners, y < L) :
+    ChordPartnerQuadraticTraversalBound L partners := by
+  have hsubset : partners.toFinset ⊆ Finset.range L := by
+    intro y hy
+    exact Finset.mem_range.mpr (hrange y (by simpa using hy))
+  have hcard : partners.length ≤ L := by
+    have h := Finset.card_le_card hsubset
+    rw [List.toFinset_card_of_nodup hnodup, Finset.card_range] at h
+    exact h
+  unfold ChordPartnerQuadraticTraversalBound
+  exact (chordTraversalCost_le_length_mul
+    (fun y hy => le_of_lt (hrange y hy))).trans
+      (Nat.mul_le_mul hcard le_rfl)
+
 /-- Monotone partner order inside one chord interval supplies the named
 bounded-variation premise. -/
 theorem chordPartnerTraversalBound_of_pairwise {partners : List ℕ} {a L : ℕ}

@@ -34,40 +34,30 @@ namespace DGO
 
 open Finset
 
-/-- **Subdivision with logarithmic overhead forces linearity** (DGO
-Lemma 4.19, stated there without proof).  The subdivision hypothesis is
-quantified exactly as printed: at most `C log n` pieces, each of size at
-most `α n`, total size within `C log n` above `n`, and `f` subadditive
-across the pieces. -/
-theorem linear_of_subdivision (f : ℕ → ℕ) (C : ℝ) (N : ℕ) (α : ℝ)
-    (hC : 0 < C) (hα0 : 0 < α) (hα1 : α < 1)
+/-- **Subdivision with any square-root-negligible overhead forces linearity.**
+
+`pieceOverhead` bounds the number of children and `sizeOverhead` bounds the
+excess of their total size over the parent.  The proof only needs their sum to
+be eventually dominated by the square-root gain in the potential
+`A * (n - √n) + B`.  This is the robust form of DGO Lemma 4.19; both the
+printed logarithmic overhead and the corrected squared-logarithmic overhead
+from unordered chord partners are instances. -/
+theorem linear_of_subdivision_of_sqrt_overhead (f : ℕ → ℕ)
+    (pieceOverhead sizeOverhead : ℕ → ℝ) (N : ℕ) (α ε : ℝ) (M₁ : ℕ)
+    (hα0 : 0 < α) (hα1 : α < 1) (hε0 : 0 < ε)
+    (hgain : Real.sqrt α * (1 + ε) ≤ 1)
+    (hthresh : ∀ n : ℕ, M₁ < n →
+      sizeOverhead n + pieceOverhead n ≤ ε * Real.sqrt n)
     (H : ∀ n : ℕ, N < n → ∃ (k : ℕ) (m : Fin k → ℕ),
-      (k : ℝ) ≤ C * Real.log n ∧
+      (k : ℝ) ≤ pieceOverhead n ∧
       (f n : ℝ) ≤ ∑ i, (f (m i) : ℝ) ∧
       (n : ℝ) ≤ ∑ i, (m i : ℝ) ∧
-      (∑ i, (m i : ℝ)) ≤ (n : ℝ) + C * Real.log n ∧
+      (∑ i, (m i : ℝ)) ≤ (n : ℝ) + sizeOverhead n ∧
       ∀ i, (m i : ℝ) ≤ α * n) :
     ∃ A B : ℝ, 0 ≤ A ∧ 0 ≤ B ∧
       ∀ n : ℕ, (f n : ℝ) ≤ A * n + B := by
   set sα : ℝ := Real.sqrt α with hsαdef
-  have hsα0 : 0 < sα := Real.sqrt_pos.mpr hα0
-  have hsαsq : sα * sα = α := Real.mul_self_sqrt (le_of_lt hα0)
-  have hsα1 : sα < 1 := by nlinarith
-  set ε : ℝ := 1 - sα with hεdef
-  have hε0 : 0 < ε := by
-    rw [hεdef]
-    linarith
-  -- the gain inequality `sα · (1 + ε) ≤ 1` is `(1 - sα)² ≥ 0`
-  have hgain : sα * (1 + ε) ≤ 1 := by
-    have hsq : 0 ≤ (1 - sα) * (1 - sα) := mul_nonneg (by linarith) (by linarith)
-    rw [hεdef]
-    nlinarith
-  -- the threshold: `√√n ≥ 8C/ε` for `n` past `M₁`
-  set x₀ : ℝ := 8 * C / ε with hx₀def
-  have hx₀0 : 0 < x₀ := by
-    rw [hx₀def]
-    positivity
-  set M₁ : ℕ := Nat.ceil (x₀ ^ 4) with hM₁def
+  have hgain' : sα * (1 + ε) ≤ 1 := by simpa [hsαdef] using hgain
   set M₀ : ℕ := max (max N M₁) 1 with hM₀def
   set B : ℝ := (((Finset.range (M₀ + 1)).sup f : ℕ) : ℝ) with hBdef
   have hB0 : 0 ≤ B := by
@@ -93,66 +83,6 @@ theorem linear_of_subdivision (f : ℕ → ℕ) (C : ℝ) (N : ℕ) (α : ℝ)
         rw [Real.sqrt_le_left (by linarith)]
         nlinarith
       linarith
-  -- the threshold inequality: `2C·log n ≤ ε·√n` for `n > M₀`
-  have hthresh : ∀ n : ℕ, M₀ < n →
-      2 * C * Real.log n ≤ ε * Real.sqrt n := by
-    intro n hn
-    have hn1 : (1 : ℝ) ≤ (n : ℝ) := by
-      have : 1 ≤ n := le_trans (le_max_right (max N M₁) 1) (le_of_lt hn)
-      exact_mod_cast this
-    have hn0 : (0 : ℝ) < (n : ℝ) := lt_of_lt_of_le one_pos hn1
-    set r : ℝ := Real.sqrt (Real.sqrt n) with hrdef
-    have hr0 : 0 < r := Real.sqrt_pos.mpr (Real.sqrt_pos.mpr hn0)
-    have hrr : r * r = Real.sqrt n :=
-      Real.mul_self_sqrt (Real.sqrt_nonneg _)
-    -- `log n = 4 log r ≤ 4r`
-    have hlog4 : Real.log n = 4 * Real.log r := by
-      rw [hrdef, Real.log_sqrt (Real.sqrt_nonneg _),
-        Real.log_sqrt (le_of_lt hn0)]
-      ring
-    have hlogr : Real.log r ≤ r := by
-      have h := Real.log_le_sub_one_of_pos hr0
-      linarith
-    -- `r ≥ x₀` from `n ≥ M₁ ≥ x₀⁴`
-    have hnM₁ : M₁ ≤ n :=
-      le_trans (le_trans (le_max_right N M₁) (le_max_left (max N M₁) 1))
-        (le_of_lt hn)
-    have hn4 : x₀ ^ 4 ≤ (n : ℝ) := by
-      have hceil : x₀ ^ 4 ≤ (M₁ : ℝ) := by
-        rw [hM₁def]
-        exact Nat.le_ceil _
-      have hcast : (M₁ : ℝ) ≤ (n : ℝ) := by exact_mod_cast hnM₁
-      linarith
-    have hrx₀ : x₀ ≤ r := by
-      have h1 : Real.sqrt (x₀ ^ 4) ≤ Real.sqrt n := Real.sqrt_le_sqrt hn4
-      have h2 : Real.sqrt (x₀ ^ 4) = x₀ ^ 2 := by
-        have hpow : x₀ ^ 4 = (x₀ ^ 2) ^ 2 := by ring
-        rw [hpow]
-        exact Real.sqrt_sq (by positivity)
-      have h3 : Real.sqrt (x₀ ^ 2) ≤ r := by
-        rw [hrdef]
-        apply Real.sqrt_le_sqrt
-        rw [← h2]
-        exact h1
-      have h4 : Real.sqrt (x₀ ^ 2) = x₀ := Real.sqrt_sq (le_of_lt hx₀0)
-      rw [h4] at h3
-      exact h3
-    -- assemble: `2C log n = 8C log r ≤ 8C r = ε x₀ r ≤ ε r² = ε √n`
-    have hx₀ε : ε * x₀ = 8 * C := by
-      rw [hx₀def]
-      field_simp
-    calc 2 * C * Real.log n = 8 * C * Real.log r := by
-          rw [hlog4]
-          ring
-      _ ≤ 8 * C * r := by
-          have h8 : (0 : ℝ) ≤ 8 * C := by positivity
-          exact mul_le_mul_of_nonneg_left hlogr h8
-      _ = ε * x₀ * r := by rw [hx₀ε]
-      _ ≤ ε * r * r := by
-          have hεr : (0 : ℝ) ≤ ε * r := by positivity
-          have h := mul_le_mul_of_nonneg_left hrx₀ (le_of_lt hε0)
-          nlinarith
-      _ = ε * Real.sqrt n := by rw [mul_assoc, hrr]
   -- the strong induction with potential `A(n − √n) + B`
   have hmain : ∀ n : ℕ, (f n : ℝ) ≤ A * ((n : ℝ) - Real.sqrt n) + B := by
     intro n
@@ -172,7 +102,6 @@ theorem linear_of_subdivision (f : ℕ → ℕ) (C : ℝ) (N : ℕ) (α : ℝ)
           have : 1 ≤ n := le_trans (le_max_right (max N M₁) 1) (le_of_lt hstep)
           exact_mod_cast this
         have hn0 : (0 : ℝ) < (n : ℝ) := lt_of_lt_of_le one_pos hn1
-        have hlogn0 : 0 ≤ Real.log n := Real.log_nonneg hn1
         -- each piece is strictly smaller
         have hlt : ∀ i, m i < n := by
           intro i
@@ -241,26 +170,30 @@ theorem linear_of_subdivision (f : ℕ → ℕ) (C : ℝ) (N : ℕ) (α : ℝ)
                 exact mul_le_mul_of_nonneg_left hcancel h10
             _ = (∑ i, Real.sqrt (m i)) * (sα * (1 + ε)) := by ring
             _ ≤ (∑ i, Real.sqrt (m i)) * 1 :=
-                mul_le_mul_of_nonneg_left hgain hS0
+                mul_le_mul_of_nonneg_left hgain' hS0
             _ = ∑ i, Real.sqrt (m i) := mul_one _
         -- overhead bookkeeping and the close
-        have hkB : (k : ℝ) * B ≤ C * Real.log n * A := by
-          have h1 : (k : ℝ) * B ≤ (C * Real.log n) * B := by
+        have hkB : (k : ℝ) * B ≤ pieceOverhead n * A := by
+          have h1 : (k : ℝ) * B ≤ pieceOverhead n * B := by
             have := mul_le_mul_of_nonneg_right hk hB0
             linarith
-          have h2 : (C * Real.log n) * B ≤ (C * Real.log n) * A := by
-            have hCl : 0 ≤ C * Real.log n := mul_nonneg (le_of_lt hC) hlogn0
-            exact mul_le_mul_of_nonneg_left hBA hCl
+          have h2 : pieceOverhead n * B ≤ pieceOverhead n * A := by
+            have hpiece : 0 ≤ pieceOverhead n :=
+              (Nat.cast_nonneg k).trans hk
+            exact mul_le_mul_of_nonneg_left hBA hpiece
           linarith
-        have hth := hthresh n hstep
+        have hM₁n : M₁ < n :=
+          lt_of_le_of_lt (le_trans (le_max_right N M₁) (le_max_left _ 1)) hstep
+        have hth := hthresh n hM₁n
         have hfinal : (f n : ℝ) ≤ A * ((n : ℝ) - Real.sqrt n) + B := by
-          have h1 : A * (∑ i, (m i : ℝ)) ≤ A * ((n : ℝ) + C * Real.log n) :=
+          have h1 : A * (∑ i, (m i : ℝ)) ≤
+              A * ((n : ℝ) + sizeOverhead n) :=
             mul_le_mul_of_nonneg_left hup (le_of_lt hA0)
           have h2 : A * ((1 + ε) * Real.sqrt n) ≤ A * (∑ i, Real.sqrt (m i)) :=
             mul_le_mul_of_nonneg_left hmass (le_of_lt hA0)
-          have h3 : A * (2 * C * Real.log n) ≤ A * (ε * Real.sqrt n) :=
+          have h3 : A * (sizeOverhead n + pieceOverhead n) ≤
+              A * (ε * Real.sqrt n) :=
             mul_le_mul_of_nonneg_left hth (le_of_lt hA0)
-          have hB' : 0 ≤ B := hB0
           nlinarith [hsum, hkB]
         exact hfinal
   refine ⟨A, B, le_of_lt hA0, hB0, ?_⟩
@@ -272,6 +205,121 @@ theorem linear_of_subdivision (f : ℕ → ℕ) (C : ℝ) (N : ℕ) (α : ℝ)
       (le_of_lt hA0)
     exact this
   linarith
+
+/-- **Subdivision with logarithmic overhead forces linearity** (DGO
+Lemma 4.19, stated there without proof).  This is the printed instance of
+`linear_of_subdivision_of_sqrt_overhead`. -/
+theorem linear_of_subdivision (f : ℕ → ℕ) (C : ℝ) (N : ℕ) (α : ℝ)
+    (hC : 0 < C) (hα0 : 0 < α) (hα1 : α < 1)
+    (H : ∀ n : ℕ, N < n → ∃ (k : ℕ) (m : Fin k → ℕ),
+      (k : ℝ) ≤ C * Real.log n ∧
+      (f n : ℝ) ≤ ∑ i, (f (m i) : ℝ) ∧
+      (n : ℝ) ≤ ∑ i, (m i : ℝ) ∧
+      (∑ i, (m i : ℝ)) ≤ (n : ℝ) + C * Real.log n ∧
+      ∀ i, (m i : ℝ) ≤ α * n) :
+    ∃ A B : ℝ, 0 ≤ A ∧ 0 ≤ B ∧
+      ∀ n : ℕ, (f n : ℝ) ≤ A * n + B := by
+  let sα : ℝ := Real.sqrt α
+  let ε : ℝ := 1 - sα
+  have hsα0 : 0 < sα := Real.sqrt_pos.mpr hα0
+  have hsα1 : sα < 1 := by
+    dsimp [sα]
+    nlinarith [Real.mul_self_sqrt (le_of_lt hα0)]
+  have hε0 : 0 < ε := by dsimp [ε]; linarith
+  have hgain : Real.sqrt α * (1 + ε) ≤ 1 := by
+    have hsq : 0 ≤ (1 - sα) * (1 - sα) :=
+      mul_nonneg (by linarith) (by linarith)
+    dsimp [ε, sα] at hsq ⊢
+    nlinarith
+  let x₀ : ℝ := 8 * C / ε
+  have hx₀0 : 0 < x₀ := by dsimp [x₀]; positivity
+  let M₁ : ℕ := Nat.ceil (x₀ ^ 4)
+  have hthresh : ∀ n : ℕ, M₁ < n →
+      (C * Real.log n) + (C * Real.log n) ≤ ε * Real.sqrt n := by
+    intro n hn
+    have hnM₁ : M₁ ≤ n := le_of_lt hn
+    have hn1Nat : 1 ≤ n := by omega
+    have hn1 : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn1Nat
+    have hn0 : (0 : ℝ) < (n : ℝ) := lt_of_lt_of_le one_pos hn1
+    let r : ℝ := Real.sqrt (Real.sqrt n)
+    have hr0 : 0 < r := Real.sqrt_pos.mpr (Real.sqrt_pos.mpr hn0)
+    have hrr : r * r = Real.sqrt n := by
+      dsimp [r]
+      exact Real.mul_self_sqrt (Real.sqrt_nonneg _)
+    have hlog4 : Real.log n = 4 * Real.log r := by
+      dsimp [r]
+      rw [Real.log_sqrt (Real.sqrt_nonneg _), Real.log_sqrt (le_of_lt hn0)]
+      ring
+    have hlogr : Real.log r ≤ r := by
+      have h := Real.log_le_sub_one_of_pos hr0
+      linarith
+    have hn4 : x₀ ^ 4 ≤ (n : ℝ) := by
+      have hceil : x₀ ^ 4 ≤ (M₁ : ℝ) := by
+        dsimp [M₁]
+        exact Nat.le_ceil _
+      have hcast : (M₁ : ℝ) ≤ (n : ℝ) := by exact_mod_cast hnM₁
+      linarith
+    have hrx₀ : x₀ ≤ r := by
+      have h1 : Real.sqrt (x₀ ^ 4) ≤ Real.sqrt n := Real.sqrt_le_sqrt hn4
+      have h2 : Real.sqrt (x₀ ^ 4) = x₀ ^ 2 := by
+        have hpow : x₀ ^ 4 = (x₀ ^ 2) ^ 2 := by ring
+        rw [hpow]
+        exact Real.sqrt_sq (by positivity)
+      have h3 : Real.sqrt (x₀ ^ 2) ≤ r := by
+        dsimp [r]
+        apply Real.sqrt_le_sqrt
+        rw [← h2]
+        exact h1
+      rw [Real.sqrt_sq (le_of_lt hx₀0)] at h3
+      exact h3
+    have hx₀ε : ε * x₀ = 8 * C := by
+      dsimp [x₀]
+      field_simp
+    have hmain : 2 * C * Real.log n ≤ ε * Real.sqrt n := by
+      calc
+        2 * C * Real.log n = 8 * C * Real.log r := by rw [hlog4]; ring
+        _ ≤ 8 * C * r := by
+          exact mul_le_mul_of_nonneg_left hlogr (by positivity)
+        _ = ε * x₀ * r := by rw [hx₀ε]
+        _ ≤ ε * r * r := by
+          have h := mul_le_mul_of_nonneg_left hrx₀ (le_of_lt hε0)
+          nlinarith
+        _ = ε * Real.sqrt n := by rw [mul_assoc, hrr]
+    linarith
+  exact linear_of_subdivision_of_sqrt_overhead f
+    (fun n => C * Real.log n) (fun n => C * Real.log n) N α ε M₁
+    hα0 hα1 hε0 hgain hthresh H
+
+/-- Natural-number conclusion for the robust square-root-overhead lemma. -/
+theorem nat_linear_of_subdivision_of_sqrt_overhead (f : ℕ → ℕ)
+    (pieceOverhead sizeOverhead : ℕ → ℝ) (N : ℕ) (α ε : ℝ) (M₁ : ℕ)
+    (hα0 : 0 < α) (hα1 : α < 1) (hε0 : 0 < ε)
+    (hgain : Real.sqrt α * (1 + ε) ≤ 1)
+    (hthresh : ∀ n : ℕ, M₁ < n →
+      sizeOverhead n + pieceOverhead n ≤ ε * Real.sqrt n)
+    (H : ∀ n : ℕ, N < n → ∃ (k : ℕ) (m : Fin k → ℕ),
+      (k : ℝ) ≤ pieceOverhead n ∧
+      (f n : ℝ) ≤ ∑ i, (f (m i) : ℝ) ∧
+      (n : ℝ) ≤ ∑ i, (m i : ℝ) ∧
+      (∑ i, (m i : ℝ)) ≤ (n : ℝ) + sizeOverhead n ∧
+      ∀ i, (m i : ℝ) ≤ α * n) :
+    ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → f n ≤ L * n := by
+  obtain ⟨A, B, hA, hB, hlin⟩ :=
+    linear_of_subdivision_of_sqrt_overhead f pieceOverhead sizeOverhead
+      N α ε M₁ hα0 hα1 hε0 hgain hthresh H
+  let L : ℕ := Nat.ceil A + Nat.ceil B
+  refine ⟨L, ?_⟩
+  intro n hn
+  have hn1 : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
+  have hceilA : A ≤ (Nat.ceil A : ℝ) := Nat.le_ceil A
+  have hceilB : B ≤ (Nat.ceil B : ℝ) := Nat.le_ceil B
+  have hceilB0 : (0 : ℝ) ≤ (Nat.ceil B : ℝ) := Nat.cast_nonneg _
+  have hreal : (f n : ℝ) ≤ ((L * n : ℕ) : ℝ) := by
+    calc
+      (f n : ℝ) ≤ A * n + B := hlin n
+      _ ≤ ((Nat.ceil A : ℝ) + (Nat.ceil B : ℝ)) * n := by nlinarith
+      _ = ((L * n : ℕ) : ℝ) := by simp [L, Nat.cast_add, Nat.cast_mul]
+  exact_mod_cast hreal
 
 /-- **The natural-number form consumed by Proposition 4.14.**  The affine real
 bound from `linear_of_subdivision` can be rounded to one natural slope.  For
