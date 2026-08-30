@@ -61,10 +61,19 @@ infinite, and simplicity gives `(3)`.  The same calculation shows that
 `lq` is properly infinite.  Hence
 
 ```text
-l(2q) <= lq,
+(l+1)(2q) <= lq,
 ```
 
 while `2q not <= q` because `q` is finite.  This is the explicit
-equal-multiple perforation `(P)`.  If `V(A)` is unperforated, such a pair is
-impossible; equivalently, applying unperforation directly to
-`n(2x)<=nx` proves `(QQ_V)`.
+almost-unperforation failure `(P)`: proper infiniteness of `lq` makes every
+multiple `mq` with `m>=l` at most `lq`, including `m=2(l+1)`.
+
+More generally, if `nx` is properly infinite, then
+
+```text
+(n+1)x <= 2nx <= nx.
+```
+
+Induction gives `mx<=nx` for every `m>=n`, so
+`(n+1)(2x)<=nx`.  Almost unperforation, applied with the pair `2x,x`,
+therefore gives `2x<=x`.  Thus almost unperforation implies `(QQ_V)`.

@@ -35,16 +35,18 @@ statement into pure infiniteness.
 
 ## New sufficient condition and counterexample fingerprint
 
-If `V(A)` is unperforated, applying it to `n(2x)<=nx` proves projection-level
-QQ.  Thus unperforated projection order is a sufficient condition for
-Problem XXIX, with no nuclearity, stable rank, trace, or corona factorization
-hypothesis.
+If `V(A)` is almost unperforated, then `nx` properly infinite implies
+`mx<=nx` for every `m>=n`.  Hence `(n+1)(2x)<=nx`, and almost
+unperforation applied to `2x,x` proves projection-level QQ.  Thus almost
+unperforated projection order is a sufficient condition for Problem XXIX,
+with no nuclearity, stable rank, trace, or corona factorization hypothesis.
 
 Conversely, any mixed finite/infinite example contains a finite `q` with
-`nq` properly infinite.  It therefore displays the concrete perforation
+`nq` properly infinite.  It therefore displays the concrete
+almost-unperforation failure
 
 ```text
-n(2q)<=nq,             2q not <=q.
+(n+1)(2q)<=nq,             2q not <=q.
 ```
 
 This sharpens the existing non-CFP requirement: a counterexample cannot

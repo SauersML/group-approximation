@@ -55,7 +55,7 @@ subalgebra" the exact pure-infiniteness criterion.
   Indeed one infinite projection is properly infinite and simplicity makes
   a finite multiple of every nonzero projection properly infinite; `(QQ)`
   reflects this back to the projection itself, and RR0 then gives pure
-  infiniteness.  In particular, unperforation of `V(A)` settles XXIX.  Every
-  counterexample must contain a finite `q` and `n` with `nq` properly
-  infinite, hence the explicit compact-order perforation
-  `n(2q)<=nq` but `2q not <=q`.
+  infiniteness.  In particular, almost unperforation of `V(A)` settles
+  XXIX.  Every counterexample must contain a finite `q` and `n` with `nq`
+  properly infinite, hence the explicit compact-order almost-perforation
+  witness `(n+1)(2q)<=nq` but `2q not <=q`.

@@ -23,24 +23,25 @@ Then the following are equivalent:
 2. `V(A)` has `(QQ_V)`.
 
 Consequently, STW Problem XXIX has a positive answer for every simple
-real-rank-zero algebra whose projection monoid is unperforated.  Here
-unperforated means
+real-rank-zero algebra whose projection monoid is almost unperforated.  Here
+almost unperforated means
 
 ```text
-n x <= n y  implies  x <= y.
+(k+1)x <= ky  implies  x <= y,        k>=1.
 ```
 
-Indeed this condition applies to
-`n(2x)<=nx` and therefore implies `(QQ_V)`.
+Indeed, if `nx` is properly infinite, then every multiple `mx` with `m>=n`
+is at most `nx`.  In particular `(n+1)(2x)<=nx`, so almost unperforation
+applied to `2x,x` implies `(QQ_V)`.
 
 More sharply, every mixed finite/infinite simple real-rank-zero algebra has
 a finite projection class `q` and an integer `n>=1` such that
 
 ```text
 nq is properly infinite,
-n(2q) <= nq,                 but 2q is not <= q.       (P)
+(n+1)(2q) <= nq,             but 2q is not <= q.       (P)
 ```
 
-Thus a counterexample to Problem XXIX must exhibit equal-multiple order
-perforation already inside the compact part of its Cuntz semigroup; soft
-elements and traces are not needed to witness the failure.
+Thus a counterexample to Problem XXIX must fail almost unperforation already
+inside the compact part of its Cuntz semigroup; soft elements and traces are
+not needed to witness the failure.
