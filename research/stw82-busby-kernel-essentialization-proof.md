@@ -20,6 +20,10 @@ The standard pullback model is particularly transparent here:
 P_tau = {(m,d) in M(I) directSum D : q_I(m)=tau(d)}.
 ```
 
+For the standard pullback description and the criterion that an extension is
+essential exactly when its Busby map is injective, see Section 2.2 of
+[Evington--Ng--Sims--White](https://arxiv.org/abs/2409.12872).
+
 The map `e |-> (sigma(e),pi(e))` is an isomorphism from `E` onto `P_tau`.
 Indeed, if both coordinates vanish, then `e` belongs to `I` and annihilates
 `I`; an approximate identity for `I` gives `e=0`.  Conversely, if `(m,d)`
@@ -63,4 +67,3 @@ reduction is tautological because an essential extension is an extension.
 Finally, if `E` is separable, then its ideals and quotients `I`, `D`, `K`,
 `L`, and `D/K` are separable.  Applying this construction after the existing
 separable-reflection theorem proves the last assertion.
-
