@@ -275,14 +275,18 @@ def ConjugatesHaveEqualPositivePowers (p q : PowerAxisSegment h x) : Prop :=
 axis segment leaves a power-vertex subsegment.  If the original length is at
 least `M + 2D`, where `D = d(x,hx)`, the retained core has length at least
 `M`. -/
-theorem AxisSegment.exists_powerCore_of_add_two_step_le_length
-    {f : ℝ → X} (hstep : 0 < dist x (h • x)) {M : ℝ} (hM : 0 ≤ M)
+theorem exists_powerCore_of_add_two_step_le_length
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) (hstep : 0 < dist x (h • x))
+    {M : ℝ} (hM : 0 ≤ M)
     (p : AxisSegment h x f)
     (hlong : M + 2 * dist x (h • x) ≤ p.length) :
     ∃ q : PowerAxisSegment h x,
       q.translate = p.translate ∧
       p.initial.coordinate ≤ q.initialCoordinate ∧
       q.terminalCoordinate ≤ p.terminal.coordinate ∧
+      dist p.initialValue q.initial ≤ dist x (h • x) ∧
+      dist q.terminal p.terminalValue ≤ dist x (h • x) ∧
       M ≤ q.length := by
   let D : ℝ := dist x (h • x)
   let i : ℤ := p.initial.index
@@ -318,7 +322,34 @@ theorem AxisSegment.exists_powerCore_of_add_two_step_le_length
       start := i + 1
       stop := j
       start_le_stop := hij }
-  refine ⟨q, rfl, ?_, ?_, ?_⟩
+  have hsmetric : dist (f s) (h • x) = D - s := by
+    have hdist := hf.1 s p.initial.parameter_mem D ⟨dist_nonneg, le_rfl⟩
+    rw [hf.2.2, abs_of_nonpos (sub_nonpos.mpr hsD)] at hdist
+    linarith
+  have htmetric : dist x (f t) = t := by
+    have hdist := hf.1 0 ⟨le_rfl, dist_nonneg⟩ t p.terminal.parameter_mem
+    rw [hf.2.1, abs_of_nonpos (by linarith [ht0])] at hdist
+    linarith
+  have hpinitial : p.initialValue = (p.translate * h ^ i) • f s := by
+    dsimp [AxisSegment.initialValue, AxisPoint.value, i, s]
+    rw [mul_smul]
+  have hqinitial : q.initial = (p.translate * h ^ i) • (h • x) := by
+    dsimp [q, PowerAxisSegment.initial]
+    rw [← mul_smul]
+    congr 1
+    group
+  have hqterminal : q.terminal = (p.translate * h ^ j) • x := by
+    rfl
+  have hpterminal : p.terminalValue = (p.translate * h ^ j) • f t := by
+    dsimp [AxisSegment.terminalValue, AxisPoint.value, j, t]
+    rw [mul_smul]
+  have hinitialDist : dist p.initialValue q.initial ≤ D := by
+    rw [hpinitial, hqinitial, hiso, hsmetric]
+    linarith
+  have hterminalDist : dist q.terminal p.terminalValue ≤ D := by
+    rw [hqterminal, hpterminal, hiso, htmetric]
+    exact htD
+  refine ⟨q, rfl, ?_, ?_, hinitialDist, hterminalDist, ?_⟩
   · dsimp [q, PowerAxisSegment.initialCoordinate, AxisPoint.coordinate, i, s, D]
     push_cast
     linarith
@@ -326,6 +357,32 @@ theorem AxisSegment.exists_powerCore_of_add_two_step_le_length
     linarith
   · change M ≤ (((j - (i + 1) : ℤ) : ℝ) * D)
     exact hMcore
+
+/-- Trimming both members of an oriented-close pair costs at most one
+fundamental connector at each endpoint.  The retained power-vertex cores stay
+oriented `(B + 2D)`-close and retain the requested length. -/
+theorem exists_orientedClose_powerCores
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) (hstep : 0 < dist x (h • x))
+    {M B : ℝ} (hM : 0 ≤ M) (p q : AxisSegment h x f)
+    (hpLen : M + 2 * dist x (h • x) ≤ p.length)
+    (hqLen : M + 2 * dist x (h • x) ≤ q.length)
+    (hclose : AxisSegment.OrientedClose B p q) :
+    ∃ p' q' : PowerAxisSegment h x,
+      M ≤ p'.length ∧ M ≤ q'.length ∧
+      OrientedClose (B + 2 * dist x (h • x)) p' q' := by
+  obtain ⟨p', -, -, -, hp0, hp1, hpLen'⟩ :=
+    exists_powerCore_of_add_two_step_le_length hiso hf hstep hM p hpLen
+  obtain ⟨q', -, -, -, hq0, hq1, hqLen'⟩ :=
+    exists_powerCore_of_add_two_step_le_length hiso hf hstep hM q hqLen
+  refine ⟨p', q', hpLen', hqLen', ?_⟩
+  constructor
+  · have htri := dist_triangle4 p'.initial p.initialValue q.initialValue q'.initial
+    rw [dist_comm p'.initial p.initialValue] at htri
+    linarith [hp0, hq0, hclose.1]
+  · have htri := dist_triangle4 p'.terminal p.terminalValue q.terminalValue q'.terminal
+    rw [dist_comm q.terminalValue q'.terminal] at htri
+    linarith [hp1, hq1, hclose.2]
 
 end PowerAxisSegment
 
