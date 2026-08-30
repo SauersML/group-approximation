@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw99-xxii-trace-problem-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
+  - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -33,6 +34,16 @@ The countability and metrizability restrictions are removed by
 conclusion holds over every compact Hausdorff base with finite derived set,
 including one-point compactifications of discrete sets of arbitrary
 cardinality.
+
+The finite-derived-set restriction is now removed completely in covering
+dimension zero.  `stw22-zero-dimensional-factor-bundles-have-uniform-traces`
+proves the conclusion over every compact zero-dimensional Hausdorff base,
+with arbitrary finite-factor fibres and no common ambient factor.  In
+particular every compact scattered base and every countable compact base is
+covered, as are perfect zero-dimensional bases such as Cantor space.  The
+proof intrinsically lifts exact fibre tuples, corrects their weighted
+partial-isometry relations in `L^2`, and glues them along disjoint clopen
+refinements.
 
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,
@@ -58,16 +69,15 @@ technology.
   contractions `b` with `sup_y τ_y(b(y)) ≤ ε` have `φ(b) ≤ Cε` for every
   trace.  Every route tried factors through (D), and (D) restated is the
   problem itself.
-* **Why rank ≥ 2 boundaries resist.**  The working argument cuts
-  `b ≤ η + 1_{[η,1]}(b)` fibrewise and moves the cut by `m` orthogonal
-  partial-isometry sections; the cut `y ↦ 1_{[η,1]}(b(y))` is a section only
-  when 2-continuity at the relevant limit points is free, and support
-  projections jump under uniformly 2-small perturbations
-  (`b(z) = b(y') + δ_z q_z` with `τ(q_z)` fixed), so the covering sections
-  cannot be 2-continuous at interior limit points.  Clopen tails factor
-  `φ_x` through `∏_n M(W_n)/⊕_n M(W_n)` over the derived decomposition, but
-  the per-block data must still be sections within each block, recursing
-  without decreasing the difficulty.
+* **The surviving positive-dimensional gluing problem.**  Support
+  projections still jump under uniformly 2-small perturbations
+  (`b(z)=b(y')+delta_z q_z` with `tau(q_z)` fixed), so one cannot select the
+  spectral cuts themselves.  The zero-dimensional theorem bypasses this:
+  it lifts weighted operators, corrects only their high spectral parts,
+  and patches them on disjoint clopen sets.  Over a connected or
+  positive-dimensional base those clopen patches are unavailable.  Local
+  weighted tuples then overlap, and no dimension-independent orthogonal
+  gluing estimate is presently known.
 * **Ultrafilter attack on the negative side.**  A singular trace on
   `C_σ([0,1], R)` of the form `lim_ω τ(b(y_n) q_n)/τ(q_n)` needs projections
   `q_n` with `τ(q_n) → 0` that are asymptotically central in relative

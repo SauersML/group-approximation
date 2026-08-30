@@ -15,6 +15,7 @@ artifacts:
   - research/artifacts/stw22-asymptotically-dense-factor-field-audit-2026-08-30.md
   - research/artifacts/stw22-variable-factor-selection-audit-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
+  - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -144,6 +145,19 @@ small spectral cut then has countable support automatically, because only
 finitely many coordinates can have trace above `1/n`; its fibrewise
 orthogonal copies are therefore uniform `2`-limits of finite central sums.
 This supplies exactly the assembly step missing from naive disintegration.
+
+The finite-derived-set and common-ambient restrictions can now both be
+removed in covering dimension zero.
+`stw22-zero-dimensional-factor-bundles-have-uniform-traces` proves the
+trace conclusion for every factorial tracially complete C*-algebra over an
+arbitrary compact zero-dimensional Hausdorff base.  An exact tuple in one
+factor fibre is lifted to bundle sections; a uniform weighted polar
+correction produces nearby exact tuples without selecting the jumping
+support projections; finite disjoint clopen refinements then converge to
+global orthogonal weighted copies.  Thus the result needs neither
+metrizability nor a common ambient factor and covers every compact
+scattered boundary as well as perfect zero-dimensional boundaries.  The
+remaining Bauer frontier begins in positive covering dimension.
 
 ## Attempts
 
