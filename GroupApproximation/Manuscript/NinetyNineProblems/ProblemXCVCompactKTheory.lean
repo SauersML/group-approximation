@@ -29,7 +29,8 @@ theorem int_not_addEquiv_int_prod_int : ¬ Nonempty (ℤ ≃+ ℤ × ℤ) := by
   obtain ⟨m, hm⟩ := e.surjective (1, 0)
   obtain ⟨n, hn⟩ := e.surjective (0, 1)
   have image_eq_zsmul (k : ℤ) : e k = k • e 1 := by
-    rw [show k = k • (1 : ℤ) by simp, map_zsmul]
+    have h1 : e (k • (1 : ℤ)) = k • e 1 := map_zsmul e k 1
+    simpa using h1
   have hm' : m • e 1 = (1, 0) := by simpa [image_eq_zsmul] using hm
   have hn' : n • e 1 = (0, 1) := by simpa [image_eq_zsmul] using hn
   have hma : m * (e 1).1 = 1 := by
