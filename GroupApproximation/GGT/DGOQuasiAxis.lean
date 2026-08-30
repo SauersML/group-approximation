@@ -406,13 +406,14 @@ theorem dgoLemma67_of_monotone_vertex_samples
     (p q : PowerAxisSegment h x) :
     ∃ M₀ : ℕ, ∀ M : ℕ, M₀ ≤ M → ∃ N : ℕ,
       dist p.initial q.initial ≤ C₀ →
+      ∀ K : ℤ,
       dist (p.vertex (p.start + (M : ℤ)))
-        (q.vertex (q.start + (M : ℤ))) ≤ C₀ →
+        (q.vertex (q.start + K)) ≤ C₀ →
       ∀ (A B : Fin (N + 1) → ℤ), StrictMono A → StrictMono B →
         (∀ i, dist (p.vertex (p.start + A i))
           (q.vertex (q.start + B i)) ≤ C) →
         (∀ i, dist (p.vertex (p.start + (M : ℤ) + A i))
-          (q.vertex (q.start + (M : ℤ) + B i)) ≤ C) →
+          (q.vertex (q.start + K + B i)) ≤ C) →
         ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
           p.conjugate ^ r = q.conjugate ^ s := by
   let z : X := p.initial
@@ -440,7 +441,7 @@ theorem dgoLemma67_of_monotone_vertex_samples
   intro M hM
   obtain ⟨N, hN⟩ := hM₀ M hM
   refine ⟨N, ?_⟩
-  intro hbase0 hbaseM A B hA hB hsamples0 hsamplesM
+  intro hbase0 K hbaseM A B hA hB hsamples0 hsamplesM
   apply hN a b A B hA hB
   intro i
   have hpA : (a ^ (A i)) • z = p.vertex (p.start + A i) := by
@@ -467,37 +468,36 @@ theorem dgoLemma67_of_monotone_vertex_samples
     rw [← zpow_natCast]
     dsimp [a, z]
     exact p.conjugate_zpow_smul_initial (M : ℤ)
-  have hqM : (b ^ M) • q.initial = q.vertex (q.start + (M : ℤ)) := by
-    rw [← zpow_natCast]
+  have hqK : (b ^ K) • q.initial = q.vertex (q.start + K) := by
     dsimp [b]
-    exact q.conjugate_zpow_smul_initial (M : ℤ)
+    exact q.conjugate_zpow_smul_initial K
   have hpMA : (a ^ (A i)) • ((a ^ M) • z) =
       p.vertex (p.start + (M : ℤ) + A i) := by
     rw [hpM]
     dsimp [a]
     exact p.conjugate_zpow_smul_vertex (A i) (p.start + (M : ℤ))
-  have hqMB : (b ^ (B i)) • ((b ^ M) • q.initial) =
-      q.vertex (q.start + (M : ℤ) + B i) := by
-    rw [hqM]
+  have hqKB : (b ^ (B i)) • ((b ^ K) • q.initial) =
+      q.vertex (q.start + K + B i) := by
+    rw [hqK]
     dsimp [b]
-    exact q.conjugate_zpow_smul_vertex (B i) (q.start + (M : ℤ))
+    exact q.conjugate_zpow_smul_vertex (B i) (q.start + K)
   have hsecond :
       dist ((a ^ (A i)) • ((a ^ M) • z))
         ((b ^ (B i)) • ((a ^ M) • z)) ≤ C + C₀ := by
     have hsample :
         dist ((a ^ (A i)) • ((a ^ M) • z))
-          ((b ^ (B i)) • ((b ^ M) • q.initial)) ≤ C := by
-      rw [hpMA, hqMB]
+          ((b ^ (B i)) • ((b ^ K) • q.initial)) ≤ C := by
+      rw [hpMA, hqKB]
       exact hsamplesM i
     have hshift :
-        dist ((b ^ (B i)) • ((b ^ M) • q.initial))
+        dist ((b ^ (B i)) • ((b ^ K) • q.initial))
           ((b ^ (B i)) • ((a ^ M) • z)) =
-            dist ((b ^ M) • q.initial) ((a ^ M) • z) := hiso _ _ _
+            dist ((b ^ K) • q.initial) ((a ^ M) • z) := hiso _ _ _
     have htri := dist_triangle ((a ^ (A i)) • ((a ^ M) • z))
-      ((b ^ (B i)) • ((b ^ M) • q.initial))
+      ((b ^ (B i)) • ((b ^ K) • q.initial))
       ((b ^ (B i)) • ((a ^ M) • z))
-    have hbaseM' : dist ((b ^ M) • q.initial) ((a ^ M) • z) ≤ C₀ := by
-      rw [hpM, hqM]
+    have hbaseM' : dist ((b ^ K) • q.initial) ((a ^ M) • z) ≤ C₀ := by
+      rw [hpM, hqK]
       rwa [dist_comm]
     linarith
   exact ⟨hfirst, hsecond⟩
