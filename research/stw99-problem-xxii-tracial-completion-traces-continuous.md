@@ -28,11 +28,14 @@ New here: yes, with no property Γ hypothesis, for W\*-bundles whose base is
 a countable compact space with finitely many limit points
 (`trace-problem-holds-over-convergent-sequence-boundaries`).
 
-Also new here: yes for every locally trivial hyperfinite W\*-bundle over a
-finite-dimensional compact metrizable base
-(`stw22-locally-trivial-finite-dimensional-bundles`).  Chartwise weighted
-purifications glue after a `(d+1)`-coloured refinement, without trivializing
-the `Aut(R)` transition cocycle.
+For locally trivial hyperfinite W\*-bundles over a finite-dimensional
+compact metrizable base,
+`stw22-locally-trivial-finite-dimensional-bundles` supplies an independent
+chartwise proof of the same trace conclusion.  It is not a new class:
+Evington--Pennig, arXiv:1601.05964, prove that every locally trivial
+W\*-bundle with all fibres `R` is globally trivial, in every base
+dimension.  The chartwise argument is retained as cocycle-local proof
+technology.
 
 ## Attempts
 

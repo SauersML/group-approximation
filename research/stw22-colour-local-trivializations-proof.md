@@ -113,3 +113,10 @@ Let `m` tend to infinity and then let `eta` decrease to zero.  Every
 bounded positive trace on the gap vanishes.  Apply
 `stw22-tracefree-fibre-gap-ideals-force-trace-continuity` to obtain the
 integral description and uniform `2`-norm continuity of all traces.
+
+For `R`-bundles this argument is an independent local recovery, not a
+strict extension of the trivial-field theorem: Evington--Pennig,
+[*Locally Trivial W*-Bundles*](https://arxiv.org/abs/1601.05964), Theorem
+4.10, prove that the entire locally trivial bundle is globally trivial.
+The route is retained because its replication estimate is formulated
+without selecting that global trivialization.

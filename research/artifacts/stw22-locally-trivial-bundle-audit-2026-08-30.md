@@ -1,12 +1,20 @@
 # STW XXII: finite-dimensional locally trivial hyperfinite bundles
 
-## New class
+## Scope correction: recovery, not a new bundle class
 
 Let `M` be the bounded `2`-norm-continuous section algebra of a locally
 trivial tracial W*-bundle over a compact metrizable space `X` of finite
 covering dimension.  If every fibre is the hyperfinite `II_1` factor, all
 traces on `M` are uniform-`2`-norm continuous.  The transition cocycle may
-be arbitrary in `Aut(R)`.
+be presented arbitrarily in `Aut(R)`.
+
+This does not enlarge the established trivial-field class.  Evington and
+Pennig prove that a locally trivial tracial W*-bundle over any compact
+Hausdorff space, with every fibre isomorphic to `R`, is globally trivial;
+there is no dimension hypothesis in their theorem.  They use the
+Popa--Takesaki contractibility of `Aut(R)`.  Combining that theorem with
+`stw22-finite-dimensional-trivial-field-traces` already gives the trace
+conclusion here.
 
 ## Why global corners are unnecessary
 
@@ -45,3 +53,16 @@ invariant.
 The theorem assumes genuine local triviality in the continuous W*-bundle
 category.  It makes no assertion for arbitrary non-locally-trivial
 hyperfinite bundles or for infinite-dimensional bases.
+
+The value of the argument is therefore proof technology: it obtains the
+replication estimate directly from local charts without constructing the
+global gauge.  It may transfer to locally trivial factor bundles with a
+noncontractible structure group, provided the same local weighted
+purification theorem is available.
+
+## Source boundary
+
+- S. Evington and U. Pennig,
+  [*Locally Trivial W*-Bundles*](https://arxiv.org/abs/1601.05964),
+  Theorem 4.10: every locally trivial tracial W*-bundle over a compact
+  Hausdorff base with all fibres `R` is globally trivial.

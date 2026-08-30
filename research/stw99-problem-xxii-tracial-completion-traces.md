@@ -44,14 +44,15 @@ have an exact uniform `L^2` tail.  This supplies all finite equi-`LC^n`
 inputs without assuming continuous support projections.  The earlier
 dimension-two theorem is retained as the first new special case.
 
-The same conclusion now holds for every locally trivial hyperfinite
-W*-bundle over a finite-dimensional compact metrizable base, by
-`stw22-locally-trivial-finite-dimensional-bundles`.  Local orthogonal
-corners are chosen independently in product charts.  A `(d+1)`-coloured
-refinement makes only one chart active per colour at each point, so
-different `Aut(R)` transition coordinates never have to identify the
-chosen corners.  The cocycle therefore costs no more than the usual
-dimension factor.
+For locally trivial hyperfinite W*-bundles over finite-dimensional compact
+metrizable bases, `stw22-locally-trivial-finite-dimensional-bundles` gives
+an independent cocycle-local recovery of the same conclusion.  This is not
+a larger bundle class: Evington--Pennig, arXiv:1601.05964, prove that every
+locally trivial W*-bundle with all fibres `R` is globally trivial, without
+a dimension restriction.  The retained local proof chooses orthogonal
+corners independently in product charts; a `(d+1)`-coloured refinement
+makes only one chart active per colour, so it reproduces the gap estimate
+without first constructing the global trivialization.
 
 For a tracially continuous `C(X)`-bundle with factor `2`-norm fibres, the
 exact elementary obstruction is now isolated by
