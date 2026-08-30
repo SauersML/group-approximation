@@ -116,6 +116,46 @@ theorem leftMultiplier_apply (a : Product X) (x : C0Sum X) :
       ⟨a * x.1, IsNullMatrixSequence.mul_left X cofinite a x.2⟩ :=
   rfl
 
+/-! The algebra operations in the identification.  These are stated on
+actions because `HilbertModule.Multiplier` deliberately carries no redundant
+algebra typeclasses: its addition, composition and adjoint are the bundled
+operations below. -/
+
+@[simp]
+theorem leftMultiplier_zero_apply (x : C0Sum X) :
+    (leftMultiplier X (0 : Product X)).toFun x =
+      (HilbertModule.Adjointable.zero
+        (HilbertModule.selfModule (C0Sum X))
+        (HilbertModule.selfModule (C0Sum X))).toFun x := by
+  apply Subtype.ext
+  exact zero_mul x.1
+
+@[simp]
+theorem leftMultiplier_one_apply (x : C0Sum X) :
+    (leftMultiplier X (1 : Product X)).toFun x =
+      (HilbertModule.Adjointable.id
+        (HilbertModule.selfModule (C0Sum X))).toFun x := by
+  apply Subtype.ext
+  exact one_mul x.1
+
+theorem leftMultiplier_add_apply (a b : Product X) (x : C0Sum X) :
+    (leftMultiplier X (a + b)).toFun x =
+      ((leftMultiplier X a).add (leftMultiplier X b)).toFun x := by
+  apply Subtype.ext
+  exact add_mul a b x.1
+
+theorem leftMultiplier_mul_apply (a b : Product X) (x : C0Sum X) :
+    (leftMultiplier X (a * b)).toFun x =
+      ((leftMultiplier X a).comp (leftMultiplier X b)).toFun x := by
+  apply Subtype.ext
+  exact mul_assoc a b x.1
+
+@[simp]
+theorem leftMultiplier_star_apply (a : Product X) (x : C0Sum X) :
+    (leftMultiplier X (star a)).toFun x =
+      (HilbertModule.Adjointable.adjoint (leftMultiplier X a)).toFun x :=
+  rfl
+
 /-- The underlying complex-linear map of a multiplier.  Linearity is a
 theorem of adjointability, not extra structure in `Multiplier`. -/
 def multiplierLinearMap (T : HilbertModule.Multiplier (C0Sum X)) :
@@ -213,6 +253,37 @@ theorem symbol_mul_apply (T : HilbertModule.Multiplier (C0Sum X))
       _ = T.toFun x * coordinateUnit X n := hright
   have hcoord := congrArg (fun y : C0Sum X ↦ y.1 n) hoperators
   simpa [symbol, coordinateUnit] using hcoord
+
+/-- Left multiplication by `a` has operator norm exactly `‖a‖`.  Together
+with the algebra-operation formulas above and surjectivity below, this makes
+the multiplier identification isometric, not merely a bijection of sets. -/
+theorem opNorm_leftMultiplier (a : Product X) :
+    HilbertModule.Adjointable.opNorm (leftMultiplier X a) = ‖a‖ := by
+  have hbound :
+      HilbertModule.Adjointable.IsBoundedBy (leftMultiplier X a) ‖a‖ := by
+    intro x
+    change ‖a * x.1‖ ≤ ‖a‖ * ‖x.1‖
+    exact norm_mul_le a x.1
+  have hbounded :
+      HilbertModule.Adjointable.IsBounded (leftMultiplier X a) :=
+    hbound.isBounded (norm_nonneg a)
+  apply le_antisymm
+  · exact HilbertModule.Adjointable.opNorm_le_of_bound (norm_nonneg a) hbound
+  · rw [boundedMatrixSequence_norm_eq_ciSup]
+    refine ciSup_le fun n ↦ ?_
+    have hcoord := boundedMatrixSequence_coord_norm_le X
+      ((leftMultiplier X a).toFun (coordinateUnit X n)).1 n
+    have happ :=
+      HilbertModule.Adjointable.norm_apply_le_opNorm hbounded
+        (coordinateUnit X n)
+    calc
+      ‖a n‖ = ‖((leftMultiplier X a).toFun (coordinateUnit X n)).1 n‖ := by
+        simp [leftMultiplier, coordinateUnit]
+      _ ≤ ‖(leftMultiplier X a).toFun (coordinateUnit X n)‖ := hcoord
+      _ ≤ HilbertModule.Adjointable.opNorm (leftMultiplier X a) *
+          ‖coordinateUnit X n‖ := happ
+      _ = HilbertModule.Adjointable.opNorm (leftMultiplier X a) := by
+        rw [norm_coordinateUnit, mul_one]
 
 /-- **The product is the multiplier algebra of the `c₀`-sum.**  Every
 multiplier is left multiplication by a unique bounded matrix sequence.  This

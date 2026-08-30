@@ -40,6 +40,13 @@ faithful at *every* faithful `Type`-valued target — that is "`Φ` is injective
 stated without naming `Φ`, and it is what Enders--Shulman's argument actually
 delivers.
 
+Conversely, `compatibleTargetPair_of_calkinWitness` restricts the bare
+target map to the two canonical copies of `D`; uniqueness in the universal
+property identifies the map induced from those restrictions with the original
+one.  Hence `compatibleTargetPair_iff_calkinWitness` proves that the two
+well-typed interfaces are exactly equivalent.  This closes the statement-
+normalization seam, not the analytic existence theorem itself.
+
 ## The three atoms, and why they are not Props here
 
 Their proof builds the pair in three steps:
@@ -178,6 +185,56 @@ theorem calkinWitness_of_compatibleTargetPair
   letI : CStarAlgebra T := hTalg
   haveI : Nontrivial T := hTnt
   exact ⟨T, hTalg, hTnt, _, hinj⟩
+
+/-- The bare target-valued witness also recovers the compatible-pair form.
+Restrict its map `e` to the two canonical copies of `D` in the symmetric
+double.  The restrictions agree on `C`, and the universal property says that
+the map induced by this recovered pair is exactly the original `e`.
+
+Thus the two statements in the ES 4.11 interface differ only in whether the
+compatible pair is exposed as data; neither is a stronger analytic input. -/
+theorem compatibleTargetPair_of_calkinWitness
+    (h : CalkinWitnessStatement) : CompatibleTargetPairStatement := by
+  intro C A B D _ _ _ _ _ iA iB _ gamma alpha beta hA hB hC halpha hbeta
+  obtain ⟨T, hTalg, hTnt, e, hinj⟩ :=
+    h iA iB gamma alpha beta hA hB hC halpha hbeta
+  letI : CStarAlgebra T := hTalg
+  haveI : Nontrivial T := hTnt
+  let sigmaA : D →⋆ₐ[ℂ] T :=
+    e.comp (universalCStarAmalgamLeft gamma gamma)
+  let sigmaB : D →⋆ₐ[ℂ] T :=
+    e.comp (universalCStarAmalgamRight gamma gamma)
+  have hsigma : sigmaA.comp gamma = sigmaB.comp gamma := by
+    apply StarAlgHom.ext
+    intro c
+    change e (universalCStarAmalgamLeft gamma gamma (gamma c)) =
+      e (universalCStarAmalgamRight gamma gamma (gamma c))
+    exact congrArg e
+      (DFunLike.congr_fun
+        (universalCStarAmalgam_compatible gamma gamma) c)
+  let R : CStarAmalgamRepresentation gamma gamma :=
+    CStarAmalgamRepresentation.ofCompatiblePair
+      gamma gamma sigmaA sigmaB hsigma
+  let e' : UniversalCStarAmalgam gamma gamma →⋆ₐ[ℂ] T :=
+    universalCStarAmalgamEval gamma gamma R
+  have he' : e' = e := by
+    obtain ⟨f, _, hunique⟩ :=
+      universalCStarAmalgam_existsUnique_lift gamma gamma sigmaA sigmaB hsigma
+    have he_f : e = f := hunique e ⟨fun _ ↦ rfl, fun _ ↦ rfl⟩
+    have he'_f : e' = f := hunique e' ⟨fun _ ↦ rfl, fun _ ↦ rfl⟩
+    exact he'_f.trans he_f.symm
+  refine ⟨T, hTalg, hTnt, sigmaA, sigmaB, hsigma, ?_⟩
+  change Function.Injective
+    (factorAmalgamToSymmetricTarget iA iB gamma alpha beta hA hB e')
+  rw [he']
+  exact hinj
+
+/-- The two well-typed formulations of Enders--Shulman 4.11 used in this
+repository are logically equivalent. -/
+theorem compatibleTargetPair_iff_calkinWitness :
+    CompatibleTargetPairStatement ↔ CalkinWitnessStatement :=
+  ⟨calkinWitness_of_compatibleTargetPair,
+    compatibleTargetPair_of_calkinWitness⟩
 
 end
 
