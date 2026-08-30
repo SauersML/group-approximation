@@ -1,0 +1,53 @@
+{
+  "encoding": "8 GF(2) row bytes; row 0 is the least-significant byte",
+  "established_prerequisite": {
+    "claim": "atlas-multiplicity-two-packet-collision-hub-escape",
+    "all_packet_contexts_exact": true,
+    "collision_19243": "8040201008040201",
+    "q14": "8040201048040201"
+  },
+  "frame": {
+    "matrix": "401004080301c030",
+    "inverse": "8280414010200c04",
+    "order": 51
+  },
+  "elements": {
+    "h":   {"matrix":"8040080428140201","order":3,"opcode":"8040281401033221","opcode_order":7,"rank_opcode_minus_identity":6},
+    "k":   {"matrix":"8040201002010a05","order":3,"opcode":"8c4024100a05f030","opcode_order":7,"rank_opcode_minus_identity":6},
+    "z":   {"matrix":"2010a05008040201","order":3,"opcode":"f404c80848540201","opcode_order":15,"rank_opcode_minus_identity":6},
+    "b":   {"matrix":"8040a05008040201","order":2,"opcode":"8040a05058440201","opcode_order":4,"rank_opcode_minus_identity":3},
+    "c":   {"matrix":"8040020122110a05","order":4,"opcode":"b04038143cc0cf1e","opcode_order":12,"rank_opcode_minus_identity":6},
+    "a":   {"matrix":"a050201008040201","order":2,"opcode":"a454281808040201","opcode_order":4,"rank_opcode_minus_identity":3},
+    "t01": {"matrix":"8040201008040a05","order":2,"opcode":"8f40251008040a05","opcode_order":4,"rank_opcode_minus_identity":4},
+    "t12": {"matrix":"8040201028140201","order":2,"opcode":"8040201028143e29","opcode_order":4,"rank_opcode_minus_identity":4},
+    "t23": {"matrix":"8040a05008040201","order":2,"opcode":"8040a05058440201","opcode_order":4,"rank_opcode_minus_identity":3},
+    "t30": {"matrix":"8241201008040201","order":2,"opcode":"4182102008040201","opcode_order":4,"rank_opcode_minus_identity":3},
+    "t21": {"matrix":"8040281408040201","order":2,"opcode":"8040281409070201","opcode_order":4,"rank_opcode_minus_identity":4}
+  },
+  "identities": {
+    "c": "h*k",
+    "a": "z*b",
+    "t30": "c^-1*a*c"
+  },
+  "regularized_values": {
+    "D01": 1,
+    "D12": 1,
+    "D23": 1,
+    "D30": 1,
+    "delta_h_squared": 2,
+    "delta_k_squared": 2,
+    "delta_z_squared": 2,
+    "delta_b_squared": 2,
+    "delta_c_squared": 2,
+    "delta_a_squared": 2
+  },
+  "contradictions": {
+    "anisotropic_lhs": 73,
+    "optimized_weighted_lhs_lower_bound": 25,
+    "joint_weighted": "LHS >= q > lambda/256",
+    "t30_x_squared": 1,
+    "parabolic_c3_energy": 12,
+    "two_holonomy_energy": 6
+  },
+  "status": "PASS"
+}

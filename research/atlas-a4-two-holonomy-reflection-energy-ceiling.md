@@ -3,6 +3,8 @@ rg: 2
 id: atlas-a4-two-holonomy-reflection-energy-ceiling
 kind: claim
 title: The A4 packet and 19243 keep the core-reflection energy at most one third
+refuted_by:
+  - atlas-m2-escape-refutes-six-a4-cycle-bridge-ceilings
 distinct_from:
   atlas-a4-parabolic-c3-bridge-energy-ceiling: that separately budgets the two packet S3 letters, the central C3 letter, and the collision involution; this asks only for the combined core holonomy c=hk and collision-C3 reflection a=zb.
 ---

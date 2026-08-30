@@ -3,6 +3,8 @@ rg: 2
 id: atlas-a4-t30-energy-ceiling-below-q14-wall
 kind: claim
 title: The A4 packet and collision 19243 force aligned t30 root energy below one half
+refuted_by:
+  - atlas-m2-escape-refutes-six-a4-cycle-bridge-ceilings
 distinct_from:
   atlas-a4-root-energy-ellipse-ceiling: that asks for a much smaller two-coordinate ellipsoidal bound sufficient against the S3 wall; this asks only for one t30 coordinate below the stronger q14 wall.
   atlas-q14-forces-t30-covariance-floor: that is the established opposite lower bound supplied by a second kernel relation; this is the missing packet-plus-19243 upper estimate.

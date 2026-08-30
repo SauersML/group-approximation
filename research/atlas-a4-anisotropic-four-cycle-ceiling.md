@@ -3,6 +3,8 @@ rg: 2
 id: atlas-a4-anisotropic-four-cycle-ceiling
 kind: claim
 title: A weighted four-cycle trace ceiling already beats the raw S3 covariance floor
+refuted_by:
+  - atlas-m2-escape-refutes-six-a4-cycle-bridge-ceilings
 distinct_from:
   atlas-a4-four-cycle-dirichlet-ceiling: that symmetric target charges the t12 direction by the same worst-case factor as the three generators needed to synthesize t21; this target keeps the exact anisotropy of the raw detector.
   atlas-a4-holonomy-coherence-gap: that target bounds the two raw S3 covariance directions directly; this target remains a four-cycle scalar condition and delegates the exact finite word transfer.

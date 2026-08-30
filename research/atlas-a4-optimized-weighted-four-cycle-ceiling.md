@@ -3,6 +3,8 @@ rg: 2
 id: atlas-a4-optimized-weighted-four-cycle-ceiling
 kind: claim
 title: Some reciprocal-weighted four-cycle trace ceiling beats the raw S3 wall
+refuted_by:
+  - atlas-m2-escape-refutes-six-a4-cycle-bridge-ceilings
 distinct_from:
   atlas-a4-anisotropic-four-cycle-ceiling: that target fixes the symmetric t21 weights 24,24,24 before optimization; this target lets the packet proof choose any sharp diagonal weights adapted to the directions it controls most cheaply.
   atlas-a4-four-cycle-dirichlet-ceiling: that target uses one unweighted four-cycle scalar; this target retains the exact three-direction tradeoff relevant to t21 and the direct t12 readout.
