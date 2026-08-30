@@ -14,6 +14,10 @@ ultraproduct the generator classes satisfy every relator, hence define a
 homomorphism from `Gamma`, while the image of `w` is nontrivial.  Thus `w` is
 not in the hyperlinear radical.
 
+This diagonal argument uses only that a fixed enumeration of the countable
+relator set has been chosen.  It never asks for an algorithm which produces
+that enumeration.
+
 Conversely, representatives of any homomorphism into a tracial matrix
 ultraproduct satisfy every fixed finite relator window asymptotically.  The
 finite-window implication for every `epsilon` therefore makes the image of
