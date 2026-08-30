@@ -76,7 +76,6 @@ and log are `experiments/atlas-rank5-balanced-area.json` and
 recorded in `atlas-first-rank-five-relator-kills-order-one-weyl-slice`.
 
 This establishes the collector and certificate format.  The returned artifact
-is audited independently by
-`experiments/verify_atlas_rank5_balanced_area.py`; its one-row gcd-one
-certificate is enough for the negative coefficient-table decision, although
-it deliberately does not export the other 4,647 rows.
+has now been audited by an independent local replay, which reproduced the
+checked-in JSON byte for byte.  Its first exact row is the complete negative
+certificate permitted by the coefficient-table claim.
