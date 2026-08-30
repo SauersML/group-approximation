@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw08-af-embedding-status-and-coherence-audit-2026-08-30.md
+  - research/artifacts/stw08-singular-character-reduction-audit-2026-08-30.md
 ---
 
 **Problem VIII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902.**  Is every separable exact quasidiagonal
@@ -48,3 +49,17 @@ These results do not solve Problem VIII: both the finite regular
 representation and the continuous-coordinate construction transport AF
 embeddings already available on their input pieces, but neither manufactures
 one from unrelated quasidiagonal models.
+
+## Exact singular-character reduction
+
+`stw08-af-embedding-reduces-to-singular-stable-character-kernels` shows that
+the full problem is equivalent to its restriction to unital exact
+quasidiagonal algebras with a scalar quotient and stable essential kernel.
+Indeed, stabilization followed by unitization preserves and reflects
+AF-embeddability.  A counterexample can therefore be chosen with a unique
+tracial state, which is a nonfaithful quasidiagonal character.  Its stable
+kernel has no bounded traces, but Gabe's traceless theorem forces it to
+carry a nontrivial unbounded lower-semicontinuous tracial weight.  Thus the
+remaining obstruction lies precisely between the faithful-trace theorem and
+the traceless theorem; complicated quotients and multiple bounded traces are
+not needed.
