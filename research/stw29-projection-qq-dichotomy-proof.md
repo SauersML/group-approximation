@@ -68,4 +68,3 @@ while `2q not <= q` because `q` is finite.  This is the explicit
 equal-multiple perforation `(P)`.  If `V(A)` is unperforated, such a pair is
 impossible; equivalently, applying unperforation directly to
 `n(2x)<=nx` proves `(QQ_V)`.
-

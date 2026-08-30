@@ -44,4 +44,3 @@ n(2q) <= nq,                 but 2q is not <= q.       (P)
 Thus a counterexample to Problem XXIX must exhibit equal-multiple order
 perforation already inside the compact part of its Cuntz semigroup; soft
 elements and traces are not needed to witness the failure.
-

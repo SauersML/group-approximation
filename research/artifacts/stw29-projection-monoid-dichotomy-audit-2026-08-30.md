@@ -61,4 +61,3 @@ multiple.  The remaining monoid problem is therefore exact: determine
 whether the simple refinement monoids arising as `V(A)` for real-rank-zero
 algebras automatically have `(QQ_V)`, or construct one with the displayed
 perforation while retaining C-star realizability and simplicity.
-
