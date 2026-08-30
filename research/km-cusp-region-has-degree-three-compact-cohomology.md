@@ -3,6 +3,8 @@ rg: 2
 id: km-cusp-region-has-degree-three-compact-cohomology
 kind: claim
 title: The positive-codistance cusp region of the (2,4,6) twin-building product has nonzero compactly supported cohomology in degree three
+refuted_by:
+  - km-group-ring-h2-vanishes-for-the-lattices
 distinct_from:
   km-thick-part-two-connected-and-lattice-is-f3: that identifies the group-ring `H^2` with `H^2_c` of the thick part; this is the nonvanishing of that group, rewritten on the cusp side.
   km-development-has-nonzero-end-cohomology-in-degree-one: that is the same nonvanishing expressed on the two-dimensional development as end cohomology; this is its expression on the complement of the four-dimensional thick part, where Borel--Serre-type reduction theory should apply.
