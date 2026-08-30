@@ -5,7 +5,7 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerProof
 import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Higman.CurrentREBenign
 import GroupApproximation.Higman.OmegaDebt
-import GroupApproximation.Analysis.ShulmanFillNormingTailPrintedMF
+import GroupApproximation.Analysis.ShulmanFillNormingRecognitionWiring
 
 /-!
 # `thm:recognition`: the remaining analytic inputs exposed
@@ -59,12 +59,13 @@ noncomputable section
 
 /-! ## The analytic debts -/
 
-/-- The two analytic literature interfaces still needed by the repaired
-Shulman route.  The first is the tail-corrected lifting statement replacing
-the refuted sup-norm transcription of Shulman's Theorem 4.  The second is the
-compatible-target form of Enders--Shulman, Theorem 4.11. -/
+/-- The two analytic literature interfaces still needed by Shulman's route.
+The first is Theorem 10, whose proof uses the one-leg Theorem 4 only through
+the special stabilized flip/Halmos construction.  The second is the
+compatible-target form of Enders--Shulman, Theorem 4.11.  In particular this
+does not assume an arbitrary unamplified pair of asymptotic lifts. -/
 structure RecognitionAnalyticInputs : Prop where
-  theorem4TailPair : ShulmanFill.Theorem4TailPairStatement
+  symmetricDoubleMF : ShulmanSymmetricDouble.SymmetricDoubleMFStatement
   compatibleTargetPair :
     ShulmanSymmetricDouble.CompatibleTargetPairStatement
 
@@ -79,37 +80,21 @@ carrier is a corona, so the MF clause is automatic.  Everything else in Theorem
 diagonal choice of a norming family, reduced-product permanence, the `ε/3`
 passage from a dense set to the whole amalgam, and the density of words.
 
-The obsolete printed-pair route used three named inputs.  Its status, and the
-two interfaces retained by the repaired route, are:
+The transcription boundary is now split where the source splits it:
 
-* `ShulmanFill.Theorem4PrintedPairStatement`
-  (`Analysis/ShulmanFillNormingExistentialLiftPrinted`): the lifting direction
-  of Shulman's Theorem 4 in the form the printed proof of Theorem 10 uses, a
-  compatible pair of lifts into the algebra `𝒟` of `*`-strongly convergent
-  matrix sequences with faithful limit.  The model-first reading of Theorem 4,
-  a single lift into fixed matrix models, is refuted in
-  `Analysis/ShulmanFillNormingTheorem4Refuted`.  **The printed pair statement
-  as recorded is also false**: its lift measures the defects in the sup norm
-  over coordinates, so every coordinate yields a `*`-homomorphism into a
-  matrix algebra and `M₂(ℂ)` would acquire a character; and its exhaustion
-  clause fails on a finite-dimensional space.  The statement is stronger than
-  Shulman's, whose defects live in the reduced product and whose lift agrees
-  with the representation only pointwise in the limit.  The repair is built:
-  `ShulmanFill.Theorem4TailPairStatement`
-  (`Analysis/ShulmanFillNormingTailPrinted`) is the printed pair statement in
-  the tail vocabulary — defects controlled past a cut carried as data, the
-  paper's pointwise lift clause, an infinite-dimensional space — and both
-  counter-models die against it; the refuted form implies it, so the repair
-  only removes.  `Analysis/ShulmanFillNormingTailRoute` proves the
-  conjugate-word norming statement from the repaired pair statement, the
-  compatible-target pair statement and the MF-ness of the relabelled printed
-  models — and that last input is a theorem,
-  `ShulmanFill.shiftedPrintedMF` in `Analysis/ShulmanFillNormingTailPrintedMF`,
-  by padding the shifted bounded product into the unshifted one.  So
-  `ShulmanFill.conjugateWordNorming_of_tailPair_of_compatible'` rests on the
-  repaired pair statement and the compatible-target pair statement alone.
-  The reduction below through
-  the refuted form is kept only as the record of the route it replaced;
+* `ShulmanFill.Theorem4OneLegStatement`
+  (`Analysis/ShulmanFillNormingTailPrinted`) records Theorem 4 as one
+  nonunital contractive asymptotic lift of one representation.  It has no
+  `tendsto_one`, no second leg and no agreement-on-`C` conclusion.
+  `ShulmanFill.UnitalTailPairPackageStatement` names the old stronger
+  two-leg tail package for its conditional development, but it is not a
+  citation interface and is not consumed here;
+* `ShulmanSymmetricDouble.SymmetricDoubleMFStatement`
+  (`Analysis/ShulmanSymmetricDoubleRoute`) is Shulman's Theorem 10.  This is
+  the first recognition input because the missing passage from the one-leg
+  lift to a pair is special: stabilize the two representations in opposite
+  order, conjugate by the explicit flip, and apply Lemma 9's Halmos correction.
+  No arbitrary unamplified two-leg statement is asserted;
 * `ShulmanSymmetricDouble.CompatibleTargetPairStatement`
   (`Analysis/ShulmanFillTheorem13`): the output of Enders--Shulman,
   arXiv:2403.12224, Theorem 4.11 — a compatible target through which the
@@ -130,15 +115,17 @@ two interfaces retained by the repaired route, are:
 
 So the debt rests on the two inputs in `RecognitionAnalyticInputs`.  The route
 itself is Shulman's own: Theorem 13 embeds the amalgam in the symmetric double
-`D *_C D`, Theorem 10 makes the double MF from the repaired tail-pair
-statement (`isMFAlgebra_amalgam_of_tailPair`), and the injective
+`D *_C D`, the `symmetricDoubleMF` field supplies Theorem 10 at precisely its
+special flip-pair endpoint, and the injective
 factor map turns the MF double into the type-zero witness that
 `shulmanTheorem16_of_typeZeroWitness` consumes.  Until both interfaces are
 theorems the debt remains an explicit argument here. -/
 theorem conjugateWordNorming (h : RecognitionAnalyticInputs) :
     ShulmanFill.ConjugateWordNormingStatement :=
-  ShulmanFill.conjugateWordNorming_of_tailPair_of_compatible'
-    h.theorem4TailPair h.compatibleTargetPair
+  ShulmanFill.conjugateWordNorming_of_typeZeroWitness
+    h.symmetricDoubleMF
+    (ShulmanFill.factorMapInjective_of_compatibleTargetPair
+      h.compatibleTargetPair)
 
 /-- **Shulman, Theorem 16**, from the conjugate form of its remaining input. -/
 theorem shulmanTheorem16 (h : RecognitionAnalyticInputs) :
@@ -183,7 +170,7 @@ theorem manuscriptHNNPermanence_nonunital
 /-- The ω-closure, as a term.  The statement itself is `Higman.OmegaDebt`, which
 the Theorem C lane imports too, so the repository proves it once rather than
 once per lane. -/
-def omegaInput : Higman.Omega.OmegaInput := Higman.OmegaDebt.omegaInput
+theorem omegaInput : Higman.Omega.OmegaInput := Higman.OmegaDebt.omegaInput
 
 /-- **Higman's embedding theorem** (recursively enumerable normal subgroups of
 finitely generated free groups are benign), through the ω-closure. -/

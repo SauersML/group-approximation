@@ -193,7 +193,7 @@ theorem exists_typeZero_faithful_representation :
   · exact CStarHilbertCountableBasis.separableSpace_of_hilbertBasis
       (HilbertBasis.ofRepr (LinearIsometryEquiv.refl ℂ _))
   · -- The sum carries an orthonormal sequence, and `b.repr` is an isometry, so
-    -- the clause transports.  `Theorem4TailPairStatement` asks for it because
+    -- the clause transports.  `UnitalTailPairPackageStatement` asks for it because
     -- the printed models cannot be placed on a finite-dimensional space.
     intro hfd
     haveI := hfd

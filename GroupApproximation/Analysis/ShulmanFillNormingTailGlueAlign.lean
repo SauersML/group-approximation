@@ -13,7 +13,7 @@ Nothing has to be assumed about that.  A lift can always be re-cut upwards:
 `TailNull.mono_cut` says a larger cut asks for less, so replacing `cut` by any
 pointwise larger function leaves every clause true.  `withCut` is that structure
 update, and two lifts align at the pointwise maximum of their cuts.  This is why
-`Theorem4TailPairStatement`'s shared-cut clause is a convenience rather than a
+`UnitalTailPairPackageStatement`'s shared-cut clause is a convenience rather than a
 requirement: a consumer that does not have it can make it.
 
 The module also carries the limit map on a coordinate algebra.  `ShiftedD` is

@@ -2,17 +2,17 @@ import GroupApproximation.Analysis.ShulmanFillNormingRecognitionWiring
 import GroupApproximation.Analysis.ShulmanFillNormingTailPrintedPair
 
 /-!
-# The recognition route on the repaired binder
+# The legacy conditional recognition route
 
 `ShulmanFill.conjugateWordNorming_of_printedPair_of_compatible'` derives
 `ConjugateWordNormingStatement` from `Theorem4PrintedPairStatement`, which
 `Analysis/ShulmanFillNormingPrintedPairRefuted` and
 `Analysis/ShulmanFillNormingPrintedPairCharacter` refute.  This module is the
-same route on `Theorem4TailPairStatement`, the repair.
+same route on `UnitalTailPairPackageStatement`, the legacy conditional package.
 
 ## What it rests on
 
-Two Props the manuscript cites --- `Theorem4TailPairStatement` and
+Two Props the legacy route assumes --- `UnitalTailPairPackageStatement` and
 `ShulmanSymmetricDouble.CompatibleTargetPairStatement` --- and two owed inputs
 that the repair introduced and that are named rather than assumed silently:
 
@@ -62,7 +62,7 @@ omit [∀ (m : ℕ), Nontrivial (DoubledModel EllTwoCoefficient m)] in
 with the refuted binder replaced by the repaired one; the infinite-dimensionality
 the repair asks of `H` is a hypothesis here and is supplied by the caller. -/
 theorem isMFAlgebra_amalgam_of_tailPair
-    (hT4 : Theorem4TailPairStatement) (hMF : ShiftedPrintedMFStatement)
+    (hT4 : UnitalTailPairPackageStatement) (hMF : ShiftedPrintedMFStatement)
     (hHinf : ¬ FiniteDimensional ℂ H) (hDmf : IsMFAlgebra D)
     (ρ₁ ρ₂ : D →⋆ₐ[ℂ] (H →L[ℂ] H))
     (hρ₁ : Function.Injective ρ₁) (hρ₂ : Function.Injective ρ₂)

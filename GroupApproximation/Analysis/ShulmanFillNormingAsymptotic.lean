@@ -9,18 +9,23 @@ would make `B` residually finite-dimensional, and MF algebras need not be.
 Theorem 4 is stated with a **discrete asymptotic homomorphism**, and this
 module supplies that vocabulary.
 
-`StarStrongAsymptoticLift ι hnorm hone π` is a sequence of maps
+`NonUnitalStarStrongAsymptoticLift ι hnorm hone π` is a sequence of maps
 `φ_t : B → ∏ₙ A n` whose values lie in `𝒟`, which are contractive, whose
 linearity, multiplicativity and adjoint defects vanish as `t → ∞`, and each of
 which lifts the given representation exactly: `q (φ_t b) = π b`.  Nothing is
-asymptotic about the lifting clause — only about the algebra.
+asymptotic about the lifting clause — only about the algebra.  There is no unit
+defect in this definition.
 
 The coordinate argument that refutes the `*`-homomorphic reading does not apply
 here, and cannot: `φ_t` composed with a coordinate is not a homomorphism, only
 an asymptotically multiplicative map, so no finite-dimensional representation
 of `B` is produced.
 
-## What is proved here
+The older `StarStrongAsymptoticLift` additionally has `tendsto_one`.  It remains
+the input type of the repository's explicitly unital amalgam-gluing machinery,
+but is stronger than the definition cited by Theorem 4.
+
+## What is proved for the stronger unital package
 
 * `StarStrongAsymptoticLift.ofStarAlgHom` — the vocabulary is not empty: a
   `*`-homomorphic lift is one, with all four defects identically zero.  So the
@@ -74,8 +79,40 @@ variable (hnorm : ∀ (n : ℕ) (x : A n), ‖ι n x‖ ≤ ‖x‖)
 variable (hone : ∀ v : H, Tendsto (fun n ↦ ι n (1 : A n) v) atTop (𝓝 v))
 variable {B : Type v} [CStarAlgebra B]
 
-/-- **A discrete asymptotic homomorphism into `𝒟` lifting `π`.**  This is the
-shape Shulman's Theorem 4 is stated in: a sequence of contractive maps
+/-- **A nonunital discrete asymptotic homomorphism into `𝒟` lifting `π`.**
+
+This is the one-leg vocabulary used by Shulman's Theorem 4.  A discrete
+asymptotic homomorphism is not required to carry the unit asymptotically to the
+unit: it is contractive and its linearity, multiplicativity and adjoint
+defects vanish.  The separate `StarStrongAsymptoticLift` below is the stronger
+unital package used by the repository's old amalgam-gluing development; its
+`tendsto_one` field must not be attributed to Theorem 4. -/
+structure NonUnitalStarStrongAsymptoticLift
+    (π : B →⋆ₐ[ℂ] (H →L[ℂ] H)) where
+  /-- The maps of the family. -/
+  toFun : ℕ → B → StarStrong.BoundedStarSequence A
+  /-- Every value converges `*`-strongly, that is, lies in `𝒟`. -/
+  mem : ∀ t b, toFun t b ∈ StarStrong.starStrongSubalgebra ι hnorm hone
+  /-- The maps are contractive. -/
+  norm_le : ∀ t b, ‖toFun t b‖ ≤ ‖b‖
+  /-- The additivity defect vanishes. -/
+  tendsto_add : ∀ b c, Tendsto
+    (fun t ↦ ‖toFun t (b + c) - toFun t b - toFun t c‖) atTop (nhds 0)
+  /-- The homogeneity defect vanishes. -/
+  tendsto_smul : ∀ (z : ℂ) (b : B), Tendsto
+    (fun t ↦ ‖toFun t (z • b) - z • toFun t b‖) atTop (nhds 0)
+  /-- The multiplicativity defect vanishes. -/
+  tendsto_mul : ∀ b c, Tendsto
+    (fun t ↦ ‖toFun t (b * c) - toFun t b * toFun t c‖) atTop (nhds 0)
+  /-- The adjoint defect vanishes. -/
+  tendsto_star : ∀ b, Tendsto
+    (fun t ↦ ‖toFun t (star b) - star (toFun t b)‖) atTop (nhds 0)
+  /-- Each member lifts `π` through the `*`-strong limit map. -/
+  lift : ∀ t b, StarStrong.starStrongLimitHom ι hnorm hone
+    ⟨toFun t b, mem t b⟩ = π b
+
+/-- **A unital discrete asymptotic lift into `𝒟`.**  This is the stronger
+package used by the legacy amalgam route: a sequence of contractive maps
 `φ_t : B → ∏ₙ A n` taking values in `𝒟`, asymptotically linear,
 multiplicative and adjoint-preserving, each of which the `*`-strong limit map
 `q` carries back to the given representation `π`.
@@ -102,9 +139,9 @@ structure StarStrongAsymptoticLift (π : B →⋆ₐ[ℂ] (H →L[ℂ] H)) where
   /-- The adjoint defect vanishes. -/
   tendsto_star : ∀ b, Tendsto
     (fun t ↦ ‖toFun t (star b) - star (toFun t b)‖) atTop (𝓝 0)
-  /-- The unitality defect vanishes.  Shulman's lifts are unital, and this is
-  what makes the glued map on an amalgam unital rather than merely
-  non-unital. -/
+  /-- The unitality defect vanishes.  This extra condition makes the glued map
+  on an amalgam unital rather than merely nonunital; it is not part of
+  Shulman's definition of a discrete asymptotic homomorphism. -/
   tendsto_one : Tendsto (fun t ↦ ‖toFun t (1 : B) - 1‖) atTop (𝓝 0)
   /-- Each member lifts `π` through the `*`-strong limit map. -/
   lift : ∀ t b, StarStrong.starStrongLimitHom ι hnorm hone

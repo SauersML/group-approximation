@@ -3,16 +3,15 @@ import GroupApproximation.Analysis.ShulmanFillNormingEllTwoTheorem10
 /-!
 # Theorem 4 at the printed models, as one package
 
-`Analysis/ShulmanFillNormingExistentialLiftTwoLeg` states the lifting direction
-of Shulman's Theorem 4 for a pair of representations, with the model
-existentially quantified.  That binder is too weak to drive Theorem 10, and the
-gap is not subtle: it produces two lifts into one model and says nothing
-relating them on `C`, whereas
+`Analysis/ShulmanFillNormingExistentialLiftTwoLeg` contains an obsolete
+two-representation strengthening of Shulman's one-leg Theorem 4.  Even that
+binder is too weak to drive Theorem 10: it produces two lifts into one model
+and says nothing relating them on `C`, whereas
 `ShulmanFill.isMFAlgebra_amalgam_of_doubleLR` needs
 `∀ c, ‖φ₁_t (k c) - φ₂_t (k c)‖ → 0`.  That agreement is Shulman's Lemma 9 — in
 the paper it is what the Halmos dilation and Pedersen's commutator inequality
-are for — and it is part of the same package as Theorem 4 and Remark 6, not a
-separate assumption a consumer can be asked to supply.
+are for.  This agreement is not a conclusion of Theorem 4; it is produced only
+for the stabilized flip-conjugate pair in the proof of Theorem 10.
 
 `Theorem4PrintedPairStatement` below states the package as one Prop, and pins
 the coefficient algebras to the printed family `EllTwoCoefficient n = B(ℂ^{n+1})`
@@ -44,7 +43,7 @@ which forces each fixed finite-dimensional coordinate to be an honest
 `*`-homomorphism in the limit and so forces a character on `B` --- and `B(ℂ²)`
 is separable, MF and has none.
 
-The repair is `ShulmanFill.Theorem4TailPairStatement`
+The legacy tail package is `ShulmanFill.UnitalTailPairPackageStatement`
 (`Analysis/ShulmanFillNormingTailPrinted`): the same package with the defects
 controlled only past a moving cut, the paper's pointwise lift clause, and `H`
 infinite-dimensional.  The route on it is
@@ -86,9 +85,8 @@ theorem rather than a hypothesis; there is no existential over types; and the
 agreement on `C` — Lemma 9 — is now part of the package, which is what
 `ShulmanFill.isMFAlgebra_amalgam_of_doubleLR` actually consumes.
 
-With `ShulmanSymmetricDouble.CompatibleTargetPairStatement` this is the analytic
-input the recognition route cites rather than proves.  It supersedes
-`Theorem4TwoLegStatement`, which lacks the last clause. -/
+This statement is retained only as the explicitly refuted transcription that
+motivated the correction.  Recognition does not cite or consume it. -/
 def Theorem4PrintedPairStatement : Prop :=
   ∀ {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     [TopologicalSpace.SeparableSpace H]

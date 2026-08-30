@@ -1,13 +1,13 @@
 import GroupApproximation.Analysis.CStarInfiniteFaithfulRepresentation
 
 /-!
-# The recognition route, on the repaired binder
+# The legacy conditional route from a unital tail-pair package
 
 `ShulmanFill.conjugateWordNorming_of_printedPair_of_compatible'` derives
 `ConjugateWordNormingStatement` from `Theorem4PrintedPairStatement`, which
 `Analysis/ShulmanFillNormingPrintedPairRefuted` and
 `Analysis/ShulmanFillNormingPrintedPairCharacter` refute.  These are the same two
-theorems on `Theorem4TailPairStatement`, which is the repair.
+theorems on `UnitalTailPairPackageStatement`, the legacy conditional package.
 
 The bodies are the landed ones with two substitutions.  Theorem 10 comes from
 `isMFAlgebra_amalgam_of_tailPair` instead of `isMFAlgebra_amalgam_of_printedPair`,
@@ -20,9 +20,9 @@ evaluation through `eval_limitRep_eq_of_comp`, is unchanged.
 
 ## What the route rests on
 
-`Theorem4TailPairStatement` and
-`ShulmanSymmetricDouble.CompatibleTargetPairStatement`, the two the manuscript
-cites, and `ShiftedPrintedMFStatement`, which the unshifted route carries too
+`UnitalTailPairPackageStatement`,
+`ShulmanSymmetricDouble.CompatibleTargetPairStatement`, and
+`ShiftedPrintedMFStatement`, which the unshifted route carries too
 (there `Analysis/ShulmanFillNormingEllTwoTheorem10` discharges it; what is known
 about discharging it here is in `Analysis/ShulmanFillNormingTailPrintedPair`'s
 docstring).  Gelfand--Naimark is not among them: it is a theorem.
@@ -42,7 +42,7 @@ omit [∀ (m : ℕ), Nontrivial (DoubledModel EllTwoCoefficient m)] in
 `symmetricDoubleMF_of_printedPair`, with the refuted binder replaced and the
 Gelfand--Naimark input discharged rather than assumed. -/
 theorem symmetricDoubleMF_of_tailPair
-    (hT4 : Theorem4TailPairStatement) (hMF : ShiftedPrintedMFStatement) :
+    (hT4 : UnitalTailPairPackageStatement) (hMF : ShiftedPrintedMFStatement) :
     ShulmanSymmetricDouble.SymmetricDoubleMFStatement := by
   intro C D _ _ k _ hDmf
   haveI : TopologicalSpace.SeparableSpace D := hDmf.1
@@ -80,12 +80,12 @@ theorem symmetricDoubleMF_of_tailPair
     (hxy.trans (eval_limitRep_eq_of_comp k π hρ y))
 
 omit [∀ (m : ℕ), Nontrivial (DoubledModel EllTwoCoefficient m)] in
-/-- **The recognition statement from the repaired binder.**  Where
+/-- **The recognition statement from the legacy conditional package.**  Where
 `conjugateWordNorming_of_printedPair_of_compatible'` rests on a Prop that is
-false, this rests on the repair, on Enders--Shulman's Theorem 4.11, and on the
+false, this rests on the stronger tail package, on Enders--Shulman's Theorem 4.11, and on the
 printed-model MF input the unshifted route carries as well. -/
 theorem conjugateWordNorming_of_tailPair_of_compatible
-    (hT4 : Theorem4TailPairStatement) (hMF : ShiftedPrintedMFStatement)
+    (hT4 : UnitalTailPairPackageStatement) (hMF : ShiftedPrintedMFStatement)
     (hCTP : ShulmanSymmetricDouble.CompatibleTargetPairStatement) :
     ConjugateWordNormingStatement :=
   conjugateWordNorming_of_typeZeroWitness

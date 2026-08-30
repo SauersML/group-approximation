@@ -2,41 +2,22 @@ import GroupApproximation.Analysis.ShulmanFillNormingExistentialLiftPrinted
 import GroupApproximation.Analysis.ShulmanFillNormingTailAsymptoticMF
 
 /-!
-# Theorem 4 at the printed models, repaired
+# Shulman's one-leg lifting theorem and the legacy tail-pair package
 
-`Theorem4PrintedPairStatement` is false: `Analysis/ShulmanFillNormingPrintedPairRefuted`
-refutes it at a one-dimensional `H`, where the printed models have nowhere to
-go, and `Analysis/ShulmanFillNormingPrintedPairCharacter` refutes it at every
-`H`, because sup-norm defects at a finite-dimensional coefficient force a
-character on `B`.  This module states the repaired binder.
+The earlier transcription merged Shulman's Theorem 4 with the two-leg
+flip/Halmos argument used later in Theorem 10, and also required asymptotic
+unitality.  Neither is in the definition cited by Theorem 4.  This module now
+records Theorem 4 as a nonunital one-leg lift.  The old tail-pair package is
+retained under an explicitly non-citation name only for the already-written
+conditional tail-gluing development; recognition no longer assumes it.
 
-## The three repairs
-
-* **The defects move past a cut.**  The lifts are `StarStrongTailLift`s, so each
-  defect is controlled only at coordinates `n ≥ cut t`, and the cut is data the
-  witness chooses.  This is what the character argument loses its grip on:
-  coordinate `0` is constrained by nothing.
-* **The lift clause is the paper's.**  `q ∘ φ_t → π` pointwise, rather than the
-  exact `q (φ_t b) = π b` that `Analysis/ShulmanFillNormingResiduallyFinite`
-  records as stronger than the source.
-* **`H` is infinite-dimensional.**  Without that the models cannot be placed at
-  all, for the reason `not_theorem4PrintedPair` makes precise, and with it a
-  separable `H` is `ℓ²` and `Analysis/EllTwoBlockFamily` builds the family the
-  conclusion asks for.
-
-The two legs are required to share a cut.  Nothing is lost: a construction
-producing two legs produces them at the same stage, and the shared cut is what
-lets the agreement clause be stated in the same tail vocabulary as the defects
-rather than in the sup norm, which would be asking for more than Lemma 9 gives.
-
-## What has not changed
+## Printed coefficients
 
 The coefficients stay pinned to `EllTwoCoefficient`.  That pinning is what makes
 `hD` free (`Analysis/ShulmanFillNormingEllTwoTheorem10`), and
 `Analysis/ShulmanFillNormingProductMF`'s header records that a general-coefficient
 form could not: a product permanence statement for `HasMFEmbedding` is not
-elementary.  So the coefficients were never the thing to give up; the sup norm
-was.
+elementary.
 -/
 
 namespace GroupApproximation
@@ -46,8 +27,33 @@ open Filter Topology
 
 noncomputable section
 
-/-- **Shulman's Theorem 4, Remark 6 and Lemma 9 as one package, at the printed
-models, in the repaired vocabulary.**
+/-- **Shulman's Theorem 4, lifting direction, at the printed matrix models.**
+
+For an infinite-dimensional separable Hilbert space, an MF algebra and one
+representation, there is one contractive discrete asymptotic lift.  The lift
+is deliberately nonunital: Shulman's definition asks for asymptotic linearity,
+multiplicativity and adjoint preservation, but has no unit-defect clause.  No
+second representation, common cut, or agreement-on-`C` clause belongs to this
+statement; those arise only in the special stabilized flip construction in
+the proof of Theorem 10. -/
+def Theorem4OneLegStatement : Prop :=
+  ∀ {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+    [TopologicalSpace.SeparableSpace H],
+    ¬ FiniteDimensional ℂ H →
+    ∀ {B : Type} [CStarAlgebra B] [TopologicalSpace.SeparableSpace B],
+      IsMFAlgebra B →
+      ∀ ρ : B →⋆ₐ[ℂ] (H →L[ℂ] H),
+        ∃ (ι : ∀ n, EllTwoCoefficient n →⋆ₙₐ[ℂ] (H →L[ℂ] H))
+          (hnorm : ∀ (n : ℕ) (x : EllTwoCoefficient n), ‖ι n x‖ ≤ ‖x‖)
+          (hone : ∀ v : H, Tendsto
+            (fun n ↦ ι n (1 : EllTwoCoefficient n) v) atTop (nhds v)),
+          Nonempty (NonUnitalStarStrongAsymptoticLift ι hnorm hone ρ)
+
+/-- **The legacy unital two-leg tail package.**
+
+This combines a stronger unital lift with the special agreement conclusion
+of Lemma 9.  It is a useful conditional input for the old tail-gluing files,
+but it is not Shulman's Theorem 4 and is not a recognition hypothesis.
 
 For an infinite-dimensional separable Hilbert space `H`, a separable MF algebra
 `B`, a subalgebra map `k : C →⋆ₐ[ℂ] B` and two faithful representations of `B`
@@ -57,7 +63,7 @@ cut and agreeing on `C` in the tail.
 
 Compare `Theorem4PrintedPairStatement`, which is this statement with the three
 repairs undone, and which is false. -/
-def Theorem4TailPairStatement : Prop :=
+def UnitalTailPairPackageStatement : Prop :=
   ∀ {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     [TopologicalSpace.SeparableSpace H],
     ¬ FiniteDimensional ℂ H →
@@ -84,7 +90,7 @@ norm, is a pair in the new one with the zero cut.
 This is the honesty check on the repair: the two counter-models refute the old
 statement, and this says the new statement is not a disguise for it — it is
 implied by it, so it cannot be stronger. -/
-theorem theorem4TailPair_of_printedPair_data
+theorem unitalTailPairPackage_of_printedPair_data
     {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     {C B : Type} [CStarAlgebra C] [CStarAlgebra B]
     {k : C →⋆ₐ[ℂ] B} {ρ₁ ρ₂ : B →⋆ₐ[ℂ] (H →L[ℂ] H)}
@@ -117,7 +123,7 @@ theorem finiteDimensional_euclidean_two :
 
 Both are instantiated at a finite-dimensional `H` --- `ℂ¹` for
 `not_theorem4PrintedPair` and `ℂ²` for `not_theorem4PrintedPair_of_character`
---- and `Theorem4TailPairStatement` asks for `¬ FiniteDimensional ℂ H`.  So
+--- and `UnitalTailPairPackageStatement` asks for `¬ FiniteDimensional ℂ H`.  So
 neither refutation transfers, and the two lemmas above are the whole of what can
 be checked here.
 

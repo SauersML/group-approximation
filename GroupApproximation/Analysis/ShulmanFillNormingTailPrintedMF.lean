@@ -77,11 +77,11 @@ theorem shiftedPrintedMF : ShiftedPrintedMFStatement := by
     (shiftedDInclusion ι hnorm hone c t)
     (shiftedDInclusion_injective ι hnorm hone c t)
 
-/-- **The recognition statement from the repaired binder and the compatible
-target alone.**  With the relabelled printed models proved MF, the repaired
-route rests on exactly the two statements the manuscript cites. -/
+/-- **The recognition statement from the legacy tail package and the compatible
+target.**  This conditional route is no longer the manuscript citation
+boundary. -/
 theorem conjugateWordNorming_of_tailPair_of_compatible'
-    (hT4 : Theorem4TailPairStatement)
+    (hT4 : UnitalTailPairPackageStatement)
     (hCTP : ShulmanSymmetricDouble.CompatibleTargetPairStatement) :
     ConjugateWordNormingStatement :=
   conjugateWordNorming_of_tailPair_of_compatible hT4 shiftedPrintedMF hCTP

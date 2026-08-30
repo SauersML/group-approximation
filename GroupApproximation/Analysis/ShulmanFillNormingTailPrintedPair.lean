@@ -3,12 +3,12 @@ import GroupApproximation.Analysis.ShulmanFillNormingTailDoubleMF
 import GroupApproximation.Analysis.ShulmanFillNormingTailPrinted
 
 /-!
-# Theorem 10 from the repaired printed package
+# Theorem 10 from the legacy unital tail package
 
 `ShulmanFill.isMFAlgebra_amalgam_of_printedPair` derives MF-ness of the
 symmetric double from `Theorem4PrintedPairStatement`, which is false.  This
-module is the same derivation from `Theorem4TailPairStatement`, which is the
-repair.
+module is the same conditional derivation from
+`UnitalTailPairPackageStatement`.
 
 The chain is the one it mirrors: double the two legs, transfer the agreement,
 convert the faithfulness of the pair of limits, and glue.  `doubleLR`,

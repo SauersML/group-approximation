@@ -122,18 +122,14 @@ variable (hnorm : ∀ (n : ℕ) (x : A n), ‖ι n x‖ ≤ ‖x‖)
 variable (hone : ∀ v : H, Tendsto (fun n ↦ ι n (1 : A n) v) atTop (𝓝 v))
 variable {B : Type v} [CStarAlgebra B]
 
-/-- **A discrete asymptotic homomorphism into `𝒟` lifting `π`, with its defects
-measured past a moving cut.**
+/-- **A unital tail lift with defects measured past a moving cut.**
 
-Three clauses differ from `StarStrongAsymptoticLift`.  The five defects are
-`TailNull cut` rather than null in the sup norm, so no fixed coordinate is
-constrained once the cut grows; the cut is carried as data, so a consumer asking
-for a lift quantifies over it existentially; and the lift clause is the paper's
-pointwise `q ∘ φ_t → π` rather than the exact `q (φ_t b) = π b`.
-
-Contractivity stays in the sup norm, deliberately: it is a bound and not a
-defect, and it is what makes every coordinate a contraction, which the consumer
-uses. -/
+This is used by the repository's conditional amalgam-gluing
+development.  The `tail_one` clause is the extra hypothesis needed to obtain a
+unital homomorphism into the shifted reduced product; it is not part of
+Shulman's Theorem 4, whose source-facing interface is
+`NonUnitalStarStrongAsymptoticLift`.  The remaining defects are controlled only
+at coordinates past `cut t`, and the lift converges pointwise. -/
 structure StarStrongTailLift (π : B →⋆ₐ[ℂ] (H →L[ℂ] H)) where
   /-- The maps of the family. -/
   toFun : ℕ → B → StarStrong.BoundedStarSequence A
@@ -152,7 +148,7 @@ structure StarStrongTailLift (π : B →⋆ₐ[ℂ] (H →L[ℂ] H)) where
   tail_mul : ∀ b c, TailNull cut (fun t ↦ toFun t (b * c) - toFun t b * toFun t c)
   /-- The adjoint defect vanishes past the cut. -/
   tail_star : ∀ b, TailNull cut (fun t ↦ toFun t (star b) - star (toFun t b))
-  /-- The unit defect vanishes past the cut. -/
+  /-- The additional unit defect needed by the unital gluing route. -/
   tail_one : TailNull cut (fun t ↦ toFun t 1 - 1)
   /-- The family lifts `π` in the limit. -/
   tendsto_lift : ∀ b, Tendsto (fun t ↦ ‖StarStrong.starStrongLimitHom ι hnorm hone

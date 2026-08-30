@@ -3,7 +3,7 @@ import GroupApproximation.Analysis.CStarSeparableFaithfulRepresentation
 /-!
 # The GNS sum is infinite-dimensional
 
-`ShulmanFill.Theorem4TailPairStatement` asks its Hilbert space to be
+`ShulmanFill.UnitalTailPairPackageStatement` asks its Hilbert space to be
 infinite-dimensional, because `not_theorem4PrintedPair` shows the printed models
 cannot be placed on a finite-dimensional one at all.  The space
 `CStarState.exists_typeZero_faithful_representation` produces is an isometric
