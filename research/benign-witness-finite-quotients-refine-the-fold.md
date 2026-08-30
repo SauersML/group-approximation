@@ -3,11 +3,23 @@ rg: 2
 id: benign-witness-finite-quotients-refine-the-fold
 kind: claim
 title: The Higman benign witness has finite quotients refining the fold on its symmetric double
+refuted_by: arbitrary-benign-witness-need-not-refine-fold-quotients
 distinct_from:
   positive-rope-profinite-edge-synchronization: that asks for cofinal finite quotients of the whole product separating every element of the witness group, i.e. residual finiteness of the witness, which fails; this asks only for finite quotients of the witness that close S and refine the fold on S, which is all the twisted-edge theorem consumes.
   mf-safe-asymmetric-hnn-replacement: that asks for an MF-safe replacement of the rope edge; this is the purely group-theoretic profinite condition that, by the twisted-edge theorem, makes the original edge MF-safe without replacement.
   higman-half-row-has-regular-mf-benign-witness: that proves the half-row witness is regularly MF; this asks for finite quotients of the full witness, a different (profinite, not analytic) property.
 ---
+
+**REFUTED AS A UNIVERSAL CLAIM.**  The benign-witness axioms below do not
+imply either requested profinite conclusion.  The established counterexample
+`arbitrary-benign-witness-need-not-refine-fold-quotients` takes the trivial
+subgroup of a free rank-two subgroup in Higman's finite-quotient-free group.
+Every finite quotient of the resulting HNN extension kills the entire
+symmetric double, and that double is not profinitely closed.
+
+This does not refute the possibility that the particular positive compiler
+can be rebuilt with a specially profinitely compatible witness.  It refutes
+the following statement as quantified here.
 
 Let `F` be a free group of finite rank, `N` a normal subgroup with `F/N`
 residually finite, `K` a finitely presented benign witness for `N` with
