@@ -17,6 +17,8 @@ artifacts:
   - research/artifacts/stw22-dim2-arbitrary-factor-breakthrough-2026-08-30.md
   - research/artifacts/stw22-diffuse-spectral-capture-audit-2026-08-30.md
   - research/artifacts/stw22-diffuse-weighted-loop-extension-audit-2026-08-30.md
+  - research/artifacts/stw22-fixed-factor-s2-filling-audit-2026-08-30.md
+  - research/artifacts/stw22-s2-hard-carrier-obstruction-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -78,6 +80,16 @@ factor `N` and every compact Hausdorff `X` with `dim(X)<=2`.  Its relative
 low-spectrum disk extension was the first proof across dimension two; the
 countably generated nontrivial-bundle theorem below strictly extends this
 conclusion.  Beyond dimension two, arbitrary nontrivial bundles remain open.
+
+The fixed-factor trivial case now reaches dimension three.
+`stw22-dim3-trivial-factor-bundles-have-uniform-traces` applies to every
+separable-predual `II_1` factor.  Its `S^2` filling modulus may depend on
+that fixed factor through a pointed Jekel contraction; obtaining one modulus
+simultaneously for varying factor fibres remains open.
+The naive multiplicity-three hard-carrier bootstrap is ruled out by
+`stw22-hard-carrier-unions-fail-local-connectivity`: infinitesimally split
+carriers force a fixed transverse join, breaking local connectivity (or,
+with simplex coordinates, lower semicontinuity).
 
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,

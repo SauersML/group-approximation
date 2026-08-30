@@ -22,6 +22,8 @@ artifacts:
   - research/artifacts/stw22-dim2-arbitrary-factor-breakthrough-2026-08-30.md
   - research/artifacts/stw22-diffuse-spectral-capture-audit-2026-08-30.md
   - research/artifacts/stw22-diffuse-weighted-loop-extension-audit-2026-08-30.md
+  - research/artifacts/stw22-fixed-factor-s2-filling-audit-2026-08-30.md
+  - research/artifacts/stw22-s2-hard-carrier-obstruction-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -69,6 +71,26 @@ The arbitrary-factor trivial theorem crosses dimension two in
 separable-predual II1 factor over a compact Hausdorff base of dimension at
 most two, including `C_sigma(S^2,L(F_2))`.  The countably generated
 nontrivial-bundle theorem below strictly extends this special case.
+
+For a fixed separable-predual factor, the trivial theorem now crosses
+dimension three in
+`stw22-dim3-trivial-factor-bundles-have-uniform-traces`.  The universal
+loop modulus makes all conjugator corners uniformly equi-`LC^1`, so a small
+Stiefel `S^2` has a small unitary lift.  A pointed Jekel contraction of the
+fixed ambient factor fills that lift with a modulus depending on the factor
+but not on the source trace, weight, copy number, or support slack.  The
+remaining dimension-three problem is factor-uniformity across varying
+fibres, not the topology of any one separable factor.
+
+A direct attempt to make the modulus factor-uniform by patching three local
+hard spectral carriers fails sharply.
+`stw22-hard-carrier-unions-fail-local-connectivity` rotates two coincident
+carriers through an arbitrarily small angle.  The two carrier branches then
+have arbitrarily close points, but every path switching branches must contain
+their join and move a fixed positive `2`-distance.  Adding barycentric
+coordinates instead destroys lower semicontinuity at the coincident point.
+Thus a factor-uniform dimension-three proof needs a genuinely soft carrier
+or a uniform pointed contraction, not the naive nerve patch.
 
 For locally trivial hyperfinite W*-bundles over finite-dimensional compact
 metrizable bases, `stw22-locally-trivial-finite-dimensional-bundles` gives
