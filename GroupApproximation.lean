@@ -2848,6 +2848,9 @@ import GroupApproximation.GGT.DGOBlockWord
 import GroupApproximation.GGT.MorseLemmaDischarge
 import GroupApproximation.Analysis.VoiculescuBlockIsometry
 import GroupApproximation.Analysis.VoiculescuBlockRep
+import GroupApproximation.GGT.HullYiLemmaC
+import GroupApproximation.GGT.DGOWindmillSpokes
+import GroupApproximation.GGT.HullSCConeOffHeavyGeomSep
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

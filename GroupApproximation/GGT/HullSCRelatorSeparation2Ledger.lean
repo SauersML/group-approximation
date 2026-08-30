@@ -12,7 +12,9 @@ rather than tracing them through fifty modules.  Nothing is proved here.
 `HullSC.HullTheorem51Statement₂` -- Hull's Theorem 5.1 over two hyperbolically
 embedded subgroups -- from the corrected separation, `HullConeOffStatement₂`,
 and DGO's Theorem 5.3.  The relator is `relatorWord₂`: a base spelling of `t⁻¹`
-followed by an alternating run of deep powers of two independent loxodromics.
+followed by an alternating run of deep powers of two loxodromics, one in each
+of the two subgroups.  Hull takes them independent; the chain asks only that
+the subgroups meet trivially, which is (W4) --- see item 6.
 
 ## The standing hypotheses, and who owes them
 
@@ -119,6 +121,60 @@ consumes quasi-geodesicity rather than producing it.
   difference from the quadrilateral, whose `listVal` IS `1`.  The wrapping half
   is exactly what the cyclic form supplies; it is not to be derived from the
   linear form together with the depth clause.
+
+  **Two of its three steps are built, and unconditionally.**  The count is the
+  injection of the piece's components into a geodesic's, and only the first of
+  its three steps is geometric.  `GGT.OsinComponents.card_le_card_of_crossConnected`
+  and `card_le_card_of_sideSeparated`
+  (`GGT/HullSCRelatorSeparation2CountBigon.lean`) are steps two and three, over
+  arbitrary words: distinct components of the near side reach distinct
+  components of the far side, so their number is at most the far side's.  The
+  target is a `Finset` the caller supplies rather than the far side's LENGTH,
+  and that is what keeps `mu = 1`: bounding each index's count by `|q|` would
+  give `k_false + k_true ≤ 2|q|`, the clause at `mu = 2`, whereas the two
+  indices land on disjoint sets of component starts
+  (`not_isCompStart_of_ne`) and so ADD to at most `|q|`.
+  `GGT/HullSCRelatorSeparation2BaseCount.lean` is the arithmetic on the other
+  side: `baseCount_of_sym_relatorWord₂` proves the `|p|` this section asserts,
+  and `compCount_range_ge` turns a component count into the count above.  What
+  is left is step one, that a deep component of the piece is not isolated in
+  the figure it makes with the geodesic.
+
+  **No citation reaches that step, and the reason is sharper than a missing
+  reference.**  Hull gets quasi-geodesicity of his relator from
+  Dahmani--Guirardel--Osin's Lemma 4.21(1), which this repository already reads
+  as `(4,1)` (`GGT/DGOCorollary612Unconditional.lean`), and two things stop it
+  from discharging the count.
+
+  * The constant is MULTIPLICATIVE.  `(4,1)` bounds a length by four times a
+    distance, and `hcount` is `mu = 1` with an additive constant, as is every
+    consumer of it --- `HullSC.qgClause_of_le`, `le_of_qg_one`,
+    `HullSC.fourGonQG_of_sides`, and item 1's own narrowing, which is at
+    `mu = 1` because the tower says nothing above it.  So the citation proves
+    something strictly weaker than the chain consumes.
+  * Its condition (W1) reads on LETTERS --- no subword `xy` with both letters
+    in `X` --- and this relator opens with `|p|` consecutive base letters.
+    Hull's own words meet (W1) by construction: (W4) makes his word `U₁xU₂`
+    with at most ONE `X`-letter.  Ours spells `t⁻¹` as a WORD over the
+    alphabet, because `t` is arbitrary, so it has `|p|` of them.
+
+  (W1) is vacuous, though, on a piece lying INSIDE the run, which has no
+  `X`-letters at all; (W3) is local and follows from the run alternating
+  indices; (W2) is the design's depth clause at a radius the composition
+  chooses.  So 4.21(1) does reach run-internal pieces, and gives them `(4,1)`
+  --- and only them.  A piece meeting the base arc has no progress bound from
+  any source, and the arithmetic does not compose across the arc: splitting a
+  crossing range and adding the two counts bounds it by the SUM of two
+  distances, which is not the distance between its endpoints.
+
+  **So item 2 is open because item 1 is closed narrowly, and the two move
+  together.**  For a run-internal piece the missing step is the
+  isolated-component bound at a two-sided figure with one geodesic side and one
+  `(4,1)` side --- that is item 1's bound, at `mu = 4`, where item 1 is
+  discharged only at `mu = 1` and `n ≤ 6`.  Listing them as independent debts,
+  as this file did, was wrong.  For a base-crossing piece not even that is
+  enough, and what would be needed first is a progress bound of some kind on a
+  word that fails (W1).
 
 **3. The two same-side exclusions.**  That no two distinct components of one
 long side of the quadrilateral are connected to each other, one clause per
@@ -454,6 +510,10 @@ and on nothing else.  That is the whole standing debt of the chain, and the
 first of the three is a hypothesis about the ambient geometry rather than a
 gap: items 2 and 3 are the ones that still owe a proof.  Item 6 was the fourth
 until (W4) replaced it.
+
+Item 2 is not independent of item 1, though item 1 is marked closed: the count
+needs item 1's bound at `mu = 4` for a two-sided figure, and item 1 is
+discharged only at `mu = 1` with `n ≤ 6`.  They move together.
 
 ## One correction worth keeping
 
