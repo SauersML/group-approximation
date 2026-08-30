@@ -103,3 +103,30 @@ trace, since faithfulness would then make `A` quasidiagonal.  The
 Tikuisis--White--Winter/Gabe faithful-trace theorem further forces `A` to
 fail exactness or the UCT.  Weak density of the CAR core supplies no
 operator-norm approximation of the finite obstruction `F`.
+
+# X(2): exact finite-dimensional-core normal form
+
+The CAR core can nevertheless be made algebraically exact inside any
+putative quasidiagonal trace model.  For a unital finite-dimensional
+subalgebra `E subset A`, an asymptotically multiplicative u.c.p. map is close
+on `E` to a representation `pi`.  If `phi=V* rho(-)V` is a Stinespring
+dilation, averaging `rho(u)Vpi(u)*` over `U(E)` gives an exact intertwiner.
+Its polar normalization remains an exact intertwiner and stays close to
+`V`.  Compression by the normalized intertwiner therefore gives a u.c.p.
+map uniformly close to `phi` on the whole unit ball and having `E` in its
+multiplicative domain.
+
+Consequently a trace is quasidiagonal if and only if its matrix models can
+be required to be exact over any one prescribed finite-dimensional core.
+For a fixed CAR tower `D_n subset R`, X(2) is equivalent to finite-packet
+models which put each prescribed `D_n` in the multiplicative domain.  Since
+`D_n` is a full matrix algebra, the normalized matrix trace then agrees
+with `tau_R` exactly on `D_n`; only the outside packet remains approximate.
+For a separable CAR-containing subalgebra the models can be diagonalized to
+a sequence exact on `D_n` at step `n`.  For all of `R` the correct
+formulation is a net/finite-set criterion.
+
+The proof uses operator-norm matrix-unit stability and cannot be applied to
+the Hilbert--Schmidt models supplied merely by hyperfiniteness.  It invokes
+no exactness, UCT, nuclearity, local lifting, quotient descent, or norm
+density of the CAR core.
