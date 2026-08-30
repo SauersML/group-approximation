@@ -55,8 +55,9 @@ This is sharp at the endpoint: for `q=1`, determinant winding loops in
 `U(n)` can have arbitrarily small normalized `2`-diameter as `n` grows and
 are not null-homotopic.
 
-The theorem is only a matrix-fibre result. It does not assert the analogous
-uniform modulus for arbitrary `II_1` factors. The diffuse case requires a
-continuous small-trace spectral-capture projection for merely
-`2`-norm-continuous loops, an input not supplied by the finite-dimensional
-rank argument.
+The proof in this node is only a matrix-fibre argument.  The separate
+summable-carrier theorem `stw22-diffuse-stiefel-uniform-loop-fillings`
+supplies the projection-weight input in every separable `II_1` factor, and
+`stw22-all-finite-factor-weighted-copy-uniform-loop-fillings` supplies the
+unitary-lifted low-spectrum recursion which upgrades it to arbitrary
+positive weights.

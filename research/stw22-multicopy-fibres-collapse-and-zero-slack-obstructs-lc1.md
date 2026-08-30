@@ -51,3 +51,5 @@ does not refute the desired arbitrary-factor dimension-two theorem. The
 quantitative projection-weight problem isolated here is now closed for
 matrices by `stw22-matrix-weighted-copy-uniform-loop-fillings` and for
 separable diffuse factors by `stw22-diffuse-stiefel-uniform-loop-fillings`.
+The positive-weight transfer under strict slack is closed uniformly for both
+classes by `stw22-all-finite-factor-weighted-copy-uniform-loop-fillings`.

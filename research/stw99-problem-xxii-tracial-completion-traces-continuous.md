@@ -16,6 +16,7 @@ artifacts:
   - research/artifacts/stw22-matrix-weighted-loop-filling-audit-2026-08-30.md
   - research/artifacts/stw22-dim2-arbitrary-factor-breakthrough-2026-08-30.md
   - research/artifacts/stw22-diffuse-spectral-capture-audit-2026-08-30.md
+  - research/artifacts/stw22-diffuse-weighted-loop-extension-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -69,16 +70,14 @@ Theorem 1.2, independently remove countable generation: for every II1 factor
 `C_sigma(X,N)` are canonical. In particular the interval and circle with
 free-group-factor fibre are settled. See
 `farah-vaccaro-one-dim-trivial-bundles-uniform-traces`.
-The arbitrary nontrivial-bundle problem remains open.
 
-The first higher-dimensional trivial case is now closed.
+The first higher-dimensional trivial case is also closed.
 `stw22-dim2-trivial-factor-bundles-have-uniform-traces` proves that every
 trace on `C_sigma(X,N)` is canonical for every separable-predual II1
-factor `N` and every compact Hausdorff `X` with `dim(X)<=2`. The new
-input is a relative low-spectrum disk extension: uniform diffuse Stiefel
-loop fillings are selected band by band inside the moving complement of the
-high frame. Thus `C_sigma(S^2,L(F_2))` is covered without property Gamma.
-This does not address nontrivial two-dimensional bundles or dimension three.
+factor `N` and every compact Hausdorff `X` with `dim(X)<=2`.  Its relative
+low-spectrum disk extension was the first proof across dimension two; the
+countably generated nontrivial-bundle theorem below strictly extends this
+conclusion.  Beyond dimension two, arbitrary nontrivial bundles remain open.
 
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,
@@ -90,7 +89,7 @@ dimension.  The chartwise argument is retained as cocycle-local proof
 technology.
 
 For arbitrary factorial bundles over finite-dimensional compact metrizable
-bases of dimension at least two,
+bases,
 `stw22-intrinsic-local-replication-colouring-reduction` removes all
 global-corner and local-triviality assumptions from the colouring step.  Its
 only hypothesis is an exact continuous local tuple of orthogonal weighted
@@ -98,8 +97,9 @@ copies.  The existing intrinsic correction lemma makes the corresponding
 fibre solution relation lower semicontinuous, but does not supply the
 uniform higher local connectivity needed to select its polar-fill
 corrections.  In the countably generated case the degree-zero selection
-problem is settled by stabilized `L^2` selection; higher connectivity of
-the varying-factor solution family is now the first finite-dimensional
+problem is settled through dimension two by stabilized `L^2` selection and
+the all-factor weighted loop-filling theorem.  For countably generated
+bundles, sphere degrees at least two are now the first finite-dimensional
 hinge.
 
 For the first such hinge, projection-weight multicopy fibres reduce exactly
@@ -111,12 +111,16 @@ obstruction, and `stw22-matrix-weighted-copy-uniform-loop-fillings` now
 proves a dimension-free filling-radius estimate for all matrix factors,
 positive weights, and replication numbers. The hyperfinite `II_1` case is
 already covered by `stw22-strong-stiefel-spaces-have-uniform-loop-fillings`.
-The non-hyperfinite projection-weight case is now closed by
+The non-hyperfinite projection-weight case is closed by
 `stw22-diffuse-stiefel-uniform-loop-fillings`: a summable sequence of
 orthogonal norm-continuous carriers produces the missing continuous
-small-trace spectral projection. What remains for the full diffuse
-dimension-two problem is the relative low-spectrum extension for arbitrary
-positive weights in a moving high-frame complement.
+small-trace spectral projection.  The relative low-spectrum step is closed
+by `stw22-all-finite-factor-weighted-copy-uniform-loop-fillings`: a unitary
+lift of the high filling and an explicit band-by-band trivialization of its
+moving complement give a universal cubic modulus for arbitrary positive
+weights and copy numbers.  Stabilized two-dimensional Michael selection now
+proves `stw22-dim2-factor-bundles-have-uniform-traces` for every countably
+generated factorial bundle over a base of covering dimension at most two.
 
 The tempting matrix-cone shortcut is strictly stronger than this hinge.
 `stw22-bare-cone-projectivity-does-not-supply-ilr` exhibits a
@@ -152,10 +156,10 @@ the unresolved relative selection statement.
   spectral cuts themselves.  The zero-dimensional theorem bypasses this:
   it lifts weighted operators, corrects only their high spectral parts,
   and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2`
-  selection now replaces those patches in dimension one for countably
-  generated bundles.  From dimension two onward, local weighted tuples
+  selection now replaces those patches through dimension two for countably
+  generated bundles.  From dimension three onward, local weighted tuples
   require uniform higher-connectivity data, and no general varying-factor
-  selection theorem or dimension-independent orthogonal gluing estimate is
+  sphere-filling or dimension-independent orthogonal gluing estimate is
   presently known.
 * **Ultrafilter attack on the negative side.**  A singular trace on
   `C_σ([0,1], R)` of the form `lim_ω τ(b(y_n) q_n)/τ(q_n)` needs projections

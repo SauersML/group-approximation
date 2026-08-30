@@ -21,6 +21,7 @@ artifacts:
   - research/artifacts/stw22-matrix-weighted-loop-filling-audit-2026-08-30.md
   - research/artifacts/stw22-dim2-arbitrary-factor-breakthrough-2026-08-30.md
   - research/artifacts/stw22-diffuse-spectral-capture-audit-2026-08-30.md
+  - research/artifacts/stw22-diffuse-weighted-loop-extension-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -62,17 +63,12 @@ whenever `N` is any II1 factor and `dim(X)<=1`. This includes
 `C_sigma([0,1],L(F_2))` and requires neither hyperfiniteness nor property
 Gamma; see
 `farah-vaccaro-one-dim-trivial-bundles-uniform-traces`.
-Their result does not cover nontrivial bundles.
 
-The arbitrary-factor trivial theorem now crosses dimension two.
-`stw22-dim2-trivial-factor-bundles-have-uniform-traces` proves the same
-trace equality for every separable-predual II1 factor `N` and compact
-Hausdorff base `X` with `dim(X)<=2`. In particular it covers
-`C_sigma(S^2,L(F_2))`. A relative Michael selection extends each low
-spectral band through the moving complement of the filled high frame; the
-strict trace reserve makes the diffuse Stiefel loop modulus uniform. The
-result does not cover nontrivial two-dimensional bundles or dimension
-three.
+The arbitrary-factor trivial theorem crosses dimension two in
+`stw22-dim2-trivial-factor-bundles-have-uniform-traces`.  It covers every
+separable-predual II1 factor over a compact Hausdorff base of dimension at
+most two, including `C_sigma(S^2,L(F_2))`.  The countably generated
+nontrivial-bundle theorem below strictly extends this special case.
 
 For locally trivial hyperfinite W*-bundles over finite-dimensional compact
 metrizable bases, `stw22-locally-trivial-finite-dimensional-bundles` gives
@@ -183,7 +179,7 @@ metrizability nor a common ambient factor and covers every compact
 scattered boundary as well as perfect zero-dimensional boundaries.
 
 For countably generated factorial bundles, that frontier now begins in
-dimension two.  `stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
+dimension three.  `stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
 the intrinsic Hilbert `C(K)`-module of `L^2` sections into the standard
 module `C(K,ell^2)`.  The varying-factor weighted-copy sets thereby become
 a lower-semicontinuous, uniformly locally path-connected family of closed
@@ -194,6 +190,13 @@ complete C-star algebra.  Countable generation is automatic for uniform
 completions of separable C-star algebras; no common ambient factor or local
 triviality is used.
 
+The loop-level extension
+`stw22-all-finite-factor-weighted-copy-uniform-loop-fillings` upgrades this
+argument through dimension two in
+`stw22-dim2-factor-bundles-have-uniform-traces`.  It supplies simple
+connectivity and a uniform equi-`LC^1` modulus for every strictly slack
+weighted-copy fibre in every separable finite factor.
+
 For arbitrary factorial bundles in dimension at least two, the remaining
 input is now separated cleanly from the topological colouring step.
 `stw22-intrinsic-local-replication-colouring-reduction` shows that no common
@@ -202,11 +205,11 @@ after exact local replication tuples exist.  Over a `d`-dimensional compact
 metrizable base, a `(d+1)`-coloured refinement gives a range bound `d+1`
 independent of the replication number and kills every gap trace.  The
 quantitative weighted correction lemma proves lower semicontinuity of the
-fibrewise solution relation.  Stabilized selection uses only path
-connectedness and uniform local path connectedness in dimension one.  In
-higher dimensions it would require corresponding uniform local
-`k`-connectedness through `k=d-1`; establishing or refuting those stronger
-connectivity estimates is the precise finite-dimensional frontier.
+fibrewise solution relation.  Stabilized selection now supplies the needed
+path and loop filling through dimension two.  In dimensions at least three
+it would require corresponding uniform local `k`-connectedness through
+`k=d-1`; establishing or refuting those stronger connectivity estimates is
+the precise finite-dimensional frontier.
 
 The first higher-connectivity hinge has a sharp normal form.
 `stw22-multicopy-fibres-collapse-and-zero-slack-obstructs-lc1` identifies
@@ -229,9 +232,15 @@ fibres are already handled by
 hinge for every separable `II_1` factor. Its summable-carrier construction
 decomposes an arbitrary `2`-continuous loop into norm-continuous increments
 and captures them in orthogonal projections of total trace
-`O(delta^2/kappa^2)`. The remaining diffuse dimension-two step is the
-relative positive-weight extension: low spectral polar frames must be
-extended in the moving complement of the selected high-frame filling.
+`O(delta^2/kappa^2)`.  The relative positive-weight step is now closed by
+`stw22-all-finite-factor-weighted-copy-uniform-loop-fillings`.  Its high
+filling is chosen with a unitary lift; bounded low spectral bands are then
+filled recursively, and each filled band explicitly trivializes the next
+moving complement.  This gives one cubic loop-filling modulus for all
+separable finite factors, weights, and copy numbers under strict support
+slack.  Stabilized Michael selection consequently proves the trace theorem
+for countably generated factorial bundles over bases of dimension at most
+two in `stw22-dim2-factor-bundles-have-uniform-traces`.
 
 Bare projectivity of finite-dimensional matrix cones does not bypass this
 frontier. `stw22-bare-cone-projectivity-does-not-supply-ilr` gives a trivial

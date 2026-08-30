@@ -45,14 +45,11 @@ rho_St(epsilon)=min(epsilon,1)^2/2560                  (DSF)
 has the following factor-uniform property. Every loop in `St_N(q)` lying in
 a `rho_St(epsilon)`-ball about one of its points fills in the concentric
 `epsilon`-ball. The modulus is independent of `N` and `q`; no complement
-slack is needed in a diffuse factor. Every individual `St_N(q)` is also
-path connected and simply connected: lift a loop to the unitary group by
-the one-dimensional Farah--Vaccaro theorem and contract it by Jekel's
-Theorem A.
+slack is needed in a diffuse factor.
 
 Together with `stw22-matrix-weighted-copy-uniform-loop-fillings`, this closes
 the projection-weight Stiefel filling problem for every separable finite
-factor under strict complement slack. The theorem does not by itself assert
-the arbitrary-positive-weight multicopy statement in a diffuse factor: that
-transfer additionally asks for a relative low-spectrum extension in the
-moving complement of the chosen high-frame filling.
+factor under strict complement slack.  The formerly missing relative
+low-spectrum extension is supplied by
+`stw22-all-finite-factor-weighted-copy-uniform-loop-fillings`, which upgrades
+this projection theorem to arbitrary positive weights and copy numbers.
