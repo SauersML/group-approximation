@@ -19,6 +19,7 @@ artifacts:
   - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
   - research/artifacts/stw22-arbitrary-factor-stiefel-boundary-audit-2026-08-30.md
   - research/artifacts/stw22-matrix-weighted-loop-filling-audit-2026-08-30.md
+  - research/artifacts/stw22-diffuse-spectral-capture-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -210,12 +211,16 @@ small-rank carrier confines every operator-norm-large defect; the residual
 loop lies in a simply connected complex Stiefel bundle whose normalized
 `2`-diameter is controlled by that rank. A high-low spectral cut transfers
 the estimate to arbitrary positive weights and arbitrary replication
-number, with one modulus independent of matrix size.  Hyperfinite `II_1`
+number, with one modulus independent of matrix size. Hyperfinite `II_1`
 fibres are already handled by
-`stw22-strong-stiefel-spaces-have-uniform-loop-fillings`.  The exact
-remaining dimension-two obstruction for arbitrary factor bundles is the
-non-hyperfinite diffuse-fibre analogue: `2`-norm continuity no longer gives
-the continuous small-trace spectral carrier used in the matrix proof.
+`stw22-strong-stiefel-spaces-have-uniform-loop-fillings`, and
+`stw22-diffuse-stiefel-uniform-loop-fillings` now closes the projection-weight
+hinge for every separable `II_1` factor. Its summable-carrier construction
+decomposes an arbitrary `2`-continuous loop into norm-continuous increments
+and captures them in orthogonal projections of total trace
+`O(delta^2/kappa^2)`. The remaining diffuse dimension-two step is the
+relative positive-weight extension: low spectral polar frames must be
+extended in the moving complement of the selected high-frame filling.
 
 Bare projectivity of finite-dimensional matrix cones does not bypass this
 frontier. `stw22-bare-cone-projectivity-does-not-supply-ilr` gives a trivial

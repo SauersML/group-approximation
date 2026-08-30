@@ -47,6 +47,7 @@ Hilbert--Schmidt norm, but is not null-homotopic.  Hence no radius independent
 of the finite factor can give local loop fillings at zero slack.
 
 With positive slack, the matrix Stiefel spaces are simply connected, so this
-does not refute the desired arbitrary-factor dimension-two theorem.  It
-reduces that theorem to a genuinely quantitative, dimension-free filling
-radius for `U(N)/U(1-q)` when `tau(1-q)` is bounded below.
+does not refute the desired arbitrary-factor dimension-two theorem. The
+quantitative projection-weight problem isolated here is now closed for
+matrices by `stw22-matrix-weighted-copy-uniform-loop-fillings` and for
+separable diffuse factors by `stw22-diffuse-stiefel-uniform-loop-fillings`.

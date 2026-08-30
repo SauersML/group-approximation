@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
   - research/artifacts/stw22-arbitrary-factor-stiefel-boundary-audit-2026-08-30.md
   - research/artifacts/stw22-matrix-weighted-loop-filling-audit-2026-08-30.md
+  - research/artifacts/stw22-diffuse-spectral-capture-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -98,12 +99,14 @@ determinant loops in `U(n)` have normalized `2`-radius tending to zero but
 remain non-null-homotopic. Positive complement slack removes that elementary
 obstruction, and `stw22-matrix-weighted-copy-uniform-loop-fillings` now
 proves a dimension-free filling-radius estimate for all matrix factors,
-positive weights, and replication numbers.  The hyperfinite `II_1` case is
-already covered by `stw22-strong-stiefel-spaces-have-uniform-loop-fillings`;
-the general dimension-two hinge remains open for non-hyperfinite diffuse
-factors, where a merely `2`-norm-continuous loop need not admit the
-continuous small-trace spectral carrier produced by the finite-dimensional
-argument.
+positive weights, and replication numbers. The hyperfinite `II_1` case is
+already covered by `stw22-strong-stiefel-spaces-have-uniform-loop-fillings`.
+The non-hyperfinite projection-weight case is now closed by
+`stw22-diffuse-stiefel-uniform-loop-fillings`: a summable sequence of
+orthogonal norm-continuous carriers produces the missing continuous
+small-trace spectral projection. What remains for the full diffuse
+dimension-two problem is the relative low-spectrum extension for arbitrary
+positive weights in a moving high-frame complement.
 
 The tempting matrix-cone shortcut is strictly stronger than this hinge.
 `stw22-bare-cone-projectivity-does-not-supply-ilr` exhibits a

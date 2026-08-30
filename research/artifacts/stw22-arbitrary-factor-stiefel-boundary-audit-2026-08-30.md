@@ -30,9 +30,9 @@ matrix size and of the finite factor.
 
 ## Trust boundary
 
-This is not a dimension-two solution.  For the hyperfinite `II_1` factor,
-the existing Popa--Takesaki contraction supplies the required uniform
-filling.  For arbitrary varying finite factors, pointwise strong-topology
-contractibility does not by itself give a uniform pointed `L^2` modulus, and
-matrix winding must first be cancelled inside the slack stabilizer.  No such
-factor-uniform relative filling estimate is claimed here.
+This reduction is not by itself a dimension-two solution. Its two successor
+packages now close the projection-weight quantitative problem: the matrix
+case by finite-rank defect localization and the diffuse case by a summable
+continuous spectral carrier followed by strong-topology contraction. The
+remaining arbitrary-positive-weight diffuse step is relative: low spectral
+frames must be extended in the moving complement of the high-frame filling.
