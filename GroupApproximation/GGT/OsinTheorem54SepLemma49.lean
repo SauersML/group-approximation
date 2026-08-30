@@ -71,6 +71,7 @@ theorem exists_least_above (P : ℕ → Prop) (m : ℕ) (hex : ∃ n : ℕ, m < 
 
 /-! ## An index belongs to one `λ` -/
 
+omit [Group G] in
 /-- **A letter is a component letter of one index only.** -/
 theorem isCompOf_unique {a : RelLetter G Λ} {lam mu : Λ}
     (h1 : a.IsCompOf lam) (h2 : a.IsCompOf mu) : lam = mu := by

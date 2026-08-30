@@ -33,7 +33,8 @@ theorem mem_sepIndexSet_of_suffix (D : RelGenSet G Λ) (Dc : ℕ) {f g : G}
     k₀ + a ∈ sepIndexSet D mu Dc f g w := by
   obtain ⟨c, hc, ⟨⟨b, hEP⟩, hcc⟩⟩ := ha
   have hkw : k₀ ≤ w.length := hcross.2.1
-  obtain ⟨hab, hbl, -, -, -⟩ := hEP
+  have hab : a < b := hEP.1
+  have hbl : b ≤ ((w.drop k₀).take (w.length - k₀)).length := hEP.2.1
   have hlen : ((w.drop k₀).take (w.length - k₀)).length = w.length - k₀ :=
     length_segment w k₀ (w.length - k₀) (by omega)
   have hcompw : IsComp mu w (k₀ + a) (k₀ + b) :=

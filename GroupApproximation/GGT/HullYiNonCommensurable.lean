@@ -81,7 +81,8 @@ theorem not_isHyperbolicallyEmbedded_elementaryClosure_conj {G : Type u}
     (h0 : D.fam false = elementaryClosure f)
     (h1 : D.fam true = elementaryClosure (c * f * c⁻¹)) :
     ¬ D.IsHyperbolicallyEmbedded := by
-  refine not_isHyperbolicallyEmbedded_of_conj_fam D (by decide) c ?_ ?_
+  have hne : (false : Bool) ≠ true := by decide
+  refine not_isHyperbolicallyEmbedded_of_conj_fam D hne c ?_ ?_
   · intro y
     rw [h0, h1]
     exact ⟨fun hy => mem_elementaryClosure_conj hy,

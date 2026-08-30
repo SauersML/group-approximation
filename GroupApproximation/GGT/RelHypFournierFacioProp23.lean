@@ -208,14 +208,17 @@ theorem fournierFacioQuotientStatement_of_prop23
     isNonElementaryHyperbolic_of_kazhdan' hhyp hT
   obtain ⟨S, hSgen, hSfin⟩ :=
     Group.fg_iff.mp (ProductFinitePresentation.fg_of_isFinitelyPresented U)
+  have hgfin : (freeProductSourceHom U H₀ '' S).Finite :=
+    hSfin.image (freeProductSourceHom U H₀)
   obtain ⟨Q, instQ, pi, hsurj, hQfp, hQtf, hQinj, hQmem⟩ :=
     hProp U H₀ instU instH₀ hne htf hUfp hUtf
-      (freeProductSourceHom U H₀ '' S) (hSfin.image _)
-  haveI := instQ
+      (freeProductSourceHom U H₀ '' S) hgfin
   have hmem : ∀ x ∈ S, pi (freeProductSourceHom U H₀ x)
       ∈ (pi.comp (freeProductPartnerHom U H₀)).range := by
     intro x hx
-    exact hQmem _ ⟨x, hx, rfl⟩
+    have hximg : freeProductSourceHom U H₀ x
+        ∈ freeProductSourceHom U H₀ '' S := ⟨x, hx, rfl⟩
+    exact hQmem _ hximg
   exact ⟨Q, instQ, hQfp, hQtf,
     ⟨pi.comp (freeProductPartnerHom U H₀),
       surjective_partner_of_sourceGen pi hsurj hSgen hmem⟩,

@@ -57,13 +57,13 @@ theorem re_inner_le_sq_of_unit {b : H →L[ℂ] H} {V : Submodule ℂ H} {t : �
   · simp
   · have hcpos : (0 : ℝ) < ‖ξ‖ := norm_pos_iff.mpr hne
     have hsq : (0 : ℝ) < ‖ξ‖ ^ 2 := by positivity
-    have hunit : ‖((‖ξ‖⁻¹ : ℝ) : ℂ) • ξ‖ = 1 := norm_smul_inv_norm hne
-    have hmem : ((‖ξ‖⁻¹ : ℝ) : ℂ) • ξ ∈ Vᗮ := Vᗮ.smul_mem _ hξ
+    have hunit : ‖((‖ξ‖ : ℂ))⁻¹ • ξ‖ = 1 := norm_smul_inv_norm hne
+    have hmem : ((‖ξ‖ : ℂ))⁻¹ • ξ ∈ Vᗮ := Vᗮ.smul_mem _ hξ
     have hval := h _ hmem hunit
-    have hkey : ⟪b (((‖ξ‖⁻¹ : ℝ) : ℂ) • ξ), ((‖ξ‖⁻¹ : ℝ) : ℂ) • ξ⟫_ℂ
+    have hkey : ⟪b (((‖ξ‖ : ℂ))⁻¹ • ξ), ((‖ξ‖ : ℂ))⁻¹ • ξ⟫_ℂ
         = (((‖ξ‖⁻¹ * ‖ξ‖⁻¹ : ℝ)) : ℂ) * ⟪b ξ, ξ⟫_ℂ := by
-      rw [map_smul, inner_smul_left, inner_smul_right, Complex.conj_ofReal,
-        Complex.ofReal_mul]
+      rw [map_smul, inner_smul_left, inner_smul_right, map_inv₀, Complex.conj_ofReal,
+        Complex.ofReal_mul, Complex.ofReal_inv]
       ring
     rw [hkey, Complex.re_ofReal_mul] at hval
     have hinv : ‖ξ‖⁻¹ * ‖ξ‖⁻¹ = (‖ξ‖ ^ 2)⁻¹ := by

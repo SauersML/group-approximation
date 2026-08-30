@@ -87,6 +87,7 @@ theorem listVal_demote (w : List (RelLetter G Λ)) :
         listVal_cons a t
       rw [h1, h2, ih]
 
+omit [Group G] in
 theorem length_demote (w : List (RelLetter G Λ)) :
     (demote w).length = w.length := by
   simp [demote]

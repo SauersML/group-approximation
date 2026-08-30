@@ -42,27 +42,34 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
-/-! ## The cut function -/
+/-! ## The cut function
+
+The cut function knows nothing about the letters it counts, so it is stated for
+an arbitrary type: that keeps the group instance of the surrounding section out
+of six declarations that never look at it. -/
+
+section Cut
+
+variable {α : Type*}
 
 /-- **The total length of the first `s` pieces.** -/
-def pieceCut : List (List (RelLetter G Λ)) → ℕ → ℕ
+def pieceCut : List (List α) → ℕ → ℕ
   | _, 0 => 0
   | [], _ + 1 => 0
   | q :: qs, s + 1 => q.length + pieceCut qs s
 
-@[simp] theorem pieceCut_zero (ps : List (List (RelLetter G Λ))) :
+@[simp] theorem pieceCut_zero (ps : List (List α)) :
     pieceCut ps 0 = 0 := by
   cases ps <;> rfl
 
 @[simp] theorem pieceCut_nil (s : ℕ) :
-    pieceCut ([] : List (List (RelLetter G Λ))) s = 0 := by
+    pieceCut ([] : List (List α)) s = 0 := by
   cases s <;> rfl
 
-@[simp] theorem pieceCut_cons_succ (q : List (RelLetter G Λ))
-    (qs : List (List (RelLetter G Λ))) (s : ℕ) :
+@[simp] theorem pieceCut_cons_succ (q : List α) (qs : List (List α)) (s : ℕ) :
     pieceCut (q :: qs) (s + 1) = q.length + pieceCut qs s := rfl
 
-theorem pieceCut_mono (ps : List (List (RelLetter G Λ))) (s : ℕ) :
+theorem pieceCut_mono (ps : List (List α)) (s : ℕ) :
     pieceCut ps s ≤ pieceCut ps (s + 1) := by
   induction ps generalizing s with
   | nil => simp
@@ -73,13 +80,15 @@ theorem pieceCut_mono (ps : List (List (RelLetter G Λ))) (s : ℕ) :
           rw [pieceCut_cons_succ, pieceCut_cons_succ]
           exact Nat.add_le_add_left (ih s') _
 
-theorem pieceCut_length (ps : List (List (RelLetter G Λ))) :
+theorem pieceCut_length (ps : List (List α)) :
     pieceCut ps ps.length = ps.flatten.length := by
   induction ps with
   | nil => rfl
   | cons q qs ih =>
       rw [List.length_cons, pieceCut_cons_succ, ih, List.flatten_cons,
         List.length_append]
+
+end Cut
 
 /-! ## Vertices of a concatenation of pieces -/
 
