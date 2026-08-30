@@ -73,5 +73,18 @@ group with a faithful hyperfinite character refutes this problem
 (`hyperfinite-factor-not-qd-via-non-mf-unitary-subgroup`).  Kazhdan
 non-MF groups cannot be that witness, since a finitely generated Kazhdan
 subgroup of `U(R)` is residually finite
-(`kazhdan-groups-in-hyperfinite-unitary-group-are-rf`); the live candidate
-is the literal group `E` (`literal-group-embeds-in-hyperfinite-unitary-group`).
+(`kazhdan-groups-in-hyperfinite-unitary-group-are-rf`).  The former literal
+group candidate is now excluded as well:
+`literal-group-mark-invisible-to-hyperfinite-representations` shows that its
+central mark dies in every finite injective representation.
+
+The representation-free Clifford exclusion now has its sharp finite-block
+form.  `signed-clifford-cycle-trace-formula` computes the implementing trace
+for every signed permutation of `2m` Clifford generators.  A single cycle
+whose sign-product equals `(-1)^(cycle length)` makes that trace zero.
+Consequently `marked-clifford-compressor-hyperfinite-invisibility` excludes
+any marked candidate whose abelian compressor family contains such a cycle,
+provided the existing nonamenable Haar-null dual-action hypotheses hold.
+This strictly extends the former fixed-point-free-involution test to even
+cycles with fixed points and to negatively signed odd cycles; it remains an
+exclusion theorem for proposed group witnesses, not a resolution of X(2).

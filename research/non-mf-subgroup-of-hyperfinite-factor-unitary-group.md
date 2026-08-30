@@ -63,9 +63,13 @@ literal group `E`.
   impossible, so the quotient-character half cannot rescue `E`.
   The obstruction is abstracted in
   `marked-clifford-compressor-hyperfinite-invisibility`: any future marked
-  witness with an even Clifford block, trace-spreading abelian compressor,
-  and nonamenable essentially free dual action is excluded by the same
+  witness with an even Clifford block, a trace-spreading abelian compressor
+  containing one cycle whose sign-product is `(-1)^(cycle length)`,
+  and a nonamenable essentially free dual action is excluded by the same
   mechanism, without property (T) or a character-classification theorem.
+  The compressor need not act by a fixed-point-free involution: unsigned
+  even cycles and negatively signed odd cycles, with arbitrary spectator
+  cycles and fixed points, are covered by the exact Clifford trace formula.
 * **Why the compression criterion does not obstruct.**  Inside `R` the
   Kazhdan projection of `ρ(L)` on `L²(R)` is the projection onto
   `L²(ρ(L)' ∩ R)`, and `ρ(t)` conjugates it to the projection onto

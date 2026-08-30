@@ -2,10 +2,11 @@
 rg: 2
 id: marked-clifford-compressor-invisibility-proof
 kind: route
-title: Compute the Clifford permutation trace, recover Haar spectrum, and invoke proper outerness
+title: Apply the signed Clifford cycle trace, recover Haar spectrum, and invoke proper outerness
 target: marked-clifford-compressor-hyperfinite-invisibility
 requires:
   - hyperfinite-covariant-obstruction-lemma
+  - signed-clifford-cycle-trace-formula
 artifacts:
   - research/artifacts/stw99-x2-unitary-subgroup-reduction-2026-08-30.md
 ---
@@ -21,37 +22,38 @@ is central in `rho(Gamma)''`.  If `p!=0`, compress to `pWp`, normalize the
 trace, and replace `rho` by the compressed representation.  Thus it is enough
 to contradict `rho(w)=-1`.
 
-The `2m` represented lamps are pairwise anticommuting self-adjoint
-unitaries.  They generate a unital copy of
+The `2m` represented lamps are pairwise anticommuting self-adjoint unitaries.
+They generate a unital copy of
 
 ```text
 Cl_(2m)(C)=M_(2^m).
 ```
 
 Write `C` for this matrix algebra.  For `v in V`, conjugation by `rho(v)`
-restricts to the automorphism of `C` which permutes the Clifford generators
-by `m` disjoint transpositions.  Choose an implementing unitary `V_v in C`.
-The matrix-algebra tensor decomposition of `W` gives
+restricts, by `(MCC0)` and `rho(w)=-1`, to the signed permutation
+
+```text
+rho(c_i) |-> (-1)^(delta_i(v)) rho(c_(pi_v(i))).
+```
+
+Choose an implementing unitary `V_v in C`.  The matrix-algebra tensor
+decomposition of `W` gives
 
 ```text
 rho(v)=V_v x_v,          x_v in C' intersect W,
 tau(rho(v))=tr_(2^m)(V_v) tau(x_v).                    (MCC1)
 ```
 
-The normalized trace of `V_v` is zero.  Indeed
+For a cycle `D` in `(MCC0')`, its sign-product is
 
 ```text
-|tr_(2^m)(V_v)|^2=tr_(2^(2m))(Ad V_v).
+product_(i in D)(-1)^(delta_i(v))=(-1)^(|D|).
 ```
 
-On the Clifford monomial basis, a monomial is fixed by the permutation
-exactly when its support is a union of `j` transposition pairs.  Reversing
-each selected anticommuting pair contributes one minus sign, so
+The exact formula `signed-clifford-cycle-trace-formula` therefore gives
 
 ```text
-tr_(2^(2m))(Ad V_v)
- =sum_(j=0)^m binomial(m,j)(-1)^j
- =(1-1)^m=0.                                             (MCC2)
+tr_(2^m)(V_v)=0.                                         (MCC2)
 ```
 
 Equations `(MCC1)`--`(MCC2)` give `tau(rho(v))=0` for every `v in V`.
