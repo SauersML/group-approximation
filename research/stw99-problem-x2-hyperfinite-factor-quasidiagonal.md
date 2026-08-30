@@ -46,3 +46,20 @@ may be frozen without loss: the open hinge is precisely operator-norm
 multiplicativity for the finitely many elements outside that exact core.
 This is a finite-set/net statement for the nonseparable factor, not a claim
 that one sequence models all of `R`.
+
+The exact core can further be divided out of every model.
+`stw10-matrix-core-models-are-corner-amplifications` proves that, for
+`D_n isomorphic to M_d` and `p_n=e_11`, the canonical identification
+
+```text
+R isomorphic to M_d(p_n R p_n)
+```
+
+carries every core-exact u.c.p. model, up to a target unitary, to precisely
+`id_(M_d) tensor chi` for a u.c.p. corner map
+`chi:p_n R p_n -> M_m`.  Its multiplication defect is the explicit matrix
+of sums of corner defects, and the normalized trace is
+`tr_d tensor (d tau_R|p_n R p_n)`.  Thus X(2) has an exact Morita normal
+form: all approximation data live in one `e_11` corner, the ambient model
+size is forced to be `dm`, and the CAR matrix action carries no residual
+choice or error.
