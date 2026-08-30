@@ -123,6 +123,80 @@ theorem isWPDAtEventually_common_positive_zpow
   exact exists_common_positive_zpow_of_pairStab_finite hiso hfin
     (N := N) (by exact le_rfl) g k a b ha hb hclose
 
+/-- The monotone WPD pigeonhole threshold is uniform under simultaneous
+conjugation of the WPD element and its basepoint.  This is the uniformity needed
+when DGO Lemma 6.7 ranges over all translates of one quasi-axis. -/
+theorem isWPDAtEventually_common_positive_zpow_conj
+    (hiso : IsIsometricAction G X) {h : G} {x : X}
+    (hwpd : IsWPDAtEventually h x) {ε : ℝ} (hε : 0 ≤ ε) :
+    ∃ M₀ : ℕ, ∀ M : ℕ, M₀ ≤ M → ∃ N : ℕ,
+      ∀ (u k : G) (a b : Fin (N + 1) → ℤ),
+        StrictMono a → StrictMono b →
+        (∀ i,
+          dist (((u * h * u⁻¹) ^ (a i)) • (u • x))
+            ((k ^ (b i)) • (u • x)) ≤ ε ∧
+          dist (((u * h * u⁻¹) ^ (a i)) •
+              (((u * h * u⁻¹) ^ M) • (u • x)))
+            ((k ^ (b i)) • (((u * h * u⁻¹) ^ M) • (u • x))) ≤ ε) →
+        ∃ p q : ℤ, 0 < p ∧ 0 < q ∧
+          (u * h * u⁻¹) ^ p = k ^ q := by
+  obtain ⟨M₀, hM₀⟩ :=
+    isWPDAtEventually_common_positive_zpow hiso hwpd hε
+  refine ⟨M₀, ?_⟩
+  intro M hM
+  obtain ⟨N, hN⟩ := hM₀ M hM
+  refine ⟨N, ?_⟩
+  intro u k a b ha hb hclose
+  let k' : G := u⁻¹ * k * u
+  have haction (g : G) (e : ℤ) (y : X) :
+      u • ((g ^ e) • y) = ((u * g * u⁻¹) ^ e) • (u • y) := by
+    rw [← mul_smul, ← mul_smul]
+    congr 1
+    rw [conj_zpow]
+    group
+  have hkConj : u * k' * u⁻¹ = k := by
+    dsimp [k']
+    group
+  obtain ⟨p, q, hp, hq, hpq⟩ := hN h k' a b ha hb (fun i => by
+    have hfirst :
+        dist ((h ^ (a i)) • x) ((k' ^ (b i)) • x) =
+          dist (((u * h * u⁻¹) ^ (a i)) • (u • x))
+            ((k ^ (b i)) • (u • x)) := by
+      calc
+        dist ((h ^ (a i)) • x) ((k' ^ (b i)) • x) =
+            dist (u • ((h ^ (a i)) • x))
+              (u • ((k' ^ (b i)) • x)) := (hiso u _ _).symm
+        _ = dist (((u * h * u⁻¹) ^ (a i)) • (u • x))
+              ((k ^ (b i)) • (u • x)) := by
+            rw [haction, haction, hkConj]
+    have hsecond :
+        dist ((h ^ (a i)) • ((h ^ M) • x))
+            ((k' ^ (b i)) • ((h ^ M) • x)) =
+          dist (((u * h * u⁻¹) ^ (a i)) •
+              (((u * h * u⁻¹) ^ M) • (u • x)))
+            ((k ^ (b i)) • (((u * h * u⁻¹) ^ M) • (u • x))) := by
+      have hMaction :
+          u • ((h ^ M) • x) = ((u * h * u⁻¹) ^ M) • (u • x) := by
+        rw [pow_conj]
+        exact (smul_conj u (h ^ M) x).symm
+      calc
+        dist ((h ^ (a i)) • ((h ^ M) • x))
+            ((k' ^ (b i)) • ((h ^ M) • x)) =
+          dist (u • ((h ^ (a i)) • ((h ^ M) • x)))
+            (u • ((k' ^ (b i)) • ((h ^ M) • x))) := (hiso u _ _).symm
+        _ = dist (((u * h * u⁻¹) ^ (a i)) •
+              (((u * h * u⁻¹) ^ M) • (u • x)))
+            ((k ^ (b i)) • (((u * h * u⁻¹) ^ M) • (u • x))) := by
+          rw [haction, haction, hkConj, hMaction]
+    rw [hfirst, hsecond]
+    exact hclose i)
+  refine ⟨p, q, hp, hq, ?_⟩
+  have hconjEq := congrArg (fun g : G => u * g * u⁻¹) hpq
+  dsimp [k'] at hconjEq
+  rw [← conj_zpow, ← conj_zpow] at hconjEq
+  have hk' : u * (u⁻¹ * k * u) * u⁻¹ = k := by group
+  rwa [hk'] at hconjEq
+
 /-- **The WPD pigeonhole core of DGO Lemma 6.7.**  For a loxodromic WPD
 element in a geodesic hyperbolic space, all sufficiently long sampled
 oriented overlaps force the corresponding two elements to have equal positive
