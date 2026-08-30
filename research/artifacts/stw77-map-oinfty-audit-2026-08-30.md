@@ -114,6 +114,14 @@ properly infinite, the criterion immediately closes the zero-dimensional
 case.  This conclusion does not require the stronger hypothesis that every
 nonzero positive image element is properly infinite.
 
+Taking the contrapositive makes the surviving obstruction uniform.  A
+zero-dimensional counterexample must contain a fixed finite image packet and
+a fixed tolerance such that every unital finite-dimensional algebra
+approximating that packet has a minimal block projection which is not
+properly infinite.  Hence sporadic bad summands in a chosen approximation
+cannot witness failure; the same junk-corner phenomenon must be unavoidable
+for one finite packet.
+
 ## Separable-codomain reduction
 
 `stw77-counterexamples-reflect-to-separable-codomains` removes arbitrary
