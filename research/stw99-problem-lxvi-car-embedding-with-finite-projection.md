@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw99-lxvi-coherent-car-no-go-audit-2026-08-30.md
   - research/artifacts/stw99-lxvi-triangular-bundle-feasibility-2026-08-30.md
+  - research/artifacts/stw99-lxvi-unbounded-cu-perforation-audit-2026-08-30.md
 ---
 
 **Problem LXVI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras:
@@ -115,6 +116,20 @@ regardless of how noncentral or infinite-index its CAR copy is.  In
 particular, every separable witness has infinite nuclear dimension: finite
 nuclear dimension would imply Z-stability in the non-elementary simple case,
 while the elementary case cannot contain an infinite projection.
+
+The CAR tower forces a stronger intrinsic comparison defect.
+`stw99-lxvi-car-forces-unbounded-cu-perforation` shows that dyadic
+subprojections `q_n` of a finite CAR projection determine integers
+`m_n>2^n` with
+
+```text
+(m_n+1)[1_B]=m_n[q_n]=[1_B],       [1_B] not<=[q_n].
+```
+
+Thus every LXVI witness has almost-unperforation failures with unbounded
+coefficients.  This excludes every simple ambient algebra with almost
+unperforated Cuntz semigroup, independently of Z-stability, separability,
+nuclearity, or the inclusion index of the CAR copy.
 
 There is also a direct consequence for another STW problem:
 `stw99-lxvi-witness-refutes-lxxviii` proves that every LXVI witness yields a
