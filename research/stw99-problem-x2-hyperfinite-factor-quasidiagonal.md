@@ -88,3 +88,14 @@ provided the existing nonamenable Haar-null dual-action hypotheses hold.
 This strictly extends the former fixed-point-free-involution test to even
 cycles with fixed points and to negatively signed odd cycles; it remains an
 exclusion theorem for proposed group witnesses, not a resolution of X(2).
+
+The finite-dimensional mechanism itself is now independent of Clifford
+relations.  `finite-packet-compressor-hyperfinite-invisibility` only asks for
+a finite subgroup whose negative central-character block is one matrix
+algebra and for traceless implementers of the relevant normalizer
+automorphisms.  Matrix-corner trace factorization then replaces the Clifford
+calculation; compressor conjugacy and the nonamenable Haar-dual action finish
+the same obstruction.  Thus any marked candidate built from an arbitrary
+finite representation packet of this kind is also excluded.  This enlarges
+the no-go class but does not provide the non-MF subgroup of `U(R)` needed to
+decide X(2).

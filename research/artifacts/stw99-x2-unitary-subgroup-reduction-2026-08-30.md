@@ -193,6 +193,25 @@ theorem kill the same element by unrelated mechanisms; together with the
 Kazhdan obstruction, every known non-MF group of the compression family is
 excluded as a witness for non-quasidiagonality of `R`.
 
+## Addendum F. Finite packets replace Clifford packets
+
+The finite block in Addendum E need not be a Clifford algebra.  Let `K` be
+any finite subgroup containing the central involution `w`, and suppose the
+negative block `(1-w)C*(K)/2` is a single matrix algebra.  If each compressor
+normalizer used to spread the trace acts on that block by an inner
+automorphism with traceless implementer, then every representation with
+`w=-1` has the same trace factorization: the represented block is a unital
+matrix subalgebra, the normalizer is its prescribed implementer times a
+relative-commutant unitary, and its ambient trace is zero.  The remaining
+Fourier-spreading and proper-outerness argument is unchanged.
+
+This yields `finite-packet-compressor-hyperfinite-invisibility`.  The
+Clifford criterion is recovered from the unique negative spin block of an
+extraspecial two-group, while non-Clifford finite packets are now available
+for future witness audits.  The simplicity assumption cannot simply be
+dropped: a representation could select a different negative irreducible
+summand with nonzero implementing trace.
+
 ## Addendum E. Abstract Clifford-compressor criterion
 
 The Clifford calculation extends exactly to arbitrary signed permutations.

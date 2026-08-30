@@ -4,6 +4,7 @@ id: marked-clifford-compressor-hyperfinite-invisibility
 kind: claim
 title: A trace-singular signed Clifford action and an abelian compressor force hyperfinite mark invisibility
 distinct_from:
+  finite-packet-compressor-hyperfinite-invisibility: that replaces the Clifford block by an arbitrary finite subgroup with one simple negative central-character block and traceless normalizer implementers; this supplies a concrete signed-cycle test for that abstract trace condition.
   literal-group-mark-invisible-to-hyperfinite-representations: that verifies the criterion for the literal group E using its eight-site block, dyadic doubling, and the SL_3(Z) action; this is the abstract marked-group theorem.
   hyperfinite-covariant-obstruction-lemma: that starts by assuming proper outerness of a nonamenable action on a represented lamp closure; this derives proper outerness from a finite Clifford trace computation, compressor conjugacy, and Haar-null fixed sets on an abelian dual.
   literal-central-mark-corona-invisible: that is an operator-norm matrix-corona theorem driven by property (T); this is a finite-injective representation theorem and uses no property (T).
