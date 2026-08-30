@@ -10,7 +10,7 @@ artifacts:
 ---
 
 Write `q=sum_(h in H) a_h h`.  Since `q` is a projection,
-`a_1=tau(q)=alpha`.  For the fresh reduced word `r=v^(-1)w),
+`a_1=tau(q)=alpha`.  For the fresh reduced word `r=v^(-1)w`,
 free-product normal form gives
 
 ```text
