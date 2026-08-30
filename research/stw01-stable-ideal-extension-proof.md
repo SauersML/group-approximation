@@ -4,7 +4,8 @@ id: stw01-stable-ideal-extension-proof
 kind: route
 title: Kill a bounded quasitrace on the stable ideal and factor through its trace kernel
 target: stw01-stable-ideal-extensions-force-qt-linearity
-requires: []
+requires:
+  - stw01-qt-invisible-ideal-extension-principle
 artifacts:
   - research/artifacts/stw01-quasitrace-status-and-local-permanence-audit-2026-08-30.md
 ---
@@ -33,26 +34,6 @@ n tau(a)=tau(sum_(i=1)^n a_i)
 ```
 
 Let `n` tend to infinity.  Thus `tau(a)=0` for every `a in I_+`.
-
-For completeness, use the standard trace-kernel lemma for a bounded
-2-quasitrace:
-
-```text
-N_tau={x in A: tau(x*x)=0}
-```
-
-is a closed two-sided ideal, and `tau` induces a bounded 2-quasitrace on
-`A/N_tau`.  The ideal assertion follows from monotonicity,
-`tau(x*x)=tau(xx*)`, and the quasitrace Cauchy--Schwarz/subadditivity
-inequalities; those same inequalities show that changing a lift by an
-element of `N_tau` does not change the induced quasitrace.  Since `tau`
-vanishes on `I_+`, one has `I subset N_tau`.  The quotient map
-`A/I -> A/N_tau` pulls the induced quasitrace back to a bounded
-2-quasitrace `bar_tau` on `A/I`.  Therefore `tau` factors as
-
-```text
-tau=bar_tau q,       q:A -> A/I.                        (SI4)
-```
-
-for a bounded 2-quasitrace `bar_tau` on `Q`.  By hypothesis `bar_tau` is a
-trace.  Equation `(SI4)` then makes `tau` a trace.
+The same argument applies to every bounded 2-quasitrace on `I`, so `I` is
+bounded-quasitrace-invisible.  The quasitrace-invisible ideal extension
+principle, together with the hypothesis on `Q`, now proves the claim.

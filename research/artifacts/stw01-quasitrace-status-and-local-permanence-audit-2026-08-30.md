@@ -5,9 +5,10 @@
 Problem I remains open.  There is a potentially misleading chronology:
 
 - Alec Gow, *Every 2-quasitrace is a trace*, arXiv:2501.13088 (submitted
-  January 2025), claimed a solution.
+  January 2025), claimed a solution.  The arXiv record now marks it withdrawn
+  and states the critical gap explicitly.
 - Alec Gow, *On the Quasitrace Problem and a Characterization of
-  W*-algebras*, arXiv:2601.04431 (submitted January 2026), again labels
+  W*-algebras*, arXiv:2601.04431v2 (revised July 2026), again labels
   “Every 2-quasitrace is a trace” as a conjecture, calls Haagerup's exact
   case the best partial result, and acknowledges a gap identified in the
   previous version.  Its theorem is an equivalence between the quasitrace
@@ -89,3 +90,25 @@ is separable, unital, and nonexact, but every bounded 2-quasitrace on `A` is
 a scalar multiple of the quotient character `A -> C`.  Thus the positive
 class contains nonexact algebras with nonzero traces; it is not merely a
 vacuous quasitraceless example.
+
+The precise extension principle is slightly more general: stability is used
+only to show that the ideal is invisible to bounded quasitraces.  Any ideal
+on which every bounded 2-quasitrace is zero has the same transfer property.
+
+## Sharp free-group tensor test
+
+STW, footnote 54, records an exact universal reformulation.  For every
+unital `A`, let restriction along the first-factor embedding be
+
+```text
+QT_1(A tensor_min C*_r(F_2)) -> QT_1(A).
+```
+
+Kaplansky's quasitrace conjecture is equivalent to this map being an affine
+homeomorphism for every `A`.  In the positive direction all quasitraces are
+traces and the unique trace on `C*_r(F_2)` forces the product extension.  In
+the negative direction one passes to a finite AW*-factor carrying a
+quasitrace but no trace; Haagerup's proper-infiniteness criterion makes its
+tensor product with `C*_r(F_2)` properly infinite and hence removes all
+normalized quasitraces.  This gives a concrete tensorial failure certificate,
+but it is an equivalence, not a solution.
