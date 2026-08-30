@@ -2991,3 +2991,4 @@ import GroupApproximation.GGT.HullSCCoreAdjoinPair
 import GroupApproximation.GGT.HullSCRelatorSeparation2Inputs
 import GroupApproximation.GGT.HullHeGXPairOfFamily
 import GroupApproximation.Analysis.VoiculescuSqrtCommutator
+import GroupApproximation.GGT.ElementaryPositiveIndex
