@@ -17,7 +17,7 @@ artifacts:
 
 Let \(X,Y,Z\) be unitaries for which each of the eight literal rotation
 relators has operator-norm defect at most \(\delta\). Substitute the six P13
-words from \`p13-rotation-relator-defect-219\`, write the resulting unitaries
+words from `p13-rotation-relator-defect-219`, write the resulting unitaries
 as \(U_0,\ldots,U_5\), and set
 
 \[
@@ -27,10 +27,10 @@ as \(U_0,\ldots,U_5\), and set
 Then every vector \(\xi\) satisfies the robust quadratic Hodge estimate
 
 \[
-\left(\gamma-6692\delta\right)
+\left(\gamma-6692\delta-599314\delta^2\right)
   \langle \xi,\Delta_U\xi\rangle
 \leq
-  \|\Delta_U\xi\|^2+98175\delta^2\|\xi\|^2,
+  \|\Delta_U\xi\|^2+196350\delta^2\|\xi\|^2,
 \qquad
 \gamma=\frac{28329113480286}{10^{16}}.
 \tag{1}
@@ -44,24 +44,39 @@ exact certificate gap
  =\frac{28329113480286}{10^{16}}.
 \]
 
-Consequently, if
+Consequently, put
 
 \[
-0\leq\delta<
-\delta_{\rm P13}:=
-\frac{\gamma}{6692+2\sqrt{98175}}
-=3.8708072230\ldots\times10^{-7},
+a_\delta=\gamma-6692\delta-599314\delta^2.
 \]
 
-and
+If
 
 \[
-a_\delta=\gamma-6692\delta,\qquad
-\lambda_\pm(\delta)=
-\frac{a_\delta\pm\sqrt{a_\delta^2-4\cdot98175\delta^2}}2,
+0\leq\delta<\delta_{\rm P13},
+\]
+
+where \(\delta_{\rm P13}\) is the positive root of
+
+\[
+599314\delta^2+
+(6692+2\sqrt{196350})\delta-\gamma=0,
 \]
 
 then
+
+\[
+\delta_{\rm P13}=3.7381134709\ldots\times10^{-7}
+\]
+
+and, with
+
+\[
+\lambda_\pm(\delta)=
+\frac{a_\delta\pm\sqrt{a_\delta^2-4\cdot196350\delta^2}}2,
+\]
+
+one has
 
 \[
 \operatorname{spec}(\Delta_U)
@@ -71,6 +86,6 @@ then
 \]
 
 Thus the finite P13 replay aggregation is no longer a missing modulus. This
-does not yet yield \`effective-transport-modulus\`: the exact affine bridge
+does not yet yield `effective-transport-modulus`: the exact affine bridge
 uses rotation conjugators of unbounded word length, and (2) supplies a low
 spectral cluster rather than an exactly rotation-fixed subspace.
