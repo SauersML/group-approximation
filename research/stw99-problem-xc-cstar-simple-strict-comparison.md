@@ -6,18 +6,33 @@ title: The reduced C*-algebra of every C*-simple group has strict comparison (ST
 root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw90-strict-comparison-group-frontier-2026-08-30.md
 ---
 
 **Problem XC of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Let `G` be a countable discrete C\*-simple group.
 Does `C*_r(G)` have strict comparison with respect to its unique trace?
 
-Status (STW Addendum 25.1, April 2026): positive for free groups `F_n`, `n ≥ 2`
-(Problem LXXXIX, solved), and for every acylindrically hyperbolic group with
-rapid decay and no nontrivial finite normal subgroup, by Amrutam--Gao--Kunnawalkam
-Elayavalli--Patchell ([2, Theorem B]) via Robert's selflessness
-(`agkp-acylindrically-hyperbolic-rd-groups-selfless`).  STW: a solution for
-exact groups "would already be very significant progress".
+Status through 30 August 2026: positive for free groups `F_n`, `n ≥ 2`, and
+many broader classes, but open for arbitrary C\*-simple groups.  Beyond the
+April 2026 STW addendum, Ozawa's PHP theorem removes rapid decay from the
+acylindrically hyperbolic class, Vigdorovich settles all linear C\*-simple
+groups, and Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert show that
+`P x H` is selfless whenever `P` has PHP and `H` is C\*-simple.  Vigdorovich,
+arXiv:2602.10616v3, explicitly retains the general converse from simplicity
+to selflessness (and hence the stronger route to strict comparison) as open.
 
 Downstream: strict comparison with respect to the unique trace shows that the
 trace is the unique quasitrace
 (`stw99-xc-implies-quasitrace-for-cstar-simple`).
+
+## Attempts
+
+- `stw90-directed-unions-of-strict-comparison-groups` proves that canonical
+  strict comparison passes from a directed subgroup cover to the union.
+- `stw90-strict-comparison-failure-reflects-finitely` shows conversely that
+  every negative witness already appears in some finitely generated subgroup,
+  which need not be C\*-simple.
+- `stw90-php-times-cstar-simple-is-strict-comparison` records the unconditional
+  stabilization theorem `P x H`, including `F_2 x H`, even for nonexact `H`.
+- `stw91-finite-subgroup-projection-obstruction` gives a concrete ordered-`K_0`
+  certificate whose violation would refute this problem.

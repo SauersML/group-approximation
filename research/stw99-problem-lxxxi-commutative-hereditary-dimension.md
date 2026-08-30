@@ -41,6 +41,12 @@ Thus the question is precisely whether this canonical type-I lower bound
 can stay at most one while nuclear dimension takes a finite value at least
 two.
 
+The terminology is exact: `stw81-ctdim-equals-type-i-topological-dimension`
+proves that `ctdim` agrees with Brown--Pedersen topological dimension on
+every separable type-I algebra.  It is also stable under Morita equivalence
+by `stw81-ctdim-morita-invariance`, so both the invariant and the original
+shadow hypothesis survive stabilization.
+
 The lower bound itself has perfect extension behavior:
 `stw81-ctdim-extension-maximum` proves
 

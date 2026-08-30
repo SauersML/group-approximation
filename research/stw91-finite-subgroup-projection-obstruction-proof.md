@@ -4,8 +4,7 @@ id: stw91-finite-subgroup-projection-obstruction-proof
 kind: route
 title: Compare averaging projections by their canonical traces
 target: stw91-finite-subgroup-projection-obstruction
-requires:
-  - robert-tracial-selfless-regularity
+requires: []
 artifacts:
   - research/artifacts/stw91-selfless-group-frontier-2026-08-30.md
 ---
@@ -25,8 +24,7 @@ For a projection `p`, its dimension value is `d_tau(p)=tau(p)`.  Thus
 d_tau(e_H) < d_tau(e_K).
 ```
 
-Robert's theorem says that tracial selflessness forces strict comparison,
-so (1) follows.  Cuntz subequivalence of projections agrees with
+Strict comparison gives (1).  Cuntz subequivalence of projections agrees with
 Murray--von Neumann subequivalence: there is a projection `q <= e_K`
 equivalent to `e_H`.  Therefore
 
@@ -36,6 +34,7 @@ equivalent to `e_H`.  Therefore
 
 which is (2).  Taking contrapositives gives the stated counterexample test.
 
-**Trust boundary.**  The only imported input is Robert's implication from
-tracial selflessness to strict comparison.  The averaging-projection,
-trace, and ordered-`K_0` calculations are direct.
+**Trust boundary.**  The averaging-projection, trace, and ordered-`K_0`
+calculations are direct.  The route assumes strict comparison exactly as
+stated in the claim; selflessness enters only through Robert's separately
+recorded implication when this certificate is applied to Problem XCI.
