@@ -49,6 +49,16 @@ This is **STW Problem LXIII and remains open at the audit boundary
   No norm obstruction is presently proved.  Tracial von Neumann completion
   cannot supply one: the 2026 finite-factor uniqueness theorem gives norm
   approximate conjugacy by unitaries in the factor.
+- **All finite and all separably acting semifinite shadows are eliminated.**
+  `stw63-semifinite-von-neumann-codomains-have-uniqueness` proves uniqueness
+  in every finite von Neumann algebra without countability restrictions and
+  in every separably acting semifinite von Neumann algebra, by combining
+  center-valued trace uniqueness on the finite central part with support-rank
+  collapse on the properly infinite part.  Thus a counterexample cannot be
+  detected in any such representation of its pair-generated algebra; the
+  obstruction must be failure to return von Neumann implementing unitaries
+  to the original C-star algebra (or must involve genuinely type-III
+  behavior).
 - **Asymptotic upgrade.**  Even after approximate uniqueness, coherent paths
   are a separate issue.  `approximate-to-asymptotic-via-central-paths`
   isolates a sufficient quantitative contraction property for the transition

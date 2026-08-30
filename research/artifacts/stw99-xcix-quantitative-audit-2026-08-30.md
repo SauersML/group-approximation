@@ -43,6 +43,15 @@ distinguish the known closedness result from the unknown openness result.
    Theorem 3.10 gives scaled-Cu isomorphism below complete distance `1/42`.
    Corollary 4.15 states the resulting ordinary radius `1/6422957`.
 
+4. Toms and Winter,
+   [Strongly self-absorbing C*-algebras](https://arxiv.org/abs/math/0502211),
+   supplies the central-embedding characterization of tensorial absorption
+   used in the ultraproduct argument below.  Farah and Szabo,
+   [Coronas and strongly self-absorbing C*-algebras](https://arxiv.org/abs/2411.02274),
+   distinguishes separable D-stability and D-saturation from tensorial
+   absorption for nonseparable algebras; in particular, one must not call a
+   nontrivial ultraproduct tensorially Z-stable.
+
 ## Exact audit of 1/6422957
 
 Substitution of `k=5/2` into Proposition 4.13 gives
@@ -112,3 +121,24 @@ known.  Conversely, a positive solution needs a mechanism that removes the
 fixed additive centrality loss after transporting Z-copies, or another absorption
 criterion stable under the available complete-distance control.  Neither
 step is presently established.
+
+## New vanishing-distance normal form
+
+Let `d(A_n,B_n)->_omega 0`.  Matching each bounded coordinate sequence by a
+sequence on the other side with ultranorm-null error proves that the two norm
+ultraproducts coincide literally inside the ambient ultraproduct.  If every
+`A_n` is unital and Z-stable, increasingly central exact copies of Z in
+`A_n` can be transported on increasingly large finite windows to `B_n`.
+The transported coordinate maps may be nonunital, but their support
+projections converge to the unit of the common ultraproduct.  Their
+ultraproduct is therefore a unital copy of Z in the relative commutant of any
+prescribed separable subset, so the common ultraproduct is Z-saturated.
+
+At the coordinate level, for every fixed numbers `m,k`, the worst `m`-point,
+`k`-element centrality defect of `B_n` is at most
+`304 sqrt(d(A_n,B_n))+2d(A_n,B_n)`.  Hence all fixed windows vanish along a
+hypothetical counterexample sequence.  Non-Z-stability can survive only by
+moving its obstruction to larger finite windows or smaller tolerances.  This
+is an unconditional exact normal form for the asymptotic obstruction, but it
+does not reflect Z-stability back to any one coordinate and therefore does
+not settle XCIX.
