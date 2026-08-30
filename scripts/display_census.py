@@ -93,6 +93,12 @@ MAP_LABEL = "metadata/NON_MF_DISPLAY_MAP.tsv"
 VALID_STATUSES = {"carrier", "notation-only"}
 DERIVATION = re.compile(r"^derivation-of:([0-9a-f]{12})$")
 
+# `sentence_census` removes structural environments as well as mathematical
+# displays.  A bibliography is prose metadata, not a displayed assertion, so
+# it must not become a display-census row merely because the sentence lexer
+# skips it.
+AUDITED_DISPLAY_ENVS = sc.DISPLAY_ENVS - {"thebibliography"}
+
 LABEL_RE = re.compile(r"\\label\{([^}]*)\}")
 EQREF_RE = re.compile(r"\\eqref\{([^}]*)\}")
 ROW_BREAK = re.compile(r"\\\\(?:\[[^\]]*\])?")
@@ -227,8 +233,8 @@ def extract(path: str) -> list[dict]:
             mlab = LABEL_RE.search(collapsed)
             if mlab and env in sc.CLAIM_ENVS:
                 anchor = mlab.group(1)
-            if env in sc.DISPLAY_ENVS and not any(
-                    e in sc.DISPLAY_ENVS for e in env_stack):
+            if env in AUDITED_DISPLAY_ENVS and not any(
+                    e in AUDITED_DISPLAY_ENVS for e in env_stack):
                 open_kind = env
                 open_line = n
                 body = [collapsed[mb.end():]]
@@ -241,7 +247,7 @@ def extract(path: str) -> list[dict]:
                 env_stack.pop()
             continue
 
-        if any(e in sc.DISPLAY_ENVS for e in env_stack):
+        if any(e in AUDITED_DISPLAY_ENVS for e in env_stack):
             continue
 
         mlab = LABEL_RE.match(collapsed.strip())
