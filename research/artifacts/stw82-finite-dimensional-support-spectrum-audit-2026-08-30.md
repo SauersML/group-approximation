@@ -62,4 +62,3 @@ The common-relative-commutant assumption is essential to this proof.  It
 makes multiplication by a partition function preserve order zero.  Merely
 placing the supports in a common commutative algebra does not imply that its
 partition functions commute with the supporting homomorphisms.
-

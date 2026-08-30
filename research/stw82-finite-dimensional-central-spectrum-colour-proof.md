@@ -98,4 +98,3 @@ finite-dimensional summands across the pairs `(i,k)`, and regroup by those
 pairs.  The first map remains cpc, and the outgoing map remains cpc because
 `0<=s_v<=1` and its unit image is dominated by that of the original
 outgoing cpc map.  This gives an `((n+1)m-1)`-dimensional approximation.
-

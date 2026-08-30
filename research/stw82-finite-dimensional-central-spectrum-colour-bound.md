@@ -78,4 +78,3 @@ dim_nuc(A)<=(n+1)m-1.                                (D7)
 No claim of optimality is made when `n>0`.  The theorem is a constructive
 upper bound; the zero-dimensional result shows that it specializes to the
 sharp value `m` when `n=0`.
-
