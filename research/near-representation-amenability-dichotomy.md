@@ -2,9 +2,8 @@
 rg: 2
 id: near-representation-amenability-dichotomy
 kind: claim
-title: A charge-visible near-representation analogue of the Bekka--Valette dichotomy
+title: Every amenable near representation of a Kazhdan group has a positive-charge finite-dimensional sector
 root: true
-invalidates: [amenable-charge-route]
 refuted_by: [kazhdan-rf-amenable-near-model-has-no-positive-finite-sector]
 distinct_from:
   amenable-rep-of-kazhdan-has-fd-subrep: that is the genuine-representation existence theorem; the counterexample here explains why bare existence cannot be upgraded to positive invariant charge.
@@ -12,14 +11,13 @@ distinct_from:
   wreath-flexible-hs-stability: that asks whether almost-representations are close to genuine ones in normalized Hilbert--Schmidt norm; the failure here already occurs for a genuine representation.
 ---
 
-**REFUTED under the natural finite-dimensional reading; ill-posed under the
-unrestricted invariant-sector reading.**
+**REFUTED.**  The precise finite-dimensional claim in the title is false.
+The former alternative wording with an unrestricted “invariant sector” was
+ill-posed.
 
-The proposed question asked whether every amenable near representation of a
-property-(T) group has an approximate finite-dimensional or invariant sector
-of positive charge.
-
-If “sector” means a finite-dimensional invariant subspace, the answer is no.
+The proposed claim asked whether every amenable near representation of a
+property-(T) group has a finite-dimensional invariant subspace of positive
+charge.  The answer is no.
 [[kazhdan-rf-amenable-near-model-has-no-positive-finite-sector]] constructs an
 essentially free amenable **genuine** representation of an infinite residually
 finite Kazhdan group in which every finite-rank projection has charge zero.
@@ -39,5 +37,6 @@ additive charge.
 
 A meaningful replacement would have to specify a nonvacuous projection class,
 an approximation scale, and a quantitative charge bound. No such replacement
-is asserted here. Consequently this node cannot remain an OPEN premise of
-[[amenable-charge-route]].
+is asserted here. This refutes the proposed Bekka--Valette shortcut.  It does not invalidate
+[[amenable-charge-route]], whose Kahl--Schneider reduction remains a valid
+open route.
