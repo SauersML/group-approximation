@@ -126,6 +126,16 @@ This is **STW Problem LXIII and remains open at the audit boundary
   point-norm closed convex hull of the other's `B`-unitary orbit.  The missing
   universal step is deconvexification from a finite random-unitary average to
   one inner conjugate; strong density alone cannot perform it.
+- **Exact return for liftable reduced-product pairs.**
+  `stw63-liftable-reduced-product-pairs-are-exactly-conjugate` treats
+  quotients `(product_n B_n)/J` with `directSum_n B_n subseteq J`, where all
+  coordinate codomains already have uniqueness.  If both Jiang--Su
+  embeddings lift unitally and homomorphically to the product, coordinate
+  conjugacies on the first `n` test elements with error `1/n` assemble into
+  one product unitary.  Its error is in the direct sum, so its quotient
+  exactly conjugates the two maps.  Thus any counterexample pair in such a
+  reduced product must contain a nonliftable embedding.  This is a norm
+  quotient argument and does not return a bidual unitary.
 - **Generic descent shortcuts fail even for AF targets.**
   `stw63-generic-bidual-return-fails-for-af` gives two maps `C^2->B` for a
   simple stationary AF algebra which are exactly unitarily conjugate in
