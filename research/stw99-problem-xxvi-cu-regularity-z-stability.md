@@ -4,10 +4,6 @@ id: stw99-problem-xxvi-cu-regularity-z-stability
 kind: claim
 title: Cuntz semigroup Z-absorption forces Z-stability for simple nuclear algebras (STW Problem XXVI, Winter's question)
 root: true
-distinct_from:
-  stw99-problem-xviii-toms-winter-conjecture: that starts from strict comparison alone; this starts from the stronger hypothesis Cu(A) isomorphic to Cu(A tensor Z) (equivalently pureness). The conditional theorem stw99-xviii-implies-xxvi gives the forward logical implication, while stw99-xxvi-xxvii-imply-xviii records the converse reduction using Problem XXVII.
-artifacts:
-  - research/artifacts/stw99-ranks-divisibility-cluster-2026-08-30.md
 ---
 
 **Problem XXVI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
