@@ -89,3 +89,14 @@ quasicentrality: `stw01-separable-ideal-does-not-force-sequential-qcau`
 shows that `K(H)` has no sequential quasicentral approximate unit relative
 to `B(H)`, even after adjoining a scalar summand carrying a fixed nonzero
 trace.
+
+The extension theorem now iterates through arbitrary ordinal length.
+`stw01-transfinite-qt-linearity-filtrations` proves that a continuous ideal
+filtration of a unital algebra has quasitrace linearity whenever every
+successor quotient does.  At a successor one applies the arbitrary-net
+splitting only to the restriction of one fixed ambient quasitrace; this
+avoids any extension claim for quasitraces on nonunital intermediate ideals.
+At a limit, density and norm continuity finish, with no separability or
+cofinality restriction.  Consequently every filtered counterexample already
+has a counterexample successor layer; transfinite gluing cannot create the
+first additivity defect.

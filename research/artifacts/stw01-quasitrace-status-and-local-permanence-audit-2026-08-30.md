@@ -128,6 +128,16 @@ cofinality is needed.  If `J ideal A`, quasitrace linearity on `A/J` then
 passes to `A`.  Stable successor layers and an exact terminal quotient give
 the concrete corollary by stable invisibility and Haagerup's theorem.
 
+There is now a complementary transfinite theorem in which the successor
+layers need not be quasitrace-invisible.  If every bounded quasitrace on each
+successor quotient is a trace, then every bounded quasitrace on the terminal
+unital algebra is a trace.  The proof fixes one ambient quasitrace.  At a
+successor, the arbitrary approximate-unit net splits it into a linear head
+and a quotient tail, whose restriction is linear on the next layer.  At an
+arbitrary limit ordinal, norm continuity and the dense union give
+additivity.  Hence arbitrary transfinite assembly preserves quasitrace
+linearity even when every layer carries nonzero traces.
+
 ## Central-projection ideal splitting
 
 The ideal need not be quasitrace-invisible if it is exhausted by projections
