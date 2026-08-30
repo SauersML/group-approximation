@@ -8,7 +8,7 @@ distinct_from:
 ---
 
 Let `B` be unital and let `phi,psi:Z->B` be unital embeddings.  If there is a
-unital `Z`-stable C\*-subalgebra `C subset B` containing both ranges, then
+separable unital `Z`-stable C\*-subalgebra `C subset B` containing both ranges, then
 `phi` and `psi` are approximately unitarily equivalent in `B`.
 
 In particular this applies when the pair-generated algebra
@@ -17,5 +17,5 @@ In particular this applies when the pair-generated algebra
 C*(phi(Z) union psi(Z))
 ```
 
-is `Z`-stable.  Hence any counterexample to LXIII generates no unital
+is `Z`-stable.  Hence any counterexample to LXIII generates no separable unital
 `Z`-stable hull inside its codomain.

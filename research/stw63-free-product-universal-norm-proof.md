@@ -41,3 +41,16 @@ than `1/n`.  For each fixed `k`,
 Thus conjugacy holds on the dense sequence, and contractivity extends it to
 every element of `Z`.  Hence the canonical embeddings are approximately
 unitarily equivalent.
+
+For the monotonicity assertion, let `pi:F->B` be the homomorphism associated
+to `(phi,psi)`.  Every `u in U(F)` gives `pi(u) in U(B)`, and contractivity
+gives, term by term,
+
+```text
+sum_k 2^(-k)||pi(u)phi(z_k)pi(u)*-psi(z_k)||
+ <= sum_k 2^(-k)||u i_0(z_k)u*-i_1(z_k)||.
+```
+
+Taking the infimum on the left over all unitaries of `B`, and then the
+infimum on the right over all unitaries of `F`, yields
+`Delta_(phi,psi)<=Delta`.

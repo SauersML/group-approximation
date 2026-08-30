@@ -30,3 +30,14 @@ Delta = inf_(u in U(F))
 Then `Delta=0` is equivalent to the two preceding statements.  Thus LXIII
 has a negative answer exactly when `Delta>0`, in which case the canonical
 free-product pair itself is a counterexample.
+
+More generally, define the same weighted orbit distance `Delta_(phi,psi)` for
+any pair in a codomain `B`, using the fixed sequence `(z_k)`.  Then
+
+```text
+Delta_(phi,psi) <= Delta.
+```
+
+Consequently, a positive lower bound for any concrete quotient pair,
+including a reduced free-product representation, is already a universal
+counterexample certificate.

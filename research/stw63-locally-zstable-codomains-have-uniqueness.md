@@ -8,7 +8,7 @@ distinct_from:
 ---
 
 Let `B` be a unital C\*-algebra with the following local absorption property:
-every separable subset of `B` is contained in a unital `Z`-stable
+every separable subset of `B` is contained in a separable unital `Z`-stable
 C\*-subalgebra of `B`.  Then every two unital embeddings
 
 ```text
