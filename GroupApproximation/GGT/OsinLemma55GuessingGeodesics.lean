@@ -95,9 +95,11 @@ strength of the criterion: in the application below they are geodesics of a
 *different*, much longer metric, and the image of one in `Γ(G,S)` can have
 length unboundedly larger than its diameter.
 
-Stated as a named `Prop` rather than proved.  Its proof is a dyadic subdivision
-followed by a bootstrap removing the resulting logarithm; nothing in this
-repository assumes it except `osinLemma55_of_guessingGeodesics` below. -/
+Proved, in `GGT/GuessingGeodesicsCriterion.lean`, by a dyadic subdivision
+followed by a bootstrap removing the resulting logarithm.  It is stated here as
+a named `Prop` because this module was written before that proof existed; the
+reduction below is unchanged, and `OsinEnlargement.osinLemma55` reads it as a
+theorem. -/
 def GuessingGeodesics : Prop :=
   ∀ (H : Type u) [Group H] (S : Set H), IsSymmetricGeneratingSet S →
     ∀ (K : ℕ) (len : H → H → ℕ) (γ : H → H → ℕ → H),
