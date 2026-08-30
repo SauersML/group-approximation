@@ -2841,6 +2841,10 @@ import GroupApproximation.Analysis.VoiculescuIntertwiningDefect
 import GroupApproximation.Analysis.VoiculescuIntertwiningStep
 import GroupApproximation.Analysis.VoiculescuGlimmPositive
 import GroupApproximation.Analysis.VoiculescuGlimmSelfAdjoint
+import GroupApproximation.GGT.DGOWindmillDef
+import GroupApproximation.GGT.DGOWindmillGlobalVR
+import GroupApproximation.GGT.DGOWindmillCorner
+import GroupApproximation.GGT.DGOBlockWord
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

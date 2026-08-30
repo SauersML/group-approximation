@@ -79,6 +79,23 @@ theorem Between.dist_le_right {c z x : X} (h : Between c z x) :
   unfold Between at h
   linarith
 
+/-- **Betweenness is symmetric in its two ends.**  `d(c,x) = d(c,z) + d(z,x)`
+and `d(x,c) = d(x,z) + d(z,c)` are the same equation read through `dist_comm`.
+
+Used at every corner: the induction establishes betweenness looking outward from
+an apex and the comparison lemma consumes it looking inward from the far
+endpoint. -/
+theorem Between.symm {c z x : X} (h : Between c z x) : Between x z c := by
+  unfold Between at h ⊢
+  rw [dist_comm x c, dist_comm x z, dist_comm z c]
+  linarith
+
+/-- The distance from the far end, for a point between two others. -/
+theorem Between.dist_far {c z x : X} (h : Between c z x) :
+    dist z x = dist c x - dist c z := by
+  unfold Between at h
+  linarith
+
 theorem between_self_left (c x : X) : Between c c x := by
   unfold Between
   rw [dist_self, zero_add]
@@ -228,7 +245,7 @@ theorem dist_le_four_delta_of_between_same {δ : ℝ} (hδ : IsHyperbolicSpace �
   refine dist_le_four_delta_of_between hδ hδ0 hp hpr hq hqr ?_
   rw [gromovProduct_self a c, dist_comm a c]
   rw [← hpr]
-  exact hp.dist_le_left
+  exact Between.dist_le_left hp
 
 end DGOWindmill
 end GroupApproximation
