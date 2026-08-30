@@ -57,3 +57,11 @@ representations, so `chain-ideal-lattice-solves-lxxiii` supplies the Global
 Glimm Property; Kirchberg--Rordam then gives pure infiniteness.  This proves
 LXXII for all chain-ideal algebras
 (`stw72-chain-ideal-wpi-is-purely-infinite`).
+
+There is now a transverse positive class allowing incomparable ideals.  If
+the full closed ideal lattice is finite, a maximal ideal chain has simple
+successive subquotients.  Weak pure infiniteness passes to ideals and
+quotients, the simple layers fall under the chain theorem, and
+Kirchberg--Rordam extension permanence glues the purely infinite layers.
+Thus weak and plain pure infiniteness coincide for every finite-ideal-lattice
+algebra (`stw72-finite-ideal-lattice-wpi-is-purely-infinite`).
