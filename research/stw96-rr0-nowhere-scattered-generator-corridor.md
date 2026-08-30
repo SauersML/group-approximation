@@ -5,6 +5,7 @@ kind: claim
 title: Real-rank-zero nowhere-scattered algebras of finite decomposition rank have generic generators
 artifacts:
   - research/artifacts/stw96-regular-rank-single-generation-audit-2026-08-30.md
+  - research/artifacts/stw96-mixed-rr0-extension-audit-2026-08-30.md
 ---
 
 Let `A` be a nonzero, separable, nowhere-scattered C*-algebra of real rank
@@ -24,4 +25,7 @@ generated.
 Thus a real-rank-zero nowhere-scattered counterexample, if one exists, must lie
 outside the finite-decomposition-rank region.  In the finite-nuclear-dimension
 region it must have a nonzero purely infinite simple subquotient and cannot
-itself be purely infinite.
+itself be purely infinite.  Moreover,
+`stw96-countable-zstable-filtrations-have-generators` shows that it must have
+infinitely many ideals and cannot admit a continuous countable composition
+series with simple successor quotients.

@@ -81,6 +81,14 @@ This is **STW Problem LXIII and remains open at the audit boundary
   rank-to-norm-uniqueness theorem on properly infinite semifinite assembly,
   including non-countably-decomposable type-II-infinity and diffuse central
   pieces; see `stw63-remaining-vn-boundary-is-semifinite-nonsep`.
+- **Sigma-finite type-II-infinity factors need not have separable predual.**
+  `stw63-sigmafinite-type2inf-factor-uniqueness` combines the global rank
+  collapse with Li--Hadwin--Liu's factor-specific Corollary 1, whose target
+  hypothesis is sigma-finiteness rather than separable action.  It therefore
+  closes every countably decomposable type-II-infinity factor, and product
+  closure handles arbitrary products of such factors.  Only genuinely
+  non-countably-decomposable factors and non-product diffuse central
+  assemblies remain in this lane.
 - **Asymptotic upgrade.**  Even after approximate uniqueness, coherent paths
   are a separate issue.  `approximate-to-asymptotic-via-central-paths`
   isolates a sufficient quantitative contraction property for the transition
