@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw99-lxxii-weakly-pi-recon-2026-08-30.md
   - research/artifacts/stw72-finite-ideal-lattice-collapse-audit-2026-08-30.md
   - research/artifacts/stw72-transfinite-composition-collapse-audit-2026-08-30.md
+  - research/artifacts/stw72-chain-ideal-cover-collapse-audit-2026-08-30.md
 ---
 
 **Problem LXXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -84,3 +85,14 @@ recursively adjoins an isolated point of the remaining primitive spectrum;
 the corresponding successor subquotient has one-point primitive spectrum
 and is simple.  This permits non-Hausdorff spectra of arbitrary cardinality
 and arbitrarily non-linear ideal lattices.
+
+There is also a genuinely non-well-founded local-to-global class.
+`stw72-chain-ideal-cover-wpi-is-purely-infinite` only asks that `A` be the
+closed sum of ideals whose internal ideal lattices are linearly ordered.
+Each cover member collapses by the chain theorem; finite sums glue by
+extension permanence, and their directed limit is `A`.  A rational-cut AF
+graph tensored with `O_infinity`, then doubled by direct sum, gives a covered
+weakly purely infinite algebra with an infinite non-chain ideal lattice, no
+isolated primitive point, and no possible simple-layer transfinite series.
+Thus this mechanism reaches beyond all of the finite, scattered, and
+well-founded filtration results above.
