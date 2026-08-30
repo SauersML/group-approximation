@@ -47,15 +47,16 @@ is injective on `KK(Z,M)`, while
 i^*[phi]=[1_M]=i^*[psi].
 ```
 
-Hence `[phi]=[psi]` in `KK(Z,M)`.  Since `Z` satisfies the UCT and the unital
-algebra `M` is sigma-unital, Skandalis' canonical map
+Hence `[phi]=[psi]` in `KK(Z,M)`.  Gabe's introduction, immediately before
+the statement of the map hypotheses, records that Skandalis' canonical map
 
 ```text
 KK_nuc(Z,M) -> KK(Z,M)
 ```
 
-is an isomorphism; this exact scope is restated in Hua--White, Section 1.3,
-immediately after Definition 1.7.  Therefore `KK_nuc(phi)=KK_nuc(psi)`.
+is an isomorphism whenever either variable is nuclear.  Here the first
+variable `Z` is nuclear, so `KK_nuc(phi)=KK_nuc(psi)`.  This step does not
+require the target `M` to be nuclear or simple.
 
 Finally Gabe's Theorem B applies to nuclear, strongly `O_infinity`-stable,
 full maps from a separable algebra into a sigma-unital algebra.  Its unital

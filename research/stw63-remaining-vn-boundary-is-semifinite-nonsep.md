@@ -9,16 +9,16 @@ artifacts:
 
 Among von Neumann codomains, all finite summands, all type-III summands, all
 type-I factors of arbitrary Hilbert cardinality, all atomic type-I algebras,
-and all separably acting semifinite algebras have Jiang--Su embedding
-uniqueness.  On every remaining summand the two embeddings already have
-equal von Neumann rank on every element and identical interaction with every
-norm ideal.
+all sigma-finite type-II-infinity factors and their arbitrary products, and
+all separably acting semifinite algebras have Jiang--Su embedding uniqueness.
+On every remaining summand the two embeddings already have equal von Neumann
+rank on every element and identical interaction with every norm ideal.
 
 Consequently the unresolved von Neumann lane is confined to nonseparably
 acting properly infinite semifinite assembly: in particular
-non-countably-decomposable type-II-infinity factors and possible diffuse
-central type-I-infinity or type-II-infinity pieces not covered by the known
-rank theorem or by product closure.  The missing statement is a
+genuinely non-countably-decomposable type-II-infinity factors and possible
+diffuse central type-I-infinity or type-II-infinity pieces not decomposed as
+products of the established factors.  The missing statement is a
 nonseparable, center-compatible implication
 
 ```text
