@@ -222,6 +222,34 @@ nonzero class in either residual diagonal quotient.  A complete proof must
 coordinate both residual diagonal approximations with those same core
 colours; Morita invariance of the full overlap alone is insufficient.
 
+There is nevertheless a relative positive theorem at exactly this core.
+`stw82-projectional-overlap-cuts-preserve-dimension` assumes only that
+`I=L intersect R` has an approximate unit of projections quasicentral in
+`A` and asymptotically commuting with `p`.  These projections are then
+quasicentral in `A+C p`, so the overlap extension is quasidiagonal.  Its
+quotient is the already-computed direct sum
+
+```text
+(A/L) direct_sum (A/R)~,
+```
+
+and both quotient and overlap have nuclear dimension at most
+`dim_nuc(A)`.  Quasidiagonal-extension permanence therefore gives
+`dim_nuc(A+C p)=dim_nuc(A)`.  Unlike the earlier support-thickening theorem,
+no projectional exhaustion of either larger one-sided support is required.
+The unresolved two-sided frontier must now lack even projectional
+quasicentral cuts on its common linking core, or else be genuinely
+nonquasidiagonal there.
+
+This relative condition is strictly weaker.  A concrete matrix-linking
+example has common overlap `M_2(K)` with diagonal finite-rank quasicentral
+cuts, while each one-sided support has quotient `C_0((0,1])` and hence no
+approximate unit of projections.  Both supports are proper essential and
+noncomplemented, both complementary multiplier projections are nonfull, and
+the original and adjoined algebras both have nuclear dimension one.  Thus
+overlap-level colour coupling reaches configurations excluded by every
+previous full, complemented, and one-sided projectional theorem.
+
 That projectional hypothesis cannot be replaced formally by real rank zero
 and arbitrary finite-spectrum positive cuts.
 `stw82-finite-spectrum-cuts-do-not-force-repair` constructs a stabilized
