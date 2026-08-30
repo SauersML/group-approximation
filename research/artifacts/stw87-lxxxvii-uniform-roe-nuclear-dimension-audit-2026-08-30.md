@@ -133,22 +133,10 @@ E_X(p) = E_X(q) = (e_xx+e_yy)/2,
 E_X(p)E_X(q) = (e_xx+e_yy)/4 ≠ 0.
 ```
 
-Thus postcomposition with `E_X` destroys order zero.  The obstruction is
-quantitatively rigid.  If `theta:C^2->ell^infinity(X)` is c.p.c. order zero,
-write `a=theta(e_1)` and `b=theta(e_2)`.  Coordinatewise positivity and
-`ab=0` force at least one of `a(x),b(x)` to vanish, while both averaged
-images take value `1/2` at `x`.  Therefore
-
-```text
-max_i norm(theta(e_i)-(E_X phi)(e_i)) >= 1/2.
-```
-
-The zero map attains equality, so the distance is exactly `1/2`.  This rules
-out not only raw averaging of the return maps in a nuclear-dimension
-approximation, but also any uniformly small perturbation of that averaged
-two-point packet to a diagonal order-zero map.  It does not rule out a
-subtler diagonal-recovery theorem which changes the approximation before
-averaging.
+Thus postcomposition with `E_X` destroys order zero.  This rules out the raw
+strategy of averaging the return maps in an arbitrary nuclear-dimension
+approximation to obtain a diagonal-dimension approximation.  It does not rule
+out a subtler diagonal-recovery theorem.
 
 ## Exact remaining frontier
 

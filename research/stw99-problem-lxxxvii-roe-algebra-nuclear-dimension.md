@@ -45,8 +45,6 @@ amplification of `C*_u(X)`
 (`stw87-coarse-embedding-corner-lower-bound`).  Thus equality propagates from
 any coarsely embedded full-asymptotic-dimension seed, and unbounded
 nuclear-dimension seeds force infinite nuclear dimension.  Finally, the
-canonical diagonal expectation has exact distance `1/2` from every diagonal
-c.p.c. order-zero repair on a fixed two-point *-homomorphism.  Thus
-diagonal-dimension equality cannot be converted to the missing lower bound by
-averaging arbitrary nuclear approximations, even followed by an arbitrarily
-small order-zero perturbation.
+canonical diagonal expectation does not preserve order-zero maps already in a
+two-point matrix corner, so diagonal-dimension equality cannot be converted to
+the missing lower bound by simply averaging arbitrary nuclear approximations.
