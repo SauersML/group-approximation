@@ -16,8 +16,11 @@ asdim(X) ≤ dim_nuc(C*_u(X)).
 
 ## Attempts
 
-The subspace-corner theorem propagates any known lower-bound seed, but no seed
-of value at least two is produced here; `X=ℤ²` is already an unresolved seed.
+The coarse-embedding corner theorem propagates any known lower-bound seed:
+it is enough that `X` coarsely contain a space `Y` of the same asymptotic
+dimension for which equality is known, rather than contain `Y` literally as a
+subspace.  No seed of value at least two is produced here; `X=ℤ²` is
+already an unresolved seed.
 Li--Liao--Winter identify asymptotic dimension with diagonal dimension, but
 their comparison has the opposite direction.  Postcomposing arbitrary
 nuclear-dimension return maps with the diagonal expectation cannot repair the
