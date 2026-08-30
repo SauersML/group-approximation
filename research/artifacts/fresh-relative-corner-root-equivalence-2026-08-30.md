@@ -25,7 +25,7 @@ Let `H` be the packet group, let `q in C[H]` be a projection, and write
 q=sum_(h in H) a_h h,   alpha=tau(q)=a_1>0.
 ```
 
-For `r=v^(-1)w` in the free product `H*F(v,w)), normal form gives
+For `r=v^(-1)w` in the free product `H*F(v,w)`, normal form gives
 
 ```text
 r^(-1) h r k=1  iff  h=k=1.
