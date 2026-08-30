@@ -78,8 +78,9 @@ theorem, shared by the two lanes that stand on it.
   non-elementarity of `H₀`, which `HullCommonQuotientStatement` supplies twice
   over.
 * `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullConeOff`,
-  `dgoCorollary427`, `hullSection6Relator` — Hull's §5 and §6, with
-  Dahmani–Guirardel–Osin's Theorem 5.3 and Corollary 4.27 separated out.
+  `hullSection6Relator` — Hull's §5 and §6, with
+  Dahmani–Guirardel–Osin's Theorem 5.3 separated out.  The one-pair instance
+  of Corollary 4.27 used after `t` is known is now proved directly.
   **The subgroup and cone-off clauses are recorded
   over a pair of hyperbolically embedded subgroups** rather than over one: over
   one, Hull's relator has all of its `H`-letters in a single component of
@@ -257,15 +258,6 @@ Only the three alphabet clauses are carried by `hullFillingData`. -/
 theorem hullTheorem51 : HullSC.HullQuotientStatement₂.{0} :=
   HullSC.hullQuotient₂_of_fillingData dgoTheorem53 hullFillingData
 
-/-- **DEBT (literature).**  Dahmani–Guirardel–Osin, Corollary 4.27: finite
-symmetric changes of the base preserve hyperbolic embeddedness.
-
-Hull invokes this after the target `t` is known to adjoin `t^{±1}` to the base.
-The resulting core is deliberately used by both halves of Theorem 5.1; no
-small-cancellation statement is transported back to the old relative metric. -/
-theorem dgoCorollary427 : GGT.DGOCorollary427.{0, 0} := by
-  sorry
-
 /-- **DEBT (literature).**  Hull, §6 over a pair: the relator can be chosen.
 For any parameters `ε, μ, ρ` there is `u ∈ N` and a `C(ε, μ, ρ)` family over
 `{H₀, H₁}` containing a word spelling `t⁻¹u` — Hull takes
@@ -315,7 +307,7 @@ same statement the single-subgroup route used to produce, and everything above
 it — the tower, the ball form, and Hull's Corollary 7.4 — is unchanged. -/
 theorem hullOneStep : HullSC.HullOneStepStatement.{0} :=
   HullSC.hullOneStep_of_quotient₂_of_baseLetter hullHypEmbeddedConeOff
-    dgoCorollary427 hullSection6Relator hullTheorem51
+    hullSection6Relator hullTheorem51
 
 /-- **Hull, *Small cancellation in acylindrically hyperbolic groups*, Theorem
 7.1**, in the finite-set formulation the manuscript records, together with the

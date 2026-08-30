@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2Core
-import GroupApproximation.GGT.DGOCorollary427FiniteExtension
+import GroupApproximation.GGT.DGOCorollary427PairLocal
 
 /-!
 # Adjoining Hull's stable letter to the base of the two-subgroup core
@@ -14,7 +14,9 @@ adjoining `t` to the alphabet **as a letter**, so that the relator carries one
 not over the enlargement; the step between them is Dahmani--Guirardel--Osin's
 **Corollary 4.27**, invariance of `↪_h` under a finite symmetric difference of
 the base, which they perform in these words: *"By Corollary 4.27 we can assume
-that `t ∈ X` without loss of generality."*
+that `t ∈ X` without loss of generality."*  Its one-pair relative-metric
+content is proved directly in `DGOCorollary427PairLocal`, so this module no
+longer takes the full cited equivalence as a premise.
 
 This module is that step at `HypEmbeddedCore₂`.
 
@@ -48,7 +50,8 @@ Putting `t⁻¹` into the base is what the one-letter spelling `p = [t⁻¹]` ne
 and that spelling is what makes the relator carry a single `X`-letter, so that
 Dahmani--Guirardel--Osin's (W1) and (W4) hold of the whole word rather than of
 its run-internal pieces only.  That is the base-crossing gap of the separation
-chain, closed by a citation rather than by a new argument.
+chain.  The one-pair case is proved by the fixed-spelling expansion in
+`DGOCorollary427PairLocal`.
 
 **Two things this module does not by itself deliver**, recorded so that no
 reader takes the gap for closed:
@@ -61,7 +64,7 @@ reader takes the gap for closed:
   it belongs beside that spelling lemma rather than here.
 * `HullRelatorStatement₂` fixes the core **before** `t`, while the core built
   here depends on `t`.  A small-cancellation conclusion at
-  `E.adjoinPair h427 t` is a different claim from one at `E`, because it is
+  `E.adjoinPair t` is a different claim from one at `E`, because it is
   measured in the enlarged relative metric.  The repaired seam
   `hullOneStep_of_quotient₂_of_baseLetter` introduces `t`, constructs the
   enlarged core, and invokes `HullRelatorStatement₂OfBaseLetter` there.  The
@@ -98,21 +101,21 @@ theorem base_inv_adjoinPair (E : HypEmbeddedCore₂ A N) (t : G) :
 
 /-- **Hull's `𝒜₁`, at the core.**
 
-Given the two-subgroup core over Hull's alphabet and the citation that `↪_h` is
-invariant under a finite change of base, the same core over `𝒜 ∪ {t^{±1}}`.
-Everything but the base is carried over unchanged; see the module header for
-why `lox_isLoxodromic` in particular survives untouched. -/
+Given the two-subgroup core over Hull's alphabet, the same core over
+`𝒜 ∪ {t^{±1}}`.  Pair-local finiteness and the hyperbolicity transport are
+proved in the two `DGOCorollary427FiniteExtension` modules.  Everything but the
+base is carried over unchanged; see the module header for why
+`lox_isLoxodromic` in particular survives untouched. -/
 def HypEmbeddedCore₂.adjoinPair (E : HypEmbeddedCore₂ A N)
-    (h427 : GGT.DGOCorollary427.{u, 0}) (t : G) : HypEmbeddedCore₂ A N where
+    (t : G) : HypEmbeddedCore₂ A N where
   rel := E.rel.adjoinPair t
   base_le := E.base_le.trans (GGT.RelGenSet.base_subset_adjoinPair E.rel t)
   base_inv := base_inv_adjoinPair E t
   H := E.H
   fam_eq := E.fam_eq
   le := E.le
-  embedded :=
-    (h427 G Bool E.rel (E.rel.adjoinPair t) rfl
-      (GGT.RelGenSet.finite_base_symmDiff_adjoinPair E.rel t)).mp E.embedded
+  embedded := GGT.RelGenSet.isHyperbolicallyEmbedded_adjoinPair_of_localFiniteness
+    GGT.RelGenSet.pairLocalFiniteness E.rel E.embedded t
   lox := E.lox
   lox_mem := E.lox_mem
   lox_isLoxodromic := E.lox_isLoxodromic
@@ -121,8 +124,7 @@ def HypEmbeddedCore₂.adjoinPair (E : HypEmbeddedCore₂ A N)
 /-- The enlarged core's base contains the adjoined letter, which is the whole
 point: `t⁻¹` is spelled by one letter rather than by a word over `𝒜`. -/
 theorem mem_base_adjoinPair (E : HypEmbeddedCore₂ A N)
-    (h427 : GGT.DGOCorollary427.{u, 0}) (t : G) :
-    t⁻¹ ∈ (E.adjoinPair h427 t).rel.base := by
+    (t : G) : t⁻¹ ∈ (E.adjoinPair t).rel.base := by
   show t⁻¹ ∈ E.rel.base ∪ {t, t⁻¹}
   exact Or.inr (Or.inr rfl)
 

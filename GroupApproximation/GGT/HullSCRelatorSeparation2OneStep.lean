@@ -53,13 +53,12 @@ half.  Thus the singleton base letter is never transferred back to the old
 relative metric, and the over-strong `HullRelatorStatement₂` is not an input. -/
 theorem hullOneStep_of_quotient₂_of_baseLetter
     (hEmb : ExistsHypEmbeddedConeOff₂.{u})
-    (h427 : GGT.DGOCorollary427.{u, 0})
     (hrelator : HullRelatorStatement₂OfBaseLetter.{u})
     (hquot : HullQuotientStatement₂.{u}) : HullOneStepStatement.{u} := by
   intro G _ A N hN k S hS t R
   obtain ⟨E⟩ := nonempty_hypEmbeddedCore₂_of_coneOff hEmb A hN
-  let E' : HypEmbeddedCore₂ A N := E.adjoinPair h427 t
-  have ht : t⁻¹ ∈ E'.rel.base := mem_base_adjoinPair E h427 t
+  let E' : HypEmbeddedCore₂ A N := E.adjoinPair t
+  have ht : t⁻¹ ∈ E'.rel.base := mem_base_adjoinPair E t
   obtain ⟨eps, rho, mu, hmu, hgood⟩ := hquot A N E' hN S hS R
   obtain ⟨u, huN, W, ⟨v, hvW, hvval⟩, hsc⟩ :=
     hrelator A N E' hN t ht eps rho mu hmu
