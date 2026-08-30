@@ -30,9 +30,12 @@ searches, followed by inspection of the theorem statements.
    <https://arxiv.org/abs/2601.08779>.  Theorem 5.2 proves norm approximate
    unitary equivalence for faithful unital nuclear maps from a separable
    unital nuclear UCT algebra into a II_1 factor when the traces agree.
-   Applied to `Z`, this closes every II_1-factor codomain.  The paper also
-   records Kirchberg's asymptotic uniqueness theorem for simple purely
-   infinite codomains (Appendix A, Theorem A.2).
+   Applied to `Z`, this closes every II_1-factor codomain.  Appendix A treats
+   type III: Theorem A.1 says that for a separable unital exact domain and a
+   type-III factor with separable predual, two unital nuclear maps are norm
+   approximately unitarily equivalent exactly when their kernels agree.  It
+   is derived from Kirchberg's asymptotic uniqueness theorem for simple
+   purely infinite codomains (Theorem A.2), and does not require the UCT.
 4. Q. Li, D. Hadwin, and W. Liu, *Approximate Equivalence in von Neumann
    Algebras*, *Operators and Matrices* 17 (2023), 1--23,
    DOI 10.7153/oam-2023-17-01; arXiv:2008.06619,
@@ -64,7 +67,7 @@ as a premise in any graph route added with this artifact.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate four facts which do not depend on the literature
+The graph additions isolate five facts which do not depend on the literature
 audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -88,3 +91,9 @@ audit.
    Thus every possible counterexample becomes approximately unitarily
    equivalent in every finite shadow and every separably acting semifinite
    shadow.
+5. Hua--White Theorem A.1 closes the separable-predual type-III factor case.
+   Central disintegration and measurable selection extend this to every
+   separable-predual type-III algebra.  Combining its unitary with the
+   semifinite-central-summand unitary proves uniqueness in every separably
+   acting von Neumann algebra.  Thus no counterexample can be detected in any
+   separably acting von Neumann shadow, regardless of type.
