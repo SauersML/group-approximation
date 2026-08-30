@@ -18,6 +18,13 @@ distinguish the known closedness result from the unknown openness result.
    space; separability of the Hilbert space is only needed for the stronger
    unitary-conjugacy theorem later in that paper.
 
+   Since Kadison--Kastler distance is symmetric, Theorem 4.3 can instead be
+   applied to the ordered pair `(B,A)`.  Therefore the same radius proves the
+   XCIX conclusion whenever `B` is separable and nuclear, even if the given
+   Z-stable algebra `A` is not nuclear.  Separability of `B` is needed for
+   this reversed application; nuclearity of `B` alone is not enough to invoke
+   the quoted theorem.
+
 2. The same paper, Corollary 4.6: for separable strongly self-absorbing `D`,
    D-stable separable unital subalgebras containing a fixed ambient unit form
    a closed subset in Kadison--Kastler distance.  Corollary 4.7 transports a
@@ -67,9 +74,28 @@ sufficient estimate and should not be mistaken for the final radius.
 Scaled-Cu agreement is strictly an invariant conclusion; no theorem in the
 non-nuclear setting upgrades it to Z-absorption.  Similarly, transporting a
 finite-set embedding has commutator error at most the old error plus
-`304 sqrt(gamma)+2 gamma`.  At a fixed positive distance this is an error
-floor, whereas the central-embedding characterization of Z-stability
-requires errors tending to zero.
+`304 sqrt(gamma)+2 gamma`.  This is an additive loss in the available upper
+bound, not a lower bound on the centrality of the transported copy.
+
+The raw estimate does not self-improve under iteration.  For paired finite
+sets of contractions in `A` and `B` at distance less than `gamma`, let `e_j`
+be the centrality error of an embedding after `j` alternating transports.
+Writing `Delta=304 sqrt(gamma)+2 gamma`, the commutator triangle inequality
+gives
+
+```text
+e_(j+1) < e_j + Delta,
+e_n     < e_0 + n Delta.
+```
+
+Thus the affine update has coefficient one rather than a contraction factor.
+The constants `2` used for perturbing either commutator entry cannot be
+improved from norm data alone: with `x=diag(1,-1)` and `r=delta e_12` in
+`M_2`, `||r||=delta` and `||[r,x]||=2 delta`; the same example with the two
+entries interchanged proves sharpness in the second variable.  This only
+rules out repeated use of Corollary 4.7 followed by norm triangle
+inequalities.  It does not rule out a new argument exploiting relations
+among the transported copies or the strongly self-absorbing structure of Z.
 
 The January 2026 preprint
 [On stability of distance under some tensor products and some calculations](https://arxiv.org/abs/2601.05154)
@@ -83,6 +109,6 @@ A counterexample below `1/6422957` would have to be a non-Z-stable algebra
 with scaled Cu isomorphic to that of a Z-stable algebra, realized in a
 concrete representation at that tiny distance.  No such perturbation is
 known.  Conversely, a positive solution needs a mechanism that removes the
-fixed centrality error after transporting Z-copies, or another absorption
+fixed additive centrality loss after transporting Z-copies, or another absorption
 criterion stable under the available complete-distance control.  Neither
 step is presently established.
