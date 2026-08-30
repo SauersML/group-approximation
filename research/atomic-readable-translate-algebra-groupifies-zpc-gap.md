@@ -16,8 +16,9 @@ In the setup of
 D_infinity=W*(pi(g)D_0pi(g)^*:g in Q_G)                 (ART1)
 ```
 
-inside `q_-Mq_-`. If `D_infinity` has a nonzero minimal projection, then
-that projection has a finite `Q_G`-conjugacy orbit and every point of the
+inside `q_-Mq_-`. Assume that `D_infinity` is abelian, as it is in the
+fixed-point/stabilizer GNS model. If it has a nonzero minimal projection,
+then that projection has a finite `Q_G`-conjugacy orbit and every point of the
 orbit lies below a unique joint readable atom of `D_0`. Hence the
 profile-pure finite-projection compiler applies and produces a finitely
 presented nonhyperlinear group. No condition is imposed on the diffuse
