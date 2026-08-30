@@ -220,3 +220,19 @@ same cone-projective repair and orthogonal-band merger work.  This removes
 the tracial counting barrier and identifies the sharp remaining global
 hinge: construct same-labelled orthogonal cutters which cover each outgoing
 support, not the whole multiplier unit, from arbitrary extension geometry.
+
+Two new capacity results delimit that hinge.  Exact norm coverage charges
+the whole range projection of each outgoing support, not merely its tracial
+amplitude: `stw82-spectral-support-hall-capacity` proves weighted Hall
+inequalities for support projections and approximate inequalities for upper
+spectral cuts.  Complementary scalar supports already show that total
+amplitude at most `max(p,q)+1` is not sufficient.  Even all such support
+trace inequalities are not sufficient.  By
+`stw82-minimal-support-coupled-cover-number`, arbitrary operator-valued
+subdivision of minimal supports has exact label capacity equal to the
+chromatic number of their nonorthogonality graph.  Three rank-one supports
+in `M_2` pass every two-label span-capacity inequality but form a triangle
+and require three labels.  These are fixed-family local obstructions, not
+extension counterexamples: a universal proof may still replace the outgoing
+maps.  It must, however, control noncommutative support incidence in addition
+to tracial capacity.
