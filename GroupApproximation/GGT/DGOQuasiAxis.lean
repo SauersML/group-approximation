@@ -339,6 +339,56 @@ theorem length_div_sub_le_dist
       hiso p.translate ((h ^ p.start) • x) ((h ^ p.stop) • x)
   rwa [hcoord, ← hvalue] at hab
 
+/-- The quasi-geodesic inequalities on the carrier, transported to arbitrary
+integer power vertices of any translated axis. -/
+theorem vertex_dist_bounds
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) {lam c : ℝ}
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p : PowerAxisSegment h x) (i j : ℤ) :
+    |((i : ℝ) - (j : ℝ)) * dist x (h • x)| / lam - c ≤
+        dist (p.vertex i) (p.vertex j) ∧
+      dist (p.vertex i) (p.vertex j) ≤
+        lam * |((i : ℝ) - (j : ℝ)) * dist x (h • x)| + c := by
+  let a : AxisPoint h x f :=
+    { index := i
+      parameter := 0
+      parameter_mem := ⟨le_rfl, dist_nonneg⟩ }
+  let b : AxisPoint h x f :=
+    { index := j
+      parameter := 0
+      parameter_mem := ⟨le_rfl, dist_nonneg⟩ }
+  have hab := hq a b
+  have hcoord : a.coordinate - b.coordinate =
+      ((i : ℝ) - (j : ℝ)) * dist x (h • x) := by
+    dsimp [a, b, AxisPoint.coordinate]
+    ring
+  have hvalue : dist (p.vertex i) (p.vertex j) = dist a.value b.value := by
+    dsimp [vertex, a, b, AxisPoint.value]
+    rw [hf.2.1]
+    simpa only [mul_smul] using
+      hiso p.translate ((h ^ i) • x) ((h ^ j) • x)
+  rwa [hcoord, ← hvalue] at hab
+
+/-- Integer power vertices whose arclength coordinates are sufficiently
+separated are metrically separated.  This is the quantitative fact that makes
+the partner exponents in the oriented sampling argument injective, and then
+strictly monotone. -/
+theorem le_dist_vertex_of_coordinate_gap
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) {lam c R : ℝ} (hlam : 0 < lam)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p : PowerAxisSegment h x) (i j : ℤ)
+    (hgap : lam * (R + c) ≤
+      |((i : ℝ) - (j : ℝ)) * dist x (h • x)|) :
+    R ≤ dist (p.vertex i) (p.vertex j) := by
+  have hlower := (vertex_dist_bounds hiso hf hq p i j).1
+  have hdiv : R + c ≤
+      |((i : ℝ) - (j : ℝ)) * dist x (h • x)| / lam := by
+    rw [le_div_iff₀ hlam]
+    simpa only [mul_comm] using hgap
+  linarith
+
 /-! ## From oriented power cores to WPD fellow travel -/
 
 /-- DGO's oriented endpoint-closeness condition for two power-vertex
