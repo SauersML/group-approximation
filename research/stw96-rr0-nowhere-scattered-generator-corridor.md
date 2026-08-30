@@ -6,6 +6,7 @@ title: Real-rank-zero nowhere-scattered algebras of finite decomposition rank ha
 artifacts:
   - research/artifacts/stw96-regular-rank-single-generation-audit-2026-08-30.md
   - research/artifacts/stw96-mixed-rr0-extension-audit-2026-08-30.md
+  - research/artifacts/stw96-local-fibre-gluing-audit-2026-08-30.md
 ---
 
 Let `A` be a nonzero, separable, nowhere-scattered C*-algebra of real rank
@@ -28,4 +29,7 @@ region it must have a nonzero purely infinite simple subquotient and cannot
 itself be purely infinite.  Moreover,
 `stw96-countable-zstable-filtrations-have-generators` shows that it must have
 infinitely many ideals and cannot admit a continuous countable composition
-series with simple successor quotients.
+series with simple successor quotients.  The local fibre-gluing theorem
+`stw96-locally-hausdorff-primitive-spaces-have-generators` further forces its
+primitive ideal space to be non-locally-Hausdorff and rules out any continuous
+countable filtration by locally Hausdorff successor layers.
