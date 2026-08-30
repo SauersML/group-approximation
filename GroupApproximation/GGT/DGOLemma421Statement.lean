@@ -266,7 +266,16 @@ theorem lt_of_isComp_of_baseEdgeOrTrivial
         omega
 
 omit [Group G] in
-/-- A letter of `H lam` at a known position, read back through `getElem?`. -/
+/-- **The converter between the two encodings of a letter, and the only one.**
+`IsComp` is stated with `getElem`-with-proof, since a component's positions come
+with the bounds that produced them; `(W1)`--`(W3)` are stated with `getElem?`,
+so that no clause carries a bound proof.  Every consumer that holds a component
+and wants a condition -- or holds a condition and wants a component -- crosses
+that seam here.
+
+Use this rather than inlining the `cases` on the letter.  There is one seam and
+there should be one bridge over it: a second converter would be provable, would
+be phrased slightly differently, and the two would drift. -/
 theorem getElem?_comp_of_isCompOf {w : List (RelLetter G Λ)} {lam : Λ} {j : ℕ}
     (hj : j < w.length) (h : (w[j]'hj).IsCompOf lam) :
     ∃ g : G, w[j]? = some (RelLetter.comp lam g) := by
