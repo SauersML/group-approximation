@@ -39,6 +39,7 @@ namespace GGT
 namespace DGOPolygonCut
 
 open GroupApproximation.GGT.OsinComponents
+open GroupApproximation.WordMetric
 
 universe u w
 
@@ -141,6 +142,217 @@ theorem isPolygonCut_auxiliaryCycleWord (left arc right chord :
   have hlar := isPolygonCut_append hla hright
   have hall := isPolygonCut_append hlar hchord
   simpa [auxiliaryCycleWord, auxiliaryCycleCut, Nat.add_assoc] using hall
+
+/-! ## The connector/arc cut dictionary -/
+
+omit [Group G] in
+/-- `appendCut` agrees with its first cut up to the joining side. -/
+theorem appendCut_apply_of_le (c₁ c₂ : ℕ → ℕ) (n s : ℕ) (hs : s ≤ n) :
+    appendCut c₁ n c₂ s = c₁ s := by
+  simp [appendCut, hs]
+
+omit [Group G] in
+/-- `appendCut` agrees with the shifted second cut, including at offset zero
+when that cut starts at zero. -/
+theorem appendCut_apply_add (c₁ c₂ : ℕ → ℕ) (n r : ℕ)
+    (hc₂0 : c₂ 0 = 0) :
+    appendCut c₁ n c₂ (n + r) = c₁ n + c₂ r := by
+  by_cases hr : r = 0
+  · subst r
+    simp [appendCut, hc₂0]
+  · have hnot : ¬ n + r ≤ n := by omega
+    simp [appendCut, hnot]
+
+omit [Group G] in
+/-- On the inherited arc, the auxiliary cut is the arc cut shifted past the
+left connector. -/
+theorem auxiliaryCycleCut_arc (left right : List (RelLetter G Λ))
+    {arc : List (RelLetter G Λ)} {nArc r : ℕ} {arcCut : ℕ → ℕ}
+    (harc : IsPolygonCut nArc arc arcCut) (hr : r ≤ nArc) :
+    auxiliaryCycleCut left nArc arcCut right (left.length + r) =
+      left.length + arcCut r := by
+  have hmiddle : left.length + r ≤ left.length + nArc := by omega
+  have houter : left.length + r ≤
+      left.length + nArc + right.length := by omega
+  rw [auxiliaryCycleCut,
+    appendCut_apply_of_le _ _ _ _ houter,
+    appendCut_apply_of_le _ _ _ _ hmiddle,
+    appendCut_apply_add _ _ _ _ harc.start]
+
+omit [Group G] in
+/-- On the right connector, the auxiliary cut has passed the whole arc. -/
+theorem auxiliaryCycleCut_right (left right : List (RelLetter G Λ))
+    {arc : List (RelLetter G Λ)} {nArc r : ℕ} {arcCut : ℕ → ℕ}
+    (harc : IsPolygonCut nArc arc arcCut) (hr : r ≤ right.length) :
+    auxiliaryCycleCut left nArc arcCut right (left.length + nArc + r) =
+      left.length + arc.length + r := by
+  have houter : left.length + nArc + r ≤
+      left.length + nArc + right.length := by omega
+  rw [auxiliaryCycleCut,
+    appendCut_apply_of_le _ _ _ _ houter,
+    appendCut_apply_add _ _ _ _ rfl,
+    appendCut_apply_add _ _ _ _ harc.start,
+    harc.finish]
+
+omit [Group G] in
+/-- On the final chord, the auxiliary cut has passed both connectors and the
+inherited arc. -/
+theorem auxiliaryCycleCut_chord (left right : List (RelLetter G Λ))
+    {arc : List (RelLetter G Λ)} {nArc r : ℕ} {arcCut : ℕ → ℕ}
+    (harc : IsPolygonCut nArc arc arcCut) :
+    auxiliaryCycleCut left nArc arcCut right
+        (left.length + nArc + right.length + r) =
+      left.length + arc.length + right.length + r := by
+  rw [auxiliaryCycleCut,
+    appendCut_apply_add _ _ _ _ rfl,
+    appendCut_apply_add _ _ _ _ rfl,
+    appendCut_apply_add _ _ _ _ harc.start,
+    harc.finish]
+
+/-- Vertices on the inherited arc are vertices of `arc`, read after the
+reversed left connector. -/
+theorem vertex_auxiliaryCycle_arc (v : G) (left arc right chord :
+    List (RelLetter G Λ)) {r : ℕ} (hr : r ≤ arc.length) :
+    vertex v (auxiliaryCycleWord left arc right chord) (left.length + r) =
+      vertex (v * RelLetter.listVal (revWord left)) arc r := by
+  have hrev : (revWord left).length = left.length := length_revWord left
+  have h₁ : left.length + r ≤ (revWord left ++ arc).length := by
+    simp [hrev]
+    omega
+  have h₂ : left.length + r ≤ ((revWord left ++ arc) ++ right).length := by
+    simp only [List.length_append]
+    omega
+  rw [auxiliaryCycleWord,
+    vertex_append_of_le (((revWord left ++ arc) ++ right)) chord v _ h₂,
+    vertex_append_of_le (revWord left ++ arc) right v _ h₁]
+  rw [← hrev, vertex_append_add]
+
+/-- Vertices on the final chord are vertices of `chord`, read after the three
+preceding paths. -/
+theorem vertex_auxiliaryCycle_chord (v : G) (left arc right chord :
+    List (RelLetter G Λ)) (r : ℕ) :
+    vertex v (auxiliaryCycleWord left arc right chord)
+        (left.length + arc.length + right.length + r) =
+      vertex (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) chord r := by
+  have hpref : ((revWord left ++ arc) ++ right).length =
+      left.length + arc.length + right.length := by
+    simp [length_revWord, Nat.add_assoc]
+  rw [auxiliaryCycleWord, ← hpref, vertex_append_add]
+
+/-- **Off-target quasigeodesicity of one auxiliary cycle.**
+
+The inherited arc uses its own named cut after the vertex-offset dictionary
+above.  The final chord is a subpath of a geodesic word.  Every left and right
+connector side is explicitly required to be distinguished, so no unjustified
+quasigeodesic assertion is made about a possibly trivial connector letter. -/
+theorem quasi_auxiliaryCycleWord (D : RelGenSet G Λ) {b : ℝ} (hb : 0 ≤ b)
+    (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
+    {arcCut : ℕ → ℕ}
+    (harc : IsCutPolygon D b nArc
+      (v * RelLetter.listVal (revWord left)) arc arcCut)
+    {g : G} (hchord : IsGeodesicWord D
+      (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) g chord)
+    (Target : Finset ℕ)
+    (hleft : ∀ r : ℕ, r < left.length → r ∈ Target)
+    (hright : ∀ r : ℕ, r < right.length →
+      left.length + nArc + r ∈ Target) :
+    ∀ s : ℕ, s < left.length + nArc + right.length + chord.length →
+      s ∉ Target → ∀ p q : ℕ,
+      auxiliaryCycleCut left nArc arcCut right s ≤ p →
+      p ≤ q →
+      q ≤ auxiliaryCycleCut left nArc arcCut right (s + 1) →
+      ((q - p : ℕ) : ℝ) - b ≤
+        ((wordDist D.alphabet.carrier
+          (vertex v (auxiliaryCycleWord left arc right chord) p)
+          (vertex v (auxiliaryCycleWord left arc right chord) q) : ℕ) : ℝ) := by
+  intro s hs hsTarget p q hp hpq hq
+  by_cases hsLeft : s < left.length
+  · exact False.elim (hsTarget (hleft s hsLeft))
+  by_cases hsArc : s < left.length + nArc
+  · let r := s - left.length
+    have hr : r < nArc := by dsimp [r]; omega
+    have hsEq : s = left.length + r := by dsimp [r]; omega
+    have hs1Eq : s + 1 = left.length + (r + 1) := by omega
+    have hcut0 := auxiliaryCycleCut_arc left right harc.cut (le_of_lt hr)
+    have hcut1 := auxiliaryCycleCut_arc left right harc.cut (by omega : r + 1 ≤ nArc)
+    rw [hsEq, hcut0] at hp
+    rw [hs1Eq, hcut1] at hq
+    have hpArc : arcCut r ≤ p - left.length := by omega
+    have hpqArc : p - left.length ≤ q - left.length := by omega
+    have hqArc : q - left.length ≤ arcCut (r + 1) := by omega
+    have hpLen : p - left.length ≤ arc.length := by
+      have := harc.cut.le_length (by omega : r + 1 ≤ nArc)
+      omega
+    have hqLen : q - left.length ≤ arc.length := by
+      have := harc.cut.le_length (by omega : r + 1 ≤ nArc)
+      omega
+    have hpEq : left.length + (p - left.length) = p := by omega
+    have hqEq : left.length + (q - left.length) = q := by omega
+    have hdiff : q - left.length - (p - left.length) = q - p := by omega
+    have hqa := harc.quasi r hr (p - left.length) (q - left.length)
+      hpArc hpqArc hqArc
+    rw [hdiff] at hqa
+    have hvp :
+        vertex v (auxiliaryCycleWord left arc right chord) p =
+          vertex (v * RelLetter.listVal (revWord left)) arc
+            (p - left.length) := by
+      conv_lhs => rw [← hpEq]
+      rw [vertex_auxiliaryCycle_arc v left arc right chord hpLen]
+    have hvq :
+        vertex v (auxiliaryCycleWord left arc right chord) q =
+          vertex (v * RelLetter.listVal (revWord left)) arc
+            (q - left.length) := by
+      conv_lhs => rw [← hqEq]
+      rw [vertex_auxiliaryCycle_arc v left arc right chord hqLen]
+    rw [hvp, hvq]
+    exact hqa
+  by_cases hsRight : s < left.length + nArc + right.length
+  · let r := s - (left.length + nArc)
+    have hr : r < right.length := by dsimp [r]; omega
+    have hsEq : left.length + nArc + r = s := by dsimp [r]; omega
+    have ht := hright r hr
+    rw [hsEq] at ht
+    exact False.elim (hsTarget ht)
+  · let r := s - (left.length + nArc + right.length)
+    have hr : r < chord.length := by dsimp [r]; omega
+    have hsEq : s = left.length + nArc + right.length + r := by dsimp [r]; omega
+    have hs1Eq : s + 1 = left.length + nArc + right.length + (r + 1) := by omega
+    have hcut0 := auxiliaryCycleCut_chord left right harc.cut (r := r)
+    have hcut1 := auxiliaryCycleCut_chord left right harc.cut (r := r + 1)
+    rw [hsEq, hcut0] at hp
+    rw [hs1Eq, hcut1] at hq
+    let off := left.length + arc.length + right.length
+    have hpqChord : p - off ≤ q - off := by omega
+    have hqLen : q - off ≤ chord.length := by omega
+    have hpEq : off + (p - off) = p := by dsimp [off]; omega
+    have hqEq : off + (q - off) = q := by dsimp [off]; omega
+    have hdiff : q - off - (p - off) = q - p := by omega
+    have hgeo := sub_le_wordDist_vertex D hchord (p - off) (q - off)
+      hpqChord hqLen
+    have hgeoR : (((q - p : ℕ) : ℝ)) ≤
+        ((wordDist D.alphabet.carrier
+          (vertex (v * RelLetter.listVal ((revWord left ++ arc) ++ right))
+            chord (p - off))
+          (vertex (v * RelLetter.listVal ((revWord left ++ arc) ++ right))
+            chord (q - off)) : ℕ) : ℝ) := by
+      rw [← hdiff]
+      exact_mod_cast hgeo
+    have hvp :
+        vertex v (auxiliaryCycleWord left arc right chord) p =
+          vertex (v * RelLetter.listVal ((revWord left ++ arc) ++ right))
+            chord (p - off) := by
+      conv_lhs => rw [← hpEq]
+      simp only [off]
+      rw [vertex_auxiliaryCycle_chord]
+    have hvq :
+        vertex v (auxiliaryCycleWord left arc right chord) q =
+          vertex (v * RelLetter.listVal ((revWord left ++ arc) ++ right))
+            chord (q - off) := by
+      conv_lhs => rw [← hqEq]
+      simp only [off]
+      rw [vertex_auxiliaryCycle_chord]
+    rw [hvp, hvq]
+    linarith
 
 /-- Admissibility is inherited by the four paths of an auxiliary cycle. -/
 theorem isLetter_auxiliaryCycleWord (D : RelGenSet G Λ)

@@ -178,6 +178,63 @@ structure AuxiliaryCycleCertificate (D : RelGenSet G Λ) (b : ℝ) (m : ℕ) whe
       ((wordDist D.alphabet.carrier
         (vertex basepoint word p) (vertex basepoint word q) : ℕ) : ℝ)
 
+/-- **Construct one certified auxiliary cycle from its four concrete paths.**
+
+Closure, admissibility, and the polygon cut come from the existing auxiliary
+word constructors.  The new `quasi_auxiliaryCycleWord` dictionary supplies the
+previously missing off-target clause: inherited arc sides are read in their
+half-polygon coordinates, chord sides are subpaths of a geodesic word, and all
+connector sides are explicitly distinguished.
+
+The target component and isolation hypotheses remain local geometric inputs;
+they are exactly what `isIsolated_auxiliaryCycle_sides` and the connector
+component lemmas produce for a particular greedy interval. -/
+theorem auxiliaryCycleCertificate_of_paths (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {b : ℝ} (hb : 0 ≤ b)
+    (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
+    {arcCut : ℕ → ℕ}
+    (harc : IsCutPolygon D b nArc
+      (v * RelLetter.listVal (revWord left)) arc arcCut)
+    {g : G} (hchord : IsGeodesicWord D
+      (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) g chord)
+    (hleft : ∀ x ∈ left, D.IsLetter x)
+    (hright : ∀ x ∈ right, D.IsLetter x)
+    (hclose : RelLetter.listVal left = RelLetter.listVal arc *
+      RelLetter.listVal right * RelLetter.listVal chord)
+    (Target : Finset ℕ) (label : ℕ → Λ)
+    (hleftTarget : ∀ r : ℕ, r < left.length → r ∈ Target)
+    (hrightTarget : ∀ r : ℕ, r < right.length →
+      left.length + nArc + r ∈ Target)
+    (htarget_lt : ∀ s ∈ Target,
+      s < left.length + nArc + right.length + chord.length)
+    (htarget_edge : ∀ s ∈ Target,
+      auxiliaryCycleCut left nArc arcCut right (s + 1) =
+        auxiliaryCycleCut left nArc arcCut right s + 1)
+    (htarget_component : ∀ s ∈ Target,
+      IsComp (label s) (auxiliaryCycleWord left arc right chord)
+        (auxiliaryCycleCut left nArc arcCut right s)
+        (auxiliaryCycleCut left nArc arcCut right (s + 1)))
+    (htarget_isolated : ∀ s ∈ Target,
+      IsIsolated D.fam (label s) v
+        (auxiliaryCycleWord left arc right chord)
+        (auxiliaryCycleCut left nArc arcCut right s)) :
+    AuxiliaryCycleCertificate D b
+      (left.length + nArc + right.length + chord.length) where
+  basepoint := v
+  word := auxiliaryCycleWord left arc right chord
+  cut := auxiliaryCycleCut left nArc arcCut right
+  target := Target
+  label := label
+  letters := isLetter_auxiliaryCycleWord D hsymm hleft harc.letters hright hchord.1
+  closed := listVal_auxiliaryCycleWord_eq_one left arc right chord hclose
+  polygonCut := isPolygonCut_auxiliaryCycleWord left arc right chord harc.cut
+  target_lt := htarget_lt
+  target_edge := htarget_edge
+  target_component := htarget_component
+  target_isolated := htarget_isolated
+  quasi := quasi_auxiliaryCycleWord D hb v left arc right chord harc hchord
+    Target hleftTarget hrightTarget
+
 namespace AuxiliaryCycleCertificate
 
 /-- The group element represented by a distinguished side of a certified
