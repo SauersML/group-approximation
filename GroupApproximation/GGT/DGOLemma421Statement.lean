@@ -23,8 +23,9 @@ statement layer: the class of words the lemma is about, and clause (a).
 
 The class itself is **not defined here**.  `GGT.WWord.IsWOne`, `IsWTwo` and
 `IsWThree` (`GGT/DGOWWordConditions.lean`) are the three conditions, indexed by
-position and phrased with `getElem?`, and this module states Lemma 4.21 against
-them.  I had written a competing bundled `IsWWord` in this file and retired it:
+position and phrased with `getElem?`, and this module states both clauses of
+Lemma 4.21 against them.  I had written a competing bundled `IsWWord` in this
+file and retired it:
 two encodings of one class is the rot both lanes have been guarding against, and
 theirs is the better encoding --- `w[i]? = some (RelLetter.base x)` carries no
 bound proof, so it needs none of the `Nat.lt_of_succ_lt` plumbing a
