@@ -52,6 +52,9 @@ with any finite profile-pure orbit is equivalent to existence of a perfect
 tracial model with finite-dimensional abelian readable translate algebra,
 and also to existence of a factorial such model after central decomposition.
 If `omega*(G)<1`, every one of these perfect components is
-non-Connes-embeddable. No assertion is made here that an arbitrary central
-compression or factorial decomposition preserves stabilizer-character/IRS
-provenance.
+non-Connes-embeddable. Arbitrary factor decomposition need not preserve IRS provenance. In the
+stabilizer-relation realization, however, this particular `z` lies in the
+negative readable diagonal, and
+`readable-itinerary-central-summand-preserves-irs-provenance` identifies its
+compression with conditioning on a full-action invariant event. Thus the
+equivalence also holds within ZPC-IRS witnesses after conditioning.
