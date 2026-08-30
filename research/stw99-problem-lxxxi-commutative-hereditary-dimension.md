@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw81-zero-dimensional-simple-field-audit-2026-08-30.md
   - research/artifacts/stw81-one-dimensional-field-audit-2026-08-30.md
   - research/artifacts/stw81-oinfinity-envelope-audit-2026-08-30.md
+  - research/artifacts/stw81-one-dimensional-af-field-audit-2026-08-30.md
 ---
 
 **Problem LXXXI of Schafhauser--Tikuisis--White.**  Let `A` be a C-star
@@ -147,6 +148,17 @@ zero-dimensional theorem fails exactly there.  For one-dimensional
 stably finite non-elementary fibres, fibrewise Z-stability globalizes but
 the needed nonsimple nuclear-dimension-one theorem is unavailable; naive
 base/fibre colour multiplication gives three.
+
+There is now a first stably finite non-elementary exception to that
+obstruction.  `stw81-one-dim-simple-af-fields-have-dim-one`
+proves directly that a locally trivial field over a one-dimensional base
+with infinite-dimensional simple unital AF fibre (in particular a UHF
+fibre) has nuclear dimension at most one.  The proof samples sections in a
+two-coloured base cover and absorbs the entire fibre approximation into
+finite-dimensional AF subalgebras, so there is no extra fibre colour.  Such
+fields have no nonzero commutative hereditary subalgebras in any quotient.
+The unresolved field frontier now starts with non-AF stably finite fibres,
+such as `Z`, and with non-locally-trivial AF-fibre fields.
 
 There is now also a base-free absorption class with an exact dichotomy.
 `stw81-oinfinity-envelopes-have-dimension-one-or-infinity` proves that for
