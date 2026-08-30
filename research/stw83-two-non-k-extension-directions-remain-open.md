@@ -57,4 +57,9 @@ the transition band stays scalar, but the inner corner is
 `M_r(C(T))` and needs two coefficient colours.  Only one inner colour is
 automatically orthogonal to the transition colour.  The canonical family
 still needs a genuinely new recolouring of the other inner piece to obtain a
-two-colour approximation.
+two-colour approximation.  The reduction
+`stw83-plateau-buffer-recolouring-hinge` makes this precise: a finite-set
+adaptive colour supported in a deep plateau would suffice, but a uniform
+block-diagonal approximation of the whole matrix-over-circle corner is
+impossible because it would make a complementary circle corner
+zero-dimensional.

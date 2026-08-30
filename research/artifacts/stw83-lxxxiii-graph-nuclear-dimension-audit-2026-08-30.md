@@ -310,3 +310,33 @@ of the extension nor its primitive-space topological dimension supplies a
 known theorem eliminating that last colour; the literature on type-I
 topological dimension explicitly leaves its exact relation with nuclear
 dimension unclear in this generality.
+
+## Plateau/buffer recolouring: exact hinge and no-go
+
+For a fixed finite set, the coefficient-varying compact terms can be
+approximated in a finite matrix corner and placed deep inside the one-plateau
+of the tapered quasicentral contraction.  The scalar Toeplitz transition can
+then be moved beyond a long buffer.  This geometry gives an exact sufficient
+condition for dimension one.  If the two-colour approximation of the inner
+compression can put one outgoing coefficient colour in the deep plateau and
+the other in the full inner support, then the plateau colour is orthogonal to
+the transition/first-quotient colour and the full inner colour is orthogonal
+to the tail/second-quotient colour.  Pairing them produces two global colours.
+
+There is a sharp limitation on how this condition can be proved.  Let
+`D=M_r(C(T))` and split its constant unit as `p+(1-p)`, where `p` is the deep
+plateau.  Suppose a two-colour approximation of the whole `D` puts its first
+range in `pDp` and makes its second range block diagonal relative to `p`.
+Compression to `q=1-p` kills the first colour and preserves order zero of the
+second.  Such approximations would make
+
+```text
+qDq = M_s(C(T))
+```
+
+nuclear-dimensional zero, contradicting its nuclear dimension one.  Thus a
+uniform block-diagonal whole-corner recolouring is impossible.  This is not a
+no-go for the finite-set buffer idea itself: a successful second colour must
+carry the scalar off-diagonal terms crossing the plateau boundary, while only
+the coefficient-varying compact terms are localized.  Constructing that
+adaptive completely positive approximation is now the exact remaining task.

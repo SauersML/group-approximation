@@ -128,4 +128,13 @@ The transition-band maps remain scalar and use the original Toeplitz
 two-colour machinery.  A finite inner compression is `M_r(C(T))`, so its two
 coefficient colours create one additional global colour.  One coefficient
 colour can be merged with the orthogonal tail colour; removing the other is
-the exact remaining dimension-one hinge.
+the exact remaining dimension-one hinge.  The node
+`stw83-plateau-buffer-recolouring-hinge` isolates a sufficient support
+condition: localize one coefficient colour in a deep one-plateau, beyond the
+coefficient-varying compact support and before the scalar transition band.
+It also proves that one cannot obtain this by approximating the whole
+`M_r(C(T))` corner block diagonally.  Such a scheme would compress to a
+one-colour approximation of a nonzero matrix algebra over `C(T)`.  Any
+successful two-colour proof must therefore be finite-set adaptive and use its
+second inner colour to carry scalar off-diagonal terms across the plateau
+boundary.
