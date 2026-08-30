@@ -47,7 +47,12 @@ must fail weak omega-comparison, with an explicit witness supported in its full
 projectionless corner.  The exact Morita normal form and the stationary
 matrix-threshold theorem show that the remaining obstruction persists at one
 finite matrix level `m>=2`; it is specifically the failure to descend that
-projection to level one.
+projection to level one.  The sharper
+`stw74-minimal-projection-has-uniform-gapless-compressions` shows that one
+fixed minimal-level projection has nonzero scalar compression in every
+direction, with a uniform positive norm floor, yet every such compression
+has nonzero spectrum accumulating at zero.  Thus neither a missing diagonal
+direction nor a favourable spectral gap can repair the descent.
 
 There is also a comparison-free structural positive class:
 `stw74-algebraic-cu-characterizes-pure-infiniteness` proves that, under the

@@ -105,6 +105,34 @@ This normal form isolates a genuinely finite, locally stationary descent
 failure: the remaining problem is not to create a projection at some matrix
 level, but to lower a persistent minimal level `m>=2` to level one.
 
+### Uniformly gapless scalar compression geometry
+
+The stationary minimal level forces more than the existence of matrix
+projections.  Choose one projection `p` at that level in the first hereditary
+algebra of the stationary tail.  It then belongs to every later matrix
+algebra.  No scalar rank-one compression of `p` can vanish: if the
+compression in direction `xi` were zero, positivity gives
+`p(xi tensor 1)=0`, and a scalar unitary moving `xi` to the last coordinate
+would conjugate `p` into the preceding matrix level.  That contradicts
+minimality.
+
+The norm of the compression varies continuously over the compact unit sphere,
+so all compressions have norm at least one fixed `delta>0`.  On the other
+hand, every compression lies in the projectionless corner.  Functional
+calculus therefore forces zero to be an accumulation point of its nonzero
+spectrum.  Phase invariance packages the family as a continuous map
+
+```text
+CP^(m-1) -> D_+\{0}
+```
+
+whose image is uniformly bounded away from zero in norm but is pointwise
+gapless at zero.  This sharpens the earlier gapless-compression observation:
+there is no exceptional scalar direction with zero compression, and no
+direction can supply the spectral gap needed for level-one projection
+extraction.  The argument is internal and uses neither comparison nor
+property (QQ).
+
 ### Algebraic Cuntz semigroups close the hinge
 
 There is a comparison-free positive class not covered by the weak-omega or
