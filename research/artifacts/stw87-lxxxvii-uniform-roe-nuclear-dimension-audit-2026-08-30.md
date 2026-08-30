@@ -223,24 +223,29 @@ There is a sharper endpoint for the boundary-quotient route.  If `d>=1` and
 dim_nuc(C(M) crossed_product_r Z^d)=1.
 ```
 
-More generally this holds for every free minimal action of `Z^d` on a compact
-zero-dimensional Hausdorff space, without metrizability—and, in fact, for
-every infinite finitely generated nilpotent acting this way.  For each finite
-crossed-product packet, adjoining countably many clopen displacement witnesses
-produces a compact metrizable zero-dimensional factor whose action is still
-free and minimal.  Szabo--Wu--Zacharias give finite nuclear dimension to that
-separable factor crossed product, and the simple-algebra theorem collapses it
-to at most one.  Injectivity of finite-dimensional operator systems extends
-the incoming c.p.c. maps to the original algebra, preserving the one-colour
-bound.  The Pimsner--Voiculescu boundary of a canonical group unitary is the
-nonzero unit class, excluding zero.
+More generally exact equality holds for every free minimal action of `Z^d` on
+a compact zero-dimensional Hausdorff space, without metrizability.  For every
+infinite finitely generated virtually nilpotent group acting this way the
+nuclear dimension is at most one, and infinite abelianization forces equality.
+For each finite crossed-product packet,
+adjoining countably many clopen displacement witnesses produces a compact
+metrizable zero-dimensional factor whose action is still free and minimal.
+The virtually nilpotent theorem of Bartels, as recorded in Szabo--Wu--
+Zacharias Theorem 8.8, gives finite nuclear dimension to that separable factor
+crossed product, and the simple-algebra theorem collapses it to at most one.
+Injectivity of finite-dimensional operator systems extends the incoming
+c.p.c. maps to the original algebra, preserving the one-colour bound.  The
+Pimsner--Voiculescu boundary of a canonical group unitary is the nonzero unit
+class, excluding zero.
 
-Restriction of coefficients gives a quotient from `C*_u(Z^d)` onto this
-dimension-one algebra, and it factors through the uniform Roe corona because
-it annihilates `c_0(Z^d) crossed_product_r Z^d=K(ell^2(Z^d))`.  Thus, for
-`d>=2`, every canonical minimal boundary quotient erases the higher-
-dimensional lower bound rather than detecting it.  This does not exclude
-larger nuclear dimension in a nonminimal quotient.
+Restriction of coefficients gives a quotient from `C*_u(G)` onto this
+algebra of nuclear dimension at most one (exactly one under infinite
+abelianization), and it factors through the uniform Roe corona because
+it annihilates `c_0(G) crossed_product_r G=K(ell^2(G))`.  Thus, for
+every infinite finitely generated virtually nilpotent `G` with `asdim(G)>=2`,
+every canonical minimal boundary quotient erases the higher-dimensional lower
+bound rather than detecting it.  This does not exclude larger nuclear
+dimension in a nonminimal quotient.
 
 ## Exact remaining frontier
 

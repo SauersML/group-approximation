@@ -94,7 +94,11 @@ preserves freeness and minimality in metrizable zero-dimensional factors,
 collapses each separable factor's finite nuclear dimension to at most one,
 and extends the incoming c.p.c. maps back to the full quotient; a Pimsner--
 Voiculescu index excludes zero.  The theorem in fact applies to every infinite
-finitely generated nilpotent group.  These maps already factor through the
-uniform Roe corona.  Thus for `d>=2` no minimal boundary quotient can carry
-the desired rank-`d` nuclear-dimension lower bound.  Nonminimal quotients and
+finitely generated virtually nilpotent group with infinite abelianization, a
+class strictly larger than the nilpotent groups; without the abelianization
+hypothesis it still gives nuclear dimension at most one for every infinite
+finitely generated virtually nilpotent group.  These maps already factor
+through the uniform Roe corona.  Thus for every such group of asymptotic
+dimension at least two, no minimal boundary quotient can carry the desired
+full-dimensional nuclear-dimension lower bound.  Nonminimal quotients and
 genuinely ambient lower-bound invariants remain open.

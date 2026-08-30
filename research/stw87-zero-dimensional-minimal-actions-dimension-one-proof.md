@@ -2,7 +2,7 @@
 rg: 2
 id: stw87-zero-dimensional-minimal-actions-dimension-one-proof
 kind: route
-title: Preserve freeness in metrizable factors, use the uniform finite bound, and detect K1 by the PV index
+title: Preserve freeness in metrizable factors, collapse their finite dimension to one, and detect K1 by the PV index
 target: stw87-zero-dimensional-minimal-actions-have-dimension-one
 requires: []
 ---
@@ -13,7 +13,7 @@ Put
 A=C(K) crossed_product_r G.
 ```
 
-## Uniform finite nuclear dimension
+## A local one-colour bound
 
 Fix a finite subset of `A` and an error `epsilon>0`.  Approximate its elements
 by finitely many algebraic crossed-product sums, and let `S subset C(K)` be
@@ -35,19 +35,22 @@ compact, metrizable and zero-dimensional.
 
 The factor action on `Y` is minimal because `K->Y` is an equivariant factor
 map and the action on `K` is minimal.  It is free as well: if `y` were fixed by
-`g!=0`, choose `j` with `1_(U_(g,j))(y)=1`.  Fixedness would also make the
+`g!=e`, choose `j` with `1_(U_(g,j))(y)=1`.  Fixedness would also make the
 translate of this projection take value one at `y`, contradicting (1).
 
 Szabo--Wu--Zacharias, [*Rokhlin dimension for actions of residually finite
-groups*](https://arxiv.org/abs/1408.6096), prove a finite nuclear-dimension
-bound for crossed products arising from free actions of finitely generated
-nilpotent groups on finite-dimensional compact metrizable spaces.  Thus
+groups*, Theorem 8.8](https://arxiv.org/abs/1408.6096), using Bartels' extension
+of their amenability-dimension input, prove that a free minimal action of an
+infinite finitely generated virtually nilpotent group on a finite-dimensional
+compact metrizable space has a simple ASH crossed product of topological
+dimension at most two.  Thus
 
 ```text
 B=D crossed_product_r G subset A
 ```
 
 is separable, simple, unital, nonelementary and has finite nuclear dimension;
+ASH topological dimension at most two gives the last property, and
 nonelementarity follows because an infinite group cannot act freely on a
 finite space.  Winter's
 finite-nuclear-dimension theorem and Castillejos--Evington--Tikuisis--White--
@@ -70,12 +73,15 @@ error were arbitrary,
 dim_nuc(A)<=1.                                         (3)
 ```
 
+This proves `(VU)` for every infinite finitely generated virtually nilpotent
+`G`; no condition on its abelianization was used.
+
 ## The value is not zero
 
-An infinite finitely generated nilpotent group has infinite abelianization
-(a finitely generated nilpotent group with finite abelianization is finite),
-so choose an epimorphism `pi:G->Z`.  If `H=ker(pi)` and `t` maps to `1`, then
-`G=H semidirect_product <t>`.  Accordingly, write
+Since `G` is finitely generated and `G_ab` is infinite, its finitely generated
+abelianization maps onto `Z`.  Choose an epimorphism `pi:G->Z`.  If
+`H=ker(pi)` and `t` maps to `1`, then `G=H semidirect_product <t>`.
+Accordingly, write
 
 ```text
 A_0=C(K) crossed_product_r H,
@@ -93,7 +99,8 @@ partial([u])=+/-[1_(A_0)]!=0.                          (4)
 
 Thus `K_1(A)!=0`.  Nuclear dimension zero is equivalent to local AF, also in
 the nonseparable setting, and every locally AF algebra has zero `K_1`.
-Therefore `dim_nuc(A)!=0`; together with (3), this proves `(NM)`.
+Therefore `dim_nuc(A)!=0`; together with (3), this proves `(NM)` under the
+additional infinite-abelianization hypothesis.
 
 ## Minimal Stone--Cech quotients
 
@@ -105,7 +112,9 @@ the resulting finite partition of `G`, so no ultrafilter can be fixed by `g`.
 Hence the restricted action on every invariant closed `M subset beta G` is
 free, and `M` is zero-dimensional.  A minimal nonempty `M` exists by
 compactness and lies in the boundary because no principal orbit is minimal.
-Since the nilpotent group `G` is amenable, restriction `C(beta G)->C(M)`
-passes to the reduced crossed-product quotient `(BQ)`.  It annihilates
+Since the virtually nilpotent group `G` is amenable, restriction
+`C(beta G)->C(M)` passes to the reduced crossed-product quotient `(BQ)`.  It
+annihilates
 `c_0(G) crossed_product_r G=K(ell^2(G))`, so `(BQ)` factors through the uniform
-Roe corona.  Applying `(NM)` finishes the boundary assertion.
+Roe corona.  Applying `(VU)` gives the asserted upper bound, and `(NM)` gives
+equality when `G_ab` is infinite.
