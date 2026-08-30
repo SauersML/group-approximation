@@ -162,3 +162,16 @@ the capacity program does not formally weaken XCIII after passing to the
 residual ideal: it repackages the missing quasitracial direction as a
 centrally finite positive cut.  Its gain is geometric localization, not an
 automatic comparison proof for residual elements.
+
+After saturation the residual extension itself splits canonically.
+`stw93-residual-extension-splits-over-factor` embeds
+`F(Z)/J` back into `D/K_Z^sat` as a unital section, so every element has a
+unique residual-plus-factor decomposition.  Consequently a hypothetical
+extra ordinary trace cannot alter the factor quotient.  By
+`stw93-extra-trace-is-a-central-residual-layer-over-the-factor`, its GNS
+closure instead contains a nonzero central support `z` for the residual
+ideal, and conditional expectation onto the factor section satisfies
+`E_Q(z)=tau(z)1`.  Full-factor spectral gap constructs the factor section
+but, being tracial-`2`-norm information, does not exclude this norm-level
+central layer.  Ruling out that layer is an exact ordinary-trace formulation
+of the remaining residual obstruction.
