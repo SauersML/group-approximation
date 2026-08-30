@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw01-quasitrace-status-and-local-permanence-audit-2026-08-30.md
   - research/artifacts/stw01-asymptotic-quasitracial-cut-audit-2026-08-30.md
+  - research/artifacts/stw01-sigma-unital-extension-audit-2026-08-30.md
 ---
 
 **Problem I of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  If `τ` is a bounded quasitrace on a C\*-algebra, must
@@ -74,3 +75,17 @@ hereditary head is linear, while the complementary tail factors through
 the head/quotient hypotheses must retain either a positive asymptotic
 idempotence defect or a positive commutator defect against one fixed
 ambient element.
+
+For sigma-unital ideals these asymptotic hypotheses now give a full
+extension theorem.  By
+`stw01-sigma-unital-extensions-preserve-qt-linearity`, if both `I` and
+`A/I` have bounded-quasitrace linearity and `I` is sigma-unital, then `A`
+has bounded-quasitrace linearity.  For an ambient quasitrace, the ideal
+restriction is a finite trace; its multiplier extension makes every
+increasing approximate unit asymptotically central in the associated
+`2`-seminorm.  Functional-calculus cuts are asymptotically idempotent.
+No separability of `A` is needed.  There is a real distinction from norm
+quasicentrality: `stw01-separable-ideal-does-not-force-sequential-qcau`
+shows that `K(H)` has no sequential quasicentral approximate unit relative
+to `B(H)`, even after adjoining a scalar summand carrying a fixed nonzero
+trace.
