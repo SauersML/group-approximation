@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw82-one-color-gluing-audit-2026-08-30.md
+  - research/artifacts/stw82-projectional-cut-obstruction-audit-2026-08-30.md
 ---
 
 **Problem LXXXII of Schafhauser--Tikuisis--White,
@@ -62,6 +63,15 @@ The repository now removes "separable" from the subhomogeneous case:
 the formula whenever both endpoints are subhomogeneous, with no separability
 hypothesis.  In particular, arbitrary commutative extensions obey the
 maximum formula.
+
+There is also a new unconditional middle-algebra class:
+`stw82-one-dimensional-middle-forces-maximum` shows that every
+ideal--quotient decomposition of an arbitrary algebra `E` with
+`dim_nuc(E)<=1` satisfies the maximum formula.  The only possible low-end
+failure would have both endpoints of dimension zero; AF extension closure
+on the separable counterexample supplied by the reflection theorem rules
+this out.  Consequently any counterexample has middle nuclear dimension at
+least two.
 
 The project reduction
 `stw82-counterexamples-reflect-to-separable-extensions` shows that the word
@@ -120,3 +130,14 @@ approximate unit has overlap norm exactly `1/4`, although the maximum
 formula holds.  Thus the unresolved gluing step must reorganize the colour
 maps or absorb their transition region; perturbing the two raw cuts cannot
 be a general proof.
+
+The global form of this barrier is now exact.
+`stw82-raw-two-cut-reuse-iff-quasidiagonal` proves that a separable
+extension admits an asymptotically projectional quasicentral approximate
+unit -- equivalently, its two raw complementary supports can be perturbed
+to orthogonal supports -- if and only if the extension is quasidiagonal.
+So raw-cut perturbation cannot enlarge the already known quasidiagonal
+positive class.  After the separable/stable/essential reductions, the exact
+remaining hinge is to redistribute the transition band among the endpoint
+colours in a non-quasidiagonal extension, as the known optimal proofs do
+using special classification input.

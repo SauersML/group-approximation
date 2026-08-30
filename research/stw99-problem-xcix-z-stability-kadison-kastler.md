@@ -48,6 +48,19 @@ using the strongly self-absorbing structure.  Z-stability requires
 arbitrarily small centrality errors while `gamma` is fixed, and no such
 uniform structural error-improvement principle is known.
 
+There is nevertheless a sharp asymptotic rigidity statement.  If a sequence
+has unital Z-stable first coordinates and distance tending to zero, the
+nearby coordinates need not be unital: the two norm ultraproducts are still
+literally equal, the common ultraproduct is automatically unital, and it is
+Z-saturated.  Every separable subset has a commuting unital copy of Z.
+Quantitatively, in the common-unit coordinate setting,
+`stw99-xcix-fixed-centrality-windows-collapse-at-zero-distance` shows that
+every fixed finite centrality defect of the nearby coordinates tends to zero,
+uniformly over the chosen contractions.  Thus a counterexample sequence must
+escape to increasing witness complexity or decreasing tolerance even though
+its limit has exact relative-commutant copies.  This isolates a failure of
+uniform coordinate reflection, not an invariant defect of the limit algebra.
+
 Finally, Z-stability is closed, rather than known open, in the space of
 separable unital subalgebras of one fixed ambient algebra containing a common
 unit; see `stw99-xcix-z-stability-is-kk-closed`.  This only rules out one fixed

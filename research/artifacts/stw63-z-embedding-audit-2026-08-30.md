@@ -33,7 +33,22 @@ searches, followed by inspection of the theorem statements.
    Applied to `Z`, this closes every II_1-factor codomain.  The paper also
    records Kirchberg's asymptotic uniqueness theorem for simple purely
    infinite codomains (Appendix A, Theorem A.2).
-4. Targeted arXiv searches through 2026-08-30 for the exact combinations
+4. Q. Li, D. Hadwin, and W. Liu, *Approximate Equivalence in von Neumann
+   Algebras*, *Operators and Matrices* 17 (2023), 1--23,
+   DOI 10.7153/oam-2023-17-01; arXiv:2008.06619,
+   <https://arxiv.org/abs/2008.06619>, supplies two broader rank theorems
+   relevant to `Z`.  In the published numbering, Theorem 4 says that for an
+   algebra relatively LF in its bidual and an arbitrary finite von Neumann
+   target, equality after the center-valued trace is equivalent to norm
+   approximate unitary equivalence.  Theorem 8 says that equal elementwise
+   von Neumann rank implies norm approximate unitary equivalence, with
+   compact-relative control, for maps from a separable unital ASH algebra
+   into a semifinite von Neumann algebra acting on a separable Hilbert space.
+   These theorems do not state LXIII for general C-star codomains.  The new
+   graph route verifies their hypotheses for arbitrary Jiang--Su embeddings
+   and proves the needed support-rank collapse on the properly infinite
+   central piece.
+5. Targeted arXiv searches through 2026-08-30 for the exact combinations
    "Jiang--Su", "embedding", "approximately unitarily equivalent", and
    "Problem LXIII" found no later claim resolving the arbitrary unital
    codomain question.  The May 2026 paper arXiv:2605.22585 concerns unitary
@@ -49,7 +64,7 @@ as a premise in any graph route added with this artifact.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate three facts which do not depend on the literature
+The graph additions isolate four facts which do not depend on the literature
 audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -64,3 +79,12 @@ audit.
    concatenation mechanism and exposes the remaining obstruction as topology
    of approximate relative commutants, rather than K-theory or traces of the
    embeddings.
+4. Every finite von Neumann algebra, without a countability assumption, and
+   every separably acting semifinite von Neumann algebra is a positive
+   codomain.  On a finite algebra, the center-valued trace of every Jiang--Su
+   embedding is forced to be `tau_Z(.)1`.  On a properly infinite semifinite
+   central part, fullness forces the support of every nonzero image element
+   to be a full properly infinite projection, hence equivalent to the unit.
+   Thus every possible counterexample becomes approximately unitarily
+   equivalent in every finite shadow and every separably acting semifinite
+   shadow.
