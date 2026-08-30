@@ -43,6 +43,26 @@ No example in either corridor is constructed.  The finite target is now a
 stable-weak-cancellation defect repaired locally to stable rank one by Z; the
 infinite target is a genuine change of finiteness/comparison under Z.
 
+## New non-simple positive theorem
+
+Let `D` be simple, separable, stably finite, and pure.  Lin's theorem gives
+stable rank one, and STW Proposition 23 gives the map-level isomorphism
+`Cu(D)->Cu(D tensor Z)`.  Antoine--Dadarlat--Perera--Santiago, Theorem 2.6,
+naturally identifies
+
+```text
+Cu(C([0,1],D)) = Lsc([0,1],Cu(D)).
+```
+
+The same formula holds for `D tensor Z`, and the first-factor map becomes
+pointwise application of the fiber Cu isomorphism.  Hence
+`C([0,1],D)` is Cu-regular.  This is not merely a Z-stability argument: `D`
+need not absorb Z, and the interval field then need not absorb Z either.
+
+The analogous circle calculation has an additional compact monodromy term
+`V(C(T,D))`.  Controlling it requires cancellation/nonstable K-theory beyond
+the interval theorem, so no circle generalization is claimed here.
+
 ## Explicit unstable-clutching construction target
 
 The classical nonzero class `alpha in pi_5(U(2))=Z/2` defines a nontrivial

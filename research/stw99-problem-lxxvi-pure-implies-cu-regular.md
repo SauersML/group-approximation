@@ -39,6 +39,11 @@ There is also a genuinely non-simple positive class.  A pure, separable,
 locally subhomogeneous algebra of stable rank one and topological dimension
 zero is Z-stable, hence Cu-regular, by
 `stw99-lxxvi-locally-subhomogeneous-positive-class`.
+Independently, every interval field over a simple separable stably finite pure
+fiber is Cu-regular by
+`stw99-lxxvi-interval-fields-over-simple-pure-fibers`; this second result uses
+the explicit Cu formula for interval fields and does not assume the fiber is
+Z-stable.
 
 ## Literature boundary
 
