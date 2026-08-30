@@ -40,6 +40,7 @@ variable {G : Type u} [Group G] {Λ : Type w}
 def peripheralValues (w : List (RelLetter G Λ)) : Set G :=
   {x : G | ∃ a ∈ w, ∃ mu : Λ, a = RelLetter.comp mu x}
 
+omit [Group G] in
 theorem peripheralValues_finite (w : List (RelLetter G Λ)) :
     (peripheralValues w).Finite := by
   classical
@@ -134,7 +135,8 @@ theorem exists_word_of_boundedBaseSpellings (D D' : RelGenSet G Λ)
             · exact hqHeadLet b hb
             · exact hqTailLet b hb
           · rw [OsinComponents.listVal_append, hqHeadVal, hqTailVal,
-              RelLetter.listVal_cons]
+              OsinComponents.listVal_cons]
+            rfl
           · rw [OsinComponents.avoidsFrom_append]
             refine ⟨hqHeadAv, ?_⟩
             rwa [hqHeadVal]
@@ -142,7 +144,8 @@ theorem exists_word_of_boundedBaseSpellings (D D' : RelGenSet G Λ)
             omega
       | comp mu x =>
           have hx : x ∈ D.fam mu := by
-            have hx' := hlet (RelLetter.comp mu x) List.mem_cons_self
+            have hx' : x ∈ D'.fam mu :=
+              hlet (RelLetter.comp mu x) List.mem_cons_self
             rw [hfam] at hx'
             exact hx'
           refine ⟨RelLetter.comp mu x :: qTail, ?_, ?_, ?_, ?_⟩
@@ -150,7 +153,8 @@ theorem exists_word_of_boundedBaseSpellings (D D' : RelGenSet G Λ)
             rcases List.mem_cons.mp hb with rfl | hb
             · exact hx
             · exact hqTailLet b hb
-          · rw [RelLetter.listVal_cons, hqTailVal]
+          · rw [OsinComponents.listVal_cons, hqTailVal]
+            rfl
           · exact ⟨by simpa [hfam] using havHead, hqTailAv⟩
           · rw [List.length_cons, List.length_cons, Nat.mul_succ]
             omega
