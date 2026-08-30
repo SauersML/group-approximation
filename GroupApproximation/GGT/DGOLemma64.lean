@@ -136,6 +136,47 @@ theorem dist_same_parameter_le_of_geodesic_close_endpoints
     _ = dist (p t) (q s) + |s - t| := by rw [hparam]
     _ ≤ 2 * (E + 6 * δ) := by linarith
 
+/-- Equal arclength parameters on geodesics with both pairs of endpoints
+`E`-close remain uniformly close.  Unlike the preceding common-start
+specialization, this is the form used for two translated axial segments in
+Bestvina--Fujiwara Proposition 6. -/
+theorem dist_same_parameter_le_of_geodesic_endpoints_close
+    {δ E Lp Lq : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+    (hE : 0 ≤ E) {p q : ℝ → X}
+    (hp : IsGeodesicSegment p 0 Lp) (hLp : 0 ≤ Lp)
+    (hq : IsGeodesicSegment q 0 Lq) (hLq : 0 ≤ Lq)
+    (h0 : dist (p 0) (q 0) ≤ E)
+    (h1 : dist (p Lp) (q Lq) ≤ E)
+    {t : ℝ} (htp : t ∈ Set.Icc (0 : ℝ) Lp)
+    (htq : t ∈ Set.Icc (0 : ℝ) Lq) :
+    dist (p t) (q t) ≤ 3 * E + 12 * δ := by
+  obtain ⟨s, hs, hclose⟩ := exists_close_of_geodesic_close_endpoints
+    hδ hδ0 hgeo hE hp hLp hq hLq h0 h1 htp
+  have hpt : dist (p 0) (p t) = t := by
+    rw [hp.dist_eq ⟨le_rfl, htp.1.trans htp.2⟩ htp, zero_sub,
+      abs_neg, abs_of_nonneg htp.1]
+  have hqs : dist (q 0) (q s) = s := by
+    rw [hq.dist_eq ⟨le_rfl, hs.1.trans hs.2⟩ hs, zero_sub,
+      abs_neg, abs_of_nonneg hs.1]
+  have hts : t ≤ s + (2 * E + 6 * δ) := by
+    have htri := dist_triangle4 (p 0) (q 0) (q s) (p t)
+    rw [hpt, hqs, dist_comm (q s) (p t)] at htri
+    linarith
+  have hst : s ≤ t + (2 * E + 6 * δ) := by
+    have htri := dist_triangle4 (q 0) (p 0) (p t) (q s)
+    rw [hqs, dist_comm (q 0) (p 0), hpt] at htri
+    linarith
+  have hparam : dist (q s) (q t) = |s - t| := hq.dist_eq hs htq
+  have habs : |s - t| ≤ 2 * E + 6 * δ := by
+    rw [abs_le]
+    constructor <;> linarith
+  calc
+    dist (p t) (q t) ≤ dist (p t) (q s) + dist (q s) (q t) :=
+      dist_triangle _ _ _
+    _ = dist (p t) (q s) + |s - t| := by rw [hparam]
+    _ ≤ 3 * E + 12 * δ := by linarith
+
 /-- **DGO Lemma 6.4.**  A loxodromic WPD element of a geodesic hyperbolic
 space satisfies WPD at every sufficiently large power. -/
 theorem isWPDAtEventually_of_geodesic {δ : ℝ}
