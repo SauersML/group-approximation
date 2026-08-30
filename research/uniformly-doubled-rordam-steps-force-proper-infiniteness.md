@@ -39,10 +39,11 @@ distinct representatives, Rørdam Prop 3.2/4.5(i)) and the divisibility
 demands of a CAR tower meet exactly at the rank-equals-half-dimension
 boundary, on opposite sides; every absorption or halving trick crosses it.
 A positive solution of Problem LXVI along Rørdam lines must therefore
-leave rank-one building blocks: the surviving direction is a tower of
-higher-rank blocks `η_m` with `η_m ≅ η_{m+1} ⊕ η_{m+1}` and
-`e(η_m) ≠ 0` at every level — Euler classes with all 2-power roots
-nonvanishing exist in `H^*((S²)^∞)` (sums of at least `2^m` disjoint
-quadratic monomials, e.g. `ε = Σ_t x_{2t−1}x_{2t}` with `ε^r = r!·e_r ≠ 0`),
-and the open crux is realizing them by bundles compatible with the
-dynamics; recorded in the design dossier.
+leave the uniform multiplicity mechanism.  A literal infinite finite-rank
+bundle chain `eta_m ~= 2 eta_(m+1)` is rank-impossible.  The corrected
+surviving object is a stagewise triangle `eta_(K,m)`, `m<=K`, whose depth
+grows with the stage.  `triangular-hopf-bundles-admit-coherent-dyadic-euler-roots`
+shows that rank, integral Euler classes, and ordered K-theory permit such
+coherent triangles.  The open crux is analytic: incorporate them into the
+dynamics while preserving finiteness without globally duplicating the
+line-bundle multiset.

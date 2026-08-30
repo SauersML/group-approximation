@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw99-lxvi-coherent-car-no-go-audit-2026-08-30.md
+  - research/artifacts/stw99-lxvi-triangular-bundle-feasibility-2026-08-30.md
 ---
 
 **Problem LXVI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras:
@@ -39,6 +40,18 @@ problem to one construction rather than deferring it: build the CAR algebra
 inside a finite simple corner while its double is already infinite.
 The parallel route `stw99-lxvi-via-nonstable-finite-car-seed` removes the
 need to prescribe which finite amplification first becomes infinite.
+
+The higher-rank Rordam direction has one precise positive checkpoint.
+A literal infinite finite-rank chain `eta_m ~= 2 eta_(m+1)` is impossible,
+but `triangular-hopf-bundles-admit-coherent-dyadic-euler-roots` constructs
+compatible finite triangles of increasing depth.  Every bundle Euler
+class is integrally nonzero, the connecting maps are induced by injective
+diagonal star homomorphisms, and the rank direct limit is `Z[1/2]` with
+nonzero positive classes `q_m=2q_(m+1)`.  Thus K-theory and Chern classes
+do not obstruct the corrected stagewise programme.  The remaining issue
+is analytic: the known implementation by identical global branches is
+exactly the mechanism that destroys Hall finiteness and forces proper
+infiniteness.
 
 There is a new broad obstruction to installing the coherent CAR tower.
 `stw99-lxvi-finite-index-car-envelopes-are-stably-finite` proves that a

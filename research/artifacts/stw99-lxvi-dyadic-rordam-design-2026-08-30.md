@@ -223,27 +223,22 @@ divisibility or absorption device crosses from the finite to the properly
 infinite side.  Dyadic structure must therefore be carried by the
 building blocks, not by multiplicities:
 
-**Surviving programme (the ε-tower).**  Seek bundles `η_1, η_2, …` with
-`η_m ≅ η_{m+1} ⊕ η_{m+1}` and `e(η_m) ≠ 0` for all `m`.  Then
-`e(η_1) = e(η_m)^{2^{m−1}}`, so `e(η_m)` must be a class whose all
-2-power powers are nonvanishing.  Such classes exist in
-`H^*((S²)^∞; Z)`: for `ε_T = Σ_{t=1}^{T} x_{2t−1} x_{2t}` (disjoint
-quadratic monomials), `ε_T^r = r! · Σ_{|F|=r} Π_{t∈F} μ_t ≠ 0` for
-`r ≤ T`, and the ring is torsion-free.  The open crux is realizability:
-a rank-`2^{K−m}` bundle `η_m` with `e(η_m) = ε_{T_m}`-type classes and
-`η_m ≅ 2·η_{m+1}` — note `e(2ξ) = e(ξ)²` requires
-`e(η_{m+1})² = e(η_m)`, i.e. square ROOTS going up the tower, and
-`(Σ_t μ_t)² = 2! Σ_{t<t'} μ_t μ_{t'}`: the even coefficients force the
-root classes to have unit coefficients and the squared classes even ones,
-which is consistent (`ε` squared has coefficient `2` monomials; Euler
-classes of sums of two equal bundles are exactly such squares).  The
-finiteness certificate must be redeveloped for higher-rank blocks
-(products of `ε`-type classes instead of Prop 3.2), and the dynamics must
-tensor by the `η`-blocks.  Whether the Chern data `(rank 2^{K−m},
-e = ε_{T_m})` is realizable over products of spheres, compatibly with
-`η_m ≅ 2η_{m+1}`, is precisely where Problem LXVI now sits in this
-approach; symplectic/orthogonal structures on `η` (which force even
-splittings) are the natural candidate source.
+**Surviving programme (corrected triangular form).**  A literal infinite
+chain of nonzero finite-rank bundles `eta_m ~= 2 eta_(m+1)` is impossible:
+its first rank would be divisible by every power of two.  The correct
+object has only finitely many levels at each stage.  The established node
+`triangular-hopf-bundles-admit-coherent-dyadic-euler-roots` gives an
+explicit model: on `X_K=(S^2)^(2^K)`, let `L_K` be the tensor product of
+all coordinate Hopf lines and put
+`eta_(K,m)=2^(K-m)L_K`, `0<=m<=K`.  Every Euler class is nonzero, and the
+map `xi -> 2(D_K tensor pi_K^*xi)` carries the `K`-triangle coherently
+into the `(K+1)`-triangle.  Its rank direct limit is `Z[1/2]`.
+
+Thus the Chern-data realizability issue is settled positively at the
+bundle and ordered-K-theory level.  The remaining crux is not extraction
+of 2-power roots but analytic finiteness: implement the triangles inside
+a simple multiplier-algebra system without using the globally duplicated
+branch multiplicities already proved to force proper infiniteness.
 
 ## 8. The 2-adic cone obstruction (same day, second pass)
 
