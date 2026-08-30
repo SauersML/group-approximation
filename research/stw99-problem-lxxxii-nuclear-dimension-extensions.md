@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/stw82-one-color-gluing-audit-2026-08-30.md
   - research/artifacts/stw82-projectional-cut-obstruction-audit-2026-08-30.md
   - research/artifacts/stw82-transition-band-colour-graph-audit-2026-08-30.md
+  - research/artifacts/stw82-order-zero-spectral-subdivision-audit-2026-08-30.md
 ---
 
 **Problem LXXXII of Schafhauser--Tikuisis--White,
@@ -177,3 +178,22 @@ such band depth proves nuclear dimension at most `r`, exactly.  This moves
 the universal hinge again: the missing theorem is a structure-free way to
 subdivide arbitrary transition maps into common-cut spectral bands while
 preserving their order-zero structure and approximation quality.
+
+That local subdivision problem is now solved.
+`stw82-quasicentral-cutdowns-repair-to-banded-order-zero` proves that a
+finite-dimensional outgoing order-zero map can be cut by any finite
+quasicentral multiplier partition of unity and perturbed, inside the
+corresponding hereditary band algebras, to exact order-zero maps whose sum
+approximates the original map.  The proof uses projectivity of the cone over
+a finite-dimensional algebra, and requires no projectional cut or extension
+regularity.
+
+There is also an exact limitation.
+`stw82-scalar-band-depth-floor` proves
+that independently subdividing `N` original colours by scalar partitions of
+unity produces band depth at least `N` at every spectral point.  Thus doing
+this separately to all endpoint colours cannot improve the sum of their
+colour counts to the desired maximum.  The remaining universal hinge is a
+support-sensitive **coupled** subdivision: it must exploit operator
+orthogonality or support vanishing across different endpoint colours, not
+only scalar partitions of the common cut variable.

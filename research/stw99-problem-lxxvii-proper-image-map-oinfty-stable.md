@@ -49,6 +49,18 @@ when searching for a counterexample.
   invalid: those supports need not belong to `phi(A)`, and
   `proper-infinity-does-not-descend-to-color-supports` gives the elementary
   obstruction already inside `B(H)`.
+- At nuclear dimension zero the support issue is now exact.
+  `stw77-fd-commutant-splitting-iff-proper-supports` proves that the commutant
+  of a finite-dimensional model contains two orthogonal isometries exactly
+  when each minimal block projection is properly infinite.  Consequently
+  `stw77-proper-support-models-force-oinfty-stability` solves every zero-color
+  instance admitting such models.  What remains is selection or fusion of
+  the finite-support junk blocks, not an estimate inside the model commutant.
+  In particular, there is no junk obstruction when every nonzero projection
+  of `B` is properly infinite:
+  `stw77-zero-maps-into-projectionwise-proper-targets` proves O-infinity
+  stability for every nuclear-dimension-zero unital map into such a target,
+  even without the problem's pointwise image hypothesis.
 - `stw77-hypotheses-and-stability-descend-to-quotients` allows quotient
   localization.  In particular, failure in any codomain quotient detects
   failure of the original map, but non-stability need not survive in some

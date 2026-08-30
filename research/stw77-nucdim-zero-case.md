@@ -18,6 +18,18 @@ dimension zero is O-infinity-stable.
   `stw77-zero-case-via-projection-return` is therefore invalidated.
 - The AF-range theorem proves the case in which the local models can be
   chosen internally and coherently.
+- `stw77-fd-commutant-splitting-iff-proper-supports` identifies the exact
+  obstruction inside each one-sided finite-dimensional model: its relative
+  commutant contains the required orthogonal isometries if and only if every
+  minimal block support is properly infinite.  Hence
+  `stw77-proper-support-models-force-oinfty-stability` closes the zero-case
+  whenever the models can be selected with no finite support block.  This
+  assumption is strictly weaker than returning their projections to the
+  projectionless range, but is not yet forced by nuclear dimension zero.
+- As a consequence, `stw77-zero-maps-into-projectionwise-proper-targets`
+  proves the entire zero-color assertion whenever every nonzero projection
+  of the target is properly infinite.  It does not even require proper
+  infiniteness of all nonzero image positive elements.
 - The `B(H)`-target theorem supplies a different positive mechanism:
   essential representation absorption merges two whole copies of the range
   and never asks finite-dimensional support projections to return.
