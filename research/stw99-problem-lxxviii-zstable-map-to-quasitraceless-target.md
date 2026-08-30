@@ -82,14 +82,16 @@ The extension input is also recorded independently in
 through finite extensions and countable increasing ideal filtrations in the
 separable nuclear category.  No nonnuclear gluing claim is used.
 
-The finite composition series can be transfinite but countable.
+The composition-series argument extends to arbitrary ordinal length.
 `stw78-countable-ordinal-regular-targets` proves the same conclusion for a
-continuous ideal series indexed by any countable ordinal, with algebraically
-simple almost-unperforated successor layers.  The bounded layer trace extends
-through `B/I_beta` at every successor, including successors of limits.  At a
-limit ordinal, a countable cofinal sequence turns continuity of the series
-into a sequential inductive limit, where `O_infinity`-stability persists.
-No uncountable-cofinality filtration is covered.
+continuous ideal series indexed by any ordinal, with algebraically simple
+almost-unperforated nonzero successor layers.  The bounded layer trace
+extends through `B/I_beta` at every successor, including successors of
+limits.  At a limit of countable cofinality, a cofinal sequence turns
+continuity into a sequential inductive limit.  At a limit of uncountable
+cofinality, separability forces the ideal chain to have stabilized at an
+earlier stage.  Thus the proof covers arbitrary ordinal indexing without
+invoking uncountable inductive-limit permanence.
 
 There is also a positive nonsimple class with no composition-series
 hypothesis.  `stw78-finite-dimensional-simple-fiber-targets-solve-map`
