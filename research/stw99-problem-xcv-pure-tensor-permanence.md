@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/stw95-nonunital-ash-unitization-audit-2026-08-30.md
   - research/artifacts/stw95-scattered-primitive-tensor-localization-audit-2026-08-30.md
   - research/artifacts/stw95-central-block-tensor-purity-audit-2026-08-30.md
+  - research/artifacts/stw95-strongly-purely-infinite-cellular-tensor-audit-2026-08-30.md
 ---
 
 **Problem XCV, general part, of Schafhauser--Tikuisis--White.**  Is the
@@ -120,6 +121,39 @@ particular, if `A` is pure and either simple or residually stably finite,
 then it is enough that every simple subquotient of `B` be ASH.  When `B` is
 also pure this is a positive Problem XCV class, even if the full extension
 tower `B` is neither ASH nor known to be Z-stable.
+
+There is also a purely infinite positive class, disjoint from the ASH
+mechanism.  By
+`stw95-strongly-purely-infinite-cellular-factor-preserves-purity`, let `A`
+be separable, exact, and strongly purely infinite.  Then `A tensor_min B` is
+strongly purely infinite, hence pure, for every separable `B`; exactness of
+`B` is not required.  It is enough that `A` be exact and ordinarily purely
+infinite with the ideal property, or with a compact-open basis in its
+primitive spectrum.
+
+The same theorem has a transfinite version: let `A` instead have a continuous
+ordinal ideal filtration whose successor quotients are strongly purely
+infinite, and now let `B` be separable and exact.
+Kirchberg--Sierakowski make every cell product strongly purely infinite;
+its Cu-semigroup is therefore an idempotent ideal lattice and hence pure.
+The exact transfinite-filtration theorem then gives `A tensor_min B` pure.
+Taking `B` to be the scalar algebra shows that the filtered algebra `A` was
+already pure, so an exact pure `B` gives a genuine Problem XCV pair.  It is
+enough for every cell to be ordinarily purely infinite with the ideal
+property—or, equivalently in this separable purely infinite setting, to have
+primitive spectrum with a basis of compact-open sets.  The cells need not be
+simple, nuclear, Z-stable, ASH, or locally subhomogeneous, and the extensions
+need not split.
+
+The tensor-exactness asymmetry can also be reversed.  If every successor
+cell is exact and strongly purely infinite and every successor quotient map
+has a cpc section, then the other tensor factor may be arbitrary, including
+nonexact.  Exact strong pure infiniteness makes every local product strongly
+purely infinite, while
+`stw95-semisplit-successor-filtration-reduction` shows directly that cpc
+semisplitting is enough to preserve the successor kernels under arbitrary
+minimal tensoring.  Thus a pure filtered factor of this kind tensors purely
+with every separable pure algebra.
 
 The two purity axioms require different Cu-map input.  Almost divisibility
 already follows when the canonical Cu tensor image is internally cofinal for
