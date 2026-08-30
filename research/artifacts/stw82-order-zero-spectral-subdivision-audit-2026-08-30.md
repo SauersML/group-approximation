@@ -70,3 +70,12 @@ construct a **support-sensitive coupled subdivision** of all endpoint
 colours whose total active depth is the endpoint maximum plus one.  The
 scalar depth-floor theorem proves that independent partitions of unity
 cannot do this.
+
+There is now an exact positive theorem once the coupled partition is given.
+Let every original colour have its own quasicentral operator-valued partition
+of unity and require pieces with the same new label to have orthogonal
+supports across different originals.  Cone projectivity repairs each
+cutdown inside its hereditary support, after which same-labelled pieces sum
+to one cpc order-zero map.  The missing global step is therefore construction
+of these coupled partitions from arbitrary ideal--quotient geometry, not
+order-zero repair or colour assembly after their existence.
