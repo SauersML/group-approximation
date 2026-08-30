@@ -80,3 +80,21 @@ the finite extension core.  In particular, the circle-ideal/Kirchberg-quotient
 and circle-ideal/circle-quotient directions in
 `stw83-two-non-k-extension-directions-remain-open` are not covered by the new
 circle-crown theorem, whose Kirchberg algebra is on the ideal side.
+
+The circle-by-circle obstruction is now sharper than this orientation warning.
+For every finite graph made from an upstream simple cycle, a downstream
+hereditary simple cycle, and an arbitrary finite acyclic connector,
+`stw83-circle-circle-boundary-index` computes
+
+```text
+partial_1: K_1(circle quotient) -> K_0(circle ideal),
+|partial_1(1)|=N,
+```
+
+where `N>=1` is the total directed path multiplicity through the connector.
+The computation uses the defect projection of the lifted upstream cycle
+unitary.  Consequently every genuine extension in this family is nonsplit,
+has an infinite upstream cycle projection, and has no quasicentral approximate
+unit of projections for the circle ideal.  This does not compute nuclear
+dimension, but it rules out the two most elementary color-reuse mechanisms
+for all minimal circle-by-circle models at once.

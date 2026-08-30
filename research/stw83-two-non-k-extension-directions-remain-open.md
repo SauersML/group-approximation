@@ -17,7 +17,11 @@ unresolved entries in Evington--Ng--Sims--White, Remark 5.3, are:
 The minimal graph models are two cyclic components joined in the direction which
 makes the circle component the ideal; in the first case the quotient component
 has a cycle with an exit, and in the second it is another exitless cycle.  No
-nuclear-dimension-one proof for either model is recorded here.
+nuclear-dimension-one proof for either model is recorded here.  The node
+`stw83-circle-circle-boundary-index` now computes the nonzero six-term index
+of every genuine two-cycle model with an acyclic connector.  Thus the second
+direction is no longer structurally opaque, but the computation is an
+obstruction rather than a dimension-one approximation.
 
 ## Attempts
 
@@ -28,4 +32,7 @@ essential absorption input.  The generic extension inequality only gives an
 upper bound larger than one.  The hereditary circle-crown theorem recorded here
 deliberately keeps the Kirchberg algebra on the ideal side and therefore does not
 decide either minimal model.  A solution needs a new color-reuse theorem for a
-stable circle ideal, or an explicit graph approximation of these two models.
+stable circle ideal, or an explicit graph approximation of these two models.  In
+the circle-by-circle case it cannot be a split or quasidiagonal-extension
+argument: the graph defect makes the index map nonzero for every nontrivial
+connector.

@@ -196,5 +196,33 @@ stably circle-type.  The quotient is respectively Kirchberg-type or circle-type.
 Their new theorem treats the reverse orientation, with a stable Kirchberg ideal
 and a stably commutative quotient, and cannot simply be applied to the opposite
 Busby extension.  The circle-crown class above stays on this favorable side and
-does not solve the two minimal models.  Thus the general non-Condition-(K)
-frontier still requires color reuse for stable circle ideals.
+does not solve the two minimal models.
+
+The circle-by-circle direction now has an exact graph index computation.  Let
+an upstream simple cycle feed a downstream hereditary simple cycle through a
+finite acyclic connector.  Give each downstream cycle vertex weight one and
+recursively give each connector vertex the sum of the weights of the ranges of
+its emitted edges.  If `N` is the sum of these weights over exits from the
+upstream cycle, then
+
+```text
+partial_1: K_1(circle quotient)=Z -> K_0(circle ideal)=Z
+```
+
+has absolute value `N` on a generator.  With the convention
+`partial_1([u])=[P-x*x]-[P-xx*]` and the oriented cycle generator, its value is
+`-N`; reversing either convention reverses the sign.  The computation lifts
+the quotient generator to the sum `S` of the upstream cycle edge partial
+isometries: `S*S=P` while `SS*=P-D`, and the connector recursion gives
+`[D]=N` in the downstream `K_0` group.  Every genuine connector has `N>=1`.
+
+Thus these extensions never split.  They also have no quasicentral approximate
+unit of projections: compression by such projections followed by polar
+correction would lift the quotient cycle unitary and force its boundary class
+to vanish.  The same defect exhibits the upstream cycle projection as
+infinite.  Therefore neither the stably-finite theorem nor split or
+quasidiagonal-extension color reuse can settle even the minimal
+circle-by-circle model.  The computation is a sharp obstruction, not a
+nuclear-dimension-one theorem; the general non-Condition-(K) frontier still
+requires a genuinely Toeplitz-type two-color construction for stable circle
+ideals, and the circle-ideal/Kirchberg-quotient direction remains open as well.
