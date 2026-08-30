@@ -39,10 +39,11 @@ An earlier version of this paragraph said the family was left unbuilt because
 in this repository.  That was wrong about the last two: `lp.inner_single_left`
 is used in six modules and `lp.hasSum_single` in three, along with
 `lp.evalCLM`, `lp.single_apply_self`, `lp.single_apply_ne`, `lp.norm_single`
-and `PiLp.inner_apply`.  Only `lp.single_add` is genuinely absent, and
-`EllTwoBlockFamily` proves it coordinatewise instead of assuming it.  The
-lesson is that "no precedent" is a claim about a search, and that search was
-too narrow.
+and `PiLp.inner_apply`.  It was wrong about the first too: `lp.single_add` and
+`lp.single_smul` are both in Mathlib at the pinned revision, so
+`EllTwoBlockFamily` uses them rather than reproving them.  The lesson is that
+"no precedent" was a claim about a search of this repository, and the library
+itself was never searched.
 
 Everything above the family is proved here, so the whole `𝒟` instance and the
 isometry data of `Analysis/ArvesonBHTarget` rest on that one construction.

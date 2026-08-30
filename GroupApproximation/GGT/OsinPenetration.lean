@@ -125,12 +125,21 @@ def sepSet (D : RelGenSet G Λ) (lam : Λ) (Dc : ℕ) (f g : G) :
     IsGeodesicWord D f g w ∧ EssentiallyPenetrates D lam Dc f w i k ∧
       c = QuotientGroup.mk (vertex f w i)}
 
-/-- **The index at which a geodesic essentially penetrates a coset.**  Vocabulary
-for the ordering half of Lemma 4.8. -/
-def PenetratesAt (D : RelGenSet G Λ) (lam : Λ) (Dc : ℕ) (f : G)
+/-- **The index at which a geodesic penetrates a coset.**  Vocabulary for the
+ordering half of Lemma 4.8.
+
+PENETRATION, not essential penetration.  Osin's 4.8 orders the separating
+cosets by where a geodesic penetrates them, and essentiality is not part of
+that: it lives in Definition 4.3, on the witness geodesic named there.  Asking
+for it here would make the order statement stronger than the source and, worse,
+false to transport --- two geodesics through one coset enter it at the same
+index by Lemma 4.6, but their spans are different elements.
+
+`Dc` is retained in the signature, unused, so that every call site and every
+statement quantifying over penetration indices keeps its shape. -/
+def PenetratesAt (D : RelGenSet G Λ) (lam : Λ) (_Dc : ℕ) (f : G)
     (w : List (RelLetter G Λ)) (i : ℕ) (c : G ⧸ D.fam lam) : Prop :=
-  (∃ k : ℕ, EssentiallyPenetrates D lam Dc f w i k) ∧
-    c = QuotientGroup.mk (vertex f w i)
+  (∃ k : ℕ, IsComp lam w i k) ∧ c = QuotientGroup.mk (vertex f w i)
 
 /-- **Osin, Lemma 4.8**, both halves.
 
@@ -164,8 +173,7 @@ So Lemma 4.8 is not an independent debt: both halves sit downstream of the
 def LemmaFourEight (D : RelGenSet G Λ) (lam : Λ) (Dc : ℕ) : Prop :=
   (∀ (f g : G) (w : List (RelLetter G Λ)), IsGeodesicWord D f g w →
     ∀ c ∈ sepSet D lam Dc f g, ∃ i k : ℕ,
-      EssentiallyPenetrates D lam Dc f w i k ∧
-        c = QuotientGroup.mk (vertex f w i))
+      IsComp lam w i k ∧ c = QuotientGroup.mk (vertex f w i))
   ∧ (∀ (f g : G) (w w' : List (RelLetter G Λ)),
       IsGeodesicWord D f g w → IsGeodesicWord D f g w' →
       ∀ (c c' : G ⧸ D.fam lam) (i j i' j' : ℕ),
@@ -192,7 +200,7 @@ theorem sepSet_finite {D : RelGenSet G Λ} {lam : Λ} {Dc : ℕ}
       (fun i : ℕ => (QuotientGroup.mk (vertex f w i) : G ⧸ D.fam lam))) ?_
   intro c hc
   obtain ⟨i, k, hpen, hceq⟩ := h48.1 f g w hw c hc
-  obtain ⟨hik, hkw, -, -, -⟩ := hpen.1
+  obtain ⟨hik, hkw, -, -, -⟩ := hpen
   exact ⟨i, by simp only [Set.mem_Iio]; omega, hceq.symm⟩
 
 /-- The separating-coset count, once Lemma 4.8 has made the set finite.  This

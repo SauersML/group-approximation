@@ -41,7 +41,10 @@ section MirrorClose
 variable {G : Type u} [Group G]
 
 /-- **At a matched block of the mirrored aligned case the connectors are
-trivial.**  The inverted relation is the direct one with the gaps swapped. -/
+trivial.**  The inverted relation is the direct one with the gaps swapped, so
+what (W4) has to supply here is the FIRST gap rather than the second --- the
+match at the PREVIOUS component, not the next one.  The direct lemma then
+returns both. -/
 theorem trivial_connector_of_mirroredAlignedMatch {D : GGT.RelGenSet G Bool}
     (hbase : IsSymmetricGeneratingSet D.base) {a : Bool → G} {eps rho : ℕ}
     {ms : List ℕ} {s : Bool}
@@ -54,11 +57,10 @@ theorem trivial_connector_of_mirroredAlignedMatch {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' : G}
     (hx : wordNorm D.base x ≤ eps) (hx' : wordNorm D.base x' ≤ eps)
-    (hconn : x * (a s ^ e)⁻¹ * x' = (a s ^ f)⁻¹) : e = f ∧ x = 1 ∧ x' = 1 := by
+    (hconn : x * (a s ^ e)⁻¹ * x' = (a s ^ f)⁻¹) (hx1 : x = 1) :
+    e = f ∧ x = 1 ∧ x' = 1 := by
   have hinv : x'⁻¹ * a s ^ e * x⁻¹ = a s ^ f := by
     have h := congrArg (fun g : G => g⁻¹) hconn
     simpa [mul_inv_rev, mul_assoc] using h
@@ -68,10 +70,10 @@ theorem trivial_connector_of_mirroredAlignedMatch {D : GGT.RelGenSet G Bool}
   have hnxinv : wordNorm D.base x⁻¹ ≤ eps := by
     rw [wordNorm_inv hbase]
     exact hx
-  obtain ⟨hef, hx'1, hx1⟩ :=
-    trivial_connector_of_alignedMatch hbase hgeo hdeep hsep hdiag he hf
-      hnx'inv hnxinv hinv
-  exact ⟨hef, inv_eq_one.mp hx1, inv_eq_one.mp hx'1⟩
+  obtain ⟨hef, hAinv, hBinv⟩ :=
+    trivial_connector_of_alignedMatch hbase hgeo hdeep hsep he hf
+      hnx'inv hnxinv hinv (inv_eq_one.mpr hx1)
+  exact ⟨hef, inv_eq_one.mp hBinv, inv_eq_one.mp hAinv⟩
 
 /-- **The mirrored aligned case, closed from the polygon's output.** -/
 theorem listVal_conj_of_mirroredAlignedMatch {D : GGT.RelGenSet G Bool}
@@ -87,14 +89,12 @@ theorem listVal_conj_of_mirroredAlignedMatch {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {p : List G} {c c' i j : ℕ}
     (hi : i < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     (hj : j < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     {b : Bool} {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' y : G}
     (hnx : wordNorm D.base x ≤ eps) (hnx' : wordNorm D.base x' ≤ eps)
-    (hconn : x * (a b ^ e)⁻¹ * x' = (a b ^ f)⁻¹)
+    (hconn : x * (a b ^ e)⁻¹ * x' = (a b ^ f)⁻¹) (hx1 : x = 1)
     (hlet : ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c)[i]?
       = some (GGT.RelLetter.comp b (((if b then a true else a false) ^ e)⁻¹)))
     (hlet' : ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c')[j]?
@@ -108,8 +108,8 @@ theorem listVal_conj_of_mirroredAlignedMatch {D : GGT.RelGenSet G Bool}
       = y * GGT.RelLetter.listVal
           ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c) * y⁻¹ := by
   obtain ⟨hef, -, hx'1⟩ :=
-    trivial_connector_of_mirroredAlignedMatch hbase (hgeo b) hdeep hsep hdiag
-      he hf hnx hnx' hconn
+    trivial_connector_of_mirroredAlignedMatch hbase (hgeo b) hdeep hsep
+      he hf hnx hnx' hconn hx1
   rw [hx'1, mul_one] at hy
   have hinj' : ∀ t : Bool,
       Function.Injective (fun n : ℕ => (if t then a true else a false) ^ n) := by

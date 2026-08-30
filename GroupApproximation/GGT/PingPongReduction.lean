@@ -102,15 +102,15 @@ No geometry, no hyperbolicity: an action on a bare set.  Mathlib has this — se
 the module docstring — and this `Prop` exists only so that the reduction can be
 landed before the lookup is done. -/
 def PingPongLemmaStatement : Prop :=
-  ∀ (G : Type) (_ : Group G) (X : Type) (_ : MulAction G X) (a b : G)
+  ∀ (G : Type u) (_ : Group G) (X : Type v) (_ : MulAction G X) (a b : G)
     (A B : Set X), IsPingPongPair a b A B →
       Function.Injective (FreeGroup.lift (pairMap a b))
 
 /-! ## 3.  The reduction -/
 
 /-- **A ping-pong table gives a free subgroup of rank two.** -/
-theorem freeRankTwo_of_pingPong (hPP : PingPongLemmaStatement) {G : Type}
-    [Group G] {X : Type} [MulAction G X] {a b : G} {A B : Set X}
+theorem freeRankTwo_of_pingPong (hPP : PingPongLemmaStatement.{u, v})
+    {G : Type u} [Group G] {X : Type v} [MulAction G X] {a b : G} {A B : Set X}
     (h : IsPingPongPair a b A B) : FreeRankTwo G :=
   ⟨FreeGroup.lift (pairMap a b), hPP G inferInstance X inferInstance a b A B h⟩
 
@@ -136,7 +136,7 @@ independence bounds the product of the two orbits, and swallowing because a high
 power of a loxodromic drags any point that is not already in its cone into
 it. -/
 def PingPongTableStatement : Prop :=
-  ∀ (G : Type) (_ : Group G) (X : Type) (_ : PseudoMetricSpace X)
+  ∀ (G : Type u) (_ : Group G) (X : Type v) (_ : PseudoMetricSpace X)
     (_ : MulAction G X) (delta : ℝ) (x : X),
       IsIsometricAction G X → IsHyperbolicSpace delta X →
         ∀ g h : G, IsLoxodromic g x → IsLoxodromic h x → Independent g h x →
@@ -145,8 +145,9 @@ def PingPongTableStatement : Prop :=
 /-- **The action form, reduced.**  Non-elementarity hands over two independent
 loxodromics; the geometry turns them into a table; the ping-pong lemma turns the
 table into a free pair. -/
-theorem pingPongFreeSubgroupGeometric_of (hPP : PingPongLemmaStatement)
-    (hTable : PingPongTableStatement) : PingPongFreeSubgroupGeometric := by
+theorem pingPongFreeSubgroupGeometric_of (hPP : PingPongLemmaStatement.{u, v})
+    (hTable : PingPongTableStatement.{u, v}) :
+    PingPongFreeSubgroupGeometric.{u, v} := by
   intro G instG X instX instA delta x hiso hhyp hne
   obtain ⟨g, -, h, -, hg, hh, hind⟩ := hne
   obtain ⟨M, A, B, -, htable⟩ :=
@@ -165,7 +166,7 @@ the `ℝ`-valued metric of `Cayley`, with the two products halved and the roles 
 the last two points exchanged.  So the content is a change of variables and a
 cast, and it is stated as a `Prop` only because it has not been written. -/
 def CayleyHyperbolicSpaceStatement : Prop :=
-  ∀ (G : Type) (_ : Group G), Hyperbolic.IsHyperbolicGroup G →
+  ∀ (G : Type u) (_ : Group G), Hyperbolic.IsHyperbolicGroup G →
     ∃ (A : Alphabet G) (delta : ℝ), IsHyperbolicSpace delta (Cayley A)
 
 /-- **Osin's Theorem 1.1, the direction the group form needs**: an infinite
@@ -177,7 +178,7 @@ trichotomy — it produces non-elementarity from a common-power-free pair — so
 this statement and that theorem must not be confused for each other, and a lane
 sitting upstream of non-elementarity must consume neither. -/
 def NonElementaryActsStatement : Prop :=
-  ∀ (G : Type) (_ : Group G) (A : Alphabet G) (delta : ℝ),
+  ∀ (G : Type u) (_ : Group G) (A : Alphabet G) (delta : ℝ),
     IsHyperbolicSpace delta (Cayley A) → Infinite G →
       ¬ RelHyp.IsElementaryGroup G →
         ActsNonElementarily (⊤ : Subgroup G) (Cayley.base A)
@@ -185,9 +186,10 @@ def NonElementaryActsStatement : Prop :=
 /-- **The group form, reduced.**  Four named inputs, of which one is a lookup in
 Mathlib, one is elementary, one is Osin's Theorem 1.1, and one — the table — is
 the geometry. -/
-theorem pingPongFreeSubgroup_of (hPP : PingPongLemmaStatement)
-    (hTable : PingPongTableStatement) (hCay : CayleyHyperbolicSpaceStatement)
-    (hNE : NonElementaryActsStatement) : PingPongFreeSubgroup := by
+theorem pingPongFreeSubgroup_of (hPP : PingPongLemmaStatement.{u, u})
+    (hTable : PingPongTableStatement.{u, u})
+    (hCay : CayleyHyperbolicSpaceStatement.{u})
+    (hNE : NonElementaryActsStatement.{u}) : PingPongFreeSubgroup.{u} := by
   intro H instH hinf _htf hhyp hnel
   obtain ⟨A, delta, hhypsp⟩ := hCay H instH hhyp
   exact pingPongFreeSubgroupGeometric_of hPP hTable H instH (Cayley A)

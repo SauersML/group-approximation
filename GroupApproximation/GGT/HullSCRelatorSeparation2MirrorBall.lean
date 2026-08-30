@@ -75,18 +75,18 @@ theorem trivial_connector_of_mirroredAlignedMatch_ball
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' : G}
     (hx : x ∈ D.relBall s eps) (hx' : x' ∈ D.relBall s eps)
-    (hconn : x * (a s ^ e)⁻¹ * x' = (a s ^ f)⁻¹) : e = f ∧ x = 1 ∧ x' = 1 := by
+    (hconn : x * (a s ^ e)⁻¹ * x' = (a s ^ f)⁻¹) (hx1 : x = 1) :
+    e = f ∧ x = 1 ∧ x' = 1 := by
   have hinvrel : x'⁻¹ * a s ^ e * x⁻¹ = a s ^ f := by
     have h := congrArg (fun g : G => g⁻¹) hconn
     simpa [mul_inv_rev, mul_assoc] using h
-  obtain ⟨hef, hx'1, hx1⟩ :=
-    trivial_connector_of_alignedMatch_ball hsep hdiag he hf
+  obtain ⟨hef, hAinv, hBinv⟩ :=
+    trivial_connector_of_alignedMatch_ball hsep he hf
       (inv_mem_relBall hsymm hx') (inv_mem_relBall hsymm hx) hinvrel
-  exact ⟨hef, inv_eq_one.mp hx1, inv_eq_one.mp hx'1⟩
+      (inv_eq_one.mpr hx1)
+  exact ⟨hef, inv_eq_one.mp hBinv, inv_eq_one.mp hAinv⟩
 
 /-- **The mirrored aligned case, closed from the packaged theorem's output.** -/
 theorem listVal_conj_of_mirroredAlignedMatch_ball {D : GGT.RelGenSet G Bool}
@@ -96,14 +96,12 @@ theorem listVal_conj_of_mirroredAlignedMatch_ball {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {p : List G} {c c' i j : ℕ}
     (hi : i < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     (hj : j < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     {b : Bool} {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' y : G}
     (hx : x ∈ D.relBall b eps) (hx' : x' ∈ D.relBall b eps)
-    (hconn : x * (a b ^ e)⁻¹ * x' = (a b ^ f)⁻¹)
+    (hconn : x * (a b ^ e)⁻¹ * x' = (a b ^ f)⁻¹) (hx1 : x = 1)
     (hlet : ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c)[i]?
       = some (GGT.RelLetter.comp b (((if b then a true else a false) ^ e)⁻¹)))
     (hlet' : ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c')[j]?
@@ -117,7 +115,8 @@ theorem listVal_conj_of_mirroredAlignedMatch_ball {D : GGT.RelGenSet G Bool}
       = y * GGT.RelLetter.listVal
           ((RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c) * y⁻¹ := by
   obtain ⟨hef, -, hx'1⟩ :=
-    trivial_connector_of_mirroredAlignedMatch_ball hsymm hsep hdiag he hf hx hx' hconn
+    trivial_connector_of_mirroredAlignedMatch_ball hsymm hsep he hf hx hx'
+      hconn hx1
   rw [hx'1, mul_one] at hy
   have hinj' : ∀ t : Bool,
       Function.Injective (fun n : ℕ => (if t then a true else a false) ^ n) := by

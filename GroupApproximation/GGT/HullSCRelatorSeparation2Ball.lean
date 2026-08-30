@@ -61,25 +61,20 @@ theorem exponent_eq_of_mirroredBlockMatch_ball {D : GGT.RelGenSet G Bool}
 
 /-- **At a matched block of the aligned case the connectors are trivial**, from
 ball membership alone: the exponents agree, the relation is the diagonal, and
-the design forbids it for a nontrivial left connector. -/
+(W4) has made the right connector trivial, so the left one cancels. -/
 theorem trivial_connector_of_alignedMatch_ball {D : GGT.RelGenSet G Bool}
     {a : Bool → G} {eps : ℕ} {ms : List ℕ} {s : Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' : G}
     (hx : x ∈ D.relBall s eps) (hx' : x' ∈ D.relBall s eps)
-    (hconn : x * a s ^ e * x' = a s ^ f) : e = f ∧ x = 1 ∧ x' = 1 := by
+    (hconn : x * a s ^ e * x' = a s ^ f) (hx'1 : x' = 1) :
+    e = f ∧ x = 1 ∧ x' = 1 := by
   have hef : e = f := exponent_eq_of_blockMatch_ball hsep he hf hx hx' hconn
   subst hef
-  have hx1 : x = 1 := by
-    by_contra hne
-    exact hdiag e he s x hx x' hx' hne hconn
-  refine ⟨rfl, hx1, ?_⟩
-  rw [hx1, one_mul] at hconn
-  exact mul_eq_left.mp hconn
+  rw [hx'1, mul_one] at hconn
+  exact ⟨rfl, mul_eq_right.mp hconn, hx'1⟩
 
 /-- **The aligned case, closed from the packaged theorem's own output.**
 
@@ -91,14 +86,12 @@ theorem listVal_conj_of_alignedMatch_ball {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {p : List G} {c c' i j : ℕ}
     (hi : i < (relatorWord₂ p (a false) (a true) ms).length)
     (hj : j < (relatorWord₂ p (a false) (a true) ms).length)
     {b : Bool} {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' y : G}
     (hx : x ∈ D.relBall b eps) (hx' : x' ∈ D.relBall b eps)
-    (hconn : x * a b ^ e * x' = a b ^ f)
+    (hconn : x * a b ^ e * x' = a b ^ f) (hx'1 : x' = 1)
     (hlet : ((relatorWord₂ p (a false) (a true) ms).rotate c)[i]?
       = some (GGT.RelLetter.comp b ((if b then a true else a false) ^ e)))
     (hlet' : ((relatorWord₂ p (a false) (a true) ms).rotate c')[j]?
@@ -110,8 +103,8 @@ theorem listVal_conj_of_alignedMatch_ball {D : GGT.RelGenSet G Bool}
     GGT.RelLetter.listVal ((relatorWord₂ p (a false) (a true) ms).rotate c')
       = y * GGT.RelLetter.listVal
           ((relatorWord₂ p (a false) (a true) ms).rotate c) * y⁻¹ := by
-  obtain ⟨hef, -, hx'1⟩ :=
-    trivial_connector_of_alignedMatch_ball hsep hdiag he hf hx hx' hconn
+  obtain ⟨hef, -, -⟩ :=
+    trivial_connector_of_alignedMatch_ball hsep he hf hx hx' hconn hx'1
   rw [hx'1, mul_one] at hy
   have hinj' : ∀ t : Bool,
       Function.Injective (fun n : ℕ => (if t then a true else a false) ^ n) := by

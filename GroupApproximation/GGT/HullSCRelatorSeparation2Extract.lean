@@ -47,13 +47,12 @@ theorem conj_of_span_rot {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {p : List G} {c c' i j : ℕ}
     (hi : i < (relatorWord₂ p (a false) (a true) ms).length)
     (hj : j < (relatorWord₂ p (a false) (a true) ms).length)
     {b : Bool} {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' y : G}
     (hx : x ∈ D.relBall b eps) (hx' : x' ∈ D.relBall b eps)
+    (hx'1 : x' = 1)
     (hlet : ((relatorWord₂ p (a false) (a true) ms).rotate c)[i]?
       = some (GGT.RelLetter.comp b ((if b then a true else a false) ^ e)))
     (hlet' : ((relatorWord₂ p (a false) (a true) ms).rotate c')[j]?
@@ -74,8 +73,8 @@ theorem conj_of_span_rot {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ}
       = y * GGT.RelLetter.listVal
           ((relatorWord₂ p (a false) (a true) ms).rotate c) * y⁻¹ := by
   rw [span_eq_pow_of_block hlet, span_eq_pow_of_block hlet'] at hspan
-  exact listVal_conj_of_alignedMatch_ball hnodup hinj hsep hdiag hi hj he hf
-    hx hx' hspan hlet hlet' hy
+  exact listVal_conj_of_alignedMatch_ball hnodup hinj hsep hi hj he hf
+    hx hx' hspan hx'1 hlet hlet' hy
 
 /-- **Both members rotations of the formal inverse.** -/
 theorem conj_of_span_inv {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ}
@@ -85,13 +84,12 @@ theorem conj_of_span_inv {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {p : List G} {c c' i j : ℕ}
     (hi : i < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     (hj : j < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     {b : Bool} {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' y : G}
     (hx : x ∈ D.relBall b eps) (hx' : x' ∈ D.relBall b eps)
+    (hx1 : x = 1)
     (hlet : ((RelWord.revInv
         (relatorWord₂ p (a false) (a true) ms)).rotate c)[i]?
       = some (GGT.RelLetter.comp b (((if b then a true else a false) ^ e)⁻¹)))
@@ -122,8 +120,8 @@ theorem conj_of_span_inv {D : GGT.RelGenSet G Bool} {a : Bool → G} {eps : ℕ}
           ((RelWord.revInv
             (relatorWord₂ p (a false) (a true) ms)).rotate c) * y⁻¹ := by
   rw [span_eq_pow_inv_of_block hlet, span_eq_pow_inv_of_block hlet'] at hspan
-  exact listVal_conj_of_mirroredAlignedMatch_ball hnodup hinj hsymm hsep hdiag
-    hi hj he hf hx hx' hspan hlet hlet' hy
+  exact listVal_conj_of_mirroredAlignedMatch_ball hnodup hinj hsymm hsep
+    hi hj he hf hx hx' hspan hx1 hlet hlet' hy
 
 /-- **One member a rotation of the relator, the other of its formal inverse.**
 

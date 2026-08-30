@@ -69,17 +69,23 @@ theorem wordDist_vertex_le' (D : RelGenSet G Λ) {w : List (RelLetter G Λ)}
     wordDist_left_invariant]
   exact wordDist_vertex_le D hlet hij hj
 
-/-- **Every side of a `(1,0)`-quasi-geodesic polygon is a geodesic chain.**
+/-- **Every side of a `(1,b)`-quasi-geodesic polygon is a `(1,b)`-quasi-geodesic
+chain.**
 
 The cut points are returned with the chains, because the polygon predicate
 carries them existentially and the corner-offset construction needs to name the
-corners `vertex v w (c s)`. -/
+corners `vertex v w (c s)`.
+
+Both bounds of `IsQuasiGeodesicChain` are supplied here: the lower one is the
+polygon's clause at `μ = 1`, the upper one is `wordDist_vertex_le'` and holds of
+any word.  At `b = 0` this is the geodesic-chain statement, through
+`IsQuasiGeodesicChain.isGeodesicChain`. -/
 theorem exists_geodesicChain_of_isQuasiGeodesicPolygon (D : RelGenSet G Λ)
-    {n : ℕ} {v : G} {w : List (RelLetter G Λ)}
-    (hP : IsQuasiGeodesicPolygon D 1 0 n v w) :
+    {n b : ℕ} {v : G} {w : List (RelLetter G Λ)}
+    (hP : IsQuasiGeodesicPolygon D 1 (b : ℝ) n v w) :
     ∃ c : ℕ → ℕ, c 0 = 0 ∧ c n = w.length ∧ Monotone c ∧
       ∀ s : ℕ, s < n →
-        IsGeodesicChain D.alphabet.carrier
+        IsQuasiGeodesicChain D.alphabet.carrier b
           (fun t => vertex v w (c s + t)) (c (s + 1) - c s) := by
   obtain ⟨hlet, -, c, hc0, hcn, hmono, hqg⟩ := hP
   have hmonoc : Monotone c := monotone_nat_of_le_succ hmono
@@ -90,15 +96,22 @@ theorem exists_geodesicChain_of_isQuasiGeodesicPolygon (D : RelGenSet G Λ)
     rw [← hcn]
     exact hmonoc (by omega : s + 1 ≤ n)
   have hjw : c s + j ≤ w.length := by omega
-  show wordDist D.alphabet.carrier (vertex v w (c s + i)) (vertex v w (c s + j))
-      = j - i
+  show (j - i) - b
+      ≤ wordDist D.alphabet.carrier (vertex v w (c s + i))
+        (vertex v w (c s + j)) ∧
+      wordDist D.alphabet.carrier (vertex v w (c s + i))
+        (vertex v w (c s + j)) ≤ j - i
   have hupper := wordDist_vertex_le' D hlet v (by omega : c s + i ≤ c s + j) hjw
   have hlow := hqg s hs (c s + i) (c s + j) (by omega) (by omega) (by omega)
-  rw [div_one, sub_zero] at hlow
+  rw [div_one] at hlow
+  -- the real clause `x - b ≤ d` is transported as the natural `x ≤ d + b`, the
+  -- shape truncated subtraction is recovered from
+  have hlow' : ((c s + j - (c s + i) : ℕ) : ℝ)
+      ≤ ((wordDist D.alphabet.carrier (vertex v w (c s + i))
+        (vertex v w (c s + j)) : ℕ) : ℝ) + (b : ℝ) := by linarith
   have hlower : c s + j - (c s + i)
       ≤ wordDist D.alphabet.carrier (vertex v w (c s + i))
-          (vertex v w (c s + j)) := by
-    exact_mod_cast hlow
+          (vertex v w (c s + j)) + b := by exact_mod_cast hlow'
   omega
 
 /-! ## The corner offset -/
@@ -170,7 +183,7 @@ lemma feeds all four sides in, and only three of them are chains now.
 between-point on the exempt side instead of an index, which is all the
 corner-offset count needs, since that alternative is discarded rather than
 used. -/
-structure GeodesicFourGon (D : RelGenSet G Λ) (v : G)
+structure GeodesicFourGon (D : RelGenSet G Λ) (b : ℕ) (v : G)
     (w : List (RelLetter G Λ)) (c : ℕ → ℕ) : Prop where
   /-- Every letter is admissible. -/
   letters : ∀ a ∈ w, D.IsLetter a
@@ -182,17 +195,18 @@ structure GeodesicFourGon (D : RelGenSet G Λ) (v : G)
   finish : c 4 = w.length
   /-- The corners are in order. -/
   mono : Monotone c
-  /-- Each side other than the distinguished one is geodesic. -/
-  geodesic : ∀ t : ℕ, t < 4 → t ≠ 0 → IsGeodesicChain D.alphabet.carrier
-    (fun m => vertex v w (c t + m)) (c (t + 1) - c t)
+  /-- Each side other than the distinguished one is `(1,b)`-quasi-geodesic. -/
+  geodesic : ∀ t : ℕ, t < 4 → t ≠ 0 →
+    IsQuasiGeodesicChain D.alphabet.carrier b
+      (fun m => vertex v w (c t + m)) (c (t + 1) - c t)
 
 /-- **Every `(1,0)`-quasi-geodesic 4-gon is one, with its cut function named.**
 The exempt form is weaker, so a polygon all of whose sides are geodesic is one
 of these; the converse is what the exemption buys and is not claimed. -/
 theorem exists_geodesicFourGon_of_isQuasiGeodesicPolygon (D : RelGenSet G Λ)
-    {v : G} {w : List (RelLetter G Λ)}
-    (hP : IsQuasiGeodesicPolygon D 1 0 4 v w) :
-    ∃ c : ℕ → ℕ, GeodesicFourGon D v w c := by
+    {b : ℕ} {v : G} {w : List (RelLetter G Λ)}
+    (hP : IsQuasiGeodesicPolygon D 1 (b : ℝ) 4 v w) :
+    ∃ c : ℕ → ℕ, GeodesicFourGon D b v w c := by
   obtain ⟨c, hc0, hc4, hmono, hchain⟩ :=
     exists_geodesicChain_of_isQuasiGeodesicPolygon D hP
   exact ⟨c, hP.1, hP.2.1, hc0, hc4, hmono, fun t ht _ => hchain t ht⟩
@@ -211,7 +225,7 @@ side `0` is exactly the side that may carry a long run, and collapsing that run
 is what `DGOIsolatedComponentNormalise.normWord` does.  For general `(μ, b)` the
 same collapse is needed on every side. -/
 theorem GeodesicFourGon.isComp_side_succ (D : RelGenSet G Λ) {v : G}
-    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D v w c)
+    {w : List (RelLetter G Λ)} {c : ℕ → ℕ} (hQ : GeodesicFourGon D 0 v w c)
     {lam : Λ} {t : ℕ} (ht : t < 4) (ht0 : t ≠ 0)
     (hcomp : IsComp lam w (c t) (c (t + 1))) :
     c (t + 1) = c t + 1 := by
@@ -219,7 +233,8 @@ theorem GeodesicFourGon.isComp_side_succ (D : RelGenSet G Λ) {v : G}
   have hEq : c t + (c (t + 1) - c t) = c (t + 1) := by omega
   have h0 : wordDist D.alphabet.carrier (vertex v w (c t + 0))
       (vertex v w (c t + (c (t + 1) - c t))) = c (t + 1) - c t - 0 :=
-    hQ.geodesic t ht ht0 0 (c (t + 1) - c t) (Nat.zero_le _) le_rfl
+    (hQ.geodesic t ht ht0).isGeodesicChain 0 (c (t + 1) - c t) (Nat.zero_le _)
+      le_rfl
   rw [Nat.add_zero, hEq, Nat.sub_zero] at h0
   exact isComp_eq_succ_of_geodesic D lam v hQ.letters hcomp (le_of_eq h0.symm)
 

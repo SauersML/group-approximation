@@ -92,7 +92,7 @@ theorem penetratesAt_unique {D : RelGenSet G Λ} {lam : Λ} {Dc : ℕ} {f g : G}
   by_contra hne
   obtain ⟨⟨ki, hEPi⟩, hci⟩ := hi
   obtain ⟨⟨kj, hEPj⟩, hcj⟩ := hj
-  refine not_connected_of_isCompStart_of_geodesic D hw ⟨ki, hEPi.1⟩ ⟨kj, hEPj.1⟩
+  refine not_connected_of_isCompStart_of_geodesic D hw ⟨ki, hEPi⟩ ⟨kj, hEPj⟩
     hne ?_
   refine connected_of_mk_eq_mk ?_
   rw [← hci, ← hcj]

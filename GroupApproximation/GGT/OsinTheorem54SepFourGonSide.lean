@@ -174,7 +174,7 @@ theorem span_fourGon_side (p q r s : List (RelLetter G Λ)) {i k : ℕ}
   rw [vertex_fourGon_side p q r s 1 hi, vertex_fourGon_side p q r s 1 hk]
   group
 
-/-- **A deep component of one long side is connected to another component of
+/- **A deep component of one long side is connected to another component of
 the quadrilateral, with the connector named**, over Osin's Lemma 4.2.
 
 This is the statement in the form a caller wants it: the hypothesis on the
@@ -200,6 +200,59 @@ that the connector can be written down.
 The direction used is the contrapositive: Lemma 4.2 bounds the span of an
 *isolated* component, so a component whose span escapes the bound is not
 isolated. -/
+/-- **A deep component of one long side is connected to another component of
+the quadrilateral**, over the bound AT one pair of constants.
+
+The body lives here.  `exists_other_component_of_deep_six` and
+`exists_other_component_of_deep_one` are this theorem fed from the two spellings
+of the bound that the tree carries --- over all `(μ,b)`, or over `b` alone at
+`μ = 1` --- and nothing else distinguishes them. -/
+theorem exists_other_component_of_deep_of_bound (D : RelGenSet G Λ) (lam : Λ)
+    (mu b : ℝ)
+    (hbnd : ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n)) :
+    ∃ C : ℕ, 0 < C ∧ ∀ (n rho : ℕ), n ≤ 6 →
+      ∀ p q r s : List (RelLetter G Λ),
+      RelLetter.listVal s
+          = RelLetter.listVal p * RelLetter.listVal q * RelLetter.listVal r →
+      (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
+      (∀ a ∈ r, ∃ x : G, a = RelLetter.base x) →
+      IsQuasiGeodesicPolygon D mu b n 1 (p ++ q ++ r ++ revWord s) →
+      ∀ i k : ℕ, IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
+        C * n ≤ rho →
+        (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉ D.relBall lam rho →
+          (∃ i' : ℕ, i' ≤ q.length ∧ i' ≠ i ∧
+              IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') ∧
+              ∃ h : G, h ∈ D.fam lam ∧
+                vertex (1 : G) q i * h = vertex (1 : G) q i')
+            ∨ (∃ j : ℕ, j ≤ s.length ∧
+              IsCompStart lam (p ++ q ++ r ++ revWord s)
+                (p.length + q.length + r.length + (s.length - j)) ∧
+              ∃ h : G, h ∈ D.fam lam ∧
+                RelLetter.listVal p * vertex (1 : G) q i * h
+                  = vertex (1 : G) s j) := by
+  obtain ⟨C, hCpos, hC⟩ := hbnd
+  refine ⟨C, hCpos, ?_⟩
+  intro n rho hn p q r s hclose hp hr hpoly i k hcomp hk hrho hdeep
+  have hbridge := isComp_fourGon_of_isComp_side p q r s lam hp hr hcomp hk
+  have hiq : i ≤ q.length := by
+    obtain ⟨hik, hkl, -, -, -⟩ := hcomp
+    omega
+  have hkl : k ≤ q.length := by
+    obtain ⟨-, hkl, -, -, -⟩ := hcomp
+    exact hkl
+  refine exists_other_component_of_isComp_side D lam p q r s hclose hp hr
+    hcomp hk ?_
+  intro hiso
+  have hspan := hC n hn 1 (p ++ q ++ r ++ revWord s) hpoly lam (p.length + i)
+    (p.length + k) hbridge hiso
+  rw [span_fourGon_side p q r s hiq hkl] at hspan
+  exact hdeep (relBall_mono_radius D lam hrho hspan)
+
+/-- **The same, over the bound at every pair of constants.** -/
 theorem exists_other_component_of_deep_six (D : RelGenSet G Λ)
     (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
@@ -226,24 +279,40 @@ theorem exists_other_component_of_deep_six (D : RelGenSet G Λ)
                 (p.length + q.length + r.length + (s.length - j)) ∧
               ∃ h : G, h ∈ D.fam lam ∧
                 RelLetter.listVal p * vertex (1 : G) q i * h
-                  = vertex (1 : G) s j) := by
-  obtain ⟨C, hCpos, hC⟩ := hbound mu b hmu hb
-  refine ⟨C, hCpos, ?_⟩
-  intro n rho hn p q r s hclose hp hr hpoly i k hcomp hk hrho hdeep
-  have hbridge := isComp_fourGon_of_isComp_side p q r s lam hp hr hcomp hk
-  have hiq : i ≤ q.length := by
-    obtain ⟨hik, hkl, -, -, -⟩ := hcomp
-    omega
-  have hkl : k ≤ q.length := by
-    obtain ⟨-, hkl, -, -, -⟩ := hcomp
-    exact hkl
-  refine exists_other_component_of_isComp_side D lam p q r s hclose hp hr
-    hcomp hk ?_
-  intro hiso
-  have hspan := hC n hn 1 (p ++ q ++ r ++ revWord s) hpoly lam (p.length + i)
-    (p.length + k) hbridge hiso
-  rw [span_fourGon_side p q r s hiq hkl] at hspan
-  exact hdeep (relBall_mono_radius D lam hrho hspan)
+                  = vertex (1 : G) s j) :=
+  exists_other_component_of_deep_of_bound D lam mu b (hbound mu b hmu hb)
+
+/-- **The same, over the bound at `μ = 1`** --- the spelling
+`OsinTheorem54SepSixBound.sixBound_one_of_fourPointHyperbolic` proves outright,
+and the only one anything in this development instantiates. -/
+theorem exists_other_component_of_deep_one (D : RelGenSet G Λ)
+    (hbound : ∀ b : ℝ, 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D 1 b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (lam : Λ) (b : ℝ) (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧ ∀ (n rho : ℕ), n ≤ 6 →
+      ∀ p q r s : List (RelLetter G Λ),
+      RelLetter.listVal s
+          = RelLetter.listVal p * RelLetter.listVal q * RelLetter.listVal r →
+      (∀ a ∈ p, ∃ x : G, a = RelLetter.base x) →
+      (∀ a ∈ r, ∃ x : G, a = RelLetter.base x) →
+      IsQuasiGeodesicPolygon D 1 b n 1 (p ++ q ++ r ++ revWord s) →
+      ∀ i k : ℕ, IsComp lam q i k → (k < q.length ∨ 0 < r.length) →
+        C * n ≤ rho →
+        (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q k ∉ D.relBall lam rho →
+          (∃ i' : ℕ, i' ≤ q.length ∧ i' ≠ i ∧
+              IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') ∧
+              ∃ h : G, h ∈ D.fam lam ∧
+                vertex (1 : G) q i * h = vertex (1 : G) q i')
+            ∨ (∃ j : ℕ, j ≤ s.length ∧
+              IsCompStart lam (p ++ q ++ r ++ revWord s)
+                (p.length + q.length + r.length + (s.length - j)) ∧
+              ∃ h : G, h ∈ D.fam lam ∧
+                RelLetter.listVal p * vertex (1 : G) q i * h
+                  = vertex (1 : G) s j) :=
+  exists_other_component_of_deep_of_bound D lam 1 b (hbound b hb)
 
 end OsinComponents
 end GGT

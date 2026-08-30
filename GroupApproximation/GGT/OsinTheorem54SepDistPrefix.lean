@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.OsinTheorem54SepDistBase
 import GroupApproximation.GGT.OsinTheorem54SepEnum
+import GroupApproximation.GGT.OsinTheorem54SepTransport
 
 /-!
 # The prefix before the first separating coset separates nothing
@@ -109,7 +110,7 @@ theorem sepSet_prefix_eq_empty (D : RelGenSet G Λ) (Dc : ℕ)
     ((w.drop 0).take (n₀ - 0)) hseg c'' hc''
   have hlen : ((w.drop 0).take (n₀ - 0)).length = n₀ - 0 :=
     length_segment w 0 (n₀ - 0) (by omega)
-  obtain ⟨hab, hbl, hrange, hpre, hpost⟩ := hEP.1
+  obtain ⟨hab, hbl, hrange, hpre, hpost⟩ := hEP
   -- the closing clause of the transfer, in both boundary positions
   have hend : ∀ hn : 0 + b < w.length, ¬ (w[0 + b]'hn).IsCompOf mu := by
     intro hn hc
@@ -137,19 +138,18 @@ theorem sepSet_prefix_eq_empty (D : RelGenSet G Λ) (Dc : ℕ)
   have hcompw : IsComp mu w (0 + a) (0 + b) :=
     isComp_of_isComp_segment' mu w ⟨hab, hbl, hrange, hpre, hpost⟩
       (Or.inr rfl) hend (by omega)
-  have hspanw : (vertex f w (0 + a))⁻¹ * vertex f w (0 + b)
-      ∉ D.relBall mu Dc := by
-    have hsp := span_segment w f 0 (n₀ - 0) a b (by omega) (by omega)
-    rw [vertex_zero] at hsp
-    rw [← hsp]
-    exact hEP.2
   have hccw : c'' = QuotientGroup.mk (vertex f w (0 + a)) := by
     have hv := vertex_segment w f 0 (n₀ - 0) a (by omega)
     rw [vertex_zero] at hv
     rw [hcc, hv]
-  exact hmin mu (0 + a) c'' (by omega)
-    ⟨w, 0 + a, 0 + b, hw, ⟨hcompw, hspanw⟩, hccw⟩
-    ⟨⟨0 + b, ⟨hcompw, hspanw⟩⟩, hccw⟩
+  -- the membership comes from Definition 4.3's own witness, spliced into `w`,
+  -- not from asking 4.8 for an essential penetration it does not give
+  have hc''0 : c'' ∈ sepSet D mu Dc (vertex f w 0) (vertex f w n₀) := by
+    rw [vertex_zero]
+    exact hc''
+  have hmem : c'' ∈ sepSet D mu Dc f g :=
+    sepSet_of_sepSet_segment D mu Dc hw (Nat.zero_le n₀) hn0le hc''0
+  exact hmin mu (0 + a) c'' (by omega) hmem ⟨⟨0 + b, hcompw⟩, hccw⟩
 
 end OsinComponents
 end GGT

@@ -63,7 +63,7 @@ theorem sepIndexSet_subset (D : RelGenSet G Λ) (lam : Λ) (Dc : ℕ) (f g : G)
     (w : List (RelLetter G Λ)) :
     sepIndexSet D lam Dc f g w ⊆ {n : ℕ | n < w.length} := by
   rintro n ⟨c, -, ⟨⟨k, hEP⟩, -⟩⟩
-  obtain ⟨hnk, hkw, -, -, -⟩ := hEP.1
+  obtain ⟨hnk, hkw, -, -, -⟩ := hEP
   exact lt_of_lt_of_le hnk hkw
 
 /-- The index set is finite. -/

@@ -10,7 +10,10 @@ import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 
 `non_mf_groups_exist.tex`, Section "A torsion-free group with full MF radical".
 
-This module carries three printed items and nothing else.
+This module carries three items and nothing else: the printed configuration
+paragraph, an intermediate lemma that replaces the printed
+`lem:commutator-in-defect` with a version needing less input (§2 says exactly
+how the two differ), and the printed Theorem C.
 
 ## 1.  The compressed core and the free witness
 
@@ -21,19 +24,52 @@ The third factor `F₂` commutes with `P₁ = u₁Pu₁⁻¹`.  Hence its conjug
 The corresponding theorems are `centralizes_core`, `t_mem_compressionSet`,
 `conj_conj_witness`, `witnessRange_le_coreRange`, and `kazhdan_coreRange`.
 
-## 2.  `lem:commutator-in-defect`
+## 2.  The intermediate lemma, and how it differs from the printed one
+
+What this module proves is the **`F`-version**:
 
 > For every homomorphism `ρ : G₀ → L`, `ρ(π([F,F])) ≤ 𝔇_L(ρ(Γ))`.
 
-`manuscriptWitnessCommutatorInDefect`, with the printed quantifiers: `ρ` is an
-arbitrary homomorphism, neither surjective nor assumed nontrivial on the
-witness.  The printed proof is followed step for step — for `c = t_L⁻¹ρ(π(x))t_L`
-and `ℓ = ρ(π(y))`, the defect generator `[t_Lct_L⁻¹,ℓ]` equals
-`[ρ(π(x)),ρ(π(y))]` (`map_defect_generator_mem`, `commutator_mem_printedDefect`),
-so the image of `[F,F]` lies in the defect
-(`map_map_witnessCommutator_le_printedDefect`, in the printed nested-image
-spelling).  No simplicity or perfectness input is needed; the superseded
-`lem:simple-in-defect` route is gone.
+`manuscriptWitnessCommutatorInDefect`, with `ρ` an arbitrary homomorphism,
+neither surjective nor assumed nontrivial on the witness.  For
+`c = t_L⁻¹ρ(π(x))t_L` and `ℓ = ρ(π(y))`, the defect generator `[t_Lct_L⁻¹,ℓ]`
+equals `[ρ(π(x)),ρ(π(y))]` (`map_defect_generator_mem`,
+`commutator_mem_printedDefect`), so the image of `[F,F]` lies in the defect
+(`map_map_witnessCommutator_le_printedDefect`, in the nested-image spelling).
+
+The manuscript's `lem:commutator-in-defect` is a different statement.  It is
+the **`S`-version**:
+
+> For every homomorphism `ρ : G₀ → Ḡ`, `ρ(S) ≤ 𝔇_Ḡ(ρ(Γ))`,
+
+where `S = tJt⁻¹` and `J ≤ G₀` is a finitely presented infinite simple group,
+and its printed proof runs through perfectness: `[S̄,S̄] ≤ 𝔇` by the defect
+generators, and `S̄` is perfect as a quotient of the perfect `S`, so
+`S̄ = [S̄,S̄] ≤ 𝔇`.  This development does not follow that proof, and the
+docstring here used to claim it did.
+
+The reason for the divergence is what the two routes cost.  The printed route
+needs `J` simple, which is a further literature input on top of Fournier-Facio's
+construction; the `F`-version needs only the free group `F₂` together with one
+explicit nonidentity commutator to protect, so `Configuration` carries a
+`Witness` group with a `distinguished` element and no simplicity field at all.
+The witness is also kernel-checkable in a way a cited simple group is not:
+`freeWitnessCommutator_ne_one` is a computation in `FreeGroup (Fin 2)`.
+
+Nothing downstream notices the difference.  Both versions feed
+`thm:torsion-free` the same way — a normal generating set inside `𝔇_Ḡ(ρ(Γ))`,
+hence `𝔇_Ḡ(ρ(Γ)) = Ḡ` — and §3 below reaches exactly the printed conclusion of
+Theorem C.
+
+The `S`-version itself is proved elsewhere in the tree, and by simplicity
+rather than by perfectness: `Manuscript.NonMF.map_simpleSubgroup_le_printedDefect`
+(`SimpleInDefect.lean`) gives `ρ(S) ≤ 𝔇(ρ(Γ))` for every `ρ`, deriving
+`S ≤ 𝔇` upstairs from `IsSimpleGroup S` plus one protected nonidentity
+commutator (`simpleSubgroup_le_defectNormal`).  It is stated over a
+`FournierFacioDefectData`, which nothing in the corpus inhabits, so it is a
+conditional formalization and the sentence census does not count it; that is
+recorded in `metadata/NON_MF_SENTENCE_MAP.tsv`, where the printed lemma's own
+sentences are left unassigned.
 
 ## 3.  `thm:torsion-free` (Theorem C)
 

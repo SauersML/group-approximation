@@ -13,7 +13,7 @@ rotations of `GGT/HullSCRelatorSeparation2RotatingFamily.lean`.
   closure of the **union** of the family.  Every rotation is a conjugate of an
   element of some `K lam`, and every element of every `K lam` is a rotation
   about its own apex.  This is the clause that tells the quotient what it kills,
-  and it is why `HullSC.ConeOffData₂.injOn_of_dist` is stated against the normal
+  and it is why `HullSC.ConeOffData₂.kernel_moves` is stated against the normal
   closure of the union rather than of one subgroup.
 * `isSeparated_apexOrbitFamily` -- separation of the union of the orbits, from
   separation of the translates.  It reads the `separated` field of

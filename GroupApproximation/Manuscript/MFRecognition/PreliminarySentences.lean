@@ -179,11 +179,26 @@ fixed `δ > 0` attained eventually" for every pair of distinct elements, the
 form carried by `WeakMFApproximation` and consumed by the rest of the
 development; this is the same operationalization already recorded for the
 sister sentence in `OneSidedMFRadical.PrintedMFUnitaryModels`. The printed
-normalization `V_n(1) = 1` is not separately required by
-`WeakMFApproximation` (no field constrains `map n 1`); it is a normalizing
-convention that does not change the property (any model can be renormalized
-once `map n 1 → 1`, which is what the construction below already provides),
-and is not reproved as a separate lemma here. -/
+normalization `V_n(1) = 1` is not required by `WeakMFApproximation`: no field
+constrains `map n 1`, so `manuscriptMFGroupDefinition` alone does not carry
+that clause.
+
+It is carried, literally and unconditionally, by
+`OneSidedMFRadical.manuscriptIntroductionMFDefinition :
+PrintedMFDefinitionLiteral`
+(`Manuscript/OneSidedMFRadical/IntroductionClaimSentences.lean`), which is the
+two-sided equivalence between `IsCDEOperatorMF G` and the printed data
+`∃ X V, (∀ n, 0 < card (X n)) ∧ (∀ n, V n 1 = 1) ∧ <multiplicativity> ∧
+(∀ g ≠ 1, 0 < limsup ‖V n g - 1‖)`, with `V n 1 = 1` on the nose.  Its forward
+direction normalizes a `WeakMFApproximation` by left-multiplying every
+coordinate by `(map n 1)ᴴ` along the whole sequence, which fixes the identity
+coordinate exactly, changes no separation and at worst doubles each
+multiplicative defect; its backward direction is
+`PrintedModelSeparationConverse.isCDEOperatorMF_of_limsup_separating_unitary_models`
+and needs no normalization hypothesis at all.  `isCDEOperatorMF_iff_isOperatorMF`
+transports that equivalence to the `IsOperatorMF` spelling this paper uses.  So
+the clause is proved, not waived; it is not restated here, because restating it
+would be a rename of an existing theorem rather than a formalization. -/
 def PrintedMFGroupDefinition (G : Type) [Group G] : Prop :=
   Nonempty (WeakMFApproximation G)
 

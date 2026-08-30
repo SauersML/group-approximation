@@ -33,6 +33,24 @@ The result is that `isMFAlgebra_amalgam_of_printedPair` derives Theorem 10 from
 this one Prop and a faithful pair of representations, with no other analytic
 input.
 
+## This statement is false
+
+`Theorem4PrintedPairStatement` is refuted, twice, and nothing below should be
+read as evidence for it.  `Analysis/ShulmanFillNormingPrintedPairRefuted` refutes
+it at a one-dimensional `H`, where the printed models have nowhere to go and
+`hone` cannot hold; `Analysis/ShulmanFillNormingPrintedPairCharacter` refutes it
+at every `H`, because the defects are measured in the sup norm over coordinates,
+which forces each fixed finite-dimensional coordinate to be an honest
+`*`-homomorphism in the limit and so forces a character on `B` --- and `B(ℂ²)`
+is separable, MF and has none.
+
+The repair is `ShulmanFill.Theorem4TailPairStatement`
+(`Analysis/ShulmanFillNormingTailPrinted`): the same package with the defects
+controlled only past a moving cut, the paper's pointwise lift clause, and `H`
+infinite-dimensional.  The route on it is
+`Analysis/ShulmanFillNormingTailRoute`.  Everything below stays as the record of
+what was refuted and of why the earlier refutation did not reach it.
+
 ## Why the scalar-model refutation does not reach this
 
 `Analysis/ShulmanFillNormingTheorem4Refuted` refutes the form of Theorem 4 whose

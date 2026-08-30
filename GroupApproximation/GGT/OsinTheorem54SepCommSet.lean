@@ -29,6 +29,30 @@ outright false --- `GGT/OsinTheorem54SepCommRefuted.lean` refutes it at
 Unconditional: neither `LemmaFourEight` nor `IsolatedComponentBound` is used.
 In particular this does not need `sepSet` to be finite --- it is an equality of
 sets, and `sepCard_comm` follows whether or not they are.
+
+## The degenerate family, and why it is harmless
+
+Recorded here because it is the first thing a reader checks and the answer is
+not the obvious one.  Take `Λ = Unit`, `G = ℤ`, `H = ⊥` and `X = {t, t⁻¹}`.
+This is hyperbolically embedded: the Cayley graph is a line, and the relative
+ball lies in `⊥`.  A component is a maximal run of `comp () h` with `h ∈ ⊥`, so
+`h = 1`; but a geodesic word cannot contain a letter of value `1`, since
+deleting it gives a strictly shorter legal expression of the same element.  So
+geodesics carry no components at all, `sepSet` is empty, `sepCard` is `0`, and
+Osin's `Y = {y | S(1,y;D) = ∅}` is the **whole of `G`** --- the enlargement
+swallows the group and `Γ(G, Y ⊔ ℋ)` is complete.
+
+That looks like it should refute `AcylindricalCore`, since on a complete graph
+every stabiliser set is all of `G` and hence infinite.  It does not.
+`AcylindricalCore` quantifies over `z` at distance *exactly* `R` and need only
+produce *some* `R > 0`, so `R = 2` makes its inner condition vacuous, the graph
+having diameter one; and `IsAcylindrical` is vacuous on a bounded space for the
+same reason.  So every field holds here, and the degenerate family is not a
+counterexample to Theorem 5.4 but a case where the conclusion is vacuous.
+
+This is exactly why `GGT/OsinSeparatingCosets.lean` states the core with `= R`
+rather than `≥ R`: the `≥ R` form would not merely be stronger than Osin proves,
+it would be **false** at this model.
 -/
 
 namespace GroupApproximation

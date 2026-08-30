@@ -83,7 +83,28 @@ The statement is now a theorem of three named inputs:
   compatible pair of lifts into the algebra `𝒟` of `*`-strongly convergent
   matrix sequences with faithful limit.  The model-first reading of Theorem 4,
   a single lift into fixed matrix models, is refuted in
-  `Analysis/ShulmanFillNormingTheorem4Refuted` and is not what is asked;
+  `Analysis/ShulmanFillNormingTheorem4Refuted`.  **The printed pair statement
+  as recorded is also false**: its lift measures the defects in the sup norm
+  over coordinates, so every coordinate yields a `*`-homomorphism into a
+  matrix algebra and `M₂(ℂ)` would acquire a character; and its exhaustion
+  clause fails on a finite-dimensional space.  The statement is stronger than
+  Shulman's, whose defects live in the reduced product and whose lift agrees
+  with the representation only pointwise in the limit.  The repair is built:
+  `ShulmanFill.Theorem4TailPairStatement`
+  (`Analysis/ShulmanFillNormingTailPrinted`) is the printed pair statement in
+  the tail vocabulary — defects controlled past a cut carried as data, the
+  paper's pointwise lift clause, an infinite-dimensional space — and both
+  counter-models die against it; the refuted form implies it, so the repair
+  only removes.  `Analysis/ShulmanFillNormingTailRoute` proves the
+  conjugate-word norming statement from the repaired pair statement, the
+  compatible-target pair statement and the MF-ness of the relabelled printed
+  models — and that last input is a theorem,
+  `ShulmanFill.shiftedPrintedMF` in `Analysis/ShulmanFillNormingTailPrintedMF`,
+  by padding the shifted bounded product into the unshifted one.  So
+  `ShulmanFill.conjugateWordNorming_of_tailPair_of_compatible'` rests on the
+  repaired pair statement and the compatible-target pair statement alone.
+  The reduction below through
+  the refuted form is kept only as the record of the route it replaced;
 * `ShulmanSymmetricDouble.CompatibleTargetPairStatement`
   (`Analysis/ShulmanFillTheorem13`): the output of Enders--Shulman,
   arXiv:2403.12224, Theorem 4.11 — a compatible target through which the
@@ -102,7 +123,8 @@ The statement is now a theorem of three named inputs:
   `Analysis/CStarHilbertCountableBasis` moves the representation to `ℓ²`
   over a small index along `Analysis/CStarHilbertTransport`.
 
-So the debt rests on the first two inputs alone.  The route itself is
+So the debt rests on the first two inputs alone, the first of which is
+owed in its repaired form.  The route itself is
 Shulman's own: Theorem 13 embeds the amalgam in the
 symmetric double `D *_C D`, Theorem 10 makes the double MF from the printed
 pair statement (`isMFAlgebra_amalgam_of_printedPair`), and the injective

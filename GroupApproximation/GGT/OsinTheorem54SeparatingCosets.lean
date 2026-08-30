@@ -314,7 +314,7 @@ theorem sepCard_le_wordDist {D : RelGenSet G Λ} {lam : Λ} {Dc : ℕ}
         (↑(Finset.range wrd.length) : Set ℕ) := by
     intro c hc
     obtain ⟨i, k, hpen, hceq⟩ := h48.1 f g wrd hw c hc
-    obtain ⟨hik, hkw, -, -, -⟩ := hpen.1
+    obtain ⟨hik, hkw, -, -, -⟩ := hpen
     exact ⟨i, Finset.mem_coe.mpr (Finset.mem_range.mpr (by omega)), hceq.symm⟩
   unfold sepCard
   refine le_trans (Set.ncard_le_ncard hsub (hfin.image _)) ?_

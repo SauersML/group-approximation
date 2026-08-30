@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.OsinTheorem54SepDistSuffix
+import GroupApproximation.GGT.OsinTheorem54SepTransport
 
 /-!
 # The suffix separates strictly less
@@ -32,20 +33,19 @@ theorem mem_sepIndexSet_of_suffix (D : RelGenSet G Λ) (Dc : ℕ) {f g : G}
     k₀ + a ∈ sepIndexSet D mu Dc f g w := by
   obtain ⟨c, hc, ⟨⟨b, hEP⟩, hcc⟩⟩ := ha
   have hkw : k₀ ≤ w.length := hcross.2.1
-  obtain ⟨hab, hbl, -, -, -⟩ := hEP.1
+  obtain ⟨hab, hbl, -, -, -⟩ := hEP
   have hlen : ((w.drop k₀).take (w.length - k₀)).length = w.length - k₀ :=
     length_segment w k₀ (w.length - k₀) (by omega)
   have hcompw : IsComp mu w (k₀ + a) (k₀ + b) :=
-    isComp_of_isComp_suffix lam mu w hcross hEP.1
-  have hsp := span_segment w f k₀ (w.length - k₀) a b (by omega) (by omega)
-  have hspanw : (vertex f w (k₀ + a))⁻¹ * vertex f w (k₀ + b)
-      ∉ D.relBall mu Dc := by
-    rw [← hsp]
-    exact hEP.2
+    isComp_of_isComp_suffix lam mu w hcross hEP
   have hccw : c = QuotientGroup.mk (vertex f w (k₀ + a)) := by
     rw [hcc, vertex_segment w f k₀ (w.length - k₀) a (by omega)]
-  exact ⟨c, ⟨w, k₀ + a, k₀ + b, hw, ⟨hcompw, hspanw⟩, hccw⟩,
-    ⟨⟨k₀ + b, ⟨hcompw, hspanw⟩⟩, hccw⟩⟩
+  -- the membership travels by the splice, not by rebuilding a witness on `w`
+  have hmem : c ∈ sepSet D mu Dc f g := by
+    refine sepSet_of_sepSet_segment D mu Dc hw hkw le_rfl ?_
+    rw [IsGeodesicWord.vertex_length_eq hw]
+    exact hc
+  exact ⟨c, hmem, ⟨⟨k₀ + b, hcompw⟩, hccw⟩⟩
 
 /-- **The shifted image of the suffix's index set sits inside the word's, and
 misses `n₀`.** -/
@@ -81,13 +81,13 @@ word's index set and in no shifted image. -/
 theorem ncard_sepIndexSet_suffix_lt (D : RelGenSet G Λ) (Dc : ℕ) {f g : G}
     {w : List (RelLetter G Λ)} (hw : IsGeodesicWord D f g w) {lam : Λ}
     {n₀ k₀ : ℕ} (hcross : IsComp lam w n₀ k₀)
-    (hess : (vertex f w n₀)⁻¹ * vertex f w k₀ ∉ D.relBall lam Dc) :
+    (hmem : (QuotientGroup.mk (vertex f w n₀) : G ⧸ D.fam lam)
+      ∈ sepSet D lam Dc f g) :
     (sepIndexSet D lam Dc (vertex f w k₀) g
         ((w.drop k₀).take (w.length - k₀))).ncard
       < (sepIndexSet D lam Dc f g w).ncard := by
   have hn0 : n₀ ∈ sepIndexSet D lam Dc f g w := by
-    refine ⟨QuotientGroup.mk (vertex f w n₀),
-      ⟨w, n₀, k₀, hw, ⟨hcross, hess⟩, rfl⟩, ⟨⟨k₀, ⟨hcross, hess⟩⟩, rfl⟩⟩
+    exact ⟨QuotientGroup.mk (vertex f w n₀), hmem, ⟨⟨k₀, hcross⟩, rfl⟩⟩
   have hnotmem : n₀ ∉ (fun a : ℕ => k₀ + a) ''
       sepIndexSet D lam Dc (vertex f w k₀) g
         ((w.drop k₀).take (w.length - k₀)) := by

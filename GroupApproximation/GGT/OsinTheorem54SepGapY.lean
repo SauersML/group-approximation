@@ -32,18 +32,15 @@ variable {G : Type u} [Group G] {Λ : Type w}
 
 /-- **The gap between consecutive separating cosets is a letter of `Y`.** -/
 theorem sepSet_gap_one_eq_empty (D : RelGenSet G Λ) (lam : Λ) (Dc : ℕ)
-    (h48 : LemmaFourEight D lam Dc) {f g : G} {w : List (RelLetter G Λ)}
+    {f g : G} {w : List (RelLetter G Λ)}
     (hw : IsGeodesicWord D f g w) {i k j l : ℕ}
     (hc : IsComp lam w i k) (hc' : IsComp lam w j l) (hkj : k ≤ j)
-    (hess : (vertex f w i)⁻¹ * vertex f w k ∉ D.relBall lam Dc)
-    (hess' : (vertex f w j)⁻¹ * vertex f w l ∉ D.relBall lam Dc)
     (hsucc : SepSucc D lam Dc f g (QuotientGroup.mk (vertex f w i))
       (QuotientGroup.mk (vertex f w j))) :
     sepSet D lam Dc 1 ((vertex f w k)⁻¹ * vertex f w j) = ∅ := by
   have h := sepSet_smul D lam Dc (vertex f w k)⁻¹ (vertex f w k) (vertex f w j)
   rw [inv_mul_cancel] at h
-  rw [h, sepSet_gap_eq_empty D lam Dc h48 hw hc hc' hkj hess hess' hsucc,
-    Set.image_empty]
+  rw [h, sepSet_gap_eq_empty D lam Dc hw hc hc' hkj hsucc, Set.image_empty]
 
 end OsinComponents
 end GGT

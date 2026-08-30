@@ -14,10 +14,32 @@ and the two fields of `IsHyperbolicallyEmbedded`:
 * clause (a) `hyperbolic`    --- `Γ(G, Y ⊔ E(g))` is hyperbolic;
 * clause (b) `locallyFinite` --- every relative ball `D.relBall () n` is finite.
 
-The split agreed with `minasyan` gives clause (a) to them and clause (b) to me.
 This module is the seam: the assembly of the two clauses, the elementary facts
 about `E(g)` that either half needs, and one theorem about what clause (b) can
 and cannot be.
+
+**The work split this module originally proposed is superseded, and the reason
+is worth recording.**  It gave clause (a) to one agent and clause (b) to
+another, as if a relative generating set were given in advance and hyperbolicity
+of its cone-off were then an independent obligation.  That is not how the source
+proceeds.  Theorem 4.42 (p.56) *produces* the relative generating set:
+
+> Then there exists a relative generating set `X` of `G` with respect to
+> `{H_λ}` and a constant `α > 0` such that the Cayley graph `Γ(G, X ⊔ H)` is
+> hyperbolic, and for every `λ` and `h ∈ H_λ` we have `d̂_λ(1,h) ≥ α d(s,h(s))`.
+
+So `X`, the hyperbolicity of `Γ(G, X ⊔ H)`, and the lower bound (41) all come
+out of one construction --- projection complexes and a refined Milnor--Švarc
+argument --- and clause (a) cannot be attacked before that construction exists.
+The live split is the one in `GGT.ElementaryProjectionCriterion`: Theorem 4.42
+is the single citation, and what divides into independent pieces is its three
+*hypotheses* about `E(h)` --- quasiconvexity of an orbit, geometric separation,
+and properness of the action.  Those are statements about the subgroup and the
+action, not about a constructed alphabet, and they can be attacked in parallel.
+
+The theorems below remain correct and useful --- `isHypEmbeddedOf_of_clauses` is
+sound plumbing for any `D` however obtained --- but they are not a division of
+labour.
 
 ## Clause (b) cannot be stated without the base, and that is a theorem
 
@@ -71,7 +93,6 @@ namespace GGT
 namespace Elementary
 
 open GroupApproximation.HullGeometry
-open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
 
@@ -117,7 +138,7 @@ theorem subset_relBall_one_of_subset_base {g : G} (D : RelGenSet G Unit)
     rw [List.mem_singleton] at ha
     subst ha
     exact hbase hh
-  · simp [RelLetter.listVal, RelLetter.val]
+  · simp [RelLetter.listVal]
   · refine ⟨?_, trivial⟩
     rintro ⟨hcomp, -⟩
     exact hcomp
@@ -183,7 +204,7 @@ theorem dist_smul_listVal_le_length_mul (hiso : IsIsometricAction G X) (x : X)
         simp
     | cons a t ih =>
         intro hcons
-        have hhead : dist x (a.val • x) ≤ C := hcons a List.mem_cons_self
+        have hhead : dist x (a.val • x) ≤ C := hcons a (List.mem_cons_self a t)
         have htail := ih (fun b hb => hcons b (List.mem_cons_of_mem a hb))
         simp only [List.map_cons, List.sum_cons, List.length_cons]
         push_cast

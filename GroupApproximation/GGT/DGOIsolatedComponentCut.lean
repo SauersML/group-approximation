@@ -370,11 +370,17 @@ theorem listVal_cutWord (v : G) (w : List (RelLetter G Λ)) (lam : Λ) (k m : �
 
 /-! ## 5.  The end-to-start form, at an innermost pair -/
 
-/-- **Dahmani--Guirardel--Osin's Lemma 4.21, in the form the cut proves.**
+/-- **Dahmani--Guirardel--Osin's Lemma 4.21, in the form the cut proves, at one
+pair `(μ,b)`.**
 
-The first binder is the isolated-component bound itself, at `n ≤ 6` sides: the
-cut of an `n`-gon is an `(n+1)`-gon, so a conclusion at `n ≤ 5` needs the
-hypothesis at `n ≤ 6`.  Everything after that binder is proved outright.
+The bound binder is asked at the SAME `(μ,b)` as the conclusion, and at `n ≤ 6`
+sides: the cut of an `n`-gon is an `(n+1)`-gon, so a conclusion at `n ≤ 5` needs
+the hypothesis at `n ≤ 6`.  Everything after that binder is proved outright.
+
+The pair-specific form is what the base-case tower can supply --- its endpoint
+is proved at one `(μ,b)` at a time --- and the proof only ever spends the bound
+at its own pair.  `connector_mem_relBall` below is this with the binder asked at
+every pair instead, for the consumers that hold it in that shape.
 
 Given components `[i,k)` and `[i',k')` of a `(μ,b)`-quasi-geodesic `n`-gon with
 the first connected to the second, and with no component start strictly between
@@ -384,13 +390,13 @@ START of the second lies in `D.relBall lam (C * n)`.
 The start-to-start element `(vertex v w i)⁻¹ * vertex v w i'` is *not* bounded:
 see `not_connectedPairSpan_of_infinite`.  Nor can the innermost hypothesis be
 dropped; the module docstring records the configuration that defeats it. -/
-theorem connector_mem_relBall (D : RelGenSet G Λ)
-    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+theorem connector_mem_relBall_at (D : RelGenSet G Λ) (mu b : ℝ) (hmu : 1 ≤ mu)
+    (hb : 0 ≤ b)
+    (hbound : ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
         IsQuasiGeodesicPolygon D mu b n v u →
         ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
-          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
-    (mu b : ℝ) (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n)) :
     ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 5 → ∀ (v : G) (w : List (RelLetter G Λ)),
         IsQuasiGeodesicPolygon D mu b n v w →
@@ -399,7 +405,7 @@ theorem connector_mem_relBall (D : RelGenSet G Λ)
           (∀ p : ℕ, i < p → p < i' → IsCompStart lam w p →
             ¬ Connected D.fam lam v w i p) →
           (vertex v w i')⁻¹ * vertex v w k ∈ D.relBall lam (C * n) := by
-  obtain ⟨C, hC0, hCb⟩ := hbound mu b hmu hb
+  obtain ⟨C, hC0, hCb⟩ := hbound
   refine ⟨2 * C, by omega, ?_⟩
   intro n hn v w hpoly lam i k i' k' hcomp hcomp' hii' hconn hinner
   obtain ⟨hlet, -, c, hc0, hcn, hcmono, hcqg⟩ := hpoly
@@ -634,6 +640,51 @@ theorem connector_mem_relBall (D : RelGenSet G Λ)
     calc C * (n + 1) ≤ C * (2 * n) := Nat.mul_le_mul le_rfl h1
       _ = 2 * C * n := by ring
   exact relBall_mono_radius D lam hrad happ
+
+/-- **Lemma 4.21 with the bound asked at every `(μ,b)`.**
+
+The shape the earlier consumers hold the isolated-component bound in.  It is
+`connector_mem_relBall_at` with that binder applied at the one pair the proof
+spends it on; the statement is unchanged, so no caller moves. -/
+theorem connector_mem_relBall (D : RelGenSet G Λ)
+    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (mu b : ℝ) (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 5 → ∀ (v : G) (w : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D mu b n v w →
+        ∀ (lam : Λ) (i k i' k' : ℕ), IsComp lam w i k → IsComp lam w i' k' →
+          i < i' → Connected D.fam lam v w i i' →
+          (∀ p : ℕ, i < p → p < i' → IsCompStart lam w p →
+            ¬ Connected D.fam lam v w i p) →
+          (vertex v w i')⁻¹ * vertex v w k ∈ D.relBall lam (C * n) :=
+  connector_mem_relBall_at D mu b hmu hb (hbound mu b hmu hb)
+
+/-- **Lemma 4.21 with the bound asked at multiplicative constant one only.**
+Nothing in the tree feeds a `μ > 1` polygon --- the relator chain runs at
+`(1, |p| + c)` and Osin's own polygons at `(1, 0)` --- and at `μ = 1` the
+six-sided bound is a theorem (`sixBound_one_of_fourPointHyperbolic`), so this
+is the binder consumers should hold: it is dischargeable outright from a
+symmetric base and four-point hyperbolicity. -/
+theorem connector_mem_relBall_one (D : RelGenSet G Λ)
+    (hbound : ∀ b : ℝ, 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D 1 b n v u →
+        ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (b : ℝ) (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 5 → ∀ (v : G) (w : List (RelLetter G Λ)),
+        IsQuasiGeodesicPolygon D 1 b n v w →
+        ∀ (lam : Λ) (i k i' k' : ℕ), IsComp lam w i k → IsComp lam w i' k' →
+          i < i' → Connected D.fam lam v w i i' →
+          (∀ p : ℕ, i < p → p < i' → IsCompStart lam w p →
+            ¬ Connected D.fam lam v w i p) →
+          (vertex v w i')⁻¹ * vertex v w k ∈ D.relBall lam (C * n) :=
+  connector_mem_relBall_at D 1 b le_rfl hb (hbound b hb)
 
 /-- **The connector in the other orientation**, for a base closed under inverses
 --- which `OsinTheorem54SepSymmetric.exists_symmetric_base` supplies.  `d̂_lam` is

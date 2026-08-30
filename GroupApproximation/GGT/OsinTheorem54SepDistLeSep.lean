@@ -78,7 +78,7 @@ theorem dist_le_sep_enlargedY [Fintype Λ] (D : RelGenSet G Λ) {Dc : ℕ}
           have hd1 : wordDist (enlargedY D hDc hsymm).alphabet.carrier f
               (vertex f w n₀) ≤ 1 :=
             wordDist_enlargedY_le_one D hDc hsymm
-              (sepSet_prefix_eq_empty D Dc h48 hw hEP.1 hmin)
+              (sepSet_prefix_eq_empty D Dc h48 hw hEP hmin)
           -- the crossing is one `ℋ`-letter
           have hd2 : wordDist (enlargedY D hDc hsymm).alphabet.carrier
               (vertex f w n₀) (vertex f w k₀) ≤ 1 := by
@@ -86,9 +86,9 @@ theorem dist_le_sep_enlargedY [Fintype Λ] (D : RelGenSet G Λ) {Dc : ℕ}
               ((vertex f w n₀)⁻¹ * vertex f w k₀) ≤ 1
             refine wordNorm_le_one_of_mem (Set.mem_union_right _ ?_)
             exact Set.mem_iUnion.mpr
-              ⟨mu, span_mem_fam_of_isComp D f hw.1 hEP.1⟩
+              ⟨mu, span_mem_fam_of_isComp D f hw.1 hEP⟩
           -- the suffix separates strictly less
-          have hkw : k₀ ≤ w.length := hEP.1.2.1
+          have hkw : k₀ ≤ w.length := hEP.2.1
           have hsuf : IsGeodesicWord D (vertex f w k₀) g
               ((w.drop k₀).take (w.length - k₀)) := by
             have h := isGeodesicWord_segment D hw hkw le_rfl
@@ -98,10 +98,12 @@ theorem dist_le_sep_enlargedY [Fintype Λ] (D : RelGenSet G Λ) {Dc : ℕ}
             refine Finset.sum_lt_sum (fun nu _ => ?_) ⟨mu, Finset.mem_univ mu, ?_⟩
             · rw [sepCard_eq_ncard_sepIndexSet D nu Dc (h48 nu) hsuf,
                 sepCard_eq_ncard_sepIndexSet D nu Dc (h48 nu) hw]
-              exact ncard_sepIndexSet_suffix_le D Dc hw hEP.1
+              exact ncard_sepIndexSet_suffix_le D Dc hw hEP
             · rw [sepCard_eq_ncard_sepIndexSet D mu Dc (h48 mu) hsuf,
                 sepCard_eq_ncard_sepIndexSet D mu Dc (h48 mu) hw]
-              exact ncard_sepIndexSet_suffix_lt D Dc hw hEP.1 hEP.2
+              refine ncard_sepIndexSet_suffix_lt D Dc hw hEP ?_
+              rw [← hcc]
+              exact hc
           have hd3 := ih (vertex f w k₀) g (by omega)
           have htri := wordDist_triangle
             (enlargedY D hDc hsymm).alphabet.symmetricGenerating f

@@ -81,11 +81,24 @@ what is available was wrong on two further counts.  Checked against the tree:
 * **Stinespring's dilation theorem is in this repository** and root-imported:
   `Analysis/CStarStinespringHom.stinespringRepHom`, with the compression
   identity `stinespring_dilation_repHom`.
-* **Arveson's extension theorem is in this repository for matrix targets
-  only**: `Analysis/LanceMatrixArveson.exists_ucp_extension`.  The `B(H)` case
-  for infinite-dimensional `H` is not there.
-* **Voiculescu's theorem is not in this repository in any form**, and it is the
-  step this module's `CompatibleTargetPairStatement` is really waiting on.
+* **Arveson's extension theorem is in this repository at a `B(H)` target.**
+  `Analysis/LanceMatrixArveson.exists_ucp_extension` is the matrix case, and
+  `Analysis/ArvesonBHTarget.arvesonBH_of_limit` builds the `B(H)` case from it
+  by compression and dilation along an exhausting family of isometries; its
+  one owed input, the limit step, is discharged in
+  `Analysis/ArvesonLimitStep.arvesonLimit`.  An earlier version of this bullet
+  said the `B(H)` case was not there, which was true when it was written.
+  `arvesonBH_of_limit` takes the isometries `Jₙ` as a parameter; for a separable
+  `H` they are supplied by `Analysis/ArvesonBHSeparable`, whose
+  `arvesonBH_of_separable` carries no data hypothesis at all.
+* **Voiculescu's theorem is under construction, and is still the step this
+  module's `CompatibleTargetPairStatement` is really waiting on.**  Its first
+  half is a theorem: `Analysis/VoiculescuQuasicentral.quasicentralApproximateUnitSeparable`
+  is Arveson's quasicentral approximate unit for the compacts, step (V1) of the
+  plan in `Analysis/VoiculescuPlan` — with the separability hypothesis that the
+  plan's own form was missing, since a sequential approximate unit for `K(H)`
+  exists exactly when `H` is separable.  Steps (V2)--(V5), Glimm's lemma
+  onward, remain.
 
 The algebra `𝒟` that Theorem 10 needs is likewise no longer missing:
 `Analysis/StarStrongMatrixSequencesAlgebra` builds it and its limit map, and

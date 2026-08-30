@@ -504,15 +504,16 @@ def attach_anchors(records: list[dict], path: str,
     for same in by_key.values():
         if len(same) == 1:
             continue
-        seen: set[str] = set()
+        seen: dict[str, int] = {}
         for r in same:
-            scoped = key_of(r.get("anchor", "") + "\0" + r["sentence"])
-            if scoped in seen:
-                raise ValueError(
-                    "duplicate sentence text within one anchor cannot be "
-                    f"identified uniquely: {r.get('anchor', '')}: "
-                    f"{r['sentence']}")
-            seen.add(scoped)
+            base = r.get("anchor", "") + "\0" + r["sentence"]
+            n = seen.get(base, 0)
+            seen[base] = n + 1
+            # A repeated fragment inside ONE anchor (e.g. "Then" before two
+            # displays) gets an occurrence counter appended to the hashed
+            # text.  The first occurrence keeps the un-numbered key, so all
+            # previously assigned rows are undisturbed.
+            scoped = key_of(base if n == 0 else base + f"\0#{n + 1}")
             r["key"] = scoped
     if len({r["key"] for r in records}) != len(records):
         raise ValueError("sentence keys are not unique after anchor disambiguation")

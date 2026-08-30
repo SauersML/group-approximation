@@ -27,19 +27,34 @@ the original one at the transported vectors.  Note that the *dilation* is not
 unital — `Ψₙ(1) = Pₙ`, not `1` — and that is why unitality of the extension can
 only appear in the limit.
 
-Step 4 is *not* proved here.  It is the one place where a limit of operators has
-to be produced, and the standard construction — an ultrafilter limit of the
-matrix coefficients `⟪v, Ψₙ(x) w⟫`, bounded because a form-positive map with
-`Ψₙ(1) ≤ 1` is contractive, followed by the Riesz correspondence between bounded
-sesquilinear forms and operators — needs an API this repository has no precedent
-for.  It is recorded below as the single named `Prop` `ArvesonLimitStatement`,
-and `arvesonBH_of_limit` proves Arveson at a `B(H)` target from it together with
-steps 1--3.
+Step 4 is proved in `Analysis/ArvesonLimitStep`, not here.  It is the one place
+where a limit of operators has to be produced, and the construction is the
+standard one: an ultrafilter limit of the matrix coefficients `⟪v, Ψₙ(x) w⟫`,
+bounded because a form-positive map with `Ψₙ(1) ≤ 1` is contractive, followed by
+the Riesz correspondence between bounded sesquilinear forms and operators.
 
-The exhausting family `Jₙ` is taken as *data*, not asserted to exist: in the
-printed setting `H = ℓ²` and `Jₙ` is the inclusion of the first `kₙ`
-coordinates, which is what the concrete model `M_n ↪ B(ℓ²)` will supply.  The
-two weak-convergence hypotheses are what `Pₙ → 1` strongly gives.
+An earlier version of this note called that correspondence an API the repository
+had no precedent for.  That was wrong on both halves: Mathlib has the Riesz step
+at the pinned revision (`InnerProductSpace.continuousLinearMapOfBilin`, in
+`Mathlib/Analysis/InnerProductSpace/Dual.lean`), and the ultrafilter half is the
+argument `Analysis/ShulmanFillNormingPrintedPairCharacter` already runs one
+dimension down.  What was genuinely absent was the bundling of a *bare*
+two-variable function into a sesquilinear map, since that is the form a limit
+produces; `Analysis/ArvesonSesquilinearRiesz` supplies it.
+
+The step is recorded below as the single named `Prop` `ArvesonLimitStatement`,
+which stays as the interface between the two modules: `arvesonBH_of_limit`
+proves Arveson at a `B(H)` target from it together with steps 1--3, and
+`ArvesonLimitStep.arvesonLimit` discharges it.
+
+The exhausting family `Jₙ` is a parameter of `arvesonBH_of_limit` rather than
+something it constructs: in the printed setting `H = ℓ²` and `Jₙ` is the
+inclusion of the first `kₙ` coordinates, and the two weak-convergence
+hypotheses are what `Pₙ → 1` strongly gives.  For a separable `H` the family
+exists and is built in `Analysis/ArvesonBHSeparable`, whose
+`arvesonBH_of_separable` is this theorem with nothing left as data — an earlier
+version of this paragraph said the family was "not asserted to exist", which
+was true when it was written.
 
 This module is in the root import list.  It was authored while builds were
 suspended and has not been elaborated.  Every Mathlib name it uses has a
@@ -242,8 +257,10 @@ form-positive maps `A → B(H)` whose matrix coefficients converge at `1` and on
 subalgebra has a form-positive limit, unital, agreeing there.
 
 This is the Banach--Alaoglu step of the classical proof, in the only form the
-compression argument needs.  It is the whole of what `arvesonBH_of_limit` below
-still owes.  Note that the approximants are *not* assumed unital: the dilations
+compression argument needs — though the proof in `Analysis/ArvesonLimitStep`
+takes an honest ultrafilter limit rather than a cluster point, so no compactness
+theorem for a dual ball is used.  It was the whole of what `arvesonBH_of_limit`
+below owed, and is discharged there.  Note that the approximants are *not* assumed unital: the dilations
 that feed it satisfy `Ψₙ(1) = Pₙ`, and unitality appears only in the limit.
 
 The uniform bound is a hypothesis and not a consequence of `IsFormCP`: form

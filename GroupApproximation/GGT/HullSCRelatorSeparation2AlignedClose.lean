@@ -42,9 +42,12 @@ variable {G : Type u} [Group G]
 
 /-- **At a matched block of the aligned case the connectors are trivial.**
 
-The exponents agree by rigidity, so the relation is the diagonal, which the
-design forbids unless the left connector is trivial; and then the right one is
-too. -/
+The exponents agree by rigidity, so the relation is the diagonal.  The RIGHT
+connector is trivial by (W4) --- `HullSC.secondGap_eq_one_of_next`, from the
+match at the next component --- and the left one follows by cancellation.  The
+direction used to run the other way, with a design clause forbidding the
+diagonal; `GGT/HullSCRelatorSeparation2ApplyLoxGap.lean` records why that clause
+was not available. -/
 theorem trivial_connector_of_alignedMatch {D : GGT.RelGenSet G Bool}
     (hbase : IsSymmetricGeneratingSet D.base) {a : Bool → G} {eps rho : ℕ}
     {ms : List ℕ} {s : Bool}
@@ -57,24 +60,15 @@ theorem trivial_connector_of_alignedMatch {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' : G}
     (hx : wordNorm D.base x ≤ eps) (hx' : wordNorm D.base x' ≤ eps)
-    (hconn : x * a s ^ e * x' = a s ^ f) : e = f ∧ x = 1 ∧ x' = 1 := by
+    (hconn : x * a s ^ e * x' = a s ^ f) (hx'1 : x' = 1) :
+    e = f ∧ x = 1 ∧ x' = 1 := by
   have hef : e = f :=
     exponent_eq_of_blockMatch₂ hbase hgeo hdeep hsep he hf hx hx' hconn
   subst hef
-  obtain ⟨hxf, hx'f⟩ :=
-    hgeo e e x x' hx hx' (hdeep e he s).1 (hdeep e he s).1 hconn
-  have hxb : x ∈ D.relBall s eps := mem_relBall_of_wordNorm_le hbase hxf hx
-  have hx'b : x' ∈ D.relBall s eps := mem_relBall_of_wordNorm_le hbase hx'f hx'
-  have hx1 : x = 1 := by
-    by_contra hne
-    exact hdiag e he s x hxb x' hx'b hne hconn
-  refine ⟨rfl, hx1, ?_⟩
-  rw [hx1, one_mul] at hconn
-  exact mul_eq_left.mp hconn
+  rw [hx'1, mul_one] at hconn
+  exact ⟨rfl, mul_eq_right.mp hconn, hx'1⟩
 
 /-- **The aligned case of step (c), closed from the polygon's output.**
 
@@ -93,14 +87,12 @@ theorem listVal_conj_of_alignedMatch {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
     {p : List G} {c c' i j : ℕ}
     (hi : i < (relatorWord₂ p (a false) (a true) ms).length)
     (hj : j < (relatorWord₂ p (a false) (a true) ms).length)
     {b : Bool} {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' y : G}
     (hnx : wordNorm D.base x ≤ eps) (hnx' : wordNorm D.base x' ≤ eps)
-    (hconn : x * a b ^ e * x' = a b ^ f)
+    (hconn : x * a b ^ e * x' = a b ^ f) (hx'1 : x' = 1)
     (hlet : ((relatorWord₂ p (a false) (a true) ms).rotate c)[i]?
       = some (GGT.RelLetter.comp b ((if b then a true else a false) ^ e)))
     (hlet' : ((relatorWord₂ p (a false) (a true) ms).rotate c')[j]?
@@ -112,9 +104,9 @@ theorem listVal_conj_of_alignedMatch {D : GGT.RelGenSet G Bool}
     GGT.RelLetter.listVal ((relatorWord₂ p (a false) (a true) ms).rotate c')
       = y * GGT.RelLetter.listVal
           ((relatorWord₂ p (a false) (a true) ms).rotate c) * y⁻¹ := by
-  obtain ⟨hef, -, hx'1⟩ :=
-    trivial_connector_of_alignedMatch hbase (hgeo b) hdeep hsep hdiag he hf
-      hnx hnx' hconn
+  obtain ⟨hef, -, -⟩ :=
+    trivial_connector_of_alignedMatch hbase (hgeo b) hdeep hsep he hf
+      hnx hnx' hconn hx'1
   rw [hx'1, mul_one] at hy
   have hinj' : ∀ t : Bool,
       Function.Injective (fun n : ℕ => (if t then a true else a false) ^ n) := by

@@ -96,7 +96,7 @@ namespace GroupApproximation
 namespace GGT
 namespace PingPong
 
-universe u
+universe u v
 
 /-! ## 1.  The conclusion, and the two forms of the input -/
 
@@ -119,7 +119,7 @@ contains a free subgroup of rank two.  This is what
 `GGT/RelHypOsinTheorem24.lean`'s `OsinRelatorDesign` needs, and it is the
 qualitative form: no metric comparison. -/
 def PingPongFreeSubgroup : Prop :=
-  ∀ (H : Type) (_ : Group H),
+  ∀ (H : Type u) (_ : Group H),
     Infinite H → IsPowerTorsionFree H → Hyperbolic.IsHyperbolicGroup H →
       ¬ RelHyp.IsElementaryGroup H → FreeRankTwo H
 
@@ -128,15 +128,22 @@ space with two independent loxodromics contains a free subgroup of rank two.
 The group form is its special case at the action of a hyperbolic group on its
 own Cayley graph.
 
-**This form currently has no consumer**, and the reason is worth recording.  It
-was offered to ggt-wpd, whose lane sits strictly *upstream* of non-elementarity:
+**Universe-polymorphic**, in `G` and in the space independently.  An earlier
+version fixed both at `Type 0`, which made it inapplicable to a `G : Type u`
+acting on its relative Cayley graph -- bowditch found this, and recorded a
+polymorphic copy as `PingPongFreeRankTwoGeometric` in `GGT/WPDDGOReduction.lean`
+so that this one could be generalised and theirs deleted.  This is the survivor;
+that copy should go.
+
+**It has no consumer even so**, and the reason is worth recording.  It was
+offered to ggt-wpd, whose lane sits strictly *upstream* of non-elementarity:
 their consumer is Osin's Lemma 5.12, whose conclusion is
 `ActsNonElementarily ⊤ (Cayley.base _)`, so feeding them a statement that takes
 `ActsNonElementarily` as a hypothesis would assume what they are proving.  Any
 lane below non-elementarity should take this form; any lane above it, or at it,
 must not. -/
 def PingPongFreeSubgroupGeometric : Prop :=
-  ∀ (G : Type) (_ : Group G) (X : Type) (_ : PseudoMetricSpace X)
+  ∀ (G : Type u) (_ : Group G) (X : Type v) (_ : PseudoMetricSpace X)
     (_ : MulAction G X) (delta : ℝ) (x : X),
       HullGeometry.IsIsometricAction G X →
         HullGeometry.IsHyperbolicSpace delta X →
@@ -154,7 +161,7 @@ undistorted.  It is strictly harder than the qualitative form -- ping-pong plus
 the Morse lemma, against ping-pong alone -- so a lane that needs only the metric
 certificate should still take `PingPongFreeSubgroup`. -/
 def UndistortedPingPongFreeSubgroup : Prop :=
-  ∀ (H : Type) (_ : Group H) (S : Finset H),
+  ∀ (H : Type u) (_ : Group H) (S : Finset H),
     WordMetric.IsSymmetricGeneratingSet (S : Set H) →
       Infinite H → IsPowerTorsionFree H → Hyperbolic.IsHyperbolicGroup H →
         ¬ RelHyp.IsElementaryGroup H →
@@ -194,7 +201,7 @@ theorem noCommonZpow_of_injective {G : Type u} [Group G]
       if i = 1 then Multiplicative.ofAdd (1 : ℤ) else 1) hfree
     rw [map_zpow, map_zpow] at hmap
     have htoAdd := congrArg Multiplicative.toAdd hmap
-    simpa using htoAdd.symm
+    simpa using htoAdd
 
 /-- The same, packaged at an existential witness. -/
 theorem exists_noCommonZpow_of_freeRankTwo {G : Type u} [Group G]
@@ -236,7 +243,7 @@ theorem le_blockRelatorLength {m N : ℕ} (hN : 1 ≤ N) (hm : 33 ≤ m) :
 /-- **The piece bound clears `C'(1/8)`.**  A piece spans at most one separator
 and two partial blocks, so at most `2·(2N) + 1` letters, and thirty-three
 blocks make that less than an eighth of the relator. -/
-theorem pieceBound_lt_eighth {m N : ℕ} (_hN : 1 ≤ N) (hm : 33 ≤ m) :
+theorem pieceBound_lt_eighth {m N : ℕ} (hN : 1 ≤ N) (hm : 33 ≤ m) :
     8 * (2 * (2 * N) + 1) < blockRelatorLength m N := by
   have h : 33 * N ≤ m * N := Nat.mul_le_mul hm (le_refl N)
   unfold blockRelatorLength

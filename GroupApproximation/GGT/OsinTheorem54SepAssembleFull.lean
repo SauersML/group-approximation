@@ -1,5 +1,7 @@
 import GroupApproximation.GGT.OsinTheorem54SepAssemble
 import GroupApproximation.GGT.OsinTheorem54SepLemma510Right
+import GroupApproximation.GGT.GuessingGeodesicsCriterion
+import GroupApproximation.GGT.OsinTheorem54SepMultiplicity
 
 /-!
 # The assembly, with both halves of Lemma 5.10 discharged
@@ -14,15 +16,23 @@ What that leaves, and what each thing is:
 
 * `h48`, `h49` --- the §4.2 family.  `h48` is Osin's Lemma 4.8, and `h49` is his
   Lemma 4.9 in the GLOBAL form the Λ-sum needs.  These are the geometry.
-* `hmult` --- the multiplicity hypothesis, which is a constraint on the choice
-  of `Dc` and not a new geometric leaf; its provenance is recorded at
-  `GGT/OsinTheorem54SepLetterMult.lean`.
-* `h55`, `hM`, `hloc` --- Lemma 5.5 (a declared debt), the bounded-detour
-  condition of Lemma 5.6, and the local finiteness of Lemma 5.8.
+* `hM`, `hloc` --- the bounded-detour condition of Lemma 5.6 and the local
+  finiteness of Lemma 5.8.
 * `h511` --- Lemma 5.11, the residue.
 
-Lemma 5.10 does not appear.  Both halves are now theorems of this tree:
-`dist_le_sep_enlargedY` and `sep_le_dist_enlargedY`.
+Three things that used to be on that list are not on it any more.
+
+Both halves of Lemma 5.10 are theorems of this tree, `dist_le_sep_enlargedY`
+and `sep_le_dist_enlargedY`.
+
+Lemma 5.5 is one too.  It was a declared debt until the guessing-geodesics
+criterion was proved; `GuessingGeodesicsCriterion.osinLemma55` now supplies it,
+so `h55` is gone from the binder list rather than passed through it.
+
+The multiplicity hypothesis is gone as well.  `mult_of_relBall_one` proves it
+outright --- an element of two distinct members of the family lies in the
+radius-`Dc` ball of either --- so what was once a constraint on the choice of
+`Dc` is now a consequence of `1 ≤ Dc`, which the assembly already assumes.
 -/
 
 namespace GroupApproximation
@@ -36,19 +46,26 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
-/-- **`SepDataStatementFam` at one `D`, modulo the §4.2 family, Lemma 5.5 with
-its two companions, and Lemma 5.11.**
+/-- **`SepDataStatementFam` at one `D`, modulo the §4.2 family, Lemma 5.6's and
+5.8's conditions, and Lemma 5.11.**
 
-Both halves of Lemma 5.10 are supplied here rather than assumed. -/
+The multiplicity hypothesis is gone too: `mult_of_relBall_one` proves it from
+`1 ≤ Dc` alone.
+
+Both halves of Lemma 5.10 are supplied here rather than assumed, and so is
+Lemma 5.5: `GuessingGeodesicsCriterion.osinLemma55` proves it outright, so the
+`h55` binder is gone from the list.  What Lemma 5.5 was carrying --- the passage
+from hyperbolicity of `Γ(G,X ⊔ ℋ)` to hyperbolicity of the enlarged graph ---
+is now a theorem of this tree, and `hM` and `hloc` are what remain of that
+clause: the bounded-detour condition it consumes and the local finiteness of
+Lemma 5.8. -/
 theorem sepDataFam_of_binders_of_lemma510 [Fintype Λ] (D : RelGenSet G Λ)
     {Dc : ℕ} (hDc : 1 ≤ Dc) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     (h48 : ∀ lam : Λ, LemmaFourEight D lam Dc)
-    (hmult : ∀ lam mu : Λ, lam ≠ mu → ∀ x : G, x ∈ D.fam lam → x ∈ D.fam mu →
-      x ∈ D.relBall lam Dc ∨ x ∈ D.relBall mu Dc)
     (h49 : ∀ f g h : G, (∑ lam : Λ, sepCard D lam Dc f g)
       ≤ (∑ lam : Λ, sepCard D lam Dc f h)
         + (∑ lam : Λ, sepCard D lam Dc g h) + 2)
-    (h55 : OsinLemma55.{u}) (hemb : D.IsHyperbolicallyEmbedded)
+    (hemb : D.IsHyperbolicallyEmbedded)
     (hM : ∃ M : ℕ, ∀ b ∈ (enlargedY D hDc hsymm).alphabet.carrier,
       ∀ w : List G, (∀ x ∈ w, x ∈ D.alphabet.carrier) → w.prod = b →
       w.length = wordDist D.alphabet.carrier 1 b →
@@ -65,8 +82,9 @@ theorem sepDataFam_of_binders_of_lemma510 [Fintype Λ] (D : RelGenSet G Λ)
             wordDist (enlargedY D hDc hsymm).alphabet.carrier 1
               (z⁻¹ * k * z) ≤ m}.ncard ≤ N) :
     ∃ S : SepDataFam D, S.AcylindricalCore :=
-  sepDataFam_of_binders_of_dist D hDc hsymm h48 h49 h55 hemb hM hloc
-    (fun f g => sep_le_dist_enlargedY D hDc hsymm h48 hmult h49 f g) h511
+  sepDataFam_of_binders_of_dist D hDc hsymm h48 h49 osinLemma55 hemb hM hloc
+    (fun f g => sep_le_dist_enlargedY D hDc hsymm h48
+      (mult_of_relBall_one D hDc) h49 f g) h511
 
 end OsinEnlargement
 end GGT

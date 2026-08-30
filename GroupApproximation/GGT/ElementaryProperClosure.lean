@@ -168,7 +168,7 @@ theorem exists_notMem_elementaryClosure_of_centralizer
     ∃ f : G, f ∉ elementaryClosure q := by
   obtain ⟨a, -, b, -, ha, hb, hab⟩ := hG
   by_contra hall
-  push Not at hall
+  push_neg at hall
   obtain ⟨n₁, hn₁, hc₁⟩ :=
     exists_ne_zero_commute_sq_of_mem_elementaryClosure hiso hq (hall a)
   obtain ⟨n₂, hn₂, hc₂⟩ :=
@@ -228,119 +228,6 @@ theorem isLoxodromic_of_commute_of_escapingIsLoxodromic
     (hcg : Commute c g) (hfin : ¬ IsOfFinOrder c) : IsLoxodromic c x :=
   hbow c (isEscaping_of_commutes_of_not_isOfFinOrder hiso hacy hg hcg hfin)
 
-/-! ## The exclusion step of Osin's Theorem 1.1
-
-`GGT.WPDAcylindricalHyperbolicity` needs properness of `E(g)` in a form that can
-be used *before* non-elementarity is known: its pair comes from
-Dahmani--Guirardel--Osin's Theorem 6.14 as free generators, and all that is known
-of it is that it has no common nonzero power.  The versions above assume
-`ActsNonElementarily ⊤ x` and so cannot establish it.
-
-The pair does not have to arrive loxodromic --- the hypothesis promotes it.  If
-everything lay in `E(g)`, then `a²` and `b²` centralize the loxodromic
-`u = g^{n₁n₂}`; a common-power-free pair has both entries of infinite order, so
-`a²` and `b²` do too, and an infinite-order element commuting with a loxodromic is
-loxodromic by Bowditch; freedom from common powers survives squaring, so
-`IndependentOfNoCommonZpow` makes them independent.  Corollary 6.9 then applies.
-
-The trade against the route through Theorem 6.8 is two inputs for one, and both
-of the two are cheaper: Corollary 6.9 reduces to a single Morse output
-(`GGT.ElementaryCentralizerAxis`), Bowditch to the single local estimate
-`EscapingBoundedTurn` (`GGT.ElementaryBowditch`), while the finite-index content
-of Theorem 6.8 has no route in this development at all. -/
-
-/-- An element of infinite order has a square of infinite order. -/
-theorem not_isOfFinOrder_mul_self {c : G} (hc : ¬ IsOfFinOrder c) :
-    ¬ IsOfFinOrder (c * c) := by
-  intro hfin
-  obtain ⟨k, hk, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
-  refine hc (isOfFinOrder_iff_pow_eq_one.mpr ⟨2 * k, by omega, ?_⟩)
-  rw [pow_mul, pow_two]
-  exact hpow
-
-/-- The first entry of a common-power-free pair has infinite order. -/
-theorem not_isOfFinOrder_left_of_no_common_zpow {a b : G}
-    (hab : ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0) : ¬ IsOfFinOrder a := by
-  intro hfin
-  obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
-  have h1 : a ^ (n : ℤ) = b ^ (0 : ℤ) := by
-    rw [zpow_zero, zpow_natCast, hpow]
-  have hz : (n : ℤ) = 0 := (hab (n : ℤ) 0 h1).1
-  omega
-
-/-- The second entry of a common-power-free pair has infinite order. -/
-theorem not_isOfFinOrder_right_of_no_common_zpow {a b : G}
-    (hab : ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0) : ¬ IsOfFinOrder b := by
-  intro hfin
-  obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
-  have h1 : a ^ (0 : ℤ) = b ^ (n : ℤ) := by
-    rw [zpow_zero, zpow_natCast, hpow]
-  have hz : (n : ℤ) = 0 := (hab 0 (n : ℤ) h1).2
-  omega
-
-/-- **`E(g)` is proper as soon as some pair has no common nonzero power.**  The
-form that can be used before non-elementarity is known; see the section
-docstring for the promotion argument. -/
-theorem exists_notMem_elementaryClosure_of_no_common_zpow
-    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X) {x : X}
-    (hcen : NoIndependentPairInCentralizer G x)
-    (hbow : EscapingIsLoxodromic G x) (hindep : IndependentOfNoCommonZpow G x)
-    {g : G} (hg : IsLoxodromic g x) {a b : G}
-    (hab : ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0) :
-    ∃ f : G, f ∉ elementaryClosure g := by
-  by_contra hall
-  push Not at hall
-  obtain ⟨n₁, hn₁, hc₁⟩ :=
-    exists_ne_zero_commute_sq_of_mem_elementaryClosure hiso hg (hall a)
-  obtain ⟨n₂, hn₂, hc₂⟩ :=
-    exists_ne_zero_commute_sq_of_mem_elementaryClosure hiso hg (hall b)
-  have hu : IsLoxodromic (g ^ (n₁ * n₂)) x :=
-    isLoxodromic_zpow hiso hg (mul_ne_zero hn₁ hn₂)
-  have hcu₁ : Commute (a * a) (g ^ (n₁ * n₂)) := by
-    have h := hc₁.zpow_right n₂
-    rwa [← zpow_mul] at h
-  have hcu₂ : Commute (b * b) (g ^ (n₁ * n₂)) := by
-    have h := hc₂.zpow_right n₁
-    rw [← zpow_mul, mul_comm n₂ n₁] at h
-    exact h
-  have halox : IsLoxodromic (a * a) x :=
-    isLoxodromic_of_commute_of_escapingIsLoxodromic hiso hacy hbow
-      (g ^ (n₁ * n₂)) (a * a) hu hcu₁
-      (not_isOfFinOrder_mul_self (not_isOfFinOrder_left_of_no_common_zpow hab))
-  have hblox : IsLoxodromic (b * b) x :=
-    isLoxodromic_of_commute_of_escapingIsLoxodromic hiso hacy hbow
-      (g ^ (n₁ * n₂)) (b * b) hu hcu₂
-      (not_isOfFinOrder_mul_self (not_isOfFinOrder_right_of_no_common_zpow hab))
-  have hsqa : (a : G) ^ (2 : ℤ) = a * a := by
-    rw [show ((2 : ℤ)) = ((2 : ℕ) : ℤ) from by norm_num, zpow_natCast, pow_two]
-  have hsqb : (b : G) ^ (2 : ℤ) = b * b := by
-    rw [show ((2 : ℤ)) = ((2 : ℕ) : ℤ) from by norm_num, zpow_natCast, pow_two]
-  have hnp : ∀ p q : ℤ, p ≠ 0 → q ≠ 0 → (a * a) ^ p ≠ (b * b) ^ q := by
-    intro p q hp _ heq
-    have h2 : a ^ (2 * p) = b ^ (2 * q) := by
-      rw [zpow_mul, zpow_mul, hsqa, hsqb]
-      exact heq
-    have h3 : (2 : ℤ) * p = 0 := (hab (2 * p) (2 * q) h2).1
-    exact hp (by omega)
-  exact hcen (g ^ (n₁ * n₂)) (a * a) (b * b) hu halox hblox hcu₁ hcu₂
-    (hindep (a * a) (b * b) halox hblox hnp)
-
-/-- **The exclusion step of Osin's Theorem 1.1.**  A loxodromic element together
-with a common-power-free pair gives two independent loxodromics: the loxodromic
-and its conjugate by an element outside its elementary closure. -/
-theorem actsNonElementarily_of_no_common_zpow
-    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X) {x : X}
-    (hcen : NoIndependentPairInCentralizer G x)
-    (hbow : EscapingIsLoxodromic G x) (hindep : IndependentOfNoCommonZpow G x)
-    {g : G} (hg : IsLoxodromic g x) {a b : G}
-    (hab : ∀ m k : ℤ, a ^ m = b ^ k → m = 0 ∧ k = 0) :
-    ActsNonElementarily (⊤ : Subgroup G) x := by
-  obtain ⟨f, hf⟩ :=
-    exists_notMem_elementaryClosure_of_no_common_zpow hiso hacy hcen hbow hindep
-      hg hab
-  exact actsNonElementarily_of_notMem_elementaryClosure hiso hindep
-    (Subgroup.mem_top g) (Subgroup.mem_top f) hg hf
-
 /-- **Osin's Lemma 7.1 from the sharpened inputs.**  The virtual-cyclicity
 theorem is still used, through `ElementaryClosureVirtuallyCyclic`, at the one
 place the `s`-normal argument needs it --- the twisted intersection inside two
@@ -354,11 +241,11 @@ theorem actsNonElementarily_of_isSNormal_of_centralizer
     (hG : ActsNonElementarily (⊤ : Subgroup G) x)
     {N : Subgroup G} (hN : HullSuitable.IsSNormal N) :
     ActsNonElementarily N x := by
-  obtain ⟨g₁, -, -, -, hg₁, -, -⟩ := id hG
+  obtain ⟨g₁, -, -, -, hg₁, -, -⟩ := hG
   obtain ⟨g, hgN, hg⟩ := hlox N (not_bddOrbit_of_isSNormal hiso hacy hN hg₁)
   obtain ⟨h, hhN, hh⟩ : ∃ h : G, h ∈ N ∧ h ∉ elementaryClosure g := by
     by_contra hcon
-    push Not at hcon
+    push_neg at hcon
     have hNle : N ≤ elementaryClosure g := by
       intro y hy
       exact hcon y hy

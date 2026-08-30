@@ -28,7 +28,11 @@ universe u
 
 variable {G : Type u} [Group G]
 
-/-- **The rigidity clause, over the six-side form of the bound.**
+/-- **The rigidity clause, over the bound AT one pair of constants.**
+
+The body lives here; `mem_fam_of_conj_of_deep_six` and
+`mem_fam_of_conj_of_deep_one` differ from it only in which spelling of the
+isolated-component bound they are handed.
 
 A short conjugation carrying one deep peripheral power onto another puts both
 conjugators in `H_s`.  The equation IS a closed quadrilateral --- `x · a^i · x'
@@ -42,18 +46,14 @@ The matched vertex of the opposite side is `1` or `a s ^ j`, both in `H_s`, and
 the `q`-vertex is `1`; so the naming equation puts `listVal px` in `H_s`, and
 `x'` falls out of the caller's own equation.  This is the one place where the
 start-to-start connector's unboundedness costs nothing: the conclusion is a
-MEMBERSHIP, not a bound.
-
-The restriction `n ≤ 6` is no restriction on the caller, whose polygon is that
-quadrilateral. -/
-theorem mem_fam_of_conj_of_deep_six (D : RelGenSet G Bool)
-    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+MEMBERSHIP, not a bound. -/
+theorem mem_fam_of_conj_of_deep_of_bound (D : RelGenSet G Bool)
+    {a : Bool → G} (hmem : ∀ t : Bool, a t ∈ D.fam t) (s : Bool) (mu b : ℝ)
+    (hbnd : ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Bool)),
         IsQuasiGeodesicPolygon D mu b n v u →
         ∀ (nu : Bool) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
-          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
-    {a : Bool → G} (hmem : ∀ t : Bool, a t ∈ D.fam t) (s : Bool)
-    {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n)) :
     ∃ C : ℕ, 0 < C ∧ ∀ (n rho i j : ℕ), n ≤ 6 →
       ∀ px rx : List (RelLetter G Bool),
       (∀ c ∈ px, ∃ y : G, c = RelLetter.base y) →
@@ -66,7 +66,7 @@ theorem mem_fam_of_conj_of_deep_six (D : RelGenSet G Bool)
       C * n ≤ rho →
       a s ^ i ∉ D.relBall s rho →
         RelLetter.listVal px ∈ D.fam s ∧ RelLetter.listVal rx ∈ D.fam s := by
-  obtain ⟨C, hCpos, hC⟩ := exists_other_component_of_deep_six D hbound s hmu hb
+  obtain ⟨C, hCpos, hC⟩ := exists_other_component_of_deep_of_bound D s mu b hbnd
   refine ⟨C, hCpos, ?_⟩
   intro n rho i j hn px rx hpx hrx hrxne heq hpoly hrho hdeep
   have hai : a s ^ i ∈ D.fam s := pow_mem (hmem s) i
@@ -119,6 +119,53 @@ theorem mem_fam_of_conj_of_deep_six (D : RelGenSet G Bool)
     rw [← heq]; group
   rw [hrxval]
   exact mul_mem (mul_mem (inv_mem hai) (inv_mem hpx')) haj
+
+/-- **The same, over the bound at every pair of constants.** -/
+theorem mem_fam_of_conj_of_deep_six (D : RelGenSet G Bool)
+    (hbound : ∀ mu b : ℝ, 1 ≤ mu → 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Bool)),
+        IsQuasiGeodesicPolygon D mu b n v u →
+        ∀ (nu : Bool) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    {a : Bool → G} (hmem : ∀ t : Bool, a t ∈ D.fam t) (s : Bool)
+    {mu b : ℝ} (hmu : 1 ≤ mu) (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧ ∀ (n rho i j : ℕ), n ≤ 6 →
+      ∀ px rx : List (RelLetter G Bool),
+      (∀ c ∈ px, ∃ y : G, c = RelLetter.base y) →
+      (∀ c ∈ rx, ∃ y : G, c = RelLetter.base y) →
+      0 < rx.length →
+      RelLetter.listVal px * a s ^ i * RelLetter.listVal rx = a s ^ j →
+      IsQuasiGeodesicPolygon D mu b n 1
+        (px ++ [RelLetter.comp s (a s ^ i)] ++ rx ++
+          revWord [RelLetter.comp s (a s ^ j)]) →
+      C * n ≤ rho →
+      a s ^ i ∉ D.relBall s rho →
+        RelLetter.listVal px ∈ D.fam s ∧ RelLetter.listVal rx ∈ D.fam s :=
+  mem_fam_of_conj_of_deep_of_bound D hmem s mu b (hbound mu b hmu hb)
+
+/-- **The same, over the bound at `μ = 1`**, which is what
+`OsinTheorem54SepSixBound.sixBound_one_of_fourPointHyperbolic` proves. -/
+theorem mem_fam_of_conj_of_deep_one (D : RelGenSet G Bool)
+    (hbound : ∀ b : ℝ, 0 ≤ b → ∃ C : ℕ, 0 < C ∧
+      ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Bool)),
+        IsQuasiGeodesicPolygon D 1 b n v u →
+        ∀ (nu : Bool) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+          (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    {a : Bool → G} (hmem : ∀ t : Bool, a t ∈ D.fam t) (s : Bool) (b : ℝ)
+    (hb : 0 ≤ b) :
+    ∃ C : ℕ, 0 < C ∧ ∀ (n rho i j : ℕ), n ≤ 6 →
+      ∀ px rx : List (RelLetter G Bool),
+      (∀ c ∈ px, ∃ y : G, c = RelLetter.base y) →
+      (∀ c ∈ rx, ∃ y : G, c = RelLetter.base y) →
+      0 < rx.length →
+      RelLetter.listVal px * a s ^ i * RelLetter.listVal rx = a s ^ j →
+      IsQuasiGeodesicPolygon D 1 b n 1
+        (px ++ [RelLetter.comp s (a s ^ i)] ++ rx ++
+          revWord [RelLetter.comp s (a s ^ j)]) →
+      C * n ≤ rho →
+      a s ^ i ∉ D.relBall s rho →
+        RelLetter.listVal px ∈ D.fam s ∧ RelLetter.listVal rx ∈ D.fam s :=
+  mem_fam_of_conj_of_deep_of_bound D hmem s 1 b (hbound b hb)
 
 end OsinComponents
 end GGT

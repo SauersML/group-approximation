@@ -159,6 +159,29 @@ theorem injOn_cayleyBall_of_action {G : Type u} [Group G] {Q : Type*} [Group Q]
     exact_mod_cast hmul
   linarith
 
+/-- **Injectivity on a ball, from the kernel moving the basepoint.**
+
+The injectivity radius is Hull's §5 rather than DGO's Theorem 5.3, whose
+conclusions are the free splitting and the conjugate-or-loxodromic dichotomy --
+loxodromy is asymptotic and gives no bound at the first power, and the splitting
+is not metric.  So the clause is produced by the family, in the form
+`RotatingData.kernel_moves_base`, and this is the two-line passage from it to a
+statement about a given quotient map. -/
+theorem injOn_cayleyBall_of_kernel_moves {G : Type u} [Group G] {Q : Type*}
+    [Group Q] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
+    (hiso : IsIsometricAction G X) (A : Alphabet G) (y : X)
+    (hA : ∀ a ∈ A.carrier, dist y (a • y) ≤ 1) (q : G →* Q) {K : Subgroup G}
+    (hker : q.ker = K) {L : ℝ} (R : ℕ) (hL : 2 * (R : ℝ) < L)
+    (hmove : ∀ g ∈ K, g ≠ 1 → L ≤ dist y (g • y)) :
+    Set.InjOn q (cayleyBall A R) := by
+  refine injOn_cayleyBall_of_action hiso A y hA q (L := L) R hL ?_
+  intro g hg hdist hq
+  have hmem : g ∈ K := by
+    rw [← hker]
+    exact MonoidHom.mem_ker.mpr hq
+  have hge : L ≤ dist y (g • y) := hmove g hmem hg
+  linarith
+
 /-! ## Why the family cannot live on a Cayley graph of `G` -/
 
 /-- **A rotating family on `Γ(G,B)` has trivial rotation subgroups.**  The
@@ -231,12 +254,16 @@ structure RotatingData {G : Type u} [Group G] (A : Alphabet G) (w : G)
   delta_pos : 0 < delta
   /-- The cone-off is hyperbolic. -/
   hyperbolic : IsHyperbolicSpace delta Space
+  /-- **The cone-off is geodesic.**  DGO work in geodesic spaces throughout, and
+  `HullSC.DGOQuotientStatementGeodesic` asks for it: without one the very
+  rotating condition constrains an annulus that can be empty.  It is why the
+  family lives on the geometric realisation `GGT.Point` rather than on
+  `Cayley A`, which `HullFillAxisDichotomy.not_isGeodesicSpace_cayley` refutes. -/
+  isGeodesic : IsGeodesicSpace Space
   /-- The separation of the family. -/
   sep : ℝ
   /-- DGO's Theorem 5.3 asks for separation above `200 δ`. -/
   sep_ge : 200 * delta ≤ sep
-  /-- The separation exceeds the prescribed displacement. -/
-  lt_sep : L < sep
   /-- The apices: one cone point over each coset carrying a rotation. -/
   apices : Set Space
   /-- The rotation subgroups. -/
@@ -247,33 +274,37 @@ structure RotatingData {G : Type u} [Group G] (A : Alphabet G) (w : G)
   isSeparated : IsSeparated apices sep
   /-- It is very rotating. -/
   isVeryRotating : IsVeryRotating G Space delta apices rot
-  /-- The basepoint is `sep`-far from every apex.  It is a vertex of `Γ(G,A)`
-  and the apices are cone points, so it is far from all of them; and `sep` may
-  be shrunk freely, `IsSeparated` being a lower bound, so this can be arranged
-  together with the two lower bounds on `sep` above.  It is what DGO's theorem
-  needs of a basepoint: `HullSC.eq_one_of_dist_lt_everywhere` shows the
-  displacement clause is false at an apex. -/
-  base_far : ∀ c ∈ apices, sep ≤ dist base c
   /-- The rotations generate the normal closure of the relator: killing the
   family is killing `w`. -/
   rotationNormalClosure_eq :
     rotationNormalClosure apices rot = Subgroup.normalClosure ({w} : Set G)
-  /-- **The injectivity radius, and it is Hull's §5 rather than DGO's.**
-
-  Nothing that moves the basepoint by less than the separation is killed, for
-  any quotient by the normal closure of the relator.
+  /-- The injectivity radius. -/
+  injRadius : ℝ
+  /-- It exceeds the prescribed displacement. -/
+  lt_injRadius : L < injRadius
+  /-- **The kernel moves the basepoint, and this is Hull's §5 rather than
+  DGO's.**  Every nontrivial element of the subgroup the rotations generate
+  moves the basepoint by at least the injectivity radius.
 
   This was a field of `HullSC.RotatingQuotient` until the clauses of DGO's
   Theorem 5.3 were read against the source: that theorem concludes the free
   splitting and the dichotomy, and the injectivity radius follows from neither
   -- loxodromy is asymptotic and gives no bound at the first power, and the
-  splitting is not metric.  So it belongs with the family Hull builds, where
-  `base` and `sep` are in scope, and it is stated at the basepoint rather than
-  at every point because `HullSC.eq_one_of_dist_lt_everywhere` refutes the
-  unrestricted form: a rotation fixes its apex and lies in the kernel. -/
-  injOn_of_dist : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-    q.ker = Subgroup.normalClosure ({w} : Set G) →
-      ∀ g : G, g ≠ 1 → dist base (g • base) < sep → q g ≠ 1
+  splitting is not metric.  So it belongs with the family Hull builds.
+
+  Two things make this the right form.  It is quantified over the **kernel**,
+  which is the honest domain: an element outside the kernel may fix the
+  basepoint without harm, and in a Cayley graph of `G` no element fixes
+  anything, which is the other half of `HullSC.rot_eq_bot_of_cayley`.  And it
+  mentions no quotient map, so it is a statement about the family alone; the
+  consequence for a given `q` is two lines from `ker_eq`, which is
+  `injOn_cayleyBall_of_kernel_moves`.
+
+  It is also the check that the basepoint is not an apex:
+  `HullSC.eq_one_of_dist_lt_everywhere` refutes the form quantified over every
+  point, a rotation fixing its apex and lying in the kernel. -/
+  kernel_moves_base : ∀ g ∈ rotationNormalClosure apices rot, g ≠ 1 →
+    injRadius ≤ dist base (g • base)
 
 namespace RotatingData
 
@@ -349,12 +380,13 @@ family Hull builds.**
 Seven of the ten fields of `HullFillingQuotient` come out of
 `RotatingQuotient`: the group, the map, its surjectivity, the kernel (through
 `RotatingData.rotationNormalClosure_eq`) and the lifting of finite order.
-Injectivity on the ball comes from `RotatingData.injOn_of_dist` through
-`injOn_cayleyBall_of_action`, with the separation prescribed above `2R` --
-that clause is Hull's §5 and not DGO's, which is why it is a field of the
-family data rather than of the quotient.  The remaining three are the alphabet
+Injectivity on the ball comes from `RotatingData.kernel_moves_base` through
+`injOn_cayleyBall_of_kernel_moves`, with the injectivity radius prescribed above
+`2R` -- that clause is Hull's §5 and not DGO's, which is why it is a field of
+the family data rather than of the quotient.  The remaining three are the alphabet
 clauses, and they are the second conjunct of `HullFillingDataStatement`. -/
-theorem hullQuotient_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
+theorem hullQuotient_of_fillingData
+    (hDGO : DGOQuotientStatementGeodesic.{u, u})
     (hdata : HullFillingDataStatement.{u}) : HullQuotientStatement.{u} := by
   intro G _ A N E hN k S hS R
   obtain ⟨eps, rho, mu, hmu, hgood⟩ := hdata A N E hN S hS R
@@ -362,16 +394,17 @@ theorem hullQuotient_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
   intro W v hv hsc
   obtain ⟨⟨D⟩, halph⟩ := hgood W v hv hsc
   obtain ⟨P⟩ := hDGO D.delta D.sep D.apices D.rot D.delta_pos D.sep_ge
-    D.hyperbolic D.isRotatingFamily D.isSeparated D.isVeryRotating
+    D.hyperbolic D.isGeodesic D.isRotatingFamily D.isSeparated D.isVeryRotating
   have hker : P.q.ker
       = Subgroup.normalClosure ({GGT.RelLetter.listVal v} : Set G) := by
     rw [P.ker_eq, D.rotationNormalClosure_eq]
   obtain ⟨F⟩ := halph P.q P.surjective hker
   have hinj : Set.InjOn P.q (cayleyBall A.alphabet R) := by
-    refine injOn_cayleyBall_of_action D.isometric A.alphabet D.base
-      D.letter_dist P.q (L := D.sep) R D.lt_sep ?_
-    intro g hg hdist
-    exact D.injOn_of_dist P.q hker g hg hdist
+    refine injOn_cayleyBall_of_kernel_moves D.isometric A.alphabet D.base
+      D.letter_dist P.q (K := rotationNormalClosure D.apices D.rot) P.ker_eq
+      (L := D.injRadius) R D.lt_injRadius ?_
+    intro g hgmem hg
+    exact D.kernel_moves_base g hgmem hg
   exact ⟨{ Q := P.Q
            group := P.group
            q := P.q
@@ -386,7 +419,8 @@ theorem hullQuotient_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
 
 /-- **Hull's Theorem 5.1 with the §6 relator**, from DGO's Theorem 5.3, Hull's
 §6 and the family of his §5. -/
-theorem hullTheorem51_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
+theorem hullTheorem51_of_fillingData
+    (hDGO : DGOQuotientStatementGeodesic.{u, u})
     (hrel : HullRelatorStatement.{u}) (hdata : HullFillingDataStatement.{u}) :
     HullTheorem51Statement.{u} :=
   hullTheorem51_of_relator_of_quotient hrel
@@ -395,7 +429,8 @@ theorem hullTheorem51_of_fillingData (hDGO : DGOQuotientStatement.{u, u})
 /-- **Hull's Theorem 7.1 for one relator**, from the same three, with the
 hyperbolically embedded subgroup inside the suitable one. -/
 theorem hullOneStep_of_fillingData (hEmb : ExistsHypEmbeddedInSuitable.{u})
-    (hDGO : DGOQuotientStatement.{u, u}) (hrel : HullRelatorStatement.{u})
+    (hDGO : DGOQuotientStatementGeodesic.{u, u})
+    (hrel : HullRelatorStatement.{u})
     (hdata : HullFillingDataStatement.{u}) : HullOneStepStatement.{u} :=
   hullOneStep_of_theorem51 hEmb (hullTheorem51_of_fillingData hDGO hrel hdata)
 
@@ -405,7 +440,8 @@ two halves `ExistsHypEmbeddedInSuitable` and `HullFillingDataStatement`, and
 his §6.  `HullCorrectedInputs.smallCancellation_of_ballFormNG` turns it into
 the finite-set form the manuscript records. -/
 theorem hullBallFormNG_of_fillingData (hEmb : ExistsHypEmbeddedInSuitable.{u})
-    (hDGO : DGOQuotientStatement.{u, u}) (hrel : HullRelatorStatement.{u})
+    (hDGO : DGOQuotientStatementGeodesic.{u, u})
+    (hrel : HullRelatorStatement.{u})
     (hdata : HullFillingDataStatement.{u}) :
     Manuscript.NonMF.HullCorrectedInputs.HullBallFormStatementNG.{u} :=
   hullBallFormNG_of_oneStep (hullOneStep_of_fillingData hEmb hDGO hrel hdata)
