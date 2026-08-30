@@ -4,7 +4,7 @@ id: fp-simple-nonhyperlinearity-is-one-word-domination
 kind: claim
 title: One word detects nonhyperlinearity of a finitely presented infinite simple group
 distinct_from:
-  hyperlinear-radical-presentation-compactness: That characterizes one word in the hyperlinear radical for an arbitrary finite or recursively enumerable presentation; this uses simplicity to identify that one-word condition with nonhyperlinearity of the whole group and also adds the linear character-domination form.
+  hyperlinear-radical-presentation-compactness: That characterizes one word in the hyperlinear radical for an arbitrary enumerated countable presentation; this uses finite presentation and simplicity to identify that one-word condition with nonhyperlinearity of the whole group and also adds the linear character-domination form.
   character-domination-collapse-equivalences: That linearizes phase-insensitive finite-dimensional character collapse for an arbitrary group, finite relator set and word; this identifies its qualitative hypothesis with the hyperlinear radical of a presented simple quotient.
   thompson-v-ce-one-word-trace-face-is-binary: That computes a zero-or-two support value over Connes-embeddable traces of Thompson V; this characterizes, for any finitely presented infinite simple group, when a relator-defect collapse modulus and a finite-dimensional character-domination constant exist.
 ---
