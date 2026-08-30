@@ -269,7 +269,7 @@ support algebra or that the product bound is sharp for `n>0`.
 
 The one-dimensional product loss can now be removed for a concrete support
 geometry.  `stw82-tree-connected-supports-have-optimal-covers` proves that
-outgoing supports in a common centralizing finite-tree algebra admit
+outgoing supports in a common centralizing compact-R-tree algebra admit
 asymptotically exact support-local coupled covers using only their maximum
 pointwise multiplicity `m`, with no connectedness hypothesis.  At each
 tolerance, only finitely many cozero components meet an upper spectral cut;
@@ -281,5 +281,5 @@ of this kind with depth at most `r+1` prove nuclear dimension at most `r`,
 improving the general one-dimensional central-spectrum bound from `2m` to
 `m`.  For connected cozero supports the common-centralizer hypothesis remains
 unnecessary, recovering the earlier theorem.  This is an identifiable
-positive class, not a claim that arbitrary essential extensions have
-finite-tree support geometry.
+positive class, not a claim that arbitrary essential extensions have compact
+R-tree support geometry.
