@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw22-all-degree-weighted-selection-audit-2026-08-30.md
   - research/artifacts/stw22-locally-trivial-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-matrix-to-hyperfinite-field-audit-2026-08-30.md
+  - research/artifacts/stw22-finite-bratteli-cube-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -97,6 +98,17 @@ convergent sequence with fibre `F_n` at `n` and hyperfinite `II_1` fibre at
 the limit.  Its only gap is nonzero but bounded-trace-free by finite-matrix
 orthogonal replication.  Hence every trace on its uniform completion is
 uniform, despite the changing fibre type and infinite Bauer boundary.
+This one-dimensional construction is now closed under arbitrary finite
+tensor products and restriction to any closed subfield by
+`stw22-finite-bratteli-cubes-have-only-uniform-traces`.  The resulting
+closed subsets of `(N union {infinity})^d` have Cantor--Bendixson height at
+most `d+1` and include rooted Bratteli patterns; the full cube has full
+matrix fibres on its open stratum and infinitely many hyperfinite fibres on
+intersecting boundary faces.  A nearest-point conditional-expectation lift
+across each derived subset makes restriction surjective; square-root
+damping kills every trace on its kernel.  Finite descent therefore
+eliminates all fibre-gap traces, although the full cube's top gap is
+nonzero.
 
 ## Attempts
 
