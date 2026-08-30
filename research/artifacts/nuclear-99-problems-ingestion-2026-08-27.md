@@ -34,6 +34,7 @@ Problem numbering is the paper's (Roman numerals I--XCIX).
 | LXXIII | Global Glimm halving by one square-zero ideal generator | problem-lxxiii-global-square-zero-cover |
 | LXXIV | Infinite nonzero projections in a simple unital algebra force pure infiniteness | stw99-problem-lxxiv-infinite-projections-purely-infinite |
 | LXXVI | Every pure C*-algebra is Cuntz-semigroup regular | stw99-problem-lxxvi-pure-implies-cu-regular |
+| LXXVIII | Z-stable maps into quasitraceless codomains are O-infinity-stable | stw99-problem-lxxviii-zstable-map-to-quasitraceless-target |
 
 ## Reductions recorded as routes, with the sentence in the paper that asserts them
 
