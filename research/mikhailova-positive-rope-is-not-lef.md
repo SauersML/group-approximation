@@ -35,7 +35,10 @@ The final graph-valued HNN step contains its base, hence contains `Gamma`, by
 Britton normal form.  Since LEF is inherited by subgroups, `R` cannot be LEF.
 This obstruction is compatible with the compiler's MF theorem and does not
 settle soficity: a sofic approximation may be genuinely approximate and need
-not contain any exact local embedding into a finite group.
+not contain any exact local embedding into a finite group.  More sharply,
+[[mikhailova-profinite-pinch-is-mf-visible]] exhibits one closure-point pinch
+which every finite quotient kills but the compiler's faithful norm corona
+separates; the non-LEF proof therefore cannot be upgraded to non-MF.
 
 DERIVATION
 [[mikhailova-positive-rope-not-lef-proof]]
