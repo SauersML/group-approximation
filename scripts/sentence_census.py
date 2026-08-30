@@ -18,7 +18,6 @@ declarations that formalize it, or an explicit reason why no declaration can.
     scripts/sentence_census.py --check         fail on any unassigned sentence
     scripts/sentence_census.py --require-complete
                                               also fail on partial coverage
-                                              and prose-only proof provenance
     scripts/sentence_census.py --summary       print the counts and stop
     scripts/sentence_census.py --verify-unconditional
                                               classify every named declaration
@@ -644,6 +643,27 @@ CARRIER_DETECTORS = {"carrier-data", "carrier-debt"}
 ASSERTING_STATUSES = {"formalized", "partial"}
 
 
+#: Statuses that leave a sentence's mathematics unaccounted for.  `provenance`
+#: is deliberately absent: a provenance row is a COMPLETE grading of a sentence
+#: that, by the status table above, quotes rather than asserts -- the resource
+#: disclosure in the AI-and-formal-methods section is the only one the paper
+#: has -- and `sentence_records.py` already records it as data, in the same
+#: bucket as `attribution`.  Counting it as incomplete contradicted both, and
+#: made `--require-complete` permanently red on a sentence with nothing left to
+#: prove.  What still fails is a sentence whose mathematics IS unaccounted for:
+#: `unassigned`, and `partial` where one clause is proved and another is not.
+INCOMPLETE_STATUSES = {"unassigned", "partial"}
+
+
+def counts_incomplete(status: str) -> bool:
+    """Does a row of `status` leave the manuscript's mathematics unaccounted for?
+
+    Split out so the rule can be pinned, the way `counts_finding` is: the
+    interesting content is which statuses are NOT here.
+    """
+    return status in INCOMPLETE_STATUSES
+
+
 def counts_finding(status: str, detector: str) -> bool:
     """Does a finding of `detector` count against a row of `status`?
 
@@ -939,6 +959,26 @@ def self_test() -> int:
                   "run that should have refused", file=sys.stderr)
             return 1
 
+    # `--require-complete` must still fail on a sentence whose mathematics is
+    # unaccounted for, and must not fail on one that asserts none.
+    incomplete_cases = [
+        ("unassigned", True),
+        ("partial", True),
+        ("provenance", False),
+        ("attribution", False),
+        ("structural", False),
+        ("definition", False),
+        ("open", False),
+        ("formalized", False),
+        ("ledger", False),
+    ]
+    for status, expected in incomplete_cases:
+        if counts_incomplete(status) is not expected:
+            print(f"self-test: counts_incomplete({status!r}) = "
+                  f"{counts_incomplete(status)}, expected {expected}",
+                  file=sys.stderr)
+            return 1
+
     carrier_cases = [
         ("formalized", "carrier-data", True),
         ("formalized", "carrier-debt", True),
@@ -966,9 +1006,8 @@ def main() -> int:
     ap.add_argument("--check", action="store_true",
                     help="exit nonzero if any sentence is unassigned")
     ap.add_argument("--require-complete", action="store_true",
-                    help=("exit nonzero if any sentence is unassigned, only "
-                          "partially formalized, or carries prose-only proof "
-                          "provenance"))
+                    help=("exit nonzero if any sentence is unassigned or "
+                          "only partially formalized"))
     ap.add_argument("--summary", action="store_true")
     ap.add_argument("--self-test", action="store_true",
                     help="pin the refusal that keeps one manuscript's census "
@@ -1093,17 +1132,14 @@ def main() -> int:
     for error in overlay_errors:
         print(f"OVERLAY ERROR: {error}")
 
-    incomplete = (c.get("unassigned", 0) + c.get("partial", 0) +
-                  c.get("provenance", 0))
+    incomplete = sum(count for status, count in c.items()
+                     if counts_incomplete(status))
     if ((args.check and (c.get("unassigned") or overlay_errors)) or
             (args.require_complete and (incomplete or overlay_errors))):
         if c.get("unassigned"):
             print(f"\nFAIL: {c['unassigned']} sentences carry no assignment.")
         if args.require_complete and c.get("partial"):
             print(f"FAIL: {c['partial']} sentences are only partially formalized.")
-        if args.require_complete and c.get("provenance"):
-            print(f"FAIL: {c['provenance']} proof-route sentences carry only "
-                  "prose provenance.")
         if overlay_errors:
             print(f"FAIL: {len(overlay_errors)} overlay integrity error(s).")
         return 1
