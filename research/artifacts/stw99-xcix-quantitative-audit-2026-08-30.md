@@ -152,3 +152,20 @@ moving its obstruction to larger finite windows or smaller tolerances.  This
 is an unconditional exact normal form for the asymptotic obstruction, but it
 does not reflect Z-stability back to any one coordinate and therefore does
 not settle XCIX.
+
+Taking the supremum over all window sizes gives a stronger scalar summary.
+With the empty-embedding infimum normalized to `2`, define
+`kappa_Z(E)=sup_(m,k) Delta_(m,k)(E)`.  Diagonalization proves that, for
+separable unital `E`, this number vanishes exactly when `E` is Z-stable.
+Transporting an arbitrary window and then taking the supremum gives
+
+```text
+|kappa_Z(A)-kappa_Z(B)|
+ <= 304 sqrt(gamma)+2 gamma
+```
+
+whenever the close common-unit algebras lie in the quantitative range and
+one of them contains a unital copy of `Z` (transport supplies a copy on the
+other side).  Thus a counterexample sequence has positive global defects
+tending to zero.  This is a Holder-continuous obstruction scalar, but its
+zero set need not be open without a new positive-gap theorem.

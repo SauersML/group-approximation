@@ -67,6 +67,22 @@ escape to increasing witness complexity or decreasing tolerance even though
 its limit has exact relative-commutant copies.  This isolates a failure of
 uniform coordinate reflection, not an invariant defect of the limit algebra.
 
+The finite windows admit a sharper global packaging.
+`stw99-xcix-global-central-defect-modulus` defines a scalar
+`kappa_Z(B) in [0,2]` by taking the supremum of all finite-window defects.
+For separable unital algebras its zero set is exactly Z-stability, and near
+algebras containing a unital copy of Z satisfy the symmetric estimate
+
+```text
+|kappa_Z(A)-kappa_Z(B)|
+ <= 304 sqrt(gamma)+2 gamma.
+```
+
+Consequently a vanishing-distance counterexample sequence would have
+strictly positive scalar defects converging to zero.  This turns the missing
+coordinate-reflection step into the precise absence of a uniform positive
+gap at the zero set; Holder continuity alone does not supply that gap.
+
 Finally, Z-stability is closed, rather than known open, in the space of
 separable unital subalgebras of one fixed ambient algebra containing a common
 unit; see `stw99-xcix-z-stability-is-kk-closed`.  This only rules out one fixed
