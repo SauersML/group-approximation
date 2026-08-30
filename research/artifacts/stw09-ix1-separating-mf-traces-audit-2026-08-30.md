@@ -64,3 +64,40 @@ After the internal MF conclusion, nuclearity is used exactly once through
 the standard Blackadar--Kirchberg nuclear-MF/NF characterization.  The
 unrestricted IX(1) root remains open because a general faithful nuclear
 trace is not known to lie in the weak-star closed convex hull of MF traces.
+
+## Quasicentral ideal-corner localization
+
+A second positive class uses MF trace data which are not traces on the
+ambient algebra.  Let `I triangleleft A` have an increasing approximate unit
+of projections `(p_n)` quasicentral in `A`.  If every corner `p_n A p_n` and
+the quotient `A/I` are quasidiagonal, then `A` is quasidiagonal.  The model
+is the direct sum of a matrix model after compression
+`x |-> p_n x p_n` and a matrix model after the quotient map.
+
+The norm audit is exact.  If `z` is the central support of `I` in `A**`, then
+
+```text
+||x||=max{||(1-z)x||,||zx||}
+     =max{||q(x)||,lim_n ||p_n x p_n||}.
+```
+
+Strong convergence `p_n -> z` gives the lower inequality for the corner
+norm, while `p_n=zp_n` gives the upper inequality.  The quotient realizes
+the complementary central summand faithfully.  Multiplicativity of the
+compression is not assumed: its exact defect before applying a corner model
+is `p_n x(1-p_n)y p_n`, bounded by
+`||[p_n,x]|| ||y||`.
+
+For IX(1), the given faithful trace supplies faithful normalized traces on
+the nonzero corners.  Assuming those corner traces are MF makes the corner
+algebras MF by trace faithfulness; nuclearity upgrades them to
+quasidiagonality.  If the quotient is quasidiagonal, the gluing theorem
+applies.  This requires no UCT and does not assert that the ambient faithful
+trace is MF.  A trace on the noncentral hereditary corner generally has no
+tracial extension to `A`, so the hypothesis does not reduce to a jointly
+faithful family or a weak-star convex hull of MF traces on `A`.
+
+The projectional quasicentral hypothesis is substantive: without it,
+compression need not be approximately multiplicative in operator norm, and
+quasidiagonality is not generally preserved by extensions.  No trace on the
+quotient is inferred from the faithful trace on `A`.
