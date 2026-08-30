@@ -2,7 +2,7 @@
 rg: 2
 id: whitehead-universal-finitely-presented-container
 kind: claim
-title: One finitely presented group Whitehead-injectively contains every recursively presented group
+title: One two-generator finitely presented group Whitehead-injectively contains every recursively presented group
 distinct_from:
   whitehead-universal-finitely-presented-torsion-free-group: that constructs a torsion-free host for the torsion-free input class and packages the Whitehead conjecture; this host allows torsion and contains every countably generated recursively presented group.
   whitehead-injective-torsion-order-preserving-higman-embedding: that chooses a separate finitely presented host after each finitely generated recursive input; this chooses one host before every input.
@@ -10,7 +10,7 @@ distinct_from:
   mikaelian-explicit-higman-embedding: that supplies a finitely presented host for one recursive presentation without Whitehead control; this is simultaneous and Whitehead-injective.
 ---
 
-There exists one finitely presented group `U` such that every countably
+There exists one two-generator finitely presented group `U` such that every countably
 generated recursively presented group `K` admits an embedding
 
 ```text

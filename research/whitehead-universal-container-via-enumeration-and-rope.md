@@ -32,14 +32,21 @@ Apply
 two-generator recursively presented group `E` with `Q->E` an embedding,
 `Wh(Q)->Wh(E)` injective, and `Tord(E)=Tord(Q)`. Then apply
 [[whitehead-injective-torsion-order-preserving-higman-embedding]] once to
-this single `E`. It gives a finitely presented `U` with `E->U` an
-embedding, `Wh(E)->Wh(U)` injective, and `Tord(U)=Tord(E)`.
+this single `E`. It gives a finitely presented `U_0` with
+`E->U_0` an embedding, `Wh(E)->Wh(U_0)` injective, and
+`Tord(U_0)=Tord(E)`.
 
-The group `U` is selected after the fixed groups `Q,E` and before any
+Apply the finite-presentation clause of
+[[whitehead-injective-two-generator-recursive-compression]] once more to
+`U_0`. This gives a two-generator finitely presented `U` with
+`U_0->U` an embedding, `Wh(U_0)->Wh(U)` injective, and
+`Tord(U)=Tord(U_0)`.
+
+The group `U` is selected after the fixed groups `Q,E,U_0` and before any
 input `K`. For a chosen presentation index of `K`, compose
 
 ```text
-K ~= P_i -> Q -> E -> U.
+K ~= P_i -> Q -> E -> U_0 -> U.
 ```
 
 Every arrow is an embedding and the induced Whitehead map is injective.

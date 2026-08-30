@@ -22,5 +22,9 @@ is injective and
 Tord(E) = Tord(Q).
 ```
 
+If `Q` is finitely presented, then `E` can be chosen finitely presented as
+well. Thus the construction also compresses finite presentations to two
+generators without losing Whitehead classes or changing torsion orders.
+
 **ESTABLISHED 2026-08-30** by
 [[whitehead-injective-two-generator-free-edge-hnn-proof]].

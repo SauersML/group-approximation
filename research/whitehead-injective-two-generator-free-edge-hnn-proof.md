@@ -44,6 +44,11 @@ q_i=t b^(-i)a b^i t^(-1) a^(-i)b^(-1)a^i.
 Substitution into the recursively enumerable relators `R` yields an
 explicit recursively enumerable presentation of `E` on `{a,t}`.
 
+If `Q=<q_1,...,q_n|R>` is finitely presented, use only the finite
+basis ranges `1<=i<=n` in `A`, `B`, and the HNN relations. The same
+elimination substitutes finitely many words into the finite relator set
+`R`, so the resulting two-generator `E` is finitely presented.
+
 The inclusion `Q->V` is split by the free-product retraction. The edge
 `A` is a free group of countable rank, so `Wh(A)=0`: write it as the
 directed union of finite-rank free factors and use `Wh(F_n)=0` together
