@@ -55,8 +55,9 @@ direct_sum_N F_2
 has selfless, hence simple, reduced C*-algebra.  A finite-dimensional algebra
 chain proves this group is nonlinear over every field; a centralizer argument
 proves it is not acylindrically hyperbolic.  This is a concrete positive case
-beyond those two principal regimes, though no claim is made that it evades
-every boundary-theoretic criterion now known.
+beyond those two group-theoretic regimes, but not a literature-new example:
+Ozawa's countable tensor-product theorem independently covers its reduced
+algebra as the infinite tensor product of copies of `C*_r(F_2)`.
 
 For a possible negative solution, `stw91-finite-subgroup-projection-obstruction`
 turns selfless strict comparison into a check on the averaging projections

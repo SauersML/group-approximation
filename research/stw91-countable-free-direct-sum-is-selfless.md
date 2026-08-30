@@ -24,4 +24,7 @@ two-generator free group.  Then `(C*_r(G),tau_G)` is selfless.  Consequently
 acylindrically hyperbolic.
 
 Thus the directed-union mechanism produces a concrete countable positive
-case outside both the linear and acylindrically hyperbolic classes.
+case outside both the linear and acylindrically hyperbolic classes.  This is
+a new proof route, not a claim of a previously unknown example: Ozawa's
+countable exact tensor-product theorem also applies to the infinite tensor
+product description of `C*_r(G)`.

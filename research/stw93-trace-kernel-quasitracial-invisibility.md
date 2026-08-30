@@ -1,0 +1,24 @@
+---
+rg: 2
+id: stw93-trace-kernel-quasitracial-invisibility
+kind: claim
+title: Every quasitrace on the XCIII central sequence algebra annihilates the trace-kernel ideal
+artifacts:
+  - research/artifacts/stw93-xciii-free-group-jiang-su-si-audit-2026-08-30.md
+---
+
+For `D=(C*_r(F₂)⊗𝒵)_ω∩(C*_r(F₂)⊗𝒵)'` and
+`I=J_τ∩D`, prove that every normalized quasitrace `q` on `D` satisfies
+`q(I_+)=0`.
+
+## Attempts
+
+The quotient `D/I` is already a II₁ factor with unique quasitrace, so this is
+the exact remaining ideal-local obstruction.  Central pureness gives strict
+comparison only after testing against all quasitraces and therefore cannot
+exclude a quasitrace charging `I`.  Every quasitrace is canonical on the
+embedded tensor-factor `F(𝒵)`, but norm-central sequences from
+`C*_r(F₂)` are tracially scalar and put all their non-scalar information into
+`I`.  A proof needs an ideal-annihilation mechanism for these free or mixed
+central sequences; exactness of the separable algebra does not automatically
+make its ultrapower or central sequence algebra exact.
