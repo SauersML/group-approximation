@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw82-tree-connected-support-covers-audit-2026-08-30.md
   - research/artifacts/stw82-stage-centre-split-audit-2026-08-30.md
   - research/artifacts/stw82-multiplier-projection-reduction-audit-2026-08-30.md
+  - research/artifacts/stw82-complemented-multiplier-support-audit-2026-08-30.md
 ---
 
 **Problem LXXXII of Schafhauser--Tikuisis--White,
@@ -124,6 +125,21 @@ is full: the adjoined algebra is Morita equivalent to the unitization of the
 full hereditary corner.  Thus a split-AF counterexample would necessarily
 encounter a nonfull projection and the proper residual quotient left outside
 its generated ideal.
+
+The nonfull frontier is now narrower.  The theorem
+`stw82-complemented-support-preserves-dimension` proves
+the same formula whenever the proper generated ideal
+`L=closure(ApA)` is complemented in the sigma-unital algebra `A`.  Indeed,
+the projection annihilates the complementary ideal, is full on `L`, and
+
+```text
+A+C p=(L+C p) direct_sum L^perp.
+```
+
+This permits multiplier projections that are simultaneously nonfull and
+noncentral.  Consequently a counterexample to the split-AF formula must pass
+through a nonfull projection whose generated ideal is noncomplemented; its
+support cannot be a central projection of `M(A)`.
 
 There is also a new unconditional middle-algebra class:
 `stw82-one-dimensional-middle-forces-maximum` shows that every
