@@ -79,7 +79,7 @@ uniformly bounded Hirsch length has group C*-algebra of finite nuclear
 dimension.  The resulting bound depends only on that uniform local Hirsch
 length.
 
-## Locally finite-lamp wreath products over local nilpotent bases
+## Locally finite lamps and the exact local growth parameter
 
 Eckhardt--Wu's Theorem 5.14 gives the quantitative finite-stage estimate
 
@@ -90,13 +90,13 @@ dim_nuc(C*(K wr V)) <= 2 * 9^d(V)
 for finite `K` and finitely generated virtually nilpotent `V`, where `d(V)`
 is polynomial-growth degree.  The right side is independent of `K`; more
 precisely, the cited theorem applies to every finite-dimensional coefficient
-algebra.  The Bass--Guivarc'h formula writes the growth degree as `sum i*a_i`
-for the lower-central homogeneous ranks, while Hirsch length is `sum a_i`.
-The nilpotency class is at most the Hirsch length, so `d(V)<=h(V)^2`.
+algebra.
 
-Let `L` be countable locally finite and let `H` be countable locally virtually
-nilpotent with all local Hirsch lengths at most `r`.  Increasing exhaustions
-by finite subgroups `L_n` and finitely generated subgroups `H_n` give
+Let `L` be countable locally finite.  Suppose every finitely generated
+subgroup `V` of the countable group `H` has polynomial growth and
+`D=sup_V d(V)<infinity`.  Gromov's theorem makes every `V` virtually
+nilpotent, so the cited estimate applies.  Increasing exhaustions by finite
+subgroups `L_n` and finitely generated subgroups `H_n` give
 
 ```text
 L wr H = union_n (L_n wr H_n).
@@ -105,13 +105,26 @@ L wr H = union_n (L_n wr H_n).
 The equality is literal: every wreath element has finite lamp support, a
 finite set of lamp values, and one acting coordinate.  A single sufficiently
 large stage contains all three.  Thus all stage dimensions are at most
-`2*9^(r^2)`, and the subgroup-algebra inductive-limit theorem gives the same
+`2*9^D`, and the subgroup-algebra inductive-limit theorem gives the same
 bound for `C*(L wr H)`.  This combines an imported finite-stage theorem and
 growth formula with a new simultaneous uniformization and wreath-exhaustion
 argument.  Nonabelian `L` causes no issue because each `C*(L_n)` is a
 finite-dimensional multimatrix algebra, exactly within the cited theorem.
 
-For `L=direct_sum_N A_5` and `H=Q`, the local Hirsch bound is one, so the
+The growth formulation exposes the exact analytic parameter.  If the local
+hypothesis is instead given by `h(V)<=r`, the Bass--Guivarc'h formula and the
+nilpotency-class bound give
+
+```text
+h(V) <= d(V) <= h(V)^2 <= r^2,
+```
+
+recovering the earlier `2*9^(r^2)` estimate as a corollary.  Conversely,
+bounded local growth degree bounds local Hirsch length.  When `D=0`, all
+finitely generated actor subgroups are finite; the wreath product is locally
+finite and its group algebra is AF, so its nuclear dimension is exactly zero.
+
+For `L=direct_sum_N A_5` and `H=Q`, the exact local degree is one, so the
 nuclear-dimension bound is `18`.  This example has an infinite nonabelian
 locally finite lamp group.  It contains `(Z/2) wr Z`, so it is not locally
 virtually polycyclic; this positive class is not subsumed by the earlier
@@ -180,8 +193,9 @@ No statement here handles arbitrary locally-finite-by-abelian extensions or
 general finite-Hirsch-length elementary amenable groups.  The controlled
 extension theorem requires finite kernel intersection at every finitely
 generated stage.  The locally finite-lamp theorem covers regular wreath
-shifts over uniformly locally virtually nilpotent acting groups, but not
-arbitrary locally finite kernels or actions.  The direct-factor proof uses the
+shifts over acting groups of uniformly bounded local polynomial-growth
+degree, but not arbitrary locally finite kernels or actions.  The
+direct-factor proof uses the
 augmentation quotient and therefore does not extend formally to an arbitrary
 semidirect product.  The directed-union theorem needs a uniform stage bound;
 it cannot turn unbounded finite-stage dimensions into a finite limit.  The
