@@ -534,6 +534,114 @@ theorem vertexChain_progress
   rw [hreorder]
   simpa only [vertexChain] using hlower
 
+/-- Endpoint-close quasi-axis segments coarsely match their internal power
+vertices.  The constants are chosen before the translated segments.  This is
+the segment-Morse replacement for the geodesic-axis comparison in the
+quasi-axis part of Bestvina--Fujiwara Proposition 6. -/
+theorem exists_uniform_vertexChain_match
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x)) :
+    ∃ E C : ℝ, 0 ≤ E ∧ 0 ≤ C ∧
+      ∀ (p q : PowerAxisSegment h x),
+        dist p.initial q.initial ≤ B → dist p.terminal q.terminal ≤ B →
+        ∀ j : ℕ, j ≤ p.steps →
+          E ≤ (dist x (h • x) / lam) * ((p.steps - j : ℕ) : ℝ) →
+          ∃ i : ℕ, i ≤ q.steps ∧
+            dist (p.vertexChain j) (q.vertexChain i) ≤ C := by
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hD : 0 ≤ D := by
+    dsimp [D]
+    positivity
+  have hl : 0 < l := by
+    dsimp [l]
+    positivity
+  obtain ⟨K₁, hK₁, hchordNear⟩ :=
+    ElementaryMorse.exists_bound_chord_near_chain
+      hδ hδ0 hD hl hc
+  obtain ⟨K₂, hK₂, hchainNear⟩ :=
+    ElementaryMorse.exists_bound_chain_near_chord
+      hδ hδ0 hD hl hc
+  let E : ℝ := 2 * B + c + K₂
+  let C : ℝ := K₂ + (3 * B + 12 * δ) + K₁
+  have hE : 0 ≤ E := by
+    dsimp [E]
+    linarith
+  have hC : 0 ≤ C := by
+    dsimp [C]
+    linarith
+  refine ⟨E, C, hE, hC, ?_⟩
+  intro p q hclose0 hclose1 j hj hfar
+  let Lp : ℝ := dist p.initial p.terminal
+  let Lq : ℝ := dist q.initial q.terminal
+  obtain ⟨P, hP, hP0, hP1⟩ := hgeo p.initial p.terminal
+  obtain ⟨Q, hQ, hQ0, hQ1⟩ := hgeo q.initial q.terminal
+  have hpEdge : ∀ i, i < p.steps →
+      dist (p.vertexChain i) (p.vertexChain (i + 1)) ≤ D := by
+    intro i hi
+    exact vertexChain_edge_le hiso hf hq p i
+  have hpProgress : ∀ i k, i ≤ k → k ≤ p.steps →
+      l * ((k - i : ℕ) : ℝ) - c ≤
+        dist (p.vertexChain i) (p.vertexChain k) := by
+    intro i k hik hk
+    exact vertexChain_progress hiso hf hq p hik
+  have hqEdge : ∀ i, i < q.steps →
+      dist (q.vertexChain i) (q.vertexChain (i + 1)) ≤ D := by
+    intro i hi
+    exact vertexChain_edge_le hiso hf hq q i
+  have hqProgress : ∀ i k, i ≤ k → k ≤ q.steps →
+      l * ((k - i : ℕ) : ℝ) - c ≤
+        dist (q.vertexChain i) (q.vertexChain k) := by
+    intro i k hik hk
+    exact vertexChain_progress hiso hf hq q hik
+  have hP0' : P 0 = p.vertexChain 0 := by rw [hP0, p.vertexChain_zero]
+  have hP1' : P Lp = p.vertexChain p.steps := by
+    rw [hP1, p.vertexChain_steps]
+  have hQ0' : Q 0 = q.vertexChain 0 := by rw [hQ0, q.vertexChain_zero]
+  have hQ1' : Q Lq = q.vertexChain q.steps := by
+    rw [hQ1, q.vertexChain_steps]
+  obtain ⟨t, ht, hpClose⟩ := hchainNear p.vertexChain p.steps
+    hpEdge hpProgress Lp dist_nonneg P hP hP0' hP1' j hj
+  have hlength : Lp ≤ Lq + 2 * B := by
+    have htri := dist_triangle4 p.initial q.initial q.terminal p.terminal
+    rw [dist_comm q.terminal p.terminal] at htri
+    dsimp [Lp, Lq]
+    linarith [hclose0, hclose1]
+  have hpTail := hpProgress j p.steps hj le_rfl
+  have htailMetric :
+      dist (p.vertexChain j) (p.vertexChain p.steps) ≤ K₂ + (Lp - t) := by
+    have hparam : dist (P t) (P Lp) = Lp - t := by
+      rw [hP.dist_eq ht ⟨dist_nonneg, le_rfl⟩,
+        abs_of_nonpos (sub_nonpos.mpr ht.2)]
+      ring
+    calc
+      dist (p.vertexChain j) (p.vertexChain p.steps) =
+          dist (p.vertexChain j) (P Lp) := by rw [hP1']
+      _ ≤ dist (p.vertexChain j) (P t) + dist (P t) (P Lp) :=
+        dist_triangle _ _ _
+      _ = dist (p.vertexChain j) (P t) + (Lp - t) := by rw [hparam]
+      _ ≤ K₂ + (Lp - t) := by
+        simpa only [add_comm] using add_le_add_right hpClose (Lp - t)
+  have htLq : t ≤ Lq := by
+    dsimp [E, l] at hfar
+    linarith
+  have hgeodesicClose := dist_same_parameter_le_of_geodesic_endpoints_close
+    hδ hδ0 hgeo hB hP dist_nonneg hQ dist_nonneg
+    (by rw [hP0, hQ0]; exact hclose0)
+    (by rw [hP1, hQ1]; exact hclose1)
+    ht ⟨ht.1, htLq⟩
+  obtain ⟨i, hi, hqClose⟩ := hchordNear q.vertexChain q.steps
+    hqEdge hqProgress Lq dist_nonneg Q hQ hQ0' hQ1' t ⟨ht.1, htLq⟩
+  refine ⟨i, hi, ?_⟩
+  have htri := dist_triangle4 (p.vertexChain j) (P t) (Q t) (q.vertexChain i)
+  rw [dist_comm (Q t) (q.vertexChain i)] at htri
+  dsimp [C]
+  linarith
+
 /-- Integer power vertices whose arclength coordinates are sufficiently
 separated are metrically separated.  This is the quantitative fact that makes
 the partner exponents in the oriented sampling argument injective, and then
