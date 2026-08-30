@@ -26,4 +26,3 @@ representative-selection argument.
 
 This is an obstruction to that proof method, not a negative answer to Problem
 XCIV and not a failure of property (SI).
-

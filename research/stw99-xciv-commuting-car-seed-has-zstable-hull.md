@@ -26,4 +26,3 @@ tensor leg in a decomposition `R=R_0 bar_tensor R_1`: put a CAR copy in the
 other leg.  This is a genuinely infinite-dimensional positive class for
 Problem XCIV; for example the subset in the first leg may generate a diffuse
 abelian algebra or another CAR algebra.
-

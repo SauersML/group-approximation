@@ -54,4 +54,3 @@ For the tensor-leg corollary, use the canonical commuting inclusions in
 `R_0 bar_tensor R_1` and choose a unital CAR subalgebra of `R_1`.  The argument
 above already proves faithfulness on the minimal tensor product, so no
 von Neumann tensor-product or normality inference is being smuggled in.
-
