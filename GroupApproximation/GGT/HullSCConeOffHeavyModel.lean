@@ -68,7 +68,7 @@ and this one is not.
 ## Duplication declared
 
 The integer-exponent bookkeeping of `exists_isWordQuasiconvex_zpowers` repeats
-that of `exists_isWordQuasiconvex_zpowers_of_morse`.  The two differ only in
+that of `exists_isWordQuasiconvex_zpowers_of_fourPoint`.  The two differ only in
 which nonnegative-power bound they consume, and they should be unified once the
 Morse-conditional route is confirmed unwanted.
 -/
