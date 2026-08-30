@@ -15,6 +15,7 @@ distinct_from:
   primitive-native-hecke-relators-have-no-odd-mixed-occurrence: that audits the primitive Steinberg and coefficient relators and finds that the Hecke triangles authenticate only the twice-occurring Whitehead factors; it explicitly leaves room for the now-established derived order-seven anchor.
   order-seven-anchor-stops-at-whitehead-compression-leakage: that proves the odd anchor kills the reservoir gauge once the full compression boundary is controlled; its former one-step spectral estimate is only necessary, and the surviving input is a typed moving seven-step return.
   paid-t00-carrier-has-signed-hecke-reynolds-dichotomy: that gives an exact operator-norm localization of the paid t00 discrepancy to the actual signed source, or one fixed detector-word payment; this asks for vanishing normalized-HS loss for both native covariance rows.
+  near-full-hecke-source-cannot-retain-quarter-native-profile: that proves a reducing subcut of the fixed balanced Hecke source must discard at least one third of its mass to recover the second native quarter profile; this claim may only survive through a genuinely moving occurrence chart whose loss is charged to the full relations.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
@@ -193,3 +194,14 @@ two polar-square identities.
   input is a source-and-target-Gram-typed transition from the moved cut into
   one native row, with its reservoir gauge fixed in the Hecke frame; a
   tautological word-conjugate cut retains the coboundary ambiguity.
+- **Read the second native quarter profile directly on a near-full subcut of
+  the fixed signed source.**  This is already rank-theoretically impossible.
+  By `near-full-hecke-source-cannot-retain-quarter-native-profile`, the
+  second native sign is balanced on `Q`, and every subprojection whose
+  compressed negative mass has fraction `1/4` discards at least
+  `tau(Q)/3`; no invariance assumption on the subprojection is needed.  Even
+  an approximate quarter profile obeys the sharp loss bound `(QPL4)`.  Thus a
+  vanishing-loss proof must transport the occurrence into a genuinely
+  moving native chart and charge that transition to ordinary relations.  It
+  cannot obtain the requested source typing by spectral trimming inside the
+  fixed `Q` chart itself.
