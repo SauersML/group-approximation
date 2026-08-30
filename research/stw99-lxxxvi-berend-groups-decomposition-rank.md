@@ -39,7 +39,11 @@ Their theorem supplies a recursive bound depending on Hirsch length, not
 the numerical bound `53` occurring for a different example in their
 Section 5.2.  Decomposition rank is not known to pass to arbitrary
 subalgebras, so the non-strongly-QD subgroups `Z^3 ⋊ Z` do not settle
-the ambient group.
+the ambient group.  There is nevertheless a sharp quotient reduction:
+`berend-proper-quotients-have-decomposition-rank-at-most-two` proves that
+every proper quotient has decomposition rank at most two.  Any infinite
+decomposition rank must therefore be an essential phenomenon in the full
+crossed product, not one detected by a quotient.
 
 ## Attempts
 
@@ -47,16 +51,24 @@ the ambient group.
   this example: every representation is quasidiagonal.  This statement,
   unlike a classification of every quotient or trace, is exactly what
   Eckhardt's Lemma 2.2 proves.
+* **Proper quotients.**  The finite-orbit reduction does more than give
+  quasidiagonality: every proper quotient has decomposition rank at most
+  two.  Quotient monotonicity therefore cannot prove the desired infinite
+  lower bound.
 * **Entropy (speculative).**  Every nonidentity element of the torsion-free
   unit subgroup has positive entropy: an infinite-order algebraic unit
   cannot have all conjugates on the unit circle, and the entropy of its
   toral automorphism is the sum of the logarithms of the expanding
-  eigenvalue moduli.  A new implication tailored to this setting, from
-  finite decomposition rank of the crossed product to zero entropy of
-  each acting automorphism, would settle this Berend instance.  No such
-  implication is asserted by the cited papers.  Finite nuclear dimension
-  cannot provide it, because Eckhardt--Wu already prove finite nuclear
-  dimension here.
+  eigenvalue moduli.  The unrestricted implication from finite
+  decomposition rank to zero entropy is false:
+  `minimal-cantor-crossed-products-have-decomposition-rank-one` gives
+  free minimal uniquely ergodic positive-entropy systems whose crossed
+  products have decomposition rank one.  Thus an entropy theorem capable
+  of settling the Berend instance would have to use its rank-two algebraic
+  action or its nonminimal finite-orbit structure, not merely positivity
+  of the entropy of an acting automorphism.  Finite nuclear dimension
+  cannot provide such a distinction, because Eckhardt--Wu already prove
+  finite nuclear dimension here.
 * **Positive direction (refuting Conjecture II).**  A finite decomposition
   rank bound would require additional control beyond the finite-nuclear-
   dimension theorem.  Finite invariant torsion sets give the

@@ -45,14 +45,26 @@ Every nonidentity element of the chosen torsion-free unit subgroup acts on
 `T^3` with positive topological entropy: an infinite-order algebraic unit
 cannot have all conjugates of modulus one.  A new theorem saying, for this
 class of algebraic actions, that finite decomposition rank forces zero
-entropy of each acting automorphism would settle the Berend case.  No such
-theorem is in the cited literature, and no reduction from general
-elementary amenable groups to this class is claimed.  The finite invariant
-torsion sets underlying quasidiagonality do not currently yield the
-contractive order-zero approximations required for decomposition rank.
-This is a proposed research direction, not evidence for a proved
-obstruction; the open node is
+entropy of each acting automorphism would settle the Berend case, but the
+general version of that implication is rigorously false.  Indeed
+`minimal-cantor-crossed-products-have-decomposition-rank-one` proves that
+every Cantor minimal `Z`-crossed product has decomposition rank one, and
+strictly ergodic examples of positive entropy exist.  Any viable entropy
+obstruction must therefore use the higher-rank algebraic action or the
+nonminimal finite-orbit structure.  The finite invariant torsion sets
+underlying quasidiagonality do not currently yield the contractive
+order-zero approximations required for decomposition rank.  The open node is
 `stw99-lxxxvi-berend-groups-decomposition-rank`.
+
+## Exact quotient reduction
+
+`berend-proper-quotients-have-decomposition-rank-at-most-two` strengthens
+the nonfaithful-representation half of Eckhardt's argument.  Every proper
+quotient factors through the crossed product over a finite invariant set.
+Orbit by orbit this is `M_{|O|}(C(T^2))`, because a finite-orbit stabilizer
+has finite index in `Z^2`.  Consequently every proper quotient has
+decomposition rank at most two.  The desired infinite decomposition rank,
+if true, is therefore invisible in all proper quotients.
 
 ## Sources
 
