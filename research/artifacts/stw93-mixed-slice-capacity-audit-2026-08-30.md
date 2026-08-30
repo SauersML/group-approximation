@@ -63,6 +63,15 @@ capacity.  The need for cross-embedding **exact witnesses** was an artifact
 of trying to preserve the equations `s*s=e`; for the capacity conclusion,
 Cuntz comparison aligns all copies through one canonical target family.
 
+Abstractly, this proves an exact equivalence.  In any pure unital algebra
+with a unital `Z` copy, a positive element has infinite Cuntz capacity if and
+only if every normalized `2`-quasitrace annihilates it.  One direction is the
+dimension-function capacity bound; the other is strict comparison into
+arbitrarily many orthogonal full `Z` plateaus.  Accordingly the capacity
+language exactly detects the XCIII quasitrace-null cone.  It sharpens the
+geometry of a possible witness but does not bypass the residual quasitrace
+problem.
+
 ## Why the source distinction cannot be erased formally
 
 In the doubled model

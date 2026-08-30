@@ -153,3 +153,12 @@ therefore compares beneath each of arbitrarily many orthogonal full plateaus
 in one canonical copy of `Z`.  Hence it already has infinite capacity.  Any
 finite-capacity negative witness must remain nonzero in the residual ideal
 `I/K_Z^sat`; neither same-slice nor cross-slice elements can support it.
+
+The capacity criterion is now pointwise exact, not merely sufficient.
+`pure-z-plateau-capacity-equals-quasitrace-nullity` proves in any pure unital
+algebra with a unital `Z` copy that a positive element has infinite Cuntz
+capacity exactly when every normalized `2`-quasitrace kills it.  Therefore
+the capacity program does not formally weaken XCIII after passing to the
+residual ideal: it repackages the missing quasitracial direction as a
+centrally finite positive cut.  Its gain is geometric localization, not an
+automatic comparison proof for residual elements.
