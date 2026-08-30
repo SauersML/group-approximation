@@ -54,7 +54,11 @@ there are a projectionless subhomogeneous algebra `D`, a nonzero projection
 full in `M_3(C_P)`.  Thus `C_P` is itself projectionless and subhomogeneous,
 while `Prim(C_P)` is compact and the support of `P` is all of it.  In
 particular, compact-open support of the stabilized projection alone also
-does not descend it.
+does not descend it.  The exact theorem
+`stw74-every-matrix-descent-threshold-occurs-subhomogeneously` strengthens
+this example: every prescribed first matrix level `m>=2` occurs for such a
+full projection over a compact-spectrum projectionless subhomogeneous
+coefficient algebra.
 
 Equivalently, in every LXXIV counterexample with full projectionless corner
 `D`, no stabilized projection over `D` can have stable coefficients or a
