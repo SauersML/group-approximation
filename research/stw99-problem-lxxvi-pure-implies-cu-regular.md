@@ -1,0 +1,66 @@
+---
+rg: 2
+id: stw99-problem-lxxvi-pure-implies-cu-regular
+kind: claim
+title: Every pure C*-algebra is Cuntz semigroup regular (STW Problem LXXVI)
+root: true
+---
+
+**Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
+99 problems_, arXiv:2506.10902v2.**  If `A` is pure, must the first-factor map
+
+```text
+iota_A : A -> A tensor_min Z,       a |-> a tensor 1_Z
+```
+
+induce an isomorphism
+
+```text
+Cu(iota_A) : Cu(A) -> Cu(A tensor_min Z)?
+```
+
+This remains open.  The abstract characterization of pureness by
+`Cu(A) tensor_Cu Cu(Z)` does not itself answer the problem: the missing map is
+the canonical external-product morphism from that abstract Cu tensor product
+to the Cuntz semigroup of the minimal C\*-tensor product.  The exact reduction
+is `stw99-lxxvi-external-cu-tensor-map-is-the-only-gap`.
+
+Two boundaries are currently rigorous.  Cuntz semigroup regularity is closed
+under inductive limits (`stw99-lxxvi-cu-regularity-passes-to-inductive-limits`),
+so a counterexample cannot be assembled as an ordinary inductive limit of
+regular building blocks.  Conversely,
+`stw99-lxxvi-compact-cancellation-counterexample-criterion` isolates a
+projection-level route to a counterexample: tensoring with `Z` must collapse
+noncancellation already present in a pure algebra.
+
+## Literature boundary
+
+The equivalence
+
+```text
+A pure  iff  Cu(A) ~= Cu(A) tensor_Cu Cu(Z)
+```
+
+is imported from Antoine--Perera--Robert--Thiel.  The nodes below do not
+identify this abstract tensor product with `Cu(A tensor_min Z)`; treating that
+identification as automatic would assume the problem.
+
+## Attempts
+
+The positive route is to prove that the external-product morphism `mu_A` in
+`stw99-lxxvi-external-cu-tensor-map-is-the-only-gap` is invertible.  Abstract
+`Cu(Z)`-absorption supplies invertibility of `eta_A`, not of `mu_A`; no step may
+replace the latter by the former.  The route is stable under ordinary
+inductive-limit assembly by
+`stw99-lxxvi-cu-regularity-passes-to-inductive-limits`, so genuinely new work
+is needed only for building blocks not already known to be Cu-regular.
+
+The current counterexample route is compact cancellation.  Find a pure
+non-simple algebra with two stably inequivalent projections of the same
+`K_0` class, while projections cancel after tensoring with `Z`.
+`stw99-lxxvi-compact-cancellation-counterexample-criterion` then proves that
+`Cu(iota_A)` is not injective.  The cross-`K_1` mechanism that refutes the
+stronger tensor assertion in Problem XCV does not directly apply here:
+tensoring by `Z` does not provide a second nonzero `K_1` factor, so the
+candidate obstruction must collapse existing Cu data rather than manufacture
+the compact cross class used there.
