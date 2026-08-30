@@ -2724,6 +2724,7 @@ import GroupApproximation.GGT.OsinTheorem54SepCorner45
 import GroupApproximation.GGT.CayleyFourPointConverse
 import GroupApproximation.GGT.OsinTheorem54SepFourGonBridge
 import GroupApproximation.Analysis.VoiculescuSequentialUnit
+import GroupApproximation.Analysis.VoiculescuStrongToNorm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
