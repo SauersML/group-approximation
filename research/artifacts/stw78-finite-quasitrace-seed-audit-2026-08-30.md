@@ -85,6 +85,87 @@ Cuntz isometries, or construct a finite obstruction seed whose join with a
 Z-stable image retains a finite unit.  The latter remains tied to Problem
 LXVI.
 
+# Finite-ideal extension audit
+
+Normalized quasitracelessness of a unital algebra passes to unital quotients
+by composition, but it does not exclude unbounded lower semicontinuous
+quasitraces on nonunital ideals.  The Toeplitz--Cuntz extension is the sharp
+nuclear example: its unital middle algebra has no trace because its `n`
+orthogonal generating isometries would each have trace one, while the compact
+ideal has its usual unbounded trace.  Both simple layers have
+almost-unperforated Cuntz semigroup.  Hence finite ideal lattice plus regular
+simple layers is not by itself a strong-pure-infiniteness theorem.
+
+One exact repair is algebraic simplicity of the layers.  A densely finite
+lower semicontinuous trace is finite on the Pedersen ideal, so on an
+algebraically simple layer it is an everywhere-finite, hence bounded,
+positive functional.  In a nuclear target every lower semicontinuous
+2-quasitrace is a trace.  A bounded trace on an ideal extends canonically to
+the containing quotient and then pulls back to the original unital target,
+where it contradicts normalized quasitracelessness.  Thus every simple
+almost-unperforated layer is purely infinite.
+
+For separable nuclear layers, Kirchberg absorption upgrades simple pure
+infiniteness to `O_infinity`-stability.  Toms--Winter, *Strongly
+self-absorbing C-star algebras*, Transactions AMS 359 (2007), Theorem 4.3,
+states exactly that `D`-stability glues across short exact sequences of
+separable C-star algebras when `D` is separable, unital, strongly
+self-absorbing and `K_1`-injective.  Taking `D=O_infinity` and inducting along
+a maximal chain in the finite ideal lattice makes the entire target
+`O_infinity`-stable.  This proves the finite-ideal positive class recorded in
+the graph.  No extension permanence of strong pure infiniteness in arbitrary
+nonnuclear algebras is asserted.
+
+For completeness, the countable version uses the same absorption route.
+Kirchberg--Rordam Theorem 8.6 plus Toms--Winter Corollaries 3.1--3.2 identify
+separable nuclear strong pure infiniteness with `O_infinity`-stability after
+stabilizing and returning from the stabilization.  Toms--Winter Corollary
+3.4 preserves `D`-stability under sequential inductive limits.  Hence an
+increasing exhaustive ideal filtration with strongly purely infinite
+separable nuclear successive layers is strongly purely infinite.  This is a
+qualified nuclear theorem, not an assertion that the matrix-diagonalization
+definition glues across arbitrary extensions.
+
+The same argument extends from finite chains to continuous composition
+series indexed by a countable ordinal.  At a successor `beta+1`, the layer
+is an ideal in the unital quotient `B/I_beta`, so its bounded trace extends
+there and pulls back to `B`; this does not require `I_beta` or the layer to be
+unital.  At a countable limit `gamma`, choose an increasing sequence cofinal
+in `gamma`.  Continuity identifies `I_gamma` with the sequential inductive
+limit of the corresponding earlier ideals, exactly within the scope of
+Toms--Winter Corollary 3.4.  Transfinite induction therefore glues
+`O_infinity`-stability through the whole countable series.  An arbitrary
+uncountable-cofinality limit cannot be replaced by such a sequence and is
+outside the recorded theorem.
+
+# Finite-dimensional simple-fiber theorem
+
+There is a second way around the nonunital-layer trace obstruction which
+does not require a composition series.  Let `B` be a nonzero unital separable
+nuclear `C(X)`-algebra, where `X` is compact metrizable and finite-dimensional,
+and assume every fiber `B_x` is nonzero, simple, and has almost-unperforated
+`W(B_x)`.  A fiber is a unital quotient of `B`, so a normalized quasitrace on
+`B_x` would pull back to one on `B`.  Ambient quasitracelessness therefore
+passes to every fiber even though it need not pass to nonunital ideals.
+
+The simple almost-unperforated dichotomy makes each fiber purely infinite.
+Since the fibers are nuclear, they absorb `O_infinity`.  Hirshberg--Rordam--
+Winter, *C_0(X)-algebras, stability and strongly self-absorbing C-star
+algebras*, Theorem 4.6, then applies with `D=O_infinity`: over a
+finite-dimensional locally compact metrizable base, a separable
+`C_0(X)`-algebra absorbs a `K_1`-injective strongly self-absorbing `D` if and
+only if all its fibers do.  Hence `B` itself is `O_infinity`-stable and
+strongly purely infinite.  Gabe's nuclear-map theorem closes every LXXVIII
+map into `B`.
+
+This class is not subsumed by the countable-composition-series theorem.  It
+allows a nonsimple target with infinitely many ideals and requires neither
+algebraic simplicity of nonunital layers nor global almost unperforation of
+`W(B)`.  The finite-dimensional-base hypothesis is an exact trust boundary:
+Hirshberg--Rordam--Winter construct infinite-dimensional-base fields whose
+fibers all absorb the chosen strongly self-absorbing algebra but whose
+section algebra does not.
+
 # Trust boundary
 
 The finite-detection and counterexample-reflection proofs use only the

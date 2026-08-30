@@ -50,6 +50,58 @@ ordinary relative commutant contains a unital quasitraceless subalgebra,
 the matching properly infinite amplification automatically and proves the
 map O-infinity-stable.  No exactness or nuclearity of the target is used.
 
+There is now a second positive mechanism which does not inspect the relative
+commutant.  `stw78-simple-comparison-targets-force-oinfinity-stability`
+proves the problem whenever the target is simple and its Cuntz semigroup is
+almost unperforated.  Quasitracelessness forces such a target to be purely,
+hence strongly purely, infinite; nuclear-map absorption then gives
+strong O-infinity-stability.  In particular every simple `Z`-stable target
+is a positive class, even without target nuclearity or exactness.  Thus any
+counterexample must obtain its obstruction from nonsimple or
+comparison-perforated target geometry.
+
+The nonsimple finite-ideal boundary is now exact.  Ambient normalized
+quasitracelessness does not pass to nonunital layers:
+`stw78-layer-quasitraces-need-not-vanish` uses the Toeplitz--Cuntz extension,
+whose compact ideal has an unbounded lower semicontinuous trace even though
+the nuclear unital extension algebra has no normalized quasitrace.  Thus
+finite ideal lattice and almost-unperforated simple layers alone are
+insufficient.
+
+There is nevertheless a positive finite-ideal class.
+`stw78-finite-ideal-regular-targets-solve-map` assumes the target is
+separable nuclear and that every simple subquotient is algebraically simple
+with almost-unperforated `W`.  Algebraic simplicity makes every layer
+quasitrace bounded, so it extends upward and is excluded by ambient
+quasitracelessness.  The layers are therefore purely infinite and
+`O_infinity`-stable; Toms--Winter extension permanence glues them through a
+finite composition series.  Gabe's map theorem then gives strong
+`O_infinity`-stability of every nuclear map into the target.
+The extension input is also recorded independently in
+`stw78-nuclear-strong-pi-extension-gluing`: strong pure infiniteness glues
+through finite extensions and countable increasing ideal filtrations in the
+separable nuclear category.  No nonnuclear gluing claim is used.
+
+The finite composition series can be transfinite but countable.
+`stw78-countable-ordinal-regular-targets` proves the same conclusion for a
+continuous ideal series indexed by any countable ordinal, with algebraically
+simple almost-unperforated successor layers.  The bounded layer trace extends
+through `B/I_beta` at every successor, including successors of limits.  At a
+limit ordinal, a countable cofinal sequence turns continuity of the series
+into a sequential inductive limit, where `O_infinity`-stability persists.
+No uncountable-cofinality filtration is covered.
+
+There is also a positive nonsimple class with no composition-series
+hypothesis.  `stw78-finite-dimensional-simple-fiber-targets-solve-map`
+assumes that the nuclear target is a separable `C(X)`-algebra over a
+finite-dimensional compact metrizable space and that its nonzero fibers are
+simple with almost-unperforated `W`.  Quasitracelessness passes to these
+unital fiber quotients, making every fiber `O_infinity`-stable.  The
+Hirshberg--Rordam--Winter fiber theorem then makes the entire target
+`O_infinity`-stable, and nuclear-map absorption proves the map conclusion.
+This permits infinitely many ideals and imposes no global comparison or
+`Z`-stability hypothesis on the target.
+
 ## Attempts
 
 An irreducible embedding into `B(H)` is not a counterexample merely because
@@ -76,4 +128,8 @@ problem.
 On the positive side, `O_infinity`-stability forces every nonzero element of
 the image to be properly infinite.  Establishing that conclusion from the
 absence of quasitraces is already a substantive missing comparison step; even
-after it, the map-level upgrade is closely tied to Problem LXXVII.
+after it, the map-level upgrade is closely tied to Problem LXXVII.  The
+finite-dimensional-field theorem bypasses this global step only because
+comparison is available in every simple fiber and strongly self-absorbing
+stability can then be glued over the finite-dimensional base.  Such
+fiberwise gluing is false over arbitrary infinite-dimensional bases.
