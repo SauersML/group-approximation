@@ -99,6 +99,31 @@ overlap (simple, infinite-dimensional, hence nowhere scattered).  The new
 `C(X)` family shows that the general negative answer also has genuinely
 non-simple representatives.
 
+## Unital countably layered positive class
+
+The extension and limit permanence of Z-absorption yields a broader XCVII
+positive class than the previously recorded real-rank-zero theorem.  If a
+unital separable algebra has a continuous ideal filtration indexed by a
+countable ordinal and every successor quotient is Z-stable, then Toms--Winter
+extension permanence and inductive-limit permanence make the total algebra
+Z-stable.  Thiel--Winter's unital coding theorem then gives one generator.
+Real rank zero is not used; unlike the real-rank-zero theorem, this argument
+asserts existence and not density of generators.
+
+For a concrete nuclear consequence, suppose the total algebra is nowhere
+scattered and has finite nuclear dimension, and the successor quotients are
+simple.  Each layer is then non-elementary and has finite nuclear dimension,
+so Tikuisis, Corollary 8.7, makes it Z-stable.  Hence every unital separable
+nowhere-scattered finite-nuclear-dimension algebra with finitely many ideals
+is singly generated.  The one-layer case says that every non-elementary
+unital simple separable finite-nuclear-dimension algebra lies in the positive
+region of XCVII.
+
+The trust boundary is exact: single generation itself is not asserted to pass
+through extensions.  Z-absorption is glued first, and unitality is used only
+when applying Thiel--Winter to the total algebra.  No generator-rank-one
+statement is inferred without real rank zero.
+
 ## Remaining frontier
 
 The counterexample has neither stable rank one nor real rank zero:
