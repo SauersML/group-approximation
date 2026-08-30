@@ -56,13 +56,14 @@ the matrices.
    in `proper-normal-subgroups-miss-the-normally-generating-core-proof`) and
    nothing more.  A Max-n condition on the normal lattice would rescue it;
    none is known for these groups.
-2. **Derive it from property (T).**  *No implication found.*  Property (T)
-   gives finite generation, no nontrivial homomorphisms to amenable groups
-   with unbounded orbits, and the various fixed-point consequences
-   Chatterji--Kassabov exploit.  None of these is a Noetherianity statement
-   about the normal lattice.  The 2026 "just finite presentations" literature
-   concerns deleting relators from a chosen finite presentation, which does
-   not speak about arbitrary maximal normal subgroups.
+2. **Derive it from property (T).**  *Dies as a general normal-Noetherianity
+   principle.*  `kazhdan-hyperbolic-continuum-non-fng-maximal-kernels` gives
+   one torsion-free finitely presented word-hyperbolic property-`(T)` group
+   with continuum many maximal normal subgroups that are not finitely normally
+   generated.  Thus property `(T)` does not imply `Max-n`, even with those
+   additional hypotheses.  This does not refute the existential claim for
+   the special elementary-matrix envelope: a successful proof must use that
+   envelope's matrix/ring structure or select one special quotient.
 3. **Derive it from the rigidity already proved.**  *No implication found.*
    `every-nontrivial-core-element-normally-generates-the-envelope` makes the
    envelope perfect with every proper quotient infinite and no nontrivial
