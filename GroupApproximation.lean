@@ -2976,3 +2976,4 @@ import GroupApproximation.GGT.DGOAssemblyLetters
 import GroupApproximation.GGT.DGOShortIsolatingCycleAt
 import GroupApproximation.GGT.HullEeTransfer
 import GroupApproximation.GGT.DGOLemma421Consequences
+import GroupApproximation.GGT.DGOAssemblyIsolation
