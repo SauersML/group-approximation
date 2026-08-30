@@ -2721,6 +2721,7 @@ import GroupApproximation.Analysis.VoiculescuQuasicentralStatement
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplySideGap
 import GroupApproximation.GGT.OsinTheorem54SepFourGonSpan
 import GroupApproximation.GGT.OsinTheorem54SepCorner45
+import GroupApproximation.GGT.CayleyFourPointConverse
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
