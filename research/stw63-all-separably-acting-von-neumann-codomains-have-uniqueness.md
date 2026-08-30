@@ -16,4 +16,3 @@ norm.
 Thus the positive class is not restricted to factors or to semifinite
 algebras: it includes arbitrary separably acting mixtures of type I, type II,
 and type III over a nontrivial center.
-
