@@ -48,6 +48,21 @@ argument does not automatically pass to `K_Z^sat`, because witnesses built
 inside different Jiang--Su embeddings need not have mutually orthogonal
 target ranges.
 
+There is a different route which does pass to the saturated ideal.  Every
+normalized quasitrace already annihilates `K_Z^sat`, so every quasitracial
+dimension function is zero on each of its positive elements.  Central
+pureness supplies strict comparison.  On the other side, arbitrarily many
+orthogonal nonzero plateaus in one canonical unital copy of `Z` are full in
+`D` and have positive dimension under every quasitrace, since all quasitraces
+restrict to the faithful trace of `Z`.  Strict comparison therefore embeds
+the same saturated-ideal element beneath each plateau.  Adding the Cuntz
+inequalities gives arbitrary multiplicity below the unit.
+
+Hence every nonzero positive element of `K_Z^sat` itself has infinite
+capacity.  The need for cross-embedding **exact witnesses** was an artifact
+of trying to preserve the equations `s*s=e`; for the capacity conclusion,
+Cuntz comparison aligns all copies through one canonical target family.
+
 ## Why the source distinction cannot be erased formally
 
 In the doubled model
