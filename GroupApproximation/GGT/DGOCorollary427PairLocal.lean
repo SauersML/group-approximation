@@ -272,8 +272,10 @@ theorem localFiniteness_of_finite_base_diff (D D' : RelGenSet G Λ)
   classical
   have hex : ∀ x : G, ∃ q : List (RelLetter G Λ),
       (∀ a ∈ q, D.IsLetter a) ∧ RelLetter.listVal q = x ∧
-        q.length = wordDist D.alphabet.carrier 1 x :=
-    fun x => OsinComponents.existsGeodesicWord D 1 x
+        q.length = wordDist D.alphabet.carrier 1 x := by
+    intro x
+    obtain ⟨q, hqlet, hqval, hqlen⟩ := OsinComponents.existsGeodesicWord D 1 x
+    exact ⟨q, hqlet, by simpa using hqval, hqlen⟩
   choose spell hspell using hex
   let E : Set G := D'.base \ D.base
   let N : Set G := ⋃ x ∈ E, peripheralValues (spell x)
@@ -301,22 +303,25 @@ theorem localFiniteness_of_finite_base_diff (D D' : RelGenSet G Λ)
         subst a
         exact ⟨x, Or.inl hxD, rfl⟩
       · simp [RelLetter.listVal, RelLetter.val]
-      · simpa [M] using hM
+      · rw [List.length_singleton]
+        exact hM
     · have hxE : x ∈ E := ⟨hx, hxD⟩
       refine ⟨OsinComponents.demote (spell x), ?_, ?_, ?_⟩
       · intro a ha
-        obtain ⟨y, hy, rfl⟩ := forall_base_demote_adjoinPeripheralSet D N hN
-          (hspell x).1 ?_ a ha
-        · exact ⟨y, hy, rfl⟩
-        · intro z hz
+        have hvals : peripheralValues (spell x) ⊆ N := by
+          intro z hz
           exact Set.mem_iUnion.mpr ⟨x, Set.mem_iUnion.mpr ⟨hxE, hz⟩⟩
+        obtain ⟨y, hy, rfl⟩ := forall_base_demote_adjoinPeripheralSet D N hN
+          (hspell x).1 hvals a ha
+        exact ⟨y, hy, rfl⟩
       · rw [OsinComponents.listVal_demote]
         exact (hspell x).2.1
       · rw [OsinComponents.length_demote]
         have hxfin : x ∈ hdiff.toFinset := hdiff.mem_toFinset.mpr hxE
         have hsum : (spell x).length ≤
             ∑ y ∈ hdiff.toFinset, (spell y).length :=
-          Finset.single_le_sum (fun _ _ => Nat.zero_le _) hxfin
+          Finset.single_le_sum (s := hdiff.toFinset)
+            (f := fun y => (spell y).length) (fun _ _ => Nat.zero_le _) hxfin
         exact le_trans hsum (by simp [M])
   intro lam n
   exact relBall_finite_of_boundedBaseSpellings D₀ D' hfam hM hbase lam
