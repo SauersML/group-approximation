@@ -177,6 +177,29 @@ subalgebra of size at least two.  This conclusion uses the exact finite
 stable range and does not confuse tensor amplification with ordinary corner
 stabilization.
 
+The same calculation has a projectionless finite-divisibility extension.
+For `p,q>=2`, the unitary group of the generalized dimension-drop block at
+matrix level two is the homotopy pullback
+
+```text
+U(2p) times^h_(U(2pq)) U(2q).
+```
+
+The scalar `alpha` dies at both endpoints by the matrix-amplification
+theorem.  The homotopy-pullback exact sequence says that any remaining class
+comes from `pi_6(U(2pq))`.  This group is already stable because `6<4pq`,
+and Bott periodicity makes it zero.  Hence one unital `I_(p,q)` inside a
+coefficient kills `alpha` before Z-stabilization.
+
+For coprime `p,q`, `I_(p,q)` has only zero and the unit as projections: the
+constant rank of a projection must be divisible by both endpoint sizes.
+It therefore contains no unital matrix algebra of size at least two; as a
+subhomogeneous algebra it also cannot contain the simple infinite-dimensional
+algebra `Z`.  The new no-go is strictly weaker than both previous embedding
+hypotheses.  It does not prove that purity supplies such a block, but forces
+any surviving pure coefficient to fail even this finite dimension-drop
+divisibility test.
+
 ## Exact remaining universal hinge
 
 For a pure `A`, abstract absorption gives

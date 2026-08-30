@@ -44,9 +44,18 @@ copy of any `M_k`, `k>=2`, already kills `alpha`.  The tensor-amplification
 map lands in `U(2k)`, which is stable in degree five, and its stable image is
 the `k`-fold block sum of the stably trivial class `alpha`.
 
+Even projectionless finite divisibility is forbidden.  By
+`stw99-lxxvi-dimension-drop-subalgebra-kills-s6-class`, a single unital
+generalized dimension-drop block `I_(p,q)` with `p,q>=2` kills `alpha`.
+The endpoint amplifications vanish in degree five, and the only possible
+homotopy-pullback obstruction lies in `pi_6(U(2pq))=0`.  For coprime `p,q`
+the block has no nontrivial projections, so this is strictly stronger than
+the matrix-subalgebra exclusion and does not use a copy of `Z`.
+
 The sole remaining construction problem is therefore to find a unital simple
 separable pure `D`, necessarily containing neither a unital copy of `Z` nor
-a unital matrix algebra of size at least two, for which
+a unital matrix algebra of size at least two nor any unital `I_(p,q)` with
+`p,q>=2`, for which
 
 ```text
 alpha maps nontrivially into pi_5(U(M_2(D))).
