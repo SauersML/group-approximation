@@ -24,7 +24,10 @@ representation and does not integrate to a star homomorphism
 C*(EL_n(R)) -> M_n(B).
 ```
 
-Polar decomposition and unitary dilation are not multiplicative.  Algebraic
+Polar factors already fail multiplicativity on the real root subgroup
+`T(t)=I+t e_12`: one has `T(1)^2=T(2)` but `U(1)^2!=U(2)` for the polar
+unitaries.  Also `||T(t)||>1` for `t!=0`, so `T(t)` is not a compression of a
+unitary; scaling and separately dilating loses multiplication.  Algebraic
 hyperbolic unitary Steinberg groups preserve an indefinite form, not the
 positive C-star inner product, so they do not repair this canonical map.
 
