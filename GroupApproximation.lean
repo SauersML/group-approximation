@@ -2773,6 +2773,7 @@ import GroupApproximation.GGT.RelHypOsinTheorem24Verbatim
 import GroupApproximation.GGT.HullSCConeOffCyclicReduction
 import GroupApproximation.GGT.HullSCCyclicDisjointness
 import GroupApproximation.GGT.RelHypFreeProductElementaryClosure
+import GroupApproximation.Analysis.VoiculescuIsometryRepair
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
