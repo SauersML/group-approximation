@@ -15,6 +15,7 @@ artifacts:
   - research/artifacts/stw95-pure-tensor-permanence-wave-audit-2026-08-30.md
   - research/artifacts/stw95-order-reflecting-inner-cofinal-audit-2026-08-30.md
   - research/artifacts/stw95-nonunital-ash-unitization-audit-2026-08-30.md
+  - research/artifacts/stw95-scattered-primitive-tensor-localization-audit-2026-08-30.md
 ---
 
 **Problem XCV, general part, of Schafhauser--Tikuisis--White.**  Is the
@@ -96,6 +97,17 @@ Seth--Vilalta, and pass purity to the tensor ideal.  This uses no exactness of
 tensor-quotient kernel.  No separability or exactness assumption remains on `A`.  In
 particular this solves Problem XCV for such a pair when `B` is also pure,
 without requiring `B` itself to be ASH or either factor to be Z-stable.
+
+The filtration can now be recovered intrinsically from ideal topology.
+`stw95-scattered-primitive-local-product-test` proves that if `B` is
+separable with topologically scattered primitive spectrum, then
+`A tensor_min B` is pure whenever this is true over every simple subquotient
+of `B` and those subquotients are nuclear.  Successive isolated primitive
+points produce the needed continuous ordinal filtration automatically.  In
+particular, if `A` is pure and either simple or residually stably finite,
+then it is enough that every simple subquotient of `B` be ASH.  When `B` is
+also pure this is a positive Problem XCV class, even if the full extension
+tower `B` is neither ASH nor known to be Z-stable.
 
 The two purity axioms require different Cu-map input.  Almost divisibility
 already follows when the canonical Cu tensor image is internally cofinal for
