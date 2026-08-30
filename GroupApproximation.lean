@@ -2781,6 +2781,7 @@ import GroupApproximation.GGT.HullSCConeOffHeavyHyperbolic
 import GroupApproximation.Analysis.VoiculescuFrameFromEntries
 import GroupApproximation.GGT.RelHypFreeProductPartnerFills
 import GroupApproximation.GGT.RelHypSuitabilityResidue
+import GroupApproximation.Analysis.VoiculescuAmplifiedAlgebra
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
