@@ -20,6 +20,6 @@ Sako's theorem only shows that `C*_u(X)` is nuclear, so the nonnuclearity
 obstruction used for spaces without property A is unavailable.  The
 Winter--Zacharias estimate is one-sided and becomes vacuous at infinity.
 Transfinite nuclear-dimension bounds likewise do not give an ordinary nuclear
-lower bound.  The coarse-embedding corner reduction would suffice if `X`
-coarsely contained spaces with unbounded uniform Roe nuclear dimension, but
-no such finite-dimensional seeds beyond value one are known here.
+lower bound.  The corner reduction would suffice if `X` contained subspaces
+with unbounded uniform Roe nuclear dimension, but no such finite-dimensional
+seeds beyond value one are known here.

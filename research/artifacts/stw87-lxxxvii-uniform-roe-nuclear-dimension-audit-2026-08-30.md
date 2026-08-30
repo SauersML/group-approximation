@@ -64,57 +64,6 @@ algebra already has nuclear dimension `n`, then equality holds for `X`.  This
 is a rigorous propagation theorem, not a solution: no finite seed `n≥2` is
 produced here.
 
-## Coarse-embedding corner reduction
-
-The literal-subspace hypothesis can be removed.  Let `f:Y→X` be a coarse
-embedding.  Effective properness makes all fibres of `f` uniformly bounded
-in `Y`; bounded geometry then bounds their cardinalities by one finite `N`.
-Label each fibre injectively by `{1,...,N}` and send
-
-```text
-δ_y ↦ δ_f(y) ⊗ e_c(y).
-```
-
-This isometry identifies `C*_u(Y)` with a diagonal corner
-
-```text
-p M_N(C*_u(X)) p,
-p ∈ M_N(ℓ∞(X)).
-```
-
-Bornology of `f` sends finite propagation forward, while effective
-properness sends finite propagation in the compressed corner back to finite
-propagation on `Y`; hence the identification is onto the entire corner, not
-merely an embedding.  Matrix invariance and hereditary monotonicity of
-nuclear dimension give
-
-```text
-Y coarsely embeds in X
-  ⇒ dim_nuc(C*_u(Y)) ≤ dim_nuc(C*_u(X)).
-```
-
-This functorial corner construction is consistent with the standard uniform
-Roe functoriality recorded by Braga--Farah--Vignati, [*General uniform Roe
-algebra rigidity*](https://doi.org/10.5802/aif.3461): injective coarse
-embeddings give hereditary embeddings, while general coarse embeddings give
-hereditary embeddings after stabilization.  The finite-fibre argument above
-sharpens the stabilization to one finite matrix amplification in the present
-bounded-geometry metric setting.
-
-There are two exact consequences for the remaining LXXXVII regimes.
-
-1. In finite asymptotic dimension `n≥2`, equality for one space `Y` propagates
-   to every `X` of asymptotic dimension `n` into which `Y` coarsely embeds.
-2. For a property-A space of infinite asymptotic dimension, coarse embeddings
-   of spaces whose uniform Roe nuclear dimensions are unbounded force the
-   target nuclear dimension to be infinite.
-
-This is a strictly wider lower-bound mechanism than literal subspace
-compression, but it does not manufacture the missing seeds: even the value
-for `C*_u(ℤ²)` remains open here.  Coarse equivalences give embeddings in
-both directions, so uniform Roe nuclear dimension, and therefore the truth of
-the LXXXVII equality, is invariant under coarse equivalence.
-
 ## Why diagonal averaging does not give the reverse inequality
 
 Assume `x≠y` in `X`.  In their two-point matrix corner set
