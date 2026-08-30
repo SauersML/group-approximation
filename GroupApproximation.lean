@@ -2723,6 +2723,7 @@ import GroupApproximation.GGT.OsinTheorem54SepFourGonSpan
 import GroupApproximation.GGT.OsinTheorem54SepCorner45
 import GroupApproximation.GGT.CayleyFourPointConverse
 import GroupApproximation.GGT.OsinTheorem54SepFourGonBridge
+import GroupApproximation.Analysis.VoiculescuSequentialUnit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
