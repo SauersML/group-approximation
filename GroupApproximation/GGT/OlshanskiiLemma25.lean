@@ -693,18 +693,22 @@ other side of `S` runs alongside side `b` for a stretch of length `ξ/1000` on
 each, at distance `ξ/(3·10⁴)` between the corresponding ends.
 
 The printed hypothesis is `ξ ≥ 3·10⁴ δ`; the reconstruction needs
-`ξ ≥ 3·10⁴ δ (c+1)` with `n - 1 ≤ 2 ^ c`, and everything else is unchanged.
-The module docstring records why the logarithm cannot be removed by the
-recursion the printed proof runs. -/
+`ξ ≥ 3·10⁴ δ (Nat.clog 2 (n-1)+1)`, and everything else is unchanged.
+The dyadic exponent is fixed here rather than exposed as caller-supplied data:
+this is the strongest conclusion furnished by the direct chord proof and it
+prevents consumers from silently reinstating the unsupported absolute
+constant.  The module docstring records why the logarithm cannot be removed
+by the recursion the printed proof runs. -/
 theorem exists_long_close_pair_of_short_complement {δ ρ θ ξ : ℝ}
     (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
-    {n c b : ℕ} (hn : 2 ≤ n) (hc : n - 1 ≤ 2 ^ c)
+    {n b : ℕ} (hn : 2 ≤ n)
     {vs : ℕ → X} {sides : ℕ → ℝ → X}
     (hpoly : IsClosedPolygonAt vs sides b n)
     (S : Set ℕ) (w : ℕ → ℝ) (hw : ∀ i, 0 ≤ w i)
     (hshort : ∀ i, b < i → i < b + n → i ∉ S → dist (vs i) (vs (i + 1)) ≤ w i)
     (hρ : ∑ j ∈ Finset.range (n - 1), w (b + 1 + j) ≤ ρ)
-    (hξ0 : 0 < ξ) (hξ : 30000 * (3 * δ * ((c : ℝ) + 1)) ≤ ξ)
+    (hξ0 : 0 < ξ)
+    (hξ : 30000 * (3 * δ * ((Nat.clog 2 (n - 1) : ℝ) + 1)) ≤ ξ)
     (hθn : (n : ℝ) * ξ < θ) (hθρ : 1000 * ρ < θ)
     (hθb : θ ≤ dist (vs b) (vs (b + 1))) :
     ∃ i, b < i ∧ i < b + n ∧ i ∈ S ∧
@@ -715,7 +719,11 @@ theorem exists_long_close_pair_of_short_complement {δ ρ θ ξ : ℝ}
               ξ / 1000 ≤ u' - u ∧ ξ / 1000 ≤ |s' - s| ∧
                 dist (sides b u) (sides i s) ≤ ξ / 30000 ∧
                 dist (sides b u') (sides i s') ≤ ξ / 30000 := by
-  have hD : 3 * δ * ((c : ℝ) + 1) ≤ ξ / 30000 := by linarith
+  let c := Nat.clog 2 (n - 1)
+  have hc : n - 1 ≤ 2 ^ c := Nat.le_pow_clog (by norm_num) (n - 1)
+  have hD : 3 * δ * ((c : ℝ) + 1) ≤ ξ / 30000 := by
+    dsimp [c]
+    linarith
   have hβ : (0 : ℝ) < ξ / 1000 := by linarith
   have hnR : (2 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
   have hnpos : (0 : ℝ) < (n : ℝ) := by linarith
