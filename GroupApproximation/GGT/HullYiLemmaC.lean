@@ -29,10 +29,26 @@ side count is fixed before the constant is asked for, so a constant that grows
 with the side count costs nothing: Hull's threshold is `d̂ ≥ 50C`, chosen after
 `C`.
 
-Where uniformity is genuinely needed is Lemma 4.21(b) -- the `K` consecutive
-connected components -- whose counting takes the polygon with every *edge* as a
-side, so that `n ≈ ℓ(Q)` grows with the words.  That is the one input still
-missing under Hull's §5, and nothing here reaches it.
+Where uniformity is genuinely needed is Lemma 4.21 -- both parts -- whose
+counting takes the polygon with every *edge* as a side, so that `n ≈ ℓ(Q)` grows
+with the words.  That is the one input still missing under Hull's §5, and
+nothing here reaches it.
+
+## The principle, stated once because it will be wanted again
+
+**A bound whose constant grows with the side count is fully usable at any FIXED
+side count, and useless where the side count grows with the data.**  The reason
+is the order of choice: a consumer of the form *"choose the letters deeper than
+`50C`"* fixes `n` first, receives `C = C(n)`, and only then chooses how deep to
+go, so a larger `C` costs nothing but a larger threshold.  A consumer of the
+form *"at most `|I|` of the components are isolated"* has `n` growing with the
+word, so `C(n)·n` outruns the `50C` it is compared against and the inequality
+becomes vacuous.
+
+That is the whole difference between Hull's Lemma C, which this module
+instantiates today, and his `conscomp`, which waits on the linear form.  Anyone
+holding a non-uniform bound and a threshold hypothesis should check which of the
+two shapes they are in before concluding that they are blocked.
 
 ## The triangle
 

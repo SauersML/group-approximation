@@ -173,7 +173,14 @@ conclusions are the free splitting and the conjugate-or-loxodromic dichotomy --
 loxodromy is asymptotic and gives no bound at the first power, and the splitting
 is not metric.  So the clause is produced by the family, in the form
 `RotatingData.kernel_moves_base`, and this is the two-line passage from it to a
-statement about a given quotient map. -/
+statement about a given quotient map.
+
+The space is arbitrary: the only comparison with `Γ(G,A)` is that the letters of
+`A` move the basepoint by at most one, which is what
+`injOn_cayleyBall_of_action` turns into `d(y, g·y) ≤ |g|_A`.  So this applies
+verbatim on the geodesic realisation `Point A`, where the rotating family
+actually lives, and the transfer back to `Γ(G,A)` costs nothing because the
+vertex inclusion has distortion one. -/
 theorem injOn_cayleyBall_of_kernel_moves {G : Type u} [Group G] {Q : Type*}
     [Group Q] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
     (hiso : IsIsometricAction G X) (A : Alphabet G) (y : X)

@@ -53,6 +53,20 @@ universe u v
 variable {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X]
   [MulAction G X]
 
+/-! ## The action transports betweenness -/
+
+/-- **An isometric action carries betweenness to betweenness.**  Betweenness is a
+statement about three distances, and all three are preserved.
+
+The broken-path induction translates each corner into standard position at its
+own apex and translates the conclusion back, so this is used twice per
+syllable. -/
+theorem smul_between (hiso : IsIsometricAction G X) (g : G) {a b c : X}
+    (h : Between a b c) : Between (g • a) (g • b) (g • c) := by
+  unfold Between at h ⊢
+  rw [hiso g a c, hiso g a b, hiso g b c]
+  exact h
+
 /-! ## Rotations transport betweenness -/
 
 /-- **A rotation about `c` preserves betweenness from `c`.**  It fixes `c` and

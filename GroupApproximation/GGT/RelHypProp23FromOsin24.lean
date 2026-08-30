@@ -113,8 +113,6 @@ theorem fournierFacioProposition23_of_osin24
     (hSuit : HyperbolicSuitabilityStatement) :
     FournierFacioProposition23 := by
   intro K Lam instK instLam hne htfLam hfpK htfK g hgfin
-  haveI := instK
-  haveI := instLam
   haveI := hfpK
   haveI : Group.IsFinitelyPresented Lam :=
     Hyperbolic.isFinitelyPresented_of_isHyperbolicGroup hne.1
@@ -130,7 +128,6 @@ theorem fournierFacioProposition23_of_osin24
     hOsin (CoprodI (pairFamily K Lam)) inferInstance Unit
       (fun _ : Unit => freeProductPeripheral K Lam) hrh
       (MonoidHom.range (freeProductPartnerHom K Lam)) hsuit g hgfin
-  haveI := instQ
   refine ⟨Q, instQ, eta, hsurj, ?_, ?_, ?_, ?_⟩
   · exact Group.IsFinitelyPresented.of_surjective eta hsurj hker
   · intro q n hn hqn

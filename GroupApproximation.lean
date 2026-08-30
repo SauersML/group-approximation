@@ -2854,6 +2854,10 @@ import GroupApproximation.GGT.HullSCConeOffHeavyGeomSep
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXCVCompactKTheory
 import GroupApproximation.Analysis.NormMatrixC0Multiplier
 import GroupApproximation.Analysis.VoiculescuBlockDiagonal
+import GroupApproximation.GGT.DGOBlockCycle
+import GroupApproximation.GGT.HullSCConeOffHeavyNonComm
+import GroupApproximation.GGT.DGOWindmillFree
+import GroupApproximation.Analysis.VoiculescuBlockCompact
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

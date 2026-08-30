@@ -128,14 +128,16 @@ end Gap
 
 /-- **Affine growth on a dyadic window is impossible.**
 
-If a subadditive-looking `F` is at least `n - 1` on `[1, N]`, is at most `2` at
+If a subadditive-looking `F` is at least `n - 1` on `[1, N]`, is at most `B` at
 `1`, and never gains more than `2δ` on doubling inside the window, then along the
-powers of two it is at most `2 + 2δj`, which `2^J - 1` outgrows.  So some
-doubling inside the window does gain more than `2δ`. -/
-theorem exists_dyadic_gap (F : ℕ → ℕ) (δ : ℝ) (J N : ℕ)
-    (hF1 : (F 1 : ℝ) ≤ 2)
+powers of two it is at most `B + 2δj`, which `2^J - 1` outgrows.  So some
+doubling inside the window does gain more than `2δ`.  `B` is the one-step
+displacement bound of the element being tested: `2` for the two-letter word of
+`GGT.DGOAlternatingWord`, `|w| + 1` for a general block. -/
+theorem exists_dyadic_gap (F : ℕ → ℕ) (δ B : ℝ) (J N : ℕ)
+    (hF1 : (F 1 : ℝ) ≤ B)
     (hlow : ∀ n : ℕ, 1 ≤ n → n ≤ N → (n : ℝ) - 1 ≤ (F n : ℝ))
-    (hJN : 2 ^ J ≤ N) (hJ : 2 * δ * J + 3 < (2 : ℝ) ^ J) :
+    (hJN : 2 ^ J ≤ N) (hJ : 2 * δ * J + (B + 1) < (2 : ℝ) ^ J) :
     ∃ K : ℕ, 0 < K ∧ (F K : ℝ) + 2 * δ < (F (2 * K) : ℝ) := by
   by_contra hcon
   push Not at hcon
@@ -196,7 +198,7 @@ theorem exists_isLoxodromic_mul_of_notMem_fam (D : RelGenSet G Unit)
     have h := hδ₀ w y z t
     linarith
   -- the dyadic exponent, and the radius the window needs
-  obtain ⟨J, hJ⟩ := (eventually_affine_lt_pow_two (2 * δ) 3).exists
+  obtain ⟨J, hJ⟩ := (eventually_affine_lt_pow_two (2 * δ) (2 + 1)).exists
   set N : ℕ := 2 ^ J with hNdef
   set R : ℕ := 3 * N with hRdef
   -- an element of `H` whose inverse is outside the ball of radius `R`
@@ -236,7 +238,7 @@ theorem exists_isLoxodromic_mul_of_notMem_fam (D : RelGenSet G Unit)
     exact_mod_cast hle
   -- the doubling gap
   obtain ⟨K, hK0, hKgap⟩ := exists_dyadic_gap
-    (fun n => wordDist D.alphabet.carrier 1 ((a * k⁻¹) ^ n)) δ J N hF1 hlow
+    (fun n => wordDist D.alphabet.carrier 1 ((a * k⁻¹) ^ n)) δ 2 J N hF1 hlow
     (by omega) hJ
   -- and loxodromy
   have hpow2 : ((a * k⁻¹) ^ K) ^ 2 = (a * k⁻¹) ^ (2 * K) := by

@@ -66,6 +66,7 @@ section CountBigon
 
 variable {G : Type u} [Group G] {Λ : Type v}
 
+omit [Group G] in
 /-- **A position starts a component of at most one index.**
 
 The first letter of a component of index `lam` is a `lam`-letter, and a letter
@@ -191,18 +192,25 @@ the figure.**
 
 The isolated-component bound in CONTRAPOSITIVE, which is the only way this
 argument ever uses it: an isolated component's span lies in
-`relBall lam (C * n)`, the design's depth clause puts the span outside a ball at
+`relBall lam R`, the design's depth clause puts the span outside a ball at
 least that big, so the component is not isolated --- and at a position already
 known to start a component, that is exactly the witness `hother` asks for.
 
 Nothing is ever proved isolated, so nothing has to be known about the far side.
 A `lam`-letter of the far side whose vertex lands in the component's coset is
-not an obstacle here; it is the conclusion. -/
+not an obstacle here; it is the conclusion.
+
+`R` is the bound's radius and NOTHING ELSE --- not a side count, not a product.
+A producer's radius is whatever its own recut leaves: fp-geometry's `n`-gon form
+gives `(N + 1) · C₀ · (N + 2)`, which at a two-sided figure is `12 · C₀` and not
+`2 · C₀`, because a component straddling corners becomes a side of a polygon
+with up to two more of them.  Leaving `R` free and asking only `R ≤ rho` is what
+makes such a radius unify here with no arithmetic on either side. -/
 theorem other_of_deep (D : RelGenSet G Λ) (lam : Λ) (v : G)
-    {w : List (RelLetter G Λ)} {C n rho : ℕ}
+    {w : List (RelLetter G Λ)} {R rho : ℕ}
     (hbound : ∀ i k : ℕ, IsComp lam w i k → IsIsolated D.fam lam v w i →
-      (vertex v w i)⁻¹ * vertex v w k ∈ D.relBall lam (C * n))
-    (hrho : C * n ≤ rho) {i k : ℕ} (hcomp : IsComp lam w i k)
+      (vertex v w i)⁻¹ * vertex v w k ∈ D.relBall lam R)
+    (hrho : R ≤ rho) {i k : ℕ} (hcomp : IsComp lam w i k)
     (hdeep : (vertex v w i)⁻¹ * vertex v w k ∉ D.relBall lam rho) :
     ∃ y : ℕ, y ≠ i ∧ IsCompStart lam w y ∧ Connected D.fam lam v w i y := by
   by_contra hno
@@ -217,15 +225,16 @@ theorem other_of_deep (D : RelGenSet G Λ) (lam : Λ) (v : G)
 The join: `other_of_deep` at the two-sided figure discharges `hother`,
 and `card_le_card_of_sideSeparated` does the rest.  `hScomp` is what the design
 supplies --- each counted position starts a component whose span is deep --- and
-`hbound` is the isolated-component bound at `n = 2`, the only geometric input
-left in the count. -/
+`hbound` is the isolated-component bound at the two-sided figure, the only
+geometric input left in the count.  Its radius `R` is free for the reason
+`other_of_deep` records: the two-sided figure's radius is not `2 · C₀`. -/
 theorem card_le_card_of_deep (D : RelGenSet G Λ) (lam : Λ) (v : G)
-    (u q : List (RelLetter G Λ)) (S Q : Finset ℕ) {C rho : ℕ}
+    (u q : List (RelLetter G Λ)) (S Q : Finset ℕ) {R rho : ℕ}
     (hbound : ∀ i k : ℕ, IsComp lam (u ++ revWord q) i k →
       IsIsolated D.fam lam v (u ++ revWord q) i →
       (vertex v (u ++ revWord q) i)⁻¹ * vertex v (u ++ revWord q) k
-        ∈ D.relBall lam (C * 2))
-    (hrho : C * 2 ≤ rho)
+        ∈ D.relBall lam R)
+    (hrho : R ≤ rho)
     (hSu : ∀ x ∈ S, x < u.length)
     (hScomp : ∀ x ∈ S, ∃ k : ℕ, IsComp lam (u ++ revWord q) x k ∧
       (vertex v (u ++ revWord q) x)⁻¹ * vertex v (u ++ revWord q) k

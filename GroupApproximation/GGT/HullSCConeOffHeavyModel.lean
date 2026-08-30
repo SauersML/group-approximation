@@ -8,7 +8,8 @@ import GroupApproximation.GGT.HyperbolicFreeGroupAH
 # Quasiconvexity without the Morse lemma, through the geodesic model
 
 `GGT/HullSCConeOffHeavyQuasiconvex.lean` proves `IsWordQuasiconvex` for `⟨g⟩`
-from `Hyperbolic.MorseLemma`, which nothing in the tree proves.  This module
+from `Hyperbolic.MorseLemma`, which at the time nothing in the tree proved (it
+is now `GGT.Hyperbolic.morseLemma`).  This module
 proves the same thing **unconditionally**, and the reason it can is that both
 halves of the Morse lemma are already theorems here — for a *geodesic* space —
 and Hull's Cayley graph now has a geodesic model.

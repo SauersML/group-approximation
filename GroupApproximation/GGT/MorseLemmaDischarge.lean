@@ -69,18 +69,29 @@ open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
+universe u
+
 /-! ## The discharge -/
 
-/-- **The Morse lemma**, proved.
+/-- **The Morse lemma**, proved, at a general universe.
 
 Every point of a `(K,C)`-quasi-geodesic is within a constant of a point lying
 between its endpoints, with the constant uniform over all groups and all
 symmetric generating sets satisfying the four-point condition at `δ`.
 
+`Hyperbolic.MorseLemma` is this statement pinned to `Type 0`, which is an
+artefact of its having been written as an assumption before it was a theorem;
+`morseLemma` below recovers it in one line.  Consumers wanting a general
+universe should take this one, and consumers wanting to unfold nothing should
+take it too — it is a theorem rather than a `def : Prop`.
+
 See the module header for the two obstructions this clears and for the shape of
 the argument. -/
-theorem morseLemma : Hyperbolic.MorseLemma := by
-  intro K C delta
+theorem morseLemma_univ (K C delta : ℕ) :
+    ∃ R : ℕ, ∀ (G : Type u) (_ : Group G) (S : Set G),
+      IsSymmetricGeneratingSet S → IsFourPointHyperbolic S delta →
+        ∀ (n : ℕ) (p : ℕ → G), IsQuasiGeodesic S K C n p →
+          ∀ i ≤ n, ∃ q : G, IsBetween S (p 0) q (p n) ∧ wordDist S (p i) q ≤ R := by
   have hKpos : (0 : ℝ) < (K : ℝ) + 1 := by positivity
   have hl : (0 : ℝ) < 1 / ((K : ℝ) + 1) := by positivity
   have hD0 : (0 : ℝ) ≤ (K : ℝ) + C + 1 := by positivity
@@ -244,6 +255,13 @@ theorem morseLemma : Hyperbolic.MorseLemma := by
   have hcast : ((wordDist S (p i) q : ℕ) : ℝ)
       ≤ ((⌈K₂ + 2 * ((delta : ℝ) + 6) + 9⌉₊ : ℕ) : ℝ) := by linarith
   exact_mod_cast hcast
+
+/-- **The Morse lemma at `Type 0`**, which is the shape
+`Hyperbolic.MorseLemma` was written in.  Nothing is lost either way: the
+universe-zero form is an instance of `morseLemma_univ`, and the `Prop` survives
+only because consumers already refer to it by name. -/
+theorem morseLemma : Hyperbolic.MorseLemma :=
+  fun K C delta => morseLemma_univ K C delta
 
 end Hyperbolic
 end GroupApproximation
