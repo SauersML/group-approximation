@@ -841,6 +841,7 @@ theorem exists_sparse_double_vertexChain_matches
         dist p.terminal q.terminal ≤ B →
         ∃ (A I J : Fin (T + 1) → ℕ),
           StrictMono A ∧ StrictMono I ∧ StrictMono J ∧
+          (∀ r, A r + M ≤ p.steps) ∧
           (∀ r, I r ≤ q.steps ∧
             dist (p.vertexChain (A r)) (q.vertexChain (I r)) ≤ C) ∧
           (∀ r, J r ≤ q.steps ∧
@@ -986,7 +987,8 @@ theorem exists_sparse_double_vertexChain_matches
       (hinternal r).1 (hinternal s).1
       (hJprop r).1 (hJprop s).1 hclose0
       (hJprop r).2 (hJprop s).2 hsparse
-  exact ⟨A, I, J, hAmono, hIstrict, hJstrict, hIprop, hJprop⟩
+  exact ⟨A, I, J, hAmono, hIstrict, hJstrict,
+    fun r => (hinternal r).1, hIprop, hJprop⟩
 
 /-- If two matched pairs are `M` vertices apart on the first quasi-axis, the
 difference of their partner indices is uniformly bounded.  Consequently only
