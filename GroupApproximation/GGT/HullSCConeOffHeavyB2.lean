@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.HullSCConeOffHeavyEndpointBridge
 import GroupApproximation.GGT.HullSCConeOffHeavyModelTransfer
 
 /-!
@@ -30,6 +31,15 @@ rather than debts: DGO and Hull assume non-commensurability and finiteness, and
 owed, and it says nothing about groups acting on Cayley graphs or about Hull's
 construction — a hyperbolic geodesic space, two loxodromic elements with given
 constants, one basepoint, and a threshold chosen before all of them.
+
+Two of the three are now discharged rather than assumed.  For a finite family,
+`uniformlyLoxodromic_of_finite` supplies the uniform constants, and
+`exists_uniform_closureNearPowers_of_coarseTranslation` supplies `ρ` from
+`Elementary.ElementaryClosureCoarseTranslation`, which is Lemma 6.5 itself.
+`isGeometricallySeparated_of_uniformThreshold_of_coarseTranslation` is that
+form, and its hypothesis list is the honest ledger for B2: pairwise
+non-commensurability and finiteness, both assumed by the source; Lemma 6.5,
+carried as its named predicate; and the one geometric leaf.
 
 `GGT/HullSCConeOffHeavyFellowTravel.lean` proves that statement with the
 threshold chosen *after* the elements.  The gap between the two is quantifier
@@ -82,6 +92,25 @@ theorem isGeometricallySeparated_of_uniformThreshold_of_finite {Λ : Type w}
     (hunif : UniformCommonZpowThreshold G (CayleyGeodesicModel.PointQuot A)) :
     IsGeometricallySeparated A (fun lam => Elementary.elementaryClosure (g lam)) :=
   isGeometricallySeparated_of_uniformThreshold A g hncom hclose
+    (uniformlyLoxodromic_of_finite A g hlox) hunif
+
+/-- **The form with every dischargeable hypothesis discharged.**
+
+For a finite nonempty family of loxodromic elements, uniform loxodromy comes
+from finiteness and the Hausdorff constant `ρ` comes from Dahmani--Guirardel--Osin's
+Lemma 6.5 in its named form.  What is left is pairwise non-commensurability,
+which the source assumes, Lemma 6.5, which the source proves, and the geometric
+leaf — and nothing else. -/
+theorem isGeometricallySeparated_of_uniformThreshold_of_coarseTranslation
+    {Λ : Type w} [Fintype Λ] [Nonempty Λ] (A : Alphabet G) (g : Λ → G)
+    (hncom : PairwiseNonCommensurable g)
+    (hlox : ∀ nu : Λ, IsLoxodromic (g nu) (Cayley.base A))
+    (hct : Elementary.ElementaryClosureCoarseTranslation G (Cayley.base A))
+    (hunif : UniformCommonZpowThreshold G (CayleyGeodesicModel.PointQuot A)) :
+    IsGeometricallySeparated A (fun lam => Elementary.elementaryClosure (g lam)) := by
+  obtain ⟨rho, hclose⟩ :=
+    exists_uniform_closureNearPowers_of_coarseTranslation A g hlox hct
+  exact isGeometricallySeparated_of_uniformThreshold A g hncom hclose
     (uniformlyLoxodromic_of_finite A g hlox) hunif
 
 end HullSC
