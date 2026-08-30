@@ -126,6 +126,24 @@ hereditary shadows are automatically zero-dimensional.  The mechanism is
 clopen colour reuse: a disjoint clopen refinement reduces the algebra to
 AF-base tensors of the simple fibres, without an extension-gluing colour.
 
+Local triviality and even continuity of the field are now unnecessary at a
+zero-dimensional base.  `stw81-zero-dimensional-usc-fibre-formula` proves
+for every separable upper-semicontinuous `C_0(X)`-algebra that
+
+```text
+dim_nuc(A)=sup_(x in X) dim_nuc(A_x).
+```
+
+Finite-dimensional fibre colours lift exactly through evaluation by
+projectivity of their order-zero cones.  Upper semicontinuity controls the
+lifted error and total return norm near each anchor; disjoint compact-open
+localization then assembles the same colours globally.  With simple fibres,
+the formula gives the `0,1,infinity` trichotomy and every commutative
+hereditary subalgebra in every quotient has zero-dimensional spectrum.
+Thus the preceding locally trivial theorem is subsumed by a result for
+arbitrary upper-semicontinuous fields, while simplicity is needed only for
+the shadow consequence, not for the dimension formula.
+
 There is also a sharp warning against using the whole primitive spectrum.
 `stw81-shadow-hypothesis-does-not-bound-primitive-spectrum` shows that
 `C_0(X) tensor O_2` has primitive spectrum `X` and nuclear dimension one,
