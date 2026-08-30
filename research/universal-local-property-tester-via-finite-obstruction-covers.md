@@ -24,7 +24,7 @@ generated subgroup `H<=G` which still fails. The finite-obstruction-cover
 clause of that theorem then supplies a finitely presented group `H^` which
 fails `P_M` and surjects onto `H`.
 
-The group `H^` is recursively presented, so it embeds in `V). But every
+The group `H^` is recursively presented, so it embeds in `V`. But every
 local approximation property `P_M` is hereditary to subgroups. Hence
 `P_M(V)` would force `P_M(H^)`, a contradiction. Therefore every group
 has `P_M`. The converse applies the universal assertion to `V`.
@@ -34,5 +34,5 @@ simultaneously for every property in the finite-table framework. Applying
 the result to hyperlinearity gives the fixed-group equivalence in the claim.
 
 Finally, the finitely presented torsion-free nonsofic and non-MF witnesses
-embed in `V). Soficity and MF are hereditary to subgroups, the latter
+embed in `V`. Soficity and MF are hereditary to subgroups, the latter
 recorded in [[mf-positive-controls]], so `V` has neither property. QED

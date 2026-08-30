@@ -81,14 +81,16 @@ generated subgroup surjecting onto `Z`.
    with perfect target, the relation module's coinvariants surject onto `Z²`,
    so the module is not cyclic and the kernel is not the normal closure of one
    element.
-3. **Force a nonsofic quotient with amenable kernel.**  *Dies on the direction
-   of the permanence theorem.*  Soficity is not known to pass to quotients at
-   all, and the available theorem is sofic **kernel** plus amenable
-   **quotient** ⟹ sofic, which says nothing about a quotient by an amenable
-   normal subgroup.  So a one-relator `G` with `1 → A → G → Q → 1`, `A`
-   amenable and `Q` nonsofic, is not a contradiction with soficity of `G` and is
-   not a witness either.  This killed several Rips- and HNN-style constructions
-   at once.
+3. **Force a nonsofic quotient with amenable kernel.** *Dies on the direction
+   of the permanence theorem.* Arbitrary quotient permanence is false by
+   [[sofic-quotient-nonclosure]], so a nonsofic quotient alone cannot force the
+   source to be nonsofic. The narrower statement needed here, permanence under
+   quotienting by an amenable normal subgroup, is not supplied by the standard
+   theorem. That theorem goes the other way: sofic **kernel** plus amenable
+   **quotient** implies sofic. Thus a one-relator `G` with
+   `1 → A → G → Q → 1`, `A` amenable and `Q` nonsofic, is neither contradicted
+   by known permanence nor proved nonsofic. This kills the naive Rips- and
+   HNN-style constructions.
 4. **Boone/Higman-style compression of a finitely presented nonsofic group.**
    *Dies on presentation count.*  The clean base in this corpus is genuinely
    one-relator ([[boone-base-group-two-generator-one-relator]] — three

@@ -33,9 +33,9 @@ crosses.  Nonsoficity travels *down* subgroups, so an embedding can only
 transport it from a subgroup to an overgroup within one ambient action; the
 sitewise-involution map is an embedding of pair-1 groups into pair-1 groups and
 of pair-2 groups into pair-2 groups, and there is no homomorphism in the graph
-relating the two coset spaces.  Nor would one help: soficity passes to
-subgroups and to quotients only in the directions that make the two verdicts
-compatible rather than transportable.
+relating the two coset spaces. Soficity does pass to subgroups, but it
+does not pass to arbitrary quotients by [[sofic-quotient-nonclosure]]; neither
+fact transports a verdict between the two unrelated ambient actions.
 
 Nothing here is a new theorem; the route exists to make the identification
 step, which citations cannot perform for themselves, a first-class object.

@@ -257,8 +257,9 @@ The standard sofic permanence facts used below are:
 
 I do **not** use closure under arbitrary quotients, arbitrary extensions,
 arbitrary semidirect products, or arbitrary amalgamation over nonamenable
-subgroups.  Those closure properties are unavailable, and in the
-semidirect-product case generic closure is now false.
+subgroups. Arbitrary quotient closure is false by
+[[sofic-quotient-nonclosure]]; the other listed closure principles are
+unavailable, and generic semidirect-product closure is now false.
 
 ---
 
@@ -726,21 +727,20 @@ obstruction rather than a presentation-search inconvenience.
 ## 12. Why quotient constructions do not automatically give a counterexample
 
 Another natural plan is to force a known nonsofic group `Q` as a quotient of a
-one-relator group `G`.
-
-That is insufficient: soficity is **not known to pass to arbitrary quotients**.
-Indeed, the modern nonsofic constructions make quotient behavior one of the
-delicate points of the theory.
+one-relator group `G`. This is insufficient for a stronger reason than was
+historically available: arbitrary sofic quotient permanence is false by
+[[sofic-quotient-nonclosure]]. A nonsofic quotient therefore cannot force its
+source to be nonsofic.
 
 One may try to repair the idea by arranging an amenable kernel
-`1 → A → G → Q → 1` with `A` amenable.  But the standard permanence theorem
-goes in the other direction: if the **kernel** is sofic and the **quotient** is
-amenable, then the total group is sofic.  It does not say that a quotient by an
-amenable normal subgroup of a sofic group must be sofic.
+`1 → A → G → Q → 1` with `A` amenable. The standard permanence theorem goes
+in the other direction: if the **kernel** is sofic and the **quotient** is
+amenable, then the total group is sofic. It does not supply the narrower
+amenable-kernel quotient permanence that this plan would need.
 
-Therefore "make the kernel amenable and quotient nonsofic" is not presently a
-contradiction to soficity of `G`.  This killed a number of seemingly attractive
-Rips/HNN quotient constructions.
+Therefore "make the kernel amenable and quotient nonsofic" neither contradicts
+soficity of `G` nor proves `G` nonsofic. This kills the naive Rips/HNN quotient
+constructions.
 
 ---
 
@@ -987,9 +987,10 @@ explicitly prohibits using it as a closure step.  Additionally, if the target is
 2-generated and perfect, Proposition 11.1 blocks the naive same-generator
 one-relator presentation.
 
-**22.3 Force a nonsofic quotient with amenable kernel.**  *Failure:* quotient
-closure in that direction is not available.  The standard extension theorem is
-sofic **kernel**, amenable **quotient**.
+**22.3 Force a nonsofic quotient with amenable kernel.** *Failure:* arbitrary
+quotient permanence is false by [[sofic-quotient-nonclosure]], and the narrower
+amenable-kernel quotient statement needed here is not supplied by the standard
+extension theorem. That theorem has sofic **kernel**, amenable **quotient**.
 
 **22.4 Use Ji--Ogle--Ramsey to pass from the radical.**  *Failure:* the preprint
 making the needed claim is withdrawn for an error in the relevant theorem's
