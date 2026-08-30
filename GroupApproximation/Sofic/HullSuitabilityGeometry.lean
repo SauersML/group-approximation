@@ -1293,14 +1293,22 @@ theorem tendsto_stableTranslation (hiso : IsIsometricAction G X) (g : G) (x : X)
   rw [stableTranslation_eq_lim hiso]
   exact (subadditive_dist_pow hiso g x).tendsto_lim (bddBelow_dist_pow_div g x)
 
-/-- The additive-error definition of genuine loxodromy forces positive stable
-translation.  Divide its lower bound by `n`; after `n` is large enough to
-absorb the additive constant, every normalised displacement is at least
-`l / 2`, and the Fekete limit preserves that lower bound. -/
-theorem stableTranslation_pos_of_isLoxodromic
-    (hiso : IsIsometricAction G X) {g : G} {x : X}
-    (hg : IsLoxodromic g x) : 0 < stableTranslation g x := by
-  obtain ⟨l, hl, B, hB, hlin⟩ := hg
+/-- **A loxodromy constant bounds stable translation from below, by half.**
+
+Divide the additive-error lower bound by `n`; once `n` is large enough to
+absorb the additive constant, every normalised displacement is at least `l / 2`,
+and the Fekete limit preserves that lower bound.
+
+Stated at the loxodromy *data* rather than at `IsLoxodromic` because that is the
+form a caller who has already destructured the witness can use, and because it
+is what lets a threshold be written in terms of `l` instead of in terms of the
+stable translation length itself --- the latter is a limit invariant of `g` at
+`x`, so a constant depending on it cannot be hoisted above the choice of `g`.
+`stableTranslation_pos_of_isLoxodromic` is now a corollary. -/
+theorem half_le_stableTranslation_of_loxodromic_data
+    (hiso : IsIsometricAction G X) {g : G} {x : X} {l B : ℝ} (hl : 0 < l)
+    (hlin : ∀ n : ℕ, l * n - B ≤ dist x ((g ^ n) • x)) :
+    l / 2 ≤ stableTranslation g x := by
   have hev : ∀ᶠ n : ℕ in Filter.atTop,
       l / 2 ≤ dist x ((g ^ n) • x) / n := by
     obtain ⟨N, hN⟩ := exists_nat_gt (max (2 * B / l) 0)
@@ -1320,8 +1328,15 @@ theorem stableTranslation_pos_of_isLoxodromic
       linarith
     have hlower := hlin n
     linarith
-  have hlimit : l / 2 ≤ stableTranslation g x :=
-    ge_of_tendsto (tendsto_stableTranslation hiso g x) hev
+  exact ge_of_tendsto (tendsto_stableTranslation hiso g x) hev
+
+/-- The additive-error definition of genuine loxodromy forces positive stable
+translation.  A corollary of `half_le_stableTranslation_of_loxodromic_data`. -/
+theorem stableTranslation_pos_of_isLoxodromic
+    (hiso : IsIsometricAction G X) {g : G} {x : X}
+    (hg : IsLoxodromic g x) : 0 < stableTranslation g x := by
+  obtain ⟨l, hl, B, -, hlin⟩ := hg
+  have hlimit := half_le_stableTranslation_of_loxodromic_data (B := B) hiso hl hlin
   linarith
 
 /-- Genuine loxodromy is equivalent to positive stable translation length. -/
