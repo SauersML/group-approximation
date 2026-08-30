@@ -2954,6 +2954,8 @@ import GroupApproximation.Analysis.VoiculescuPositiveUnit
 import GroupApproximation.GGT.HullEeUniformCut
 import GroupApproximation.Analysis.NormMatrixCoronaGenericBridge
 import GroupApproximation.Analysis.ShulmanTailDihedralParity
+import GroupApproximation.GGT.HullEeLocalFiniteness
+import GroupApproximation.GGT.KazhdanHypGirthEightLDL
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
