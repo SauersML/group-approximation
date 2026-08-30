@@ -38,7 +38,13 @@ value infinity.
 For a subset `Y ⊆ X`, compression by `χ_Y` identifies the corner
 `χ_Y C*_u(X) χ_Y` with `C*_u(Y)`.  Nuclear dimension therefore gives a
 monotone lower-bound mechanism from subspaces, but no seed with nuclear
-dimension at least two is presently known.  Finally, the canonical diagonal
-expectation does not preserve order-zero maps already in a two-point matrix
-corner, so diagonal-dimension equality cannot be converted to the missing
-lower bound by simply averaging arbitrary nuclear approximations.
+dimension at least two is presently known.  This mechanism now extends from
+subspaces to arbitrary coarse embeddings: after uniformly labelling the
+finite fibres, `C*_u(Y)` is a diagonal hereditary corner of a finite matrix
+amplification of `C*_u(X)`
+(`stw87-coarse-embedding-corner-lower-bound`).  Thus equality propagates from
+any coarsely embedded full-asymptotic-dimension seed, and unbounded
+nuclear-dimension seeds force infinite nuclear dimension.  Finally, the
+canonical diagonal expectation does not preserve order-zero maps already in a
+two-point matrix corner, so diagonal-dimension equality cannot be converted to
+the missing lower bound by simply averaging arbitrary nuclear approximations.
