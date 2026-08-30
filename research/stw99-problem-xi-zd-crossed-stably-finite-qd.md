@@ -9,6 +9,7 @@ distinct_from:
   stw99-lxxxvi-berend-groups-decomposition-rank: that concerns decomposition rank of specific Z^2-actions on T^3; this concerns quasidiagonality of stably finite Z^d-crossed products in general, and the Berend systems are covered here by the faithful Haar trace.
 artifacts:
   - research/artifacts/stw99-xi-xii-dynamics-qd-2026-08-30.md
+  - research/artifacts/stw99-xi-clopen-support-gluing-2026-08-30.md
 ---
 
 **Problem XI of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Let
@@ -54,3 +55,17 @@ quasidiagonal ⟺ stably finite ⟺ no open `U` with `closure(α(U)) ⊊ U`.
   general, and Brown's AF ⋊ Z work (the model for Problem XII) is
   exactly the `d = 1` template for handling such glueing via
   incompressibility.
+* **Compact-open support extensions are quasidiagonal.**
+  `stw11-clopen-exhaustion-glues-qd` closes the quasidiagonality part of the
+  extension reduction whenever each open invariant stratum has an
+  increasing exhaustion by compact-open invariant subsets.  Their
+  characteristic functions are central projections in the crossed product
+  and form an approximate unit for the stratum ideal, so quasidiagonality of
+  the compact corners and terminal closed-support quotient glues through
+  any finite such filtration.  In particular, this proves quasidiagonality
+  when the whole algebra is stably finite, the open-stratum ideal is
+  traceless, and the closed subsystem carries a full-support invariant
+  probability measure.  The induced quotient trace kills the open ideal,
+  so this mixed case is not covered by the global faithful-trace theorem.
+  This does not by itself give an AF embedding; that upgrade would import
+  Problem VIII.
