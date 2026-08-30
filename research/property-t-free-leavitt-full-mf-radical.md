@@ -77,6 +77,8 @@ artifacts:
   - research/binary-jacobson-elementary-mark-is-finite-quotient-invisible.md
   - research/binary-jacobson-steinberg-head-root-is-mf-invisible.md
   - research/property-t-free-leavitt-via-jacobson-head-root.md
+  - research/infinite-orthogonal-mark-orbit-is-mf-compatible.md
+  - research/binary-leavitt-single-root-character-orbit-has-zero-gap.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -256,6 +258,24 @@ fixed `M` are compatible with sparse escape and still fall short of
 `2[P]<=[P]`.  Thus no bounded character menu or finite parabolic atom cycle
 can return the sparse carrier.  The load-bearing mixed-root row must fold
 this intrinsically infinite orbit back to one finite projective reservoir.
+
+Orbit infinitude cannot replace that fold, even after normal generation is
+added.  `infinite-orthogonal-mark-orbit-is-mf-compatible` realizes a
+finite-order normal generator of the simple locally finite group `A_fin` in
+a faithful norm matrix corona so that its marked spectral atom has infinitely
+many pairwise orthogonal conjugates, each of eventual rank two.  The group is
+still operator-MF and the rank-two marked corner cannot carry Atomic Morita
+Return.  Thus outward orthogonal packing, simplicity and normal generation
+jointly stop strictly before a same-atom return.
+
+The root subgroup which proves the literal orbit is infinite supplies no
+hidden expansion either.  `binary-leavitt-single-root-character-orbit-has-zero-gap`
+identifies it with the regular translation action of an infinite elementary
+abelian quotient `L/K`.  Every finite actor menu generates a finite
+translation subgroup, so the normalized Schreier operator has norm one.
+Consequently the existing one-root orbit cannot be combined with an
+infinite-orbit expansion lemma without adding genuinely new parabolic actors
+and a new uniform gap theorem.
 
 There is no generic rank-or-commutant dichotomy which closes this seam.
 `sparse-dyadic-rank-germ-carries-haar-cyclic-holonomy` gives one nonzero
