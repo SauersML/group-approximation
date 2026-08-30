@@ -134,3 +134,30 @@ This also sharpens the counterexample obstruction.  A positive element in
 the projectionless hereditary corner has a finite multiple equal to the unit
 class, but its entire lower interval contains no nonzero compact element.
 Thus every counterexample fails algebraicity at a single finite unit root.
+
+### Property (QQ) exactly closes the finite-root hinge
+
+Bosa's Definition 1.6 records property (QQ) for a Cuntz semigroup:
+
+```text
+m x properly infinite for some finite m  implies  x properly infinite.
+```
+
+This is precisely adapted to the internal finite-unit-root theorem but is
+different from the earlier comparison and algebraicity hypotheses.  Under
+the LXXIV projection hypothesis, every nonzero `x` satisfies
+`m x=[1_A]` for some finite `m`, and the unit class is properly infinite.
+Property (QQ) therefore makes `x` properly infinite.  Fullness gives
+`[1_A]<=N x=x`, while the unit is the largest Cuntz class, so
+`x=[1_A]`.  Thus the algebra is purely infinite.  The converse is immediate
+from `Cu(A)={0,[1_A]}`.
+
+This also gives a sharper obstruction.  Every nonzero class represented in
+the full projectionless corner of a counterexample has a properly infinite
+finite multiple but is not itself properly infinite: otherwise fullness
+would identify it with the unit and put a nonzero projection back into that
+corner.  Along the uniform spectral root towers, one fixed multiplicity
+witnesses this failure at every compactly contained stage.  Hence a
+counterexample does not merely fail a global comparison axiom; it exhibits
+an entire localized tower on which proper infiniteness fails to descend
+through finite roots.

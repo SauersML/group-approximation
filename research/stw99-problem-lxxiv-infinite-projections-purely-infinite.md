@@ -40,3 +40,12 @@ There is also a comparison-free structural positive class:
 LXXIV hypothesis, `A` is purely infinite exactly when `Cu(A)` is algebraic.
 Thus every counterexample has a finite root `x` of the unit whose lower
 interval contains no nonzero compact element.
+
+A second comparison-free characterization uses only the infiniteness type
+of finite multiples.  `stw74-property-qq-characterizes-pure-infiniteness`
+proves that `A` is purely infinite exactly when `Cu(A)` has property (QQ):
+if a finite multiple of `x` is properly infinite, then `x` is properly
+infinite.  Indeed every nonzero class is already a finite root of the unit,
+so (QQ) makes it properly infinite and fullness identifies it with the unit.
+Consequently every counterexample fails (QQ) at every nonzero class in its
+projectionless corner, uniformly along its spectral root towers.
