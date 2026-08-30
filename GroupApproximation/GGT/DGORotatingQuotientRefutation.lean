@@ -305,7 +305,7 @@ theorem eq_one_of_isOfFinOrder_multiplicative_int {g : Multiplicative ℤ}
   have hcong : (g ^ n).toAdd = (1 : Multiplicative ℤ).toAdd := by rw [hpow]
   rw [toAdd_pow, toAdd_one] at hcong
   rw [Int.nsmul_eq_mul] at hcong
-  have hn0 : (n : ℤ) ≠ 0 := by omega
+  have hn0 : (n : ℤ) ≠ 0 := by exact_mod_cast hn.ne'
   have hzero : g.toAdd = 0 := by
     rcases mul_eq_zero.mp hcong with hcase | hcase
     · exact absurd hcase hn0
@@ -322,6 +322,9 @@ theorem ofAdd_one_notMem_zpowers_two :
       = (Multiplicative.ofAdd (1 : ℤ)).toAdd := by rw [hk]
   rw [toAdd_zpow, toAdd_ofAdd,
     toAdd_ofAdd, Int.zsmul_eq_mul] at hcong
+  -- `Multiplicative ℤ` is a type synonym for `ℤ`, so `omega` would otherwise
+  -- scan `hmem` and `hk` — which mention `zpow` — as integer hypotheses.
+  clear hmem hk
   omega
 
 /-- But its square is. -/
@@ -354,7 +357,8 @@ theorem not_dgoQuotientStatementGeodesicWithLift :
   intro h
   obtain ⟨g, hgK, hfin⟩ :=
     exists_isOfFinOrder_notMem_of_dgoQuotientGeodesicWithLift h
-      (K := Subgroup.zpowers (Multiplicative.ofAdd (2 : ℤ))) inferInstance
+      (K := Subgroup.zpowers (Multiplicative.ofAdd (2 : ℤ)))
+      (Subgroup.normal_of_isMulCommutative _)
       ofAdd_one_notMem_zpowers_two (n := 2) (by norm_num)
       ofAdd_one_pow_two_mem_zpowers_two
   refine hgK ?_

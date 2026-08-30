@@ -217,16 +217,18 @@ is the word `c.drop k ++ c.take i`.  Two hypotheses do the work.
 on *edges*, not on vertices.  The complement may pass through the coset as often
 as it likes; what it may not do is read a `lam`-letter there.
 
-The conclusion is stated for the span, while the complement spells its inverse,
-so `relBall_inv` turns the path round at the end.  That is the only use of the
-symmetry hypothesis on `D.base`, and
-`OsinTheorem54SepSymmetric.exists_symmetric_base` supplies it. -/
-theorem relBall_of_isolated_of_closed (D : RelGenSet G Λ)
-    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (lam : Λ) (v : G)
+The complement spells the *inverse* of the span, and that is all the path
+argument gives: `relBall_inv_of_isolated_of_closed` is the conclusion in that
+form, and it is unconditional.  Turning it round to the span itself is the only
+use of the symmetry hypothesis on `D.base`, and
+`OsinTheorem54SepSymmetric.exists_symmetric_base` supplies it.  A consumer that
+can choose which of `h` and `h⁻¹` to place in the cycle --- as the alternating
+word of `GGT.DGOAlternatingCycle` can --- needs no symmetry at all. -/
+theorem relBall_inv_of_isolated_of_closed (D : RelGenSet G Λ) (lam : Λ) (v : G)
     {c : List (RelLetter G Λ)} (hlet : ∀ a ∈ c, D.IsLetter a)
     (hcl : RelLetter.listVal c = 1) {i k : ℕ}
     (hcomp : IsComp lam c i k) (hiso : IsIsolated D.fam lam v c i) :
-    (vertex v c i)⁻¹ * vertex v c k ∈ D.relBall lam c.length := by
+    ((vertex v c i)⁻¹ * vertex v c k)⁻¹ ∈ D.relBall lam c.length := by
   have hik : i < k := hcomp.1
   have hkc : k ≤ c.length := hcomp.2.1
   have hic : i ≤ c.length := by omega
@@ -281,22 +283,36 @@ theorem relBall_of_isolated_of_closed (D : RelGenSet G Λ)
       group
     rw [hv]
     exact hkey m hp hcp (Or.inl hmi)
-  -- assemble the complement, then turn it round
-  have hinv : ((vertex v c i)⁻¹ * vertex v c k)⁻¹ ∈ D.relBall lam c.length := by
-    refine ⟨inv_mem hspan, c.drop k ++ c.take i, ?_, ?_, ?_, ?_⟩
-    · intro a ha
-      rcases List.mem_append.mp ha with h | h
-      · exact hlet a (List.drop_subset k c h)
-      · exact hlet a (List.take_subset i c h)
-    · rw [listVal_append, hB, vertex_eq_mul_listVal_take c v i,
-        vertex_eq_mul_listVal_take c v k]
-      group
-    · exact (avoidsFrom_append D.fam lam (c.drop k) (c.take i) 1).mpr
-        ⟨hdrop, htake⟩
-    · rw [List.length_append, List.length_drop, List.length_take,
-        Nat.min_eq_left hic]
-      omega
-  have hfinal := relBall_inv D lam hsymm hinv
+  -- assemble the complement
+  refine ⟨inv_mem hspan, c.drop k ++ c.take i, ?_, ?_, ?_, ?_⟩
+  · intro a ha
+    rcases List.mem_append.mp ha with h | h
+    · exact hlet a (List.drop_subset k c h)
+    · exact hlet a (List.take_subset i c h)
+  · rw [listVal_append, hB, vertex_eq_mul_listVal_take c v i,
+      vertex_eq_mul_listVal_take c v k]
+    group
+  · exact (avoidsFrom_append D.fam lam (c.drop k) (c.take i) 1).mpr
+      ⟨hdrop, htake⟩
+  · rw [List.length_append, List.length_drop, List.length_take,
+      Nat.min_eq_left hic]
+    omega
+
+/-- **Dahmani--Guirardel--Osin, Lemma 4.6**, in the form the rest of their §4.2
+quotes: *an isolated `H lam`-component of a cycle of length `C` has
+`d̂_lam(a₋, a₊) ≤ C`.*
+
+`relBall_inv_of_isolated_of_closed` is the same statement about the inverse
+span, and it needs nothing of `D.base`; turning it round is where the symmetry
+hypothesis is spent. -/
+theorem relBall_of_isolated_of_closed (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (lam : Λ) (v : G)
+    {c : List (RelLetter G Λ)} (hlet : ∀ a ∈ c, D.IsLetter a)
+    (hcl : RelLetter.listVal c = 1) {i k : ℕ}
+    (hcomp : IsComp lam c i k) (hiso : IsIsolated D.fam lam v c i) :
+    (vertex v c i)⁻¹ * vertex v c k ∈ D.relBall lam c.length := by
+  have hfinal := relBall_inv D lam hsymm
+    (relBall_inv_of_isolated_of_closed D lam v hlet hcl hcomp hiso)
   rwa [inv_inv] at hfinal
 
 end OsinComponents

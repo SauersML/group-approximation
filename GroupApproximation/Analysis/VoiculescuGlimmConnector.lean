@@ -41,6 +41,7 @@ noncomputable section
 
 variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
+omit [CompleteSpace H] in
 /-- **The bound against an arbitrary unit.**  `Analysis/VoiculescuGlimmBound`
 states this against `1`; the compression argument needs it against `1 - P`,
 whose `ρ`-value is also `1`. -/
@@ -58,6 +59,7 @@ theorem re_apply_le_of_le_smul (ρ : (H →L[ℂ] H) →ₗ[ℂ] ℂ)
   simp only [Complex.sub_re, Complex.ofReal_re] at hre
   linarith
 
+omit [CompleteSpace H] in
 /-- A functional that is `1` at `1` and kills the compacts is `1` at `1 - e`
 for every compact `e`.  This is what makes the sign-free bound available. -/
 theorem apply_one_sub_eq_one (ρ : (H →L[ℂ] H) →ₗ[ℂ] ℂ) (hone : ρ 1 = 1)
@@ -73,7 +75,7 @@ theorem compress_le_smul_of_inner_le (V : Submodule ℂ H) [FiniteDimensional �
     (1 - V.starProjection) * b * (1 - V.starProjection)
       ≤ (t : ℂ) • (1 - V.starProjection) := by
   have hQsa : IsSelfAdjoint (1 - V.starProjection : H →L[ℂ] H) :=
-    IsSelfAdjoint.sub IsSelfAdjoint.one (isSelfAdjoint_starProjection V)
+    IsSelfAdjoint.sub (IsSelfAdjoint.one _) (isSelfAdjoint_starProjection V)
   have hQidem : (1 - V.starProjection : H →L[ℂ] H) * (1 - V.starProjection)
       = 1 - V.starProjection := by
     have hP : (V.starProjection : H →L[ℂ] H) * V.starProjection = V.starProjection :=
@@ -81,7 +83,7 @@ theorem compress_le_smul_of_inner_le (V : Submodule ℂ H) [FiniteDimensional �
     rw [sub_mul, one_mul, mul_sub, mul_one, hP, sub_self, sub_zero]
   have hSsa : IsSelfAdjoint ((t : ℂ) • (1 : H →L[ℂ] H) - b) := by
     have hts : star ((t : ℂ) • (1 : H →L[ℂ] H)) = (t : ℂ) • (1 : H →L[ℂ] H) := by
-      rw [star_smul, Complex.star_def, Complex.conj_ofReal, IsSelfAdjoint.one.star_eq]
+      rw [star_smul, Complex.star_def, Complex.conj_ofReal, star_one]
     show star _ = _
     rw [star_sub, hts, hsa.star_eq]
   have hfactor : (t : ℂ) • (1 - V.starProjection)

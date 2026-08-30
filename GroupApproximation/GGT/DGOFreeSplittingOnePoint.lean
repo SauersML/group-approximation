@@ -83,7 +83,8 @@ theorem exists_freeSplitting_dot {G : Type u} [Group G] {K : Subgroup G}
       (∀ i, apex i ∈ (Set.univ : Set Dot)) ∧ Function.Injective φ ∧
         φ.range = rotationNormalClosure (Set.univ : Set Dot) (fun _ => K) ∧
           ∀ (i : T) (x : ↥K),
-            φ (Monoid.CoprodI.of x) = conj i * (x : G) * (conj i)⁻¹ := by
+            φ (Monoid.CoprodI.of (M := fun _ : T => ↥K) (i := i) x)
+              = conj i * (x : G) * (conj i)⁻¹ := by
   refine ⟨PUnit.{u + 1}, fun _ => Dot.pt, fun _ => 1,
     Monoid.CoprodI.lift (fun _ => K.subtype), fun _ => Set.mem_univ _, ?_, ?_, ?_⟩
   · intro x y hxy
@@ -106,11 +107,14 @@ theorem exists_freeSplitting_dot {G : Type u} [Group G] {K : Subgroup G}
         rw [map_mul]
         exact mul_mem hx hy
     · intro g hg
-      refine MonoidHom.mem_range.mpr ⟨Monoid.CoprodI.of ⟨g, hg⟩, ?_⟩
+      refine MonoidHom.mem_range.mpr
+        ⟨Monoid.CoprodI.of (M := fun _ : PUnit.{u + 1} => ↥K)
+          (i := PUnit.unit) ⟨g, hg⟩, ?_⟩
       rw [Monoid.CoprodI.lift_of]
-  · intro _ x
+  · intro i x
     show Monoid.CoprodI.lift (fun _ : PUnit.{u + 1} => K.subtype)
-        (Monoid.CoprodI.of x) = 1 * (x : G) * (1 : G)⁻¹
+        (Monoid.CoprodI.of (M := fun _ : PUnit.{u + 1} => ↥K) (i := i) x)
+      = 1 * (x : G) * (1 : G)⁻¹
     rw [Monoid.CoprodI.lift_of, inv_one, one_mul, mul_one]
 
 end HullSC

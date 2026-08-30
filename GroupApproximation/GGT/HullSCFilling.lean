@@ -1,3 +1,4 @@
+import GroupApproximation.GGT.HullSCDGO
 import GroupApproximation.GGT.HullSCSmallCancellation
 
 /-!

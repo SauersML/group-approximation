@@ -24,31 +24,57 @@ And the two loxodromics themselves are free: `Suitable` *is*
 `ActsNonElementarily N` together with the finite-subgroup clause, and the first
 conjunct hands back exactly a pair of independent loxodromics in `N`.
 
-So the citation reduces to its one geometric clause:
+So the citation reduces to its one geometric clause,
+`existsHypEmbeddedConeOff₂_of_zpowers`:
 
-> for a suitable `N` there are independent loxodromic `h₀, h₁ ∈ N` with
+> for a suitable `N` **there are** independent loxodromic `h₀, h₁ ∈ N` with
 > `{⟨h₀⟩, ⟨h₁⟩} ↪_h (G, A)`.
 
-That is `existsHypEmbeddedConeOff₂_of_zpowers` below, whose hypothesis is that
-statement and nothing else.
+## The existential is not decoration: the universal form is FALSE
 
-## What the remaining clause costs, and why this is the right shape for it
+An earlier version of this module also offered the clause with the pair
+universally quantified -- *for **any** two independent loxodromics the cone-off
+along their cyclic subgroups is hyperbolically embedded* -- as the "sharpest"
+residue.  **That statement is false**, and the second half of this module proves
+the mechanism that kills it.
 
-Hull gets the embedding from `E(hᵢ)`, not from `⟨hᵢ⟩`, and then has to arrange
-`E(hᵢ) ≤ N` -- his Lemma 5.8, a choice argument that needs the classification of
-elementary closures.  Asking for `⟨hᵢ⟩` instead moves that cost somewhere
-cheaper: over a torsion-free ambient group `E(h)` is infinite cyclic, so
-`⟨h⟩ ≤ E(h)` has finite index, and what is owed is a *finite-index descent* --
-that a finite-index subgroup of a hyperbolically embedded subgroup is again
-hyperbolically embedded, over a base enlarged by a finite transversal, which
-`GGT.DGOCorollary427` then strips because it changes the base by a finite set.
-A descent lemma is checkable; a choice argument about which `h` to pick is not.
+`subset_relBall_three_of_normalizes`: if a base letter `a` of the relative
+generating set lies **outside** `H λ` but **normalises** it, then every element
+of `H λ` is at relative distance at most three from `1`.  The word is
+`a · (a⁻¹ k a) · a⁻¹`, which spells `k`, is admissible, and reads its one
+`λ`-letter at the vertex `a`, which is not in `H λ` -- so it avoids `Γ_{H λ}`
+and the avoidance condition, which is the whole content of the relative metric,
+never bites.  With `H λ` infinite, local finiteness fails.
 
-The (W4) clause is worth a second look for the same reason.  Stated at arbitrary
-subgroups it is a genuine hypothesis -- with torsion, `E(h₀) ∩ E(h₁)` contains
-the maximal finite normal subgroup of `G`.  Stated at the cyclic ones it is a
-theorem.  So the strengthening of `ExistsHypEmbeddedConeOff₂` costs nothing at
-the cyclic choice and costs a real clause at the general one.
+The cyclic case is `not_isHyperbolicallyEmbedded_zpowers_pow`: coning off
+`⟨a^n⟩` for `n ≥ 2` along an alphabet that contains `a` is never hyperbolically
+embedded, because `a` normalises `⟨a^n⟩` and is not in it.
+
+**The witness.**  Take `G = F₂` free on `{a, b}` with `A = {a, a⁻¹, b, b⁻¹}`:
+`Γ(G,A)` is a tree, so it is `0`-hyperbolic, the action is free and hence
+acylindrical, and `a`, `b` are independent loxodromics -- an honest
+`HullGeneratingSet`.  Now `a²` and `b` are independent loxodromics too, and the
+theorem below says `{⟨a²⟩, ⟨b⟩}` is **not** hyperbolically embedded over `A`:
+the relative ball of radius three about `1` in `⟨a²⟩` is all of `⟨a²⟩`, by the
+word `a · a^{2m} · a⁻¹`.  So the universally quantified clause fails at
+`(F₂, A, (a², b))`.  Only the exhibition of that `HullGeneratingSet` is left
+unformalised here, and it is the acylindricity of a free action on a tree.
+
+## What this says about the remaining clause, and about the descent
+
+The pair has to be **chosen**, and what the choice must achieve is
+`⟨hᵢ⟩ = E(hᵢ)`: the failure above is exactly the gap between `⟨a²⟩` and its
+elementary closure `⟨a⟩`, and the offending word travels through the letter `a`
+of the closure that the smaller subgroup omits.  Over a torsion-free ambient
+group that is root-freeness of `hᵢ`, and it is the true content of Hull's
+Lemma 5.8 -- which therefore does **not** come off the board.
+
+The same example refutes the finite-index descent that would otherwise have
+replaced Lemma 5.8: `{⟨a⟩, ⟨b⟩} ↪_h (F₂, A)` holds -- they are free factors --
+while `{⟨a²⟩, ⟨b⟩}` does not, and `⟨a²⟩ ≤ ⟨a⟩` has index two.  **A finite-index
+subgroup of a hyperbolically embedded subgroup need not be hyperbolically
+embedded**, over any base, so no enlargement by a finite transversal repairs it
+and `GGT.DGOCorollary427` has nothing to strip.  The descent goes up, not down.
 -/
 
 namespace GroupApproximation
@@ -57,7 +83,9 @@ namespace HullSC
 open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
-universe u
+universe u w
+
+/-! ## The four free clauses -/
 
 /-- **The two independent loxodromics of a suitable subgroup**, which is the
 first conjunct of Hull's Definition 1.4 read back. -/
@@ -79,9 +107,10 @@ theorem exists_independent_lox_of_suitable {G : Type u} [Group G]
 
 /-- **Hull's §5 for a pair, from its geometric clause alone.**
 
-The hypothesis is the embedding and nothing else; the four remaining clauses of
-`ExistsHypEmbeddedConeOff₂` are discharged here.  See the module header for what
-this buys and what it costs. -/
+The hypothesis is the embedding for *some* pair and nothing else; the four
+remaining clauses of `ExistsHypEmbeddedConeOff₂` are discharged here.  The
+existential over the pair is essential -- see the module header, and
+`not_isHyperbolicallyEmbedded_zpowers_pow` below. -/
 theorem existsHypEmbeddedConeOff₂_of_zpowers
     (hemb : ∀ {G : Type u} [Group G] (A : HullGeneratingSet G)
       {N : Subgroup G}, Suitable A.alphabet N →
@@ -101,31 +130,101 @@ theorem existsHypEmbeddedConeOff₂_of_zpowers
   · exact GGT.Elementary.zpowers_disjoint_of_independent
       (isIsometricAction_cayley A.alphabet) (hglox false) hind
 
-/-- **The same, from the embedding for every pair of independent loxodromics**,
-which is the shape Dahmani-Guirardel-Osin's theorem has: it holds for any finite
-family of pairwise non-commensurable loxodromic elements, and independence
-implies non-commensurability
-(`GGT.Elementary.not_independent_of_common_zpow`).
+/-! ## Why the pair has to be chosen -/
 
-This is the sharpest form of what Hull's §5 for a pair still owes.  The
-suitable subgroup has disappeared from the hypothesis entirely --- it was only
-ever there to produce the two loxodromics and to hold the two subgroups, and
-`exists_independent_lox_of_suitable` produces them while `Subgroup.zpowers_le`
-holds them:
+/-- **A base letter outside a family member that normalises it collapses the
+relative metric.**
 
-> for any two independent loxodromic elements of `Γ(G,A)`, the cone-off of `A`
-> along the cyclic subgroups they generate is hyperbolically embedded. -/
-theorem existsHypEmbeddedConeOff₂_of_zpowers_forall
-    (hemb : ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) (g : Bool → G),
-      (∀ b : Bool, IsLoxodromic (g b) (Cayley.base A.alphabet)) →
-        Independent (g false) (g true) (Cayley.base A.alphabet) →
-          (coneOffFamily A.alphabet
-            (fun b => Subgroup.zpowers (g b))).IsHyperbolicallyEmbedded) :
-    ExistsHypEmbeddedConeOff₂.{u} := by
-  refine existsHypEmbeddedConeOff₂_of_zpowers ?_
-  intro G _ A N hN
-  obtain ⟨g, hgN, hglox, hind⟩ := exists_independent_lox_of_suitable hN
-  exact ⟨g, hgN, hglox, hind, hemb A g hglox hind⟩
+Every `k ∈ H λ` is spelled by `a · (a⁻¹ k a) · a⁻¹`: three admissible letters,
+whose one `λ`-letter is read at the vertex `a`, which is outside `H λ`.  So the
+word avoids `Γ_{H λ}` and `k` lies in the relative ball of radius three.
+
+This is the length-three companion of
+`GGT.RelGenSet.not_isHyperbolicallyEmbedded_of_fam_subset_base`, which is the
+same phenomenon at length one, and it belongs beside it. -/
+theorem subset_relBall_three_of_normalizes {G : Type u} [Group G] {Λ : Type w}
+    (D : GGT.RelGenSet G Λ) (lam : Λ) {a : G} (ha : a ∈ D.base)
+    (hainv : a⁻¹ ∈ D.base) (hnot : a ∉ D.fam lam)
+    (hnorm : ∀ k ∈ D.fam lam, a⁻¹ * k * a ∈ D.fam lam) :
+    (D.fam lam : Set G) ⊆ D.relBall lam 3 := by
+  intro k hk
+  have hkmem : k ∈ D.fam lam := hk
+  have hconj : a⁻¹ * k * a ∈ D.fam lam := hnorm k hkmem
+  rw [GGT.RelGenSet.mem_relBall]
+  refine ⟨hkmem, [GGT.RelLetter.base a, GGT.RelLetter.comp lam (a⁻¹ * k * a),
+    GGT.RelLetter.base a⁻¹], ?_, ?_, ?_, ?_⟩
+  · intro x hx
+    rcases List.mem_cons.mp hx with rfl | hx
+    · exact ha
+    rcases List.mem_cons.mp hx with rfl | hx
+    · exact hconj
+    rcases List.mem_cons.mp hx with rfl | hx
+    · exact hainv
+    exact absurd hx (by simp)
+  · show a * ((a⁻¹ * k * a) * (a⁻¹ * 1)) = k
+    group
+  · refine ⟨?_, ?_, ?_, trivial⟩
+    · rintro ⟨hc, -⟩
+      exact hc
+    · rintro ⟨-, hv⟩
+      rw [one_mul] at hv
+      exact hnot hv
+    · rintro ⟨hc, -⟩
+      exact hc
+  · simp
+
+/-- **So such a family is not hyperbolically embedded**, once the member it
+collapses is infinite. -/
+theorem not_isHyperbolicallyEmbedded_of_normalizes {G : Type u} [Group G]
+    {Λ : Type w} (D : GGT.RelGenSet G Λ) (lam : Λ) {a : G} (ha : a ∈ D.base)
+    (hainv : a⁻¹ ∈ D.base) (hnot : a ∉ D.fam lam)
+    (hnorm : ∀ k ∈ D.fam lam, a⁻¹ * k * a ∈ D.fam lam)
+    (hinf : (D.fam lam : Set G).Infinite) : ¬ D.IsHyperbolicallyEmbedded := by
+  intro hD
+  exact hinf (Set.Finite.subset (hD.locallyFinite lam 3)
+    (subset_relBall_three_of_normalizes D lam ha hainv hnot hnorm))
+
+/-- **Coning off a proper power is never hyperbolically embedded**, along an
+alphabet containing the root.
+
+`a` normalises `⟨a^n⟩` and, having infinite order, does not lie in it for
+`n ≥ 2`; so `subset_relBall_three_of_normalizes` applies.  This is what makes
+the universally quantified form of the residual clause false: `a^n` is
+loxodromic whenever `a` is, and independence is untouched by passing to a
+power. -/
+theorem not_isHyperbolicallyEmbedded_zpowers_pow {G : Type u} [Group G]
+    {Λ : Type w} (A : Alphabet G) (K : Λ → Subgroup G) (lam : Λ) {a : G}
+    (ha : a ∈ A.carrier) (hord : ¬ IsOfFinOrder a) {n : ℕ} (hn : 2 ≤ n)
+    (hK : K lam = Subgroup.zpowers (a ^ n)) :
+    ¬ (coneOffFamily A K).IsHyperbolicallyEmbedded := by
+  have hinj : Function.Injective (fun m : ℤ => a ^ m) :=
+    injective_zpow_iff_not_isOfFinOrder.mpr hord
+  have hpow : ¬ IsOfFinOrder (a ^ n) := by
+    intro hfin
+    obtain ⟨m, hm, hpm⟩ := isOfFinOrder_iff_pow_eq_one.mp hfin
+    refine hord (isOfFinOrder_iff_pow_eq_one.mpr ⟨n * m, ?_, ?_⟩)
+    · exact Nat.mul_pos (by omega) hm
+    · rw [pow_mul]
+      exact hpm
+  refine not_isHyperbolicallyEmbedded_of_normalizes _ lam ha
+    (A.symmetricGenerating.inv_mem a ha) ?_ ?_ ?_
+  · rw [coneOffFamily_fam, hK]
+    intro hmem
+    obtain ⟨j, hj⟩ := Subgroup.mem_zpowers_iff.mp hmem
+    have hjj : a ^ ((n : ℤ) * j) = a ^ (1 : ℤ) := by
+      rw [zpow_mul, zpow_natCast, hj, zpow_one]
+    have hmul : (n : ℤ) * j = 1 := hinj hjj
+    rcases Int.eq_one_or_neg_one_of_mul_eq_one hmul with h1 | h1
+    · omega
+    · omega
+  · rw [coneOffFamily_fam, hK]
+    intro k hk
+    obtain ⟨j, hj⟩ := Subgroup.mem_zpowers_iff.mp hk
+    have hc : Commute a ((a ^ n) ^ j) := ((Commute.refl a).pow_right n).zpow_right j
+    refine Subgroup.mem_zpowers_iff.mpr ⟨j, ?_⟩
+    rw [← hj, mul_assoc, ← hc.eq, inv_mul_cancel_left]
+  · rw [coneOffFamily_fam, hK]
+    exact GGT.infinite_zpowers_of_not_isOfFinOrder hpow
 
 end HullSC
 end GroupApproximation
