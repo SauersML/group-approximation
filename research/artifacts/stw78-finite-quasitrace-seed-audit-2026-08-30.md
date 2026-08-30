@@ -126,6 +126,18 @@ separable nuclear successive layers is strongly purely infinite.  This is a
 qualified nuclear theorem, not an assertion that the matrix-diagonalization
 definition glues across arbitrary extensions.
 
+The same argument extends from finite chains to continuous composition
+series indexed by a countable ordinal.  At a successor `beta+1`, the layer
+is an ideal in the unital quotient `B/I_beta`, so its bounded trace extends
+there and pulls back to `B`; this does not require `I_beta` or the layer to be
+unital.  At a countable limit `gamma`, choose an increasing sequence cofinal
+in `gamma`.  Continuity identifies `I_gamma` with the sequential inductive
+limit of the corresponding earlier ideals, exactly within the scope of
+Toms--Winter Corollary 3.4.  Transfinite induction therefore glues
+`O_infinity`-stability through the whole countable series.  An arbitrary
+uncountable-cofinality limit cannot be replaced by such a sequence and is
+outside the recorded theorem.
+
 # Trust boundary
 
 The finite-detection and counterexample-reflection proofs use only the
