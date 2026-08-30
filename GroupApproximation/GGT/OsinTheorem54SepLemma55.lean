@@ -1,13 +1,13 @@
 import GroupApproximation.GGT.OsinTheorem54Family
 
 /-!
-# Osin's Lemma 5.5, declared as a debt
+# Osin's Lemma 5.5
 
-**This module declares an unproved statement.**  It is here because `emb` ---
-clause (a) of Theorem 5.4, the hyperbolicity of `Γ(G, Y ⊔ ℋ)` --- cannot be
-reached without it, and because the shape of the debt is worth pinning down
-even though the proof is not being attempted.  Everything known about it is
-recorded below so that nobody re-derives it.
+**This module declared an unproved statement, and no longer does.**  It is here
+because `emb` --- clause (a) of Theorem 5.4, the hyperbolicity of
+`Γ(G, Y ⊔ ℋ)` --- cannot be reached without it.  `OsinEnlargement.osinLemma55`
+proves it; what follows is kept as the record of what the statement says, of the
+routes that do not prove it, and of the model tests that constrain it.
 
 ## The statement
 
@@ -53,24 +53,29 @@ the inequality with a bounded error dies on this example.
 The statement survives it: `Γ(ℤ, ℤ)` has diameter one and is hyperbolic.  The
 example refutes the route, not the lemma.
 
-## What it would cost
+## What it cost
 
 `Γ(G,B)` is `Γ(G,A)` with a family of subsets coned off --- the `A`-geodesics of
 the new letters and their translates --- and the hypothesis says that family is
 uniformly bounded in the coned metric.  So this is an instance of "coning off a
 uniformly quasiconvex family in a hyperbolic space leaves it hyperbolic"
 (Bowditch; Kapovich--Rafi), whose proof runs through thin triangles in the coned
-space.  Starting from the four-point condition, with no geodesic-space API
-beyond what this repository has, that is of the same order as the §4.2
-isolated-component bound.
+space.  The estimate made here was that this is of the same order as the §4.2
+isolated-component bound, and that was about right: nine modules and some twelve
+hundred lines, of which the criterion itself --- Bowditch's guessing-geodesics
+lemma, in `GGT/GuessingGeodesicsCriterion.lean` --- is the whole content.
 
-## An open routing question
+## The routing question, answered
 
 Theorem 5.4's consumer is `(AH₄) ⇒ (AH₁)`, which needs *some* `Y` that is both
 `↪_h` and acylindrical --- not specifically Osin's `Y = {y | S(1,y;D) = ∅}`.
-Whether the chain can be routed around Lemma 5.5 by choosing a different
-enlargement is open, and is a question about the whole chain rather than about
-this module.
+Whether the chain could be routed around this lemma by choosing a different
+enlargement was open when the debt was declared.  It cannot: the hyperbolicity
+of `Γ(G, Y ⊔ ℋ)` is clause (a) of the conclusion itself and is consumed again
+by clause (b), and the enlargement is squeezed from both sides --- too small and
+the action is not acylindrical (Osin's `(K × ℤ) * H`), too large and local
+finiteness fails (`not_isHyperbolicallyEmbedded_of_fam_subset_base`).  So the
+lemma had to be proved rather than avoided.
 -/
 
 namespace GroupApproximation
