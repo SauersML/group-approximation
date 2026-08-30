@@ -128,6 +128,57 @@ cofinality is needed.  If `J ideal A`, quasitrace linearity on `A/J` then
 passes to `A`.  Stable successor layers and an exact terminal quotient give
 the concrete corollary by stable invisibility and Haagerup's theorem.
 
+## Central-projection ideal splitting
+
+The ideal need not be quasitrace-invisible if it is exhausted by projections
+central in the ambient algebra.  Suppose
+
+```text
+p_n in I intersect Z(A),             p_n increasing, p_n -> 1 strictly on I,
+```
+
+every bounded quasitrace on `p_n A` is a trace, and every bounded
+quasitrace on `A/I` is a trace.  For an ambient bounded quasitrace `tau`, the
+central decomposition `A=p_n A direct_sum (1-p_n)A` gives
+
+```text
+tau(x)=tau(p_n x)+tau((1-p_n)x)       (x=x*).
+```
+
+The first summand is tracial.  Along a free ultrafilter, the second summands
+converge pointwise to
+
+```text
+sigma(a)=lim_omega tau((1-p_n)a).
+```
+
+This is a bounded `2`-quasitrace because every cut
+`a |-> (1-p_n)a` is an actual star homomorphism, including after `M_2`
+amplification.  Since `(1-p_n)i -> 0` for `i in I`, its square-null ideal
+contains `I`; only at this point is the standard quotient-factorization
+lemma applied.  The induced quasitrace on `A/I` is a trace.  The additivity
+defect of `tau` equals the complementary defect for every `n`, because the
+central-corner defect is zero, and its ultralimit is the defect of `sigma`.
+Hence it vanishes.
+
+This permits arbitrary nonzero traces on the ideal corners and is therefore
+different from the stable/quasitrace-invisible extension theorem.  It uses
+neither exactness nor separability.
+
+The same proof does not apply to a merely quasicentral projectional
+approximate unit.  Then
+
+```text
+a |-> (1-p_n)a(1-p_n)
+```
+
+has multiplicative defect `(1-p_n)a p_n b(1-p_n)`.  Although that defect
+tends to zero in operator norm, composition with a quasitrace is not thereby
+a quasitrace: its commuting-additivity axiom is exact, and approximate
+commutation alone supplies no descent theorem.  Indeed this compression is
+a star homomorphism exactly when `p_n` is central.  Thus no quotient
+quasitrace is inferred from the general quasicentral cuts.
+
 ## Sharp free-group tensor test
 
 STW, footnote 54, records an exact universal reformulation.  For every

@@ -26,3 +26,15 @@ all successor layers are, and quasitrace linearity then transfers from the
 terminal quotient.  In particular this applies to stable successor layers
 and an exact terminal quotient.  These results produce broad nonexact
 positive classes but do not settle the unrestricted problem.
+
+There is also an extension theorem which permits nonzero ideal traces.
+`stw01-central-projection-ideal-extensions-preserve-qt-linearity` applies
+when an ideal has an increasing approximate unit of projections central in
+the ambient algebra, every central corner has quasitrace linearity, and the
+quotient has quasitrace linearity.  An ambient quasitrace splits exactly
+over each central projection; an ultralimit of its complementary summands
+vanishes on the ideal and hence descends to the quotient.  The quotient
+trace cancels the remaining additivity defect.  Exact centrality matters:
+for merely quasicentral projections the complementary compression is not a
+homomorphism, so its composition with a quasitrace need not be a quasitrace
+and cannot simply be descended.
