@@ -128,6 +128,16 @@ cofinality is needed.  If `J ideal A`, quasitrace linearity on `A/J` then
 passes to `A`.  Stable successor layers and an exact terminal quotient give
 the concrete corollary by stable invisibility and Haagerup's theorem.
 
+There is now a complementary transfinite theorem in which the successor
+layers need not be quasitrace-invisible.  If every bounded quasitrace on each
+successor quotient is a trace, then every bounded quasitrace on the terminal
+unital algebra is a trace.  The proof fixes one ambient quasitrace.  At a
+successor, the arbitrary approximate-unit net splits it into a linear head
+and a quotient tail, whose restriction is linear on the next layer.  At an
+arbitrary limit ordinal, norm continuity and the dense union give
+additivity.  Hence arbitrary transfinite assembly preserves quasitrace
+linearity even when every layer carries nonzero traces.
+
 ## Central-projection ideal splitting
 
 The ideal need not be quasitrace-invisible if it is exhausted by projections
@@ -178,6 +188,85 @@ a quasitrace: its commuting-additivity axiom is exact, and approximate
 commutation alone supplies no descent theorem.  Indeed this compression is
 a star homomorphism exactly when `p_n` is central.  Thus no quotient
 quasitrace is inferred from the general quasicentral cuts.
+
+## Universal quasitrace-null commutators
+
+Exact centrality in `A` can be weakened to exact centrality in every
+quasitracial quotient.  Define
+
+```text
+J_bQT(A)=intersection_(tau in QT_b(A))
+         {x:tau(x*x)=0}.
+```
+
+If an ideal has an increasing projectional approximate unit `(p_n)` with
+`[p_n,A] subset J_bQT(A)`, every bounded quasitrace on every corner
+`p_n A p_n` is a trace, and every bounded quasitrace on `A/I` is a trace,
+then every bounded quasitrace on `A` is a trace.
+
+For a fixed ambient quasitrace `tau`, pass first to `A/N_tau`.  The images
+of all `p_n` are central there, so the complementary cuts are exact star
+homomorphisms.  Their quasitrace compositions have a tail ultralimit which
+vanishes on `I`, descends to `A/I`, and is a trace.  The corner term is a
+trace by hypothesis, so the ambient additivity defect equals the tail
+defect and vanishes.  This order of operations is essential: `tau` itself
+need not vanish on `I` and is never descended to `A/I`.
+
+The weakening is strict.  In
+
+```text
+A=C direct_sum K~,             I=C direct_sum K,
+p_n=(1,e_n),
+```
+
+the finite-rank `e_n` make `p_n` noncentral, but their commutators lie in
+the stable summand `0 direct_sum K`, which belongs to every bounded
+quasitrace square-null ideal.  Meanwhile `I` has the nonzero scalar trace,
+so it is not quasitrace-invisible.  The corners are
+`C direct_sum M_(rank(e_n))` and the quotient is `C`.
+
+For a projection `p` and fixed `tau`, the tail cut into `A/N_tau` is a star
+homomorphism if and only if `[p,A] subset N_tau`.  Thus universal
+quasitrace-nullity of these commutators is the exact algebraic threshold for
+the tail-homomorphism proof.  It does not show that a merely quasicentral
+approximate unit suffices.
+
+## Positive cuts which are projections only quasitracially
+
+The projectional hypothesis is not intrinsic to the argument.  If an ideal
+has an increasing positive-contractive approximate unit `(e_n)` with
+
+```text
+e_n-e_n^2 in J_bQT(A),             [e_n,A] subset J_bQT(A),
+```
+
+then the image of `e_n` in every individual square-null quotient is a central
+projection.  The hereditary head term is tracial whenever all bounded
+quasitraces on `Her_A(e_n)` are traces, and the complementary central tail
+has the same quotient ultralimit as before.  This proves
+`stw01-qt-idempotent-approximate-units-preserve-linearity`.
+
+This is strictly broader than projectional splitting.  Let
+
+```text
+D=C_0((0,1]) tensor K,
+A=C direct_sum D~,                 I=C direct_sum D.
+```
+
+The stable algebra `D` is invisible to bounded quasitraces, but it is stably
+projectionless: a projection section would have nonempty compact-open support
+in the connected noncompact space `(0,1]`.  Hence `I` has no projectional
+approximate unit, while it still carries the scalar trace.  The cuts
+
+```text
+e_n=(1, min(1,nt) tensor k_n)
+```
+
+have universally null commutators and idempotence defects.  Their hereditary
+algebras are a scalar summand plus `C_0((0,1]) tensor M_(rank(k_n))`, and the
+quotient is scalar.  Thus the positive-cut theorem reaches an extension
+covered by neither central/projectional splitting nor whole-ideal
+quasitrace invisibility.
 
 ## Sharp free-group tensor test
 

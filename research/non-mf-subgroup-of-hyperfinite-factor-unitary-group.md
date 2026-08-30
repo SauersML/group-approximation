@@ -58,17 +58,18 @@ literal group `E`.
   preprint 2026, not available to this lane) are the only unexamined known
   non-MF groups; their lamp-over-compressed-base shape suggests the same
   proof applies.
-  Earlier record:  `E` is sofic (`literal-group-sofic`), so
-  `E ↪ U(R^ω)`; the question is whether the ultrapower can be replaced by
-  `R` itself.  Reduced in `literal-group-embeds-in-hyperfinite-unitary-group`
-  to two pieces: a hyperfinite representation of `E` sending the central
-  mark `w` to `−1` (a projective hyperfinite representation of `E/<w>` with
-  the extension cocycle), and a faithful hyperfinite character of `E/<w>`.
-  Neither is known.  Every finite-dimensional representation of `E` kills
-  `w` (finite-dimensional representations are MF), so the marked
-  representation must be genuinely infinite-dimensional, with no
-  finite-dimensional approximants of its character in operator norm; it
-  may still have them in Hilbert--Schmidt norm, which is what `R` requires.
+  The earlier reduction separated a marked hyperfinite representation from
+  a faithful hyperfinite character of `E/<w>`; the marked half is now
+  impossible, so the quotient-character half cannot rescue `E`.
+  The obstruction is abstracted in
+  `marked-clifford-compressor-hyperfinite-invisibility`: any future marked
+  witness with an even Clifford block, a trace-spreading abelian compressor
+  containing one cycle whose sign-product is `(-1)^(cycle length)`,
+  and a nonamenable essentially free dual action is excluded by the same
+  mechanism, without property (T) or a character-classification theorem.
+  The compressor need not act by a fixed-point-free involution: unsigned
+  even cycles and negatively signed odd cycles, with arbitrary spectator
+  cycles and fixed points, are covered by the exact Clifford trace formula.
 * **Why the compression criterion does not obstruct.**  Inside `R` the
   Kazhdan projection of `ρ(L)` on `L²(R)` is the projection onto
   `L²(ρ(L)' ∩ R)`, and `ρ(t)` conjugates it to the projection onto

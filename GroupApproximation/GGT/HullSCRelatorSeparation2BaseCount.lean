@@ -45,6 +45,7 @@ def compCount : List (GGT.RelLetter G Λ) → ℕ
   | GGT.RelLetter.base _ :: t => compCount t
   | GGT.RelLetter.comp _ _ :: t => compCount t + 1
 
+omit [Group G] in
 /-- **The two counts partition the letters.** -/
 theorem baseCount_add_compCount (v : List (GGT.RelLetter G Λ)) :
     baseCount v + compCount v = v.length := by
@@ -59,11 +60,14 @@ theorem baseCount_add_compCount (v : List (GGT.RelLetter G Λ)) :
           show baseCount t + (compCount t + 1) = t.length + 1
           omega
 
+omit [Group G] in
 /-- **The base count is additive.** -/
 theorem baseCount_append (v z : List (GGT.RelLetter G Λ)) :
     baseCount (v ++ z) = baseCount v + baseCount z := by
   induction v with
-  | nil => rfl
+  | nil =>
+      show baseCount z = 0 + baseCount z
+      omega
   | cons a t ih =>
       cases a with
       | base g =>
@@ -74,6 +78,7 @@ theorem baseCount_append (v z : List (GGT.RelLetter G Λ)) :
           show baseCount (t ++ z) = baseCount t + baseCount z
           exact ih
 
+omit [Group G] in
 /-- **Reversal does not change the base count.** -/
 theorem baseCount_reverse (v : List (GGT.RelLetter G Λ)) :
     baseCount v.reverse = baseCount v := by
@@ -109,6 +114,7 @@ theorem baseCount_revInv (v : List (GGT.RelLetter G Λ)) :
   show baseCount (v.map RelWord.inv).reverse = baseCount v
   rw [baseCount_reverse, baseCount_map_inv]
 
+omit [Group G] in
 /-- **A rotation has the base count of the word**, the two pieces of the
 rotation being the two pieces of the word in the other order. -/
 theorem baseCount_rotate (v : List (GGT.RelLetter G Λ)) (n : ℕ) :
@@ -150,6 +156,7 @@ theorem baseCount_blockWord (h₀ h₁ : G) :
       show baseCount (blockWord h₀ h₁ (!s) t) = 0
       exact ih (!s)
 
+omit [Group G] in
 /-- **The base part has one base letter per letter of `p`.** -/
 theorem baseCount_map_base (p : List G) :
     baseCount (p.map (GGT.RelLetter.base : G → GGT.RelLetter G Bool))
@@ -181,6 +188,7 @@ section Range
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
+omit [Group G] in
 /-- **A range has the base letters it has**, at most those of the whole word:
 the word splits as the part before, the range, and the part after. -/
 theorem baseCount_range_le (v : List (GGT.RelLetter G Λ)) (i j : ℕ) :
@@ -194,6 +202,7 @@ theorem baseCount_range_le (v : List (GGT.RelLetter G Λ)) (i j : ℕ) :
   rw [List.take_append_drop] at h2
   omega
 
+omit [Group G] in
 /-- **A range inside the word has the length its endpoints say.** -/
 theorem length_range (v : List (GGT.RelLetter G Λ)) {i j : ℕ} (hij : i ≤ j)
     (hj : j ≤ v.length) : ((v.drop i).take (j - i)).length = j - i := by

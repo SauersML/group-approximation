@@ -64,6 +64,31 @@ formula must therefore alter the approximating maps, subdivide or absorb
 the transition region, or obtain orthogonality from structure other than
 quasicentrality.
 
+# AF-coefficient Toeplitz replacement
+
+There is now a separable nonquasidiagonal class where the transition region
+is replaced coherently rather than cut projectionally.  Let `A` be a nonzero
+unital AF algebra and tensor the index-`N` Toeplitz extension with `A`:
+
+```text
+0 -> K tensor A -> C*(S^N,K) tensor A
+  -> C(T) tensor A -> 0.
+```
+
+At a finite-dimensional AF stage `A_j=directSum_l M_(n_l)`, the middle
+algebra is a finite direct sum of matrix amplifications of the scalar
+index-`N` Toeplitz algebra.  Its established two-colour approximation already
+absorbs the transition band.  Passing through the injective AF limit gives
+middle nuclear dimension at most one.  The quotient has dimension exactly
+one, while the ideal is AF, so the dimensions are `0,1,1`.
+
+This is not hidden raw-cut reuse.  The six-term boundary sends the exterior
+product of the circle generator with `[1_A]` to `+-N[1_A]`, which is nonzero
+in the torsion-free dimension group `K_0(A)`.  The extension is therefore not
+quasidiagonal and cannot have a projectional quasicentral approximate unit.
+The finite-stage Toeplitz maps replace the transition approximation instead
+of perturbing its complementary supports.
+
 # Trust boundary
 
 The operator-algebra calculations above are elementary except for the

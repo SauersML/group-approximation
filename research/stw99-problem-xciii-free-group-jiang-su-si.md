@@ -7,6 +7,10 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw93-xciii-free-group-jiang-su-si-audit-2026-08-30.md
+  - research/artifacts/stw93-hereditary-exhaustion-audit-2026-08-30.md
+  - research/artifacts/stw93-residual-bounded-trace-audit-2026-08-30.md
+  - research/artifacts/stw93-central-commutator-lifting-audit-2026-08-30.md
+  - research/artifacts/stw93-central-factorization-no-go-audit-2026-08-30.md
 ---
 
 **Problem XCIII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Does `C*_r(F₂) ⊗ 𝒵` have property (SI)?
@@ -58,3 +62,47 @@ ideal.  Equivalently, the exact remaining claim is
 `stw93-residual-trace-kernel-is-quasitrace-null`.  Central pureness, now also
 furnished directly by Perera--Thiel--Vilalta, supplies strict comparison but
 does not force quasitraces to annihilate this residual ideal.
+
+There is now a sharp hereditary-exhaustion reduction.  If every finite
+packet in the residual ideal `I/K_Z^sat` lies in a sigma-unital hereditary
+subalgebra with bounded-quasitrace linearity, then
+`stw93-hereditary-exhaustion-reduces-to-traces` and
+arbitrary extension permanence make every quasitrace on the residual
+ambient quotient an actual trace.  The XCIII leaf then holds exactly when
+`I/K_Z^sat` has no nonzero bounded trace.  The exhaustion hypothesis alone
+does not give annihilation: a bounded trace on the residual ideal extends
+through its multiplier algebra to an ambient trace and is already a
+negative witness.
+
+The residual bounded-trace question itself is exactly ordinary trace
+uniqueness: `stw93-residual-tracefree-iff-unique-trace` proves that
+`I/K_Z^sat` has no nonzero bounded trace if and only if `D` has its unique
+limit trace among normalized traces.  This is not forced by the saturated
+slice data alone.  The doubled-`F(Z)` countermodel in
+`stw93-saturated-slice-data-allow-residual-trace` retains the analogous
+factor quotient, slice surjectivity, automatic trace preservation for all
+copies, saturated null ideal, and pureness, but its residual ideal is a
+II_1 factor.
+Hence the next actual hinge is an XCIII-specific argument excluding an
+extra ordinary tracial direction wholly inside the norm trace kernel.
+
+Uniform Powers--Dixmier averaging now isolates the norm-kernel issue more
+sharply.  `stw93-central-commutator-lifting-is-trace-hinge` proves that
+every self-adjoint element of `I` is a norm limit of self-commutators in the
+full ultrapower `A_omega`.  Uniqueness of the ordinary trace on `D` is
+equivalent to producing the same approximations with all commutator factors
+in `D`.  Coordinatewise averaging unitaries vary with the representative
+and need not be norm-central, while full-factor spectral gap only controls
+their effect in tracial `2`-norm.  Centralizing these ambient commutator
+decompositions is therefore the exact next Powers-averaging hinge.
+
+There is also a sharp limit on formal centralization.  By
+`stw93-abstract-central-factorization-can-fail`, even a uniquely traced
+uniform-Dixmier norm ultraproduct can have a relative commutant with
+II_1-factor tracial quotient in which an ambient self-commutator limit is
+detected by a relative-commutant trace.  Orthogonal central Z-blocks turn
+commutator defects into a maximum across blocks, not a norm average.  That
+model's defining subalgebra contains a trace-zero projection; hence the
+remaining plausible XCIII input is specifically the faithful diagonal
+copy and full free-factor spectral gap, not an abstract self-commutator
+factorization principle.

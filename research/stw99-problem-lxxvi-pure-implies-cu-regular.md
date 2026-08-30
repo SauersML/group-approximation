@@ -147,7 +147,18 @@ The 2026 continuous-function purity theorem closes the purity input in the
 tensoring with `Z` automatic.  The sole remaining input is a simple pure
 coefficient in which the scalar unstable class survives before tensoring.
 Such a coefficient cannot contain `Z` unitally; in particular
-`C*_r(F_2)` is now rigorously excluded.  The circle theorem separately shows
+`C*_r(F_2)` is now rigorously excluded.  It also cannot contain any `M_k`,
+`k>=2`, unitally: `u |-> u tensor 1_k` lands in the degree-five stable range
+of `U(2k)` and kills the scalar torsion class before it reaches the
+coefficient algebra.  More strongly, it cannot contain even one unital
+generalized dimension-drop block `I_(p,q)` with `p,q>=2`.  The two endpoint
+amplifications kill `alpha`, while the homotopy-pullback obstruction group
+`pi_6(U(2pq))` vanishes.  Prime dimension-drop blocks are projectionless, so
+this no-go is genuinely weaker than matrix divisibility and does not assume
+Z-stability.  More generally, the exact one-dimensional NCCW criterion says
+that any unital block whose finite-dimensional zero-skeleton has no scalar
+summand kills `alpha`, for arbitrary endpoint multiplicity matrices.  The
+circle theorem separately shows
 that no one-dimensional clutching analogue can work on a single circle.  The
 one-dimensional theorem rules out every second-countable locally compact base
 when the simple fiber has trivial `K_1`.  For arbitrary `K_1`, even a finite

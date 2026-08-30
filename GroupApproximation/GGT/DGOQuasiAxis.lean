@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.ElementaryIndependence
+import Mathlib.Combinatorics.Pigeonhole
 
 /-!
 # DGO Definition 6.3: the quasi-geodesic axis
@@ -260,6 +261,38 @@ namespace PowerAxisSegment
 
 variable {h : G} {x : X}
 
+/-- A finite map into a nonempty set of colors has a constant increasing
+subsequence of the requested size once the source has `colors × size`
+elements.  The increasing enumeration is important for preserving the order
+of the geometric samples. -/
+theorem exists_constant_strictMono_subsequence
+    (colors : Finset ℤ) (hcolors : colors.Nonempty) (N : ℕ)
+    (φ : Fin (colors.card * (N + 1)) → ℤ)
+    (hφ : ∀ r, φ r ∈ colors) :
+    ∃ z ∈ colors, ∃ R : Fin (N + 1) → Fin (colors.card * (N + 1)),
+      StrictMono R ∧ ∀ i, φ (R i) = z := by
+  obtain ⟨z, hz, hfiber⟩ :=
+    Finset.exists_le_card_fiber_of_mul_le_card_of_maps_to
+      (s := Finset.univ) (t := colors) (f := φ)
+      (fun r hr => hφ r) hcolors (n := N + 1) (by simp)
+  let fiber : Finset (Fin (colors.card * (N + 1))) :=
+    Finset.univ.filter fun r => φ r = z
+  have hfiberCard : N + 1 ≤ fiber.card := by
+    exact hfiber
+  obtain ⟨chosen, hchosen, hchosenCard⟩ :=
+    fiber.exists_subset_card_eq hfiberCard
+  let R : Fin (N + 1) → Fin (colors.card * (N + 1)) :=
+    fun i => (chosen.orderIsoOfFin hchosenCard i).1
+  have hRmono : StrictMono R := by
+    intro i j hij
+    exact (chosen.orderIsoOfFin hchosenCard).strictMono hij
+  refine ⟨z, hz, R, hRmono, ?_⟩
+  intro i
+  have hmemChosen : (chosen.orderIsoOfFin hchosenCard i).1 ∈ chosen :=
+    (chosen.orderIsoOfFin hchosenCard i).2
+  have hmemFiber := hchosen hmemChosen
+  exact (Finset.mem_filter.mp hmemFiber).2
+
 /-- The unit-speed path on a translated parametrized axis beginning at the
 initial vertex of a power-axis segment. -/
 def parametrizedPath (a : ℝ → X) (p : PowerAxisSegment h x) : ℝ → X :=
@@ -268,6 +301,10 @@ def parametrizedPath (a : ℝ → X) (p : PowerAxisSegment h x) : ℝ → X :=
 /-- Power vertex on the translated axis at an arbitrary integer coordinate. -/
 def vertex (p : PowerAxisSegment h x) (n : ℤ) : X :=
   (p.translate * h ^ n) • x
+
+/-- The finite orbit-vertex chain carried by a power-axis segment. -/
+def vertexChain (p : PowerAxisSegment h x) : ℕ → X :=
+  fun n => p.vertex (p.start + (n : ℤ))
 
 /-- Initial endpoint of an oriented translated power-axis segment. -/
 def initial (p : PowerAxisSegment h x) : X :=
@@ -350,6 +387,21 @@ theorem length_eq_steps_mul (p : PowerAxisSegment h x) :
 /-- The path length of an oriented power-axis segment is nonnegative. -/
 theorem length_nonneg (p : PowerAxisSegment h x) : 0 ≤ p.length := by
   exact mul_nonneg (by exact_mod_cast sub_nonneg.mpr p.start_le_stop) dist_nonneg
+
+omit [PseudoMetricSpace X] in
+/-- The vertex chain begins at the initial power vertex. -/
+theorem vertexChain_zero (p : PowerAxisSegment h x) :
+    p.vertexChain 0 = p.initial := by
+  simp [vertexChain, initial, vertex]
+
+omit [PseudoMetricSpace X] in
+/-- The last recorded vertex of the chain is the terminal power vertex. -/
+theorem vertexChain_steps (p : PowerAxisSegment h x) :
+    p.vertexChain p.steps = p.terminal := by
+  have hindex : p.start + (p.steps : ℤ) = p.stop := by
+    rw [p.steps_cast]
+    omega
+  simp only [vertexChain, hindex, terminal, vertex]
 
 /-- A parametrized axis restricts to a geodesic path of the recorded segment
 length on every translated power-axis segment. -/
@@ -462,6 +514,694 @@ theorem vertex_dist_bounds
     simpa only [mul_smul] using
       hiso p.translate ((h ^ i) • x) ((h ^ j) • x)
   rwa [hcoord, ← hvalue] at hab
+
+/-- Successive vertices inherit the uniform upper bound from the
+parametrized quasi-axis. -/
+theorem vertexChain_edge_le
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) {lam c : ℝ}
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p : PowerAxisSegment h x) (n : ℕ) :
+    dist (p.vertexChain n) (p.vertexChain (n + 1)) ≤
+      lam * dist x (h • x) + c := by
+  have hupper := (vertex_dist_bounds hiso hf hq p
+    (p.start + (n : ℤ)) (p.start + ((n + 1 : ℕ) : ℤ))).2
+  have hcoord :
+      |((((p.start + (n : ℤ) : ℤ) : ℝ) -
+          ((p.start + ((n + 1 : ℕ) : ℤ) : ℤ) : ℝ)) *
+        dist x (h • x))| = dist x (h • x) := by
+    push_cast
+    rw [show ((p.start : ℝ) + (n : ℝ) -
+        ((p.start : ℝ) + ((n : ℝ) + 1))) * dist x (h • x) =
+        -(dist x (h • x)) by ring, abs_neg, abs_of_nonneg dist_nonneg]
+  rw [hcoord] at hupper
+  simpa only [vertexChain] using hupper
+
+/-- The quasi-axis lower bound gives uniform linear progress along every
+finite vertex chain. -/
+theorem vertexChain_progress
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) {lam c : ℝ}
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p : PowerAxisSegment h x) {i j : ℕ} (hij : i ≤ j) :
+    (dist x (h • x) / lam) * ((j - i : ℕ) : ℝ) - c ≤
+      dist (p.vertexChain i) (p.vertexChain j) := by
+  have hlower := (vertex_dist_bounds hiso hf hq p
+    (p.start + (i : ℤ)) (p.start + (j : ℤ))).1
+  have hcoord :
+      |((((p.start + (i : ℤ) : ℤ) : ℝ) -
+          ((p.start + (j : ℤ) : ℤ) : ℝ)) * dist x (h • x))| =
+        ((j - i : ℕ) : ℝ) * dist x (h • x) := by
+    have hcast : ((j - i : ℕ) : ℝ) = (j : ℝ) - (i : ℝ) := by
+      rw [Nat.cast_sub hij]
+    push_cast
+    rw [show ((p.start : ℝ) + (i : ℝ) -
+        ((p.start : ℝ) + (j : ℝ))) * dist x (h • x) =
+        -(((j : ℝ) - (i : ℝ)) * dist x (h • x)) by ring,
+      abs_neg, abs_of_nonneg (mul_nonneg (sub_nonneg.mpr (by exact_mod_cast hij))
+        dist_nonneg), hcast]
+  rw [hcoord] at hlower
+  have hreorder :
+      (dist x (h • x) / lam) * ((j - i : ℕ) : ℝ) =
+        ((j - i : ℕ) : ℝ) * dist x (h • x) / lam := by ring
+  rw [hreorder]
+  simpa only [vertexChain] using hlower
+
+/-- Endpoint-close finite quasi-geodesic chains coarsely match every vertex
+that lies uniformly far from the terminal endpoint.  This is the chain-level
+Morse comparison underlying both orientations of the quasi-axis overlap
+argument. -/
+theorem exists_uniform_chain_match
+    {δ B D l c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hB : 0 ≤ B) (hD : 0 ≤ D)
+    (hl : 0 < l) (hc : 0 ≤ c) :
+    ∃ E C : ℝ, 0 ≤ E ∧ 0 ≤ C ∧
+      ∀ (Psteps Qsteps : ℕ) (p q : ℕ → X),
+        (∀ i, i < Psteps → dist (p i) (p (i + 1)) ≤ D) →
+        (∀ i k, i ≤ k → k ≤ Psteps →
+          l * ((k - i : ℕ) : ℝ) - c ≤ dist (p i) (p k)) →
+        (∀ i, i < Qsteps → dist (q i) (q (i + 1)) ≤ D) →
+        (∀ i k, i ≤ k → k ≤ Qsteps →
+          l * ((k - i : ℕ) : ℝ) - c ≤ dist (q i) (q k)) →
+        dist (p 0) (q 0) ≤ B → dist (p Psteps) (q Qsteps) ≤ B →
+        ∀ j : ℕ, j ≤ Psteps →
+          E ≤ l * ((Psteps - j : ℕ) : ℝ) →
+          ∃ i : ℕ, i ≤ Qsteps ∧ dist (p j) (q i) ≤ C := by
+  obtain ⟨K₁, hK₁, hchordNear⟩ :=
+    ElementaryMorse.exists_bound_chord_near_chain
+      hδ hδ0 hD hl hc
+  obtain ⟨K₂, hK₂, hchainNear⟩ :=
+    ElementaryMorse.exists_bound_chain_near_chord
+      hδ hδ0 hD hl hc
+  let E : ℝ := 2 * B + c + K₂
+  let C : ℝ := K₂ + (3 * B + 12 * δ) + K₁
+  have hE : 0 ≤ E := by
+    dsimp [E]
+    linarith
+  have hC : 0 ≤ C := by
+    dsimp [C]
+    linarith
+  refine ⟨E, C, hE, hC, ?_⟩
+  intro Psteps Qsteps p q hpEdge hpProgress hqEdge hqProgress
+    hclose0 hclose1 j hj hfar
+  let Lp : ℝ := dist (p 0) (p Psteps)
+  let Lq : ℝ := dist (q 0) (q Qsteps)
+  obtain ⟨P, hP, hP0, hP1⟩ := hgeo (p 0) (p Psteps)
+  obtain ⟨Q, hQ, hQ0, hQ1⟩ := hgeo (q 0) (q Qsteps)
+  obtain ⟨t, ht, hpClose⟩ := hchainNear p Psteps hpEdge hpProgress
+    Lp dist_nonneg P hP hP0 hP1 j hj
+  have hlength : Lp ≤ Lq + 2 * B := by
+    have htri := dist_triangle4 (p 0) (q 0) (q Qsteps) (p Psteps)
+    rw [dist_comm (q Qsteps) (p Psteps)] at htri
+    dsimp [Lp, Lq]
+    linarith
+  have hpTail := hpProgress j Psteps hj le_rfl
+  have htailMetric : dist (p j) (p Psteps) ≤ K₂ + (Lp - t) := by
+    have hparam : dist (P t) (P Lp) = Lp - t := by
+      rw [hP.dist_eq ht ⟨dist_nonneg, le_rfl⟩,
+        abs_of_nonpos (sub_nonpos.mpr ht.2)]
+      ring
+    calc
+      dist (p j) (p Psteps) = dist (p j) (P Lp) := by rw [hP1]
+      _ ≤ dist (p j) (P t) + dist (P t) (P Lp) := dist_triangle _ _ _
+      _ = dist (p j) (P t) + (Lp - t) := by rw [hparam]
+      _ ≤ K₂ + (Lp - t) := by
+        simpa only [add_comm] using add_le_add_right hpClose (Lp - t)
+  have htLq : t ≤ Lq := by
+    dsimp [E] at hfar
+    linarith
+  have hgeodesicClose := dist_same_parameter_le_of_geodesic_endpoints_close
+    hδ hδ0 hgeo hB hP dist_nonneg hQ dist_nonneg
+    (by rw [hP0, hQ0]; exact hclose0)
+    (by rw [hP1, hQ1]; exact hclose1)
+    ht ⟨ht.1, htLq⟩
+  obtain ⟨i, hi, hqClose⟩ := hchordNear q Qsteps hqEdge hqProgress
+    Lq dist_nonneg Q hQ hQ0 hQ1 t ⟨ht.1, htLq⟩
+  refine ⟨i, hi, ?_⟩
+  have htri := dist_triangle4 (p j) (P t) (Q t) (q i)
+  rw [dist_comm (Q t) (q i)] at htri
+  dsimp [C]
+  linarith
+
+/-- Endpoint-close quasi-axis segments coarsely match their internal power
+vertices.  The constants are chosen before the translated segments.  This is
+the segment-Morse replacement for the geodesic-axis comparison in the
+quasi-axis part of Bestvina--Fujiwara Proposition 6. -/
+theorem exists_uniform_vertexChain_match
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x)) :
+    ∃ E C : ℝ, 0 ≤ E ∧ 0 ≤ C ∧
+      ∀ (p q : PowerAxisSegment h x),
+        dist p.initial q.initial ≤ B → dist p.terminal q.terminal ≤ B →
+        ∀ j : ℕ, j ≤ p.steps →
+          E ≤ (dist x (h • x) / lam) * ((p.steps - j : ℕ) : ℝ) →
+          ∃ i : ℕ, i ≤ q.steps ∧
+            dist (p.vertexChain j) (q.vertexChain i) ≤ C := by
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hD : 0 ≤ D := by
+    dsimp [D]
+    positivity
+  have hl : 0 < l := by
+    dsimp [l]
+    positivity
+  obtain ⟨K₁, hK₁, hchordNear⟩ :=
+    ElementaryMorse.exists_bound_chord_near_chain
+      hδ hδ0 hD hl hc
+  obtain ⟨K₂, hK₂, hchainNear⟩ :=
+    ElementaryMorse.exists_bound_chain_near_chord
+      hδ hδ0 hD hl hc
+  let E : ℝ := 2 * B + c + K₂
+  let C : ℝ := K₂ + (3 * B + 12 * δ) + K₁
+  have hE : 0 ≤ E := by
+    dsimp [E]
+    linarith
+  have hC : 0 ≤ C := by
+    dsimp [C]
+    linarith
+  refine ⟨E, C, hE, hC, ?_⟩
+  intro p q hclose0 hclose1 j hj hfar
+  let Lp : ℝ := dist p.initial p.terminal
+  let Lq : ℝ := dist q.initial q.terminal
+  obtain ⟨P, hP, hP0, hP1⟩ := hgeo p.initial p.terminal
+  obtain ⟨Q, hQ, hQ0, hQ1⟩ := hgeo q.initial q.terminal
+  have hpEdge : ∀ i, i < p.steps →
+      dist (p.vertexChain i) (p.vertexChain (i + 1)) ≤ D := by
+    intro i hi
+    exact vertexChain_edge_le hiso hf hq p i
+  have hpProgress : ∀ i k, i ≤ k → k ≤ p.steps →
+      l * ((k - i : ℕ) : ℝ) - c ≤
+        dist (p.vertexChain i) (p.vertexChain k) := by
+    intro i k hik hk
+    exact vertexChain_progress hiso hf hq p hik
+  have hqEdge : ∀ i, i < q.steps →
+      dist (q.vertexChain i) (q.vertexChain (i + 1)) ≤ D := by
+    intro i hi
+    exact vertexChain_edge_le hiso hf hq q i
+  have hqProgress : ∀ i k, i ≤ k → k ≤ q.steps →
+      l * ((k - i : ℕ) : ℝ) - c ≤
+        dist (q.vertexChain i) (q.vertexChain k) := by
+    intro i k hik hk
+    exact vertexChain_progress hiso hf hq q hik
+  have hP0' : P 0 = p.vertexChain 0 := by rw [hP0, p.vertexChain_zero]
+  have hP1' : P Lp = p.vertexChain p.steps := by
+    rw [hP1, p.vertexChain_steps]
+  have hQ0' : Q 0 = q.vertexChain 0 := by rw [hQ0, q.vertexChain_zero]
+  have hQ1' : Q Lq = q.vertexChain q.steps := by
+    rw [hQ1, q.vertexChain_steps]
+  obtain ⟨t, ht, hpClose⟩ := hchainNear p.vertexChain p.steps
+    hpEdge hpProgress Lp dist_nonneg P hP hP0' hP1' j hj
+  have hlength : Lp ≤ Lq + 2 * B := by
+    have htri := dist_triangle4 p.initial q.initial q.terminal p.terminal
+    rw [dist_comm q.terminal p.terminal] at htri
+    dsimp [Lp, Lq]
+    linarith [hclose0, hclose1]
+  have hpTail := hpProgress j p.steps hj le_rfl
+  have htailMetric :
+      dist (p.vertexChain j) (p.vertexChain p.steps) ≤ K₂ + (Lp - t) := by
+    have hparam : dist (P t) (P Lp) = Lp - t := by
+      rw [hP.dist_eq ht ⟨dist_nonneg, le_rfl⟩,
+        abs_of_nonpos (sub_nonpos.mpr ht.2)]
+      ring
+    calc
+      dist (p.vertexChain j) (p.vertexChain p.steps) =
+          dist (p.vertexChain j) (P Lp) := by rw [hP1']
+      _ ≤ dist (p.vertexChain j) (P t) + dist (P t) (P Lp) :=
+        dist_triangle _ _ _
+      _ = dist (p.vertexChain j) (P t) + (Lp - t) := by rw [hparam]
+      _ ≤ K₂ + (Lp - t) := by
+        simpa only [add_comm] using add_le_add_right hpClose (Lp - t)
+  have htLq : t ≤ Lq := by
+    dsimp [E, l] at hfar
+    linarith
+  have hgeodesicClose := dist_same_parameter_le_of_geodesic_endpoints_close
+    hδ hδ0 hgeo hB hP dist_nonneg hQ dist_nonneg
+    (by rw [hP0, hQ0]; exact hclose0)
+    (by rw [hP1, hQ1]; exact hclose1)
+    ht ⟨ht.1, htLq⟩
+  obtain ⟨i, hi, hqClose⟩ := hchordNear q.vertexChain q.steps
+    hqEdge hqProgress Lq dist_nonneg Q hQ hQ0' hQ1' t ⟨ht.1, htLq⟩
+  refine ⟨i, hi, ?_⟩
+  have htri := dist_triangle4 (p.vertexChain j) (P t) (Q t) (q.vertexChain i)
+  rw [dist_comm (Q t) (q.vertexChain i)] at htri
+  dsimp [C]
+  linarith
+
+/-- A coarse match controls the two vertex indices in both directions.  This
+quantitative order estimate is what turns Morse matches into increasing
+families after sufficiently sparse sampling. -/
+theorem vertexChain_match_index_bounds
+    {B C lam c : ℝ} (hiso : IsIsometricAction G X)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p q : PowerAxisSegment h x) {j i : ℕ}
+    (hj : j ≤ p.steps) (hi : i ≤ q.steps)
+    (h0 : dist p.initial q.initial ≤ B)
+    (hmatch : dist (p.vertexChain j) (q.vertexChain i) ≤ C) :
+    let D := lam * dist x (h • x) + c
+    let l := dist x (h • x) / lam
+    l * (i : ℝ) ≤ B + (j : ℝ) * D + C + c ∧
+      l * (j : ℝ) ≤ B + (i : ℝ) * D + C + c := by
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hpEdge : ∀ n, n < p.steps →
+      dist (p.vertexChain n) (p.vertexChain (n + 1)) ≤ D := by
+    intro n hn
+    exact vertexChain_edge_le hiso hf hq p n
+  have hqEdge : ∀ n, n < q.steps →
+      dist (q.vertexChain n) (q.vertexChain (n + 1)) ≤ D := by
+    intro n hn
+    exact vertexChain_edge_le hiso hf hq q n
+  have hpDist := dist_chain_le_nat_mul p.vertexChain hpEdge
+    (N := p.steps) (a := 0) (n := j) (by simpa using hj)
+  have hqDist := dist_chain_le_nat_mul q.vertexChain hqEdge
+    (N := q.steps) (a := 0) (n := i) (by simpa using hi)
+  simp only [zero_add, vertexChain_zero] at hpDist hqDist
+  have hpProgress := vertexChain_progress hiso hf hq p (Nat.zero_le j)
+  have hqProgress := vertexChain_progress hiso hf hq q (Nat.zero_le i)
+  simp only [Nat.sub_zero, vertexChain_zero] at hpProgress hqProgress
+  have hqi : dist q.initial (q.vertexChain i) ≤ B + (j : ℝ) * D + C := by
+    have htri := dist_triangle4 q.initial p.initial
+      (p.vertexChain j) (q.vertexChain i)
+    rw [dist_comm q.initial p.initial] at htri
+    linarith
+  have hpj : dist p.initial (p.vertexChain j) ≤ B + (i : ℝ) * D + C := by
+    have htri := dist_triangle4 p.initial q.initial
+      (q.vertexChain i) (p.vertexChain j)
+    rw [dist_comm (q.vertexChain i) (p.vertexChain j)] at htri
+    linarith
+  dsimp [l, D]
+  constructor <;> linarith
+
+/-- Coarse partners of sufficiently sparse increasing samples occur in the
+same order on the second quasi-axis.  The explicit growth condition is kept
+separate from the later finite recursive construction. -/
+theorem vertexChain_partner_lt_of_sparse
+    {B C lam c : ℝ} (hiso : IsIsometricAction G X)
+    (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hqAxis : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x))
+    (p q : PowerAxisSegment h x) {j₁ j₂ i₁ i₂ : ℕ}
+    (hj₁ : j₁ ≤ p.steps) (hj₂ : j₂ ≤ p.steps)
+    (hi₁ : i₁ ≤ q.steps) (hi₂ : i₂ ≤ q.steps)
+    (h0 : dist p.initial q.initial ≤ B)
+    (hmatch₁ : dist (p.vertexChain j₁) (q.vertexChain i₁) ≤ C)
+    (hmatch₂ : dist (p.vertexChain j₂) (q.vertexChain i₂) ≤ C)
+    (hsparse :
+      let D := lam * dist x (h • x) + c
+      let l := dist x (h • x) / lam
+      l * (B + C + c) + D * (B + (j₁ : ℝ) * D + C + c) <
+        l * (l * (j₂ : ℝ))) :
+    i₁ < i₂ := by
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hD : 0 ≤ D := by
+    dsimp [D]
+    positivity
+  have hl : 0 < l := by
+    dsimp [l]
+    positivity
+  have hb₁ := vertexChain_match_index_bounds hiso hf hqAxis p q
+    hj₁ hi₁ h0 hmatch₁
+  have hb₂ := vertexChain_match_index_bounds hiso hf hqAxis p q
+    hj₂ hi₂ h0 hmatch₂
+  dsimp only at hb₁ hb₂ hsparse
+  by_contra hnot
+  have hii : i₂ ≤ i₁ := Nat.le_of_not_gt hnot
+  have hiiR : (i₂ : ℝ) ≤ (i₁ : ℝ) := by exact_mod_cast hii
+  have hDi := mul_le_mul_of_nonneg_left hiiR hD
+  have hl₂ := mul_le_mul_of_nonneg_left hb₂.2 hl.le
+  have hD₁ := mul_le_mul_of_nonneg_left hb₁.1 hD
+  nlinarith
+
+/-- A recursively chosen sequence of natural indices sparse enough for the
+coarse partner-order estimate.  The maximum also forces strict increase even
+when the coarse constants are degenerate. -/
+noncomputable def sparseSample (B C c D l : ℝ) : ℕ → ℕ
+  | 0 => 0
+  | n + 1 =>
+      Classical.choose (exists_nat_gt (max (sparseSample B C c D l n : ℝ)
+        ((l * (B + C + c) +
+          D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+            (l * l))))
+
+/-- Each recursive sparse sample is larger than its predecessor and satisfies
+the explicit growth inequality consumed by `vertexChain_partner_lt_of_sparse`. -/
+theorem sparseSample_step {B C c D l : ℝ} (hl : 0 < l) (n : ℕ) :
+    sparseSample B C c D l n < sparseSample B C c D l (n + 1) ∧
+      l * (B + C + c) +
+          D * (B + (sparseSample B C c D l n : ℝ) * D + C + c) <
+        l * (l * (sparseSample B C c D l (n + 1) : ℝ)) := by
+  have hchosen := Classical.choose_spec (exists_nat_gt
+    (max (sparseSample B C c D l n : ℝ)
+      ((l * (B + C + c) +
+        D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+          (l * l))))
+  have hsucc : sparseSample B C c D l (n + 1) =
+      Classical.choose (exists_nat_gt
+        (max (sparseSample B C c D l n : ℝ)
+          ((l * (B + C + c) +
+            D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+              (l * l)))) := by
+    rw [sparseSample.eq_def]
+  have hindex : (sparseSample B C c D l n : ℝ) <
+      ((Classical.choose (exists_nat_gt
+        (max (sparseSample B C c D l n : ℝ)
+          ((l * (B + C + c) +
+            D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+              (l * l)))) : ℕ) : ℝ) :=
+    (le_max_left _ _).trans_lt hchosen
+  have hgrowth :
+      (l * (B + C + c) +
+        D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+          (l * l) <
+      ((Classical.choose (exists_nat_gt
+        (max (sparseSample B C c D l n : ℝ)
+          ((l * (B + C + c) +
+            D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+              (l * l)))) : ℕ) : ℝ) :=
+    (le_max_right _ _).trans_lt hchosen
+  constructor
+  · rw [hsucc]
+    exact_mod_cast hindex
+  · have hll : 0 < l * l := mul_pos hl hl
+    rw [div_lt_iff₀ hll] at hgrowth
+    rw [hsucc]
+    nlinarith
+
+/-- The recursively constructed sparse sample sequence is strictly
+increasing. -/
+theorem strictMono_sparseSample {B C c D l : ℝ} (hl : 0 < l) :
+    StrictMono (sparseSample B C c D l) :=
+  strictMono_nat_of_lt_succ fun n => (sparseSample_step hl n).1
+
+/-- Uniformly long endpoint-close quasi-axis segments admit finite sparse
+families of coarse matches, simultaneously before and after any prescribed
+offset `M` on the first axis.  The phase differences of the two partner
+families will be extracted by pigeonhole in the next step. -/
+theorem exists_sparse_double_vertexChain_matches
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x)) :
+    ∃ E C : ℝ, 0 ≤ E ∧ 0 ≤ C ∧
+      ∀ (M T : ℕ), ∃ S : ℕ, ∀ (p q : PowerAxisSegment h x),
+        S ≤ p.steps → dist p.initial q.initial ≤ B →
+        dist p.terminal q.terminal ≤ B →
+        ∃ (A I J : Fin (T + 1) → ℕ),
+          StrictMono A ∧ StrictMono I ∧ StrictMono J ∧
+          (∀ r, A r + M ≤ p.steps) ∧
+          (∀ r, I r ≤ q.steps ∧
+            dist (p.vertexChain (A r)) (q.vertexChain (I r)) ≤ C) ∧
+          (∀ r, J r ≤ q.steps ∧
+            dist (p.vertexChain (A r + M)) (q.vertexChain (J r)) ≤ C) := by
+  obtain ⟨E, C, hE, hC, hmatch⟩ := exists_uniform_vertexChain_match
+    hδ hδ0 hgeo hiso hB hlam hc hf hq hstep
+  refine ⟨E, C, hE, hC, ?_⟩
+  intro M T
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  let B' : ℝ := B + (M : ℝ) * D
+  let a : ℕ → ℕ := sparseSample B' C c D l
+  have hl : 0 < l := by
+    dsimp [l]
+    positivity
+  have haMono : StrictMono a := strictMono_sparseSample hl
+  obtain ⟨U, hU⟩ := exists_nat_gt (E / l)
+  have hEU : E < l * (U : ℝ) := by
+    rw [div_lt_iff₀ hl] at hU
+    simpa only [mul_comm] using hU
+  let S : ℕ := a T + M + U
+  refine ⟨S, ?_⟩
+  intro p q hpSteps hclose0 hclose1
+  let A : Fin (T + 1) → ℕ := fun r => a r.val
+  have hAmono : StrictMono A := fun r s hrs => haMono hrs
+  have hinternal : ∀ r : Fin (T + 1),
+      A r + M ≤ p.steps ∧
+      E ≤ l * ((p.steps - (A r + M) : ℕ) : ℝ) := by
+    intro r
+    have hrT : r.val ≤ T := Nat.lt_succ_iff.mp r.isLt
+    have har : a r.val ≤ a T := haMono.monotone hrT
+    have hsum : A r + M + U ≤ p.steps := by
+      dsimp [S, A] at hpSteps ⊢
+      omega
+    have hUsub : U ≤ p.steps - (A r + M) := by omega
+    have hUsubR : (U : ℝ) ≤ ((p.steps - (A r + M) : ℕ) : ℝ) := by
+      exact_mod_cast hUsub
+    refine ⟨by omega, ?_⟩
+    nlinarith
+  have hmatch0 : ∀ r : Fin (T + 1),
+      ∃ i : ℕ, i ≤ q.steps ∧
+        dist (p.vertexChain (A r)) (q.vertexChain i) ≤ C := by
+    intro r
+    have hsub : p.steps - (A r + M) ≤ p.steps - A r :=
+      Nat.sub_le_sub_left (Nat.le_add_right (A r) M) p.steps
+    have hsubR : ((p.steps - (A r + M) : ℕ) : ℝ) ≤
+        ((p.steps - A r : ℕ) : ℝ) := by exact_mod_cast hsub
+    have hfar : E ≤ l * ((p.steps - A r : ℕ) : ℝ) := by
+      have hlmul := mul_le_mul_of_nonneg_left hsubR hl.le
+      exact (hinternal r).2.trans hlmul
+    exact hmatch p q hclose0 hclose1 (A r)
+      (le_trans (Nat.le_add_right (A r) M) (hinternal r).1) hfar
+  have hmatchM : ∀ r : Fin (T + 1),
+      ∃ j : ℕ, j ≤ q.steps ∧
+        dist (p.vertexChain (A r + M)) (q.vertexChain j) ≤ C := by
+    intro r
+    exact hmatch p q hclose0 hclose1 (A r + M)
+      (hinternal r).1 (hinternal r).2
+  let I : Fin (T + 1) → ℕ := fun r => Classical.choose (hmatch0 r)
+  let J : Fin (T + 1) → ℕ := fun r => Classical.choose (hmatchM r)
+  have hIprop : ∀ r, I r ≤ q.steps ∧
+      dist (p.vertexChain (A r)) (q.vertexChain (I r)) ≤ C := by
+    intro r
+    exact Classical.choose_spec (hmatch0 r)
+  have hJprop : ∀ r, J r ≤ q.steps ∧
+      dist (p.vertexChain (A r + M)) (q.vertexChain (J r)) ≤ C := by
+    intro r
+    exact Classical.choose_spec (hmatchM r)
+  have hD : 0 ≤ D := by
+    dsimp [D]
+    positivity
+  have hIstrict : StrictMono I := by
+    intro r s hrs
+    have hrsNat : r.val < s.val := hrs
+    have hnext : a (r.val + 1) ≤ a s.val :=
+      haMono.monotone (Nat.succ_le_iff.mpr hrsNat)
+    have hnextR : (a (r.val + 1) : ℝ) ≤ (a s.val : ℝ) := by
+      exact_mod_cast hnext
+    have hsparseStep := (sparseSample_step (B := B') (C := C)
+      (c := c) (D := D) hl r.val).2
+    have hsparse :
+        l * (B + C + c) + D * (B + (A r : ℝ) * D + C + c) <
+          l * (l * (A s : ℝ)) := by
+      dsimp [A, a, B'] at hsparseStep ⊢
+      have hMD : 0 ≤ (M : ℝ) * D := mul_nonneg (Nat.cast_nonneg M) hD
+      have hlMD : 0 ≤ l * ((M : ℝ) * D) := mul_nonneg hl.le hMD
+      have hDMD : 0 ≤ D * ((M : ℝ) * D) := mul_nonneg hD hMD
+      have hleft :
+          l * (B + C + c) +
+              D * (B + (sparseSample (B + (M : ℝ) * D) C c D l r.val : ℝ) *
+                D + C + c) ≤
+            l * (B + (M : ℝ) * D + C + c) +
+              D * (B + (M : ℝ) * D +
+                (sparseSample (B + (M : ℝ) * D) C c D l r.val : ℝ) *
+                  D + C + c) := by
+        nlinarith
+      have hright :
+          l * (l * (sparseSample (B + (M : ℝ) * D) C c D l (r.val + 1) : ℝ)) ≤
+            l * (l * (sparseSample (B + (M : ℝ) * D) C c D l s.val : ℝ)) := by
+        have hll := mul_le_mul_of_nonneg_left hnextR (mul_nonneg hl.le hl.le)
+        nlinarith
+      exact hleft.trans_lt (hsparseStep.trans_le hright)
+    exact vertexChain_partner_lt_of_sparse hiso hlam hc hf hq hstep p q
+      (le_trans (Nat.le_add_right (A r) M) (hinternal r).1)
+      (le_trans (Nat.le_add_right (A s) M) (hinternal s).1)
+      (hIprop r).1 (hIprop s).1 hclose0
+      (hIprop r).2 (hIprop s).2 hsparse
+  have hJstrict : StrictMono J := by
+    intro r s hrs
+    have hrsNat : r.val < s.val := hrs
+    have hnext : a (r.val + 1) ≤ a s.val :=
+      haMono.monotone (Nat.succ_le_iff.mpr hrsNat)
+    have hnextR : (a (r.val + 1) : ℝ) ≤ (a s.val : ℝ) := by
+      exact_mod_cast hnext
+    have hsparseStep := (sparseSample_step (B := B') (C := C)
+      (c := c) (D := D) hl r.val).2
+    have hsparse :
+        l * (B + C + c) +
+            D * (B + ((A r + M : ℕ) : ℝ) * D + C + c) <
+          l * (l * ((A s + M : ℕ) : ℝ)) := by
+      dsimp [A, a, B'] at hsparseStep ⊢
+      push_cast
+      have hMD : 0 ≤ (M : ℝ) * D := mul_nonneg (Nat.cast_nonneg M) hD
+      have hlMD : 0 ≤ l * ((M : ℝ) * D) := mul_nonneg hl.le hMD
+      have hleft :
+          l * (B + C + c) +
+              D * (B + ((sparseSample (B + (M : ℝ) * D) C c D l r.val : ℝ) +
+                (M : ℝ)) * D + C + c) ≤
+            l * (B + (M : ℝ) * D + C + c) +
+              D * (B + (M : ℝ) * D +
+                (sparseSample (B + (M : ℝ) * D) C c D l r.val : ℝ) *
+                  D + C + c) := by
+        ring_nf at ⊢
+        nlinarith
+      have hright :
+          l * (l * (sparseSample (B + (M : ℝ) * D) C c D l (r.val + 1) : ℝ)) ≤
+            l * (l * ((sparseSample (B + (M : ℝ) * D) C c D l s.val : ℝ) +
+              (M : ℝ))) := by
+        have hll := mul_le_mul_of_nonneg_left hnextR (mul_nonneg hl.le hl.le)
+        nlinarith [mul_nonneg (mul_nonneg hl.le hl.le) (Nat.cast_nonneg M)]
+      exact hleft.trans_lt (hsparseStep.trans_le hright)
+    exact vertexChain_partner_lt_of_sparse hiso hlam hc hf hq hstep p q
+      (hinternal r).1 (hinternal s).1
+      (hJprop r).1 (hJprop s).1 hclose0
+      (hJprop r).2 (hJprop s).2 hsparse
+  exact ⟨A, I, J, hAmono, hIstrict, hJstrict,
+    fun r => (hinternal r).1, hIprop, hJprop⟩
+
+/-- If two matched pairs are `M` vertices apart on the first quasi-axis, the
+difference of their partner indices is uniformly bounded.  Consequently only
+finitely many phase differences can occur in the later pigeonhole extraction. -/
+theorem vertexChain_match_phase_bound
+    {C lam c : ℝ} (hiso : IsIsometricAction G X)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p q : PowerAxisSegment h x) {j M i k : ℕ}
+    (hjM : j + M ≤ p.steps)
+    (hmatch0 : dist (p.vertexChain j) (q.vertexChain i) ≤ C)
+    (hmatch1 : dist (p.vertexChain (j + M)) (q.vertexChain k) ≤ C) :
+    let D := lam * dist x (h • x) + c
+    let l := dist x (h • x) / lam
+    l * |((k : ℤ) - (i : ℤ) : ℝ)| ≤ 2 * C + (M : ℝ) * D + c := by
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hpEdge : ∀ n, n < p.steps →
+      dist (p.vertexChain n) (p.vertexChain (n + 1)) ≤ D := by
+    intro n hn
+    exact vertexChain_edge_le hiso hf hq p n
+  have hpDist := dist_chain_le_nat_mul p.vertexChain hpEdge
+    (N := p.steps) (a := j) (n := M) hjM
+  have hqUpper : dist (q.vertexChain i) (q.vertexChain k) ≤
+      2 * C + (M : ℝ) * D := by
+    have htri := dist_triangle4 (q.vertexChain i) (p.vertexChain j)
+      (p.vertexChain (j + M)) (q.vertexChain k)
+    rw [dist_comm (q.vertexChain i) (p.vertexChain j)] at htri
+    linarith
+  rcases le_total i k with hik | hki
+  · have hprog := vertexChain_progress hiso hf hq q hik
+    have hcast : |((k : ℤ) - (i : ℤ) : ℝ)| = ((k - i : ℕ) : ℝ) := by
+      have hsub : (k : ℤ) - (i : ℤ) = ((k - i : ℕ) : ℤ) := by omega
+      rw [← Int.cast_sub, hsub, Int.cast_natCast,
+        abs_of_nonneg (Nat.cast_nonneg _)]
+    rw [hcast]
+    dsimp [l, D]
+    linarith
+  · have hprog := vertexChain_progress hiso hf hq q hki
+    have hcast : |((k : ℤ) - (i : ℤ) : ℝ)| = ((i - k : ℕ) : ℝ) := by
+      have hsub : (k : ℤ) - (i : ℤ) = -((i - k : ℕ) : ℤ) := by omega
+      rw [← Int.cast_sub, hsub, Int.cast_neg, Int.cast_natCast, abs_neg,
+        abs_of_nonneg (Nat.cast_nonneg _)]
+    rw [hcast]
+    rw [dist_comm (q.vertexChain k) (q.vertexChain i)] at hprog
+    dsimp [l, D]
+    linarith
+
+/-- Among sufficiently many ordered double matches, a prescribed number have
+the same integer phase difference on the second quasi-axis.  The selected
+families remain strictly increasing and stay inside the two finite segments.
+This is the finite pigeonhole extraction in Bestvina--Fujiwara's axial
+argument. -/
+theorem exists_constant_phase_vertexChain_matches
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x)) :
+    ∃ E C : ℝ, 0 ≤ E ∧ 0 ≤ C ∧
+      ∀ (M N : ℕ), ∃ S : ℕ, ∀ (p q : PowerAxisSegment h x),
+        S ≤ p.steps → dist p.initial q.initial ≤ B →
+        dist p.terminal q.terminal ≤ B →
+        ∃ (K : ℤ) (A I J : Fin (N + 1) → ℕ),
+          StrictMono A ∧ StrictMono I ∧ StrictMono J ∧
+          (∀ r, A r + M ≤ p.steps) ∧
+          (∀ r, I r ≤ q.steps ∧
+            dist (p.vertexChain (A r)) (q.vertexChain (I r)) ≤ C) ∧
+          (∀ r, J r ≤ q.steps ∧
+            dist (p.vertexChain (A r + M)) (q.vertexChain (J r)) ≤ C) ∧
+          (∀ r, (J r : ℤ) - (I r : ℤ) = K) := by
+  obtain ⟨E, C, hE, hC, hdouble⟩ :=
+    exists_sparse_double_vertexChain_matches
+      hδ hδ0 hgeo hiso hB hlam hc hf hq hstep
+  refine ⟨E, C, hE, hC, ?_⟩
+  intro M N
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hl : 0 < l := by
+    dsimp [l]
+    positivity
+  obtain ⟨Z, hZ⟩ := exists_nat_gt ((2 * C + (M : ℝ) * D + c) / l)
+  let colors : Finset ℤ := Finset.Icc (-(Z : ℤ)) (Z : ℤ)
+  have hcolors : colors.Nonempty := by
+    refine ⟨0, ?_⟩
+    simp [colors]
+  obtain ⟨S, hS⟩ := hdouble M (colors.card * (N + 1))
+  refine ⟨S, ?_⟩
+  intro p q hpSteps hclose0 hclose1
+  obtain ⟨A₀, I₀, J₀, hA₀, hI₀, hJ₀, hinside, hmatch0, hmatchM⟩ :=
+    hS p q hpSteps hclose0 hclose1
+  let φ : Fin (colors.card * (N + 1)) → ℤ := fun r =>
+    (J₀ r.castSucc : ℤ) - (I₀ r.castSucc : ℤ)
+  have hφ : ∀ r, φ r ∈ colors := by
+    intro r
+    have hphase := vertexChain_match_phase_bound hiso hf hq p q
+      (hinside r.castSucc) (hmatch0 r.castSucc).2 (hmatchM r.castSucc).2
+    have hcast : ((φ r : ℤ) : ℝ) =
+        ((J₀ r.castSucc : ℤ) : ℝ) - ((I₀ r.castSucc : ℤ) : ℝ) := by
+      simp only [φ, Int.cast_sub, Int.cast_natCast]
+    have habsLe :
+        |((φ r : ℤ) : ℝ)| ≤ (2 * C + (M : ℝ) * D + c) / l := by
+      rw [hcast, le_div_iff₀ hl]
+      dsimp [φ, l, D] at hphase ⊢
+      simpa only [mul_comm] using hphase
+    have habs : |((φ r : ℤ) : ℝ)| < (Z : ℝ) := habsLe.trans_lt hZ
+    have hlowerR : (-(Z : ℤ) : ℝ) ≤ ((φ r : ℤ) : ℝ) := by
+      push_cast
+      exact le_of_lt (neg_lt_of_abs_lt habs)
+    have hupperR : ((φ r : ℤ) : ℝ) ≤ ((Z : ℤ) : ℝ) := by
+      exact le_of_lt (lt_of_abs_lt habs)
+    have hlower : -(Z : ℤ) ≤ φ r := by exact_mod_cast hlowerR
+    have hupper : φ r ≤ (Z : ℤ) := by exact_mod_cast hupperR
+    exact Finset.mem_Icc.mpr ⟨hlower, hupper⟩
+  obtain ⟨K, hKmem, R, hR, hphase⟩ :=
+    exists_constant_strictMono_subsequence colors hcolors N φ hφ
+  let select : Fin (N + 1) → Fin (colors.card * (N + 1) + 1) :=
+    fun r => (R r).castSucc
+  let A : Fin (N + 1) → ℕ := fun r => A₀ (select r)
+  let I : Fin (N + 1) → ℕ := fun r => I₀ (select r)
+  let J : Fin (N + 1) → ℕ := fun r => J₀ (select r)
+  have hselect : StrictMono select := by
+    intro r s hrs
+    exact hR hrs
+  have hA : StrictMono A := hA₀.comp hselect
+  have hI : StrictMono I := hI₀.comp hselect
+  have hJ : StrictMono J := hJ₀.comp hselect
+  refine ⟨K, A, I, J, hA, hI, hJ, ?_, ?_, ?_, ?_⟩
+  · intro r
+    exact hinside (select r)
+  · intro r
+    exact hmatch0 (select r)
+  · intro r
+    exact hmatchM (select r)
+  · intro r
+    exact hphase r
 
 /-- Integer power vertices whose arclength coordinates are sufficiently
 separated are metrically separated.  This is the quantitative fact that makes
@@ -596,12 +1336,128 @@ theorem dgoLemma67_of_monotone_vertex_samples
   dsimp [a, b] at huConj ⊢
   rwa [huConj] at hrs
 
-/-! ## From oriented power cores to WPD fellow travel -/
-
 /-- DGO's oriented endpoint-closeness condition for two power-vertex
 subsegments. -/
 def OrientedClose (B : ℝ) (p q : PowerAxisSegment h x) : Prop :=
   dist p.initial q.initial ≤ B ∧ dist p.terminal q.terminal ≤ B
+
+/-- **DGO Lemma 6.7 for power-vertex segments on a periodic quasi-axis.**
+The asynchronous ordered matches and their constant phase are constructed
+from hyperbolicity, then rebased at the first selected match before applying
+WPD.  Thus no global geodesic axis or abstract fellow-travelling hypothesis is
+needed. -/
+theorem exists_equal_positive_powers_of_long_powerSegments_of_quasiAxis
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x))
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) :
+    ∃ L : ℝ, 0 < L ∧ ∀ (p q : PowerAxisSegment h x),
+      L ≤ p.length → L ≤ q.length → OrientedClose B p q →
+      ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+        p.conjugate ^ r = q.conjugate ^ s := by
+  obtain ⟨E, C, hE, hC, hphase⟩ :=
+    exists_constant_phase_vertexChain_matches
+      hδ hδ0 hgeo hiso hB hlam hc hf hq hstep
+  obtain ⟨M₀, hM₀⟩ := dgoLemma67_of_monotone_vertex_samples
+    hδ hδ0 hgeo hiso hlox hwpd hC hC
+  obtain ⟨N, hN⟩ := hM₀ M₀ le_rfl
+  obtain ⟨S, hS⟩ := hphase M₀ N
+  let L : ℝ := ((S + 1 : ℕ) : ℝ) * dist x (h • x)
+  have hL : 0 < L := by
+    dsimp [L]
+    positivity
+  refine ⟨L, hL, ?_⟩
+  intro p q hpLength _hqLength hclose
+  have hpCast : ((S + 1 : ℕ) : ℝ) ≤ (p.steps : ℝ) := by
+    rw [p.length_eq_steps_mul] at hpLength
+    dsimp [L] at hpLength
+    nlinarith
+  have hpSucc : S + 1 ≤ p.steps := by exact_mod_cast hpCast
+  have hpSteps : S ≤ p.steps := by omega
+  obtain ⟨K, A, I, J, hA, hI, hJ, hinside, hmatch0, hmatchM, hphaseEq⟩ :=
+    hS p q hpSteps hclose.1 hclose.2
+  let r₀ : Fin (N + 1) := ⟨0, Nat.succ_pos N⟩
+  have hA₀Steps : A r₀ ≤ p.steps :=
+    le_trans (Nat.le_add_right (A r₀) M₀) (hinside r₀)
+  have hI₀Steps : I r₀ ≤ q.steps := (hmatch0 r₀).1
+  let p' : PowerAxisSegment h x :=
+    { translate := p.translate
+      start := p.start + (A r₀ : ℤ)
+      stop := p.stop
+      start_le_stop := by
+        have hcast : (A r₀ : ℤ) ≤ (p.steps : ℤ) := by
+          exact_mod_cast hA₀Steps
+        rw [p.steps_cast] at hcast
+        omega }
+  let q' : PowerAxisSegment h x :=
+    { translate := q.translate
+      start := q.start + (I r₀ : ℤ)
+      stop := q.stop
+      start_le_stop := by
+        have hcast : (I r₀ : ℤ) ≤ (q.steps : ℤ) := by
+          exact_mod_cast hI₀Steps
+        rw [q.steps_cast] at hcast
+        omega }
+  let A' : Fin (N + 1) → ℤ := fun r => (A r : ℤ) - (A r₀ : ℤ)
+  let I' : Fin (N + 1) → ℤ := fun r => (I r : ℤ) - (I r₀ : ℤ)
+  have hA' : StrictMono A' := by
+    intro r s hrs
+    dsimp [A']
+    exact sub_lt_sub_right (by exact_mod_cast hA hrs) (A r₀ : ℤ)
+  have hI' : StrictMono I' := by
+    intro r s hrs
+    dsimp [I']
+    exact sub_lt_sub_right (by exact_mod_cast hI hrs) (I r₀ : ℤ)
+  have hbase0 : dist p'.initial q'.initial ≤ C := by
+    simpa only [p', q', vertexChain, initial, vertex] using (hmatch0 r₀).2
+  have hbaseM :
+      dist (p'.vertex (p'.start + (M₀ : ℤ)))
+        (q'.vertex (q'.start + K)) ≤ C := by
+    have hphase0 := hphaseEq r₀
+    have hpIndex : p'.start + (M₀ : ℤ) =
+        p.start + ((A r₀ + M₀ : ℕ) : ℤ) := by
+      dsimp [p']
+      omega
+    have hqIndex : q'.start + K = q.start + (J r₀ : ℤ) := by
+      dsimp [q']
+      omega
+    rw [hpIndex, hqIndex]
+    exact (hmatchM r₀).2
+  have hsamples0 : ∀ r,
+      dist (p'.vertex (p'.start + A' r))
+        (q'.vertex (q'.start + I' r)) ≤ C := by
+    intro r
+    have hpIndex : p'.start + A' r = p.start + (A r : ℤ) := by
+      dsimp [p', A']
+      omega
+    have hqIndex : q'.start + I' r = q.start + (I r : ℤ) := by
+      dsimp [q', I']
+      omega
+    rw [hpIndex, hqIndex]
+    exact (hmatch0 r).2
+  have hsamplesM : ∀ r,
+      dist (p'.vertex (p'.start + (M₀ : ℤ) + A' r))
+        (q'.vertex (q'.start + K + I' r)) ≤ C := by
+    intro r
+    have hphaseR := hphaseEq r
+    have hpIndex : p'.start + (M₀ : ℤ) + A' r =
+        p.start + ((A r + M₀ : ℕ) : ℤ) := by
+      dsimp [p', A']
+      omega
+    have hqIndex : q'.start + K + I' r = q.start + (J r : ℤ) := by
+      dsimp [q', I']
+      omega
+    rw [hpIndex, hqIndex]
+    exact (hmatchM r).2
+  obtain ⟨r, s, hr, hs, hrs⟩ :=
+    hN p' q' hbase0 K hbaseM A' I' hA' hI' hsamples0 hsamplesM
+  refine ⟨r, s, hr, hs, ?_⟩
+  simpa only [p', q', conjugate] using hrs
+
+/-! ## From oriented power cores to WPD fellow travel -/
 
 /-- Two oriented-close power-axis segments determine forward geodesic chords
 from the first initial endpoint whose terminal points are `2B`-close.  The WPD
@@ -1124,6 +1980,38 @@ theorem exists_equal_positive_powers_of_long_axisSegments
   obtain ⟨M, hM, hpower⟩ :=
     exists_equal_positive_powers_of_long_powerSegments
       hδ hδ0 hgeo hiso hlox hwpd hsampling
+  let L : ℝ := M + 2 * dist x (h • x)
+  have hL : 0 < L := by
+    dsimp [L]
+    linarith [dist_nonneg (x := x) (y := h • x)]
+  refine ⟨L, hL, ?_⟩
+  intro p q hpLen hqLen hclose
+  obtain ⟨p', q', hpTranslate, hqTranslate, hpLen', hqLen', hpqClose⟩ :=
+    exists_orientedClose_powerCores hiso hf hstep hM.le p q hpLen hqLen hclose
+  obtain ⟨r, s, hr, hs, hrs⟩ := hpower p' q' hpLen' hqLen' hpqClose
+  refine ⟨r, s, hr, hs, ?_⟩
+  dsimp [AxisSegment.conjugate, PowerAxisSegment.conjugate] at hrs ⊢
+  rwa [hpTranslate, hqTranslate] at hrs
+
+/-- **DGO Lemma 6.7 for arbitrary segments of a periodic quasi-axis.**
+Trimming costs one connector at each end; the resulting power-vertex cores
+are handled by the unconditional quasi-axis theorem above. -/
+theorem exists_equal_positive_powers_of_long_axisSegments_of_quasiAxis
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x))
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) :
+    ∃ L : ℝ, 0 < L ∧ ∀ (p q : AxisSegment h x f),
+      L ≤ p.length → L ≤ q.length → AxisSegment.OrientedClose B p q →
+      ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+        p.conjugate ^ r = q.conjugate ^ s := by
+  have hB' : 0 ≤ B + 2 * dist x (h • x) := by positivity
+  obtain ⟨M, hM, hpower⟩ :=
+    exists_equal_positive_powers_of_long_powerSegments_of_quasiAxis
+      hδ hδ0 hgeo hiso hB' hlam hc hf hq hstep hlox hwpd
   let L : ℝ := M + 2 * dist x (h • x)
   have hL : 0 < L := by
     dsimp [L]
