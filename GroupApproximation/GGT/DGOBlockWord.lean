@@ -129,7 +129,7 @@ theorem getElem?_blockWord_pre (lam : Λ) (pre : List (RelLetter G Λ)) (h : G)
   have hle : (blockWord lam pre h t).length ≤ t * (pre.length + 1) + j := by
     rw [length_blockWord]
     exact Nat.le_add_right _ _
-  rw [blockWord_split lam pre h (q := n - t - 1) (by omega), List.getElem?_append_right hle,
+  rw [blockWord_split lam pre h (n := n) (t := t) (q := n - t - 1) (by omega), List.getElem?_append_right hle,
     length_blockWord, Nat.add_sub_cancel_left, List.getElem?_append_left hjr]
 
 theorem getElem?_blockWord_comp (lam : Λ) (pre : List (RelLetter G Λ)) (h : G)
@@ -140,7 +140,7 @@ theorem getElem?_blockWord_comp (lam : Λ) (pre : List (RelLetter G Λ)) (h : G)
       ≤ t * (pre.length + 1) + pre.length := by
     rw [length_blockWord]
     exact Nat.le_add_right _ _
-  rw [blockWord_split lam pre h (q := n - t - 1) (by omega), List.getElem?_append_right hle,
+  rw [blockWord_split lam pre h (n := n) (t := t) (q := n - t - 1) (by omega), List.getElem?_append_right hle,
     length_blockWord, Nat.add_sub_cancel_left,
     List.getElem?_append_right (le_refl pre.length), Nat.sub_self,
     List.getElem?_cons_zero]
@@ -315,7 +315,7 @@ theorem take_blockWordAppend_comp (lam : Λ) (pre : List (RelLetter G Λ))
     le_of_lt (lt_length_blockWord lam pre h htn)
   have hlen : (blockWord lam pre h t).length = t * (pre.length + 1) :=
     length_blockWord lam pre h t
-  rw [List.take_append_of_le_length hle, blockWord_split lam pre h (q := n - t - 1) (by omega),
+  rw [List.take_append_of_le_length hle, blockWord_split lam pre h (n := n) (t := t) (q := n - t - 1) (by omega),
     List.take_append, hlen, Nat.add_sub_cancel_left,
     List.take_of_length_le (by rw [hlen]; exact Nat.le_add_right _ _),
     List.take_append_of_le_length (le_refl _), List.take_of_length_le (le_refl _)]
