@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw84-commensurable-stabilizer-wreath-2026-08-30.md
   - research/artifacts/stw84-finite-stabilizer-menu-wreath-2026-08-30.md
   - research/artifacts/stw84-abelian-by-local-virnil-audit-2026-08-30.md
+  - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
 ---
 
 **Problem LXXXIV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Determine for which countable discrete amenable
@@ -26,6 +27,19 @@ decomposition rank (it is not strongly quasidiagonal).  Eckhardt--Wu
 conjecture: finite nuclear dimension iff finite Hirsch length.
 
 ## New reductions and exact classes
+
+The exact finitely generated virtually abelian computation now has a twisted
+counterpart.  Glebe--Karmakar--Moutzouris, arXiv:2605.27936v1, Theorem 4.12,
+prove that for every rational cocycle class `[sigma]` on such a group `G`,
+
+```text
+dim_nuc C*(G,sigma)=h(G).
+```
+
+The imported claim `gkm-rational-twists-have-hirsch-nuclear-dimension`
+retains finite generation, virtual abelianness, and rationality exactly.  It
+does not classify irrational twists or enlarge the class of underlying
+amenable groups in the untwisted STW problem.
 
 The lower-bound theorem `stw84-abelianization-rank-lower-bound` shows that
 finite nuclear dimension forces the abelianization to have finite rational

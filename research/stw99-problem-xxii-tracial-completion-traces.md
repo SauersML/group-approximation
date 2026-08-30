@@ -16,6 +16,7 @@ artifacts:
   - research/artifacts/stw22-variable-factor-selection-audit-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
+  - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -37,6 +38,21 @@ The problem remains open in general, including for nuclear `A`.  The source
 records positive answers for finite-dimensional trace simplices, for
 completions with complemented partitions of unity, and in further Bauer
 cases.
+
+Fu, arXiv:2605.21655v1, Theorem 10.12, supplies a dimension-free positive
+class on the dense-algebra side.  If `A` is algebraically simple, separable,
+non-elementary, has stable rank one and locally finite nuclear dimension,
+and `T(A)` is nonempty compact, then
+
+```text
+T(completion_(2,T(A))(A))=T(A).
+```
+
+The same theorem identifies the completion with the hyperfinite tracially
+complete model and proves real rank zero, stable rank one, and pureness.  The
+exact imported statement is
+`fu-locally-finite-nucdim-completions-have-only-uniform-traces`; it does not
+remove the displayed regularity assumptions.
 
 For trivial UHF fields the new spectral-band theorem crosses every finite
 selection threshold.  `stw22-finite-dimensional-trivial-field-traces`

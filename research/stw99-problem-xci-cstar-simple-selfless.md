@@ -15,6 +15,7 @@ artifacts:
   - research/artifacts/stw91-php-crossed-product-selflessness-audit-2026-08-30.md
   - research/artifacts/fkop-graph-product-selflessness-v3-audit-2026-08-30.md
   - research/artifacts/stw91-locally-finite-permutation-wreath-audit-2026-08-30.md
+  - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
@@ -36,6 +37,15 @@ the free product to the ultrapower**, not conversely.  Selfless tracial
 algebras are simple, have stable rank one and strict comparison, and their
 trace is the unique trace and unique normalized 2-quasitrace (Robert,
 Theorem 3.1).
+
+Gould, arXiv:2606.09654v2, Theorem 2 and Corollary 3, completes the structural
+dichotomy beyond the tracial setting: every selfless C-star algebra is pure;
+a selfless probability space is simple, with the stable-rank-one package in
+the tracial case and pure infiniteness in the nontracial case.  Theorem 2.5
+settles the formerly missing nonfaithful-state case by proving pure
+infiniteness and simplicity.  This is recorded as
+`gould-selfless-dichotomy-and-purity`; it gives consequences of selflessness
+and does not prove the universal group assertion in XCI.
 
 The first part is solved: `C*_r(F_n)` is selfless for `n ≥ 2`
 (Amrutam--Gao--Kunnawalkam Elayavalli--Patchell, arXiv:2412.06031, published

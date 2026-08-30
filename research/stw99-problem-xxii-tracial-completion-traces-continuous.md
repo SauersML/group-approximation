@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw99-xxii-trace-problem-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
+  - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -25,6 +26,15 @@ finite direct sum of factors and traces are normal); yes for uniform tracial
 ultrapowers and reduced products of tracially complete C\*-algebras with
 property Γ (their Theorem 7.5, where CPoU supplies the projections that the
 non-von-Neumann fibres lack).
+
+Fu, arXiv:2605.21655v1, Theorem 10.12, also gives the full trace equality for
+the completion of an algebraically simple separable non-elementary
+stable-rank-one algebra with nonempty compact trace space and locally finite
+nuclear dimension.  This is the exact positive class
+`fu-locally-finite-nucdim-completions-have-only-uniform-traces`.  It imposes
+regularity on a dense C-star algebra rather than a covering-dimension
+condition on the bundle base, and it leaves the arbitrary factorial trace
+problem open.
 
 New here: yes, with no property Γ hypothesis, for W\*-bundles whose base is
 a countable compact space with finitely many limit points
