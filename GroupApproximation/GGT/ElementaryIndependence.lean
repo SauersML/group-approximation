@@ -195,16 +195,88 @@ theorem dist_le_of_parameters {C Ka Kb T La Lb : ℝ} {x u v : X} {f q : ℝ →
 /-! ## The core: a common power from forward fellow travel -/
 
 /-- **Forward fellow travel of the two axes for a long enough time forces a
-common nonzero power.**  The length `T` depends on `a`, `b`, `x` and the
-acylindricity constants only. -/
-theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+common nonzero power**, with the threshold hoisted above the elements.
+
+`T` is no longer produced existentially after `a`, `b`, `x` are fixed: it is a
+parameter, constrained only by two explicit inequalities in numeric data.  A
+caller therefore chooses `T` from `δ`, `C`, the two loxodromy constant pairs
+`(la, Ba)`, `(lb, Bb)`, the two displacements `dist x (a • x)`, `dist x (b • x)`
+and the acylindricity pair `(K, N)`, before knowing anything else about the
+elements.  That is what
+`HullSCConeOffHeavyLemma67.MatchedPowersForceCommonPower` consumes.
+
+## Why the hoist is safe
+
+**The conclusion is monotone increasing in `T`.**  All three `T`-dependent
+hypotheses --- `T ≤ dist x (aⁿ • x)`, `T ≤ dist x (bᵐ • x)`, and fellow travel
+on `[0, T]` --- get *stronger* as `T` grows, so the statement at `T'` follows
+from the statement at `T` whenever `T ≤ T'`.  Nothing here ever needs the
+threshold to *equal* the quantity the old proof constructed; it only needs to
+dominate it, which is exactly what `hTa` and `hTb` say.  Dominate, do not
+recompute --- that is the whole content of the surgery, and it is why no
+geometry changes.
+
+## What became a parameter, and why each is legitimate
+
+* `Ka, Kb, Ga, Gb` --- the chord and Gromov-product constants.  Passed rather
+  than chosen, because `exists_bound_chain_near_chord` and
+  `gromovProduct_ends_le_of_chain` already quantify their constant *before* the
+  chain and take only `(δ, D, l, B)`, so a caller can produce them from numeric
+  data alone.  They are passed rather than `Classical.choose`n because a chosen
+  constant inside a threshold is unusable downstream.
+* `K, N` --- the pair-stabiliser exponent *and* bound.  Both are needed: the
+  threshold depends on `E = S * N + K`, so leaving `K` existential would defeat
+  the hoist exactly as much as leaving `N` existential would.
+* `S` --- the exponent spacing, constrained by `4 * ε₁ < la * S`.  The original
+  proof constrained it by `2 * ε₁ < stableTranslation a x * S`, which is not
+  hoistable: stable translation length is a limit invariant of `a` at `x`, not
+  numeric data.  `half_le_stableTranslation_of_loxodromic_data` bridges the two,
+  since `la / 2 ≤ stableTranslation a x`. -/
+theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab_threshold
     (hiso : IsIsometricAction G X) {C : ℝ} (hC : 0 ≤ C)
-    {a b : G} {x : X} (ha : IsLoxodromic a x) (hb : IsLoxodromic b x)
-    (hpair : ∀ ε : ℝ, 0 < ε → ∃ (K N : ℕ),
-      (pairStab G ε x ((a ^ K) • x)).Finite ∧
-        (pairStab G ε x ((a ^ K) • x)).ncard ≤ N) :
-    ∃ T : ℝ, 0 < T ∧ ∀ (n m : ℕ) (f q : ℝ → X),
+    {a b : G} {x : X} {la Ba lb Bb : ℝ} (hla : 0 < la) (hlb : 0 < lb)
+    (hlox_a : ∀ n : ℕ, la * n - Ba ≤ dist x ((a ^ n) • x))
+    (hlox_b : ∀ n : ℕ, lb * n - Bb ≤ dist x ((b ^ n) • x))
+    {Ka Kb Ga Gb : ℝ} (hKa0 : 0 ≤ Ka) (hKb0 : 0 ≤ Kb)
+    (hGa0 : 0 ≤ Ga) (hGb0 : 0 ≤ Gb)
+    (hKa : ∀ (y : ℕ → X) (N' : ℕ),
+      (∀ i, i < N' → dist (y i) (y (i + 1)) ≤ dist x (a • x)) →
+      (∀ i j, i ≤ j → j ≤ N' → la * ((j - i : ℕ) : ℝ) - Ba ≤ dist (y i) (y j)) →
+      ∀ (L : ℝ), 0 ≤ L → ∀ (f : ℝ → X), IsGeodesicSegment f 0 L →
+        f 0 = y 0 → f L = y N' →
+        ∀ j, j ≤ N' → ∃ t ∈ Set.Icc (0 : ℝ) L, dist (y j) (f t) ≤ Ka)
+    (hKb : ∀ (y : ℕ → X) (N' : ℕ),
+      (∀ i, i < N' → dist (y i) (y (i + 1)) ≤ dist x (b • x)) →
+      (∀ i j, i ≤ j → j ≤ N' → lb * ((j - i : ℕ) : ℝ) - Bb ≤ dist (y i) (y j)) →
+      ∀ (L : ℝ), 0 ≤ L → ∀ (f : ℝ → X), IsGeodesicSegment f 0 L →
+        f 0 = y 0 → f L = y N' →
+        ∀ j, j ≤ N' → ∃ t ∈ Set.Icc (0 : ℝ) L, dist (y j) (f t) ≤ Kb)
+    (hGa : ∀ (y : ℕ → X) (N' : ℕ),
+      (∀ i, i < N' → dist (y i) (y (i + 1)) ≤ dist x (a • x)) →
+      (∀ i j, i ≤ j → j ≤ N' → la * ((j - i : ℕ) : ℝ) - Ba ≤ dist (y i) (y j)) →
+      ∀ j, j ≤ N' → gromovProduct (y 0) (y N') (y j) ≤ Ga)
+    (hGb : ∀ (y : ℕ → X) (N' : ℕ),
+      (∀ i, i < N' → dist (y i) (y (i + 1)) ≤ dist x (b • x)) →
+      (∀ i j, i ≤ j → j ≤ N' → lb * ((j - i : ℕ) : ℝ) - Bb ≤ dist (y i) (y j)) →
+      ∀ j, j ≤ N' → gromovProduct (y 0) (y N') (y j) ≤ Gb)
+    (K N S : ℕ)
+    (hSpos : 0 < S)
+    (hSla : 4 * (2 * Ka + 2 * Kb + C + dist x (b • x)) < la * S)
+    (hKfin : (pairStab G
+        ((2 * Ka + 2 * Kb + C + dist x (b • x)) +
+          (2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x)) + 1)
+        x ((a ^ K) • x)).Finite)
+    (hKcard : (pairStab G
+        ((2 * Ka + 2 * Kb + C + dist x (b • x)) +
+          (2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x)) + 1)
+        x ((a ^ K) • x)).ncard ≤ N)
+    (T : ℝ) (hT0 : 0 < T)
+    (hTa : (((S * N + K : ℕ) : ℝ) + 1) * dist x (a • x) + Ka +
+      2 * dist x (b • x) + Kb + 1 ≤ T)
+    (hTb : dist x (b • x) *
+      (((((S * N + K : ℕ) : ℝ)) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb)
+        / lb + 1) ≤ T) :
+    ∀ (n m : ℕ) (f q : ℝ → X),
       IsGeodesicSegment f 0 (dist x ((a ^ n) • x)) → f 0 = x →
       f (dist x ((a ^ n) • x)) = (a ^ n) • x →
       IsGeodesicSegment q 0 (dist x ((b ^ m) • x)) → q 0 = x →
@@ -212,19 +284,8 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
       T ≤ dist x ((a ^ n) • x) → T ≤ dist x ((b ^ m) • x) →
       (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ C) →
       ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
-  obtain ⟨la, hla, Ba, hBa, hlox_a⟩ := id ha
-  obtain ⟨lb, hlb, Bb, hBb, hlox_b⟩ := id hb
   have hDa0 : 0 ≤ dist x (a • x) := dist_nonneg
   have hDb0 : 0 ≤ dist x (b • x) := dist_nonneg
-  obtain ⟨Ka, hKa0, hKa⟩ :=
-    exists_bound_chain_near_chord (D := dist x (a • x)) hδ hδ0 hDa0 hla hBa
-  obtain ⟨Kb, hKb0, hKb⟩ :=
-    exists_bound_chain_near_chord (D := dist x (b • x)) hδ hδ0 hDb0 hlb hBb
-  obtain ⟨Ga, hGa0, hGa⟩ :=
-    gromovProduct_ends_le_of_chain (D := dist x (a • x)) hδ hδ0 hDa0 hla hBa hgeo
-  obtain ⟨Gb, hGb0, hGb⟩ :=
-    gromovProduct_ends_le_of_chain (D := dist x (b • x)) hδ hδ0 hDb0 hlb hBb hgeo
-  -- the closeness constants
   obtain ⟨ε₁, hε₁⟩ : ∃ e : ℝ, e = 2 * Ka + 2 * Kb + C + dist x (b • x) :=
     ⟨_, rfl⟩
   obtain ⟨ε₂, hε₂⟩ : ∃ e : ℝ,
@@ -240,52 +301,17 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
   have hεpos : 0 < ε := by
     rw [hε]
     linarith
-  obtain ⟨K, N, hKfin, hKcard⟩ := hpair ε hεpos
-  -- spacing of the `a`-exponents
-  have hτ : 0 < stableTranslation a x := stableTranslation_pos_of_isLoxodromic hiso ha
-  obtain ⟨S, hS⟩ := exists_nat_gt (2 * ε₁ / stableTranslation a x)
+  rw [← hε₁, ← hε₂, ← hε] at hKfin hKcard
+  -- the spacing hypothesis, transported off the stable translation length
+  have hτhalf : la / 2 ≤ stableTranslation a x :=
+    half_le_stableTranslation_of_loxodromic_data (B := Ba) hiso hla hlox_a
+  have hSR : (0 : ℝ) < S := by exact_mod_cast hSpos
   have hSτ : 2 * ε₁ < stableTranslation a x * S := by
-    rw [div_lt_iff₀ hτ] at hS
-    linarith
-  have hSpos : 0 < S := by
-    rcases Nat.eq_zero_or_pos S with h0 | h0
-    · exfalso
-      rw [h0, Nat.cast_zero, mul_zero] at hSτ
-      linarith
-    · exact h0
-  -- the largest `a`-exponent used, and the fellow-travel length
+    rw [hε₁]
+    nlinarith [hSla, hτhalf, hSR]
   obtain ⟨E, hE⟩ : ∃ E : ℕ, E = S * N + K := ⟨_, rfl⟩
-  have hEDa : 0 ≤ (E : ℝ) * dist x (a • x) := mul_nonneg (Nat.cast_nonneg _) hDa0
-  have hJ0 : 0 ≤ ((E : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb :=
-    div_nonneg (by linarith) hlb.le
-  obtain ⟨T, hT⟩ : ∃ T : ℝ,
-      T = ((E : ℝ) + 1) * dist x (a • x) + Ka + 2 * dist x (b • x) + Kb + 1 +
-        dist x (b • x) *
-          (((E : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb + 1) :=
-    ⟨_, rfl⟩
-  have hE1Da : 0 ≤ ((E : ℝ) + 1) * dist x (a • x) :=
-    mul_nonneg (by positivity) hDa0
-  have hE1 : ((E : ℝ) + 1) * dist x (a • x) =
-      (E : ℝ) * dist x (a • x) + dist x (a • x) := by ring
-  have hDbJ' : dist x (b • x) *
-      (((E : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb + 1) =
-        dist x (b • x) *
-          (((E : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb) +
-          dist x (b • x) := by ring
-  have hDbJ : 0 ≤ dist x (b • x) *
-      (((E : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb + 1) :=
-    mul_nonneg hDb0 (by linarith)
-  have hT0 : 0 < T := by
-    rw [hT]
-    linarith
-  have hTa : ((E : ℝ) + 1) * dist x (a • x) + Ka + 2 * dist x (b • x) + Kb + 1 ≤ T := by
-    rw [hT]
-    linarith
-  have hTb : dist x (b • x) *
-      (((E : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb + 1) ≤ T := by
-    rw [hT]
-    linarith
-  refine ⟨T, hT0, ?_⟩
+  rw [← hE] at hTa hTb
+
   intro n m f q hf hf0 hfL hq hq0 hqL hTn hTm hft
   -- `n` and `m` are long
   have hDa_pos : 0 < dist x (a • x) := by
@@ -498,7 +524,7 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
     have h3 := mul_le_dist_zpow hiso a x (((ef j : ℕ) : ℤ) - ((ef i : ℕ) : ℤ))
     have h4 := dist_zpow_orbit hiso a x ((ef i : ℕ) : ℤ) ((ef j : ℕ) : ℤ)
     rw [zpow_natCast, zpow_natCast] at h4
-    have h5 := mul_le_mul_of_nonneg_left h2 hτ.le
+    have h5 := mul_le_mul_of_nonneg_left h2 (stableTranslation_nonneg a x)
     linarith
   have hpairs : ∀ i : Fin (N + 1),
       dist ((a ^ ((ef i : ℕ) : ℤ)) • x) ((b ^ ((J (ef i) : ℕ) : ℤ)) • x) ≤ ε ∧
@@ -521,6 +547,80 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
       (fun i => ((ef i : ℕ) : ℤ)) (fun i => ((J (ef i) : ℕ) : ℤ))
       hinj₁ hinj₂ hpairs
   exact ⟨_, _, hp, hr, hpow⟩
+
+/-- **The existential form, recovered from the threshold form.**  This is the
+statement every existing consumer uses; it is now a corollary, obtained by
+performing inside the proof the construction the threshold form hoisted out.
+Downstream callers are unchanged. -/
+theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+    (hiso : IsIsometricAction G X) {C : ℝ} (hC : 0 ≤ C)
+    {a b : G} {x : X} (ha : IsLoxodromic a x) (hb : IsLoxodromic b x)
+    (hpair : ∀ ε : ℝ, 0 < ε → ∃ (K N : ℕ),
+      (pairStab G ε x ((a ^ K) • x)).Finite ∧
+        (pairStab G ε x ((a ^ K) • x)).ncard ≤ N) :
+    ∃ T : ℝ, 0 < T ∧ ∀ (n m : ℕ) (f q : ℝ → X),
+      IsGeodesicSegment f 0 (dist x ((a ^ n) • x)) → f 0 = x →
+      f (dist x ((a ^ n) • x)) = (a ^ n) • x →
+      IsGeodesicSegment q 0 (dist x ((b ^ m) • x)) → q 0 = x →
+      q (dist x ((b ^ m) • x)) = (b ^ m) • x →
+      T ≤ dist x ((a ^ n) • x) → T ≤ dist x ((b ^ m) • x) →
+      (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ C) →
+      ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
+  obtain ⟨la, hla, Ba, hBa, hlox_a⟩ := id ha
+  obtain ⟨lb, hlb, Bb, hBb, hlox_b⟩ := id hb
+  have hDa0 : 0 ≤ dist x (a • x) := dist_nonneg
+  have hDb0 : 0 ≤ dist x (b • x) := dist_nonneg
+  obtain ⟨Ka, hKa0, hKa⟩ :=
+    exists_bound_chain_near_chord (D := dist x (a • x)) hδ hδ0 hDa0 hla hBa
+  obtain ⟨Kb, hKb0, hKb⟩ :=
+    exists_bound_chain_near_chord (D := dist x (b • x)) hδ hδ0 hDb0 hlb hBb
+  obtain ⟨Ga, hGa0, hGa⟩ :=
+    gromovProduct_ends_le_of_chain (D := dist x (a • x)) hδ hδ0 hDa0 hla hBa hgeo
+  obtain ⟨Gb, hGb0, hGb⟩ :=
+    gromovProduct_ends_le_of_chain (D := dist x (b • x)) hδ hδ0 hDb0 hlb hBb hgeo
+  have hε₁0 : (0 : ℝ) ≤ 2 * Ka + 2 * Kb + C + dist x (b • x) := by linarith
+  have hεpos : (0 : ℝ) <
+      (2 * Ka + 2 * Kb + C + dist x (b • x)) +
+        (2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x)) + 1 := by
+    linarith
+  obtain ⟨K, N, hKfin, hKcard⟩ := hpair _ hεpos
+  obtain ⟨S₀, hS₀⟩ :=
+    exists_nat_gt (4 * (2 * Ka + 2 * Kb + C + dist x (b • x)) / la)
+  obtain ⟨S, hSE⟩ : ∃ S : ℕ, S = S₀ + 1 := ⟨_, rfl⟩
+  have hSpos : 0 < S := by omega
+  have hSla : 4 * (2 * Ka + 2 * Kb + C + dist x (b • x)) < la * S := by
+    rw [div_lt_iff₀ hla] at hS₀
+    have hmono : (S₀ : ℝ) ≤ (S : ℝ) := by
+      have : S₀ ≤ S := by omega
+      exact_mod_cast this
+    nlinarith [hS₀, hmono, hla]
+  obtain ⟨E, hE⟩ : ∃ E : ℕ, E = S * N + K := ⟨_, rfl⟩
+  obtain ⟨T, hT⟩ : ∃ T : ℝ,
+      T = (((E : ℕ) : ℝ) + 1) * dist x (a • x) + Ka + 2 * dist x (b • x) + Kb + 1 +
+        (dist x (b • x) *
+          ((((E : ℕ) : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb
+            + 1)) := ⟨_, rfl⟩
+  have hEDa : 0 ≤ ((E : ℕ) : ℝ) * dist x (a • x) :=
+    mul_nonneg (Nat.cast_nonneg _) hDa0
+  have hJ0 : 0 ≤ (((E : ℕ) : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb :=
+    div_nonneg (by linarith) hlb.le
+  have hDbJ : 0 ≤ dist x (b • x) *
+      ((((E : ℕ) : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb + 1) :=
+    mul_nonneg hDb0 (by linarith)
+  have hE1Da : 0 ≤ (((E : ℕ) : ℝ) + 1) * dist x (a • x) :=
+    mul_nonneg (by positivity) hDa0
+  have hT0 : 0 < T := by rw [hT]; linarith
+  have hTa : (((E : ℕ) : ℝ) + 1) * dist x (a • x) + Ka +
+      2 * dist x (b • x) + Kb + 1 ≤ T := by rw [hT]; linarith
+  have hTb : dist x (b • x) *
+      ((((E : ℕ) : ℝ) * dist x (a • x) + 2 * dist x (b • x) + 2 * Bb) / lb + 1)
+        ≤ T := by rw [hT]; linarith
+  rw [hE] at hTa hTb
+  refine ⟨T, hT0, ?_⟩
+  exact exists_common_zpow_of_forward_fellow_travel_of_pairStab_threshold
+    hiso hC hla hlb hlox_a hlox_b
+    hKa0 hKb0 hGa0 hGb0 hKa hKb hGa hGb K N S hSpos hSla hKfin hKcard T hT0 hTa hTb
 
 /-- The existing acylindrical form, recovered from the finite-pair-stabilizer
 core. -/
