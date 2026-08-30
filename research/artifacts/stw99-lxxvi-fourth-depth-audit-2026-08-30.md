@@ -96,6 +96,46 @@ Taking `D=C*_r(F_2)` gives a non-simple exact nonnuclear circle field that is
 Cu-regular but not Z-stable.  This also shows that circle monodromy itself is
 not a counterexample mechanism.
 
+## New finite-graph theorem at the exact K1-free boundary
+
+The available one-dimensional Cu formulas have different hypotheses, and
+they must not be conflated.  Antoine--Dadarlat--Perera--Santiago, Theorem 2.6,
+computes the interval for a simple separable stable-rank-one coefficient with
+no `K_1` restriction.  Their Theorem 3.7 treats the circle with arbitrary
+`K_1` by separating the projection-clutching summand.  In contrast,
+Antoine--Perera--Santiago, Theorem 3.4, gives the pointwise formula over every
+second-countable one-dimensional locally compact space under the stronger
+coefficient hypothesis
+
+```text
+stable_rank(B)=1,
+K_1(I)=0 for every closed two-sided ideal I of B.          (FG1)
+```
+
+For a simple coefficient, `(FG1)` reduces to stable rank one and `K_1(B)=0`.
+This closes a genuinely larger base-space class without a new pullback claim.
+If `X` is any finite graph and `D` is simple, separable, stably finite, pure,
+and `K_1(D)=0`, the formula applies to both `D` and `D tensor Z`: Lin gives
+stable rank one, and the KK-equivalence `D->D tensor Z` preserves the zero
+`K_1` group.  Under the two natural evaluation identifications, the
+first-factor Cu map is pointwise application of the fiber map, which is an
+isomorphism by STW Proposition 23.  Hence
+
+```text
+Cu(C(X,D)) -> Cu(C(X,D) tensor Z)
+```
+
+is an isomorphism.  Seth--Vilalta independently makes `C(X,D)` pure.  The
+class includes finite trees, bouquets of circles, theta graphs, and arbitrary
+finite combinations of branching and cycles.
+
+The `K_1` restriction is a trust boundary of this proof, not cosmetic.
+Antoine--Dadarlat--Perera--Santiago, Remark 3.9, attach an interval to a circle
+and show that pointwise comparison can miss a nontrivial clutching class when
+the simple stable-rank-one coefficient has nonzero `K_1`.  Thus neither the
+pointwise formula nor the new Cu-regularity theorem is asserted for arbitrary
+fibers over a general finite graph.
+
 ## Updated compact counterexample corridor
 
 Seth--Vilalta now supplies the formerly missing purity input in the
@@ -125,7 +165,8 @@ The unresolved universal step is still invertibility of the **external**
 product morphism from this abstract tensor product to
 `Cu(A tensor_min Z)`.  The new results narrow where it can fail: not on
 ideals, quotients of a regular ambient algebra, ideal lattices, K-theory,
-quasitraces, interval fields, or circle fields with simple stably finite pure
-fiber.  What remains is higher-dimensional compact clutching over a pure
-coefficient with no unital `Z`, or genuinely noncompact extension
-gluing/rank realization.
+quasitraces, interval fields, circle fields with simple stably finite pure
+fiber, or finite-graph fields whose such fiber has trivial `K_1`.  What
+remains is higher-dimensional compact clutching over a pure coefficient with
+no unital `Z`, supportwise one-dimensional clutching for nonzero-`K_1`
+fibers, or genuinely noncompact extension gluing/rank realization.
