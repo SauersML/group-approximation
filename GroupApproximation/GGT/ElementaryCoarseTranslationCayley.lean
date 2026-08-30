@@ -41,6 +41,22 @@ theorem exists_wordDist_zpowers_le_of_coarseTranslation (A : Alphabet G)
   refine ⟨h ^ c, Subgroup.mem_zpowers_iff.mpr ⟨c, rfl⟩, ?_⟩
   exact_mod_cast hd'.trans (Nat.le_ceil K)
 
+/-- Uniform coarse translation discharges the hyperbolicity clause of the
+cone-off along `E(h)`.  Local finiteness of the relative metric is the other
+clause of hyperbolic embeddedness and is deliberately not asserted here. -/
+theorem exists_hyperbolic_coneOffFamily_elementaryClosure
+    (A : HullGeneratingSet G) {h : G}
+    (hlox : IsLoxodromic h (Cayley.base A.alphabet))
+    (hct : ElementaryClosureCoarseTranslation G (Cayley.base A.alphabet)) :
+    ∃ delta' : ℝ, IsHyperbolicSpace delta'
+      (Cayley (HullSC.coneOffFamily A.alphabet
+        (fun _ : Unit => elementaryClosure h)).alphabet) := by
+  obtain ⟨D, hclose⟩ :=
+    exists_wordDist_zpowers_le_of_coarseTranslation A.alphabet hlox hct
+  exact HullSC.exists_hyperbolic_coneOffFamily_of_close A (fun _ : Unit => h)
+    (fun _ => hlox) (fun _ : Unit => elementaryClosure h)
+    (fun _ => zpowers_le_elementaryClosure h) D (fun _ => hclose)
+
 end Elementary
 end GGT
 end GroupApproximation
