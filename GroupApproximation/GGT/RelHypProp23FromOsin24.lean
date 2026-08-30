@@ -2,6 +2,7 @@ import GroupApproximation.GGT.RelHypFournierFacioProp23
 import GroupApproximation.GGT.RelHypOsinTheorem24Verbatim
 import GroupApproximation.GGT.RelHypFreeProductConedFourPoint
 import GroupApproximation.GGT.RelHypSuitabilityResidue
+import GroupApproximation.Algebra.HyperbolicFinitePresentation
 
 /-!
 # Fournier-Facio's Proposition 2.3 from Osin's Theorem 2.4
@@ -115,15 +116,14 @@ theorem fournierFacioProposition23_of_osin24
   intro K Lam instK instLam hne htfLam hfpK htfK g hgfin
   haveI := hfpK
   haveI : Group.IsFinitelyPresented Lam :=
-    Hyperbolic.isFinitelyPresented_of_isHyperbolicGroup hne.1
+    @Hyperbolic.isFinitelyPresented_of_isHyperbolicGroup Lam instLam hne.1
   have hrh : IsRelativelyHyperbolic (CoprodI (pairFamily K Lam))
       (fun _ : Unit => freeProductPeripheral K Lam) :=
-    freeProductRelativelyHyperbolicStatement_proved K Lam inferInstance
-      inferInstance hne.1
+    freeProductRelativelyHyperbolicStatement_proved K Lam instK instLam hne.1
   have hsuit : IsSuitableSubgroup (fun _ : Unit => freeProductPeripheral K Lam)
       (MonoidHom.range (freeProductPartnerHom K Lam)) :=
-    isSuitableSubgroup_freeProduct_of_hyperbolicSuitability hSuit K Lam hne
-      htfLam
+    @isSuitableSubgroup_freeProduct_of_hyperbolicSuitability hSuit K Lam instK
+      instLam hne htfLam
   obtain ⟨Q, instQ, eta, ⟨hsurj, -, hmem, hinjOn, -, hlift⟩, hker⟩ :=
     hOsin (CoprodI (pairFamily K Lam)) inferInstance Unit
       (fun _ : Unit => freeProductPeripheral K Lam) hrh
