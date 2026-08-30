@@ -2817,6 +2817,11 @@ import GroupApproximation.GGT.OsinTheorem54SepNontrivialWord
 import GroupApproximation.GGT.OsinLemma56Inheritance
 import GroupApproximation.GGT.OsinTheorem54SepYLetterTranslate
 import GroupApproximation.GGT.RelHypFournierFacioProp23
+import GroupApproximation.GGT.OsinTheorem54SepNewLetter
+import GroupApproximation.GGT.DGOAlternatingWord
+import GroupApproximation.GGT.DGOAlternatingCycle
+import GroupApproximation.GGT.DGOCorollary612Unconditional
+import GroupApproximation.GGT.DGOTheorem611Refutation
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

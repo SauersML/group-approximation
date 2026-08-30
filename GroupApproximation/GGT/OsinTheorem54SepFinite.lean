@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.OsinTheorem54SepSplit
+import GroupApproximation.GGT.OsinTheorem54SepNewLetter
 
 /-!
 # Local finiteness survives a finite enlargement of the base inside the family
