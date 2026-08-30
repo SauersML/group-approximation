@@ -5,13 +5,15 @@ kind: route
 title: Read the two endpoint projections of the compressed bilateral shift
 target: literal-folner-ucp-models-have-sharp-norm-hs-separation
 requires:
-  - literal-fp-via-folner-rf-core
+  - literal-group-factorization-property
 artifacts:
+  - research/artifacts/literal-factorization-folner-ucp-2026-08-30.md
   - research/artifacts/literal-folner-sharp-boundary-2026-08-30.md
 ---
 
-In the regular Hilbert-`C*_(max)(K)`-module representation used by the
-factorization route,
+Use the concrete u.c.p. maps in the established proof
+`literal-fp-via-folner-rf-core`.  In its regular
+Hilbert-`C*_(max)(K)`-module representation,
 
 ```text
 Lambda(u)e_j=e_(j+1).
