@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw93-xciii-free-group-jiang-su-si-audit-2026-08-30.md
   - research/artifacts/stw93-hereditary-exhaustion-audit-2026-08-30.md
+  - research/artifacts/stw93-residual-bounded-trace-audit-2026-08-30.md
 ---
 
 **Problem XCIII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Does `C*_r(F₂) ⊗ 𝒵` have property (SI)?
@@ -70,3 +71,15 @@ ambient quotient an actual trace.  The XCIII leaf then holds exactly when
 does not give annihilation: a bounded trace on the residual ideal extends
 through its multiplier algebra to an ambient trace and is already a
 negative witness.
+
+The residual bounded-trace question itself is exactly ordinary trace
+uniqueness: `stw93-residual-tracefree-iff-unique-trace` proves that
+`I/K_Z^sat` has no nonzero bounded trace if and only if `D` has its unique
+limit trace among normalized traces.  This is not forced by the saturated
+slice data alone.  The doubled-`F(Z)` countermodel in
+`stw93-saturated-slice-data-allow-residual-trace` retains the analogous
+factor quotient, slice surjectivity, automatic trace preservation for all
+copies, saturated null ideal, and pureness, but its residual ideal is a
+II_1 factor.
+Hence the next actual hinge is an XCIII-specific argument excluding an
+extra ordinary tracial direction wholly inside the norm trace kernel.

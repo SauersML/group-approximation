@@ -4,6 +4,7 @@ id: stw93-hereditary-exhaustion-reduces-to-traces
 kind: claim
 title: A trace-rigid hereditary exhaustion reduces the residual XCIII leaf exactly to bounded traces
 distinct_from:
+  stw93-residual-tracefree-iff-unique-trace: that unconditional theorem identifies the ordinary bounded-trace obstruction; the present theorem adds hereditary quasitrace-linearity in order to reduce every quasitrace to that ordinary obstruction.
   stw93-residual-trace-kernel-is-quasitrace-null: that is the still-open unconditional annihilation assertion; this theorem identifies exactly what remains after a specified hereditary quasitrace-linearity hypothesis is verified.
   stw93-singular-trace-kernel-witness-for-any-negative-answer: that theorem localizes an arbitrary negative quasitrace at one positive trace-kernel element; this theorem makes every such quasitrace linear under a hereditary exhaustion and identifies a bounded residual trace as the exact obstruction.
   stw93-all-z-central-slices-generate-quasitrace-null-ideal: that theorem enlarges the removable Jiang--Su-generated ideal; this theorem works after that quotient and does not assert that the slice-generated ideal exhausts the trace kernel.
