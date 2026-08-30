@@ -59,6 +59,11 @@ x'+z=y<=x+z,
 
 where the right-hand sum may overflow to `u`.  This is (O5).
 
+The strengthened form of (O5) also holds.  If additionally `x+w<=y` and
+`w'<<w`, use `z=u` when `y=u`.  When `y` is soft, the same choice
+`z=y-x'` satisfies `z>y-x>=w` if `x` is nonzero, and the zero case is
+immediate.  Thus `w'<<z` as required.
+
 For (O6), suppose `x'<<x<=y+z`.  There is nothing to prove when `x'=0`.
 If either `y` or `z` is `u`, use `x` on that side and zero on the other.  If
 `x=u`, then `y+z=u`; taking the two summands themselves works, including when
@@ -75,6 +80,33 @@ Split the real number `x'` as `y'+z'` with
 `y'=min(x',y)` and `z'=x'-y'`.  These inequalities give the required (O6)
 decomposition.  (A zero summand is the zero of `S`.)
 
+For (O7), suppose `x_i'<<x_i<=w` for `i=1,2`.  If `w` is soft, take
+`v=max(x_1,x_2)`; then `x_1',x_2'<<v<=w,x_1+x_2`.  If `w=u`, take
+`v=x_1+x_2` when both `x_i` are nonzero, take the nonzero `x_i` when only
+one is nonzero, and take zero when both vanish.  These choices again satisfy
+`x_1',x_2'<<v<=w,x_1+x_2`.
+
+Finally consider (O8).  The idempotent elements of `S` are exactly `0,u`.
+Use the formulation in which, from
+
+```text
+2w=w,  x+y << z+w,  x'<<x,  y'<<y,
+```
+
+one must find `z_1,z_2` with
+
+```text
+z_1+z_2 << z,
+x' << z_1+w,     y' << z_2+w,
+z_1 << x+w,      z_2 << y+w.
+```
+
+If `w=u`, take `z_1=z_2=0`.  If `w=0` and `z=u`, interpolate
+`x'<<z_1<<x` and `y'<<z_2<<y`; then every sum, including `u`, is way below
+`u`.  If `w=0` and `z` is soft, the relation `x+y<<z` is the strict real
+inequality `x+y<z`.  The same interpolants satisfy
+`z_1+z_2<=x+y<z`, and hence `z_1+z_2<<z`.  This proves (O8).
+
 The rational soft points together with `0,u` form a countable basis.  Every
 nonzero soft `r` has a finite multiple whose ordinary real value exceeds one,
 so that multiple is `u`; hence every nonzero element generates all of `S` as
@@ -82,3 +114,10 @@ an ideal and `S` is simple.  Also `2u=u` and `u<<u`.  No soft `r` is compact,
 because it is the supremum of a strictly increasing sequence below it.
 Therefore the only compact elements are `0,u`, and a soft `r` dominates no
 nonzero compact element.
+
+The functional cone is also degenerate.  If `lambda:S->[0,infinity]` is a
+functional, then `lambda(u)=2lambda(u)`, so `lambda(u)` is zero or infinity.
+In the first case `lambda=0`; in the second, `n r=u` forces
+`lambda(r)=infinity` for every soft `r`.  Thus the only functionals are zero
+and the functional which is infinite on every nonzero element.  Functional
+comparison cannot detect the missing compact subelements.

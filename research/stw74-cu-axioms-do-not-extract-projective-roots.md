@@ -7,7 +7,7 @@ distinct_from:
   stw74-property-sp-is-projective-root-extraction: that identifies projective-root extraction as the C*-algebraic hinge; this gives an abstract Cu-semigroup in which even compact-root extraction fails.
 ---
 
-There is a countably based simple Cu-semigroup `S`, satisfying (O5) and (O6),
+There is a countably based simple Cu-semigroup `S`, satisfying (O5)--(O8),
 with a largest element `u` such that
 
 ```text
@@ -19,7 +19,7 @@ but some nonzero `x` dominates no nonzero compact element.  In fact, `S` can
 be chosen so that its only compact elements are `0` and `u`, while every
 element strictly between them is a finite root of `u`.
 
-Consequently, simplicity, (O1)--(O6), compactness and proper infiniteness of
+Consequently, simplicity, (O1)--(O8), compactness and proper infiniteness of
 the largest element, and the finite-unit-root conclusion together do not
 formally imply the projective-root extraction needed for Problem LXXIV.
 
