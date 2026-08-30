@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: bounded-readable-factor-zirs-value-has-computable-upper-hierarchy
+id: bounded-readable-factor-zirs-computable-upper-hierarchy
 kind: claim
 title: A fixed readable-factor atom bound has a computable decreasing ZPC-IRS value hierarchy
 distinct_from:
