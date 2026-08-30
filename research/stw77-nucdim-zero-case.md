@@ -11,12 +11,18 @@ dimension zero is O-infinity-stable.
 
 ## Attempts
 
-- The live route is projection return.  Nuclear dimension zero yields local
-  finite-dimensional models on the codomain side, and projection return is
-  exactly the additional control which lets pointwise proper infiniteness
-  split their matrix blocks.
+- Nuclear dimension zero yields one-sided local finite-dimensional models on
+  the codomain side, but the proposed projection-return upgrade is false:
+  `stw77-z-o2-map-defeats-projection-return` supplies a zero-dimensional
+  `Z->O_2` instance with nontrivial projectionless range.  The route
+  `stw77-zero-case-via-projection-return` is therefore invalidated.
 - The AF-range theorem proves the case in which the local models can be
   chosen internally and coherently.
-- One-sided approximation alone is insufficient as a proof mechanism because
-  finite junk corners can be added without changing approximation of the
-  range.
+- The `B(H)`-target theorem supplies a different positive mechanism:
+  essential representation absorption merges two whole copies of the range
+  and never asks finite-dimensional support projections to return.
+- One-sided approximation alone is insufficient because generated models can
+  contain finite blocks carried by representations which become pointwise
+  indistinguishable.  A viable proof must centralize the finite tuple while
+  merging or ignoring these blocks; it cannot require their supports to
+  become properly infinite or return to a projectionless image.

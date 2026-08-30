@@ -25,8 +25,16 @@ shows that the remaining issue is not coherence of infinitely many matrix
 units by itself: it is whether a unital CAR algebra can live inside a simple
 finite algebra whose `2 x 2` amplification is infinite.
 
+The prescribed amplification index is now known to be inessential.
+`stw99-lxvi-finite-car-seed-amplification-index-is-irrelevant` proves that it
+is enough to construct a simple unital finite but non-stably-finite algebra
+containing a unital CAR algebra.  Passing to the matrix algebra immediately
+below its first infinite amplification produces the required `2 x 2` seed.
+
 ## Attempts
 
 The active attack is `stw99-lxvi-via-finite-car-corner`.  It reduces the
 problem to one construction rather than deferring it: build the CAR algebra
 inside a finite simple corner while its double is already infinite.
+The parallel route `stw99-lxvi-via-nonstable-finite-car-seed` removes the
+need to prescribe which finite amplification first becomes infinite.
