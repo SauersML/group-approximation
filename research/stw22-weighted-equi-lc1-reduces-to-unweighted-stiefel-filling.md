@@ -2,8 +2,7 @@
 rg: 2
 id: stw22-weighted-equi-lc1-reduces-to-unweighted-stiefel-filling
 kind: claim
-title: Weighted loop filling reduces to strong-Stiefel filling and a low-spectrum extension
-root: true
+title: Weighted purification fibres have a uniform loop-filling modulus
 distinct_from:
   stw22-one-dimensional-trivial-field-trace-continuity: that theorem proves uniform local path connectedness and settles bases of dimension at most one; the present theorem identifies the additional, genuinely two-dimensional uniform filling property.
   stw22-lwcl-on-fixed-support-strata: that theorem gives local sections on a continuous fixed-support stratum; the present theorem concerns uniform null-homotopies of loops simultaneously over all support traces below a fixed corner.
@@ -28,7 +27,7 @@ with the `2`-norm metric.  Consider the uniform Stiefel filling property
 ```
 
 Then `(USF_1)`, together with
-`stw22-low-spectrum-weighted-boundary-filling`, implies the following global
+`stw22-low-spectrum-weighted-boundary-filling`, gives the following global
 metric-uniform loop filling property for the family of weighted purification fibres
 
 ```text
@@ -41,12 +40,11 @@ in one `F(a)` contained in a `delta`-ball about a point of that fibre fills
 in the corresponding `epsilon`-ball.  This global uniform property implies
 Michael's equi-`LC^1` hypothesis and hence is a sufficient dimension-two
 selection criterion.  Conversely, the weighted property implies `(USF_1)`
-by restricting to projection weights.  The only unresolved implication is
-the relative extension of continuous low weighted frames when their polar
-frames are discontinuous.
+by restricting to projection weights.
 
-The unweighted modulus is now established by
-`stw22-strong-stiefel-spaces-have-uniform-loop-fillings`.  This weighted
-claim remains open because weighted `2`-norm continuity near zero spectrum
-does not imply ordinary `2`-norm continuity of the polar frames.
-Accordingly, no dimension-two trace theorem is asserted here.
+The unweighted modulus is established by
+`stw22-strong-stiefel-spaces-have-uniform-loop-fillings`, and the relative
+low-spectrum extension is established by
+`stw22-low-spectrum-weighted-boundary-filling`.  Consequently the weighted
+metric-uniform loop-filling property, and hence the equi-`LC^1` input for
+two-dimensional Michael selection, hold unconditionally.

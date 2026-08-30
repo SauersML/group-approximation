@@ -3,29 +3,46 @@ rg: 2
 id: stw22-low-spectrum-weighted-boundary-filling
 kind: claim
 title: Extend low-spectrum weighted boundary frames without polar continuity
+artifacts:
+  - research/artifacts/stw22-low-spectrum-boundary-extension-audit-2026-08-30.md
 ---
 
-Let `R` be the hyperfinite `II_1` factor, let `e in R` be a projection, and
-fix `s<tau(e)`.  There is a modulus with the following property, uniformly
-for positive contractions `a` with `tau(supp(a))<=s`.
+Let `R` be the hyperfinite `II_1` factor, let `e in R` be a projection,
+and let `D` be the closed disk.  Suppose
 
-After a spectral split `a=a_h+a_l`, with `a_l<=eta`, suppose a high-frame
-loop has been filled over a disk and the continuous boundary low weighted
-frames are orthogonal to the high frame.  Then those weighted frames extend
-over the disk, remain orthogonal to the high frame, and stay within
-`2 sqrt(eta s)` of a fixed low weighted frame.
+```text
+H:D->eR,       H(y)^*H(y)=p_h
+```
 
-The boundary polar frames are not assumed continuous in ordinary `2`-norm.
-This weighted relative extension is the remaining cross-stratum hinge for
-transferring the proved strong-Stiefel loop modulus to weighted purification
-fibres.
+is `2`-norm continuous, put `f(y)=e-H(y)H(y)^*`, and let `b in R_+`
+satisfy
 
-## Attempts
+```text
+0<=b<=eta,       p_l=supp(b),       tau(p_l)<=s,
+tau(f(y))>=tau(p_l)       (y in D).
+```
 
-The ordinary polar-frame route fails exactly at zero spectrum: continuity
-of `v(z)a_l^(1/2)` does not control `v(z)supp(a_l)` in `2`-norm.  Spectral
-truncation repairs every fixed positive cut, but passing the fillings to the
-limit while preserving the exact boundary and orthogonality to a moving
-high frame has not been justified.  A successful attack must work directly
-in the weighted low fibre, or prove a relative limit theorem for these
-truncated fillings.
+If `x:S^1->eR` is `2`-norm continuous and
+
+```text
+x(z)^*x(z)=b,       f(z)x(z)=x(z),
+```
+
+then there is a `2`-norm-continuous extension `X:D->eR` such that
+
+```text
+X|_(S^1)=x,       X(y)^*X(y)=b,       f(y)X(y)=X(y).    (LSW)
+```
+
+In particular the extension remains orthogonal to the filled high frame.
+For every fixed `x_0` with `x_0^*x_0=b`, it also satisfies
+
+```text
+||X(y)-x_0||_2<=2 sqrt(tau(b))<=2 sqrt(eta s).          (LSB)
+```
+
+No ordinary-`2`-norm continuity of the boundary polar frames is assumed.
+The proof splits `b` into countably many spectral bands bounded away from
+zero, extends their continuous polar frames recursively into orthogonal
+parts of the moving complement, and takes a uniform weighted `L^2` limit.
+Thus the low-spectrum hinge in the weighted Stiefel transfer is closed.

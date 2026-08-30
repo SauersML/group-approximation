@@ -2,20 +2,21 @@
 
 ## Result
 
-The strong-Stiefel small-loop modulus has now been proved.  It does not by
-itself give global metric-uniform `LC^1` of the weighted purification fibres.
-The attempted spectral transfer leaves one exact relative boundary problem.
+The strong-Stiefel small-loop modulus and the weighted spectral-band transfer
+have now both been proved.  Together they give global metric-uniform `LC^1`
+of the weighted purification fibres.
 
 ```text
 V(p,e)={v:v^*v=p, vv^*<=e},       tau(p)<=s<tau(e).
 ```
 
 After a spectral cut, the high frame is close in ordinary `2`-norm and is
-filled by the Stiefel modulus.  The low weighted frame has diameter at most
-twice the square root of its `L^1` mass.  However, its polar frame need not
-be ordinary-`2`-norm continuous, so simple connectivity of a fixed strong
-Stiefel space does not supply the required relative disk extension.  This
-gap is isolated as `stw22-low-spectrum-weighted-boundary-filling`.
+filled by the Stiefel modulus.  The low weighted frame is split into
+countably many spectral bands.  Each band has a continuous polar frame and
+is filled recursively in the complement of the previous bands; the weighted
+sum converges uniformly in `L^2`.  This proves
+`stw22-low-spectrum-weighted-boundary-filling` without ever asserting
+continuity of the full low polar frame.
 
 ## What is and is not known
 
@@ -36,14 +37,16 @@ family above.  Jekel's unitary-group contractibility theorem likewise gives
 only the pointwise connectivity needed through the orbit bundle, not the
 uniform family estimate.
 
-No unconditional dimension-two trace theorem is claimed here.  The earlier
-assertion that strict corner slack alone completed the low polar frame has
-been withdrawn.
+The lower-semicontinuity and equi-`LC^0` inputs from the dimension-one
+argument can therefore be combined with Michael's `n=1` theorem.  This gives
+the unconditional dimension-two trace theorem
+`stw22-two-dimensional-trivial-field-trace-continuity`.  The earlier invalid
+shortcut through continuity of the full low polar frame remains withdrawn;
+the countable-band limit is the replacement.
 
 Michael's ambient-local equi-`LC^1` hypothesis is weaker than the global
-metric-uniform condition audited here.  Even for the global-uniform route,
-the proved unweighted modulus must still cross the low-spectrum weighted
-boundary-extension hinge.
+metric-uniform condition proved here.  The stronger global condition is what
+makes the dimension-two selection step immediate.
 
 Primary sources:
 

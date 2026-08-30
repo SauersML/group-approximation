@@ -29,6 +29,16 @@ records positive answers for finite-dimensional trace simplices, for
 completions with complemented partitions of unity, and in further Bauer
 cases.
 
+For trivial UHF fields the new spectral-band theorem crosses the next
+selection threshold.  `stw22-two-dimensional-trivial-field-trace-continuity`
+proves the desired trace equality for the uniform completion of
+`C(X) tensor U` whenever `X` is compact metrizable and `dim(X)<=2`.  The key
+point is that a weighted boundary frame is split into countably many bands
+on which its polar frame is continuous; recursive orthogonal fillings have
+an exact uniform `L^2` tail.  This supplies the equi-`LC^1` input for
+two-dimensional Michael selection without assuming continuous support
+projections.
+
 For a tracially continuous `C(X)`-bundle with factor `2`-norm fibres, the
 exact elementary obstruction is now isolated by
 `stw22-norm-fibre-gap-is-the-trace-obstruction`.  A trace supported at

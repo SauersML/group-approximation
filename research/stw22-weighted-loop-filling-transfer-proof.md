@@ -106,6 +106,6 @@ equi-`LC^1` condition used by Michael.  Conversely, the global metric-
 uniform weighted property restricted to projection fibres is exactly
 `(USF_1)`, completing the stated equivalence.
 
-The unweighted fixed-support modulus is now proved.  The remaining issue is
-the weighted relative boundary-extension claim above; discontinuous low
-polar frames cannot be substituted for it.
+Both inputs are now proved.  The spectral-band construction in
+`stw22-low-spectrum-weighted-boundary-filling` supplies the relative
+extension without asserting continuity of the low polar frame.
