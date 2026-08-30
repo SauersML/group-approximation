@@ -1,4 +1,4 @@
-# STW XXII: low-spectrum weighted boundary extension
+# STW XXII: low-spectrum weighted boundary extension in all finite degrees
 
 The low-spectrum hinge is closed by a countable orthogonal spectral-band
 construction.  On a band bounded away from zero, multiplying the weighted
@@ -6,12 +6,14 @@ boundary field by the bounded inverse square root recovers a genuinely
 `2`-norm-continuous polar frame.  The bands are extended one at a time into
 the complement of all earlier bands.
 
-The relative one-band extension has two source-checked inputs:
+The relative one-band extension, over `S^m subset B^(m+1)` for arbitrary
+finite `m`, has two source-checked inputs:
 
 - Farah--Vaccaro, Theorem 1.1 together with their explicit McDuff extension,
-  continuously trivializes the moving projection target over the disk.
-- A fixed hyperfinite strong Stiefel space is simply connected by Michael
-  selection of the conjugator loop followed by the Popa--Takesaki
+  continuously trivializes the moving projection target over the finite-
+  dimensional ball.
+- A fixed hyperfinite strong Stiefel space is `m`-connected by controlled
+  Michael selection of conjugator spheres followed by the Popa--Takesaki
   contraction.  No quotient or orbit cross-section is used.
 
 The partial weighted sums are uniformly operator bounded and their squared
@@ -19,18 +21,17 @@ The partial weighted sums are uniformly operator bounded and their squared
 converge uniformly to an operator-valued continuous filling, preserve the
 moving-complement equation, and recover the prescribed boundary exactly.
 
-This proves only the relative weighted disk-extension theorem needed by the
-dimension-two transfer.  Its applicability depends on the hyperfinite
-(hence McDuff) fibre and on the finite-dimensional disk; it is not a claim
-for arbitrary factors or arbitrary parameter spaces.
+This proves the relative weighted ball-extension theorem in every finite
+degree.  Its applicability depends on the hyperfinite (hence McDuff) fibre
+and finite-dimensional parameter balls; it is not a claim for arbitrary
+factors or infinite-dimensional parameter spaces.
 
-Combined with the already proved uniform strong-Stiefel modulus, this closes
-the weighted equi-`LC^1` transfer.  The lower-semicontinuity and equi-`LC^0`
-work from the one-dimensional theorem therefore upgrades Michael selection
-to bases of covering dimension two.  Feeding those local weighted sections
-into the existing three-colour fibre-gap argument proves that every trace on
-the uniform tracial completion of `C(X) tensor U` is a uniform trace whenever
-`dim(X)<=2`.
+Combined with the all-degree strong-Stiefel modulus, this closes the weighted
+equi-`LC^m` transfer for every finite `m`.  For a base of dimension `d`,
+Michael selection uses `m=d-1`; feeding those weighted sections into the
+existing `(d+1)`-colour fibre-gap argument proves that every trace on the
+uniform tracial completion of `C(X) tensor U` is a uniform trace whenever
+`dim(X)<infinity`.
 
 Primary sources:
 

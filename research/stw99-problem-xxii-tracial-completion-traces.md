@@ -7,6 +7,8 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw22-tracial-completion-fibre-gap-audit-2026-08-30.md
+  - research/artifacts/stw22-low-spectrum-boundary-extension-audit-2026-08-30.md
+  - research/artifacts/stw22-all-degree-weighted-selection-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -29,15 +31,17 @@ records positive answers for finite-dimensional trace simplices, for
 completions with complemented partitions of unity, and in further Bauer
 cases.
 
-For trivial UHF fields the new spectral-band theorem crosses the next
-selection threshold.  `stw22-two-dimensional-trivial-field-trace-continuity`
+For trivial UHF fields the new spectral-band theorem crosses every finite
+selection threshold.  `stw22-finite-dimensional-trivial-field-traces`
 proves the desired trace equality for the uniform completion of
-`C(X) tensor U` whenever `X` is compact metrizable and `dim(X)<=2`.  The key
-point is that a weighted boundary frame is split into countably many bands
-on which its polar frame is continuous; recursive orthogonal fillings have
-an exact uniform `L^2` tail.  This supplies the equi-`LC^1` input for
-two-dimensional Michael selection without assuming continuous support
-projections.
+`C(X) tensor U` whenever `X` is compact metrizable and has finite covering
+dimension.  Conjugator fibres have uniform sphere-filling moduli in every
+finite degree by controlled Michael selection and the Popa--Takesaki
+contraction.  A weighted boundary frame is then split into countably many
+bands on which its polar frame is continuous; recursive orthogonal fillings
+have an exact uniform `L^2` tail.  This supplies all finite equi-`LC^n`
+inputs without assuming continuous support projections.  The earlier
+dimension-two theorem is retained as the first new special case.
 
 For a tracially continuous `C(X)`-bundle with factor `2`-norm fibres, the
 exact elementary obstruction is now isolated by

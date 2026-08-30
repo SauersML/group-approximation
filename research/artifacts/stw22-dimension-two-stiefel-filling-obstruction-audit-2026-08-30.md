@@ -20,13 +20,12 @@ continuity of the full low polar frame.
 
 ## What is and is not known
 
-Every individual hyperfinite-factor Stiefel space is path connected and
-simply connected: apply the homotopy exact sequence to its locally trivial
-unitary-orbit bundle, whose total and stabilizer unitary groups are strongly
-contractible.  This does not imply a local simple-connectivity modulus
-uniform over the support trace.  The principal-logarithm path proves the
-`LC^0` estimate but is pointwise in its unitary extension; logarithm branch
-choices need not be continuous on a loop.
+The subsequent all-degree argument proves more: conjugator fibres are
+closed, lower semicontinuous, and uniformly equi-`LC^n` in every finite
+degree by the Popa--Takesaki contraction.  Controlled Michael selection
+lifts small spheres, while ordinary Michael selection lifts arbitrary
+spheres.  Contracting the unitary lifts proves both uniform local filling
+and global connectivity, without a quotient or orbit cross-section.
 
 Farah--Vaccaro explicitly identify the analogous equi-`LC^n` issue as the
 obstruction beyond one-dimensional bases.  Their result proves continuous
@@ -43,6 +42,10 @@ the unconditional dimension-two trace theorem
 `stw22-two-dimensional-trivial-field-trace-continuity`.  The earlier invalid
 shortcut through continuity of the full low polar frame remains withdrawn;
 the countable-band limit is the replacement.
+
+The all-degree upgrade now extends this conclusion to every finite covering
+dimension in `stw22-finite-dimensional-trivial-field-traces`.  The
+dimension-two theorem remains a valid special case.
 
 Michael's ambient-local equi-`LC^1` hypothesis is weaker than the global
 metric-uniform condition proved here.  The stronger global condition is what
