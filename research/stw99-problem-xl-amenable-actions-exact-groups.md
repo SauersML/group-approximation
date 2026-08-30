@@ -21,16 +21,28 @@ crossed products are traceless or non-simple/non-classifiable.)
 
 ## Attempts
 
+* The weaker question with only a unital separable nuclear target and no
+  invariant trace is now exact
+  (`stw40-unital-nuclear-no-trace-iff-exact`).
+  For a countable nonamenable group `G`, such an amenable action exists if
+  and only if `G` is exact, and one may take `A=C(X)` for a compact metrizable
+  amenable `G`-space.  Any invariant probability measure on `X` would
+  integrate the topological-amenability witnesses to a Reiter net, so none
+  exists.  Conversely, amenability plus nuclearity makes `A crossed_r G`
+  nuclear and its canonical copy of `C*_r(G)` exact.  Thus arbitrary
+  nonexact countable nonamenable groups are genuinely excluded; what remains
+  in Problem XL is the simple stably finite classifiable realization, not
+  existence of a unital nuclear trace-free model.
 * Hard constraint established this session
   (`amenable-action-invariant-trace-forces-amenability`): the action
   can preserve no trace, and the affine action on `T(A)` can carry no
   invariant measure.  So candidate targets are pinned: `T(A)` must
-  admit a measure-fixed-point-free affine action of `G` — the Poulsen
-  simplex does (it is universal for such dynamics), and stably finite
-  classifiable algebras with Poulsen simplex exist in abundance, so
-  the obstruction does not close the problem; it dictates the shape of
-  any construction: an amenable `G`-action on a Poulsen-simplex
-  classifiable algebra covering a boundary-type action on `∂T(A)`.
+  admit a measure-fixed-point-free affine action of `G`.  The Poulsen
+  simplex is a natural candidate, and stably finite classifiable algebras
+  with Poulsen trace simplex exist in abundance, so the obstruction does not
+  close the problem; it dictates the shape of any construction: an amenable
+  `G`-action on a classifiable algebra whose trace dynamics contain a
+  boundary inside `T(A)`.
   The natural candidate is a classifiable model of a boundary action
   (crossed-product-by-hyperbolic-boundary data made stably finite via
   orbit-breaking in the sense of Deeley--Putnam--Strung), where
@@ -55,3 +67,12 @@ crossed products are traceless or non-simple/non-classifiable.)
   genuine `G`-boundary inside its trace simplex.  The remaining problem is
   precisely to realize such forced boundary dynamics by an amenable action
   on a stably finite classifiable algebra.
+* The forced boundary is itself topologically amenable
+  (`stw40-trace-simplex-boundary-is-topologically-amenable`).  Amenability of
+  the C-star action passes to the induced state-space action and then to the
+  closed invariant boundary inside `T(A)`.  Therefore an XL witness does not
+  merely contain abstract boundary dynamics: it contains an amenable
+  boundary, exactly matching the compact model in the preceding reduction.
+  The unresolved lift is from this commutative amenable boundary model to a
+  unital simple stably finite classifiable algebra while preserving full
+  C-star amenability (tracial amenability alone is known not to suffice).
