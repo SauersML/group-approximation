@@ -8,6 +8,7 @@ distinct_from:
   stw99-problem-x1-amenable-traces-quasidiagonal: that quantifies over all amenable traces on all C*-algebras; this is the single instance of the trace of R, which STW expect to be the heart of the non-exact case.
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw10-amenable-trace-frontier-2026-08-30.md
 ---
 
 **Problem X(2) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Is the hyperfinite II₁ factor `R` quasidiagonal
@@ -23,3 +24,13 @@ Problem X(1) gives a positive answer here (`stw99-x1-implies-x2`).
 STW: "It seems likely to us that for not necessarily exact C*-algebras, the
 heart of the matter is whether the trace on the hyperfinite II₁ factor is
 quasidiagonal."  Not to be confused with `stw99-problem-xciv-hyperfinite-factor-separably-z-stable`.
+
+The norm-nonseparability of `R` is not itself part of the obstruction.
+`stw10-x2-reduces-to-finitely-generated-weakly-dense-witnesses` proves that
+`R` is quasidiagonal exactly when every finitely generated weakly dense
+unital C-star subalgebra is quasidiagonal.  If the answer is negative, one
+may choose such a witness to contain a fixed weakly dense CAR algebra.  Its
+restricted trace is faithful and amenable, has GNS closure `R`, but is not
+quasidiagonal; the witness cannot be both exact and UCT.  The CAR core records
+the available Hilbert--Schmidt approximation, while a finite added set
+records the unresolved operator-norm obstruction.
