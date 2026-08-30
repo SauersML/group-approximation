@@ -130,24 +130,5 @@ theorem relatorSideExclusionInputOne₂_of_input₂ {E : HypEmbeddedCore₂ A N}
 
 end Inputs
 
-section Target
-
-/-- **Hull's §6 over two subgroups, at a core whose base contains `t⁻¹`.**
-
-`HullRelatorStatement₂` with one hypothesis added.  It is what the chain can
-prove from the NARROW inputs, because the one-letter base part is available
-exactly when `t⁻¹` is a letter; and it is what the seam can consume, because
-`HullSC.HypEmbeddedCore₂.adjoinPair` puts `t⁻¹` in the base of a core whose
-other eleven clauses are the ones it was handed. -/
-def HullRelatorStatement₂OfBaseLetter : Prop :=
-  ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) (N : Subgroup G)
-    (E : HypEmbeddedCore₂ A N), Suitable A.alphabet N → ∀ (t : G),
-      t⁻¹ ∈ E.rel.base → ∀ (eps rho : ℕ) (mu : ℝ), 0 < mu →
-        ∃ u ∈ N, ∃ W : Set (List (GGT.RelLetter G Bool)),
-          (∃ v ∈ W, GGT.RelLetter.listVal v = t⁻¹ * u) ∧
-            RelWord.IsSmallCancellation E.rel W eps mu rho
-
-end Target
-
 end HullSC
 end GroupApproximation
