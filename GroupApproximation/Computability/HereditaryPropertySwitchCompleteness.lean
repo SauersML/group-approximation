@@ -223,6 +223,14 @@ def FiniteOutputRestricted
     (C : FinitePresentationSwitchCompiler P) (c : Code) : Prop :=
   AdianRabinGeneral.codeProperty P (C.compile c)
 
+/-- The complementary property on the very same finite-output compiler
+family.  Keeping the compiler fixed is essential: the `Σ⁰₂` classification
+is obtained by complementing the `Π⁰₂` truth table, not by constructing a
+second compiler. -/
+def FiniteOutputRestrictedComplement
+    (C : FinitePresentationSwitchCompiler P) (c : Code) : Prop :=
+  ¬ FiniteOutputRestricted C c
+
 /-- Any supplied exact finite-output compiler makes its restricted family
 `Π⁰₂`-complete. -/
 theorem finiteOutputRestricted_pi02Complete
@@ -234,6 +242,13 @@ theorem finiteOutputRestricted_pi02Complete
     obtain ⟨f, hf, hcorrect⟩ := infiniteDomain_pi02Hard p hp
     exact ⟨f, hf, fun n ↦
       (hcorrect n).trans (C.correct (f n)).symm⟩
+
+/-- The complementary restricted family is `Σ⁰₂`-complete, using the
+same finite-output compiler and no additional correctness obligation. -/
+theorem finiteOutputRestrictedComplement_sigma02Complete
+    (C : FinitePresentationSwitchCompiler P) :
+    Sigma02Complete (FiniteOutputRestrictedComplement C) :=
+  pi02Complete_compl (finiteOutputRestricted_pi02Complete C)
 
 /-- Conditional global `Π⁰₂`-hardness on finite-presentation codes. -/
 theorem finiteCodeProperty_pi02Hard_of_compiler
@@ -250,6 +265,21 @@ theorem finiteCodeProperty_compl_sigma02Hard_of_compiler
     (C : FinitePresentationSwitchCompiler P) :
     Sigma02Hard (fun c ↦ ¬ AdianRabinGeneral.codeProperty P c) :=
   pi02Hard_compl (finiteCodeProperty_pi02Hard_of_compiler C)
+
+/-- **The complete finite-output Rice package.**  One compiler with the exact
+`INF` truth table supplies both restricted completeness results and both global
+hardness results.  In particular the complement never carries an independent
+compiler debt. -/
+theorem finiteOutput_switch_completeness_package
+    (C : FinitePresentationSwitchCompiler P) :
+    Pi02Complete (FiniteOutputRestricted C) ∧
+      Sigma02Complete (FiniteOutputRestrictedComplement C) ∧
+      Pi02Hard (AdianRabinGeneral.codeProperty P) ∧
+      Sigma02Hard (fun c ↦ ¬ AdianRabinGeneral.codeProperty P c) :=
+  ⟨finiteOutputRestricted_pi02Complete C,
+    finiteOutputRestrictedComplement_sigma02Complete C,
+    finiteCodeProperty_pi02Hard_of_compiler C,
+    finiteCodeProperty_compl_sigma02Hard_of_compiler C⟩
 
 /-! ## Operator-MF specialization -/
 

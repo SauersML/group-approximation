@@ -62,7 +62,7 @@ theorem mfCode_pi02Complete_of_compiler (C : MFCompiler) :
   change Pi02Complete
     (AdianRabinGeneral.codeProperty OperatorMFProperty)
   exact ⟨mfCode_pi02,
-    finiteCodeProperty_pi02Hard_of_compiler C⟩
+    (finiteOutput_switch_completeness_package C).2.2.1⟩
 
 /-- The reverse classification needs no new construction: complementing the
 same many-one reductions proves `Sigma02`-completeness of non-MF

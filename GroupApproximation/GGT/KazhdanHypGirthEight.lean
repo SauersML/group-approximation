@@ -109,6 +109,72 @@ theorem GirthEightChecks.noCube
     ¬ (T j 0 = T j 1 ∧ T j 1 = T j 2) :=
   no_cube_of_linkSimple T h.simple j
 
+/-! ## The exact SDP-facing check on the same table
+
+The two finite searches in this route pull in opposite directions: the
+small-cancellation side asks for a sparse link (no cycles of length four or
+six), while the Kazhdan side asks for a normalized Laplacian gap above
+`1 / 2`.  It is important that these are checks on the *same* triangle table.
+The following predicate is the minimal exact output expected from an SDP
+probe once `GirthEightChecks` has fixed the table and its regular degree.
+
+There is deliberately no floating-point tolerance in this interface.  A
+numerical probe may discover `gap` and `rows`; admission to the proof is the
+rational residual identity below.  Regularity is not repeated, since it is
+already part of `GirthEightChecks`.
+-/
+
+/-- **The rationalized output of the spectral SDP probe.**  Positivity of the
+regular degree, clearance of the `1 / 2` threshold, and an exact Gram residual
+are the only spectral data not already supplied by `GirthEightChecks`.
+
+This is the machine-checkable form of the girth-versus-spectrum design tension:
+both `hgeom : GirthEightChecks T d` and this predicate mention the literal same
+`T` and `d`. -/
+def GirthEightSDPChecks [Nonempty Generator] {Row : Type} [Fintype Row]
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    (d : ℕ) (gap : ℚ)
+    (rows : Row → Generator × Bool → ℚ) : Prop :=
+  0 < d ∧ (1 : ℚ) / 2 < gap ∧
+    ∀ u v, TriangularHodgeLayer.linkGapResidual T d gap rows u v = 0
+
+noncomputable instance instDecidableGirthEightSDPChecks [Nonempty Generator]
+    {Row : Type}
+    [Fintype Row]
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator)
+    (d : ℕ) (gap : ℚ)
+    (rows : Row → Generator × Bool → ℚ) :
+    Decidable (GirthEightSDPChecks T d gap rows) := by
+  classical
+  infer_instance
+
+/-- Geometry and a successful exact SDP probe give the repository's Garland
+link certificate.  This is the integration point: `hgeom.regular` supplies the
+one certificate clause intentionally omitted from the SDP-facing predicate. -/
+theorem linkCertificateChecks_of_girthEightSDPChecks [Nonempty Generator]
+    {Row : Type} [Fintype Row]
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+    {d : ℕ} {gap : ℚ}
+    {rows : Row → Generator × Bool → ℚ}
+    (hgeom : GirthEightChecks T d)
+    (hsdp : GirthEightSDPChecks T d gap rows) :
+    TriangularHodgeLayer.LinkCertificateChecks T d gap rows :=
+  ⟨hsdp.1, hsdp.2.1, hgeom.regular, hsdp.2.2⟩
+
+/-- A girth-eight table passing the exact rational SDP check has property
+`(T)`.  The girth clauses are not used by Garland's argument; their role is to
+remain attached to the same table for the hyperbolic small-cancellation side. -/
+theorem hasKazhdanPropertyT_of_girthEightSDPChecks [Nonempty Generator]
+    {Row : Type} [Fintype Row]
+    {T : TriangleIndex → TriangularHodgeLayer.Triangle Generator}
+    {d : ℕ} {gap : ℚ}
+    {rows : Row → Generator × Bool → ℚ}
+    (hgeom : GirthEightChecks T d)
+    (hsdp : GirthEightSDPChecks T d gap rows) :
+    HasKazhdanPropertyT.{0, 0} (TriangularHodgeLayer.Presented T) :=
+  TriangularHodgeLayer.presented_hasKazhdanPropertyT_of_linkCertificate
+    T d gap rows (linkCertificateChecks_of_girthEightSDPChecks hgeom hsdp)
+
 end Checks
 
 /-! ## The three geometric residuals, without the quadrangle -/
@@ -195,6 +261,31 @@ def TriangularKazhdanWitness : Prop :=
       Infinite (TriangularHodgeLayer.Presented T) ∧
       IsPowerTorsionFree (TriangularHodgeLayer.Presented T) ∧
       Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T)
+
+/-- **The witness target in the coordinates used by the finite searches.**
+The same table must pass the sparse girth-eight geometry check and the exact
+rational SDP check; the remaining three clauses are the geometric consequences
+of the former.  This form prevents a successful spectral probe for one table
+from being combined accidentally with girth data for another. -/
+def GirthEightKazhdanWitness : Prop :=
+  ∃ (Generator TriangleIndex Row : Type) (_ : Fintype Generator)
+    (_ : DecidableEq Generator) (_ : Nonempty Generator)
+    (_ : Fintype TriangleIndex) (_ : DecidableEq TriangleIndex) (_ : Fintype Row)
+    (T : TriangleIndex → TriangularHodgeLayer.Triangle Generator) (d : ℕ) (gap : ℚ)
+    (rows : Row → Generator × Bool → ℚ),
+    GirthEightChecks T d ∧ GirthEightSDPChecks T d gap rows ∧
+      Infinite (TriangularHodgeLayer.Presented T) ∧
+      IsPowerTorsionFree (TriangularHodgeLayer.Presented T) ∧
+      Hyperbolic.IsHyperbolicGroup (TriangularHodgeLayer.Presented T)
+
+/-- A single table resolving the girth-versus-spectrum tradeoff closes
+`SharpExistence`; no further spectral or assembly premise remains. -/
+theorem sharpExistence_of_girthEightKazhdanWitness
+    (h : GirthEightKazhdanWitness) : Hyperbolic.SharpExistence := by
+  obtain ⟨Generator, TriangleIndex, Row, fg, dg, ng, ft, dt, fr, T, d, gap, rows,
+    hgeom, hsdp, hinf, htf, hhyp⟩ := h
+  exact ⟨TriangularHodgeLayer.Presented T, inferInstance, hinf, inferInstance,
+    htf, hhyp, hasKazhdanPropertyT_of_girthEightSDPChecks hgeom hsdp⟩
 
 /-- **`SharpExistence` from the sharpest form.**  Property `(T)` comes from the
 Garland certificate of `Kazhdan/TriangularHodgeLayer.lean` fed with the Gram
