@@ -46,8 +46,10 @@ of the coset actions `Q/<e_n>`, and use lamp `Z/2`.  Every stabilizer is
 infinite of rank one, and kernel-finiteness fails, but the theorem gives the
 finite interval `2<=dim_nuc<=35`.
 
-This does not cover orbit-dependent infinite stabilizers with no common
-split core.  In that setting a fixed fiber has the form
+The later theorem `stw84-commensurable-stabilizer-wreath-bound` removes the
+splitting hypothesis and allows the stabilizers to vary through finite
+extensions of the common core.  What remains uncovered is the case with no
+common finite-index core.  In that setting a fixed fiber has the form
 
 `tensor_R tensor_(K/H_R) M_(n_R)`
 

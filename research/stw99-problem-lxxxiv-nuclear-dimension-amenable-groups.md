@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/stw84-local-rank-and-locally-finite-factor-audit-2026-08-30.md
   - research/artifacts/stw84-almost-free-permutation-wreath-2026-08-30.md
   - research/artifacts/stw84-common-stabilizer-wreath-2026-08-30.md
+  - research/artifacts/stw84-commensurable-stabilizer-wreath-2026-08-30.md
 ---
 
 **Problem LXXXIV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Determine for which countable discrete amenable
@@ -103,6 +104,20 @@ fiber estimate to the residual action.  Thus every point stabilizer may be
 infinite of rank `h`; only the orbit-dependent positive-rank case without a
 common split core remains outside this mechanism.
 
+The splitting hypothesis can now be removed, and the stabilizers themselves
+may vary.  `stw84-commensurable-stabilizer-wreath-bound` assumes a subgroup
+`H<=A` fixes every lamp site and only that every residual stabilizer `A_s/H`
+is finite.  The extension `0 -> H -> A -> A/H -> 0` need not split.  Each
+finite-stage stabilizer crossed product is decomposed over the dual of its
+central subgroup `N intersection H`; the resulting fibers are scalar-twisted
+almost-free Bernoulli crossed products.  Strong outerness handles the
+non-scalar fibers, while Eckhardt--Wu's twisted virtually-polycyclic theorem
+uniformly handles the scalar fibers.  This gives a finite rank-dependent
+bound, and gives the exact value `rank(H)` when `A/H` has rank zero.  Thus a
+finite menu of pairwise commensurable positive-rank stabilizer types is also
+covered by taking their intersection.  The remaining orbit-dependent
+boundary requires stabilizers with no common finite-index core.
+
 There is also an exact permanence theorem independent of virtual abelianness.
 `stw84-locally-finite-direct-factor-invariance` proves that adjoining any
 countable locally finite direct factor changes no nuclear dimension.  Hence
@@ -148,10 +163,10 @@ bounded local polynomial-growth degree (equivalently, local virtual
 nilpotence with uniformly bounded local Hirsch length).  The finite-stabilizer
 permutation theorem extends this to arbitrary almost-free permutation shifts
 for finite-rank abelian actors, but infinite stabilizers break its free-orbit
-fiber regrouping.  The common-stabilizer theorem handles a split positive-rank
-core shared by all stabilizers.  Varying infinite stabilizers with no common
-split core still produce mixed homogeneous-space tensor fibers and remain
-uncontrolled.
+fiber regrouping.  The commensurable-stabilizer theorem handles a possibly
+nonsplit positive-rank core shared with finite index by all stabilizers.
+Varying infinite stabilizers with no common finite-index core still produce
+mixed homogeneous-space tensor fibers and remain uncontrolled.
 The directed-union argument still gives no control when its finite-stage
 bounds diverge.  Thus the remaining frontier includes unrestricted
 locally-finite-by-abelian groups and the general finite-Hirsch-length
