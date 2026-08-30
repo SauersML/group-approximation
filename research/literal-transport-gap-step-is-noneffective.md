@@ -12,6 +12,7 @@ artifacts:
   - GroupApproximation/Sofic/ManuscriptKazhdanTransport.lean
   - GroupApproximation/Sofic/LiteralBasePropertyTBridge.lean
   - GroupApproximation/Sofic/LiteralP13HodgeCertificate.lean
+  - GroupApproximation/Sofic/LiteralP13HodgeReplay.lean
 ---
 
 **ESTABLISHED BY SOURCE AUDIT.** The current finite-stage transport path does
