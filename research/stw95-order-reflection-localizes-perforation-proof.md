@@ -2,77 +2,54 @@
 rg: 2
 id: stw95-order-reflection-localizes-perforation-proof
 kind: route
-title: Localize a concrete perforation inequality to two external-image elements
+title: Diagonalize inner image brackets into a global Cu inverse
 target: stw95-order-embedded-inner-cofinal-cu-image-forces-pure-product
 requires:
   - stw95-inner-cofinal-cu-image-gives-almost-divisibility
 ---
 
-Purity of `A` and `B` says that their Cuntz semigroups absorb `Cu(Z)`.
-Associativity of the Cu tensor product therefore shows that
+We first prove the abstract assertion.  Fix `x in T` and choose a rapidly
+increasing sequence
 
 ```text
-S=Cu(A) tensor_Cu Cu(B)
+x_1<<x_2<<... ,             sup_n x_n=x.               (P1)
 ```
 
-is pure, hence both almost divisible and almost unperforated.  Hypothesis
-`(IC)` and `stw95-inner-cofinal-cu-image-gives-almost-divisibility` already
-give almost divisibility of `T`.  It remains to prove almost
-unperforation.
-
-Suppose
+Apply `(IC)` to `x_1<<x` to obtain `b_1<<c_1` with
 
 ```text
-(n+1)x <= n y                                             (P1)
+x_1<=theta(b_1)<<theta(c_1)<=x.                         (P2)
 ```
 
-in `T`, where `n>=1`, and fix `x_0<<x`.  Apply `(IC)` to choose
-`a_0<<a` in `S` with
+Suppose the pair at stage `n-1` has been chosen.  Both `x_n` and
+`theta(b_(n-1))` are way below `x`; for the latter this follows from
+`theta(b_(n-1))<<theta(c_(n-1))<=x`.  Axiom `(O2)` supplies `z_n<<x`
+dominating both (equivalently, take a sufficiently late term of a rapidly
+increasing approximation to `x`).  Apply `(IC)` to `z_n<<x` and obtain
 
 ```text
-x_0<=theta(a_0),             theta(a)<=x.                (P2)
+x_n, theta(b_(n-1)) <= z_n <= theta(b_n)
+                      << theta(c_n) <= x.               (P3)
 ```
 
-Because a Cu-morphism preserves compact containment and addition respects
-compact containment,
+Order reflection turns the middle comparison into
+`b_(n-1)<=b_n`.  Hence `b=sup_n b_n` exists, and preservation of increasing
+suprema gives
 
 ```text
-(n+1)theta(a_0) << (n+1)theta(a)
-                  <= (n+1)x <= n y.                      (P3)
+x=sup_n x_n <= theta(b)=sup_n theta(b_n) <= x.           (P4)
 ```
 
-Choose a rapidly increasing sequence `(y_j)` with supremum `y`.  The Cu
-axioms give `n y=sup_j n y_j`.  From `(P3)` there is an index `j` such that
+Thus every `x in T` is in the image.  An order-embedding Cu-morphism which
+is surjective is a Cu-isomorphism: its inverse preserves order, addition,
+zero, and increasing suprema, and therefore also the way-below relation.
 
-```text
-(n+1)theta(a_0) <= n y_j,            y_j<<y.             (P4)
-```
+Conversely, if `theta` is a Cu-isomorphism and `x'<<x`, take
+`a'=theta^(-1)(x')` and `a=theta^(-1)(x)`.  Then `a'<<a` and `(IC)` holds
+with equality at both ends.
 
-Apply `(IC)` once more, now to `y_j<<y`.  There are `b_0<<b` in `S` with
-
-```text
-y_j<=theta(b_0),              theta(b)<=y.                (P5)
-```
-
-Equations `(P4)` and `(P5)` imply
-
-```text
-theta((n+1)a_0) <= theta(n b_0).
-```
-
-Order reflection of `theta` gives `(n+1)a_0<=n b_0`.  Almost
-unperforation of `S` gives `a_0<=b_0`.  Returning through `theta` and using
-`(P2)` and `(P5)` yields
-
-```text
-x_0<=theta(a_0)<=theta(b_0)<=theta(b)<=y.                (P6)
-```
-
-Every element of a Cu-semigroup is the supremum of a rapidly increasing
-sequence.  Since `(P6)` holds for every `x_0<<x`, it follows that `x<=y`.
-Thus `T` is almost unperforated.  Together with the already proved almost
-divisibility, this makes `T` pure and hence makes `A tensor_min B` pure.
-
-At no point is an arbitrary element of `T` lifted to `S`.  Only the two
-way-below windows in `(P2)` and `(P5)` are bracketed by image elements, so
-the proof neither assumes nor derives surjectivity of `theta`.
+For the C-star application, purity of `A` and `B` makes
+`S=Cu(A) tensor_Cu Cu(B)` pure by `Cu(Z)`-absorption.  The isomorphism carries
+almost divisibility and almost unperforation to `T`, so `A tensor_min B` is
+pure.  The earlier perforation-localization proof was valid but unnecessarily
+weak: the same hypotheses already force the global lift `(P4)`.

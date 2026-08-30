@@ -2,37 +2,33 @@
 rg: 2
 id: stw95-order-embedded-inner-cofinal-cu-image-forces-pure-product
 kind: claim
-title: Order reflection plus inner cofinality of the external Cu image forces tensor purity
+title: Order reflection turns inner cofinality of a Cu image into an isomorphism
 distinct_from:
-  split-cu-tensor-map-implies-pure-product: that assumes a Cu-morphism right inverse, which makes the external map surjective; this permits a genuinely nonsurjective external map and instead assumes order reflection plus local inner cofinality.
+  split-cu-tensor-map-implies-pure-product: that assumes a right inverse and concludes purity without injectivity; this theorem identifies the exact effect of adding order reflection to local inner cofinality, namely that the canonical map is already a Cu-isomorphism.
   stw95-inner-cofinal-cu-image-gives-almost-divisibility: that uses the same local cofinality to transfer only almost divisibility; this adds order reflection and proves almost unperforation as well.
   stw95-ordered-retract-gives-almost-unperforation: that pulls arbitrary concrete elements back through a global ordered-monoid retraction; this localizes each comparison to elements already in the external image and needs no map out of the concrete semigroup.
 ---
 
-Let `A` and `B` be pure C\*-algebras, set
-
-```text
-S=Cu(A) tensor_Cu Cu(B),
-T=Cu(A tensor_min B),
-```
-
-and let `theta:S->T` be the canonical external-product Cu-morphism.  Assume:
-
-1. `theta` is an order embedding; that is,
-
-```text
-theta(s)<=theta(t)  implies  s<=t;
-```
-
-2. its image is inner cofinal for way-below pairs: whenever `x'<<x` in
-   `T`, there are `a'<<a` in `S` such that
+Let `S,T` be Cu-semigroups and let `theta:S->T` be a Cu-morphism.  Suppose
+that `theta` is an order embedding and that its image is inner cofinal for
+way-below pairs: whenever `x'<<x` in `T`, there are `a'<<a` in `S` such that
 
 ```text
 x'<=theta(a'),              theta(a)<=x.              (IC)
 ```
 
-Then `A tensor_min B` is pure.
+Then `theta` is a Cu-isomorphism.  Conversely, every Cu-isomorphism satisfies
+`(IC)`.  Thus, in the presence of order reflection, inner cofinality is
+equivalent to surjectivity and is not a genuinely weaker substitute for it.
 
-In particular, surjectivity of the external Cu map is not required.  Every
-concrete element may lie outside its image, provided each way-below window
-can be bracketed as in `(IC)`.
+In particular, if `A` and `B` are pure C-star algebras and
+
+```text
+S=Cu(A) tensor_Cu Cu(B),       T=Cu(A tensor_min B),
+```
+
+and the canonical external map has the two displayed properties, then it is
+an isomorphism and `A tensor_min B` is pure.  The useful strictly weaker
+one-axiom result remains
+`stw95-inner-cofinal-cu-image-gives-almost-divisibility`, where order
+reflection is not assumed.
