@@ -3,11 +3,11 @@ import GroupApproximation.GGT.OsinTheorem54SepDistBase
 /-!
 # Osin's Lemma 5.6, on one named hypothesis
 
-The `hM` binder of `OsinTheorem54SepAssembleFull.sepDataFam_of_binders_of_lemma510`
-is the bounded-detour condition: every prefix of an old geodesic to a letter of
+Osin's bounded-detour condition: every prefix of an old geodesic to a letter of
 the enlarged alphabet stays within `M` of the basepoint in the *enlarged*
-metric.  It is verbatim the `M`-hypothesis of `OsinLemma55`, which is why the
-two binders sit together --- one feeds the other.
+metric.  It is verbatim the `M`-hypothesis of `OsinLemma55`, and it is what
+`sepDataFam_of_binders_of_lemma510` calls when it needs that hypothesis --- the
+assembly took it as a binder named `hM` until this development discharged it.
 
 This module discharges it from a single named statement,
 `SepPrefixInheritance`, and nothing else.
@@ -56,8 +56,8 @@ the printed lemma.
 
 Osin states 5.6 with `2`, and the two constants measure different things rather
 than disagreeing.  His conclusion bounds the **diameter** of the geodesic's
-vertex set in the enlarged metric; the `hM` binder bounds the **distance from
-`1`**, a radius.  Every vertex lies in `Y`, hence within `1` of the origin, so
+vertex set in the enlarged metric; the condition proved here bounds the
+**distance from `1`**, a radius.  Every vertex lies in `Y`, hence within `1` of the origin, so
 any two lie within `2` of each other: his `2` is twice this `1`, and neither
 carries slack.
 
@@ -78,8 +78,8 @@ nothing to inherit.
 
 `h48` is **not** used.  The reduction runs through
 `wordDist_enlargedY_le_one`, which is unconditional, rather than through the
-counting form; so `hM` is discharged on `SepPrefixInheritance` alone, with
-strictly fewer hypotheses than its sibling binders carry.
+counting form; so the bounded-detour condition rests on `SepPrefixInheritance`
+alone, with strictly fewer hypotheses than the assembly's other inputs carry.
 -/
 
 namespace GroupApproximation
@@ -108,8 +108,8 @@ def SepPrefixInheritance (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
 /-- **Osin's Lemma 5.6**, on the inheritance hypothesis: the bounded-detour
 condition holds with `M = 1`.
 
-This is the `hM` binder of `sepDataFam_of_binders_of_lemma510`, discharged
-modulo `SepPrefixInheritance`. -/
+This is the bounded-detour condition the assembly consumes, proved modulo
+`SepPrefixInheritance`. -/
 theorem exists_boundedDetour_of_sepPrefixInheritance (D : RelGenSet G Λ)
     {Dc : ℕ} (hDc : 1 ≤ Dc) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     (hinh : SepPrefixInheritance D Dc) :

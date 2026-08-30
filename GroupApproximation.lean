@@ -2814,6 +2814,8 @@ import GroupApproximation.Algebra.HyperbolicFinitePresentation
 import GroupApproximation.GGT.OsinTheorem54SepClosingEdge
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyW4Match
 import GroupApproximation.GGT.OsinTheorem54SepNontrivialWord
+import GroupApproximation.GGT.OsinLemma56Inheritance
+import GroupApproximation.GGT.OsinTheorem54SepYLetterTranslate
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

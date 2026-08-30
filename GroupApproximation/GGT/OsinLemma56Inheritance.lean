@@ -147,9 +147,10 @@ theorem sepPrefixInheritance (D : RelGenSet G Λ) (Dc : ℕ) :
 /-- **Osin's Lemma 5.6, unconditionally.**
 
 `OsinLemma56PrefixY.exists_boundedDetour_of_sepPrefixInheritance` took the
-inheritance as a hypothesis; it is now a theorem, so the `hM` binder of
-`sepDataFam_of_binders_of_lemma510` is discharged outright.  Nothing beyond the
-enlargement's own construction is assumed --- in particular not `h48`. -/
+inheritance as a hypothesis; it is now a theorem, so the bounded-detour
+condition holds outright and `sepDataFam_of_binders_of_lemma510` calls this
+rather than taking it as a binder.  Nothing beyond the enlargement's own
+construction is assumed --- in particular not `h48`. -/
 theorem exists_boundedDetour (D : RelGenSet G Λ) {Dc : ℕ} (hDc : 1 ≤ Dc)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) :
     ∃ M : ℕ, ∀ b ∈ (enlargedY D hDc hsymm).alphabet.carrier,
