@@ -54,6 +54,18 @@ direction, with a uniform positive norm floor, yet every such compression
 has nonzero spectrum accumulating at zero.  Thus neither a missing diagonal
 direction nor a favourable spectral gap can repair the descent.
 
+There is nevertheless a new exact descent class.
+`stw74-homogeneous-coefficient-projections-descend` proves that a stabilized
+projection whose coefficient algebra is homogeneous of any finite degree
+produces a level-one projection: its nonzero fibre support is compact and
+clopen, so the matrix-bundle identity on that support belongs to the original
+hereditary algebra.  Hence LXXIV has a positive answer whenever every
+nonzero hereditary algebra admits one such homogeneous-frame stabilized
+projection.  Conversely, no stabilized projection over a counterexample's
+projectionless corner can have finite-degree homogeneous coefficients, in
+any scalar basis.  This route uses no comparison, cancellation, algebraicity,
+property (QQ), or nuclear regularity.
+
 There is also a comparison-free structural positive class:
 `stw74-algebraic-cu-characterizes-pure-infiniteness` proves that, under the
 LXXIV hypothesis, `A` is purely infinite exactly when `Cu(A)` is algebraic.
