@@ -5,7 +5,6 @@ kind: claim
 title: Simple non-type-I real-rank-zero algebras have almost divisible Cuntz semigroups
 distinct_from:
   thiel-stable-rank-one-ranks-close-purity-with-comparison: that theorem obtains divisibility from stable-rank-one rank realization; this theorem uses large finite-dimensional subalgebras in projection corners and does not assume stable rank one.
-  stw27-coordinate-euler-slack-obstructs-compact-dividers: that no-go theorem concerns particular coordinate-heavy homogeneous blocks; this theorem proves that every compact class in a simple non-type-I real-rank-zero algebra has dividers after passing to the ambient algebra.
 artifacts:
   - research/artifacts/stw27-real-rank-zero-divisibility-audit-2026-08-30.md
 ---
