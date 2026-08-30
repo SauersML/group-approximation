@@ -688,6 +688,48 @@ theorem vertexChain_match_index_bounds
   dsimp [l, D]
   constructor <;> linarith
 
+/-- Coarse partners of sufficiently sparse increasing samples occur in the
+same order on the second quasi-axis.  The explicit growth condition is kept
+separate from the later finite recursive construction. -/
+theorem vertexChain_partner_lt_of_sparse
+    {B C lam c : ℝ} (hiso : IsIsometricAction G X)
+    (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hqAxis : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x))
+    (p q : PowerAxisSegment h x) {j₁ j₂ i₁ i₂ : ℕ}
+    (hj₁ : j₁ ≤ p.steps) (hj₂ : j₂ ≤ p.steps)
+    (hi₁ : i₁ ≤ q.steps) (hi₂ : i₂ ≤ q.steps)
+    (h0 : dist p.initial q.initial ≤ B)
+    (hmatch₁ : dist (p.vertexChain j₁) (q.vertexChain i₁) ≤ C)
+    (hmatch₂ : dist (p.vertexChain j₂) (q.vertexChain i₂) ≤ C)
+    (hsparse :
+      let D := lam * dist x (h • x) + c
+      let l := dist x (h • x) / lam
+      l * (B + C + c) + D * (B + (j₁ : ℝ) * D + C + c) <
+        l * (l * (j₂ : ℝ))) :
+    i₁ < i₂ := by
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hD : 0 ≤ D := by
+    dsimp [D]
+    positivity
+  have hl : 0 < l := by
+    dsimp [l]
+    positivity
+  have hb₁ := vertexChain_match_index_bounds hiso hf hqAxis p q
+    hj₁ hi₁ h0 hmatch₁
+  have hb₂ := vertexChain_match_index_bounds hiso hf hqAxis p q
+    hj₂ hi₂ h0 hmatch₂
+  dsimp only at hb₁ hb₂ hsparse
+  by_contra hnot
+  have hii : i₂ ≤ i₁ := Nat.le_of_not_gt hnot
+  have hiiR : (i₂ : ℝ) ≤ (i₁ : ℝ) := by exact_mod_cast hii
+  have hDi := mul_le_mul_of_nonneg_left hiiR hD
+  have hl₂ := mul_le_mul_of_nonneg_left hb₂.2 hl.le
+  have hD₁ := mul_le_mul_of_nonneg_left hb₁.1 hD
+  nlinarith
+
 /-- If two matched pairs are `M` vertices apart on the first quasi-axis, the
 difference of their partner indices is uniformly bounded.  Consequently only
 finitely many phase differences can occur in the later pigeonhole extraction. -/
