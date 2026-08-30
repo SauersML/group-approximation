@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw95-entangled-compact-corridor-audit-2026-08-30.md
   - research/artifacts/stw95-pure-tensor-permanence-wave-audit-2026-08-30.md
   - research/artifacts/stw95-order-reflecting-inner-cofinal-audit-2026-08-30.md
+  - research/artifacts/stw95-nonunital-ash-unitization-audit-2026-08-30.md
 ---
 
 **Problem XCV, general part, of Schafhauser--Tikuisis--White.**  Is the
@@ -87,8 +88,12 @@ a substantial nonsimple class.  The strengthened
 `stw95-transfinite-ash-layered-factor-preserves-purity` says that if `A` is
 pure and either is simple or has every quotient stably finite, then
 `A tensor_min B` is pure whenever `B` is separable and has a continuous
-arbitrary-ordinal filtration whose successor quotients are unital separable
-ASH algebras.  No separability or exactness assumption remains on `A`.  In
+arbitrary-ordinal filtration whose successor quotients are separable ASH
+algebras, now without a unitality requirement.  The local step is
+`stw95-nonunital-ash-factor-preserves-purity`: unitize an ASH factor, apply
+Seth--Vilalta, and pass purity to the tensor ideal.  This uses no exactness of
+`A`, because it needs only the ideal inclusion and not identification with a
+tensor-quotient kernel.  No separability or exactness assumption remains on `A`.  In
 particular this solves Problem XCV for such a pair when `B` is also pure,
 without requiring `B` itself to be ASH or either factor to be Z-stable.
 

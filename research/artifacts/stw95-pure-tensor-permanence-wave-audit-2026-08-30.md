@@ -188,17 +188,21 @@ Theorem B, with Remark 6.10 for the second alternative, makes
 (J_(alpha+1)/J_alpha) tensor_min A
 ```
 
-pure at every successor stage of an arbitrary continuous ordinal filtration
-of a separable `B`.  ASH algebras are nuclear, so applying the
+pure at every **unital** ASH successor stage of an arbitrary continuous
+ordinal filtration of a separable `B`.  The unitality restriction can be
+removed: for a nonunital separable ASH algebra `L`, its unitization
+`L_tilde` is unital separable ASH, `A tensor_min L_tilde` is pure by
+Seth--Vilalta, and `A tensor_min L` is a closed ideal therein.  This ideal
+argument does not require exactness of `A`.  ASH algebras are nuclear, so applying the
 nuclear-successor filtration theorem proves that `A tensor_min B` is pure.
 Thus if `B` is pure, this is a genuine positive class for Problem XCV; `B`
 may be a transfinite extension of ASH layers rather than a single ASH
 algebra, and `A` may be nonexact and nonseparable.
 
-The qualifier “unital separable” on every ASH successor quotient is
-deliberate.  It is the precise hypothesis of Seth--Vilalta's stated tensor
-theorem; this audit does not silently extend that theorem to nonunital ASH
-algebras.
+The qualifier “separable” on every ASH successor quotient is retained from
+Seth--Vilalta's stated tensor theorem.  The qualifier “unital” is removed by
+the explicit unitization-and-ideal reduction, rather than by silently
+strengthening their theorem.
 
 ## Nonexact excess-kernel counterexample mechanism
 
