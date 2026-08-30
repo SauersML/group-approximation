@@ -4,21 +4,13 @@ id: stw63-strict-comparison-cu-collapse-proof
 kind: route
 title: Collapse every soft Jiang--Su class by all quasitraces and invoke Robert
 target: stw63-strict-comparison-sr1-uniqueness
-requires: []
+requires:
+  - stw63-sr1-return-is-cu-equality
 artifacts:
   - research/artifacts/stw63-z-embedding-audit-2026-08-30.md
 ---
 
-Let `phi,psi:Z->B` be unital embeddings.  The precise classification input
-is Robert, *Classification of inductive limits of 1-dimensional NCCW
-complexes*, Advances in Mathematics 231 (2012), Theorem 1.0.1: maps from a
-sequential inductive limit of one-dimensional NCCW complexes with trivial
-`K_1` into a stable-rank-one target are classified up to approximate unitary
-equivalence by `Cu_tilde`.  The algebra `Z` is such an inductive limit; in the
-unital setting, equality of the ordinary `Cu` maps together with the already
-fixed unit gives the required `Cu_tilde` equality.
-
-Robert computes in Section 6.3
+Let `phi,psi:Z->B` be unital embeddings.  Robert computes in Section 6.3
 
 ```text
 Cu(Z) = N disjointUnion (0,infinity],                    (1)
@@ -49,7 +41,8 @@ Cu-morphisms preserve increasing suprema, so
 handles every soft class, including the soft copy of an integer, without an
 equal-rank use of strict comparison: the strict gap is inserted first at
 `r_k<r`, and only then is the supremum taken.  Thus the two `Cu` maps agree
-on all of (1), and Robert's theorem gives approximate unitary equivalence.
+on all of (1), and the stable-rank-one Cu return theorem gives approximate
+unitary equivalence.
 
 Robert's Proposition 6.3.1 states a narrower application assuming a unique
 2-quasitrace because it also computes the target semigroup.  The argument
