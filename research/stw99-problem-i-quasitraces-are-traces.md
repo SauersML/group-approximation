@@ -6,6 +6,7 @@ title: Every bounded quasitrace on a C*-algebra is a trace (STW Problem I, Kapla
 root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw01-quasitrace-status-and-local-permanence-audit-2026-08-30.md
 ---
 
 **Problem I of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  If `τ` is a bounded quasitrace on a C\*-algebra, must
@@ -16,3 +17,12 @@ exact C\*-algebras (STW, Theorem 8); the general case is open.  STW's footnote
 152 (Thiel) notes that even for `C*_r(G)` with `G` C\*-simple it is not known
 whether the unique trace is the unique quasitrace; strict comparison with
 respect to the trace would give that (`stw99-xc-implies-quasitrace-for-cstar-simple`).
+
+Unconditional permanence results include
+`stw01-stable-algebras-are-bounded-quasitrace-invisible` and
+`stw01-transfinite-quasitrace-invisible-filtrations`: a continuous ideal
+filtration of arbitrary ordinal length is bounded-quasitrace-invisible when
+all successor layers are, and quasitrace linearity then transfers from the
+terminal quotient.  In particular this applies to stable successor layers
+and an exact terminal quotient.  These results produce broad nonexact
+positive classes but do not settle the unrestricted problem.

@@ -103,6 +103,31 @@ The precise extension principle is slightly more general: stability is used
 only to show that the ideal is invisible to bounded quasitraces.  Any ideal
 on which every bounded 2-quasitrace is zero has the same transfer property.
 
+The stable-algebra vanishing argument is now isolated as
+`stw01-stable-algebras-are-bounded-quasitrace-invisible`, so it can be used
+without first placing the stable algebra in an extension.  This also supports
+an arbitrary transfinite version.  If
+
+```text
+0=J_0 subset J_1 subset ... subset J_gamma=J
+```
+
+is a continuous increasing ideal filtration and every successor quotient
+`J_(alpha+1)/J_alpha` has no nonzero bounded `2`-quasitrace, then `J` has
+none.  For a bounded quasitrace `q` on `J`, transfinite induction puts every
+`J_alpha` in its closed square-null ideal `N_q`.  At successors, factor
+through `J/J_alpha` and use invisibility of the next layer.  At a limit
+`lambda`, closedness of `N_q` gives
+
+```text
+closure(union_(alpha<lambda) J_alpha) subset N_q.
+```
+
+No cofinal sequence is selected, so neither separability nor countable
+cofinality is needed.  If `J ideal A`, quasitrace linearity on `A/J` then
+passes to `A`.  Stable successor layers and an exact terminal quotient give
+the concrete corollary by stable invisibility and Haagerup's theorem.
+
 ## Sharp free-group tensor test
 
 STW, footnote 54, records an exact universal reformulation.  For every
