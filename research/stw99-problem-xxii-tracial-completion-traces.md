@@ -57,6 +57,11 @@ obstruction to the second derived set.
 resolves the next Cantor--Bendixson layer for compact metrizable bases.  Its
 two-level argument quotients onto the rank-one skeleton and uses spectral
 square roots to damp discontinuous fibrewise orthogonalizers in the kernel.
+The successor mechanism is now isolated in
+`stw22-derived-set-gap-trace-reduction`: restriction to the derived set is
+surjective on fibre gaps and has bounded-trace-free kernel.  Finite
+iteration proves the trace conclusion for every compact metrizable
+scattered base of finite Cantor--Bendixson height; limit rank remains open.
 
 ## Attempts
 
