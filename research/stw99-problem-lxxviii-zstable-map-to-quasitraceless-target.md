@@ -4,6 +4,8 @@ id: stw99-problem-lxxviii-zstable-map-to-quasitraceless-target
 kind: claim
 title: Every unital map from a simple nuclear Z-stable algebra to a quasitraceless target is O-infinity-stable (STW Problem LXXVIII)
 root: true
+artifacts:
+  - research/artifacts/stw78-domain-and-full-hereditary-reduction-audit-2026-08-30.md
 ---
 
 **Problem LXXVIII of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -18,6 +20,22 @@ phi : A -> B
 be `O_infinity`-stable?
 
 This remains open.
+
+The domain side has now been reduced exactly to the finite branch.
+`stw78-traceless-domain-branch-is-automatic` proves that if the admissible
+domain has no normalized trace, then it is already `O_infinity`-stable and
+its central `O_infinity` copy pushes through every unital homomorphism into
+an arbitrary target.  Thus LXXVIII is equivalent to its restriction to
+traceful, hence stably finite, domains.
+
+There is also an unconditional hereditary-image constraint.
+`stw78-full-hereditary-image-is-bounded-quasitraceless` proves that every
+nonzero positive image `c=phi(a)` is full in `B`, and that
+`closure(cBc)` has no nonzero bounded `2`-quasitrace.  The key equivalence is
+that a bounded quasitrace on a full hereditary algebra Morita-extends and is
+finite at the ambient unit, hence normalizes to a quasitrace on `B`.  This
+does not force proper infiniteness: unbounded quasitraces and comparison
+perforation remain live.
 
 Every counterexample now reduces to a finite-generator target extension:
 `stw78-counterexamples-have-finite-obstruction-targets` gives
