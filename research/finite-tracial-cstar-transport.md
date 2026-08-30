@@ -4,6 +4,7 @@ id: finite-tracial-cstar-transport
 kind: claim
 title: Kazhdan transport for norm ultraproducts of finite traced C-star algebras
 root: true
+refuted_by: arbitrary-traced-coordinate-transport-fails
 distinct_from:
   kazhdan-asymptotic-commutant-transport: The established theorem treats matrix coordinates; this root asks for the correct extension to other building blocks.
   left-right-finite-coordinate-obstruction: That established successor gives a genuine sufficient coordinate class.
