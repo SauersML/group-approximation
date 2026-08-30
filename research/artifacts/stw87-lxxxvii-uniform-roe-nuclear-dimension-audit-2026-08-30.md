@@ -176,6 +176,44 @@ both destroys some commutative packets and discards every noncommutative
 packet.  Neither calculation excludes a recovery argument that reorganizes
 the approximation before applying the expectation.
 
+## Z2 boundary and limit-operator firewall
+
+The natural periodic-quotient route is unavailable even for `Z^2`.
+Translation by a nonzero `h in Z^2` acts freely on `beta Z^2`: choose an
+integer coordinate nonzero on `h` and partition its values modulo a prime
+not dividing that coordinate.  Translation by `h` permutes the clopen cells
+without a fixed cell, whereas an ultrafilter selects exactly one cell.  Thus
+there are no finite orbits and no equivariant coefficient quotient
+
+```text
+ell^infinity(Z^2) -> C(F)
+```
+
+for a nonempty finite `Z^2`-set `F`.  The same argument excludes a
+star-homomorphic retraction from `C*_u(Z^2)` to the canonical `C(T^2)` that
+fixes the group unitaries: composing its diagonal restriction with a torus
+character would give a translation-invariant character of
+`ell^infinity(Z^2)`.
+
+Limit operators have the complementary behavior.  The orbit-evaluation map
+at every ultrafilter permutes each finite-index coset partition and fixes the
+group unitaries.  Its crossed-product image therefore contains
+
+```text
+C(Z^2/H) crossed_product Z^2
+ ~= M_[Z^2:H](C(T^2))
+```
+
+for every finite-index subgroup `H`.  For a boundary ultrafilter this image
+is a quotient of the uniform Roe corona.  The two-dimensional periodic
+blocks, including their Bott classes, survive only as subalgebras of that
+quotient.  Since nuclear dimension is not monotone under arbitrary
+subalgebras, this gives no lower bound.  Freeness simultaneously prevents
+promoting the blocks through the canonical finite-orbit coefficient
+quotient.  Hence crossed-product quotients, limit operators, K-theory, and
+dynamic-asymptotic-dimension restrictions all stop at the same variance
+barrier; none supplies `dim_nuc(C*_u(Z^2))>=2`.
+
 ## Exact remaining frontier
 
 The cases not covered by the preceding established results are:

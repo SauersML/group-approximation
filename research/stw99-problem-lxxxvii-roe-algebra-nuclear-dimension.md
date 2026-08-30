@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw87-lxxxvii-uniform-roe-nuclear-dimension-audit-2026-08-30.md
   - research/artifacts/stw87-invariant-mean-retraction-audit-2026-08-30.md
+  - research/artifacts/stw87-z2-boundary-limit-operator-audit-2026-08-30.md
 ---
 
 **Problem LXXXVII of Schafhauser--Tikuisis--White, arXiv:2506.10902** (Willett--Winter, [449, Question 9.5]).  For a
@@ -65,3 +66,15 @@ projections to the common scalar `1/k`, at exact distance `1/k` from every
 c.p.c. order-zero repair (`stw87-invariant-mean-retraction-has-coset-order-zero-gap`).
 Thus even the canonical retraction `C*_u(Z^d)->C(T^d)` cannot directly
 transfer nuclear-dimension colours to the group algebra.
+
+For `Z^2`, boundary and limit-operator quotients do not repair this defect.
+`stw87-z2-has-no-periodic-boundary-quotient` proves that the translation
+action on `beta Z^2` is free, so there is no finite boundary orbit, no
+periodic coefficient quotient, and no star-homomorphic retraction
+`C*_u(Z^2)->C(T^2)` fixing the group unitaries.  Conversely every boundary
+limit representation retains, for every finite-index `H<Z^2`, a subalgebra
+`C(Z^2/H) crossed_product Z^2 ~= M_[Z^2:H](C(T^2))`.  These blocks carry the
+expected rank-two topology but only as arbitrary subalgebras; nuclear
+dimension is not upward monotone from them.  Thus limit operators and Bott
+classes expose the correct two-dimensional core without giving it the
+quotient or hereditary variance needed for the missing lower bound.
