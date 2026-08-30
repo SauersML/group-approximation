@@ -90,6 +90,23 @@ vanish.  The graph theorem identifies this reorganization, rather than
 mere relabelling, as logically necessary whenever the obstruction number
 has a positive lower bound.
 
+# A nonprojectional positive mechanism
+
+There is one unconditional way to certify the needed reorganization.  If
+the unit supports of the constituent outgoing maps are functions `f_v(h)`
+of one positive contraction and each `f_v` is confined to a closed spectral
+interval `J_v`, then the support-overlap graph is contained in the
+intersection graph of the intervals.  Interval graphs can be coloured with
+their maximum overlap depth.  Hence spectral depth `r+1` compiles directly
+to nuclear dimension at most `r`, with no projectional cut and no extra
+colour.
+
+This mechanism accommodates genuinely overlapping bands, unlike the raw
+complementary-cut perturbation.  Its unresolved input in a general
+extension is not the colouring but the **spectral banding**: arbitrary
+endpoint order-zero colours are not known to have supports which are
+functions of the same quasicentral cut variable.
+
 # Remaining hinge
 
 After the existing reductions, the universal case is a separable stable

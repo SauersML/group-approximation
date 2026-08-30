@@ -167,3 +167,13 @@ perturbation error for every stage-dependent two-colour assignment.  This
 still does not decide the problem: a universal proof may
 split or replace the transition-band maps, as all known non-quasidiagonal
 optimal proofs do under additional classification hypotheses.
+
+There is nevertheless a genuinely nonprojectional positive colour-reuse
+mechanism.  `stw82-spectral-interval-band-depth-reuses-colours` proves that
+when the outgoing unit supports are functions of one positive contraction,
+localized in spectral intervals of overlap depth `r+1`, the unchanged maps
+regroup into `r+1` order-zero colours.  Thus any approximation scheme with
+such band depth proves nuclear dimension at most `r`, exactly.  This moves
+the universal hinge again: the missing theorem is a structure-free way to
+subdivide arbitrary transition maps into common-cut spectral bands while
+preserving their order-zero structure and approximation quality.
