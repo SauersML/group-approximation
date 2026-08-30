@@ -14,3 +14,16 @@ artifacts:
 
 The finitely presented non-MF groups `E_m`, for integers `m >= 2`, are
 pairwise non-isomorphic.
+
+
+## Prime subfamily solved
+
+The prime-indexed subfamily is now completely separated by
+`prime-scaling-subfamily-pairwise-nonisomorphic`.  For prime `p`, the
+maximal property-`(T)` subgroups of `E_p` have finite radical
+`ClLamp(p^3)`, of order `2^(p^3+1)`; this intrinsic number recovers `p`.
+
+The full root remains open only for comparisons involving composite scales.
+There the marked orbital block is no longer complete: its edge differences
+are the unimodular vectors in `(Z/mZ)^3`, so the prime proof cannot be
+relabelled with `p=m`.
