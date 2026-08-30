@@ -98,6 +98,24 @@ series, a double induction reduces permanence to tensor products of their
 simple composition factors.  This is a reduction, not a proof for those
 simple-factor products.
 
+## Continuous countable-filtration reduction
+
+The same reduction extends through every countable ordinal.  The extra
+input is internal: sequential Cu colimits preserve almost unperforation and
+almost divisibility.  For unperforation, test the desired comparison on a
+compactly contained piece, lift the resulting finite inequality to one
+stage, and compare there.  For divisibility, lift a way-below pair to one
+stage and divide it there.  Thus sequential C*-inductive limits of pure
+algebras are pure.
+
+At a successor stage of a continuous ideal filtration, exactness of the
+other tensor factor identifies the quotient and extension permanence
+applies.  At a countable limit stage, choose a cofinal sequence and use the
+new inductive-limit theorem.  Hence exact pure-tensor permanence for
+algebras with continuous countable composition series reduces completely to
+the products of their simple successor quotients.  No claim about those
+remaining simple pairs is made.
+
 ## Nonexact excess-kernel counterexample mechanism
 
 For an ideal `I` in `A`, let
