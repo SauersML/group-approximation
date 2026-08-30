@@ -58,10 +58,10 @@ def emit_fiber_table(fibers, out, chunk_size=8):
         "/-- Sparse support-pair list for one coefficient class. -/\n",
         "def classPairList (c : Fin 293) : List (Fin 22 × Fin 22) :=\n",
         "  if h : c.1 < %d then\n" % full_size,
-        "    classPairListChunks ⟨c.1 / %d, by omega⟩ " % chunk_size,
-        "⟨c.1 %% %d, Nat.mod_lt _ (by omega)⟩\n" % chunk_size,
+        "    classPairListChunks ⟨c.1 / %d, by lia⟩ " % chunk_size,
+        "⟨c.1 %% %d, Nat.mod_lt _ (by lia)⟩\n" % chunk_size,
         "  else\n",
-        "    classPairListFinal ⟨c.1 - %d, by omega⟩\n\n" % full_size,
+        "    classPairListFinal ⟨c.1 - %d, by lia⟩\n\n" % full_size,
     ])
 
 
@@ -135,7 +135,7 @@ def main():
             ])
         last = upper - 1
         out.extend([
-            "  have hc : c = (%d : Fin 293) := Fin.ext (by omega)\n" % last,
+            "  have hc : c = (%d : Fin 293) := Fin.ext (by lia)\n" % last,
             "  subst c\n",
             "  exact classPairList_sound_%d\n" % last,
         ])
@@ -149,11 +149,11 @@ def main():
         upper = lower + dispatch_size
         out.extend([
             "  by_cases h%d : c.1 < %d\n" % (lower, upper),
-            "  · exact classPairList_sound_%d_%d c (by omega) h%d\n" %
+            "  · exact classPairList_sound_%d_%d c (by lia) h%d\n" %
             (lower, upper, lower),
         ])
     out.extend([
-        "  exact classPairList_sound_288_293 c (by omega) (by omega)\n\n",
+        "  exact classPairList_sound_288_293 c (by lia) (by lia)\n\n",
         "/-- Every pair stored in a sparse fiber has that fiber's class. -/\n",
         "theorem classPairs_sound (c : Fin 293) (pair : Fin 22 × Fin 22)\n",
         "    (hpair : pair ∈ classPairs c) :\n",

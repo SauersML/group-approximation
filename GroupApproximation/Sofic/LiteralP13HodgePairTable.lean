@@ -465,9 +465,9 @@ private def classPairListFinal : Fin 5 → List (Fin 22 × Fin 22) := exactTable
 /-- Sparse support-pair list for one coefficient class. -/
 def classPairList (c : Fin 293) : List (Fin 22 × Fin 22) :=
   if h : c.1 < 288 then
-    classPairListChunks ⟨c.1 / 8, by omega⟩ ⟨c.1 % 8, Nat.mod_lt _ (by omega)⟩
+    classPairListChunks ⟨c.1 / 8, by lia⟩ ⟨c.1 % 8, Nat.mod_lt _ (by lia)⟩
   else
-    classPairListFinal ⟨c.1 - 288, by omega⟩
+    classPairListFinal ⟨c.1 - 288, by lia⟩
 
 /-- Finset form of the sparse fiber. -/
 def classPairs (c : Fin 293) : Finset (Fin 22 × Fin 22) :=
@@ -2359,7 +2359,7 @@ private theorem classPairList_sound_0_32 (c : Fin 293)
   · have hc : c = (30 : Fin 293) := Fin.ext h30
     subst c
     exact classPairList_sound_30
-  have hc : c = (31 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (31 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_31
 
@@ -2491,7 +2491,7 @@ private theorem classPairList_sound_32_64 (c : Fin 293)
   · have hc : c = (62 : Fin 293) := Fin.ext h62
     subst c
     exact classPairList_sound_62
-  have hc : c = (63 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (63 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_63
 
@@ -2623,7 +2623,7 @@ private theorem classPairList_sound_64_96 (c : Fin 293)
   · have hc : c = (94 : Fin 293) := Fin.ext h94
     subst c
     exact classPairList_sound_94
-  have hc : c = (95 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (95 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_95
 
@@ -2755,7 +2755,7 @@ private theorem classPairList_sound_96_128 (c : Fin 293)
   · have hc : c = (126 : Fin 293) := Fin.ext h126
     subst c
     exact classPairList_sound_126
-  have hc : c = (127 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (127 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_127
 
@@ -2887,7 +2887,7 @@ private theorem classPairList_sound_128_160 (c : Fin 293)
   · have hc : c = (158 : Fin 293) := Fin.ext h158
     subst c
     exact classPairList_sound_158
-  have hc : c = (159 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (159 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_159
 
@@ -3019,7 +3019,7 @@ private theorem classPairList_sound_160_192 (c : Fin 293)
   · have hc : c = (190 : Fin 293) := Fin.ext h190
     subst c
     exact classPairList_sound_190
-  have hc : c = (191 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (191 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_191
 
@@ -3151,7 +3151,7 @@ private theorem classPairList_sound_192_224 (c : Fin 293)
   · have hc : c = (222 : Fin 293) := Fin.ext h222
     subst c
     exact classPairList_sound_222
-  have hc : c = (223 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (223 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_223
 
@@ -3283,7 +3283,7 @@ private theorem classPairList_sound_224_256 (c : Fin 293)
   · have hc : c = (254 : Fin 293) := Fin.ext h254
     subst c
     exact classPairList_sound_254
-  have hc : c = (255 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (255 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_255
 
@@ -3415,7 +3415,7 @@ private theorem classPairList_sound_256_288 (c : Fin 293)
   · have hc : c = (286 : Fin 293) := Fin.ext h286
     subst c
     exact classPairList_sound_286
-  have hc : c = (287 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (287 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_287
 
@@ -3439,7 +3439,7 @@ private theorem classPairList_sound_288_293 (c : Fin 293)
   · have hc : c = (291 : Fin 293) := Fin.ext h291
     subst c
     exact classPairList_sound_291
-  have hc : c = (292 : Fin 293) := Fin.ext (by omega)
+  have hc : c = (292 : Fin 293) := Fin.ext (by lia)
   subst c
   exact classPairList_sound_292
 
@@ -3447,24 +3447,24 @@ private theorem classPairList_sound (c : Fin 293) :
     (classPairList c).Forall
       (fun pair ↦ productClassIndex pair.1 pair.2 = c) := by
   by_cases h0 : c.1 < 32
-  · exact classPairList_sound_0_32 c (by omega) h0
+  · exact classPairList_sound_0_32 c (by lia) h0
   by_cases h32 : c.1 < 64
-  · exact classPairList_sound_32_64 c (by omega) h32
+  · exact classPairList_sound_32_64 c (by lia) h32
   by_cases h64 : c.1 < 96
-  · exact classPairList_sound_64_96 c (by omega) h64
+  · exact classPairList_sound_64_96 c (by lia) h64
   by_cases h96 : c.1 < 128
-  · exact classPairList_sound_96_128 c (by omega) h96
+  · exact classPairList_sound_96_128 c (by lia) h96
   by_cases h128 : c.1 < 160
-  · exact classPairList_sound_128_160 c (by omega) h128
+  · exact classPairList_sound_128_160 c (by lia) h128
   by_cases h160 : c.1 < 192
-  · exact classPairList_sound_160_192 c (by omega) h160
+  · exact classPairList_sound_160_192 c (by lia) h160
   by_cases h192 : c.1 < 224
-  · exact classPairList_sound_192_224 c (by omega) h192
+  · exact classPairList_sound_192_224 c (by lia) h192
   by_cases h224 : c.1 < 256
-  · exact classPairList_sound_224_256 c (by omega) h224
+  · exact classPairList_sound_224_256 c (by lia) h224
   by_cases h256 : c.1 < 288
-  · exact classPairList_sound_256_288 c (by omega) h256
-  exact classPairList_sound_288_293 c (by omega) (by omega)
+  · exact classPairList_sound_256_288 c (by lia) h256
+  exact classPairList_sound_288_293 c (by lia) (by lia)
 
 /-- Every pair stored in a sparse fiber has that fiber's class. -/
 theorem classPairs_sound (c : Fin 293) (pair : Fin 22 × Fin 22)

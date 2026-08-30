@@ -108,13 +108,13 @@ theorem viol_succ_lt {V : List Letter} {b : Fin 3 → ℤ} {v : ℕ}
   obtain ⟨hlen, hlt⟩ := hv
   by_contra h
   push Not at h
-  have h1 : v + 1 = V.length ∨ V.length < v + 1 := by omega
+  have h1 : v + 1 = V.length ∨ V.length < v + 1 := by lia
   have hle : V.length ≤ v + 1 := h
   have hs1 : sigma V b (v + 1) = vnorm b := sigma_of_ge V b hle
   have hs0 : 1 ≤ sigma V b v := by
     unfold P13WordDescent.sigma
     exact vnorm_vecOf_pos _ hb1
-  omega
+  lia
 
 /-- The deeper neighbour of the topmost worst violation does not
 exceed the violated height. -/
@@ -130,14 +130,14 @@ theorem side_le_of_top {V : List Letter} {b : Fin 3 → ℤ}
     push Not at hlen
     have := sigma_of_ge V b hlen
     have h2 : sigma V b (topViol V b hex + 2) ≤ vnorm b := by
-      rw [sigma_of_ge V b (by omega)]
+      rw [sigma_of_ge V b (by lia)]
     have h3 : vnorm b ≤ sigma V b (topViol V b hex + 1) := by
       rw [← this]
-    omega
+    lia
   have hlam := le_lam hv1
   rw [show topViol V b hex + 1 + 1 = topViol V b hex + 2 from rfl] at hlam
   rw [htop] at h
-  omega
+  lia
 
 /-! ## Cross-base splice facts -/
 
@@ -224,7 +224,7 @@ private theorem eval_triple (l₁ l₂ l₃ : Letter) :
   group
 
 private theorem unit_neg {c : ℤ} (hc : c = 1 ∨ c = -1) :
-    -c = 1 ∨ -c = -1 := by omega
+    -c = 1 ∨ -c = -1 := by lia
 
 private theorem unit_mul {c cp : ℤ} (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) : c * cp = 1 ∨ c * cp = -1 := by
@@ -650,7 +650,7 @@ private theorem exist_st_15_pp' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_15_pm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 5 (-1))) u)) <
@@ -675,7 +675,7 @@ private theorem exist_st_15_pm' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_15_mp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 5 1)) u)) <
@@ -700,7 +700,7 @@ private theorem exist_st_15_mp' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_15_mm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 5 (-1))) u)) <
@@ -725,7 +725,7 @@ private theorem exist_st_15_mm' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_15' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -774,7 +774,7 @@ private theorem exist_st_34_pp' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_34_pm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 4 (-1))) u)) <
@@ -799,7 +799,7 @@ private theorem exist_st_34_pm' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_34_mp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 4 1)) u)) <
@@ -824,7 +824,7 @@ private theorem exist_st_34_mp' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_34_mm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 4 (-1))) u)) <
@@ -849,7 +849,7 @@ private theorem exist_st_34_mm' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_34' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -898,7 +898,7 @@ private theorem exist_st_52_pp' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_52_pm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 2 (-1))) u)) <
@@ -923,7 +923,7 @@ private theorem exist_st_52_pm' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_52_mp' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 2 1)) u)) <
@@ -948,7 +948,7 @@ private theorem exist_st_52_mp' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_52_mm' (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 2 (-1))) u)) <
@@ -973,7 +973,7 @@ private theorem exist_st_52_mm' (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_52' (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -1039,7 +1039,7 @@ private theorem step_plain (V : List Letter) (b : Fin 3 → ℤ)
           rw [List.append_assoc, eval_append, eval_append, eval_append]
   refine ⟨heval, ?_⟩
   let D : SpliceData V b :=
-    ⟨hex, A, P', C, b, by omega, hAlen, hlen, by omega⟩
+    ⟨hex, A, P', C, b, by lia, hAlen, hlen, by lia⟩
   have F : SpliceFacts V b D := by
     refine ⟨?_, ?_, ?_⟩
     · -- shallow
@@ -1115,8 +1115,8 @@ private theorem step_emit (V : List Letter) (b : Fin 3 → ℤ)
       _ = (eval P' * wv) * eval C := by group
       _ = letterVal p * letterVal q * eval C := by rw [hid]
   let D : SpliceData V b :=
-    ⟨hex, A, P', C.map f, act (toSL3 wv) b, by omega, hAlen, hlen, by
-      rw [List.length_map]; omega⟩
+    ⟨hex, A, P', C.map f, act (toSL3 wv) b, by lia, hAlen, hlen, by
+      rw [List.length_map]; lia⟩
   have F : SpliceFacts V b D := by
     refine ⟨?_, ?_, ?_⟩
     · -- shallow
@@ -1271,7 +1271,7 @@ private theorem route_nil (V : List Letter) (mon : P13)
     (by norm_num) unitWord_nil (by rw [eval_nil, hid0]) ?_
   intro t _ htl
   simp only [List.length_nil] at htl
-  omega
+  lia
 
 private theorem route_pair (V : List Letter) (mon : P13)
     (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
@@ -1298,7 +1298,7 @@ private theorem route_pair (V : List Letter) (mon : P13)
     (by rw [eval_pair']; exact hid2) ?_
   intro t ht0 htl
   simp only [List.length_cons, List.length_nil] at htl
-  have ht1 : t = 1 := by omega
+  have ht1 : t = 1 := by lia
   subst ht1
   show vnorm (act (toSL3 (eval [l₂]))
     (vecOf C (act (toSL3 mon) e3))) < lam V (act (toSL3 mon) e3)
@@ -1334,7 +1334,7 @@ private theorem route_triple (V : List Letter) (mon : P13)
     (by rw [eval_triple]; exact hid3) ?_
   intro t ht0 htl
   simp only [List.length_cons, List.length_nil] at htl
-  have ht : t = 1 ∨ t = 2 := by omega
+  have ht : t = 1 ∨ t = 2 := by lia
   rcases ht with rfl | rfl
   · show vnorm (act (toSL3 (eval [l₂, l₃]))
       (vecOf C (act (toSL3 mon) e3))) < lam V (act (toSL3 mon) e3)
@@ -1372,7 +1372,7 @@ private theorem route_single_emit (V : List Letter) (mon : P13)
     (by rw [eval_single]; exact hid1) ?_
   intro t ht0 htl
   simp only [List.length_cons, List.length_nil] at htl
-  omega
+  lia
 
 private theorem route_triple_emit (V : List Letter) (mon : P13)
     (hmon : mon ∈ Subgroup.closure ({w13, w23} : Set P13))
@@ -1410,7 +1410,7 @@ private theorem route_triple_emit (V : List Letter) (mon : P13)
     wv hwv f hf hfsign hnorm (by rw [eval_triple]; exact hid3) ?_
   intro t ht0 htl
   simp only [List.length_cons, List.length_nil] at htl
-  have ht : t = 1 ∨ t = 2 := by omega
+  have ht : t = 1 ∨ t = 2 := by lia
   rcases ht with rfl | rfl
   · show vnorm (act (toSL3 (eval [l₂, l₃]))
       (act (toSL3 wv) (vecOf C (act (toSL3 mon) e3)))) <
@@ -1446,7 +1446,7 @@ theorem descent_step (V : List Letter) (mon : P13)
   obtain ⟨hvTop, htop⟩ := topViol_spec hex
   set v := topViol V (act (toSL3 mon) e3) hex with hv_def
   have hvlt : v + 1 < V.length := viol_succ_lt hb1 hvTop
-  have hvlt0 : v < V.length := by omega
+  have hvlt0 : v < V.length := by lia
   have hsplit := word_split V v hvlt
   rcases hpq : V[v] with ⟨i, c⟩
   rcases hq : V[v + 1] with ⟨ip, cp⟩

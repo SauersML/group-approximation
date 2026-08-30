@@ -235,7 +235,6 @@ theorem existsUnique_center [CompleteSpace E] {S : Set E}
       rw [div_lt_iff₀ hε2] at hN2
       nlinarith only [hN2, h16, hε2]
     have hd2 : dist (x n) (x m) ^ 2 < ε ^ 2 := by
-      have h8 : (0 : ℝ) ≤ 8 * (ρ + 1) := by positivity
       calc
         dist (x n) (x m) ^ 2 ≤
             8 * (ρ + 1) * (1 / (n + 1) + 1 / (m + 1)) := hd
@@ -245,7 +244,7 @@ theorem existsUnique_center [CompleteSpace E] {S : Set E}
             rw [show (2 : ℝ) / ((N : ℝ) + 1) =
               1 / ((N : ℝ) + 1) + 1 / ((N : ℝ) + 1) by ring]
             linarith only [hm1, hn1]
-          exact mul_le_mul_of_nonneg_left this h8
+          exact mul_le_mul_of_nonneg_left this (by positivity)
         _ = 16 * (ρ + 1) / ((N : ℝ) + 1) := by ring
         _ < ε ^ 2 := hkey
     nlinarith only [hd2, dist_nonneg (x := x n) (y := x m), hε]

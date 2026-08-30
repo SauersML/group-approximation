@@ -85,7 +85,7 @@ theorem mono_iff_no_viol (W : List Letter) (b : Fin 3 → ℤ) :
               unfold sigma
               rw [List.drop_zero]
             rw [this] at hlt
-            exact absurd hstep (by omega)
+            exact absurd hstep (by lia)
         | j + 1 =>
             rw [sigma_cons_succ, sigma_cons_succ] at hlt
             exact (ih.mp hm) j ⟨by simpa using hj, hlt⟩
@@ -106,7 +106,7 @@ theorem mono_iff_no_viol (W : List Letter) (b : Fin 3 → ℤ) :
             unfold sigma
             rw [List.drop_zero]
           have h2 : sigma (l :: W) b (0 + 1) = sigma (l :: W) b 1 := rfl
-          omega
+          lia
 
 /-! ## The measure -/
 
@@ -130,7 +130,7 @@ theorem le_lam {W : List Letter} {b : Fin 3 → ℤ} {j : ℕ}
 
 theorem lam_pos {W : List Letter} {b : Fin 3 → ℤ} {j : ℕ}
     (hv : Viol W b j) : 0 < lam W b :=
-  lt_of_lt_of_le (by have := hv.2; omega) (le_lam hv)
+  lt_of_lt_of_le (by have := hv.2; lia) (le_lam hv)
 
 /-- Some violation attains the largest height, when violations exist. -/
 theorem exists_top {W : List Letter} {b : Fin 3 → ℤ} {j₀ : ℕ}
@@ -194,19 +194,19 @@ theorem vnorm_act_w (v : Fin 3 → ℤ) :
     vnorm (act (toSL3 w) v) = vnorm v := by
   rw [act_w]
   simp [vnorm]
-  omega
+  lia
 
 theorem vnorm_act_w13 (v : Fin 3 → ℤ) :
     vnorm (act (toSL3 w13) v) = vnorm v := by
   rw [act_w13]
   simp [vnorm]
-  omega
+  lia
 
 theorem vnorm_act_w23 (v : Fin 3 → ℤ) :
     vnorm (act (toSL3 w23) v) = vnorm v := by
   rw [act_w23]
   simp [vnorm]
-  omega
+  lia
 
 theorem vnorm_act_inv {m : P13}
     (hm : ∀ u, vnorm (act (toSL3 m) u) = vnorm u) (v : Fin 3 → ℤ) :
@@ -274,7 +274,7 @@ private theorem viol_of_lt {W : List Letter} {b : Fin 3 → ℤ} {j : ℕ}
   push Not at hge
   have h1 := sigma_of_ge W b hge
   have h2 := sigma_of_ge W b (le_trans hge (Nat.le_add_right j 1))
-  omega
+  lia
 
 /-- The value below the top violation is bounded by the violated
 height: otherwise the position below would violate at a greater
@@ -288,9 +288,9 @@ private theorem sigma_succ_top_le {W : List Letter} {b : Fin 3 → ℤ}
   have hlt : sigma W b (topViol W b hex + 1) <
       sigma W b (topViol W b hex + 1 + 1) := by
     rw [htop]
-    omega
+    lia
   have := le_lam (viol_of_lt hlt)
-  omega
+  lia
 
 /-- Position analysis for a violation of the spliced word: it is a
 shallow copy of an old violation, or its height is cut, or its height
@@ -312,7 +312,7 @@ private theorem newViol_cases (W : List Letter) (b : Fin 3 → ℤ)
     have hsj : sigma (D.A ++ D.P' ++ D.C') D.b' j = sigma W b j :=
       F.shallow j (le_of_lt hsh)
     have hsj1 : sigma (D.A ++ D.P' ++ D.C') D.b' (j + 1) =
-        sigma W b (j + 1) := F.shallow (j + 1) (by omega)
+        sigma W b (j + 1) := F.shallow (j + 1) (by lia)
     have h2 := hvj.2
     rw [hsj, hsj1] at h2
     exact Or.inl ⟨hsh, viol_of_lt h2, hsj1⟩
@@ -325,7 +325,7 @@ private theorem newViol_cases (W : List Letter) (b : Fin 3 → ℤ)
           omega] at hc
         exact Or.inr (Or.inl hc)
       · -- the height is the old value below the block
-        have hj1 : j + 1 = D.A.length + D.P'.length := by omega
+        have hj1 : j + 1 = D.A.length + D.P'.length := by lia
         have hd0 := F.deep 0
         simp only [Nat.add_zero] at hd0
         rw [← hj1] at hd0
@@ -371,7 +371,7 @@ theorem meas_lt_of_splice (W : List Letter) (b : Fin 3 → ℤ)
   have hK1 : sigma W b (D.A.length + 2) ≤ lam W b := by
     have h := sigma_succ_top_le D.hex
     have hA := D.hA
-    rw [show D.A.length + 2 = topViol W b D.hex + 1 + 1 from by omega]
+    rw [show D.A.length + 2 = topViol W b D.hex + 1 + 1 from by lia]
     exact h
   have hmeasW : meas W b =
       (lam W b, W.length - topViol W b D.hex) := by
@@ -394,7 +394,7 @@ theorem meas_lt_of_splice (W : List Letter) (b : Fin 3 → ℤ)
         ⟨_, hold, heq⟩ | hcut | ⟨hle, _⟩
       · rw [heq]
         exact le_lam hold
-      · omega
+      · lia
       · exact hle
     rcases lt_or_eq_of_le hlam' with hlt | hlameq
     · rw [hmeasW', hmeasW]
@@ -408,10 +408,10 @@ theorem meas_lt_of_splice (W : List Letter) (b : Fin 3 → ℤ)
             + 1) = lam W b := by
           rw [← heq, htop', hlameq]
         have hA := D.hA
-        exact topViol_min D.hex (by omega) ⟨hold, hσ⟩
+        exact topViol_min D.hex (by lia) ⟨hold, hσ⟩
       · exfalso
         rw [htop', hlameq] at hcut
-        omega
+        lia
       · rw [hmeasW', hmeasW, hlameq]
         apply Prod.Lex.right
         have hA := D.hA

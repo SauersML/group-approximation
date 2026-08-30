@@ -1048,19 +1048,19 @@ private def qNumeratorFinal : Fin 6 → Fin 6 → Fin 22 → ℤ :=
 
 /-- Bounded-depth access to every exact Gram-factor row. -/
 def qNumerator (row : Fin 102) : Fin 6 → Fin 22 → ℤ :=
-  if h0 : row.1 < 8 then qNumeratorChunk0 ⟨row.1, by omega⟩ else
-  if h1 : row.1 < 16 then qNumeratorChunk1 ⟨row.1 - 8, by omega⟩ else
-  if h2 : row.1 < 24 then qNumeratorChunk2 ⟨row.1 - 16, by omega⟩ else
-  if h3 : row.1 < 32 then qNumeratorChunk3 ⟨row.1 - 24, by omega⟩ else
-  if h4 : row.1 < 40 then qNumeratorChunk4 ⟨row.1 - 32, by omega⟩ else
-  if h5 : row.1 < 48 then qNumeratorChunk5 ⟨row.1 - 40, by omega⟩ else
-  if h6 : row.1 < 56 then qNumeratorChunk6 ⟨row.1 - 48, by omega⟩ else
-  if h7 : row.1 < 64 then qNumeratorChunk7 ⟨row.1 - 56, by omega⟩ else
-  if h8 : row.1 < 72 then qNumeratorChunk8 ⟨row.1 - 64, by omega⟩ else
-  if h9 : row.1 < 80 then qNumeratorChunk9 ⟨row.1 - 72, by omega⟩ else
-  if h10 : row.1 < 88 then qNumeratorChunk10 ⟨row.1 - 80, by omega⟩ else
-  if h11 : row.1 < 96 then qNumeratorChunk11 ⟨row.1 - 88, by omega⟩ else
-  qNumeratorFinal ⟨row.1 - 96, by omega⟩
+  if h0 : row.1 < 8 then qNumeratorChunk0 ⟨row.1, by lia⟩ else
+  if h1 : row.1 < 16 then qNumeratorChunk1 ⟨row.1 - 8, by lia⟩ else
+  if h2 : row.1 < 24 then qNumeratorChunk2 ⟨row.1 - 16, by lia⟩ else
+  if h3 : row.1 < 32 then qNumeratorChunk3 ⟨row.1 - 24, by lia⟩ else
+  if h4 : row.1 < 40 then qNumeratorChunk4 ⟨row.1 - 32, by lia⟩ else
+  if h5 : row.1 < 48 then qNumeratorChunk5 ⟨row.1 - 40, by lia⟩ else
+  if h6 : row.1 < 56 then qNumeratorChunk6 ⟨row.1 - 48, by lia⟩ else
+  if h7 : row.1 < 64 then qNumeratorChunk7 ⟨row.1 - 56, by lia⟩ else
+  if h8 : row.1 < 72 then qNumeratorChunk8 ⟨row.1 - 64, by lia⟩ else
+  if h9 : row.1 < 80 then qNumeratorChunk9 ⟨row.1 - 72, by lia⟩ else
+  if h10 : row.1 < 88 then qNumeratorChunk10 ⟨row.1 - 80, by lia⟩ else
+  if h11 : row.1 < 96 then qNumeratorChunk11 ⟨row.1 - 88, by lia⟩ else
+  qNumeratorFinal ⟨row.1 - 96, by lia⟩
 /-- The exact rational Gram factor `Q_Z / 10^8`. -/
 def q : Fin 102 → Fin 6 → RatGroupRing P13 :=
   fun row root ↦ ∑ supportIndex : Fin 22,
@@ -1102,7 +1102,7 @@ def boundaryCoefficient (relator : Fin 13) (root : Fin 6)
 stored support order, `6,…,11` are the six inverse generators and `12` is the
 identity. -/
 def adjointCoboundaryNumerator (root : Fin 6) (i : Fin 22) : ℤ :=
-  if i = ⟨6 + root, by omega⟩ then 1 else if i = 12 then -1 else 0
+  if i = ⟨6 + root, by lia⟩ then 1 else if i = 12 then -1 else 0
 
 def adjointCoboundaryCoefficient (root : Fin 6) (i : Fin 22) : ℚ :=
   adjointCoboundaryNumerator root i

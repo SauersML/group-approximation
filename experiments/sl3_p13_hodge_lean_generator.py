@@ -88,9 +88,9 @@ def emit_factor(factor, output):
         index = "row.1" if chunk == 0 else "row.1 - %d" % lower
         output.write(
             "  if h%d : row.1 < %d then qNumeratorChunk%d "
-            "⟨%s, by omega⟩ else\n" % (chunk, upper, chunk, index)
+            "⟨%s, by lia⟩ else\n" % (chunk, upper, chunk, index)
         )
-    output.write("  qNumeratorFinal ⟨row.1 - 96, by omega⟩\n")
+    output.write("  qNumeratorFinal ⟨row.1 - 96, by lia⟩\n")
     output.write("\n")
     output.write("/-- The exact rational Gram factor `Q_Z / 10^8`. -/\n")
     output.write(

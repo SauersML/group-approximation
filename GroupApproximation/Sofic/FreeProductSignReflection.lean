@@ -114,10 +114,8 @@ theorem suppSet_nonempty_of_ne_one {i : I} {g : SignGroup B i}
     (hg : g ≠ 1) : (suppSet i g).Nonempty := by
   have hb : ∃ b : B i, g b ≠ 1 := by
     by_contra h
-    apply hg
-    funext b
-    by_contra hb
-    exact h ⟨b, hb⟩
+    push Not at h
+    exact hg (funext h)
   obtain ⟨b, hb⟩ := hb
   refine ⟨some ⟨i, b⟩, some_mk_mem_suppSet_iff.mpr ?_⟩
   revert hb

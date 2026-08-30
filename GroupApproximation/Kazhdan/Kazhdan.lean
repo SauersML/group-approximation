@@ -56,14 +56,13 @@ theorem norm_add_le_of_norm_sub_ge
   rw [hsub] at hmoveSq
   have hfirst : ‖x + y‖ ^ 2 ≤ (4 - a ^ 2) * ‖x‖ ^ 2 := by
     nlinarith only [hpara, hmoveSq]
-  have hcoefsquare : 4 - a ^ 2 ≤ (2 - a ^ 2 / 4) ^ 2 := by
-    nlinarith only [sq_nonneg (a ^ 2)]
   have hsquare : ‖x + y‖ ^ 2 ≤
       ((2 - a ^ 2 / 4) * ‖x‖) ^ 2 := by
     calc
       ‖x + y‖ ^ 2 ≤ (4 - a ^ 2) * ‖x‖ ^ 2 := hfirst
       _ ≤ (2 - a ^ 2 / 4) ^ 2 * ‖x‖ ^ 2 :=
-        mul_le_mul_of_nonneg_right hcoefsquare (sq_nonneg _)
+        mul_le_mul_of_nonneg_right
+          (by nlinarith only [sq_nonneg (a ^ 2)]) (sq_nonneg _)
       _ = ((2 - a ^ 2 / 4) * ‖x‖) ^ 2 := by ring
   have hright0 : 0 ≤ (2 - a ^ 2 / 4) * ‖x‖ := mul_nonneg hcoef hx0
   exact (sq_le_sq₀ hsum0 hright0).mp hsquare
@@ -96,29 +95,28 @@ theorem norm_sum_le_of_pair_separated
           (by rw [hnorm j hj, hnorm i hi])
           (by simpa [hnorm i hi] using hmove)
       _ = (2 - a ^ 2 / 4) * r := by rw [hnorm i hi]
-  have hrestSubset : rest ⊆ s :=
-    (Finset.erase_subset j (s.erase i)).trans (Finset.erase_subset i s)
   have hrest : ‖∑ k ∈ rest, z k‖ ≤ rest.card * r := by
     calc
       ‖∑ k ∈ rest, z k‖ ≤ ∑ k ∈ rest, ‖z k‖ := norm_sum_le _ _
       _ = ∑ _ ∈ rest, r := by
         apply Finset.sum_congr rfl
         intro k hk
-        exact hnorm k (hrestSubset hk)
+        exact hnorm k
+          ((Finset.erase_subset j (s.erase i)).trans (Finset.erase_subset i s) hk)
       _ = rest.card * r := by simp
   have hcard : rest.card + 2 = s.card := by
     have hcardI := Finset.card_erase_add_one hi
     have hcardJ := Finset.card_erase_add_one hjrest
     change ((s.erase i).erase j).card + 2 = s.card
     lia
-  have hcardReal : (rest.card : ℝ) + 2 = s.card := by exact_mod_cast hcard
   rw [hsum]
   calc
     ‖z i + z j + ∑ k ∈ rest, z k‖ ≤
         ‖z i + z j‖ + ‖∑ k ∈ rest, z k‖ := norm_add_le _ _
     _ ≤ (2 - a ^ 2 / 4) * r + rest.card * r := add_le_add hpair hrest
     _ = ((rest.card : ℝ) + 2 - a ^ 2 / 4) * r := by ring
-    _ = (s.card - a ^ 2 / 4) * r := by rw [hcardReal]
+    _ = (s.card - a ^ 2 / 4) * r := by
+      rw [show (rest.card : ℝ) + 2 = s.card by exact_mod_cast hcard]
 
 /-- Enlarging the finite control set preserves a Kazhdan pair. -/
 theorem mono (hQ : IsKazhdanPair.{u, v} G Q ε) (hQR : Q ⊆ R) :

@@ -100,9 +100,9 @@ theorem uniform_invisibility [Countable G] {x : G}
       le_trans (le_trans (le_max_right i j) (le_max_left _ K)) hk
     have hKk : K ≤ k := le_trans (le_max_right _ K) hk
     have hg : g ∈ (Finset.range (k + 1)).image e :=
-      Finset.mem_image.mpr ⟨i, Finset.mem_range.mpr (by omega), hi⟩
+      Finset.mem_image.mpr ⟨i, Finset.mem_range.mpr (by lia), hi⟩
     have hh : h ∈ (Finset.range (k + 1)).image e :=
-      Finset.mem_image.mpr ⟨j, Finset.mem_range.mpr (by omega), hj⟩
+      Finset.mem_image.mpr ⟨j, Finset.mem_range.mpr (by lia), hj⟩
     change opLength (Y k) ((φ k g * φ k h)⁻¹ * φ k (g * h)) < ε'
     rw [opLength_inv_mul]
     refine (hdef k g hg h hh).trans_lt ?_

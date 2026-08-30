@@ -236,8 +236,7 @@ theorem iotaVertical_smul_rootCoset (γ : Γ) :
     (QuotientGroup.mk 1 : Vertical α hα ⧸ (iotaVertical α hα).range)
   rw [QuotientGroup.eq]
   rw [mul_one]
-  apply Subgroup.inv_mem
-  exact ⟨γ, rfl⟩
+  exact (iotaVertical α hα).range.inv_mem ⟨γ, rfl⟩
 
 include hα in
 /-- The two cosets carrying the marked word are distinct. -/

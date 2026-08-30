@@ -225,14 +225,11 @@ theorem norm_sq_fixedProjection_add_movingProjection [CompleteSpace E]
     (ρ : G →* (E ≃ₗᵢ[ℝ] E)) (H : Subgroup G) (x : E) :
     ‖x‖ ^ 2 = ‖(fixedProjection ρ H x : E)‖ ^ 2 +
       ‖subgroupMovingProjection ρ H x‖ ^ 2 := by
-  have hsum : x = (fixedProjection ρ H x : E) +
-      subgroupMovingProjection ρ H x := by
-    rw [subgroupMovingProjection_eq_sub_fixedProjection]
-    abel
   calc
     ‖x‖ ^ 2 = ‖(fixedProjection ρ H x : E) +
-        subgroupMovingProjection ρ H x‖ ^ 2 :=
-      congrArg (fun y : E ↦ ‖y‖ ^ 2) hsum
+        subgroupMovingProjection ρ H x‖ ^ 2 := by
+      rw [subgroupMovingProjection_eq_sub_fixedProjection]
+      abel
     _ = ‖(fixedProjection ρ H x : E)‖ ^ 2 +
         ‖subgroupMovingProjection ρ H x‖ ^ 2 := by
       simpa [pow_two] using norm_add_sq_eq_norm_sq_add_norm_sq_real
@@ -313,11 +310,10 @@ theorem fixedProjection_eq_sup_of_fixed_of_normalizes [CompleteSpace E]
   have hpK : p ∈ fixedSubspace ρ K := by
     rw [mem_fixedSubspace_iff]
     intro k hk
-    have hxk : ρ k x = x := (mem_fixedSubspace_iff ρ K x).mp hxK k hk
     calc
       ρ k p = U.starProjection (ρ k x) :=
         (fixedProjection_equivariant_of_mem_normalizer ρ H (hKnorm hk) x).symm
-      _ = p := by rw [hxk]
+      _ = p := by rw [(mem_fixedSubspace_iff ρ K x).mp hxK k hk]
   have hpV : p ∈ V := by
     change p ∈ fixedSubspace ρ (H ⊔ K)
     rw [fixedSubspace_sup]

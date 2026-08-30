@@ -168,11 +168,11 @@ theorem badLevels_subset {L : ℕ} [NeZero L] (k : ℤ) :
     not_le.mp fun h ↦ hmem.2 (Finset.mem_filter.mpr ⟨Finset.mem_univ u, h⟩)
   -- the representative stays inside `[0, L)`, so the cast is additive
   have hlt : u.val < L := ZMod.val_lt u
-  have hrange : 0 ≤ (u.val : ℤ) + k ∧ (u.val : ℤ) + k < L := by omega
+  have hrange : 0 ≤ (u.val : ℤ) + k ∧ (u.val : ℤ) + k < L := by lia
   obtain ⟨hge, hltL⟩ := hrange
   set m : ℕ := ((u.val : ℤ) + k).toNat with hm
   have hmval : (m : ℤ) = (u.val : ℤ) + k := Int.toNat_of_nonneg hge
-  have hmlt : m < L := by omega
+  have hmlt : m < L := by lia
   have hcast : u + (k : ZMod L) = (m : ZMod L) := by
     have : ((((u.val : ℤ) + k : ℤ)) : ZMod L) = (m : ZMod L) := by
       rw [← hmval]
@@ -216,7 +216,7 @@ theorem card_badLevels_le {L : ℕ} [NeZero L] (k : ℤ) :
         have h2 : u.val < L := ZMod.val_lt u
         refine Finset.mem_range.mpr ?_
         show u.val - (L - k.natAbs) < k.natAbs
-        omega
+        lia
       · intro a ha b hb hab
         have ha' := hmemB a (Finset.mem_coe.mp ha)
         have hb' := hmemB b (Finset.mem_coe.mp hb)
@@ -224,7 +224,7 @@ theorem card_badLevels_le {L : ℕ} [NeZero L] (k : ℤ) :
         have hbl : b.val < L := ZMod.val_lt b
         apply ZMod.val_injective
         have hab' : a.val - (L - k.natAbs) = b.val - (L - k.natAbs) := hab
-        omega
+        lia
     simpa using hle
   calc (badLevels L k).card
       ≤ ((Finset.univ.filter fun u : ZMod L ↦ u.val < k.natAbs) ∪
@@ -318,7 +318,7 @@ theorem labelAt_mul_of_not_bad (L : ℕ) [NeZero L]
   have hval := val_add_of_not_bad hgood
   rw [labelAt, labelAt, labelAt, left_mul, tw_mul, ← tw_add]
   congr 2
-  omega
+  lia
 
 /-- **Soficity passes to split extensions by the integers.**
 
@@ -337,7 +337,7 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
   set L : ℕ := max (2 * K + 1) (L₀ + 1) with hLdef
   have hLpos : 0 < L := lt_of_lt_of_le (Nat.succ_pos _) (le_max_left _ _)
   haveI : NeZero L := ⟨hLpos.ne'⟩
-  have hKL : 2 * K < L := lt_of_lt_of_le (by omega) (le_max_left _ _)
+  have hKL : 2 * K < L := lt_of_lt_of_le (by lia) (le_max_left _ _)
   have hLR : (0 : ℝ) < L := by exact_mod_cast hLpos
   have hLbig : 4 * (K : ℝ) / ε < L := by
     have hstep : (L₀ : ℝ) < L := by
@@ -395,7 +395,7 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
           exact add_right_cancel hab
       have h2 := card_badLevels_le (L := L) (shiftOf φ g)
       have h3 : (shiftOf φ g).natAbs ≤ K := hKmem g hg
-      omega
+      lia
     have hall : ∀ i : ZMod L, d i ≤ 1 := fun i ↦ hammingDistance_le_one _ _ _
     have hgood : ∀ i ∈ BADᶜ, d i ≤ ε / 2 := by
       intro i hi
@@ -441,8 +441,8 @@ theorem isSofic_int_semidirectProduct (hN : IsSofic N) :
           (ZMod.intCast_eq_intCast_iff _ _ _).mp hs
         obtain ⟨c, hc⟩ : (L : ℤ) ∣ (shiftOf φ h - shiftOf φ g) :=
           Int.ModEq.dvd hmod
-        have hgb : -(K : ℤ) ≤ shiftOf φ g ∧ shiftOf φ g ≤ (K : ℤ) := by omega
-        have hhb : -(K : ℤ) ≤ shiftOf φ h ∧ shiftOf φ h ≤ (K : ℤ) := by omega
+        have hgb : -(K : ℤ) ≤ shiftOf φ g ∧ shiftOf φ g ≤ (K : ℤ) := by lia
+        have hhb : -(K : ℤ) ≤ shiftOf φ h ∧ shiftOf φ h ≤ (K : ℤ) := by lia
         have hLZ : (0 : ℤ) < (L : ℤ) := by exact_mod_cast hLpos
         rcases lt_trichotomy c 0 with hneg | hzero | hpos
         · exfalso

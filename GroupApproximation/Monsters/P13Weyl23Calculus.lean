@@ -66,17 +66,10 @@ theorem x_conj_rev_23_12 (b a : ℤ) :
   have h1 : x 0 a * x 3 b = x 1 (a * b) * x 3 b * x 0 a := by
     have := congrArg (· * x 0 a) hF
     simpa [mul_assoc] using this
-  have h2 : x 3 b * x 0 a = x 1 (-(a * b)) * x 0 a * x 3 b := by
-    have h3 : x 1 (-(a * b)) * (x 0 a * x 3 b) =
-        x 3 b * x 0 a := by
-      rw [h1, x_neg]
-      group
-    calc x 3 b * x 0 a
-        = x 1 (-(a * b)) * (x 0 a * x 3 b) * (x 3 b)⁻¹ * x 3 b := by
-          rw [h3]; group
-      _ = x 1 (-(a * b)) * x 0 a * x 3 b := by group
   calc x 3 b * x 0 a * (x 3 b)⁻¹
-      = (x 1 (-(a * b)) * x 0 a * x 3 b) * (x 3 b)⁻¹ := by rw [← h2]
+      = (x 1 (-(a * b)) * (x 0 a * x 3 b)) * (x 3 b)⁻¹ := by
+        rw [h1, x_neg]
+        group
     _ = x 1 (-(a * b)) * x 0 a := by group
 
 /-- `x₃₂(b) x₁₃(a) x₃₂(b)⁻¹ = x₁₂(-(a b)) x₁₃(a)`. -/
@@ -86,17 +79,10 @@ theorem x_conj_rev_32_13 (b a : ℤ) :
   have h1 : x 1 a * x 5 b = x 0 (a * b) * x 5 b * x 1 a := by
     have := congrArg (· * x 1 a) hF
     simpa [mul_assoc] using this
-  have h2 : x 5 b * x 1 a = x 0 (-(a * b)) * x 1 a * x 5 b := by
-    have h3 : x 0 (-(a * b)) * (x 1 a * x 5 b) =
-        x 5 b * x 1 a := by
-      rw [h1, x_neg]
-      group
-    calc x 5 b * x 1 a
-        = x 0 (-(a * b)) * (x 1 a * x 5 b) * (x 5 b)⁻¹ * x 5 b := by
-          rw [h3]; group
-      _ = x 0 (-(a * b)) * x 1 a * x 5 b := by group
   calc x 5 b * x 1 a * (x 5 b)⁻¹
-      = (x 0 (-(a * b)) * x 1 a * x 5 b) * (x 5 b)⁻¹ := by rw [← h2]
+      = (x 0 (-(a * b)) * (x 1 a * x 5 b)) * (x 5 b)⁻¹ := by
+        rw [h1, x_neg]
+        group
     _ = x 0 (-(a * b)) * x 1 a := by group
 
 /-! ## The four off-corner conjugations -/
@@ -202,10 +188,9 @@ theorem w23_conj_32 (a : ℤ) : w23 * x 5 a * w23⁻¹ = x 3 (-a) := by
 /-- The braid relation for `x₂₃(1)` and `x₃₂(-1)`. -/
 theorem braid23 :
     x 3 1 * x 5 (-1) * x 3 1 = x 5 (-1) * x 3 1 * x 5 (-1) := by
-  have h : w23 * x 3 1 * w23⁻¹ = x 5 (-1) := w23_conj_23 1
   have h2 : w23 * x 3 1 = x 5 (-1) * w23 := by
     calc w23 * x 3 1 = (w23 * x 3 1 * w23⁻¹) * w23 := by group
-      _ = x 5 (-1) * w23 := by rw [h]
+      _ = x 5 (-1) * w23 := by rw [w23_conj_23]
   have h3 : (x 3 1 * x 5 (-1) * x 3 1) * x 3 1 =
       x 5 (-1) * (x 3 1 * x 5 (-1) * x 3 1) := h2
   calc x 3 1 * x 5 (-1) * x 3 1

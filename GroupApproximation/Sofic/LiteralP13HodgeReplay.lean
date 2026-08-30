@@ -36,9 +36,9 @@ private def supportFreeWordFinal : Fin 6 → FreeGroup P13Generator :=
   fun i ↦ ([word [(2, true)], word [(3, true), (4, true), (3, false)], word [(1, true)], word [(0, true), (3, true), (0, false)], word [(0, true)], word [(1, true), (5, true), (1, false)]] : List (FreeGroup P13Generator)).get i
 
 def supportFreeWord (i : Fin 22) : FreeGroup P13Generator :=
-  if h0 : i.1 < 8 then supportFreeWordChunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then supportFreeWordChunk1 ⟨i.1 - 8, by omega⟩ else
-  supportFreeWordFinal ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then supportFreeWordChunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then supportFreeWordChunk1 ⟨i.1 - 8, by lia⟩ else
+  supportFreeWordFinal ⟨i.1 - 16, by lia⟩
 
 @[simp] theorem supportFreeWord_eq_0 :
     supportFreeWord (0 : Fin 22) = word [(0, true), (2, false), (0, true), (0, true), (2, false), (0, true)] := by decide
@@ -218,43 +218,43 @@ private def productClassFreeWordFinal : Fin 5 → FreeGroup P13Generator :=
   fun i ↦ ([word [(0, true), (3, false), (0, false), (4, false)], word [(1, true), (4, true)], word [(1, true), (3, true), (4, true), (3, false)], word [(0, true), (2, true)], word [(0, true), (3, true), (4, true), (3, false)]] : List (FreeGroup P13Generator)).get i
 
 def productClassFreeWord (i : Fin 293) : FreeGroup P13Generator :=
-  if h0 : i.1 < 8 then productClassFreeWordChunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassFreeWordChunk1 ⟨i.1 - 8, by omega⟩ else
-  if h2 : i.1 < 24 then productClassFreeWordChunk2 ⟨i.1 - 16, by omega⟩ else
-  if h3 : i.1 < 32 then productClassFreeWordChunk3 ⟨i.1 - 24, by omega⟩ else
-  if h4 : i.1 < 40 then productClassFreeWordChunk4 ⟨i.1 - 32, by omega⟩ else
-  if h5 : i.1 < 48 then productClassFreeWordChunk5 ⟨i.1 - 40, by omega⟩ else
-  if h6 : i.1 < 56 then productClassFreeWordChunk6 ⟨i.1 - 48, by omega⟩ else
-  if h7 : i.1 < 64 then productClassFreeWordChunk7 ⟨i.1 - 56, by omega⟩ else
-  if h8 : i.1 < 72 then productClassFreeWordChunk8 ⟨i.1 - 64, by omega⟩ else
-  if h9 : i.1 < 80 then productClassFreeWordChunk9 ⟨i.1 - 72, by omega⟩ else
-  if h10 : i.1 < 88 then productClassFreeWordChunk10 ⟨i.1 - 80, by omega⟩ else
-  if h11 : i.1 < 96 then productClassFreeWordChunk11 ⟨i.1 - 88, by omega⟩ else
-  if h12 : i.1 < 104 then productClassFreeWordChunk12 ⟨i.1 - 96, by omega⟩ else
-  if h13 : i.1 < 112 then productClassFreeWordChunk13 ⟨i.1 - 104, by omega⟩ else
-  if h14 : i.1 < 120 then productClassFreeWordChunk14 ⟨i.1 - 112, by omega⟩ else
-  if h15 : i.1 < 128 then productClassFreeWordChunk15 ⟨i.1 - 120, by omega⟩ else
-  if h16 : i.1 < 136 then productClassFreeWordChunk16 ⟨i.1 - 128, by omega⟩ else
-  if h17 : i.1 < 144 then productClassFreeWordChunk17 ⟨i.1 - 136, by omega⟩ else
-  if h18 : i.1 < 152 then productClassFreeWordChunk18 ⟨i.1 - 144, by omega⟩ else
-  if h19 : i.1 < 160 then productClassFreeWordChunk19 ⟨i.1 - 152, by omega⟩ else
-  if h20 : i.1 < 168 then productClassFreeWordChunk20 ⟨i.1 - 160, by omega⟩ else
-  if h21 : i.1 < 176 then productClassFreeWordChunk21 ⟨i.1 - 168, by omega⟩ else
-  if h22 : i.1 < 184 then productClassFreeWordChunk22 ⟨i.1 - 176, by omega⟩ else
-  if h23 : i.1 < 192 then productClassFreeWordChunk23 ⟨i.1 - 184, by omega⟩ else
-  if h24 : i.1 < 200 then productClassFreeWordChunk24 ⟨i.1 - 192, by omega⟩ else
-  if h25 : i.1 < 208 then productClassFreeWordChunk25 ⟨i.1 - 200, by omega⟩ else
-  if h26 : i.1 < 216 then productClassFreeWordChunk26 ⟨i.1 - 208, by omega⟩ else
-  if h27 : i.1 < 224 then productClassFreeWordChunk27 ⟨i.1 - 216, by omega⟩ else
-  if h28 : i.1 < 232 then productClassFreeWordChunk28 ⟨i.1 - 224, by omega⟩ else
-  if h29 : i.1 < 240 then productClassFreeWordChunk29 ⟨i.1 - 232, by omega⟩ else
-  if h30 : i.1 < 248 then productClassFreeWordChunk30 ⟨i.1 - 240, by omega⟩ else
-  if h31 : i.1 < 256 then productClassFreeWordChunk31 ⟨i.1 - 248, by omega⟩ else
-  if h32 : i.1 < 264 then productClassFreeWordChunk32 ⟨i.1 - 256, by omega⟩ else
-  if h33 : i.1 < 272 then productClassFreeWordChunk33 ⟨i.1 - 264, by omega⟩ else
-  if h34 : i.1 < 280 then productClassFreeWordChunk34 ⟨i.1 - 272, by omega⟩ else
-  if h35 : i.1 < 288 then productClassFreeWordChunk35 ⟨i.1 - 280, by omega⟩ else
-  productClassFreeWordFinal ⟨i.1 - 288, by omega⟩
+  if h0 : i.1 < 8 then productClassFreeWordChunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassFreeWordChunk1 ⟨i.1 - 8, by lia⟩ else
+  if h2 : i.1 < 24 then productClassFreeWordChunk2 ⟨i.1 - 16, by lia⟩ else
+  if h3 : i.1 < 32 then productClassFreeWordChunk3 ⟨i.1 - 24, by lia⟩ else
+  if h4 : i.1 < 40 then productClassFreeWordChunk4 ⟨i.1 - 32, by lia⟩ else
+  if h5 : i.1 < 48 then productClassFreeWordChunk5 ⟨i.1 - 40, by lia⟩ else
+  if h6 : i.1 < 56 then productClassFreeWordChunk6 ⟨i.1 - 48, by lia⟩ else
+  if h7 : i.1 < 64 then productClassFreeWordChunk7 ⟨i.1 - 56, by lia⟩ else
+  if h8 : i.1 < 72 then productClassFreeWordChunk8 ⟨i.1 - 64, by lia⟩ else
+  if h9 : i.1 < 80 then productClassFreeWordChunk9 ⟨i.1 - 72, by lia⟩ else
+  if h10 : i.1 < 88 then productClassFreeWordChunk10 ⟨i.1 - 80, by lia⟩ else
+  if h11 : i.1 < 96 then productClassFreeWordChunk11 ⟨i.1 - 88, by lia⟩ else
+  if h12 : i.1 < 104 then productClassFreeWordChunk12 ⟨i.1 - 96, by lia⟩ else
+  if h13 : i.1 < 112 then productClassFreeWordChunk13 ⟨i.1 - 104, by lia⟩ else
+  if h14 : i.1 < 120 then productClassFreeWordChunk14 ⟨i.1 - 112, by lia⟩ else
+  if h15 : i.1 < 128 then productClassFreeWordChunk15 ⟨i.1 - 120, by lia⟩ else
+  if h16 : i.1 < 136 then productClassFreeWordChunk16 ⟨i.1 - 128, by lia⟩ else
+  if h17 : i.1 < 144 then productClassFreeWordChunk17 ⟨i.1 - 136, by lia⟩ else
+  if h18 : i.1 < 152 then productClassFreeWordChunk18 ⟨i.1 - 144, by lia⟩ else
+  if h19 : i.1 < 160 then productClassFreeWordChunk19 ⟨i.1 - 152, by lia⟩ else
+  if h20 : i.1 < 168 then productClassFreeWordChunk20 ⟨i.1 - 160, by lia⟩ else
+  if h21 : i.1 < 176 then productClassFreeWordChunk21 ⟨i.1 - 168, by lia⟩ else
+  if h22 : i.1 < 184 then productClassFreeWordChunk22 ⟨i.1 - 176, by lia⟩ else
+  if h23 : i.1 < 192 then productClassFreeWordChunk23 ⟨i.1 - 184, by lia⟩ else
+  if h24 : i.1 < 200 then productClassFreeWordChunk24 ⟨i.1 - 192, by lia⟩ else
+  if h25 : i.1 < 208 then productClassFreeWordChunk25 ⟨i.1 - 200, by lia⟩ else
+  if h26 : i.1 < 216 then productClassFreeWordChunk26 ⟨i.1 - 208, by lia⟩ else
+  if h27 : i.1 < 224 then productClassFreeWordChunk27 ⟨i.1 - 216, by lia⟩ else
+  if h28 : i.1 < 232 then productClassFreeWordChunk28 ⟨i.1 - 224, by lia⟩ else
+  if h29 : i.1 < 240 then productClassFreeWordChunk29 ⟨i.1 - 232, by lia⟩ else
+  if h30 : i.1 < 248 then productClassFreeWordChunk30 ⟨i.1 - 240, by lia⟩ else
+  if h31 : i.1 < 256 then productClassFreeWordChunk31 ⟨i.1 - 248, by lia⟩ else
+  if h32 : i.1 < 264 then productClassFreeWordChunk32 ⟨i.1 - 256, by lia⟩ else
+  if h33 : i.1 < 272 then productClassFreeWordChunk33 ⟨i.1 - 264, by lia⟩ else
+  if h34 : i.1 < 280 then productClassFreeWordChunk34 ⟨i.1 - 272, by lia⟩ else
+  if h35 : i.1 < 288 then productClassFreeWordChunk35 ⟨i.1 - 280, by lia⟩ else
+  productClassFreeWordFinal ⟨i.1 - 288, by lia⟩
 
 private def productClassIndexRow0Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([201, 136, 108, 101, 75, 68, 47, 33] : List (Fin 293)).get i
@@ -266,9 +266,9 @@ private def productClassIndexRow0Final : Fin 6 → Fin 293 :=
   fun i ↦ ([20, 22, 19, 18, 10, 11] : List (Fin 293)).get i
 
 def productClassIndexRow0 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow0Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow0Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow0Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow0Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow0Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow0Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow1Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([267, 201, 56, 41, 144, 118, 26, 16] : List (Fin 293)).get i
@@ -280,9 +280,9 @@ private def productClassIndexRow1Final : Fin 6 → Fin 293 :=
   fun i ↦ ([0, 1, 7, 5, 3, 4] : List (Fin 293)).get i
 
 def productClassIndexRow1 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow1Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow1Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow1Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow1Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow1Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow1Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow2Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([144, 118, 201, 267, 10, 26, 56, 54] : List (Fin 293)).get i
@@ -294,9 +294,9 @@ private def productClassIndexRow2Final : Fin 6 → Fin 293 :=
   fun i ↦ ([101, 103, 34, 38, 20, 21] : List (Fin 293)).get i
 
 def productClassIndexRow2 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow2Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow2Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow2Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow2Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow2Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow2Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow3Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([75, 68, 136, 201, 26, 47, 108, 104] : List (Fin 293)).get i
@@ -308,9 +308,9 @@ private def productClassIndexRow3Final : Fin 6 → Fin 293 :=
   fun i ↦ ([259, 261, 98, 113, 96, 97] : List (Fin 293)).get i
 
 def productClassIndexRow3 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow3Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow3Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow3Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow3Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow3Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow3Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow4Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([101, 108, 47, 26, 201, 136, 68, 72] : List (Fin 293)).get i
@@ -322,9 +322,9 @@ private def productClassIndexRow4Final : Fin 6 → Fin 293 :=
   fun i ↦ ([14, 15, 78, 63, 81, 82] : List (Fin 293)).get i
 
 def productClassIndexRow4 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow4Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow4Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow4Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow4Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow4Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow4Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow5Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([41, 56, 26, 10, 267, 201, 118, 126] : List (Fin 293)).get i
@@ -336,9 +336,9 @@ private def productClassIndexRow5Final : Fin 6 → Fin 293 :=
   fun i ↦ ([75, 77, 153, 147, 221, 222] : List (Fin 293)).get i
 
 def productClassIndexRow5 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow5Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow5Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow5Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow5Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow5Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow5Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow6Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([10, 26, 118, 144, 41, 56, 201, 255] : List (Fin 293)).get i
@@ -350,9 +350,9 @@ private def productClassIndexRow6Final : Fin 6 → Fin 293 :=
   fun i ↦ ([291, 292, 277, 280, 281, 282] : List (Fin 293)).get i
 
 def productClassIndexRow6 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow6Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow6Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow6Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow6Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow6Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow6Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow7Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([33, 55, 84, 85, 114, 115, 151, 201] : List (Fin 293)).get i
@@ -364,9 +364,9 @@ private def productClassIndexRow7Final : Fin 6 → Fin 293 :=
   fun i ↦ ([248, 290, 251, 252, 277, 283] : List (Fin 293)).get i
 
 def productClassIndexRow7 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow7Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow7Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow7Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow7Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow7Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow7Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow8Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([20, 41, 64, 68, 108, 112, 144, 169] : List (Fin 293)).get i
@@ -378,9 +378,9 @@ private def productClassIndexRow8Final : Fin 6 → Fin 293 :=
   fun i ↦ ([229, 230, 249, 250, 275, 276] : List (Fin 293)).get i
 
 def productClassIndexRow8 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow8Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow8Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow8Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow8Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow8Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow8Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow9Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([29, 50, 71, 78, 104, 111, 141, 168] : List (Fin 293)).get i
@@ -392,9 +392,9 @@ private def productClassIndexRow9Final : Fin 6 → Fin 293 :=
   fun i ↦ ([227, 231, 244, 247, 273, 274] : List (Fin 293)).get i
 
 def productClassIndexRow9 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow9Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow9Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow9Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow9Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow9Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow9Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow10Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([24, 45, 67, 74, 102, 109, 138, 167] : List (Fin 293)).get i
@@ -406,9 +406,9 @@ private def productClassIndexRow10Final : Fin 6 → Fin 293 :=
   fun i ↦ ([223, 225, 241, 246, 271, 272] : List (Fin 293)).get i
 
 def productClassIndexRow10 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow10Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow10Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow10Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow10Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow10Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow10Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow11Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([25, 46, 70, 77, 99, 106, 137, 166] : List (Fin 293)).get i
@@ -420,9 +420,9 @@ private def productClassIndexRow11Final : Fin 6 → Fin 293 :=
   fun i ↦ ([224, 226, 240, 245, 268, 269] : List (Fin 293)).get i
 
 def productClassIndexRow11 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow11Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow11Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow11Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow11Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow11Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow11Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow12Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([26, 47, 68, 75, 101, 108, 136, 165] : List (Fin 293)).get i
@@ -434,9 +434,9 @@ private def productClassIndexRow12Final : Fin 6 → Fin 293 :=
   fun i ↦ ([221, 223, 239, 244, 267, 268] : List (Fin 293)).get i
 
 def productClassIndexRow12 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow12Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow12Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow12Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow12Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow12Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow12Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow13Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([27, 48, 66, 73, 103, 110, 135, 164] : List (Fin 293)).get i
@@ -448,9 +448,9 @@ private def productClassIndexRow13Final : Fin 6 → Fin 293 :=
   fun i ↦ ([218, 220, 238, 243, 266, 267] : List (Fin 293)).get i
 
 def productClassIndexRow13 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow13Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow13Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow13Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow13Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow13Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow13Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow14Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([28, 49, 69, 76, 100, 107, 133, 163] : List (Fin 293)).get i
@@ -462,9 +462,9 @@ private def productClassIndexRow14Final : Fin 6 → Fin 293 :=
   fun i ↦ ([219, 221, 237, 242, 264, 265] : List (Fin 293)).get i
 
 def productClassIndexRow14 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow14Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow14Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow14Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow14Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow14Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow14Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow15Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([23, 44, 65, 72, 98, 105, 130, 162] : List (Fin 293)).get i
@@ -476,9 +476,9 @@ private def productClassIndexRow15Final : Fin 6 → Fin 293 :=
   fun i ↦ ([217, 194, 236, 239, 263, 262] : List (Fin 293)).get i
 
 def productClassIndexRow15 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow15Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow15Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow15Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow15Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow15Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow15Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow16Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([31, 51, 75, 81, 96, 101, 129, 159] : List (Fin 293)).get i
@@ -490,9 +490,9 @@ private def productClassIndexRow16Final : Fin 6 → Fin 293 :=
   fun i ↦ ([201, 205, 233, 235, 259, 260] : List (Fin 293)).get i
 
 def productClassIndexRow16 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow16Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow16Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow16Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow16Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow16Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow16Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow17Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([32, 52, 76, 82, 95, 100, 128, 158] : List (Fin 293)).get i
@@ -504,9 +504,9 @@ private def productClassIndexRow17Final : Fin 6 → Fin 293 :=
   fun i ↦ ([197, 201, 232, 234, 257, 258] : List (Fin 293)).get i
 
 def productClassIndexRow17 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow17Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow17Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow17Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow17Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow17Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow17Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow18Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([19, 37, 60, 62, 92, 94, 122, 155] : List (Fin 293)).get i
@@ -518,9 +518,9 @@ private def productClassIndexRow18Final : Fin 6 → Fin 293 :=
   fun i ↦ ([170, 89, 201, 210, 255, 166] : List (Fin 293)).get i
 
 def productClassIndexRow18 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow18Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow18Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow18Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow18Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow18Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow18Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow19Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([18, 36, 59, 61, 91, 93, 120, 154] : List (Fin 293)).get i
@@ -532,9 +532,9 @@ private def productClassIndexRow19Final : Fin 6 → Fin 293 :=
   fun i ↦ ([169, 87, 192, 201, 253, 160] : List (Fin 293)).get i
 
 def productClassIndexRow19 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow19Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow19Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow19Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow19Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow19Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow19Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow20Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([47, 57, 31, 14, 259, 181, 117, 122] : List (Fin 293)).get i
@@ -546,9 +546,9 @@ private def productClassIndexRow20Final : Fin 6 → Fin 293 :=
   fun i ↦ ([81, 83, 151, 141, 201, 202] : List (Fin 293)).get i
 
 def productClassIndexRow20 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow20Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow20Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow20Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow20Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow20Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow20Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexRow21Chunk0 : Fin 8 → Fin 293 :=
   fun i ↦ ([48, 58, 30, 13, 261, 183, 116, 121] : List (Fin 293)).get i
@@ -560,9 +560,9 @@ private def productClassIndexRow21Final : Fin 6 → Fin 293 :=
   fun i ↦ ([79, 80, 150, 140, 200, 201] : List (Fin 293)).get i
 
 def productClassIndexRow21 (i : Fin 22) : Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexRow21Chunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexRow21Chunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexRow21Final ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexRow21Chunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexRow21Chunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexRow21Final ⟨i.1 - 16, by lia⟩
 
 private def productClassIndexChunk0 : Fin 8 → Fin 22 → Fin 293 :=
   fun i ↦ ([productClassIndexRow0, productClassIndexRow1, productClassIndexRow2, productClassIndexRow3, productClassIndexRow4, productClassIndexRow5, productClassIndexRow6, productClassIndexRow7] : List (Fin 22 → Fin 293)).get i
@@ -574,9 +574,9 @@ private def productClassIndexFinal : Fin 6 → Fin 22 → Fin 293 :=
   fun i ↦ ([productClassIndexRow16, productClassIndexRow17, productClassIndexRow18, productClassIndexRow19, productClassIndexRow20, productClassIndexRow21] : List (Fin 22 → Fin 293)).get i
 
 def productClassIndex (i : Fin 22) : Fin 22 → Fin 293 :=
-  if h0 : i.1 < 8 then productClassIndexChunk0 ⟨i.1, by omega⟩ else
-  if h1 : i.1 < 16 then productClassIndexChunk1 ⟨i.1 - 8, by omega⟩ else
-  productClassIndexFinal ⟨i.1 - 16, by omega⟩
+  if h0 : i.1 < 8 then productClassIndexChunk0 ⟨i.1, by lia⟩ else
+  if h1 : i.1 < 16 then productClassIndexChunk1 ⟨i.1 - 8, by lia⟩ else
+  productClassIndexFinal ⟨i.1 - 16, by lia⟩
 
 /-- Checked P13 coefficient merge 0 (`product`). -/
 def reduction0Chunk0Atoms : List (Atom P13Generator (Fin 13)) :=

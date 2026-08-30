@@ -74,9 +74,9 @@ theorem zpowers_subset_pair (hz : z ^ 2 = 1) :
   simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
   rcases Int.even_or_odd n with ⟨k, hk⟩ | ⟨k, hk⟩
   · left
-    rw [← hgn, show n = 2 * k by omega, zpow_mul, h2, one_zpow]
+    rw [← hgn, show n = 2 * k by lia, zpow_mul, h2, one_zpow]
   · right
-    rw [← hgn, show n = 2 * k + 1 by omega, zpow_add, zpow_mul, h2, one_zpow,
+    rw [← hgn, show n = 2 * k + 1 by lia, zpow_add, zpow_mul, h2, one_zpow,
       one_mul, zpow_one]
 
 theorem finite_zpowers_of_sq (hz : z ^ 2 = 1) : Finite (Subgroup.zpowers z) :=

@@ -94,8 +94,8 @@ def exact_table(name, values, value_type, emit_value, output,
         output.write("  if h%d : i.1 < %d then %sChunk%d " %
                      (chunk_index, upper, name, chunk_index))
         index = "i.1" if lower == 0 else "i.1 - %d" % lower
-        output.write("⟨%s, by omega⟩ else\n" % index)
-    output.write("  %sFinal ⟨i.1 - %d, by omega⟩\n" %
+        output.write("⟨%s, by lia⟩ else\n" % index)
+    output.write("  %sFinal ⟨i.1 - %d, by lia⟩\n" %
                  (name, full_size))
 
 

@@ -102,7 +102,7 @@ theorem lattice_split (a : Fin 3 → ℤ) :
   congr 1
   funext i
   show a i = a i % 2 + 2 * (a i / 2)
-  omega
+  lia
 
 /-- Every translation lies in one of the parity cosets. -/
 theorem translation_mem_parity_coset {t : Base} (ht : t ∈ translations) :
@@ -115,14 +115,14 @@ theorem translation_mem_parity_coset {t : Base} (ht : t ∈ translations) :
     latticeToBase
       (Multiplicative.ofAdd (fun i ↦ 2 * ((Multiplicative.toAdd a) i / 2))),
     latticeToBase_even_mem _, ?_⟩
-  · omega
+  · lia
   · have hcast : (fun i ↦ ((⟨((Multiplicative.toAdd a) i % 2).toNat,
-        by omega⟩ : Fin 2) : ℤ)) =
+        by lia⟩ : Fin 2) : ℤ)) =
       fun i ↦ (Multiplicative.toAdd a) i % 2 := by
       funext i
       show (((Multiplicative.toAdd a) i % 2).toNat : ℤ) =
         (Multiplicative.toAdd a) i % 2
-      omega
+      lia
     rw [hcast]
     have := lattice_split (Multiplicative.toAdd a)
     rwa [ofAdd_toAdd] at this

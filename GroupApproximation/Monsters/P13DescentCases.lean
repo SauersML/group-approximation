@@ -16,7 +16,7 @@ class by class, the two halves each rewrite needs:
   `vnorm (act p (act q u)) < vnorm (act q u)` and the height-side
   hypothesis `vnorm u ≤ vnorm (act q u)`, at least one catalog block
   has all its internal trajectory norms strictly below the violated
-  height.  These are sign-case splits followed by `omega`.
+  height.  These are sign-case splits followed by linear arithmetic.
 
 The classes, by the write/read coordinates of the six root letters
 (`x0 = e₁₂ : v₀ += c·v₁`, `x1 = e₁₃ : v₀ += c·v₂`,
@@ -59,7 +59,7 @@ theorem same_aligned_0 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x0] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 /-- An aligned same-family pair cannot sit at a violation: `e₁₃`. -/
 theorem same_aligned_1 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
@@ -69,7 +69,7 @@ theorem same_aligned_1 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x1] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 /-- An aligned same-family pair cannot sit at a violation: `e₂₁`. -/
 theorem same_aligned_2 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
@@ -79,7 +79,7 @@ theorem same_aligned_2 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x2] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 /-- An aligned same-family pair cannot sit at a violation: `e₂₃`. -/
 theorem same_aligned_3 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
@@ -89,7 +89,7 @@ theorem same_aligned_3 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x3] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 /-- An aligned same-family pair cannot sit at a violation: `e₃₁`. -/
 theorem same_aligned_4 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
@@ -99,7 +99,7 @@ theorem same_aligned_4 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x4] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 /-- An aligned same-family pair cannot sit at a violation: `e₃₂`. -/
 theorem same_aligned_5 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
@@ -109,7 +109,7 @@ theorem same_aligned_5 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x5] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 /-! ## Same read: the swap cuts the peak -/
 
@@ -123,7 +123,7 @@ theorem exist_sr_05 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x0, act_x5] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₃₂, e₁₂)`. -/
 theorem exist_sr_50 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -135,7 +135,7 @@ theorem exist_sr_50 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x0, act_x5] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₁₃, e₂₃)`: shared read coordinate `v₂`. -/
 theorem exist_sr_13 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -147,7 +147,7 @@ theorem exist_sr_13 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x1, act_x3] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₂₃, e₁₃)`. -/
 theorem exist_sr_31 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -159,7 +159,7 @@ theorem exist_sr_31 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x1, act_x3] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₂₁, e₃₁)`: shared read coordinate `v₀`. -/
 theorem exist_sr_24 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -171,7 +171,7 @@ theorem exist_sr_24 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x2, act_x4] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₃₁, e₂₁)`. -/
 theorem exist_sr_42 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -183,7 +183,7 @@ theorem exist_sr_42 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x2, act_x4] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-! ## The conjugation sandwiches
 
@@ -325,7 +325,7 @@ theorem exist_sw_01 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x0, act_x1, act_x3, act_x5] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₁₃, e₁₂)`. -/
 theorem exist_sw_10 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -345,7 +345,7 @@ theorem exist_sw_10 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x0, act_x1, act_x3, act_x5] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₂₁, e₂₃)`: both write `v₁`. -/
 theorem exist_sw_23 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -365,7 +365,7 @@ theorem exist_sw_23 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x1, act_x2, act_x3, act_x4] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₂₃, e₂₁)`. -/
 theorem exist_sw_32 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -385,7 +385,7 @@ theorem exist_sw_32 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x1, act_x2, act_x3, act_x4] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₃₁, e₃₂)`: both write `v₂`. -/
 theorem exist_sw_45 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -405,7 +405,7 @@ theorem exist_sw_45 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x0, act_x2, act_x4, act_x5] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-- `(e₃₂, e₃₁)`. -/
 theorem exist_sw_54 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
@@ -425,7 +425,7 @@ theorem exist_sw_54 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
   rcases hc with rfl | rfl <;> rcases hcp with rfl | rfl <;>
     simp only [act_x0, act_x2, act_x4, act_x5] at hviol hside ⊢ <;>
     simp [vnorm] at hviol hside ⊢ <;>
-    omega
+    lia
 
 /-! ## Steinberg splits: the three orders of the composite letter -/
 
@@ -664,7 +664,7 @@ private theorem exist_st_03_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_03_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 0 1)) (act (toSL3 (x 3 (-1))) u)) <
@@ -689,7 +689,7 @@ private theorem exist_st_03_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_03_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 0 (-1))) (act (toSL3 (x 3 1)) u)) <
@@ -714,7 +714,7 @@ private theorem exist_st_03_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_03_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 0 (-1))) (act (toSL3 (x 3 (-1))) u)) <
@@ -739,7 +739,7 @@ private theorem exist_st_03_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_03 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -788,7 +788,7 @@ private theorem exist_st_21_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_21_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 1)) (act (toSL3 (x 1 (-1))) u)) <
@@ -813,7 +813,7 @@ private theorem exist_st_21_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_21_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 (-1))) (act (toSL3 (x 1 1)) u)) <
@@ -838,7 +838,7 @@ private theorem exist_st_21_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_21_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 (-1))) (act (toSL3 (x 1 (-1))) u)) <
@@ -863,7 +863,7 @@ private theorem exist_st_21_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_21 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -912,7 +912,7 @@ private theorem exist_st_40_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_40_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 1)) (act (toSL3 (x 0 (-1))) u)) <
@@ -937,7 +937,7 @@ private theorem exist_st_40_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_40_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 (-1))) (act (toSL3 (x 0 1)) u)) <
@@ -962,7 +962,7 @@ private theorem exist_st_40_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_40_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 (-1))) (act (toSL3 (x 0 (-1))) u)) <
@@ -987,7 +987,7 @@ private theorem exist_st_40_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_40 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -1029,7 +1029,7 @@ private theorem exist_st_30_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_30_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 1)) (act (toSL3 (x 0 (-1))) u)) <
@@ -1047,7 +1047,7 @@ private theorem exist_st_30_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_30_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 0 1)) u)) <
@@ -1065,7 +1065,7 @@ private theorem exist_st_30_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_30_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 (-1))) (act (toSL3 (x 0 (-1))) u)) <
@@ -1083,7 +1083,7 @@ private theorem exist_st_30_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_30 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -1118,7 +1118,7 @@ private theorem exist_st_51_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_51_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 1)) (act (toSL3 (x 1 (-1))) u)) <
@@ -1136,7 +1136,7 @@ private theorem exist_st_51_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_51_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 1 1)) u)) <
@@ -1154,7 +1154,7 @@ private theorem exist_st_51_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_51_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 (-1))) (act (toSL3 (x 1 (-1))) u)) <
@@ -1172,7 +1172,7 @@ private theorem exist_st_51_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_51 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -1207,7 +1207,7 @@ private theorem exist_st_12_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_12_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 1)) (act (toSL3 (x 2 (-1))) u)) <
@@ -1225,7 +1225,7 @@ private theorem exist_st_12_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_12_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 2 1)) u)) <
@@ -1243,7 +1243,7 @@ private theorem exist_st_12_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_12_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 (-1))) (act (toSL3 (x 2 (-1))) u)) <
@@ -1261,7 +1261,7 @@ private theorem exist_st_12_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_12 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -1296,7 +1296,7 @@ private theorem exist_st_43_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_43_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 1)) (act (toSL3 (x 3 (-1))) u)) <
@@ -1314,7 +1314,7 @@ private theorem exist_st_43_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_43_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 (-1))) (act (toSL3 (x 3 1)) u)) <
@@ -1332,7 +1332,7 @@ private theorem exist_st_43_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_43_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 (-1))) (act (toSL3 (x 3 (-1))) u)) <
@@ -1350,7 +1350,7 @@ private theorem exist_st_43_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_43 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -1385,7 +1385,7 @@ private theorem exist_st_04_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_04_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 0 1)) (act (toSL3 (x 4 (-1))) u)) <
@@ -1403,7 +1403,7 @@ private theorem exist_st_04_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_04_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 0 (-1))) (act (toSL3 (x 4 1)) u)) <
@@ -1421,7 +1421,7 @@ private theorem exist_st_04_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_04_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 0 (-1))) (act (toSL3 (x 4 (-1))) u)) <
@@ -1439,7 +1439,7 @@ private theorem exist_st_04_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_04 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -1474,7 +1474,7 @@ private theorem exist_st_25_pp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_25_pm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 1)) (act (toSL3 (x 5 (-1))) u)) <
@@ -1492,7 +1492,7 @@ private theorem exist_st_25_pm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_25_mp (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 (-1))) (act (toSL3 (x 5 1)) u)) <
@@ -1510,7 +1510,7 @@ private theorem exist_st_25_mp (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 private theorem exist_st_25_mm (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 (-1))) (act (toSL3 (x 5 (-1))) u)) <
@@ -1528,7 +1528,7 @@ private theorem exist_st_25_mm (u : Fin 3 → ℤ)
       Matrix.cons_val_zero, Matrix.cons_val_one,
       Matrix.cons_val_two, Matrix.head_cons, Matrix.tail_cons]
       at hviol hside ⊢
-  omega
+  lia
 
 theorem exist_st_25 (c cp : ℤ) (hc : c = 1 ∨ c = -1)
     (hcp : cp = 1 ∨ cp = -1) (u : Fin 3 → ℤ)
@@ -1556,7 +1556,7 @@ theorem braid_aligned_02 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x0, act_x2] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 theorem braid_aligned_20 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 2 c)) (act (toSL3 (x 0 c)) u)) <
@@ -1565,7 +1565,7 @@ theorem braid_aligned_20 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x0, act_x2] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 theorem braid_aligned_14 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 1 c)) (act (toSL3 (x 4 c)) u)) <
@@ -1574,7 +1574,7 @@ theorem braid_aligned_14 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x1, act_x4] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 theorem braid_aligned_41 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 4 c)) (act (toSL3 (x 1 c)) u)) <
@@ -1583,7 +1583,7 @@ theorem braid_aligned_41 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x1, act_x4] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 theorem braid_aligned_35 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 3 c)) (act (toSL3 (x 5 c)) u)) <
@@ -1592,7 +1592,7 @@ theorem braid_aligned_35 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x3, act_x5] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 theorem braid_aligned_53 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
     (hviol : vnorm (act (toSL3 (x 5 c)) (act (toSL3 (x 3 c)) u)) <
@@ -1601,7 +1601,7 @@ theorem braid_aligned_53 (c : ℤ) (hc : c = 1 ∨ c = -1) (u : Fin 3 → ℤ)
   rcases hc with rfl | rfl <;>
     simp only [act_x3, act_x5] at hviol hside <;>
     simp [vnorm] at hviol hside <;>
-    omega
+    lia
 
 end
 

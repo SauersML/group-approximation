@@ -214,16 +214,12 @@ theorem norm_le_of_quadratic_gap [CompleteSpace E]
   have hAlimit : Filter.Tendsto (fun n ↦ A (u n)) Filter.atTop
       (nhds (A (x - z))) := A.continuous.tendsto (x - z) |>.comp huTendsto
   have hAz : A (x - z) = 0 := tendsto_nhds_unique hAlimit hAuTendstoZero
-  have hxz : x - z = 0 := hker _ hAz
-  have hzx : z = x := sub_eq_zero.mp hxz |>.symm
-  have hnormZ : ‖z‖ ≤ ∑' n, ‖d n‖ := norm_tsum_le_tsum_norm hnormD
-  have hnormTsum : (∑' n, ‖d n‖) ≤
-      ∑' n, (c⁻¹ * ‖A x‖) * s ^ n :=
-    hnormD.tsum_le_tsum hdNorm hg
-  rw [tsum_mul_left, tsum_geometric_of_norm_lt_one hsNorm] at hnormTsum
-  rw [hzx] at hnormZ
   calc
-    ‖x‖ ≤ (c⁻¹ * ‖A x‖) * (1 - s)⁻¹ := hnormZ.trans hnormTsum
+    ‖x‖ = ‖z‖ := congrArg norm (sub_eq_zero.mp (hker _ hAz))
+    _ ≤ ∑' n, ‖d n‖ := norm_tsum_le_tsum_norm hnormD
+    _ ≤ ∑' n, (c⁻¹ * ‖A x‖) * s ^ n := hnormD.tsum_le_tsum hdNorm hg
+    _ = (c⁻¹ * ‖A x‖) * (1 - s)⁻¹ := by
+      rw [tsum_mul_left, tsum_geometric_of_norm_lt_one hsNorm]
     _ = (c * (1 - Real.sqrt (1 - c / M)))⁻¹ * ‖A x‖ := by
       dsimp [s, r]
       field_simp

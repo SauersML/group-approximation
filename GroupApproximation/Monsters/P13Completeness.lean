@@ -56,9 +56,9 @@ theorem w13_inv_conj_letter (l : Letter) :
   have key : ∀ l' : Letter, w13⁻¹ * letterVal (w13Conj l') * w13 =
       letterVal l' := by
     intro l'
-    have h := w13_conj_letter l'
     calc w13⁻¹ * letterVal (w13Conj l') * w13
-        = w13⁻¹ * (w13 * letterVal l' * w13⁻¹) * w13 := by rw [h]
+        = w13⁻¹ * (w13 * letterVal l' * w13⁻¹) * w13 := by
+          rw [w13_conj_letter]
       _ = letterVal l' := by group
   match i with
   | 0 => simpa [w13Conj, w13ConjInv] using key (5, a)
@@ -74,9 +74,9 @@ theorem w23_inv_conj_letter (l : Letter) :
   have key : ∀ l' : Letter, w23⁻¹ * letterVal (w23Conj l') * w23 =
       letterVal l' := by
     intro l'
-    have h := w23_conj_letter l'
     calc w23⁻¹ * letterVal (w23Conj l') * w23
-        = w23⁻¹ * (w23 * letterVal l' * w23⁻¹) * w23 := by rw [h]
+        = w23⁻¹ * (w23 * letterVal l' * w23⁻¹) * w23 := by
+          rw [w23_conj_letter]
       _ = letterVal l' := by group
   match i with
   | 0 => simpa [w23Conj, w23ConjInv] using key (1, a)
