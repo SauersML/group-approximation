@@ -2952,3 +2952,5 @@ import GroupApproximation.GGT.DGOSubdivisionLinear
 import GroupApproximation.GGT.HullLemmaEe
 import GroupApproximation.GGT.HullSCConeOffHeavyB2
 import GroupApproximation.Analysis.VoiculescuMonotoneStep
+import GroupApproximation.GGT.DGOWWordConditions
+import GroupApproximation.GGT.DGOLemma421Statement

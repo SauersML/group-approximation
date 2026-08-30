@@ -2,7 +2,7 @@ import GroupApproximation.GGT.DGOBlockWord
 import GroupApproximation.GGT.DGOWWordConditions
 
 /-!
-# Dahmani--Guirardel--Osin's Lemma 4.21: the `W`-words, and clause (a)
+# Dahmani--Guirardel--Osin's Lemma 4.21: the `W`-words and both clauses
 
 Lemma 4.21 is the gate under every remaining clause of the Hull route --- WPD of
 the elements Corollary 6.12 manufactures, their pairwise non-commensurability,
@@ -31,6 +31,11 @@ bound proof, so it needs none of the `Nat.lt_of_succ_lt` plumbing a
 `getElem`-with-proof form drags into every clause, and splitting the three
 conditions lets a consumer take only what it needs.
 
+The lemma assumes only weak relative hyperbolicity, encoded below by the
+existence of a hyperbolicity constant for `Cayley D.alphabet`.  In particular,
+neither clause asks for `D.IsHyperbolicallyEmbedded.locallyFinite`; requiring
+that second field would strengthen the printed hypothesis for no reason.
+
 (W2) is ball non-membership rather than metric, because `d̂_λ` takes the value
 `∞` (their Remark 6.10) and the metric form would be wrong here for the same
 reason it is wrong in `GGT.DGOTheorem611`.  The threshold is a parameter, not
@@ -43,7 +48,8 @@ lies in `W` depends entirely on the spelling `w`:
 
 * `w = [base a]`, one `X`-letter --- **yes**, and this is
   Dahmani--Guirardel--Osin's own case, the word `(ah)^N` of their Theorem 6.11.
-  `isWWord_blockWord_singleBase` proves it, from `a ∉ H lam` and `h` deep.
+  The three `blockWord_singleBase` lemmas below prove it, from `a ∉ H lam`
+  and `h` deep.
 * `w` a word of `μ`-letters with `μ ≠ lam` throughout and consecutive indices
   distinct --- **yes**, vacuously for (W1), since such a word has no `X`-letters
   at all.  This is Hull's `yi`, whose `g = a₁ ⋯ a_{k-1}` is spelled by letters
@@ -75,8 +81,8 @@ quantifies over the **base** with the **family fixed** --- its statement is
 `D₁.fam = D₂.fam → (D₁.base △ D₂.base).Finite → (↪_h ↔ ↪_h)` --- so applying it
 at a cone-off is not a special case: the cone-off *is* the family, and it does
 not move.  Taking `X₂ = X ∪ {g^{±1}}` makes `g` a single letter, the word
-becomes Dahmani--Guirardel--Osin's own `(a h)^N`, and `isWWord_blockWord_singleBase`
-applies.  Loxodromy comes back down to the original alphabet by Hull's
+becomes Dahmani--Guirardel--Osin's own `(a h)^N`, and the three
+`blockWord_singleBase` lemmas apply.  Loxodromy comes back down to the original alphabet by Hull's
 Lemma A1, `GGT.HullYiAlphabetTransfer.isLoxodromic_base_of_subset`.
 
 That is the source's own move --- *"By Corollary 4.27 we can assume that `t ∈ X`
@@ -97,33 +103,20 @@ asserts from (W3) --- would have nothing under it.
 settled by asking rather than guessing, and the first of them is *printed*:
 "consecutive" is not left to the reader, since (b)'s conclusion is the
 decomposition `p = x₀a₁ ⋯ x_{K-1}a_Kx_K` with the `xᵢ` *"edges labelled by
-elements of `X` or trivial paths"*.  So consecutive components are separated by
-**at most one letter**, which is the pair of inequalities
-`kp t ≤ ip (t+1) ≤ kp t + 1` below.  The connection is a **coset identity across
+elements of `X` or trivial paths"*.  `BaseEdgeOrTrivial` below records this
+exact disjunction.  The connection is a **coset identity across
 two words read from two basepoints**, stated at the component *starts* because
 Hull's `yi` names the connecting element; and the indices are functions rather
 than a `Finset`, because the pairing `aᵢ ↔ bᵢ` is consumed index by index.
 They are `ℕ → ℕ` guarded by `t < K` rather than `Fin K → ℕ`, so that the
 consecutiveness clause needs no `Fin` successor arithmetic at any consumption
-site; `lt_of_isComp_of_le` supplies the strict ordering the `Fin K` form would
-have asserted, and composing with `Fin.val` recovers that form for a consumer
-who prefers it.
+site; `lt_of_isComp_of_baseEdgeOrTrivial` supplies the strict ordering the
+`Fin K` form would have asserted, and composing with `Fin.val` recovers that
+form for a consumer who prefers it.
 
-**The consecutiveness clause is deliberately weaker than the printed
-decomposition, and the gap is not vacuous.**  `kp t ≤ ip (t+1) ≤ kp t + 1`
-constrains *where* the next component starts; Dahmani--Guirardel--Osin say what
-the separator *is* --- their `xᵢ` are *"edges labelled by elements of `X` or
-trivial paths"*.  A `W`-word may contain `h_λ h_ν h_λ` with `ν ≠ λ`: (W3) permits
-it, both adjacent pairs having distinct indices, and then the two `λ`-components
-are separated by an `H_ν`-letter, which satisfies the clause below and not their
-sentence.  So this is a real weakening, taken on purpose.
-
-Weaker is the right side to err on for a `Prop` that must eventually be *proved*
-from Proposition 4.14, and it costs the known consumer nothing --- in Hull's
-`yi` the matched components are consecutive letters of `a₁ ⋯ a_k`, so
-`ip (t+1) = kp t` and there is no separator at all.  A consumer that does care
-what the separator is must strengthen this clause rather than assume it says
-what the paper says.
+Merely requiring `kp t ≤ ip (t+1) ≤ kp t + 1` would be a genuine weakening:
+it would also permit the intervening letter to be an `H_ν`-letter.  The
+statement below excludes that case, as the printed decomposition does.
 
 **The end form follows from the start form** and is not stated: a component's
 span lies in its own family member (`OsinComponents.span_mem_fam_of_isComp`), so
@@ -152,6 +145,12 @@ section WWords
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
+/-- The separator between two consecutive distinguished components in
+Lemma 4.21(b): a trivial path, or exactly one edge labelled by an element of
+the relative base `X`. -/
+def BaseEdgeOrTrivial (w : List (RelLetter G Λ)) (k i : ℕ) : Prop :=
+  i = k ∨ ∃ x : G, i = k + 1 ∧ w[k]? = some (RelLetter.base x)
+
 /-- **Lemma 4.21(a)**: every path labelled by a word of `W` is
 `(4,1)`-quasi-geodesic.
 
@@ -166,7 +165,7 @@ number by Proposition 4.14 with the constant uniform in the side count.  So
 clause (a) is blocked on the same input as clause (b). -/
 def DGOLemma421a : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
-    D.IsHyperbolicallyEmbedded → ∃ C : ℕ,
+    (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) → ∃ C : ℕ,
       ∀ (v : G) (u : List (RelLetter G Λ)), (∀ a ∈ u, D.IsLetter a) →
         WWord.IsWOne u → WWord.IsWTwo D C u → WWord.IsWThree D u →
           ∀ i j : ℕ, i ≤ j → j ≤ u.length →
@@ -183,11 +182,10 @@ consecutive components connected in pairs.
 > are connected to `K` consecutive components of `q`.
 
 `ip t` and `kp t` bracket the `t`-th distinguished component of `p`, and
-`iq t`, `kq t` that of `q`.  Consecutiveness is
-`kp t ≤ ip (t+1) ≤ kp t + 1`: at most one letter between one component's end and
-the next one's start, which is Dahmani--Guirardel--Osin's `xᵢ` being an edge or
-trivial.  Strict monotonicity of `ip` is a consequence rather than a hypothesis,
-since `IsComp` already gives `ip t < kp t`.
+`iq t`, `kq t` that of `q`.  `BaseEdgeOrTrivial p (kp t) (ip (t+1))` is
+Dahmani--Guirardel--Osin's `xᵢ` being an `X`-edge or a trivial path.  Strict
+monotonicity of `ip` is a consequence rather than a hypothesis, since `IsComp`
+already gives `ip t < kp t`.
 
 The connection is stated at the starts, as a coset identity between the two
 words read from their own basepoints.  The corresponding identity at the ends
@@ -195,7 +193,9 @@ follows, a component's two endpoints differing by its own label, which lies in
 `H (lam t)`. -/
 def DGOLemma421b : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
-    D.IsHyperbolicallyEmbedded → ∃ C : ℕ, ∀ eps K : ℕ, ∃ R : ℕ,
+    (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
+      ∃ C : ℕ, ∀ eps K : ℕ,
+      0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
       ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
         (∀ c ∈ p, D.IsLetter c) → (∀ c ∈ q, D.IsLetter c) →
         WWord.IsWOne p → WWord.IsWTwo D C p → WWord.IsWThree D p →
@@ -207,24 +207,36 @@ def DGOLemma421b : Prop :=
         ∃ (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Λ),
           (∀ t : ℕ, t < K → IsComp (lam t) p (ip t) (kp t)) ∧
           (∀ t : ℕ, t < K → IsComp (lam t) q (iq t) (kq t)) ∧
-          (∀ t : ℕ, t + 1 < K → kp t ≤ ip (t + 1) ∧ ip (t + 1) ≤ kp t + 1) ∧
-          (∀ t : ℕ, t + 1 < K → kq t ≤ iq (t + 1) ∧ iq (t + 1) ≤ kq t + 1) ∧
+          (∀ t : ℕ, t + 1 < K → BaseEdgeOrTrivial p (kp t) (ip (t + 1))) ∧
+          (∀ t : ℕ, t + 1 < K → BaseEdgeOrTrivial q (kq t) (iq (t + 1))) ∧
           (∀ t : ℕ, t < K →
             (vertex vp p (ip t))⁻¹ * vertex vq q (iq t) ∈ D.fam (lam t))
 
 omit [Group G] in
+/-- An `X`-edge-or-trivial separator begins no earlier than the preceding
+component endpoint. -/
+theorem BaseEdgeOrTrivial.le {w : List (RelLetter G Λ)} {k i : ℕ}
+    (h : BaseEdgeOrTrivial w k i) : k ≤ i := by
+  rcases h with rfl | ⟨_, rfl, -⟩
+  · exact le_rfl
+  · omega
+
+omit [Group G] in
 /-- **Strict monotonicity of the index functions is a consequence, not a
-clause.**  `IsComp` already gives `ip t < kp t`, and consecutiveness gives
-`kp t ≤ ip (t+1)`; together they order the distinguished components strictly.
+clause.**  `IsComp` already gives `ip t < kp t`, and the printed separator
+condition gives `kp t ≤ ip (t+1)`; together they order the distinguished
+components strictly.
 
 Stated separately so that `DGOLemma421b` need not assert it --- a named `Prop`
 that will one day be proved should carry no redundant conjunct, and a consumer
 that wants the ordering should not have to derive it.  Consumers wanting the
 `Fin K`-indexed form get it by composing with `Fin.val`. -/
-theorem lt_of_isComp_of_le {p : List (RelLetter G Λ)} {lam : ℕ → Λ}
+theorem lt_of_isComp_of_baseEdgeOrTrivial
+    {p : List (RelLetter G Λ)} {lam : ℕ → Λ}
     {ip kp : ℕ → ℕ} {K : ℕ}
     (hcomp : ∀ t : ℕ, t < K → IsComp (lam t) p (ip t) (kp t))
-    (hstep : ∀ t : ℕ, t + 1 < K → kp t ≤ ip (t + 1)) :
+    (hstep : ∀ t : ℕ, t + 1 < K →
+      BaseEdgeOrTrivial p (kp t) (ip (t + 1))) :
     ∀ t s : ℕ, t < s → s < K → ip t < ip s := by
   intro t s hts hsK
   induction s with
@@ -233,12 +245,12 @@ theorem lt_of_isComp_of_le {p : List (RelLetter G Λ)} {lam : ℕ → Λ}
       rcases Nat.lt_or_ge t n with hlt | hge
       · have hn : ip t < ip n := ih hlt (by omega)
         have h1 : ip n < kp n := (hcomp n (by omega)).1
-        have h2 : kp n ≤ ip (n + 1) := hstep n (by omega)
+        have h2 : kp n ≤ ip (n + 1) := (hstep n (by omega)).le
         omega
       · have htn : t = n := by omega
         subst htn
         have h1 : ip t < kp t := (hcomp t (by omega)).1
-        have h2 : kp t ≤ ip (t + 1) := hstep t (by omega)
+        have h2 : kp t ≤ ip (t + 1) := (hstep t (by omega)).le
         omega
 
 end WWords
