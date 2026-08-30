@@ -2954,3 +2954,5 @@ import GroupApproximation.GGT.HullSCConeOffHeavyB2
 import GroupApproximation.Analysis.VoiculescuMonotoneStep
 import GroupApproximation.GGT.DGOWWordConditions
 import GroupApproximation.GGT.DGOLemma421Statement
+import GroupApproximation.GGT.DGOAlphabetEnlargementWWords
+import GroupApproximation.GGT.RelHypSuitabilityClosure

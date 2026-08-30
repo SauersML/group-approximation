@@ -48,11 +48,13 @@ in this repository:
 
 * that a non-elementary hyperbolic group contains two independent loxodromic
   elements --- ping-pong on the boundary, or the Tits alternative;
-* that `E_H(x)` is the maximal cyclic subgroup containing `x`, which is the
-  statement that centralizers of infinite-order elements in a torsion-free
-  hyperbolic group are cyclic.  That runs through stability of quasi-geodesics,
-  the Morse lemma, which `Algebra/WordMetricComparison.lean` records as the
-  input this development does not have.
+* Osin's Theorem 6.8 for `E_H(x)`.  For the actual trivial-intersection clause,
+  the full stronger classification of a torsion-free virtually cyclic group as
+  cyclic is unnecessary: torsion-freeness makes a nontrivial common member
+  infinite-order, and the finite-index conclusion gives it a common power with
+  each witness.  Aligning those two powers contradicts non-commensurability.
+  This exact reduction is proved in `GGT/RelHypSuitabilityClosure.lean`; the
+  leaf is **not** the Morse lemma.
 
 So the honest report is a shrunken citation, not a discharge: what was "Osin's
 Theorem 2.1 and Lemma 2.3, at a free product" is now one sentence about one
@@ -320,6 +322,16 @@ So the obligation that actually remains is ruling out conjugacy, which is an
 `E(g)` question rather than a ping-pong one; half (a) is homed with the
 elementary-closure layer, and it is where Osin's Lemma 2.3 sits.
 
+**The order is load-bearing: prove half (b) first.**  The two halves are named
+separately because they have different leaves, not because either can be
+attacked in isolation, and nothing here licenses starting with (a).  Every
+known route to (a) dies at the conjugate case (section 5b), and the one
+statement that eliminates the offending quantifier over conjugators --- Coulon's
+`pseudo nu = 1`, section 5c --- is available only once (b) has supplied
+"`E(x)` is the maximal cyclic subgroup containing `x`".  Reading the split as
+two independent halves and beginning with (a) is therefore not a slower path
+but a path with no proof at the end of it.
+
 dgo-611-lane's isolated-component machinery was examined for this and does not
 reach it: it needs a coned-off graph and unboundedness of `d̂_λ`, which
 `IsNonElementaryHyperbolic` does not supply, and even granted that input it
@@ -334,19 +346,35 @@ def HyperbolicNonCommensurablePairStatement : Prop :=
 /-- **Half (b): non-commensurable elements have trivially meeting elementary
 closures.**
 
-This is the usable form of "`E_H(x)` is the maximal cyclic subgroup containing
-`x`", i.e. of "centralizers of infinite-order elements in a torsion-free
-hyperbolic group are cyclic".  It is a fact about the group's own Cayley graph
-and belongs with the hyperbolic-group geometry, not with the relative
-machinery; it runs through stability of quasi-geodesics, the Morse lemma that
-`Algebra/WordMetricComparison.lean` records as the missing input.
+This follows from the usual stronger description "`E_H(x)` is the maximal
+cyclic subgroup containing `x`", but does not require proving that description.
+The exact argument needs only that every infinite cyclic subgroup of `E_H(x)`
+meets `⟨x⟩` nontrivially.  It is a fact about the group's own Cayley graph and
+belongs with the hyperbolic-group geometry, not with the relative machinery.
 
-dgo-611-lane's machinery was examined for this too, and the answer is sharper
-than for half (a): that technique produces only *lower* bounds on displacement,
-while bounding `E(x)` from above is the WPD/acylindricity direction --- DGO
-Lemma 4.21(b), proved from Proposition 4.14's isolated-component counting at
-unbounded side count, which this repository does not have.  So it points the
-wrong way rather than merely being silent.
+**Its residue is smaller than the geometric framing suggests, and does not
+include the Morse lemma.**  DGO reach `E(x)` control through Lemma 4.21(b),
+proved from Proposition 4.14's isolated-component counting, because *their*
+action is on a coned-off graph and is not acylindrical.  The action here is not
+that one: `H` is hyperbolic with a **finite** generating set acting on its own
+Cayley graph, and this tree already proves such an action acylindrical
+(`GGT.isAcylindrical_cayley_of_finite`) and derives WPD from acylindricity
+(`GGT.isWPDAt_of_isAcylindrical`), both unconditionally.  So the
+WPD/acylindricity layer is free here.
+
+What is actually owed is **Osin's Theorem 6.8** ---
+`GGT.ElementaryOsinSNormal.ElementaryClosureVirtuallyCyclic`, `E(g)` virtually
+cyclic for a loxodromic of an acylindrical action, which occurs in this tree only
+as a hypothesis and is never concluded, so it is a genuine leaf.  The necessary
+torsion-free upgrade is now proved in `GGT/RelHypSuitabilityClosure.lean`: it is
+the elementwise common-power argument, strictly weaker than classifying the
+whole virtually cyclic group as cyclic.  Reports that this
+dependence has been eliminated refer to the Lemma 7.1 / `ActsNonElementarily`
+chain in `GGT/ElementaryCentralizerAxis.lean` and `GGT/ElementaryBowditch.lean`;
+that elimination is real but local to a chain whose conclusion is geometric
+independence, which section 5b shows is strictly weaker than what half (a) needs,
+and the `Prop` remains a live hypothesis at `GGT/ElementaryProperClosure.lean`
+and `GGT/HullYiLoxRadical.lean`.
 
 Stated universally, over every non-commensurable pair, because that is the form
 in which it is true and will be proved.  See
@@ -443,6 +471,74 @@ theorem ne_conj_of_not_osinCommensurable {K : Type*} [Group K] {f₁ f₂ : K}
     (h : ¬ OsinCommensurable f₁ f₂) (c : K) : c⁻¹ * f₁ * c ≠ f₂ := by
   intro hcon
   exact h (hcon ▸ osinCommensurable_conj f₁ c)
+
+/-! ## 5c.  The conjugator, and where Coulon's lemma sits
+
+Every route to half (a) has died at the same seam --- conjugation moves an axis
+without moving the conjugacy class --- so the lemmas that *see* the conjugator
+are the ones worth having outright.  Two are unconditional and are proved here.
+
+**Coulon**, arXiv:1302.6933, `1_hyperbolic_geometry.tex`, "pseudo nu = 1":
+
+> Assume that every elementary subgroup of `G` is cyclic.  Let `g, h ∈ G`.  If
+> `g` and `hgh⁻¹` generate an elementary subgroup then so do `g` and `h`.
+
+That is exactly the conjugate-form statement half (a) needs, and it is the first
+result found that eliminates the conjugator rather than being defeated by it.
+Two things about it are worth recording before anyone budgets for it.
+
+**Its proof is boundary-based, and this repository has no boundary.**  Coulon
+argues that `g` and `hgh⁻¹` are hyperbolic isometries with the same accumulation
+points in `∂X`, so `h` stabilises `{g⁻, g⁺}` and therefore lies in `E(g)`.
+Nothing in this tree carries `∂X`, so a literal transcription is not available.
+
+**But over a torsion-free ambient it has a purely algebraic proof, and that
+proof is downstream of half (b).**  If `⟨g, hgh⁻¹⟩` is elementary hence cyclic,
+then `E(hgh⁻¹) = h E(g) h⁻¹` --- the equivariance proved below --- and by
+uniqueness of the maximal cyclic subgroup containing an element of infinite
+order that subgroup is `E(g)` again, so `h` normalises `E(g)`; the inversion
+case `h r h⁻¹ = r⁻¹` forces `r²ᵐ = 1` and dies on torsion-freeness, leaving
+`h ∈ E(g)`.  No boundary is used --- but "`E(x)` is the maximal cyclic subgroup
+containing `x`" is precisely half (b).
+
+So Coulon's lemma is **not an independent input to half (a)**: it is the bridge
+that converts half (b) into leverage on half (a), which is the sequencing
+`HyperbolicElementaryClosureStatement` was already suspected to have.  Budget it
+after (b), not beside it. -/
+
+/-- **The elementary closure is conjugation-equivariant.**  Unconditional, and
+the fact every route through the conjugator needs: it is what makes "`E(f₁)` and
+`E(f₂)` are conjugate" a well-posed statement. -/
+theorem mem_osinElementaryClosure_conj {K : Type*} [Group K] {g f : K} (h : K) :
+    f ∈ osinElementaryClosure g →
+      h * f * h⁻¹ ∈ osinElementaryClosure (h * g * h⁻¹) := by
+  rintro ⟨n, hn, hc | hc⟩
+  · refine ⟨n, hn, Or.inl ?_⟩
+    rw [conj_pow]
+    have hstep : (h * f * h⁻¹)⁻¹ * (h * g ^ n * h⁻¹) * (h * f * h⁻¹)
+        = h * (f⁻¹ * g ^ n * f) * h⁻¹ := by group
+    rw [hstep, hc]
+  · refine ⟨n, hn, Or.inr ?_⟩
+    rw [conj_pow]
+    have hstep : (h * f * h⁻¹)⁻¹ * (h * g ^ n * h⁻¹) * (h * f * h⁻¹)
+        = h * (f⁻¹ * g ^ n * f) * h⁻¹ := by group
+    rw [hstep, hc]
+    group
+
+/-- **A conjugator that centralises `g` lies in `E(g)`.**  The `n = 1` case of
+the definition, recorded because it is the shape the algebraic proof of Coulon's
+lemma finishes with. -/
+theorem mem_osinElementaryClosure_of_conj_eq_self {K : Type*} [Group K] {g h : K}
+    (hc : h⁻¹ * g * h = g) : h ∈ osinElementaryClosure g :=
+  ⟨1, one_pos, Or.inl (by rw [pow_one]; exact hc)⟩
+
+/-- **A conjugator that inverts `g` lies in `E(g)` too.**  Osin's `±` is what
+makes this a membership rather than a failure; over a torsion-free ambient this
+branch is the one that dies, which is where torsion-freeness enters the
+algebraic proof of Coulon's lemma. -/
+theorem mem_osinElementaryClosure_of_conj_eq_inv {K : Type*} [Group K] {g h : K}
+    (hc : h⁻¹ * g * h = g⁻¹) : h ∈ osinElementaryClosure g :=
+  ⟨1, one_pos, Or.inr (by rw [pow_one]; exact hc)⟩
 
 /-! ## 6.  The negative model test -/
 
