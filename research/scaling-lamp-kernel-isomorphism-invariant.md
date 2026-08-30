@@ -9,9 +9,10 @@ distinct_from:
   scaling-skeleton-quotients-pairwise-nonisomorphic: that claim separates the quotients after the lamp kernel has been selected; this claim is the missing descent from an isomorphism of full groups to those quotients.
 artifacts:
   - research/artifacts/scaling-lamp-kernel-characteristicity-frontier-2026-08-30.md
+  - research/artifacts/composite-scaling-kazhdan-radical-reconstruction-2026-08-30.md
 ---
 
-**OPEN.**  For all `m,n>=2`, every isomorphism
+**ESTABLISHED.**  For all `m,n>=2`, every isomorphism
 
 ```text
 Phi:E_m -> E_n
@@ -20,17 +21,21 @@ Phi:E_m -> E_n
 carries the normal closure `N_m=<<c_m>>` of the lamp generator onto
 `N_n=<<c_n>>`.
 
-The cross-family formulation is deliberate.  Proving merely that `N_m` is
-fixed by `Aut(E_m)` does not by itself identify it with `N_n` under an
-isomorphism between two different family members.  A proof must give an
-intrinsic group-theoretic characterization of `N_m`, or directly prove the
-displayed functorial statement.
+The kernel now has a presentation-free characterization.  If
 
-## Attempts
+```text
+K_T(G)=<FinRad(H): H<=G maximal with property (T)>,
+```
 
-Ordinary abelianization is scale-independent and cannot select `N_m`.
-Killing the base leaves the common quotient `Z*C_2`, so unmarked finite
-quotients can also be scale-blind.  The existing block-amalgam normal form
-computes the doubling kernel internally but does not classify automorphisms
-of the full group.  The surviving approach is an intrinsic radical or normal
-form characterization of the lamp kernel, uniform in `m`.
+then the exact composite-block analysis proves
+
+```text
+K_T(E_r)=N_r
+```
+
+for every scale `r>=2`.  Property `(T)`, maximality, and finite radicals
+are preserved by abstract isomorphisms, so the displayed formula is
+functorial across different family members.
+
+DERIVATION
+[[scaling-lamp-kernel-via-maximal-kazhdan-radicals]]
