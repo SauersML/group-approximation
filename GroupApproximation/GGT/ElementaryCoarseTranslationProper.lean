@@ -138,6 +138,25 @@ theorem elementaryClosure_ne_top_of_coarseTranslation
 
 end CoarseTranslation
 
+/-! ## The named DGO obligation -/
+
+/-- The uniform coarse-translation part of DGO Lemma 6.5, for every `(AH₃)`
+datum on its given hyperbolic space. -/
+def ElementaryClosureCoarseTranslationStatement : Prop :=
+  ∀ (G : Type u) [Group G] (D : AH3Data.{u, u} G),
+    @ElementaryClosureCoarseTranslation G _ D.Space D.metricSpace D.mulAction D.base
+
+/-- Properness of `E(g)` is a consequence of the uniform coarse-translation
+lemma and is not an additional DGO input. -/
+theorem elementaryClosureProper_of_coarseTranslation
+    (hct : ElementaryClosureCoarseTranslationStatement.{u}) :
+    ElementaryClosureProper.{u} := by
+  intro G _inst D hnvc
+  letI : PseudoMetricSpace D.Space := D.metricSpace
+  letI : MulAction G D.Space := D.mulAction
+  exact elementaryClosure_ne_top_of_coarseTranslation D.isometric D.wpd
+    D.loxodromic (hct G D) hnvc
+
 end Elementary
 end GGT
 end GroupApproximation
