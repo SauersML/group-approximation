@@ -13,6 +13,7 @@ artifacts:
   - GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw10-amenable-trace-frontier-2026-08-30.md
 ---
 
 **Problem X(1) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Are amenable traces on C\*-algebras necessarily
@@ -79,3 +80,18 @@ Positive instance machine-checked: on Kazhdan full group C\*-algebras the
 answer is YES (`problemX1_restricted_to_kazhdan`, `GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean`, from Brown Prop
 4.1.12 as a typed input); any group-algebra counterexample must be
 non-Kazhdan, which the literal group `E` is designed to be.
+
+## August 2026 audit and attempts
+
+The universal question remains open.  Shulman's arXiv:2508.00125 adds a
+homotopy-domination permanence theorem but does not resolve it.  The current
+unconditional reductions are:
+
+- `directed-unions-preserve-trace-approximations`, which makes both trace
+  properties local on unital directed dense unions;
+- `factorization-and-canonical-qd-are-finitely-local`, its full-group-algebra
+  consequence;
+- `exact-gns-kernel-amenability-reduction`, which isolates the exact faithful
+  GNS-image reduction without asserting QD descent; and
+- `nonamenable-factorization-regular-quotient-not-liftable`, which gives a
+  concrete nonexact obstruction to naive GNS descent, already for `F_2`.
