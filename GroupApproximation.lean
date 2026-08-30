@@ -2738,6 +2738,8 @@ import GroupApproximation.Analysis.VoiculescuDefect
 import GroupApproximation.Analysis.VoiculescuStageSelection
 import GroupApproximation.Analysis.VoiculescuQuasicentralDiagonal
 import GroupApproximation.Analysis.VoiculescuQuasicentral
+import GroupApproximation.Analysis.ArvesonSesquilinearRiesz
+import GroupApproximation.Analysis.ArvesonLimitStep
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
