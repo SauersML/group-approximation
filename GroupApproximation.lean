@@ -2978,3 +2978,5 @@ import GroupApproximation.GGT.HullEeTransfer
 import GroupApproximation.GGT.DGOLemma421Consequences
 import GroupApproximation.GGT.DGOAssemblyIsolation
 import GroupApproximation.GGT.HullHeGXFamily
+import GroupApproximation.GGT.DGOWindmillLoxodromic
+import GroupApproximation.GGT.DGOWindmillExhaust
