@@ -658,6 +658,49 @@ theorem terminal_mem_translated_quasiAxis {f : ℝ → X}
   refine ⟨(h ^ p.stop) • x, zpow_smul_mem_quasiAxis hf p.stop, ?_⟩
   rw [terminal, mul_smul]
 
+/-- The exact asynchronous monotone-sampling content used from
+Bestvina--Fujiwara, Proposition 6, in DGO Lemma 6.7.  For the WPD offset `M`
+and any required finite sample count, sufficiently long oriented-close
+power-axis segments contain two increasing matched vertex families, both
+before and after the offsets `M` and `K`. -/
+def HasMonotoneVertexSampling (B : ℝ) (h : G) (x : X) : Prop :=
+  ∃ C₀ C : ℝ, 0 ≤ C₀ ∧ 0 ≤ C ∧
+    ∀ (M N : ℕ), ∃ L : ℝ, 0 < L ∧
+      ∀ (p q : PowerAxisSegment h x),
+        L ≤ p.length → L ≤ q.length → OrientedClose B p q →
+        ∃ (K : ℤ) (A D : Fin (N + 1) → ℤ),
+          StrictMono A ∧ StrictMono D ∧
+          dist p.initial q.initial ≤ C₀ ∧
+          dist (p.vertex (p.start + (M : ℤ)))
+            (q.vertex (q.start + K)) ≤ C₀ ∧
+          (∀ i, dist (p.vertex (p.start + A i))
+            (q.vertex (q.start + D i)) ≤ C) ∧
+          (∀ i, dist (p.vertex (p.start + (M : ℤ) + A i))
+            (q.vertex (q.start + K + D i)) ≤ C)
+
+/-- **DGO Lemma 6.7 for power-vertex segments, reduced exactly to the cited
+Bestvina--Fujiwara monotone-sampling proposition.**  The length threshold is
+uniform over both translated axes. -/
+theorem exists_equal_positive_powers_of_long_powerSegments
+    {δ B : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x)
+    (hsampling : HasMonotoneVertexSampling B h x) :
+    ∃ L : ℝ, 0 < L ∧ ∀ (p q : PowerAxisSegment h x),
+      L ≤ p.length → L ≤ q.length → OrientedClose B p q →
+      ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+        p.conjugate ^ r = q.conjugate ^ s := by
+  obtain ⟨C₀, C, hC₀, hC, hsampling⟩ := hsampling
+  obtain ⟨M₀, hM₀⟩ := dgoLemma67_of_monotone_vertex_samples
+    hδ hδ0 hgeo hiso hlox hwpd hC₀ hC
+  obtain ⟨N, hN⟩ := hM₀ M₀ le_rfl
+  obtain ⟨L, hL, hsampleL⟩ := hsampling M₀ N
+  refine ⟨L, hL, ?_⟩
+  intro p q hpLen hqLen hclose
+  obtain ⟨K, A, D, hA, hD, hbase0, hbaseM, hsamples0, hsamplesM⟩ :=
+    hsampleL p q hpLen hqLen hclose
+  exact hN p q hbase0 K hbaseM A D hA hD hsamples0 hsamplesM
+
 /-- Oriented closeness is symmetric in the two segments. -/
 theorem orientedClose_comm {B : ℝ} (p q : PowerAxisSegment h x) :
     OrientedClose B p q ↔ OrientedClose B q p := by
