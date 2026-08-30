@@ -132,7 +132,7 @@ as a premise in any graph route added with this artifact.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate eighteen facts which do not depend on the literature
+The graph additions isolate nineteen facts which do not depend on the literature
 audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -269,3 +269,13 @@ audit.
     entered at any point.  The arbitrary type-III von Neumann result now
     factors through this general theorem after its independent verification
     of strong pure infiniteness.
+19. Reduced products have an exact norm-return theorem for homomorphically
+    liftable pairs.  If `Q=(product_n B_n)/J`, with
+    `directSum_n B_n subseteq J`, and every `B_n` has Jiang--Su embedding
+    uniqueness, choose in coordinate `n` a unitary conjugating the first `n`
+    dense test elements within `1/n`.  The resulting product unitary has
+    conjugacy error in the direct sum and therefore exactly conjugates the
+    quotient maps.  Hence a counterexample pair in such a quotient must have
+    at least one embedding with no unital homomorphic lift.  Nuclearity of
+    `Z` is not used to assert such a lift, and no bidual-return inference is
+    made.
