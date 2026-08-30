@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw95-pure-tensor-frontier-2026-08-30.md
   - research/artifacts/stw95-entangled-compact-corridor-audit-2026-08-30.md
   - research/artifacts/stw95-pure-tensor-permanence-wave-audit-2026-08-30.md
+  - research/artifacts/stw95-order-reflecting-inner-cofinal-audit-2026-08-30.md
 ---
 
 **Problem XCV, general part, of Schafhauser--Tikuisis--White.**  Is the
@@ -97,6 +98,15 @@ way-below pairs; no splitting or order reflection is needed.  Almost
 unperforation transfers along a much weaker ordered-monoid retraction, without
 the continuity requirements of a Cu-morphism.  Their simultaneous
 verification would strengthen the existing split-map route.
+
+That simultaneous local verification is now explicit in
+`stw95-order-embedded-inner-cofinal-cu-image-forces-pure-product`: if the
+canonical external map is order-embedding and its image is inner cofinal for
+way-below pairs, then the concrete tensor product is pure.  The proof
+localizes each perforation inequality to two source elements before applying
+order reflection.  It does not assume that the external map is surjective,
+so genuinely new compact or soft concrete classes are permitted when their
+way-below windows admit the required brackets.
 
 Finally, failure of tensor exactness gives a counterexample mechanism not
 limited to compact-bearing representations.  For an ideal `I` in one pure
