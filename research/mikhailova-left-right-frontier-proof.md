@@ -18,10 +18,9 @@ belonging to `q_1` along `s x s`. Restriction to `im(s x s)` and pullback
 through `F_2 x F_2 -> im(s x s)` preserve soficity by GKP Proposition 2.15.
 Reversing the roles of the presentations proves equivalence.
 
-## Exact finite models
+## Residually finite action
 
-For a transitive action `G` on `G/M`, exact finite Schreier approximation
-on every finite packet is equivalent to separability of `M` in `G`.
+For a transitive action `G` on `G/M`, residual finiteness as a `G`-set—finite equivariant quotients separating every finite subset—is equivalent to separability of `M` in `G`.
 
 If `H` is residually finite and `(u,v) notin M_H`, choose a finite quotient
 `c:H->C` with `c(q(u)) != c(q(v))`. Then `(c q) x (c q)` sends `M_H`
@@ -83,8 +82,8 @@ replacing `Phi` by exact finite actions in general.
 
 ## Attempts closed
 
-- **Finite quotients / exact Schreier actions:** equivalent to residual
-  finiteness of `H`, so impossible for the compiler host.
+- **Finite equivariant quotients / residually finite action:** equivalent to
+  residual finiteness of `H`, so impossible for the compiler host.
 - **Arbitrary finite metric patches:** universal for the residually finite
   actor and therefore quotient-blind.
 - **Separate left and right charts:** invalidated as a permanence principle
