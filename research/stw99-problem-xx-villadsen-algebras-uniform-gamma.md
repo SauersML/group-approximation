@@ -10,6 +10,8 @@ artifacts:
   - research/artifacts/stw99-xix-xx-uniform-gamma-recon-2026-08-30.md
   - research/artifacts/stw99-xx-point-dominated-diagonal-gamma-2026-08-30.md
   - research/artifacts/stw99-xx-clustered-eigenmap-gamma-2026-08-30.md
+  - research/artifacts/stw99-xx-eigenmap-metric-entropy-2026-08-30.md
+  - research/artifacts/stw20-two-coordinate-mixing-tradeoff-audit-2026-08-30.md
 ---
 
 **Problem XX of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Do the
@@ -76,3 +78,12 @@ which would refute
   separated by any scalar test function with nonzero oscillation, so their
   covering number remains linear.  Thus this refinement identifies, but
   does not cross, the classical Villadsen boundary.
+* **Continuous phase variation cannot repair an independent pair.**
+  `stw20-two-coordinate-variable-mixing-tradeoff` computes an exact local
+  obstruction.  For a rank-one mixer over two coordinate blocks separated
+  by a scalar function of oscillation `Delta`, the commutator error `C` and
+  pointwise mixed-trace-halving error `E` obey
+  `C^2+4E^2=Delta^2/4`.  Thus a fibre-dependent phase cannot make both
+  errors small.  This fences pairwise pointwise constructions only: the
+  actual problem remains a uniform-2-norm question over limit traces, and
+  a many-block projection need not preserve any fixed pair.
