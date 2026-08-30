@@ -59,6 +59,14 @@ complete algebra, rather than merely to its Hilbert-module completion.
 Countable generation is automatic for uniform completions of separable
 C-star algebras.
 
+For trivial bundles, Farah--Vaccaro, Proc. Amer. Math. Soc. 154 (2026),
+Theorem 1.2, independently remove countable generation: for every II1 factor
+`N` and compact Hausdorff `X` with `dim(X)<=1`, all traces on
+`C_sigma(X,N)` are canonical. In particular the interval and circle with
+free-group-factor fibre are settled. See
+`farah-vaccaro-one-dimensional-trivial-factor-bundles-have-only-uniform-traces`.
+The arbitrary nontrivial-bundle problem remains open.
+
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,
 `stw22-locally-trivial-finite-dimensional-bundles` supplies an independent

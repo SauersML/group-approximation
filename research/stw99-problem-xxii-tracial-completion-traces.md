@@ -51,6 +51,15 @@ have an exact uniform `L^2` tail.  This supplies all finite equi-`LC^n`
 inputs without assuming continuous support projections.  The earlier
 dimension-two theorem is retained as the first new special case.
 
+An independent published theorem covers arbitrary factor fibres in the
+one-dimensional trivial case. Farah--Vaccaro, Proc. Amer. Math. Soc. 154
+(2026), Theorem 1.2, prove that every trace on `C_sigma(X,N)` is canonical
+whenever `N` is any II1 factor and `dim(X)<=1`. This includes
+`C_sigma([0,1],L(F_2))` and requires neither hyperfiniteness nor property
+Gamma; see
+`farah-vaccaro-one-dimensional-trivial-factor-bundles-have-only-uniform-traces`.
+Their result does not cover nontrivial bundles.
+
 For locally trivial hyperfinite W*-bundles over finite-dimensional compact
 metrizable bases, `stw22-locally-trivial-finite-dimensional-bundles` gives
 an independent cocycle-local recovery of the same conclusion.  This is not
