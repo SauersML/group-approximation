@@ -2742,6 +2742,8 @@ import GroupApproximation.Analysis.ArvesonSesquilinearRiesz
 import GroupApproximation.Analysis.ArvesonLimitStep
 import GroupApproximation.GGT.OsinLemma55GuessingGeodesics
 import GroupApproximation.Analysis.VoiculescuGlimmStatement
+import GroupApproximation.GGT.GeodesicChainExists
+import GroupApproximation.GGT.GuessingGeodesicsSubdivision
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
