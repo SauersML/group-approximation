@@ -106,3 +106,20 @@ model's defining subalgebra contains a trace-zero projection; hence the
 remaining plausible XCIII input is specifically the faithful diagonal
 copy and full free-factor spectral gap, not an abstract self-commutator
 factorization principle.
+
+Those two inputs still do not erase the norm trace kernel.
+`stw93-faithful-full-diagonal-retains-norm-kernel` amplifies a faithful MF
+model of the actual algebra and obtains norm-one trace-zero projections
+which commute exactly with the diagonal while preserving its faithful trace
+and the `L(F_2)` adjoint spectral gap.  These projections are harmless for
+trace uniqueness because they have arbitrarily many orthogonal equivalent
+copies in the relative commutant, so every bounded trace kills them.  Thus a
+negative XCIII witness must be **centrally finite**: it must defeat this
+multiplicity escape, not merely survive the passage from `2`-norm to norm.
+The projection-free formulation is
+`stw93-singular-trace-needs-finite-central-cuntz-capacity`: any bounded trace
+charging a positive kernel element charges a spectral cut whose Cuntz class
+admits only finitely many orthogonal copies below the unit.  Infinite central
+Cuntz capacity for every kernel spectral cut would therefore prove ordinary
+trace uniqueness, while a negative witness must expose one finite-capacity
+cut.
