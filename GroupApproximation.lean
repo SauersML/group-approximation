@@ -2952,6 +2952,8 @@ import GroupApproximation.GGT.HullEeAdjoinSet
 import GroupApproximation.Analysis.VoiculescuStageSchedule
 import GroupApproximation.Analysis.VoiculescuPositiveUnit
 import GroupApproximation.GGT.HullEeUniformCut
+import GroupApproximation.Analysis.NormMatrixCoronaGenericBridge
+import GroupApproximation.Analysis.ShulmanTailDihedralParity
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
