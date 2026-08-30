@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw82-tree-connected-support-covers-audit-2026-08-30.md
   - research/artifacts/stw82-stage-centre-split-audit-2026-08-30.md
   - research/artifacts/stw82-multiplier-projection-reduction-audit-2026-08-30.md
+  - research/artifacts/stw82-quasicentral-support-thickening-audit-2026-08-30.md
   - research/artifacts/stw82-complemented-multiplier-support-audit-2026-08-30.md
 ---
 
@@ -140,6 +141,27 @@ This permits multiplier projections that are simultaneously nonfull and
 noncentral.  Consequently a counterexample to the split-AF formula must pass
 through a nonfull projection whose generated ideal is noncomplemented; its
 support cannot be a central projection of `M(A)`.
+
+There is now a first theorem on that genuinely noncomplemented side.
+`stw82-quasicentral-support-thickening-preserves-dimension` assumes the
+generated ideal `L=closure(ApA)` has a projectional approximate unit
+quasicentral in `A` and asymptotically commuting with `p`.  Spectral repair
+makes those projections commute with `p`; adjoining `p` to each repaired
+cut produces a quasicentral approximate unit of projections for `L+C p` in
+`A+C p`.  The residual extension by `A/L` is therefore quasidiagonal, so
+the quasidiagonal maximum theorem and the full-corner computation on `L`
+give
+
+```text
+dim_nuc(A+C p)=dim_nuc(A).
+```
+
+This includes proper essential generated ideals, which can never be
+complemented.  An explicit stabilized-unitization field over `[0,1]` gives
+a noncentral, nonfull, noncomplemented example of nuclear dimension one.
+The remaining multiplier-support frontier must lack such projectional
+quasicentral cuts relative to `p`, so its residual gluing is genuinely
+nonquasidiagonal.
 
 There is also a new unconditional middle-algebra class:
 `stw82-one-dimensional-middle-forces-maximum` shows that every

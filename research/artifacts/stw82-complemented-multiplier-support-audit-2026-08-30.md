@@ -67,3 +67,10 @@ closes this residual gluing exactly when `L` is a direct summand.  Any
 counterexample to multiplier-projection invariance must therefore have a
 proper, noncomplemented generated ideal; equivalently, its support is not a
 central projection of `M(A)`.
+
+The later theorem
+`stw82-quasicentral-support-thickening-preserves-dimension` enters this
+noncomplemented region.  It covers generated ideals having a projectional
+approximate unit quasicentral in `A` and asymptotically commuting with `p`,
+including proper essential examples.  Thus the remaining noncomplemented
+boundary must also lack those relative projectional cuts.
