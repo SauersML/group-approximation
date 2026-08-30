@@ -52,7 +52,7 @@ kernel.
 - The affine permutation group is
   `F_p^3 semidirect SL_3(F_p)`; no false identification with
   `AGL_3(F_p)` is used for odd `p`.
-- The height-zero argument includes property-`(T)) subgroups of the
+- The height-zero argument includes property-`(T)` subgroups of the
   ascending vertex, not only those already in a block vertex.
 - Maximality uses uniqueness of the fixed block vertex.
 - `B_(p,1)` is not called torsion-free; only its finite radical is proved
