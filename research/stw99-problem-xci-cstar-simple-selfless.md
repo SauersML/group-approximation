@@ -53,6 +53,12 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
   locally constant functions on any compact metrizable zero-dimensional
   space.  The proof iterates exact tensor permanence over finite clopen
   partitions and then passes to their directed union.
+- `stw91-reduced-free-products-preserve-selflessness` proves that the reduced
+  free product of any two selfless C*-probability spaces is selfless, without
+  exactness.  It places the two factor splittings in a common Fubini
+  ultrapower, verifies freeness of the factor ultrapowers, and regroups the
+  resulting four free copies.  Hence free products of groups already known
+  to satisfy XCI again satisfy XCI.
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete negative
   certificate in ordered `K_0` using averaging projections of finite
   subgroups.

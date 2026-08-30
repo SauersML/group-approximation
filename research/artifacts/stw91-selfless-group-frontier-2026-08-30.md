@@ -76,6 +76,26 @@ directed-union theorem handles the limit.  This assumes neither PHP nor
 linearity of `P`; it is a permanence result conditional only on the base
 algebra already belonging to the exact positive class for XCI.
 
+There is a second permanence theorem which is independent of exact tensoring
+and directed limits.  If `(A,tau)` and `(B,sigma)` are selfless, put their two
+free-product splittings in a common Fubini ultrapower.  The coordinate copies
+`A^Omega` and `B^Omega` inside `(A*B)^Omega` remain free: alternating centered
+ultrapower representatives can be centered coordinatewise, after which every
+coordinate trace is zero.  The two free copies inside `A^Omega` and the two
+inside `B^Omega` are therefore four jointly free copies.  Regrouping them
+gives a trace-preserving map
+
+```text
+(A*B)*(A*B) -> (A*B)^Omega
+```
+
+whose first-factor restriction is diagonal.  The reduced-free-product trace
+is faithful, so this map is injective.  The arrow is thus in the precise
+free-product-to-ultrapower direction required by selflessness.  Consequently
+reduced free products preserve selflessness, and
+`C*_r(G*H)` is selfless whenever both factor reduced group algebras are.
+No exactness, PHP, linearity, or rapid-decay assumption enters this argument.
+
 # Trust boundary
 
 Imported results are explicitly isolated: Robert's directed-union and
