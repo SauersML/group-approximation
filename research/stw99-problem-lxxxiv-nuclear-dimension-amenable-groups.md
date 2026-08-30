@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw84-common-stabilizer-wreath-2026-08-30.md
   - research/artifacts/stw84-commensurable-stabilizer-wreath-2026-08-30.md
   - research/artifacts/stw84-finite-stabilizer-menu-wreath-2026-08-30.md
+  - research/artifacts/stw84-abelian-by-local-virnil-audit-2026-08-30.md
 ---
 
 **Problem LXXXIV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Determine for which countable discrete amenable
@@ -53,6 +54,32 @@ same limit theorem proves `stw84-locally-virtually-polycyclic-uniform-hirsch`:
 uniformly bounded Hirsch length across all finitely generated subgroups is
 enough for finite nuclear dimension, even when the countable union is not
 itself virtually polycyclic or virtually solvable.
+
+A different limit mechanism now passes beyond local virtual polycyclicity.
+`stw84-abelian-by-local-virnil-bound` takes a finite-rational-rank countable
+abelian group `A` and an arbitrary action of a countable uniformly locally
+virtually nilpotent group `H`.  Dualizing `A` turns every finitely generated
+actor stage into an arbitrary virtually nilpotent action on the
+finite-dimensional compact space `A_hat`.  Hirshberg--Wu's long-thin-cover
+estimate is uniform in the action, and therefore survives the subgroup
+limit.  If `rank_Q(A)=r` and all local Hirsch lengths are at most `s>=1`, the
+result is
+
+```text
+dim_nuc C*(A rtimes H) <= 2 s! 9^(s^2) (r+1)^2.
+```
+
+For locally finite `H` the bound improves to `r`, while for locally cyclic
+`H` it improves to `2r^2+6r+4`.  In particular
+
+```text
+1 <= dim_nuc C*(BS(1,n)) <= 12       (n>=2).
+```
+
+The expanding normal subgroup `Z[1/n]` is not finitely generated, so these
+finitely generated groups are not virtually polycyclic and were not reached
+by the existing uniform-local-polycyclic, locally-finite-kernel, or wreath
+lanes.
 
 The same limit mechanism now reaches shift semidirect products whose finite
 stages are not virtually polycyclic.  The theorem
@@ -195,7 +222,8 @@ mixed homogeneous-space tensor fibers cannot be purified by one finite
 lattice calculation.
 The directed-union argument still gives no control when its finite-stage
 bounds diverge.  Thus the remaining frontier includes unrestricted
-locally-finite-by-abelian groups and the general finite-Hirsch-length
-elementary amenable conjecture.  The wreath-quotient theorem gives a robust
-negative class but does not provide a converse: absence of such a quotient
-is not known to imply finite nuclear dimension.
+locally-finite-by-abelian groups, abelian-by-amenable groups whose finitely
+generated actors have unbounded nilpotent complexity, and the general
+finite-Hirsch-length elementary amenable conjecture.  The wreath-quotient
+theorem gives a robust negative class but does not provide a converse:
+absence of such a quotient is not known to imply finite nuclear dimension.
