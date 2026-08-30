@@ -26,16 +26,19 @@ marked word close to the identity uniformly in the dimension.
   rotation-relator defect `delta` makes every substituted P13 relator defect
   at most `219*delta`.
 - These constants do not yet compose into the requested modulus.
-  `literal-transport-gap-step-is-noneffective` locates the exact gate:
-  `WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues`
-  is an ultralimit contradiction with an unspecified `exists N`. The
-  affine property-`(T)` bridge is exact and uses arbitrarily long
-  translation conjugators, so naive relator telescoping is not uniform.
-- The smallest sufficient new input is a finite rational sum-of-squares
-  certificate for the full affine base, or an explicit robust
-  relative-property-`(T)` theorem for the affine relations. A later finite
-  ledger must then cover compressor transport, spectral-corner restriction,
-  and the marked-word estimate.
+  `literal-transport-gap-step-is-noneffective` identifies the first gap:
+  the P13 sum-of-squares theorem accepts an honest representation, not a
+  relator-defective tuple. Its finite equality replays have not been combined
+  with the rational Hodge/Fox coefficients into an explicit
+  `1/500-C*epsilon` robust gap.
+- The next gate is affine: the exact property-`(T)` bridge uses arbitrarily
+  long translation conjugators, so naive relator telescoping is not uniform.
+  One needs a full-base rational sum-of-squares certificate or an explicit
+  robust relative-property-`(T)` theorem.
+- `WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues`
+  then remains an ultralimit contradiction with an unspecified `exists N`.
+  A final ledger must cover compressor transport, spectral-corner
+  restriction, and the marked-word estimate.
 - Source drift: `non_mf_groups_exist.tex` is now the Leavitt manuscript and
   no longer displays the former forty-one-relator presentation. The legacy
   literal Lean modules and research nodes remain, but the artifact pointer
