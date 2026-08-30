@@ -2858,6 +2858,10 @@ import GroupApproximation.GGT.DGOBlockCycle
 import GroupApproximation.GGT.HullSCConeOffHeavyNonComm
 import GroupApproximation.GGT.DGOWindmillFree
 import GroupApproximation.Analysis.VoiculescuBlockCompact
+import GroupApproximation.GGT.DGOCorollary612Threshold
+import GroupApproximation.GGT.DGOWindmillSpelling
+import GroupApproximation.GGT.DGOWindmillPath
+import GroupApproximation.Analysis.VoiculescuMonotoneUnit
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

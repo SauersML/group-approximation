@@ -161,18 +161,35 @@ consumes quasi-geodesicity rather than producing it.
     what is left.  No amount of side-count strength removes it.
   * Its condition (W1) reads on LETTERS --- no subword `xy` with both letters
     in `X` --- and this relator opens with `|p|` consecutive base letters.
-    Hull's own words meet (W1) by construction: (W4) makes his word `U₁xU₂`
-    with at most ONE `X`-letter.  Ours spells `t⁻¹` as a WORD over the
-    alphabet, because `t` is arbitrary, so it has `|p|` of them.
+    (W4) is the sharper form of the same objection: it asks for
+    `W ≡ U₁ x U₂` with `U₁, U₂` over `H_α ⊔ H_β` and `x ∈ X ∪ {1}`, so a
+    relator with two `X`-letters fails (W4) before it fails (W1), and no
+    syllabic reading of (W1) would rescue it.  Hull's word has exactly one:
+    he reads it in `(𝒜 ∪ {t^{±1}}) ⊔ ⟨h₁⟩ ⊔ ⟨h₂⟩`, adjoining `t` to the
+    alphabet as a LETTER, while this chain spells `t⁻¹` as a word over `𝒜`
+    because `t` is arbitrary.  The deviation is in the spelling, not in the
+    predicate.
 
-  (W1) is vacuous, though, on a piece lying INSIDE the run, which has no
-  `X`-letters at all; (W3) is local and follows from the run alternating
-  indices; (W2) is the design's depth clause at a radius the composition
-  chooses.  So 4.21(1) does reach run-internal pieces, and gives them `(4,1)`
-  --- and only them.  A piece meeting the base arc has no progress bound from
-  any source, and the arithmetic does not compose across the arc: splitting a
-  crossing range and adding the two counts bounds it by the SUM of two
-  distances, which is not the distance between its endpoints.
+  Both conditions hold, though, on a piece lying INSIDE the run: it has no
+  `X`-letters at all, so (W1) is vacuous and (W4) holds with `x = 1`; (W3) is
+  local and follows from the run alternating indices; (W2) is the design's
+  depth clause at a radius the composition chooses.  So 4.21(1) does reach
+  run-internal pieces, and gives them `(4,1)` --- and only them.  A piece
+  meeting the base arc has no progress bound from any source, and the
+  arithmetic does not compose across the arc: splitting a crossing range and
+  adding the two counts bounds it by the SUM of two distances, which is not
+  the distance between its endpoints.
+
+  **The base-crossing half may be a defect of the spelling rather than a
+  debt.**  Nothing in this chain reads `|p|` except as an upper bound and
+  `0 < |p|`: `HullSC.exists_long_base_spelling₂` returns any base spelling of
+  `t⁻¹` with `P ≤ |p|` and the composition asks it at `P := 1`.  So if the
+  alphabet contained `t⁻¹` the spelling could be `[t⁻¹]`, the relator would
+  have one `X`-letter, and 4.21(1) would reach EVERY piece.  What stands in
+  the way is not in these files: `HullSC.ExistsHypEmbeddedConeOff₂` cones off
+  over `A.alphabet`, where Hull cones off over `𝒜 ∪ {t^{±1}}`, and restating
+  the citation over the enlarged alphabet is a change to what it asks of the
+  geometry.
 
   **So item 2 is open because item 1 is closed narrowly, and the two move
   together.**  For a run-internal piece the missing step is the
@@ -180,8 +197,8 @@ consumes quasi-geodesicity rather than producing it.
   `(4,1)` side --- that is item 1's bound, at `mu = 4`, where item 1 is
   discharged only at `mu = 1` and `n ≤ 6`.  Listing them as independent debts,
   as this file did, was wrong.  For a base-crossing piece not even that is
-  enough, and what would be needed first is a progress bound of some kind on a
-  word that fails (W1).
+  enough, and what would be needed first is either a progress bound on a word
+  that is not one of Hull's, or the spelling of `t` above.
 
 **3. The two same-side exclusions.**  That no two distinct components of one
 long side of the quadrilateral are connected to each other, one clause per

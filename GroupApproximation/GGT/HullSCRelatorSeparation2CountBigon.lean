@@ -227,7 +227,13 @@ and `card_le_card_of_sideSeparated` does the rest.  `hScomp` is what the design
 supplies --- each counted position starts a component whose span is deep --- and
 `hbound` is the isolated-component bound at the two-sided figure, the only
 geometric input left in the count.  Its radius `R` is free for the reason
-`other_of_deep` records: the two-sided figure's radius is not `2 · C₀`. -/
+`other_of_deep` records: the two-sided figure's radius is not `2 · C₀`.
+
+A producer offering both an explicit bound and an `∃ R, …` corollary should be
+taken in the EXPLICIT form here.  Both fit `hbound`, but `hrho` wants a closed
+term for `R`, so the existential costs an `obtain` at the call site and gives
+up the ability to compare two radii --- which is what a depth clause covering
+more than one side count would need. -/
 theorem card_le_card_of_deep (D : RelGenSet G Λ) (lam : Λ) (v : G)
     (u q : List (RelLetter G Λ)) (S Q : Finset ℕ) {R rho : ℕ}
     (hbound : ∀ i k : ℕ, IsComp lam (u ++ revWord q) i k →
