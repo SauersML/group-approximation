@@ -389,6 +389,119 @@ theorem le_dist_vertex_of_coordinate_gap
     simpa only [mul_comm] using hgap
   linarith
 
+/-- The positive-power conclusion of DGO Lemma 6.7 from the monotone vertex
+samples supplied by the oriented quasi-axis overlap.  The two base alignments
+cost `C₀`, while corresponding sampled vertices cost `C`; hence WPD is applied
+at error `C + C₀`.
+
+This theorem isolates exactly the input imported by DGO from
+Bestvina--Fujiwara, Proposition 6: the remaining geometric task is to construct
+the two strictly increasing exponent families from sufficiently long oriented
+close segments. -/
+theorem dgoLemma67_of_monotone_vertex_samples
+    {δ C₀ C : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x)
+    (hC₀ : 0 ≤ C₀) (hC : 0 ≤ C)
+    (p q : PowerAxisSegment h x) :
+    ∃ M₀ : ℕ, ∀ M : ℕ, M₀ ≤ M → ∃ N : ℕ,
+      dist p.initial q.initial ≤ C₀ →
+      dist (p.vertex (p.start + (M : ℤ)))
+        (q.vertex (q.start + (M : ℤ))) ≤ C₀ →
+      ∀ (A B : Fin (N + 1) → ℤ), StrictMono A → StrictMono B →
+        (∀ i, dist (p.vertex (p.start + A i))
+          (q.vertex (q.start + B i)) ≤ C) →
+        (∀ i, dist (p.vertex (p.start + (M : ℤ) + A i))
+          (q.vertex (q.start + (M : ℤ) + B i)) ≤ C) →
+        ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+          p.conjugate ^ r = q.conjugate ^ s := by
+  let z : X := p.initial
+  let a : G := p.conjugate
+  let b : G := q.conjugate
+  have hh_z : IsLoxodromic h z :=
+    isLoxodromic_of_isLoxodromic hiso hlox
+  have ha : IsLoxodromic a z := by
+    dsimp [a]
+    exact isLoxodromic_conj hiso hh_z
+  let u : G := p.translate * h ^ p.start
+  have huPoint : u • x = z := by rfl
+  have huConj : u * h * u⁻¹ = a := by
+    dsimp [u, a, conjugate]
+    group
+  have haWPD : IsWPDAt a z := by
+    have hw := hwpd.conj hiso u
+    rwa [huConj, huPoint] at hw
+  have haEventually : IsWPDAtEventually a z :=
+    isWPDAtEventually_of_geodesic hδ hδ0 hgeo hiso ha haWPD
+  have herror : 0 ≤ C + C₀ := by linarith
+  obtain ⟨M₀, hM₀⟩ :=
+    isWPDAtEventually_common_positive_zpow hiso haEventually herror
+  refine ⟨M₀, ?_⟩
+  intro M hM
+  obtain ⟨N, hN⟩ := hM₀ M hM
+  refine ⟨N, ?_⟩
+  intro hbase0 hbaseM A B hA hB hsamples0 hsamplesM
+  apply hN a b A B hA hB
+  intro i
+  have hpA : (a ^ (A i)) • z = p.vertex (p.start + A i) := by
+    dsimp [a, z]
+    exact p.conjugate_zpow_smul_initial (A i)
+  have hqB : (b ^ (B i)) • q.initial = q.vertex (q.start + B i) := by
+    dsimp [b]
+    exact q.conjugate_zpow_smul_initial (B i)
+  have hfirst : dist ((a ^ (A i)) • z) ((b ^ (B i)) • z) ≤ C + C₀ := by
+    have hsample :
+        dist ((a ^ (A i)) • z) ((b ^ (B i)) • q.initial) ≤ C := by
+      rw [hpA, hqB]
+      exact hsamples0 i
+    have hshift :
+        dist ((b ^ (B i)) • q.initial) ((b ^ (B i)) • z) =
+          dist q.initial z := hiso _ _ _
+    have htri := dist_triangle ((a ^ (A i)) • z)
+      ((b ^ (B i)) • q.initial) ((b ^ (B i)) • z)
+    have hbase0' : dist q.initial z ≤ C₀ := by
+      dsimp [z]
+      rwa [dist_comm]
+    linarith
+  have hpM : (a ^ M) • z = p.vertex (p.start + (M : ℤ)) := by
+    rw [← zpow_natCast]
+    dsimp [a, z]
+    exact p.conjugate_zpow_smul_initial (M : ℤ)
+  have hqM : (b ^ M) • q.initial = q.vertex (q.start + (M : ℤ)) := by
+    rw [← zpow_natCast]
+    dsimp [b]
+    exact q.conjugate_zpow_smul_initial (M : ℤ)
+  have hpMA : (a ^ (A i)) • ((a ^ M) • z) =
+      p.vertex (p.start + (M : ℤ) + A i) := by
+    rw [hpM]
+    dsimp [a]
+    exact p.conjugate_zpow_smul_vertex (A i) (p.start + (M : ℤ))
+  have hqMB : (b ^ (B i)) • ((b ^ M) • q.initial) =
+      q.vertex (q.start + (M : ℤ) + B i) := by
+    rw [hqM]
+    dsimp [b]
+    exact q.conjugate_zpow_smul_vertex (B i) (q.start + (M : ℤ))
+  have hsecond :
+      dist ((a ^ (A i)) • ((a ^ M) • z))
+        ((b ^ (B i)) • ((a ^ M) • z)) ≤ C + C₀ := by
+    have hsample :
+        dist ((a ^ (A i)) • ((a ^ M) • z))
+          ((b ^ (B i)) • ((b ^ M) • q.initial)) ≤ C := by
+      rw [hpMA, hqMB]
+      exact hsamplesM i
+    have hshift :
+        dist ((b ^ (B i)) • ((b ^ M) • q.initial))
+          ((b ^ (B i)) • ((a ^ M) • z)) =
+            dist ((b ^ M) • q.initial) ((a ^ M) • z) := hiso _ _ _
+    have htri := dist_triangle ((a ^ (A i)) • ((a ^ M) • z))
+      ((b ^ (B i)) • ((b ^ M) • q.initial))
+      ((b ^ (B i)) • ((a ^ M) • z))
+    have hbaseM' : dist ((b ^ M) • q.initial) ((a ^ M) • z) ≤ C₀ := by
+      rw [hpM, hqM]
+      rwa [dist_comm]
+    linarith
+  exact ⟨hfirst, hsecond⟩
+
 /-! ## From oriented power cores to WPD fellow travel -/
 
 /-- DGO's oriented endpoint-closeness condition for two power-vertex
