@@ -10,6 +10,7 @@ distinct_from:
   stw99-problem-xxvi-cu-regularity-z-stability: that assumes Jiang--Su absorption at the level of the Cuntz semigroup, a stronger regularity input than strict comparison alone.
 artifacts:
   - research/artifacts/stw99-ranks-divisibility-cluster-2026-08-30.md
+  - research/artifacts/stw18-23-26-finite-tracial-boundary-audit-2026-08-30.md
 ---
 
 **Problem XVIII of Schafhauser--Tikuisis--White, _Nuclear C*-algebras:
@@ -32,7 +33,11 @@ the Toms--Winter conjecture.  It remains open in this generality.
   property Gamma implies Jiang--Su stability.  Toms's 2026 counterexample to
   universal uniform Gamma therefore closes that proposed universal
   intermediate statement, not Problem XVIII itself.
-- The problem is known for important subclasses, including AH algebras and
-  crossed products of free minimal `Z^d`-actions in the cited STW survey.
+- The compact finite-dimensional tracial-boundary cell is explicitly closed
+  by `stw18-finite-trace-boundary-toms-winter`,
+  which imports the Toms--White--Winter theorem.  This includes finitely many
+  extremal traces and the unique-trace case.  Other known subclasses include
+  AH algebras and crossed products of free minimal `Z^d`-actions in the cited
+  STW survey.
 - `stw99-xviii-implies-xxvi` records the exact conditional implication from a
   positive solution here to Winter's Cuntz-semigroup problem XXVI.

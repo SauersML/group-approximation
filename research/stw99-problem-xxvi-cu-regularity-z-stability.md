@@ -4,6 +4,8 @@ id: stw99-problem-xxvi-cu-regularity-z-stability
 kind: claim
 title: Cuntz semigroup Z-absorption forces Z-stability for simple nuclear algebras (STW Problem XXVI, Winter's question)
 root: true
+artifacts:
+  - research/artifacts/stw18-23-26-finite-tracial-boundary-audit-2026-08-30.md
 ---
 
 **Problem XXVI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -17,6 +19,11 @@ pureness ⟺ strict comparison + all ranks almost occur ⟺
 `Cu(A) = V(A) ⊔ LAff_{>0}(QT(A))`; Lin (2023) adds: simple separable
 finite pure algebras have stable rank one, hence pure algebras are
 stably finite or purely infinite.
+
+The compact finite-dimensional extremal-trace-boundary cell is also
+positive.  `stw26-finite-trace-boundary-cu-z-stable`
+extracts strict comparison from Cuntz-semigroup regularity and then applies
+the finite-boundary Toms--White--Winter theorem.
 
 ## Attempts
 

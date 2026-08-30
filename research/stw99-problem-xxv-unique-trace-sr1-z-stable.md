@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw99-ranks-divisibility-cluster-2026-08-30.md
   - research/artifacts/stw25-real-rank-zero-k0-audit-2026-08-30.md
+  - research/artifacts/stw18-23-26-finite-tracial-boundary-audit-2026-08-30.md
 ---
 
 **Problem XXV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Must
@@ -20,14 +21,15 @@ non-`Z`-stable, but the known such counterexamples all have huge
 
 ## Attempts
 
-* Sharp reformulation (this session): with a unique trace, uniform
-  property Γ is automatic (Sato's central surjection + σ-ideal
-  projection lifting; recorded at
-  `stw99-problem-xix-uniform-gamma-stably-finite-nuclear`), so by CETW
-  (IMRN Thm 5.6) `Z`-stability ⟺ strict comparison here.  The problem
-  is EXACTLY: does stable rank one plus a unique trace force strict
-  comparison?  Divisibility is also free: sr1 gives all ranks occur
-  (Thiel), so the algebra is pure iff it has strict comparison.
+* Sharp reformulation (this session): a unique trace is a singleton compact
+  zero-dimensional extreme boundary.  The established
+  `stw18-finite-trace-boundary-toms-winter`
+  theorem therefore gives strict comparison `=>` `Z`-stability, while
+  `Z`-stability always gives strict comparison.  Equivalently, one may use
+  unique-trace uniform Gamma and CETW.  Thus the problem is EXACTLY: does
+  stable rank one plus a unique trace force strict comparison?  Divisibility
+  is also free: sr1 gives all ranks occur (Thiel), so the algebra is pure iff
+  it has strict comparison.
 * Equivalently by Blackadar--Handelman duality territory: with one
   quasitrace `τ`, strict comparison means `d_τ(a) < d_τ(b) ⟹ a ≾ b` —
   failure is perforation in `Cu(A)` visible to no trace.  Unique-trace

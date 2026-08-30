@@ -6,6 +6,7 @@ title: All ranks occur in unital simple separable stably finite non-elementary C
 root: true
 artifacts:
   - research/artifacts/stw99-ranks-divisibility-cluster-2026-08-30.md
+  - research/artifacts/stw18-23-26-finite-tracial-boundary-audit-2026-08-30.md
 ---
 
 **Problem XXIII of Schafhauser--Tikuisis--White, arXiv:2506.10902** (the
@@ -19,6 +20,12 @@ Duke Thm 7.14 in the non-simple sr1 case), unique or finitely many
 extremal quasitraces, `Z`-stable algebras (ERS Cor 6.8), and strict
 comparison + quasitraces-are-traces + compact finite-dimensional
 extremal trace boundary (Dadarlat--Toms).
+
+The exact finite-extreme-trace cell is now an explicit established graph
+node: `stw23-finite-extreme-trace-boundary-has-all-ranks` imports
+Tikuisis--Toms rank surjectivity and uses exactness to identify quasitraces
+with traces.  Unlike the stable-rank-one theorem, it assumes neither stable
+rank one nor comparison.
 
 ## Attempts
 
