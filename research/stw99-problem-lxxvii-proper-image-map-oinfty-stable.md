@@ -52,6 +52,14 @@ when searching for a counterexample.
   any such quotient is strongly O-infinity-stable.  For this class the unit
   alone suffices; finite nuclear dimension is used only to supply nuclearity
   of the map.
+- `stw77-ordinal-regular-targets-solve-map` gives a transfinite nonsimple
+  target class.  If the separable nuclear codomain has a continuous
+  arbitrary-ordinal ideal filtration whose nonzero successor layers are
+  algebraically simple with almost-unperforated `W`, then the properly
+  infinite image unit excludes normalized quasitraces.  Arbitrary-ordinal
+  `O_infinity`-stability gluing makes the whole target `O_infinity`-stable,
+  and nuclear-map absorption proves the conclusion.  In this class the unit
+  alone suffices; no fusion of the finite nuclear-dimension colours is needed.
 - `stw77-properly-infinite-colored-centralizer-fusion` is a local, uniform
   finite-color statement which would solve the problem.  Its key unresolved
   step is fusion across the noncommuting order-zero colors.
