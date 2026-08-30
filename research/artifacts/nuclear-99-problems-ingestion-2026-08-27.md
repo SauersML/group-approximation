@@ -26,6 +26,7 @@ Problem numbering is the paper's (Roman numerals I--XCIX).
 | XCVI (simple) | Every unital simple separable C*-algebra is singly generated | stw99-problem-xcvi-simple-single-generation |
 | XCVI (nowhere scattered) | Every unital separable nowhere scattered C*-algebra is singly generated | stw99-problem-xcvi-nowhere-scattered-single-generation |
 | XCVII | Every unital simple separable nuclear C*-algebra is singly generated | stw99-problem-xcvii-nuclear-single-generation |
+| XCIX | Uniform Kadison--Kastler openness of Jiang--Su stability | stw99-problem-xcix-z-stability-kadison-kastler |
 | LXXXIV | Nuclear dimension of amenable group C*-algebras | stw99-problem-lxxxiv-nuclear-dimension-amenable-groups |
 | LXXXVI | Eckhardt--Wu: finite decomposition rank iff polynomial growth | stw99-eckhardt-wu-decomposition-rank-conjecture |
 | LXXXVII | dim_nuc of the uniform Roe algebra vs asymptotic dimension | stw99-problem-lxxxvii-roe-algebra-nuclear-dimension |
@@ -34,6 +35,7 @@ Problem numbering is the paper's (Roman numerals I--XCIX).
 | LXXIII | Global Glimm halving by one square-zero ideal generator | problem-lxxiii-global-square-zero-cover |
 | LXXIV | Infinite nonzero projections in a simple unital algebra force pure infiniteness | stw99-problem-lxxiv-infinite-projections-purely-infinite |
 | LXXVI | Every pure C*-algebra is Cuntz-semigroup regular | stw99-problem-lxxvi-pure-implies-cu-regular |
+| LXXVIII | Z-stable maps into quasitraceless codomains are O-infinity-stable | stw99-problem-lxxviii-zstable-map-to-quasitraceless-target |
 
 ## Reductions recorded as routes, with the sentence in the paper that asserts them
 
