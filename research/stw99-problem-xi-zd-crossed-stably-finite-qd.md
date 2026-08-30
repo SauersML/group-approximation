@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw99-xi-xii-dynamics-qd-2026-08-30.md
   - research/artifacts/stw99-xi-clopen-support-gluing-2026-08-30.md
+  - research/artifacts/stw11-transfinite-clopen-filtration-audit-2026-08-30.md
 ---
 
 **Problem XI of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Let
@@ -69,3 +70,15 @@ quasidiagonal ⟺ stably finite ⟺ no open `U` with `closure(α(U)) ⊊ U`.
   so this mixed case is not covered by the global faithful-trace theorem.
   This does not by itself give an AF embedding; that upgrade would import
   Problem VIII.
+* **Transfinite cumulative support filtrations are quasidiagonal.**
+  `stw11-transfinite-cumulative-clopen-filtrations-glue-qd` replaces the
+  finite backward induction by a transfinite forward construction.  For a
+  continuous ordinal-indexed decreasing chain of invariant closed supports, it
+  is enough that every cumulative open complement have an invariant
+  compact-open exhaustion, every successor-stratum crossed product be
+  quasidiagonal, and the terminal crossed product be quasidiagonal.  The
+  cumulative ideals are quasidiagonal by successor two-cut gluing and
+  norm-local limit gluing; one final projectional cut recovers the ambient
+  algebra.  Separate compact-open exhaustions of the relative strata are
+  not enough: their characteristic functions need not be ambient
+  projections.
