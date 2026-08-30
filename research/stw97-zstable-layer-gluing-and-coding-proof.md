@@ -24,11 +24,32 @@ absorption of a `K_1`-injective strongly self-absorbing algebra passes from an
 ideal and quotient to the separable extension.  The Jiang--Su algebra has
 these properties, so `I_(alpha+1)` is Z-stable.
 
-If `beta` is a nonzero limit ordinal, countability gives an increasing
-cofinal sequence `(alpha_n)`.  Continuity identifies `I_beta` with the
-sequential inductive limit of the `I_(alpha_n)`.  Toms--Winter, Corollary 3.4,
-says that absorption passes to such inductive limits.  Hence `I_beta` is
-Z-stable.  The induction ends with `A=I_gamma` Z-stable.
+If `beta` is a nonzero limit ordinal of countable cofinality, choose an
+increasing cofinal sequence `(alpha_n)`.  Continuity identifies `I_beta` with
+the sequential inductive limit of the `I_(alpha_n)`.  Toms--Winter,
+Corollary 3.4, says that absorption passes to such inductive limits.  Hence
+`I_beta` is Z-stable.
+
+If `cf(beta)>omega`, separability forces the filtration to stabilize before
+`beta`.  Choose a dense sequence `(x_n)` in `I_beta`.  For every `n,k`, use
+continuity to find
+
+```text
+y_(n,k) in I_(alpha(n,k)),    alpha(n,k)<beta,
+norm(x_n-y_(n,k))<1/k.
+```
+
+The ordinal
+
+```text
+delta=sup_(n,k)(alpha(n,k)+1)
+```
+
+is strictly below `beta` by uncountable cofinality.  All `y_(n,k)` belong to
+`I_delta`; closedness and approximation at every precision give
+`I_beta=I_delta`.  The induction hypothesis therefore makes `I_beta`
+Z-stable.  The transfinite induction works for every ordinal and ends with
+`A=I_gamma` Z-stable.
 
 The point where unitality replaces the real-rank-zero hypothesis used in the
 XCVI corridor is Thiel--Winter, [*The generator problem for Z-stable C-star
@@ -53,7 +74,8 @@ proves the last assertion.
 
 **Trust boundary.**  Single generation is not being passed directly through
 extensions; that permanence is false in general.  What passes through each
-extension and countable limit is Z-absorption, after which the unital
-Thiel--Winter coding theorem is applied once to the total algebra.  The
-unitality of `A` is essential to this final cited theorem, and no generator-
-rank-one conclusion is asserted.
+extension and countable-cofinality limit is Z-absorption; limits of
+uncountable cofinality stabilize by separability.  The unital Thiel--Winter
+coding theorem is then applied once to the total algebra.  The unitality of
+`A` is essential to this final cited theorem, and no generator-rank-one
+conclusion is asserted.

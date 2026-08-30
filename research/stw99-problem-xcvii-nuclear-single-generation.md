@@ -21,9 +21,10 @@ nuclear.  This is not merely a nonexact or tensor-norm pathology.
 
 There is nevertheless a large finite-dimensional regularity region where the
 answer is positive.  `stw97-unital-countable-zstable-layers-are-singly-generated`
-proves that a unital separable algebra with a countable continuous ideal
-filtration by Z-stable successor quotients is itself Z-stable and singly
-generated.  Consequently every unital separable nowhere-scattered algebra of
+proves that a unital separable algebra with an arbitrary ordinal continuous
+ideal filtration by Z-stable successor quotients is itself Z-stable and singly
+generated.  Separability makes every uncountable-cofinality limit stabilize
+at an earlier stage.  Consequently every unital separable nowhere-scattered algebra of
 finite nuclear dimension with finitely many ideals is singly generated; in
 particular this holds for every non-elementary unital simple separable algebra
 of finite nuclear dimension.  This removes real rank zero from the previously
