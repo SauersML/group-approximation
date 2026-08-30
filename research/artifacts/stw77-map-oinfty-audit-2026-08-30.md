@@ -100,6 +100,20 @@ standard structure theorem for cpc order-zero maps.  All subsequent support
 normalization, spectral projection, matrix-unit transport, and central
 sequence arguments are written in the graph routes.
 
+There is also an exact intrinsic test for a chosen finite-dimensional model.
+For `D=direct_sum_j M_(n_j) subset B`, its relative commutant contains two
+orthogonal isometries if and only if one minimal projection in every block is
+properly infinite in `B`.  Necessity follows by compressing the commuting
+isometries; sufficiency transports two corner splittings through the matrix
+units.  Thus one-sided locally finite-dimensional models with properly
+infinite minimal supports imply O-infinity-stability without returning any
+projection to the image.  The unresolved zero-dimensional selection problem
+is exactly whether finite-support junk blocks can always be fused away.
+If the ambient target has no such blocks because every nonzero projection is
+properly infinite, the criterion immediately closes the zero-dimensional
+case.  This conclusion does not require the stronger hypothesis that every
+nonzero positive image element is properly infinite.
+
 ## Separable-codomain reduction
 
 `stw77-counterexamples-reflect-to-separable-codomains` removes arbitrary
