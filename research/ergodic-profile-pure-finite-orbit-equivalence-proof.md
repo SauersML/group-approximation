@@ -3,7 +3,7 @@ rg: 2
 id: ergodic-profile-pure-finite-orbit-equivalence-proof
 kind: route
 title: Cover the ergodic component by the finite orbit and refine its Boolean algebra
-target: ergodic-profile-pure-finite-orbit-projection-forces-finite-readable-factor
+target: ergodic-profile-pure-finite-orbit-implies-finite-readable
 requires: []
 ---
 
