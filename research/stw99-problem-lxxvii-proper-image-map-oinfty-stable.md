@@ -31,6 +31,10 @@ This is **STW Problem LXXVII and is open at the 2026-08-30 audit boundary**.
 - `stw77-af-range-maps-are-oinfty-stable` proves the problem when the range is
   AF.  It splits minimal projections in a local finite-dimensional model and
   transports the splittings through matrix units.
+- `stw77-bounded-operator-target-case` proves the problem for `B=B(H)` with
+  no nuclear-dimension assumption.  Here pointwise proper infiniteness makes
+  the range representation essential, and Voiculescu absorption produces
+  central isometries without splitting outgoing color supports.
 - `stw77-properly-infinite-colored-centralizer-fusion` is a local, uniform
   finite-color statement which would solve the problem.  Its key unresolved
   step is fusion across the noncommuting order-zero colors.

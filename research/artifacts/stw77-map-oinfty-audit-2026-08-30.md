@@ -99,3 +99,15 @@ The concrete `Z->O_2` refuter additionally imports the standard facts that
 `O_2 tensor Z` is isomorphic to `O_2`, that `O_2` is simple purely infinite,
 and the Bosa--Gabe--Sims--White theorem that a full nuclear O2-stable map with
 separable exact domain has nuclear dimension zero.
+
+## Essential-representation replacement mechanism
+
+For a target `B(H)`, the pointwise hypothesis rules out finite-rank spectral
+projections and therefore makes the range representation essential.
+Voiculescu absorption identifies that representation approximately with its
+two-fold direct sum.  Composing the absorbing unitaries with the two
+coordinate inclusions gives exact orthogonal isometries which asymptotically
+commute with the range.  This proves LXXVII for every `B(H)` target without a
+nuclear-dimension assumption.  The imported boundary is Voiculescu's
+noncommutative Weyl--von Neumann absorption theorem; the central-isometry
+calculation is internal.

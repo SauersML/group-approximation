@@ -18,6 +18,9 @@ dimension zero is O-infinity-stable.
   `stw77-zero-case-via-projection-return` is therefore invalidated.
 - The AF-range theorem proves the case in which the local models can be
   chosen internally and coherently.
+- The `B(H)`-target theorem supplies a different positive mechanism:
+  essential representation absorption merges two whole copies of the range
+  and never asks finite-dimensional support projections to return.
 - One-sided approximation alone is insufficient because generated models can
   contain finite blocks carried by representations which become pointwise
   indistinguishable.  A viable proof must centralize the finite tuple while
