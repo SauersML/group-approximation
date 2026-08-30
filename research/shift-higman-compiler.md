@@ -3,7 +3,9 @@ rg: 2
 id: shift-higman-compiler
 kind: claim
 title: For a finitely presented group with decidable word problem some bijection to the naturals makes the Mallery-Zaremsky shift-similar envelope finitely presented
+refuted_by: [finite-input-has-no-shift-bijection]
 distinct_from:
+  infinite-shift-higman-compiler: that is the corrected restriction to infinite groups, for which the required bijection exists; this universal statement also includes finite groups and is false already for the trivial group.
   mallery-zaremsky-shift-similar-envelope: that is the theorem producing the envelope and gives it only finite GENERATION; this asks that the bijection can be chosen to make the same envelope finitely PRESENTED, which the theorem does not address and which is false without the decidability hypothesis.
   fp-strongly-shift-similar-admits-type-a-action: that is the payoff theorem, hypothesizing finite presentation of a strongly shift-similar group; this asks for the finitely presented input that theorem needs, and is the only missing link between the two imported theorems.
   universal-fiber-product-data-for-word-problem-groups: that asks for an abstract finitely presented overgroup with a normal subgroup meeting four finiteness conditions; this asks for finite presentability of one explicit permutation group determined by a chosen enumeration. Both feed the conjecture through the same corollary and neither is known to imply the other.
@@ -12,6 +14,13 @@ distinct_from:
 artifacts:
   - research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md
 ---
+
+**FALSE AS WRITTEN.**  The trivial group is finitely presented and has
+decidable word problem, but no bijection from its one-element underlying set
+to `N` exists.  The source's concrete construction explicitly assumes the
+input group is infinite.  The intended substantive question is now the
+type-correct claim [[infinite-shift-higman-compiler]]; the Boone--Higman
+route is repaired by replacing Clapham's output `P_0` with `P_0 x Z`.
 
 Let `P` be finitely presented with decidable word problem.  Then a bijection
 
