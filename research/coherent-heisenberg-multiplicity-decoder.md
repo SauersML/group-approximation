@@ -20,6 +20,24 @@ The finite windows already encode addition and multiplication.  The missing
 assertion is that their compatible density data have one common
 positive-density carrier on which all four coefficient operators coexist.
 
+Finite Stone--von Neumann theory now makes this residue exact.
+`heisenberg-sector-is-schrodinger-times-free-multiplicity` proves
+that on each nontrivial central phase a nondegenerate rank-`N` Heisenberg
+window has only one irreducible label type:
+
+```text
+rho_N=pi_(N,zeta) tensor I_(m_N).
+```
+
+Thus there is no remaining finite-group type mismatch to solve.  But the
+commutant is the full algebra `I tensor M_(m_N)`, and every automorphism
+implementer is its canonical Schrödinger implementer tensored with an
+arbitrary unitary in `U(m_N)`.  The compatible branching densities determine
+the central-phase mass and the factor `p^(M-N)` under restriction; they do
+not constrain these relative unitaries.  Accordingly the open assertion can
+be narrowed to synchronizing the four required coefficient maps inside this
+free multiplicity algebra by a relation outside the finite Heisenberg tables.
+
 ## Attempts
 
 - **Take the inverse limit of the density vectors.**  This gives a measure on
