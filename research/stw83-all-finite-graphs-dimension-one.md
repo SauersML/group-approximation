@@ -27,4 +27,14 @@ circle-to-circle Toeplitz family
 `C*(S^N tensor 1, K tensor C(T))`.  Its known construction uses three
 colours; the missing step is a finite-set-adaptive two-colour approximation
 that carries genuinely circle-varying information on the plateau diagonal.
-No such recolouring is currently proved.
+
+The firewall [[stw83-commuting-cone-two-colour-firewall]] now rules out
+two broad implementations.  A uniformly local commuting functional calculus
+in the coefficient phase and the Toeplitz cutoff would two-colour
+`Cone(T)=D^2`, contradicting its dimension two.  A whole-corner scheme
+whose second colour is block diagonal across a constant plateau would make a
+complementary matrix circle zero-dimensional.  The still-open escape is
+strictly noncommutative and finite-set adaptive: extinguish coefficient
+variation before the scalar transition, then transport the two colours
+through a long buffer with stage-dependent matrix supports.  No such
+relative Brake--Winter recolouring is currently proved.
