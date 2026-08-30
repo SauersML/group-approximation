@@ -83,3 +83,55 @@ avoids reproving ideal-filteredness and property (V) separately.
 Sources: Kirchberg--Rørdam, Infinite non-simple C*-algebras (AIM 2002),
 Prop 4.15, Question 9.5; Thiel--Vilalta arXiv:2204.13059 Thm 7.1, Q5.4;
 Vilalta arXiv:2512.13334 Prop 3.9, Cor 3.10.
+
+## Addendum (same day, later): the (V)-defect narrowed by peeling and model checks
+
+**The (O5)-peeling reduction.**  Apply (O5) (almost algebraic order)
+to `c' + d''_1 ≪ c + d_1 ≪ x`: there is `z_0` with
+
+```text
+c' + d''_1 + z_0 ≤ x ≤ c + d_1 + z_0 .
+```
+
+Taking `y := c'` and `z := d''_1 + z_0` satisfies every requirement of
+property (V) EXCEPT possibly `d'_2 ≤ ∞z`, and combining the right-hand
+inequality with `c + d_2 ≤ x` gives
+
+```text
+c + d_2 ≤ c + d_1 + z_0 .
+```
+
+So (V) for wpi semigroups follows from the single cancellation-type
+principle: `c + d_2 ≤ c + d_1 + z_0` with `d'_2 ≪ d_2 ≪ c` forces
+`d'_2 ∈ Ideal(d_1) + Ideal(z_0)` OR a repaired choice of `(y, z)`.
+The entire problem is `c`-cancellation up to ideals.
+
+**Two model families verified to satisfy (V).**  (i) Coordinate
+models: normalized formal sums over generators with the wpi collapse
+`n t = ∞t` imposed coordinatewise.  There the two constraints
+`x ≥ c + d_1`, `x ≥ c + d_2` force `x` to dominate the coordinate
+join, and `y = z =` (join of the `d`-supports below `c`) verifies (V)
+directly.  (ii) Absorption models: `c + d_2 = c` (the `d_2`-ideal
+swallowed by `c`).  There `d_2 ∈ Ideal(c)` makes the `y`-side free,
+and on the `z`-side the absorbed content costs nothing in `y + z ≤ x`
+(worked instance: coords `{0,1,2,∞}` with `b`-content absorbed by
+`e`-content; `y = c_0`, `z = d_1 + d_2` fits).  Absorption CANNOT
+break (V).
+
+**Sharpened counterexample profile.**  A wpi Cuntz semigroup failing
+(V) must contain `c, d_1, d_2` with
+
+```text
+c + d_2 ≤ c + d_1,   c + d_2 ≠ c   (no absorption),
+d_2 ∉ Ideal(d_1)     (no cancellation),
+```
+
+i.e. rotation-type non-cancellation strictly between the two verified
+regimes — exactly the `M_2(C_0(U))` positional phenomenon, but it must
+survive with `x` TIGHT (`x = c + d_1`) where the C*-examples repair by
+rotation.  No abstract Cu-semigroup with (O5)--(O8) of this shape is
+known (this sharpens Thiel--Vilalta's Question 5.4: their question now
+reduces, in the wpi case, to realizing the displayed three-line
+profile).  Conversely, proving that (O5)+(O6) exclude the profile
+would establish (V) for all wpi algebras, leaving only the
+ideal-filtered half of LXXII.

@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: kaplansky-universal-group-via-subgroups-colimits-and-finite-fields
+id: kaplansky-universal-group-via-colimits-and-finite-fields
 kind: route
 title: Embed every finite presentation and transfer the finite inverse witness
 target: kaplansky-direct-stable-finiteness-one-universal-group

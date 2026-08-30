@@ -40,4 +40,4 @@ These are exact reductions, not a proof that the test group rings are
 directly or stably finite.
 
 **ESTABLISHED 2026-08-30** by
-[[kaplansky-universal-group-via-subgroups-colimits-and-finite-fields]].
+[[kaplansky-universal-group-via-colimits-and-finite-fields]].
