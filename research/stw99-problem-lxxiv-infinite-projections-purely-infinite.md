@@ -34,3 +34,9 @@ projectionless corner.  The exact Morita normal form and the stationary
 matrix-threshold theorem show that the remaining obstruction persists at one
 finite matrix level `m>=2`; it is specifically the failure to descend that
 projection to level one.
+
+There is also a comparison-free structural positive class:
+`stw74-algebraic-cu-characterizes-pure-infiniteness` proves that, under the
+LXXIV hypothesis, `A` is purely infinite exactly when `Cu(A)` is algebraic.
+Thus every counterexample has a finite root `x` of the unit whose lower
+interval contains no nonzero compact element.
