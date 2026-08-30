@@ -35,17 +35,18 @@ already yields a finitely presented nonhyperlinear group.
   profile purity. Taking one `D_0` atom gives profile purity only at the
   base point; all of its unreadable conjugates must still have definite
   profiles and only finitely many distinct values.
-- In a factorial negative-corner game algebra, `(PFP1)` already forces
-  `D_infinity` finite dimensional. Indeed, the sum of the finite orbit is
-  central and hence a positive scalar; its profile slices express each
-  `D_0` atom, and after conjugation every readable translate, in the fixed
-  finite span of the orbit. Thus the apparent weakening over finite readable
-  closure can be strict only through central variation in a nonfactorial
-  source.
+- By `factorial-profile-pure-orbit-forces-finite-readable-translates`, in a
+  factorial negative-corner game algebra `(PFP1)` already forces
+  `D_infinity` finite dimensional. The sum of the finite orbit is central
+  and hence a positive scalar; its profile slices recover every readable
+  translate in a fixed finite span. Thus the apparent weakening over finite
+  readable closure can be strict only through nonfactorial central variation.
 - The compactness proof of the perfect ZPC witness controls every fixed
   finite cylinder but supplies neither recurrence nor a finite orbit for a
-  positive projection. General Bernoulli ZPC actions show that bounded
-  verifier depth alone cannot prove `(PFP1)`.
+  positive projection. The explicit construction
+  `remote-bernoulli-padding-destroys-profile-pure-finite-orbits` shows that
+  perfectness, a strict gap, ergodicity, and bounded verifier depth do not
+  formally force `(PFP1)`; fixed-cylinder limits can lose it.
 - The exact source target is therefore either a nonfactorial positive
   periodic summand on which the compiler can run directly, or, after
   factorial reduction, the same finite-readable-closure gate already
