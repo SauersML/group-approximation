@@ -2865,6 +2865,7 @@ import GroupApproximation.GGT.DGOWindmillSpelling
 import GroupApproximation.GGT.DGOWindmillPath
 import GroupApproximation.Analysis.VoiculescuMonotoneUnit
 import GroupApproximation.GGT.DGOWindmillStage
+import GroupApproximation.GGT.OlshanskiiChord
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
