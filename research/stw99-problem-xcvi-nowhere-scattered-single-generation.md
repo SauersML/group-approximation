@@ -7,7 +7,7 @@ root: true
 refuted_by:
   - stw96-simple-nuclear-ah-not-singly-generated
 distinct_from:
-  stw99-problem-xcvi-simple-single-generation: simplicity implies nowhere scattered only after excluding the finite-dimensional elementary case.
+  stw99-problem-xcvi-simple-single-generation: the general conjecture implies the simple conjecture after handling matrix algebras, but the reverse implication is not formal.
 artifacts:
   - research/artifacts/stw96-xcvi-xcvii-literature-audit-2026-08-30.md
 ---
@@ -19,3 +19,8 @@ The answer is **no**.  The Elliott--Li--Niu example is simple, unital, and
 infinite-dimensional, hence has no nonzero quotient containing a minimal
 projection.  It is therefore nowhere scattered, while it is not singly
 generated.
+
+The failure is not confined to simple algebras.  By
+`stw96-fibrewise-nowhere-scattered-generator-obstruction`, tensoring the simple
+counterexample with `C(X)` gives a non-simple nuclear nowhere-scattered
+counterexample for every compact metrizable `X` with at least two points.
