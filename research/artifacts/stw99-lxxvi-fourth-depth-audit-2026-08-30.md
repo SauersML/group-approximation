@@ -159,6 +159,24 @@ uncomputed: it cannot be the witness.  Any successful coefficient must be
 simple, pure, and admit no unital embedding of `Z`.  The circle theorem rules
 out dimension one for this mechanism as well.
 
+There is an independent finite-dimensional no-go.  If `M_k` embeds unitally
+in `D` for `k>=2`, the scalar map on unitary groups factors through
+
+```text
+U(2) -> U(2k),                 u |-> u tensor 1_k.
+```
+
+After a fixed permutation conjugacy this is the `k`-fold block sum.  Its
+stable image on `alpha in pi_5(U(2))=Z/2` is zero because
+`pi_5(U)=Z` is torsion free.  The fibration
+`U(n)->U(n+1)->S^(2n+1)` shows that stabilization is an isomorphism on
+`pi_j` for `j<2n`; since `5<4k`, `pi_5(U(2k))->pi_5(U)` is injective.
+Therefore the tensor-amplified class is already zero in `U(2k)`, and hence
+in `U(M_2(D))`.  Any surviving coefficient must contain no unital matrix
+subalgebra of size at least two.  This conclusion uses the exact finite
+stable range and does not confuse tensor amplification with ordinary corner
+stabilization.
+
 ## Exact remaining universal hinge
 
 For a pure `A`, abstract absorption gives

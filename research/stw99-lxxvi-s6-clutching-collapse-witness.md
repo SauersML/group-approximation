@@ -38,8 +38,15 @@ stably finite, and not Z-stable.  Its continuous `S^6` field is pure by the
 `stw99-lxxvi-free-group-cannot-be-s6-coefficient`: it contains a unital copy
 of `Z`, which already kills `alpha` before stabilization.
 
+There is a second, purely finite-dimensional exclusion.
+`stw99-lxxvi-unital-matrix-subalgebra-kills-s6-class` proves that a unital
+copy of any `M_k`, `k>=2`, already kills `alpha`.  The tensor-amplification
+map lands in `U(2k)`, which is stable in degree five, and its stable image is
+the `k`-fold block sum of the stably trivial class `alpha`.
+
 The sole remaining construction problem is therefore to find a unital simple
-separable pure `D`, necessarily containing no unital copy of `Z`, for which
+separable pure `D`, necessarily containing neither a unital copy of `Z` nor
+a unital matrix algebra of size at least two, for which
 
 ```text
 alpha maps nontrivially into pi_5(U(M_2(D))).
