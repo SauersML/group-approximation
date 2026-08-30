@@ -32,3 +32,10 @@ because the two nuclear embeddings are approximately unitarily conjugate
 there.  Any obstruction must therefore detect the failure to approximate the
 factor implementing unitaries by unitaries of the full free-product
 C\*-algebra itself.
+
+That completion does give a sharp no-go for one stronger strategy.
+`stw63-full-tracial-shadow-forbids-joint-z-bridge` uses triviality of the
+central-sequence algebra of the reduced free-product factor to prove that the
+canonical pair has no common unital `Z` in its joint relative commutant in
+`F_infinity`.  This refutes the universal joint-bridge proposal but gives no
+positive lower bound on `Delta`; the AUE claim here remains open.

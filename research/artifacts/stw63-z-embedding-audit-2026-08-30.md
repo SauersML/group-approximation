@@ -121,19 +121,29 @@ searches, followed by inspection of the theorem statements.
     gives an application with a unique 2-quasitrace; the new route removes
     uniqueness only for comparison of two already existing unital embeddings
     by checking equality on every soft class directly.
+13. Y. Ueda, *Factoriality, type classification and fullness for free product
+    von Neumann algebras*, Advances in Mathematics 228 (2011), 2647--2671;
+    arXiv:1011.5017,
+    <https://arxiv.org/abs/1011.5017>.  Theorem 3.7 proves, in particular,
+    that a von Neumann free product of two nontrivial inputs, at least one of
+    them diffuse, has trivial central sequence algebra.  Applied to the two
+    tracial GNS closures of `Z`, this
+    supplies the full-factor shadow used to refute the universal joint-bridge
+    claim.  It does not obstruct approximate unitary conjugacy in that factor.
 
 ## Trust boundary
 
 This is a targeted, not bibliometrically exhaustive, audit.  Non-discovery is
 not a proof of openness.  The strongest direct status evidence is the explicit
 open-problem statement in the published 2025 paper, combined with inspection
-of the scopes of the relevant 2026 results.  No literature assertion is used
-as a premise in any graph route added with this artifact.
+of the scopes of the relevant 2026 results.  No non-discovery or claimed
+openness assertion is used as a premise in a graph route.  Routes which use a
+named established theorem identify that theorem and its exact role.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate nineteen facts which do not depend on the literature
-audit.
+The graph additions isolate twenty facts which do not depend on the
+non-discovery part of the literature audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
    K-theory, bounded traces, and ideal maps.  Cuntz-semigroup data is the first
@@ -279,3 +289,16 @@ audit.
     at least one embedding with no unital homomorphic lift.  Nuclearity of
     `Z` is not used to assert such a lift, and no bidual-return inference is
     made.
+20. The universal joint-central-bridge proposal is false.  More generally,
+    if a tracial representation of the pair-generated algebra weakly
+    generates a finite von Neumann algebra `M` with
+    `M' intersect M^omega=C`, then any joint bridge in the norm sequence
+    algebra would induce a unital homomorphism `Z->C`: norm centrality passes
+    to the tracial ultrapower and Kaplansky `2`-norm density extends
+    commutation from the two ranges to all of `M`.  For the canonical pair in
+    `F=Z*_(C)Z`, the reduced free-product factor has this trivial central
+    sequence algebra by Ueda's theorem.  Hence the canonical pair has no
+    joint bridge and `F` is not `Z`-stable.  This is compatible with every
+    von Neumann approximate-uniqueness theorem above: absence of a common
+    central copy is strictly weaker information than a norm lower bound on
+    the unitary orbit, so the canonical AUE claim remains open.
