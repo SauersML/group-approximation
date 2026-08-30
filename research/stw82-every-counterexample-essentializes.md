@@ -38,4 +38,3 @@ violates it too.  Therefore STW Problem LXXXII is equivalent to its
 restriction to extensions by essential ideals.  Separability is preserved,
 so together with `stw82-every-counterexample-reflects-to-a-separable-subextension`
 this says that every counterexample has a separable essential-ideal witness.
-

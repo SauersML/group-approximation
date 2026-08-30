@@ -54,4 +54,3 @@ Equation (2) says that stabilization changes none of the three nuclear
 dimensions.  Hence (1) remains a counterexample.  Conversely, the stable
 essential extensions are a subclass of all extensions, proving the stated
 equivalence.
-

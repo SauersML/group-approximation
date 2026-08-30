@@ -19,4 +19,3 @@ those of the original counterexample.
 Thus STW Problem LXXXII is equivalent to its restriction to separable stable
 extensions with essential ideal.  In that formulation the Busby invariant is
 an injective map between the quotient and the corona of a stable ideal.
-
