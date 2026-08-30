@@ -67,6 +67,12 @@ This is **STW Problem LXIII and remains open at the audit boundary
   product closure covers arbitrary products of such factors.  Genuinely
   non-sigma-finite type-III factors are not covered: their nonzero projection
   classes need not all equal the unit, so the simplicity step fails.
+- **Arbitrary-cardinal type-I factors are eliminated.**
+  `stw63-arbitrary-type1-factor-uniqueness` combines the finite-copy fullness
+  inequality with infinite-cardinal arithmetic and Hadwin's nonseparable
+  rank theorem.  Thus every `B(H)`, without a separability assumption on
+  `H`, has uniqueness.  Product closure gives the same result for every
+  atomic type-I von Neumann algebra.
 - **Asymptotic upgrade.**  Even after approximate uniqueness, coherent paths
   are a separate issue.  `approximate-to-asymptotic-via-central-paths`
   isolates a sufficient quantitative contraction property for the transition
