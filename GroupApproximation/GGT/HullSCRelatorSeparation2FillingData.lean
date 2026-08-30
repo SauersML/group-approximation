@@ -12,22 +12,25 @@ provable in
 be empty -- and `HullSC.DGOQuotientStatementGeodesic` is the repair.  A record
 that is to be fed to the repaired statement has to carry `IsGeodesicSpace`.
 
-`RotatingDataGeo₂` is that record, and it is stated here rather than reused so
-that this lane rests on the geodesic statement without waiting on, or colliding
-with, the corresponding repair of `RotatingData` itself.  It differs from
-`HullSC.RotatingData` in three places, all of them the same correction:
+`RotatingDataGeo₂` is that record.  It was stated here rather than reused so that
+this lane could rest on the geodesic statement without waiting on the
+corresponding repair of `RotatingData` itself; that repair has since landed, and
+the two records now agree clause for clause:
 
 * `isGeodesic` is present;
 * the injectivity radius is a named field `injRadius` with `L < injRadius`,
   rather than the separation doing double duty;
 * the metric clause is `kernel_moves_base`, quantified over the subgroup the
-  rotations generate and stated at the basepoint, rather than
-  `injOn_of_dist`, which quantifies over quotient maps.
+  rotations generate and stated at the basepoint, rather than over quotient
+  maps;
+* `finiteOrder_lift` is here rather than on the quotient (issue #50).
 
-The last of these is a strengthening in form only: `injOn_cayleyBall` below
+The third of these is a strengthening in form only: `injOn_cayleyBall` below
 derives what the consumer actually needs -- injectivity of a quotient map on a
-ball of `Γ(G,A)` -- in three lines, and the derivation is the only place a
-quotient map is mentioned.  Everything else is `HullSC.RotatingData` verbatim.
+ball of `Γ(G,A)` -- in three lines.  The fourth is not a matter of form: the
+statement that carried that clause on the quotient is refuted in
+`GGT/DGORotatingQuotientRefutation.lean`, and no clause of DGO's Theorem 5.3
+implies it, so it has to be asked of the family Hull builds.
 -/
 
 namespace GroupApproximation
@@ -101,6 +104,22 @@ structure RotatingDataGeo₂ {G : Type u} [Group G] (A : Alphabet G) (w : G)
   point: a rotation fixes its apex and lies in the kernel. -/
   kernel_moves_base : ∀ g ∈ rotationNormalClosure apices rot, g ≠ 1 →
     injRadius ≤ dist base (g • base)
+  /-- **Finite order lifts, with the order preserved**, and this is Hull's §5
+  rather than DGO's for a sharper reason than the last field (issue #50).
+
+  It was a field of `HullSC.RotatingQuotient`, read off Theorem 5.3.  The
+  statement carrying it is false: `GGT/DGORotatingQuotientRefutation.lean`
+  refutes it at a one-point space, where the very rotating condition is vacuous
+  because its annulus is empty and the clause reduces to *every finite-order
+  element of every normal quotient of every group lifts with its order*.
+  Neither of Theorem 5.3's own conclusions implies it --
+  `GGT/DGOFreeSplittingOnePoint.lean` proves the refuting model satisfies the
+  free splitting 5.3(a), and it satisfies the dichotomy as well.  What the
+  clause needs is control of the stabilisers of the action, which Hull's
+  cone-off has and an abstract rotating family does not. -/
+  finiteOrder_lift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
+    q.ker = Subgroup.normalClosure ({w} : Set G) →
+      ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
 
 namespace RotatingDataGeo₂
 

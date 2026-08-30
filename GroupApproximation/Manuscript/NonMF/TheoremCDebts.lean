@@ -150,20 +150,34 @@ theorem hullHypEmbeddedInSuitable : HullSC.ExistsHypEmbeddedInSuitable.{0} :=
   HullSC.existsHypEmbeddedInSuitable_of_coneOff hullHypEmbeddedConeOff
 
 /-- **DEBT (literature).**  Dahmani–Guirardel–Osin, *Hyperbolically embedded
-subgroups and rotating families*, Theorem 5.3: the quotient of a group acting
-on a hyperbolic space by a separated very rotating family.  The clauses
-recorded are the ones Hull's §5 consumes — the kernel is the subgroup the
-rotations generate, its nonidentity elements are rotations up to conjugacy or
-loxodromic, finite order lifts with the order preserved, and the injectivity
-radius at a basepoint `ρ`-far from the apices is at least the separation.
+subgroups and rotating families*, Theorem 5.3(b): for a separated very rotating
+family on a hyperbolic geodesic space, every nonidentity element of the subgroup
+the rotations generate is conjugate into a rotation subgroup or is loxodromic.
 
-Two of those restrictions are forced rather than chosen.
-`HullSC.eq_one_of_dist_lt_everywhere` refutes the displacement clause stated at
+**That is now the whole of the debt**, and three findings put it in this shape.
+
+The geodesic hypothesis is not decoration: `GGT/HullSCDGO.lean` shows the
+statement without it lets an empty annulus make the very rotating condition
+vacuous.  The clauses of the conclusion other than the dichotomy are not cited
+at all — `GGT/DGORotatingQuotientResidual.lean` proves the quotient, the map,
+its surjectivity and its kernel are `G ⧸ ⟨⟨Rot⟩⟩` and nothing more.  And the
+clause this row used to carry alongside the dichotomy, that finite order lifts
+with the order preserved, is **not a consequence of Theorem 5.3 and is false as
+recorded** (issue #50): `GGT/DGORotatingQuotientRefutation.lean` refutes it at a
+one-point space, where the very rotating condition is vacuous and the clause
+asserts that `ℤ` has an element of order two, and
+`GGT/DGOFreeSplittingOnePoint.lean` shows the same model satisfies DGO's other
+conclusion, the free splitting, so no route from the theorem reaches it.  It is
+Hull's §5 and lives with the family he builds, as
+`HullSC.RotatingData.finiteOrder_lift`.
+
+Two further restrictions are forced rather than chosen.
+`HullSC.eq_one_of_dist_lt_everywhere` refutes a displacement clause stated at
 every point of the space — a rotation fixes its apex and lies in the kernel — and
 `HullSC.not_rotation_or_loxodromic_of_empty` refutes the dichotomy stated for
 every element of the kernel, the identity being neither conjugate into a
 rotation subgroup nor loxodromic. -/
-theorem dgoTheorem53 : HullSC.DGOQuotientStatement.{0, 0} := by
+theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
   sorry
 
 /-- **DEBT (literature).**  Hull, §5, with Dahmani–Guirardel–Osin's Theorem 5.3
@@ -196,12 +210,14 @@ theorem hullFillingData : HullSC.HullFillingDataStatement.{0} :=
   HullSC.hullFillingDataStatement_of_coneOff hullConeOff
 
 /-- **Hull, Theorem 5.1**, proved rather than cited: the two debts above give
-it through `HullSC.hullQuotient_of_fillingData`, which supplies seven of the ten
+it through `HullSC.hullQuotient_of_fillingData`, which supplies six of the ten
 clauses of the filling quotient from Dahmani–Guirardel–Osin's theorem — the
-quotient group and map, surjectivity, the kernel, the lifting of finite order,
-and injectivity on the `R`-ball of `Γ(G,A)` through
-`HullSC.injOn_cayleyBall_of_action`.  Only the three alphabet clauses are
-carried by `hullFillingData`. -/
+quotient group and map, surjectivity and the kernel — and two more from the
+family Hull builds: injectivity on the `R`-ball of `Γ(G,A)` through
+`HullSC.injOn_cayleyBall_of_kernel_moves`, and the lifting of finite order.
+Those two are with the family and not with the quotient because neither is a
+conclusion of Theorem 5.3; the second was refuted in that position (issue #50).
+Only the three alphabet clauses are carried by `hullFillingData`. -/
 theorem hullTheorem51 : HullSC.HullQuotientStatement.{0} :=
   HullSC.hullQuotient_of_fillingData dgoTheorem53 hullFillingData
 

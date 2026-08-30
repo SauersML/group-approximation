@@ -61,10 +61,16 @@ The second thing the abstract space has to supply is that the basepoint is not
 an apex, and not near one: `HullSC.eq_one_of_dist_lt_everywhere` shows that a
 displacement clause holding at every point of the space would force every
 rotation subgroup to be trivial, since a rotation fixes its apex and lies in the
-kernel.  `RotatingData.base_far` is that separation, and it is free in the
-construction -- the identity vertex of `Γ(G,A)` sits at the cone radius from the
-nearest apex, and `sep` may be shrunk to match, `IsSeparated` being a lower
-bound.
+kernel.  `RotatingData.kernel_moves_base` is stated so that this cannot happen
+-- it is quantified over the kernel and asserted at the basepoint alone -- and
+in the construction it is free of charge for the same reason a separation clause
+would have been: the identity vertex of `Γ(G,A)` sits at the cone radius from
+the nearest apex.
+
+`RotatingData` carries two clauses that are Hull's own and were once read off
+DGO's Theorem 5.3: that one, and `finiteOrder_lift`.  Both moved after being
+checked against the source, the second at issue #50, where the statement
+carrying it was refuted outright.
 -/
 
 namespace GroupApproximation
@@ -305,6 +311,32 @@ structure RotatingData {G : Type u} [Group G] (A : Alphabet G) (w : G)
   point, a rotation fixing its apex and lying in the kernel. -/
   kernel_moves_base : ∀ g ∈ rotationNormalClosure apices rot, g ≠ 1 →
     injRadius ≤ dist base (g • base)
+  /-- **Finite order lifts, with the order preserved, and this is Hull's §5
+  rather than DGO's** (issue #50).
+
+  It was a field of `HullSC.RotatingQuotient`, recorded as a second conclusion of
+  Theorem 5.3.  It is not one: `GGT/DGORotatingQuotientRefutation.lean` refutes
+  the statement that carried it, at a one-point space where the very rotating
+  condition is vacuous because its annulus is empty, and where the clause
+  amounts to *every finite-order element of every normal quotient of every group
+  lifts with its order* -- which `ℤ` modulo the even integers refutes.  Neither
+  of DGO's conclusions supplies it either: the model satisfies the dichotomy, and
+  `GGT/DGOFreeSplittingOnePoint.lean` proves it satisfies the free splitting
+  5.3(a) as well.
+
+  What the clause needs is control of the **stabilisers** of the action, which
+  no hypothesis of Theorem 5.3 mentions -- in the model the stabiliser of the
+  one point is all of `G`.  At Hull's cone-off they are known: a vertex of
+  `Γ(G,A)` has trivial stabiliser and an apex has the elementary closure of the
+  relator, whose finite subgroups a torsion-free ambient group makes trivial.
+  So the clause belongs here, with the family Hull builds.
+
+  Stated for an arbitrary quotient by the normal closure of the relator, which
+  is the form the consumer needs and the form Hull proves; the same shape the
+  injectivity radius had before it was made quotient-free. -/
+  finiteOrder_lift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
+    q.ker = Subgroup.normalClosure ({w} : Set G) →
+      ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
 
 namespace RotatingData
 
@@ -377,13 +409,15 @@ def HullFillingDataStatement : Prop :=
 /-- **Hull's Theorem 5.1 from Dahmani-Guirardel-Osin's Theorem 5.3 and the
 family Hull builds.**
 
-Seven of the ten fields of `HullFillingQuotient` come out of
-`RotatingQuotient`: the group, the map, its surjectivity, the kernel (through
-`RotatingData.rotationNormalClosure_eq`) and the lifting of finite order.
-Injectivity on the ball comes from `RotatingData.kernel_moves_base` through
-`injOn_cayleyBall_of_kernel_moves`, with the injectivity radius prescribed above
-`2R` -- that clause is Hull's §5 and not DGO's, which is why it is a field of
-the family data rather than of the quotient.  The remaining three are the alphabet
+Six of the ten fields of `HullFillingQuotient` come out of `RotatingQuotient`:
+the group, the map, its surjectivity and the kernel (through
+`RotatingData.rotationNormalClosure_eq`).  **Two more come from the family and
+not from the quotient**, both of them clauses that were read off DGO's Theorem
+5.3 until they were checked against it: injectivity on the ball, from
+`RotatingData.kernel_moves_base` through `injOn_cayleyBall_of_kernel_moves` with
+the injectivity radius prescribed above `2R`; and the lifting of finite order,
+from `RotatingData.finiteOrder_lift`, which issue #50 moved here after the
+statement carrying it was refuted.  The remaining three are the alphabet
 clauses, and they are the second conjunct of `HullFillingDataStatement`. -/
 theorem hullQuotient_of_fillingData
     (hDGO : DGOQuotientStatementGeodesic.{u, u})
@@ -415,7 +449,7 @@ theorem hullQuotient_of_fillingData
            injOn := hinj
            suitable_map := F.suitable_map
            suitable_map_family := F.suitable_map_family
-           finiteOrder_lift := P.finiteOrder_lift }⟩
+           finiteOrder_lift := D.finiteOrder_lift P.q hker }⟩
 
 /-- **Hull's Theorem 5.1 with the §6 relator**, from DGO's Theorem 5.3, Hull's
 §6 and the family of his §5. -/

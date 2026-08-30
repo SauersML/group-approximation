@@ -41,15 +41,21 @@ statement below therefore quantifies over `u ∈ N` and takes the relator to be
 `t⁻¹u ∈ G`, which is where Hull's small cancellation condition, not filling,
 is the input.
 
-## Where the injectivity clause went
+## Where the injectivity clause went, and the lifting clause with it
 
 This module used to derive the injectivity-on-a-ball clause of Theorem 5.1 from
 an injectivity radius carried by `RotatingQuotient`.  It no longer does, and the
-route is `HullSCFilling.injOn_cayleyBall_of_action` from
-`HullSCFilling.RotatingData.injOn_of_dist`: reading DGO's Theorem 5.3 against
-the source shows it concludes the free splitting and the dichotomy and nothing
-metric, so the injectivity radius is Hull's §5 and belongs with the family Hull
-builds.  `GGT/HullSCDGO.lean` carries the audit.
+route is `HullSCFilling.injOn_cayleyBall_of_kernel_moves` from
+`HullSCFilling.RotatingData.kernel_moves_base`: reading DGO's Theorem 5.3
+against the source shows it concludes the free splitting and the dichotomy and
+nothing metric, so the injectivity radius is Hull's §5 and belongs with the
+family Hull builds.  `GGT/HullSCDGO.lean` carries the audit.
+
+The lifting of finite order made the same journey afterwards and for a harder
+reason (issue #50): it was not merely misattributed but false in the position it
+occupied, which `GGT/DGORotatingQuotientRefutation.lean` proves.  It is
+`HullSCFilling.RotatingData.finiteOrder_lift`, and `HullFillingQuotient` still
+carries it as a clause of Theorem 5.1 -- only its source has moved.
 
 What DGO's Theorem 5.3 does **not** give, and what stays inside
 `HullTheorem51Statement`, is everything about the *alphabet*: that the quotient

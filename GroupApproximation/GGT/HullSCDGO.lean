@@ -46,14 +46,14 @@ basepoint**, with no hypothesis on the space, the family or `δ`.
 
 **This is now resolved, and by removing the clause rather than by adding a
 hypothesis.**  The provenance audit below shows `ne_one_of_dist_lt` was never
-DGO's, so it has moved to `HullSCFilling.RotatingData.injOn_of_dist`.
+DGO's, so it has moved to `HullSCFilling.RotatingData.kernel_moves_base`.
 `DGOQuotientStatement` no longer carries a metric clause, and the configuration
 above no longer refutes it: with the kernel everything and the quotient trivial,
 the dichotomy and the finite-order clause both hold vacuously.  The statement
 was false exactly because it claimed something its citation does not prove.
 
 What the counterexample now bears on is the clause in its new home: it shows
-that `injOn_of_dist` has to be *proved* by Hull's §5 and cannot be inherited,
+that `kernel_moves_base` has to be *proved* by Hull's §5 and cannot be inherited,
 since a family can satisfy every rotating hypothesis and still fix the
 basepoint.  The two formalized lemmas that recorded the contradiction are gone
 with the clause; the configuration is written out above in full so that it can
@@ -142,11 +142,9 @@ Against the six clauses of `RotatingQuotient`:
   `surjective`, `ker_eq`, `injRadius`, `separation_le_injRadius`,
   `ne_one_of_dist_lt` and `finiteOrder_lift`.  It does not touch the dichotomy.
 * `finiteOrder_lift` -- **not a conclusion of Theorem 5.3**, and it is used.
-  It is a corollary of 5.3(a): the normal closure is a free product of
-  conjugates of `H`, so it acts on the Bass-Serre tree of that splitting with
-  the conjugates as vertex stabilizers, and a finite subgroup of a group acting
-  on a tree fixes a point, hence is conjugate into a factor.  That is the
-  standard route and it goes through the splitting, not through the dichotomy.
+  The audit guessed it was a corollary of 5.3(a), through the Bass-Serre tree of
+  the splitting.  It is not a corollary of 5.3(a), of 5.3(b), or of the two
+  together: see the correction below, and issue #50.
 * `injRadius`, `separation_le_injRadius`, `ne_one_of_dist_lt` -- **not a
   conclusion of Theorem 5.3, and not derivable from either of its two.**  The
   dichotomy gives loxodromy, which is an asymptotic lower bound on
@@ -164,7 +162,7 @@ attributing to DGO a metric clause that appears to be Hull's own §5 work.
 in the making of it.**
 
 * `injRadius`, `separation_le_injRadius` and `ne_one_of_dist_lt` are out of
-  `RotatingQuotient` and into `HullSCFilling.RotatingData.injOn_of_dist`, where
+  `RotatingQuotient` and into `HullSCFilling.RotatingData.kernel_moves_base`, where
   the cone-off and its basepoint are in scope.  With them went the basepoint
   parameter and the separation parameter of the structure, neither of which any
   remaining clause mentions -- DGO's conclusion has no basepoint.
@@ -182,24 +180,31 @@ in the making of it.**
   `GGT/HullSCRotatingFamily.lean`, for a clause with no consumer until that half
   is attempted.
 
-  **The order-preserving half of `finiteOrder_lift` is therefore still owed, and
-  it rests on the splitting.**  `conj_into_rot_of_isOfFinOrder` gets a
-  finite-order element of the kernel conjugated into a rotation subgroup; it does
-  not produce a preimage *of the same order*, which is what the field asserts.
-  Until that is proved the field is a citation with no source in Theorem 5.3 --
-  do not read it as fully attributed.  Whoever attempts it should start from
-  this statement rather than re-derive it:
+  **That paragraph was wrong, and issue #50 is the correction.**  It read, until
+  the model was built: *"the order-preserving half of `finiteOrder_lift` is still
+  owed, and it rests on the splitting"*.  The splitting cannot carry it.
+  `GGT/DGORotatingQuotientRefutation.lean` refutes the statement with the clause
+  in it, and `GGT/DGOFreeSplittingOnePoint.lean` proves that the refuting model
+  satisfies the splitting **verbatim in the form printed above** --- with
+  `T = PUnit`, `apex _` the one point, `conj _ = 1` and `φ` the map
+  `∗_{PUnit} K → G` induced by the inclusion of `K`.  The dichotomy holds there
+  too.  So both of Theorem 5.3's conclusions hold in a model where the lifting
+  clause fails, and no route from them can reach it.
 
-      freeSplitting : ∃ (T : Type u) (apex : T → X) (conj : T → G)
-        (φ : Monoid.CoprodI (fun i : T => ↥(Rot (apex i))) →* G),
-          (∀ i, apex i ∈ C) ∧ Function.Injective φ ∧
-            φ.range = rotationNormalClosure C Rot ∧
-            ∀ (i : T) (x : ↥(Rot (apex i))),
-              φ (Monoid.CoprodI.of x) = conj i * (x : G) * (conj i)⁻¹
+  Seen plainly the reason is not subtle: the splitting is a statement about the
+  kernel and its own torsion, and the Bass-Serre route it suggests concludes
+  that a finite subgroup **of the kernel** is conjugate into a rotation
+  subgroup.  The lifting clause is a statement about elements of `G` *outside*
+  the kernel, and no hypothesis of Theorem 5.3 constrains those: the model has
+  `G = ℤ`, kernel the even integers, and quotient of order two.  What the clause
+  needs is control of the **point stabilisers** of the action, which the
+  hypotheses never mention -- the model's stabiliser is all of `G`.
 
-  and the route to the field is the Bass-Serre tree of that splitting: a finite
-  subgroup acting on a tree fixes a point, so it is conjugate into a vertex
-  stabiliser, which is a conjugate of some `Rot c`.
+  So `finiteOrder_lift` is out of `RotatingQuotient` as well, and into
+  `HullSCFilling.RotatingData.finiteOrder_lift`, beside the injectivity radius
+  and for the same reason.  Hull proves it where the cone-off's stabilisers are
+  known.  The splitting stays unrecorded, now with a proof that recording it
+  would not have helped.
 
 ## The plan for §5, in dependency order
 
@@ -222,26 +227,27 @@ hyperbolicity constant is spent.
 
 **(3) The Greendlinger-type lemmas** (DGO §5.1.3).  A nontrivial element of
 `K = ⟨⟨Rot c⟩⟩` that is not conjugate into a single `Rot c` moves every point of
-a windmill a definite amount.  This is what gives, at one stroke, the dichotomy
-`rotation_or_loxodromic`, the injectivity radius `ne_one_of_dist_lt`, and --
-through a windmill containing a lift of a finite-order element -- the lifting
-clause `finiteOrder_lift`.
+a windmill a definite amount.  This is what gives the dichotomy
+`rotation_or_loxodromic`, and it is now the only clause of `RotatingQuotient`
+that has to be proved: the quotient, the map, its surjectivity and its kernel
+are `G ⧸ ⟨⟨Rot⟩⟩`, which is
+`GGT/DGORotatingQuotientResidual.lean`.
 
 **(4) The theorem.**  DGO **Theorem 5.3**, restated for `α`-rotating subgroups
 with `α ≥ 200` as their **Theorem 2.14**, which is where the `200 * δ ≤ ρ` of
 `DGOQuotientStatement` comes from.  Its two printed conclusions are
 `⟨⟨H⟩⟩^G = ∗_{t ∈ T} t⁻¹ H t` -- the free splitting -- and *every element of
 `⟨⟨H⟩⟩^G` is either conjugate into `H` or loxodromic*, which is
-`rotation_or_loxodromic`.  **`finiteOrder_lift` and the injectivity radius are
-not among those two clauses**, so before they are proved someone has to find
-where in §5 they come from; they may be corollaries of the free splitting rather
-than of the dichotomy.  That is the first thing to check and it is not yet
-checked.
+`rotation_or_loxodromic`.  **The lifting clause and the injectivity radius are
+not among those two**, and the question the plan left open here -- where in §5
+they come from, and whether they are corollaries of the free splitting -- **is
+now answered: they are corollaries of neither, and neither belongs to this
+theorem.**  Both are with the family Hull builds.
 
 **(5) The free splitting.**  Not recorded in `RotatingQuotient`, because nothing
-above it consumes the splitting -- but see (4): if the lifting clause is a
-corollary of the splitting rather than of the Greendlinger lemma, it has to be
-added after all.
+above it consumes the splitting, and (4) no longer holds out the prospect that
+the lifting clause will need it: `GGT/DGOFreeSplittingOnePoint.lean` proves the
+splitting holds in a model where that clause fails.
 
 A realistic ordering is (1) then (3), with the windmill induction of (2) stated
 as a named `Prop` and consumed rather than proved first: the windmill
@@ -283,12 +289,13 @@ theorem rotationNormalClosure_empty (Rot : X → Subgroup G) :
 /-- **`RotatingQuotient` is inhabitable**: the empty family, with the identity
 as quotient map, satisfies every clause.
 
-This is the check that the ten clauses of the conclusion are not mutually
+This is the check that the clauses of the conclusion are not mutually
 contradictory -- the question that should be asked of every predicate before it
 is consumed, and the one whose absence let three statements of this lane be
-landed refuted.  It says nothing about `DGOQuotientStatement`, which quantifies
-over all families and is false; it says that the *shape* of the conclusion is
-sound and that the defect is in the hypotheses. -/
+landed refuted.  It says nothing about `DGOQuotientStatement` itself, which
+quantifies over all families; it says that the *shape* of the conclusion is
+sound and that any defect is in the hypotheses.  Issue #50 found one, in the
+clause that has since left the structure. -/
 def rotatingQuotientEmpty (Rot : X → Subgroup G) :
     RotatingQuotient (∅ : Set X) Rot where
   Q := G
@@ -303,7 +310,6 @@ def rotatingQuotientEmpty (Rot : X → Subgroup G) :
     intro g hg hg1
     rw [rotationNormalClosure_empty, Subgroup.mem_bot] at hg
     exact absurd hg hg1
-  finiteOrder_lift := fun y _ => ⟨y, rfl, rfl⟩
 
 theorem nonempty_rotatingQuotient_empty (Rot : X → Subgroup G) :
     Nonempty (RotatingQuotient (∅ : Set X) Rot) :=
@@ -336,7 +342,7 @@ This is what makes `dist_le_dist_smul_of_veryRotating` applicable, which is the
 step DGO's argument turns on, and it is why `DGOQuotientStatementGeodesic` keeps
 the geodesic hypothesis even though the counterexample no longer refutes the
 statement: the hypothesis is now needed for provability rather than for truth.
-Hull's §5 needs it too, to prove `RotatingData.injOn_of_dist` in its new home. -/
+Hull's §5 needs it too, to prove `RotatingData.kernel_moves_base` in its new home. -/
 theorem exists_mem_annulus {X : Type v} [PseudoMetricSpace X]
     (hgeo : IsGeodesicSpace X) {δ ρ : ℝ} (hδ : 0 < δ) (hρ : 200 * δ ≤ ρ)
     {c y₀ : X} (hfar : ρ ≤ dist y₀ c) :

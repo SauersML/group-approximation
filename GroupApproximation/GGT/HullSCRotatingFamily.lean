@@ -50,24 +50,33 @@ Proved: the elementary consequences of the definitions.
   forces every rotation subgroup to be trivial.  And the dichotomy for the
   elements of `K` may not include `1`: with no apices, `K` is trivial and its
   one element is neither conjugate into a rotation subgroup nor loxodromic.  So
-  the structure carries a basepoint, kept `ρ`-far from the apices by
-  `DGOQuotientStatement`, and states the dichotomy for `g ≠ 1`.
+  the displacement clause travels with the family data, which has a basepoint,
+  and the structure states the dichotomy for `g ≠ 1`.
 
-Stated and cited, not proved: `DGOQuotientStatement`, DGO's Theorem 5.3.  The
-clauses used downstream are recorded -- the kernel, the dichotomy for its
-elements, the lifting of finite order, and the injectivity radius -- and its
-clause that the normal closure `K = ⟨⟨Rot c : c ∈ C⟩⟩` is the *free product* of
-a family of conjugates of the rotation subgroups is not, because nothing above
-it consumes the free splitting, and carrying an unconsumed clause would put
-weight on a statement no proof checks.
+Stated and cited, not proved: `DGOQuotientStatement`, DGO's Theorem 5.3.  What
+it records is the kernel and the dichotomy for its elements, and that is now all
+of it.  Its clause that `K = ⟨⟨Rot c : c ∈ C⟩⟩` is the *free product* of a
+family of conjugates of the rotation subgroups is not recorded, because nothing
+above it consumes the free splitting, and carrying an unconsumed clause would
+put weight on a statement no proof checks.
 
-The injectivity radius is the clause Hull's Theorem 5.1 turns into injectivity
-on a ball of `Γ(G,A)`; `HullSC.injOn_cayleyBall_of_dist_lt` is that conversion,
-and it is proved.
+Two clauses that were recorded here are gone, both of them misattributions.  The
+injectivity radius is Hull's §5, and is now
+`HullSCFilling.RotatingData.kernel_moves_base`; Hull's Theorem 5.1 turns it into
+injectivity on a ball of `Γ(G,A)` through
+`HullSCFilling.injOn_cayleyBall_of_kernel_moves`, which is proved.  The lifting
+of finite order is Hull's §5 as well (issue #50): the statement carrying it is
+false, `GGT/DGORotatingQuotientRefutation.lean` refutes it at a one-point space
+where the very rotating condition is vacuous, and neither the dichotomy nor the
+free splitting implies it -- `GGT/DGOFreeSplittingOnePoint.lean` proves the same
+model satisfies 5.3(a).  It is now
+`HullSCFilling.RotatingData.finiteOrder_lift`.
 
-`torsionFree_of_dgoQuotient` is the consumer: over a torsion-free `G` the
-quotient by a very rotating family is torsion-free, which is the clause of
-Hull's Theorem 5.1 that the torsion-free lane of this repository needs.
+`torsionFree_of_dgoQuotient` is the consumer: over a torsion-free `G`, and
+*given the lifting clause*, the quotient by a very rotating family is
+torsion-free, which is the clause of Hull's Theorem 5.1 that the torsion-free
+lane of this repository needs.  The lifting clause is a hypothesis there for the
+reason above, and the family Hull builds is what discharges it.
 -/
 
 namespace GroupApproximation
@@ -272,27 +281,42 @@ theorem not_rotation_or_loxodromic_of_empty {Rot : X → Subgroup G} (x : X)
 
 /-! ## The quotient of DGO's Theorem 5.3 -/
 
-/-- **The quotient produced by DGO's Theorem 5.3.**  Its fields are the clauses
-of that theorem which the small cancellation theory above it consumes:
+/-- **The quotient produced by DGO's Theorem 5.3.**  Its fields are the clause
+of that theorem which the small cancellation theory above it consumes, and the
+bookkeeping that carries it:
 
-> Every element of `K = ⟨⟨Rot c : c ∈ C⟩⟩` is either conjugate into some
-> `Rot c`, or acts loxodromically on `X`; and every finite subgroup of `G / K`
-> is the image of a finite subgroup of `G`.
+> Every element of `K = ⟨⟨Rot c : c ∈ C⟩⟩` other than `1` is either conjugate
+> into some `Rot c`, or acts loxodromically on `X`.
 
-The second clause is recorded in the element form the rest of this repository
-uses -- every element of finite order lifts to an element of the same order --
-because that is the form `Saturation.torsionFree_of_finiteOrder_lift` consumes
-and the form the manuscript's `thm:hull` prints.
+**Two clauses have left this structure, and both left for the same reason.**
 
-**The injectivity radius is no longer here.**  It was a field, with a basepoint
-parameter to carry it, until the clauses were read against the source: DGO's
-Theorem 5.3 concludes the free splitting and the dichotomy and nothing metric,
-and the injectivity radius follows from neither -- loxodromy is asymptotic and
-gives no bound at the first power, and the splitting is not metric.  It is
-Hull's §5, so it now lives with Hull's family data as
-`HullSCFilling.RotatingData.injOn_of_dist`, where the cone-off and its basepoint
-are in scope.  `GGT/HullSCDGO.lean` carries the audit and the counterexample
-that the misattributed clause made possible.
+The injectivity radius went first.  It was a field, with a basepoint parameter
+to carry it, until the clauses were read against the source: DGO's Theorem 5.3
+concludes the free splitting and the dichotomy and nothing metric, and the
+injectivity radius follows from neither -- loxodromy is asymptotic and gives no
+bound at the first power, and the splitting is not metric.  It is Hull's §5, so
+it lives with Hull's family data as
+`HullSCFilling.RotatingData.kernel_moves_base`, where the cone-off and its
+basepoint are in scope.
+
+**The finite-order lifting clause went second, and it had to** (issue #50).  It
+was recorded here as a second conclusion of Theorem 5.3, and
+`GGT/DGORotatingQuotientRefutation.lean` proves that the statement carrying it
+is **false**: fed a one-point space, where the very rotating condition is
+vacuous because its annulus is empty, `DGOQuotientStatement` asserts that for
+every group and every normal subgroup every finite-order element of the quotient
+lifts to an element of the same order, which `ℤ` modulo the even integers
+refutes.  Neither of DGO's own conclusions rescues it --- the one-point model
+satisfies the dichotomy, and `GGT/DGOFreeSplittingOnePoint.lean` proves it
+satisfies the free splitting 5.3(a) as well, so the route through the
+Bass-Serre tree of the splitting cannot reach the clause.  It now lives with the
+family Hull builds, as `HullSCFilling.RotatingData.finiteOrder_lift`, where the
+stabilisers of the action are known.
+
+What is left is exactly Theorem 5.3(b) together with a quotient that
+`ker_eq` and `surjective` pin up to isomorphism, and
+`GGT/DGORotatingQuotientResidual.lean` proves that the quotient itself is free:
+`G ⧸ ⟨⟨Rot⟩⟩` supplies every field but the dichotomy.
 
 The dichotomy is for the elements of `K` other than `1`, and that restriction is
 forced: `not_rotation_or_loxodromic_of_empty` above refutes the unrestricted
@@ -315,13 +339,6 @@ structure RotatingQuotient (C : Set X) (Rot : X → Subgroup G) where
   rotation_or_loxodromic : ∀ g ∈ rotationNormalClosure C Rot, g ≠ 1 →
     (∃ (a : G) (c : X), c ∈ C ∧ a⁻¹ * g * a ∈ Rot c) ∨
       ∀ x : X, IsLoxodromic g x
-  /-- Finite order lifts, with the order preserved.  **Not a conclusion of
-  Theorem 5.3**: see the provenance note in `GGT/HullSCDGO.lean`.  Its first
-  step is `conj_into_rot_of_isOfFinOrder` below, which is a consequence of the
-  dichotomy; the order-preserving half of the lift is what DGO's free splitting
-  5.3(a) would be needed for, and that clause is not recorded here. -/
-  finiteOrder_lift :
-    ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
 
 instance instGroupRotatingQuotient {C : Set X} {Rot : X → Subgroup G}
     (D : RotatingQuotient C Rot) : Group D.Q := D.group
@@ -344,14 +361,22 @@ theorem conj_into_rot_of_isOfFinOrder {C : Set X} {Rot : X → Subgroup G}
   · exact absurd hfin (not_isOfFinOrder_of_isLoxodromic (h x))
 
 /-- **The quotient by a very rotating family of a torsion-free group is
-torsion-free.**  This is the finite-order clause with the ambient
-torsion-freeness, and it is the clause of Hull's Theorem 5.1 that the
-torsion-free lane of this repository consumes. -/
+torsion-free** --- *given the lifting clause*, which is the hypothesis `hlift`
+and is **not** part of `RotatingQuotient` any more.
+
+That hypothesis cannot be dropped, and the reason is issue #50 rather than a
+gap in this proof: `GGT/DGORotatingQuotientRefutation.lean` exhibits a
+separated very rotating family on a hyperbolic geodesic space with `G`
+torsion-free and `G / K` of order two, so torsion-freeness of the quotient does
+not follow from the rotating hypotheses at all.  It is Hull's §5 that supplies
+the lift, through `HullSCFilling.RotatingData.finiteOrder_lift`. -/
 theorem torsionFree_of_rotatingQuotient {C : Set X}
     {Rot : X → Subgroup G}
-    (hG : IsPowerTorsionFree G) (D : RotatingQuotient C Rot) :
+    (hG : IsPowerTorsionFree G) (D : RotatingQuotient C Rot)
+    (hlift : ∀ y : D.Q, IsOfFinOrder y →
+      ∃ g : G, D.q g = y ∧ orderOf g = orderOf y) :
     IsPowerTorsionFree D.Q :=
-  torsionFree_of_finiteOrder_lift hG D.q D.finiteOrder_lift
+  torsionFree_of_finiteOrder_lift hG D.q hlift
 
 end Family
 
@@ -373,21 +398,31 @@ def DGOQuotientStatement : Prop :=
         IsRotatingFamily G X C Rot → IsSeparated C ρ →
           IsVeryRotating G X δ C Rot → Nonempty (RotatingQuotient C Rot)
 
-/-- The consumer of `DGOQuotientStatement`: from DGO's theorem, a separated
-very rotating family on a torsion-free group has a torsion-free quotient by the
-rotations, and that quotient's kernel is exactly the subgroup the rotations
-generate. -/
+/-- The consumer of `DGOQuotientStatement`: from DGO's theorem and the lifting
+clause, a separated very rotating family on a torsion-free group has a
+torsion-free quotient by the rotations, and that quotient's kernel is exactly
+the subgroup the rotations generate.
+
+`hlift` is a hypothesis and not a consequence.  It is the clause that left
+`RotatingQuotient` at issue #50, stated here in the form the family data
+supplies it (`HullSCFilling.RotatingData.finiteOrder_lift`): for any quotient
+map with the right kernel.  Without it the conclusion is false --- the model of
+`GGT/DGORotatingQuotientRefutation.lean` is a separated very rotating family on
+a hyperbolic geodesic space with `G = ℤ` and `G / K` of order two. -/
 theorem torsionFree_of_dgoQuotient (hDGO : DGOQuotientStatement.{u, v})
     {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
     {δ ρ : ℝ} {C : Set X} {Rot : X → Subgroup G} (hδ : 0 < δ)
     (hρ : 200 * δ ≤ ρ) (hhyp : IsHyperbolicSpace δ X)
     (hfam : IsRotatingFamily G X C Rot) (hsep : IsSeparated C ρ)
-    (hvr : IsVeryRotating G X δ C Rot) (hG : IsPowerTorsionFree G) :
+    (hvr : IsVeryRotating G X δ C Rot) (hG : IsPowerTorsionFree G)
+    (hlift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
+      q.ker = rotationNormalClosure C Rot →
+        ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y) :
     ∃ (Q : Type u) (_ : Group Q) (q : G →* Q), Function.Surjective q ∧
       q.ker = rotationNormalClosure C Rot ∧ IsPowerTorsionFree Q := by
   obtain ⟨D⟩ := hDGO δ ρ C Rot hδ hρ hhyp hfam hsep hvr
   exact ⟨D.Q, D.group, D.q, D.surjective, D.ker_eq,
-    torsionFree_of_rotatingQuotient hG D⟩
+    torsionFree_of_rotatingQuotient hG D (hlift D.q D.ker_eq)⟩
 
 end HullSC
 end GroupApproximation

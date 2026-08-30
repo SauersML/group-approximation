@@ -106,6 +106,20 @@ structure ConeOffData₂ {G : Type u} [Group G] {Λ : Type w} (A : Alphabet G)
   is where Hull proves it. -/
   kernel_moves : ∀ g ∈ Subgroup.normalClosure (⋃ lam : Λ, (K lam : Set G)),
     g ≠ 1 → injRadius ≤ dist base (g • base)
+  /-- **Finite order lifts, with the order preserved**, and this too is Hull's
+  §5 rather than DGO's (issue #50).
+
+  It was a field of `HullSC.RotatingQuotient` until the statement carrying it
+  was refuted: `GGT/DGORotatingQuotientRefutation.lean` builds a separated very
+  rotating family on a one-point space -- geodesic, hyperbolic, with the very
+  rotating condition vacuous because its annulus is empty -- for which the
+  clause asserts that `ℤ` has an element of order two.  Neither of Theorem
+  5.3's conclusions rescues it; `GGT/DGOFreeSplittingOnePoint.lean` proves the
+  same model satisfies the free splitting.  What it needs is control of the
+  stabilisers of the action, which is what the cone-off supplies. -/
+  finiteOrder_lift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
+    q.ker = Subgroup.normalClosure (⋃ lam : Λ, (K lam : Set G)) →
+      ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
   /-- The conjugates of each `K lam` rotate very much about the corresponding
   apices, in the sense of DGO Definition 2.12(c). -/
   veryRotating : ∀ (lam : Λ) (g k : G), k ∈ K lam → g * k * g⁻¹ ≠ 1 →

@@ -37,13 +37,16 @@ apex and the subgroup.  This module proves them.
 
 ## What is left
 
-`ConeOffData` is what remains to be built: a hyperbolic `G`-space with an apex
-whose orbit is separated and far from the basepoint, on which the conjugates of
-`K` are very rotating, and in which the letters of `A` move the basepoint by at
-most one.  That is DGO's §5.1 cone-off with Coulon's hyperbolicity estimate, and
-it is the whole of the geometry.  `hullFillingDataStatement_of_coneOff` is the
-reduction: `HullFillingDataStatement` follows from `HullConeOffStatement`, whose
-first conjunct asks for that space with `K = ⟨w⟩`.
+`ConeOffData` is what remains to be built: a hyperbolic geodesic `G`-space with
+an apex whose orbit is separated, on which the conjugates of `K` are very
+rotating, and in which the letters of `A` move the basepoint by at most one.
+That is DGO's §5.1 cone-off with Coulon's hyperbolicity estimate, and it is the
+whole of the geometry -- together with the two clauses that are Hull's own
+rather than DGO's, the injectivity radius and the lifting of finite order, which
+the structure carries for the reasons its fields record.
+`hullFillingDataStatement_of_coneOff` is the reduction:
+`HullFillingDataStatement` follows from `HullConeOffStatement`, whose first
+conjunct asks for that space with `K = ⟨w⟩`.
 -/
 
 namespace GroupApproximation
@@ -242,14 +245,21 @@ theorem normalClosure_zpowers {G : Type u} [Group G] (w : G) :
 /-- **The cone-off of `Γ(G, A ⊔ H)` along the conjugates of the axis of the
 relator**, as the data the rotating family of Hull's Theorem 5.1 is built from.
 
-Everything here is geometry.  The equivariance of the rotation assignment and
-the identification of what the rotations generate are *not* fields: they are
+Almost everything here is geometry.  The equivariance of the rotation assignment
+and the identification of what the rotations generate are *not* fields: they are
 `isRotatingFamily_apexRot` and `rotationNormalClosure_apexRot`.
 
-`L` is the displacement below which the quotient has to be faithful.  The three
-inequalities `sep_ge`, `lt_sep` and `base_far` are all lower bounds on the
-separation, and all three are arranged the same way -- by taking the relator
-deep enough, `IsSeparated` being a lower bound that may be shrunk at will. -/
+`L` is the displacement below which the quotient has to be faithful, and
+`lt_injRadius` is where it is used: the injectivity radius exceeds it.  Both it
+and `sep_ge` are arranged the same way, by taking the relator deep enough --
+`IsSeparated` is a lower bound and may be shrunk at will.
+
+Two fields are **not** geometry, and both are Hull's §5 rather than DGO's
+Theorem 5.3, having been moved out of `HullSC.RotatingQuotient` after being read
+against the source: `kernel_moves_base`, the injectivity radius, and
+`finiteOrder_lift`, the finite-order lifting clause that issue #50 refuted in
+the position it used to occupy.  `HullSCFilling.RotatingData` carries both, and
+`toRotatingData` passes them through. -/
 structure ConeOffData {G : Type u} [Group G] (A : Alphabet G) (K : Subgroup G)
     (L : ℝ) where
   /-- The cone-off. -/
@@ -278,29 +288,47 @@ structure ConeOffData {G : Type u} [Group G] (A : Alphabet G) (K : Subgroup G)
   delta_pos : 0 < delta
   /-- The cone-off is hyperbolic. -/
   hyperbolic : IsHyperbolicSpace delta Space
+  /-- **The cone-off is geodesic.**  DGO work in geodesic spaces throughout, and
+  the repaired `HullSC.DGOQuotientStatementGeodesic` asks for it: without one the
+  very rotating condition constrains an annulus that can be empty. -/
+  isGeodesic : IsGeodesicSpace Space
   /-- The separation of the apices. -/
   sep : ℝ
   /-- Dahmani-Guirardel-Osin's Theorem 5.3 asks for separation above `200 δ`. -/
   sep_ge : 200 * delta ≤ sep
-  /-- The separation exceeds the prescribed displacement. -/
-  lt_sep : L < sep
   /-- Distinct apices are `sep` apart. -/
   separated : ∀ g g' : G, g • apex ≠ g' • apex → sep ≤ dist (g • apex) (g' • apex)
-  /-- The basepoint is `sep`-far from every apex. -/
-  base_far : ∀ g : G, sep ≤ dist base (g • apex)
-  /-- **The injectivity radius, and it is Hull's §5 rather than DGO's.**
-  Nothing that moves the basepoint by less than the separation is killed, for
-  any quotient by the normal closure of `K`.
+  /-- The injectivity radius. -/
+  injRadius : ℝ
+  /-- It exceeds the prescribed displacement. -/
+  lt_injRadius : L < injRadius
+  /-- **The injectivity radius, and it is Hull's §5 rather than DGO's.**  Every
+  nontrivial element of the normal closure of `K` moves the basepoint by at
+  least the injectivity radius.
 
-  This is the one clause of `HullSCFilling.RotatingData` that is not geometry of
-  the cone-off, and it is not derivable from the fields above: DGO's Theorem 5.3
-  concludes the free splitting and the dichotomy, and the injectivity radius
-  follows from neither -- loxodromy is asymptotic and gives no bound at the
-  first power, and the splitting is not metric.  So it is asked of the cone-off,
-  which is where Hull proves it, and `toRotatingData` passes it through. -/
-  injOn_of_dist : ∀ {Q : Type u} [Group Q] (q : G →* Q),
+  Not derivable from the geometry above: DGO's Theorem 5.3 concludes the free
+  splitting and the dichotomy, and this follows from neither -- loxodromy is
+  asymptotic and gives no bound at the first power, and the splitting is not
+  metric.  So it is asked of the cone-off, which is where Hull proves it, and
+  `toRotatingData` passes it through.  Quantified over the kernel and stated at
+  the basepoint, which is what keeps `HullSC.eq_one_of_dist_lt_everywhere` from
+  refuting it: a rotation fixes its apex and lies in the kernel. -/
+  kernel_moves_base : ∀ g ∈ Subgroup.normalClosure (K : Set G), g ≠ 1 →
+    injRadius ≤ dist base (g • base)
+  /-- **Finite order lifts, with the order preserved** -- Hull's §5 as well, and
+  for a sharper reason than the last field (issue #50).
+
+  This was a field of `HullSC.RotatingQuotient`, recorded as a conclusion of
+  DGO's Theorem 5.3.  `GGT/DGORotatingQuotientRefutation.lean` refutes the
+  statement that carried it, and `GGT/DGOFreeSplittingOnePoint.lean` shows the
+  refuting model satisfies both of Theorem 5.3's own conclusions, so no route
+  from that theorem reaches this clause.  What it needs is control of the
+  stabilisers of the action, which the cone-off has and an abstract rotating
+  family does not: a vertex of `Γ(G,A)` has trivial stabiliser, and an apex has
+  the elementary closure of the relator. -/
+  finiteOrder_lift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
     q.ker = Subgroup.normalClosure (K : Set G) →
-      ∀ g : G, g ≠ 1 → dist base (g • base) < sep → q g ≠ 1
+      ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
   /-- The conjugates of `K` rotate very much about the corresponding apices,
   in the sense of DGO Definition 2.12(c): coupled annulus points are separated
   by the apex on every geodesic between them. -/
@@ -322,7 +350,8 @@ instance instAction {G : Type u} [Group G] {A : Alphabet G} {K : Subgroup G}
 
 /-- **The rotating family of Hull's Theorem 5.1, from the cone-off.**  The
 apices are the orbit of the cone point, the rotations are the conjugates of `K`,
-and the two clauses that are not geometry are proved. -/
+and the clauses that are not geometry are passed through along the
+identification `hK` of what the rotations generate with `⟨⟨w⟩⟩`. -/
 def toRotatingData {G : Type u} [Group G] {A : Alphabet G} {K : Subgroup G}
     {L : ℝ} {w : G} (P : ConeOffData A K L)
     (hK : Subgroup.normalClosure (K : Set G)
@@ -336,24 +365,26 @@ def toRotatingData {G : Type u} [Group G] {A : Alphabet G} {K : Subgroup G}
   delta := P.delta
   delta_pos := P.delta_pos
   hyperbolic := P.hyperbolic
+  isGeodesic := P.isGeodesic
   sep := P.sep
   sep_ge := P.sep_ge
-  lt_sep := P.lt_sep
   apices := apexOrbit (G := G) P.apex
   rot := apexRot K P.apex P.normal_in_stab
   isRotatingFamily :=
     isRotatingFamily_apexRot P.isometric K P.apex P.fix P.normal_in_stab
   isSeparated := isSeparated_apexOrbit P.separated
   isVeryRotating := isVeryRotating_apexRot P.veryRotating
-  base_far := by
-    intro c hc
-    obtain ⟨g, rfl⟩ := mem_apexOrbit.mp hc
-    exact P.base_far g
   rotationNormalClosure_eq := by
     rw [rotationNormalClosure_apexRot, hK]
-  injOn_of_dist := by
-    intro Q _ q hker g hg hdist
-    exact P.injOn_of_dist q (hker.trans hK.symm) g hg hdist
+  injRadius := P.injRadius
+  lt_injRadius := P.lt_injRadius
+  kernel_moves_base := by
+    intro g hg hg1
+    refine P.kernel_moves_base g ?_ hg1
+    rwa [rotationNormalClosure_apexRot] at hg
+  finiteOrder_lift := by
+    intro Q _ q hker
+    exact P.finiteOrder_lift q (hker.trans hK.symm)
 
 end ConeOffData
 
@@ -361,8 +392,10 @@ end ConeOffData
 
 /-- **Hull's §5, over the cone-off.**  The same statement as
 `HullFillingDataStatement`, with the rotating family replaced by the geometry
-it is built from: a hyperbolic `G`-space with an apex whose orbit is separated
-and far from the basepoint, on which the conjugates of `⟨w⟩` are very rotating.
+it is built from: a hyperbolic geodesic `G`-space with an apex whose orbit is
+separated, on which the conjugates of `⟨w⟩` are very rotating, and which carries
+Hull's own two clauses -- the injectivity radius at the basepoint and the
+lifting of finite order.
 
 `K` is `⟨w⟩` rather than an arbitrary subgroup because that is what makes the
 kernel come out as `⟨⟨w⟩⟩`: `normalClosure_zpowers`. -/
@@ -395,8 +428,11 @@ theorem hullFillingDataStatement_of_coneOff (h : HullConeOffStatement.{u}) :
   obtain ⟨⟨P⟩, halph⟩ := hgood W v hv hsc
   exact ⟨⟨P.toRotatingData (normalClosure_zpowers _)⟩, halph⟩
 
-/-- **Hull's Theorem 5.1 from the cone-off and DGO's Theorem 5.3.** -/
-theorem hullQuotient_of_coneOff (hDGO : DGOQuotientStatement.{u, u})
+/-- **Hull's Theorem 5.1 from the cone-off and DGO's Theorem 5.3**, the latter
+in its repaired form: the cone-off is geodesic, which is what
+`DGOQuotientStatementGeodesic` asks for and what the vertex model of `Γ(G,A)`
+cannot supply. -/
+theorem hullQuotient_of_coneOff (hDGO : DGOQuotientStatementGeodesic.{u, u})
     (h : HullConeOffStatement.{u}) : HullQuotientStatement.{u} :=
   hullQuotient_of_fillingData hDGO (hullFillingDataStatement_of_coneOff h)
 

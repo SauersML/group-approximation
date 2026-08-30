@@ -4,10 +4,11 @@ import GroupApproximation.GGT.DGORotatingQuotientRefutation
 /-!
 # The free splitting does not repair Theorem 5.3 either
 
-`GGT/DGORotatingQuotientRefutation.lean` refutes `HullSC.DGOQuotientStatement`
-and its geodesic repair, at the one-point space with `C = univ` and
-`Rot = fun _ => K` for a normal `K`.  The clause that fails there is
-`RotatingQuotient.finiteOrder_lift`.
+`GGT/DGORotatingQuotientRefutation.lean` refutes DGO's Theorem 5.3 as this
+repository recorded it, at the one-point space with `C = univ` and
+`Rot = fun _ => K` for a normal `K`.  The clause that fails there is the
+finite-order lift, which issue #50 moved to
+`HullSCFilling.RotatingData.finiteOrder_lift`.
 
 `GGT/HullSCDGO.lean` proposes a route to that clause: record DGO's Theorem
 5.3(a) -- the free splitting `⟨⟨Rot⟩⟩ = ∗_{t ∈ T} t⁻¹ (Rot c_t) t` -- as a
@@ -34,8 +35,9 @@ elements of `G` **outside** `K` -- about which the splitting says nothing.  A
 finite subgroup of `K` being conjugate into a rotation subgroup does not produce
 a preimage of a finite-order element of `G / K`.
 
-So `finiteOrder_lift` has to be proved where the ambient group and its
-stabilisers are in scope, which is Hull's cone-off, not DGO's Theorem 5.3.
+So the lifting clause has to be proved where the ambient group and its
+stabilisers are in scope, which is Hull's cone-off, not DGO's Theorem 5.3.  That
+is where issue #50 put it.
 -/
 
 namespace GroupApproximation
@@ -70,10 +72,10 @@ apex and a conjugator for each index, and an injective homomorphism from the
 free product of the rotation subgroups onto what the rotations generate,
 carrying each factor to a conjugate of itself.
 
-Since `GGT/DGORotatingQuotientRefutation.lean` refutes the same statement's
-`finiteOrder_lift` in this model, and the dichotomy holds here as well -- every
-element of `K` is conjugate into `Rot pt = K` by `a = 1` -- adding the splitting
-to `RotatingQuotient` cannot repair it. -/
+Since `GGT/DGORotatingQuotientRefutation.lean` refutes the finite-order lifting
+clause in this model, and the dichotomy holds here as well
+(`GGT/DGORotatingQuotientResidual.lean` builds the quotient), adding the
+splitting to `HullSC.RotatingQuotient` could not have repaired it. -/
 theorem exists_freeSplitting_dot {G : Type u} [Group G] {K : Subgroup G}
     (hK : K.Normal) :
     ∃ (T : Type u) (apex : T → Dot) (conj : T → G)

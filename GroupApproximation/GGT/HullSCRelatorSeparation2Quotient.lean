@@ -68,11 +68,14 @@ def HullFillingDataStatement₂ : Prop :=
 /-- **Hull's Theorem 5.1 over two subgroups, from DGO's Theorem 5.3 and the
 family.**
 
-Seven of the ten fields of `HullFillingQuotient` come out of the rotating
-quotient, injectivity on the ball comes from
-`RotatingDataGeo₂.kernel_moves_base` through `RotatingDataGeo₂.injOn_cayleyBall`,
-and the remaining three are the alphabet clauses.  Nothing in it mentions the
-index type. -/
+Six of the ten fields of `HullFillingQuotient` come out of the rotating
+quotient; two more come from the family, both of them clauses that were read off
+DGO's Theorem 5.3 until they were checked against it -- injectivity on the ball,
+from `RotatingDataGeo₂.kernel_moves_base` through
+`RotatingDataGeo₂.injOn_cayleyBall`, and the lifting of finite order, from
+`RotatingDataGeo₂.finiteOrder_lift`, which issue #50 moved off the quotient
+after refuting the statement that carried it there.  The remaining three are the
+alphabet clauses.  Nothing in it mentions the index type. -/
 theorem hullQuotient₂_of_fillingData
     (hDGO : DGOQuotientStatementGeodesic.{u, u})
     (hdata : HullFillingDataStatement₂.{u}) : HullQuotientStatement₂.{u} := by
@@ -97,7 +100,7 @@ theorem hullQuotient₂_of_fillingData
            injOn := D.injOn_cayleyBall P.q hker
            suitable_map := F.suitable_map
            suitable_map_family := F.suitable_map_family
-           finiteOrder_lift := P.finiteOrder_lift }⟩
+           finiteOrder_lift := D.finiteOrder_lift P.q hker }⟩
 
 /-- **Hull's §5 over two subgroups: the cone-off exists.**
 

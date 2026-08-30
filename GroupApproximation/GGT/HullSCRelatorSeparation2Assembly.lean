@@ -16,12 +16,15 @@ that the normal closure of the family is the normal closure of the relator -- is
 supplied.  Over one subgroup the corresponding step is
 `HullSC.normalClosure_zpowers`.
 
-Everything else is read off `HullSC.ConeOffData₂` directly, and the clause that
-is Hull's §5 rather than DGO's lines up without translation: `kernel_moves_base`
-is the same statement about the same subgroup, because
+Everything else is read off `HullSC.ConeOffData₂` directly, and the two clauses
+that are Hull's §5 rather than DGO's line up without translation.
+`kernel_moves_base` is the same statement about the same subgroup, because
 `rotationNormalClosure_apexRotFamily` identifies what the rotations generate
-with the normal closure of the union.  That is why `ConeOffData₂` states its
-injectivity radius against that union.
+with the normal closure of the union -- that is why `ConeOffData₂` states its
+injectivity radius against that union -- and `finiteOrder_lift` travels along
+`hclosure`, the only place the relator is named.  That second clause is here
+rather than on the quotient because the statement carrying it there is refuted;
+see issue #50 and `GGT/DGORotatingQuotientRefutation.lean`.
 -/
 
 namespace GroupApproximation
@@ -68,6 +71,9 @@ def ConeOffData₂.toRotatingDataGeo {G : Type u} [Group G] {Λ : Type v}
     intro g hg hg1
     rw [rotationNormalClosure_apexRotFamily] at hg
     exact P.kernel_moves g hg hg1
+  finiteOrder_lift := by
+    intro Q _ q hker
+    exact P.finiteOrder_lift q (hker.trans hclosure.symm)
 
 end HullSC
 end GroupApproximation

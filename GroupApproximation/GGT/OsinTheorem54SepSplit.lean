@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.OsinTheorem54SepTransport
+import GroupApproximation.GGT.OsinTheorem54SeparatingCosets
 
 /-!
 # Cutting an avoiding path at a vertex
