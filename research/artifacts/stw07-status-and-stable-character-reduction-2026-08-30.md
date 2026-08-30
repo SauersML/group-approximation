@@ -45,6 +45,15 @@ This normal form has two consequences for counterexample searches.
    beyond the faithful-trace theorem.  Its difficulty is concentrated in
    the stable kernel.
 
+There is a further trace-theoretic sharpening.  A stable algebra has no
+nonzero bounded trace, by the orthogonal-copy argument.  Hence the reduced
+witness `E` has exactly one tracial state, its nonfaithful quotient character.
+On the other hand its stable kernel cannot be traceless: Gabe's theorem
+would then make the kernel AF-embeddable and hence make its unitization
+quasidiagonal.  Thus any counterexample has a stable kernel supporting a
+nontrivial lower-semicontinuous tracial weight, but every such nonzero weight
+which detects a finite element is necessarily unbounded.
+
 ## Trust boundaries
 
 The reduction uses standard permanence facts only: nuclearity and
