@@ -2741,6 +2741,7 @@ import GroupApproximation.Analysis.VoiculescuQuasicentral
 import GroupApproximation.Analysis.ArvesonSesquilinearRiesz
 import GroupApproximation.Analysis.ArvesonLimitStep
 import GroupApproximation.GGT.OsinLemma55GuessingGeodesics
+import GroupApproximation.Analysis.VoiculescuGlimmStatement
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
