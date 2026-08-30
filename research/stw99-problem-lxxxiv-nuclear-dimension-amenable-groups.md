@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw84-common-stabilizer-wreath-2026-08-30.md
   - research/artifacts/stw84-commensurable-stabilizer-wreath-2026-08-30.md
   - research/artifacts/stw84-finite-stabilizer-menu-wreath-2026-08-30.md
+  - research/artifacts/stw84-arbitrary-stabilizer-wreath-2026-08-30.md
   - research/artifacts/stw84-abelian-by-local-virnil-audit-2026-08-30.md
   - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
 ---
@@ -182,6 +183,27 @@ intersection and are not commensurable.  The theorem complements, rather
 than contains, the earlier result allowing infinitely many distinct finite
 stabilizers.
 
+In fact, the global finite-menu hypothesis can now be removed entirely.
+`stw84-arbitrary-stabilizer-permutation-wreath-bound` applies to every
+permutation action of a finite-rational-rank countable abelian group `A` on
+a countable set, with no restriction on the point stabilizers, and retains
+the same estimate
+
+```text
+rank_Q(A) <= dim_nuc C*((direct_sum_S L) rtimes A)
+          <= 2(rank_Q(A)+1)9^rank_Q(A)-1.
+```
+
+The reason is a finite-stage principle hidden by the global formulation:
+the invariant hull of finitely many lamp sites under a finitely generated
+actor subgroup is a finite union of orbits, and abelianness makes the
+stabilizer constant along each orbit.  Every stage therefore has a finite
+menu automatically.  The simultaneous-purification index can diverge along
+the exhaustion, but the finite-menu dimension bound is independent of it.
+This covers, for example, `Z^2` acting on the disjoint union of `Z^2/H_n`
+for all slope subgroups `H_n=Z(1,n)`, an infinite family of infinite,
+pairwise noncommensurable stabilizers with no common positive-rank core.
+
 There is also an exact permanence theorem independent of virtual abelianness.
 `stw84-locally-finite-direct-factor-invariance` proves that adjoining any
 countable locally finite direct factor changes no nuclear dimension.  Hence
@@ -226,14 +248,11 @@ countable locally finite lamp group when the acting group has uniformly
 bounded local polynomial-growth degree (equivalently, local virtual
 nilpotence with uniformly bounded local Hirsch length).  The finite-stabilizer
 permutation theorem extends this to arbitrary almost-free permutation shifts
-for finite-rank abelian actors, but infinite stabilizers break its free-orbit
-fiber regrouping.  The commensurable-stabilizer theorem handles a possibly
-nonsplit positive-rank core shared with finite index by all stabilizers.  The
-finite-menu theorem now handles arbitrary finitely many stabilizer types,
-even with no common positive-rank core.  What remains uncontrolled is an
-infinite menu of infinite stabilizers with no common finite-index core; its
-mixed homogeneous-space tensor fibers cannot be purified by one finite
-lattice calculation.
+for finite-rank abelian actors, and the finite-menu theorem handles arbitrary
+finitely many infinite stabilizer types.  Passing to finite unions of actor
+orbits at each approximation stage now removes the menu restriction
+altogether: arbitrary permutation wreath products by finite-rank abelian
+actors have finite nuclear dimension.
 The directed-union argument still gives no control when its finite-stage
 bounds diverge.  Thus the remaining frontier includes unrestricted
 locally-finite-by-abelian groups, abelian-by-amenable groups whose finitely
