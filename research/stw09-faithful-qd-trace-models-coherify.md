@@ -8,6 +8,7 @@ distinct_from:
   stw99-problem-ix2-exact-faithful-qd-trace-af-embeddable: that only asks for an AF embedding, whereas this asks for the stronger trace-preserving embedding encoded by compatible model traces.
 artifacts:
   - research/artifacts/stw08-af-embedding-status-and-coherence-audit-2026-08-30.md
+  - research/artifacts/stw09-matrix-coherence-rank-obstruction-2026-08-30.md
 ---
 
 If `A` is separable and exact and `tau` is a faithful quasidiagonal trace on
@@ -28,3 +29,13 @@ uniqueness/amalgamation statement which simultaneously matches point-norm
 finite models and their trace weights.  The UCT case supplies such global
 compatibility through the established trace-preserving AF-embedding theorem;
 no UCT-free replacement is assumed here.
+
+One seemingly stronger normalization is actually false.  The independent
+models cannot in general be restricted to full matrix stages with their
+normalized traces and then connected by unital embeddings.  The theorem
+`stw09-full-matrix-coherence-rational-core-criterion` shows that norm
+coherence freezes the normalized ranks of exact core projections and hence
+forces rational central trace weights.  An irrational faithful trace on
+`C^2` violates this while `C^2` is already AF.  Thus the finite-dimensional
+algebras and compatible traces in the formulation above must retain their
+multi-summand flexibility.
