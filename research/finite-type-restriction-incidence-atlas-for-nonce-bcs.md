@@ -62,9 +62,15 @@ forbidden assignment.
 
 Any solution automatically crosses the known fences. By
 `no-ce-hecke-host-needs-an-fd-invisible-type`, every finite-dimensional
-representation of `Gamma` annihilates `q`. By
-`finite-projective-sector-groupoids-have-conjugate-absorbers`, the
-incidence cannot reduce to finitely many single packet arrows or bisections.
-Thus at least one cycle must use a genuine many-to-many restriction sum; a
-finite graph of finite groups, graph product, or finite biunitary packet
-does not qualify.
+representation of `Gamma` annihilates `q`. The large-intersection and
+row-column-capacity theorems rule out sparse single-type attachments.
+`clean-face-finite-type-packing-is-quadratically-bounded` excludes the
+central-sign clean star, while
+`central-type-sum-equality-is-intersection-readable` proves that using one
+central finite chart on each side makes every common marginal a literal
+intersection projection. Finally,
+`finite-projective-sector-groupoids-have-conjugate-absorbers` excludes
+finitely many single packet arrows or bisections. Thus at least one cycle
+must use atom-specific chart groups with non-clean intersections or a
+genuinely noncentral multipath restriction sum; a finite graph of finite
+groups, graph product, or finite biunitary packet does not qualify.
