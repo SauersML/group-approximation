@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.ElementaryMorseOrbit
+import GroupApproximation.GGT.DGOLemma67Pigeonhole
 
 /-!
 # Two loxodromic elements without a common power are independent
@@ -197,10 +197,13 @@ theorem dist_le_of_parameters {δ Ka Kb T La Lb : ℝ} {x u v : X} {f q : ℝ �
 /-- **Forward fellow travel of the two axes for a long enough time forces a
 common nonzero power.**  The length `T` depends on `a`, `b`, `x` and the
 acylindricity constants only. -/
-theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
+theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
     (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
-    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
-    {a b : G} {x : X} (ha : IsLoxodromic a x) (hb : IsLoxodromic b x) :
+    (hiso : IsIsometricAction G X)
+    {a b : G} {x : X} (ha : IsLoxodromic a x) (hb : IsLoxodromic b x)
+    (hpair : ∀ ε : ℝ, 0 < ε → ∃ (K N : ℕ),
+      (pairStab G ε x ((a ^ K) • x)).Finite ∧
+        (pairStab G ε x ((a ^ K) • x)).ncard ≤ N) :
     ∃ T : ℝ, 0 < T ∧ ∀ (n m : ℕ) (f q : ℝ → X),
       IsGeodesicSegment f 0 (dist x ((a ^ n) • x)) → f 0 = x →
       f (dist x ((a ^ n) • x)) = (a ^ n) • x →
@@ -237,8 +240,7 @@ theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
   have hεpos : 0 < ε := by
     rw [hε]
     linarith
-  obtain ⟨R, N, hRN⟩ :=
-    acylindrical_common_power_of_two_orbit_fellow_travel hiso hacy hεpos
+  obtain ⟨K, N, hKfin, hKcard⟩ := hpair ε hεpos
   -- spacing of the `a`-exponents
   have hτ : 0 < stableTranslation a x := stableTranslation_pos_of_isLoxodromic hiso ha
   obtain ⟨S, hS⟩ := exists_nat_gt (2 * ε₁ / stableTranslation a x)
@@ -251,12 +253,6 @@ theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
       rw [h0, Nat.cast_zero, mul_zero] at hSτ
       linarith
     · exact h0
-  -- the offset along the `a`-axis
-  obtain ⟨K, hK⟩ := exists_nat_gt ((R + Ba) / la)
-  have hKR : R < dist x ((a ^ K) • x) := by
-    rw [div_lt_iff₀ hla] at hK
-    have := hlox_a K
-    linarith
   -- the largest `a`-exponent used, and the fellow-travel length
   obtain ⟨E, hE⟩ : ∃ E : ℕ, E = S * N + K := ⟨_, rfl⟩
   have hEDa : 0 ≤ (E : ℝ) * dist x (a • x) := mul_nonneg (Nat.cast_nonneg _) hDa0
@@ -520,9 +516,60 @@ theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
     have := hclose₁ (ef i) heE
     rw [hε]
     linarith
-  obtain ⟨i, j, -, hp, hr, hpow⟩ := hRN x ((a ^ K) • x) hKR.le a b
-    (fun i => ((ef i : ℕ) : ℤ)) (fun i => ((J (ef i) : ℕ) : ℤ)) hinj₁ hinj₂ hpairs
+  obtain ⟨i, j, -, hp, hr, hpow⟩ :=
+    exists_common_zpow_of_pairStab_finite hiso hKfin hKcard a b
+      (fun i => ((ef i : ℕ) : ℤ)) (fun i => ((J (ef i) : ℕ) : ℤ))
+      hinj₁ hinj₂ hpairs
   exact ⟨_, _, hp, hr, hpow⟩
+
+/-- The existing acylindrical form, recovered from the finite-pair-stabilizer
+core. -/
+theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
+    {a b : G} {x : X} (ha : IsLoxodromic a x) (hb : IsLoxodromic b x) :
+    ∃ T : ℝ, 0 < T ∧ ∀ (n m : ℕ) (f q : ℝ → X),
+      IsGeodesicSegment f 0 (dist x ((a ^ n) • x)) → f 0 = x →
+      f (dist x ((a ^ n) • x)) = (a ^ n) • x →
+      IsGeodesicSegment q 0 (dist x ((b ^ m) • x)) → q 0 = x →
+      q (dist x ((b ^ m) • x)) = (b ^ m) • x →
+      T ≤ dist x ((a ^ n) • x) → T ≤ dist x ((b ^ m) • x) →
+      (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ 4 * δ) →
+      ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
+  apply exists_common_zpow_of_forward_fellow_travel_of_pairStab
+    hδ hδ0 hgeo hiso ha hb
+  intro ε hε
+  obtain ⟨R, N, hRN⟩ := hacy ε hε
+  obtain ⟨la, hla, Ba, -, hlox_a⟩ := id ha
+  obtain ⟨K, hK⟩ := exists_nat_gt ((R + Ba) / la)
+  have hR : R ≤ dist x ((a ^ K) • x) := by
+    rw [div_lt_iff₀ hla] at hK
+    have hlow := hlox_a K
+    linarith
+  obtain ⟨hfin, hcard⟩ := hRN x ((a ^ K) • x) hR
+  exact ⟨K, N, hfin, hcard⟩
+
+/-- **The WPD long-fellow-travel form used in DGO Lemma 6.7.**  Global
+acylindricity is unnecessary: WPD for the first loxodromic element supplies
+the one finite pair stabilizer consumed by the Morse/pigeonhole proof. -/
+theorem exists_common_zpow_of_forward_fellow_travel_of_wpd {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+    (hiso : IsIsometricAction G X)
+    {a b : G} {x : X} (ha : IsLoxodromic a x) (hb : IsLoxodromic b x)
+    (hwpd : IsWPDAt a x) :
+    ∃ T : ℝ, 0 < T ∧ ∀ (n m : ℕ) (f q : ℝ → X),
+      IsGeodesicSegment f 0 (dist x ((a ^ n) • x)) → f 0 = x →
+      f (dist x ((a ^ n) • x)) = (a ^ n) • x →
+      IsGeodesicSegment q 0 (dist x ((b ^ m) • x)) → q 0 = x →
+      q (dist x ((b ^ m) • x)) = (b ^ m) • x →
+      T ≤ dist x ((a ^ n) • x) → T ≤ dist x ((b ^ m) • x) →
+      (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ 4 * δ) →
+      ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
+  apply exists_common_zpow_of_forward_fellow_travel_of_pairStab
+    hδ hδ0 hgeo hiso ha hb
+  intro ε hε
+  obtain ⟨K, hKfin⟩ := hwpd ε hε.le
+  exact ⟨K, (pairStab G ε x ((a ^ K) • x)).ncard, hKfin, le_rfl⟩
 
 /-! ## Signs -/
 
