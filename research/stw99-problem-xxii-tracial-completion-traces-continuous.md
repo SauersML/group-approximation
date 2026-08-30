@@ -6,12 +6,12 @@ title: All traces on a factorial tracially complete C*-algebra are uniform-2-nor
 root: true
 distinct_from:
   stw99-problem-x2-hyperfinite-factor-quasidiagonal: that asks for operator-norm matrix models of the single tracial von Neumann algebra R; this asks whether the designated trace simplex of a factorial tracially complete C*-algebra already exhausts all its traces, a normality question with no matrix models involved.
-  trace-problem-holds-over-convergent-sequence-boundaries: that is the established special case of this problem for W*-bundles over convergent-sequence spaces; this is the general problem, open even for Bauer simplices with boundary an interval.
+  stw22-dim1-factor-bundles-have-uniform-traces: that proves the problem for countably generated factorial bundles over bases of dimension at most one; this is the unrestricted problem, with neither a dimension nor countable-generation hypothesis.
 artifacts:
   - research/artifacts/stw99-xxii-trace-problem-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
-  - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
+  - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -26,15 +26,6 @@ finite direct sum of factors and traces are normal); yes for uniform tracial
 ultrapowers and reduced products of tracially complete C\*-algebras with
 property Γ (their Theorem 7.5, where CPoU supplies the projections that the
 non-von-Neumann fibres lack).
-
-Fu, arXiv:2605.21655v1, Theorem 10.12, also gives the full trace equality for
-the completion of an algebraically simple separable non-elementary
-stable-rank-one algebra with nonempty compact trace space and locally finite
-nuclear dimension.  This is the exact positive class
-`fu-locally-finite-nucdim-completions-have-only-uniform-traces`.  It imposes
-regularity on a dense C-star algebra rather than a covering-dimension
-condition on the bundle base, and it leaves the arbitrary factorial trace
-problem open.
 
 New here: yes, with no property Γ hypothesis, for W\*-bundles whose base is
 a countable compact space with finitely many limit points
@@ -55,6 +46,19 @@ proof intrinsically lifts exact fibre tuples, corrects their weighted
 partial-isometry relations in `L^2`, and glues them along disjoint clopen
 refinements.
 
+For countably generated factorial bundles, the dimension-zero restriction
+is removed through dimension one by
+`stw22-dim1-factor-bundles-have-uniform-traces`.  Stabilization embeds the
+intrinsic Hilbert `C(K)`-module of `L^2` sections as a complemented submodule
+of `C(K,ell^2)`.  This puts all varying factor fibres in one complete metric
+space without embedding them in a common factor.  The exact weighted-copy
+multifunction is lower semicontinuous and uniformly locally path connected,
+so one-dimensional selection gives global copies.  Spectral clipping proves
+that the selected fibrewise contractions belong to the original tracially
+complete algebra, rather than merely to its Hilbert-module completion.
+Countable generation is automatic for uniform completions of separable
+C-star algebras.
+
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,
 `stw22-locally-trivial-finite-dimensional-bundles` supplies an independent
@@ -65,13 +69,30 @@ dimension.  The chartwise argument is retained as cocycle-local proof
 technology.
 
 For arbitrary factorial bundles over finite-dimensional compact metrizable
-bases, `stw22-intrinsic-local-replication-colouring-reduction` removes all
+bases of dimension at least two,
+`stw22-intrinsic-local-replication-colouring-reduction` removes all
 global-corner and local-triviality assumptions from the colouring step.  Its
 only hypothesis is an exact continuous local tuple of orthogonal weighted
 copies.  The existing intrinsic correction lemma makes the corresponding
-fibre solution relation lower semicontinuous, but does not continuously
-select its polar-fill corrections on a positive-dimensional neighbourhood.
-This bundle-valued local selection is now the exact one-dimensional hinge.
+fibre solution relation lower semicontinuous, but does not supply the
+uniform higher local connectivity needed to select its polar-fill
+corrections.  In the countably generated case the degree-zero selection
+problem is settled by stabilized `L^2` selection; higher connectivity of
+the varying-factor solution family is now the first finite-dimensional
+hinge.
+
+The tempting matrix-cone shortcut is strictly stronger than this hinge.
+`stw22-bare-cone-projectivity-does-not-supply-ilr` exhibits a
+one-dimensional trivial matrix field where global ILR holds and an
+unrestricted fibre cone map lifts globally, yet no local lift can preserve
+the prescribed `e_00` corner. The relative cone condition forces the source
+support to be orthogonal to the replication ranges, a relation absent from
+ILR. Ordinary cone projectivity therefore does not settle the selection
+problem.
+
+Using `M_m` instead and counting the source as the first range gives an exact
+cone formulation of anchored ILR, but its corner-preserving lift is itself
+the unresolved relative selection statement.
 
 ## Attempts
 
@@ -88,15 +109,17 @@ This bundle-valued local selection is now the exact one-dimensional hinge.
   contractions `b` with `sup_y τ_y(b(y)) ≤ ε` have `φ(b) ≤ Cε` for every
   trace.  Every route tried factors through (D), and (D) restated is the
   problem itself.
-* **The surviving positive-dimensional gluing problem.**  Support
+* **The surviving higher-dimensional gluing problem.**  Support
   projections still jump under uniformly 2-small perturbations
   (`b(z)=b(y')+delta_z q_z` with `tau(q_z)` fixed), so one cannot select the
   spectral cuts themselves.  The zero-dimensional theorem bypasses this:
   it lifts weighted operators, corrects only their high spectral parts,
-  and patches them on disjoint clopen sets.  Over a connected or
-  positive-dimensional base those clopen patches are unavailable.  Local
-  weighted tuples then overlap, and no dimension-independent orthogonal
-  gluing estimate is presently known.
+  and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2`
+  selection now replaces those patches in dimension one for countably
+  generated bundles.  From dimension two onward, local weighted tuples
+  require uniform higher-connectivity data, and no general varying-factor
+  selection theorem or dimension-independent orthogonal gluing estimate is
+  presently known.
 * **Ultrafilter attack on the negative side.**  A singular trace on
   `C_σ([0,1], R)` of the form `lim_ω τ(b(y_n) q_n)/τ(q_n)` needs projections
   `q_n` with `τ(q_n) → 0` that are asymptotically central in relative

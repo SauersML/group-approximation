@@ -16,7 +16,7 @@ artifacts:
   - research/artifacts/stw22-variable-factor-selection-audit-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
-  - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
+  - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -38,21 +38,6 @@ The problem remains open in general, including for nuclear `A`.  The source
 records positive answers for finite-dimensional trace simplices, for
 completions with complemented partitions of unity, and in further Bauer
 cases.
-
-Fu, arXiv:2605.21655v1, Theorem 10.12, supplies a dimension-free positive
-class on the dense-algebra side.  If `A` is algebraically simple, separable,
-non-elementary, has stable rank one and locally finite nuclear dimension,
-and `T(A)` is nonempty compact, then
-
-```text
-T(completion_(2,T(A))(A))=T(A).
-```
-
-The same theorem identifies the completion with the hyperfinite tracially
-complete model and proves real rank zero, stable rank one, and pureness.  The
-exact imported statement is
-`fu-locally-finite-nucdim-completions-have-only-uniform-traces`; it does not
-remove the displayed regularity assumptions.
 
 For trivial UHF fields the new spectral-band theorem crosses every finite
 selection threshold.  `stw22-finite-dimensional-trivial-field-traces`
@@ -172,22 +157,50 @@ correction produces nearby exact tuples without selecting the jumping
 support projections; finite disjoint clopen refinements then converge to
 global orthogonal weighted copies.  Thus the result needs neither
 metrizability nor a common ambient factor and covers every compact
-scattered boundary as well as perfect zero-dimensional boundaries.  The
-remaining Bauer frontier begins in positive covering dimension.
+scattered boundary as well as perfect zero-dimensional boundaries.
 
-For positive-dimensional arbitrary factorial bundles, the remaining input
-is now separated cleanly from the topological colouring step.
+For countably generated factorial bundles, that frontier now begins in
+dimension two.  `stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
+the intrinsic Hilbert `C(K)`-module of `L^2` sections into the standard
+module `C(K,ell^2)`.  The varying-factor weighted-copy sets thereby become
+a lower-semicontinuous, uniformly locally path-connected family of closed
+subsets of one complete metric space.  One-dimensional selection produces
+exact global copies, and a fibrewise spectral-clipping lemma shows that the
+selected `L^2` contractions actually belong to the original tracially
+complete C-star algebra.  Countable generation is automatic for uniform
+completions of separable C-star algebras; no common ambient factor or local
+triviality is used.
+
+For arbitrary factorial bundles in dimension at least two, the remaining
+input is now separated cleanly from the topological colouring step.
 `stw22-intrinsic-local-replication-colouring-reduction` shows that no common
 ambient factor, fixed comparison corners, or local trivializations are needed
 after exact local replication tuples exist.  Over a `d`-dimensional compact
 metrizable base, a `(d+1)`-coloured refinement gives a range bound `d+1`
-independent of the replication number and kills every gap trace.  In
-dimension one this is a two-colour bound.  The intrinsic weighted correction
-lemma already proves lower semicontinuity of the fibrewise solution relation,
-but its existential polar-fill step does not select an exact tuple
-continuously on a neighbourhood.  Promoting that lower semicontinuity to a
-bundle-valued nonconvex local selection--or exhibiting its failure--is the
-precise one-dimensional frontier.
+independent of the replication number and kills every gap trace.  The
+quantitative weighted correction lemma proves lower semicontinuity of the
+fibrewise solution relation.  Stabilized selection uses only path
+connectedness and uniform local path connectedness in dimension one.  In
+higher dimensions it would require corresponding uniform local
+`k`-connectedness through `k=d-1`; establishing or refuting those stronger
+connectivity estimates is the precise finite-dimensional frontier.
+
+Bare projectivity of finite-dimensional matrix cones does not bypass this
+frontier. `stw22-bare-cone-projectivity-does-not-supply-ilr` gives a trivial
+matrix field over the interval and a positive section satisfying the strict
+ILR trace bound with a global replication tuple. A fibre map from
+`C_0((0,1]) tensor M_(m+1)` has an explicit unrestricted global lift, but no
+local lift can keep its `e_00` corner equal to the prescribed section: that
+would force the source support and all `m` range supports to be mutually
+orthogonal, costing one support copy more than ILR. Thus a relative
+prescribed-corner cone theorem would be genuinely stronger input, not a
+formal consequence of cone projectivity.
+
+The rank-efficient reformulation uses `M_m`, counts `a^(1/2)` itself as the
+first range copy, and is exactly an anchored form of ILR. It avoids the extra
+support copy but not the essential issue: the lifted `e_00` corner must equal
+the prescribed section on a neighborhood, whereas projectivity controls it
+only in the original fibre.
 
 ## Attempts
 
