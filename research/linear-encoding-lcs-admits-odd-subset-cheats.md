@@ -3,13 +3,18 @@ rg: 2
 id: linear-encoding-lcs-admits-odd-subset-cheats
 kind: claim
 title: Every LCS built from a linear encoding of a constraint system is also solved by the odd-subset relaxation
-refuted_by: odd-subset-relaxation-needs-local-extendability
+refuted_by:
+  - odd-subset-relaxation-needs-local-extendability
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
 distinct_from:
   central-pinning-forbids-nonlinear-predicates: that is finite-group character theory about one pinned sector; this is about arbitrary LCS constraints on encoded variables and identifies the complete family of extra solutions that perfect completeness lets in.
   taller-vidick-lcs-re-hardness: that is a theorem with noisy completeness; this explains, without noise, which cheating solutions any noise-free linear test must tolerate.
 ---
+
+**REFUTED.**  The following unrestricted universal statement is false by
+[[odd-subset-relaxation-needs-local-extendability]].  It is retained here as
+the precise statement refuted by that counterexample.
 
 Let `B` be a boolean constraint system with contexts `C`, satisfying sets
 `S_C`, and shared variables.  Let `L` be any binary LCS whose variables
@@ -62,7 +67,7 @@ relaxation's soundness follow from the family's.
 
 ## Attempts
 
-- **DEMOTED TO OPEN (2026-08-22 adversarial audit).**  The global
+- **REFUTED (counterexample established 2026-08-30).**  The global
   statement is false as written: `odd-subset-relaxation-needs-local-extendability`
   exhibits three contexts with a non-extendable local assignment on which
   a consistent odd-subset assignment violates an honestly satisfied
