@@ -250,6 +250,27 @@ the original and adjoined algebras both have nuclear dimension one.  Thus
 overlap-level colour coupling reaches configurations excluded by every
 previous full, complemented, and one-sided projectional theorem.
 
+A separate exact colour-reuse mechanism now crosses a genuinely
+nonquasidiagonal overlap.  `stw82-stabilized-coefficient-projections` proves
+that for every unital `B` and projection `e in B`,
+
+```text
+dim_nuc((B tensor K)+C(e tensor 1))=dim_nuc(B tensor K)=dim_nuc(B).
+```
+
+Finite-rank coefficient corners leave the tail projection
+`e tensor (1-P_n)` completely orthogonal, so every stage is exactly
+`(B tensor M_n) direct_sum C`; their nested union is dense.  No
+quasicentral cut or transition-band estimate occurs.  Taking `B` to be the
+two-symbol Toeplitz algebra with diagonal symbols produces two proper
+essential noncomplemented support ideals and a common compact overlap.  A
+Toeplitz corner gives a nonzero boundary map for the overlap extension, so
+it is not quasidiagonal and has no projectional quasicentral approximate
+unit.  Both complementary multiplier projections are nonfull, yet the
+adjoined algebra still has nuclear dimension one.  Thus nonquasidiagonality
+of the common linking core is not itself an obstruction; stabilized
+coefficient tails provide a second exact route across it.
+
 That projectional hypothesis cannot be replaced formally by real rank zero
 and arbitrary finite-spectrum positive cuts.
 `stw82-finite-spectrum-cuts-do-not-force-repair` constructs a stabilized
