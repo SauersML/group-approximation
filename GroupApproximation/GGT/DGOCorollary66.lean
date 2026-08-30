@@ -96,6 +96,123 @@ theorem exists_uniform_normal_zpow_of_finiteTransversal
       _ = h ^ c * h ^ (-N) * h ^ (-c) := by rw [hneg]
       _ = h ^ (-N) := by rw [← zpow_add, ← zpow_add]; congr 1; ring
 
+/-- The uniform exponent can be chosen to be a positive natural number, as in
+the published statement of Corollary 6.6. -/
+theorem exists_uniform_normal_positive_pow_of_finiteTransversal
+    (hiso : IsIsometricAction G X) {h : G} {x : X}
+    (hlox : IsLoxodromic h x)
+    (hfin : ElementaryClosureFiniteTransversal h) :
+    ∃ r : ℕ, 0 < r ∧ ∀ g : G, g ∈ elementaryClosure h →
+      (g * h ^ (r : ℤ) * g⁻¹ = h ^ (r : ℤ) ∨
+        g * h ^ (r : ℤ) * g⁻¹ = h ^ (-(r : ℤ))) := by
+  obtain ⟨N, hN, hnormal⟩ :=
+    exists_uniform_normal_zpow_of_finiteTransversal hiso hlox hfin
+  let r := N.natAbs
+  have hr : 0 < r := Int.natAbs_pos.mpr hN
+  have hsign : N = (r : ℤ) ∨ N = -(r : ℤ) := by
+    dsimp [r]
+    omega
+  refine ⟨r, hr, ?_⟩
+  intro g hg
+  rcases hnormal g hg with hpos | hneg
+  · rcases hsign with hNpos | hNneg
+    · left
+      simpa only [hNpos] using hpos
+    · left
+      have hp : g * h ^ (-(r : ℤ)) * g⁻¹ = h ^ (-(r : ℤ)) := by
+        simpa only [hNneg] using hpos
+      calc
+        g * h ^ (r : ℤ) * g⁻¹ = (g * h ^ (-(r : ℤ)) * g⁻¹)⁻¹ := by group
+        _ = (h ^ (-(r : ℤ)))⁻¹ := by rw [hp]
+        _ = h ^ (r : ℤ) := by group
+  · rcases hsign with hNpos | hNneg
+    · right
+      simpa only [hNpos] using hneg
+    · right
+      have hn : g * h ^ (-(r : ℤ)) * g⁻¹ = h ^ (r : ℤ) := by
+        simpa only [hNneg, neg_neg] using hneg
+      calc
+        g * h ^ (r : ℤ) * g⁻¹ = (g * h ^ (-(r : ℤ)) * g⁻¹)⁻¹ := by group
+        _ = (h ^ (r : ℤ))⁻¹ := by rw [hn]
+        _ = h ^ (-(r : ℤ)) := by group
+
+/-- The orientation-preserving part `E⁺(h)`: an element inverse-conjugates
+some nonzero power of `h` to itself. -/
+def positiveElementaryClosure (h : G) : Set G :=
+  {g : G | ∃ n : ℤ, n ≠ 0 ∧ g⁻¹ * h ^ n * g = h ^ n}
+
+/-- **DGO Corollary 6.6, centralizer clause.**  Under the finite-index
+conclusion of Lemma 6.5, the orientation-preserving part of `E(h)` is the
+centralizer of one positive power of `h`. -/
+theorem exists_positiveElementaryClosure_eq_centralizer_pow
+    (hiso : IsIsometricAction G X) {h : G} {x : X}
+    (hlox : IsLoxodromic h x)
+    (hfin : ElementaryClosureFiniteTransversal h) :
+    ∃ r : ℕ, 0 < r ∧
+      positiveElementaryClosure h = {g : G | Commute g (h ^ (r : ℤ))} := by
+  obtain ⟨r, hr, hnormal⟩ :=
+    exists_uniform_normal_positive_pow_of_finiteTransversal hiso hlox hfin
+  refine ⟨r, hr, Set.ext ?_⟩
+  intro g
+  constructor
+  · rintro ⟨n, hn, hsame⟩
+    have hginvE : g⁻¹ ∈ elementaryClosure h :=
+      mem_elementaryClosure.mpr ⟨n, n, hn, hn, by simpa only [inv_inv] using hsame⟩
+    rcases hnormal g⁻¹ hginvE with hpos | hneg
+    · show Commute g (h ^ (r : ℤ))
+      have hpos' : g⁻¹ * h ^ (r : ℤ) * g = h ^ (r : ℤ) := by
+        simpa only [inv_inv] using hpos
+      rw [commute_iff_eq]
+      calc
+        g * h ^ (r : ℤ) = g * (g⁻¹ * h ^ (r : ℤ) * g) := by rw [hpos']
+        _ = h ^ (r : ℤ) * g := by group
+    · exfalso
+      have hneg' : g⁻¹ * h ^ (r : ℤ) * g = h ^ (-(r : ℤ)) := by
+        simpa only [inv_inv] using hneg
+      have heqSame :
+          g⁻¹ * h ^ ((r : ℤ) * n) * g = h ^ ((r : ℤ) * n) := by
+        calc
+          g⁻¹ * h ^ ((r : ℤ) * n) * g = g⁻¹ * (h ^ n) ^ (r : ℤ) * g := by
+            rw [mul_comm, zpow_mul]
+          _ = (g⁻¹ * h ^ n * g) ^ (r : ℤ) := by
+            simpa only [inv_inv] using (conj_zpow_eq g⁻¹ (h ^ n) (r : ℤ))
+          _ = (h ^ n) ^ (r : ℤ) := by rw [hsame]
+          _ = h ^ ((r : ℤ) * n) := by rw [← zpow_mul, mul_comm]
+      have heqNeg :
+          g⁻¹ * h ^ ((r : ℤ) * n) * g = h ^ (-((r : ℤ) * n)) := by
+        calc
+          g⁻¹ * h ^ ((r : ℤ) * n) * g =
+              g⁻¹ * (h ^ (r : ℤ)) ^ n * g := by rw [zpow_mul]
+          _ = (g⁻¹ * h ^ (r : ℤ) * g) ^ n := by
+            simpa only [inv_inv] using (conj_zpow_eq g⁻¹ (h ^ (r : ℤ)) n)
+          _ = (h ^ (-(r : ℤ))) ^ n := by rw [hneg']
+          _ = h ^ (-((r : ℤ) * n)) := by
+            rw [← zpow_mul]
+            congr 1
+            ring
+      have hpowers : h ^ ((r : ℤ) * n) = h ^ (-((r : ℤ) * n)) :=
+        heqSame.symm.trans heqNeg
+      have hinj : Function.Injective (fun k : ℤ => h ^ k) :=
+        injective_zpow_iff_not_isOfFinOrder.mpr
+          (not_isOfFinOrder_of_isLoxodromic hlox)
+      have hexp : (r : ℤ) * n = -((r : ℤ) * n) := hinj hpowers
+      let z : ℤ := (r : ℤ) * n
+      have hz : z = -z := by simpa only [z] using hexp
+      have hz0 : z = 0 := by omega
+      have hprod : (r : ℤ) * n = 0 := by simpa only [z] using hz0
+      rcases mul_eq_zero.mp hprod with hr0 | hn0
+      · have hrz : (r : ℤ) ≠ 0 := by exact_mod_cast hr.ne'
+        exact hrz hr0
+      · exact hn hn0
+  · intro hcomm
+    change Commute g (h ^ (r : ℤ)) at hcomm
+    refine ⟨r, by exact_mod_cast hr.ne', ?_⟩
+    rw [commute_iff_eq] at hcomm
+    calc
+      g⁻¹ * h ^ (r : ℤ) * g = g⁻¹ * (h ^ (r : ℤ) * g) := by group
+      _ = g⁻¹ * (g * h ^ (r : ℤ)) := by rw [hcomm]
+      _ = h ^ (r : ℤ) := by group
+
 /-! ## The three equivalent membership conditions -/
 
 /-- **DGO Corollary 6.6, `(a) ↔ (b)`, in integer-power form.**  Membership in
