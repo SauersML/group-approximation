@@ -2,17 +2,17 @@
 rg: 2
 id: stw82-tree-connected-supports-have-optimal-covers
 kind: claim
-title: Finite-tree support components admit pointwise-optimal recolouring
+title: Compact R-tree support components admit pointwise-optimal recolouring
 distinct_from:
-  stw82-finite-dimensional-central-spectrum-colour-bound: that theorem uses (n+1)m colours on an n-dimensional common support spectrum, hence 2m in dimension one; this theorem uses only m on a finite tree even when every cozero support is disconnected.
+  stw82-finite-dimensional-central-spectrum-colour-bound: that theorem uses (n+1)m colours on an n-dimensional common support spectrum, hence 2m in dimension one; this theorem uses only m on an arbitrary compact metric R-tree even when every cozero support is disconnected.
   stw82-indivisible-order-zero-reuse-is-graph-colouring: that keeps every outgoing map intact and is governed by the global support-overlap graph; this theorem splits maps over cozero components and can use fewer colours than that graph's chromatic number.
-  stw82-zero-dimensional-central-supports-recolour-pointwise: that splits over clopen blocks of a zero-dimensional spectrum; this theorem works over genuine one-dimensional finite trees, using compactly supported Urysohn cutters inside cozero components.
-  stw82-coupled-operator-partitions-merge-colours: that assumes suitable support-local cutters; this theorem constructs them from finite-tree geometry.
+  stw82-zero-dimensional-central-supports-recolour-pointwise: that splits over clopen blocks of a zero-dimensional spectrum; this theorem works over genuine one-dimensional compact R-trees, using compactly supported Urysohn cutters inside cozero components.
+  stw82-coupled-operator-partitions-merge-colours: that assumes suitable support-local cutters; this theorem constructs them from compact R-tree geometry.
 artifacts:
   - research/artifacts/stw82-tree-connected-support-covers-audit-2026-08-30.md
 ---
 
-Let `T` be a finite compact tree and let
+Let `T` be a compact metric R-tree and let
 
 ```text
 C ~= C(T) subseteq M(B) intersect (union_v phi_v(F_v))'
@@ -67,7 +67,7 @@ disconnected supports under the common-centralizer hypothesis.
 
 Consequently, if a C-star algebra `A` has arbitrarily accurate
 finite-dimensional nuclear approximations whose outgoing unit supports have
-this common finite-tree centralizing geometry and pointwise multiplicity at
+this common compact-R-tree centralizing geometry and pointwise multiplicity at
 most `r+1`, then
 
 ```text

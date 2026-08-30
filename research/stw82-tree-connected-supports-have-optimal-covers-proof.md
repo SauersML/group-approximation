@@ -8,7 +8,7 @@ requires:
   - stw82-order-zero-direct-sum-support-criterion
 ---
 
-Fix `epsilon>0` and write `U_v={t:h_v(t)>0}`.  A finite tree is locally
+Fix `epsilon>0` and write `U_v={t:h_v(t)>0}`.  An R-tree is locally path
 connected, so every connected component of the open set `U_v` is open.
 Consider only components `W` for which
 
@@ -32,15 +32,17 @@ The finitely many retained `W` are connected open subtrees.  Form their
 intersection graph `G`.  We show that `G` is `m`-colourable.
 
 For every edge choose a point in the intersection of its two components.
-Inside each component `W`, take the convex hull of its finitely many incident
-chosen points; for an isolated vertex take any singleton in `W`.  Connected
-subsets of a tree contain the unique arc between any two of their points, so
-the resulting compact subtree `L_W` stays inside `W`.  The finite family
-`(L_W)` has exactly the graph `G` as its intersection graph.
+Inside each component `W`, take the geodesic convex hull of its finitely many
+incident chosen points; for an isolated vertex take any singleton in `W`.
+Connected subsets of an R-tree contain the unique geodesic between any two of
+their points.  A finite convex hull is a finite union of compact geodesic
+segments, so the resulting compact convex subtree `L_W` stays inside `W`.
+The finite family `(L_W)` has exactly the graph `G` as its intersection graph.
 
-Root `T` at a point `o`.  For each nonempty compact subtree `L_W`, let `a_W`
-be its nearest point to `o`, and choose `W` for which `d(o,a_W)` is maximal.
-If `L_Z` meets `L_W` at `z`, the two nearest points lie on `[o,z]`, and
+Root `T` at a point `o`.  Metric projection onto a nonempty compact convex
+subtree of an R-tree exists and is unique.  Let `a_W` be the projection of
+`o` onto `L_W`, and choose `W` for which `d(o,a_W)` is maximal.  If `L_Z`
+meets `L_W` at `z`, both projections lie on the geodesic `[o,z]`, and
 maximality gives
 
 ```text
@@ -114,5 +116,5 @@ although the unsplit graph is `K_3`.
 **Trust boundary.**  Arbitrary component cutters require the common support
 algebra to centralize the outgoing ranges.  Connected supports need no such
 assumption because functional calculus of `h_v` supplies the cutter.  The
-theorem does not claim that arbitrary essential extensions admit either
-finite-tree geometry.
+theorem does not claim that arbitrary essential extensions admit compact
+R-tree geometry.
