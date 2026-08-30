@@ -55,6 +55,14 @@ The same is now proved for circle fields in
 the compact clutching term, while the noncompact term is pointwise.  In
 particular `C(T) tensor C*_r(F_2)` is Cu-regular but not Z-stable.
 
+There is now a broader one-dimensional-base theorem under an exact fiber
+`K_1` hypothesis.  If `X` is any finite graph and `D` is simple, separable,
+stably finite, pure, and `K_1(D)=0`, then
+`stw99-lxxvi-finite-graph-fields-over-k1-trivial-pure-fibers` proves that
+`C(X,D)` is pure and Cu-regular.  This allows arbitrary finite branching and
+cycle rank.  The proof uses the published idealwise-`K_1`-free pointwise Cu
+formula for one-dimensional spaces, not an unproved graph pullback formula.
+
 ## Literature boundary
 
 The equivalence
@@ -113,4 +121,8 @@ tensoring with `Z` automatic.  The sole remaining input is a simple pure
 coefficient in which the scalar unstable class survives before tensoring.
 Such a coefficient cannot contain `Z` unitally; in particular
 `C*_r(F_2)` is now rigorously excluded.  The circle theorem separately shows
-that no one-dimensional clutching analogue can work.
+that no one-dimensional clutching analogue can work on a single circle.  The
+finite-graph theorem rules out every finite graph when the simple fiber has
+trivial `K_1`.  For arbitrary `K_1`, a graph with a cycle can retain
+supportwise clutching data not visible in pointwise `Lsc` functions, so the
+general finite-graph case is not claimed.
