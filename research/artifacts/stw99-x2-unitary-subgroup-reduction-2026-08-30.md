@@ -230,7 +230,31 @@ extension of the representation to a profinite completion.  The literal
 group `E` is the case `2m=8`, `N=Z^3`, `H=SL_3(Z)`, with four unsigned
 transpositions.
 
-## Addendum F. Reduced algebras of nonamenable groups never sit inside R
+## Addendum F. Prime-order Heisenberg compressor criterion
+
+The finite trace-zero certificate is not confined to order two.  For a
+prime `p`, put a finite Heisenberg block `H_(p,m)` around a central
+order-`p` mark.  If a normalizer acts on the Weyl basis by
+
+```text
+d_a -> w^(q(a)) d_(S a),       a in F_p^(2m),
+```
+
+then, in the central sector `w=exp(2 pi i r/p)`,
+
+```text
+|Tr(U)|^2=sum_(a in Fix(S)) exp(2 pi i r q(a)/p).
+```
+
+The restriction of `q` to `Fix(S)` is automatically additive.  If it is
+nonzero, character orthogonality makes this sum vanish simultaneously for
+all `r!=0`.  The same abelian-compressor and properly-outer argument then
+kills every nontrivial spectral sector of the mark.  This gives
+`prime-heisenberg-compressor-hyperfinite-invisibility`, an arbitrary-prime
+counterpart to the signed Clifford theorem, again without property `(T)` or
+character classification.
+
+## Addendum G. Reduced algebras of nonamenable groups never sit inside R
 
 **Proposition.**  For nonamenable `Γ`, no tracial state on `C*_r(Γ)` has
 injective GNS closure; hence `C*_r(Γ)` does not embed unitally into `R`.
@@ -242,7 +266,7 @@ a state on the reduced algebra, `π_τ ≺ λ`, so `1 ≺ λ ⊗ λ̄ ≅ ∞·�
 `Γ` is amenable.  ∎
 
 So the Rosenberg mechanism (nonamenable ⟹ reduced algebra not
-quasidiagonal) cannot refute X(2).  With Addenda A–E and the
+quasidiagonal) cannot refute X(2).  With Addenda A–F and the
 exactness/UCT fence, every source of non-quasidiagonality recorded in this
 lane is excluded from `R`; a refutation of X(2) requires a genuinely new
 non-quasidiagonal algebra carrying a faithful uniformly amenable trace.
