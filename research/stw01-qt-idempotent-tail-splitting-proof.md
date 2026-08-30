@@ -94,4 +94,3 @@ In `A=C direct_sum D~`, all commutators and idempotence defects of
 and quotient hypotheses follow, while `I=C direct_sum D` has neither a
 projectional approximate unit nor quasitrace invisibility.  This proves the
 strictness assertion.
-

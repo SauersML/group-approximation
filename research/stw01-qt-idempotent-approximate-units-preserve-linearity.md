@@ -53,4 +53,3 @@ then `(e_n)` satisfies `(QTI)`.  Its hereditary algebras are a scalar summand
 plus a finite-homogeneous algebra, and `A/I=C`, so the theorem applies.  The
 ideal `I` carries the nonzero scalar trace but admits no projectional
 approximate unit, because every projection in its `D` summand is zero.
-

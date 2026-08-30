@@ -39,5 +39,7 @@ C*(E_N) = C*(S^N tensor 1, K tensor A)
 
 Thus the nuclear-dimension-one question for every finite circle-by-circle
 graph with an acyclic connector reduces, without using classification or only
-`K`-theory, to the concrete family in (3).  The value for this canonical
-family remains open.
+`K`-theory, to the concrete family in (3).  The coefficient-valued
+Brake--Winter construction in
+`stw83-canonical-circle-toeplitz-dimension-two-bound` proves that its nuclear
+dimension is either one or two; deciding between those values remains open.

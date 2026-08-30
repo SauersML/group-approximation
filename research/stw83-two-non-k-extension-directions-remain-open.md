@@ -34,6 +34,12 @@ C*(S^N tensor 1, K tensor C(T)),       N>=1,
 
 not the combinatorial complexity of the connector.
 
+The three-colour theorem
+`stw83-canonical-circle-toeplitz-dimension-two-bound` now shows that every
+member of this canonical family has nuclear dimension at most two (and at
+least one).  Thus the unresolved question is exactly whether its third colour
+can be reused, rather than whether the family has some finite bound.
+
 ## Attempts
 
 The Evington--Ng--Sims--White two-color theorem has the opposite orientation: a
@@ -46,6 +52,9 @@ decide either minimal model.  A solution needs a new color-reuse theorem for a
 stable circle ideal, or an explicit graph approximation of these two models.  In
 the circle-by-circle case it cannot be a split or quasidiagonal-extension
 argument: the graph defect makes the index map nonzero for every nontrivial
-connector.  The canonical Toeplitz-module family still needs a genuinely new
-two-colour approximation; the ordinary Toeplitz theorem has ideal `K`, not
-`K tensor C(T)`.
+connector.  A coefficient-valued Brake--Winter adaptation gives three colours:
+the transition band stays scalar, but the inner corner is
+`M_r(C(T))` and needs two coefficient colours.  Only one inner colour is
+automatically orthogonal to the transition colour.  The canonical family
+still needs a genuinely new recolouring of the other inner piece to obtain a
+two-colour approximation.

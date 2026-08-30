@@ -116,4 +116,16 @@ This is an explicit graph/full-corner computation, not a classification from
 the six-term invariant.  It reduces the unresolved dimension-one question to
 a precise Toeplitz-module family; the extra `C(T)` in the compact ideal is
 exactly why the ordinary Toeplitz nuclear-dimension-one theorem does not close
-the argument.
+the argument.  Nevertheless,
+`stw83-canonical-circle-toeplitz-dimension-two-bound` adapts the
+Brake--Winter construction far enough to prove
+
+```text
+1 <= dim_nuc(C*(S^N tensor 1, K tensor C(T))) <= 2.
+```
+
+The transition-band maps remain scalar and use the original Toeplitz
+two-colour machinery.  A finite inner compression is `M_r(C(T))`, so its two
+coefficient colours create one additional global colour.  One coefficient
+colour can be merged with the orthogonal tail colour; removing the other is
+the exact remaining dimension-one hinge.

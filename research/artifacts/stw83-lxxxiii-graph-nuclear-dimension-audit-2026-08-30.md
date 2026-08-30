@@ -271,3 +271,42 @@ remaining analytic task: construct a two-colour approximation for the
 displayed Toeplitz-module algebra.  The ordinary Toeplitz theorem does not
 apply because its ideal is `K`, whereas the canonical graph ideal here is
 `K tensor C(T)`.  No dimension-one conclusion is claimed.
+
+## A three-colour coefficient-valued Toeplitz approximation
+
+There is now a sharper unconditional bound for the canonical family.  The
+Brake--Winter proof can be followed through its quasicentral three-piece
+decomposition.  Choose the approximate unit for `K tensor C(T)` by tensoring
+the usual finite-rank tapered diagonal contractions with the coefficient
+unit.  The cpc Toeplitz section of the quotient also has scalar coefficient.
+Consequently the transition-band maps land in finite-dimensional scalar
+matrix corners.  Brake--Winter's normal lift still has finite spectrum, so
+their pizza-slice construction and the merging of the transition band with
+the first quotient colour apply unchanged.
+
+The difference occurs in the inner compression.  For the ordinary Toeplitz
+algebra it is a matrix algebra and costs one colour.  Here it is
+
+```text
+M_r(C(T)),
+```
+
+so it has a two-colour approximation.  The second quotient colour lands in
+the tail supported by `1-tilde(h)`, which is orthogonal to the inner corner
+because `tilde(h)h=h`.  One inner coefficient colour can therefore be merged
+with that quotient colour.  Keeping the other inner colour separate gives
+three global order-zero colours and proves
+
+```text
+1 <= dim_nuc(C*(S^N tensor 1, K tensor C(T))) <= 2.
+```
+
+The lower bound comes from the `C(T)` quotient.  This improves the generic
+extension estimate from three to two.  It also makes the unresolved hinge
+precise: the scalar Toeplitz proof puts its whole inner corner into one colour,
+whereas the coefficient circle forces two inner colours and only one is
+automatically orthogonal to the transition colour.  Neither the type-I nature
+of the extension nor its primitive-space topological dimension supplies a
+known theorem eliminating that last colour; the literature on type-I
+topological dimension explicitly leaves its exact relation with nuclear
+dimension unclear in this generality.
