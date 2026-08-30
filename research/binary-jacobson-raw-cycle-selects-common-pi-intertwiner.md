@@ -120,6 +120,17 @@ coisometry in `(JPI1)`.  A continuation must authenticate the complementary
 `x_23(1)=-1` occurrence and identify its covariance with the same literal
 target rows, or abandon this polar for a different alternating square return.
 
+The composite full-cycle switch does not supply that complementary
+occurrence by itself.
+`binary-jacobson-u-packet-plus-full-cycle-switch-is-marked-mf` places the
+complete balanced compression packet, the switch `omega`, and `x_23(T)` in
+an amenable subgroup whose regular MF character retains the head with
+asymptotic negative-cut density one half.  Thus all relations visible from
+`u=x_21(T)` and the already evaluated composite switch have a
+positive-density counterprofile.  The alternating continuation must retain
+`k=x_31(1)` as a separately compressed occurrence; its appearance only
+inside the value of the Weyl word `omega` is insufficient.
+
 The obvious native completion is also fully audited.
 `binary-jacobson-native-v4-polar-orbit-leaves-one-residual` conjugates the
 seed polar by `x_12(Q)` and `x_12(1)`.  The four occurrences fill the entire
