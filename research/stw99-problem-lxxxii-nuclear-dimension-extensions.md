@@ -271,6 +271,24 @@ adjoined algebra still has nuclear dimension one.  Thus nonquasidiagonality
 of the common linking core is not itself an obstruction; stabilized
 coefficient tails provide a second exact route across it.
 
+The coefficient form is now subsumed by an intrinsic reducing-exhaustion
+theorem.  `stw82-internally-reduced-projection-exhaustions` assumes
+increasing projections `Q_n in M(A)` with `Q_n->1` strictly,
+`[Q_n,p]=0`, and internal compressions `pQ_n in A`.  Then
+
+```text
+dim_nuc(A+C p)=dim_nuc(A).
+```
+
+Indeed `Q_nAQ_n` and the tail `p(1-Q_n)` are exactly orthogonal, giving a
+stage `Q_nAQ_n direct_sum C`; the identity
+`p(1-Q_n)=p(1-Q_(n+1))+p(Q_(n+1)-Q_n)` proves nestedness even for varying
+block increments.  For `A=B tensor K`, every strict block diagonal sum of
+arbitrary finite-matrix projections over a unital `B` satisfies the
+hypothesis.  This strictly exceeds constant `e tensor 1`: over `B=C`, the
+alternating infinite-rank, infinite-corank diagonal projection is neither
+constant coefficient projection, yet its adjunction to `K` remains AF.
+
 That projectional hypothesis cannot be replaced formally by real rank zero
 and arbitrary finite-spectrum positive cuts.
 `stw82-finite-spectrum-cuts-do-not-force-repair` constructs a stabilized
