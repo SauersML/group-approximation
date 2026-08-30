@@ -30,6 +30,7 @@
 # lemma is conditional in exactly the same way and says so.  These lines go
 # when the FFF construction is formalized, and not before.
 conditional-data GroupApproximation.Manuscript.NonMF.manuscriptLemmaCommutatorInDefect  -- lem:commutator-in-defect over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.normalClosure_image_eq_range_and_printedDefect_eq_top  -- torsion-free normal-generation step over the same cited FFF package
 conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_conjFactor_eq  -- S is perfect, over the cited FFF package
 conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_map_conjFactor_eq  -- S-bar is perfect as a quotient of S, over the cited FFF package
 conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_map_conjFactor_le_printedDefect  -- [S-bar,S-bar] <= D, over the cited FFF package
