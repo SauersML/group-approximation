@@ -205,5 +205,18 @@ repairs all cutdowns inside their hereditary supports.  If pieces carrying
 the same new label are orthogonal across original colours, they merge into
 one global order-zero map.  This bypasses the scalar depth floor and reduces
 the universal extension problem to constructing these coupled partitions
-from ideal--quotient geometry.  That construction is not yet known in an
-arbitrary extension.
+from ideal--quotient geometry.  However, a second obstruction shows that
+partitioning the **whole multiplier unit** is still too strong:
+`stw82-traces-block-unit-coupled-colour-reduction` proves by a tracial
+double count that `d` such labels can cover at most `d` original colours.
+Thus the full-unit version cannot reduce colours in a tracial middle
+algebra.
+
+The support-relative repair is now also exact.
+`stw82-support-local-coupled-covers-merge-colours` replaces the full-unit
+partition identity by the strictly weaker requirement that the sum of one
+colour's cutters act as the identity only on its order-zero support.  The
+same cone-projective repair and orthogonal-band merger work.  This removes
+the tracial counting barrier and identifies the sharp remaining global
+hinge: construct same-labelled orthogonal cutters which cover each outgoing
+support, not the whole multiplier unit, from arbitrary extension geometry.
