@@ -19,6 +19,7 @@ artifacts:
   - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
   - research/artifacts/stw22-arbitrary-factor-stiefel-boundary-audit-2026-08-30.md
   - research/artifacts/stw22-matrix-weighted-loop-filling-audit-2026-08-30.md
+  - research/artifacts/stw22-dim2-arbitrary-factor-breakthrough-2026-08-30.md
   - research/artifacts/stw22-diffuse-spectral-capture-audit-2026-08-30.md
 ---
 
@@ -62,6 +63,16 @@ whenever `N` is any II1 factor and `dim(X)<=1`. This includes
 Gamma; see
 `farah-vaccaro-one-dim-trivial-bundles-uniform-traces`.
 Their result does not cover nontrivial bundles.
+
+The arbitrary-factor trivial theorem now crosses dimension two.
+`stw22-dim2-trivial-factor-bundles-have-uniform-traces` proves the same
+trace equality for every separable-predual II1 factor `N` and compact
+Hausdorff base `X` with `dim(X)<=2`. In particular it covers
+`C_sigma(S^2,L(F_2))`. A relative Michael selection extends each low
+spectral band through the moving complement of the filled high frame; the
+strict trace reserve makes the diffuse Stiefel loop modulus uniform. The
+result does not cover nontrivial two-dimensional bundles or dimension
+three.
 
 For locally trivial hyperfinite W*-bundles over finite-dimensional compact
 metrizable bases, `stw22-locally-trivial-finite-dimensional-bundles` gives

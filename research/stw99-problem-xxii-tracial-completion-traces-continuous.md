@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
   - research/artifacts/stw22-arbitrary-factor-stiefel-boundary-audit-2026-08-30.md
   - research/artifacts/stw22-matrix-weighted-loop-filling-audit-2026-08-30.md
+  - research/artifacts/stw22-dim2-arbitrary-factor-breakthrough-2026-08-30.md
   - research/artifacts/stw22-diffuse-spectral-capture-audit-2026-08-30.md
 ---
 
@@ -69,6 +70,15 @@ Theorem 1.2, independently remove countable generation: for every II1 factor
 free-group-factor fibre are settled. See
 `farah-vaccaro-one-dim-trivial-bundles-uniform-traces`.
 The arbitrary nontrivial-bundle problem remains open.
+
+The first higher-dimensional trivial case is now closed.
+`stw22-dim2-trivial-factor-bundles-have-uniform-traces` proves that every
+trace on `C_sigma(X,N)` is canonical for every separable-predual II1
+factor `N` and every compact Hausdorff `X` with `dim(X)<=2`. The new
+input is a relative low-spectrum disk extension: uniform diffuse Stiefel
+loop fillings are selected band by band inside the moving complement of the
+high frame. Thus `C_sigma(S^2,L(F_2))` is covered without property Gamma.
+This does not address nontrivial two-dimensional bundles or dimension three.
 
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,
