@@ -54,9 +54,11 @@ point stabilizers vary, all have rank one, and all are finite over `H`.
 The regular orbit also makes kernel-finiteness fail for every nontrivial
 finite lamp.
 
-The unresolved boundary is now sharper: it requires stabilizers whose
-positive-rank parts have no common finite-index core.  Merely bounding their
-individual ranks does not suffice for this proof, because intersections of
-distinct rational subspaces can lose rank and there is then no central dual
-of uniformly controlled residual rank over which to decompose every
-stabilizer fiber.
+The later theorem `stw84-finite-stabilizer-menu-wreath-bound` crosses this
+boundary whenever only finitely many distinct stabilizers occur, even if
+their rational subspaces have zero intersection.  It intersects only the
+types active in a given non-scalar fiber, then simultaneously purifies their
+residual sublattices.  Thus the unresolved boundary is now an infinite menu
+of infinite stabilizer types with no common finite-index core.  Mere uniform
+rank bounds do not yet produce one finite-index lattice that is pure relative
+to all of those subgroups.

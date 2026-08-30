@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw84-almost-free-permutation-wreath-2026-08-30.md
   - research/artifacts/stw84-common-stabilizer-wreath-2026-08-30.md
   - research/artifacts/stw84-commensurable-stabilizer-wreath-2026-08-30.md
+  - research/artifacts/stw84-finite-stabilizer-menu-wreath-2026-08-30.md
 ---
 
 **Problem LXXXIV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Determine for which countable discrete amenable
@@ -118,6 +119,28 @@ finite menu of pairwise commensurable positive-rank stabilizer types is also
 covered by taking their intersection.  The remaining orbit-dependent
 boundary requires stabilizers with no common finite-index core.
 
+The common-core hypothesis can now be removed completely when there are
+only finitely many distinct stabilizers.
+`stw84-finite-stabilizer-menu-wreath-bound` assumes merely that
+`{A_s:s in S}` is a finite set of subgroups.  For `r=rank_Q(A)>=1`, it gives
+
+```text
+r <= dim_nuc C*((direct_sum_S L) rtimes A)
+  <= 2(r+1)9^r-1,
+```
+
+and rank zero again gives exact dimension zero.  At a finite-stage fiber,
+the intersection `J` of the active stabilizer types acts trivially and is
+extracted as the central field base.  A simultaneous saturation lemma then
+produces a finite-index free lattice whose intersection with each residual
+stabilizer is pure.  Every nonzero lattice element consequently has an
+infinite orbit through some non-scalar tensor block, giving strong
+outerness.  This includes `Z^2` acting on the disjoint union of its two
+coordinate-axis coset spaces: the two infinite stabilizers have trivial
+intersection and are not commensurable.  The theorem complements, rather
+than contains, the earlier result allowing infinitely many distinct finite
+stabilizers.
+
 There is also an exact permanence theorem independent of virtual abelianness.
 `stw84-locally-finite-direct-factor-invariance` proves that adjoining any
 countable locally finite direct factor changes no nuclear dimension.  Hence
@@ -164,9 +187,12 @@ nilpotence with uniformly bounded local Hirsch length).  The finite-stabilizer
 permutation theorem extends this to arbitrary almost-free permutation shifts
 for finite-rank abelian actors, but infinite stabilizers break its free-orbit
 fiber regrouping.  The commensurable-stabilizer theorem handles a possibly
-nonsplit positive-rank core shared with finite index by all stabilizers.
-Varying infinite stabilizers with no common finite-index core still produce
-mixed homogeneous-space tensor fibers and remain uncontrolled.
+nonsplit positive-rank core shared with finite index by all stabilizers.  The
+finite-menu theorem now handles arbitrary finitely many stabilizer types,
+even with no common positive-rank core.  What remains uncontrolled is an
+infinite menu of infinite stabilizers with no common finite-index core; its
+mixed homogeneous-space tensor fibers cannot be purified by one finite
+lattice calculation.
 The directed-union argument still gives no control when its finite-stage
 bounds diverge.  Thus the remaining frontier includes unrestricted
 locally-finite-by-abelian groups and the general finite-Hirsch-length
