@@ -402,9 +402,9 @@ theorem dgoLemma67_of_monotone_vertex_samples
     {δ C₀ C : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
     (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
     (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x)
-    (hC₀ : 0 ≤ C₀) (hC : 0 ≤ C)
-    (p q : PowerAxisSegment h x) :
+    (hC₀ : 0 ≤ C₀) (hC : 0 ≤ C) :
     ∃ M₀ : ℕ, ∀ M : ℕ, M₀ ≤ M → ∃ N : ℕ,
+      ∀ (p q : PowerAxisSegment h x),
       dist p.initial q.initial ≤ C₀ →
       ∀ K : ℤ,
       dist (p.vertex (p.start + (M : ℤ)))
@@ -416,91 +416,92 @@ theorem dgoLemma67_of_monotone_vertex_samples
           (q.vertex (q.start + K + B i)) ≤ C) →
         ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
           p.conjugate ^ r = q.conjugate ^ s := by
+  have hEventually : IsWPDAtEventually h x :=
+    isWPDAtEventually_of_geodesic hδ hδ0 hgeo hiso hlox hwpd
+  have herror : 0 ≤ C + C₀ := by linarith
+  obtain ⟨M₀, hM₀⟩ :=
+    isWPDAtEventually_common_positive_zpow_conj hiso hEventually herror
+  refine ⟨M₀, ?_⟩
+  intro M hM
+  obtain ⟨N, hN⟩ := hM₀ M hM
+  refine ⟨N, ?_⟩
+  intro p q hbase0 K hbaseM A B hA hB hsamples0 hsamplesM
   let z : X := p.initial
   let a : G := p.conjugate
   let b : G := q.conjugate
-  have hh_z : IsLoxodromic h z :=
-    isLoxodromic_of_isLoxodromic hiso hlox
-  have ha : IsLoxodromic a z := by
-    dsimp [a]
-    exact isLoxodromic_conj hiso hh_z
   let u : G := p.translate * h ^ p.start
   have huPoint : u • x = z := by rfl
   have huConj : u * h * u⁻¹ = a := by
     dsimp [u, a, conjugate]
     group
-  have haWPD : IsWPDAt a z := by
-    have hw := hwpd.conj hiso u
-    rwa [huConj, huPoint] at hw
-  have haEventually : IsWPDAtEventually a z :=
-    isWPDAtEventually_of_geodesic hδ hδ0 hgeo hiso ha haWPD
-  have herror : 0 ≤ C + C₀ := by linarith
-  obtain ⟨M₀, hM₀⟩ :=
-    isWPDAtEventually_common_positive_zpow hiso haEventually herror
-  refine ⟨M₀, ?_⟩
-  intro M hM
-  obtain ⟨N, hN⟩ := hM₀ M hM
-  refine ⟨N, ?_⟩
-  intro hbase0 K hbaseM A B hA hB hsamples0 hsamplesM
-  apply hN a b A B hA hB
-  intro i
-  have hpA : (a ^ (A i)) • z = p.vertex (p.start + A i) := by
-    dsimp [a, z]
-    exact p.conjugate_zpow_smul_initial (A i)
-  have hqB : (b ^ (B i)) • q.initial = q.vertex (q.start + B i) := by
-    dsimp [b]
-    exact q.conjugate_zpow_smul_initial (B i)
-  have hfirst : dist ((a ^ (A i)) • z) ((b ^ (B i)) • z) ≤ C + C₀ := by
-    have hsample :
-        dist ((a ^ (A i)) • z) ((b ^ (B i)) • q.initial) ≤ C := by
-      rw [hpA, hqB]
-      exact hsamples0 i
-    have hshift :
-        dist ((b ^ (B i)) • q.initial) ((b ^ (B i)) • z) =
-          dist q.initial z := hiso _ _ _
-    have htri := dist_triangle ((a ^ (A i)) • z)
-      ((b ^ (B i)) • q.initial) ((b ^ (B i)) • z)
-    have hbase0' : dist q.initial z ≤ C₀ := by
-      dsimp [z]
-      rwa [dist_comm]
-    linarith
-  have hpM : (a ^ M) • z = p.vertex (p.start + (M : ℤ)) := by
-    rw [← zpow_natCast]
-    dsimp [a, z]
-    exact p.conjugate_zpow_smul_initial (M : ℤ)
-  have hqK : (b ^ K) • q.initial = q.vertex (q.start + K) := by
-    dsimp [b]
-    exact q.conjugate_zpow_smul_initial K
-  have hpMA : (a ^ (A i)) • ((a ^ M) • z) =
-      p.vertex (p.start + (M : ℤ) + A i) := by
-    rw [hpM]
-    dsimp [a]
-    exact p.conjugate_zpow_smul_vertex (A i) (p.start + (M : ℤ))
-  have hqKB : (b ^ (B i)) • ((b ^ K) • q.initial) =
-      q.vertex (q.start + K + B i) := by
-    rw [hqK]
-    dsimp [b]
-    exact q.conjugate_zpow_smul_vertex (B i) (q.start + K)
-  have hsecond :
+  have hpairs : ∀ i,
+      dist ((a ^ (A i)) • z) ((b ^ (B i)) • z) ≤ C + C₀ ∧
       dist ((a ^ (A i)) • ((a ^ M) • z))
         ((b ^ (B i)) • ((a ^ M) • z)) ≤ C + C₀ := by
-    have hsample :
+    intro i
+    have hpA : (a ^ (A i)) • z = p.vertex (p.start + A i) := by
+      dsimp [a, z]
+      exact p.conjugate_zpow_smul_initial (A i)
+    have hqB : (b ^ (B i)) • q.initial = q.vertex (q.start + B i) := by
+      dsimp [b]
+      exact q.conjugate_zpow_smul_initial (B i)
+    have hfirst : dist ((a ^ (A i)) • z) ((b ^ (B i)) • z) ≤ C + C₀ := by
+      have hsample :
+          dist ((a ^ (A i)) • z) ((b ^ (B i)) • q.initial) ≤ C := by
+        rw [hpA, hqB]
+        exact hsamples0 i
+      have hshift :
+          dist ((b ^ (B i)) • q.initial) ((b ^ (B i)) • z) =
+            dist q.initial z := hiso _ _ _
+      have htri := dist_triangle ((a ^ (A i)) • z)
+        ((b ^ (B i)) • q.initial) ((b ^ (B i)) • z)
+      have hbase0' : dist q.initial z ≤ C₀ := by
+        dsimp [z]
+        rwa [dist_comm]
+      linarith
+    have hpM : (a ^ M) • z = p.vertex (p.start + (M : ℤ)) := by
+      rw [← zpow_natCast]
+      dsimp [a, z]
+      exact p.conjugate_zpow_smul_initial (M : ℤ)
+    have hqK : (b ^ K) • q.initial = q.vertex (q.start + K) := by
+      dsimp [b]
+      exact q.conjugate_zpow_smul_initial K
+    have hpMA : (a ^ (A i)) • ((a ^ M) • z) =
+        p.vertex (p.start + (M : ℤ) + A i) := by
+      rw [hpM]
+      dsimp [a]
+      exact p.conjugate_zpow_smul_vertex (A i) (p.start + (M : ℤ))
+    have hqKB : (b ^ (B i)) • ((b ^ K) • q.initial) =
+        q.vertex (q.start + K + B i) := by
+      rw [hqK]
+      dsimp [b]
+      exact q.conjugate_zpow_smul_vertex (B i) (q.start + K)
+    have hsecond :
         dist ((a ^ (A i)) • ((a ^ M) • z))
-          ((b ^ (B i)) • ((b ^ K) • q.initial)) ≤ C := by
-      rw [hpMA, hqKB]
-      exact hsamplesM i
-    have hshift :
-        dist ((b ^ (B i)) • ((b ^ K) • q.initial))
-          ((b ^ (B i)) • ((a ^ M) • z)) =
-            dist ((b ^ K) • q.initial) ((a ^ M) • z) := hiso _ _ _
-    have htri := dist_triangle ((a ^ (A i)) • ((a ^ M) • z))
-      ((b ^ (B i)) • ((b ^ K) • q.initial))
-      ((b ^ (B i)) • ((a ^ M) • z))
-    have hbaseM' : dist ((b ^ K) • q.initial) ((a ^ M) • z) ≤ C₀ := by
-      rw [hpM, hqK]
-      rwa [dist_comm]
-    linarith
-  exact ⟨hfirst, hsecond⟩
+          ((b ^ (B i)) • ((a ^ M) • z)) ≤ C + C₀ := by
+      have hsample :
+          dist ((a ^ (A i)) • ((a ^ M) • z))
+            ((b ^ (B i)) • ((b ^ K) • q.initial)) ≤ C := by
+        rw [hpMA, hqKB]
+        exact hsamplesM i
+      have hshift :
+          dist ((b ^ (B i)) • ((b ^ K) • q.initial))
+            ((b ^ (B i)) • ((a ^ M) • z)) =
+              dist ((b ^ K) • q.initial) ((a ^ M) • z) := hiso _ _ _
+      have htri := dist_triangle ((a ^ (A i)) • ((a ^ M) • z))
+        ((b ^ (B i)) • ((b ^ K) • q.initial))
+        ((b ^ (B i)) • ((a ^ M) • z))
+      have hbaseM' : dist ((b ^ K) • q.initial) ((a ^ M) • z) ≤ C₀ := by
+        rw [hpM, hqK]
+        rwa [dist_comm]
+      linarith
+    exact ⟨hfirst, hsecond⟩
+  obtain ⟨r, s, hr, hs, hrs⟩ := hN u b A B hA hB (fun i => by
+    rw [huConj, huPoint]
+    exact hpairs i)
+  refine ⟨r, s, hr, hs, ?_⟩
+  dsimp [a, b] at huConj ⊢
+  rwa [huConj] at hrs
 
 /-! ## From oriented power cores to WPD fellow travel -/
 
