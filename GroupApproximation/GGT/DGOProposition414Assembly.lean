@@ -125,14 +125,18 @@ theorem exists_sumBound (D : RelGenSet G Λ)
 noncomputable def sumCost (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) (n : ℕ) : ℕ :=
-  Nat.find (exists_sumBound D hsymm b hδ n)
+  by
+    classical
+    exact Nat.find (exists_sumBound D hsymm b hδ n)
 
 /-- The least constant is itself admissible. -/
 theorem sumBound_sumCost (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) (n : ℕ) :
     SumBound D (b : ℝ) n (sumCost D hsymm b hδ n) :=
-  Nat.find_spec (exists_sumBound D hsymm b hδ n)
+  by
+    classical
+    exact Nat.find_spec (exists_sumBound D hsymm b hδ n)
 
 /-- Minimality of `sumCost`. -/
 theorem sumCost_le (D : RelGenSet G Λ)
@@ -140,7 +144,9 @@ theorem sumCost_le (D : RelGenSet G Λ)
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
     {n K : ℕ} (hK : SumBound D (b : ℝ) n K) :
     sumCost D hsymm b hδ n ≤ K :=
-  Nat.find_min' (exists_sumBound D hsymm b hδ n) hK
+  by
+    classical
+    exact Nat.find_min' (exists_sumBound D hsymm b hδ n) hK
 
 /-! ## The final `dgo-cycle` arithmetic assembly -/
 
@@ -249,8 +255,8 @@ theorem sumBound_linear_of_chordPartnerTraversal (D : RelGenSet G Λ)
     htraversal, hbound⟩ := H n hn
   have hsumle : (∑ i, (m i : ℝ)) ≤ (n : ℝ) + C * Real.log n := by
     have hs := hsize htraversal
-    push_cast at hs hchord
-    linarith
+    exact hs.trans (by
+      simpa [add_comm] using (add_le_add_left hchord (n : ℝ)))
   exact ⟨k, m, hk, hnle, hsumle, hm, hbound⟩
 
 end DGOProposition414
