@@ -262,14 +262,15 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab_threshold
     (K N S : ℕ)
     (hSpos : 0 < S)
     (hSla : 4 * (2 * Ka + 2 * Kb + C + dist x (b • x)) < la * S)
+    {epsPair : ℝ}
+    (hPairRadius :
+      (2 * Ka + 2 * Kb + C + dist x (b • x)) +
+        (2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x)) + 1
+          ≤ epsPair)
     (hKfin : (pairStab G
-        ((2 * Ka + 2 * Kb + C + dist x (b • x)) +
-          (2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x)) + 1)
-        x ((a ^ K) • x)).Finite)
+        epsPair x ((a ^ K) • x)).Finite)
     (hKcard : (pairStab G
-        ((2 * Ka + 2 * Kb + C + dist x (b • x)) +
-          (2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x)) + 1)
-        x ((a ^ K) • x)).ncard ≤ N)
+        epsPair x ((a ^ K) • x)).ncard ≤ N)
     (T : ℝ) (hT0 : 0 < T)
     (hTa : (((S * N + K : ℕ) : ℝ) + 1) * dist x (a • x) + Ka +
       2 * dist x (b • x) + Kb + 1 ≤ T)
@@ -291,17 +292,16 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab_threshold
   obtain ⟨ε₂, hε₂⟩ : ∃ e : ℝ,
       e = 2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x) :=
     ⟨_, rfl⟩
-  have hε₁0 : 0 ≤ ε₁ := by
-    rw [hε₁]
-    linarith
-  have hε₂0 : 0 ≤ ε₂ := by
-    rw [hε₂]
-    linarith
   obtain ⟨ε, hε⟩ : ∃ e : ℝ, e = ε₁ + ε₂ + 1 := ⟨_, rfl⟩
-  have hεpos : 0 < ε := by
-    rw [hε]
-    linarith
-  rw [← hε₁, ← hε₂, ← hε] at hKfin hKcard
+  have hstab : pairStab G ε x ((a ^ K) • x) ⊆
+      pairStab G epsPair x ((a ^ K) • x) := by
+    apply pairStab_mono
+    rw [hε, hε₁, hε₂]
+    exact hPairRadius
+  have hKfin' : (pairStab G ε x ((a ^ K) • x)).Finite :=
+    hKfin.subset hstab
+  have hKcard' : (pairStab G ε x ((a ^ K) • x)).ncard ≤ N :=
+    (Set.ncard_le_ncard hstab hKfin).trans hKcard
   -- the spacing hypothesis, transported off the stable translation length
   have hτhalf : la / 2 ≤ stableTranslation a x :=
     half_le_stableTranslation_of_loxodromic_data (B := Ba) hiso hla hlox_a
@@ -543,7 +543,7 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab_threshold
     rw [hε]
     linarith
   obtain ⟨i, j, -, hp, hr, hpow⟩ :=
-    exists_common_zpow_of_pairStab_finite hiso hKfin hKcard a b
+    exists_common_zpow_of_pairStab_finite hiso hKfin' hKcard' a b
       (fun i => ((ef i : ℕ) : ℤ)) (fun i => ((J (ef i) : ℕ) : ℤ))
       hinj₁ hinj₂ hpairs
   exact ⟨_, _, hp, hr, hpow⟩
@@ -620,7 +620,142 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
   refine ⟨T, hT0, ?_⟩
   exact exists_common_zpow_of_forward_fellow_travel_of_pairStab_threshold
     hiso hC hla hlb hlox_a hlox_b
-    hKa0 hKb0 hGa0 hGb0 hKa hKb hGa hGb K N S hSpos hSla hKfin hKcard T hT0 hTa hTb
+    hKa0 hKb0 hGa0 hGb0 hKa hKb hGa hGb K N S hSpos hSla le_rfl
+      hKfin hKcard T hT0 hTa hTb
+
+/-- **A single fellow-travel threshold from uniform numeric orbit data.**
+
+Unlike the loxodromic-element interface above, every choice made here depends
+only on the displayed lower-progress and one-step upper bounds.  Acylindricity
+therefore supplies one pair-stabilizer exponent and cardinality bound that
+works for every pair of elements satisfying those data. -/
+theorem exists_common_zpow_of_forward_fellow_travel_of_uniform_data {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+    (hiso : IsIsometricAction G X) (hacy : IsAcylindrical G X)
+    {C la Ba Da lb Bb Db : ℝ} (hC : 0 ≤ C) (hla : 0 < la)
+    (hBa0 : 0 ≤ Ba) (hDa0 : 0 ≤ Da) (hlb : 0 < lb)
+    (hBb0 : 0 ≤ Bb) (hDb0 : 0 ≤ Db) :
+    ∃ T : ℝ, 0 < T ∧ ∀ (a b : G) (x : X),
+      (∀ n : ℕ, la * n - Ba ≤ dist x ((a ^ n) • x)) →
+      dist x (a • x) ≤ Da →
+      (∀ n : ℕ, lb * n - Bb ≤ dist x ((b ^ n) • x)) →
+      dist x (b • x) ≤ Db →
+      ∀ (n m : ℕ) (f q : ℝ → X),
+        IsGeodesicSegment f 0 (dist x ((a ^ n) • x)) → f 0 = x →
+        f (dist x ((a ^ n) • x)) = (a ^ n) • x →
+        IsGeodesicSegment q 0 (dist x ((b ^ m) • x)) → q 0 = x →
+        q (dist x ((b ^ m) • x)) = (b ^ m) • x →
+        T ≤ dist x ((a ^ n) • x) → T ≤ dist x ((b ^ m) • x) →
+        (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ C) →
+        ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
+  obtain ⟨Ka, hKa0, hKa⟩ :=
+    exists_bound_chain_near_chord (D := Da) hδ hδ0 hDa0 hla hBa0
+  obtain ⟨Kb, hKb0, hKb⟩ :=
+    exists_bound_chain_near_chord (D := Db) hδ hδ0 hDb0 hlb hBb0
+  obtain ⟨Ga, hGa0, hGa⟩ :=
+    gromovProduct_ends_le_of_chain (D := Da) hδ hδ0 hDa0 hla hBa0 hgeo
+  obtain ⟨Gb, hGb0, hGb⟩ :=
+    gromovProduct_ends_le_of_chain (D := Db) hδ hδ0 hDb0 hlb hBb0 hgeo
+  let epsPair : ℝ :=
+    (2 * Ka + 2 * Kb + C + Db) +
+      (2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * Db) + 1
+  have heps : 0 < epsPair := by dsimp [epsPair]; linarith
+  obtain ⟨R, N, hRN⟩ := hacy epsPair heps
+  obtain ⟨K, hK⟩ := exists_nat_gt ((R + Ba) / la)
+  obtain ⟨S₀, hS₀⟩ := exists_nat_gt (4 * (2 * Ka + 2 * Kb + C + Db) / la)
+  let S : ℕ := S₀ + 1
+  have hSpos : 0 < S := by dsimp [S]; omega
+  have hSlaUniform : 4 * (2 * Ka + 2 * Kb + C + Db) < la * S := by
+    rw [div_lt_iff₀ hla] at hS₀
+    have hcast : (S₀ : ℝ) ≤ (S : ℝ) := by
+      exact_mod_cast (show S₀ ≤ S by dsimp [S]; omega)
+    nlinarith
+  let E : ℕ := S * N + K
+  let Ta : ℝ := ((E : ℝ) + 1) * Da + Ka + 2 * Db + Kb + 1
+  let Tb : ℝ := Db * (((E : ℝ) * Da + 2 * Db + 2 * Bb) / lb + 1)
+  let T : ℝ := Ta + Tb
+  have hTa0 : 0 < Ta := by dsimp [Ta]; positivity
+  have hTb0 : 0 ≤ Tb := by dsimp [Tb]; positivity
+  have hT0 : 0 < T := by dsimp [T]; linarith
+  refine ⟨T, hT0, ?_⟩
+  intro a b x hlox_a hdisp_a hlox_b hdisp_b
+  have hR : R ≤ dist x ((a ^ K) • x) := by
+    rw [div_lt_iff₀ hla] at hK
+    linarith [hlox_a K]
+  obtain ⟨hKfin, hKcard⟩ := hRN x ((a ^ K) • x) hR
+  have hKa' : ∀ (y : ℕ → X) (N' : ℕ),
+      (∀ i, i < N' → dist (y i) (y (i + 1)) ≤ dist x (a • x)) →
+      (∀ i j, i ≤ j → j ≤ N' →
+        la * ((j - i : ℕ) : ℝ) - Ba ≤ dist (y i) (y j)) →
+      ∀ L, 0 ≤ L → ∀ f, IsGeodesicSegment f 0 L → f 0 = y 0 →
+        f L = y N' → ∀ j, j ≤ N' →
+          ∃ t ∈ Set.Icc (0 : ℝ) L, dist (y j) (f t) ≤ Ka := by
+    intro y N' hedge hprog
+    exact hKa y N' (fun i hi => (hedge i hi).trans hdisp_a) hprog
+  have hKb' : ∀ (y : ℕ → X) (N' : ℕ),
+      (∀ i, i < N' → dist (y i) (y (i + 1)) ≤ dist x (b • x)) →
+      (∀ i j, i ≤ j → j ≤ N' →
+        lb * ((j - i : ℕ) : ℝ) - Bb ≤ dist (y i) (y j)) →
+      ∀ L, 0 ≤ L → ∀ f, IsGeodesicSegment f 0 L → f 0 = y 0 →
+        f L = y N' → ∀ j, j ≤ N' →
+          ∃ t ∈ Set.Icc (0 : ℝ) L, dist (y j) (f t) ≤ Kb := by
+    intro y N' hedge hprog
+    exact hKb y N' (fun i hi => (hedge i hi).trans hdisp_b) hprog
+  have hGa' : ∀ (y : ℕ → X) (N' : ℕ),
+      (∀ i, i < N' → dist (y i) (y (i + 1)) ≤ dist x (a • x)) →
+      (∀ i j, i ≤ j → j ≤ N' →
+        la * ((j - i : ℕ) : ℝ) - Ba ≤ dist (y i) (y j)) →
+      ∀ j, j ≤ N' → gromovProduct (y 0) (y N') (y j) ≤ Ga := by
+    intro y N' hedge hprog
+    exact hGa y N' (fun i hi => (hedge i hi).trans hdisp_a) hprog
+  have hGb' : ∀ (y : ℕ → X) (N' : ℕ),
+      (∀ i, i < N' → dist (y i) (y (i + 1)) ≤ dist x (b • x)) →
+      (∀ i j, i ≤ j → j ≤ N' →
+        lb * ((j - i : ℕ) : ℝ) - Bb ≤ dist (y i) (y j)) →
+      ∀ j, j ≤ N' → gromovProduct (y 0) (y N') (y j) ≤ Gb := by
+    intro y N' hedge hprog
+    exact hGb y N' (fun i hi => (hedge i hi).trans hdisp_b) hprog
+  have hPairRadius :
+      (2 * Ka + 2 * Kb + C + dist x (b • x)) +
+        (2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x)) + 1
+          ≤ epsPair := by
+    dsimp [epsPair]
+    linarith
+  have hSla : 4 * (2 * Ka + 2 * Kb + C + dist x (b • x)) < la * S := by
+    linarith
+  have hTa : (((S * N + K : ℕ) : ℝ) + 1) * dist x (a • x) + Ka +
+      2 * dist x (b • x) + Kb + 1 ≤ T := by
+    dsimp [T, Ta, E]
+    nlinarith [hTb0]
+  have hActualInner :
+      0 ≤ (((((S * N + K : ℕ) : ℝ)) * dist x (a • x) +
+        2 * dist x (b • x) + 2 * Bb) / lb + 1) := by
+    have hnumer : 0 ≤ ((S * N + K : ℕ) : ℝ) * dist x (a • x) +
+        2 * dist x (b • x) + 2 * Bb := by positivity
+    have hquot : 0 ≤ (((S * N + K : ℕ) : ℝ) * dist x (a • x) +
+        2 * dist x (b • x) + 2 * Bb) / lb := div_nonneg hnumer hlb.le
+    linarith
+  have hInnerLe :
+      (((((S * N + K : ℕ) : ℝ)) * dist x (a • x) +
+        2 * dist x (b • x) + 2 * Bb) / lb + 1) ≤
+      (((E : ℝ) * Da + 2 * Db + 2 * Bb) / lb + 1) := by
+    dsimp [E]
+    have hnum : ((S * N + K : ℕ) : ℝ) * dist x (a • x) +
+        2 * dist x (b • x) + 2 * Bb ≤
+        ((S * N + K : ℕ) : ℝ) * Da + 2 * Db + 2 * Bb := by
+      nlinarith
+    have hdiv := div_le_div_of_nonneg_right hnum hlb.le
+    linarith
+  have hTb : dist x (b • x) *
+      (((((S * N + K : ℕ) : ℝ)) * dist x (a • x) +
+        2 * dist x (b • x) + 2 * Bb) / lb + 1) ≤ T := by
+    have hprod := mul_le_mul hdisp_b hInnerLe hActualInner (by positivity)
+    dsimp [T, Tb]
+    linarith [hTa0, hprod]
+  exact exists_common_zpow_of_forward_fellow_travel_of_pairStab_threshold
+    hiso hC hla hlb hlox_a hlox_b hKa0 hKb0 hGa0 hGb0
+      hKa' hKb' hGa' hGb' K N S hSpos hSla hPairRadius hKfin hKcard
+      T hT0 hTa hTb
 
 /-- The existing acylindrical form, recovered from the finite-pair-stabilizer
 core. -/

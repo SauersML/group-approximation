@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCConeOffHeavyEndpointBridge
 import GroupApproximation.GGT.HullSCConeOffHeavyModelTransfer
+import GroupApproximation.GGT.HullSCConeOffHeavyUniformThreshold
 
 /-!
 # B2, assembled: geometric separation from one geometric leaf
@@ -23,30 +24,30 @@ statement rather than spread across a chain.
 
 the family `{E(g λ)}` is geometrically separated in `Γ(G, A)`.
 
-## What is a leaf and what is not
+## Discharge status
 
 Of the four, the first three are hypotheses of the theorem being formalised
 rather than debts: DGO and Hull assume non-commensurability and finiteness, and
-`ClosureNearPowers` is their Lemma 6.5.  Only `UniformCommonZpowThreshold` is
-owed, and it says nothing about groups acting on Cayley graphs or about Hull's
-construction — a hyperbolic geodesic space, two loxodromic elements with given
-constants, one basepoint, and a threshold chosen before all of them.
+`ClosureNearPowers` is their Lemma 6.5.  The former geometric leaf
+`UniformCommonZpowThreshold` is now discharged by
+`uniformCommonZpowThreshold_of_acylindrical`: it says nothing about Hull's
+construction, and follows from hyperbolicity, geodesicity, isometry and
+acylindricity after its quantitative constants are hoisted.
 
-Two of the three are now discharged rather than assumed.  For a finite family,
+All three dischargeable inputs are now supplied.  For a finite family,
 `uniformlyLoxodromic_of_finite` supplies the uniform constants, and
 `exists_uniform_closureNearPowers_of_coarseTranslation` supplies `ρ` from
 `Elementary.ElementaryClosureCoarseTranslation`, which is Lemma 6.5 itself.
-`isGeometricallySeparated_of_uniformThreshold_of_coarseTranslation` is that
-form, and its hypothesis list is the honest ledger for B2: pairwise
-non-commensurability and finiteness, both assumed by the source; Lemma 6.5,
-carried as its named predicate; and the one geometric leaf.
+`isGeometricallySeparated_of_acylindrical_of_coarseTranslation` additionally
+transports the Cayley action to the geodesic model and discharges the uniform
+threshold.  Its hypothesis list is the honest ledger for B2: pairwise
+non-commensurability and finiteness, both assumed by the source; hyperbolicity
+and acylindricity of Hull's alphabet; and Lemma 6.5 in its named form.
 
-`GGT/HullSCConeOffHeavyFellowTravel.lean` proves that statement with the
-threshold chosen *after* the elements.  The gap between the two is quantifier
-order alone, and `GGT/HullSCConeOffHeavyModelTransfer.lean` records why nothing
-worse is hiding in it: every constant the threshold is built from is bounded
-uniformly, by comparison with the conjugation-invariant data at a basepoint on
-the element's own axis.
+`GGT/HullSCConeOffHeavyUniformThreshold.lean` performs the quantifier-order
+hoist.  Every constant is chosen from numeric loxodromy and displacement data,
+including one larger pair-stabilizer radius supplied by acylindricity; monotonicity
+then restricts it to the actual radius used by the fellow-travel proof.
 
 ## Where this feeds
 
@@ -112,6 +113,37 @@ theorem isGeometricallySeparated_of_uniformThreshold_of_coarseTranslation
     exists_uniform_closureNearPowers_of_coarseTranslation A g hlox hct
   exact isGeometricallySeparated_of_uniformThreshold A g hncom hclose
     (uniformlyLoxodromic_of_finite A g hlox) hunif
+
+/-- **B2 with the uniform-threshold leaf discharged.**  Hyperbolicity and
+acylindricity are transported from the Cayley graph to its geodesic metric
+identification along the equivariant, additively distorted, dense vertex map;
+`uniformCommonZpowThreshold_of_acylindrical` then supplies the former leaf. -/
+theorem isGeometricallySeparated_of_acylindrical_of_coarseTranslation
+    {Λ : Type w} [Fintype Λ] [Nonempty Λ] (A : Alphabet G) (g : Λ → G)
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ (Cayley A))
+    (hacy : IsAcylindrical G (Cayley A))
+    (hncom : PairwiseNonCommensurable g)
+    (hlox : ∀ nu : Λ, IsLoxodromic (g nu) (Cayley.base A))
+    (hct : Elementary.ElementaryClosureCoarseTranslation G (Cayley.base A)) :
+    IsGeometricallySeparated A (fun lam => Elementary.elementaryClosure (g lam)) := by
+  have hδ0 : 0 ≤ δ :=
+    Elementary.nonneg_of_isHyperbolicSpace hδ (Cayley.base A)
+  have hgeoQ : IsGeodesicSpace (CayleyGeodesicModel.PointQuot A) :=
+    CayleyGeodesicModel.isGeodesicRealisationQuot A
+  have hhypQ : IsHyperbolicSpace (δ + 6) (CayleyGeodesicModel.PointQuot A) :=
+    CayleyGeodesicModel.isHyperbolicSpace_pointQuot
+      (CayleyGeodesicModel.isHyperbolicSpace_point A hδ)
+  have hisoQ : IsIsometricAction G (CayleyGeodesicModel.PointQuot A) :=
+    CayleyGeodesicModel.isIsometricAction_pointQuot A
+  have hacyQ : IsAcylindrical G (CayleyGeodesicModel.PointQuot A) :=
+    isAcylindrical_of_additiveDistortion_of_dense zero_le_one
+      (CayleyGeodesicModel.hasAdditiveDistortion_iotaQuot A)
+      (CayleyGeodesicModel.hasDenseImage_iotaQuot A)
+      (CayleyGeodesicModel.isEquivariant_iotaQuot A) hisoQ hacy
+  have hunif : UniformCommonZpowThreshold G (CayleyGeodesicModel.PointQuot A) :=
+    uniformCommonZpowThreshold_of_acylindrical hhypQ (by linarith) hgeoQ hisoQ hacyQ
+  exact isGeometricallySeparated_of_uniformThreshold_of_coarseTranslation
+    A g hncom hlox hct hunif
 
 end HullSC
 end GroupApproximation
