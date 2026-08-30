@@ -182,6 +182,10 @@ def terminalValue (p : AxisSegment h x f) : X :=
 def length (p : AxisSegment h x f) : ℝ :=
   p.terminal.coordinate - p.initial.coordinate
 
+/-- The conjugate corresponding to the translated axis carrying the segment. -/
+def conjugate (p : AxisSegment h x f) : G :=
+  p.translate * h * p.translate⁻¹
+
 theorem length_nonneg (p : AxisSegment h x f) : 0 ≤ p.length :=
   sub_nonneg.mpr p.oriented
 
@@ -811,13 +815,14 @@ theorem exists_orientedClose_powerCores
     (hqLen : M + 2 * dist x (h • x) ≤ q.length)
     (hclose : AxisSegment.OrientedClose B p q) :
     ∃ p' q' : PowerAxisSegment h x,
+      p'.translate = p.translate ∧ q'.translate = q.translate ∧
       M ≤ p'.length ∧ M ≤ q'.length ∧
       OrientedClose (B + 2 * dist x (h • x)) p' q' := by
-  obtain ⟨p', -, -, -, hp0, hp1, hpLen'⟩ :=
+  obtain ⟨p', hpTranslate, -, -, hp0, hp1, hpLen'⟩ :=
     exists_powerCore_of_add_two_step_le_length hiso hf hstep hM p hpLen
-  obtain ⟨q', -, -, -, hq0, hq1, hqLen'⟩ :=
+  obtain ⟨q', hqTranslate, -, -, hq0, hq1, hqLen'⟩ :=
     exists_powerCore_of_add_two_step_le_length hiso hf hstep hM q hqLen
-  refine ⟨p', q', hpLen', hqLen', ?_⟩
+  refine ⟨p', q', hpTranslate, hqTranslate, hpLen', hqLen', ?_⟩
   constructor
   · have htri := dist_triangle4 p'.initial p.initialValue q.initialValue q'.initial
     rw [dist_comm p'.initial p.initialValue] at htri
@@ -825,6 +830,38 @@ theorem exists_orientedClose_powerCores
   · have htri := dist_triangle4 p'.terminal p.terminalValue q.terminalValue q'.terminal
     rw [dist_comm q.terminalValue q'.terminal] at htri
     linarith [hp1, hq1, hclose.2]
+
+/-- **DGO Lemma 6.7 for arbitrary concatenated-axis segments, reduced to the
+exact Bestvina--Fujiwara monotone-sampling contract.**  Trimming costs one
+fundamental connector at each end and preserves the conjugates attached to the
+two translated axes. -/
+theorem exists_equal_positive_powers_of_long_axisSegments
+    {δ B : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hstep : 0 < dist x (h • x))
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x)
+    (hsampling : HasMonotoneVertexSampling
+      (B + 2 * dist x (h • x)) h x) :
+    ∃ L : ℝ, 0 < L ∧ ∀ (p q : AxisSegment h x f),
+      L ≤ p.length → L ≤ q.length → AxisSegment.OrientedClose B p q →
+      ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+        p.conjugate ^ r = q.conjugate ^ s := by
+  obtain ⟨M, hM, hpower⟩ :=
+    exists_equal_positive_powers_of_long_powerSegments
+      hδ hδ0 hgeo hiso hlox hwpd hsampling
+  let L : ℝ := M + 2 * dist x (h • x)
+  have hL : 0 < L := by
+    dsimp [L]
+    linarith [dist_nonneg (x := x) (y := h • x)]
+  refine ⟨L, hL, ?_⟩
+  intro p q hpLen hqLen hclose
+  obtain ⟨p', q', hpTranslate, hqTranslate, hpLen', hqLen', hpqClose⟩ :=
+    exists_orientedClose_powerCores hiso hf hstep hM.le p q hpLen hqLen hclose
+  obtain ⟨r, s, hr, hs, hrs⟩ := hpower p' q' hpLen' hqLen' hpqClose
+  refine ⟨r, s, hr, hs, ?_⟩
+  dsimp [AxisSegment.conjugate, PowerAxisSegment.conjugate] at hrs ⊢
+  rwa [hpTranslate, hqTranslate] at hrs
 
 end PowerAxisSegment
 
