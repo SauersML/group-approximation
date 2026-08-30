@@ -2873,6 +2873,7 @@ import GroupApproximation.GGT.HullSCConeOffHeavyMatched
 import GroupApproximation.GGT.HullSCConeOffHeavyFellowTravel
 import GroupApproximation.GGT.OlshanskiiLemma25
 import GroupApproximation.Analysis.VoiculescuPartition
+import GroupApproximation.GGT.HullSCConeOffHeavyLemma67
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
