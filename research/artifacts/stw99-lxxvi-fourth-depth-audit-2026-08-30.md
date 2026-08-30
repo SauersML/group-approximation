@@ -99,11 +99,19 @@ not a counterexample mechanism.
 ## Updated compact counterexample corridor
 
 Seth--Vilalta now supplies the formerly missing purity input in the
-`S^6` clutching lane: `C(S^6,D)` is pure for every simple pure `D`, including
-`D=C*_r(F_2)`.  The only remaining input in that lane is genuinely unstable
-homotopy: a coefficient `D` and a class in a finite unitary group that
-survives scalar extension to `D` but dies after extension to `D tensor Z`.
-The circle theorem rules out dimension one for this mechanism.
+`S^6` clutching lane: `C(S^6,D)` is pure for every simple pure `D`.
+Jiang's weak homotopy equivalence between all matrix unitary groups of a
+Z-stable algebra supplies a second simplification.  Every scalar class that
+is stably zero automatically dies after passing to `D tensor Z`; this applies
+to `alpha in pi_5(U(2))=Z/2`.  Thus the lane needs only survival before Z.
+
+There is also a new exclusion.  A unital copy of `Z` inside `D` factors the
+scalar map through a K-stable unitary group, so it kills `alpha` already in
+`U(M_2(D))`.  Thiel--Winter prove that `Z` embeds unitally in
+`C*_r(F_2)`.  Hence the natural free-group coefficient is not merely
+uncomputed: it cannot be the witness.  Any successful coefficient must be
+simple, pure, and admit no unital embedding of `Z`.  The circle theorem rules
+out dimension one for this mechanism as well.
 
 ## Exact remaining universal hinge
 
@@ -118,5 +126,6 @@ product morphism from this abstract tensor product to
 `Cu(A tensor_min Z)`.  The new results narrow where it can fail: not on
 ideals, quotients of a regular ambient algebra, ideal lattices, K-theory,
 quasitraces, interval fields, or circle fields with simple stably finite pure
-fiber.  What remains is higher-dimensional compact clutching or genuinely
-noncompact extension gluing/rank realization.
+fiber.  What remains is higher-dimensional compact clutching over a pure
+coefficient with no unital `Z`, or genuinely noncompact extension
+gluing/rank realization.

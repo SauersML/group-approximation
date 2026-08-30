@@ -108,6 +108,9 @@ There is a separate possible infinite-projection corridor in
 `stw99-lxxvi-infinite-projection-collapse-witness`.
 
 The 2026 continuous-function purity theorem closes the purity input in the
-`S^6` clutching route.  Its sole remaining input is now an unstable homotopy
-class that survives in `U(M_2(D))` but dies in `U(M_2(D tensor Z))`; the circle
-theorem shows that no one-dimensional clutching analogue can work.
+`S^6` clutching route, and Jiang's K-stability theorem makes death after
+tensoring with `Z` automatic.  The sole remaining input is a simple pure
+coefficient in which the scalar unstable class survives before tensoring.
+Such a coefficient cannot contain `Z` unitally; in particular
+`C*_r(F_2)` is now rigorously excluded.  The circle theorem separately shows
+that no one-dimensional clutching analogue can work.
