@@ -642,6 +642,99 @@ theorem exists_uniform_vertexChain_match
   dsimp [C]
   linarith
 
+/-- A coarse match controls the two vertex indices in both directions.  This
+quantitative order estimate is what turns Morse matches into increasing
+families after sufficiently sparse sampling. -/
+theorem vertexChain_match_index_bounds
+    {B C lam c : ℝ} (hiso : IsIsometricAction G X)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p q : PowerAxisSegment h x) {j i : ℕ}
+    (hj : j ≤ p.steps) (hi : i ≤ q.steps)
+    (h0 : dist p.initial q.initial ≤ B)
+    (hmatch : dist (p.vertexChain j) (q.vertexChain i) ≤ C) :
+    let D := lam * dist x (h • x) + c
+    let l := dist x (h • x) / lam
+    l * (i : ℝ) ≤ B + (j : ℝ) * D + C + c ∧
+      l * (j : ℝ) ≤ B + (i : ℝ) * D + C + c := by
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hpEdge : ∀ n, n < p.steps →
+      dist (p.vertexChain n) (p.vertexChain (n + 1)) ≤ D := by
+    intro n hn
+    exact vertexChain_edge_le hiso hf hq p n
+  have hqEdge : ∀ n, n < q.steps →
+      dist (q.vertexChain n) (q.vertexChain (n + 1)) ≤ D := by
+    intro n hn
+    exact vertexChain_edge_le hiso hf hq q n
+  have hpDist := dist_chain_le_nat_mul p.vertexChain hpEdge
+    (N := p.steps) (a := 0) (n := j) (by simpa using hj)
+  have hqDist := dist_chain_le_nat_mul q.vertexChain hqEdge
+    (N := q.steps) (a := 0) (n := i) (by simpa using hi)
+  simp only [zero_add, vertexChain_zero] at hpDist hqDist
+  have hpProgress := vertexChain_progress hiso hf hq p (Nat.zero_le j)
+  have hqProgress := vertexChain_progress hiso hf hq q (Nat.zero_le i)
+  simp only [Nat.sub_zero, vertexChain_zero] at hpProgress hqProgress
+  have hqi : dist q.initial (q.vertexChain i) ≤ B + (j : ℝ) * D + C := by
+    have htri := dist_triangle4 q.initial p.initial
+      (p.vertexChain j) (q.vertexChain i)
+    rw [dist_comm q.initial p.initial] at htri
+    linarith
+  have hpj : dist p.initial (p.vertexChain j) ≤ B + (i : ℝ) * D + C := by
+    have htri := dist_triangle4 p.initial q.initial
+      (q.vertexChain i) (p.vertexChain j)
+    rw [dist_comm (q.vertexChain i) (p.vertexChain j)] at htri
+    linarith
+  dsimp [l, D]
+  constructor <;> linarith
+
+/-- If two matched pairs are `M` vertices apart on the first quasi-axis, the
+difference of their partner indices is uniformly bounded.  Consequently only
+finitely many phase differences can occur in the later pigeonhole extraction. -/
+theorem vertexChain_match_phase_bound
+    {C lam c : ℝ} (hiso : IsIsometricAction G X)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p q : PowerAxisSegment h x) {j M i k : ℕ}
+    (hjM : j + M ≤ p.steps)
+    (hmatch0 : dist (p.vertexChain j) (q.vertexChain i) ≤ C)
+    (hmatch1 : dist (p.vertexChain (j + M)) (q.vertexChain k) ≤ C) :
+    let D := lam * dist x (h • x) + c
+    let l := dist x (h • x) / lam
+    l * |((k : ℤ) - (i : ℤ) : ℝ)| ≤ 2 * C + (M : ℝ) * D + c := by
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hpEdge : ∀ n, n < p.steps →
+      dist (p.vertexChain n) (p.vertexChain (n + 1)) ≤ D := by
+    intro n hn
+    exact vertexChain_edge_le hiso hf hq p n
+  have hpDist := dist_chain_le_nat_mul p.vertexChain hpEdge
+    (N := p.steps) (a := j) (n := M) hjM
+  have hqUpper : dist (q.vertexChain i) (q.vertexChain k) ≤
+      2 * C + (M : ℝ) * D := by
+    have htri := dist_triangle4 (q.vertexChain i) (p.vertexChain j)
+      (p.vertexChain (j + M)) (q.vertexChain k)
+    rw [dist_comm (q.vertexChain i) (p.vertexChain j)] at htri
+    linarith
+  rcases le_total i k with hik | hki
+  · have hprog := vertexChain_progress hiso hf hq q hik
+    have hcast : |((k : ℤ) - (i : ℤ) : ℝ)| = ((k - i : ℕ) : ℝ) := by
+      have hsub : (k : ℤ) - (i : ℤ) = ((k - i : ℕ) : ℤ) := by omega
+      rw [← Int.cast_sub, hsub, Int.cast_natCast,
+        abs_of_nonneg (Nat.cast_nonneg _)]
+    rw [hcast]
+    dsimp [l, D]
+    linarith
+  · have hprog := vertexChain_progress hiso hf hq q hki
+    have hcast : |((k : ℤ) - (i : ℤ) : ℝ)| = ((i - k : ℕ) : ℝ) := by
+      have hsub : (k : ℤ) - (i : ℤ) = -((i - k : ℕ) : ℤ) := by omega
+      rw [← Int.cast_sub, hsub, Int.cast_neg, Int.cast_natCast, abs_neg,
+        abs_of_nonneg (Nat.cast_nonneg _)]
+    rw [hcast]
+    rw [dist_comm (q.vertexChain k) (q.vertexChain i)] at hprog
+    dsimp [l, D]
+    linarith
+
 /-- Integer power vertices whose arclength coordinates are sufficiently
 separated are metrically separated.  This is the quantitative fact that makes
 the partner exponents in the oriented sampling argument injective, and then
