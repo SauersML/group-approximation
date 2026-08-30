@@ -59,24 +59,11 @@ The finite-series restriction is now removed.
 `stw95-purity-passes-to-sequential-inductive-limits` proves directly from
 the Cu colimit axioms that purity survives arbitrary sequential inductive
 limits.  Therefore
-`stw95-transfinite-exact-filtration-reduction` extends
-the reduction to continuous filtrations indexed by arbitrary ordinals for
-separable filtered algebras: exactness handles successor extensions, Cu
-continuity handles countable-cofinality limits, and separability forces the
-filtration to stabilize at every uncountable-cofinality limit.  In particular,
-for two separable exact algebras with arbitrary continuous composition
-series, only the tensor products of their simple successor quotients remain
-to be checked.
-
-Seth--Vilalta's ASH tensor theorem now discharges all of those local products
-in a substantial nonsimple class.  By
-`stw95-transfinite-ash-layered-factor-preserves-purity`, if `A` is separable,
-exact, and pure, and either is simple or has every quotient stably finite,
-then `A tensor_min B` is pure whenever `B` is separable and has a continuous
-arbitrary-ordinal filtration whose successor quotients are unital separable
-ASH algebras.  In particular this solves Problem XCV for such a pair when
-`B` is also pure, without requiring `B` itself to be ASH or either factor to
-be Z-stable.
+`stw95-countable-exact-filtrations-reduce-pure-tensors` extends the reduction
+to continuous filtrations indexed by any countable ordinal: exactness handles
+successor extensions and Cu continuity handles limit stages.  In particular,
+for two exact algebras with continuous countable composition series, only the
+tensor products of their simple successor quotients remain to be checked.
 
 The two purity axioms require different Cu-map input.  Almost divisibility
 already follows when the canonical Cu tensor image is internally cofinal for
