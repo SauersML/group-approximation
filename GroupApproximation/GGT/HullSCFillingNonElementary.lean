@@ -899,7 +899,7 @@ theorem hullLemma58SuitableFamily_unconditional :
         E.disjoint (E.lox true) (hyeq ▸ hy) (E.lox_mem true)
       exact (Elementary.zpow_ne_one_of_isLoxodromic
         (E.lox_isLoxodromic true) (by norm_num : (1 : ℤ) ≠ 0)) (by
-          simpa [hone])
+          simp [hone])
     have hinf0 : ((D'.fam i0 : Subgroup Q) : Set Q).Infinite := by
       intro hfinite
       exact (infinite_zpowers.mpr hx0ord)
