@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.DGOLemma67Pigeonhole
+import GroupApproximation.GGT.ElementaryIndependence
 
 /-!
 # DGO Definition 6.3: the quasi-geodesic axis
@@ -317,6 +317,108 @@ theorem length_div_sub_le_dist
       hiso p.translate ((h ^ p.start) • x) ((h ^ p.stop) • x)
   rwa [hcoord, ← hvalue] at hab
 
+/-! ## From oriented power cores to WPD fellow travel -/
+
+/-- DGO's oriented endpoint-closeness condition for two power-vertex
+subsegments. -/
+def OrientedClose (B : ℝ) (p q : PowerAxisSegment h x) : Prop :=
+  dist p.initial q.initial ≤ B ∧ dist p.terminal q.terminal ≤ B
+
+/-- Two oriented-close power-axis segments determine forward geodesic chords
+from the first initial endpoint whose terminal points are `2B`-close.  The WPD
+long-fellow-travel argument therefore gives a common nonzero power of the two
+axis conjugates once both metric displacements exceed a suitable threshold.
+
+This is deliberately a nonzero-power statement.  The positive-power
+conclusion of DGO Lemma 6.7 additionally uses the monotone sampling supplied
+by the orientation of a quasi-axis. -/
+theorem exists_common_zpow_of_long_orientedClose
+    {δ B : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) (hB : 0 ≤ B)
+    (p q : PowerAxisSegment h x) :
+    ∃ T : ℝ, 0 < T ∧
+      (T ≤ dist p.initial p.terminal →
+       T ≤ dist q.initial q.terminal →
+       OrientedClose B p q →
+       ∃ a b : ℤ, a ≠ 0 ∧ b ≠ 0 ∧
+         p.conjugate ^ a = q.conjugate ^ b) := by
+  let z : X := p.initial
+  let a : G := p.conjugate
+  let b : G := q.conjugate
+  have hh_z : IsLoxodromic h z :=
+    isLoxodromic_of_isLoxodromic hiso hlox
+  have ha : IsLoxodromic a z := by
+    dsimp [a]
+    exact isLoxodromic_conj hiso hh_z
+  have hb : IsLoxodromic b z := by
+    dsimp [b]
+    exact isLoxodromic_conj hiso hh_z
+  let u : G := p.translate * h ^ p.start
+  have huPoint : u • x = z := by
+    rfl
+  have huConj : u * h * u⁻¹ = a := by
+    dsimp [u, a, conjugate]
+    group
+  have haWPD : IsWPDAt a z := by
+    have hw := hwpd.conj hiso u
+    rwa [huConj, huPoint] at hw
+  let C : ℝ := 2 * (2 * B + 6 * δ)
+  have hC : 0 ≤ C := by
+    dsimp [C]
+    linarith
+  obtain ⟨T, hT, hlong⟩ :=
+    ElementaryMorse.exists_common_zpow_of_forward_fellow_travel_of_wpd_bound
+      hδ hδ0 hgeo hiso hC ha hb haWPD
+  let M : ℝ := T + 2 * B
+  have hM : 0 < M := by
+    dsimp [M]
+    linarith
+  refine ⟨M, hM, ?_⟩
+  intro hpLong hqLong hclose
+  rcases hclose with ⟨hclose0, hclose1⟩
+  obtain ⟨gp, hgp, hgp0, hgp1⟩ := hgeo z ((a ^ p.steps) • z)
+  obtain ⟨gq, hgq, hgq0, hgq1⟩ := hgeo z ((b ^ q.steps) • z)
+  have hpTerminal : (a ^ p.steps) • z = p.terminal := by
+    dsimp [a, z]
+    exact p.terminal_eq_pow_smul_initial.symm
+  have hqTerminal : (b ^ q.steps) • q.initial = q.terminal := by
+    dsimp [b]
+    exact q.terminal_eq_pow_smul_initial.symm
+  have hqShift : dist ((b ^ q.steps) • z) q.terminal ≤ B := by
+    rw [← hqTerminal, hiso]
+    exact hclose0
+  have hend : dist ((a ^ p.steps) • z) ((b ^ q.steps) • z) ≤ 2 * B := by
+    rw [hpTerminal]
+    have htri := dist_triangle p.terminal q.terminal ((b ^ q.steps) • z)
+    have hshift : dist q.terminal ((b ^ q.steps) • z) ≤ B := by
+      rwa [dist_comm]
+    linarith
+  have hpMetric : T ≤ dist z ((a ^ p.steps) • z) := by
+    rw [hpTerminal]
+    dsimp [M] at hpLong
+    linarith
+  have hqMetric : T ≤ dist z ((b ^ q.steps) • z) := by
+    have hstart : dist q.initial z ≤ B := by
+      dsimp [z]
+      rwa [dist_comm]
+    have hchain := dist_triangle4 q.initial z ((b ^ q.steps) • z) q.terminal
+    dsimp [M] at hqLong
+    linarith
+  apply hlong p.steps q.steps gp gq hgp hgp0 hgp1 hgq hgq0 hgq1
+    hpMetric hqMetric
+  intro t ht0 htT
+  have hendGeodesic :
+      dist (gp (dist z ((a ^ p.steps) • z)))
+        (gq (dist z ((b ^ q.steps) • z))) ≤ 2 * B := by
+    rw [hgp1, hgq1]
+    exact hend
+  apply dist_same_parameter_le_of_geodesic_close_endpoints
+    hδ hδ0 hgeo (E := 2 * B) (by linarith) hgp dist_nonneg hgq dist_nonneg
+    (by rw [hgp0, hgq0]) hendGeodesic
+  · exact ⟨ht0, htT.trans hpMetric⟩
+  · exact ⟨ht0, htT.trans hqMetric⟩
+
 /-- The initial endpoint lies on the corresponding translated DGO axis. -/
 theorem initial_mem_translated_quasiAxis {f : ℝ → X}
     (hf : IsAxisConnector h x f) (p : PowerAxisSegment h x) :
@@ -330,11 +432,6 @@ theorem terminal_mem_translated_quasiAxis {f : ℝ → X}
     p.terminal ∈ (fun y : X => p.translate • y) '' quasiAxis h x f := by
   refine ⟨(h ^ p.stop) • x, zpow_smul_mem_quasiAxis hf p.stop, ?_⟩
   rw [terminal, mul_smul]
-
-/-- DGO's oriented endpoint-closeness condition for two power-vertex
-subsegments. -/
-def OrientedClose (B : ℝ) (p q : PowerAxisSegment h x) : Prop :=
-  dist p.initial q.initial ≤ B ∧ dist p.terminal q.terminal ≤ B
 
 /-- Oriented closeness is symmetric in the two segments. -/
 theorem orientedClose_comm {B : ℝ} (p q : PowerAxisSegment h x) :
