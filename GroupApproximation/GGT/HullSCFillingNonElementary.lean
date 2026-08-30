@@ -137,14 +137,53 @@ def YiSuitableFiniteFamily : Prop :=
         ∀ i, GGT.Elementary.elementaryClosure (g i) =
           Subgroup.zpowers (g i)
 
+/-- Two elements have conjugate nonzero powers.  This is the orientation used
+by `PairwiseNonCommensurable`. -/
+def AreCommensurable {G : Type u} [Group G] (a b : G) : Prop :=
+  ∃ (p q : ℤ) (t : G), p ≠ 0 ∧ q ≠ 0 ∧
+    t * a ^ p * t⁻¹ = b ^ q
+
+theorem areCommensurable_symm {G : Type u} [Group G] {a b : G}
+    (h : AreCommensurable a b) : AreCommensurable b a := by
+  obtain ⟨p, q, t, hp, hq, hab⟩ := h
+  refine ⟨q, p, t⁻¹, hq, hp, ?_⟩
+  rw [inv_inv, ← hab]
+  group
+
+theorem areCommensurable_trans {G : Type u} [Group G] {a b c : G}
+    (hab : AreCommensurable a b) (hbc : AreCommensurable b c) :
+    AreCommensurable a c := by
+  obtain ⟨p, q, t, hp, hq, hab⟩ := hab
+  obtain ⟨r, s, u, hr, hs, hbc⟩ := hbc
+  refine ⟨p * r, s * q, u * t, mul_ne_zero hp hr, mul_ne_zero hs hq, ?_⟩
+  calc
+    (u * t) * a ^ (p * r) * (u * t)⁻¹ =
+        u * (t * (a ^ p) ^ r * t⁻¹) * u⁻¹ := by
+          rw [zpow_mul]
+          group
+    _ = u * (t * a ^ p * t⁻¹) ^ r * u⁻¹ := by
+      rw [GGT.Elementary.conj_zpow_eq]
+    _ = u * (b ^ q) ^ r * u⁻¹ := by rw [hab]
+    _ = u * (b ^ r) ^ q * u⁻¹ := by
+      rw [← zpow_mul, ← zpow_mul, mul_comm q r]
+    _ = (u * b ^ r * u⁻¹) ^ q :=
+      GGT.Elementary.conj_zpow_eq u (b ^ r) q
+    _ = (c ^ s) ^ q := by rw [hbc]
+    _ = c ^ (s * q) := by rw [← zpow_mul]
+
+/-- Pairwise non-commensurability forbids the relation above at distinct
+indices. -/
+theorem not_areCommensurable_of_pairwise {G : Type u} [Group G]
+    {ι : Type*} {a : ι → G} (h : PairwiseNonCommensurable a)
+    {i j : ι} (hij : i ≠ j) : ¬ AreCommensurable (a i) (a j) := by
+  rintro ⟨p, q, t, hp, hq, heq⟩
+  exact h i j hij p q hp hq t heq
+
 /-- A candidate is non-commensurable with every member of a finite forbidden
 set, in both ordered directions. -/
 def AvoidsFiniteCommensurability {G : Type u} [Group G]
     (F : Finset G) (a : G) : Prop :=
-  (∀ x ∈ F, ∀ (p q : ℤ), p ≠ 0 → q ≠ 0 → ∀ t : G,
-    t * a ^ p * t⁻¹ ≠ x ^ q) ∧
-  ∀ x ∈ F, ∀ (p q : ℤ), p ≠ 0 → q ≠ 0 → ∀ t : G,
-    t * x ^ p * t⁻¹ ≠ a ^ q
+  ∀ x ∈ F, ¬ AreCommensurable a x ∧ ¬ AreCommensurable x a
 
 /-- **The pure finite-avoidance lemma needed to iterate `suitsubc`.**
 
@@ -159,6 +198,53 @@ def FiniteCommensurabilityAvoidance : Prop :=
       ∃ i j : Fin (F.card + 2), i ≠ j ∧
         AvoidsFiniteCommensurability F (a i) ∧
         AvoidsFiniteCommensurability F (a j)
+
+/-- The finite-avoidance lemma is pure algebra and counting. -/
+theorem finiteCommensurabilityAvoidance :
+    FiniteCommensurabilityAvoidance.{u} := by
+  classical
+  intro G _ F a hpair
+  let bad : Finset (Fin (F.card + 2)) :=
+    Finset.univ.filter (fun i => ∃ x ∈ F, AreCommensurable x (a i))
+  have hbad_spec : ∀ i, i ∈ bad → ∃ x ∈ F, AreCommensurable x (a i) := by
+    intro i hi
+    exact (Finset.mem_filter.mp hi).2
+  let pick : {i // i ∈ bad} → {x // x ∈ F} := fun i =>
+    ⟨Classical.choose (hbad_spec i i.property),
+      (Classical.choose_spec (hbad_spec i i.property)).1⟩
+  have hpick_comm : ∀ i : {i // i ∈ bad},
+      AreCommensurable (pick i).1 (a i.1) := by
+    intro i
+    exact (Classical.choose_spec (hbad_spec i i.property)).2
+  have hpick_inj : Function.Injective pick := by
+    intro i j hpick
+    apply Subtype.ext
+    by_contra hij
+    have hsame : (pick i).1 = (pick j).1 := congrArg Subtype.val hpick
+    have hjcomm : AreCommensurable (pick i).1 (a j.1) := by
+      rw [hsame]
+      exact hpick_comm j
+    have hijcomm : AreCommensurable (a i.1) (a j.1) :=
+      areCommensurable_trans (areCommensurable_symm (hpick_comm i))
+        hjcomm
+    exact (not_areCommensurable_of_pairwise hpair hij) hijcomm
+  have hbad_card : bad.card ≤ F.card := by
+    have hcard := Fintype.card_le_of_injective pick hpick_inj
+    simpa using hcard
+  have hcompl : 1 < (badᶜ : Finset (Fin (F.card + 2))).card := by
+    rw [Finset.card_compl, Fintype.card_fin]
+    omega
+  obtain ⟨i, j, hi, hj, hij⟩ := Finset.one_lt_card_iff.mp hcompl
+  have hi_bad : i ∉ bad := Finset.mem_compl.mp hi
+  have hj_bad : j ∉ bad := Finset.mem_compl.mp hj
+  have hAvoid : ∀ z, z ∉ bad → AvoidsFiniteCommensurability F (a z) := by
+    intro z hz x hx
+    have hnot : ¬ AreCommensurable x (a z) := by
+      intro hxa
+      apply hz
+      exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, ⟨x, hx, hxa⟩⟩
+    exact ⟨fun hax => hnot (areCommensurable_symm hax), hnot⟩
+  exact ⟨i, j, hij, hAvoid i hi_bad, hAvoid j hj_bad⟩
 
 /-- The local induction step required for simultaneous Yi selection: choose a
 cyclic pair in one suitable subgroup while avoiding a prescribed finite family
@@ -220,6 +306,102 @@ theorem yiSuitablePairAvoidingFinite_of_family_of_avoidance
     · change AvoidsFiniteCommensurability F (a j)
       exact hjF
 
+/-- Iterating the finite-avoidance step over a `Fin`-indexed family of suitable
+subgroups. -/
+theorem exists_yiSuitablePairs_fin_of_avoiding
+    (hstep : YiSuitablePairAvoidingFinite.{u})
+    {G : Type u} [Group G] (A : HullGeneratingSet G) :
+    ∀ (n : ℕ) (T : Fin n → Subgroup G),
+      (∀ i, Suitable A.alphabet (T i)) →
+      ∃ g : Fin n × Bool → G,
+        (∀ i, g i ∈ T i.1) ∧
+        (∀ i, IsLoxodromic (g i) (Cayley.base A.alphabet)) ∧
+        PairwiseNonCommensurable g ∧
+        ∀ i, GGT.Elementary.elementaryClosure (g i) =
+          Subgroup.zpowers (g i) := by
+  classical
+  intro n
+  induction n with
+  | zero =>
+      intro T hT
+      refine ⟨fun i => Fin.elim0 i.1, ?_, ?_, ?_, ?_⟩
+      · intro i
+        exact Fin.elim0 i.1
+      · intro i
+        exact Fin.elim0 i.1
+      · intro i
+        exact Fin.elim0 i.1
+      · intro i
+        exact Fin.elim0 i.1
+  | succ n ih =>
+      intro T hT
+      obtain ⟨old, holdT, holdLox, holdNc, holdCyc⟩ :=
+        ih (fun i => T i.succ) (fun i => hT i.succ)
+      let F : Finset G := Finset.univ.image old
+      obtain ⟨new, hnewT, hnewLox, hnewNc, hnewCyc, hnewAvoid⟩ :=
+        hstep A (hT 0) F
+      let g : Fin (n + 1) × Bool → G := fun ib =>
+        Fin.cases (new ib.2) (fun i => old (i, ib.2)) ib.1
+      have hgT : ∀ i, g i ∈ T i.1 := by
+        rintro ⟨i, b⟩
+        refine Fin.cases ?_ (fun j => ?_) i
+        · change new b ∈ T 0
+          exact hnewT b
+        · change old (j, b) ∈ T j.succ
+          exact holdT (j, b)
+      have hgLox : ∀ i, IsLoxodromic (g i) (Cayley.base A.alphabet) := by
+        rintro ⟨i, b⟩
+        refine Fin.cases ?_ (fun j => ?_) i
+        · change IsLoxodromic (new b) (Cayley.base A.alphabet)
+          exact hnewLox b
+        · change IsLoxodromic (old (j, b)) (Cayley.base A.alphabet)
+          exact holdLox (j, b)
+      have hgCyc : ∀ i, GGT.Elementary.elementaryClosure (g i) =
+          Subgroup.zpowers (g i) := by
+        rintro ⟨i, b⟩
+        refine Fin.cases ?_ (fun j => ?_) i
+        · change GGT.Elementary.elementaryClosure (new b) =
+            Subgroup.zpowers (new b)
+          exact hnewCyc b
+        · change GGT.Elementary.elementaryClosure (old (j, b)) =
+            Subgroup.zpowers (old (j, b))
+          exact holdCyc (j, b)
+      have hgNc : PairwiseNonCommensurable g := by
+        rintro ⟨i, b⟩ ⟨j, c⟩ hne p q hp hq t
+        rcases Fin.eq_zero_or_eq_succ i with hi | ⟨i', hi⟩
+        · subst i
+          rcases Fin.eq_zero_or_eq_succ j with hj | ⟨j', hj⟩
+          · subst j
+            have hbc : b ≠ c := by
+              intro hbc
+              exact hne (Prod.ext rfl hbc)
+            change t * new b ^ p * t⁻¹ ≠ new c ^ q
+            exact hnewNc b c hbc p q hp hq t
+          · subst j
+            have hx : old (j', c) ∈ F := by
+              exact Finset.mem_image.mpr ⟨(j', c), Finset.mem_univ _, rfl⟩
+            have hav := (hnewAvoid b (old (j', c)) hx).1
+            change t * new b ^ p * t⁻¹ ≠ old (j', c) ^ q
+            intro heq
+            exact hav ⟨p, q, t, hp, hq, heq⟩
+        · subst i
+          rcases Fin.eq_zero_or_eq_succ j with hj | ⟨j', hj⟩
+          · subst j
+            have hx : old (i', b) ∈ F := by
+              exact Finset.mem_image.mpr ⟨(i', b), Finset.mem_univ _, rfl⟩
+            have hav := (hnewAvoid c (old (i', b)) hx).2
+            change t * old (i', b) ^ p * t⁻¹ ≠ new c ^ q
+            intro heq
+            exact hav ⟨p, q, t, hp, hq, heq⟩
+          · subst j
+            have hne' : (i', b) ≠ (j', c) := by
+              intro heq
+              exact hne (congrArg
+                (fun z : Fin n × Bool => (z.1.succ, z.2)) heq)
+            change t * old (i', b) ^ p * t⁻¹ ≠ old (j', c) ^ q
+            exact holdNc (i', b) (j', c) hne' p q hp hq t
+      exact ⟨g, hgT, hgLox, hgNc, hgCyc⟩
+
 /-- **The exact simultaneous `suitsubc` witness still required.**
 
 Hull's printed `suitsubc` produces arbitrarily large pairwise
@@ -237,6 +419,62 @@ def SimultaneousYiSuitableFamily : Prop :=
           PairwiseNonCommensurable g ∧
           ∀ i, GGT.Elementary.elementaryClosure (g i) =
             Subgroup.zpowers (g i)
+
+/-- Hull's all-`m` Corollary 5.7 can be iterated over a finite family of
+suitable subgroups.  At each step we request two more witnesses than there are
+previous witnesses; finite commensurability avoidance then makes the new pair
+independent from the entire family already chosen. -/
+theorem simultaneousYiSuitableFamily_of_finiteFamily
+    (hyi : YiSuitableFiniteFamily.{u}) :
+    SimultaneousYiSuitableFamily.{u} := by
+  classical
+  have hstep : YiSuitablePairAvoidingFinite.{u} :=
+    yiSuitablePairAvoidingFinite_of_family_of_avoidance hyi
+      finiteCommensurabilityAvoidance
+  intro G _ A N k S hN hS
+  let T : Fin (k + 1) → Subgroup G := Fin.cases N S
+  have hT : ∀ i, Suitable A.alphabet (T i) := by
+    intro i
+    refine Fin.cases hN (fun j => hS j) i
+  obtain ⟨a, haT, halox, hanc, hac⟩ :=
+    exists_yiSuitablePairs_fin_of_avoiding hstep A (k + 1) T hT
+  let idx : Option (Fin k) → Fin (k + 1)
+    | none => 0
+    | some j => j.succ
+  let unidx : Fin (k + 1) → Option (Fin k) := Fin.cases none some
+  have hunidx : Function.LeftInverse unidx idx := by
+    intro i
+    cases i <;> simp [idx, unidx]
+  have hidx : Function.Injective idx := hunidx.injective
+  let g : AuxiliaryPeripheralIndex k → G := fun ib => a (idx ib.1, ib.2)
+  have hgT : ∀ i, g i ∈ AuxiliaryTarget N S i.1 := by
+    rintro ⟨i, b⟩
+    cases i with
+    | none =>
+        change a (0, b) ∈ N
+        exact haT (0, b)
+    | some j =>
+        change a (j.succ, b) ∈ S j
+        exact haT (j.succ, b)
+  have hglox : ∀ i, IsLoxodromic (g i) (Cayley.base A.alphabet) := by
+    rintro ⟨i, b⟩
+    exact halox (idx i, b)
+  have hgnc : PairwiseNonCommensurable g := by
+    rintro ⟨i, b⟩ ⟨j, c⟩ hij
+    have hij' : (idx i, b) ≠ (idx j, c) := by
+      intro heq
+      apply hij
+      have hi : i = j := hidx (congrArg Prod.fst heq)
+      have hb : b = c := congrArg Prod.snd heq
+      cases hi
+      cases hb
+      rfl
+    exact hanc (idx i, b) (idx j, c) hij'
+  have hgcyc : ∀ i, GGT.Elementary.elementaryClosure (g i) =
+      Subgroup.zpowers (g i) := by
+    rintro ⟨i, b⟩
+    exact hac (idx i, b)
+  exact ⟨g, hgT, hglox, hgnc, hgcyc⟩
 
 /-- A hyperbolically embedded family crosses an alphabet equality, for an
 arbitrary index type. -/
@@ -302,14 +540,22 @@ theorem simultaneousAuxiliaryPeripheralSelection_of_yi_of_heGX
   have hncN : ∀ (c : G) (p q : ℤ), p ≠ 0 → q ≠ 0 →
       c⁻¹ * gN false ^ p * c ≠ gN true ^ q := by
     intro c p q hp hq
+    have hne : ((none, false) : AuxiliaryPeripheralIndex k) ≠
+        ((none, true) : AuxiliaryPeripheralIndex k) := by
+      intro heq
+      exact Bool.false_ne_true (congrArg Prod.snd heq)
     simpa only [gN, inv_inv] using
-      hnc (none, false) (none, true) (by decide) p q hp hq c⁻¹
+      hnc (none, false) (none, true) hne p q hp hq c⁻¹
   have hncS : ∀ j, ∀ (c : G) (p q : ℤ), p ≠ 0 → q ≠ 0 →
       c⁻¹ * gS j false ^ p * c ≠ gS j true ^ q := by
     intro j c p q hp hq
+    have hne : ((some j, false) : AuxiliaryPeripheralIndex k) ≠
+        ((some j, true) : AuxiliaryPeripheralIndex k) := by
+      intro heq
+      exact Bool.false_ne_true (congrArg Prod.snd heq)
     simpa only [gS, inv_inv] using
-      hnc (some j, false) (some j, true) (by decide) p q hp hq c⁻¹
-  have hpair := heGXPair_of_heGXFamily hhe
+      hnc (some j, false) (some j, true) hne p q hp hq c⁻¹
+  have hpair : HeGXPair.{u} := heGXPair_of_heGXFamily hhe
   have hembN : (coneOffFamily A.alphabet
       (fun b => Subgroup.zpowers (gN b))).IsHyperbolicallyEmbedded := by
     have he := hpair A gN hloxN hncN
@@ -354,6 +600,16 @@ theorem simultaneousAuxiliaryPeripheralSelection_of_yi_of_heGX
   rintro ⟨i, b⟩
   cases i <;> rfl
 
+/-- The printed all-`m` Yi selection, finite commensurability avoidance, and
+the all-family `heGX` theorem discharge the simultaneous source-selection
+interface used by the filling argument. -/
+theorem simultaneousAuxiliaryPeripheralSelection_of_finiteYi_of_heGX
+    (hyi : YiSuitableFiniteFamily.{u})
+    (hhe : GGT.HeGXFamily.{u, 0}) :
+    SimultaneousAuxiliaryPeripheralSelection.{u} :=
+  simultaneousAuxiliaryPeripheralSelection_of_yi_of_heGX
+    (simultaneousYiSuitableFamily_of_finiteFamily hyi) hhe
+
 /-- Hull's published `ε`-piece relation with both compared subwords exposed.
 The repository's older `IsPiece` existentially hides `u'`, so its
 `pieces_small` field can only bound `u`, whereas Definition 4.3 bounds the
@@ -363,7 +619,8 @@ def RelWord.IsPublishedPiece {G : Type u} [Group G] {Λ : Type*}
     (eps : ℕ) (u u' v : List (GGT.RelLetter G Λ)) : Prop :=
   v ∈ W ∧ (∃ s, v = u ++ s) ∧
     ∃ v' ∈ W, ∃ s', v' = u' ++ s' ∧
-      ∃ y z : G, wordNorm D.base y ≤ eps ∧ wordNorm D.base z ≤ eps ∧
+      ∃ y z : G, WordMetric.wordNorm D.base y ≤ eps ∧
+        WordMetric.wordNorm D.base z ≤ eps ∧
         GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∧
         GGT.RelLetter.listVal v' ≠
           y * GGT.RelLetter.listVal v * y⁻¹
@@ -376,7 +633,8 @@ def RelWord.IsPrimePiece {G : Type u} [Group G] {Λ : Type*}
     (eps : ℕ) (u u' v : List (GGT.RelLetter G Λ)) : Prop :=
   v ∈ W ∧
     ∃ middle tail, v = u ++ middle ++ u' ++ tail ∧
-      ∃ y z : G, wordNorm D.base y ≤ eps ∧ wordNorm D.base z ≤ eps ∧
+      ∃ y z : G, WordMetric.wordNorm D.base y ≤ eps ∧
+        WordMetric.wordNorm D.base z ≤ eps ∧
         (GGT.RelLetter.listVal u' = y * GGT.RelLetter.listVal u * z ∨
           GGT.RelLetter.listVal u' = y * (GGT.RelLetter.listVal u)⁻¹ * z)
 

@@ -19,6 +19,7 @@ finite-normalizer half of suitability is automatic.  The assembly back to
 namespace GroupApproximation
 namespace HullSC
 
+open GroupApproximation.HullGeometry
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u

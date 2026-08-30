@@ -49,7 +49,6 @@ theorem exists_nonzero_zpow_mem_of_finiteTransversal {h : G}
   intro K hKE hKinf
   obtain ⟨F, hFfin, hcover⟩ := hfin
   by_contra hnone
-  push_neg at hnone
   have hcoverK : ∀ a : K, ∃ (c : ℤ) (f : G),
       f ∈ F ∧ (a : G) = h ^ c * f := by
     intro a
@@ -67,7 +66,7 @@ theorem exists_nonzero_zpow_mem_of_finiteTransversal {h : G}
       exact K.mul_mem a.property (K.inv_mem b.property)
     have hceq : c a = c b := by
       by_contra hc
-      exact hnone (c a - c b) (sub_ne_zero.mpr hc) hmem
+      exact hnone ⟨c a - c b, sub_ne_zero.mpr hc, hmem⟩
     apply Subtype.ext
     rw [heq a, heq b, hceq, hfeq]
   letI : Finite F := hFfin.to_subtype

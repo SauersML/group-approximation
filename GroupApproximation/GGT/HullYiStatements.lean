@@ -140,8 +140,8 @@ theorem exists_nonElSub_centralizerPowers (hnon : NonElSub.{u})
       positiveElementaryClosure (f i) =
         {c : G | Commute c (f i ^ (r : ℤ))} := by
     intro i
-    have hwpd : IsWPDAt (f i) (Cayley.base A.alphabet) :=
-      isWPDAt_of_isAcylindrical A.acylindrical (hflox i)
+    have hwpd : GGT.IsWPDAt (f i) (Cayley.base A.alphabet) :=
+      GGT.isWPDAt_of_isAcylindrical A.acylindrical (hflox i)
     have hfin : ElementaryClosureFiniteTransversal (f i) :=
       exists_finite_transversal_elementaryClosure_of_coarseTranslation
         (isIsometricAction_cayley A.alphabet) hwpd (hflox i) hct
