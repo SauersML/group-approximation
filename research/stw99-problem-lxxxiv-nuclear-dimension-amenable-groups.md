@@ -53,11 +53,35 @@ dim_nuc(C*(L times A))=rank_Q(A)
 for every countable locally finite `L` and countable abelian `A`, including
 infinite rank and non-virtually-abelian products.
 
+The direct-product hypothesis can now be replaced by a controlled extension
+hypothesis.  `stw84-kernel-finite-locally-finite-by-abelian-computation`
+proves that an exact sequence
+
+```text
+1 -> L -> G -> A -> 1
+```
+
+with `L` locally finite and `A` abelian satisfies
+
+```text
+dim_nuc(C*(G))=rank_Q(A)
+```
+
+whenever every finitely generated `H subset G` has finite `H intersection L`.
+This includes nonsplit extensions.  For split extensions it is enough that
+every finite subset of `L` has finite orbit-generated hull under every
+finitely generated subgroup of `A`.  Cyclically rotating finite blocks of
+unbounded size gives a nontrivial `L rtimes Z` example which is not virtually
+abelian but has nuclear dimension exactly one.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
 `C*(L times H)->C*(H)` and does not survive an arbitrary semidirect product.
+The kernel-finite extension theorem handles locally finite orbit-hulls, but
+does not cover shift actions such as the lamplighter action, where a finitely
+generated subgroup can meet the locally finite kernel in an infinite group.
 The directed-union argument also needs a uniform bound; it gives no control
 when the Hirsch lengths of finitely generated subgroups diverge.  Thus the
-remaining frontier includes nonsplit locally-finite-by-abelian groups and the
-general finite-Hirsch-length elementary amenable conjecture.
+remaining frontier includes unrestricted locally-finite-by-abelian groups
+and the general finite-Hirsch-length elementary amenable conjecture.
