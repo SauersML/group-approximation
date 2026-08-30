@@ -10,8 +10,8 @@ artifacts:
 ---
 
 Let `A` be separable and unital and let `tau` be a faithful tracial state.
-There is a
-unital embedding `Phi:A->E` into a unital AF algebra and a trace `sigma on E`
+There is a unital embedding `Phi:A->E` into a unital AF algebra and a trace
+`sigma on E`
 with `sigma Phi=tau` if and only if there are finite-dimensional unital
 C\*-algebras `F_n`, unital embeddings `alpha_n:F_n->F_{n+1}`, traces
 `sigma_n on F_n`, and u.c.p. maps `phi_n:A->F_n` such that
@@ -19,7 +19,7 @@ C\*-algebras `F_n`, unital embeddings `alpha_n:F_n->F_{n+1}`, traces
 ```text
 sigma_(n+1) alpha_n = sigma_n,
 sigma_n phi_n(a) -> tau(a),
-phi_n(ab)-phi_n(a)phi_n(b) -> 0,
+||phi_n(ab)-phi_n(a)phi_n(b)|| -> 0,
 ```
 
 for all `a,b in A`, and, for one fixed dense sequence `(a_j)` in `A`,

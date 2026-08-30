@@ -15,7 +15,7 @@ E=lim (F_n,alpha_n).
 
 For fixed `a_j`, the images of `phi_n(a_j)` in `E` form a Cauchy sequence,
 because the consecutive errors are eventually bounded by the summable series
-`sum 2^(-n)`.  Contractivity and density extend its limit to a u.c.p. map
+`sum epsilon_n`.  Contractivity and density extend its limit to a u.c.p. map
 `Phi:A->E`.  The multiplicativity tests, together with density and the
 coherence estimates, show that `Phi(ab)=Phi(a)Phi(b)` for all `a,b in A`.
 The norm tests give `||Phi(a)||=||a||` first on the dense test set and then on
@@ -35,7 +35,8 @@ Finite-dimensional C\*-algebras are injective operator systems, so for each
 ||P_n(eta(a))-eta(a)|| <= 2||eta(a)-x||.
 ```
 
-Pass to a subsequence of the `F_n` so that the first `n` test elements are
+Pass to a subsequence of the `F_n` so that the first `n` test elements and
+their pairwise products are
 within a sufficiently small, summable tolerance of `F_n`, and put
 `phi_n=P_n eta`.  These maps are summably coherent after the inclusions
 `F_n->F_{n+1}` because both successive values are close to `eta(a_j)`.

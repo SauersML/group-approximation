@@ -10,19 +10,18 @@ artifacts:
 ---
 
 Let `A` be a separable unital C\*-algebra and choose a dense sequence
-`(a_j)` in its unit ball which is closed under adjoints and rational linear
-combinations, with products included among the tests.  Then `A` is
-AF-embeddable if and only if there are finite-dimensional unital C\*-algebras
-`F_n`, unital embeddings `alpha_n:F_n->F_{n+1}`, and u.c.p. maps
-`phi_n:A->F_n` such that, for `j,k<=n`,
+`(a_j)` in its unit ball.  Then `A` is AF-embeddable if and only if there are
+finite-dimensional unital C\*-algebras `F_n`, unital embeddings
+`alpha_n:F_n->F_{n+1}`, u.c.p. maps `phi_n:A->F_n`, numbers `delta_n->0`,
+and summable positive numbers `epsilon_n` such that
 
 ```text
-||phi_n(a_j a_k)-phi_n(a_j)phi_n(a_k)|| -> 0,
-| ||phi_n(a_j)||-||a_j|| | -> 0,
-||phi_{n+1}(a_j)-alpha_n(phi_n(a_j))|| < 2^(-n).
+max_(j,k<=n) ||phi_n(a_j a_k)-phi_n(a_j)phi_n(a_k)|| < delta_n,
+max_(j<=n) | ||phi_n(a_j)||-||a_j|| | < delta_n,
+||phi_(n+1)(a_j)-alpha_n(phi_n(a_j))|| < epsilon_n   (j<=n).
 ```
 
 The first two lines are ordinary quasidiagonal finite-dimensional modelling.
-The third, summable interstage coherence line is the extra datum needed to
+The third, summable interstage-coherence line is the extra datum needed to
 turn the models into one AF embedding.  The nonunital version follows by
 unitizing `A`.
