@@ -33,3 +33,9 @@ There is also no tracial route: `stw99-lxvi-finite-seed-has-no-quasitrace`
 shows that every nonzero bounded quasitrace is excluded.  In particular the
 unique trace of the embedded CAR algebra cannot extend even as a quasitrace
 to the ambient finite corner.
+
+Nor can the ambient algebra be a finite-index expected envelope of the CAR
+copy.  `stw99-lxvi-finite-index-car-envelopes-are-stably-finite` embeds every
+such envelope into a fixed matrix corner over CAR and therefore makes it
+stably finite.  Thus the live internal construction must be infinite-index
+as a right CAR module, in addition to being non-tensorial and noncentral.
