@@ -15,6 +15,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw10-amenable-trace-frontier-2026-08-30.md
   - research/artifacts/stw10-factorial-witness-audit-2026-08-30.md
+  - research/artifacts/stw10-finite-crossed-product-trace-audit-2026-08-30.md
 ---
 
 **Problem X(1) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Are amenable traces on C\*-algebras necessarily
@@ -104,3 +105,8 @@ unconditional reductions are:
   one.  In the exact case it sharpens this to a faithful amenable non-QD trace
   on a separable exact algebra whose GNS von Neumann algebra is `R`.  Exactness
   is essential for the hyperfinite-GNS conclusion.
+- `stw10-finite-crossed-products-preserve-amenable-and-qd-traces`, which
+  proves that the canonical trace of a finite crossed product is amenable,
+  respectively QD, exactly when its invariant base trace is.  Therefore the
+  X(1) property passes through finite-group actions with the Rokhlin
+  property, since in that case every crossed-product trace is canonical.
