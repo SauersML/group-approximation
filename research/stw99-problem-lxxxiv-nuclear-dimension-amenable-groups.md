@@ -278,6 +278,26 @@ even approximately inner, although one three-cycle still has infinite orbit
 hull.  Approximate innerness therefore does not recover the finite-kernel
 exhaustion.
 
+The augmentation ideal now has explicit finite-dimensional Følner carriers.
+For a finite subgroup `F<=K`, the complementary averaging projection
+
+```text
+e_F=1-|F|^(-1)sum_(g in F)lambda_g
+```
+
+is the identity on the finite-group augmentation ideal.  Averaging its
+`alpha`-translates over a long interval produces a finite-spectrum positive
+contraction `h` in one finite group algebra which carries any prescribed
+finite coefficient set exactly and satisfies
+`||alpha^k(h)-h||<=|k|/N`.  Diagonalization gives a quasicentral approximate
+unit for `I_K rtimes_alpha Z`
+(`stw84-augmentation-ideal-has-finite-dimensional-folner-carriers`).  Its
+support projection `s` gives an exact local corner `s(I_K rtimes Z)s`, so a
+uniform bound on these carrier corners would settle the cyclic core.  The
+remaining seam is sharp: the smallest positive eigenvalue of `h` can tend
+to zero, and consequently almost invariance of `h` gives no norm control on
+`alpha(s)-s`.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
