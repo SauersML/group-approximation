@@ -60,6 +60,28 @@ is a positive class, even without target nuclearity or exactness.  Thus any
 counterexample must obtain its obstruction from nonsimple or
 comparison-perforated target geometry.
 
+The nonsimple finite-ideal boundary is now exact.  Ambient normalized
+quasitracelessness does not pass to nonunital layers:
+`stw78-layer-quasitraces-need-not-vanish` uses the Toeplitz--Cuntz extension,
+whose compact ideal has an unbounded lower semicontinuous trace even though
+the nuclear unital extension algebra has no normalized quasitrace.  Thus
+finite ideal lattice and almost-unperforated simple layers alone are
+insufficient.
+
+There is nevertheless a positive finite-ideal class.
+`stw78-finite-ideal-regular-targets-solve-map` assumes the target is
+separable nuclear and that every simple subquotient is algebraically simple
+with almost-unperforated `W`.  Algebraic simplicity makes every layer
+quasitrace bounded, so it extends upward and is excluded by ambient
+quasitracelessness.  The layers are therefore purely infinite and
+`O_infinity`-stable; Toms--Winter extension permanence glues them through a
+finite composition series.  Gabe's map theorem then gives strong
+`O_infinity`-stability of every nuclear map into the target.
+The extension input is also recorded independently in
+`stw78-nuclear-strong-pi-extension-gluing`: strong pure infiniteness glues
+through finite extensions and countable increasing ideal filtrations in the
+separable nuclear category.  No nonnuclear gluing claim is used.
+
 ## Attempts
 
 An irreducible embedding into `B(H)` is not a counterexample merely because
