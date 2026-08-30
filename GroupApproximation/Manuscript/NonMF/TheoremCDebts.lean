@@ -162,9 +162,17 @@ independent loxodromics is the first conjunct of Hull's Definition 1.4 read
 back, and (W4) is
 `GGT.Elementary.zpowers_disjoint_of_independent` — a common element is
 `h₀^p = h₁^q`, and nonzero exponents contradict independence.  What is left of
-this row is one geometric clause, `existsHypEmbeddedConeOff₂_of_zpowers_forall`:
-*the cone-off of `A` along the cyclic subgroups of two independent loxodromics
-is hyperbolically embedded.* -/
+this row is one geometric clause, the hypothesis of
+`GGT.HullSC.existsHypEmbeddedConeOff₂_of_zpowers`: *for a suitable `N` there
+**are** independent loxodromic `h₀, h₁ ∈ N` with the cone-off of `A` along
+`⟨h₀⟩` and `⟨h₁⟩` hyperbolically embedded.*
+
+The existential is not decoration.  With the pair quantified universally the
+clause is false: a base letter outside a family member that normalises it puts
+that member in the relative ball of radius three, so `{⟨a²⟩, ⟨b⟩}` over
+`{a, a⁻¹, b, b⁻¹}` in `F₂` is a pair of independent loxodromics whose cone-off
+is not hyperbolically embedded
+(`GGT.HullSC.not_isHyperbolicallyEmbedded_zpowers_pow`). -/
 theorem hullHypEmbeddedConeOff : HullSC.ExistsHypEmbeddedConeOff₂.{0} := by
   sorry
 

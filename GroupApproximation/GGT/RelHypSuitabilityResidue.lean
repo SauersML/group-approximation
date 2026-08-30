@@ -58,6 +58,23 @@ So the honest report is a shrunken citation, not a discharge: what was "Osin's
 Theorem 2.1 and Lemma 2.3, at a free product" is now one sentence about one
 hyperbolic group, with the free product gone.
 
+## The two halves are named separately
+
+Those two theorems have different homes, so section 5a splits the residue into
+`HyperbolicNonCommensurablePairStatement` --- the pair, classically two
+independent loxodromics --- and `HyperbolicElementaryClosureStatement` --- the
+elementary closures, classically that `E_H(x)` is the maximal cyclic subgroup
+containing `x`.  `hyperbolicSuitabilityStatement_of_split` recovers the unsplit
+`Prop`, so nothing downstream moves; the reverse derivation recovers half (a)
+only, and the docstring of
+`hyperbolicNonCommensurablePairStatement_of_suitability` says why the conjunction
+is deliberately the stronger statement.
+
+Section 5b records, with a proof, that the obvious geometric route to half (a)
+is not merely unpriced but **closed**: conjugation preserves commensurability, so
+no condition that a conjugate pair satisfies --- divergence of axes included ---
+can imply `¬ OsinCommensurable`.
+
 ## The first positive witness
 
 `RelHypOsinTheorem24Verbatim.lean`'s model-test section records that "no
@@ -272,6 +289,138 @@ theorem isSuitableSubgroup_freeProduct_of_hyperbolicSuitability
     IsSuitableSubgroup (fun _ : Unit => freeProductPeripheral U H)
       (MonoidHom.range (freeProductPartnerHom U H)) :=
   isSuitableSubgroup_freeProduct_of_partner U H (h H inferInstance hne htf)
+
+/-! ## 5a.  The residue, split into its two halves
+
+The two halves have different homes and will be discharged by different
+machinery, so they are named separately.  `HyperbolicSuitabilityStatement` is
+kept exactly as it was, and `hyperbolicSuitabilityStatement_of_split` derives
+it, so every consumer downstream of it is untouched. -/
+
+/-- **Half (a): a non-commensurable pair of infinite-order elements.**
+
+Classically "two independent loxodromics".  The nearest classical leaf is
+Gromov's and Delzant's theorem that a non-elementary hyperbolic group contains a
+free subgroup of rank two; the tree's approach to it is the ping-pong layer
+(`PingPong.FreeRankTwo`, `PingPong.exists_noCommonZpow_of_freeRankTwo`,
+`GGT.PingPongFreeRankTwoGeometric`).
+
+**A free pair is not yet enough**, and this is the same mis-costing that the
+free-pair route to `E(a) = ⟨a⟩` already died of: two generators of a free
+subgroup can still be conjugate in the ambient group, and conjugate elements are
+commensurable (`osinCommensurable_conj`).  What is owed on top is that the pair
+has no conjugate common powers *in `H`*, which is where Osin's Lemma 2.3
+actually sits.
+
+dgo-611-lane's isolated-component machinery was examined for this and does not
+reach it: it needs a coned-off graph and unboundedness of `d̂_λ`, which
+`IsNonElementaryHyperbolic` does not supply, and even granted that input it
+produces one loxodromic rather than a pair. -/
+def HyperbolicNonCommensurablePairStatement : Prop :=
+  ∀ (H : Type) (_ : Group H),
+    IsNonElementaryHyperbolic H → IsPowerTorsionFree H →
+      ∃ f₁ f₂ : H,
+        (∀ n : ℕ, 0 < n → f₁ ^ n ≠ 1) ∧ (∀ n : ℕ, 0 < n → f₂ ^ n ≠ 1) ∧
+          ¬ OsinCommensurable f₁ f₂
+
+/-- **Half (b): non-commensurable elements have trivially meeting elementary
+closures.**
+
+This is the usable form of "`E_H(x)` is the maximal cyclic subgroup containing
+`x`", i.e. of "centralizers of infinite-order elements in a torsion-free
+hyperbolic group are cyclic".  It is a fact about the group's own Cayley graph
+and belongs with the hyperbolic-group geometry, not with the relative
+machinery; it runs through stability of quasi-geodesics, the Morse lemma that
+`Algebra/WordMetricComparison.lean` records as the missing input.
+
+dgo-611-lane's machinery was examined for this too, and the answer is sharper
+than for half (a): that technique produces only *lower* bounds on displacement,
+while bounding `E(x)` from above is the WPD/acylindricity direction --- DGO
+Lemma 4.21(b), proved from Proposition 4.14's isolated-component counting at
+unbounded side count, which this repository does not have.  So it points the
+wrong way rather than merely being silent.
+
+Stated universally, over every non-commensurable pair, because that is the form
+in which it is true and will be proved.  See
+`hyperbolicSuitabilityStatement_of_split` for the consequence of that choice. -/
+def HyperbolicElementaryClosureStatement : Prop :=
+  ∀ (H : Type) (_ : Group H),
+    IsNonElementaryHyperbolic H → IsPowerTorsionFree H →
+      ∀ f₁ f₂ : H,
+        (∀ n : ℕ, 0 < n → f₁ ^ n ≠ 1) → (∀ n : ℕ, 0 < n → f₂ ^ n ≠ 1) →
+          ¬ OsinCommensurable f₁ f₂ →
+            ∀ f, f ∈ osinElementaryClosure f₁ → f ∈ osinElementaryClosure f₂ →
+              f = 1
+
+/-- **The two halves give the residue.**  So a consumer of
+`HyperbolicSuitabilityStatement` --- and hence of
+`FreeProductSuitabilityStatement`, and hence the Fournier-Facio bridge --- never
+has to move when the halves are discharged separately. -/
+theorem hyperbolicSuitabilityStatement_of_split
+    (ha : HyperbolicNonCommensurablePairStatement)
+    (hb : HyperbolicElementaryClosureStatement) :
+    HyperbolicSuitabilityStatement := by
+  intro H instH hne htf
+  obtain ⟨f₁, f₂, ho₁, ho₂, hnc⟩ := ha H instH hne htf
+  exact ⟨f₁, Subgroup.mem_top _, f₂, Subgroup.mem_top _,
+    isHyperbolicElement_of_isEmpty _ _, isHyperbolicElement_of_isEmpty _ _,
+    ho₁, ho₂, hnc, hb H instH hne htf f₁ f₂ ho₁ ho₂ hnc⟩
+
+/-- **The residue gives half (a).**  The other direction of the split, as far as
+it goes.
+
+It does **not** give half (b), and that asymmetry is deliberate rather than an
+omission: the residue produces *one* pair with trivially meeting elementary
+closures, while (b) is a statement about *every* non-commensurable pair.  So the
+conjunction is strictly stronger than `HyperbolicSuitabilityStatement`.  Weakening
+(b) to restore an equivalence would scope it to an unnamed pair and destroy the
+statement a prover would actually attack, so the strength is kept and the gap is
+recorded here. -/
+theorem hyperbolicNonCommensurablePairStatement_of_suitability
+    (h : HyperbolicSuitabilityStatement) :
+    HyperbolicNonCommensurablePairStatement := by
+  intro H instH hne htf
+  obtain ⟨f₁, -, f₂, -, -, -, ho₁, ho₂, hnc, -⟩ := h H instH hne htf
+  exact ⟨f₁, f₂, ho₁, ho₂, hnc⟩
+
+/-! ## 5b.  Why the geometric route to half (a) does not close it
+
+`HullGeometry.ActsNonElementarily S x` is *defined* as two loxodromic elements of
+`S` that are `HullGeometry.Independent` at `x`, so it is tempting to read any
+producer of it as discharging half (a) outright, with the step from geometric
+independence to `¬ OsinCommensurable` as a cheap bridge.
+
+**That bridge does not exist: the implication is false.**  `Independent g h x` is
+`∃ C, ∀ n m : ℤ, gromovProduct ((gⁿ) • x) ((hᵐ) • x) x ≤ C`, a statement that the
+two power orbits diverge.  A conjugate pair diverges in exactly that sense while
+being commensurable on the nose.  In the free group of rank two acting on its own
+Cayley graph, `f₁ = a` and `f₂ = b⁻¹ a b` have power orbits `aⁿ` and `b⁻¹ aᵐ b`
+whose geodesics from `1` share no first letter, so their Gromov products are
+bounded and `Independent a (b⁻¹ a b) 1` holds --- and yet
+`OsinCommensurable a (b⁻¹ a b)` holds too, with `k = l = 1` and conjugator `b`.
+
+The algebraic half of that witness is proved below and is what makes the point
+without any metric machinery: **conjugation preserves commensurability**, so no
+predicate that a conjugate pair can satisfy will ever imply
+`¬ OsinCommensurable`.  Geometric divergence of axes is such a predicate.
+
+This is the same reef `GGT.ElementaryOsinSNormal.IndependentOfNoCommonZpow` sits
+on --- it uses the weak form `∀ p q ≠ 0, a ^ p ≠ b ^ q`, which a family of conjugates
+also satisfies --- and it is why half (a) is stated with Osin's
+`OsinCommensurable`, whose conjugator is what makes it the strong form. -/
+
+/-- **Conjugate elements are commensurable**, with `k = l = 1`. -/
+theorem osinCommensurable_conj {K : Type*} [Group K] (f c : K) :
+    OsinCommensurable f (c⁻¹ * f * c) :=
+  ⟨1, 1, c, one_ne_zero, one_ne_zero, by simp⟩
+
+/-- **A non-commensurable pair is not a conjugate pair.**  The contrapositive of
+`osinCommensurable_conj`, and the form half (a) is used in: whatever produces the
+pair must rule out conjugacy, which no divergence-of-axes condition does. -/
+theorem ne_conj_of_not_osinCommensurable {K : Type*} [Group K] {f₁ f₂ : K}
+    (h : ¬ OsinCommensurable f₁ f₂) (c : K) : c⁻¹ * f₁ * c ≠ f₂ := by
+  intro hcon
+  exact h (hcon ▸ osinCommensurable_conj f₁ c)
 
 /-! ## 6.  The negative model test -/
 

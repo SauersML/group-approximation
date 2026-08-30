@@ -111,11 +111,13 @@ theorem exists_freeSplitting_dot {G : Type u} [Group G] {K : Subgroup G}
         ⟨Monoid.CoprodI.of (M := fun _ : PUnit.{u + 1} => ↥K)
           (i := PUnit.unit) ⟨g, hg⟩, ?_⟩
       rw [Monoid.CoprodI.lift_of]
+      rfl
   · intro i x
     show Monoid.CoprodI.lift (fun _ : PUnit.{u + 1} => K.subtype)
         (Monoid.CoprodI.of (M := fun _ : PUnit.{u + 1} => ↥K) (i := i) x)
       = 1 * (x : G) * (1 : G)⁻¹
     rw [Monoid.CoprodI.lift_of, inv_one, one_mul, mul_one]
+    rfl
 
 end HullSC
 end GroupApproximation
