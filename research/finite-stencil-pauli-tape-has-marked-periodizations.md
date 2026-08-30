@@ -21,10 +21,10 @@ Gamma_D=<t,p,q,J |
        (a,b in {p,q}, r in D)> .                         (FSP1)
 ```
 
-Choose an integer
+Put `M=max({|r|:r in D} union {0})` and choose an integer
 
 ```text
-m>max_(r in D)|r|.                                      (FSP2)
+m>M.                                                     (FSP2)
 ```
 
 Let `K_m` be the central product of `m` copies of the one-qubit Pauli
