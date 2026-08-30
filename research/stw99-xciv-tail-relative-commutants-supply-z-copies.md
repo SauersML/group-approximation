@@ -2,52 +2,88 @@
 rg: 2
 id: stw99-xciv-tail-relative-commutants-supply-z-copies
 kind: route
-title: Average onto matrix-stage commutants and use the UHF tails
+title: Build coprime matrix-sum blocks from large Bratteli multiplicities
 target: stw99-xciv-norm-matrix-tower-has-zstable-hull
 requires: []
 ---
 
-Put `A=closure(union_n A_n)`.  The divisibility
-`r_n | r_(n+1)` follows from the unital inclusion of full matrix algebras.
-Therefore `A` is a unital UHF algebra.  It is infinite-dimensional because
-the `r_n` are unbounded, and every `x in S` belongs to `A` by the assumed
-operator-norm approximation.  Every infinite-dimensional UHF algebra absorbs
-the Jiang--Su algebra, so `A ~= A tensor Z`.  This already proves the hull
-assertion.
-
-We record the promised relative-commutant construction.  Fix `n`.  For
-`m>=n`, uniqueness of unital representations of `M_(r_n)` on
-`C^(r_m)` gives
+We first record the integer calculation which drives the proof.  Fix `k>=2`
+and put `N=k^2+k+1`.  If `t>=N`, write
 
 ```text
-A_n' intersect A_m ~= M_(r_m/r_n).
+t-(2k+1)=ell k+r,       0<=r<k.
 ```
 
-Moreover,
+The lower bound gives `ell>=k-1>=r`, and therefore
 
 ```text
-A_n' intersect A
-  = closure(union_(m>=n) (A_n' intersect A_m)).
+t=k(ell-r+1)+(k+1)(r+1).                              (1)
 ```
 
-Indeed, averaging over the compact unitary group of `A_n` defines a
-contractive conditional expectation `E_n:A->A_n' intersect A`.  If
-`y in A_n' intersect A` is approximated by `b in A_m`, then `E_n(b)` belongs
-to `A_n' intersect A_m` and approximates `y` at least as well.  Since
-`r_m/r_n -> infinity`, this relative commutant is itself an
-infinite-dimensional UHF algebra.  It is therefore `Z`-stable and contains a
-unital copy of `Z`: compose `z |-> 1 tensor z` with an isomorphism from its
-tensor product with `Z` back onto itself.
+Both coefficients in (1) are positive.  Thus every matrix algebra `M_t`
+with `t>=N` contains a unital faithful copy of `M_k direct_sum M_(k+1)`:
+use `ell-r+1` copies of the first irreducible representation and `r+1`
+copies of the second.
 
-Now let finite `F subset S`, finite `G subset Z`, and `epsilon>0` be given.
-Set `M=max(1,max_(z in G)||z||)`.  Choose `n` so that every `x in F` has
-some `b_x in A_n` with
+Fix `n` and apply (UBT) with this `N`.  In the `j`-th block of `F_m`, the
+commutant of the represented `F_n` is
+
+```text
+direct_sum_(i:mu_(j,i)>0) M_(mu_(j,i)).
+```
+
+By (1), every displayed summand contains a unital faithful copy of
+`M_k direct_sum M_(k+1)`.  Taking the same domain diagonally over all
+summands and all `j` gives a unital embedding
+
+```text
+M_k direct_sum M_(k+1) -> F_n' intersect F_m.          (2)
+```
+
+Given a finite subset of `A`, first approximate it in some `F_n`, then use
+(2).  The range commutes exactly with `F_n`, so it approximately commutes
+with the prescribed finite set.  The standard Blackadar--Kirchberg
+formulation of approximate divisibility asks exactly for such approximately
+central unital copies of `M_p direct_sum M_q` for arbitrarily large coprime
+`p,q`; the pairs `(k,k+1)` therefore suffice.  Thus `A` is approximately
+divisible.  Toms--Winter, *Z-stable ASH algebras*, Theorem 2.3 states that
+every separable approximately divisible C*-algebra is `Z`-stable, so
+`A~=A tensor Z`.  No nuclearity or simplicity hypothesis is added here.
+
+The same argument works inside every tail commutant.  Haar averaging over
+the compact unitary group of `F_n` gives a contractive expectation onto
+`C_n=F_n' intersect A` and proves
+
+```text
+C_n=closure(union_(l>=n) (F_n' intersect F_l)).        (3)
+```
+
+Indeed, average any finite-stage approximant to an element of `C_n`; the
+average stays at that stage and cannot increase the approximation error.
+Given a finite subset of `C_n`, use (3) to approximate it in
+`F_n' intersect F_l`.  Apply (UBT) to the inclusion `F_l subset F_m` and the
+integer bound above.  The resulting copy of `M_k direct_sum M_(k+1)` lies in
+
+```text
+F_l' intersect F_m subset
+(F_n' intersect F_l)' intersect (F_n' intersect F_m),
+```
+
+so it approximately centralizes the chosen subset of `C_n`.  The same
+coprime-matrix-sum criterion makes every `C_n` approximately divisible.
+Each `C_n` is separable, so Toms--Winter Theorem 2.3 makes it `Z`-stable.
+Composing `z |-> 1 tensor z` with a `Z`-absorption isomorphism supplies a
+unital homomorphism `Z->C_n`.
+
+Now let finite `E subset S`, finite `G subset Z`, and `epsilon>0` be given.
+Set `M=max(1,max_(z in G)||z||)`.  Choose `n` so that every `x in E` has
+some `b_x in F_n` with
 
 ```text
 ||x-b_x|| < epsilon/(2M).
 ```
 
-Choose a unital `phi:Z->A_n' intersect A`.  Since `phi` is isometric and
+Choose a unital `phi:Z->C_n`.  Since `phi` is isometric and
 commutes with `b_x`,
 
 ```text
@@ -56,7 +92,7 @@ commutes with `b_x`,
  < epsilon
 ```
 
-for `x in F` and `z in G`.  All estimates are in operator norm.  Hyperfinite
+for `x in E` and `z in G`.  All estimates are in operator norm.  Hyperfinite
 `2`-norm approximation of arbitrary elements of `R` supplies none of the
 displayed distance hypothesis, so the argument does not extend to all of
 `R` and does not resolve the XCIV root.
