@@ -1260,12 +1260,128 @@ theorem dgoLemma67_of_monotone_vertex_samples
   dsimp [a, b] at huConj ⊢
   rwa [huConj] at hrs
 
-/-! ## From oriented power cores to WPD fellow travel -/
-
 /-- DGO's oriented endpoint-closeness condition for two power-vertex
 subsegments. -/
 def OrientedClose (B : ℝ) (p q : PowerAxisSegment h x) : Prop :=
   dist p.initial q.initial ≤ B ∧ dist p.terminal q.terminal ≤ B
+
+/-- **DGO Lemma 6.7 for power-vertex segments on a periodic quasi-axis.**
+The asynchronous ordered matches and their constant phase are constructed
+from hyperbolicity, then rebased at the first selected match before applying
+WPD.  Thus no global geodesic axis or abstract fellow-travelling hypothesis is
+needed. -/
+theorem exists_equal_positive_powers_of_long_powerSegments_of_quasiAxis
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x))
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) :
+    ∃ L : ℝ, 0 < L ∧ ∀ (p q : PowerAxisSegment h x),
+      L ≤ p.length → L ≤ q.length → OrientedClose B p q →
+      ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+        p.conjugate ^ r = q.conjugate ^ s := by
+  obtain ⟨E, C, hE, hC, hphase⟩ :=
+    exists_constant_phase_vertexChain_matches
+      hδ hδ0 hgeo hiso hB hlam hc hf hq hstep
+  obtain ⟨M₀, hM₀⟩ := dgoLemma67_of_monotone_vertex_samples
+    hδ hδ0 hgeo hiso hlox hwpd hC hC
+  obtain ⟨N, hN⟩ := hM₀ M₀ le_rfl
+  obtain ⟨S, hS⟩ := hphase M₀ N
+  let L : ℝ := ((S + 1 : ℕ) : ℝ) * dist x (h • x)
+  have hL : 0 < L := by
+    dsimp [L]
+    positivity
+  refine ⟨L, hL, ?_⟩
+  intro p q hpLength _hqLength hclose
+  have hpCast : ((S + 1 : ℕ) : ℝ) ≤ (p.steps : ℝ) := by
+    rw [p.length_eq_steps_mul] at hpLength
+    dsimp [L] at hpLength
+    nlinarith
+  have hpSucc : S + 1 ≤ p.steps := by exact_mod_cast hpCast
+  have hpSteps : S ≤ p.steps := by omega
+  obtain ⟨K, A, I, J, hA, hI, hJ, hinside, hmatch0, hmatchM, hphaseEq⟩ :=
+    hS p q hpSteps hclose.1 hclose.2
+  let r₀ : Fin (N + 1) := ⟨0, Nat.succ_pos N⟩
+  have hA₀Steps : A r₀ ≤ p.steps :=
+    le_trans (Nat.le_add_right (A r₀) M₀) (hinside r₀)
+  have hI₀Steps : I r₀ ≤ q.steps := (hmatch0 r₀).1
+  let p' : PowerAxisSegment h x :=
+    { translate := p.translate
+      start := p.start + (A r₀ : ℤ)
+      stop := p.stop
+      start_le_stop := by
+        have hcast : (A r₀ : ℤ) ≤ (p.steps : ℤ) := by
+          exact_mod_cast hA₀Steps
+        rw [p.steps_cast] at hcast
+        omega }
+  let q' : PowerAxisSegment h x :=
+    { translate := q.translate
+      start := q.start + (I r₀ : ℤ)
+      stop := q.stop
+      start_le_stop := by
+        have hcast : (I r₀ : ℤ) ≤ (q.steps : ℤ) := by
+          exact_mod_cast hI₀Steps
+        rw [q.steps_cast] at hcast
+        omega }
+  let A' : Fin (N + 1) → ℤ := fun r => (A r : ℤ) - (A r₀ : ℤ)
+  let I' : Fin (N + 1) → ℤ := fun r => (I r : ℤ) - (I r₀ : ℤ)
+  have hA' : StrictMono A' := by
+    intro r s hrs
+    dsimp [A']
+    exact sub_lt_sub_right (by exact_mod_cast hA hrs) (A r₀ : ℤ)
+  have hI' : StrictMono I' := by
+    intro r s hrs
+    dsimp [I']
+    exact sub_lt_sub_right (by exact_mod_cast hI hrs) (I r₀ : ℤ)
+  have hbase0 : dist p'.initial q'.initial ≤ C := by
+    simpa only [p', q', vertexChain, initial, vertex] using (hmatch0 r₀).2
+  have hbaseM :
+      dist (p'.vertex (p'.start + (M₀ : ℤ)))
+        (q'.vertex (q'.start + K)) ≤ C := by
+    have hphase0 := hphaseEq r₀
+    have hpIndex : p'.start + (M₀ : ℤ) =
+        p.start + ((A r₀ + M₀ : ℕ) : ℤ) := by
+      dsimp [p']
+      omega
+    have hqIndex : q'.start + K = q.start + (J r₀ : ℤ) := by
+      dsimp [q']
+      omega
+    rw [hpIndex, hqIndex]
+    exact (hmatchM r₀).2
+  have hsamples0 : ∀ r,
+      dist (p'.vertex (p'.start + A' r))
+        (q'.vertex (q'.start + I' r)) ≤ C := by
+    intro r
+    have hpIndex : p'.start + A' r = p.start + (A r : ℤ) := by
+      dsimp [p', A']
+      omega
+    have hqIndex : q'.start + I' r = q.start + (I r : ℤ) := by
+      dsimp [q', I']
+      omega
+    rw [hpIndex, hqIndex]
+    exact (hmatch0 r).2
+  have hsamplesM : ∀ r,
+      dist (p'.vertex (p'.start + (M₀ : ℤ) + A' r))
+        (q'.vertex (q'.start + K + I' r)) ≤ C := by
+    intro r
+    have hphaseR := hphaseEq r
+    have hpIndex : p'.start + (M₀ : ℤ) + A' r =
+        p.start + ((A r + M₀ : ℕ) : ℤ) := by
+      dsimp [p', A']
+      omega
+    have hqIndex : q'.start + K + I' r = q.start + (J r : ℤ) := by
+      dsimp [q', I']
+      omega
+    rw [hpIndex, hqIndex]
+    exact (hmatchM r).2
+  obtain ⟨r, s, hr, hs, hrs⟩ :=
+    hN p' q' hbase0 K hbaseM A' I' hA' hI' hsamples0 hsamplesM
+  refine ⟨r, s, hr, hs, ?_⟩
+  simpa only [p', q', conjugate] using hrs
+
+/-! ## From oriented power cores to WPD fellow travel -/
 
 /-- Two oriented-close power-axis segments determine forward geodesic chords
 from the first initial endpoint whose terminal points are `2B`-close.  The WPD
