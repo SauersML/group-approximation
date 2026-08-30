@@ -93,7 +93,18 @@ theorem compress_le_smul_of_inner_le (V : Submodule ℂ H) [FiniteDimensional �
     have hone : (1 - V.starProjection : H →L[ℂ] H) * ((t : ℂ) • (1 : H →L[ℂ] H))
         * (1 - V.starProjection) = (t : ℂ) • (1 - V.starProjection) := by
       rw [mul_smul_comm, mul_one, smul_mul_assoc, hQidem]
-    rw [sub_mul, mul_sub, hone]
+    calc (t : ℂ) • (1 - V.starProjection)
+          - (1 - V.starProjection) * b * (1 - V.starProjection)
+        = (1 - V.starProjection) * ((t : ℂ) • (1 : H →L[ℂ] H))
+            * (1 - V.starProjection)
+          - (1 - V.starProjection) * b * (1 - V.starProjection) := by rw [hone]
+      _ = ((1 - V.starProjection) * ((t : ℂ) • (1 : H →L[ℂ] H))
+            - (1 - V.starProjection) * b) * (1 - V.starProjection) :=
+          (sub_mul _ _ _).symm
+      _ = (1 - V.starProjection) * ((t : ℂ) • (1 : H →L[ℂ] H) - b)
+            * (1 - V.starProjection) :=
+          congrArg (fun z : H →L[ℂ] H ↦ z * (1 - V.starProjection))
+            (mul_sub _ _ _).symm
   have hadj : ContinuousLinearMap.adjoint (1 - V.starProjection : H →L[ℂ] H)
       = 1 - V.starProjection := by
     rw [← ContinuousLinearMap.star_eq_adjoint]
@@ -107,16 +118,19 @@ theorem compress_le_smul_of_inner_le (V : Submodule ℂ H) [FiniteDimensional �
         * (1 - V.starProjection)) η, η⟫_ℂ
       = ⟪((t : ℂ) • (1 : H →L[ℂ] H) - b) ((1 - V.starProjection) η),
           (1 - V.starProjection) η⟫_ℂ := by
-    show ⟪(1 - V.starProjection) (((t : ℂ) • (1 : H →L[ℂ] H) - b)
-      ((1 - V.starProjection) η)), η⟫_ℂ = _
-    rw [← hadj, ContinuousLinearMap.adjoint_inner_left]
+    have hkey := ContinuousLinearMap.adjoint_inner_left
+      (1 - V.starProjection : H →L[ℂ] H) η
+      (((t : ℂ) • (1 : H →L[ℂ] H) - b) ((1 - V.starProjection) η))
+    rw [hadj] at hkey
+    exact hkey
   have hsplit : ⟪((t : ℂ) • (1 : H →L[ℂ] H) - b) ((1 - V.starProjection) η),
         (1 - V.starProjection) η⟫_ℂ
       = (t : ℂ) * ⟪(1 - V.starProjection) η, (1 - V.starProjection) η⟫_ℂ
         - ⟪b ((1 - V.starProjection) η), (1 - V.starProjection) η⟫_ℂ := by
-    rw [sub_apply, inner_sub_left, smul_apply, inner_smul_left, Complex.star_def,
+    have hone_apply : (1 : H →L[ℂ] H) ((1 - V.starProjection) η)
+        = (1 - V.starProjection) η := rfl
+    rw [sub_apply, inner_sub_left, smul_apply, hone_apply, inner_smul_left,
       Complex.conj_ofReal]
-    congr 2
   have hself : RCLike.re ((t : ℂ) * ⟪(1 - V.starProjection) η,
       (1 - V.starProjection) η⟫_ℂ) = t * ‖(1 - V.starProjection) η‖ ^ 2 := by
     have h2 : ⟪(1 - V.starProjection) η, (1 - V.starProjection) η⟫_ℂ

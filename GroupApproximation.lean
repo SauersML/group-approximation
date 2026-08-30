@@ -2831,6 +2831,8 @@ import GroupApproximation.GGT.HullSCConeOffHeavyModel
 import GroupApproximation.GGT.HullSCConeOffHeavyUnconditional
 import GroupApproximation.GGT.HullYiLoxRadical
 import GroupApproximation.GGT.HullSCRelatorSeparation2CountBigon
+import GroupApproximation.Analysis.VoiculescuAmplifiedUnits
+import GroupApproximation.Analysis.VoiculescuFrameFromGlimm
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

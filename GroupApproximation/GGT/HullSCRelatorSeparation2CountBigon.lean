@@ -80,12 +80,12 @@ theorem not_isCompStart_of_ne {lam mu : Λ} (hne : lam ≠ mu)
   have hyw : y < w.length := lt_of_lt_of_le hk.1 hk.2.1
   have h1 : (w[y]'hyw).IsCompOf lam := hk.2.2.1 y (le_refl y) hk.1 hyw
   have h2 : (w[y]'hyw).IsCompOf mu := hk'.2.2.1 y (le_refl y) hk'.1 hyw
-  match hw : w[y]'hyw with
-  | RelLetter.base _ =>
-      rw [hw] at h1
-      exact h1
-  | RelLetter.comp b _ =>
-      rw [hw] at h1 h2
+  obtain ⟨a, ha⟩ : ∃ a : RelLetter G Λ, w[y]'hyw = a := ⟨_, rfl⟩
+  rw [ha] at h1 h2
+  cases a with
+  | base g => simp only [RelLetter.IsCompOf] at h1
+  | comp b g =>
+      simp only [RelLetter.IsCompOf] at h1 h2
       exact hne (h1.symm.trans h2)
 
 /-- **A component of the near side is connected to a component of the FAR
