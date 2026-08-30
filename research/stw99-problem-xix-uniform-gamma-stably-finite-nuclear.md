@@ -4,10 +4,12 @@ id: stw99-problem-xix-uniform-gamma-stably-finite-nuclear
 kind: claim
 title: Every unital simple separable nuclear non-elementary stably finite C*-algebra has uniform property Gamma (STW Problem XIX)
 root: true
+refuted_by: toms-ah-counterexample-to-uniform-gamma
 distinct_from:
   stw99-problem-xxii-tracial-completion-traces-continuous: that asks whether the designated traces of a tracially complete algebra exhaust all its traces; this asks whether central sequences with uniformly trace-halving projections always exist, the CETW Question C at the opposite (existence) end of the same uniform-tracial technology.
-  stw99-problem-xx-villadsen-algebras-uniform-gamma: that is the expected-negative test case of this problem on the Villadsen algebras of the first type; this is the general question.
+  stw99-problem-xx-villadsen-algebras-uniform-gamma: that narrower stable-rank-one Villadsen family is positive by Vaccaro; this universal assertion is refuted by Toms's different higher-stable-rank AH example.
 artifacts:
+  - research/artifacts/stw99-xix-xx-literature-status-2026-08-30.md
   - research/artifacts/stw99-xix-xx-uniform-gamma-recon-2026-08-30.md
 ---
 
@@ -18,14 +20,17 @@ C\*-algebra have uniform property Γ: for each `k`, projections
 `p_1, …, p_k ∈ A^ω ∩ A'` (uniform tracial ultrapower) summing to `1` with
 `τ(p_i a) = τ(a)/k` for all `a ∈ A` and all limit traces `τ`?
 
-Known: yes for `Z`-stable algebras; uniform Γ + finite nuclear dimension +
-strict comparison characterises `Z`-stability (CETW); `R` has it; no
-stably finite nuclear counterexample is known.  STW record that some
-authors expect the Villadsen test case
-(`stw99-problem-xx-villadsen-algebras-uniform-gamma`) to be negative,
-which would refute this problem.
+**REFUTED (status checked 2026-08-30).**  Toms,
+arXiv:2606.12188v2, Theorem 5, constructs a simple separable unital nuclear
+non-elementary AH algebra without uniform property Γ.  It is an injective
+inductive limit of homogeneous algebras and hence stably finite, so it is an
+exact counterexample to this universal assertion.  The established refuter is
+`toms-ah-counterexample-to-uniform-gamma`.
 
-## Attempts
+## Historical attack record
+
+Before Toms's counterexample was imported, the repository isolated two
+positive/negative boundaries which remain useful for subclasses:
 
 * **Unique-trace case.**  For `A` nuclear with unique faithful trace,
   Sato's surjection `A^ω ∩ A' → R^ω ∩ R'` modulo the trace-kernel ideal,
@@ -44,4 +49,6 @@ which would refute this problem.
   halving easy, so neither a cheap positive nor a cheap negative argument
   closes.  Uniform Γ for such models is equivalent to a
   measurable-selection problem for half-rank subprojections over the
-  coincidence stratification of the Villadsen tower.
+  coincidence stratification of the Villadsen tower.  Vaccaro has since
+  proved the Villadsen first-type case positive; it is not Toms's
+  counterexample.
