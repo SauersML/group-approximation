@@ -155,7 +155,10 @@ generalized dimension-drop block `I_(p,q)` with `p,q>=2`.  The two endpoint
 amplifications kill `alpha`, while the homotopy-pullback obstruction group
 `pi_6(U(2pq))` vanishes.  Prime dimension-drop blocks are projectionless, so
 this no-go is genuinely weaker than matrix divisibility and does not assume
-Z-stability.  The circle theorem separately shows
+Z-stability.  More generally, the exact one-dimensional NCCW criterion says
+that any unital block whose finite-dimensional zero-skeleton has no scalar
+summand kills `alpha`, for arbitrary endpoint multiplicity matrices.  The
+circle theorem separately shows
 that no one-dimensional clutching analogue can work on a single circle.  The
 one-dimensional theorem rules out every second-countable locally compact base
 when the simple fiber has trivial `K_1`.  For arbitrary `K_1`, even a finite

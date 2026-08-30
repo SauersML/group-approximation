@@ -200,6 +200,39 @@ hypotheses.  It does not prove that purity supplies such a block, but forces
 any surviving pure coefficient to fail even this finite dimension-drop
 divisibility test.
 
+The homotopy-pullback argument extends to every unital one-dimensional NCCW
+block.  Write the zero-skeleton and one-cell algebra as
+
+```text
+E=directSum_i M_(r_i),              F=directSum_j M_(d_j),
+```
+
+with unital endpoint multiplicity matrices `mu_0,mu_1`.  Evaluation onto
+`E` sends the scalar class to the tuple of amplifications
+`alpha->pi_5(U(2r_i))`.  If some `r_i=1`, that tuple retains the original
+nonzero `alpha`, so the class cannot die in the pullback.
+
+If every `r_i>=2`, every tuple component vanishes by finite stable range.
+The homotopy-equalizer exact sequence then leaves only a possible image from
+
+```text
+pi_6(U(M_2(F)))=directSum_j pi_6(U(2d_j)).
+```
+
+Unitality gives `d_j=sum_i m_(epsilon,j,i)r_i>=2`; hence every summand is in
+the stable range and is zero by `pi_6(U)=0`.  Therefore the scalar class dies.
+The exact criterion is simply
+
+```text
+min_i r_i>=2.
+```
+
+All numerical endpoint multiplicities otherwise disappear: if there is a
+scalar vertex, evaluation detects it before the endpoint maps act; if there
+is none, the entire residual obstruction group vanishes.  Thus any surviving
+coefficient must exclude every unital one-dimensional NCCW block with
+character-free zero-skeleton, not only prime dimension-drop blocks.
+
 ## Exact remaining universal hinge
 
 For a pure `A`, abstract absorption gives
