@@ -6,6 +6,7 @@ title: Z-stability is uniformly open for the Kadison--Kastler metric (STW Proble
 root: true
 artifacts:
   - research/artifacts/stw99-xcix-quantitative-audit-2026-08-30.md
+  - research/artifacts/stw99-xcix-prime-dimension-drop-audit-2026-08-30.md
 ---
 
 **Problem XCIX of Schafhauser--Tikuisis--White.**  Does there exist a
@@ -25,6 +26,20 @@ the *nearby target* `B`, rather than `A`, is separable and nuclear; see
 `stw99-xcix-either-side-nuclear-radius`.  Without nuclearity on either side,
 the strongest uniform conclusion recorded here is scaled-Cu agreement at
 radius `1/6422957`, not Z-absorption.
+
+The sharper finite-block reduction
+`stw99-xcix-prime-dimension-drop-defect-modulus` characterizes Z-stability
+as vanishing of an exact prime dimension-drop defect.  At common-unit
+distance `gamma<1/5670000`, its transport loss is
+
+```text
+80 sqrt((2 gamma+gamma^2)(2+2 gamma+gamma^2))+2 gamma,
+```
+
+with leading term `160 sqrt(gamma)`.  This improves the whole-`Z` central
+copy transport constant without treating elementwise near choices as a
+homomorphism, but does not supply the positive gap at zero needed to close
+the unrestricted problem.
 
 ## Attempts
 
