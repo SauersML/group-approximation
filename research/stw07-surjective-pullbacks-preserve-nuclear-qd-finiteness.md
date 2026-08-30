@@ -2,7 +2,7 @@
 rg: 2
 id: stw07-surjective-pullbacks-preserve-nuclear-qd-finiteness
 kind: claim
-title: Surjective pullbacks preserve the nuclear stably finite quasidiagonal class
+title: Surjective pullbacks preserve nuclear quasidiagonality and force stable finiteness
 distinct_from:
   stw07-local-qd-subalgebras-force-quasidiagonality: that theorem approximates the ambient algebra from inside by subalgebras; this theorem embeds a pullback into a finite direct sum of quotient-coordinate pieces.
   stw07-mixed-local-solved-models-are-qd: that claim requires norm-local approximation by solved subalgebras, whereas this claim permits recursive quotient gluings of solved pieces.
@@ -19,10 +19,11 @@ P = B fiber_product_C D
   = {(b,d) in B direct_sum D : phi(b)=psi(d)}.
 ```
 
-If `B` and `D` are separable, nuclear, stably finite, and quasidiagonal, then
-`P` has all four properties.  The same conclusion holds for every finite
-iterated pullback tree whose leaves have these properties and for which at
-least one map at each gluing node is surjective.
+If `B` and `D` are separable, nuclear, and quasidiagonal, then `P` is
+separable, nuclear, and quasidiagonal, and consequently is stably finite.
+The same conclusion holds for every finite iterated pullback tree whose
+leaves are separable, nuclear, and quasidiagonal and for which at least one
+map at each gluing node is surjective.
 
 Consequently, the leaves may independently be chosen from either of the
 following solved Blackadar--Kirchberg classes:

@@ -98,9 +98,10 @@ gives
 ```
 
 Thus nuclearity follows from nuclearity of `B` and `D`.  At the same time the
-defining coordinate map embeds `P` into `B direct_sum D`; quasidiagonality and
-stable finiteness therefore pass to `P` from both coordinates.  The latter
-two properties are not being passed through the displayed extension.
+defining coordinate map embeds `P` into `B direct_sum D`, so
+quasidiagonality passes to `P` from the coordinates.  Stable finiteness then
+follows from quasidiagonality; it is not a separate coordinate hypothesis.
+Neither property is being passed through the displayed extension.
 
 Induction yields the same result for finite recursive pullback trees with a
 one-sided surjection at every gluing node.  The leaves may vary independently
@@ -110,8 +111,8 @@ glued Blackadar--Kirchberg positive class distinct from norm-local
 approximation by subalgebras.
 
 The boundary is sharp for the proof: without one-sided surjectivity the
-coordinate embedding still gives quasidiagonality and stable finiteness, but
-it does not give nuclearity, because nuclearity is not inherited by arbitrary
-C-star subalgebras.  Infinite products are not used; a product of
+coordinate embedding still gives quasidiagonality, hence stable finiteness,
+but it does not give nuclearity, because nuclearity is not inherited by
+arbitrary C-star subalgebras.  Infinite products are not used; a product of
 quasidiagonal algebras need not supply finite-dimensional approximations of a
 separable subalgebra uniformly across all coordinates.

@@ -13,19 +13,10 @@ The pullback is a closed C-star subalgebra of `B direct_sum D`.  Finite direct
 sums of quasidiagonal algebras are quasidiagonal, and quasidiagonality passes
 to C-star subalgebras.  Hence `P` is quasidiagonal.
 
-Stable finiteness is inherited by the same coordinate embedding.  In the
-unital case, a proper matrix isometry in `P` would remain a proper isometry
-in a matrix algebra over `B direct_sum D`, contradicting stable finiteness of
-the two coordinates.  If `P` is nonunital, the inclusion extends injectively
-to minimal unitizations,
-
-```text
-(b,d)+lambda 1  |->  (b,d)+lambda 1_((B direct_sum D)~).
-```
-
-The unitization of a finite direct sum of stably finite algebras is stably
-finite, so the same matrix-isometry argument applies.  This is the standard
-proof that stable finiteness passes to C-star subalgebras.
+No stable-finiteness hypothesis on the coordinates is needed.  The
+unitization of a quasidiagonal algebra is quasidiagonal, and every unital
+quasidiagonal C-star algebra is stably finite.  Applying these standard facts
+to `P` gives stable finiteness after quasidiagonality has been established.
 
 The one-sided surjectivity is used to retain nuclearity.  Projection to the
 second coordinate is onto: for `d in D`, choose `b in B` with
@@ -50,8 +41,9 @@ upgrade makes the algebra AF-embeddable, hence quasidiagonal.  The single-node
 result and induction now apply to an arbitrary mixture of the two leaf types.
 
 **Trust boundary.**  This is not general extension permanence of
-quasidiagonality.  Quasidiagonality and stable finiteness come from the
-injective two-coordinate map `P -> B direct_sum D`, not from `(PB1)`.  The
-surjectivity hypothesis is needed for `(PB1)` and the nuclearity argument;
-without it, an arbitrary C-star subalgebra of a nuclear direct sum need not be
-nuclear.  No permanence assertion is made for infinite pullback products.
+quasidiagonality.  Quasidiagonality comes from the injective two-coordinate
+map `P -> B direct_sum D`, stable finiteness is then a consequence of
+quasidiagonality, and neither comes from `(PB1)`.  The surjectivity hypothesis
+is needed for `(PB1)` and the nuclearity argument; without it, an arbitrary
+C-star subalgebra of a nuclear direct sum need not be nuclear.  No permanence
+assertion is made for infinite pullback products.

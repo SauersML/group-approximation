@@ -29,13 +29,14 @@ traces force stable finiteness, so this problem implies IX(1)
 
 A new positive permanence class is recorded in
 `stw07-surjective-pullbacks-preserve-nuclear-qd-finiteness`.  A pullback of
-two separable nuclear stably finite quasidiagonal algebras is again in that
-class whenever one structure map is surjective.  The coordinate embedding
-into the direct sum carries quasidiagonality and stable finiteness, while the
-surjection supplies the extension used for nuclearity.  Iterating gives
-finite recursive pullbacks, and the leaves may mix traceless solved pieces
-with faithful-trace UCT pieces.  This is not general extension permanence:
-the second coordinate is essential to norm detection.
+two separable nuclear quasidiagonal algebras is again separable, nuclear, and
+quasidiagonal whenever one structure map is surjective, and is therefore
+stably finite.  The coordinate embedding into the direct sum carries
+quasidiagonality, while the surjection supplies the extension used for
+nuclearity.  Iterating gives finite recursive pullbacks, and the leaves may
+mix traceless solved pieces with faithful-trace UCT pieces.  This is not
+general extension permanence: the second coordinate is essential to norm
+detection.
 
 Lean statement: `NinetyNineProblems.ProblemVIIStatement`
 (`GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean`).
