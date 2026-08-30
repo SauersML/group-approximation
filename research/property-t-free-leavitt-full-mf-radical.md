@@ -79,6 +79,8 @@ artifacts:
   - research/property-t-free-leavitt-via-jacobson-head-root.md
   - research/infinite-orthogonal-mark-orbit-is-mf-compatible.md
   - research/binary-leavitt-single-root-character-orbit-has-zero-gap.md
+  - research/properly-infinite-cstar-quotient-is-compatible-with-fp-mf-group.md
+  - research/group-algebra-corners-exclude-traceless-leavitt-inputs.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -349,6 +351,28 @@ Leavitt algebra and the head root maps exactly to `z`, so
 `property-t-free-leavitt-via-jacobson-head-root` closes the full goal from
 that one result.  Its only known escape is rectangular Morita typing; all
 finite-group and finite-ring models already kill the head.
+
+A complex stable-finiteness quotient does not bypass that typing seam.
+`properly-infinite-cstar-quotient-is-compatible-with-fp-mf-group` gives an
+explicit surjection from the residually finite-dimensional full C-star
+algebra `C*(F_3)` onto `O_2`, using three concrete Julia unitaries.  Thus a
+finitely presented operator-MF group can have a unitary-generated C-star
+quotient with a literal one-sided inverse.  A Leavitt/Cuntz quotient of the
+present full group C-star algebra would therefore prove nothing until the
+one-sided inverse is retained in every group-faithful corona image; that
+retention is the same-atom decoder, not a consequence of quotient
+stable-finiteness.
+
+The complementary hereditary shortcut is algebraically unavailable.
+`group-algebra-corners-exclude-traceless-leavitt-inputs` normalizes the
+faithful coefficient trace on every nonzero projection corner of every
+complex group algebra.  Hence no complex Cuntz/Leavitt star algebra maps
+unitally into such a corner; the characteristic-two algebra is excluded
+already by scalar characteristic.  Thus the Leavitt one-sided inverse can
+live in a quotient, where it is not MF-detecting, or in a retained corner,
+where the canonical trace forbids it.  A successful group proof must decode
+the relations representation-by-representation on a selected matrix corner,
+rather than embed a universal traceless Leavitt algebra in the group ring.
 
 The independent matrix-only audit reaches the same seam from the opposite
 direction.  Weighted Hall deficit, rectangular rank deficiency,
