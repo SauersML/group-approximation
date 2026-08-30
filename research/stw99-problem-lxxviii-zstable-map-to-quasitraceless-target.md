@@ -91,6 +91,17 @@ limit ordinal, a countable cofinal sequence turns continuity of the series
 into a sequential inductive limit, where `O_infinity`-stability persists.
 No uncountable-cofinality filtration is covered.
 
+There is also a positive nonsimple class with no composition-series
+hypothesis.  `stw78-finite-dimensional-simple-fiber-targets-solve-map`
+assumes that the nuclear target is a separable `C(X)`-algebra over a
+finite-dimensional compact metrizable space and that its nonzero fibers are
+simple with almost-unperforated `W`.  Quasitracelessness passes to these
+unital fiber quotients, making every fiber `O_infinity`-stable.  The
+Hirshberg--Rordam--Winter fiber theorem then makes the entire target
+`O_infinity`-stable, and nuclear-map absorption proves the map conclusion.
+This permits infinitely many ideals and imposes no global comparison or
+`Z`-stability hypothesis on the target.
+
 ## Attempts
 
 An irreducible embedding into `B(H)` is not a counterexample merely because
@@ -117,4 +128,8 @@ problem.
 On the positive side, `O_infinity`-stability forces every nonzero element of
 the image to be properly infinite.  Establishing that conclusion from the
 absence of quasitraces is already a substantive missing comparison step; even
-after it, the map-level upgrade is closely tied to Problem LXXVII.
+after it, the map-level upgrade is closely tied to Problem LXXVII.  The
+finite-dimensional-field theorem bypasses this global step only because
+comparison is available in every simple fiber and strongly self-absorbing
+stability can then be glued over the finite-dimensional base.  Such
+fiberwise gluing is false over arbitrary infinite-dimensional bases.

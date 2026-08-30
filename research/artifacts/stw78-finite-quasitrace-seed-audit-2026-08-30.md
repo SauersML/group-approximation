@@ -138,6 +138,34 @@ Toms--Winter Corollary 3.4.  Transfinite induction therefore glues
 uncountable-cofinality limit cannot be replaced by such a sequence and is
 outside the recorded theorem.
 
+# Finite-dimensional simple-fiber theorem
+
+There is a second way around the nonunital-layer trace obstruction which
+does not require a composition series.  Let `B` be a nonzero unital separable
+nuclear `C(X)`-algebra, where `X` is compact metrizable and finite-dimensional,
+and assume every fiber `B_x` is nonzero, simple, and has almost-unperforated
+`W(B_x)`.  A fiber is a unital quotient of `B`, so a normalized quasitrace on
+`B_x` would pull back to one on `B`.  Ambient quasitracelessness therefore
+passes to every fiber even though it need not pass to nonunital ideals.
+
+The simple almost-unperforated dichotomy makes each fiber purely infinite.
+Since the fibers are nuclear, they absorb `O_infinity`.  Hirshberg--Rordam--
+Winter, *C_0(X)-algebras, stability and strongly self-absorbing C-star
+algebras*, Theorem 4.6, then applies with `D=O_infinity`: over a
+finite-dimensional locally compact metrizable base, a separable
+`C_0(X)`-algebra absorbs a `K_1`-injective strongly self-absorbing `D` if and
+only if all its fibers do.  Hence `B` itself is `O_infinity`-stable and
+strongly purely infinite.  Gabe's nuclear-map theorem closes every LXXVIII
+map into `B`.
+
+This class is not subsumed by the countable-composition-series theorem.  It
+allows a nonsimple target with infinitely many ideals and requires neither
+algebraic simplicity of nonunital layers nor global almost unperforation of
+`W(B)`.  The finite-dimensional-base hypothesis is an exact trust boundary:
+Hirshberg--Rordam--Winter construct infinite-dimensional-base fields whose
+fibers all absorb the chosen strongly self-absorbing algebra but whose
+section algebra does not.
+
 # Trust boundary
 
 The finite-detection and counterexample-reflection proofs use only the
