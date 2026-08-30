@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw09-ix1-separating-mf-traces-audit-2026-08-30.md
 ---
 
 **Problem IX(1) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Let `A` be a separable nuclear C\*-algebra with a
@@ -33,3 +34,12 @@ In the repository's vocabulary the conclusion is `IsNFAlgebra A`
 
 Lean statement: `NinetyNineProblems.ProblemIX1Statement`
 (`GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean`).
+
+**Unconditional MF-trace subclass.**
+`stw09-jointly-faithful-mf-traces-force-mf` proves that a separable unital
+C-star algebra is MF whenever its MF tracial states jointly detect every
+nonzero element.  Nuclearity then makes it quasidiagonal.  In particular,
+IX(1) has a positive answer when the given faithful trace belongs to the
+weak-star closed convex hull of the MF traces.  The proof selects finitely
+many trace models to norm each prescribed finite packet and block-sums their
+far-out coordinates; it uses neither the UCT nor Problem VII or X(1).
