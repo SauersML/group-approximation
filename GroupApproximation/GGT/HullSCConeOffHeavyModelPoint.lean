@@ -143,10 +143,20 @@ for *every* pair realising that data at every basepoint.  This is
 `exists_common_zpow_of_close_orbit_endpoints_zpow` with the threshold moved in
 front of `a`, `b` and `z`, which is the only difference and the whole
 difficulty: that theorem builds its threshold out of exactly these numbers but
-produces it after the elements are fixed. -/
+produces it after the elements are fixed.
+
+The two positivity hypotheses are load-bearing and are the only ones stated:
+`0 ≤ Ba` follows from the loxodromy clause at `n = 0`, and `0 ≤ Da` from
+`dist_nonneg`, so neither is worth asking for.  `0 < la` and `0 < lb` are not
+derivable and cannot be dropped.  Whoever discharges this has to produce the
+pair-stabiliser exponent `K` — the power of `a` whose displacement exceeds the
+acylindricity radius `R` — and that is exactly `K > (R + Ba) / la`, which needs
+a positive rate.  Without them the statement asks for a threshold governing
+elements with no loxodromy at all, which no fellow-travel argument can supply. -/
 def UniformCommonZpowThreshold (G : Type u) [Group G] (X : Type v)
     [PseudoMetricSpace X] [MulAction G X] : Prop :=
-  ∀ E la Ba Da lb Bb Db : ℝ, ∃ T : ℝ, ∀ (a b : G) (z : X),
+  ∀ E la Ba Da lb Bb Db : ℝ, 0 < la → 0 < lb →
+    ∃ T : ℝ, ∀ (a b : G) (z : X),
     (∀ n : ℕ, la * n - Ba ≤ dist z ((a ^ n) • z)) →
     dist z (a • z) ≤ Da →
     (∀ n : ℕ, lb * n - Bb ≤ dist z ((b ^ n) • z)) →
@@ -162,7 +172,7 @@ content is in the unbounded case. -/
 theorem uniformCommonZpowThreshold_of_bounded (G : Type u) [Group G] (X : Type v)
     [PseudoMetricSpace X] [MulAction G X] {R : ℝ} (hR : ∀ x y : X, dist x y ≤ R) :
     UniformCommonZpowThreshold G X := by
-  intro _E _la _Ba _Da _lb _Bb _Db
+  intro _E _la _Ba _Da _lb _Bb _Db _hla _hlb
   refine ⟨R + 1, ?_⟩
   intro a _b z _ _ _ _ n _ hn _ _
   exact absurd (hR z ((a ^ n) • z)) (by linarith)

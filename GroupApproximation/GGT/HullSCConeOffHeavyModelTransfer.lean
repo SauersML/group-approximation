@@ -73,10 +73,10 @@ theorem matchedPowersForceCommonPower_of_uniformThreshold {Λ : Type w}
     (A : Alphabet G) (g : Λ → G) (hulox : UniformlyLoxodromic A g)
     (hunif : UniformCommonZpowThreshold G (CayleyGeodesicModel.PointQuot A)) :
     MatchedPowersForceCommonPower A g := by
-  obtain ⟨la, Ba, Da, -, -, -, hdata⟩ := hulox
+  obtain ⟨la, Ba, Da, hla0, -, -, hdata⟩ := hulox
   intro B
   obtain ⟨T, hT⟩ := hunif (2 * (B : ℝ) + 2) la (Ba + 1) (Da + 1) la
-    (Ba + 2 * (B : ℝ) + 3) (Da + 2 * (B : ℝ) + 3)
+    (Ba + 2 * (B : ℝ) + 3) (Da + 2 * (B : ℝ) + 3) hla0 hla0
   refine ⟨⌈T⌉₊ + 4 * B + 4, ?_⟩
   intro t lam mu i j k l hsep hik hjl
   have hisoW := CayleyGeodesicModel.isIsometricAction_pointQuot A
