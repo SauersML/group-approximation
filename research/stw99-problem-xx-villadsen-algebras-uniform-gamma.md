@@ -8,6 +8,7 @@ distinct_from:
   stw99-problem-xix-uniform-gamma-stably-finite-nuclear: that is the general CETW question; this is its designated test case, where a negative answer is expected by some of the STW authors and would refute the general problem.
 artifacts:
   - research/artifacts/stw99-xix-xx-uniform-gamma-recon-2026-08-30.md
+  - research/artifacts/stw99-xx-point-dominated-diagonal-gamma-2026-08-30.md
 ---
 
 **Problem XX of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Do the
@@ -45,3 +46,12 @@ which would refute
 * Both directions are recorded in
   `research/artifacts/stw99-xix-xx-uniform-gamma-recon-2026-08-30.md`
   with the block-weight computations.
+* **Vanishing coordinate weight is positive.**
+  `point-dominated-diagonal-ah-has-uniform-gamma` proves uniform Gamma
+  directly when the composite nonconstant-coordinate proportion tends to
+  zero and the multiplicity tends to infinity.  Distinct point evaluations
+  are balanced on each finite test set by vector discrepancy; only the
+  coordinate blocks contribute a uniform-in-the-base error.  Thus wild
+  point-evaluation data is not the obstruction.  The unresolved Villadsen
+  regime is exactly the positive asymptotic coordinate mass left after
+  this theorem.
