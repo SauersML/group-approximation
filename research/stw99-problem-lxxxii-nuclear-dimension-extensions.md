@@ -289,8 +289,25 @@ hypothesis.  This strictly exceeds constant `e tensor 1`: over `B=C`, the
 alternating infinite-rank, infinite-corank diagonal projection is neither
 constant coefficient projection, yet its adjunction to `K` remains AF.
 
-That projectional hypothesis cannot be replaced formally by real rank zero
-and arbitrary finite-spectrum positive cuts.
+Real rank zero removes even the reducing-exhaustion hypothesis.
+`stw82-real-rank-zero-multiplier-projections` proves that for every
+sigma-unital real-rank-zero algebra `A` and every projection `p in M(A)`,
+
+```text
+dim_nuc(A+C p)=dim_nuc(A).
+```
+
+Indeed the two hereditary diagonal corners `pAp` and
+`(1-p)A(1-p)` have increasing projection approximate units `e_n,f_n`.
+Their sums `Q_n=e_n+f_n` commute with `p`, have internal compressions, and
+converge strictly to one; the off-diagonal convergence follows from the
+estimate `||(p-e_n)x||^2=||(p-e_n)xx^*(p-e_n)||`.  Thus every multiplier
+projection over a sigma-unital stable AF ideal is covered, with no
+quasidiagonality, support, or coefficient-form assumption.
+
+Real rank zero of only one generated support ideal, however, does not imply
+real rank zero of the ambient algebra and cannot replace projectional cuts
+there by arbitrary finite-spectrum positive cuts.
 `stw82-finite-spectrum-cuts-do-not-force-repair` constructs a stabilized
 Toeplitz multiplier-support example in which `L=closure(ApA)` is proper,
 essential, stable AF, and has a finite-spectrum positive quasicentral
