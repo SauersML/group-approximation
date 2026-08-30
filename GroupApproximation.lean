@@ -2960,3 +2960,6 @@ import GroupApproximation.GGT.DGOWindmillCyclic
 import GroupApproximation.GGT.DGOPolygonCutFamily
 import GroupApproximation.GGT.DGOSumBoundFinite
 import GroupApproximation.GGT.HullSCConeOffHeavyEndpointBridge
+import GroupApproximation.Analysis.VoiculescuGlimmEssentialRange
+import GroupApproximation.GGT.DGOQuasiGeodesicChainAt
+import GroupApproximation.GGT.DGOIsolatedComponentBoundAtMu
