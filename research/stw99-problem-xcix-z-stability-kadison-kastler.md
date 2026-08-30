@@ -49,10 +49,11 @@ arbitrarily small centrality errors while `gamma` is fixed, and no such
 uniform structural error-improvement principle is known.
 
 There is nevertheless a sharp asymptotic rigidity statement.  If a sequence
-of unital common-unit pairs has distance tending to zero and the first
-coordinates are Z-stable, the two norm ultraproducts are literally equal and
-the common ultraproduct is Z-saturated: every separable subset has a commuting
-unital copy of Z.  Quantitatively,
+has unital Z-stable first coordinates and distance tending to zero, the
+nearby coordinates need not be unital: the two norm ultraproducts are still
+literally equal, the common ultraproduct is automatically unital, and it is
+Z-saturated.  Every separable subset has a commuting unital copy of Z.
+Quantitatively, in the common-unit coordinate setting,
 `stw99-xcix-fixed-centrality-windows-collapse-at-zero-distance` shows that
 every fixed finite centrality defect of the nearby coordinates tends to zero,
 uniformly over the chosen contractions.  Thus a counterexample sequence must
