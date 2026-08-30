@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw81-type-i-frontier-2026-08-30.md
   - research/artifacts/stw81-zero-dimensional-simple-field-audit-2026-08-30.md
+  - research/artifacts/stw81-one-dimensional-field-audit-2026-08-30.md
 ---
 
 **Problem LXXXI of Schafhauser--Tikuisis--White.**  Let `A` be a C-star
@@ -128,6 +129,23 @@ but no nonzero commutative hereditary subalgebra in any quotient.  Thus
 `dim Prim(A)` can be infinite under the strongest possible shadow bound.
 Only the type-I loci, and their boundary interaction with non-type-I
 strata, are visible to the hypothesis.
+
+The field theorem now reaches one-dimensional bases under a sharp fibre
+dichotomy.  `stw81-one-dim-elementary-oinfty-fields-have-dim-one` proves
+the assertion for locally trivial simple-fibre fields whose fibres are
+elementary or O-infinity-stable.  The elementary locus is continuous
+trace; fibrewise O-infinity-stability globalizes over the finite-dimensional
+base and then forces nuclear dimension one.  Both loci are clopen, and
+the shadows live entirely on the elementary side.
+
+The previous clopen method cannot handle the remaining stably finite
+fibres.  `stw81-connected-base-blocks-clopen-colour-reuse` proves that a
+connected nontrivial base has no finite-dimensional subalgebras of
+`C(X)` beyond the constants, so the AF-base approximation used in the
+zero-dimensional theorem fails exactly there.  For one-dimensional
+stably finite non-elementary fibres, fibrewise Z-stability globalizes but
+the needed nonsimple nuclear-dimension-one theorem is unavailable; naive
+base/fibre colour multiplication gives three.
 
 The relationship is now internal and witness-level:
 `stw81-finite-ideal-counterexample-forces-lxxxii-counterexample` proves that
