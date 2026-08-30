@@ -604,6 +604,45 @@ theorem exists_common_zpow_of_long_orientedClose
   · exact ⟨ht0, htT.trans hpMetric⟩
   · exact ⟨ht0, htT.trans hqMetric⟩
 
+/-- The preceding WPD bridge in DGO's path-length language.  A
+`(lam,c)`-quasi-axis segment of length at least `lam * (T + c)` has metric
+displacement at least `T`. -/
+theorem exists_common_zpow_of_long_quasiAxis_segments
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hqAxis : IsQuasiGeodesicAxis lam c h x f)
+    (hlam : 0 < lam) (hc : 0 ≤ c)
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) (hB : 0 ≤ B)
+    (p q : PowerAxisSegment h x) :
+    ∃ L : ℝ, 0 < L ∧
+      (L ≤ p.length → L ≤ q.length → OrientedClose B p q →
+       ∃ a b : ℤ, a ≠ 0 ∧ b ≠ 0 ∧
+         p.conjugate ^ a = q.conjugate ^ b) := by
+  obtain ⟨T, hT, hbridge⟩ :=
+    exists_common_zpow_of_long_orientedClose
+      hδ hδ0 hgeo hiso hlox hwpd hB p q
+  let L : ℝ := lam * (T + c)
+  have hL : 0 < L := by
+    dsimp [L]
+    positivity
+  refine ⟨L, hL, ?_⟩
+  intro hpLen hqLen hclose
+  have hpDiv : T + c ≤ p.length / lam := by
+    rw [le_div_iff₀ hlam]
+    dsimp [L] at hpLen
+    simpa only [mul_comm] using hpLen
+  have hqDiv : T + c ≤ q.length / lam := by
+    rw [le_div_iff₀ hlam]
+    dsimp [L] at hqLen
+    simpa only [mul_comm] using hqLen
+  have hpMetric := length_div_sub_le_dist hiso hf hqAxis p
+  have hqMetric := length_div_sub_le_dist hiso hf hqAxis q
+  apply hbridge
+  · linarith
+  · linarith
+  · exact hclose
+
 /-- The initial endpoint lies on the corresponding translated DGO axis. -/
 theorem initial_mem_translated_quasiAxis {f : ℝ → X}
     (hf : IsAxisConnector h x f) (p : PowerAxisSegment h x) :
