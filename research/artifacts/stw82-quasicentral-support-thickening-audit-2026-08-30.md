@@ -84,3 +84,9 @@ The criterion does not cover a generated ideal lacking projectional
 quasicentral cuts relative to `p`.  In particular, it does not reorganize
 the transition band of a nonquasidiagonal residual extension.  That is the
 next genuinely nonprojectional part of the multiplier-projection problem.
+
+The later no-go theorem `stw82-finite-spectrum-cuts-do-not-force-repair`
+shows that real rank zero and finite-spectrum positive quasicentral cuts do
+not cross this boundary automatically.  In its stabilized Toeplitz model,
+every nonzero spectral cutoff has a fixed norm-one commutator and the
+residual index boundary is nonzero.

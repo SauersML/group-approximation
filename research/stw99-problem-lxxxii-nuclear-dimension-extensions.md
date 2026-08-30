@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw82-stage-centre-split-audit-2026-08-30.md
   - research/artifacts/stw82-multiplier-projection-reduction-audit-2026-08-30.md
   - research/artifacts/stw82-quasicentral-support-thickening-audit-2026-08-30.md
+  - research/artifacts/stw82-finite-spectrum-repair-no-go-audit-2026-08-30.md
   - research/artifacts/stw82-complemented-multiplier-support-audit-2026-08-30.md
 ---
 
@@ -162,6 +163,19 @@ a noncentral, nonfull, noncomplemented example of nuclear dimension one.
 The remaining multiplier-support frontier must lack such projectional
 quasicentral cuts relative to `p`, so its residual gluing is genuinely
 nonquasidiagonal.
+
+That projectional hypothesis cannot be replaced formally by real rank zero
+and arbitrary finite-spectrum positive cuts.
+`stw82-finite-spectrum-cuts-do-not-force-repair` constructs a stabilized
+Toeplitz multiplier-support example in which `L=closure(ApA)` is proper,
+essential, stable AF, and has a finite-spectrum positive quasicentral
+approximate unit commuting exactly with `p`.  Nevertheless every nonzero
+literal spectral cut has commutator norm one with a fixed shift tensor, and
+the residual extension by `A/L` has the nonzero Toeplitz index boundary.
+Thus it is not quasidiagonal and no alternative projectional repair exists.
+Stagewise spectral gaps alone are therefore insufficient: their size must
+quantitatively dominate the incoming commutator error, or a new argument
+must absorb the nonquasidiagonal transition band.
 
 There is also a new unconditional middle-algebra class:
 `stw82-one-dimensional-middle-forces-maximum` shows that every
