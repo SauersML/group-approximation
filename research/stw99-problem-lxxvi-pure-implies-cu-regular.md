@@ -108,14 +108,13 @@ coarse ideal/K-theoretic calculation nor equality of all ranks can by itself
 prove Cu-regularity or exhibit a counterexample.
 
 There is nevertheless an automatic comparison-theoretic density statement.
-`stw99-lxxvi-first-factor-cu-image-is-order-cofinal` proves, for every
-unital tensor factor `B`, that each way-below class in `Cu(A tensor_min B)`
-is dominated by a first-factor class, and every target class has one global
-first-factor dominator.  For `B=Z`, that dominator can be chosen inside the
-target class's ideal, and the global dominator generates exactly the same
-ideal.  The proof factors a finite algebraic tensor through the row of its
-`A`-coefficients, localized in the corresponding source ideal.  This is only
-cofinality from above: it does not put an image class inside a prescribed
+`stw99-lxxvi-first-factor-cu-image-is-order-cofinal` proves more generally
+that every full star homomorphism has order-cofinal Cu image.  Hence each
+way-below class in `Cu(A tensor_min B)` is dominated by a first-factor class
+for every unital `B`, and every target class has one global first-factor
+dominator.  For `B=Z`, that dominator can be chosen inside the target class's
+ideal, and the global dominator generates exactly the same ideal.  This is
+only cofinality from above: it does not put an image class inside a prescribed
 target class or hereditary subalgebra.  Indeed, inner cofinality together
 with order reflection would already force surjectivity.  Thus the remaining
 LXXVI hinge is a hereditary sandwich/realization problem, not a lack of

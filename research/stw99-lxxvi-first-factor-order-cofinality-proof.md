@@ -2,63 +2,71 @@
 rg: 2
 id: stw99-lxxvi-first-factor-order-cofinality-proof
 kind: route
-title: Factor a finite algebraic tensor through one first-factor row
+title: Convert finite ideal generation into one Cu-image dominator
 target: stw99-lxxvi-first-factor-cu-image-is-order-cofinal
 requires: []
 ---
 
-Stabilize throughout and identify
+Stabilize throughout.  Let `x=[c] in Cu(C)` and fix `x'<<x`.  Choose
+`epsilon>0` such that
 
 ```text
-(A tensor_min B) tensor K ~= (A tensor K) tensor_min B.
+x'<=[(c-epsilon)_+].                                     (P1)
 ```
 
-Represent `x` by a positive element `a` in this algebra.  If `x'<<[a]`, the
-standard cutdown property of `Cu` gives `epsilon>0` with
+Fullness of `phi` says that the positive cone of `C tensor K` is the norm
+closure of finite sums
 
 ```text
-x'<=[(a-epsilon)_+].                                     (P1)
+h=sum_(j=1)^N z_j* phi(a_j) z_j,
 ```
 
-Approximate `a^(1/2)` closely enough by a finite algebraic tensor
+with `a_j in (A tensor K)_+` and multiplier-compatible rectangular `z_j`.
+Choose such an `h` close enough to `c` that the perturbation lemma gives
 
 ```text
-z=sum_(j=1)^N alpha_j tensor b_j,
-       alpha_j in A tensor K,       b_j in B,
+x'<=[(c-epsilon)_+]<=[h].                               (P2)
 ```
 
-that `||a-z*z||<epsilon`.  The positive-element perturbation lemma and
-`(P1)` give
+Put `w_j=phi(a_j)^(1/2)z_j` and let `W` be the column with entries `w_j`.
+Then `h=W*W`, while
 
 ```text
-x'<=[(a-epsilon)_+]<=[z*z].                              (P2)
+WW*=D Z Z* D <= ||Z||^2 D^2,
+D=diag(phi(a_1)^(1/2),...,phi(a_N)^(1/2)).              (P3)
 ```
 
-Put
+The elements `W*W` and `WW*` have the same Cuntz class, and `(P3)` makes
+`WW*` Cuntz below `diag(phi(a_1),...,phi(a_N))`.  Therefore, with
 
 ```text
-R=(alpha_1 tensor 1_B,...,alpha_N tensor 1_B),
-C=(1 tensor b_1,...,1 tensor b_N)^t.
-```
-
-Here the entries of `C` act as multipliers if `A` is nonunital, and `z=RC`.
-Therefore
-
-```text
-zz*=R C C* R* <= ||C||^2 R R*
-               = ||C||^2 (sum_j alpha_j alpha_j*) tensor 1_B.   (P3)
-```
-
-Positive domination implies Cuntz subequivalence, while `z*z` and `zz*`
-represent the same Cuntz class.  With
-
-```text
-y=[sum_j alpha_j alpha_j*] in Cu(A),
+y=[a_1]+...+[a_N] in Cu(A),
 ```
 
 equations `(P2)--(P3)` prove `(OC1)`.
 
-Now specialize to `B=Z` and separable `A`.  Let `J=Ideal(a)` in
+For the global assertion, choose a rapidly increasing sequence
+`x_1<<x_2<<...` with supremum `x`.  Apply `(OC1)` to obtain
+`x_n<=Cu(phi)(y_n)`.  The partial sums `s_n=y_1+...+y_n` increase in
+`Cu(A)`; set `y=sup_n s_n`.  Since a Cu-morphism preserves addition and
+increasing suprema,
+
+```text
+x=sup_n x_n <= sup_n Cu(phi)(s_n)=Cu(phi)(y),
+```
+
+which proves `(OC2)` for every full `phi`.
+
+For completeness, the unital first-factor map is full.  Its generated ideal
+contains every elementary tensor with positive first coefficient, since
+
+```text
+a tensor b=(a^(1/2) tensor 1_B)(a^(1/2) tensor b),
+```
+
+and their linear span is dense in `A tensor_min B`.
+
+Now specialize to `phi=iota`, `B=Z`, and separable `A`.  Let `J=Ideal(c)` in
 `A tensor_min Z`.  The ideal correspondence gives a unique ideal `I` of
 `A` with
 
@@ -66,38 +74,17 @@ Now specialize to `B=Z` and separable `A`.  Let `J=Ideal(a)` in
 J=I tensor_min Z.                                        (P4)
 ```
 
-Because `a^(1/2)` belongs to `J`, the algebraic approximation `z` above may
-be chosen in `(I tensor K) algebraicTensor Z`.  Every coefficient
-`alpha_j` then lies in `I tensor K`, so
+The restricted first-factor map `I->I tensor_min Z=J` is full.  Apply the
+already proved local theorem to this restricted map.  It gives
+`y in Cu(I)` with `x'<=Cu(iota)(y)`, so the image ideal is contained in
+`J=Ideal(x)`.  This proves `(OC3)` without choosing coefficients outside the
+correct ideal.
 
-```text
-y=[sum_j alpha_j alpha_j*] in Cu(I).
-```
-
-Consequently `Ideal(Cu(iota)(y))` is contained in `J=Ideal(x)`, proving
-`(OC3)`.  Notice that the proof localizes the coefficients before forming
-their row; it does not infer ideal membership from the final comparison.
-
-For the global assertion, choose a rapidly increasing sequence
-`x_1<<x_2<<...` with supremum `x`.  Apply `(OC1)` to obtain
-`x_n<=Cu(iota)(y_n)`.  The partial sums
-
-```text
-s_n=y_1+...+y_n
-```
-
-increase in `Cu(A)`; set `y=sup_n s_n`.  Since a Cu-morphism preserves
-addition and increasing suprema,
-
-```text
-x=sup_n x_n <= sup_n Cu(iota)(s_n)=Cu(iota)(y),
-```
-
-which is `(OC2)`.
-
-In the `Z` case apply the ideal-local construction to every `x_n<<x`.
-All `y_n` then belong to the same source ideal `I` corresponding to
-`Ideal(x)`.  Hence `y=sup s_n` belongs to `Cu(I)`, so
+For the ideal-matched global assertion, repeat the rapidly increasing
+construction for `x`, applying the ideal-local result to every `x_n<<x`.
+All resulting `y_n` belong to the same source ideal `I` corresponding to
+`Ideal(x)`.  Put `s_n=y_1+...+y_n` and `y=sup_n s_n`.  Then `y` belongs to
+`Cu(I)`, so
 `Ideal(Cu(iota)(y))` is contained in `Ideal(x)`.  The reverse inclusion
 follows from `x<=Cu(iota)(y)`, proving `(OC4)`.
 
