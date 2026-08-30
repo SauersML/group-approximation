@@ -50,6 +50,16 @@ ordinary relative commutant contains a unital quasitraceless subalgebra,
 the matching properly infinite amplification automatically and proves the
 map O-infinity-stable.  No exactness or nuclearity of the target is used.
 
+There is now a second positive mechanism which does not inspect the relative
+commutant.  `stw78-simple-comparison-targets-force-oinfinity-stability`
+proves the problem whenever the target is simple and its Cuntz semigroup is
+almost unperforated.  Quasitracelessness forces such a target to be purely,
+hence strongly purely, infinite; nuclear-map absorption then gives
+strong O-infinity-stability.  In particular every simple `Z`-stable target
+is a positive class, even without target nuclearity or exactness.  Thus any
+counterexample must obtain its obstruction from nonsimple or
+comparison-perforated target geometry.
+
 ## Attempts
 
 An irreducible embedding into `B(H)` is not a counterexample merely because
