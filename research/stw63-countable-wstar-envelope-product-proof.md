@@ -55,11 +55,11 @@ Given a finite set `F subset Z` and `epsilon>0`, choose for every `j` a
 unitary `u_j in N_j` satisfying
 
 ```text
-max_(a in F) ||u_j phi_j(a) u_j^* - psi_j(a)|| < epsilon.
+max_(a in F) ||u_j phi_j(a) u_j^* - psi_j(a)|| < epsilon/2.
 ```
 
 Then `u=(u_j)_j` is a unitary of `N`, and the norm in (2) is the supremum of
-the coordinate norms.  Hence the same inequality holds uniformly in `N`
+the coordinate norms.  Hence the error is at most `epsilon/2<epsilon` in `N`
 and therefore in `M`.  Applying this to an increasing sequence of finite
 subsets dense in the unit ball of `Z` gives norm approximate unitary
 equivalence.  No conditional expectation onto `N`, complementedness of the
