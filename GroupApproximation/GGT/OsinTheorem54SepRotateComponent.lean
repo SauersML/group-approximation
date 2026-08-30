@@ -194,6 +194,7 @@ theorem notMem_terminal_of_isIsolated_zero (D : RelGenSet G Λ) (lam : Λ)
   intro hlast
   obtain ⟨q, r, hqle, hltr, hqr⟩ :=
     exists_isComp_of_isCompOf lam w (w.length - 1) (by omega) hlast
+  have hrle : r ≤ w.length := hqr.2.1
   have hr : r = w.length := by omega
   have hq0 : q ≠ 0 := by
     intro hq
@@ -206,6 +207,7 @@ theorem notMem_terminal_of_isIsolated_zero (D : RelGenSet G Λ) (lam : Λ)
   rw [hr, vertex_length_of_closed v w hclosed] at hspan
   have heq : ((vertex v w q)⁻¹ * v)⁻¹ = v⁻¹ * vertex v w q := by
     group
+  change (vertex v w 0)⁻¹ * vertex v w q ∈ D.fam lam
   rw [vertex_zero, ← heq]
   exact inv_mem hspan
 
@@ -225,6 +227,7 @@ theorem isComp_rotWord_zero_before (lam : Λ) {w : List (RelLetter G Λ)}
   have hrange := hcomp.2.2.1
   have hpost := hcomp.2.2.2.2
   have hlen : (rotWord w i).length = w.length := length_rotWord w (le_of_lt hi)
+  have hkpos : 0 < k := hcomp.1
   refine ⟨by omega, by omega, ?_, ?_, ?_⟩
   · intro j hj1 hj2 hj
     rw [getElem_rotWord_add w (le_of_lt hi) j (j - (w.length - i))
@@ -273,9 +276,14 @@ theorem isIsolated_rotWord_zero_before (D : RelGenSet G Λ) (lam : Λ) (v : G)
       rw [vertex_rotWord_le v w (le_of_lt hi) 0 (by omega), Nat.add_zero]
     obtain ⟨p₂, hp₂⟩ := hpstart
     have hci : (w[i]'hi).IsCompOf lam := by
-      have hc0 := hp₂.2.2.1 0 le_rfl hp₂.1 (by omega)
-      rwa [getElem_rotWord_lt w (le_of_lt hi) 0 (i + 0) rfl (by omega)
-        (by omega) (by omega)] at hc0
+      have hseam : 0 < w.length - i := Nat.sub_pos_of_lt hi
+      have hrotlen : 0 < (rotWord w i).length := by
+        rw [length_rotWord w (le_of_lt hi)]
+        omega
+      have hi0 : i + 0 < w.length := by omega
+      have hc0 := hp₂.2.2.1 0 le_rfl hp₂.1 hrotlen
+      rwa [getElem_rotWord_lt w (le_of_lt hi) 0 (i + 0) rfl hseam
+        hrotlen hi0] at hc0
     obtain ⟨q, qk, hqi, hiqk, hqcomp⟩ :=
       exists_isComp_of_isCompOf lam w i hi hci
     have hq0 : q ≠ 0 := by
@@ -285,13 +293,14 @@ theorem isIsolated_rotWord_zero_before (D : RelGenSet G Λ) (lam : Λ) (v : G)
       omega
     have hqconn : Connected D.fam lam v w q i := by
       exact span_mem_fam D lam v hlet i (by omega) q hqi
-        (fun m hm1 hm2 hm3 ⇒ hqcomp.2.2.1 m hm1 (by omega) hm3)
+        (fun m hm1 hm2 hm3 => hqcomp.2.2.1 m hm1 (by omega) hm3)
     rw [hv0] at hmem
     refine hiso.2 q hq0 ⟨qk, hqcomp⟩ ?_
     have heq : (vertex v w 0)⁻¹ * vertex v w q =
         ((vertex v w 0)⁻¹ * vertex v w i) *
           ((vertex v w q)⁻¹ * vertex v w i)⁻¹ := by
       group
+    change (vertex v w 0)⁻¹ * vertex v w q ∈ D.fam lam
     rw [heq]
     exact mul_mem hmem (inv_mem hqconn)
   · obtain ⟨q, hqstart, hwhere, hvq⟩ :=
@@ -300,7 +309,7 @@ theorem isIsolated_rotWord_zero_before (D : RelGenSet G Λ) (lam : Λ) (v : G)
     have hq0 : q ≠ 0 := by
       intro hq
       subst q
-      rcases hwhere with ⟨-, hq⟩ | ⟨-, hq⟩
+      rcases hwhere with ⟨hpLt, hq⟩ | ⟨hpGe, hq⟩
       · omega
       · omega
     rw [hvq] at hmem
@@ -342,9 +351,14 @@ theorem isIsolated_rotWord_before (D : RelGenSet G Λ) (lam : Λ) (v : G)
     obtain ⟨p₂, hp₂⟩ := hpstart
     have hiw : i < w.length := by omega
     have hci : (w[i]'hiw).IsCompOf lam := by
-      have hc0 := hp₂.2.2.1 0 le_rfl hp₂.1 (by omega)
-      rwa [getElem_rotWord_lt w (le_of_lt hi) 0 (i + 0) rfl (by omega) (by omega)
-        (by omega)] at hc0
+      have hseam : 0 < w.length - i := Nat.sub_pos_of_lt hi
+      have hrotlen : 0 < (rotWord w i).length := by
+        rw [length_rotWord w (le_of_lt hi)]
+        omega
+      have hi0 : i + 0 < w.length := by omega
+      have hc0 := hp₂.2.2.1 0 le_rfl hp₂.1 hrotlen
+      rwa [getElem_rotWord_lt w (le_of_lt hi) 0 (i + 0) rfl hseam hrotlen
+        hi0] at hc0
     obtain ⟨q, qk, hqi, hiqk, hqcomp⟩ :=
       exists_isComp_of_isCompOf lam w i hiw hci
     have hqa : q ≠ a := by
@@ -354,13 +368,14 @@ theorem isIsolated_rotWord_before (D : RelGenSet G Λ) (lam : Λ) (v : G)
       omega
     have hqconn : Connected D.fam lam v w q i := by
       exact span_mem_fam D lam v hlet i (by omega) q hqi
-        (fun m hm1 hm2 hm3 ⇒ hqcomp.2.2.1 m hm1 (by omega) hm3)
+        (fun m hm1 hm2 hm3 => hqcomp.2.2.1 m hm1 (by omega) hm3)
     rw [hv0] at hmem
     refine hiso.2 q hqa ⟨qk, hqcomp⟩ ?_
     have heq : (vertex v w a)⁻¹ * vertex v w q =
         ((vertex v w a)⁻¹ * vertex v w i) *
           ((vertex v w q)⁻¹ * vertex v w i)⁻¹ := by
       group
+    change (vertex v w a)⁻¹ * vertex v w q ∈ D.fam lam
     rw [heq]
     exact mul_mem hmem (inv_mem hqconn)
   · obtain ⟨q, hqstart, hwhere, hvq⟩ :=
@@ -369,7 +384,7 @@ theorem isIsolated_rotWord_before (D : RelGenSet G Λ) (lam : Λ) (v : G)
     have hqa : q ≠ a := by
       intro hqa
       subst hqa
-      rcases hwhere with ⟨-, hq⟩ | ⟨-, hq⟩
+      rcases hwhere with ⟨hpLt, hq⟩ | ⟨hpGe, hq⟩
       · omega
       · omega
     rw [hvq] at hmem
