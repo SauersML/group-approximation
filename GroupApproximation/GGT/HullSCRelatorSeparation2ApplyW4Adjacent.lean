@@ -151,6 +151,69 @@ theorem trivialGap_of_two_connectors {D : GGT.RelGenSet G Bool}
   · rw [← halt, hT₁]
     exact mul_mem hh₁ (inv_mem hvkm)
 
+/-! ## The mirrored side -/
+
+/-- **The mirrored form of the alternation.**  Easier than the direct one: in
+`RelWord.revInv R` the run comes FIRST, so a block position `t` satisfies
+`t < |ms|`, and `t + 1 ≤ |ms| < |R|` rules out the wrap without any appeal to
+where the base part sits. -/
+theorem index_alternates_of_rotate_revInv {p : List G} {h₀ h₁ : G}
+    {ms : List ℕ} {c d : ℕ} {b b' : Bool} {x x' : G} (hp0 : 0 < p.length)
+    (hd : d < (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length)
+    (hd' : d + 1 < (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length)
+    (hx : ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c)[d]?
+      = some (GGT.RelLetter.comp b x))
+    (hx' : ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c)[d + 1]?
+      = some (GGT.RelLetter.comp b' x')) : b' = !b := by
+  have hrev : (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length
+      = (relatorWord₂ p h₀ h₁ ms).length := RelWord.length_revInv _
+  have hL : (relatorWord₂ p h₀ h₁ ms).length = p.length + ms.length :=
+    length_relatorWord₂ p h₀ h₁ ms
+  obtain ⟨hklt, hkb⟩ :=
+    blockIndex_of_revInv_relatorWord₂ (getElem?_of_rotate hd hx)
+  obtain ⟨hk'lt, hk'b⟩ :=
+    blockIndex_of_revInv_relatorWord₂ (getElem?_of_rotate hd' hx')
+  have hlt1 : 1 < (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length := by
+    omega
+  have hstep : (c + (d + 1))
+        % (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length
+      = (c + d) % (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length + 1 := by
+    rw [show c + (d + 1) = c + d + 1 from by omega,
+      Nat.add_mod (c + d) 1 (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length,
+      Nat.mod_eq_of_lt hlt1, Nat.mod_eq_of_lt (by omega)]
+  rw [hstep] at hk'b hk'lt
+  exact revInv_blockWord_index_alternates h₀ h₁ false ms (by omega) hkb hk'b
+
+/-- **The mirrored form of the far-side adjacency.**  The same two congruences,
+read through `HullSC.position_eq_of_alignedMatch_revInv`; the letters carry
+inverted powers and nothing else changes. -/
+theorem farSide_adjacent_of_matches_revInv {p : List G} {h₀ h₁ : G}
+    {ms : List ℕ}
+    (hinj : ∀ a : Bool,
+      Function.Injective (fun k : ℕ => (if a then h₁ else h₀) ^ k))
+    (hnodup : ms.Nodup) {c c' d k₀ k₁ : ℕ} {b₀ b₁ : Bool} {e₀ e₁ : ℕ}
+    (hd : d < (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length)
+    (hd' : d + 1 < (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length)
+    (hj₀ : k₀ - 1 < (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length)
+    (hj₁ : k₁ - 1 < (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length)
+    (hk₀ : 0 < k₀) (hk₁ : 0 < k₁)
+    (hlt : k₀ < (RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).length)
+    (hl₀ : ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c)[d]?
+      = some (GGT.RelLetter.comp b₀ (((if b₀ then h₁ else h₀) ^ e₀)⁻¹)))
+    (hl₁ : ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c)[d + 1]?
+      = some (GGT.RelLetter.comp b₁ (((if b₁ then h₁ else h₀) ^ e₁)⁻¹)))
+    (hm₀ : ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c')[k₀ - 1]?
+      = some (GGT.RelLetter.comp b₀ (((if b₀ then h₁ else h₀) ^ e₀)⁻¹)))
+    (hm₁ : ((RelWord.revInv (relatorWord₂ p h₀ h₁ ms)).rotate c')[k₁ - 1]?
+      = some (GGT.RelLetter.comp b₁ (((if b₁ then h₁ else h₀) ^ e₁)⁻¹))) :
+    k₁ = k₀ + 1 := by
+  have hp₀ :=
+    position_eq_of_alignedMatch_revInv hinj hnodup hd hj₀ rfl hl₀ hm₀
+  have hp₁ :=
+    position_eq_of_alignedMatch_revInv hinj hnodup hd' hj₁ rfl hl₁ hm₁
+  have hstep := farSide_succ_of_positions hp₀ hp₁ (by omega) (by omega)
+  omega
+
 end Adjacent
 
 end HullSC

@@ -2766,6 +2766,13 @@ import GroupApproximation.GGT.OsinTheorem54SepSplice
 import GroupApproximation.GGT.DGORotatingQuotientRefutation
 import GroupApproximation.GGT.DGORotatingQuotientResidual
 import GroupApproximation.GGT.DGOFreeSplittingOnePoint
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyW4Adjacent
+import GroupApproximation.GGT.RelHypOsinTheorem24Final
+import GroupApproximation.GGT.HullSCRelatorSeparation2OneStep
+import GroupApproximation.GGT.RelHypOsinTheorem24Verbatim
+import GroupApproximation.GGT.HullSCConeOffCyclicReduction
+import GroupApproximation.GGT.HullSCCyclicDisjointness
+import GroupApproximation.GGT.RelHypFreeProductElementaryClosure
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

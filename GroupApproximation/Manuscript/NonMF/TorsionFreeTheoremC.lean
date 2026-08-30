@@ -11,9 +11,13 @@ import GroupApproximation.Sofic.TorsionFreeFullMFRadical
 `non_mf_groups_exist.tex`, Section "A torsion-free group with full MF radical".
 
 This module carries three items and nothing else: the printed configuration
-paragraph, an intermediate lemma that replaces the printed
-`lem:commutator-in-defect` with a version needing less input (§2 says exactly
-how the two differ), and the printed Theorem C.
+paragraph, an auxiliary variant of `lem:commutator-in-defect` that needs less
+input than the printed lemma (§2), and the printed Theorem C.
+
+The printed `lem:commutator-in-defect` itself is formalized, by the printed
+proof, in `Manuscript.NonMF.SimpleInDefect`
+(`manuscriptLemmaCommutatorInDefect`).  That is the manuscript's route and it
+is what the sentence census cites for tex 845-862.
 
 ## 1.  The compressed core and the free witness
 
@@ -24,9 +28,21 @@ The third factor `F₂` commutes with `P₁ = u₁Pu₁⁻¹`.  Hence its conjug
 The corresponding theorems are `centralizes_core`, `t_mem_compressionSet`,
 `conj_conj_witness`, `witnessRange_le_coreRange`, and `kazhdan_coreRange`.
 
-## 2.  The intermediate lemma, and how it differs from the printed one
+## 2.  An auxiliary variant of `lem:commutator-in-defect`
 
-What this module proves is the **`F`-version**:
+The manuscript's lemma is the **`S`-version**:
+
+> For every homomorphism `ρ : G₀ → Ḡ`, `ρ(S) ≤ 𝔇_Ḡ(ρ(Γ))`,
+
+with `S = tJt⁻¹` and `J ≤ G₀` a finitely presented infinite simple group, and
+its proof runs through perfectness: `[S̄,S̄] ≤ 𝔇` by the defect generators, and
+`S̄` is perfect as a quotient of the perfect `S`, so `S̄ = [S̄,S̄] ≤ 𝔇`.  That
+lemma, by that proof, is `SimpleInDefect.manuscriptLemmaCommutatorInDefect`,
+over the printed configuration `PrintedFournierFacioData`; the perfectness step
+is `commutator_simpleFactor_eq` (simple and nonabelian gives `⁅J,J⁆ = J`) and
+`commutator_map_conjFactor_eq` (the image of a perfect subgroup is perfect).
+
+What *this* module proves is a variant of the same shape, the **`F`-version**:
 
 > For every homomorphism `ρ : G₀ → L`, `ρ(π([F,F])) ≤ 𝔇_L(ρ(Γ))`.
 
@@ -37,39 +53,18 @@ equals `[ρ(π(x)),ρ(π(y))]` (`map_defect_generator_mem`,
 `commutator_mem_printedDefect`), so the image of `[F,F]` lies in the defect
 (`map_map_witnessCommutator_le_printedDefect`, in the nested-image spelling).
 
-The manuscript's `lem:commutator-in-defect` is a different statement.  It is
-the **`S`-version**:
+The variant is kept because it costs less.  It needs no simple group: only the
+free group `F₂` and one explicit nonidentity commutator to protect, so
+`Configuration` carries a `Witness` group with a `distinguished` element and no
+simplicity field at all, and the protected element is kernel-checkable in a way
+a cited simple group is not (`freeWitnessCommutator_ne_one` is a computation in
+`FreeGroup (Fin 2)`).  It is a strengthening of the printed lemma's role in the
+argument, not a replacement for the printed lemma: §3's assembly happens to run
+on it, and both feed `thm:torsion-free` identically, through a normal
+generating set inside `𝔇_Ḡ(ρ(Γ))` giving `𝔇_Ḡ(ρ(Γ)) = Ḡ`.
 
-> For every homomorphism `ρ : G₀ → Ḡ`, `ρ(S) ≤ 𝔇_Ḡ(ρ(Γ))`,
-
-where `S = tJt⁻¹` and `J ≤ G₀` is a finitely presented infinite simple group,
-and its printed proof runs through perfectness: `[S̄,S̄] ≤ 𝔇` by the defect
-generators, and `S̄` is perfect as a quotient of the perfect `S`, so
-`S̄ = [S̄,S̄] ≤ 𝔇`.  This development does not follow that proof, and the
-docstring here used to claim it did.
-
-The reason for the divergence is what the two routes cost.  The printed route
-needs `J` simple, which is a further literature input on top of Fournier-Facio's
-construction; the `F`-version needs only the free group `F₂` together with one
-explicit nonidentity commutator to protect, so `Configuration` carries a
-`Witness` group with a `distinguished` element and no simplicity field at all.
-The witness is also kernel-checkable in a way a cited simple group is not:
-`freeWitnessCommutator_ne_one` is a computation in `FreeGroup (Fin 2)`.
-
-Nothing downstream notices the difference.  Both versions feed
-`thm:torsion-free` the same way — a normal generating set inside `𝔇_Ḡ(ρ(Γ))`,
-hence `𝔇_Ḡ(ρ(Γ)) = Ḡ` — and §3 below reaches exactly the printed conclusion of
-Theorem C.
-
-The `S`-version itself is proved elsewhere in the tree, and by simplicity
-rather than by perfectness: `Manuscript.NonMF.map_simpleSubgroup_le_printedDefect`
-(`SimpleInDefect.lean`) gives `ρ(S) ≤ 𝔇(ρ(Γ))` for every `ρ`, deriving
-`S ≤ 𝔇` upstairs from `IsSimpleGroup S` plus one protected nonidentity
-commutator (`simpleSubgroup_le_defectNormal`).  It is stated over a
-`FournierFacioDefectData`, which nothing in the corpus inhabits, so it is a
-conditional formalization and the sentence census does not count it; that is
-recorded in `metadata/NON_MF_SENTENCE_MAP.tsv`, where the printed lemma's own
-sentences are left unassigned.
+Nothing here supersedes the manuscript.  Where a sentence of tex 845-862 is
+graded, it is graded against the printed-route theorems in `SimpleInDefect`.
 
 ## 3.  `thm:torsion-free` (Theorem C)
 
@@ -258,13 +253,16 @@ theorem map_map_witnessCommutator_le_printedDefect :
 
 end WitnessInDefect
 
-/-- **`lem:commutator-in-defect`, as one closed proposition.**
+/-- **The `F`-version of `lem:commutator-in-defect`, as one closed
+proposition.**
 
 > For every homomorphism `ρ : G₀ → L`, `ρ(π([F,F])) ≤ 𝔇_L(ρ(Γ))`.
 
-The printed lemma has no hypothesis on `ρ` beyond being a homomorphism: the
-superseded `lem:simple-in-defect` needed surjectivity and a nontrivial image,
-and this one needs neither. -/
+The printed lemma is the `S`-version and is carried by
+`SimpleInDefect.manuscriptLemmaCommutatorInDefect`; this is the free-witness
+variant §2 describes.  Like the printed lemma it puts no hypothesis on `ρ`
+beyond being a homomorphism, where an earlier draft's `lem:simple-in-defect`
+needed surjectivity and a nontrivial image. -/
 def PrintedWitnessCommutatorInDefect : Prop :=
   ∀ (cfg : Configuration) (L : Type) (_ : Group L) (rho : cfg.Ambient →* L),
     (commutator cfg.Witness).map (rho.comp cfg.witness) ≤

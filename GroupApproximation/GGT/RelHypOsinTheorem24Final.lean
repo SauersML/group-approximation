@@ -3,7 +3,27 @@ import GroupApproximation.GGT.RelHypOsinTheorem24Repaired
 /-!
 # The final weighted leaves: Osin's quantifier order restored
 
-Third and last generation of these statements.  The first
+## RETIRED from hypothesis position (issue #52), and not the last generation
+
+Two corrections to the paragraph below.  It was not the last generation -- a
+fourth followed, at the relative Cayley graph
+(`GGT/RelHypOsin24CayleyLeaf.lean`) -- and `OsinTheorem24Final` is refuted, by
+`GGT/RelHypOsin24Collapse.not_weightedGreendlingerLeafFinal_universal`.
+
+The quantifier diagnosis below is half right and worth keeping: the length floor
+`ρ` did have to move inside.  What it missed is that the *small-cancellation
+constant* moves too.  Osin's Lemma 5.1 reads `∀ λ, c, N. ∃ µ, ε, ρ. ∀ R`, and
+his Lemma 4.4 restricts `µ ∈ (0, 1/16]` -- note that Osin's `λ` is the
+quasi-geodesic constant and his `µ` is the small-cancellation constant, which is
+the `lam` of this file.  Here `lam` is still universally quantified, and it is
+spent at `1/7` against designs certified at `C'(1/8)`; both exceed `1/16`.
+
+None of that is repaired by a fifth generation, because the machinery was never
+the citation: **Osin's Theorem 2.4 has no small-cancellation hypothesis at
+all**.  See `GGT/RelHypOsinTheorem24.lean` for the explanation and
+`GGT/RelHypFournierFacioProp23.lean` for the route that replaces this chain.
+
+The first
 (`Sofic/OsinWeightedMetric.WeightedGreendlingerLeaf`) is refuted by
 `not_osinTheorem24`; the second (`WeightedGreendlingerLeafRepaired`) adds
 osin24's two clauses and is refuted by

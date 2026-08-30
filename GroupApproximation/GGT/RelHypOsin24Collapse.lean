@@ -4,6 +4,22 @@ import GroupApproximation.GGT.RelHypOsinTheorem24Repaired
 /-!
 # The weighted Greendlinger leaf is false at every length floor
 
+## Status (issue #52): this module stands; the chain it refutes is retired
+
+Nothing here is superseded -- `not_osinTheorem24Repaired` and
+`not_weightedGreendlingerLeafFinal_universal` are true theorems about the
+objects they name, and this file is the record of why the second and third
+generations failed.  What has changed is around it: a fourth generation followed
+(`GGT/RelHypOsin24CayleyLeaf.lean`), it is unfaithful to Osin in four further
+places, and the whole chain has been retired from hypothesis position, because
+**Osin's Theorem 2.4 has no small-cancellation hypothesis in it** and the
+machinery this chain transcribes lives inside its proof.  See
+`GGT/RelHypOsinTheorem24.lean` for that, and
+`GGT/RelHypFournierFacioProp23.lean` for the replacement route.
+
+The diagnosis below -- that the missing clause is the **alphabet** -- remains
+correct and is what the fourth generation acted on.
+
 `GGT/RelHypOsinTheorem24Refuted.lean` refutes the first generation of the
 weighted leaf with a relator that is not a geodesic word.
 `GGT/RelHypAbelianPartnerNoGo.lean` refutes the second with an abelian partner

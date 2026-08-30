@@ -11,6 +11,23 @@ words, and `LetterIsPiece` is a **syntactic** common prefix where Osin's pieces
 are subwords equal *in the group*.  This module carries the repair through to
 `FournierFacioQuotientStatement`.
 
+## RETIRED from hypothesis position (issue #52)
+
+`OsinTheorem24Repaired` is refuted by `GGT/RelHypOsin24Collapse.
+not_osinTheorem24Repaired`, and the two further generations built on it -- the
+final form here and the Cayley form of `GGT/RelHypOsin24CayleyLeaf.lean` -- are
+retired as well.  The head of the chain,
+`GGT/RelHypOsinTheorem24.lean`, carries the explanation; in one sentence,
+**Osin's Theorem 2.4 has no small-cancellation hypothesis in it**, so every
+generation of this chain transcribed §4's machinery rather than the theorem, and
+`OsinRelatorDesignRepaired` -- like its three siblings -- is a repository
+artifact and not a statement anybody has made.
+
+The route to `FournierFacioQuotientStatement` is now
+`GGT/RelHypFournierFacioProp23.lean`.  This module stays as the record of the
+repair that was attempted and of the abelian-partner obstruction, which remains
+a true theorem about the object it names.
+
 ## Why the repair is a new module and not an edit
 
 `Sofic/OsinWeightedMetric.lean` is in the root import closure and the two
