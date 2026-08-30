@@ -48,6 +48,11 @@ nonzero `K_x/J_x` and proves directly that it is bounded-trace-free by
 orthogonal replication of spectral cuts.  It also isolates the remaining
 general difficulty as neighbourhood-wise continuous selection rather than
 pointwise finite-factor comparison.
+`stw22-rank-one-scattered-fibre-gaps-are-tracefree` extends this computation
+to every locally Cantor--Bendixson-rank-one point and proves the trace
+conclusion for the trivial UHF field over compact scattered bases of height
+at most two.  On higher-rank scattered bases, it localizes any remaining
+obstruction to the second derived set.
 
 ## Attempts
 
