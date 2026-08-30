@@ -2983,3 +2983,4 @@ import GroupApproximation.GGT.DGOWindmillLoxodromic
 import GroupApproximation.GGT.DGOWindmillExhaust
 import GroupApproximation.Analysis.VoiculescuSpectralOrderBridge
 import GroupApproximation.GGT.HullEeMinimalWord
+import GroupApproximation.GGT.HullEeSplice
