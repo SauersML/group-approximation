@@ -258,6 +258,26 @@ finite `alpha`-invariant subgroups.  The two-generated shift group
 noncommuting shifted seeds, so neither the finite-kernel nor the permutation-
 wreath mechanism reaches the residual cyclic core.
 
+The whole cyclic core nevertheless has a new operator-algebraic regularity
+theorem.  `stw84-cyclic-local-finite-af-embeddable`
+proves that every `C*(K rtimes_alpha Z)` is AF-embeddable and quasidiagonal:
+amenability supplies a faithful regular trace and hence stable finiteness,
+so Brown's AF-coefficient theorem applies.  The augmentation character also
+gives the exact sequence
+
+```text
+0 -> I_K rtimes_alpha Z -> C*(K rtimes_alpha Z) -> C(T) -> 0.
+```
+
+Thus the nuclear-dimension question is concentrated in the nonunital
+augmentation-ideal crossed product; a bound `d` there gives `d+2` globally.
+Ordinary Rokhlin dimension cannot provide it, since augmentation is an
+equivariant quotient onto the trivial scalar action, whose Rokhlin dimension
+is infinite.  In the alternating-shift stress test the AF automorphism is
+even approximately inner, although one three-cycle still has infinite orbit
+hull.  Approximate innerness therefore does not recover the finite-kernel
+exhaustion.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
