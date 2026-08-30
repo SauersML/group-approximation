@@ -66,7 +66,8 @@ s=2 delta^2/kappa^2.                                   (SG2)
 
 If `delta=0`, then `x=0`; take `e_z=0` and stop. Henceforth assume
 `delta>0`. Chebyshev gives `tau(h_z)<=delta^2/kappa^2=s/2`. If
-`s>=tau(q)`, take `e_z=q`. Assume `s<tau(q)` and consider
+`s>=tau(q)`, take `e_z=q`; in the later lifting argument the base carrier
+then has trace `tau(q)`, not `s`. Assume `s<tau(q)` and consider
 
 ```text
 Phi(z)=P(h_z,q;s).                                      (SG3)
@@ -107,7 +108,7 @@ lies under `e_0`.
 
 Here is the promised close-superprojection construction. Put
 `eta_i=||(1-e_0)h_i||_2` and polar-decompose
-`e_0h_i=w_i|e_0h_i|). Its kernel projection
+`e_0h_i=w_i|e_0h_i|`. Its kernel projection
 `k_i=h_i meet (1-e_0)` satisfies
 
 ```text
@@ -128,7 +129,7 @@ v_i^*v_i=h_i,       tau(l_i)=tau(h_i),
 For the first estimate, use
 `||(supp|e_0h_i|)-|e_0h_i|||_2<=eta_i`,
 `||e_0h_i-h_i||_2=eta_i`, and
-`||k_i||_2<=eta_i); the completion on `k_i` costs at most
+`||k_i||_2<=eta_i`; the completion on `k_i` costs at most
 `2||k_i||_2`. The second estimate is
 `||v_iv_i^*-h_i||_2<=2||v_i-h_i||_2`.
 
