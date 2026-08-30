@@ -64,10 +64,11 @@ finite compact corridor is cancellation or clutching at fixed local K0; the
 soft corridor is failure of rank realization or noncompact gluing at fixed
 ideal and quasitracial data.
 
-## New circle-field theorem
+## New circle permanence and pure-field theorem
 
-Let `D` be simple, separable, stably finite, and pure.  Lin's theorem gives
-stable rank one.  A projection over `C(T,D)` is a projective-module bundle
+The reusable theorem needs less than purity.  If `D` is simple, separable,
+stable rank one, and Cu-regular, then `C(T,D)` is Cu-regular.  A projection
+over `C(T,D)` is a projective-module bundle
 obtained by clutching a fixed fiber module around the circle.  Stable rank
 one does two jobs:
 
@@ -86,8 +87,10 @@ V(C(T,D)) disjointUnion Lsc_nc(T,Cu(D)).
 
 The compact term is `{0} disjointUnion V(D)^* times K_1(D)` and is preserved
 by the `V` and `K_1` isomorphisms for `D->D tensor Z`.  The noncompact term
-is preserved pointwise by the already known fiber Cu isomorphism.  Hence
-`C(T,D)` is Cu-regular.
+is preserved pointwise by the assumed fiber Cu isomorphism.  Hence
+`C(T,D)` is Cu-regular.  For a simple separable stably finite pure `D`, Lin
+supplies stable rank one and STW Proposition 23 supplies fiber Cu-regularity,
+giving the stated Problem LXXVI positive class.
 
 Taking `D=C*_r(F_2)` gives a non-simple exact nonnuclear circle field that is
 Cu-regular but not Z-stable.  This also shows that circle monodromy itself is
