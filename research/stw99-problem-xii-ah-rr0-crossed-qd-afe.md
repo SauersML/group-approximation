@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw99-xi-xii-dynamics-qd-2026-08-30.md
   - research/artifacts/stw12-periodic-action-af-embedding-audit-2026-08-30.md
   - research/artifacts/stw12-periodic-factor-decomposition-audit-2026-08-30.md
+  - research/artifacts/stw12-faithful-invariant-trace-criterion-audit-2026-08-30.md
 ---
 
 **Problem XII of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Let
@@ -40,6 +41,25 @@ projection-rich algebras), so the expected route is a
 Brown-incompressibility criterion on `(K_0(A), K_0(A)_+, α_*)` plus the
 Elliott-classification of the coefficients.  No general theorem beyond the
 problem statement is recorded in the literature ingested here.
+
+There is now an exact criterion for the stronger conclusion of embedding
+into a unital simple AF algebra, valid without real rank zero.
+`stw12-faithful-invariant-trace-af-criterion` proves for every separable
+unital AH algebra and arbitrary automorphism that
+
+```text
+A rtimes_alpha Z embeds into a unital simple AF algebra
+iff A has a faithful alpha-invariant tracial state.
+```
+
+The crossed product is nuclear and UCT, so the simple-AF embedding theorem
+reduces this stronger conclusion to a faithful trace; the canonical
+conditional expectation identifies such traces with faithful invariant
+coefficient traces.  Hence Problem XII is positive whenever its
+quasidiagonal crossed product is simple.  For a nonsimple crossed product,
+faithful invariant trace support is sufficient but not known to be
+necessary for ordinary AF-embeddability: embedding into a nonsimple AF
+algebra need not produce a faithful trace.
 
 There is now an aperiodic decomposable slice beyond AF coefficients.
 `stw12-periodic-factor-decomposable-actions-are-af-embeddable` treats
