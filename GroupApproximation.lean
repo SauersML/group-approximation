@@ -2726,6 +2726,7 @@ import GroupApproximation.GGT.OsinTheorem54SepFourGonBridge
 import GroupApproximation.Analysis.VoiculescuSequentialUnit
 import GroupApproximation.Analysis.VoiculescuStrongToNorm
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyW4
+import GroupApproximation.GGT.OsinTheorem54SepLemma45
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
