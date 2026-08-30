@@ -122,7 +122,7 @@ theorem existsHypEmbeddedConeOff₂_of_zpowers
     ExistsHypEmbeddedConeOff₂.{u} := by
   intro G _ A N hN
   obtain ⟨g, hgN, hglox, hind, hembK⟩ := hemb A hN
-  refine ⟨fun b => Subgroup.zpowers (g b), ?_, hembK, g, ?_, hglox, hind, ?_⟩
+  refine ⟨fun b => Subgroup.zpowers (g b), ?_, hembK, g, ?_, hglox, ?_⟩
   · intro b
     exact Subgroup.zpowers_le.mpr (hgN b)
   · intro b

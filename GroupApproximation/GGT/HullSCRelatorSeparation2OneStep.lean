@@ -47,8 +47,8 @@ universe u
 /-- **Hull's Theorem 7.1 at `m = 1`, from his Theorem 5.1 over a pair.**
 
 The one-subgroup version is `HullSC.hullOneStep_of_theorem51`, and this differs
-from it only in where the hyperbolically embedded data comes from: a pair with
-independent loxodromic elements and Hull's (W4) disjointness, rather than a
+from it only in where the hyperbolically embedded data comes from: a pair of
+subgroups with loxodromic elements and Hull's (W4) disjointness, rather than a
 single subgroup.  The proof after that is identical, because
 `HullFillingQuotient` does not mention the index type. -/
 theorem hullOneStep_of_theorem51₂ (hEmb : ExistsHypEmbeddedConeOff₂.{u})

@@ -65,7 +65,6 @@ def HypEmbeddedCore₂.ofConeOff {G : Type u} [Group G] {A : HullGeneratingSet G
     (hemb : (coneOffFamily A.alphabet K).IsHyperbolicallyEmbedded)
     (g : Bool → G) (hgK : ∀ b : Bool, g b ∈ K b)
     (hglox : ∀ b : Bool, IsLoxodromic (g b) (Cayley.base A.alphabet))
-    (hind : Independent (g false) (g true) (Cayley.base A.alphabet))
     (hdisj : ∀ x : G, x ∈ K false → x ∈ K true → x = 1) :
     HypEmbeddedCore₂ A N where
   rel := coneOffFamily A.alphabet K
@@ -77,19 +76,24 @@ def HypEmbeddedCore₂.ofConeOff {G : Type u} [Group G] {A : HullGeneratingSet G
   lox := g
   lox_mem := hgK
   lox_isLoxodromic := hglox
-  lox_independent := hind
   disjoint := hdisj
 
 /-- **Hull, Corollary 5.7 with Lemma 5.8, for a pair.**
 
 > A suitable subgroup contains two subgroups whose cone-off over Hull's alphabet
-> is hyperbolically embedded and which contain independent loxodromic elements.
+> is hyperbolically embedded and which contain loxodromic elements.
 
-The independence clause is what puts the two elements in different members of
-the family, and so is what keeps consecutive letters of Hull's relator in
-different components (`HullSC.isComp_relatorWord₂`).  Without it the pair
-degenerates to the single-subgroup case that
-`HullSC.not_quasiGeodesic_relatorWord` refutes.
+Hull's own statement asks those elements to be INDEPENDENT, and this clause used
+to.  It is gone because nothing consumes it: what keeps consecutive letters of
+the relator in different components is `HullSC.isComp_relatorWord₂`, which reads
+the alternating index `blockWord` writes and never looks at the elements; and
+what the clause was kept for beyond that, excluding the degenerate pair the
+single-subgroup case `HullSC.not_quasiGeodesic_relatorWord` refutes, the last
+clause gives more sharply --- `HullSC.H_ne_of_disjoint₂`.  The producers still
+HAVE independence and still use it, at the one place it does work: discharging
+the last clause (`HullSC.existsHypEmbeddedConeOff₂_of_zpowers` through
+`GGT.Elementary.zpowers_disjoint_of_independent`).  Asking for it here as well
+made the citation carry a hypothesis its consumers never read.
 
 The last clause is Hull's (W4), that the two subgroups meet trivially.  It is
 part of what §5 delivers --- Corollary 5.7 gives `E(hᵢ) = ⟨hᵢ⟩` and
@@ -102,16 +106,15 @@ def ExistsHypEmbeddedConeOff₂ : Prop :=
         (coneOffFamily A.alphabet K).IsHyperbolicallyEmbedded ∧
           ∃ g : Bool → G, (∀ b : Bool, g b ∈ K b) ∧
             (∀ b : Bool, IsLoxodromic (g b) (Cayley.base A.alphabet)) ∧
-              Independent (g false) (g true) (Cayley.base A.alphabet) ∧
-                ∀ x : G, x ∈ K false → x ∈ K true → x = 1
+              ∀ x : G, x ∈ K false → x ∈ K true → x = 1
 
 /-- **The structured leaf follows from the plain one**, through
 `HypEmbeddedCore₂.ofConeOff`. -/
 theorem nonempty_hypEmbeddedCore₂_of_coneOff (h : ExistsHypEmbeddedConeOff₂.{u})
     {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G}
     (hN : Suitable A.alphabet N) : Nonempty (HypEmbeddedCore₂ A N) := by
-  obtain ⟨K, hle, hemb, g, hgK, hglox, hind, hdisj⟩ := h A hN
-  exact ⟨HypEmbeddedCore₂.ofConeOff K hle hemb g hgK hglox hind hdisj⟩
+  obtain ⟨K, hle, hemb, g, hgK, hglox, hdisj⟩ := h A hN
+  exact ⟨HypEmbeddedCore₂.ofConeOff K hle hemb g hgK hglox hdisj⟩
 
 end HullSC
 end GroupApproximation

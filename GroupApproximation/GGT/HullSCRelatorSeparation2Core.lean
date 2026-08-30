@@ -10,6 +10,13 @@ spanning a single edge.  Hull's own relator is built from **independent**
 loxodromic elements, which is to say from two members of the family, so the
 faithful structure carries both.
 
+What it does NOT carry is the independence clause itself.  Nothing in the chain
+consumes it --- the relator's alternation is syntactic, `blockWord` labelling
+consecutive letters with opposite indices whatever the two elements are --- and
+what the clause was kept for, excluding the degenerate pair `H false = H true`,
+Hull's (W4) does more sharply: `HullSC.H_ne_of_disjoint₂` derives it from the
+disjointness and a loxodromic element being nontrivial.
+
 `HypEmbeddedCore₂` is that structure, and the lemmas here are what the relator
 built on it needs: what it names, what its letters are, and that the element it
 spells beyond `t⁻¹` lies in `N`.
@@ -27,8 +34,8 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 universe u
 
 /-- **The two hyperbolically embedded subgroups Hull's relator alternates
-between**, over Hull's own alphabet, with the two independent loxodromic
-elements whose powers are the relator's letters. -/
+between**, over Hull's own alphabet, with the two loxodromic elements whose
+powers are the relator's letters. -/
 structure HypEmbeddedCore₂ {G : Type u} [Group G] (A : HullGeneratingSet G)
     (N : Subgroup G) where
   /-- The relative generating set, with Hull's alphabet as its base. -/
@@ -49,10 +56,6 @@ structure HypEmbeddedCore₂ {G : Type u} [Group G] (A : HullGeneratingSet G)
   lox_mem : ∀ b : Bool, lox b ∈ H b
   /-- Each is loxodromic on `Γ(G,A)`. -/
   lox_isLoxodromic : ∀ b : Bool, IsLoxodromic (lox b) (Cayley.base A.alphabet)
-  /-- They are independent, which is what puts them in different members of the
-  family and so keeps consecutive letters of the relator in different
-  components. -/
-  lox_independent : Independent (lox false) (lox true) (Cayley.base A.alphabet)
   /-- **Hull's (W4): the two subgroups meet trivially.**
 
   In Hull's §5 this is not an assumption but a consequence: Corollary 5.7 gives
@@ -84,6 +87,20 @@ theorem injective_pow_lox₂ (E : HypEmbeddedCore₂ A N) (b : Bool) :
     Function.Injective (fun n : ℕ => E.lox b ^ n) :=
   injective_pow_of_not_isOfFinOrder
     (not_isOfFinOrder_of_isLoxodromic (E.lox_isLoxodromic b))
+
+/-- **The two subgroups are distinct**, which is what the independence clause
+used to be kept for and what (W4) gives outright: were they equal, the first
+loxodromic element would lie in both, so `disjoint` would make it trivial, and a
+loxodromic element has infinite order. -/
+theorem H_ne_of_disjoint₂ (E : HypEmbeddedCore₂ A N) : E.H false ≠ E.H true := by
+  intro hEq
+  have hmem : E.lox false ∈ E.H true := by
+    rw [← hEq]
+    exact E.lox_mem false
+  have h1 : E.lox false = 1 := E.disjoint _ (E.lox_mem false) hmem
+  refine not_isOfFinOrder_of_isLoxodromic (E.lox_isLoxodromic false) ?_
+  rw [h1]
+  exact IsOfFinOrder.one
 
 end Core
 

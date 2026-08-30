@@ -19,13 +19,18 @@ choice.
 `HypEmbeddedCore₂.powCore` is the replacement, and it costs nothing: the
 relative generating set, the family, and the hyperbolic embedding are untouched
 -- only the two distinguished elements change.  A positive power of a loxodromic
-is loxodromic (`HullGeometry.isLoxodromic_pow`) and independence is inherited by
-powers, so all three clauses about the elements survive.
+is loxodromic (`HullGeometry.isLoxodromic_pow`), so both clauses about the
+elements survive, and (W4) is about the subgroups rather than the elements, so
+it is carried unchanged.
 
 `independent_pow₂` is proved here rather than imported: the corresponding lemma
 lives in a module under active repair, and the proof is three lines from the
 definition -- the Gromov products of the power-orbits of `a^k` and `b^l` are
-among those of `a` and `b`, so the same constant serves.
+among those of `a` and `b`, so the same constant serves.  Since the independence
+clause left `HypEmbeddedCore₂` it has no consumer in the tree; it is kept
+because it is a fact about `Independent` and not about this construction, and
+because the clause is still what discharges (W4) at the cyclic-reduction
+interface.
 -/
 
 namespace GroupApproximation
@@ -72,7 +77,6 @@ def HypEmbeddedCore₂.powCore (E : HypEmbeddedCore₂ A N) {M : ℕ} (hM : 0 < 
   lox := fun b => E.lox b ^ M
   lox_mem := fun b => pow_mem (E.lox_mem b) M
   lox_isLoxodromic := fun b => isLoxodromic_pow (E.lox_isLoxodromic b) hM
-  lox_independent := independent_pow₂ E.lox_independent M M
 
 @[simp]
 theorem HypEmbeddedCore₂.powCore_lox (E : HypEmbeddedCore₂ A N) {M : ℕ}
