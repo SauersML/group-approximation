@@ -31,7 +31,12 @@ Hence `Q_omega` is nonzero.
 Every bounded trace on `Q_omega` kills these cofinal clopen projection
 packets: their shrinking factor traces permit arbitrarily many orthogonal
 equivalent copies, implemented by clopen-constant partial-isometry sections.
-Therefore the nonzero quotient itself is not evidence for a counterexample.
-A singular trace, if one exists, must detect an element whose norm support
-jumps through unbounded Cantor--Bendixson ranks in a way not reducible to
-clopen projection packets.
+Thus the nonzero quotient itself is not evidence for a counterexample.
+
+The subsequent theorem
+`stw22-zero-dimensional-trivial-field-trace-continuity` closes the stronger
+support-jumping case as well: square-root-weighted embeddings into fixed
+factor corners admit continuous selection over a zero-dimensional base.
+Consequently `Q_omega` is bounded-trace-free.  The present audit records the
+genuine nonzero residual quotient left by finite derivative reduction, not
+an unresolved trace on that quotient.

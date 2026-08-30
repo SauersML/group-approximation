@@ -59,5 +59,8 @@ are nonzero, but every bounded positive trace on `Q_omega` annihilates it.
 Thus a negative answer at the first limit rank cannot be obtained from a
 cofinal packet of shrinking clopen projections.
 
-This theorem isolates rather than eliminates `Q_omega`; it does not claim a
-solution of Problem XXII at limit Cantor--Bendixson rank.
+The construction above isolates rather than by itself eliminates
+`Q_omega`.  The subsequent weighted-selection theorem
+`stw22-zero-dimensional-trivial-field-trace-continuity` proves that this
+residual quotient is bounded-trace-free; the present theorem records why
+finite derivative reduction alone could not show that.
