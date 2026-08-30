@@ -2967,3 +2967,4 @@ import GroupApproximation.GGT.HullEeOneStep
 import GroupApproximation.GGT.DGOAssemblyHalves
 import GroupApproximation.GGT.DGOAssemblyCuts
 import GroupApproximation.GGT.DGOAssemblyVertices
+import GroupApproximation.Analysis.VoiculescuGlimmEssentialValue
