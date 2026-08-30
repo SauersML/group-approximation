@@ -6,6 +6,7 @@ title: Regular-table local H1 triviality restates the spherical local-gauge conc
 invalidates:
   - regular-table-local-h1-gives-spherical-gauge
 distinct_from:
+  regular-table-defects-are-short-edge-h1-trivial: that is the OPEN local-H1 assertion itself; this is the established metaclaim that the assertion is equivalent to the target and cannot be used as an independent premise.
   ambient-h1-triviality-need-not-be-short-edge-local: that gives a finite obstruction to deriving local gauges from ambient compatibility; this identifies the proposed regular-table local-H1 premise with the desired local-gauge conclusion itself.
   short-edge-gauge-torsor-h1-vanishes: that is a quantitative bounded-filling theorem conditional on local triviality; this result concerns the qualitative existence assertion already contained in that premise.
 artifacts:
