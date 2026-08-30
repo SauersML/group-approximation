@@ -117,6 +117,17 @@ theorem Between.trans_right {c z w x : X} (h1 : Between c z x)
   have hlow : dist c x ≤ dist c w + dist w x := dist_triangle c w x
   linarith
 
+/-- **The near part of two nested between relations is itself between.**
+If `z` is between `c` and `x` and `w` is between `z` and `x`, then `z` is
+between `c` and `w`.  Together with `Between.trans_right`, this says the two
+exact metric segments concatenate in their forced order. -/
+theorem Between.prefix_of_trans_right {c z w x : X} (h1 : Between c z x)
+    (h2 : Between z w x) : Between c z w := by
+  unfold Between at h1 h2 ⊢
+  have hcw : dist c w ≤ dist c z + dist z w := dist_triangle c z w
+  have hlow : dist c x ≤ dist c w + dist w x := dist_triangle c w x
+  linarith
+
 /-- **Betweenness composes towards the near end.**  If `z` is between `c` and
 `x` and `p` is between `c` and `z`, then `p` is between `c` and `x`.
 
@@ -184,6 +195,38 @@ theorem gromovProduct_eq_of_between {c z x : X} (h : Between c z x) :
   unfold gromovProduct
   rw [dist_comm z c, dist_comm x c, h]
   ring
+
+/-- **The Gromov product based at a point between the two endpoints is zero.** -/
+theorem gromovProduct_eq_zero_of_between {x p y : X} (h : Between x p y) :
+    gromovProduct x y p = 0 := by
+  unfold Between at h
+  unfold gromovProduct
+  rw [dist_comm y p, h]
+  ring
+
+/-- **The nearby point can be taken at the exact distance parameter.**
+
+If `p` is between `x` and `y`, the distinguished parameter in
+`dist_le_gromovProduct_add` simplifies to `dist x p`.  This stronger form is
+what lets the reduced-list proof order all developed apices on one caller-owned
+geodesic without making any choices or concatenating parametrisations. -/
+theorem dist_geodesic_at_between_parameter_le {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) {x p y : X} (hp : Between x p y)
+    {f : ℝ → X} (hf : IsGeodesicSegment f 0 (dist x y))
+    (hf0 : f 0 = x) (hf1 : f (dist x y) = y) :
+    dist p (f (dist x p)) ≤ 2 * δ := by
+  have hmem : dist x p ∈ Set.Icc (0 : ℝ) (dist x y) :=
+    ⟨dist_nonneg, hp.dist_le_left⟩
+  have hparameter :
+      2 * dist x p = dist x p - dist y p + dist x y := by
+    have hp' := hp
+    unfold Between at hp'
+    rw [dist_comm y p, hp']
+    ring
+  have hnear := dist_le_gromovProduct_add hδ hf hf0 hf1 p
+    hmem.1 hmem.2 hparameter
+  rw [gromovProduct_eq_zero_of_between hp, zero_add] at hnear
+  exact hnear
 
 /-- The Gromov product read off a distance: `d(p,q) = d(c,p) + d(c,q) - 2(p|q)_c`. -/
 theorem dist_eq_of_gromovProduct (c p q : X) :

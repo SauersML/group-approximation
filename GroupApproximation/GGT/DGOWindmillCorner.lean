@@ -186,5 +186,18 @@ theorem between_of_corner_of_between {x x' c w : X} (hxc : Between x c w)
   have hcx' : dist c x' = dist x' c := dist_comm c x'
   linarith
 
+/-- **The corner also survives moving the outgoing point inwards.**
+
+Together with `between_of_corner_of_between`, this peels both boundary pieces
+of a reduced windmill word: an endpoint on the excluded spoke is moved out to
+its foot in the reference set for the corner argument, then moved back in by
+this metric prefix calculation. -/
+theorem between_of_corner_of_between_right {x c w' w : X}
+    (hxc : Between x c w) (hw' : Between c w' w) : Between x c w' := by
+  unfold Between at hxc hw' ⊢
+  have h1 : dist x w' ≤ dist x c + dist c w' := dist_triangle x c w'
+  have h2 : dist x w ≤ dist x w' + dist w' w := dist_triangle x w' w
+  linarith
+
 end DGOWindmill
 end GroupApproximation

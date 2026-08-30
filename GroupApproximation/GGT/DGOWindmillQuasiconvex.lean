@@ -245,7 +245,7 @@ the three sides, the two outer sides have length at most `r` and so lie in
 `Q`.  That last inclusion is the only use of `σ ≤ r`, and it is what makes the
 constant independent of `r`.
 
-It is applied at `W' = W₂^{+15δ}` and at `W^{+10δ}` in the growth step, where a
+It is applied at `W' = W₂^{+18δ}` and at `W^{+10δ}` in the growth step, where a
 constant depending on the thickness would break the induction. -/
 theorem isQuasiconvexSet_thicken {δ σ r : ℝ} (hδ : IsHyperbolicSpace δ X)
     (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X) {Q : Set X}

@@ -42,11 +42,13 @@ DGO's Definition 5.11 has five clauses.  Two of them are not carried here.
 
 `HullGeometry.IsHyperbolicSpace δ` is the four-point condition, whose triangles
 are `3δ`-thin.  So `quasiconvex` asks for `6δ` where DGO ask for `4δ`, and `far`
-asks for `55δ` where DGO ask for `50δ`.  The growth step's budget, checked
-end to end before any of this was written, is: new apices are collected out to
-`75δ`, the unfolded windmill is `15δ`-quasiconvex, and `W' = W₂^{+15δ}`, which
-leaves apices outside `W'` at distance at least `75δ - 15δ = 60δ`, clearing the
-`55δ` that `far` demands.
+asks for `55δ` where DGO ask for `50δ`.  The proved growth-step budget collects
+new apices out to `76δ`, puts an apex not collected at least `75δ` from the
+spoke set, and takes the candidate next windmill to be `W' = W₂^{+18δ}`.  Thus
+the eventual orbit estimate must leave at least `75δ - 18δ = 57δ`, clearing the
+`55δ` that `far` demands.  The corresponding bound and uniform quasiconvexity
+for the whole unfolded orbit `W₂` remain open; these constants are not a
+completed growth theorem until those proofs land.
 
 ## Model tests
 
@@ -110,6 +112,7 @@ theorem windmillGroup_le {C : Set X} {Rot : X → Subgroup G} {W : Set X}
   obtain ⟨c, hc, hcW, hgr⟩ := hg
   exact h c hc hcW hgr
 
+omit [PseudoMetricSpace X] [MulAction G X] in
 theorem windmillGroup_mono {C : Set X} {Rot : X → Subgroup G} {W W' : Set X}
     (hWW : W ⊆ W') : windmillGroup C Rot W ≤ windmillGroup C Rot W' := by
   refine windmillGroup_le ?_
@@ -118,6 +121,7 @@ theorem windmillGroup_mono {C : Set X} {Rot : X → Subgroup G} {W W' : Set X}
   intro g hg
   exact mem_windmillGroup hc (hWW hcW) hg
 
+omit [PseudoMetricSpace X] [MulAction G X] in
 /-- Every rotation at an apex of `W` lies in the subgroup the rotations
 generate, so `G_W` is contained in the whole rotation closure. -/
 theorem windmillGroup_le_rotationNormalClosure {C : Set X}
@@ -193,6 +197,7 @@ theorem eq_of_mem_closedBall_of_isSeparated {δ ρ : ℝ} (hδ : 0 < δ)
   have h : dist c c₀ ≤ 100 * δ := Metric.mem_closedBall.mp hmem
   linarith
 
+omit [MulAction G X] in
 /-- **The windmill group of the base ball is the rotation subgroup of its
 centre.** -/
 theorem windmillGroup_closedBall_le {δ ρ : ℝ} (hδ : 0 < δ) (hρ : 200 * δ ≤ ρ)

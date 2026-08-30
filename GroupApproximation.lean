@@ -2960,6 +2960,7 @@ import GroupApproximation.GGT.RelHypSuitabilityClosure
 import GroupApproximation.GGT.HullYiStatements
 import GroupApproximation.GGT.HullYiConeOffReduction
 import GroupApproximation.GGT.DGOWindmillCyclic
+import GroupApproximation.GGT.DGOWindmillTheorem53
 import GroupApproximation.GGT.DGOPolygonCutFamily
 import GroupApproximation.GGT.DGOSumBoundFinite
 import GroupApproximation.GGT.HullSCConeOffHeavyEndpointBridge
