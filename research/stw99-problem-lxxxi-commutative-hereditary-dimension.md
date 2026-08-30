@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw81-type-i-frontier-2026-08-30.md
+  - research/artifacts/stw81-zero-dimensional-simple-field-audit-2026-08-30.md
 ---
 
 **Problem LXXXI of Schafhauser--Tikuisis--White.**  Let `A` be a C-star
@@ -110,6 +111,23 @@ LXXXI shadow hypothesis automatic.  This includes every Toeplitz--Cuntz
 algebra `T_n`, `2<=n<infinity`.  Fullness, stability of the ideal, and
 O-infinity-stability of the quotient are essential hypotheses of the
 imported theorem; no instance of Problem LXXXII is assumed.
+
+A new infinite-ideal field class is now closed as well.
+`stw81-zero-dim-simple-fields-obey-trichotomy`
+proves that a separable locally trivial field over a zero-dimensional base
+with simple nuclear fibres has nuclear dimension equal to the supremum of
+the fibre dimensions, hence `0`, `1`, or `infinity`.  Its commutative
+hereditary shadows are automatically zero-dimensional.  The mechanism is
+clopen colour reuse: a disjoint clopen refinement reduces the algebra to
+AF-base tensors of the simple fibres, without an extension-gluing colour.
+
+There is also a sharp warning against using the whole primitive spectrum.
+`stw81-shadow-hypothesis-does-not-bound-primitive-spectrum` shows that
+`C_0(X) tensor O_2` has primitive spectrum `X` and nuclear dimension one,
+but no nonzero commutative hereditary subalgebra in any quotient.  Thus
+`dim Prim(A)` can be infinite under the strongest possible shadow bound.
+Only the type-I loci, and their boundary interaction with non-type-I
+strata, are visible to the hypothesis.
 
 The relationship is now internal and witness-level:
 `stw81-finite-ideal-counterexample-forces-lxxxii-counterexample` proves that
