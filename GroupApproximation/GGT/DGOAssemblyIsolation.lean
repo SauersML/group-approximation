@@ -628,9 +628,13 @@ theorem chordTraversalCost_le_length_mul {partners : List ℕ} {L : ℕ}
               omega
           have htail : chordTraversalCost (y :: ys) ≤ (y :: ys).length * L :=
             ih (fun z hz => hupper z (by simp [hz]))
-          simp only [chordTraversalCost, List.length_cons]
-          rw [Nat.add_mul]
-          omega
+          calc
+            chordTraversalCost (x :: y :: ys) =
+                Nat.dist x y + chordTraversalCost (y :: ys) := rfl
+            _ ≤ L + (y :: ys).length * L := Nat.add_le_add hdist htail
+            _ = (x :: y :: ys).length * L := by
+              simp only [List.length_cons]
+              ring
 
 /-- **Quadratic traversal from the data supplied by the chord construction.**
 
