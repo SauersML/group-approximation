@@ -2,10 +2,12 @@
 rg: 2
 id: dyadic-rordam-tower-realizes-finite-car-corner
 kind: claim
+refuted_by: [uniformly-doubled-rordam-steps-force-proper-infiniteness]
 title: A step-dependent Rordam tower with sparse paired steps gives a simple infinite algebra with a unital CAR of finite projections
 distinct_from:
   stw99-lxvi-finite-car-corner-with-infinite-double: that is the abstract construction target (a finite simple CAR-containing algebra with infinite double); this is a specific candidate construction of it inside a Rordam-style inductive limit of multiplier algebras, with an explicit multiset calculus and a verification ledger.
   stw99-lxvi-car-stabilization-destroys-finite-seed: that kills the tensorial insertion of the CAR; this construction inserts the CAR non-tensorially, as dyadic halvings of an evolving direct-sum projection, and is not covered by that obstruction.
+  dyadic-rordam-identical-pairing-destroys-sdr: that gives the elementary finite Hall obstruction to this design's V4 ledger; the present node records the now-refuted construction proposal.
 artifacts:
   - research/artifacts/stw99-lxvi-dyadic-rordam-design-2026-08-30.md
 ---
@@ -45,7 +47,17 @@ per-copy private representatives.
 
 ## Attempts
 
-Status: DESIGNED, NOT YET ESTABLISHED.  The remaining verifications, each
+Status: REFUTED AS DESIGNED, same day —
+`uniformly-doubled-rordam-steps-force-proper-infiniteness` proves the
+paired-step halving mechanism forces `Q_1 ~ 1`: sets diverging at an early
+step keep bounded early parts while shared tails and multiplicities grow,
+and rank then beats half the dimension, embedding a trivial line (the
+(V4) risk was real and fatal).  The claim is kept as the record of the
+design; the surviving direction is the higher-rank Euler-divisibility
+tower sketched in the no-go node and the dossier: blocks `η_m` with
+`η_m ≅ 2·η_{m+1}` and `e(η_m) ≠ 0`, whose Euler classes must be classes
+with all 2-power roots nonvanishing (these exist in the ring; bundle
+realizability over the dynamics is the open crux).  Original ledger:  The remaining verifications, each
 expected to mirror Rørdam §5 line by line, are itemised in the artifact:
 (V1) the step-map analogues of Proposition 5.2(i)-(ii) (fullness engine
 via doubled-singleton tensor branches replacing the `j ≤ 0` relabeling
@@ -55,3 +67,11 @@ for decoupled branch data; (V4) the SDR ledger at paired steps (two
 disjoint transversal systems per doubling, private-element counting);
 (V5) the limit-finiteness transfer (Prop 2.3 corners).  No step is
 expected to need a new idea; the risk concentrates in (V4).
+
+There is also an earlier, schedule-independent failure:
+`dyadic-rordam-identical-pairing-destroys-sdr`.  Along one fixed branch
+history, infinitely many singleton seeds have sets `C union {u_i}` with
+only one seed-private coordinate.  An identical branch pair produces two
+copies of `C' union {v_i}`; taking both copies for `N>|C'|` seeds gives a
+Hall-deficient sublist.  Thus neither a larger finite `h(n)` nor sparser
+paired steps can repair V4.

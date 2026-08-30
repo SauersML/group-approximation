@@ -13,6 +13,15 @@ with three deviations: step-dependent connecting maps, decoupled branch
 data, and sparse paired steps.  Nuclearity is NOT claimed and is not
 required by the problem.
 
+**Audit status: refuted.**  Section 3's private-coordinate induction is
+false.  The short, decisive obstruction is recorded in
+`dyadic-rordam-identical-pairing-destroys-sdr` and the audit artifact
+`stw99-lxvi-dyadic-rordam-v4-audit-2026-08-30.md`: one fixed branch history
+across infinitely many singleton seeds has only one private coordinate per
+seed, so an identical branch pair violates Hall for a sufficiently large
+finite sublist.  Sections 1--6 below are retained as the proposal being
+audited, not as established assertions.
+
 ## 0. Rørdam machinery reused verbatim
 
 `Z = (S²)^∞`, `A = C(Z) ⊗ K`, `M(A)` its multiplier algebra; `p_n`, `p_I`
@@ -100,6 +109,10 @@ level-`k` diagonal projections equivalent to `Q_k`.
 
 ## 3. Finiteness of `Q_1` (hence of every `Q_k`)
 
+**False ledger (retained for diagnosis).**  Fresh tensor coordinates are
+branch-private, not seed-private.  The displayed induction below is
+invalid; see the audit notice above and Section 7.
+
 Multiset ledger.  At stage `n` the seed's class is a multiset `M^{(n)}`
 of finite subsets of `N`; by induction:
 
@@ -178,3 +191,56 @@ infinite; the fallback is to slow the paired-step schedule, which only
 thins the CAR levels' realisation stages, never blocks them.  The
 structural risk is therefore low but nonzero; the claim node stays OPEN
 until the ledger is written in full.
+
+**Superseded by the audit:** the failure is unavoidable, not low-risk.
+At the first paired step, following one fixed earlier branch history over
+the infinite singleton seed gives an explicit Hall-deficient finite
+sublist.  Slower schedules and larger finite tensor blocks do not help.
+
+## 7. POST-MORTEM (same day): the design is refuted, and what survives
+
+The (V4) risk was fatal, in the strong sense: not only does the SDR
+certificate fail, the projection really becomes properly infinite.
+Fix a stage `n` after `c` paired steps and `m` histories agreeing except
+at step 1.  Their sets are `S_j = T ⊔ u_j` (common relabelled tail `T`,
+where the histories use (C2) step-1 branches, so the early parts satisfy
+`|u_j| ≤ 2`: at most one surviving seed coordinate plus the singleton
+`I_beta`), each of multiplicity `2^c`.  The family's subbundle is
+`ζ_T ⊗ (⊕_j 2^c ζ_{u_j})` of rank `2^c m` over a base of half-dimension
+`|T| + Σ|u_j| ≤ |T| + 2m`; once `2^c > 2` and
+`m > |T|/(2^c − 2)`, rank exceeds half-dimension,
+all obstructions to a nowhere-zero section of the `ζ_T^{-1}`-twist vanish,
+and `g ≾ Q_1`.  Partitioning the step-1 branches yields infinitely many
+disjoint such families.  Taking the strict orthogonal sum of the resulting
+rank-one subprojections and applying Lemmas 4.2--4.3 gives
+`1 ~ ⊕^∞ g ≾ Q_1` and `Q_1 ~ 1`.
+Recorded as `uniformly-doubled-rordam-steps-force-proper-infiniteness`.
+
+Moral: in the line-bundle calculus, the SDR/Euler finiteness boundary
+(`multiplicity ≤ private size`, i.e. rank ≤ half-dimension) coincides with
+the section-existence boundary (rank > half-dimension), so every uniform
+divisibility or absorption device crosses from the finite to the properly
+infinite side.  Dyadic structure must therefore be carried by the
+building blocks, not by multiplicities:
+
+**Surviving programme (the ε-tower).**  Seek bundles `η_1, η_2, …` with
+`η_m ≅ η_{m+1} ⊕ η_{m+1}` and `e(η_m) ≠ 0` for all `m`.  Then
+`e(η_1) = e(η_m)^{2^{m−1}}`, so `e(η_m)` must be a class whose all
+2-power powers are nonvanishing.  Such classes exist in
+`H^*((S²)^∞; Z)`: for `ε_T = Σ_{t=1}^{T} x_{2t−1} x_{2t}` (disjoint
+quadratic monomials), `ε_T^r = r! · Σ_{|F|=r} Π_{t∈F} μ_t ≠ 0` for
+`r ≤ T`, and the ring is torsion-free.  The open crux is realizability:
+a rank-`2^{K−m}` bundle `η_m` with `e(η_m) = ε_{T_m}`-type classes and
+`η_m ≅ 2·η_{m+1}` — note `e(2ξ) = e(ξ)²` requires
+`e(η_{m+1})² = e(η_m)`, i.e. square ROOTS going up the tower, and
+`(Σ_t μ_t)² = 2! Σ_{t<t'} μ_t μ_{t'}`: the even coefficients force the
+root classes to have unit coefficients and the squared classes even ones,
+which is consistent (`ε` squared has coefficient `2` monomials; Euler
+classes of sums of two equal bundles are exactly such squares).  The
+finiteness certificate must be redeveloped for higher-rank blocks
+(products of `ε`-type classes instead of Prop 3.2), and the dynamics must
+tensor by the `η`-blocks.  Whether the Chern data `(rank 2^{K−m},
+e = ε_{T_m})` is realizable over products of spheres, compatibly with
+`η_m ≅ 2η_{m+1}`, is precisely where Problem LXVI now sits in this
+approach; symplectic/orthogonal structures on `η` (which force even
+splittings) are the natural candidate source.
