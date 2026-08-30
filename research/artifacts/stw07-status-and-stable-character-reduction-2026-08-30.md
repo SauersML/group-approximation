@@ -86,3 +86,32 @@ the two types may vary with the finite set.
 This argument applies in particular to injective directed limits.  It does
 not apply to arbitrary noninjective connecting maps: images are quotients,
 and quasidiagonality is not quotient-permanent.
+
+## Finite surjective pullback permanence
+
+There is a complementary quotient-coordinate gluing mechanism.  Given a
+pullback `P=B fiber_product_C D` with `B->C` surjective, projection onto `D`
+gives
+
+```text
+0 -> ker(B->C) -> P -> D -> 0.
+```
+
+Thus nuclearity follows from nuclearity of `B` and `D`.  At the same time the
+defining coordinate map embeds `P` into `B direct_sum D`; quasidiagonality and
+stable finiteness therefore pass to `P` from both coordinates.  The latter
+two properties are not being passed through the displayed extension.
+
+Induction yields the same result for finite recursive pullback trees with a
+one-sided surjection at every gluing node.  The leaves may vary independently
+between Gabe's nuclear traceless stably finite class and the faithful-trace
+UCT class, since both are AF-embeddable.  This produces a mixed recursively
+glued Blackadar--Kirchberg positive class distinct from norm-local
+approximation by subalgebras.
+
+The boundary is sharp for the proof: without one-sided surjectivity the
+coordinate embedding still gives quasidiagonality and stable finiteness, but
+it does not give nuclearity, because nuclearity is not inherited by arbitrary
+C-star subalgebras.  Infinite products are not used; a product of
+quasidiagonal algebras need not supply finite-dimensional approximations of a
+separable subalgebra uniformly across all coordinates.
