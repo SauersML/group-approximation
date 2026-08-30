@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw82-projectional-cut-obstruction-audit-2026-08-30.md
   - research/artifacts/stw82-transition-band-colour-graph-audit-2026-08-30.md
   - research/artifacts/stw82-order-zero-spectral-subdivision-audit-2026-08-30.md
+  - research/artifacts/stw82-tree-connected-support-covers-audit-2026-08-30.md
 ---
 
 **Problem LXXXII of Schafhauser--Tikuisis--White,
@@ -207,3 +208,14 @@ one global order-zero map.  This bypasses the scalar depth floor and reduces
 the universal extension problem to constructing these coupled partitions
 from ideal--quotient geometry.  That construction is not yet known in an
 arbitrary extension.
+
+The one-dimensional product loss can be removed for a concrete support
+geometry.  `stw82-tree-connected-supports-have-optimal-covers` proves that
+commuting outgoing supports with joint spectrum a finite tree and connected
+cozero sets admit asymptotically exact support-local coupled covers using
+only their maximum pointwise multiplicity `m`.  The proof colours the
+subtree intersection graph and uses functional-calculus cutters which vanish
+at the support boundary.  Thus approximation schemes of this kind with
+depth at most `r+1` prove nuclear dimension at most `r`.  This is an
+identifiable positive class, not a claim that arbitrary essential extensions
+have tree-connected support geometry.
