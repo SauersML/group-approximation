@@ -103,6 +103,11 @@ theorem p_mul_one_sub_q (D : ProperProjectionCompression A) :
     D.p * (1 - D.q) = 0 := by
   rw [mul_sub, mul_one, p_mul_q, sub_self]
 
+/-- The first cross term in the manuscript's expansion of `s⋆s` vanishes. -/
+theorem u_mul_p_mul_one_sub_q (D : ProperProjectionCompression A) :
+    (D.u * D.p) * (1 - D.q) = 0 := by
+  rw [mul_assoc, D.p_mul_one_sub_q, mul_zero]
+
 theorem one_sub_q_mul_p (D : ProperProjectionCompression A) :
     (1 - D.q) * D.p = 0 := by
   rw [sub_mul, one_mul, q_mul_p, sub_self]
@@ -141,10 +146,7 @@ theorem star_isometry_mul_isometry (D : ProperProjectionCompression A) :
           D.u * (D.p * D.p) * star D.u := by noncomm_ring
       _ = D.q := by rw [D.p_mul_p]; rfl
   have h₂ : (D.u * D.p) * (1 - D.q) = 0 := by
-    calc
-      (D.u * D.p) * (1 - D.q) =
-          D.u * (D.p * (1 - D.q)) := by noncomm_ring
-      _ = 0 := by rw [p_mul_one_sub_q, mul_zero]
+    exact D.u_mul_p_mul_one_sub_q
   have h₃ : (1 - D.q) * (D.p * star D.u) = 0 := by
     calc
       (1 - D.q) * (D.p * star D.u) =
