@@ -63,16 +63,58 @@ one, and `GGT/RelHypOsin24CayleyEndpoint.lean` re-derives the Fournier-Facio
 quotient sentence from it, so the chain no longer rests on a false hypothesis;
 but the Greendlinger content itself is not proved here.
 
-One transcription choice is worth recording.  Osin's piece is a subword `U` of
-`R ∈ R` such that some distinct `R' ∈ R` has a prefix equal to `U` **in `G`**;
-that is `LetterIsGroupPiece` on the nose, and the rotation closure turns
-subwords into prefixes, so `LetterMetricGroupSmallCancellation` is his `C'(λ)`
-and not a weakening of it.  The clause that is genuinely *added* to Osin's
-hypotheses is geodesicity of the relators: he states the conclusion about
-*words*, this repository states it about the *element* they spell
-(`RelativeLengthBound`), and the two agree only on geodesic relators.  A design
-therefore owes geodesicity, which is the undistortedness obligation recorded at
-`GGT/RelHypOsinTheorem24Repaired.lean`.
+## CORRECTION (issue #52): this generation is unfaithful in four places, and is
+retired from hypothesis position
+
+An earlier version of this paragraph claimed that Osin's piece "is
+`LetterIsGroupPiece` on the nose", so that
+`LetterMetricGroupSmallCancellation` is his `C'(λ)` and not a weakening of it.
+**That is false.**  Read against the source -- Osin, *Small cancellations over
+relatively hyperbolic groups and embedding theorems*, Ann. of Math. **172**
+(2010) 1--39, arXiv:math/0411039 -- four clauses are wrong:
+
+* **Definition 4.1, the ε-fudge, is missing.**  A subword `U` of `R` is an
+  **ε-piece** if `R ≡ UV`, `R' ≡ U'V'`, and `U' = Y U Z` in `G` for words with
+  `max{‖Y‖, ‖Z‖} ≤ ε`.  `LetterIsGroupPiece` is the `Y = Z = 1` case, so it
+  recognises fewer pieces, so the metric condition is a **weaker** hypothesis
+  and this leaf claims strictly **more** than Osin proves.  And `ε` is not a
+  free parameter to set to zero: Lemma 4.4 *produces* it from `(λ, c, µ)`.
+* **Definition 4.1(3), the rotation exemption, is missing.**  Osin's third
+  clause `Y R Y⁻¹ ≠ R'` exempts exactly the overlaps of a relator with its own
+  cyclic shifts, which for a symmetrized family are `Y R Y⁻¹`.
+  `LetterIsGroupPiece` exempts only `r₁ ≠ r₂` as *lists*, so it counts them.
+  That makes the *design* obligation strictly stronger than Osin's, in the
+  opposite direction to the first defect.
+* **The small-cancellation constant has the wrong quantifier and the wrong
+  range.**  Lemma 5.1 reads `∀ λ, c, N. ∃ µ, ε, ρ. ∀ R satisfying
+  C(ε, µ, λ, c, ρ)`, and Lemma 4.4 restricts `µ ∈ (0, 1/16]`.  Osin's `λ` is
+  the *quasi-geodesic* constant; his `µ` is the small-cancellation constant,
+  and it is the `lam` of this file.  Here `lam` is **universally** quantified
+  and consumed at `1/7`, against designs certified at `C'(1/8)`; both exceed
+  `1/16`, so the leaf is spent outside the range in which Osin proves it, and
+  `ε` does not appear at all.
+* **The torsion half needs `C₁`, not `C`.**  Osin's finite-order statement
+  carries the `C₁(ε, µ, λ, c, ρ)`-condition, which asks the piece bound also for
+  **ε′-pieces** -- the self-overlaps `R ≡ U V U' V'` with `U' = Y U^{±1} Z`.
+  `WeightedTorsionLeafCayley` substitutes `LetterNoProperPower`, which is a
+  different hypothesis.
+
+One suspicion is **refuted** and is worth recording as such: there is no
+isolated-components clause to add.  Definition 4.2 has exactly three clauses --
+`‖R‖ ≥ ρ`, `(λ, c)`-quasi-geodesic, and the ε-piece bound.  Isolated components
+and contiguity subdiagrams are proof machinery in Lemma 4.4 and §5--§7, not
+hypotheses on `R`.
+
+The geodesicity observation of the old paragraph stands: Osin states the
+conclusion about *words* and this repository states it about the *element* they
+spell (`RelativeLengthBound`), and the two agree only on geodesic relators.
+
+**None of this is repaired by a fifth generation**, because the machinery was
+never the citation.  Osin's Theorem 2.4 has no small-cancellation hypothesis at
+all, and the statement Fournier-Facio actually cites is
+`GGT/RelHypFournierFacioProp23.FournierFacioProposition23`.  `OsinTheorem24Cayley`
+and `OsinRelatorDesignCayley` are retired from hypothesis position and kept as
+the record of what was checked.
 -/
 
 namespace GroupApproximation

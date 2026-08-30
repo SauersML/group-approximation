@@ -10,6 +10,32 @@ theorems*, Ann. of Math. 172 (2010) 1--39, Theorem 2.4; and
 Fournier-Facio et al., Proposition 2.3, which applies it to the relatively
 hyperbolic pair `(U ∗ H, U)`.
 
+## RETIRED from hypothesis position (issue #52)
+
+`OsinTheorem24` is refuted (`GGT/RelHypOsinTheorem24Refuted.not_osinTheorem24`),
+and so are its three successors: `OsinTheorem24Repaired` and
+`OsinTheorem24Final` by `GGT/RelHypOsin24Collapse.lean`, and
+`OsinTheorem24Cayley` by the four clause diffs recorded in that file's header.
+This module and its successors are kept as the record of what was checked; they
+are no longer on the route to `FournierFacioQuotientStatement`.
+
+The reason is not that the transcriptions were careless.  **Osin's Theorem 2.4
+has no small-cancellation hypothesis in it.**  It reads: `G` hyperbolic relative
+to `{H_λ}`, `H` a *suitable* subgroup (Definition 2.2), `t₁,…,t_m ∈ G`; then
+there is an epimorphism `η : G → Ḡ` with `Ḡ` relatively hyperbolic, `η(tᵢ) ∈
+η(H)`, `η` injective on `⋃ H_λ`, `η(H)` suitable, and every finite-order element
+of `Ḡ` an image of one of `G`.  The condition `C(ε, µ, λ, c, ρ)` is Definition
+4.2 -- machinery used in §4--§8 to *prove* Theorem 2.4.  Transcribing the
+machinery into hypothesis position is what forced a second input,
+`OsinRelatorDesign`, to feed it a relator family; **that `Prop` is a repository
+artifact and not a statement anyone has made**, since the relators live inside
+the proof of the theorem being cited.
+
+What Fournier-Facio actually cites for this sentence is
+[FF25, Proposition 2.3] together with [Osi10, Theorem 2.4(5)], and that is
+`GGT/RelHypFournierFacioProp23.FournierFacioProposition23`, from which
+`fournierFacioQuotientStatement_of_prop23` derives the manuscript's field.
+
 ## Which metric, and why it is not the syllable metric
 
 Osin's small cancellation is measured in the alphabet `X ⊔ ℋ`: a **peripheral**

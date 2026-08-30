@@ -2765,6 +2765,7 @@ import GroupApproximation.GGT.OsinLemma56PrefixY
 import GroupApproximation.GGT.OsinTheorem54SepSplice
 import GroupApproximation.GGT.DGORotatingQuotientRefutation
 import GroupApproximation.GGT.DGORotatingQuotientResidual
+import GroupApproximation.GGT.DGOFreeSplittingOnePoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

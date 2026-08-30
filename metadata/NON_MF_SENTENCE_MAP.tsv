@@ -95,12 +95,15 @@
 # vectors" clause is available only from the never-produced predicate
 # KazhdanProjectionImageZero.  Both name the uncounted declaration in prose.
 #
-# Two manuscript defects found while re-keying, reported and NOT edited here:
-# tex 534-539 repeats "tends to zero in operator norm, and (taking) normalized
-# traces on M_{r_n}(C) give(s)", and tex 781-784 repeats "s_0at_0, and
-# t_1(s_0at_0)s_1 = 0 ... so e_{12}(1) in L \ tau L tau^-1".  Each duplication
-# is keyed as its own sentence (0932ac4fbaed and 2e75b4d73dfa); 2e75b4d73dfa is
-# left unassigned because it is a fragment, not an assertion.
+# Two manuscript defects were found while re-keying and reported rather than
+# edited from this lane.  The second, a repeated "s_0at_0, and
+# t_1(s_0at_0)s_1 = 0 ... so e_{12}(1) lies in L but not in tau L tau^-1" at
+# tex 781-784, was fixed in the tex while this wave was running, and its stray
+# key 2e75b4d73dfa is gone with it.  The first is still printed: tex 534-539
+# repeats "tends to zero in operator norm, and (taking) normalized traces on
+# M_{r_n}(C) give(s)".  It falls inside the single sentence keyed 0932ac4fbaed,
+# so it costs no row, and that row's note records that the duplication is a
+# typo and not a second assertion.
 #
 # Ten rows of the pre-existing backlog were also assigned in the same wave, all
 # by naming carriers that already exist: the three ring facts at tex 251
