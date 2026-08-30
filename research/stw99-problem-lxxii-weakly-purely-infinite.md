@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw72-finite-ideal-lattice-collapse-audit-2026-08-30.md
   - research/artifacts/stw72-transfinite-composition-collapse-audit-2026-08-30.md
   - research/artifacts/stw72-chain-ideal-cover-collapse-audit-2026-08-30.md
+  - research/artifacts/stw72-purely-infinite-radical-audit-2026-08-30.md
 ---
 
 **Problem LXXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -96,3 +97,27 @@ weakly purely infinite algebra with an infinite non-chain ideal lattice, no
 isolated primitive point, and no possible simple-layer transfinite series.
 Thus this mechanism reaches beyond all of the finite, scattered, and
 well-founded filtration results above.
+
+There is now also an exact counterexample reduction rather than another
+positive special case.  The closed sum `P_pi(A)` of all purely infinite
+ideals is itself purely infinite.  For weakly purely infinite `A`, the
+quotient `A/P_pi(A)` is weakly purely infinite and has no nonzero purely
+infinite ideal.  Hence any counterexample has a canonical nonzero quotient
+whose every nonzero ideal is again a counterexample; solving LXXII just for
+these radical-free algebras is equivalent to solving it in general
+(`stw72-purely-infinite-radical-reduction`).  Equivalently, this quotient
+has no nonzero Global Glimm ideal.  Every one of its nonzero ideals is
+nowhere scattered but fails the Global Glimm Property, so its Cuntz
+semigroup must fail ideal-filteredness or property (V).  The residual
+order-theoretic defect is therefore hereditary under passage to nonzero
+ideals, not merely present once at the ambient level.
+
+This radical also gives a new quotient-local positive class.  If every
+nonzero quotient of `A` contains a nonzero ideal with linearly ordered ideal
+lattice, then a hypothetical radical-free quotient contains a chain-ideal
+weakly purely infinite algebra, which the chain theorem makes purely
+infinite—a contradiction.  Thus `A` is purely infinite
+(`stw72-chain-seeded-quotients-wpi-is-purely-infinite`).  In primitive-space
+language, every nonempty closed subspace need only contain a nonempty
+relatively open chain subspace.  This permits the useful patch to appear
+only after quotienting and so is not an open-cover hypothesis on `A`.
