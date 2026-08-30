@@ -37,7 +37,11 @@ chi_z(J)=-1.                                           (IFC3)
 
 A stabilizer character takes the value
 `Pr[J in H] in [0,1]`, so no negative-sector factor character is an IRS
-character.
+character. In the phase-faithful ZPC witness, `phi(J)=0`, so
+`tau(q_+)=tau(q_-)=1/2`. Both are nonzero central projections: the full
+stabilizer-character GNS algebra is automatically nonfactorial, regardless
+of ergodicity, and its negative factor fibers necessarily leave the
+IRS-character image.
 
 What survives central decomposition is operator-algebraic rather than
 probabilistic: exact group relations, vanishing positive loss operators,
