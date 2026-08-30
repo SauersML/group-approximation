@@ -233,7 +233,6 @@ theorem factorMapInjective_of_compatibleTargetPair
     (hCTP : ShulmanSymmetricDouble.CompatibleTargetPairStatement) :
     ∀ {C A B D : Type} [CStarAlgebra C] [CStarAlgebra A]
       [CStarAlgebra B] [CStarAlgebra D] [Nontrivial D]
-      [TopologicalSpace.SeparableSpace A] [TopologicalSpace.SeparableSpace B]
       (iA : C →⋆ₐ[ℂ] A) (iB : C →⋆ₐ[ℂ] B)
       [Nonempty (CStarAmalgamRepresentation iA iB)]
       (gamma : C →⋆ₐ[ℂ] D) (alpha : A →⋆ₐ[ℂ] D) (beta : B →⋆ₐ[ℂ] D)
@@ -245,7 +244,7 @@ theorem factorMapInjective_of_compatibleTargetPair
             Function.Injective g →
               Function.Injective (factorAmalgamToSymmetricTarget iA iB gamma
                 alpha beta hA hB g) := by
-  intro C A B D _ _ _ _ _ _ _ iA iB _ gamma alpha beta hA hB hC halpha hbeta E instE
+  intro C A B D _ _ _ _ _ iA iB _ gamma alpha beta hA hB hC halpha hbeta E instE
     ntE g hg
   letI : CStarAlgebra E := instE
   haveI : Nontrivial E := ntE

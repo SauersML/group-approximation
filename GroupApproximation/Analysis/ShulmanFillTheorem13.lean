@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.ShulmanFillSymmetricDoubleEmbedTheorem13
+import GroupApproximation.Analysis.ShulmanFillCalkinCompatibility
 
 /-!
 # Theorem 13: the shape Enders--Shulman's construction produces
@@ -23,8 +24,10 @@ target is not arbitrary: it is a compatible pair of representations of
 `γ = (q ∘ Ad(1 ⊕ u) ∘ σ_A^{⊕∞}) * (q ∘ σ_B^{⊕∞})`.
 `CompatibleTargetPairStatement` below is exactly that shape, and
 `calkinWitness_of_compatibleTargetPair` proves the previously named
-`CalkinWitnessStatement` from it through the universal property.  Both are
-well-typed: their targets are already in `Type`.
+`CalkinWitnessStatement` from it through the universal property.  Both include
+the factor-map injectivity furnished by the `(1,1)`-corner, hence both encode
+all five proof steps; the difference is that the former exposes the compatible
+pair.  Both are well-typed because their targets are already in `Type`.
 
 `amalgamEmbedsSymmetricDouble_of_compatibleTargetPair` has been deleted with
 the rest of the void chain.  Neither statement here is sufficient for the MF
@@ -81,7 +84,8 @@ what is available was wrong on two further counts.  Checked against the tree:
 * **Stinespring's dilation theorem is in this repository** and root-imported:
   `Analysis/CStarStinespringHom.stinespringRepHom`, with the compression
   identity `stinespring_dilation_repHom`.
-* **Arveson's extension theorem is in this repository at a `B(H)` target.**
+* **Arveson's extension theorem is in this repository at a separable `B(H)`
+  target.**
   `Analysis/LanceMatrixArveson.exists_ucp_extension` is the matrix case, and
   `Analysis/ArvesonBHTarget.arvesonBH_of_limit` builds the `B(H)` case from it
   by compression and dilation along an exhausting family of isometries; its
@@ -90,15 +94,23 @@ what is available was wrong on two further counts.  Checked against the tree:
   said the `B(H)` case was not there, which was true when it was written.
   `arvesonBH_of_limit` takes the isometries `Jₙ` as a parameter; for a separable
   `H` they are supplied by `Analysis/ArvesonBHSeparable`, whose
-  `arvesonBH_of_separable` carries no data hypothesis at all.
-* **Voiculescu's theorem is under construction, and is still the step this
-  module's `CompatibleTargetPairStatement` is really waiting on.**  Its first
-  half is a theorem: `Analysis/VoiculescuQuasicentral.quasicentralApproximateUnitSeparable`
-  is Arveson's quasicentral approximate unit for the compacts, step (V1) of the
-  plan in `Analysis/VoiculescuPlan` — with the separability hypothesis that the
-  plan's own form was missing, since a sequential approximate unit for `K(H)`
-  exists exactly when `H` is separable.  Steps (V2)--(V5), Glimm's lemma
-  onward, remain.
+  `arvesonBH_of_separable` carries no data hypothesis at all.  This closes the
+  recognition route's separable-factor specialization, but not the printed
+  Theorem 4.11 with arbitrary `A` and `B`: its initial faithful representation
+  can be nonseparable, so the arbitrary-H/net form of Arveson is still needed
+  unless the proof is reorganized into separable reducing pieces.
+* **Voiculescu's theorem is under construction, and is still one of the steps
+  this module's `CompatibleTargetPairStatement` is waiting on.**  (V1) is
+  `VoiculescuQuasicentral.quasicentralApproximateUnitSeparable`.  Glimm's lemma
+  and the finite-dimensional intertwining assembly (V2)--(V3) are now closed,
+  and `VoiculescuGlimmConsequences.separableBlockDiagonalAbsorption` closes the
+  block-diagonal special case of (V4).  The general essential-representation
+  recursion and the passage from mutual isometric containment to the unitary
+  demanded by (V5) remain.  Once (V5) is supplied,
+  `ShulmanFill.exists_calkinCompatiblePair_of_calkinUniqueness` performs the
+  bundled Calkin-quotient compatibility step.  That is still not the theorem's
+  final conclusion: the `(1,1)`-corner diagram must separately prove that the
+  induced factor map detects the original amalgam.
 
 The algebra `𝒟` that Theorem 10 needs is likewise no longer missing:
 `Analysis/StarStrongMatrixSequencesAlgebra` builds it and its limit map, and
@@ -125,17 +137,18 @@ This is `CalkinWitnessStatement` with the target's structure exposed: their
 `γ` is the pair `(q ∘ Ad(1 ⊕ u) ∘ σ_A^{⊕∞}, q ∘ σ_B^{⊕∞})`, whose two legs
 agree on `C` precisely because Voiculescu's theorem supplied `u`.
 
-`A` and `B` are required separable, not just `C`.  Voiculescu's theorem is
-applied to two representations of `C`, so `C` separable is what that step reads
-off; but the representations it compares are the restrictions of representations
-of the amalgam, and those live on separable Hilbert spaces only when `A` and `B`
-are separable too.  Asking only for `C` would make this `Prop` claim more than
-Enders--Shulman prove.  It costs the consumer nothing:
-`ShulmanFill.isMFAlgebra_of_factorMap_injective` already carries both. -/
+Only `C` is required separable.  This is load-bearing: Enders--Shulman 4.11
+does **not** assume `A` or `B` separable.  Their faithful representation, its
+Stinespring dilations, and the infinite amplifications may therefore be
+nonseparable.  The Voiculescu input they cite is the rank-matching form on that
+ambient Hilbert space, not the separable-Hilbert
+`ShulmanFill.CalkinUniquenessStatement` currently under construction.  Earlier
+versions of this definition accidentally added `SeparableSpace A` and
+`SeparableSpace B`; that strengthened the hypothesis and did not formalize the
+printed theorem 1:1. -/
 def CompatibleTargetPairStatement : Prop :=
   ∀ {C A B D : Type} [CStarAlgebra C] [CStarAlgebra A] [CStarAlgebra B]
     [CStarAlgebra D] [Nontrivial D]
-    [TopologicalSpace.SeparableSpace A] [TopologicalSpace.SeparableSpace B]
     (iA : C →⋆ₐ[ℂ] A) (iB : C →⋆ₐ[ℂ] B)
     [Nonempty (CStarAmalgamRepresentation iA iB)]
     (gamma : C →⋆ₐ[ℂ] D) (alpha : A →⋆ₐ[ℂ] D) (beta : B →⋆ₐ[ℂ] D)
@@ -159,9 +172,7 @@ representations of `D` induces a `*`-homomorphism on the symmetric double, by
 the universal property. -/
 theorem calkinWitness_of_compatibleTargetPair
     (h : CompatibleTargetPairStatement) : CalkinWitnessStatement := by
-  -- Seven anonymous binders before `iA`: the four `CStarAlgebra`s, `Nontrivial D`,
-  -- and the two `SeparableSpace`s that the Voiculescu step needs.
-  intro C A B D _ _ _ _ _ _ _ iA iB _ gamma alpha beta hA hB hC halpha hbeta
+  intro C A B D _ _ _ _ _ iA iB _ gamma alpha beta hA hB hC halpha hbeta
   obtain ⟨T, hTalg, hTnt, sigmaA, sigmaB, hsigma, hinj⟩ :=
     h iA iB gamma alpha beta hA hB hC halpha hbeta
   letI : CStarAlgebra T := hTalg

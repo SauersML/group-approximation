@@ -38,9 +38,20 @@ obstruction below.)
    through the `(·)₁₁` corner: `γ ∘ Φ` is, up to that corner, `q ∘ α`.
 5. "Since `q ∘ α` is injective, so must be `φ_A * φ_B`."
 
-Step 5 is the only step that touches `Φ`, and it is formal: a `*`-homomorphism
-whose composite with something is injective is injective.  Steps 1–4 are
-analytic and none of Arveson, Stinespring or Voiculescu is available here.
+Step 5 is the only step that touches `Φ`, and its last diagram chase is
+formal: a `*`-homomorphism whose composite with something is injective is
+injective.  Stinespring is available in the repository, as is Arveson for a
+separable target Hilbert space, and the Glimm/finite-dimensional portion of
+separable Voiculescu is closed.  For the printed theorem, which does not assume
+`A` or `B` separable, the arbitrary-H Arveson extension and the rank-matching
+form of Voiculescu are still needed.  Even in the separable specialization,
+what is not yet assembled is the infinite amplification that makes the
+restricted representations essential, the general (V4) recursion and (V5)
+unitary, and the concrete `(1,1)`-corner identity that identifies the composite
+with `q ∘ α`.  `Analysis/ShulmanFillCalkinCompatibility` proves the exact
+algebraic passage from the compact-difference conclusion of (V5) to equality
+of the two bundled Calkin representations; it deliberately does not claim the
+corner identity.
 
 ## The universe obstruction: `Φ` cannot be typed
 
@@ -74,8 +85,11 @@ It names steps 1–4 and nothing else.
 
 * `universalCStarAmalgamLeft_symmetric_injective` and
   `nontrivial_universalCStarSymmetricAmalgam` are unaffected and kept;
-* `CalkinWitnessStatement` is steps 1–4, and is well-typed as written: its
-  target `E` is already in `Type`.
+* `CalkinWitnessStatement` is the **full five-step conclusion** in a well-typed
+  target-valued form: its target `E` is already in `Type`.  The historical
+  name is potentially misleading.  Merely constructing the compatible Calkin
+  pair is steps 1–4; the `Function.Injective` field in this statement also
+  contains the `(1,1)`-corner detection of step 5.
 
 ## The repaired reduction, and why the witness is not enough
 
@@ -92,11 +106,13 @@ which is well-typed.  The operative hypothesis is therefore
 which is exactly "`Φ` is injective" said without naming `Φ`, and is what
 Enders--Shulman's argument delivers.
 
-`CalkinWitnessStatement` below is *not* sufficient for that conclusion, and is
-kept only as the record of steps 1–4.  It provides one target `E`, chosen by
-whoever discharges it, and MF-ness of the amalgam needs the target to be
-MF-embeddable; in the paper `E = Q(H^{⊕∞})` is the Calkin algebra, which is not
-even stably finite.  The `∀`-form above is what the route consumes.
+`CalkinWitnessStatement` below is *not* sufficient for that MF conclusion.  It
+provides one target `E`, chosen by whoever discharges it, and MF-ness of the
+amalgam needs the target to be MF-embeddable; in the paper
+`E = Q(H^{⊕∞})` is the Calkin algebra, which is not even stably finite.  The
+`∀`-form above is what the route consumes.  This insufficiency is about the
+target quantifier, not about a missing corner argument: injectivity of the
+factor map is already part of the statement.
 
 This module is in the root import list.  It was authored while builds were
 suspended and has not been elaborated.
@@ -135,15 +151,16 @@ instance nontrivial_universalCStarSymmetricAmalgam :
     universalCStarAmalgamLeft gamma gamma y,
     fun h ↦ hxy (universalCStarAmalgamLeft_symmetric_injective gamma h)⟩⟩
 
-/-! ## The witness that steps 1–4 supply -/
+/-! ## The target-valued witness for the full theorem -/
 
-/-- **Steps 1–4 of Enders--Shulman, Theorem 4.11**, as one existence
+/-- **Enders--Shulman, Theorem 4.11**, as one target-valued existence
 statement: the Calkin-algebra construction, with everything about the Calkin
-algebra forgotten except its conclusion. -/
+algebra forgotten except its conclusion.  The final injectivity clause is the
+corner-detection step 5, not merely the compatible-pair construction of steps
+1–4. -/
 def CalkinWitnessStatement : Prop :=
   ∀ {C A B D : Type} [CStarAlgebra C] [CStarAlgebra A] [CStarAlgebra B]
     [CStarAlgebra D] [Nontrivial D]
-    [TopologicalSpace.SeparableSpace A] [TopologicalSpace.SeparableSpace B]
     (iA : C →⋆ₐ[ℂ] A) (iB : C →⋆ₐ[ℂ] B)
     [Nonempty (CStarAmalgamRepresentation iA iB)]
     (gamma : C →⋆ₐ[ℂ] D) (alpha : A →⋆ₐ[ℂ] D) (beta : B →⋆ₐ[ℂ] D)
