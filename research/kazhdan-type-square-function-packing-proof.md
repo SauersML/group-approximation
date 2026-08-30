@@ -13,16 +13,22 @@ Let `Gamma` act on the Hilbert--Schmidt space `Hom(H_0,H_1)` by
 g.X=pi_1(g) X pi_0(g)^*.
 ```
 
-Its invariant space is the space of intertwiners.  Schur's lemma puts
+Its invariant space `F_01` is the space of intertwiners.  Schur's lemma puts
 every intertwiner in the same-type block space
 
 ```text
-B=direct_sum_theta P_theta^1 Hom(H_0,H_1) P_theta^0.
+B=direct_sum_theta P_theta^1 Hom(H_0,H_1) P_theta^0,
+F_01 subset B.
 ```
 
 The orthogonal complement of `B` consists exactly of the blocks
-`P_sigma^1 X P_theta^0` with `sigma!=theta`.  The squared-sum Kazhdan
-inequality therefore yields
+`P_sigma^1 X P_theta^0` with `sigma!=theta`.  Hence
+
+```text
+||P_(B^perp)X||_HS <= dist_HS(X,F_01),
+```
+
+and the squared-sum Kazhdan inequality therefore yields
 
 ```text
 sum_(sigma!=theta) ||P_sigma^1 X P_theta^0||_HS^2
