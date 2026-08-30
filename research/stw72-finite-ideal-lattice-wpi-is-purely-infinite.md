@@ -16,4 +16,3 @@ No separability, nuclearity, unitality, exactness, stable-rank, real-rank, or
 Hausdorff-spectrum assumption is imposed.  Equivalently, Problem LXXII has a
 positive answer for weakly purely infinite C-star algebras with finite ideal
 lattice.
-

@@ -47,4 +47,3 @@ The two finiteness uses are sharp features of this proof rather than hidden
 regularity assumptions: finiteness supplies a composition chain, while
 extension permanence glues across incomparable ideals without attempting to
 fuse their square-zero witnesses inside one hereditary subalgebra.
-

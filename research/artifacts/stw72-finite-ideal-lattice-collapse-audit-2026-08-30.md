@@ -29,4 +29,3 @@ The extension input is the permanence theorem in E. Kirchberg and M. Rordam,
 122 (2000), 637--666, DOI `10.1353/ajm.2000.0021`.  The unrestricted
 weak-to-pure implication remains open; this note claims only the finite ideal
 lattice class.
-
