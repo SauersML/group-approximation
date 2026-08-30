@@ -9,6 +9,7 @@ distinct_from:
   stw99-problem-xxx-rr0-z-stable: that asks for Z-stability; this central-divisibility question is strictly stronger by Toms--Winter (CJM Thm 2.3) and is the form Perera and Rordam posed.
 artifacts:
   - research/artifacts/stw99-rr0-cluster-2026-08-30.md
+  - research/artifacts/stw30-quantum-expander-centralization-firewall-audit-2026-08-30.md
 ---
 
 Perera--Rordam (JFA, after Thm 5.8): is every unital simple separable
@@ -31,3 +32,15 @@ embeds unitally into `A` itself, Thm 5.8).
   hypothesis is known.  STW's warning stands: approximate divisibility
   is a CENTRAL condition, unrelated to the almost-divisibility of the
   Cuntz semigroup discussed at Problem XXVII.
+* There is now a sharp abstract no-go for using only that noncentral data.
+  A real-rank-zero norm matrix corona contains exact unital
+  `M_n direct_sum M_(n+1)` blocks for every `n`, while a fixed finite
+  quantum-expander packet has relative commutant containing no unital
+  `M_2 direct_sum M_3`
+  (`stw30-quantum-expander-weak-divisibility-centralization-no-go`).  Thus
+  projection refinement and the existence of blocks do not centralize them,
+  even locally against one finite packet.  The countermodel is deliberately
+  nonseparable and non-simple and makes no nuclearity assertion, so the
+  remaining positive route needs an additional structural or uniform
+  selection input beyond weak divisibility; this example does not identify
+  which of the missing hypotheses is decisive.

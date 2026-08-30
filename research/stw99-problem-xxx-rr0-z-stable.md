@@ -9,6 +9,7 @@ distinct_from:
   stw99-problem-xxi-tracial-rr0-implies-gamma: that assumes real rank zero of the TRACIAL ULTRAPOWER of the tracial completion and asks only for uniform property Gamma; this assumes real rank zero of the algebra itself and asks for Z-stability.
 artifacts:
   - research/artifacts/stw99-rr0-cluster-2026-08-30.md
+  - research/artifacts/stw30-quantum-expander-centralization-firewall-audit-2026-08-30.md
 ---
 
 **Problem XXX of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Is
@@ -44,3 +45,11 @@ unclear whether any variant can work.
   is again a pure CENTRALIZATION gap, the same shape as Problem
   XXVIII's order-zero centralization and XXI's selection: RR0 supplies
   the objects, centrality is the open half.
+  This gap cannot be crossed from weak-divisibility and RR0 data alone:
+  `stw30-quantum-expander-weak-divisibility-centralization-no-go` constructs
+  a real-rank-zero matrix corona with endpoint blocks at every scale but a
+  fixed finite packet whose relative commutant contains no unital
+  `M_2 direct_sum M_3`.  The example is outside the conjecture's simple,
+  separable, nuclear class.  It shows that some additional structural or
+  uniform-selection input is indispensable, without deciding which missing
+  hypothesis supplies it.
