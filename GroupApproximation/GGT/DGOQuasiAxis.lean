@@ -121,5 +121,72 @@ theorem image_quasiAxis_eq_quasiAxis_conj
       rw [conj_zpow]
       simp only [mul_smul, inv_smul_smul]
 
+/-! ## Oriented power-vertex subsegments -/
+
+/-- A translated, oriented subsegment of the axis whose endpoints are orbit
+vertices.  Every sufficiently long segment of the concatenated axis contains
+one of these after deleting at most one fundamental connector at each end. -/
+structure PowerAxisSegment (h : G) (x : X) where
+  translate : G
+  start : ℤ
+  stop : ℤ
+  start_le_stop : start ≤ stop
+
+namespace PowerAxisSegment
+
+variable {h : G} {x : X}
+
+/-- Initial endpoint of an oriented translated power-axis segment. -/
+def initial (p : PowerAxisSegment h x) : X :=
+  (p.translate * h ^ p.start) • x
+
+/-- Terminal endpoint of an oriented translated power-axis segment. -/
+def terminal (p : PowerAxisSegment h x) : X :=
+  (p.translate * h ^ p.stop) • x
+
+/-- Path length: the number of fundamental connectors times their common
+length. -/
+def length (p : PowerAxisSegment h x) : ℝ :=
+  ((p.stop - p.start : ℤ) : ℝ) * dist x (h • x)
+
+/-- The conjugate whose axis is the translated axis carrying the segment. -/
+def conjugate (p : PowerAxisSegment h x) : G :=
+  p.translate * h * p.translate⁻¹
+
+/-- The path length of an oriented power-axis segment is nonnegative. -/
+theorem length_nonneg (p : PowerAxisSegment h x) : 0 ≤ p.length := by
+  exact mul_nonneg (by exact_mod_cast sub_nonneg.mpr p.start_le_stop) dist_nonneg
+
+/-- The initial endpoint lies on the corresponding translated DGO axis. -/
+theorem initial_mem_translated_quasiAxis {f : ℝ → X}
+    (hf : IsAxisConnector h x f) (p : PowerAxisSegment h x) :
+    p.initial ∈ (fun y : X => p.translate • y) '' quasiAxis h x f := by
+  refine ⟨(h ^ p.start) • x, zpow_smul_mem_quasiAxis hf p.start, ?_⟩
+  rw [initial, mul_smul]
+
+/-- The terminal endpoint lies on the corresponding translated DGO axis. -/
+theorem terminal_mem_translated_quasiAxis {f : ℝ → X}
+    (hf : IsAxisConnector h x f) (p : PowerAxisSegment h x) :
+    p.terminal ∈ (fun y : X => p.translate • y) '' quasiAxis h x f := by
+  refine ⟨(h ^ p.stop) • x, zpow_smul_mem_quasiAxis hf p.stop, ?_⟩
+  rw [terminal, mul_smul]
+
+/-- DGO's oriented endpoint-closeness condition for two power-vertex
+subsegments. -/
+def OrientedClose (B : ℝ) (p q : PowerAxisSegment h x) : Prop :=
+  dist p.initial q.initial ≤ B ∧ dist p.terminal q.terminal ≤ B
+
+/-- Oriented closeness is symmetric in the two segments. -/
+theorem orientedClose_comm {B : ℝ} (p q : PowerAxisSegment h x) :
+    OrientedClose B p q ↔ OrientedClose B q p := by
+  simp only [OrientedClose, dist_comm]
+
+/-- The exact conclusion of DGO Lemma 6.7 for the conjugates corresponding to
+two translated axis segments. -/
+def ConjugatesHaveEqualPositivePowers (p q : PowerAxisSegment h x) : Prop :=
+  ∃ a b : ℤ, 0 < a ∧ 0 < b ∧ p.conjugate ^ a = q.conjugate ^ b
+
+end PowerAxisSegment
+
 end GGT
 end GroupApproximation
