@@ -6,6 +6,7 @@ title: A simple infinite C*-algebra contains a unital CAR algebra whose image ha
 root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw99-lxvi-coherent-car-no-go-audit-2026-08-30.md
 ---
 
 **Problem LXVI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras:
@@ -38,6 +39,17 @@ problem to one construction rather than deferring it: build the CAR algebra
 inside a finite simple corner while its double is already infinite.
 The parallel route `stw99-lxvi-via-nonstable-finite-car-seed` removes the
 need to prescribe which finite amplification first becomes infinite.
+
+There is a new broad obstruction to installing the coherent CAR tower.
+`stw99-lxvi-finite-index-car-envelopes-are-stably-finite` proves that a
+finite Watatani-index expected extension of any stably finite core is stably
+finite, by embedding the ambient algebra into a fixed matrix corner over the
+core.  Hence an LXVI witness cannot admit a finite-index conditional
+expectation onto its CAR copy.  This rules out finite-group crossed products
+of CAR, finite towers of finite-index expected extensions, and injective
+limits built from such stages.  A successful CAR inclusion must have
+genuinely infinite module index; no trace, `K_0`, or centrality hypothesis is
+used in this obstruction.
 
 There is also a direct consequence for another STW problem:
 `stw99-lxvi-witness-refutes-lxxviii` proves that every LXVI witness yields a
