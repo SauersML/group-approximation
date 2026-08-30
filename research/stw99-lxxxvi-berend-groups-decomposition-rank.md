@@ -54,7 +54,20 @@ crossed product, not one detected by a quotient.
 * **Proper quotients.**  The finite-orbit reduction does more than give
   quasidiagonality: every proper quotient has decomposition rank at most
   two.  Quotient monotonicity therefore cannot prove the desired infinite
-  lower bound.
+  lower bound.  Moreover,
+  `berend-finite-orbit-quotients-are-asymptotically-isometric` arranges
+  these quotients into a sequence which norms every element of the full
+  algebra.  This still does not give a decomposition-rank upper bound:
+  dense finite restrictions give the same phenomenon with
+  zero-dimensional targets for commutative algebras of arbitrary covering
+  dimension.
+* **Primitive spectrum.**
+  `berend-primitive-spectrum-has-one-faithful-generic-point` identifies the
+  only non-closed primitive point as the faithful zero kernel; every other
+  primitive quotient is a matrix algebra and lies on a closed two-torus
+  stratum.  Thus a primitive-space obstruction would have to measure the
+  accumulation of all finite-orbit strata at that generic point, rather
+  than the dimension or representation theory of any one stratum.
 * **Entropy (speculative).**  Every nonidentity element of the torsion-free
   unit subgroup has positive entropy: an infinite-order algebraic unit
   cannot have all conjugates on the unit circle, and the entropy of its
@@ -74,6 +87,9 @@ crossed product, not one detected by a quotient.
   dimension theorem.  Finite invariant torsion sets give the
   quasidiagonal representations used in the established argument, but no
   cited result upgrades these approximations to bounded-colour,
-  contractive order-zero approximations.  That upgrade is the precise
-  unresolved step; claims about shrinking multiplicative domains are only
-  heuristic and are not used as established input.
+  contractive order-zero approximations inside `A`.  The quotient models
+  are already asymptotically isometric, so improving norm separation is
+  not the issue.  The exact unresolved step is to lift their coloured
+  approximations back to `A` with order zero on each colour and a
+  contractive total sum; claims about shrinking multiplicative domains
+  are only heuristic and are not used as established input.

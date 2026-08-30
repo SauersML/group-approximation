@@ -66,6 +66,28 @@ has finite index in `Z^2`.  Consequently every proper quotient has
 decomposition rank at most two.  The desired infinite decomposition rank,
 if true, is therefore invisible in all proper quotients.
 
+The quotient family is nevertheless norm-complete.  By residual finite
+dimensionality, enumerate the finite orbits and take their increasing
+finite unions `F_n`.  The quotient maps
+`C(T^3) ⋊ Z^2 -> C(F_n) ⋊ Z^2` are asymptotically isometric, so they
+embed the full crossed product into the quotient of the product of these
+decomposition-rank-two targets by their direct sum.  This does not bound
+the source decomposition rank: restrictions of `C(Y)` to increasing dense
+finite subsets are asymptotically isometric with finite-dimensional
+targets for every compact metrizable `Y`, while `dr(C(Y)) = dim(Y)` can be
+arbitrary.  The remaining positive hinge is therefore an internal
+order-zero-compatible lifting theorem, not stronger finite-orbit norm
+separation.
+
+The primitive spectrum makes the same boundary visible topologically.
+The zero ideal is primitive and is the unique dense point.  Every nonzero
+primitive ideal is maximal with finite-dimensional quotient; setwise the
+remainder is a countable union of closed two-tori, one dual stabilizer for
+each finite orbit.  Therefore neither an individual primitive quotient nor
+the dimension of a closed primitive stratum can force infinite
+decomposition rank.  A primitive-space proof would have to quantify the
+global accumulation of these strata at the faithful generic point.
+
 ## Sources
 
 * C. Eckhardt, A note on strongly quasidiagonal groups, J. Operator Theory
