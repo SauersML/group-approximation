@@ -266,6 +266,26 @@ theorem finiteCodeProperty_compl_sigma02Hard_of_compiler
     Sigma02Hard (fun c ↦ ¬ AdianRabinGeneral.codeProperty P c) :=
   pi02Hard_compl (finiteCodeProperty_pi02Hard_of_compiler C)
 
+/-- **The global second-level Rice classification supplied by a finite-output
+compiler and a property-specific upper bound.**  The compiler supplies the
+`Pi02` hardness of the property on all finite-presentation codes.  Once an
+independent checker places that global predicate in `Pi02`, it is complete;
+complementation then gives the exact `Sigma02` classification of failure with
+no second compiler and no second upper-bound proof.
+
+This is the interface between a group-theoretic finite-output compiler and a
+property-specific finite-certificate theorem.  It is deliberately more precise
+than the unrestricted hereditary-property slogan: heredity alone constructs no
+finite-output compiler, and the upper bound is an explicit hypothesis. -/
+theorem finiteCodeProperty_secondLevelComplete_of_compiler
+    (C : FinitePresentationSwitchCompiler P)
+    (hupper : Pi02 (AdianRabinGeneral.codeProperty P)) :
+    Pi02Complete (AdianRabinGeneral.codeProperty P) ∧
+      Sigma02Complete (fun c ↦ ¬ AdianRabinGeneral.codeProperty P c) := by
+  have hcomplete : Pi02Complete (AdianRabinGeneral.codeProperty P) :=
+    ⟨hupper, finiteCodeProperty_pi02Hard_of_compiler C⟩
+  exact ⟨hcomplete, pi02Complete_compl hcomplete⟩
+
 /-- **The complete finite-output Rice package.**  One compiler with the exact
 `INF` truth table supplies both restricted completeness results and both global
 hardness results.  In particular the complement never carries an independent

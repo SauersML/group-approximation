@@ -61,16 +61,16 @@ theorem mfCode_pi02Complete_of_compiler (C : MFCompiler) :
     Pi02Complete MFCode := by
   change Pi02Complete
     (AdianRabinGeneral.codeProperty OperatorMFProperty)
-  exact ⟨mfCode_pi02,
-    (finiteOutput_switch_completeness_package C).2.2.1⟩
+  exact (finiteCodeProperty_secondLevelComplete_of_compiler C mfCode_pi02).1
 
 /-- The reverse classification needs no new construction: complementing the
 same many-one reductions proves `Sigma02`-completeness of non-MF
 recognition. -/
 theorem nonMFCode_sigma02Complete_of_compiler (C : MFCompiler) :
     Sigma02Complete NonMFCode := by
-  simpa only [NonMFCode] using
-    (pi02Complete_compl (mfCode_pi02Complete_of_compiler C))
+  change Sigma02Complete
+    (fun c ↦ ¬ AdianRabinGeneral.codeProperty OperatorMFProperty c)
+  exact (finiteCodeProperty_secondLevelComplete_of_compiler C mfCode_pi02).2
 
 /-- Both exact hierarchy classifications, packaged with the already proved
 algorithmic impossibility statements.  The last two conjuncts are
