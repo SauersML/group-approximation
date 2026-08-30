@@ -116,7 +116,7 @@ a maximal chain in the finite ideal lattice makes the entire target
 the graph.  No extension permanence of strong pure infiniteness in arbitrary
 nonnuclear algebras is asserted.
 
-For completeness, the countable version uses the same absorption route.
+For completeness, the filtration version uses the same absorption route.
 Kirchberg--Rordam Theorem 8.6 plus Toms--Winter Corollaries 3.1--3.2 identify
 separable nuclear strong pure infiniteness with `O_infinity`-stability after
 stabilizing and returning from the stabilization.  Toms--Winter Corollary
@@ -127,16 +127,23 @@ qualified nuclear theorem, not an assertion that the matrix-diagonalization
 definition glues across arbitrary extensions.
 
 The same argument extends from finite chains to continuous composition
-series indexed by a countable ordinal.  At a successor `beta+1`, the layer
-is an ideal in the unital quotient `B/I_beta`, so its bounded trace extends
-there and pulls back to `B`; this does not require `I_beta` or the layer to be
-unital.  At a countable limit `gamma`, choose an increasing sequence cofinal
-in `gamma`.  Continuity identifies `I_gamma` with the sequential inductive
-limit of the corresponding earlier ideals, exactly within the scope of
-Toms--Winter Corollary 3.4.  Transfinite induction therefore glues
-`O_infinity`-stability through the whole countable series.  An arbitrary
-uncountable-cofinality limit cannot be replaced by such a sequence and is
-outside the recorded theorem.
+series indexed by an arbitrary ordinal.  At a successor `beta+1`, every
+nonzero layer is an ideal in the unital quotient `B/I_beta`, so its bounded
+trace extends there and pulls back to `B`; this does not require `I_beta` or
+the layer to be unital.  A zero layer changes nothing.  At a limit `gamma`
+of countable cofinality, choose an increasing sequence cofinal in `gamma`.
+Continuity identifies `I_gamma` with the sequential inductive limit of the
+corresponding earlier ideals, exactly within the scope of Toms--Winter
+Corollary 3.4.
+
+At a limit of uncountable cofinality there is an even stronger separability
+shortcut.  Approximate every member of a countable dense set in `I_gamma` to
+every reciprocal-integer tolerance by elements from earlier ideals.  The
+supremum of the resulting countable set of stages is some `beta<gamma`.
+Closedness and density then give `I_gamma=I_beta`.  The induction has
+literally stabilized, so no uncountable inductive-limit theorem is needed.
+Transfinite induction therefore glues `O_infinity`-stability through the
+whole arbitrary ordinal series.
 
 # Finite-dimensional simple-fiber theorem
 
@@ -158,7 +165,7 @@ only if all its fibers do.  Hence `B` itself is `O_infinity`-stable and
 strongly purely infinite.  Gabe's nuclear-map theorem closes every LXXVIII
 map into `B`.
 
-This class is not subsumed by the countable-composition-series theorem.  It
+This class is not subsumed by the ordinal-composition-series theorem.  It
 allows a nonsimple target with infinitely many ideals and requires neither
 algebraic simplicity of nonunital layers nor global almost unperforation of
 `W(B)`.  The finite-dimensional-base hypothesis is an exact trust boundary:
