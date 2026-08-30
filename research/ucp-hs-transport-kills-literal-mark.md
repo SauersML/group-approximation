@@ -72,3 +72,60 @@ stability theorem for the literal base should be checked against both
 consumers.  Kirchberg's character-level lemma is what remains after
 stability is subtracted, which is why the absolute Kazhdan case closed
 (`KazhdanQuasidiagonalTraces.lean`) while this relative case is open.
+
+## Attempts
+
+**Exact-commutation normal form (2026-08-30 recon).**  Let
+`φ : C*(E) → M_k` be u.c.p. and δ-multiplicative in the normalized 2-norm
+with `tr ∘ φ ≈ τ_E`.  Stinespring `φ = V^* π(·) V` with `π` a genuine
+representation of `E`, and let `P = VV^*`.  Kirchberg's property-(T)
+perturbation (Brown, Lemma 4.1.11 mechanism) applied to the conjugation
+representation of the Kazhdan base `B` on the Hilbert--Schmidt space
+replaces `P` by a projection `P'` with `‖P − P'‖_2/√k` small that commutes
+with `π(B)` EXACTLY.  Consequences, all exact or 2-small:
+
+1. `ρ := P'π(·)P'|_{C*(B)}` is an honest finite-dimensional representation
+   of `B` with `tr̄ ∘ ρ ≈ δ_e` (regular-like);
+2. `φ'(c) = P'π(c)P'` commutes with `ρ(B)` exactly (the leakage
+   `(1−P')π(b)P'` vanishes, `P'` commuting with `π(b)`);
+3. `X := φ'(tct^{-1})` commutes with `ρ(B_1)` exactly, where
+   `B_1 = tBt^{-1} = 2Z^3 ⋊ SL_3(Z)` (index 8 in `B`, NOT normal), because
+   `P'` commutes with `π(B_1) ⊆ π(B)`;
+4. `φ'(t)` is 2-close to a unitary `U` (Hilbert--Schmidt polar correction),
+   and `Uρ(b)U^* ≈_2 ρ(tbt^{-1})` with error independent of `b`;
+5. Kazhdan projections are 2-stable: spectral-gap functional calculus gives
+   `‖U q_B U^* − q_{B_1}‖_2̄ ≤ Cδ/κ` for the invariant-vector projections
+   on `P'H`, so the finiteness step of the corona argument survives at the
+   Hilbert-space level.
+
+**The one remaining gap.**  The corona proof concludes by showing
+`X` almost commutes with all of `ρ(B)`; then
+`u = [tct^{-1}, v_1]` maps 2-close to `1`, `w = u^2` likewise,
+contradicting `tr̄ φ(w) → τ_E(w) = 0`.  At the u.c.p. level the available
+statement is `X ∈ ρ(B_1)'` exactly, and the needed statement is `X`
+almost-invariant under `Ad ρ(B)` on the Hilbert--Schmidt space.  Since
+`B_1` is not normal in `B`, `Ad ρ(B)` does not preserve `ρ(B_1)'`, and a
+vector exactly invariant under the finite-index `Ad ρ(B_1)` need not be
+almost invariant under `Ad ρ(B)` (sign-representation phenomena).  The
+corona regime closes this with the super-operator estimate
+`‖Ad(V) − Ad(V')‖ ≤ 2‖V − V'‖_op`, which costs exactly the operator-norm
+multiplicativity that u.c.p. models lack; a normalized-super-trace count
+(`dim ρ(B_1)' ≈ 8 · dim ρ(B)'`, both `o(k²)`) is too weak to force one
+specific unit vector across.
+
+**Equivalent finite-dimensional question.**  The factorization property of
+`E` is thereby equivalent to: do there exist finite-dimensional
+representations `ρ_n` of `B` with `tr̄ ∘ ρ_n → δ_e`, almost-unitaries
+`X_n ∈ ρ_n(B_1)'` and `T_n` almost-implementing the doubling twist, and
+`C_n ∈ ρ_n(B)'`, satisfying the remaining relations of `E`
+2-approximately, with `‖[X_n, ρ_n(v_1)]‖-type defects bounded away from
+triviality (so that `tr̄` of the mark word stays near `0`)?  A negative
+answer for all such data establishes this claim and kills
+`stw99-x1-fails-via-literal-group`; a positive answer with genuine models
+refutes this claim and, through Brown 4.1.9, refutes STW Problem X(1).
+The hyperfinite-representation theorem
+(`literal-group-mark-invisible-to-hyperfinite-representations`) is the
+EXACT version of this claim: when the almost-relations are exact and the
+model is an injective finite von Neumann algebra, the mark dies; it says
+nothing about the 2-approximate matrix regime, where soficity shows the
+mark survives non-u.c.p. models.
