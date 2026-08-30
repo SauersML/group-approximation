@@ -35,8 +35,9 @@ then produces the independent colour pairs
 (base colour, fibre colour).
 ```
 
-Central cutoffs make equal base colours orthogonal, and one common scaling
-makes the total return map contractive.
+Central cutoffs make equal base colours orthogonal.  Each paired colour is
+c.p.c. order zero; nuclear dimension does not require their total sum to be
+contractive.
 
 If every nonzero fibre is simple, then the spectrum of every commutative
 hereditary subalgebra in every quotient is locally homeomorphic to a

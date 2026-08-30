@@ -19,9 +19,10 @@ Claim: `stw81-finite-base-usc-fibre-product-bound`.
    though different base colours can overlap.
 
 4. The separately lifted fibre colours need not sum contractively away from
-   their anchor.  Upper semicontinuity controls their positive unit sum by
-   `1+eta` on the chosen neighborhood, and the common scaling
-   `(1+eta)^(-1)` makes the entire return map c.p.c.
+   their anchor, and no such condition is part of nuclear dimension.  Each
+   paired `(base colour,fibre colour)` return is individually c.p.c. order
+   zero because its coordinate supports are orthogonal.  No common scaling
+   is used.
 
 5. The approximation estimate is a convex partition-of-unity estimate, so
    it does not acquire a factor equal to the number of cover sets or
@@ -40,4 +41,4 @@ bases.  In particular, over a one-dimensional base with fibre dimension
 one it gives nuclear dimension at most three, not the trichotomy demanded
 by Problem LXXXI.
 
-Outcome: **PASS**.
+Outcome after removing the unnecessary total-contractivity step: **PASS**.
