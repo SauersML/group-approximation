@@ -61,10 +61,11 @@ hyperbolic group, with the free product gone.
 ## The two halves are named separately
 
 Those two theorems have different homes, so section 5a splits the residue into
-`HyperbolicNonCommensurablePairStatement` --- the pair, classically two
-independent loxodromics --- and `HyperbolicElementaryClosureStatement` --- the
-elementary closures, classically that `E_H(x)` is the maximal cyclic subgroup
-containing `x`.  `hyperbolicSuitabilityStatement_of_split` recovers the unsplit
+`HyperbolicNonCommensurablePairStatement` --- the pair, usually called two
+independent loxodromics but really two loxodromics in distinct commensurability
+classes --- and `HyperbolicElementaryClosureStatement` --- the elementary
+closures, classically that `E_H(x)` is the maximal cyclic subgroup containing
+`x`.  `hyperbolicSuitabilityStatement_of_split` recovers the unsplit
 `Prop`, so nothing downstream moves; the reverse derivation recovers half (a)
 only, and the docstring of
 `hyperbolicNonCommensurablePairStatement_of_suitability` says why the conjunction
@@ -299,18 +300,25 @@ it, so every consumer downstream of it is untouched. -/
 
 /-- **Half (a): a non-commensurable pair of infinite-order elements.**
 
-Classically "two independent loxodromics".  The nearest classical leaf is
-Gromov's and Delzant's theorem that a non-elementary hyperbolic group contains a
-free subgroup of rank two; the tree's approach to it is the ping-pong layer
-(`PingPong.FreeRankTwo`, `PingPong.exists_noCommonZpow_of_freeRankTwo`,
-`GGT.PingPongFreeRankTwoGeometric`).
+Usually called "two independent loxodromics", and that name is misleading here:
+independence in the geometric sense is strictly weaker than what this asks.  The
+honest reading is **two loxodromics in distinct commensurability classes**, and
+the gap between the two readings is exactly the conjugate case --- see section 5b.
 
-**A free pair is not yet enough**, and this is the same mis-costing that the
-free-pair route to `E(a) = ⟨a⟩` already died of: two generators of a free
-subgroup can still be conjugate in the ambient group, and conjugate elements are
-commensurable (`osinCommensurable_conj`).  What is owed on top is that the pair
-has no conjugate common powers *in `H`*, which is where Osin's Lemma 2.3
-actually sits.
+The nearest classical leaf is Gromov's and Delzant's theorem that a
+non-elementary hyperbolic group contains a free subgroup of rank two.  **That
+does not close this either**, and the reason is worth stating because it is the
+third appearance of one mis-costing (the free-pair route to `E(a) = ⟨a⟩` died of
+it, and so did the geometric route in section 5b): free generators are
+non-commensurable *inside the free subgroup*, but `OsinCommensurable` quantifies
+the conjugator over **all of `H`**, and freeness constrains nothing about
+conjugators lying outside the subgroup.  Two generators of a free subgroup can
+still be conjugate in the ambient group, and conjugate elements are
+commensurable (`osinCommensurable_conj`).
+
+So the obligation that actually remains is ruling out conjugacy, which is an
+`E(g)` question rather than a ping-pong one; half (a) is homed with the
+elementary-closure layer, and it is where Osin's Lemma 2.3 sits.
 
 dgo-611-lane's isolated-component machinery was examined for this and does not
 reach it: it needs a coned-off graph and unboundedness of `d̂_λ`, which
@@ -404,10 +412,24 @@ without any metric machinery: **conjugation preserves commensurability**, so no
 predicate that a conjugate pair can satisfy will ever imply
 `¬ OsinCommensurable`.  Geometric divergence of axes is such a predicate.
 
-This is the same reef `GGT.ElementaryOsinSNormal.IndependentOfNoCommonZpow` sits
-on --- it uses the weak form `∀ p q ≠ 0, a ^ p ≠ b ^ q`, which a family of conjugates
-also satisfies --- and it is why half (a) is stated with Osin's
-`OsinCommensurable`, whose conjugator is what makes it the strong form. -/
+It is why half (a) is stated with Osin's `OsinCommensurable`, whose conjugator
+is what makes it the strong form.
+
+**`GGT.ElementaryOsinSNormal.IndependentOfNoCommonZpow` is not a counterexample
+to any of this, and is not on the same reef** --- worth saying, because its
+weak-looking hypothesis invites the confusion.  It runs the *other* way,
+
+    ∀ a b, IsLoxodromic a x → IsLoxodromic b x →
+      (∀ p q : ℤ, p ≠ 0 → q ≠ 0 → a ^ p ≠ b ^ q) → Independent a b x
+
+i.e. weak algebraic ⟹ geometric.  That is Osin's Lemma 6.5, it is sound, and it
+is proved unconditionally in this tree as
+`GGT.ElementaryIndependence.independentOfNoCommonZpow_of_geodesic`.  Conjugate
+pairs satisfy its hypothesis and are indeed `Independent`, so its conclusion
+holds of them; nothing is broken.  What that theorem shows is that the geometric
+layer sits *downstream* of the weak algebraic condition, and half (a)'s target
+--- the strong, conjugator-quantified condition --- sits above both.  There is
+no route up. -/
 
 /-- **Conjugate elements are commensurable**, with `k = l = 1`. -/
 theorem osinCommensurable_conj {K : Type*} [Group K] (f c : K) :

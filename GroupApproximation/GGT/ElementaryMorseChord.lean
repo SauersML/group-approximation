@@ -248,13 +248,14 @@ theorem exists_right_anchor {δ r L : ℝ} (hδ0 : 0 ≤ δ) (hr : 2 * δ < r)
 
 /-- **A chord point at distance `r` from the chain, with the chain `3r`-dense
 along the chord, has `r` bounded by the constants alone.** -/
-theorem exists_bound_radius_of_chord_point {δ D l B : ℝ}
-    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D) (hl : 0 < l)
+theorem exists_bound_radius_of_chord_point_uniform {δ D l B : ℝ}
+    (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D) (hl : 0 < l)
     (hB0 : 0 ≤ B) :
-    ∃ K : ℝ, 0 ≤ K ∧ ∀ (y : ℕ → X) (N : ℕ),
+    ∃ K : ℝ, 0 ≤ K ∧ ∀ (Y : Type v) [PseudoMetricSpace Y],
+      IsHyperbolicSpace δ Y → ∀ (y : ℕ → Y) (N : ℕ),
       (∀ i, i < N → dist (y i) (y (i + 1)) ≤ D) →
       (∀ i j, i ≤ j → j ≤ N → l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j)) →
-      ∀ (L : ℝ) (f : ℝ → X), IsGeodesicSegment f 0 L → f 0 = y 0 → f L = y N →
+      ∀ (L : ℝ) (f : ℝ → Y), IsGeodesicSegment f 0 L → f 0 = y 0 → f L = y N →
         ∀ s₀ ∈ Set.Icc (0 : ℝ) L, ∀ r : ℝ, 0 ≤ r →
           (∀ i, i ≤ N → r ≤ dist (y i) (f s₀)) →
           (∀ t ∈ Set.Icc (0 : ℝ) L, ∃ i, i ≤ N ∧ dist (y i) (f t) ≤ 3 * r) →
@@ -266,7 +267,7 @@ theorem exists_bound_radius_of_chord_point {δ D l B : ℝ}
     have := mul_nonneg hclogM hδ0
     linarith
   refine ⟨2 * δ + D / 2 + Nat.clog 2 M * δ, hKnn, ?_⟩
-  intro y N hedge hprog L f hf hf0 hfL s₀ hs₀ r hr0 havoid hdense
+  intro Y _ hδ y N hedge hprog L f hf hf0 hfL s₀ hs₀ r hr0 havoid hdense
   by_cases hr2 : r ≤ 2 * δ
   · have := mul_nonneg hclogM hδ0
     linarith
@@ -321,22 +322,43 @@ theorem exists_bound_radius_of_chord_point {δ D l B : ℝ}
   have := mul_le_mul_of_nonneg_right hclog hδ0
   linarith
 
-/-! ## Chord near chain -/
-
-/-- **Every chord point is within `K₁` of a chain vertex**, with `K₁` depending
-only on `δ`, the step bound and the progress constants. -/
-theorem exists_bound_chord_near_chain {δ D l B : ℝ}
+/-- **The radius bound at one space.**  The statement as it stood before the
+constant was hoisted above the space, so every consumer is unchanged. -/
+theorem exists_bound_radius_of_chord_point {δ D l B : ℝ}
     (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D) (hl : 0 < l)
     (hB0 : 0 ≤ B) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ (y : ℕ → X) (N : ℕ),
       (∀ i, i < N → dist (y i) (y (i + 1)) ≤ D) →
       (∀ i j, i ≤ j → j ≤ N → l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j)) →
-      ∀ (L : ℝ), 0 ≤ L → ∀ (f : ℝ → X), IsGeodesicSegment f 0 L →
+      ∀ (L : ℝ) (f : ℝ → X), IsGeodesicSegment f 0 L → f 0 = y 0 → f L = y N →
+        ∀ s₀ ∈ Set.Icc (0 : ℝ) L, ∀ r : ℝ, 0 ≤ r →
+          (∀ i, i ≤ N → r ≤ dist (y i) (f s₀)) →
+          (∀ t ∈ Set.Icc (0 : ℝ) L, ∃ i, i ≤ N ∧ dist (y i) (f t) ≤ 3 * r) →
+          r ≤ K := by
+  obtain ⟨K, hK0, hK⟩ :=
+    exists_bound_radius_of_chord_point_uniform (δ := δ) (D := D) (l := l)
+      (B := B) hδ0 hD0 hl hB0
+  exact ⟨K, hK0, hK X hδ⟩
+
+/-! ## Chord near chain -/
+
+/-- **Every chord point is within `K₁` of a chain vertex**, with `K₁` depending
+only on `δ`, the step bound and the progress constants. -/
+theorem exists_bound_chord_near_chain_uniform {δ D l B : ℝ}
+    (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D) (hl : 0 < l)
+    (hB0 : 0 ≤ B) :
+    ∃ K : ℝ, 0 ≤ K ∧ ∀ (Y : Type v) [PseudoMetricSpace Y],
+      IsHyperbolicSpace δ Y → ∀ (y : ℕ → Y) (N : ℕ),
+      (∀ i, i < N → dist (y i) (y (i + 1)) ≤ D) →
+      (∀ i j, i ≤ j → j ≤ N → l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j)) →
+      ∀ (L : ℝ), 0 ≤ L → ∀ (f : ℝ → Y), IsGeodesicSegment f 0 L →
         f 0 = y 0 → f L = y N →
         ∀ t ∈ Set.Icc (0 : ℝ) L, ∃ i, i ≤ N ∧ dist (y i) (f t) ≤ K := by
-  obtain ⟨K₀, hK₀, hK⟩ := exists_bound_radius_of_chord_point hδ hδ0 hD0 hl hB0
+  obtain ⟨K₀, hK₀, hK⟩ :=
+    exists_bound_radius_of_chord_point_uniform (δ := δ) (D := D) (l := l)
+      (B := B) hδ0 hD0 hl hB0
   refine ⟨2 * K₀ + 1, by linarith, ?_⟩
-  intro y N hedge hprog L hL f hf hf0 hfL
+  intro Y _ hδ y N hedge hprog L hL f hf hf0 hfL
   obtain ⟨T, hmemT⟩ : ∃ T : Set ℝ, ∀ r, r ∈ T ↔
       (0 ≤ r ∧ ∀ t ∈ Set.Icc (0 : ℝ) L, ∃ i, i ≤ N ∧ dist (y i) (f t) ≤ r) :=
     ⟨{r : ℝ | 0 ≤ r ∧ ∀ t ∈ Set.Icc (0 : ℝ) L, ∃ i, i ≤ N ∧ dist (y i) (f t) ≤ r},
@@ -374,15 +396,14 @@ theorem exists_bound_chord_near_chain {δ D l B : ℝ}
       intro t ht
       obtain ⟨i, hiN, hi⟩ := ((hmemT r).mp hrT).2 t ht
       exact ⟨i, hiN, by linarith⟩
-    have := hK y N hedge hprog L f hf hf0 hfL t₀ ht₀ (sInf T / 2) (by linarith)
+    have := hK Y hδ y N hedge hprog L f hf hf0 hfL t₀ ht₀ (sInf T / 2)
+      (by linarith)
       havoid hdense
     linarith
 
-/-! ## Chain near chord -/
-
-/-- **Every chain vertex is within `K₂` of a chord point**, with `K₂` depending
-only on `δ`, the step bound and the progress constants. -/
-theorem exists_bound_chain_near_chord {δ D l B : ℝ}
+/-- **Chord near chain at one space.**  The statement as it stood before the
+constant was hoisted above the space. -/
+theorem exists_bound_chord_near_chain {δ D l B : ℝ}
     (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D) (hl : 0 < l)
     (hB0 : 0 ≤ B) :
     ∃ K : ℝ, 0 ≤ K ∧ ∀ (y : ℕ → X) (N : ℕ),
@@ -390,12 +411,33 @@ theorem exists_bound_chain_near_chord {δ D l B : ℝ}
       (∀ i j, i ≤ j → j ≤ N → l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j)) →
       ∀ (L : ℝ), 0 ≤ L → ∀ (f : ℝ → X), IsGeodesicSegment f 0 L →
         f 0 = y 0 → f L = y N →
+        ∀ t ∈ Set.Icc (0 : ℝ) L, ∃ i, i ≤ N ∧ dist (y i) (f t) ≤ K := by
+  obtain ⟨K, hK0, hK⟩ :=
+    exists_bound_chord_near_chain_uniform (δ := δ) (D := D) (l := l) (B := B)
+      hδ0 hD0 hl hB0
+  exact ⟨K, hK0, hK X hδ⟩
+
+/-! ## Chain near chord -/
+
+/-- **Every chain vertex is within `K₂` of a chord point**, with `K₂` depending
+only on `δ`, the step bound and the progress constants. -/
+theorem exists_bound_chain_near_chord_uniform {δ D l B : ℝ}
+    (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D) (hl : 0 < l)
+    (hB0 : 0 ≤ B) :
+    ∃ K : ℝ, 0 ≤ K ∧ ∀ (Y : Type v) [PseudoMetricSpace Y],
+      IsHyperbolicSpace δ Y → ∀ (y : ℕ → Y) (N : ℕ),
+      (∀ i, i < N → dist (y i) (y (i + 1)) ≤ D) →
+      (∀ i j, i ≤ j → j ≤ N → l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j)) →
+      ∀ (L : ℝ), 0 ≤ L → ∀ (f : ℝ → Y), IsGeodesicSegment f 0 L →
+        f 0 = y 0 → f L = y N →
         ∀ j, j ≤ N → ∃ t ∈ Set.Icc (0 : ℝ) L, dist (y j) (f t) ≤ K := by
-  obtain ⟨K₁, hK₁0, hK₁⟩ := exists_bound_chord_near_chain hδ hδ0 hD0 hl hB0
+  obtain ⟨K₁, hK₁0, hK₁⟩ :=
+    exists_bound_chord_near_chain_uniform (δ := δ) (D := D) (l := l) (B := B)
+      hδ0 hD0 hl hB0
   have hK2 : 0 ≤ K₁ + D * ((2 * K₁ + 2 + B) / l) :=
     add_nonneg hK₁0 (mul_nonneg hD0 (div_nonneg (by linarith) hl.le))
   refine ⟨K₁ + D * ((2 * K₁ + 2 + B) / l), hK2, ?_⟩
-  intro y N hedge hprog L hL f hf hf0 hfL j hjN
+  intro Y _ hδ y N hedge hprog L hL f hf hf0 hfL j hjN
   rcases Nat.eq_zero_or_pos j with hj0 | hjpos
   · subst hj0
     refine ⟨0, ⟨le_refl 0, hL⟩, ?_⟩
@@ -423,7 +465,8 @@ theorem exists_bound_chain_near_chord {δ D l B : ℝ}
       have ht₂I : min (sSup S + 1) L ∈ Set.Icc (0 : ℝ) L :=
         ⟨le_min (by linarith) hL, min_le_right _ _⟩
       have hτt₂ : sSup S < min (sSup S + 1) L := lt_min (by linarith) hτ
-      obtain ⟨i₂, hi₂N, hi₂⟩ := hK₁ y N hedge hprog L hL f hf hf0 hfL _ ht₂I
+      obtain ⟨i₂, hi₂N, hi₂⟩ :=
+        hK₁ Y hδ y N hedge hprog L hL f hf hf0 hfL _ ht₂I
       refine ⟨min (sSup S + 1) L, ht₂I, min_le_left _ _, hτt₂.le, i₂, hi₂N, ?_,
         hi₂⟩
       by_contra hlt
@@ -463,6 +506,22 @@ theorem exists_bound_chain_near_chord {δ D l B : ℝ}
       _ ≤ (2 * K₁ + 2 + B) / l * D := mul_le_mul_of_nonneg_right hidx hD0
       _ = D * ((2 * K₁ + 2 + B) / l) := by ring
   linarith
+
+/-- **Chain near chord at one space.**  The statement as it stood before the
+constant was hoisted above the space. -/
+theorem exists_bound_chain_near_chord {δ D l B : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D) (hl : 0 < l)
+    (hB0 : 0 ≤ B) :
+    ∃ K : ℝ, 0 ≤ K ∧ ∀ (y : ℕ → X) (N : ℕ),
+      (∀ i, i < N → dist (y i) (y (i + 1)) ≤ D) →
+      (∀ i j, i ≤ j → j ≤ N → l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j)) →
+      ∀ (L : ℝ), 0 ≤ L → ∀ (f : ℝ → X), IsGeodesicSegment f 0 L →
+        f 0 = y 0 → f L = y N →
+        ∀ j, j ≤ N → ∃ t ∈ Set.Icc (0 : ℝ) L, dist (y j) (f t) ≤ K := by
+  obtain ⟨K, hK0, hK⟩ :=
+    exists_bound_chain_near_chord_uniform (δ := δ) (D := D) (l := l) (B := B)
+      hδ0 hD0 hl hB0
+  exact ⟨K, hK0, hK X hδ⟩
 
 end ElementaryMorse
 end GGT
