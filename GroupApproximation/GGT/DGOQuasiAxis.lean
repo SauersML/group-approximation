@@ -730,6 +730,67 @@ theorem vertexChain_partner_lt_of_sparse
   have hD₁ := mul_le_mul_of_nonneg_left hb₁.1 hD
   nlinarith
 
+/-- A recursively chosen sequence of natural indices sparse enough for the
+coarse partner-order estimate.  The maximum also forces strict increase even
+when the coarse constants are degenerate. -/
+noncomputable def sparseSample (B C c D l : ℝ) : ℕ → ℕ
+  | 0 => 0
+  | n + 1 =>
+      Classical.choose (exists_nat_gt (max (sparseSample B C c D l n : ℝ)
+        ((l * (B + C + c) +
+          D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+            (l * l))))
+
+/-- Each recursive sparse sample is larger than its predecessor and satisfies
+the explicit growth inequality consumed by `vertexChain_partner_lt_of_sparse`. -/
+theorem sparseSample_step {B C c D l : ℝ} (hl : 0 < l) (n : ℕ) :
+    sparseSample B C c D l n < sparseSample B C c D l (n + 1) ∧
+      l * (B + C + c) +
+          D * (B + (sparseSample B C c D l n : ℝ) * D + C + c) <
+        l * (l * (sparseSample B C c D l (n + 1) : ℝ)) := by
+  have hchosen := Classical.choose_spec (exists_nat_gt
+    (max (sparseSample B C c D l n : ℝ)
+      ((l * (B + C + c) +
+        D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+          (l * l))))
+  have hsucc : sparseSample B C c D l (n + 1) =
+      Classical.choose (exists_nat_gt
+        (max (sparseSample B C c D l n : ℝ)
+          ((l * (B + C + c) +
+            D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+              (l * l)))) := by
+    rw [sparseSample.eq_def]
+  have hindex : (sparseSample B C c D l n : ℝ) <
+      ((Classical.choose (exists_nat_gt
+        (max (sparseSample B C c D l n : ℝ)
+          ((l * (B + C + c) +
+            D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+              (l * l)))) : ℕ) : ℝ) :=
+    (le_max_left _ _).trans_lt hchosen
+  have hgrowth :
+      (l * (B + C + c) +
+        D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+          (l * l) <
+      ((Classical.choose (exists_nat_gt
+        (max (sparseSample B C c D l n : ℝ)
+          ((l * (B + C + c) +
+            D * (B + (sparseSample B C c D l n : ℝ) * D + C + c)) /
+              (l * l)))) : ℕ) : ℝ) :=
+    (le_max_right _ _).trans_lt hchosen
+  constructor
+  · rw [hsucc]
+    exact_mod_cast hindex
+  · have hll : 0 < l * l := mul_pos hl hl
+    rw [div_lt_iff₀ hll] at hgrowth
+    rw [hsucc]
+    nlinarith
+
+/-- The recursively constructed sparse sample sequence is strictly
+increasing. -/
+theorem strictMono_sparseSample {B C c D l : ℝ} (hl : 0 < l) :
+    StrictMono (sparseSample B C c D l) :=
+  strictMono_nat_of_lt_succ fun n => (sparseSample_step hl n).1
+
 /-- If two matched pairs are `M` vertices apart on the first quasi-axis, the
 difference of their partner indices is uniformly bounded.  Consequently only
 finitely many phase differences can occur in the later pigeonhole extraction. -/
