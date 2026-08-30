@@ -16,6 +16,8 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
+**ESTABLISHED (Cairn).**  Put `K=ker(E->Z)`.  The split form `E=K rtimes Z`, local residual finiteness of `K`, maximal subgroup C-star embeddings, one Arveson extension, and finite-interval Folner compression give u.c.p. matrix models for the maximal canonical trace.  The normalized Hilbert--Schmidt boundary is `O(|F|^(-1/2))`.  See `literal-fp-via-folner-rf-core`.  This is a mathematical Cairn proof; no new Lean code is asserted.
+
 The literal finitely presented group `E` of `non_mf_groups_exist.tex`
 (`LiteralNonMFPresentation.MarkedGroup` in Lean) has Kirchberg's
 factorization property: the representation `C*(E) ⊙ C*(E) → B(ℓ²E)` given by
@@ -59,12 +61,12 @@ disproof would have to run the manuscript's compression-transport argument on
 completely positive Hilbert--Schmidt-approximate models, which the manuscript
 says it cannot do for merely bounded ones.
 
-Open.  Any proof must use the structure of `E` (an HNN-type extension of a
+Resolved by `literal-fp-via-folner-rf-core`.  The proof uses the structure of `E` (an HNN-type extension of a
 Kazhdan--Clifford base with a telescope core that is locally residually
 finite, `literal-telescope-core-lef`) rather than soficity alone.
 
 Lean: `NinetyNineProblems.LiteralFactorizationProperty : Prop` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`), defined
-as `IsAmenableTrace` of the canonical trace of `C*(E)`; no inhabitant.
+as `IsAmenableTrace` of the canonical trace of `C*(E)`; the Cairn proof above does not add a Lean inhabitant.
 
 General form: `NinetyNineProblems.HasFactorizationProperty G` (`GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean`), with
 `literalFactorizationProperty_iff` identifying the two.

@@ -3,12 +3,15 @@ rg: 2
 id: ucp-hs-transport-kills-literal-mark
 kind: claim
 title: Unital completely positive Hilbert--Schmidt models of the literal group kill the central mark
+refuted_by: [literal-group-factorization-property]
 distinct_from:
   literal-central-mark-corona-invisible: that is the operator-norm statement, proved in the tree; this asks the same conclusion for u.c.p. models that are only Hilbert--Schmidt asymptotically multiplicative, which is strictly harder and known to FAIL for merely bounded models because E is sofic.
 artifacts:
   - GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
+
+**REFUTED.**  The factorization sequence constructed in `literal-fp-via-folner-rf-core` satisfies `tr phi_n(w)->tau_E(w)=0`, so the asserted universal convergence to `1` is false.
 
 For every sequence of u.c.p. maps `φₙ : C*(E) → M_{kₙ}` with
 `‖φₙ(ab) − φₙ(a)φₙ(b)‖₂ → 0` and `tr ∘ φₙ → τ_E`, necessarily

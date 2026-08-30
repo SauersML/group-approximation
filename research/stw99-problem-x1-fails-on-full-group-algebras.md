@@ -12,6 +12,8 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
+**ESTABLISHED.**  Take the literal finitely presented group `E`.  Its maximal canonical trace is amenable by `literal-fp-via-folner-rf-core` and is not quasidiagonal by `literal-canonical-trace-hyperlinear-not-quasidiagonal`.
+
 There is a countable discrete group `G` whose canonical trace `τ_G` on the
 full group C\*-algebra `C*(G)` is an amenable trace (Brown, Definition 3.1.1)
 but not a quasidiagonal trace (Brown, Definition 3.3.1).

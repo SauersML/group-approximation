@@ -18,6 +18,8 @@ artifacts:
   - research/artifacts/stw10-finite-crossed-product-trace-audit-2026-08-30.md
 ---
 
+**REFUTED.**  The maximal canonical trace of the literal finitely presented group `E` is amenable but not quasidiagonal.  The u.c.p. construction is `literal-fp-via-folner-rf-core`; the non-QD theorem is `literal-canonical-trace-hyperlinear-not-quasidiagonal`.
+
 **Problem X(1) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Are amenable traces on C\*-algebras necessarily
 quasidiagonal?
 

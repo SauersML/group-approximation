@@ -11,6 +11,8 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
+**ROUTE ESTABLISHED.**  Both premises are now established; the literal group supplies an amenable non-quasidiagonal maximal canonical trace.
+
 If `E` has Kirchberg's factorization property then, by Brown's Theorem 4.1.9
 (N. P. Brown, *Invariant means and finite representation theory of C\*-algebras*, Mem. Amer. Math. Soc. 184 (2006), no. 865), the canonical trace `τ_E` on `C*(E)` is an amenable trace.  The
 second premise says `τ_E` is not a quasidiagonal trace.  So `τ_E` is an
