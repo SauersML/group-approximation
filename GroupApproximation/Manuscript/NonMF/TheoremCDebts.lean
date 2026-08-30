@@ -3,6 +3,7 @@ import GroupApproximation.Manuscript.NonMF.ChiodoOfHigman
 import GroupApproximation.Manuscript.NonMF.HullFillTheoremCCorrected
 import GroupApproximation.Manuscript.NonMF.HullInputsProved
 import GroupApproximation.Manuscript.NonMF.TheoremCPrinted
+import GroupApproximation.GGT.DGOWindmillTheorem53
 import GroupApproximation.GGT.ElementaryOsinNormalClosed
 import GroupApproximation.GGT.HullSCFilling
 import GroupApproximation.GGT.HullSCHypEmbedded
