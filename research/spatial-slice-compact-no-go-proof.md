@@ -4,7 +4,8 @@ id: spatial-slice-compact-no-go-proof
 kind: route
 title: A nonzero compact slice would make one pure factor non-nowhere-scattered
 target: spatial-pure-factor-reps-have-no-joint-compacts
-requires: []
+requires:
+  - pure-representation-images-are-compact-free
 ---
 
 Assume that a nonzero compact operator
@@ -28,7 +29,8 @@ of `pi_A(A)`.  Hence
 0 != t in pi_A(A) intersect K(H_A).
 ```
 
-But purity implies nowhere scatteredness, and nowhere scatteredness says that
-every irreducible image is disjoint from the compact operators.  This is a
+The representation `pi_A` need not be irreducible.  Nevertheless,
+`pure-representation-images-are-compact-free` says that every representation
+image of a pure algebra is disjoint from the compact operators.  This is a
 contradiction.  (Slicing in the other direction gives the symmetric
 contradiction in `B`.)

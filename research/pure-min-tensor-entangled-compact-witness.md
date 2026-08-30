@@ -24,9 +24,14 @@ contains a nonzero compact operator.
   representation would force the diagonal subgroup, hence `Gamma`, to be
   amenable.  Infinite property-T examples therefore fail at exactly the
   tensor-norm gate.
-- Spatial products cannot work by
-  `spatial-pure-factor-reps-have-no-joint-compacts`.
+- No spatial product can work, even with reducible factor representations,
+  by `spatial-pure-factor-reps-have-no-joint-compacts`.
+- The factors cannot both be simple by
+  `stw95-simple-pure-factors-exclude-compact-corridor`.  Indeed, Takesaki's
+  theorem makes their minimal tensor product simple; a compact-bearing
+  irreducible image would make the product elementary, and type I then
+  reflects to both factors, contradicting their purity.
 - Exact selfless constructions are excluded by current tensor-selflessness
   permanence theorems.  The live counterexample direction is consequently a
-  nonexact pair with a genuinely entangled min-continuous commuting
-  representation.
+  genuinely entangled min-continuous commuting representation with at least
+  one nonsimple pure factor.

@@ -36,3 +36,9 @@ matrix-bundle charts from which to extract such a corner.  The extension
 route is Problem LXXXII: a general maximum formula, combined with the simple
 nuclear-dimension dichotomy, would settle finite-ideal separable cases, but
 the required color reuse remains open.
+
+The relationship is now internal and witness-level:
+`stw81-finite-ideal-counterexample-forces-lxxxii-counterexample` proves that
+every separable finite-ideal counterexample here contains, at its first
+high-dimensional composition step, an LXXXII counterexample with both
+endpoint dimensions at most one.

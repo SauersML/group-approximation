@@ -10,6 +10,8 @@ distinct_from:
   stw99-problem-xcv-cu-z-tensor: that prescribes the entire Cuntz semigroup of the tensor product and is refuted by a compact K-theory cross class; the counterexample tensor remains pure and therefore does not decide this weaker permanence question.
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw95-pure-tensor-frontier-2026-08-30.md
+  - research/artifacts/stw95-entangled-compact-corridor-audit-2026-08-30.md
 ---
 
 **Problem XCV, general part, of Schafhauser--Tikuisis--White.**  Is the
@@ -34,4 +36,9 @@ of the canonical abstract-to-concrete Cu tensor map suffices by
 `split-cu-tensor-map-implies-pure-product`.  On the other hand, an entangled
 compact-bearing irreducible representation would refute the claim through
 `pure-tensor-entangled-compact-route`; spatial product representations are
-ruled out by `spatial-pure-factor-reps-have-no-joint-compacts`.
+ruled out, without irreducibility assumptions on the factor representations,
+by `spatial-pure-factor-reps-have-no-joint-compacts`.  The compact corridor
+is narrower still for simple factors:
+`stw95-simple-pure-factors-exclude-compact-corridor` proves that at least
+one factor would have to be nonsimple.  These are fences around one
+counterexample mechanism, not a proof of tensor purity.
