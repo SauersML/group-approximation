@@ -4,11 +4,13 @@ id: kt-double-reduced-cstar-is-mf
 kind: claim
 title: The reduced C-star algebra of the q=2 Kun--Thom double is MF
 distinct_from:
-  reduced-amalgam-canonical-trace-is-mf: that refuted node asks for asymptotically isometric operator-norm microstates on the full group C-star algebra; this asks for a norm-corona embedding of the reduced group C-star algebra, after which the trace is selected automatically by uniqueness.
+  reduced-amalgam-canonical-trace-is-mf: that asks for an MF trace on the full group C-star algebra without asymptotic isometry; this asks for a faithful norm-corona embedding of the reduced group C-star algebra, after which the trace is selected automatically by uniqueness.
   symmetric-double-weak-mf: that embeds the abstract group, and in the proof a full auxiliary symmetric amalgam, into a norm matrix corona; neither conclusion says that the regular representation norm is approximated.
   kt-double-mixed-word-trace-selection: that is equivalent to hyperlinearity and controls normalized Hilbert--Schmidt moments only; reduced C-star MF additionally controls operator norms of every group-ring element.
+  kt-strong-nielsen-covariant-microstates: that is the equivalent concrete strong-covariance package after splitting the free fold kernel; this is the intrinsic reduced-C-star formulation.
 artifacts:
   - notes/UNIQUE_TRACE_KUN_THOM_DOUBLE.md
+  - research/artifacts/kt-double-mf-trace-literature-audit-2026-08-30.md
 ---
 
 **OPEN.**  For the explicit Kun--Thom pair over `F_2`, put
@@ -116,3 +118,27 @@ successful propagation must therefore use a finite-matrix-only ingredient:
 moving-radius/nonsummable control plus a presentation mechanism, one fixed
 multiscale checksum, or authentication of the quarter-trace support as a
 common reducing carrier.
+
+There is now an exact group-level coordinate form for the positive problem.
+`kt-double-is-nielsen-semidirect-product` computes
+
+```text
+D=F({b_x:x in G/Gamma-{Gamma}}) semidirect G,
+g b_x g^(-1)=b_(gx)b_(gGamma)^(-1).                     (KRC4)
+```
+
+The two routes through `kt-strong-nielsen-covariant-microstates` prove that
+the present claim is equivalent to operator-norm strong microstates for this
+one affine Nielsen action.  This is sharper than asking for unspecified
+relative models: it gives the complete finite-stage data and the exact norm
+test `(SNM2)--(SNM6)`.
+
+The exact-action specialization is ruled out maximally.
+`kt-nielsen-models-have-maximal-exact-rounding-gap` proves that every strong
+package is at operator-norm distance tending to `2` on one fixed free
+generator from every exact finite-dimensional equivariant model.  Thus
+current strong-crossed-product theorems whose input is an exact finite-stage
+action cannot close the node.  A positive construction must make the actor
+and covariance laws genuinely approximate before passing to the norm
+corona; a negative proof must show that this asymptotic escape cannot carry
+the regular norms.

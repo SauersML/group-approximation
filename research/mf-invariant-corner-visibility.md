@@ -86,6 +86,12 @@ The following group-wide or elementwise instances are established.
   canonical trace on `C*_lambda(A semidirect F_r)` is an MF trace.  Restricting
   its norm microstates to the canonical group unitaries gives `(I')` for every
   nontrivial element.
+* **Every element outside the finite-dimensional residual.**  If one exact
+  finite-dimensional representation sees `g`, balance it at equal dimension
+  with any faithful MF realization.  The exact half gives a fixed normalized
+  trace gap and the MF half retains faithfulness.  This is
+  `mf-fd-visible-elements-have-global-trace-gaps`, and it shows that a
+  counterexample must lie in `Rad_fd(G) \ Rad_MF(G)`.
 * **Elements of a finite normal subgroup**, by
   `mf-finite-normal-tracially-visible`.
 * **Antipodal elements over a central involution**, by

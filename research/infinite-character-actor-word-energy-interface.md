@@ -182,3 +182,18 @@ do not provide either mechanism.
   not merely by an abstract two-block swap.  A viable packet must prove the
   action nonsofic or add a controller relation which fails in the
   replicated-center Pauli quotient.
+- **Treat the central D8 seed as the source of nonhyperlinearity.**
+  `central-d8-seed-preserves-hyperlinearity` identifies the exact normal
+  form
+
+  ```text
+  P(G,m_0)=(G x C_2) *_(C_2 x C_2) D_8.
+  ```
+
+  The edge is finite, so the marked seed group is hyperlinear exactly when
+  the unmarked actor--module base `G=M rtimes A` is.  The D8 relation remains
+  a useful finite word detecting the seed sector, but it cannot be the first
+  source of a matrix-microstate obstruction.  Any successful proof of this
+  interface must therefore exclude hyperlinearity of the base itself; exact
+  finite-dimensional invisibility of the marked sector does not weaken that
+  requirement.

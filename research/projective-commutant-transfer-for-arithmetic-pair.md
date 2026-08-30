@@ -504,3 +504,16 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   `sl3-collapse-from-projective-transfer` the `SL_3` instance of this
   claim now also implies the full collapse `(RC3)`, so the projective
   lane and the exact lane converge at higher rank.
+- **Every enemy is now localized in a vanishing-density heat singular
+  subspace.**  `arithmetic-leak-has-sparse-heat-capture` diagonalizes the
+  finite-dimensional-null Kazhdan heat filters along any canonical
+  projective-transfer enemy.  At depths `N_j->infinity`, the evaluated
+  operators have normalized superoperator Hilbert--Schmidt norm tending to
+  zero, but retain norm at least `sqrt(2 epsilon)` on the selected
+  full-rank inner automorphism.  A fixed singular cutoff therefore has
+  vanishing normalized rank while capturing at least `epsilon/8` of the
+  selected vector's mass.  This is the exact dimension-free residue:
+  robust spectral gap and supertrace decay already make the bad carrier
+  sparse, but cannot kill its correlation with the selected inner vector.
+  A completion must add selected-vector incidence or prove that inner
+  automorphisms cannot concentrate in these arithmetic heat cutoffs.

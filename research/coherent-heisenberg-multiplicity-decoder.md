@@ -137,3 +137,13 @@ precise missing finite-matrix theorem is
 reservoir or charge all mass leaving it to the paired Steinberg triangle
 defects.  Proving such a return/payment theorem, rather than strengthening
 the scalar Heisenberg densities, is the remaining gate.
+
+Aggregating the entire exponential family does not by itself cross that
+gate.  `weyl-return-frame-is-exact-rectangular-escape` constructs, at every
+refinement depth `r`, the literal `p^(2r)` Weyl-indexed return channels.  Their
+initial Grams are orthogonal and sum exactly to the source commutant Reynolds
+projection, while each channel lands onto the smaller target commutant.
+Thus the full Parseval aggregation is the rectangular escape itself, not a
+positive-density decoder.  A successful aggregation must force a
+payload-authenticated collision between distinct Weyl indices (which has a
+fixed-depth HS floor) or pay the complement of a genuinely proper subframe.

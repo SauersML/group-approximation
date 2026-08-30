@@ -93,10 +93,37 @@ MF under reduced amalgamated free products.  Reduced MF is one stronger
 sufficient certificate; the exact known CE-level reformulation is Gao's
 `RE/C` condition above.
 
+## 5. Current strong-convergence boundary
+
+Checked again against the current arXiv abstract pages on 2026-08-30.
+
+Gao--Kunnawalkam Elayavalli--Manzoor--Patchell,
+arXiv:2603.24502v5, Corollary 1.2, proves reduced-norm MF for a double
+`G *_H G` when `G` is MF and `H` is separable in `G`.  The version remains
+v5, dated 12 April 2026.  The Kun--Thom edge has the opposite property: the
+strict exterior return belongs to the image of `Gamma` in every finite
+quotient of `G`, so `Gamma` is not separable.  The stronger blockwise form of
+this failure is `kt-finite-image-relative-edge-models-are-impossible`.
+
+Gao--Kunnawalkam Elayavalli--Mj, arXiv:2607.29571v1, remains at v1, dated
+31 July 2026.  Its extension results make exact/equivariant finite-dimensional
+base models the input to strong crossed-product assembly.  For the split
+Kun--Thom double, `finite-dimensional-nielsen-cocycle-models-kill-mark`
+proves that every such exact equivariant model kills one fixed free-radical
+generator.  Hence it cannot strongly converge to the reduced regular model.
+
+The surviving operator-norm problem is therefore not an unnamed permanence
+gap.  It is the genuinely asymptotic affine Nielsen package isolated in
+`kt-strong-nielsen-covariant-microstates`: the actor and covariance laws may
+be exact only in the norm corona, never at the finite stages.  No theorem in
+either current source supplies those approximate base models for the
+nonseparable Kun--Thom action.
+
 ## Verdict
 
-The canonical MF-trace node remains genuinely open.  The exact narrower
-results banked by this audit are the binary unique-trace theorem, the generic
-monotracial-MF trace-selection lemma, and the Gao relative-embeddability
-equivalence.  No cited permanence theorem settles the nonamenable Kun--Thom
+The canonical MF-trace and reduced-MF nodes remain genuinely open.  The exact
+narrower results banked by this audit are the binary unique-trace theorem,
+the generic monotracial-MF trace-selection lemma, the Gao relative-
+embeddability equivalence, and the affine Nielsen strong-microstate reduction.
+No cited permanence theorem settles the nonamenable, nonseparable Kun--Thom
 edge.

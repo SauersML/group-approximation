@@ -16,6 +16,7 @@ distinct_from:
   order-seven-anchor-stops-at-whitehead-compression-leakage: that proves the odd anchor kills the reservoir gauge once the full compression boundary is controlled; its former one-step spectral estimate is only necessary, and the surviving input is a typed moving seven-step return.
   paid-t00-carrier-has-signed-hecke-reynolds-dichotomy: that gives an exact operator-norm localization of the paid t00 discrepancy to the actual signed source, or one fixed detector-word payment; this asks for vanishing normalized-HS loss for both native covariance rows.
   near-full-hecke-source-cannot-retain-quarter-native-profile: that proves a reducing subcut of the fixed balanced Hecke source must discard at least one third of its mass to recover the second native quarter profile; this claim may only survive through a genuinely moving occurrence chart whose loss is charged to the full relations.
+  quarter-native-chart-pays-fixed-hecke-displacement: that permits the genuinely moving occurrence chart left open by the near-full rank fence, but proves that its pulled-back second native sign must remain a fixed Hilbert--Schmidt distance from the balanced Hecke sign; this claim still permits an ordinary mixed word to pay that macroscopic displacement while typing the unequal target Gram.
 ---
 
 **OPEN FINITE-MATRIX NATIVE-COVARIANCE LEAF.**  Let
@@ -205,3 +206,14 @@ two polar-square identities.
   moving native chart and charge that transition to ordinary relations.  It
   cannot obtain the requested source typing by spectral trimming inside the
   fixed `Q` chart itself.
+- **Make the moving native chart asymptotically preserve the fixed source
+  frame.**  This broader shortcut also fails quantitatively.  By
+  `quarter-native-chart-pays-fixed-hecke-displacement`, if a near-full cut
+  of `Q` sees the pulled-back second native negative fraction `1/4+o(1)`,
+  then that pulled-back negative projection is at least
+  `sqrt(tau(Q))/2-o(1)` away from the fixed balanced Hecke half in ambient
+  Hilbert--Schmidt norm.  Thus the missing transition cannot pull the native
+  source back to a small perturbation of the signed-source frame.  It must
+  be a macroscopic ordinary-word displacement whose source and unequal
+  target Grams are both authenticated
+  and whose reservoir coboundary is cancelled.
