@@ -31,7 +31,13 @@ contains a nonzero compact operator.
   theorem makes their minimal tensor product simple; a compact-bearing
   irreducible image would make the product elementary, and type I then
   reflects to both factors, contradicting their purity.
+- In the separable corridor neither factor can be exact by
+  `separable-exact-nowhere-scattered-tensor-permanence`.  Its proof localizes
+  a hypothetical compact ideal through the primitive spectra and shows that
+  it would be the tensor product of two simple nowhere-scattered factor
+  ideals, which type-I reflection rules out.
 - Exact selfless constructions are excluded by current tensor-selflessness
   permanence theorems.  The live counterexample direction is consequently a
   genuinely entangled min-continuous commuting representation with at least
-  one nonsimple pure factor.
+  one nonsimple pure factor and, in the separable setting, two nonexact
+  factors.

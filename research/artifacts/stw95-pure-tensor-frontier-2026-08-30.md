@@ -65,6 +65,18 @@ Simplicity makes the irreducible representation faithful; the compact ideal
 would then be the whole image, making the tensor product type I.  Type I
 reflects to both factors, contradicting purity of the simple factors.
 
+There is now a third fence covering nonsimple algebras.  If the factors are
+separable and either one is exact,
+`separable-exact-nowhere-scattered-tensor-permanence` proves that their
+minimal tensor product is nowhere scattered.  The proof uses the
+Blanchard--Kirchberg product description of the primitive spectrum: a compact
+ideal in a faithful primitive quotient determines an open singleton, which
+splits into open singleton ideals in the two factor quotients.  Their tensor
+product is the compact ideal, so type-I reflection makes both simple factor
+ideals elementary, contradicting nowhere scatteredness.  Consequently a
+separable compact-bearing witness must use two nonexact factors, at least one
+of which is nonsimple.
+
 The standard property-T diagonal construction is an instructive false lead.
 For an ICC property-T group, the diagonal Kazhdan projection is rank one in
 the left-right image, but this is a representation of the maximal tensor
@@ -73,6 +85,7 @@ containment of the quasi-regular representation of
 `(Gamma times Gamma)/Diagonal(Gamma)` in the regular representation, forcing
 the diagonal subgroup to be amenable.  Hence it cannot work for an infinite
 property-T group.  A compact-image counterexample must instead use a genuinely
-entangled min-continuous representation with at least one nonsimple factor.
-The abstract purity of `Cu(A) tensor_Cu Cu(B)` does not realize such a
-representation or identify it with `Cu(A tensor_min B)`.
+entangled min-continuous representation with at least one nonsimple factor
+and, in the separable setting, two nonexact factors.  The abstract purity of
+`Cu(A) tensor_Cu Cu(B)` does not realize such a representation or identify it
+with `Cu(A tensor_min B)`.

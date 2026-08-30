@@ -40,5 +40,7 @@ ruled out, without irreducibility assumptions on the factor representations,
 by `spatial-pure-factor-reps-have-no-joint-compacts`.  The compact corridor
 is narrower still for simple factors:
 `stw95-simple-pure-factors-exclude-compact-corridor` proves that at least
-one factor would have to be nonsimple.  These are fences around one
-counterexample mechanism, not a proof of tensor purity.
+one factor would have to be nonsimple.  Moreover,
+`separable-exact-nowhere-scattered-tensor-permanence` proves that a separable
+compact-bearing witness would require both factors to be nonexact.  These are
+fences around one counterexample mechanism, not a proof of tensor purity.
