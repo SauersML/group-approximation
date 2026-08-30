@@ -73,3 +73,38 @@ operators on an infinite Hilbert module, not in a finite matrix amplification
 of the AF target.  The theorem therefore supplies no permanence for general
 `Z`-crossed products and does not address the unsolved step of coherifying
 arbitrary quasidiagonal models.
+
+## Continuous blocks and finite pullback gluings
+
+AF-embeddability also has a constructive continuous-coordinate permanence
+which is independent of the finite crossed-product argument.  For a
+second-countable locally compact `X`, choose a Cantor surjection
+
+```text
+K -> X^+.
+```
+
+It gives `C_0(X)->C(K)`.  Tensoring this inclusion with an AF embedding
+`A->E` gives
+
+```text
+C_0(X,A) -> C(K) tensor_min E,
+```
+
+and the target is AF.  Hence every C*-subalgebra of a finite direct sum of
+such continuous blocks is AF-embeddable.  A finite pullback tree embeds by
+its leaf-coordinate maps into precisely such a finite direct sum, so no
+surjectivity assumption is needed.  Mapping tori and finite recursive
+subhomogeneous constructions are immediate special cases.
+
+The construction retains a useful unital trace statement.  If the `X_j` are
+compact and a faithful `tau_j` extends across a unital `A_j->E_j`, choose a
+full-support probability `mu_j` on `X_j`.  Extend the state `mu_j` from the
+pulled-back copy of `C(X_j)` to `C(K_j)`; its representing measure `nu_j`
+pushes forward to `mu_j`.  Then `nu_j tensor sigma_j` extends
+`mu_j tensor tau_j`.  Positive weighted coordinate sums are faithful states
+on every common-unit subalgebra of the finite direct sum and extend to the
+direct sum of the AF targets.  Their restrictions are therefore
+quasidiagonal traces.  This is a trace-preserving permanence theorem for
+IX(2), not a construction of an AF embedding from an arbitrary
+quasidiagonal trace.
