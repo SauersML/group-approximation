@@ -27,6 +27,32 @@ Fourier transform, commutative nuclear dimension, and the Pontryagin formula
 `dim(A_hat)=rank_Q(A)`.  Thus infinite-rank abelianization is an immediate
 certificate of infinite nuclear dimension.
 
+## Nonabelian quotient obstruction
+
+Eckhardt--Wu's wreath-product dichotomy says that, for `K` virtually
+polycyclic and `H` finitely generated virtually nilpotent, `C*(K wr H)` has
+finite nuclear dimension exactly when one of `K,H` is finite.  Quotient
+permanence of nuclear dimension therefore gives a larger negative class:
+
+```text
+G ->> K wr H,  K and H infinite  =>  dim_nuc(C*(G))=infinity.
+```
+
+This applies to arbitrary countable amenable extensions of the indicated
+wreath products.  It is not subsumed by the abelianization bound.  For every
+restricted wreath product one has
+
+```text
+(K wr H)_ab = K_ab direct_sum H_ab,
+```
+
+because the coinvariants of `direct_sum_H K_ab` under the regular shift are
+`K_ab`.  Taking both factors to be the infinite dihedral group produces a
+finitely generated amenable group `D_infinity wr D_infinity` with
+abelianization `(Z/2)^4` and infinite nuclear dimension.  Thus even rational
+rank zero does not protect an amenable group algebra from infinite nuclear
+dimension.
+
 ## Upper mechanism: subgroup exhaustions
 
 For an increasing exhaustion of an amenable group, reduced subgroup algebras
@@ -117,4 +143,6 @@ in particular it does not cover shift-type wreath products.  The direct-factor
 proof uses the augmentation quotient and therefore does not extend formally
 to an arbitrary semidirect product.  The directed-union theorem needs a
 uniform stage bound; it cannot turn unbounded finite-stage dimensions into a
-finite limit.
+finite limit.  The wreath-product result is a one-way obstruction: no claim is
+made that groups without one of the displayed wreath quotients have finite
+nuclear dimension.
