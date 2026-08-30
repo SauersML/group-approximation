@@ -10,6 +10,7 @@ distinct_from:
   stw93-free-factor-central-sequences-are-tracially-scalar: that established claim places non-scalar free-factor central sequences in I; it neither places their residual classes in K_Z nor proves that quasitraces annihilate them in I/K_Z.
 artifacts:
   - research/artifacts/stw93-xciii-free-group-jiang-su-si-audit-2026-08-30.md
+  - research/artifacts/stw93-hereditary-exhaustion-audit-2026-08-30.md
 ---
 
 With `D`, `I`, and `K_𝒵` as in
@@ -29,3 +30,13 @@ comparison against a hypothetical singular quasitrace on the quotient, and
 exactness of the separable algebra `A` does not imply exactness of `D/K_𝒵`.
 Thus neither strict comparison nor Haagerup's theorem currently annihilates
 the residual ideal.
+
+The hereditary-exhaustion route has an exact stopping point.  By
+`stw93-hereditary-exhaustion-reduces-to-traces`, if
+every finite residual packet is contained in a sigma-unital hereditary
+subalgebra with bounded-quasitrace linearity, then every quasitrace on the
+residual ambient quotient is an actual trace.  Under that hypothesis this
+open claim is equivalent to the residual ideal carrying no nonzero bounded
+trace.  A quasitrace-rigid exhaustion alone cannot prove annihilation,
+because any nonzero bounded residual trace extends through the multiplier
+algebra to an ambient trace charging the residual ideal.

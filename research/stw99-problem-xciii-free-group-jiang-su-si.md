@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw93-xciii-free-group-jiang-su-si-audit-2026-08-30.md
+  - research/artifacts/stw93-hereditary-exhaustion-audit-2026-08-30.md
 ---
 
 **Problem XCIII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Does `C*_r(F₂) ⊗ 𝒵` have property (SI)?
@@ -58,3 +59,14 @@ ideal.  Equivalently, the exact remaining claim is
 `stw93-residual-trace-kernel-is-quasitrace-null`.  Central pureness, now also
 furnished directly by Perera--Thiel--Vilalta, supplies strict comparison but
 does not force quasitraces to annihilate this residual ideal.
+
+There is now a sharp hereditary-exhaustion reduction.  If every finite
+packet in the residual ideal `I/K_Z^sat` lies in a sigma-unital hereditary
+subalgebra with bounded-quasitrace linearity, then
+`stw93-hereditary-exhaustion-reduces-to-traces` and
+arbitrary extension permanence make every quasitrace on the residual
+ambient quotient an actual trace.  The XCIII leaf then holds exactly when
+`I/K_Z^sat` has no nonzero bounded trace.  The exhaustion hypothesis alone
+does not give annihilation: a bounded trace on the residual ideal extends
+through its multiplier algebra to an ambient trace and is already a
+negative witness.
