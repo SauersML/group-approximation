@@ -35,8 +35,13 @@ Finite-equation and finitely generated-subgroup switches cannot bridge the
 gap by [[finitely-generated-centralizer-switches-are-sigma1]]: their
 positive events have finite derivation certificates and are
 `Sigma^0_1`, even inside a finitely presented solvable group with
-undecidable word problem.  A successful construction must propagate a
-genuinely infinite table from finitely many relators.
+undecidable word problem.  The broader theorem
+[[genuine-hnn-switches-over-amenable-bases-are-sigma1]] closes every genuine
+one-edge HNN switch over an amenable base: the amenable cases are exactly the
+two ascending cases, again a `Sigma^0_1` event, while noninjective
+endomorphism mapping tori are always amenable.  A successful construction
+must propagate a genuinely infinite table through a non-genuine stable
+kernel from finitely many relators.
 
 ## What a proof would need
 
