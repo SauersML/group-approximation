@@ -33,7 +33,7 @@ This includes fibers with nonzero `K_1`.
 
 The acyclicity hypothesis is substantive.  On a graph with a cycle, a
 noncompact global element may restrict to a projection bundle around that
-cycle and retain a supportwise `K_1)-clutching class, as in Phillips's
+cycle and retain a supportwise `K_1`-clutching class, as in Phillips's
 circle-with-a-tail example.
 
 ROUTES
