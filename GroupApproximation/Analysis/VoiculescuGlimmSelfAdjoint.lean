@@ -48,7 +48,7 @@ theorem exists_selfAdjoint_decomposition {A : StarSubalgebra ℂ (H →L[ℂ] H)
     rw [star_smul, star_sub, star_star, Complex.star_def, map_inv₀, map_mul,
       Complex.conj_ofNat, Complex.conj_I, ← neg_sub (star a) a]
     rw [show (2 : ℂ) * -Complex.I = -(2 * Complex.I) by ring, inv_neg, neg_smul,
-      neg_neg, neg_sub]
+      smul_neg]
   · have hI : Complex.I * ((2 * Complex.I)⁻¹ : ℂ) = (2⁻¹ : ℂ) := by
       field_simp
     rw [smul_smul, hI, ← smul_add]

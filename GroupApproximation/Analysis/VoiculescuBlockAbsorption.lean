@@ -95,6 +95,7 @@ def SeparableBlockDiagonalAbsorptionStatement : Prop :=
           ∃ W : K →L[ℂ] H, ContinuousLinearMap.adjoint W ∘L W = 1 ∧
             ∀ a : ↥A, IsCompactOperator ((a : H →L[ℂ] H) ∘L W - W ∘L rho a)
 
+set_option maxHeartbeats 800000 in
 /-- **The block-diagonal case of (V4), proved.** -/
 theorem separableBlockDiagonalAbsorption_of_intertwiningStep
     (hIS : IntertwiningStepStatement) :
