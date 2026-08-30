@@ -3,6 +3,8 @@ rg: 2
 id: tensor-leg-centers-give-independent-plancherel-samples
 kind: claim
 title: Tensor-leg centers give independent Plancherel samples in the diagonal multiplicity commutant
+invalidates:
+  - diagonal-tensor-powers-regular-lamp-proof
 distinct_from:
   diagonal-regular-isotypic-center-stays-plancherel: that computes the coarser intrinsic center of the diagonal image algebra; this uses the canonical center of every known tensor leg as a reducing PVM.
 ---
