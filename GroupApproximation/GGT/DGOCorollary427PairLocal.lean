@@ -250,6 +250,91 @@ theorem pairLocalFiniteness : PairLocalFiniteness.{u, w} := by
   exact relBall_finite_of_boundedBaseSpellings D₀ (D.adjoinPair t) rfl hM
     hbase lam hD₀fin n
 
+/-! ## An arbitrary finite change of base -/
+
+/-- **Local finiteness crosses an arbitrary finite one-way change of the
+base.**
+
+Only the genuinely new letters `D'.base \ D.base` have to be spelled.  Choose
+one old-relative geodesic spelling for each of them.  Finiteness of the set of
+new letters gives both a uniform length bound and a finite set `N` of all
+peripheral values occurring in the chosen spellings.  Moving `N` into the base
+makes every chosen spelling an all-base word, after which
+`relBall_finite_of_boundedBaseSpellings` gives the result.
+
+The theorem is deliberately directional: no inclusion of bases is required,
+and only `D'.base \ D.base` is assumed finite.  Applying it in the two
+directions is exactly the local-finiteness half of DGO Corollary 4.27. -/
+theorem localFiniteness_of_finite_base_diff (D D' : RelGenSet G Λ)
+    (hfam : D'.fam = D.fam) (hdiff : (D'.base \ D.base).Finite)
+    (hloc : ∀ lam : Λ, ∀ n : ℕ, (D.relBall lam n).Finite) :
+    ∀ lam : Λ, ∀ n : ℕ, (D'.relBall lam n).Finite := by
+  classical
+  have hex : ∀ x : G, ∃ q : List (RelLetter G Λ),
+      (∀ a ∈ q, D.IsLetter a) ∧ RelLetter.listVal q = x ∧
+        q.length = wordDist D.alphabet.carrier 1 x :=
+    fun x => OsinComponents.existsGeodesicWord D 1 x
+  choose spell hspell using hex
+  let E : Set G := D'.base \ D.base
+  let N : Set G := ⋃ x ∈ E, peripheralValues (spell x)
+  have hNfin : N.Finite := by
+    dsimp only [N]
+    exact hdiff.biUnion fun x _ => peripheralValues_finite (spell x)
+  have hN : ∀ x ∈ N, ∃ mu : Λ, x ∈ D.fam mu := by
+    intro x hx
+    simp only [N, Set.mem_iUnion] at hx
+    obtain ⟨y, -, hy⟩ := hx
+    exact peripheralValues_mem_family D (hspell y).1 x hy
+  let D₀ : RelGenSet G Λ := D.adjoinPeripheralSet N hN
+  have hD₀fin : ∀ lam : Λ, ∀ n : ℕ, (D₀.relBall lam n).Finite := by
+    intro lam
+    exact OsinComponents.relBall_finite_of_base_subset' D D₀ lam rfl hN hNfin
+      (by intro x hx; exact hx) (hloc lam)
+  let M : ℕ := 1 + ∑ x ∈ hdiff.toFinset, (spell x).length
+  have hM : 1 ≤ M := by simp [M]
+  have hbase : HasBoundedBaseSpellings D₀ D' M := by
+    intro x hx
+    by_cases hxD : x ∈ D.base
+    · refine ⟨[RelLetter.base x], ?_, ?_, ?_⟩
+      · intro a ha
+        simp only [List.mem_singleton] at ha
+        subst a
+        exact ⟨x, Or.inl hxD, rfl⟩
+      · simp [RelLetter.listVal, RelLetter.val]
+      · simpa [M] using hM
+    · have hxE : x ∈ E := ⟨hx, hxD⟩
+      refine ⟨OsinComponents.demote (spell x), ?_, ?_, ?_⟩
+      · intro a ha
+        obtain ⟨y, hy, rfl⟩ := forall_base_demote_adjoinPeripheralSet D N hN
+          (hspell x).1 ?_ a ha
+        · exact ⟨y, hy, rfl⟩
+        · intro z hz
+          exact Set.mem_iUnion.mpr ⟨x, Set.mem_iUnion.mpr ⟨hxE, hz⟩⟩
+      · rw [OsinComponents.listVal_demote]
+        exact (hspell x).2.1
+      · rw [OsinComponents.length_demote]
+        have hxfin : x ∈ hdiff.toFinset := hdiff.mem_toFinset.mpr hxE
+        have hsum : (spell x).length ≤
+            ∑ y ∈ hdiff.toFinset, (spell y).length :=
+          Finset.single_le_sum (fun _ _ => Nat.zero_le _) hxfin
+        exact le_trans hsum (by simp [M])
+  intro lam n
+  exact relBall_finite_of_boundedBaseSpellings D₀ D' hfam hM hbase lam
+    (hD₀fin lam) n
+
+/-- **The local-finiteness half of DGO Corollary 4.27.**  A finite symmetric
+difference supplies the finite one-way difference needed in either direction. -/
+theorem localFiniteness_iff_of_finite_symmDiff (D D' : RelGenSet G Λ)
+    (hfam : D'.fam = D.fam)
+    (hdiff : ((D.base \ D'.base) ∪ (D'.base \ D.base)).Finite) :
+    (∀ lam : Λ, ∀ n : ℕ, (D.relBall lam n).Finite) ↔
+      (∀ lam : Λ, ∀ n : ℕ, (D'.relBall lam n).Finite) := by
+  constructor
+  · exact localFiniteness_of_finite_base_diff D D' hfam
+      (hdiff.subset Set.subset_union_right)
+  · exact localFiniteness_of_finite_base_diff D' D hfam.symm
+      (hdiff.subset Set.subset_union_left)
+
 end RelGenSet
 
 end GGT
