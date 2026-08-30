@@ -8,6 +8,7 @@ distinct_from:
   stw99-problem-lxxiv-infinite-projections-purely-infinite: that asks whether a simple algebra in which every nonzero hereditary subalgebra contains an infinite projection is purely infinite without any real rank hypothesis; this asks whether real rank zero excludes the coexistence of finite and infinite projections in the first place.
 artifacts:
   - research/artifacts/stw99-rr0-cluster-2026-08-30.md
+  - research/artifacts/stw29-projection-monoid-dichotomy-audit-2026-08-30.md
 ---
 
 **Problem XXIX of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -47,3 +48,14 @@ subalgebra" the exact pure-infiniteness criterion.
   non-splittable spectral element?) is the sharp open residue.
 * Positive route: `stw99-xxx-implies-xxix` — Z-stability from RR0
   would settle this via Kirchberg's dichotomy.
+* The projection-monoid obstruction is now exact
+  (`stw29-projection-qq-characterizes-rr0-dichotomy`).  For a simple RR0
+  algebra the desired dichotomy is equivalent to projection-level `(QQ)`:
+  if `nx` is properly infinite in `V(A)`, then `x` is properly infinite.
+  Indeed one infinite projection is properly infinite and simplicity makes
+  a finite multiple of every nonzero projection properly infinite; `(QQ)`
+  reflects this back to the projection itself, and RR0 then gives pure
+  infiniteness.  In particular, unperforation of `V(A)` settles XXIX.  Every
+  counterexample must contain a finite `q` and `n` with `nq` properly
+  infinite, hence the explicit compact-order perforation
+  `n(2q)<=nq` but `2q not <=q`.
