@@ -6,6 +6,9 @@ title: Exact MF radical of the literal non-MF group
 root: true
 refuted_by:
   - literal-mark-quotient-not-mf
+artifacts:
+  - research/artifacts/literal-mf-radical-computation-2026-08-19.md
+  - GroupApproximation/Sofic/LiteralSignFreeQuotient.lean
 ---
 
 For the literal finitely presented group `E` and its marked central involution
