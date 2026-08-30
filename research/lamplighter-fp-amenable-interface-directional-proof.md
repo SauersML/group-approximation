@@ -4,8 +4,7 @@ id: lamplighter-fp-amenable-interface-directional-proof
 kind: route
 title: Combine the Baumslag--Remeslennikov embedding with the Bieri--Strebel cover theorem
 target: lamplighter-fp-amenable-interface-is-directional
-requires:
-  - shift-raag-family-classifies-amenability
+requires: []
 ---
 
 Benli--Grigorchuk--de la Harpe, Remark A.4(c), records that the finitely
