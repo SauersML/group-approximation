@@ -74,11 +74,11 @@ sign is the scalar `-I`, so after amplification all component equations use
 the same global sign `-I`.  The resulting finite tensor product is a
 finite-dimensional operator solution of the original system.  The usual LCS
 correspondence therefore gives `omega^q=1`.  The converse implication
-`omega^q=1 => omega^co=1` is immediate.  This proves `(OT1)`.  End proof.
+`omega^q=1 => omega^co=1` is immediate.  This proves `(OT1)`.
 
 Finally, if the solution-group sign `J` is nontrivial, its negative spectral
 corner in the left regular representation is nonzero, hence gives a
 possibly infinite-dimensional operator solution.  The theorem just proved
 replaces it by a finite-dimensional solution, whose associated
 representation sends `J` to `-I`.  This proves the stated radical
-consequence.
+consequence.  End proof.
