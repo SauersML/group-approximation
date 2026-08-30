@@ -327,6 +327,17 @@ order-zero map.  The next construction must therefore split the Fourier
 window into genuinely different colours rather than perturbing the usual
 row map through cone projectivity.
 
+Nor can a bounded partition of the Fourier coordinates repair that row.
+`stw84-bounded-coordinate-colour-gap` proves that if `n>=2d`, every split
+of the diagonal coordinates into at most `d` order-zero return colours
+stays at distance at least `1/(16d^2)` from the weighted averaging map.
+The proof balances two disjoint masses inside the largest colour; their
+images must be orthogonal for an order-zero map but remain overlapping
+multiples of `h` for the Fourier row.  This rules out all bounded interval,
+congruence, checkerboard, and arbitrary disjoint-coordinate colourings.
+The remaining escape must mix or duplicate coordinates in the incoming
+map, or replace the weighted row itself.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
