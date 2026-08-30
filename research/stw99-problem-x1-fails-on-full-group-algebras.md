@@ -24,16 +24,15 @@ property for `G`.
 
 The candidate is the repository's literal finitely presented group `E`:
 `literal-canonical-trace-hyperlinear-not-quasidiagonal` supplies the second
-clause outright, and `literal-group-factorization-property` is the open first
-clause.  The route `stw99-x1-fails-via-literal-group` records the composition.
+clause outright, and `literal-group-factorization-property` now supplies the
+first clause.  The route `stw99-x1-fails-via-literal-group` records the composition.
 
 Not every non-MF group is a candidate.  Kirchberg (Math. Ann. 299 (1994))
 proved that a group with property (T) and the factorization property is
 residually finite; so the manuscript's simple Kazhdan group
 `H = EL₁₂(L_{F₂}(1,2))` does **not** have the factorization property, its
 canonical trace is not amenable, and it says nothing about this problem.  The
-literal group `E` is an HNN-type extension and is not itself Kazhdan, which is
-why the question stays open for it.
+literal group `E` is an HNN-type extension and is not itself Kazhdan, which is why the Kazhdan obstruction does not apply to it.
 
 Lean (group-level reading): `NinetyNineProblems.AmenableCanonicalTraceGroupsAreOperatorMF`
 and `amenableCanonicalTraceGroupsAreOperatorMF_of_problemX1`,

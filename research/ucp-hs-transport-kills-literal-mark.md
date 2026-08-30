@@ -39,9 +39,8 @@ the manuscript's transport (`Sofic/LiteralNonMFEndpoint.lean`,
 `kazhdanPinning`, `negativeCorner_kazhdanTransport_contradiction`) consumes
 operator-norm control to build the conjugation representation, and the printed
 remark (`manuscriptFullRadicalsDoNotEntailNonsoficity`) records that
-Hilbert--Schmidt approximations do not supply it.  So the open question is
-exactly whether property (T) plus complete positivity recovers enough of the
-transport: (i) upgrade character-closeness on `B` to corner-wise unitary
+Hilbert--Schmidt approximations do not supply it.  The former negative route asked whether property (T) plus complete positivity
+recovers enough of the transport: (i) upgrade character-closeness on `B` to corner-wise unitary
 conjugacy of honest representations (a second use of (T), on `π ⊗ π̄'`
 approximate invariant vectors); (ii) run the doubling/Clifford sign count on
 the large corner; (iii) control the lamp `c` and the mark
@@ -49,8 +48,8 @@ the large corner; (iii) control the lamp `c` and the mark
 block-tower models must, and do, escape: they are not u.c.p., and their
 corners are permutation corners on which the Clifford sign is invisible.
 
-Open in both directions; failure of (i)-(iii) is not evidence for
-`literal-group-factorization-property` either.
+This historical route is now refuted by the explicit Folner models in
+`literal-fp-via-folner-rf-core`.
 
 The absolute (T) case is now typed and consumed:
 `KirchbergKazhdanQuasidiagonalInput` (Brown Lemma 4.1.11 / Prop 4.1.12) in
@@ -74,7 +73,7 @@ conversely: this leaf is at least as deep as that frontier, and any partial
 stability theorem for the literal base should be checked against both
 consumers.  Kirchberg's character-level lemma is what remains after
 stability is subtracted, which is why the absolute Kazhdan case closed
-(`KazhdanQuasidiagonalTraces.lean`) while this relative case is open.
+(`KazhdanQuasidiagonalTraces.lean`) while this relative transport strategy does not hold for the models above.
 
 ## Attempts
 

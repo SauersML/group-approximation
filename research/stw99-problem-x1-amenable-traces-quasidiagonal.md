@@ -71,9 +71,8 @@ finite-dimensional unitary representations recovering the regular character.
 The repository's literal finitely presented group `E` is sofic and has a
 central involution killed by every operator-norm corona representation, so its
 canonical trace is a hyperlinear trace that is not quasidiagonal
-(`literal-canonical-trace-hyperlinear-not-quasidiagonal`).  The one thing
-standing between that fact and a negative answer to this problem is the
-factorization property of `E` (`literal-group-factorization-property`).
+(`literal-canonical-trace-hyperlinear-not-quasidiagonal`).  That remaining factorization property is now established by
+`literal-fp-via-folner-rf-core`, so `E` gives the negative answer.
 
 Lean statement: `NinetyNineProblems.ProblemX1Statement` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`).  The same
 module proves `isHyperlinearTrace_of_isAmenableTrace` (an amenable trace is a
@@ -87,8 +86,8 @@ non-Kazhdan, which the literal group `E` is designed to be.
 
 ## August 2026 audit and attempts
 
-The universal question remains open.  Shulman's arXiv:2508.00125 adds a
-homotopy-domination permanence theorem but does not resolve it.  The current
+The universal question is refuted by the literal-group witness above.
+Shulman's permanence theorem was part of the pre-resolution frontier.  The current
 unconditional reductions are:
 
 - `directed-unions-preserve-trace-approximations`, which makes both trace

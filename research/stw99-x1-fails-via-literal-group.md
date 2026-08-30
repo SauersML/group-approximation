@@ -20,12 +20,12 @@ amenable trace that is not quasidiagonal, which is the target with `G = E`.
 
 Nothing else is used.  The premise
 `literal-canonical-trace-hyperlinear-not-quasidiagonal` is established in
-Lean; the factorization-property premise is the only open leaf.
+Lean; the factorization-property premise is now established.
 
 **Formalized:** `NinetyNineProblems.not_problemX1Statement_of_literalFactorizationProperty :
 LiteralFactorizationProperty → ¬ ProblemX1Statement` and its contrapositive
 `not_literalFactorizationProperty_of_problemX1Statement` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`, 2dbea8f73).
-The Lean hypothesis is exactly the open leaf.
+The Lean theorem remains conditional, while Cairn now discharges its hypothesis.
 
 Side fact now machine-checked: the premise already implies `E` hyperlinear
 (Brown 3.1.7, a theorem in `GroupApproximation/Analysis/AmenableTraceHyperlinear.lean`), consistent
