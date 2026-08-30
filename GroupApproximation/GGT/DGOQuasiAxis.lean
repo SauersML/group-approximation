@@ -567,6 +567,82 @@ theorem vertexChain_progress
   rw [hreorder]
   simpa only [vertexChain] using hlower
 
+/-- Endpoint-close finite quasi-geodesic chains coarsely match every vertex
+that lies uniformly far from the terminal endpoint.  This is the chain-level
+Morse comparison underlying both orientations of the quasi-axis overlap
+argument. -/
+theorem exists_uniform_chain_match
+    {δ B D l c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hB : 0 ≤ B) (hD : 0 ≤ D)
+    (hl : 0 < l) (hc : 0 ≤ c) :
+    ∃ E C : ℝ, 0 ≤ E ∧ 0 ≤ C ∧
+      ∀ (Psteps Qsteps : ℕ) (p q : ℕ → X),
+        (∀ i, i < Psteps → dist (p i) (p (i + 1)) ≤ D) →
+        (∀ i k, i ≤ k → k ≤ Psteps →
+          l * ((k - i : ℕ) : ℝ) - c ≤ dist (p i) (p k)) →
+        (∀ i, i < Qsteps → dist (q i) (q (i + 1)) ≤ D) →
+        (∀ i k, i ≤ k → k ≤ Qsteps →
+          l * ((k - i : ℕ) : ℝ) - c ≤ dist (q i) (q k)) →
+        dist (p 0) (q 0) ≤ B → dist (p Psteps) (q Qsteps) ≤ B →
+        ∀ j : ℕ, j ≤ Psteps →
+          E ≤ l * ((Psteps - j : ℕ) : ℝ) →
+          ∃ i : ℕ, i ≤ Qsteps ∧ dist (p j) (q i) ≤ C := by
+  obtain ⟨K₁, hK₁, hchordNear⟩ :=
+    ElementaryMorse.exists_bound_chord_near_chain
+      hδ hδ0 hD hl hc
+  obtain ⟨K₂, hK₂, hchainNear⟩ :=
+    ElementaryMorse.exists_bound_chain_near_chord
+      hδ hδ0 hD hl hc
+  let E : ℝ := 2 * B + c + K₂
+  let C : ℝ := K₂ + (3 * B + 12 * δ) + K₁
+  have hE : 0 ≤ E := by
+    dsimp [E]
+    linarith
+  have hC : 0 ≤ C := by
+    dsimp [C]
+    linarith
+  refine ⟨E, C, hE, hC, ?_⟩
+  intro Psteps Qsteps p q hpEdge hpProgress hqEdge hqProgress
+    hclose0 hclose1 j hj hfar
+  let Lp : ℝ := dist (p 0) (p Psteps)
+  let Lq : ℝ := dist (q 0) (q Qsteps)
+  obtain ⟨P, hP, hP0, hP1⟩ := hgeo (p 0) (p Psteps)
+  obtain ⟨Q, hQ, hQ0, hQ1⟩ := hgeo (q 0) (q Qsteps)
+  obtain ⟨t, ht, hpClose⟩ := hchainNear p Psteps hpEdge hpProgress
+    Lp dist_nonneg P hP hP0 hP1 j hj
+  have hlength : Lp ≤ Lq + 2 * B := by
+    have htri := dist_triangle4 (p 0) (q 0) (q Qsteps) (p Psteps)
+    rw [dist_comm (q Qsteps) (p Psteps)] at htri
+    dsimp [Lp, Lq]
+    linarith
+  have hpTail := hpProgress j Psteps hj le_rfl
+  have htailMetric : dist (p j) (p Psteps) ≤ K₂ + (Lp - t) := by
+    have hparam : dist (P t) (P Lp) = Lp - t := by
+      rw [hP.dist_eq ht ⟨dist_nonneg, le_rfl⟩,
+        abs_of_nonpos (sub_nonpos.mpr ht.2)]
+      ring
+    calc
+      dist (p j) (p Psteps) = dist (p j) (P Lp) := by rw [hP1]
+      _ ≤ dist (p j) (P t) + dist (P t) (P Lp) := dist_triangle _ _ _
+      _ = dist (p j) (P t) + (Lp - t) := by rw [hparam]
+      _ ≤ K₂ + (Lp - t) := by
+        simpa only [add_comm] using add_le_add_right hpClose (Lp - t)
+  have htLq : t ≤ Lq := by
+    dsimp [E] at hfar
+    linarith
+  have hgeodesicClose := dist_same_parameter_le_of_geodesic_endpoints_close
+    hδ hδ0 hgeo hB hP dist_nonneg hQ dist_nonneg
+    (by rw [hP0, hQ0]; exact hclose0)
+    (by rw [hP1, hQ1]; exact hclose1)
+    ht ⟨ht.1, htLq⟩
+  obtain ⟨i, hi, hqClose⟩ := hchordNear q Qsteps hqEdge hqProgress
+    Lq dist_nonneg Q hQ hQ0 hQ1 t ⟨ht.1, htLq⟩
+  refine ⟨i, hi, ?_⟩
+  have htri := dist_triangle4 (p j) (P t) (Q t) (q i)
+  rw [dist_comm (Q t) (q i)] at htri
+  dsimp [C]
+  linarith
+
 /-- Endpoint-close quasi-axis segments coarsely match their internal power
 vertices.  The constants are chosen before the translated segments.  This is
 the segment-Morse replacement for the geodesic-axis comparison in the
