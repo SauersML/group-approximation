@@ -150,6 +150,14 @@ theorem value_mem_quasiAxis (p : AxisPoint h x f) :
 
 end AxisPoint
 
+/-- The concatenated axis, with its arclength coordinates, is a
+`(λ,c)`-quasi-geodesic.  This is the parametrized condition meant by DGO when
+they call the carrier `lₓ` a quasi-axis. -/
+def IsQuasiGeodesicAxis (lam c : ℝ) (h : G) (x : X) (f : ℝ → X) : Prop :=
+  ∀ p q : AxisPoint h x f,
+    |p.coordinate - q.coordinate| / lam - c ≤ dist p.value q.value ∧
+      dist p.value q.value ≤ lam * |p.coordinate - q.coordinate| + c
+
 /-- An oriented segment of a translated concatenated axis.  Its path length
 is the difference of the two arclength coordinates. -/
 structure AxisSegment (h : G) (x : X) (f : ℝ → X) where
@@ -236,9 +244,78 @@ def terminalCoordinate (p : PowerAxisSegment h x) : ℝ :=
 def conjugate (p : PowerAxisSegment h x) : G :=
   p.translate * h * p.translate⁻¹
 
+/-- Number of fundamental connectors in a power-vertex segment. -/
+def steps (p : PowerAxisSegment h x) : ℕ :=
+  (p.stop - p.start).toNat
+
+omit [Group G] [PseudoMetricSpace X] [MulAction G X] in
+/-- The natural step count represents the oriented integer difference. -/
+theorem steps_cast (p : PowerAxisSegment h x) :
+    (p.steps : ℤ) = p.stop - p.start := by
+  exact Int.toNat_of_nonneg (sub_nonneg.mpr p.start_le_stop)
+
+omit [PseudoMetricSpace X] in
+/-- The terminal vertex is obtained from the initial vertex by the positive
+natural power of the conjugate recorded by the segment. -/
+theorem terminal_eq_pow_smul_initial (p : PowerAxisSegment h x) :
+    p.terminal = (p.conjugate ^ p.steps) • p.initial := by
+  have hpow : p.conjugate ^ p.steps =
+      p.conjugate ^ (p.stop - p.start : ℤ) := by
+    calc
+      p.conjugate ^ p.steps = p.conjugate ^ (p.steps : ℤ) := by
+        rw [zpow_natCast]
+      _ = p.conjugate ^ (p.stop - p.start : ℤ) := by rw [p.steps_cast]
+  rw [hpow]
+  dsimp [terminal, initial, conjugate]
+  rw [← mul_smul]
+  congr 1
+  rw [conj_zpow]
+  group
+
+/-- Path length is the natural step count times the connector length. -/
+theorem length_eq_steps_mul (p : PowerAxisSegment h x) :
+    p.length = (p.steps : ℝ) * dist x (h • x) := by
+  have hcast : (p.steps : ℝ) = ((p.stop - p.start : ℤ) : ℝ) := by
+    exact_mod_cast p.steps_cast
+  rw [length, hcast]
+
 /-- The path length of an oriented power-axis segment is nonnegative. -/
 theorem length_nonneg (p : PowerAxisSegment h x) : 0 ≤ p.length := by
   exact mul_nonneg (by exact_mod_cast sub_nonneg.mpr p.start_le_stop) dist_nonneg
+
+/-- A quasi-geodesic lower bound on the axis gives the corresponding metric
+displacement lower bound for every translated power-vertex segment. -/
+theorem length_div_sub_le_dist
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) {lam c : ℝ}
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p : PowerAxisSegment h x) :
+    p.length / lam - c ≤ dist p.initial p.terminal := by
+  let a : AxisPoint h x f :=
+    { index := p.start
+      parameter := 0
+      parameter_mem := ⟨le_rfl, dist_nonneg⟩ }
+  let b : AxisPoint h x f :=
+    { index := p.stop
+      parameter := 0
+      parameter_mem := ⟨le_rfl, dist_nonneg⟩ }
+  have hab := (hq a b).1
+  have hcoord : |a.coordinate - b.coordinate| = p.length := by
+    dsimp [a, b, AxisPoint.coordinate, length]
+    push_cast
+    rw [abs_of_nonpos]
+    · ring
+    · have hsub : (p.start : ℝ) - (p.stop : ℝ) ≤ 0 := by
+        exact_mod_cast sub_nonpos.mpr p.start_le_stop
+      simpa only [add_zero, sub_mul] using
+        mul_nonpos_of_nonpos_of_nonneg hsub
+          (dist_nonneg : 0 ≤ dist x (h • x))
+  have hvalue : dist p.initial p.terminal = dist a.value b.value := by
+    dsimp [initial, terminal, a, b, AxisPoint.value]
+    rw [hf.2.1]
+    simpa only [mul_smul] using
+      hiso p.translate ((h ^ p.start) • x) ((h ^ p.stop) • x)
+  rwa [hcoord, ← hvalue] at hab
 
 /-- The initial endpoint lies on the corresponding translated DGO axis. -/
 theorem initial_mem_translated_quasiAxis {f : ℝ → X}
