@@ -49,8 +49,19 @@ is continuous and satisfies
 
 After identifying its fixed initial projection with the range of
 `v_0p_h` in `eNe`, apply
-`stw22-diffuse-stiefel-uniform-loop-fillings` in that corner. For a
-uniformly small input radius, it gives a filling
+`stw22-diffuse-stiefel-uniform-loop-fillings` in that corner. If
+`rho_St` denotes its universal modulus, it is enough to require the
+weighted input radius `delta_w` to satisfy
+
+```text
+delta_w <= sqrt(eta tau(e))
+           rho_St(epsilon/(3 sqrt(tau(e)))).             (DW4a)
+```
+
+Indeed, `(DW4)` and division by `sqrt(tau(e))` put the high frame loop
+inside the required normalized-corner radius; the normalized filling
+radius `epsilon/(3 sqrt(tau(e)))` becomes ambient radius at most
+`epsilon/3`. Thus one obtains
 
 ```text
 H:D^2->eN,       H^*H=p_h,

@@ -10,11 +10,12 @@ artifacts:
   - research/artifacts/stw22-dim2-arbitrary-factor-breakthrough-2026-08-30.md
 ---
 
-Put `delta_0=tau(e)-tau(p_h)-tau(p_l)>0`. Split the fixed low weight into
-spectral bands
+Put `delta_0=tau(e)-tau(p_h)-tau(p_l)>0`. Since this is the low
+spectral part, `0<=b<=eta p_l`; set the dyadic ceiling `E=eta` and split
+`b` into spectral bands
 
 ```text
-I_n=(eta 2^(-(n+1)),eta 2^(-n)],
+I_n=(E 2^(-(n+1)),E 2^(-n)],
 r_n=1_(I_n)(b),        sum_n r_n=p_l.                    (DR5)
 ```
 
@@ -54,20 +55,30 @@ Phi_n(y)={v in N:v^*v=r_n, vv^*<=g_n(y)}.               (DR9)
 On the boundary replace the value by the singleton `{xi_n(y)}`. We verify
 Michael's degree-one hypotheses.
 
-* **Lower semicontinuity.** If `v_0v_0^*<=g_n(y_0)` and `y->y_0`, the
-  polar part of `g_n(y)v_0` agrees with `v_0` off an initial projection
-  whose trace tends to zero. Fill that missing initial projection into the
-  unused part of `g_n(y)`; `(DR8)` leaves at least `delta_0` of room.
-  The resulting member of `Phi_n(y)` tends to `v_0` in `2`-norm.
-  This also proves lower semicontinuity at the boundary, where
+* **Lower semicontinuity.** Put `h_0=v_0v_0^*<=g_n(y_0)`.
+  The standard close-subprojection lemma in a finite factor says that, as
+  `g_n(y)->g_n(y_0)` in `2`-norm and
+  `tau(g_n(y))>=tau(h_0)`, there are projections
+  `h_y<=g_n(y)` with `tau(h_y)=tau(h_0)` and
+  `||h_y-h_0||_2->0`. The close-unitary projection lemma then gives
+  unitaries `u_y` with `u_yh_0u_y^*=h_y` and
+  `||u_y-1||_2->0`. Hence `u_yv_0 in Phi_n(y)` and
+  `u_yv_0->v_0`. This also proves lower semicontinuity at the boundary,
+  where nearby singleton values converge because
   `xi_n(y)->xi_n(y_0)`.
 * **Uniform local connectivity.** After choosing one base frame, each full
   value in `(DR9)` is isometric to a strong Stiefel space in the II1
-  factor `g_n(y)Ng_n(y)`. The normalized corner trace rescales the metric
-  by `tau(g_n(y))^(-1/2)`. Since `tau(g_n(y))>=delta_0`, the universal
-  modulus of `stw22-diffuse-stiefel-uniform-loop-fillings` gives one
-  ambient equi-`LC^1` modulus for all the values. The degree-zero part also
-  follows directly from principal-log paths.
+  factor `g_n(y)Ng_n(y)`. Put `t=tau(g_n(y)) in [delta_0,1]`.
+  Its normalized corner metric is the ambient metric divided by
+  `sqrt(t)`. If `rho_St` is the universal modulus from
+  `stw22-diffuse-stiefel-uniform-loop-fillings`, then an ambient loop of
+  radius at most
+  `sqrt(delta_0) rho_St(epsilon)` has normalized radius at most
+  `rho_St(epsilon)`; its normalized `epsilon`-filling has ambient
+  radius at most `sqrt(t)epsilon<=epsilon`. The usual factor-two shrink
+  converts this pointed estimate to Michael's ambient equi-`LC^1`
+  condition. The degree-zero part follows directly from principal-log
+  paths.
 * **Simple connectivity.** A loop of frames first lifts, by the
   one-dimensional continuous-comparison theorem of Farah--Vaccaro, to a
   loop in the unitary group of the target corner. Jekel's SOT contraction
