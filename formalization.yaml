@@ -2,15 +2,12 @@
 version: "v0.4"
 
 project:
-  name: "Not Every Group Is MF"
+  name: "An explicit sofic group that is not MF"
   description: >-
-    The project formalizes the one-sided Kazhdan compression criterion, its
-    normal property-(T) MF-radical consequence, the rank-twelve Leavitt
-    compression, the resulting non-MF group, and exact pullback formulas for
-    MF radicals and MF quotients in the Carrión-Dadarlat-Eckhardt
-    operator-norm sense.
+    The displayed finitely presented group is sofic and is not MF in the
+    Carrión-Dadarlat-Eckhardt operator-norm sense.
   authors: [Sauers]
-  responsible_maintainers: [deancureton]
+  responsible_maintainers: [SauersML]
   license: Apache-2.0
 
 classification:
@@ -18,7 +15,7 @@ classification:
   msc2020: ["46L05"]
 
 sources:
-  - title: "Not Every Group Is MF"
+  - title: "An explicit sofic group that is not MF"
     type: original-proof
     relationship: other
     note: "The selected theorem is first presented in this project."

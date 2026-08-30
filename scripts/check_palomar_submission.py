@@ -136,7 +136,7 @@ def solution(root: Path) -> Path:
 
 
 def config_path(root: Path) -> Path:
-    return root / "comparator.json"
+    return root / "Palomar" / "comparator.json"
 
 
 # --------------------------------------------------------------------------
@@ -618,7 +618,7 @@ def copy_surface(destination: Path) -> None:
     destination.mkdir(parents=True, exist_ok=True)
     (destination / "Palomar").mkdir(exist_ok=True)
     for rel in ("Palomar/Challenge.lean", "Palomar/Solution.lean",
-                "comparator.json", "LICENSE", "lean-toolchain",
+                "Palomar/comparator.json", "LICENSE", "lean-toolchain",
                 "lakefile.toml", "lake-manifest.json", "formalization.yaml"):
         (destination / rel).write_bytes((REPO / rel).read_bytes())
     subprocess.run(["git", "init", "-q"], cwd=destination, capture_output=True,

@@ -1,4 +1,4 @@
-# Not Every Group Is MF
+# An Explicit Sofic Group That Is Not MF
 
 This repository formalizes an explicit countable group that is sofic but not
 MF in the sequential operator-norm sense. The main result is
@@ -11,6 +11,11 @@ theorem explicit_sofic_not_MF :
 
 The formalization uses Lean 4 and Mathlib. Its axiom closure is exactly
 `propext`, `Classical.choice`, and `Quot.sound`.
+
+Version 1 is registered as
+[PALOMAR-2026-08-24-000006](https://palomar-registry.org/entry?id=PALOMAR-2026-08-24-000006&version=1).
+The registered Comparator identity remains at `Palomar/comparator.json` for
+future versions.
 
 ## Build
 
@@ -35,7 +40,7 @@ challenge, and the corresponding solution.
 | `certificates/p13/` | Pinned inputs and generators for the exact P13 certificate |
 | `scripts/` | Source, linter, axiom, signature, and Palomar verification gates |
 | `metadata/` | Generated statement and audit snapshots |
-| `comparator.json` | Palomar Comparator configuration |
+| `Palomar/comparator.json` | Palomar Comparator configuration |
 | `formalization.yaml` | Structured provenance metadata |
 
 ## Verification

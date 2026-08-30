@@ -29,7 +29,7 @@ on:
     inputs:
       config:
         description: Repository-relative Comparator configuration
-        default: comparator.json
+        default: Palomar/comparator.json
         required: false
       nanoda:
         # Off by default: the replay through a second kernel roughly doubles
