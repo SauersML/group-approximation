@@ -95,3 +95,6 @@ unconditional reductions are:
   GNS-image reduction without asserting QD descent; and
 - `nonamenable-factorization-regular-quotient-not-liftable`, which gives a
   concrete nonexact obstruction to naive GNS descent, already for `F_2`.
+- `ideal-central-components-retain-an-amenable-nonqd-witness`, which splits a
+  hypothetical counterexample along any ideal without assuming that QD traces
+  form a face.

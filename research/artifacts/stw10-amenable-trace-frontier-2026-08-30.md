@@ -52,6 +52,19 @@ This phenomenon is a fence, not a counterexample to X(1): the full canonical
 trace of `F_2` is QD.  It explains why quotienting an amenable trace to its
 faithful GNS image is illegitimate without exactness or a lifting hypothesis.
 
+# Ideal localization
+
+For an ideal `I triangleleft A`, its central support in `A**` splits a trace
+into an ideal-supported component and a component vanishing on `I`.
+Amenability of both components follows from the fact that amenable traces form
+a face.  Since QD traces are convex, an amenable non-QD trace must have an
+amenable non-QD component on at least one side of this central split.  If the
+non-QD component vanishes on `I` and `A -> A/I` is locally liftable, it
+descends to an amenable non-QD trace on the quotient.
+
+This finite central decomposition does not prove that QD traces form a face,
+which STW explicitly leave open.
+
 # Trust boundary
 
 Imported results are Brown's equivalence between factorization and amenability
