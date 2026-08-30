@@ -95,6 +95,11 @@ This is **STW Problem LXIII and remains open at the audit boundary
   `K_0(D)->K_0(E)` is injective and `D` has projection cancellation (stable
   rank one of `D` suffices).  Stable rank one of the original codomain is not
   claimed to pass to this relative commutant.
+  In a stable-rank-one codomain there is also a direct criterion:
+  `stw63-sr1-bidual-cu-reflection-return` proves that injectivity of
+  `Cu(B)->Cu(B**)` returns every Jiang--Su implementing unitary sequence.
+  Every stable-rank-one counterexample must therefore supply two distinct
+  actual Jiang--Su image classes which bidual passage identifies.
 - **Strict comparison needs no unique quasitrace for uniqueness.**
   `stw63-sr1-return-is-cu-equality` first gives the exact stable-rank-one
   boundary: two Jiang--Su embeddings into any stable-rank-one algebra are

@@ -132,7 +132,7 @@ as a premise in any graph route added with this artifact.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate fifteen facts which do not depend on the literature
+The graph additions isolate sixteen facts which do not depend on the literature
 audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -241,3 +241,10 @@ audit.
     unitarily equivalent.  Thus even nuclearity, exactness, local reflexivity,
     real rank zero, stable rank one and full corners do not constitute a
     domain-independent bidual-return theorem.
+16. In stable rank one, universal von Neumann uniqueness and Robert's exact
+    Cu map theorem combine into a direct descent criterion: injectivity of
+    `Cu(B)->Cu(B**)` implies Jiang--Su embedding uniqueness in `B`.  Any
+    stable-rank-one counterexample must make this map identify two distinct
+    classes which occur as values of the two actual Jiang--Su `Cu` maps.
+    Arbitrary noninjectivity of the bidual Cu map is not claimed sufficient
+    to construct a counterexample.
