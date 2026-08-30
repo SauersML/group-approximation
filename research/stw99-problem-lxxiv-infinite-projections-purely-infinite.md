@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw74-property-sp-cu-stability-audit-2026-08-30.md
+  - research/artifacts/stw74-zero-dimensional-cartan-sp-audit-2026-08-30.md
 ---
 
 **Problem LXXIV of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -33,6 +34,16 @@ finite projections; the non-elementary case is Z-stable by Winter's theorem.
 Thus every separable counterexample to Problem LXXIV must simultaneously be
 non-Z-stable and have infinite nuclear dimension.  This is a necessary
 obstruction, not a solution of the unrestricted problem.
+
+There is now a comparison-free Cartan class.
+`stw74-zero-dimensional-cartan-forces-property-sp` proves that every
+separable unital algebra admitting a Cartan subalgebra with zero-dimensional
+spectrum has property (SP).  Topological principality compresses a positive
+element almost onto its Cartan expectation; a clopen spectral cut makes the
+compressed corner invertible, and polar decomposition moves that clopen
+projection into the original hereditary subalgebra.  Consequently LXXIV has
+a positive answer throughout this class, without nuclearity, groupoid
+amenability, real rank zero, or Cuntz comparison.
 
 ## Attempts
 
