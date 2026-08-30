@@ -13,5 +13,7 @@ imposed.  Then any two unital embeddings `Z->M` are asymptotically unitarily
 equivalent in norm.
 
 This strengthens approximate uniqueness and extends the factor input used in
-the separable-predual central-integration theorem.  It does not cover
-non-sigma-finite type-III factors.
+the separable-predual central-integration theorem.  Its simple-target proof
+is specific to sigma-finite factors; the later theorem
+`stw63-arbitrary-type3-vn-asymptotic-uniqueness` strictly subsumes this claim
+by using full-map classification instead.

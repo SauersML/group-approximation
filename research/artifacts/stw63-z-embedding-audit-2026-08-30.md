@@ -52,6 +52,11 @@ searches, followed by inspection of the theorem statements.
    graph route verifies their hypotheses for arbitrary Jiang--Su embeddings
    and proves the needed support-rank collapse on the properly infinite
    central piece.
+   Their factor-specific Corollary 1 has a broader cardinal scope than
+   Theorem 8: for a separable unital ASH domain and a sigma-finite
+   type-II-infinity factor, equal elementwise von Neumann rank implies norm
+   approximate unitary equivalence modulo the finite-projection ideal.  It
+   does not assume a separable Hilbert-space action or separable predual.
 5. D. Hadwin, *Nonseparable approximate equivalence*, Transactions of the
    AMS 266 (1981), 203--231, DOI 10.1090/S0002-9947-1981-0613792-6.
    Theorem 2.5 classifies nondegenerate representations of an arbitrary
@@ -156,3 +161,8 @@ audit.
    properly infinite semifinite assembly not covered by existing rank
    classification, including non-countably-decomposable type-II-infinity
    and diffuse central pieces.
+10. Li--Hadwin--Liu's factor-specific corollary, combined with the global
+   rank collapse, closes every sigma-finite type-II-infinity factor even when
+   its predual is nonseparable.  Product closure also closes arbitrary
+   products of these factors.  The unresolved factor case is therefore
+   genuinely non-countably-decomposable type II infinity.
