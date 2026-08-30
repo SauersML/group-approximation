@@ -36,6 +36,11 @@ exact elementary obstruction is now isolated by
 factor through the smaller `2`-norm fibre.  Thus fibrewise uniqueness of the
 II_1 trace does not by itself solve the problem.
 
+The gap need not vanish.  The intrinsic sufficient condition established in
+`stw22-tracefree-fibre-gap-ideals-force-trace-continuity` is that every
+`K_x/J_x` carry no nonzero bounded positive trace.  Stability of all the gap
+ideals is a concrete special case, strictly weaker than `J_x=K_x`.
+
 ## Attempts
 
 For a Bauer-style central bundle, disintegrate an extreme trace over the

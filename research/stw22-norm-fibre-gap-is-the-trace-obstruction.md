@@ -49,3 +49,8 @@ K_x/J_x
 
 is the exact location where a singular trace supported at one fibre can
 hide.
+
+Equality is not necessary.  By
+`stw22-tracefree-fibre-gap-ideals-force-trace-continuity`, the same conclusion
+holds exactly when each gap ideal has no nonzero bounded positive trace; in
+particular, it holds whenever every `K_x/J_x` is stable.

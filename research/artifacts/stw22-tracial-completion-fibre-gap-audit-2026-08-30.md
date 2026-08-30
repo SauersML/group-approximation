@@ -40,3 +40,21 @@ Cauchy--Schwarz, and Krein--Milman.  It gives the positive trivial-field case
 `C(X) tensor M_0`, where faithfulness in the finite-factor fibre makes
 `J_x=K_x`.  It does not claim that equality for a general uniform tracial
 completion.
+
+## Trace-free and stable gap criterion
+
+There is a weaker intrinsic sufficient condition.  A tracial state on the
+norm fibre restricts to a bounded positive trace on `K_x/J_x`.  Conversely,
+the norm-preserving positive-functional extension from an ideal to a unital
+ambient algebra carries every bounded positive trace on `K_x/J_x` to a trace
+on `M/J_x`.  Therefore
+
+```text
+all traces on M/J_x kill K_x/J_x
+  iff K_x/J_x has no nonzero bounded positive trace.
+```
+
+In particular, stability of every gap ideal is sufficient, since a stable
+C*-algebra has no nonzero bounded trace.  This is genuinely weaker than
+equality: over a one-point base, `K(ell^2)^~` has `J=0` and the nonzero stable
+gap `K=K(ell^2)`, while its unique trace is the quotient character.
