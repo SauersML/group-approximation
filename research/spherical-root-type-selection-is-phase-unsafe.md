@@ -36,29 +36,39 @@ Projection `B x H -> H` maps `N` onto `L`.  If `N intersect B={1}`, this
 projection is injective on `N`, so `N` is the graph of a unique map
 `l |-> chi_tilde(l)^(-1)`.  The subgroup law makes `chi_tilde` a homomorphism,
 the generators make it extend `chi`, and normality gives `(SRT1)`.
-Conversely, the inverse graph of an invariant extension is normal, contains
-`C_chi`, and contains every conjugate of its generators.  It is therefore
-exactly `N` and meets `B` trivially.
+Conversely, the inverse graph of an invariant extension is normal and contains
+`C_chi`, so it contains `N`.  For the reverse containment, write every
+`l in L` as a product of `H`-conjugates of elements of `K`.  Invariance of
+`chi_tilde` makes the `B`-coordinate of its inverse-graph lift the product of
+the corresponding conjugates of elements of `C_chi`.  Every inverse-graph
+element therefore lies in `N`.  The inverse graph is exactly `N` and meets
+`B` trivially.
 
 In particular, if `D normal H`, `D <= K`, and `chi|D` is not `H`-invariant,
 then `N intersect B` is nontrivial.
 
 There is also a sharp converse obstruction to using a phase-safe spherical
-root as a dimension/type selector.  If `K` normally generates `H`, then
-Theorem 1 says phase safety is equivalent to extension of `chi` to an
-`H`-character.  That one-dimensional representation of `H`, with its unit
-vector, satisfies every root clause.  Hence:
+root as a dimension/type selector.  Here suppose that `B` is a scalar phase
+group, with a fixed faithful character `iota:B -> T`.  If `K` normally
+generates `H`, then Theorem 1 says phase safety is equivalent to extension of
+`chi` to an `H`-character.  Composing the extension with `iota` gives a
+one-dimensional unitary representation of `H`; together with the prescribed
+scalar action of `B`, its unit vector satisfies every root clause.  Hence:
 
-> **Corollary 2.**  A finite spherical root `(H,K,chi)` with
+> **Corollary 2.**  A finite scalar-phase spherical root `(H,K,chi)` with
 > `normalClosure_H(K)=H` has exactly two possibilities: either its scalar
 > graph clauses kill the phase, or they admit a one-dimensional perfect
 > packet.  They cannot phase-safely force a higher-dimensional induced type.
 
-If `K` does not normally generate `H`, the root clauses still have a finite
-monomial perfect representation `Ind_K^H(conjugate(chi))`.  Thus no finite
-spherical root by itself creates finite-dimensional soundness; its only
-possible use is as a local component of a genuinely global incompatible
-state-face system.
+Independently of whether `K` normally generates `H`, when `H` is finite the
+root clauses have a finite monomial **vector-state** solution: take the
+induced module whose distinguished coset line has `K`-character
+`k |-> iota(chi(k))`.  The graph words fix that distinguished vector; in
+general they are not operator identities on the whole induced module.  Only
+the invariant-extension case above supplies the one-dimensional operatorwise
+solution.  Thus no finite spherical root by itself creates finite-dimensional
+soundness; its only possible use is as a local component of a genuinely
+global incompatible state-face system.
 
 ## The strongest finite answer packet really does select one type
 
@@ -90,6 +100,8 @@ spherical induction genuinely solves the local selected-type problem.
 
 ## The root clauses kill the phase
 
+Assume now that `|R|>=2`.  (For `|R|=1`, the selected type is already
+one-dimensional, `H_R=K_R=C_2`, `chi_R` extends, and the phase is not killed.)
 Take `B={+1,-1}` and impose the scalar-word root clauses
 
 ```text

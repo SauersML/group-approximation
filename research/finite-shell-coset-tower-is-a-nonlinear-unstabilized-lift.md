@@ -10,7 +10,15 @@ distinct_from:
 ---
 
 **ESTABLISHED REDUCTION AND STABILIZED MODEL; THE UNSTABILIZED LIFT IS
-OPEN.**  Let
+OPEN.**
+
+The proposition established here is only the equivalence with an equivariant
+coset PVM, its exact regular stabilization, and the absence of a linear
+character obstruction.  It does **not** assert that the unstabilized
+embedding exists, and it does not supply the payload-authenticating
+commuting square.
+
+Use the notation
 
 ```text
 N=core_C(D),       Q=C/N,       H=D/N,       [Q:H]=42,
@@ -112,8 +120,10 @@ tau(1-R^2)=1/2 sum_i||[E_i,A_i]||_2^2.
 
 Hence a sharp tower must additionally reduce the assigned payload rows.
 The stabilized tower has this property because its atoms are external
-matrix coordinates.  Inside `L(W_S)`, requiring reduction of every native
-shell lamp would put every tower atom in the center and is impossible.
-Accordingly the unstabilized tower and the payload-authenticating
-commuting-square are two separate gates; solving the former alone does not
-solve the Fano hybrid-reflection problem.
+matrix coordinates.  In any factorial native-shell representation,
+requiring reduction of every native shell lamp would put every tower atom in
+the scalar center and is impossible.  Without factoriality it still forces
+the atoms into the center, but existence of an appropriate central tower is
+a separate question.  Accordingly the unstabilized tower and the
+payload-authenticating commuting-square are two separate gates; solving the
+former alone does not solve the Fano hybrid-reflection problem.

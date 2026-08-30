@@ -47,20 +47,22 @@ projection.  Actor covariance, pairwise tower orthogonality and
 `sum_iE_i=1` contain no relation involving the `A_i`, so they do not control
 the right side of `(CTH2)`.
 
-## Consequence for the native shell
+## Consequence for a factorial native-shell representation
 
-Let `M=L(W_S)` be the finite-shell graph-product factor.  If one asks the
-same tower to reduce every native shell lamp reflection, then every `E_i`
-lies in
+Let the native shell lamps generate a finite tracial von Neumann algebra
+`M`.  If one asks the same tower to reduce every native shell lamp
+reflection, then every `E_i` lies in
 
 ```text
-{c_x:x in S}' cap M=Z(M)=C.                           (CTH5)
+{c_x:x in S}' cap M=Z(M).                             (CTH5)
 ```
 
-Thus no nontrivial 42-atom tower can be a common reducing selector for the
-full native shell algebra.  Any exact unstabilized tower, if it exists, must
-mix at least some native payload direction.  Formula `(CTH2)` is the exact
-energy that a proposed hybrid word must pay or separately cancel.
+Consequently, in any factor representation of that algebra, no nontrivial
+42-atom tower can be a common reducing selector for the full native shell
+algebra.  Formula `(CTH2)` is the exact energy that a proposed hybrid word
+must pay or separately cancel.  The existence of one noncommuting lamp pair
+does not by itself prove that the canonical finite-shell group von Neumann
+algebra is a factor, so no unconditional ICC assertion is used here.
 
 The regularly stabilized tower from
 `finite-shell-coset-tower-is-a-nonlinear-unstabilized-lift` avoids this
@@ -81,10 +83,10 @@ in `(CTH1)`.  Exact wordization requires either
 2. ordinary relations whose energy controls the sum in `(CTH2)` and whose
    exact perfect model cancels it.
 
-If the collection of Fano payload rows generates the full marked native
-factor, option 1 is impossible by `(CTH5)`.  For a proper payload subalgebra
-it remains possible, but it is a new relative-commutant/commuting-square
-construction and does not follow from the arithmetic tower.  Thus even a
-positive solution of the unstabilized coset-tower problem would not close
-the Fano common-source seam without this additional coupling.
-
+If the collection of Fano payload rows generates a marked factor, option 1
+is impossible by `(CTH5)`.  For a proper payload subalgebra, or in a
+nonfactorial representation with central summands, it remains possible, but
+it is a new relative-commutant/commuting-square construction and does not
+follow from the arithmetic tower.  Thus even a positive solution of the
+unstabilized coset-tower problem would not close the Fano common-source seam
+without this additional coupling.

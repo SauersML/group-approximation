@@ -2,24 +2,25 @@
 rg: 2
 id: right-displacement-reynolds-scalar-cb-complete
 kind: claim
-title: Right-displacement decomposition makes the scalar Reynolds shadow cb-complete at exact endpoints
+title: Right displacement computes the full Moore--Penrose extension at exact endpoints
 distinct_from:
-  constrained-reynolds-column-has-a-diagonal-scalar-shadow: that extracts the diagonal restriction as a necessary scalar test; this proves that, at an exact left-regular endpoint, every off-diagonal coefficient is an identical copy and the full cb inverse has exactly the same norm.
+  constrained-reynolds-column-has-a-diagonal-scalar-shadow: that extracts the diagonal restriction as a necessary scalar test; this computes the norm of the full-space Moore--Penrose extension at an exact left-regular endpoint, not the possibly smaller norm of the inverse restricted to its range.
   exact-passive-jacobian-is-two-reynolds-expectations: that identifies the exact Jacobian as two constrained expectations; this computes its complete matrix-coefficient decomposition and inverse norm.
   passive-iwahori-off-zero-cb-normal-splitting: that asks for a splitting at arbitrary operator-small passive tuples; this removes the off-diagonal obstruction only at exact congruence endpoints.
 ---
 
-**ESTABLISHED; THE EXACT-ENDPOINT OFF-DIAGONAL AUDIT CLOSES.**  Let `Q` be
-a finite congruence quotient and let `(R,S,X)` be an exact left-regular
-half-parabolic endpoint on `H=l2(Q)`, with
+**ESTABLISHED; FULL-SPACE EXACT-ENDPOINT AUDIT.**  Let `Q` be a finite
+congruence quotient and let `(R,S,X)` be an exact left-regular half-parabolic
+endpoint on `H=l2(Q)`, with
 
 ```text
 A=XS^2,       B=XRS,       A^3=B^3=I.
 ```
 
-Write `lambda` and `rho` for the commuting left and right regular
-representations.  Every matrix `Y in B(H)` has a unique right-displacement
-expansion
+All operator-space statements below are made on the complexification of the
+anti-Hermitian tangent.  Write `lambda` and `rho` for the commuting left and
+right regular representations.  Every matrix `Y in B(H)` has a unique
+right-displacement expansion
 
 ```text
 Y=sum_(z in Q) M_(f_z) rho(z),                         (RDC1)
@@ -37,11 +38,14 @@ Reynolds rows preserve every displacement `z`.  On every one of the `|Q|`
 orthogonal Hilbert--Schmidt fibers they are the *same* scalar signed-incidence
 column `C_Q` from
 `constrained-reynolds-column-has-a-diagonal-scalar-shadow`.  In particular,
-the Hilbert-space Moore--Penrose normal inverse of the full Jacobian is the
-coefficientwise lift of the scalar inverse.
+the Hilbert-space Moore--Penrose inverse of the full Jacobian, extended by
+zero on the Hilbert-space orthogonal complement of its range, is the
+coefficientwise lift of the corresponding full-space scalar Moore--Penrose
+extension.
 
 There is no hidden operator-space loss in that lift.  Extend the scalar
-column by zero off its fixed-`R`, `X`-odd domain and put
+column by zero off its fixed-`R`, `X`-odd domain and extend its Moore--Penrose
+inverse by zero off its Hilbert-space range.  Put
 
 ```text
 G_Q=C_Q^dagger=(T_(1,Q),T_(2,Q)).                      (RDC3)
@@ -57,7 +61,7 @@ calculus for its Moore--Penrose inverse gives unique coefficients
 T_(j,Q)=sum_(g in Q) a_(j,g) L_g.                      (RDC4)
 ```
 
-The full matrix normal inverse is therefore
+The full matrix Moore--Penrose extension is therefore
 
 ```text
 Ghat_Q(Y_1,Y_2)
@@ -93,7 +97,13 @@ boxed(
 ).                                                     (RDC8)
 ```
 
-The same identity holds after every external multiplicity amplification,
+Here every norm in `(RDC8)` is the norm of the indicated full-space
+extension, whose input is the entire two-row ambient space.  It need not
+equal the norm of the inverse whose domain is only `ran(C_Q)` with its
+inherited infinity norm: the phase choices proving `(RDC7)` need not belong
+to that range.
+
+The same full-extension identity holds after every external multiplicity amplification,
 because `(RDC5)` merely tensors the conjugations with the identity.
 It also controls every (not necessarily regular) representation of `Q`.
 Indeed any finite-dimensional `pi` embeds into `lambda tensor I_m` for some
@@ -108,12 +118,14 @@ is reducing for all tangent projections, Reynolds rows, their adjoints,
 and the Moore--Penrose inverse.  Restricting `(RDC5)` to this corner gives
 the normal inverse for `pi`, with cb norm no larger than `(RDC8)`.
 
-Therefore the exact-zero cb frontier has **no independent off-diagonal
-matrix-coefficient obstruction**.  Proving the uniform scalar infinity
-Green estimate for the regular arithmetic columns `C_Q` is therefore
-equivalent to proving the full exact-endpoint cb normal-inverse estimate
-over all quotient representations and multiplicities.  Conversely, a
-scalar divergent mode already refutes the full estimate.
+Therefore the full-space exact-zero cb extension has **no independent
+off-diagonal matrix-coefficient obstruction**: a uniform bound for the full
+scalar Moore--Penrose extensions is equivalent to the corresponding full
+matrix bound over quotient representations and multiplicities.  Conversely,
+a scalar divergent full extension already refutes that full estimate.  This
+statement supplies a sufficient exact-endpoint estimate from any explicit
+bounded scalar extension.  It does not turn a bound for the range-restricted
+Green inverse into a bound for the full extension.
 
 This does not prove the off-zero claim
 `passive-iwahori-off-zero-cb-normal-splitting`.  Away from an exact endpoint,
