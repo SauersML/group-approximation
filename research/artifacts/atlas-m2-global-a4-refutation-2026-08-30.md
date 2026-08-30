@@ -52,7 +52,7 @@ Hilbert--Schmidt distance two.
 | proposed statement | forced consequence on the zero-residual frame | exact contradiction |
 |---|---|---|
 | moment-simplex rounding | classical mixture functional tends to `36` | every classical mixture is at most `30` |
-| collision-conditioned classicalization | the frame lies in the closed classical branch union modulo commutant | collision has defect `sqrt(2)` on that union but defect `0` on the frame |
+| collision-conditioned classicalization | the frame approaches the classical branch union modulo commutant | the `8`-Lipschitz collision word gives distance at least `sqrt(2)/8` from that union |
 | packet-commutator collapse | `E_packet=0` | `E_packet>=5040/28363` from raw energy `4` |
 | exact holonomy compiler | `pi(b)=1`, hence no nontrivial A8 mass and the frame is chart-central | raw energy is `4` |
 | multiplication-table compiler | the exact table has `u(b)=1`, hence is trivial and the frame is chart-central | raw energy is `4` |

@@ -13,7 +13,7 @@ artifacts:
   - experiments/atlas_a4_gl5_packet_screen.py
 ---
 
-**REFUTED.**  On the exact multiplicity-two regular frame, the packet compiler gives membership in every shifted centralizer product and collision is the identity.  The frame cannot lie in the classical branch union modulo commutant, because collision has regular defect `sqrt(2)` on every such branch.  Thus the constant frame violates `(A4+Q-CLASS)`.  See `atlas-m2-refutes-five-global-a4-compilers`.
+**REFUTED.**  On the exact multiplicity-two regular frame, the packet compiler gives membership in every shifted centralizer product and collision is the identity.  The collision word is `8`-Lipschitz in the relative frame and has regular defect `sqrt(2)` on every classical branch but defect zero on the witness.  Thus its distance from the branch union is at least `sqrt(2)/8`, uniformly under amplification, and it violates `(A4+Q-CLASS)`.  See `atlas-m2-refutes-five-global-a4-compilers`.
 
 Fix `rho_k=Reg(A8) tensor I_k` and the exact packet reference alignment
 `R_k=rho_k(r_0)` from `atlas-a4-packet-centralizer-product-compiler`.  For the

@@ -72,11 +72,16 @@ This one constant exact-regular sequence gives five direct contradictions.
 
    Together with `q_19243(U)=1`,
    `atlas-centralizer-products-19243-classicalize` would give
-   `dist_2(U,B)=0`.  The finite union `B` of classical branch cosets is closed,
-   so `U in B`.  Right multiplication by the regular-chart commutant does not
-   change collision evaluation, while the established classical collapse says
-   collision is nonidentity on every branch.  Its regular defect is therefore
-   `sqrt(2)`, contradicting `q_19243(U)=1`.
+   `dist_2(U,B)=0`.  Every `V in B` has collision defect `sqrt(2)`, while `q_19243(U)=1`.
+   Collision evaluation contains four conjugated second-chart letters, so
+   eight-step telescoping gives
+
+   ```text
+   ||q_19243(U)-q_19243(V)||_2<=8||U-V||_2.
+   ```
+
+   Hence `dist_2(U,B)>=sqrt(2)/8`, uniformly under amplification, contradicting
+   the asserted classicalization.
 
 3. **Packet-commutator collapse.**  The established packet-energy comparison
    gives

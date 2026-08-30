@@ -31,9 +31,12 @@ point in the classical convex hull has value at most `30`.
 
 For geometric classicalization, apply the shifted centralizer-product compiler
 to the constant zero-defect packet sequence.  All thirty distances are zero.
-The proposed conclusion would put the frame in the closed classical branch
-union modulo the chart commutant, where classical collapse makes the collision
-defect `sqrt(2)`, contrary to its exact value zero.
+Classical collapse gives collision defect `sqrt(2)` everywhere on the branch
+union modulo commutant.  The eight-syllable collision evaluation is
+`8`-Lipschitz in the relative frame, while its defect on the witness is zero.
+Thus the witness stays at distance at least `sqrt(2)/8` from that union,
+uniformly under direct-sum amplification, contradicting the proposed
+classicalization.
 
 For packet-commutator collapse, substitute `(M2G2)` in the established packet
 to raw-S3 estimate to obtain the strict lower bound `(M2G4)`.
