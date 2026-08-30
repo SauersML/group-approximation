@@ -8,6 +8,7 @@ distinct_from:
   effective-transport-modulus: This is a quantitative statement for honest orthogonal representations of the base, not a relator-defect modulus for approximate matrix models.
 artifacts:
   - GroupApproximation/Kazhdan/ExactHodgeCertificate.lean
+  - GroupApproximation/Monsters/P13SpectralGap.lean
   - GroupApproximation/Sofic/LiteralP13HodgeCertificate.lean
   - GroupApproximation/Sofic/LiteralBaseP13RotationQuotient.lean
   - GroupApproximation/Monsters/P13CircumcenterRouteStep3.lean
@@ -17,8 +18,8 @@ artifacts:
 Put
 
 ```text
-kappa13=(1-sqrt(11999/12000))/6000,
-kappaB =kappa13/64=(1-sqrt(11999/12000))/384000.
+kappa13=1/sqrt(3000),
+kappaB =kappa13/64=1/(64*sqrt(3000)).
 ```
 
 In the literal twenty-relator affine base `B`, let `Q_B` consist of `v2`,
@@ -30,7 +31,7 @@ YxzYX,  xzYXY,  Yxyxz,  XYxzY,  xYxzYx,  XzYXYX.
 ```
 
 Then `(Q_B,kappaB)` is a Kazhdan pair for real orthogonal representations of
-`B`. Numerically, `kappaB=1.0850920510007087e-10`.
+`B`. Numerically, `kappaB=2.852721653672740e-4`.
 
 Consequently, if
 
@@ -42,5 +43,5 @@ then `|S_B|<=17`, and on the moving subspace of every honest orthogonal
 representation the normalized `S_B`-average has norm at most
 
 ```text
-1-kappaB^2/68 < 1-1.731506998742536e-22.
+1-kappaB^2/68 = 1-1/835584000.
 ```
