@@ -19,6 +19,14 @@ occur when both pure factors are simple.  Thus any counterexample based on
 this engine must use a nonsimple pure factor as well as a genuinely entangled
 representation; no unitality assumption is needed.
 
+Third, the separable corridor is closed whenever either factor is exact.
+Blanchard--Kirchberg identify the primitive spectrum of the minimal tensor
+product with the product of the factor primitive spectra.  A compact ideal in
+a faithful irreducible quotient gives an open singleton.  That singleton
+splits into open singleton factor ideals, and their minimal tensor product is
+the compact ideal.  Type-I reflection contradicts nowhere scatteredness of
+the factor ideals.  Thus a separable witness requires two nonexact factors.
+
 # Abstract Cu tensor versus the concrete tensor product
 
 For pure `A` and `B`, the abstract Cu tensor product
@@ -61,15 +69,21 @@ maximal-tensor representation that is not min-continuous.
    Takesaki's theorem with `type-i-minimal-tensor-reflects-to-factors`.  A
    compact-bearing simple image would be elementary, forcing both simple
    factors to be type I and hence elementary, contrary to purity.
+4. `separable-exact-nowhere-scattered-tensor-permanence` rules out every
+   separable compact-bearing witness with an exact factor, even when both
+   factors are highly nonsimple.
 
 These fences do not settle pure tensor permanence.  They show that the live
 compact corridor requires a genuinely entangled min-continuous
-representation and nonsimplicity of at least one factor.
+representation, nonsimplicity of at least one factor, and, in the separable
+setting, nonexactness of both factors.
 
 # Trust boundary
 
-The only imported theorem in the new packet is Takesaki's simplicity of the
-minimal tensor product of simple C-star algebras.  Type-I reflection,
-compact-intersection, slice, and ideal-subquotient arguments are proved
-directly in the attached routes.  No statement about the abstract Cu tensor
-product is treated as a realizability theorem for `Cu(A tensor_min B)`.
+The imported inputs are Takesaki's simplicity theorem and the
+Blanchard--Kirchberg primitive-spectrum product theorem for separable minimal
+tensor products with an exact factor.  Type-I reflection,
+compact-intersection, open-singleton splitting, slice, and ideal-subquotient
+arguments are proved directly in the attached routes.  No statement about
+the abstract Cu tensor product is treated as a realizability theorem for
+`Cu(A tensor_min B)`.

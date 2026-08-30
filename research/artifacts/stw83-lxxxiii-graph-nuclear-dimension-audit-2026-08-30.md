@@ -91,3 +91,62 @@ The pairwise-intersection condition is doing real uniform work: global reachabil
 from one cycle to another would not suffice, because the connecting path need not
 occur in a chosen finite entrance completion.  Intersection provides the needed
 path inside the union of the two cycles already present.
+
+## Hereditary finite exhaustions without Condition (K)
+
+There is a simpler finite-limit bridge when a countable row-finite graph has an
+increasing exhaustion by finite hereditary vertex sets.  Heredity ensures that all
+edges emitted at an included vertex remain included, so its Cuntz--Krieger equality
+is unchanged.  The canonical map from each finite induced graph algebra is gauge
+equivariant and has nonzero vertex projections; gauge-invariant uniqueness makes
+it injective.  The union contains every graph generator, and Winter--Zacharias
+inductive-limit permanence passes a uniform nuclear-dimension-one bound without
+adding a color.
+
+Row-finiteness is essential in this formulation.  An infinite emitter can become
+a finite regular vertex in a finite subgraph, which imposes an equality absent in
+the ambient graph algebra.  One would need a relative graph or a different finite-
+completion construction to cover that situation.
+
+## New non-Condition-(K) circle-crown class
+
+Fix a finite strongly connected graph `K` with an edge which is not a simple
+cycle.  Attach countably many disjoint finite simple cycles, each with an exit
+through a finite acyclic connector toward `K`; require every connector vertex to
+reach `K`, with no edge from `K` back to a block and no edge between blocks.  The
+first `n` blocks together with `K` form a finite hereditary stage.
+
+At each stage, the cycles form `V_0`, the acyclic connectors form `V_1`, and `K`
+forms `V_2` in Evington--Ng--Sims--White, Proposition 5.1.  The corresponding
+graph algebra is an essential extension of a stably commutative finite circle sum
+by a stable Kirchberg ideal.  Their Corollary 4.2 reuses both colors and gives
+nuclear dimension one.  Hereditary finite exhaustion gives the same value for the
+countable graph.
+
+This class is not hidden inside either earlier broad theorem.  Each attached
+simple cycle has an exit but has no second return path because no path returns
+from `K`; hence Condition (K) fails.  A cycle with an exit produces an infinite
+projection, so the graph algebra is not stably finite.
+
+## A fixed-core AF-by-O-infinity class
+
+The earlier warning that global cycle reachability need not survive a finite
+completion has a useful converse.  Suppose all cycles lie in one fixed finite
+strongly connected Condition-(K) core `K`, and the remaining graph is a countable
+union of finite acyclic feeder blocks directed toward `K`.  Include the whole core
+in every finite hereditary stage.  Every finite-stage source then reaches `K` and,
+by strong connectivity, reaches every cycle.  Faurot--Schafhauser's finite theorem
+applies at every stage, even when distinct cycles of `K` do not meet.  In extension
+language, the AF source ideal is stable and the O-infinity quotient extension is
+full at each stage, so the one-color reuse is uniform.
+
+## Remaining two-component obstruction
+
+Evington--Ng--Sims--White, Remark 5.3, isolates two unknown entries already for
+a finite graph with one nontrivial gauge-invariant ideal.  In both, the ideal is
+stably circle-type.  The quotient is respectively Kirchberg-type or circle-type.
+Their new theorem treats the reverse orientation, with a stable Kirchberg ideal
+and a stably commutative quotient, and cannot simply be applied to the opposite
+Busby extension.  The circle-crown class above stays on this favorable side and
+does not solve the two minimal models.  Thus the general non-Condition-(K)
+frontier still requires color reuse for stable circle ideals.

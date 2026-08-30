@@ -20,3 +20,5 @@ not supply a minimal-tensor witness.  The witness is now also known to require
 at least one nonsimple factor: `stw95-simple-pure-factors-exclude-compact-corridor`
 rules out all simple-by-simple pure pairs by simplicity of their minimal
 tensor product and reflection of type I from a tensor product to its factors.
+In the separable case, `separable-exact-nowhere-scattered-tensor-permanence`
+also forces both factors to be nonexact.
