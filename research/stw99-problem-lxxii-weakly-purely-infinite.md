@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw72-chain-ideal-cover-collapse-audit-2026-08-30.md
   - research/artifacts/stw72-purely-infinite-radical-audit-2026-08-30.md
   - research/artifacts/stw72-morita-hereditary-core-audit-2026-08-30.md
+  - research/artifacts/stw72-essential-pi-quotient-seam-audit-2026-08-30.md
 ---
 
 **Problem LXXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -142,3 +143,27 @@ every corner, and no corner can conceal a Global-Glimm or chain-ideal patch
 sharp: a purely infinite patch can still be created in a quotient by a
 non-purely-infinite lower ideal, so radical-freeness is not asserted for all
 quotients.
+
+That quotient seam is now rigidly localized.  If
+
+```text
+0 -> I -> J -> Q -> 0
+```
+
+lies in the radical-free core and `0 != Q` is purely infinite, then the
+extension is essential: the Busby kernel is isomorphic to the annihilator
+`I_perp`, and a nonzero kernel would be a purely infinite ideal of `J`.
+Moreover `C intersect I` is nonzero and essential for every nonzero hereditary
+`C subset J`, so each quotient-visible corner reproduces the same extension
+seam.  In `Cu(J)`, the order ideal `Cu(I)` contains a strict finite-saturation
+defect below the principal ideal of every nonzero class, while quotient
+idempotence lifts only to
+
+```text
+2x <= x+w       (w in Cu(I), w <= infinity x).
+```
+
+The open comparison is therefore exact kernel-term absorption inside an
+essential Busby extension; nonessential models and locally defect-free
+corners are impossible
+(`stw72-pi-quotient-seam-is-essential-and-defect-dense`).
