@@ -261,6 +261,29 @@ theorem mem_elementaryClosure_iff_exists_inv_conj_zpow_eq
       simpa only [inv_inv] using heq
     simpa only [inv_inv] using (elementaryClosure h).inv_mem hginv
 
+/-- **DGO Corollary 6.6, `(a) ↔ (b)`, with the published positive-natural
+quantifier.**  Lemma 6.5's finite-index conclusion supplies one positive
+exponent that works for every element of `E(h)`. -/
+theorem mem_elementaryClosure_iff_exists_inv_conj_positive_pow_eq_or
+    (hiso : IsIsometricAction G X) {h g : G} {x : X}
+    (hlox : IsLoxodromic h x)
+    (hfin : ElementaryClosureFiniteTransversal h) :
+    g ∈ elementaryClosure h ↔
+      ∃ n : ℕ, 0 < n ∧
+        (g⁻¹ * h ^ (n : ℤ) * g = h ^ (n : ℤ) ∨
+          g⁻¹ * h ^ (n : ℤ) * g = h ^ (-(n : ℤ))) := by
+  constructor
+  · intro hg
+    obtain ⟨n, hn, hnormal⟩ :=
+      exists_uniform_normal_positive_pow_of_finiteTransversal hiso hlox hfin
+    have hginv : g⁻¹ ∈ elementaryClosure h :=
+      (elementaryClosure h).inv_mem hg
+    exact ⟨n, hn, by simpa only [inv_inv] using hnormal g⁻¹ hginv⟩
+  · rintro ⟨n, hn, hrel⟩
+    apply (mem_elementaryClosure_iff_exists_inv_conj_zpow_eq_or hiso hlox).mpr
+    refine ⟨(n : ℤ), ?_, hrel⟩
+    exact_mod_cast hn.ne'
+
 end Elementary
 end GGT
 end GroupApproximation
