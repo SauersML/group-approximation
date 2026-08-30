@@ -72,6 +72,15 @@ the formula whenever both endpoints are subhomogeneous, with no separability
 hypothesis.  In particular, arbitrary commutative extensions obey the
 maximum formula.
 
+There is also an exact absorption class which includes nonnuclear middle
+algebras.  `stw82-oinfinity-stable-extensions-obey-maximum` proves the
+formula for every extension whose separable middle algebra is
+`O_infinity`-stable.  Ideals and quotients retain the absorption.  Every
+nonzero nuclear term then has nuclear dimension one, while every nonnuclear
+term has infinite nuclear dimension; extension permanence of nuclearity
+forces the middle term and the endpoint maximum into the same case.  No
+fullness, essentiality, splitting, or quasidiagonality hypothesis occurs.
+
 There is also a split class with no regularity assumption on the ideal.
 `stw82-central-af-split-extensions-obey-maximum` proves the formula when the
 quotient is commutative AF and a unital *-homomorphic section lands in the
