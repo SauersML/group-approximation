@@ -31,8 +31,8 @@ finite-set central-isometry defect.  The key compactness theorem is that
 absence of normalized 2-quasitraces is witnessed by a finitely generated
 unital subalgebra.
 
-By Blackadar--Handelman, the finite obstruction seed has a nonunitary
-isometry at a least finite matrix level.  Thus
+By the Blackadar--Handelman matrix criterion, the finite obstruction seed
+has properly infinite unit at a least finite matrix level.  Thus
 `stw78-counterexamples-have-two-finite-witnesses` reduces the open problem
 to making this concrete finite matrix witness interact with the concrete
 positive centralization defect.
@@ -43,6 +43,12 @@ properly infinite `M_n(C)` back into the sequence relative commutant whenever
 the finite seed `C` commutes with the image.  The universal obstruction is
 therefore the absence of those two interaction properties, not the folding
 calculation.
+
+If the domain has unital central matrix blocks of unbounded size and the
+ordinary relative commutant contains a unital quasitraceless subalgebra,
+`stw78-unbounded-central-matrices-close-relative-quasitrace-case` supplies
+the matching properly infinite amplification automatically and proves the
+map O-infinity-stable.  No exactness or nuclearity of the target is used.
 
 ## Attempts
 

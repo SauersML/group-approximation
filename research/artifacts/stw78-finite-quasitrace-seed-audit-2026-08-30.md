@@ -42,13 +42,14 @@ Non-O-infinity-stability survives with the same positive finite-set defect,
 because the admissible isometry pairs only become scarcer when the codomain
 is shrunk.
 
-Blackadar--Handelman's theorem then makes the obstruction concrete.  The
-finitely generated quasitraceless seed is not stably finite, so at a least
-finite matrix level it contains a nonunitary isometry.  A counterexample can
-therefore be normalized to carry simultaneously a finite subset `F` with
-positive central-isometry defect and a finite matrix isometry witnessing
-failure of stable finiteness.  The universal hinge is precisely that these
-two finite witnesses need not interact.
+The Blackadar--Handelman matrix criterion then makes the obstruction
+concrete: a unital algebra admits a normalized 2-quasitrace exactly when no
+finite matrix amplification has properly infinite unit.  Thus the finitely
+generated quasitraceless seed has two orthogonal isometries at a least
+finite matrix level.  A counterexample can be normalized to carry
+simultaneously a finite subset `F` with positive central-isometry defect and
+a finite matrix proper-infiniteness witness.  The universal hinge is
+precisely that these two finite witnesses need not interact.
 
 There is a sharp positive folding mechanism when they do interact.  If the
 domain central sequence algebra contains a unital `M_n`, and a unital
@@ -64,6 +65,15 @@ stability.  Thus the unresolved gap in the finite-witness normal form is not
 matrix folding itself: it is moving the finite target seed into the relative
 commutant and upgrading its first nonfinite amplification to a properly
 infinite one.
+
+The second issue disappears when the domain has unital central matrix blocks
+of unbounded size.  If the ordinary relative commutant contains any unital
+quasitraceless subalgebra `C`, Blackadar--Handelman makes `M_m(C)` properly
+infinite for some `m`; choose a central `M_r` with `r>=m`.  Proper
+infiniteness passes from the `m`-amplification to the `r`-amplification, and
+the folding theorem proves the map O-infinity-stable.  This closes a new
+positive class and leaves one precise universal obstruction: the finite
+quasitrace seed in the target need not commute with the image.
 
 # Remaining hinge
 
@@ -81,5 +91,6 @@ The finite-detection and counterexample-reflection proofs use only the
 defining identities of normalized 2-quasitraces, a cofinal ultrafilter,
 restriction to unital subalgebras, and the already proved exact
 central-isometry criterion.  The two-finite-witness corollary additionally
-imports exactly the Blackadar--Handelman theorem that every stably finite
-unital C-star algebra admits a normalized 2-quasitrace.
+imports exactly the Blackadar--Handelman matrix criterion characterizing
+existence of a normalized 2-quasitrace by the absence of a properly infinite
+unit in every finite matrix amplification.
