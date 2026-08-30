@@ -2964,3 +2964,6 @@ import GroupApproximation.Analysis.VoiculescuGlimmEssentialRange
 import GroupApproximation.GGT.DGOQuasiGeodesicChainAt
 import GroupApproximation.GGT.DGOIsolatedComponentBoundAtMu
 import GroupApproximation.GGT.HullEeOneStep
+import GroupApproximation.GGT.DGOAssemblyHalves
+import GroupApproximation.GGT.DGOAssemblyCuts
+import GroupApproximation.GGT.DGOAssemblyVertices
