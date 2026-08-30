@@ -99,7 +99,7 @@ class strictly larger than the nilpotent groups; without the abelianization
 hypothesis it still gives nuclear dimension at most one for every infinite
 finitely generated virtually nilpotent group.  There is also a genuinely new
 finite-abelianization equality case: every free minimal zero-dimensional
-`D_infinity` crossed product has nuclear dimension one.  Natsume's
+`D_infinity` crossed product has nuclear dimension one.  Pimsner's
 free-product exact sequence forces either nonzero `K_1` or nonzero two-torsion
 in `K_0`, so dimension zero is impossible although
 `(D_infinity)_ab=C_2 direct_sum C_2`.  These maps already factor
@@ -107,3 +107,13 @@ through the uniform Roe corona.  Thus for every such group of asymptotic
 dimension at least two, no minimal boundary quotient can carry the desired
 full-dimensional nuclear-dimension lower bound.  Nonminimal quotients and
 genuinely ambient lower-bound invariants remain open.
+
+The parity computation now closes every infinite virtually cyclic group,
+not only `D_infinity`.  By the standard type dichotomy, such a group either
+maps onto `Z` with finite kernel or has an amalgam decomposition
+`G_1 *_F G_2` with finite vertex groups and both indices equal to two.
+The first case is PV; in the second, Pimsner's map is again the pair of
+two-sheet orbit sums.  The same torsion-versus-odd-kernel alternative proves
+`stw87-virtually-cyclic-actions-have-dimension-one`.  Hence all free minimal
+zero-dimensional virtually cyclic crossed products have nuclear dimension
+exactly one, including finite dihedral extensions with finite abelianization.

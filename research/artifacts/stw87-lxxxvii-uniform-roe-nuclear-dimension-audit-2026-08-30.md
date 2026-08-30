@@ -228,12 +228,18 @@ a compact zero-dimensional Hausdorff space, without metrizability.  For every
 infinite finitely generated virtually nilpotent group acting this way the
 nuclear dimension is at most one, and infinite abelianization forces equality.
 Equality also holds for `G=D_infinity`, despite its finite abelianization:
-Natsume's exact sequence for
+Pimsner's tree-action exact sequence for
 `D_infinity=C_2 free_product C_2` makes the crossed product's K-theory the
 kernel and cokernel of the two involution orbit-sum maps.  The parity class
 `(1,-1)` either survives as nonzero two-torsion in `K_0`, or a half-lift makes
 the nonzero odd-valued function `2f-1` survive in `K_1`.  Hence a free
 zero-dimensional dihedral crossed product is never locally AF.
+More generally, `stw87-virtually-cyclic-actions-have-dimension-one` closes
+the entire infinite virtually cyclic class.  A type-I group maps onto `Z`
+and is handled by PV.  A type-II group is `G_1 *_F G_2` with finite vertex
+groups and both edge indices two; Pimsner's map becomes the same pair of
+two-sheet orbit sums on `C(K/F,Z)`.  Thus the parity dichotomy survives every
+finite dihedral extension, even when its abelianization is finite.
 For each finite crossed-product packet,
 adjoining countably many clopen displacement witnesses produces a compact
 metrizable zero-dimensional factor whose action is still free and minimal.
