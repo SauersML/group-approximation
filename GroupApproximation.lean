@@ -2758,6 +2758,7 @@ import GroupApproximation.GGT.GuessingGeodesicsUniform
 import GroupApproximation.Analysis.VoiculescuGlimmTransport
 import GroupApproximation.GGT.GeodesicChainThrough
 import GroupApproximation.GGT.GuessingGeodesicsCriterion
+import GroupApproximation.Analysis.VoiculescuGlimmState
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
