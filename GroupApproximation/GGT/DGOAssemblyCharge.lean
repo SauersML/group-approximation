@@ -657,6 +657,44 @@ theorem combine_relBall_witnesses (D : RelGenSet G Λ)
     rw [heq₁, heq₂]
     omega
 
+/-- **Witness functions from an arbitrary finite family combine fiberwise.**
+
+`owner s` is the auxiliary cycle charged with the original distinguished
+component `s`.  Each local witness function is only summed over its ownership
+fiber.  Summing those fiber estimates gives one witness on the original
+family, with total radius bounded by the sum of the child bounds.
+
+This is the family-level version of `combine_relBall_witnesses`.  It does not
+assume that the auxiliary cycles are ordered along the chord; the owner map is
+the only bookkeeping needed here. -/
+theorem combine_relBall_witnesses_finite (D : RelGenSet G Λ)
+    {κ : Type*} [Fintype κ] [DecidableEq κ]
+    (I : Finset ℕ) (owner : ℕ → κ) (lam : ℕ → Λ) (span : ℕ → G)
+    (radius : κ → ℕ → ℕ) (bound : κ → ℕ)
+    (hmem : ∀ s ∈ I,
+      span s ∈ D.relBall (lam s) (radius (owner s) s))
+    (hsum : ∀ j : κ,
+      ∑ s ∈ I, (if owner s = j then radius j s else 0) ≤ bound j) :
+    ∃ r : ℕ → ℕ,
+      (∀ s ∈ I, span s ∈ D.relBall (lam s) (r s)) ∧
+      ∑ s ∈ I, r s ≤ ∑ j : κ, bound j := by
+  classical
+  let r : ℕ → ℕ := fun s => radius (owner s) s
+  refine ⟨r, ?_, ?_⟩
+  · intro s hs
+    exact hmem s hs
+  · calc
+      ∑ s ∈ I, r s =
+          ∑ s ∈ I, ∑ j : κ, (if owner s = j then radius j s else 0) := by
+            apply Finset.sum_congr rfl
+            intro s hs
+            simp [r]
+      _ = ∑ j : κ, ∑ s ∈ I,
+          (if owner s = j then radius j s else 0) := by
+            rw [Finset.sum_comm]
+      _ ≤ ∑ j : κ, bound j :=
+        Finset.sum_le_sum fun j _ => hsum j
+
 end DGOPolygonCut
 end GGT
 end GroupApproximation

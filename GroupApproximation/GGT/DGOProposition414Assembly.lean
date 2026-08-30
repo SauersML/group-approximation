@@ -148,6 +148,154 @@ theorem sumCost_le (D : RelGenSet G Λ)
     classical
     exact Nat.find_min' (exists_sumBound D hsymm b hδ n) hK
 
+/-! ## Honest auxiliary-cycle family certificates -/
+
+/-- **One auxiliary cycle with every premise needed by `SumBound` exposed.**
+
+The word and cut are the concrete output of `auxiliaryCycleWord` and
+`auxiliaryCycleCut` (or an endpoint-degenerate instance of them).  In
+particular `quasi` is not inferred from closure, admissibility, or isolation:
+it explicitly records the `(1,b)` estimate on every non-distinguished side.
+This is the premise missing from the current local auxiliary-cycle modules. -/
+structure AuxiliaryCycleCertificate (D : RelGenSet G Λ) (b : ℝ) (m : ℕ) where
+  basepoint : G
+  word : List (RelLetter G Λ)
+  cut : ℕ → ℕ
+  target : Finset ℕ
+  label : ℕ → Λ
+  letters : ∀ a ∈ word, D.IsLetter a
+  closed : RelLetter.listVal word = 1
+  polygonCut : IsPolygonCut m word cut
+  target_lt : ∀ s ∈ target, s < m
+  target_edge : ∀ s ∈ target, cut (s + 1) = cut s + 1
+  target_component : ∀ s ∈ target,
+    IsComp (label s) word (cut s) (cut (s + 1))
+  target_isolated : ∀ s ∈ target,
+    IsIsolated D.fam (label s) basepoint word (cut s)
+  quasi : ∀ s : ℕ, s < m → s ∉ target → ∀ p q : ℕ,
+    cut s ≤ p → p ≤ q → q ≤ cut (s + 1) →
+    ((q - p : ℕ) : ℝ) - b ≤
+      ((wordDist D.alphabet.carrier
+        (vertex basepoint word p) (vertex basepoint word q) : ℕ) : ℝ)
+
+namespace AuxiliaryCycleCertificate
+
+/-- The group element represented by a distinguished side of a certified
+auxiliary cycle. -/
+def sideSpan {D : RelGenSet G Λ} {b : ℝ} {m : ℕ}
+    (A : AuxiliaryCycleCertificate D b m) (s : ℕ) : G :=
+  (vertex A.basepoint A.word (A.cut s))⁻¹ *
+    vertex A.basepoint A.word (A.cut (s + 1))
+
+/-- Applying a `SumBound` to a fully certified child cycle produces its local
+radius witnesses. -/
+theorem exists_radius {D : RelGenSet G Λ} {b : ℝ} {m K : ℕ}
+    (A : AuxiliaryCycleCertificate D b m) (hK : SumBound D b m K) :
+    ∃ r : ℕ → ℕ,
+      (∀ s ∈ A.target,
+        A.sideSpan s ∈ D.relBall (A.label s) (r s)) ∧
+      ∑ s ∈ A.target, r s ≤ K := by
+  exact hK A.basepoint A.word A.cut A.target A.label A.letters A.closed
+    A.polygonCut A.target_lt A.target_edge A.target_component
+    A.target_isolated A.quasi
+
+/-- A canonical choice of the child witness at the least admissible bound. -/
+noncomputable def radius (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) {m : ℕ}
+    (A : AuxiliaryCycleCertificate D (b : ℝ) m) : ℕ → ℕ :=
+  Classical.choose (A.exists_radius (sumBound_sumCost D hsymm b hδ m))
+
+theorem sideSpan_mem_radius (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) {m : ℕ}
+    (A : AuxiliaryCycleCertificate D (b : ℝ) m) :
+    ∀ s ∈ A.target,
+      A.sideSpan s ∈ D.relBall (A.label s) (A.radius D hsymm b hδ s) :=
+  (Classical.choose_spec
+    (A.exists_radius (sumBound_sumCost D hsymm b hδ m))).1
+
+theorem sum_radius_le_sumCost (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ) {m : ℕ}
+    (A : AuxiliaryCycleCertificate D (b : ℝ) m) :
+    ∑ s ∈ A.target, A.radius D hsymm b hδ s ≤
+      sumCost D hsymm b hδ m :=
+  (Classical.choose_spec
+    (A.exists_radius (sumBound_sumCost D hsymm b hδ m))).2
+
+end AuxiliaryCycleCertificate
+
+/-- **A local family of auxiliary cycles with all charging and count data.**
+
+This is deliberately a certificate for one input polygon.  `children` are
+fully checkable cycles, including the off-target quasi-geodesic clause.
+`original_mem` and `charge` are the output of survivor transfer and the
+quadrilateral charging lemmas: every original distinguished side receives a
+radius, and their total is charged injectively to the selected sides of the
+children.
+
+The structure does *not* claim that such a certificate has been constructed
+from the two greedy half enumerations.  Nor does it turn polygon-dependent
+child sizes into the one uniform tuple required by `SumBound`; those are the
+remaining construction and uniform-maximisation boundaries. -/
+structure AuxiliaryCycleFamilyCertificate (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    (n : ℕ) (v : G) (word : List (RelLetter G Λ)) (cut : ℕ → ℕ)
+    (I : Finset ℕ) (lam : ℕ → Λ) where
+  k : ℕ
+  childSides : Fin k → ℕ
+  chordLength : ℕ
+  partners : List ℕ
+  children : ∀ j : Fin k,
+    AuxiliaryCycleCertificate D (b : ℝ) (childSides j)
+  owner : ℕ → Fin k
+  originalRadius : Fin k → ℕ → ℕ
+  original_mem : ∀ s ∈ I,
+    (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1)) ∈
+      D.relBall (lam s) (originalRadius (owner s) s)
+  charge : ∀ j : Fin k,
+    ∑ s ∈ I, (if owner s = j then originalRadius j s else 0) ≤
+      ∑ t ∈ (children j).target, (children j).radius D hsymm b hδ t
+  count_lower : n ≤ ∑ j, childSides j
+  count_upper : ChordPartnerQuadraticTraversalBound chordLength partners →
+    ∑ j, childSides j ≤ n + 6 * (chordLength * chordLength)
+  child_small : ∀ j, 5 * childSides j ≤ 4 * n
+  traversal : ChordPartnerQuadraticTraversalBound chordLength partners
+
+/-- **What a local auxiliary-cycle family certificate proves.**
+
+The child `SumBound` witnesses add, the charging injection transfers them to
+the original distinguished components, and the four numerical conclusions
+needed by the quadratic subdivision route are exported unchanged. -/
+theorem consequences_of_auxiliaryCycleFamilyCertificate (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    {n : ℕ} {v : G} {word : List (RelLetter G Λ)} {cut : ℕ → ℕ}
+    {I : Finset ℕ} {lam : ℕ → Λ}
+    (A : AuxiliaryCycleFamilyCertificate D hsymm b hδ n v word cut I lam) :
+    n ≤ ∑ j, A.childSides j ∧
+    (∑ j, A.childSides j ≤
+      n + 6 * (A.chordLength * A.chordLength)) ∧
+    (∀ j, 5 * A.childSides j ≤ 4 * n) ∧
+    ∃ r : ℕ → ℕ,
+      (∀ s ∈ I,
+        (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1)) ∈
+          D.relBall (lam s) (r s)) ∧
+      ∑ s ∈ I, r s ≤
+        ∑ j, sumCost D hsymm b hδ (A.childSides j) := by
+  obtain ⟨r, hrmem, hrsum⟩ := combine_relBall_witnesses_finite D I A.owner lam
+    (fun s => (vertex v word (cut s))⁻¹ * vertex v word (cut (s + 1)))
+    A.originalRadius
+    (fun j => ∑ t ∈ (A.children j).target,
+      (A.children j).radius D hsymm b hδ t)
+    A.original_mem A.charge
+  refine ⟨A.count_lower, A.count_upper A.traversal, A.child_small,
+    r, hrmem, hrsum.trans ?_⟩
+  exact Finset.sum_le_sum fun j _ =>
+    AuxiliaryCycleCertificate.sum_radius_le_sumCost D hsymm b hδ (A.children j)
+
 /-! ## The final `dgo-cycle` arithmetic assembly -/
 
 /-- **DGO Proposition 4.14 from the balanced subdivision inequality.**
