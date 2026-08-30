@@ -74,3 +74,32 @@ directed-union finite-set proof, full-group-algebra directed-union
 identification, residual-finiteness model for `F_2`, and invariant-mean
 argument for the reduced trace are explicit in their routes.  No open
 factorization premise is used in any established claim here.
+
+# X(2): finitely generated weakly dense normal form
+
+The hyperfinite-factor question admits a stronger norm-local reduction than
+the general separable trace reduction.  The factor `R` is quasidiagonal if
+and only if each of its finitely generated unital C-star subalgebras is
+quasidiagonal.  Indeed, matrix models on `C*(1,F)` extend to `R` by Arveson's
+theorem without changing the operator-norm estimates on the finite set `F`.
+
+Fix a singly generated CAR subalgebra `D subset R` with weak closure `R`.  If
+`R` is not quasidiagonal, a finite operator-norm obstruction gives a
+nonquasidiagonal `B=C*(1,F)`.  Then
+
+```text
+A=C*(B,D)=C*(1,F,g)
+```
+
+is finitely generated, weakly dense in `R`, and remains nonquasidiagonal
+because it contains `B`.  Conversely, any nonquasidiagonal subalgebra of `R`
+precludes quasidiagonality of `R`.  Thus X(2) is equivalent to
+quasidiagonality of all finitely generated weakly dense subalgebras.
+
+The trace ledger cleanly separates the two norms.  On `A`, the restricted
+trace is faithful and amenable and its GNS closure is `R`; these are the
+hyperfinite normalized-Hilbert--Schmidt models.  It is not a quasidiagonal
+trace, since faithfulness would then make `A` quasidiagonal.  The
+Tikuisis--White--Winter/Gabe faithful-trace theorem further forces `A` to
+fail exactness or the UCT.  Weak density of the CAR core supplies no
+operator-norm approximation of the finite obstruction `F`.
