@@ -35,6 +35,13 @@ finite non-stably-finite algebra by `Z` is not a repair: in the exact simple
 traceless setting, `Z`-absorption forces pure infiniteness and destroys
 finiteness.
 
+Problem LXVI is linked directly to this negative route.
+`stw99-lxvi-witness-refutes-lxxviii` proves that any LXVI witness cuts down
+to a finite quasitraceless CAR-containing algebra, whose unital CAR inclusion
+violates `O_infinity`-stability.  Hence a positive answer here would force a
+negative answer to LXVI, while a positive LXVI construction would refute this
+problem.
+
 On the positive side, `O_infinity`-stability forces every nonzero element of
 the image to be properly infinite.  Establishing that conclusion from the
 absence of quasitraces is already a substantive missing comparison step; even
