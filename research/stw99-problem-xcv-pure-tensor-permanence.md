@@ -27,10 +27,12 @@ failure of almost unperforation or almost divisibility.
 ## Attempts
 
 The exact/selfless case is positive by tensor-product permanence of
-selflessness, and the nuclear Z-stable case is positive by absorption.
-Any counterexample must therefore evade those mechanisms; no construction is
-currently recorded that makes either almost unperforation or almost
-divisibility fail after tensoring.
+selflessness.  The Z-stable case needs no nuclearity at all:
+`stw95-one-zstable-factor-forces-pure-product` proves that if either factor
+absorbs `Z`, then its tensor product with an arbitrary separable C*-algebra
+again absorbs `Z` and is pure.  Thus both factors in a counterexample must be
+non-Z-stable.  No construction is currently recorded that makes either
+almost unperforation or almost divisibility fail after tensoring.
 
 The current positive and negative frontiers are now explicit.  A splitting
 of the canonical abstract-to-concrete Cu tensor map suffices by
