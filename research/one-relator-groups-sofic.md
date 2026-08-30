@@ -28,6 +28,10 @@ claim [[nonsofic-one-relator-group]].
   question is exactly equivalent to the torsion-free two-generator case.
   Torsion one-relator groups are residually finite, and every torsion-free
   one-relator group embeds in a torsion-free two-generator one-relator group.
+- [[berlai-nonresidual-one-relator-families-sofic]] — two explicit infinite
+  two-generator families are sofic, including examples that are neither
+  residually finite nor residually solvable; this closes the Bannon--Noblett
+  subproblem but not the full question.
 - [[residually-rationally-solvable-one-relator-sofic]] — the whole residually
   rationally solvable subclass is sofic.
 - [[one-relator-soficity-localizes-at-rational-derived-stage]] — for every
