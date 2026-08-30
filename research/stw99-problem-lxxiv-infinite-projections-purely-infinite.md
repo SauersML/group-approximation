@@ -115,6 +115,26 @@ topology enters only if the desired bundle did not embed in the fixed ambient
 trivial bundle before imposing those constraints, or if data are prescribed
 on a positive-dimensional subset.
 
+The positive-dimensional boundary is now exact.  For a projection field
+`p in C(Y,M_m)` on a connected subcomplex `Y subset X`, the theorem
+`stw74-relative-grassmannian-bundle-threshold` identifies a projection in
+`M_k(B_p)` with an extension to `X` of
+
+```text
+a tensor p:Y->Gr_(alpha rank(p))(C^(km))
+```
+
+for some rank-`alpha` projection field `a in C(Y,M_k)`.  In the stable range
+`dim X<=2 min(d,km-d)`, this is equivalent to the class of the tensor bundle
+lifting through `K^0(X)->K^0(Y)`, or to vanishing of its boundary in
+`K^1(X,Y)`.  Complex Grassmannians are connected and simply connected, so no
+new obstruction occurs for a finite `2`-complex pair.  Dimension three is
+sharp: the Bott line constraint on `S^2=boundary(D^3)` has no level-one
+extension, while tensoring it with its complementary line at level two is
+trivial.  The associated subhomogeneous algebra is therefore projectionless
+with exact first projection level two, a genuine topological increase over
+the rank arithmetic.
+
 There is also a comparison-free structural positive class:
 `stw74-algebraic-cu-characterizes-pure-infiniteness` proves that, under the
 LXXIV hypothesis, `A` is purely infinite exactly when `Cu(A)` is algebraic.

@@ -242,6 +242,56 @@ class from embedding into the fixed trivial `kN`-bundle, and constraints over
 positive-dimensional closed subsets can pose an extension problem, but
 neither phenomenon is created by finitely many constrained fibres.
 
+### Positive-dimensional constraints: relative Grassmannians and Bott jump
+
+Let `(X,Y)` be a connected finite CW pair and let a constant-rank projection
+field `p in C(Y,M_m)` define
+
+```text
+B_p={f in C(X,M_m):f(y) in C p(y) for y in Y}.
+```
+
+A projection in `M_k(B_p)` restricts uniquely to `a tensor p`, where
+`a in C(Y,M_k)` is a projection field of some rank `alpha`.  Hence existence
+is equivalent, without stabilization or classification, to extension of
+
+```text
+a tensor p:Y->Gr_(alpha rank(p))(C^(km))
+```
+
+over `X`.  This is the exact place where a positive-dimensional constrained
+set differs from finitely many fibres.
+
+The standard complex Grassmannian stable-range theorem identifies maps into
+`Gr_d(C^M)` from an `n`-complex with rank-`d` `K^0` classes whenever
+
+```text
+n<=2 min(d,M-d).
+```
+
+In that range, the displayed map extends exactly when its bundle class lies
+in the image of `K^0(X)->K^0(Y)`, equivalently when its boundary in
+`K^1(X,Y)` vanishes.  Homotopy extension changes a representative whose
+restriction has the correct `K`-class into one whose restriction equals the
+prescribed projection map.
+
+For finite `2`-complex pairs there is still no obstruction: complex
+Grassmannians are path connected and simply connected, so a map on `Y`
+extends successively over all relative one- and two-cells.  The first genuine
+jump occurs for `(D^3,S^2)`.  Take the Bott rank-one projection
+`p:S^2->CP^1`.  It cannot extend over `D^3`, so the corresponding `B_p` is
+projectionless.  In `M_2(B_p)`, however, choose `a=1-p`.  The line bundle
+
+```text
+E_(1-p) tensor E_p
+```
+
+has zero first Chern class and is trivial; its map into `CP^3` is
+null-homotopic and extends over the ball.  Thus the exact first projection
+level is two although the fibre rank arithmetic alone predicts one.  This
+is a genuine relative Bott obstruction, not a failure of finite-matrix
+embedding or a pointwise divisibility effect.
+
 ### Algebraic Cuntz semigroups close the hinge
 
 There is a comparison-free positive class not covered by the weak-omega or
