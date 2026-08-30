@@ -109,3 +109,12 @@ places a pair detecting nonadditivity in a separable simple subalgebra by a
 recursive fullness construction.  The restricted faithful quasitrace forces
 stable finiteness.  Thus neither nonseparability nor a complicated ideal
 lattice is needed for a counterexample; exactness remains the missing wall.
+
+The sharper `stw01-traceless-separable-simple-reduction` also removes every
+linear trace.  In the finite AW*-factor witness, compactness of the state
+space finds finitely many commutators which no state annihilates
+simultaneously.  Adjoin those to a nonadditivity witness before running the
+separable-simple fullness construction.  The resulting simple algebra is
+stably finite and carries a faithful nontracial quasitrace, but has empty
+tracial state space.  Hence even a trace cannot be assumed in the minimal
+counterexample class.
