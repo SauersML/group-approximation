@@ -42,11 +42,12 @@ MF          yes  (the compiler's own theorem)   => complete
 torsion-free yes ([[mf-compiler-positive-branch-is-torsion-free]]) => complete
 sofic       open ([[sofic-safe-finite-presentation-compiler]])
 hyperlinear open ([[mf-compiler-positive-branch-is-hyperlinear]])
+LEF         NO ([[mikhailova-positive-rope-is-not-lef]]; equivalently RF on fp groups)
 amenable    NO   (R_e contains free subgroups)
 residually finite NO (R_e is not residually finite by construction)
 ```
 
-So amenability and residual finiteness are not merely unproved by this
+So LEF, amenability and residual finiteness are not merely unproved by this
 route: the route is *provably unavailable* for them, which is why their
 completeness cells need a different mechanism
 ([[amenability-of-finite-presentations-is-pi2-complete]] and the
