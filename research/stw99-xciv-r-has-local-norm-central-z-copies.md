@@ -32,3 +32,12 @@ to an arbitrary initial seed: a norm-separable weakly dense subalgebra of `R`
 has scalar relative commutant in `R`.  The unresolved step is therefore to
 construct actual `Z` embeddings with finite operator-norm control without
 requiring an exact tensor tail.
+
+It is now enough to centralize one fixed finite building block rather than
+the whole of `Z`.  By
+`stw99-xciv-single-prime-block-centrality-is-exact`, the open claim is
+equivalent to finding, for every finite `F subset R` and `epsilon>0`, a
+unital `psi:I_(2,3)->R` whose fixed finite generating set commutes with `F`
+within `epsilon` in operator norm.  Repeating such local copies in a
+commuting-column diagonal manufactures the missing central `Z` copy.  This
+does not turn McDuff `2`-norm centrality into the required norm estimates.

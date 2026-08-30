@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw99-xciv-norm-matrix-tower-audit-2026-08-30.md
   - research/artifacts/stw99-xciv-prime-dimension-drop-audit-2026-08-30.md
+  - research/artifacts/stw99-xciv-single-block-diagonal-audit-2026-08-30.md
 ---
 
 **Problem XCIV of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Is the hyperfinite II₁ factor `R` separably
@@ -39,3 +40,14 @@ by one finite set, one block, and one positive uniform commutator gap.  The
 recursive proof constructs a separable hull containing the prescribed seed;
 it uses the compatibility-free Toms--Winter dimension-drop absorption
 criterion and makes no claim that `2`-norm centrality gives norm control.
+
+The finite-block reformulation can be reduced to one block.
+`stw99-xciv-single-prime-block-centrality-is-exact` proves that local
+operator-norm central copies of the fixed algebra `I_(2,3)` are already
+equivalent to separable `Z`-stability.  A triangular diagonal constructs
+countably many commuting central copies in the norm sequence algebra and
+therefore a central copy of `I_(2,3)^(tensor infinity)`; the Dadarlat--Toms
+infinite-tensor-power theorem makes that algebra `Z`-stable.  Consequently a
+negative answer to XCIV has a finite norm-gap certificate for this single
+fixed block.  The argument cannot run with `2`-norm commutators, which land
+only in the tracial sequence quotient.
