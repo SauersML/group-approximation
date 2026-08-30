@@ -10,7 +10,7 @@ then there is a nonzero full hereditary subalgebra `D` such that
 
 ```text
 D has no nonzero projections,
-D tensor K is stably isomorphic to A tensor K,
+D tensor K is isomorphic to A tensor K,
 every nonzero projection in D tensor K is properly infinite.
 ```
 
