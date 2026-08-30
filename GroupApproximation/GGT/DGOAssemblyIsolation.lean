@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.DGOAssemblyLetters
+import Mathlib.Data.Nat.Dist
 import GroupApproximation.GGT.OsinTheorem54SepDistPrefix
 import GroupApproximation.GGT.OsinTheorem54SepRotateComponent
 
@@ -209,7 +210,7 @@ theorem not_connected_secondHalf_arc_of_isCompOf (D : RelGenSet G Λ)
       (rotWord w (c b)) i p :=
     connected_trans hconnR (connected_symm hpconn)
   rcases eq_or_ne p i with hpi | hpi
-  · subst hpi
+  · subst p
     have hkeq : k = i + 1 := isComp_end_unique hpcomp hcomp
     exact hne (by omega)
   · exact hiso.2 p hpi ⟨k, hpcomp⟩ hip
@@ -407,8 +408,14 @@ theorem isIsolated_secondHalf_of_after (D : RelGenSet G Λ) (lam : Λ) (v : G)
   have hrotiso : IsIsolated D.fam lam (vertex v w (c b))
       (rotWord w (c b)) (p - c b) :=
     isIsolated_rotWord_of_le D lam v hlet hclosed hcomp hiso hpStart hb hwrap
+  have hpSubSucc : p - c b + 1 = p + 1 - c b := by omega
+  have hpSubBound : p + 1 - c b ≤ w.length - c b :=
+    Nat.sub_le_sub_right hcomp.2.1 (c b)
+  have hiArc : p - c b < (w.length - c b) + c a := by
+    have hbase : p - c b < w.length - c b := by omega
+    exact hbase.trans_le (Nat.le_add_right (w.length - c b) (c a))
   apply isIsolated_secondHalf D lam v w c hlet ha hb (i := p - c b)
-    (by omega) hrotcomp hrotiso t hstart hchord
+    hiArc hrotcomp hrotiso t hstart hchord
 
 /-! ## The broken-component assignment -/
 
@@ -434,13 +441,13 @@ theorem chordPartner_injOn (D : RelGenSet G Λ) (v : G)
   have htI : t ∈ I := ht
   obtain ⟨ks, hcs⟩ := hpartner s hsI
   obtain ⟨kt, hct⟩ := hpartner t htI
-  have hplen : partner s < half.length := by omega
+  have hplen : partner s < half.length := lt_of_lt_of_le hcs.1 hcs.2.1
   have hcoS : (half[partner s]'hplen).IsCompOf (lam s) :=
     hcs.2.2.1 (partner s) le_rfl hcs.1 hplen
   have hcoT : (half[partner s]'hplen).IsCompOf (lam t) := by
-    have hplenT : partner t < half.length := by omega
+    have hplenT : partner t < half.length := lt_of_lt_of_le hct.1 hct.2.1
     have h := hct.2.2.1 (partner t) le_rfl hct.1 hplenT
-    rwa [heq] at h
+    simpa [← heq] using h
   have hlam : lam s = lam t := eq_of_isCompOf_of_isCompOf hcoS hcoT
   have hposEq : pos s = pos t := by
     by_contra hne
@@ -448,7 +455,9 @@ theorem chordPartner_injOn (D : RelGenSet G Λ) (v : G)
       rw [hlam]
       exact hconn t htI
     have hthrough : Connected D.fam (lam s) v half (pos s) (pos t) := by
-      rw [heq] at hconnT
+      change (vertex v half (pos t))⁻¹ * vertex v half (partner t) ∈ D.fam (lam s) at hconnT
+      rw [← heq] at hconnT
+      change Connected D.fam (lam s) v half (pos t) (partner s) at hconnT
       exact connected_trans (hconn s hsI) (connected_symm hconnT)
     exact hsep s hsI t htI hne hthrough
   exact hpos hs ht hposEq
@@ -533,8 +542,7 @@ theorem exists_greedy_incidenceEnumeration (I : Finset ℕ)
     have hx : ∃ s ∈ I, pos s = xs[j] := (hmem xs[j]).mp hxmem
     refine ⟨source xs[j], (hsource xs[j] hx).1, ?_, ?_⟩
     · exact (hsource xs[j] hx).2.symm
-    · rw [ys, List.getElem?_map, List.getElem?_eq_getElem hj]
-      rfl
+    · simp [ys, hj]
   · intro j hj s hs hbetween
     have hsmem : pos s ∈ xs := (hmem (pos s)).mpr ⟨s, hs, rfl⟩
     obtain ⟨k, hk, hks⟩ := List.mem_iff_getElem.mp hsmem
@@ -619,9 +627,11 @@ theorem chordPartnerTraversalBound_of_pairwise {partners : List ℕ} {a L : ℕ}
               · exact htail'.1 z hz
             have hupperTail : ∀ z ∈ y :: ys, z ≤ hi := by
               intro z hz
-              exact hhi z (by simp only [List.mem_cons]; exact Or.inr hz)
+              exact hhi z (List.mem_cons_of_mem x hz)
             have hrec := ih y hi htail hlowerTail hupperTail
             rw [chordTraversalCost, Nat.dist_eq_sub_of_le hxy]
+            have hxlo : lo ≤ x := hlo x (by simp)
+            have hyhi : y ≤ hi := hhi y (by simp)
             omega
   have h := hgeneral partners a (a + L) horder hlower hupper
   omega
@@ -634,11 +644,11 @@ def greedyIncidenceZigzagPartners : List ℕ :=
 /-- **Finite countermodel to deriving the chord budget from the local
 incidence invariants.** -/
 theorem greedyIncidence_local_invariants_do_not_bound_chordTraversal :
-    greedyIncidenceZigzagPartners.Nodup ∧
+      greedyIncidenceZigzagPartners.Nodup ∧
       greedyIncidenceZigzagPartners.length = 16 ∧
-      (∀ j : ℕ, j + 1 < 16 → ∀ s : ℕ, s < 16 →
-        ¬ ((List.range 16)[j]'(by omega) < s ∧
-          s < (List.range 16)[j + 1]'(by omega))) ∧
+      (∀ j : ℕ, ∀ hj : j + 1 < 16, ∀ s : ℕ, s < 16 →
+        ¬ ((List.range 16)[j]'(by simpa using Nat.lt_of_succ_lt hj) < s ∧
+          s < (List.range 16)[j + 1]'(by simpa using hj))) ∧
       6 * 16 + 15 < chordTraversalCost greedyIncidenceZigzagPartners := by
   refine ⟨?_, rfl, ?_, ?_⟩
   · norm_num [greedyIncidenceZigzagPartners]
