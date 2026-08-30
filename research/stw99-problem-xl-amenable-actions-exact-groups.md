@@ -45,3 +45,13 @@ crossed products are traceless or non-simple/non-classifiable.)
   other equicontinuous trace models are excluded.  Any witness must realize
   genuinely non-equicontinuous boundary-type dynamics on every invariant
   compact trace subsystem.
+* In fact boundary dynamics are forced, not merely suggested
+  (`stw40-trace-simplex-contains-a-nontrivial-boundary`).  Choose a minimal
+  compact convex invariant subset `C` of `T(A)`.  The closure of `ext(C)` is
+  a nontrivial minimal strongly proximal `G`-space: minimality follows by
+  taking closed convex hulls, while strong proximality follows by applying
+  the barycenter map to probability measures and using extremality twice to
+  remove convex combinations.  Thus every solution of XL must contain a
+  genuine `G`-boundary inside its trace simplex.  The remaining problem is
+  precisely to realize such forced boundary dynamics by an amenable action
+  on a stably finite classifiable algebra.
