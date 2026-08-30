@@ -132,7 +132,7 @@ as a premise in any graph route added with this artifact.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate sixteen facts which do not depend on the literature
+The graph additions isolate seventeen facts which do not depend on the literature
 audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -221,13 +221,14 @@ audit.
     approximation after finite convexification.  Deconvexifying those
     random-unitary averages is the precise step this argument does not solve.
 14. The Cu return theorem yields a wider positive class than Robert's stated
-    unique-quasitrace application.  If the unital simple target has stable
+    unique-quasitrace application.  If the unital target has stable
     rank one, a nonempty normalized 2-quasitrace space and strict comparison
     by that whole space, all quasitraces restrict along either embedding to
     the unique normalized trace of `Z`.  Compact Cu classes are fixed by the
     unit.  For a soft class `r`, strict comparison applies to every
     `r_k<r`; taking suprema removes the deliberate strict gap.  This proves
-    equality on all of `Cu(Z)` without assuming a unique quasitrace.
+    equality on all of `Cu(Z)` without assuming simplicity or a unique
+    quasitrace.
     More generally, Robert's exact map theorem says that for every unital
     stable-rank-one target, with no other target regularity assumption,
     equality of the two `Cu` maps is equivalent to approximate unitary
@@ -248,3 +249,10 @@ audit.
     classes which occur as values of the two actual Jiang--Su `Cu` maps.
     Arbitrary noninjectivity of the bidual Cu map is not claimed sufficient
     to construct a counterexample.
+17. If a unital codomain has no tracial state, its bidual has no finite
+    central summand.  Every nonzero spectral cut coming from a Jiang--Su
+    matrix is norm-full, and finite fullness forces its bidual support to be
+    equivalent to the properly infinite unit.  Consequently
+    `Cu(Z)->Cu(B**)` collapses every nonzero compact and soft class to one
+    class.  This identifies the exact soft-scale information lost in the
+    traceless W-star shadow without claiming that `Cu(Z)->Cu(B)` retains it.
