@@ -159,7 +159,6 @@ theorem isLetter_auxiliaryCycleWord (D : RelGenSet G Λ)
     · exact hright x hx
   · exact hchord x hx
 
-omit [Group G] in
 /-- **An interior component of the inherited arc starts a component of `c_j`.**
 
 The broken endpoint components are omitted from `arc`, so every retained
@@ -184,7 +183,6 @@ theorem isComp_auxiliaryCycle_arc (lam : Λ)
   exact isComp_of_isComp_segment lam (auxiliaryCycleWord left arc right chord)
     hcomp' hi hk' (by simp [auxiliaryCycleWord, revWord])
 
-omit [Group G] in
 /-- **An interior chord component starts a component of `c_j`.**
 
 This is the type-(4) counterpart of `isComp_auxiliaryCycle_arc`.  Ordering the
@@ -199,7 +197,11 @@ theorem isComp_auxiliaryCycle_chord (lam : Λ)
   let off := left.length + arc.length + right.length
   have hseg : ((auxiliaryCycleWord left arc right chord).drop off).take
       chord.length = chord := by
-    simp [off, auxiliaryCycleWord, revWord]
+    have hoff : off = ((revWord left ++ arc) ++ right).length := by
+      simp [off, length_revWord, Nat.add_assoc]
+    change ((((revWord left ++ arc) ++ right) ++ chord).drop off).take
+      chord.length = chord
+    rw [hoff, List.drop_left, List.take_length]
   have hcomp' : IsComp lam
       (((auxiliaryCycleWord left arc right chord).drop off).take chord.length)
       i k := by
@@ -208,9 +210,15 @@ theorem isComp_auxiliaryCycle_chord (lam : Λ)
       (((auxiliaryCycleWord left arc right chord).drop off).take chord.length).length := by
     rw [hseg]
     exact hk
+  have hauxLen : (auxiliaryCycleWord left arc right chord).length =
+      off + chord.length := by
+    simp [off, auxiliaryCycleWord, length_revWord, Nat.add_assoc]
+  have hoffEnd : off + chord.length ≤
+      (auxiliaryCycleWord left arc right chord).length := by
+    rw [hauxLen]
   have htrans := isComp_of_isComp_segment lam
     (auxiliaryCycleWord left arc right chord) hcomp' hi
-      hk' (by simp [off, auxiliaryCycleWord, revWord])
+      hk' hoffEnd
   simpa [off, Nat.add_assoc] using htrans
 
 omit [Group G] in
@@ -235,7 +243,6 @@ theorem isComp_singleton_of_boundary (lam : Λ)
   subst q
   exact hletter
 
-omit [Group G] in
 /-- **Every position of `c_j` lies in exactly one of its four paths.**
 
 This is the case split used by both letter coverage and cross-path separation;
@@ -252,7 +259,6 @@ theorem auxiliaryCycle_position_cases (left arc right chord :
   simp [auxiliaryCycleWord, revWord] at hq
   omega
 
-omit [Group G] in
 /-- **Covering peripheral letters by recorded runs supplies `hexhaust`.**
 
 This is the concrete exhaustion step for the four-path word.  It is enough to
@@ -277,8 +283,11 @@ theorem auxiliaryCycle_componentStarts_exhausted
       ∃ t ∈ All, allLam t = targetLam s ∧ allPos t = q := by
   intro s hs q hqstart
   obtain ⟨qend, hqcomp⟩ := hqstart
+  have hqltEnd : q < qend := hqcomp.1
+  have hqendLen : qend ≤ (auxiliaryCycleWord left arc right chord).length :=
+    hqcomp.2.1
   have hqlen : q < (auxiliaryCycleWord left arc right chord).length := by
-    omega
+    exact hqltEnd.trans_le hqendLen
   have hqletter : ((auxiliaryCycleWord left arc right chord)[q]'hqlen).IsCompOf
       (targetLam s) := hqcomp.2.2.1 q le_rfl hqcomp.1 hqlen
   obtain ⟨t, ht, hlam, htq, hqfinish⟩ := hcover s hs q hqlen hqletter
@@ -561,8 +570,8 @@ theorem exists_component_connector_pair (D : RelGenSet G Λ) (lam : Λ)
   let e : List (RelLetter G Λ) :=
     if pp⁻¹ * yp = 1 then [] else [RelLetter.comp lam (pp⁻¹ * yp)]
   refine ⟨f, e, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · simp [f]
-  · simp [e]
+  · by_cases hf : pm⁻¹ * ym = 1 <;> simp [f, hf]
+  · by_cases heq : pp⁻¹ * yp = 1 <;> simp [e, heq]
   · intro x hx
     by_cases hf : pm⁻¹ * ym = 1
     · simp [f, hf] at hx
