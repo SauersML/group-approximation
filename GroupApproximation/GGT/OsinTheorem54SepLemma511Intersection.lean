@@ -560,11 +560,6 @@ theorem sharedGap_of_entranceGapBound [Fintype Λ]
     rw [hidxj, ← hvertexG]
     group
 
-/-- The exact remaining geometry of Lemma 5.11: construct the three pieces of
-the local four-gon estimate (38). -/
-def Lemma511Geometry [Fintype Λ] (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
-  Lemma511FourGonMatchAlternative D Dc
-
 /-- A nonempty finite set of at most `n` elements can be enumerated by
 `Fin n`.  The unused indices are filled with one element of the set. -/
 theorem exists_fin_enumeration_of_nonempty {α : Type*} (A : Finset α)

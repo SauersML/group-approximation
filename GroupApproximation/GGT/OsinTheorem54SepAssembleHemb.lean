@@ -1,6 +1,6 @@
 import GroupApproximation.GGT.OsinTheorem54SepAssembleFull
 import GroupApproximation.GGT.OsinTheorem54SepFourPointBridge
-import GroupApproximation.GGT.OsinTheorem54SepLemma511Intersection
+import GroupApproximation.GGT.OsinTheorem54SepLemma511Match
 
 /-!
 # The assembly with the §4.2 threshold discharged
@@ -9,18 +9,18 @@ import GroupApproximation.GGT.OsinTheorem54SepLemma511Intersection
 the isolated components of six-sided polygons, with `4C ≤ Dc`.  That is a
 hypothesis about `Dc`, and it can only be met by a caller who chooses `Dc` AFTER
 the constant exists.  This module states the theorem in that order --- `C`
-first, `Dc` past the threshold, then the two remaining conditions --- so the
+first and `Dc` past the threshold --- so the
 caller never has to produce a threshold at all.
 
 `C` comes from clause (a) of `IsHyperbolicallyEmbedded` and nothing else:
 `exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded` moves it to the
 four-point form and `sixBound_one_of_fourPointHyperbolic` produces the bound.
 
-## What is left
+## Lemma 5.11 is discharged
 
-One condition: `h511`, the remaining geometry in Osin's Lemma 5.11.  It is
-`OsinComponents.Lemma511Geometry`, the entrance-gap estimate (38).  Setwise
-Lemma 4.9, equation (37), the choice of the shared separator outside
+The entrance-gap estimate (38) is proved in
+`OsinTheorem54SepLemma511Match`.  Setwise Lemma 4.9, equation (37), the choice
+of the shared separator outside
 `S(1,k;D)`, the `3R` entrance enumeration, and the final finite counting are
 proved in `OsinTheorem54SepLemma511Intersection` and
 `OsinTheorem54SepLemma511Count`.
@@ -42,24 +42,23 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
-/-- **`SepDataStatementFam` from hyperbolic embedding and the remaining
-geometry of Lemma 5.11.**  Equation (37), the finite counting at the end of
-Lemma 5.11, the §4.2 threshold, Lemma 5.6's condition, and Lemma 5.8 are
-discharged. -/
+/-- **`SepDataStatementFam` from hyperbolic embedding.**  Lemma 5.11,
+the §4.2 threshold, Lemma 5.6's condition, and Lemma 5.8 are discharged. -/
 theorem exists_sepDataFam_of_hemb [Fintype Λ] (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (hemb : D.IsHyperbolicallyEmbedded) :
     ∃ C : ℕ, 0 < C ∧ ∀ (Dc : ℕ) (_hDc : 1 ≤ Dc), C * 4 ≤ Dc →
-      Lemma511Geometry D Dc →
       ∃ S : SepDataFam D, S.AcylindricalCore := by
   obtain ⟨δ, hδ⟩ :=
     exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   obtain ⟨C, hCpos, hbnd⟩ :=
     sixBound_one_of_fourPointHyperbolic D hsymm hδ 0 le_rfl
-  refine ⟨C, hCpos, fun Dc hDc hthr h511 => ?_⟩
+  refine ⟨C, hCpos, fun Dc hDc hthr => ?_⟩
   have h48 := lemmaFourEight_forall_of_bound D hsymm hbnd hthr
+  have hmatch : Lemma511FourGonMatchAlternative D Dc :=
+    lemma511FourGonMatchAlternative_of_bound D hsymm hbnd hthr
   have hgap : Lemma511EntranceGapBound D Dc :=
     entranceGapBound_of_fourGonAlternative D Dc
-      (fourGonAlternative_of_match D hsymm hbnd hthr h511)
+      (fourGonAlternative_of_match D hsymm hbnd hthr hmatch)
   have hcover := lemmaFourNineCover_of_bound D hsymm hbnd hthr h48
   have h49 := lemmaFourNine_of_bound D hsymm hbnd hthr h48
   have hdist := dist_le_sep_enlargedY D hDc hsymm h48
