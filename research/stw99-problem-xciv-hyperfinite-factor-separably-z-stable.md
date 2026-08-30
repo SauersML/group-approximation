@@ -81,3 +81,13 @@ copy of `Z` itself is weakly dense in `R`, hence has scalar relative
 commutant, while all its finite tuples have zero fixed-block defect by
 internal `Z`-absorption.  Thus a negative tuple must remain uniformly far
 from both split-commutant cores and weakly dense internally regular cores.
+
+There is now a sharp obstruction to making these cores nuclear.
+`stw99-xciv-some-tuple-avoids-all-exact-cores` gives a finite tuple in `R`
+at positive operator-norm distance from every exact subalgebra.  If all
+finite tuples admitted exact local cores, Kirchberg's operator-space
+criterion would force `R` itself to be exact, contradicting the embedded
+nonexact product `product_n M_n`.  Thus AF, ASH, finite-nuclear-dimension,
+and exact `Z`-stable hulls cannot solve XCIV for every seed.  A positive
+answer must produce a genuinely nonexact `Z`-stable hull for the hard tuple;
+this obstruction alone gives no fixed-block commutator gap.

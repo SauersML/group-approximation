@@ -74,3 +74,12 @@ commutant, yet every finite tuple in that copy has zero block defect through
 approximately central maps internal to the copy.  Any negative certificate
 must therefore avoid both exact-commutant cores and all nearby internally
 `Z`-stable cores.
+
+Not every finite tuple can be approached by nuclear regular cores.
+`stw99-xciv-some-tuple-avoids-all-exact-cores` proves that some finite
+`F subset R` stays a positive operator-norm distance from every exact
+subalgebra; otherwise Kirchberg's local operator-space criterion would make
+`R` exact, contradicting its unbounded matrix-product subalgebra.  Hence a
+positive XCIV hull for this tuple must be a **nonexact** `Z`-stable
+subalgebra.  Finite nuclear dimension, AF, ASH, and all other exact-core
+constructions cannot cover the hard part of the problem.
