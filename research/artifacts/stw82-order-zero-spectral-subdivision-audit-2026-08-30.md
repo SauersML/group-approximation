@@ -76,6 +76,21 @@ Let every original colour have its own quasicentral operator-valued partition
 of unity and require pieces with the same new label to have orthogonal
 supports across different originals.  Cone projectivity repairs each
 cutdown inside its hereditary support, after which same-labelled pieces sum
-to one cpc order-zero map.  The missing global step is therefore construction
-of these coupled partitions from arbitrary ideal--quotient geometry, not
-order-zero repair or colour assembly after their existence.
+to one cpc order-zero map.
+
+The full-unit formulation has a sharp tracial defect.  If there are `N`
+original colours and `d` new labels, a tracial state evaluates every one of
+the `N` partition identities to one.  For each fixed label, orthogonality
+makes the sum across original colours a contraction of trace at most one.
+Double counting gives `N<=d`.  Hence even operator-valued full-unit
+partitions cannot reduce colours in a tracial target.
+
+This audit now records the correct support-local replacement.  For an
+order-zero colour with support `h`, it is enough that the sum `s` of its
+cutters satisfy `||(1-s)h||` small.  The supporting-homomorphism formula
+`phi(x)=h pi(x)` then bounds `||(1-s)phi(x)||` uniformly.  Quasicentral
+cutdowns repair inside their hereditary bands as before, and same-labelled
+orthogonal bands merge.  The missing global step is therefore construction
+of coupled covers of the **outgoing supports** from arbitrary ideal--quotient
+geometry, not a partition of the multiplier unit and not order-zero repair
+after the cover exists.
