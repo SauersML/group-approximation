@@ -1,0 +1,194 @@
+{
+  "W_pkt_minus_14_W_cov_positive_in_every_sector": true,
+  "arithmetic": "exact fractions.Fraction over Q",
+  "boundary_words": 234,
+  "certificate_coefficient_sha256": "b2cb3ba7e9abb8e7d23f43670707420b94b489f070977a27aedaa00d0ed7c3f5",
+  "coefficient_sum_W_pkt": 0,
+  "covers_every_A8_irrep": true,
+  "group": "GL(4,2) ~= A8",
+  "group_order": 20160,
+  "one_fourteenth_is_attained": true,
+  "records": [
+    {
+      "certificate_nullity": 1,
+      "certificate_rank": 0,
+      "dimension": 1,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "d3aaf816f0384943d8bf1e353b67c4e223a05ca5b5966ad5f2d28e7f30cdf392",
+      "max_denominator_bits": 1,
+      "max_numerator_bits": 0,
+      "partition": [
+        8
+      ],
+      "positive_ldl_pivots": 0
+    },
+    {
+      "certificate_nullity": 0,
+      "certificate_rank": 7,
+      "dimension": 7,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "82239c9218fd99eee0892e9adf8e285fffe1456334457b3775a232856b922f8f",
+      "max_denominator_bits": 6,
+      "max_numerator_bits": 18,
+      "partition": [
+        7,
+        1
+      ],
+      "positive_ldl_pivots": 7
+    },
+    {
+      "certificate_nullity": 2,
+      "certificate_rank": 18,
+      "dimension": 20,
+      "equality_has_positive_covariance": true,
+      "form_sha256": "94178caa2b75141e3dce01aeccb66339c5570ca2922872104c1834637476b026",
+      "max_denominator_bits": 10,
+      "max_numerator_bits": 21,
+      "partition": [
+        6,
+        2
+      ],
+      "positive_ldl_pivots": 18
+    },
+    {
+      "certificate_nullity": 0,
+      "certificate_rank": 21,
+      "dimension": 21,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "2c952c8e5e847ba68226650da817f90698dd9590dfee99109c17e75f2f70ed8a",
+      "max_denominator_bits": 8,
+      "max_numerator_bits": 20,
+      "partition": [
+        6,
+        1,
+        1
+      ],
+      "positive_ldl_pivots": 21
+    },
+    {
+      "certificate_nullity": 0,
+      "certificate_rank": 28,
+      "dimension": 28,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "392190e699b909ea3e78374aa11dc379f879b8440b1684bce53b495802ad9f5e",
+      "max_denominator_bits": 8,
+      "max_numerator_bits": 20,
+      "partition": [
+        5,
+        3
+      ],
+      "positive_ldl_pivots": 28
+    },
+    {
+      "certificate_nullity": 0,
+      "certificate_rank": 64,
+      "dimension": 64,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "f3c9b3ec2c174b62fab4f0530ac8989d5f1277bac32e45124dd12acc7c7c3380",
+      "max_denominator_bits": 11,
+      "max_numerator_bits": 24,
+      "partition": [
+        5,
+        2,
+        1
+      ],
+      "positive_ldl_pivots": 64
+    },
+    {
+      "certificate_nullity": 3,
+      "certificate_rank": 32,
+      "dimension": 35,
+      "equality_has_positive_covariance": true,
+      "form_sha256": "c65d415691e9a6f6e94c0a6af6e2e07d2c64f6ca1397517d05db43a138f05cbf",
+      "max_denominator_bits": 14,
+      "max_numerator_bits": 25,
+      "partition": [
+        5,
+        1,
+        1,
+        1
+      ],
+      "positive_ldl_pivots": 32
+    },
+    {
+      "certificate_nullity": 4,
+      "certificate_rank": 10,
+      "dimension": 14,
+      "equality_has_positive_covariance": true,
+      "form_sha256": "dc019fcbbef51c3d4be27a33290479deb76ab1881898fdf6bde5341fbda0f86e",
+      "max_denominator_bits": 8,
+      "max_numerator_bits": 17,
+      "partition": [
+        4,
+        4
+      ],
+      "positive_ldl_pivots": 10
+    },
+    {
+      "certificate_nullity": 0,
+      "certificate_rank": 70,
+      "dimension": 70,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "6b3865417124224dac3de647a214b59605a4f8ed526e5a6853aed63242a85cf0",
+      "max_denominator_bits": 13,
+      "max_numerator_bits": 25,
+      "partition": [
+        4,
+        3,
+        1
+      ],
+      "positive_ldl_pivots": 70
+    },
+    {
+      "certificate_nullity": 1,
+      "certificate_rank": 55,
+      "dimension": 56,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "1867ab4597b4563d4d1455fe8ea2365dd2d48f918b35a1caa869ea65e7faa5b5",
+      "max_denominator_bits": 13,
+      "max_numerator_bits": 22,
+      "partition": [
+        4,
+        2,
+        2
+      ],
+      "positive_ldl_pivots": 55
+    },
+    {
+      "certificate_nullity": 0,
+      "certificate_rank": 90,
+      "dimension": 90,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "796befadf4aedb0a66942def48e88ecd0b04bdf140d2df76e1313fd1c85729c7",
+      "max_denominator_bits": 13,
+      "max_numerator_bits": 25,
+      "partition": [
+        4,
+        2,
+        1,
+        1
+      ],
+      "positive_ldl_pivots": 90
+    },
+    {
+      "certificate_nullity": 0,
+      "certificate_rank": 42,
+      "dimension": 42,
+      "equality_has_positive_covariance": false,
+      "form_sha256": "d74a8ce014a32c18fd106d2038ca99b2fcdf4926b2914a60bacda0def4694b71",
+      "max_denominator_bits": 12,
+      "max_numerator_bits": 23,
+      "partition": [
+        3,
+        3,
+        2
+      ],
+      "positive_ldl_pivots": 42
+    }
+  ],
+  "selected_S8_partitions": 12,
+  "support_W_cov": 3,
+  "support_W_pkt": 101,
+  "support_W_pkt_minus_14_W_cov": 101,
+  "trace_W_pkt": 1516
+}
