@@ -41,16 +41,30 @@ fusion.  The corresponding open claim is
 case collapses the packet without any fusion theorem and is therefore an
 unconditional new positive case.
 
-There is now also a support-preserving destabilization theorem whenever the
-multiplier unit is properly infinite.  A multiplier Cuntz pair embeds
-`M_2(A)` into a corner of `A`.  Applying it to the one-stabilization packet
-fusion sends `h tensor e_11` to `s_1 h s_1^*`.  Since generated ideals are
-invariant under multiplier multiplication, compressing by `s_1^*` and
-`s_1` recovers the original `h` in the returned nilpotent's ideal.  Hence
-every stable C*-algebra, and every unital algebra with properly infinite
-unit, satisfies the global square-zero conclusion.  The range corner need
-not exhaust `A`; it does not provide a destabilization when the multiplier
-unit is finite.
+There is now also a local support-preserving destabilization theorem.  It is
+enough that the reserved spectral cutdown lie in *some* C-star subalgebra
+`B` whose multiplier unit is properly infinite.  The finite packet is built
+inside `B`; a multiplier Cuntz pair then embeds `M_2(B)` into a corner of
+`B`.  Applying it to one-stabilization packet fusion sends
+`h tensor e_11` to `s_1 h s_1^*`.  Since generated ideals are invariant under
+multiplier multiplication, compression by `s_1^*` and `s_1` recovers the
+original `h` in the returned nilpotent's ideal.
+
+The host can depend on the cutdown.  Taking `B=A` recovers the global
+properly-infinite-multiplier theorem, hence the stable and properly infinite
+unital cases, but the local form is strictly broader.  For example, let
+`D=C_0((0,1]) tensor K` and let `A` be its unitization.  The algebra `D` is
+stable and projectionless; stability gives it a properly infinite multiplier
+unit, whereas
+`1_A` is finite: the defect of an isometry in `A` lies in the projectionless
+ideal `D` and must vanish.  Every cutdown supported in `D` still has `D` as a
+local host.  This example demonstrates strictness of the cutdown theorem;
+its scalar quotient means that it is not itself a global LXXIII example.
+
+Consequently a global counterexample must contain a nonzero spectral cutdown
+which lies in no C-star subalgebra with properly infinite multiplier unit.
+In particular, both the multiplier unit of its generated hereditary
+subalgebra and that of its generated ideal fail to be properly infinite.
 
 ## Continuous-trace counterexample stress test
 
