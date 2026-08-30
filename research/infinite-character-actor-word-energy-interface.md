@@ -171,3 +171,14 @@ do not provide either mechanism.
   swap is its mandatory first falsifier: if the swap preserves the proposed
   average and actor relations, the route adds no information beyond the
   mixed-word no-go.
+
+- **Use a sofic set action and hope its local charts assemble the global
+  energy.**  `sofic-chart-quotient-forces-character-energy-floor`
+  Fourier-linearizes the charts into an exact representation of the whole
+  module.  Every fixed covariance word then has vanishing defect and the
+  seed retains asymptotic negative mass `1/2`, but the seed-visible Schreier
+  gap forces complete character transport energy at least `gamma-o(1)`.
+  Thus the missing uniformity is witnessed by a moving virtual module word,
+  not merely by an abstract two-block swap.  A viable packet must prove the
+  action nonsofic or add a controller relation which fails in the
+  replicated-center Pauli quotient.
