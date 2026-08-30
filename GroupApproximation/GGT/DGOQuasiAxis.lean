@@ -839,7 +839,8 @@ theorem exists_sparse_double_vertexChain_matches
       ∀ (M T : ℕ), ∃ S : ℕ, ∀ (p q : PowerAxisSegment h x),
         S ≤ p.steps → dist p.initial q.initial ≤ B →
         dist p.terminal q.terminal ≤ B →
-        ∃ (A I J : Fin (T + 1) → ℕ), StrictMono A ∧
+        ∃ (A I J : Fin (T + 1) → ℕ),
+          StrictMono A ∧ StrictMono I ∧ StrictMono J ∧
           (∀ r, I r ≤ q.steps ∧
             dist (p.vertexChain (A r)) (q.vertexChain (I r)) ≤ C) ∧
           (∀ r, J r ≤ q.steps ∧
@@ -900,11 +901,92 @@ theorem exists_sparse_double_vertexChain_matches
       (hinternal r).1 (hinternal r).2
   let I : Fin (T + 1) → ℕ := fun r => Classical.choose (hmatch0 r)
   let J : Fin (T + 1) → ℕ := fun r => Classical.choose (hmatchM r)
-  refine ⟨A, I, J, hAmono, ?_, ?_⟩
-  · intro r
+  have hIprop : ∀ r, I r ≤ q.steps ∧
+      dist (p.vertexChain (A r)) (q.vertexChain (I r)) ≤ C := by
+    intro r
     exact Classical.choose_spec (hmatch0 r)
-  · intro r
+  have hJprop : ∀ r, J r ≤ q.steps ∧
+      dist (p.vertexChain (A r + M)) (q.vertexChain (J r)) ≤ C := by
+    intro r
     exact Classical.choose_spec (hmatchM r)
+  have hD : 0 ≤ D := by
+    dsimp [D]
+    positivity
+  have hIstrict : StrictMono I := by
+    intro r s hrs
+    have hrsNat : r.val < s.val := hrs
+    have hnext : a (r.val + 1) ≤ a s.val :=
+      haMono.monotone (Nat.succ_le_iff.mpr hrsNat)
+    have hnextR : (a (r.val + 1) : ℝ) ≤ (a s.val : ℝ) := by
+      exact_mod_cast hnext
+    have hsparseStep := (sparseSample_step (B := B') (C := C)
+      (c := c) (D := D) hl r.val).2
+    have hsparse :
+        l * (B + C + c) + D * (B + (A r : ℝ) * D + C + c) <
+          l * (l * (A s : ℝ)) := by
+      dsimp [A, a, B'] at hsparseStep ⊢
+      have hMD : 0 ≤ (M : ℝ) * D := mul_nonneg (Nat.cast_nonneg M) hD
+      have hlMD : 0 ≤ l * ((M : ℝ) * D) := mul_nonneg hl.le hMD
+      have hDMD : 0 ≤ D * ((M : ℝ) * D) := mul_nonneg hD hMD
+      have hleft :
+          l * (B + C + c) +
+              D * (B + (sparseSample (B + (M : ℝ) * D) C c D l r.val : ℝ) *
+                D + C + c) ≤
+            l * (B + (M : ℝ) * D + C + c) +
+              D * (B + (M : ℝ) * D +
+                (sparseSample (B + (M : ℝ) * D) C c D l r.val : ℝ) *
+                  D + C + c) := by
+        nlinarith
+      have hright :
+          l * (l * (sparseSample (B + (M : ℝ) * D) C c D l (r.val + 1) : ℝ)) ≤
+            l * (l * (sparseSample (B + (M : ℝ) * D) C c D l s.val : ℝ)) := by
+        have hll := mul_le_mul_of_nonneg_left hnextR (mul_nonneg hl.le hl.le)
+        nlinarith
+      exact hleft.trans_lt (hsparseStep.trans_le hright)
+    exact vertexChain_partner_lt_of_sparse hiso hlam hc hf hq hstep p q
+      (le_trans (Nat.le_add_right (A r) M) (hinternal r).1)
+      (le_trans (Nat.le_add_right (A s) M) (hinternal s).1)
+      (hIprop r).1 (hIprop s).1 hclose0
+      (hIprop r).2 (hIprop s).2 hsparse
+  have hJstrict : StrictMono J := by
+    intro r s hrs
+    have hrsNat : r.val < s.val := hrs
+    have hnext : a (r.val + 1) ≤ a s.val :=
+      haMono.monotone (Nat.succ_le_iff.mpr hrsNat)
+    have hnextR : (a (r.val + 1) : ℝ) ≤ (a s.val : ℝ) := by
+      exact_mod_cast hnext
+    have hsparseStep := (sparseSample_step (B := B') (C := C)
+      (c := c) (D := D) hl r.val).2
+    have hsparse :
+        l * (B + C + c) +
+            D * (B + ((A r + M : ℕ) : ℝ) * D + C + c) <
+          l * (l * ((A s + M : ℕ) : ℝ)) := by
+      dsimp [A, a, B'] at hsparseStep ⊢
+      push_cast
+      have hMD : 0 ≤ (M : ℝ) * D := mul_nonneg (Nat.cast_nonneg M) hD
+      have hlMD : 0 ≤ l * ((M : ℝ) * D) := mul_nonneg hl.le hMD
+      have hleft :
+          l * (B + C + c) +
+              D * (B + ((sparseSample (B + (M : ℝ) * D) C c D l r.val : ℝ) +
+                (M : ℝ)) * D + C + c) ≤
+            l * (B + (M : ℝ) * D + C + c) +
+              D * (B + (M : ℝ) * D +
+                (sparseSample (B + (M : ℝ) * D) C c D l r.val : ℝ) *
+                  D + C + c) := by
+        ring_nf at ⊢
+        nlinarith
+      have hright :
+          l * (l * (sparseSample (B + (M : ℝ) * D) C c D l (r.val + 1) : ℝ)) ≤
+            l * (l * ((sparseSample (B + (M : ℝ) * D) C c D l s.val : ℝ) +
+              (M : ℝ))) := by
+        have hll := mul_le_mul_of_nonneg_left hnextR (mul_nonneg hl.le hl.le)
+        nlinarith [mul_nonneg (mul_nonneg hl.le hl.le) (Nat.cast_nonneg M)]
+      exact hleft.trans_lt (hsparseStep.trans_le hright)
+    exact vertexChain_partner_lt_of_sparse hiso hlam hc hf hq hstep p q
+      (hinternal r).1 (hinternal s).1
+      (hJprop r).1 (hJprop s).1 hclose0
+      (hJprop r).2 (hJprop s).2 hsparse
+  exact ⟨A, I, J, hAmono, hIstrict, hJstrict, hIprop, hJprop⟩
 
 /-- If two matched pairs are `M` vertices apart on the first quasi-axis, the
 difference of their partner indices is uniformly bounded.  Consequently only
