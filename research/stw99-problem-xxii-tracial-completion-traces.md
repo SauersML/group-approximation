@@ -210,10 +210,12 @@ small-rank carrier confines every operator-norm-large defect; the residual
 loop lies in a simply connected complex Stiefel bundle whose normalized
 `2`-diameter is controlled by that rank. A high-low spectral cut transfers
 the estimate to arbitrary positive weights and arbitrary replication
-number, with one modulus independent of matrix size. The exact remaining
-dimension-two obstruction for arbitrary factor bundles is the diffuse-fibre
-analogue: `2`-norm continuity no longer gives the continuous small-trace
-spectral carrier used in the matrix proof.
+number, with one modulus independent of matrix size.  Hyperfinite `II_1`
+fibres are already handled by
+`stw22-strong-stiefel-spaces-have-uniform-loop-fillings`.  The exact
+remaining dimension-two obstruction for arbitrary factor bundles is the
+non-hyperfinite diffuse-fibre analogue: `2`-norm continuity no longer gives
+the continuous small-trace spectral carrier used in the matrix proof.
 
 Bare projectivity of finite-dimensional matrix cones does not bypass this
 frontier. `stw22-bare-cone-projectivity-does-not-supply-ilr` gives a trivial

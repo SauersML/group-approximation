@@ -98,10 +98,12 @@ determinant loops in `U(n)` have normalized `2`-radius tending to zero but
 remain non-null-homotopic. Positive complement slack removes that elementary
 obstruction, and `stw22-matrix-weighted-copy-uniform-loop-fillings` now
 proves a dimension-free filling-radius estimate for all matrix factors,
-positive weights, and replication numbers. The general dimension-two hinge
-remains open only on the diffuse side: a merely `2`-norm-continuous factor
-loop need not admit the continuous small-trace spectral carrier produced by
-the finite-dimensional argument.
+positive weights, and replication numbers.  The hyperfinite `II_1` case is
+already covered by `stw22-strong-stiefel-spaces-have-uniform-loop-fillings`;
+the general dimension-two hinge remains open for non-hyperfinite diffuse
+factors, where a merely `2`-norm-continuous loop need not admit the
+continuous small-trace spectral carrier produced by the finite-dimensional
+argument.
 
 The tempting matrix-cone shortcut is strictly stronger than this hinge.
 `stw22-bare-cone-projectivity-does-not-supply-ilr` exhibits a
