@@ -24,13 +24,14 @@ isomorphism `x ↦ x ⊗ [1]`).
   concerns hypothetical SSA algebras with `K_0`-torsion in a solid
   pattern (`Z/n` or `Z[J^{-1}] × Z/n`), or Künneth failures (which
   would refute IV, a UCT-level event).
-* The embeddability hypothesis of XV was NOT needed for the
-  invariant computation — it will only be needed to exclude the
-  torsion solids (a `(Q ⊗ O_∞)_ω`-embeddable candidate with
-  `K_0 = Z/n`: the unit maps to a `K_0`-class of an ultrapower with
-  `[1] ≠ 0` killed by `n` — whether that is impossible depends on
-  `K_0` of the ultrapower, not computed here; recorded as the
-  follow-up).
+* FOLLOW-UP CLOSED (`embeddable-unit-class-non-torsion`): the
+  ultrapower reindexing lemma shows any unitally
+  `(Q ⊗ O_∞)_ω`-embeddable algebra has non-torsion unit class, so the
+  pure cyclic solids `Z/n` (and `K_0 = 0`) are EXCLUDED for
+  embeddable candidates; the XV residue is exactly the product solids
+  `Z[J^{-1}] × Z/n`, whose unit `(1,1)` is non-torsion.  The same
+  lemma shows the `O_2`-exclusion in Kirchberg's Problem XIV(2) is
+  K-theoretically forced.
 * Correction to the XV root's earlier Attempts: `K_1(D) = 0` is not
   merely "accessible" — it is unconditional literature (the cited
   chain); the node text is updated.
