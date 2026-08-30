@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw99-xciv-norm-matrix-tower-audit-2026-08-30.md
+  - research/artifacts/stw99-xciv-prime-dimension-drop-audit-2026-08-30.md
 ---
 
 **Problem XCIV of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Is the hyperfinite II₁ factor `R` separably
@@ -29,3 +30,12 @@ finite-stage tail commutant `Z`-stable and gives actual norm-central copies of
 `Z` on finite tests.  This includes full-matrix UHF cores, but hyperfiniteness
 only gives `2`-norm approximation for arbitrary elements, so the unrestricted
 root remains open.
+
+There is also an exact finite-block reformulation at
+`stw99-xciv-separable-zstability-iff-local-prime-dimension-drops`.  It is
+enough, and necessary, to find actual operator-norm-central unital copies of
+each prime block `I_(k,k+1)` on finite tests.  Failure is therefore witnessed
+by one finite set, one block, and one positive uniform commutator gap.  The
+recursive proof constructs a separable hull containing the prescribed seed;
+it uses the compatibility-free Toms--Winter dimension-drop absorption
+criterion and makes no claim that `2`-norm centrality gives norm control.
