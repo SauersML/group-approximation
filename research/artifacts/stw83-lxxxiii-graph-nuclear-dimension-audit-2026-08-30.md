@@ -32,6 +32,14 @@ The primary sources used here are:
    quotients.  These are already discussed in the STW problem statement and are
    not relabelled as new progress here.
 
+4. Pask,
+   [Nuclear dimension, pure infiniteness and real rank for higher rank graph
+   C*-algebras](https://arxiv.org/abs/2607.27691), submitted 30 July 2026.
+   Its dimension-one theorem assumes pure infiniteness and primitive-space
+   topological dimension zero for a row-finite locally convex higher-rank graph.
+   It neither treats mixed finite/infinite directed-graph extensions nor closes
+   Problem LXXXIII.
+
 ## Direct-limit audit
 
 For countable row-finite Condition-(K) graphs, arbitrary finite subgraphs are not
@@ -139,6 +147,46 @@ by strong connectivity, reaches every cycle.  Faurot--Schafhauser's finite theor
 applies at every stage, even when distinct cycles of `K` do not meet.  In extension
 language, the AF source ideal is stable and the O-infinity quotient extension is
 full at each stage, so the one-color reuse is uniform.
+
+## New finite downstream-synchronizer class
+
+There is a broader way to make the added-source problem in
+Faurot--Schafhauser finite completions uniform.  Work first in the standard
+edge convention.  Suppose all cyclic vertices and cyclic edges lie in a fixed
+finite subgraph and there are finitely many downstream hubs which every cycle
+reaches, such that every cycle-reachable noncyclic vertex lies downstream of a
+hub.  Preload every edge emitted by a cyclic vertex and its range vertex; this
+is still finite in the row-finite case.
+Retain the finite cycle-to-hub paths once and, before each entrance completion,
+retain a hub-to-vertex path for every cycle-reachable vertex already present.
+Every intermediate vertex on such a path is visibly reached inside the stage
+by every cycle.  The completion adds only new sinks.  Such a sink either has a
+cycle-reachable predecessor, in which case all retained paths reach it, or all
+its predecessors are no-cycle vertices, in which case no cycle reaches it.
+Thus every finite completion satisfies the exact finite sink/source dichotomy
+and has nuclear dimension at most one.
+
+This permits several disjoint recurrent components and an arbitrary countable
+acyclic network downstream of finitely many common hubs; neither pairwise cycle
+intersection nor a strongly connected recurrent core is required.  The finite
+hub hypothesis is essential to the proof: bare ambient all-or-none reachability
+does not itself guarantee that repeatedly adjoining witnesses has a finite
+fixed point.  The proof is an injective direct-limit argument, so no extension
+inequality adds a color.
+
+Sinks and infinite emitters can be retained.  In a Drinen--Tomforde
+desingularization, enumerate first the finitely many emitted edges which belong
+to cycles.  Collapsing tails shows that every new cycle is the lift of an old
+one and is confined to a finite initial tail enlargement of `K`.  A new tail
+vertex is reached by all lifted cycles exactly when its base singular vertex
+is.  For a cyclic infinite emitter, one must additionally require that an old
+hub reaches the emitter; this is exactly what synchronizes the noncyclic tail
+beyond the finite cyclic prefix.  The condition is automatic when cyclic
+vertices are finite emitters.  Under this exact extra hypothesis the old hubs
+still synchronize every cycle-reachable noncyclic old or tail vertex.
+Condition (K), the synchronizer property, and the finite cyclic nucleus
+therefore survive, while the original graph algebra is a full corner of the
+row-finite desingularized algebra.
 
 ## Remaining two-component obstruction
 
