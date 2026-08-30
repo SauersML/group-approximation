@@ -60,7 +60,24 @@ searches, followed by inspection of the theorem statements.
    element.  Hua--White restate this exact unrestricted formulation in their
    introduction.  The new graph route checks its cardinal-rank hypothesis
    for Jiang--Su embeddings.
-6. Targeted arXiv searches through 2026-08-30 for the exact combinations
+6. E. Blanchard and E. Kirchberg, *Non-simple purely infinite C-star
+   algebras: the Hausdorff case*, Journal of Functional Analysis 207 (2004),
+   461--513, DOI 10.1016/j.jfa.2003.06.008,
+   <https://hal.science/hal-00922863/document>.  The final paragraph of its
+   introduction states that an AW-star algebra is type III exactly when it
+   satisfies their pure-infiniteness definitions.  More precisely, AW-star
+   algebras have real rank zero, and the cited Kirchberg--Rordam chain plus
+   their Theorem 4.17 identifies this with strong pure infiniteness.  No
+   separability, factoriality, or sigma-finiteness is assumed there.
+7. J. Gabe, *Classification of O-infinity-stable C-star algebras*, Memoirs
+   AMS 293 (2024), no. 1461; arXiv:1910.06504,
+   <https://arxiv.org/abs/1910.06504>.  Theorem 9.7 makes every nuclear map
+   from a separable exact domain into a strongly purely infinite codomain
+   strongly O-infinity-stable.  Theorem B classifies nuclear, strongly
+   O-infinity-stable, full maps from a separable algebra into a sigma-unital
+   algebra by nuclear KK, and its unital clause gives asymptotic unitary
+   equivalence.
+8. Targeted arXiv searches through 2026-08-30 for the exact combinations
    "Jiang--Su", "embedding", "approximately unitarily equivalent", and
    "Problem LXIII" found no later claim resolving the arbitrary unital
    codomain question.  The May 2026 paper arXiv:2605.22585 concerns unitary
@@ -122,3 +139,20 @@ audit.
    forces that range to have the full Hilbert dimension, so Hadwin's theorem
    gives uniqueness in `B(H)` for arbitrary `H`.  Product closure extends
    this to every atomic type-I von Neumann algebra.
+8. The sigma-finite restriction on type III can in fact be removed without
+   repeating the false projection-cardinality argument.  Arbitrary type-III
+   von Neumann algebras are strongly purely infinite as C-star algebras.
+   Although they can have proper norm ideals, a unital map from the simple
+   algebra `Z` is full.  Gabe's map-level theorem and the equality of the two
+   nuclear KK classes therefore give asymptotic unitary equivalence for every
+   type-III von Neumann codomain, with arbitrary center and cardinality.
+9. Independently, every two Jiang--Su embeddings into every von Neumann
+   algebra have equal elementwise von Neumann rank and send each nonzero
+   element to a norm-full element.  The finite central part is controlled by
+   its center-valued trace; on the complementary central part, finite-sum
+   fullness makes each image support properly infinite and equivalent to the
+   central unit.  Thus the unresolved von Neumann lane has no cardinal-rank
+   or norm-ideal obstruction.  It is confined to nonseparably acting
+   properly infinite semifinite assembly not covered by existing rank
+   classification, including non-countably-decomposable type-II-infinity
+   and diffuse central pieces.

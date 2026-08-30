@@ -59,20 +59,28 @@ This is **STW Problem LXIII and remains open at the audit boundary
   C-star algebra, or must require a genuinely non-separably-acting shadow.
   Arbitrary finite von Neumann targets remain covered without countability
   restrictions by the earlier theorem.
-- **Sigma-finite type-III factors need not have separable predual.**
-  `stw63-sigmafinite-type3-factor-asymptotic-uniqueness` observes that a
-  sigma-finite type-III factor is simple purely infinite as a C-star algebra
-  and applies Kirchberg's nuclear KK uniqueness theorem.  This gives the
-  stronger asymptotic conclusion without a separable-predual assumption, and
-  product closure covers arbitrary products of such factors.  Genuinely
-  non-sigma-finite type-III factors are not covered: their nonzero projection
-  classes need not all equal the unit, so the simplicity step fails.
+- **Every type-III von Neumann codomain is eliminated.**
+  `stw63-arbitrary-type3-vn-asymptotic-uniqueness` removes factoriality,
+  sigma-finiteness, separable-predual and separable-action assumptions.  A
+  type-III von Neumann algebra is strongly purely infinite as a C-star
+  algebra.  Jiang--Su embeddings are full even when the target has proper
+  cardinal-rank ideals, so Gabe's full-map classification gives asymptotic
+  uniqueness.  This route never claims that arbitrary nonzero projections
+  are equivalent or that the target is C-star simple.
 - **Arbitrary-cardinal type-I factors are eliminated.**
   `stw63-arbitrary-type1-factor-uniqueness` combines the finite-copy fullness
   inequality with infinite-cardinal arithmetic and Hadwin's nonseparable
   rank theorem.  Thus every `B(H)`, without a separability assumption on
   `H`, has uniqueness.  Product closure gives the same result for every
   atomic type-I von Neumann algebra.
+- **All von Neumann rank and norm-ideal invariants collapse.**
+  `stw63-all-vn-rank-and-ideal-data-collapse` proves, without any countability
+  or type assumption, that the two embeddings have equal elementwise
+  von Neumann rank and that every nonzero image element is norm-full.  Hence
+  the remaining W-star boundary is precisely a missing nonseparable
+  rank-to-norm-uniqueness theorem on properly infinite semifinite assembly,
+  including non-countably-decomposable type-II-infinity and diffuse central
+  pieces; see `stw63-remaining-vn-boundary-is-semifinite-nonsep`.
 - **Asymptotic upgrade.**  Even after approximate uniqueness, coherent paths
   are a separate issue.  `approximate-to-asymptotic-via-central-paths`
   isolates a sufficient quantitative contraction property for the transition
