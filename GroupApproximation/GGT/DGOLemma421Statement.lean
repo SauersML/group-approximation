@@ -131,6 +131,16 @@ Clause (b) asserts something different twice over: its two components lie in
 **two different words read from different basepoints**, and what it asserts is
 **membership in `H λ`**, not a relative-ball bound.  The two are one `rw` apart
 in appearance and a theorem apart in truth.
+
+## The three `open` lines are load-bearing
+
+`IsHyperbolicSpace` lives in `GroupApproximation.HullGeometry` and `Cayley` in
+`GroupApproximation.Manuscript.NonMF.TorsionFree`.  Both modules are already in
+this file's import closure, so the `unknownIdentifier` errors their absence
+produces are a **name** out of scope, not a **module** missing: the cure is an
+`open`, and adding an import instead buys an edge the closure already has.
+Lean reports only the first such identifier per elaboration, so the second one
+costs another probe unless every new name is checked in one pass.
 -/
 
 namespace GroupApproximation
