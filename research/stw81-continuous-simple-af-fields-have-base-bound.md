@@ -60,4 +60,3 @@ Their cones need not be semiprojective, so this neighborhood-lifting proof
 does not extend formally to Jiang--Su-stable fibres. The exact point where
 the AF hypothesis enters is therefore the semiprojective lift of an honest
 finite-dimensional subalgebra, not local triviality of the field.
-
