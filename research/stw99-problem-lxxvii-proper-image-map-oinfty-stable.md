@@ -21,6 +21,13 @@ equivalently, `phi` is O-infinity-stable.
 
 This is **STW Problem LXXVII and is open at the 2026-08-30 audit boundary**.
 
+Arbitrary codomain size is now eliminated:
+`stw77-counterexamples-reflect-to-separable-codomains` proves that every
+failure reflects to a separable unital subalgebra containing the range,
+without increasing the nuclear dimension or losing proper infiniteness of
+any nonzero range positive.  Hence both `A` and `B` may be assumed separable
+when searching for a counterexample.
+
 ## Attempts
 
 - `oinfty-map-stability-is-central-isometry-splitting` gives an exact
