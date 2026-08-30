@@ -70,9 +70,9 @@ particular `C(T) tensor C*_r(F_2)` is Cu-regular but not Z-stable.
 
 
 The compact wing is now completely controlled over every finite graph,
-without a `K_1)-vanishing hypothesis.
+without a `K_1`-vanishing hypothesis.
 `stw99-lxxvi-finite-graph-compact-clutching-rigidity` classifies projection
-bundles by their fiber class and one `K_1)-clutching coordinate per cycle,
+bundles by their fiber class and one `K_1`-clutching coordinate per cycle,
 and proves that the actual first-factor map preserves all of them.  Thus for
 a simple stably finite pure fiber `D`, every compact class of `C(X,D)`
 survives tensoring with `Z` for every finite graph `X`.  This does not give

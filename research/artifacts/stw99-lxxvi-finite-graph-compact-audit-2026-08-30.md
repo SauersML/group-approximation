@@ -85,7 +85,7 @@ hypothesis, and every compact class is rigid, even when `K_1(D)` is
 nonzero.
 
 The remaining finite-graph question is entirely noncompact.  The result does
-not extend the published pointwise formula past idealwise `K_1)-vanishing
+not extend the published pointwise formula past idealwise `K_1`-vanishing
 and does not claim Cu-regularity of the whole graph field.
 
 ## Primary sources checked
