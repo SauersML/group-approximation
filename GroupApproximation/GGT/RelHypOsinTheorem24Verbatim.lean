@@ -129,19 +129,31 @@ goes into hypothesis position: that `E_G(g)` is inhabited in the way Definition
 2.2 reads it, that suitability is not satisfied by objects that plainly should
 not satisfy it, and that the peripheral dichotomy degenerates the right way.
 
-**All of them are negative, and that is structural rather than an omission.**
-No *positive* witness of `IsSuitableSubgroup` exists in this repository today,
-for the same reason none exists for `IsNonElementaryHyperbolic`: suitability
-needs a non-elementary ambient group, and the only such object the development
-names is `Manuscript.NonMF.TheoremC.KotowskiOllivierStatement` -- Kotowski--
-Kotowski and Ollivier--Wise, the density model at a parameter between `1/3` and
-`1/2` -- which is itself a recorded debt.  The absence is therefore not
-permanent and not a defect of these definitions: one certified torsion-free
-hyperbolic property-`(T)` group inhabits both predicates at once, and the
-witness program that produces it is where that will come from.  Until then the
-negative tests are what is available, and they do pin the definition from the
-side that matters, since the failure mode these definitions could have had is
-being satisfied by objects Osin's theorem says nothing about. -/
+The tests below are all negative; the positive one lives elsewhere, and the
+reason is a dependency direction rather than a gap.  `IsSuitableSubgroup` is a
+predicate on a peripheral family and a subgroup, and carries no
+relative-hyperbolicity hypothesis --- that is a separate binder of
+`OsinTheorem24Statement`.  So it is satisfiable far below the manuscript's
+configuration: with `ι = Empty` every element is hyperbolic in Osin's sense by
+`isHyperbolicElement_of_isEmpty` below, and the free group of rank two, read as
+`ℤ ∗ ℤ`, satisfies the rest.
+`GGT/RelHypSuitabilityResidue.isSuitableSubgroup_intPair` proves exactly that,
+and `isSuitableSubgroup_freeProduct_intPair` upgrades it to a *nonempty*
+peripheral family --- suitability of the partner factor in `U ∗ (ℤ ∗ ℤ)` for an
+arbitrary `U`.  That module imports this one, so the witness cannot be repeated
+here without a cycle; it is cited rather than duplicated.
+
+What has no witness in this repository is not the predicate but the
+**configuration** the manuscript needs: suitability at `U ∗ H₀` with `H₀`
+torsion-free hyperbolic with property `(T)`.  That routes through
+`Manuscript.NonMF.TheoremC.KotowskiOllivierStatement` --- Kotowski--Kotowski and
+Ollivier--Wise, the density model at a parameter between `1/3` and `1/2` ---
+which is itself a recorded debt, and through
+`GGT/RelHypSuitabilityResidue.HyperbolicSuitabilityStatement`, the residue that
+survives the free-product reduction.  The negative tests below pin the
+definition from the side that matters, since the failure mode these definitions
+could have had is being satisfied by objects Osin's theorem says nothing
+about. -/
 
 section ModelTests
 

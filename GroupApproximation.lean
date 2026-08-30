@@ -2824,6 +2824,7 @@ import GroupApproximation.GGT.DGOCorollary612Unconditional
 import GroupApproximation.GGT.DGOTheorem611Refutation
 import GroupApproximation.GGT.HullYiNonCommensurable
 import GroupApproximation.Analysis.VoiculescuAmplifiedState
+import GroupApproximation.GGT.RelHypProp23FromOsin24
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

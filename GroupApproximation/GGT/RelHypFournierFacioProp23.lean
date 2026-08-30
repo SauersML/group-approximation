@@ -46,20 +46,24 @@ anybody has made.
 
 ## What is transcribed, and what is deliberately dropped
 
-Hypotheses, in order: `Λ` non-elementary hyperbolic; `Λ` torsion-free; `Λ`
-finitely presented; `K` finitely presented; `K` torsion-free.
+Hypotheses, in order: `Λ` non-elementary hyperbolic; `Λ` torsion-free; `K`
+finitely presented; `K` torsion-free.
 
 * **"no non-trivial finite normal subgroups"** is discharged by torsion-freeness
   of `Λ`, which is stronger and is what the manuscript has.
-* **`Λ` finitely presented** is *not* in Proposition 2.3, where it is implied by
-  `Λ` hyperbolic.  It is a hypothesis here because "hyperbolic implies finitely
-  presented" is a theorem this repository does not have, and
-  `Hyperbolic.IsHyperbolicGroup` -- a finite generating set satisfying the
-  four-point condition -- gives finite *generation* only.  Leaving it implicit
-  would hide that gap inside the citation; the manuscript's `H₀` is finitely
-  presented anyway, so the hypothesis costs the consumer nothing.  It was the
-  model test below that found this, at the trivial source, where the
-  finite-presentation clause of the conclusion is otherwise underivable.
+* **`Λ` finitely presented is NOT a hypothesis**, and the history is worth
+  keeping.  Proposition 2.3 does not state it either -- there it is implied by
+  `Λ` hyperbolic -- but this `Prop` carried it for a while, because
+  `Hyperbolic.IsHyperbolicGroup` is a finite generating set satisfying the
+  four-point condition, which gives finite *generation*, and "hyperbolic implies
+  finitely presented" was a theorem this repository did not have.  The model
+  test below is what found that, at the trivial source, where the
+  finite-presentation clause of the conclusion is otherwise underivable.  The
+  repository now proves it outright --
+  `Hyperbolic.isFinitelyPresented_of_isHyperbolicGroup`, with no literature
+  input -- so `hne.1` supplies it and the hypothesis is gone.  Dropping it makes
+  this `Prop` **stronger and more faithful at once**: strictly fewer hypotheses,
+  and exactly the hypothesis list the source states.
 * **`K` torsion-free** is not in Proposition 2.3 either.  It is here because the
   torsion clause folded in from `[Osi10, Theorem 2.4(5)]` converts
   torsion-freeness of `Γ = Λ ∗ K` into torsion-freeness of `Γ̄`, and `Γ` is
@@ -79,9 +83,11 @@ asks for, exhibiting every clause of the conclusion simultaneously satisfied at
 the smallest source; and `fournierFacioQuotientStatement_of_prop23`, the
 derivation of the manuscript's field, which spends `Infinite H₀` and property
 `(T)` on non-elementarity of `H₀` through `isNonElementaryHyperbolic_of_kazhdan'`
-exactly as every earlier generation did, and spends
-`Group.IsFinitelyPresented H₀` -- until now unused in every derivation -- on the
-finite-presentation hypothesis above.
+exactly as every earlier generation did.  `Group.IsFinitelyPresented H₀`, which
+that hypothesis list also carries, is not spent: it was load-bearing only while
+this `Prop` demanded finite presentation of `Λ`, and since
+`Hyperbolic.isFinitelyPresented_of_isHyperbolicGroup` landed it is derivable
+from hyperbolicity and the demand is gone.
 -/
 
 namespace GroupApproximation
@@ -107,16 +113,15 @@ injective on `K`; and each prescribed element lands in the image of `Λ`. -/
 def FournierFacioProposition23 : Prop :=
   ∀ (K Lam : Type) (_ : Group K) (_ : Group Lam),
     IsNonElementaryHyperbolic Lam → IsPowerTorsionFree Lam →
-      Group.IsFinitelyPresented Lam →
-        Group.IsFinitelyPresented K → IsPowerTorsionFree K →
-          ∀ g : Set (CoprodI (pairFamily K Lam)), g.Finite →
-            ∃ (Q : Type) (_ : Group Q) (pi : CoprodI (pairFamily K Lam) →* Q),
-              Function.Surjective pi ∧
-                Group.IsFinitelyPresented Q ∧
-                  IsPowerTorsionFree Q ∧
-                    Function.Injective (pi.comp (freeProductSourceHom K Lam)) ∧
-                      ∀ x ∈ g,
-                        pi x ∈ (pi.comp (freeProductPartnerHom K Lam)).range
+      Group.IsFinitelyPresented K → IsPowerTorsionFree K →
+        ∀ g : Set (CoprodI (pairFamily K Lam)), g.Finite →
+          ∃ (Q : Type) (_ : Group Q) (pi : CoprodI (pairFamily K Lam) →* Q),
+            Function.Surjective pi ∧
+              Group.IsFinitelyPresented Q ∧
+                IsPowerTorsionFree Q ∧
+                  Function.Injective (pi.comp (freeProductSourceHom K Lam)) ∧
+                    ∀ x ∈ g,
+                      pi x ∈ (pi.comp (freeProductPartnerHom K Lam)).range
 
 /-! ## 2.  The model test -/
 
@@ -124,11 +129,15 @@ def FournierFacioProposition23 : Prop :=
 smallest source: with `K` trivial, `Λ ∗ K` is its own quotient.
 
 This is the check the standing rule asks for before a `Prop` goes into
-hypothesis position, and on this statement it is not a formality -- it is what
-found the missing `Group.IsFinitelyPresented Lam` hypothesis.  Without it the
-finite-presentation clause of the conclusion is underivable even here, where the
-quotient map is the identity, because `Hyperbolic.IsHyperbolicGroup` gives
-finite generation and not finite presentation.
+hypothesis position, and on this statement it was not a formality: it is what
+found that the finite-presentation clause of the conclusion was underivable even
+here, where the quotient map is the identity, because
+`Hyperbolic.IsHyperbolicGroup` gives finite generation and not finite
+presentation.  That gap was closed the other way round in the end --
+`Hyperbolic.isFinitelyPresented_of_isHyperbolicGroup` now proves the missing
+step, so the hypothesis the test called for has been removed again rather than
+kept.  The test keeps `[Group.IsFinitelyPresented Lam]` as an instance binder of
+its own, since it has no hyperbolicity hypothesis to derive it from.
 
 The last clause is `surjective_partner_of_sourceGen` at the empty generating
 set: a trivial source is generated by `∅`, so its hypothesis is vacuous and the
@@ -200,7 +209,7 @@ theorem fournierFacioQuotientStatement_of_prop23
   obtain ⟨S, hSgen, hSfin⟩ :=
     Group.fg_iff.mp (ProductFinitePresentation.fg_of_isFinitelyPresented U)
   obtain ⟨Q, instQ, pi, hsurj, hQfp, hQtf, hQinj, hQmem⟩ :=
-    hProp U H₀ instU instH₀ hne htf hfp hUfp hUtf
+    hProp U H₀ instU instH₀ hne htf hUfp hUtf
       (freeProductSourceHom U H₀ '' S) (hSfin.image _)
   haveI := instQ
   have hmem : ∀ x ∈ S, pi (freeProductSourceHom U H₀ x)
