@@ -15,7 +15,7 @@ artifacts:
 The first prerequisite is Brown amenability of `tau_E`; the second supplies
 its failure of quasidiagonality.  Since `C*_(max)(E)` is separable, the
 general theorem applies to every sequential u.c.p. amenability model and gives
-the fixed pair, positive threshold, subsequence, and spectral-tail rank
-estimate.  The final sentence about the constructed model is the exact
-boundary calculation of
+the fixed pair, positive threshold, subsequence, spectral-tail rank estimate,
+and inverse-square matrix-dimension lower bound.  The final concrete
+calculation is exactly
 `literal-folner-ucp-models-have-sharp-norm-hs-separation`.
