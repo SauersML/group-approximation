@@ -31,7 +31,7 @@ Either equality makes `(GHS1)` an ascending HNN extension of the amenable
 base and hence amenable.  If both associated subgroups are proper,
 Bass--Serre tree ping-pong gives a nonabelian free subgroup.
 
-Each equality in `(GHS2)` is `Sigma^0_1`, uniformly in `e): for every
+Each equality in `(GHS2)` is `Sigma^0_1`, uniformly in `e`: for every
 presentation generator of `B_e`, guess a word in the displayed generators
 of `H_e` or `K_e` and finite van Kampen derivations of the resulting
 finite packet of equalities.  Hence
