@@ -27,6 +27,20 @@ source of nuclear-dimension lower bounds—high-dimensional commutative
 hereditary subalgebras in quotients—but it is unknown whether a genuinely
 noncommutative finite value at least two can remain.
 
+For separable algebras the hypothesis now has an exact invariant
+reformulation.  `stw81-continuous-trace-shadow-invariant` defines `ctdim(A)`
+as the supremal spectrum dimension among continuous-trace subquotients and
+proves
+
+```text
+ctdim(A) <= dim_nuc(A),
+LXXXI shadow hypothesis iff ctdim(A) <= 1.
+```
+
+Thus the question is precisely whether this canonical type-I lower bound
+can stay at most one while nuclear dimension takes a finite value at least
+two.
+
 ## Attempts
 
 `stw81-separable-subhomogeneous-positive` proves the assertion for separable

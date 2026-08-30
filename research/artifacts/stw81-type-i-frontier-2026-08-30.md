@@ -21,15 +21,23 @@ all type-I C-star algebras.  The relevant established inputs are:
 
 ## New deductions recorded here
 
-1. The LXXXI shadow hypothesis forces every local continuous-trace spectrum
+1. For every separable algebra, the LXXXI shadow hypothesis is equivalent to
+   `ctdim(A)<=1`, where `ctdim` is the supremal spectrum dimension of its
+   continuous-trace subquotients.  Morita equivalence supplies the reverse
+   implication from a commutative hereditary shadow to the ideal it
+   generates.
+2. The invariant is a lower bound for nuclear dimension because nuclear
+   dimension passes to subquotients and is computed by spectrum dimension on
+   continuous-trace algebras.
+3. The LXXXI shadow hypothesis forces every local continuous-trace spectrum
    chart to have dimension at most one, by cutting the compact-operator
    bundle with a local rank-one projection.  The fibre may be infinite
    dimensional and the bundle may have nontrivial Dixmier--Douady class.
-2. Hence every separable continuous-trace algebra satisfying the hypothesis
+4. Hence every separable continuous-trace algebra satisfying the hypothesis
    has nuclear dimension at most one.
-3. Applying the same localization to every continuous-trace factor of a
+5. Applying the same localization to every continuous-trace factor of a
    separable type-I composition series gives `topdim(A)<=1`.
-4. Thus any remaining separable type-I counterexample must be a finite
+6. Thus any remaining separable type-I counterexample must be a finite
    nuclear-dimension algebra with `topdim(A)<=1<dim_nuc(A)`.  This isolates
    the exact missing theorem: the one-dimensional type-I comparison between
    these two dimension theories.
