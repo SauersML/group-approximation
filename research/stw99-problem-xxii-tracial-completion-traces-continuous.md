@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
   - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
+  - research/artifacts/stw22-arbitrary-factor-stiefel-boundary-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -64,7 +65,7 @@ Theorem 1.2, independently remove countable generation: for every II1 factor
 `N` and compact Hausdorff `X` with `dim(X)<=1`, all traces on
 `C_sigma(X,N)` are canonical. In particular the interval and circle with
 free-group-factor fibre are settled. See
-`farah-vaccaro-one-dimensional-trivial-factor-bundles-have-only-uniform-traces`.
+`farah-vaccaro-one-dim-trivial-bundles-uniform-traces`.
 The arbitrary nontrivial-bundle problem remains open.
 
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
@@ -88,6 +89,14 @@ corrections.  In the countably generated case the degree-zero selection
 problem is settled by stabilized `L^2` selection; higher connectivity of
 the varying-factor solution family is now the first finite-dimensional
 hinge.
+
+For the first such hinge, projection-weight multicopy fibres reduce exactly
+to `U(N)/(q+U((1-q)N(1-q)))`.  The complement bound is indispensable:
+without it,
+determinant loops in `U(n)` have normalized `2`-radius tending to zero but
+remain non-null-homotopic.  Positive complement slack removes that elementary
+matrix obstruction, but a factor-uniform filling-radius estimate is still
+needed in dimension two.
 
 The tempting matrix-cone shortcut is strictly stronger than this hinge.
 `stw22-bare-cone-projectivity-does-not-supply-ilr` exhibits a

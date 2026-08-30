@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
   - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
+  - research/artifacts/stw22-arbitrary-factor-stiefel-boundary-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -57,7 +58,7 @@ one-dimensional trivial case. Farah--Vaccaro, Proc. Amer. Math. Soc. 154
 whenever `N` is any II1 factor and `dim(X)<=1`. This includes
 `C_sigma([0,1],L(F_2))` and requires neither hyperfiniteness nor property
 Gamma; see
-`farah-vaccaro-one-dimensional-trivial-factor-bundles-have-only-uniform-traces`.
+`farah-vaccaro-one-dim-trivial-bundles-uniform-traces`.
 Their result does not cover nontrivial bundles.
 
 For locally trivial hyperfinite W*-bundles over finite-dimensional compact
@@ -193,6 +194,18 @@ connectedness and uniform local path connectedness in dimension one.  In
 higher dimensions it would require corresponding uniform local
 `k`-connectedness through `k=d-1`; establishing or refuting those stronger
 connectivity estimates is the precise finite-dimensional frontier.
+
+The first higher-connectivity hinge has a sharp normal form.
+`stw22-multicopy-fibres-collapse-and-zero-slack-obstructs-lc1` identifies
+every projection-weight `m`-copy fibre isometrically with one Stiefel space
+`U(N)/(q+U((1-q)N(1-q)))`; the copy number creates no extra topology.
+Strict support
+slack cannot be removed: in `M_n`, the determinant-degree-one loop
+`diag(z,1,...,1)` is non-null-homotopic in `U(n)` while its normalized
+`2`-radius is at most `2/sqrt(n)`.  With positive slack the matrix Stiefel
+spaces are simply connected, leaving a dimension-free filling-radius
+estimate—not ordinary homotopy—as the exact dimension-two obstruction for
+arbitrary factor bundles.
 
 Bare projectivity of finite-dimensional matrix cones does not bypass this
 frontier. `stw22-bare-cone-projectivity-does-not-supply-ilr` gives a trivial
