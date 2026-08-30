@@ -81,6 +81,41 @@ This is **STW Problem LXIII and remains open at the audit boundary
   unitary equivalence in the original von Neumann algebra.  Hence
   `stw63-counterexamples-invisible-in-all-vn-shadows` rules out every von
   Neumann shadow, with no type, center, predual, or cardinality restriction.
+- **Exact bidual-return obstruction.**
+  `stw63-aue-is-relative-corner-equivalence` identifies approximate unitary
+  equivalence with Murray--von Neumann equivalence of the two coordinate
+  projections in a pair-dependent relative sequence algebra `D`.  Universal
+  von Neumann uniqueness makes the same projections equivalent after the
+  canonical inclusion `D->E` obtained from `B->B**`.  Thus
+  `stw63-relative-v-obstruction` shows that every counterexample is exactly a
+  failure of this inclusion to reflect one distinguished projection
+  equivalence.  This does not assume that bidual unitaries lift.
+- **A conditional return theorem.**
+  `stw63-relative-k0-return-criterion` proves uniqueness for a pair whenever
+  `K_0(D)->K_0(E)` is injective and `D` has projection cancellation (stable
+  rank one of `D` suffices).  Stable rank one of the original codomain is not
+  claimed to pass to this relative commutant.
+- **Strict comparison needs no unique quasitrace for uniqueness.**
+  `stw63-strict-comparison-sr1-uniqueness` proves that a unital simple
+  stable-rank-one codomain with nonempty normalized 2-quasitrace space and
+  strict comparison has at most one Jiang--Su embedding up to approximate
+  unitary equivalence.  All quasitraces restrict to the unique trace of `Z`;
+  strict comparison first compares a smaller soft class `r_k<r`, and a
+  supremum then proves equality at `r`.  Robert's map theorem returns the
+  resulting equality of `Cu` maps.  No unique-quasitrace hypothesis is used.
+- **Unconditional convex norm return.**
+  `stw63-convex-unitary-return` combines the all-von-Neumann theorem with
+  unitary Kaplansky density and Hahn--Banach: each embedding is in the
+  point-norm closed convex hull of the other's `B`-unitary orbit.  The missing
+  universal step is deconvexification from a finite random-unitary average to
+  one inner conjugate; strong density alone cannot perform it.
+- **Generic descent shortcuts fail even for AF targets.**
+  `stw63-generic-bidual-return-fails-for-af` gives two maps `C^2->B` for a
+  simple stationary AF algebra which are exactly unitarily conjugate in
+  `B**` but not approximately unitarily equivalent in `B`.  Thus nuclearity,
+  exactness, local reflexivity, real rank zero, stable rank one and fullness
+  do not by themselves return bidual conjugacies.  This is a boundary test,
+  not a Jiang--Su counterexample.
 - **All von Neumann rank and norm-ideal invariants collapse.**
   `stw63-all-vn-rank-and-ideal-data-collapse` proves, without any countability
   or type assumption, that the two embeddings have equal elementwise

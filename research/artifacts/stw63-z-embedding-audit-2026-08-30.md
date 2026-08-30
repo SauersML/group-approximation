@@ -105,6 +105,22 @@ searches, followed by inspection of the theorem statements.
    separable predual.  Their proposition concerns weak-star approximate
    equivalence, so the new graph proof imports only this structural step and
    obtains norm equivalence from the stronger coordinate theorem.
+11. I. Kaplansky, *A theorem on rings of operators*, Pacific Journal of
+    Mathematics 1 (1951), 227--232.  Theorem 1 proves strong density of the
+    norm unit ball of a strongly dense star algebra in the norm unit ball of
+    its closure.  Applied to bounded self-adjoint logarithms and exponentials,
+    it gives strong density of `U(B)` in `U(B**)` for unital `B`.  The new
+    convex-return route uses only this density theorem and Hahn--Banach; it
+    does not infer norm density of unitary groups.
+12. L. Robert, *Classification of inductive limits of 1-dimensional NCCW
+    complexes*, Advances in Mathematics 231 (2012), 2802--2836, DOI
+    10.1016/j.aim.2012.07.010; arXiv:1007.1964.  Theorem 1.0.1 classifies
+    homomorphisms from sequential limits of one-dimensional NCCW complexes
+    with trivial `K_1` into stable-rank-one targets by `Cu_tilde`.  Section
+    6.3 computes `Cu(Z)=N disjointUnion (0,infinity]`.  Proposition 6.3.1
+    gives an application with a unique 2-quasitrace; the new route removes
+    uniqueness only for comparison of two already existing unital embeddings
+    by checking equality on every soft class directly.
 
 ## Trust boundary
 
@@ -116,7 +132,7 @@ as a premise in any graph route added with this artifact.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate seven facts which do not depend on the literature
+The graph additions isolate fifteen facts which do not depend on the literature
 audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -189,3 +205,35 @@ audit.
    This bypasses nonstandard central integration entirely.  The conclusion
    is norm approximate uniqueness; uniform asymptotic paths are not inferred
    from the product argument.
+12. The remaining return problem admits an exact relative-sequence-algebra
+    formulation.  For `D=M_2(B_infinity) intersect diag(phi,psi)(Z)'`, the
+    two coordinate projections are equivalent exactly when `phi` and `psi`
+    are approximately unitarily equivalent.  They are always equivalent in
+    the analogous algebra over `B**`.  Hence every counterexample is exactly
+    a failure of this canonical inclusion to reflect that projection
+    equivalence.  Injectivity on `K_0` plus projection cancellation in `D`
+    is a sufficient return theorem; stable rank one is required of `D`, not
+    merely of `B`.
+13. There is also an unconditional norm-level return short of one unitary:
+    each embedding lies in the point-norm closed convex hull of the other's
+    unitary orbit in `B`.  Kaplansky density returns the bidual unitary only
+    strongly, while Hahn--Banach converts that weak convergence into norm
+    approximation after finite convexification.  Deconvexifying those
+    random-unitary averages is the precise step this argument does not solve.
+14. The Cu return theorem yields a wider positive class than Robert's stated
+    unique-quasitrace application.  If the unital simple target has stable
+    rank one, a nonempty normalized 2-quasitrace space and strict comparison
+    by that whole space, all quasitraces restrict along either embedding to
+    the unique normalized trace of `Z`.  Compact Cu classes are fixed by the
+    unit.  For a soft class `r`, strict comparison applies to every
+    `r_k<r`; taking suprema removes the deliberate strict gap.  This proves
+    equality on all of `Cu(Z)` without assuming a unique quasitrace.
+15. A stationary simple AF algebra with incidence matrix
+    `[[2,1],[1,2]]` shows why deconvexification cannot follow from generic
+    regularity.  Rank-one projections in the two stage summands have equal
+    unique trace but distinct persistent `K_0` classes.  They and their
+    complements become equivalent in the bidual, hence define exactly
+    conjugate maps `C^2->B**`, but their maps into `B` are not approximately
+    unitarily equivalent.  Thus even nuclearity, exactness, local reflexivity,
+    real rank zero, stable rank one and full corners do not constitute a
+    domain-independent bidual-return theorem.
