@@ -35,6 +35,12 @@ virtually abelian calculation, it proves
 abelian group of finite uniform local Hirsch rank `r` has nuclear dimension at
 most `r`, with equality whenever its abelianization has rational rank `r`.
 
+Combined instead with Eckhardt--Wu's uniform virtually-polycyclic bound, the
+same limit theorem proves `stw84-locally-virtually-polycyclic-uniform-hirsch`:
+uniformly bounded Hirsch length across all finitely generated subgroups is
+enough for finite nuclear dimension, even when the countable union is not
+itself virtually polycyclic or virtually solvable.
+
 There is also an exact permanence theorem independent of virtual abelianness.
 `stw84-locally-finite-direct-factor-invariance` proves that adjoining any
 countable locally finite direct factor changes no nuclear dimension.  Hence

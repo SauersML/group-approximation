@@ -43,6 +43,13 @@ h_loc(G)=r<infinity  =>  dim_nuc(C*(G))<=r
 for countable locally virtually abelian `G`.  If the abelianization has rank
 `r`, the lower mechanism closes this to equality.
 
+Using instead Eckhardt--Wu's uniform bound for virtually polycyclic groups of
+fixed Hirsch length gives a broader finiteness theorem.  Every countable
+locally virtually polycyclic group whose finitely generated subgroups have
+uniformly bounded Hirsch length has group C*-algebra of finite nuclear
+dimension.  The resulting bound depends only on that uniform local Hirsch
+length.
+
 ## Exact locally finite factor theorem
 
 If `L` is countable locally finite, then `C*(L)` is AF.  For every countable
