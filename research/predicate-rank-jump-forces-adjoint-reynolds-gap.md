@@ -29,3 +29,16 @@ For the fixed-pivot support packet, `D=2` and `K=1`, so the explicit constant
 is `3/16`.  Thus an extensive forbidden packet mass produces an extensive
 adjoint projection defect without selecting individual irreducible copies or
 using any ambient-dimension divisibility.
+
+The coefficient `3/16` has no hidden marked-corner factor when mass and
+adjoint trace use consistent normalization.  If
+`theta=dim(H_-)/dim(H)` and `q_global=theta q_-`, extension of the Reynolds
+range by zero multiplies adjoint density by `theta^2`, so
+
+```text
+theta^2(3/16)q_-^2=(3/16)q_global^2.                   (ARG2)
+```
+
+Only the inconsistent convention using corner-relative `q_-` with global
+adjoint trace displays the extra factor `theta^2` (equal to `1/4` when
+`theta=1/2`).
