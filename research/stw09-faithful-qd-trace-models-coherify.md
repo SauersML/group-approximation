@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw08-af-embedding-status-and-coherence-audit-2026-08-30.md
   - research/artifacts/stw09-matrix-coherence-rank-obstruction-2026-08-30.md
+  - research/artifacts/stw09-summably-balanced-bratteli-model-audit-2026-08-30.md
 ---
 
 If `A` is separable and exact and `tau` is a faithful quasidiagonal trace on
@@ -39,3 +40,11 @@ forces rational central trace weights.  An irrational faithful trace on
 `C^2` violates this while `C^2` is already AF.  Thus the finite-dimensional
 algebras and compatible traces in the formulation above must retain their
 multi-summand flexibility.
+
+Exact compatibility of the flexible stage traces can, however, be relaxed.
+By `stw09-summably-balanced-bratteli-models-give-af-embedding`, once integer
+Bratteli multiplicities and summable norm coherence are available, it is
+enough that the central weight vectors have summable `l1` incompatibility.
+A backwards-limit argument corrects them to an exact compatible trace
+thread.  Thus the open part is the norm-coherent Bratteli refinement, not
+exact bookkeeping of trace weights at every finite stage.
