@@ -48,7 +48,17 @@ literal group `E`.
   `Σ ⊇ SL_3(Z)`, which is not amenable.  So the mark is invisible to
   hyperfinite representations of these groups, exactly as it is invisible to
   norm-matrix coronas.
-* **The literal group `E`.**  `E` is sofic (`literal-group-sofic`), so
+* **The literal group `E`.**  DEAD (`literal-group-mark-invisible-to-hyperfinite-representations`,
+  route `non-mf-unitary-subgroup-via-literal-group` invalidated): every
+  hyperfinite representation of `E` kills the mark, by a traceless Clifford
+  permutation, the doubling conjugacy, and the null fixed sets of `SL_3(Z)`
+  on `T^3`.  So all non-MF groups of the one-sided-compression family are
+  excluded; a witness needs a non-MF group whose non-MF certificate is not a
+  central mark of this kind.  Eckhardt's generalized wreath products (Ec,
+  preprint 2026, not available to this lane) are the only unexamined known
+  non-MF groups; their lamp-over-compressed-base shape suggests the same
+  proof applies.
+  Earlier record:  `E` is sofic (`literal-group-sofic`), so
   `E ↪ U(R^ω)`; the question is whether the ultrapower can be replaced by
   `R` itself.  Reduced in `literal-group-embeds-in-hyperfinite-unitary-group`
   to two pieces: a hyperfinite representation of `E` sending the central

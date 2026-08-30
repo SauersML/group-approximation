@@ -169,6 +169,36 @@ translation, every nontrivial translation is conjugate into `K \ B`, and
 identifying adjacent lamps kills `w`).  Open: partial innerness for a
 general `Σ`-invariant hyperfinite marked character.
 
+## Addendum D. The mark of E itself is invisible to hyperfinite representations
+
+**Theorem.**  Let `W` be a finite injective von Neumann algebra with
+faithful normal tracial state `τ`.  Every homomorphism `ρ : E → U(W)`
+satisfies `ρ(w) = 1`.  So `E` does not embed in `U(R)`, and every uniformly
+amenable trace on `C*(E)` (Brown 3.2.2) is trivial on `w`.
+
+Proof.  Compress to the `−1`-eigenspace of `ρ(w)` (a central projection of
+`ρ(E)''`; the compression is finite injective), so `ρ(w) = −1`.
+(1) The eight lamps of the base block pairwise anticommute, so they generate
+a unital `M_16 ⊂ W`, `W ≅ M_16 ⊗ W_1`, `τ = tr_16 ⊗ τ_1`, and for `k ∈ K`
+(the block stabiliser) `ρ(k) = V_k w_k` with `V_k ∈ M_16` implementing the
+site permutation and `w_k ∈ W_1`.  (2) A non-integral half-translation
+`t_v ∈ K` permutes the eight Clifford generators by four disjoint
+transpositions; `|tr V|^2 = tr(Ad V) = Σ_j C(4,j)(−1)^j = 0`, so
+`χ(t_v) = tr(V_{t_v}) τ_1(w_{t_v}) = 0`.  (3) `t t_v t^{-1} = t_{2v}` and
+every nonzero `u ∈ Z[1/2]^3` is `2^n v` with `v` a non-integral
+half-translation, so `χ(t_u) = 0` for all `u ≠ 0`; hence
+`𝒜 = ρ(Z^3)'' ≅ L^∞(T^3)` with Haar trace.  (4) For `m ∈ SL_3(Z) \ {1}`,
+`x = E_𝒜(ρ(m))` satisfies `x f = σ_m(f) x`, so `x` is supported on the
+Haar-null set `Fix(m) = ker(m − 1) ⊂ T^3`; `x = 0` and `τ(f ρ(m)) = 0` for
+`f ∈ 𝒜`.  Thus `χ|_B = δ_e` on `B = Z^3 ⋊ SL_3(Z)`.  (5) `ρ(B)'' ≅ L(B)` is
+not injective (`B` nonamenable) but sits with a trace-preserving expectation
+inside the injective `W`.  ∎
+
+Property (T) is not used.  The corona theorem of the manuscript and this
+theorem kill the same element by unrelated mechanisms; together with the
+Kazhdan obstruction, every known non-MF group of the compression family is
+excluded as a witness for non-quasidiagonality of `R`.
+
 ## Addendum literature
 
 * N. P. Brown, Invariant means and finite representation theory of
