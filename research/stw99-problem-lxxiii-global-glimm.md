@@ -23,6 +23,14 @@ scattered + ideal-filtered `Cu` + property (V); nowhere scatteredness
 is equivalent to the hypothesis; so the problem IS "no
 finite-dimensional representations ⟹ ideal-filtered + (V)".
 
+Known-positive corners (TV's Global Glimm introduction, Thm 5.8, Rem
+5.7, Cor 5.3): topological dimension zero and stable rank one both give
+ideal-filteredness AND property (V) (the latter via residual stable
+finiteness); sup-semilattice-ordered `Cu` gives (V) outright; and for
+separable `A` of finite nuclear dimension, the central sequence algebra
+`F(A)` has the Global Glimm Property IFF `A` is `Z`-stable — wiring
+this problem into the XXXVIII/XXXIX central-sequence circle.
+
 ## Attempts
 
 * This lane's LXXII recon (artifact above) already dissected the two
