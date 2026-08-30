@@ -66,12 +66,16 @@ projection subordinate to every member of a commuting family is subordinate
 to their meet.
 
 The Bernoulli shift is weakly mixing, so its product with an ergodic original
-component is ergodic. Replacing `Y` by an `N`-cycle gives finite
-signed-permutation perfect models whose readable translate algebras are
-finite. Those cyclic actions converge on every fixed cylinder to the
-Bernoulli model, while the limiting model has no projection from the claim.
-Thus the property is not weak-star closed and cannot be extracted from
-fixed-cylinder compactness or finite verifier state alone.
+component is ergodic. For the standalone always-accept padding factor,
+replacing `Y` by an `N`-cycle gives a finite signed-permutation perfect
+model whose readable translate algebra is finite. These cyclic padding
+actions converge on every fixed cylinder to the Bernoulli padding action,
+which has no nonzero finite-orbit projection below a readable profile. Thus
+finite-orbit structure is not weak-star closed even in the elementary
+always-accept ZPC class. This observation does not assert that tensoring a
+cyclic padding factor with an arbitrary original witness gives the total
+product a finite orbit; it shows exactly why fixed-cylinder compactness
+cannot preserve such structure without a separate uniform bound.
 
 This padding does not refute
 `perfect-gap-zpc-has-profile-pure-finite-projection-orbit`: that claim may
