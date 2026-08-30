@@ -178,6 +178,20 @@ trace; fibrewise O-infinity-stability globalizes over the finite-dimensional
 base and then forces nuclear dimension one.  Both loci are clopen, and
 the shadows live entirely on the elementary side.
 
+Local triviality has now been removed completely from the absorbing side.
+`stw81-fibrewise-oinfinity-absorption-collapses-base-colours` proves that an
+arbitrary separable nuclear upper-semicontinuous `C_0(X)`-algebra over any
+finite-dimensional second-countable locally compact base is globally
+O-infinity-stable, and hence has nuclear dimension at most one, whenever
+all its fibres are O-infinity-stable.  With simple nonzero fibres its
+nuclear dimension is exactly one and all commutative hereditary shadows in
+quotients vanish.  Over a one-dimensional base the same conclusion holds
+for a clopen sum of a continuous-trace elementary field and an arbitrary
+upper-semicontinuous fibrewise O-infinity-stable field.  Thus the earlier
+local-triviality assumption can be replaced by precisely the clopen
+continuous-trace structure needed on the elementary locus; absorption
+itself supplies the global two-colour collapse on the other locus.
+
 The previous clopen method cannot handle the remaining stably finite
 fibres.  `stw81-connected-base-blocks-clopen-colour-reuse` proves that a
 connected nontrivial base has no finite-dimensional subalgebras of
