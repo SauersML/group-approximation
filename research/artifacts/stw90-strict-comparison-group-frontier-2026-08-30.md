@@ -56,11 +56,12 @@ of XC to finitely generated C*-simple groups.
 An explicit application not of tensor-product form is
 `SL_infinity(Z)=union_m SL_{2m+1}(Z)`.  Vigdorovich settles every odd-rank
 stage and Robert's directed-union theorem makes the stable reduced algebra
-selfless.  The stable group contains `direct_sum_N F_2`, proving nonlinearity
-over every field, while complementary finite-support blocks make every
-element centralizer non-virtually-cyclic, excluding acylindrical
-hyperbolicity.  Thus it is a concrete XC case outside those two established
-group classes.
+selfless.  Exactness passes from the linear stages through their reduced
+C*-algebra inductive limit.  The stable group contains `direct_sum_N F_2`,
+proving nonlinearity over every field, while complementary finite-support
+blocks make every element centralizer non-virtually-cyclic, excluding
+acylindrical hyperbolicity.  Thus it is a concrete exact XC case outside
+those two established group classes.
 
 # Products, exactness, and obstruction boundary
 

@@ -21,8 +21,9 @@ where the connecting map is `A |-> diag(A,I_2)`.  Its reduced group
 C*-algebra is selfless and hence simple, stably rank one, uniquely
 2-quasitracial, and strictly comparing by its canonical trace.
 
-The countable group `SL_infinity(Z)` is nonlinear over every field and is not
-acylindrically hyperbolic.  It is therefore an explicit positive XC instance
-outside the linear and acylindrically hyperbolic group classes; unlike the
-restricted direct sum of free groups, this example does not arise from the
-countable tensor-product construction.
+The countable group `SL_infinity(Z)` is exact, nonlinear over every field,
+and not acylindrically hyperbolic.  It is therefore an explicit positive XC
+instance inside the exact regime highlighted by STW but outside the linear
+and acylindrically hyperbolic group classes; unlike the restricted direct sum
+of free groups, this example does not arise from the countable tensor-product
+construction.
