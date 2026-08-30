@@ -39,4 +39,10 @@ and are there two DISTINCT `Cu`-morphisms `Cu(Z) → Cu(A)` there?
   soft part.  The peer lane's soft-divider rounding theorem is the
   exact tool: below rank `n(n+1)` soft dividers are compact, so any
   second morphism differs only beyond that window — pinned as the
-  place to look.
+  place to look.  STAKES RAISED (route
+  `stw99-lxiv-pair-lifts-to-lxiii-refuter`): by Robert's
+  classification on the stable-rank-one target, a positive
+  two-morphism answer LIFTS to two non-approximately-unitarily-
+  equivalent unital embeddings `Z → A`, refuting STW Problem LXIII
+  outright; so this second question is now a designated kill shot for
+  the embedding-uniqueness problem.
