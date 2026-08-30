@@ -144,6 +144,8 @@ theorem getElem_secondHalf_chord (w : List (RelLetter G Λ)) (c : ℕ → ℕ)
   rw [List.getElem_append_right hge]
   simp [hpre]
 
+omit [Group G] in
+omit [Group G] in
 /-- **A letter anywhere on the wrapped second-half arc is the corresponding
 letter of the rotated polygon.** -/
 theorem getElem_secondHalf_rotWord (w : List (RelLetter G Λ)) (c : ℕ → ℕ)
@@ -154,7 +156,7 @@ theorem getElem_secondHalf_rotWord (w : List (RelLetter G Λ)) (c : ℕ → ℕ)
       (rotWord w (c b))[i]'(by
         rw [length_rotWord w hb]
         omega) := by
-  rw [secondHalf_eq_rotWord_append w c ha hb t]
+  rw [List.getElem_of_eq (secondHalf_eq_rotWord_append w c ha hb t) h']
   have hrot : (rotWord w (c b)).length = w.length := length_rotWord w hb
   have hprefix : ((rotWord w (c b)).take ((w.length - c b) + c a)).length =
       (w.length - c b) + c a := by
@@ -186,6 +188,7 @@ theorem isCompOf_secondHalf_drop_iff (lam : Λ) (w : List (RelLetter G Λ))
       ↔ (w[c b + i]'(by omega)).IsCompOf lam := by
   rw [getElem_secondHalf_drop w c hi t h']
 
+omit [Group G] in
 /-- **Being a `lam`-letter transfers across the entire wrapped arc through its
 rotation model.** -/
 theorem isCompOf_secondHalf_rotWord_iff (lam : Λ)
