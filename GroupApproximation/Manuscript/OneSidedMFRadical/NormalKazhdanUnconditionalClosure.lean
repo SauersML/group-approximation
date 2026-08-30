@@ -23,6 +23,34 @@ noncomputable section
 variable {G : Type} [Group G] [Countable G]
 variable {X : ℕ → FiniteModel} [∀ n, Nonempty (X n)]
 
+/-- **The complementary-corner sentence, with both conclusions exposed.**
+The corrected corona representation is the coordinate restriction of the
+complementary compression.  Hence its maximal Kazhdan projection is zero and
+its restriction to `K` has no nonzero fixed vector.  The finite Kazhdan set and
+positive constant used by the following inequality are the fields
+`P.kazhdan.S` and `P.kazhdan.kappa`. -/
+theorem exists_normalKazhdan_projectionZero_and_noFixedVectors
+    (K : Subgroup G) [K.Normal]
+    (rho : G →* unitary (NormMatrixCStarCorona (fun n ↦ X n)))
+    (KD : KazhdanData K) (k : K)
+    (hk : ((rho (k : G) : unitary
+      (NormMatrixCStarCorona (fun n ↦ X n))) :
+        NormMatrixCStarCorona (fun n ↦ X n)) ≠ 1) :
+    ∃ P : CorrectedCornerProvenanceData G X K,
+      ∀ (ω : Ultrafilter ℕ) (hω : (ω : Filter ℕ) ≤ cofinite),
+        CorrectedCornerKazhdanProjectionZero
+            (P.subgroupCorner K) ω hω P.kazhdan ∧
+          ∀ x : CorrectedCornerFaithfulSpace (P.subgroupCorner K) ω,
+            (∀ g : K,
+              correctedCornerHilbertRepresentation
+                (P.subgroupCorner K) ω hω g x = x) →
+              x = 0 := by
+  obtain ⟨P, hzero⟩ :=
+    exists_correctedCornerKazhdanProjectionZero K rho KD k hk
+  refine ⟨P, fun ω hω ↦ ⟨hzero ω hω, ?_⟩⟩
+  exact correctedCornerHilbertRepresentation_hasNoInvariantVectors
+    (P.subgroupCorner K) ω hω P.kazhdan (hzero ω hω)
+
 /-- **Sentences 178--181, unconditionally from the unchanged ambient
 hypotheses.**  One provenance-rich complementary corner works for every free
 ultrafilter refining `cofinite` and every positive error tolerance. -/
