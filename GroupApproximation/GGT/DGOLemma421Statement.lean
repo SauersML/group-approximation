@@ -138,6 +138,8 @@ namespace GGT
 namespace OsinComponents
 
 open GroupApproximation.WordMetric
+open GroupApproximation.HullGeometry
+open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u w
 
@@ -194,16 +196,16 @@ follows, a component's two endpoints differing by its own label, which lies in
 def DGOLemma421b : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     (∃ δ : ℝ, IsHyperbolicSpace δ (Cayley D.alphabet)) →
-      ∃ C : ℕ, ∀ eps K : ℕ,
+      ∃ C : ℕ, ∀ (eps : ℝ) (K : ℕ),
       0 < eps → 0 < K → ∃ R : ℕ, 0 < R ∧
       ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
         (∀ c ∈ p, D.IsLetter c) → (∀ c ∈ q, D.IsLetter c) →
         WWord.IsWOne p → WWord.IsWTwo D C p → WWord.IsWThree D p →
         WWord.IsWOne q → WWord.IsWTwo D C q → WWord.IsWThree D q →
         R ≤ p.length →
-        wordDist D.alphabet.carrier vp vq ≤ eps →
-        wordDist D.alphabet.carrier (vertex vp p p.length)
-          (vertex vq q q.length) ≤ eps →
+        (wordDist D.alphabet.carrier vp vq : ℝ) ≤ eps →
+        (wordDist D.alphabet.carrier (vertex vp p p.length)
+          (vertex vq q q.length) : ℝ) ≤ eps →
         ∃ (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Λ),
           (∀ t : ℕ, t < K → IsComp (lam t) p (ip t) (kp t)) ∧
           (∀ t : ℕ, t < K → IsComp (lam t) q (iq t) (kq t)) ∧
