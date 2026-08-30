@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.OsinTheorem54SepAssembleFull
 import GroupApproximation.GGT.OsinTheorem54SepFourPointBridge
+import GroupApproximation.GGT.OsinTheorem54SepLemma58
 
 /-!
 # The assembly with the §4.2 threshold discharged
@@ -17,14 +18,12 @@ four-point form and `sixBound_one_of_fourPointHyperbolic` produces the bound.
 
 ## What is left
 
-Two conditions: `hloc`, the local finiteness of the enlarged relative metrics
-(Osin's Lemma 5.8), and `h511`, his acylindricity residue (Lemma 5.11).  The
-bounded-detour condition of Lemma 5.6 is not among them --- it is
+One condition: `h511`, Osin's acylindricity residue (Lemma 5.11).
+The local finiteness of the enlarged relative metrics is now
+`OsinComponents.relBall_enlargedY_finite`, the completed Lemma 5.8 assembly.
+The bounded-detour condition of Lemma 5.6 is not among the binders either --- it is
 `OsinLemma56Inheritance.exists_boundedDetour`, supplied inside the assembly ---
 and neither is anything from §4.2.
-
-Both are quoted here character for character from the assembly, so a caller can
-move between the two forms without restating either.
 -/
 
 namespace GroupApproximation
@@ -38,12 +37,11 @@ universe u w
 
 variable {G : Type u} [Group G] {Λ : Type w}
 
-/-- **`SepDataStatementFam` from hyperbolic embedding, Lemma 5.8's condition and
-Lemma 5.11.**  The §4.2 threshold and Lemma 5.6's condition are discharged. -/
+/-- **`SepDataStatementFam` from hyperbolic embedding and Lemma 5.11.**
+The §4.2 threshold, Lemma 5.6's condition, and Lemma 5.8 are discharged. -/
 theorem exists_sepDataFam_of_hemb [Fintype Λ] (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (hemb : D.IsHyperbolicallyEmbedded) :
     ∃ C : ℕ, 0 < C ∧ ∀ (Dc : ℕ) (hDc : 1 ≤ Dc), C * 4 ≤ Dc →
-      (∀ (lam : Λ) (n : ℕ), ((enlargedY D hDc hsymm).relBall lam n).Finite) →
       (∀ m : ℕ, ∃ R N : ℕ, 0 < R ∧ ∀ z : G,
         wordDist (enlargedY D hDc hsymm).alphabet.carrier 1 z = R →
           {k : G | wordDist (enlargedY D hDc hsymm).alphabet.carrier 1 k ≤ m ∧
@@ -57,9 +55,9 @@ theorem exists_sepDataFam_of_hemb [Fintype Λ] (D : RelGenSet G Λ)
     exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   obtain ⟨C, hCpos, hbnd⟩ :=
     sixBound_one_of_fourPointHyperbolic D hsymm hδ 0 le_rfl
-  refine ⟨C, hCpos, fun Dc hDc hthr hloc h511 => ?_⟩
-  exact sepDataFam_of_binders_of_lemma510 D hDc hsymm ⟨C, hbnd, hthr⟩ hemb hloc
-    h511
+  refine ⟨C, hCpos, fun Dc hDc hthr h511 => ?_⟩
+  exact sepDataFam_of_binders_of_lemma510 D hDc hsymm ⟨C, hbnd, hthr⟩ hemb
+    (relBall_enlargedY_finite D hDc hsymm hemb) h511
 
 end OsinEnlargement
 end GGT
