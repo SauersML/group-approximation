@@ -68,9 +68,11 @@ universe u w
 elementary closures of finitely many pairwise non-commensurable loxodromic
 elements are hyperbolically embedded over the prescribed alphabet.
 
-Acylindricity stands in for WPD, absorbing Hull's step *"since the action is
-acylindrical, all loxodromic elements satisfy WPD"*, for which this repository
-has no theorem.
+Acylindricity stands in for WPD across Hull's step *"since the action is
+acylindrical, all loxodromic elements satisfy WPD"*.  That implication is proved,
+as `isWPDAt_of_isAcylindrical`; acylindricity is kept as the hypothesis anyway
+because it is the data the consumer already carries, `IsAcylindrical` being what
+Osin's Theorem 5.4 hands back.
 
 The index type is `Type` rather than a universe variable because every consumer
 indexes by `Unit` or `Bool`, and `IsHypEmbeddedOf` --- the shape the single form
