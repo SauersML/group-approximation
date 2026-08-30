@@ -6,6 +6,7 @@ title: Algebraic Cuntz semigroups detect real rank zero in simple stably finite 
 root: true
 artifacts:
   - research/artifacts/stw99-rr0-cluster-2026-08-30.md
+  - research/artifacts/stw31-module-rigidity-frontier-audit-2026-08-30.md
 ---
 
 **Problem XXXI of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  If
@@ -37,3 +38,17 @@ simple.
   here it is the goal; a positive XXXI plus algebraic-Cu-preserving
   regularization would transfer XXX-type questions to the Cuntz
   semigroup, where the XXVI/XXVII machinery applies.
+* The exact stable-rank-free obstruction is now isolated in
+  `stw31-algebraic-module-rigidity-forces-real-rank-zero`.  From every
+  increasing compact decomposition of a class one can build a nested
+  finitely generated projective module `F` whose compact endomorphisms have
+  a projection approximate identity.  Therefore algebraic `Cu` implies
+  RR0 as soon as CEI equivalence is rigid when one of the two modules is
+  projection-exhausted. The nested model shows this asymmetric normal form
+  is equivalent to full isomorphism on the sequential closure of compact
+  classes. Conversely, any counterexample to XXXI produces
+  CEI-equivalent nonisomorphic modules `E,F` with the same algebraic class,
+  but with `K(F)` projection-exhausted and `K(E)` not.  Stable finiteness
+  already handles every finite compact stage; cancellation or hereditary
+  `K_1` hypotheses can help only by making these stages coherent at the
+  infinite limit.
