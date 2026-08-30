@@ -209,7 +209,7 @@ every point of the space — a rotation fixes its apex and lies in the kernel �
 every element of the kernel, the identity being neither conjugate into a
 rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
-  exact GGT.DGOWindmill.dgoQuotientStatementGeodesic
+  exact DGOWindmill.dgoQuotientStatementGeodesic
 
 /-- **DEBT (literature).**  Hull, §5, with Dahmani–Guirardel–Osin's Theorem 5.3
 taken out of it: for every radius and every prescribed family of suitable
@@ -434,7 +434,7 @@ theorem hullCommonQuotient : HullCommonQuotientStatement :=
 
 /-- The cited inputs, as a term.  The first field is proved; the other four are
 the debts above. -/
-def literatureInputs : LiteratureInputs :=
+theorem literatureInputs : LiteratureInputs :=
   { chiodo := chiodo
     kotowskiOllivier := kotowskiOllivier
     smallCancellationQuotient := smallCancellationQuotient
