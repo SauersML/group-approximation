@@ -61,4 +61,6 @@ in this class is nonsplit and admits no quasicentral approximate unit of
 projections for `I`.  The upstream cycle projection is infinite.  Neither a
 splitting argument nor quasidiagonal-extension color reuse can therefore
 resolve this finite circle-ideal/circle-quotient frontier.  The estimate
-`dim_nuc(C*(F))<=1` remains open.
+`dim_nuc(C*(F))<=1` remains open.  The full-corner theorem
+`stw83-circle-connector-canonical-full-corner` reduces it exactly to a
+two-vertex Toeplitz-module model with `N` exits.

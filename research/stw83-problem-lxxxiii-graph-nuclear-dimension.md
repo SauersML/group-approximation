@@ -98,3 +98,22 @@ has an infinite upstream cycle projection, and has no quasicentral approximate
 unit of projections for the circle ideal.  This does not compute nuclear
 dimension, but it rules out the two most elementary color-reuse mechanisms
 for all minimal circle-by-circle models at once.
+
+The acyclic connector itself can now be removed completely, rather than only
+remembered through its index.  The theorem
+`stw83-circle-connector-canonical-full-corner` chooses one vertex on each
+cycle and proves that their sum is a full projection whose corner is the graph
+with two loops and exactly `N` parallel edges from the upstream to the
+downstream vertex.  Hence every graph in the circle-by-circle class above is
+stably isomorphic to, and has the same nuclear dimension as, this canonical
+graph.  It also identifies the canonical algebra concretely as
+
+```text
+C*(S^N tensor 1, K tensor C(T)) subset M(K tensor C(T)).
+```
+
+This is an explicit graph/full-corner computation, not a classification from
+the six-term invariant.  It reduces the unresolved dimension-one question to
+a precise Toeplitz-module family; the extra `C(T)` in the compact ideal is
+exactly why the ordinary Toeplitz nuclear-dimension-one theorem does not close
+the argument.
