@@ -38,3 +38,8 @@ For all sufficiently large `n`, `b_n` is invertible.  Its polar unitary
 `u_n=b_n(b_n^*b_n)^(-1/2)` belongs to `B` and satisfies `||u_n-b_n||->0`.
 Lifting (2) along this sequence gives
 `||u_n phi(a)u_n^*-psi(a)||->0` for every `a in A`.
+
+In the forward direction, separability turns the usual finite-set definition
+of approximate unitary equivalence into one sequence by diagonalization.  In
+the reverse direction, (2) already gives pointwise convergence along the
+lifted sequence.
