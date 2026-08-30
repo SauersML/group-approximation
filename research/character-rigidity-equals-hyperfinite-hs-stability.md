@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 **Established by citation.**  Dogon--Vigdorovich, arXiv:2506.20843v2,
-Theorem 1.4 (`thm:main_char_rig_INTRO` in the source):
+Theorem 1.6 (`thm:main_char_rig_INTRO` in the source):
 
 > Let `G` be a center-free connected semisimple Lie group without compact
 > factors and with real rank at least 2.  Let `Gamma <= G` be an irreducible
