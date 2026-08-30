@@ -2840,6 +2840,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2BaseCount
 import GroupApproximation.Analysis.VoiculescuIntertwiningDefect
 import GroupApproximation.Analysis.VoiculescuIntertwiningStep
 import GroupApproximation.Analysis.VoiculescuGlimmPositive
+import GroupApproximation.Analysis.VoiculescuGlimmSelfAdjoint
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
