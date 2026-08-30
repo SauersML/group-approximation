@@ -30,6 +30,11 @@ dimension zero is O-infinity-stable.
   proves the entire zero-color assertion whenever every nonzero projection
   of the target is properly infinite.  It does not even require proper
   infiniteness of all nonzero image positive elements.
+- Conversely, `stw77-zero-counterexamples-trap-nonproper-model-corners`
+  shows that any remaining counterexample has one finite image packet which
+  forces a nonproper minimal block support in every sufficiently accurate
+  unital finite-dimensional model.  The obstruction is therefore uniform,
+  not an artefact of choosing a bad approximation.
 - The `B(H)`-target theorem supplies a different positive mechanism:
   essential representation absorption merges two whole copies of the range
   and never asks finite-dimensional support projections to return.
