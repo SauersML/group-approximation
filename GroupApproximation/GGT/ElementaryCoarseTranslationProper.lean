@@ -30,6 +30,51 @@ def ElementaryClosureFiniteTransversal (h : G) : Prop :=
   ∃ F : Set G, F.Finite ∧ ∀ a : G, a ∈ elementaryClosure h →
     ∃ (c : ℤ) (f : G), f ∈ F ∧ a = h ^ c * f
 
+/-- A finite cyclic transversal gives the elementwise virtual-cyclicity form
+used by Osin: every infinite subgroup of `E(h)` contains a nonzero power of
+`h`.
+
+This is only a finite pigeonhole argument and does not classify virtually
+cyclic groups.  Choose for each element of the infinite subgroup a cyclic
+exponent and a member of the finite transversal.  If no nonzero power of `h`
+lies in the subgroup, equal transversal members force both the exponents and
+the original subgroup elements to be equal, embedding an infinite type in a
+finite one. -/
+theorem exists_nonzero_zpow_mem_of_finiteTransversal {h : G}
+    (hfin : ElementaryClosureFiniteTransversal h) :
+    ∀ K : Subgroup G, K ≤ elementaryClosure h →
+      (K : Set G).Infinite →
+        ∃ j : ℤ, j ≠ 0 ∧ h ^ j ∈ K := by
+  classical
+  intro K hKE hKinf
+  obtain ⟨F, hFfin, hcover⟩ := hfin
+  by_contra hnone
+  push_neg at hnone
+  have hcoverK : ∀ a : K, ∃ (c : ℤ) (f : G),
+      f ∈ F ∧ (a : G) = h ^ c * f := by
+    intro a
+    exact hcover a (hKE a.property)
+  choose c f hf heq using hcoverK
+  let φ : K → F := fun a => ⟨f a, hf a⟩
+  have hφ : Function.Injective φ := by
+    intro a b hab
+    have hfeq : f a = f b := congrArg Subtype.val hab
+    have hprod : (a : G) * (b : G)⁻¹ = h ^ (c a - c b) := by
+      rw [heq a, heq b, hfeq]
+      group
+    have hmem : h ^ (c a - c b) ∈ K := by
+      rw [← hprod]
+      exact K.mul_mem a.property (K.inv_mem b.property)
+    have hceq : c a = c b := by
+      by_contra hc
+      exact hnone (c a - c b) (sub_ne_zero.mpr hc) hmem
+    apply Subtype.ext
+    rw [heq a, heq b, hceq, hfeq]
+  letI : Finite F := hFfin.to_subtype
+  have hKfinite : Finite K := Finite.of_injective φ hφ
+  have hKinfinite : Infinite K := hKinf.to_subtype
+  exact hKinfinite.not_finite hKfinite
+
 /-- The inverse of a coarse orientation-reversing translation is reversing
 with the same error and shift. -/
 theorem coarseReversing_inv (hiso : IsIsometricAction G X) {h r : G} {x : X}
