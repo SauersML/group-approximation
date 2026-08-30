@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw84-local-rank-and-locally-finite-factor-audit-2026-08-30.md
   - research/artifacts/stw84-almost-free-permutation-wreath-2026-08-30.md
+  - research/artifacts/stw84-common-stabilizer-wreath-2026-08-30.md
 ---
 
 **Problem LXXXIV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Determine for which countable discrete amenable
@@ -85,6 +86,23 @@ nontrivial, nonuniform finite stabilizers and examples where finitely
 generated subgroups meet the lamp kernel infinitely, beyond both the regular
 wreath and kernel-finite hypotheses.
 
+Infinite stabilizers are now covered when their positive-rank part is a
+common split core.  `stw84-common-stabilizer-wreath-bound` takes
+`A=H direct_sum Q`, lets `H` fix every lamp site, and assumes only finite
+stabilizers for the residual `Q`-action.  If `h=rank(H)` and `q=rank(Q)>=1`,
+then
+
+```text
+h+q <= dim_nuc C*((direct_sum_S L) rtimes A)
+    <= (h+1)(q+1)9^q-1.
+```
+
+For `q=0` the exact value is `h`.  The proof extracts the trivial directions
+as the tensor factor `C*(H)` and applies the corrected scalar/non-scalar
+fiber estimate to the residual action.  Thus every point stabilizer may be
+infinite of rank `h`; only the orbit-dependent positive-rank case without a
+common split core remains outside this mechanism.
+
 There is also an exact permanence theorem independent of virtual abelianness.
 `stw84-locally-finite-direct-factor-invariance` proves that adjoining any
 countable locally finite direct factor changes no nuclear dimension.  Hence
@@ -130,7 +148,10 @@ bounded local polynomial-growth degree (equivalently, local virtual
 nilpotence with uniformly bounded local Hirsch length).  The finite-stabilizer
 permutation theorem extends this to arbitrary almost-free permutation shifts
 for finite-rank abelian actors, but infinite stabilizers break its free-orbit
-fiber regrouping and remain uncontrolled.
+fiber regrouping.  The common-stabilizer theorem handles a split positive-rank
+core shared by all stabilizers.  Varying infinite stabilizers with no common
+split core still produce mixed homogeneous-space tensor fibers and remain
+uncontrolled.
 The directed-union argument still gives no control when its finite-stage
 bounds diverge.  Thus the remaining frontier includes unrestricted
 locally-finite-by-abelian groups and the general finite-Hirsch-length

@@ -19,6 +19,9 @@ polycyclicity.
 A further checkpoint weakens regular wreath shifts to arbitrary permutation
 shifts with finite point stabilizers; see
 `research/artifacts/stw84-almost-free-permutation-wreath-2026-08-30.md`.
+The next checkpoint permits a common split infinite stabilizer and is
+recorded in
+`research/artifacts/stw84-common-stabilizer-wreath-2026-08-30.md`.
 
 ## Lower mechanism: abelianization
 
@@ -200,8 +203,10 @@ generated stage.  The locally finite-lamp theorem covers regular wreath
 shifts over acting groups of uniformly bounded local polynomial-growth
 degree.  The permutation-wreath theorem additionally covers arbitrary
 countable index sets with finite stabilizers for finite-rank abelian actors,
-but not infinite stabilizers or arbitrary locally finite kernels and
-actions.  The
+and the common-stabilizer theorem permits a split positive-rank subgroup
+fixing every site.  Orbit-dependent infinite stabilizers without a common
+split core, and arbitrary locally finite kernels and actions, remain open.
+The
 direct-factor proof uses the
 augmentation quotient and therefore does not extend formally to an arbitrary
 semidirect product.  The directed-union theorem needs a uniform stage bound;
