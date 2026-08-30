@@ -7193,8 +7193,8 @@ wreath-compression-mf-radical [✓] Exact MF radicals of compression wreath prod
 
 ## Recently touched
 
-- 2026-08-30 · stw99-xciv-tail-relative-commutants-supply-z-copies [COMPLETE] Average onto matrix-stage commutants and use the UHF tails
-- 2026-08-30 · stw99-xciv-norm-matrix-tower-has-zstable-hull [ESTABLISHED] A coherent norm-matrix tower has a Z-stable hull with tail-central copies
+- 2026-08-30 · stw99-xciv-tail-relative-commutants-supply-z-copies [COMPLETE] Build coprime matrix-sum blocks from large Bratteli multiplicities
+- 2026-08-30 · stw99-xciv-norm-matrix-tower-has-zstable-hull [ESTABLISHED] Uniformly large Bratteli tails give Z-stable hulls and tail-central copies
 - 2026-08-30 · stw99-problem-xciv-hyperfinite-factor-separably-z-stable [OPEN] The hyperfinite II1 factor is separably Z-stable (STW Problem XCIV)
 - 2026-08-26 · leavitt-proper-amalgam-quotient-proof [COMPLETE] Amenable amalgamation is sofic but the literal join contains the nonsofic Leavitt core
 - 2026-08-26 · leavitt-one-compressor-join-is-proper-amalgam-quotient [ESTABLISHED] The literal one-compressor Leavitt join is a proper quotient of its two amenable factors' amalgam
