@@ -9,6 +9,7 @@ distinct_from:
   bcs-projective-kernel-phase-compilation: that asks for an engineered projective-kernel phase word preserving source soundness; this shows that taking the raw projective kernel of a non-CE trace supplies phase safety but not soundness
 artifacts:
   - research/artifacts/universal-hilbert-schmidt-obstruction-integration-2026-08-22.md
+  - research/artifacts/nonhyperlinear-literature-delta-2026-08-30.md
 ---
 
 ESTABLISHED.  Let `tau` be a tracial state on `C*(G)`.  Define its projective
@@ -149,6 +150,16 @@ remains non-CE.  For `g!=1`,
 so its projective kernel is trivial.  Thus a projectively faithful non-CE
 character and an embeddable regular character can live on the same group.
 Projective-kernel data alone cannot distinguish them.
+
+## Independent 2026 source confirmation
+
+Gao--Ioana--Vigdorovich, arXiv:2605.02242v1, note after Corollary 1.2 that
+free and surface groups admit traces which are not pointwise limits of
+finite-dimensional traces.  Those groups are residually finite and hence
+hyperlinear.  This gives a modern finitely generated instance of the same
+firewall: pathology of an arbitrary trace on `C*(G)` says nothing by itself
+about Connes embeddability of the canonical delta trace which defines group
+hyperlinearity.
 
 ## Consequence
 
