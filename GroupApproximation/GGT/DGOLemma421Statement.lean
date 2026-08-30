@@ -1,0 +1,380 @@
+import GroupApproximation.GGT.DGOBlockWord
+import GroupApproximation.GGT.DGOWWordConditions
+
+/-!
+# Dahmani--Guirardel--Osin's Lemma 4.21: the `W`-words, and clause (a)
+
+Lemma 4.21 is the gate under every remaining clause of the Hull route --- WPD of
+the elements Corollary 6.12 manufactures, their pairwise non-commensurability,
+`yi`'s own main step, and `nonelsub`'s `E_G(f) = E_G⁺(f)`.  Both of its clauses
+are proved from Proposition 4.14 with the constant uniform in the number of
+sides, which is what the 4.14 campaign is building.  This module is the
+statement layer: the class of words the lemma is about, and clause (a).
+
+## The class `W`, verbatim (p. 42)
+
+> Let `W` be the set consisting of all words `U` in `X ⊔ H` such that:
+> **(W1)** `U` contains no subwords of type `xy`, where `x, y ∈ X`.
+> **(W2)** If `U` contains a letter `h ∈ H_λ` for some `λ ∈ Λ`, then
+> `d̂_λ(1,h) > 50D`, where `D = D(1,0)` is given by Proposition 4.14.
+> **(W3)** If `h₁ x h₂` (respectively, `h₁ h₂`) is a subword of `U`, where
+> `x ∈ X`, `h₁ ∈ H_λ`, `h₂ ∈ H_μ`, then either `λ ≠ μ` or the element
+> represented by `x` in `G` does not belong to `H_λ` (respectively, `λ ≠ μ`).
+
+The class itself is **not defined here**.  `GGT.WWord.IsWOne`, `IsWTwo` and
+`IsWThree` (`GGT/DGOWWordConditions.lean`) are the three conditions, indexed by
+position and phrased with `getElem?`, and this module states Lemma 4.21 against
+them.  I had written a competing bundled `IsWWord` in this file and retired it:
+two encodings of one class is the rot both lanes have been guarding against, and
+theirs is the better encoding --- `w[i]? = some (RelLetter.base x)` carries no
+bound proof, so it needs none of the `Nat.lt_of_succ_lt` plumbing a
+`getElem`-with-proof form drags into every clause, and splitting the three
+conditions lets a consumer take only what it needs.
+
+(W2) is ball non-membership rather than metric, because `d̂_λ` takes the value
+`∞` (their Remark 6.10) and the metric form would be wrong here for the same
+reason it is wrong in `GGT.DGOTheorem611`.  The threshold is a parameter, not
+`50D`, because `D` is exactly what the 4.14 campaign has not landed.
+
+## Which words in this repository are `W`-words
+
+`GGT.DGOBlockWord.blockWord lam w h n` is the word `(w h)^n`, and whether it
+lies in `W` depends entirely on the spelling `w`:
+
+* `w = [base a]`, one `X`-letter --- **yes**, and this is
+  Dahmani--Guirardel--Osin's own case, the word `(ah)^N` of their Theorem 6.11.
+  `isWWord_blockWord_singleBase` proves it, from `a ∉ H lam` and `h` deep.
+* `w` a word of `μ`-letters with `μ ≠ lam` throughout and consecutive indices
+  distinct --- **yes**, vacuously for (W1), since such a word has no `X`-letters
+  at all.  This is Hull's `yi`, whose `g = a₁ ⋯ a_{k-1}` is spelled by letters
+  of distinct peripheral factors.
+* `w` a word of **two or more `X`-letters** --- **no**.  (W1) fails outright at
+  the first adjacent pair.  This is Hull's `nonelsub`, whose `g` is an arbitrary
+  element of `⟨𝒜⟩`.
+
+That third line is a real obstruction and not a technicality, so it is recorded
+here rather than discovered later.  Dahmani--Guirardel--Osin never meet it
+because their Corollary 4.27 lets them enlarge `X` by the finitely many letters
+they need and so assume `a ∈ X` outright; `GGT.DGOCorollary427` is that
+statement, and it is an unproved citation in this repository.  The alternative
+is to relax (W1) to *runs of `X`-letters of length at most `r`*, which should
+cost only the quasi-geodesic constant --- `(4,1)` becoming roughly
+`(4(1+r), 1)`, since their normal form `p = r₀p₁r₁ ⋯ pₘrₘ` would carry `rᵢ` of
+length up to `r` instead of at most one --- but that relaxation is not in the
+paper and would have to be redone rather than cited.
+
+So a consumer wanting WPD or non-commensurability for `g h` with `g` spelled by
+several `X`-letters needs one of those two, over and above the 4.14 campaign.
+Nothing in `GGT.DGOCorollary612Threshold` depends on this: its loxodromy clause
+is proved without 4.21 at all.
+
+## The route past (W1): enlarge `X`, do not relax the condition
+
+Both escapes were costed and the enlargement wins.  `GGT.DGOCorollary427`
+quantifies over the **base** with the **family fixed** --- its statement is
+`D₁.fam = D₂.fam → (D₁.base △ D₂.base).Finite → (↪_h ↔ ↪_h)` --- so applying it
+at a cone-off is not a special case: the cone-off *is* the family, and it does
+not move.  Taking `X₂ = X ∪ {g^{±1}}` makes `g` a single letter, the word
+becomes Dahmani--Guirardel--Osin's own `(a h)^N`, and `isWWord_blockWord_singleBase`
+applies.  Loxodromy comes back down to the original alphabet by Hull's
+Lemma A1, `GGT.HullYiAlphabetTransfer.isLoxodromic_base_of_subset`.
+
+That is the source's own move --- *"By Corollary 4.27 we can assume that `t ∈ X`
+without loss of generality"* (p. 51), and again for a finite set at p. 96 --- so
+it is cited rather than redone, and the same citation is owed elsewhere in the
+tree.  Relaxing (W1) would instead prove a variant and call it 4.21.
+
+The relaxation was priced before being rejected, and one thing found in the
+pricing is worth keeping in case anyone revisits it: **relaxing (W1) forces
+relaxing (W3) too.**  (W3) covers only `h₁h₂` and `h₁xh₂`, so with two or more
+`X`-letters between two `H`-letters no clause of it applies at all, and
+"no two consecutive components of `p` are connected" --- which their proof
+asserts from (W3) --- would have nothing under it.
+
+## Clause (b), and one form it must not be confused with
+
+`DGOLemma421b` is stated in the shape its consumers use.  Three encodings were
+settled by asking rather than guessing, and the first of them is *printed*:
+"consecutive" is not left to the reader, since (b)'s conclusion is the
+decomposition `p = x₀a₁ ⋯ x_{K-1}a_Kx_K` with the `xᵢ` *"edges labelled by
+elements of `X` or trivial paths"*.  So consecutive components are separated by
+**at most one letter**, which is the pair of inequalities
+`kp t ≤ ip (t+1) ≤ kp t + 1` below.  The connection is a **coset identity across
+two words read from two basepoints**, stated at the component *starts* because
+Hull's `yi` names the connecting element; and the indices are functions rather
+than a `Finset`, because the pairing `aᵢ ↔ bᵢ` is consumed index by index.
+They are `ℕ → ℕ` guarded by `t < K` rather than `Fin K → ℕ`, so that the
+consecutiveness clause needs no `Fin` successor arithmetic at any consumption
+site; `lt_of_isComp_of_le` supplies the strict ordering the `Fin K` form would
+have asserted, and composing with `Fin.val` recovers that form for a consumer
+who prefers it.
+
+**The consecutiveness clause is deliberately weaker than the printed
+decomposition, and the gap is not vacuous.**  `kp t ≤ ip (t+1) ≤ kp t + 1`
+constrains *where* the next component starts; Dahmani--Guirardel--Osin say what
+the separator *is* --- their `xᵢ` are *"edges labelled by elements of `X` or
+trivial paths"*.  A `W`-word may contain `h_λ h_ν h_λ` with `ν ≠ λ`: (W3) permits
+it, both adjacent pairs having distinct indices, and then the two `λ`-components
+are separated by an `H_ν`-letter, which satisfies the clause below and not their
+sentence.  So this is a real weakening, taken on purpose.
+
+Weaker is the right side to err on for a `Prop` that must eventually be *proved*
+from Proposition 4.14, and it costs the known consumer nothing --- in Hull's
+`yi` the matched components are consecutive letters of `a₁ ⋯ a_k`, so
+`ip (t+1) = kp t` and there is no separator at all.  A consumer that does care
+what the separator is must strengthen this clause rather than assume it says
+what the paper says.
+
+**The end form follows from the start form** and is not stated: a component's
+span lies in its own family member (`OsinComponents.span_mem_fam_of_isComp`), so
+`(vertex vp p (kp t))⁻¹ * vertex vq q (kq t)` is the product of that span's
+inverse, the start-form element, and the other span --- three elements of
+`D.fam (lam t)`.
+
+**This is not the refuted start-to-start form.**
+`GGT.DGOIsolatedComponentCut` shows that no bound on `d̂` holds for the element
+between two connected component *starts* --- of **one** word, and as a *bound*.
+Clause (b) asserts something different twice over: its two components lie in
+**two different words read from different basepoints**, and what it asserts is
+**membership in `H λ`**, not a relative-ball bound.  The two are one `rw` apart
+in appearance and a theorem apart in truth.
+-/
+
+namespace GroupApproximation
+namespace GGT
+namespace OsinComponents
+
+open GroupApproximation.WordMetric
+
+universe u w
+
+section WWords
+
+variable {G : Type u} [Group G] {Λ : Type w}
+
+/-- **Lemma 4.21(a)**: every path labelled by a word of `W` is
+`(4,1)`-quasi-geodesic.
+
+Stated over `ℕ` on the vertex metric, `(4,1)` reading `(j - i)/4 - 1 ≤ d`, i.e.
+`j - i ≤ 4d + 4`.  The threshold `C` is existentially bound and depends on `D`
+alone, being their `50 D(1,0)`.
+
+This is *not* free once the words are known to satisfy `(W1)`--`(W3)`: its proof
+counts the components of the path that are isolated in the geodesic
+`(2m+2)`-gon obtained by closing the path with a geodesic, and bounds their
+number by Proposition 4.14 with the constant uniform in the side count.  So
+clause (a) is blocked on the same input as clause (b). -/
+def DGOLemma421a : Prop :=
+  ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
+    D.IsHyperbolicallyEmbedded → ∃ C : ℕ,
+      ∀ (v : G) (u : List (RelLetter G Λ)), (∀ a ∈ u, D.IsLetter a) →
+        WWord.IsWOne u → WWord.IsWTwo D C u → WWord.IsWThree D u →
+          ∀ i j : ℕ, i ≤ j → j ≤ u.length →
+          j - i ≤ 4 * wordDist D.alphabet.carrier
+            (vertex v u i) (vertex v u j) + 4
+
+/-- **Lemma 4.21(b)**: two long `W`-labelled paths that fellow-travel have `K`
+consecutive components connected in pairs.
+
+> For every `ε > 0` and every integer `K > 0`, there exists `R = R(ε,K) > 0`
+> satisfying the following condition.  Let `p, q` be two paths in
+> `Γ(G, X ⊔ H)` such that `ℓ(p) ≥ R`, `Lab(p), Lab(q) ∈ W`, and `p, q` are
+> oriented `ε`-close.  Then there exist `K` consecutive components of `p` which
+> are connected to `K` consecutive components of `q`.
+
+`ip t` and `kp t` bracket the `t`-th distinguished component of `p`, and
+`iq t`, `kq t` that of `q`.  Consecutiveness is
+`kp t ≤ ip (t+1) ≤ kp t + 1`: at most one letter between one component's end and
+the next one's start, which is Dahmani--Guirardel--Osin's `xᵢ` being an edge or
+trivial.  Strict monotonicity of `ip` is a consequence rather than a hypothesis,
+since `IsComp` already gives `ip t < kp t`.
+
+The connection is stated at the starts, as a coset identity between the two
+words read from their own basepoints.  The corresponding identity at the ends
+follows, a component's two endpoints differing by its own label, which lies in
+`H (lam t)`. -/
+def DGOLemma421b : Prop :=
+  ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
+    D.IsHyperbolicallyEmbedded → ∃ C : ℕ, ∀ eps K : ℕ, ∃ R : ℕ,
+      ∀ (vp vq : G) (p q : List (RelLetter G Λ)),
+        (∀ c ∈ p, D.IsLetter c) → (∀ c ∈ q, D.IsLetter c) →
+        WWord.IsWOne p → WWord.IsWTwo D C p → WWord.IsWThree D p →
+        WWord.IsWOne q → WWord.IsWTwo D C q → WWord.IsWThree D q →
+        R ≤ p.length →
+        wordDist D.alphabet.carrier vp vq ≤ eps →
+        wordDist D.alphabet.carrier (vertex vp p p.length)
+          (vertex vq q q.length) ≤ eps →
+        ∃ (ip kp iq kq : ℕ → ℕ) (lam : ℕ → Λ),
+          (∀ t : ℕ, t < K → IsComp (lam t) p (ip t) (kp t)) ∧
+          (∀ t : ℕ, t < K → IsComp (lam t) q (iq t) (kq t)) ∧
+          (∀ t : ℕ, t + 1 < K → kp t ≤ ip (t + 1) ∧ ip (t + 1) ≤ kp t + 1) ∧
+          (∀ t : ℕ, t + 1 < K → kq t ≤ iq (t + 1) ∧ iq (t + 1) ≤ kq t + 1) ∧
+          (∀ t : ℕ, t < K →
+            (vertex vp p (ip t))⁻¹ * vertex vq q (iq t) ∈ D.fam (lam t))
+
+omit [Group G] in
+/-- **Strict monotonicity of the index functions is a consequence, not a
+clause.**  `IsComp` already gives `ip t < kp t`, and consecutiveness gives
+`kp t ≤ ip (t+1)`; together they order the distinguished components strictly.
+
+Stated separately so that `DGOLemma421b` need not assert it --- a named `Prop`
+that will one day be proved should carry no redundant conjunct, and a consumer
+that wants the ordering should not have to derive it.  Consumers wanting the
+`Fin K`-indexed form get it by composing with `Fin.val`. -/
+theorem lt_of_isComp_of_le {p : List (RelLetter G Λ)} {lam : ℕ → Λ}
+    {ip kp : ℕ → ℕ} {K : ℕ}
+    (hcomp : ∀ t : ℕ, t < K → IsComp (lam t) p (ip t) (kp t))
+    (hstep : ∀ t : ℕ, t + 1 < K → kp t ≤ ip (t + 1)) :
+    ∀ t s : ℕ, t < s → s < K → ip t < ip s := by
+  intro t s hts hsK
+  induction s with
+  | zero => omega
+  | succ n ih =>
+      rcases Nat.lt_or_ge t n with hlt | hge
+      · have hn : ip t < ip n := ih hlt (by omega)
+        have h1 : ip n < kp n := (hcomp n (by omega)).1
+        have h2 : kp n ≤ ip (n + 1) := hstep n (by omega)
+        omega
+      · have htn : t = n := by omega
+        subst htn
+        have h1 : ip t < kp t := (hcomp t (by omega)).1
+        have h2 : kp t ≤ ip (t + 1) := hstep t (by omega)
+        omega
+
+end WWords
+
+/-! ## The alternating word is a `W`-word -/
+
+section BridgeCombinatorics
+
+variable {G : Type u} {Λ : Type w}
+
+/-- The bound implicit in a `getElem?` that is `some`. -/
+theorem lt_length_of_getElem?_eq_some {α : Type u} {l : List α} {i : ℕ} {x : α}
+    (hx : l[i]? = some x) : i < l.length := by
+  by_contra hcon
+  rw [List.getElem?_eq_none (by omega)] at hx
+  simp at hx
+
+theorem getElem?_singleBase_even (lam : Λ) (a h : G) (n j : ℕ)
+    (hjn : j < 2 * n) (hj : j % 2 = 0) :
+    (blockWord lam [RelLetter.base a] h n)[j]? = some (RelLetter.base a) := by
+  obtain ⟨t, rfl⟩ : ∃ t, j = t * 2 := ⟨j / 2, by omega⟩
+  have htn : t < n := by omega
+  have hg := getElem?_blockWord_pre lam ([RelLetter.base a] : List (RelLetter G Λ))
+    h (n := n) (t := t) (j := 0) htn (by simp)
+  simpa using hg
+
+theorem getElem?_singleBase_odd (lam : Λ) (a h : G) (n j : ℕ)
+    (hjn : j < 2 * n) (hj : j % 2 = 1) :
+    (blockWord lam [RelLetter.base a] h n)[j]? = some (RelLetter.comp lam h) := by
+  obtain ⟨t, rfl⟩ : ∃ t, j = t * 2 + 1 := ⟨j / 2, by omega⟩
+  have htn : t < n := by omega
+  have hg := getElem?_blockWord_comp lam
+    ([RelLetter.base a] : List (RelLetter G Λ)) h (n := n) (t := t) htn
+  simpa using hg
+
+theorem getElem_singleBase_even (lam : Λ) (a h : G) (n j : ℕ)
+    (hjn : j < 2 * n) (hj : j % 2 = 0)
+    (hlt : j < (blockWord lam [RelLetter.base a] h n).length) :
+    (blockWord lam [RelLetter.base a] h n)[j]'hlt = RelLetter.base a :=
+  getElem_eq_of_getElem?_eq hlt (getElem?_singleBase_even lam a h n j hjn hj)
+
+theorem getElem_singleBase_odd (lam : Λ) (a h : G) (n j : ℕ)
+    (hjn : j < 2 * n) (hj : j % 2 = 1)
+    (hlt : j < (blockWord lam [RelLetter.base a] h n).length) :
+    (blockWord lam [RelLetter.base a] h n)[j]'hlt = RelLetter.comp lam h :=
+  getElem_eq_of_getElem?_eq hlt (getElem?_singleBase_odd lam a h n j hjn hj)
+
+end BridgeCombinatorics
+
+section Bridge
+
+variable {G : Type u} [Group G] {Λ : Type w}
+
+omit [Group G] in
+/-- **The word `(a h)^n` satisfies (W1)** --- its letters alternate, so no two
+consecutive positions both carry `X`-letters. -/
+theorem isWOne_blockWord_singleBase (lam : Λ) (a h : G) (n : ℕ) :
+    WWord.IsWOne (blockWord lam [RelLetter.base a] h n) := by
+  intro i x y hx hy
+  have hlen : (blockWord lam [RelLetter.base a] h n).length = 2 * n := by
+    rw [length_blockWord, List.length_singleton]
+    ring
+  have hi1 : i + 1 < 2 * n := by
+    have hb := lt_length_of_getElem?_eq_some hy
+    omega
+  have h2 : i % 2 = 0 ∨ i % 2 = 1 := by omega
+  rcases h2 with h2 | h2
+  · rw [getElem?_singleBase_odd lam a h n (i + 1) (by omega) (by omega)] at hy
+    simp at hy
+  · rw [getElem?_singleBase_odd lam a h n i (by omega) h2] at hx
+    simp at hx
+
+/-- **The word `(a h)^n` satisfies (W2)** when `h` is deep: its only `H`-letter
+is `h`. -/
+theorem isWTwo_blockWord_singleBase (D : RelGenSet G Λ) (lam : Λ) {a h : G}
+    {C : ℕ} (hh : h ∉ D.relBall lam C) (n : ℕ) :
+    WWord.IsWTwo D C (blockWord lam [RelLetter.base a] h n) := by
+  intro i mu h' hx
+  have hlen : (blockWord lam [RelLetter.base a] h n).length = 2 * n := by
+    rw [length_blockWord, List.length_singleton]
+    ring
+  have hi : i < 2 * n := by
+    have hb := lt_length_of_getElem?_eq_some hx
+    omega
+  have h2 : i % 2 = 0 ∨ i % 2 = 1 := by omega
+  rcases h2 with h2 | h2
+  · rw [getElem?_singleBase_even lam a h n i hi h2] at hx
+    simp at hx
+  · rw [getElem?_singleBase_odd lam a h n i hi h2] at hx
+    simp only [Option.some.injEq, RelLetter.comp.injEq] at hx
+    rw [← hx.1, ← hx.2]
+    exact hh
+
+/-- **The word `(a h)^n` satisfies (W3)** when `a ∉ H lam`.  The adjacent case is
+vacuous, the letters alternating; the separated case is the hypothesis, the
+intervening `X`-letter being `a` --- which is the clause
+`GGT.DGOTheorem611Refutation` shows cannot be dropped. -/
+theorem isWThree_blockWord_singleBase (D : RelGenSet G Λ) (lam : Λ) {a h : G}
+    (haH : a ∉ D.fam lam) (n : ℕ) :
+    WWord.IsWThree D (blockWord lam [RelLetter.base a] h n) := by
+  have hlen : (blockWord lam [RelLetter.base a] h n).length = 2 * n := by
+    rw [length_blockWord, List.length_singleton]
+    ring
+  constructor
+  · intro i mu nu h₁ h₂ hx hy
+    have hi1 : i + 1 < 2 * n := by
+      have hb := lt_length_of_getElem?_eq_some hy
+      omega
+    have h2 : i % 2 = 0 ∨ i % 2 = 1 := by omega
+    rcases h2 with h2 | h2
+    · rw [getElem?_singleBase_even lam a h n i (by omega) h2] at hx
+      simp at hx
+    · rw [getElem?_singleBase_even lam a h n (i + 1) (by omega) (by omega)] at hy
+      simp at hy
+  · intro i mu nu h₁ h₂ x hx hy hz
+    have hi2 : i + 2 < 2 * n := by
+      have hb := lt_length_of_getElem?_eq_some hz
+      omega
+    have h2 : i % 2 = 0 ∨ i % 2 = 1 := by omega
+    rcases h2 with h2 | h2
+    · rw [getElem?_singleBase_even lam a h n i (by omega) h2] at hx
+      simp at hx
+    · refine Or.inr ?_
+      have hml : lam = mu := by
+        rw [getElem?_singleBase_odd lam a h n i (by omega) h2] at hx
+        simp only [Option.some.injEq, RelLetter.comp.injEq] at hx
+        exact hx.1
+      have hxa : x = a := by
+        rw [getElem?_singleBase_even lam a h n (i + 1) (by omega) (by omega)] at hy
+        simp only [Option.some.injEq, RelLetter.base.injEq] at hy
+        exact hy.symm
+      rw [hxa, ← hml]
+      exact haH
+
+end Bridge
+
+end OsinComponents
+end GGT
+end GroupApproximation
