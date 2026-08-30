@@ -4,44 +4,43 @@ id: literal-base-explicit-kazhdan-pair
 kind: claim
 title: The literal affine base has an explicit eight-word Kazhdan pair
 distinct_from:
-  literal-kazhdan-clifford-inputs: That package proves qualitative property (T) and the Clifford inputs; this claim records the actual finite control set and tolerance.
-  effective-transport-modulus: This is a quantitative statement for honest orthogonal representations of the base, not a relator-defect modulus for approximate matrix models.
+  literal-kazhdan-clifford-inputs: That package is qualitative; this claim records the finite control set and an explicit tolerance.
+  effective-transport-modulus: This concerns honest orthogonal representations, not relator-defective matrix tuples.
 artifacts:
-  - GroupApproximation/Kazhdan/ExactHodgeCertificate.lean
-  - GroupApproximation/Monsters/P13SpectralGap.lean
   - GroupApproximation/Sofic/LiteralP13HodgeCertificate.lean
+  - GroupApproximation/Monsters/P13SpectralGap.lean
   - GroupApproximation/Sofic/LiteralBaseP13RotationQuotient.lean
   - GroupApproximation/Monsters/P13CircumcenterRouteStep3.lean
   - GroupApproximation/Sofic/LiteralBasePropertyTBridge.lean
 ---
 
-Put
-
-```text
-kappa13=1/sqrt(3000),
-kappaB =kappa13/64=1/(64*sqrt(3000)).
-```
-
 In the literal twenty-relator affine base `B`, let `Q_B` consist of `v2`,
-`v3`, and the following six words in the rotation generators (uppercase
-letters denote inverses):
+`v3`, and the six rotation words
 
 ```text
-YxzYX,  xzYXY,  Yxyxz,  XYxzY,  xYxzYx,  XzYXYX.
+YxzYX, xzYXY, Yxyxz, XYxzY, xYxzYx, XzYXYX.
 ```
 
-Then `(Q_B,kappaB)` is a Kazhdan pair for real orthogonal representations of
-`B`. Numerically, `kappaB=2.852721653672740e-4`.
-
-Consequently, if
+Then
 
 ```text
-S_B=Q_B union Q_B^{-1} union {1},
+kappaB=1/(64*sqrt(3000))=0.000285272165367274...
 ```
 
-then `|S_B|<=17`, and on the moving subspace of every honest orthogonal
-representation the normalized `S_B`-average has norm at most
+makes `(Q_B,kappaB)` a Kazhdan pair for real orthogonal representations of
+`B`. If `S_B=Q_B union Q_B^{-1} union {1}`, then `|S_B|<=17`, and the
+normalized `S_B`-average contracts the moving subspace by at most
 
 ```text
 1-kappaB^2/68 = 1-1/835584000.
 ```
+
+For comparison, the already-packaged generic declaration
+`ExactHodgeCertificate.Certificate.isKazhdanPair` gives the weaker but still
+explicit fallback tolerance
+
+```text
+(1-sqrt(11999/12000))/384000
+```
+
+on the same affine control set.
