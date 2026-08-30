@@ -85,6 +85,47 @@ Cuntz isometries, or construct a finite obstruction seed whose join with a
 Z-stable image retains a finite unit.  The latter remains tied to Problem
 LXVI.
 
+# Finite-ideal extension audit
+
+Normalized quasitracelessness of a unital algebra passes to unital quotients
+by composition, but it does not exclude unbounded lower semicontinuous
+quasitraces on nonunital ideals.  The Toeplitz--Cuntz extension is the sharp
+nuclear example: its unital middle algebra has no trace because its `n`
+orthogonal generating isometries would each have trace one, while the compact
+ideal has its usual unbounded trace.  Both simple layers have
+almost-unperforated Cuntz semigroup.  Hence finite ideal lattice plus regular
+simple layers is not by itself a strong-pure-infiniteness theorem.
+
+One exact repair is algebraic simplicity of the layers.  A densely finite
+lower semicontinuous trace is finite on the Pedersen ideal, so on an
+algebraically simple layer it is an everywhere-finite, hence bounded,
+positive functional.  In a nuclear target every lower semicontinuous
+2-quasitrace is a trace.  A bounded trace on an ideal extends canonically to
+the containing quotient and then pulls back to the original unital target,
+where it contradicts normalized quasitracelessness.  Thus every simple
+almost-unperforated layer is purely infinite.
+
+For separable nuclear layers, Kirchberg absorption upgrades simple pure
+infiniteness to `O_infinity`-stability.  Toms--Winter, *Strongly
+self-absorbing C-star algebras*, Transactions AMS 359 (2007), Theorem 4.3,
+states exactly that `D`-stability glues across short exact sequences of
+separable C-star algebras when `D` is separable, unital, strongly
+self-absorbing and `K_1`-injective.  Taking `D=O_infinity` and inducting along
+a maximal chain in the finite ideal lattice makes the entire target
+`O_infinity`-stable.  This proves the finite-ideal positive class recorded in
+the graph.  No extension permanence of strong pure infiniteness in arbitrary
+nonnuclear algebras is asserted.
+
+For completeness, the countable version uses the same absorption route.
+Kirchberg--Rordam Theorem 8.6 plus Toms--Winter Corollaries 3.1--3.2 identify
+separable nuclear strong pure infiniteness with `O_infinity`-stability after
+stabilizing and returning from the stabilization.  Toms--Winter Corollary
+3.4 preserves `D`-stability under sequential inductive limits.  Hence an
+increasing exhaustive ideal filtration with strongly purely infinite
+separable nuclear successive layers is strongly purely infinite.  This is a
+qualified nuclear theorem, not an assertion that the matrix-diagonalization
+definition glues across arbitrary extensions.
+
 # Trust boundary
 
 The finite-detection and counterexample-reflection proofs use only the
