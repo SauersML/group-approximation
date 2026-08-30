@@ -9,6 +9,7 @@ refuted_by:
 artifacts:
   - research/artifacts/stw99-lxxvi-soft-comparison-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-strong-pure-infiniteness-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxvi-finite-graph-compact-audit-2026-08-30.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -66,6 +67,18 @@ The same is now proved for circle fields in
 `stw99-lxxvi-circle-fields-over-simple-pure-fibers`: stable rank one cancels
 the compact clutching term, while the noncompact term is pointwise.  In
 particular `C(T) tensor C*_r(F_2)` is Cu-regular but not Z-stable.
+
+
+The compact wing is now completely controlled over every finite graph,
+without a `K_1)-vanishing hypothesis.
+`stw99-lxxvi-finite-graph-compact-clutching-rigidity` classifies projection
+bundles by their fiber class and one `K_1)-clutching coordinate per cycle,
+and proves that the actual first-factor map preserves all of them.  Thus for
+a simple stably finite pure fiber `D`, every compact class of `C(X,D)`
+survives tensoring with `Z` for every finite graph `X`.  This does not give
+the full Cu isomorphism: Phillips's circle-with-a-tail phenomenon leaves a
+genuinely noncompact, supportwise-clutching corridor when `K_1(D)` is
+nonzero.
 
 There is now a broader one-dimensional-base theorem at the exact idealwise
 `K_1`-free boundary.  For every second-countable locally compact Hausdorff
