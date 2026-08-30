@@ -199,6 +199,25 @@ theorem kill the same element by unrelated mechanisms; together with the
 Kazhdan obstruction, every known non-MF group of the compression family is
 excluded as a witness for non-quasidiagonality of `R`.
 
+## Addendum E. Abstract Clifford-compressor criterion
+
+The preceding proof only uses four structural inputs.  A marked group has a
+finite even Clifford block; a family of elements permutes that block by
+fixed-point-free involutions; every nonzero element of a countable abelian
+normal subgroup is conjugate into that family; and a nonamenable group acts
+on the abelian dual with Haar-null nontrivial fixed sets.  Under exactly
+these hypotheses every finite injective representation kills the mark.
+
+The Clifford permutation trace is `(1-1)^m=0`, so compressor conjugacy makes
+the character regular on the abelian subgroup.  Its von Neumann closure is
+therefore the Haar algebra of the dual.  Null fixed sets make the
+nonamenable action properly outer, and the existing hyperfinite covariance
+obstruction produces a forbidden expected copy of the nonamenable group
+factor.  This formulation uses neither property (T), invariant-measure or
+character rigidity, nor an extension of the representation to a profinite
+completion.  The literal group `E` is the case `2m=8`, `N=Z^3`, and
+`H=SL_3(Z)`.
+
 ## Addendum literature
 
 * N. P. Brown, Invariant means and finite representation theory of
