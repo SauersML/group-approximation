@@ -244,3 +244,42 @@ e = ε_{T_m})` is realizable over products of spheres, compatibly with
 `η_m ≅ 2η_{m+1}`, is precisely where Problem LXVI now sits in this
 approach; symplectic/orthogonal structures on `η` (which force even
 splittings) are the natural candidate source.
+
+## 8. The 2-adic cone obstruction (same day, second pass)
+
+The ε-tower repair and every other ⊕-of-finite-rank-blocks variant fails
+for a semigroup reason that is worth isolating.  Write the seed as
+`Q = ⊕_i m_i · γ^{(i)}` with finite-rank blocks `γ^{(i)}` whose finiteness
+is certified by Euler rigidity (all finite sub-sums have nonvanishing
+product Euler class).  Rigidity makes the certified classes a free-like
+positive cone: `p ~ q` forces blockwise bundle isomorphism, and
+`γ ≾ (block sums)` forces an honest complemented embedding, which the
+rank ≤ half-dimension constraint of nonvanishing Euler classes forbids
+beyond the trivial ones (the embedding bound `rank > dim/2` is the exact
+negation of the certification bound).  Consequences:
+
+* a CAR filtration `1 = Σ_{α ∈ {0,1}^k} P^k_α` with equivalent summands
+  forces, at each level, an exactly even distribution of every block among
+  the `2^k` nodes; the block with multiplicity `m_i` splits evenly only
+  down to level `v_2(m_i)`, and the odd residue must be assigned to one
+  child, breaking equivalence: leftovers are unavoidable for every seed;
+* leftovers can only be repaired by absorption (`X ⊕ L ~ X`), which needs
+  same-class infinite families or boundary-crossing embeddings, both
+  excluded by rigidity;
+* the alternative repair — carrying divisibility in multiplicities — is
+  §7's refuted mechanism.
+
+So within Euler-rigid ⊕-block models over products of spheres (or any
+base: the bounds `e ≠ 0 ⟹ rank ≤ dim/2` and `rank > dim/2 ⟹ trivial
+sub-line` are universal), Problem LXVI's CAR cannot coexist with a finite
+`Q_1`: the answer to LXVI is NO for this entire model class, for diagonal
+subprojections.  What remains genuinely open in the Rørdam world: (i)
+non-diagonal subprojections of multiset projections (the corner
+`Q M(A) Q` contains subbundles of `⊕ ζ_J` that are not sub-sums; their
+equivalence theory is the strict-topology gap where Kuiper's theorem
+fails); (ii) fundamentally different finiteness mechanisms — and Rørdam's
+Euler rigidity is at present the only known source of simple finite
+non-stably-finite algebras.  Either LXVI needs a new finiteness
+mechanism, or the negative answer should be provable by pushing the cone
+rigidity from diagonal to general subprojections.  This refines the
+problem to a concrete dichotomy and is where the lane leaves it.
