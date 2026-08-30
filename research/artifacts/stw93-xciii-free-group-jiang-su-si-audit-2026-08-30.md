@@ -1,0 +1,96 @@
+# STW XCIII: free-group--Jiang--Su property (SI) audit (2026-08-30)
+
+Put
+
+```text
+B = C*_r(F₂),   A = B ⊗ 𝒵,   D = A_ω ∩ A',
+I = J_τ ∩ D,
+```
+
+where `τ` is the unique trace and `J_τ` is the trace-kernel ideal.
+
+## Primary-source status
+
+The April 2026 version of Schafhauser--Tikuisis--White,
+[Problem XCIII](https://arxiv.org/abs/2506.10902), records that `A` has property
+(SI) exactly when `D` has a unique quasitrace.  Searches of arXiv title,
+abstract, and exact-phrase records through 2026-08-30 located no later paper
+settling this question.
+
+Perera--Thiel--Vilalta, [Theorem
+3.6](https://arxiv.org/abs/2512.17261), now proves for every separable
+C*-algebra `E` that `E` is 𝒵-stable exactly when its uncorrected central
+sequence algebra is pure.  It therefore supplies a direct current source for
+pureness of `D`, without nuclearity.  Pureness gives strict comparison by all
+quasitraces; it does not prove that there is only one quasitrace.
+
+Kirchberg--Rørdam, [Theorem
+3.3](https://arxiv.org/abs/1209.5311), prove central surjectivity for every
+separable unital C*-algebra with a faithful trace, with no nuclearity
+assumption.  Applied here it gives
+
+```text
+0 → I → D → M^ω ∩ M' → 0,
+M = π_τ(A)'' = L(F₂) ̅⊗ R.
+```
+
+Dixmier--Lance Proposition 19 (and Fang--Ge--Li, Theorem 4.7) show that `M`
+is super McDuff, so `M^ω ∩ M'` is a II₁ factor.  A II₁ factor has a
+unique normalized quasitrace.  None of these results controls quasitraces which
+put mass on `I`.
+
+## Exact trace-kernel reduction
+
+Every normalized quasitrace on `D` which vanishes on `I` descends to the II₁
+factor quotient and is therefore the limit trace.  Consequently
+
+```text
+A has property (SI)
+  ⇔ D has a unique quasitrace
+  ⇔ every normalized quasitrace on D vanishes on I.
+```
+
+If the answer is negative, there are a normalized quasitrace `q` and a positive
+contraction `h∈I` with
+
+```text
+τ_ω(h)=0  but  q(h)>0.
+```
+
+In particular `q` cannot be bounded above by any constant multiple of the
+limit trace on positive elements.  This turns the open problem into a singular
+quasitrace problem entirely inside the trace-kernel ideal.
+
+## The two tensor sources
+
+There are canonical unital embeddings
+
+```text
+F(B) → D,  [(b_n)] ↦ [(b_n⊗1)],
+F(𝒵) → D,  [(z_n)] ↦ [(1⊗z_n)].
+```
+
+Since `L(F₂)` is full, central surjectivity for `B` has scalar target:
+
+```text
+F(B)/(J_τ∩F(B)) ≅ ℂ.
+```
+
+Thus every non-scalar free-factor central sequence is trace-kernel modulo its
+limit-trace scalar.  This locates a concrete source of elements in the open
+ideal but does not construct a quasitrace charging them.
+
+On the other hand, `𝒵` has property (SI), and the standard trace-kernel
+argument gives uniqueness of the quasitrace on `F(𝒵)`.  Hence every
+normalized quasitrace on `D` restricts to the canonical one on the tensor-factor
+copy.  Moreover, any property-(SI) pair lying wholly in this copy has a witness
+within the same copy.  Tensor-factor central sequences alone therefore cannot
+witness failure.
+
+## Trust boundary
+
+The remaining claim is that all quasitraces on `D` annihilate `I`.  Central
+pureness does not settle it because strict comparison is evaluated against all
+quasitraces, including a hypothetical singular one.  Exactness of `A` also
+cannot be transferred automatically to the product quotient defining `D`.
+No unique-quasitrace or property-(SI) conclusion for `A` is claimed here.

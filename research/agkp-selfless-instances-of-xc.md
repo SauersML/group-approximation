@@ -11,8 +11,12 @@ artifacts:
 
 If every C*-simple group were acylindrically hyperbolic with rapid decay and
 no nontrivial finite normal subgroup, AGKP's theorem would give strict
-comparison for all of them.  The second premise is false (`SL₃(ℤ)` is
-C*-simple, by Bekka--Cowling--de la Harpe, and is not acylindrically
-hyperbolic), so this route records the exact size of the gap: Problem XC is
-open precisely on C*-simple groups outside AGKP's hypotheses, `SL_n(ℤ)` for
-`n ≥ 3` being the first named case.
+comparison for all of them.  The universal premise is false (`SL₃(ℤ)` is
+C*-simple but not acylindrically hyperbolic), so this route is correctly
+invalidated by `sl3z-cstar-simple-not-acylindrically-hyperbolic`.
+
+This is only a historical failed universalization, not the present frontier.
+In particular, `SL_n(ℤ)` is no longer an open case: Vigdorovich's
+arXiv:2602.10616v3 linear-group theorem makes its reduced algebra selfless and
+hence strictly comparing.  The general XC question remains open outside all
+currently known sufficient classes.

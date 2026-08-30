@@ -31,6 +31,19 @@ only gives
 dim_nuc(E) <= dim_nuc(I) + dim_nuc(D) + 1.
 ```
 
+There is now an exact comparison invariant below nuclear dimension.
+`stw81-continuous-trace-shadow-invariant` defines `ctdim` from the spectrum
+dimensions of continuous-trace subquotients, and
+`stw81-ctdim-extension-maximum` proves
+
+```text
+ctdim(E) = max(ctdim(I),ctdim(D)) <= dim_nuc(E).
+```
+
+Thus a counterexample to the formula in this problem cannot be caused by
+topological dimension hidden across the extension; it must be a genuinely
+noncommutative failure of approximation-color reuse.
+
 As of 2026-08-30 this remains open in the stated generality.  The May 2026
 version of the 99-problems paper still asks it.  A search of the primary arXiv
 catalogue through that date found no later paper claiming the arbitrary
