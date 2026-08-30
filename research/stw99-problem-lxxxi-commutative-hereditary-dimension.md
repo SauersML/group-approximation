@@ -37,6 +37,16 @@ route is Problem LXXXII: a general maximum formula, combined with the simple
 nuclear-dimension dichotomy, would settle finite-ideal separable cases, but
 the required color reuse remains open.
 
+The rank-one method now extends beyond uniformly finite-dimensional fibres.
+`stw81-continuous-trace-positive` proves the assertion for all separable
+continuous-trace algebras, including infinite-dimensional compact-operator
+bundles.  More generally,
+`stw81-type-i-topological-dimension-collapse` shows that the hypothesis
+forces `topdim(A)<=1` for every separable type-I algebra.  Thus a type-I
+counterexample would have to separate nuclear dimension from
+Brown--Pedersen topological dimension at the first possible value; merely
+adding high-dimensional type-I strata cannot produce one.
+
 The relationship is now internal and witness-level:
 `stw81-finite-ideal-counterexample-forces-lxxxii-counterexample` proves that
 every separable finite-ideal counterexample here contains, at its first
