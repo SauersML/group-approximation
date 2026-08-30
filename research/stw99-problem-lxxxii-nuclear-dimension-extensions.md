@@ -6,6 +6,7 @@ title: Nuclear dimension should be the maximum across an extension (STW Problem 
 root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw82-one-color-gluing-audit-2026-08-30.md
 ---
 
 **Problem LXXXII of Schafhauser--Tikuisis--White,
@@ -67,3 +68,18 @@ obtaining extra orthogonality from the extension (for example a
 quasidiagonal projectional approximate unit, or the classification inputs in
 the Kirchberg-ideal cases).  No mechanism currently supplies that
 orthogonality for an arbitrary separable extension.
+
+The exact local obstruction is now recorded in
+`stw82-order-zero-direct-sum-support-criterion`: two order-zero maps merge by
+the direct-sum construction precisely when their unit supports are
+orthogonal.  For the complementary supports `h` and `1-h`,
+`stw82-complementary-cutdowns-merge-iff-near-projections` proves, with
+explicit estimates, that asymptotic orthogonalizability is equivalent to
+`h` being asymptotically projectional.  This is not a consequence of
+quasicentrality.  Indeed,
+`stw82-commutative-max-formula-with-maximal-cutdown-overlap` shows that in
+the interval endpoint extension every positive contractive quasicentral
+approximate unit has overlap norm exactly `1/4`, although the maximum
+formula holds.  Thus the unresolved gluing step must reorganize the colour
+maps or absorb their transition region; perturbing the two raw cuts cannot
+be a general proof.
