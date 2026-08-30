@@ -200,6 +200,28 @@ counterexample must have both `L` and `R` proper and a nonzero overlap `I`;
 all possible extra colour is localized to gluing across that common ideal,
 not to either one-sided support quotient.
 
+The overlap has an exact linking-algebra normal form
+(`stw82-overlap-is-a-full-linking-core`).  With `q=1-p`, set
+
+```text
+P=pAp, Q=qAq, X=pAq, B=pIp, C=qIq.
+```
+
+Then `X` is a full `B`--`C` imprimitivity bimodule and
+
+```text
+I=[B X;X* C],       A=[P X;X* Q],       A+C p=[P~ X;X* Q].
+```
+
+The residual diagonals are `P/B=A/R` and `Q/C=A/L`.  This identifies the
+remaining operation as partial unitization of one diagonal of a generalized
+linking algebra.  It also blocks the naive stabilization argument: every
+finite frame from `X` has left and right inner products in `B` and `C`, so
+it transports colours only across the overlap and cannot norm-approximate a
+nonzero class in either residual diagonal quotient.  A complete proof must
+coordinate both residual diagonal approximations with those same core
+colours; Morita invariance of the full overlap alone is insufficient.
+
 That projectional hypothesis cannot be replaced formally by real rank zero
 and arbitrary finite-spectrum positive cuts.
 `stw82-finite-spectrum-cuts-do-not-force-repair` constructs a stabilized
