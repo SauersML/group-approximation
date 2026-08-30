@@ -105,6 +105,23 @@ theorem vertex_secondHalf (w : List (RelLetter G Λ)) (v : G) (c : ℕ → ℕ)
   rw [vertex_append_left _ _ _ hlen', vertex_append_left _ _ _ hlen]
   exact vertex_drop_from w v (c b) k
 
+/-- **Every vertex of the wrapped second-half arc is a vertex of the rotated
+polygon.**  Unlike `vertex_secondHalf`, this covers both the suffix after `b`
+and the prefix before `a`, including pairs that cross the word seam. -/
+theorem vertex_secondHalf_rotWord (w : List (RelLetter G Λ)) (v : G)
+    (c : ℕ → ℕ) {a b k : ℕ} (ha : c a ≤ c b) (hb : c b ≤ w.length)
+    (hk : k ≤ (w.length - c b) + c a) (t : List (RelLetter G Λ)) :
+    vertex (vertex v w (c b)) (secondHalf w c a b t) k =
+      vertex (vertex v w (c b)) (rotWord w (c b)) k := by
+  rw [secondHalf_eq_rotWord_append w c ha hb t]
+  have hrot : (rotWord w (c b)).length = w.length := length_rotWord w hb
+  have hprefix : ((rotWord w (c b)).take ((w.length - c b) + c a)).length =
+      (w.length - c b) + c a := by
+    rw [List.length_take, hrot]
+    omega
+  rw [vertex_append_left _ _ _ (by rw [hprefix]; exact hk)]
+  exact vertex_take _ _ hk
+
 /-! ## Connectedness transfers -/
 
 /-- **Connectedness in the first half is connectedness in the polygon.**
@@ -133,6 +150,21 @@ theorem connected_secondHalf_iff (H : Λ → Subgroup G) (lam : Λ)
       * vertex (vertex v w (c b)) (secondHalf w c a b t) j ∈ H lam
     ↔ (vertex v w (c b + i))⁻¹ * vertex v w (c b + j) ∈ H lam
   rw [vertex_secondHalf w v c hi t, vertex_secondHalf w v c hj t]
+
+/-- **Connectedness anywhere on the wrapped second-half arc is connectedness
+in the rotated polygon.** -/
+theorem connected_secondHalf_rotWord_iff (H : Λ → Subgroup G) (lam : Λ)
+    (w : List (RelLetter G Λ)) (v : G) (c : ℕ → ℕ) {a b i j : ℕ}
+    (ha : c a ≤ c b) (hb : c b ≤ w.length)
+    (hi : i ≤ (w.length - c b) + c a)
+    (hj : j ≤ (w.length - c b) + c a)
+    (t : List (RelLetter G Λ)) :
+    Connected H lam (vertex v w (c b)) (secondHalf w c a b t) i j ↔
+      Connected H lam (vertex v w (c b)) (rotWord w (c b)) i j := by
+  show (vertex (vertex v w (c b)) (secondHalf w c a b t) i)⁻¹ *
+      vertex (vertex v w (c b)) (secondHalf w c a b t) j ∈ H lam ↔ _
+  rw [vertex_secondHalf_rotWord w v c ha hb hi t,
+    vertex_secondHalf_rotWord w v c ha hb hj t]
 
 end DGOPolygonCut
 end GGT

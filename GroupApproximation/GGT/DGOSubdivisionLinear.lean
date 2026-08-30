@@ -273,5 +273,36 @@ theorem linear_of_subdivision (f : ℕ → ℕ) (C : ℝ) (N : ℕ) (α : ℝ)
     exact this
   linarith
 
+/-- **The natural-number form consumed by Proposition 4.14.**  The affine real
+bound from `linear_of_subdivision` can be rounded to one natural slope.  For
+`n ≥ 1` the additive constant is absorbed into that slope, so no downstream
+consumer has to repeat the real-to-natural bookkeeping. -/
+theorem nat_linear_of_subdivision (f : ℕ → ℕ) (C : ℝ) (N : ℕ) (α : ℝ)
+    (hC : 0 < C) (hα0 : 0 < α) (hα1 : α < 1)
+    (H : ∀ n : ℕ, N < n → ∃ (k : ℕ) (m : Fin k → ℕ),
+      (k : ℝ) ≤ C * Real.log n ∧
+      (f n : ℝ) ≤ ∑ i, (f (m i) : ℝ) ∧
+      (n : ℝ) ≤ ∑ i, (m i : ℝ) ∧
+      (∑ i, (m i : ℝ)) ≤ (n : ℝ) + C * Real.log n ∧
+      ∀ i, (m i : ℝ) ≤ α * n) :
+    ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → f n ≤ L * n := by
+  obtain ⟨A, B, hA, hB, hlin⟩ :=
+    linear_of_subdivision f C N α hC hα0 hα1 H
+  let L : ℕ := Nat.ceil A + Nat.ceil B
+  refine ⟨L, ?_⟩
+  intro n hn
+  have hn0 : (0 : ℝ) ≤ (n : ℝ) := Nat.cast_nonneg _
+  have hn1 : (1 : ℝ) ≤ (n : ℝ) := by exact_mod_cast hn
+  have hceilA : A ≤ (Nat.ceil A : ℝ) := Nat.le_ceil A
+  have hceilB : B ≤ (Nat.ceil B : ℝ) := Nat.le_ceil B
+  have hceilB0 : (0 : ℝ) ≤ (Nat.ceil B : ℝ) := Nat.cast_nonneg _
+  have hreal : (f n : ℝ) ≤ ((L * n : ℕ) : ℝ) := by
+    calc
+      (f n : ℝ) ≤ A * n + B := hlin n
+      _ ≤ ((Nat.ceil A : ℝ) + (Nat.ceil B : ℝ)) * n := by nlinarith
+      _ = ((L * n : ℕ) : ℝ) := by
+        simp [L, Nat.cast_add, Nat.cast_mul]
+  exact_mod_cast hreal
+
 end DGO
 end GroupApproximation

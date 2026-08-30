@@ -1,27 +1,26 @@
 import GroupApproximation.GGT.DGOPolygonCutFamily
+import GroupApproximation.GGT.DGOIsolatedComponentRotate
 import GroupApproximation.GGT.OsinTheorem54SepReversal
 import GroupApproximation.GGT.DGOIsolatedComponentBridge
 
 /-!
-# The two halves of a corner-to-corner cut
+# The two halves of a cut between named word vertices
 
 The first step of Dahmani--Guirardel--Osin's proof of Proposition 4.14: the
-balanced cut of `GGT/OlshanskiiBisection.lean`, read at corners by
-`GGT/DGOPolygonCutFamily.exists_balanced_cut_word`, divides the polygon into two
-closed paths.  This module builds them as words and proves the three things
-every later step needs of them --- their letters are admissible, they spell the
-identity, and their lengths are what the side count says.
+balanced cut divides the polygon into two closed paths.  This module is the
+corner primitive used after `DGOAssemblyCuts.splitPairCut` has inserted the two
+selected graph vertices as corners of the refined polygon.  It builds the two
+paths as words and proves the three things every later step needs of them ---
+their letters are admissible, they spell the identity, and their lengths are
+what the side count says.
 
 ## Corner to corner, and what that saves
 
-DGO's cut lands at points `u ∈ p_α` and `v ∈ p_β` in the interiors of two sides,
-so they carry the splittings `p_α = p_α′p_α″` and `p_β = p_β′p_β″` through the
-whole construction and must argue separately that one factor of each pair is
-trivial when the side is distinguished.  Our cut runs corner to corner --- the
-pull-back costs one side length at each end and no more, since a side is a
-geodesic segment parametrised on `[0, ℓ]` and so every point of it is within the
-side's own length of its initial corner --- so the halves are whole sides plus
-the chord, and none of that bookkeeping arises.
+DGO's cut lands at graph vertices `u ∈ p_α` and `v ∈ p_β` in two sides.
+`splitPairCut` performs the splittings once at the cut-function layer, paying
+one added side at each endpoint.  This module then sees `u` and `v` as ordinary
+corners, so the halves are whole refined sides plus the chord and none of the
+interior-point bookkeeping is duplicated here.
 
     firstHalf  = (the arc from corner a to corner b) ++ (the chord, reversed)
     secondHalf = (the arc from corner b round to corner a) ++ (the chord)
@@ -67,6 +66,37 @@ corner `a`, closed by the chord. -/
 def secondHalf (w : List (RelLetter G Λ)) (c : ℕ → ℕ) (a b : ℕ)
     (t : List (RelLetter G Λ)) : List (RelLetter G Λ) :=
   w.drop (c b) ++ w.take (c a) ++ t
+
+omit [Group G] in
+/-- **The wrapped arc of the second half is a prefix of a rotation.**
+
+This identity lets the mature cyclic component-transport API for `rotWord`
+handle both pieces of the wrapped arc at once.  In particular, the seam between
+`w.drop (c b)` and `w.take (c a)` is no longer special bookkeeping in the
+component-surgery layer. -/
+theorem secondHalf_eq_rotWord_append (w : List (RelLetter G Λ)) (c : ℕ → ℕ)
+    {a b : ℕ} (ha : c a ≤ c b) (_hb : c b ≤ w.length)
+    (t : List (RelLetter G Λ)) :
+    secondHalf w c a b t =
+      (rotWord w (c b)).take ((w.length - c b) + c a) ++ t := by
+  have hdrop : (w.drop (c b)).length = w.length - c b := by
+    rw [List.length_drop]
+  have htake : (w.take (c b)).take (c a) = w.take (c a) := by
+    rw [List.take_take]
+    congr 1
+    omega
+  -- the rewrite must be ANCHORED: an unqualified `take_of_length_le` matches
+  -- `w.take (c a)` on the left first and asks for `w.length ≤ c a`, which is
+  -- false.  Naming the instance pins it to the `drop` on the right.
+  have hle : (List.drop (c b) w).length ≤ w.length - c b + c a := by
+    rw [hdrop]
+    omega
+  have hfull : List.take (w.length - c b + c a) (List.drop (c b) w)
+      = List.drop (c b) w := List.take_of_length_le hle
+  have hidx : w.length - c b + c a - (w.length - c b) = c a := by omega
+  show w.drop (c b) ++ w.take (c a) ++ t =
+    ((w.drop (c b) ++ w.take (c b)).take ((w.length - c b) + c a)) ++ t
+  rw [List.take_append, hdrop, hfull, hidx, htake]
 
 /-! ## What the arc spells -/
 

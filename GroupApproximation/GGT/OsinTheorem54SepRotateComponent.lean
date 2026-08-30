@@ -155,6 +155,7 @@ theorem exists_isCompStart_of_rotWord_of_length_le (lam : Λ) (v : G)
         (by omega)] at hprevn
       exact hprevn hprevw
     exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
+
   · have hjr : j = w.length - i + (j - (w.length - i)) := by omega
     have hrlt : j - (w.length - i) < i := by omega
     rw [getElem_rotWord_add w hi j (j - (w.length - i)) hjr hrlt hjlen
@@ -173,6 +174,206 @@ theorem exists_isCompStart_of_rotWord_of_length_le (lam : Λ) (v : G)
           (by omega) hj1len (by omega)] at hprevn
         exact hprevn hprevw
     exact ⟨k₀, by rw [← hi₀]; exact hcomp₀⟩
+
+/-! ## Isolatedness before the rotation point -/
+
+/-- **Isolation at the basepoint rules out a terminal `lam`-run.**
+
+This is the other cyclic maximality fact, dual to
+`notMem_wrap_of_isIsolated`.  If the last letter belonged to `H_lam`, the
+component containing it would end at the closing vertex.  Closedness identifies
+that vertex with the start of the distinguished component at `0`, so the two
+components would be connected. -/
+theorem notMem_terminal_of_isIsolated_zero (D : RelGenSet G Λ) (lam : Λ)
+    (v : G) {w : List (RelLetter G Λ)}
+    (hlet : ∀ x ∈ w, D.IsLetter x)
+    (hclosed : RelLetter.listVal w = 1) {k : ℕ}
+    (hcomp : IsComp lam w 0 k) (hiso : IsIsolated D.fam lam v w 0)
+    (hklen : k < w.length) :
+    ¬ (w[w.length - 1]'(by omega)).IsCompOf lam := by
+  intro hlast
+  obtain ⟨q, r, hqle, hltr, hqr⟩ :=
+    exists_isComp_of_isCompOf lam w (w.length - 1) (by omega) hlast
+  have hr : r = w.length := by omega
+  have hq0 : q ≠ 0 := by
+    intro hq
+    subst q
+    have hrk : r = k := isComp_end_unique hqr hcomp
+    omega
+  have hspan : (vertex v w q)⁻¹ * vertex v w r ∈ D.fam lam :=
+    span_mem_fam_of_isComp D v hlet hqr
+  refine hiso.2 q hq0 ⟨r, hqr⟩ ?_
+  rw [hr, vertex_length_of_closed v w hclosed] at hspan
+  have heq : ((vertex v w q)⁻¹ * v)⁻¹ = v⁻¹ * vertex v w q := by
+    group
+  rw [vertex_zero, ← heq]
+  exact inv_mem hspan
+
+omit [Group G] in
+/-- **The basepoint component survives a later rotation.**
+
+The component `[0,k)` moves to `[|w|-i, |w|-i+k)`.  Its new predecessor is
+the final letter of `w`, which is why this is separate from
+`isComp_rotWord_before`; `hterminal` is precisely the cyclic maximality fact
+supplied by isolation and closedness above. -/
+theorem isComp_rotWord_zero_before (lam : Λ) {w : List (RelLetter G Λ)}
+    {i k : ℕ} (hi : i < w.length) (hcomp : IsComp lam w 0 k)
+    (hki : k ≤ i)
+    (hterminal : ¬ (w[w.length - 1]'(by omega)).IsCompOf lam) :
+    IsComp lam (rotWord w i) (w.length - i) (w.length - i + k) := by
+  have hkw : k ≤ w.length := hcomp.2.1
+  have hrange := hcomp.2.2.1
+  have hpost := hcomp.2.2.2.2
+  have hlen : (rotWord w i).length = w.length := length_rotWord w (le_of_lt hi)
+  refine ⟨by omega, by omega, ?_, ?_, ?_⟩
+  · intro j hj1 hj2 hj
+    rw [getElem_rotWord_add w (le_of_lt hi) j (j - (w.length - i))
+      (by omega) (by omega) hj (by omega)]
+    exact hrange (j - (w.length - i)) (by omega) (by omega) (by omega)
+  · intro j hj hjlen hc
+    rw [getElem_rotWord_lt w (le_of_lt hi) j (w.length - 1)
+      (by omega) (by omega) hjlen (by omega)] at hc
+    exact hterminal hc
+  · intro hk hc
+    have hki' : k < i := by omega
+    rw [getElem_rotWord_add w (le_of_lt hi) (w.length - i + k) k rfl hki'
+      hk (by omega)] at hc
+    exact hpost (by omega) hc
+
+/-- **The isolated basepoint component survives a later rotation.**
+
+This closes the only cyclic transport case omitted by
+`isIsolated_rotWord_before`: the predecessor needed after rotation is the last
+letter of the original word, and `notMem_terminal_of_isIsolated_zero` rules it
+out. -/
+theorem isIsolated_rotWord_zero_before (D : RelGenSet G Λ) (lam : Λ) (v : G)
+    {w : List (RelLetter G Λ)} (hlet : ∀ x ∈ w, D.IsLetter x)
+    (hclosed : RelLetter.listVal w = 1) {i k : ℕ} (hi : i < w.length)
+    (hcomp : IsComp lam w 0 k) (hki : k ≤ i)
+    (hiso : IsIsolated D.fam lam v w 0) :
+    IsIsolated D.fam lam (vertex v w i) (rotWord w i) (w.length - i) := by
+  have hterminal : ¬ (w[w.length - 1]'(by omega)).IsCompOf lam :=
+    notMem_terminal_of_isIsolated_zero D lam v hlet hclosed hcomp hiso (by omega)
+  have hrotcomp : IsComp lam (rotWord w i) (w.length - i)
+      (w.length - i + k) :=
+    isComp_rotWord_zero_before lam hi hcomp hki hterminal
+  have hdistVertex : vertex (vertex v w i) (rotWord w i) (w.length - i) =
+      vertex v w 0 := by
+    exact vertex_rotWord_add v w (le_of_lt hi) hclosed (w.length - i) 0 rfl
+      (by omega)
+  refine ⟨⟨w.length - i + k, hrotcomp⟩, ?_⟩
+  intro p hpdist hpstart hconn
+  have hmem : (vertex v w 0)⁻¹ *
+      vertex (vertex v w i) (rotWord w i) p ∈ D.fam lam := by
+    rw [← hdistVertex]
+    exact hconn
+  rcases Nat.eq_zero_or_pos p with hp0 | hppos
+  · subst hp0
+    have hv0 : vertex (vertex v w i) (rotWord w i) 0 = vertex v w i := by
+      rw [vertex_rotWord_le v w (le_of_lt hi) 0 (by omega), Nat.add_zero]
+    obtain ⟨p₂, hp₂⟩ := hpstart
+    have hci : (w[i]'hi).IsCompOf lam := by
+      have hc0 := hp₂.2.2.1 0 le_rfl hp₂.1 (by omega)
+      rwa [getElem_rotWord_lt w (le_of_lt hi) 0 (i + 0) rfl (by omega)
+        (by omega) (by omega)] at hc0
+    obtain ⟨q, qk, hqi, hiqk, hqcomp⟩ :=
+      exists_isComp_of_isCompOf lam w i hi hci
+    have hq0 : q ≠ 0 := by
+      intro hq
+      subst q
+      have hends : qk = k := isComp_end_unique hqcomp hcomp
+      omega
+    have hqconn : Connected D.fam lam v w q i := by
+      exact span_mem_fam D lam v hlet i (by omega) q hqi
+        (fun m hm1 hm2 hm3 ⇒ hqcomp.2.2.1 m hm1 (by omega) hm3)
+    rw [hv0] at hmem
+    refine hiso.2 q hq0 ⟨qk, hqcomp⟩ ?_
+    have heq : (vertex v w 0)⁻¹ * vertex v w q =
+        ((vertex v w 0)⁻¹ * vertex v w i) *
+          ((vertex v w q)⁻¹ * vertex v w i)⁻¹ := by
+      group
+    rw [heq]
+    exact mul_mem hmem (inv_mem hqconn)
+  · obtain ⟨q, hqstart, hwhere, hvq⟩ :=
+      exists_isCompStart_of_rotWord_of_length_le lam v hclosed (le_of_lt hi)
+        hpstart (by omega)
+    have hq0 : q ≠ 0 := by
+      intro hq
+      subst q
+      rcases hwhere with ⟨-, hq⟩ | ⟨-, hq⟩
+      · omega
+      · omega
+    rw [hvq] at hmem
+    exact hiso.2 q hq0 hqstart hmem
+
+/-- **A component before the rotation point remains isolated after rotation.**
+
+This is the missing mirror of `isIsolated_rotWord_of_le`.  The component moves
+past the seam to index `|w|-i+a`.  Every non-seam component start of the rotated
+word is sent back by `exists_isCompStart_of_rotWord_of_length_le`; the seam start
+itself is handled by the component of `w` containing the rotation point. -/
+theorem isIsolated_rotWord_before (D : RelGenSet G Λ) (lam : Λ) (v : G)
+    {w : List (RelLetter G Λ)} (hlet : ∀ x ∈ w, D.IsLetter x)
+    (hclosed : RelLetter.listVal w = 1) {i a k : ℕ} (hi : i < w.length)
+    (hcomp : IsComp lam w a k) (hki : k ≤ i) (ha0 : 0 < a)
+    (hiso : IsIsolated D.fam lam v w a) :
+    IsIsolated D.fam lam (vertex v w i) (rotWord w i)
+      (w.length - i + a) := by
+  have hak : a < k := hcomp.1
+  have hkw : k ≤ w.length := hcomp.2.1
+  have hai : a < i := by omega
+  have hrotcomp : IsComp lam (rotWord w i)
+      (w.length - i + a) (w.length - i + k) :=
+    isComp_rotWord_before lam (le_of_lt hi) hcomp hki ha0
+  have hdistVertex : vertex (vertex v w i) (rotWord w i)
+      (w.length - i + a) = vertex v w a := by
+    exact vertex_rotWord_add v w (le_of_lt hi) hclosed
+      (w.length - i + a) a rfl (by omega)
+  refine ⟨⟨w.length - i + k, hrotcomp⟩, ?_⟩
+  intro p hpdist hpstart hconn
+  have hmem : (vertex v w a)⁻¹ *
+      vertex (vertex v w i) (rotWord w i) p ∈ D.fam lam := by
+    rw [← hdistVertex]
+    exact hconn
+  rcases Nat.eq_zero_or_pos p with hp0 | hppos
+  · subst hp0
+    have hv0 : vertex (vertex v w i) (rotWord w i) 0 = vertex v w i := by
+      rw [vertex_rotWord_le v w (le_of_lt hi) 0 (by omega), Nat.add_zero]
+    obtain ⟨p₂, hp₂⟩ := hpstart
+    have hiw : i < w.length := by omega
+    have hci : (w[i]'hiw).IsCompOf lam := by
+      have hc0 := hp₂.2.2.1 0 le_rfl hp₂.1 (by omega)
+      rwa [getElem_rotWord_lt w (le_of_lt hi) 0 (i + 0) rfl (by omega) (by omega)
+        (by omega)] at hc0
+    obtain ⟨q, qk, hqi, hiqk, hqcomp⟩ :=
+      exists_isComp_of_isCompOf lam w i hiw hci
+    have hqa : q ≠ a := by
+      intro hqa
+      subst hqa
+      have hends : qk = k := isComp_end_unique hqcomp hcomp
+      omega
+    have hqconn : Connected D.fam lam v w q i := by
+      exact span_mem_fam D lam v hlet i (by omega) q hqi
+        (fun m hm1 hm2 hm3 ⇒ hqcomp.2.2.1 m hm1 (by omega) hm3)
+    rw [hv0] at hmem
+    refine hiso.2 q hqa ⟨qk, hqcomp⟩ ?_
+    have heq : (vertex v w a)⁻¹ * vertex v w q =
+        ((vertex v w a)⁻¹ * vertex v w i) *
+          ((vertex v w q)⁻¹ * vertex v w i)⁻¹ := by
+      group
+    rw [heq]
+    exact mul_mem hmem (inv_mem hqconn)
+  · obtain ⟨q, hqstart, hwhere, hvq⟩ :=
+      exists_isCompStart_of_rotWord_of_length_le lam v hclosed (le_of_lt hi) hpstart
+        (by omega)
+    have hqa : q ≠ a := by
+      intro hqa
+      subst hqa
+      rcases hwhere with ⟨-, hq⟩ | ⟨-, hq⟩
+      · omega
+      · omega
+    rw [hvq] at hmem
+    exact hiso.2 q hqa hqstart hmem
 
 end OsinComponents
 end GGT
