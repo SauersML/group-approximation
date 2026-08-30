@@ -66,11 +66,12 @@ maximum formula.
 
 There is also a new unconditional middle-algebra class:
 `stw82-one-dimensional-middle-forces-maximum` shows that every
-ideal--quotient decomposition of a separable algebra `E` with
+ideal--quotient decomposition of an arbitrary algebra `E` with
 `dim_nuc(E)<=1` satisfies the maximum formula.  The only possible low-end
 failure would have both endpoints of dimension zero; AF extension closure
-then forces `E` itself to have dimension zero.  Consequently any
-counterexample has middle nuclear dimension at least two.
+on the separable counterexample supplied by the reflection theorem rules
+this out.  Consequently any counterexample has middle nuclear dimension at
+least two.
 
 The project reduction
 `stw82-counterexamples-reflect-to-separable-extensions` shows that the word

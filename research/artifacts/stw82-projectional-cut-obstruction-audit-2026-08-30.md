@@ -69,11 +69,14 @@ false inference that nonprojectional cuts obstruct the formula itself.
 
 # New unconditional positive class
 
-Every ideal--quotient decomposition of a separable algebra `E` with
+Every ideal--quotient decomposition of an arbitrary algebra `E` with
 `dim_nuc(E)<=1` obeys the maximum formula.  Endpoint dimensions are at most
-one.  If their maximum is one, monotonicity gives equality.  If it is zero,
-both endpoints are AF, extension closure makes `E` AF, and equality again
-follows.  Consequently every counterexample has `dim_nuc(E)>=2`.
+one.  If their maximum is one, monotonicity gives equality.  If it is zero
+and the formula fails, the repository's reflection theorem produces a
+separable counterexample with zero-dimensional endpoints.  Those endpoints
+are AF, extension closure makes the separable middle algebra AF, and the
+reflected failure is impossible.  Consequently every counterexample has
+`dim_nuc(E)>=2`.
 
 This is a middle-algebra class, not an endpoint gluing hypothesis.  It may
 be combined without further colour bookkeeping with any independent
