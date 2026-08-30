@@ -64,7 +64,7 @@ implication runs from the endpoint, so it cannot be used to prove Theorem 10:
 a non-circular proof of Theorem 16 along this route still has to prove Theorem
 10 on Shulman's own terms, by his Theorem 4 together with the flip, which is
 the work `Analysis/ShulmanFillSymmetricDouble` is doing.  What the implication
-does say is that carrying `symmetricDoubleMF` as a named `sorry` can never
+does say is that carrying `symmetricDoubleMF` as a named unresolved premise can never
 overstate the debt, since the endpoint already implies it.
 
 So the honest bottom of the lane is a choice between two pieces of

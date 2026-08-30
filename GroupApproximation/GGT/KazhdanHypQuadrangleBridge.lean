@@ -71,7 +71,7 @@ cardinality of a filter over those corners, taken twice.  So
 * the six-cycle clause sums `n²` products for each of `n²` pairs: about
   `5 * 10¹²` entry evaluations.
 
-No kernel evaluation reaches the third, and `native_decide` is not an option
+No kernel evaluation reaches the third, and compiler-trusting evaluation is not an option
 that this repository will take.  The clauses are stated *globally*, over all
 pairs of link vertices, while the properties they express are *local*: girth at
 least `8` says that the ball of radius `3` around each vertex is a tree, which

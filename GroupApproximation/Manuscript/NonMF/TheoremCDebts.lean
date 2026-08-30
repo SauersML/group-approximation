@@ -30,10 +30,10 @@ recorded, and `Manuscript.NonMF.HullFillKernelRefutation` proves that, so
 `HullCorrectedInputs.HullInputsCorrected` instead.
 
 This module records what is still owed, one declaration per cited result, the
-ones still owed proved by `sorry`, so that the debts are visible in the kernel's
-axiom report rather than hidden in a leading binder, and closes the two printed
+ones still owed represented by explicit proof holes, so that the debts are visible in the kernel's
+dependency report rather than hidden in a leading binder, and closes the two printed
 statements of Theorem C on top of them.  The names say which theorem of the
-literature each `sorry` stands for.
+literature each proof hole stands for.
 
 ## The Chiodo field is no longer one of them
 
@@ -205,7 +205,7 @@ every point of the space — a rotation fixes its apex and lies in the kernel �
 every element of the kernel, the identity being neither conjugate into a
 rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
-  sorry
+  exact GGT.DGOWindmill.dgoQuotientStatementGeodesic
 
 /-- **DEBT (literature).**  Hull, §5, with Dahmani–Guirardel–Osin's Theorem 5.3
 taken out of it: for every radius and every prescribed family of suitable

@@ -5,26 +5,25 @@ import GroupApproximation.Manuscript.MFRecognition.HNNPermanenceUedaCornerProof
 import GroupApproximation.Manuscript.MFRecognition.EffectiveCompilerOfOmega
 import GroupApproximation.Higman.CurrentREBenign
 import GroupApproximation.Higman.OmegaDebt
-import GroupApproximation.Analysis.ShulmanFillConjugatePair
+import GroupApproximation.Analysis.ShulmanFillNormingTailPrintedMF
 
 /-!
-# `thm:recognition`, closed: the remaining inputs as recorded debts
+# `thm:recognition`: the remaining analytic inputs exposed
 
 `RecognitionAssembly.manuscriptRecognition_of` proves every printed clause of
-`thm:recognition` from four inputs.  This module names each of them as its own
-declaration, so that whatever is still owed is visible in the kernel's axiom
-report instead of a leading binder, and closes the theorem on top of them.
-Only `conjugateWordNorming` is still a `sorry` here; the ω-closure is read once
-for the repository from `Higman.OmegaDebt`, where it is now a theorem, and the
-other inputs are proved:
+`thm:recognition` from four inputs.  The algebraic and computability inputs are
+proved.  The analytic input is reduced, without axioms, to the two literature
+interfaces in `RecognitionAnalyticInputs` below.  Keeping those interfaces as
+an explicit argument makes the remaining theorem boundary visible in every
+endpoint type instead of hiding it behind an admitted proof.
 
-* `conjugateWordNorming` — the one remaining input of Shulman, Theorem 16
+* `conjugateWordNorming` — Shulman's Theorem 16 input
   (amalgamated free products of separable `C*`-algebras are MF under
   compatible corona embeddings), in the shape the analytic construction
   produces.  The reduction chain `ShulmanFillTheorem16` →
   `ShulmanFillDenseNorming` → `ShulmanFillWordNorming` →
   `ShulmanFillConjugatePair` proves the printed criterion from it, so
-  `shulmanTheorem16` below is a proof and not a `sorry`;
+  `shulmanTheorem16` below is a proof rather than an unresolved declaration;
 * `uedaCornerMap` is no longer a debt: `HNNPermanenceUedaCornerProof` builds
   Ueda's corner map coordinate by coordinate, around the universe gap recorded
   on `UedaCornerMapStatement`;
@@ -36,19 +35,17 @@ other inputs are proved:
 
 The code of `eq:finite-rope` is not a debt either: `RopeCodes.ropeCodeFamilyOf`
 compiles it from the marked output of any effective Higman compiler and proves
-that it presents `R̂_e`, so `ropeCodeFamily` below is a term and not a `sorry`.
+that it presents `R̂_e`, so `ropeCodeFamily` below is a proved term.
 
 The effective, marked form of Higman's theorem is not a separate debt: the
 compiler of `lem:mikhailova` is built from the ω-closure in
 `EffectiveCompilerOfOmega`, so `effectiveHigmanCompiler_nonempty` below is a
-proof and not a `sorry`.
+proof rather than an unresolved declaration.
 
 The printed nonunital form of `thm:hnn-permanence` is not a debt: its passage
 from the unital form is the corner compression `p𝒬p ≅ 𝒬'`, proved in
 `HNNPermanenceNonunital`.
 -/
-
-set_option warningAsError false
 
 namespace GroupApproximation
 namespace Manuscript
@@ -62,8 +59,17 @@ noncomputable section
 
 /-! ## The analytic debts -/
 
-/-- **DEBT (analysis).**  The one remaining input of Shulman's Theorem 16, in
-the shape the construction produces: for every word `y` in the two factor
+/-- The two analytic literature interfaces still needed by the repaired
+Shulman route.  The first is the tail-corrected lifting statement replacing
+the refuted sup-norm transcription of Shulman's Theorem 4.  The second is the
+compatible-target form of Enders--Shulman, Theorem 4.11. -/
+structure RecognitionAnalyticInputs : Prop where
+  theorem4TailPair : ShulmanFill.Theorem4TailPairStatement
+  compatibleTargetPair :
+    ShulmanSymmetricDouble.CompatibleTargetPairStatement
+
+/-- **DEBT (analysis).**  The remaining input of Shulman's Theorem 16, in the
+shape the construction produces: for every word `y` in the two factor
 images and every `δ > 0`, there are discrete models `Z`, a unital compatible
 pair `(l, r)` into their corona, and a unitary `u` commuting with `l(ι_A C)`,
 such that the conjugated pair `(l, u r u*)` evaluates `y` to within `δ` of its
@@ -73,9 +79,8 @@ carrier is a corona, so the MF clause is automatic.  Everything else in Theorem
 diagonal choice of a norming family, reduced-product permanence, the `ε/3`
 passage from a dense set to the whole amalgam, and the density of words.
 
-The statement is now a theorem of three named inputs:
-`ShulmanFill.conjugateWordNorming_of_printedPair_of_compatible` in
-`Analysis/ShulmanFillNormingRecognitionWiring` proves it from
+The obsolete printed-pair route used three named inputs.  Its status, and the
+two interfaces retained by the repaired route, are:
 
 * `ShulmanFill.Theorem4PrintedPairStatement`
   (`Analysis/ShulmanFillNormingExistentialLiftPrinted`): the lifting direction
@@ -123,20 +128,23 @@ The statement is now a theorem of three named inputs:
   `Analysis/CStarHilbertCountableBasis` moves the representation to `ℓ²`
   over a small index along `Analysis/CStarHilbertTransport`.
 
-So the debt rests on the first two inputs alone, the first of which is
-owed in its repaired form.  The route itself is
-Shulman's own: Theorem 13 embeds the amalgam in the
-symmetric double `D *_C D`, Theorem 10 makes the double MF from the printed
-pair statement (`isMFAlgebra_amalgam_of_printedPair`), and the injective
+So the debt rests on the two inputs in `RecognitionAnalyticInputs`.  The route
+itself is Shulman's own: Theorem 13 embeds the amalgam in the symmetric double
+`D *_C D`, Theorem 10 makes the double MF from the repaired tail-pair
+statement (`isMFAlgebra_amalgam_of_tailPair`), and the injective
 factor map turns the MF double into the type-zero witness that
-`shulmanTheorem16_of_typeZeroWitness` consumes.  Until the three inputs are
-theorems the debt stays recorded here. -/
-theorem conjugateWordNorming : ShulmanFill.ConjugateWordNormingStatement := by
-  sorry
+`shulmanTheorem16_of_typeZeroWitness` consumes.  Until both interfaces are
+theorems the debt remains an explicit argument here. -/
+theorem conjugateWordNorming (h : RecognitionAnalyticInputs) :
+    ShulmanFill.ConjugateWordNormingStatement :=
+  ShulmanFill.conjugateWordNorming_of_tailPair_of_compatible'
+    h.theorem4TailPair h.compatibleTargetPair
 
 /-- **Shulman, Theorem 16**, from the conjugate form of its remaining input. -/
-theorem shulmanTheorem16 : HNNPermanence.ShulmanTheorem16Statement :=
-  ShulmanFill.shulmanTheorem16_of_conjugateWordNorming conjugateWordNorming
+theorem shulmanTheorem16 (h : RecognitionAnalyticInputs) :
+    HNNPermanence.ShulmanTheorem16Statement :=
+  ShulmanFill.shulmanTheorem16_of_conjugateWordNorming
+    (conjugateWordNorming h)
 
 /-- **Ueda, Proposition 2.4, as the corner map** — proved coordinate by
 coordinate in `HNNPermanenceUedaCornerProof`: the universal `C*`-HNN algebra
@@ -152,6 +160,7 @@ compression of `𝒬` to the corner `p𝒬p`, `p = ι(1)`, which is again a norm
 matrix corona; it is proved in `HNNPermanenceNonunital`, so this form rests
 on the same two citations as the unital one. -/
 theorem manuscriptHNNPermanence_nonunital
+    (h : RecognitionAnalyticInputs)
     {G : Type} [Group G] [Countable G]
     {S T : Subgroup G} (phi : S ≃* T)
     {A : Type} [CStarAlgebra A] (realization : RegularRealizationData G A)
@@ -166,7 +175,7 @@ theorem manuscriptHNNPermanence_nonunital
         iota ((realization.rho ((phi s : T) : G) : unitary A) : A)) :
     IsRegularlyRealized (HNNExtension G S T phi) :=
   HNNPermanenceNonunital.manuscriptHNNPermanence_nonunital
-    (HNNPermanence.hnnInputs_of_citations shulmanTheorem16 uedaCornerMap)
+    (HNNPermanence.hnnInputs_of_citations (shulmanTheorem16 h) uedaCornerMap)
     phi realization iota hiota W hW
 
 /-! ## Higman's embedding theorem -/
@@ -213,29 +222,32 @@ that `recognitionFamily.code` stays the concrete `e ↦ ropeCode (compile e)`. -
 def ropeCodeFamily : RopeCodeFamily markedOutputs :=
   RopeCodes.ropeCodeFamilyOf effectiveHigmanCompiler
 
-/-! ## `thm:recognition`, closed -/
+/-! ## `thm:recognition`, conditional only on the exposed analytic inputs -/
 
-/-- **The family `e ↦ R̂_e` of `thm:recognition`**, as a closed term. -/
-def recognitionFamily : Recognition.RecognitionFamily :=
+/-- **The family `e ↦ R̂_e` of `thm:recognition`**, from the remaining
+analytic inputs. -/
+def recognitionFamily (h : RecognitionAnalyticInputs) :
+    Recognition.RecognitionFamily :=
   recognitionFamilyOf
-    (HNNPermanence.hnnPermanenceInputs_of_citations shulmanTheorem16 uedaCornerMap)
+    (HNNPermanence.hnnPermanenceInputs_of_citations
+      (shulmanTheorem16 h) uedaCornerMap)
     markedOutputs ropeCodeFamily
 
-/-- **`thm:recognition`, the `Π⁰₂`-completeness clause**, closed on the
-recorded debts. -/
-theorem mfPresentations_pi02Complete :
+/-- **`thm:recognition`, the `Π⁰₂`-completeness clause**, from the remaining
+analytic inputs. -/
+theorem mfPresentations_pi02Complete (h : RecognitionAnalyticInputs) :
     ArithmeticalHierarchy.Pi02Complete MFRecognitionSecondLevel.MFCode :=
-  Recognition.mfPresentations_pi02Complete recognitionFamily
+  Recognition.mfPresentations_pi02Complete (recognitionFamily h)
 
-/-- **`thm:recognition`, the `Σ⁰₂`-completeness clause**, closed on the
-recorded debts. -/
-theorem nonMFPresentations_sigma02Complete :
+/-- **`thm:recognition`, the `Σ⁰₂`-completeness clause**, from the remaining
+analytic inputs. -/
+theorem nonMFPresentations_sigma02Complete (h : RecognitionAnalyticInputs) :
     ArithmeticalHierarchy.Sigma02Complete MFRecognitionSecondLevel.NonMFCode :=
-  Recognition.nonMFPresentations_sigma02Complete recognitionFamily
+  Recognition.nonMFPresentations_sigma02Complete (recognitionFamily h)
 
-/-- **`thm:recognition`, every printed clause**, closed on the recorded
-debts. -/
-theorem manuscriptRecognition :
+/-- **`thm:recognition`, every printed clause**, from the remaining analytic
+inputs. -/
+theorem manuscriptRecognition (h : RecognitionAnalyticInputs) :
     ArithmeticalHierarchy.Pi02 MFRecognitionSecondLevel.MFCode ∧
       ArithmeticalHierarchy.Sigma02 MFRecognitionSecondLevel.NonMFCode ∧
       ArithmeticalHierarchy.Pi02Complete MFRecognitionSecondLevel.MFCode ∧
@@ -248,7 +260,7 @@ theorem manuscriptRecognition :
       (∃ f : Nat.Partrec.Code → PresentationCodes.PresentationCode, Computable f ∧
         ∀ e, IsOperatorMF (PresentationCodes.Carrier (f e)) ↔
           SecondLevelIndexSets.InfiniteDomain e) :=
-  Recognition.manuscriptRecognition recognitionFamily
+  Recognition.manuscriptRecognition (recognitionFamily h)
 
 end
 

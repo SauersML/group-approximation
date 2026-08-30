@@ -66,6 +66,20 @@ theorem exists_mem_star_mul_self {B : Type} [CStarAlgebra B] [PartialOrder B]
   · rw [(IsSelfAdjoint.of_nonneg (CFC.sqrt_nonneg x)).star_eq,
       CFC.sqrt_mul_sqrt_self x hx]
 
+/-- **The vector state of a represented square is a squared norm.**
+Proved before specializing to block spaces so that the star and adjoint
+instances are reconciled at abstract type variables rather than through the
+`PiLp` instance tower. -/
+theorem inner_starAlgHom_star_mul_self_eq_norm_sq
+    {B E : Type} [CStarAlgebra B] [NormedAddCommGroup E]
+    [InnerProductSpace ℂ E] [CompleteSpace E]
+    (pi : B →⋆ₐ[ℂ] (E →L[ℂ] E)) (y : B) (zeta : E) :
+    ⟪zeta, pi (star y * y) zeta⟫_ℂ = ((‖pi y zeta‖ ^ 2 : ℝ) : ℂ) := by
+  rw [map_mul, map_star, ContinuousLinearMap.star_eq_adjoint,
+    ContinuousLinearMap.mul_def, ContinuousLinearMap.comp_apply,
+    ContinuousLinearMap.adjoint_inner_right, inner_self_eq_norm_sq_to_K]
+  norm_cast
+
 variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
   [CompleteSpace H]
   {K₀ : Type} [NormedAddCommGroup K₀] [InnerProductSpace ℂ K₀]
@@ -132,7 +146,6 @@ variable (A) in
     ampStateLin A n b rho S
       = ⟪diagVector K₀ b, ampRep A n rho S (diagVector K₀ b)⟫_ℂ := rfl
 
-set_option maxHeartbeats 800000 in
 /-- **The state is nonnegative on nonnegative elements.** -/
 theorem ampStateLin_nonneg (hA : IsClosed (A : Set (H →L[ℂ] H))) (n : ℕ)
     (b : OrthonormalBasis (Fin n) ℂ K₀) (rho : ↥A →⋆ₐ[ℂ] (K₀ →L[ℂ] K₀))
@@ -146,14 +159,9 @@ theorem ampStateLin_nonneg (hA : IsClosed (A : Set (H →L[ℂ] H))) (n : ℕ)
   have hfact : star (⟨y, hyC⟩ : ↥(ampSubalgebra A n)) * ⟨y, hyC⟩ = S :=
     Subtype.ext hy
   refine ⟨‖ampRep A n rho ⟨y, hyC⟩ (diagVector K₀ b)‖ ^ 2, by positivity, ?_⟩
-  have hval : ampStateLin A n b rho S
-      = ⟪ampRep A n rho ⟨y, hyC⟩ (diagVector K₀ b),
-          ampRep A n rho ⟨y, hyC⟩ (diagVector K₀ b)⟫_ℂ := by
-    rw [ampStateLin_apply, ← hfact, map_mul, map_star,
-      ContinuousLinearMap.star_eq_adjoint, ContinuousLinearMap.mul_def,
-      ContinuousLinearMap.comp_apply, ContinuousLinearMap.adjoint_inner_right]
-  rw [hval, inner_self_eq_norm_sq_to_K]
-  norm_cast
+  rw [ampStateLin_apply, ← hfact]
+  exact inner_starAlgHom_star_mul_self_eq_norm_sq
+    (ampRep A n rho) ⟨y, hyC⟩ (diagVector K₀ b)
 
 variable (A) in
 /-- **The state Glimm's lemma is run on.** -/
