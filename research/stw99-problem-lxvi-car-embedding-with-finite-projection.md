@@ -65,19 +65,21 @@ trace-preserving free-product assembly are unavailable even at infinite
 Watatani index; passing to corners or injective limits of such corners cannot
 repair the obstruction.
 
-HNN extensions face a sharper rank dichotomy.
+HNN extensions face a sharper spectral dichotomy.
 `stw99-lxvi-car-hnn-trace-balance-dichotomy` proves that, inside any finite
-unital ambient algebra containing CAR, two CAR projections which become
-equivalent must have the same CAR trace.  Otherwise CAR comparison places a
-copy of the smaller projection properly inside the larger, making the latter
-and then the ambient unit infinite.  Hence an HNN covariance between two
-real-rank-zero edge embeddings must preserve the CAR trace.  For a
-finite-dimensional edge, trace mismatch makes the HNN unit infinite, while
-trace balance supplies a faithful trace on the reduced HNN algebra (and on a
-simple full HNN algebra), making it stably finite.  Thus the obvious
-non-trace-preserving HNN escape is also closed: a live HNN route would need
-trace mismatch invisible on projections or a substantially nonstandard
-simple envelope.
+unital ambient algebra containing CAR, two unitarily conjugate positive CAR
+elements must have the same CAR trace.  A trace mismatch appears at a
+spectral cutdown; strict comparison in CAR then absorbs a nonzero CAR
+projection into that cutdown, and fullness makes the ambient unit properly
+infinite.  Hence an HNN covariance between arbitrary edge embeddings must
+preserve the induced CAR trace.  This closes even the projectionless escape:
+explicit embeddings of `C([0,1])` given by `f |-> f(h)` and `f |-> f(h^2)`
+agree on every projection but have traces `1/2` and `1/3` on the coordinate
+function, and every covariance unitary makes the ambient unit properly
+infinite.  For a finite-dimensional edge, trace balance supplies a faithful
+trace on the reduced HNN algebra (and on a simple full HNN algebra), making
+it stably finite.  Thus the non-trace-preserving HNN escape is closed at the
+level of all positive elements, not merely projections.
 
 A second broad no-go concerns ambient regularity rather than the CAR
 inclusion.  `stw99-lxvi-z-stability-forbids-mixed-projections` proves that a

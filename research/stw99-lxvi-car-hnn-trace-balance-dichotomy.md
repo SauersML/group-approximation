@@ -2,7 +2,7 @@
 rg: 2
 id: stw99-lxvi-car-hnn-trace-balance-dichotomy
 kind: claim
-title: CAR HNN covariance is either trace balanced or makes the ambient unit infinite
+title: Every CAR HNN covariance is either trace balanced or makes the ambient unit properly infinite
 distinct_from:
   stw99-lxvi-finite-seed-has-no-quasitrace: that proves abstractly that a completed simple LXVI seed has no quasitrace; this detects infiniteness directly from one trace-mismatched HNN edge before simplicity or the first unstable amplification is considered.
   stw99-lxvi-tracial-free-constructions-are-stably-finite: that treats trace-preserving reduced free products and crossed products; this gives the complementary HNN dichotomy and proves that the obvious non-trace-preserving escape makes the unit infinite immediately.
@@ -12,30 +12,41 @@ artifacts:
 ---
 
 Let `D=M_(2^infinity)` with its unique trace `tau_D`, and let `D subset A`
-be a unital inclusion.  If `1_A` is finite, then ambient Murray--von Neumann
-equivalence of projections from `D` preserves their CAR trace:
+be a unital inclusion.  If positive contractions `a,b in D` are unitarily
+conjugate in `A` but
 
 ```text
-p,q in Proj(D), p equivalent_A q  =>  tau_D(p)=tau_D(q).       (1)
+tau_D(a)!=tau_D(b),                                           (1)
 ```
 
-Consequently, let `C` be a unital real-rank-zero C*-algebra, let
-`theta_0,theta_1:C->D` be unital embeddings, and suppose a unitary `u in A`
-satisfies
+then `1_A` is properly infinite.  Consequently, for an arbitrary unital
+C*-algebra `C` and unital embeddings `theta_0,theta_1:C->D`, a unitary
+`u in A` satisfying
 
 ```text
 u theta_0(c) u*=theta_1(c)                    (c in C).         (2)
 ```
 
-If `1_A` is finite, then
+can coexist with a finite unit only if
 
 ```text
 tau_D after theta_0=tau_D after theta_1.                         (3)
 ```
 
-Equivalently, if the two induced traces differ, every unital ambient
-C*-algebra satisfying the HNN covariance relation `(2)` has infinite unit.
-No simplicity, expectation, exactness, or nuclearity is needed.
+Equivalently, any trace-mismatched CAR HNN covariance makes the ambient unit
+properly infinite.  No projections in `C`, simplicity, expectation,
+exactness, or nuclearity are needed.
+
+The projectionless boundary is nonvacuous.  There are two explicit unital
+embeddings
+
+```text
+theta_0,theta_1:C([0,1])->D
+```
+
+which agree on every projection of `C([0,1])` but induce different traces.
+For these embeddings, every unital ambient algebra containing a covariance
+unitary has properly infinite unit.
 
 For a finite-dimensional edge algebra `C`, this gives an exact dichotomy for
 the standard HNN constructions:
@@ -50,8 +61,9 @@ the standard HNN constructions:
 
 Thus neither the trace-balanced nor the trace-mismatched finite-dimensional
 HNN construction can produce the simple finite but non-stably-finite
-CAR-containing seed equivalent to Problem LXVI.  A viable HNN-type route
-must use an edge whose trace mismatch is invisible on projections (hence not
-real rank zero), or a nonstandard simple envelope which is neither the
-trace-preserving reduced construction nor a finite ambient realization of a
-projection-mismatched covariance.
+CAR-containing seed equivalent to Problem LXVI.  More generally, allowing a
+projectionless edge does not open a non-trace-preserving route: spectral
+cutdowns and Cuntz comparison in CAR recover the obstruction.  A viable
+HNN-type construction with finite unit must be trace balanced on the entire
+edge algebra and must leave the standard faithfully tracial reduced
+framework by some other mechanism.
