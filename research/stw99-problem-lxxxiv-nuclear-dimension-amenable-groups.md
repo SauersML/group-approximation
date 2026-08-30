@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw84-local-rank-and-locally-finite-factor-audit-2026-08-30.md
+  - research/artifacts/stw84-almost-free-permutation-wreath-2026-08-30.md
 ---
 
 **Problem LXXXIV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Determine for which countable discrete amenable
@@ -70,6 +71,20 @@ finite lamp stages.  In particular `(direct_sum_N A_5) wr Q` has `D=1` and
 nuclear dimension at most `18`, has an infinite nonabelian lamp group, and is
 not locally virtually polycyclic.
 
+Regularity of the shift can be weakened substantially.
+`stw84-almost-free-permutation-wreath-bound` treats generalized permutation
+wreath products `(direct_sum_S L) rtimes A`, where `A` is countable abelian
+of finite rational rank `r` and every point stabilizer in `S` is finite.  It
+proves the uniform estimate `(r+1)9^r-1` for `r>=1`, and exact dimension zero
+for `r=0`.  A torsion-free finite-index
+subgroup of each finite-stage actor acts freely on `S`; after choosing orbit
+representatives, every non-scalar stabilizer fiber is an ordinary Bernoulli
+shift with a matrix or UHF seed.  Scalar fibers contribute `C*(N)` and cost
+at most the actor rank, which accounts for the factor `r+1`.  This allows
+nontrivial, nonuniform finite stabilizers and examples where finitely
+generated subgroups meet the lamp kernel infinitely, beyond both the regular
+wreath and kernel-finite hypotheses.
+
 There is also an exact permanence theorem independent of virtual abelianness.
 `stw84-locally-finite-direct-factor-invariance` proves that adjoining any
 countable locally finite direct factor changes no nuclear dimension.  Hence
@@ -112,8 +127,10 @@ where a finitely generated subgroup can meet the locally finite kernel in an
 infinite group.  The new wreath theorem handles regular shifts with any
 countable locally finite lamp group when the acting group has uniformly
 bounded local polynomial-growth degree (equivalently, local virtual
-nilpotence with uniformly bounded local Hirsch length), but not arbitrary
-locally-finite-by-abelian actions.
+nilpotence with uniformly bounded local Hirsch length).  The finite-stabilizer
+permutation theorem extends this to arbitrary almost-free permutation shifts
+for finite-rank abelian actors, but infinite stabilizers break its free-orbit
+fiber regrouping and remain uncontrolled.
 The directed-union argument still gives no control when its finite-stage
 bounds diverge.  Thus the remaining frontier includes unrestricted
 locally-finite-by-abelian groups and the general finite-Hirsch-length

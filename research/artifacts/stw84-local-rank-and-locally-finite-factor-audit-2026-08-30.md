@@ -16,6 +16,10 @@ records an exact controlled locally-finite-by-abelian extension class and a
 quantitative locally finite-lamp wreath class beyond local virtual
 polycyclicity.
 
+A further checkpoint weakens regular wreath shifts to arbitrary permutation
+shifts with finite point stabilizers; see
+`research/artifacts/stw84-almost-free-permutation-wreath-2026-08-30.md`.
+
 ## Lower mechanism: abelianization
 
 The quotient `C*(G)->C*(G_ab)` forces
@@ -194,7 +198,10 @@ general finite-Hirsch-length elementary amenable groups.  The controlled
 extension theorem requires finite kernel intersection at every finitely
 generated stage.  The locally finite-lamp theorem covers regular wreath
 shifts over acting groups of uniformly bounded local polynomial-growth
-degree, but not arbitrary locally finite kernels or actions.  The
+degree.  The permutation-wreath theorem additionally covers arbitrary
+countable index sets with finite stabilizers for finite-rank abelian actors,
+but not infinite stabilizers or arbitrary locally finite kernels and
+actions.  The
 direct-factor proof uses the
 augmentation quotient and therefore does not extend formally to an arbitrary
 semidirect product.  The directed-union theorem needs a uniform stage bound;
