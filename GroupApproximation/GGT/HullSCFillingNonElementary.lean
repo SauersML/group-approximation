@@ -3,6 +3,9 @@ import GroupApproximation.GGT.DGOQuasiGeodesicChainAt
 import GroupApproximation.GGT.HullSCFillingAlphabetReduction
 import GroupApproximation.GGT.HullSCRelatorSeparation2ConeOff
 import GroupApproximation.GGT.HullHeGXPairOfFamily
+import GroupApproximation.GGT.OsinTheorem54Unconditional
+import GroupApproximation.GGT.DGOCorollary612Threshold
+import GroupApproximation.GGT.OsinTheorem54SepElementaryBall
 
 /-!
 # The non-elementarity half of Hull's filling alphabet
@@ -25,10 +28,10 @@ embedded and the quotient is injective on its union.
 The quotient peripherals themselves are elliptic in the relative graph, so it
 would be wrong to call their generators the quotient's loxodromic witnesses.
 Instead, injectivity on the union proves that the first mapped cyclic subgroup
-is still proper in the image of the suitable subgroup.  Hull's Lemma 5.8 then
-enlarges the quotient alphabet and produces a new loxodromic direction of the
-form `g * h^n`.  That final common-alphabet application is the exact remaining
-geometric premise.
+is still proper in the image of the suitable subgroup.  A single application
+of finite-family Osin 5.4 produces a common quotient alphabet, and the
+loxodromic-product argument then gives every distinguished image a direction
+of the form `g * h^n` in that same alphabet.
 
 Alphabet inclusion remains completely separate in `QuotientHullAlphabet`.
 -/
@@ -697,6 +700,40 @@ structure QuotientPeripheralPreservation
     Set.InjOn q
       (⋃ i : AuxiliaryPeripheralIndex k, (D.cores.peripheral i : Set G))
 
+/-- Injectivity on the preserved peripheral union keeps infinite-order
+peripheral elements of infinite order in the quotient. -/
+theorem QuotientPeripheralPreservation.not_isOfFinOrder_map
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G} {Q : Type u} [Group Q] {q : G →* Q}
+    {D : AuxiliaryPeripheralFamily A N S}
+    (P : QuotientPeripheralPreservation q D)
+    (i : AuxiliaryPeripheralIndex k) {x : G}
+    (hx : x ∈ D.cores.peripheral i) (hord : ¬ IsOfFinOrder x) :
+    ¬ IsOfFinOrder (q x) := by
+  intro hq
+  obtain ⟨n, hn, hpow⟩ := isOfFinOrder_iff_pow_eq_one.mp hq
+  have hxpow : x ^ n ∈ D.cores.peripheral i := pow_mem hx n
+  have hxpUnion : x ^ n ∈
+      ⋃ j : AuxiliaryPeripheralIndex k, (D.cores.peripheral j : Set G) :=
+    Set.mem_iUnion.mpr ⟨i, hxpow⟩
+  have honeUnion : (1 : G) ∈
+      ⋃ j : AuxiliaryPeripheralIndex k, (D.cores.peripheral j : Set G) :=
+    Set.mem_iUnion.mpr ⟨i, (D.cores.peripheral i).one_mem⟩
+  have hsource : x ^ n = 1 := P.injOn_peripheralUnion hxpUnion honeUnion (by
+    rw [map_pow, hpow, map_one])
+  exact hord (isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, hsource⟩)
+
+/-- Local finiteness makes an infinite member of an arbitrary peripheral
+family unbounded in its relative metric.  This is the general-index form of
+`not_subset_relBall_of_infinite`. -/
+theorem not_subset_relBall_of_infinite_family
+    {G : Type u} [Group G] {Λ : Type*} (D : GGT.RelGenSet G Λ)
+    (hemb : D.IsHyperbolicallyEmbedded) (lam : Λ)
+    (hinf : ((D.fam lam : Subgroup G) : Set G).Infinite) (n : ℕ) :
+    ¬ ((D.fam lam : Subgroup G) : Set G) ⊆ D.relBall lam n := by
+  intro hsub
+  exact hinf ((hemb.locallyFinite lam n).subset hsub)
+
 /-- **Hull Lemma 4.4, isolated as a named interface.**
 
 The quantifier order records that the small-cancellation constants are chosen
@@ -778,16 +815,14 @@ theorem QuotientPeripheralPreservation.map_coreS_first_lt
     · exact Set.mem_iUnion.mpr ⟨(some j, true), by simpa [AuxiliaryNonElementaryCores.peripheral]⟩
   · exact hxy
 
-/-- **The remaining simultaneous Hull Lemma 5.8/common-alphabet premise.**
+/-- **The simultaneous Hull Lemma 5.8/common-alphabet interface.**
 
 Given Lemma 4.4's preserved auxiliary peripherals, construct one quotient Hull
 alphabet containing `q(A)` in which all distinguished images act
-non-elementarily.  Hull proves the one-subgroup version by taking a proper
-infinite cyclic peripheral `⟨h⟩ < q(T)` and producing a loxodromic `g h^n`;
-the finite-family version must make those alphabet enlargements simultaneously.
-This is not asserted to be the printed one-subgroup Lemma 5.8: it is the
-finite simultaneous strengthening required by the repository's
-`suitable_map_family` field.
+non-elementarily.  The apparent finite-family strengthening is supplied by a
+single application of finite-family Osin 5.4: it makes one common enlarged
+alphabet, after which the one-subgroup loxodromic-product argument runs inside
+that fixed alphabet for every distinguished subgroup.
 -/
 def HullLemma58SuitableFamily : Prop :=
   ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
@@ -799,16 +834,148 @@ def HullLemma58SuitableFamily : Prop :=
           ∀ j : Fin k,
             ActsNonElementarily ((S j).map q) (Cayley.base B.hullSet.alphabet)
 
+/-- The simultaneous Lemma 5.8 interface follows from one application of
+finite-family Osin 5.4.  The common enlarged alphabet keeps every auxiliary
+cyclic peripheral, and each distinguished subgroup obtains a loxodromic
+product from its two peripheral directions without any further enlargement. -/
+theorem hullLemma58SuitableFamily_unconditional :
+    HullLemma58SuitableFamily.{u} := by
+  classical
+  intro G _ A N k S Q _ q D P
+  obtain ⟨D', hbase, hfam, hemb, hacy⟩ :=
+    GGT.OsinEnlargement.osinTheorem54Fam_unconditional
+      Q (AuxiliaryPeripheralIndex k) P.rel P.embedded
+  obtain ⟨δ, hδ⟩ := hemb.hyperbolic
+  have hacts (tag : Option (Fin k)) (T : Subgroup G)
+      (E : HypEmbeddedCore₂ A T)
+      (hper : ∀ b : Bool, D.cores.peripheral (tag, b) = E.H b) :
+      ActsNonElementarily (T.map q) (Cayley.base D'.alphabet) := by
+    let i0 : AuxiliaryPeripheralIndex k := (tag, false)
+    let i1 : AuxiliaryPeripheralIndex k := (tag, true)
+    let x0 : Q := q (E.lox false)
+    let x1 : Q := q (E.lox true)
+    have hi : i0 ≠ i1 := by
+      intro heq
+      exact Bool.false_ne_true (congrArg Prod.snd heq)
+    have hx0source : E.lox false ∈ D.cores.peripheral i0 := by
+      change E.lox false ∈ D.cores.peripheral (tag, false)
+      rw [hper false]
+      exact E.lox_mem false
+    have hx0ord : ¬ IsOfFinOrder x0 :=
+      P.not_isOfFinOrder_map i0 hx0source
+        (not_isOfFinOrder_of_isLoxodromic (E.lox_isLoxodromic false))
+    have hx0fam : x0 ∈ D'.fam i0 := by
+      change q (E.lox false) ∈ D'.fam (tag, false)
+      rw [hfam, P.fam_map, hper false]
+      exact ⟨E.lox false, E.lox_mem false, rfl⟩
+    have hx1fam : x1 ∈ D'.fam i1 := by
+      change q (E.lox true) ∈ D'.fam (tag, true)
+      rw [hfam, P.fam_map, hper true]
+      exact ⟨E.lox true, E.lox_mem true, rfl⟩
+    have hx1not : x1 ∉ D'.fam i0 := by
+      intro hx10
+      have hxmap : q (E.lox true) ∈ (E.H false).map q := by
+        change x1 ∈ (E.H false).map q
+        change x1 ∈ D'.fam (tag, false) at hx10
+        rwa [hfam, P.fam_map, hper false] at hx10
+      obtain ⟨y, hy, hqy⟩ := hxmap
+      have hyUnion : y ∈
+          ⋃ j : AuxiliaryPeripheralIndex k,
+            (D.cores.peripheral j : Set G) := by
+        refine Set.mem_iUnion.mpr ⟨i0, ?_⟩
+        change y ∈ D.cores.peripheral (tag, false)
+        rw [hper false]
+        exact hy
+      have hloxUnion : E.lox true ∈
+          ⋃ j : AuxiliaryPeripheralIndex k,
+            (D.cores.peripheral j : Set G) := by
+        refine Set.mem_iUnion.mpr ⟨i1, ?_⟩
+        change E.lox true ∈ D.cores.peripheral (tag, true)
+        rw [hper true]
+        exact E.lox_mem true
+      have hyeq : y = E.lox true :=
+        P.injOn_peripheralUnion hyUnion hloxUnion hqy
+      have hone : E.lox true = 1 :=
+        E.disjoint (E.lox true) (hyeq ▸ hy) (E.lox_mem true)
+      exact (Elementary.zpow_ne_one_of_isLoxodromic
+        (E.lox_isLoxodromic true) (by norm_num : (1 : ℤ) ≠ 0)) (by
+          simpa [hone])
+    have hinf0 : ((D'.fam i0 : Subgroup Q) : Set Q).Infinite := by
+      intro hfinite
+      exact (infinite_zpowers.mpr hx0ord)
+        (hfinite.subset (Subgroup.zpowers_le.mpr hx0fam))
+    have hunbounded : ∀ n : ℕ,
+        ¬ ((D'.fam i0 : Subgroup Q) : Set Q) ⊆ D'.relBall i0 n :=
+      not_subset_relBall_of_infinite_family D' hemb i0 hinf0
+    let w : List (GGT.RelLetter Q (AuxiliaryPeripheralIndex k)) :=
+      [GGT.RelLetter.comp i1 x1]
+    have hwletter : ∀ c ∈ w, D'.IsLetter c := by
+      intro c hc
+      have hc' : c = GGT.RelLetter.comp i1 x1 := by simpa [w] using hc
+      subst c
+      exact hx1fam
+    have hwval : GGT.RelLetter.listVal w = x1 := by
+      simp [w, GGT.RelLetter.listVal, GGT.RelLetter.val]
+    have hwno : ∀ c ∈ w, ¬ c.IsCompOf i0 := by
+      intro c hc hcomp
+      have hc' : c = GGT.RelLetter.comp i1 x1 := by simpa [w] using hc
+      subst c
+      exact hi hcomp.symm
+    obtain ⟨h, hh0, hlox⟩ :=
+      GGT.exists_isLoxodromic_mul_of_unbounded D' i0 hemb.hyperbolic
+        hunbounded hx1not w hwletter hwval hwno
+    have hfam0T : D'.fam i0 ≤ T.map q := by
+      intro y hy
+      have hy' : y ∈ (E.H false).map q := by
+        change y ∈ D'.fam (tag, false) at hy
+        rwa [hfam, P.fam_map, hper false] at hy
+      exact Subgroup.map_mono (E.le false) hy'
+    have hx1T : x1 ∈ T.map q := by
+      exact ⟨E.lox true, E.le true (E.lox_mem true), rfl⟩
+    have hloxT : x1 * h ∈ T.map q :=
+      (T.map q).mul_mem hx1T (hfam0T hh0)
+    have hx0T : x0 ∈ T.map q := hfam0T hx0fam
+    have hx0not : x0 ∉ GGT.Elementary.elementaryClosure (x1 * h) :=
+      GGT.OsinComponents.notMem_elementaryClosure_of_mem_fam'
+        D' i0 hacy hlox hx0fam hx0ord
+    exact GGT.Elementary.actsNonElementarily_of_notMem_elementaryClosure
+      (isIsometricAction_cayley D'.alphabet)
+      (ElementaryMorse.independentOfNoCommonZpow_cayley_of_hyperbolic
+        D'.alphabet hδ hacy)
+      hloxT hx0T hlox hx0not
+  have hN : ActsNonElementarily (N.map q) (Cayley.base D'.alphabet) :=
+    hacts none N D.cores.coreN (by intro b; rfl)
+  have hS : ∀ j : Fin k,
+      ActsNonElementarily ((S j).map q) (Cayley.base D'.alphabet) := by
+    intro j
+    exact hacts (some j) (S j) (D.cores.coreS j) (by intro b; rfl)
+  have htop : ActsNonElementarily (⊤ : Subgroup Q)
+      (Cayley.base D'.alphabet) := by
+    obtain ⟨g, hg, h, hh, hglox, hhlox, hind⟩ := hN
+    exact ⟨g, Subgroup.mem_top g, h, Subgroup.mem_top h,
+      hglox, hhlox, hind⟩
+  let H : HullGeneratingSet Q :=
+    { alphabet := D'.alphabet
+      delta := δ
+      hyperbolic := hδ
+      acylindrical := hacy
+      nonElementary := htop }
+  let B : QuotientHullAlphabet A q :=
+    { hullSet := H
+      alphabet_image := by
+        intro a ha
+        exact Set.mem_union_left _ (hbase (P.base_image a ha)) }
+  exact ⟨B, hN, hS⟩
+
 /-- Lemma 5.8's common-alphabet conclusion, together with torsion-freeness,
 reassembles the full filling alphabet. -/
 theorem nonempty_fillingAlphabetData_of_peripheralPreservation
-    (hcommon : HullLemma58SuitableFamily.{u})
     {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
     {k : ℕ} {S : Fin k → Subgroup G} {Q : Type u} [Group Q] {q : G →* Q}
     (hQ : IsPowerTorsionFree Q) (D : AuxiliaryPeripheralFamily A N S)
     (P : QuotientPeripheralPreservation q D) :
     Nonempty (FillingAlphabetData A N S q) := by
-  obtain ⟨B, hN, hS⟩ := hcommon q D P
+  obtain ⟨B, hN, hS⟩ := hullLemma58SuitableFamily_unconditional q D P
   exact ⟨FillingAlphabetData.ofQuotientHullAlphabet B
     (suitableImagesInQuotient_of_torsionFree B hQ hN hS)⟩
 
@@ -820,10 +987,9 @@ whole peripheral family in the quotient, and the simultaneous Lemma 5.8
 interface constructs one common quotient alphabet.  No loxodromic peripheral
 generator is transported directly: those generators are elliptic in the
 relative graph used by Lemma 4.4. -/
-theorem exists_fillingAlphabetData_parameters_of_hull44_hull58
+theorem exists_fillingAlphabetData_parameters_of_hull44
     (hselect : SimultaneousAuxiliaryPeripheralSelection.{u})
     (h44 : HullLemma44PreservedPeripheralFamily.{u})
-    (h58 : HullLemma58SuitableFamily.{u})
     {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G}
     {k : ℕ} (S : Fin k → Subgroup G) (hN : Suitable A.alphabet N)
     (hS : ∀ j : Fin k, Suitable A.alphabet (S j)) :
@@ -840,7 +1006,7 @@ theorem exists_fillingAlphabetData_parameters_of_hull44_hull58
   refine ⟨D, eps, rho, mu, hmu, ?_⟩
   intro W Q _ q hsc hsurj hker hQ
   obtain ⟨P⟩ := hpreserve W q hsc hsurj hker
-  exact nonempty_fillingAlphabetData_of_peripheralPreservation h58 hQ D P
+  exact nonempty_fillingAlphabetData_of_peripheralPreservation hQ D P
 
 end HullSC
 end GroupApproximation
