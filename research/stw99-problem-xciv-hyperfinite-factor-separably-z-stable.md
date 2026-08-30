@@ -22,8 +22,10 @@ would allow `R` as a codomain in the classification of morphisms.
 
 An unconditional positive subclass is now available at
 `stw99-xciv-norm-matrix-tower-has-zstable-hull`: every subset approximated in
-operator norm by one coherent increasing full-matrix tower lies in its
-`Z`-stable UHF norm core.  Tail relative commutants give actual norm-central
-copies of `Z` on finite tests.  This applies to the weakly dense CAR core of a
-dyadic model of `R`, but hyperfiniteness only gives `2`-norm approximation for
-arbitrary elements, so the unrestricted root remains open.
+operator norm by a coherent finite-dimensional tower with uniformly growing
+nonzero Bratteli tail multiplicities lies in an approximately divisible,
+hence `Z`-stable, AF norm core.  The same multiplicity condition makes every
+finite-stage tail commutant `Z`-stable and gives actual norm-central copies of
+`Z` on finite tests.  This includes full-matrix UHF cores, but hyperfiniteness
+only gives `2`-norm approximation for arbitrary elements, so the unrestricted
+root remains open.
