@@ -5,7 +5,7 @@ kind: claim
 title: BCV HALT completeness has a computable readable-factor bound independent of halting time
 distinct_from:
   bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs: that proves each individual HALT strategy has some finite readable orbit after its halting time is known; this asks for one total computable bound from the machine description alone.
-  bounded-readable-factor-zirs-value-has-computable-upper-hierarchy: that proves effective compactness once an integer atom bound is supplied; this asks the BCV completeness construction to supply that bound uniformly.
+  bounded-readable-factor-zirs-computable-upper-hierarchy: that proves effective compactness once an integer atom bound is supplied; this asks the BCV completeness construction to supply that bound uniformly.
   perfect-gap-zpc-has-finite-readable-translate-algebra: that directly asks for a specially chosen NONHALT gap witness with some finite factor; this is a HALT-side uniformity premise from which such a witness would follow by a restricted diagonalization.
 ---
 
