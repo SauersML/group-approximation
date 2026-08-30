@@ -8,20 +8,46 @@ distinct_from:
   stw99-problem-xc-cstar-simple-strict-comparison: that asks for strict comparison; this asks for Robert's selflessness, which implies strict comparison (Robert, Theorem 3.1) and is the refinement STW record as Problem XCI.
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw91-selfless-group-frontier-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
 countable discrete C\*-simple group, is `C*_r(G)` selfless?
 
-Selflessness (Robert, *Selfless C\*-algebras*, arXiv 2023): `(A, τ)` is
-selfless when the first-factor embedding `A → (A, τ)^{*∞}` into the reduced
-free product of infinitely many copies factors through a `*`-homomorphism
-`A^ω → (A, τ)^{*∞}` restricting to the diagonal.  Selfless algebras are simple,
-have strict comparison, and are purely infinite or have a unique trace which
-is the unique quasitrace (Robert, Theorem 5.2, Proposition 2.2, Theorem 3.1).
+Selflessness (Robert, *Selfless C\*-algebras*, Definition 2.1): `(A, τ)` is
+selfless when `A != C`, `τ` has faithful GNS representation, and the
+first-factor embedding
+
+```text
+i_1:(A,τ) -> (A,τ) * (A,τ)
+```
+
+is existential.  Equivalently, for some ultrafilter `ω` there is a
+trace-preserving embedding `σ:(A,τ)*(A,τ) -> (A^ω,τ^ω)` with
+`σ i_1=Δ_A`; Robert's Theorem 2.6 gives the analogous equivalent formulation
+with the infinite reduced free product.  Thus the splitting map runs **from
+the free product to the ultrapower**, not conversely.  Selfless tracial
+algebras are simple, have stable rank one and strict comparison, and their
+trace is the unique trace and unique normalized 2-quasitrace (Robert,
+Theorem 3.1).
 
 The first part is solved: `C*_r(F_n)` is selfless for `n ≥ 2`
-(Amrutam--Gao--Kunnawalkam Elayavalli--Patchell, arXiv 2024).  The second part
-is open; the same paper settles it for acylindrically hyperbolic groups with
-rapid decay and no nontrivial finite normal subgroup
-(`agkp-acylindrically-hyperbolic-rd-groups-selfless`).
+(Amrutam--Gao--Kunnawalkam Elayavalli--Patchell, arXiv:2412.06031, published
+in *Inventiones* 242 (2025)).  The universal C\*-simple-group question remains
+open as of 30 August 2026.  Subsequent primary-source advances include
+Ozawa's topologically-free extreme-boundary/PHP criterion
+(arXiv:2508.07938), Vigdorovich's theorem for all nontrivial linear groups
+with trivial amenable radical (arXiv:2602.10616v3), and the relative
+selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
+(arXiv:2607.20361); none asserts the universal statement above.
+
+## Attempts
+
+- `stw91-directed-unions-of-selfless-groups` proves a local-to-global
+  permanence principle and supplies new positive examples.
+- `stw91-countable-free-direct-sum-is-selfless` applies it to the countable
+  restricted direct sum of `F_2`, then proves this group is neither linear nor
+  acylindrically hyperbolic.
+- `stw91-finite-subgroup-projection-obstruction` gives a concrete negative
+  certificate in ordered `K_0` using averaging projections of finite
+  subgroups.
