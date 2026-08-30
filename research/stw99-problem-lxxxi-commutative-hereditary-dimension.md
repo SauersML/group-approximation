@@ -41,6 +41,17 @@ Thus the question is precisely whether this canonical type-I lower bound
 can stay at most one while nuclear dimension takes a finite value at least
 two.
 
+The lower bound itself has perfect extension behavior:
+`stw81-ctdim-extension-maximum` proves
+
+```text
+ctdim(E) = max(ctdim(I),ctdim(D))
+```
+
+for every separable extension.  Therefore any discrepancy in Problems
+LXXXI--LXXXII occurs strictly above the continuous-trace shadow layer; it
+cannot be explained by topological dimension appearing only after gluing.
+
 ## Attempts
 
 `stw81-separable-subhomogeneous-positive` proves the assertion for separable
