@@ -28,6 +28,15 @@ soficity.  For a torsion-free group with nontrivial Linton radical,
 residually-rationally-solvable quotient cannot be the required quotient: it
 must kill at least one member of the packet.
 
+[[li-weinbaum-visibility-is-relator-power-independent]] shows that the answer
+is independent of `m`: every map to a locally indicable group kills `v`, so
+the torsion presentation gives exactly the same quotient problem as
+`F/<<v>>`.  [[rational-solvable-weinbaum-visibility-boundary]] sharpens the
+remaining gate: a rationally solvable target retains the packet exactly in the
+trivial-Linton-radical case.  Hence the unresolved case requires an amenable
+locally indicable image outside the rationally solvable class; in the
+perfect-radical subcase the image must be genuinely nonsolvable.
+
 ## Attempts
 
 1. **Use the canonical Linton quotient.**  *Fails exactly on the new marker.*
@@ -44,3 +53,27 @@ must kill at least one member of the packet.
    groups are residually amenable remains open; in particular the
    Baumslag--Gersten regime is unresolved by that method.  The claim here is
    deliberately weaker and may admit a packet-specific construction.
+4. **Exploit the torsion exponent.**  *Exactly no extra freedom.*  By
+   [[li-weinbaum-visibility-is-relator-power-independent]], every locally
+   indicable target is torsion-free and therefore turns `v^m=1` into `v=1`.
+5. **Stay within rationally solvable targets.**  *Complete boundary known.*
+   [[rational-solvable-weinbaum-visibility-boundary]] proves that this works
+   if and only if the Linton radical is trivial.  In the complementary case a
+   proper-subword marker lies in that radical and every such target kills it.
+6. **Use the explicit exponential-germ quotient of Baumslag--Gersten.**
+   *Concrete hard-class candidate, two gates still open.*  Nyberg-Brodda,
+   arXiv:2606.27408v1 (August 24, 2026 version), proves that `a->(x|->2x)`
+   and `b->(x|->2^x)` gives a nonfaithful germ representation.  Its image sees
+   `a`, hence sees the perfect radical and is nonsolvable; as a subgroup of the
+   left-orderable group of germs at infinity it is left-orderable.  The paper
+   does not prove that this image is amenable, and full proper-subword packet
+   retention is also not established.  Thus it supplies exactly the right
+   kind of candidate, but not a solution of this claim.
+
+## Closed presentation-visible subfamily
+
+[[abelian-weinbaum-packet-criterion]] gives a decidable positive family.  If
+no proper subword's exponent-sum vector lies in the saturated rational line
+spanned by the relator's exponent-sum vector, one homomorphism to `Z` retains
+the whole packet.  The same lattice condition is necessary for every
+torsion-free abelian target.
