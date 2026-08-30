@@ -27,14 +27,19 @@ intersects over *all* loxodromic elements of `S` rather than over `ℒ_S`, which
 makes it a smaller subgroup and the triviality conclusion correspondingly
 weaker; that is all `yi` needs, and it costs no new vocabulary.
 
-## What `yi` actually consumes
+## The exact seam with `yi`
 
 `eq_one_of_mem_elementaryClosure_of_suitable`: over a suitable `S`, an element
 lying in the elementary closure of **every** loxodromic element of `S` is the
-identity.  In `yi` that element is the label `c` of the connecting edge, shown
-to lie in `E(f₁) ∩ … ∩ E(f_k)`; here it is asked to lie in all of them, which is
-the form that needs no choice of the family and so can be proved before the
-family exists.
+identity.  Hull's component argument first places the connecting label `c` only
+in the finite intersection `E(f₁) ∩ … ∩ E(f_k)`.  Passing from that finite
+intersection to the radical is additional content: one must choose the
+`fᵢ` so that their closures detect `K_G(S)`, or prove `c ∈ E(h)` for every
+loxodromic `h ∈ S`.  No theorem in this file supplies that bridge.
+
+Thus the theorem below is the radical endpoint consumed once that membership
+has been established; it is not by itself a proof that the finite family
+constructed in `yi` has trivial intersection.
 
 ## Where the two hypotheses come from
 
@@ -120,11 +125,11 @@ theorem loxRadical_eq_bot_of_suitable {A : Alphabet G} {S : Subgroup G}
     (finite_loxRadical hvc hS).to_subtype
     (fun _ hs _ hx => conj_mem_loxRadical hs hx)
 
-/-- **The form `yi` consumes.**  Over a suitable `S`, an element lying in the
-elementary closure of every loxodromic element of `S` is the identity.
+/-- **The radical endpoint for `yi`.**  Over a suitable `S`, an element lying
+in the elementary closure of every loxodromic element of `S` is the identity.
 
-In `yi` this is applied to the label of the edge joining the two `ε`-close
-paths, which the commuting argument places in `E(f₁) ∩ … ∩ E(f_k)`. -/
+Applying this to the edge joining the two `ε`-close paths still requires the
+finite-family-to-radical bridge described in the module header. -/
 theorem eq_one_of_mem_elementaryClosure_of_suitable {A : Alphabet G}
     {S : Subgroup G} (hvc : ElementaryClosureVirtuallyCyclic G (Cayley.base A))
     (hS : Suitable A S) {c : G}

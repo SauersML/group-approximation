@@ -2956,6 +2956,8 @@ import GroupApproximation.GGT.DGOWWordConditions
 import GroupApproximation.GGT.DGOLemma421Statement
 import GroupApproximation.GGT.DGOAlphabetEnlargementWWords
 import GroupApproximation.GGT.RelHypSuitabilityClosure
+import GroupApproximation.GGT.HullYiStatements
+import GroupApproximation.GGT.HullYiConeOffReduction
 import GroupApproximation.GGT.DGOWindmillCyclic
 import GroupApproximation.GGT.DGOPolygonCutFamily
 import GroupApproximation.GGT.DGOSumBoundFinite

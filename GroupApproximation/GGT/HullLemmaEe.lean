@@ -61,9 +61,9 @@ since `ℋ` carries identity loops by Dahmani--Guirardel--Osin's own convention.
 
 * **`OsinTheorem54Fam`** is Hull's Theorem `Ahyp`, already in the repository.
 * **`HeGXSingle`** is Hull's Corollary `heGX` at one element, stated here.  It
-  takes acylindricity rather than WPD, which absorbs the step *"since the action
-  is acylindrical, all loxodromic elements satisfy WPD"* that the repository has
-  no theorem for.
+  takes acylindricity rather than WPD; the intervening step *"since the action
+  is acylindrical, all loxodromic elements satisfy WPD"* is now the proved
+  theorem `isWPDAt_of_isAcylindrical`.
 * **`Elementary.EllipticOrEscaping`** is the **only** part of Bowditch's
   dichotomy still missing.  This deserves the detail, because the obvious reading
   of the repository is that Bowditch is already available and it is not, in this
@@ -143,9 +143,9 @@ statement and whoever discharges either owes the bridge between them --- the pai
 form is this one read at `k = 2`.
 
 Acylindricity rather than WPD: Hull's proof reaches `heGX` through *"since the
-action is acylindrical, all loxodromic elements satisfy WPD"*, and this
-repository has no theorem for that implication.  Taking acylindricity as the
-hypothesis absorbs the step instead of leaving it as a second unnamed debt. -/
+action is acylindrical, all loxodromic elements satisfy WPD"*.  That implication
+is proved as `isWPDAt_of_isAcylindrical`; keeping acylindricity here matches the
+data the consumer already carries. -/
 def HeGXSingle : Prop :=
   ∀ (G : Type u) [Group G] (Λ : Type w) (D : RelGenSet G Λ),
     D.IsHyperbolicallyEmbedded → IsAcylindrical G (Cayley D.alphabet) →
