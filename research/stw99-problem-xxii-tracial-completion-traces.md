@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw22-matrix-to-hyperfinite-field-audit-2026-08-30.md
   - research/artifacts/stw22-finite-bratteli-cube-audit-2026-08-30.md
   - research/artifacts/stw22-asymptotically-dense-factor-field-audit-2026-08-30.md
+  - research/artifacts/stw22-variable-factor-selection-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -119,6 +120,18 @@ coordinates may already be proper hyperfinite `II_1` subfactors.  Norm
 density makes their trace-preserving expectations converge to the identity
 in `2`-norm, so the same derived-subset descent proves trace continuity over
 every closed finite-height pattern.
+The finite-height restriction disappears under a common-ambient
+expectation hypothesis.
+`stw22-expectation-fields-have-uniform-traces` treats any compact
+metrizable zero-dimensional base when all factor fibres sit in one finite
+factor and their trace-preserving expectations vary pointwise continuously
+in `2`-norm.  A moving-factor perturbation lemma makes the weighted-copy
+multifunction lower semicontinuous; clopen selection then produces
+orthogonal copies inside the moving fibres themselves.  This kills the
+escaping quotient at every countable limit rank and covers arbitrary
+countable successor and limit Cantor--Bendixson height without transfinite
+descent.  The unresolved boundary is whether general factorial tracial
+bundles possess such a continuous common-ambient expectation presentation.
 
 ## Attempts
 

@@ -62,3 +62,10 @@ general problem.  Finite Cantor--Bendixson height is used when the gap trace
 cone is descended to an isolated fibre; no conclusion is asserted at a
 limit ordinal or for factor fields lacking asymptotically identity
 expectations.
+
+The later theorem `stw22-expectation-fields-have-uniform-traces` removes
+the height restriction whenever those coordinate expectations extend to a
+pointwise `2`-continuous expectation field over the whole base.  The
+present finite-height proof remains useful when only successor-stage
+expectation convergence is available and no global moving-fibre selection
+has been established.
