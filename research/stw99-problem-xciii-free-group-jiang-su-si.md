@@ -26,6 +26,21 @@ whether every quasitrace on the norm central sequence algebra annihilates its
 trace-kernel ideal.  Any negative witness must give positive mass to a positive
 norm-central sequence which is zero in tracial norm.
 
+The quotient has no central directions beyond the canonical Jiang--Su
+tensor-factor slice.  Full-factor spectral gap pushes every central sequence
+of `L(F₂) tensor_bar R` into `R` modulo tracial `2`-norm, while central
+surjectivity lifts the resulting hyperfinite central sequence from `Z`.
+Consequently `stw93-jiang-su-slice-exhausts-tracial-central-quotient` gives
+
+```text
+F(Z)/(J_(tau_Z) intersect F(Z)) ~= D/I,
+D=I+iota(F(Z)).
+```
+
+Thus a negative answer cannot arise from a missing tracial-quotient class;
+it is necessarily a failure to make the norm-level trace-kernel extension
+quasitracially invisible.
+
 The tensor-factor copy of `F(𝒵)` is not the source of such a witness: every
 quasitrace restricts canonically to it, and property (SI) holds for pairs lying
 entirely in that copy.  In fact every quasitrace kills the ambient ideal

@@ -61,6 +61,44 @@ In particular `q` cannot be bounded above by any constant multiple of the
 limit trace on positive elements.  This turns the open problem into a singular
 quasitrace problem entirely inside the trace-kernel ideal.
 
+## The canonical Jiang--Su slice exhausts the quotient
+
+The abstract II₁-factor quotient has a canonical concrete source.  Put
+`N=L(F₂)` and `M=N tensor_bar R`.  Non-inner amenability of the free group
+supplies finitely many group unitaries whose adjoint action has spectral gap
+on `L²(N) minus C1`; this is the standard spectral gap underlying fullness
+of `N`.
+Tensoring that Hilbert-space inequality with `L²(R)` shows that, for the
+trace-preserving expectation `E_R:M->1 tensor R`,
+
+```text
+norm(x-E_R(x))_2^2
+  <= C sum_j norm([x,u_j tensor 1])_2^2.
+```
+
+Every bounded central sequence `(x_n)` in `M` is therefore equal in the
+tracial ultrapower to `(E_R(x_n))`.  Bimodularity of `E_R` makes the latter a
+central sequence in `R`.  Hence
+
+```text
+R^omega intersect R' -> M^omega intersect M'
+```
+
+is onto.  Kirchberg--Rørdam central surjectivity for `Z` makes
+`F(Z)->R^omega intersect R'` onto as well.  Combining these maps with the
+tracial quotient gives the canonical isomorphism
+
+```text
+F(Z)/(J_(tau_Z) intersect F(Z)) ~= D/I.
+```
+
+Equivalently, `D=I+iota(F(Z))`, and the intersection of the two summands is
+exactly the trace-kernel part of the slice.  This is stronger than merely
+knowing that quasitraces restrict canonically to `F(Z)`: the single canonical
+slice represents every element of the tracial central quotient.  It does not
+split the extension or annihilate `I`; a singular quasitrace can still detect
+how the norm central sequence algebra is glued to that quotient.
+
 ## The two tensor sources
 
 There are canonical unital embeddings
@@ -161,4 +199,6 @@ The remaining claim is that all quasitraces on `D/K_𝒵` annihilate
 evaluated against all quasitraces, including a hypothetical singular one.
 Exactness of `A` also cannot be transferred automatically to the product
 quotient defining `D`.  No unique-quasitrace or property-(SI) conclusion for
-`A` is claimed here.
+`A` is claimed here.  Exhaustion of `D/I` by the canonical Jiang--Su slice is
+only a quotient statement and supplies neither a *-homomorphic splitting nor
+quasitracial control on `I`.
