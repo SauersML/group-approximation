@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/stw93-xciii-free-group-jiang-su-si-audit-2026-08-30.md
   - research/artifacts/stw93-hereditary-exhaustion-audit-2026-08-30.md
   - research/artifacts/stw93-residual-bounded-trace-audit-2026-08-30.md
+  - research/artifacts/stw93-central-commutator-lifting-audit-2026-08-30.md
 ---
 
 **Problem XCIII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Does `C*_r(F₂) ⊗ 𝒵` have property (SI)?
@@ -83,3 +84,13 @@ copies, saturated null ideal, and pureness, but its residual ideal is a
 II_1 factor.
 Hence the next actual hinge is an XCIII-specific argument excluding an
 extra ordinary tracial direction wholly inside the norm trace kernel.
+
+Uniform Powers--Dixmier averaging now isolates the norm-kernel issue more
+sharply.  `stw93-central-commutator-lifting-is-trace-hinge` proves that
+every self-adjoint element of `I` is a norm limit of self-commutators in the
+full ultrapower `A_omega`.  Uniqueness of the ordinary trace on `D` is
+equivalent to producing the same approximations with all commutator factors
+in `D`.  Coordinatewise averaging unitaries vary with the representative
+and need not be norm-central, while full-factor spectral gap only controls
+their effect in tracial `2`-norm.  Centralizing these ambient commutator
+decompositions is therefore the exact next Powers-averaging hinge.
