@@ -2947,6 +2947,7 @@ import GroupApproximation.Analysis.VoiculescuStageVector
 import GroupApproximation.GGT.DGOAssemblyAdapter
 import GroupApproximation.GGT.DGOAssemblySubdivision
 import GroupApproximation.GGT.HullEeCycleComponents
+import GroupApproximation.GGT.HullEeAdjacent
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
