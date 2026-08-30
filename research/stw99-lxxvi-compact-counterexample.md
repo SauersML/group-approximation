@@ -18,6 +18,8 @@ STW Problem LXXVI.
 ## Attempts
 
 The live route is `stw99-lxxvi-compact-counterexample-via-local-collapse`.
-Its sole genuinely open input is an ideal-local collapse witness.  Toeplitz
-index data fail the necessary local K0 equality, while the established
-zero-dimensional locally subhomogeneous class is already Z-stable.
+Its genuinely open input is an ideal-local collapse witness.  Toeplitz index
+data fail the necessary local K0 equality in the stably finite corridor,
+while the established zero-dimensional locally subhomogeneous class is
+already Z-stable.  A second live route allows the images to become infinite,
+where Cu equality need not preserve K0.
