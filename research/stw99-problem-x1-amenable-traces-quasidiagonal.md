@@ -14,6 +14,7 @@ artifacts:
   - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw10-amenable-trace-frontier-2026-08-30.md
+  - research/artifacts/stw10-factorial-witness-audit-2026-08-30.md
 ---
 
 **Problem X(1) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Are amenable traces on C\*-algebras necessarily
@@ -98,3 +99,8 @@ unconditional reductions are:
 - `ideal-central-components-retain-an-amenable-nonqd-witness`, which splits a
   hypothetical counterexample along any ideal without assuming that QD traces
   form a face.
+- `stw10-factorialize-amenable-nonqd-witnesses`, which uses the compact
+  amenable-trace face to replace any counterexample by a separable factorial
+  one.  In the exact case it sharpens this to a faithful amenable non-QD trace
+  on a separable exact algebra whose GNS von Neumann algebra is `R`.  Exactness
+  is essential for the hyperfinite-GNS conclusion.
