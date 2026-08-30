@@ -39,6 +39,15 @@ literal group `E`.
 * **Kazhdan non-MF groups.**  `H` and `Q` are Kazhdan; dead by
   `kazhdan-groups-in-hyperfinite-unitary-group-are-rf`
   (route `non-mf-unitary-subgroup-via-kazhdan-non-mf-groups`).
+* **The Clifford witness `W = Cl(X) ⋊ Σ` and the block-commuting quotient
+  of `E`.**  Dead: `clifford-witness-has-no-hyperfinite-marked-representation`
+  (route `non-mf-unitary-subgroup-via-clifford-witness`).  With the sign at
+  `−1` the lamps generate a UHF algebra with unique trace, the site
+  permutations act outerly on its hyperfinite completion, and
+  `hyperfinite-covariant-obstruction-lemma` forces the regular character on
+  `Σ ⊇ SL_3(Z)`, which is not amenable.  So the mark is invisible to
+  hyperfinite representations of these groups, exactly as it is invisible to
+  norm-matrix coronas.
 * **The literal group `E`.**  `E` is sofic (`literal-group-sofic`), so
   `E ↪ U(R^ω)`; the question is whether the ultrapower can be replaced by
   `R` itself.  Reduced in `literal-group-embeds-in-hyperfinite-unitary-group`

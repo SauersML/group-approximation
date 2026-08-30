@@ -4,11 +4,13 @@ id: stw99-problem-x2-hyperfinite-factor-quasidiagonal
 kind: claim
 title: The hyperfinite II1 factor is quasidiagonal (STW Problem X(2))
 root: true
+refuted_by: [hyperfinite-factor-not-quasidiagonal]
 distinct_from:
   stw99-problem-x1-amenable-traces-quasidiagonal: that quantifies over all amenable traces on all C*-algebras; this is the single instance of the trace of R, which STW expect to be the heart of the non-exact case.
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw10-amenable-trace-frontier-2026-08-30.md
+  - research/artifacts/stw99-x2-unitary-subgroup-reduction-2026-08-30.md
 ---
 
 **Problem X(2) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Is the hyperfinite II₁ factor `R` quasidiagonal
@@ -63,3 +65,13 @@ of sums of corner defects, and the normalized trace is
 form: all approximation data live in one `e_11` corner, the ambient model
 size is forced to be `dm`, and the CAR matrix action carries no residual
 choice or error.
+
+**Group reduction (2026-08-30).**  If `R` is quasidiagonal then every
+countable subgroup of `U(R)` is an MF group
+(`hyperfinite-factor-qd-forces-unitary-subgroups-mf`).  So a single non-MF
+group with a faithful hyperfinite character refutes this problem
+(`hyperfinite-factor-not-qd-via-non-mf-unitary-subgroup`).  Kazhdan
+non-MF groups cannot be that witness, since a finitely generated Kazhdan
+subgroup of `U(R)` is residually finite
+(`kazhdan-groups-in-hyperfinite-unitary-group-are-rf`); the live candidate
+is the literal group `E` (`literal-group-embeds-in-hyperfinite-unitary-group`).

@@ -39,6 +39,32 @@ character of `E` whenever
 
 ## Attempts
 
+* **Reduction to invariant marked characters of the free amalgam.**  With
+  `E = C(𝒢) ⋊ Σ` and `ρ(w) = −1`, the trace of `W` restricts to a
+  `Σ`-invariant character `τ_Λ` of the lamp kernel `Λ = C(𝒢)` (a central
+  amalgam of order-512 Clifford blocks,
+  `literal-lamp-kernel-clifford-block-amalgam`) with `τ_Λ(w) = −1` and
+  hyperfinite GNS closure `M`.  By
+  `hyperfinite-covariant-obstruction-lemma`, if every `g ∈ Σ \ {e}` acts
+  properly outerly on `M` then `Σ` would be amenable, which it is not.  So
+  a faithful hyperfinite character of `E` needs a `Σ`-invariant hyperfinite
+  marked character of `Λ` on whose GNS closure some `g ≠ e` is inner on a
+  nonzero central piece.  Three families are dead: (i) the canonical
+  character of any `Σ`-invariant quotient of `Λ` in which some pair of
+  blocks does not commute has non-injective GNS closure (it contains a free
+  product `M_16 * M_16`, an interpolated free group factor); (ii) the
+  block-commuting quotient is `clifford-witness-has-no-hyperfinite-marked-representation`;
+  (iii) the direct-integral characters `∫ tr_16 ∘ ρ_ℓ dμ(ℓ)` over a
+  `Σ`-invariant product measure on block labelings `ℓ : X → {1,…,8}` have
+  type I closure `L^∞(Ω) ⊗ M_16` on which every `g ≠ e` acts essentially
+  freely on the centre, hence properly outerly.  A fully inner `g`
+  (`ρ(c_ξ) = ρ(c_{gξ})` for all `ξ`) is impossible: `Σ`-invariance spreads
+  the identification to the normal closure `N` of `g`, every nontrivial
+  normal subgroup of `Σ` contains a nontrivial translation, every nontrivial
+  translation is conjugate into `K \ B`, and identifying two adjacent lamps
+  kills `w`.  What remains open is partial innerness on a central piece for
+  a general `Σ`-invariant hyperfinite marked character.
+
 * **Finite-dimensional models.**  Every finite-dimensional unitary
   representation of `E` kills `w` (finite-dimensional representations are
   MF and `w` lies in the MF radical), so `τ_2` cannot be a limit of
