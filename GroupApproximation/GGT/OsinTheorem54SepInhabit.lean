@@ -137,13 +137,15 @@ The binders, one per line and each visible by name:
   inequality for the Λ-SUM, at most two exceptional cosets across all `λ`
   together.  It is stated on the sum and not per `λ` because a per-`λ` version
   summed over `Λ` gives defect `2|Λ|`, and the field would then be false at
-  `|Λ| ≥ 2`.  This is the only geometric leaf left under the count, and it
-  reduces to fp-geometry's `isolatedComponentBound_le_six` --- the §4.2 bound at
-  `n ≤ 6` --- with nothing else between.
-* `h55`, `hM`, `hloc` --- Osin's Lemma 5.5 (declared as a debt in
-  `GGT/OsinTheorem54SepLemma55.lean`) together with the bounded-detour condition
-  of his Lemma 5.6 and the local finiteness of his Lemma 5.8.  These are exactly
-  the inputs of `isHyperbolicallyEmbedded_of_lemma55`, which discharges `emb`.
+  `|Λ| ≥ 2`.  It reduces to fp-geometry's `isolatedComponentBound_le_six` ---
+  the §4.2 bound at `n ≤ 6` --- with nothing else between, and is a theorem by
+  that route (`lemmaFourNine_of_bound`), as is `h48`.
+* `h55`, `hM`, `hloc` --- Osin's Lemma 5.5, the bounded-detour condition of his
+  Lemma 5.6, and the local finiteness of his Lemma 5.8.  These are exactly the
+  inputs of `isHyperbolicallyEmbedded_of_lemma55`, which discharges `emb`.  The
+  first two are theorems now --- `GuessingGeodesicsCriterion.osinLemma55` and
+  `OsinLemma56Inheritance.exists_boundedDetour` --- and are supplied downstream
+  rather than assumed.
 * `hdist`, `hsle` --- Lemma 5.10's two halves.  **Neither is a leaf.**  Each is
   provable from what is already landed: `hdist` by induction on the cardinality
   of `sepIndexSet` via its minimum, with the gap letters supplied by
@@ -151,7 +153,8 @@ The binders, one per line and each visible by name:
   in `H_lam`; `hsle` by iterating `h49` along an enlarged geodesic against
   `sepCard_le_one_of_mem_alphabet`, the constant `3` falling out as `1 + 2`.
   They appear as binders only because each is a word induction that belongs in
-  its own file, and this is the context those files will be proved against.
+  its own file; both of those files exist now, and this is the context they were
+  proved against.
 * `h511` --- Osin's Lemma 5.11, the residue `AcylindricalCore`. -/
 theorem sepDataFam_of_binders [Fintype Λ] (D : RelGenSet G Λ) {Dc : ℕ}
     (hDc : 1 ≤ Dc) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)

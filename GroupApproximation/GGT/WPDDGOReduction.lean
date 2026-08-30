@@ -93,6 +93,27 @@ citations: the first becomes a corollary, the second becomes unnecessary, and
 the debt moves to `DGOTheorem611` and `DGOProposition433` --- with
 Proposition 4.14 the single obstruction behind both.
 
+## Superseded: both leaves are discharged, and `DGOTheorem611` is false
+
+The paragraph above records where this module left the debt.  It has since moved
+again, twice, and the reader should not go looking for either leaf.
+
+`DGOProposition433` is not needed: `GGT.finite_conj_inter_of_mem_base`
+(`GGT/DGOCorollary612Malnormal.lean`) supplies the only instance of it the
+derivation consumes, at a letter of `X`, from local finiteness alone.
+
+`DGOTheorem611` **is false as stated** --- it asks for `a ∈ X` without asking
+`a ∉ H_λ`, and `GGT.DGOTheorem611Refutation.not_dgoTheorem611` refutes it.  With
+that hypothesis added it is a theorem, `GGT.dgoTheorem611'`, and so is the
+corollary it was wanted for: `GGT.dgoCorollary612 : DGOCorollary612`, in
+`GGT/DGOCorollary612Unconditional.lean`.  Neither proof uses Proposition 4.14 or
+Lemma 4.21; they run on Lemma 4.6 over a window whose length the hyperbolicity
+constant fixes, and a dyadic bootstrap into
+`HullGeometry.isLoxodromic_of_local_backtracking`.
+
+`GGT.osinTheorem12_of_two` is the consequence for this module's chain:
+`OsinTheorem12` costs `DGOTheorem68` and `OsinTheorem54`, and nothing else.
+
 ## Checking the two new statements against the degenerate cases
 
 Both leaves are stated so that the degenerate configurations Dahmani--Guirardel--Osin
@@ -163,7 +184,20 @@ stronger hypothesis `o(H_λ)` unbounded, is dropped with it.
 Clause (a) is written `∀ n, ¬ (H ⊆ relBall () n)`: unboundedness in `d̂` is
 exactly the failure of every relative ball to contain `H`, and this form is
 correct where a metric form would not be, because `d̂_λ` takes the value `∞`
-(their Remark 6.10). -/
+(their Remark 6.10).
+
+**This proposition is FALSE, and the transcription is faithful.**  Neither
+printed hypothesis says `a ∉ H_λ`, and without it the conclusion fails:
+`GGT.DGOTheorem611Refutation.not_dgoTheorem611` refutes it over the two-element
+group with `X = {1}` and `H = G`, where every vertex lies in `H`, so no
+admissible path may read an `H`-letter, every relative ball is `{1}`, and `d̂` is
+unbounded --- while `a h` lies in `H` and is therefore elliptic.
+Dahmani--Guirardel--Osin's proof does use `a ∉ H_λ`: it is condition `(W3)` of
+their Lemma 4.21, read at the word `(ah)^N`.  Nothing downstream is affected,
+because the theorem is applied only through Corollary 6.12, where `a ∈ G \ H`.
+
+Do not consume this proposition.  `GGT.dgoTheorem611'` is the same statement
+with `a ∉ D.fam ()` added, and it is proved. -/
 def DGOTheorem611 : Prop :=
   ∀ (G : Type u) [Group G] (D : RelGenSet G Unit), D.IsHyperbolicallyEmbedded →
     (∀ n : ℕ, ¬ ((D.fam () : Subgroup G) : Set G) ⊆ D.relBall () n) →

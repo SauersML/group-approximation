@@ -37,9 +37,17 @@ and `a⁻¹ ∈ H` would give `a ∈ H`.
 a vertex of `H`, and ruling that out is Dahmani--Guirardel--Osin's quadrilateral
 argument.  Nothing here proves that statement.  What is proved is that the
 chain does not need it: `dgoCorollary612_of_611` obtains `DGOCorollary612` from
-`DGOTheorem611` alone, so the standing debt of `OsinTheorem12` is three named
-statements --- `DGOTheorem68`, `OsinTheorem54`, `DGOTheorem611` --- and the
-polygon theory of §4.2 is owed only to the last.
+`DGOTheorem611` alone.
+
+That reduction has since been overtaken.  `DGOTheorem611` is false as stated ---
+it omits `a ∉ H_λ`, and `GGT.DGOTheorem611Refutation.not_dgoTheorem611` refutes
+it --- while the statement with that hypothesis added is proved, as
+`GGT.dgoTheorem611'`, and so is `GGT.dgoCorollary612 : DGOCorollary612`, in
+`GGT/DGOCorollary612Unconditional.lean`, without any of the polygon theory of
+§4.2.  So the standing debt of `OsinTheorem12` is **two** named statements,
+`DGOTheorem68` and `OsinTheorem54`, and `GGT.osinTheorem12_of_two` assembles it
+from them.  `dgoCorollary612_of_611` is kept because it records what the
+corollary costs over the citation, not because anything consumes it.
 -/
 
 namespace GroupApproximation

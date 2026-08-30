@@ -2833,6 +2833,9 @@ import GroupApproximation.GGT.HullYiLoxRadical
 import GroupApproximation.GGT.HullSCRelatorSeparation2CountBigon
 import GroupApproximation.Analysis.VoiculescuAmplifiedUnits
 import GroupApproximation.Analysis.VoiculescuFrameFromGlimm
+import GroupApproximation.GGT.DGOWindmillQuasiconvex
+import GroupApproximation.GGT.DGOWindmillBetween
+import GroupApproximation.GGT.DGOWindmillRotationFree
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
