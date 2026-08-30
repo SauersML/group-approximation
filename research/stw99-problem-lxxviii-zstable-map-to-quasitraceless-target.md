@@ -19,6 +19,18 @@ be `O_infinity`-stable?
 
 This remains open.
 
+Every counterexample now reduces to a finite-generator target extension:
+`stw78-counterexamples-have-finite-obstruction-targets` gives
+
+```text
+B_0=C*(phi(A),b_1,...,b_m)
+```
+
+with `B_0` separable and still quasitraceless, while retaining a positive
+finite-set central-isometry defect.  The key compactness theorem is that
+absence of normalized 2-quasitraces is witnessed by a finitely generated
+unital subalgebra.
+
 ## Attempts
 
 An irreducible embedding into `B(H)` is not a counterexample merely because
