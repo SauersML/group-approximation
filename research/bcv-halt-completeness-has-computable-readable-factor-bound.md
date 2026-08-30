@@ -6,6 +6,7 @@ title: BCV HALT completeness has a computable readable-factor bound independent 
 distinct_from:
   bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs: that proves each individual HALT strategy has some finite readable orbit after its halting time is known; this asks for one total computable bound from the machine description alone.
   bounded-readable-factor-zirs-computable-upper-hierarchy: that proves effective compactness once an integer atom bound is supplied; this asks the BCV completeness construction to supply that bound uniformly.
+  bcv-question-reduction-retains-readable-closure: that proves the explicit honest Question Reduction strategy retains and block-amplifies source readable complexity; this asks whether some possibly different perfect HALT strategy has a total bound.
   perfect-gap-zpc-has-finite-readable-translate-algebra: that directly asks for a specially chosen NONHALT gap witness with some finite factor; this is a HALT-side uniformity premise from which such a witness would follow by a restricted diagonalization.
 ---
 
@@ -39,9 +40,11 @@ C^(F_2^k) tensor H,
 
 the readable `SamZ` atoms give the first tensor factor, while the readable
 answer projections contain block corners of the source readable projections.
-Pauli-X translations move those corners between blocks.  Thus source
-readable-factor complexity is retained, rather than erased, at this stage.
-A proof of `(BHB1)` would have to find a later uniform collapse in Answer
+Pauli-X translations move those corners between blocks.  The exact inclusion
+proved by `bcv-question-reduction-retains-readable-closure` shows that an
+honest Question Reduction with parameter `k` multiplies the source atom
+count by at least `2^k`; it does not erase that complexity.  A proof of
+`(BHB1)` would have to find a later uniform collapse in Answer
 Reduction or Parallel Repetition, or construct a different perfect
 completeness strategy with a computably bounded readable factor.  No such
 collapse is presently established.
