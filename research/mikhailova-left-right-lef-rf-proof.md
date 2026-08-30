@@ -5,7 +5,7 @@ kind: route
 title: Use finite generation to collapse almost-finite-index models to separability
 target: mikhailova-left-right-lef-iff-quotient-rf
 requires:
-  - mikhailova-left-right-frontier-proof
+  - mikhailova-left-right-action-current-frontier
 ---
 
 ## The fiber product is finitely generated
