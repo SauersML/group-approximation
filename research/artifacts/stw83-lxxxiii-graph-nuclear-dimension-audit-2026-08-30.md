@@ -80,9 +80,12 @@ row-finite graph.
 Sinks and infinite emitters do not obstruct the result.  In a Drinen--Tomforde
 desingularization, a cycle using an added tail must also pass through the base
 singular vertex, and collapsing its finite tail segments recovers an old cycle.
-Thus pairwise cycle intersection and Condition (K) both survive.  The original
-graph algebra is a full corner of the desingularized graph algebra, and nuclear
-dimension is unchanged by this full-corner passage.
+Their path bijection is Lemma 2.6 of
+[The C*-algebras of arbitrary graphs](https://arxiv.org/abs/math/0009228),
+Condition-(K) permanence is Lemma 2.7(b), and the full-corner statement is
+Theorem 2.11.  Thus pairwise cycle intersection and Condition (K) both survive.
+Winter--Zacharias, Corollary 2.8, then preserves nuclear dimension in the full-
+corner passage.
 
 The pairwise-intersection condition is doing real uniform work: global reachability
 from one cycle to another would not suffice, because the connecting path need not

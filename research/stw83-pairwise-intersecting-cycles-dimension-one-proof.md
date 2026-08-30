@@ -36,7 +36,9 @@ for every `n`.  Inductive-limit permanence gives `dim_nuc(C*(E))<=1` with no
 increase in the constant.
 
 For a countable graph with sinks or infinite emitters, take its Drinen--Tomforde
-desingularization `F`.  Their construction replaces an edge emitted at a singular
+desingularization `F`; see Lemmas 2.6--2.7 and Theorem 2.11 of
+[The C*-algebras of arbitrary graphs](https://arxiv.org/abs/math/0009228).
+Their construction replaces an edge emitted at a singular
 vertex by a finite initial segment of a new tail followed by a redistributed edge.
 It creates no new cycle independent of the old graph: collapsing every such tail
 segment sends a cycle in `F` to a cycle in `E`.  Conversely, a lifted cycle that
@@ -46,7 +48,8 @@ vertex, their lifts meet there, while if they meet at a singular vertex, their
 lifts both meet at the base of its tail.  Hence cycles in `F` still intersect
 pairwise.
 
-Drinen--Tomforde desingularization also preserves Condition (K), makes `F`
-row-finite, and realizes `C*(E)` as a full corner of `C*(F)`.  The row-finite case
-gives `dim_nuc(C*(F))<=1`, and nuclear dimension is invariant under passage to a
-full corner.  Therefore `dim_nuc(C*(E))<=1`.
+Lemma 2.7(b) says that desingularization preserves Condition (K), and Theorem
+2.11 makes `F` row-finite with no singular vertices and realizes `C*(E)` as a
+full corner of `C*(F)`.  The row-finite case gives `dim_nuc(C*(F))<=1`.
+Winter--Zacharias, Corollary 2.8, gives equality of nuclear dimension for a full
+hereditary corner, so `dim_nuc(C*(E))<=1`.
