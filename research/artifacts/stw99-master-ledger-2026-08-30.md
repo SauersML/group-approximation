@@ -20,7 +20,7 @@ earlier "all 99 covered" note.*
 | VII | stw99-problem-vii-blackadar-kirchberg | |
 | VIII | stw99-problem-viii-exact-quasidiagonal-af-embeddable | |
 | IX | stw99-problem-ix1-…, stw99-problem-ix2-… | two parts |
-| X | stw99-problem-x1-…, stw99-problem-x2-… | X(1) refuted in-graph via the literal group program (stw99-problem-x1-fails-on-full-group-algebras); X(2) = hyperfinite QD, open |
+| X | stw99-problem-x1-…, stw99-problem-x2-… | **X(1) ANSWERED NO** — amenable ≠ quasidiagonal traces: the literal group E has the factorization property (Folner-compressed RF-core models) while its canonical trace is hyperlinear non-QD; hostile audit at stw10-x1-refutation-hostile-audit-2026-08-30.md.  X(2) = hyperfinite QD, open |
 | XI | stw99-problem-xi-zd-crossed-stably-finite-qd | |
 | XII | stw99-problem-xii-ah-rr0-crossed-qd-afe | |
 | XIII | stw99-problem-xiii-ssa-uct | filled this wave |

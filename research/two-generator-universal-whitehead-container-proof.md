@@ -7,7 +7,6 @@ target: two-generator-fp-torsion-free-universal-whitehead-container
 requires:
   - higher-whitehead-universal-finitely-presented-torsion-free-group
   - whitehead-injective-two-generator-recursive-compression
-  - whitehead-injective-two-generator-free-edge-hnn-proof
   - waldhausen-hnn-vertex-higher-whitehead-injectivity
   - waldhausen-free-double-whitehead-space-contractible
   - fournier-facio-group-is-nonsofic
