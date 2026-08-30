@@ -2870,6 +2870,7 @@ import GroupApproximation.GGT.OlshanskiiBisection
 import GroupApproximation.Analysis.VoiculescuBlockRecursion
 import GroupApproximation.Analysis.VoiculescuBlockAbsorption
 import GroupApproximation.GGT.HullSCConeOffHeavyMatched
+import GroupApproximation.GGT.HullSCConeOffHeavyFellowTravel
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
