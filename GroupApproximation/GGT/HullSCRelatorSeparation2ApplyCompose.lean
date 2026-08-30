@@ -1,7 +1,7 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyFourWay
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyQG
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyShortSide
-import GroupApproximation.GGT.HullSCRelatorSeparation2NoCommute
+import GroupApproximation.GGT.HullSCRelatorSeparation2Cross
 import GroupApproximation.GGT.HullSCRelatorSeparation2Statement
 
 /-!
@@ -57,15 +57,15 @@ Three named hypotheses, and no others beyond the geometry of the ambient graph.
 * `hexcl` --- item 3, the two same-side exclusions, each carrying the
   component-start clause without which it is refuted by
   `HullSC.not_sideExclusion_of_isComp`;
-* `hnc` --- the diagonal leaf, that no nontrivial element of a relative ball
-  commutes with a power of the loxodromic.
-
-The third is carried rather than discharged, and the reason is recorded in
-`GGT/HullSCRelatorSeparation2ApplyLoxGap.lean`:
-`HullSC.noCommute_of_torsionFree` asks its element to be loxodromic in the
-RELATIVE graph, and the relator's letters are powers of elements OF the family,
-which are elliptic there.  The route named in the Ledger cannot be instantiated
-at this core, whatever the group.
+There is no third.  The chain used to carry a diagonal leaf --- that no
+nontrivial element of a relative ball commutes with a power of the loxodromic
+--- and `GGT/HullSCRelatorSeparation2ApplyLoxGap.lean` records why it could not
+be discharged: `HullSC.noCommute_of_torsionFree` asks its element to be
+loxodromic in the RELATIVE graph, and the relator's letters are powers of
+elements OF the family, which are elliptic there.  Hull never needs it.  What
+makes the aligned case's connector trivial is (W4), `E.disjoint`, a FIELD of
+the core, so the exponent design is the plain
+`HullSC.exists_separated_relator_exponents₂_cross` again.
 -/
 
 namespace GroupApproximation
@@ -182,16 +182,14 @@ variable {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
 
 The construction is (C1)--(C3) and nothing else: `p` at length one before `B`,
 `B := |p| + blockSeparation + 2`, and the run past `|p| + 5 * blockSeparation`.
-Everything the four-way asks of the design --- the exponents distinct, deep,
-separated, and off the diagonal --- comes from
-`HullSC.exists_separated_relator_exponents₂_diagonal` at radius
+Everything the four-way asks of the design --- the exponents distinct, deep
+and separated --- comes from
+`HullSC.exists_separated_relator_exponents₂_cross` at radius
 `max rho (Cm * 4)`, which is the given `rho` enlarged to what the matching step
 wants; the given `rho` is recovered by `HullSC.notMem_relBall_of_le`. -/
 theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
     (hN : Suitable A.alphabet N) (cnt : ℕ) {δ : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic E.rel.alphabet.carrier δ)
-    (hnc : ∀ (e : ℕ) (s : Bool), ∀ x ∈ E.rel.relBall s e, x ≠ 1 →
-      ∀ d : ℕ, 0 < d → ¬ Commute x (E.lox s ^ d))
     (hcount : ∀ (p : List G) (ms : List ℕ)
       (v : List (GGT.RelLetter G Bool)),
       RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v →
@@ -245,6 +243,9 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
     intro b
     rw [E.fam_eq]
     exact E.lox_mem b
+  have hdisj : ∀ x : G, x ∈ E.rel.fam false → x ∈ E.rel.fam true → x = 1 := by
+    rw [E.fam_eq]
+    exact E.disjoint
   set cw := max cnt (eps + 2) with hcw
   have hmono : blockConst p cnt ≤ blockConst p cw := by
     show p.length + cnt ≤ p.length + cw
@@ -259,11 +260,10 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
     GGT.OsinComponents.exists_deep_match_hyp E.rel hsymm (blockConst p cw) hδ
   refine ⟨p.length + blockSeparation p cw eps + 2, ?_⟩
   intro L
-  obtain ⟨ms, hlen, hnodup, hdeepD, hsepD, hdiagD⟩ :=
-    exists_separated_relator_exponents₂_diagonal E.embedded
+  obtain ⟨ms, hlen, hnodup, hdeepD, hsepD⟩ :=
+    exists_separated_relator_exponents₂_cross E.embedded
       (injective_pow_lox₂ E) (max rho (Cm * 4)) epsD
       (max L (p.length + 5 * blockSeparation p cw eps + 3))
-      (fun s => hnc epsD s)
   have hadm : RelWord.IsAdmissible E.rel
       (relatorWord₂ p (E.lox false) (E.lox true) ms) :=
     isAdmissible_relatorWord₂ hpbase hloxfam ms
@@ -369,7 +369,7 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
       hexcl p ms py pz u₀ u₀' ⟨w, sfx, hw, hsfx⟩ ⟨w', sfx', hw', hsfx'⟩
         hpy hpz
     have hconj := listVal_conj_of_sym_pieces hpair hmatch hnodup
-      (injective_pow_lox₂ E) hsymm hsepD hdiagD
+      (injective_pow_lox₂ E) hsymm hsepD hdisj
       (fun m hm b => hdeepD m hm b b) (Nat.le_max_right rho (Cm * 4)) hp0
       hw hw' hsfx hsfx' hlongp hmslong hpy hpz hpy0 hpz0 hlet4 hclose hqg
       hqlet hslet hqgq hqgs (le_refl _) hpynorm hqside hsside

@@ -82,9 +82,6 @@ theorem listVal_conj_of_alignedMatch_assembled {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hx'1 : (GGT.RelLetter.listVal py *
-          GGT.OsinComponents.vertex (1 : G) u (i + 1))⁻¹ *
-        GGT.OsinComponents.vertex (1 : G) u' (j + 1) = 1)
     (hpair : GGT.OsinComponents.MatchedPairOutput D eps bn)
     {p : List G} {c c' i j : ℕ}
     (hiR : i < (relatorWord₂ p (a false) (a true) ms).length)
@@ -127,6 +124,9 @@ theorem listVal_conj_of_alignedMatch_assembled {D : GGT.RelGenSet G Bool}
           (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' (j + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b)
+    (hx'1 : (GGT.RelLetter.listVal py *
+          GGT.OsinComponents.vertex (1 : G) u (i + 1))⁻¹ *
+        GGT.OsinComponents.vertex (1 : G) u' (j + 1) = 1)
     (hletu : ((relatorWord₂ p (a false) (a true) ms).rotate c)[i]?
       = some (GGT.RelLetter.comp b ((if b then a true else a false) ^ e)))
     (hletu' : ((relatorWord₂ p (a false) (a true) ms).rotate c')[j]?

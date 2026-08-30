@@ -133,9 +133,6 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hx'1 : (GGT.RelLetter.listVal py *
-          GGT.OsinComponents.vertex (1 : G) u (d + 1))⁻¹ *
-        GGT.OsinComponents.vertex (1 : G) u' j = 1)
     (hpair : GGT.OsinComponents.MatchedPairOutput D eps bn)
     {p : List G} {c c' d j : ℕ} (hp0 : 0 < p.length)
     {py pz u u' tl tl' : List (GGT.RelLetter G Bool)}
@@ -150,6 +147,9 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
     (hconn : GGT.RelLetter.listVal py *
         GGT.OsinComponents.vertex (1 : G) u d * h
       = GGT.OsinComponents.vertex (1 : G) u' j)
+    (hx'1 : (GGT.RelLetter.listVal py *
+          GGT.OsinComponents.vertex (1 : G) u (d + 1))⁻¹ *
+        GGT.OsinComponents.vertex (1 : G) u' j = 1)
     (hpy : ∀ z ∈ py, ∃ g : G, z = GGT.RelLetter.base g)
     (hpz : ∀ z ∈ pz, ∃ g : G, z = GGT.RelLetter.base g)
     (hpy0 : 0 < py.length) (hpz0 : 0 < pz.length)
@@ -221,11 +221,11 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
       GGT.OsinComponents.vertex (1 : G) u' (j - 1 + 1) = 1 := by
     rw [hjj]
     exact hx'1
-  exact listVal_conj_of_alignedMatch_assembled hnodup hinj hsep hx'1' hpair
+  exact listVal_conj_of_alignedMatch_assembled hnodup hinj hsep hpair
     (by omega : d < (relatorWord₂ p (a false) (a true) ms).length)
     (by omega : j - 1 < (relatorWord₂ p (a false) (a true) ms).length)
     he hf hw hw' (by omega) (by omega) hpy hpz hpy0 hpz0 hlet4 hclose hqg
-    hcompu hcompu' hh hconn' hqside hsside' hletd hletj
+    hcompu hcompu' hh hconn' hqside hsside' hx'1' hletd hletj
 
 /-- **The mirrored aligned case, from a match that has been found.**
 
@@ -239,9 +239,6 @@ theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hx1 : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
-        (GGT.RelLetter.listVal py *
-          GGT.OsinComponents.vertex (1 : G) u d) = 1)
     (hpair : GGT.OsinComponents.MatchedPairOutput D eps bn)
     {p : List G} {c c' d j : ℕ} (hp0 : 0 < p.length)
     {py pz u u' tl tl' : List (GGT.RelLetter G Bool)}
@@ -260,6 +257,9 @@ theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
     (hconn : GGT.RelLetter.listVal py *
         GGT.OsinComponents.vertex (1 : G) u d * h
       = GGT.OsinComponents.vertex (1 : G) u' j)
+    (hx1 : (GGT.OsinComponents.vertex (1 : G) u' (j - 1))⁻¹ *
+        (GGT.RelLetter.listVal py *
+          GGT.OsinComponents.vertex (1 : G) u d) = 1)
     (hpy : ∀ z ∈ py, ∃ g : G, z = GGT.RelLetter.base g)
     (hpz : ∀ z ∈ pz, ∃ g : G, z = GGT.RelLetter.base g)
     (hpy0 : 0 < py.length) (hpz0 : 0 < pz.length)
@@ -334,13 +334,13 @@ theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
     rw [hjj]
     exact hsside
   exact listVal_conj_of_mirroredAlignedMatch_assembled hnodup hinj hsymm hsep
-    hx1 hpair
+    hpair
     (by omega : d
       < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     (by omega : j - 1
       < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
     he hf hw hw' (by omega) (by omega) hpy hpz hpy0 hpz0 hlet4 hclose hqg
-    hcompu hcompu' hh hconn' hqside hsside' hletd hletj
+    hcompu hcompu' hh hconn' hqside hsside' hx1 hletd hletj
 
 end Found
 

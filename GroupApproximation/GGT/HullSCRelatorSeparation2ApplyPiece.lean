@@ -2,20 +2,27 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyIface
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyMixedInv
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyNarrowPair
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyTwoBlock
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyW4Match
 
 /-!
 # From a piece to a closed case
 
 The last link.  Above it sit the closers, each of which wants a match already
-found; below it sit `HullSC.exists_block_of_long_prefix_rotate`, which finds a
-block letter in any window longer than the base part, and
-`GGT.OsinComponents.exists_deep_match_hyp`, which matches it across.  A PIECE
-goes in --- a prefix longer than `|p|` --- and the identity `RelWord.IsPiece`
-excludes comes out.
+found; below it sit the window counts, which find block letters in any window
+longer than the base part, and `GGT.OsinComponents.exists_deep_match_hyp`,
+which matches them across.  A PIECE goes in --- a prefix longer than `|p|` ---
+and the identity `RelWord.IsPiece` excludes comes out.
 
 Three steps, and only the middle one is not bookkeeping: the window count puts a
 block letter in the piece, the design's depth clause makes its span deep, and a
 deep component is not isolated, hence matched.
+
+The two aligned cases run all three inside `HullSC.exists_match_with_trivialGap`
+and its mirrored twin, which absorb the finder and the matching step together
+and return the (W4) equation the closers take in place of the old design clause
+about commutation.  That is what fixes their length clauses: the step reads
+three CONSECUTIVE block letters, so the piece is longer than `|p| + 4` and the
+exponent list is at least five.
 
 One shape is worth pointing at.  The two same-side exclusions are quantified
 over the SUBGROUP INDEX as well as the position, because the index is not known
@@ -60,21 +67,21 @@ theorem listVal_conj_of_alignedMatch_piece (hnodup : ms.Nodup)
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
+    (hdisj : ∀ x : G, x ∈ D.fam false → x ∈ D.fam true → x = 1)
     (hdeep : ∀ m ∈ ms, ∀ t : Bool, a t ^ m ∉ D.relBall t rho ∧
       (a t ^ m)⁻¹ ∉ D.relBall t rho)
-    (hrho : Cm * 4 ≤ rho) (hms : 0 < ms.length)
+    (hrho : Cm * 4 ≤ rho) (hms : 5 ≤ ms.length)
     {p : List G} {c c' : ℕ} (hp0 : 0 < p.length)
     {py pz u u' tl tl' : List (GGT.RelLetter G Bool)}
     (hw : (relatorWord₂ p (a false) (a true) ms).rotate c = u ++ tl)
     (hw' : (relatorWord₂ p (a false) (a true) ms).rotate c' = u' ++ tl')
-    (hlong : p.length < u.length)
+    (hlong : p.length + 4 < u.length)
     (hpy : ∀ z ∈ py, ∃ g : G, z = GGT.RelLetter.base g)
     (hpz : ∀ z ∈ pz, ∃ g : G, z = GGT.RelLetter.base g)
     (hpy0 : 0 < py.length) (hpz0 : 0 < pz.length)
     (hlet4 : ∀ z ∈ py ++ u ++ pz ++ GGT.OsinComponents.revWord u',
       D.IsLetter z)
+    (hslet : ∀ z ∈ u', D.IsLetter z)
     (hclose : GGT.RelLetter.listVal u' = GGT.RelLetter.listVal py *
       GGT.RelLetter.listVal u * GGT.RelLetter.listVal pz)
     (hqg : ∀ t : ℕ, t < 4 → ∀ z y : ℕ,
@@ -102,32 +109,14 @@ theorem listVal_conj_of_alignedMatch_piece (hnodup : ms.Nodup)
         GGT.RelLetter.listVal
           ((relatorWord₂ p (a false) (a true) ms).rotate c) *
         (GGT.RelLetter.listVal py)⁻¹ := by
-  obtain ⟨d, b, e, hd, he, hletd⟩ :=
-    exists_block_of_long_prefix_rotate (h₀ := a false) (h₁ := a true) (c := c)
-      hms hlong
-  have hlu : u[d]?
-      = some (GGT.RelLetter.comp b ((if b then a true else a false) ^ e)) := by
-    rw [← hletd, hw]
-    exact (List.getElem?_append_left hd).symm
-  have hspan : (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
-      GGT.OsinComponents.vertex (1 : G) u (d + 1) = a b ^ e := by
-    rw [span_eq_val_of_getElem? hlu]
-    show (if b then a true else a false) ^ e = a b ^ e
-    rw [ite_apply_eq a b]
-  have hdeepspan : (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
-      GGT.OsinComponents.vertex (1 : G) u (d + 1) ∉ D.relBall b rho := by
-    rw [hspan]
-    exact (hdeep e he b).1
-  have hcompu : GGT.OsinComponents.IsComp b u d (d + 1) :=
-    isComp_prefix_rotate_relatorWord₂ hp0 hw hd hletd
-  have hpolyq := GGT.OsinComponents.isQuasiGeodesicPolygon_fourGon py u pz u' D
-    hlet4 hclose hqg
-  obtain ⟨k, hk0, hk, ⟨x, hx⟩, h, hh, hconn⟩ :=
-    hmatch b rho py u pz u' d hrho hclose hpy hpz hpz0 hpolyq hcompu hdeepspan
-      (hqside b d)
-  exact listVal_conj_of_alignedMatch_found hnodup hinj hsep hdiag hpair
-    hp0 hw hw' hd hk0 hk he hletd hx hh hconn hpy hpz hpy0 hpz0 hlet4 hclose
-    hqg (hqside b d) (hsside b k)
+  obtain ⟨d, b, e, k, hd, he, hletd, hk0, hk, ⟨x, hx⟩, ⟨h, hh, hconn⟩,
+      hgap⟩ :=
+    exists_match_with_trivialGap hdisj hnodup hinj hsep hdeep hrho hms hpair
+      hmatch hp0 hw hw' hlong hpy hpz hpy0 hpz0 hlet4 hslet hclose hqg hqside
+      hsside
+  exact listVal_conj_of_alignedMatch_found hnodup hinj hsep hpair
+    hp0 hw hw' hd hk0 hk he hletd hx hh hconn hgap hpy hpz hpy0 hpz0 hlet4
+    hclose hqg (hqside b d) (hsside b k)
 
 include hpair hmatch in
 /-- **The mirrored aligned case, from a piece.**
@@ -142,23 +131,23 @@ theorem listVal_conj_of_mirroredAlignedMatch_piece (hnodup : ms.Nodup)
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
+    (hdisj : ∀ x : G, x ∈ D.fam false → x ∈ D.fam true → x = 1)
     (hdeep : ∀ m ∈ ms, ∀ t : Bool, a t ^ m ∉ D.relBall t rho ∧
       (a t ^ m)⁻¹ ∉ D.relBall t rho)
-    (hrho : Cm * 4 ≤ rho) (hms : 0 < ms.length)
+    (hrho : Cm * 4 ≤ rho) (hms : 5 ≤ ms.length)
     {p : List G} {c c' : ℕ} (hp0 : 0 < p.length)
     {py pz u u' tl tl' : List (GGT.RelLetter G Bool)}
     (hw : (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c
       = u ++ tl)
     (hw' : (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).rotate c'
       = u' ++ tl')
-    (hlong : p.length < u.length)
+    (hlong : p.length + 4 < u.length)
     (hpy : ∀ z ∈ py, ∃ g : G, z = GGT.RelLetter.base g)
     (hpz : ∀ z ∈ pz, ∃ g : G, z = GGT.RelLetter.base g)
     (hpy0 : 0 < py.length) (hpz0 : 0 < pz.length)
     (hlet4 : ∀ z ∈ py ++ u ++ pz ++ GGT.OsinComponents.revWord u',
       D.IsLetter z)
+    (hslet : ∀ z ∈ u', D.IsLetter z)
     (hclose : GGT.RelLetter.listVal u' = GGT.RelLetter.listVal py *
       GGT.RelLetter.listVal u * GGT.RelLetter.listVal pz)
     (hqg : ∀ t : ℕ, t < 4 → ∀ z y : ℕ,
@@ -188,33 +177,14 @@ theorem listVal_conj_of_mirroredAlignedMatch_piece (hnodup : ms.Nodup)
           ((RelWord.revInv
             (relatorWord₂ p (a false) (a true) ms)).rotate c) *
         (GGT.RelLetter.listVal py)⁻¹ := by
-  obtain ⟨d, b, e, hd, he, hletd⟩ :=
-    exists_block_of_long_prefix_rotate_revInv (h₀ := a false) (h₁ := a true)
-      (c := c) hms hlong
-  have hlu : u[d]?
-      = some (GGT.RelLetter.comp b
-          (((if b then a true else a false) ^ e)⁻¹)) := by
-    rw [← hletd, hw]
-    exact (List.getElem?_append_left hd).symm
-  have hspan : (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
-      GGT.OsinComponents.vertex (1 : G) u (d + 1) = (a b ^ e)⁻¹ := by
-    rw [span_eq_val_of_getElem? hlu]
-    show ((if b then a true else a false) ^ e)⁻¹ = (a b ^ e)⁻¹
-    rw [ite_apply_eq a b]
-  have hdeepspan : (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
-      GGT.OsinComponents.vertex (1 : G) u (d + 1) ∉ D.relBall b rho := by
-    rw [hspan]
-    exact (hdeep e he b).2
-  have hcompu : GGT.OsinComponents.IsComp b u d (d + 1) :=
-    isComp_prefix_rotate_revInv_relatorWord₂ hp0 hw hd hletd
-  have hpolyq := GGT.OsinComponents.isQuasiGeodesicPolygon_fourGon py u pz u' D
-    hlet4 hclose hqg
-  obtain ⟨k, hk0, hk, ⟨x, hx⟩, h, hh, hconn⟩ :=
-    hmatch b rho py u pz u' d hrho hclose hpy hpz hpz0 hpolyq hcompu hdeepspan
-      (hqside b d)
-  exact listVal_conj_of_mirroredAlignedMatch_found hnodup hinj hsymm hsep hdiag
-    hpair hp0 hw hw' hd hk0 hk he hletd hx hh hconn hpy hpz hpy0 hpz0 hlet4
-    hclose hqg (hqside b d) (hsside b k)
+  obtain ⟨d, b, e, k, hd, he, hletd, hk0, hk, ⟨x, hx⟩, ⟨h, hh, hconn⟩,
+      hgap⟩ :=
+    exists_match_with_trivialGap_revInv hdisj hnodup hinj hsymm hsep hdeep hrho
+      hms hpair hmatch hp0 hw hw' hlong hpy hpz hpy0 hpz0 hlet4 hslet hclose
+      hqg hqside hsside
+  exact listVal_conj_of_mirroredAlignedMatch_found hnodup hinj hsymm hsep
+    hpair hp0 hw hw' hd hk0 hk he hletd hx hh hconn hgap hpy hpz hpy0 hpz0
+    hlet4 hclose hqg (hqside b d) (hsside b k)
 
 include hpair hmatch in
 /-- **The first mixed case, from a piece.**  The piece is a rotation of the

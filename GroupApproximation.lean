@@ -2812,6 +2812,7 @@ import GroupApproximation.Analysis.VoiculescuAmplifiedRep
 import GroupApproximation.Algebra.HyperbolicGeodesicPrefix
 import GroupApproximation.Algebra.HyperbolicFinitePresentation
 import GroupApproximation.GGT.OsinTheorem54SepClosingEdge
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyW4Match
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

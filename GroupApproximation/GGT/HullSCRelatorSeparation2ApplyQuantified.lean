@@ -6,7 +6,7 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyCompose
 Bookkeeping, and the last file of the relator chain.
 `HullSC.separationNe₂_clause_of_inputs` proves the corrected separation at one
 core; `HullSC.hullRelatorStatement₂_of_separationNe₂` consumes it quantified
-over every group, alphabet, subgroup and core.  So the four inputs are
+over every group, alphabet, subgroup and core.  So the three inputs are
 quantified the same way and the two are composed.
 
 The constants `cnt` and `δ` sit inside the quantifier as existentials rather
@@ -17,9 +17,10 @@ They do NOT have to know `eps`: the composition works at `max cnt (eps + 2)`,
 which it chooses itself once `eps` arrives, and enlarging the constant only
 weakens the count.
 
-Nothing here is a mathematical step.  What the chain rests on is the four
-clauses of `hinput`, and they are items 1, 2, 3 and 6 of
-`GGT/HullSCRelatorSeparation2Ledger.lean` in that order.
+Nothing here is a mathematical step.  What the chain rests on is the three
+clauses of `hinput`, and they are items 1, 2 and 3 of
+`GGT/HullSCRelatorSeparation2Ledger.lean` in that order.  There used to be a
+fourth, the diagonal leaf; (W4) is a field of the core now, so it is gone.
 -/
 
 namespace GroupApproximation
@@ -37,8 +38,6 @@ variable
   (hinput : ∀ {G : Type u} [Group G] (A : HullGeneratingSet G)
     (N : Subgroup G) (E : HypEmbeddedCore₂ A N), ∃ cnt δ : ℕ,
       Hyperbolic.IsFourPointHyperbolic E.rel.alphabet.carrier δ ∧
-      (∀ (e : ℕ) (s : Bool), ∀ x ∈ E.rel.relBall s e, x ≠ 1 →
-        ∀ d : ℕ, 0 < d → ¬ Commute x (E.lox s ^ d)) ∧
       (∀ (p : List G) (ms : List ℕ)
         (v : List (GGT.RelLetter G Bool)),
         RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v →
@@ -72,8 +71,8 @@ variable
 include hinput in
 /-- **The corrected separation, over every core.**
 
-The four inputs are the Ledger's standing items: `hδ` is what is left of item 1,
-`hnc` is item 6, `hcount` is item 2, `hexcl` is item 3. -/
+The three inputs are the Ledger's standing items: `hδ` is what is left of
+item 1, `hcount` is item 2, `hexcl` is item 3. -/
 theorem separationNe₂_of_inputs :
     ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) (N : Subgroup G)
       (E : HypEmbeddedCore₂ A N), Suitable A.alphabet N →
@@ -94,13 +93,13 @@ theorem separationNe₂_of_inputs :
                               GGT.RelLetter.listVal w'
                                 = y * GGT.RelLetter.listVal w * y⁻¹ := by
   intro G _ A N E hN t eps rho
-  obtain ⟨cnt, δ, hδ, hnc, hcount, hexcl⟩ := hinput A N E
-  exact separationNe₂_clause_of_inputs E hN cnt hδ hnc hcount hexcl t eps rho
+  obtain ⟨cnt, δ, hδ, hcount, hexcl⟩ := hinput A N E
+  exact separationNe₂_clause_of_inputs E hN cnt hδ hcount hexcl t eps rho
 
 include hinput in
-/-- **Hull's §6 over two subgroups, from the four standing items.**
+/-- **Hull's §6 over two subgroups, from the three standing items.**
 
-The relator half of Hull's Theorem 5.1, conditional on exactly the four
+The relator half of Hull's Theorem 5.1, conditional on exactly the three
 clauses and on nothing else. -/
 theorem hullRelatorStatement₂_of_inputs : HullRelatorStatement₂.{u} :=
   hullRelatorStatement₂_of_separationNe₂ (separationNe₂_of_inputs hinput)

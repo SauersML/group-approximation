@@ -149,9 +149,6 @@ theorem listVal_conj_of_mirroredAlignedMatch_assembled
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hx1 : (GGT.OsinComponents.vertex (1 : G) u' j)⁻¹ *
-        (GGT.RelLetter.listVal py *
-          GGT.OsinComponents.vertex (1 : G) u i) = 1)
     (hpair : GGT.OsinComponents.MatchedPairOutput D eps bn)
     {p : List G} {c c' i j : ℕ}
     (hiR : i < (RelWord.revInv (relatorWord₂ p (a false) (a true) ms)).length)
@@ -196,6 +193,9 @@ theorem listVal_conj_of_mirroredAlignedMatch_assembled
           (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' (j + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b)
+    (hx1 : (GGT.OsinComponents.vertex (1 : G) u' j)⁻¹ *
+        (GGT.RelLetter.listVal py *
+          GGT.OsinComponents.vertex (1 : G) u i) = 1)
     (hletu : ((RelWord.revInv
         (relatorWord₂ p (a false) (a true) ms)).rotate c)[i]?
       = some (GGT.RelLetter.comp b

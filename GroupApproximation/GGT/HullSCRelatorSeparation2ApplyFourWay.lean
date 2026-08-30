@@ -30,6 +30,11 @@ the same names.
 `|p| + blockSeparation + 1` --- so `B := |p| + blockSeparation + 2` --- and the
 exponent list longer than `|p| + 5 * blockSeparation + 2`.  Both are
 hypotheses here in exactly the shape the construction produces them.
+
+The two aligned cases ask for less than that and are discharged from the same
+two numbers: they want a window of `|p| + 5` and five exponents, and
+`blockSeparation = 2(eps + 1 + b)` is at least `4` once `p` is non-empty.
+Neither constant has to grow.
 -/
 
 namespace GroupApproximation
@@ -62,8 +67,7 @@ theorem listVal_conj_of_sym_pieces (hnodup : ms.Nodup)
     (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
       ∀ x' ∈ D.relBall t eps,
         x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
-    (hdiag : ∀ i ∈ ms, ∀ t : Bool, ∀ x ∈ D.relBall t eps,
-      ∀ x' ∈ D.relBall t eps, x ≠ 1 → x * a t ^ i * x' ≠ a t ^ i)
+    (hdisj : ∀ x : G, x ∈ D.fam false → x ∈ D.fam true → x = 1)
     (hdeep : ∀ m ∈ ms, ∀ t : Bool, a t ^ m ∉ D.relBall t rho ∧
       (a t ^ m)⁻¹ ∉ D.relBall t rho)
     (hrho : Cm * 4 ≤ rho)
@@ -117,21 +121,25 @@ theorem listVal_conj_of_sym_pieces (hnodup : ms.Nodup)
     GGT.RelLetter.listVal w'
       = GGT.RelLetter.listVal py * GGT.RelLetter.listVal w *
         (GGT.RelLetter.listVal py)⁻¹ := by
-  have hms : 0 < ms.length := by omega
-  have hlong : p.length < u.length := by omega
+  have hbs : 4 ≤ blockSeparation p cnt epsPin := by
+    have hval : blockSeparation p cnt epsPin
+        = 2 * (epsPin + 1 + (p.length + cnt)) := rfl
+    omega
+  have hms : 5 ≤ ms.length := by omega
+  have hlong : p.length + 4 < u.length := by omega
   refine listVal_conj_of_sym_cases hwsym hwsym' ?_ ?_ ?_ ?_
   · intro c c' hc hc'
     subst hc
     subst hc'
     exact listVal_conj_of_alignedMatch_piece hpair hmatch hnodup hinj hsep
-      hdiag hdeep hrho hms hp0 hu hu' hlong hpy hpz hpy0 hpz0 hlet4 hclose hqg
-      hqside hsside
+      hdisj hdeep hrho hms hp0 hu hu' hlong hpy hpz hpy0 hpz0 hlet4 hslet
+      hclose hqg hqside hsside
   · intro c c' hc hc'
     subst hc
     subst hc'
     exact listVal_conj_of_mirroredAlignedMatch_piece hpair hmatch hnodup hinj
-      hsymm hsep hdiag hdeep hrho hms hp0 hu hu' hlong hpy hpz hpy0 hpz0 hlet4
-      hclose hqg hqside hsside
+      hsymm hsep hdisj hdeep hrho hms hp0 hu hu' hlong hpy hpz hpy0 hpz0 hlet4
+      hslet hclose hqg hqside hsside
   · intro c c' hc hc'
     subst hc
     subst hc'

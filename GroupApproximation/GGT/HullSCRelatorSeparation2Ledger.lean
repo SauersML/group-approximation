@@ -180,24 +180,46 @@ Hull's §5, that the cone-off along a pair exists with the data
 carries a geodesic, `GGT/HullSCDGO.lean` having refuted the transcribed one.
 
 **5. Torsion-freeness.**  A hypothesis about the groups the manuscript studies,
-not a leaf.  It no longer buys the diagonal clause; see item 6.
+not a leaf.  It was carried in order to buy the diagonal clause of item 6; the
+chain does not ask for that clause any longer, and torsion-freeness now enters
+only where Hull's own derivation of (W4) does.
 
-**6. The diagonal leaf.**  That no nontrivial element of a relative ball
-commutes with a positive power of the loxodromic:
+**6. The diagonal leaf -- CLOSED, and not by proving it.**  The clause was that
+no nontrivial element of a relative ball commutes with a positive power of the
+loxodromic:
 
     ∀ e s, ∀ x ∈ relBall s e, x ≠ 1 → ∀ d, 0 < d → ¬ Commute x (lox s ^ d)
 
-carried as `hnc` by `HullSC.separationNe₂_clause_of_inputs`, and spent twice
-inside `HullSC.exists_separated_relator_exponents₂_diagonal` --- once to make
-the bad exponents finite, once to exclude them.
+and it is not a consequence of torsion-freeness.  Both `x` and the loxodromic
+lie in `H λ`, so where `H λ` is abelian --- and `E(g)` in a torsion-free group
+is infinite cyclic --- every `x` commutes with every power, and the clause
+fails for every nontrivial `x` of the ball.  What it asked is that
+`relBall λ eps` meet the centralizer of `lox λ` trivially: a condition on the
+CORE, not a property of the ambient group.
 
-  It is not a consequence of torsion-freeness.  Both `x` and the loxodromic lie
-  in `H λ`, so where `H λ` is abelian --- and `E(g)` in a torsion-free group is
-  infinite cyclic --- every `x` commutes with every power, and the clause fails
-  for every nontrivial `x` of the ball.  What it asks is that `relBall λ eps`
-  meet the centralizer of `lox λ` trivially: a condition on the CORE, to be met
-  by choosing the two subgroups, not a property of the ambient group.  Recorded
-  as an open item rather than a discharged one.
+  **Hull does not ask it.**  His pieces exclude the conjugacy identity
+  syntactically, and what makes the aligned case's connector trivial is (W4),
+  `H₀ ∩ H₁ = {1}`, which is now the field
+  `HullSC.HypEmbeddedCore₂.disjoint`.  The mechanism is
+  `HullSC.trivialGap_of_two_connectors`: at two matches from ADJACENT
+  components the second gap of the first and the first gap of the second are
+  inverse --- they share the near-side vertex --- so one element lies in both
+  subgroups at once, `HullSC.index_alternates_of_rotate` makes the two indices
+  opposite, and (W4) kills it.  `HullSC.exists_match_with_trivialGap` and
+  `..._revInv` run that at three consecutive block letters and hand the closers
+  the equation they used to get from the design.  Three letters and not two
+  because the far component of the first match can be the last letter of the
+  piece; with three there are two candidate pairs and at most one is spoiled.
+
+  **On the input side it is a theorem, not an assumption.**  At the
+  cyclic-reduction interface `HullSC.existsHypEmbeddedConeOff₂_of_zpowers`
+  discharges the field outright: the two subgroups there are `⟨h₀⟩` and `⟨h₁⟩`
+  for a pair of independent loxodromics, and
+  `GGT.Elementary.zpowers_disjoint_of_independent` intersects them trivially.
+  Hull's own derivation at general peripheral subgroups --- Corollary 5.7's
+  `E(hᵢ) = ⟨hᵢ⟩`, independence, and DGO's 6.8 and 6.14 making `E(h₀) ∩ E(h₁)`
+  finite, hence trivial in a torsion-free ambient --- is cited at the field and
+  is not in this tree.
 
 ## The composition's binders
 
@@ -210,9 +232,10 @@ exactly these and no others:
 * `hcount` -- item 2, the block count at every member of the symmetrized
   closure.  It used to be spent as three separate clauses; those are now proved
   from it, so what is carried is the count alone;
-* the two same-side exclusions -- item 3;
-* `hnc` -- item 6, the diagonal leaf, carried because the route named for it
-  cannot be instantiated here.
+* the two same-side exclusions -- item 3.
+
+There is no fourth.  The diagonal leaf was carried here until (W4) replaced it;
+see item 6.
 
 The design's other clauses -- `hnodup`, `hinj`, `hsep`, `hdeep`, and the
 symmetry of the base -- are discharged by the instantiation and are not standing
@@ -304,17 +327,18 @@ remains unwritten is only the composition that spends it.
 
 ## What is discharged, and by what
 
-* NOT the diagonal of the separation.  This entry read "from torsion-freeness,
-  `HullSC.noCommute_of_torsionFree`; it holds for every loxodromic, nothing has
-  to be chosen", and that is wrong here.  The lemma asks its element to be
-  loxodromic in the RELATIVE graph, and the relator's letters are powers of
-  `E.lox b`, which `lox_mem` puts inside `H b`.  An element of the family is a
-  single letter of the relative alphabet, so its orbit of the basepoint has
-  diameter at most one and it is elliptic --- which the tree already proved, at
-  the file that defines the relative generating set:
-  `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`.  The instance at the core is
-  `HullSC.not_isLoxodromic_lox₂`.  The route is closed for every group and
-  every core, so the clause is carried, as item 6 below.
+* NOT the diagonal of the separation, and it is not asked for.  This entry
+  read "from torsion-freeness, `HullSC.noCommute_of_torsionFree`; it holds for
+  every loxodromic, nothing has to be chosen", and that is wrong here.  The
+  lemma asks its element to be loxodromic in the RELATIVE graph, and the
+  relator's letters are powers of `E.lox b`, which `lox_mem` puts inside
+  `H b`.  An element of the family is a single letter of the relative alphabet,
+  so its orbit of the basepoint has diameter at most one and it is elliptic ---
+  which the tree already proved, at the file that defines the relative
+  generating set: `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`.  The instance at
+  the core is `HullSC.not_isLoxodromic_lox₂`.  The route is closed for every
+  group and every core; the clause it was to prove is gone, replaced by (W4)
+  --- item 6.
 * The rigidity input, from the bound: `HullSC.exists_hgeo_of_bound`.  Its
   degenerate branch needs no geometry -- with the second conjugator trivial,
   `x · a^i · 1 = a^j` gives `x = a^j (a^i)⁻¹`, a product of peripheral
@@ -329,11 +353,15 @@ remains unwritten is only the composition that spends it.
   first gap being trivial SAYS once the gap is known to be
   `(vertex 1 s j)⁻¹ · (listVal p · vertex 1 q i)`.
 * That a piece longer than `|p|` carries a block letter, direct and mirrored:
-  `HullSC.exists_block_of_long_prefix_rotate` and `..._revInv`; and that a
+  `HullSC.exists_block_of_long_prefix_rotate` and `..._revInv`; that a
   piece longer than `|p| + k + 1` carries TWO of them more than `k` apart, at
   a second offset of at most `|p| + k + 1`:
   `HullSC.exists_two_blocks_of_long_prefix_rotate` and `..._revInv`, which is
-  what the mixed cases run on.
+  what the mixed cases run on; and that a piece longer than `|p| + 4` carries
+  THREE CONSECUTIVE ones, `HullSC.exists_three_blocks_of_long_prefix_rotate`
+  and `..._revInv`, which is what the (W4) step of item 6 runs on.  All three
+  are proved by writing the offsets down in branches according to where the
+  rotation starts, not by counting.
 * That the block letter is a component of the matched prefix:
   `HullSC.isComp_prefix_rotate_relatorWord₂` and `..._revInv_...`.  Neither
   passage is free -- under a rotation the neighbour of the first block letter
@@ -355,7 +383,9 @@ remains unwritten is only the composition that spends it.
   `HullSC.listVal_conj_of_mirroredAlignedMatch_piece`,
   `HullSC.false_of_mixedMatch_piece` and `..._inv`.  Each runs the window
   count, spends the design's depth clause on the span it finds, and matches
-  across; the mixed pair runs the count twice and compares.
+  across; the mixed pair runs the count twice and compares, and the aligned
+  pair runs the count, the match and (W4) together inside
+  `HullSC.exists_match_with_trivialGap`.
 * The four cases at one quadrilateral: `HullSC.listVal_conj_of_sym_pieces`,
   which is the dispatch fed by those four.  What it still takes as hypotheses
   is item 2 as the count, item 3, and the two spellings with their positivity
@@ -396,32 +426,34 @@ four-gon's letter clause (a member of the symmetrized closure is admissible
 because the relator is, and admissibility survives rotation, formal inverse and
 reversal), and hands the quadrilateral to
 `HullSC.listVal_conj_of_sym_pieces`.  Its whole hypothesis list is `hδ`,
-`hcount`, `hexcl` and `hnc` --- items 1's residue, 2, 3 and 6 --- together with
-the core, suitability, and the block-count constant.
+`hcount` and `hexcl` --- items 1's residue, 2 and 3 --- together with the core,
+suitability, and the block-count constant.  (W4) rides in on the core itself,
+as the field `disjoint`, and is passed to the four-way through
+`E.rel.fam = E.H`.
 
 The exponent list comes from
-`HullSC.exists_separated_relator_exponents₂_diagonal` at radius
+`HullSC.exists_separated_relator_exponents₂_cross` at radius
 `max rho (Cm * 4)`, which is the given `rho` enlarged to what the matching step
 asks for; `HullSC.notMem_relBall_of_le` gives the statement's own `rho` back.
-That one call discharges `hnodup`, `hsep`, `hdiag` and the deep clause
-together.
+That one call discharges `hnodup`, `hsep` and the deep clause together.  The
+diagonal-excluding variant `..._diagonal` is no longer called by the chain.
 
 `HullSC.separationNe₂_of_inputs` quantifies that over every `G`, `A`, `N` and
 `E`, in the shape `hullRelatorStatement₂_of_separationNe₂` consumes, with the
-four clauses quantified the same way and the two constants `cnt` and `δ` inside
-the quantifier as existentials --- they belong to the core, and a chain that
-fixed them once for all cores would be claiming more than it has.  Composing
-the two gives `HullSC.hullRelatorStatement₂_of_inputs`, which is the relator
-half of Hull's Theorem 5.1 conditional on exactly four clauses:
+three clauses quantified the same way and the two constants `cnt` and `δ`
+inside the quantifier as existentials --- they belong to the core, and a chain
+that fixed them once for all cores would be claiming more than it has.
+Composing the two gives `HullSC.hullRelatorStatement₂_of_inputs`, which is the
+relator half of Hull's Theorem 5.1 conditional on exactly three clauses:
 
     hδ     item 1's residue: four-point hyperbolicity of Γ(G, X ⊔ ℋ)
     hcount item 2: the block count, at every member of the closure
     hexcl  item 3: the two same-side exclusions
-    hnc    item 6: the diagonal leaf
 
 and on nothing else.  That is the whole standing debt of the chain, and the
-first of the four is a hypothesis about the ambient geometry rather than a gap:
-items 2, 3 and 6 are the ones that still owe a proof.
+first of the three is a hypothesis about the ambient geometry rather than a
+gap: items 2 and 3 are the ones that still owe a proof.  Item 6 was the fourth
+until (W4) replaced it.
 
 ## One correction worth keeping
 

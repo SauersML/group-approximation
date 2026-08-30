@@ -1,7 +1,7 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2Core
 
 /-!
-# Why the diagonal leaf is carried and not discharged
+# Why the diagonal leaf's route is closed
 
 The Ledger recorded the diagonal clause of the separation as discharged, by
 `HullSC.noCommute_of_torsionFree` over `GGT/OsinTheorem54SepElementaryBall.lean`
@@ -18,10 +18,8 @@ one, and no positive linear lower bound is available.
 That fact was already in the tree, at the file that defines the relative
 generating set: `GGT.RelGenSet.not_isLoxodromic_of_mem_fam`.  All that is added
 here is its instance at the core, so that the incompatibility is on record at
-the place the composition needs it.  It does not say the diagonal clause is
-false; it says this route to it is closed, and
-`GGT/HullSCRelatorSeparation2ApplyCompose.lean` carries the clause as the named
-hypothesis `hnc` instead.
+the place the composition needed it.  It does not say the diagonal clause is
+false; it says this route to it is closed.
 
 **What the clause would need.**  Not torsion-freeness by itself.  Both `x` and
 the loxodromic lie in `H λ`, so if `H λ` is abelian --- and `E(g)` in a
@@ -29,6 +27,13 @@ torsion-free group is infinite cyclic --- then `x` commutes with every power and
 the clause fails for every `x ≠ 1` of the ball.  What it needs is that
 `relBall λ eps` meets the centralizer of `E.lox λ` trivially, which is a
 condition on the core rather than on the group.
+
+**And the chain no longer asks for it.**  Hull excludes the conjugacy identity
+syntactically rather than by a clause about commutation, and what makes the
+aligned case's connector trivial is (W4), `H₀ ∩ H₁ = {1}`, carried as the field
+`HullSC.HypEmbeddedCore₂.disjoint` and spent by
+`HullSC.trivialGap_of_two_connectors`.  So nothing downstream carries `hnc`;
+this file records a closed route, not a standing debt.
 -/
 
 namespace GroupApproximation

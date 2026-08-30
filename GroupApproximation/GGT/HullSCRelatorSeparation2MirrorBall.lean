@@ -66,6 +66,30 @@ theorem inv_mem_relBall {Λ : Type*} {D : GGT.RelGenSet G Λ} {lam : Λ} {n : �
   · rw [GGT.OsinComponents.length_revWord]
     exact hlen
 
+/-- **Matched blocks of the mirrored pair carry equal exponents**, from ball
+membership alone.
+
+The relation arrives with an inverse on both sides and the design's clauses ask
+for a direct power on the left, so it is inverted: `x'⁻¹ · a^e · x⁻¹ = a^f` is
+the direct shape, and `HullSC.inv_mem_relBall` puts the two inverted gaps back
+in the ball.  Nothing is assumed about either gap beyond that, which is what
+separates this from `HullSC.trivial_connector_of_mirroredAlignedMatch_ball`:
+the exponents agree before anything is known to be trivial. -/
+theorem exponent_eq_of_mirroredPair_ball {D : GGT.RelGenSet G Bool}
+    {a : Bool → G} {eps : ℕ} {ms : List ℕ} {s : Bool}
+    (hsymm : ∀ g ∈ D.base, g⁻¹ ∈ D.base)
+    (hsep : ∀ i ∈ ms, ∀ j ∈ ms, i ≠ j → ∀ t : Bool, ∀ x ∈ D.relBall t eps,
+      ∀ x' ∈ D.relBall t eps,
+        x * a t ^ i * x' ≠ a t ^ j ∧ x * a t ^ i * x' ≠ (a t ^ j)⁻¹)
+    {e f : ℕ} (he : e ∈ ms) (hf : f ∈ ms) {x x' : G}
+    (hx : x ∈ D.relBall s eps) (hx' : x' ∈ D.relBall s eps)
+    (hconn : x * (a s ^ e)⁻¹ * x' = (a s ^ f)⁻¹) : e = f := by
+  have hinvrel : x'⁻¹ * a s ^ e * x⁻¹ = a s ^ f := by
+    have h := congrArg (fun g : G => g⁻¹) hconn
+    simpa [mul_inv_rev, mul_assoc] using h
+  exact exponent_eq_of_blockMatch_ball hsep he hf (inv_mem_relBall hsymm hx')
+    (inv_mem_relBall hsymm hx) hinvrel
+
 /-- **At a matched block of the mirrored aligned case the connectors are
 trivial**, from ball membership. -/
 theorem trivial_connector_of_mirroredAlignedMatch_ball
