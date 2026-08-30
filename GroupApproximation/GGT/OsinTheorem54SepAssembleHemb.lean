@@ -48,23 +48,26 @@ Lemma 5.11, the §4.2 threshold, Lemma 5.6's condition, and Lemma 5.8 are
 discharged. -/
 theorem exists_sepDataFam_of_hemb [Fintype Λ] (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (hemb : D.IsHyperbolicallyEmbedded) :
-    ∃ C : ℕ, 0 < C ∧ ∀ (Dc : ℕ) (hDc : 1 ≤ Dc), C * 4 ≤ Dc →
-      Lemma511Geometry D (enlargedY D hDc hsymm) Dc →
+    ∃ C : ℕ, 0 < C ∧ ∀ (Dc : ℕ) (_hDc : 1 ≤ Dc), C * 4 ≤ Dc →
+      Lemma511Geometry D Dc →
       ∃ S : SepDataFam D, S.AcylindricalCore := by
   obtain ⟨δ, hδ⟩ :=
     exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded D hemb
   obtain ⟨C, hCpos, hbnd⟩ :=
     sixBound_one_of_fourPointHyperbolic D hsymm hδ 0 le_rfl
   refine ⟨C, hCpos, fun Dc hDc hthr h511 => ?_⟩
-  obtain ⟨h48, hgap⟩ := h511
+  have h48 := lemmaFourEight_forall_of_bound D hsymm hbnd hthr
+  have hgap := h511
   have hcover := lemmaFourNineCover_of_bound D hsymm hbnd hthr h48
   have h49 := lemmaFourNine_of_bound D hsymm hbnd hthr h48
   have hdist := dist_le_sep_enlargedY D hDc hsymm h48
   have hsle := sep_le_dist_enlargedY D hDc hsymm h48
     (mult_of_relBall_one D hDc) h49
+  have hshared : Lemma511SharedGap D (enlargedY D hDc hsymm) Dc h48 :=
+    sharedGap_of_entranceGapBound D (enlargedY D hDc hsymm) Dc h48 hgap
   have hencode : Lemma511EntranceEncoding D (enlargedY D hDc hsymm) Dc :=
     entranceEncoding_of_sharedGap D (enlargedY D hDc hsymm) Dc h48 hcover
-      hdist hsle hgap
+      hdist hsle hshared
   exact sepDataFam_of_binders_of_lemma510 D hDc hsymm ⟨C, hbnd, hthr⟩ hemb
     (relBall_enlargedY_finite D hDc hsymm hemb)
     (acylindricalCore_of_entranceEncoding D (enlargedY D hDc hsymm) Dc hemb hencode)

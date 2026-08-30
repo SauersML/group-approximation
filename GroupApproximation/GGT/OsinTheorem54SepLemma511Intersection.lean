@@ -307,6 +307,23 @@ theorem card_sharedSeparators_lower_bound [Fintype Λ]
   change 3 * m + 1 ≤ (A ∩ B).card
   omega
 
+/-- **The local four-gon estimate in equation (38).**
+
+The two components are the occurrences of one shared coset on a fixed geodesic
+from `1` to `z` and on its left translate from `k` to `kz`.  If that coset does
+not separate `1` from `k`, the relative distance between their entrance points
+is at most `3Dc`.  This is the only polygon-geometric statement left by the
+bookkeeping theorem below. -/
+def Lemma511EntranceGapBound (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
+  ∀ (lam : Λ) (k z : G) (p : List (RelLetter G Λ))
+    (i i' j j' : ℕ), IsGeodesicWord D 1 z p →
+      IsComp lam p i i' → IsComp lam p j j' →
+      (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) =
+        QuotientGroup.mk (vertex k p j) →
+      (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) ∉
+        sepSet D lam Dc 1 k →
+      (vertex (1 : G) p i)⁻¹ * vertex k p j ∈ D.relBall lam (3 * Dc)
+
 /-- The geometric remainder of Lemma 5.11 after equation (37).
 
 For a fixed geodesic from `1` to `z`, `entrance c` is its entrance point in a
@@ -326,11 +343,111 @@ def Lemma511SharedGap [Fintype Λ] (D Y : RelGenSet G Λ) (Dc : ℕ)
           a ∈ ⋃ lam : Λ, D.relBall lam (3 * Dc) ∧
             k = entrance c * a * (entrance c')⁻¹
 
-/-- The exact remaining geometry of Lemma 5.11: the entrance-gap estimate
-(38), at the already proved Lemma 4.8 interface. -/
-def Lemma511Geometry [Fintype Λ] (D Y : RelGenSet G Λ) (Dc : ℕ) : Prop :=
-  ∃ h48 : ∀ lam : Λ, LemmaFourEight D lam Dc,
-    Lemma511SharedGap D Y Dc h48
+/-- **The local estimate (38) supplies the shared-gap interface.**
+
+Fix one geodesic `p : 1 → z`.  Lemma 4.8 gives a unique entrance index on `p`
+for every separator.  A shared separator is also penetrated by the translated
+geodesic `k·p`; translating that coset back gives another separator of
+`(1,z)`, and uniqueness identifies its chosen entrance with the corresponding
+vertex of `p`.  The factorization of `k` is then a group identity. -/
+theorem sharedGap_of_entranceGapBound [Fintype Λ]
+    (D Y : RelGenSet G Λ) (Dc : ℕ)
+    (h48 : ∀ lam : Λ, LemmaFourEight D lam Dc)
+    (hgap : Lemma511EntranceGapBound D Dc) :
+    Lemma511SharedGap D Y Dc h48 := by
+  classical
+  intro m z hz
+  obtain ⟨p, hp⟩ := existsGeodesicWord D 1 z
+  let A := sepFinset D Dc h48 1 z
+  have hindex : ∀ c : TaggedSepCoset D, ∃ i : ℕ,
+      c ∈ A → PenetratesAt D c.1 Dc 1 p i c.2 := by
+    intro c
+    by_cases hc : c ∈ A
+    · have hcsep : c.2 ∈ sepSet D c.1 Dc 1 z :=
+        (mem_sepFinset D Dc h48 c.1 c.2 1 z).mp hc
+      obtain ⟨i, i', hcomp, hcos⟩ := (h48 c.1).1 1 z p hp c.2 hcsep
+      exact ⟨i, fun _ => ⟨⟨i', hcomp⟩, hcos⟩⟩
+    · exact ⟨0, fun hc' => False.elim (hc hc')⟩
+  let index : TaggedSepCoset D → ℕ := fun c => Classical.choose (hindex c)
+  let entrance : TaggedSepCoset D → G := fun c => vertex (1 : G) p (index c)
+  have hindex_spec : ∀ (c : TaggedSepCoset D), c ∈ A →
+      PenetratesAt D c.1 Dc 1 p (index c) c.2 := by
+    intro c hc
+    exact Classical.choose_spec (hindex c) hc
+  refine ⟨entrance, ?_⟩
+  intro k hk c hcA hcB hcP
+  have hic := hindex_spec c hcA
+  obtain ⟨i', hicomp⟩ := hic.1
+  have hpk : IsGeodesicWord D k (k * z) p := by
+    have h := (isGeodesicWord_mul_left D k 1 z p).mpr hp
+    simpa using h
+  have hcBsep : c.2 ∈ sepSet D c.1 Dc k (k * z) :=
+    (mem_sepFinset D Dc h48 c.1 c.2 k (k * z)).mp hcB
+  obtain ⟨j, j', hjcomp, hjcos⟩ :=
+    (h48 c.1).1 k (k * z) p hpk c.2 hcBsep
+  have hcos :
+      (QuotientGroup.mk (vertex (1 : G) p (index c)) : G ⧸ D.fam c.1) =
+        QuotientGroup.mk (vertex k p j) := hic.2.symm.trans hjcos
+  have hcPsep : c.2 ∉ sepSet D c.1 Dc 1 k := by
+    intro hcsep
+    exact hcP ((mem_sepFinset D Dc h48 c.1 c.2 1 k).mpr hcsep)
+  have hnot :
+      (QuotientGroup.mk (vertex (1 : G) p (index c)) : G ⧸ D.fam c.1) ∉
+        sepSet D c.1 Dc 1 k := by
+    rwa [← hic.2]
+  have hball := hgap c.1 k z p (index c) i' j j' hp hicomp hjcomp hcos hnot
+  let c' : TaggedSepCoset D :=
+    Sigma.mk c.1 (QuotientGroup.mk (vertex (1 : G) p j) : G ⧸ D.fam c.1)
+  have hvertexG : k * vertex (1 : G) p j = vertex k p j := by
+    simpa using (vertex_mul_left k 1 p j).symm
+  have hc'A : c' ∈ A := by
+    have hsmul := sepSet_smul D c.1 Dc k 1 z
+    have hsmul' : sepSet D c.1 Dc k (k * z) =
+        (fun d : G ⧸ D.fam c.1 => k • d) '' sepSet D c.1 Dc 1 z := by
+      simpa using hsmul
+    have hcimg : c.2 ∈
+        (fun d : G ⧸ D.fam c.1 => k • d) '' sepSet D c.1 Dc 1 z := by
+      rw [← hsmul']
+      exact hcBsep
+    obtain ⟨d, hd, hdc⟩ := hcimg
+    have hvertex :
+        k • (QuotientGroup.mk (vertex (1 : G) p j) : G ⧸ D.fam c.1) =
+          QuotientGroup.mk (vertex k p j) := by
+      change QuotientGroup.mk (k * vertex (1 : G) p j) =
+        QuotientGroup.mk (vertex k p j)
+      rw [hvertexG]
+    have hkd : k • d =
+        k • (QuotientGroup.mk (vertex (1 : G) p j) : G ⧸ D.fam c.1) := by
+      calc
+        k • d = c.2 := hdc
+        _ = QuotientGroup.mk (vertex k p j) := hjcos
+        _ = k • (QuotientGroup.mk (vertex (1 : G) p j) : G ⧸ D.fam c.1) :=
+          hvertex.symm
+    have hd' : d =
+        (QuotientGroup.mk (vertex (1 : G) p j) : G ⧸ D.fam c.1) := by
+      have h := congrArg
+        (fun e : G ⧸ D.fam c.1 => k⁻¹ • e) hkd
+      simpa using h
+    apply (mem_sepFinset D Dc h48 c.1 c'.2 1 z).mpr
+    change (QuotientGroup.mk (vertex (1 : G) p j) : G ⧸ D.fam c.1) ∈
+      sepSet D c.1 Dc 1 z
+    rwa [← hd']
+  have hjAt : PenetratesAt D c.1 Dc 1 p j c'.2 := by
+    exact ⟨⟨j', hjcomp⟩, rfl⟩
+  have hidxj : index c' = j :=
+    penetratesAt_unique hp (c := c'.2) (hindex_spec c' hc'A) hjAt
+  refine ⟨c', hc'A, (vertex (1 : G) p (index c))⁻¹ * vertex k p j, ?_, ?_⟩
+  · exact Set.mem_iUnion.mpr ⟨c.1, hball⟩
+  · change k = vertex (1 : G) p (index c) *
+      ((vertex (1 : G) p (index c))⁻¹ * vertex k p j) *
+        (vertex (1 : G) p (index c'))⁻¹
+    rw [hidxj, ← hvertexG]
+    group
+
+/-- The exact remaining geometry of Lemma 5.11: the local four-gon estimate
+(38). -/
+def Lemma511Geometry [Fintype Λ] (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
+  Lemma511EntranceGapBound D Dc
 
 /-- A nonempty finite set of at most `n` elements can be enumerated by
 `Fin n`.  The unused indices are filled with one element of the set. -/
