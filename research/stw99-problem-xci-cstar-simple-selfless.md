@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw91-anchored-free-product-permanence-audit-2026-08-30.md
   - research/artifacts/stw91-php-crossed-product-selflessness-audit-2026-08-30.md
   - research/artifacts/fkop-graph-product-selflessness-v3-audit-2026-08-30.md
+  - research/artifacts/stw91-locally-finite-permutation-wreath-audit-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
@@ -99,6 +100,14 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
   support argument proves that its amenable radical is trivial before
   Vigdorovich's theorem is applied.  The full wreath is a directed union, yet
   it is nonlinear over every field and not acylindrically hyperbolic.
+- `stw91-locally-finite-permutation-wreaths-are-selfless` removes the
+  finite-support hypothesis on the top action.  Every finite subgroup of a
+  faithful permutation group has a finite invariant faithful witness set;
+  these sets produce the same radical-free linear packets and form a
+  directed exhaustion.  Thus `P^(X) rtimes L` is selfless for every
+  countable locally finite `L <= Sym(X)`.  In particular, regular wreath
+  products by infinite locally finite groups are covered even though every
+  nontrivial top element has infinite support.
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete negative
   certificate in ordered `K_0` using averaging projections of finite
   subgroups.
