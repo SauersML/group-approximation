@@ -50,6 +50,23 @@ uniformly bounded Hirsch length across all finitely generated subgroups is
 enough for finite nuclear dimension, even when the countable union is not
 itself virtually polycyclic or virtually solvable.
 
+The same limit mechanism now reaches shift semidirect products whose finite
+stages are not virtually polycyclic.  The theorem
+`stw84-finite-lamp-wreaths-over-uniform-local-nilpotent-groups` says that if
+`K` is finite and `H` is countable locally virtually nilpotent with uniform
+local Hirsch length `r`, then
+
+```text
+dim_nuc(C*(K wr H)) <= 2 * 9^(r^2).
+```
+
+The quantitative input is Eckhardt--Wu's finite-lamp bound in terms of
+polynomial-growth degree; the Bass--Guivarc'h formula bounds that degree by
+the square of the Hirsch length.  An explicit wreath exhaustion then makes
+the estimate uniform.  In particular `(Z/2) wr Q` has nuclear dimension at
+most `18` but is not locally virtually polycyclic, since it contains the
+finitely generated non-virtually-polycyclic lamplighter group.
+
 There is also an exact permanence theorem independent of virtual abelianness.
 `stw84-locally-finite-direct-factor-invariance` proves that adjoining any
 countable locally finite direct factor changes no nuclear dimension.  Hence
@@ -87,13 +104,14 @@ abelian but has nuclear dimension exactly one.
 
 The locally finite factor argument depends on the augmentation quotient
 `C*(L times H)->C*(H)` and does not survive an arbitrary semidirect product.
-The kernel-finite extension theorem handles locally finite orbit-hulls, but
-does not cover shift actions such as the lamplighter action, where a finitely
-generated subgroup can meet the locally finite kernel in an infinite group.
-The directed-union argument also needs a uniform bound; it gives no control
-when the Hirsch lengths of finitely generated subgroups diverge.  Thus the
-remaining frontier includes unrestricted locally-finite-by-abelian groups
-and the general finite-Hirsch-length elementary amenable conjecture.  The
-wreath-quotient theorem gives a robust negative class but does not provide a
-converse: absence of such a quotient is not known to imply finite nuclear
-dimension.
+The kernel-finite extension theorem does not itself cover shift actions,
+where a finitely generated subgroup can meet the locally finite kernel in an
+infinite group.  The new wreath theorem handles regular finite-lamp shifts
+when the acting group is locally virtually nilpotent of uniformly bounded
+local Hirsch length, but not arbitrary locally-finite-by-abelian actions.
+The directed-union argument still gives no control when its finite-stage
+bounds diverge.  Thus the remaining frontier includes unrestricted
+locally-finite-by-abelian groups and the general finite-Hirsch-length
+elementary amenable conjecture.  The wreath-quotient theorem gives a robust
+negative class but does not provide a converse: absence of such a quotient
+is not known to imply finite nuclear dimension.

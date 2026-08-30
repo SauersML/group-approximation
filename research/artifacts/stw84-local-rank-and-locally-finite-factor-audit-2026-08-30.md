@@ -12,7 +12,8 @@ full characterization.
 
 This packet does not claim that conjecture.  It adds two permanence mechanisms
 and combines them into new exact and finite-dimensional classes.  It also
-records an exact controlled locally-finite-by-abelian extension class.
+records an exact controlled locally-finite-by-abelian extension class and a
+quantitative finite-lamp wreath class beyond local virtual polycyclicity.
 
 ## Lower mechanism: abelianization
 
@@ -77,6 +78,38 @@ uniformly bounded Hirsch length has group C*-algebra of finite nuclear
 dimension.  The resulting bound depends only on that uniform local Hirsch
 length.
 
+## Finite-lamp wreath products over local nilpotent bases
+
+Eckhardt--Wu's Theorem 5.14 gives the quantitative finite-stage estimate
+
+```text
+dim_nuc(C*(K wr V)) <= 2 * 9^d(V)
+```
+
+for finite `K` and finitely generated virtually nilpotent `V`, where `d(V)`
+is polynomial-growth degree.  The Bass--Guivarc'h formula writes that degree
+as `sum i*a_i` for the lower-central homogeneous ranks, while Hirsch length
+is `sum a_i`.  The nilpotency class is at most the Hirsch length, so
+`d(V)<=h(V)^2`.
+
+Now let `H` be countable locally virtually nilpotent with all local Hirsch
+lengths at most `r`.  An increasing finitely generated exhaustion `H_n` gives
+
+```text
+K wr H = union_n (K wr H_n).
+```
+
+The equality is literal: every wreath element has finite lamp support and one
+acting coordinate.  Thus all stage dimensions are at most `2*9^(r^2)`, and
+the subgroup-algebra inductive-limit theorem gives the same bound for
+`C*(K wr H)`.  This combines an imported finite-stage theorem and growth
+formula with a new uniformization and wreath-exhaustion argument.
+
+For `H=Q`, the local Hirsch bound is one.  Hence `(Z/2) wr Q` has nuclear
+dimension at most `18`.  It contains `(Z/2) wr Z`, so it is not locally
+virtually polycyclic; this positive class is not subsumed by the earlier
+polycyclic exhaustion node.
+
 ## Exact locally finite factor theorem
 
 If `L` is countable locally finite, then `C*(L)` is AF.  For every countable
@@ -137,12 +170,14 @@ dimension estimate is used.
 ## Trust boundary
 
 No statement here handles arbitrary locally-finite-by-abelian extensions or
-general finite-Hirsch-length elementary amenable groups.  The new extension
-theorem requires finite kernel intersection at every finitely generated stage;
-in particular it does not cover shift-type wreath products.  The direct-factor
-proof uses the augmentation quotient and therefore does not extend formally
-to an arbitrary semidirect product.  The directed-union theorem needs a
-uniform stage bound; it cannot turn unbounded finite-stage dimensions into a
-finite limit.  The wreath-product result is a one-way obstruction: no claim is
-made that groups without one of the displayed wreath quotients have finite
-nuclear dimension.
+general finite-Hirsch-length elementary amenable groups.  The controlled
+extension theorem requires finite kernel intersection at every finitely
+generated stage.  The finite-lamp theorem covers regular wreath shifts over
+uniformly locally virtually nilpotent acting groups, but not arbitrary
+locally finite kernels or actions.  The direct-factor proof uses the
+augmentation quotient and therefore does not extend formally to an arbitrary
+semidirect product.  The directed-union theorem needs a uniform stage bound;
+it cannot turn unbounded finite-stage dimensions into a finite limit.  The
+wreath-product negative result is a one-way obstruction: no claim is made
+that groups without one of the displayed wreath quotients have finite nuclear
+dimension.
