@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw99-xi-clopen-support-gluing-2026-08-30.md
   - research/artifacts/stw11-transfinite-clopen-filtration-audit-2026-08-30.md
   - research/artifacts/stw11-lattice-coupled-cyclic-products-audit-2026-08-30.md
+  - research/artifacts/stw11-folner-capacity-audit-2026-08-30.md
 ---
 
 **Problem XI of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Let
@@ -43,6 +44,16 @@ quasidiagonal ⟺ stably finite ⟺ no open `U` with `α(U) ⊊ U`.
   tracial weight), Gabe's GAFA theorem gives stably finite ⟺
   quasidiagonal ⟺ AF-embeddable outright, with the primitive-ideal
   criterion.
+* **An exact orbit-capacity test for the faithful regime.**
+  `stw11-folner-capacity-faithful-trace-criterion` shows that a faithful
+  invariant probability exists exactly when every nonzero positive
+  continuous function has positive maximal average along the standard
+  Følner boxes.  Each positive limit yields an invariant empirical-orbit
+  limit detecting that function; a countable convex mixture is faithful.
+  Consequently the crossed product embeds into a unital simple AF algebra.
+  In particular this solves XI for every action with dense minimal points,
+  including actions with infinitely many accumulating minimal subsystems and
+  no compact-open support filtration or product-of-cyclic presentation.
 * **Structural reduction (this lane).**  Tracial weights on
   `C(X) ⋊ Z^d` restrict to invariant Radon measures on open invariant
   pieces of `X`.  Filtering `X` by the closure of supports of invariant
