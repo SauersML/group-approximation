@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
   - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
   - research/artifacts/stw22-arbitrary-factor-stiefel-boundary-audit-2026-08-30.md
+  - research/artifacts/stw22-matrix-weighted-loop-filling-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -94,9 +95,13 @@ For the first such hinge, projection-weight multicopy fibres reduce exactly
 to `U(N)/(q+U((1-q)N(1-q)))`.  The complement bound is indispensable:
 without it,
 determinant loops in `U(n)` have normalized `2`-radius tending to zero but
-remain non-null-homotopic.  Positive complement slack removes that elementary
-matrix obstruction, but a factor-uniform filling-radius estimate is still
-needed in dimension two.
+remain non-null-homotopic. Positive complement slack removes that elementary
+obstruction, and `stw22-matrix-weighted-copy-uniform-loop-fillings` now
+proves a dimension-free filling-radius estimate for all matrix factors,
+positive weights, and replication numbers. The general dimension-two hinge
+remains open only on the diffuse side: a merely `2`-norm-continuous factor
+loop need not admit the continuous small-trace spectral carrier produced by
+the finite-dimensional argument.
 
 The tempting matrix-cone shortcut is strictly stronger than this hinge.
 `stw22-bare-cone-projectivity-does-not-supply-ilr` exhibits a

@@ -18,6 +18,7 @@ artifacts:
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
   - research/artifacts/stw22-stabilized-l2-selection-audit-2026-08-30.md
   - research/artifacts/stw22-arbitrary-factor-stiefel-boundary-audit-2026-08-30.md
+  - research/artifacts/stw22-matrix-weighted-loop-filling-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -202,10 +203,17 @@ every projection-weight `m`-copy fibre isometrically with one Stiefel space
 Strict support
 slack cannot be removed: in `M_n`, the determinant-degree-one loop
 `diag(z,1,...,1)` is non-null-homotopic in `U(n)` while its normalized
-`2`-radius is at most `2/sqrt(n)`.  With positive slack the matrix Stiefel
-spaces are simply connected, leaving a dimension-free filling-radius
-estimate—not ordinary homotopy—as the exact dimension-two obstruction for
-arbitrary factor bundles.
+`2`-radius is at most `2/sqrt(n)`. With positive slack the matrix case is
+now quantitatively closed by
+`stw22-matrix-weighted-copy-uniform-loop-fillings`. A continuously moving
+small-rank carrier confines every operator-norm-large defect; the residual
+loop lies in a simply connected complex Stiefel bundle whose normalized
+`2`-diameter is controlled by that rank. A high-low spectral cut transfers
+the estimate to arbitrary positive weights and arbitrary replication
+number, with one modulus independent of matrix size. The exact remaining
+dimension-two obstruction for arbitrary factor bundles is the diffuse-fibre
+analogue: `2`-norm continuity no longer gives the continuous small-trace
+spectral carrier used in the matrix proof.
 
 Bare projectivity of finite-dimensional matrix cones does not bypass this
 frontier. `stw22-bare-cone-projectivity-does-not-supply-ilr` gives a trivial
