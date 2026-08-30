@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw01-quasitrace-status-and-local-permanence-audit-2026-08-30.md
+  - research/artifacts/stw01-asymptotic-quasitracial-cut-audit-2026-08-30.md
 ---
 
 **Problem I of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  If `τ` is a bounded quasitrace on a C\*-algebra, must
@@ -60,3 +61,16 @@ This applies to traced ideals with no projectional approximate unit; an
 explicit example uses a scalar summand together with the stably projectionless
 stable algebra `C_0((0,1]) tensor K`.  Hence the exact tail-splitting mechanism
 is quasitracial idempotence, not projectionality inside the ambient algebra.
+
+Exact membership in the universal bounded-quasitrace radical can now be
+removed from this mechanism.  By
+`stw01-asymptotic-quasitracial-cuts-promote-linearity`, fix one bounded
+quasitrace `tau`.  It is enough that the idempotence defects and commutators
+of the positive approximate-unit cuts tend to zero in the `tau` square
+seminorm.  In the sequence quotient associated to the coordinate
+ultralimit of `tau`, the cuts become one exact central projection.  The
+hereditary head is linear, while the complementary tail factors through
+`A/I`; their exact sum is `tau`.  Thus any nontracial counterexample under
+the head/quotient hypotheses must retain either a positive asymptotic
+idempotence defect or a positive commutator defect against one fixed
+ambient element.

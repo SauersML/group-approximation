@@ -9,6 +9,7 @@ distinct_from:
   stw01-central-projection-ideal-extensions-preserve-qt-linearity: that splits the extension by central projections already inside A; neither projections nor centrality in A are assumed here.
 artifacts:
   - research/artifacts/stw01-quasitrace-status-and-local-permanence-audit-2026-08-30.md
+  - research/artifacts/stw01-asymptotic-quasitracial-cut-audit-2026-08-30.md
 ---
 
 Let `A` be a unital C-star algebra and write
@@ -32,6 +33,13 @@ Suppose every bounded `2`-quasitrace on the hereditary algebra
 The two conditions in `(QTI)` say exactly that the image of `e_n` is a
 central projection in every quotient `A/N_tau`.  Thus this theorem strictly
 contains `stw01-qt-central-projection-extensions-preserve-linearity`.
+
+They are not the weakest conditions which support splitting.  The later
+theorem `stw01-asymptotic-quasitracial-cuts-promote-linearity` fixes one
+quasitrace at a time and requires only convergence of the idempotence and
+commutator defects to zero in its square seminorm.  The central projection
+then appears in a quasitracial sequence quotient rather than in every
+finite-stage quotient `A/N_tau`.
 
 The containment is strict even at the level of algebras, not only of chosen
 approximate units.  Put
