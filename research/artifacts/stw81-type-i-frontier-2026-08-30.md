@@ -41,15 +41,18 @@ all type-I C-star algebras.  The relevant established inputs are:
    topological dimension: one inequality comes from arbitrary
    continuous-trace subquotients, and the other from a continuous-trace
    composition series.
-6. The LXXXI shadow hypothesis forces every local continuous-trace spectrum
+6. A hypothetical separable counterexample can be stabilized or unitized
+   without changing its finite nuclear dimension or losing the shadow
+   hypothesis.  This removes two artificial search frontiers.
+7. The LXXXI shadow hypothesis forces every local continuous-trace spectrum
    chart to have dimension at most one, by cutting the compact-operator
    bundle with a local rank-one projection.  The fibre may be infinite
    dimensional and the bundle may have nontrivial Dixmier--Douady class.
-7. Hence every separable continuous-trace algebra satisfying the hypothesis
+8. Hence every separable continuous-trace algebra satisfying the hypothesis
    has nuclear dimension at most one.
-8. Applying the same localization to every continuous-trace factor of a
+9. Applying the same localization to every continuous-trace factor of a
    separable type-I composition series gives `topdim(A)<=1`.
-9. Thus any remaining separable type-I counterexample must be a finite
+10. Thus any remaining separable type-I counterexample must be a finite
    nuclear-dimension algebra with `topdim(A)<=1<dim_nuc(A)`.  This isolates
    the exact missing theorem: the one-dimensional type-I comparison between
    these two dimension theories.

@@ -58,6 +58,12 @@ for every separable extension.  Therefore any discrepancy in Problems
 LXXXI--LXXXII occurs strictly above the continuous-trace shadow layer; it
 cannot be explained by topological dimension appearing only after gluing.
 
+The counterexample search can also be normalized:
+`stw81-counterexamples-reduce-to-stable-and-unital` shows that any separable
+counterexample produces both a stable witness and a unital witness, without
+changing its nuclear dimension.  These are separate normal forms; no
+nonzero algebra is asserted to be simultaneously stable and unital.
+
 ## Attempts
 
 `stw81-separable-subhomogeneous-positive` proves the assertion for separable
