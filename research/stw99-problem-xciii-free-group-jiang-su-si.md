@@ -6,6 +6,7 @@ title: C*_r(F2) tensor the Jiang--Su algebra has property (SI) (STW Problem XCII
 root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw93-xciii-free-group-jiang-su-si-audit-2026-08-30.md
 ---
 
 **Problem XCIII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Does `C*_r(F₂) ⊗ 𝒵` have property (SI)?
@@ -15,3 +16,20 @@ is about quasitraces on it.  STW: `C*_r(F₂) ⊗ 𝒵` has property (SI) if and
 if its central sequence algebra has a unique quasitrace
 (`stw99-xciii-iff-central-sequence-unique-quasitrace`).  The II₁-factor
 analogue, super McDuffness of `L(F₂) ⊗ R`, holds (Dixmier--Lance).
+
+## Attempts
+
+Kirchberg--Rørdam central surjectivity and super McDuffness identify the
+tracial quotient of the central sequence algebra with a II₁ factor and hence
+with an algebra having a unique quasitrace.  Therefore the problem is exactly
+whether every quasitrace on the norm central sequence algebra annihilates its
+trace-kernel ideal.  Any negative witness must give positive mass to a positive
+norm-central sequence which is zero in tracial norm.
+
+The tensor-factor copy of `F(𝒵)` is not the source of such a witness: every
+quasitrace restricts canonically to it, and property (SI) holds for pairs lying
+entirely in that copy.  Conversely, norm-central sequences coming from
+`C*_r(F₂)` are tracially scalar because `L(F₂)` is full, so their non-scalar
+parts land precisely in the unresolved trace-kernel ideal.  Central pureness,
+now also furnished directly by Perera--Thiel--Vilalta, supplies strict
+comparison but does not force quasitraces to annihilate this ideal.
