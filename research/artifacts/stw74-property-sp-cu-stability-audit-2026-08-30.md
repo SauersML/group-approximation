@@ -35,11 +35,22 @@ literature screen, not proof that no unindexed result exists.
    criteria for important ample-groupoid classes.  Those criteria use
    distinguished diagonal projections and do not settle arbitrary simple
    algebras.
+4. Joan Bosa, *Stable Elements and Property (S)*,
+   <https://arxiv.org/abs/2102.09442>, develops the regularity,
+   asymptotic-regularity, property-R, and comparison framework around the
+   same stability mechanism.  In particular its regularity dichotomies
+   already imply related stably-finite-versus-purely-infinite positive
+   classes.  Accordingly, the weak-omega positive conclusion below is not
+   claimed as a new literature theorem.  What is new in this graph is its
+   direct localization to the exact LXXIV projectionless corner, the
+   elementary quasitrace elimination there, and the explicit orthogonal
+   weak-omega failure witness forced by a counterexample.
 
 No literature theorem in this artifact is represented as a solution of
-LXXIV.  The only imported implication in the new weak-omega claim is the
-Ortega--Perera--Rordam stability mechanism; the reduction from LXXIV to that
-mechanism is new and is written out in Cairn.
+LXXIV.  The imported implication in the weak-omega claim is the
+Ortega--Perera--Rordam stability mechanism, with Bosa's later regularity
+framework marking the known conceptual overlap.  The exact LXXIV-local
+reduction and witness are written out in Cairn.
 
 ## New deductions
 
@@ -93,4 +104,3 @@ original unit, while all lower matrix levels remain projectionless.
 This normal form isolates a genuinely finite, locally stationary descent
 failure: the remaining problem is not to create a projection at some matrix
 level, but to lower a persistent minimal level `m>=2` to level one.
-
