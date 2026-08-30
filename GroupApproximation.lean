@@ -2744,6 +2744,7 @@ import GroupApproximation.GGT.OsinLemma55GuessingGeodesics
 import GroupApproximation.Analysis.VoiculescuGlimmStatement
 import GroupApproximation.GGT.GeodesicChainExists
 import GroupApproximation.GGT.GuessingGeodesicsSubdivision
+import GroupApproximation.Analysis.VoiculescuGlimmVector
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
