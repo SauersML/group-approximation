@@ -53,7 +53,7 @@ a rational linear form in those variables.  To impose support size at most
 `B`, enumerate every subset `C` of at most `B` readable patterns and
 set the probabilities of all patterns outside `C` equal to zero.  For
 fixed `C` this is a rational face of the pseudo-IRS polytope.  There are
-only finitely many choices of `C), so maximizing the rational game
+only finitely many choices of `C`, so maximizing the rational game
 functional over their union is an effective finite list of linear programs.
 Let its largest optimum be `alpha_(n,B)(G)`.
 
