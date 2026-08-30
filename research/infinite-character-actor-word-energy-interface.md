@@ -45,6 +45,11 @@ E_s=sum_chi ||C_sP_chi C_s^*-P_(s chi)||_2^2.          (IWE1)
 > E_s=Average_m d_s(m)^2.                              (IWE2)
 > ```
 
+This identity is now formalized independently as
+`whole-module-covariance-average-equals-character-transport`; the open
+content of the present node begins at the uniform finite-presentation
+estimate `(IWE6)`.
+
 Indeed the block expansion from
 `finite-covariance-energy-sees-only-character-restrictions` gives
 

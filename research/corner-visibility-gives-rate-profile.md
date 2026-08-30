@@ -32,9 +32,10 @@ mf-invariant-corner-visibility  =>  mf-trace-gap-defect-ratio-models
                                 =>  mf-implies-hyperlinear.
 ```
 
-The rate claim is the strictly weaker hypothesis --- it tolerates
+The rate claim is the formally weaker hypothesis --- it tolerates
 `kappa_n -> 0` provided `epsilon_n^2` decays faster, whereas corner
-visibility demands `kappa_n` bounded below --- so it is the better target of
+visibility demands `kappa_n` bounded below.  No group separating the two
+universal statements is known.  The rate claim is therefore the better target of
 the two, and `mf-implies-hyperlinear-via-invariant-corner` factors through
 `mf-implies-hyperlinear-via-rank-profile`.  Keeping both routes is
 deliberate: they record two different mechanisms for producing the trace
