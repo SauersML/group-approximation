@@ -11,7 +11,7 @@ requires:
 
 Write `phi_lambda` for the composition of `phi` with evaluation at
 coordinate `lambda`. Proper infiniteness passes through homomorphisms.
-Consequently, whenever `phi_lambda(a)` is nonzero for `a>=0), it is
+Consequently, whenever `phi_lambda(a)` is nonzero for `a>=0`, it is
 properly infinite in `B(H_lambda)`: apply coordinate evaluation to the
 properly infinite product element `phi(a)`.
 
@@ -31,7 +31,7 @@ max_(a in F,t=1,2)
 ```
 
 Set `s_t=(s_(lambda,t))_lambda`. These are elements of the C*-product,
-satisfy `s_t^*s_u=delta_(t,u)1), and obey
+satisfy `s_t^*s_u=delta_(t,u)1`, and obey
 
 ```text
 max_(a in F,t=1,2)||[s_t,phi(a)]||
