@@ -5,7 +5,6 @@ kind: route
 title: Unpack local nonabelian H1 in the asymptotic permutation quotient
 target: regular-table-local-h1-restates-spherical-gauge
 requires:
-  - spherical-relation-defect-pairs-small-chord
   - relation-defects-obey-permutation-gauge-law
 ---
 
@@ -22,13 +21,15 @@ The triangle inequality and permutation invariance of cardinality show that
 conjugating by a shadow, the middle displacement is merely relabeled, while
 the two shadowing errors vanish in measure.
 
-The short-chord theorem puts every relation defect
+For the relation defects
 
 ```text
-delta_(g,h,k)=sigma_k^(-1) sigma_g sigma_h
+delta_(g,h,k)=sigma_k^(-1) sigma_g sigma_h,
 ```
 
-in `L`.  Triviality of its local nonabelian torsor class means precisely
+the local-H1 premise itself asserts that these defects define a class in the
+local coefficient system.  Triviality of that local nonabelian torsor class
+means precisely
 that there is a zero-cochain `[c_s] in L` satisfying, for every tested
 cell,
 
