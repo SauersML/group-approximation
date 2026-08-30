@@ -26,7 +26,13 @@ S p_i S^(-1)=p_(i+1),
 S q_i S^(-1)=q_(i+1).
 ```
 
-Fix a finite `D subset Z\{0}` and choose `m>max_(r in D)|r|`.  For any
+Fix a finite `D subset Z\{0}`, put
+
+```text
+M=max({|r|:r in D} union {0}),
+```
+
+and choose `m>M`.  For any
 `r in D`, the residue `r mod m` is nonzero: otherwise `m` divides the nonzero
 integer `r`, impossible when `|r|<m`.  Consequently
 
