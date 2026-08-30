@@ -23,8 +23,12 @@ one full readable profile has a finite conjugacy orbit under the structural
 unreadable group.
 
 The padding may be made ergodic whenever the original witness is replaced by
-an ergodic component. It also has finite cyclic perfect models converging on
-every fixed cylinder to the Bernoulli model. Hence existence of a
-profile-pure finite projection orbit is neither a formal consequence of
-perfect ZPC plus a strict quantum gap nor a weak-star-closed consequence of
-the pseudo-IRS compactness hierarchy.
+an ergodic component. The standalone always-accept Bernoulli padding factor
+is a fixed-cylinder limit of finite cyclic padding factors with finite
+readable orbit, so finite-orbit structure is not weak-star closed even in
+that elementary ZPC class. No claim is made that tensoring those cyclic
+factors with an arbitrary original witness gives the total product a finite
+orbit. Consequently a profile-pure finite projection orbit is neither a
+formal consequence of perfect ZPC plus a strict quantum gap nor something
+that fixed-cylinder compactness can preserve without an additional uniform
+source bound.
