@@ -27,17 +27,27 @@ If there is a unital star homomorphism
 Phi:B -> q_K C[G] q_K,               Phi(1_B)=q_K,            (NAC2)
 ```
 
-then `G` is not MF even in the weak operator-norm sense
+then every homomorphism
 
 ```text
-G -> U(product_n M_(d_n) / directSum_(||.||) M_(d_n)).       (NAC3)
+theta:G -> U(product_n M_(d_n) / directSum_(||.||) M_(d_n))  (NAC3)
 ```
+
+kills `K`.  Equivalently,
+
+```text
+K <= Rad_MF(G).                                             (NAC4)
+```
+
+In particular `G` is not MF even in this weak operator-norm sense.
 
 The proof uses no Property `(T)`, Kazhdan pair, stability theorem, expansion,
 or implication from weak MF to hyperlinearity.  The finite normal subgroup is
 used only to make `q_K` a central projection, and the special choice
-`q_K=1-e_K` authenticates the corner: every faithful representation of `G`
-must see it.  The rank of its matrix lifts may tend to zero relative to the
+`q_K=1-e_K` authenticates the whole subgroup: if any corona representation
+sees `q_K`, the corner produces the forbidden CE trace; if it does not, the
+finite average identity forces that representation to kill every element of
+`K`.  The rank of nonzero matrix lifts may tend to zero relative to the
 ambient dimension; normalizing by the corner rank itself removes that escape.
 
 Thus a property-`(T)`-free norm-corona groupification of the fixed no-CE BCS
@@ -46,4 +56,3 @@ algebraic diagram `(NAC2)`.  Conversely, replacing `q_K` by one selected
 irreducible-type projection is unsafe: a faithful representation of `K` may
 omit that type entirely.  The augmentation complement is the canonical
 finite-normal projection for which faithfulness alone supplies nonvanishing.
-
