@@ -6,6 +6,8 @@ title: Neither minimal degree-four five-corner topology accepts the full Leavitt
 artifacts:
   - research/artifacts/search-degree4-five-corner-omega.py
   - research/artifacts/search-degree4-five-corner-omega.sbatch
+  - research/artifacts/search-degree4-five-corner-full-packet-true-inverse.py
+  - research/leavitt-degree4-five-corner-full-packet-true-inverse-proof.md
 ---
 
 Consider the two length-twelve degree-four sign classes
@@ -33,4 +35,3 @@ The exact count is
 This does not exclude repeated or composite coefficients, the other four
 dihedral `(1,1,5,5)` classes with different corner-length profiles, or the
 next equal-residual profile `(1,1,7,7)` at length sixteen.
-
