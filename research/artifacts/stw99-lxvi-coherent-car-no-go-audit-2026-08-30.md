@@ -48,6 +48,34 @@ finite-index expected extensions, and injective limits assembled from such
 stages.  The obstruction uses no trace extension, quasitrace, `K_0`, central
 sequence, or simplicity argument.
 
+## Infinite-index crossed and free constructions
+
+There is a complementary obstruction which permits infinite Watatani index.
+For any action of any discrete group on CAR, uniqueness makes the CAR trace
+invariant.  Composing it with the faithful canonical expectation from the
+reduced crossed product gives a faithful trace, so the crossed product is
+stably finite.  If the full crossed product is simple, its canonical quotient
+onto the reduced crossed product has zero kernel and the same conclusion
+holds.
+
+The identical vacuum mechanism applies to reduced amalgamated free products.
+If `D=CAR subset A_i`, the expectations `E_i:A_i->D` are faithful, and
+`tau_D after E_i` is tracial on every leg, then the reduced free-product
+expectation `E` is faithful and `tau_D after E` is a faithful trace.  Scalar
+amalgamation gives the ordinary reduced free product of CAR with any family
+of faithfully tracial factors.  A simple full amalgamated or ordinary free
+product coincides with its reduced quotient and is likewise stably finite.
+
+This excludes arbitrary-group reduced crossed products, trace-preserving
+reduced free amalgams, and their simple full counterparts.  Unlike the
+finite-index theorem, it does not compress the ambient algebra into a fixed
+matrix corner and places no bound on module index.  It instead shows that
+the coherent dyadic tower carries its unique trace through every
+trace-preserving reduced-word construction, preventing matrix instability.
+Faithful traces remain faithful on matrix and hereditary corners, so cutting
+to a full or simple corner cannot repair the construction.  The existing
+injective-limit theorem similarly excludes injective limits of such corners.
+
 ## Z-stable projection dichotomy
 
 There is an independent ambient-regularity obstruction.  Rordam's almost
@@ -96,3 +124,10 @@ and central-matrix no-go results.  The Z-stable dichotomy further requires a
 successful ambient algebra to be non-Z-stable (and, in the separable case,
 of infinite nuclear dimension); it gives no contradiction for an irregular
 infinite-index noncentral construction of that kind.
+
+The free-construction theorem requires faithful trace-preserving
+expectations on the legs (or an action by automorphisms in the crossed-product
+case).  A faithful expectation onto CAR need not make `tau_D after E`
+tracial, and a nonsimple full product may have a nonzero regular kernel, so
+neither is claimed.  Those non-trace-preserving, nonreduced possibilities
+remain outside this obstruction.

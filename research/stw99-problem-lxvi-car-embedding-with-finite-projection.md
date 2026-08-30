@@ -51,6 +51,20 @@ limits built from such stages.  A successful CAR inclusion must have
 genuinely infinite module index; no trace, `K_0`, or centrality hypothesis is
 used in this obstruction.
 
+Infinite index does not rescue the standard free constructions.
+`stw99-lxvi-tracial-free-constructions-are-stably-finite` proves that every
+reduced crossed product of CAR by an arbitrary discrete group is stably
+finite: the unique CAR trace is invariant and its composition with the
+faithful coefficient expectation is a faithful trace.  The same vacuum-trace
+argument covers reduced amalgamated free products over CAR whenever the leg
+expectations are faithful and trace preserving, as well as ordinary reduced
+free products of CAR with faithfully tracial factors.  If the corresponding
+full construction is simple, its quotient onto the reduced construction is
+injective and it is stably finite too.  Thus crossed-product and
+trace-preserving free-product assembly are unavailable even at infinite
+Watatani index; passing to corners or injective limits of such corners cannot
+repair the obstruction.
+
 A second broad no-go concerns ambient regularity rather than the CAR
 inclusion.  `stw99-lxvi-z-stability-forbids-mixed-projections` proves that a
 simple unital Z-stable algebra is either stably finite or has every nonzero
