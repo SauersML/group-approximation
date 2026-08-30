@@ -269,6 +269,10 @@ def parametrizedPath (a : ℝ → X) (p : PowerAxisSegment h x) : ℝ → X :=
 def vertex (p : PowerAxisSegment h x) (n : ℤ) : X :=
   (p.translate * h ^ n) • x
 
+/-- The finite orbit-vertex chain carried by a power-axis segment. -/
+def vertexChain (p : PowerAxisSegment h x) : ℕ → X :=
+  fun n => p.vertex (p.start + (n : ℤ))
+
 /-- Initial endpoint of an oriented translated power-axis segment. -/
 def initial (p : PowerAxisSegment h x) : X :=
   (p.translate * h ^ p.start) • x
@@ -350,6 +354,21 @@ theorem length_eq_steps_mul (p : PowerAxisSegment h x) :
 /-- The path length of an oriented power-axis segment is nonnegative. -/
 theorem length_nonneg (p : PowerAxisSegment h x) : 0 ≤ p.length := by
   exact mul_nonneg (by exact_mod_cast sub_nonneg.mpr p.start_le_stop) dist_nonneg
+
+omit [PseudoMetricSpace X] in
+/-- The vertex chain begins at the initial power vertex. -/
+theorem vertexChain_zero (p : PowerAxisSegment h x) :
+    p.vertexChain 0 = p.initial := by
+  simp [vertexChain, initial, vertex]
+
+omit [PseudoMetricSpace X] in
+/-- The last recorded vertex of the chain is the terminal power vertex. -/
+theorem vertexChain_steps (p : PowerAxisSegment h x) :
+    p.vertexChain p.steps = p.terminal := by
+  have hindex : p.start + (p.steps : ℤ) = p.stop := by
+    rw [p.steps_cast]
+    omega
+  simp only [vertexChain, hindex, terminal, vertex]
 
 /-- A parametrized axis restricts to a geodesic path of the recorded segment
 length on every translated power-axis segment. -/
@@ -462,6 +481,58 @@ theorem vertex_dist_bounds
     simpa only [mul_smul] using
       hiso p.translate ((h ^ i) • x) ((h ^ j) • x)
   rwa [hcoord, ← hvalue] at hab
+
+/-- Successive vertices inherit the uniform upper bound from the
+parametrized quasi-axis. -/
+theorem vertexChain_edge_le
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) {lam c : ℝ}
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p : PowerAxisSegment h x) (n : ℕ) :
+    dist (p.vertexChain n) (p.vertexChain (n + 1)) ≤
+      lam * dist x (h • x) + c := by
+  have hupper := (vertex_dist_bounds hiso hf hq p
+    (p.start + (n : ℤ)) (p.start + ((n + 1 : ℕ) : ℤ))).2
+  have hcoord :
+      |((((p.start + (n : ℤ) : ℤ) : ℝ) -
+          ((p.start + ((n + 1 : ℕ) : ℤ) : ℤ) : ℝ)) *
+        dist x (h • x))| = dist x (h • x) := by
+    push_cast
+    rw [show ((p.start : ℝ) + (n : ℝ) -
+        ((p.start : ℝ) + ((n : ℝ) + 1))) * dist x (h • x) =
+        -(dist x (h • x)) by ring, abs_neg, abs_of_nonneg dist_nonneg]
+  rw [hcoord] at hupper
+  simpa only [vertexChain] using hupper
+
+/-- The quasi-axis lower bound gives uniform linear progress along every
+finite vertex chain. -/
+theorem vertexChain_progress
+    (hiso : IsIsometricAction G X) {f : ℝ → X}
+    (hf : IsAxisConnector h x f) {lam c : ℝ}
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (p : PowerAxisSegment h x) {i j : ℕ} (hij : i ≤ j) :
+    (dist x (h • x) / lam) * ((j - i : ℕ) : ℝ) - c ≤
+      dist (p.vertexChain i) (p.vertexChain j) := by
+  have hlower := (vertex_dist_bounds hiso hf hq p
+    (p.start + (i : ℤ)) (p.start + (j : ℤ))).1
+  have hcoord :
+      |((((p.start + (i : ℤ) : ℤ) : ℝ) -
+          ((p.start + (j : ℤ) : ℤ) : ℝ)) * dist x (h • x))| =
+        ((j - i : ℕ) : ℝ) * dist x (h • x) := by
+    have hcast : ((j - i : ℕ) : ℝ) = (j : ℝ) - (i : ℝ) := by
+      rw [Nat.cast_sub hij]
+    push_cast
+    rw [show ((p.start : ℝ) + (i : ℝ) -
+        ((p.start : ℝ) + (j : ℝ))) * dist x (h • x) =
+        -(((j : ℝ) - (i : ℝ)) * dist x (h • x)) by ring,
+      abs_neg, abs_of_nonneg (mul_nonneg (sub_nonneg.mpr (by exact_mod_cast hij))
+        dist_nonneg), hcast]
+  rw [hcoord] at hlower
+  have hreorder :
+      (dist x (h • x) / lam) * ((j - i : ℕ) : ℝ) =
+        ((j - i : ℕ) : ℝ) * dist x (h • x) / lam := by ring
+  rw [hreorder]
+  simpa only [vertexChain] using hlower
 
 /-- Integer power vertices whose arclength coordinates are sufficiently
 separated are metrically separated.  This is the quantitative fact that makes
