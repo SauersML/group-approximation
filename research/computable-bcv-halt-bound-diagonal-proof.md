@@ -5,7 +5,7 @@ kind: route
 title: Dovetail the bounded-factor upper hierarchy with quantum lower bounds
 target: computable-bcv-halt-bound-diagonalizes-to-finite-readable-gap
 requires:
-  - bounded-readable-factor-zirs-value-has-computable-upper-hierarchy
+  - bounded-readable-factor-zirs-computable-upper-hierarchy
 ---
 
 For each machine `M`, compute its BCV tailored game `G_M` and the integer
