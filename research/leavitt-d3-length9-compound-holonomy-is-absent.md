@@ -6,6 +6,8 @@ title: The first two-unary topology has incompatible coefficient-copy endpoints
 artifacts:
   - research/leavitt-d3-length9-compound-holonomy-is-absent-proof.md
   - research/artifacts/search-degree3-omega-four-cycle.py
+  - research/leavitt-d3-length9-compound-holonomy-true-inverse-proof.md
+  - research/artifacts/search-degree3-omega-four-cycle-true-inverse.py
 distinct_from:
   leavitt-degree3-algebraic-corner-cycle-is-absent: that treats length eleven with the original seven-letter packet and four identities; this treats the smaller length-nine two-unary topology and the compound order-mismatch gates u=ab and v=cd.
 ---

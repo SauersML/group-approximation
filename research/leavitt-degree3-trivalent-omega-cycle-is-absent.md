@@ -7,6 +7,8 @@ artifacts:
   - research/leavitt-degree3-trivalent-omega-cycle-is-absent-proof.md
   - research/artifacts/search-degree3-omega-four-cycle.py
   - research/artifacts/search-degree3-omega-four-cycle.sbatch
+  - research/leavitt-degree3-trivalent-omega-cycle-true-inverse-proof.md
+  - research/artifacts/search-degree3-omega-four-cycle-true-inverse.py
 distinct_from:
   leavitt-degree3-algebraic-corner-cycle-is-absent: that screens the length-eleven one-one-nine topology after identifying two unary corners; this screens the different one-three-three topology and compares the two whole ordered post-pivot relators.
 ---
