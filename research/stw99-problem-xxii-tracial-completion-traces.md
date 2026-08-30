@@ -41,6 +41,14 @@ The gap need not vanish.  The intrinsic sufficient condition established in
 `K_x/J_x` carry no nonzero bounded positive trace.  Stability of all the gap
 ideals is a concrete special case, strictly weaker than `J_x=K_x`.
 
+The equality shortcut already fails in an actual zero-dimensional nuclear
+Bauer completion.  The computation
+`stw22-nuclear-convergent-sequence-has-nonzero-tracefree-gap` exhibits a
+nonzero `K_x/J_x` and proves directly that it is bounded-trace-free by
+orthogonal replication of spectral cuts.  It also isolates the remaining
+general difficulty as neighbourhood-wise continuous selection rather than
+pointwise finite-factor comparison.
+
 ## Attempts
 
 For a Bauer-style central bundle, disintegrate an extreme trace over the
