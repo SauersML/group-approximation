@@ -440,6 +440,136 @@ theorem isWThree_blockWord_singleBase (D : RelGenSet G Λ) (lam : Λ) {a h : G}
       rw [hxa, ← hml]
       exact haH
 
+/-! ## The alternating word at a subgroup prefix: Hull's `yi`
+
+`blockWord lam pre h n` with `pre` a list of *subgroup* letters is Hull's word
+`(a₁ ⋯ a_k)^n`, each `aᵢ` a letter of a different peripheral factor: `pre`
+carries `a₁, …, a_{k-1}` and the block's closing letter is `a_k`.  The three
+conditions come out of four hypotheses on `pre` and one on `h`, and (W1) is
+free rather than assumed --- a word with no `X`-letters at all cannot contain
+two of them in a row, which is why `yi` never meets the obstruction that stops
+`nonelsub`.
+
+The cyclic hypotheses are the load-bearing ones: consecutive indices must
+differ **inside** `pre`, at the seam from `pre`'s last letter to `h`, and at the
+wrap from `h` back to `pre`'s first letter.  `pre ≠ []` cannot be dropped: at
+`pre = []` the word is `h^n`, whose adjacent letters share the index `lam`, and
+(W3) is false for `n ≥ 2`. -/
+
+/-- A position of a block word decomposes as a block index and an offset. -/
+theorem exists_block_decomp (m : ℕ) {n i : ℕ} (hi : i < n * (m + 1)) :
+    ∃ t r : ℕ, i = t * (m + 1) + r ∧ t < n ∧ r < m + 1 :=
+  ⟨i / (m + 1), i % (m + 1), (Nat.div_add_mod' i (m + 1)).symm,
+    Nat.div_lt_of_lt_mul (by rw [Nat.mul_comm]; exact hi),
+    Nat.mod_lt _ (Nat.succ_pos m)⟩
+
+omit [Group G] in
+/-- **A block word over a subgroup prefix has no `X`-letters.**  Every position
+is either a letter of `pre` or the block's closing subgroup letter. -/
+theorem getElem?_blockWord_ne_base (lam : Λ) {pre : List (RelLetter G Λ)}
+    (hbase : ∀ (j : ℕ) (y : G), pre[j]? ≠ some (RelLetter.base y))
+    (h : G) (n i : ℕ) (x : G) :
+    (blockWord lam pre h n)[i]? ≠ some (RelLetter.base x) := by
+  intro hx
+  have hi : i < (blockWord lam pre h n).length :=
+    lt_length_of_getElem?_eq_some hx
+  rw [length_blockWord] at hi
+  obtain ⟨t, r, rfl, htn, hrm⟩ := exists_block_decomp pre.length hi
+  rcases Nat.lt_or_ge r pre.length with hr | hr
+  · rw [getElem?_blockWord_pre lam pre h htn hr] at hx
+    exact hbase r x hx
+  · have hrm' : r = pre.length := by omega
+    subst hrm'
+    rw [getElem?_blockWord_comp lam pre h htn] at hx
+    simp at hx
+
+omit [Group G] in
+/-- **(W1) is free at a subgroup prefix.** -/
+theorem isWOne_blockWord_of_noBase (lam : Λ) {pre : List (RelLetter G Λ)}
+    (hbase : ∀ (j : ℕ) (y : G), pre[j]? ≠ some (RelLetter.base y))
+    (h : G) (n : ℕ) : WWord.IsWOne (blockWord lam pre h n) := by
+  intro i x _ hx _
+  exact getElem?_blockWord_ne_base lam hbase h n i x hx
+
+/-- **(W2) at a subgroup prefix**: each letter of `pre` deep in its own factor,
+and `h` deep in `H lam`. -/
+theorem isWTwo_blockWord_of_deep (D : RelGenSet G Λ) (lam : Λ)
+    {pre : List (RelLetter G Λ)} {C : ℕ}
+    (hdeepPre : ∀ (j : ℕ) (mu : Λ) (g : G),
+      pre[j]? = some (RelLetter.comp mu g) → g ∉ D.relBall mu C)
+    {h : G} (hh : h ∉ D.relBall lam C) (n : ℕ) :
+    WWord.IsWTwo D C (blockWord lam pre h n) := by
+  intro i mu g hx
+  have hi : i < (blockWord lam pre h n).length :=
+    lt_length_of_getElem?_eq_some hx
+  rw [length_blockWord] at hi
+  obtain ⟨t, r, rfl, htn, hrm⟩ := exists_block_decomp pre.length hi
+  rcases Nat.lt_or_ge r pre.length with hr | hr
+  · rw [getElem?_blockWord_pre lam pre h htn hr] at hx
+    exact hdeepPre r mu g hx
+  · have hrm' : r = pre.length := by omega
+    subst hrm'
+    rw [getElem?_blockWord_comp lam pre h htn] at hx
+    simp only [Option.some.injEq, RelLetter.comp.injEq] at hx
+    rw [← hx.1, ← hx.2]
+    exact hh
+
+/-- **(W3) at a subgroup prefix**: consecutive indices differ inside `pre`, at
+the seam to `h`, and at the wrap back to `pre`.  The separated case is vacuous,
+the word having no `X`-letter to separate with. -/
+theorem isWThree_blockWord_of_cyclic (D : RelGenSet G Λ) (lam : Λ)
+    {pre : List (RelLetter G Λ)} (hne : pre ≠ [])
+    (hbase : ∀ (j : ℕ) (y : G), pre[j]? ≠ some (RelLetter.base y))
+    (hadj : ∀ (j : ℕ) (mu nu : Λ) (g₁ g₂ : G),
+      pre[j]? = some (RelLetter.comp mu g₁) →
+        pre[j + 1]? = some (RelLetter.comp nu g₂) → mu ≠ nu)
+    (hseam : ∀ (j : ℕ) (mu : Λ) (g : G), j + 1 = pre.length →
+      pre[j]? = some (RelLetter.comp mu g) → mu ≠ lam)
+    (hwrap : ∀ (mu : Λ) (g : G),
+      pre[0]? = some (RelLetter.comp mu g) → lam ≠ mu)
+    (h : G) (n : ℕ) : WWord.IsWThree D (blockWord lam pre h n) := by
+  constructor
+  · intro i mu nu g₁ g₂ hx hy
+    have hi1 : i + 1 < (blockWord lam pre h n).length :=
+      lt_length_of_getElem?_eq_some hy
+    rw [length_blockWord] at hi1
+    obtain ⟨t, r, rfl, htn, hrm⟩ :=
+      exists_block_decomp pre.length (show i < n * (pre.length + 1) by omega)
+    rcases Nat.lt_or_ge r pre.length with hr | hr
+    · rw [getElem?_blockWord_pre lam pre h htn hr] at hx
+      rcases Nat.lt_or_ge (r + 1) pre.length with hr1 | hr1
+      · have hidx : t * (pre.length + 1) + r + 1
+            = t * (pre.length + 1) + (r + 1) := by omega
+        rw [hidx, getElem?_blockWord_pre lam pre h htn hr1] at hy
+        exact hadj r mu nu g₁ g₂ hx hy
+      · have hr1' : r + 1 = pre.length := by omega
+        have hidx : t * (pre.length + 1) + r + 1
+            = t * (pre.length + 1) + pre.length := by omega
+        rw [hidx, getElem?_blockWord_comp lam pre h htn] at hy
+        simp only [Option.some.injEq, RelLetter.comp.injEq] at hy
+        rw [← hy.1]
+        exact hseam r mu g₁ hr1' hx
+    · have hrm' : r = pre.length := by omega
+      subst hrm'
+      rw [getElem?_blockWord_comp lam pre h htn] at hx
+      simp only [Option.some.injEq, RelLetter.comp.injEq] at hx
+      have hm : 0 < pre.length := List.length_pos_of_ne_nil hne
+      have htn1 : t + 1 < n := by
+        by_contra hcon
+        push Not at hcon
+        have hmul : n * (pre.length + 1) ≤ (t + 1) * (pre.length + 1) :=
+          Nat.mul_le_mul_right _ hcon
+        have he : (t + 1) * (pre.length + 1)
+            = t * (pre.length + 1) + pre.length + 1 := by ring
+        omega
+      have hidx : t * (pre.length + 1) + pre.length + 1
+          = (t + 1) * (pre.length + 1) + 0 := by ring
+      rw [hidx, getElem?_blockWord_pre lam pre h htn1 hm] at hy
+      rw [← hx.1]
+      exact hwrap nu g₂ hy
+  · intro i _ _ _ _ y _ hy _
+    exact absurd hy (getElem?_blockWord_ne_base lam hbase h n (i + 1) y)
+
 end Bridge
 
 end OsinComponents
