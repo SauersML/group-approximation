@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.ElementaryIndependence
+import Mathlib.Combinatorics.Pigeonhole
 
 /-!
 # DGO Definition 6.3: the quasi-geodesic axis
@@ -259,6 +260,38 @@ structure PowerAxisSegment (h : G) (x : X) where
 namespace PowerAxisSegment
 
 variable {h : G} {x : X}
+
+/-- A finite map into a nonempty set of colors has a constant increasing
+subsequence of the requested size once the source has `colors × size`
+elements.  The increasing enumeration is important for preserving the order
+of the geometric samples. -/
+theorem exists_constant_strictMono_subsequence
+    (colors : Finset ℤ) (hcolors : colors.Nonempty) (N : ℕ)
+    (φ : Fin (colors.card * (N + 1)) → ℤ)
+    (hφ : ∀ r, φ r ∈ colors) :
+    ∃ z ∈ colors, ∃ R : Fin (N + 1) → Fin (colors.card * (N + 1)),
+      StrictMono R ∧ ∀ i, φ (R i) = z := by
+  obtain ⟨z, hz, hfiber⟩ :=
+    Finset.exists_le_card_fiber_of_mul_le_card_of_maps_to
+      (s := Finset.univ) (t := colors) (f := φ)
+      (fun r hr => hφ r) hcolors (n := N + 1) (by simp)
+  let fiber : Finset (Fin (colors.card * (N + 1))) :=
+    Finset.univ.filter fun r => φ r = z
+  have hfiberCard : N + 1 ≤ fiber.card := by
+    exact hfiber
+  obtain ⟨chosen, hchosen, hchosenCard⟩ :=
+    fiber.exists_subset_card_eq hfiberCard
+  let R : Fin (N + 1) → Fin (colors.card * (N + 1)) :=
+    fun i => (chosen.orderIsoOfFin hchosenCard i).1
+  have hRmono : StrictMono R := by
+    intro i j hij
+    exact (chosen.orderIsoOfFin hchosenCard).strictMono hij
+  refine ⟨z, hz, R, hRmono, ?_⟩
+  intro i
+  have hmemChosen : (chosen.orderIsoOfFin hchosenCard i).1 ∈ chosen :=
+    (chosen.orderIsoOfFin hchosenCard i).2
+  have hmemFiber := hchosen hmemChosen
+  exact (Finset.mem_filter.mp hmemFiber).2
 
 /-- The unit-speed path on a translated parametrized axis beginning at the
 initial vertex of a power-axis segment. -/
