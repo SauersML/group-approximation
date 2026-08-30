@@ -100,3 +100,12 @@ At a limit, density and norm continuity finish, with no separability or
 cofinality restriction.  Consequently every filtered counterexample already
 has a counterexample successor layer; transfinite gluing cannot create the
 first additivity defect.
+
+Finally, `stw01-separable-simple-reduction` removes two further possible
+sources of pathology.  The unrestricted problem is equivalent to its
+restriction to separable unital simple stably finite non-elementary
+C*-algebras.  Starting from the classical finite-AW*-factor witness, one
+places a pair detecting nonadditivity in a separable simple subalgebra by a
+recursive fullness construction.  The restricted faithful quasitrace forces
+stable finiteness.  Thus neither nonseparability nor a complicated ideal
+lattice is needed for a counterexample; exactness remains the missing wall.
