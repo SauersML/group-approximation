@@ -23,7 +23,8 @@ admissibility of the side's letters.
 
 Everything above it is conditional on a hypothesis nothing satisfies, so the
 chain is vacuous until the exclusion is repaired.  The endpoint
-`HullSC.hullRelatorStatement₂_of_inputs` is not wrong; it is empty.
+`HullSC.hullRelatorStatement₂OfBaseLetter_of_inputs` is not wrong; it is
+empty.
 
 ## The repair, now carried out
 

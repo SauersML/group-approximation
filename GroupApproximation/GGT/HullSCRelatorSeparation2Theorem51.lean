@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2QuasiGeodesic
+import GroupApproximation.GGT.HullSCCoreAdjoinPair
 
 /-!
 # Hull's Theorem 5.1 over two subgroups, and its two halves
@@ -76,6 +77,39 @@ theorem hullTheorem51₂_of_relator_of_quotient
   intro G _ A N E hN k S hS t R
   obtain ⟨eps, rho, mu, hmu, hgood⟩ := hquot A N E hN S hS R
   obtain ⟨u, huN, W, ⟨v, hvW, hvval⟩, hsc⟩ := hrel A N E hN t eps rho mu hmu
+  refine ⟨u, huN, ?_⟩
+  have hq := hgood W v hvW hsc
+  rwa [hvval] at hq
+
+/-- **Hull's Theorem 5.1 over two subgroups, from the BASE-LETTER relator half.**
+
+The seam where the alphabet is enlarged, and the only place it needs to be.
+`HullRelatorStatement₂OfBaseLetter` asks its core to carry `t⁻¹` as a base
+letter, which no core handed in need satisfy --- so this proof adjoins one:
+`HypEmbeddedCore₂.adjoinPair` puts `t` and `t⁻¹` into the base and carries the
+other clauses over unchanged, and `mem_base_adjoinPair` is the hypothesis.
+
+Adjoining is free HERE and nowhere else, for a reason visible in the statement:
+`HullTheorem51Statement₂`'s conclusion is
+`∃ u ∈ N, Nonempty (HullFillingQuotient A N S (t⁻¹ * u) R)`, which does not
+mention the core at all.  So the enlarged core may be used throughout the proof
+and never escapes it, and no consumer of this theorem changes.  `t` is in scope
+before the core is used, which is what makes the enlargement possible at all;
+at `HullRelatorStatement₂OfBaseLetter` itself the core comes first and the
+adjunction could not be expressed.
+
+Both halves are instantiated at the SAME enlarged core.  The quotient half's
+`hgood` consumes small-cancellation data over the core it was given, so taking
+it at `E` while the relator half runs at `E.adjoinPair t` would not typecheck
+--- the two must agree, and they do. -/
+theorem hullTheorem51₂_of_relatorBaseLetter_of_quotient
+    (hrel : HullRelatorStatement₂OfBaseLetter.{u})
+    (hquot : HullQuotientStatement₂.{u}) :
+    HullTheorem51Statement₂.{u} := by
+  intro G _ A N E hN k S hS t R
+  obtain ⟨eps, rho, mu, hmu, hgood⟩ := hquot A N (E.adjoinPair t) hN S hS R
+  obtain ⟨u, huN, W, ⟨v, hvW, hvval⟩, hsc⟩ :=
+    hrel A N (E.adjoinPair t) hN t (mem_base_adjoinPair E t) eps rho mu hmu
   refine ⟨u, huN, ?_⟩
   have hq := hgood W v hvW hsc
   rwa [hvval] at hq
