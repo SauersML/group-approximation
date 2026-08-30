@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-soft-comparison-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-strong-pure-infiniteness-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-finite-graph-compact-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxvi-finite-tree-noncompact-audit-2026-08-30.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -79,6 +80,18 @@ survives tensoring with `Z` for every finite graph `X`.  This does not give
 the full Cu isomorphism: Phillips's circle-with-a-tail phenomenon leaves a
 genuinely noncompact, supportwise-clutching corridor when `K_1(D)` is
 nonzero.
+
+The full noncompact wing is now controlled over every finite tree, with no
+`K_1`-vanishing assumption.
+`stw99-lxxvi-finite-tree-formation-preserves-cu-regularity` proves the
+natural pointwise formula
+`Cu(C(T,D))~=Lsc(T,Cu(D))` for a simple separable stable-rank-one fiber.
+The proof attaches leaf edges one at a time: a nonzero unitary mismatch may
+flow toward the unprescribed endpoint or disappear where the comparison
+vector vanishes, and no cycle forces it back to a prescribed value.  Thus a
+simple stably finite pure fiber gives a pure Cu-regular field over every
+finite tree, even when its `K_1` is nonzero.  Cyclic graphs remain outside
+this theorem.
 
 There is now a broader one-dimensional-base theorem at the exact idealwise
 `K_1`-free boundary.  For every second-countable locally compact Hausdorff

@@ -1,0 +1,124 @@
+# STW LXXVI finite-tree noncompact-clutching audit
+
+## Result
+
+Let `T` be a finite tree and let `D` be a simple separable C*-algebra of
+stable rank one.  Point evaluation is a natural isomorphism
+
+```text
+Cu(C(T,D)) ~= Lsc(T,Cu(D)).                              (FT1)
+```
+
+There is no assumption on `K_1(D)`.  Thus if `D` and `E` are two such
+coefficients and a star homomorphism `phi:D->E` induces an isomorphism on
+`Cu`, then `C(T,phi)` also induces an isomorphism on `Cu`.
+
+For a simple separable stably finite pure `D`, take
+`E=D tensor_min Z` and `phi(d)=d tensor 1`.  Lin's dichotomy gives stable
+rank one, the simple-fiber STW theorem gives the coefficient Cu-isomorphism,
+and the target is Z-stable of stable rank one.  Hence `C(T,D)` is pure and
+Cuntz semigroup regular for every finite tree, even when `K_1(D)` is
+nonzero.
+
+This is a full-Cu theorem, not only the compact calculation already available
+for arbitrary finite graphs.
+
+## The one-ended edge lemma
+
+The obstruction in the usual pullback proof is very specific.  Suppose that a
+closed interval is attached to a compact space `Y` at one endpoint `v`:
+
+```text
+Z=Y union_v [0,1],
+C(Z,D)=C(Y,D) pullback_D C([0,1],D).                      (FT2)
+```
+
+Assume that point evaluation is an order embedding on `Cu(C(Y,D))`.
+Antoine--Dadarlat--Perera--Santiago, Theorem 2.6, gives the corresponding
+order isomorphism on the interval.  Antoine--Perera--Santiago, Theorem 3.3,
+then makes the canonical map
+
+```text
+Cu(C(Z,D))
+ -> Cu(C(Y,D)) pullback_Cu(D) Cu(C([0,1],D))             (FT3)
+```
+
+surjective.  For a tree induction one needs the following sharper
+one-ended statement: (FT3) is also an order embedding, without requiring
+`K_1(D)=0`.
+
+Here is the point hidden by the usual idealwise-`K_1)-free hypothesis.
+In the proof of the pullback order-embedding theorem, two local comparison
+vectors differ at the gluing fiber by a unitary in the unitization of a
+hereditary subalgebra of `D tensor K`.  Stable rank one supplies that
+unitary.  If its `K_1)-class is nonzero, the general theorem cannot lift it
+through an arbitrary quotient.
+
+For (FT2), however, the new edge has only one prescribed endpoint.
+On the component of the target support which starts at `0`, the unitary can
+be propagated away from `0` by Proposition 2.2 and Remark 2.3 of
+Antoine--Dadarlat--Perera--Santiago.  There are two cases.
+
+- If that support component reaches the other endpoint, no terminal value was
+  prescribed there, so the propagated unitary is allowed to retain its
+  `K_1)-class.
+- If the component ends at `s<1`, the comparison vector has value zero at
+  `s`.  Propagate on `[0,s-delta]`, then splice to the unmodified vector
+  where its norm is less than a prescribed tolerance.  The splice is made on
+  vectors, not on unitaries, so a nonzero `K_1)-class costs arbitrarily
+  little and no null-homotopy is being assumed.
+
+After this orbit-lifting replacement, the partition-of-unity estimate in the
+proof of the pullback order-embedding theorem applies verbatim.  Letting the
+tolerance tend to zero proves (FT3) is an order embedding.  Notice the exact
+asymmetry: a second prescribed endpoint would demand compatibility of two
+unitary classes.  A leaf edge never does.
+
+## Leaf induction
+
+Root a finite tree.  If it has one edge, (FT1) is precisely the interval
+theorem.  Otherwise remove a leaf edge.  Its complement is a smaller finite
+tree and (FT2) applies.  By induction and the one-ended edge lemma,
+
+```text
+Cu(C(T,D))
+ ~= Cu(C(T',D)) pullback_Cu(D) Cu(C([0,1],D))
+ ~= Lsc(T',Cu(D)) pullback_Cu(D) Lsc([0,1],Cu(D))
+ ~= Lsc(T,Cu(D)).
+```
+
+Every isomorphism is the evaluation map.  The construction is therefore
+natural in `D`, which proves the coefficient-permanence assertion.
+
+The same proof can be phrased as a rooted gauge argument.  Each edge mismatch
+is absorbed while that edge is attached.  Since the edge/vertex incidence
+graph has no cycle, the recursion never returns to a previously prescribed
+endpoint.
+
+## Sharp topology boundary
+
+Phillips's circle-with-a-tail example in Remark 3.9 of
+Antoine--Dadarlat--Perera--Santiago does not contradict the theorem.  Its
+noncompact global element is a nontrivial projection bundle on the entire
+circle and fades only on the tail.  Cutting the circle produces an edge with
+two already prescribed endpoint values, and their difference is exactly the
+surviving `K_1(D))-class.  A finite tree has no subspace carrying that closed
+compatibility loop: every open support is a forest.
+
+Thus acyclicity is the precise reason this proof goes beyond the published
+idealwise-`K_1)-vanishing formula.  The argument makes no claim for a graph
+containing a cycle.
+
+## Primary sources checked
+
+- Antoine--Dadarlat--Perera--Santiago,
+  [Recovering the Elliott invariant from the Cuntz semigroup](https://arxiv.org/abs/1109.5803),
+  especially Lemma 2.1, Proposition 2.2, Remark 2.3, Theorem 2.6, and
+  Remark 3.9.
+- Antoine--Perera--Santiago,
+  [Pullbacks, C(X)-algebras, and their Cuntz semigroup](https://arxiv.org/abs/1101.4776),
+  especially Theorems 3.1--3.3 and the partition-of-unity patch in their
+  order-embedding proofs.
+- Seth--Vilalta,
+  [Continuous functions over a pure C*-algebra](https://arxiv.org/abs/2602.14809),
+  for purity of `C(T,D)` when `D` is simple and pure.
