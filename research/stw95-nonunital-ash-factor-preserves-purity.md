@@ -27,4 +27,3 @@ is pure.
 More generally, if `L` is a closed ideal in a unital separable ASH algebra
 `D`, then `A tensor_min L` is pure.  No exactness or separability assumption
 is imposed on `A`.
-
