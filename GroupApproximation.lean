@@ -2948,6 +2948,7 @@ import GroupApproximation.GGT.DGOAssemblyAdapter
 import GroupApproximation.GGT.DGOAssemblySubdivision
 import GroupApproximation.GGT.HullEeCycleComponents
 import GroupApproximation.GGT.HullEeAdjacent
+import GroupApproximation.GGT.HullEeAdjoinSet
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
