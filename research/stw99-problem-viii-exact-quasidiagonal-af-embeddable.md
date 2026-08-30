@@ -34,6 +34,17 @@ to `E`.  Consequently all finite transformation-group algebras
 C*-algebras passes from a finite-index subgroup to the whole group even when
 the subgroup is nonnormal and the extension is nonsplit.
 
-This does not solve Problem VIII: the finite regular representation
-transports an AF embedding but does not manufacture one from unrelated
-quasidiagonal models.
+There is now a separate continuous-gluing permanence theorem.
+`stw08-continuous-block-gluings-preserve-af-embeddability` embeds
+`C_0(X,A)` into an AF algebra whenever `X` is second-countable locally
+compact and `A` is AF-embeddable, by pulling back functions along a Cantor
+surjection onto the one-point compactification.  Every C*-subalgebra of a
+finite direct sum of such blocks is therefore AF-embeddable.  In particular,
+arbitrary finite pullback trees, mapping tori, and finite recursive
+subhomogeneous constructions are covered constructively; no gluing map is
+required to be surjective.
+
+These results do not solve Problem VIII: both the finite regular
+representation and the continuous-coordinate construction transport AF
+embeddings already available on their input pieces, but neither manufactures
+one from unrelated quasidiagonal models.

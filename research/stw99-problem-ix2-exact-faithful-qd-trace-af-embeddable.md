@@ -28,3 +28,14 @@ embedding is available.  If a finite group preserves `tau` and
 `tr_|F| tensor sigma`.  This transports trace-coherent positive cases across
 finite actions, but it does not obtain the initial embedding from a faithful
 quasidiagonal trace alone.
+
+Trace-compatible AF embeddings also survive finite continuous gluings.  By
+`stw08-continuous-block-gluings-preserve-af-embeddability`, suppose each
+`tau_j` extends across a unital `A_j->E_j` with `E_j` AF.  Full-support
+measures on compact metrizable `X_j` define faithful product tracial states
+on `C(X_j,A_j)`.  Every positive weighted sum of their coordinate
+restrictions to a common-unit C*-subalgebra of a finite direct sum extends
+across the explicit unital AF embedding.  This covers traced unital finite
+pullback trees and mapping tori without surjectivity of the gluing maps.  It
+is a permanence theorem from existing trace-preserving embeddings, not a
+coherification of an arbitrary faithful quasidiagonal trace.
