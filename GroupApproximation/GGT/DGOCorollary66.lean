@@ -96,6 +96,54 @@ theorem exists_uniform_normal_zpow_of_finiteTransversal
       _ = h ^ c * h ^ (-N) * h ^ (-c) := by rw [hneg]
       _ = h ^ (-N) := by rw [← zpow_add, ← zpow_add]; congr 1; ring
 
+/-! ## The three equivalent membership conditions -/
+
+/-- **DGO Corollary 6.6, `(a) ↔ (b)`, in integer-power form.**  Membership in
+`E(h)` is equivalent to inverse-conjugating one nonzero power of `h` to that
+same power or its inverse.  The inverse-conjugation orientation is the one in
+the published statement. -/
+theorem mem_elementaryClosure_iff_exists_inv_conj_zpow_eq_or
+    (hiso : IsIsometricAction G X) {h g : G} {x : X}
+    (hlox : IsLoxodromic h x) :
+    g ∈ elementaryClosure h ↔
+      ∃ n : ℤ, n ≠ 0 ∧
+        (g⁻¹ * h ^ n * g = h ^ n ∨ g⁻¹ * h ^ n * g = h ^ (-n)) := by
+  constructor
+  · intro hg
+    have hginv : g⁻¹ ∈ elementaryClosure h :=
+      (elementaryClosure h).inv_mem hg
+    obtain ⟨n, hn, hrel⟩ :=
+      conj_zpow_eq_or_of_mem_elementaryClosure hiso hlox hginv
+    exact ⟨n, hn, by simpa only [inv_inv] using hrel⟩
+  · rintro ⟨n, hn, hpos | hneg⟩
+    · have hginv : g⁻¹ ∈ elementaryClosure h := by
+        refine mem_elementaryClosure.mpr ⟨n, n, hn, hn, ?_⟩
+        simpa only [inv_inv] using hpos
+      simpa only [inv_inv] using (elementaryClosure h).inv_mem hginv
+    · have hginv : g⁻¹ ∈ elementaryClosure h := by
+        refine mem_elementaryClosure.mpr
+          ⟨n, -n, hn, neg_ne_zero.mpr hn, ?_⟩
+        simpa only [inv_inv] using hneg
+      simpa only [inv_inv] using (elementaryClosure h).inv_mem hginv
+
+/-- **DGO Corollary 6.6, `(a) ↔ (c)`.**  Membership in `E(h)` is equivalent
+to inverse-conjugating some nonzero power of `h` to some nonzero power. -/
+theorem mem_elementaryClosure_iff_exists_inv_conj_zpow_eq
+    {h g : G} :
+    g ∈ elementaryClosure h ↔
+      ∃ k m : ℤ, k ≠ 0 ∧ m ≠ 0 ∧ g⁻¹ * h ^ k * g = h ^ m := by
+  constructor
+  · intro hg
+    have hginv : g⁻¹ ∈ elementaryClosure h :=
+      (elementaryClosure h).inv_mem hg
+    obtain ⟨k, m, hk, hm, heq⟩ := mem_elementaryClosure.mp hginv
+    exact ⟨k, m, hk, hm, by simpa only [inv_inv] using heq⟩
+  · rintro ⟨k, m, hk, hm, heq⟩
+    have hginv : g⁻¹ ∈ elementaryClosure h := by
+      refine mem_elementaryClosure.mpr ⟨k, m, hk, hm, ?_⟩
+      simpa only [inv_inv] using heq
+    simpa only [inv_inv] using (elementaryClosure h).inv_mem hginv
+
 end Elementary
 end GGT
 end GroupApproximation
