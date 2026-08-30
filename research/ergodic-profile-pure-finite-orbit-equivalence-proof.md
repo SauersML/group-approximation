@@ -11,7 +11,7 @@ Assume first that `D_infinity` is finite dimensional and choose one of its
 positive atoms `A`.  The action of `Q_G` permutes the finitely many atoms,
 so the orbit of `A` is finite.  Since `D_0 subset D_infinity`, every atom
 of `D_infinity`, and hence every translate of `A`, lies in a unique atom
-of `D_0).  This proves condition 2.
+of `D_0`.  This proves condition 2.
 
 Conversely, suppose `A` satisfies condition 2 and let
 
