@@ -1917,6 +1917,38 @@ theorem exists_equal_positive_powers_of_long_axisSegments
   dsimp [AxisSegment.conjugate, PowerAxisSegment.conjugate] at hrs ⊢
   rwa [hpTranslate, hqTranslate] at hrs
 
+/-- **DGO Lemma 6.7 for arbitrary segments of a periodic quasi-axis.**
+Trimming costs one connector at each end; the resulting power-vertex cores
+are handled by the unconditional quasi-axis theorem above. -/
+theorem exists_equal_positive_powers_of_long_axisSegments_of_quasiAxis
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x))
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) :
+    ∃ L : ℝ, 0 < L ∧ ∀ (p q : AxisSegment h x f),
+      L ≤ p.length → L ≤ q.length → AxisSegment.OrientedClose B p q →
+      ∃ r s : ℤ, 0 < r ∧ 0 < s ∧
+        p.conjugate ^ r = q.conjugate ^ s := by
+  have hB' : 0 ≤ B + 2 * dist x (h • x) := by positivity
+  obtain ⟨M, hM, hpower⟩ :=
+    exists_equal_positive_powers_of_long_powerSegments_of_quasiAxis
+      hδ hδ0 hgeo hiso hB' hlam hc hf hq hstep hlox hwpd
+  let L : ℝ := M + 2 * dist x (h • x)
+  have hL : 0 < L := by
+    dsimp [L]
+    linarith [dist_nonneg (x := x) (y := h • x)]
+  refine ⟨L, hL, ?_⟩
+  intro p q hpLen hqLen hclose
+  obtain ⟨p', q', hpTranslate, hqTranslate, hpLen', hqLen', hpqClose⟩ :=
+    exists_orientedClose_powerCores hiso hf hstep hM.le p q hpLen hqLen hclose
+  obtain ⟨r, s, hr, hs, hrs⟩ := hpower p' q' hpLen' hqLen' hpqClose
+  refine ⟨r, s, hr, hs, ?_⟩
+  dsimp [AxisSegment.conjugate, PowerAxisSegment.conjugate] at hrs ⊢
+  rwa [hpTranslate, hqTranslate] at hrs
+
 /-- **DGO Lemma 6.7 for arbitrary segments of a global geodesic axis.**
 Trimming arbitrary endpoints and the axial Bestvina--Fujiwara argument are
 assembled here without the abstract monotone-sampling assumption. -/
