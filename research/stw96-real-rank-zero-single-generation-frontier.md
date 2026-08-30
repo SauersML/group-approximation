@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw96-regular-rank-single-generation-audit-2026-08-30.md
   - research/artifacts/stw96-mixed-rr0-extension-audit-2026-08-30.md
+  - research/artifacts/stw96-local-fibre-gluing-audit-2026-08-30.md
 ---
 
 Does every separable real-rank-zero C*-algebra have a single generator?
@@ -43,5 +44,11 @@ infinite.  The further reduction
 case with finitely many ideals, and every case admitting a continuous
 countable composition series: `Z`-stability glues without the generator-rank
 extension loss.  Thus a counterexample in this corridor must have infinitely
-many ideals and no such composition series.  The unrestricted real-rank-zero
-frontier remains open beyond these reductions.
+many ideals and no such composition series.  Finally,
+`stw96-locally-hausdorff-primitive-spaces-have-generators` removes all cases
+whose primitive ideal space is locally Hausdorff, without a composition-series
+hypothesis, and also every countable filtration by locally Hausdorff successor
+layers.  A counterexample in the finite-nuclear-dimension corridor must
+therefore have a genuinely non-locally-Hausdorff primitive spectrum and admit
+no such filtration.  The unrestricted real-rank-zero frontier remains open
+beyond these reductions.
