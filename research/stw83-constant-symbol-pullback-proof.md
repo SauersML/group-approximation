@@ -45,5 +45,5 @@ and both terms on the right belong to the algebra in (3).  Hence
 
 Finally, the standard identification
 `T_N tensor C(T)=C(T,T_N)` sends `q_N tensor id` to pointwise
-application of `q_N).  Membership of the image in `C(T) tensor 1`
+application of `q_N`.  Membership of the image in `C(T) tensor 1`
 is exactly independence of the coefficient-circle variable, proving (2).
