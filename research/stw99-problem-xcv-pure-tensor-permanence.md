@@ -16,6 +16,7 @@ artifacts:
   - research/artifacts/stw95-order-reflecting-inner-cofinal-audit-2026-08-30.md
   - research/artifacts/stw95-nonunital-ash-unitization-audit-2026-08-30.md
   - research/artifacts/stw95-scattered-primitive-tensor-localization-audit-2026-08-30.md
+  - research/artifacts/stw95-central-block-tensor-purity-audit-2026-08-30.md
 ---
 
 **Problem XCV, general part, of Schafhauser--Tikuisis--White.**  Is the
@@ -36,6 +37,17 @@ absorbs `Z`, then its tensor product with an arbitrary separable C*-algebra
 again absorbs `Z` and is pure.  Thus both factors in a counterexample must be
 non-Z-stable.  No construction is currently recorded that makes either
 almost unperforation or almost divisibility fail after tensoring.
+
+Central block assembly now gives a positive class even when both full
+factors are nonexact and non-Z-stable.
+`stw95-central-block-closure-of-tensor-pure-seeds` starts with one pure seed
+`P` whose tensor square is pure, adjoins arbitrary Z-stable blocks, and takes
+finite or countable `c_0`-sums.  Minimal tensor products distribute over the
+central blocks, leaving only the seed square and products having a Z-stable
+coordinate.  Taking `P=C*_r(F_2)` and adding a nonexact block `N tensor Z`
+produces explicit nonsimple, nonexact, non-Z-stable pure factors with pure
+tensor square.  The argument is entirely decomposable and does not address
+indecomposable nonexact pairs.
 
 The current positive and negative frontiers are now explicit.  A splitting
 of the canonical abstract-to-concrete Cu tensor map suffices by
