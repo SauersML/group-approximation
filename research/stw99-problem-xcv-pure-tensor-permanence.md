@@ -27,10 +27,12 @@ failure of almost unperforation or almost divisibility.
 ## Attempts
 
 The exact/selfless case is positive by tensor-product permanence of
-selflessness, and the nuclear Z-stable case is positive by absorption.
-Any counterexample must therefore evade those mechanisms; no construction is
-currently recorded that makes either almost unperforation or almost
-divisibility fail after tensoring.
+selflessness.  The Z-stable case needs no nuclearity at all:
+`stw95-one-zstable-factor-forces-pure-product` proves that if either factor
+absorbs `Z`, then its tensor product with an arbitrary separable C*-algebra
+again absorbs `Z` and is pure.  Thus both factors in a counterexample must be
+non-Z-stable.  No construction is currently recorded that makes either
+almost unperforation or almost divisibility fail after tensoring.
 
 The current positive and negative frontiers are now explicit.  A splitting
 of the canonical abstract-to-concrete Cu tensor map suffices by
@@ -52,6 +54,29 @@ other factor, because the
 canonical abstract-to-concrete Cu tensor map is an isomorphism in this case.
 For exact algebras with finite composition series, extension permanence
 reduces the entire question to tensor products of the simple subquotients.
+
+The finite-series restriction is now removed.
+`stw95-purity-passes-to-sequential-inductive-limits` proves directly from
+the Cu colimit axioms that purity survives arbitrary sequential inductive
+limits.  Therefore
+`stw95-transfinite-exact-filtration-reduction` extends
+the reduction to continuous filtrations indexed by arbitrary ordinals for
+separable filtered algebras: exactness handles successor extensions, Cu
+continuity handles countable-cofinality limits, and separability forces the
+filtration to stabilize at every uncountable-cofinality limit.  In particular,
+for two separable exact algebras with arbitrary continuous composition
+series, only the tensor products of their simple successor quotients remain
+to be checked.
+
+Seth--Vilalta's ASH tensor theorem now discharges all of those local products
+in a substantial nonsimple class.  By
+`stw95-transfinite-ash-layered-factor-preserves-purity`, if `A` is separable,
+exact, and pure, and either is simple or has every quotient stably finite,
+then `A tensor_min B` is pure whenever `B` is separable and has a continuous
+arbitrary-ordinal filtration whose successor quotients are unital separable
+ASH algebras.  In particular this solves Problem XCV for such a pair when
+`B` is also pure, without requiring `B` itself to be ASH or either factor to
+be Z-stable.
 
 The two purity axioms require different Cu-map input.  Almost divisibility
 already follows when the canonical Cu tensor image is internally cofinal for
