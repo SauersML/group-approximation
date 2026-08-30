@@ -2980,3 +2980,4 @@ import GroupApproximation.GGT.DGOAssemblyIsolation
 import GroupApproximation.GGT.HullHeGXFamily
 import GroupApproximation.GGT.DGOWindmillLoxodromic
 import GroupApproximation.GGT.DGOWindmillExhaust
+import GroupApproximation.Analysis.VoiculescuSpectralOrderBridge
