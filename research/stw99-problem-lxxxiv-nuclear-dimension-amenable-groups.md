@@ -316,6 +316,17 @@ therefore exactly the unknown quantity one started with.  Any successful
 carrier argument for that stress test must retain the positive eigenvalue
 weights of `h`; passing to support is Morita-tautological.
 
+Keeping those weights does give an exact finite-packet retraction.
+`stw84-weighted-fourier-cutdown-and-row-gap` proves that
+`x |-> h^(1/2)x h^(1/2)` recovers every prescribed Fourier monomial
+`aU^k` within `||a||sqrt(|k|/N)`.  This bypasses the discontinuous support
+projection entirely.  The canonical unsplit Fourier-row return map cannot,
+however, supply one order-zero colour: balanced complementary diagonal
+projections give a uniform distance at least `1/9` from every c.p.c.
+order-zero map.  The next construction must therefore split the Fourier
+window into genuinely different colours rather than perturbing the usual
+row map through cone projectivity.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
