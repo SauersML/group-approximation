@@ -21,5 +21,8 @@ a group with the root-strength canonical microstate obstruction.
 
 This does not formally refute the existential actuator: its universal
 microstate clause may hold vacuously, and its perfect exact representation
-need not have the canonical regular trace profile.  Nor does it refute a
-compiler restricted to the fresh relative words actually used downstream.
+need not have the canonical regular trace profile.  Restricting to the fresh relative words used downstream avoids this
+particular identity-return contradiction.  However,
+[[fresh-relative-corner-contraction-is-root-equivalent]] shows that any such
+repair preserving the ambient free-product embedding, or the simultaneous
+pairwise composability required by the consumer, is still root-equivalent.
