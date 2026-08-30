@@ -13,12 +13,15 @@ Proposition 23 and does not require `A` to be unital.
 ## Strengthened compact obstruction
 
 For projections `p,q` over `A`, ambient equality in `K_0(A)` is too weak to
-support a collapse after tensoring with Z.  Put `J=Ideal(p,q)`.  If the
-Z-stabilized projections were equivalent, their implementing partial isometry
-would lie in `J tensor Z`; since `J -> J tensor Z` is a KK-equivalence, this
-would force `[p]=[q]` already in `K_0(J)`.
+support a finite-projection collapse after tensoring with Z.  Put
+`J=Ideal(p,q)` and assume `J tensor Z` is stably finite.  Equality of the
+Z-stabilized Cu classes is then stable Murray--von Neumann equivalence; its
+implementing partial isometry lies in `J tensor Z`.  Since
+`J -> J tensor Z` is a KK-equivalence, this forces `[p]=[q]` already in
+`K_0(J)`.
 
-Thus a compact counterexample requires all three conditions:
+Thus a compact counterexample in this stably finite corridor requires all
+three conditions:
 
 ```text
 [p] != [q] in Cu(A),
@@ -40,9 +43,17 @@ distinct compact Cu classes.  Their difference is nonzero in the ideal's K0,
 so the local protection theorem shows it survives every additional Z factor.
 
 This proves that purity does not imply ambient projection cancellation and
-that index-boundary noncancellation is the wrong counterexample mechanism.
-The remaining compact frontier is genuinely subtler: stable noncancellation
-at equal K0 inside one generated ideal, followed by collapse under Z.
+that index-boundary noncancellation in a stably finite tensor ideal is the
+wrong counterexample mechanism.  The remaining finite compact frontier is
+genuinely subtler: stable noncancellation at equal K0 inside one generated
+ideal, followed by collapse under Z.
+
+The finiteness qualifier is essential.  In a non-stably-finite algebra,
+Cuntz-equivalent projections need not be Murray--von Neumann equivalent; the
+Cuntz semigroup can identify infinite projection classes with different K0
+classes.  Accordingly the local-K0 theorem does not exclude a second route in
+which tensoring with Z makes the images infinite and Cuntz equivalent.  No
+such example is claimed.
 
 ## Product/reduced-product lane
 
@@ -71,7 +82,8 @@ hand.
 
 ## Open frontier
 
-No compact counterexample was produced.  Any such example must evade both the
-zero-dimensional locally subhomogeneous positive theorem and ideal-local K0
-protection.  In particular, an extension boundary class cannot be the element
-that disappears after Z-stabilization.
+No compact counterexample was produced.  A stably finite one must evade both
+the zero-dimensional locally subhomogeneous positive theorem and ideal-local
+K0 protection.  In particular, an extension boundary class in a stably finite
+generated tensor ideal cannot be the element that disappears after
+Z-stabilization.  The alternative infinite-projection corridor remains open.

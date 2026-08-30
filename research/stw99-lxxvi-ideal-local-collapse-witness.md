@@ -24,7 +24,14 @@ injectivity of the first-factor Cu map.
 The Toeplitz/index-boundary construction gives pure ambient-K0
 noncancellation after tensoring the Toeplitz algebra with Z, but its two
 classes differ in the generated ideal's `K_0`; it is therefore excluded by
-`stw99-lxxvi-ideal-local-k0-protection` and does not collapse.
+`stw99-lxxvi-ideal-local-k0-protection` because the compact ideal remains
+stably finite, and does not collapse.
+
+There is a second, genuinely infinite corridor not covered by the displayed
+local-K0 condition: after tensoring with Z, distinct projection classes might
+become Cuntz equivalent as infinite projections without becoming
+Murray--von Neumann equivalent.  Such a collapse need not preserve their
+`K_0` classes.  No example of this type is known here.
 
 Unstable vector bundles can give nonisomorphic projections with equal stable
 `K_0` class in a full ideal, but the elementary homogeneous algebras carrying
@@ -39,3 +46,8 @@ witnesses.  No product or reduced-product example is asserted.
 On the positive side, the witness cannot occur in the non-simple class
 `stw99-lxxvi-locally-subhomogeneous-positive-class`, since every pure member
 of that class is already Z-stable.
+
+The geometric construction route is now isolated in
+`stw99-lxxvi-local-collapse-via-s6-clutching`: it asks a pure coefficient
+algebra to preserve the unique unstable rank-two bundle over `S^6` and asks
+Z-stabilization to kill precisely that unstable homotopy class.
