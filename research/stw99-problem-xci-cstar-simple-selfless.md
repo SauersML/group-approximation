@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw91-selfless-group-frontier-2026-08-30.md
   - research/artifacts/stw91-cograph-product-permanence-audit-2026-08-30.md
+  - research/artifacts/stw91-finitary-permutation-wreath-audit-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
@@ -69,6 +70,13 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
   by finite induced cographs.  General graph products remain outside this
   argument because vertex removal introduces amalgamation over link
   subgroups.
+- `stw91-finitary-permutation-wreaths-are-selfless` proves that
+  `P^(X) rtimes L` is selfless whenever `P` is a nontrivial countable linear
+  C*-simple group, `X` is countably infinite, and
+  `L <= Sym_fin(X)`.  Each finite semidirect packet is linear, and a direct
+  support argument proves that its amenable radical is trivial before
+  Vigdorovich's theorem is applied.  The full wreath is a directed union, yet
+  it is nonlinear over every field and not acylindrically hyperbolic.
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete negative
   certificate in ordered `K_0` using averaging projections of finite
   subgroups.
