@@ -63,6 +63,21 @@ blocks make every element centralizer non-virtually-cyclic, excluding
 acylindrical hyperbolicity.  Thus it is a concrete exact XC case outside
 those two established group classes.
 
+A second coherent-union class is obtained from a nontrivial PHP group `P`
+and the Cantor set `X`.  The locally constant step-function group `LC(X,P)`
+is the union of `P^(2^n)` under diagonal cylinder refinement.  Each finite
+stage has PHP, so directed-union permanence makes the reduced algebra
+selfless and strictly comparing.  This is not the earlier restricted direct
+sum construction: its bonding maps duplicate coordinates and the union
+contains constant functions with full Cantor support.  Infinitely many
+disjoint clopen supports embed `direct_sum_N P`, whose finite-dimensional
+algebra-chain obstruction proves nonlinearity.  For every nonidentity step
+function, subdividing a clopen set on which it is constant puts an infinite
+direct sum of nontrivial cyclic groups in its centralizer; hence no element
+has virtually cyclic centralizer and the group is not acylindrically
+hyperbolic.  With `P=F_2`, exactness passes from the finite stages, producing
+an explicit exact XC instance outside the linear and acylindrical classes.
+
 # Products, exactness, and obstruction boundary
 
 The 2026 complete-selflessness tensor theorem and Ozawa's PHP theorem imply

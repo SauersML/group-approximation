@@ -34,5 +34,9 @@ trace is the unique quasitrace
   which need not be C\*-simple.
 - `stw90-php-times-cstar-simple-is-strict-comparison` records the unconditional
   stabilization theorem `P x H`, including `F_2 x H`, even for nonexact `H`.
+- `stw90-cantor-locally-constant-php-groups-are-selfless` applies directed
+  unions to the diagonal-refinement stages `P^(2^n)`.  For `P=F_2` it gives
+  an exact, nonlinear, non-acylindrically-hyperbolic positive XC instance
+  different from the previously recorded restricted direct sum.
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete ordered-`K_0`
   certificate whose violation would refute this problem.
