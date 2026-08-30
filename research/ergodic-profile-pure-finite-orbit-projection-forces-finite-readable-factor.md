@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: ergodic-profile-pure-finite-orbit-projection-forces-finite-readable-factor
+id: ergodic-profile-pure-finite-orbit-implies-finite-readable
 kind: claim
 title: On an ergodic ZPC witness a profile-pure finite-orbit projection is equivalent to finite readable closure
 distinct_from:
