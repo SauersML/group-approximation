@@ -12,13 +12,13 @@ Let
 
     H = HNN(V; L, alpha, beta)
 
-be an HNN extension with injective edge maps. If Wh_Z(L) is contractible,
-then the natural homomorphism
+be an HNN extension with injective edge maps. If the ordinary Whitehead group Wh(L) vanishes, then the natural homomorphism
 
     Wh(V) -> Wh(H)
 
 is injective.
 
 The statement uses Waldhausen's unconditional general HNN fibration; it does
-not assume that L itself is regular coherent. It is established by
+not assume that L itself is regular coherent. Contractibility of Wh_Z(L) is
+a sufficient but unnecessary strengthening. It is established by
 [[waldhausen-hnn-vertex-whitehead-injectivity-proof]].

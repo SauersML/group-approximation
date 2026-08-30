@@ -20,8 +20,9 @@ For the HNN extension it gives a homotopy fibration segment
         --> Wh_Z(H)^*.
 
 The printed pt means that the Nil factor maps constantly to the vertex
-Whitehead space. If Wh_Z(L) is contractible, the first arrow is therefore
-zero on pi_1. Exactness of the homotopy sequence makes
+Whitehead space. On pi_1 the Nil coordinate is zero because it is constant, while the other
+coordinate factors through Wh(L)=pi_1 Wh_Z(L). If Wh(L)=0, the first arrow
+is therefore zero on pi_1. Exactness of the homotopy sequence makes
 
     pi_1 Wh_Z(V) -> pi_1 Wh_Z(H)^*
 
@@ -35,4 +36,4 @@ injective. QED
 
 This argument neither discards the Nil term nor claims L is regular
 coherent: the Nil term is present but its displayed map is constant, and
-only the separate hypothesis Wh_Z(L) contractible is used.
+only the separate hypothesis Wh(L)=0 is used.
