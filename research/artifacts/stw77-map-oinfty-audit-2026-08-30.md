@@ -109,6 +109,10 @@ units.  Thus one-sided locally finite-dimensional models with properly
 infinite minimal supports imply O-infinity-stability without returning any
 projection to the image.  The unresolved zero-dimensional selection problem
 is exactly whether finite-support junk blocks can always be fused away.
+If the ambient target has no such blocks because every nonzero projection is
+properly infinite, the criterion immediately closes the zero-dimensional
+case.  This conclusion does not require the stronger hypothesis that every
+nonzero positive image element is properly infinite.
 
 ## Separable-codomain reduction
 

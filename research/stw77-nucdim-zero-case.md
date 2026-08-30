@@ -26,6 +26,10 @@ dimension zero is O-infinity-stable.
   whenever the models can be selected with no finite support block.  This
   assumption is strictly weaker than returning their projections to the
   projectionless range, but is not yet forced by nuclear dimension zero.
+- As a consequence, `stw77-zero-maps-into-projectionwise-proper-targets`
+  proves the entire zero-color assertion whenever every nonzero projection
+  of the target is properly infinite.  It does not even require proper
+  infiniteness of all nonzero image positive elements.
 - The `B(H)`-target theorem supplies a different positive mechanism:
   essential representation absorption merges two whole copies of the range
   and never asks finite-dimensional support projections to return.
