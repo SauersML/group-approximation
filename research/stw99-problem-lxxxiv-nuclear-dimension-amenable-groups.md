@@ -237,6 +237,27 @@ finitely generated subgroup of `A`.  Cyclically rotating finite blocks of
 unbounded size gives a nontrivial `L rtimes Z` example which is not virtually
 abelian but has nuclear dimension exactly one.
 
+The unrestricted extension problem now has an exact torsion-absorption
+reduction.  `stw84-locally-finite-by-abelian-reduces-to-twisted-af-lattices`
+shows that the inverse image `K` of `tor(A)` is locally finite.  After
+replacing the quotient by the torsion-free group `A/tor(A)`, an exhaustion
+by free lattices gives
+
+```text
+C*(E_j)=C*(K) rtimes_(alpha_j,u_j) Z^(q_j),
+q_j<=rank_Q(A),
+```
+
+with `C*(K)` AF and a group-unitary Busby--Smith cocycle.  This solves rank
+zero completely, with no kernel-finite hypothesis.  In rank one every
+cyclic stage splits, so the exact remaining core is a uniform bound for
+`C*(K rtimes_alpha Z)` over arbitrary locally finite `K` and automorphisms
+`alpha`.  Here kernel-finiteness is equivalent to an exhaustion of `K` by
+finite `alpha`-invariant subgroups.  The two-generated shift group
+`Alt_fin(Z) rtimes Z` fails this condition maximally and has overlapping,
+noncommuting shifted seeds, so neither the finite-kernel nor the permutation-
+wreath mechanism reaches the residual cyclic core.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
@@ -254,8 +275,9 @@ orbits at each approximation stage now removes the menu restriction
 altogether: arbitrary permutation wreath products by finite-rank abelian
 actors have finite nuclear dimension.
 The directed-union argument still gives no control when its finite-stage
-bounds diverge.  Thus the remaining frontier includes unrestricted
-locally-finite-by-abelian groups, abelian-by-amenable groups whose finitely
+bounds diverge.  Thus the remaining locally-finite-by-abelian frontier is
+already the arbitrary AF-automorphism cyclic core above.  Other remaining
+families include abelian-by-amenable groups whose finitely
 generated actors have unbounded nilpotent complexity, and the general
 finite-Hirsch-length elementary amenable conjecture.  The wreath-quotient
 theorem gives a robust negative class but does not provide a converse:
