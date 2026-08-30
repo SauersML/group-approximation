@@ -6,6 +6,7 @@ title: Actions of amenable groups on the total invariant lift to actions on the 
 root: true
 artifacts:
   - research/artifacts/stw99-actions-classification-cluster-2026-08-30.md
+  - research/artifacts/stw99-lii-equivariant-ehs-obstruction-2026-08-30.md
 ---
 
 **Problem LII of Schafhauser--Tikuisis--White, arXiv:2506.10902.**
@@ -33,7 +34,12 @@ form.
   WITH symmetry — realizing a `Z/2`-dimension-group as the invariant
   of a `Z/2`-AF-system, i.e. an equivariant EHS theorem.  That is a
   purely ordered-`K_0` statement (direct limits of `Z/2`-actions on
-  `Z^n` with positivity), recorded as the honest bottleneck: no
-  obstruction is known to it, and a proof would settle Blackadar's
-  question for all finite cyclic `G` on AF algebras by the same
-  induction.
+  `Z^n` with positivity), recorded as the honest bottleneck.  UPDATE: the
+  equivariant-EHS strategy is now REFUTED in general
+  (`equivariant-ehs-fails-for-sign-involutions`): sign summands give
+  `H^1(Z/2, K_0) ≠ 0`, impossible for limits of permutation stages,
+  so lifts of such involutions must be Blackadar-exotic (they preserve
+  no finite-dimensional nest); the explicit `(Z^3, θ)` witness is the
+  sharp test case for Blackadar's question, and the equivariant-EHS
+  route survives only on the `H^1 = 0` locus (where a proof would
+  still settle the finite cyclic cases by the same induction).
