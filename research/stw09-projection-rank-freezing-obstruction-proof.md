@@ -66,4 +66,3 @@ The constant `1` is sharp for the rank argument: projections of different
 ranks can have distance exactly `1`, but never less.  Thus neither tracial
 `2`-norm closeness nor passage to a tracial quotient can replace the
 operator-norm coherence used here.
-

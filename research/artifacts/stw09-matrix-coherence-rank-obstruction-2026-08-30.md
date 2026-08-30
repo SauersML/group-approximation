@@ -95,4 +95,3 @@ following:
 Tracial `2`-norm agreement is insufficient: projections of different ranks
 can become arbitrarily close in normalized `2`-norm while remaining at
 operator-norm distance `1`.
-

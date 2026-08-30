@@ -43,4 +43,3 @@ let matrix-valued u.c.p. trace models `psi_n:A->M_(k_n)` satisfy
 embeddings of their full matrix targets with norm error tending to zero on
 `E`, then the limiting trace has rational weight on every minimal central
 projection of `E`.
-
