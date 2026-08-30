@@ -42,6 +42,14 @@ Non-O-infinity-stability survives with the same positive finite-set defect,
 because the admissible isometry pairs only become scarcer when the codomain
 is shrunk.
 
+Blackadar--Handelman's theorem then makes the obstruction concrete.  The
+finitely generated quasitraceless seed is not stably finite, so at a least
+finite matrix level it contains a nonunitary isometry.  A counterexample can
+therefore be normalized to carry simultaneously a finite subset `F` with
+positive central-isometry defect and a finite matrix isometry witnessing
+failure of stable finiteness.  The universal hinge is precisely that these
+two finite witnesses need not interact.
+
 # Remaining hinge
 
 The reduction does not construct a counterexample or prove the universal
@@ -54,7 +62,9 @@ LXVI.
 
 # Trust boundary
 
-The new proofs use only the defining identities of normalized 2-quasitraces,
-a cofinal ultrafilter, restriction to unital subalgebras, and the already
-proved exact central-isometry criterion.  No literature theorem is a premise
-of either established claim.
+The finite-detection and counterexample-reflection proofs use only the
+defining identities of normalized 2-quasitraces, a cofinal ultrafilter,
+restriction to unital subalgebras, and the already proved exact
+central-isometry criterion.  The two-finite-witness corollary additionally
+imports exactly the Blackadar--Handelman theorem that every stably finite
+unital C-star algebra admits a normalized 2-quasitrace.

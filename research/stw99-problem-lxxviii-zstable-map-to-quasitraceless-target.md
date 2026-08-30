@@ -31,6 +31,12 @@ finite-set central-isometry defect.  The key compactness theorem is that
 absence of normalized 2-quasitraces is witnessed by a finitely generated
 unital subalgebra.
 
+By Blackadar--Handelman, the finite obstruction seed has a nonunitary
+isometry at a least finite matrix level.  Thus
+`stw78-counterexamples-have-two-finite-witnesses` reduces the open problem
+to making this concrete finite matrix witness interact with the concrete
+positive centralization defect.
+
 ## Attempts
 
 An irreducible embedding into `B(H)` is not a counterexample merely because
