@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw81-one-dimensional-field-audit-2026-08-30.md
   - research/artifacts/stw81-oinfinity-envelope-audit-2026-08-30.md
   - research/artifacts/stw81-one-dimensional-af-field-audit-2026-08-30.md
+  - research/artifacts/stw81-continuous-af-field-audit-2026-08-30.md
 ---
 
 **Problem LXXXI of Schafhauser--Tikuisis--White.**  Let `A` be a C-star
@@ -157,8 +158,18 @@ fibre) has nuclear dimension at most one.  The proof samples sections in a
 two-coloured base cover and absorbs the entire fibre approximation into
 finite-dimensional AF subalgebras, so there is no extra fibre colour.  Such
 fields have no nonzero commutative hereditary subalgebras in any quotient.
-The unresolved field frontier now starts with non-AF stably finite fibres,
-such as `Z`, and with non-locally-trivial AF-fibre fields.
+
+The local-triviality restriction in the AF case has now been removed.
+`stw81-continuous-simple-af-fields-have-base-bound` proves for every
+separable continuous field with possibly varying unital AF fibres that
+`dim_nuc(A)<=dim(X)`. Finite-dimensional fibre subalgebras lift exactly over
+closed neighborhoods by semiprojectivity, after which ordinary continuity
+and base colouring give the approximation. If the fibres are simple and
+non-elementary, all ideal quotients are shadow-free. Thus over a
+one-dimensional base this gives the LXXXI conclusion for arbitrary
+continuous fields of infinite-dimensional simple unital AF algebras. The
+remaining stably finite field frontier begins with non-AF fibres and with
+upper-semicontinuous fields where the neighborhood-continuity step fails.
 
 There is now also a base-free absorption class with an exact dichotomy.
 `stw81-oinfinity-envelopes-have-dimension-one-or-infinity` proves that for
