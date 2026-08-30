@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw22-low-spectrum-boundary-extension-audit-2026-08-30.md
   - research/artifacts/stw22-all-degree-weighted-selection-audit-2026-08-30.md
   - research/artifacts/stw22-locally-trivial-bundle-audit-2026-08-30.md
+  - research/artifacts/stw22-matrix-to-hyperfinite-field-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -87,6 +88,15 @@ The successor mechanism is now isolated in
 surjective on fibre gaps and has bounded-trace-free kernel.  Finite
 iteration proves the trace conclusion for every compact metrizable
 scattered base of finite Cantor--Bendixson height; limit rank remains open.
+
+There is also an unconditional changing-fibre class beyond trivial and
+locally trivial `R`-bundles.  In
+`stw22-matrix-to-hyperfinite-field-trace-continuity`, an increasing dense
+matrix chain `F_n` in a UHF algebra gives a nuclear continuous field over a
+convergent sequence with fibre `F_n` at `n` and hyperfinite `II_1` fibre at
+the limit.  Its only gap is nonzero but bounded-trace-free by finite-matrix
+orthogonal replication.  Hence every trace on its uniform completion is
+uniform, despite the changing fibre type and infinite Bauer boundary.
 
 ## Attempts
 
