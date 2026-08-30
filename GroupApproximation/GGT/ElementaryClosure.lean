@@ -452,6 +452,55 @@ theorem conj_zpow_eq_or_of_mem_elementaryClosure (hiso : IsIsometricAction G X)
   · right
     rw [heq, h1, neg_neg]
 
+/-- **Osin's normalisation with a positive natural exponent.**  Every element
+of the elementary closure of a loxodromic element conjugates one positive power
+to itself or its inverse.  Unlike the uniform exponent in DGO Corollary 6.6,
+this exponent may depend on the element; no finite-index hypothesis is used.
+
+This is the form needed to choose finite quasi-axis windows whose radius is a
+positive multiple of the normalised exponent. -/
+theorem exists_conj_positive_zpow_eq_or_of_mem_elementaryClosure
+    (hiso : IsIsometricAction G X) {g h : G} {x : X}
+    (hg : IsLoxodromic g x) (hh : h ∈ elementaryClosure g) :
+    ∃ n : ℕ, 0 < n ∧
+      (h * g ^ (n : ℤ) * h⁻¹ = g ^ (n : ℤ) ∨
+        h * g ^ (n : ℤ) * h⁻¹ = g ^ (-(n : ℤ))) := by
+  obtain ⟨k, hk, hpos | hneg⟩ :=
+    conj_zpow_eq_or_of_mem_elementaryClosure hiso hg hh
+  all_goals
+    let n := k.natAbs
+    have hn : 0 < n := Int.natAbs_pos.mpr hk
+    refine ⟨n, hn, ?_⟩
+  · rcases Int.natAbs_eq k with hkpos | hkneg
+    · left
+      change k = (n : ℤ) at hkpos
+      rw [← hkpos]
+      exact hpos
+    · left
+      change k = -(n : ℤ) at hkneg
+      have hp : h * g ^ (-(n : ℤ)) * h⁻¹ = g ^ (-(n : ℤ)) := by
+        rw [← hkneg]
+        exact hpos
+      calc
+        h * g ^ (n : ℤ) * h⁻¹ = (h * g ^ (-(n : ℤ)) * h⁻¹)⁻¹ := by group
+        _ = (g ^ (-(n : ℤ)))⁻¹ := by rw [hp]
+        _ = g ^ (n : ℤ) := by group
+  · rcases Int.natAbs_eq k with hkpos | hkneg
+    · right
+      change k = (n : ℤ) at hkpos
+      rw [← hkpos]
+      exact hneg
+    · right
+      change k = -(n : ℤ) at hkneg
+      have hp : h * g ^ (-(n : ℤ)) * h⁻¹ = g ^ (n : ℤ) := by
+        have hnk : (n : ℤ) = -k := by omega
+        rw [← hkneg, hnk]
+        exact hneg
+      calc
+        h * g ^ (n : ℤ) * h⁻¹ = (h * g ^ (-(n : ℤ)) * h⁻¹)⁻¹ := by group
+        _ = (g ^ (n : ℤ))⁻¹ := by rw [hp]
+        _ = g ^ (-(n : ℤ)) := by group
+
 /-! ## Independence and common powers -/
 
 /-- **A common nonzero power destroys independence.**  The two power orbits then
