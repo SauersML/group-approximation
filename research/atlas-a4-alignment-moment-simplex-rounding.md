@@ -3,6 +3,8 @@ rg: 2
 id: atlas-a4-alignment-moment-simplex-rounding
 kind: claim
 title: The exact regular A4 network rounds on thirty-one moments to the classical alignment simplex
+refuted_by:
+  - atlas-m2-refutes-five-global-a4-compilers
 distinct_from:
   atlas-a4-relative-packet-commutator-collapse: packet collapse rounds the relative chart unitary itself into the global A8 commutant; this claim asks only for thirty-one scalar trace moments to lie asymptotically in the convex hull of all inner and outer chart alignments.
   atlas-a4-holonomy-coherence-gap: the holonomy gap asks for a numerical two-generator covariance ceiling; this claim is a weaker trace-level rounding interface from which the new classical separator already gives a contradiction.
@@ -10,6 +12,8 @@ artifacts:
   - experiments/atlas_triangle_19243_classical_gap.py
   - research/artifacts/a4-context-virtually-free-compiler-2026-08-19.md
 ---
+
+**REFUTED.**  The exact multiplicity-two regular frame has every packet word and collision equal to one, so the thirty-one-moment functional is `36`.  Every classical alignment mixture has that functional at most `30`.  Hence its moments cannot approach the classical simplex.  See `atlas-m2-refutes-five-global-a4-compilers`.
 
 Let `sigma_n` satisfy the exact-regular normalized A4 context-network hypotheses
 of `atlas-a4-holonomy-coherence-gap`.  Choose arbitrary regular frames for the
@@ -38,7 +42,7 @@ normalizer approximation to the relative chart unitary, or for packet
 commutators to vanish.  Those are all stronger than what the one-fifth
 classical collision audit needs.
 
-## Attempts
+## Historical attempts
 
 - **Qutrit-wire moment rounding.**  Use
   `a4-coherence-fan-canonically-splits-multiplicity` to push every local A4
