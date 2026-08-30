@@ -41,16 +41,24 @@ configuration the divergence was invoked to explain does not arise on geodesics
 at all.  It is recorded because the arithmetic that appeared to permit it is
 sound as arithmetic: `s ∉ relBall lam Dc` together with `s * t ∈ relBall lam Dc`
 is consistent for a left-invariant `d_lam`, and no depth estimate excludes it.
-What excludes it is the shape of geodesic words, not the size of the constants.
+The sharpest that route yields is that such a run would span at most `Dc`
+letters, `d_lam` dominating the `X ⊔ ℋ` word metric on a geodesic.  What
+excludes the configuration is the shape of geodesic words, not the size of the
+constants.
 
-## The constant is `1`
+## The constant is `1` here, and Osin states `2`
 
 Given the inheritance, the prefix lies in `Y`, hence is a single letter of the
-enlarged alphabet, and `wordDist_enlargedY_le_one` reads the bound off.  Since
-the inheritance holds outright, `M = 1` is correct for Lemma 5.6 itself and
-Osin's `M = 2` carries slack.  A reading of that `2` as the exact price of a
-boundary case is recorded here as withdrawn: the boundary case it priced does
-not arise.
+enlarged alphabet, and `wordDist_enlargedY_le_one` reads the bound off.  What
+this module proves is `M = 1` **relative to the hypothesis it assumes**, and a
+reader comparing constants against the paper should not read it as a claim about
+the printed lemma.
+
+Osin states 5.6 with `2`.  Since the inheritance holds outright rather than only
+where a seam is absent, the argument recorded above yields `1`, so his `2` either
+carries slack or answers to something in his statement that the `hM` binder does
+not see.  Nothing here settles which.  An earlier reading of that `2` as the
+exact price of the seam is withdrawn: the seam it priced does not arise.
 
 ## The family case is not the same case
 
