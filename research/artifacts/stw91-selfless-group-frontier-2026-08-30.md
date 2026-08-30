@@ -66,6 +66,16 @@ violating the certificate is produced here.  Separately,
 `stw91-exact-cstar-simple-groups-have-unique-quasitrace` shows that extra
 quasitraces cannot detect an exact counterexample.
 
+There is also a new permanence class beyond the PHP-specific Cantor example.
+If `C*_r(P)` is exact and selfless and `X` is any nonempty compact metrizable
+zero-dimensional space, then the locally constant step-function group
+`LC(X,P)` has exact selfless reduced algebra.  Enumerating the countable
+Boolean algebra of clopen subsets exhausts this group by finite powers
+`P^(|Q_n|)`.  Exact tensor permanence makes each power selfless, and Robert's
+directed-union theorem handles the limit.  This assumes neither PHP nor
+linearity of `P`; it is a permanence result conditional only on the base
+algebra already belonging to the exact positive class for XCI.
+
 # Trust boundary
 
 Imported results are explicitly isolated: Robert's directed-union and

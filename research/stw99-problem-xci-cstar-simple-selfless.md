@@ -48,6 +48,11 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
 - `stw91-countable-free-direct-sum-is-selfless` applies it to the countable
   restricted direct sum of `F_2`, then proves this group is neither linear nor
   acylindrically hyperbolic.
+- `stw91-zero-dimensional-step-amplification-preserves-selflessness` proves
+  that every exact selfless group remains selfless after amplification to
+  locally constant functions on any compact metrizable zero-dimensional
+  space.  The proof iterates exact tensor permanence over finite clopen
+  partitions and then passes to their directed union.
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete negative
   certificate in ordered `K_0` using averaging projections of finite
   subgroups.
