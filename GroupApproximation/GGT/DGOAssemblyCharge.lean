@@ -164,6 +164,18 @@ theorem appendCut_apply_add (c₁ c₂ : ℕ → ℕ) (n r : ℕ)
     simp [appendCut, hnot]
 
 omit [Group G] in
+/-- On the reversed left connector, the auxiliary cut is the identity cut. -/
+theorem auxiliaryCycleCut_left (left right : List (RelLetter G Λ))
+    (nArc : ℕ) (arcCut : ℕ → ℕ) {r : ℕ} (hr : r ≤ left.length) :
+    auxiliaryCycleCut left nArc arcCut right r = r := by
+  have hmiddle : r ≤ left.length + nArc := by omega
+  have houter : r ≤ left.length + nArc + right.length := by omega
+  rw [auxiliaryCycleCut,
+    appendCut_apply_of_le _ _ _ _ houter,
+    appendCut_apply_of_le _ _ _ _ hmiddle,
+    appendCut_apply_of_le _ _ _ _ hr]
+
+omit [Group G] in
 /-- On the inherited arc, the auxiliary cut is the arc cut shifted past the
 left connector. -/
 theorem auxiliaryCycleCut_arc (left right : List (RelLetter G Λ))
@@ -208,6 +220,74 @@ theorem auxiliaryCycleCut_chord (left right : List (RelLetter G Λ))
     appendCut_apply_add _ _ _ _ rfl,
     appendCut_apply_add _ _ _ _ harc.start,
     harc.finish]
+
+/-! ## The canonical connector target -/
+
+/-- The distinguished-side indices forced solely by the two connectors.
+
+Every connector letter must be distinguished because no quasi-geodesic
+estimate is available for an arbitrary peripheral connector.  Endpoint
+degeneracies are represented by empty lists and therefore contribute no
+indices.  This is the canonical target used by every connector-indexed child
+certificate below; keeping it canonical also makes the child-family assembly
+independent of any later choice of labels. -/
+def auxiliaryCycleConnectorTarget (left right : List (RelLetter G Λ))
+    (nArc : ℕ) : Finset ℕ :=
+  Finset.range left.length ∪
+    (Finset.range right.length).image (fun r => left.length + nArc + r)
+
+omit [Group G] in
+theorem mem_auxiliaryCycleConnectorTarget_left
+    (left right : List (RelLetter G Λ)) (nArc r : ℕ)
+    (hr : r < left.length) :
+    r ∈ auxiliaryCycleConnectorTarget left right nArc := by
+  simp [auxiliaryCycleConnectorTarget, hr]
+
+omit [Group G] in
+theorem mem_auxiliaryCycleConnectorTarget_right
+    (left right : List (RelLetter G Λ)) (nArc r : ℕ)
+    (hr : r < right.length) :
+    left.length + nArc + r ∈
+      auxiliaryCycleConnectorTarget left right nArc := by
+  simp [auxiliaryCycleConnectorTarget, hr]
+
+omit [Group G] in
+/-- Every canonical connector target is a side of the auxiliary cycle. -/
+theorem auxiliaryCycleConnectorTarget_lt
+    (left right chord : List (RelLetter G Λ)) (nArc : ℕ) :
+    ∀ s ∈ auxiliaryCycleConnectorTarget left right nArc,
+      s < left.length + nArc + right.length + chord.length := by
+  intro s hs
+  rw [auxiliaryCycleConnectorTarget, Finset.mem_union] at hs
+  rcases hs with hs | hs
+  · have := Finset.mem_range.mp hs
+    omega
+  · obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp hs
+    have := Finset.mem_range.mp hr
+    omega
+
+omit [Group G] in
+/-- The auxiliary cut advances by one on every canonical connector target. -/
+theorem auxiliaryCycleConnectorTarget_edge
+    (left arc right : List (RelLetter G Λ)) {nArc : ℕ}
+    {arcCut : ℕ → ℕ} (harc : IsPolygonCut nArc arc arcCut) :
+    ∀ s ∈ auxiliaryCycleConnectorTarget left right nArc,
+      auxiliaryCycleCut left nArc arcCut right (s + 1) =
+        auxiliaryCycleCut left nArc arcCut right s + 1 := by
+  intro s hs
+  rw [auxiliaryCycleConnectorTarget, Finset.mem_union] at hs
+  rcases hs with hs | hs
+  · have hslt := Finset.mem_range.mp hs
+    rw [auxiliaryCycleCut_left left right nArc arcCut (by omega),
+      auxiliaryCycleCut_left left right nArc arcCut (by omega)]
+  · obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp hs
+    have hrlt := Finset.mem_range.mp hr
+    have hs1 : left.length + nArc + r + 1 =
+        left.length + nArc + (r + 1) := by omega
+    rw [hs1,
+      auxiliaryCycleCut_right left right harc (by omega),
+      auxiliaryCycleCut_right left right harc (by omega)]
+    omega
 
 /-- Vertices on the inherited arc are vertices of `arc`, read after the
 reversed left connector. -/

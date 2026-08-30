@@ -730,6 +730,169 @@ theorem exists_greedy_incidenceEnumeration_quadratic (I : Finset ℕ)
   exact ⟨xs, ys, hxs, hys, horder, hnodup, hmem, hentries,
     hquadratic, hgap⟩
 
+/-! ## The two connector-indexed half families -/
+
+/-- **The finite index data for all auxiliary cycles cut from one half.**
+
+There is one auxiliary cycle before the first broken component, one between
+each successive pair, and one after the last.  Thus `pieceCount` below is
+`sources.length + 1`.  Keeping the simultaneously selected `partners` in this
+certificate is essential: the construction is indexed in source order, while
+the unconditional estimate on the connector/chord overhead is the quadratic
+traversal estimate on that same, generally nonmonotone, partner list.
+
+This structure contains only data already proved by the greedy enumeration;
+it does not assert that the corresponding geometric paths have been assembled
+or that their target components are isolated.  Those geometric obligations
+remain explicit inputs to the family constructor. -/
+structure GreedyHalfFamilyIndex (I : Finset ℕ) (pos partner : ℕ → ℕ)
+    (chordLength : ℕ) where
+  sources : List ℕ
+  partners : List ℕ
+  source_length : sources.length = I.card
+  partner_length : partners.length = sources.length
+  source_order : sources.Pairwise (· ≤ ·)
+  source_nodup : sources.Nodup
+  source_mem : ∀ x : ℕ, x ∈ sources ↔ ∃ s ∈ I, pos s = x
+  entries : ∀ j : ℕ, ∀ hj : j < sources.length,
+    ∃ s ∈ I, sources[j] = pos s ∧ partners[j]? = some (partner s)
+  traversal : ChordPartnerQuadraticTraversalBound chordLength partners
+  gap : ∀ j : ℕ, ∀ hj : j + 1 < sources.length, ∀ s ∈ I,
+    ¬ (sources[j]'(by omega) < pos s ∧ pos s < sources[j + 1]'hj)
+  source_count_le : I.card ≤ chordLength
+
+namespace GreedyHalfFamilyIndex
+
+/-- The connector-indexed number of auxiliary cycles in one half. -/
+def pieceCount {I : Finset ℕ} {pos partner : ℕ → ℕ} {chordLength : ℕ}
+    (A : GreedyHalfFamilyIndex I pos partner chordLength) : ℕ :=
+  A.sources.length + 1
+
+theorem pieceCount_eq {I : Finset ℕ} {pos partner : ℕ → ℕ}
+    {chordLength : ℕ} (A : GreedyHalfFamilyIndex I pos partner chordLength) :
+    A.pieceCount = I.card + 1 := by
+  simp [pieceCount, A.source_length]
+
+theorem pieceCount_le {I : Finset ℕ} {pos partner : ℕ → ℕ}
+    {chordLength : ℕ} (A : GreedyHalfFamilyIndex I pos partner chordLength) :
+    A.pieceCount ≤ chordLength + 1 := by
+  rw [A.pieceCount_eq]
+  have hcount := A.source_count_le
+  omega
+
+end GreedyHalfFamilyIndex
+
+/-- **One half's connector index is constructed from the actual greedy
+incidences.**
+
+The last field is the second use of partner injectivity: the partner image is
+a subset of the starts of the `chordLength` chord edges, so there are at most
+`chordLength` broken components and hence at most `chordLength + 1` auxiliary
+cycles in this half. -/
+theorem exists_greedyHalfFamilyIndex (I : Finset ℕ)
+    (pos partner : ℕ → ℕ) (chordLength : ℕ)
+    (hpos : Set.InjOn pos (↑I : Set ℕ))
+    (hpartner : Set.InjOn partner (↑I : Set ℕ))
+    (hrange : ∀ s ∈ I, partner s < chordLength) :
+    Nonempty (GreedyHalfFamilyIndex I pos partner chordLength) := by
+  classical
+  obtain ⟨xs, ys, hxs, hys, horder, hnodup, hmem, hentries,
+    hquadratic, hgap⟩ :=
+    exists_greedy_incidenceEnumeration_quadratic I pos partner chordLength
+      hpos hpartner hrange
+  have himage : (I.image partner).card = I.card := by
+    exact Finset.card_image_iff.mpr fun s hs t ht heq =>
+      hpartner (by simpa using hs) (by simpa using ht) heq
+  have hsubset : I.image partner ⊆ Finset.range chordLength := by
+    intro y hy
+    obtain ⟨s, hs, rfl⟩ := Finset.mem_image.mp hy
+    exact Finset.mem_range.mpr (hrange s hs)
+  have hcard : I.card ≤ chordLength := by
+    rw [← himage]
+    simpa using Finset.card_le_card hsubset
+  exact ⟨{
+    sources := xs
+    partners := ys
+    source_length := hxs
+    partner_length := hys
+    source_order := horder
+    source_nodup := hnodup
+    source_mem := hmem
+    entries := hentries
+    traversal := hquadratic
+    gap := hgap
+    source_count_le := hcard
+  }⟩
+
+/-- **Both greedy halves, with a common cutting chord, in one certificate.**
+
+The two source orders are deliberately independent.  No ordering relation
+between partners on either half, or between the two partner lists, is claimed.
+The global construction may now index its children by the disjoint union of
+the two `pieceCount` ranges; only the proved count and quadratic traversal
+bounds are exported. -/
+structure TwoHalfGreedyFamilyIndex (I₁ I₂ : Finset ℕ)
+    (pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ) (chordLength : ℕ) where
+  first : GreedyHalfFamilyIndex I₁ pos₁ partner₁ chordLength
+  second : GreedyHalfFamilyIndex I₂ pos₂ partner₂ chordLength
+
+namespace TwoHalfGreedyFamilyIndex
+
+/-- Total number of connector-indexed auxiliary cycles across both halves. -/
+def pieceCount {I₁ I₂ : Finset ℕ}
+    {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ} {chordLength : ℕ}
+    (A : TwoHalfGreedyFamilyIndex I₁ I₂ pos₁ partner₁ pos₂ partner₂
+      chordLength) : ℕ :=
+  A.first.pieceCount + A.second.pieceCount
+
+/-- The two half families contain at most `2 * chordLength + 2` children. -/
+theorem pieceCount_le {I₁ I₂ : Finset ℕ}
+    {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ} {chordLength : ℕ}
+    (A : TwoHalfGreedyFamilyIndex I₁ I₂ pos₁ partner₁ pos₂ partner₂
+      chordLength) :
+    A.pieceCount ≤ 2 * chordLength + 2 := by
+  unfold pieceCount
+  have h₁ := A.first.pieceCount_le
+  have h₂ := A.second.pieceCount_le
+  omega
+
+/-- The actual two greedy traversals have total cost at most twice the square
+of the chord length. -/
+theorem traversalCost_add_le {I₁ I₂ : Finset ℕ}
+    {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ} {chordLength : ℕ}
+    (A : TwoHalfGreedyFamilyIndex I₁ I₂ pos₁ partner₁ pos₂ partner₂
+      chordLength) :
+    chordTraversalCost A.first.partners +
+        chordTraversalCost A.second.partners ≤
+      2 * (chordLength * chordLength) := by
+  have h₁ := A.first.traversal
+  have h₂ := A.second.traversal
+  unfold ChordPartnerQuadraticTraversalBound at h₁ h₂
+  omega
+
+end TwoHalfGreedyFamilyIndex
+
+/-- **Simultaneous construction of the two connector-indexed half families.**
+
+This is the exact two-half output of the incidence lane.  Its hypotheses are
+the partner assignments supplied independently by the first-half and wrapped
+second-half isolation arguments. -/
+theorem exists_twoHalfGreedyFamilyIndex (I₁ I₂ : Finset ℕ)
+    (pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ) (chordLength : ℕ)
+    (hpos₁ : Set.InjOn pos₁ (↑I₁ : Set ℕ))
+    (hpartner₁ : Set.InjOn partner₁ (↑I₁ : Set ℕ))
+    (hrange₁ : ∀ s ∈ I₁, partner₁ s < chordLength)
+    (hpos₂ : Set.InjOn pos₂ (↑I₂ : Set ℕ))
+    (hpartner₂ : Set.InjOn partner₂ (↑I₂ : Set ℕ))
+    (hrange₂ : ∀ s ∈ I₂, partner₂ s < chordLength) :
+    Nonempty (TwoHalfGreedyFamilyIndex I₁ I₂
+      pos₁ partner₁ pos₂ partner₂ chordLength) := by
+  obtain ⟨A₁⟩ := exists_greedyHalfFamilyIndex I₁ pos₁ partner₁ chordLength
+    hpos₁ hpartner₁ hrange₁
+  obtain ⟨A₂⟩ := exists_greedyHalfFamilyIndex I₂ pos₂ partner₂ chordLength
+    hpos₂ hpartner₂ hrange₂
+  exact ⟨⟨A₁, A₂⟩⟩
+
 /-- Monotone partner order inside one chord interval supplies the named
 bounded-variation premise. -/
 theorem chordPartnerTraversalBound_of_pairwise {partners : List ℕ} {a L : ℕ}

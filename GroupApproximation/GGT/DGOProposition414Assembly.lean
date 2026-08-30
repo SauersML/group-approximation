@@ -188,8 +188,12 @@ connector sides are explicitly distinguished.
 
 The target component and isolation hypotheses remain local geometric inputs;
 they are exactly what `isIsolated_auxiliaryCycle_sides` and the connector
-component lemmas produce for a particular greedy interval. -/
-theorem auxiliaryCycleCertificate_of_paths (D : RelGenSet G Λ)
+component lemmas produce for a particular greedy interval.
+
+Because the result is certificate data in `Type`, this constructor is a
+definition rather than a proposition-valued theorem.
+-/
+def auxiliaryCycleCertificate_of_paths (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {b : ℝ} (hb : 0 ≤ b)
     (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
     {arcCut : ℕ → ℕ}
@@ -234,6 +238,73 @@ theorem auxiliaryCycleCertificate_of_paths (D : RelGenSet G Λ)
   target_isolated := htarget_isolated
   quasi := quasi_auxiliaryCycleWord D hb v left arc right chord harc hchord
     Target hleftTarget hrightTarget
+
+/-- **Construct one child while adding the connector targets canonically.**
+
+The geometric construction only chooses the inherited arc/chord targets.
+Every letter of either connector must additionally be distinguished so that
+the off-target quasigeodesic premise never asks for an estimate on an arbitrary
+peripheral connector.  This wrapper performs that union and proves all range,
+single-edge, and off-target bookkeeping for the connector part.  The caller is
+left only with the genuinely geometric component and isolation assertions for
+the resulting target set. -/
+def auxiliaryCycleCertificate_of_paths_withConnectorTarget
+    (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {b : ℝ} (hb : 0 ≤ b)
+    (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
+    {arcCut : ℕ → ℕ}
+    (harc : IsCutPolygon D b nArc
+      (v * RelLetter.listVal (revWord left)) arc arcCut)
+    {g : G} (hchord : IsGeodesicWord D
+      (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) g chord)
+    (hleft : ∀ x ∈ left, D.IsLetter x)
+    (hright : ∀ x ∈ right, D.IsLetter x)
+    (hclose : RelLetter.listVal left = RelLetter.listVal arc *
+      RelLetter.listVal right * RelLetter.listVal chord)
+    (LocalTarget : Finset ℕ) (label : ℕ → Λ)
+    (hlocal_lt : ∀ s ∈ LocalTarget,
+      s < left.length + nArc + right.length + chord.length)
+    (hlocal_edge : ∀ s ∈ LocalTarget,
+      auxiliaryCycleCut left nArc arcCut right (s + 1) =
+        auxiliaryCycleCut left nArc arcCut right s + 1)
+    (htarget_component : ∀ s ∈
+        LocalTarget ∪ DGOPolygonCut.auxiliaryCycleConnectorTarget left right nArc,
+      IsComp (label s) (auxiliaryCycleWord left arc right chord)
+        (auxiliaryCycleCut left nArc arcCut right s)
+        (auxiliaryCycleCut left nArc arcCut right (s + 1)))
+    (htarget_isolated : ∀ s ∈
+        LocalTarget ∪ DGOPolygonCut.auxiliaryCycleConnectorTarget left right nArc,
+      IsIsolated D.fam (label s) v
+        (auxiliaryCycleWord left arc right chord)
+        (auxiliaryCycleCut left nArc arcCut right s)) :
+    AuxiliaryCycleCertificate D b
+      (left.length + nArc + right.length + chord.length) := by
+  let Target :=
+    LocalTarget ∪ DGOPolygonCut.auxiliaryCycleConnectorTarget left right nArc
+  apply auxiliaryCycleCertificate_of_paths D hsymm hb v left arc right chord
+    harc hchord hleft hright hclose Target label
+  · intro r hr
+    change r ∈ LocalTarget ∪
+      DGOPolygonCut.auxiliaryCycleConnectorTarget left right nArc
+    exact Finset.mem_union.mpr <| Or.inr <|
+      DGOPolygonCut.mem_auxiliaryCycleConnectorTarget_left left right nArc r hr
+  · intro r hr
+    change left.length + nArc + r ∈
+      LocalTarget ∪ DGOPolygonCut.auxiliaryCycleConnectorTarget left right nArc
+    exact Finset.mem_union.mpr <| Or.inr <|
+      DGOPolygonCut.mem_auxiliaryCycleConnectorTarget_right left right nArc r hr
+  · intro s hs
+    rcases Finset.mem_union.mp hs with hs | hs
+    · exact hlocal_lt s hs
+    · exact DGOPolygonCut.auxiliaryCycleConnectorTarget_lt
+        left right chord nArc s hs
+  · intro s hs
+    rcases Finset.mem_union.mp hs with hs | hs
+    · exact hlocal_edge s hs
+    · exact DGOPolygonCut.auxiliaryCycleConnectorTarget_edge
+        left arc right harc.cut s hs
+  · exact htarget_component
+  · exact htarget_isolated
 
 namespace AuxiliaryCycleCertificate
 
@@ -282,6 +353,66 @@ theorem sum_radius_le_sumCost (D : RelGenSet G Λ)
     (A.exists_radius (sumBound_sumCost D hsymm b hδ m))).2
 
 end AuxiliaryCycleCertificate
+
+/-! ## Joining the two connector-indexed half families -/
+
+/-- **Certified auxiliary cycles over both independently greedy halves.**
+
+The first and second families are indexed by their connector intervals: one
+interval before the first broken component, one between each successive pair,
+and one after the last.  Every stored child is a full
+`AuxiliaryCycleCertificate`, so closure, admissibility, polygon cuts, target
+edges, target components, target isolation, and the off-target
+quasigeodesicity premise are all available uniformly to the later charging
+assembly.
+
+This is intentionally not yet an `AuxiliaryCycleFamilyCertificate`: the latter
+also chooses an owner for every original distinguished side and proves the
+cross-child charging inequality.  Those are global geometric facts, not data
+that can be inferred from the two finite greedy enumerations alone. -/
+structure TwoHalfAuxiliaryCycleFamily (D : RelGenSet G Λ) (b : ℝ)
+    {I₁ I₂ : Finset ℕ} {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ}
+    {chordLength : ℕ}
+    (index : DGOPolygonCut.TwoHalfGreedyFamilyIndex I₁ I₂
+      pos₁ partner₁ pos₂ partner₂ chordLength) where
+  firstSides : Fin (DGOPolygonCut.GreedyHalfFamilyIndex.pieceCount
+    index.first) → ℕ
+  firstChildren : ∀ j : Fin
+      (DGOPolygonCut.GreedyHalfFamilyIndex.pieceCount index.first),
+    AuxiliaryCycleCertificate D b (firstSides j)
+  secondSides : Fin (DGOPolygonCut.GreedyHalfFamilyIndex.pieceCount
+    index.second) → ℕ
+  secondChildren : ∀ j : Fin
+      (DGOPolygonCut.GreedyHalfFamilyIndex.pieceCount index.second),
+    AuxiliaryCycleCertificate D b (secondSides j)
+
+/-- **Finite choice joins child certificates from both halves.**
+
+Combined with
+`auxiliaryCycleCertificate_of_paths_withConnectorTarget`, this turns the
+connector-interval path construction into one checkable two-half family.  No
+family existence is asserted without a certificate for every interval. -/
+theorem exists_twoHalfAuxiliaryCycleFamily (D : RelGenSet G Λ) (b : ℝ)
+    {I₁ I₂ : Finset ℕ} {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ}
+    {chordLength : ℕ}
+    (index : DGOPolygonCut.TwoHalfGreedyFamilyIndex I₁ I₂
+      pos₁ partner₁ pos₂ partner₂ chordLength)
+    (hfirst : ∀ _ : Fin
+        (DGOPolygonCut.GreedyHalfFamilyIndex.pieceCount index.first),
+      Nonempty (Σ m : ℕ, AuxiliaryCycleCertificate D b m))
+    (hsecond : ∀ _ : Fin
+        (DGOPolygonCut.GreedyHalfFamilyIndex.pieceCount index.second),
+      Nonempty (Σ m : ℕ, AuxiliaryCycleCertificate D b m)) :
+    Nonempty (TwoHalfAuxiliaryCycleFamily D b index) := by
+  classical
+  let firstData := fun j => Classical.choice (hfirst j)
+  let secondData := fun j => Classical.choice (hsecond j)
+  exact ⟨{
+    firstSides := fun j => (firstData j).1
+    firstChildren := fun j => (firstData j).2
+    secondSides := fun j => (secondData j).1
+    secondChildren := fun j => (secondData j).2
+  }⟩
 
 /-- **A local family of auxiliary cycles with all charging and count data.**
 
