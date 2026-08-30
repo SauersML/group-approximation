@@ -48,6 +48,38 @@ finite-index expected extensions, and injective limits assembled from such
 stages.  The obstruction uses no trace extension, quasitrace, `K_0`, central
 sequence, or simplicity argument.
 
+## Z-stable projection dichotomy
+
+There is an independent ambient-regularity obstruction.  Rordam's almost
+unperforation theorem for Z-stable algebras, combined with the elementary
+fact that an infinite projection in a simple algebra is properly infinite,
+gives the dichotomy
+
+```text
+simple + unital + Z-stable
+    => stably finite, or every nonzero projection properly infinite.
+```
+
+The direct comparison proof is useful here.  If the unit is properly
+infinite and `p` is nonzero, finite, and hence full, compact fullness gives
+`n[p]=[1]` for some `n`.  Almost unperforation applied to
+
+```text
+(n+1)[1]=[1]=n[p]
+```
+
+forces `[1]<=[p]`, so `p` is equivalent to the properly infinite unit, a
+contradiction.  If instead the unit is finite, applying this mixed-projection
+exclusion inside every matrix amplification shows that all amplifications
+are finite.
+
+Therefore no LXVI ambient algebra is Z-stable.  Winter's implication from
+finite nuclear dimension to Z-stability for separable simple unital
+non-elementary algebras then shows that every separable LXVI witness must
+have infinite nuclear dimension.  This no-go makes no assumption about an
+expectation onto CAR, module index, trace extension, `K_0`, central sequences,
+or reduced-product assembly.
+
 ## Trust boundary
 
 The theorem requires a finite Watatani quasi-basis, not merely a faithful
@@ -60,4 +92,7 @@ expected CAR inclusions.
 The finite-index mechanism also does not obstruct a nonexpected, highly
 noncentral CAR inclusion.  Such infinite-index inclusions remain the live
 coherence frontier after the existing tensor, reduced-product, ultraproduct,
-and central-matrix no-go results.
+and central-matrix no-go results.  The Z-stable dichotomy further requires a
+successful ambient algebra to be non-Z-stable (and, in the separable case,
+of infinite nuclear dimension); it gives no contradiction for an irregular
+infinite-index noncentral construction of that kind.
