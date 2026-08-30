@@ -2852,6 +2852,7 @@ import GroupApproximation.GGT.HullYiLemmaC
 import GroupApproximation.GGT.DGOWindmillSpokes
 import GroupApproximation.GGT.HullSCConeOffHeavyGeomSep
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXCVCompactKTheory
+import GroupApproximation.Analysis.NormMatrixC0Multiplier
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
