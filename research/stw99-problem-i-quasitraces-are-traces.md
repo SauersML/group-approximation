@@ -76,15 +76,15 @@ the head/quotient hypotheses must retain either a positive asymptotic
 idempotence defect or a positive commutator defect against one fixed
 ambient element.
 
-For sigma-unital ideals these asymptotic hypotheses now give a full
-extension theorem.  By
-`stw01-sigma-unital-extensions-preserve-qt-linearity`, if both `I` and
-`A/I` have bounded-quasitrace linearity and `I` is sigma-unital, then `A`
-has bounded-quasitrace linearity.  For an ambient quasitrace, the ideal
+These asymptotic hypotheses now give a full extension theorem with no
+countability assumption.  By `stw01-extensions-preserve-qt-linearity`, if
+both `I` and `A/I` have bounded-quasitrace linearity, then `A` has
+bounded-quasitrace linearity.  For an ambient quasitrace, the ideal
 restriction is a finite trace; its multiplier extension makes every
-increasing approximate unit asymptotically central in the associated
-`2`-seminorm.  Functional-calculus cuts are asymptotically idempotent.
-No separability of `A` is needed.  There is a real distinction from norm
+approximate-unit net asymptotically central in the associated
+`2`-seminorm.  A cofinal ultrafilter turns the net into one exact central
+projection in a quasitracial quotient.  No sigma-unitality or separability
+of `I` or `A` is needed.  There is a real distinction from norm
 quasicentrality: `stw01-separable-ideal-does-not-force-sequential-qcau`
 shows that `K(H)` has no sequential quasicentral approximate unit relative
 to `B(H)`, even after adjoining a scalar summand carrying a fixed nonzero

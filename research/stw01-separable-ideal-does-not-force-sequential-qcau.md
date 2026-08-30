@@ -28,6 +28,5 @@ increasing quasicentral approximate-unit sequence exists.
 
 Thus the literal assertion that every separable ideal in an arbitrary
 ambient algebra admits the requested sequential norm-quasicentral cuts is
-false.  This does not obstruct
-`stw01-sigma-unital-extensions-preserve-qt-linearity`, whose commutators
-vanish only in the square seminorm of the ideal trace.
+false.  This does not obstruct `stw01-extensions-preserve-qt-linearity`,
+whose net commutators vanish only in the square seminorm of the ideal trace.
