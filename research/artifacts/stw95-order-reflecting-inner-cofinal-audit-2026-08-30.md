@@ -1,6 +1,6 @@
 # STW Problem XCV: order-reflecting inner-cofinal Cu audit (2026-08-30)
 
-## Existing graph and new threshold
+## Existing graph and corrected threshold
 
 The XCV proof graph was searched before adding this theorem.  The canonical
 external map
@@ -10,44 +10,40 @@ theta:Cu(A) tensor_Cu Cu(B) -> Cu(A tensor_min B)
 ```
 
 is known to be an isomorphism when one factor is AF, and a Cu-morphism right
-inverse is already known to suffice for purity.  Neither fact is assumed
-here.  A right inverse makes `theta` surjective; the new theorem explicitly
-allows concrete Cuntz classes outside the external image.
+inverse is already known to suffice for purity.  The first version of this
+node claimed that order reflection plus inner cofinality allowed concrete
+classes outside the image.  A second audit found that this is impossible:
+the two assumptions diagonalize to surjectivity.
 
 Two one-axiom nodes were already present.  Inner cofinality of the image for
 way-below pairs transfers almost divisibility.  An additive order-preserving
-right inverse transfers almost unperforation.  The new result replaces that
-global pullback map by order reflection on the source together with the same
-local inner cofinality.  This is an asymmetric local-to-global theorem:
-concrete elements stay in the concrete semigroup, while only compactly
-contained comparison windows are routed through the external image.
+right inverse transfers almost unperforation.  The corrected result identifies
+the exact threshold: inner cofinality alone is useful and local, but together
+with order reflection it is equivalent to the external map being a
+Cu-isomorphism.
 
-## Cu proof audit
+## Diagonal surjectivity audit
 
-The nontrivial step starts from `(n+1)x<=n y` in the concrete semigroup and
-tests it on `x_0<<x`.  Inner cofinality supplies
-`x_0<=theta(a_0)<<theta(a)<=x`.  Hence
-`(n+1)theta(a_0)<<n y`.  If `y=sup y_j` is rapidly increasing, addition and
-supremum compatibility give `n y=sup n y_j`, so the inequality is captured
-at one `y_j<<y`.  A second inner-cofinal bracket places that `y_j` below
-`theta(b_0)` while keeping a larger image element below `y`.  Only now is
-order reflection invoked:
+Fix `x=sup x_n` with `(x_n)` rapidly increasing.  Inner cofinality first
+places `x_1` below `theta(b_1)<<theta(c_1)<=x`.  Recursively,
+`theta(b_(n-1))` and `x_n` are both way below `x`, so a single `z_n<<x`
+dominates them.  A new inner bracket gives
 
 ```text
-theta((n+1)a_0)<=theta(n b_0)
-  implies (n+1)a_0<=n b_0.
+x_n,theta(b_(n-1))<=z_n<=theta(b_n)<<theta(c_n)<=x.
 ```
 
-Almost unperforation of the abstract Cu tensor product gives `a_0<=b_0`,
-and the brackets return `x_0<=y`.  Taking the supremum over way-below pieces
-of `x` finishes the comparison.  No decomposition of `x` or `y` into
-elementary tensor classes is used.
+Order reflection yields `b_(n-1)<=b_n`.  For `b=sup b_n`, preservation of
+suprema gives `x<=theta(b)<=x`, proving surjectivity.  No addition or purity
+axiom is used in this abstract step.  Surjective order-embedding Cu-morphisms
+are Cu-isomorphisms, and the converse inner-cofinal statement follows by
+applying the inverse to `x'<<x`.
 
 ## Boundary
 
-The theorem is a sufficient condition, not a claim that the canonical map
-always reflects order or has an inner-cofinal image.  In particular, the
-external Cu map is not assumed surjective, and the extra compact cross
-classes already seen in XCV are not discarded.  They are allowed if all
-their way-below windows satisfy the stated bracketing condition.  The general
-pure-tensor permanence root remains open.
+The theorem does not claim that the canonical map always reflects order or
+has an inner-cofinal image.  It shows instead that these conditions cannot be
+used to accommodate the extra compact cross classes already seen in XCV:
+they force every concrete class into the image.  The general pure-tensor
+permanence root remains open, and a genuinely nonsurjective proof must weaken
+one of the two hypotheses.
