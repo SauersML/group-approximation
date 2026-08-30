@@ -2867,6 +2867,8 @@ import GroupApproximation.Analysis.VoiculescuMonotoneUnit
 import GroupApproximation.GGT.DGOWindmillStage
 import GroupApproximation.GGT.OlshanskiiChord
 import GroupApproximation.GGT.OlshanskiiBisection
+import GroupApproximation.Analysis.VoiculescuBlockRecursion
+import GroupApproximation.Analysis.VoiculescuBlockAbsorption
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
