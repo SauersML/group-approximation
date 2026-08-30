@@ -2762,6 +2762,7 @@ import GroupApproximation.Analysis.VoiculescuGlimmState
 import GroupApproximation.Analysis.VoiculescuGlimmBound
 import GroupApproximation.GGT.OsinTheorem54SepGeodesicRuns
 import GroupApproximation.GGT.OsinLemma56PrefixY
+import GroupApproximation.GGT.OsinTheorem54SepSplice
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
