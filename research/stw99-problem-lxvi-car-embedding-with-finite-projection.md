@@ -38,3 +38,8 @@ problem to one construction rather than deferring it: build the CAR algebra
 inside a finite simple corner while its double is already infinite.
 The parallel route `stw99-lxvi-via-nonstable-finite-car-seed` removes the
 need to prescribe which finite amplification first becomes infinite.
+
+There is also a direct consequence for another STW problem:
+`stw99-lxvi-witness-refutes-lxxviii` proves that every LXVI witness yields a
+counterexample to Problem LXXVIII.  Thus a construction here would settle
+both problems, with opposite signs.

@@ -2,7 +2,7 @@
 rg: 2
 id: stw99-xcix-central-copy-transfer-bound
 kind: claim
-title: Transporting a central strongly self-absorbing copy has a fixed square-root error floor
+title: Transporting a central strongly self-absorbing copy incurs a fixed square-root loss
 artifacts:
   - research/artifacts/stw99-xcix-quantitative-audit-2026-08-30.md
 ---
@@ -19,5 +19,7 @@ every `x in X` and `y in Y`,
   < ||[psi(y),a_x]|| + 304 sqrt(gamma) + 2 gamma.
 ```
 
-Thus this transport theorem alone cannot produce the arbitrarily central
-embeddings required for D-stability at one fixed positive `gamma`.
+Thus the stated estimate does not by itself certify the arbitrarily central
+embeddings required for D-stability at one fixed positive `gamma`.  This is
+an additive upper-bound loss, not a lower bound on the centrality of the
+embedding actually selected.

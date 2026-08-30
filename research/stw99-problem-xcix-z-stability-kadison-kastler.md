@@ -20,9 +20,11 @@ then `B` is Z-stable?
 
 The general problem remains open after a literature check through 2026-08-30.
 The nuclear subclass is settled with the explicit radius `1/420000` by
-`stw99-xcix-nuclear-radius-positive`.  Without nuclearity, the strongest
-uniform conclusion recorded here is scaled-Cu agreement at radius
-`1/6422957`, not Z-absorption.
+`stw99-xcix-nuclear-radius-positive`.  In fact the same radius applies when
+the *nearby target* `B`, rather than `A`, is separable and nuclear; see
+`stw99-xcix-either-side-nuclear-radius`.  Without nuclearity on either side,
+the strongest uniform conclusion recorded here is scaled-Cu agreement at
+radius `1/6422957`, not Z-absorption.
 
 ## Attempts
 
@@ -35,10 +37,16 @@ a Z-stable algebra and absorbing Z; it cannot be detected by scaled Cu.
 
 The central-copy route also stalls quantitatively.  A finite-set embedding of
 Z can be transported across a near inclusion, but the resulting commutator
-bound has the fixed floor `304 sqrt(gamma) + 2 gamma` from
-`stw99-xcix-central-copy-transfer-bound`.  Z-stability requires arbitrarily
-small centrality errors while `gamma` is fixed.  No uniform error-improvement
-principle is known.
+bound incurs the additive loss `304 sqrt(gamma) + 2 gamma` from
+`stw99-xcix-central-copy-transfer-bound`.  Alternating this raw transport does
+not improve the estimate: after `n` legs the certified loss is `n` times this
+quantity, and the two commutator Lipschitz constants used in the estimate are
+sharp for arbitrary contraction perturbations; see
+`stw99-xcix-raw-transport-iteration`.  This is a rigorous obstruction to that
+specific black-box iteration, not an obstruction to selecting better copies
+using the strongly self-absorbing structure.  Z-stability requires
+arbitrarily small centrality errors while `gamma` is fixed, and no such
+uniform structural error-improvement principle is known.
 
 Finally, Z-stability is closed, rather than known open, in the space of
 separable unital subalgebras of one fixed ambient algebra containing a common
