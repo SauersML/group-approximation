@@ -3000,3 +3000,4 @@ import GroupApproximation.GGT.HullEeCycle
 import GroupApproximation.Analysis.VoiculescuCompactSqrt
 import GroupApproximation.Analysis.VoiculescuStageEstimate
 import GroupApproximation.Analysis.VoiculescuStageAbsorption
+import GroupApproximation.Analysis.VoiculescuUnitStrongLimit
