@@ -112,9 +112,9 @@ theorem le_dist_of_mem_thicken {Q : Set X} {r s : ℝ} {x : X}
     s - r ≤ dist x p := by
   obtain ⟨q, hq, hpq⟩ := mem_thicken_iff.mp hp
   have h1 : s ≤ dist x q := h q hq
+  -- `dist_triangle x p q` already reads `dist x q ≤ dist x p + dist p q`, and
+  -- `hpq` already reads `dist p q ≤ r`; no reorientation is needed.
   have h2 := dist_triangle x p q
-  rw [dist_comm p q] at h2
-  rw [dist_comm q p] at hpq
   linarith
 
 theorem lt_dist_of_not_mem_thicken {Q : Set X} {r : ℝ} {x : X}
