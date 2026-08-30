@@ -36,3 +36,12 @@ crossed products are traceless or non-simple/non-classifiable.)
   orbit-breaking in the sense of Deeley--Putnam--Strung), where
   amenability of the original boundary action should persist to the
   broken groupoid; nothing of this kind is in the literature.
+* The trace obstruction is stronger than absence of a fixed point.
+  By `stw40-trace-action-has-no-equicontinuous-island`, no nonempty
+  invariant weak-star compact subset of `T(A)` can carry equicontinuous
+  `G`-dynamics: closing the action to a compact group and Haar-averaging an
+  orbit would produce an invariant probability measure, whose barycenter is
+  an invariant trace.  Thus finite, profinite, compact-rotation, and all
+  other equicontinuous trace models are excluded.  Any witness must realize
+  genuinely non-equicontinuous boundary-type dynamics on every invariant
+  compact trace subsystem.
