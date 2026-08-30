@@ -56,6 +56,15 @@ all type-I C-star algebras.  The relevant established inputs are:
    nuclear-dimension algebra with `topdim(A)<=1<dim_nuc(A)`.  This isolates
    the exact missing theorem: the one-dimensional type-I comparison between
    these two dimension theories.
+11. The invariant is exactly continuous under countable increasing
+    hereditary exhaustions:
+    `ctdim(closure(union_n B_n))=sup_n ctdim(B_n)`.  Hence the LXXXI shadow
+    hypothesis is preserved and reflected by sequential inductive limits
+    with injective hereditary-image connecting maps.  The proof cuts every
+    continuous-trace subquotient by the stage hereditary algebras, passes to
+    the generated open-spectrum ideals, and applies the metric countable
+    closed-sum theorem.
 
 No maximum formula for arbitrary extensions is assumed, and no universal
-solution of Problem LXXXI is claimed.
+solution of Problem LXXXI is claimed.  No continuity statement for
+arbitrary injective inductive systems is claimed.
