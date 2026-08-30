@@ -32,16 +32,18 @@ generated*](https://arxiv.org/abs/2601.01249), published online 2026-07-29,
 proves single generation for all countable graph C*-algebras.  This is a broad
 positive subclass but does not conflict with the AH counterexample.
 
-## Unital countably layered positive class
+## Unital arbitrarily layered positive class
 
 The extension and limit permanence of Z-absorption yields a broader XCVII
 positive class than the previously recorded real-rank-zero theorem.  If a
-unital separable algebra has a continuous ideal filtration indexed by a
-countable ordinal and every successor quotient is Z-stable, then Toms--Winter
-extension permanence and inductive-limit permanence make the total algebra
-Z-stable.  Thiel--Winter's unital coding theorem then gives one generator.
-Real rank zero is not used; unlike the real-rank-zero theorem, this argument
-asserts existence and not density of generators.
+unital separable algebra has a continuous ideal filtration indexed by an
+arbitrary ordinal and every successor quotient is Z-stable, then Toms--Winter
+extension permanence and sequential-inductive-limit permanence make the total
+algebra Z-stable.  At a limit of uncountable cofinality, separability forces
+the filtration to stabilize at one earlier stage, so no uncountable
+inductive-limit theorem is used.  Thiel--Winter's unital coding theorem then
+gives one generator.  Real rank zero is not used; unlike the real-rank-zero
+theorem, this argument asserts existence and not density of generators.
 
 For a concrete nuclear consequence, suppose the total algebra is nowhere
 scattered and has finite nuclear dimension, and the successor quotients are
@@ -54,7 +56,9 @@ region of XCVII.
 
 The trust boundary is exact: single generation itself is not asserted to pass
 through extensions.  Z-absorption is glued first, and unitality is used only
-when applying Thiel--Winter to the total algebra.  No generator-rank-one
+when applying Thiel--Winter to the total algebra.  At an
+uncountable-cofinality limit, approximants at every precision to a countable
+dense set are required to prove actual stabilization.  No generator-rank-one
 statement is inferred without real rank zero.
 
 ## Remaining frontier
