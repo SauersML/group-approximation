@@ -212,6 +212,14 @@ several irreducible blocks are now available for future witness audits.  A
 fixed block with nonzero implementing trace remains a real obstruction,
 because a representation may concentrate on precisely that block.
 
+The same proof is spectral rather than specifically mod two.  If the central
+mark has finite order `q`, compress successively to each nontrivial
+root-of-unity spectral projection and use a finite packet for that central
+character.  Excluding every nontrivial sector forces the mark to be one.
+Thus odd-prime projective marks are covered as soon as their fixed packet
+blocks have traceless implementers; different sectors may use different
+finite subgroups and compressor sets.
+
 ## Addendum E. Abstract Clifford-compressor criterion
 
 The Clifford calculation extends exactly to arbitrary signed permutations.

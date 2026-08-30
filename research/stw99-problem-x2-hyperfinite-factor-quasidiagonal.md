@@ -99,4 +99,7 @@ replaces the Clifford calculation; compressor conjugacy and the nonamenable
 Haar-dual action finish the same obstruction.  Thus any marked candidate
 built from such a finite representation packet is also excluded.  This
 enlarges the no-go class but does not provide the non-MF subgroup of `U(R)`
-needed to decide X(2).
+needed to decide X(2).  The argument works separately in every nontrivial
+spectral sector of an arbitrary finite-order central mark, so it also
+excludes odd-prime marked variants when the corresponding finite packets
+satisfy the same fixed-block trace test.

@@ -3,18 +3,20 @@
 ## Result
 
 The Clifford-compressor obstruction has been generalized to an arbitrary
-finite semisimple representation packet.  A central involution is invisible
-in every finite injective representation whenever, for each relevant
-normalizer, every fixed irreducible summand of the negative block has a
-traceless implementer.  Moved summands contribute zero automatically.
+finite semisimple representation packet and an arbitrary finite-order
+central mark.  In each nontrivial central-character sector, the mark is
+invisible whenever every fixed irreducible summand of each relevant
+normalizer has a traceless implementer.  Moved summands contribute zero
+automatically.
 Compressor conjugacy then spreads those trace zeros across a nontrivial
 abelian normal subgroup, and a nonamenable quotient acting essentially
 freely on the subgroup's Haar dual supplies the contradiction.
 
 ## Checks
 
-- The negative spectral projection is central because the mark is central.
-- A representation of the finite negative block may kill summands.  Its
+- Every root-of-unity spectral projection is central because the mark is
+  central.  The proof is applied independently in each nontrivial sector.
+- A representation of a finite central-character block may kill summands.  Its
   surviving central projections are permuted by each normalizer.
 - A moved central summand gives an off-diagonal corner and hence zero trace.
 - On a fixed surviving summand, unitality makes the matrix representation
@@ -34,8 +36,8 @@ a representation can concentrate on that summand when it is invariant and
 its implementer has nonzero trace.  No condition is needed on summands that
 the normalizer moves.
 
-The previous signed-Clifford theorem is recovered from the spin block of the
-relevant extraspecial two-group.  The new criterion also accepts finite
-packets unrelated to Clifford algebras and finite blocks with several
-irreducible summands, so it is not a reformulation of the signed-cycle
-calculation.
+The previous signed-Clifford theorem is recovered from the negative spin
+block of the relevant extraspecial two-group.  The new criterion also accepts
+finite packets unrelated to Clifford algebras, blocks with several
+irreducible summands, and odd-prime or general finite-order central marks, so
+it is not a reformulation of the signed-cycle calculation.
