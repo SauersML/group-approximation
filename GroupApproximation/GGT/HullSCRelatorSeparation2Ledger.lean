@@ -65,13 +65,46 @@ number of sides is not used and is not going to be proved.
 vertices of the relator is at least the number of block letters between them,
 less a constant fixed before the relator is chosen -- asserted not of the
 relator alone but of **every prefix of every rotation of it**, which is how
-Olshanskii uses it.  Consumed through
-`HullSC.quasiGeodesic_relatorWord₂_of_blockCount`, which is what makes the
-relator `(1, |p| + c)`-quasi-geodesic.  Open, and genuinely geometric: the
-four-gon material consumes quasi-geodesicity rather than producing it.
+Olshanskii uses it.  Open, and genuinely geometric: the four-gon material
+consumes quasi-geodesicity rather than producing it.
 
-  **Why the cyclic form, and not the linear one.**  The quadrilateral's two
-  long sides are prefixes of rotations, and below the wrap that costs nothing:
+  **The count is now the whole of the debt.**
+  `HullSC.separationNe₂_clause_of_inputs` takes `hcount` at every member of the
+  symmetrized closure --- `j - i ≤ d(vertexᵢ, vertexⱼ) + blockConst p cnt` ---
+  and produces all three clauses the polygon asks:
+
+  * the two per-side clauses, by `HullSC.qgClause_of_le`, the cast from the
+    count in naturals to the `mu = 1` clause over the reals, carried to a
+    PREFIX of a member by `GGT.OsinComponents.vertex_append_of_le`;
+  * the `fourGonCut` clause, by `HullSC.fourGonQG_of_sides`: side one is a left
+    translate of `u` and the word metric is left invariant, side three is
+    `revWord u'`, whose vertices are `u'`'s reversed and translated
+    (`GGT.OsinComponents.vertex_revWord`), and the two short sides are covered
+    by their LENGTH, the distance they are compared against being a natural
+    number.
+
+  **The constant is not the count's own.**  The two short sides are base
+  spellings of the separation's `y` and `z`, and the metric is the relative
+  one, in which a short element lying in `H λ` has norm one while its base
+  spelling has length `eps`.  No bound below `|py|` can serve there, so the
+  composition works at `max cnt (eps + 2)` and not at `cnt`.  It chooses that
+  itself --- `eps` is given before anything it chooses, and enlarging the
+  constant only weakens the count --- so `cnt` stays a constant of the core.
+  The length bound `|py| ≤ eps + 2` is why
+  `HullSC.exists_side_spelling_of_base_eq` takes a MINIMAL spelling and pads
+  it, rather than taking any spelling at all.
+
+  **Where values enter.**  `HullSC.quasiGeodesic_relatorWord₂_of_blockCount`
+  never unfolds the relator and never touches a value: it is arithmetic over
+  `j - max i |p|` and an opaque `wordDist`.  So rotation does not break the
+  reduction --- it generalises verbatim, with `j - max i |p|` replaced by
+  `(j - i) - |p|`, which holds because rotation permutes letters and formal
+  inversion carries base letters to base letters, so a member of the closure
+  has exactly `|p|` base letters wherever they sit.  What does not transport is
+  the DERIVATION of the cyclic count from the linear one:
+
+  the quadrilateral's two long sides are prefixes of rotations, and below the
+  wrap that costs nothing:
   `GGT.OsinComponents.vertex_rotate_prefix` shows a vertex of `w.rotate c` at
   offset `x ≤ |w| - c` to be `(listVal (w.take c))⁻¹ · vertex 1 w (c + x)`, a
   left translate of a vertex of `w`, and `wordDist` is left-invariant, so every
@@ -137,10 +170,9 @@ exactly these and no others:
 * `hδ` -- item 1: four-point hyperbolicity of the RELATIVE Cayley graph
   `Γ(G, X ⊔ ℋ)`, which is what the two producers consume and all that is left
   of the bound;
-* `hqg` -- item 2, and it is spent in THREE places, all instances of the cyclic
-  form and none of them an extra debt: the `fourGonCut` clause for
-  `py ++ u₀ ++ pz ++ revWord u₀'`, and separately the per-side clauses for `u₀`
-  and for `u₀'` that the pinning and the gap estimate read;
+* `hcount` -- item 2, the block count at every member of the symmetrized
+  closure.  It used to be spent as three separate clauses; those are now proved
+  from it, so what is carried is the count alone;
 * the two same-side exclusions -- item 3;
 * `hnc` -- item 6, the diagonal leaf, carried because the route named for it
   cannot be instantiated here.
@@ -289,8 +321,8 @@ remains unwritten is only the composition that spends it.
   across; the mixed pair runs the count twice and compares.
 * The four cases at one quadrilateral: `HullSC.listVal_conj_of_sym_pieces`,
   which is the dispatch fed by those four.  What it still takes as hypotheses
-  is item 2 in its three places, item 3, and the two spellings with their
-  positivity -- the same list as the binders above, and nothing else.
+  is item 2 as the count, item 3, and the two spellings with their positivity
+  -- the same list as the binders above, and nothing else.
 * `0 < |p|`, which the wrap-around argument of
   `GGT/HullSCRelatorSeparation2Locate.lean` spends, from
   `HullSC.exists_long_base_spelling₂`.
@@ -327,7 +359,7 @@ four-gon's letter clause (a member of the symmetrized closure is admissible
 because the relator is, and admissibility survives rotation, formal inverse and
 reversal), and hands the quadrilateral to
 `HullSC.listVal_conj_of_sym_pieces`.  Its whole hypothesis list is `hδ`,
-`hqgeo`, `hexcl` and `hnc` --- items 1's residue, 2, 3 and 6 --- together with
+`hcount`, `hexcl` and `hnc` --- items 1's residue, 2, 3 and 6 --- together with
 the core, suitability, and the block-count constant.
 
 The exponent list comes from
@@ -346,7 +378,7 @@ the two gives `HullSC.hullRelatorStatement₂_of_inputs`, which is the relator
 half of Hull's Theorem 5.1 conditional on exactly four clauses:
 
     hδ     item 1's residue: four-point hyperbolicity of Γ(G, X ⊔ ℋ)
-    hqgeo  item 2: the cyclic quasi-geodesicity, in its three places
+    hcount item 2: the block count, at every member of the closure
     hexcl  item 3: the two same-side exclusions
     hnc    item 6: the diagonal leaf
 

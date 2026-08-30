@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyFourWay
+import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyQG
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyShortSide
 import GroupApproximation.GGT.HullSCRelatorSeparation2NoCommute
 import GroupApproximation.GGT.HullSCRelatorSeparation2Statement
@@ -32,12 +33,27 @@ proved here: a member of the symmetrized closure is admissible because the
 relator is, and admissibility survives rotation, formal inverse and reversal.
 That is the first section.
 
+## The constant
+
+The polygon clause is produced here rather than assumed, by
+`HullSC.fourGonQG_of_sides`, and that fixes the constant.  The two long sides
+are prefixes of members of the closure, so their clause is the count; the two
+short sides are base spellings of `y` and `z`, and for them the clause holds
+because the constant exceeds their LENGTH --- there is no geometry to appeal
+to, since a short element can lie in `H λ`, where its relative norm is one
+while its base spelling has length `eps`.
+
+So the composition does not work at the count's own constant `cnt` but at
+`max cnt (eps + 2)`, which it chooses itself.  Enlarging the constant only
+weakens the count, and `eps` is given before anything here is chosen, so
+nothing circular is asked of the caller: `cnt` stays a constant of the core.
+
 ## What rides through
 
 Three named hypotheses, and no others beyond the geometry of the ambient graph.
 
-* `hqgeo` --- item 2 of the Ledger, the cyclic quasi-geodesicity, in the three
-  places the composition spends it;
+* `hcount` --- item 2 of the Ledger, the block count, at every member of the
+  symmetrized closure rather than at the relator alone;
 * `hexcl` --- item 3, the two same-side exclusions;
 * `hnc` --- the diagonal leaf, that no nontrivial element of a relative ball
   commutes with a power of the loxodromic.
@@ -174,38 +190,13 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
     (hδ : Hyperbolic.IsFourPointHyperbolic E.rel.alphabet.carrier δ)
     (hnc : ∀ (e : ℕ) (s : Bool), ∀ x ∈ E.rel.relBall s e, x ≠ 1 →
       ∀ d : ℕ, 0 < d → ¬ Commute x (E.lox s ^ d))
-    (hqgeo : ∀ (p : List G) (ms : List ℕ)
-      (py pz u u' : List (GGT.RelLetter G Bool)),
-      (∃ v tl : List (GGT.RelLetter G Bool),
-        RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
-          v = u ++ tl) →
-      (∃ v tl : List (GGT.RelLetter G Bool),
-        RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
-          v = u' ++ tl) →
-      (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) →
-      (∀ x ∈ pz, ∃ g : G, x = GGT.RelLetter.base g) →
-      GGT.RelLetter.listVal u' = GGT.RelLetter.listVal py *
-        GGT.RelLetter.listVal u * GGT.RelLetter.listVal pz →
-      (∀ k : ℕ, k < 4 → ∀ x y : ℕ,
-        GGT.OsinComponents.fourGonCut py u pz u' k ≤ x → x ≤ y →
-        y ≤ GGT.OsinComponents.fourGonCut py u pz u' (k + 1) →
-        ((y - x : ℕ) : ℝ) / 1 - ((blockConst p cnt : ℕ) : ℝ)
-          ≤ ((wordDist E.rel.alphabet.carrier
-              (GGT.OsinComponents.vertex (1 : G)
-                (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') x)
-              (GGT.OsinComponents.vertex (1 : G)
-                (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
-                  y) : ℕ) : ℝ)) ∧
-        (∀ x y : ℕ, x ≤ y → y ≤ u.length →
-          ((y - x : ℕ) : ℝ) / 1 - ((blockConst p cnt : ℕ) : ℝ)
-            ≤ ((wordDist E.rel.alphabet.carrier
-                  (GGT.OsinComponents.vertex (1 : G) u x)
-                  (GGT.OsinComponents.vertex (1 : G) u y) : ℕ) : ℝ)) ∧
-        (∀ x y : ℕ, x ≤ y → y ≤ u'.length →
-          ((y - x : ℕ) : ℝ) / 1 - ((blockConst p cnt : ℕ) : ℝ)
-            ≤ ((wordDist E.rel.alphabet.carrier
-                  (GGT.OsinComponents.vertex (1 : G) u' x)
-                  (GGT.OsinComponents.vertex (1 : G) u' y) : ℕ) : ℝ)))
+    (hcount : ∀ (p : List G) (ms : List ℕ)
+      (v : List (GGT.RelLetter G Bool)),
+      RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v →
+      ∀ i j : ℕ, i ≤ j → j ≤ v.length →
+        j - i ≤ wordDist E.rel.alphabet.carrier
+          (GGT.OsinComponents.vertex (1 : G) v i)
+          (GGT.OsinComponents.vertex (1 : G) v j) + blockConst p cnt)
     (hexcl : ∀ (p : List G) (ms : List ℕ)
       (u u' : List (GGT.RelLetter G Bool)),
       (∃ v tl : List (GGT.RelLetter G Bool),
@@ -244,17 +235,24 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
     intro b
     rw [E.fam_eq]
     exact E.lox_mem b
+  set cw := max cnt (eps + 2) with hcw
+  have hmono : blockConst p cnt ≤ blockConst p cw := by
+    show p.length + cnt ≤ p.length + cw
+    omega
+  have hshort : eps + 2 ≤ blockConst p cw := by
+    show eps + 2 ≤ p.length + cw
+    omega
   obtain ⟨epsD, _hepsD, hpair⟩ :=
     GGT.OsinComponents.exists_eps_matchedPair_hyp E.rel hsymm
-      (blockConst p cnt) hδ
+      (blockConst p cw) hδ
   obtain ⟨Cm, _hCm, hmatch⟩ :=
-    GGT.OsinComponents.exists_deep_match_hyp E.rel hsymm (blockConst p cnt) hδ
-  refine ⟨p.length + blockSeparation p cnt eps + 2, ?_⟩
+    GGT.OsinComponents.exists_deep_match_hyp E.rel hsymm (blockConst p cw) hδ
+  refine ⟨p.length + blockSeparation p cw eps + 2, ?_⟩
   intro L
   obtain ⟨ms, hlen, hnodup, hdeepD, hsepD, hdiagD⟩ :=
     exists_separated_relator_exponents₂_diagonal E.embedded
       (injective_pow_lox₂ E) (max rho (Cm * 4)) epsD
-      (max L (p.length + 5 * blockSeparation p cnt eps + 3))
+      (max L (p.length + 5 * blockSeparation p cw eps + 3))
       (fun s => hnc epsD s)
   have hadm : RelWord.IsAdmissible E.rel
       (relatorWord₂ p (E.lox false) (E.lox true) ms) :=
@@ -267,9 +265,9 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
   · intro w w' u₀ u₀' hw hw' _hne hpre hpre' hBu y z hy hz hcl
     obtain ⟨sfx, hsfx⟩ := hpre
     obtain ⟨sfx', hsfx'⟩ := hpre'
-    obtain ⟨py, hpy0, hpy, hpylet, hpyval, hpynorm⟩ :=
+    obtain ⟨py, hpy0, hpylen, hpy, hpylet, hpyval, hpynorm⟩ :=
       exists_side_spelling₂ E hN hy
-    obtain ⟨pz, hpz0, hpz, hpzlet, hpzval, _hpznorm⟩ :=
+    obtain ⟨pz, hpz0, hpzlen, hpz, hpzlet, hpzval, _hpznorm⟩ :=
       exists_side_spelling₂ E hN hz
     have hwadm : RelWord.IsAdmissible E.rel w := isAdmissible_sym hsymm hw hadm
     have hw'adm : RelWord.IsAdmissible E.rel w' :=
@@ -298,14 +296,65 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
         GGT.RelLetter.listVal u₀ * GGT.RelLetter.listVal pz := by
       rw [hpyval, hpzval]
       exact hcl
-    have hlongp : p.length + blockSeparation p cnt eps + 1 < u₀.length := by
+    have hlongp : p.length + blockSeparation p cw eps + 1 < u₀.length := by
       omega
     have hmslong :
-        p.length + 5 * blockSeparation p cnt eps + 2 < ms.length := by
+        p.length + 5 * blockSeparation p cw eps + 2 < ms.length := by
       omega
-    obtain ⟨hqg, hqgq, hqgs⟩ :=
-      hqgeo p ms py pz u₀ u₀' ⟨w, sfx, hw, hsfx⟩ ⟨w', sfx', hw', hsfx'⟩
-        hpy hpz hclose
+    have hcu : ∀ i j : ℕ, i ≤ j → j ≤ u₀.length →
+        j - i ≤ wordDist E.rel.alphabet.carrier
+          (GGT.OsinComponents.vertex (1 : G) u₀ i)
+          (GGT.OsinComponents.vertex (1 : G) u₀ j) + blockConst p cw := by
+      intro i j hij hj
+      have hvi : GGT.OsinComponents.vertex (1 : G) u₀ i
+          = GGT.OsinComponents.vertex (1 : G) w i := by
+        rw [hsfx]
+        exact (GGT.OsinComponents.vertex_append_of_le u₀ sfx 1 i
+          (by omega)).symm
+      have hvj : GGT.OsinComponents.vertex (1 : G) u₀ j
+          = GGT.OsinComponents.vertex (1 : G) w j := by
+        rw [hsfx]
+        exact (GGT.OsinComponents.vertex_append_of_le u₀ sfx 1 j hj).symm
+      have hwlen : j ≤ w.length := by
+        rw [hsfx, List.length_append]
+        omega
+      have hc := hcount p ms w hw i j hij hwlen
+      rw [hvi, hvj]
+      omega
+    have hcu' : ∀ i j : ℕ, i ≤ j → j ≤ u₀'.length →
+        j - i ≤ wordDist E.rel.alphabet.carrier
+          (GGT.OsinComponents.vertex (1 : G) u₀' i)
+          (GGT.OsinComponents.vertex (1 : G) u₀' j) + blockConst p cw := by
+      intro i j hij hj
+      have hvi : GGT.OsinComponents.vertex (1 : G) u₀' i
+          = GGT.OsinComponents.vertex (1 : G) w' i := by
+        rw [hsfx']
+        exact (GGT.OsinComponents.vertex_append_of_le u₀' sfx' 1 i
+          (by omega)).symm
+      have hvj : GGT.OsinComponents.vertex (1 : G) u₀' j
+          = GGT.OsinComponents.vertex (1 : G) w' j := by
+        rw [hsfx']
+        exact (GGT.OsinComponents.vertex_append_of_le u₀' sfx' 1 j hj).symm
+      have hwlen : j ≤ w'.length := by
+        rw [hsfx', List.length_append]
+        omega
+      have hc := hcount p ms w' hw' i j hij hwlen
+      rw [hvi, hvj]
+      omega
+    have hqg := fourGonQG_of_sides E.rel (le_trans hpylen hshort)
+      (le_trans hpzlen hshort) hcu hcu'
+    have hqgq : ∀ i j : ℕ, i ≤ j → j ≤ u₀.length →
+        ((j - i : ℕ) : ℝ) / 1 - ((blockConst p cw : ℕ) : ℝ)
+          ≤ ((wordDist E.rel.alphabet.carrier
+                (GGT.OsinComponents.vertex (1 : G) u₀ i)
+                (GGT.OsinComponents.vertex (1 : G) u₀ j) : ℕ) : ℝ) :=
+      fun i j hij hj => qgClause_of_le (hcu i j hij hj)
+    have hqgs : ∀ i j : ℕ, i ≤ j → j ≤ u₀'.length →
+        ((j - i : ℕ) : ℝ) / 1 - ((blockConst p cw : ℕ) : ℝ)
+          ≤ ((wordDist E.rel.alphabet.carrier
+                (GGT.OsinComponents.vertex (1 : G) u₀' i)
+                (GGT.OsinComponents.vertex (1 : G) u₀' j) : ℕ) : ℝ) :=
+      fun i j hij hj => qgClause_of_le (hcu' i j hij hj)
     obtain ⟨hqside, hsside⟩ :=
       hexcl p ms u₀ u₀' ⟨w, sfx, hw, hsfx⟩ ⟨w', sfx', hw', hsfx'⟩
     have hconj := listVal_conj_of_sym_pieces hpair hmatch hnodup

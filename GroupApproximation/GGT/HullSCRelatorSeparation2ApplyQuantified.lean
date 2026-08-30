@@ -6,13 +6,16 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyCompose
 Bookkeeping, and the last file of the relator chain.
 `HullSC.separationNe₂_clause_of_inputs` proves the corrected separation at one
 core; `HullSC.hullRelatorStatement₂_of_separationNe₂` consumes it quantified
-over every group, alphabet, subgroup and core.  So the five inputs are
+over every group, alphabet, subgroup and core.  So the four inputs are
 quantified the same way and the two are composed.
 
 The constants `cnt` and `δ` sit inside the quantifier as existentials rather
 than outside it as parameters, which is the honest reading: the block-count
 constant and the hyperbolicity constant belong to the core, and a chain that
 fixed them once for all cores would be claiming something it has no reason to.
+They do NOT have to know `eps`: the composition works at `max cnt (eps + 2)`,
+which it chooses itself once `eps` arrives, and enlarging the constant only
+weakens the count.
 
 Nothing here is a mathematical step.  What the chain rests on is the four
 clauses of `hinput`, and they are items 1, 2, 3 and 6 of
@@ -37,37 +40,12 @@ variable
       (∀ (e : ℕ) (s : Bool), ∀ x ∈ E.rel.relBall s e, x ≠ 1 →
         ∀ d : ℕ, 0 < d → ¬ Commute x (E.lox s ^ d)) ∧
       (∀ (p : List G) (ms : List ℕ)
-        (py pz u u' : List (GGT.RelLetter G Bool)),
-        (∃ v tl : List (GGT.RelLetter G Bool),
-          RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
-            v = u ++ tl) →
-        (∃ v tl : List (GGT.RelLetter G Bool),
-          RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
-            v = u' ++ tl) →
-        (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) →
-        (∀ x ∈ pz, ∃ g : G, x = GGT.RelLetter.base g) →
-        GGT.RelLetter.listVal u' = GGT.RelLetter.listVal py *
-          GGT.RelLetter.listVal u * GGT.RelLetter.listVal pz →
-        (∀ k : ℕ, k < 4 → ∀ x y : ℕ,
-          GGT.OsinComponents.fourGonCut py u pz u' k ≤ x → x ≤ y →
-          y ≤ GGT.OsinComponents.fourGonCut py u pz u' (k + 1) →
-          ((y - x : ℕ) : ℝ) / 1 - ((blockConst p cnt : ℕ) : ℝ)
-            ≤ ((wordDist E.rel.alphabet.carrier
-                (GGT.OsinComponents.vertex (1 : G)
-                  (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') x)
-                (GGT.OsinComponents.vertex (1 : G)
-                  (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
-                    y) : ℕ) : ℝ)) ∧
-          (∀ x y : ℕ, x ≤ y → y ≤ u.length →
-            ((y - x : ℕ) : ℝ) / 1 - ((blockConst p cnt : ℕ) : ℝ)
-              ≤ ((wordDist E.rel.alphabet.carrier
-                    (GGT.OsinComponents.vertex (1 : G) u x)
-                    (GGT.OsinComponents.vertex (1 : G) u y) : ℕ) : ℝ)) ∧
-          (∀ x y : ℕ, x ≤ y → y ≤ u'.length →
-            ((y - x : ℕ) : ℝ) / 1 - ((blockConst p cnt : ℕ) : ℝ)
-              ≤ ((wordDist E.rel.alphabet.carrier
-                    (GGT.OsinComponents.vertex (1 : G) u' x)
-                    (GGT.OsinComponents.vertex (1 : G) u' y) : ℕ) : ℝ))) ∧
+        (v : List (GGT.RelLetter G Bool)),
+        RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v →
+        ∀ i j : ℕ, i ≤ j → j ≤ v.length →
+          j - i ≤ wordDist E.rel.alphabet.carrier
+            (GGT.OsinComponents.vertex (1 : G) v i)
+            (GGT.OsinComponents.vertex (1 : G) v j) + blockConst p cnt) ∧
       (∀ (p : List G) (ms : List ℕ)
         (u u' : List (GGT.RelLetter G Bool)),
         (∃ v tl : List (GGT.RelLetter G Bool),
@@ -87,7 +65,7 @@ include hinput in
 /-- **The corrected separation, over every core.**
 
 The four inputs are the Ledger's standing items: `hδ` is what is left of item 1,
-`hnc` is item 6, `hqgeo` is item 2 in its three places, `hexcl` is item 3. -/
+`hnc` is item 6, `hcount` is item 2, `hexcl` is item 3. -/
 theorem separationNe₂_of_inputs :
     ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) (N : Subgroup G)
       (E : HypEmbeddedCore₂ A N), Suitable A.alphabet N →
@@ -108,8 +86,8 @@ theorem separationNe₂_of_inputs :
                               GGT.RelLetter.listVal w'
                                 = y * GGT.RelLetter.listVal w * y⁻¹ := by
   intro G _ A N E hN t eps rho
-  obtain ⟨cnt, δ, hδ, hnc, hqgeo, hexcl⟩ := hinput A N E
-  exact separationNe₂_clause_of_inputs E hN cnt hδ hnc hqgeo hexcl t eps rho
+  obtain ⟨cnt, δ, hδ, hnc, hcount, hexcl⟩ := hinput A N E
+  exact separationNe₂_clause_of_inputs E hN cnt hδ hnc hcount hexcl t eps rho
 
 include hinput in
 /-- **Hull's §6 over two subgroups, from the four standing items.**
