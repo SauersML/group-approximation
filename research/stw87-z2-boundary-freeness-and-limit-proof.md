@@ -89,4 +89,3 @@ through the uniform Roe corona; the periodic torus block nevertheless
 survives in its image.  It is only a subalgebra, not a quotient or
 hereditary corner.  Therefore neither its Bott class nor its nuclear
 dimension supplies a lower bound for the ambient limit image or for `A`.
-

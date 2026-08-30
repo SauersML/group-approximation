@@ -46,4 +46,3 @@ Thus limit operators retain the two-dimensional periodic torus blocks only
 as subalgebras.  Nuclear dimension is not monotone for arbitrary
 subalgebras, and the absent quotient/retraction is exactly what prevents
 this observation from proving `dim_nuc(C*_u(Z^2))>=2`.
-
