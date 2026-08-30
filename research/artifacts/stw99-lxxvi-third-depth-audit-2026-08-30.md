@@ -94,6 +94,16 @@ computed.  The 2026 selfless-correspondence tensor theorem does not apply to
 the commutative base as a selfless factor, so this remains an honest two-input
 frontier rather than a claimed construction.
 
+**2026-08-30 fourth-depth update.**  Seth--Vilalta, arXiv:2602.14809,
+proves that `C(S^6,D)` is pure for every simple pure `D`.  Thus purity of the
+free-group coefficient field is no longer open.  Jiang's K-stability theorem
+makes death of the class after tensoring with `Z` automatic.  Moreover,
+Thiel--Winter's unital embedding `Z->C*_r(F_2)` kills the class already before
+tensoring, so the free-group candidate is excluded.  The separate circle
+calculation in the fourth-depth audit also shows that stable-rank-one
+clutching over `T` cancels, so any such collapse must begin in higher
+topological dimension and use a pure coefficient with no unital copy of `Z`.
+
 ## Product lane
 
 The nonseparable product `prod_n Z` still supplies neither target.  Its

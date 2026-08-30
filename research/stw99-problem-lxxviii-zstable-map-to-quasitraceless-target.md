@@ -19,6 +19,37 @@ be `O_infinity`-stable?
 
 This remains open.
 
+Every counterexample now reduces to a finite-generator target extension:
+`stw78-counterexamples-have-finite-obstruction-targets` gives
+
+```text
+B_0=C*(phi(A),b_1,...,b_m)
+```
+
+with `B_0` separable and still quasitraceless, while retaining a positive
+finite-set central-isometry defect.  The key compactness theorem is that
+absence of normalized 2-quasitraces is witnessed by a finitely generated
+unital subalgebra.
+
+By the Blackadar--Handelman matrix criterion, the finite obstruction seed
+has properly infinite unit at a least finite matrix level.  Thus
+`stw78-counterexamples-have-two-finite-witnesses` reduces the open problem
+to making this concrete finite matrix witness interact with the concrete
+positive centralization defect.
+
+`stw78-central-matrix-folding-descends-proper-infiniteness` proves the exact
+folding step in a positive class: a central `M_n` from the domain folds a
+properly infinite `M_n(C)` back into the sequence relative commutant whenever
+the finite seed `C` commutes with the image.  The universal obstruction is
+therefore the absence of those two interaction properties, not the folding
+calculation.
+
+If the domain has unital central matrix blocks of unbounded size and the
+ordinary relative commutant contains a unital quasitraceless subalgebra,
+`stw78-unbounded-central-matrices-close-relative-quasitrace-case` supplies
+the matching properly infinite amplification automatically and proves the
+map O-infinity-stable.  No exactness or nuclearity of the target is used.
+
 ## Attempts
 
 An irreducible embedding into `B(H)` is not a counterexample merely because
