@@ -92,3 +92,23 @@ are operator-norm distance `2`.  As `x` necessarily moves with `n`, this does
 not contradict their eventual equality on every fixed lamp.  It proves that
 choosing the good lift requires uniform whole-module information absent from
 pointwise corona covariance.
+
+For the final calibration take `A=F_2`.  A nontrivial left translation
+stabilizing a finite nonempty set would act on it as a finite permutation,
+so some positive power would fix a point; torsion-freeness of `F_2` rules
+this out.  Hence the orbit of each `chi_(E_n)` is the regular `F_2` orbit.
+Kesten's calculation for the four-generator simple random walk gives norm
+`sqrt(3)/2` and gap `1-sqrt(3)/2`.
+
+In the complete energy, the block from `chi_(E_n)` to its absent target has
+normalized squared mass `1/2`.  The absent atom at
+`s^(-1).chi_(E_n)` has prescribed target `chi_(E_n)`, contributing the other
+`1/2`; hence `E_(s,n)=1`.  Finally
+
+```text
+rho_n(delta_e)=diag(1,-1),
+z=[[0,1],[1,0]],
+[rho_n(delta_e),z]=-I=J,
+```
+
+so the mark is fully separated with zero seed defect.
