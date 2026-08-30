@@ -27,6 +27,25 @@ The stronger `Cu(𝒵)`-valued assertion in the first half of XCV has already
 been refuted elsewhere in this graph.  Its examples remain pure and do not
 decide the general half studied here.
 
+## One Z-stable factor
+
+The Z-absorbing positive class does not require nuclearity of either factor.
+If `A tensor Z~=A`, then minimal-tensor associativity and symmetry give
+
+```text
+(A tensor_min B) tensor_min Z
+ ~= (A tensor_min Z) tensor_min B
+ ~= A tensor_min B.
+```
+
+Tensoring the absorption isomorphism and its inverse with `id_B` proves the
+middle equivalence without exactness of `B`.  Hence the product is Z-stable,
+so its first-factor Cuntz map is an isomorphism and its Cuntz semigroup is
+almost unperforated and almost divisible.  Therefore the product is pure.
+This argument does not even require `B` to be pure.  In particular, both
+factors of any XCV counterexample must be non-Z-stable, and the nonexact
+excess-kernel mechanism cannot work after Z-stabilizing either input.
+
 ## AF-factor positive class
 
 Let `F` be finite dimensional.  Morita invariance and finite direct sums give
