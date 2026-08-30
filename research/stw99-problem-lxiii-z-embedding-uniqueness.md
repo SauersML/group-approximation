@@ -67,6 +67,14 @@ This is **STW Problem LXIII and remains open at the audit boundary
   cardinal-rank ideals, so Gabe's full-map classification gives asymptotic
   uniqueness.  This route never claims that arbitrary nonzero projections
   are equivalent or that the target is C-star simple.
+- **Strongly purely infinite C-star targets are positive.**
+  `stw63-strongly-purely-infinite-targets-have-uniqueness` extracts the
+  internal target theorem behind the type-III argument: every two unital
+  Jiang--Su embeddings into any unital strongly purely infinite C-star
+  algebra are asymptotically unitarily equivalent.  The maps are nuclear and
+  automatically full, their nuclear `KK` classes agree, and Gabe's map
+  classification applies.  No von Neumann shadow, bidual return, target
+  simplicity, nuclearity, separability, or Z-stable hull is used.
 - **Arbitrary-cardinal type-I factors are eliminated.**
   `stw63-arbitrary-type1-factor-uniqueness` combines the finite-copy fullness
   inequality with infinite-cardinal arithmetic and Hadwin's nonseparable
