@@ -5,7 +5,7 @@ kind: claim
 title: Finite equation and finitely generated centralizer switches cannot encode totality
 distinct_from:
   amenability-of-finite-presentations-is-pi2-complete: that asks for a Pi-zero-two hard amenability family; this rules out the most direct finite-equation and finitely generated centralizing-HNN switches.
-  amenability-of-finite-presentations-arithmetical-position: that obtains first-level hardness by Adian--Rabin; this explains why replacing its single word by any finite packet remains at the first level.
+  amenability-of-finite-presentations-arithmetical-position: that records the arithmetical position whose hardness half comes from Adian--Rabin; this explains why replacing its single word by any finite packet remains at the first level.
 ---
 
 **ESTABLISHED.**  For a computable family of finite presentations
