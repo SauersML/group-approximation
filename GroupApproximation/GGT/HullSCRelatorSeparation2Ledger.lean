@@ -54,9 +54,12 @@ number of sides is not used and is not going to be proved.
   `GGT.OsinComponents.exists_other_component_of_deep_six_at` states the
   deep-six step at this chain's own pair, and
   `GGT.OsinComponents.exists_deep_match_hyp` discharges it from four-point
-  hyperbolicity outright.  `GGT.OsinComponents.two_block_conj_named_at` and
-  `GGT.OsinComponents.two_block_conj_named_hyp` do the same on the gap side,
-  and `GGT.OsinComponents.exists_eps_matchedPair_hyp` packages that one.  Both
+  hyperbolicity outright.  On the gap side
+  `GGT.OsinComponents.two_block_conj_of_hyperbolic` proves the two-block
+  conjugation from `hδ` at every real `b ≥ 0`, with the passage to `⌈b⌉₊`
+  inside it; `GGT.OsinComponents.two_block_conj_named_hyp` is its instance at
+  `b := (bn : ℝ)`, the one pair this chain spends, and
+  `GGT.OsinComponents.exists_eps_matchedPair_hyp` packages that one.  Both
   producers deliver the interfaces of
   `GGT/HullSCRelatorSeparation2ApplyIface.lean`, so the composition takes `hδ`
   and no longer carries `hbound` at all.
@@ -126,6 +129,25 @@ discharged by `GGT.OsinComponents.innermost_of_sideExclusions` and
 `otherArc_of_sideExclusions`, composed in
 `GGT.OsinComponents.exists_eps_matchedPair`).
 
+  **They carry a component-start clause, and the version without it is FALSE.**
+  Quantified over every index `i'` of the side, the exclusion at `i' = i + 1`
+  excludes the span of the matched component itself --- the value of a
+  `lam`-letter, which lies in `H lam`.  `HullSC.not_sideExclusion_of_isComp`
+  derives `False` from it, using only the component and the side's letters,
+  both of which the matching step has in hand.  The chain carried that form
+  until 2026-08-29 and was vacuous for as long as it did; the defect entered at
+  `HullSC.cross_of_notSameSide`, which destructured the same-side disjunct of
+  `exists_other_component_of_deep_six` and discarded its `IsCompStart` clause
+  before applying the exclusion.  The repaired form is
+
+      ∀ i' ≤ q.length, i' ≠ i →
+        IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') →
+          (vertex 1 q i)⁻¹ * vertex 1 q i' ∉ D.fam lam
+
+  which is item 3 as stated in words, and which `i + 1` does not satisfy:
+  adjacent letters of one index lie in ONE component.  Both consumers had the
+  clause already.
+
   The exclusions are not a new debt.  They come in two halves, and only the
   second is owed: the geometry bounds how far apart two connected components of
   one side can be -- `HullSC.index_close_of_connected` gives `i' - i ≤ 1 + b`,
@@ -136,6 +158,21 @@ discharged by `GGT.OsinComponents.innermost_of_sideExclusions` and
   `GGT.OsinComponents.not_connected_qBlock_of_isComp`, reads `distance ≤ 1` off
   as `|i - i'| ≤ 1` and needs the side GEODESIC; the sides here are not, which
   is why the design carries this and not the geometry.
+
+  **What the design does not yet reach.**  The window clause excludes
+  `a s ^ n * listVal (blockWord h₀ h₁ t (post.take r))` from `D.fam (!s)`, a
+  block letter followed by a pure RUN of block letters.  For the same-family
+  exclusion the first letter is peeled: if `span(i, i') ∈ H lam` then
+  `span(i+1, i') = (a lam ^ n)⁻¹ · span(i, i') ∈ H lam` as well, and that span
+  starts at an `!lam`-letter, so the window clause at `s := !lam` excludes it
+  from `D.fam (!(!lam)) = D.fam lam`.  That covers every range lying inside the
+  run.  It does not cover a range crossing the base arc, which
+  `HullSC.index_close_of_connected` leaves within reach --- `1 + |p| + c`
+  exceeds `|p|` --- and where the span has `listVal p = t⁻¹` as an interior
+  factor.  Closing that needs a through-the-base version of
+  `HullSC.exists_separated_exponents_window`: finitely many patterns of block
+  letters either side of the base arc, and a finite bad set for each, by the
+  same argument the window lemma already runs.
 
 **4. `HullConeOffStatement₂` and `DGOQuotientStatementGeodesic`.**  Citations:
 Hull's §5, that the cone-off along a pair exists with the data
