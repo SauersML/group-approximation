@@ -1,4 +1,5 @@
 import Mathlib.Algebra.Group.Subgroup.Basic
+import Mathlib.Algebra.Ring.Int.Defs
 
 /-!
 # Problem XCV: the compact `K₀` obstruction
@@ -31,8 +32,12 @@ theorem int_not_addEquiv_int_prod_int : ¬ Nonempty (ℤ ≃+ ℤ × ℤ) := by
   have image_eq_zsmul (k : ℤ) : e k = k • e 1 := by
     have h1 : e (k • (1 : ℤ)) = k • e 1 := map_zsmul e k 1
     simpa using h1
-  have hm' : m • e 1 = (1, 0) := by simpa [image_eq_zsmul] using hm
-  have hn' : n • e 1 = (0, 1) := by simpa [image_eq_zsmul] using hn
+  have hm' : m • e 1 = (1, 0) := by
+    rw [← image_eq_zsmul]
+    exact hm
+  have hn' : n • e 1 = (0, 1) := by
+    rw [← image_eq_zsmul]
+    exact hn
   have hma : m * (e 1).1 = 1 := by
     simpa using congrArg Prod.fst hm'
   have hmb : m * (e 1).2 = 0 := by
