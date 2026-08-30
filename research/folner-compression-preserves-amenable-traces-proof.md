@@ -73,7 +73,7 @@ tr(Phi(a))     -> |F|^-1 sum_(s in F) tau(alpha_(s^-1)(a))
 
 The last equality is invariance of `tau`.  Fourier density, u.c.p.
 contractivity, an exhaustion of `B`, and a diagonal choice of `F` and
-`phi` give Brown's u.c.p.--Hilbert--Schmidt criterion for `sigma).
+`phi` give Brown's u.c.p.--Hilbert--Schmidt criterion for `sigma`.
 
 The proof only precomposes with the full-to-reduced quotient; it never asserts
 that the two crossed products coincide.  The expectation and `sigma` factor

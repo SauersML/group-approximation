@@ -56,7 +56,7 @@ Every output block is a bounded-length sum of terms
 nonzero blocks.  With normalized traces on both matrix levels, an entrywise
 defect at most `delta` therefore gives total defect at most `C delta`,
 where `C` depends only on the fixed Fourier packet, not on `F` or `k`.
-Choose the amenable-trace model after `F), with `delta` arbitrarily small.
+Choose the amenable-trace model after `F`, with `delta` arbitrarily small.
 
 The diagonal of a nonidentity Fourier shift is zero.  The identity coefficient
 has diagonal entries `alpha_(s^-1)(a)`; invariance of the trace makes their
@@ -84,8 +84,8 @@ operator-norm trace models prove quasidiagonality of the canonical trace.
   entrywise application preserves.  It does not claim that an arbitrary cp
   map preserves rank.
 - **Order of choices:** first choose a Folner set, then include every resulting
-  orbit coefficient in the finite packet for `phi).  Dimensions may depend
-  on `F); normalized boundary rank cancels the matrix size.
+  orbit coefficient in the finite packet for `phi`.  Dimensions may depend
+  on `F`; normalized boundary rank cancels the matrix size.
 - **Why QD does not follow:** the boundary has small normalized rank, not small
   operator norm.  The literal group proves this distinction is realized.
 - **Why LEF alone is not used:** the base theorem assumes every finitely

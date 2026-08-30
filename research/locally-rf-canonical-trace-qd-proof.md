@@ -9,7 +9,7 @@ artifacts:
   - research/artifacts/amenable-crossed-product-trace-dichotomy-2026-08-30.md
 ---
 
-Fix a finite packet in `C[K]), enlarged by the products and adjoints needed
+Fix a finite packet in `C[K]`, enlarged by the products and adjoints needed
 for an operator-norm trace model, and let `H<=K` be the subgroup generated
 by every group element in the packet.  It is finitely generated and hence
 residually finite.  One finite quotient
