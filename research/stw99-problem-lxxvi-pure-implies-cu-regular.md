@@ -55,13 +55,17 @@ The same is now proved for circle fields in
 the compact clutching term, while the noncompact term is pointwise.  In
 particular `C(T) tensor C*_r(F_2)` is Cu-regular but not Z-stable.
 
-There is now a broader one-dimensional-base theorem under an exact fiber
-`K_1` hypothesis.  If `X` is any finite graph and `D` is simple, separable,
-stably finite, pure, and `K_1(D)=0`, then
-`stw99-lxxvi-finite-graph-fields-over-k1-trivial-pure-fibers` proves that
-`C(X,D)` is pure and Cu-regular.  This allows arbitrary finite branching and
-cycle rank.  The proof uses the published idealwise-`K_1`-free pointwise Cu
-formula for one-dimensional spaces, not an unproved graph pullback formula.
+There is now a broader one-dimensional-base theorem at the exact idealwise
+`K_1`-free boundary.  For every second-countable locally compact Hausdorff
+space `X` of dimension at most one,
+`stw99-lxxvi-one-dimensional-formation-preserves-cu-regularity` proves that
+`C_0(X,B)` is Cu-regular whenever both `B` and `B tensor Z` have stable rank
+one and idealwise vanishing `K_1`, and the actual coefficient first-factor Cu
+map is an isomorphism.  In particular, if `D` is simple, separable, stably
+finite, pure, and `K_1(D)=0`, then `C_0(X,D)` is pure and Cu-regular.  This
+permits noncompact bases, infinite branching, and infinitely many cycles.  The
+proof uses the published pointwise Cu formula, not an unproved graph pullback
+formula.
 
 ## Literature boundary
 
@@ -122,7 +126,7 @@ coefficient in which the scalar unstable class survives before tensoring.
 Such a coefficient cannot contain `Z` unitally; in particular
 `C*_r(F_2)` is now rigorously excluded.  The circle theorem separately shows
 that no one-dimensional clutching analogue can work on a single circle.  The
-finite-graph theorem rules out every finite graph when the simple fiber has
-trivial `K_1`.  For arbitrary `K_1`, a graph with a cycle can retain
-supportwise clutching data not visible in pointwise `Lsc` functions, so the
-general finite-graph case is not claimed.
+one-dimensional theorem rules out every second-countable locally compact base
+when the simple fiber has trivial `K_1`.  For arbitrary `K_1`, even a finite
+graph with a cycle can retain supportwise clutching data not visible in
+pointwise `Lsc` functions, so no unrestricted pointwise formula is claimed.
