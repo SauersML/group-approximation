@@ -2752,6 +2752,7 @@ import GroupApproximation.Analysis.ArvesonBHSeparable
 import GroupApproximation.Analysis.VoiculescuGlimmEscape
 import GroupApproximation.Analysis.VoiculescuGlimmCompression
 import GroupApproximation.GGT.GuessingGeodesicsSegment
+import GroupApproximation.Analysis.VoiculescuGlimmReflection
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
