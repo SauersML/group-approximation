@@ -58,7 +58,8 @@ theorem exists_sepDataFam_of_hemb [Fintype Λ] (D : RelGenSet G Λ)
   refine ⟨C, hCpos, fun Dc hDc hthr h511 => ?_⟩
   have h48 := lemmaFourEight_forall_of_bound D hsymm hbnd hthr
   have hgap : Lemma511EntranceGapBound D Dc :=
-    entranceGapBound_of_fourGonAlternative D Dc h511
+    entranceGapBound_of_fourGonAlternative D Dc
+      (fourGonAlternative_of_match D hsymm hbnd hthr h511)
   have hcover := lemmaFourNineCover_of_bound D hsymm hbnd hthr h48
   have h49 := lemmaFourNine_of_bound D hsymm hbnd hthr h48
   have hdist := dist_le_sep_enlargedY D hDc hsymm h48

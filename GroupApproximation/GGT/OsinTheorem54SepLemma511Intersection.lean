@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.OsinTheorem54SepLemma49
 import GroupApproximation.GGT.OsinTheorem54SepLemma511Count
 import GroupApproximation.GGT.DGOIsolatedComponentSplit
+import GroupApproximation.GGT.OsinTheorem54SepEntranceConnector
 
 /-!
 # Osin's Lemma 5.11: the shared separating coset
@@ -349,6 +350,72 @@ def Lemma511FourGonAlternative (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
             (vertex (1 : G) p i)⁻¹ * vertex (1 : G) s a ∈ D.relBall lam Dc ∧
             (vertex (1 : G) s a')⁻¹ * vertex k p j ∈ D.relBall lam Dc
 
+/-- **The remaining matching dichotomy in the four-gon.**
+
+Either the edge joining the two occurrences of the shared coset is isolated
+and hence already short, or it is connected to a component of a geodesic
+`s : 1 → k`.  Only equality of the cosets is recorded here: the two connector
+bounds follow from `entranceConnector_mem_relBall_of_bound`, once from origin
+`1` and once from origin `k` after reversing `s`. -/
+def Lemma511FourGonMatchAlternative (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
+  ∀ (lam : Λ) (k z : G) (p : List (RelLetter G Λ))
+    (i i' j j' : ℕ), IsGeodesicWord D 1 z p →
+      IsComp lam p i i' → IsComp lam p j j' →
+      (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) =
+        QuotientGroup.mk (vertex k p j) →
+      (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) ∉
+        sepSet D lam Dc 1 k →
+      (vertex (1 : G) p i)⁻¹ * vertex k p j ∈ D.relBall lam Dc ∨
+        ∃ (s : List (RelLetter G Λ)) (a a' : ℕ),
+          IsGeodesicWord D 1 k s ∧ IsComp lam s a a' ∧
+            (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) =
+              QuotientGroup.mk (vertex (1 : G) s a)
+
+/-- **A matching component supplies both short connectors.**
+
+The entrance connector is the common-origin theorem at `1`.  For the exit
+connector, reverse `s`; its component then starts at the old exit vertex, and
+compare it with the translated copy of `p`, both based at `k`. -/
+theorem fourGonAlternative_of_match (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {C Dc : ℕ}
+    (hbnd : ∀ (n : ℕ), n ≤ 6 → ∀ (v : G) (u : List (RelLetter G Λ)),
+      IsQuasiGeodesicPolygon D 1 0 n v u →
+      ∀ (nu : Λ) (i k : ℕ), IsComp nu u i k → IsIsolated D.fam nu v u i →
+        (vertex v u i)⁻¹ * vertex v u k ∈ D.relBall nu (C * n))
+    (hDc : C * 4 ≤ Dc) (hmatch : Lemma511FourGonMatchAlternative D Dc) :
+    Lemma511FourGonAlternative D Dc := by
+  intro lam k z p i i' j j' hp hi hj hcos hnot
+  rcases hmatch lam k z p i i' j j' hp hi hj hcos hnot with hdirect |
+      ⟨s, a, a', hs, hd, hmatchcos⟩
+  · exact Or.inl hdirect
+  right
+  refine ⟨s, a, a', hs, hd, ?_, ?_⟩
+  · exact entranceConnector_mem_relBall_of_bound D lam hsymm hbnd hDc hp hs hi hd
+      hmatchcos
+  · have hpk : IsGeodesicWord D k (k * z) p := by
+      have h := (isGeodesicWord_mul_left D k 1 z p).mpr hp
+      simpa using h
+    have hsrev : IsGeodesicWord D k 1 (revWord s) :=
+      isGeodesicWord_revWord D hsymm hs
+    have hdrev : IsComp lam (revWord s) (s.length - a') (s.length - a) :=
+      isComp_revWord lam s hd
+    have hsend : vertex k (revWord s) (s.length - a') = vertex (1 : G) s a' := by
+      have h := vertex_revWord_of_end s 1 a'
+      have hk : (1 : G) * RelLetter.listVal s = k := by simpa using hs.2.1
+      rwa [hk] at h
+    have hdcos :
+        (QuotientGroup.mk (vertex (1 : G) s a) : G ⧸ D.fam lam) =
+          QuotientGroup.mk (vertex (1 : G) s a') :=
+      mk_vertex_eq_of_isComp D 1 hs.1 hd
+    have hcos' :
+        (QuotientGroup.mk (vertex k (revWord s) (s.length - a')) :
+            G ⧸ D.fam lam) = QuotientGroup.mk (vertex k p j) := by
+      rw [hsend]
+      exact hdcos.symm.trans (hmatchcos.symm.trans hcos)
+    have hright := entranceConnector_mem_relBall_of_bound D lam hsymm hbnd hDc
+      hsrev hpk hdrev hj hcos'
+    rwa [hsend] at hright
+
 /-- **The four-gon alternative implies equation (38).**
 
 In the isolated-edge branch, monotonicity gives the stated radius.  In the
@@ -496,7 +563,7 @@ theorem sharedGap_of_entranceGapBound [Fintype Λ]
 /-- The exact remaining geometry of Lemma 5.11: construct the three pieces of
 the local four-gon estimate (38). -/
 def Lemma511Geometry [Fintype Λ] (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
-  Lemma511FourGonAlternative D Dc
+  Lemma511FourGonMatchAlternative D Dc
 
 /-- A nonempty finite set of at most `n` elements can be enumerated by
 `Fin n`.  The unused indices are filled with one element of the set. -/
