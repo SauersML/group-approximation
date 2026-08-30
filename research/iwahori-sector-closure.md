@@ -13,14 +13,14 @@ artifacts:
 ---
 
 A positive answer to `iwahori-local-global-defect-question` — the printed
-Dogon–Vigdorovich Question 1.2, that the global distance `D(π)` to a compatible
+Dogon–Vigdorovich Question 1.4, that the global distance `D(π)` to a compatible
 representation is controlled by a modulus in the local Iwahori defect
 `def(π)` — gives Hilbert–Schmidt stability of the amalgam
 `SL₂(ℤ) *_B SL₂(ℤ) ≅ SL₂(ℤ[1/2])`. That group is an `S`-arithmetic lattice
 in `SL₂(ℝ) × SL₂(ℚ_p)` satisfying the hypotheses of
 `dv-s-arithmetic-hs-stable-nonhyperlinear-extension`, so it has a
 non-hyperlinear finite central extension, which is the goal. This is their
-Corollary 1.3, and it is the composition they perform; this route does not
+Corollary 1.5, and it is the composition they perform; this route does not
 re-derive it.
 
 The candidate produced is an amalgamated free product of virtually free groups
