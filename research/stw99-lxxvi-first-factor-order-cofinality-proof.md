@@ -58,6 +58,26 @@ y=[sum_j alpha_j alpha_j*] in Cu(A),
 
 equations `(P2)--(P3)` prove `(OC1)`.
 
+Now specialize to `B=Z` and separable `A`.  Let `J=Ideal(a)` in
+`A tensor_min Z`.  The ideal correspondence gives a unique ideal `I` of
+`A` with
+
+```text
+J=I tensor_min Z.                                        (P4)
+```
+
+Because `a^(1/2)` belongs to `J`, the algebraic approximation `z` above may
+be chosen in `(I tensor K) algebraicTensor Z`.  Every coefficient
+`alpha_j` then lies in `I tensor K`, so
+
+```text
+y=[sum_j alpha_j alpha_j*] in Cu(I).
+```
+
+Consequently `Ideal(Cu(iota)(y))` is contained in `J=Ideal(x)`, proving
+`(OC3)`.  Notice that the proof localizes the coefficients before forming
+their row; it does not infer ideal membership from the final comparison.
+
 For the global assertion, choose a rapidly increasing sequence
 `x_1<<x_2<<...` with supremum `x`.  Apply `(OC1)` to obtain
 `x_n<=Cu(iota)(y_n)`.  The partial sums
@@ -75,7 +95,14 @@ x=sup_n x_n <= sup_n Cu(iota)(s_n)=Cu(iota)(y),
 
 which is `(OC2)`.
 
+In the `Z` case apply the ideal-local construction to every `x_n<<x`.
+All `y_n` then belong to the same source ideal `I` corresponding to
+`Ideal(x)`.  Hence `y=sup s_n` belongs to `Cu(I)`, so
+`Ideal(Cu(iota)(y))` is contained in `Ideal(x)`.  The reverse inclusion
+follows from `x<=Cu(iota)(y)`, proving `(OC4)`.
+
 **Trust boundary.**  The proof places an image element above a compactly
-contained window, and then above the whole class by a countable sum.  It
-does not place a nonzero image class inside the hereditary support of `x`,
-does not reflect comparison, and does not approach surjectivity.
+contained window, and then above the whole class by a countable sum.  In the
+`Z` case it can keep that element in the correct closed ideal, but not in the
+hereditary subalgebra of `x`.  It does not reflect comparison and does not
+approach surjectivity.
