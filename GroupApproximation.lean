@@ -2872,6 +2872,7 @@ import GroupApproximation.Analysis.VoiculescuBlockAbsorption
 import GroupApproximation.GGT.HullSCConeOffHeavyMatched
 import GroupApproximation.GGT.HullSCConeOffHeavyFellowTravel
 import GroupApproximation.GGT.OlshanskiiLemma25
+import GroupApproximation.Analysis.VoiculescuPartition
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
