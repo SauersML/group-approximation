@@ -65,6 +65,20 @@ trace-preserving free-product assembly are unavailable even at infinite
 Watatani index; passing to corners or injective limits of such corners cannot
 repair the obstruction.
 
+HNN extensions face a sharper rank dichotomy.
+`stw99-lxvi-car-hnn-trace-balance-dichotomy` proves that, inside any finite
+unital ambient algebra containing CAR, two CAR projections which become
+equivalent must have the same CAR trace.  Otherwise CAR comparison places a
+copy of the smaller projection properly inside the larger, making the latter
+and then the ambient unit infinite.  Hence an HNN covariance between two
+real-rank-zero edge embeddings must preserve the CAR trace.  For a
+finite-dimensional edge, trace mismatch makes the HNN unit infinite, while
+trace balance supplies a faithful trace on the reduced HNN algebra (and on a
+simple full HNN algebra), making it stably finite.  Thus the obvious
+non-trace-preserving HNN escape is also closed: a live HNN route would need
+trace mismatch invisible on projections or a substantially nonstandard
+simple envelope.
+
 A second broad no-go concerns ambient regularity rather than the CAR
 inclusion.  `stw99-lxvi-z-stability-forbids-mixed-projections` proves that a
 simple unital Z-stable algebra is either stably finite or has every nonzero

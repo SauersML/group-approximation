@@ -131,3 +131,35 @@ case).  A faithful expectation onto CAR need not make `tau_D after E`
 tracial, and a nonsimple full product may have a nonzero regular kernel, so
 neither is claimed.  Those non-trace-preserving, nonreduced possibilities
 remain outside this obstruction.
+
+## HNN trace-balance dichotomy
+
+The most direct non-trace-preserving HNN escape is nevertheless impossible.
+Let `D=CAR subset A` unitally with `1_A` finite.  If projections `p,q in D`
+are equivalent in `A`, they have equal CAR trace.  Indeed, if
+`tau_D(p)<tau_D(q)`, CAR comparison supplies `r<q` equivalent to `p` inside
+`D`; ambient equivalence then gives `q~p~r<q`, so `q` and hence `1_A` are
+infinite.
+
+Therefore two embeddings `theta_0,theta_1:C->D` of a real-rank-zero edge
+algebra can be conjugated by an ambient HNN unitary in a finite algebra only
+if
+
+```text
+tau_D after theta_0=tau_D after theta_1.
+```
+
+For finite-dimensional `C` the dichotomy is complete.  Unequal edge traces
+already make the full and reduced HNN units infinite.  Equal edge traces
+give faithful trace-preserving expectations onto the edge images, and the
+canonical reduced HNN trace is faithful, hence stably finite.  The full HNN
+algebra has the pulled-back trace; if it is simple, its quotient onto the
+reduced algebra is injective and it too is stably finite.
+
+This no-go uses neither finite Watatani index nor a pre-existing ambient
+trace.  It shows that projection-visible trace imbalance cannot be the
+mechanism which keeps the CAR unit finite while creating matrix instability.
+The remaining HNN possibility would require an edge algebra whose distinct
+induced traces agree on every projection (so real rank zero is excluded), or
+a nonstandard envelope outside both sides of the usual full/reduced
+dichotomy.
