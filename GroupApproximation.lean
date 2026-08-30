@@ -2956,3 +2956,4 @@ import GroupApproximation.GGT.DGOWWordConditions
 import GroupApproximation.GGT.DGOLemma421Statement
 import GroupApproximation.GGT.DGOAlphabetEnlargementWWords
 import GroupApproximation.GGT.RelHypSuitabilityClosure
+import GroupApproximation.GGT.DGOWindmillCyclic
