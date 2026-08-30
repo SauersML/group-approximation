@@ -2730,6 +2730,8 @@ import GroupApproximation.GGT.OsinTheorem54SepLemma45
 import GroupApproximation.Analysis.VoiculescuUnitOfProjections
 import GroupApproximation.Analysis.VoiculescuProjectionSequence
 import GroupApproximation.Analysis.VoiculescuProjectionAssembly
+import GroupApproximation.GGT.DGOProposition433Ball
+import GroupApproximation.GGT.DGOProposition433Finite
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
