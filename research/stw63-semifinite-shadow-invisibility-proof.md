@@ -10,9 +10,9 @@ requires:
 
 If `M!=0`, the compositions `pi phi` and `pi psi` are unital.  Since `Z` is
 simple, every unital star homomorphism out of `Z` is injective.  They are
-therefore two unital embeddings into the separably acting semifinite von
-Neumann algebra `M`.  The required theorem supplies unitaries `u_n in M`
-with
+therefore two unital embeddings into a von Neumann algebra `M` which is
+either finite or separably acting semifinite.  The required theorem supplies
+unitaries `u_n in M` with
 
 ```text
 ||u_n pi(phi(a))u_n* - pi(psi(a))|| -> 0             (a in Z).
@@ -25,4 +25,3 @@ Notice that the implementing unitaries need not lie in `pi(B)`.  Returning
 them from `M` to the represented C-star algebra is exactly the lifting step
 which this theorem does not provide and which an LXIII counterexample must
 defeat.
-

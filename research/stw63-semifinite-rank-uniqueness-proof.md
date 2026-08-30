@@ -9,6 +9,21 @@ artifacts:
   - research/artifacts/stw63-z-embedding-audit-2026-08-30.md
 ---
 
+First suppose that `M` is finite; no countability hypothesis is needed in
+this case.  Let `Phi:M->Z(M)` be its center-valued trace.  Every state
+`omega` on `Z(M)` makes `omega Phi phi` and `omega Phi psi` tracial states
+on `Z`, so uniqueness of the trace of `Z` gives
+
+```text
+Phi phi(a)=tau_Z(a)1=Phi psi(a)                 (a in Z).    (0)
+```
+
+The finite-von-Neumann uniqueness theorem for strongly LF-embeddable
+domains applies because `Z` is ASH, and gives approximate unitary
+equivalence.  Its formulation permits a net of unitaries; since `Z` is
+separable, the usual finite-set diagonal extraction gives a sequence.
+
+It remains to treat a semifinite `M` acting on a separable Hilbert space.
 Let `z_f` be the largest central projection for which `z_f M` is finite.
 Write
 
@@ -80,4 +95,3 @@ The imported results are exactly the finite center-valued-trace theorem and
 the no-finite-summand ASH rank theorem of Li--Hadwin--Liu, documented in the
 artifact.  The support-rank collapse (3)--(4) and the central splitting
 application to `Z` are internal.
-
