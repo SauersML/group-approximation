@@ -151,7 +151,7 @@ nuclear-dimension assumption.  The imported boundary is Voiculescu's
 noncommutative Weyl--von Neumann absorption theorem; the central-isometry
 calculation is internal.
 
-## Product-coordinate comparison mechanism
+## Product-and-arbitrary-quotient comparison mechanism
 
 Finite nuclear dimension gives a positive class beyond AF range, `B(H)`
 targets, and the zero-colour support criteria.  Let
@@ -164,19 +164,28 @@ where every `B_lambda` is unital, simple, and has almost-unperforated Cuntz
 semigroup.  If the product unit is properly infinite, then so is every
 coordinate unit.  This excludes normalized coordinate quasitraces, and the
 simple almost-unperforated dichotomy makes every factor purely, hence
-strongly purely, infinite.  Finite nuclear dimension makes each coordinate
-map nuclear, so the existing nuclear-map absorption theorem makes every
-coordinate map O-infinity-stable.
+strongly purely, infinite.
 
-The new step is the reverse passage from coordinates to the product.  For a
-fixed finite domain packet and tolerance, choose centralizing orthogonal
-isometries in every coordinate at half that tolerance.  Their product is an
-exact pair of orthogonal isometries, and the product norm is the supremum of
-the coordinate norms.  Thus the same tolerance holds uniformly and the
-finite-set centralization defect in the product vanishes.
+The stronger new step is target-level rather than map-relative.
+Kirchberg--Sierakowski, Remark 3.2(i), characterizes strong pure infiniteness
+by three matrix-diagonalization inequalities whose two witnesses may be
+chosen to be contractions.  Given two positive product elements, one
+arbitrary product element, and `epsilon>0`, solve these inequalities in every
+coordinate at tolerance `epsilon/2`.  The contractions assemble into product
+elements with norm at most one.  Taking the supremum of the coordinate errors
+gives errors at most `epsilon/2<epsilon`, proving that the arbitrary product
+itself is strongly purely infinite.
 
-This argument works for arbitrary, including uncountable, products and does
-not assume any central splitting of the outgoing nuclear-dimension colours.
-It also needs only proper infiniteness of the image unit, rather than of every
-nonzero image positive.  Arbitrary products of simple purely infinite
-algebras give concrete nonsimple and generally nonseparable examples.
+This proof survives every quotient, not only coordinate quotients.  Lift the
+two positive test elements positively and the off-diagonal test element
+arbitrarily, solve the three inequalities in the product, and apply the
+quotient map.  Contractivity preserves the bounds, so every nonzero quotient
+is strongly purely infinite.  No lifting of quotient isometries and no
+description of product ideals is used.
+
+Gabe's nuclear-map theorem now applies to every nuclear map from a separable
+exact algebra into any such quotient.  This works for arbitrary, including
+uncountable, products and arbitrary quotient ideal geometry.  It needs only
+proper infiniteness of the original product unit, rather than of every
+nonzero image positive; finite nuclear dimension enters only by implying
+nuclearity of the map.

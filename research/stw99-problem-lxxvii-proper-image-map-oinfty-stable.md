@@ -42,14 +42,16 @@ when searching for a counterexample.
   no nuclear-dimension assumption.  Here pointwise proper infiniteness makes
   the range representation essential, and Voiculescu absorption produces
   central isometries without splitting outgoing color supports.
-- `stw77-products-of-simple-comparison-targets-solve-map` proves the problem
-  for arbitrary products of unital simple targets with almost-unperforated
-  Cuntz semigroups.  Finite nuclear dimension supplies nuclearity in each
-  coordinate, while proper infiniteness of the product unit excludes
-  coordinate quasitraces.  Coordinatewise O-infinity-stability can then be
-  assembled at one uniform finite-set tolerance.  In this product class the
-  hypothesis on every nonzero range positive is stronger than needed: the
-  unit alone suffices.
+- `stw77-comparison-product-quotients-solve-map` proves much more for an
+  arbitrary product of unital simple targets with almost-unperforated Cuntz
+  semigroups.  Proper infiniteness of the product unit makes every factor
+  strongly purely infinite.  The uniform contraction characterization then
+  makes the entire product strongly purely infinite, and the same inequalities
+  pass to every nonzero quotient, including quotients with no coordinate
+  description.  Hence every nuclear map from a separable exact domain into
+  any such quotient is strongly O-infinity-stable.  For this class the unit
+  alone suffices; finite nuclear dimension is used only to supply nuclearity
+  of the map.
 - `stw77-properly-infinite-colored-centralizer-fusion` is a local, uniform
   finite-color statement which would solve the problem.  Its key unresolved
   step is fusion across the noncommuting order-zero colors.
