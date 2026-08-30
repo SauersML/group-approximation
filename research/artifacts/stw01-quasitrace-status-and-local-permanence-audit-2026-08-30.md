@@ -221,6 +221,43 @@ quasitrace-nullity of these commutators is the exact algebraic threshold for
 the tail-homomorphism proof.  It does not show that a merely quasicentral
 approximate unit suffices.
 
+## Positive cuts which are projections only quasitracially
+
+The projectional hypothesis is not intrinsic to the argument.  If an ideal
+has an increasing positive-contractive approximate unit `(e_n)` with
+
+```text
+e_n-e_n^2 in J_bQT(A),             [e_n,A] subset J_bQT(A),
+```
+
+then the image of `e_n` in every individual square-null quotient is a central
+projection.  The hereditary head term is tracial whenever all bounded
+quasitraces on `Her_A(e_n)` are traces, and the complementary central tail
+has the same quotient ultralimit as before.  This proves
+`stw01-qt-idempotent-approximate-units-preserve-linearity`.
+
+This is strictly broader than projectional splitting.  Let
+
+```text
+D=C_0((0,1]) tensor K,
+A=C direct_sum D~,                 I=C direct_sum D.
+```
+
+The stable algebra `D` is invisible to bounded quasitraces, but it is stably
+projectionless: a projection section would have nonempty compact-open support
+in the connected noncompact space `(0,1]`.  Hence `I` has no projectional
+approximate unit, while it still carries the scalar trace.  The cuts
+
+```text
+e_n=(1, min(1,nt) tensor k_n)
+```
+
+have universally null commutators and idempotence defects.  Their hereditary
+algebras are a scalar summand plus `C_0((0,1]) tensor M_(rank(k_n))`, and the
+quotient is scalar.  Thus the positive-cut theorem reaches an extension
+covered by neither central/projectional splitting nor whole-ideal
+quasitrace invisibility.
+
 ## Sharp free-group tensor test
 
 STW, footnote 54, records an exact universal reformulation.  For every

@@ -49,3 +49,14 @@ The ideal may still carry nonzero traces.  This condition is exactly what
 makes every tail cut a star homomorphism in the individual quasitracial
 quotient; mere quasicentrality in norm remains insufficient for this
 argument.
+
+The projectional hypothesis can also be removed.
+`stw01-qt-idempotent-approximate-units-preserve-linearity` allows an
+increasing positive-contractive approximate unit `(e_n)` provided its
+idempotence defects and all its commutators lie in the universal bounded-
+quasitrace radical.  Each `e_n` then becomes a central projection only after
+passing to the square-null quotient of the quasitrace currently under study.
+This applies to traced ideals with no projectional approximate unit; an
+explicit example uses a scalar summand together with the stably projectionless
+stable algebra `C_0((0,1]) tensor K`.  Hence the exact tail-splitting mechanism
+is quasitracial idempotence, not projectionality inside the ambient algebra.
