@@ -2774,6 +2774,8 @@ import GroupApproximation.GGT.HullSCConeOffCyclicReduction
 import GroupApproximation.GGT.HullSCCyclicDisjointness
 import GroupApproximation.GGT.RelHypFreeProductElementaryClosure
 import GroupApproximation.Analysis.VoiculescuIsometryRepair
+import GroupApproximation.Analysis.VoiculescuOneStep
+import GroupApproximation.Analysis.VoiculescuAbsorption
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
