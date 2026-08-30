@@ -135,3 +135,19 @@ reduces, in the wpi case, to realizing the displayed three-line
 profile).  Conversely, proving that (O5)+(O6) exclude the profile
 would establish (V) for all wpi algebras, leaving only the
 ideal-filtered half of LXXII.
+
+**Circularity warning for (V)-attackers (checked against TV's
+definitions, arXiv Global-Glimm introduction, Def 5.1/Thm 5.2).**  The
+tempting one-line proof — split `c` by divisibility into `e_1 + e_2 ≤ c`
+with `x' ◁ e_i` and take `y = z = e` — requires SINGLE-witness
+`(2,ω)`-divisibility, which by TV Theorem 5.2(2) is EQUIVALENT to the
+Global Glimm Property: circular.  What nowhere-scatteredness (hence
+wpi) supplies is only the WEAK form (Thm 5.2(1)): `x' ≤ d_1 + … + d_n`
+with `2d_j ≤ c`, where no single `d_j` need carry the ideal of `x'`.
+Property (V) sits strictly between the weak and strong divisibilities,
+exactly as designed.  Also for the record: TV Theorem 5.8 gives (V)
+under topological dimension zero or stable rank one (via residual
+stable finiteness) — both corners are DISJOINT from wpi, which has no
+dimension functions at all; and TV Remark 5.7 gives (V) for
+sup-semilattice-ordered `Cu`, which is the abstract shadow of the
+coordinate-model verification above.
