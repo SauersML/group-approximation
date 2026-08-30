@@ -35,7 +35,8 @@ searches, followed by inspection of the theorem statements.
    type-III factor with separable predual, two unital nuclear maps are norm
    approximately unitarily equivalent exactly when their kernels agree.  It
    is derived from Kirchberg's asymptotic uniqueness theorem for simple
-   purely infinite codomains (Theorem A.2), and does not require the UCT.
+   purely infinite codomains (Theorem A.2), which imposes no separability
+   hypothesis on the codomain.  Theorem A.1 does not require the UCT.
 4. Q. Li, D. Hadwin, and W. Liu, *Approximate Equivalence in von Neumann
    Algebras*, *Operators and Matrices* 17 (2023), 1--23,
    DOI 10.7153/oam-2023-17-01; arXiv:2008.06619,
@@ -51,7 +52,15 @@ searches, followed by inspection of the theorem statements.
    graph route verifies their hypotheses for arbitrary Jiang--Su embeddings
    and proves the needed support-rank collapse on the properly infinite
    central piece.
-5. Targeted arXiv searches through 2026-08-30 for the exact combinations
+5. D. Hadwin, *Nonseparable approximate equivalence*, Transactions of the
+   AMS 266 (1981), 203--231, DOI 10.1090/S0002-9947-1981-0613792-6.
+   Theorem 2.5 classifies nondegenerate representations of an arbitrary
+   C-star algebra on an arbitrary Hilbert space up to norm approximate
+   unitary equivalence by equality of the Hilbert-space ranks of every image
+   element.  Hua--White restate this exact unrestricted formulation in their
+   introduction.  The new graph route checks its cardinal-rank hypothesis
+   for Jiang--Su embeddings.
+6. Targeted arXiv searches through 2026-08-30 for the exact combinations
    "Jiang--Su", "embedding", "approximately unitarily equivalent", and
    "Problem LXIII" found no later claim resolving the arbitrary unital
    codomain question.  The May 2026 paper arXiv:2605.22585 concerns unitary
@@ -67,7 +76,7 @@ as a premise in any graph route added with this artifact.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate five facts which do not depend on the literature
+The graph additions isolate seven facts which do not depend on the literature
 audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -97,3 +106,19 @@ audit.
    semifinite-central-summand unitary proves uniqueness in every separably
    acting von Neumann algebra.  Thus no counterexample can be detected in any
    separably acting von Neumann shadow, regardless of type.
+6. The separable-predual restriction can be weakened to sigma-finiteness for
+   type-III factors.  In such a factor equivalence of nonzero projections
+   gives `y*ay=1` for every nonzero positive `a`, and puts an infinite
+   projection in every nonzero hereditary subalgebra.  Hua--White Theorem A.2
+   then applies because the two Jiang--Su embeddings have equal nuclear KK
+   class.  This gives asymptotic uniqueness in every sigma-finite type-III
+   factor, and product closure gives approximate uniqueness for arbitrary
+   products of such factors.  The argument does not extend to a
+   non-sigma-finite factor, where projection cardinalities can differ and
+   proper norm ideals can occur.
+7. Type-I factors admit a different cardinal argument.  Fullness of every
+   nonzero Jiang--Su element makes the ambient Hilbert space embed into
+   finitely many copies of its image range.  Infinite-cardinal arithmetic
+   forces that range to have the full Hilbert dimension, so Hadwin's theorem
+   gives uniqueness in `B(H)` for arbitrary `H`.  Product closure extends
+   this to every atomic type-I von Neumann algebra.

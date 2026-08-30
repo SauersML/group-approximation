@@ -59,6 +59,20 @@ This is **STW Problem LXIII and remains open at the audit boundary
   C-star algebra, or must require a genuinely non-separably-acting shadow.
   Arbitrary finite von Neumann targets remain covered without countability
   restrictions by the earlier theorem.
+- **Sigma-finite type-III factors need not have separable predual.**
+  `stw63-sigmafinite-type3-factor-asymptotic-uniqueness` observes that a
+  sigma-finite type-III factor is simple purely infinite as a C-star algebra
+  and applies Kirchberg's nuclear KK uniqueness theorem.  This gives the
+  stronger asymptotic conclusion without a separable-predual assumption, and
+  product closure covers arbitrary products of such factors.  Genuinely
+  non-sigma-finite type-III factors are not covered: their nonzero projection
+  classes need not all equal the unit, so the simplicity step fails.
+- **Arbitrary-cardinal type-I factors are eliminated.**
+  `stw63-arbitrary-type1-factor-uniqueness` combines the finite-copy fullness
+  inequality with infinite-cardinal arithmetic and Hadwin's nonseparable
+  rank theorem.  Thus every `B(H)`, without a separability assumption on
+  `H`, has uniqueness.  Product closure gives the same result for every
+  atomic type-I von Neumann algebra.
 - **Asymptotic upgrade.**  Even after approximate uniqueness, coherent paths
   are a separate issue.  `approximate-to-asymptotic-via-central-paths`
   isolates a sufficient quantitative contraction property for the transition
