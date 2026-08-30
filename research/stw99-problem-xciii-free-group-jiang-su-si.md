@@ -123,3 +123,15 @@ admits only finitely many orthogonal copies below the unit.  Infinite central
 Cuntz capacity for every kernel spectral cut would therefore prove ordinary
 trace uniqueness, while a negative witness must expose one finite-capacity
 cut.
+
+The Jiang--Su slice now gives an exact reduced capacity target.
+`stw93-mixed-z-slice-si-forces-infinite-capacity` shows that it is enough to
+solve property (SI) only for arbitrary trace-kernel sources and large targets
+inside one fixed central copy of `Z`.  Orthogonal plateau targets in that copy
+then clone every kernel cut arbitrarily many times.  This mixed-source step is
+genuinely stronger than property (SI) internal to the slice:
+`stw93-same-slice-si-does-not-force-central-capacity` verifies all same-slice
+tests in the doubled-`F(Z)` model while its hidden coordinate unit has Cuntz
+capacity exactly one.  Hence the next constructive equation is `s*s=e,
+fs=s` with `e` arbitrary in `I` and `f` in the canonical slice; tracial
+slice surjectivity alone cannot move `e` there in norm.
