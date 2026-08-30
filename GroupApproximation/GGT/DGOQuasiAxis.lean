@@ -682,6 +682,47 @@ def HasMonotoneVertexSampling (B : ℝ) (h : G) (x : X) : Prop :=
           (∀ i, dist (p.vertex (p.start + (M : ℤ) + A i))
             (q.vertex (q.start + K + D i)) ≤ C)
 
+/-- The geometric core of Bestvina--Fujiwara's proof: arbitrarily long
+oriented-close axis segments contain a uniformly close synchronous block of
+power vertices, after one integer offset on the second axis. -/
+def HasUniformVertexBlockFellowTravel (B : ℝ) (h : G) (x : X) : Prop :=
+  ∃ C : ℝ, 0 ≤ C ∧ ∀ R : ℕ, ∃ L : ℝ, 0 < L ∧
+    ∀ (p q : PowerAxisSegment h x),
+      L ≤ p.length → L ≤ q.length → OrientedClose B p q →
+      ∀ n : ℕ, n ≤ R →
+        dist (p.vertex (p.start + (n : ℤ)))
+          (q.vertex (q.start + (n : ℤ))) ≤ C
+
+/-- A uniform fellow-travelling vertex block supplies all asynchronous
+monotone samples required by the WPD pigeonhole argument. -/
+theorem hasMonotoneVertexSampling_of_uniformVertexBlockFellowTravel
+    {B : ℝ} (hB : 0 ≤ B) {h : G} {x : X}
+    (hblock : HasUniformVertexBlockFellowTravel B h x) :
+    HasMonotoneVertexSampling B h x := by
+  obtain ⟨C, hC, hblock⟩ := hblock
+  refine ⟨max B C, C, hB.trans (le_max_left B C), hC, ?_⟩
+  intro M N
+  obtain ⟨L, hL, hblockL⟩ := hblock (M + N)
+  refine ⟨L, hL, ?_⟩
+  intro p q hpLen hqLen hclose
+  have hK := hblockL p q hpLen hqLen hclose
+  let A : Fin (N + 1) → ℤ := fun i => (i.val : ℤ)
+  have hA : StrictMono A := by
+    intro i j hij
+    dsimp [A]
+    exact_mod_cast hij
+  refine ⟨(M : ℤ), A, A, hA, hA, hclose.1.trans (le_max_left B C),
+    (hK M (Nat.le_add_right M N)).trans (le_max_right B C), ?_, ?_⟩
+  · intro i
+    have hiN : i.val ≤ N := Nat.lt_succ_iff.mp i.isLt
+    have hiMN : i.val ≤ M + N := hiN.trans (Nat.le_add_left N M)
+    simpa only [A] using hK i.val hiMN
+  · intro i
+    have hiN : i.val ≤ N := Nat.lt_succ_iff.mp i.isLt
+    have hMi : M + i.val ≤ M + N := Nat.add_le_add_left hiN M
+    simpa only [A, Nat.cast_add, Int.ofNat_eq_natCast, add_assoc] using
+      hK (M + i.val) hMi
+
 /-- **DGO Lemma 6.7 for power-vertex segments, reduced exactly to the cited
 Bestvina--Fujiwara monotone-sampling proposition.**  The length threshold is
 uniform over both translated axes. -/
