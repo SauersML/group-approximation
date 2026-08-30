@@ -2,22 +2,25 @@
 rg: 2
 id: stw99-lxxvi-ideal-local-k0-protection-proof
 kind: route
-title: Keep the partial isometry in the generated ideal and use the KK-equivalence C to Z
+title: Convert finite Cuntz equivalence to ideal equivalence and use the KK-equivalence C to Z
 target: stw99-lxxvi-ideal-local-k0-protection
 requires: []
 ---
 
 Assume for contradiction that the two displayed classes agree after
-tensoring with Z.  Cuntz equivalence of projections is stable
-Murray--von Neumann equivalence, so in a further matrix stabilization there
-is a partial isometry `v` with
+tensoring with Z.  In a stably finite C*-algebra, Cuntz equivalence of
+projections is stable Murray--von Neumann equivalence.  Since
+`J tensor_min Z` is stably finite, in a further matrix stabilization there is
+a partial isometry `v` with
 
 ```text
 v* v = p tensor 1_Z,       v v* = q tensor 1_Z.
 ```
 
 The algebra `J tensor_min Z` is an ideal of
-`(A tensor K) tensor_min Z` because Z is nuclear.  Moreover
+`(A tensor K) tensor_min Z` because Z is nuclear.  Any projection
+subequivalence between projections in this ideal is implemented inside the
+ideal; equivalently, the resulting partial isometry satisfies
 
 ```text
 v = (q tensor 1_Z) v (p tensor 1_Z),
