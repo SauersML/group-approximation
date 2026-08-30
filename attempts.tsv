@@ -239,3 +239,4 @@
 33269506556	2026-08-29T18:55:18Z	GroupApproximation/Sofic/ChosenNonMFTheorem.lean	mark_normMFInvisible
 33276946931	2026-08-29T21:47:40Z	GroupApproximation/Sofic/ChosenUniversalHorn.lean	assignmentHom_mk
 33283215772	2026-08-30T00:24:32Z	GroupApproximation/Sofic/CliffordAsideInert.lean	before
+33295680129	2026-08-30T05:54:19Z	GroupApproximation/Sofic/CliffordBSAmenable.lean	hasInvariantMean_BSLike
