@@ -3004,3 +3004,4 @@ import GroupApproximation.Analysis.VoiculescuUnitStrongLimit
 import GroupApproximation.Analysis.VoiculescuPartitionFromUnit
 import GroupApproximation.Analysis.VoiculescuStageVector
 import GroupApproximation.GGT.DGOAssemblyAdapter
+import GroupApproximation.GGT.DGOAssemblySubdivision

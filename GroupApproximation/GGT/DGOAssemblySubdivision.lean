@@ -105,7 +105,10 @@ theorem exists_balanced_interior_cut_word (D : RelGenSet G Lambda) {delta b : �
       (CayleyGeodesicModel.isHyperbolicSpace_point D.alphabet hhypC)
   obtain ⟨sides, hsides⟩ := exists_isSideFamily hgeo points n
   have hclose : points n = points 0 := by
-    dsimp [points]
+    -- `dsimp [points]` also unfolds `cutVertex`, and then the rewrite has no
+    -- `cutVertex` left to match; `show` keeps it folded.
+    show iotaG D.alphabet (cutVertex v word cut n)
+      = iotaG D.alphabet (cutVertex v word cut 0)
     rw [cutVertex_last hpolygon.cut v hpolygon.closed,
       cutVertex_zero hpolygon.cut v]
   have hnear : ∀ s : ℕ, s < n → ∀ t : ℝ,
@@ -154,7 +157,6 @@ theorem exists_balanced_interior_cut_word (D : RelGenSet G Lambda) {delta b : �
       linarith
     have hy0 : y 0 = points s := by
       dsimp [y, points, cutVertex]
-      simp
     have hyN : y N = points (s + 1) := by
       dsimp [y, points, cutVertex, N]
       have harg : cut s + (cut (s + 1) - cut s) = cut (s + 1) := by omega
@@ -167,6 +169,8 @@ theorem exists_balanced_interior_cut_word (D : RelGenSet G Lambda) {delta b : �
   obtain ⟨rb, hrb, hnearb⟩ := hnear b' hbn sb hsb
   let i := cut a + ra
   let j := cut b' + rb
+  have hmonoa : cut a ≤ cut (a + 1) := hpolygon.cut.mono a
+  have hmonob : cut b' ≤ cut (b' + 1) := hpolygon.cut.mono b'
   refine ⟨a, b', i, j, hab, hbn, hlower, hupper, ?_, ?_, ?_, ?_, ?_⟩
   · dsimp [i]
     omega
@@ -260,10 +264,13 @@ theorem exists_interior_half_polygon_data (D : RelGenSet G Lambda)
     appendCut (appendCut (fun s => refined (B + s) - refined B)
       (n + 2 - B) refined) ((n + 2 - B) + A) (fun s => s)
   have hrvA : cutVertex v word refined A = vertex v word i := by
-    simpa [refined, A] using
-      (cutVertex_splitPair_left v word cut (i := i) (j := j) hab)
+    have h := cutVertex_splitPair_left v word cut (i := i) (j := j) hab
+    simp only [refined, A]
+    exact h
   have hrvB : cutVertex v word refined B = vertex v word j := by
-    simpa [refined, B] using cutVertex_splitPair_right v word cut a b i j
+    have h := cutVertex_splitPair_right v word cut a b i j
+    simp only [refined, B]
+    exact h
   have hchord_value : RelLetter.listVal chord =
       (cutVertex v word refined A)⁻¹ * cutVertex v word refined B := by
     rw [hrvA, hrvB, ← hchord.2.1]
@@ -280,11 +287,13 @@ theorem exists_interior_half_polygon_data (D : RelGenSet G Lambda)
   · have hcut := isPolygonCut_firstHalf hrefined (Nat.le_of_lt hAB)
       (Nat.le_of_lt hBN) chord
     rw [hBA] at hcut
-    simpa [refined, A, B, cut1] using hcut
+    simp only [refined, A, B, cut1]
+    convert hcut using 3
   · have hcut := isPolygonCut_secondHalf hrefined (by omega : A ≤ n + 2)
       (Nat.le_of_lt hBN) chord
     rw [hsecondCount] at hcut
-    simpa [refined, A, B, cut2] using hcut
+    simp only [refined, A, B, cut2]
+    convert hcut using 3
   · simpa [refined, A, B] using hfirst_closed
   · simpa [refined, A, B] using hsecond_closed
   · simpa [refined, A, B] using
