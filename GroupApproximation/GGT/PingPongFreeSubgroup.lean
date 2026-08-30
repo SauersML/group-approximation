@@ -201,7 +201,7 @@ theorem noCommonZpow_of_injective {G : Type u} [Group G]
       if i = 1 then Multiplicative.ofAdd (1 : ℤ) else 1) hfree
     rw [map_zpow, map_zpow] at hmap
     have htoAdd := congrArg Multiplicative.toAdd hmap
-    simpa using htoAdd
+    simpa using htoAdd.symm
 
 /-- The same, packaged at an existential witness. -/
 theorem exists_noCommonZpow_of_freeRankTwo {G : Type u} [Group G]
@@ -243,7 +243,7 @@ theorem le_blockRelatorLength {m N : ℕ} (hN : 1 ≤ N) (hm : 33 ≤ m) :
 /-- **The piece bound clears `C'(1/8)`.**  A piece spans at most one separator
 and two partial blocks, so at most `2·(2N) + 1` letters, and thirty-three
 blocks make that less than an eighth of the relator. -/
-theorem pieceBound_lt_eighth {m N : ℕ} (hN : 1 ≤ N) (hm : 33 ≤ m) :
+theorem pieceBound_lt_eighth {m N : ℕ} (_hN : 1 ≤ N) (hm : 33 ≤ m) :
     8 * (2 * (2 * N) + 1) < blockRelatorLength m N := by
   have h : 33 * N ≤ m * N := Nat.mul_le_mul hm (le_refl N)
   unfold blockRelatorLength

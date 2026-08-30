@@ -310,7 +310,7 @@ theorem eq_one_of_isOfFinOrder_multiplicative_int {g : Multiplicative ℤ}
     rcases mul_eq_zero.mp hcong with hcase | hcase
     · exact absurd hcase hn0
     · exact hcase
-  exact Multiplicative.toAdd_eq_zero.mp hzero
+  exact toAdd_eq_zero.mp hzero
 
 /-- `1` is not even: the generator is outside the subgroup of index two. -/
 theorem ofAdd_one_notMem_zpowers_two :
@@ -320,8 +320,8 @@ theorem ofAdd_one_notMem_zpowers_two :
   obtain ⟨k, hk⟩ := Subgroup.mem_zpowers_iff.mp hmem
   have hcong : ((Multiplicative.ofAdd (2 : ℤ)) ^ k).toAdd
       = (Multiplicative.ofAdd (1 : ℤ)).toAdd := by rw [hk]
-  rw [toAdd_zpow, Multiplicative.toAdd_ofAdd,
-    Multiplicative.toAdd_ofAdd, Int.zsmul_eq_mul] at hcong
+  rw [toAdd_zpow, toAdd_ofAdd,
+    toAdd_ofAdd, Int.zsmul_eq_mul] at hcong
   omega
 
 /-- But its square is. -/
