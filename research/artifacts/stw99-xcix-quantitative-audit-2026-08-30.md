@@ -126,12 +126,13 @@ step is presently established.
 
 Let `d(A_n,B_n)->_omega 0`.  Matching each bounded coordinate sequence by a
 sequence on the other side with ultranorm-null error proves that the two norm
-ultraproducts coincide literally inside the ambient ultraproduct.  In the
-unital common-unit case, if every `A_n` is Z-stable, increasingly central
-exact copies of Z in `A_n` can be transported on increasingly large finite
-windows to `B_n`.  Their ultraproduct is a unital copy of Z in the relative
-commutant of any prescribed separable subset.  The common ultraproduct is
-therefore Z-saturated.
+ultraproducts coincide literally inside the ambient ultraproduct.  If every
+`A_n` is unital and Z-stable, increasingly central exact copies of Z in
+`A_n` can be transported on increasingly large finite windows to `B_n`.
+The transported coordinate maps may be nonunital, but their support
+projections converge to the unit of the common ultraproduct.  Their
+ultraproduct is therefore a unital copy of Z in the relative commutant of any
+prescribed separable subset, so the common ultraproduct is Z-saturated.
 
 At the coordinate level, for every fixed numbers `m,k`, the worst `m`-point,
 `k`-element centrality defect of `B_n` is at most

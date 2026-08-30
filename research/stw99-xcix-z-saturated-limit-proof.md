@@ -36,10 +36,15 @@ transport `rho_n` to an embedding `psi_n:Z->B_n` satisfying
 ||psi_n(z_j)-rho_n(z_j)|| < 152 sqrt(gamma_n)    (j<=n).
 ```
 
-The estimate at `z_1=1_Z` makes `psi_n` unital once its right side is below
-one: `psi_n(1_Z)` is a projection in the unital algebra `B_n` at distance
-less than one from the common unit.  The coordinate embeddings define a
-unital embedding
+The common ultraproduct is unital because it equals `prod_omega A_n`; its
+unit is `p=[(1_(A_n))]_omega`.  The estimate at `z_1=1_Z` gives
+
+```text
+[(psi_n(1_Z))]_omega=p.
+```
+
+Thus the coordinate embeddings define a unital embedding even though the
+individual algebras `B_n` and maps `psi_n` need not be unital:
 
 ```text
 Psi:Z -> P,       Psi(z)=[(psi_n(z))]_omega.

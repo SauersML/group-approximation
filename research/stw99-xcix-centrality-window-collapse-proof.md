@@ -25,8 +25,9 @@ max_(i,j) ||[psi(z_j),x_i]||
  < eta+304 sqrt(gamma)+2 gamma.
 ```
 
-The estimate at `1_Z` makes `psi` unital, as in
-`stw99-xcix-z-saturated-limit-proof`.  First take the infimum over `psi`,
+Because the algebras in this finite-window statement have a common unit, the
+estimate at `1_Z` makes `psi` unital once its error is below one.  First take
+the infimum over `psi`,
 then let `eta` decrease to zero, and finally take the supremum over all
 contraction `m`-tuples.  This proves `(CW)`.  Applying `(CW)` coordinatewise
 when `gamma_n->0` proves the last assertion.
