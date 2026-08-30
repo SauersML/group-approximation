@@ -144,6 +144,24 @@ Thus the preceding locally trivial theorem is subsumed by a result for
 arbitrary upper-semicontinuous fields, while simplicity is needed only for
 the shadow consequence, not for the dimension formula.
 
+The same lifting mechanism now gives a quantitative theorem over every
+finite-dimensional base.  If `dim(X)=n` and the fibre dimensions are
+uniformly bounded by `d`, then
+
+```text
+dim_nuc(A) <= (n+1)(d+1)-1
+```
+
+for an arbitrary separable upper-semicontinuous `C_0(X)`-algebra
+(`stw81-finite-base-usc-fibre-product-bound`).  An `(n+1)`-coloured base
+refinement is paired with the `d+1` exactly lifted fibre colours.  For simple
+fibres, the spectrum of every commutative hereditary subalgebra in every
+quotient locally embeds in `X`, so its dimension is at most `n`.  Thus bases
+of dimension at most one automatically satisfy the hypothesis of Problem
+LXXXI.  The product estimate supplies finite nuclear dimension when the
+fibre dimensions are uniformly finite, but for `n=d=1` its upper bound is
+three and therefore does not settle the required trichotomy.
+
 There is also a sharp warning against using the whole primitive spectrum.
 `stw81-shadow-hypothesis-does-not-bound-primitive-spectrum` shows that
 `C_0(X) tensor O_2` has primitive spectrum `X` and nuclear dimension one,
