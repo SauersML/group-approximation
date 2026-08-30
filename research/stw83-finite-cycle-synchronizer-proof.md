@@ -14,24 +14,28 @@ sinks, and "a source connects to a cycle" becomes "a cycle reaches the sink".
 Thus their finite theorem applies when each sink is reached by every cycle or
 by none.
 
-Fix once and for all a finite subgraph `L` containing the cyclic nucleus, `H`,
-and a path from every simple cycle to every hub.  Starting from an arbitrary
-finite subgraph `F`, adjoin `L`.  For every vertex `v` now present which is
-reached by a cycle, choose a hub `h` and adjoin a path `h->v`.  Call the
-resulting finite graph `G`.  Every vertex on an added hub path is already
-reached inside `G` by every cycle: follow the retained cycle-to-hub path and
-then the appropriate initial segment.  Every other vertex of `G` is reached by
-no ambient cycle.
+Row-finiteness and finiteness of the cyclic vertex set imply that only finitely
+many edges are emitted by cyclic vertices.  Fix a finite subgraph `L`
+containing all cyclic vertices, all edges they emit and their range vertices,
+`H`, and a path from every simple cycle to every hub.  Starting from an
+arbitrary finite subgraph `F`, adjoin `L`.  For every noncyclic vertex `v` now
+present which is reached by a cycle, choose a hub `h` and adjoin a path
+`h->v`.  Call the resulting finite graph `G`.  Every noncyclic vertex on an
+added hub path is reached inside `G` by every cycle: follow the retained
+cycle-to-hub path and then the appropriate initial segment.  Every other
+noncyclic vertex of `G` is reached by no ambient cycle.
 
 Take the Faurot--Schafhauser entrance completion, in the translated
 convention: whenever `G` contains an edge emitted at `w`, include all ambient
 edges emitted at `w` and their range vertices.  Row-finiteness makes the
 completion `G_tilde` finite.  A newly added vertex outside `G` is a sink, so no
-new cycle passes through it.  Any old sink was already internally reached by
-every cycle or by none.  A new sink is internally reached by every cycle when
-one of its predecessors is cycle-reachable, and is reached by no cycle when
-all its predecessors are no-cycle vertices.  Hence every sink of `G_tilde`
-satisfies the finite dichotomy and
+new cycle passes through it.  No new sink has a cyclic predecessor, because
+every edge emitted by a cyclic vertex was already placed in `L`.  Any old sink
+is noncyclic and was already internally reached by every cycle or by none.  A
+new sink is internally reached by every cycle when one of its noncyclic
+predecessors is cycle-reachable, and is reached by no cycle when all its
+predecessors are no-cycle vertices.  Hence every sink of `G_tilde` satisfies
+the finite dichotomy and
 
 ```text
 dim_nuc(C*(G_tilde)) <= 1.                            (1)

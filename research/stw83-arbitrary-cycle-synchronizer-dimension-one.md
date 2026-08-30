@@ -11,11 +11,12 @@ distinct_from:
 
 Let `E` be an arbitrary countable directed graph with Condition (K), allowing
 sinks and infinite emitters.  Use the standard edge convention.  Assume that
-the cyclic vertices and edges belonging to cycles lie in a finite subgraph and
-that a finite vertex set `H` satisfies:
+the cyclic vertices and the edges belonging to cycles lie in a finite subgraph
+and that a finite vertex set `H` satisfies:
 
 1. every directed cycle has a path to every vertex of `H`;
-2. every vertex reached by a cycle is reached by some vertex of `H`.
+2. every noncyclic vertex reached by a cycle is reached by some vertex of `H`;
+3. every cyclic infinite emitter is reached by some vertex of `H`.
 
 Then
 
@@ -23,6 +24,7 @@ Then
 dim_nuc(C*(E)) <= 1.
 ```
 
-At an infinite emitter which lies on a cycle, place first the finitely many
-emitted edges belonging to cycles in the desingularization ordering.  No
-cofinal abundance assumption is required.
+At a cyclic infinite emitter, place first the finitely many emitted edges
+belonging to cycles in the desingularization ordering.  Condition 3 is exactly
+what makes the hub family reach the new tail beyond this finite cyclic prefix.
+It may be omitted when every cyclic vertex is a finite emitter.

@@ -154,7 +154,9 @@ There is a broader way to make the added-source problem in
 Faurot--Schafhauser finite completions uniform.  Work first in the standard
 edge convention.  Suppose all cyclic vertices and cyclic edges lie in a fixed
 finite subgraph and there are finitely many downstream hubs which every cycle
-reaches, such that every cycle-reachable vertex lies downstream of a hub.
+reaches, such that every cycle-reachable noncyclic vertex lies downstream of a
+hub.  Preload every edge emitted by a cyclic vertex and its range vertex; this
+is still finite in the row-finite case.
 Retain the finite cycle-to-hub paths once and, before each entrance completion,
 retain a hub-to-vertex path for every cycle-reachable vertex already present.
 Every intermediate vertex on such a path is visibly reached inside the stage
@@ -177,11 +179,14 @@ desingularization, enumerate first the finitely many emitted edges which belong
 to cycles.  Collapsing tails shows that every new cycle is the lift of an old
 one and is confined to a finite initial tail enlargement of `K`.  A new tail
 vertex is reached by all lifted cycles exactly when its base singular vertex
-is.  The old finite hubs still synchronize every cycle-reachable old or tail
-vertex.  Condition (K), the synchronizer property, and the finite cyclic
-nucleus therefore survive, while the original graph algebra is a full corner
-of the row-finite desingularized algebra.  This proves the same one-color bound
-for arbitrary countable graphs in this class.
+is.  For a cyclic infinite emitter, one must additionally require that an old
+hub reaches the emitter; this is exactly what synchronizes the noncyclic tail
+beyond the finite cyclic prefix.  The condition is automatic when cyclic
+vertices are finite emitters.  Under this exact extra hypothesis the old hubs
+still synchronize every cycle-reachable noncyclic old or tail vertex.
+Condition (K), the synchronizer property, and the finite cyclic nucleus
+therefore survive, while the original graph algebra is a full corner of the
+row-finite desingularized algebra.
 
 ## Remaining two-component obstruction
 

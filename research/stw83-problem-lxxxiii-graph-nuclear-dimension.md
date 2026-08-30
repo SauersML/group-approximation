@@ -24,7 +24,8 @@ larger fixed-recurrent-core class on the AF-by-O-infinity side, and a countable
 non-Condition-(K) class built from simple circle crowns over one Kirchberg core.
 They now also include arbitrary countable Condition-(K) graphs whose recurrence
 is confined to a finite cyclic nucleus and whose cycle-reachable region lies
-downstream of finitely many hubs reached by every cycle.
+downstream of finitely many hubs reached by every cycle (away from the cyclic
+vertices themselves).
 
 ## Attempts
 
@@ -56,16 +57,18 @@ core do not intersect pairwise.
 The strongly connected core is not essential for a different finite-completion
 argument.  Suppose every cyclic vertex and cyclic edge lies in a finite nucleus
 and finitely many downstream hubs are each reached by every cycle and together
-reach every cycle-reachable vertex.  Retain the fixed cycle-to-hub paths and
-finite hub-to-stage paths before entrance completion.  Every intermediate
-vertex and every newly added sink then inherits the finite dichotomy, so all
-finite approximants have nuclear dimension at most one.  This is
+reach every cycle-reachable noncyclic vertex.  Preload every edge emitted by a
+cyclic vertex and its range, then retain the fixed cycle-to-hub paths and finite
+hub-to-stage paths before entrance completion.  Every intermediate vertex and
+every newly added sink then inherits the finite dichotomy, so all finite
+approximants have nuclear dimension at most one.  This is
 `stw83-finite-cycle-synchronizer-dimension-one`.  Ordering cyclic edges first
 in a Drinen--Tomforde desingularization proves
 `stw83-arbitrary-cycle-synchronizer-dimension-one`, so sinks and infinite
-emitters are included without an extension loss.  The finite hubs cannot be
-dropped from this proof: ambient all-or-none reachability alone need not give a
-finite witness-closed completion.
+emitters are included without an extension loss, provided each cyclic infinite
+emitter is itself hub-reachable so its new tail is synchronized.  The finite
+hubs cannot be dropped from this proof: ambient all-or-none reachability alone
+need not give a finite witness-closed completion.
 
 The generic extension estimate does not close the problem.  For a finite
 Condition-(K) graph, the standard gauge-invariant ideal decomposition gives an AF
