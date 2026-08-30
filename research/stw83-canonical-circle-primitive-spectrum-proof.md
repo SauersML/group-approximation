@@ -18,7 +18,7 @@ so `A_N` is type I.
 
 Primitive ideals containing `J` are the inverse images of the character
 kernels of `C(T)`; call them `Q_lambda`, `lambda in T`.  The
-primitive ideals not containing `J` correspond to `Prim(J)~=T).  At
+primitive ideals not containing `J` correspond to `Prim(J)~=T`.  At
 `t in T`, evaluation gives
 
 ```text
