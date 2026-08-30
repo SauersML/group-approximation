@@ -3,6 +3,7 @@ rg: 2
 id: linear-encoding-lcs-admits-odd-subset-cheats
 kind: claim
 title: Every LCS built from a linear encoding of a constraint system is also solved by the odd-subset relaxation
+refuted_by: odd-subset-relaxation-needs-local-extendability
 artifacts:
   - research/artifacts/hs-dehn-modulus-length-control-2026-08-20.md
 distinct_from:

@@ -21,11 +21,13 @@ Gamma_D=<t,p,q,J |
        (a,b in {p,q}, r in D)> .                         (FSP1)
 ```
 
-Put `M=max({|r|:r in D} union {0})` and choose an integer
+If `D` is nonempty, choose an integer
 
 ```text
-m>M.                                                     (FSP2)
+m>max_(r in D)|r|.                                      (FSP2)
 ```
+
+For `D` empty, choose any positive `m`.
 
 Let `K_m` be the central product of `m` copies of the one-qubit Pauli
 group, with generators
@@ -57,11 +59,11 @@ representation of `(FSP1)` with
 ||J-I||_2=2.                                             (FSP5)
 ```
 
-Consequently no finite collection of the off-site commutator tests appearing
-in `(FSP1)` can force collapse of the common Clifford sign, or make the
-full-dyadic terminal seam visible in normalized Hilbert--Schmidt error.
-Increasing the matrix dimension simply chooses a longer exact cycle; the
-first alias occurs at offset `m`, outside the finite tested stencil.
+Consequently no finite collection of translation-invariant relative-offset
+tests on a single shift orbit can force collapse of the common Clifford sign,
+or make the full-dyadic terminal seam visible in normalized Hilbert--Schmidt
+error.  Increasing the matrix dimension simply chooses a longer exact cycle;
+the first alias occurs at offset `m`, outside the finite tested stencil.
 
 This obstruction is stronger than a depth union-bound warning: the periodic
 models have zero defining-relator defect.  A successful full-tree compiler
