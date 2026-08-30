@@ -65,14 +65,20 @@ cannot embed in `U(R)`.  This invalidates the route
 `non-mf-unitary-subgroup-via-kazhdan-non-mf-groups` but says nothing decisive
 about non-Kazhdan groups.
 
-## Literal-group candidate is excluded
+## Literal-group candidate
 
-The literal non-MF group `E` is sofic and therefore embeds in `U(R^omega)`,
-but it does not embed in `U(R)`.  The theorem recorded below proves that
-every finite-injective representation kills its central involution `w`.
-Thus the previously proposed hyperfinite projective representation with
-`w=-1` does not exist, and the quotient-character half of that construction
-cannot recover a faithful representation of `E`.
+The remaining recorded candidate is the literal non-MF group `E`.  Its
+soficity embeds it in `U(R^omega)`, not in `U(R)`.  An embedding into `U(R)`
+would amount to a faithful hyperfinite character.  Splitting at its central
+involution mark `w` reduces one proposed construction to:
+
+1. a faithful hyperfinite character of `E/<w>`; and
+2. a hyperfinite projective representation on which `w` acts as `-1`.
+
+Both pieces are open.  Finite-dimensional representations kill the mark, so
+the second piece would have to be genuinely infinite dimensional.  The
+coherence needed to replace an ultrapower representation by an honest
+representation in `R` is exactly the unresolved step.
 
 ## Integrity boundary
 
@@ -80,8 +86,8 @@ The graph deliberately separates established and open nodes:
 
 - `hyperfinite-factor-qd-forces-unitary-subgroups-mf` and
   `kazhdan-groups-in-hyperfinite-unitary-group-are-rf` are established;
-- `non-mf-subgroup-of-hyperfinite-factor-unitary-group` is open, while
-  `literal-group-embeds-in-hyperfinite-unitary-group` is refuted;
+- `non-mf-subgroup-of-hyperfinite-factor-unitary-group` and
+  `literal-group-embeds-in-hyperfinite-unitary-group` are open;
 - `hyperfinite-factor-not-quasidiagonal` is an open target reached only if a
   non-MF subgroup witness is supplied.
 
@@ -230,7 +236,7 @@ extension of the representation to a profinite completion.  The literal
 group `E` is the case `2m=8`, `N=Z^3`, `H=SL_3(Z)`, with four unsigned
 transpositions.
 
-## Addendum F. Reduced algebras of nonamenable groups never sit inside R
+## Addendum E. Reduced algebras of nonamenable groups never sit inside R
 
 **Proposition.**  For nonamenable `Γ`, no tracial state on `C*_r(Γ)` has
 injective GNS closure; hence `C*_r(Γ)` does not embed unitally into `R`.
@@ -242,9 +248,9 @@ a state on the reduced algebra, `π_τ ≺ λ`, so `1 ≺ λ ⊗ λ̄ ≅ ∞·�
 `Γ` is amenable.  ∎
 
 So the Rosenberg mechanism (nonamenable ⟹ reduced algebra not
-quasidiagonal) cannot refute X(2).  With Addenda A–E and the
-exactness/UCT fence, every source of non-quasidiagonality recorded in this
-lane is excluded from `R`; a refutation of X(2) requires a genuinely new
+quasidiagonal) cannot refute X(2).  With Addenda A–D and the
+exactness/UCT fence, every currently known source of non-quasidiagonality
+is excluded from `R`; a refutation of X(2) requires a genuinely new
 non-quasidiagonal algebra carrying a faithful uniformly amenable trace.
 Conversely a proof of X(2) is precisely the statement "every separable
 C*-algebra with a faithful trace of hyperfinite GNS closure is

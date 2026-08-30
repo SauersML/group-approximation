@@ -76,22 +76,6 @@ on the separable counterexample supplied by the reflection theorem rules
 this out.  Consequently any counterexample has middle nuclear dimension at
 least two.
 
-There is now a concrete nonquasidiagonal coefficient class at that sharp
-dimension-one boundary.  For every nonzero separable unital AF algebra `A`
-and every `N>=1`, `stw82-af-coefficient-toeplitz-maximum` computes
-
-```text
-0 -> K tensor A -> C*(S^N,K) tensor A -> C(T) tensor A -> 0
-```
-
-as dimensions `0,1,1`.  The index boundary sends
-`[z] tensor [1_A]` to `+-N[1_A]`, so these extensions are not quasidiagonal
-and their raw complementary cuts cannot be orthogonalized.  The optimal
-bound comes instead from writing `A` as an AF limit: every finite stage is a
-finite direct sum of matrix amplifications of the scalar Toeplitz
-two-colour construction.  Thus this class exhibits genuine transition-band
-absorption beyond the projectional-cut regime.
-
 The project reduction
 `stw82-counterexamples-reflect-to-separable-extensions` shows that the word
 "arbitrary" does not create a separate nonseparable frontier: every

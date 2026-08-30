@@ -2934,3 +2934,12 @@ dependency closure of the whole namespace and fails on anything beyond `propext`
 `Classical.choice`, and `Quot.sound`; `scripts/check.py` scans the source text
 for what the kernel cannot see, including files that are never compiled.
 -/
+import GroupApproximation.GGT.ElementaryCoarseTranslationProper
+import GroupApproximation.GGT.ElementaryCoarseTranslationProperAction
+import GroupApproximation.GGT.ElementaryCoarseTranslationQuasiconvex
+import GroupApproximation.GGT.ElementaryFiniteTransversalConsequences
+import GroupApproximation.GGT.ElementaryGeometricSeparationReduction
+import GroupApproximation.GGT.DGOTheorem68ProjectionReduction
+import GroupApproximation.GGT.OsinTheorem54Unconditional
+import GroupApproximation.GGT.OsinTheorem12OneDebt
+import GroupApproximation.GGT.OsinTheorem12ProjectionReduction

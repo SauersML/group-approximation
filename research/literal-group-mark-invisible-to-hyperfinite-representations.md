@@ -5,7 +5,6 @@ kind: claim
 title: Every homomorphism from the literal group E into the unitary group of a finite injective von Neumann algebra kills the mark
 invalidates: [non-mf-unitary-subgroup-via-literal-group]
 distinct_from:
-  marked-clifford-compressor-hyperfinite-invisibility: that is the abstract criterion combining a finite Clifford block, compressor conjugacy, and a nonamenable essentially free abelian-dual action; this verifies those hypotheses for the concrete arithmetic group E.
   literal-central-mark-corona-invisible: that kills the mark in every norm-matrix corona, by property (T) of the base and finiteness of matrix algebras; this kills it in every finite injective (hyperfinite) tracial representation, by a traceless Clifford permutation, the doubling conjugacy, and the null fixed sets of SL_3(Z) on the dual torus, with no use of property (T).
   literal-group-embeds-in-hyperfinite-unitary-group: that is the open embedding claim this one refutes: an embedding E → U(R) would be a hyperfinite representation with the mark at −1.
   clifford-witness-has-no-hyperfinite-marked-representation: that treats the two commuting-lamp quotients, where the marked lamp algebra is UHF and the site action is outer; this treats E itself, whose lamp kernel is a free amalgam, by a different argument that only uses one block and the translations.
@@ -58,10 +57,3 @@ Conjugating by `t` spreads this to every nonzero translation, so
 identity with the action of `m`, hence is supported on the Haar-null fixed
 set of `m` and vanishes.  So `χ|_B = δ_e`, `ρ(B)'' ≅ L(B)` with `B`
 nonamenable, inside the injective `W`: impossible.
-
-The reusable content of this mechanism is isolated in
-`marked-clifford-compressor-hyperfinite-invisibility`.  For `E`, take the
-eight lamps in one dyadic block, the nonintegral half-translations as `V`,
-`N=Z^3`, and `H=SL_3(Z)`.  Doubling conjugacy supplies the compressor
-hypothesis, while every nonidentity integral matrix has a Haar-null fixed
-subgroup on `T^3`.

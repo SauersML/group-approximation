@@ -14,7 +14,6 @@ Problem numbering is the paper's (Roman numerals I--XCIX).
 | IX(1) | Separable nuclear C*-algebra with a faithful trace: is it quasidiagonal? | stw99-problem-ix1-nuclear-faithful-trace-quasidiagonal |
 | X(1) | Are amenable traces on C*-algebras necessarily quasidiagonal? | stw99-problem-x1-amenable-traces-quasidiagonal |
 | X(2) | Is the hyperfinite II₁ factor quasidiagonal? | stw99-problem-x2-hyperfinite-factor-quasidiagonal |
-| XXII | Are all traces on the uniform tracial completion automatically uniformly 2-norm continuous? | stw99-problem-xxii-tracial-completion-traces |
 | XC | C*-simple G: does C*_r(G) have strict comparison w.r.t. its unique trace? | stw99-problem-xc-cstar-simple-strict-comparison |
 | XCI (Robert) | Is C*_r(F₂) selfless? Is C*_r(G) selfless for every C*-simple G? | stw99-problem-xci-cstar-simple-selfless |
 | XCIII | Does C*_r(F₂) ⊗ 𝒵 have property (SI)? | stw99-problem-xciii-free-group-jiang-su-si |

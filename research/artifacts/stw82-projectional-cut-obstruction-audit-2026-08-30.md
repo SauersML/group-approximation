@@ -67,24 +67,6 @@ settings by splitting and reorganizing a transition band and using map
 classification.  The Toeplitz and interval examples likewise forbid the
 false inference that nonprojectional cuts obstruct the formula itself.
 
-The AF-coefficient Toeplitz family gives an unconditional systematic version
-of this separation.  For any nonzero separable unital AF algebra `A` and
-`N>=1`, the tensor extension
-
-```text
-0 -> K tensor A -> C*(S^N,K) tensor A
-  -> C(T) tensor A -> 0
-```
-
-has nonzero boundary index `+-N[1_A]`, and hence is not quasidiagonal.  Yet
-its nuclear dimensions are exactly `0,1,1`.  Indeed, finite-dimensional AF
-stages turn the middle algebra into finite direct sums of matrix
-amplifications of the scalar Toeplitz algebra, all with the same two-colour
-bound; inductive-limit permanence retains that bound.  This is a new positive
-class beyond the projectional-cut equivalence and demonstrates concretely
-what a viable replacement mechanism looks like: absorb the transition band
-before passing to the coefficient limit.
-
 # New unconditional positive class
 
 Every ideal--quotient decomposition of an arbitrary algebra `E` with

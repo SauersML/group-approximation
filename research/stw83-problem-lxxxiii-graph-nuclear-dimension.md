@@ -116,33 +116,4 @@ This is an explicit graph/full-corner computation, not a classification from
 the six-term invariant.  It reduces the unresolved dimension-one question to
 a precise Toeplitz-module family; the extra `C(T)` in the compact ideal is
 exactly why the ordinary Toeplitz nuclear-dimension-one theorem does not close
-the argument.  Nevertheless,
-`stw83-canonical-circle-toeplitz-dimension-two-bound` adapts the
-Brake--Winter construction far enough to prove
-
-```text
-1 <= dim_nuc(C*(S^N tensor 1, K tensor C(T))) <= 2.
-```
-
-The transition-band maps remain scalar and use the original Toeplitz
-two-colour machinery.  A finite inner compression is `M_r(C(T))`, so its two
-coefficient colours create one additional global colour.  One coefficient
-colour can be merged with the orthogonal tail colour; removing the other is
-the exact remaining dimension-one hinge.  The node
-`stw83-plateau-buffer-recolouring-hinge` isolates a sufficient support
-condition: localize one coefficient colour in a deep one-plateau, beyond the
-coefficient-varying compact support and before the scalar transition band.
-It also proves that one cannot obtain this by approximating the whole
-`M_r(C(T))` corner block diagonally.  Such a scheme would compress to a
-one-colour approximation of a nonzero matrix algebra over `C(T)`.  Any
-successful two-colour proof must therefore be finite-set adaptive and use its
-second inner colour to carry scalar off-diagonal terms across the plateau
-boundary.  Even that transport is not sufficient if its plateau diagonal
-remains coefficient-blind.  The quantitative separation theorem
-`stw83-circle-unitary-order-zero-plus-constants-gap` gives a universal
-`delta>0`: in a rank-one plateau corner, the circle generator cannot be
-approximated within `delta` by one finite-dimensional order-zero colour plus
-a constant.  This permits arbitrary off-diagonal entries in the second
-colour.  Hence a successful adaptive construction must make the second
-colour carry both cross-boundary matrix terms and genuinely circle-varying
-information on the plateau diagonal.
+the argument.

@@ -212,30 +212,8 @@ triple of constants there is a single `R`, uniform in the group, such that in
 every `δ`-hyperbolic word metric each point of a `(K,C)`-quasi-geodesic is within
 `R` of a point lying between its endpoints.
 
-This is the input `Hyperbolic.QuasiIsometryInvariant` is missing.  It is not
-proved here, but it IS proved: `GGT.Hyperbolic.morseLemma`
-(`GGT/MorseLemmaDischarge.lean`) discharges it unconditionally, through the
-geodesic realisation and the hoisted chord lemmas of `GGT/ElementaryMorseChord`.
-FIVE statements assume it as a binder, all in the `GGT/HullSCConeOffHeavy*`
-files and all now dischargeable outright:
-`ChordChain.exists_index_wordDist_le_of_isBetween_of_morse`,
-`ClauseA.exists_hyperbolic_coneOffFamily_of_morse_of_close`, and in
-`Quasiconvex` the three `exists_bound_prefix_pow_of_morse`,
-`exists_isWordQuasiconvex_zpowers_of_morse` and
-`exists_hyperbolic_coneOffFamily_zpowers_of_morse`.
-
-Note the universe: the `∀ (G : Type)` below is universe ZERO.  It is the only
-universe-zero thing in the chain --- every ingredient of the discharge is
-polymorphic --- so the general form is `GGT.Hyperbolic.morseLemma_univ`, stated
-at `Type u`, of which this `def` and `morseLemma` are the `Type 0` instance.  A
-consumer at a general universe should take `morseLemma_univ`; nothing about the
-mathematics differs.
-
-The `def` is deliberately NOT generalised in place.  A universe-polymorphic
-`MorseLemma` would turn every bare `(hmorse : Hyperbolic.MorseLemma)` binder
-into an unpinned-universe site, which is a defect class this tree has been bitten
-by before; the theorem carries the generality instead, and the five binders above
-are retired rather than re-universed. -/
+This is the input `Hyperbolic.QuasiIsometryInvariant` is missing, and it is not
+proved here.  Nothing in this repository assumes it. -/
 def MorseLemma : Prop :=
   ∀ K C δ : ℕ, ∃ R : ℕ, ∀ (G : Type) (_ : Group G) (S : Set G),
     IsSymmetricGeneratingSet S → IsFourPointHyperbolic S δ →

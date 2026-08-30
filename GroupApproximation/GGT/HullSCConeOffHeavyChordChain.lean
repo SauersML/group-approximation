@@ -1,5 +1,4 @@
 import GroupApproximation.Algebra.MorseLemma
-import GroupApproximation.GGT.MorseLemmaDischarge
 
 /-!
 # The other half of the Morse lemma: a chord point near the chain
@@ -39,10 +38,10 @@ The constant that comes out is `4R + K + C + 2δ`.
 
 ## Scope
 
-`Hyperbolic.morseLemma_univ` states the Morse lemma at `Type u`, so the
-statement below is now at `Type u` too and nothing here is confined to universe
-zero.  The `..._of_morse` form is kept as its `Type 0` instance so that no caller
-moves; its hypothesis is redundant and is named `_hmorse` for that reason.
+`MorseLemma` quantifies over `G : Type`, so everything here is at universe zero.
+That is where the debt row `Manuscript.NonMF.TorsionFree.hullHypEmbeddedConeOff`
+lives — it is stated at `.{0}` — so nothing is lost, but a consumer at a general
+universe would need `MorseLemma` restated first.
 
 The two auxiliary lemmas are general facts about betweenness and about natural
 numbers, and have nothing to do with cone-offs; they are here rather than in
@@ -124,13 +123,14 @@ vertices**, with a constant depending only on `K`, `C` and `δ`.
 This is the direction `Hyperbolic.MorseLemma` does not state, derived from the
 one it does.  See the module header for the three steps and for the constant
 `4R + K + C + 2δ`. -/
-theorem exists_index_wordDist_le_of_isBetween_of_fourPoint (K C delta : ℕ) :
-    ∃ R : ℕ, ∀ (G : Type u) (_hG : Group G) (S : Set G),
+theorem exists_index_wordDist_le_of_isBetween_of_morse
+    (hmorse : Hyperbolic.MorseLemma) (K C delta : ℕ) :
+    ∃ R : ℕ, ∀ (G : Type) (_hG : Group G) (S : Set G),
       IsSymmetricGeneratingSet S → Hyperbolic.IsFourPointHyperbolic S delta →
         ∀ (n : ℕ) (p : ℕ → G), Hyperbolic.IsQuasiGeodesic S K C n p →
           ∀ z : G, Hyperbolic.IsBetween S (p 0) z (p n) →
             ∃ m ≤ n, wordDist S (p m) z ≤ R := by
-  obtain ⟨R, hR⟩ := Hyperbolic.morseLemma_univ K C delta
+  obtain ⟨R, hR⟩ := hmorse K C delta
   refine ⟨4 * R + K + C + 2 * delta, ?_⟩
   intro G _hG S hS hdelta n p hp z hz
   have hqex : ∀ m : ℕ, ∃ q : G, Hyperbolic.IsBetween S (p 0) q (p n) ∧
@@ -177,20 +177,6 @@ theorem exists_index_wordDist_le_of_isBetween_of_fourPoint (K C delta : ℕ) :
   have hpm := hq2 m hmn
   have hc := wordDist_comm hS (q m) z
   omega
-
-/-- **The Morse-conditional form**, kept so that no caller moves.
-
-Its statement is unchanged and its hypothesis is now redundant --- discharged by
-`Hyperbolic.morseLemma_univ` in the theorem above, of which this is the `Type 0`
-instance.  Callers pass the hypothesis positionally and are unaffected. -/
-theorem exists_index_wordDist_le_of_isBetween_of_morse
-    (_hmorse : Hyperbolic.MorseLemma) (K C delta : ℕ) :
-    ∃ R : ℕ, ∀ (G : Type) (_hG : Group G) (S : Set G),
-      IsSymmetricGeneratingSet S → Hyperbolic.IsFourPointHyperbolic S delta →
-        ∀ (n : ℕ) (p : ℕ → G), Hyperbolic.IsQuasiGeodesic S K C n p →
-          ∀ z : G, Hyperbolic.IsBetween S (p 0) z (p n) →
-            ∃ m ≤ n, wordDist S (p m) z ≤ R :=
-  exists_index_wordDist_le_of_isBetween_of_fourPoint K C delta
 
 end HullSC
 end GroupApproximation

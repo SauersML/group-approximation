@@ -2,7 +2,7 @@
 rg: 2
 id: stw74-homogeneous-coefficient-projections-descend
 kind: claim
-title: Stable coefficients and compact-open homogeneous islands descend, but subhomogeneous coefficients need not
+title: Stabilized projections with homogeneous coefficients descend to level one
 distinct_from:
   stw74-property-sp-is-projective-root-extraction: that identifies the abstract compact-class extraction hinge; this gives a concrete matrix-coefficient condition which performs the extraction through the compact-open support of a matrix-bundle projection.
   stw74-projectionless-corner-forces-gapless-compressions: that obstructs a spectral gap in each scalar compression separately; this combines all coefficients and finds a central support projection whenever their generated algebra is finite-degree homogeneous.
@@ -11,58 +11,33 @@ artifacts:
   - research/artifacts/stw74-property-sp-cu-stability-audit-2026-08-30.md
 ---
 
-Let `B` be a C*-algebra, let `0!=p=(p_ij)` be a projection in `M_n(B)`,
-and put
+Let `B` be a C*-algebra and let `0!=p=(p_ij)` be a projection in
+`M_n(B)`.  Suppose the nonunital coefficient algebra
 
 ```text
 C=C*(p_ij : 1<=i,j<=n) subset B
 ```
 
-Then `p` is full in `M_n(C)`, and `Prim(C)` is compact.  Either of the
-following additional coefficient conditions forces `C`, and hence `B`, to
-contain a nonzero projection:
-
-1. `C` is stable;
-2. `Prim(C)` contains a nonempty compact-open set `K` whose corresponding
-   ideal `C(K)` is homogeneous of some finite degree.
-
-The old homogeneous-coefficient theorem is the case `K=Prim(C)`.  The
-second condition permits arbitrary coefficient behaviour away from one
-compact-open homogeneous island.  In particular, it applies to a continuous
-trace coefficient algebra on any compact-open region on which the
-irreducible dimension is a fixed finite number.  The first condition covers,
-for example, stable continuous-trace coefficients with infinite-dimensional
-fibres.
+is homogeneous of some finite degree `r>=1`.  Then `C`, and hence `B`,
+contains a nonzero projection.  The abelian coefficient case is the special
+case `r=1`.
 
 Consequently, let `A` satisfy the hypothesis of Problem LXXIV and assume
-the following local coefficient-island condition:
+the following local homogeneous-frame condition:
 
 ```text
 for every nonzero hereditary H subset A, some M_n(H) contains a nonzero
-projection whose coefficient algebra is stable or has a nonempty
-compact-open finite-degree homogeneous ideal.                            (CI)
+projection whose coefficient algebra is finite-degree homogeneous.       (HF)
 ```
 
 Then `A` has property (SP) and is purely infinite.  The existence of a
 nonzero projection at some finite matrix level is automatic under the
-LXXIV hypothesis; `(CI)` is only a descent condition on one such projection
-over each hereditary algebra.
-
-Neither `subhomogeneous`, `CCR`, nor `type I` can replace `(CI)`.  Indeed,
-there are a projectionless subhomogeneous algebra `D`, a nonzero projection
-`P in M_3(D)`, and its coefficient algebra `C_P subset D` such that `P` is
-full in `M_3(C_P)`.  Thus `C_P` is itself projectionless and subhomogeneous,
-while `Prim(C_P)` is compact and the support of `P` is all of it.  In
-particular, compact-open support of the stabilized projection alone also
-does not descend it.  The exact theorem
-`stw74-every-matrix-descent-threshold-occurs-subhomogeneously` strengthens
-this example: every prescribed first matrix level `m>=2` occurs for such a
-full projection over a compact-spectrum projectionless subhomogeneous
-coefficient algebra.
+LXXIV hypothesis; `(HF)` asks only that one such projection over each
+hereditary algebra have homogeneous coefficients.
 
 Equivalently, in every LXXIV counterexample with full projectionless corner
-`D`, no stabilized projection over `D` can have stable coefficients or a
-compact-open finite-degree homogeneous coefficient ideal.  Scalar changes
-of matrix basis preserve the coefficient algebra, so the obstruction also
-applies to the fixed minimal-level projection and its uniformly gapless
-`CP^(m-1)` compression family.
+`D`, the coefficient algebra of every nonzero projection in every `M_n(D)`
+is not homogeneous of any finite degree.  This obstruction is invariant
+under scalar changes of basis.  In particular it applies to the fixed
+minimal-level projection and its uniformly gapless `CP^(m-1)` compression
+family.

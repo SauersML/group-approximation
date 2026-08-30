@@ -91,13 +91,11 @@ write `G_W`. -/
 def windmillGroup (C : Set X) (Rot : X → Subgroup G) (W : Set X) : Subgroup G :=
   Subgroup.closure {g : G | ∃ c ∈ C, c ∈ W ∧ g ∈ Rot c}
 
-omit [PseudoMetricSpace X] [MulAction G X] in
 theorem mem_windmillGroup {C : Set X} {Rot : X → Subgroup G} {W : Set X}
     {c : X} (hc : c ∈ C) (hcW : c ∈ W) {g : G} (hg : g ∈ Rot c) :
     g ∈ windmillGroup C Rot W :=
   Subgroup.subset_closure ⟨c, hc, hcW, hg⟩
 
-omit [PseudoMetricSpace X] [MulAction G X] in
 /-- **`G_W` is the smallest subgroup containing every rotation at an apex of
 `W`.**  The elimination principle for `windmillGroup`, used wherever an element
 of it has to be shown to preserve something. -/

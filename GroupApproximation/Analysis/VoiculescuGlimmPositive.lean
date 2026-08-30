@@ -46,7 +46,7 @@ theorem exists_nonneg_apply_of_positive {A : StarSubalgebra ℂ (H →L[ℂ] H)}
     rw [← Subtype.coe_le_coe, ZeroMemClass.coe_zero]
     exact hb
   have h0 : (0 : ℂ) ≤ φ b := by
-    have hmono : φ 0 ≤ φ b := φ.monotone' hb'
+    have hmono := φ.toOrderHom.monotone hb'
     rwa [map_zero] at hmono
   obtain ⟨hre, him⟩ := Complex.le_def.mp h0
   refine ⟨(φ b).re, ?_, ?_⟩

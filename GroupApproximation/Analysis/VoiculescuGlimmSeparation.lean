@@ -78,7 +78,7 @@ theorem mem_closure_convexHull_vectorStates
     rw [hbdef]
     refine isSelfAdjoint_sum _ fun i _ ↦ ?_
     show star _ = _
-    rw [star_smul, Complex.star_def, Complex.conj_ofReal, (hsa i).star_eq]
+    rw [star_smul, Complex.conj_ofReal, (hsa i).star_eq]
   have hvec : ∀ ξ : H, ξ ∈ Vᗮ → ‖ξ‖ = 1 → (⟪b ξ, ξ⟫_ℂ).re ≤ u := by
     intro ξ hξ hunit
     have hmemS : (fun i ↦ (⟪a i ξ, ξ⟫_ℂ).re) ∈ closure (convexHull ℝ

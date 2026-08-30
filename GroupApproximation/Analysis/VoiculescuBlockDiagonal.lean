@@ -1,42 +1,40 @@
 import GroupApproximation.Analysis.VoiculescuBlockRep
 
 /-!
-# (V4) Block-diagonal representations: the datum
+# (V4) Block-diagonal representations, and the absorption statement over them
 
 This is the datum the assembly runs on: a representation together with a
 decomposition of its space into finite-dimensional invariant blocks whose closed
 span is everything.  On such a datum the intertwining step applies block by
-block, the block isometries sum, and the defect is compact — that is
-`Analysis/VoiculescuBlockAbsorption`.  Here are the datum and the check that it
-is not empty.
+block, the block isometries sum, and the defect is compact — that is the next
+module.  Here are the datum, the statement, and the checks that neither is empty.
 
-## Why there is no absorption statement in this file
+## What this Prop does and does not claim
 
-There was one, and it was **retired**, because it asked for its conclusion under
-hypotheses that cannot supply it.  The construction needs `↥A` separable — the
-recursion names only countably many elements of `A` while the conclusion is
-claimed for every `a`, and the passage between them is density, which
-Voiculescu's theorem genuinely requires — and it needs `ρ` contractive, which is
-automatic for a `⋆`-homomorphism of C⋆-algebras but unavailable here because `↥A`
-carries no registered `CStarAlgebra` instance.  What is actually proved is
-`SeparableBlockDiagonalAbsorptionStatement`, in
-`Analysis/VoiculescuBlockAbsorption`, which is named for the difference.  It is
-not recorded here as a refuted `Prop` because nothing established that the weaker
-form is false, only that it does not follow; a `Prop` in that position would be a
-statement nobody can either use or refute.
+`BlockDiagonalAbsorptionStatement` is a **special case** of
+`AbsorptionContainmentStatement`, not a reformulation of it.  Not every
+representation of a separable C⋆-algebra on a separable space decomposes into
+finite-dimensional invariant blocks, and closing that gap is precisely where
+Voiculescu's argument spends the quasicentral approximate unit.  The name says
+`BlockDiagonal` for that reason: the reader should not be able to mistake it for
+the general absorption theorem.
 
-Either way it is a **special case** of `AbsorptionContainmentStatement` and not a
-reformulation of it: not every representation of a separable C⋆-algebra on a
-separable space decomposes into finite-dimensional invariant blocks, and closing
-that gap is precisely where Voiculescu's argument spends the quasicentral
-approximate unit.
+The statement is phrased over a closed `⋆`-subalgebra `A ⊆ B(H)` rather than over
+an abstract `C` with an essential representation `σ`, because that is the shape
+the intertwining step produces.  Converting between the two needs the image of a
+`⋆`-homomorphism of C⋆-algebras to be closed, which is a theorem the tree does
+not have; recorded here so nobody assumes the conversion is free.
 
-## The model test
+## The model tests
 
 `InvariantBlocks` is inhabited — `invariantBlocksOfFiniteDimensional` builds one
-for any representation on a finite-dimensional space, with the whole space as its
-single nonzero block — so nothing built on the datum is vacuous for want of it.
+for any representation on a finite-dimensional space, with the whole space as the
+single nonzero block — so the statement is not vacuous for want of data.  And
+`isometry_of_blockDiagonal` reads off that the conclusion embeds `K`
+isometrically into `H`, which is the constraint that keeps the statement from
+asserting something about spaces that cannot receive one.
 -/
+
 namespace GroupApproximation
 namespace ShulmanFill
 
@@ -88,11 +86,26 @@ def rep (m : ℕ) : C →⋆ₐ[ℂ] (↥(B.sub m) →L[ℂ] ↥(B.sub m)) :=
 
 end InvariantBlocks
 
-/-! ## The model test -/
+/-! ## The statement -/
+
+/-- **(V4) over block-diagonal representations.**  A representation that
+decomposes into finite-dimensional invariant blocks is contained, modulo the
+compacts, in any essential subalgebra of `B(H)`. -/
+def BlockDiagonalAbsorptionStatement : Prop :=
+  ∀ (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+    (A : StarSubalgebra ℂ (H →L[ℂ] H)), IsClosed (A : Set (H →L[ℂ] H)) →
+      (∀ T ∈ A, IsCompactOperator T → T = 0) →
+      ∀ (K : Type) [NormedAddCommGroup K] [InnerProductSpace ℂ K]
+        [CompleteSpace K] (rho : ↥A →⋆ₐ[ℂ] (K →L[ℂ] K)),
+        InvariantBlocks rho →
+          ∃ W : K →L[ℂ] H, ContinuousLinearMap.adjoint W ∘L W = 1 ∧
+            ∀ a : ↥A, IsCompactOperator ((a : H →L[ℂ] H) ∘L W - W ∘L rho a)
+
+/-! ## The model tests -/
 
 /-- **The datum is inhabited.**  Any representation on a finite-dimensional space
 is block-diagonal, with the whole space as its single nonzero block, so the
-datum is inhabited and nothing built on it is vacuous for want of data. -/
+statement above is not vacuous for want of data. -/
 def invariantBlocksOfFiniteDimensional [FiniteDimensional ℂ K]
     (rho : C →⋆ₐ[ℂ] (K →L[ℂ] K)) : InvariantBlocks rho where
   sub m := if m = 0 then ⊤ else ⊥
@@ -124,6 +137,19 @@ def invariantBlocksOfFiniteDimensional [FiniteDimensional ℂ K]
     · rw [if_neg h] at hx ⊢
       rw [(Submodule.mem_bot ℂ).mp hx, map_zero]
       exact Submodule.zero_mem _
+
+/-- **The conclusion embeds the source isometrically.**  As in the containment
+form, this is what keeps the statement from asserting something about a source
+too large to fit in `H`. -/
+theorem isometry_of_blockDiagonal (h : BlockDiagonalAbsorptionStatement)
+    (H : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+    (A : StarSubalgebra ℂ (H →L[ℂ] H)) (hAclosed : IsClosed (A : Set (H →L[ℂ] H)))
+    (hAK : ∀ T ∈ A, IsCompactOperator T → T = 0)
+    (K : Type) [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
+    (rho : ↥A →⋆ₐ[ℂ] (K →L[ℂ] K)) (B : InvariantBlocks rho) :
+    ∃ W : K →L[ℂ] H, Isometry W := by
+  obtain ⟨W, hWiso, -⟩ := h H A hAclosed hAK K rho B
+  exact ⟨W, (ContinuousLinearMap.isometry_iff_adjoint_comp_self W).mpr hWiso⟩
 
 end
 

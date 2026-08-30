@@ -28,21 +28,6 @@ claim more than the source does.
 Fixing the basepoint at the identity rather than quantifying over all of them is
 licensed by Dahmani--Guirardel--Osin's Remark 4.41.
 
-## Which way the implication runs
-
-The predicate is an implication *hypothesised* on a large diameter, and it is
-easy to misread as asserting one.  It says: **if** two orbits happen to come
-`ε`-close along something of diameter at least `R`, **then** the indices agree
-and the translating element is already in the subgroup.  It never claims that
-any such pair exists.
-
-The trivial family is the illustration.  `⊥` is separated not because anything
-is close but because nothing is: the hypothesis is unsatisfiable at `R = 2`, so
-the implication holds with its conclusion never tested.  A family is
-"separated" exactly when large near-coincidences do not happen except for the
-trivial reason, and the predicate records that by making them impossible to
-witness rather than by asserting anything about the geometry directly.
-
 ## Model tests
 
 Both are proved below rather than asserted, and the first is sharper than it

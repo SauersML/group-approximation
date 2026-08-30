@@ -29,4 +29,12 @@ exclusion of all known non-MF groups
 (`literal-group-mark-invisible-to-hyperfinite-representations`,
 `kazhdan-groups-in-hyperfinite-unitary-group-are-rf`,
 `clifford-witness-has-no-hyperfinite-marked-representation`), every
-recorded source of non-quasidiagonality in this lane is excluded from `R`.
+presently known source of non-quasidiagonality is now excluded from `R`.
+
+Sharpness: for amenable `Γ`, `C*_r(Γ) ⊆ R` whenever `Γ` has a faithful
+trace-embedding (e.g. `L(Γ)` hyperfinite with faithful trace ✓), so the
+dichotomy is exact.  Note also that simplicity is irrelevant: even for
+Le Boudec's C*-simple groups with nontrivial amenable radical, whose reduced
+algebras carry several (automatically faithful) traces such as
+`τ'(g) = 1_N(g)` for the amenable radical `N`, the GNS closure of `τ'` is
+`L(Γ/N)` with `Γ/N` nonamenable, and the claim applies.

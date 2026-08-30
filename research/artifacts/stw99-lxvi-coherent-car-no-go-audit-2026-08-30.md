@@ -48,34 +48,6 @@ finite-index expected extensions, and injective limits assembled from such
 stages.  The obstruction uses no trace extension, quasitrace, `K_0`, central
 sequence, or simplicity argument.
 
-## Infinite-index crossed and free constructions
-
-There is a complementary obstruction which permits infinite Watatani index.
-For any action of any discrete group on CAR, uniqueness makes the CAR trace
-invariant.  Composing it with the faithful canonical expectation from the
-reduced crossed product gives a faithful trace, so the crossed product is
-stably finite.  If the full crossed product is simple, its canonical quotient
-onto the reduced crossed product has zero kernel and the same conclusion
-holds.
-
-The identical vacuum mechanism applies to reduced amalgamated free products.
-If `D=CAR subset A_i`, the expectations `E_i:A_i->D` are faithful, and
-`tau_D after E_i` is tracial on every leg, then the reduced free-product
-expectation `E` is faithful and `tau_D after E` is a faithful trace.  Scalar
-amalgamation gives the ordinary reduced free product of CAR with any family
-of faithfully tracial factors.  A simple full amalgamated or ordinary free
-product coincides with its reduced quotient and is likewise stably finite.
-
-This excludes arbitrary-group reduced crossed products, trace-preserving
-reduced free amalgams, and their simple full counterparts.  Unlike the
-finite-index theorem, it does not compress the ambient algebra into a fixed
-matrix corner and places no bound on module index.  It instead shows that
-the coherent dyadic tower carries its unique trace through every
-trace-preserving reduced-word construction, preventing matrix instability.
-Faithful traces remain faithful on matrix and hereditary corners, so cutting
-to a full or simple corner cannot repair the construction.  The existing
-injective-limit theorem similarly excludes injective limits of such corners.
-
 ## Z-stable projection dichotomy
 
 There is an independent ambient-regularity obstruction.  Rordam's almost
@@ -124,56 +96,3 @@ and central-matrix no-go results.  The Z-stable dichotomy further requires a
 successful ambient algebra to be non-Z-stable (and, in the separable case,
 of infinite nuclear dimension); it gives no contradiction for an irregular
 infinite-index noncentral construction of that kind.
-
-The free-construction theorem requires faithful trace-preserving
-expectations on the legs (or an action by automorphisms in the crossed-product
-case).  A faithful expectation onto CAR need not make `tau_D after E`
-tracial, and a nonsimple full product may have a nonzero regular kernel, so
-neither is claimed.  Those non-trace-preserving, nonreduced possibilities
-remain outside this obstruction.
-
-## HNN trace-balance dichotomy
-
-The most direct non-trace-preserving HNN escape is impossible even for a
-projectionless edge.  Let `D=CAR subset A` unitally.  If positive contractions
-`a,b in D` are unitarily conjugate in `A` but have different CAR traces, the
-layer-cake formula finds `t` with unequal dimension functions for
-`a_t=(a-t)_+` and `b_t=(b-t)_+`.  In the larger cutdown, CAR strict comparison
-fits the smaller cutdown plus a nonzero CAR projection `e`.  Ambient
-conjugacy therefore gives
-
-```text
-[a_t]+[e]<=[a_t]  in Cu(A).
-```
-
-Both terms are full because they are nonzero elements of the unital simple
-subalgebra `D`.  Compact fullness of `[1_A]` then upgrades this absorption to
-`2[1_A]<=[1_A]`: the ambient unit is properly infinite.
-
-Therefore two embeddings `theta_0,theta_1:C->D` of an arbitrary unital edge
-algebra can be conjugated by an ambient HNN unitary in a finite algebra only
-if
-
-```text
-tau_D after theta_0=tau_D after theta_1.
-```
-
-The projectionless boundary genuinely occurs before covariance.  In the
-diagonal Cantor MASA of CAR, let `h` be the binary-expansion map onto
-`[0,1]`.  The embeddings of `C([0,1])` given by `f|->f(h)` and `f|->f(h^2)`
-are injective and agree on all projections, since `[0,1]` is connected, but
-their induced traces send the coordinate function to `1/2` and `1/3`.
-Nevertheless adjoining a covariance unitary makes the unit properly
-infinite.
-
-For finite-dimensional `C` the balanced side is also complete.  Equal edge
-traces give faithful trace-preserving expectations onto the edge images, and the
-canonical reduced HNN trace is faithful, hence stably finite.  The full HNN
-algebra has the pulled-back trace; if it is simple, its quotient onto the
-reduced algebra is injective and it too is stably finite.
-
-This no-go uses neither finite Watatani index nor a pre-existing ambient
-trace.  It shows that no trace imbalance, projection-visible or diffuse, can
-keep the CAR unit finite while creating matrix instability.  A remaining
-HNN construction must be trace balanced on the whole edge algebra and escape
-the faithfully tracial reduced model by a different mechanism.
