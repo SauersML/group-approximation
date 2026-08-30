@@ -132,7 +132,7 @@ as a premise in any graph route added with this artifact.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate seventeen facts which do not depend on the literature
+The graph additions isolate eighteen facts which do not depend on the literature
 audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -256,3 +256,16 @@ audit.
     `Cu(Z)->Cu(B**)` collapses every nonzero compact and soft class to one
     class.  This identifies the exact soft-scale information lost in the
     traceless W-star shadow without claiming that `Cu(Z)->Cu(B)` retains it.
+18. The map-classification part of the type-III argument is an internal
+    C-star target theorem: every unital strongly purely infinite C-star
+    algebra has asymptotically unique Jiang--Su embeddings.  Each embedding
+    is nuclear because `Z` is nuclear and is full because `Z` is simple and
+    the map is unital.  Gabe's Theorem 9.7 makes the maps strongly
+    `O_infinity`-stable; their nuclear `KK` classes agree; and the unital
+    clause of Gabe's Theorem B supplies a norm-continuous implementing path
+    in the target itself.  This class imposes no simplicity, separability,
+    nuclearity, exactness, stable-rank, comparison, or Z-stability condition
+    on the codomain.  It is not a bidual-return theorem: no shadow algebra is
+    entered at any point.  The arbitrary type-III von Neumann result now
+    factors through this general theorem after its independent verification
+    of strong pure infiniteness.
