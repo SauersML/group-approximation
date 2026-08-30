@@ -197,3 +197,13 @@ colour counts to the desired maximum.  The remaining universal hinge is a
 support-sensitive **coupled** subdivision: it must exploit operator
 orthogonality or support vanishing across different endpoint colours, not
 only scalar partitions of the common cut variable.
+
+The local coupled construction is now exact.
+`stw82-coupled-operator-partitions-merge-colours` allows every original
+order-zero colour to use its own quasicentral operator-valued partition and
+repairs all cutdowns inside their hereditary supports.  If pieces carrying
+the same new label are orthogonal across original colours, they merge into
+one global order-zero map.  This bypasses the scalar depth floor and reduces
+the universal extension problem to constructing these coupled partitions
+from ideal--quotient geometry.  That construction is not yet known in an
+arbitrary extension.
