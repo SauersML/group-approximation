@@ -16,8 +16,13 @@ Fix `n` and nonzero `a in M_n(Z)_+`, and write `b=phi_n(a)`.  Choose
 `0<t<||b||`.  The spectral cut `c=(b-t)_+` is the image of the nonzero
 element `(a-t)_+` after slightly decreasing `t` if necessary.  Since
 `M_n(Z)` is simple and the map is unital, `c` is norm-full in `M_n(B)`.
-Consequently its support projection `p in M_n(M)` is full with a finite
-fullness witness: for some finite `m`,
+Consequently the spectral projection
+
+```text
+p=support(c)=1_(t,infinity)(b) in M_n(M)
+```
+
+is full with a finite fullness witness: for some finite `m`,
 
 ```text
 1 is Murray--von Neumann subequivalent to p directSum ... directSum p
@@ -30,7 +35,8 @@ properly infinite central unit.  Thus `p` is a full properly infinite
 projection.  It absorbs its finite amplification, so (2) improves to
 `1<=p`; the reverse comparison is automatic.  Therefore `p~1`.
 
-Since `b>=t p` on the spectral subspace `p`, Cuntz comparison in `M_n(M)`
+Since `b>=t p` on this cut-down spectral subspace, Cuntz comparison in
+`M_n(M)`
 gives
 
 ```text
@@ -43,6 +49,11 @@ has the same image under (1).  In Robert's description
 soft class has such a representative.  The infinite soft class is the
 supremum of an increasing sequence of finite soft classes.  Cu-morphisms
 preserve these suprema, so its image is the same class as well.
+
+No step replaces `b` by its full support projection.  That replacement is
+false for general positive elements of a von Neumann algebra.  The positive
+lower bound `b>=tp` on the nonzero spectral cut is precisely what gives the
+comparison `[p]<=[b]` used in (3).
 
 The finite-fullness step is essential: proper infiniteness of the ambient
 von Neumann algebra by itself would not justify equating projections of
