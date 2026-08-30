@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw99-xi-xii-dynamics-qd-2026-08-30.md
   - research/artifacts/stw99-xi-clopen-support-gluing-2026-08-30.md
   - research/artifacts/stw11-transfinite-clopen-filtration-audit-2026-08-30.md
+  - research/artifacts/stw11-lattice-coupled-cyclic-products-audit-2026-08-30.md
 ---
 
 **Problem XI of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Let
@@ -19,12 +20,12 @@ stably finite, must it be quasidiagonal?  AF-embeddable?  STW add that it
 is not even known when such crossed products are stably finite.
 
 For `d = 1` everything is Pimsner's theorem: AF-embeddable ⟺
-quasidiagonal ⟺ stably finite ⟺ no open `U` with `closure(α(U)) ⊊ U`.
+quasidiagonal ⟺ stably finite ⟺ no open `U` with `α(U) ⊊ U`.
 
 ## Attempts
 
 * **Necessary condition for stable finiteness, any `d`.**  If some
-  `g ∈ Z^d` compresses an open set (`closure(gU) ⊊ U`), Pimsner's
+  `g ∈ Z^d` compresses an open set (`gU ⊊ U`), Pimsner's
   construction produces an infinite projection in the subalgebra
   `C(X) ⋊ ⟨g⟩`, which stays infinite in `C(X) ⋊ Z^d`.  So elementwise
   incompressibility is necessary; the open question is whether joint
@@ -82,3 +83,21 @@ quasidiagonal ⟺ stably finite ⟺ no open `U` with `closure(α(U)) ⊊ U`.
   algebra.  Separate compact-open exhaustions of the relative strata are
   not enough: their characteristic functions need not be ambient
   projections.
+* **Lattice-coupled products of cyclic systems are AF-embeddable.**
+  `stw11-lattice-coupled-cyclic-products-are-af-embeddable` gives the full
+  stably finite `iff` quasidiagonal `iff` AF-embeddable conclusion for every
+  action on `product_i X_i` of the form
+
+  ```text
+  g.(x_i)_i=(alpha_i^(L(g)_i)(x_i))_i,
+  ```
+
+  where `L:Z^d->Z^m` is any integer lattice map and the `alpha_i` are
+  arbitrary homeomorphisms.  Stable finiteness detects a crossed product by a
+  nonzero power of every active `alpha_i` inside the higher-rank algebra.
+  Pimsner's compression criterion returns from that power to `alpha_i`, and
+  the lattice crossed product embeds in the tensor product of the resulting
+  cyclic AF hosts, the inactive commutative coefficients, and the torus from
+  `ker L`.  This includes skew rank-two actions whose generators each move
+  several factors, assumes neither a faithful trace nor a clopen filtration,
+  and gives the stronger AF-embedding conclusion.
