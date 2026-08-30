@@ -41,7 +41,7 @@ prod_(s in T_1) psi(s_u)
  = prod_(s in T_2) psi(s_u).
 ```
 
-The same computation applies to the `v` overlap of `C_1,C_3), while
+The same computation applies to the `v` overlap of `C_1,C_3`, while
 both `w` marginals from `T_2,T_3` equal `psi(1)`.
 
 Nevertheless,
