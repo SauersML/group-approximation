@@ -14,16 +14,20 @@ metric statement in the paper, Theorem 2.17(b), is that the quotient of the
 statement from a bound on the kernel of the quotient of the *group*.
 
 So the injectivity radius is Hull's own §5, and it belongs on the side that
-builds the rotating family rather than on the side that cites DGO.  This module
-is the one lemma that discharge needs, in the form it will be consumed:
+builds the rotating family rather than on the side that cites DGO.  The lemma
+discharge needs is
 
 > if every nontrivial element of the kernel moves the basepoint by at least `L`,
 > and `L` exceeds `2R`, then the quotient map is injective on the `R`-ball of
-> `Γ(G,A)`.
+> `Γ(G,A)`,
 
-`injOn_cayleyBall_of_action` does the geometry -- a word of length at most `2R`
-in letters that move the basepoint by at most one moves it by at most `2R` --
-and this lemma supplies its hypothesis from the kernel.
+which is `HullSC.injOn_cayleyBall_of_kernel_moves`, stated in
+`GGT/HullSCFilling.lean` beside `injOn_cayleyBall_of_action` -- the geometry
+that a word of length at most `2R` in letters moving the basepoint by at most
+one moves it by at most `2R` -- because Hull's Theorem 5.1 consumes it there.
+What this module adds is the form the family hands back, with the kernel
+presented as the normal closure of the rotations, and the reading below of why
+the hypothesis is the right one.
 
 ## The non-vacuity check it encodes
 
@@ -52,30 +56,6 @@ open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u v
-
-/-- **Injectivity on a ball of `Γ(G,A)`, from the kernel moving the
-basepoint.**
-
-The space is arbitrary: the only comparison with `Γ(G,A)` is that the letters of
-`A` move the basepoint by at most one, which is what
-`injOn_cayleyBall_of_action` turns into `d(y, g·y) ≤ |g|_A`.  So this applies
-verbatim on the geodesic realisation `Point A`, where the rotating family
-actually lives, and the transfer back to `Γ(G,A)` costs nothing because the
-vertex inclusion has distortion one. -/
-theorem injOn_cayleyBall_of_kernel_moves {G : Type u} [Group G] {Q : Type*}
-    [Group Q] {X : Type v} [PseudoMetricSpace X] [MulAction G X]
-    (hiso : IsIsometricAction G X) (A : Alphabet G) (y : X)
-    (hA : ∀ a ∈ A.carrier, dist y (a • y) ≤ 1) (q : G →* Q) {K : Subgroup G}
-    (hker : q.ker = K) {L : ℝ} (R : ℕ) (hL : 2 * (R : ℝ) < L)
-    (hmove : ∀ g ∈ K, g ≠ 1 → L ≤ dist y (g • y)) :
-    Set.InjOn q (cayleyBall A R) := by
-  refine injOn_cayleyBall_of_action hiso A y hA q (L := L) R hL ?_
-  intro g hg hdist hq
-  have hmem : g ∈ K := by
-    rw [← hker]
-    exact MonoidHom.mem_ker.mpr hq
-  have hge : L ≤ dist y (g • y) := hmove g hmem hg
-  linarith
 
 /-- The same, with the kernel given as the subgroup the rotations of a family
 generate -- the form `HullSC.RotatingQuotient.ker_eq` hands back. -/
