@@ -2947,3 +2947,4 @@ import GroupApproximation.GGT.HullEllipticity
 import GroupApproximation.GGT.HullSCConeOffHeavyModelPoint
 import GroupApproximation.Analysis.VoiculescuGlimmSelection
 import GroupApproximation.Analysis.VoiculescuSuperposition
+import GroupApproximation.GGT.HullSCConeOffHeavyModelTransfer
