@@ -12,7 +12,7 @@ and contractivity give a pointwise limit `Phi:A->E`, and asymptotic
 multiplicativity makes `Phi` a unital homomorphism exactly as in
 `stw08-coherent-fd-model-criterion-proof`.  Exact compatibility of the
 `sigma_n` defines a trace `sigma` on `E`.  Passing to the limit in
-`sigma_n phi_n(a)` gives `sigma(Phi(a))=tau(a)`.  If `tau` is faithful and
+`sigma_n phi_n(a)` gives `sigma(Phi(a))=tau(a)`.  Since `tau` is faithful, if
 `Phi(a)=0`, then
 
 ```text
