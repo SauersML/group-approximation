@@ -32,4 +32,3 @@ Conversely every counterexample is Morita equivalent to such a `D`.
 Thus the universal problem is exactly the existence problem for a
 projectionless but not stably projectionless simple Morita model whose
 entire stabilized projection semigroup is already properly infinite.
-

@@ -39,4 +39,3 @@ LXXIV counterexample.
 No nuclearity is used.  Nuclearity and separability pass both ways through
 hereditary subalgebras and Morita equivalence, so the same equivalence holds
 with either qualifier imposed.
-

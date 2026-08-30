@@ -51,4 +51,3 @@ largest Cuntz class.  Hence
 
 Equality of Cuntz classes of projections is stabilized Murray--von Neumann
 equivalence, completing the proof.
-

@@ -34,4 +34,3 @@ Hence a counterexample has a locally stationary finite matrix obstruction:
 projection return succeeds at one fixed level `m`, uniformly along a
 rapidly increasing spectral tower, but fails at every smaller level.  The
 universal hinge is precisely descent from such an `m>=2` to level one.
-
