@@ -161,3 +161,38 @@ witnesses this failure at every compactly contained stage.  Hence a
 counterexample does not merely fail a global comparison axiom; it exhibits
 an entire localized tower on which proper infiniteness fails to descend
 through finite roots.
+
+### Z-stability and finite nuclear dimension close the comparison hinge
+
+Rordam's Theorem 4.5 in *The stable and the real rank of Z-absorbing
+C*-algebras*, <https://arxiv.org/abs/math/0408020>, proves that Z-stability
+forces almost unperforation of the Cuntz semigroup.  Applying it after
+stabilization gives almost unperforation of `Cu(A)`.  The already established
+unit-level almost-unperforation theorem therefore yields
+
+```text
+simple + unital + Z-stable + LXXIV projection hypothesis
+    => purely infinite.
+```
+
+This is a corollary of the existing Cuntz-semigroup hinge, not a second proof
+of it.
+
+There is a useful finite-dimensional-regularity consequence.  Winter,
+*Nuclear dimension and Z-stability of pure C*-algebras*,
+<https://arxiv.org/abs/1006.2731>, proves that a separable simple unital
+non-elementary C*-algebra of finite nuclear dimension is Z-stable.  The
+non-elementary qualification is automatic here: a simple unital elementary
+C*-algebra is a matrix algebra, and its rank-one projections are finite, in
+direct conflict with the LXXIV hypothesis.  Hence
+
+```text
+separable + simple + unital + finite nuclear dimension
+    + LXXIV projection hypothesis
+    => purely infinite.
+```
+
+In particular, every separable counterexample has infinite nuclear dimension
+and is non-Z-stable.  The latter conclusion holds even without separability.
+Neither obstruction supplies property (SP) for an arbitrary non-Z-stable
+algebra, so the unrestricted problem remains open.
