@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw82-order-zero-spectral-subdivision-audit-2026-08-30.md
   - research/artifacts/stw82-tree-connected-support-covers-audit-2026-08-30.md
   - research/artifacts/stw82-stage-centre-split-audit-2026-08-30.md
+  - research/artifacts/stw82-multiplier-projection-reduction-audit-2026-08-30.md
 ---
 
 **Problem LXXXII of Schafhauser--Tikuisis--White,
@@ -99,6 +100,30 @@ maximum formula, for an arbitrary ideal and with no commutation between the
 matrix part of the section and the ideal.  For a general split AF quotient,
 noncentral stage-block units and their off-diagonal ideal corners remain
 outside this proof.
+
+That remaining split-AF frontier now has an exact one-projection normal
+form.  `stw82-split-af-is-one-multiplier-projection-problem` proves that the
+maximum formula for all unital split AF quotients is equivalent to the
+apparently smaller assertion
+
+```text
+dim_nuc(A+C p)=dim_nuc(A)
+```
+
+for every multiplier projection `p` of every C*-algebra `A`; equivalently,
+it is enough to handle unital split extensions with quotient
+`C direct_sum C`.  A full-corner matrix-unit compression removes all matrix
+sizes, and the remaining coordinate projections are adjoined one at a time.
+The stage-centre hypothesis is exactly the vanishing of every off-diagonal
+Peirce corner.  A nonzero such corner contains a norm-one element whose
+commutator with the corresponding block projection has norm one, so the
+direct-sum proof cannot cross this boundary by an approximate-centrality
+estimate.  Multiplier-projection invariance itself remains open here.
+It is unconditional for sigma-unital ideals when the multiplier projection
+is full: the adjoined algebra is Morita equivalent to the unitization of the
+full hereditary corner.  Thus a split-AF counterexample would necessarily
+encounter a nonfull projection and the proper residual quotient left outside
+its generated ideal.
 
 There is also a new unconditional middle-algebra class:
 `stw82-one-dimensional-middle-forces-maximum` shows that every
