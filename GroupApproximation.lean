@@ -2745,6 +2745,10 @@ import GroupApproximation.Analysis.VoiculescuGlimmStatement
 import GroupApproximation.GGT.GeodesicChainExists
 import GroupApproximation.GGT.GuessingGeodesicsSubdivision
 import GroupApproximation.Analysis.VoiculescuGlimmVector
+import GroupApproximation.GGT.GuessingGeodesicsGrowth
+import GroupApproximation.GGT.GuessingGeodesicsBound
+import GroupApproximation.Analysis.ArvesonIsometryFamily
+import GroupApproximation.Analysis.ArvesonBHSeparable
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

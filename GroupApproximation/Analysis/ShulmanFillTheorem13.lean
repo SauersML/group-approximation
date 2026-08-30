@@ -87,10 +87,10 @@ what is available was wrong on two further counts.  Checked against the tree:
   by compression and dilation along an exhausting family of isometries; its
   one owed input, the limit step, is discharged in
   `Analysis/ArvesonLimitStep.arvesonLimit`.  An earlier version of this bullet
-  said the `B(H)` case was not there, which was true when it was written.  What
-  the consumer still supplies is the exhausting family itself: `arvesonBH_of_limit`
-  takes the isometries `Jₙ` as data, with the two weak convergences that
-  `Pₙ = Jₙ Jₙ⋆ → 1` strongly gives.
+  said the `B(H)` case was not there, which was true when it was written.
+  `arvesonBH_of_limit` takes the isometries `Jₙ` as a parameter; for a separable
+  `H` they are supplied by `Analysis/ArvesonBHSeparable`, whose
+  `arvesonBH_of_separable` carries no data hypothesis at all.
 * **Voiculescu's theorem is under construction, and is still the step this
   module's `CompatibleTargetPairStatement` is really waiting on.**  Its first
   half is a theorem: `Analysis/VoiculescuQuasicentral.quasicentralApproximateUnitSeparable`

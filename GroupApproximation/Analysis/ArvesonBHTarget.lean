@@ -47,10 +47,14 @@ which stays as the interface between the two modules: `arvesonBH_of_limit`
 proves Arveson at a `B(H)` target from it together with steps 1--3, and
 `ArvesonLimitStep.arvesonLimit` discharges it.
 
-The exhausting family `Jₙ` is taken as *data*, not asserted to exist: in the
-printed setting `H = ℓ²` and `Jₙ` is the inclusion of the first `kₙ`
-coordinates, which is what the concrete model `M_n ↪ B(ℓ²)` will supply.  The
-two weak-convergence hypotheses are what `Pₙ → 1` strongly gives.
+The exhausting family `Jₙ` is a parameter of `arvesonBH_of_limit` rather than
+something it constructs: in the printed setting `H = ℓ²` and `Jₙ` is the
+inclusion of the first `kₙ` coordinates, and the two weak-convergence
+hypotheses are what `Pₙ → 1` strongly gives.  For a separable `H` the family
+exists and is built in `Analysis/ArvesonBHSeparable`, whose
+`arvesonBH_of_separable` is this theorem with nothing left as data — an earlier
+version of this paragraph said the family was "not asserted to exist", which
+was true when it was written.
 
 This module is in the root import list.  It was authored while builds were
 suspended and has not been elaborated.  Every Mathlib name it uses has a
