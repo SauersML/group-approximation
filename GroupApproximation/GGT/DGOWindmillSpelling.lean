@@ -3,6 +3,7 @@ import Mathlib.Algebra.Group.Action.Basic
 import Mathlib.Algebra.Group.Subgroup.Pointwise
 import Mathlib.Data.List.Basic
 import Mathlib.Data.List.Chain
+import Mathlib.Data.Set.Lattice
 import Mathlib.Tactic.Group
 
 /-!
@@ -278,7 +279,7 @@ theorem Spelling.eval_lmul (a : G) (s : Spelling G X) :
     (Spelling.lmul a s).eval = a * s.eval := by
   obtain ⟨l, e⟩ := s
   cases l with
-  | nil => simp [mul_assoc]
+  | nil => simp
   | cons w l => simp [mul_assoc]
 
 @[simp]
@@ -400,6 +401,22 @@ the apices of the stage. -/
 def stepGroup (Rot : X → Subgroup G) (C₁ : Set X) (GW : Subgroup G) : Subgroup G :=
   Subgroup.closure (genSet Rot C₁ GW)
 
+/-- The generating set in union form.  `genSet` is written as a `setOf` so that
+`mem_genSet_iff` is `Iff.rfl` and the induction below never has to unfold a
+lattice operation; this lemma is the bridge to the union a consumer will want to
+match against `Subgroup.closure` of an explicit union. -/
+theorem genSet_eq_union :
+    genSet Rot C₁ GW = (GW : Set G) ∪ ⋃ d ∈ C₁, (Rot d : Set G) := by
+  ext x
+  simp [genSet]
+
+/-- **`G₂` as the closure of an explicit union**, the form the windmill growth
+step is stated against. -/
+theorem stepGroup_eq_closure_union :
+    stepGroup Rot C₁ GW
+      = Subgroup.closure ((GW : Set G) ∪ ⋃ d ∈ C₁, (Rot d : Set G)) :=
+  congrArg Subgroup.closure genSet_eq_union
+
 theorem gw_le_stepGroup : GW ≤ stepGroup Rot C₁ GW := fun _ hx =>
   Subgroup.subset_closure (mem_genSet_of_mem_gw hx)
 
@@ -448,6 +465,9 @@ inverse case is the same construction applied to `x⁻¹`. -/
 theorem exists_isValid_of_mem_stepGroup {g : G} (hg : g ∈ stepGroup Rot C₁ GW) :
     ∃ s : Spelling G X, s.IsValid Rot C₁ GW ∧ s.eval = g := by
   have hg' : g ∈ Subgroup.closure (genSet Rot C₁ GW) := hg
+  -- `hg` mentions `g`, so leaving it in context makes `induction` revert it into
+  -- the motive and hand back an induction hypothesis that is an implication.
+  clear hg
   induction hg' using Subgroup.closure_induction_left with
   | one => exact ⟨Spelling.one, Spelling.isValid_one, Spelling.eval_one⟩
   | mul_left x hx y _ ih =>
@@ -493,10 +513,9 @@ theorem exists_seam_decomp {l : List (Syll G X)} (h : ¬ ReducedList l) :
     ∃ (u v : Syll G X) (l₁ l₂ : List (Syll G X)),
       l = l₁ ++ u :: v :: l₂ ∧ v.pre • v.dir = u.dir := by
   by_contra hc
-  push_neg at hc
   refine h (List.isChain_iff_forall_rel_of_append_cons_cons.2 ?_)
-  intro a b l₁ l₂ he
-  exact hc a b l₁ l₂ he
+  intro a b l₁ l₂ he heq
+  exact hc ⟨a, b, l₁, l₂, he, heq⟩
 
 /-- **Merging an adjacent pair that meets.**
 
@@ -562,7 +581,7 @@ theorem exists_isValid_shorter_of_seam
       · exact ⟨hu.pre_mem, hu.dir_mem, (Rot u.dir).mul_mem hu.rot_mem hconj_v, hm⟩
       · exact hrvalid.lmul hv.pre_mem
     · rw [Spelling.eval_appendList, Spelling.eval_cons, Spelling.eval_lmul, hs_eval]
-      simp only [Syll.pre_mk, Syll.rot_mk, Spelling.eval_mk]
+      simp only [Spelling.eval_mk]
       group
     · simp only [Spelling.sylls_appendList, Spelling.sylls_cons,
         Spelling.length_sylls_lmul, List.length_append, List.length_cons, hlen]
