@@ -67,8 +67,9 @@ variable {G : Type u} [Group G] {Λ : Type w}
 /-- **Both gaps of a matched pair of blocks are short, from one reading of the
 polygon**, with the gaps NAMED, over the innermost cut AT one pair of constants.
 
-The body lives here.  `two_block_conj_named` and `two_block_conj_named_one` are
-this theorem fed from the two spellings of `DGOIsolatedComponentCut`'s connector
+The body lives here, under the name hull-relator3's ledger refers to.
+`two_block_conj_named` and `two_block_conj_named_one` are this theorem fed from
+the two spellings of `DGOIsolatedComponentCut`'s connector
 --- over all `(μ,b)`, or over `b` alone at `μ = 1`, the one
 `OsinTheorem54SepSixBound.sixBound_one_of_fourPointHyperbolic` discharges
 outright.
@@ -89,7 +90,7 @@ different `H_λ` needs them compared against the same radius.
 The deep span stays between the two gaps and is never folded in, being unbounded
 while they are not; `block_span_conj` is what puts it there, and it is used only
 in the corollary. -/
-theorem two_block_conj_of_cut (D : RelGenSet G Λ)
+theorem two_block_conj_named_at (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) (mu b : ℝ)
     (hcut : ∃ C : ℕ, 0 < C ∧
       ∀ (n : ℕ), n ≤ 5 → ∀ (v : G) (w : List (RelLetter G Λ)),
@@ -320,7 +321,7 @@ theorem two_block_conj_named (D : RelGenSet G Λ)
             ∈ D.relBall lam (C * 4)) ∧
           ((RelLetter.listVal p * vertex (1 : G) q k)⁻¹ * vertex (1 : G) s l
             ∈ D.relBall lam (C * 4)) :=
-  two_block_conj_of_cut D hsymm mu b (connector_mem_relBall D hbound mu b hmu hb)
+  two_block_conj_named_at D hsymm mu b (connector_mem_relBall D hbound mu b hmu hb)
 
 /-- **The same, over the connector at `μ = 1`.**  This is the form whose
 `hbound` `sixBound_one_of_fourPointHyperbolic` proves from `hsymm` and four-point
@@ -366,7 +367,7 @@ theorem two_block_conj_named_one (D : RelGenSet G Λ)
             ∈ D.relBall lam (C * 4)) ∧
           ((RelLetter.listVal p * vertex (1 : G) q k)⁻¹ * vertex (1 : G) s l
             ∈ D.relBall lam (C * 4)) :=
-  two_block_conj_of_cut D hsymm 1 b (connector_mem_relBall_one D hbound b hb)
+  two_block_conj_named_at D hsymm 1 b (connector_mem_relBall_one D hbound b hb)
 
 /-- **The same, as the existential a consumer states its conclusion with.**
 
