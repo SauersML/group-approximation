@@ -50,6 +50,11 @@ quotient.
 - Magic-square or Pauli selector padding does not refute the claim: such a
   finite selector merely enlarges an already finite atom orbit.  It does
   show that a proof cannot first select a universal frozen branch.
+- By `profile-itinerary-meet-extracts-finite-readable-summand` and
+  `readable-itinerary-central-summand-preserves-irs-provenance`, this claim is
+  equivalent to `perfect-gap-zpc-has-profile-pure-finite-projection-orbit`:
+  its local itinerary summand lifts to a full-action invariant event, and
+  conditioning on that event gives the finite full readable witness.
 - A positive proof could strengthen the pseudo-IRS compactness extraction by
   a uniform bound on the readable translate orbit, or isolate a special
   NONHALT TailoredMIP instance whose readable transition process factors
