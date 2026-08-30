@@ -70,6 +70,13 @@ no-microstate theorem.  A proof must find an ordinary relation-defect
 estimate forcing the comparison; it cannot justify the comparison merely
 by saying that the cuts vary with the matrix coordinate.
 
+There is now an additional exact rank firewall:
+`center-chain-common-source-saturates-four-hecke-flags` proves that all four
+ambient numerical support projections restrict to the identity on `Q`.
+Thus the ratios `(1/2,1/4)` and `(1/4,1/8)` cannot be read after common-source
+restriction.  The missing comparison must carry separately typed native
+source and target data into the common-source frame.
+
 ## Square-root fence
 
 The identities
