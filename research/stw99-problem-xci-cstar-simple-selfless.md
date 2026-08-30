@@ -17,6 +17,7 @@ artifacts:
   - research/artifacts/fkop-graph-product-selflessness-v3-audit-2026-08-30.md
   - research/artifacts/stw91-locally-finite-permutation-wreath-audit-2026-08-30.md
   - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
+  - research/artifacts/stw91-universal-vertex-absorption-audit-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
@@ -129,3 +130,5 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
   complement component labelled by `C_2,C_2`.  For C-star-simple vertex
   groups the resulting algebra is completely selfless, with no exactness or
   prior vertex-selflessness assumption.
+
+- `graph-products-noncomplete-selfless-criterion` settles every graph-product instance whose defining graph is noncomplete, including graphs with arbitrarily many universal vertices labelled by arbitrary C-star-simple groups. One nonsingleton complement component supplies a completely selfless tensor anchor that absorbs the entire remaining C-star-simple factor without exactness. The complete-graph case is the exact residual boundary; a one-vertex complete graph is the universal problem itself.
