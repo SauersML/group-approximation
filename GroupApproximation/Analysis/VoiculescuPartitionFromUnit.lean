@@ -1,6 +1,7 @@
 import GroupApproximation.Analysis.VoiculescuPartition
 import GroupApproximation.Analysis.VoiculescuCompactSqrt
 import GroupApproximation.Analysis.VoiculescuUnitStrongLimit
+import GroupApproximation.Analysis.VoiculescuUnitRecursion
 
 /-!
 # The monotone unit builds the partition of unity
@@ -56,6 +57,14 @@ theorem exists_quasicentralPartition_of_monotoneQuasicentral
   refine Tendsto.congr (fun N ↦ ?_) (u.toSequentialCompactUnit.tendsto_apply x)
   rw [← u.sum_pieceSqrt_sq N]
   simp
+
+/-- **The partition exists unconditionally.**  The recursive V1c construction
+now supplies the exact strengthened unit consumed above. -/
+theorem nonempty_quasicentralPartition (K : Type) [NormedAddCommGroup K]
+    [InnerProductSpace ℂ K] [CompleteSpace K] [TopologicalSpace.SeparableSpace K]
+    (S : ℕ → (K →L[ℂ] K)) : Nonempty (QuasicentralPartition K S) :=
+  exists_quasicentralPartition_of_monotoneQuasicentral
+    monotoneQuasicentralStatement K S
 
 end
 
