@@ -7,7 +7,7 @@ target: stw83-finite-graphs-are-complete-test
 requires: []
 ---
 
-Fix finite edge and vertex sets `F subset E^1` and `V subset E^0), and
+Fix finite edge and vertex sets `F subset E^1` and `V subset E^0`, and
 put
 
 ```text
@@ -25,7 +25,7 @@ orthogonal.
 
 Make a finite graph `G_(F,V)` with one vertex for each nonzero `Q_e,Q_v`;
 each `Q_v` is a sink.  From vertex `e`, put an edge to vertex `f`
-whenever `r(e)=s(f)`, represented by `s_e Q_f), and an edge to the
+whenever `r(e)=s(f)`, represented by `s_e Q_f`, and an edge to the
 residual vertex `r(e)` whenever `Q_(r(e))!=0`, represented by
 `s_e Q_(r(e))`.  The decomposition
 
