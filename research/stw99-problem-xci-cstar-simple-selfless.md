@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw91-cograph-product-permanence-audit-2026-08-30.md
   - research/artifacts/stw91-finitary-permutation-wreath-audit-2026-08-30.md
   - research/artifacts/stw91-anchored-free-product-permanence-audit-2026-08-30.md
+  - research/artifacts/stw91-php-crossed-product-selflessness-audit-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
@@ -69,6 +70,12 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
   directed-union theorem.  Thus a countable free product of countable groups
   satisfies XCI as soon as one free factor does, with no hypothesis on the
   remaining groups.
+- `stw91-php-approximately-inner-crossed-products-are-selfless` combines the
+  2026 relative crossed-product theorem with unique-trace scalarization.  If
+  a PHP group acts by approximately inner automorphisms on a simple unital
+  uniquely tracial algebra, then the reduced crossed product is tracially
+  selfless and has Robert's full regularity package.  In particular, this
+  holds for every action of a PHP group on the Jiang--Su algebra.
 - `stw91-cograph-products-preserve-selflessness` combines reduced-free-product
   permanence with exact tensor permanence and directed unions.  If a
   countable commutation graph has no induced `P_4` and every vertex group has
