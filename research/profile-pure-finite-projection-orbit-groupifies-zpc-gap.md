@@ -9,18 +9,18 @@ distinct_from:
   finite-invariant-partition-only-reduces-irs-to-fiber-irs: that uses only a finite measurable partition and retains a fiber IRS character; this kills all atomwise verifier rows in an ordinary finite-index stabilizer quotient and uses the strict game gap.
 ---
 
-Let `G` be a finite controlled-linear tailored game with a perfect ZPC-IRS
-strategy and
+Let `G` be a finite controlled-linear tailored game with
 
 ```text
 omega*(G)<1.                                             (PPO1)
 ```
 
-Use the faithful stabilizer-character GNS representation `(M,tau,pi)`, put
-`q_-=(1-pi(J))/2`, and let `Q_G` and the finite-dimensional joint readable
-spectral algebra `D_0` be as in
-`finite-readable-translate-algebra-groupifies-zpc-gap`. Assume there is a
-nonzero projection
+Let `(M,tau,pi)` be any faithful finite tracial representation of the
+controlled involution relations whose normalized negative central corner is
+a perfect tracial ZPC model of `G`. Put `q_-=(1-pi(J))/2`, and let `Q_G`
+be the finitely presented structural group on `J` and the unreadable
+involutions. Let `D_0` be the finite-dimensional joint readable spectral
+algebra in `q_-Mq_-`. Assume there is a nonzero projection
 
 ```text
 0!=p_0 in q_- M q_-                                    (PPO2)
@@ -61,4 +61,6 @@ K_T=H / <<h_(t,a):t in T, a active at r(t)>>_H.         (PPO5)
 Then `K_T` is finitely presented, the image of `J` is a nontrivial central
 involution, and `K_T` is not hyperlinear. Thus a single finite
 profile-pure projection orbit is enough; no finiteness or atomicity of the
-full readable translate algebra is required.
+full readable translate algebra is required. The fixed-point/stabilizer GNS
+model is an important source of such a tracial representation, but the
+compiler and its proof do not require IRS provenance.
