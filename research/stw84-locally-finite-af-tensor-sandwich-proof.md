@@ -6,6 +6,7 @@ title: Sandwich the direct-product algebra between an AF tensor bound and the au
 target: stw84-locally-finite-direct-factor-invariance
 requires:
   - stw84-directed-union-uniform-bound
+  - zero-dimensional-character-factor-preserves-nuclear-dimension
 ---
 
 Exhaust `L` by finite subgroups.  Their group C*-algebras are finite
@@ -19,20 +20,7 @@ Both groups are amenable, and the direct-product representation gives
 C*(L times H)=C*(L) tensor_min C*(H).                 (1)
 ```
 
-The tensor-product estimate for nuclear dimension and
-`dim_nuc(C*(L))=0` imply
-
-```text
-dim_nuc(C*(L times H)) <= dim_nuc(C*(H)).             (2)
-```
-
-The trivial character `epsilon_L:C*(L)->C` makes
-
-```text
-epsilon_L tensor id : C*(L times H) -> C*(H)
-```
-
-a surjective *-homomorphism.  Quotient monotonicity gives the reverse
-inequality to (2).  If the right side is infinite, this quotient already
-forces the left side to be infinite, so the argument covers all values.
-
+The trivial representation gives a character `epsilon_L:C*(L)->C`.
+Apply `zero-dimensional-character-factor-preserves-nuclear-dimension` to
+`A=C*(L)` and `B=C*(H)` in (1).  It gives the claimed equality, including
+when `C*(H)` has infinite nuclear dimension.
