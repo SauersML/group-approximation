@@ -37,6 +37,13 @@ isometry at a least finite matrix level.  Thus
 to making this concrete finite matrix witness interact with the concrete
 positive centralization defect.
 
+`stw78-central-matrix-folding-descends-proper-infiniteness` proves the exact
+folding step in a positive class: a central `M_n` from the domain folds a
+properly infinite `M_n(C)` back into the sequence relative commutant whenever
+the finite seed `C` commutes with the image.  The universal obstruction is
+therefore the absence of those two interaction properties, not the folding
+calculation.
+
 ## Attempts
 
 An irreducible embedding into `B(H)` is not a counterexample merely because

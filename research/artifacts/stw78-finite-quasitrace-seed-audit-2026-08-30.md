@@ -50,6 +50,21 @@ positive central-isometry defect and a finite matrix isometry witnessing
 failure of stable finiteness.  The universal hinge is precisely that these
 two finite witnesses need not interact.
 
+There is a sharp positive folding mechanism when they do interact.  If the
+domain central sequence algebra contains a unital `M_n`, and a unital
+subalgebra `C` of the ordinary relative commutant has properly infinite
+`M_n(C)`, then the commuting copies multiply to a unital map
+
+```text
+M_n(C) -> B_infinity intersect phi(A)'.
+```
+
+Two orthogonal isometries pass through this map and prove O-infinity
+stability.  Thus the unresolved gap in the finite-witness normal form is not
+matrix folding itself: it is moving the finite target seed into the relative
+commutant and upgrading its first nonfinite amplification to a properly
+infinite one.
+
 # Remaining hinge
 
 The reduction does not construct a counterexample or prove the universal
