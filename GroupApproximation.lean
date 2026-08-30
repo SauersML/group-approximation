@@ -2944,3 +2944,4 @@ import GroupApproximation.GGT.OsinTheorem54Unconditional
 import GroupApproximation.GGT.OsinTheorem12OneDebt
 import GroupApproximation.GGT.OsinTheorem12ProjectionReduction
 import GroupApproximation.GGT.HullEllipticity
+import GroupApproximation.GGT.HullSCConeOffHeavyModelPoint
