@@ -1,27 +1,31 @@
 ---
 rg: 2
-title: STW LXXXII finite-tree componentwise support-cover audit (2026-08-30)
+title: STW LXXXII compact-R-tree componentwise support-cover audit (2026-08-30)
 kind: artifact
 ---
 
-# Optimal componentwise covers over a finite tree
+# Optimal componentwise covers over a compact metric R-tree
 
-The previous connected-support theorem extends to arbitrary cozero supports
-when the common algebra `C(T)` centralizes the outgoing ranges.  Fix a
-tolerance `epsilon`.  Only finitely many connected components of
-`U_v={h_v>0}` meet `{h_v>=epsilon}`: components are open in a finite tree and
-cover that compact upper spectral set.  For each retained component `W`, the
+The previous finite-tree theorem extends both in support shape and ambient
+geometry: `T` may be any compact metric R-tree, and cozero supports may be
+arbitrarily disconnected when the common algebra `C(T)` centralizes the
+outgoing ranges.  Fix a tolerance `epsilon`.  Only finitely many connected
+components of `U_v={h_v>0}` meet `{h_v>=epsilon}`: R-trees are locally path
+connected, so those components are open and cover the compact upper spectral
+set.  For each retained component `W`, the
 set `{h_v>=epsilon} intersect W` is compactly contained in `W`.  Urysohn's
 lemma gives a positive cutter equal to one there and supported inside `W`.
 All omitted points carry `h_v<epsilon`.
 
 The retained component family is finite and consists of connected subtrees.
 Its intersection graph is chordal in the exact self-contained form needed:
-replace each open component by a compact subtree with the same finite
-intersection graph, root the ambient tree, and repeatedly remove the subtree
-whose nearest point to the root is farthest away.  Every neighbour contains
-that nearest point, so each removed vertex is simplicial.  Reverse greedy
-colouring uses at most the maximum pointwise number `m` of original supports.
+replace each open component by the geodesic convex hull of finitely many
+witness points.  That hull is a finite union of compact geodesic segments and
+has the same finite intersection graph.  Root the ambient R-tree and repeatedly
+remove the compact convex subtree whose metric projection of the root is
+farthest away.  Every neighbour contains that projection point, so each
+removed vertex is simplicial.  Reverse greedy colouring uses at most the
+maximum pointwise number `m` of original supports.
 At a point there cannot be two components of the same original support, so
 passing to components does not increase depth.
 
@@ -51,9 +55,10 @@ Thus the theorem beats `stw82-indivisible-order-zero-reuse-is-graph-colouring`
 rather than merely computing its chromatic number.
 
 It also improves the general finite-dimensional central-spectrum theorem.  A
-one-dimensional spectrum there costs `2m` colours; a finite tree now costs
-only `m`, without connectedness of individual supports.  This is a structural
-outgoing-colour reorganization, not a new estimate on raw complementary cuts.
+one-dimensional spectrum there costs `2m` colours; a compact metric R-tree
+costs only `m`, without connectedness of individual supports.  This is a
+structural outgoing-colour reorganization, not a new estimate on raw
+complementary cuts.
 
 # Commutation and extension boundary
 
@@ -65,6 +70,6 @@ centralizer assumption: one cutter `g(h_v)` per map is enough, and it commutes
 by order-zero functional calculus.
 
 For extension gluing, it is enough to construct endpoint approximations whose
-outgoing supports lie in a common centralizing finite-tree algebra and have
+outgoing supports lie in a common centralizing compact-R-tree algebra and have
 pointwise depth at most the endpoint maximum plus one.  No assertion is made
 that an arbitrary stable essential extension admits such approximations.
