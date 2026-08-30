@@ -2822,6 +2822,8 @@ import GroupApproximation.GGT.DGOAlternatingWord
 import GroupApproximation.GGT.DGOAlternatingCycle
 import GroupApproximation.GGT.DGOCorollary612Unconditional
 import GroupApproximation.GGT.DGOTheorem611Refutation
+import GroupApproximation.GGT.HullYiNonCommensurable
+import GroupApproximation.Analysis.VoiculescuAmplifiedState
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
