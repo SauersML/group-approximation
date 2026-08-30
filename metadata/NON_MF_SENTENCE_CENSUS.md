@@ -6,59 +6,33 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 137 |
-| `definition` | 35 |
-| `structural` | 20 |
-| `unassigned` | 19 |
+| `formalized` | 151 |
+| `definition` | 37 |
+| `structural` | 25 |
 | `attribution` | 13 |
-| `partial` | 2 |
 | `provenance` | 1 |
 | **total** | **227** |
 
-Completely formalized or definitional: **172/227** (75.8%).
+Completely formalized or definitional: **188/227** (82.8%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
 ## What no declaration establishes
 
-These are the sentences the development does not settle, verbatim.  `open` sentences say that something is unknown and no declaration could settle them; `partial` sentences have a clause that is proved and a clause that is not; `unassigned` sentences have not been triaged at all.
-
-* **`unassigned`**, line 105 --- In other words, $G$ is MF if there are finite unitary matrices, one for each element of $G$, that multiply correctly up to an error tending to zero in operator norm while every element other than the identity stays a fixed distance from the identity matrix.
-* **`unassigned`**, line 120 --- The quotient $\mathcal Q_{\mathbf d}$ is the corona algebra of $\bigoplus_nM_{d_n}(\C)$, since $\prod_nM_{d_n}(\C)$ is its multiplier algebra.
-* **`unassigned`**, line 134 --- An element $c$ of the centralizer $C_G(L)$ commutes with $L$, so $ucu^{-1}$ commutes with $uLu^{-1}$ but need not commute with the rest of $L$.
-* **`unassigned`**, line 230 --- Here the rigidity is the Kazhdan projection of $L$ in a norm matrix corona, which stable finiteness of the corona forces to commute with the compressor, and the contradiction is a commutator $[ucu^{-1},\ell]\ne1$ that every operator norm asymptotic representation sends to $1$ in Hilbert--Schmidt norm.
-* **`partial`**, line 521 --- The Kazhdan projection of \(K\) under \(\widehat\Theta\) is the coordinate restriction of \(qp=0\), so \(\widehat\Theta|_K\) has no nonzero fixed vectors, and for a finite Kazhdan set \(S\subseteq K\) with constant \(\kappa>0\),
-  * PROVED: the finite Kazhdan set S and its constant kappa > 0 exist for every property-(T) group, and the displayed quadratic form is the KazhdanData of the maximal C-star algebra. NOT PROVED: 'so Theta-hat restricted to K has no nonzero fixed vectors'. The implication is manuscriptSentence_kazhdanProjectionZeroGivesNoFixedVectors, but its premise is the corpus predicate KazhdanProjectionImageZero, which nothing in the corpus ever produces, so it is named here in prose and not counted. Carried 2026-08-29 from the pre-rewrite key 21c0066c1cea, which was formalized and had gone stale before this rewrite.
-* **`unassigned`**, line 561 --- Lemma~\ref{lem:kazhdan-projection-order} also applies inside $C^*_{\max}(G)$ itself, where a strict compression produces a proper isometry.
-* **`unassigned`**, line 574 --- Put $q=upu^{*}$, so that $pq=qp=p$, $up(1-q)=0$, and $pu^{*}(1-q)=pu^{*}-pu^{*}upu^{*}=0$.
-* **`unassigned`**, line 574 --- Then
-* **`unassigned`**, line 581 --- A unital $C^*$-algebra containing a nonunitary isometry is not finite, and neither is any matrix algebra over it, since the isometry embeds in the corner.
-* **`unassigned`**, line 581 --- A tracial state $\tau$ has $\tau(q-p)=\tau(s^{*}s)-\tau(ss^{*})=0$ with $q-p$ a nonzero positive element, so no tracial state on $A$ is faithful.
-* **`unassigned`**, line 599 --- Let $P\in C^*_{\max}(G)$ be the image of the Kazhdan projection of $\Gamma$~\cite{AkemannWalter} under the canonical map $C^*_{\max}(\Gamma)\to C^*_{\max}(G)$, and let $u$ be the canonical unitary of $t$.
-* **`unassigned`**, line 599 --- Conjugation by $u$ implements the isomorphism $\Gamma\to t\Gamma t^{-1}$ on canonical unitaries, so Lemma~\ref{lem:kazhdan-projection-order}, applied with $U=u$, gives $P\le uPu^{*}$ with $uPu^{*}$ the image of the Kazhdan projection of $t\Gamma t^{-1}$.
-* **`unassigned`**, line 599 --- The inequality is strict: in the quasi-regular representation of $G$ on $\ell^2(G/t\Gamma t^{-1})$, the point mass at the base coset is fixed by $t\Gamma t^{-1}$ and moved by every element of $\Gamma\setminus t\Gamma t^{-1}$, so the two fixed-space projections differ.
-* **`unassigned`**, line 599 --- Lemma~\ref{lem:proper-isometry} then supplies the proper isometry and rules out stable finiteness and faithful traces.
-* **`unassigned`**, line 599 --- MF algebras are stably finite, and a separable residually finite-dimensional $C^*$-algebra is MF~\cite{BK}.
-* **`unassigned`**, line 733 --- Since $\tau=\operatorname{diag}(X,Y)$ and $E_{34}$ is supported in the first six coordinates, $\tau E_{34}\tau^{-1}=\operatorname{diag}(XE_{34}Y,0)$ with $E_{34}$ read in $M_6(R)$, and with $\varepsilon_0,\varepsilon_1,\varepsilon_2$ the standard basis of $R^3$,
-* **`unassigned`**, line 745 --- by~\eqref{eq:leavitt}.
-* **`unassigned`**, line 745 --- So
-* **`unassigned`**, line 831 --- The group $G_0$ is obtained there from Hull's common quotient theorem~\cite[Corollary~7.4]{Hull}, so it is acylindrically hyperbolic.
-* **`unassigned`**, line 864 --- Let $N$ be the normal closure of $S$ in $G_0$, and fix $s\in S$ with $s\ne1$.
-* **`partial`**, line 871 --- Since $\varphi(N)=Q$, the normal closure of $\rho(S)$ in $\bar G$ is $\rho(N)=\bar G$, and by Lemma~\ref{lem:commutator-in-defect} it lies in the normal subgroup $\mathfrak D_{\bar G}(\rho(\Gamma))$, so $\mathfrak D_{\bar G}(\rho(\Gamma))=\bar G$.
-  * PROVED: rho(S) lies in the defect (lem:commutator-in-defect) and the defect is normal, so a normal closure of a subset of it stays inside it. NOT PROVED: that the normal closure of rho(S) in G-bar is rho(N) = G-bar, which depends on phi(N) = Q for the particular N of this proof and is not stated at the printed configuration.
+Every sentence carries a declaration, a ledger row, or a reason no declaration applies.
 
 ## By section
 
 | section | sentences | unassigned |
 | --- | --- | --- |
 | (front matter) | 6 | 0 |
-| Introduction | 33 | 3 |
-| Relation to prior work | 14 | 1 |
+| Introduction | 33 | 0 |
+| Relation to prior work | 14 | 0 |
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 46 | 0 |
 | From Hilbert--Schmidt to operator norm | 27 | 0 |
-| The maximal group \texorpdfstring{$C^*$ | 15 | 10 |
-| The binary Leavitt group | 48 | 3 |
-| A torsion-free finitely presented example | 31 | 2 |
+| The maximal group \texorpdfstring{$C^*$ | 15 | 0 |
+| The binary Leavitt group | 48 | 0 |
+| A torsion-free finitely presented example | 31 | 0 |
 | Acknowledgments | 2 | 0 |
 | Use of AI and formal methods | 1 | 0 |
