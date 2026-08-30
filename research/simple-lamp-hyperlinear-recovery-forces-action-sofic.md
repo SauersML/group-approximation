@@ -201,11 +201,15 @@ a hidden invocation of the refuted two-point approximation.
   fixed probability `1-(59/60)^|Z|`.  Thus centers expose rather than solve
   the finite-window boundary: they need an already coherent global packet or
   a new equivariant bundling theorem.
-- **Tensor several regular center packets.**  This does not create independent
-  Plancherel labels: `diagonal-tensor-powers-do-not-amplify-regular-lamp-center`
-  proves `lambda_Q^(tensor t)` is merely an amplification of `lambda_Q`.
-  The bad-fiber mass `(59/60)^|Z|` and the one-site `71/100` center gap are
-  unchanged.
+- **Tensor several regular center packets.**  Fell absorption keeps the
+  intrinsic center of the diagonal image Plancherel, but that does not erase
+  the canonical center PVM of each tensor leg.  The latter sits in the
+  multiplicity commutant and gives independent samples, with good window mass
+  `(1-60^(-t))^|Z|` for `A5`; see
+  `tensor-leg-centers-give-independent-plancherel-samples`.  Thus tensoring is
+  not ruled out by the old center argument.  What remains is to extract and
+  transport this reducing PVM coherently from arbitrary approximate packets,
+  rather than from a supplied tensor factorization.
 - **Absorb the actor gauge using residual-finite quotient packets.**  The
   exact calculation in
   `finite-quotient-fell-untwisting-leaves-kernel-cocycle` leaves a blockwise
