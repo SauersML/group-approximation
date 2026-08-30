@@ -2,19 +2,20 @@
 
 ## Result
 
-Global metric-uniform `LC^1` of the weighted purification fibres is
-equivalent to one fixed-support statement: uniform small-loop filling for the strong
-Stiefel spaces
+The strong-Stiefel small-loop modulus has now been proved.  It does not by
+itself give global metric-uniform `LC^1` of the weighted purification fibres.
+The attempted spectral transfer leaves one exact relative boundary problem.
 
 ```text
 V(p,e)={v:v^*v=p, vv^*<=e},       tau(p)<=s<tau(e).
 ```
 
-The reverse implication uses a spectral cut.  The high spectral frame is
-close in ordinary `2`-norm and is filled by the assumed Stiefel modulus.
-The low spectral frame can move arbitrarily: its total weighted diameter
-is at most twice the square root of its `L^1` mass.  Strict corner slack
-allows the low frame to be completed relatively over the disk.
+After a spectral cut, the high frame is close in ordinary `2`-norm and is
+filled by the Stiefel modulus.  The low weighted frame has diameter at most
+twice the square root of its `L^1` mass.  However, its polar frame need not
+be ordinary-`2`-norm continuous, so simple connectivity of a fixed strong
+Stiefel space does not supply the required relative disk extension.  This
+gap is isolated as `stw22-low-spectrum-weighted-boundary-filling`.
 
 ## What is and is not known
 
@@ -35,13 +36,14 @@ family above.  Jekel's unitary-group contractibility theorem likewise gives
 only the pointwise connectivity needed through the orbit bundle, not the
 uniform family estimate.
 
-No unconditional dimension-two trace theorem is claimed here.
+No unconditional dimension-two trace theorem is claimed here.  The earlier
+assertion that strict corner slack alone completed the low polar frame has
+been withdrawn.
 
 Michael's ambient-local equi-`LC^1` hypothesis is weaker than the global
-metric-uniform condition audited here.  Thus `(USF_1)` is a sharp reversible
-criterion for the global-uniform route and a sufficient condition for
-dimension two, not a proved necessary condition for every possible
-Michael-selection argument.
+metric-uniform condition audited here.  Even for the global-uniform route,
+the proved unweighted modulus must still cross the low-spectrum weighted
+boundary-extension hinge.
 
 Primary sources:
 

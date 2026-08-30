@@ -2,7 +2,8 @@
 rg: 2
 id: stw22-weighted-equi-lc1-reduces-to-unweighted-stiefel-filling
 kind: claim
-title: Global uniform weighted loop filling is equivalent to uniform strong-Stiefel filling
+title: Weighted loop filling reduces to strong-Stiefel filling and a low-spectrum extension
+root: true
 distinct_from:
   stw22-one-dimensional-trivial-field-trace-continuity: that theorem proves uniform local path connectedness and settles bases of dimension at most one; the present theorem identifies the additional, genuinely two-dimensional uniform filling property.
   stw22-lwcl-on-fixed-support-strata: that theorem gives local sections on a continuous fixed-support stratum; the present theorem concerns uniform null-homotopies of loops simultaneously over all support traces below a fixed corner.
@@ -26,8 +27,9 @@ with the `2`-norm metric.  Consider the uniform Stiefel filling property
         about one of its points fills in the corresponding epsilon-ball.
 ```
 
-Then `(USF_1)` is equivalent to the following global metric-uniform loop
-filling property for the family of weighted purification fibres
+Then `(USF_1)`, together with
+`stw22-low-spectrum-weighted-boundary-filling`, implies the following global
+metric-uniform loop filling property for the family of weighted purification fibres
 
 ```text
 F(a)={w in eR:w^*w=a},
@@ -38,16 +40,13 @@ Namely, for every `epsilon>0` there is one `delta>0` such that every loop
 in one `F(a)` contained in a `delta`-ball about a point of that fibre fills
 in the corresponding `epsilon`-ball.  This global uniform property implies
 Michael's equi-`LC^1` hypothesis and hence is a sufficient dimension-two
-selection criterion.  Support-rank jumps and tiny eigenvalues create no
-additional obstruction along this route: a high/low spectral split absorbs
-them uniformly.
+selection criterion.  Conversely, the weighted property implies `(USF_1)`
+by restricting to projection weights.  The only unresolved implication is
+the relative extension of continuous low weighted frames when their polar
+frames are discontinuous.
 
-Each individual `V(p,e)` is path connected and simply connected in the
-strong topology, so `(USF_1)` is not a pointwise homotopy question.  It asks for a
-modulus of local simple connectivity uniform over all initial projections
-of trace at most `s`.  Existing unitary contractibility and fixed-orbit
-cross-section theorems do not state this uniform modulus.  Michael's
-equi-`LC^1` condition is local in the ambient centre and is formally weaker
-than the global metric-uniform property above, so failure of `(USF_1)`
-would not by itself refute dimension-two selection.  Accordingly, this
-claim does not assert the dimension-two trace theorem.
+The unweighted modulus is now established by
+`stw22-strong-stiefel-spaces-have-uniform-loop-fillings`.  This weighted
+claim remains open because weighted `2`-norm continuity near zero spectrum
+does not imply ordinary `2`-norm continuity of the polar frames.
+Accordingly, no dimension-two trace theorem is asserted here.
