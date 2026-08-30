@@ -2,11 +2,23 @@
 title: STW Problems XIX and XX --- uniform property Gamma recon on diagonal AH models (2026-08-30)
 ---
 
+> **STATUS CORRECTION (2026-08-30).**  This is a historical pre-closure
+> attack record, not a current-status audit.  Vaccaro,
+> arXiv:2604.24682v2, proves Problem XX affirmatively.  Toms,
+> arXiv:2606.12188v2, constructs a different simple stably finite nuclear AH
+> algebra without uniform property Gamma and therefore refutes Problem XIX.
+> The May 2026 STW addendum's negative report for Problem XX relied on a
+> superseded version of Elliott--Niu arXiv:2504.03611; current v3 no longer
+> makes that claim.  See
+> `research/artifacts/stw99-xix-xx-literature-status-2026-08-30.md` for the
+> versioned primary-source audit.
+
 Problem XIX (CETW Question C): does every unital simple separable nuclear
 non-elementary stably finite C\*-algebra have uniform property Γ?
 Problem XX: the Villadsen-V1 test case.  Elliott--Niu (arXiv 2024) rule
-out Γ-witnesses inside the canonical Cartan.  This recon fixes what any
-resolution must do, on the diagonal AH model
+out Γ-witnesses inside the canonical Cartan.  This recon recorded what an
+internal diagonal-model attack appeared to require before the later
+literature closure, on the diagonal AH model
 `A = lim (C(X_n) ⊗ M_{k_n}, φ_n)`, `φ_n(f) = diag(f∘λ_1, …, f∘λ_N)` with
 `λ_i` either coordinate projections (`X_{n+1} = X_n^{c_n} × …`) or point
 evaluations, identity weight `w_n = c_n k_n / k_{n+1}`, `Π w_n → w > 0`
