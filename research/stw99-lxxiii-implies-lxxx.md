@@ -17,10 +17,10 @@ Thiel--Vilalta's characterisation this yields, for every `n`, c.p.
 order-zero divisibility giving a unital `*`-homomorphism
 `Z_{n,n+1} → B` (the standard passage from `(n,n+1)`-divisibility of
 the unit via square-zero refinements, using semiprojectivity of the
-dimension-drop algebra to correct approximate relations).  Countable
-saturation of the ultrapower central sequence algebra assembles
-compatible `Z_{n,n+1}`-copies into a unital copy of
-`Z = lim Z_{n!, n!+1}` in `B` — coherence obstructions vanish because
-each finite stage's relations are decided inside one saturated
-structure.  A unital `Z`-copy in `A_ω ∩ A'` is equivalent to
-`Z`-stability of separable `A` (the McDuff-type criterion).
+dimension-drop algebra to correct approximate relations).  In fact a
+single value of `n` suffices: by Rordam--Winter (*The Jiang--Su
+algebra revisited*, Crelle 2010), a unital *-homomorphism from ONE
+prime dimension-drop algebra `Z_{n,n+1}` into `A_ω ∩ A'` already
+makes separable `A` `Z`-stable.  So only the `(2,3)`-divisibility
+consequence of the Global Glimm Property for the single element `1_B`
+is needed, and no coherence across `n` arises at all.
