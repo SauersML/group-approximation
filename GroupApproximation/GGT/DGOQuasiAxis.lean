@@ -1037,6 +1037,96 @@ theorem vertexChain_match_phase_bound
     dsimp [l, D]
     linarith
 
+/-- Among sufficiently many ordered double matches, a prescribed number have
+the same integer phase difference on the second quasi-axis.  The selected
+families remain strictly increasing and stay inside the two finite segments.
+This is the finite pigeonhole extraction in Bestvina--Fujiwara's axial
+argument. -/
+theorem exists_constant_phase_vertexChain_matches
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x)) :
+    ∃ E C : ℝ, 0 ≤ E ∧ 0 ≤ C ∧
+      ∀ (M N : ℕ), ∃ S : ℕ, ∀ (p q : PowerAxisSegment h x),
+        S ≤ p.steps → dist p.initial q.initial ≤ B →
+        dist p.terminal q.terminal ≤ B →
+        ∃ (K : ℤ) (A I J : Fin (N + 1) → ℕ),
+          StrictMono A ∧ StrictMono I ∧ StrictMono J ∧
+          (∀ r, A r + M ≤ p.steps) ∧
+          (∀ r, I r ≤ q.steps ∧
+            dist (p.vertexChain (A r)) (q.vertexChain (I r)) ≤ C) ∧
+          (∀ r, J r ≤ q.steps ∧
+            dist (p.vertexChain (A r + M)) (q.vertexChain (J r)) ≤ C) ∧
+          (∀ r, (J r : ℤ) - (I r : ℤ) = K) := by
+  obtain ⟨E, C, hE, hC, hdouble⟩ :=
+    exists_sparse_double_vertexChain_matches
+      hδ hδ0 hgeo hiso hB hlam hc hf hq hstep
+  refine ⟨E, C, hE, hC, ?_⟩
+  intro M N
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  have hl : 0 < l := by
+    dsimp [l]
+    positivity
+  obtain ⟨Z, hZ⟩ := exists_nat_gt ((2 * C + (M : ℝ) * D + c) / l)
+  let colors : Finset ℤ := Finset.Icc (-(Z : ℤ)) (Z : ℤ)
+  have hcolors : colors.Nonempty := by
+    refine ⟨0, ?_⟩
+    simp [colors]
+  obtain ⟨S, hS⟩ := hdouble M (colors.card * (N + 1))
+  refine ⟨S, ?_⟩
+  intro p q hpSteps hclose0 hclose1
+  obtain ⟨A₀, I₀, J₀, hA₀, hI₀, hJ₀, hinside, hmatch0, hmatchM⟩ :=
+    hS p q hpSteps hclose0 hclose1
+  let φ : Fin (colors.card * (N + 1)) → ℤ := fun r =>
+    (J₀ r.castSucc : ℤ) - (I₀ r.castSucc : ℤ)
+  have hφ : ∀ r, φ r ∈ colors := by
+    intro r
+    have hphase := vertexChain_match_phase_bound hiso hf hq p q
+      (hinside r.castSucc) (hmatch0 r.castSucc).2 (hmatchM r.castSucc).2
+    have hcast : ((φ r : ℤ) : ℝ) =
+        ((J₀ r.castSucc : ℤ) : ℝ) - ((I₀ r.castSucc : ℤ) : ℝ) := by
+      simp only [φ, Int.cast_sub, Int.cast_natCast]
+    have habsLe :
+        |((φ r : ℤ) : ℝ)| ≤ (2 * C + (M : ℝ) * D + c) / l := by
+      rw [hcast, le_div_iff₀ hl]
+      dsimp [φ, l, D] at hphase ⊢
+      simpa only [mul_comm] using hphase
+    have habs : |((φ r : ℤ) : ℝ)| < (Z : ℝ) := habsLe.trans_lt hZ
+    have hlowerR : (-(Z : ℤ) : ℝ) ≤ ((φ r : ℤ) : ℝ) := by
+      push_cast
+      exact le_of_lt (neg_lt_of_abs_lt habs)
+    have hupperR : ((φ r : ℤ) : ℝ) ≤ ((Z : ℤ) : ℝ) := by
+      exact le_of_lt (lt_of_abs_lt habs)
+    have hlower : -(Z : ℤ) ≤ φ r := by exact_mod_cast hlowerR
+    have hupper : φ r ≤ (Z : ℤ) := by exact_mod_cast hupperR
+    exact Finset.mem_Icc.mpr ⟨hlower, hupper⟩
+  obtain ⟨K, hKmem, R, hR, hphase⟩ :=
+    exists_constant_strictMono_subsequence colors hcolors N φ hφ
+  let select : Fin (N + 1) → Fin (colors.card * (N + 1) + 1) :=
+    fun r => (R r).castSucc
+  let A : Fin (N + 1) → ℕ := fun r => A₀ (select r)
+  let I : Fin (N + 1) → ℕ := fun r => I₀ (select r)
+  let J : Fin (N + 1) → ℕ := fun r => J₀ (select r)
+  have hselect : StrictMono select := by
+    intro r s hrs
+    exact hR hrs
+  have hA : StrictMono A := hA₀.comp hselect
+  have hI : StrictMono I := hI₀.comp hselect
+  have hJ : StrictMono J := hJ₀.comp hselect
+  refine ⟨K, A, I, J, hA, hI, hJ, ?_, ?_, ?_, ?_⟩
+  · intro r
+    exact hinside (select r)
+  · intro r
+    exact hmatch0 (select r)
+  · intro r
+    exact hmatchM (select r)
+  · intro r
+    exact hphase r
+
 /-- Integer power vertices whose arclength coordinates are sufficiently
 separated are metrically separated.  This is the quantitative fact that makes
 the partner exponents in the oriented sampling argument injective, and then
