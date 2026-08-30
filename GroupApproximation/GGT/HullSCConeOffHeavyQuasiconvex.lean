@@ -8,14 +8,14 @@ import GroupApproximation.GGT.HullSCConeOffHeavyQuasiGeodesic
 This module closes the chain that
 `GGT/HullSCConeOffHeavyHyperbolic.lean` opened.  Clause (a) of the cone-off leaf
 — hyperbolicity of `Γ(G, A ⊔ ⨆K)` — was reduced there to `IsWordQuasiconvex`,
-and `IsWordQuasiconvex` for a cyclic subgroup is proved here from
-`Hyperbolic.MorseLemma` and nothing else.
+and `IsWordQuasiconvex` for a cyclic subgroup is proved here from the
+unconditional Morse theorem.
 
 ## The three inputs, each already isolated
 
 * `exists_isQuasiGeodesic_pow_of_isLoxodromic` makes `fun i => g ^ i` a
   quasi-geodesic with constants uniform in the length.
-* `exists_index_wordDist_le_of_isBetween_of_morse` — the chord-near-chain half
+* `exists_index_wordDist_le_of_isBetween_of_fourPoint` — the chord-near-chain half
   of the Morse lemma — puts every point between `1` and `g ^ N` within a
   uniform `R` of some `g ^ m`.
 * A prefix of a geodesic word *is* such a point, by
@@ -30,19 +30,18 @@ for all of `⟨g⟩`, which is what the predicate asks for.
 
 Composed with `GGT/HullSCConeOffHeavyHyperbolic.lean`, the coned-off Cayley
 graph of Hull's alphabet along the cyclic subgroups of finitely many loxodromic
-elements is hyperbolic as soon as `Hyperbolic.MorseLemma` holds.  So clause (a)
-of the geometric leaf behind
+elements is hyperbolic.  So clause (a) of the geometric leaf behind
 `Manuscript.NonMF.TorsionFree.hullHypEmbeddedConeOff` is not an open problem in
 hyperbolic geometry: it is the classical Morse lemma, already stated in
-`Algebra/MorseLemma.lean` and assumed nowhere.
+`Algebra/MorseLemma.lean` and discharged in `GGT/MorseLemmaDischarge.lean`.
 
 Clause (b), local finiteness of the relative metric, is untouched by any of
 this, and remains the expensive half of the row.
 
 ## Scope, and why the subgroup is cyclic
 
-`MorseLemma` quantifies over `G : Type`, so this module is at universe zero,
-which is where the debt row is stated.
+The live declarations use `Hyperbolic.morseLemma_univ`, so this module is
+universe-polymorphic.
 
 The subgroup here is `⟨g⟩` rather than the elementary closure `E(g)`.  That is
 deliberate: `GGT/HullSCConeOffHeavyProperPower.lean` shows that `⟨g⟩` cannot be
@@ -61,6 +60,8 @@ namespace HullSC
 open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
+
+universe u
 
 /-! ## Weakening the quasi-geodesic constants -/
 
@@ -85,8 +86,8 @@ The prefix is between `1` and `h ^ N` because cutting a geodesic word produces a
 between-point, and the chord-near-chain half of the Morse lemma then places it
 within `R` of a vertex `h ^ m` of the power orbit.  `R` does not depend on `N`,
 because the quasi-geodesic constants do not. -/
-theorem exists_bound_prefix_pow_of_morse (hmorse : Hyperbolic.MorseLemma)
-    {G : Type} [Group G] (A : Alphabet G) {delta K C : ℕ}
+theorem exists_bound_prefix_pow_of_fourPoint
+    {G : Type u} [Group G] (A : Alphabet G) {delta K C : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic A.carrier delta) {h : G}
     (hqg : ∀ n : ℕ, Hyperbolic.IsQuasiGeodesic A.carrier K C n (fun i => h ^ i)) :
     ∃ R : ℕ, ∀ (N : ℕ) (w : List G), (∀ x ∈ w, x ∈ A.carrier) →
@@ -94,7 +95,7 @@ theorem exists_bound_prefix_pow_of_morse (hmorse : Hyperbolic.MorseLemma)
         ∀ i ≤ w.length, ∃ e ∈ Subgroup.zpowers h,
           wordDist A.carrier (w.take i).prod e ≤ R := by
   obtain ⟨R, hR⟩ :=
-    exists_index_wordDist_le_of_isBetween_of_morse hmorse K C delta
+    exists_index_wordDist_le_of_isBetween_of_fourPoint K C delta
   refine ⟨R, ?_⟩
   intro N w hlet hprod hlen i _hi
   have hS := A.symmetricGenerating
@@ -131,8 +132,8 @@ theorem exists_bound_prefix_pow_of_morse (hmorse : Hyperbolic.MorseLemma)
 The two signs are handled separately and their constants merged: `g` covers the
 nonnegative powers and `g⁻¹` the negative ones, and `Subgroup.zpowers_inv` says
 the two subgroups are the same. -/
-theorem exists_isWordQuasiconvex_zpowers_of_morse (hmorse : Hyperbolic.MorseLemma)
-    {G : Type} [Group G] (A : Alphabet G) {delta : ℕ}
+theorem exists_isWordQuasiconvex_zpowers_of_fourPoint
+    {G : Type u} [Group G] (A : Alphabet G) {delta : ℕ}
     (hdelta : Hyperbolic.IsFourPointHyperbolic A.carrier delta) {g : G}
     (hlox : IsLoxodromic g (Cayley.base A)) :
     ∃ sigma : ℕ, IsWordQuasiconvex A (Subgroup.zpowers g) sigma := by
@@ -140,8 +141,8 @@ theorem exists_isWordQuasiconvex_zpowers_of_morse (hmorse : Hyperbolic.MorseLemm
   have hloxinv : IsLoxodromic g⁻¹ (Cayley.base A) :=
     isLoxodromic_inv (isIsometricAction_cayley A) hlox
   obtain ⟨K₂, C₂, hqg₂⟩ := exists_isQuasiGeodesic_pow_of_isLoxodromic A hloxinv
-  obtain ⟨R₁, hR₁⟩ := exists_bound_prefix_pow_of_morse hmorse A hdelta hqg₁
-  obtain ⟨R₂, hR₂⟩ := exists_bound_prefix_pow_of_morse hmorse A hdelta hqg₂
+  obtain ⟨R₁, hR₁⟩ := exists_bound_prefix_pow_of_fourPoint A hdelta hqg₁
+  obtain ⟨R₂, hR₂⟩ := exists_bound_prefix_pow_of_fourPoint A hdelta hqg₂
   refine ⟨max R₁ R₂, ?_⟩
   intro b hb w hlet hprod hlen i hi
   obtain ⟨t, ht⟩ := Subgroup.mem_zpowers_iff.mp hb
@@ -173,8 +174,8 @@ This is clause (a) of the geometric leaf.  The family is indexed by a `Fintype`
 so that the finitely many quasiconvexity constants can be merged into one; that
 is the only use of finiteness, and `Bool` — the index type the leaf actually
 uses — satisfies it. -/
-theorem exists_hyperbolic_coneOffFamily_zpowers_of_morse
-    (hmorse : Hyperbolic.MorseLemma) {G : Type} [Group G] {Λ : Type} [Fintype Λ]
+theorem exists_hyperbolic_coneOffFamily_zpowers_of_fourPoint
+    {G : Type u} [Group G] {Λ : Type} [Fintype Λ]
     (A : Alphabet G) {delta : ℝ} (hdelta : IsHyperbolicSpace delta (Cayley A))
     (g : Λ → G) (hlox : ∀ lam : Λ, IsLoxodromic (g lam) (Cayley.base A)) :
     ∃ delta' : ℝ, IsHyperbolicSpace delta'
@@ -183,7 +184,7 @@ theorem exists_hyperbolic_coneOffFamily_zpowers_of_morse
     GGT.isFourPointHyperbolic_of_isHyperbolicSpace_cayley A hdelta
   have hqc : ∀ lam : Λ, ∃ sigma : ℕ,
       IsWordQuasiconvex A (Subgroup.zpowers (g lam)) sigma := fun lam =>
-    exists_isWordQuasiconvex_zpowers_of_morse hmorse A h4 (hlox lam)
+    exists_isWordQuasiconvex_zpowers_of_fourPoint A h4 (hlox lam)
   choose sigma hsigma using hqc
   refine exists_hyperbolic_coneOffFamily_of_wordQuasiconvex A _ hdelta
     (sigma := Finset.univ.sup sigma) ?_
