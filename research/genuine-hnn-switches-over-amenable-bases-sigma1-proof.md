@@ -29,7 +29,7 @@ fixed by `B`, and let `L` be the axis of `t`.  The stabilizers inside
 `B` of the two edges of `L` incident to `v` are `H` and `K`,
 up to interchanging the orientation.  A group is never the union of two
 proper subgroups, so choose `b in B\(H union K)`.  Then `b` fixes
-`v` but moves both incident edges of `L); consequently the axes `L`
+`v` but moves both incident edges of `L`; consequently the axes `L`
 and `bL` meet only at `v`.  Tree ping-pong applied to sufficiently
 large positive powers of `t` and `b t b^-1` gives a nonabelian free
 subgroup.  Thus `P` is nonamenable, proving `(GHS2)`.
