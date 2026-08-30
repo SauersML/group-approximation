@@ -3,7 +3,7 @@ rg: 2
 id: bounded-readable-factor-zirs-upper-hierarchy-proof
 kind: route
 title: Cut every pseudo-IRS polytope into finitely many bounded readable-pattern faces
-target: bounded-readable-factor-zirs-value-has-computable-upper-hierarchy
+target: bounded-readable-factor-zirs-computable-upper-hierarchy
 requires:
   - zpc-irs-value-computable-upper-hierarchy
 ---
