@@ -40,25 +40,28 @@ already exists: `exists_factor_of_mem_osinElementaryClosure` puts `E(of y)`
 inside the image of `H`, after which `of_injective` turns membership in the
 ambient elementary closure into membership in `E_H(y)`.
 
-## The residue is real, and this is what it costs
+## The remaining residue
 
-`HyperbolicSuitabilityStatement` is **not** proved here, and it does not close
-at this revision.  Two theorems stand behind it, and neither is in Mathlib nor
-in this repository:
+`HyperbolicSuitabilityStatement` is **not** proved here, but its elementary-
+closure half is now unconditional.  The one remaining input is that a
+non-elementary hyperbolic group contains two infinite-order elements in
+distinct Osin commensurability classes.  This is stronger than merely finding
+two geometrically independent loxodromics, because Osin commensurability
+allows an arbitrary ambient conjugator.
 
-* that a non-elementary hyperbolic group contains two independent loxodromic
-  elements --- ping-pong on the boundary, or the Tits alternative;
-* Osin's Theorem 6.8 for `E_H(x)`.  For the actual trivial-intersection clause,
-  the full stronger classification of a torsion-free virtually cyclic group as
-  cyclic is unnecessary: torsion-freeness makes a nontrivial common member
-  infinite-order, and the finite-index conclusion gives it a common power with
-  each witness.  Aligning those two powers contradicts non-commensurability.
-  This exact reduction is proved in `GGT/RelHypSuitabilityClosure.lean`; the
-  leaf is **not** the Morse lemma.
+The exact trivial-intersection clause is
+`GGT.RelHyp.hyperbolicElementaryClosureStatement`, proved in
+`GGT/RelHypSuitabilityClosure.lean`.  It does not assume the full finite-index
+form of Osin's Theorem 6.8: torsion-freeness makes a nontrivial common member
+infinite-order, the finite-Cayley centralizer-axis theorem supplies a common
+power with each witness, and aligning those powers contradicts
+non-commensurability.  The stronger full Theorem 6.8 remains separately named
+by `OsinTheorem68FiniteCayleyStatement`; its missing input is the uniform
+coarse-translation theorem, not a premise smuggled into suitability.
 
-So the honest report is a shrunken citation, not a discharge: what was "Osin's
-Theorem 2.1 and Lemma 2.3, at a free product" is now one sentence about one
-hyperbolic group, with the free product gone.
+So the honest report is a one-half discharge: the free-product reduction and
+clause (b) are closed, while the non-commensurable-pair producer in clause (a)
+remains.
 
 ## The two halves are named separately
 
@@ -352,8 +355,8 @@ The exact argument needs only that every infinite cyclic subgroup of `E_H(x)`
 meets `⟨x⟩` nontrivially.  It is a fact about the group's own Cayley graph and
 belongs with the hyperbolic-group geometry, not with the relative machinery.
 
-**Its residue is smaller than the geometric framing suggests, and does not
-include the Morse lemma.**  DGO reach `E(x)` control through Lemma 4.21(b),
+**This half is a theorem, and does not require the full finite-index form of
+Osin's Theorem 6.8.**  DGO reach `E(x)` control through Lemma 4.21(b),
 proved from Proposition 4.14's isolated-component counting, because *their*
 action is on a coned-off graph and is not acylindrical.  The action here is not
 that one: `H` is hyperbolic with a **finite** generating set acting on its own
@@ -362,19 +365,19 @@ Cayley graph, and this tree already proves such an action acylindrical
 (`GGT.isWPDAt_of_isAcylindrical`), both unconditionally.  So the
 WPD/acylindricity layer is free here.
 
-What is actually owed is **Osin's Theorem 6.8** ---
-`GGT.ElementaryOsinSNormal.ElementaryClosureVirtuallyCyclic`, `E(g)` virtually
-cyclic for a loxodromic of an acylindrical action, which occurs in this tree only
-as a hypothesis and is never concluded, so it is a genuine leaf.  The necessary
-torsion-free upgrade is now proved in `GGT/RelHypSuitabilityClosure.lean`: it is
-the elementwise common-power argument, strictly weaker than classifying the
-whole virtually cyclic group as cyclic.  Reports that this
-dependence has been eliminated refer to the Lemma 7.1 / `ActsNonElementarily`
-chain in `GGT/ElementaryCentralizerAxis.lean` and `GGT/ElementaryBowditch.lean`;
-that elimination is real but local to a chain whose conclusion is geometric
-independence, which section 5b shows is strictly weaker than what half (a) needs,
-and the `Prop` remains a live hypothesis at `GGT/ElementaryProperClosure.lean`
-and `GGT/HullYiLoxRadical.lean`.
+The direct proof is `GGT.RelHyp.hyperbolicElementaryClosureStatement`.  It
+converts Osin elementary-closure membership to the subgroup-valued
+commensurator closure, uses
+`HullSCUnionGeometry.exists_common_zpow_of_mem_elementaryClosure_cayley` twice,
+and aligns the resulting powers.  The latter theorem is obtained from the
+proved centralizer-axis and Bowditch machinery at a finite Cayley alphabet;
+there is no `ElementaryClosureVirtuallyCyclic` hypothesis in this route.
+
+The stronger full statement that `E(g)` is virtually cyclic is still a genuine
+literature-form debt.  It is isolated as
+`GGT.RelHyp.OsinTheorem68FiniteCayleyStatement` and reduces to
+`GGT.Elementary.ElementaryClosureCoarseTranslationStatement`.  That debt must
+not be confused with this already-closed suitability clause.
 
 Stated universally, over every non-commensurable pair, because that is the form
 in which it is true and will be proved.  See
