@@ -38,5 +38,14 @@ mix traceless solved pieces with faithful-trace UCT pieces.  This is not
 general extension permanence: the second coordinate is essential to norm
 detection.
 
+There is also a quotient-separation theorem with no finite ideal-lattice
+hypothesis.  `stw07-primitive-mf-traces-force-quasidiagonality` proves that
+faithful MF traces on all primitive quotients pull back to a jointly faithful
+family on `A`; finite direct sums of their matrix coordinates then make `A`
+MF.  Hence a separable unital nuclear algebra is quasidiagonal whenever all
+of its primitive quotients carry faithful traces and satisfy the UCT.  This
+fibrewise trace hypothesis is stronger than stable finiteness of `A`; no
+false quotient permanence for stable finiteness or faithful traces is used.
+
 Lean statement: `NinetyNineProblems.ProblemVIIStatement`
 (`GroupApproximation/Manuscript/NinetyNineProblems/StablyFinite.lean`).
