@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw87-lxxxvii-uniform-roe-nuclear-dimension-audit-2026-08-30.md
+  - research/artifacts/stw87-invariant-mean-retraction-audit-2026-08-30.md
 ---
 
 **Problem LXXXVII of Schafhauser--Tikuisis--White, arXiv:2506.10902** (Willett--Winter, [449, Question 9.5]).  For a
@@ -55,3 +56,12 @@ zero, and the diagonal expectation on a canonical finite matrix corner has
 exact distance one from all such maps
 (`stw87-diagonal-order-zero-maps-annihilate-matrix-colours`).  Hence diagonal
 averaging cannot retain any noncommutative colour at all.
+
+For amenable groups there is another natural attempt: an invariant mean
+averages crossed-product coefficients and gives a conditional expectation
+`C*_u(G)->C*_r(G)`.  This does not recover quotient permanence.  If `G` has
+a subgroup of index `k>=2`, the expectation sends the `k` orthogonal coset
+projections to the common scalar `1/k`, at exact distance `1/k` from every
+c.p.c. order-zero repair (`stw87-invariant-mean-retraction-has-coset-order-zero-gap`).
+Thus even the canonical retraction `C*_u(Z^d)->C(T^d)` cannot directly
+transfer nuclear-dimension colours to the group algebra.
