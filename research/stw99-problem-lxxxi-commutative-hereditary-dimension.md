@@ -6,6 +6,7 @@ title: One-dimensional commutative hereditary shadows force nuclear dimension ze
 root: true
 artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
+  - research/artifacts/stw81-type-i-frontier-2026-08-30.md
 ---
 
 **Problem LXXXI of Schafhauser--Tikuisis--White.**  Let `A` be a C-star
@@ -83,6 +84,16 @@ forces `topdim(A)<=1` for every separable type-I algebra.  Thus a type-I
 counterexample would have to separate nuclear dimension from
 Brown--Pedersen topological dimension at the first possible value; merely
 adding high-dimensional type-I strata cannot produce one.
+
+A genuinely non-type-I extension class is also closed.
+`stw81-full-af-by-oinfinity-extensions-are-one-dimensional` proves that a
+full extension with separable stable AF ideal and nonzero separable nuclear
+O-infinity-stable quotient has nuclear dimension exactly one, by Evington's
+specialized full-extension theorem.  The `ctdim` lower bound then makes the
+LXXXI shadow hypothesis automatic.  This includes every Toeplitz--Cuntz
+algebra `T_n`, `2<=n<infinity`.  Fullness, stability of the ideal, and
+O-infinity-stability of the quotient are essential hypotheses of the
+imported theorem; no instance of Problem LXXXII is assumed.
 
 The relationship is now internal and witness-level:
 `stw81-finite-ideal-counterexample-forces-lxxxii-counterexample` proves that

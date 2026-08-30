@@ -18,6 +18,13 @@ all type-I C-star algebras.  The relevant established inputs are:
   for the composition-series behavior of Brown--Pedersen topological
   dimension.  The current revision explicitly says that its exact relation
   to nuclear dimension is unclear.
+- Samuel Evington,
+  [*Nuclear dimension of extensions of O-infinity-stable algebras*](https://arxiv.org/abs/2012.03650),
+  Theorem 1: a full extension with separable stable ideal `J` and separable
+  nuclear O-infinity-stable quotient has nuclear dimension between one and
+  `dim_nuc(J)+1`.  Fullness means that the Busby image of every nonzero
+  element is norm-full in the corona; in particular, unital extensions with
+  simple quotient are full.
 
 ## New deductions recorded here
 
@@ -56,6 +63,16 @@ all type-I C-star algebras.  The relevant established inputs are:
    nuclear-dimension algebra with `topdim(A)<=1<dim_nuc(A)`.  This isolates
    the exact missing theorem: the one-dimensional type-I comparison between
    these two dimension theories.
+11. There is a genuinely non-type-I positive extension class which does not
+    rely on Problem LXXXII.  If the extension is full, the ideal is separable
+    stable AF, and the nonzero quotient is separable nuclear and
+    O-infinity-stable, Evington's estimate reads
+    `1<=dim_nuc(A)<=dim_nuc(J)+1=1`.  Therefore `dim_nuc(A)=1`, while the
+    general lower bound `ctdim(A)<=dim_nuc(A)` makes the LXXXI shadow
+    hypothesis automatic.  Toeplitz--Cuntz algebras supply concrete
+    non-type-I examples: their ideal is `K`, their quotient is the simple
+    O-infinity-stable algebra `O_n`, and unitality plus simplicity gives
+    fullness.
 
 No maximum formula for arbitrary extensions is assumed, and no universal
 solution of Problem LXXXI is claimed.
