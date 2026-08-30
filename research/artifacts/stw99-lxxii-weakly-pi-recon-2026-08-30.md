@@ -68,6 +68,18 @@ semigroup is currently known even abstractly with (O5)-(O8)
 (Thiel--Vilalta record no C*-algebra whose `Cu` lacks property (V),
 their Question 5.4).
 
+## Closed positive class from the existing Global Glimm graph
+
+If the closed ideal lattice of a weakly purely infinite algebra is linearly
+ordered, then weak and plain pure infiniteness coincide.  Indeed, weak pure
+infiniteness passes to quotients and is impossible for a nonzero
+finite-dimensional algebra, so the algebra has no nonzero finite-dimensional
+representations.  The established Cairn theorem
+`chain-ideal-lattice-solves-lxxiii` then gives the Global Glimm Property.
+Kirchberg--Rordam's characterization finishes the implication.  This uses
+the stronger square-zero packet theorem already present in the graph and
+avoids reproving ideal-filteredness and property (V) separately.
+
 Sources: Kirchberg--Rørdam, Infinite non-simple C*-algebras (AIM 2002),
 Prop 4.15, Question 9.5; Thiel--Vilalta arXiv:2204.13059 Thm 7.1, Q5.4;
 Vilalta arXiv:2512.13334 Prop 3.9, Cor 3.10.

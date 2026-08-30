@@ -50,3 +50,10 @@ repair it there).  Kirchberg--Rørdam absorption (`b ∈ Ideal(c_0)` gives
 `v' ≪ ∞z`.  So ideal-filteredness for weakly purely infinite algebras is
 exactly a position/rotation problem for hereditary subalgebras, with no
 size obstruction.
+
+The position obstruction vanishes completely when the closed ideal lattice
+is linearly ordered.  Weak pure infiniteness rules out finite-dimensional
+representations, so `chain-ideal-lattice-solves-lxxiii` supplies the Global
+Glimm Property; Kirchberg--Rordam then gives pure infiniteness.  This proves
+LXXII for all chain-ideal algebras
+(`stw72-chain-ideal-wpi-is-purely-infinite`).
