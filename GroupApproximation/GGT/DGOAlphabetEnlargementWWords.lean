@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.DGOCorollary427FiniteExtension
+import GroupApproximation.GGT.DGOCorollary427Full
 import GroupApproximation.GGT.DGOLemma421Consequences
 
 /-!
@@ -44,8 +44,7 @@ theorem wConditions_blockWord_adjoinPair (D : RelGenSet G Λ) (lam : Λ) {t h : 
 embeddedness to the alphabet in which the base element is one letter, while
 the same enlarged relative metric supplies (W2). -/
 theorem embedded_and_wConditions_blockWord_adjoinPair
-    (h427 : DGOCorollary427.{u, w}) (D : RelGenSet G Λ)
-    (hemb : D.IsHyperbolicallyEmbedded) (lam : Λ) {t h : G}
+    (D : RelGenSet G Λ) (hemb : D.IsHyperbolicallyEmbedded) (lam : Λ) {t h : G}
     (htH : t ∉ D.fam lam) {C : ℕ}
     (hh : h ∉ (D.adjoinPair t).relBall lam C) (n : ℕ) :
     (D.adjoinPair t).IsHyperbolicallyEmbedded ∧
@@ -54,8 +53,8 @@ theorem embedded_and_wConditions_blockWord_adjoinPair
         (blockWord lam [RelLetter.base t] h n) ∧
       WWord.IsWThree (D.adjoinPair t)
         (blockWord lam [RelLetter.base t] h n) := by
-  exact ⟨RelGenSet.isHyperbolicallyEmbedded_adjoinPair_of_corollary427
-      h427 D hemb t,
+  exact ⟨(RelGenSet.dgoCorollary427 G Λ D (D.adjoinPair t) rfl
+      (RelGenSet.finite_base_symmDiff_adjoinPair D t)).mp hemb,
     wConditions_blockWord_adjoinPair D lam htH hh n⟩
 
 /-- **The completed enlarged-alphabet loxodromy route.**
@@ -65,14 +64,14 @@ Corollary 4.27 preserves hyperbolic embeddedness after adjoining `t` and
 makes every sufficiently deep `t h` loxodromic.  The depth is necessarily
 measured in the enlarged relative metric. -/
 theorem exists_threshold_isLoxodromic_mul_adjoinPair
-    (h427 : DGOCorollary427.{u, w}) (h421a : DGOLemma421a.{u, w})
-    (D : RelGenSet G Λ) (hemb : D.IsHyperbolicallyEmbedded)
+    (h421a : DGOLemma421a.{u, w}) (D : RelGenSet G Λ)
+    (hemb : D.IsHyperbolicallyEmbedded)
     (lam : Λ) (t : G) (htH : t ∉ D.fam lam) :
     ∃ C : ℕ, ∀ h ∈ D.fam lam, h ∉ (D.adjoinPair t).relBall lam C →
       IsLoxodromic (t * h) (Cayley.base (D.adjoinPair t).alphabet) := by
   have hemb' : (D.adjoinPair t).IsHyperbolicallyEmbedded :=
-    RelGenSet.isHyperbolicallyEmbedded_adjoinPair_of_corollary427
-      h427 D hemb t
+    (RelGenSet.dgoCorollary427 G Λ D (D.adjoinPair t) rfl
+      (RelGenSet.finite_base_symmDiff_adjoinPair D t)).mp hemb
   obtain ⟨C, hC⟩ :=
     exists_threshold_isLoxodromic_mul_of_dgoLemma421a h421a (D.adjoinPair t) hemb'
   refine ⟨C, fun h hh hdeep => ?_⟩

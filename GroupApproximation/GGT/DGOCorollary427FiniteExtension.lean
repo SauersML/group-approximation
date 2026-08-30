@@ -168,15 +168,6 @@ def PairLocalFiniteness : Prop :=
     D.IsHyperbolicallyEmbedded → ∀ t : G,
       ∀ (lam : Λ) (n : ℕ), ((D.adjoinPair t).relBall lam n).Finite
 
-/-- Full Corollary 4.27 implies exactly the remaining one-pair local-finiteness
-statement. -/
-theorem pairLocalFiniteness_of_corollary427
-    (h427 : DGOCorollary427.{u, w}) : PairLocalFiniteness.{u, w} := by
-  intro G _ Λ D hemb t lam n
-  have hemb' := (h427 G Λ D (D.adjoinPair t) rfl
-    (finite_base_symmDiff_adjoinPair D t)).mp hemb
-  exact hemb'.locallyFinite lam n
-
 /-- The pair-local-finiteness content, together with the proved hyperbolicity
 transport, gives hyperbolic embeddedness over the enlarged alphabet. -/
 theorem isHyperbolicallyEmbedded_adjoinPair_of_localFiniteness
@@ -185,15 +176,6 @@ theorem isHyperbolicallyEmbedded_adjoinPair_of_localFiniteness
     (D.adjoinPair t).IsHyperbolicallyEmbedded := by
   obtain ⟨δ, hδ⟩ := hemb.hyperbolic
   exact ⟨exists_hyperbolic_adjoinPair D t hδ, hloc G Λ D hemb t⟩
-
-/-- DGO Corollary 4.27 itself immediately supplies the remaining one-pair
-premise.  This theorem is the exact adapter used by the Hull lanes. -/
-theorem isHyperbolicallyEmbedded_adjoinPair_of_corollary427
-    (h427 : DGOCorollary427.{u, w}) (D : RelGenSet G Λ)
-    (hemb : D.IsHyperbolicallyEmbedded) (t : G) :
-    (D.adjoinPair t).IsHyperbolicallyEmbedded := by
-  exact (h427 G Λ D (D.adjoinPair t) rfl
-    (finite_base_symmDiff_adjoinPair D t)).mp hemb
 
 end RelGenSet
 
