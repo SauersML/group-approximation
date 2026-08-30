@@ -67,3 +67,12 @@ which would refute
   off-diagonal and evade the canonical-Cartan obstruction.  Independently
   variable multiplicity-one coordinate maps fail the packet hypothesis,
   so the positive-radius Villadsen case remains open.
+* **Metric entropy is the intrinsic packet threshold.**
+  `sublinear-eigenmap-metric-entropy-implies-uniform-gamma` replaces exact
+  eigenmap repetition by a sublinear covering-number condition for the
+  pseudometric induced by each finite early-stage test set.  It is strictly
+  broader: all eigenmaps may be distinct but lie in `o(L)` shrinking
+  clusters.  Conversely, independent coordinate projections are uniformly
+  separated by any scalar test function with nonzero oscillation, so their
+  covering number remains linear.  Thus this refinement identifies, but
+  does not cross, the classical Villadsen boundary.

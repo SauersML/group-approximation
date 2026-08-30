@@ -54,6 +54,11 @@ D_(n,m)/L_(n,m) -> 0
 along a cofinal subsequence: group equal eigenmaps into `k`-packets and leave
 at most `(k-1)D_(n,m)` indices ungrouped.
 
+The strictly broader intrinsic covering-number criterion is recorded in
+`sublinear-eigenmap-metric-entropy-implies-uniform-gamma`: distinct
+eigenmaps need not repeat exactly if their multiset has sublinear metric
+entropy at scales tending to zero on every finite early-stage test set.
+
 The witnessing projections generally have off-diagonal entries between the
 blocks in a packet.  Thus the theorem does not put them in the canonical
 Cartan and does not conflict with the Elliott--Niu relative-uniform-Gamma

@@ -24,6 +24,14 @@ multiplicity `L`, equal copies can be grouped into `k`-tuples and only
 `o(L)` blocks remain.  This gives uniform Gamma even if all the mass comes
 from repeated nonconstant coordinate maps.
 
+Exact repetition is not necessary.  The intrinsic refinement
+`sublinear-eigenmap-metric-entropy-implies-uniform-gamma` equips the later
+eigenmap multiset with the uniform pseudometric induced by an early finite
+test set.  A cover by `o(L)` balls at radii tending to zero produces the
+required packets, losing at most `k-1` maps per ball.  This permits all `L`
+eigenmaps to be distinct and is therefore strictly broader than distinct-map
+counting.
+
 ## What this says about the Villadsen obstruction
 
 Positive coordinate weight alone cannot obstruct uniform Gamma.  The real
