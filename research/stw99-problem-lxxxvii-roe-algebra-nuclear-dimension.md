@@ -49,4 +49,9 @@ canonical diagonal expectation has exact distance `1/2` from every diagonal
 c.p.c. order-zero repair on a fixed two-point *-homomorphism.  Thus
 diagonal-dimension equality cannot be converted to the missing lower bound by
 averaging arbitrary nuclear approximations, even followed by an arbitrarily
-small order-zero perturbation.
+small order-zero perturbation.  There is a complementary maximal obstruction:
+every order-zero map from a noncommutative matrix algebra into the diagonal is
+zero, and the diagonal expectation on a canonical finite matrix corner has
+exact distance one from all such maps
+(`stw87-diagonal-order-zero-maps-annihilate-matrix-colours`).  Hence diagonal
+averaging cannot retain any noncommutative colour at all.
