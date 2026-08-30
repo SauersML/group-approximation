@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw82-one-color-gluing-audit-2026-08-30.md
   - research/artifacts/stw82-projectional-cut-obstruction-audit-2026-08-30.md
+  - research/artifacts/stw82-transition-band-colour-graph-audit-2026-08-30.md
 ---
 
 **Problem LXXXII of Schafhauser--Tikuisis--White,
@@ -141,3 +142,38 @@ positive class.  After the separable/stable/essential reductions, the exact
 remaining hinge is to redistribute the transition band among the endpoint
 colours in a non-quasidiagonal extension, as the known optimal proofs do
 using special classification input.
+
+The transition-band obstruction has now been sharpened beyond one pair of
+cuts.  `stw82-indivisible-order-zero-reuse-is-graph-colouring` proves that
+for any finite family of fixed outgoing order-zero maps, the least number of
+global colours obtainable by direct-sum relabelling is exactly the chromatic
+number of the graph whose edges are nonorthogonal support pairs.  Thus a
+fixed-map two-colour merger exists exactly when this support graph is
+bipartite.  This is also an unconditional colour-reuse theorem: a family of
+finite-dimensional approximations whose support graphs are uniformly
+`(r+1)`-colourable compiles directly into nuclear dimension at most `r`,
+with no additional colour.
+
+Moreover, `stw82-two-by-two-colour-reuse-quantitative-obstruction` gives a
+norm lower bound for perturbing two ideal and two quotient/transition
+colours into any two-colour assignment.  It tests both internal support
+overlaps and both possible cross matchings, and remains valid when the
+assignment varies with the approximation stage.  Hence an odd-cycle or
+positive matching obstruction cannot be removed by relabelling intact
+colours.  The general quantitative form
+`stw82-odd-support-cycle-stable-two-colour-obstruction` shows that an odd
+cycle whose edge overlaps stay uniformly positive forces a fixed positive
+perturbation error for every stage-dependent two-colour assignment.  This
+still does not decide the problem: a universal proof may
+split or replace the transition-band maps, as all known non-quasidiagonal
+optimal proofs do under additional classification hypotheses.
+
+There is nevertheless a genuinely nonprojectional positive colour-reuse
+mechanism.  `stw82-spectral-interval-band-depth-reuses-colours` proves that
+when the outgoing unit supports are functions of one positive contraction,
+localized in spectral intervals of overlap depth `r+1`, the unchanged maps
+regroup into `r+1` order-zero colours.  Thus any approximation scheme with
+such band depth proves nuclear dimension at most `r`, exactly.  This moves
+the universal hinge again: the missing theorem is a structure-free way to
+subdivide arbitrary transition maps into common-cut spectral bands while
+preserving their order-zero structure and approximation quality.

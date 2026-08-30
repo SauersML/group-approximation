@@ -53,6 +53,12 @@ has unital Z-stable first coordinates and distance tending to zero, the
 nearby coordinates need not be unital: the two norm ultraproducts are still
 literally equal, the common ultraproduct is automatically unital, and it is
 Z-saturated.  Every separable subset has a commuting unital copy of Z.
+Iterating those relative-commutant copies gives the stronger local statement
+`stw99-xcix-separable-subalgebras-have-z-stable-hulls`: every separable
+subalgebra of the common ultraproduct is contained in a separable unital
+Z-stable subalgebra of that same ultraproduct.  This asserts genuine
+tensorial absorption for each constructed hull, not for the nonseparable
+ultraproduct itself.
 Quantitatively, in the common-unit coordinate setting,
 `stw99-xcix-fixed-centrality-windows-collapse-at-zero-distance` shows that
 every fixed finite centrality defect of the nearby coordinates tends to zero,
