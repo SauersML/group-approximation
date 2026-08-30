@@ -37,7 +37,7 @@ continuous Toeplitz cutoff.  Any universal local functional-calculus
 scheme of that form would give the forbidden cutters on the joint
 phase/cutoff cone.
 
-There is a second endpoint obstruction.  Let `D=M_r(C(T))), let
+There is a second endpoint obstruction.  Let `D=M_r(C(T))`, let
 `0<p<1` be a constant projection, and put `q=1-p`.  There is no net
 of two-colour approximations of `id_D` for which the first outgoing
 range is contained in `pDp` and the second outgoing range commutes
