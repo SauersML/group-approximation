@@ -47,8 +47,8 @@ It remains to transport source unreadable conjugations, rather than only
 the initial readable algebra.  If `U^x_j` is a source unreadable
 observable, the unreadable Intro observable induced by (49) on the A side
 is block controlled: its `z`-block is `U^{s_A(z)}_j`; again use the B
-side when that is where `x` occurs.  Fix a block `w), choose a sampled
-`z_x` with endpoint `x), and conjugate this controlled Intro observable
+side when that is where `x` occurs.  Fix a block `w`, choose a sampled
+`z_x` with endpoint `x`, and conjugate this controlled Intro observable
 by the Pauli shift carrying `w` to `z_x`.  The resulting target
 unreadable word preserves the `w`-block and restricts there to
 `U^x_j`.  Therefore, for every `d` already realized in that block,
@@ -66,11 +66,11 @@ e_w tensor D_infinity(S)
     subseteq D_infinity(QR_k(S))                          (QRP5)
 ```
 
-for every `w).  The orthogonal sum over all `2^k` SamZ blocks proves
+for every `w`. The orthogonal sum over all `2^k` SamZ blocks proves
 `(QRR1)`.
 
 Finally, a finite Boolean algebra with `b` atoms tensored with the
-`2^k)-atom SamZ algebra has `2^k b` atoms.  A containing Boolean algebra
+`2^k`-atom SamZ algebra has `2^k b` atoms.  A containing Boolean algebra
 cannot have fewer atoms, proving the quantitative conclusion.  This is a
 statement about BCV's explicit honest completeness strategy; it makes no
 claim that a different perfect strategy could not have a smaller readable
