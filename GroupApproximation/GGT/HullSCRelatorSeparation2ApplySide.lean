@@ -152,8 +152,11 @@ theorem innermost_of_sideExclusions
     (hmatch : Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
       (p.length + q.length + r.length + (s.length - l)))
     (hqside : ∀ i' : ℕ, i' ≤ q.length → i' ≠ i →
+      IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') →
       (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' ∉ D.fam lam)
     (hsside : ∀ m : ℕ, m ≤ s.length → m ≠ l →
+      IsCompStart lam (p ++ q ++ r ++ revWord s)
+        (p.length + q.length + r.length + (s.length - m)) →
       (vertex (1 : G) s l)⁻¹ * vertex (1 : G) s m ∉ D.fam lam) :
     ∀ t : ℕ, p.length + i < t →
       t < p.length + q.length + r.length + (s.length - l) →
@@ -161,16 +164,24 @@ theorem innermost_of_sideExclusions
       ¬ Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i) t := by
   intro t ht1 ht2 hstart hconnt
   rcases Nat.lt_or_ge t (p.length + q.length) with hA | hAge
-  · refine hqside (t - p.length) (by omega) (by omega) ?_
+  · have hteq : t = p.length + (t - p.length) := by omega
+    have hstart' : IsCompStart lam (p ++ q ++ r ++ revWord s)
+        (p.length + (t - p.length)) := by
+      rw [← hteq]
+      exact hstart
+    refine hqside (t - p.length) (by omega) (by omega) hstart' ?_
     refine mem_fam_of_connected_side D lam p q r s hi (by omega) ?_
-    have hteq : t = p.length + (t - p.length) := by omega
     rw [← hteq]
     exact hconnt
   · rcases Nat.lt_or_ge t (p.length + q.length + r.length) with hB | hBge
     · exact not_isCompStart_fourGon_r p q r s lam hr hAge hB hstart
     · obtain ⟨m, hm, -, hteq⟩ :=
         exists_rev_index p.length q.length r.length s.length hBge (by omega)
-      refine hsside m hm (by omega) ?_
+      have hstart' : IsCompStart lam (p ++ q ++ r ++ revWord s)
+          (p.length + q.length + r.length + (s.length - m)) := by
+        rw [← hteq]
+        exact hstart
+      refine hsside m hm (by omega) hstart' ?_
       refine mem_fam_of_common_left
         (A := RelLetter.listVal p * vertex (1 : G) q i)
         (mem_fam_of_connected_cross D lam p q r s hclose hi l hmatch) ?_
@@ -192,8 +203,11 @@ theorem otherArc_of_sideExclusions
     (hmatch : Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
       (p.length + q.length + r.length + (s.length - l)))
     (hqside : ∀ i' : ℕ, i' ≤ q.length → i' ≠ i →
+      IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') →
       (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' ∉ D.fam lam)
     (hsside : ∀ m : ℕ, m ≤ s.length → m ≠ l →
+      IsCompStart lam (p ++ q ++ r ++ revWord s)
+        (p.length + q.length + r.length + (s.length - m)) →
       (vertex (1 : G) s l)⁻¹ * vertex (1 : G) s m ∉ D.fam lam) :
     ∀ o : ℕ,
       (p.length + q.length + r.length + (s.length - l) < o
@@ -209,7 +223,11 @@ theorem otherArc_of_sideExclusions
   · rw [hlen] at hb2
     obtain ⟨m, hm, -, hoeq⟩ :=
       exists_rev_index p.length q.length r.length s.length (by omega) hb2
-    refine hsside m hm (by omega) ?_
+    have hstart' : IsCompStart lam (p ++ q ++ r ++ revWord s)
+        (p.length + q.length + r.length + (s.length - m)) := by
+      rw [← hoeq]
+      exact hstart
+    refine hsside m hm (by omega) hstart' ?_
     refine mem_fam_of_connected_revSide D lam p q r s hclose l m ?_
     rw [← hoeq]
     exact hconno
@@ -224,7 +242,11 @@ theorem otherArc_of_sideExclusions
       have h1 : (RelLetter.listVal p * vertex (1 : G) q i)⁻¹ *
           vertex (1 : G) s l ∈ D.fam lam :=
         mem_fam_of_connected_cross D lam p q r s hclose hi l hmatch
-      exact hqside (o - p.length) (by omega) (by omega)
+      have hstart' : IsCompStart lam (p ++ q ++ r ++ revWord s)
+          (p.length + (o - p.length)) := by
+        rw [← hoeq]
+        exact hstart
+      exact hqside (o - p.length) (by omega) (by omega) hstart'
         (mem_fam_of_match_pair h1 h2)
 
 end Clauses

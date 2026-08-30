@@ -72,9 +72,14 @@ theorem mixed_data_of_found_match {D : GGT.RelGenSet G Bool}
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
     (hqside : ∀ i' : ℕ, i' ≤ u.length → i' ≠ d →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam b)
     (hsside : ∀ m : ℕ, m ≤ u'.length → m ≠ k →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b) :
     ∃ (f : ℕ) (X X' : G), f ∈ ms ∧
@@ -119,6 +124,9 @@ theorem mixed_data_of_found_match {D : GGT.RelGenSet G Bool}
     rw [hkk]
     exact hconn
   have hsside' : ∀ m : ℕ, m ≤ u'.length → m ≠ k - 1 + 1 →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' (k - 1 + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b := by
     rw [hkk]

@@ -141,15 +141,25 @@ theorem false_of_mixedMatch_found {D : GGT.RelGenSet G Bool} {a : Bool → G}
         GGT.OsinComponents.vertex (1 : G) u d₂ * h₂
       = GGT.OsinComponents.vertex (1 : G) u' k₂)
     (hqside₁ : ∀ i' : ℕ, i' ≤ u.length → i' ≠ d₁ →
+      GGT.OsinComponents.IsCompStart b₁
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d₁)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam b₁)
     (hqside₂ : ∀ i' : ℕ, i' ≤ u.length → i' ≠ d₂ →
+      GGT.OsinComponents.IsCompStart b₂
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d₂)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam b₂)
     (hsside₁ : ∀ m : ℕ, m ≤ u'.length → m ≠ k₁ →
+      GGT.OsinComponents.IsCompStart b₁
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' k₁)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b₁)
     (hsside₂ : ∀ m : ℕ, m ≤ u'.length → m ≠ k₂ →
+      GGT.OsinComponents.IsCompStart b₂
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' k₂)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b₂)
     (hsepn : d₁ + blockSeparation p cnt epsPin < d₂)

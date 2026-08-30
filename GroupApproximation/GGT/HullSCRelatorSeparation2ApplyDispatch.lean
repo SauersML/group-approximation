@@ -50,6 +50,7 @@ be a component start at the very end of the quadrilateral. -/
 theorem cross_of_notSameSide (D : RelGenSet G Λ) (lam : Λ)
     (p q r s : List (RelLetter G Λ)) {i : ℕ}
     (hqside : ∀ i' : ℕ, i' ≤ q.length → i' ≠ i →
+      IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') →
       (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' ∉ D.fam lam)
     (hdisj : (∃ i' : ℕ, i' ≤ q.length ∧ i' ≠ i ∧
         IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') ∧
@@ -67,8 +68,8 @@ theorem cross_of_notSameSide (D : RelGenSet G Λ) (lam : Λ)
       ∃ h : G, h ∈ D.fam lam ∧
         RelLetter.listVal p * vertex (1 : G) q i * h
           = vertex (1 : G) s j := by
-  rcases hdisj with ⟨i', hi', hne, -, h, hh, heq⟩ | ⟨j, hj, hstart, hconn⟩
-  · refine absurd ?_ (hqside i' hi' hne)
+  rcases hdisj with ⟨i', hi', hne, hstart', h, hh, heq⟩ | ⟨j, hj, hstart, hconn⟩
+  · refine absurd ?_ (hqside i' hi' hne hstart')
     rw [← heq, inv_mul_cancel_left]
     exact hh
   · refine ⟨j, ?_, hj, hstart, hconn⟩
@@ -184,9 +185,14 @@ theorem listVal_conj_of_mirroredAlignedMatch_assembled
         GGT.OsinComponents.vertex (1 : G) u i * h
       = GGT.OsinComponents.vertex (1 : G) u' (j + 1))
     (hqside : ∀ i' : ℕ, i' ≤ u.length → i' ≠ i →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam b)
     (hsside : ∀ m : ℕ, m ≤ u'.length → m ≠ j + 1 →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' (j + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b)
     (hletu : ((RelWord.revInv

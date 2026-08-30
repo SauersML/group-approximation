@@ -65,6 +65,7 @@ theorem exists_deep_match (D : RelGenSet G Bool)
         (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q (i + 1)
           ∉ D.relBall lam rho →
         (∀ i' : ℕ, i' ≤ q.length → i' ≠ i →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') →
           (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' ∉ D.fam lam) →
         ∃ j : ℕ, 0 < j ∧ j ≤ s.length ∧
           (∃ x : G, s[j - 1]? = some (RelLetter.comp lam x)) ∧
@@ -165,9 +166,14 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
     (hqside : ∀ i' : ℕ, i' ≤ u.length → i' ≠ d →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam b)
     (hsside : ∀ m : ℕ, m ≤ u'.length → m ≠ j →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' j)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b) :
     GGT.RelLetter.listVal ((relatorWord₂ p (a false) (a true) ms).rotate c')
@@ -202,6 +208,9 @@ theorem listVal_conj_of_alignedMatch_found {D : GGT.RelGenSet G Bool}
     rw [hjj]
     exact hconn
   have hsside' : ∀ m : ℕ, m ≤ u'.length → m ≠ j - 1 + 1 →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' (j - 1 + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b := by
     rw [hjj]
@@ -261,9 +270,14 @@ theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
     (hqside : ∀ i' : ℕ, i' ≤ u.length → i' ≠ d →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam b)
     (hsside : ∀ m : ℕ, m ≤ u'.length → m ≠ j →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' j)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b) :
     GGT.RelLetter.listVal
@@ -305,6 +319,9 @@ theorem listVal_conj_of_mirroredAlignedMatch_found {D : GGT.RelGenSet G Bool}
     rw [hjj]
     exact hconn
   have hsside' : ∀ m : ℕ, m ≤ u'.length → m ≠ j - 1 + 1 →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' (j - 1 + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b := by
     rw [hjj]

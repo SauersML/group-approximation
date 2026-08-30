@@ -24,6 +24,15 @@ no longer disagree, because there is nothing left to disagree about.
 
 Both are `abbrev`, so they unfold where they are applied and a caller never has
 to see the name.
+
+**The exclusions carry a component-start clause**, and must.  Without it they
+are quantified over every index of the side, and at `i' = i + 1` that excludes
+the span of the matched component itself --- the value of a `lam`-letter, which
+lies in `H lam`.  `HullSC.not_sideExclusion_of_isComp` derives `False` from the
+version without it.  Both consumers have the clause in hand: the same-side
+disjunct of `exists_other_component_of_deep_six` carries it, and
+`innermost_of_sideExclusions` and `otherArc_of_sideExclusions` take it as a
+hypothesis.
 -/
 
 namespace GroupApproximation
@@ -57,8 +66,11 @@ abbrev MatchedPairOutput (D : RelGenSet G Bool) (eps bn : ℕ) : Prop :=
     Connected D.fam lam 1 (P ++ Q ++ R ++ revWord S) (P.length + i)
         (P.length + Q.length + R.length + (S.length - (j + 1))) →
     (∀ i' : ℕ, i' ≤ Q.length → i' ≠ i →
+      IsCompStart lam (P ++ Q ++ R ++ revWord S) (P.length + i') →
       (vertex (1 : G) Q i)⁻¹ * vertex (1 : G) Q i' ∉ D.fam lam) →
     (∀ m : ℕ, m ≤ S.length → m ≠ j + 1 →
+      IsCompStart lam (P ++ Q ++ R ++ revWord S)
+        (P.length + Q.length + R.length + (S.length - m)) →
       (vertex (1 : G) S (j + 1))⁻¹ * vertex (1 : G) S m ∉ D.fam lam) →
     ((vertex (1 : G) S j)⁻¹ * (RelLetter.listVal P * vertex (1 : G) Q i)
         ∈ D.relBall lam eps) ∧
@@ -79,6 +91,7 @@ abbrev DeepMatchOutput (D : RelGenSet G Bool) (Cm bn : ℕ) : Prop :=
     IsComp lam Q i (i + 1) →
     (vertex (1 : G) Q i)⁻¹ * vertex (1 : G) Q (i + 1) ∉ D.relBall lam rho →
     (∀ i' : ℕ, i' ≤ Q.length → i' ≠ i →
+      IsCompStart lam (P ++ Q ++ R ++ revWord S) (P.length + i') →
       (vertex (1 : G) Q i)⁻¹ * vertex (1 : G) Q i' ∉ D.fam lam) →
     ∃ j : ℕ, 0 < j ∧ j ≤ S.length ∧
       (∃ x : G, S[j - 1]? = some (RelLetter.comp lam x)) ∧

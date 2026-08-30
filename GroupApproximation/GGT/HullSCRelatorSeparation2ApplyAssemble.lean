@@ -116,9 +116,14 @@ theorem listVal_conj_of_alignedMatch_assembled {D : GGT.RelGenSet G Bool}
         GGT.OsinComponents.vertex (1 : G) u i * h
       = GGT.OsinComponents.vertex (1 : G) u' (j + 1))
     (hqside : ∀ i' : ℕ, i' ≤ u.length → i' ≠ i →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam b)
     (hsside : ∀ m : ℕ, m ≤ u'.length → m ≠ j + 1 →
+      GGT.OsinComponents.IsCompStart b
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' (j + 1))⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam b)
     (hletu : ((relatorWord₂ p (a false) (a true) ms).rotate c)[i]?

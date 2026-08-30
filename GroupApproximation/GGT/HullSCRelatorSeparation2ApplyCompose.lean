@@ -54,7 +54,9 @@ Three named hypotheses, and no others beyond the geometry of the ambient graph.
 
 * `hcount` --- item 2 of the Ledger, the block count, at every member of the
   symmetrized closure rather than at the relator alone;
-* `hexcl` --- item 3, the two same-side exclusions;
+* `hexcl` --- item 3, the two same-side exclusions, each carrying the
+  component-start clause without which it is refuted by
+  `HullSC.not_sideExclusion_of_isComp`;
 * `hnc` --- the diagonal leaf, that no nontrivial element of a relative ball
   commutes with a power of the loxodromic.
 
@@ -198,17 +200,25 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
           (GGT.OsinComponents.vertex (1 : G) v i)
           (GGT.OsinComponents.vertex (1 : G) v j) + blockConst p cnt)
     (hexcl : ∀ (p : List G) (ms : List ℕ)
-      (u u' : List (GGT.RelLetter G Bool)),
+      (py pz u u' : List (GGT.RelLetter G Bool)),
       (∃ v tl : List (GGT.RelLetter G Bool),
         RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
           v = u ++ tl) →
       (∃ v tl : List (GGT.RelLetter G Bool),
         RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
           v = u' ++ tl) →
+      (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) →
+      (∀ x ∈ pz, ∃ g : G, x = GGT.RelLetter.base g) →
       (∀ (s : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+        GGT.OsinComponents.IsCompStart s
+            (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+            (py.length + i') →
         (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
           GGT.OsinComponents.vertex (1 : G) u i' ∉ E.rel.fam s) ∧
         (∀ (s : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+          GGT.OsinComponents.IsCompStart s
+              (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+              (py.length + u.length + pz.length + (u'.length - m)) →
           (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
             GGT.OsinComponents.vertex (1 : G) u' m ∉ E.rel.fam s))
     (t : G) (eps rho : ℕ) :
@@ -356,7 +366,8 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
                 (GGT.OsinComponents.vertex (1 : G) u₀' j) : ℕ) : ℝ) :=
       fun i j hij hj => qgClause_of_le (hcu' i j hij hj)
     obtain ⟨hqside, hsside⟩ :=
-      hexcl p ms u₀ u₀' ⟨w, sfx, hw, hsfx⟩ ⟨w', sfx', hw', hsfx'⟩
+      hexcl p ms py pz u₀ u₀' ⟨w, sfx, hw, hsfx⟩ ⟨w', sfx', hw', hsfx'⟩
+        hpy hpz
     have hconj := listVal_conj_of_sym_pieces hpair hmatch hnodup
       (injective_pow_lox₂ E) hsymm hsepD hdiagD
       (fun m hm b => hdeepD m hm b b) (Nat.le_max_right rho (Cm * 4)) hp0

@@ -47,17 +47,25 @@ variable
             (GGT.OsinComponents.vertex (1 : G) v i)
             (GGT.OsinComponents.vertex (1 : G) v j) + blockConst p cnt) ∧
       (∀ (p : List G) (ms : List ℕ)
-        (u u' : List (GGT.RelLetter G Bool)),
+        (py pz u u' : List (GGT.RelLetter G Bool)),
         (∃ v tl : List (GGT.RelLetter G Bool),
           RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
             v = u ++ tl) →
         (∃ v tl : List (GGT.RelLetter G Bool),
           RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
             v = u' ++ tl) →
+        (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) →
+        (∀ x ∈ pz, ∃ g : G, x = GGT.RelLetter.base g) →
         (∀ (s : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+          GGT.OsinComponents.IsCompStart s
+              (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+              (py.length + i') →
           (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
             GGT.OsinComponents.vertex (1 : G) u i' ∉ E.rel.fam s) ∧
           (∀ (s : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+            GGT.OsinComponents.IsCompStart s
+                (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+                (py.length + u.length + pz.length + (u'.length - m)) →
             (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
               GGT.OsinComponents.vertex (1 : G) u' m ∉ E.rel.fam s)))
 

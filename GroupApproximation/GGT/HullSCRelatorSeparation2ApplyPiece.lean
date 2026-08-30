@@ -87,9 +87,14 @@ theorem listVal_conj_of_alignedMatch_piece (hnodup : ms.Nodup)
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
     (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+      GGT.OsinComponents.IsCompStart t
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
     (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+      GGT.OsinComponents.IsCompStart t
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam t) :
     GGT.RelLetter.listVal ((relatorWord₂ p (a false) (a true) ms).rotate c')
@@ -166,9 +171,14 @@ theorem listVal_conj_of_mirroredAlignedMatch_piece (hnodup : ms.Nodup)
             (GGT.OsinComponents.vertex (1 : G)
               (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') y) : ℕ) : ℝ))
     (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+      GGT.OsinComponents.IsCompStart t
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
     (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+      GGT.OsinComponents.IsCompStart t
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam t) :
     GGT.RelLetter.listVal
@@ -265,9 +275,14 @@ theorem false_of_mixedMatch_piece (hnodup : ms.Nodup)
     (hB : bb ≤ ((blockConst p cnt : ℕ) : ℝ))
     (hple : wordNorm D.alphabet.carrier (GGT.RelLetter.listVal py) ≤ epsPin)
     (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+      GGT.OsinComponents.IsCompStart t
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
     (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+      GGT.OsinComponents.IsCompStart t
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam t) : False := by
   have hmsk : blockSeparation p cnt epsPin + 2 ≤ ms.length := by omega
@@ -377,9 +392,14 @@ theorem false_of_mixedMatch_piece_inv (hnodup : ms.Nodup)
     (hB : bb ≤ ((blockConst p cnt : ℕ) : ℝ))
     (hple : wordNorm D.alphabet.carrier (GGT.RelLetter.listVal py) ≤ epsPin)
     (hqside : ∀ (t : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+      GGT.OsinComponents.IsCompStart t
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i') →
       (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u i' ∉ D.fam t)
     (hsside : ∀ (t : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+      GGT.OsinComponents.IsCompStart t
+          (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+          (py.length + u.length + pz.length + (u'.length - m)) →
       (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
         GGT.OsinComponents.vertex (1 : G) u' m ∉ D.fam t) : False := by
   have hmsk : blockSeparation p cnt epsPin + 2 ≤ ms.length := by omega

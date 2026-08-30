@@ -59,8 +59,11 @@ theorem exists_eps_matchedPair (D : RelGenSet G Λ)
         Connected D.fam lam 1 (p ++ q ++ r ++ revWord s) (p.length + i)
             (p.length + q.length + r.length + (s.length - (j + 1))) →
         (∀ i' : ℕ, i' ≤ q.length → i' ≠ i →
+          IsCompStart lam (p ++ q ++ r ++ revWord s) (p.length + i') →
           (vertex (1 : G) q i)⁻¹ * vertex (1 : G) q i' ∉ D.fam lam) →
         (∀ m : ℕ, m ≤ s.length → m ≠ j + 1 →
+          IsCompStart lam (p ++ q ++ r ++ revWord s)
+            (p.length + q.length + r.length + (s.length - m)) →
           (vertex (1 : G) s (j + 1))⁻¹ * vertex (1 : G) s m ∉ D.fam lam) →
         ((vertex (1 : G) s j)⁻¹ * (RelLetter.listVal p * vertex (1 : G) q i)
             ∈ D.relBall lam eps) ∧
