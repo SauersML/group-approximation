@@ -6,11 +6,11 @@ title: Transfinitely ASH-layered separable factors preserve purity under the Set
 artifacts:
   - research/artifacts/stw95-pure-tensor-permanence-wave-audit-2026-08-30.md
 distinct_from:
-  stw95-transfinite-exact-filtration-reduction: that assumes purity of every successor-layer tensor product; this verifies all those local hypotheses uniformly for ASH layers by the Seth--Vilalta theorem.
+  stw95-nuclear-successor-filtrations-need-no-exact-factor: that assumes purity of every successor-layer tensor product; this verifies all those local hypotheses uniformly for ASH layers by the Seth--Vilalta theorem.
   stw95-one-zstable-factor-forces-pure-product: that uses Z-absorption of one factor and allows an arbitrary other factor; this permits a non-Z-stable pure factor but requires its Seth--Vilalta quotient condition and an ASH-layered other factor.
 ---
 
-Let `A` be a separable exact pure C*-algebra.  Assume that either
+Let `A` be a pure C*-algebra.  Assume that either
 
 1. `A` is simple; or
 2. every quotient of `A` is stably finite.
@@ -35,7 +35,8 @@ is pure.
 
 Consequently, if `B` is itself pure, then `(A,B)` is a positive class for
 the general pure-tensor permanence question in Problem XCV.  The conclusion
-does not require `B` itself to be ASH or either factor to be Z-stable.  When
-`gamma` is countable, separability of `B` already follows from separability
-of the successor quotients by extension and sequential-limit permanence;
-thus the arbitrary-ordinal statement contains the countable-filtration case.
+does not require `A` to be separable or exact, `B` itself to be ASH, or either
+factor to be Z-stable.  When `gamma` is countable, separability of `B` already
+follows from separability of the successor quotients by extension and
+sequential-limit permanence; thus the arbitrary-ordinal statement contains
+the countable-filtration case.

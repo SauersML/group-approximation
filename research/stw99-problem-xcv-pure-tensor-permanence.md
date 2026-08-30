@@ -68,15 +68,28 @@ for two separable exact algebras with arbitrary continuous composition
 series, only the tensor products of their simple successor quotients remain
 to be checked.
 
-Seth--Vilalta's ASH tensor theorem now discharges all of those local products
-in a substantial nonsimple class.  By
-`stw95-transfinite-ash-layered-factor-preserves-purity`, if `A` is separable,
-exact, and pure, and either is simple or has every quotient stably finite,
-then `A tensor_min B` is pure whenever `B` is separable and has a continuous
+There is now a complementary filtration theorem that does not require the
+other tensor factor to be exact.  By
+`stw95-nuclear-successor-filtrations-need-no-exact-factor`, if the successor
+quotients of a continuous filtration of separable `B` are nuclear and all
+their tensor products with an arbitrary `A` are pure, then `A tensor_min B`
+is pure.  Choi--Effros cpc splittings, rather than exactness of `A`, make the
+tensor sequence exact at every successor stage.
+In particular, a pure `A` tensored with any separable continuously
+AF-layered `B` is pure: the AF-factor theorem verifies every local product.
+This allows nonunital AF layers and makes no exactness, separability,
+simplicity, or residual stable-finiteness assumption on `A`; the assembled
+factor `B` need not itself be AF.
+
+Seth--Vilalta's ASH tensor theorem discharges all of those local products in
+a substantial nonsimple class.  The strengthened
+`stw95-transfinite-ash-layered-factor-preserves-purity` says that if `A` is
+pure and either is simple or has every quotient stably finite, then
+`A tensor_min B` is pure whenever `B` is separable and has a continuous
 arbitrary-ordinal filtration whose successor quotients are unital separable
-ASH algebras.  In particular this solves Problem XCV for such a pair when
-`B` is also pure, without requiring `B` itself to be ASH or either factor to
-be Z-stable.
+ASH algebras.  No separability or exactness assumption remains on `A`.  In
+particular this solves Problem XCV for such a pair when `B` is also pure,
+without requiring `B` itself to be ASH or either factor to be Z-stable.
 
 The two purity axioms require different Cu-map input.  Almost divisibility
 already follows when the canonical Cu tensor image is internally cofinal for
