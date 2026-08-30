@@ -14,6 +14,7 @@ artifacts:
   - research/artifacts/stw22-finite-bratteli-cube-audit-2026-08-30.md
   - research/artifacts/stw22-asymptotically-dense-factor-field-audit-2026-08-30.md
   - research/artifacts/stw22-variable-factor-selection-audit-2026-08-30.md
+  - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -132,6 +133,17 @@ escaping quotient at every countable limit rank and covers arbitrary
 countable successor and limit Cantor--Bendixson height without transfinite
 descent.  The unresolved boundary is whether general factorial tracial
 bundles possess such a continuous common-ambient expectation presentation.
+
+There is also a nonmetrizable positive class requiring no common ambient
+factor.  `stw22-finite-derived-set-factor-bundles-have-uniform-traces`
+removes countability and metrizability from the convergent-sequence theorem:
+every factorial tracial bundle over a compact Hausdorff base with finitely
+many nonisolated points has only uniform traces.  Around one such point the
+base is the one-point compactification of an arbitrary discrete space.  A
+small spectral cut then has countable support automatically, because only
+finitely many coordinates can have trace above `1/n`; its fibrewise
+orthogonal copies are therefore uniform `2`-limits of finite central sums.
+This supplies exactly the assembly step missing from naive disintegration.
 
 ## Attempts
 

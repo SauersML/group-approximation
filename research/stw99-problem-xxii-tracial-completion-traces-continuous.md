@@ -9,6 +9,7 @@ distinct_from:
   trace-problem-holds-over-convergent-sequence-boundaries: that is the established special case of this problem for W*-bundles over convergent-sequence spaces; this is the general problem, open even for Bauer simplices with boundary an interval.
 artifacts:
   - research/artifacts/stw99-xxii-trace-problem-2026-08-30.md
+  - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -27,6 +28,11 @@ non-von-Neumann fibres lack).
 New here: yes, with no property Γ hypothesis, for W\*-bundles whose base is
 a countable compact space with finitely many limit points
 (`trace-problem-holds-over-convergent-sequence-boundaries`).
+The countability and metrizability restrictions are removed by
+`stw22-finite-derived-set-factor-bundles-have-uniform-traces`: the same
+conclusion holds over every compact Hausdorff base with finite derived set,
+including one-point compactifications of discrete sets of arbitrary
+cardinality.
 
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,
