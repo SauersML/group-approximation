@@ -56,6 +56,15 @@ The project reduction
 counterexample would already have a separable subextension counterexample
 with no larger endpoint dimensions.
 
+The Busby-kernel reduction
+`stw82-every-counterexample-essentializes` removes a second inessential
+frontier.  For Busby map `tau`, enlarge the ideal from `I` to the preimage of
+`ker(tau)`.  That new ideal is `I directSum ker(tau)`, is essential in the
+same middle algebra, and has nuclear dimension no larger than the original
+endpoint maximum.  Thus every failure already has a separable extension by
+an essential ideal; the unresolved theorem may be attacked in that sharply
+reduced setting.
+
 There is a second localization from Problem LXXXI.
 `stw81-finite-ideal-counterexample-forces-lxxxii-counterexample` shows that a
 separable finite-ideal algebra of finite nuclear dimension at least two,
