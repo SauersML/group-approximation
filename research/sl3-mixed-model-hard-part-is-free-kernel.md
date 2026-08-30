@@ -7,7 +7,6 @@ distinct_from:
   sl3-atomic-ambient-is-absorbed-by-lattice: that rules out an amenable exterior model of the arithmetic pair before forming an amalgam; this identifies exactly what an arbitrary mixed atomic--nonamenable model of the double or centralizer HNN must still represent faithfully.
   sl3-arithmetic-double-finite-representations-fold: that proves every finite-dimensional representation of the double kills its fold kernel; this computes that kernel as `F_infinity` and turns the observation into an exact positive-model equivalence after an arbitrary nonamenable sector is added.
   sl3-arithmetic-double-hyperlinear-iff-relative-embeddable: that characterizes hyperlinearity through Gao's relative embeddability of the canonical factor inclusion; this gives an abstract-unitary construction criterion requiring faithfulness only on one explicit free normal subgroup.
-  exterior-hyperfinite-edge-model-amalgam-hyperlinear: that obtains injectivity by free amalgamation over an amenable subgroup algebra; this permits a nonamenable coefficient algebra, but proves that all hard injectivity is concentrated on the free fold kernel.
 ---
 
 Put

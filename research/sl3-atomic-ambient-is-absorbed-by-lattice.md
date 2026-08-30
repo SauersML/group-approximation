@@ -3,12 +3,8 @@ rg: 2
 id: sl3-atomic-ambient-is-absorbed-by-lattice
 kind: claim
 title: Every amenable atomic model of the S-arithmetic SL3 group is absorbed by the integral lattice algebra
-invalidates:
-  - sl3-pair-admits-exterior-atomic-model
 distinct_from:
   sl3-overlap-full-in-fd-ambient-images: that proves equality of the overlap, lattice and ambient images in each finite-dimensional representation; this uses summability of the atomic trace weights to pass from simultaneous equality on every finite family of blocks to equality of the generated von Neumann algebras in an infinite atomic model.
-  amenable-kazhdan-models-absorb-compression: that needs a one-sided compressor and proves normalization of the subgroup algebra; the arithmetic lattice is only commensurated, but full finite-dimensional overlap images force complete absorption without a compressor.
-  sl3-pair-admits-exterior-atomic-model: that proposes an injective model in the hyperfinite factor with the ambient elements exterior to the lattice algebra; this proves that every such model puts all ambient unitaries inside the lattice algebra, so exteriority fails maximally.
 ---
 
 Fix a prime `p` and put

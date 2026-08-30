@@ -20,9 +20,12 @@ Problem numbering is the paper's (Roman numerals I--XCIX).
 | XCIV | Is the hyperfinite II₁ factor separably 𝒵-stable? | stw99-problem-xciv-hyperfinite-factor-separably-z-stable |
 | VIII | Is every separable exact quasidiagonal C*-algebra AF-embeddable? | stw99-problem-viii-exact-quasidiagonal-af-embeddable |
 | IX(2) | Exact with faithful quasidiagonal trace: AF-embeddable? | stw99-problem-ix2-exact-faithful-qd-trace-af-embeddable |
+| LXXXII | Nuclear dimension across arbitrary C*-extensions | stw99-problem-lxxxii-nuclear-dimension-extensions |
 | LXXXIV | Nuclear dimension of amenable group C*-algebras | stw99-problem-lxxxiv-nuclear-dimension-amenable-groups |
 | LXXXVI | Eckhardt--Wu: finite decomposition rank iff polynomial growth | stw99-eckhardt-wu-decomposition-rank-conjecture |
 | LXXXVII | dim_nuc of the uniform Roe algebra vs asymptotic dimension | stw99-problem-lxxxvii-roe-algebra-nuclear-dimension |
+| LXVI | Unital CAR embedding in a simple infinite algebra with a finite image projection | stw99-problem-lxvi-car-embedding-with-finite-projection |
+| LXXXII | Nuclear dimension across arbitrary C*-extensions | stw99-problem-lxxxii-nuclear-dimension-extensions |
 
 ## Reductions recorded as routes, with the sentence in the paper that asserts them
 

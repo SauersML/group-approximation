@@ -5,13 +5,20 @@ kind: route
 title: Match finite atomic block families by one lattice element and exhaust their trace weights
 target: sl3-atomic-ambient-is-absorbed-by-lattice
 requires:
-  - kazhdan-generated-amenable-algebra-is-atomic
   - sl3-overlap-full-in-fd-ambient-images
 ---
 
-The S-arithmetic group `A=SL_3(Z[1/p])` has property `(T)`.  Apply
-`kazhdan-generated-amenable-algebra-is-atomic` to the representation `pi`
-and the amenable algebra `Q=pi(A)''`.  There are pairwise inequivalent
+The S-arithmetic group `A=SL_3(Z[1/p])` has property `(T)`.  Its image under
+`pi` has property `(T)`, and the finite von Neumann algebra `Q=pi(A)''`
+therefore has Connes--Jones property `(T)`: an almost central vector for a
+`Q`-bimodule is, after restricting both actions to `pi(A)`, almost central
+for the Kazhdan generators and hence close to a central vector.  Since `Q`
+is amenable, its finite-dimensional completely positive approximations give
+such almost central vectors in every non-zero diffuse central summand.
+Property `(T)` upgrades one of them to a non-zero central finite-rank vector,
+whose support is a non-zero finite-dimensional central summand.  Repeating
+in the complementary central summand and exhausting the faithful finite
+trace shows that `Q` is atomic.  Thus there are pairwise inequivalent
 finite-dimensional irreducible representations `sigma_j:A->U(d_j)` and
 positive weights `lambda_j`, `sum_j lambda_j=1`, such that
 
