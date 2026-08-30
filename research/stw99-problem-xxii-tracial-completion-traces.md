@@ -53,6 +53,10 @@ to every locally Cantor--Bendixson-rank-one point and proves the trace
 conclusion for the trivial UHF field over compact scattered bases of height
 at most two.  On higher-rank scattered bases, it localizes any remaining
 obstruction to the second derived set.
+`stw22-height-three-scattered-trace-continuity` then
+resolves the next Cantor--Bendixson layer for compact metrizable bases.  Its
+two-level argument quotients onto the rank-one skeleton and uses spectral
+square roots to damp discontinuous fibrewise orthogonalizers in the kernel.
 
 ## Attempts
 
