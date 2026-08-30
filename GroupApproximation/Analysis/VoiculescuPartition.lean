@@ -42,6 +42,14 @@ square root still asymptotically commutes — which is *not* a quantitative
 estimate: `Analysis/ShulmanCoronaSquareRootCommutator` does it qualitatively, by
 turning a null commutator into an exact one in the corona and using that
 functional calculus preserves exact commutation.
+
+That qualitative clause is consistent and useful, but it is weaker than the
+general V4 assembly needs.  The defect estimate in
+`Analysis/VoiculescuSuperposition` sums the commutator norms, and convergence of
+the individual norms to zero does not imply summability.  A later construction
+must therefore select the monotone unit diagonally so that the square-root
+commutators are summable for each member of the dense target family; the present
+structure deliberately does not claim that stronger datum has been built.
 -/
 
 namespace GroupApproximation
@@ -56,8 +64,8 @@ variable {K : Type} [NormedAddCommGroup K] [InnerProductSpace ℂ K]
   [CompleteSpace K]
 
 /-- **The partition of unity.**  Positive compacts whose squares resolve the
-identity strongly and which asymptotically commute with a given countable
-family. -/
+identity strongly and whose commutators with each member of a given countable
+family are summable. -/
 structure QuasicentralPartition (K : Type) [NormedAddCommGroup K]
     [InnerProductSpace ℂ K] [CompleteSpace K] (S : ℕ → (K →L[ℂ] K)) where
   /-- The pieces. -/
@@ -69,9 +77,10 @@ structure QuasicentralPartition (K : Type) [NormedAddCommGroup K]
   /-- The squares resolve the identity strongly. -/
   tendsto_sum_sq : ∀ x : K,
     Tendsto (fun N ↦ ∑ j ∈ Finset.range N, (d j * d j) x) atTop (𝓝 x)
-  /-- The pieces asymptotically commute with the family. -/
-  tendsto_comm : ∀ k,
-    Tendsto (fun j ↦ ‖d j * S k - S k * d j‖) atTop (𝓝 0)
+  /-- The commutators are summable for each member of the target family.  This
+  is the quantitative diagonal selection the superposition estimate consumes;
+  mere convergence of the terms to zero is insufficient. -/
+  summable_comm : ∀ k, Summable fun j ↦ ‖d j * S k - S k * d j‖
 
 namespace QuasicentralPartition
 
@@ -140,7 +149,7 @@ theorem exists_quasicentralPartition_of_finiteDimensional
               · rw [if_pos h]; exact hone
               · rw [if_neg h]; exact isCompactOperator_zero
             tendsto_sum_sq := fun x ↦ ?_
-            tendsto_comm := fun k ↦ ?_ }⟩
+            summable_comm := fun k ↦ ?_ }⟩
   · refine tendsto_atTop_of_eventually_const (i₀ := 1) fun N hN ↦ ?_
     rw [Finset.sum_eq_single 0]
     · rw [if_pos rfl]
@@ -150,10 +159,14 @@ theorem exists_quasicentralPartition_of_finiteDimensional
       simp
     · intro h
       exact absurd (Finset.mem_range.mpr hN) h
-  · refine tendsto_const_nhds.congr fun j ↦ ?_
-    by_cases h : j = 0
-    · rw [if_pos h, one_mul, mul_one, sub_self, norm_zero]
-    · rw [if_neg h, zero_mul, mul_zero, sub_self, norm_zero]
+  · have hzero : (fun j ↦ ‖(if j = 0 then 1 else 0) * S k -
+        S k * (if j = 0 then 1 else 0)‖) = fun _ : ℕ ↦ (0 : ℝ) := by
+      funext j
+      by_cases h : j = 0
+      · rw [if_pos h, one_mul, mul_one, sub_self, norm_zero]
+      · rw [if_neg h, zero_mul, mul_zero, sub_self, norm_zero]
+    rw [hzero]
+    exact summable_zero
 
 end
 

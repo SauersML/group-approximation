@@ -28,10 +28,14 @@ comes from one exact identity,
     `S(Vⱼdⱼ) - (Vⱼdⱼ)R = (SVⱼ - VⱼR)dⱼ + Vⱼ(Rdⱼ - dⱼR)` ,
 
 so the superposition's defect is bounded by the sum of the *per-piece* defects
-plus the sum of the *commutators* of the partition with `R`.  Those are exactly
-the two quantities the construction gets to make small: the first by running the
-intertwining step at a summable tolerance, the second because the partition is
-quasicentral.  Nothing else enters.
+plus the sum of the *commutators* of the partition with `R`.  The first is made
+summable by running the intertwining step at a summable tolerance.  For the
+second, bare quasicentrality is not enough: `‖[dⱼ,R]‖ → 0` does not imply that
+`∑ⱼ ‖[dⱼ,R]‖` converges.  The construction must choose the monotone unit's
+subsequence diagonally, before taking successive square roots, so these
+commutators are summable on the dense target family.  This is why
+`QuasicentralPartition.summable_comm` carries summability rather than merely a
+limit-to-zero clause.
 
 ## A clause the datum did not have to record
 

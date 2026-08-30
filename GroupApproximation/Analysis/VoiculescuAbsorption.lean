@@ -17,13 +17,20 @@ Hilbert space, and the statement below avoids it, because what the assembly
 literally builds is an *isometry*: iterating the one-step approximation along a
 dense sequence with summable tolerances and mutually orthogonal ranges gives an
 isometry `W : K → H` with `σ(a)W - Wρ(a)` compact for every `a` — that is, `ρ` is
-a subrepresentation of `σ` modulo the compacts.  The `σ ⊕ ρ ≃ σ` form is a
-consequence of that one and adds the direct sum back; the containment form is
-what the iteration produces and is enough for everything below it.
+a subrepresentation of `σ` modulo the compacts.  The containment form is what
+the present iteration produces.  The stronger `σ ⊕ ρ ≃ σ` unitary form is not a
+ring-theoretic consequence of one such isometry and is still needed for the
+Calkin-unitary conclusion (V5).
 
 `isCompactOperator_compress_sub` is the exchange between the intertwining form
 and the compression form the one-step approximation speaks in: `W⋆σ(a)W - ρ(a)`
 is `W⋆` times the intertwining defect, and the compacts are an ideal.
+
+The containment form is enough for that compression conclusion, but it is
+**not** by itself enough for (V5).  Applying it in both directions gives two
+isometries in the Calkin algebra, and an isometry there need not be unitary.
+`Analysis/VoiculescuCalkinMutualContainment` proves exactly that mutual
+containment consequence and isolates the remaining unitary-absorption seam.
 
 ## (V5), and one hypothesis that is not needed
 
