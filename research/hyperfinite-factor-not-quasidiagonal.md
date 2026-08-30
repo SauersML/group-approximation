@@ -29,7 +29,9 @@ needs one countable non-MF group inside `U(R)`.
   non-MF group remains as a candidate; a witness needs a non-MF certificate
   that survives hyperfinite representations.
 * Non-group witnesses: any separable non-quasidiagonal `A` with a faithful
-  trace of hyperfinite GNS closure.  By Tikuisis--White--Winter and Gabe such
+  trace of hyperfinite GNS closure.  `A` cannot be the reduced C*-algebra of
+  a nonamenable group, so Rosenberg's non-quasidiagonality mechanism is
+  unavailable (`nonamenable-reduced-group-algebras-avoid-hyperfinite-gns`).  By Tikuisis--White--Winter and Gabe such
   an `A` is not both exact and UCT (recorded by the peer lane in
   `stw99-problem-x2-hyperfinite-factor-quasidiagonal`).  Residually
   finite-dimensional algebras such as `C*(F_2)` do embed in `R` but are

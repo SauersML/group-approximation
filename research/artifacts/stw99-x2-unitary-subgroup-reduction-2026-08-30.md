@@ -201,22 +201,61 @@ excluded as a witness for non-quasidiagonality of `R`.
 
 ## Addendum E. Abstract Clifford-compressor criterion
 
-The preceding proof only uses four structural inputs.  A marked group has a
-finite even Clifford block; a family of elements permutes that block by
-fixed-point-free involutions; every nonzero element of a countable abelian
-normal subgroup is conjugate into that family; and a nonamenable group acts
-on the abelian dual with Haar-null nontrivial fixed sets.  Under exactly
-these hypotheses every finite injective representation kills the mark.
+The Clifford calculation extends exactly to arbitrary signed permutations.
+If `R(c_i)=epsilon_i c_(pi(i))` and a cycle `D` of `pi` has sign-product
+`s_D`, then an implementing unitary `V in M_(2^m)` satisfies
 
-The Clifford permutation trace is `(1-1)^m=0`, so compressor conjugacy makes
-the character regular on the abelian subgroup.  Its von Neumann closure is
-therefore the Haar algebra of the dual.  Null fixed sets make the
-nonamenable action properly outer, and the existing hyperfinite covariance
-obstruction produces a forbidden expected copy of the nonamenable group
-factor.  This formulation uses neither property (T), invariant-measure or
-character rigidity, nor an extension of the representation to a profinite
-completion.  The literal group `E` is the case `2m=8`, `N=Z^3`, and
-`H=SL_3(Z)`.
+```text
+|tr_(2^m)(V)|^2
+ =2^(-2m) det(1+R)
+ =2^(-2m) product_D (1-(-1)^(|D|)s_D).
+```
+
+This is the full exterior-algebra character of `R`.  It vanishes exactly
+when one cycle has `s_D=(-1)^(|D|)`; otherwise, if `pi` has `r` cycles, its
+absolute value is `2^(r/2-m)`.  Thus the old `(1-1)^m` computation is the
+special case of `m` unsigned transpositions.  One unsigned even cycle or one
+negatively signed odd cycle suffices, and all other cycles and fixed points
+are unrestricted.
+
+Accordingly, the preceding invisibility proof only uses four structural
+inputs.  A marked group has a finite even Clifford block; every member of a
+compressor family acts on that block by a signed permutation containing one
+trace-singular cycle; every nonzero element of a countable abelian normal
+subgroup is conjugate into that family; and a nonamenable group acts on the
+abelian dual with Haar-null nontrivial fixed sets.  Under exactly these
+hypotheses every finite injective representation kills the mark.
+
+The signed-cycle trace zero makes compressor conjugacy force the regular
+character on the abelian subgroup.  Its von Neumann closure is therefore the
+Haar algebra of the dual.  Null fixed sets make the nonamenable action
+properly outer, and the existing hyperfinite covariance obstruction produces
+a forbidden expected copy of the nonamenable group factor.  This formulation
+uses neither property (T), invariant-measure or character rigidity, nor an
+extension of the representation to a profinite completion.  The literal
+group `E` is the case `2m=8`, `N=Z^3`, `H=SL_3(Z)`, with four unsigned
+transpositions.
+
+## Addendum E. Reduced algebras of nonamenable groups never sit inside R
+
+**Proposition.**  For nonamenable `Γ`, no tracial state on `C*_r(Γ)` has
+injective GNS closure; hence `C*_r(Γ)` does not embed unitally into `R`.
+
+Proof.  If `N = π_τ(Γ)''` is injective and finite, a conditional
+expectation `Φ : B(H_τ) → N` composed with the trace is an `Ad π(g)`-
+invariant state, so `π_τ` is Bekka-amenable and `1 ≺ π_τ ⊗ π̄_τ`.  As `τ` is
+a state on the reduced algebra, `π_τ ≺ λ`, so `1 ≺ λ ⊗ λ̄ ≅ ∞·λ` (Fell), and
+`Γ` is amenable.  ∎
+
+So the Rosenberg mechanism (nonamenable ⟹ reduced algebra not
+quasidiagonal) cannot refute X(2).  With Addenda A–D and the
+exactness/UCT fence, every currently known source of non-quasidiagonality
+is excluded from `R`; a refutation of X(2) requires a genuinely new
+non-quasidiagonal algebra carrying a faithful uniformly amenable trace.
+Conversely a proof of X(2) is precisely the statement "every separable
+C*-algebra with a faithful trace of hyperfinite GNS closure is
+quasidiagonal", a UCT- and exactness-free strengthening of
+Tikuisis--White--Winter and Gabe.
 
 ## Addendum literature
 
