@@ -2970,3 +2970,4 @@ import GroupApproximation.GGT.DGOAssemblyVertices
 import GroupApproximation.Analysis.VoiculescuGlimmEssentialValue
 import GroupApproximation.GGT.DGOAssemblyLetters
 import GroupApproximation.GGT.DGOShortIsolatingCycleAt
+import GroupApproximation.GGT.HullEeTransfer
