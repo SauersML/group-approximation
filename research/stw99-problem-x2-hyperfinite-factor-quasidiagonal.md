@@ -90,12 +90,13 @@ cycles with fixed points and to negatively signed odd cycles; it remains an
 exclusion theorem for proposed group witnesses, not a resolution of X(2).
 
 The finite-dimensional mechanism itself is now independent of Clifford
-relations.  `finite-packet-compressor-hyperfinite-invisibility` only asks for
-a finite subgroup whose negative central-character block is one matrix
-algebra and for traceless implementers of the relevant normalizer
-automorphisms.  Matrix-corner trace factorization then replaces the Clifford
-calculation; compressor conjugacy and the nonamenable Haar-dual action finish
-the same obstruction.  Thus any marked candidate built from an arbitrary
-finite representation packet of this kind is also excluded.  This enlarges
-the no-go class but does not provide the non-MF subgroup of `U(R)` needed to
-decide X(2).
+relations.  `finite-packet-compressor-hyperfinite-invisibility` allows an
+arbitrary finite subgroup and an arbitrary semisimple negative
+central-character block.  A normalizer's moved irreducible summands are
+automatically off-diagonal and traceless; only its fixed summands need
+traceless inner implementers.  Matrix-corner trace factorization then
+replaces the Clifford calculation; compressor conjugacy and the nonamenable
+Haar-dual action finish the same obstruction.  Thus any marked candidate
+built from such a finite representation packet is also excluded.  This
+enlarges the no-go class but does not provide the non-MF subgroup of `U(R)`
+needed to decide X(2).

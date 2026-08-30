@@ -195,22 +195,22 @@ excluded as a witness for non-quasidiagonality of `R`.
 
 ## Addendum F. Finite packets replace Clifford packets
 
-The finite block in Addendum E need not be a Clifford algebra.  Let `K` be
-any finite subgroup containing the central involution `w`, and suppose the
-negative block `(1-w)C*(K)/2` is a single matrix algebra.  If each compressor
-normalizer used to spread the trace acts on that block by an inner
-automorphism with traceless implementer, then every representation with
-`w=-1` has the same trace factorization: the represented block is a unital
-matrix subalgebra, the normalizer is its prescribed implementer times a
-relative-commutant unitary, and its ambient trace is zero.  The remaining
+The finite block in Addendum E need not be a Clifford algebra or even simple.
+Let `K` be any finite subgroup containing the central involution `w` and
+decompose the negative block `(1-w)C*(K)/2` into matrix summands.  A
+compressor normalizer permutes those summands.  A moved summand contributes
+only an off-diagonal corner and therefore has trace zero.  On each fixed
+summand, it is enough that the induced inner automorphism have a traceless
+implementer: the represented matrix block splits off, and the normalizer is
+that implementer times a relative-commutant unitary.  The remaining
 Fourier-spreading and proper-outerness argument is unchanged.
 
 This yields `finite-packet-compressor-hyperfinite-invisibility`.  The
-Clifford criterion is recovered from the unique negative spin block of an
-extraspecial two-group, while non-Clifford finite packets are now available
-for future witness audits.  The simplicity assumption cannot simply be
-dropped: a representation could select a different negative irreducible
-summand with nonzero implementing trace.
+Clifford criterion is recovered from the negative spin block of an
+extraspecial two-group, while non-Clifford finite packets and packets with
+several irreducible blocks are now available for future witness audits.  A
+fixed block with nonzero implementing trace remains a real obstruction,
+because a representation may concentrate on precisely that block.
 
 ## Addendum E. Abstract Clifford-compressor criterion
 

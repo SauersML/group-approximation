@@ -2,7 +2,7 @@
 rg: 2
 id: finite-packet-compressor-invisibility-proof
 kind: route
-title: Factor the trace over the unique finite packet and spread zero Fourier coefficients
+title: Split moved and fixed finite-packet blocks and spread zero Fourier coefficients
 target: finite-packet-compressor-hyperfinite-invisibility
 requires:
   - hyperfinite-covariant-obstruction-lemma
@@ -19,27 +19,57 @@ is central in `rho(Gamma)''`.  If it is nonzero, pass to the finite injective
 corner `pWp`, normalize its trace, and replace `rho` by the compression.
 Thus it suffices to contradict `rho(w)=-1`.
 
-The representation of `C*(K)` then factors through the negative block
-`e_-C*(K)e_- isomorphic to M_d`.  It is unital on that block and therefore
-faithful, so its range is a unital matrix subalgebra `C isomorphic to M_d`
-of `W`.  The standard matrix-corner decomposition gives
+The representation of `C*(K)` factors through the negative block
 
 ```text
-W isomorphic to M_d tensorbar W_0,
-tau=tr_d tensor tau_0.
+A_-=e_-C*(K)e_- isomorphic to directSum_(j in J) M_(d_j).
 ```
 
-For `v in V`, `rho(v)` normalizes `C` and induces the prescribed
-automorphism.  If `U_v in C` implements that automorphism, then
+Let `z_j` be its minimal central projections and put `q_j=rho(z_j)`, allowing
+`q_j=0` when the representation kills that summand.  The nonzero `q_j` are
+orthogonal and sum to one.  If `sigma_v` is the permutation of the summands
+induced by `v`, then
 
 ```text
-rho(v)=U_v x_v,                 x_v in C' intersect W.
+rho(v) q_j rho(v)^*=q_(sigma_v(j)).                    (FP0)
+```
+
+When `sigma_v(j)!=j`, traciality and `(FP0)` give
+
+```text
+tau(q_j rho(v))=tau(q_j rho(v) q_j)=0;
+```
+
+the first equality follows because the complementary corner has zero trace
+against `q_j`, and the second because
+`q_j rho(v) q_j=q_j q_(sigma_v(j)) rho(v)=0`.
+
+Now suppose `sigma_v(j)=j` and `q_j!=0`.  In the finite corner `q_jWq_j`,
+the surviving representation of the simple summand `M_(d_j)` is unital and
+faithful.  The standard matrix-corner decomposition gives
+
+```text
+q_j W q_j isomorphic to M_(d_j) tensorbar W_j.
+```
+
+The unitary `q_j rho(v)` normalizes the matrix factor.  If `U_(v,j)`
+implements the prescribed automorphism on it, then
+
+```text
+q_j rho(v)=U_(v,j) x_(v,j),
+x_(v,j) in M_(d_j)' intersect q_j W q_j.
 ```
 
 Consequently
 
 ```text
-tau(rho(v))=tr_d(U_v) tau_0(x_v)=0.                    (FP1)
+tau(q_j rho(v))=0.
+```
+
+Summing over the finitely many central summands proves
+
+```text
+tau(rho(v))=0.                                         (FP1)
 ```
 
 Trace invariance under conjugacy and hypothesis 3 spread `(FP1)` to
