@@ -628,7 +628,8 @@ def join(records: list[dict], assignments: dict[str, dict],
 # theorem.  The standing order is that neither counts as formalization.
 CONDITIONAL_DETECTORS = {
     "buried-conditional", "conditional-data", "conditional-debt",
-    "known-conditional", "literature-input", "open-predicate",
+    "inlined-statement", "known-conditional", "literature-input",
+    "open-predicate",
 }
 
 # Findings about the CITED DECLARATION rather than about its premises: the row

@@ -283,6 +283,55 @@ def type_head(text: str) -> str:
     return head
 
 
+#: A premise that quantifies over a `Type` or `Sort` is not a fact about the
+#: objects at hand; it is a general statement, which is to say a theorem.
+QUANTIFIES_OVER_SORT = re.compile(r"(∀|\{|\()\s*[^:()]*:\s*(Type|Sort)\b")
+SORTS = ("Prop", "Type", "Sort", "Type*")
+
+
+def laundered_premises(declaration: "Declaration") -> list["Binder"]:
+    """Premises whose head this gate reads from an ARROW ANTECEDENT.
+
+    `type_head` skips through `∀`-binders and then reads the head of what it
+    finds, so for
+
+        (h : ∀ {G : Type u} [Group G] …, Suitable A N → ∃ p ms, …)
+
+    it answers `Suitable` -- a name the corpus discharges -- when what the
+    caller must supply is the whole implication, which nothing produces.  A
+    theorem resting on such a premise REDUCES its conclusion to an unnamed
+    statement; it does not construct one, and it must not discharge anything,
+    or `HullRelatorStatement₂` and `ExistsHypEmbeddedConeOff₂` read as
+    available while their literature input sits unproved inside a binder.
+
+    The test is the one the separation lanes were given: an inline hypothesis
+    is honest when the head read is the head of the premise's OWN conclusion,
+    and launders when an antecedent's head is read instead.  Two exemptions
+    keep it from swallowing ordinary mathematics.  A premise whose conclusion
+    is a sort is DATA the caller picks freely --- `(P : (H : Type) → Prop)` is
+    five predicates, not five theorems --- and a premise that quantifies over
+    no sort at all is a hypothesis about the objects in hand, which is what
+    most `→` premises are: 12096 declarations carry one, and treating those as
+    reductions would cost 171 names their discharge for nothing.  With both
+    exemptions the rule touches 65 declarations and moves exactly four names.
+    """
+    return [binder for binder in declaration.build_premises
+            if is_laundered(binder)]
+
+
+def is_laundered(binder: "Binder") -> bool:
+    """Does `type_head` read this binder's head from an arrow antecedent?
+
+    See `laundered_premises` for what the two exemptions are for."""
+    if binder.kind == "instance":
+        return False
+    text = binder.type_text or ""
+    conclusion = type_head(_strip_premises(text))
+    if conclusion in SORTS:
+        return False
+    return bool(QUANTIFIES_OVER_SORT.search(text)) and type_head(text) != conclusion
+
+
 def _matching(text: str, index: int) -> int:
     """Index of the bracket closing the opener at `index`, or `-1`."""
     depth = 0
@@ -782,6 +831,11 @@ def build_corpus(root: Path) -> Corpus:
             if declaration.keyword in ("structure", "class", "inductive", "axiom",
                                        "opaque"):
                 continue
+            if laundered_premises(declaration):
+                # A reduction to a statement written inside a binder, not a
+                # construction: see `laundered_premises`.  It proves its
+                # conclusion only to a caller who already has the literature.
+                continue
             heads = {resolve(head) for head in produced_heads(declaration)} & corpus_names
             # A self-requirement is kept, not dropped: a transport
             # `ProperProjectionCompression A → ProperProjectionCompression B`
@@ -867,6 +921,7 @@ DETECTORS = (
     "carrier-debt",
     "definition-only",
     "header-binder",
+    "inlined-statement",
     "known-conditional",
     "literature-input",
     "open-predicate",
@@ -1132,6 +1187,18 @@ def classify(
             continue
         if not corpus.is_corpus_name(head):
             continue
+        if is_laundered(binder) and head in corpus.discharged:
+            # The head is an antecedent's, not the premise's: the caller must
+            # supply the whole implication, and reading it as `head` -- which
+            # the corpus discharges -- reports a citation as settled.
+            findings.append((
+                "inlined-statement",
+                f"{origin}premise `{_one_line(binder.type_text)}` is a "
+                f"statement written inline; its head reads as `{head}`, which "
+                "the corpus discharges, but what a caller must supply is the "
+                "whole implication, which nothing produces",
+            ))
+            continue
         if head in corpus.discharged_honestly:
             continue
         # A premise the conclusion is *about* is the theorem's subject matter,
@@ -1363,6 +1430,26 @@ def self_test() -> int:
             "def IsNeverProved (n : Nat) : Prop := n = n\n"
             "def IsSometimesProved (n : Nat) : Prop := n = n\n"
             "theorem sometimes : IsSometimesProved 0 := rfl\n"
+            # the laundering shape: the premise quantifies over a Type and its
+            # head reads as `IsSometimesProved`, which IS discharged, while the
+            # caller must supply the whole implication.  `LaunderedTarget` must
+            # NOT come out discharged.  The other three are the exemptions:
+            # head-is-citation inline, a predicate parameter, and an ordinary
+            # arrow premise that quantifies over nothing.
+            "def LaunderedTarget : Prop := True\n"
+            "theorem launderedTarget_of_inline\n"
+            "    (h : ∀ (G : Type) [Group G], IsSometimesProved 0 → Nonempty G) :\n"
+            "    LaunderedTarget := trivial\n"
+            "def HonestTarget : Prop := True\n"
+            "theorem honestTarget_of_inline\n"
+            "    (h : ∀ (_G : Type), IsSometimesProved 0) : HonestTarget := trivial\n"
+            "def PredicateTarget : Prop := True\n"
+            "theorem predicateTarget_of_predicates\n"
+            "    (P : (H : Type) → Prop) : PredicateTarget := trivial\n"
+            "def PlainTarget : Prop := True\n"
+            "theorem plainTarget_of_arrow\n"
+            "    (h : IsSometimesProved 0 → Nonempty Nat) :\n"
+            "    PlainTarget := trivial\n"
             # a refuted citation: its ONLY inhabitant-shaped declaration proves
             # it false, so nothing produces it and every consumer is citing a
             # statement this corpus has disproved
@@ -1419,6 +1506,9 @@ def self_test() -> int:
             "    ∀ (_h : IsRefuted), True := fun _ => trivial\n"
             "theorem via_sometimes :\n"
             "    ∀ (_h : IsSometimesProved 0), True := fun _ => trivial\n"
+            "theorem via_inlined_statement\n"
+            "    (h : ∀ (G : Type) [Group G], IsSometimesProved 0 → Nonempty G) :\n"
+            "    True := trivial\n"
             # cited AS the datum rather than as a premise: the blind spot a
             # `structure`/`def : Prop` carrier used to fall through.  CarrierOk
             # is honestly produced and must NOT fire.
@@ -1470,6 +1560,7 @@ def self_test() -> int:
                  "open_predicate", "header_binder", "uses_variable",
                  "shadows_variable", "IsNotion", "hides_in_named_prop",
                  "via_debt", "via_clean", "via_refuted", "via_sometimes",
+                 "via_inlined_statement",
                  "CarrierNever", "CarrierDebt", "CarrierOk",
 )
         tex.write_text("".join(badge(name) for name in cited), encoding="utf-8")
@@ -1503,6 +1594,7 @@ def self_test() -> int:
             # a premise whose only inhabitant-shaped declaration REFUTES it
             # reads as a never-proved predicate, which is what it is
             "GroupApproximation.via_refuted": "open-predicate",
+            "GroupApproximation.via_inlined_statement": "inlined-statement",
             "GroupApproximation.CarrierNever": "carrier-data",
             "GroupApproximation.CarrierDebt": "carrier-debt",
         }
@@ -1539,6 +1631,19 @@ def self_test() -> int:
             print("self-test: false carrier finding on the produced structure "
                   f"CarrierStructOk; got {carrier_struct_ok}", file=sys.stderr)
             return 1
+
+        # A theorem that REDUCES its conclusion to a statement written inside a
+        # binder discharges nothing; the three exemptions beside it keep the
+        # rule from swallowing ordinary hypotheses.  Without this,
+        # `HullRelatorStatement₂OfBaseLetter` reads as available while its
+        # literature input sits unproved in a binder.
+        for name, want in (("LaunderedTarget", False), ("HonestTarget", True),
+                           ("PredicateTarget", True), ("PlainTarget", True)):
+            if (name in corpus.discharged) is not want:
+                print(f"self-test: {name} discharged="
+                      f"{name in corpus.discharged}, expected {want}",
+                      file=sys.stderr)
+                return 1
 
         # A refutation must not read as a producer even when the refuted name
         # is a `structure`: `¬ Nonempty HullInputs` is how that arrives.
