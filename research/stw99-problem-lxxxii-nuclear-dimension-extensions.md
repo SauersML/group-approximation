@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw82-transition-band-colour-graph-audit-2026-08-30.md
   - research/artifacts/stw82-order-zero-spectral-subdivision-audit-2026-08-30.md
   - research/artifacts/stw82-tree-connected-support-covers-audit-2026-08-30.md
+  - research/artifacts/stw82-stage-centre-split-audit-2026-08-30.md
 ---
 
 **Problem LXXXII of Schafhauser--Tikuisis--White,
@@ -85,6 +86,19 @@ hence the whole matrix block.  Scalar blocks again give unitized ideal
 corners.  Thus the middle algebra still has exactly the nuclear dimension
 of the arbitrary ideal.  A merely split extension, with no commutation
 between section and ideal, remains outside this argument.
+
+The centralizer hypothesis can now be weakened sharply at
+finite-dimensional quotient stages.
+`stw82-af-split-stage-centres-obey-maximum` assumes only that the lifted
+centres of one finite-dimensional AF exhaustion commute with the ideal.
+Central block units first split the stage, while the noncentral lifted
+matrix units identify each middle block with a matrix amplification of a
+unitized ideal corner.  Hence every ideal colour is reused exactly.  In
+particular, **every unital split extension with UHF quotient** obeys the
+maximum formula, for an arbitrary ideal and with no commutation between the
+matrix part of the section and the ideal.  For a general split AF quotient,
+noncentral stage-block units and their off-diagonal ideal corners remain
+outside this proof.
 
 There is also a new unconditional middle-algebra class:
 `stw82-one-dimensional-middle-forces-maximum` shows that every
