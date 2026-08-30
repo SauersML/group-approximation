@@ -29,8 +29,8 @@ The facts about `|S(·,·;D)|` that the proof uses are:
 * **Lemma 4.8**: `⪯` linearly orders `S(f,g;D)` and every geodesic penetrates
   the separating cosets in that order.
 * **Lemma 5.6**: `X ⊆ Y` and `Γ(G, Y ⊔ ℋ)` is hyperbolic (via Lemma 5.5,
-  Breuillard--Cornulier: adding edges preserves hyperbolicity when the added
-  edges have uniformly bounded `Σ`-diameter of their `Γ`-geodesics).
+  Kapovich--Rafi, Corollary 2.4: adding edges preserves hyperbolicity when the
+  added edges have uniformly bounded `Σ`-diameter of their `Γ`-geodesics).
 * **Lemma 5.8**: `{H_λ} ↪_h (G,Y)` --- clause (a), using Lemma 5.7 of
   Dahmani--Guirardel--Osin (a finite symmetric difference of relative
   generating sets does not change `↪_h`).

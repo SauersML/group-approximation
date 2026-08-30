@@ -14,7 +14,11 @@ recorded below so that nobody re-derives it.
 `OsinLemma55` says: enlarging an alphabet preserves hyperbolicity when every
 old geodesic joining the endpoints of a new letter stays within bounded
 distance, *measured in the new metric*, of the basepoint.  That is Osin's
-Lemma 5.5, which he takes from Breuillard--Cornulier.
+Lemma 5.5, which he states without proof as Corollary 2.4 of Kapovich--Rafi.
+
+`GGT/OsinLemma55GuessingGeodesics.lean` proves it from Bowditch's
+guessing-geodesics criterion, which it declares in its place; what is left
+unproved is that criterion and nothing else.
 
 For a letter already in the old alphabet the old geodesic has length one and
 the condition is free, so the hypothesis bites only on the new letters.
@@ -77,7 +81,7 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u w
 
-/-- **Osin, Lemma 5.5** (Breuillard--Cornulier), **unproved**.
+/-- **Osin, Lemma 5.5** (Kapovich--Rafi, Corollary 2.4), **unproved here**.
 
 Enlarging an alphabet preserves hyperbolicity when the old geodesics joining the
 endpoints of the new letters stay within bounded distance of the basepoint in

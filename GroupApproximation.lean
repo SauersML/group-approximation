@@ -2740,6 +2740,7 @@ import GroupApproximation.Analysis.VoiculescuQuasicentralDiagonal
 import GroupApproximation.Analysis.VoiculescuQuasicentral
 import GroupApproximation.Analysis.ArvesonSesquilinearRiesz
 import GroupApproximation.Analysis.ArvesonLimitStep
+import GroupApproximation.GGT.OsinLemma55GuessingGeodesics
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
