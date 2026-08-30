@@ -95,7 +95,12 @@ theorem blockRestrict_star (T : K →L[ℂ] K) (hT : ∀ x ∈ L, T x ∈ L)
 
 /-! ## The block representation -/
 
-variable {C : Type} [CStarAlgebra C]
+-- The algebra is asked for no more than `StarAlgHom` itself needs.  In the
+-- application `C` is `↥A` for a star subalgebra `A ⊆ B(H)`, which carries its
+-- ring, algebra and star instances from `SubringClass` and `StarMemClass` and is
+-- *not* a registered `CStarAlgebra`; asking for one here would make the block
+-- representation inapplicable exactly where it is wanted.
+variable {C : Type} [Semiring C] [Algebra ℂ C] [Star C]
 
 variable (L) in
 /-- **A representation restricted to an invariant block.** -/

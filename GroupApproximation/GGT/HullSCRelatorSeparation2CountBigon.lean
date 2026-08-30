@@ -186,6 +186,65 @@ theorem card_le_card_of_sideSeparated (D : RelGenSet G Λ) (lam : Λ) (v : G)
   · intro x hx z hz hne
     exact hsep x (hSu x hx) z (hSu z hz) hne (hSc x hx) (hSc z hz)
 
+/-- **A deep component of the near side is connected to another component of
+the figure.**
+
+The isolated-component bound in CONTRAPOSITIVE, which is the only way this
+argument ever uses it: an isolated component's span lies in
+`relBall lam (C * n)`, the design's depth clause puts the span outside a ball at
+least that big, so the component is not isolated --- and at a position already
+known to start a component, that is exactly the witness `hother` asks for.
+
+Nothing is ever proved isolated, so nothing has to be known about the far side.
+A `lam`-letter of the far side whose vertex lands in the component's coset is
+not an obstacle here; it is the conclusion. -/
+theorem other_of_deep (D : RelGenSet G Λ) (lam : Λ) (v : G)
+    {w : List (RelLetter G Λ)} {C n rho : ℕ}
+    (hbound : ∀ i k : ℕ, IsComp lam w i k → IsIsolated D.fam lam v w i →
+      (vertex v w i)⁻¹ * vertex v w k ∈ D.relBall lam (C * n))
+    (hrho : C * n ≤ rho) {i k : ℕ} (hcomp : IsComp lam w i k)
+    (hdeep : (vertex v w i)⁻¹ * vertex v w k ∉ D.relBall lam rho) :
+    ∃ y : ℕ, y ≠ i ∧ IsCompStart lam w y ∧ Connected D.fam lam v w i y := by
+  by_contra hno
+  have hiso : IsIsolated D.fam lam v w i := by
+    refine ⟨⟨k, hcomp⟩, ?_⟩
+    intro j hji hcs hconn
+    exact hno ⟨j, hji, hcs, hconn⟩
+  exact hdeep (relBall_mono_radius D lam hrho (hbound i k hcomp hiso))
+
+/-- **The count, from the bound and the depth clause.**
+
+The join: `other_of_deep` at the two-sided figure discharges `hother`,
+and `card_le_card_of_sideSeparated` does the rest.  `hScomp` is what the design
+supplies --- each counted position starts a component whose span is deep --- and
+`hbound` is the isolated-component bound at `n = 2`, the only geometric input
+left in the count. -/
+theorem card_le_card_of_deep (D : RelGenSet G Λ) (lam : Λ) (v : G)
+    (u q : List (RelLetter G Λ)) (S Q : Finset ℕ) {C rho : ℕ}
+    (hbound : ∀ i k : ℕ, IsComp lam (u ++ revWord q) i k →
+      IsIsolated D.fam lam v (u ++ revWord q) i →
+      (vertex v (u ++ revWord q) i)⁻¹ * vertex v (u ++ revWord q) k
+        ∈ D.relBall lam (C * 2))
+    (hrho : C * 2 ≤ rho)
+    (hSu : ∀ x ∈ S, x < u.length)
+    (hScomp : ∀ x ∈ S, ∃ k : ℕ, IsComp lam (u ++ revWord q) x k ∧
+      (vertex v (u ++ revWord q) x)⁻¹ * vertex v (u ++ revWord q) k
+        ∉ D.relBall lam rho)
+    (hsep : ∀ x : ℕ, x < u.length → ∀ y : ℕ, y < u.length → x ≠ y →
+      IsCompStart lam (u ++ revWord q) x →
+      IsCompStart lam (u ++ revWord q) y →
+      ¬ Connected D.fam lam v (u ++ revWord q) x y)
+    (hQ : ∀ y : ℕ, y < q.length →
+      IsCompStart lam (u ++ revWord q) (u.length + y) → y ∈ Q) :
+    S.card ≤ Q.card := by
+  refine card_le_card_of_sideSeparated D lam v u q S Q hSu ?_ ?_ hsep hQ
+  · intro x hx
+    obtain ⟨k, hcomp, -⟩ := hScomp x hx
+    exact ⟨k, hcomp⟩
+  · intro x hx
+    obtain ⟨k, hcomp, hdeep⟩ := hScomp x hx
+    exact other_of_deep D lam v hbound hrho hcomp hdeep
+
 /-- **Two disjoint targets inside the far side leave `mu = 1` intact.**
 
 The two indices' counts add to at most `|q|`, which is the arithmetic the

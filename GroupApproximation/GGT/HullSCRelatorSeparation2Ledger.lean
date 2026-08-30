@@ -151,7 +151,14 @@ consumes quasi-geodesicity rather than producing it.
     consumer of it --- `HullSC.qgClause_of_le`, `le_of_qg_one`,
     `HullSC.fourGonQG_of_sides`, and item 1's own narrowing, which is at
     `mu = 1` because the tower says nothing above it.  So the citation proves
-    something strictly weaker than the chain consumes.
+    something strictly weaker than the chain consumes --- and intrinsically so.
+    The bound's radius is `C · n`, linear in the SIDE COUNT
+    (`GGT/DGOIsolatedComponentCut.lean`), and 4.21's proof subdivides the path
+    into single edges before closing it with a geodesic, so `n` grows with the
+    piece and the radius grows with it, while the depth clause is fixed before
+    `ms`.  A fixed depth stops beating `C · n`, "every component is
+    non-isolated" fails for long pieces, and the multiplicative constant is
+    what is left.  No amount of side-count strength removes it.
   * Its condition (W1) reads on LETTERS --- no subword `xy` with both letters
     in `X` --- and this relator opens with `|p|` consecutive base letters.
     Hull's own words meet (W1) by construction: (W4) makes his word `U₁xU₂`
