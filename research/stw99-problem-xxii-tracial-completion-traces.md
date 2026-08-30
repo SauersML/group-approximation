@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw22-locally-trivial-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-matrix-to-hyperfinite-field-audit-2026-08-30.md
   - research/artifacts/stw22-finite-bratteli-cube-audit-2026-08-30.md
+  - research/artifacts/stw22-asymptotically-dense-factor-field-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -109,6 +110,15 @@ across each derived subset makes restriction surjective; square-root
 damping kills every trace on its kernel.  Finite descent therefore
 eliminates all fibre-gap traces, although the full cube's top gap is
 nonzero.
+The matrix-stage hypothesis can now also be removed.
+`stw22-dense-factor-fields-have-uniform-traces`
+allows arbitrary nuclear unique-trace subalgebras `D_n` of the ambient UHF
+algebra, without nesting or finite dimensionality, provided only that
+`dist(u,D_n)->0` for every ambient element.  The GNS fibres at finite
+coordinates may already be proper hyperfinite `II_1` subfactors.  Norm
+density makes their trace-preserving expectations converge to the identity
+in `2`-norm, so the same derived-subset descent proves trace continuity over
+every closed finite-height pattern.
 
 ## Attempts
 

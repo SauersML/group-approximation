@@ -63,3 +63,10 @@ ideals.
 The proof treats closed subfields of every finite product dimension `d`,
 but not an infinite product.  At infinite Cantor--Bendixson height the finite derived-face
 descent no longer terminates.
+
+The later theorem
+`stw22-dense-factor-fields-have-uniform-traces`
+strictly enlarges the coordinate stages from full matrices to arbitrary
+asymptotically dense nuclear unique-trace subalgebras.  The present audit is
+retained as the finite-dimensional prototype where all expectations and
+nonzero gap projections are completely explicit.
