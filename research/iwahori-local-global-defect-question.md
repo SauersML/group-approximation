@@ -14,7 +14,7 @@ distinct_from:
   iwahori-nielsen-hs-bilipschitz: that is a dimension-free bi-Lipschitz estimate for one fixed Nielsen involution on the coordinates of Z*C_2 representations; this is the existence of a global modulus relating local Iwahori defect to distance to the compatible subvariety, over the whole representation variety of the free product of two copies of SL_2(Z).
 ---
 
-**Dogon--Vigdorovich, arXiv:2506.20843v2, Question 1.2** (`problem!` in the
+**Dogon--Vigdorovich, arXiv:2506.20843v2, Question 1.4** (`problem!` in the
 source), stated in their notation.
 
 Let `Lambda = SL_2(Z) * SL_2(Z)` and let `X_FD(Lambda)` be the representation
@@ -46,7 +46,7 @@ representations of `SL_2(Z)` that almost factor through a congruence quotient
 `SL_2(Z/n)` with `n` odd are close to ones that genuinely do.
 
 By `dv-s-arithmetic-hs-stable-nonhyperlinear-extension` and their
-Corollary 1.3, a positive answer yields a non-hyperlinear finite central
+Corollary 1.5, a positive answer yields a non-hyperlinear finite central
 extension of `SL_2(Z[1/2])`.
 
 ## Transcription note
@@ -55,7 +55,7 @@ The source also asserts, in **commented-out** text, that this question is
 equivalent to Hilbert--Schmidt stability of `SL_2(Z[1/p])` and that `SL_2(Z)`
 is Hilbert--Schmidt stable.  Those sentences are not printed in v2 and are not
 used here.  Only the printed implication (positive answer implies a
-non-hyperlinear group, their Corollary 1.3) is consumed.
+non-hyperlinear group, their Corollary 1.5) is consumed.
 
 ## Attempts
 
