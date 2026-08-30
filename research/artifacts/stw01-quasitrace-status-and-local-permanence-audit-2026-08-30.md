@@ -67,3 +67,25 @@ asks whether that trace/algebra is quasidiagonal.  Consequently X(2) is not
 a residual special case of Problem I.  The obstruction is operator-norm
 finite-dimensional approximation, not additivity of the dimension
 function; hyperfiniteness supplies only strong/2-norm approximation.
+
+## Stable-ideal mechanism
+
+There is also a nonexact extension mechanism.  A bounded 2-quasitrace on a
+stable C*-algebra is zero: in `I ~= I tensor K`, arbitrarily many orthogonal
+and equivalent diagonal copies of a fixed positive element have uniformly
+bounded norm, while commuting additivity would make their quasitrace grow
+linearly.  Hence, if `I` is a stable ideal in `A`, every bounded 2-quasitrace
+on `A` vanishes on `I` and factors through `A/I`.  If all bounded
+2-quasitraces on the quotient are traces, the same holds for `A`.
+
+This is not an exactness argument.  For any separable nonexact C*-algebra
+`D`, the unitization
+
+```text
+A=(D tensor K)~
+```
+
+is separable, unital, and nonexact, but every bounded 2-quasitrace on `A` is
+a scalar multiple of the quotient character `A -> C`.  Thus the positive
+class contains nonexact algebras with nonzero traces; it is not merely a
+vacuous quasitraceless example.
