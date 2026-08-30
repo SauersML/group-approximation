@@ -92,7 +92,7 @@ theorem windmillGrowth
     {C : Set X} {Rot : X → Subgroup G} (hfam : IsRotatingFamily G X C Rot)
     (hvr : IsVeryRotating G X δ C Rot) (hsep : IsSeparated C ρ) :
     WindmillGrowth G X δ C Rot :=
-  windmillGrowth_of_nextWindmill hδ fun W hW =>
+  windmillGrowth_of_nextWindmill hδ fun _W hW =>
     isWindmill_nextWindmill hδ hρ hhyp hgeo hfam hvr hsep hW
 
 /-- **The exhaustion**: every element of the subgroup the rotations generate lies

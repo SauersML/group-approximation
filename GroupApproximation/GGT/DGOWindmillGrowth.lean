@@ -214,7 +214,9 @@ theorem exists_stageChainData_of_reducedList {δ ρ : ℝ} (hδ : 0 < δ)
               (gw_le_stepGroup hw.pre_mem) (rot_le_stepGroup hw.dir_mem hw.rot_mem)
           refine ⟨w.pre * w.rot, ha, w.dir, newApices_subset_stageOne hw.dir_mem,
             y, hy, ?_, ?_⟩
-          · simp only [point, if_neg (by omega : ¬ 1 = 0), mul_smul, hfix]
+          · change (if True then w.pre • w.dir else endpoint) =
+              (w.pre * w.rot) • w.dir
+            rw [if_pos trivial, mul_smul, hfix]
           · simp [point, hendpoint]
   | cons t l' ih =>
       intro w hvalid hred x hx
@@ -247,17 +249,22 @@ theorem exists_stageChainData_of_reducedList {δ ρ : ℝ} (hδ : 0 < δ)
         simp [b, mul_smul, hfix]
       have hbEnd : b • (listEval (t :: l') • y) = endpoint := by
         dsimp only [b, endpoint]
-        rw [listEval_cons, mul_smul]
-      have hfinish : b • tail.point tail.N = endpoint := by
-        rw [tail.finish]
-        exact hbEnd
+        simp only [listEval, List.map_cons, List.prod_cons, Syll.eval,
+          mul_assoc, mul_smul]
       refine ⟨⟨tail.N + 1, point, ?_, ?_, ?_, ?_, ?_⟩⟩
       · simp [point]
-      · simp [point, hfinish]
+      · have hnonzero : tail.N + 1 ≠ 0 := by omega
+        have hindex : tail.N + 1 - 1 = tail.N := by omega
+        change (if tail.N + 1 = 0 then x else
+          b • tail.point (tail.N + 1 - 1)) = listEval (w :: t :: l') • y
+        rw [if_neg hnonzero, hindex, tail.finish]
+        dsimp only [b]
+        simp only [listEval, List.map_cons, List.prod_cons, Syll.eval,
+          mul_assoc, mul_smul]
       · intro i hi
         by_cases hi0 : i = 0
         · subst i
-          simpa [point] using between_self_left x endpoint
+          simpa only [point, if_pos rfl, endpoint] using between_self_left x endpoint
         · have hik : i - 1 ≤ tail.N := by omega
           have htail := tail.between (i - 1) hik
           have htr := smul_between hfam.isometric b htail
@@ -275,15 +282,19 @@ theorem exists_stageChainData_of_reducedList {δ ρ : ℝ} (hδ : 0 < δ)
           have htr' : Between (w.pre • w.dir) (b • tail.point (i - 1))
               (b • tail.point ((i - 1) + 1)) := by
             simpa only [hb0] using htr
-          have hidx : i + 1 - 1 = (i - 1) + 1 := by omega
           have htailFar := tail.between ((i - 1) + 1) (by omega)
           have htrFar := smul_between hfam.isometric b htailFar
           have htrFar' : Between (w.pre • w.dir)
               (b • tail.point ((i - 1) + 1)) endpoint := by
             simpa only [hb0, hbEnd] using htrFar
           have hprefix := Between.prefix_of_trans_right hbEndpoint htrFar'
-          exact Between.trans_right hprefix
-            (by simpa [point, hi0, hidx] using htr')
+          have hpointCur : point i = b • tail.point (i - 1) := by
+            simp only [point, if_neg hi0]
+          have hsuccIndex : i + 1 - 1 = (i - 1) + 1 := by omega
+          have hpointSucc : point (i + 1) = b • tail.point ((i - 1) + 1) := by
+            simp only [point, if_neg (by omega : ¬ i + 1 = 0), hsuccIndex]
+          rw [hpointCur, hpointSucc]
+          exact Between.trans_right hprefix htr'
       · intro i hi
         by_cases hi0 : i = 0
         · subst i
@@ -355,9 +366,11 @@ theorem isQuasiconvexSet_stageOrbit {δ ρ : ℝ} (hδ : 0 < δ)
         exact smul_mem_stageOne hfam hW hs.tail_mem hq
       obtain ⟨z, hz, hnear⟩ :=
         exists_stageOrbit_dist_le_of_endpoints_in_stageOne_translate hδ hhyp
-          hgeo hfam hW (a := (1 : G)) (Subgroup.one_mem _)
-          (p := p) (q := a • q) hp haq (f := F) (by simpa using hF)
-          (by simpa using hF0) (by simpa using hF1) (t := t) htF
+          hgeo hfam hW (p := p) (q := a • q) (Subgroup.one_mem _) hp haq
+          (f := F) (by simpa only [one_smul] using hF)
+          (by simpa only [one_smul] using hF0)
+          (by simpa only [one_smul] using hF1) (t := t)
+          (by simpa only [one_smul] using htF)
       refine ⟨g • z, smul_mem_stageOrbit hg hz, ?_⟩
       calc
         dist (f t) (g • z) = dist (g⁻¹ • f t) z := by
@@ -413,7 +426,7 @@ theorem isQuasiconvexSet_stageOrbit {δ ρ : ℝ} (hδ : 0 < δ)
           (t := r) (by simpa only [heq0, heq1] using hr)
       obtain ⟨z, hz, hnear⟩ := exists_close_of_ordered_between_chain hδ hhyp
         hgeo data.point data.N data.start hdataFinish
-        (fun i hi => by simpa [hend] using data.between i hi) data.step hdataMem
+        (fun i hi => by simpa only [hend] using data.between i hi) data.step hdataMem
         hlocal hF hF0 hF1 htF
       refine ⟨g • z, smul_mem_stageOrbit hg hz, ?_⟩
       calc
