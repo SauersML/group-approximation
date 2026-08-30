@@ -51,8 +51,10 @@ def calkinConjugateRepresentation (sigma : C →⋆ₐ[ℂ] (H →L[ℂ] H))
       Ideal.Quotient.mk (CalkinAlgebra.compactIdeal H)
         ((u : H →L[ℂ] H) * sigma a * star (u : H →L[ℂ] H)) := by
   rw [calkinConjugateRepresentation, StarAlgHom.comp_apply,
-    StarAlgHom.comp_apply, CStarTensor.quotientStarMk_apply,
-    Unitary.conjStarAlgAut_apply]
+    StarAlgHom.comp_apply, CStarTensor.quotientStarMk_apply]
+  change Ideal.Quotient.mk (CalkinAlgebra.compactIdeal H)
+      ((Unitary.conjStarAlgAut ℂ (H →L[ℂ] H) u) (sigma a)) = _
+  rw [Unitary.conjStarAlgAut_apply]
 
 /-- Compact unitary-conjugacy is exactly equality of the two bundled Calkin
 representations. -/
