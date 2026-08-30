@@ -2,7 +2,7 @@
 rg: 2
 id: whitehead-one-relator-via-waldhausen-class-cl
 kind: route
-title: Put torsion-free one-relator groups in Waldhausen's class Cl
+title: Put every subgroup of a torsion-free one-relator group in Waldhausen's class Cl
 target: whitehead-vanishing-torsion-free-one-relator
 requires: [whitehead-is-degree-one-assembly-cokernel]
 ---
@@ -16,20 +16,25 @@ with its proof on pages 251--252, states that every torsion-free one-relator
 group belongs to `Cl`. The proof runs the Magnus--Moldavanskii hierarchy:
 after embedding when necessary, each stage is an HNN extension of a
 shorter-relator group over finitely generated free groups; Definition
-19.2(2) and Proposition 19.3 propagate membership back up the hierarchy.
+19.2(2) propagates membership back up the hierarchy.
+
+Proposition 19.3(1), printed on page 249, says that `Cl` is closed under
+arbitrary subgroups. Its covering-space proof imposes no finite-generation,
+finite-presentation, or finite-index condition. Hence if `H<=G`, then
+`H` also belongs to `Cl`.
 
 Theorem 19.4, beginning on printed pages 249--250, states that if `R` is
 regular noetherian and `G` belongs to `Cl`, then `Wh_R(G)` is
-contractible. Take `R=Z`, which is regular noetherian. Thus `Wh_Z(G)` is
+contractible. Take `R=Z`, which is regular noetherian. Thus `Wh_Z(H)` is
 contractible, so the integral assembly
 
 ```text
-K(BG; Z) -> K(ZG)
+K(BH; Z) -> K(ZH)
 ```
 
 is a homotopy equivalence. In degree one it is surjective, and
 [[whitehead-is-degree-one-assembly-cokernel]] identifies its cokernel with
-`Wh(G)`. Hence `Wh(G)=0`. QED
+`Wh(H)`. Hence `Wh(H)=0`. QED
 
 This proves only the regular-noetherian, untwisted algebraic K-theory
 statement. It does not prove the Full Farrell--Jones conjecture for
