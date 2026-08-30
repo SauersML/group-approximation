@@ -68,6 +68,10 @@ crossed product, not one detected by a quotient.
   stratum.  Thus a primitive-space obstruction would have to measure the
   accumulation of all finite-orbit strata at that generic point, rather
   than the dimension or representation theory of any one stratum.
+  `berend-locally-closed-primitive-dimension-is-two` makes this sharp:
+  every locally closed Hausdorff primitive subspace has dimension at most
+  two, and orbit tori attain two.  Hence the usual Hausdorff-stratum
+  dimension is finite and cannot force infinite decomposition rank.
 * **Entropy (speculative).**  Every nonidentity element of the torsion-free
   unit subgroup has positive entropy: an infinite-order algebraic unit
   cannot have all conjugates on the unit circle, and the entropy of its

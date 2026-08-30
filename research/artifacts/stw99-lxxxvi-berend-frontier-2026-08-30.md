@@ -88,6 +88,16 @@ the dimension of a closed primitive stratum can force infinite
 decomposition rank.  A primitive-space proof would have to quantify the
 global accumulation of these strata at the faithful generic point.
 
+This limitation is exact.  Every closed primitive subset omitting `0` is
+the spectrum of a proper quotient, hence a finite union of closed subsets
+of orbit two-tori.  Every nonempty open primitive subset contains `0`.
+It follows that every locally closed Hausdorff primitive subspace has
+covering dimension at most two, with equality on each full orbit torus.
+Thus ordinary primitive-space dimension is exactly two.  Moreover every
+nonzero ideal retains the generic point, while a proper quotient isolates
+only finitely many closed orbit strata.  No ideal filtration using only
+the finite-orbit type-I layers eliminates the faithful accumulation core.
+
 ## Sources
 
 * C. Eckhardt, A note on strongly quasidiagonal groups, J. Operator Theory
