@@ -64,6 +64,38 @@ to a finite group.  This is weaker than constructing a group with no
 nontrivial finite quotients and strictly weaker than disproving residual
 finiteness.
 
+## Prime-order and normal-closure sharpening
+
+The finite carrier can be reduced further.  A subgroup contains torsion if
+and only if it contains an element of prime order.  Hence it suffices to
+choose representatives `P_1,...,P_s` of the finitely many conjugacy classes
+of prime-order subgroups and find one finite quotient which is nontrivial
+(equivalently injective) on every `P_j`.  This is still equivalent to virtual
+torsion-freeness, but removes all composite-order and redundant carrier
+tests.
+
+There is also a geometric dichotomy for a failed test.  Let `R` be the
+finite residual of a non-elementary hyperbolic group, let `E` be its maximal
+finite normal subgroup, and take a prime-order `x in R`.  Its normal closure
+lies in `R`.  If that closure is finite, then `x in E`; the finite conjugation
+map `G->Aut(E)` kills `R`, so `x in Z(E)`.  If the closure is infinite, the
+standard normal-subgroup boundary theorem makes it non-elementary with full
+limit set, and it contains a nonabelian free subgroup.
+
+Thus every counterexample has one of two sharply different forms:
+
+```text
+prime torsion in R intersect Z(E),
+or a prime-torsion-generated non-elementary normal subgroup inside R.
+```
+
+In particular, when `E={1}`, a counterexample cannot have an elementary,
+free-subgroup-free, or amenable finite residual.  Under any of those smallness
+hypotheses the residual is actually trivial, so the group is residually
+finite.  This is a new sufficient class, not a solution of Lück 11.1(i): an
+arbitrary finite residual need not satisfy a smallness hypothesis, and the
+central finite-radical alternative is not eliminated.
+
 ## Primary/current sources
 
 - W. Lück, *Survey on geometric group theory*, arXiv:0806.3771v2,

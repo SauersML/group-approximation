@@ -29,3 +29,11 @@ separation problem.
   `hyperbolic-finite-residual-is-torsion-free`.  The reduction is exact; the
   remaining assertion is open.  In particular, residual finiteness is a
   sufficient condition but is not silently assumed.
+- `hyperbolic-prime-torsion-residual-dichotomy` reduces the finite test
+  further to representatives of prime-order subgroups and classifies every
+  failure geometrically.  A prime-order residual element either lies in the
+  center of the maximal finite normal subgroup, or its normal closure is a
+  non-elementary subgroup of the residual with full boundary.  Thus a group
+  with trivial finite radical and elementary (in particular amenable) finite
+  residual is residually finite and satisfies the root.  The two unrestricted
+  alternatives remain open.

@@ -30,3 +30,10 @@ virtually torsion-free.  It is deliberately not strengthened to
   set `union_i(F_i minus {1})` in finite quotients.  No known property of an
   arbitrary hyperbolic group supplies those quotients: invoking residual
   finiteness here would simply assume Lück 11.1(ii), a stronger open problem.
+- `hyperbolic-prime-torsion-residual-dichotomy` shows it is enough to detect
+  one representative of each prime-order subgroup.  It also proves that an
+  undetected prime-order element is either central in the maximal finite
+  normal subgroup or normally generates a non-elementary subgroup of the
+  finite residual with full boundary.  This rules out small residuals when
+  the finite radical is trivial, but neither remaining alternative is known
+  to be impossible in general.
