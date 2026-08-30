@@ -79,8 +79,10 @@ Primary source:
 # Scope boundary
 
 No universal root is marked solved. A complete defining graph has only
-singleton complement components, so the argument has no completely selfless
-anchor. In particular, a one-vertex complete graph is an arbitrary group;
+singleton complement components, so graph geometry alone supplies no
+completely selfless anchor.  The separate claim
+`complete-graph-products-selfless-anchor` handles the positive cases in which
+a vertex algebra independently provides such an anchor. In particular, a one-vertex complete graph is an arbitrary group;
 solving that remaining graph-product case is exactly STW XCI itself. The new
 theorem therefore isolates the complete-graph boundary rather than hiding
 the universal problem inside a graph-product reformulation.
