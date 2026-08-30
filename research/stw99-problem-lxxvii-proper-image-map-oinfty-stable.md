@@ -1,0 +1,47 @@
+---
+rg: 2
+id: stw99-problem-lxxvii-proper-image-map-oinfty-stable
+kind: claim
+title: Finite nuclear dimension and properly infinite image force O-infinity-stability (STW LXXVII)
+root: true
+artifacts:
+  - research/artifacts/stw77-map-oinfty-audit-2026-08-30.md
+---
+
+Let `A,B` be unital C-star algebras, with `A` separable and exact, and let
+`phi:A->B` be a unital homomorphism of finite nuclear dimension.  If every
+nonzero positive element of `phi(A)` is properly infinite in `B`, then there
+is a unital embedding
+
+```text
+O_infinity -> B_omega intersect phi(A)';
+```
+
+equivalently, `phi` is O-infinity-stable.
+
+This is **STW Problem LXXVII and is open at the 2026-08-30 audit boundary**.
+
+## Attempts
+
+- `oinfty-map-stability-is-central-isometry-splitting` gives an exact
+  quantitative reduction.  The hypothesis makes `1_B` properly infinite,
+  so two orthogonal isometries exist in `B`; the missing assertion is that
+  such pairs can be chosen with arbitrarily small commutators with any fixed
+  finite subset of `phi(A)`.
+- `stw77-af-range-maps-are-oinfty-stable` proves the problem when the range is
+  AF.  It splits minimal projections in a local finite-dimensional model and
+  transports the splittings through matrix units.
+- `stw77-properly-infinite-colored-centralizer-fusion` is a local, uniform
+  finite-color statement which would solve the problem.  Its key unresolved
+  step is fusion across the noncommuting order-zero colors.
+- The naive plan of splitting the supports of the outgoing order-zero maps is
+  invalid: those supports need not belong to `phi(A)`, and
+  `proper-infinity-does-not-descend-to-color-supports` gives the elementary
+  obstruction already inside `B(H)`.
+- `stw77-hypotheses-and-stability-descend-to-quotients` allows quotient
+  localization.  In particular, failure in any codomain quotient detects
+  failure of the original map, but non-stability need not survive in some
+  quotient automatically.
+- Taking `A=B` and `phi=id` contains the finite-nuclear-dimensional case of
+  pure infiniteness versus strong pure infiniteness, so a general proof must
+  overcome rather than bypass the non-simple central-sequence obstruction.
