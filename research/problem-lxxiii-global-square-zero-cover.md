@@ -28,16 +28,17 @@ prescribed compact cutdown.
 - Primitive-ideal localization does produce exact local square-zero
   separators, and the spectral gap makes a finite packet suffice; this is the
   established route `finite-square-zero-packet-proof`.
-- The stabilization obstruction disappears completely for stable algebras.
-  `stable-algebras-solve-lxxiii` fuses the finite packet in `M_2(A)` and
-  returns it through a multiplier Cuntz pair.  Compressing by the first
-  multiplier isometry puts the *original* cutdown in the returned
-  nilpotent's ideal.  Thus every stable C*-algebra satisfies the problem's
+- The stabilization obstruction disappears whenever the multiplier unit is
+  properly infinite.  `properly-infinite-multiplier-solves-lxxiii` fuses the
+  finite packet in `M_2(A)` and returns it through a multiplier Cuntz pair.
+  Compressing by the first multiplier isometry puts the *original* cutdown
+  in the returned nilpotent's ideal.  Thus every stable C*-algebra, and every
+  unital algebra with properly infinite unit, satisfies the problem's
   conclusion; no ideal-lattice or regularity hypothesis is needed.
 - Adding the packet elements does not work: cross products need not vanish,
   so the sum need not be square-zero.
 - Stabilizing gives an immediate off-diagonal matrix nilpotent, but that
-  element lies in a matrix algebra over `A`; the stable theorem handles this
-  when `A` has an internal multiplier Cuntz pair.  Producing an analogous
+  element lies in a matrix algebra over `A`; the multiplier theorem handles
+  this when `M(A)` has a Cuntz pair.  Producing an analogous
   support-preserving destabilization in an arbitrary algebra is precisely
   the missing step.

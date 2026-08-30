@@ -41,14 +41,16 @@ fusion.  The corresponding open claim is
 case collapses the packet without any fusion theorem and is therefore an
 unconditional new positive case.
 
-There is now also a support-preserving destabilization theorem.  If `A` is
-stable, a multiplier Cuntz pair implements `M_2(A)~=A`.  Applying it to the
-one-stabilization packet fusion sends `h tensor e_11` to `s_1 h s_1^*`.
-Since generated ideals are invariant under multiplier multiplication,
-compressing by `s_1^*` and `s_1` recovers the original `h` in the returned
-nilpotent's ideal.  Hence every stable C*-algebra satisfies the global
-square-zero conclusion.  This uses stability itself, not stable rank one;
-it does not provide a destabilization in a general nonstable algebra.
+There is now also a support-preserving destabilization theorem whenever the
+multiplier unit is properly infinite.  A multiplier Cuntz pair embeds
+`M_2(A)` into a corner of `A`.  Applying it to the one-stabilization packet
+fusion sends `h tensor e_11` to `s_1 h s_1^*`.  Since generated ideals are
+invariant under multiplier multiplication, compressing by `s_1^*` and
+`s_1` recovers the original `h` in the returned nilpotent's ideal.  Hence
+every stable C*-algebra, and every unital algebra with properly infinite
+unit, satisfies the global square-zero conclusion.  The range corner need
+not exhaust `A`; it does not provide a destabilization when the multiplier
+unit is finite.
 
 ## Continuous-trace counterexample stress test
 
