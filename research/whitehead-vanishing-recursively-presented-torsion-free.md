@@ -35,4 +35,6 @@ vanishing for P^tf kills the original class. This is
 No inequation apparatus is needed. The only unresolved input is now the
 actual vanishing for finitely presented torsion-free groups, equivalently
 Wh(U)=0 for the single tester U from
-[[whitehead-universal-finitely-presented-torsion-free-group]].
+[[whitehead-universal-finitely-presented-torsion-free-group]], which in fact Whitehead-injectively contains every countably generated
+recursively presented torsion-free group, a class larger than the one
+quantified over in this node.

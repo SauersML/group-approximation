@@ -7,18 +7,21 @@ target: whitehead-universal-finitely-presented-torsion-free-group
 requires: [torsion-free-universal-quotient-recursively-presented, amalgam-torsion-permanence-needs-no-cyclic-reduction, hnn-torsion-theorem, waldhausen-hnn-vertex-whitehead-injectivity, whitehead-injective-torsion-free-embedding]
 ---
 
-## 1. A recursive torsion-free free product containing every finite input
+## 1. A recursive torsion-free free product containing every countable input
 
-Effectively enumerate all finite presentations P_1,P_2,... . Apply Chiodo's
-universal torsion-free quotient algorithm (arXiv:1107.1489, Proposition 3.8)
-to each P_i and call the resulting finitely generated recursively presented
-torsion-free group T_i. If P_i already presents a torsion-free group, the
-universal quotient map is an isomorphism. Therefore
+Effectively enumerate all countably generated recursively enumerable
+presentations P_1,P_2,... on a fixed recursive alphabet by dovetailing the
+Turing machines which enumerate their relators. Apply Chiodo's uniform universal torsion-free quotient
+algorithm (arXiv:1107.1489, Proposition 3.8 and Theorem 3.9) to each P_i and
+call the resulting countably generated recursively presented torsion-free
+group T_i. If P_i already presents a torsion-free group, the universal
+quotient map is an isomorphism. No torsion-freeness test is made. Therefore
 
     Q = *_(i>=1) T_i
 
 is a countably generated recursively presented torsion-free group in which
-every finitely presented torsion-free group occurs as a free factor. Each
+every countably generated recursively presented torsion-free group occurs as
+a free factor. Each
 factor inclusion is split by the retraction killing all other factors, so it
 is split-injective on Whitehead groups.
 
@@ -68,26 +71,24 @@ injection
 
     Wh(V) -> Wh(E).
 
-Thus Wh(Q)->Wh(E) is injective, and every finitely presented torsion-free
-factor G of Q embeds in E Whitehead-injectively.
+Thus Wh(Q)->Wh(E) is injective, and every countably generated recursively
+presented torsion-free factor K of Q embeds in E Whitehead-injectively.
 
 ## 3. One finitely presented host
 
 The group E is two-generated, recursively presented, and torsion-free.
 Apply [[whitehead-injective-torsion-free-embedding]] once to obtain a
 finitely presented torsion-free U with Wh(E)->Wh(U) injective. Composing the
-maps constructed above gives, simultaneously for every finitely presented
-torsion-free G,
+maps constructed above gives, simultaneously for every countably generated
+recursively presented torsion-free K,
 
-    Wh(G) -> Wh(Q) -> Wh(V) -> Wh(E) -> Wh(U)
+    Wh(K) -> Wh(Q) -> Wh(V) -> Wh(E) -> Wh(U)
 
 injective.
 
-If Wh(U)=0, all finitely presented torsion-free Whitehead groups vanish. The
-established route
-[[whitehead-recursively-presented-via-injective-embedding]] then gives
-vanishing for finitely generated recursively presented torsion-free groups,
-and [[whitehead-global-via-recursively-presented-reduction]] gives the global
+If Wh(U)=0, all countably generated recursively presented torsion-free
+Whitehead groups vanish directly. Then
+[[whitehead-global-via-recursively-presented-reduction]] gives the global
 conjecture. Conversely, global vanishing applies to U. QED
 
 The index i>=1 is essential: starting at zero would duplicate the first
