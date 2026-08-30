@@ -98,7 +98,7 @@ The final projections of the `V_n` are orthogonal, so, uniformly in `y`,
 
 Thus `X_N` converges uniformly in `2`-norm. Moreover
 `X_N^*X_N<=b`, so the limit is an element of the operator-norm unit ball
-of `N), not merely an affiliated operator. Passing to the limit in
+of `N`, not merely an affiliated operator. Passing to the limit in
 `L^1` gives `X^*X=b`, while `fX=X`. Equation `(DR6)` gives the
 prescribed boundary exactly. Finally both `X(y)` and `x_0` have
 `2`-norm `sqrt(tau(b))`, which proves `(DR4)`.

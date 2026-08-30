@@ -59,7 +59,7 @@ H:D^2->eN,       H^*H=p_h,
 whose high frame remains within `epsilon/3` of `v_0p_h`.
 
 On the boundary, the low weighted frame `x(z)=w(z)p_l` has fixed weight
-`b=ap_l` and range in the complement of `v_h(z)). Moreover
+`b=ap_l` and range in the complement of `v_h(z)`. Moreover
 
 ```text
 tau(p_h)+tau(p_l)<=s<tau(e).

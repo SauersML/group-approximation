@@ -33,7 +33,7 @@ tau(supp(c(t))) < 1/(2m).                               (DT3)
 ```
 
 Choose a central scalar cutoff `h` equal to one near `x` and supported
-in `V), and set `d=hc`. Then `[d]=[c]` in `I_x`, while `(DT3)`
+in `V`, and set `d=hc`. Then `[d]=[c]` in `I_x`, while `(DT3)`
 holds on all of `X` for `d`.
 
 Choose pairwise orthogonal projections
@@ -62,7 +62,7 @@ m sigma([c])
 ```
 
 The integer `m` was arbitrary; hence `sigma([c])=0`. Letting
-`epsilon` decrease to zero in norm gives `sigma([b])=0). Thus every
+`epsilon` decrease to zero in norm gives `sigma([b])=0`. Thus every
 bounded positive trace on every `I_x` vanishes.
 
 The fibre-gap criterion now shows that every trace on `M` is an integral

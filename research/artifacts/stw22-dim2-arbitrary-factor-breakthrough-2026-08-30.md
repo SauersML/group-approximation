@@ -65,7 +65,7 @@ The partial-isometry values with initial projection `r_n` and range under
 2. lower semicontinuous by polar correction of `g_n(y)v` and a fill of
    its vanishing kernel into the trace reserve;
 3. uniformly equi-`LC^1`, because they are strong Stiefel spaces in
-   corners of trace at least `delta_0);
+   corners of trace at least `delta_0`;
 4. simply connected, by one-dimensional unitary lifting followed by
    Jekel contraction.
 
