@@ -181,9 +181,9 @@ theorem tendsto_stageUnit_apply_of_dense (hdense : DenseRange x) (z : H) :
   apply ShulmanDenseCompatibility.tendsto_norm_sub_of_dense
     (fun n z ↦ stageUnit p x n z) (fun _ z ↦ z)
   · intro z y
-    simpa using tendsto_const_nhds
+    simp
   · intro z y
-    simpa using tendsto_const_nhds
+    simp
   · intro n y
     exact le_trans ((stageUnit p x n).le_opNorm y)
       (by
@@ -275,7 +275,10 @@ theorem summable_stagePieceSqrt_commutator (k : ℕ) (hdense : DenseRange x) :
     ((summable_geometric_two).mul_left ((1 / 2 : ℝ) ^ k))
   have hb := stagePieceSqrt_norm_commutator_lt p x (j := j + k) (k := k)
     (Nat.le_add_left k j) hdense
-  exact hb.le.trans_eq (by rw [pow_add]; ring)
+  refine hb.le.trans_eq ?_
+  rw [pow_add]
+  simp only [one_div]
+  rw [mul_inv_rev, inv_pow, inv_pow]
 
 /-- **The recursion closes (V1c).**  It produces the positive increasing unit,
 strong/norm absorption, asymptotic centrality, and the summable square-root
