@@ -192,5 +192,41 @@ theorem exists_hyperbolic_coneOffFamily_zpowers_of_fourPoint
   obtain ⟨e, he, hle⟩ := hsigma lam b hb w hlet hprod hlen i hi
   exact ⟨e, he, le_trans hle (Finset.le_sup (Finset.mem_univ lam))⟩
 
+/-! ## The Morse-conditional forms, kept so that no caller moves
+
+Each is its `_of_fourPoint` counterpart at `Type 0`, with the hypothesis now
+redundant --- `Hyperbolic.morseLemma_univ` discharges it above --- and named
+`_hmorse` because it is unused.  Types are unchanged, so callers passing the
+hypothesis positionally are unaffected.
+
+These are dead weight in the sense that no code calls them; retiring them is a
+deliberate decision with its own closure cut, deferred by the lead, and not
+something this wave should do as a side effect. -/
+
+theorem exists_bound_prefix_pow_of_morse (_hmorse : Hyperbolic.MorseLemma)
+    {G : Type} [Group G] (A : Alphabet G) {delta K C : ℕ}
+    (hdelta : Hyperbolic.IsFourPointHyperbolic A.carrier delta) {h : G}
+    (hqg : ∀ n : ℕ, Hyperbolic.IsQuasiGeodesic A.carrier K C n (fun i => h ^ i)) :
+    ∃ R : ℕ, ∀ (N : ℕ) (w : List G), (∀ x ∈ w, x ∈ A.carrier) →
+      w.prod = h ^ N → w.length = wordDist A.carrier 1 (h ^ N) →
+        ∀ i ≤ w.length, ∃ e ∈ Subgroup.zpowers h,
+          wordDist A.carrier (w.take i).prod e ≤ R :=
+  exists_bound_prefix_pow_of_fourPoint A hdelta hqg
+
+theorem exists_isWordQuasiconvex_zpowers_of_morse
+    (_hmorse : Hyperbolic.MorseLemma) {G : Type} [Group G] (A : Alphabet G)
+    {delta : ℕ} (hdelta : Hyperbolic.IsFourPointHyperbolic A.carrier delta)
+    {g : G} (hlox : IsLoxodromic g (Cayley.base A)) :
+    ∃ sigma : ℕ, IsWordQuasiconvex A (Subgroup.zpowers g) sigma :=
+  exists_isWordQuasiconvex_zpowers_of_fourPoint A hdelta hlox
+
+theorem exists_hyperbolic_coneOffFamily_zpowers_of_morse
+    (_hmorse : Hyperbolic.MorseLemma) {G : Type} [Group G] {Λ : Type} [Fintype Λ]
+    (A : Alphabet G) {delta : ℝ} (hdelta : IsHyperbolicSpace delta (Cayley A))
+    (g : Λ → G) (hlox : ∀ lam : Λ, IsLoxodromic (g lam) (Cayley.base A)) :
+    ∃ delta' : ℝ, IsHyperbolicSpace delta'
+      (Cayley (coneOffFamily A (fun lam => Subgroup.zpowers (g lam))).alphabet) :=
+  exists_hyperbolic_coneOffFamily_zpowers_of_fourPoint A hdelta g hlox
+
 end HullSC
 end GroupApproximation

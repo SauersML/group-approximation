@@ -216,13 +216,16 @@ This is the input `Hyperbolic.QuasiIsometryInvariant` is missing.  It is not
 proved here, but it IS proved: `GGT.Hyperbolic.morseLemma`
 (`GGT/MorseLemmaDischarge.lean`) discharges it unconditionally, through the
 geodesic realisation and the hoisted chord lemmas of `GGT/ElementaryMorseChord`.
-FIVE statements assume it as a binder, all in the `GGT/HullSCConeOffHeavy*`
-files and all now dischargeable outright:
-`ChordChain.exists_index_wordDist_le_of_isBetween_of_morse`,
-`ClauseA.exists_hyperbolic_coneOffFamily_of_morse_of_close`, and in
-`Quasiconvex` the three `exists_bound_prefix_pow_of_morse`,
-`exists_isWordQuasiconvex_zpowers_of_morse` and
-`exists_hyperbolic_coneOffFamily_zpowers_of_morse`.
+FIVE statements used to assume it as a binder, all in the
+`GGT/HullSCConeOffHeavy*` files: `ChordChain`'s
+`exists_index_wordDist_le_of_isBetween_of_morse`, `ClauseA`'s
+`exists_hyperbolic_coneOffFamily_of_morse_of_close`, and `Quasiconvex`'s
+`exists_bound_prefix_pow_of_morse`, `exists_isWordQuasiconvex_zpowers_of_morse`
+and `exists_hyperbolic_coneOffFamily_zpowers_of_morse`.  All five are now
+discharged: each carries the `_of_fourPoint` form at `Type u` and survives only
+as its `Type 0` instance, kept so that no caller moves.  No code calls the
+`_of_morse` names any more; retiring them is a separate decision with its own
+closure cut.
 
 Note the universe: the `∀ (G : Type)` below is universe ZERO.  It is the only
 universe-zero thing in the chain --- every ingredient of the discharge is

@@ -11,22 +11,21 @@ and reduces it to two named hypotheses and nothing else.
 
 ## The statement
 
-`exists_hyperbolic_coneOffFamily_of_morse_of_close`: for finitely many
+`exists_hyperbolic_coneOffFamily_of_fourPoint_of_close`: for finitely many
 loxodromic elements `g λ` of a hyperbolic `Γ(G,A)` and any family `K` of
 subgroups with
 
 * `⟨g λ⟩ ≤ K λ`, and
 * every element of `K λ` within `D` of `⟨g λ⟩` in the `A`-metric,
 
-the coned-off Cayley graph `Γ(G, A ⊔ ⨆K)` is hyperbolic, given
-`Hyperbolic.MorseLemma`.
+the coned-off Cayley graph `Γ(G, A ⊔ ⨆K)` is hyperbolic.
 
 At `K λ = E(g λ)` the second hypothesis is
 `d_Hau(E(g λ)(1), ⟨g λ⟩(1)) < ∞`, which Dahmani--Guirardel--Osin get from
 `⟨h⟩` being of finite index in `E(h)` (their Lemma 6.5, p.88).  Its honest leaf
 in this repository is `GGT.Elementary.ElementaryClosureCoarseTranslation`.  At
 `K λ = ⟨g λ⟩` it holds at `D = 0` and the hypothesis is free; that case is
-`exists_hyperbolic_coneOffFamily_zpowers_of_morse` of
+`exists_hyperbolic_coneOffFamily_zpowers_of_fourPoint` of
 `GGT/HullSCConeOffHeavyQuasiconvex.lean`, proved there directly and not
 restated here.  It is also the case the refutation of
 `GGT/HullSCConeOffHeavyProperPower.lean` is consistent with: the cone-off along
@@ -34,17 +33,17 @@ restated here.  It is also the case the refutation of
 
 ## So what clause (a) costs
 
-Two things, both already written down elsewhere and neither of them new
-mathematics: `Hyperbolic.MorseLemma` (`Algebra/MorseLemma.lean:217`) and the
-bounded Hausdorff distance.  Acylindricity is not among them — it is needed for
-clause (b) and for the finite index, not for hyperbolicity of the cone-off.
+Only the bounded Hausdorff distance: the Morse lemma is discharged
+unconditionally by `GGT/MorseLemmaDischarge.lean`.  Acylindricity is not among
+the inputs — it is needed for clause (b) and for the finite index, not for
+hyperbolicity of the cone-off.
 
 The chain underneath, each link a theorem of the tree: loxodromy makes the power
 orbit a quasi-geodesic (`exists_isQuasiGeodesic_pow_of_isLoxodromic`); the
 chord-near-chain half of the Morse lemma puts every between-point near the orbit
-(`exists_index_wordDist_le_of_isBetween_of_morse`); prefixes of geodesic words
+(`exists_index_wordDist_le_of_isBetween_of_fourPoint`); prefixes of geodesic words
 are between-points, so `⟨g⟩` is quasiconvex
-(`exists_isWordQuasiconvex_zpowers_of_morse`); quasiconvexity transports across
+(`exists_isWordQuasiconvex_zpowers_of_fourPoint`); quasiconvexity transports across
 a bounded Hausdorff distance (`isWordQuasiconvex_of_close`); and a quasiconvex
 coned family leaves the Cayley graph hyperbolic, by
 `GGT.OsinEnlargement.osinLemma55`
@@ -65,11 +64,20 @@ open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
+universe u
+
 /-! ## Weakening the quasiconvexity constant -/
 
 /-- The predicate weakens as its constant grows, which is what lets finitely
-many indices be served by one constant. -/
-theorem isWordQuasiconvex_mono {G : Type} [Group G] {A : Alphabet G}
+many indices be served by one constant.
+
+At `Type u` since the discharge: `exists_hyperbolic_coneOffFamily_of_fourPoint_of_close`
+is universe-polymorphic and applies this to a `Type u` witness.
+`HullSCConeOffHeavyUnconditional.isWordQuasiconvex_of_le` is the same statement,
+written there because this copy was pinned at `Type 0`; with the pin gone the two
+are now literally the same theorem and one of them should go, which is a
+retirement decision rather than part of this fix. -/
+theorem isWordQuasiconvex_mono {G : Type u} [Group G] {A : Alphabet G}
     {H : Subgroup G} {sigma sigma' : ℕ} (hsigma : sigma ≤ sigma')
     (hqc : IsWordQuasiconvex A H sigma) : IsWordQuasiconvex A H sigma' := by
   intro b hb w hlet hprod hlen i hi
@@ -84,8 +92,8 @@ cyclic subgroups of loxodromic elements and a bounded neighbourhood of them.
 See the module header for what the two hypotheses are and for the chain of
 theorems underneath.  The constant is `sup σ + 2D + 4⌈δ⌉₊`, where `σ λ` is the
 quasiconvexity constant of `⟨g λ⟩` that the Morse lemma supplies. -/
-theorem exists_hyperbolic_coneOffFamily_of_morse_of_close
-    (hmorse : Hyperbolic.MorseLemma) {G : Type} [Group G] {Λ : Type} [Fintype Λ]
+theorem exists_hyperbolic_coneOffFamily_of_fourPoint_of_close
+    {G : Type u} [Group G] {Λ : Type} [Fintype Λ]
     (A : Alphabet G) {delta : ℝ} (hdelta : IsHyperbolicSpace delta (Cayley A))
     (g : Λ → G) (hlox : ∀ lam : Λ, IsLoxodromic (g lam) (Cayley.base A))
     (K : Λ → Subgroup G) (hzle : ∀ lam : Λ, Subgroup.zpowers (g lam) ≤ K lam)
@@ -96,7 +104,7 @@ theorem exists_hyperbolic_coneOffFamily_of_morse_of_close
     GGT.isFourPointHyperbolic_of_isHyperbolicSpace_cayley A hdelta
   have hqc : ∀ lam : Λ, ∃ sigma : ℕ,
       IsWordQuasiconvex A (Subgroup.zpowers (g lam)) sigma := fun lam =>
-    exists_isWordQuasiconvex_zpowers_of_morse hmorse A h4 (hlox lam)
+    exists_isWordQuasiconvex_zpowers_of_fourPoint A h4 (hlox lam)
   choose sigma hsigma using hqc
   refine exists_hyperbolic_coneOffFamily_of_wordQuasiconvex A K hdelta
     (sigma := Finset.univ.sup sigma + 2 * D + 4 * ⌈delta⌉₊) ?_
@@ -107,6 +115,26 @@ theorem exists_hyperbolic_coneOffFamily_of_morse_of_close
   have hsup : sigma lam ≤ Finset.univ.sup sigma :=
     Finset.le_sup (f := sigma) (Finset.mem_univ lam)
   omega
+
+/-! ## The Morse-conditional form, kept so that no caller moves
+
+Its `_of_fourPoint` counterpart at `Type 0`, with the hypothesis now redundant
+--- `Hyperbolic.morseLemma_univ` discharges it through the chain above --- and
+named `_hmorse` because it is unused.  The type is unchanged, so callers passing
+the hypothesis positionally are unaffected.
+
+No code calls it; retiring it is a deliberate decision with its own closure cut,
+deferred by the lead, and not something this wave should do as a side effect. -/
+theorem exists_hyperbolic_coneOffFamily_of_morse_of_close
+    (_hmorse : Hyperbolic.MorseLemma) {G : Type} [Group G] {Λ : Type} [Fintype Λ]
+    (A : Alphabet G) {delta : ℝ} (hdelta : IsHyperbolicSpace delta (Cayley A))
+    (g : Λ → G) (hlox : ∀ lam : Λ, IsLoxodromic (g lam) (Cayley.base A))
+    (K : Λ → Subgroup G) (hzle : ∀ lam : Λ, Subgroup.zpowers (g lam) ≤ K lam)
+    (D : ℕ) (hclose : ∀ lam : Λ, ∀ b ∈ K lam,
+      ∃ b' ∈ Subgroup.zpowers (g lam), wordDist A.carrier b b' ≤ D) :
+    ∃ delta' : ℝ, IsHyperbolicSpace delta' (Cayley (coneOffFamily A K).alphabet) :=
+  exists_hyperbolic_coneOffFamily_of_fourPoint_of_close A hdelta g hlox K hzle D
+    hclose
 
 end HullSC
 end GroupApproximation

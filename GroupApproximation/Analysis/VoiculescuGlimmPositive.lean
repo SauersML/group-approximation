@@ -62,7 +62,15 @@ annihilates the compacts.
 
 This is `Analysis/VoiculescuGlimmState.exists_extension_annihilating_compacts`
 with the `→ₚ[ℂ]` interface of `GlimmLemmaStatement` on the front and unitality
-carried through on the back. -/
+carried through on the back.
+
+`H` is forced nontrivial by `hone`, and the derivation is done here rather than
+added to the binders.  On a zero space every operator is `0`, so `1 = 0` in
+`B(H)` and therefore in `A`, and `φ 1 = φ 0 = 0 ≠ 1`.  The extension theorem
+does need `[Nontrivial H]` — it runs through the Calkin algebra, whose
+functional calculus instances need it — but `GlimmLemmaStatement` binds `H` with
+only the three analytic instances, so a binder here would have to be discharged
+by every consumer instead of once. -/
 theorem exists_state_of_positiveLinearMap {A : StarSubalgebra ℂ (H →L[ℂ] H)}
     (hA : IsClosed (A : Set (H →L[ℂ] H)))
     (hAK : ∀ T ∈ A, IsCompactOperator T → T = 0)
@@ -72,6 +80,20 @@ theorem exists_state_of_positiveLinearMap {A : StarSubalgebra ℂ (H →L[ℂ] H
       (∀ T : H →L[ℂ] H, IsCompactOperator T → ρ T = 0) ∧
       (∀ T : H →L[ℂ] H, 0 ≤ T → ∃ r : ℝ, 0 ≤ r ∧ ρ T = r) ∧
       ρ 1 = 1 := by
+  haveI : Nontrivial H := by
+    rcases subsingleton_or_nontrivial H with hsub | hnt
+    · exfalso
+      haveI := hsub
+      have h0 : (1 : H →L[ℂ] H) = 0 := by
+        ext x
+        exact Subsingleton.elim _ _
+      have h1 : (1 : ↥A) = 0 := by
+        apply Subtype.ext
+        rw [OneMemClass.coe_one, ZeroMemClass.coe_zero]
+        exact h0
+      rw [h1, map_zero] at hone
+      exact zero_ne_one hone
+    · exact hnt
   obtain ⟨ρ, hρA, hρK, hρpos⟩ :=
     exists_extension_annihilating_compacts hA hAK φ.toLinearMap
       (fun b hb ↦ exists_nonneg_apply_of_positive φ hb)
