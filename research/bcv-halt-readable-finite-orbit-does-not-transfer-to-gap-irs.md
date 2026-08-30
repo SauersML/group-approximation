@@ -65,12 +65,21 @@ argument.  Closing `zpc-readable-control-freezing-to-lcs` still requires a new
 theorem about that maximizing IRS itself: either a uniformly bounded finite
 readable orbit, or a positive invariant readable fiber.
 
-Even a newly proved finite readable orbit would not, by itself, make the
-isotropy trace canonical.  By
+Even a newly proved finite readable orbit would not, by **character
+compression alone**, make the isotropy trace canonical.  By
 `finite-invariant-partition-only-reduces-irs-to-fiber-irs`, compression to one
 readable object atom transfers the non-CE character to a finite-index
-stabilizer action on that atom.  The fiber can still have a genuinely random
-stabilizer.  To obtain a group directly one additionally needs the fiber
-fixed-point character to be regular (possibly after quotienting its a.e.
-kernel); to obtain the frozen LCS branch one needs the stronger operator
-invariance used in `zpc-readable-control-freezing-to-lcs`.
+stabilizer action on that atom, whose stabilizer can remain genuinely random.
+That warning remains exact for attempts to identify the compressed character
+with a regular quotient character.
+
+The perfect game supplies additional information, however.  By
+`finite-readable-translate-algebra-groupifies-zpc-gap`, once the full readable
+translate algebra is finite one may quotient the atom stabilizer by all
+conjugated verifier rows and then induce any hypothetical hyperlinear model
+back over the finite atom orbit.  The resulting perfect CE strategy
+contradicts the source quantum gap.  This game-aware route needs neither a
+regular fiber character nor the invariant atom required by
+`zpc-readable-control-freezing-to-lcs`.  Consequently the live BCV obstacle
+is now exactly the one proved above: finite readable orbit is known on the
+HALT branch but not for the NONHALT perfect-gap IRS.

@@ -67,4 +67,16 @@ almost every ergodic component, while quantum soundness excludes a CE
 component of value one.  Hence, if a finite full readable translate algebra
 were proved for that witness, its positive atoms would form one transitive
 orbit and `(FIP1)` would apply directly.  A further fiber-freeness or
-normal-Dirac theorem would still be necessary.
+normal-Dirac theorem would still be necessary **for this character-only
+compression argument**.
+
+There is a separate game-aware conclusion which does not contradict the
+statement above.  If the finite invariant partition is the full readable
+translate algebra of a perfect controlled-linear strategy with a strict
+quantum gap, `finite-readable-translate-algebra-groupifies-zpc-gap` quotients
+the finite-index atom stabilizer by the conjugates of every atomwise active
+verifier row.  Hyperlinearity of that quotient would induce a perfect CE
+strategy for the original game.  Thus the verifier relations plus the game
+gap can prove the stabilizer quotient nonhyperlinear without making the fiber
+IRS character regular.  The present claim remains the exact limitation of
+using only the non-CE character and the finite partition.
