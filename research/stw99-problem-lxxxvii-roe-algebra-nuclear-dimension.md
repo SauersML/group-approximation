@@ -97,7 +97,12 @@ Voiculescu index excludes zero.  The theorem in fact applies to every infinite
 finitely generated virtually nilpotent group with infinite abelianization, a
 class strictly larger than the nilpotent groups; without the abelianization
 hypothesis it still gives nuclear dimension at most one for every infinite
-finitely generated virtually nilpotent group.  These maps already factor
+finitely generated virtually nilpotent group.  There is also a genuinely new
+finite-abelianization equality case: every free minimal zero-dimensional
+`D_infinity` crossed product has nuclear dimension one.  Natsume's
+free-product exact sequence forces either nonzero `K_1` or nonzero two-torsion
+in `K_0`, so dimension zero is impossible although
+`(D_infinity)_ab=C_2 direct_sum C_2`.  These maps already factor
 through the uniform Roe corona.  Thus for every such group of asymptotic
 dimension at least two, no minimal boundary quotient can carry the desired
 full-dimensional nuclear-dimension lower bound.  Nonminimal quotients and

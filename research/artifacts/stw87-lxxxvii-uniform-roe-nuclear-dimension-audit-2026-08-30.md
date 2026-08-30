@@ -227,6 +227,13 @@ More generally exact equality holds for every free minimal action of `Z^d` on
 a compact zero-dimensional Hausdorff space, without metrizability.  For every
 infinite finitely generated virtually nilpotent group acting this way the
 nuclear dimension is at most one, and infinite abelianization forces equality.
+Equality also holds for `G=D_infinity`, despite its finite abelianization:
+Natsume's exact sequence for
+`D_infinity=C_2 free_product C_2` makes the crossed product's K-theory the
+kernel and cokernel of the two involution orbit-sum maps.  The parity class
+`(1,-1)` either survives as nonzero two-torsion in `K_0`, or a half-lift makes
+the nonzero odd-valued function `2f-1` survive in `K_1`.  Hence a free
+zero-dimensional dihedral crossed product is never locally AF.
 For each finite crossed-product packet,
 adjoining countably many clopen displacement witnesses produces a compact
 metrizable zero-dimensional factor whose action is still free and minimal.
@@ -234,13 +241,15 @@ The virtually nilpotent theorem of Bartels, as recorded in Szabo--Wu--
 Zacharias Theorem 8.8, gives finite nuclear dimension to that separable factor
 crossed product, and the simple-algebra theorem collapses it to at most one.
 Injectivity of finite-dimensional operator systems extends the incoming
-c.p.c. maps to the original algebra, preserving the one-colour bound.  The
-Pimsner--Voiculescu boundary of a canonical group unitary is the nonzero unit
+c.p.c. maps to the original algebra, preserving the dimension-one
+(two-colour) bound.  The Pimsner--Voiculescu boundary of a canonical group
+unitary is the nonzero unit
 class, excluding zero.
 
 Restriction of coefficients gives a quotient from `C*_u(G)` onto this
 algebra of nuclear dimension at most one (exactly one under infinite
-abelianization), and it factors through the uniform Roe corona because
+abelianization, and also for `D_infinity`), and it factors through the uniform
+Roe corona because
 it annihilates `c_0(G) crossed_product_r G=K(ell^2(G))`.  Thus, for
 every infinite finitely generated virtually nilpotent `G` with `asdim(G)>=2`,
 every canonical minimal boundary quotient erases the higher-dimensional lower

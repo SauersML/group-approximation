@@ -2,7 +2,7 @@
 rg: 2
 id: stw87-zero-dimensional-minimal-actions-dimension-one-proof
 kind: route
-title: Preserve freeness in metrizable factors, collapse their finite dimension to one, and detect K1 by the PV index
+title: Preserve freeness in metrizable factors, collapse finite dimension to one, and use PV or dihedral K-theory to exclude zero
 target: stw87-zero-dimensional-minimal-actions-have-dimension-one
 requires: []
 ---
@@ -13,7 +13,7 @@ Put
 A=C(K) crossed_product_r G.
 ```
 
-## A local one-colour bound
+## A local dimension-one bound
 
 Fix a finite subset of `A` and an error `epsilon>0`.  Approximate its elements
 by finitely many algebraic crossed-product sums, and let `S subset C(K)` be
@@ -66,8 +66,8 @@ finite-dimensional C*-algebra is an injective operator system: each matrix
 summand is `B(C^n)`, so Arveson's extension theorem extends an incoming c.p.c.
 map from `B` to `A`, and finite direct sums are handled coordinatewise.  A
 nuclear-dimension approximation witnessing (2) therefore extends its incoming
-map to `A` without changing its order-zero return maps.  Since the packet and
-error were arbitrary,
+map to `A` without changing its two order-zero return colours.  Since the
+packet and error were arbitrary,
 
 ```text
 dim_nuc(A)<=1.                                         (3)
@@ -101,6 +101,82 @@ Thus `K_1(A)!=0`.  Nuclear dimension zero is equivalent to local AF, also in
 the nonseparable setting, and every locally AF algebra has zero `K_1`.
 Therefore `dim_nuc(A)!=0`; together with (3), this proves `(NM)` under the
 additional infinite-abelianization hypothesis.
+
+## Dihedral parity: finite abelianization can still exclude zero
+
+Now let
+
+```text
+G=D_infinity=C_2 free_product C_2=<r,s | r^2=s^2=e>
+```
+
+and assume only that its action on `K` is pointwise free.  Put `C=C(K)`,
+`C_r=C crossed_product <r>` and `C_s=C crossed_product <s>`.  Since each
+involution acts freely on the zero-dimensional compact space, it has a clopen
+fundamental domain: refine a finite clopen cover by displacement sets and all
+their translates, then choose one atom from each exchanged pair.  Consequently
+
+```text
+K_0(C)=C(K,Z),                         K_1(C)=0,
+K_0(C_r)=C(K/<r>,Z),                   K_1(C_r)=0,
+K_0(C_s)=C(K/<s>,Z),                   K_1(C_s)=0.       (5)
+```
+
+These formulas do not require metrizability: the locally constant functions
+are the directed union over finite clopen partitions, and K-theory is
+continuous for that system.
+
+Under these identifications the maps induced by the coefficient inclusions
+are the orbit-sum maps
+
+```text
+S_r(f)([x])=f(x)+f(rx),   S_s(f)([x])=f(x)+f(sx).       (6)
+```
+
+Indeed, a clopen fundamental domain identifies each involution crossed
+product with a two-by-two matrix algebra over the quotient; the rank of the
+image of a coefficient projection over `[x]` is the sum of its ranks at the
+two points of that orbit.
+
+Natsume's [six-term exact sequence, Theorem
+A1](https://jot.theta.ro/jot/archive/1985-013-001/1985-013-001-007.pdf) for a
+free-product crossed product now applies: the vertex pairs
+`(C_2,{e})` satisfy Natsume's hypothesis.  The theorem allows arbitrary,
+possibly nonseparable coefficient algebras and is stated for reduced crossed
+products; amenability of `D_infinity` also makes the full and reduced versions
+agree.  After negating the second target summand, it identifies
+
+```text
+K_0(C crossed_product_r D_infinity)=coker(Phi),
+K_1(C crossed_product_r D_infinity)=ker(Phi),
+Phi(f)=(S_r(f),-S_s(f)).                              (7)
+```
+
+Let `eta=(1,-1)` in the codomain of `Phi`.  Since
+`Phi(1)=(2,-2)=2 eta`, the class of `eta` in `coker(Phi)` has order at most
+two.  If this class is nonzero, `K_0` has nonzero two-torsion.  If it is zero,
+there is an `f in C(K,Z)` with
+
+```text
+S_r(f)=S_s(f)=1.
+```
+
+Then `h=2f-1` is odd-valued, hence nonzero, while
+`S_r(h)=S_s(h)=0`.  Thus `0!=h in ker(Phi)=K_1`.  In either case the crossed
+product is not locally AF: locally AF algebras have torsion-free `K_0` and
+zero `K_1`, also nonseparably, since any finite K-theory witness is contained
+in a separable AF subalgebra.  If the action is also minimal, (3) applies and
+gives
+
+```text
+dim_nuc(C(K) crossed_product_r D_infinity)=1.          (8)
+```
+
+This is a genuine finite-abelianization lower bound:
+`(D_infinity)_ab=C_2 direct_sum C_2`, so the PV argument above cannot produce
+it.  The two alternatives in (7) also explain the obstruction sharply: a
+putative half of the parity class kills the two-torsion only by creating a
+nonzero odd-valued kernel class in `K_1`.
 
 ## Minimal Stone--Cech quotients
 
