@@ -161,8 +161,12 @@ theorem connected_secondHalf_rotWord_iff (H : Λ → Subgroup G) (lam : Λ)
     (t : List (RelLetter G Λ)) :
     Connected H lam (vertex v w (c b)) (secondHalf w c a b t) i j ↔
       Connected H lam (vertex v w (c b)) (rotWord w (c b)) i j := by
+  -- both sides must be spelled out: with the right side left as `_` the
+  -- rewrite leaves `Connected` folded there and the closing `rfl` cannot fire
   show (vertex (vertex v w (c b)) (secondHalf w c a b t) i)⁻¹ *
-      vertex (vertex v w (c b)) (secondHalf w c a b t) j ∈ H lam ↔ _
+      vertex (vertex v w (c b)) (secondHalf w c a b t) j ∈ H lam ↔
+    (vertex (vertex v w (c b)) (rotWord w (c b)) i)⁻¹ *
+      vertex (vertex v w (c b)) (rotWord w (c b)) j ∈ H lam
   rw [vertex_secondHalf_rotWord w v c ha hb hi t,
     vertex_secondHalf_rotWord w v c ha hb hj t]
 

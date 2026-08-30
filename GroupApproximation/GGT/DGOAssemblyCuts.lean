@@ -71,7 +71,7 @@ theorem isPolygonCut_insertPoint {w : List (RelLetter G Λ)} {c : ℕ → ℕ}
       · have hs : t = s := by omega
         subst hs
         unfold insertPointCut
-        rw [if_pos le_rfl, if_neg (by omega : ¬ s + 1 ≤ s), if_pos rfl]
+        rw [if_pos le_rfl, if_neg (by omega : ¬ t + 1 ≤ t), if_pos rfl]
         exact hti
       · by_cases hnew : s = t + 1
         · subst hnew
