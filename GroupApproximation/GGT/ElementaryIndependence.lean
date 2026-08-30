@@ -146,15 +146,15 @@ theorem exists_index_near_of_steps {u : ℕ → ℝ} {D : ℝ} (hD : 0 ≤ D)
 
 /-- **Closeness along fellow-travelling chords is controlled by distance from
 the basepoint.** -/
-theorem dist_le_of_parameters {δ Ka Kb T La Lb : ℝ} {x u v : X} {f q : ℝ → X}
+theorem dist_le_of_parameters {C Ka Kb T La Lb : ℝ} {x u v : X} {f q : ℝ → X}
     (hf : IsGeodesicSegment f 0 La) (hf0 : f 0 = x)
     (hq : IsGeodesicSegment q 0 Lb) (hq0 : q 0 = x)
     (hTb : T ≤ Lb)
-    (hft : ∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ 4 * δ)
+    (hft : ∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ C)
     {t₁ t₂ : ℝ} (ht₁ : t₁ ∈ Set.Icc (0 : ℝ) La) (ht₂ : t₂ ∈ Set.Icc (0 : ℝ) Lb)
     (hu : dist u (f t₁) ≤ Ka) (hv : dist v (q t₂) ≤ Kb)
     (huT : dist x u + Ka ≤ T) :
-    dist u v ≤ 2 * Ka + 2 * Kb + 4 * δ + |dist x u - dist x v| := by
+    dist u v ≤ 2 * Ka + 2 * Kb + C + |dist x u - dist x v| := by
   have hp₁ : dist x (f t₁) = t₁ := by
     rw [← hf0, hf.dist_eq ⟨le_refl 0, ht₁.1.trans ht₁.2⟩ ht₁, zero_sub, abs_neg,
       abs_of_nonneg ht₁.1]
@@ -165,7 +165,7 @@ theorem dist_le_of_parameters {δ Ka Kb T La Lb : ℝ} {x u v : X} {f q : ℝ �
     have := dist_triangle x u (f t₁)
     linarith
   have ht₁b : t₁ ∈ Set.Icc (0 : ℝ) Lb := ⟨ht₁.1, ht₁T.trans hTb⟩
-  have hfq : dist (f t₁) (q t₁) ≤ 4 * δ := hft t₁ ht₁.1 ht₁T
+  have hfq : dist (f t₁) (q t₁) ≤ C := hft t₁ ht₁.1 ht₁T
   have hqq : dist (q t₁) (q t₂) = |t₁ - t₂| := hq.dist_eq ht₁b ht₂
   have h1 := dist_triangle u (f t₁) (q t₁)
   have h2 := dist_triangle u (q t₁) (q t₂)
@@ -199,7 +199,7 @@ common nonzero power.**  The length `T` depends on `a`, `b`, `x` and the
 acylindricity constants only. -/
 theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
     (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
-    (hiso : IsIsometricAction G X)
+    (hiso : IsIsometricAction G X) {C : ℝ} (hC : 0 ≤ C)
     {a b : G} {x : X} (ha : IsLoxodromic a x) (hb : IsLoxodromic b x)
     (hpair : ∀ ε : ℝ, 0 < ε → ∃ (K N : ℕ),
       (pairStab G ε x ((a ^ K) • x)).Finite ∧
@@ -210,7 +210,7 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
       IsGeodesicSegment q 0 (dist x ((b ^ m) • x)) → q 0 = x →
       q (dist x ((b ^ m) • x)) = (b ^ m) • x →
       T ≤ dist x ((a ^ n) • x) → T ≤ dist x ((b ^ m) • x) →
-      (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ 4 * δ) →
+      (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ C) →
       ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
   obtain ⟨la, hla, Ba, hBa, hlox_a⟩ := id ha
   obtain ⟨lb, hlb, Bb, hBb, hlox_b⟩ := id hb
@@ -225,10 +225,10 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_pairStab {δ : ℝ}
   obtain ⟨Gb, hGb0, hGb⟩ :=
     gromovProduct_ends_le_of_chain (D := dist x (b • x)) hδ hδ0 hDb0 hlb hBb hgeo
   -- the closeness constants
-  obtain ⟨ε₁, hε₁⟩ : ∃ e : ℝ, e = 2 * Ka + 2 * Kb + 4 * δ + dist x (b • x) :=
+  obtain ⟨ε₁, hε₁⟩ : ∃ e : ℝ, e = 2 * Ka + 2 * Kb + C + dist x (b • x) :=
     ⟨_, rfl⟩
   obtain ⟨ε₂, hε₂⟩ : ∃ e : ℝ,
-      e = 2 * Ka + 2 * Kb + 4 * δ + 2 * Ga + 2 * Gb + 2 * dist x (b • x) :=
+      e = 2 * Ka + 2 * Kb + C + 2 * Ga + 2 * Gb + 2 * dist x (b • x) :=
     ⟨_, rfl⟩
   have hε₁0 : 0 ≤ ε₁ := by
     rw [hε₁]
@@ -537,7 +537,7 @@ theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
       (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ 4 * δ) →
       ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
   apply exists_common_zpow_of_forward_fellow_travel_of_pairStab
-    hδ hδ0 hgeo hiso ha hb
+    hδ hδ0 hgeo hiso (C := 4 * δ) (mul_nonneg (by norm_num) hδ0) ha hb
   intro ε hε
   obtain ⟨R, N, hRN⟩ := hacy ε hε
   obtain ⟨la, hla, Ba, -, hlox_a⟩ := id ha
@@ -549,9 +549,29 @@ theorem exists_common_zpow_of_forward_fellow_travel {δ : ℝ}
   obtain ⟨hfin, hcard⟩ := hRN x ((a ^ K) • x) hR
   exact ⟨K, N, hfin, hcard⟩
 
-/-- **The WPD long-fellow-travel form used in DGO Lemma 6.7.**  Global
+/-- **The bounded WPD long-fellow-travel form used in DGO Lemma 6.7.**  Global
 acylindricity is unnecessary: WPD for the first loxodromic element supplies
 the one finite pair stabilizer consumed by the Morse/pigeonhole proof. -/
+theorem exists_common_zpow_of_forward_fellow_travel_of_wpd_bound {δ : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
+    (hiso : IsIsometricAction G X) {C : ℝ} (hC : 0 ≤ C)
+    {a b : G} {x : X} (ha : IsLoxodromic a x) (hb : IsLoxodromic b x)
+    (hwpd : IsWPDAt a x) :
+    ∃ T : ℝ, 0 < T ∧ ∀ (n m : ℕ) (f q : ℝ → X),
+      IsGeodesicSegment f 0 (dist x ((a ^ n) • x)) → f 0 = x →
+      f (dist x ((a ^ n) • x)) = (a ^ n) • x →
+      IsGeodesicSegment q 0 (dist x ((b ^ m) • x)) → q 0 = x →
+      q (dist x ((b ^ m) • x)) = (b ^ m) • x →
+      T ≤ dist x ((a ^ n) • x) → T ≤ dist x ((b ^ m) • x) →
+      (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ C) →
+      ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
+  apply exists_common_zpow_of_forward_fellow_travel_of_pairStab
+    hδ hδ0 hgeo hiso hC ha hb
+  intro ε hε
+  obtain ⟨K, hKfin⟩ := hwpd ε hε.le
+  exact ⟨K, (pairStab G ε x ((a ^ K) • x)).ncard, hKfin, le_rfl⟩
+
+/-- The original `4δ` specialization of the WPD fellow-travel theorem. -/
 theorem exists_common_zpow_of_forward_fellow_travel_of_wpd {δ : ℝ}
     (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hgeo : IsGeodesicSpace X)
     (hiso : IsIsometricAction G X)
@@ -564,12 +584,9 @@ theorem exists_common_zpow_of_forward_fellow_travel_of_wpd {δ : ℝ}
       q (dist x ((b ^ m) • x)) = (b ^ m) • x →
       T ≤ dist x ((a ^ n) • x) → T ≤ dist x ((b ^ m) • x) →
       (∀ t : ℝ, 0 ≤ t → t ≤ T → dist (f t) (q t) ≤ 4 * δ) →
-      ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r := by
-  apply exists_common_zpow_of_forward_fellow_travel_of_pairStab
-    hδ hδ0 hgeo hiso ha hb
-  intro ε hε
-  obtain ⟨K, hKfin⟩ := hwpd ε hε.le
-  exact ⟨K, (pairStab G ε x ((a ^ K) • x)).ncard, hKfin, le_rfl⟩
+      ∃ p r : ℤ, p ≠ 0 ∧ r ≠ 0 ∧ a ^ p = b ^ r :=
+  exists_common_zpow_of_forward_fellow_travel_of_wpd_bound
+    hδ hδ0 hgeo hiso (mul_nonneg (by norm_num) hδ0) ha hb hwpd
 
 /-! ## Signs -/
 
