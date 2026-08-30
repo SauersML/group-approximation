@@ -251,3 +251,17 @@ most `r+1` therefore proves nuclear dimension at most `r`.  What remains
 unknown for arbitrary extensions is whether their outgoing approximations
 can always be replaced by ones with this central zero-dimensional geometry;
 the tracial Hall bounds alone do not provide such a replacement.
+
+Finite-dimensional support spectra now also have an explicit replacement
+bound.  `stw82-finite-dimensional-central-spectrum-colour-bound` combines
+Ostrand's discrete-family characterization of covering dimension with the
+pointwise support matching above.  If the common compact metrizable support
+spectrum has dimension at most `n` and at most `m` outgoing supports are
+active at any point, the family splits, to arbitrary accuracy, into
+`(n+1)m` order-zero colours.  The partition-of-unity omission error is still
+the chosen tolerance, with no cover-cardinality loss, while discreteness
+makes equal-labelled cutters exactly orthogonal.  Thus any nuclear
+approximation scheme with this geometry gives
+`dim_nuc(A)<=(n+1)m-1`.  This is a rigorous positive selection theorem, not
+an assertion that arbitrary essential extensions admit the required common
+support algebra or that the product bound is sharp for `n>0`.
