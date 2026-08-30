@@ -3,6 +3,8 @@ rg: 2
 id: stw77-nucdim-zero-projection-return
 kind: claim
 title: Zero-dimensional properly infinite-image maps admit finite-dimensional models with projection return
+refuted_by:
+  - stw77-z-o2-map-defeats-projection-return
 ---
 
 Let `phi:A->B` satisfy the hypotheses of STW LXXVII and suppose additionally
@@ -17,6 +19,12 @@ which approximates `F` within `epsilon` and has matrix units such that each
 `e^(j)_(11)` is within `1/16` of a positive element of `phi(A)`.
 
 ## Attempts
+
+**This selection claim is false.**
+`stw77-z-o2-map-defeats-projection-return` gives a unital embedding
+`Z->O_2` satisfying the zero-dimensional LXXVII hypotheses whose nontrivial
+projectionless range cannot admit such models.  The attempts below explain
+why the claim was a natural but over-strong intermediate target.
 
 - `zero-dimensional-unital-maps-are-locally-fd` proves the approximation of
   `F` by `D`, but gives no reverse control on the model projections.
