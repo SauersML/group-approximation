@@ -2,11 +2,11 @@
 rg: 2
 id: ergodic-profile-pure-finite-orbit-implies-finite-readable
 kind: claim
-title: On an ergodic ZPC witness a profile-pure finite-orbit projection is equivalent to finite readable closure
+title: On an ergodic ZPC witness a diagonal profile-pure finite-orbit projection is equivalent to finite readable closure
 distinct_from:
   perfect-gap-zpc-has-finite-readable-translate-algebra: that asks for finite closure on a selected gap witness; this shows that replacing it by one positive profile-pure finite-orbit projection does not weaken it after choosing the witness ergodic.
   finite-invariant-partition-only-reduces-irs-to-fiber-irs: that analyzes what a finite invariant partition does to the stabilizer character; this is the measure-theoretic equivalence which produces that partition.
-  finite-depth-readable-groupoid-closes-iff-full-orbit-is-finite: that compares finite-depth normalization with full orbit finiteness; this starts from one positive set whose entire finite orbit remains profile-pure.
+  finite-depth-readable-groupoid-closes-iff-full-orbit-is-finite: that compares finite-depth normalization with full orbit finiteness; this starts from one positive diagonal set whose entire finite orbit remains profile-pure.
 ---
 
 Let `Q_G` act ergodically on the `J`-quotient of a ZPC-IRS realization,
@@ -22,5 +22,6 @@ are equivalent.
 Thus the NONHALT compactness witness does not acquire a genuinely weaker
 escape hatch by asking only for one nonzero `D_0`-profile-pure projection
 with finite `Q_G` orbit.  On the ergodic witness available from
-`perfect-zpc-irs-quantum-gap-game`, such a projection already forces the
-entire readable factor to be finite.
+`perfect-zpc-irs-quantum-gap-game`, such a diagonal projection already forces the entire readable factor to be
+finite. This statement does not concern arbitrary non-diagonal projections
+in the ambient negative corner.
