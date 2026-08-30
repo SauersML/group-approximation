@@ -52,3 +52,15 @@ proper-infiniteness obstructions.  A successful LXVI construction would
 need the triangular classes embedded in connecting maps whose remaining
 branches supply simplicity while a new, non-multiplicity finiteness
 certificate survives.
+
+## Analytic postscript
+
+The most direct non-uniform version is now also ruled out by
+`one-cofinal-rank-amplifying-branch-forces-proper-infiniteness`.  It is not
+enough to double only one distinguished triangular summand while leaving
+the other branches unpaired.  The infinitely many bounded-support
+simplicity branches can all be followed through that same distinguished
+continuation; their rank demand eventually exceeds their private
+coordinate capacity.  The exact finite obstruction is the weighted Hall
+criterion in `hopf-power-blocks-obey-weighted-hall-euler-criterion`, and
+the dimension argument upgrades its failure to proper infiniteness.

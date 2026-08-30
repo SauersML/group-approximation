@@ -46,4 +46,7 @@ grows with the stage.  `triangular-hopf-bundles-admit-coherent-dyadic-euler-root
 shows that rank, integral Euler classes, and ordered K-theory permit such
 coherent triangles.  The open crux is analytic: incorporate them into the
 dynamics while preserving finiteness without globally duplicating the
-line-bundle multiset.
+line-bundle multiset.  The first such attempt is also excluded by
+`one-cofinal-rank-amplifying-branch-forces-proper-infiniteness`: one
+cofinal rank-doubling continuation already suffices in the presence of
+the bounded-support simplicity hosts.

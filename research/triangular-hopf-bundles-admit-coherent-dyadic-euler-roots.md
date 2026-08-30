@@ -43,4 +43,8 @@ to one on the new diagonal.  Integral K-theory and Chern classes permit
 this coherent finite-depth system.  What remains open for the LXVI route
 is analytic: incorporating such triangles into a simple multiplier
 inductive limit while retaining a finiteness certificate and avoiding the
-uniform-doubling proper-infiniteness mechanism.
+uniform-doubling proper-infiniteness mechanism.  The natural diagonal
+implementation is now ruled out more sharply by
+`one-cofinal-rank-amplifying-branch-forces-proper-infiniteness`: even one
+cofinal doubled summand is fatal when the simplicity engine supplies an
+infinite bounded-support family.

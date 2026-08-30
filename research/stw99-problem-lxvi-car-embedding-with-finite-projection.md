@@ -53,6 +53,19 @@ is analytic: the known implementation by identical global branches is
 exactly the mechanism that destroys Hall finiteness and forces proper
 infiniteness.
 
+The first non-uniform implementation is also closed.
+`hopf-power-blocks-obey-weighted-hall-euler-criterion` identifies the exact
+higher-rank certificate: coordinate capacity must dominate the sum of the
+block ranks on every finite subfamily.  The theorem
+`one-cofinal-rank-amplifying-branch-forces-proper-infiniteness` then shows
+that duplicating the whole branch list is unnecessary.  Infinitely many
+bounded-support simplicity branches followed through just one cofinal
+rank-doubling continuation violate weighted Hall; rank beats half the
+base dimension, and infinitely many disjoint violating groups make the
+seed equivalent to the multiplier unit.  A further Rordam attack must
+therefore prevent bounded-support families from sharing any cofinal
+rank-amplifying path, something standard diagonal maps cannot do.
+
 There is a new broad obstruction to installing the coherent CAR tower.
 `stw99-lxvi-finite-index-car-envelopes-are-stably-finite` proves that a
 finite Watatani-index expected extension of any stably finite core is stably
