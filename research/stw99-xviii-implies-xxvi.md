@@ -3,8 +3,6 @@ rg: 2
 id: stw99-xviii-implies-xxvi
 kind: claim
 title: A positive Toms-Winter theorem implies Winter's Cuntz semigroup conjecture
-artifacts:
-  - research/artifacts/stw99-ranks-divisibility-cluster-2026-08-30.md
 ---
 
 If STW Problem XVIII has a positive answer, then STW Problem XXVI has a
