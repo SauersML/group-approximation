@@ -7,6 +7,8 @@ artifacts:
   - research/leavitt-degree3-direct-pivot-screen-proof.md
   - research/artifacts/search-leavitt-degree3-postpivot.py
   - research/artifacts/search-leavitt-degree3-postpivot.sbatch
+  - research/leavitt-degree3-direct-pivot-true-inverse-proof.md
+  - research/artifacts/search-leavitt-degree3-direct-pivot-true-inverse.py
 distinct_from:
   leavitt-padded-center-template-has-no-degree2-packet: that treats the shortest one-unary degree-two topology; this treats all two-unary degree-three topologies but only direct substitution through either pivot separately.
 ---
