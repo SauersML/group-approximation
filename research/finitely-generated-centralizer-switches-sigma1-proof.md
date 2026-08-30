@@ -24,7 +24,7 @@ centralize the whole base, giving `A_e x Z`, which is amenable when
 nonempty reduced word in `t` and `a t a^-1` gives an HNN word whose
 only possible pinches have intervening base coefficient `a` or
 `a^-1`.  Neither lies in `K_e`, so Britton's lemma says the word is
-nontrivial.  Thus `t` and `a t a^-1` freely generate `F_2), making
+nontrivial.  Thus `t` and `a t a^-1` freely generate `F_2`, making
 the extension nonamenable.
 
 Hence amenability in this family is exactly the c.e. event `K_e=A_e`.
