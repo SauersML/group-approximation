@@ -2,7 +2,7 @@
 rg: 2
 id: nonsofic-one-relator-via-kazhdan-subgroup-embedding
 kind: route
-title: Refute Pestov 4.9 by embedding a known nonsofic group in a one-relator group
+title: Refute Pestov 4.10 by embedding a known nonsofic group in a one-relator group
 target: nonsofic-one-relator-group
 requires: []
 artifacts:

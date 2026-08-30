@@ -2,7 +2,7 @@
 rg: 2
 id: one-relator-sofic-via-linton-shell
 kind: route
-title: Answer Pestov 4.9 affirmatively by proving the finite rational-derived shell sofic
+title: Answer Pestov 4.10 affirmatively by proving the finite rational-derived shell sofic
 target: one-relator-groups-sofic
 requires: [linton-shell-sofic, one-relator-soficity-localizes-at-rational-derived-stage]
 artifacts:

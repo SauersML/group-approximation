@@ -52,7 +52,7 @@ A theorem restricted to **free** acting groups is not excluded by anything
 here — Kun--Thom's acting groups have property (T) and are about as far from
 free as a group gets, and no counterexample with free `Q` is known.  Such a
 theorem would settle [[linton-shell-sofic]] and hence, with the reduction, all
-of Pestov's Question 4.9.  Note what that means: proving generic
+of Pestov's Question 4.10.  Note what that means: proving generic
 "free-acting-group semidirect closure" is at least as hard as the whole
 question, so it is a target and not a lemma.  The realistic conditional form is
 the Alekseev--Bradford one — soficity of the *action*, not just of the factors —

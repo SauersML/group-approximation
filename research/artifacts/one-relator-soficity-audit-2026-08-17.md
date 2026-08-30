@@ -1,4 +1,4 @@
-# 2026-08-17 — Pestov Question 4.9 (are all one-relator groups sofic?): ingestion audit of an external resolution attempt
+# 2026-08-17 — Pestov Question 4.10 (are all one-relator groups sofic?): ingestion audit of an external resolution attempt
 
 Source: a user-supplied external resolution attempt, "Pestov Open Question
 4.9: are all one-relator groups sofic? — Resolution attempt, 17 August 2026",
@@ -6,7 +6,7 @@ unrefereed, written against a snapshot archive of this repository.  This file
 records the ingestion audit and carries the proofs the new graph nodes cite;
 the canonical statements live in the graph.
 
-**Headline of the source, which this audit confirms.**  Pestov's Question 4.9
+**Headline of the source, which this audit confirms.**  Pestov's Question 4.10
 is **not** resolved, in either direction, and the source says so in its own
 first line rather than dressing a gap as a proof.  What it produces is a
 reduction package plus a set of obstructions:
@@ -25,7 +25,7 @@ reduction package plus a set of obstructions:
 
 The follow-up argument now recorded in
 `one-relator-fox-magnus-descent-to-derived-linton-radical` is a genuine advance
-over this audit, but still not a resolution of Pestov 4.9.  With the same
+over this audit, but still not a resolution of Pestov 4.10.  With the same
 Linton data, the Magnus relation sequence
 
     0 -> N/N' -> (ZH)^d -> I_H -> 0
@@ -148,7 +148,7 @@ with this proof rather than the source's attribution.
 
 ## C. What the audit did **not** confirm
 
-* No proof and no counterexample.  Nothing in the source resolves Question 4.9
+* No proof and no counterexample.  Nothing in the source resolves Question 4.10
   and the source does not claim otherwise.
 * The conditional in the source's §7 (Alekseev--Bradford) is genuinely
   conditional: neither hypothesis was verified for Linton radicals, and their
@@ -163,6 +163,13 @@ with this proof rather than the source's attribution.
   is the misleading part and the source read the body.
 
 ---
+
+> **Editorial numbering correction (2026-08-30).**  The supplied document
+> below calls the one-relator question “Pestov Open Question 4.9.”  In
+> arXiv:0804.3968v8, Question 4.9 instead asks whether a sofic group can fail
+> to be initially subamenable; the one-relator hyperlinear/sofic question is
+> Question 4.10.  The supplied text is preserved verbatim, so its occurrences
+> of “4.9” are retained as source errors rather than silently rewritten.
 
 # Source document, as supplied
 
