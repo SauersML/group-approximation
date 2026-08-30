@@ -67,6 +67,15 @@ the formula whenever both endpoints are subhomogeneous, with no separability
 hypothesis.  In particular, arbitrary commutative extensions obey the
 maximum formula.
 
+There is also a split class with no regularity assumption on the ideal.
+`stw82-central-af-split-extensions-obey-maximum` proves the formula when the
+quotient is commutative AF and a unital *-homomorphic section lands in the
+centre of the middle algebra.  Finite clopen quotient stages cut the middle
+algebra into a direct sum of unitizations of ideal corners, so the ideal's
+colours are reused exactly.  Centrality is essential to this proof: a
+merely split finite-dimensional quotient need not provide central corner
+projections.
+
 There is also a new unconditional middle-algebra class:
 `stw82-one-dimensional-middle-forces-maximum` shows that every
 ideal--quotient decomposition of an arbitrary algebra `E` with
