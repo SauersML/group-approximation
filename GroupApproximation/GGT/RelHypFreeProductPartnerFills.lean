@@ -51,14 +51,20 @@ def freeProductPartnerHom (U H : Type) [Group U] [Group H] :
     H →* CoprodI (pairFamily U H) :=
   (CoprodI.of : pairFamily U H true →* CoprodI (pairFamily U H))
 
+/- The index of `CoprodI.of` has to be pinned on the *function*, as in the two
+definitions above, and not by ascribing the argument: a type ascription
+elaborates its term at the ascribed type but reports the term's own inferred
+type, so `(x : pairFamily U H false)` hands the elaborator an `x : U` and leaves
+the index an unassigned metavariable. -/
+
 theorem freeProductSourceHom_apply (U H : Type) [Group U] [Group H] (x : U) :
     freeProductSourceHom U H x
-      = (CoprodI.of (x : pairFamily U H false) : CoprodI (pairFamily U H)) :=
+      = (CoprodI.of : pairFamily U H false →* CoprodI (pairFamily U H)) x :=
   rfl
 
 theorem freeProductPartnerHom_apply (U H : Type) [Group U] [Group H] (y : H) :
     freeProductPartnerHom U H y
-      = (CoprodI.of (y : pairFamily U H true) : CoprodI (pairFamily U H)) :=
+      = (CoprodI.of : pairFamily U H true →* CoprodI (pairFamily U H)) y :=
   rfl
 
 /-! ## 2.  The source's image lies in the partner's -/

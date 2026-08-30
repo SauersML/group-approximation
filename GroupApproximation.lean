@@ -2779,6 +2779,8 @@ import GroupApproximation.Analysis.VoiculescuAbsorption
 import GroupApproximation.GGT.HullSCConeOffHeavyProperPower
 import GroupApproximation.GGT.HullSCConeOffHeavyHyperbolic
 import GroupApproximation.Analysis.VoiculescuFrameFromEntries
+import GroupApproximation.GGT.RelHypFreeProductPartnerFills
+import GroupApproximation.GGT.RelHypSuitabilityResidue
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
