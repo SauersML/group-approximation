@@ -1,5 +1,4 @@
 import GroupApproximation.GGT.RelHypFreeProductPeripheral
-import GroupApproximation.GGT.WPDHyperbolicallyEmbedded
 
 /-!
 # From the four-point condition on an alphabet to hyperbolicity of `Γ(G,A)`
@@ -23,11 +22,7 @@ have never been connected.
 special case only: `δ = 0`, through `Hyperbolic.IsTreeLike`, where the four-point
 condition *is* the ultrametric inequality and no arithmetic is needed.
 `isHyperbolicSpace_cayley_of_fourPoint` crosses it in general, at the same
-constant, and `isFourPointHyperbolic_of_isHyperbolicSpace` crosses back.  The
-two conditions are therefore *equal*, not merely comparable: no constant is
-lost in either direction, and the only lossy step in the round trip is the
-`ℝ`-to-`ℕ` ceiling, which is forced by the two vocabularies disagreeing about
-what a constant is rather than by any geometry.
+constant.
 
 ## The arithmetic, which is a permutation and two cases
 
@@ -67,7 +62,7 @@ open GroupApproximation.HullGeometry
 open GroupApproximation.WordMetric
 open GroupApproximation.Manuscript.NonMF.TorsionFree
 
-universe u w
+universe u
 
 /-! ## 1.  The arithmetic -/
 
@@ -133,92 +128,6 @@ theorem isHyperbolicSpace_cayley_of_fourPoint {G : Type u} [Group G]
     Cayley.dist_eq x z
   simp only [gromovProduct, hxw, hyw, hzw, hxy, hyz, hxz]
   exact min_gromov_le_of_fourPoint keyR
-
-/-! ### The converse
-
-The same permutation and the same two cases, read backwards.  Nothing here is
-new geometry: `2·(a|b)_w = d(w,a) + d(w,b) - d(a,b)` turns the three Gromov
-products at a common basepoint into `T` minus the three pairings, so `min` over
-products is `max` over pairings, and the `2δ` written into the four-point
-condition is the same `2` that clearing the halves produces.  They cancel, which
-is why the constant survives the crossing untouched. -/
-
-/-- **The min form implies the max form**, at six reals and with no constant
-lost --- the converse of `min_gromov_le_of_fourPoint`.  In each branch the
-comparison of the two pairings decides which argument the `min` attains, and the
-difference of the two Gromov products is exactly the difference of the two
-pairings. -/
-theorem fourPoint_of_min_gromov {dwx dwy dwz dxy dyz dxz e : ℝ}
-    (h : min ((dwx + dwy - dxy) / 2) ((dwy + dwz - dyz) / 2) - e
-      ≤ (dwx + dwz - dxz) / 2) :
-    dwy + dxz ≤ max (dwx + dyz) (dwz + dxy) + 2 * e := by
-  rcases le_total (dwx + dyz) (dwz + dxy) with hle | hle
-  · rw [min_eq_left (by linarith : (dwx + dwy - dxy) / 2 ≤ (dwy + dwz - dyz) / 2)]
-      at h
-    rw [max_eq_right hle]
-    linarith
-  · rw [min_eq_right (by linarith : (dwy + dwz - dyz) / 2 ≤ (dwx + dwy - dxy) / 2)]
-      at h
-    rw [max_eq_left hle]
-    linarith
-
-/-- **A hyperbolic `Γ(G,A)` makes its alphabet four-point hyperbolic**, at the
-ceiling of the constant.
-
-The ceiling is the only thing lost: `⌈δ⌉₊` beats `δ` by `Nat.le_ceil`, and the
-`2` in front of it is the `2` already in the four-point condition, not a factor
-picked up in the crossing.  Together with `isHyperbolicSpace_cayley_of_fourPoint`
-this says the two conditions are the same condition. -/
-theorem isFourPointHyperbolic_of_isHyperbolicSpace {G : Type u} [Group G]
-    (A : Alphabet G) {δ : ℝ} (hδ : IsHyperbolicSpace δ (Cayley A)) :
-    Hyperbolic.IsFourPointHyperbolic A.carrier ⌈δ⌉₊ := by
-  intro w x y z
-  have hS := A.symmetricGenerating
-  have key := hδ (Cayley.of A w) (Cayley.of A y) (Cayley.of A x) (Cayley.of A z)
-  have hxw : dist (Cayley.of A x) (Cayley.of A w)
-      = ((wordDist A.carrier w x : ℕ) : ℝ) := by
-    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_of, wordDist_comm hS]
-  have hyw : dist (Cayley.of A y) (Cayley.of A w)
-      = ((wordDist A.carrier w y : ℕ) : ℝ) := by
-    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_of, wordDist_comm hS]
-  have hzw : dist (Cayley.of A z) (Cayley.of A w)
-      = ((wordDist A.carrier w z : ℕ) : ℝ) := by
-    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_of, wordDist_comm hS]
-  have hyx : dist (Cayley.of A y) (Cayley.of A x)
-      = ((wordDist A.carrier x y : ℕ) : ℝ) := by
-    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_of, wordDist_comm hS]
-  have hxz : dist (Cayley.of A x) (Cayley.of A z)
-      = ((wordDist A.carrier x z : ℕ) : ℝ) := by
-    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_of]
-  have hyz : dist (Cayley.of A y) (Cayley.of A z)
-      = ((wordDist A.carrier y z : ℕ) : ℝ) := by
-    rw [Cayley.dist_eq, Cayley.val_of, Cayley.val_of]
-  simp only [gromovProduct, hxw, hyw, hzw, hyx, hxz, hyz] at key
-  have hceil : (δ : ℝ) ≤ ((⌈δ⌉₊ : ℕ) : ℝ) := Nat.le_ceil δ
-  have hmain := fourPoint_of_min_gromov key
-  have hR : ((wordDist A.carrier w x : ℕ) : ℝ)
-        + ((wordDist A.carrier y z : ℕ) : ℝ)
-      ≤ max (((wordDist A.carrier w y : ℕ) : ℝ)
-              + ((wordDist A.carrier x z : ℕ) : ℝ))
-            (((wordDist A.carrier w z : ℕ) : ℝ)
-              + ((wordDist A.carrier x y : ℕ) : ℝ))
-        + 2 * ((⌈δ⌉₊ : ℕ) : ℝ) := by
-    linarith
-  exact_mod_cast hR
-
-/-- **The four-point constant a hyperbolically embedded family supplies.**
-
-Dahmani--Guirardel--Osin's Definition 4.25 gives hyperbolicity of
-`Γ(G, X ⊔ ⨆H)` in the `ℝ` vocabulary; the whole isolated-component layer of
-their §4.2 is stated in the `ℕ` one.  This is the step between, and it is the
-reason no consumer of that layer has to carry a four-point hypothesis it cannot
-discharge. -/
-theorem exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded
-    {G : Type u} [Group G] {Λ : Type w} (D : RelGenSet G Λ)
-    (hemb : D.IsHyperbolicallyEmbedded) :
-    ∃ n : ℕ, Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier n := by
-  obtain ⟨δ, hδ⟩ := hemb.hyperbolic
-  exact ⟨⌈δ⌉₊, isFourPointHyperbolic_of_isHyperbolicSpace D.alphabet hδ⟩
 
 /-! ## 3.  Farb's clause for the free product, in the `ℕ` vocabulary -/
 
