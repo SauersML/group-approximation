@@ -142,7 +142,7 @@ named established theorem identify that theorem and its exact role.
 
 ## New internal deductions recorded in the graph
 
-The graph additions isolate twenty facts which do not depend on the
+The graph additions isolate twenty-one facts which do not depend on the
 non-discovery part of the literature audit.
 
 1. Every possible counterexample is invisible to `KK`, unit-preserving
@@ -302,3 +302,18 @@ non-discovery part of the literature audit.
     von Neumann approximate-uniqueness theorem above: absence of a common
     central copy is strictly weaker information than a norm lower bound on
     the unitary orbit, so the canonical AUE claim remains open.
+21. The canonical free-product pair is not exactly unitarily conjugate, and
+    every approximate implementing sequence in its reduced tracial factor
+    converges ultraweakly to zero.  The key internal calculation is that the
+    two free factors have no nonzero bounded intertwiner.  If `x h^m=k^m x`
+    for corresponding Haar unitaries in the two factors, approximation of
+    `x` by reduced words makes `y h^m` and `k^m y` asymptotically orthogonal,
+    contradicting the intertwining equation unless `x=0`.  Every ultraweak
+    cluster point of approximate conjugators is such an intertwiner.  This
+    kills exact, finite-Fourier and weakly precompact conjugator ansatzes.  In
+    quantitative form, after fixing a normal Fourier coefficient bounded
+    away from zero, compactness gives one finite Jiang--Su test set with a
+    positive norm-error lower bound.  It does not give a coefficient-free
+    positive full-free-product orbit distance: zero belongs to the ultraweak
+    closure of the unitary group, and the factor's known implementing
+    sequences necessarily exhibit this escape.

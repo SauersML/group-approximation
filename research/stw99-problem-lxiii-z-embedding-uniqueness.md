@@ -57,6 +57,12 @@ This is **STW Problem LXIII and remains open at the audit boundary
   has no joint central `Z`-bridge.  This separates the failed bridge mechanism
   sharply from the still-open approximate-conjugacy question and also shows
   that the full free-product host is not `Z`-stable.
+  `stw63-canonical-free-product-implementers-escape-weakly` gives a separate
+  direct orbit constraint: exact conjugacy fails already in the reduced
+  free-product factor, and every approximate conjugator there converges
+  ultraweakly to zero.  Hence any full-free-product solution must escape all
+  fixed reduced-word Fourier coefficients.  This is not a norm lower bound,
+  since the factor has approximate conjugators with exactly that behavior.
 - **Every separably acting von Neumann shadow is eliminated.**
   `stw63-all-separably-acting-von-neumann-codomains-have-uniqueness` combines
   the finite/semifinite theorem with Hua--White type-III-factor uniqueness
