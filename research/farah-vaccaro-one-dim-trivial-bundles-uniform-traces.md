@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: farah-vaccaro-one-dimensional-trivial-factor-bundles-have-only-uniform-traces
+id: farah-vaccaro-one-dim-trivial-bundles-uniform-traces
 kind: claim
 title: One-dimensional trivial II1-factor bundles have only their canonical traces
 distinct_from:

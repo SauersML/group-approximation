@@ -6,6 +6,7 @@ title: Classify the positive-parameter quasifree flows on the Cuntz algebra O2 (
 root: true
 artifacts:
   - research/artifacts/stw99-actions-classification-cluster-2026-08-30.md
+  - research/artifacts/stw99-lv-quasifree-flow-solution-2026-08-30.md
 ---
 
 **Problem LV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**
@@ -15,6 +16,10 @@ irrational `λ > 0`.  For irrational `λ < 0` the flow is Rokhlin
 (Kishimoto) hence unique; for `λ > 0` the crossed product is stably
 projectionless with a unique tracial ray, and Dean: for GENERIC
 irrational `λ > 0` it is `W ⊗ K` (open for all `λ`).
+
+**ANSWERED (this session): cocycle conjugate iff `λ = μ`** — see
+`o2-quasifree-flows-cocycle-conjugacy-classified` and the solution
+dossier `stw99-lv-quasifree-flow-solution-2026-08-30.md`.
 
 ## Attempts
 

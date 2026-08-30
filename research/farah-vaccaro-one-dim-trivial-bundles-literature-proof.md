@@ -1,9 +1,9 @@
 ---
 rg: 2
-id: farah-vaccaro-one-dimensional-trivial-factor-bundles-literature-proof
+id: farah-vaccaro-one-dim-trivial-bundles-literature-proof
 kind: route
 title: Import Farah--Vaccaro's one-dimensional trace theorem
-target: farah-vaccaro-one-dimensional-trivial-factor-bundles-have-only-uniform-traces
+target: farah-vaccaro-one-dim-trivial-bundles-uniform-traces
 requires: []
 ---
 
