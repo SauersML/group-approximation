@@ -209,6 +209,13 @@ theorem eeLocalFiniteness : EeLocalFiniteness.{u, w} := by
     refine ⟨show h ∈ D.fam lam from hh.1, w, hletDn, hval, ?_, hlen⟩
     simpa [Dn] using hav
 
+/-- **Hull's one-step alphabet enlargement, unconditionally.**  The
+hyperbolicity clause is supplied by the alphabet identity in
+`eeOneStep_of_localFiniteness`; the local-finiteness clause is the theorem
+above. -/
+theorem eeOneStep : EeOneStep.{u, w} :=
+  eeOneStep_of_localFiniteness eeLocalFiniteness
+
 end RelGenSet
 
 end GGT
