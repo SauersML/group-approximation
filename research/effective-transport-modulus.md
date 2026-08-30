@@ -20,7 +20,7 @@ marked word close to the identity uniformly in the dimension.
 
 - `literal-base-explicit-kazhdan-pair` supplies an explicit honest
   eight-word affine Kazhdan pair with
-  `kappaB=1/(64*sqrt(3000))`. This is substantially stronger than merely
+  `kappaB=1/(5*sqrt(3000)+2)`. This is substantially stronger than merely
   knowing qualitative property `(T)`.
 - `p13-rotation-relator-defect-219` expands the checked short-word replay:
   rotation-relator defect `delta` makes every substituted P13 relator defect
