@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw91-finitary-permutation-wreath-audit-2026-08-30.md
   - research/artifacts/stw91-anchored-free-product-permanence-audit-2026-08-30.md
   - research/artifacts/stw91-php-crossed-product-selflessness-audit-2026-08-30.md
+  - research/artifacts/fkop-graph-product-selflessness-v3-audit-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
@@ -85,6 +86,12 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
   by finite induced cographs.  General graph products remain outside this
   argument because vertex removal introduces amalgamation over link
   subgroups.
+- `graph-products-connected-complement-are-selfless` imports the final August
+  2026 theorem of Flores--Klisse--O Cobhthaigh--Pagliero.  A countable graph
+  with at least three vertices and connected complement, with arbitrary
+  nontrivial countable vertex groups, has completely selfless reduced group
+  algebra.  This uses neither exactness nor prior selflessness of the vertex
+  algebras.
 - `stw91-finitary-permutation-wreaths-are-selfless` proves that
   `P^(X) rtimes L` is selfless whenever `P` is a nontrivial countable linear
   C*-simple group, `X` is countably infinite, and
