@@ -6,7 +6,8 @@ import GroupApproximation.GGT.OsinTheorem12OneDebt
 
 The arbitrary-family implication `(AH₄) → (AH₁)` is already unconditional.
 Combining it with the projection-complex route to DGO Theorem 6.8 leaves
-exactly DGO Theorem 4.42 and the geometric cores of DGO Lemmas 6.5 and 6.7.
+exactly DGO Theorem 4.42, the published finite-index conclusion of DGO Lemma
+6.5, and the geometric core of DGO Lemma 6.7.
 -/
 
 namespace GroupApproximation
@@ -25,25 +26,25 @@ def ElementaryDiameterForcesConjugatePowerStatement : Prop :=
 /-- The two geometric inputs assemble into the projection geometry used by
 DGO Theorem 6.8. -/
 theorem elementaryProjectionGeometry_of_inputs
-    (hct : ElementaryClosureCoarseTranslationStatement.{u})
+    (hfin : ElementaryClosureFiniteTransversalStatement.{u})
     (hpower : ElementaryDiameterForcesConjugatePowerStatement.{u}) :
     ElementaryProjectionGeometry.{u} := by
   intro G _inst D
-  exact ⟨hct G D, hpower G D⟩
+  exact ⟨hfin G D, hpower G D⟩
 
 /-- **Osin Theorem 1.2**, reduced to the three remaining source theorems.
 
-Everything after these inputs is proved in the repository: Lemma 6.5's finite
-index, quasiconvexity and properness consequences; Lemma 6.7's algebraic
-finish; DGO Theorem 6.8's assembly; and Osin's arbitrary-family enlargement. -/
+Everything after these inputs is proved in the repository: quasiconvexity and
+properness from Lemma 6.5's finite index; Lemma 6.7's algebraic finish; DGO
+Theorem 6.8's assembly; and Osin's arbitrary-family enlargement. -/
 theorem osinTheorem12_of_projection_inputs
     (h442 : DGOTheorem442.{u, u})
-    (hct : ElementaryClosureCoarseTranslationStatement.{u})
+    (hfin : ElementaryClosureFiniteTransversalStatement.{u})
     (hpower : ElementaryDiameterForcesConjugatePowerStatement.{u}) :
     OsinTheorem12.{u, v} :=
   osinTheorem12_of_dgoTheorem68
     (dgoTheorem68_of_projection h442
-      (elementaryProjectionGeometry_of_inputs hct hpower))
+      (elementaryProjectionGeometry_of_inputs hfin hpower))
 
 end Elementary
 end GGT

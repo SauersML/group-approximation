@@ -24,6 +24,12 @@ section CoarseTranslation
 variable {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X]
   [MulAction G X]
 
+/-- Explicit finite-index form: finitely many right cosets of `⟨h⟩` cover
+`E(h)`. -/
+def ElementaryClosureFiniteTransversal (h : G) : Prop :=
+  ∃ F : Set G, F.Finite ∧ ∀ a : G, a ∈ elementaryClosure h →
+    ∃ (c : ℤ) (f : G), f ∈ F ∧ a = h ^ c * f
+
 /-- The inverse of a coarse orientation-reversing translation is reversing
 with the same error and shift. -/
 theorem coarseReversing_inv (hiso : IsIsometricAction G X) {h r : G} {x : X}
@@ -86,8 +92,7 @@ theorem exists_finite_transversal_elementaryClosure_of_coarseTranslation
     (hiso : IsIsometricAction G X) {h : G} {x : X}
     (hwpd : IsWPDAt h x) (hlox : IsLoxodromic h x)
     (hct : ElementaryClosureCoarseTranslation G x) :
-    ∃ F : Set G, F.Finite ∧ ∀ a : G, a ∈ elementaryClosure h →
-      ∃ (c : ℤ) (f : G), f ∈ F ∧ a = h ^ c * f := by
+    ElementaryClosureFiniteTransversal h := by
   obtain ⟨K, hK, hall⟩ := hct h hlox
   have h2K : 0 ≤ K + K := add_nonneg hK hK
   have hKle2K : K ≤ K + K := le_add_of_nonneg_right hK
@@ -164,6 +169,22 @@ datum on its given hyperbolic space. -/
 def ElementaryClosureCoarseTranslationStatement : Prop :=
   ∀ (G : Type u) [Group G] (D : AH3Data.{u, u} G),
     @ElementaryClosureCoarseTranslation G _ D.Space D.metricSpace D.mulAction D.base
+
+/-- The published finite-index conclusion of DGO Lemma 6.5, for every
+same-universe `(AH₃)` datum. -/
+def ElementaryClosureFiniteTransversalStatement : Prop :=
+  ∀ (G : Type u) [Group G] (D : AH3Data.{u, u} G),
+    ElementaryClosureFiniteTransversal D.elt
+
+/-- Coarse translation implies the published finite-index conclusion. -/
+theorem elementaryClosureFiniteTransversalStatement_of_coarseTranslation
+    (hct : ElementaryClosureCoarseTranslationStatement.{u}) :
+    ElementaryClosureFiniteTransversalStatement.{u} := by
+  intro G _inst D
+  letI : PseudoMetricSpace D.Space := D.metricSpace
+  letI : MulAction G D.Space := D.mulAction
+  exact exists_finite_transversal_elementaryClosure_of_coarseTranslation
+    D.isometric D.wpd D.loxodromic (hct G D)
 
 /-- Properness of `E(g)` is a consequence of the uniform coarse-translation
 lemma and is not an additional DGO input. -/

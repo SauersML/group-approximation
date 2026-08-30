@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.ElementaryCoarseTranslationQuasiconvex
+import GroupApproximation.GGT.ElementaryFiniteTransversalConsequences
 
 /-!
 # The algebraic finish of DGO Lemma 6.7

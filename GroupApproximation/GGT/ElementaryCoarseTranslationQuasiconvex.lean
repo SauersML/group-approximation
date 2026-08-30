@@ -103,16 +103,38 @@ universe u v
 variable {G : Type u} [Group G] {X : Type v} [PseudoMetricSpace X]
   [MulAction G X]
 
+/-- The elementary-closure orbit is uniformly close to the power orbit at the
+basepoint.  This is the only consequence of coarse translation used for
+quasiconvexity. -/
+def ElementaryClosureOrbitClose (h : G) (x : X) : Prop :=
+  ∃ K : ℝ, 0 ≤ K ∧ ∀ g : G, g ∈ elementaryClosure h →
+    ∃ c : ℤ, dist ((h ^ c) • x) (g • x) ≤ K
+
+/-- Uniform coarse translation implies uniform closeness of the two orbits by
+specialising at exponent zero. -/
+theorem elementaryClosureOrbitClose_of_coarseTranslation
+    {h : G} {x : X} (hlox : IsLoxodromic h x)
+    (hct : ElementaryClosureCoarseTranslation G x) :
+    ElementaryClosureOrbitClose h x := by
+  obtain ⟨K, hK, hall⟩ := hct h hlox
+  refine ⟨K, hK, ?_⟩
+  intro g hg
+  obtain ⟨e, c, _he, hc⟩ := hall g hg
+  refine ⟨c, ?_⟩
+  have hzero : dist (g • x) ((h ^ c) • x) ≤ K := by
+    simpa using hc 0
+  rwa [dist_comm] at hzero
+
 /-- Uniform coarse translation makes the elementary-closure orbit
 quasiconvex.  Only the geodesic segment appearing in the definition is used;
 the ambient space need not be a geodesic space. -/
-theorem isQuasiconvexOrbitAt_elementaryClosure_of_coarseTranslation
+theorem isQuasiconvexOrbitAt_elementaryClosure_of_orbitClose
     {δ : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
     (hiso : IsIsometricAction G X) {h : G} {x : X}
     (hlox : IsLoxodromic h x)
-    (hct : ElementaryClosureCoarseTranslation G x) :
+    (hclose : ElementaryClosureOrbitClose h x) :
     IsQuasiconvexOrbitAt (elementaryClosure h) x := by
-  obtain ⟨K, hK0, hcoarse⟩ := hct h hlox
+  obtain ⟨K, hK0, hclose⟩ := hclose
   have hloxinv : IsLoxodromic h⁻¹ x := isLoxodromic_inv hiso hlox
   obtain ⟨l₁, hl₁, B₁, hB₁, hlin₁⟩ := hlox
   obtain ⟨l₂, hl₂, B₂, hB₂, hlin₂⟩ := hloxinv
@@ -145,11 +167,7 @@ theorem isQuasiconvexOrbitAt_elementaryClosure_of_coarseTranslation
   have hf'L : f' (dist x (q • x)) = q • x := by
     dsimp [f']
     rw [← hlen, hfL, ← mul_smul]
-  obtain ⟨e, c, _he, hqc⟩ := hcoarse q hqE
-  have hend : dist ((h ^ c) • x) (q • x) ≤ K := by
-    have hzero : dist (q • x) ((h ^ c) • x) ≤ K := by
-      simpa using hqc 0
-    rwa [dist_comm] at hzero
+  obtain ⟨c, hend⟩ := hclose q hqE
   rcases Int.natAbs_eq c with hc | hc
   · let y : ℕ → X := ElementaryMorse.orbitChain h x 0
     have hedge : ∀ i, i < c.natAbs →
@@ -236,6 +254,17 @@ theorem isQuasiconvexOrbitAt_elementaryClosure_of_coarseTranslation
         _ = dist (f' t) (q • x) := htranslate
         _ ≤ σ₂ := by rwa [dist_comm]
         _ ≤ max σ₁ σ₂ := le_max_right _ _
+
+/-- The coarse-translation form implies quasiconvexity through uniform orbit
+closeness. -/
+theorem isQuasiconvexOrbitAt_elementaryClosure_of_coarseTranslation
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hiso : IsIsometricAction G X) {h : G} {x : X}
+    (hlox : IsLoxodromic h x)
+    (hct : ElementaryClosureCoarseTranslation G x) :
+    IsQuasiconvexOrbitAt (elementaryClosure h) x :=
+  isQuasiconvexOrbitAt_elementaryClosure_of_orbitClose hδ hδ0 hiso hlox
+    (elementaryClosureOrbitClose_of_coarseTranslation hlox hct)
 
 end Elementary
 end GGT
