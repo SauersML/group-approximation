@@ -1,0 +1,69 @@
+---
+title: STW Problem LXXXVI --- the Berend frontier of Eckhardt--Wu Conjecture II (2026-08-30)
+---
+
+Problem LXXXVI (Eckhardt--Wu, arXiv:2408.07223, Conjecture II): a finitely
+generated elementary amenable group is virtually nilpotent iff `C*(G)` has
+finite decomposition rank.
+
+## Status screen (2026-08-30)
+
+Backward direction: virtually nilpotent ⟹ finite decomposition rank
+(Eckhardt--Gillaspy--McKenney, arXiv:1706.04142).  Forward direction open.
+Known: for `G = Z^d ⋊ Z`, finite decomposition rank implies strong
+quasidiagonality by Kirchberg--Winter, Theorem 5.3, and strong
+quasidiagonality in turn forces virtual nilpotence by Eckhardt,
+Theorem 3.3.  The converse implication "strongly quasidiagonal implies
+finite decomposition rank" is not being used.  Eckhardt--Wu 2024 verify
+the conjecture for wreath products `K ≀ H` of virtually nilpotent groups
+(their Theorem D) and observe `C*(H_3(Z[1/p]) ⋊ Z)`-type groups are not
+strongly QD.
+
+## The frontier
+
+Eckhardt's Theorem 2.4 (arXiv:1309.2205): for the action of a rank-two
+subgroup of the unit group of a totally real cubic field on its ring of
+integers `Z^3`, the group `G = Z^3 ⋊ Z^2` is polycyclic, exponential
+growth, NOT virtually nilpotent, and `C*(G)` IS strongly quasidiagonal —
+by Berend's orbit dichotomy on `T^3` (every orbit finite or dense) and the
+Archbold--Spielberg topological-freeness argument.
+
+For these groups the two most immediate obstructions are silent: all
+representations are quasidiagonal, and nuclear dimension is finite by
+Eckhardt--Wu, Theorem 5.4.  Eckhardt's proof also shows that every proper
+quotient is subhomogeneous, but it does not identify every quotient with a
+single `M_{|O|}(C(T^2))`.  The numerical bound `53` in Eckhardt--Wu belongs
+to a different example, not this one.  Decomposition rank is not known to
+be monotone under the non-strongly-QD subgroups `Z^3 ⋊ Z`.  So Conjecture
+II's forward direction, restricted to this concrete unresolved instance,
+asserts `dr(C*(Z^3 ⋊ Z^2)) = ∞`; the methods recorded above do not
+decide it.
+
+## Candidate mechanism: entropy against decomposition rank
+
+Every nonidentity element of the chosen torsion-free unit subgroup acts on
+`T^3` with positive topological entropy: an infinite-order algebraic unit
+cannot have all conjugates of modulus one.  A new theorem saying, for this
+class of algebraic actions, that finite decomposition rank forces zero
+entropy of each acting automorphism would settle the Berend case.  No such
+theorem is in the cited literature, and no reduction from general
+elementary amenable groups to this class is claimed.  The finite invariant
+torsion sets underlying quasidiagonality do not currently yield the
+contractive order-zero approximations required for decomposition rank.
+This is a proposed research direction, not evidence for a proved
+obstruction; the open node is
+`stw99-lxxxvi-berend-groups-decomposition-rank`.
+
+## Sources
+
+* C. Eckhardt, A note on strongly quasidiagonal groups, J. Operator Theory
+  73 (2015), arXiv:1309.2205.
+* D. Berend, Multi-invariant sets on tori, Trans. AMS 280 (1983).
+* C. Eckhardt, E. Gillaspy, P. McKenney, Finite decomposition rank for
+  virtually nilpotent groups, arXiv:1706.04142.
+* C. Eckhardt, J. Wu, Nuclear dimension and virtually polycyclic groups,
+  arXiv:2408.07223 (Conjectures I and II).
+* E. Kirchberg, W. Winter, Covering dimension and quasidiagonality,
+  Internat. J. Math. 15 (2004).
+* J. Rosenblatt, Invariant measures and growth conditions, Trans. AMS 193
+  (1974); C. Chou, Elementary amenable groups, Illinois J. Math. 24 (1980).

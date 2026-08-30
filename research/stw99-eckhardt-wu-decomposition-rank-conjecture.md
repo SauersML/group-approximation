@@ -20,3 +20,15 @@ decomposition rank and nuclear dimension genuinely diverge here: strong
 quasidiagonality is the obstruction (Carrión--Dadarlat--Eckhardt), which is
 the same quasidiagonality axis as the repository's MF-radical program, one
 level up (all traces, uniformly).
+
+## Attempts
+
+* Neither Chou's growth results nor the solved `Z^d ⋊ Z` case reduce the
+  full forward implication to Berend actions.  They instead motivate the
+  concrete subproblem `stw99-lxxxvi-berend-groups-decomposition-rank`: the
+  Berend-type `Z^3 ⋊ Z^2` are strongly quasidiagonal
+  (`berend-torus-actions-give-strongly-qd-polycyclic-groups`), so the
+  Kirchberg--Winter obstruction that settles the `Z^d ⋊ Z` case is provably
+  silent.  An entropy-versus-decomposition-rank implication for these
+  algebraic actions is one possible new mechanism, not a known reduction
+  of the general conjecture.
