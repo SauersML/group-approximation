@@ -3,6 +3,7 @@ rg: 2
 id: literal-group-embeds-in-hyperfinite-unitary-group
 kind: claim
 title: The literal group E has a faithful character with hyperfinite GNS closure
+refuted_by: [literal-group-mark-invisible-to-hyperfinite-representations]
 distinct_from:
   literal-group-sofic: that gives permutation models, hence an embedding of E into U(R^ω) through the ultrapower; this asks for an embedding into R itself, a single hyperfinite representation with no ultrafilter.
   literal-group-factorization-property: that concerns the canonical (regular) character of E, whose GNS closure L(E) is not hyperfinite; this asks for a different, faithful character with hyperfinite GNS closure.
@@ -36,6 +37,12 @@ character of `E` whenever
    `E/<w>` with the extension cocycle of `1 → <w> → E → E/<w> → 1`).
 
 `τ(w) = 0 ≠ 1`, and `τ(g) = 1` forces `τ_1(g) = 1`, so `g ∈ {1, w}`.
+
+**REFUTED (2026-08-30):** `literal-group-mark-invisible-to-hyperfinite-representations`
+proves that every homomorphism from `E` into the unitary group of a finite
+injective von Neumann algebra kills `w`, so no hyperfinite character of `E`
+has `τ(w) ≠ 1`, and `E` does not embed in `U(R)`.  The attempts below are
+kept as the record of the search.
 
 ## Attempts
 

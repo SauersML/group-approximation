@@ -23,7 +23,11 @@ needs one countable non-MF group inside `U(R)`.
 ## Attempts
 
 * Group witnesses: see `non-mf-subgroup-of-hyperfinite-factor-unitary-group`.
-  Kazhdan witnesses are dead; the literal group `E` is the live candidate.
+  Kazhdan witnesses are dead; the literal group `E` and the Clifford
+  witnesses are dead too (`literal-group-mark-invisible-to-hyperfinite-representations`,
+  `clifford-witness-has-no-hyperfinite-marked-representation`).  No known
+  non-MF group remains as a candidate; a witness needs a non-MF certificate
+  that survives hyperfinite representations.
 * Non-group witnesses: any separable non-quasidiagonal `A` with a faithful
   trace of hyperfinite GNS closure.  By Tikuisis--White--Winter and Gabe such
   an `A` is not both exact and UCT (recorded by the peer lane in

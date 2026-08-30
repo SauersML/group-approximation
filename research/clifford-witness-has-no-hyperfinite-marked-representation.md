@@ -40,6 +40,12 @@ base and finiteness of matrix algebras; this one uses uniqueness of the
 trace on the marked lamp algebra, outerness of the site permutations on
 its hyperfinite completion, and nonamenability of `SL_3(Z) ≤ Σ`.
 
+Subsumed for the block-commuting quotient of `E`, and for `E` itself, by
+`literal-group-mark-invisible-to-hyperfinite-representations`, whose proof
+is independent of this one (it uses one block and the translations rather
+than uniqueness of the UHF trace).  The Clifford witness `W = Cl(X) ⋊ Σ` is
+not a quotient of `E`, so this node remains the record for it.
+
 Soficity of `W` (`sofic-non-mf-witness`) gives `W ↪ U(R^ω)` with `ζ ≠ 1`;
 so the sign survives in the ultrapower of `R` but in no finite injective
 algebra.  The argument fails in `R^ω` exactly at the last step: `R^ω` is
