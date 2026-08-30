@@ -9,6 +9,7 @@ distinct_from:
   hs-expander-block-decomposition: that is the HS transcription of Kun's decomposition, which is the INPUT to Kun–Thom Theorem 4.1; this is the transcription of Theorem 4.1 itself, and it needs the cluster groupoid and the two median arguments on top of any decomposition
 artifacts:
   - notes/TRUE_DIAGONAL_NORMALIZER_RIGIDITY.md
+  - research/artifacts/nonhyperlinear-literature-delta-2026-08-30.md
 ---
 
 Let `Γ < G` be an infranormal, non-normal Kazhdan pair and let
@@ -85,6 +86,17 @@ Adjacent, and worth reading before attacking: Alekseev–Thom arXiv:2608.05362,
 whose conclusion is that the centralizer of a sofic embedding of a Kazhdan
 group is itself a metric ultraproduct of **permutation** groups. The
 permutation-specificity of that conclusion is exactly the point at issue here.
+
+**2026-08-30 (De Bondt--Thom does not close the coordinate gate).**
+arXiv:2607.19556v1 proves coordinate recognition and rigidity for
+isomorphisms of whole normalized-HS reduced products of unitary groups and
+matrix algebras.  Its input is an ambient isomorphism; it does not give a
+coordinate description of `sigma(Gamma)'` for an arbitrary embedded Kazhdan
+subgroup, and it does not compare that commutant with the commutant of
+`sigma(t Gamma t^-1)`.  Consequently it supplies neither (CCR) nor the
+surjectivity needed to turn the automatic one-sided inclusion into
+normalization.  The exact distinction and source locations are recorded in
+the 2026-08-30 literature-delta artifact.
 
 ## Attempts
 
