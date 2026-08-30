@@ -219,6 +219,10 @@ namespace PowerAxisSegment
 
 variable {h : G} {x : X}
 
+/-- Power vertex on the translated axis at an arbitrary integer coordinate. -/
+def vertex (p : PowerAxisSegment h x) (n : ℤ) : X :=
+  (p.translate * h ^ n) • x
+
 /-- Initial endpoint of an oriented translated power-axis segment. -/
 def initial (p : PowerAxisSegment h x) : X :=
   (p.translate * h ^ p.start) • x
@@ -271,6 +275,24 @@ theorem terminal_eq_pow_smul_initial (p : PowerAxisSegment h x) :
   congr 1
   rw [conj_zpow]
   group
+
+omit [PseudoMetricSpace X] in
+/-- Powers of the translated-axis conjugate advance its integer vertex
+coordinate by the same amount. -/
+theorem conjugate_zpow_smul_vertex (p : PowerAxisSegment h x) (k n : ℤ) :
+    (p.conjugate ^ k) • p.vertex n = p.vertex (n + k) := by
+  dsimp [conjugate, vertex]
+  rw [← mul_smul]
+  congr 1
+  rw [conj_zpow]
+  group
+
+omit [PseudoMetricSpace X] in
+/-- The preceding translation identity based at the segment's initial
+vertex. -/
+theorem conjugate_zpow_smul_initial (p : PowerAxisSegment h x) (k : ℤ) :
+    (p.conjugate ^ k) • p.initial = p.vertex (p.start + k) := by
+  exact p.conjugate_zpow_smul_vertex k p.start
 
 /-- Path length is the natural step count times the connector length. -/
 theorem length_eq_steps_mul (p : PowerAxisSegment h x) :
