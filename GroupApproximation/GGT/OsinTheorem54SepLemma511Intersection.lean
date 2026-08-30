@@ -348,6 +348,45 @@ def Lemma511FourGonPieces (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
           (vertex (1 : G) s a)⁻¹ * vertex (1 : G) s a' ∈ D.relBall lam Dc ∧
           (vertex (1 : G) s a')⁻¹ * vertex k p j ∈ D.relBall lam Dc
 
+/-- **The genuinely geometric part of the four-gon argument.**
+
+The shared coset meets a geodesic `s : 1 → k`; the two triangles cut off by
+that component have short entrance and exit connectors.  The middle span is
+deliberately absent: once the component has been found, its radius-`Dc` bound
+is exactly the hypothesis that the shared coset is not in `S(1,k;Dc)`. -/
+def Lemma511FourGonConnectors (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
+  ∀ (lam : Λ) (k z : G) (p : List (RelLetter G Λ))
+    (i i' j j' : ℕ), IsGeodesicWord D 1 z p →
+      IsComp lam p i i' → IsComp lam p j j' →
+      (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) =
+        QuotientGroup.mk (vertex k p j) →
+      (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) ∉
+        sepSet D lam Dc 1 k →
+      ∃ (s : List (RelLetter G Λ)) (a a' : ℕ),
+        IsGeodesicWord D 1 k s ∧ IsComp lam s a a' ∧
+          (vertex (1 : G) p i)⁻¹ * vertex (1 : G) s a ∈ D.relBall lam Dc ∧
+          (vertex (1 : G) s a')⁻¹ * vertex k p j ∈ D.relBall lam Dc
+
+/-- **The non-separator hypothesis bounds the middle component.**
+
+If the component of `s` had span outside the radius-`Dc` relative ball, then
+`s` itself would witness that its coset belongs to `S(1,k;Dc)`.  The left
+connector identifies that coset with the shared coset, contradicting the
+hypothesis. -/
+theorem fourGonPieces_of_connectors (D : RelGenSet G Λ) (Dc : ℕ)
+    (hconnectors : Lemma511FourGonConnectors D Dc) :
+    Lemma511FourGonPieces D Dc := by
+  intro lam k z p i i' j j' hp hi hj hcos hnot
+  obtain ⟨s, a, a', hs, hd, hleft, hright⟩ :=
+    hconnectors lam k z p i i' j j' hp hi hj hcos hnot
+  have hmid :
+      (vertex (1 : G) s a)⁻¹ * vertex (1 : G) s a' ∈ D.relBall lam Dc := by
+    by_contra hdeep
+    apply hnot
+    refine ⟨s, a, a', hs, ⟨hd, hdeep⟩, ?_⟩
+    exact QuotientGroup.eq.mpr hleft.1
+  exact ⟨s, a, a', hs, hd, hleft, hmid, hright⟩
+
 /-- **The three four-gon pieces imply equation (38).**
 
 This is the last line of Osin's geometric estimate: compose the entrance
@@ -487,7 +526,7 @@ theorem sharedGap_of_entranceGapBound [Fintype Λ]
 /-- The exact remaining geometry of Lemma 5.11: construct the three pieces of
 the local four-gon estimate (38). -/
 def Lemma511Geometry [Fintype Λ] (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
-  Lemma511FourGonPieces D Dc
+  Lemma511FourGonConnectors D Dc
 
 /-- A nonempty finite set of at most `n` elements can be enumerated by
 `Fin n`.  The unused indices are filled with one element of the set. -/
