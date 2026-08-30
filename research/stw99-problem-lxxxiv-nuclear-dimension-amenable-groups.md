@@ -27,6 +27,15 @@ finite nuclear dimension forces the abelianization to have finite rational
 rank.  This gives an immediate infinite-dimensional certificate for every
 amenable group surjecting onto an infinite-rank abelian group.
 
+There is now a nonabelian quotient obstruction which can remain effective
+when that rank is zero.  `stw84-wreath-quotient-obstruction` proves that every
+countable amenable group surjecting onto `K wr H` has infinite-dimensional
+group C*-algebra whenever `K` is infinite virtually polycyclic and `H` is
+infinite finitely generated virtually nilpotent.  In particular
+`D_infinity wr D_infinity` has finite abelianization but infinite nuclear
+dimension, and the same conclusion holds for all its countable amenable
+extensions.
+
 The inductive-limit theorem `stw84-directed-union-uniform-bound` passes a
 uniform nuclear-dimension bound from an increasing exhaustion by amenable
 subgroups to the whole group.  Combined with the exact finitely generated
@@ -84,4 +93,7 @@ generated subgroup can meet the locally finite kernel in an infinite group.
 The directed-union argument also needs a uniform bound; it gives no control
 when the Hirsch lengths of finitely generated subgroups diverge.  Thus the
 remaining frontier includes unrestricted locally-finite-by-abelian groups
-and the general finite-Hirsch-length elementary amenable conjecture.
+and the general finite-Hirsch-length elementary amenable conjecture.  The
+wreath-quotient theorem gives a robust negative class but does not provide a
+converse: absence of such a quotient is not known to imply finite nuclear
+dimension.
