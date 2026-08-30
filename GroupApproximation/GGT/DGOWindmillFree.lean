@@ -15,16 +15,22 @@ itself, in two places, and this module proves it.
 
 ## Where it is spent
 
-* **The word algebra.**  A spelling of one syllable, `g = b₁ a₁` with
-  `a₁ ∈ G_W` nontrivial, is cyclically reduced *automatically*: the seam
-  condition at the wrap-around is `a₁ • d₁ ≠ d₁`, and that is exactly freeness.
-  Without it the three terminal cases of the cyclic reduction do not close, and
-  the induction has no base.  It is the one geometric fact the word-combinatorial
-  layer takes as a hypothesis, and `eq_one_of_smul_eq_apex` below is stated in
-  precisely the shape that layer binds.
-* **The growth step.**  `C₁` has to be `G_W`-invariant for the unfolded windmill
-  `W₂ = G₂ · W₁` to have the apices the induction expects, and the invariance is
-  proved here too.
+* **The word algebra.**  In a one-syllable spelling `g = p₁ b₁` the wrap-around
+  seam reads `p₁ • d₁ ≠ d₁`.  Freeness is spent in the branch where that seam
+  **fails**: `p₁` then fixes `d₁`, so `hfree` forces `p₁ = 1` and `g = b₁` lands
+  in `Rot d₁`, which is the second of cyclic reduction's three shapes.  Without
+  it that shape is unreachable and the failing seam has nowhere to go.  The case
+  `p₁ ≠ 1`, where the seam holds and the element is cyclically reduced, is the
+  contrapositive and needs no separate argument.  This is the one geometric fact
+  the word-combinatorial layer takes as a hypothesis, and
+  `eq_one_of_smul_eq_apex` below is stated in precisely the shape it binds.
+* **The broken-path induction.**  `C₁` has to be `G_W`-invariant, because the
+  developed apices of a word are `G_W`-translates of its directions and the
+  corner lemma needs each of them to lie in the reference set of the next.
+  `GGT/DGOWindmillPath.lean` spends the invariance twice per syllable.  The word
+  algebra itself does *not* need it --- in its grouping a merge keeps the
+  direction the left syllable already had, so no direction is ever moved --- so
+  this clause is here for the geometry alone.
 
 ## The proof is two lines of case analysis, and both branches were already built
 
