@@ -88,6 +88,20 @@ minimal-level projection.  Thus the stationary threshold of a hypothetical
 LXXIV counterexample cannot be ruled out by subhomogeneity, compact primitive
 spectrum, or any uniform finite bound on fibre dimensions alone.
 
+This arithmetic persists on every finite connected graph.  For scalar
+rank constraints `r_v` at its vertices,
+`stw74-graph-rank-lcm-controls-matrix-threshold` computes the first
+projection level as
+
+```text
+lcm_v(r_v)/min_v(r_v).
+```
+
+Equal-rank endpoint projections extend independently across all edges, so
+neither branching nor cycles improve descent.  Passing to the coefficient
+algebra of a first-level full projection again preserves projectionlessness,
+compact primitive spectrum, subhomogeneity, and the exact threshold.
+
 There is also a comparison-free structural positive class:
 `stw74-algebraic-cu-characterizes-pure-infiniteness` proves that, under the
 LXXIV hypothesis, `A` is purely infinite exactly when `Cu(A)` is algebraic.

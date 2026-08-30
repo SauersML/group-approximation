@@ -193,6 +193,30 @@ finite first level `m>=2` occurs.  The abstract stationary threshold isolated
 for an LXXIV counterexample is therefore already the full range of behaviour
 inside compact-spectrum type-I coefficient algebras.
 
+The endpoint computation has a graph-level form.  Let `X` be a finite
+connected graph and constrain the value at its vertex `v_i` to a scalar
+multiple of a rank-`r_i` projection.  Any matrix-valued projection field has
+one constant rank `d`, and at the vertices
+
+```text
+d=alpha_i r_i,                 1<=alpha_i<=k.
+```
+
+Hence `d` is a common multiple of all vertex ranks.  Conversely, projections
+of the common rank `L=lcm_i(r_i)` can be joined along each edge because
+equal-rank projections in a full matrix algebra are path connected.  The
+exact first level is therefore
+
+```text
+k=L/min_i r_i.
+```
+
+This proves that the topology of a finite graph contributes no additional
+threshold obstruction: only the vertex-rank arithmetic survives.  Unequal
+ranks give another projectionless subhomogeneous family, and passing to the
+coefficient algebra of a minimal projection retains fullness, compact
+primitive spectrum, and the same threshold.
+
 ### Algebraic Cuntz semigroups close the hinge
 
 There is a comparison-free positive class not covered by the weak-omega or

@@ -46,3 +46,8 @@ Consequently every prescribed threshold `m>=2` occurs: take
 for irreducible dimensions, compact primitive spectrum, fullness of the
 stabilized projection, or finiteness of the first stabilization level can
 force a level-one projection.
+
+The theorem `stw74-graph-rank-lcm-controls-matrix-threshold` extends the
+calculation from an interval to arbitrary finite connected graphs: the exact
+threshold is the least common multiple of all vertex ranks divided by the
+smallest vertex rank.  Branching and cycles create no additional obstruction.
