@@ -43,9 +43,9 @@ variable {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
 alphabet: suitability gives a loxodromic element of `N`, a loxodromic element
 has infinite order and so is not the identity, and a nonidentity element has a
 nonempty spelling whose first letter is the one wanted. -/
-theorem exists_mem_base_of_base_eq {Λ : Type w} {D : GGT.RelGenSet G Λ}
-    (hbase : D.base = A.alphabet.carrier) (hN : Suitable A.alphabet N) :
-    ∃ g : G, g ∈ D.base := by
+theorem exists_mem_base_of_base_le {Λ : Type w} {D : GGT.RelGenSet G Λ}
+    (hle : A.alphabet.carrier ⊆ D.base) (hN : Suitable A.alphabet N) :
+    ∃ g : G, g ∈ D.base ∧ g⁻¹ ∈ D.base := by
   obtain ⟨g, _hgN, _h, _hhN, hg, _hh, _hind⟩ := hN.actsNonElementarily
   have hg1 : g ≠ 1 := by
     intro h1
@@ -59,31 +59,48 @@ theorem exists_mem_base_of_base_eq {Λ : Type w} {D : GGT.RelGenSet G Λ}
       refine hg1 ?_
       rw [← hl.prod_eq, List.prod_nil]
   | cons b t =>
-      refine ⟨b, ?_⟩
-      rw [hbase]
-      exact hl.letters b (List.mem_cons.mpr (Or.inl rfl))
+      have hb : b ∈ A.alphabet.carrier :=
+        hl.letters b (List.mem_cons.mpr (Or.inl rfl))
+      exact ⟨b, hle hb, hle (A.alphabet.symmetricGenerating.inv_mem b hb)⟩
 
 /-- **`t⁻¹` has a base spelling.** -/
-theorem exists_base_spelling_of_base_eq {Λ : Type w} {D : GGT.RelGenSet G Λ}
-    (hbase : D.base = A.alphabet.carrier) (t : G) :
+theorem exists_base_spelling_of_base_le {Λ : Type w} {D : GGT.RelGenSet G Λ}
+    (hle : A.alphabet.carrier ⊆ D.base) (t : G) :
     ∃ p : List G, (∀ g ∈ p, g ∈ D.base) ∧ p.prod = t⁻¹ := by
   obtain ⟨l, hl⟩ := exists_isWord A.alphabet.symmetricGenerating t⁻¹
   refine ⟨l, ?_, hl.prod_eq⟩
   intro g hg
-  rw [hbase]
-  exact hl.letters g hg
+  exact hle (hl.letters g hg)
+
+/-- **When `t⁻¹` is itself a base letter it spells itself, in one letter.**
+
+`exists_base_spelling_of_base_le` spells `t⁻¹` over Hull's alphabet and only
+then pushes the letters into the base, so it returns an `𝒜`-spelling however
+large the base is; membership of `t⁻¹` in the base does not shorten it.  This
+is the lemma that does.
+
+It matters because of what `|p| = 1` buys downstream and not because anything
+today reads it: Hull reads his relator in an alphabet with `t` adjoined, so his
+word carries exactly ONE `X`-letter and satisfies Dahmani--Guirardel--Osin's
+(W1) and (W4), while a relator whose base part is a long `𝒜`-spelling carries
+`|p|` of them and satisfies neither.  The Ledger's item 2 records what that
+costs. -/
+theorem exists_singleton_base_spelling_of_mem {Λ : Type w}
+    {D : GGT.RelGenSet G Λ} {t : G} (ht : t⁻¹ ∈ D.base) :
+    ∃ p : List G, p.length = 1 ∧ (∀ g ∈ p, g ∈ D.base) ∧ p.prod = t⁻¹ := by
+  refine ⟨[t⁻¹], rfl, ?_, List.prod_singleton⟩
+  intro g hg
+  rw [List.mem_singleton.mp hg]
+  exact ht
 
 /-- **The base spelling of `t⁻¹` may be taken arbitrarily long**, by padding
 with a letter and its inverse. -/
-theorem exists_long_base_spelling_of_base_eq {Λ : Type w}
-    {D : GGT.RelGenSet G Λ} (hbase : D.base = A.alphabet.carrier)
+theorem exists_long_base_spelling_of_base_le {Λ : Type w}
+    {D : GGT.RelGenSet G Λ} (hle : A.alphabet.carrier ⊆ D.base)
     (hN : Suitable A.alphabet N) (t : G) (P : ℕ) :
     ∃ p : List G, P ≤ p.length ∧ (∀ g ∈ p, g ∈ D.base) ∧ p.prod = t⁻¹ := by
-  obtain ⟨g, hg⟩ := exists_mem_base_of_base_eq hbase hN
-  have hginv : g⁻¹ ∈ D.base := by
-    rw [hbase] at hg ⊢
-    exact A.alphabet.symmetricGenerating.inv_mem g hg
-  obtain ⟨p₀, hp₀base, hp₀prod⟩ := exists_base_spelling_of_base_eq hbase t
+  obtain ⟨g, hg, hginv⟩ := exists_mem_base_of_base_le hle hN
+  obtain ⟨p₀, hp₀base, hp₀prod⟩ := exists_base_spelling_of_base_le hle t
   induction P with
   | zero => exact ⟨p₀, Nat.zero_le _, hp₀base, hp₀prod⟩
   | succ P ih =>
@@ -105,7 +122,7 @@ the composition takes it in: `p` is chosen once, at `P := 1`, before `B`. -/
 theorem exists_long_base_spelling₂ (E : HypEmbeddedCore₂ A N)
     (hN : Suitable A.alphabet N) (t : G) (P : ℕ) :
     ∃ p : List G, P ≤ p.length ∧ (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ :=
-  exists_long_base_spelling_of_base_eq E.base_eq hN t P
+  exists_long_base_spelling_of_base_le E.base_le hN t P
 
 end Spelling
 

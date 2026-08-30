@@ -96,7 +96,7 @@ consumes quasi-geodesicity rather than producing it.
   itself --- `eps` is given before anything it chooses, and enlarging the
   constant only weakens the count --- so `cnt` stays a constant of the core.
   The length bound `|py| ≤ eps + 2` is why
-  `HullSC.exists_side_spelling_of_base_eq` takes a MINIMAL spelling and pads
+  `HullSC.exists_side_spelling_of_base_le` takes a MINIMAL spelling and pads
   it, rather than taking any spelling at all.
 
   **Where values enter.**  `HullSC.quasiGeodesic_relatorWord₂_of_blockCount`
@@ -394,12 +394,12 @@ unsound without them.
 
 The two side conditions `0 < |py|`, `0 < |pz|` are met by padding the
 connectors' base spellings with a letter and its inverse
-(`HullSC.exists_long_base_spelling_of_base_eq` at `P := 1`, applied to `y⁻¹`
+(`HullSC.exists_long_base_spelling_of_base_le` at `P := 1`, applied to `y⁻¹`
 and `z⁻¹`).  Padding changes neither what the spelling names nor its word norm,
 and nothing downstream reads the LENGTH of a short side -- the pinning estimate
 reads `wordNorm (listVal p) ≤ eps` -- so the degenerate branches `y = 1` and
 `z = 1` need no separate treatment.  This is a proved step and not a clause:
-`HullSC.exists_side_spelling_of_base_eq` returns the padded word with its
+`HullSC.exists_side_spelling_of_base_le` returns the padded word with its
 letters, its positive length, its value, and its RELATIVE norm, the last by
 monotonicity of the word length in the alphabet, and
 `HullSC.exists_side_spelling₂` is the form over the two-subgroup core.  What

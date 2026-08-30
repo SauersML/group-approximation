@@ -2987,3 +2987,6 @@ import GroupApproximation.GGT.HullEeSplice
 import GroupApproximation.GGT.DGOQuasiAxis
 import GroupApproximation.GGT.RelHypOsin24CayleyTwoInput
 import GroupApproximation.GGT.RelHypOsin24Greendlinger
+import GroupApproximation.GGT.HullSCCoreAdjoinPair
+import GroupApproximation.GGT.HullSCRelatorSeparation2Inputs
+import GroupApproximation.GGT.HullHeGXPairOfFamily

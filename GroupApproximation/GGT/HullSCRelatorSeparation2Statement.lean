@@ -114,10 +114,7 @@ theorem hullRelatorStatement₂_of_separationNe₂
         ≤ mu * ((relatorWord₂ p (E.lox false) (E.lox true) ms).length : ℝ) :=
       mul_le_mul_of_nonneg_left h4 (le_of_lt hmu)
     linarith [hBL, h5]
-  have hbase : ∀ g ∈ E.rel.base, g⁻¹ ∈ E.rel.base := by
-    intro g hg
-    rw [E.base_eq] at hg ⊢
-    exact A.alphabet.symmetricGenerating.inv_mem g hg
+  have hbase : ∀ g ∈ E.rel.base, g⁻¹ ∈ E.rel.base := E.base_inv
   have hfam : ∀ b : Bool, E.rel.fam b = E.H b := by
     intro b
     rw [E.fam_eq]

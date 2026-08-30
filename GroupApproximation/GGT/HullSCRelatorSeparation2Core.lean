@@ -40,8 +40,22 @@ structure HypEmbeddedCore₂ {G : Type u} [Group G] (A : HullGeneratingSet G)
     (N : Subgroup G) where
   /-- The relative generating set, with Hull's alphabet as its base. -/
   rel : GGT.RelGenSet G Bool
-  /-- Its base is Hull's alphabet. -/
-  base_eq : rel.base = A.alphabet.carrier
+  /-- Its base CONTAINS Hull's alphabet, and may be larger.
+
+  Hull reads his relator in `(𝒜 ∪ {t^{±1}}) ⊔ ⟨h₁⟩ ⊔ ⟨h₂⟩`, adjoining `t` to
+  the alphabet as a letter so that the relator carries ONE `X`-letter; this
+  chain spells `t⁻¹` as a word over `𝒜` and so carries `|p|` of them, which is
+  what puts every piece meeting the base arc outside Dahmani--Guirardel--Osin's
+  (W1) and (W4).  Containment rather than equality is what lets a caller work
+  over the enlarged alphabet; DGO's Corollary 4.27 is what licenses the
+  enlargement, and it is owed at the consumer rather than here. -/
+  base_le : A.alphabet.carrier ⊆ rel.base
+  /-- The base is closed under inversion.  Under the old equality this came
+  free from `A.alphabet.symmetricGenerating`; a larger base has to carry it,
+  and it is the only half of `IsSymmetricGeneratingSet` that does --- the
+  generating half follows from `base_le` by monotonicity of `Subgroup.closure`
+  (`HullSC.isSymmetricGeneratingSet_base₂`). -/
+  base_inv : ∀ x ∈ rel.base, x⁻¹ ∈ rel.base
   /-- The two hyperbolically embedded subgroups. -/
   H : Bool → Subgroup G
   /-- They are the family of `rel`. -/
@@ -76,11 +90,17 @@ section Core
 
 variable {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
 
-/-- The base of the two-subgroup core is a symmetric generating set. -/
+/-- The base of the two-subgroup core is a symmetric generating set.
+
+Inversion-closure is the field; generation is not, because a superset of a
+generating set generates. -/
 theorem isSymmetricGeneratingSet_base₂ (E : HypEmbeddedCore₂ A N) :
     IsSymmetricGeneratingSet E.rel.base := by
-  rw [E.base_eq]
-  exact A.alphabet.symmetricGenerating
+  refine ⟨E.base_inv, ?_⟩
+  have hmono : Subgroup.closure A.alphabet.carrier ≤ Subgroup.closure E.rel.base :=
+    Subgroup.closure_mono E.base_le
+  rw [A.alphabet.symmetricGenerating.closure_eq] at hmono
+  exact eq_top_iff.mpr hmono
 
 /-- The powers of each of the two elements are all distinct. -/
 theorem injective_pow_lox₂ (E : HypEmbeddedCore₂ A N) (b : Bool) :

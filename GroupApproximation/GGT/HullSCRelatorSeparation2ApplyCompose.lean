@@ -187,7 +187,7 @@ and separated --- comes from
 `HullSC.exists_separated_relator_exponents₂_cross` at radius
 `max rho (Cm * 4)`, which is the given `rho` enlarged to what the matching step
 wants; the given `rho` is recovered by `HullSC.notMem_relBall_of_le`. -/
-theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
+theorem separationNe₂_clause_of_spelling (E : HypEmbeddedCore₂ A N)
     (hN : Suitable A.alphabet N) (cnt : ℕ) {δ : ℕ}
     (hδ : Hyperbolic.IsFourPointHyperbolic E.rel.alphabet.carrier δ)
     (hcount : ∀ (p : List G) (ms : List ℕ)
@@ -219,7 +219,9 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
               (py.length + u.length + pz.length + (u'.length - m)) →
           (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
             GGT.OsinComponents.vertex (1 : G) u' m ∉ E.rel.fam s))
-    (t : G) (eps rho : ℕ) :
+    (t : G) (p₀ : List G) (hp₀ : 0 < p₀.length)
+    (hp₀base : ∀ g ∈ p₀, g ∈ E.rel.base) (hp₀prod : p₀.prod = t⁻¹)
+    (eps rho : ℕ) :
     ∃ B : ℕ, ∀ L : ℕ, ∃ (p : List G) (ms : List ℕ),
       (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ ∧ L ≤ ms.length ∧
         (∀ m ∈ ms, ∀ b : Bool, E.lox b ^ m ∉ E.rel.relBall b rho ∧
@@ -235,8 +237,9 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
                           = y * GGT.RelLetter.listVal u₀ * z →
                         GGT.RelLetter.listVal w'
                           = y * GGT.RelLetter.listVal w * y⁻¹ := by
-  obtain ⟨p, hp1, hpbase, hpprod⟩ := exists_long_base_spelling₂ E hN t 1
-  have hp0 : 0 < p.length := by omega
+  obtain ⟨p, hp0, hpbase, hpprod⟩ :
+      ∃ p : List G, 0 < p.length ∧ (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ :=
+    ⟨p₀, hp₀, hp₀base, hp₀prod⟩
   have hsymm : ∀ g ∈ E.rel.base, g⁻¹ ∈ E.rel.base :=
     fun g hg => (isSymmetricGeneratingSet_base₂ E).inv_mem g hg
   have hloxfam : ∀ b : Bool, E.lox b ∈ E.rel.fam b := by
@@ -375,6 +378,128 @@ theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
       hqlet hslet hqgq hqgs (le_refl _) hpynorm hqside hsside
     rw [hpyval] at hconj
     exact hconj
+
+/-- **The corrected separation from the general base spelling.**  The form the
+chain has always used: `p` is Hull's `t⁻¹` spelled over the alphabet, at
+`P := 1`, so `0 < |p|` and nothing more is known about its length. -/
+theorem separationNe₂_clause_of_inputs (E : HypEmbeddedCore₂ A N)
+    (hN : Suitable A.alphabet N) (cnt : ℕ) {δ : ℕ}
+    (hδ : Hyperbolic.IsFourPointHyperbolic E.rel.alphabet.carrier δ)
+    (hcount : ∀ (p : List G) (ms : List ℕ)
+      (v : List (GGT.RelLetter G Bool)),
+      RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v →
+      ∀ i j : ℕ, i ≤ j → j ≤ v.length →
+        j - i ≤ wordDist E.rel.alphabet.carrier
+          (GGT.OsinComponents.vertex (1 : G) v i)
+          (GGT.OsinComponents.vertex (1 : G) v j) + blockConst p cnt)
+    (hexcl : ∀ (p : List G) (ms : List ℕ)
+      (py pz u u' : List (GGT.RelLetter G Bool)),
+      (∃ v tl : List (GGT.RelLetter G Bool),
+        RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
+          v = u ++ tl) →
+      (∃ v tl : List (GGT.RelLetter G Bool),
+        RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
+          v = u' ++ tl) →
+      (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) →
+      (∀ x ∈ pz, ∃ g : G, x = GGT.RelLetter.base g) →
+      (∀ (s : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+        GGT.OsinComponents.IsCompStart s
+            (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+            (py.length + i') →
+        (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
+          GGT.OsinComponents.vertex (1 : G) u i' ∉ E.rel.fam s) ∧
+        (∀ (s : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+          GGT.OsinComponents.IsCompStart s
+              (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+              (py.length + u.length + pz.length + (u'.length - m)) →
+          (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
+            GGT.OsinComponents.vertex (1 : G) u' m ∉ E.rel.fam s))
+    (t : G) (eps rho : ℕ) :
+    ∃ B : ℕ, ∀ L : ℕ, ∃ (p : List G) (ms : List ℕ),
+      (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ ∧ L ≤ ms.length ∧
+        (∀ m ∈ ms, ∀ b : Bool, E.lox b ^ m ∉ E.rel.relBall b rho ∧
+          (E.lox b ^ m)⁻¹ ∉ E.rel.relBall b rho) ∧
+        ∀ w w' u₀ u₀' : List (GGT.RelLetter G Bool),
+          RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w →
+            RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
+              w' ≠ w → (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') →
+                B < u₀.length →
+                  ∀ y z : G, wordNorm E.rel.base y ≤ eps →
+                    wordNorm E.rel.base z ≤ eps →
+                      GGT.RelLetter.listVal u₀'
+                          = y * GGT.RelLetter.listVal u₀ * z →
+                        GGT.RelLetter.listVal w'
+                          = y * GGT.RelLetter.listVal w * y⁻¹ := by
+  obtain ⟨p, hp1, hpbase, hpprod⟩ := exists_long_base_spelling₂ E hN t 1
+  exact separationNe₂_clause_of_spelling E hN cnt hδ hcount hexcl t p
+    (by omega) hpbase hpprod eps rho
+
+/-- **The corrected separation with `t⁻¹` a base letter**, where the base part
+is ONE letter.
+
+The chain reads `p` only through `0 < |p|`, membership of its letters in the
+base, `p.prod = t⁻¹`, and `|p|` as an UPPER bound inside `blockConst`,
+`blockSeparation` and the (C2)/(C3) thresholds --- all monotone --- so the
+one-letter spelling substitutes soundly and only shrinks the constants.
+
+What it buys is not those constants.  A relator whose base part is a single
+letter carries exactly one `X`-letter, so it is one of Dahmani--Guirardel--Osin's
+`W`-words --- (W1) has no `xy` to forbid and (W4) holds with `U₁` empty --- and
+their Lemma 4.21(1) applies to EVERY piece of it rather than to the pieces
+lying inside the run.  That is the half of the Ledger's item 2 which is
+otherwise beyond every source.  Nothing today consumes it; the route is here so
+that the debt is one named citation rather than a gap. -/
+theorem separationNe₂_clause_of_inputs_of_mem_base (E : HypEmbeddedCore₂ A N)
+    (hN : Suitable A.alphabet N) (cnt : ℕ) {δ : ℕ}
+    (hδ : Hyperbolic.IsFourPointHyperbolic E.rel.alphabet.carrier δ)
+    (hcount : ∀ (p : List G) (ms : List ℕ)
+      (v : List (GGT.RelLetter G Bool)),
+      RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v →
+      ∀ i j : ℕ, i ≤ j → j ≤ v.length →
+        j - i ≤ wordDist E.rel.alphabet.carrier
+          (GGT.OsinComponents.vertex (1 : G) v i)
+          (GGT.OsinComponents.vertex (1 : G) v j) + blockConst p cnt)
+    (hexcl : ∀ (p : List G) (ms : List ℕ)
+      (py pz u u' : List (GGT.RelLetter G Bool)),
+      (∃ v tl : List (GGT.RelLetter G Bool),
+        RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
+          v = u ++ tl) →
+      (∃ v tl : List (GGT.RelLetter G Bool),
+        RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v ∧
+          v = u' ++ tl) →
+      (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) →
+      (∀ x ∈ pz, ∃ g : G, x = GGT.RelLetter.base g) →
+      (∀ (s : Bool) (d i' : ℕ), i' ≤ u.length → i' ≠ d →
+        GGT.OsinComponents.IsCompStart s
+            (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+            (py.length + i') →
+        (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
+          GGT.OsinComponents.vertex (1 : G) u i' ∉ E.rel.fam s) ∧
+        (∀ (s : Bool) (k m : ℕ), m ≤ u'.length → m ≠ k →
+          GGT.OsinComponents.IsCompStart s
+              (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+              (py.length + u.length + pz.length + (u'.length - m)) →
+          (GGT.OsinComponents.vertex (1 : G) u' k)⁻¹ *
+            GGT.OsinComponents.vertex (1 : G) u' m ∉ E.rel.fam s))
+    (t : G) (ht : t⁻¹ ∈ E.rel.base) (eps rho : ℕ) :
+    ∃ B : ℕ, ∀ L : ℕ, ∃ (p : List G) (ms : List ℕ),
+      (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ ∧ L ≤ ms.length ∧
+        (∀ m ∈ ms, ∀ b : Bool, E.lox b ^ m ∉ E.rel.relBall b rho ∧
+          (E.lox b ^ m)⁻¹ ∉ E.rel.relBall b rho) ∧
+        ∀ w w' u₀ u₀' : List (GGT.RelLetter G Bool),
+          RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w →
+            RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
+              w' ≠ w → (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') →
+                B < u₀.length →
+                  ∀ y z : G, wordNorm E.rel.base y ≤ eps →
+                    wordNorm E.rel.base z ≤ eps →
+                      GGT.RelLetter.listVal u₀'
+                          = y * GGT.RelLetter.listVal u₀ * z →
+                        GGT.RelLetter.listVal w'
+                          = y * GGT.RelLetter.listVal w * y⁻¹ := by
+  obtain ⟨p, hplen, hpbase, hpprod⟩ := exists_singleton_base_spelling_of_mem ht
+  exact separationNe₂_clause_of_spelling E hN cnt hδ hcount hexcl t p
+    (by omega) hpbase hpprod eps rho
 
 end Compose
 

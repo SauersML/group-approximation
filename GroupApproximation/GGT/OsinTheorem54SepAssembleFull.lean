@@ -74,7 +74,14 @@ Lemma 5.5: `GuessingGeodesicsCriterion.osinLemma55` proves it outright, so the
 from hyperbolicity of `Γ(G,X ⊔ ℋ)` to hyperbolicity of the enlarged graph ---
 is now a theorem of this tree, and `hloc` is what remains of that clause: the
 local finiteness of Lemma 5.8.  The bounded-detour condition it consumes is
-`exists_boundedDetour`, passed in below. -/
+`exists_boundedDetour`, passed in below.
+
+`hloc` and `h511` are binders here but not debts: one rung up,
+`OsinEnlargement.exists_sepDataFam_of_hemb` discharges both from `hemb` --- the
+first by `OsinComponents.relBall_enlargedY_finite`, the second by the Lemma 5.11
+chain, which needs the bound `hthr` already carries.  They stay binders at this
+rung because discharging them here would put the 5.11 modules in this file's
+import closure and collapse the distinction from the rung above. -/
 theorem sepDataFam_of_binders_of_lemma510 [Fintype Λ] (D : RelGenSet G Λ)
     {Dc : ℕ} (hDc : 1 ≤ Dc) (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base)
     (hthr : ∃ C : ℕ,

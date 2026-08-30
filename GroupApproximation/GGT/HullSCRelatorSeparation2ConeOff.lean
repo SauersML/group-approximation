@@ -68,7 +68,8 @@ def HypEmbeddedCore₂.ofConeOff {G : Type u} [Group G] {A : HullGeneratingSet G
     (hdisj : ∀ x : G, x ∈ K false → x ∈ K true → x = 1) :
     HypEmbeddedCore₂ A N where
   rel := coneOffFamily A.alphabet K
-  base_eq := rfl
+  base_le := fun _ hx => hx
+  base_inv := fun x hx => A.alphabet.symmetricGenerating.inv_mem x hx
   H := K
   fam_eq := rfl
   le := hle

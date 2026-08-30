@@ -68,7 +68,8 @@ about the elements are the three lemmas above. -/
 def HypEmbeddedCore₂.powCore (E : HypEmbeddedCore₂ A N) {M : ℕ} (hM : 0 < M) :
     HypEmbeddedCore₂ A N where
   rel := E.rel
-  base_eq := E.base_eq
+  base_le := E.base_le
+  base_inv := E.base_inv
   H := E.H
   fam_eq := E.fam_eq
   le := E.le

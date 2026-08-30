@@ -8,7 +8,7 @@ The separation hands the composition two elements, `y` and `z`, with
 as WORDS: two lists of base letters naming them, each of positive length,
 whose values are short in the relative alphabet.
 
-Both are read off the same padding.  `HullSC.exists_long_base_spelling_of_base_eq`
+Both are read off the same padding.  `HullSC.exists_long_base_spelling_of_base_le`
 at `P := 1` applied to `y⁻¹` gives a base word for `y` of length at least one,
 since padding is by a letter and its inverse and changes neither the value nor
 its norm.  That is the whole of the `0 < |py|` clause the aligned closers ask
@@ -51,19 +51,16 @@ The length bound is what the four-gon's quasi-geodesic clause is read from at
 those two sides, so the spelling has to be a MINIMAL one --- `exists_isWord`
 gives some word, and some word can be arbitrarily long.  Padding a minimal word
 by a letter and its inverse costs exactly two. -/
-theorem exists_side_spelling_of_base_eq {Λ : Type w} {D : GGT.RelGenSet G Λ}
-    (hbase : D.base = A.alphabet.carrier) (hN : Suitable A.alphabet N)
+theorem exists_side_spelling_of_base_le {Λ : Type w} {D : GGT.RelGenSet G Λ}
+    (hS : IsSymmetricGeneratingSet D.base)
+    (hle : A.alphabet.carrier ⊆ D.base) (hN : Suitable A.alphabet N)
     {y : G} {n : ℕ} (hy : wordNorm D.base y ≤ n) :
     ∃ py : List (GGT.RelLetter G Λ), 0 < py.length ∧ py.length ≤ n + 2 ∧
       (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) ∧
         (∀ x ∈ py, D.IsLetter x) ∧ GGT.RelLetter.listVal py = y ∧
           wordNorm D.alphabet.carrier (GGT.RelLetter.listVal py) ≤ n := by
-  have hS : IsSymmetricGeneratingSet D.base := by
-    rw [hbase]
-    exact A.alphabet.symmetricGenerating
   obtain ⟨l, hl, hlen⟩ := exists_isWord_length_eq hS y
-  obtain ⟨g, hg⟩ := exists_mem_base_of_base_eq hbase hN
-  have hginv : g⁻¹ ∈ D.base := hS.inv_mem g hg
+  obtain ⟨g, hg, hginv⟩ := exists_mem_base_of_base_le hle hN
   have hval : GGT.RelLetter.listVal
       ((g :: g⁻¹ :: l).map (GGT.RelLetter.base : G → GGT.RelLetter G Λ))
       = y := by
@@ -92,7 +89,8 @@ theorem exists_side_spelling_of_base_eq {Λ : Type w} {D : GGT.RelGenSet G Λ}
     exact le_trans (wordNorm_mono hsub (wordLengths_nonempty hS y)) hy
 
 /-- **The two-subgroup core's short sides.**  The form the composition takes
-them in, with the base identified by `HullSC.HypEmbeddedCore₂.base_eq`. -/
+them in, with the base containing Hull's alphabet by
+`HullSC.HypEmbeddedCore₂.base_le`. -/
 theorem exists_side_spelling₂ (E : HypEmbeddedCore₂ A N)
     (hN : Suitable A.alphabet N) {y : G} {n : ℕ}
     (hy : wordNorm E.rel.base y ≤ n) :
@@ -100,7 +98,8 @@ theorem exists_side_spelling₂ (E : HypEmbeddedCore₂ A N)
       (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) ∧
         (∀ x ∈ py, E.rel.IsLetter x) ∧ GGT.RelLetter.listVal py = y ∧
           wordNorm E.rel.alphabet.carrier (GGT.RelLetter.listVal py) ≤ n :=
-  exists_side_spelling_of_base_eq E.base_eq hN hy
+  exists_side_spelling_of_base_le (isSymmetricGeneratingSet_base₂ E) E.base_le
+    hN hy
 
 end ShortSide
 
