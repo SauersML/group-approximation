@@ -69,6 +69,14 @@ a residual special case of Problem I.  The obstruction is operator-norm
 finite-dimensional approximation, not additivity of the dimension
 function; hyperfiniteness supplies only strong/2-norm approximation.
 
+More concretely, the usual increasing matrix algebras in `R` have 2-norm
+dense union, but their operator-norm closure is a separable UHF algebra and
+is therefore proper in `R`.  Indeed `R` is operator-norm nonseparable: a
+diffuse abelian von Neumann subalgebra contains an uncountable family of
+projections at pairwise norm distance one.  Thus neither the local theorem
+above nor an ordinary sequential inductive-limit argument can be fed the
+standard hyperfinite approximation.
+
 ## Stable-ideal mechanism
 
 There is also a nonexact extension mechanism.  A bounded 2-quasitrace on a
