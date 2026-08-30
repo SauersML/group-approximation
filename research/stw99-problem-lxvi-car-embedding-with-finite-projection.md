@@ -51,6 +51,15 @@ limits built from such stages.  A successful CAR inclusion must have
 genuinely infinite module index; no trace, `K_0`, or centrality hypothesis is
 used in this obstruction.
 
+A second broad no-go concerns ambient regularity rather than the CAR
+inclusion.  `stw99-lxvi-z-stability-forbids-mixed-projections` proves that a
+simple unital Z-stable algebra is either stably finite or has every nonzero
+projection properly infinite.  Thus an LXVI witness cannot be Z-stable,
+regardless of how noncentral or infinite-index its CAR copy is.  In
+particular, every separable witness has infinite nuclear dimension: finite
+nuclear dimension would imply Z-stability in the non-elementary simple case,
+while the elementary case cannot contain an infinite projection.
+
 There is also a direct consequence for another STW problem:
 `stw99-lxvi-witness-refutes-lxxviii` proves that every LXVI witness yields a
 counterexample to Problem LXXVIII.  Thus a construction here would settle
