@@ -23,6 +23,17 @@ of every genuine two-cycle model with an acyclic connector.  Thus the second
 direction is no longer structurally opaque, but the computation is an
 obstruction rather than a dimension-one approximation.
 
+Moreover, `stw83-circle-connector-canonical-full-corner` shows that every
+finite acyclic connector in the second direction is full-corner equivalent to
+the two-vertex graph with two loops and `N` parallel connecting edges.  Thus
+the remaining circle-by-circle problem is the explicit canonical family
+
+```text
+C*(S^N tensor 1, K tensor C(T)),       N>=1,
+```
+
+not the combinatorial complexity of the connector.
+
 ## Attempts
 
 The Evington--Ng--Sims--White two-color theorem has the opposite orientation: a
@@ -35,4 +46,6 @@ decide either minimal model.  A solution needs a new color-reuse theorem for a
 stable circle ideal, or an explicit graph approximation of these two models.  In
 the circle-by-circle case it cannot be a split or quasidiagonal-extension
 argument: the graph defect makes the index map nonzero for every nontrivial
-connector.
+connector.  The canonical Toeplitz-module family still needs a genuinely new
+two-colour approximation; the ordinary Toeplitz theorem has ideal `K`, not
+`K tensor C(T)`.

@@ -226,3 +226,48 @@ circle-by-circle model.  The computation is a sharp obstruction, not a
 nuclear-dimension-one theorem; the general non-Condition-(K) frontier still
 requires a genuinely Toeplitz-type two-color construction for stable circle
 ideals, and the circle-ideal/Kirchberg-quotient direction remains open as well.
+
+## Canonical full-corner form of the circle-by-circle frontier
+
+The weighted path count is not merely a `K`-theory invariant.  Choose one
+vertex `v_0` on the upstream cycle and one vertex `w_0` on the downstream
+cycle.  Removing these vertices breaks both cycles into paths; together with
+the acyclic connector and the direction condition, the remaining finite graph
+is acyclic.  Paths which start and end in `{v_0,w_0}` without an intermediate
+visit to that set therefore form a finite first-return graph.
+
+There is one first-return loop at each chosen vertex, no path from `w_0` back
+to `v_0`, and exactly `N` first-return paths from `v_0` to `w_0`.  Expanding
+the Cuntz--Krieger relations through the acyclic complement shows that their
+path partial isometries generate the corner
+
+```text
+(p_(v_0)+p_(w_0)) C*(F) (p_(v_0)+p_(w_0)).
+```
+
+The no-exit downstream loop has full circle spectrum, so the general
+Cuntz--Krieger uniqueness theorem makes the resulting map from the canonical
+two-vertex graph injective.  The same acyclic expansion proves surjectivity.
+The corner is full because its vertices generate both cycles and, backwards
+through the connector, every remaining vertex.  Thus this is a full-corner
+isomorphism, not an inference from the boundary map.
+
+There is also a concrete model.  On the standard Hilbert `C(T)`-module, let
+`S` be the unilateral shift.  The canonical `N`-exit graph algebra is
+
+```text
+C*(S^N tensor 1, K tensor C(T)) subset M(K tensor C(T)).
+```
+
+The `N` exit partial isometries are the first `N` matrix columns, the
+downstream loop is the coordinate unitary in the `(0,0)` corner, and
+`S^N` supplies the upstream loop with rank-`N` defect.  These elements generate
+all of `K tensor C(T)`, and the no-exit-cycle uniqueness theorem again proves
+faithfulness.
+
+Consequently all finite acyclic connectors with the same `N` are stably
+isomorphic and have the same nuclear dimension.  This sharply isolates the
+remaining analytic task: construct a two-colour approximation for the
+displayed Toeplitz-module algebra.  The ordinary Toeplitz theorem does not
+apply because its ideal is `K`, whereas the canonical graph ideal here is
+`K tensor C(T)`.  No dimension-one conclusion is claimed.
