@@ -102,6 +102,19 @@ neither branching nor cycles improve descent.  Passing to the coefficient
 algebra of a first-level full projection again preserves projectionlessness,
 compact primitive spectrum, subhomogeneity, and the exact threshold.
 
+In fact the graph hypothesis is unnecessary.  The theorem
+`stw74-finite-point-ranks-no-topological-obstruction` treats
+every connected compact Hausdorff base `X`.  Any ambient constant-rank bundle
+projection can be corrected at finitely many marked fibres by unitary
+conjugations localized in disjoint neighbourhoods.  It follows that the same
+LCM formula is exact for finite `2`-complexes and arbitrary connected compact
+spaces.  More sharply, every ambiently represented vector-bundle or `K_0`
+class satisfying the pointwise rank divisibilities is retained.  Thus reduced
+`K`-theory creates no additional obstruction for finite point constraints;
+topology enters only if the desired bundle did not embed in the fixed ambient
+trivial bundle before imposing those constraints, or if data are prescribed
+on a positive-dimensional subset.
+
 There is also a comparison-free structural positive class:
 `stw74-algebraic-cu-characterizes-pure-infiniteness` proves that, under the
 LXXIV hypothesis, `A` is purely infinite exactly when `Cu(A)` is algebraic.

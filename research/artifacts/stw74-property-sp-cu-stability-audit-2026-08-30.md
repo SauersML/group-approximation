@@ -217,6 +217,31 @@ ranks give another projectionless subhomogeneous family, and passing to the
 coefficient algebra of a minimal projection retains fullness, compact
 primitive spectrum, and the same threshold.
 
+The graph computation extends without a dimension bound on the base.  Let
+`X` be any connected compact Hausdorff space and impose the same scalar
+rank-`r_i` constraints at finitely many distinct points `x_i`.  If an ambient
+rank-`d` projection `p in M_(kN)(C(X))` satisfies
+
+```text
+r_i divides d,                  d/r_i<=k,
+```
+
+then choose the required tensor-form projection at each marked fibre.  It has
+the same rank as `p(x_i)`.  A unitary identifies the two fibre projections;
+using disjoint neighbourhoods, scalar bump functions, and paths from the
+identity to those finitely many unitaries localizes all corrections to one
+global unitary `U in C(X,U(kN))`.  Thus `UpU*` satisfies every constraint and
+represents the same bundle and `K_0(C(X))` class as `p`.
+
+Consequently finite point constraints introduce no relative vector-bundle
+obstruction.  Every ambiently representable class with the arithmetic is
+realized, and the trivial rank-`L` bundle, with `L=lcm_i(r_i)`, gives the exact
+first level `L/min_i(r_i)` on every connected compact base, including every
+finite `2`-complex.  Base topology can obstruct a separately prescribed
+class from embedding into the fixed trivial `kN`-bundle, and constraints over
+positive-dimensional closed subsets can pose an extension problem, but
+neither phenomenon is created by finitely many constrained fibres.
+
 ### Algebraic Cuntz semigroups close the hinge
 
 There is a comparison-free positive class not covered by the weak-omega or
