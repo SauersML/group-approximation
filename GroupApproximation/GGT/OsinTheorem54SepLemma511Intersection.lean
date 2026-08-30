@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.OsinTheorem54SepLemma49
 import GroupApproximation.GGT.OsinTheorem54SepLemma511Count
+import GroupApproximation.GGT.DGOIsolatedComponentSplit
 
 /-!
 # Osin's Lemma 5.11: the shared separating coset
@@ -324,6 +325,45 @@ def Lemma511EntranceGapBound (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
         sepSet D lam Dc 1 k →
       (vertex (1 : G) p i)⁻¹ * vertex k p j ∈ D.relBall lam (3 * Dc)
 
+/-- **The three pieces in Osin's proof of equation (38).**
+
+Let `u` and `v` be the entrance points of the shared coset on `p` and on its
+translate `k p`.  A geodesic `s : 1 → k` has a component `d` in that coset.
+The two triangular connector estimates put `u⁻¹d₋` and `d₊⁻¹v` in the
+radius-`Dc` relative ball; because the coset is not in `S(1,k;Dc)`, the span
+`d₋⁻¹d₊` is in that ball as well.  These are precisely the three factors in
+the paper's estimate `d̂(u,v) ≤ 6C + D ≤ 3D` (our triangles are carried as
+degenerate quadrilaterals, so `4C ≤ Dc`). -/
+def Lemma511FourGonPieces (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
+  ∀ (lam : Λ) (k z : G) (p : List (RelLetter G Λ))
+    (i i' j j' : ℕ), IsGeodesicWord D 1 z p →
+      IsComp lam p i i' → IsComp lam p j j' →
+      (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) =
+        QuotientGroup.mk (vertex k p j) →
+      (QuotientGroup.mk (vertex (1 : G) p i) : G ⧸ D.fam lam) ∉
+        sepSet D lam Dc 1 k →
+      ∃ (s : List (RelLetter G Λ)) (a a' : ℕ),
+        IsGeodesicWord D 1 k s ∧ IsComp lam s a a' ∧
+          (vertex (1 : G) p i)⁻¹ * vertex (1 : G) s a ∈ D.relBall lam Dc ∧
+          (vertex (1 : G) s a)⁻¹ * vertex (1 : G) s a' ∈ D.relBall lam Dc ∧
+          (vertex (1 : G) s a')⁻¹ * vertex k p j ∈ D.relBall lam Dc
+
+/-- **The three four-gon pieces imply equation (38).**
+
+This is the last line of Osin's geometric estimate: compose the entrance
+connector, the component span, and the exit connector.  Three radius-`Dc`
+pieces give radius `3Dc`. -/
+theorem entranceGapBound_of_fourGonPieces (D : RelGenSet G Λ) (Dc : ℕ)
+    (hpieces : Lemma511FourGonPieces D Dc) :
+    Lemma511EntranceGapBound D Dc := by
+  intro lam k z p i i' j j' hp hi hj hcos hnot
+  obtain ⟨s, a, a', hs, hd, hleft, hmid, hright⟩ :=
+    hpieces lam k z p i i' j j' hp hi hj hcos hnot
+  have hfirst := span_mem_relBall_of_split D lam hleft hmid
+  have hall := span_mem_relBall_of_split D lam hfirst hright
+  have hrad : Dc + Dc + Dc = 3 * Dc := by omega
+  rwa [hrad] at hall
+
 /-- The geometric remainder of Lemma 5.11 after equation (37).
 
 For a fixed geodesic from `1` to `z`, `entrance c` is its entrance point in a
@@ -444,10 +484,10 @@ theorem sharedGap_of_entranceGapBound [Fintype Λ]
     rw [hidxj, ← hvertexG]
     group
 
-/-- The exact remaining geometry of Lemma 5.11: the local four-gon estimate
-(38). -/
+/-- The exact remaining geometry of Lemma 5.11: construct the three pieces of
+the local four-gon estimate (38). -/
 def Lemma511Geometry [Fintype Λ] (D : RelGenSet G Λ) (Dc : ℕ) : Prop :=
-  Lemma511EntranceGapBound D Dc
+  Lemma511FourGonPieces D Dc
 
 /-- A nonempty finite set of at most `n` elements can be enumerated by
 `Fin n`.  The unused indices are filled with one element of the set. -/
