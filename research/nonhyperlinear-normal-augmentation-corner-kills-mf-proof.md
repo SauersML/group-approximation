@@ -7,35 +7,21 @@ target: nonhyperlinear-normal-augmentation-corner-kills-mf
 requires: []
 ---
 
-Assume for contradiction that `G` admits a faithful homomorphism `theta` as
-in `(NAC3)`; write the norm matrix corona as `Q`.  Linear extension gives a
-star homomorphism `C[G]->Q`.  Normality of `K` makes `e_K`, hence `q_K`,
-central in `C[G]`.
+Fix an arbitrary homomorphism `theta` as in `(NAC3)` and write the norm matrix
+corona as `Q`.  Linear extension gives a star homomorphism `C[G]->Q`.
+Normality of `K` makes `e_K`, hence `q_K`, central in `C[G]`.  We prove that
+`theta` kills `K`.
 
-## Faithfulness authenticates the augmentation complement
+## Any surviving augmentation complement gives the forbidden trace
 
-We first prove
-
-```text
-theta(q_K) != 0.                                             (NAC4)
-```
-
-If `theta(q_K)=0`, then `theta(e_K)=1`.  Write `u_k=theta(k)`.
-Since the average of the `u_k` is one,
+Suppose first that
 
 ```text
-sum_(k in K) (1-u_k)^*(1-u_k)
- =2|K|1-sum_k u_k-sum_k u_k^*=0.                            (NAC5)
+theta(q_K) != 0.                                             (NAC5)
 ```
 
-Every summand is positive, so each is zero and `u_k=1` for every `k in K`.
-This contradicts injectivity of `theta` because `K` is nontrivial.  Thus
-`(NAC4)` holds.  Since it is a nonzero projection in a C-star algebra,
-`||theta(q_K)||=1`.
-
-This is exactly the step unavailable for a general nonzero algebraic
-projection: an injective group representation need not be faithful on the
-whole group algebra and may annihilate a selected irreducible block.
+Since it is a nonzero projection in a C-star algebra,
+`||theta(q_K)||=1`.  We now show that this alternative is impossible.
 
 ## Lift and cut the corner
 
@@ -108,7 +94,26 @@ Hilbert--Schmidt convergence after the corner has been normalized by
 `r_n`.  Pulling back the ultraproduct trace gives a Connes-embeddable tracial
 state on `B`.  This contradicts the hypothesis on `B`.
 
-Hence the faithful norm-corona homomorphism `(NAC3)` cannot exist, and `G`
-is weak non-MF.  Every operation used above is finite-group averaging,
-operator-norm functional calculus, projection compression, or intrinsic
-matrix-corner trace normalization.  End proof.
+Therefore every `theta` as in `(NAC3)` satisfies
+
+```text
+theta(q_K)=0,          theta(e_K)=1.                       (NAC13)
+```
+
+Write `u_k=theta(k)`.  Since their average is one,
+
+```text
+sum_(k in K) (1-u_k)^*(1-u_k)
+ =2|K|1-sum_k u_k-sum_k u_k^*=0.                          (NAC14)
+```
+
+Every summand is positive, so each is zero and `u_k=1` for every `k in K`.
+The original `theta` was arbitrary, hence `K<=Rad_MF(G)`.  Since `K` is
+nontrivial, the MF radical of `G` is nontrivial and `G` is weak non-MF.
+
+This also explains why one selected irreducible block is insufficient.  A
+corona representation may annihilate that block while retaining another
+nontrivial type, but annihilating the sum of all nontrivial types forces the
+entire finite subgroup to become trivial.  Every operation used above is
+finite-group averaging, operator-norm functional calculus, projection
+compression, or intrinsic matrix-corner trace normalization.  End proof.
