@@ -2846,6 +2846,8 @@ import GroupApproximation.GGT.DGOWindmillGlobalVR
 import GroupApproximation.GGT.DGOWindmillCorner
 import GroupApproximation.GGT.DGOBlockWord
 import GroupApproximation.GGT.MorseLemmaDischarge
+import GroupApproximation.Analysis.VoiculescuBlockIsometry
+import GroupApproximation.Analysis.VoiculescuBlockRep
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

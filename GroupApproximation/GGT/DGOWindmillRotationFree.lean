@@ -29,10 +29,14 @@ condition puts them `60δ` apart.
 * `ne_smul_of_dist_ge` -- **a nontrivial rotation about `c` moves every point at
   distance at least `30δ` from `c`**.  DGO's Corollary 5.6, with `30δ` in place
   of their `20δ` because the comparison costs `4δ` here rather than `δ`.
-* `ne_smul_of_translation_lower_bound` -- an element with a linear lower bound on
-  its orbit displacement fixes nothing.  This is the loxodromic branch of the
-  windmill's fifth axiom in the form the campaign states it, and it is what
-  rules out an elliptic element of `G_W` fixing a new apex.
+* `ne_smul_of_isLoxodromic` -- a loxodromic element fixes nothing.  This is the
+  loxodromic branch of the windmill's fifth axiom in the form the campaign
+  states it, and it is what rules out an elliptic element of `G_W` fixing a new
+  apex.
+* `isLoxodromic_of_isLoxodromic` -- loxodromy does not depend on the basepoint.
+  The broken-path induction produces a displacement bound measured from the
+  first apex of the word, while `HullSC.RotatingQuotient` asks for one at every
+  basepoint; this is the bridge, and it costs `2 d` in the additive constant.
 
 Both fixed-point lemmas are consumed by the freeness argument that makes a
 one-syllable spelling cyclically reduced; see the campaign plan.
@@ -114,34 +118,54 @@ theorem ne_smul_of_dist_ge {δ : ℝ} (hδ : 0 < δ) (hhyp : IsHyperbolicSpace �
 
 /-! ## An element with linear displacement has no fixed point -/
 
-/-- **Linear orbit growth forbids a fixed point.**  If `d(x₀, gⁿ · x₀) ≥ ρ n`
-for every `n` with `ρ > 0`, then `g` fixes no point at all: a fixed point `z`
-would bound the whole orbit by `2 d(x₀, z)`.
+/-- **A loxodromic element fixes nothing.**  A fixed point `z` bounds the whole
+orbit of `x₀` by `2 d(x₀, z)`, while `IsLoxodromic` makes it grow linearly.
 
 This is the loxodromic branch of the windmill's fifth axiom in the shape the
-campaign records it -- a translation-length bound at one basepoint rather than
-an invariant geodesic line -- and this lemma is why that shape suffices.  It is
-used to rule out an elliptic element of `G_W` fixing an apex of `C₁`, which is
-what makes a one-syllable spelling cyclically reduced. -/
-theorem ne_smul_of_translation_lower_bound (hiso : IsIsometricAction G X)
-    {g : G} {x₀ : X} {ρ : ℝ} (hρ : 0 < ρ)
-    (h : ∀ n : ℕ, ρ * n ≤ dist x₀ ((g ^ n) • x₀)) (z : X) : g • z ≠ z := by
+campaign records it -- a displacement bound at one basepoint rather than an
+invariant geodesic line -- and this lemma is why that shape suffices.  It rules
+out an elliptic element of `G_W` fixing an apex of `C₁`, which is what makes a
+one-syllable spelling cyclically reduced. -/
+theorem ne_smul_of_isLoxodromic (hiso : IsIsometricAction G X) {g : G} {x₀ : X}
+    (hlox : IsLoxodromic g x₀) (z : X) : g • z ≠ z := by
   intro hfix
+  obtain ⟨l, hl, B, -, hle⟩ := hlox
   have hpow : ∀ n : ℕ, (g ^ n) • z = z := by
     intro n
     induction n with
     | zero => rw [pow_zero, one_smul]
     | succ k ih => rw [pow_succ, mul_smul, hfix, ih]
-  obtain ⟨n, hn⟩ := exists_nat_gt ((2 * dist x₀ z) / ρ)
-  have hlt : 2 * dist x₀ z < ρ * n := by
-    rw [div_lt_iff₀ hρ] at hn
+  obtain ⟨n, hn⟩ := exists_nat_gt ((2 * dist x₀ z + B) / l)
+  have hlt : 2 * dist x₀ z + B < l * n := by
+    rw [div_lt_iff₀ hl] at hn
     linarith
   have h2 : dist z ((g ^ n) • x₀) = dist x₀ z := by
     have hiso' := hiso (g ^ n) z x₀
     rw [hpow n] at hiso'
     rw [hiso', dist_comm]
   have h1 := dist_triangle x₀ z ((g ^ n) • x₀)
-  have h3 := h n
+  have h3 := hle n
+  linarith
+
+/-- **Loxodromy does not depend on the basepoint.**  Moving the basepoint by `d`
+costs `2d` in the additive constant, the action being isometric.
+
+The windmill's fifth axiom is recorded with an existential basepoint because
+that is what the broken-path induction produces -- a bound measured from the
+first apex of the word.  The conclusion of DGO's Theorem 5.3(b) as
+`HullSC.RotatingQuotient` records it is universally quantified over the
+basepoint, and this is the bridge. -/
+theorem isLoxodromic_of_isLoxodromic (hiso : IsIsometricAction G X) {g : G}
+    {x₀ : X} (hlox : IsLoxodromic g x₀) (y : X) : IsLoxodromic g y := by
+  obtain ⟨l, hl, B, hB, hle⟩ := hlox
+  have hd : (0 : ℝ) ≤ dist y x₀ := dist_nonneg
+  refine ⟨l, hl, B + 2 * dist y x₀, by linarith, ?_⟩
+  intro n
+  have h1 := dist_triangle x₀ y ((g ^ n) • x₀)
+  have h2 := dist_triangle y ((g ^ n) • y) ((g ^ n) • x₀)
+  have h3 : dist ((g ^ n) • y) ((g ^ n) • x₀) = dist y x₀ := hiso (g ^ n) y x₀
+  have h4 : dist x₀ y = dist y x₀ := dist_comm x₀ y
+  have h5 := hle n
   linarith
 
 end DGOWindmill

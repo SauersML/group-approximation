@@ -30,11 +30,13 @@ DGO's Definition 5.11 has five clauses.  Two of them are not carried here.
   does that promotion for `3δ`, so the shortening pairs are dropped along with
   5.18 and 5.19.  They are needed for DGO's §5.1.3 Greendlinger lemmas, which
   this debt does not ask for.
-* **The invariant geodesic line** of their axiom 5 is replaced by a translation
-  bound at a single basepoint, `∀ n, ρ n ≤ d(x, gⁿ · x)`.  That is exactly what
-  `HullGeometry.IsLoxodromic` needs at every basepoint, it survives conjugation
-  in one line, and it removes the obligation to build a bi-infinite geodesic and
-  prove it lies inside `W`.
+* **The invariant geodesic line** of their axiom 5 is replaced by
+  `HullGeometry.IsLoxodromic` at a single basepoint.  That is the conclusion
+  `HullSC.RotatingQuotient` asks for, it survives conjugation in one line, and it
+  removes the obligation to build a bi-infinite geodesic and prove it lies inside
+  `W`.  It has to carry `IsLoxodromic`'s additive constant rather than a bare
+  `ρ n` bound: the broken-path induction measures displacement from the first
+  apex of the word, so moving to a fixed basepoint costs a constant.
 
 ## The constants are re-derived, not transcribed
 
@@ -134,9 +136,14 @@ against.
 
 `dichotomy` is the theorem's own conclusion, restricted to `G_W`: the induction
 proves it for a growing sequence of windmills whose union of groups is the whole
-rotation closure. -/
+rotation closure.
+
+The separation constant `ρ` is **not** a parameter: no clause mentions it.  It
+enters the growth step as a hypothesis, alongside `200δ ≤ ρ`, and the
+`IsSeparated` of the ambient family; a windmill itself is a purely metric
+object. -/
 structure IsWindmill (G : Type u) (X : Type v) [Group G] [PseudoMetricSpace X]
-    [MulAction G X] (δ ρ : ℝ) (C : Set X) (Rot : X → Subgroup G) (W : Set X) :
+    [MulAction G X] (δ : ℝ) (C : Set X) (Rot : X → Subgroup G) (W : Set X) :
     Prop where
   /-- `W` is `6δ`-quasiconvex.  DGO ask for `4δ`; the four-point condition costs
   `6δ`. -/
@@ -151,18 +158,23 @@ structure IsWindmill (G : Type u) (X : Type v) [Group G] [PseudoMetricSpace X]
   /-- `G_W` preserves `W`. -/
   invariant : ∀ g ∈ windmillGroup C Rot W, ∀ w ∈ W, g • w ∈ W
   /-- Theorem 5.3(b) for `G_W`: every element is a rotation at an apex of `W`,
-  or moves some point at a linear rate at least `ρ`. -/
+  or is loxodromic.
+
+  The loxodromic branch is existential in the basepoint because that is what the
+  broken-path induction produces -- a displacement bound measured from the first
+  apex of the word, with an additive constant.  `isLoxodromic_of_isLoxodromic`
+  moves it to every basepoint, which is the form
+  `HullSC.RotatingQuotient.rotation_or_loxodromic` records. -/
   dichotomy : ∀ g ∈ windmillGroup C Rot W,
-    (∃ c ∈ C, c ∈ W ∧ g ∈ Rot c) ∨
-      (∃ x : X, ∀ n : ℕ, ρ * n ≤ dist x ((g ^ n) • x))
+    (∃ c ∈ C, c ∈ W ∧ g ∈ Rot c) ∨ (∃ x : X, IsLoxodromic g x)
 
 /-! ## The apices inside a windmill are the ones its group rotates about -/
 
 /-- **An apex within `55δ` of a windmill is inside it.**  The contrapositive of
 `far`, in the form the growth step consumes. -/
-theorem mem_of_dist_lt_of_isWindmill {δ ρ : ℝ} {C : Set X}
+theorem mem_of_dist_lt_of_isWindmill {δ : ℝ} {C : Set X}
     {Rot : X → Subgroup G} {W : Set X}
-    (hW : IsWindmill G X δ ρ C Rot W) {c : X} (hc : c ∈ C) {w : X} (hw : w ∈ W)
+    (hW : IsWindmill G X δ C Rot W) {c : X} (hc : c ∈ C) {w : X} (hw : w ∈ W)
     (hlt : dist c w < 55 * δ) : c ∈ W := by
   by_contra hnot
   exact absurd (hW.far c hc hnot w hw) (not_le.mpr hlt)
@@ -202,7 +214,7 @@ theorem isWindmill_closedBall {δ ρ : ℝ} (hδ : 0 < δ) (hρ : 200 * δ ≤ �
     (hhyp : IsHyperbolicSpace δ X) (hgeo : IsGeodesicSpace X) {C : Set X}
     {Rot : X → Subgroup G} (hfam : IsRotatingFamily G X C Rot)
     (hsep : IsSeparated C ρ) {c₀ : X} (hc₀ : c₀ ∈ C) :
-    IsWindmill G X δ ρ C Rot (Metric.closedBall c₀ (100 * δ)) where
+    IsWindmill G X δ C Rot (Metric.closedBall c₀ (100 * δ)) where
   quasiconvex :=
     IsQuasiconvexSet.mono
       (isQuasiconvexSet_closedBall hhyp (le_of_lt hδ) hgeo c₀ (100 * δ))
