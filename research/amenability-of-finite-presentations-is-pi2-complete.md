@@ -43,6 +43,17 @@ endomorphism mapping tori are always amenable.  A successful construction
 must propagate a genuinely infinite table through a non-genuine stable
 kernel from finitely many relators.
 
+
+The stronger
+[[finite-graphs-of-amenable-groups-have-sigma1-locus]] closes every finite
+graph-of-groups compiler with amenable finitely presented vertices and
+finitely generated edges. After collapses, the only amenable cases are an
+amenable vertex, an ascending loop, or the index-two line case, all witnessed
+by finite derivations. Thus adding finitely many Bass--Serre rows, branches,
+or stable letters cannot raise the amenable locus from `Sigma^0_1` to
+`Pi^0_2`. A successful construction cannot be a finite graph of amenable
+simulators.
+
 ## What a proof would need
 
 A directly finitely presented family, presumably inside a class of
