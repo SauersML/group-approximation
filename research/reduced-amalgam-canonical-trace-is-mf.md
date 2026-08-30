@@ -2,21 +2,28 @@
 rg: 2
 id: reduced-amalgam-canonical-trace-is-mf
 kind: claim
-title: The canonical trace on the Kun-Thom group double amalgam is an MF trace
+title: The q=2, d=3 Kun--Thom double has full-norm MF coordinates carrying its canonical trace
+refuted_by:
+  - kt-full-double-cstar-is-not-mf
 distinct_from:
-  shulman-symmetric-double-has-no-stable-trace-upgrade: that is the negative source-scope correction, recording that arXiv:2603.13564v2 contains no theorem promoting Hilbert--Schmidt stability of a vertex algebra to MF-ness of a prescribed trace on the double; this is the positive statement that one specific trace on one specific double is MF, i.e. the hole that correction leaves open.
-  symmetric-double-weak-mf: that is the established algebra-level conclusion, weak MF of every symmetric double of a countable residually finite group, and it selects no trace; this asks for the strictly finer datum of a matricial trace converging to the canonical group trace.
-  shulman-amalgam-mf-criterion: that imports Shulman's Theorem 20 corona-embedding criterion for general amalgams as a literature fact; this is an open question about the trace on one instance, not an import.
-  hyperlinear-trace-not-mf-trace: that separates the two trace classes on this repository's constructed group; this asks whether the two coincide on the Kun--Thom double, and is not settled by that separation, which concerns a different group.
-  kt-double-mixed-word-trace-selection: that asks only for normalized-Hilbert--Schmidt models with the canonical mixed reduced-word traces; this asks for the strictly stronger operator-norm MF approximation of the canonical trace.
+  shulman-symmetric-double-has-no-stable-trace-upgrade: that is the negative source-scope correction, recording that arXiv:2603.13564v2 contains no theorem promoting Hilbert--Schmidt stability of a vertex algebra to MF-ness of a prescribed trace on the double; this node records that the stronger full-norm formulation is actually impossible at the explicit endpoint.
+  symmetric-double-weak-mf: that embeds the abstract double group into an auxiliary MF amalgam; it neither embeds the universal full group C-star algebra nor selects the canonical trace, and the present refutation shows that the former strengthening is impossible.
+  shulman-amalgam-mf-criterion: that imports Shulman's Theorem 20 corona-embedding criterion for general auxiliary amalgams as a literature fact; this is the now-refuted attempt to apply a full-norm conclusion to the universal algebra of one group double.
+  hyperlinear-trace-not-mf-trace: that separates the two trace classes on a different constructed group; this records a direct full-norm obstruction at the explicit Kun--Thom double and leaves its hyperlinearity undecided.
+  kt-double-mixed-word-trace-selection: that still-open node asks only for normalized-Hilbert--Schmidt models with the canonical mixed reduced-word traces; this refuted node demanded the strictly stronger asymptotically isometric operator-norm approximation.
 artifacts:
   - research/artifacts/hyperlinear-firewall-dossier-2026-08-24.md
   - research/artifacts/shulman-2603-13564-verified.md
 ---
 
-Let `Gamma < G` be a Kun--Thom infranormal Kazhdan pair -- for instance the
-explicit Theorem E pair `Gamma = EL_r(F_q[x_1..x_d])`,
-`G = EL_r(F_q[x^(+-1)]) rtimes SL_d(Z)` with `r,d >= 3` -- and let
+Fix `q=2`, `d=3`, and `r>=3` in the explicit Kun--Thom Theorem E pair
+
+```text
+Gamma = EL_r(F_2[x_1,x_2,x_3]),
+G = EL_r(F_2[x_1^(+-1),x_2^(+-1),x_3^(+-1)]) rtimes SL_3(Z),
+```
+
+and let
 
 ```text
 D = G *_Gamma G,        C*(D) = C*(G) *_(C*(Gamma)) C*(G)
@@ -25,7 +32,17 @@ D = G *_Gamma G,        C*(D) = C*(G) *_(C*(Gamma)) C*(G)
 be the group double and its full amalgam.  Let `tau` be the canonical group
 trace on `C*(D)`.
 
-**Claim.**  `tau` is an **MF trace**: there are `d_n -> infinity` and unital
+**REFUTED AS STATED.**  The requested maps cannot exist because the claim
+includes asymptotic isometry for the **full** norm.  The group `D` inherits a
+strict Kazhdan compression from either vertex, so
+`kt-full-double-cstar-is-not-mf` proves that `C*(D)` has a proper-isometry
+witness and admits no MF embedding.  Asymptotic multiplicativity plus
+asymptotic isometry would define exactly such an embedding into the norm
+matrix corona.  Trace convergence cannot repair this obstruction.  No
+assertion is made here about an unrelated Kun--Thom pair lacking a strict
+compressor.
+
+The refuted demand was: there are `d_n -> infinity` and unital
 completely positive maps `phi_n : C*(D) -> M_(d_n)(C)` which are
 asymptotically multiplicative and asymptotically isometric in **operator
 norm**, with
@@ -34,20 +51,21 @@ norm**, with
 tr_(d_n) o phi_n -> tau   pointwise.                             (RAT1)
 ```
 
-The operator-norm requirement is what makes this stronger than
-hyperlinearity of `D`, and is what makes it a statement Shulman's machinery
-can plausibly reach; see the route
-`hyperlinear-nonsofic-from-mf-amalgam-trace` for the payoff.
+The operator-norm isometry requirement is what makes the displayed statement
+false.  This refutation does not decide whether the canonical trace is MF in
+a nonfaithful trace-only convention, whether it is hyperlinear, or whether
+`C*_r(D)` is MF.
 
 ## Attempts
 
-1. **Shulman Theorem 10 directly.**  `A` separable MF and `C <= A` give
-   `A *_C A` MF, which is exactly the algebra `C*(D)` here, and is already
-   recorded at group level as `symmetric-double-weak-mf`.  It supplies norm
-   microstates for the algebra but selects **no trace**: the limit of
-   `tr_(d_n) o phi_n` along an arbitrary MF embedding need not be `tau`.
-   Dies at trace selection.  `shulman-symmetric-double-has-no-stable-trace-upgrade`
-   records that the paper contains no theorem closing this step.
+1. **Shulman Theorem 10 directly.**  The weak-MF proof first replaces
+   `C*(G)` by an auxiliary MF completion `A=C*(rho(G))`, and then proves
+   `A *_C A` MF.  It is **not** `C*(D)`: the latter is not MF by the refuter
+   above.  The injective group homomorphism `D->U(A *_C A)` therefore induces
+   a noninjective map on maximal group C-star algebras.  Trace selection was
+   not the only missing step; full-norm faithfulness was already impossible.
+   `shulman-symmetric-double-has-no-stable-trace-upgrade` separately records
+   that the paper also supplies no prescribed trace.
 
 2. **Shulman arXiv:2508.00125, Corollary 35.**  Hyperlinear traces on `B` are
    MF when `B` is homotopy dominated by a Hilbert--Schmidt-stable algebra.

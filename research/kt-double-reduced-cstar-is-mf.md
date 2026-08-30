@@ -4,7 +4,7 @@ id: kt-double-reduced-cstar-is-mf
 kind: claim
 title: The reduced C-star algebra of the q=2 Kun--Thom double is MF
 distinct_from:
-  reduced-amalgam-canonical-trace-is-mf: that asks for operator-norm microstates selecting the canonical trace on the full group C-star algebra; this asks for a norm-corona embedding of the reduced group C-star algebra, after which the trace is selected automatically by uniqueness.
+  reduced-amalgam-canonical-trace-is-mf: that refuted node asks for asymptotically isometric operator-norm microstates on the full group C-star algebra; this asks for a norm-corona embedding of the reduced group C-star algebra, after which the trace is selected automatically by uniqueness.
   symmetric-double-weak-mf: that embeds the abstract group, and in the proof a full auxiliary symmetric amalgam, into a norm matrix corona; neither conclusion says that the regular representation norm is approximated.
   kt-double-mixed-word-trace-selection: that is equivalent to hyperlinearity and controls normalized Hilbert--Schmidt moments only; reduced C-star MF additionally controls operator norms of every group-ring element.
 artifacts:
@@ -41,6 +41,15 @@ completion carrying an abstract regular trace; it does not supply `(KRC1)`.
 The concrete profinite regular completion used in
 `symmetric-double-weak-mf-proof` fails to factor through `C*_r(G)` by
 `kt-shulman-profinite-vertex-model-is-nontempered`.
+
+The maximal completion cannot be used as an intermediate either.
+`kt-full-double-cstar-is-not-mf` proves that `C*(D)` itself is not MF: the
+strict Kazhdan compressor already gives a proper isometry there.  This is
+fully compatible with the present target, because that compression
+obstruction disappears in the regular quotient, whose canonical trace is
+faithful.  Thus the reduced problem remains open, but every positive model
+must be native to the reduced norm rather than descended from either the
+profinite auxiliary completion or an MF embedding of `C*(D)`.
 
 The remaining relative-microstate architecture is quantitatively constrained
 by `kt-return-expectation-pays-one-full-edge-principal-angle`.  For the fixed
