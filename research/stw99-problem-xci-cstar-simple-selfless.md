@@ -7,6 +7,7 @@ root: true
 distinct_from:
   stw99-problem-xc-cstar-simple-strict-comparison: that asks for strict comparison; this asks for Robert's selflessness, which implies strict comparison (Robert, Theorem 3.1) and is the refinement STW record as Problem XCI.
 artifacts:
+  - research/artifacts/stw91-graph-component-selflessness-audit-2026-08-30.md
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw91-selfless-group-frontier-2026-08-30.md
   - research/artifacts/stw91-cograph-product-permanence-audit-2026-08-30.md
@@ -121,3 +122,10 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete negative
   certificate in ordered `K_0` using averaging projections of finite
   subgroups.
+
+- `graph-products-no-universal-vertex-selfless-criterion` gives an exact
+  solution for graph products with no universal vertex: C-star-simplicity is
+  equivalent to selflessness, and the sole obstruction is a two-vertex
+  complement component labelled by `C_2,C_2`.  For C-star-simple vertex
+  groups the resulting algebra is completely selfless, with no exactness or
+  prior vertex-selflessness assumption.

@@ -5,6 +5,7 @@ kind: claim
 title: The reduced C*-algebra of every C*-simple group has strict comparison (STW Problem XC)
 root: true
 artifacts:
+  - research/artifacts/stw91-graph-component-selflessness-audit-2026-08-30.md
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw90-strict-comparison-group-frontier-2026-08-30.md
   - research/artifacts/stw91-locally-finite-permutation-wreath-audit-2026-08-30.md
@@ -50,3 +51,9 @@ trace is the unique quasitrace
   finitary-action theorem.
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete ordered-`K_0`
   certificate whose violation would refute this problem.
+
+- `graph-products-no-universal-vertex-selfless-criterion` completely settles
+  the no-universal-vertex graph-product class: C-star-simplicity is equivalent
+  to selflessness, with the sole obstruction a two-vertex complement component
+  labelled by `C_2,C_2`; hence every C-star-simple group in this class has
+  strict comparison.
