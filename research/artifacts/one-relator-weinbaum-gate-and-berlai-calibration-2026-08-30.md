@@ -175,3 +175,91 @@ is strictly presentation-local and therefore sharper than asking for residual
 amenability of the whole group.  The Baumslag--Berlai theorem shows that a
 positive soficity proof need not answer this exact-quotient question: its
 finite approximations come instead from amenable-edge HNN chains.
+
+## 7. Torsion gives no new locally indicable quotient
+
+For `G_m=F/<<v^m>>`, every homomorphism to a locally indicable group kills
+`v`: locally indicable groups are torsion-free, while the relation says that
+the image of `v` has order dividing `m`.  Thus precomposition with
+`G_m->G_1=F/<<v>>` gives
+
+    Hom(G_1,Q) = Hom(G_m,Q)
+
+for every locally indicable `Q`, compatibly with the value of every word in
+`F`.  In particular, the packet gate is independent of `m`.  This separates
+the gate from the 2026 structural theorem, recalled by
+Fournier-Facio--Willett at arXiv:2603.18456v2, Example 4.14, that one-relator
+groups with torsion are virtually free-by-cyclic: that theorem proves those
+groups sofic, but the torsion itself produces no additional locally indicable
+quotient and cannot make this exact gate easier.
+
+## 8. Exact rational-solvable boundary
+
+For an arbitrary group `G`, finite set `S subset G\{1}`, and rational residual
+`R=intersection_n G_Q^(n)`, one rationally solvable quotient retains `S` if
+and only if `S intersect R` is empty.  The positive direction chooses, for
+each member of the finite packet, a rational-derived term not containing it
+and then takes the maximum of those finitely many depths.  The quotient by
+that term has a finite normal series with torsion-free abelian factors, so it
+is amenable and locally indicable.  The converse is functoriality of the
+rational derived series: every map to a rationally solvable group kills `R`.
+
+Combining this with Section 3 proves an exact dichotomy for the Weinbaum
+packet of a torsion-free one-relator group:
+
+* if its Linton radical is trivial, a finite rational-derived quotient is an
+  amenable locally indicable packet-retaining target;
+* if its Linton radical is nontrivial, no rationally solvable target retains
+  the packet, and any positive solution must have amenable image outside the
+  rationally solvable class.  When the radical is perfect, any solvable image
+  kills it, so the required image is then genuinely nonsolvable.
+
+This is a sharp obstruction, not a contradiction.  Grigorchuk--Kravchenko--
+Olshanskii, *Constructions of torsion-free countable, amenable, weakly mixing
+groups*, arXiv:1405.7605v2, Corollaries 3.2 and 3.5, construct perfect and even
+simple amenable orderable groups; their discussion notes these groups are
+locally indicable.  Thus the target class contains genuinely nonsolvable
+objects, but the usual solvable and Fox--Magnus quotient machinery can never
+reach the hard marker.
+
+## 9. A decidable cyclic-quotient family
+
+Write `e(u) in Z^d` for the exponent-sum vector of a word in
+`F=F(x_1,...,x_d)` and let
+
+    L=Sat(Z e(v))=(Q e(v)) intersect Z^d.
+
+The torsion-free abelianization relevant to every `G_m` is `A=Z^d/L`.  The
+full proper-subword packet survives in a torsion-free abelian quotient if and
+only if `e(u) notin L` for every member `u` of that packet.  When this finite
+lattice test succeeds, the packet already survives in one cyclic quotient:
+choose an integer functional on `A` outside the finitely many rational
+hyperplanes that annihilate one of the nonzero packet vectors.  This gives an
+explicit homomorphism `G_m->Z` retaining every proper subword and closes the
+gate for a broad presentation-visible family.
+
+## 10. August 2026 exponential-germ candidate for Baumslag--Gersten
+
+Carl-Fredrik Nyberg-Brodda, *The Baumslag--Gersten group and a problem of
+Olshanskii*, arXiv:2606.27408v1 (the HTML carries the date August 24, 2026),
+was checked after the initial audit.  It studies the explicit representation
+
+    a |-> f(x)=2x,        b |-> g(x)=2^x
+
+in the group of germs at infinity of increasing continuous functions.  The
+defining relation holds, and the paper proves the representation is not
+faithful by displaying a nontrivial Britton-reduced kernel word.  Crucially for
+the present gate, `f` is nontrivial.  Since the normal closure of `a` in the
+Baumslag--Gersten group is perfect, its image is a nontrivial perfect subgroup;
+the two-generated germ image is therefore nonsolvable.  This lands on exactly
+the side of the rational-solvable boundary identified in Section 8.
+
+Kathryn Mann, *Left-orderable groups that don't act on the line*,
+arXiv:1406.5575, proves that the ambient group of germs at infinity of
+orientation-preserving homeomorphisms of the line is left-orderable.  Hence
+the Nyberg-Brodda image is left-orderable; if it were amenable, the
+Witte--Morris theorem would make it locally indicable.  However,
+arXiv:2606.27408 does not establish amenability of the image (it explicitly
+leaves its structure for further study), nor does it check retention of every
+proper subword of the defining relator.  The representation is therefore a
+concrete candidate for the exact hard target, not a proof of packet visibility.
