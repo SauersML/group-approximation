@@ -76,3 +76,11 @@ pure infiniteness, and limit stages use its permanence under directed
 injective C-star inductive limits.  This is nonvacuous beyond finite or chain
 ideal lattices: `c_0(alpha,O_infinity)` has such a series for every nonzero
 ordinal `alpha` and has many incomparable ideals when `alpha` is infinite.
+
+The filtration hypothesis now has an intrinsic topological source.
+`stw72-scattered-primitive-spectrum-wpi-is-purely-infinite` proves the
+weak-to-plain collapse whenever `Prim(A)` is topologically scattered.  One
+recursively adjoins an isolated point of the remaining primitive spectrum;
+the corresponding successor subquotient has one-point primitive spectrum
+and is simple.  This permits non-Hausdorff spectra of arbitrary cardinality
+and arbitrarily non-linear ideal lattices.

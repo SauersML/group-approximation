@@ -51,6 +51,9 @@ examples lie well beyond both the finite-lattice and chain-lattice classes.
 They are purely infinite (hence weakly purely infinite), either by the
 transfinite theorem or directly by inductive-limit permanence.
 
-No claim is made that every C-star algebra, every weakly purely infinite
-algebra, or every algebra with a scattered primitive spectrum admits such a
-series.
+No claim is made that every C-star algebra or every weakly purely infinite
+algebra admits such a series.  The formerly open scattered-spectrum
+specialization is now established separately by
+`stw72-scattered-primitive-spectrum-wpi-is-purely-infinite`: isolated points
+of successive primitive-spectrum remainders produce the required simple
+layers.
