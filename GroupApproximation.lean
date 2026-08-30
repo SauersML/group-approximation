@@ -2733,6 +2733,11 @@ import GroupApproximation.Analysis.VoiculescuProjectionAssembly
 import GroupApproximation.GGT.DGOProposition433Ball
 import GroupApproximation.GGT.DGOProposition433Finite
 import GroupApproximation.GGT.OsinTheorem54SepMultiplicity
+import GroupApproximation.Analysis.VoiculescuAlmostOrthogonal
+import GroupApproximation.Analysis.VoiculescuDefect
+import GroupApproximation.Analysis.VoiculescuStageSelection
+import GroupApproximation.Analysis.VoiculescuQuasicentralDiagonal
+import GroupApproximation.Analysis.VoiculescuQuasicentral
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
