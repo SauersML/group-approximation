@@ -132,8 +132,10 @@ U_m=Z[1/m]^3,       L=SL_3(Z).                           (5)
 ```
 
 The property-`(T)` group `K_0` has no nontrivial homomorphism to the
-torsion-free factor `<t>`, so its image `P` in `L` is commensurated by `L`.
-It is infinite: otherwise `K_0` would be virtually contained in the abelian
+torsion-free factor `<t>`.  Let `P` be its image in `L`.  This image is
+commensurated by `L`: for `ell in L`, the projection of
+`K_0 intersect ell K_0 ell^(-1)` has finite index in both `P` and
+`ell P ell^(-1)` and is contained in their intersection.  It is infinite: otherwise `K_0` would be virtually contained in the abelian
 group `U_m`, whereas an amenable property-`(T)` group is finite.
 
 Shalom--Venkataramana--Willis, *The Margulis--Zimmer Conjecture for
@@ -148,10 +150,10 @@ prove that every infinite subgroup of the higher-rank nonuniform lattice
 
 Transport the canonical translation subgroup `R~=Z^3` of the abstract
 copy `K~=B`, and put `A_0=K_0 intersect R`.  Since `K_0` has finite
-index in `K`, the subgroup `A_0` is normal in `K_0), free abelian of
+index in `K`, the subgroup `A_0` is normal in `K_0`, free abelian of
 rank three.  Its image in `P` is abelian and normal.  The Margulis normal
 subgroup theorem makes that image finite.  Define `A` to be its kernel.
-Then `A` is still normal and rank three, has finite index in `A_0), and
+Then `A` is still normal and rank three, has finite index in `A_0`, and
 lies inside `U_m`.
 
 The rational span of `A` in `Q^3` is nonzero and `P`-invariant.  Since a
@@ -167,7 +169,7 @@ K_0 <= m^(-r)Z^3 semidirect L = t^(-r) B t^r.
 ```
 
 The full lattice `A<=K_0` and (6) show that this inclusion has finite index.
-Therefore the conjugated `K_0), and hence the conjugated `K`, is
+Therefore the conjugated `K_0`, and hence the conjugated `K`, is
 commensurable with `B`.  Undoing the conjugation replaces `B` by one of
 its conjugates; since `B` is commensurated by all of `E_m`, every such
 conjugate is commensurable with `B`.  This proves Fact 1.
@@ -184,11 +186,11 @@ Delta_C(g)=
 Write `[A:D]_rel=[A:A intersect D]/[D:A intersect D]` for commensurable
 subgroups.  Multiplicativity of relative index shows that (7) is a
 homomorphism.  If `C'` is commensurable with `C`, then
-`
+```text
 [ C' : gC'g^(-1) ]_rel
  = [ C' : C ]_rel [ C : gCg^(-1) ]_rel
    [ gCg^(-1) : gC'g^(-1) ]_rel.
-`
+```
 The first and last factors are inverse because conjugation preserves relative
 index.  Thus `Delta_(C')=Delta_C`.  The same formula also proves
 functoriality under abstract group isomorphisms.

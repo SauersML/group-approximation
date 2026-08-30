@@ -13,7 +13,7 @@ artifacts:
   - research/artifacts/scaling-family-invariants-audit-2026-08-30.md
 ---
 
-**ESTABLISHED.**  The finitely presented non-MF groups `E_m), for integers
+**ESTABLISHED.**  The finitely presented non-MF groups `E_m`, for integers
 `m>=2`, are pairwise non-isomorphic.
 
 The intrinsic datum is the commensurability class of subgroups isomorphic to
