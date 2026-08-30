@@ -70,4 +70,3 @@ This is a reduction, not a solution of the unrestricted real-rank-zero
 problem.  We do not assert that every separable primitive ideal space admits
 such a composition series, nor that generator rank one itself is extension
 permanent.
-

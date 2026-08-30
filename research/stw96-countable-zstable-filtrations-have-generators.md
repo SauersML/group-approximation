@@ -25,4 +25,3 @@ are simple.  It therefore holds for every nonzero separable,
 nowhere-scattered, finite-nuclear-dimension, real-rank-zero C*-algebra with
 finitely many ideals, even when purely infinite and stably finite simple
 subquotients both occur.
-
