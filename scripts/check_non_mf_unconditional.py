@@ -439,21 +439,38 @@ NONEMPTY_ARG = re.compile(rf"Nonempty\s*\(?\s*({IDENT})")
 REFUTATION = re.compile(r"¬\s*∃|IsEmpty|¬\s*Nonempty")
 
 
+def is_refutation(conclusion: str) -> bool:
+    """Does this conclusion deny its head rather than exhibit one?
+
+    `¬ ∃`, `IsEmpty` and `¬ Nonempty` are the shapes a refuted *structure*
+    takes.  A refuted `def … : Prop` is written `¬ P`, which matches none of
+    them and which `type_head` reads as `P`, so the proof that a citation is
+    **false** used to register as a producer of it and every consumer of the
+    refuted name read as discharged.  That is backwards, and this repository
+    refutes citations on purpose: `OsinTheorem24`, `DGOTheorem611`,
+    `HullInputs`, `RelatorSeparation` and `ZpowersConeOffEmbedding` are all
+    refuted here, and all of them used to count as available.
+    """
+    return conclusion.lstrip().startswith("¬") or bool(REFUTATION.search(conclusion))
+
+
 def produced_heads(declaration: Declaration) -> set[str]:
     """Every name this declaration exhibits an inhabitant of.
 
     The head of the conclusion is the obvious one.  A theorem concluding
     `∃ M : NormModel …, P M` or `Nonempty (StrictKazhdanCompression …)` also
     produces one, and missing those would report an inhabited structure as
-    open.  Refutations (`¬ ∃`, `IsEmpty`) exhibit nothing and are skipped.
+    open.  Refutations exhibit nothing, so they produce nothing at all --- the
+    head included, which is the whole of `is_refutation`'s reason to exist.
     """
     conclusion = _strip_premises(declaration.statement)
+    if is_refutation(conclusion):
+        return set()
     heads = {type_head(conclusion)}
-    if not REFUTATION.search(conclusion):
-        heads |= {m.group(1).rsplit(".", 1)[-1]
-                  for m in EXISTS_BINDER.finditer(conclusion)}
-        heads |= {m.group(1).rsplit(".", 1)[-1]
-                  for m in NONEMPTY_ARG.finditer(conclusion)}
+    heads |= {m.group(1).rsplit(".", 1)[-1]
+              for m in EXISTS_BINDER.finditer(conclusion)}
+    heads |= {m.group(1).rsplit(".", 1)[-1]
+              for m in NONEMPTY_ARG.finditer(conclusion)}
     return {head for head in heads if head}
 
 
@@ -846,6 +863,8 @@ DETECTORS = (
     "buried-conditional",
     "conditional-data",
     "conditional-debt",
+    "carrier-data",
+    "carrier-debt",
     "definition-only",
     "header-binder",
     "known-conditional",
@@ -1037,6 +1056,41 @@ def classify(
 
     if full_name in known:
         findings.append(("known-conditional", known[full_name]))
+
+    # A cited declaration can be conditional by BEING an undischarged datum,
+    # not only by taking one as a premise.  `classify` reads premises, and a
+    # `structure` has none, so a row naming `HullQuotientNG` as its carrier was
+    # invisible: the row says the sentence is proved, and names an object whose
+    # only inhabitant rests on a `sorry`.  Reported with the same two-status
+    # split as a premise, since the distinction is the same one.
+    #
+    # Whether this is an overreach depends on what the citing row CLAIMS, which
+    # `classify` cannot see: a row that merely fixes notation is right to name
+    # an uninhabited datum, because naming the object is its whole claim.  So
+    # the finding is emitted here and filtered by row status in
+    # `sentence_census.verify_unconditional`.
+    datum = declaration.keyword in ("structure", "class", "inductive")
+    notion = (declaration.keyword in ("def", "abbrev")
+              and declaration.conclusion_head in ("Prop", "Type", "Sort", "Type*"))
+    if datum or notion:
+        head = corpus.resolve(declaration.short_name)
+        if corpus.is_corpus_name(head) and head not in corpus.discharged_honestly:
+            if head in corpus.discharged:
+                findings.append((
+                    "carrier-debt",
+                    f"`{declaration.short_name}` is a cited {declaration.keyword} "
+                    "that the corpus produces only through declarations resting "
+                    "on `sorry`, so a row claiming the sentence is proved by it "
+                    "claims more than the kernel holds",
+                ))
+            else:
+                findings.append((
+                    "carrier-data",
+                    f"`{declaration.short_name}` is a cited {declaration.keyword} "
+                    "that nothing in the corpus ever produces, so a row claiming "
+                    "the sentence is proved by it claims more than the kernel "
+                    "holds",
+                ))
 
     if (declaration.keyword in ("def", "abbrev")
             and declaration.conclusion_head in ("Prop", "Type", "Sort", "Type*")):
@@ -1309,6 +1363,14 @@ def self_test() -> int:
             "def IsNeverProved (n : Nat) : Prop := n = n\n"
             "def IsSometimesProved (n : Nat) : Prop := n = n\n"
             "theorem sometimes : IsSometimesProved 0 := rfl\n"
+            # a refuted citation: its ONLY inhabitant-shaped declaration proves
+            # it false, so nothing produces it and every consumer is citing a
+            # statement this corpus has disproved
+            "def IsRefuted : Prop := 0 = 1\n"
+            "theorem not_isRefuted : ¬ IsRefuted := by decide\n"
+            # negative control: refuting one instance must not take away the
+            # discharge `sometimes` gives the name
+            "theorem not_sometimes_at_three : ¬ IsSometimesProved 3 := by decide\n"
             # produced, but only by a declaration that rests on a `sorry`
             "structure DebtData where\n"
             "  mark : Nat\n"
@@ -1353,6 +1415,34 @@ def self_test() -> int:
             "    ∀ (_d : DebtData), True := fun _ => trivial\n"
             "theorem via_clean :\n"
             "    ∀ (_c : CleanData), True := fun _ => trivial\n"
+            "theorem via_refuted :\n"
+            "    ∀ (_h : IsRefuted), True := fun _ => trivial\n"
+            "theorem via_sometimes :\n"
+            "    ∀ (_h : IsSometimesProved 0), True := fun _ => trivial\n"
+            # cited AS the datum rather than as a premise: the blind spot a
+            # `structure`/`def : Prop` carrier used to fall through.  CarrierOk
+            # is honestly produced and must NOT fire.
+            "def CarrierNever : Prop := ∀ n : Nat, IsNeverProved n\n"
+            "def CarrierDebt : Prop := True\n"
+            "theorem carrierDebtProved : CarrierDebt := by sorry\n"
+            "def CarrierOk : Prop := True\n"
+            "theorem carrierOkProved : CarrierOk := trivial\n"
+            # the same blind spot in its `datum` shape --- a cited STRUCTURE
+            # nothing produces, which is how `HullQuotientNG` reaches a row.
+            # `CarrierStructOk` is produced and must NOT fire.
+            "structure CarrierStruct where\n"
+            "  seed : Nat\n"
+            "structure CarrierStructOk where\n"
+            "  seed : Nat\n"
+            "def carrierStructOk : CarrierStructOk := ⟨0⟩\n"
+            # the refutation of a STRUCTURE, in the shape the corpus uses for
+            # `HullInputs`: nothing produces `RefutedData` either
+            "structure RefutedData where\n"
+            "  seed : Nat\n"
+            "theorem not_nonempty_refutedData : ¬ Nonempty RefutedData :=\n"
+            "  fun _ => by decide\n"
+            "theorem via_refuted_struct :\n"
+            "    ∀ (_d : RefutedData), True := fun _ => trivial\n"
             # planted positive: the real premise is one quantifier below the head
             "theorem buries_premise :\n"
             "    ∀ (_a : ∀ k : Nat, 0 < k → ReductionData), True :=\n"
@@ -1379,7 +1469,9 @@ def self_test() -> int:
         cited = ("honest", "via_buildable", "closed_but_conditional",
                  "open_predicate", "header_binder", "uses_variable",
                  "shadows_variable", "IsNotion", "hides_in_named_prop",
-                 "via_debt", "via_clean")
+                 "via_debt", "via_clean", "via_refuted", "via_sometimes",
+                 "CarrierNever", "CarrierDebt", "CarrierOk",
+)
         tex.write_text("".join(badge(name) for name in cited), encoding="utf-8")
         known = {"GroupApproximation.honest": "pinned by hand"}
         findings, problems, checked = validate(root, tex, roster, known)
@@ -1392,7 +1484,8 @@ def self_test() -> int:
 
         for clean in ("GroupApproximation.via_buildable",
                       "GroupApproximation.shadows_variable",
-                      "GroupApproximation.via_clean"):
+                      "GroupApproximation.via_clean",
+                      "GroupApproximation.via_sometimes"):
             if clean in by_declaration:
                 print(f"self-test: false positive on {clean}: "
                       f"{by_declaration[clean]}", file=sys.stderr)
@@ -1407,12 +1500,55 @@ def self_test() -> int:
             "GroupApproximation.IsNotion": "definition-only",
             "GroupApproximation.hides_in_named_prop": "conditional-data",
             "GroupApproximation.via_debt": "conditional-debt",
+            # a premise whose only inhabitant-shaped declaration REFUTES it
+            # reads as a never-proved predicate, which is what it is
+            "GroupApproximation.via_refuted": "open-predicate",
+            "GroupApproximation.CarrierNever": "carrier-data",
+            "GroupApproximation.CarrierDebt": "carrier-debt",
         }
+        for carrier_clean in ("GroupApproximation.CarrierOk",):
+            got = by_declaration.get(carrier_clean, set())
+            if got & {"carrier-data", "carrier-debt"}:
+                print(f"self-test: false carrier finding on {carrier_clean}: "
+                      f"{got}", file=sys.stderr)
+                return 1
+
         for name, detector in expected.items():
             if detector not in by_declaration.get(name, set()):
                 print(f"self-test: missed {detector} on {name}; got "
                       f"{by_declaration.get(name, set())}", file=sys.stderr)
                 return 1
+
+        # The `datum` half of the carrier rule cannot be reached through a
+        # badge -- a `\leanverified` badge may not cite a `structure` at all,
+        # and the setup check above says so -- but a census ROW can cite one,
+        # which is how `HullQuotientNG` reaches the manuscript.  So it is
+        # pinned directly, both directions.
+        corpus = build_corpus(root)
+        carrier_struct = {detector for detector, _detail in classify(
+            corpus, corpus.by_name["CarrierStruct"], set(),
+            "GroupApproximation.CarrierStruct")}
+        if "carrier-data" not in carrier_struct:
+            print("self-test: missed carrier-data on the cited structure "
+                  f"CarrierStruct; got {carrier_struct}", file=sys.stderr)
+            return 1
+        carrier_struct_ok = {detector for detector, _detail in classify(
+            corpus, corpus.by_name["CarrierStructOk"], set(),
+            "GroupApproximation.CarrierStructOk")}
+        if carrier_struct_ok & {"carrier-data", "carrier-debt"}:
+            print("self-test: false carrier finding on the produced structure "
+                  f"CarrierStructOk; got {carrier_struct_ok}", file=sys.stderr)
+            return 1
+
+        # A refutation must not read as a producer even when the refuted name
+        # is a `structure`: `¬ Nonempty HullInputs` is how that arrives.
+        refuted_struct = {detector for detector, _detail in classify(
+            corpus, corpus.by_name["via_refuted_struct"], set(),
+            "GroupApproximation.via_refuted_struct")}
+        if "conditional-data" not in refuted_struct:
+            print("self-test: a refuted structure read as discharged; "
+                  f"got {refuted_struct}", file=sys.stderr)
+            return 1
 
         # A pinned name that is no longer cited must be reported, so the roster
         # cannot outlive the problem it records.

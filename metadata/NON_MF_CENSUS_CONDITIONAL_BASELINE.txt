@@ -19,6 +19,15 @@
 # listed, so that the two-status split lands without changing pass or fail and
 # the interesting event -- a NEW conditional row -- fails from that day.
 #
+# Extended the same day, when two blind spots in `classify` were closed at once:
+# a cited CARRIER (a `structure` or a `def ... : Prop` named as the thing that
+# proves a sentence) was never classified at all, because `classify` reads
+# premises and a carrier has none; and a REFUTATION was registered as a producer
+# of the name it refutes, so proving a citation false made it read as available.
+# The nine findings the two fixes uncovered are listed below.  None of them is a
+# new defect in the manuscript -- they were always there, and the gate could not
+# see them.
+#
 # ---------------------------------------------------------------------------
 # conditional-data: the Fournier-Facio citation.
 #
@@ -61,3 +70,32 @@ conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptWitnessC
 # open-predicate: pre-existing, and the only finding this gate reported before
 # 2026-08-30.
 open-predicate GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedNormalKazhdan  -- premise is the corpus predicate HSVanishes on every OpAlmostRepresentation, which nothing produces
+#
+# ---------------------------------------------------------------------------
+# carrier-data: the row names a Prop or structure nothing produces, ALONGSIDE
+# the theorem that carries the sentence.
+#
+# `classify` cannot tell those two citations apart, and the conservative
+# reading is the right default: a row whose ONLY citation is an unproduced
+# carrier claims more than the kernel holds.  Each row below also cites the
+# theorem named in its line, which is what actually proves the printed
+# sentence, so the carrier is vocabulary and not the claim.  A line goes when
+# its row stops naming the carrier, or when the carrier acquires a producer.
+carrier-data GroupApproximation.IsStronglyOperatorMF  -- tex row 837b7cffa562 also cites not_isStronglyOperatorMF_of_not_isOperatorMF, which proves the printed sentence; nothing produces a strongly-operator-MF datum and the sentence says so
+carrier-data GroupApproximation.Manuscript.OneSidedMFRadical.HSVanishes  -- tex row c36b6021a802 also cites manuscriptCompressionDefectHSInvisible; HSVanishes is the vocabulary the sentence introduces, and the same predicate is registered above as an open-predicate premise of manuscriptPrintedNormalKazhdan
+carrier-data GroupApproximation.Manuscript.NonMF.TorsionFree.HullBallFormStatement  -- tex row e480501d6344 also cites exists_subset_cayleyBall and HullQuotient.mono; nothing produces the ball form, which is Hull's theorem and not ours
+#
+# ---------------------------------------------------------------------------
+# carrier-debt: the same shape, where the carrier IS produced but only through
+# `sorry`.  Strictly worse than carrier-data -- an undischarged carrier is
+# visibly a citation, and this one reads as settled -- so each line names the
+# debt it waits on.
+carrier-debt GroupApproximation.Manuscript.NonMF.HullCorrectedInputs.HullQuotientNG  -- tex rows 0478b96dfcaf and c3246ffe1961; produced only through the TheoremCDebts sorries, and the rows also cite HullInputsCorrected and torsionFree_of_finiteOrder_lift
+carrier-debt GroupApproximation.Manuscript.NonMF.TheoremC.PrintedTorsionFreeFullMFRadical  -- tex rows 0f22bdbc4184 and 907cd2df4f8a; the statement Prop of Theorem C, produced only through manuscriptTorsionFreeFullMFRadical_closed over the three debts, which the rows also cite
+carrier-debt GroupApproximation.Manuscript.NonMF.TheoremC.PrintedTorsionFreeSimplified  -- tex row 0f22bdbc4184; same debt as PrintedTorsionFreeFullMFRadical
+#
+# ---------------------------------------------------------------------------
+# open-predicate: uncovered by the refutation fix.  `IsStronglyOperatorMF` used
+# to count as discharged because `not_isStronglyOperatorMF_of_not_isOperatorMF`
+# -- a proof that a group does NOT satisfy it -- registered as a producer.
+open-predicate GroupApproximation.IsStronglyOperatorMF.isOperatorMF  -- the projection's premise is the strong-convergence datum itself, which nothing produces; the row's assertion is carried by the refutation, not by this projection
