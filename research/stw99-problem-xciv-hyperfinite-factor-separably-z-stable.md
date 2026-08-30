@@ -72,3 +72,12 @@ operator-norm distance and includes both legs of every tensor decomposition
 of `R`.  Thus a negative XCIV tuple must be uniformly far from all such
 matrix or diffuse tensor cores; whether every finite tuple can nevertheless
 be approximated by some commutant-capacious core remains open.
+
+Exact commutant capacity is not the only positive mechanism.
+`stw99-xciv-zstable-core-radius-controls-block-defect` proves the same
+factor-two estimate for distance to a separable unital `Z`-stable norm core,
+including simple nuclear finite-nuclear-dimension cores.  The tracial GNS
+copy of `Z` itself is weakly dense in `R`, hence has scalar relative
+commutant, while all its finite tuples have zero fixed-block defect by
+internal `Z`-absorption.  Thus a negative tuple must remain uniformly far
+from both split-commutant cores and weakly dense internally regular cores.

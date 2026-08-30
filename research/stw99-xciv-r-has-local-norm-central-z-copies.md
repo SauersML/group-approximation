@@ -63,3 +63,14 @@ the same factor-two estimate.  This includes arbitrary diffuse tensor legs,
 so it captures noncommuting tests with no matrix approximation.  Any
 negative certificate must stay uniformly far from every such capacious
 core, not merely from finite-dimensional algebras.
+
+There is a distinct internal-core mechanism.
+`stw99-xciv-zstable-core-radius-controls-block-defect` bounds the fixed-block
+defect by twice the distance to separable unital `Z`-stable subalgebras of
+`R`.  It covers simple nuclear infinite-dimensional finite-nuclear-dimension
+norm cores.  This route does not require ambient commutant capacity: the
+tracial GNS copy of `Z` is weakly dense in `R` and has scalar relative
+commutant, yet every finite tuple in that copy has zero block defect through
+approximately central maps internal to the copy.  Any negative certificate
+must therefore avoid both exact-commutant cores and all nearby internally
+`Z`-stable cores.
