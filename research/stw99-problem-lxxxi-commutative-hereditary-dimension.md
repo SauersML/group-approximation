@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/stw81-type-i-frontier-2026-08-30.md
   - research/artifacts/stw81-zero-dimensional-simple-field-audit-2026-08-30.md
   - research/artifacts/stw81-one-dimensional-field-audit-2026-08-30.md
+  - research/artifacts/stw81-oinfinity-envelope-audit-2026-08-30.md
 ---
 
 **Problem LXXXI of Schafhauser--Tikuisis--White.**  Let `A` be a C-star
@@ -146,6 +147,23 @@ zero-dimensional theorem fails exactly there.  For one-dimensional
 stably finite non-elementary fibres, fibrewise Z-stability globalizes but
 the needed nonsimple nuclear-dimension-one theorem is unavailable; naive
 base/fibre colour multiplication gives three.
+
+There is now also a base-free absorption class with an exact dichotomy.
+`stw81-oinfinity-envelopes-have-dimension-one-or-infinity` proves that for
+every nonzero separable algebra `B`,
+
+```text
+dim_nuc(B tensor O_infinity)=1        if B is nuclear,
+dim_nuc(B tensor O_infinity)=infinity otherwise.
+```
+
+Every quotient of this envelope has no nonzero commutative hereditary
+subalgebra: O-infinity-absorption passes first to the quotient and then to
+the hereditary subalgebra, where commutativity would contradict strong pure
+infiniteness.  Nuclearity is reflected back to `B` by a slice-map completely
+positive retraction, so the infinite half of the formula does not conceal an
+exactness assumption.  This class permits arbitrary ideal and primitive-space
+complexity and is independent of the zero- and one-dimensional field results.
 
 The relationship is now internal and witness-level:
 `stw81-finite-ideal-counterexample-forces-lxxxii-counterexample` proves that
