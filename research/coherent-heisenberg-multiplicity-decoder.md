@@ -147,3 +147,21 @@ Thus the full Parseval aggregation is the rectangular escape itself, not a
 positive-density decoder.  A successful aggregation must force a
 payload-authenticated collision between distinct Weyl indices (which has a
 fixed-depth HS floor) or pay the complement of a genuinely proper subframe.
+
+
+There is also a logical quantifier firewall.  The established audit
+`coherent-heisenberg-decoder-is-marked-nonhyperlinearity` applies cyclicity
+on any proposed corner and obtains
+
+```text
+1 <= inverse defect 0 + inverse defect 1 + binary-sum defect.
+```
+
+Consequently the universal decoder as stated is true exactly when no
+root-surviving normalized-HS asymptotic representation exists.  For the
+simple binary-Leavitt elementary group that is the nonhyperlinearity target
+itself.  Compatible Heisenberg density data do not bridge this gap:
+`compatible-heisenberg-densities-do-not-imply-leavitt-corners` gives the
+exact Schrodinger-tower calibration.  The next useful node must therefore
+name and estimate a genuinely new same-reservoir occurrence rather than
+reuse the universal decoder as an intermediate lemma.
