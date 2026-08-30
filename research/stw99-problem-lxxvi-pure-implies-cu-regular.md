@@ -8,6 +8,7 @@ refuted_by:
   - stw99-lxxvi-compact-counterexample
 artifacts:
   - research/artifacts/stw99-lxxvi-soft-comparison-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxvi-strong-pure-infiniteness-audit-2026-08-30.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -42,6 +43,15 @@ Cu-regularity also passes to ideals, quotients, and hereditary subalgebras by
 extension permanence in the reverse direction: the 2025 theorem that purity
 is equivalent to purity of an ideal and quotient leaves the gluing of their
 concrete first-factor Cu maps as a genuine remaining hinge.
+
+The traceless idempotent corridor is completely positive.
+`stw99-lxxvi-strong-pure-infiniteness-implies-cu-regularity` proves that every
+separable strongly purely infinite algebra is pure and Cu-regular, without
+nuclearity, stable rank one, or a Z-absorption assumption.  Both its source
+and its Z-tensor target are purely infinite, so their Cuntz semigroups are
+their ideal lattices; naturality then turns the already-known slice-map ideal
+isomorphism into the required first-factor Cu isomorphism.  More generally,
+the same proof applies whenever both `A` and `A tensor Z` are purely infinite.
 
 There is also a genuinely non-simple positive class.  A pure, separable,
 locally subhomogeneous algebra of stable rank one and topological dimension
