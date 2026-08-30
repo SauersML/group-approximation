@@ -1,0 +1,62 @@
+# Conditional findings of `scripts/sentence_census.py --verify-unconditional`
+# that are known and written up.  One line per accepted finding:
+#
+#     <detector> <declaration>  -- why it is accepted
+#
+# This register is not a budget.  A finding not listed here fails the gate, and
+# a line here that matches nothing fails it too -- so a discharged item cannot
+# be left behind to license its own return.  There is no count anywhere in the
+# mechanism, so there is no number a reviewer can raise instead of discharging
+# the debt.
+#
+# It is the companion of metadata/NON_MF_UNCONDITIONAL_BASELINE.txt, which
+# registers the same kind of finding on the badge surface.  Two registers
+# because they are two surfaces: the badge gate classifies the declarations the
+# manuscript cites in `\leanverified`, and this one classifies the much larger
+# set the sentence map names.  Sharing one file would make "stale" ambiguous.
+#
+# Opened 2026-08-30 by census-lane for issue #53, with every finding of the day
+# listed, so that the two-status split lands without changing pass or fail and
+# the interesting event -- a NEW conditional row -- fails from that day.
+#
+# ---------------------------------------------------------------------------
+# conditional-data: the Fournier-Facio citation.
+#
+# Every one of these is a theorem about an arbitrary `PrintedFournierFacioData`,
+# the datum recording the package the manuscript cites at tex 831-841: Gamma,
+# t, and a finitely presented infinite simple J with [Gamma,J] = 1 and
+# tJt^-1 <= Gamma.  Nothing in the corpus inhabits that structure and nothing
+# should: its existence is Fournier-Facio's theorem, not ours.  The printed
+# lemma is conditional in exactly the same way and says so.  These lines go
+# when the FFF construction is formalized, and not before.
+conditional-data GroupApproximation.Manuscript.NonMF.manuscriptLemmaCommutatorInDefect  -- lem:commutator-in-defect over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_conjFactor_eq  -- S is perfect, over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_map_conjFactor_eq  -- S-bar is perfect as a quotient of S, over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_map_conjFactor_le_printedDefect  -- [S-bar,S-bar] <= D, over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.commutator_simpleFactor_eq  -- J is perfect from simple and nonabelian, over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.conjFactor_def  -- S = tJt^-1, notation over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.defect_generator_mem  -- eq:intrinsic-defect at the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_conj_core_mem  -- t-bar compresses Gamma-bar, over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_conjFactor_le_map_core  -- S-bar <= Gamma-bar, over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_conjFactor_le_printedDefect  -- the printed lemma's conclusion, over the cited FFF package
+conditional-data GroupApproximation.Manuscript.NonMF.PrintedFournierFacioData.map_simpleFactor_centralizes  -- J-bar centralizes Gamma-bar, over the cited FFF package
+#
+# ---------------------------------------------------------------------------
+# conditional-debt: Theorem C's inputs are inhabited only through `sorry`.
+#
+# These take `LiteratureInputs` or `Configuration`, and the corpus does produce
+# both -- `TheoremCDebts.literatureInputs` and `exists_configuration` -- but
+# only through the three literature debts at TheoremCDebts.lean
+# (kotowskiOllivier, smallCancellationQuotient, osinTheorem12), each of which
+# is a `sorry`.  This is the finding the detector was written for: before the
+# split these read as unconditional, because the gate asked whether a producer
+# existed and not whether it was honest.  Each line goes as its debt lands.
+conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.kazhdan_map_coreRange  -- over Configuration, inhabited only through the three TheoremCDebts sorries
+conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeFullMFRadical  -- Theorem C, over LiteratureInputs, inhabited only through the three TheoremCDebts sorries
+conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptTorsionFreeSimplified  -- Theorem C simplified, same debt as manuscriptTorsionFreeFullMFRadical
+conditional-debt GroupApproximation.Manuscript.NonMF.TheoremC.manuscriptWitnessCommutatorInDefect  -- the free-witness variant, over Configuration, same debt
+#
+# ---------------------------------------------------------------------------
+# open-predicate: pre-existing, and the only finding this gate reported before
+# 2026-08-30.
+open-predicate GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptPrintedNormalKazhdan  -- premise is the corpus predicate HSVanishes on every OpAlmostRepresentation, which nothing produces

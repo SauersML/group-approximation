@@ -9,6 +9,10 @@ on:
       - 'metadata/MF_RECOGNITION_SENTENCE_MAP.tsv'
       - 'metadata/MF_RECOGNITION_PROOF_LEDGER.md'
       - 'scripts/sentence_census.py'
+      - 'scripts/display_census.py'
+      - 'scripts/sentence_records.py'
+      - 'metadata/MF_RECOGNITION_DISPLAY_MAP.tsv'
+      - 'GroupApproximation/Manuscript/Meta/**'
       - '.github/workflows/check-recognition-sentence-census.yml'
   pull_request:
     paths:
@@ -16,6 +20,10 @@ on:
       - 'metadata/MF_RECOGNITION_SENTENCE_MAP.tsv'
       - 'metadata/MF_RECOGNITION_PROOF_LEDGER.md'
       - 'scripts/sentence_census.py'
+      - 'scripts/display_census.py'
+      - 'scripts/sentence_records.py'
+      - 'metadata/MF_RECOGNITION_DISPLAY_MAP.tsv'
+      - 'GroupApproximation/Manuscript/Meta/**'
 
 concurrency:
   group: check-recognition-sentence-census-${{ github.ref }}
@@ -44,3 +52,32 @@ jobs:
             --map metadata/MF_RECOGNITION_SENTENCE_MAP.tsv \
             --ledger metadata/MF_RECOGNITION_PROOF_LEDGER.md \
             --verify-decls --badges-need-rows
+
+      # The displays the sentence census deletes before splitting prose.  Not
+      # --check yet: the recognition displays are untriaged, so the count is
+      # reported and the integrity of what IS graded is enforced.
+      - name: Display-level census
+        run: |
+          python3 scripts/display_census.py \
+            --tex mf_recognition_complexity.tex \
+            --map metadata/MF_RECOGNITION_DISPLAY_MAP.tsv \
+            --out metadata/MF_RECOGNITION_DISPLAY_CENSUS.tsv \
+            --out-md metadata/MF_RECOGNITION_DISPLAY_CENSUS.md \
+            --sentence-census metadata/MF_RECOGNITION_SENTENCE_CENSUS.tsv
+          python3 scripts/display_census.py \
+            --tex mf_recognition_complexity.tex \
+            --map metadata/MF_RECOGNITION_DISPLAY_MAP.tsv \
+            --sentence-census metadata/MF_RECOGNITION_SENTENCE_CENSUS.tsv \
+            --verify-decls
+          python3 scripts/display_census.py \
+            --tex mf_recognition_complexity.tex \
+            --map metadata/MF_RECOGNITION_DISPLAY_MAP.tsv \
+            --sentence-census metadata/MF_RECOGNITION_SENTENCE_CENSUS.tsv \
+            --verify-links
+
+      # Both papers' non-propositional sentences, recorded as data.  The
+      # script covers both manuscripts in one pass, so this step and the one in
+      # build-non-mf-pdf.yml run the same check from the two directions an
+      # edit can arrive from.
+      - name: Non-propositional sentences are recorded
+        run: python3 scripts/sentence_records.py --check

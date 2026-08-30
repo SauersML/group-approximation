@@ -20,6 +20,23 @@ declarations that formalize it, or an explicit reason why no declaration can.
                                               also fail on partial coverage
                                               and prose-only proof provenance
     scripts/sentence_census.py --summary       print the counts and stop
+    scripts/sentence_census.py --verify-unconditional
+                                              classify every named declaration
+                                              against the conditional register
+
+## The conditional register
+
+`--verify-unconditional` classifies every declaration the map names, using
+`check_non_mf_unconditional.classify`.  It reported a flat failure until
+2026-08-30, which told a reader nothing: the findings were real, the
+mathematics that discharges them does not exist yet, and a step that is always
+red is a step nobody reads.  It now consults
+`metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt`, an itemized register of the
+findings that are known and written up, and fails on a **new** finding, on a
+register line that matches nothing, and on a line with no written
+justification.  There is no count in the mechanism, so there is no number to
+raise instead of discharging a debt.  `--conditional-baseline` points it at
+another register, which a companion manuscript needs.
 
 ## The two files
 
@@ -611,8 +628,8 @@ def join(records: list[dict], assignments: dict[str, dict],
 # premise nothing in the corpus produces, or a transcription of a literature
 # theorem.  The standing order is that neither counts as formalization.
 CONDITIONAL_DETECTORS = {
-    "buried-conditional", "conditional-data", "known-conditional",
-    "literature-input", "open-predicate",
+    "buried-conditional", "conditional-data", "conditional-debt",
+    "known-conditional", "literature-input", "open-predicate",
 }
 
 def write_tsv(records: list[dict], path: str) -> None:
@@ -625,6 +642,40 @@ def write_tsv(records: list[dict], path: str) -> None:
                 r["key"], str(r["line"]), r["section"], r["env"], r["label"],
                 r["status"], r["decls"], r["sentence"],
             ]) + "\n")
+
+
+def clobber_refusal(tex: str, out: str, out_md: str) -> str | None:
+    """Why writing would overwrite another manuscript's census, or `None`.
+
+    The generated files are chosen by `--out`/`--out-md`, which default to the
+    non-MF paper's.  Pointing `--tex` at a different manuscript and leaving the
+    outputs alone therefore writes that manuscript's census into the non-MF
+    paper's files -- silently, with exit 0, producing a well-formed census of
+    the wrong paper whose only tell is the `# Edit <map>` line in its header.
+
+    That happened on 2026-08-30, from a command that read as a check rather
+    than a regeneration: `--check` writes, and only `--summary` suppresses
+    writing.  No gate caught it; the file was valid, and the corruption was
+    found by comparing md5s against a quoted landing list.  So the script
+    refuses instead, and a genuine check of another manuscript points the
+    outputs at a scratch path.
+    """
+    if os.path.abspath(tex) == os.path.abspath(TEX):
+        return None
+    collisions = [
+        flag for flag, value, default in
+        (("--out", out, OUT), ("--out-md", out_md, OUT_MD))
+        if os.path.abspath(value) == os.path.abspath(default)
+    ]
+    if not collisions:
+        return None
+    return (
+        f"refusing to write: --tex is {os.path.relpath(os.path.abspath(tex), ROOT)} "
+        f"but {' and '.join(collisions)} still point at the non-MF paper's "
+        "generated files, so this run would overwrite them with another "
+        "manuscript's census.  Pass --out/--out-md (a scratch path is fine for "
+        "a check), or --summary to print the counts without writing."
+    )
 
 
 def counts(records: list[dict]) -> dict[str, int]:
@@ -774,8 +825,98 @@ def verify_unconditional(records: list[dict]) -> list[str]:
                     # matter -- a group, a homomorphism, a hypothesis about
                     # them -- is unconditional whatever its header looks like.
                     continue
-                bad.append(f"{r['key']}\t{name}\t{detector}\t{detail[:140]}")
+                bad.append((r["key"], name, detector, detail[:140]))
     return bad
+
+
+# The register of conditional findings that are known and written up.  Same
+# discipline as `check_non_mf_unconditional.py`'s: itemized, justified, and
+# fatal when stale, so a discharged item cannot be left behind to license its
+# own return.  It is not a budget -- there is no count in the mechanism, only a
+# list of named findings.
+DEFAULT_CONDITIONAL_BASELINE = os.path.join(
+    ROOT, "metadata", "NON_MF_CENSUS_CONDITIONAL_BASELINE.txt")
+
+CONDITIONAL_BASELINE_LINE = re.compile(
+    r"^(?P<detector>[a-z-]+)\s+(?P<declaration>\S+)\s+--\s*(?P<why>.+?)\s*$")
+
+
+def read_conditional_baseline(
+        path: str) -> tuple[set[tuple[str, str]], list[str]]:
+    """`(detector, declaration)` pairs that are accepted, and malformed lines.
+
+    A line without a `--` justification is malformed rather than quietly
+    accepted: an exemption nobody explained is the thing this register exists
+    to prevent.
+    """
+    entries: set[tuple[str, str]] = set()
+    problems: list[str] = []
+    if not os.path.exists(path):
+        return entries, problems
+    with open(path, encoding="utf-8") as fh:
+        for n, line in enumerate(fh, start=1):
+            if not line.strip() or line.lstrip().startswith("#"):
+                continue
+            match = CONDITIONAL_BASELINE_LINE.match(line.rstrip("\n"))
+            if not match:
+                problems.append(f"{path}:{n}: not `<detector> <declaration> "
+                                "-- <why>`")
+                continue
+            entries.add((match.group("detector"), match.group("declaration")))
+    return entries, problems
+
+
+def self_test() -> int:
+    """Pin the refusal, so it cannot be removed without a red test.
+
+    Four combinations decided in-process, with no side effects, and one
+    end-to-end run to confirm the exit code a caller actually sees.
+    """
+    import subprocess
+    import tempfile
+
+    other = os.path.join(ROOT, "mf_recognition_complexity.tex")
+    cases = [
+        # (tex, out, out_md, must refuse?)
+        (TEX, OUT, OUT_MD, False),          # the normal regeneration
+        (TEX, "/tmp/a.tsv", "/tmp/a.md", False),
+        (other, "/tmp/a.tsv", "/tmp/a.md", False),
+        (other, OUT, OUT_MD, True),         # the 2026-08-30 corruption
+        (other, OUT, "/tmp/a.md", True),    # one output is enough
+        (other, "/tmp/a.tsv", OUT_MD, True),
+    ]
+    for tex, out, out_md, must_refuse in cases:
+        refusal = clobber_refusal(tex, out, out_md)
+        if bool(refusal) != must_refuse:
+            print(f"self-test: clobber_refusal({os.path.basename(tex)}, "
+                  f"{os.path.basename(out)}, {os.path.basename(out_md)}) "
+                  f"= {refusal!r}, expected refuse={must_refuse}",
+                  file=sys.stderr)
+            return 1
+
+    # End to end: a non-default --tex with default outputs must exit nonzero
+    # and must not have written anything.
+    with tempfile.TemporaryDirectory() as tmp:
+        before = os.path.getmtime(OUT) if os.path.exists(OUT) else None
+        run = subprocess.run(
+            [sys.executable, os.path.abspath(__file__),
+             "--tex", other,
+             "--map", os.path.join(tmp, "absent.tsv"),
+             "--check"],
+            capture_output=True, text=True)
+        if run.returncode == 0:
+            print("self-test: a non-default --tex with default --out was not "
+                  "refused; it would have overwritten "
+                  f"{os.path.relpath(OUT, ROOT)}", file=sys.stderr)
+            return 1
+        after = os.path.getmtime(OUT) if os.path.exists(OUT) else None
+        if before != after:
+            print(f"self-test: {os.path.relpath(OUT, ROOT)} was written by a "
+                  "run that should have refused", file=sys.stderr)
+            return 1
+
+    print("sentence-census: self-test passed")
+    return 0
 
 
 def main() -> int:
@@ -787,12 +928,20 @@ def main() -> int:
                           "partially formalized, or carries prose-only proof "
                           "provenance"))
     ap.add_argument("--summary", action="store_true")
+    ap.add_argument("--self-test", action="store_true",
+                    help="pin the refusal that keeps one manuscript's census "
+                         "out of another's file")
     ap.add_argument("--list-unassigned", action="store_true")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--verify-decls", action="store_true",
                     help="check that every named declaration exists")
     ap.add_argument("--verify-unconditional", action="store_true",
                     help="check that no named declaration is conditional")
+    ap.add_argument("--conditional-baseline",
+                    default=DEFAULT_CONDITIONAL_BASELINE,
+                    help=("register of conditional findings that are known and "
+                          "written up; a new finding fails, and so does a "
+                          "register line that matches nothing"))
     ap.add_argument("--tex", default=TEX)
     ap.add_argument("--map", dest="map_path", default=MAP)
     ap.add_argument("--ledger", default=LEDGER)
@@ -804,6 +953,8 @@ def main() -> int:
                           "the paper, whose proof ledger is retired and whose "
                           "badges would otherwise certify themselves"))
     args = ap.parse_args()
+    if args.self_test:
+        return self_test()
     global TEX_LABEL, MAP_LABEL
     TEX_LABEL = os.path.relpath(os.path.abspath(args.tex), ROOT)
     MAP_LABEL = os.path.relpath(os.path.abspath(args.map_path), ROOT)
@@ -840,11 +991,34 @@ def main() -> int:
         return 0
 
     if args.verify_unconditional:
-        bad = verify_unconditional(records)
-        for b in bad:
-            print("CONDITIONAL\t" + b)
-        print(f"{len(bad)} conditional or literature-fed assignment(s)")
-        return 1 if bad else 0
+        findings = verify_unconditional(records)
+        baseline, malformed = read_conditional_baseline(args.conditional_baseline)
+        accepted: dict[str, int] = {}
+        new: list[tuple[str, str, str, str]] = []
+        matched: set[tuple[str, str]] = set()
+        for key, name, detector, detail in findings:
+            entry = (detector, name)
+            if entry in baseline:
+                matched.add(entry)
+                accepted[detector] = accepted.get(detector, 0) + 1
+                continue
+            new.append((key, name, detector, detail))
+        stale = sorted(set(baseline) - matched)
+        for key, name, detector, detail in new:
+            print(f"CONDITIONAL\t{key}\t{name}\t{detector}\t{detail}")
+        for detector, name in stale:
+            print(f"STALE BASELINE\t{detector}\t{name}\tmatches no finding; "
+                  "delete it rather than leaving it to license a regression")
+        for problem in malformed:
+            print(f"MALFORMED BASELINE\t{problem}")
+        detectors = set(accepted) | {d for _k, _n, d, _d in new}
+        for detector in sorted(detectors):
+            n_new = sum(1 for _k, _n, d, _d in new if d == detector)
+            print(f"{detector:20s} {accepted.get(detector, 0):3d} accepted, "
+                  f"{n_new:3d} new")
+        print(f"{len(findings)} conditional or literature-fed assignment(s): "
+              f"{len(findings) - len(new)} accepted, {len(new)} new")
+        return 1 if (new or stale or malformed) else 0
 
     if args.verify_decls:
         bad = verify_decls(records)
@@ -861,6 +1035,10 @@ def main() -> int:
         return 0
 
     if not args.summary:
+        refusal = clobber_refusal(args.tex, args.out, args.out_md)
+        if refusal:
+            print(refusal, file=sys.stderr)
+            return 2
         write_tsv(records, args.out)
         write_md(records, args.out_md)
 

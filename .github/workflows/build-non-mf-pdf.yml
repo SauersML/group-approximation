@@ -158,6 +158,8 @@ jobs:
           python3 scripts/check_non_mf_refs.py --self-test
           python3 scripts/check_non_mf_claim_manifest.py --self-test
           python3 scripts/check_non_mf_unconditional.py --self-test
+          python3 scripts/sentence_census.py --self-test
+          python3 scripts/display_census.py --self-test
           python3 scripts/check_non_mf_zero_input.py \
             --tex "$TEX_FILE"
           python3 scripts/regenerate_non_mf_claim_manifest.py \
@@ -272,11 +274,48 @@ jobs:
       # which is the 2026-08-18 regression in a new place.  The notes census
       # deliberately does NOT pass it: its ledger is live and still carries the
       # obligation, and 128 of its sentences are assigned from badges today.
+      # `--verify-unconditional` is a ratchet, not a flat gate, since
+      # 2026-08-30.  It classifies every declaration the sentence map names and
+      # checks the result against
+      # metadata/NON_MF_CENSUS_CONDITIONAL_BASELINE.txt, an itemized register
+      # of the findings that are known and written up.  It fails on a NEW
+      # finding, on a register line that matches nothing, and on a line with no
+      # written justification -- so a discharged debt cannot leave its
+      # exemption behind to license its own return, and there is no count
+      # anywhere to raise instead of discharging one.  The register also
+      # separates the two conditional shapes: `conditional-data`, where nothing
+      # produces the premise's type, and `conditional-debt`, where something
+      # does but every producer rests on a `sorry`.
       - name: Sentence-level census
         run: |
           python3 scripts/sentence_census.py --check --require-complete --badges-need-rows
           python3 scripts/sentence_census.py --verify-decls --badges-need-rows
           python3 scripts/sentence_census.py --verify-unconditional --badges-need-rows
+
+      # The sentence census deletes display material before it splits prose,
+      # so the displays themselves were ungraded until 2026-08-29.  This grades
+      # them.  It deliberately does NOT pass --check yet: most displays are
+      # untriaged, and a --check today would be a permanent red on work nobody
+      # has done rather than a signal about work that regressed.  What IS
+      # enforced is integrity: every declaration a `carrier` row names exists,
+      # every `\eqref`-ed label has a row, no overlay key is stale, and every
+      # `derivation-of` defers to a sentence key that exists and is itself
+      # graded.  Turn on --check when the map is complete.
+      - name: Display-level census
+        run: |
+          python3 scripts/display_census.py
+          python3 scripts/display_census.py --verify-decls
+          python3 scripts/display_census.py --verify-links
+
+      # The census rows that name no declaration -- attribution, open,
+      # provenance -- get a Lean counterpart as DATA, so that "every sentence
+      # has something in Lean answering to it" is literal.  SentenceRecord has
+      # no `Prop` field and no proof: nothing in the generated modules can be
+      # mistaken for a formalization.  This step fails if a record has no
+      # census row, if a census row with one of those statuses has no record,
+      # or if the checked-in module is not what the map generates.
+      - name: Non-propositional sentences are recorded
+        run: python3 scripts/sentence_records.py --check
 
       # A conditional formalization does not count, and neither does a
       # literature input: a theorem available only to a caller who supplies a

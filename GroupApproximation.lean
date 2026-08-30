@@ -2798,6 +2798,10 @@ import GroupApproximation.GGT.OsinTheorem54SepYLetterWord
 import GroupApproximation.Analysis.VoiculescuGlimmSeparation
 import GroupApproximation.Analysis.VoiculescuGlimmExpansion
 import GroupApproximation.Analysis.VoiculescuGlimmCombination
+import GroupApproximation.Manuscript.Meta.SentenceRecords
+import GroupApproximation.Manuscript.Meta.NonMFSentenceRecords
+import GroupApproximation.Manuscript.Meta.MFRecognitionSentenceRecords
+import GroupApproximation.Sofic.StrongConvergenceMF
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group

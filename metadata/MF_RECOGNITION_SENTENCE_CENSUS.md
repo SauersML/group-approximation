@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 152 |
+| `formalized` | 153 |
 | `definition` | 48 |
 | `structural` | 22 |
-| `attribution` | 10 |
+| `attribution` | 9 |
 | `open` | 4 |
 | `provenance` | 2 |
 | `partial` | 1 |
 | **total** | **239** |
 
-Completely formalized or definitional: **200/239** (83.7%).
+Completely formalized or definitional: **201/239** (84.1%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 

@@ -1,0 +1,40 @@
+# Display assignments for the non-MF manuscript.
+#
+# key<TAB>status<TAB>decls<TAB>note.  Generated companion:
+# metadata/NON_MF_DISPLAY_CENSUS.tsv, which must not be edited.  The key is
+# printed by scripts/display_census.py: for a display block it is the first
+# twelve hex digits of the sha256 of the normalized block body, and for a line
+# the prose \eqref's individually it is the sha256 of the LABEL, so that
+# rewording such a line does not move its row.
+#
+# Statuses:
+#   carrier               the named declarations state this displayed identity
+#   notation-only         the display introduces a symbol the prose names; it
+#                         asserts nothing, and decls name the defined object
+#   derivation-of:<key>   an intermediate step of a proof whose conclusion is
+#                         graded at that SENTENCE key.  Such a row names NO
+#                         declarations: the grade says the step is not
+#                         separately stated in Lean, and naming one would be
+#                         the overreach the sentence map's rules forbid.  The
+#                         target must resolve in the sentence census and must
+#                         not itself be unassigned.
+# A key with no row here reads `unassigned`, the state --check rejects.
+#
+# The rule the sentence map lives by applies here too: a `carrier` row names a
+# declaration that already earns its place in the development.  Writing one in
+# order to fill a row turns a gate green without adding knowledge.
+#
+# Opened 2026-08-29 by census-lane for issue #51's display subtask.  The six
+# rows below are the labelled equations of Section 5 and the defect definition,
+# taken from the printed-item table that
+# Manuscript/OneSidedMFRadical/PrintedLeavittEquations.lean already maintains
+# for that section; the remaining displays are untriaged and read `unassigned`.
+# The workflow therefore runs regeneration, --verify-links and --verify-decls,
+# and NOT --check: a --check today would be a permanent red on work nobody has
+# done yet, which is worse than an honest count of what is ungraded.
+294c99de85d2	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.printedDefect GroupApproximation.Manuscript.OneSidedMFRadical.printedDefectSet GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptSentence40_printedDefect_display	eq:intrinsic-defect. The displayed normal closure is rfl-equal to printedDefect, with the compressors quantified individually as printed rather than through the subgroup they generate. Same declarations as the sentence row 56d73653208a, which grades the prose introducing the display.
+a388db19c8b5	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.printed_leavitt_delta GroupApproximation.LeavittFamily.p0_add_s1t1	eq:leavitt. printed_leavitt_delta is the Kronecker form t_i s_j = delta_ij over the concrete R, and p0_add_s1t1 is the completeness relation s0t0 + s1t1 = 1.
+3ceeab36c6d8	carrier	GroupApproximation.LeavittFamily.matrixCompression GroupApproximation.LeavittFamily.matrixCompression_apply	eq:matrix-compression. matrixCompression is literally scalarDiagonal p1 + scalarDiagonal s0 * M * scalarDiagonal t0, which is the printed qI_3 + s0 A t0; matrixCompression_apply reads the display entrywise, which is the form the strictness argument at tex 774-783 consumes.
+bbbb3fffaf08	notation-only	GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL GroupApproximation.RankTwelve.tauUnit	eq:tau introduces the compressor tau = diag(X,Y). printedTauGL is that element, flattened to the literal 12x12 matrix ring; its invertibility is carried by the type, and its membership in EL_12(R) -- which the display does not claim, since it writes GL_12(R) -- is the separate printedTauGL_mem.
+d94d28887b98	carrier	GroupApproximation.RankTwelve.tau_fullCorner_tauInv	eq:corner-conjugation, the identity tau diag(A,I_9) tau^-1 = diag(Psi(A), I_9). Named in PrintedLeavittEquations' own printed-item table for this equation.
+3566e63aec17	carrier	GroupApproximation.Manuscript.OneSidedMFRadical.printed_tau_conj_corner_subset GroupApproximation.Manuscript.OneSidedMFRadical.printed_tau_conj_corner_le GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tau_compresses_corner	eq:compresses-L, tau L tau^-1 <= L, in both the printed subset spelling and the Subgroup.map spelling prop:max-infinite consumes. The strictness of this containment is a separate printed sentence and is graded at cad29bad60db in the sentence census.

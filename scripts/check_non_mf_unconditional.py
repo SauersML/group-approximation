@@ -49,6 +49,42 @@ Discharge is a least fixed point, not a one-step lookup.  `DefectRoutingData`
 only when its own premises are discharged, so the whole chain is correctly
 reported as open.
 
+### Discharged, and discharged honestly
+
+Being produced and being produced *honestly* are different facts, and the gate
+reports both.  A datum whose only inhabitant rests on a `sorry` looks
+discharged and is not, which is worse than an undischarged premise rather than
+better: an undischarged premise is visibly a citation, and this one reads as
+settled.  So the fixed point runs twice, once over every producer and once with
+the `sorry`-tainted producers removed, and the difference is its own detector:
+
+* `conditional-data` / `open-predicate` -- nothing in the corpus produces the
+  premise's type.  The honest citation shape.
+* `conditional-debt` -- the corpus produces it, but every producer rests on a
+  `sorry`.
+
+The case this was written for: `TheoremC.LiteratureInputs` is inhabited by
+`TheoremCDebts.literatureInputs`, which is assembled from three `sorry`-backed
+literature theorems.  Before the split, every theorem taking `LiteratureInputs`
+read as unconditional, because the gate asked whether a producer existed and
+not whether it was honest.  `HullInputsCorrected`, by contrast, has an
+untainted producer and stays clean, which is the test the detector has to pass:
+it must discriminate, not condemn a whole surface.
+
+Taint is transitive, and one refinement in its reference scan matters.  An
+identifier whose first component is one of the declaration's own binder names
+is NOT a reference: `exists_configuration (I : LiteratureInputs)` writes
+`I.kotowskiOllivier`, a field of its hypothesis whose last component collides
+with the name of a `sorry`-backed theorem elsewhere.  Reading that as a
+reference tainted four Theorem C declarations that rest on no `sorry` at all.
+
+This is a lexical scan, not a kernel fact.  The authoritative version is the
+axiom set: `#audit_closed_axioms` and `scripts/Audit.lean` walk the transitive
+closure and refuse anything past `propext`, `Classical.choice` and `Quot.sound`.
+That needs a build, and this gate has to run in a checkout without one, so the
+lexical scan is the cheap always-on ratchet and the kernel audit is what
+settles it.  If the two ever disagree, the kernel wins.
+
 Names may additionally be declared conditional by hand in the literature
 roster (`--literature-roster`), which mirrors `Audit.literatureInputNames` in
 `scripts/Audit.lean` on the Python side.  That roster is for transcriptions the
@@ -529,6 +565,12 @@ class Corpus:
     discharged: set[str]
     by_name: dict[str, Declaration] = field(default_factory=dict)
     corpus_namespaces: set[str] = field(default_factory=set)
+    #: Discharged by at least one producer that does not rest on a `sorry`.
+    #: A subset of `discharged`; the difference is the `conditional-debt`
+    #: surface.
+    discharged_honestly: set[str] = field(default_factory=set)
+    #: Short names whose proof rests on a `sorry`, directly or transitively.
+    sorry_tainted: set[str] = field(default_factory=set)
 
     def resolve(self, head: str) -> str:
         """`Ns.Foo` written from outside `Ns` is the same name as `Foo`.
@@ -601,6 +643,77 @@ class Corpus:
         return collected, "\n".join(conclusions)
 
 
+# A `sorry`-family token, on a word boundary and not after a dot, so that a
+# field or namespace component spelled `sorry` is not mistaken for the tactic.
+SORRY_TOKEN = re.compile(r"(?<![\w.])(?:sorry|sorryAx|admit)(?![\w'])")
+
+IDENTIFIER_PATH = re.compile(IDENT)
+
+
+def sorry_tainted(
+    modules: dict[Path, dict[str, Declaration]],
+) -> set[str]:
+    """Short names whose proof rests on a `sorry`, directly or transitively.
+
+    A declaration is tainted when its own body carries a `sorry`-family token,
+    or when it references a tainted declaration.
+
+    An identifier whose first component is one of the declaration's own binder
+    names is NOT a reference.  `exists_configuration (I : LiteratureInputs)`
+    writes `I.chiodo` and `I.kotowskiOllivier`: those are fields of its
+    hypothesis, and their last components collide with the names of the
+    `sorry`-backed theorems that inhabit `LiteratureInputs` elsewhere.  Reading
+    them as references tainted `exists_configuration`, and through it
+    `Configuration`, `manuscriptTorsionFreeFullMFRadical` and both printed forms
+    of Theorem C -- four declarations that rest on no `sorry` at all.  Dropping
+    projections off a declaration's own binders is what keeps the detector from
+    condemning honest work.
+
+    This is a lexical scan, not a kernel fact.  The authoritative version is the
+    axiom set: `#audit_closed_axioms` and `scripts/Audit.lean` walk the
+    transitive closure and refuse anything past `propext`, `Classical.choice`
+    and `Quot.sound`.  That needs a build, and this gate has to run in a
+    checkout without one, so the lexical scan is the cheap always-on ratchet
+    and the kernel audit is what settles it.  If the two ever disagree, the
+    kernel wins.
+    """
+    declarations: dict[str, Declaration] = {}
+    for module in modules.values():
+        declarations.update(module)
+
+    references: dict[str, set[str]] = {}
+    for name, declaration in declarations.items():
+        own = {
+            binder_name
+            for group in (declaration.header, declaration.premises,
+                          declaration.variables, declaration.body_variables)
+            for binder in (group or ())
+            for binder_name in binder.names
+        }
+        seen: set[str] = set()
+        for token in IDENTIFIER_PATH.findall(declaration.value or ""):
+            root, _, _ = token.partition(".")
+            if root in own:
+                continue
+            seen.add(token.rsplit(".", 1)[-1])
+        references[name] = seen
+
+    tainted = {
+        name for name, declaration in declarations.items()
+        if SORRY_TOKEN.search(declaration.value or "")
+    }
+    changed = True
+    while changed:
+        changed = False
+        for name, refs in references.items():
+            if name in tainted:
+                continue
+            if refs & tainted:
+                tainted.add(name)
+                changed = True
+    return tainted
+
+
 def build_corpus(root: Path) -> Corpus:
     """Index the Lean corpus and compute which corpus-defined names it discharges."""
     modules: dict[Path, dict[str, Declaration]] = {}
@@ -642,8 +755,11 @@ def build_corpus(root: Path) -> Corpus:
             return last
         return head
 
-    # producers[head] = list of premise-head sets, one per declaration producing it
-    producers: dict[str, list[set[str]]] = {}
+    # producers[head] = (producing declaration, its premise heads), one entry
+    # per declaration producing `head`.  The name is kept because whether the
+    # producer rests on a `sorry` is what separates the two conditional
+    # detectors below.
+    producers: dict[str, list[tuple[str, set[str]]]] = {}
     for declarations in modules.values():
         for declaration in declarations.values():
             if declaration.keyword in ("structure", "class", "inductive", "axiom",
@@ -660,26 +776,45 @@ def build_corpus(root: Path) -> Corpus:
             for head in heads:
                 if declaration.short_name == head:
                     continue  # the definition of a name is not a proof of it
-                producers.setdefault(head, []).append(needs)
+                producers.setdefault(head, []).append(
+                    (declaration.short_name, needs))
 
     by_name: dict[str, Declaration] = {}
     for declarations in modules.values():
         by_name.update(declarations)
 
-    # Least fixed point: a name is discharged once some producer's own
-    # requirements are all discharged.
-    discharged: set[str] = set()
-    changed = True
-    while changed:
-        changed = False
-        for head, requirement_sets in producers.items():
-            if head in discharged:
-                continue
-            if any(needs <= discharged for needs in requirement_sets):
-                discharged.add(head)
-                changed = True
-    return Corpus(modules, corpus_types, corpus_props, discharged, by_name,
-                  corpus_namespaces)
+    # Being produced and being produced *honestly* are different facts, and the
+    # gate needs both: a datum whose only inhabitant rests on a `sorry` looks
+    # discharged and is not.  Run the same fixed point twice, once over every
+    # producer and once with the tainted producers removed.
+    tainted = sorry_tainted(modules)
+    honest_producers = {
+        head: [needs for name, needs in entries if name not in tainted]
+        for head, entries in producers.items()
+    }
+    all_producers = {
+        head: [needs for _name, needs in entries]
+        for head, entries in producers.items()
+    }
+
+    def fixed_point(sources: dict[str, list[set[str]]]) -> set[str]:
+        """Least fixed point: a name is discharged once some producer's own
+        requirements are all discharged."""
+        out: set[str] = set()
+        changed = True
+        while changed:
+            changed = False
+            for head, requirement_sets in sources.items():
+                if head in out:
+                    continue
+                if any(needs <= out for needs in requirement_sets):
+                    out.add(head)
+                    changed = True
+        return out
+
+    return Corpus(modules, corpus_types, corpus_props,
+                  fixed_point(all_producers), by_name, corpus_namespaces,
+                  fixed_point(honest_producers), tainted)
 
 
 # ---------------------------------------------------------------------------
@@ -710,6 +845,7 @@ class Finding:
 DETECTORS = (
     "buried-conditional",
     "conditional-data",
+    "conditional-debt",
     "definition-only",
     "header-binder",
     "known-conditional",
@@ -942,7 +1078,7 @@ def classify(
             continue
         if not corpus.is_corpus_name(head):
             continue
-        if head in corpus.discharged:
+        if head in corpus.discharged_honestly:
             continue
         # A premise the conclusion is *about* is the theorem's subject matter,
         # not an imported theorem: "if `x` is an asymptotic commutant then so
@@ -956,6 +1092,18 @@ def classify(
                      conclusion):
             continue
         kind = "structure" if head in corpus.corpus_types else "predicate"
+        if head in corpus.discharged:
+            # Produced, but every producer rests on a `sorry`.  This is worse
+            # than an undischarged premise, not better: an undischarged one is
+            # visibly a citation, and this one reads as settled.
+            findings.append((
+                "conditional-debt",
+                f"{origin}premise `{_one_line(binder.type_text)}` requires the "
+                f"corpus-defined {kind} `{head}`, which the corpus produces only "
+                "through declarations that rest on `sorry`; the premise reads as "
+                "discharged and is not",
+            ))
+            continue
         findings.append((
             "conditional-data" if head in corpus.corpus_types else "open-predicate",
             f"{origin}premise `{_one_line(binder.type_text)}` requires the "
@@ -1161,6 +1309,21 @@ def self_test() -> int:
             "def IsNeverProved (n : Nat) : Prop := n = n\n"
             "def IsSometimesProved (n : Nat) : Prop := n = n\n"
             "theorem sometimes : IsSometimesProved 0 := rfl\n"
+            # produced, but only by a declaration that rests on a `sorry`
+            "structure DebtData where\n"
+            "  mark : Nat\n"
+            "def debtData : DebtData := sorry\n"
+            # the binder-projection regression: `debtWitness` is a tainted
+            # top-level name AND a field of `Package`, and `cleanFromPackage`
+            # only ever writes the field.  Reading `p.debtWitness` as a
+            # reference would taint it and make `CleanData` a false debt.
+            "theorem debtWitness : IsSometimesProved 2 := by sorry\n"
+            "structure Package where\n"
+            "  debtWitness : Nat\n"
+            "def package : Package := ⟨0⟩\n"
+            "structure CleanData where\n"
+            "  seed : Nat\n"
+            "def cleanFromPackage (p : Package) : CleanData := ⟨p.debtWitness⟩\n"
             "end GroupApproximation\n",
             encoding="utf-8",
         )
@@ -1186,6 +1349,10 @@ def self_test() -> int:
             "def HiddenStatement : Prop :=\n"
             "    ∀ (_r : ReductionData), True\n"
             "theorem hides_in_named_prop : HiddenStatement := fun _ => trivial\n"
+            "theorem via_debt :\n"
+            "    ∀ (_d : DebtData), True := fun _ => trivial\n"
+            "theorem via_clean :\n"
+            "    ∀ (_c : CleanData), True := fun _ => trivial\n"
             # planted positive: the real premise is one quantifier below the head
             "theorem buries_premise :\n"
             "    ∀ (_a : ∀ k : Nat, 0 < k → ReductionData), True :=\n"
@@ -1211,7 +1378,8 @@ def self_test() -> int:
 
         cited = ("honest", "via_buildable", "closed_but_conditional",
                  "open_predicate", "header_binder", "uses_variable",
-                 "shadows_variable", "IsNotion", "hides_in_named_prop")
+                 "shadows_variable", "IsNotion", "hides_in_named_prop",
+                 "via_debt", "via_clean")
         tex.write_text("".join(badge(name) for name in cited), encoding="utf-8")
         known = {"GroupApproximation.honest": "pinned by hand"}
         findings, problems, checked = validate(root, tex, roster, known)
@@ -1223,7 +1391,8 @@ def self_test() -> int:
             by_declaration.setdefault(finding.declaration, set()).add(finding.detector)
 
         for clean in ("GroupApproximation.via_buildable",
-                      "GroupApproximation.shadows_variable"):
+                      "GroupApproximation.shadows_variable",
+                      "GroupApproximation.via_clean"):
             if clean in by_declaration:
                 print(f"self-test: false positive on {clean}: "
                       f"{by_declaration[clean]}", file=sys.stderr)
@@ -1237,6 +1406,7 @@ def self_test() -> int:
             "GroupApproximation.honest": "known-conditional",
             "GroupApproximation.IsNotion": "definition-only",
             "GroupApproximation.hides_in_named_prop": "conditional-data",
+            "GroupApproximation.via_debt": "conditional-debt",
         }
         for name, detector in expected.items():
             if detector not in by_declaration.get(name, set()):

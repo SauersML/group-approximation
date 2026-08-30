@@ -6,16 +6,16 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 132 |
+| `formalized` | 137 |
 | `definition` | 35 |
-| `unassigned` | 22 |
-| `structural` | 21 |
+| `structural` | 20 |
+| `unassigned` | 19 |
 | `attribution` | 13 |
-| `partial` | 3 |
+| `partial` | 2 |
 | `provenance` | 1 |
 | **total** | **227** |
 
-Completely formalized or definitional: **167/227** (73.6%).
+Completely formalized or definitional: **172/227** (75.8%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -26,8 +26,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 105 --- In other words, $G$ is MF if there are finite unitary matrices, one for each element of $G$, that multiply correctly up to an error tending to zero in operator norm while every element other than the identity stays a fixed distance from the identity matrix.
 * **`unassigned`**, line 120 --- The quotient $\mathcal Q_{\mathbf d}$ is the corona algebra of $\bigoplus_nM_{d_n}(\C)$, since $\prod_nM_{d_n}(\C)$ is its multiplier algebra.
 * **`unassigned`**, line 134 --- An element $c$ of the centralizer $C_G(L)$ commutes with $L$, so $ucu^{-1}$ commutes with $uLu^{-1}$ but need not commute with the rest of $L$.
-* **`partial`**, line 195 --- Then $H$ is finitely generated, nontrivial, simple, has property~\textup{(T)}, and every homomorphism from $H$ to an MF group is trivial. So $H$ is not MF, and $C^*_{\mathrm r}(H)$ is separable and stably finite but not MF, while $C^*_{\max}(H)$ is not even finite: it contains a proper isometry.
-  * PROVED: H finitely generated, nontrivial, simple, property (T), every homomorphism to an MF group trivial, and C*_r(H) separable and stably finite but not MF -- PrintedHeadline is exactly Group.FG H and HeadlineConclusion and ReducedCStarConsequence. NOT PROVED: the closing clause 'while C*_max(H) is not even finite: it contains a proper isometry'. prop:max-infinite is proved in general (MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses), but its application at H needs the strict compression tau L tau^-1 strictly inside L, which the sentence at tex 777 (c95a334f65f1) asserts and nothing carries. Downgraded from the printed badge's `formalized` on 2026-08-29; the badge names only the headline theorems and does not reach the C*_max clause.
 * **`unassigned`**, line 230 --- Here the rigidity is the Kazhdan projection of $L$ in a norm matrix corona, which stable finiteness of the corona forces to commute with the compressor, and the contradiction is a commutator $[ucu^{-1},\ell]\ne1$ that every operator norm asymptotic representation sends to $1$ in Hilbert--Schmidt norm.
 * **`partial`**, line 521 --- The Kazhdan projection of \(K\) under \(\widehat\Theta\) is the coordinate restriction of \(qp=0\), so \(\widehat\Theta|_K\) has no nonzero fixed vectors, and for a finite Kazhdan set \(S\subseteq K\) with constant \(\kappa>0\),
   * PROVED: the finite Kazhdan set S and its constant kappa > 0 exist for every property-(T) group, and the displayed quadratic form is the KazhdanData of the maximal C-star algebra. NOT PROVED: 'so Theta-hat restricted to K has no nonzero fixed vectors'. The implication is manuscriptSentence_kazhdanProjectionZeroGivesNoFixedVectors, but its premise is the corpus predicate KazhdanProjectionImageZero, which nothing in the corpus ever produces, so it is named here in prose and not counted. Carried 2026-08-29 from the pre-rewrite key 21c0066c1cea, which was formalized and had gone stale before this rewrite.
@@ -44,9 +42,6 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 * **`unassigned`**, line 733 --- Since $\tau=\operatorname{diag}(X,Y)$ and $E_{34}$ is supported in the first six coordinates, $\tau E_{34}\tau^{-1}=\operatorname{diag}(XE_{34}Y,0)$ with $E_{34}$ read in $M_6(R)$, and with $\varepsilon_0,\varepsilon_1,\varepsilon_2$ the standard basis of $R^3$,
 * **`unassigned`**, line 745 --- by~\eqref{eq:leavitt}.
 * **`unassigned`**, line 745 --- So
-* **`unassigned`**, line 760 --- Finally, the compression~\eqref{eq:compresses-L} is strict: by \eqref{eq:corner-conjugation} and~\eqref{eq:matrix-compression}, every off-diagonal entry of a matrix in $\tau L\tau^{-1}$ has the form $s_0at_0$, and
-* **`unassigned`**, line 779 --- so $e_{12}(1)\in L\setminus\tau L\tau^{-1}$.
-* **`unassigned`**, line 779 --- Proposition~\ref{prop:max-infinite}, applied to $L\le H$ and $\tau$, puts a proper isometry in $C^*_{\max}(H)$.
 * **`unassigned`**, line 831 --- The group $G_0$ is obtained there from Hull's common quotient theorem~\cite[Corollary~7.4]{Hull}, so it is acylindrically hyperbolic.
 * **`unassigned`**, line 864 --- Let $N$ be the normal closure of $S$ in $G_0$, and fix $s\in S$ with $s\ne1$.
 * **`partial`**, line 871 --- Since $\varphi(N)=Q$, the normal closure of $\rho(S)$ in $\bar G$ is $\rho(N)=\bar G$, and by Lemma~\ref{lem:commutator-in-defect} it lies in the normal subgroup $\mathfrak D_{\bar G}(\rho(\Gamma))$, so $\mathfrak D_{\bar G}(\rho(\Gamma))=\bar G$.
@@ -63,7 +58,7 @@ These are the sentences the development does not settle, verbatim.  `open` sente
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 46 | 0 |
 | From Hilbert--Schmidt to operator norm | 27 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 15 | 10 |
-| The binary Leavitt group | 48 | 6 |
+| The binary Leavitt group | 48 | 3 |
 | A torsion-free finitely presented example | 31 | 2 |
 | Acknowledgments | 2 | 0 |
 | Use of AI and formal methods | 1 | 0 |
