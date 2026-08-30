@@ -2,21 +2,21 @@
 rg: 2
 id: one-relator-groups-sofic
 kind: claim
-title: "Pestov Question 4.9: every one-relator group is sofic"
+title: "Pestov Question 4.10: every one-relator group is sofic"
 root: true
 distinct_from:
   nonsofic-one-relator-group: that is the negative answer to the same question and asks for a witness; this is the affirmative answer and asks for a proof covering all relators. They cannot both be established, and no route to either is a route to the other.
   residually-rationally-solvable-one-relator-sofic: that is this statement restricted to the residually rationally solvable subclass, and it is closed; this is the full question and is open.
-  hyperlinear-implies-sofic: that is Pestov's Question 3.4 in the affirmative and concerns hyperlinear groups; this is his Question 4.9 and concerns one-relator presentations. Neither is known to bear on the other.
-  pestov-question-5-3-negative: that is Pestov's Question 5.3, about essentially free near actions, and it is closed negatively by this development; this is his Question 4.9 and is untouched by it.
-  q3-4-resolved: that is the program goal — Pestov's Question 3.4, resolved either way, about hyperlinear groups — and admits exactly two answer routes by construction; this is his Question 4.9, a single directional statement about one-relator groups, with ordinary routes and a separate negation claim. Neither question is known to bear on the other.
+  hyperlinear-implies-sofic: that is Pestov's Question 3.4 in the affirmative and concerns hyperlinear groups; this is his Question 4.10 and concerns one-relator presentations. Neither is known to bear on the other.
+  pestov-question-5-3-negative: that is Pestov's Question 5.3, about essentially free near actions, and it is closed negatively by this development; this is his Question 4.10 and is untouched by it.
+  q3-4-resolved: that is the program goal — Pestov's Question 3.4, resolved either way, about hyperlinear groups — and admits exactly two answer routes by construction; this is his Question 4.10, a single directional statement about one-relator groups, with ordinary routes and a separate negation claim. Neither question is known to bear on the other.
   one-relator-fox-magnus-descent-to-derived-linton-radical: that proves every one-relator group sofic only after quotienting by the derived Linton radical and gives a new positive class when `R' = 1`; this asks for the remaining nonabelian core as well.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
 
 OPEN.  Pestov, *Hyperlinear and sofic groups: a brief guide* (arXiv:0804.3968),
-Open Question 4.9: is every one-relator group `G = <X | w>` sofic?
+Open Question 4.10: is every one-relator group `G = <X | w>` sofic?
 
 Two live routes and two dead ones are recorded below.  As of 2026-08-17 the
 question is unresolved in both directions; the negative answer is the separate
@@ -24,6 +24,10 @@ claim [[nonsofic-one-relator-group]].
 
 ## What is already settled
 
+- [[one-relator-soficity-is-torsion-free-two-generator-case]] — the full
+  question is exactly equivalent to the torsion-free two-generator case.
+  Torsion one-relator groups are residually finite, and every torsion-free
+  one-relator group embeds in a torsion-free two-generator one-relator group.
 - [[residually-rationally-solvable-one-relator-sofic]] — the whole residually
   rationally solvable subclass is sofic.
 - [[one-relator-soficity-localizes-at-rational-derived-stage]] — for every
