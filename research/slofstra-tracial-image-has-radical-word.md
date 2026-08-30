@@ -6,7 +6,7 @@ title: A word survives in the sofic radical of the Slofstra tracial image
 distinct_from:
   slofstra-involution-not-sofic-radical: that gives a sofic homomorphism from the full solution group detecting `J`; this asks about the quotient by the kernel of the selected nonclosed-game trace, through which that homomorphism is not known to factor.
   sofic-radical-hyperlinear-survivor: that asks for any group, radical word, and hyperlinear detector; this fixes the group to one explicit tracial image supplied by Slofstra's nonclosed LCS game.
-  finite-table-quantum-classical-hamming-gap: that asks only for a finite local table; this asks for the global radical word whose image quotient would supply such a table coherently.
+  regular-finite-table-quantum-classical-hamming-gap: that asks only for a finite local table; this asks for the global radical word whose image quotient would supply such a table coherently.
   slofstra-natural-negative-corner-image-is-sofic: that proves the particular character obtained by taking the negative corner of the permutation-valued construction has a sofic image; this asks whether a different perfect C_qa character has a nonsofic image.
 ---
 

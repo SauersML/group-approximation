@@ -5,7 +5,7 @@ kind: route
 title: A finite conic gap, groupified coherently, separates hyperlinear from sofic
 target: hyperlinear-nonsofic-group
 requires:
-  - finite-table-quantum-classical-hamming-gap
+  - regular-finite-table-quantum-classical-hamming-gap
   - coherent-groupification-of-table-gap
 ---
 
