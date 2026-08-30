@@ -98,11 +98,13 @@ audit.
    semifinite-central-summand unitary proves uniqueness in every separably
    acting von Neumann algebra.  Thus no counterexample can be detected in any
    separably acting von Neumann shadow, regardless of type.
-6. The countability restriction can be removed completely for type-III
-   factors.  Such a factor is a unital simple purely infinite C-star algebra:
-   equivalence of nonzero projections gives `y*ay=1` for every nonzero
-   positive `a`, and puts an infinite projection in every nonzero hereditary
-   subalgebra.  Hua--White Theorem A.2 then applies because the two Jiang--Su
-   embeddings have equal nuclear KK class.  This gives asymptotic uniqueness
-   in every type-III factor, and product closure gives approximate uniqueness
-   for arbitrary atomic-center type-III von Neumann algebras.
+6. The separable-predual restriction can be weakened to sigma-finiteness for
+   type-III factors.  In such a factor equivalence of nonzero projections
+   gives `y*ay=1` for every nonzero positive `a`, and puts an infinite
+   projection in every nonzero hereditary subalgebra.  Hua--White Theorem A.2
+   then applies because the two Jiang--Su embeddings have equal nuclear KK
+   class.  This gives asymptotic uniqueness in every sigma-finite type-III
+   factor, and product closure gives approximate uniqueness for arbitrary
+   products of such factors.  The argument does not extend to a
+   non-sigma-finite factor, where projection cardinalities can differ and
+   proper norm ideals can occur.

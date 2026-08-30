@@ -1,19 +1,19 @@
 ---
 rg: 2
-id: stw63-type3-factor-kirchberg-proof
+id: stw63-sigmafinite-type3-factor-kirchberg-proof
 kind: route
 title: Regard the factor as a simple purely infinite C-star algebra and apply nuclear KK uniqueness
-target: stw63-arbitrary-type3-factor-asymptotic-uniqueness
+target: stw63-sigmafinite-type3-factor-asymptotic-uniqueness
 requires:
   - z-embedding-invariants-collapse-before-cu
 artifacts:
   - research/artifacts/stw63-z-embedding-audit-2026-08-30.md
 ---
 
-First verify the C-star-algebraic target hypothesis without a countability
-assumption.  In a type-III factor every two nonzero projections are
-Murray--von Neumann equivalent.  If `0!=a in M_+`, choose `epsilon>0` such
-that the spectral projection
+First verify the C-star-algebraic target hypothesis.  In a sigma-finite
+type-III factor every two nonzero projections are Murray--von Neumann
+equivalent.  If `0!=a in M_+`, choose `epsilon>0` such that the spectral
+projection
 
 ```text
 p=1_[epsilon,infinity)(a)
@@ -44,7 +44,9 @@ from nuclear KK to ordinary KK is an isomorphism, so their `KK_nuc` classes
 also agree.  Hua--White Theorem A.2 now gives the required continuous path of
 unitaries in `M`.
 
-The only type-III structure used is equivalence of nonzero projections; the
-argument does not import the separable-predual hypothesis of Hua--White
-Theorem A.1.
-
+The sigma-finite hypothesis is used exactly in the equivalence of nonzero
+projections.  The argument does not import the stronger separable-predual
+hypothesis of Hua--White Theorem A.1.  For a non-sigma-finite factor,
+nonzero projections can have different cardinal dimension and generate
+proper norm ideals, so this proof does not establish simplicity or pure
+infiniteness of the factor as a C-star algebra.
