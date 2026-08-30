@@ -7,6 +7,7 @@ target: literal-base-explicit-kazhdan-pair
 requires: []
 artifacts:
   - GroupApproximation/Kazhdan/ExactHodgeCertificate.lean
+  - GroupApproximation/Monsters/P13SpectralGap.lean
   - GroupApproximation/Sofic/LiteralP13HodgeCertificate.lean
   - GroupApproximation/Sofic/LiteralBaseP13RotationQuotient.lean
   - GroupApproximation/Monsters/P13CircumcenterRouteStep3.lean
@@ -15,22 +16,23 @@ artifacts:
 
 ## Direct proof
 
-`LiteralP13HodgeCertificate.cleanP13Certificate` has certificate constants
-`c=1/250`, `r=1/500`, and six generators. Thus the `gamma` in
-`ExactHodgeCertificate.certifiedKazhdanTolerance` is `1/500`, while its
-universal upper bound is
+`P13SpectralGap.t1_04_p13_spectrum_subset` places the spectrum of the
+six-generator Laplacian in `{0} union [1/500,infinity)`, and
+`P13SpectralGap.t1_05_p13_ker_eq_invariants` identifies its kernel with the
+invariant subspace. By the spectral theorem, on the orthogonal complement of
+the invariant subspace,
 
 ```text
-max(1/500,4*6)=24.
+sum_(i=1)^6 ||rho(e_i)x-x||^2 >= (1/500)||x||^2.
 ```
 
-`Certificate.isKazhdanPair` therefore gives the six P13 generators the exact
-tolerance
+Thus if all six generator displacements are strictly less than
+`1/sqrt(3000)` for a unit vector, its moving projection has norm strictly
+less than one and its invariant projection is nonzero. Hence the six P13
+generators have Kazhdan tolerance
 
 ```text
-(1/500)*(1-sqrt(1-(1/500)/24))/(2*6)
-  =(1-sqrt(11999/12000))/6000
-  =kappa13.
+kappa13=1/sqrt(3000).
 ```
 
 A Kazhdan pair pushes through a surjective homomorphism with no loss of
@@ -73,9 +75,9 @@ normalize translations, so one obtains a vector `y` fixed by all of `B` and
 ```
 
 Hence `y` is nonzero. This is the Kazhdan-pair assertion with tolerance
-`kappa13/64=kappaB`.
+`kappa13/64=kappaB=1/(64*sqrt(3000))`.
 
 Finally enlarge `Q_B` to the symmetric identity-containing `S_B`. It has at
 most `2*8+1=17` elements. `IsKazhdanPair.norm_orbitAverage_le` gives moving
 contraction `1-kappaB^2/(4*|S_B|)`, which is at most
-`1-kappaB^2/68`.
+`1-kappaB^2/68=1-1/835584000`.
