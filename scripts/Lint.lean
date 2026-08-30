@@ -1,5 +1,5 @@
 import GroupApproximation
-import PalomarSolution
+import Palomar.Solution
 import Batteries.Tactic.Lint
 
 /-!
@@ -18,4 +18,4 @@ also fails on a missing docstring trains people to ignore it.  Run under
 open Batteries.Tactic.Lint
 
 #lint only unusedArguments unusedHavesSuffices simpNF in GroupApproximation
-#lint only unusedArguments unusedHavesSuffices simpNF in PalomarSolution
+#lint only unusedArguments unusedHavesSuffices simpNF in Palomar.Solution

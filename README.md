@@ -1,22 +1,66 @@
-# Group Approximation
+# Not Every Group Is MF
 
-The remote `verified` branch is automatically fast-forwarded after every complete Lean Prover CI success on `main`. Use that for the most recent correct Lean code.
+This repository formalizes an explicit countable group that is sofic but not
+MF in the sequential operator-norm sense. The main result is
+`ExplicitNonMF.explicit_sofic_not_MF`:
 
-## A non-MF group
+```lean
+theorem explicit_sofic_not_MF :
+    IsSoficGroup E ∧ ¬ IsSequentialOperatorMFGroup E
+```
 
-[`non_mf_groups_exist.tex`](non_mf_groups_exist.tex) proves that not every group is MF. [`non_mf_group_notes.tex`](non_mf_group_notes.tex) is an archived research notebook for an earlier construction and is not a companion to the current manuscript.
+The formalization uses Lean 4 and Mathlib. Its axiom closure is exactly
+`propext`, `Classical.choice`, and `Quot.sound`.
 
-## Lean library
+## Build
 
-The Lean code is organized as a reusable library. Generic definitions and theorems are separated from concrete presentations and finite certificates, so other projects can import only the layers they need. [`GroupApproximation.lean`](GroupApproximation.lean) imports the complete library.
+Install Lean through [elan](https://github.com/leanprover/elan), then run:
 
-| Area | Directories | Contents |
-| --- | --- | --- |
-| Group theory | `Algebra/`, `GroupTheory/`, `Higman/`, `Covers/` | Presentations, normal forms, free products, HNN extensions, quotients, embeddings, and torsion |
-| Finite approximation | `Sofic/`, `Criterion/`, `Stability/`, `Domination/`, `Matching/` | MF, sofic, and hyperlinear interfaces; finite models; residuals; matrix coronas; permanence and obstruction theorems |
-| Rigidity | `PropertyT/`, `Kazhdan/`, `PropertyTT/` | Fixed-point methods, relative property (T), spectral and Hodge certificates, and property (TT)/T |
-| Analysis | `Analysis/`, `KOne/`, `Leavitt/`, `Steinberg/` | Matrix estimates, projections, traces, C*-algebras, K-theory, and noncommutative rings |
-| Other group constructions | `Kun/`, `KunThom/`, `Quantum/`, `Monsters/` | Graph, permutation, quantum, and embedding constructions |
-| Public and checked interfaces | `Endpoint/`, `Meta/`, `Computability/`, `Manuscript/` | Stable exports, certificate replay, computability wrappers, statement matching, and axiom audits |
+```sh
+lake exe cache get
+lake build
+```
 
-Modules named `Literal*` contain fully specified examples and certificate data; the generic modules do not depend on any particular presentation.
+`lake build` checks the complete proof library, the Mathlib-only Palomar
+challenge, and the corresponding solution.
+
+## Repository layout
+
+| Path | Purpose |
+| --- | --- |
+| `GroupApproximation/` | Definitions, structural lemmas, finite certificates, and the proof |
+| `GroupApproximation.lean` | Root module for the complete proof dependency graph |
+| `Palomar/Challenge.lean` | Small Mathlib-only statement of record, with one deliberate `sorry` |
+| `Palomar/Solution.lean` | The identical statement, proved from the library |
+| `certificates/p13/` | Pinned inputs and generators for the exact P13 certificate |
+| `scripts/` | Source, linter, axiom, signature, and Palomar verification gates |
+| `metadata/` | Generated statement and audit snapshots |
+| `comparator.json` | Palomar Comparator configuration |
+| `formalization.yaml` | Structured provenance metadata |
+
+## Verification
+
+The local verification suite is:
+
+```sh
+uv sync --locked
+uv run python scripts/check.py --self-test
+uv run python scripts/check.py
+uv run python scripts/check_palomar_submission.py --self-test
+uv run python scripts/check_palomar_submission.py
+uv run python scripts/check_p13_generated.py --temporary-root /tmp
+lake env lean scripts/Calibrate.lean
+lake env lean scripts/Audit.lean
+lake env lean scripts/Lint.lean
+bash scripts/check_palomar_statement_match.sh
+```
+
+The source scan permits only the deliberate hole in
+`Palomar/Challenge.lean` and the planted defect used to calibrate the axiom
+audit. The manual Comparator workflow performs the registry-level comparison
+and independent kernel replay.
+
+## Citation and license
+
+Citation metadata is in `CITATION.cff`. The project is licensed under the
+Apache License 2.0.

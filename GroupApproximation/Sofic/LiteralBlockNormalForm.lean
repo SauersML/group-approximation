@@ -3,8 +3,8 @@ import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 /-!
 # The normal form of the literal forty-one-relator group
 
-Definition `def:E` of `non_mf_groups_exist.tex` presents a group `E` on eight
-letters `v₁,v₂,v₃,x,y,z,t,c` by twenty base relators, six doubling relators,
+The group `E` is presented on eight letters `v₁,v₂,v₃,x,y,z,t,c` by twenty
+base relators, six doubling relators,
 the involution `c²`, six centralising relators `[c,g]`, and eight relators
 making the marked word `w = [tct⁻¹, v₁(tct⁻¹)v₁⁻¹]` central.  This module
 computes that group completely: it is a semidirect product
@@ -67,10 +67,9 @@ The second rests on the unconditional finite-index theorem
 transported into `V`, and on the commensurated-subgroup criterion of
 `MappingTelescopeFiniteOrbits`.
 
-What is deliberately *not* proved here is that a block is a clique with eight
-vertices, equivalently that `K = B ∪ BβB`; that is Proposition 4.2 of
-`notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`, and it rests on the
-identification of the base.  Consequently the lamp factor is the Clifford group
+This module deliberately does not prove that a block is a clique with eight
+vertices, equivalently that `K = B ∪ BβB`; that stronger statement rests on an
+identification of the base. Consequently the lamp factor is the Clifford group
 of the orbital graph, not visibly a free product of copies of `ClLamp(8)`
 amalgamated over `⟨ζ⟩`; the latter is the same group once the clique property
 is known, and is a strictly stronger reading of the same isomorphism.

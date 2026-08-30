@@ -15,10 +15,9 @@ image `v` of the basepoint under a nonempty reduced word with first
 index `i₀`, the block sums satisfy `2 + otherSum i₀ v ≤ blockSum i₀ v`,
 while every other block satisfies the reverse inequality with slack `2`.
 
-Combined with `generalLinearGroup_int_residuallyFinite`, the free
-product is residually finite.  This is the statement (M′) of
-`notes/SOFICITY_TOWER_MJ_DESIGN_2026-08-15.md`, to which residual
-finiteness of the literal lamp sub-amalgams reduces.
+Combined with `generalLinearGroup_int_residuallyFinite`, the free product is
+residually finite. This supplies the residual-finiteness input for the literal
+lamp sub-amalgams.
 -/
 
 namespace GroupApproximation

@@ -1,4 +1,4 @@
-import PalomarSolution
+import Palomar.Solution
 import Lean.Elab.Command
 
 /-!
@@ -35,10 +35,9 @@ def writeSignatures (env : Environment) (declsPath outPath : System.FilePath) :
     CommandElabM Nat := do
   let input ← IO.FS.readFile declsPath
   let names := input.splitOn "\n" |>.map (fun s => s.trimAscii.toString)
-    |>.filter (· ≠ "")
+      |>.filter (· ≠ "")
   if names.isEmpty then
-    throwError "{declsPath}: no declarations listed; \
-run `python3 scripts/claim_map.py --write` first"
+    throwError "{declsPath}: no declarations listed"
   let mut sections : Array String := #[header declsPath]
   for s in names do
     let n := s.toName

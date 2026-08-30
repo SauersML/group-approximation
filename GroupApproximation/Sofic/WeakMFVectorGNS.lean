@@ -9,47 +9,17 @@ approximation to an exact real orthogonal representation.  It is the
 compactness engine used to rule out spurious finite-stage spectrum between
 the moving Kazhdan spectrum and the invariant eigenvalue `1`.
 
-## The ultrafilter locus
+## Compactness boundary
 
-`non_mf_groups_exist.tex` used to carry a section titled "The finite-stage
-transport proof", advertising a proof of the Kazhdan transport theorem
-"quantitatively at each single coordinate `n` and with no ultrafilter", whose
-estimate (i) carried a `\leanverified` badge pointing at
-`hermitianAverage_eventually_no_intermediate_eigenvalues` below.  That proof
-*does* use an ultrafilter: a `Hyperreal` standard part is a limit
-along the hyperfilter on `ℕ`.
+The passage from an almost representation to an exact orthogonal
+representation uses a hyperreal standard part, hence a limit along the
+hyperfilter on `ℕ`. This produces the non-effective threshold in
+`hermitianAverage_eventually_no_intermediate_eigenvalues`.
 
-**The section, and with it the badge, are gone** -- commit `3a45fa60`
-("Editorial pass: rewrite orbit collapse, cut what nothing uses") deleted the
-appendix and the remark announcing it.  The discrepancy recorded below is
-therefore no longer a live manuscript defect; it is kept because the
-declarations it names are still here and still carry the dependency, and a
-future badge on any of them would reintroduce the same false claim.  The contaminated declarations of this file are
-exactly
-
-* `correlationHyperreal`, `gramCorrelationHyperreal`, `limitingCorrelation`,
-  `limitingPositiveDefiniteFunction` and every result about them;
-* `combinationNormSqHyperreal` and the `stdPart_*` results;
-* `HermitianEigenpairSequence.valueHyperreal`,
-  `stdPart_displacement_eq_eigenvaluePolynomial`;
-* `finiteAveragingDisplacementNormSq_eventually_lt` and
-  `hermitianAverage_eventually_no_intermediate_eigenvalues`.
-
-The limit is not removable by refactoring.  The statement being proved is
-about an *almost* representation, whereas property `(T)` is a statement about
-exact unitary representations; the passage from one to the other either takes
-a limit (as here, producing a non-effective `∃ N`) or uses a sum-of-squares
-certificate for `(T)` in the group algebra, which is not formalized in this
-corpus.  Compare the module docstring of
-`GroupApproximation/Sofic/KazhdanCornerCompression.lean`, which records the
-same phenomenon for the operator-norm almost-spectral-gap theorem of Bader
-(Dogon--Vigdorovich, Theorem 7.10), whose proof uses exactly that certificate.
-
-Everything downstream of the `∃ N` *is* explicit, and lives in the
-ultrafilter-free module `GroupApproximation/Sofic/FiniteStageRobustGap.lean`.
-`hermitianAverage_eventually_eigenvector_displacement_le` at the end of this
-file is the composition: one non-effective `N`, and after it a printed
-constant.
+That limiting step is essential unless property `(T)` is supplied by a
+sum-of-squares certificate in the group algebra. Everything after the
+threshold is finite-dimensional and explicit; those estimates live in
+`FiniteStageRobustGap.lean`.
 -/
 
 namespace GroupApproximation

@@ -10,12 +10,12 @@ import Mathlib.GroupTheory.Perm.Basic
 import Mathlib.LinearAlgebra.UnitaryGroup
 import Mathlib.Order.Filter.AtTopBot.Defs
 import Mathlib.Topology.Algebra.Order.Field
+import GroupApproximation.Sofic.LiteralNonMFCoreEndpoint
+import GroupApproximation.Sofic.LiteralSoficAssembly
+import GroupApproximation.Sofic.NormMFConsequences
 
 /-!
-# An explicit sofic group that is not MF
-
-The displayed presentation defines `E`.  The selected theorem states that `E`
-is sofic and is not MF in the sequential operator-norm formulation.
+# Proof of the explicit sofic non-MF theorem
 -/
 
 namespace ExplicitNonMF
@@ -240,11 +240,50 @@ abbrev E : Type :=
 
 -- END SHARED BLOCK
 
-/-- The explicitly presented group `E` is sofic in normalized Hamming distance
-and is not MF in the sequential operator-norm sense. -/
+open GroupApproximation
+
+/-- The explicit group is sofic and not MF. -/
 theorem explicit_sofic_not_MF :
     IsSoficGroup E ∧ ¬ IsSequentialOperatorMFGroup E := by
-  sorry
+  constructor
+  · intro F ε hε
+    obtain ⟨m⟩ := LiteralSoficAssembly.markedGroup_isSofic F ε hε
+    exact ⟨⟨m.carrier.carrier, m.carrier.fintype, m.carrier.decidableEq⟩,
+      m.map, m.nonempty, m.multiplicative, m.separated⟩
+  · rintro ⟨Y, U, _, hU, hmul, hsep⟩
+    let w : E := LiteralNonMFPresentation.mark
+    have hzero : Filter.Tendsto (fun n ↦ ‖U n w - 1‖)
+        Filter.atTop (nhds 0) := by
+      have main : ∀ ε : ℝ, 0 < ε →
+          ∀ᶠ n in Filter.atTop, ‖U n w - 1‖ < ε := by
+        intro ε hε
+        obtain ⟨δ, F₀, hδ, hbound⟩ :=
+          uniform_invisibility LiteralNonMFEndpoint.literal_mark_normMFInvisible
+            ε hε
+        have key : ∀ᶠ n in Filter.atTop, ∀ g ∈ F₀, ∀ h ∈ F₀,
+            ‖U n (g * h) - U n g * U n h‖ ≤ δ := by
+          rw [Filter.eventually_all_finset]
+          intro g _
+          rw [Filter.eventually_all_finset]
+          intro h _
+          exact (hmul g h).eventually_le_const hδ
+        filter_upwards [key] with n hn
+        exact hbound ⟨(Y n).carrier, (Y n).fintype, (Y n).decidableEq⟩
+          (fun g ↦ ⟨U n g, hU n g⟩) hn
+      refine Metric.tendsto_atTop.mpr fun ε hε ↦ ?_
+      obtain ⟨N, hN⟩ := Filter.eventually_atTop.mp (main ε hε)
+      refine ⟨N, fun n hn ↦ ?_⟩
+      rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)]
+      exact hN n hn
+    obtain ⟨δ, hδ, hgap⟩ :=
+      hsep w LiteralNonMFLinearWitness.literal_mark_ne_one
+    obtain ⟨N, hN⟩ := Metric.tendsto_atTop.mp hzero δ hδ
+    obtain ⟨M, hM⟩ := Filter.eventually_atTop.mp hgap
+    let n := max N M
+    have hnear := hN n (le_max_left N M)
+    have hfar := hM n (le_max_right N M)
+    rw [Real.dist_eq, sub_zero, abs_of_nonneg (norm_nonneg _)] at hnear
+    exact (not_lt_of_ge hfar) hnear
 
 end
 

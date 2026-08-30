@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "Please cite this repository."
-title: "Non-MF Groups"
+title: "Not Every Group Is MF"
 type: software
 authors:
   - family-names: "Sauers"
-version: 0.3.0
-date-released: 2026-08-24
+version: 0.4.0
+date-released: 2026-08-30
 license: Apache-2.0
-repository-code: "https://github.com/SauersML/group-approximation"
+repository-code: "https://github.com/deancureton/group-approximation"

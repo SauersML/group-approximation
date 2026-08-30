@@ -3,16 +3,15 @@ import GroupApproximation.Sofic.MappingTelescopeFiniteOrbits
 /-!
 # The site set and its orbital block geometry
 
-This file formalises §4 of `notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`
-("The site set and the orbital graph") for the ascending-HNN model
+This file develops the site set and orbital graph for the ascending-HNN model
 `V = Vertical α hα` of an arbitrary injective endomorphism `α : Γ →* Γ`.
 
-The manuscript coordinatises the site set as
+The site set admits coordinates of the form
 
     X = V/B ≅ ⨆_{n ∈ ℤ} ℤ[1/2]³ / 2ⁿℤ³ ,
 
 the class of `t τⁿ B` being `(n, [u] mod 2ⁿℤ³)`.  We do not build that
-coordinate type: everything §4 asserts is a statement about the *subgroup
+coordinate type: everything needed here is a statement about the *subgroup
 tower* `B ≤ B₁ = τ⁻¹Bτ ≤ V`, and stating it there keeps the whole
 development free of any identification of the base with a matrix group.
 The dictionary is:
@@ -20,7 +19,7 @@ The dictionary is:
 * a site is a coset in `Cosets α hα = V ⧸ B` (the repo's existing site type);
 * `levelOf` is the coordinate `n`, the `τ`-exponent (Proposition 4.1);
 * a *block* is a coset in `Block = V ⧸ B₁`, and `blockOf` is the projection
-  `V/B → V/B₁`, whose fibres are exactly the manuscript's cosets of
+  `V/B → V/B₁`, whose fibres are the cosets of
   `2^{n-1}ℤ³/2ⁿℤ³` (Proposition 4.2);
 * `blockEquivCosets : Block ≃ Cosets` is the `V`-isomorphism `I ≅ X`,
   right translation by `τ⁻¹`, which lowers the level by one;
@@ -29,13 +28,13 @@ The dictionary is:
   eight sites of that block;
 * `baseBlockEquiv` identifies those eight sites `V`-equivariantly with
   `Γ ⧸ α.range`; in the concrete affine model `Γ ⧸ α.range ≅ ℤ³/2ℤ³` by
-  `AffineSL3Doubling.cosetEquiv`, which is the manuscript's `AGL₃(𝔽₂)`
+  `AffineSL3Doubling.cosetEquiv`, which gives the `AGL₃(𝔽₂)`
   picture.
 
-The orbital graph `𝒢` of §3 is `Adj`: the `V`-orbit of the marked pair
+The orbital graph `𝒢` is `Adj`: the `V`-orbit of the marked pair
 `{τo, v₁τo}`.  Its edges always stay inside a block (`adj_blockOf_eq`,
 unconditional).  That each block is a *complete* graph — equivalently that
-`𝒢` is `7`-regular — is the manuscript's `[audit-fix]` finite computation
+`𝒢` is `7`-regular — is the finite computation
 that `⟨x̄,ȳ,z̄⟩ ≤ GL₃(𝔽₂)` is transitive on the seven nonzero classes; here it
 appears as the explicit hypothesis `AlphaCosetTransitive`, which is proved
 outright for the concrete affine doubling in the final section.

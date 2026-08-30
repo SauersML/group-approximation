@@ -1,4 +1,4 @@
-import PalomarSolution
+import Palomar.Solution
 import Audit.DeclFilter
 import Lean.Elab.Command
 
@@ -56,7 +56,7 @@ namespace GroupApproximation.StatementClosure
 
 /-- The module root of this development.  Constants outside it are Mathlib,
 Batteries or core: shared vocabulary, not audit surface. -/
-def libRoots : List Name := [`GroupApproximation, `PalomarSolution]
+def libRoots : List Name := [`GroupApproximation, `Palomar]
 
 /-- The module a constant was declared in, if it came from an import. -/
 def moduleOf? (env : Environment) (n : Name) : Option Name :=
@@ -142,8 +142,7 @@ def readRoster (path : System.FilePath) : CommandElabM (List Name) := do
   let names := input.splitOn "\n" |>.map (fun s => s.trimAscii.toString)
     |>.filter (· ≠ "") |>.map String.toName
   if names.isEmpty then
-    throwError "{path}: no declarations listed; \
-run `python3 scripts/claim_map.py --write` first"
+    throwError "{path}: no declarations listed"
   return names
 
 /-- Pad a string on the right so the generated table stays column-aligned

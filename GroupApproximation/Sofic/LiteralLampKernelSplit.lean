@@ -4,11 +4,9 @@ import GroupApproximation.Monsters.LiteralBaseCompleteness
 /-!
 # The split normal form `E = N_E ⋊ V` of the literal group
 
-Source of the mathematics: `notes/LITERAL_GROUP_BLOCK_AMALGAM_STRUCTURE_2026-08-14.md`,
-§1 (notation), §2 (the presentation without the centrality relators) and §3
-(imposing centrality).  This module formalizes the *split* half of that
-analysis and nothing else: the amalgam description of `N_E` (§5), the site
-set (§4) and the block geometry are other modules' business.
+This module formalizes the split half of the literal group's normal-form
+analysis. The amalgam description of `N_E`, the site set, and the block
+geometry are developed separately.
 
 ## What is here
 
@@ -31,15 +29,14 @@ document, presented as the telescope model rather than as a matrix group.
   `E ≃* lampKernel ⋊[lampKernelAction] V`.
 * `markedGroupEquivCoreByInt` re-associates that to
   `E ≃* TelescopeCore ⋊[stableAction] Multiplicative ℤ`, where
-  `TelescopeCore = lampKernel ⋊ Telescope` is the kernel of the
-  stable-letter exponent.  This is the shape the soficity endpoint
-  consumes, `ℤ` being the quotient.
+`TelescopeCore = lampKernel ⋊ Telescope` is the kernel of the stable-letter
+exponent. This is the shape consumed by the soficity endpoint, with `ℤ` as
+the quotient.
 
 ## Why this is unconditional
 
-The source document flags the identification of the literal base `B` with
-`ℤ³ ⋊ SL₃(ℤ)` as a *literature* input (its `[audit-fix]` note on (I1)).  That
-caveat is obsolete inside this repository: `LiteralBaseCompleteness`
+The identification of the literal base `B` with `ℤ³ ⋊ SL₃(ℤ)` is proved
+inside this repository: `LiteralBaseCompleteness`
 proves `baseAffineEquiv : Base ≃* gammaBar` outright, so `α` really is
 injective on the presented base and the telescope model really is the
 ascending HNN extension of it.  Nothing here is hypothetical, and no
@@ -63,8 +60,7 @@ noncomputable section
 /-! ## The vertical group `V` -/
 
 /-- The ascending HNN extension `V` of the affine base along doubling: the
-mapping telescope of `conj D` extended by its shift.  This is the group
-called `V = T ⋊ ⟨τ⟩` in the source document. -/
+mapping telescope of `conj D` extended by its shift. -/
 abbrev V : Type := Vertical alpha conjD_injective
 
 /-- The six literal base letters, evaluated at telescope level zero. -/
@@ -336,7 +332,7 @@ theorem mem_lampKernel_iff (g : MarkedGroup) :
 
 /-! ## Site lamps
 
-The conjugates `c_ξ = g c g⁻¹` of the source document's §2, indexed here by
+The conjugates `c_ξ = g c g⁻¹`, indexed here by
 `V` rather than by the coset space `X = V/B`.
 
 **Read this before using them.**  `Sofic/LiteralBlockNormalForm.lean` carries

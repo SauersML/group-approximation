@@ -3,10 +3,10 @@ import GroupApproximation.Sofic.CompressionDefectSquare
 import Mathlib.GroupTheory.FreeGroup.Reduce
 
 /-!
-# The literal eight-generator presentation from the non-MF manuscript
+# The literal eight-generator non-MF presentation
 
-This file encodes, without choosing a presentation cover, the group displayed
-in Definition `def:E` of `non_mf_groups_exist.tex`.  Its generators are
+This file encodes the explicit group without choosing a presentation cover.
+Its generators are
 
 `v1, v2, v3, x, y, z, t, c`,
 

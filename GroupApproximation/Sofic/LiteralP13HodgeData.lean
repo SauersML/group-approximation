@@ -6,7 +6,7 @@ import GroupApproximation.Sofic.LiteralP13HodgeReplay
 
 This module is the Lean-side source of truth for the rational Hodge
 certificate whose discovery artifact is
-`experiments/sl3-sos-radius0-certificate.npz` (SHA-256
+`certificates/p13/sl3-sos-radius0-certificate.npz` (SHA-256
 `5b83dc59e55b89a8f48e115e06ce72deaac2bccd5c3f1ded1ead3837c26b021b`).
 
 The generator and relator order are imported from `LiteralP13Presentation`.

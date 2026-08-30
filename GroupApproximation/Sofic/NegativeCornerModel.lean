@@ -4,9 +4,8 @@ import GroupApproximation.Sofic.KazhdanCornerModel
 /-!
 # The negative corner of an approximate central involution
 
-Step 5 of the marked-compression blueprint
-(`notes/NON_MF_FORMALIZATION_BLUEPRINT.md`): given a weak-MF approximation of
-a group carrying a central involution `z ≠ 1`, cut every microstate by the
+Given a weak-MF approximation of a group carrying a central involution
+`z ≠ 1`, cut every microstate by the
 negative spectral sector of the rounded involution and repackage the corner
 as an honest operator-norm almost representation on which `z` converges to
 `-1`.
@@ -24,10 +23,8 @@ polar correction makes the corner exactly unitary, and separation of `z`
 from `1` keeps the corner nonempty along a tail
 (`negativeProjection_eventually_ne_zero`).
 
-Main result: `exists_negativeCorner_opAlmostRepresentation`.  This is the
-finite-stage form of the central-corner cut in the non-MF manuscript
-(`non_mf_groups_exist.tex`, Lemma `lem:corner`); no lower bound on the
-corner ranks is consumed anywhere.  The downstream Kazhdan compressor takes
+Main result: `exists_negativeCorner_opAlmostRepresentation`. No lower bound on
+the corner ranks is consumed anywhere. The downstream Kazhdan compressor takes
 exactly the exported interface.
 
 Mathematical provenance: compression of an approximate central involution to

@@ -1,4 +1,4 @@
-import PalomarSolution
+import Palomar.Solution
 
 /-!
 # Dump the compared statement and its declaration closure
@@ -16,7 +16,7 @@ So this walks the same closure Comparator walks and prints, for every constant
 in it, the structural hash of its type and of its value.  Its Challenge twin
 prints the same, and `scripts/check_palomar_statement_match.sh` diffs them.
 
-Run with `scripts/remote-build.sh --run scripts/PalomarSolutionType.lean`.
+Run with `lake env lean scripts/PalomarSolutionType.lean`.
 -/
 
 open Lean Meta in

@@ -3,25 +3,19 @@ import GroupApproximation.Sofic.NormMFResidualDetector
 /-!
 # Group-level consequences of the operator-norm MF residual
 
-Formal counterparts of the group-level results of the manuscript's
-Consequences section (`non_mf_groups_exist.tex`, Section
-`sec:consequences`), on top of the residual machinery of
-`NormMFResidualDetector`:
+Consequences built on the residual machinery of `NormMFResidualDetector`:
 
 * `IsNormApproximable.comap` / `IsWeakMF.comap` / `IsWeakMF.subgroup` —
   weak-MF approximability pulls back along injective homomorphisms; in
   particular every subgroup of a weak-MF group is weak-MF
-  (manuscript Lemma `lem:permanence`(1)).
+  for every subgroup of a weak-MF group.
 * `not_injective_of_normMFInvisible` — a group with a nontrivial
   MF-invisible element admits no injective homomorphism into any
-  operator-norm matrix ultraproduct (the group-level content of
-  manuscript Corollary `cor:nofaithful`).
+  operator-norm matrix ultraproduct.
 * `not_isWeakMF_of_map_ne_one` — radical portability: any group in which
   an MF-invisible element survives under a homomorphism is itself not
-  weak-MF (the endpoint clause of manuscript Lemma `lem:portable`; the
-  witness-group instantiation `prop:W` is this lemma applied to the
-  marked word's invisibility and the witness homomorphism).
-* `uniform_invisibility` — manuscript Theorem `thm:uniform`: invisibility
+  weak-MF.
+* `uniform_invisibility` — invisibility
   upgrades to a uniform statement by compactness.  For every tolerance
   `ε` there are a defect budget `δ` and a finite set `F₀` such that every
   unitary matrix family that is `δ`-multiplicative on `F₀` moves the
@@ -29,9 +23,6 @@ Consequences section (`non_mf_groups_exist.tex`, Section
   a hypothetical sequence of counterexamples into a single homomorphism
   to an operator-norm matrix ultraproduct and applies invisibility.
 
-The scaling-family theorem (`thm:family`) is not treated here: it is a
-statement about a parameterized family of witness constructions, not
-about the residual, and belongs with the marked-group development.
 -/
 
 namespace GroupApproximation
@@ -49,7 +40,7 @@ variable {G : Type u} [Group G]
 
 /-! ## Uniform invisibility -/
 
-/-- **Uniform invisibility** (manuscript Theorem `thm:uniform`).  If `x`
+/-- **Uniform invisibility.** If `x`
 is killed by every homomorphism to every operator-norm matrix
 ultraproduct, then for every `ε > 0` there are a defect budget `δ > 0`
 and a finite subset `F₀` such that every family of finite unitary

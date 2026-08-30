@@ -19,11 +19,11 @@ from pathlib import Path
 
 
 REPO = Path(__file__).resolve().parent.parent
-EXPERIMENTS = REPO / "experiments"
+CERTIFICATES = REPO / "certificates" / "p13"
 LEAN = REPO / "GroupApproximation" / "Sofic"
-REPLAY = EXPERIMENTS / "sl3-p13-reductions-complete.json"
-CERTIFICATE = EXPERIMENTS / "sl3-sos-radius0-certificate.npz"
-REPLAY_HELPER = EXPERIMENTS / "sl3_p13_relator_replay.py"
+REPLAY = CERTIFICATES / "sl3-p13-reductions-complete.json"
+CERTIFICATE = CERTIFICATES / "sl3-sos-radius0-certificate.npz"
+REPLAY_HELPER = CERTIFICATES / "sl3_p13_relator_replay.py"
 
 
 def run(*arguments: object) -> None:
@@ -98,7 +98,7 @@ def check(temporary_root: Path) -> None:
         output = Path(directory)
 
         replay_output = output / "LiteralP13HodgeReplay.lean"
-        run(EXPERIMENTS / "sl3_p13_replay_lean_generator.py",
+        run(CERTIFICATES / "sl3_p13_replay_lean_generator.py",
             "--replay", REPLAY,
             "--replay-script", REPLAY_HELPER,
             "--certificate", CERTIFICATE,
@@ -106,18 +106,18 @@ def check(temporary_root: Path) -> None:
         mismatch(LEAN / replay_output.name, replay_output)
 
         pair_output = output / "LiteralP13HodgePairTable.lean"
-        run(EXPERIMENTS / "sl3_p13_pair_table_generator.py",
+        run(CERTIFICATES / "sl3_p13_pair_table_generator.py",
             "--replay", REPLAY,
             "--output", pair_output)
         mismatch(LEAN / pair_output.name, pair_output)
 
         factor_output = output / "q-factor.lean"
-        run(EXPERIMENTS / "sl3_p13_hodge_lean_generator.py",
+        run(CERTIFICATES / "sl3_p13_hodge_lean_generator.py",
             "--certificate", CERTIFICATE,
             "--output", factor_output)
         check_factor_fragment(factor_output)
 
-        run(EXPERIMENTS / "sl3_p13_certificate_lean_generator.py",
+        run(CERTIFICATES / "sl3_p13_certificate_lean_generator.py",
             "--certificate", CERTIFICATE,
             "--replay", REPLAY,
             "--helper", REPLAY_HELPER,

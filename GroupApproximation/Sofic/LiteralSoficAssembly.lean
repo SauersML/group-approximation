@@ -37,8 +37,7 @@ spends that identification:
 
 Residual finiteness of the windows is `BlockCliffordLamp`'s two-quotient
 separation, so **Karrass--Pietrowski--Solitar is not used**; the final `ℤ`
-step is `SoficIntegerExtension.isSofic_int_semidirectProduct`.  Both are
-`notes/E_SOFICITY_SELF_CONTAINED_2026-08-16.md` §§7--8 and §11.
+step is `SoficIntegerExtension.isSofic_int_semidirectProduct`.
 -/
 
 namespace GroupApproximation

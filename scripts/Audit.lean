@@ -1,4 +1,4 @@
-import PalomarSolution
+import Palomar.Solution
 import Lean.Elab.Command
 import Lean.Util.CollectAxioms
 

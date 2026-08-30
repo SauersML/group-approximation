@@ -10,7 +10,7 @@ project:
     MF radicals and MF quotients in the Carrión-Dadarlat-Eckhardt
     operator-norm sense.
   authors: [Sauers]
-  responsible_maintainers: [SauersML]
+  responsible_maintainers: [deancureton]
   license: Apache-2.0
 
 classification:

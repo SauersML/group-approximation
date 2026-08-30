@@ -1,2 +1,0 @@
-# HAP warning about ASY_PATH omitted; it is irrelevant to this finite audit.
-subgroups_checked=30 torsion_subgroups=20 unique_primary_transfer=true

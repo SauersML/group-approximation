@@ -3,25 +3,7 @@ import GroupApproximation.Sofic.KazhdanCornerMatrices
 /-!
 # Finite-stage quantitative estimates for the robust spectral gap
 
-`non_mf_group_notes.tex` used to prove the Kazhdan transport result a second
-time, in a section titled "The finite-stage transport proof",
-"quantitatively at each single coordinate `n` and with no
-ultrafilter", with a remark ("The ultrafilter gives no
-rate") recording that the error bookkeeping there is explicit in terms of the
-Kazhdan constant `κ`, the size `|S|` of the averaging set, the uniform bound
-`M` on the transported vectors, and the multiplicative defects of the
-microstates, *once the robust spectral-gap input stated there is granted at
-each stage*.
-
-**Neither the section nor the remark is printed any more.**  Commit `3a45fa60`
-("Editorial pass: rewrite orbit collapse, cut what nothing uses") deleted both,
-after the rewritten collapse step stopped consuming the finite-stage route.
-What the manuscript prints is the single ultraproduct proof inside
-the former transport argument.  Nothing in this file depended on that text, and nothing
-in it changed; it is now a Lean-side second route with no printed counterpart
-and no badge owed.
-
-This file supplies that explicit bookkeeping.  Every estimate below lives at
+This file supplies explicit finite-stage bookkeeping. Every estimate below lives at
 one fixed coordinate `n`, is an inequality between real numbers with named
 constants, and every proof is finite-dimensional inner-product algebra.  No
 ultrafilter, no hyperreal standard part, no compactness extraction and no
@@ -42,7 +24,7 @@ conclusions here -- the residual `‖(H - 1) P‖ ≤ δ`, the displacement
 summed by `wordDefect` -- are in the matrix `ℓ²` operator norm of the scoped
 instance `Matrix.Norms.L2Operator`, which is the operator norm on the model
 Hilbert space; the only Hilbert--Schmidt quantities are the *vectors*
-(`‖ξ‖ ≤ M`, `‖(1 - P) ξ‖ ≤ √q`), exactly as in the manuscript's display, since
+(`‖ξ‖ ≤ M`, `‖(1 - P) ξ‖ ≤ √q`), since
 in the intended instance the model of the almost representation is the adjoint
 one and its vectors are the Hilbert--Schmidt vectors `ξ_n` of `x_n`.  Nothing
 below is derivable from a Hilbert--Schmidt bound on the microstate defects.
