@@ -5,8 +5,8 @@ kind: claim
 title: The strongly quasidiagonal Berend groups Z^3 x| Z^2 have infinite decomposition rank
 root: true
 distinct_from:
-  berend-torus-actions-give-strongly-qd-polycyclic-groups: that is the established literature fact that these groups are strongly quasidiagonal; this is the open assertion that their group C*-algebras nevertheless have infinite decomposition rank, the hardest currently identifiable case of Eckhardt--Wu Conjecture II.
-  stw99-eckhardt-wu-decomposition-rank-conjecture: that quantifies over all finitely generated elementary amenable groups; this is its single hardest known instance, where the strong-quasidiagonality obstruction is provably silent.
+  berend-torus-actions-give-strongly-qd-polycyclic-groups: that is the established literature fact that these groups are strongly quasidiagonal; this is the open assertion that their group C*-algebras nevertheless have infinite decomposition rank, a concrete case of Eckhardt--Wu Conjecture II.
+  stw99-eckhardt-wu-decomposition-rank-conjecture: that quantifies over all finitely generated elementary amenable groups; this is one specific unresolved instance where the strong-quasidiagonality obstruction is provably silent.
 artifacts:
   - research/artifacts/stw99-lxxxvi-berend-frontier-2026-08-30.md
 ---

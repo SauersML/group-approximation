@@ -16,10 +16,10 @@ decomposition rank if and only if `G` has polynomial growth.
 
 The forward implication is the open one; polynomial growth gives finite
 decomposition rank (Eckhardt--Gillaspy--McKenney).  The lamplighter shows
-decomposition rank and nuclear dimension genuinely diverge here: strong
-quasidiagonality is the obstruction (Carrión--Dadarlat--Eckhardt), which is
-the same quasidiagonality axis as the repository's MF-radical program, one
-level up (all traces, uniformly).
+decomposition rank and nuclear dimension genuinely diverge here:
+Carrión--Dadarlat--Eckhardt show that the relevant wreath products are not
+strongly quasidiagonal, while Kirchberg--Winter show that finite
+decomposition rank would imply strong quasidiagonality.
 
 ## Attempts
 

@@ -15,5 +15,6 @@ subsemigroup on two generators, Rosenblatt).  So the forward direction of
 Eckhardt--Wu Conjecture II (`stw99-eckhardt-wu-decomposition-rank-conjecture`,
 STW Problem LXXXVI) gives `dr(C*(G)) = ∞` directly.  This route records
 that the claim is a consequence, not a strengthening, of the conjecture;
-its value is that it isolates the instance where every known obstruction is
-silent, so any proof of the conjecture must decide it.
+its value is that it isolates an instance where the strong-quasidiagonality
+necessary condition is silent and finite nuclear dimension is already
+known.  Any proof of the full conjecture must nevertheless decide it.
