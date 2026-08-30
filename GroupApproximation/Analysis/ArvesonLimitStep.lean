@@ -48,6 +48,22 @@ open scoped InnerProductSpace
 
 noncomputable section
 
+/-- **The limit of a pointwise sum**, read backwards through uniqueness: a
+family that is pointwise the sum of two convergent ones has for limit the sum of
+their limits.  Factored out because the identities of the limit form — one per
+slot of the sesquilinear form, one per algebra operation — are all this lemma
+with a different pointwise identity. -/
+theorem eq_add_of_tendsto {l : Filter ℕ} [l.NeBot] {f g h : ℕ → ℂ} {a b c : ℂ}
+    (hf : Tendsto f l (𝓝 a)) (hg : Tendsto g l (𝓝 b)) (hh : Tendsto h l (𝓝 c))
+    (heq : ∀ n, h n = f n + g n) : c = a + b :=
+  tendsto_nhds_unique hh ((hf.add hg).congr fun n ↦ (heq n).symm)
+
+/-- **The limit of a pointwise scalar multiple**, the same way. -/
+theorem eq_const_mul_of_tendsto {l : Filter ℕ} [l.NeBot] {f h : ℕ → ℂ}
+    {a c z : ℂ} (hf : Tendsto f l (𝓝 a)) (hh : Tendsto h l (𝓝 c))
+    (heq : ∀ n, h n = z * f n) : c = z * a :=
+  tendsto_nhds_unique hh ((hf.const_mul z).congr fun n ↦ (heq n).symm)
+
 /-- **The limit step, discharged.**  With this, `arvesonBH_of_limit` is
 unconditional and Arveson's extension theorem holds at a `B(H)` target. -/
 theorem arvesonLimit : ArvesonLimitStatement := by
@@ -87,24 +103,20 @@ theorem arvesonLimit : ArvesonLimitStatement := by
   -- the limit form is sesquilinear, linear in the algebra variable, and bounded
   have hLaddL : ∀ (x : A) (v v' w : H), L x (v + v') w = L x v w + L x v' w := by
     intro x v v' w
-    refine tendsto_nhds_unique (hL x (v + v') w) ?_
-    refine ((hL x v w).add (hL x v' w)).congr fun n ↦ ?_
+    refine eq_add_of_tendsto (hL x v w) (hL x v' w) (hL x (v + v') w) fun n ↦ ?_
     rw [inner_add_left]
   have hLsmulL : ∀ (x : A) (z : ℂ) (v w : H),
       L x (z • v) w = (starRingEnd ℂ) z * L x v w := by
     intro x z v w
-    refine tendsto_nhds_unique (hL x (z • v) w) ?_
-    refine ((hL x v w).const_mul ((starRingEnd ℂ) z)).congr fun n ↦ ?_
+    refine eq_const_mul_of_tendsto (hL x v w) (hL x (z • v) w) fun n ↦ ?_
     rw [inner_smul_left]
   have hLaddR : ∀ (x : A) (v w w' : H), L x v (w + w') = L x v w + L x v w' := by
     intro x v w w'
-    refine tendsto_nhds_unique (hL x v (w + w')) ?_
-    refine ((hL x v w).add (hL x v w')).congr fun n ↦ ?_
+    refine eq_add_of_tendsto (hL x v w) (hL x v w') (hL x v (w + w')) fun n ↦ ?_
     rw [map_add, inner_add_right]
   have hLsmulR : ∀ (x : A) (z : ℂ) (v w : H), L x v (z • w) = z * L x v w := by
     intro x z v w
-    refine tendsto_nhds_unique (hL x v (z • w)) ?_
-    refine ((hL x v w).const_mul z).congr fun n ↦ ?_
+    refine eq_const_mul_of_tendsto (hL x v w) (hL x v (z • w)) fun n ↦ ?_
     rw [map_smul, inner_smul_right]
   have hLnorm : ∀ (x : A) (v w : H), ‖L x v w‖ ≤ ‖x‖ * ‖v‖ * ‖w‖ := by
     intro x v w
@@ -112,13 +124,11 @@ theorem arvesonLimit : ArvesonLimitStatement := by
     exact Filter.Eventually.of_forall fun n ↦ hcoeff x v w n
   have hLxadd : ∀ (x x' : A) (v w : H), L (x + x') v w = L x v w + L x' v w := by
     intro x x' v w
-    refine tendsto_nhds_unique (hL (x + x') v w) ?_
-    refine ((hL x v w).add (hL x' v w)).congr fun n ↦ ?_
+    refine eq_add_of_tendsto (hL x v w) (hL x' v w) (hL (x + x') v w) fun n ↦ ?_
     rw [map_add, add_apply, inner_add_right]
   have hLxsmul : ∀ (z : ℂ) (x : A) (v w : H), L (z • x) v w = z * L x v w := by
     intro z x v w
-    refine tendsto_nhds_unique (hL (z • x) v w) ?_
-    refine ((hL x v w).const_mul z).congr fun n ↦ ?_
+    refine eq_const_mul_of_tendsto (hL x v w) (hL (z • x) v w) fun n ↦ ?_
     rw [map_smul, smul_apply, inner_smul_right]
   -- the form is the matrix of an operator, for each `x`
   have hop : ∀ x : A, ∃ T : H →L[ℂ] H, ∀ v w : H, ⟪v, T w⟫_ℂ = L x v w := fun x ↦
