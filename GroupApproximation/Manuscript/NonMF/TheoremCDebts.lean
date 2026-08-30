@@ -77,8 +77,9 @@ theorem, shared by the two lanes that stand on it.
   non-elementarity of `H₀`, which `HullCommonQuotientStatement` supplies twice
   over.
 * `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullConeOff`,
-  `hullSection6Relator` — Hull's §5 and §6, with Dahmani–Guirardel–Osin's
-  Theorem 5.3 separated out of the first of them.  **All four are now recorded
+  `dgoCorollary427`, `hullSection6Relator` — Hull's §5 and §6, with
+  Dahmani–Guirardel–Osin's Theorem 5.3 and Corollary 4.27 separated out.
+  **The subgroup and cone-off clauses are recorded
   over a pair of hyperbolically embedded subgroups** rather than over one: over
   one, Hull's relator has all of its `H`-letters in a single component of
   `Γ(G, X ⊔ H)` and is therefore not quasi-geodesic
@@ -87,7 +88,8 @@ theorem, shared by the two lanes that stand on it.
   refuted outright; the row's docstring carries both readings.
   **`hullTheorem71` is not one of the debts any longer**, and neither is
   `hullTheorem51`: the first is proved through `hullOneStep`
-  (`HullSC.hullOneStep_of_theorem51₂`) and `HullSC.hullBallFormNG_of_oneStep`,
+  (`HullSC.hullOneStep_of_quotient₂_of_baseLetter`) and
+  `HullSC.hullBallFormNG_of_oneStep`,
   the second through `HullSC.hullQuotient₂_of_fillingData`.  What the reduction
   contributes is the
   whole of the manuscript's own bookkeeping — the induction on `m`, the two
@@ -254,6 +256,15 @@ Only the three alphabet clauses are carried by `hullFillingData`. -/
 theorem hullTheorem51 : HullSC.HullQuotientStatement₂.{0} :=
   HullSC.hullQuotient₂_of_fillingData dgoTheorem53 hullFillingData
 
+/-- **DEBT (literature).**  Dahmani–Guirardel–Osin, Corollary 4.27: finite
+symmetric changes of the base preserve hyperbolic embeddedness.
+
+Hull invokes this after the target `t` is known to adjoin `t^{±1}` to the base.
+The resulting core is deliberately used by both halves of Theorem 5.1; no
+small-cancellation statement is transported back to the old relative metric. -/
+theorem dgoCorollary427 : GGT.DGOCorollary427.{0, 0} := by
+  sorry
+
 /-- **DEBT (literature).**  Hull, §6 over a pair: the relator can be chosen.
 For any parameters `ε, μ, ρ` there is `u ∈ N` and a `C(ε, μ, ρ)` family over
 `{H₀, H₁}` containing a word spelling `t⁻¹u` — Hull takes
@@ -273,12 +284,11 @@ torsion-free ambient group does not rescue them, because this row quantifies
 over every acylindrically hyperbolic group.
 
 **The replacement path is visible and belongs to the separation lane.**
-`HullSC.hullRelatorStatement₂_of_separationNe₂` derives this statement from
-Olshanskii's separation with the exclusion clause restored, and
-`HullSC.hullRelatorStatement₂_of_inputs` derives it from the four standing items
-of that lane.  When those close, this row is replaced by that derivation and
-stops being a debt.  Until then it is recorded here, at the `Prop` those
-theorems target, rather than at one that has been refuted.
+`HullSC.hullRelatorStatement₂OfBaseLetter_of_inputs` derives the faithful
+base-letter statement from the narrow block-count and side-exclusion inputs.
+The one-step seam adjoins `t^{±1}` first and applies both the quotient and
+relator halves to that enlarged core.  No claim over the original relative
+metric remains in this row.
 
 What was true of the old row remains true of this one and is why the row is
 this short: the family is the symmetrized closure of one relator, so five of the
@@ -286,14 +296,15 @@ six clauses of `C(eps, mu, rho)` are
 `HullSC.RelWord.isSmallCancellation_symmetrized`, and what is left is
 Olshanskii's separation together with a constant `B` that does not grow with the
 relator, so `mu` leaves the estimate. -/
-theorem hullSection6Relator : HullSC.HullRelatorStatement₂.{0} := by
+theorem hullSection6Relator : HullSC.HullRelatorStatement₂OfBaseLetter.{0} := by
   sorry
 
 /-- **Hull's Theorem 7.1 at `m = 1`, over the pair.**
 
-`HullSC.hullOneStep_of_theorem51₂` is the seam: it takes the pair of
-hyperbolically embedded subgroups from the first row, feeds the §6 relator to
-Theorem 5.1, and proves the two clauses that mention the target `t` — the
+`HullSC.hullOneStep_of_quotient₂_of_baseLetter` is the seam: after the target
+`t` is known it adjoins `t^{±1}` to the core, feeds the one-letter §6 relator to
+the quotient half of Theorem 5.1 on that same core, and proves the two clauses
+that mention `t` — the
 relator `t⁻¹u` dies in the quotient, so `q(t) = q(u) ∈ q(N)`, and `ker q` is the
 normal closure of that single element, which is the manuscript's remark on
 Hull's construction at `m = 1`.
@@ -302,9 +313,8 @@ Nothing in `HullSC.HullOneStepStatement` mentions the index type, so this is the
 same statement the single-subgroup route used to produce, and everything above
 it — the tower, the ball form, and Hull's Corollary 7.4 — is unchanged. -/
 theorem hullOneStep : HullSC.HullOneStepStatement.{0} :=
-  HullSC.hullOneStep_of_theorem51₂ hullHypEmbeddedConeOff
-    (HullSC.hullTheorem51₂_of_relator_of_quotient hullSection6Relator
-      hullTheorem51)
+  HullSC.hullOneStep_of_quotient₂_of_baseLetter hullHypEmbeddedConeOff
+    dgoCorollary427 hullSection6Relator hullTheorem51
 
 /-- **Hull, *Small cancellation in acylindrically hyperbolic groups*, Theorem
 7.1**, in the finite-set formulation the manuscript records, together with the

@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyCompose
+import GroupApproximation.GGT.CayleyFourPointConverse
 
 /-!
 # The separation over every core, and Hull's §6 from it
@@ -105,6 +106,55 @@ theorem hullRelatorStatement₂_of_inputs : HullRelatorStatement₂.{u} :=
   hullRelatorStatement₂_of_separationNe₂ (separationNe₂_of_inputs hinput)
 
 end Quantified
+
+section QuantifiedBaseLetter
+
+variable
+  (hinput : ∀ {G : Type u} [Group G] (A : HullGeneratingSet G)
+    (N : Subgroup G) (E : HypEmbeddedCore₂ A N), ∃ cnt : ℕ,
+      RelatorBlockCountInputOne₂ E cnt ∧ RelatorSideExclusionInputOne₂ E)
+
+include hinput in
+/-- **Corrected separation from the narrow, one-letter inputs.**
+
+Unlike `separationNe₂_of_inputs`, the current core is assumed to contain
+`t⁻¹` in its base.  This is precisely the core produced by `adjoinPair` at the
+one-step seam. -/
+theorem separationNe₂OfBaseLetter_of_inputs :
+    ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) (N : Subgroup G)
+      (E : HypEmbeddedCore₂ A N), Suitable A.alphabet N →
+        ∀ (t : G), t⁻¹ ∈ E.rel.base → ∀ (eps rho : ℕ),
+          ∃ B : ℕ, ∀ L : ℕ,
+            ∃ (p : List G) (ms : List ℕ),
+              (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ ∧ L ≤ ms.length ∧
+                (∀ m ∈ ms, ∀ b : Bool, E.lox b ^ m ∉ E.rel.relBall b rho ∧
+                  (E.lox b ^ m)⁻¹ ∉ E.rel.relBall b rho) ∧
+                ∀ w w' u₀ u₀' : List (GGT.RelLetter G Bool),
+                  RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w →
+                    RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
+                      w' ≠ w → (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') →
+                        B < u₀.length →
+                          ∀ y z : G, wordNorm E.rel.base y ≤ eps →
+                            wordNorm E.rel.base z ≤ eps →
+                              GGT.RelLetter.listVal u₀'
+                                  = y * GGT.RelLetter.listVal u₀ * z →
+                                GGT.RelLetter.listVal w'
+                                  = y * GGT.RelLetter.listVal w * y⁻¹ := by
+  intro G _ A N E hN t ht eps rho
+  obtain ⟨cnt, hcount, hexcl⟩ := hinput A N E
+  obtain ⟨δ, hδ⟩ :=
+    GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded E.rel E.embedded
+  exact separationNe₂_clause_of_inputs_of_mem_base E hN cnt hδ hcount hexcl
+    t ht eps rho
+
+include hinput in
+/-- **Hull's faithful one-letter §6 endpoint from the narrow inputs.** -/
+theorem hullRelatorStatement₂OfBaseLetter_of_inputs :
+    HullRelatorStatement₂OfBaseLetter.{u} :=
+  hullRelatorStatement₂OfBaseLetter_of_separationNe₂
+    (separationNe₂OfBaseLetter_of_inputs hinput)
+
+end QuantifiedBaseLetter
 
 end HullSC
 end GroupApproximation

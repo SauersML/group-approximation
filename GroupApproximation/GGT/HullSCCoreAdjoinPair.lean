@@ -60,16 +60,13 @@ reader takes the gap for closed:
   base is spelled by itself --- is what converts membership into `|p| = 1`, and
   it belongs beside that spelling lemma rather than here.
 * `HullRelatorStatement₂` fixes the core **before** `t`, while the core built
-  here depends on `t`.  Proving that statement at `E.adjoinPair h427 t` is a
-  different claim from proving it at `E`, not a stronger one, because the
-  small-cancellation conclusion is measured in the enlarged relative metric.  The
-  repair is at the **seam** rather than in the statement: `hullOneStep_of_theorem51₂`
-  introduces `t` before it chooses the core, so `t` is already in scope when the
-  core is picked and `HullRelatorStatement₂` can be instantiated at a `t`-dependent
-  core with no quantifier reordering --- its `∀ E`, which looks like the obstacle,
-  is what makes this work.  So `TheoremCDebts`' citation does not move and no
-  census pass is owed.  The seam is the relator lane's file; this module supplies
-  the core and no more.
+  here depends on `t`.  A small-cancellation conclusion at
+  `E.adjoinPair h427 t` is a different claim from one at `E`, because it is
+  measured in the enlarged relative metric.  The repaired seam
+  `hullOneStep_of_quotient₂_of_baseLetter` introduces `t`, constructs the
+  enlarged core, and invokes `HullRelatorStatement₂OfBaseLetter` there.  The
+  quotient half is invoked on that same core; nothing is transferred back to
+  `E`.  This module supplies the core and no more.
 
 The same `DGOCorollary427` is what Hull's `nonelsub` needs for its first
 application of Lemma `lox`, where the element from Theorem `subah` is spelled by

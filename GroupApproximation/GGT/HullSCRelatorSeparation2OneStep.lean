@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ConeOff
 import GroupApproximation.GGT.HullSCRelatorSeparation2Quotient
+import GroupApproximation.GGT.HullSCCoreAdjoinPair
 
 /-!
 # Hull's Theorem 7.1 for one relator, over a pair of subgroups
@@ -14,8 +15,8 @@ which is what §5 needs of it.  The faithful form is over a pair, with the
 relator alternating between the two components.
 
 This module is that derivation over a pair.  **It is the seam the whole Bool
-chain was missing**: `HullSC.HullTheorem51Statement₂` had no consumer, so
-nothing above it could reach `HullOneStepStatement`, and the tower
+chain was missing**: the quotient half had no faithful §6 consumer, so nothing
+above it could reach `HullOneStepStatement`, and the tower
 (`HullSC.hullTower_of_oneStep`), the ball form
 (`HullSC.hullBallFormNG_of_oneStep`) and Hull's Corollary 7.4
 (`HullSCFreeProductFactor.hullCommonQuotient_of_oneStep_of_geometry`) all hang
@@ -32,8 +33,9 @@ target `t` are proved here exactly as they are there:
   `t⁻¹u`, which is the manuscript's remark on Hull's construction at `m = 1`.
 
 The pair of subgroups comes from `HullSC.ExistsHypEmbeddedConeOff₂`, through
-`HullSC.nonempty_hypEmbeddedCore₂_of_coneOff`; over one subgroup the
-corresponding step was `HullSC.ExistsHypEmbeddedInSuitable`.
+`HullSC.nonempty_hypEmbeddedCore₂_of_coneOff`.  Once `t` is in scope the core is
+enlarged by `HypEmbeddedCore₂.adjoinPair`, so the relator half is consumed only
+in its honest `HullRelatorStatement₂OfBaseLetter` form.
 -/
 
 namespace GroupApproximation
@@ -44,18 +46,26 @@ open GroupApproximation.Manuscript.NonMF.TorsionFree
 
 universe u
 
-/-- **Hull's Theorem 7.1 at `m = 1`, from his Theorem 5.1 over a pair.**
+/-- **Hull's Theorem 7.1 at `m = 1`, with the base enlarged after `t` arrives.**
 
-The one-subgroup version is `HullSC.hullOneStep_of_theorem51`, and this differs
-from it only in where the hyperbolically embedded data comes from: a pair of
-subgroups with loxodromic elements and Hull's (W4) disjointness, rather than a
-single subgroup.  The proof after that is identical, because
-`HullFillingQuotient` does not mention the index type. -/
-theorem hullOneStep_of_theorem51₂ (hEmb : ExistsHypEmbeddedConeOff₂.{u})
-    (h51 : HullTheorem51Statement₂.{u}) : HullOneStepStatement.{u} := by
+The quotient half is applied to the same `t`-dependent core as the relator
+half.  Thus the singleton base letter is never transferred back to the old
+relative metric, and the over-strong `HullRelatorStatement₂` is not an input. -/
+theorem hullOneStep_of_quotient₂_of_baseLetter
+    (hEmb : ExistsHypEmbeddedConeOff₂.{u})
+    (h427 : GGT.DGOCorollary427.{u, 0})
+    (hrelator : HullRelatorStatement₂OfBaseLetter.{u})
+    (hquot : HullQuotientStatement₂.{u}) : HullOneStepStatement.{u} := by
   intro G _ A N hN k S hS t R
   obtain ⟨E⟩ := nonempty_hypEmbeddedCore₂_of_coneOff hEmb A hN
-  obtain ⟨u, huN, ⟨D⟩⟩ := h51 A N E hN S hS t R
+  let E' : HypEmbeddedCore₂ A N := E.adjoinPair h427 t
+  have ht : t⁻¹ ∈ E'.rel.base := mem_base_adjoinPair E h427 t
+  obtain ⟨eps, rho, mu, hmu, hgood⟩ := hquot A N E' hN S hS R
+  obtain ⟨u, huN, W, ⟨v, hvW, hvval⟩, hsc⟩ :=
+    hrelator A N E' hN t ht eps rho mu hmu
+  have hq := hgood W v hvW hsc
+  rw [hvval] at hq
+  obtain ⟨D⟩ := hq
   have hrel : D.q (t⁻¹ * u) = 1 := by
     rw [← MonoidHom.mem_ker, D.ker_eq]
     exact Subgroup.subset_normalClosure rfl
@@ -71,17 +81,6 @@ theorem hullOneStep_of_theorem51₂ (hEmb : ExistsHypEmbeddedConeOff₂.{u})
     exact Subgroup.mem_map_of_mem _ huN
   · show D.q.ker = Subgroup.normalClosure ((({t⁻¹ * u} : Finset G)) : Set G)
     rw [D.ker_eq, Finset.coe_singleton]
-
-/-- **Hull's Theorem 7.1 at `m = 1`, on the three leaves of the Bool chain**:
-his §5 in the two halves `ExistsHypEmbeddedConeOff₂` and
-`HullConeOffStatement₂`, his §6 relator, and Dahmani-Guirardel-Osin's Theorem
-5.3 in its repaired form. -/
-theorem hullOneStep₂_of_coneOff (hEmb : ExistsHypEmbeddedConeOff₂.{u})
-    (hcone : HullConeOffStatement₂.{u}) (hrel : HullRelatorStatement₂.{u})
-    (hDGO : DGOQuotientStatementGeodesic.{u, u}) : HullOneStepStatement.{u} :=
-  hullOneStep_of_theorem51₂ hEmb
-    (hullTheorem51₂_of_relator_of_quotient hrel
-      (hullQuotientStatement₂_of_coneOff hcone hDGO))
 
 end HullSC
 end GroupApproximation
