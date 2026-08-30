@@ -35,6 +35,16 @@ asymptotically scalar.  That is already fatal to a regular microstate,
 because a scalar unitary commutator has trace modulus `1` while the
 regular trace of the nontrivial commutator word is `0`.
 
+The exact scalar bookkeeping is now closed by
+`trace-square-energy-splits-into-block-energy-and-phase-variance`.
+In particular positive trace-square energy cannot hide on a vanishing-rank
+corner: energy `epsilon` forces exceptional normalized rank at least
+`(1-sqrt(1-epsilon))/2`.  What can survive reducible decompositions is the
+separate phase-variance term in `(TSE3)` (for example equal `I` and `-I`
+blocks).  Thus the remaining arithmetic transfer problem is phase
+synchronization across approximate blocks, not a missing corner-normalizing
+factor or a sparse-rank escape.
+
 **Exact case: now a QUANTITATIVE theorem on both pairs.**  For exact
 finite-dimensional `rho` the inequality `(PRT1)` holds with zero
 defect term and explicit dimension-free constants:
