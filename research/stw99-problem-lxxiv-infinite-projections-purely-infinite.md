@@ -20,6 +20,20 @@ remaining question is precisely whether the displayed hypothesis forces
 property (SP).  Thus a counterexample must contain a nonzero hereditary
 subalgebra with no nonzero projections.
 
+## Regularity classes which close the hinge
+
+`stw74-z-stability-and-finite-nuclear-dimension-close-hinge` proves that every
+Z-stable LXXIV algebra is purely infinite: Z-stability makes `Cu(A)` almost
+unperforated, so the existing unit-comparison theorem applies.  In particular,
+every separable simple unital finite-nuclear-dimension algebra satisfying the
+projection hypothesis is purely infinite.  The elementary case cannot occur,
+because a simple unital elementary algebra is a matrix algebra and has nonzero
+finite projections; the non-elementary case is Z-stable by Winter's theorem.
+
+Thus every separable counterexample to Problem LXXIV must simultaneously be
+non-Z-stable and have infinite nuclear dimension.  This is a necessary
+obstruction, not a solution of the unrestricted problem.
+
 ## Attempts
 
 The live route is `stw74-via-property-sp`.  Fullness of a positive element only
