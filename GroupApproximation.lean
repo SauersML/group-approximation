@@ -2869,6 +2869,7 @@ import GroupApproximation.GGT.OlshanskiiChord
 import GroupApproximation.GGT.OlshanskiiBisection
 import GroupApproximation.Analysis.VoiculescuBlockRecursion
 import GroupApproximation.Analysis.VoiculescuBlockAbsorption
+import GroupApproximation.GGT.HullSCConeOffHeavyMatched
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
