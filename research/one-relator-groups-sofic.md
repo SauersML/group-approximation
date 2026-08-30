@@ -79,11 +79,15 @@ claim [[nonsofic-one-relator-group]].
    `linton-shell-sofic-via-generic-semidirect-closure` and killed by
    [[sofic-semidirect-product-closure-fails]].
 6. **Strong Atiyah / Lück approximation / coherence.**  *Discarded, not
-   attempted to conclusion.*  The recent one-relator literature is rich in
-   approximation theorems, none of which states or implies soficity; an
-   operator-algebraic or homological approximation is not an approximation by
-   symmetric groups, and treating a similarly-named theorem as a bridge would
-   be exactly the error this graph exists to prevent.
+   attempted to conclusion.*  The peer-reviewed theorems
+   [[one-relator-groups-are-coherent]],
+   [[characteristic-zero-one-relator-group-algebras-are-coherent]], and
+   [[torsion-one-relator-group-algebras-are-coherent-over-all-fields]] close
+   group coherence, characteristic-zero group-algebra coherence, and the
+   all-fields torsion branch, respectively.  None states or implies soficity:
+   homological and ring finiteness are not finite symmetric-group
+   approximation.  Treating them as a bridge would be exactly the error this
+   graph exists to prevent.
 
 First-order Fox, abelian, solvable, and rational-derived iterations are no
 longer live completion strategies in the perfect-core regime.  Their maximal

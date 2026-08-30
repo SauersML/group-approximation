@@ -42,6 +42,12 @@ and (in the torsion-free case) infinitely generated; and by
 [[one-relator-soficity-localizes-at-rational-derived-stage]] the nonsoficity is
 already present in `E = G_Q^(n) ≅ R ⋊ F₀` for some `n <= |w|`.
 
+Independently, [[one-relator-groups-are-coherent]] and
+[[characteristic-zero-one-relator-group-algebras-are-coherent]] show that every
+hypothetical witness `G` and every `K[G]` over a characteristic-zero field are
+coherent.  Thus incoherence cannot supply the missing nonsoficity mechanism;
+these finiteness theorems constrain the search without deciding it.
+
 There is now one further exact constraint.  By
 [[one-relator-fox-magnus-descent-to-derived-linton-radical]], `G/R'` is sofic,
 `E/R'` is residually finite, and every element outside `R'` is separated by a
