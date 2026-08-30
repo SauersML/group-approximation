@@ -20,12 +20,13 @@ Gamma < G,                 D=G *_Gamma G.
 Prove that `C*_r(D)` embeds into a norm matrix corona.
 
 The target is stronger than hyperlinearity of `D`.  Its value is that the
-reduced algebra has a unique tracial state: the `q=2` Bass--Serre calculation
-in the cited artifact gives a faithful non-elementary tree action and trivial
-amenable radical, so the BKKO theorem makes the canonical regular trace the
-only trace on `C*_r(D)`.  Consequently any MF embedding of this reduced
-algebra automatically induces the canonical trace in a tracial matrix
-ultraproduct and makes `D` hyperlinear.
+reduced algebra has a unique tracial state.  This input is now named and
+established in the graph: `kt-q2-double-has-trivial-amenable-radical` proves
+the Bass--Serre calculation, and
+`kt-q2-double-reduced-algebra-has-unique-trace` applies the BKKO theorem.
+Consequently any MF embedding of this reduced algebra automatically induces
+the canonical trace in a tracial matrix ultraproduct and makes `D`
+hyperlinear.
 
 This is not supplied by residual finiteness of `G` or by Shulman's symmetric
 full-amalgam theorem.  In particular, MF passes to C-star subalgebras, so the
