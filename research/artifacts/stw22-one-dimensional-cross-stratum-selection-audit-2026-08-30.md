@@ -39,6 +39,9 @@ claim beyond dimension one.
 
 Primary sources:
 
+- I. Farah and A. Vaccaro, *Continuous Selection of Unitaries in II_1
+  Factors*, Proc. Amer. Math. Soc. 154 (2026), 1609--1622,
+  https://arxiv.org/abs/2501.01272.
 - E. Michael, *Continuous Selections II*, Ann. of Math. 64 (1956), 562--580,
   https://doi.org/10.2307/1969603.
 - E. Andruchow and A. Varela, *States with equivalent supports*, J. Operator

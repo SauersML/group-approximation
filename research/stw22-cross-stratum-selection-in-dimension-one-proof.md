@@ -164,6 +164,12 @@ Stiefel geometry is also consistent with Andruchow--Varela,
 [*States with equivalent supports*](https://jot.theta.ro/jot/archive/2005-053-001/2005-053-001-002.pdf),
 Theorems 2.10 and 3.3.
 
+Farah--Vaccaro subsequently proved the corresponding trace theorem, in
+fact for trivial bundles with an arbitrary `II_1` factor fibre, by a
+continuous-comparison version of the same Michael-selection method; see
+[*Continuous Selection of Unitaries in II_1 Factors*](https://arxiv.org/abs/2501.01272),
+Proc. Amer. Math. Soc. 154 (2026), 1609--1622.
+
 ## Replication in the fibre gap
 
 Let `c in K_x` be a positive contraction and fix `epsilon>0`.  Replace it
