@@ -23,6 +23,11 @@ Tikuisis--White--Winter, so this problem is exactly the UCT-free residue,
 and a positive answer to Problem XIII (UCT for strongly self-absorbing
 algebras) closes it.
 
+Upstream routes: `stw99-x2-implies-xiv1` (via R), `stw99-vii-implies-xiv1`
+(special case of Blackadar--Kirchberg, as STW note via Kirchberg's
+dichotomy), and `stw99-xiv2-implies-xiv1` (Schafhauser 2024: part 2
+implies part 1).
+
 ## Attempts
 
 * **Via the hyperfinite factor.**  `D` finite strongly self-absorbing has
