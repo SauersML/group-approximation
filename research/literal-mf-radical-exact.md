@@ -4,6 +4,8 @@ id: literal-mf-radical-exact
 kind: claim
 title: Exact MF radical of the literal non-MF group
 root: true
+refuted_by:
+  - literal-mark-quotient-not-mf
 ---
 
 For the literal finitely presented group `E` and its marked central involution
