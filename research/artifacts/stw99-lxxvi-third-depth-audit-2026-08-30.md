@@ -63,6 +63,13 @@ The analogous circle calculation has an additional compact monodromy term
 `V(C(T,D))`.  Controlling it requires cancellation/nonstable K-theory beyond
 the interval theorem, so no circle generalization is claimed here.
 
+The result is not absorption in disguise.  Taking `D=C*_r(F_2)` gives an
+exact faithfully tracial interval field that is Cu-regular.  It is not
+Z-stable: evaluation has quotient `D`, Z-stability passes to quotients, and
+`D` cannot be Z-stable because its unique-trace GNS closure is the full,
+non-McDuff factor `L(F_2)`, while Z-stability forces McDuffness of the tracial
+GNS factor.
+
 ## Explicit unstable-clutching construction target
 
 The classical nonzero class `alpha in pi_5(U(2))=Z/2` defines a nontrivial

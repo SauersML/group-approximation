@@ -25,3 +25,5 @@ This conclusion does not require `D` itself to be Z-stable.  It gives a
 genuinely non-simple positive class for Problem LXXVI by a concrete Cu
 calculation rather than by absorption of Z at the C*-level.
 
+The distinction is realized explicitly by
+`stw99-lxxvi-free-group-interval-regular-not-zstable`.
