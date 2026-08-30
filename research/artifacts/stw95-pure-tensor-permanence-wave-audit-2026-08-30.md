@@ -9,6 +9,10 @@ records through 2026-08-30 found no later solution or counterexample.
 
 The relevant current sources checked were:
 
+- Choi--Effros, [The completely positive lifting problem for
+  C*-algebras](https://annals.math.princeton.edu/1976/104-3/p08), Theorem
+  3.1: completely positive contractive maps from separable nuclear
+  C*-algebras lift across quotient maps;
 - Antoine--Perera--Thiel, [Tensor products and regularity properties of Cuntz
   semigroups](https://arxiv.org/abs/1410.0483): tensor products in `Cu`, their
   compatibility with inductive limits, the AF external-product isomorphism
@@ -144,22 +148,52 @@ made.
 
 ## ASH-layered positive class
 
-The preceding reduction becomes an unconditional theorem when every
-successor quotient is a unital separable ASH algebra.  Let `A` be separable,
-exact, and pure, and suppose either that `A` is simple or that every quotient
-of `A` is stably finite.  Seth--Vilalta's Theorem B, with Remark 6.10 for the
-second alternative, makes
+There is a second transfinite reduction that removes exactness of the tensor
+factor.  If
+
+```text
+0 -> I -> E --q--> Q -> 0
+```
+
+has separable nuclear quotient, Choi--Effros gives a cpc section `s` of `q`.
+The completely bounded map `P=id_E-sq` has range in `I` and is the identity
+on `I`.  For every C*-algebra `A`, if `(id_A tensor q)(x)=0`, then
+
+```text
+x=(id_A tensor P)(x) in A tensor_min I.
+```
+
+Thus the extension remains exact after minimal tensoring by arbitrary `A`.
+Successor extension permanence, sequential purity at countable-cofinality
+limits, and separable stabilization at uncountable-cofinality limits prove:
+if a continuous filtration of separable `B` has nuclear successor quotients
+`L_alpha` and every `A tensor_min L_alpha` is pure, then `A tensor_min B` is
+pure.  This is complementary to the exact-factor theorem: arbitrary local
+layers require exact `A`, while nuclear local layers do not.
+
+Combining this reduction with the AF-factor theorem gives a new unconditional
+class.  If `A` is pure and every successor quotient `L_alpha` is AF, then all
+local products `A tensor_min L_alpha` are pure and therefore
+`A tensor_min B` is pure.  Unlike the earlier AF-factor theorem, the assembled
+factor `B` need not be AF; unlike the ASH-layered theorem below, the AF cells
+may be nonunital and `A` need not be simple or residually stably finite.  If
+`B` is pure, this is a positive class for Problem XCV.
+
+This new reduction strengthens the ASH-layered theorem.  Let `A` be pure,
+with no separability or exactness assumption, and suppose either that `A` is
+simple or that every quotient of `A` is stably finite.  Seth--Vilalta's
+Theorem B, with Remark 6.10 for the second alternative, makes
 
 ```text
 (J_(alpha+1)/J_alpha) tensor_min A
 ```
 
 pure at every successor stage of an arbitrary continuous ordinal filtration
-of a separable `B`.  Applying the transfinite-filtration theorem with `B` as
-the filtered algebra and `A` as the exact tensor factor proves that
-`A tensor_min B` is pure.  Thus if `B` is pure, this is a genuine positive
-class for Problem XCV; `B` may be a transfinite extension of ASH layers
-rather than a single ASH algebra.
+of a separable `B`.  ASH algebras are nuclear, so applying the
+nuclear-successor filtration theorem proves that `A tensor_min B` is pure.
+Thus if `B` is pure, this is a genuine positive class for Problem XCV; `B`
+may be a transfinite extension of ASH layers rather than a single ASH
+algebra, and `A` may be nonexact and nonseparable.
 
 The qualifier “unital separable” on every ASH successor quotient is
 deliberate.  It is the precise hypothesis of Seth--Vilalta's stated tensor
@@ -189,8 +223,9 @@ tensor product, 𝒵-stable and pure.
 
 ## Trust boundary
 
-The AF, filtration, and ASH-layered statements are unconditional consequences
-of the cited Cu-continuity, extension, and Seth--Vilalta theorems.  The
-excess-kernel statement is a criterion only.  No nonpure excess kernel,
+The AF, exact-factor filtration, nuclear-successor filtration, and
+ASH-layered statements are unconditional consequences of the cited
+Cu-continuity, Choi--Effros lifting, extension, and Seth--Vilalta theorems.
+The excess-kernel statement is a criterion only.  No nonpure excess kernel,
 failure of either purity axiom, or general tensor-permanence theorem is
 claimed.
