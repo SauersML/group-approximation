@@ -19,4 +19,3 @@ such that every nonzero positive element of `phi(Z)` is properly infinite in
 
 This refutes only the proposed selection hinge, not STW LXXVII: the map is
 itself O2-stable and hence O-infinity-stable.
-

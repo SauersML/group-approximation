@@ -21,4 +21,3 @@ can simultaneously satisfy:
 
 Thus the projection-return hypothesis is impossible for every nontrivial
 unital projectionless range, independently of proper infiniteness.
-

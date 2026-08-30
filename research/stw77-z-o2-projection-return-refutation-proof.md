@@ -28,4 +28,3 @@ Finally, O2-stability supplies a unital copy of `O_2`, and hence of
 `O_infinity`, in the map-relative central sequence algebra.  Thus this map
 is positive evidence for LXXVII while being a rigorous refutation of the
 projection-return proof strategy.
-

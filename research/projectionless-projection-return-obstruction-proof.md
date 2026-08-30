@@ -35,4 +35,3 @@ This can happen for one selected minimal projection in every matrix summand
 only when there is exactly one summand and it is `M_1`; consequently
 `D=C1_B`.  But then `dist(x,D)=d>epsilon`, contradicting approximation of
 `F`.  No such model exists.
-

@@ -55,4 +55,3 @@ proves O-infinity-stability.
 
 The only imported result is Voiculescu's absorption theorem; the extraction
 of the two central isometries is explicit above.
-
