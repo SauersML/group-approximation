@@ -96,7 +96,7 @@ Taking `D=C*_r(F_2)` gives a non-simple exact nonnuclear circle field that is
 Cu-regular but not Z-stable.  This also shows that circle monodromy itself is
 not a counterexample mechanism.
 
-## New finite-graph theorem at the exact K1-free boundary
+## New one-dimensional theorem at the exact K1-free boundary
 
 The available one-dimensional Cu formulas have different hypotheses, and
 they must not be conflated.  Antoine--Dadarlat--Perera--Santiago, Theorem 2.6,
@@ -109,32 +109,38 @@ coefficient hypothesis
 
 ```text
 stable_rank(B)=1,
-K_1(I)=0 for every closed two-sided ideal I of B.          (FG1)
+K_1(I)=0 for every closed two-sided ideal I of B.          (1D1)
 ```
 
-For a simple coefficient, `(FG1)` reduces to stable rank one and `K_1(B)=0`.
-This closes a genuinely larger base-space class without a new pullback claim.
-If `X` is any finite graph and `D` is simple, separable, stably finite, pure,
-and `K_1(D)=0`, the formula applies to both `D` and `D tensor Z`: Lin gives
-stable rank one, and the KK-equivalence `D->D tensor Z` preserves the zero
-`K_1` group.  Under the two natural evaluation identifications, the
-first-factor Cu map is pointwise application of the fiber map, which is an
-isomorphism by STW Proposition 23.  Hence
+The formula itself gives a reusable permanence theorem on its full published
+base class.  Let `X` be any second-countable locally compact Hausdorff space
+of covering dimension at most one, and put `E=B tensor Z`.  If both `B` and
+`E` have stable rank one and satisfy `(1D1)`, and the actual map
+`Cu(B)->Cu(E)` is an isomorphism, then the formula applies to both
+coefficients.  Under the two natural evaluation identifications, the
+first-factor Cu map is pointwise application of the coefficient map.  It is
+therefore an isomorphism:
 
 ```text
-Cu(C(X,D)) -> Cu(C(X,D) tensor Z)
+Cu(C_0(X,B)) -> Cu(C_0(X,B) tensor Z).
 ```
 
-is an isomorphism.  Seth--Vilalta independently makes `C(X,D)` pure.  The
-class includes finite trees, bouquets of circles, theta graphs, and arbitrary
-finite combinations of branching and cycles.
+For a simple coefficient, `(1D1)` reduces to stable rank one and `K_1(B)=0`.
+Thus if `D` is simple, separable, stably finite, pure, and `K_1(D)=0`, Lin
+gives stable rank one for `D` and `D tensor Z`, the KK-equivalence
+`D->D tensor Z` preserves zero `K_1`, and STW Proposition 23 gives the fiber
+Cu isomorphism.  Hence `C_0(X,D)` is Cu-regular.  It is also pure: apply
+Seth--Vilalta to `C(X^+,D)`, where `X^+` is the compact metrizable one-point
+compactification, and use permanence of purity for its ideal `C_0(X,D)`.
+This strictly subsumes the finite-graph statement: the base may be
+noncompact, have infinite branching, or contain infinitely many cycles.
 
 The `K_1` restriction is a trust boundary of this proof, not cosmetic.
 Antoine--Dadarlat--Perera--Santiago, Remark 3.9, attach an interval to a circle
 and show that pointwise comparison can miss a nontrivial clutching class when
 the simple stable-rank-one coefficient has nonzero `K_1`.  Thus neither the
-pointwise formula nor the new Cu-regularity theorem is asserted for arbitrary
-fibers over a general finite graph.
+pointwise formula nor the new Cu-regularity theorem is asserted after deleting
+the idealwise `K_1` hypothesis.
 
 ## Updated compact counterexample corridor
 
@@ -166,7 +172,8 @@ product morphism from this abstract tensor product to
 `Cu(A tensor_min Z)`.  The new results narrow where it can fail: not on
 ideals, quotients of a regular ambient algebra, ideal lattices, K-theory,
 quasitraces, interval fields, circle fields with simple stably finite pure
-fiber, or finite-graph fields whose such fiber has trivial `K_1`.  What
-remains is higher-dimensional compact clutching over a pure coefficient with
-no unital `Z`, supportwise one-dimensional clutching for nonzero-`K_1`
-fibers, or genuinely noncompact extension gluing/rank realization.
+fiber, or fields over any second-countable locally compact one-dimensional
+base whose such fiber has trivial `K_1`.  What remains is higher-dimensional
+compact clutching over a pure coefficient with no unital `Z`, supportwise
+one-dimensional clutching for nonzero-`K_1` fibers, or genuinely noncompact
+extension gluing/rank realization.
