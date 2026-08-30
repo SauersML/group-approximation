@@ -44,3 +44,32 @@ those models.
 
 The Cairn nodes attached to this audit prove both coherence criteria from
 scratch.  They do not assert that exactness produces the missing coherence.
+
+## Finite-group permanence without a coherence theorem
+
+There is a separate situation in which no interstage coherence has to be
+created.  If `eta:A->E` is any AF embedding and a finite group `F` acts on
+`A`, the finite regular covariant representation gives an injective map
+
+```text
+A rtimes F -> M_|F|(E).
+```
+
+The coefficient algebra is represented diagonally using the finitely many
+maps `eta alpha_(t^-1)`, while the group acts by permutation matrices.
+Faithfulness follows from the coefficient expectation, and the target is AF.
+Crucially, the action is not required to extend to `E`.
+
+The same matrix model respects traces: if `sigma eta=tau` and `tau` is
+invariant, then `tr_|F| tensor sigma` restricts to `tau E_A`.  Thus both plain
+and trace-preserving AF-embeddability pass through finite crossed products.
+For group algebras, the analogous coset regular representation proves that
+AF-embeddability passes from a finite-index subgroup of a countable amenable
+group to the whole group, without normality or splitting.
+
+This finite-dimensional reservoir is essential to the argument.  For an
+infinite acting group the regular representation lands in adjointable
+operators on an infinite Hilbert module, not in a finite matrix amplification
+of the AF target.  The theorem therefore supplies no permanence for general
+`Z`-crossed products and does not address the unsolved step of coherifying
+arbitrary quasidiagonal models.
