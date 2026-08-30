@@ -34,3 +34,15 @@ restricted trace is faithful and amenable, has GNS closure `R`, but is not
 quasidiagonal; the witness cannot be both exact and UCT.  The CAR core records
 the available Hilbert--Schmidt approximation, while a finite added set
 records the unresolved operator-norm obstruction.
+
+There is also an exact finite-stage normal form for the missing
+operator-norm models.  By
+`stw10-qd-traces-admit-exact-finite-dimensional-core-models`, after fixing a
+weakly dense CAR tower `D_n subset R`, X(2) is equivalent to the existence,
+for every finite packet and every `n`, of a quasidiagonal trace model having
+`D_n` in its multiplicative domain.  Such a model is a genuine unital
+representation on `D_n` and recovers `tau_R|D_n` exactly.  Thus the CAR stage
+may be frozen without loss: the open hinge is precisely operator-norm
+multiplicativity for the finitely many elements outside that exact core.
+This is a finite-set/net statement for the nonseparable factor, not a claim
+that one sequence models all of `R`.
