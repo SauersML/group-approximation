@@ -50,7 +50,7 @@ commutes with the supremum.  If `r+s>1`, then `r_k+s>1` eventually.  When
 suprema.
 
 For (O5), take `x'<<x<=y`.  The cases `x'=0` or `y=u` are settled by taking,
-respectively, `z=y` or `z=0`.  In the remaining case all three elements are
+respectively, `z=y` or `z=u`.  In the remaining case all three elements are
 soft and `x'<x<=y`; take the soft real `z=y-x'>0`.  Then
 
 ```text
