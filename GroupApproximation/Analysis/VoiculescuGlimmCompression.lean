@@ -35,10 +35,15 @@ noncomputable section
 variable {H : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
 omit [CompleteSpace H] in
-/-- **The compression identity.**  A positive functional annihilating the
-compacts is unchanged by compression by `1 - e` for any compact `e`. -/
+/-- **The compression identity.**  A linear functional annihilating the
+compacts is unchanged by compression by `1 - e` for any compact `e`.
+
+Stated for a plain linear map rather than a positive one: positivity is not
+used, and the assembly in `Analysis/VoiculescuGlimmState` produces its
+functional in exactly this shape, so a narrower binder would force a
+repackaging at every use. -/
 theorem apply_compress_eq_of_annihilates_compacts
-    (ρ : (H →L[ℂ] H) →ₚ[ℂ] ℂ)
+    (ρ : (H →L[ℂ] H) →ₗ[ℂ] ℂ)
     (hρ : ∀ T : H →L[ℂ] H, IsCompactOperator T → ρ T = 0)
     (e T : H →L[ℂ] H) (he : IsCompactOperator e) :
     ρ ((1 - e) * T * (1 - e)) = ρ T := by
