@@ -791,6 +791,88 @@ theorem strictMono_sparseSample {B C c D l : ℝ} (hl : 0 < l) :
     StrictMono (sparseSample B C c D l) :=
   strictMono_nat_of_lt_succ fun n => (sparseSample_step hl n).1
 
+/-- Uniformly long endpoint-close quasi-axis segments admit finite sparse
+families of coarse matches, simultaneously before and after any prescribed
+offset `M` on the first axis.  The phase differences of the two partner
+families will be extracted by pigeonhole in the next step. -/
+theorem exists_sparse_double_vertexChain_matches
+    {δ B lam c : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hq : IsQuasiGeodesicAxis lam c h x f)
+    (hstep : 0 < dist x (h • x)) :
+    ∃ E C : ℝ, 0 ≤ E ∧ 0 ≤ C ∧
+      ∀ (M T : ℕ), ∃ S : ℕ, ∀ (p q : PowerAxisSegment h x),
+        S ≤ p.steps → dist p.initial q.initial ≤ B →
+        dist p.terminal q.terminal ≤ B →
+        ∃ (A I J : Fin (T + 1) → ℕ), StrictMono A ∧
+          (∀ r, I r ≤ q.steps ∧
+            dist (p.vertexChain (A r)) (q.vertexChain (I r)) ≤ C) ∧
+          (∀ r, J r ≤ q.steps ∧
+            dist (p.vertexChain (A r + M)) (q.vertexChain (J r)) ≤ C) := by
+  obtain ⟨E, C, hE, hC, hmatch⟩ := exists_uniform_vertexChain_match
+    hδ hδ0 hgeo hiso hB hlam hc hf hq hstep
+  refine ⟨E, C, hE, hC, ?_⟩
+  intro M T
+  let D : ℝ := lam * dist x (h • x) + c
+  let l : ℝ := dist x (h • x) / lam
+  let B' : ℝ := B + (M : ℝ) * D
+  let a : ℕ → ℕ := sparseSample B' C c D l
+  have hl : 0 < l := by
+    dsimp [l]
+    positivity
+  have haMono : StrictMono a := strictMono_sparseSample hl
+  obtain ⟨U, hU⟩ := exists_nat_gt (E / l)
+  have hEU : E < l * (U : ℝ) := by
+    rw [div_lt_iff₀ hl] at hU
+    simpa only [mul_comm] using hU
+  let S : ℕ := a T + M + U
+  refine ⟨S, ?_⟩
+  intro p q hpSteps hclose0 hclose1
+  let A : Fin (T + 1) → ℕ := fun r => a r.val
+  have hAmono : StrictMono A := fun r s hrs => haMono hrs
+  have hinternal : ∀ r : Fin (T + 1),
+      A r + M ≤ p.steps ∧
+      E ≤ l * ((p.steps - (A r + M) : ℕ) : ℝ) := by
+    intro r
+    have hrT : r.val ≤ T := Nat.lt_succ_iff.mp r.isLt
+    have har : a r.val ≤ a T := haMono.monotone hrT
+    have hsum : A r + M + U ≤ p.steps := by
+      dsimp [S, A] at hpSteps ⊢
+      omega
+    have hUsub : U ≤ p.steps - (A r + M) := by omega
+    have hUsubR : (U : ℝ) ≤ ((p.steps - (A r + M) : ℕ) : ℝ) := by
+      exact_mod_cast hUsub
+    refine ⟨by omega, ?_⟩
+    nlinarith
+  have hmatch0 : ∀ r : Fin (T + 1),
+      ∃ i : ℕ, i ≤ q.steps ∧
+        dist (p.vertexChain (A r)) (q.vertexChain i) ≤ C := by
+    intro r
+    have hsub : p.steps - (A r + M) ≤ p.steps - A r :=
+      Nat.sub_le_sub_left (Nat.le_add_right (A r) M) p.steps
+    have hsubR : ((p.steps - (A r + M) : ℕ) : ℝ) ≤
+        ((p.steps - A r : ℕ) : ℝ) := by exact_mod_cast hsub
+    have hfar : E ≤ l * ((p.steps - A r : ℕ) : ℝ) := by
+      have hlmul := mul_le_mul_of_nonneg_left hsubR hl.le
+      exact (hinternal r).2.trans hlmul
+    exact hmatch p q hclose0 hclose1 (A r)
+      (le_trans (Nat.le_add_right (A r) M) (hinternal r).1) hfar
+  have hmatchM : ∀ r : Fin (T + 1),
+      ∃ j : ℕ, j ≤ q.steps ∧
+        dist (p.vertexChain (A r + M)) (q.vertexChain j) ≤ C := by
+    intro r
+    exact hmatch p q hclose0 hclose1 (A r + M)
+      (hinternal r).1 (hinternal r).2
+  let I : Fin (T + 1) → ℕ := fun r => Classical.choose (hmatch0 r)
+  let J : Fin (T + 1) → ℕ := fun r => Classical.choose (hmatchM r)
+  refine ⟨A, I, J, hAmono, ?_, ?_⟩
+  · intro r
+    exact Classical.choose_spec (hmatch0 r)
+  · intro r
+    exact Classical.choose_spec (hmatchM r)
+
 /-- If two matched pairs are `M` vertices apart on the first quasi-axis, the
 difference of their partner indices is uniformly bounded.  Consequently only
 finitely many phase differences can occur in the later pigeonhole extraction. -/
