@@ -150,6 +150,32 @@ two-point packet to a diagonal order-zero map.  It does not rule out a
 subtler diagonal-recovery theorem which changes the approximation before
 averaging.
 
+There is a second, complementary obstruction for noncommutative colours.
+Every order-zero positive functional on `M_n`, `n>=2`, is zero: diagonalize
+the density matrix of a hypothetical nonzero functional, take a positive
+eigenvector and an orthogonal vector, and rotate them to two orthogonal unit
+vectors on whose rank-one projections the functional is strictly positive.
+This contradicts preservation of orthogonality.  Composing an order-zero map
+
+```text
+theta:M_n->ell^infinity(X)
+```
+
+with every point evaluation therefore shows that `theta=0`.  More generally,
+an order-zero map from a finite-dimensional algebra into the diagonal
+vanishes on every noncommutative matrix summand.
+
+If `M_n` is the matrix corner supported on `n` distinct points of `X`, the
+diagonal expectation restricted to that corner has norm one.  Since zero is
+the only diagonal c.p.c. order-zero competitor, its distance from every such
+competitor is exactly one.  The earlier `C^2` calculation remains necessary
+and nonredundant because scalar summands can survive in a commutative target;
+it shows that even those colours can acquire a rigid one-half orthogonality
+defect.  Together, the two calculations show that raw diagonal averaging
+both destroys some commutative packets and discards every noncommutative
+packet.  Neither calculation excludes a recovery argument that reorganizes
+the approximation before applying the expectation.
+
 ## Exact remaining frontier
 
 The cases not covered by the preceding established results are:
