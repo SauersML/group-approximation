@@ -209,13 +209,19 @@ the universal extension problem to constructing these coupled partitions
 from ideal--quotient geometry.  That construction is not yet known in an
 arbitrary extension.
 
-The one-dimensional product loss can be removed for a concrete support
+The one-dimensional product loss can now be removed for a concrete support
 geometry.  `stw82-tree-connected-supports-have-optimal-covers` proves that
-commuting outgoing supports with joint spectrum a finite tree and connected
-cozero sets admit asymptotically exact support-local coupled covers using
-only their maximum pointwise multiplicity `m`.  The proof colours the
-subtree intersection graph and uses functional-calculus cutters which vanish
-at the support boundary.  Thus approximation schemes of this kind with
-depth at most `r+1` prove nuclear dimension at most `r`.  This is an
-identifiable positive class, not a claim that arbitrary essential extensions
-have tree-connected support geometry.
+outgoing supports in a common centralizing finite-tree algebra admit
+asymptotically exact support-local coupled covers using only their maximum
+pointwise multiplicity `m`, with no connectedness hypothesis.  At each
+tolerance, only finitely many cozero components meet an upper spectral cut;
+Urysohn cutters localize to those components, their subtree graph is
+`m`-colourable, and the pieces are regrouped by colour.  This can reduce a
+global `K_3` support-overlap graph to two colours, so it genuinely reorganizes
+the outgoing maps rather than recolouring them intact.  Approximation schemes
+of this kind with depth at most `r+1` prove nuclear dimension at most `r`,
+improving the general one-dimensional central-spectrum bound from `2m` to
+`m`.  For connected cozero supports the common-centralizer hypothesis remains
+unnecessary, recovering the earlier theorem.  This is an identifiable
+positive class, not a claim that arbitrary essential extensions have
+finite-tree support geometry.
