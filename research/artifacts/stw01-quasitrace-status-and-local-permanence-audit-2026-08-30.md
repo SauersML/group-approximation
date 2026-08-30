@@ -179,6 +179,48 @@ commutation alone supplies no descent theorem.  Indeed this compression is
 a star homomorphism exactly when `p_n` is central.  Thus no quotient
 quasitrace is inferred from the general quasicentral cuts.
 
+## Universal quasitrace-null commutators
+
+Exact centrality in `A` can be weakened to exact centrality in every
+quasitracial quotient.  Define
+
+```text
+J_bQT(A)=intersection_(tau in QT_b(A))
+         {x:tau(x*x)=0}.
+```
+
+If an ideal has an increasing projectional approximate unit `(p_n)` with
+`[p_n,A] subset J_bQT(A)`, every bounded quasitrace on every corner
+`p_n A p_n` is a trace, and every bounded quasitrace on `A/I` is a trace,
+then every bounded quasitrace on `A` is a trace.
+
+For a fixed ambient quasitrace `tau`, pass first to `A/N_tau`.  The images
+of all `p_n` are central there, so the complementary cuts are exact star
+homomorphisms.  Their quasitrace compositions have a tail ultralimit which
+vanishes on `I`, descends to `A/I`, and is a trace.  The corner term is a
+trace by hypothesis, so the ambient additivity defect equals the tail
+defect and vanishes.  This order of operations is essential: `tau` itself
+need not vanish on `I` and is never descended to `A/I`.
+
+The weakening is strict.  In
+
+```text
+A=C direct_sum K~,             I=C direct_sum K,
+p_n=(1,e_n),
+```
+
+the finite-rank `e_n` make `p_n` noncentral, but their commutators lie in
+the stable summand `0 direct_sum K`, which belongs to every bounded
+quasitrace square-null ideal.  Meanwhile `I` has the nonzero scalar trace,
+so it is not quasitrace-invisible.  The corners are
+`C direct_sum M_(rank(e_n))` and the quotient is `C`.
+
+For a projection `p` and fixed `tau`, the tail cut into `A/N_tau` is a star
+homomorphism if and only if `[p,A] subset N_tau`.  Thus universal
+quasitrace-nullity of these commutators is the exact algebraic threshold for
+the tail-homomorphism proof.  It does not show that a merely quasicentral
+approximate unit suffices.
+
 ## Sharp free-group tensor test
 
 STW, footnote 54, records an exact universal reformulation.  For every

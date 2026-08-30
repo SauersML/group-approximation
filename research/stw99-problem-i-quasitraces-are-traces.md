@@ -38,3 +38,14 @@ trace cancels the remaining additivity defect.  Exact centrality matters:
 for merely quasicentral projections the complementary compression is not a
 homomorphism, so its composition with a quasitrace need not be a quasitrace
 and cannot simply be descended.
+
+The centrality hypothesis itself has a strict quasitracial weakening.
+`stw01-qt-central-projection-extensions-preserve-linearity`
+only requires the approximate-unit commutators to lie in the intersection
+of the square-null ideals of all bounded quasitraces.  For each ambient
+quasitrace, the projections then become genuinely central after passage to
+its own square-null quotient, and the same tail-ultralimit proof applies.
+The ideal may still carry nonzero traces.  This condition is exactly what
+makes every tail cut a star homomorphism in the individual quasitracial
+quotient; mere quasicentrality in norm remains insufficient for this
+argument.
