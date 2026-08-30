@@ -5,7 +5,7 @@ kind: route
 title: Compute the Bass--Serre fold kernels and let an atomic quotient sector supply only quotient faithfulness
 target: sl3-mixed-model-hard-part-is-free-kernel
 requires:
-  - abstract-unitary-embedding-upgrades-to-hyperlinear
+  - hyperlinear-iff-group-factor-embeds-in-hyperfinite-ultrapower
   - sl3-arithmetic-double-finite-representations-fold
   - sl3-overlap-full-in-fd-ambient-images
 ---
@@ -74,8 +74,11 @@ Phi(g)=alpha(q(g)) direct_sum psi(g)
 
 in the Connes-embeddable algebra `R_0 direct_sum M`.  If `Phi(g)=1`,
 faithfulness of `alpha` gives `q(g)=1`, so `g in K`; injectivity of
-`psi|_K` then gives `g=1`.  Hence `Phi` is an abstract faithful embedding,
-and `abstract-unitary-embedding-upgrades-to-hyperlinear` makes `G`
+`psi|_K` then gives `g=1`.  Hence `Phi` is an abstract faithful embedding.
+Embed the Connes-embeddable algebra `R_0 direct_sum M` trace-preservingly
+into a tracial matrix ultrapower.  The composite is an injective
+homomorphism of `G` into that ultrapower's unitary group, so
+`hyperlinear-iff-group-factor-embeds-in-hyperfinite-ultrapower` makes `G`
 hyperlinear.
 
 Conversely, a hyperlinear group has a faithful homomorphism into a tracial
