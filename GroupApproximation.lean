@@ -2836,6 +2836,10 @@ import GroupApproximation.Analysis.VoiculescuFrameFromGlimm
 import GroupApproximation.GGT.DGOWindmillQuasiconvex
 import GroupApproximation.GGT.DGOWindmillBetween
 import GroupApproximation.GGT.DGOWindmillRotationFree
+import GroupApproximation.GGT.HullSCRelatorSeparation2BaseCount
+import GroupApproximation.Analysis.VoiculescuIntertwiningDefect
+import GroupApproximation.Analysis.VoiculescuIntertwiningStep
+import GroupApproximation.Analysis.VoiculescuGlimmPositive
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
