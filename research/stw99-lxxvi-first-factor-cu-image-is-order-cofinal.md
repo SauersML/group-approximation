@@ -32,10 +32,27 @@ x<=Cu(iota)(y).                                            (OC2)
 ```
 
 No separability, exactness, nuclearity, simplicity, or regularity assumption
-is used.  In particular `(OC1)--(OC2)` hold for the LXXVI first-factor map
-`Cu(A)->Cu(A tensor_min Z)` even when `A` is not pure.
+is used for `(OC1)--(OC2)`.
+
+For the LXXVI map there is an ideal-matched strengthening.  If `A` is
+separable, `B=Z`, and `x'<<x`, then `y` in `(OC1)` can be chosen so that
+
+```text
+Ideal(Cu(iota)(y)) subseteq Ideal(x).                     (OC3)
+```
+
+For every `x`, the global dominator in `(OC2)` can be chosen with
+
+```text
+Ideal(Cu(iota)(y)) = Ideal(x).                            (OC4)
+```
+
+These conclusions still do not require `A` to be pure.  They use the exact
+ideal correspondence `I <-> I tensor_min Z`.
 
 This is deliberately one-sided.  The image element in `(OC1)` need not lie
-below `x`; requiring such inner brackets together with order reflection
-would force the whole map to be a Cu-isomorphism by
+below `x`, even when `(OC3)` holds; sharing an ideal is much weaker than
+Cuntz comparison in that direction.  Requiring genuine inner brackets
+together with order reflection would force the whole map to be a
+Cu-isomorphism by
 `stw95-order-embedded-inner-cofinal-cu-image-forces-pure-product`.
