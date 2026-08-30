@@ -56,6 +56,13 @@ The project reduction
 counterexample would already have a separable subextension counterexample
 with no larger endpoint dimensions.
 
+There is a second localization from Problem LXXXI.
+`stw81-finite-ideal-counterexample-forces-lxxxii-counterexample` shows that a
+separable finite-ideal algebra of finite nuclear dimension at least two,
+despite having only one-dimensional commutative hereditary shadows in all
+quotients, would contain an extension counterexample here whose ideal and
+quotient both have nuclear dimension at most one.
+
 ## Attempts
 
 The established route

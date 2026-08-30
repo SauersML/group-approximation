@@ -16,4 +16,7 @@ The implication from an entangled compact witness to this counterexample is
 complete in `pure-tensor-entangled-compact-route`.  The sole missing input is
 `pure-min-tensor-entangled-compact-witness`; its attempts section records why
 spatial products and the maximal-tensor property-T diagonal construction do
-not supply a minimal-tensor witness.
+not supply a minimal-tensor witness.  The witness is now also known to require
+at least one nonsimple factor: `stw95-simple-pure-factors-exclude-compact-corridor`
+rules out all simple-by-simple pure pairs by simplicity of their minimal
+tensor product and reflection of type I from a tensor product to its factors.
