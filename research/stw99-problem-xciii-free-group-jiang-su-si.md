@@ -10,6 +10,7 @@ artifacts:
   - research/artifacts/stw93-hereditary-exhaustion-audit-2026-08-30.md
   - research/artifacts/stw93-residual-bounded-trace-audit-2026-08-30.md
   - research/artifacts/stw93-central-commutator-lifting-audit-2026-08-30.md
+  - research/artifacts/stw93-central-factorization-no-go-audit-2026-08-30.md
 ---
 
 **Problem XCIII of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Does `C*_r(F₂) ⊗ 𝒵` have property (SI)?
@@ -94,3 +95,14 @@ in `D`.  Coordinatewise averaging unitaries vary with the representative
 and need not be norm-central, while full-factor spectral gap only controls
 their effect in tracial `2`-norm.  Centralizing these ambient commutator
 decompositions is therefore the exact next Powers-averaging hinge.
+
+There is also a sharp limit on formal centralization.  By
+`stw93-abstract-central-factorization-can-fail`, even a uniquely traced
+uniform-Dixmier norm ultraproduct can have a relative commutant with
+II_1-factor tracial quotient in which an ambient self-commutator limit is
+detected by a relative-commutant trace.  Orthogonal central Z-blocks turn
+commutator defects into a maximum across blocks, not a norm average.  That
+model's defining subalgebra contains a trace-zero projection; hence the
+remaining plausible XCIII input is specifically the faithful diagonal
+copy and full free-factor spectral gap, not an abstract self-commutator
+factorization principle.

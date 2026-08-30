@@ -10,6 +10,7 @@ distinct_from:
   stw93-trace-kernel-quasitracial-invisibility: that open claim concerns all quasitraces; the equivalence here concerns uniqueness of ordinary traces and does not linearize quasitraces.
 artifacts:
   - research/artifacts/stw93-central-commutator-lifting-audit-2026-08-30.md
+  - research/artifacts/stw93-central-factorization-no-go-audit-2026-08-30.md
 ---
 
 Put
@@ -53,3 +54,13 @@ Uniform Powers--Dixmier averaging supplies `(ACC3)` with bounded factors in
 `A_omega`, but the coordinatewise averaging unitaries need not form central
 sequences.  Promoting those ambient factors to elements of `D` is therefore
 the exact missing norm-level step; tracial spectral gap alone does not do it.
+
+This promotion cannot follow from a general finite-factorization lemma.
+`stw93-abstract-central-factorization-can-fail` gives a uniquely traced
+uniform-Dixmier matrix norm ultraproduct and a relative commutant with a
+II_1-factor tracial quotient for which an ambient trace-zero projection is
+an ambient self-commutator limit but is detected by a trace on the relative
+commutant.  Orthogonal central block cutdowns preserve the maximum norm
+defect and do not average it.  The actual XCIII argument must therefore use
+the faithfully traced full free-factor diagonal, which that countermodel
+lacks.
