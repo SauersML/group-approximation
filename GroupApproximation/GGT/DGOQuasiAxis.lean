@@ -689,39 +689,95 @@ def HasUniformVertexBlockFellowTravel (B : ℝ) (h : G) (x : X) : Prop :=
   ∃ C : ℝ, 0 ≤ C ∧ ∀ R : ℕ, ∃ L : ℝ, 0 < L ∧
     ∀ (p q : PowerAxisSegment h x),
       L ≤ p.length → L ≤ q.length → OrientedClose B p q →
-      ∀ n : ℕ, n ≤ R →
+      ∃ J : ℤ, ∀ n : ℕ, n ≤ R →
         dist (p.vertex (p.start + (n : ℤ)))
-          (q.vertex (q.start + (n : ℤ))) ≤ C
+          (q.vertex (q.start + J + (n : ℤ))) ≤ C
 
 /-- A uniform fellow-travelling vertex block supplies all asynchronous
 monotone samples required by the WPD pigeonhole argument. -/
 theorem hasMonotoneVertexSampling_of_uniformVertexBlockFellowTravel
-    {B : ℝ} (hB : 0 ≤ B) {h : G} {x : X}
+    {B lam c : ℝ} (hB : 0 ≤ B) (hlam : 0 < lam) (hc : 0 ≤ c)
+    {h : G} {x : X} (hiso : IsIsometricAction G X)
+    {f : ℝ → X} (hf : IsAxisConnector h x f)
+    (hqAxis : IsQuasiGeodesicAxis lam c h x f)
     (hblock : HasUniformVertexBlockFellowTravel B h x) :
     HasMonotoneVertexSampling B h x := by
   obtain ⟨C, hC, hblock⟩ := hblock
-  refine ⟨max B C, C, hB.trans (le_max_left B C), hC, ?_⟩
+  let E : ℝ := lam * (lam * (B + C + c)) + c
+  have hE : 0 ≤ E := by
+    dsimp [E]
+    positivity
+  refine ⟨max B (C + E), C,
+    hB.trans (le_max_left B (C + E)), hC, ?_⟩
   intro M N
   obtain ⟨L, hL, hblockL⟩ := hblock (M + N)
   refine ⟨L, hL, ?_⟩
   intro p q hpLen hqLen hclose
-  have hK := hblockL p q hpLen hqLen hclose
+  obtain ⟨J, hK⟩ := hblockL p q hpLen hqLen hclose
   let A : Fin (N + 1) → ℤ := fun i => (i.val : ℤ)
+  let D : Fin (N + 1) → ℤ := fun i => J + (i.val : ℤ)
   have hA : StrictMono A := by
     intro i j hij
     dsimp [A]
     exact_mod_cast hij
-  refine ⟨(M : ℤ), A, A, hA, hA, hclose.1.trans (le_max_left B C),
-    (hK M (Nat.le_add_right M N)).trans (le_max_right B C), ?_, ?_⟩
+  have hD : StrictMono D := by
+    intro i j hij
+    dsimp [D]
+    have hij' : (i.val : ℤ) < (j.val : ℤ) := by exact_mod_cast hij
+    simpa only [add_comm] using add_lt_add_left hij' J
+  have hblock0 := hK 0 (Nat.zero_le (M + N))
+  simp only [Nat.cast_zero, add_zero] at hblock0
+  have hq0J : dist (q.vertex q.start) (q.vertex (q.start + J)) ≤ B + C := by
+    have htri := dist_triangle (q.vertex q.start) (p.vertex p.start)
+      (q.vertex (q.start + J))
+    have hstart : dist (q.vertex q.start) (p.vertex p.start) ≤ B := by
+      simpa only [initial, vertex, dist_comm] using hclose.1
+    linarith
+  have hlower := (vertex_dist_bounds hiso hf hqAxis q q.start (q.start + J)).1
+  have hcoordEq :
+      |((q.start : ℝ) - ((q.start + J : ℤ) : ℝ)) * dist x (h • x)| =
+        |(J : ℝ) * dist x (h • x)| := by
+    push_cast
+    rw [show ((q.start : ℝ) - ((q.start : ℝ) + (J : ℝ))) *
+        dist x (h • x) = -((J : ℝ) * dist x (h • x)) by ring, abs_neg]
+  rw [hcoordEq] at hlower
+  have hcoordDiv : |(J : ℝ) * dist x (h • x)| / lam ≤ B + C + c := by
+    linarith
+  have hcoordBound : |(J : ℝ) * dist x (h • x)| ≤ lam * (B + C + c) := by
+    rw [div_le_iff₀ hlam] at hcoordDiv
+    simpa only [mul_comm] using hcoordDiv
+  have hblockM := hK M (Nat.le_add_right M N)
+  have hshiftUpper := (vertex_dist_bounds hiso hf hqAxis q
+    (q.start + J + (M : ℤ)) (q.start + (M : ℤ))).2
+  have hshiftCoord :
+      |(((q.start + J + (M : ℤ) : ℤ) : ℝ) -
+          ((q.start + (M : ℤ) : ℤ) : ℝ)) * dist x (h • x)| =
+        |(J : ℝ) * dist x (h • x)| := by
+    push_cast
+    congr 1
+    ring
+  rw [hshiftCoord] at hshiftUpper
+  have hmulBound := mul_le_mul_of_nonneg_left hcoordBound hlam.le
+  have hshift : dist (q.vertex (q.start + J + (M : ℤ)))
+      (q.vertex (q.start + (M : ℤ))) ≤ E := by
+    dsimp [E]
+    linarith
+  have hbaseM : dist (p.vertex (p.start + (M : ℤ)))
+      (q.vertex (q.start + (M : ℤ))) ≤ C + E := by
+    exact (dist_triangle _ (q.vertex (q.start + J + (M : ℤ))) _).trans
+      (add_le_add hblockM hshift)
+  refine ⟨(M : ℤ), A, D, hA, hD,
+    hclose.1.trans (le_max_left B (C + E)),
+    hbaseM.trans (le_max_right B (C + E)), ?_, ?_⟩
   · intro i
     have hiN : i.val ≤ N := Nat.lt_succ_iff.mp i.isLt
     have hiMN : i.val ≤ M + N := hiN.trans (Nat.le_add_left N M)
-    simpa only [A] using hK i.val hiMN
+    simpa only [A, D, add_assoc] using hK i.val hiMN
   · intro i
     have hiN : i.val ≤ N := Nat.lt_succ_iff.mp i.isLt
     have hMi : M + i.val ≤ M + N := Nat.add_le_add_left hiN M
-    simpa only [A, Nat.cast_add, Int.ofNat_eq_natCast, add_assoc] using
-      hK (M + i.val) hMi
+    simpa only [A, D, Nat.cast_add, Int.ofNat_eq_natCast, add_assoc,
+      add_left_comm, add_comm] using hK (M + i.val) hMi
 
 /-- **DGO Lemma 6.7 for power-vertex segments, reduced exactly to the cited
 Bestvina--Fujiwara monotone-sampling proposition.**  The length threshold is
