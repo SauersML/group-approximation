@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw99-xix-xx-uniform-gamma-recon-2026-08-30.md
   - research/artifacts/stw99-xx-point-dominated-diagonal-gamma-2026-08-30.md
+  - research/artifacts/stw99-xx-clustered-eigenmap-gamma-2026-08-30.md
 ---
 
 **Problem XX of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Do the
@@ -52,6 +53,17 @@ which would refute
   zero and the multiplicity tends to infinity.  Distinct point evaluations
   are balanced on each finite test set by vector discrepancy; only the
   coordinate blocks contribute a uniform-in-the-base error.  Thus wild
-  point-evaluation data is not the obstruction.  The unresolved Villadsen
-  regime is exactly the positive asymptotic coordinate mass left after
-  this theorem.
+  point-evaluation data is not the obstruction.  What remains in the
+  classical Villadsen regime is positive asymptotic coordinate mass carried
+  by independently variable, low-multiplicity eigenmaps.
+* **Positive coordinate weight is not by itself an obstruction.**
+  `asymptotically-clustered-diagonal-ah-has-uniform-gamma` proves uniform
+  Gamma when almost all eigenmaps can be grouped into fixed-size packets
+  which are uniformly close on each prescribed finite test set.  Flat
+  Fourier projections in each packet split every fibre trace exactly and
+  asymptotically commute in operator norm.  This allows coordinate weight
+  one and includes the concrete case where the number of distinct
+  eigenmaps is sublinear in total multiplicity.  These witnesses are
+  off-diagonal and evade the canonical-Cartan obstruction.  Independently
+  variable multiplicity-one coordinate maps fail the packet hypothesis,
+  so the positive-radius Villadsen case remains open.
