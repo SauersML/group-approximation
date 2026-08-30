@@ -21,4 +21,3 @@ isomorphic, so their projection classes in `Cu(A)` are distinct.  Condition 3
 makes the clutching maps homotopic after tensoring with Z, so
 `p tensor 1_Z` and `q tensor 1_Z` are Murray--von Neumann equivalent.  Since
 `A` is pure by condition 1, this is the required ideal-local collapse witness.
-

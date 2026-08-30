@@ -42,4 +42,3 @@ The recent selfless tensor theorem requires both tensor factors to be
 selfless (or the second factor to be simple and uniquely tracial in its cp-map
 version); it does not make the commutative-base field pure.  Thus it does not
 close either missing input.
-

@@ -18,4 +18,3 @@ Stable rank one implies cancellation of projections.  Hence these two
 projections are stably Murray--von Neumann equivalent in `J tensor Z`, and
 their classes agree in `Cu(A tensor Z)`.  Their classes were distinct in
 `Cu(A)`, so the first-factor Cu morphism is not injective.
-

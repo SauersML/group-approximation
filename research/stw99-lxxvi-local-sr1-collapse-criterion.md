@@ -21,4 +21,3 @@ Then the first-factor map `Cu(A)->Cu(A tensor_min Z)` is not injective, so
 
 Only the generated stabilized ideal, rather than all of `A tensor Z`, is
 required to have stable rank one.
-

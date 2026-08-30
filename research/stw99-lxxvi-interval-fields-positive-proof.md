@@ -27,4 +27,3 @@ pointwise gives an isomorphism between the two lower-semicontinuous-function
 semigroups.  Naturality of evaluation makes the resulting square commute, so
 the left vertical map is exactly the first-factor Cu map for the interval
 field and is an isomorphism.
-

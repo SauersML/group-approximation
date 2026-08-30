@@ -10,4 +10,3 @@ requires:
 
 The witness directly supplies two distinct compact classes in `Cu(A)` with
 equal images in `Cu(A tensor Z)`, so the first-factor map is not injective.
-

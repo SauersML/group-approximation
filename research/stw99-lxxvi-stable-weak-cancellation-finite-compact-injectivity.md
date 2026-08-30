@@ -21,4 +21,3 @@ is injective on compact elements represented by projections.
 In particular, no stably finite pure algebra satisfying stable weak
 cancellation can realize the finite-projection compact counterexample route.
 Pureness is not needed for the injectivity statement itself.
-

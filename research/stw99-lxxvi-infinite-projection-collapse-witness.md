@@ -29,4 +29,3 @@ needed before/after behavior: the simple case of LXXVI is already positive.
 Any example must therefore use a genuinely non-simple ideal in which
 Z-tensoring changes finiteness/comparison of compact classes.  No explicit
 mixed finite/infinite pure ideal with this behavior is known here.
-

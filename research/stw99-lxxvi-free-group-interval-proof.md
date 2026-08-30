@@ -26,4 +26,3 @@ trace has GNS von Neumann algebra `L(F_2)`, which is a full II_1 factor and
 hence not McDuff, whereas the tracial GNS closure of a Z-stable algebra is
 McDuff.  Thus Z-stability of the interval field would force the impossible
 Z-stability of its free-group quotient.
-
