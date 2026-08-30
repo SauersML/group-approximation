@@ -9,7 +9,8 @@ artifacts:
   - research/artifacts/finite-stencil-pauli-cycle-proof.md
 ---
 
-Choose `m>max_(r in D)|r|`.  On `H=(C^2)^(tensor m)`, let `p_i` and `q_i`
+Put `M=max({|r|:r in D} union {0})` and choose `m>M`.  On
+`H=(C^2)^(tensor m)`, let `p_i` and `q_i`
 be Pauli `X` and `Z` on tensor coordinate `i in Z/mZ`, let `J=-I`, and let
 `S` cyclically permute the tensor coordinates.  Then
 
