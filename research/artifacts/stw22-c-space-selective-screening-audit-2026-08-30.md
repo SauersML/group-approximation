@@ -39,3 +39,22 @@ Strongly infinite-dimensional compacta can fail property `C`; on such a
 base this screening step may be unavailable.  Failure of property `C` is
 only an obstruction to this proof architecture.  It does not produce a
 bounded trace on a fibre gap, and no converse to the theorem is claimed.
+
+## Status after the all-degree purification theorem
+
+Uniform sphere fillings in every finite degree do not by themselves prove
+the local weighted lifts assumed above.  Uspenskij's exact selection
+theorem for C-spaces requires a lower locally constant/aspherical
+multifunction.  For exact purification, a fixed `w` belongs to the fibre at
+`x` exactly when `a(x)=w^*w`; hence singleton compact subsets of a fibre do
+not persist when the weight varies.  The map is lower semicontinuous but
+not lower locally constant.
+
+Gutev, *Selections and Higher Separation Axioms*, Questions 21--22,
+identifies selection from lower semicontinuity plus uniformly
+equi-`LC^omega`, `C^omega` values as open already over strongly
+countable-dimensional spaces and then over C-spaces.  Thus this node stays
+conditional.  The exact theorem boundary is audited in
+`research/artifacts/stw22-c-space-open-graph-audit-2026-08-30.md`; the
+finite-covering-dimensional result is now unconditional in
+`stw22-finite-dimensional-trivial-field-traces`.

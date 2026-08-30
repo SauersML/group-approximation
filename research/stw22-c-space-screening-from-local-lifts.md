@@ -9,6 +9,7 @@ distinct_from:
   stw22-norm-fibre-gap-is-the-trace-obstruction: that theorem identifies the operator-algebraic obstruction; the present theorem supplies a broad topological sufficient condition which eliminates it for trivial factor fields.
 artifacts:
   - research/artifacts/stw22-c-space-selective-screening-audit-2026-08-30.md
+  - research/artifacts/stw22-c-space-open-graph-audit-2026-08-30.md
 ---
 
 Let `X` be a compact metrizable `C`-space in the sense of Haver: for every
@@ -66,3 +67,32 @@ infinite-dimensional examples.  No unconditional positive-dimensional
 claim and no converse are asserted.  For this proof architecture the
 relevant topological invariant is selective screenability of a sequence of
 local weighted-lift covers, rather than a finite numerical dimension bound.
+
+The all-degree purification theorem does not remove `(LWCL)` on a general
+`C`-space.  Indeed, let
+
+```text
+F(a)={w in eR:w^*w=a}.
+```
+
+This multifunction has nonempty closed values in a common complete metric
+space, is lower semicontinuous, is uniformly equi-`LC^k` for every finite
+`k`, and every fibre is `k`-connected in every finite degree.  But the
+available Uspenskij C-space theorem requires lower local constancy/open
+graph.  For a pullback `Phi(x)=F(a(x))` and `w in Phi(x_0)`,
+
+```text
+{x:w in Phi(x)}={x:a(x)=a(x_0)}.
+```
+
+Thus lower local constancy fails wherever the weight field is not locally
+constant; exact purification has a closed graph, not an open one.  Gutev,
+[*Selections and Higher Separation Axioms*](https://arxiv.org/abs/1805.07638),
+Theorem 6.5 and Questions 21--22, records this as precisely the open
+selection boundary even for strongly countable-dimensional spaces and
+then for paracompact `C`-spaces.  Consequently the conditional screening
+statement above is the rigorous extension beyond finite dimension supplied
+by this method; all-degree connectivity alone does not make it
+unconditional.  The unconditional finite-dimensional theorem is
+`stw22-finite-dimensional-trivial-field-traces`.  No failure of selection
+for this special purification map is asserted.
