@@ -255,6 +255,40 @@ theorem lt_of_isComp_of_baseEdgeOrTrivial
         have h2 : kp t ≤ ip (t + 1) := (hstep t (by omega)).le
         omega
 
+omit [Group G] in
+/-- A letter of `H lam` at a known position, read back through `getElem?`. -/
+theorem getElem?_comp_of_isCompOf {w : List (RelLetter G Λ)} {lam : Λ} {j : ℕ}
+    (hj : j < w.length) (h : (w[j]'hj).IsCompOf lam) :
+    ∃ g : G, w[j]? = some (RelLetter.comp lam g) := by
+  have hg : w[j]? = some (w[j]'hj) := List.getElem?_eq_getElem hj
+  cases hcase : w[j]'hj with
+  | base x =>
+      rw [hcase] at h
+      simp [RelLetter.IsCompOf] at h
+  | comp mu g =>
+      rw [hcase] at h
+      simp only [RelLetter.IsCompOf] at h
+      exact ⟨g, by rw [hg, hcase, h]⟩
+
+/-- **Every component of a `(W3)` word is a single letter.**  Two adjacent
+letters of one `H lam` are exactly what the first half of (W3) forbids, so a
+maximal run of `lam`-letters can never reach length two.
+
+This is why a consumer of Proposition 4.14 on the 4.21 route never has to
+discharge the single-edge clause on the distinguished sides: the components
+Lemma 4.21 hands to the polygon are single edges already. -/
+theorem isComp_succ_of_isWThree {D : RelGenSet G Λ} {w : List (RelLetter G Λ)}
+    (hw : WWord.IsWThree D w) {lam : Λ} {i k : ℕ} (h : IsComp lam w i k) :
+    k = i + 1 := by
+  obtain ⟨hik, hkw, hall, -, -⟩ := h
+  by_contra hne
+  have hi : i < w.length := by omega
+  have hi1 : i + 1 < w.length := by omega
+  obtain ⟨g₁, hg₁⟩ := getElem?_comp_of_isCompOf hi (hall i le_rfl (by omega) hi)
+  obtain ⟨g₂, hg₂⟩ :=
+    getElem?_comp_of_isCompOf hi1 (hall (i + 1) (by omega) (by omega) hi1)
+  exact hw.1 i lam lam g₁ g₂ hg₁ hg₂ rfl
+
 end WWords
 
 /-! ## The alternating word is a `W`-word -/
