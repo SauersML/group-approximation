@@ -2,12 +2,13 @@ import GroupApproximation.Algebra.HyperbolicGroup
 import GroupApproximation.Algebra.WordMetricComparison
 
 /-!
-# Betweenness, slim triangles, and the comparison that is still open
+# Betweenness, slim triangles, and the comparison between them
 
-**This module is not imported by `GroupApproximation.lean`.**  It is authored
-ahead of a build, and the two open comparisons it names are recorded as
-`Prop`-valued definitions rather than as theorems, so nothing here asserts what
-it does not prove.
+The two comparisons this module names are recorded as `Prop`-valued definitions
+rather than as theorems, because when it was written neither was proved.  **Both
+are now theorems**, in `Algebra/HyperbolicSlimFourPoint.lean`; the definitions
+are kept because that is where they are discharged by name.  See "The two
+comparisons" below.
 
 ## Betweenness
 
@@ -27,15 +28,29 @@ from `b` to `c` is at least `(b·c)_a` away from `a`.  It is three triangle
 inequalities and no geometry, and it is the first lemma of any proof of the
 equivalences below.
 
-## What is still open
+## The two comparisons
 
 `SlimImpliesFourPoint` and `FourPointImpliesSlim` are the two halves of the
 standard equivalence between `δ`-slim triangles and Gromov's four-point
-condition (Bridson and Haefliger, Part III.H; Ghys and de la Harpe).  Both need
-the other half of the comparison --- that a point of `[a,b]` at distance
-`(b·c)_a` from `a` is uniformly close to `[b,c]` --- which is the geometric
-input this file does not have.  They are stated so that the gap is a named
-object, and nothing in this repository is conditional on either.
+condition (Bridson and Haefliger, Part III.H; Ghys and de la Harpe).  Both were
+open when this module was written: both need the other half of the comparison
+--- that a point of `[a,b]` at distance `(b·c)_a` from `a` is uniformly close to
+`[b,c]` --- and that is the geometric input this file does not have.
+
+`Algebra/HyperbolicSlimFourPoint.lean` supplies it, as
+`exists_isBetween_twiceGromovProduct_le`, by a discrete transition argument
+rather than the continuity argument of the metric-space textbooks, and proves
+both halves: `slimImpliesFourPoint` at `3δ + 1` and `fourPointImpliesSlim` at
+`4δ`, together with the equivalence
+`exists_isSlimTriangles_iff_exists_isFourPointHyperbolic`.  The working forms
+consumers reach for are `isFourPointHyperbolic_of_isSlimTriangles` and
+`isSlimTriangles_of_isFourPointHyperbolic`, and several modules of the `GGT`
+directory now use them.
+
+So the two definitions below no longer name gaps.  They are kept because they
+are the statements those theorems discharge by name; a reader who wants the
+theorem should follow the pointer rather than re-derive it, which the
+"open" wording in an earlier revision of this header invited.
 -/
 
 namespace GroupApproximation
@@ -170,22 +185,25 @@ theorem isSlimTriangles_of_bounded {S : Set G} {B : ℕ}
   intro x y z p _
   exact Or.inl ⟨x, isBetween_left S x z, hB p x⟩
 
-/-! ## The two open comparisons -/
+/-! ## The two comparisons -/
 
-/-- **Open.**  Slim triangles imply Gromov's four-point condition.  This is the
-direction that turns a picture into an inequality; the proof compares the
-Gromov product `(b·c)_a` with the distance from `a` to a side, and
-`twiceGromovProduct_le_of_isBetween` is one of its two halves.  Not proved
-here, and nothing in this repository assumes it. -/
+/-- **Slim triangles imply Gromov's four-point condition.**  The direction that
+turns a picture into an inequality; the proof compares the Gromov product
+`(b·c)_a` with the distance from `a` to a side, and
+`twiceGromovProduct_le_of_isBetween` is one of its two halves.  Not proved in
+this module, but **proved** in `Algebra/HyperbolicSlimFourPoint.lean`, as
+`slimImpliesFourPoint`, at the constant `3δ + 1`. -/
 def SlimImpliesFourPoint : Prop :=
   ∀ (H : Type) (_ : Group H) (S : Set H) (δ : ℕ),
     IsSymmetricGeneratingSet S → IsSlimTriangles S δ →
       ∃ δ' : ℕ, IsFourPointHyperbolic S δ'
 
-/-- **Open.**  Gromov's four-point condition implies slim triangles.  This is
-the harder direction of the classical equivalence, proved for geodesic spaces by
-the tripod comparison (Bridson and Haefliger, Part III.H).  Not proved here, and
-nothing in this repository assumes it. -/
+/-- **Gromov's four-point condition implies slim triangles.**  Classically the
+harder direction, proved for geodesic spaces by the tripod comparison (Bridson
+and Haefliger, Part III.H); in the discrete setting here it is the easier one,
+two applications of the four-point condition at the shared vertex.  Not proved
+in this module, but **proved** in `Algebra/HyperbolicSlimFourPoint.lean`, as
+`fourPointImpliesSlim`, at the constant `4δ`. -/
 def FourPointImpliesSlim : Prop :=
   ∀ (H : Type) (_ : Group H) (S : Set H) (δ : ℕ),
     IsSymmetricGeneratingSet S → IsFourPointHyperbolic S δ →

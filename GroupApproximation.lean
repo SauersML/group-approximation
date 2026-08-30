@@ -2803,6 +2803,15 @@ import GroupApproximation.Manuscript.Meta.NonMFSentenceRecords
 import GroupApproximation.Manuscript.Meta.MFRecognitionSentenceRecords
 import GroupApproximation.Sofic.StrongConvergenceMF
 import GroupApproximation.GGT.RelHypFreeProductConedFourPoint
+import GroupApproximation.GGT.HullSCConeOffHeavyChordChain
+import GroupApproximation.GGT.HullSCConeOffHeavyQuasiGeodesic
+import GroupApproximation.GGT.HullSCConeOffHeavyQuasiconvex
+import GroupApproximation.GGT.HullSCConeOffHeavyTransport
+import GroupApproximation.GGT.HullSCConeOffHeavyClauseA
+import GroupApproximation.Analysis.VoiculescuAmplifiedRep
+import GroupApproximation.Algebra.HyperbolicGeodesicPrefix
+import GroupApproximation.Algebra.HyperbolicFinitePresentation
+import GroupApproximation.GGT.OsinTheorem54SepClosingEdge
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
