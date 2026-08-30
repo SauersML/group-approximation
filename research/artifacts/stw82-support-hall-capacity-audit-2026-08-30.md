@@ -75,4 +75,3 @@ matching: above every relevant spectral threshold, the same-labelled
 support pieces must avoid nonorthogonal odd cycles (more generally, admit
 the desired graph colouring).  In noncommutative targets this is information
 not seen by traces.
-

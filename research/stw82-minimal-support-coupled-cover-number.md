@@ -56,4 +56,3 @@ Hence neither total tracial capacity nor all subset span-capacity
 inequalities suffice to construct same-labelled orthogonal cutters.  Even
 after tracial capacity is available, a genuinely noncommutative incidence
 obstruction remains.
-

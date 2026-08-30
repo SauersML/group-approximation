@@ -73,4 +73,3 @@ norm((1-0)(1/2))=1/2.
 ```
 
 This also proves the claimed quantitative floor.
-

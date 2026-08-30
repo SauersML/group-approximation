@@ -54,4 +54,3 @@ so `G_p=K_3`.  A singleton in (C6) gives `1/2<=1`; any subset of at least
 two projections spans `C^2`, so its join is one and its left side is at
 most `3/2<=2`.  Thus every inequality (C6) holds although the exact cover
 number is three.
-

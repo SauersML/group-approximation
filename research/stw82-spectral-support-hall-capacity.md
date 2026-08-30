@@ -67,4 +67,3 @@ the total amplitude is exactly one, but both support projections equal
 one, so (H3) fails.  Indeed exact coverage forces both scalar cutters to
 be one, contradicting (H2), and every orthogonal one-label pair has cover
 defect at least `1/2` for one of the two supports.
-
