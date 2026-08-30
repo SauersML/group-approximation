@@ -3,6 +3,18 @@ import GroupApproximation.GGT.HullSCFilling
 /-!
 # The rotating family of a cone-off, from one apex and one subgroup
 
+**Superseded, and not merely unused.**  `Manuscript.NonMF.TheoremCDebts` records
+Hull's §5 over a **family** (`HullSC.HullConeOffStatement₂`, in
+`GGT/HullSCRelatorSeparation2Quotient.lean`, with `HullSC.ConeOffData₂` for its
+geometry), because the single-subgroup form below cannot carry Hull's relator:
+over one `H` all of the relator's `H`-letters lie in one component of
+`Γ(G, X ⊔ H)`, so the word is not quasi-geodesic
+(`HullSC.not_quasiGeodesic_relatorWord`), which §5 requires it to be.  The
+family form is the same construction with the index type freed --- nothing in
+`apexRot`, `isRotatingFamily_apexRot` or `rotationNormalClosure_apexRot` depended
+on it being `Unit`, which is why `apexRotFamily` and its three theorems read the
+same.  Nothing on the trust surface consumes what is below.
+
 Dahmani-Guirardel-Osin, *Hyperbolically embedded subgroups and rotating families
 in groups acting on hyperbolic spaces*, Mem. Amer. Math. Soc. 245 (2017), §5.1,
 after F. Dahmani and R. Coulon: the family a small cancellation quotient runs

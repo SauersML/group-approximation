@@ -3,6 +3,22 @@ import GroupApproximation.GGT.HullSCTheorem51
 /-!
 # Hull's §5 leaf, with the bookkeeping removed
 
+**Superseded, and not merely unused.**  `Manuscript.NonMF.TheoremCDebts` records
+Hull's §5 leaf over a **pair** of hyperbolically embedded subgroups
+(`HullSC.ExistsHypEmbeddedConeOff₂`, in
+`GGT/HullSCRelatorSeparation2ConeOff.lean`), because the single-subgroup form
+below cannot carry Hull's relator: over one `H` all of the relator's `H`-letters
+lie in one component of `Γ(G, X ⊔ H)`, so the word runs between vertices at
+distance at most one and is not quasi-geodesic
+(`HullSC.not_quasiGeodesic_relatorWord`), which his §5 requires it to be.  With
+two subgroups the relator alternates between the components
+(`HullSC.isComp_relatorWord₂`).
+
+What is below stays because it is true and because the pair form is its
+verbatim analogue --- `HullSC.HypEmbeddedCore₂.ofConeOff` is
+`HypEmbeddedCore.ofConeOff` with `Bool` for `Unit` --- so the reasoning here is
+the reasoning there.  Nothing on the trust surface consumes it.
+
 `HullSC.ExistsHypEmbeddedInSuitable` -- Hull, Corollary 5.7 with Lemma 5.8, in
 the form Theorem 5.1 consumes it -- is stated over `HullSC.HypEmbeddedCore`,
 which carries a relative generating set together with two equations pinning its

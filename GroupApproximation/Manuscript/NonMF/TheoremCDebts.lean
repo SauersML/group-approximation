@@ -215,7 +215,8 @@ their word — so this citation and its consumer cannot drift apart.
 The space carrying the family is abstract, and it has to be:
 `HullSC.rot_eq_bot_of_cayley` proves that a rotating family on a Cayley graph of
 `G` has trivial rotation subgroups, since the translation action is free, so
-Theorem 5.3 applied on `Γ(G, A ⊔ H)` would produce only the identity. -/
+Theorem 5.3 applied on `Γ(G, A ⊔ H)` would produce only the identity.
+
 **Over a pair**, for the reason recorded at `hullHypEmbeddedConeOff`: the
 single-subgroup form cannot carry Hull's relator, which is not quasi-geodesic
 when all of its `H`-letters lie in one component.  The cone-off is asked for
