@@ -17,6 +17,11 @@ Problem VIII remains open in the current primary sources checked.
   [arXiv:2606.13924](https://arxiv.org/abs/2606.13924), proves new results on
   quasidiagonal and locally finite-dimensional traces but does not claim VIII
   or IX(2).
+- Dadarlat, *AF-embeddings of residually finite-dimensional C\*-algebras*,
+  [Muenster J. Math. 11 (2018), 211--216](https://www.uni-muenster.de/FB10/mjm/vol_11/mjm_vol_11_05.pdf),
+  Theorem 1.1, proves UHF-embeddability for separable exact RFD algebras whose
+  rational `K^0`-homology is locally finitely generated.  This is used below
+  for a semiprojective positive class, not as a solution of VIII.
 
 The February 2026 seminar announcement about AF embeddings for certain
 decomposition-rank-one systems was not used as a theorem: no primary preprint
