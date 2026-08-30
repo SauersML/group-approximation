@@ -558,6 +558,37 @@ theorem windmillGroup_nextWindmill_le_stepGroup {δ ρ : ℝ} (hδ : 0 < δ)
   have heq : g * (g⁻¹ * r * g) * g⁻¹ = r := by group
   rwa [heq] at hmem
 
+/-- **Every explicit stage generator is a rotation based in the next
+windmill.**
+
+The old windmill lies in `nextWindmill`, as do all newly attached apices.
+Writing `stepGroup` as the closure of the corresponding union therefore gives
+the reverse inclusion to `windmillGroup_nextWindmill_le_stepGroup`. -/
+theorem stepGroup_le_windmillGroup_nextWindmill {δ : ℝ} (hδ : 0 < δ)
+    {C : Set X} {Rot : X → Subgroup G} {W : Set X} :
+    stepGroup Rot (newApices δ C W) (windmillGroup C Rot W) ≤
+      windmillGroup C Rot (nextWindmill δ C Rot W) := by
+  rw [stepGroup_eq_closure_union, Subgroup.closure_le]
+  intro r hr
+  rw [Set.mem_union] at hr
+  rcases hr with hrOld | hrNew
+  · exact windmillGroup_mono (subset_nextWindmill hδ) hrOld
+  · obtain ⟨d, hrNew⟩ := Set.mem_iUnion.mp hrNew
+    obtain ⟨hdNew, hrRot⟩ := Set.mem_iUnion.mp hrNew
+    exact mem_windmillGroup (newApices_subset hdNew)
+      (newApices_subset_nextWindmill hδ hdNew) hrRot
+
+/-- **The explicit stage group is exactly the windmill group of the grown
+set.**  This is DGO's subgroup bookkeeping at the closure-of-a-union level. -/
+theorem stepGroup_eq_windmillGroup_nextWindmill {δ ρ : ℝ} (hδ : 0 < δ)
+    (hρ : 200 * δ ≤ ρ) {C : Set X} {Rot : X → Subgroup G}
+    (hfam : IsRotatingFamily G X C Rot) (hsep : IsSeparated C ρ) {W : Set X}
+    (hW : IsWindmill G X δ C Rot W) :
+    stepGroup Rot (newApices δ C W) (windmillGroup C Rot W) =
+      windmillGroup C Rot (nextWindmill δ C Rot W) :=
+  le_antisymm (stepGroup_le_windmillGroup_nextWindmill hδ)
+    (windmillGroup_nextWindmill_le_stepGroup hδ hρ hfam hsep hW)
+
 /-- Invariance of the next windmill follows once its rotation-generated group
 is bounded by the explicit stage group. -/
 theorem nextWindmill_invariant_of_le {δ : ℝ} {C : Set X}
@@ -576,8 +607,8 @@ theorem nextWindmill_invariant {δ ρ : ℝ} (hδ : 0 < δ)
     (hW : IsWindmill G X δ C Rot W) :
     ∀ g ∈ windmillGroup C Rot (nextWindmill δ C Rot W),
       ∀ x ∈ nextWindmill δ C Rot W, g • x ∈ nextWindmill δ C Rot W :=
-  nextWindmill_invariant_of_le hfam
-    (windmillGroup_nextWindmill_le_stepGroup hδ hρ hfam hsep hW)
+  nextWindmill_invariant_of_le hfam (by
+    rw [stepGroup_eq_windmillGroup_nextWindmill hδ hρ hfam hsep hW])
 
 /-- **Apices outside the next windmill satisfy its `55δ` far clause.**
 
