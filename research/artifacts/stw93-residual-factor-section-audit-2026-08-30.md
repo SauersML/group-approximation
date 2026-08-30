@@ -37,6 +37,21 @@ Thus an extra trace is a factor-compatible central residual layer, not a
 new trace on the quotient.  Any charged residual positive element has a
 finite-capacity spectral cut supported under this layer.
 
+Passing to an extreme charged trace strengthens this substantially.  A
+continuous affine evaluation on a positive residual element attains its
+positive maximum at an extreme trace.  The resulting GNS algebra is a finite
+factor, so the nonzero central support of the residual weak ideal must equal
+the unit.  Therefore any ordinary counterexample supplies an alternate
+factor completion in which `R` is weakly dense, while the same `Q` section
+acts through its faithful normal canonical trace representation.  The
+finite-capacity cut survives with nonzero support in that factor.
+
+This rules out a picture in which an extremal counterexample merely adds a
+proper central layer beside the canonical quotient.  The entire alternate
+factor is generated weakly by the residual ideal.  The doubled-`F(Z)` model
+shows that this geometry is abstractly possible, so excluding it still
+requires actual norm-central input.
+
 ## What spectral gap has and has not supplied
 
 Full-free-factor spectral gap is what pushes the canonical tracial central

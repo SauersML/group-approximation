@@ -175,3 +175,13 @@ ideal, and conditional expectation onto the factor section satisfies
 but, being tracial-`2`-norm information, does not exclude this norm-level
 central layer.  Ruling out that layer is an exact ordinary-trace formulation
 of the remaining residual obstruction.
+
+An ordinary counterexample can moreover be extremalized.
+`stw93-extra-trace-forces-an-alternate-residual-factor-completion` chooses an
+extreme trace charging a residual positive element.  Its GNS closure is a
+finite factor, forcing the residual central support to be the unit.  Thus
+`R` is weakly dense in an alternate factor completion containing the same
+faithful normal `Q` section, and a finite-capacity residual cut has nonzero
+support there.  The remaining ordinary-trace problem is therefore not the
+exclusion of a small central add-on: it is the exclusion of a whole second
+factor completion generated weakly by norm-trace-kernel elements.
