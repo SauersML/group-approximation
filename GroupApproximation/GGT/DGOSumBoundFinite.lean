@@ -28,6 +28,15 @@ DGO's Definition 4.13 exempts the distinguished sides, and the exemption is real
 --- a single edge labelled by a letter that spells the identity has `j − i = 1`
 and `wordDist = 0`, so it is not `(1,0)`-quasi-geodesic.
 
+That the distinguished sides are single edges is not an extra burden on the
+consumers: in a word of Dahmani--Guirardel--Osin's class `W` **every** component
+is a single letter, since (W3) forbids two adjacent letters of the same `H_λ`
+outright, so `IsComp lam w i k` with `k ≥ i + 2` would give `λ ≠ λ`.  The
+polygons Lemma 4.21 hands to Proposition 4.14 therefore meet the hypothesis
+without any word surgery, and the trivial-edge case is excluded separately by
+(W2) --- `1` lies in every relative ball, so a letter deeper than the threshold
+cannot spell the identity.
+
 The gap closes because the distinguished sides are single edges and `1 ≤ b`.
 On such a side `j − i ≤ 1`, so the clause reads `1 − b ≤ d`, which holds for
 free once `b ≥ 1` since `d ≥ 0`.  This is the only place `1 ≤ b` is used, and it
