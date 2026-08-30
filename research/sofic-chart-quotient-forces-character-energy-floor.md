@@ -74,6 +74,18 @@ transport energy also satisfies `(SCQ2)`.  Consequently no
 dimension-independent finite-relator decoder which preserves `m_0` can make
 the global transport energy tend to zero on these chart tuples.
 
+Quantitatively, a chart retaining seed-negative mass at least
+`(1-alpha)/2` has `E_act>=gamma(1-alpha)`.  If a replacement exact module
+representation changes the seed by normalized-Hilbert--Schmidt distance at
+most `tau`, the same argument gives the robust bound
+
+```text
+E'_act>=gamma(1-alpha-tau).                            (SCQ4)
+```
+
+Thus the obstruction survives any seed-preserving decoder with a uniform
+error tending to zero.
+
 The conclusion applies to any fixed packet whose relations survive a
 seed-preserving chart quotient which is the identity on `M rtimes A`.  If
 `A` is also sofic, the bare Pauli-seed quotient from
