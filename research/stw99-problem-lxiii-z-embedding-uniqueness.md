@@ -105,7 +105,7 @@ This is **STW Problem LXIII and remains open at the audit boundary
   boundary: two Jiang--Su embeddings into any stable-rank-one algebra are
   approximately unitarily equivalent exactly when their `Cu` maps agree,
   by Robert's Theorems 1.0.1 and 3.2.2(i).
-  `stw63-strict-comparison-sr1-uniqueness` proves that a unital simple
+  `stw63-strict-comparison-sr1-uniqueness` proves that a unital
   stable-rank-one codomain with nonempty normalized 2-quasitrace space and
   strict comparison has at most one Jiang--Su embedding up to approximate
   unitary equivalence.  All quasitraces restrict to the unique trace of `Z`;
@@ -125,6 +125,13 @@ This is **STW Problem LXIII and remains open at the audit boundary
   exactness, local reflexivity, real rank zero, stable rank one and fullness
   do not by themselves return bidual conjugacies.  This is a boundary test,
   not a Jiang--Su counterexample.
+- **The traceless bidual erases the entire Jiang--Su Cu scale.**
+  `stw63-traceless-bidual-collapses-z-cu` proves that if `B` has no tracial
+  state, then `Cu(Z)->Cu(B**)` sends every nonzero compact or soft class to
+  one properly infinite class.  The proof uses full spectral cuts, so it
+  avoids the false inference that arbitrary nonzero projections in a
+  non-sigma-finite factor are equivalent.  This collapse need not first
+  occur in `Cu(B)` and does not itself decide uniqueness.
 - **All von Neumann rank and norm-ideal invariants collapse.**
   `stw63-all-vn-rank-and-ideal-data-collapse` proves, without any countability
   or type assumption, that the two embeddings have equal elementwise
