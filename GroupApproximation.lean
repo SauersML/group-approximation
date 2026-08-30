@@ -2766,6 +2766,7 @@ import GroupApproximation.GGT.OsinTheorem54SepSplice
 import GroupApproximation.GGT.DGORotatingQuotientRefutation
 import GroupApproximation.GGT.DGORotatingQuotientResidual
 import GroupApproximation.GGT.DGOFreeSplittingOnePoint
+import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXCVCompactKTheory
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
