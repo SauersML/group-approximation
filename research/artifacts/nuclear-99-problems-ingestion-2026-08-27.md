@@ -29,6 +29,7 @@ Problem numbering is the paper's (Roman numerals I--XCIX).
 | LXXXIV | Nuclear dimension of amenable group C*-algebras | stw99-problem-lxxxiv-nuclear-dimension-amenable-groups |
 | LXXXVI | Eckhardt--Wu: finite decomposition rank iff polynomial growth | stw99-eckhardt-wu-decomposition-rank-conjecture |
 | LXXXVII | dim_nuc of the uniform Roe algebra vs asymptotic dimension | stw99-problem-lxxxvii-roe-algebra-nuclear-dimension |
+| LXIII | Uniqueness of unital Jiang--Su embeddings into arbitrary unital codomains | stw99-problem-lxiii-z-embedding-uniqueness |
 | LXVI | Unital CAR embedding in a simple infinite algebra with a finite image projection | stw99-problem-lxvi-car-embedding-with-finite-projection |
 | LXXIII | Global Glimm halving by one square-zero ideal generator | problem-lxxiii-global-square-zero-cover |
 | LXXIV | Infinite nonzero projections in a simple unital algebra force pure infiniteness | stw99-problem-lxxiv-infinite-projections-purely-infinite |
