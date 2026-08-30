@@ -8,6 +8,8 @@ distinct_from:
   stw99-problem-lxxiv-infinite-projections-purely-infinite: that asks whether a unital simple algebra all of whose nonzero projections are infinite is purely infinite; this is the Kirchberg--Rordam question whether the weak, plain, and strong forms of pure infiniteness coincide for all (nuclear) C*-algebras, with the weak-to-plain implication as the open heart.
 artifacts:
   - research/artifacts/stw99-lxxii-weakly-pi-recon-2026-08-30.md
+  - research/artifacts/stw72-finite-ideal-lattice-collapse-audit-2026-08-30.md
+  - research/artifacts/stw72-transfinite-composition-collapse-audit-2026-08-30.md
 ---
 
 **Problem LXXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -65,3 +67,12 @@ quotients, the simple layers fall under the chain theorem, and
 Kirchberg--Rordam extension permanence glues the purely infinite layers.
 Thus weak and plain pure infiniteness coincide for every finite-ideal-lattice
 algebra (`stw72-finite-ideal-lattice-wpi-is-purely-infinite`).
+
+The finite filtration argument extends through arbitrary ordinals.
+`stw72-transfinite-simple-layer-wpi-is-purely-infinite` proves the collapse
+whenever `A` admits a continuous transfinite composition series with simple
+successor quotients.  Successor stages use extension permanence of plain
+pure infiniteness, and limit stages use its permanence under directed
+injective C-star inductive limits.  This is nonvacuous beyond finite or chain
+ideal lattices: `c_0(alpha,O_infinity)` has such a series for every nonzero
+ordinal `alpha` and has many incomparable ideals when `alpha` is infinite.
