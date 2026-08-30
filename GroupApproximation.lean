@@ -2997,3 +2997,4 @@ import GroupApproximation.GGT.HullEeIsolated
 import GroupApproximation.Analysis.VoiculescuSqrtModulus
 import GroupApproximation.GGT.HullEeCycle
 import GroupApproximation.Analysis.VoiculescuCompactSqrt
+import GroupApproximation.Analysis.VoiculescuStageEstimate
