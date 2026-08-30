@@ -9,6 +9,14 @@ requires:
   - positive-toeplitz-head-is-square-defect-or-rectangular-escape
 ---
 
+**VALID IMPLICATION; INVALIDATED AS A REDUCTION.**  The argument below is
+correct.  However,
+`binary-jacobson-typed-square-decoder-is-still-target-equivalent` proves that
+its first prerequisite, with its current quantifiers, is equivalent to this
+route's target.  It therefore supplies no independent path to the target and
+is invalidated in the research graph pending a nonvacuous occurrence-level
+replacement.
+
 Assume a norm-corona homomorphism of `Gamma_T` does not kill `w_T` and take
 coordinate lifts on a finite presentation.  After a subsequence, the mark
 has a nonzero operator-norm spectral cut.  The first prerequisite supplies
