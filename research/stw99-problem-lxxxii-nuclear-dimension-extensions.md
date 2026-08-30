@@ -76,6 +76,16 @@ colours are reused exactly.  Centrality is essential to this proof: a
 merely split finite-dimensional quotient need not provide central corner
 projections.
 
+This now has a noncommutative strengthening.
+`stw82-af-split-centralizer-extensions-obey-maximum` allows an arbitrary AF
+quotient and assumes only that the section commutes with the ideal.  At each
+finite-dimensional stage, a noncommutative simple matrix block must have
+zero ideal corner, because that corner annihilates every commutator and
+hence the whole matrix block.  Scalar blocks again give unitized ideal
+corners.  Thus the middle algebra still has exactly the nuclear dimension
+of the arbitrary ideal.  A merely split extension, with no commutation
+between section and ideal, remains outside this argument.
+
 There is also a new unconditional middle-algebra class:
 `stw82-one-dimensional-middle-forces-maximum` shows that every
 ideal--quotient decomposition of an arbitrary algebra `E` with
