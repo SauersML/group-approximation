@@ -17,6 +17,10 @@ The relevant current sources checked were:
 - Perera--Thiel--Vilalta, [Extensions of pure
   C*-algebras](https://arxiv.org/abs/2506.10529): an algebra is pure exactly
   when an ideal and the corresponding quotient are pure;
+- Seth--Vilalta, [Continuous functions over a pure
+  C*-algebra](https://arxiv.org/abs/2602.14809), Theorem B and Remark 6.10:
+  the tensor product of a pure algebra that is simple or residually stably
+  finite with a unital separable ASH algebra is pure;
 - Ozawa, [Proximality and selflessness for group
   C*-algebras](https://arxiv.org/abs/2508.07938), and
   Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert,
@@ -117,23 +121,50 @@ series, a double induction reduces permanence to tensor products of their
 simple composition factors.  This is a reduction, not a proof for those
 simple-factor products.
 
-## Continuous countable-filtration reduction
+## Continuous transfinite-filtration reduction
 
-The same reduction extends through every countable ordinal.  The extra
-input is internal: sequential Cu colimits preserve almost unperforation and
-almost divisibility.  For unperforation, test the desired comparison on a
-compactly contained piece, lift the resulting finite inequality to one
-stage, and compare there.  For divisibility, lift a way-below pair to one
-stage and divide it there.  Thus sequential C*-inductive limits of pure
-algebras are pure.
+For separable filtered algebras, the same reduction extends through every
+ordinal.  At countable-cofinality limits the extra input is internal:
+sequential Cu colimits preserve almost unperforation and almost divisibility.
+For unperforation, test the desired comparison on a compactly contained
+piece, lift the resulting finite inequality to one stage, and compare there.
+For divisibility, lift a way-below pair to one stage and divide it there.
+Thus sequential C*-inductive limits of pure algebras are pure.
 
 At a successor stage of a continuous ideal filtration, exactness of the
 other tensor factor identifies the quotient and extension permanence
-applies.  At a countable limit stage, choose a cofinal sequence and use the
-new inductive-limit theorem.  Hence exact pure-tensor permanence for
-algebras with continuous countable composition series reduces completely to
-the products of their simple successor quotients.  No claim about those
-remaining simple pairs is made.
+applies.  At a limit of countable cofinality, choose a cofinal sequence and
+use the new inductive-limit theorem.  At a limit of uncountable cofinality, a
+countable dense set in the limit ideal is already approximated inside stages
+bounded strictly below that limit, so the ideal equals one earlier stage.
+Hence exact pure-tensor permanence for separable algebras with arbitrary
+continuous composition series reduces completely to the products of their
+simple successor quotients.  No claim about those remaining simple pairs is
+made.
+
+## ASH-layered positive class
+
+The preceding reduction becomes an unconditional theorem when every
+successor quotient is a unital separable ASH algebra.  Let `A` be separable,
+exact, and pure, and suppose either that `A` is simple or that every quotient
+of `A` is stably finite.  Seth--Vilalta's Theorem B, with Remark 6.10 for the
+second alternative, makes
+
+```text
+(J_(alpha+1)/J_alpha) tensor_min A
+```
+
+pure at every successor stage of an arbitrary continuous ordinal filtration
+of a separable `B`.  Applying the transfinite-filtration theorem with `B` as
+the filtered algebra and `A` as the exact tensor factor proves that
+`A tensor_min B` is pure.  Thus if `B` is pure, this is a genuine positive
+class for Problem XCV; `B` may be a transfinite extension of ASH layers
+rather than a single ASH algebra.
+
+The qualifier “unital separable” on every ASH successor quotient is
+deliberate.  It is the precise hypothesis of Seth--Vilalta's stated tensor
+theorem; this audit does not silently extend that theorem to nonunital ASH
+algebras.
 
 ## Nonexact excess-kernel counterexample mechanism
 
@@ -158,7 +189,8 @@ tensor product, 𝒵-stable and pure.
 
 ## Trust boundary
 
-The AF and finite-filtration statements are unconditional consequences of
-the cited Cu-continuity and extension theorems.  The excess-kernel statement
-is a criterion only.  No nonpure excess kernel, failure of either purity
-axiom, or general tensor-permanence theorem is claimed.
+The AF, filtration, and ASH-layered statements are unconditional consequences
+of the cited Cu-continuity, extension, and Seth--Vilalta theorems.  The
+excess-kernel statement is a criterion only.  No nonpure excess kernel,
+failure of either purity axiom, or general tensor-permanence theorem is
+claimed.
