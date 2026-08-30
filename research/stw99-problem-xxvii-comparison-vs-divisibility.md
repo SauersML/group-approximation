@@ -8,6 +8,7 @@ artifacts:
   - research/artifacts/stw99-ranks-divisibility-cluster-2026-08-30.md
   - research/artifacts/stw27-villadsen-compact-divider-no-go-audit-2026-08-30.md
   - research/artifacts/stw27-soft-divider-hinge-audit-2026-08-30.md
+  - research/artifacts/stw27-dimension-drop-high-rank-audit-2026-08-30.md
   - research/artifacts/stw27-real-rank-zero-divisibility-audit-2026-08-30.md
 ---
 
@@ -85,3 +86,12 @@ hypothesis.
   trivial bundle.  Since a Villadsen seed projection has unbounded image rank
   along the tail, this exact rounding theorem explains why the compact Chern
   obstruction does not yet decide the inductive limit.
+* There is now also a uniform high-rank construction.  If `E` has rank `M`
+  over a finite CW complex of dimension `d`, `D=ceil(d/2)`, and
+  `M>=(2n+1)D+n(n-1)`, stable `K`-theory and the Bezout identity split
+  `E` as `nF direct_sum (n+1)G`.  Thus `End(E)` contains a unital endpoint
+  copy of `Z_(n,n+1)` and `[F]+[G]` is a compact divider
+  (`stw27-stable-range-endpoint-division`).  On `(S^2)^N` this applies at
+  `M>=(2n+1)N+n(n-1)`, regardless of Chern classes.  The finite-stage
+  uncertainty is therefore confined to the middle rank/dimension window
+  between the coordinate-Euler obstruction and this stable-range splitting.
