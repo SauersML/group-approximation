@@ -2715,6 +2715,7 @@ import GroupApproximation.GGT.OsinTheorem54SepHypForms
 import GroupApproximation.GGT.OsinTheorem54SepGeodesicSides
 import GroupApproximation.GGT.OsinTheorem54SepSideLocation
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyQG
+import GroupApproximation.GGT.OsinTheorem54SepEntrance
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
