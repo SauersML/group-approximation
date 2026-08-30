@@ -243,3 +243,4 @@
 33310270031	2026-08-30T13:10:03Z	GroupApproximation/Analysis/VoiculescuAmplifiedUnits.lean	blockObstructionMap_apply
 33323323269	2026-08-30T16:45:41Z	GroupApproximation/Analysis/VoiculescuGlimmSelection.lean	le_selectionObstruction
 33331028022	2026-08-30T19:30:41Z	GroupApproximation/Sofic/CliffordBSAmenableMF.lean	monomialMatrix_congr
+33338249568	2026-08-30T22:07:33Z	GroupApproximation/Sofic/CliffordBSAmenableMF.lean	gammaDiag_mul_conj_flip
