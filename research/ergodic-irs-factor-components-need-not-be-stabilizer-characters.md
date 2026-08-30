@@ -52,3 +52,8 @@ fixed-point cylinders and an underlying subgroup law do not survive. Thus
 factorization may be used only after compiler hypotheses have been stated
 inside the tracial GNS algebra; it cannot be used to select an ergodic IRS
 component or to invoke a measure-theoretic stabilizer theorem.
+
+This no-go concerns arbitrary factor summands. It does not apply to a
+full-action-invariant projection in the represented negative diagonal; such
+a projection lifts to a conditioning event by
+`readable-itinerary-central-summand-preserves-irs-provenance`.
