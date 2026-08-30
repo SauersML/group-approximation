@@ -1,3 +1,4 @@
+import GroupApproximation.Algebra.FiniteIndexTransversal
 import GroupApproximation.Algebra.SchreierGenerators
 import Mathlib.GroupTheory.FinitelyPresentedGroup
 
