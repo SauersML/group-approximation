@@ -116,25 +116,5 @@ theorem exists_hyperbolic_coneOffFamily_of_fourPoint_of_close
     Finset.le_sup (f := sigma) (Finset.mem_univ lam)
   omega
 
-/-! ## The Morse-conditional form, kept so that no caller moves
-
-Its `_of_fourPoint` counterpart at `Type 0`, with the hypothesis now redundant
---- `Hyperbolic.morseLemma_univ` discharges it through the chain above --- and
-named `_hmorse` because it is unused.  The type is unchanged, so callers passing
-the hypothesis positionally are unaffected.
-
-No code calls it; retiring it is a deliberate decision with its own closure cut,
-deferred by the lead, and not something this wave should do as a side effect. -/
-theorem exists_hyperbolic_coneOffFamily_of_morse_of_close
-    (_hmorse : Hyperbolic.MorseLemma) {G : Type} [Group G] {Λ : Type} [Fintype Λ]
-    (A : Alphabet G) {delta : ℝ} (hdelta : IsHyperbolicSpace delta (Cayley A))
-    (g : Λ → G) (hlox : ∀ lam : Λ, IsLoxodromic (g lam) (Cayley.base A))
-    (K : Λ → Subgroup G) (hzle : ∀ lam : Λ, Subgroup.zpowers (g lam) ≤ K lam)
-    (D : ℕ) (hclose : ∀ lam : Λ, ∀ b ∈ K lam,
-      ∃ b' ∈ Subgroup.zpowers (g lam), wordDist A.carrier b b' ≤ D) :
-    ∃ delta' : ℝ, IsHyperbolicSpace delta' (Cayley (coneOffFamily A K).alphabet) :=
-  exists_hyperbolic_coneOffFamily_of_fourPoint_of_close A hdelta g hlox K hzle D
-    hclose
-
 end HullSC
 end GroupApproximation

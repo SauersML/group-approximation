@@ -285,10 +285,12 @@ theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := 
     skeleton_isFinitelyPresented f hf
   have hEtf : IsPowerTorsionFree (Skeleton f hf) := skeleton_torsionFree f hf hPtf
   have hEacyl : TorsionFree.IsAcylindricallyHyperbolic (Skeleton f hf) :=
-    I.minasyanOsin P FreeCommutatorWitness inferInstance inferInstance f hf
+    I.minasyanOsin P FreeCommutatorWitness (inferInstanceAs (Group P))
+      (inferInstanceAs (Group FreeCommutatorWitness)) f hf
   let s := freeWitnessCommutator
   obtain ⟨G₀, instG₀, pi, -, hG₀fp, hG₀tf, hG₀T, hG₀acyl, hinj⟩ :=
-    I.hullCommonQuotient (Skeleton f hf) inferInstance H₀ instH₀ hEfp hEtf hEacyl
+    I.hullCommonQuotient (Skeleton f hf)
+      (inferInstanceAs (Group (Skeleton f hf))) H₀ instH₀ hEfp hEtf hEacyl
       hH₀inf hH₀fp hH₀tf hH₀hyp hH₀T
       {1, skeletonIota f hf (factorSimple f s)}
   letI := instG₀

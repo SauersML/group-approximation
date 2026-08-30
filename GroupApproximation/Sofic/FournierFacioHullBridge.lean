@@ -176,7 +176,7 @@ def _root_.GroupApproximation.SmallCancellationRouter.RoutingLemmaData.toBareDef
     Quotient := R.Quotient
     groupQuotient := R.groupQuotient
     quotient := R.route
-    quotientCountable := inferInstance
+    quotientCountable := inferInstanceAs (Countable R.Quotient)
     targetTorsionFree := R.torsionFree
     targetKazhdan := R.kazhdan hB
     defectNormal_maps_top := R.defect_top
@@ -266,7 +266,8 @@ theorem to_exists_torsionFree_not_MF :
       IsPowerTorsionFree Q ∧
       ¬ IsCDEOperatorMF Q ∧
       ¬ IsOperatorMF Q := by
-  exact ⟨H.Quotient, inferInstance, inferInstance, H.quotient_torsionFree,
+  exact ⟨H.Quotient, inferInstanceAs (Group H.Quotient),
+    inferInstanceAs (Countable H.Quotient), H.quotient_torsionFree,
     H.not_isCDEOperatorMF, H.not_isOperatorMF⟩
 
 end BareDefectHullQuotientData

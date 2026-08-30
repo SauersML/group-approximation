@@ -41,8 +41,8 @@ The constant that comes out is `4R + K + C + 2δ`.
 
 `Hyperbolic.morseLemma_univ` states the Morse lemma at `Type u`, so the
 statement below is now at `Type u` too and nothing here is confined to universe
-zero.  The `..._of_morse` form is kept as its `Type 0` instance so that no caller
-moves; its hypothesis is redundant and is named `_hmorse` for that reason.
+zero.  Consumers use the direct `..._of_fourPoint` theorem; the former
+universe-zero wrapper with a redundant Morse hypothesis has been retired.
 
 The two auxiliary lemmas are general facts about betweenness and about natural
 numbers, and have nothing to do with cone-offs; they are here rather than in
@@ -177,20 +177,6 @@ theorem exists_index_wordDist_le_of_isBetween_of_fourPoint (K C delta : ℕ) :
   have hpm := hq2 m hmn
   have hc := wordDist_comm hS (q m) z
   omega
-
-/-- **The Morse-conditional form**, kept so that no caller moves.
-
-Its statement is unchanged and its hypothesis is now redundant --- discharged by
-`Hyperbolic.morseLemma_univ` in the theorem above, of which this is the `Type 0`
-instance.  Callers pass the hypothesis positionally and are unaffected. -/
-theorem exists_index_wordDist_le_of_isBetween_of_morse
-    (_hmorse : Hyperbolic.MorseLemma) (K C delta : ℕ) :
-    ∃ R : ℕ, ∀ (G : Type) (_hG : Group G) (S : Set G),
-      IsSymmetricGeneratingSet S → Hyperbolic.IsFourPointHyperbolic S delta →
-        ∀ (n : ℕ) (p : ℕ → G), Hyperbolic.IsQuasiGeodesic S K C n p →
-          ∀ z : G, Hyperbolic.IsBetween S (p 0) z (p n) →
-            ∃ m ≤ n, wordDist S (p m) z ≤ R :=
-  exists_index_wordDist_le_of_isBetween_of_fourPoint K C delta
 
 end HullSC
 end GroupApproximation

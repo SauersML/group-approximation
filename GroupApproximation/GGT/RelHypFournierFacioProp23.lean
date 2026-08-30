@@ -177,8 +177,11 @@ theorem exists_quotient_of_subsingleton_source (K Lam : Type) [Group K]
   have hinj : Function.Injective
       ((MonoidHom.id (CoprodI (pairFamily K Lam))).comp
         (freeProductSourceHom K Lam)) := hinj0
-  refine ⟨CoprodI (pairFamily K Lam), inferInstance, MonoidHom.id _,
-    Function.surjective_id, inferInstance, htf, hinj, ?_⟩
+  refine ⟨CoprodI (pairFamily K Lam),
+    inferInstanceAs (Group (CoprodI (pairFamily K Lam))), MonoidHom.id _,
+    Function.surjective_id,
+    inferInstanceAs (Group.IsFinitelyPresented (CoprodI (pairFamily K Lam))),
+    htf, hinj, ?_⟩
   intro x _
   exact MonoidHom.mem_range.mpr (hpartner x)
 
