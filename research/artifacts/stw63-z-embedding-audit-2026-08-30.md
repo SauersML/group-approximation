@@ -33,7 +33,19 @@ searches, followed by inspection of the theorem statements.
    Applied to `Z`, this closes every II_1-factor codomain.  The paper also
    records Kirchberg's asymptotic uniqueness theorem for simple purely
    infinite codomains (Appendix A, Theorem A.2).
-4. Targeted arXiv searches through 2026-08-30 for the exact combinations
+4. Q. Li, D. Hadwin, and W. Liu, *Approximate Equivalence in von Neumann
+   Algebras*, arXiv:2008.06619,
+   <https://arxiv.org/abs/2008.06619>, supplies two broader rank theorems
+   relevant to `Z`.  Its finite-von-Neumann theorem classifies maps from a
+   strongly LF-embeddable algebra by center-valued trace; every ASH algebra
+   is strongly LF-embeddable.  Its Theorem 6 gives norm approximate unitary
+   equivalence (with compact-relative control) for equal-rank maps from a
+   separable unital ASH algebra into a semifinite von Neumann algebra with no
+   finite summand acting on a separable Hilbert space.  These theorems do not
+   state LXIII for general C-star codomains.  The new graph route verifies
+   their hypotheses for arbitrary Jiang--Su embeddings and combines the
+   finite and properly infinite central pieces.
+5. Targeted arXiv searches through 2026-08-30 for the exact combinations
    "Jiang--Su", "embedding", "approximately unitarily equivalent", and
    "Problem LXIII" found no later claim resolving the arbitrary unital
    codomain question.  The May 2026 paper arXiv:2605.22585 concerns unitary
@@ -64,3 +76,10 @@ audit.
    concatenation mechanism and exposes the remaining obstruction as topology
    of approximate relative commutants, rather than K-theory or traces of the
    embeddings.
+4. Every separably acting semifinite von Neumann algebra is a positive
+   codomain.  On its finite central part, the center-valued trace of every
+   Jiang--Su embedding is forced to be `tau_Z(.)1`.  On the complementary
+   part, fullness forces the support of every nonzero image element to be a
+   full properly infinite projection, hence equivalent to the unit.  Thus
+   every possible counterexample becomes approximately unitarily equivalent
+   in every such von Neumann shadow.
