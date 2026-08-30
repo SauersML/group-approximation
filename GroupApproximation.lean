@@ -2864,6 +2864,7 @@ import GroupApproximation.GGT.DGOCorollary612Threshold
 import GroupApproximation.GGT.DGOWindmillSpelling
 import GroupApproximation.GGT.DGOWindmillPath
 import GroupApproximation.Analysis.VoiculescuMonotoneUnit
+import GroupApproximation.GGT.DGOWindmillStage
 
 /-!
 # An unconditional construction of a finitely presented nonsofic group
