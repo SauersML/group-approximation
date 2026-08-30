@@ -201,6 +201,25 @@ stably finite non-elementary fibres, fibrewise Z-stability globalizes but
 the needed nonsimple nuclear-dimension-one theorem is unavailable; naive
 base/fibre colour multiplication gives three.
 
+The stably finite field seam now has an exact map-theoretic formulation.
+`stw81-z-stable-usc-fields-reduce-to-first-factor-map` shows that fibrewise
+Z-stability globalizes for every arbitrary upper-semicontinuous field over
+a finite-dimensional base.  For simple non-AF fibres one has
+
+```text
+1 <= dim_nuc(A) <= 2dim(X)+1,
+dim_nuc(A)=dim_nuc(id_A tensor 1_Z:A->A tensor Z).
+```
+
+Thus over a one-dimensional base the known bound is three, and collapse to
+one is exactly a nuclear-dimension-one theorem for the generally nonsimple
+first-factor map.  The obstruction is already present in the untwisted
+field `C([0,1]) tensor Z`: Tikuisis--Winter proved decomposition rank at
+most two for `C(Y) tensor Z` for every compact `Y`, but their theorem does
+not give one.  Hence neither absorption globalization nor pointwise use of
+the simple theorem closes this seam; a new nonsimple map-colour theorem is
+required.
+
 There is now a first stably finite non-elementary exception to that
 obstruction.  `stw81-one-dim-simple-af-fields-have-dim-one`
 proves directly that a locally trivial field over a one-dimensional base
