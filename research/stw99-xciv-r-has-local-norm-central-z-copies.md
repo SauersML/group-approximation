@@ -41,3 +41,25 @@ unital `psi:I_(2,3)->R` whose fixed finite generating set commutes with `F`
 within `epsilon` in operator norm.  Repeating such local copies in a
 commuting-column diagonal manufactures the missing central `Z` copy.  This
 does not turn McDuff `2`-norm centrality into the required norm estimates.
+
+There is a quantitative positive finite-test class.  By
+`stw99-xciv-finite-dimensional-radius-controls-block-defect`, the least
+commutator defect of a unital `I_(2,3)` copy against a finite tuple `F` is at
+most twice the tuple's operator-norm distance to unital finite-dimensional
+subalgebras of `R`.  Hence every norm-locally finite-dimensional tuple works;
+this includes all finite tuples in uniformly bounded type-I von Neumann
+subalgebras and, in particular, all commuting normal tuples.  Conversely any
+negative fixed-block gap `delta` forces distance at least `delta/2` from
+every finite-dimensional subalgebra.  Hyperfinite `2`-norm approximation
+does not bound this norm radius.
+
+The finite-dimensional route cannot cover all tests:
+`stw99-xciv-some-finite-tuple-has-positive-fd-radius` proves that some finite
+tuple has positive norm distance from every finite-dimensional subalgebra;
+otherwise ucp retractions would make `R` nuclear as a C*-algebra.  A broader
+route is `stw99-xciv-commutant-capacious-radius-controls-block-defect`.
+Distance to any subalgebra whose relative commutant contains `I_(2,3)` gives
+the same factor-two estimate.  This includes arbitrary diffuse tensor legs,
+so it captures noncommuting tests with no matrix approximation.  Any
+negative certificate must stay uniformly far from every such capacious
+core, not merely from finite-dimensional algebras.

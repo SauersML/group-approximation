@@ -51,3 +51,24 @@ infinite-tensor-power theorem makes that algebra `Z`-stable.  Consequently a
 negative answer to XCIV has a finite norm-gap certificate for this single
 fixed block.  The argument cannot run with `2`-norm commutators, which land
 only in the tracial sequence quotient.
+
+For individual finite tests, operator-norm local finite-dimensionality is a
+new positive class.  `stw99-xciv-finite-dimensional-radius-controls-block-defect`
+proves that the fixed-block commutator defect is at most twice the distance
+of the test tuple to a unital finite-dimensional subalgebra of `R`.  This
+covers every finite tuple in a uniformly bounded type-I von Neumann
+subalgebra, including every commuting normal tuple, without a coherent
+matrix tower.  It also forces any negative gap certificate to stay a fixed
+operator-norm distance from every finite-dimensional subalgebra, even though
+its hyperfinite `2`-norm distance is zero.
+
+That radius is not zero for every finite tuple.
+`stw99-xciv-some-finite-tuple-has-positive-fd-radius` proves this from the
+nonnuclearity of `R` as a C*-algebra.  The larger invariant in
+`stw99-xciv-commutant-capacious-radius-controls-block-defect` replaces
+finite-dimensional approximants by arbitrary subalgebras whose relative
+commutant contains `I_(2,3)`.  It still bounds the block defect by twice the
+operator-norm distance and includes both legs of every tensor decomposition
+of `R`.  Thus a negative XCIV tuple must be uniformly far from all such
+matrix or diffuse tensor cores; whether every finite tuple can nevertheless
+be approximated by some commutant-capacious core remains open.
