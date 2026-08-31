@@ -118,3 +118,6 @@ known.  Scalar character convergence and the restriction-ring fiber give
 only traces and possible exact multiplicities.  They do not give positivity
 of the full block matrix in (FPW1), nor the RMS multiplication-table
 coherence in (FPW6).  The root problem therefore remains open.
+
+DERIVATION
+finite-positive-definite-window-relative-corner-proof
