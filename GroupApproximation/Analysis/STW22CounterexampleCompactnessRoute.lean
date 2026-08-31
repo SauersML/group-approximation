@@ -211,6 +211,18 @@ product, and it sits inside `M = ℂ1 + J`.  A tracial state of `M` restricts to
 one of `A`; the question of Problem XXII is whether every tracial state of `M`
 arises from `A` by uniform-two-continuous extension. -/
 
+/-- Coordinates of a difference in `M = ℂ1 + J` are the differences of the
+coordinates.
+
+This is hoisted into its own lemma deliberately.  It is one delta crossing
+through the subalgebra's ring structure and the `ℓ∞` subtraction; left inline
+underneath the limit arguments below, elaboration descends that chain once per
+occurrence and the uniqueness proof does not terminate. -/
+theorem coe_sub_apply (G : TracialTwoGauge D)
+    (x y : ↥(scalarPlusJSubalgebra G)) (n : ℕ) :
+    ((x - y : ↥(scalarPlusJSubalgebra G)) : BoundedCStarSequence D) n
+      = (x : BoundedCStarSequence D) n - (y : BoundedCStarSequence D) n := rfl
+
 /-- **Uniqueness of the continuous extension.**  Two uniform-two-continuous
 tracial states of `M` which agree on `A` are equal.
 
@@ -226,13 +238,14 @@ theorem eq_of_eqOn_unitizedC0Sum (G : TracialTwoGauge D)
       (y : BoundedCStarSequence D) ∈ unitizedC0Sum D → σ y = σ' y)
     (x : ↥(scalarPlusJSubalgebra G)) : σ x = σ' x := by
   obtain ⟨a, -, hA, -, -, hconv⟩ :=
-    exists_uniformTwoCauchy_scalarTruncations G x.2
-  have hmem : ∀ k, a k ∈ scalarPlusJ G :=
-    fun k ↦ unitizedC0Sum_subset_scalarPlusJ G (hA k)
-  have hcoe : ∀ (k n : ℕ),
+    exists_uniformTwoCauchy_scalarTruncations G (mem_scalarPlusJSubalgebra.1 x.2)
+  have hmem : ∀ k, a k ∈ scalarPlusJSubalgebra G := fun k ↦
+    mem_scalarPlusJSubalgebra.2 (unitizedC0Sum_subset_scalarPlusJ G (hA k))
+  have hcoe : ∀ k n : ℕ,
       ((x - ⟨a k, hmem k⟩ : ↥(scalarPlusJSubalgebra G)) :
         BoundedCStarSequence D) n
-        = (x : BoundedCStarSequence D) n - a k n := fun _ _ ↦ rfl
+        = (x : BoundedCStarSequence D) n - a k n :=
+    fun k n ↦ coe_sub_apply G x ⟨a k, hmem k⟩ n
   have hnull : Tendsto (fun k ↦ uniformTwoNorm G
       ((x - ⟨a k, hmem k⟩ : ↥(scalarPlusJSubalgebra G)) :
         BoundedCStarSequence D))
@@ -301,12 +314,10 @@ theorem isExtensionOfSomeBaseFunctional_iff (G : TracialTwoGauge D)
   · rintro ⟨τ, hcont, -⟩
     exact hcont
   · intro hcont
-    refine ⟨fun z ↦ if h : z ∈ scalarPlusJ G then σ ⟨z, h⟩ else 0, hcont, ?_⟩
+    refine ⟨fun z ↦ if h : z ∈ scalarPlusJSubalgebra G then σ ⟨z, h⟩ else 0,
+      hcont, ?_⟩
     intro y _
-    have hmem : (y : BoundedCStarSequence D) ∈ scalarPlusJ G := y.2
-    have hy' : (⟨(y : BoundedCStarSequence D), hmem⟩ :
-        ↥(scalarPlusJSubalgebra G)) = y := Subtype.ext rfl
-    rw [dif_pos hmem, hy']
+    exact (dif_pos y.2).symm
 
 /-- **(A18) as a theorem: `T(A) ⊊ T(M)`.**  The extension map from the tracial
 states of `A` to those of the uniform tracial completion `M` is not surjective:
