@@ -257,6 +257,22 @@ construction.  For arbitrary upper-semicontinuous fields the need for
 coherent varying frames is still stronger, since different anchor lifts
 have no canonical comparison.
 
+Even arbitrary rotation of two independently chosen local frames does not
+repair this scalar patch when each frame separately returns the unit.
+`stw81-projectionless-rotating-overlap-degeneracy` proves quantitatively
+that two near-partitions `(h_0,h_1)` and `(k_0,k_1)` with matched
+cross-orthogonality `h_0k_0=h_1k_1=0` consist of almost projections.  In a
+unital projectionless fibre, one support in each frame therefore converges
+to zero, so dropping it gives a one-colour approximation and forces the
+fibre to be AF.  Thus strong-self-absorption homotopies alone cannot prove
+`dim_nuc(C([0,1]) tensor Z)<=1` through independently near-unital scalar
+local frames; no contractivity of the total return is needed.  The
+surviving construction must instead share the unit across patches, split
+outgoing colours before reuse, or couple patches in the incoming map.  This
+is compatible with the rotating matrix-compression
+escape in `stw83-rotating-order-zero-compression-escapes-circle-gap`, whose
+compressed map is not order zero.
+
 There is now a first stably finite non-elementary exception to that
 obstruction.  `stw81-one-dim-simple-af-fields-have-dim-one`
 proves directly that a locally trivial field over a one-dimensional base
