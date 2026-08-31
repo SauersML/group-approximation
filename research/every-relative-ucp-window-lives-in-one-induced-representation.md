@@ -135,3 +135,6 @@ the required Stiefel point.
 No theorem currently proves (UIR10) for every regular Iwahori microstate.
 The root remains open, but global RFD has been replaced by the explicit
 finite induced-space selector (UIR8).
+
+DERIVATION
+relative-ucp-induced-host-proof
