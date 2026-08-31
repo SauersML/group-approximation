@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-strong-pure-infiniteness-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-finite-graph-compact-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-finite-tree-noncompact-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxvi-finite-graph-projectionless-cycle-audit-2026-08-31.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -92,6 +93,17 @@ vector vanishes, and no cycle forces it back to a prescribed value.  Thus a
 simple stably finite pure fiber gives a pure Cu-regular field over every
 finite tree, even when its `K_1` is nonzero.  Cyclic graphs remain outside
 this theorem.
+
+
+Cycles are also controlled when the fiber is stably projectionless.
+`stw99-lxxvi-stably-projectionless-finite-graph-cu-regularity` proves the
+natural pointwise formula `Cu(C(X,D))~=Lsc(X,Cu(D))` for every finite graph,
+still with arbitrary `K_1(D)`. After cutting the chords, small spectral slices
+at the finitely many paired endpoints erase all clutching mismatches at
+arbitrarily small cost, and one simultaneous unitary lift closes every cut.
+Thus a simple stably finite pure stably projectionless fiber gives a pure
+Cu-regular field over every finite graph. This does not cover coefficients
+with nonzero projections or infinite graphs.
 
 There is now a broader one-dimensional-base theorem at the exact idealwise
 `K_1`-free boundary.  For every second-countable locally compact Hausdorff
@@ -197,6 +209,6 @@ summand kills `alpha`, for arbitrary endpoint multiplicity matrices.  The
 circle theorem separately shows
 that no one-dimensional clutching analogue can work on a single circle.  The
 one-dimensional theorem rules out every second-countable locally compact base
-when the simple fiber has trivial `K_1`.  For arbitrary `K_1`, even a finite
+when the simple fiber has trivial `K_1`.  For arbitrary `K_1` outside the stably projectionless class, even a finite
 graph with a cycle can retain supportwise clutching data not visible in
 pointwise `Lsc` functions, so no unrestricted pointwise formula is claimed.
