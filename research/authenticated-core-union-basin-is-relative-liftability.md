@@ -153,6 +153,6 @@ representation
 Thus finite-corner production is equivalent to finding a
 \(B_{N_n}\)-intertwining isometry whose compressed extender approaches
 \(X_n\).  The explicit unitary-fibre subfamily in
-\`right-core-equivariant-cayley-average-produces-relative-toeplitz-window\`
+\`right-core-cayley-average-gives-toeplitz-window\`
 reduces this to a double-coset synchronization energy.  Its zero set is
 exactly the endpoint set, but no uniform moving-level estimate is known.
