@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-mismatched-root-holonomy-proof
-kind: proof
+kind: route
 title: Compute the t0-s0 centralizer commutator and its qutrit fibre graph
 target: qutrit-first-mismatched-prefix-holonomy-is-d8
 requires:

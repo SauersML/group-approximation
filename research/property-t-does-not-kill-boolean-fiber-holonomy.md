@@ -4,8 +4,7 @@ id: property-t-does-not-kill-boolean-fiber-holonomy
 kind: claim
 title: Property (T) does not kill exact Boolean-fiber holonomy; canonical trace regularizes only fixed finite types
 distinct_from:
-  boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse: that proves pairwise transport of whole Boolean atoms and leaves a diffuse unitary cocycle; this classifies that cocycle by stabilizer holonomy, gives an exact property-(T) obstruction, and proves a positive theorem when the holonomy group is fixed and its conditional character is canonical.
-  finite-schreier-holonomy-is-the-lamp-gauge-obstruction: that gives a finite-cycle compatibility criterion for supplied block normalizers; this identifies the remaining cycle data as a representation and separates large exact holonomy from perturbative additive cocycles.
+  boolean-atom-overlap-spatializes-arrows-corners-stay-diffuse: that proves pairwise transport of whole Boolean atoms and leaves a diffuse unitary cocycle; this classifies that cocycle by stabilizer holonomy, gives an exact property-(T) obstruction, and proves a positive theorem when the holonomy group is fixed and its conditional character is canonical.
   el-r-polynomial-robust-spectral-gap: that controls almost invariant vectors by property-(T) spectral gap; this shows why such a gap cannot force a macroscopic exact unitary representation to be scalar or monomial.
   phase-free-cartan-observables-force-joint-lamp-targets: that extracts point permutations after a common rank-one masa is supplied; this quantifies when canonical mixed traces themselves manufacture a monomial basis inside a fixed finite holonomy fiber.
   coset-wreath-wall-survives-full-commutant-corners: that preserves every fixed Boolean atom at positive asymptotic density; this combines that density with the holonomy estimate to expose the growing-window and growing-group rates still missing.
