@@ -77,16 +77,32 @@ In particular,
 b_(N,M)<=M(N+2)^2/4.                                       (6)
 ~~~
 
-Reduction of matrix entries modulo `I_(N,M)` gives the crude but useful
+Reduction of matrix entries modulo `I_(N,M)` gives a sharper local-group
 index estimate
 
 ~~~text
-[Gamma_N:C_(N,M)]<=2^(9b_(N,M)).                           (7)
+[Gamma_N:C_(N,M)]<=2^(8b_(N,M)).                           (7)
 ~~~
 
-No generation or bounded-width assertion is hidden in (7): the quotient
-image is merely a subset of the `3`-by-`3` matrices over the
-`b_(N,M)`-dimensional vector space `P_N/I_(N,M)`.
+Here is the complete count. Put `R=P_N/I_(N,M)` and
+`b=b_(N,M)`. This is a local ring with residue field `F_2` and maximal
+ideal of size `2^(b-1)`. Reduction to the residue field has kernel
+`I+M_3(maximal ideal)`, so
+
+~~~text
+|GL_3(R)|=|GL_3(F_2)| 2^(9(b-1)).
+~~~
+
+The determinant map onto `R^times` is surjective and
+`|R^times|=2^(b-1)`. Therefore
+
+~~~text
+|SL_3(R)|=168*2^(8(b-1)) < 2^(8b).
+~~~
+
+The reduction image of `Gamma_N` lies in this special linear group and
+its kernel is `C_(N,M)`, proving (7). No generation or bounded-width
+assertion is hidden in the estimate.
 
 ## 2. The first Laurent site has a codimension-two stabilizer
 
@@ -133,7 +149,7 @@ O_N=Gamma_N h_N Gamma_N/Gamma_N.
 Orbit--stabilizer, (7), and (10) imply
 
 ~~~text
-|O_N|<=[Gamma_N:C_(N,2)]<=2^(9b_(N,2)).                    (11)
+|O_N|<=[Gamma_N:C_(N,2)]<=2^(8b_(N,2)).                    (11)
 ~~~
 
 Formula (5) gives the closed forms
@@ -170,7 +186,7 @@ Consequently
 
 ~~~text
 |Omega_N|>=2^(v_N),                                        (15)
-|O_N|/|Omega_N|<=2^(9b_(N,2)-v_N)
+|O_N|/|Omega_N|<=2^(8b_(N,2)-v_N)
                   =2^(-N^3/12+O(N^2))->0.                 (16)
 ~~~
 
@@ -214,15 +230,15 @@ Thus `C_(N,M_F)` fixes `gGamma_N`. From (7),
 
 ~~~text
 |Gamma_N g Gamma_N/Gamma_N|
- <=2^(9b_(N,M_F)),                                        (21)
+ <=2^(8b_(N,M_F)),                                        (21)
 ~~~
 
 and hence
 
 ~~~text
 | union_(g in F) Gamma_N gGamma_N |
- <=|F| 2^(9b_(N,M_F))
- <=|F| 2^((9/4)M_F(N+2)^2).                               (22)
+ <=|F| 2^(8b_(N,M_F))
+ <=|F| 2^(2M_F(N+2)^2).                               (22)
 ~~~
 
 For fixed `F`, (22) is `2^(O_F(N^2))`, whereas (15) is
@@ -241,10 +257,33 @@ then
 | union_(g in F_N) Gamma_N gGamma_N |/|Omega_N| ->0.       (24)
 ~~~
 
+The same argument quantifies the first linear-depth regime. If
+`M_N=floor(cN)+O(1)` with `0<=c<=1`, then the exact sum (5) gives
+
+~~~text
+b_(N,M_N)
+ =N^3(1-(1-c)^3)/12+O(N^2).                               (LW1)
+~~~
+
+Consequently, when `log_2|F_N|=o(N^3)`, the saturation is still thin
+whenever
+
+~~~text
+c<c_*:=1-(7/8)^(1/3)=0.0435344086... .                    (LW2)
+~~~
+
+Indeed its base-two logarithmic density is at most
+
+~~~text
+(N^3/12)(8(1-(1-c)^3)-1)+o(N^3),                          (LW3)
+~~~
+
+which is strictly negative in (LW2).
+
 Therefore any packet that reaches positive coset density through this
-mechanism must have denominator depth of order `N`, or itself contain
-`2^(Theta(N^3))` words. A slowly growing diagonal word window remains
-trapped.
+mechanism must have denominator depth at least `c_*N+o(N)`, or itself
+contain `2^(Theta(N^3))` words. A slowly growing diagonal word window,
+and even the initial linear-depth window below `c_*N`, remains trapped.
 
 ## 5. Exact regular-character Clifford reservoir
 
