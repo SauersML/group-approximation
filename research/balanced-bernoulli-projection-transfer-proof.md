@@ -92,7 +92,7 @@ exact projection of macroscopic rank.
 
 ## Step 3: the exact Bernoulli profile
 
-Let `X=Gamma/Lambda` and let
+Let `X=G/Lambda` and let
 `Omega={+1,-1}^X` with product measure.  Write `z_x` for the coordinate
 sign.  The family satisfies
 
@@ -102,8 +102,8 @@ tau(z_x)=0,
 tau(z_x z_y)=0 for x!=y.                                (BBQ5)
 ~~~
 
-Let `Gamma` act by translation and let
-`N=L^infinity(Omega) crossed_product Gamma`.  For
+Let `G` act by translation and let
+`N=L^infinity(Omega) crossed_product G`.  For
 `o=Lambda` set
 
 ~~~text
@@ -128,7 +128,7 @@ Ad(u_h)z_(g o)=z_(hg o).
 ~~~
 
 Their closed span is therefore the quasi-regular representation
-`ell^2(Gamma/Lambda)`, with `z_o` corresponding to the base coset vector.
+`ell^2(G/Lambda)`, with `z_o` corresponding to the base coset vector.
 
 For the Kun--Thom pair, suppose this quasi-regular representation were weakly
 contained in `pi_FD`.  The base vector is `Lambda`-fixed, so
