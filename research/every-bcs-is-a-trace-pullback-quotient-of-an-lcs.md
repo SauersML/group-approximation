@@ -9,8 +9,8 @@ distinct_from:
   property-t-trace-envelope-has-rigid-coequalizers: that gives a nonamenable trace-extending inclusion and rules out faithful quotients afterward; this shows that trace pullback along an LCS-to-BCS quotient is universally available before GNS reduction.
 ---
 
-**ESTABLISHED MAP-DIRECTION FIREWALL.** Let `B` be any finite Boolean
-constraint system. There is an explicit finite binary LCS `L_B) and a
+**ESTABLISHED MAP-DIRECTION FIREWALL.** Let `B` be a finite Boolean constraint system whose algebra is nonzero
+(in particular, any finite BCS carrying a tracial state). There is an explicit finite binary LCS `L_B) and a
 unital surjective star-homomorphism
 
 ```text
@@ -60,7 +60,8 @@ forbidden spectral-projection relations gives (LBQ1).
 
 This proves that an LCS-to-BCS quotient carrying a chosen non-CE trace is
 not a partial solution of the perfect-completeness gate: such a quotient
-exists for every finite BCS, including completely classical ones. The
+exists for every finite BCS with nonzero algebra, including completely
+classical ones. The
 load-bearing map must run from the no-`R^U` BCS algebra into the LCS
 algebra and carry an extending trace, or otherwise exclude **every**
 Connes-embeddable LCS trace. Existence of one pathological trace on an LCS
