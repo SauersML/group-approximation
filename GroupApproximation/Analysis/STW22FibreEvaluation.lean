@@ -1,4 +1,7 @@
 import GroupApproximation.Analysis.AntipodalHomogeneousBlock
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Basic
+import Mathlib.Analysis.CStarAlgebra.ContinuousMap
+import Mathlib.Analysis.CStarAlgebra.CStarMatrix
 import Mathlib.Topology.UrysohnsLemma
 
 /-!
@@ -59,11 +62,11 @@ namespace STW22
 
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
-open scoped CStarAlgebra Matrix
-
 set_option linter.unusedSectionVars false
 
 noncomputable section
+
+open scoped CStarAlgebra ComplexOrder Matrix
 
 /-! ## Evaluation homomorphisms -/
 
