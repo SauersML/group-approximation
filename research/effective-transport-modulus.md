@@ -63,7 +63,8 @@ gamma = 28329113480286/10^16,
   `2*f^2 + 16*ell^2 + 16*c`, and the marked commutator is at most
   `8*f^2 + 64*ell^2 + 64*c`. The committed budget
   `f^2=epsilon/24` and `ell^2=c=epsilon/192` is exact.
-- The current Lean transport route still calls
+- `literal-transport-gap-step-is-noneffective` audits that the current Lean
+  transport route still calls
   `WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues`,
   an ultralimit contradiction with an unspecified `exists N`. After a
   robust affine gap replaces that call, what remains is presentation-specific
