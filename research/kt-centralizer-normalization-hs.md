@@ -401,3 +401,37 @@ permutation target still exists, so this is a gauge-rounding obstruction,
 not a counterexample to equivariant transfer.  Constructing compatible
 targets across growing windows remains OPEN.
 
+**2026-08-31 (FDT7 as balanced projection transfer; (CCR) still OPEN).**
+The sector theorem `kt-ccr-holds-on-the-fd-tempered-adjoint-sector` leaves
+one pointed estimate: a `Lambda`-almost-central unitary in the actor
+microstates must be `Gamma`-almost-central.  The claim
+`fdt7-is-balanced-bernoulli-projection-transfer`, with derivation
+`balanced-bernoulli-projection-transfer-proof`, now identifies its exact
+phase-sensitive form.
+
+For `v in U(d)`, the self-adjoint involution
+`J(v)=[[0,v],[v^*,0]]` and projection `P(v)=(I+J(v))/2` have trace
+`1/2`; diagonal doubling of every actor unitary preserves all normalized-HS
+microstate defects, while projection displacement is exactly one half of the
+original commutator displacement.  The converse is `v=2p-I`.  Thus the
+unitary restriction excludes thin-corner witnesses but does not leave a
+polar-decomposition or spectral-cutting gap.
+
+There is an exact counterprofile in the finite tracial Bernoulli crossed
+product for `G` acting on `G/Lambda`: its base-coordinate half-projection
+is `Lambda`-fixed and has squared displacement `1/2` under every
+`gamma in Gamma minus Lambda`.  Its orbit module is
+`ell^2(G/Lambda)`, hence is outside the FD-tempered sector.  This is not a
+matrix-ultraproduct counterexample: the required crossed-product trace has
+not been realized from the available actor microstates.  It rules out every
+proof that uses only abstract finite-tracial, property-(T), Jones-index,
+polar, or Powers--Stormer input.
+
+Projective tensoring does not bridge the gap: Pauli `X,Z` have
+`||[X,Z]||_2=2`, while both `Ad(X),Ad(Z)` and
+`X tensor conjugate(X), Z tensor conjugate(Z)` commute.  A corner Ulam
+theorem retaining phase-sensitive covariance would close FDT7, but after
+finite-dimensional image collapse its conclusion directly gives (CCR);
+that exactification is the missing matrix-specific theorem, not a weaker
+preprocessing step.
+
