@@ -52,7 +52,7 @@ orbits:
 \]
 The face of \(a=xt\) through the base edge has third row
 \[
- vat=(1,1),
+ va=vxt=(1,1),
 \]
 so it represents the first orbit. The face of \(b=xt^2r\) has third row
 \[
