@@ -71,11 +71,28 @@ representation on `ell^2(G/Lambda)`.  By
 `kt-ccr-holds-on-the-fd-tempered-adjoint-sector`, this module is not
 FD-tempered for the Kun--Thom pair.
 
-The Bernoulli model does not refute FDT7: its crossed product need not be
-Connes embeddable.  It proves that no argument valid in all finite tracial
-von Neumann algebras, no Jones-index calculation detached from matrix
-approximability, and no property-(T) fixed-vector inequality alone can prove
-`(BBP3)`.  The matrix-ultraproduct origin is the only unused hypothesis.
+The exact matrix boundary has a group-theoretic name.  Put
+
+~~~text
+W=(direct_sum_(G/Lambda) C_2) semidirect G,              (BBP4b)
+~~~
+
+where `G` permutes the coset coordinates.  Fourier transform on the
+abelian base identifies `N` with `L(W)`.  Consequently the Bernoulli
+profile has a trace-preserving matrix-ultraproduct realization exactly when
+`W` is hyperlinear.  If `W` is hyperlinear, restricting such an embedding
+to `G` and taking the base-coordinate projection gives a literal
+counterexample to FDT7 and (CCR).  No result used in this route promotes the
+available actor microstates of `G` to a hyperlinear model of this
+generalized coset wreath product.
+
+Thus the Bernoulli model does not presently refute FDT7.  It proves that no
+argument valid in all finite tracial von Neumann algebras, no Jones-index
+calculation detached from matrix approximability, and no property-(T)
+fixed-vector inequality alone can prove `(BBP3)`.  The unresolved
+matrix-specific question is precisely the hyperlinearity of `W` (or an
+equivalent embedding of this Bernoulli crossed product), not a polar or
+spectral estimate.
 
 Projectivizing the witness loses information even before that boundary.
 For Pauli involutions `X,Z`,
