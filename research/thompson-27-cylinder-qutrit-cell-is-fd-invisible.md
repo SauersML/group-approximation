@@ -84,7 +84,7 @@ in the support of the fine context which lies outside the root subgroup
 J^j Z_1^k B_a^t,                         t in {1,2},     (TVQ8)
 ```
 
-for one `a).  It occurs in exactly the three atoms `p_(a,b)`,
+for one `a`.  It occurs in exactly the three atoms `p_(a,b)`,
 `b in F_3`, with equal-modulus coefficients whose phases are a common
 scalar times
 
