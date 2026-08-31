@@ -8,7 +8,7 @@ requires:
   - controlled-pauli-commutator-is-and-times-multiplicity-commutator
 ---
 
-Work first on the active carrier `L tensor G). The Pauli and Hadamard
+Work first on the active carrier `L tensor G`. The Pauli and Hadamard
 relations give
 
 ```text
@@ -33,7 +33,7 @@ left-compressed equality in `(SAF3)`, and
 tau(R)=tau(E_11).                                       (SAP3)
 ```
 
-Thus the mass inequality in `(AIM1)` holds with `c=1`, `C=0), while
+Thus the mass inequality in `(AIM1)` holds with `c=1`, `C=0`, while
 `(AIM2)` has zero defect.
 
 On the other hand, the commutator convention for involutions gives
@@ -52,7 +52,7 @@ In normalized Hilbert--Schmidt norm on the active carrier,
 
 There is no selector transport hidden here. In a four-sector direct sum,
 take `W_A` to act by `I_L tensor H_g` on `E_11` and by the identity on
-the other sectors; take `W_B=I). Both arrows commute with every selector
+the other sectors; take `W_B=I`. Both arrows commute with every selector
 projection, so `W_A R W_A^*=W_B R W_B^*=R`.
 
 The example is finite-packet exact. The one-qubit Clifford group generated
