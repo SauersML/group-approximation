@@ -207,6 +207,34 @@ moving sharp spectral band without a margin. The remaining theorem must
 therefore use the concrete Iwahori Hecke matrix to control module position,
 not just stabilizer size, raw band rank, or vanishing residual covariance.
 
+The vanishing-density geometry is itself exact.
+'regular-hecke-second-moment-is-intersection-energy' identifies the
+singular values as principal-angle cosines and computes
+
+\[
+\frac{\operatorname{Tr}(T_X^2)}{\dim D}
+ =
+ \frac{|B\cap xBx|}{|B|}
+ -\frac1{2|B|}\sum_{c\in B\cap xBx}
+ \|Xc^{-1}X(xcx)-1\|_2^2.
+\]
+
+At a prime Iwahori level the near-top rank is therefore at most
+\(1/(p(1-\epsilon)^2)\). Nonetheless an exact endpoint has coverage one.
+'regular-hecke-transfer-has-finite-fourier-sector-lmis' resolves this
+small module into \(q d_\pi\)-dimensional whole-group multiplicity sectors
+and rewrites the positive hole dual as one LMI per sector. The canonical
+top space occupies only \(d_\pi\) directions in each sector but those
+directions form one coherent regular copy and contain the unit.
+
+This also clarifies which prescribed core types are intrinsically easier.
+'core-type-blocks-classify-relative-hole-majorants' proves that for an
+irreducible core any nonzero near-top band already gives full coverage;
+multiplicity-free cores reduce to weighted type effects. The regular core
+is the opposite extreme: its Plancherel multiplicities permit a
+vanishing-density full-rank outlier, so the remaining arithmetic task is
+coherence across multiplicity sectors.
+
 The same reduction now holds for every prescribed core type, not only the
 regular face. `relative-induced-selector-has-intertwiner-order-dual`
 replaces the whole-group Choi variables by the finite right module
