@@ -312,7 +312,7 @@ structure PathLengthBounds
   chord_total :
     (∑ j, (P.first j).chord.length) +
         ∑ j, (P.second j).chord.length ≤
-      2 * (chordLength * chordLength) + 2 * chordLength
+      2 * (chordLength * chordLength) + 4 * chordLength
   first_small : ∀ j, 5 * (P.first j).sideCount ≤ 4 * n
   second_small : ∀ j, 5 * (P.second j).sideCount ≤ 4 * n
 
