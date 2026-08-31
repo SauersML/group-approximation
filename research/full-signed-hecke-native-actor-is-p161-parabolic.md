@@ -9,6 +9,8 @@ distinct_from:
   two-native-singers-and-endpoint-generate-literal-gl6: that constructs the six-dimensional Levi actor on the native and endpoint projective summands; this adjoins the complete signed source on two outer q-summands and identifies the generated finite parabolic.
   full-q-a1-projective-head-is-a-literal-finite-subgroup: that embeds the seven-summand canonical A1 extension as the finite subgroup P_A; this adds the endpoint e3 summand, the first native Singer, and identifies the resulting larger group structurally rather than only by its order.
   full-q-quarter-adjacent-profiles-have-half-cross: that computes the native cross operator on two adjacent-character monomial profiles; this reduces the arbitrary finite-type question to one exact central-support calculation in the complete finite parabolic Hecke algebra.
+  literal-a1-head-forces-arbitrary-profile-native-cross-gram: that already converts the smaller literal A1-head identity into a profile-uniform cross-Gram floor; this identifies the endpoint-enlarged parabolic and transports the same identity into its complete actor packet.
+  native-j1-extension-gives-gl5-but-only-second-whitehead-gram: that constructs a different GL5 on five native and endpoint summands; this reconciles that block with the canonical A1 Levi and identifies the full six-dimensional enlargement.
 ---
 
 **ESTABLISHED LITERAL FINITE PARABOLIC.**  Put
