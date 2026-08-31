@@ -19,7 +19,10 @@ tailored game `G_M` has some perfect finite-dimensional ZPC strategy with
 dim D_infinity <= B(M).                                  (BHB1)
 ```
 
-The obstruction is not limited to BCV's chosen completeness strategy.
+In this statement `ZPC` means exactly BCV Definition 2.27: Z-aligned
+signed-permutation and commuting along edges. This is the same class as in
+the universal refuting theorem. The obstruction is not limited to BCV's
+chosen completeness strategy.
 At every pre-halting fixed-point level, the exact inverse of the complete
 Compression wrapper forces a fresh Pauli packet while retaining the decoded
 tail readable algebra. Lemma 2.59 also preserves the sampler graph and
