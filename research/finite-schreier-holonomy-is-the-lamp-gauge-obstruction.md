@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction
+id: finite-schreier-holonomy-is-the-lamp-gauge-obstruction
 kind: claim
 title: Finite Schreier holonomy is the exact obstruction to a simultaneous lamp gauge
 distinct_from:

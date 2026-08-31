@@ -38,5 +38,5 @@ algebra need not be simple and single generation is not extension-permanent.
   is exactly the CROSS TERMS `v_m^* v_l` (disjoint arrows do not give
   disjoint sources, so spectral cutdowns of `d_0` cannot separate the
   summands directly).  A generic-weights argument in the style of
-  Olsen--Zame/Ge--Popa is the candidate finish; the cross-term
+  Olsen--Zame/Ge--Popa is the candidate finish; the cross-term (NOW SOLVED for diagonals: see cantor-diagonal-algebras-are-two-generated)
   analysis over the ample groupoid is the precise remaining lemma.

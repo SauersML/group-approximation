@@ -3,7 +3,7 @@ rg: 2
 id: finite-schreier-holonomy-criterion-proof
 kind: route
 title: Gauge a finite connection along a tree and expose the bent self-loop
-target: finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction
+target: finite-schreier-holonomy-is-the-lamp-gauge-obstruction
 requires:
   - moving-lamp-refinement-cocycle-has-diffuse-fibers
 ---

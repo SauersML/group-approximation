@@ -391,22 +391,13 @@ simultaneously over increasing `E` so that all actor products agree on
 almost every point.  The local quotients use different multiplicity
 commutants and provide no comparison maps between them.
 
-`finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction`
+`finite-schreier-holonomy-is-the-lamp-gauge-obstruction`
 sharpens the fixed-window part: after a spanning-tree gauge, simultaneous
 spatialization relative to a proposed permutation target is exactly
 simultaneous conjugacy of the fundamental-cycle holonomy tuple.  Its
 multiplicity-one bent-phase example has exact canonical trace and covariance
 but no commutant gauge to any permutation normalizer.  A different
 permutation target still exists, so this is a gauge-rounding obstruction,
-not a counterexample to equivariant transfer.
-
-`finite-lamp-targets-glue-after-action-groupoid-completion` attacks those
-new targets directly.  It proves that a supplied finite actor/cylinder
-groupoid can be permutationized by regular isotropy carriers after
-quantified orbitwise rank balancing.  The obstruction is earlier: enlarging
-a lamp window by `b` sites costs the Fourier trace scale `2^(b/2)`, and
-one wrong site relation produces at least `1/2` Hamming defect on the
-binary character cube.  Thus marginal covariances cannot be completed one
-generator at a time.  Extracting the joint approximately multiplicative
-finite action groupoid from the matrix model remains OPEN.
+not a counterexample to equivariant transfer.  Constructing compatible
+targets across growing windows remains OPEN.
 

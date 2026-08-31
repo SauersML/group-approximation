@@ -115,7 +115,7 @@ small gauge.
 
 ## Finite-cycle sharpening
 
-[[finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction]]
+[[finite-schreier-holonomy-is-the-lamp-gauge-obstruction]]
 now gives an exact check on one regular packet.  After gauging a spanning
 tree in the finite character Schreier graph, simultaneous gauge equivalence
 to any proposed target is equivalent to simultaneous unitary conjugacy of
@@ -128,22 +128,6 @@ exact canonical trace and exact covariance need not make the supplied
 normalizer commutant-gauge equivalent to any permutation normalizer.  A
 different permutation representative still exists, so target construction
 rather than gauge trivialization remains the live issue.
-
-## Direct-target sharpening
-
-[[finite-lamp-targets-glue-after-action-groupoid-completion]] abandons
-conjugation of the supplied normalizers.  Once a finite actor/cylinder
-groupoid has actually been completed, regular isotropy carriers glue all
-atom transports after an explicit orbitwise rank trim.  Fourier Parseval
-bounds the normalized atom imbalance on a union window by half the square
-root of the sum of squared nontrivial lamp traces.
-
-The remaining boundary is discrete rather than perturbative.  One wrong
-site relation on a regular binary-character block has Hamming cost at least
-`1/2`; adding boundary coordinates does not dilute it.  Thus direct target
-construction still has to extract an approximately multiplicative finite
-action groupoid on almost every block.  Marginal window couplings and
-overlap refinement do not supply that joint object.
 
 ## Exact surviving global seam
 

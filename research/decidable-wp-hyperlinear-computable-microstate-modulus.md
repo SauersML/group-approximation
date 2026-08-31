@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: decidable-word-problem-hyperlinear-has-computable-canonical-microstate-modulus
+id: decidable-wp-hyperlinear-computable-microstate-modulus
 kind: claim
 title: A word-problem decider makes the canonical hyperlinear dimension profile computably bounded
 distinct_from:

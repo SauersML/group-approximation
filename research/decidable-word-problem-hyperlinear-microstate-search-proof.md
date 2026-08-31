@@ -3,7 +3,7 @@ rg: 2
 id: decidable-word-problem-hyperlinear-microstate-search-proof
 kind: route
 title: Enumerate rational Cayley unitaries and stop at the first strict canonical profile
-target: decidable-word-problem-hyperlinear-has-computable-canonical-microstate-modulus
+target: decidable-wp-hyperlinear-computable-microstate-modulus
 requires:
   - hyperlinear-iff-group-factor-embeds-in-hyperfinite-ultrapower
 ---

@@ -7,7 +7,7 @@ distinct_from:
   bcv-no-computable-perfect-halt-readable-bound: that proves the exact readable-dimension lower bound after a perfect HALT strategy is already present; this asks for a fixed group and an effective approximate-to-exact front end producing such strategies.
   bcv-every-perfect-compression-amplifies-readable-closure: that inverts Compression at zero loss and stays inside one exact strategy; this must start from a finite-tolerance canonical group microstate and reach zero loss.
   bcv-pauli-amplification-haarizes-only-the-packet: that identifies the trace and coherence data not forced by the BCV packet equations; this asks that those data be supplied uniformly by one group.
-  decidable-word-problem-hyperlinear-has-computable-canonical-microstate-modulus: that computes approximate canonical microstates for any promised hyperlinear group; this is the missing transfer from those approximate witnesses to exact BCV strategies.
+  decidable-wp-hyperlinear-computable-microstate-modulus: that computes approximate canonical microstates for any promised hyperlinear group; this is the missing transfer from those approximate witnesses to exact BCV strategies.
   finite-schur-clifford-packet-flexible-hs-exactification: that flexibly exactifies each fixed finite packet; this asks for simultaneous exactification of the packet, its source multiplicity strategy, all shared contexts, and all recursively exposed levels.
 ---
 
@@ -22,7 +22,7 @@ distinct_from:
 3. A total computable numerical function
    \(A(M,\ulcorner U\urcorner)\) with this property. If \(U\) is any rational
    canonical \((n(M),q(M))\)-microstate of \(\Gamma\) in the sense of
-   decidable-word-problem-hyperlinear-has-computable-canonical-microstate-modulus
+   decidable-wp-hyperlinear-computable-microstate-modulus
    and \(M\) halts, then the evaluated packet admits an exactification to an
    attained-perfect finite-dimensional ZPC strategy \(S\) for the BCV game
    \(G_M\), with
