@@ -28,7 +28,7 @@ Gamma=E_0 *_Z E_1 *_Z E_2.                            (HPS1)
 
 Fix a primitive `ell`-th root `zeta`. Let `pi_zeta` be the unique
 `ell`-dimensional irreducible representation of `E_0` on which
-`J` acts by `zeta), and put
+`J` acts by `zeta`, and put
 
 ```text
 q=z_(E_0,pi_zeta)=e_(Z,zeta).
