@@ -75,7 +75,7 @@ ell^2(B) tensor C^k
 rho(b)|_(C^k_chi)=chi(b)1_k.                            (FSP7)
 ```
 
-If `U_s` implements the automorphism `alpha_s` of `B), it maps the
+If `U_s` implements the automorphism `alpha_s` of `B`, it maps the
 `chi` fiber unitarily onto the `s chi` fiber.  After fixing the displayed
 identifications, let `c_(s,chi)` be that block.  Include the inverse
 generator with the adjoint block.  These blocks are a unitary connection on
@@ -95,7 +95,7 @@ z_(s chi)c_(s,chi)z_chi^*.                              (FSP9)
 ```
 
 Therefore the simultaneous equations `V_s=Z U_s Z^*` are precisely
-`(FSP1)), and Step 1 applies orbit by orbit.
+`(FSP1)`, and Step 1 applies orbit by orbit.
 
 When the actor multiplication laws are exact, a closed labelled path at
 `chi` is an actor word in the stabilizer of `chi), and its connection
@@ -159,7 +159,7 @@ on every nonidentity element of `A times C_2`.
 
 ## Step 4: neither a commutant gauge nor padding spatializes the model
 
-On one regular `B_m)-orbit, a point permutation commuting with every left
+On one regular `B_m`-orbit, a point permutation commuting with every left
 translation must be a right translation.  Indeed, if its underlying
 bijection is `sigma`, then
 
@@ -173,10 +173,10 @@ translation by `b` has the linear phase
 
 The regular commutant is diagonal in the same Fourier coordinates.
 Consequently every commutant gauge commutes with
-`diag(f_m)) and leaves `U_m` fixed.  The phase `f_m` is not linear:
+`diag(f_m)` and leaves `U_m` fixed.  The phase `f_m` is not linear:
 for example the polarization of its exponent on the first coordinate pair
 is nonzero.  Hence no commutant gauge can turn `U_m` into a permutation
-which induces the trivial automorphism on `B_m).
+which induces the trivial automorphism on `B_m`.
 
 The `b,c` matrix entry of `U_m` in the group basis is
 
