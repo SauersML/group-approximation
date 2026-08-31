@@ -92,6 +92,26 @@ finite coordinate window is attained exactly. In particular there is no
 finite-support Farkas functional separating the Plancherel target from the
 endpoint character cone.
 
+The construction also matches finite regular coefficient tables. Given
+finite sets `W,K subset C`, one can choose a prime-to-`p` modulus `m`
+and an isometry
+
+```text
+J_K:l2(K)->l2(SL_2(Z/m))
+```
+
+such that, for every `w in W`,
+
+```text
+J_K^* lambda_(SL_2(Z/m))(w mod m) J_K
+ =P_K lambda_C(w) P_K.                                  (MVC7)
+```
+
+Thus every finite compression of the regular modular-vertex operator
+system has an exact finite endpoint dilation. This does not make the
+compression nearly unitary: without a Folner boundary, `P_K lambda_C(w)P_K`
+can have order-one leakage.
+
 This completely removes representation-ring feasibility at the full
 modular vertex. It does not solve Iwahori basin capture: character-window
 attainment does not align a supplied matrix tuple, choose its moving
