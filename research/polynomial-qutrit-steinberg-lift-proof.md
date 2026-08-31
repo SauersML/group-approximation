@@ -29,6 +29,21 @@ and Quillen's finite-field computation gives `K_2(F_2)=0`.  Hence
 `ker(theta)=0`; surjectivity onto `E_r(B)` is its definition.  The use
 of rank `28`, rather than an unstable rank-two assertion, is essential.
 
+The load-bearing external inputs are the Bass--Vaserstein--van der Kallen
+stability theorem for `K_2` in stable rank (applied to the Euclidean domain
+`F_2[T]` at rank `28`), Quillen's homotopy-invariance theorem for regular
+rings in *Higher algebraic K-theory I*, Lecture Notes in Mathematics 341
+(1973), 85--147, and Quillen's finite-field computation in *On the
+cohomology and K-theory of the general linear groups over a finite field*,
+Annals of Mathematics 96 (1972), 552--586.  In exactly the form used here,
+they say
+
+```text
+K_(2,28)(F_2[T]) = K_2(F_2[T]) = K_2(F_2) = 0.          (PQS4a)
+```
+
+No assertion about unstable rank two or about `K_2(R)` is being imported.
+
 Let `N=n+26`.  Splitting the first copy of `R` along the 27 prefix
 leaves gives the module isomorphism
 
