@@ -483,3 +483,15 @@ the named mixed-return condition for a stronger reason: every low-energy
 commutant vector is asymptotically scalar.  Any counterexample to (AC) must
 carry a positive-density multiplicity algebra through all negligible
 padding; strict deleted-line instability alone is now excluded.
+
+
+**Trace-mask sharpening (2026-08-31).**
+`kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall`
+proves that the regular-character hypothesis can be removed from this wall.
+Tensoring any arbitrary actor microstate `v_n` with the exact regular
+Steinberg congruence carrier makes it trace-faithful and preserves every
+multiplicity commutator isometrically.  Hence a non-trace-faithful
+counterexample to (AC) would automatically give a trace-faithful one.
+Canonical group traces and the large congruence carrier cannot constrain the
+positive-density multiplicity cocycle; only a source-specific theorem on the
+bare approximate actor can.
