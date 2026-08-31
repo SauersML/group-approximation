@@ -41,7 +41,7 @@ sigma_n,tau_n:F_m->Sym(A_n)
 ```
 
 whose images asymptotically commute, and colorings
-`c_n:A_n->N`, such that for every `u,v in F_m`,
+`c_n:A_n->Nat`, where `Nat` is a fixed countable palette, such that for every `u,v in F_m`,
 
 ```text
 |{a in A_n:
