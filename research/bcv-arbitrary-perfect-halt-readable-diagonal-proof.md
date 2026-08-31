@@ -23,9 +23,21 @@ not merely equality of values:
 V_(T_j) = Compress(V,lambda)_(T_j).                       (NHP1)
 ```
 
-Since `T_(j+1)=2^(T_j)`, the exact backward compression theorem applied
-at `n=T_j` decodes a perfect strategy at level `T_j` to one at level
-`T_(j+1)`.
+The composition in BCV Theorem 7.1, proof items 1--3, is exactly
+Question Reduction, then Answer Reduction, then Parallel Repetition.
+The final game identity in the proof of Theorem 4.36 is
+
+```text
+Q_n=QueRed(Padding(V_(2^n),2^(lambda n)),
+           2^(lambda n),B(lambda n)).                    (NHP1a)
+```
+
+Thus the source decoded from `Compress(V,lambda)_n` is exactly
+`V_(2^n)` (not `V_(2n)`), and the forced Pauli parameter is exactly
+`k(n)=2^(lambda n)`. At `n=T_j`, these become
+`V_(2^(T_j))=V_(T_(j+1))` and `k_j=2^(lambda T_j)`. Hence the exact
+backward compression theorem applied at level `T_j` has precisely the
+source and factor used below.
 
 There is one extra hypothesis in the generic backward theorem: to pass from
 the decoded double cover to `V_(T_(j+1))`, its supported nonzero-answer
