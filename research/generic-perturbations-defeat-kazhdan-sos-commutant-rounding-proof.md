@@ -15,7 +15,9 @@ All Hilbert--Schmidt norms and traces below are normalized.
 
 ## 1. An explicit two-dimensional disappearing kernel
 
-Choose two named generators `a,b in S`.  Let
+Choose two named generators `a,b in S`.  It is enough to treat
+`0<eta<1`: for a larger requested tolerance, reuse the tuple constructed
+with `eta` replaced by `1/2`.  Let
 
 ~~~text
 X = [[0,1],[1,0]],             Z = [[1,0],[0,-1]]
