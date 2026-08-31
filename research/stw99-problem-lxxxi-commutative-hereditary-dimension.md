@@ -107,6 +107,23 @@ counterexample would have to separate nuclear dimension from
 Brown--Pedersen topological dimension at the first possible value; merely
 adding high-dimensional type-I strata cannot produce one.
 
+The canonical type-I family
+
+```text
+A_N=C*(S^N tensor 1, K tensor C(T))
+```
+
+is now the sharp concrete test: `topdim(A_N)=ctdim(A_N)=1` and
+`1<=dim_nuc(A_N)<=2`.  The plateau analysis isolates the required
+two-colour recolouring, but its abelian distance-one obstruction is not a
+dimension-two lower bound.  The theorem
+`stw83-rotating-order-zero-compression-escapes-circle-gap` shows that a
+single star-homomorphic matrix colour crossing a rank-one plateau can have
+compression arbitrarily close to the circle generator.  Thus either endpoint
+still requires genuinely Toeplitz-coupled information: simultaneous
+finite-set colour coordination for dimension one, or new shift/diagonal
+rigidity for dimension two.
+
 A genuinely non-type-I extension class is also closed.
 `stw81-full-af-by-oinfinity-extensions-are-one-dimensional` proves that a
 full extension with separable stable AF ideal and nonzero separable nuclear
