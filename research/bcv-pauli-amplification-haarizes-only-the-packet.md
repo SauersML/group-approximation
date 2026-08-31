@@ -81,7 +81,7 @@ therefore has
 C=1 tensor U
 ```
 
-and the same forced Pauli packet for every choice of `U`. For `m=3)
+and the same forced Pauli packet for every choice of `U`. For `m=3`
 take
 
 ```text
@@ -165,7 +165,7 @@ hypothesis, not merely the existence of each finite-step factorization.
 ## Exact extra hypothesis that would groupify
 
 Let `A_0` be a countable discrete abelian lamp group,
-`K=dual(A_0)`, and let a countable group `Lambda` act on `A_0).
+`K=dual(A_0)`, and let a countable group `Lambda` act on `A_0`.
 Suppose one additionally has
 
 1. a coherent copy `D=L^infinity(K,Haar)`;
@@ -181,7 +181,7 @@ equivalently `tau(d v_g)=0` for all `d in D` and `g != e`.
 
 Then the algebraic integrated representation preserves the faithful
 canonical crossed-product trace. It therefore extends to a normal
-injective homomorphism whose image is `W^*(D,{v_g})), giving a
+injective homomorphism whose image is `W^*(D,{v_g})`, giving a
 trace-preserving copy
 
 ```text
