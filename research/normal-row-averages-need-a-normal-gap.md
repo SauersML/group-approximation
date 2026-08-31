@@ -11,143 +11,143 @@ distinct_from:
   packed-d-coset-flip-has-full-bs-hull: that packs a small cubic-displacement support whose BS hull is full inside one regular congruence block; this packs rank-one normal holonomies whose averaged operator tends to zero although their joint fixed space is zero.
 ---
 
-Let (Gamma) be a finitely generated group, let
-(Lambda	riangleleftGamma), and let
-(mathcal R={r_1,ldots,r_M}) be a finite set which generates
-(Lambda) as a group. For a unitary representation
-(pi:Gamma	o U(mathcal H)), define the normal-packet Laplacian
+Let \(\Gamma\) be a finitely generated group, let
+\(\Lambda\triangleleft\Gamma\), and let
+\(\mathcal R=\{r_1,\ldots,r_M\}\) be a finite set which generates
+\(\Lambda\) as a group. For a unitary representation
+\(\pi:\Gamma\to U(\mathcal H)\), define the normal-packet Laplacian
 
-[
- L_{mathcal R}
- =rac1Msum_{j=1}^M
-   (pi(r_j)-1)^*(pi(r_j)-1).                         	ag{ANR1}
-]
+\[
+ L_{\mathcal R}
+ =\frac1M\sum_{j=1}^M
+   (\pi(r_j)-1)^*(\pi(r_j)-1).                         \tag{ANR1}
+\]
 
 Its kernel is exactly
 
-[
- mathcal K=mathcal H^{pi(Lambda)}.                 	ag{ANR2}
-]
+\[
+ \mathcal K=\mathcal H^{\pi(\Lambda)}.                 \tag{ANR2}
+\]
 
-Because (Lambda) is normal, (mathcal K) reduces (pi(Gamma)).
-Write (P) for its projection. Suppose that the packet has a spectral
+Because \(\Lambda\) is normal, \(\mathcal K\) reduces \(\pi(\Gamma)\).
+Write \(P\) for its projection. Suppose that the packet has a spectral
 gap
 
-[
- L_{mathcal R} geq kappa(1-P)                    	ag{ANR3}
-]
+\[
+ L_{\mathcal R}\ \geq\ \kappa(1-P)                    \tag{ANR3}
+\]
 
-for some (kappa>0). Let (B<Gamma), let
-(eta:B	o U(d)), and let (V:mathbb C^d	omathcal H) be an
+for some \(\kappa>0\). Let \(B<\Gamma\), let
+\(\beta:B\to U(d)\), and let \(V:\mathbb C^d\to\mathcal H\) be an
 isometry satisfying
 
-[
- pi(b)V=Veta(b)qquad(bin B).                      	ag{ANR4}
-]
+\[
+ \pi(b)V=V\beta(b)\qquad(b\in B).                      \tag{ANR4}
+\]
 
 Put
 
-[
- D_{mathcal R}(V)^2
- =rac1{Md}sum_{j=1}^M
-   |(pi(r_j)-1)V|_{mathrm F}^2,qquad
- delta=rac{D_{mathcal R}(V)^2}{kappa}.             	ag{ANR5}
-]
+\[
+ D_{\mathcal R}(V)^2
+ =\frac1{Md}\sum_{j=1}^M
+   \|(\pi(r_j)-1)V\|_{\mathrm F}^2,\qquad
+ \delta=\frac{D_{\mathcal R}(V)^2}{\kappa}.             \tag{ANR5}
+\]
 
-Then there is a projection (eineta(B)') and an isometry
+Then there is a projection \(e\in\beta(B)'\) and an isometry
 
-[
- W:emathbb C^dlongrightarrowmathcal K               	ag{ANR6}
-]
+\[
+ W:e\mathbb C^d\longrightarrow\mathcal K               \tag{ANR6}
+\]
 
-which intertwines (eta|_e) with the quotient representation
-(pi|_{mathcal K}:Gamma/Lambda	o U(mathcal K)), and
+which intertwines \(\beta|_e\) with the quotient representation
+\(\pi|_{\mathcal K}:\Gamma/\Lambda\to U(\mathcal K)\), and
 
-[
- rac{operatorname{rank}e}{d}geq1-2delta,qquad
- rac1d|W-Ve|_{mathrm F}^2leq2delta.              	ag{ANR7}
-]
+\[
+ \frac{\operatorname{rank}e}{d}\geq1-2\delta,\qquad
+ \frac1d\|W-Ve\|_{\mathrm F}^2\leq2\delta.              \tag{ANR7}
+\]
 
 Thus an averaged translated-row estimate does produce a
 positive-density invariant-flat relative corner, but only after a lower
-bound for the **normal-packet** gap (kappa).
+bound for the **normal-packet** gap \(\kappa\).
 
 This additional gap is indispensable, even if the quotient graphs are
-uniform Hilbert expanders and the vacuum/core row is exact. Let (Q) be
-any finite group of order (M), put
+uniform Hilbert expanders and the vacuum/core row is exact. Let \(Q\) be
+any finite group of order \(M\), put
 
-[
- Lambda_Q=(C_2)^Q,qquad
- Gamma_Q=Lambda_Qtimes Q,                           	ag{ANR8}
-]
+\[
+ \Lambda_Q=(C_2)^Q,\qquad
+ \Gamma_Q=\Lambda_Q\rtimes Q,                           \tag{ANR8}
+\]
 
-where (Q) acts on its coordinate set by left translation. On
-(mathcal H_Q=ell^2(Q)), let (Q) act by permutations and let the
-coordinate lamp (z_q) act as the reflection
+where \(Q\) acts on its coordinate set by left translation. On
+\(\mathcal H_Q=\ell^2(Q)\), let \(Q\) act by permutations and let the
+coordinate lamp \(z_q\) act as the reflection
 
-[
- pi_Q(z_q)=1-2p_q,                                    	ag{ANR9}
-]
+\[
+ \pi_Q(z_q)=1-2p_q,                                    \tag{ANR9}
+\]
 
-where (p_q) is projection onto the coordinate vector (e_q). Take
-(B_Q=langle z_1angle), let
-(V_Q:mathbb C^{M-1}	oell^2(Q)) include
-(e_1^perp), and take the trivial (eta_Q). Then
+where \(p_q\) is projection onto the coordinate vector \(e_q\). Take
+\(B_Q=\langle z_1\rangle\), let
+\(V_Q:\mathbb C^{M-1}\to\ell^2(Q)\) include
+\(e_1^\perp\), and take the trivial \(\beta_Q\). Then
 
-[
- pi_Q(z_1)V_Q=V_Q,                                    	ag{ANR10}
-]
+\[
+ \pi_Q(z_1)V_Q=V_Q,                                    \tag{ANR10}
+\]
 
 so the distinguished vacuum row and the whole stated core are literal.
 The translated normal packet is
 
-[
- mathcal R_Q={qz_1q^{-1}:qin Q}
-             ={z_q:qin Q},                          	ag{ANR11}
-]
+\[
+ \mathcal R_Q=\{qz_1q^{-1}:q\in Q\}
+             =\{z_q:q\in Q\},                          \tag{ANR11}
+\]
 
-and it generates (Lambda_Q). Nevertheless
+and it generates \(\Lambda_Q\). Nevertheless
 
-[
- L_{mathcal R_Q}=rac4M I_{ell^2(Q)},qquad
- D_{mathcal R_Q}(V_Q)^2=rac4M,                       	ag{ANR12}
-]
+\[
+ L_{\mathcal R_Q}=\frac4M I_{\ell^2(Q)},\qquad
+ D_{\mathcal R_Q}(V_Q)^2=\frac4M,                       \tag{ANR12}
+\]
 
 while
 
-[
- mathcal H_Q^{pi_Q(Lambda_Q)}=0.                    	ag{ANR13}
-]
+\[
+ \mathcal H_Q^{\pi_Q(\Lambda_Q)}=0.                    \tag{ANR13}
+\]
 
 Hence the averaged defect tends to zero even in operator order, every
 non-vacuum row has only rank-one support, and the combined deck holonomy
 has no nonzero flat corner.
 
-Choose (Q) along any uniformly expanding family, for example finite
-congruence quotients of one fixed property-((T)) group with their fixed
+Choose \(Q\) along any uniformly expanding family, for example finite
+congruence quotients of one fixed property-\((T)\) group with their fixed
 marked images. Then the quotient Cayley graphs of
-(Gamma_Q/Lambda_Q=Q) have one uniform Poincare constant, while
+\(\Gamma_Q/\Lambda_Q=Q\) have one uniform Poincare constant, while
 (ANR12)--(ANR13) persist. The defect field is exactly transported by the
 quotient action, so averaging it again or applying the quotient Poincare
 inequality loses no asymmetry that could reveal a flat vector.
 
 For the Iwahori quotient, a section of
-(G_N=A/Lambda_N) and the fixed marking (S) give the finite Schreier
+\(G_N=A/\Lambda_N\) and the fixed marking \(S\) give the finite Schreier
 packet
 
-[
- r(q,s)=widetilde{sq}^{, -1}swidetilde q
- inLambda_Nqquad(qin G_N, sin S),                 	ag{ANR14}
-]
+\[
+ r(q,s)=\widetilde{sq}^{\, -1}s\widetilde q
+ \in\Lambda_N\qquad(q\in G_N,\ s\in S),                 \tag{ANR14}
+\]
 
 after deleting identities and adjoining inverses. Schreier's lemma says
-that these rows generate (Lambda_N). Therefore (ANR1)--(ANR7) give an
+that these rows generate \(\Lambda_N\). Therefore (ANR1)--(ANR7) give an
 exact sufficient route from an averaged packet on the finite deck
 quotient to a genuine quotient corner. What is missing is a
 dimension-independent lower bound in (ANR3), for the actual candidate
 dilations after core optimization.
 
-Property ((T;FD)) controls a fixed marked (Gamma)-Laplacian on
+Property \((T;FD)\) controls a fixed marked \(\Gamma\)-Laplacian on
 finite-dimensional representations, and Selberg expansion controls
 functions on the quotient. Neither statement by itself is (ANR3), which
 is a growing normal-return Laplacian inside the selected Stinespring host.
