@@ -125,3 +125,16 @@ relation.  Thus \(\Theta(t^N)=1\) controls only the vacuum row; quotient
 descent needs all translated normal-closure rows.  Finite-dimensional core
 expectations, scalar quasidiagonal trace models, and restriction-ring
 separation do not supply those operator-valued rows.
+
+
+There is also a sharp complete-order firewall before the translated rows can
+be lifted.  `finite-nuclear-quotient-does-not-complete-partial-toeplitz-data`
+puts anticommuting Pauli involutions on the two edges of the square
+(C_2	imes C_2).  The data are positive on every allowed local face, but
+remain at normalized-HS distance at least ((3-sqrt5)/4) from every full
+positive-definite group table.  The target algebra is finite-dimensional,
+nuclear, LP/LLP, locally reflexive, quasidiagonal, RFD, and MF.  Consequently
+none of those ambient properties turns facewise positivity into the complete
+finite quotient window: LLP can lift a ucp map on the *concrete* Fourier
+operator system only after arithmetic compatibility with all cross-difference
+rows has been proved.
