@@ -108,7 +108,8 @@ def boundaryProbabilityMeasureTracialState
       rw [boundaryTraceFunction_eq_boundaryBaseTracialState]
       have hz : 0 ≤ (boundaryBaseTracialState z) (star a * a) :=
         (boundaryBaseTracialState z).map_star_mul_self_nonneg a
-      exact (Complex.nonneg_iff.mp hz).2
+      change ((boundaryBaseTracialState z) (star a * a)).im = 0
+      exact (Complex.nonneg_iff.mp hz).2.symm
   map_mul_comm := by
     intro a b
     apply integral_congr_ae
