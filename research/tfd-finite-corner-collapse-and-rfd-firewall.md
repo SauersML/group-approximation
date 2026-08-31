@@ -61,8 +61,8 @@ The 2026 MF amalgam theorems do not replace RFD here. MF is the existence of
 a norm-microstate embedding, whereas
 `authenticated-core-union-basin-is-relative-liftability` asks to lift a
 **prescribed** tracial-ultraproduct homomorphism by exact coordinates.
-Moreover Shulman's unconditional theorem `A *_C A is MF` uses the same
-inclusion of `C` into both factors. The Iwahori amalgam is twisted by the
+Moreover Shulman's arbitrary-subalgebra double theorem (for MF `A`),
+`A *_C A is MF`, uses the same inclusion of `C` into both factors. The Iwahori amalgam is twisted by the
 commensuration sending a primitive parabolic to its square; that edge map
 does not extend to an automorphism of `SL_2(Z)`. Her general amalgam
 theorem gives an MF criterion in terms of compatible norm-ultraproduct
