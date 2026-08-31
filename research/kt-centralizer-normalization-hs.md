@@ -381,7 +381,11 @@ local normalizer question in both directions.
 
 This refutes only metric rounding of the supplied normalizers, not (CCR) and
 not equivariant normalizer transfer: canonical permutations exist in the
-countermodel.  The exact missing coherence is still global and moving-window:
+countermodel.  `moving-lamp-refinement-cocycle-has-diffuse-fibers` now
+packages all finite character blocks as a strict refinement/action-groupoid
+cocycle and proves that covariance on overlapping windows glues
+quantitatively to their union.  Thus the exact missing coherence is still
+global and moving-window:
 for `B_E -> B_(gE)`, choose commutant gauges or new permutations
 simultaneously over increasing `E` so that all actor products agree on
 almost every point.  The local quotients use different multiplicity
