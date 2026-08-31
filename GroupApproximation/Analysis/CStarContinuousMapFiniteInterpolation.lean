@@ -19,6 +19,8 @@ open CStarExactness BlackadarKirchberg
 
 noncomputable section
 
+set_option linter.unusedSectionVars false
+
 universe u v
 
 variable {X : Type u} [TopologicalSpace X] [CompactSpace X]
@@ -26,13 +28,13 @@ variable {B : Type v} [CStarAlgebra B]
 
 /-- Simultaneous evaluation at finitely many points. -/
 def finiteEvaluationStarAlgHom {k : ℕ} (x : Fin k → X) :
-    C(X, B) →⋆ₐ[ℂ] (∀ i : Fin k, B) where
+    C(X, B) →⋆ₐ[ℂ] (∀ _ : Fin k, B) where
   toFun f i := f (x i)
   map_zero' := rfl
   map_one' := rfl
   map_add' _ _ := rfl
   map_mul' _ _ := rfl
-  map_smul' _ _ := rfl
+  commutes' _ := rfl
   map_star' _ := rfl
 
 @[simp] theorem finiteEvaluationStarAlgHom_apply {k : ℕ} (x : Fin k → X)
@@ -53,7 +55,7 @@ def constantSectionStarAlgHom : B →⋆ₐ[ℂ] C(X, B) where
   map_one' := rfl
   map_add' _ _ := rfl
   map_mul' _ _ := rfl
-  map_smul' _ _ := rfl
+  commutes' _ := rfl
   map_star' _ := rfl
 
 @[simp] theorem constantSectionStarAlgHom_apply (b : B) (y : X) :
@@ -71,28 +73,29 @@ def weightSqrtSection (w : C(X, ℝ)) : C(X, B) where
 /-- The `i`-th weighted constant section, written as a CP conjugation of the
 coordinate projection followed by the constant-section homomorphism. -/
 def weightedCoordinateLinearMap {k : ℕ} (w : Fin k → C(X, ℝ)) (i : Fin k) :
-    (∀ j : Fin k, B) →ₗ[ℂ] C(X, B) :=
+    (∀ _ : Fin k, B) →ₗ[ℂ] C(X, B) :=
   conjugationLinearMap (weightSqrtSection (B := B) (w i)) ∘ₗ
-    ((constantSectionStarAlgHom (X := X)).toLinearMap.comp
-      (Pi.evalStarAlgHom ℂ (fun _ : Fin k ↦ B) i).toLinearMap)
+    ((constantSectionStarAlgHom (X := X)).comp
+      (Pi.evalStarAlgHom ℂ (fun _ : Fin k ↦ B) i)).toLinearMap
 
 /-- The weighted-coordinate formula after evaluating at a point. -/
 theorem weightedCoordinateLinearMap_apply {k : ℕ} (w : Fin k → C(X, ℝ))
-    (hw : ∀ i y, 0 ≤ w i y) (i : Fin k) (a : ∀ j : Fin k, B) (y : X) :
+    (hw : ∀ i y, 0 ≤ w i y) (i : Fin k) (a : ∀ _ : Fin k, B) (y : X) :
     weightedCoordinateLinearMap (B := B) w i a y = (w i y : ℂ) • a i := by
   simp only [weightedCoordinateLinearMap, LinearMap.coe_comp, Function.comp_apply,
-    conjugationLinearMap_apply, weightSqrtSection_apply,
-    constantSectionStarAlgHom_apply, Pi.evalStarAlgHom_apply]
+    conjugationLinearMap_apply]
   let r : ℝ := Real.sqrt (w i y)
   have hr : r * r = w i y := Real.mul_self_sqrt (hw i y)
   change star (algebraMap ℂ B (r : ℂ)) * a i *
       algebraMap ℂ B (r : ℂ) = (w i y : ℂ) • a i
   rw [show star (algebraMap ℂ B (r : ℂ)) =
-      algebraMap ℂ B (r : ℂ) by simp]
+      algebraMap ℂ B (r : ℂ) by
+        rw [Algebra.algebraMap_eq_smul_one, star_smul, star_one]
+        simp]
   calc
     algebraMap ℂ B (r : ℂ) * a i * algebraMap ℂ B (r : ℂ) =
         (algebraMap ℂ B (r : ℂ) * algebraMap ℂ B (r : ℂ)) * a i := by
-          rw [mul_assoc, ← (Algebra.commutes (r : ℂ) (a i)).eq, ← mul_assoc]
+          rw [mul_assoc, ← Algebra.commutes (r : ℂ) (a i), ← mul_assoc]
     _ = algebraMap ℂ B (w i y : ℂ) * a i := by
       rw [← map_mul]
       congr 2
@@ -105,18 +108,18 @@ theorem isCompletelyPositive_weightedCoordinateLinearMap {k : ℕ}
     IsCompletelyPositive (weightedCoordinateLinearMap (B := B) w i) :=
   (isCompletelyPositive_conjugationLinearMap
     (weightSqrtSection (B := B) (w i))).comp
-      ((isCompletelyPositive_of_starAlgHom (constantSectionStarAlgHom (X := X))).comp
-        (isCompletelyPositive_of_starAlgHom
-          (Pi.evalStarAlgHom ℂ (fun _ : Fin k ↦ B) i)))
+      (isCompletelyPositive_of_starAlgHom
+        ((constantSectionStarAlgHom (X := X)).comp
+          (Pi.evalStarAlgHom ℂ (fun _ : Fin k ↦ B) i)).toNonUnitalStarAlgHom)
 
 /-- Partition-of-unity interpolation from a finite product into continuous
 sections. -/
 def finiteInterpolation {k : ℕ} (w : Fin k → C(X, ℝ)) :
-    (∀ i : Fin k, B) →ₗ[ℂ] C(X, B) :=
+    (∀ _ : Fin k, B) →ₗ[ℂ] C(X, B) :=
   ∑ i, weightedCoordinateLinearMap (B := B) w i
 
 theorem finiteInterpolation_apply {k : ℕ} (w : Fin k → C(X, ℝ))
-    (hw : ∀ i y, 0 ≤ w i y) (a : ∀ i : Fin k, B) (y : X) :
+    (hw : ∀ i y, 0 ≤ w i y) (a : ∀ _ : Fin k, B) (y : X) :
     finiteInterpolation (B := B) w a y = ∑ i, (w i y : ℂ) • a i := by
   simp only [finiteInterpolation, LinearMap.sum_apply, ContinuousMap.sum_apply,
     weightedCoordinateLinearMap_apply w hw]
@@ -131,9 +134,9 @@ theorem isCompletelyPositive_finiteInterpolation {k : ℕ}
 /-- A nonnegative partition of unity makes interpolation contractive. -/
 theorem norm_finiteInterpolation_le {k : ℕ} (w : Fin k → C(X, ℝ))
     (hw : ∀ i y, 0 ≤ w i y) (hsum : ∀ y, ∑ i, w i y = 1)
-    (a : ∀ i : Fin k, B) :
+    (a : ∀ _ : Fin k, B) :
     ‖finiteInterpolation (B := B) w a‖ ≤ ‖a‖ := by
-  rw [ContinuousMap.norm_le (norm_nonneg a)]
+  apply (ContinuousMap.norm_le _ (norm_nonneg a)).2
   intro y
   rw [finiteInterpolation_apply w hw]
   calc
