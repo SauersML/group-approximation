@@ -403,6 +403,17 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   `sl2-half-stability-excludes-hnn-hyperlinearity` they would also have to
   admit, to refute through the HNN group, an almost-centralizer of
   `SL_2(Z)` that is not an almost-centralizer of `SL_2(Z[1/2])`.
+- **Approximate central authentication has a sharp trichotomy.**
+  \`approximate-central-tensor-coverage-forces-capture\` proves that if a
+  rank-\(1-r\) projection almost commutes with the four modular-vertex
+  torsion generators and its rounded corner is \(\zeta\)-close to the
+  bounded-payload congruence tensor hull, then
+  \(D\leq2\sqrt r+C(\operatorname{def}+\Omega+\zeta)^\alpha\).
+  The polar and finite-spectrum rounding step is linear and
+  dimension-free. Hence a fixed capture gap forces positive uncovered rank,
+  nonvanishing off-diagonal mass, or failure of every bounded-payload
+  tensor model. Extracting the almost-central carrier and authenticating its
+  tensor factors remain open.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
