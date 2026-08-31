@@ -83,7 +83,8 @@ units
 S^nq=E_(n,0),                  S^na=E_(n,1).
 ```
 
-The matrix units themselves are distinct.
+The matrix units themselves are distinct. Consequently `(GRA6)` is a
+presentation of the concrete algebra `B_+`.
 
 For `N>=1`, let `S_N` be the nilpotent shift on the
 `(N+1)`-dimensional space with basis `e_0,...,e_N`, and put
