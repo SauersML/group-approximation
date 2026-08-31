@@ -5,5 +5,9 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Covering
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularHomologyHomotopyInvariance
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.AffineLastFaceIdentity
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Monodromy
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularHomologyFunctorAPI
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularCohomology
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularCohomologyHomotopyInvariance
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CupProductScaffolding
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/

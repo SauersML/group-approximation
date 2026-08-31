@@ -59,3 +59,10 @@ homotopy on singular chains. `SingularHomologyHomotopyInvariance` preserves the
 upstream public API while discharging `SingularPrismOperator` directly from
 `TopCat.Homotopy.singularChainComplexFunctorObjMap`; the old custom prism and
 its backports are excluded from the local dependency slice.
+
+The same v4.32 theorem works over arbitrary coefficient modules. The vendored
+cohomology homotopy-invariance layer therefore uses Mathlib's `Homotopy.op` and
+`TopCat.Homotopy.singularChainComplexFunctorObjMap`, excluding the old
+`PrismSimplicialHomotopy` backport. `CupProductScaffolding` reuses Mathlib's
+current tensor-additivity instances and enables the same compatibility options
+used by Mathlib for downward-complex tensor signs.
