@@ -171,7 +171,7 @@ representation, stabilizer-commutant rounding followed by finite-dimensional
 compactness gives
 
 ~~~text
-norm_2(J-I) <= 2 delta + 16 delta/kappa.                  (15)
+norm_2(J-I) <= 2 delta + 16 delta/kappa.
 ~~~
 
 See `compactness-closes-exact-actor-pauli-window`.  The Thompson input in
