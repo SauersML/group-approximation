@@ -414,6 +414,16 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   nonvanishing off-diagonal mass, or failure of every bounded-payload
   tensor model. Extracting the almost-central carrier and authenticating its
   tensor factors remain open.
+- **Literal high-dimensional irreducibility is not payload escape.**
+  `steinberg-endpoints-are-indecomposable-but-payload-width-one` takes the
+  dimension-\(p\) Steinberg representation of `PSL_2(F_p)` along odd
+  reduction. Both modular vertices and the Iwahori edge map onto the finite
+  group, so all restrictions are irreducible; Selberg expansion gives a
+  uniform adjoint commutator gap, ruling out even approximate
+  positive-density peeling. Nevertheless the pair is an exact endpoint and
+  has residual payload width one. Thus alternative (3) must be measured
+  only after absorbing every compatible congruence factor; the remaining
+  issue is noncongruence alignment, not raw irreducible dimension.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
