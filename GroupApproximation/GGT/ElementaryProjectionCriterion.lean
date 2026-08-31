@@ -197,6 +197,22 @@ omit [PseudoMetricSpace S] in
       ∃ h : G, h ∈ H ∧ (g * h) • s = x :=
   Iff.rfl
 
+omit [PseudoMetricSpace S] in
+/-- Left translation carries the orbit of `gH` exactly onto the orbit of
+`(a g)H`.  This is the equivariance used to make the group action on DGO's
+projection vertex family literal. -/
+theorem smul_mem_leftCosetOrbitAt_iff
+    (H : Subgroup G) (s : S) (a g : G) (x : S) :
+    x ∈ leftCosetOrbitAt H g s ↔
+      a • x ∈ leftCosetOrbitAt H (a * g) s := by
+  constructor
+  · rintro ⟨h, hh, rfl⟩
+    exact ⟨h, hh, by simp only [mul_smul, mul_assoc]⟩
+  · rintro ⟨h, hh, heq⟩
+    refine ⟨h, hh, ?_⟩
+    have heq' := congrArg (fun z : S => a⁻¹ • z) heq
+    simpa only [mul_smul, inv_smul_smul] using heq'
+
 /-- **DGO Lemma 4.45, printed two-coset form.**  If the `fH`- and `gH`-orbits
 at `s` agree and the subgroup orbit is unbounded, geometric separation gives
 `f⁻¹g ∈ H`.  Thus equal orbit subsets cannot represent two distinct left

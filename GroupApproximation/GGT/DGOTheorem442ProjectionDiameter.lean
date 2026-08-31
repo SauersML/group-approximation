@@ -40,9 +40,25 @@ omit [PseudoMetricSpace S] in
 
 /-- A `δ`-approximate nearest point in the subgroup orbit.  This is equation
 (43) in DGO, with the infimum-free universal inequality that its proof uses. -/
+def IsApproxProjectionTo (Y : Set S) (a x : S) (δ : ℝ) : Prop :=
+  x ∈ Y ∧ ∀ z ∈ Y, dist a x ≤ dist a z + δ
+
+/-- Specialization of approximate projection to a subgroup orbit. -/
 def IsApproxOrbitProjectionAt (H : Subgroup G) (s a x : S) (δ : ℝ) : Prop :=
-  x ∈ subgroupOrbitAt H s ∧
-    ∀ z ∈ subgroupOrbitAt H s, dist a x ≤ dist a z + δ
+  IsApproxProjectionTo (subgroupOrbitAt H s) a x δ
+
+/-- Approximate projection is equivariant under an isometric group action.
+The target set is written as a pointwise image so every target point carries
+the preimage needed for the approximate-minimality clause. -/
+theorem isApproxProjectionTo_smul
+    (hiso : IsIsometricAction G S) (g : G) (Y : Set S)
+    {a x : S} {κ : ℝ} (h : IsApproxProjectionTo Y a x κ) :
+    IsApproxProjectionTo ((fun z : S => g • z) '' Y) (g • a) (g • x) κ := by
+  refine ⟨⟨x, h.1, rfl⟩, ?_⟩
+  intro z hz
+  obtain ⟨w, hwY, rfl⟩ := hz
+  rw [hiso g a x, hiso g a w]
+  exact h.2 w hwY
 
 /-- Approximate orbit projections always exist for a positive error.  No
 properness or completeness is needed: choose a value within `κ` of the
