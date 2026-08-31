@@ -116,7 +116,10 @@ theorem continuous_kap : Continuous fun p : ℝ × ℝ => kap p.1 p.2 := by
     Complex.continuous_ofReal.comp' continuous_fst
   have h2 : Continuous fun p : ℝ × ℝ => circleLoop p.2 :=
     continuous_circleLoop.comp' continuous_snd
-  exact ((continuous_const.sub h1).mul h2).add h1
+  have h3 : Continuous fun p : ℝ × ℝ =>
+      (1 - ((p.1 : ℝ) : ℂ)) * circleLoop p.2 + ((p.1 : ℝ) : ℂ) :=
+    ((continuous_const.sub h1).mul h2).add h1
+  exact h3
 
 /-- The first coordinate vector `e₀ = (1,0,…,0)` of `ℂ^{N+1}`. -/
 def basePoint (N : ℕ) : Fin (N + 1) → ℂ := Pi.single 0 1
@@ -183,7 +186,11 @@ theorem continuous_fill (N : ℕ) (i₁ : Fin (N + 1)) :
   have hk : Continuous fun p : ℝ × ℝ => kap p.1 p.2 := continuous_kap
   have hn : Continuous fun p : ℝ × ℝ => ((↑(1 - ‖kap p.1 p.2‖) : ℂ)) :=
     Complex.continuous_ofReal.comp' (continuous_const.sub hk.norm)
-  exact (hk.smul continuous_const).add (hn.smul continuous_const)
+  have hsum : Continuous fun p : ℝ × ℝ =>
+      kap p.1 p.2 • basePoint N +
+        ((↑(1 - ‖kap p.1 p.2‖) : ℂ)) • (Pi.single i₁ 1 : Fin (N + 1) → ℂ) :=
+    (hk.smul continuous_const).add (hn.smul continuous_const)
+  exact hsum
 
 /-! ### The covering-space core -/
 
@@ -205,10 +212,11 @@ theorem no_winding_square (c : ℂ) (hc : c ≠ 0)
   have cov := Complex.isCoveringMap_exp
   have hlog : Complex.exp (Complex.log c) = c := Complex.exp_log hc
   -- the two loops in `ℂ ∖ {0}`
+  have hedge : Continuous fun t : unitInterval => ((0 : unitInterval), t) :=
+    continuous_const.prodMk continuous_id
   have hγ₀ : Continuous fun t : unitInterval =>
       (⟨Φ (0, t), hne (0, t)⟩ : {w : ℂ // w ≠ 0}) :=
-    Continuous.subtype_mk (hΦ.comp' (continuous_const.prodMk continuous_id))
-      (fun t => hne (0, t))
+    Continuous.subtype_mk (hΦ.comp' hedge) (fun t => hne (0, t))
   let γ₀ : C(unitInterval, {w : ℂ // w ≠ 0}) :=
     ⟨fun t => ⟨Φ (0, t), hne (0, t)⟩, hγ₀⟩
   let γ₁ : C(unitInterval, {w : ℂ // w ≠ 0}) :=
@@ -296,11 +304,11 @@ theorem not_nonvanishing_homogeneous {N : ℕ} (hN : 1 ≤ N)
     exact Nat.one_ne_zero hv
   have hbase : basePoint N ≠ 0 := basePoint_ne_zero N
   have hcne : g (basePoint N) ≠ 0 := hne _ hbase
+  have hcoe : Continuous fun p : unitInterval × unitInterval => ((p.1 : ℝ), (p.2 : ℝ)) :=
+    (continuous_subtype_val.comp' continuous_fst).prodMk
+      (continuous_subtype_val.comp' continuous_snd)
   have hcf : Continuous fun p : unitInterval × unitInterval =>
-      fill N i₁ (p.1 : ℝ) (p.2 : ℝ) :=
-    (continuous_fill N i₁).comp'
-      ((continuous_subtype_val.comp' continuous_fst).prodMk
-        (continuous_subtype_val.comp' continuous_snd))
+      fill N i₁ (p.1 : ℝ) (p.2 : ℝ) := (continuous_fill N i₁).comp' hcoe
   have hmem : ∀ p : unitInterval × unitInterval,
       fill N i₁ (p.1 : ℝ) (p.2 : ℝ) ∈ punctured N :=
     fun _ => fill_ne_zero N i₁ h₁ _ _

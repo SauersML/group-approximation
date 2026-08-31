@@ -162,14 +162,23 @@ def CommonZeroProperty : Prop :=
   ∀ (N : ℕ) (κ : Type) (_ : Finite κ), Nat.card κ ≤ N →
     ∀ f : TautSection N κ, ∃ z : Fin (N + 1) → ℂ, z ≠ 0 ∧ f.toFun z = 0
 
+/-- The family form at arbitrary finite index types. -/
+theorem hasCommonZero_of_property' (h : CommonZeroProperty) {N : ℕ} {ι κ : Type}
+    [Finite ι] [Finite κ] (hle : Nat.card ι * Nat.card κ ≤ N)
+    (F : ι → TautSection N κ) :
+    HasCommonZero F := by
+  rw [hasCommonZero_iff_join]
+  refine h N (ι × κ) inferInstance ?_ (join F)
+  rw [Nat.card_prod]
+  exact hle
+
 /-- The family form: `ℓ` sections of `L^{⊕s}` over `ℂPᴺ` have a common zero as
 soon as `ℓ * s ≤ N`. -/
 theorem hasCommonZero_of_property (h : CommonZeroProperty) {N ℓ s : ℕ}
     (hle : ℓ * s ≤ N) (F : Fin ℓ → TautSection N (Fin s)) :
     HasCommonZero F := by
-  rw [hasCommonZero_iff_join]
-  refine h N (Fin ℓ × Fin s) inferInstance ?_ (join F)
-  rw [Nat.card_prod, Nat.card_fin, Nat.card_fin]
+  refine hasCommonZero_of_property' h ?_ F
+  rw [Nat.card_fin, Nat.card_fin]
   exact hle
 
 /-- **The instance consumed by the STW Problem XXII counterexample.**  Over
@@ -181,8 +190,8 @@ theorem hasCommonZero_of_le (h : CommonZeroProperty) {s ℓ : ℕ} (hls : ℓ �
 
 /-! ### Sharpness of the rank bound
 
-Over `ℂP⁰` the tautological bundle is trivial and has a nowhere-vanishing
-section, so `CommonZeroProperty` fails the moment the rank bound is relaxed. -/
+Over `ℂP⁰` the tautological bundle is trivial and admits a nowhere-vanishing
+section, so `CommonZeroProperty` fails the moment its rank bound is relaxed. -/
 
 theorem apply_ne_zero_of_ne_zero {z : Fin (0 + 1) → ℂ} (hz : z ≠ 0) : z 0 ≠ 0 := by
   haveI : Subsingleton (Fin (0 + 1)) := inferInstanceAs (Subsingleton (Fin 1))
@@ -199,8 +208,9 @@ noncomputable def unitSection : TautSection 0 (Fin 1) where
   toFun := fun z _ => (z 0)⁻¹
   continuousOn_toFun := by
     refine continuousOn_pi' fun _ => ?_
-    exact ContinuousOn.inv₀ (continuous_apply (0 : Fin (0 + 1))).continuousOn
-      fun _ hz => apply_ne_zero_of_ne_zero hz
+    have hval : ContinuousOn (fun z : Fin (0 + 1) → ℂ => z 0) (punctured 0) :=
+      (continuous_apply (0 : Fin (0 + 1))).continuousOn
+    exact hval.inv₀ fun _ hz => apply_ne_zero_of_ne_zero hz
   homogeneous := fun _ _ _ _ => by
     funext _
     simp [mul_inv]
