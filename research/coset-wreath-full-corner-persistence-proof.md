@@ -7,6 +7,7 @@ target: coset-wreath-wall-survives-full-commutant-corners
 requires:
   - kt-finitary-action-is-outer-mod-scalar-core
   - coset-bernoulli-ce-refutes-relative-commutant-collapse
+  - wreath-not-sofic
 ---
 
 ## Step 1: the generalized wreath is ICC
@@ -226,6 +227,7 @@ trace-preserving matrix-ultraproduct embedding of `L(W)` contains the exact
 balanced FDT7 wall `(BCP7)`--`(BCP8)` in every nonzero full multiplicity
 corner.
 
-This proves corner persistence only.  It neither constructs such an
-embedding nor rules one out.  Hyperlinearity of `W`, FDT7, and (CCR) remain
-open.
+The identification `(BCP12)`--`(BCP12b)` also lets
+`wreath-not-sofic` apply to this exact group.  This proof establishes
+corner persistence only.  It neither constructs a hyperlinear embedding nor
+rules one out.  Hyperlinearity of `W`, FDT7, and (CCR) remain open.
