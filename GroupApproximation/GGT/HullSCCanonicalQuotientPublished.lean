@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCFillingSelectionTheorem316
 import GroupApproximation.GGT.HullSCRelatorSeparation2PublishedReduction
+import GroupApproximation.GGT.RelGenSetMulEquiv
 import GroupApproximation.GroupTheory.FiniteRelatorQuotient
 
 /-!
@@ -87,6 +88,47 @@ def HullLemma49KernelPowerStatement : Prop :=
           RelWord.IsLemma49Input D W eps mu rho →
             KernelPowerCorrection (Subgroup.normalClosure
               ({GGT.RelLetter.listVal v} : Set G))
+
+/-! ## The zero-relator case of Lemma 4.4 -/
+
+/-- A bijective quotient map transports the selected relative generating set
+literally, so every peripheral and its relative metric are preserved. -/
+theorem quotientPeripheralPreservation_of_bijective
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G} (D : AuxiliaryPeripheralFamily A N S)
+    {Q : Type u} [Group Q] (q : G →* Q) (hq : Function.Bijective q) :
+    Nonempty (QuotientPeripheralPreservation q D) := by
+  let e : G ≃* Q := MulEquiv.ofBijective q hq
+  refine ⟨{ rel := D.rel.mapMulEquiv e,
+             base_image := ?_,
+             fam_map := ?_,
+             embedded := D.embedded.mapMulEquiv e,
+             injOn_peripheralUnion := hq.1.injOn }⟩
+  · intro a ha
+    change q a ∈ q '' D.rel.base
+    exact ⟨a, D.base_eq ▸ ha, rfl⟩
+  · intro i
+    change (D.rel.fam i).map q = (D.cores.peripheral i).map q
+    rw [D.fam_eq i]
+
+/-- The conclusion of Hull Lemma 4.4 for the empty relator family.  Its normal
+closure is trivial, hence the given quotient map is injective; the preceding
+isomorphism transport supplies the complete quotient peripheral record. -/
+theorem hullLemma44Canonical_empty
+    {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    {k : ℕ} {S : Fin k → Subgroup G} (D : AuxiliaryPeripheralFamily A N S)
+    (R : ℕ) {Q : Type u} [Group Q] (q : G →* Q)
+    (hsurj : Function.Surjective q)
+    (hker : q.ker = Subgroup.normalClosure
+      (GGT.RelLetter.listVal ''
+        (∅ : Set (List (GGT.RelLetter G (AuxiliaryPeripheralIndex k)))))) :
+    Set.InjOn q (cayleyBall A.alphabet R) ∧
+      Nonempty (QuotientPeripheralPreservation q D) := by
+  have hbot : q.ker = ⊥ := by
+    simpa using hker
+  have hinj : Function.Injective q := (MonoidHom.ker_eq_bot_iff q).mp hbot
+  exact ⟨hinj.injOn,
+    quotientPeripheralPreservation_of_bijective D q ⟨hinj, hsurj⟩⟩
 
 /-- The corrected quotient half of Hull's construction in the torsion-free
 lane.  The auxiliary family is chosen before the relator, so Lemma 4.4 really

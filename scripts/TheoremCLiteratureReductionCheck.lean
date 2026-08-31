@@ -68,6 +68,9 @@ import GroupApproximation.Analysis.LocallyRFByIntFactorization
 #check GroupApproximation.HullSC.KernelPowerCorrection
 #check GroupApproximation.HullSC.kernelPowerCorrection_iff_finiteOrderLift
 #check GroupApproximation.HullSC.RelWord.normalClosure_listVal_image_symmetrized
+#check GroupApproximation.GGT.RelGenSet.IsHyperbolicallyEmbedded.mapMulEquiv
+#check GroupApproximation.HullSC.quotientPeripheralPreservation_of_bijective
+#check GroupApproximation.HullSC.hullLemma44Canonical_empty
 #check GroupApproximation.HullSC.HullLemma44CanonicalQuotientStatement
 #check GroupApproximation.HullSC.HullLemma49KernelPowerStatement
 #check GroupApproximation.HullSC.TorsionFreeHullCanonicalQuotientStatement
