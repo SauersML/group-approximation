@@ -47,10 +47,12 @@ The complete length-one sign-support atlas is
 | `G_(sigma,tau) U G_(sigma,tau)` | `sigma=+` | `5/72` at `(+,+)`, `1/16` at `(+,-)` |
 | `G_(sigma,tau) V G_(sigma,tau)` | `tau=+` | `5/72` at `(+,+)`, `1/16` at `(-,+)` |
 
-Every other row is zero. Left multiplication by any power of `g_2` is
-unitary and leaves these source ranks unchanged. Hence the low-length
-words `g_2U`, `Ug_2`, `g_2V`, `Vg_2` and all sign-masked versions
-supply no new source rank beyond the established `5/72,1/16` table.
+Every other row is zero. Left multiplication of either displayed
+compressed operator by any power of `g_2` is unitary and leaves these
+source ranks unchanged. Other placements, such as putting `g_2` between
+the sign cut and the raw letter, need not preserve the same sign projection;
+they are covered by the residual-finiteness closure rather than by this
+rank table.
 
 This is a full closure/no-go, not only a bounded enumeration. Since
 `Lambda_U` and `Lambda_V` are finitely generated residually finite
