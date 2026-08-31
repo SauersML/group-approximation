@@ -47,5 +47,5 @@ Since `H` is residually finite and `C s(H)` is a finite extension of
 Thus neither the first incompatible Leavitt depth return nor the restricted
 Steinberg kernel supplies a nonhyperlinear group.  The next root package must
 leave every one-variable polynomial chart—for example by producing both
-one-sided coefficients `S,T` with `TS=1), or two return parameters which
+one-sided coefficients `S,T` with `TS=1`, or two return parameters which
 cannot be placed in one residually finite coefficient algebra.
