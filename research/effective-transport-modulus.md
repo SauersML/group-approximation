@@ -45,11 +45,21 @@ gamma = 28329113480286/10^16,
   subspace, so naive relator telescoping is not uniform. A full-base rational
   sum-of-squares certificate or an explicit robust relative-property-(T)
   theorem is still needed.
+- `post-gap-compressor-constants` closes the dimension-free analytic
+  vector chain once its three stage inputs are supplied. If (f) is the
+  top-corner fixing error, (ell) the reverse leakage, and (c) the
+  normalized capture mass, then transported displacement is at most
+  (2f^2+16ell^2+16c), and the marked commutator is at most
+  (8f^2+64ell^2+64c). The committed budget
+  (f^2=arepsilon/24), (ell^2=c=arepsilon/192) is exact.
 - The current Lean transport route still calls
   `WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues`,
-  an ultralimit contradiction with an unspecified `exists N`. Once a robust
-  affine gap replaces that call, a final ledger must cover compressor
-  transport, spectral-corner restriction, and the marked-word estimate.
+  an ultralimit contradiction with an unspecified `exists N`. After a
+  robust affine gap replaces that call, what remains is presentation-specific
+  finite replay: instantiate top-corner fixing, rotated-Laplacian leakage,
+  root capture, and the fixed compressor/marked-word products from the
+  displayed relators. The downstream analytic inequalities themselves are
+  no longer missing.
 - Source drift: `non_mf_groups_exist.tex` is now the Leavitt manuscript and
   no longer displays the former forty-one-relator presentation. The legacy
   literal Lean modules and research nodes remain, but the artifact pointer
