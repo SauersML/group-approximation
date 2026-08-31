@@ -27,7 +27,7 @@ pair
 has the full monomial stabilizer \(N_\infty=\langle r,x\rangle\).
 Consequently
 \[
- P_\infty g\longmapsto[vg],qquad
+ P_\infty g\longmapsto[vg],\qquad
  N_\infty g\longmapsto\{[vg],[vxg]\}                 \tag{DUP1}
 \]
 are equivariant bijections on vertices and edges.
@@ -37,17 +37,17 @@ of the base edge has a representative \((\alpha,\beta)\) with
 \(\alpha,\beta\in A^\times\). Scaling by \(\beta^{-1}\) gives a
 unique representative
 \[
- (u,1),qquad u\in A^\times.                           \tag{DUP2}
+ (u,1),\qquad u\in A^\times.                           \tag{DUP2}
 \]
 Right multiplication by the two generators of the edge stabilizer acts on
 this ratio by
 \[
- r:u\longmapsto4u,qquad x:u\longmapsto-u^{-1}.        \tag{DUP3}
+ r:u\longmapsto4u,\qquad x:u\longmapsto-u^{-1}.        \tag{DUP3}
 \]
 Since \(A^\times=\mathord\pm2^{\mathbb Z}\), there are exactly two
 orbits:
 \[
- \mathord\pm4^{\mathbb Z},qquad
+ \mathord\pm4^{\mathbb Z},\qquad
  \mathord\pm2\,4^{\mathbb Z}.                        \tag{DUP4}
 \]
 The face of \(a=xt\) through the base edge has third row
@@ -56,9 +56,9 @@ The face of \(a=xt\) through the base edge has third row
 \]
 so it represents the first orbit. The face of \(b=xt^2r\) has third row
 \[
- vbt=(vxt^2r)=(2,1)
+ vb=vxt^2r=(2,1)
 \]
-(where the displayed \(vbt\) is read as \(vb=vxt^2r\)), so it
+so it
 represents the second orbit. Equivalently, the two normalized ratios are
 \(1\) and \(2\).
 
