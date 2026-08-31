@@ -60,13 +60,13 @@ set_option linter.unusedSectionVars false
 
 noncomputable section
 
-universe u
+universe u v
 
 /-! ## The joint kernel of a family of operators -/
 
 section JointKernel
 
-variable {ιx : Type*} {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+variable {ιx : Type*} {H : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
 /-- The joint kernel of a family of continuous operators, as a submodule. -/
 def jointKernel (f : ιx → (H →L[ℂ] H)) : Submodule ℂ H where
@@ -129,7 +129,7 @@ structure IsIdealHom {D B : Type u} [NonUnitalCStarAlgebra D] [NonUnitalCStarAlg
   right : ∀ (b : B) (x : D), ∃ y : D, ι x * b = ι y
 
 /-- A representation of `B` turns products into compositions. -/
-theorem rep_apply_mul {B : Type u} [NonUnitalCStarAlgebra B] {H : Type u} [NormedAddCommGroup H]
+theorem rep_apply_mul {B : Type u} [NonUnitalCStarAlgebra B] {H : Type v} [NormedAddCommGroup H]
     [InnerProductSpace ℂ H] [CompleteSpace H] (π : B →⋆ₙₐ[ℂ] (H →L[ℂ] H)) (b c : B) (ζ : H) :
     π (b * c) ζ = π b (π c ζ) := by
   rw [map_mul, ContinuousLinearMap.mul_def, ContinuousLinearMap.comp_apply]
@@ -138,7 +138,7 @@ theorem rep_apply_mul {B : Type u} [NonUnitalCStarAlgebra B] {H : Type u} [Norme
 irreducible as soon as it is nonzero.** -/
 theorem isIrreducibleNonUnitalRep_restrict
     {D B : Type u} [NonUnitalCStarAlgebra D] [NonUnitalCStarAlgebra B]
-    {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+    {H : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     {ι : D →⋆ₙₐ[ℂ] B} (hideal : IsIdealHom ι)
     {π : B →⋆ₙₐ[ℂ] (H →L[ℂ] H)} (hπ : IsIrreducibleNonUnitalRep π)
     {σ : D →⋆ₙₐ[ℂ] (H →L[ℂ] H)} (hσ : ∀ x : D, σ x = π (ι x))
@@ -230,15 +230,16 @@ global property of the `c₀`-sum the permanence theorem uses; for the genuine
 `c₀`-sum it follows from density of the algebraic sum and contractivity. -/
 def IsSummandExhaustive {D : ℕ → Type u} [∀ s, NonUnitalCStarAlgebra (D s)]
     {B : Type u} [NonUnitalCStarAlgebra B] (ι : ∀ s, D s →⋆ₙₐ[ℂ] B) : Prop :=
-  ∀ (H : Type u) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  ∀ (H : Type v) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (π : B →⋆ₙₐ[ℂ] (H →L[ℂ] H)), (∀ (s : ℕ) (x : D s), π (ι s x) = 0) → ∀ b : B, π b = 0
 
 /-- **Type I passes through a countable `c₀`-sum.**  This discharges the
 `sum_typeI` clause of the audit's step (A5). -/
 theorem isTypeINonUnital_of_summands {D : ℕ → Type u} [∀ s, NonUnitalCStarAlgebra (D s)]
     {B : Type u} [NonUnitalCStarAlgebra B] (ι : ∀ s, D s →⋆ₙₐ[ℂ] B)
-    (hideal : ∀ s, IsIdealHom (ι s)) (hexh : IsSummandExhaustive ι)
-    (h : ∀ s, IsTypeINonUnital (D s)) : IsTypeINonUnital B := by
+    (hideal : ∀ s, IsIdealHom (ι s)) (hexh : IsSummandExhaustive.{u, v} ι)
+    (h : ∀ s, IsTypeINonUnital.{u, v} (D s)) :
+    IsTypeINonUnital.{u, v} B := by
   intro H _ _ _ π hπ T hT
   obtain ⟨s, x₀, hx₀⟩ : ∃ (s : ℕ) (x : D s), π (ι s x) ≠ 0 := by
     by_contra hcon
@@ -263,19 +264,19 @@ structure HomogeneousBlockTypeIInputsNonUnital (d : ℕ → ℕ) (D : ℕ → Ty
     [∀ s, NonUnitalCStarAlgebra (D s)] (B : Type u) [NonUnitalCStarAlgebra B]
     (ι : ∀ s, D s →⋆ₙₐ[ℂ] B) : Prop where
   /-- Every block is type I. -/
-  blocks_typeI : ∀ s : ℕ, IsTypeINonUnital (D s)
+  blocks_typeI : ∀ s : ℕ, IsTypeINonUnital.{u, v} (D s)
   /-- Each summand sits inside the sum as a two-sided ideal. -/
   summand_ideal : ∀ s : ℕ, IsIdealHom (ι s)
   /-- The summands detect representations of the sum. -/
-  summand_exhaustive : IsSummandExhaustive ι
+  summand_exhaustive : IsSummandExhaustive.{u, v} ι
 
 /-- **Audit step (A5), with both permanence clauses proved.**  The unitization
 of a `c₀`-sum of type I blocks is type I. -/
 theorem HomogeneousBlockTypeIInputsNonUnital.isTypeI_of_unitization
     {d : ℕ → ℕ} {D : ℕ → Type u} [∀ s, NonUnitalCStarAlgebra (D s)]
     {B : Type u} [NonUnitalCStarAlgebra B] {ι : ∀ s, D s →⋆ₙₐ[ℂ] B}
-    (hI : HomogeneousBlockTypeIInputsNonUnital d D B ι) :
-    IsTypeI (Unitization ℂ B) :=
+    (hI : HomogeneousBlockTypeIInputsNonUnital.{u, v} d D B ι) :
+    IsTypeI.{u, v} (Unitization ℂ B) :=
   isTypeI_unitization
     (isTypeINonUnital_of_summands ι hI.summand_ideal hI.summand_exhaustive hI.blocks_typeI)
 
