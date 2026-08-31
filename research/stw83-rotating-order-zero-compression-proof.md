@@ -34,10 +34,11 @@ Write `t=exp(i theta)`.  When
 put `s=m theta/(2 pi)-j` and define
 
 ```text
-r(t)=sqrt(1-s) e_j+sqrt(s) e_(j+1),                     (2)
+r(t)=sqrt(1-s) xi_j+sqrt(s) xi_(j+1),                     (2)
 ```
 
-where the last interval uses `e_m=e_0`.  Formula (2) agrees at every
+where `xi_0,...,xi_(m-1)` is the standard basis and the last interval uses
+`xi_m=xi_0`.  Formula (2) agrees at every
 endpoint and at `theta=0,2 pi`, so `r:T->C^m` is a continuous unit-vector
 loop.  For
 
@@ -65,20 +66,20 @@ It remains to realize these vector states as compressions of one
 star-homomorphic colour.  The map
 
 ```text
-q:U(m)->S^(2m-1),  q(W)=W* e_1,
+q:U(m)->S^(2m-1),  q(W)=W* xi_0,
 ```
 
-is a locally trivial bundle with fibre the stabilizer of `e_1`, which is
+is a locally trivial bundle with fibre the stabilizer of `xi_0`, which is
 isomorphic to `U(m-1)`.  Lift the loop `r` first over the interval
 `[0,2 pi]`, obtaining a continuous path `W_0` with
-`W_0(theta)*e_1=r(exp(i theta))`.  Its endpoints lie over the same vector.
+`W_0(theta)*xi_0=r(exp(i theta))`.  Its endpoints lie over the same vector.
 Consequently
 
 ```text
 H=W_0(0) W_0(2 pi)*
 ```
 
-fixes `e_1`.  The stabilizer `U(m-1)` is path connected, so choose a path
+fixes `xi_0`.  The stabilizer `U(m-1)` is path connected, so choose a path
 `H_theta` inside it from the identity to `H`.  Then
 
 ```text
@@ -99,7 +100,7 @@ pi(x)(t)=W(t)xW(t)*.
 ```
 
 This is a unital star homomorphism, hence a cpc order-zero map.  For the
-constant projection `e=e_(11)`, equations (4)--(5) give
+constant projection `e=e_(11)`, the projection onto `C xi_0`,, equations (4)--(5) give
 
 ```text
 e pi(u)(t)e=<u r(t),r(t)>e,
