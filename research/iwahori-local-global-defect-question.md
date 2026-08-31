@@ -442,22 +442,6 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   only the flat square subclass, so a unitary synchronization theorem alone
   must not be advertised as an equivalence without an additional flattening
   argument.
-- **The full frame gate is exactly isometry synchronization.**
-  `right-translation-flattens-every-relative-kraus-frame` replaces
-  every rectangular frame by right-translated components whose scaled
-  fibres are literal isometries, preserving the entire coefficient
-  function and row energy. Hence `e_K` is exactly the infimum of
-  Cayley energy over relative isometry-valued zero-cochains of arbitrary
-  common target dimension. Unitary tables are only the target-dimension
-  `R=d` slice; the missing flattening issue is common corange, not
-  column Gram.
-- **Square Gram-flat frames do polarize.**
-  `gram-flat-kraus-frames-polarize-to-unitary-tables` gives
-  `E_unit <= E_K+2 sqrt(eta_Gram)`. A rank-one Fourier frame of
-  any nontrivial irreducible has zero Kraus energy but Gram defect
-  `2(1-1/d)`; right-translation makes it a tall isometry, not an
-  original-dimension unitary. Thus alternating polar minimization needs a
-  common-corange or square-frame selector and cannot use energy alone.
 - **Matrix-algebra Ulam stability starts after the missing leakage
   estimate.** `matrix-ulam-stability-needs-full-unit-ball-control`
   records the exact Alekseev--Thom input and a sharp two-by-two separation:
