@@ -10,62 +10,61 @@ distinct_from:
   clapham-fp-embedding-preserves-word-problem: that constructs a finitely presented decidable envelope; this computes canonical matrix witnesses once a finite generating set and decider are already supplied.
 ---
 
-**ESTABLISHED.** Let (Gamma=langle x_1,ldots,x_mangle) be a
-finitely generated hyperlinear group, and supply an algorithm (W) deciding
-whether a word in the (x_i^{pm1}) is trivial in (Gamma). Finite
+**ESTABLISHED.** Let \(\Gamma=\langle x_1,\ldots,x_m\rangle\) be a
+finitely generated hyperlinear group, and supply an algorithm \(W\) deciding
+whether a word in the \(x_i^{\pm1}\) is trivial in \(\Gamma\). Finite
 presentability is not needed.
 
-For (n,qge 1), call a tuple
-(U=(U_1,ldots,U_m)in U(d)^m) a **canonical ((n,q))-microstate** when,
-for every freely reduced word (w) of length at most (n),
+For \(n,q\ge 1\), call a tuple
+\(U=(U_1,\ldots,U_m)\in U(d)^m\) a **canonical \((n,q)\)-microstate** when,
+for every freely reduced word \(w\) of length at most \(n\),
 
-[
-egin{aligned}
- w=_{Gamma}1&Longrightarrow
-       |w(U)-I_d|_{2,d}<2^{-q},\
- w
-e_{Gamma}1&Longrightarrow
-       |operatorname{tr}_d(w(U))|<2^{-q}.
-                                                               	ag{CHM1}
-end{aligned}
-]
+\[
+\begin{aligned}
+ w=_{\Gamma}1&\Longrightarrow
+       \|w(U)-I_d\|_{2,d}<2^{-q},\\
+ w\ne_{\Gamma}1&\Longrightarrow
+       |\operatorname{tr}_d(w(U))|<2^{-q}.
+                                                               \tag{CHM1}
+\end{aligned}
+\]
 
-Here (operatorname{tr}_d) and (|cdot|_{2,d}) are normalized. There is
+Here \(\operatorname{tr}_d\) and \(\|\cdot\|_{2,d}\) are normalized. There is
 one Turing functional which, from the finite generating alphabet, a code for
-(W), and ((n,q)), halts with
+\(W\), and \((n,q)\), halts with
 
-[
-(d,U_1,ldots,U_m),qquad U_iin U(d)cap M_d(mathbb Q(i)),
-                                                               	ag{CHM2}
-]
+\[
+(d,U_1,\ldots,U_m),\qquad U_i\in U(d)\cap M_d(\mathbb Q(i)),
+                                                               \tag{CHM2}
+\]
 
-satisfying ((mathrm{CHM1})). Consequently (Gamma) has a total
+satisfying \((\mathrm{CHM1})\). Consequently \(\Gamma\) has a total
 computable dimension bound
 
-[
-mu_{Gamma,W}(n,q)
- quad	ext{such that a canonical ((n,q))-microstate exists in some }
- dle mu_{Gamma,W}(n,q).                                  	ag{CHM3}
-]
+\[
+\mu_{\Gamma,W}(n,q)
+ \quad\text{such that a canonical \((n,q)\)-microstate exists in some }
+ d\le \mu_{\Gamma,W}(n,q).                                  \tag{CHM3}
+\]
 
 The bound may be chosen nondecreasing in both variables by taking finite
 maxima of the dimensions returned for smaller inputs.
 
 This is also a modulus for the usual finite-ball definition. Choose a
-representative word of length at most (R) for every element of (B_R).
-Applying ((mathrm{CHM1})) at radius (3R) makes the evaluated
+representative word of length at most \(R\) for every element of \(B_R\).
+Applying \((\mathrm{CHM1})\) at radius \(3R\) makes the evaluated
 representatives approximately multiplicative, because each multiplication
-error is a trivial word of length at most (3R). For distinct elements
-(g,hin B_R),
+error is a trivial word of length at most \(3R\). For distinct elements
+\(g,h\in B_R\),
 
-[
- |w_g(U)-w_h(U)|_{2,d}^2
- =2-2operatorname{Re}operatorname{tr}_d(w_g(U)^*w_h(U))
- >2-2^{1-q}.                                               	ag{CHM4}
-]
+\[
+ \|w_g(U)-w_h(U)\|_{2,d}^2
+ =2-2\operatorname{Re}\operatorname{tr}_d(w_g(U)^*w_h(U))
+ >2-2^{1-q}.                                               \tag{CHM4}
+\]
 
-Thus (R) and a rational tolerance effectively determine an input
-((n,q)) and hence a dimension bound.
+Thus \(R\) and a rational tolerance effectively determine an input
+\((n,q)\) and hence a dimension bound.
 
 ## Uniformity boundary
 
@@ -74,7 +73,7 @@ It is not a presentation-only algorithm promised on the semantic class of
 finite presentations which happen to have decidable word problem: there is
 no uniform procedure extracting a decider from such a presentation. For a
 fixed finitely presented group with a fixed decider, however,
-(mu_{Gamma,W}) is an ordinary total computable function.
+\(\mu_{\Gamma,W}\) is an ordinary total computable function.
 
 The proof is
 `decidable-word-problem-hyperlinear-microstate-search-proof`.
