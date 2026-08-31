@@ -25,8 +25,8 @@ If `M` first halts after `N` steps, put
 h=min{j:T_j>=N}.
 ```
 
-Then every attained-perfect finite-dimensional signed-permutation ZPC
-strategy `S` for `G_M` satisfies
+Then every attained-perfect finite-dimensional ZPC strategy `S` for `G_M`
+satisfies
 
 ```text
 dim D_infinity(S)
@@ -42,8 +42,12 @@ descriptions such that every halting `M` has some perfect ZPC strategy for
 dim D_infinity <= B(M).                                  (NHB3)
 ```
 
-The assertion is universal over perfect strategies, not merely over BCV's
-chosen forward completeness strategy. The exact wrapper inverse and Pauli
+Here and throughout, `ZPC` has BCV Definition 2.27's exact meaning: a
+Z-aligned signed-permutation strategy that commutes along edges. Thus the
+universal quantifier is over the same strategy class used in BCV perfect
+completeness, not a narrower subclass. The assertion is universal over
+perfect strategies in that class, not merely over BCV's chosen forward
+completeness strategy. The exact wrapper inverse and Pauli
 normal form are essential: value preservation alone would not imply
 `(NHB2)`.
 
