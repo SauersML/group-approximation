@@ -354,6 +354,18 @@ overlap cannot converge either.  Any surviving c.p. factorization must have
 diagonal mixing depth growing with the Fourier window, or abandon the
 weighted row.
 
+The unbounded-mixing escape is real for scalar rows.
+`stw84-scalar-fourier-row-two-colour` factors the canonical scalar row
+exactly through the u.c.p. Toeplitz symbol map `M_n->C(T)`.  The circle's
+two nuclear-dimension colours remain approximately order zero after
+weighted cutdown whenever `||[h,U]||` is small, and finite-dimensional cone
+stability repairs them to exact order-zero colours.  Augmentation carriers
+have `||[h,U]||<=1/N`, so their scalar rows are solved.  On the diagonal,
+all coordinates factor through one averaging state—exactly the overlap
+depth `n` predicted by the firewall.  The surviving obstruction is now
+coefficient covariance: for a finite coefficient stage `D`, the map
+`f tensor d |-> f(U)d` is not multiplicative unless `U` commutes with `D`.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
