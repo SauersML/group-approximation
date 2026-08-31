@@ -71,3 +71,47 @@ This does not obstruct a genuinely different zero-noise presentation. At
 therefore presentation-level: replace the full-support noisy test by new
 finite equations whose perfect models survive while retaining a
 dimension-independent decoder.
+
+## Exact support-design boundary
+
+For an arbitrary mask support `M subseteq F_W`, the two-equation mechanism
+above is absent exactly when
+
+```text
+not (f^up in M and -f^up in M)
+for every lifted query function f^up(y)=f(y|_U).         (TVC5)
+```
+
+This does permit supports larger than the zero-noise singleton. Let
+`S subseteq C` be the positive assignment support of the honest perfect
+model in this outer context. Perfect completeness forces, and is forced
+locally by,
+
+```text
+M subseteq A_S={mu:mu(phi)=1 for every phi in S}.        (TVC6)
+```
+
+For nonempty `S`, `A_S` is antipodal-free, so `(TVC6)` implies
+`(TVC5)`. If `S` is a proper subset of the full assignment cube then
+`A_S` contains nonconstant masks, giving genuine larger sub-supports.
+
+But every probability law supported on `A_S` obeys
+
+```text
+E_mu product_(phi in beta) mu(phi)=1
+for every beta subseteq S.                              (TVC7)
+```
+
+Thus a larger exact-complete sub-support avoids central collapse only by
+leaving all Fourier characters inside the honest spectrum undamped. In
+particular, strict damping of every folded non-dictator odd character is
+compatible with perfect completeness only when `|S|<=2`; if `|S|>=3`,
+choose any three-point `beta subseteq S` in `(TVC7)`.
+
+This is the exact mask-law boundary. It agrees with
+`perfect-correlated-masks-have-undamped-conditioned-spectrum`: the remaining
+route must alter the test so that high-degree honest-spectrum characters are
+decoded by additional relations, or start from a native LCS gap. Neither
+independent masks, correlated masks, anchoring, nor a direct-sum flag changes
+this conclusion.
+
