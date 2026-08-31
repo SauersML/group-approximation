@@ -223,6 +223,38 @@ theorem coe_sub_apply (G : TracialTwoGauge D)
     ((x - y : ↥(scalarPlusJSubalgebra G)) : BoundedCStarSequence D) n
       = (x : BoundedCStarSequence D) n - (y : BoundedCStarSequence D) n := rfl
 
+/-- **The approximants of (A8), packaged.**  Every element of `M = ℂ1 + J` is
+the uniform-two limit of a sequence drawn from `A`, viewed inside `M`.
+
+This is the landed scalar truncation, hoisted into its own declaration on
+purpose.  All the subtype arithmetic and the whole limit estimate live here,
+where there are no ambient continuity hypotheses; the uniqueness theorem below
+then consumes only an opaque sequence `b` and never builds a subalgebra element
+underneath a `Tendsto`. -/
+theorem exists_uniformTwoApproximants (G : TracialTwoGauge D)
+    (x : ↥(scalarPlusJSubalgebra G)) :
+    ∃ b : ℕ → ↥(scalarPlusJSubalgebra G),
+      (∀ k, (b k : BoundedCStarSequence D) ∈ unitizedC0Sum D) ∧
+      Tendsto (fun k ↦ uniformTwoNorm G
+        ((x - b k : ↥(scalarPlusJSubalgebra G)) : BoundedCStarSequence D))
+        atTop (nhds 0) := by
+  obtain ⟨a, -, hA, -, -, hconv⟩ :=
+    exists_uniformTwoCauchy_scalarTruncations G (mem_scalarPlusJSubalgebra.1 x.2)
+  have hmem : ∀ k, a k ∈ scalarPlusJSubalgebra G := fun k ↦
+    mem_scalarPlusJSubalgebra.2 (unitizedC0Sum_subset_scalarPlusJ G (hA k))
+  refine ⟨fun k ↦ ⟨a k, hmem k⟩, hA, ?_⟩
+  refine Metric.tendsto_nhds.2 fun ε hε ↦ ?_
+  obtain ⟨K, hK⟩ := hconv (ε / 2) (half_pos hε)
+  filter_upwards [eventually_ge_atTop K] with k hk
+  rw [Real.dist_eq, sub_zero, abs_of_nonneg (uniformTwoNorm_nonneg G _)]
+  have hbd : uniformTwoNorm G
+      ((x - ⟨a k, hmem k⟩ : ↥(scalarPlusJSubalgebra G)) :
+        BoundedCStarSequence D) ≤ ε / 2 := by
+    refine uniformTwoNorm_le G _ fun n ↦ ?_
+    rw [coe_sub_apply G x ⟨a k, hmem k⟩ n]
+    exact (hK k hk n).le
+  linarith
+
 /-- **Uniqueness of the continuous extension.**  Two uniform-two-continuous
 tracial states of `M` which agree on `A` are equal.
 
@@ -237,41 +269,17 @@ theorem eq_of_eqOn_unitizedC0Sum (G : TracialTwoGauge D)
     (heq : ∀ y : ↥(scalarPlusJSubalgebra G),
       (y : BoundedCStarSequence D) ∈ unitizedC0Sum D → σ y = σ' y)
     (x : ↥(scalarPlusJSubalgebra G)) : σ x = σ' x := by
-  obtain ⟨a, -, hA, -, -, hconv⟩ :=
-    exists_uniformTwoCauchy_scalarTruncations G (mem_scalarPlusJSubalgebra.1 x.2)
-  have hmem : ∀ k, a k ∈ scalarPlusJSubalgebra G := fun k ↦
-    mem_scalarPlusJSubalgebra.2 (unitizedC0Sum_subset_scalarPlusJ G (hA k))
-  have hcoe : ∀ k n : ℕ,
-      ((x - ⟨a k, hmem k⟩ : ↥(scalarPlusJSubalgebra G)) :
-        BoundedCStarSequence D) n
-        = (x : BoundedCStarSequence D) n - a k n :=
-    fun k n ↦ coe_sub_apply G x ⟨a k, hmem k⟩ n
-  have hnull : Tendsto (fun k ↦ uniformTwoNorm G
-      ((x - ⟨a k, hmem k⟩ : ↥(scalarPlusJSubalgebra G)) :
-        BoundedCStarSequence D))
-      atTop (nhds 0) := by
-    refine Metric.tendsto_nhds.2 fun ε hε ↦ ?_
-    obtain ⟨K, hK⟩ := hconv (ε / 2) (half_pos hε)
-    filter_upwards [eventually_ge_atTop K] with k hk
-    rw [Real.dist_eq, sub_zero, abs_of_nonneg (uniformTwoNorm_nonneg G _)]
-    have hbd : uniformTwoNorm G
-        ((x - ⟨a k, hmem k⟩ : ↥(scalarPlusJSubalgebra G)) :
-          BoundedCStarSequence D)
-        ≤ ε / 2 := by
-      refine uniformTwoNorm_le G _ fun n ↦ ?_
-      rw [hcoe k n]
-      exact (hK k hk n).le
-    linarith
-  have h1 := hσ (fun k ↦ x - ⟨a k, hmem k⟩) hnull
-  have h2 := hσ' (fun k ↦ x - ⟨a k, hmem k⟩) hnull
+  obtain ⟨b, hbA, hnull⟩ := exists_uniformTwoApproximants G x
+  have h1 := hσ (fun k ↦ x - b k) hnull
+  have h2 := hσ' (fun k ↦ x - b k) hnull
   have hfun : (fun _ : ℕ ↦ σ x - σ' x)
-      = fun k ↦ σ (x - ⟨a k, hmem k⟩) - σ' (x - ⟨a k, hmem k⟩) := by
+      = fun k ↦ σ (x - b k) - σ' (x - b k) := by
     funext k
-    rw [σ.map_sub, σ'.map_sub, heq ⟨a k, hmem k⟩ (hA k)]
-    ring
+    rw [σ.map_sub, σ'.map_sub, heq (b k) (hbA k), sub_sub_sub_cancel_right]
   have hdiff : Tendsto (fun _ : ℕ ↦ σ x - σ' x) atTop (nhds 0) := by
     rw [hfun]
-    simpa using h1.sub h2
+    have h3 := h1.sub h2
+    rwa [sub_zero] at h3
   have hzero : (0 : ℂ) = σ x - σ' x :=
     tendsto_nhds_unique hdiff tendsto_const_nhds
   exact sub_eq_zero.mp hzero.symm
@@ -317,6 +325,8 @@ theorem isExtensionOfSomeBaseFunctional_iff (G : TracialTwoGauge D)
     refine ⟨fun z ↦ if h : z ∈ scalarPlusJSubalgebra G then σ ⟨z, h⟩ else 0,
       hcont, ?_⟩
     intro y _
+    show σ y = if h : (y : BoundedCStarSequence D) ∈ scalarPlusJSubalgebra G
+      then σ ⟨(y : BoundedCStarSequence D), h⟩ else (0 : ℂ)
     exact (dif_pos y.2).symm
 
 /-- **(A18) as a theorem: `T(A) ⊊ T(M)`.**  The extension map from the tracial
