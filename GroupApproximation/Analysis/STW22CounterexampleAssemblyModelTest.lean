@@ -241,7 +241,7 @@ theorem not_exists_uniformTwoBound_of_discontinuous (G : TracialTwoGauge D)
     ∃ x : ↥(scalarPlusJSubalgebra G),
       K * uniformTwoNorm G (x : BoundedCStarSequence D) < ‖σ x‖ := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   exact hσ (isUniformTwoContinuous_of_bound G σ hcon)
 
 /-! ## The block model fits the interface -/
