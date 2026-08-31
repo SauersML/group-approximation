@@ -11,10 +11,10 @@ distinct_from:
 
 **ESTABLISHED (attained value one).** Fix the Answer Reduced game of
 Bowen--Chapman--Vidick, Definition 5.79, with individual-degree parameter
-`d=9), `m>=1), and `q>63m). Let `S` be an attained perfect
+`d=9`, `m>=1`, and `q>63m`. Let `S` be an attained perfect
 strategy in a faithful finite tracial measurement algebra `(M,tau)`;
 this includes the faithful quotient of a finite-dimensional synchronous
-strategy. Then, without changing `M), `S` has an exact decoding
+strategy. Then, without changing `M`, `S` has an exact decoding
 
 ```text
 Dec(S): perfect Oracle(DoubleCover(V_n))
