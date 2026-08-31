@@ -75,6 +75,12 @@ Thus its multiplicity vector is (MVC4), and the normalized weight of the
 `pi`-carrier is `dim(pi)^2/|Q_m|`. This is an integral point of
 the feasible semigroup, not merely a real-cone limit.
 
+The dual of a finite nonnegative orthant under the standard multiplicity
+pairing is the same orthant. Every coordinate of the Plancherel vector
+`(dim(pi))_pi` is strictly positive. Hence a nonzero dual vector has the
+strictly positive pairing in (MVC4a), proving the fixed-level Farkas
+assertion.
+
 ## Exact finite Plancherel windows
 
 Let `F subset C` be finite. For every `g in F minus {e}` choose
