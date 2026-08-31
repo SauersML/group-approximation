@@ -49,13 +49,17 @@ M_pi=dim(pi),       pi in Irr(Q_m),                      (MVC4)
 
 whose normalized type weights are `dim(pi)^2/|Q_m|`.
 
-There is also exact finite-window approximation at the infinite modular
-vertex. For every finite `F subset C` there is a prime
-`ell!=p` and the endpoint representation
+There is also an explicit exact finite-window approximation at the infinite
+modular vertex. For every finite `F subset C`, choose one nonzero entry
+`a_g` of `g-I` for each `g in F minus {e}`, put
 
 ```text
-Lambda_F=lambda_(SL_2(F_ell)) after reduction of A       (MVC5)
+P_F=product_(g in F minus {e}) |a_g|,
+m_F=1+p P_F,                                             (MVC5)
 ```
+
+with the empty product equal to one, and take
+`Lambda_F=lambda_(SL_2(Z/m_F))` after reduction of `A`.
 
 such that
 
