@@ -1,72 +1,80 @@
-import GroupApproximation.Analysis.UniformTracialCompletionIdentification
-import GroupApproximation.Analysis.CuntzPedersenJordanTracial
+import GroupApproximation.Analysis.CoronaCoordinateStateCompactness
+import GroupApproximation.Analysis.UniformTracialBoundedCauchyQuotient
+import GroupApproximation.Analysis.CuntzPedersenTraceZero
 
 /-!
 # Sections 5--7 of the STW Problem XXII counterexample audit, assembled
 
-`research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md`
-ends with three steps, and this file is their composition:
+The audit's endgame is assembled here from landed pieces, along the
+**compactness** route rather than the Cuntz--Pedersen/Jordan route:
 
-* **(A10)--(A13)**  the obstructing class `hbar = h + B` in the corona keeps
-  distance at least one from every finite sum of self-commutators, so it is
-  outside the Cuntz--Pedersen trace-zero space;
-* **(A14)--(A15)**  Cuntz--Pedersen separation, refined by the Jordan
-  decomposition, produces `sigma` in `T(H)` with `sigma hbar ≠ 0`, and its
-  pullback `sigma_tilde` along the quotient is a tracial state of
-  `M = ℂ1 + J`;
-* **(A16)--(A18)**  `sigma_tilde` is constant and nonzero on the tail
-  truncations `h^(n)`, whose uniform two-norms tend to zero.  So
+* **(A14)**  `Analysis/CoronaCoordinateStateCompactness` turns *arbitrarily
+  late coordinate-state solvability* into a tracial state `sigma` on the `c₀`
+  corona with `sigma hbar = 1`.  Finitely many state constraints are solved at
+  one sufficiently late coordinate, and Banach--Alaoglu assembles the actual
+  tracial state.  No Jordan decomposition and no Cuntz--Pedersen separation is
+  used anywhere below.
+* **(A15)**  `sigma` pulls back along `M ↪ ∏_s D_s → H` to a tracial state
+  `sigma_tilde` of the uniform tracial completion `M = ℂ1 + J`, and its
+  restriction to `A = ℂ1 + B` is the extreme trace at infinity.
+* **(A16)--(A18)**  `sigma_tilde` takes the value one on every tail truncation
+  `h^(N)`, while the uniform two-norms of those tails tend to zero.  So
   `sigma_tilde` is a tracial state of `M` which is not continuous for the
   gauge, i.e. `T(A) ⊊ T(M)`.
 
-## What is composed, and what is assumed
+## The corrected obstruction input
 
-Every step below is a composition of already-landed material:
+The printed argument zeroes only the lower-left blocks `c_j` at a common point.
+That is enough for the *norm* obstruction (A2), but it is **not** enough to make
+the vector state at that point tracial on the finite family: the compression
+computation leaves the `b_j` terms.  Both off-diagonal blocks `b_j` **and**
+`c_j` must be zeroed simultaneously.  The hypothesis bundle
+`CoordinateStateBlockData` therefore records, in place of a norm-distance
+`width` clause, exactly what the corrected geometry delivers:
 
-* `Analysis/CuntzPedersenCoronaObstruction` supplies `BlockObstruction`,
-  `TraciallyNullObstruction`, the limsup bound
-  `norm_coronaClass_sub_sum_selfCommutator_ge_one`, and (A13) itself as
-  `coronaClass_not_mem_traceZeroSpace`;
-* `Analysis/CuntzPedersenJordanTracial` supplies
-  `exists_tracialState_detecting_coronaClass_of_jordan`, whose only unproved
-  inputs are the two named Jordan properties;
-* `Analysis/UniformTracialTwoNullIdeal` and
-  `Analysis/UniformTracialCompletionIdentification` supply `J`, the star
-  subalgebra `M = ℂ1 + J`, its norm closedness, and (A8).
+`ArbitrarilyLateCoordinateStateConstraints seq` --- for every finite family of
+bounded sequences and every floor, some coordinate past that floor carries a
+state which sends `seq` there to one and kills the displayed self-commutators.
 
-Nothing here is an axiom.  The unproved inputs are exactly three named
-`Prop`s, all of them visible in the dependency surface of the summary theorem:
-
-* `HasJordanDecomposition` and `HasUniqueJordanDecomposition` on the corona
-  (Cuntz--Pedersen; Takesaki III.4.2);
-* the `width` field of `BlockObstruction`, which is the audit's (A2), the
-  Chern-class compression bound.  `Analysis/ChernCommonZeroBridge` derives that
-  bound from `CommonZeroProperty`, and derives it unconditionally at the
-  `s = ℓ = 1` block.
-
-The two remaining structural facts of the audit -- that `A` is type I and that
-`T(A)` is Bauer -- are Sections 1 and 3, assembled separately in
-`Analysis/STW22CounterexampleStructure`.  They are not needed for the trace
-statement and are not repeated here.
+Two things about that bundle are worth stating plainly.  It needs neither
+`‖h_s‖ = 1` nor self-adjointness of `h_s`: `CoordinateStateBlockData.not_isNull`
+derives `h ∉ B` from the coordinate states alone.  And it *proves* the audit's
+(A13), `hbar ∉ H₀`, rather than assuming a width bound --- see
+`coronaClass_not_mem_traceZeroSpace_of_blockData`.
 
 ## The corona used
 
-The audit forms `H = M/B`.  This file uses instead the corona
-`(∏_s D_s)/B` of the whole bounded product, together with the composite
-`M ↪ ∏_s D_s → (∏_s D_s)/B`.  The two give the same conclusion, and the
-larger corona is the strictly stronger route:
+The audit forms `H = M/B`.  This file uses the corona `(∏_s D_s)/B` of the whole
+bounded product together with the composite `M ↪ ∏_s D_s → (∏_s D_s)/B`, which
+is what the landed compactness theorem speaks about.  The resulting tracial
+state restricts along that composite to `sigma_tilde`, which is exactly the
+audit's state.
 
-* for (A12), arbitrary bounded lifts are allowed, which is more competitors
-  than lifts from `M`, so the distance bound obtained is at least as strong;
-* for (A14), the resulting tracial state restricts to a tracial state of `M`
-  along the composite, which is exactly `sigma_tilde`.
+## The completion is the honest one
 
-`exists_mem_twoNullIdeal_selfCommutator_eq` records the audit's remark that
-lifting from `M` costs nothing, because scalar parts cancel in
-self-commutators.
+`Analysis/UniformTracialBoundedCauchyQuotient` builds the bounded uniform-two
+Cauchy quotient of `A` and transports a C-star structure onto it across the
+proved bijection with `ℂ1 + J`.  The endpoint is therefore stated twice: on the
+concrete star subalgebra `scalarPlusJSubalgebra G`, and transported along the
+landed `realizationStarAlgEquiv` to the completion object itself.
 
-`STW22CounterexampleAssemblyModelTest` model-tests every `Prop` introduced
-here.
+## The alternative route
+
+`Analysis/CuntzPedersenJordanTracial` reaches the same detecting trace from a
+norm-distance obstruction, Hahn--Banach and the Jordan decomposition.  Nothing
+here depends on it; it is recorded only as the alternative, and it carries two
+unproved literature hypotheses which the compactness route does not need.
+
+## The block model
+
+The intended coordinate algebras are the antipodally covariant matrix functions
+of `Analysis/AntipodalHomogeneousBlock`: `D s := RealProjectiveBlock d s`, the
+fixed-point algebra of `C(S^d, M_(s+1))` under conjugation by the diagonal
+involution, which models `Γ(End(1 ⊕ λ_ℂ^{⊕s}))` over `RP^d` with no bundle
+library.  Everything below is generic in `D`, so that instantiation is a
+substitution.
+
+`STW22CounterexampleAssemblyModelTest` model-tests every `Prop` introduced here.
 -/
 
 namespace GroupApproximation
@@ -74,9 +82,9 @@ namespace STW22Assembly
 
 open Filter PolarLiftingGeneralCStar
 open UniformTracialSequenceCompletion UniformTracialTwoNullIdeal
-open UniformTracialCompletionIdentification
+open UniformTracialCompletionIdentification UniformTracialBoundedCauchyQuotient
 open CuntzPedersenCoronaObstruction CuntzPedersenTraceZero
-open CuntzPedersenJordanTracial
+open CStarState CoronaCoordinateStateCompactness
 
 noncomputable section
 
@@ -89,11 +97,11 @@ variable {D : ℕ → Type u} [∀ n, CStarAlgebra (D n)]
 
 /-! ## The uniform two-norm
 
-Hostile check 2 of the audit: for a positive element the supremum of the
-tracial two-norms over `T(A) = Prob(K)` is attained on point masses, so the
-uniform two-norm is the supremum of the coordinate gauges.  That supremum is
-taken as the definition here, which keeps the statement independent of the
-still-unformalized identification `T(A) = Prob(K)`. -/
+Hostile check 2 of the audit: for a positive element the supremum of the tracial
+two-norms over `T(A) = Prob(K)` is attained on point masses, so the uniform
+two-norm is the supremum of the coordinate gauges.  That supremum is taken as
+the definition here, which keeps the statement independent of the still
+unformalized identification `T(A) = Prob(K)`. -/
 
 /-- The audit's `‖·‖_{2,T(A)}`: the supremum over coordinates of the coordinate
 two-gauges. -/
@@ -126,20 +134,37 @@ theorem uniformTwoNorm_le_norm (G : TracialTwoGauge D)
   uniformTwoNorm_le G x fun n ↦
     (G.le_norm n (x n)).trans (boundedCStarSequence_coord_norm_le D x n)
 
-/-! ## (A12): scalar parts cancel in self-commutators -/
+/-! ## Scalar parts cancel in self-commutators
 
-/-- Adding a scalar multiple of the unit leaves a self-commutator unchanged.
-This is the audit's "scalar parts cancel in self-commutators" of (A12): a lift
-`λ1 + z` of an element of `H = M/B` contributes the same self-commutator as its
-ideal part `z`. -/
+The coordinate-state constraints are quantified over arbitrary bounded
+sequences, so they already cover every lift of an element of `H = M/B`.  The
+lemmas here record why: a lift `λ1 + z` contributes the same self-commutator as
+its ideal part `z`, so no separate clause for scalars is needed. -/
+
+/-- Expansion of `(c·1 + y)⋆ (c·1 + y)`, the one algebraic step behind the
+cancellation. -/
+private theorem star_expand_smul_one_add {C : Type*} [CStarAlgebra C] (c : ℂ)
+    (y : C) :
+    star (c • (1 : C) + y) * (c • (1 : C) + y) =
+      (star c * c) • (1 : C) + (star c • y + c • star y) + star y * y := by
+  have e1 : (star c • (1 : C)) * (c • (1 : C)) = (star c * c) • (1 : C) := by
+    rw [smul_mul_assoc, one_mul, smul_smul]
+  have e2 : (star c • (1 : C)) * y = star c • y := by
+    rw [smul_mul_assoc, one_mul]
+  have e3 : star y * (c • (1 : C)) = c • star y := by
+    rw [mul_smul_comm, mul_one]
+  rw [star_add, star_smul, star_one, add_mul, mul_add, mul_add, e1, e2, e3]
+  abel
+
+/-- Adding a scalar multiple of the unit leaves a self-commutator unchanged. -/
 theorem selfCommutator_smul_one_add {C : Type*} [CStarAlgebra C] (c : ℂ)
     (y : C) : selfCommutator (c • (1 : C) + y) = selfCommutator y := by
   have hs : star (c • (1 : C) + y) = star c • (1 : C) + star y := by
     rw [star_add, star_smul, star_one]
   have hsw : star (star c • (1 : C) + star y) = c • (1 : C) + y := by
     rw [star_add, star_smul, star_one, star_star, star_star]
-  have h1 := CuntzPedersenJordanTracial.star_smul_one_add_mul_self c y
-  have h2 := CuntzPedersenJordanTracial.star_smul_one_add_mul_self (star c) (star y)
+  have h1 := star_expand_smul_one_add c y
+  have h2 := star_expand_smul_one_add (star c) (star y)
   rw [star_star, star_star, hsw] at h2
   have hcomm : star c * c = c * star c := mul_comm _ _
   rw [selfCommutator_apply, selfCommutator_apply, h1, hs, h2, hcomm]
@@ -160,40 +185,106 @@ theorem exists_mem_twoNullIdeal_selfCommutator_eq (G : TracialTwoGauge D)
   obtain ⟨c, j, hj, rfl⟩ := hy
   exact ⟨j, hj, selfCommutator_algebraMap_add c j⟩
 
-/-- **(A12) with lifts from `M`.**  Take any finitely many elements of `M`.
-Their scalar parts cancel in the self-commutators, so the sum of those
-self-commutators is the sum for a family drawn from the ideal `J`, and the
-landed limsup bound applies: the obstructing corona class stays at distance at
-least one from that sum. -/
-theorem norm_coronaClass_sub_sum_selfCommutator_scalarPlusJ_ge_one
-    (G : TracialTwoGauge D) (B : BlockObstruction D) (ell : ℕ)
-    (y : Fin ell → BoundedCStarSequence D) (hy : ∀ j, y j ∈ scalarPlusJ G) :
-    ∃ z : Fin ell → BoundedCStarSequence D,
-      (∀ j, z j ∈ twoNullIdeal G) ∧
-      (∀ j, selfCommutator (y j) = selfCommutator (z j)) ∧
-      1 ≤ ‖B.coronaClass -
-        ∑ j, selfCommutator (cStarProductCoronaQuotient D atTop (z j))‖ := by
-  choose z hz hzeq using fun j ↦ exists_mem_twoNullIdeal_selfCommutator_eq G (hy j)
-  exact ⟨z, hz, hzeq, norm_coronaClass_sub_sum_selfCommutator_ge_one B ell z⟩
+/-! ## The corrected block input -/
 
-/-! ## `M = ℂ1 + J`, its C-star structure, and the quotient map -/
+/-- **(A10) from the coordinate states alone.**  A sequence carrying
+arbitrarily late coordinate-state constraints is not null, so its corona class
+is nonzero.  No norm-one clause is needed: a tracial state of the corona cannot
+send the class of a null sequence to one. -/
+theorem not_isNull_of_arbitrarilyLateCoordinateStates
+    {h : BoundedCStarSequence D}
+    (hcoord : ArbitrarilyLateCoordinateStateConstraints h) :
+    h ∉ nullCStarSequenceIdeal D atTop := by
+  intro hnull
+  obtain ⟨σ, hσ⟩ :=
+    exists_corona_tracialState_of_arbitrarilyLate_coordinate_states h hcoord
+  rw [(cStarProductCoronaQuotient_eq_zero_iff D atTop h).2 hnull,
+    σ.map_zero] at hσ
+  exact zero_ne_one hσ
+
+/-- **The obstruction data for the compactness route.**
+
+`seq` is the audit's `h = (h_s)`.  `gauge_tendsto_zero` is (A1), which puts `h`
+in the ideal `J`.  `coordinate_states` replaces the audit's norm-distance clause
+(A2) by what the corrected geometry actually supplies: at arbitrarily late
+coordinates a single state detects `h` and annihilates any prescribed finite
+family of self-commutators.
+
+Producing that state is where the printed argument had to be corrected.
+Zeroing only the lower-left blocks `c_j` of the `z_j` at a common point of
+`RP^d` gives the compression bound of (A2), but the corner of `[z_j*, z_j]`
+still carries `-b_j b_j*`, so the vector state at that point is not tracial on
+the family.  Both `b_j` and `c_j` must vanish at the chosen point; the
+common-zero input is applied to the lower-left corners of `z_j` and of
+`star z_j` together, and then the vector state works.
+
+Nothing here asks for `‖h_s‖ = 1` or for `h_s` to be self-adjoint.  The intended
+blocks have both, but `not_isNull` below derives `h ∉ B` from the coordinate
+states alone. -/
+structure CoordinateStateBlockData (E : ℕ → Type u) [∀ n, CStarAlgebra (E n)]
+    [∀ n, Nontrivial (E n)] (G : TracialTwoGauge E) where
+  /-- The obstructing bounded sequence `h = (h_s)`. -/
+  seq : BoundedCStarSequence E
+  /-- (A1): the coordinate gauges tend to zero, so `h ∈ J`. -/
+  gauge_tendsto_zero : Tendsto (fun n ↦ G.q n (seq n)) atTop (nhds 0)
+  /-- The corrected geometric input, replacing the printed (A2). -/
+  coordinate_states : ArbitrarilyLateCoordinateStateConstraints seq
+
+namespace CoordinateStateBlockData
+
+variable {G : TracialTwoGauge D}
+
+/-- (A1) restated: the obstruction lies in the uniform two-null ideal `J`. -/
+theorem mem_twoNullIdeal (B : CoordinateStateBlockData D G) :
+    B.seq ∈ twoNullIdeal G :=
+  B.gauge_tendsto_zero
+
+/-- **(A14).**  The compactness theorem produces a tracial state of the corona
+taking the value one on the obstructing class.  No Jordan decomposition and no
+Cuntz--Pedersen separation enters. -/
+theorem exists_corona_tracialState (B : CoordinateStateBlockData D G) :
+    ∃ σ : TracialState (CStarProductCorona D atTop),
+      σ (cStarProductCoronaQuotient D atTop B.seq) = 1 :=
+  exists_corona_tracialState_of_arbitrarilyLate_coordinate_states
+    B.seq B.coordinate_states
+
+/-- **(A10).**  The obstruction is not in the `c₀`-sum `B`, so its corona class
+is nonzero.  This needs no norm-one clause: a state on the corona cannot send a
+null sequence to one. -/
+theorem not_isNull (B : CoordinateStateBlockData D G) :
+    B.seq ∉ nullCStarSequenceIdeal D atTop :=
+  not_isNull_of_arbitrarilyLateCoordinateStates B.coordinate_states
+
+/-- The corona class is nonzero. -/
+theorem coronaClass_ne_zero (B : CoordinateStateBlockData D G) :
+    cStarProductCoronaQuotient D atTop B.seq ≠ 0 := by
+  intro hzero
+  exact B.not_isNull
+    ((cStarProductCoronaQuotient_eq_zero_iff D atTop B.seq).1 hzero)
+
+end CoordinateStateBlockData
+
+/-- **(A13), proved rather than assumed.**  The compactness route reaches the
+Cuntz--Pedersen conclusion from the other side: the detecting trace annihilates
+the trace-zero space, so the obstructing class is outside it.  The alternative
+route obtains this from a norm-distance bound and then needs Cuntz--Pedersen
+separation to go back; here no separation theorem is used. -/
+theorem coronaClass_not_mem_traceZeroSpace_of_blockData
+    {G : TracialTwoGauge D} (B : CoordinateStateBlockData D G) :
+    cStarProductCoronaQuotient D atTop B.seq ∉
+      traceZeroSpace (CStarProductCorona D atTop) := by
+  obtain ⟨σ, hσ⟩ := B.exists_corona_tracialState
+  refine not_mem_traceZeroSpace_of_tracialState_ne_zero σ ?_
+  rw [hσ]
+  exact one_ne_zero
+
+/-! ## `M = ℂ1 + J`, the quotient map, and the pullback state -/
 
 /-- The ideal `J` sits inside `M = ℂ1 + J`. -/
 theorem twoNullIdeal_le_scalarPlusJ (G : TracialTwoGauge D)
     {x : BoundedCStarSequence D} (hx : x ∈ twoNullIdeal G) :
     x ∈ scalarPlusJ G :=
   ⟨0, x, hx, by rw [map_zero, zero_add]⟩
-
-/-- Audit pin: `M = ℂ1 + J` is a genuine C-star algebra, being a norm-closed
-star subalgebra of the bounded product.  Nothing below uses this instance; it
-records that the tracial states produced here really are tracial states of a
-C-star algebra, as the audit asserts. -/
-theorem scalarPlusJSubalgebra_hasCStarAlgebra (G : TracialTwoGauge D) :
-    Nonempty (CStarAlgebra ↥(scalarPlusJSubalgebra G)) := by
-  haveI : IsClosed ((scalarPlusJSubalgebra G : Set (BoundedCStarSequence D))) := by
-    rw [coe_scalarPlusJSubalgebra]
-    exact isClosed_scalarPlusJ G
-  exact ⟨inferInstance⟩
 
 /-- The audit's `π : M → H` of (A10), realized as the restriction to `M` of the
 quotient of the whole bounded product by the `c₀`-sum `B`. -/
@@ -219,10 +310,9 @@ def pullbackTracialState (G : TracialTwoGauge D)
     pullbackTracialState G σ x =
       σ (cStarProductCoronaQuotient D atTop (x : BoundedCStarSequence D)) := rfl
 
-/-- **(A15) on `A`.**  The pullback kills the `c₀`-sum `B`, so on
-`A = ℂ1 + B` it is the extreme trace `tau_infinity` coming from the scalar
-quotient: an element of `M` whose distance to the scalar `c` is norm-null is
-sent to `c`. -/
+/-- **(A15) on `A`.**  The pullback kills the `c₀`-sum `B`, so on `A = ℂ1 + B`
+it is the extreme trace `tau_infinity` coming from the scalar quotient: an
+element of `M` whose distance to the scalar `c` is norm-null is sent to `c`. -/
 theorem pullbackTracialState_eq_of_sub_isNull (G : TracialTwoGauge D)
     (σ : TracialState (CStarProductCorona D atTop)) (c : ℂ)
     (x : ↥(scalarPlusJSubalgebra G))
@@ -238,9 +328,9 @@ theorem pullbackTracialState_eq_of_sub_isNull (G : TracialTwoGauge D)
   rw [hq]
   exact tracialState_map_algebraMap σ c
 
-/-- The same statement in the coordinate form in which `A = unitization(⊕_s D_s)`
-is realized: if the coordinates of `x` converge in operator norm to the scalar
-`c`, the pullback takes the value `c` at `x`. -/
+/-- The same statement in the coordinate form in which
+`A = unitization(⊕_s D_s)` is realized: if the coordinates of `x` converge in
+operator norm to the scalar `c`, the pullback takes the value `c` at `x`. -/
 theorem pullbackTracialState_of_tendsto_algebraMap (G : TracialTwoGauge D)
     (σ : TracialState (CStarProductCorona D atTop)) {c : ℂ}
     (x : ↥(scalarPlusJSubalgebra G))
@@ -256,50 +346,44 @@ theorem pullbackTracialState_of_tendsto_algebraMap (G : TracialTwoGauge D)
 
 /-- The tails of the obstruction lie in the ideal `J`. -/
 theorem tail_mem_twoNullIdeal (G : TracialTwoGauge D)
-    (B : TraciallyNullObstruction D) (hq : B.twoSize = G.q) (N : ℕ) :
-    B.toBlockObstruction.tail N ∈ twoNullIdeal G := by
-  have h0 : Tendsto (fun n ↦ G.q n (B.toBlockObstruction.h n)) atTop (nhds 0) := by
-    have h := B.twoSize_h_tendsto_zero
-    rwa [hq] at h
+    (B : CoordinateStateBlockData D G) (N : ℕ) :
+    tail B.seq N ∈ twoNullIdeal G := by
   rw [mem_twoNullIdeal_iff]
   refine squeeze_zero' (Eventually.of_forall fun n ↦ G.nonneg n _)
-    (Eventually.of_forall fun n ↦ ?_) h0
-  rw [BlockObstruction.tail_apply]
+    (Eventually.of_forall fun n ↦ ?_) B.gauge_tendsto_zero
+  rw [tail_apply]
   split_ifs
-  · exact le_rfl
   · rw [G.zero]
-    exact G.nonneg n (B.toBlockObstruction.h n)
+    exact G.nonneg n (B.seq n)
+  · exact le_rfl
 
 /-- The tails of the obstruction lie in `M = ℂ1 + J`. -/
 theorem tail_mem_scalarPlusJ (G : TracialTwoGauge D)
-    (B : TraciallyNullObstruction D) (hq : B.twoSize = G.q) (N : ℕ) :
-    B.toBlockObstruction.tail N ∈ scalarPlusJ G :=
-  twoNullIdeal_le_scalarPlusJ G (tail_mem_twoNullIdeal G B hq N)
+    (B : CoordinateStateBlockData D G) (N : ℕ) :
+    tail B.seq N ∈ scalarPlusJ G :=
+  twoNullIdeal_le_scalarPlusJ G (tail_mem_twoNullIdeal G B N)
 
 /-- **(A17).**  The uniform two-norms of the tails tend to zero.  This is the
 uniform-over-coordinates form of the audit's `sup_{s ≥ n} sqrt (2/(s+1))`, with
 no rate assumed. -/
 theorem uniformTwoNorm_tail_tendsto_zero (G : TracialTwoGauge D)
-    (B : TraciallyNullObstruction D) (hq : B.twoSize = G.q) :
-    Tendsto (fun N ↦ uniformTwoNorm G (B.toBlockObstruction.tail N))
-      atTop (nhds 0) := by
-  have h0 : Tendsto (fun n ↦ G.q n (B.toBlockObstruction.h n)) atTop (nhds 0) := by
-    have h := B.twoSize_h_tendsto_zero
-    rwa [hq] at h
+    (B : CoordinateStateBlockData D G) :
+    Tendsto (fun N ↦ uniformTwoNorm G (tail B.seq N)) atTop (nhds 0) := by
   refine Metric.tendsto_nhds.2 fun ε hε ↦ ?_
-  have hev : ∀ᶠ n in atTop, G.q n (B.toBlockObstruction.h n) < ε / 2 :=
-    ((Metric.tendsto_nhds.mp h0) (ε / 2) (half_pos hε)).mono fun n hn ↦ by
+  have hev : ∀ᶠ n in atTop, G.q n (B.seq n) < ε / 2 :=
+    ((Metric.tendsto_nhds.mp B.gauge_tendsto_zero) (ε / 2)
+      (half_pos hε)).mono fun n hn ↦ by
       simpa only [Real.dist_eq, sub_zero, abs_of_nonneg (G.nonneg n _)] using hn
   obtain ⟨K, hK⟩ := eventually_atTop.1 hev
   filter_upwards [eventually_ge_atTop K] with N hN
   rw [Real.dist_eq, sub_zero, abs_of_nonneg (uniformTwoNorm_nonneg G _)]
-  have hbd : uniformTwoNorm G (B.toBlockObstruction.tail N) ≤ ε / 2 := by
+  have hbd : uniformTwoNorm G (tail B.seq N) ≤ ε / 2 := by
     refine uniformTwoNorm_le G _ fun n ↦ ?_
-    rw [BlockObstruction.tail_apply]
+    rw [tail_apply]
     split_ifs with hn
-    · exact (hK n (by omega)).le
     · rw [G.zero]
       linarith
+    · exact (hK n (by omega)).le
   linarith
 
 /-! ## The endpoint -/
@@ -307,8 +391,8 @@ theorem uniformTwoNorm_tail_tendsto_zero (G : TracialTwoGauge D)
 /-- Sequential continuity at zero, for the uniform two-norm, of a tracial state
 of `M = ℂ1 + J`.
 
-Every tracial state of `A` extends to `M` with this property, by construction
-of the uniform tracial completion.  STW Problem XXII asks whether every tracial
+Every tracial state of `A` extends to `M` with this property, by construction of
+the uniform tracial completion.  STW Problem XXII asks whether every tracial
 state of `M` has it. -/
 def IsUniformTwoContinuous (G : TracialTwoGauge D)
     (σ : TracialState ↥(scalarPlusJSubalgebra G)) : Prop :=
@@ -324,6 +408,23 @@ tracial state of `A`, so `T(A) ⊊ T(M)`: a negative answer to STW Problem
 XXII. -/
 def HasUniformTwoDiscontinuousTracialState (G : TracialTwoGauge D) : Prop :=
   ∃ σ : TracialState ↥(scalarPlusJSubalgebra G), ¬ IsUniformTwoContinuous G σ
+
+/-- The negation of continuity is exactly a uniformly two-null sequence in `M`
+along which the state does not tend to zero. -/
+theorem not_isUniformTwoContinuous_iff (G : TracialTwoGauge D)
+    (σ : TracialState ↥(scalarPlusJSubalgebra G)) :
+    ¬ IsUniformTwoContinuous G σ ↔
+      ∃ x : ℕ → ↥(scalarPlusJSubalgebra G),
+        Tendsto (fun N ↦ uniformTwoNorm G ((x N : BoundedCStarSequence D)))
+          atTop (nhds 0) ∧
+        ¬ Tendsto (fun N ↦ σ (x N)) atTop (nhds 0) := by
+  constructor
+  · intro h
+    by_contra hcon
+    push_neg at hcon
+    exact h hcon
+  · rintro ⟨x, hx, hnx⟩ hcont
+    exact hnx (hcont x hx)
 
 /-- A sequence which is two-null while the state is constant and nonzero on it
 refutes continuity.  This is the shape of (A16)--(A17). -/
@@ -342,78 +443,135 @@ theorem not_isUniformTwoContinuous_of_constant_value (G : TracialTwoGauge D)
     exact tendsto_const_nhds
   exact hc (tendsto_nhds_unique hconst h0)
 
-/-- **(A14)--(A18).**  From the block obstruction and the two Jordan properties
-on the corona:
+/-- **(A14)--(A18) with no literature hypothesis.**  From the corrected block
+data alone:
 
-1. the obstructing class is outside the Cuntz--Pedersen trace-zero space, by
-   the landed (A13);
-2. Cuntz--Pedersen separation refined by the Jordan decomposition produces a
-   tracial state `sigma` of the corona detecting it;
-3. its pullback `sigma_tilde` to `M` takes the same nonzero value on every tail
-   `h^(N)`, while those tails are uniformly two-null.
+1. the compactness theorem supplies a tracial state `sigma` of the corona with
+   `sigma hbar = 1`;
+2. its pullback `sigma_tilde` to `M` takes the value one on every tail `h^(N)`,
+   because removing a finite prefix does not move the corona class;
+3. those tails are uniformly two-null.
 
 So `sigma_tilde` is a tracial state of `M` which is not continuous for the
 gauge. -/
-theorem hasUniformTwoDiscontinuousTracialState_of_jordan
-    (G : TracialTwoGauge D) (B : TraciallyNullObstruction D)
-    (hq : B.twoSize = G.q)
-    (hJ : HasJordanDecomposition (CStarProductCorona D atTop))
-    (huniq : HasUniqueJordanDecomposition (CStarProductCorona D atTop)) :
+theorem hasUniformTwoDiscontinuousTracialState_of_blockData
+    (G : TracialTwoGauge D) (B : CoordinateStateBlockData D G) :
     HasUniformTwoDiscontinuousTracialState G := by
-  obtain ⟨σ, hσ⟩ :=
-    exists_tracialState_detecting_coronaClass_of_jordan
-      B.toBlockObstruction hJ huniq
+  obtain ⟨σ, hσ⟩ := B.exists_corona_tracialState
   refine ⟨pullbackTracialState G σ, ?_⟩
   refine not_isUniformTwoContinuous_of_constant_value G (pullbackTracialState G σ)
-    (fun N ↦ ⟨B.toBlockObstruction.tail N, tail_mem_scalarPlusJ G B hq N⟩)
-    hσ (fun N ↦ ?_) (uniformTwoNorm_tail_tendsto_zero G B hq)
-  rw [pullbackTracialState_apply]
-  exact tracialState_tail_eq B.toBlockObstruction σ N
+    (fun N ↦ ⟨tail B.seq N, tail_mem_scalarPlusJ G B N⟩)
+    one_ne_zero (fun N ↦ ?_) (uniformTwoNorm_tail_tendsto_zero G B)
+  show σ (cStarProductCoronaQuotient D atTop (tail B.seq N)) = 1
+  rw [corona_tail_eq]
+  exact hσ
+
+/-! ## Transport to the honest completion object -/
+
+/-- Pull a tracial state of `M = ℂ1 + J` back to the bounded uniform-two Cauchy
+completion of `A`, along the landed star-algebra equivalence. -/
+def completionTracialState (G : TracialTwoGauge D) {r : ℕ → ℝ}
+    (hr : IsCoordinateNormComparison G r)
+    (σ : TracialState ↥(scalarPlusJSubalgebra G)) :
+    TracialState (BoundedUniformTwoCompletion G r hr) :=
+  σ.compStarAlgHom (realizationStarAlgEquiv G hr).toStarAlgHom
+
+@[simp] theorem completionTracialState_apply (G : TracialTwoGauge D)
+    {r : ℕ → ℝ} (hr : IsCoordinateNormComparison G r)
+    (σ : TracialState ↥(scalarPlusJSubalgebra G))
+    (x : BoundedUniformTwoCompletion G r hr) :
+    completionTracialState G hr σ x = σ (realize G hr x) := rfl
+
+/-- Audit pin: the bounded uniform-two Cauchy completion of `A` is a genuine
+C-star algebra, so the tracial states below are tracial states of the honest
+completion object and not of a stand-in. -/
+theorem boundedUniformTwoCompletion_hasCStarAlgebra (G : TracialTwoGauge D)
+    {r : ℕ → ℝ} (hr : IsCoordinateNormComparison G r) :
+    Nonempty (CStarAlgebra (BoundedUniformTwoCompletion G r hr)) :=
+  ⟨inferInstance⟩
+
+/-- **The endpoint on the completion object.**  The discontinuous tracial state
+of `M` transports along `realizationStarAlgEquiv` to a tracial state of the
+bounded uniform-two Cauchy completion, with the same discontinuity witness read
+through the realization map. -/
+theorem exists_discontinuous_tracialState_completion (G : TracialTwoGauge D)
+    {r : ℕ → ℝ} (hr : IsCoordinateNormComparison G r)
+    (hM : HasUniformTwoDiscontinuousTracialState G) :
+    ∃ (σ : TracialState (BoundedUniformTwoCompletion G r hr))
+      (x : ℕ → BoundedUniformTwoCompletion G r hr),
+      Tendsto (fun N ↦ uniformTwoNorm G
+        ((realize G hr (x N) : BoundedCStarSequence D))) atTop (nhds 0) ∧
+      ¬ Tendsto (fun N ↦ σ (x N)) atTop (nhds 0) := by
+  obtain ⟨σ, hσ⟩ := hM
+  obtain ⟨y, hy2, hyv⟩ := (not_isUniformTwoContinuous_iff G σ).1 hσ
+  have hsymm : ∀ N : ℕ,
+      realize G hr ((realizationStarAlgEquiv G hr).symm (y N)) = y N :=
+    fun N ↦ (realizationStarAlgEquiv G hr).apply_symm_apply (y N)
+  refine ⟨completionTracialState G hr σ,
+    fun N ↦ (realizationStarAlgEquiv G hr).symm (y N), ?_, ?_⟩
+  · have hfun : (fun N ↦ uniformTwoNorm G
+        ((realize G hr ((realizationStarAlgEquiv G hr).symm (y N)) :
+          BoundedCStarSequence D)))
+        = fun N ↦ uniformTwoNorm G ((y N : BoundedCStarSequence D)) := by
+      funext N
+      rw [hsymm N]
+    rw [hfun]
+    exact hy2
+  · have hfun : (fun N ↦ completionTracialState G hr σ
+        ((realizationStarAlgEquiv G hr).symm (y N)))
+        = fun N ↦ σ (y N) := by
+      funext N
+      rw [completionTracialState_apply, hsymm N]
+    rw [hfun]
+    exact hyv
+
+/-! ## The summary -/
 
 /-- **Sections 5--7 of the audit in one statement.**
 
-The hypotheses are exactly the audit's unproved inputs, all named:
+The hypotheses are exactly the unproved inputs, all named and all visible:
 
 * `G` and `hr`, the coordinate two-gauge with the finite-rank comparison
   `‖a‖ ≤ r s ‖a‖_{2,s}` of Section 4;
-* `B` and `hq`, the block data: norm-one, self-adjoint, fibre-trace-null
-  elements whose gauges tend to zero and which defeat every fixed finite
-  self-commutator width at every tail index.  The width clause is the audit's
-  (A2), supplied by `Analysis/ChernCommonZeroBridge`;
-* `hJ` and `huniq`, the two standard Jordan statements on the corona.
+* `B`, the corrected block data of `CoordinateStateBlockData`, whose only
+  substantial field is the arbitrarily-late coordinate-state solvability that
+  the antipodal blocks are to supply.
 
-The conclusions are, in order: (A8), the identification of `M = ℂ1 + J` with
-the bounded uniform two-closure of `A`, together with the realization of every
-uniformly two-Cauchy sequence from `A` inside the bounded product; (A1)/(A10),
-`h ∈ J \ B`; the norm of the corona class; (A13); and (A18). -/
+No Jordan decomposition, no Cuntz--Pedersen separation, and no norm-distance
+width bound is assumed.
+
+The conclusions are, in order: (A8), the identification of `M = ℂ1 + J` with the
+bounded uniform two-closure of `A`; that the Cauchy completion of `A` is a
+C-star algebra; (A1)/(A10), `h ∈ J \ B`; (A14), the detecting corona trace;
+(A13), which is now proved rather than assumed; (A18) on `M`; and (A18)
+transported to the completion object. -/
 theorem stw22_trace_problem_counterexample
     (G : TracialTwoGauge D) {r : ℕ → ℝ} (hr : IsCoordinateNormComparison G r)
-    (B : TraciallyNullObstruction D) (hq : B.twoSize = G.q)
-    (hJ : HasJordanDecomposition (CStarProductCorona D atTop))
-    (huniq : HasUniqueJordanDecomposition (CStarProductCorona D atTop)) :
+    (B : CoordinateStateBlockData D G) :
     scalarPlusJ G =
         {x : BoundedCStarSequence D |
           IsBoundedUniformTwoApproximable G.toUniformTwoGauge
             (unitizedC0Sum D) x} ∧
-      (∀ a : ℕ → BoundedCStarSequence D, (∀ k, a k ∈ unitizedC0Sum D) →
-        ∀ C : ℝ, (∀ k, ‖a k‖ ≤ C) →
-        (∀ ε > 0, ∃ K, ∀ k, K ≤ k → ∀ l, K ≤ l → ∀ n,
-          G.q n (a k n - a l n) < ε) →
-        ∃ y : BoundedCStarSequence D, y ∈ scalarPlusJ G ∧
-          ∀ ε > 0, ∃ K, ∀ k, K ≤ k → ∀ n, G.q n (y n - a k n) < ε) ∧
-      B.toBlockObstruction.sequence ∈ twoNullIdeal G ∧
-      B.toBlockObstruction.sequence ∉ nullCStarSequenceIdeal D atTop ∧
-      ‖B.toBlockObstruction.coronaClass‖ = 1 ∧
-      B.toBlockObstruction.coronaClass ∉
+      Nonempty (CStarAlgebra (BoundedUniformTwoCompletion G r hr)) ∧
+      B.seq ∈ twoNullIdeal G ∧
+      B.seq ∉ nullCStarSequenceIdeal D atTop ∧
+      (∃ σ : TracialState (CStarProductCorona D atTop),
+        σ (cStarProductCoronaQuotient D atTop B.seq) = 1) ∧
+      cStarProductCoronaQuotient D atTop B.seq ∉
         traceZeroSpace (CStarProductCorona D atTop) ∧
-      HasUniformTwoDiscontinuousTracialState G := by
-  obtain ⟨hmemJ, hnotB⟩ := obstruction_mem_twoNullIdeal_not_mem_nullIdeal G B hq
-  exact ⟨scalarPlusJ_eq_boundedUniformTwoClosure G,
-    (uniformTracialCompletion_identification G hr).2.2.2.2,
-    hmemJ, hnotB,
-    norm_coronaClass B.toBlockObstruction,
-    coronaClass_not_mem_traceZeroSpace B.toBlockObstruction,
-    hasUniformTwoDiscontinuousTracialState_of_jordan G B hq hJ huniq⟩
+      HasUniformTwoDiscontinuousTracialState G ∧
+      (∃ (σ : TracialState (BoundedUniformTwoCompletion G r hr))
+        (x : ℕ → BoundedUniformTwoCompletion G r hr),
+        Tendsto (fun N ↦ uniformTwoNorm G
+          ((realize G hr (x N) : BoundedCStarSequence D))) atTop (nhds 0) ∧
+        ¬ Tendsto (fun N ↦ σ (x N)) atTop (nhds 0)) :=
+  ⟨scalarPlusJ_eq_boundedUniformTwoClosure G,
+    boundedUniformTwoCompletion_hasCStarAlgebra G hr,
+    B.mem_twoNullIdeal, B.not_isNull, B.exists_corona_tracialState,
+    coronaClass_not_mem_traceZeroSpace_of_blockData B,
+    hasUniformTwoDiscontinuousTracialState_of_blockData G B,
+    exists_discontinuous_tracialState_completion G hr
+      (hasUniformTwoDiscontinuousTracialState_of_blockData G B)⟩
 
 end
 
