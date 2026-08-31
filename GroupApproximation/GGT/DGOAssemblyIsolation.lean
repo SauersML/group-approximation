@@ -780,6 +780,7 @@ structure GreedyHalfFamilyIndex (I : Finset ℕ) (pos partner : ℕ → ℕ)
   source_mem : ∀ x : ℕ, x ∈ sources ↔ ∃ s ∈ I, pos s = x
   entries : ∀ j : ℕ, ∀ hj : j < sources.length,
     ∃ s ∈ I, sources[j] = pos s ∧ partners[j]? = some (partner s)
+  partner_lt : ∀ y ∈ partners, y < chordLength
   traversal : ChordPartnerQuadraticTraversalBound chordLength partners
   gap : ∀ j : ℕ, ∀ hj : j + 1 < sources.length, ∀ s ∈ I,
     ¬ (sources[j]'(by omega) < pos s ∧ pos s < sources[j + 1]'hj)
@@ -843,6 +844,14 @@ theorem exists_greedyHalfFamilyIndex (I : Finset ℕ)
     source_nodup := hnodup
     source_mem := hmem
     entries := hentries
+    partner_lt := by
+      intro y hy
+      obtain ⟨j, hj, rfl⟩ := List.mem_iff_getElem.mp hy
+      obtain ⟨s, hs, _hsource, hpartner⟩ := hentries j (by omega)
+      rw [List.getElem?_eq_getElem hj] at hpartner
+      have heq := Option.some.inj hpartner
+      rw [heq]
+      exact hrange s hs
     traversal := hquadratic
     gap := hgap
     source_count_le := hcard
