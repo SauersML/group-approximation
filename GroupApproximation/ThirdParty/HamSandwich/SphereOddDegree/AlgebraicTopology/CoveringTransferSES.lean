@@ -13,7 +13,7 @@ chain complexes** underlying the transfer of the double cover `proj n : Sⁿ →
 ```
 
 where `tr = projTransferChainMap n` is the transfer (a simplex of `RPⁿ` goes to
-the sum of its two lifts) and `proj_* = chainFunctorZMod2.map (proj n)` is the
+the sum of its two lifts) and `proj_* = singularChainMapZMod2 (proj n)` is the
 ordinary pushforward.  Over `F₂` the free `ℤ/2`-action on the lifts makes this
 sequence **degreewise split**: in each degree the chain group of `Sⁿ` decomposes
 as two copies of the chain group of `RPⁿ` (the "chosen" lift and its antipode),
@@ -43,6 +43,9 @@ noncomputable section
 open CategoryTheory Limits AlgebraicTopology
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 /-! ## 1. Index-level maps on singular simplices -/
 
@@ -172,11 +175,11 @@ set_option maxHeartbeats 1000000 in
 `proj_* (ι τ) = ι (sProj τ)`. -/
 theorem projChainMap_ι (n k : ℕ) (τ : singularSimplices (TopCat.of (Sphere n)) k) :
     Sigma.ι (fun _ : singularSimplices (TopCat.of (Sphere n)) k => transferCoeff) τ
-        ≫ (chainFunctorZMod2.map (TopCat.ofHom (proj n))).f k
+        ≫ (singularChainMapZMod2 (TopCat.ofHom (proj n))).f k
       = Sigma.ι (fun _ : singularSimplices (TopCat.of (RP n)) k => transferCoeff) (sProj n k τ) := by
   rw [sProj]
   exact singularChainFunctor_map_ι (X := TopCat.of (Sphere n)) (Y := TopCat.of (RP n))
-    (proj n) k τ
+    (TopCat.ofHom (proj n)) k τ
 
 /-! ## 3. The splitting maps in each degree -/
 
@@ -229,7 +232,7 @@ theorem chainRetr_f_r (n k : ℕ) :
 
 /-- `s ≫ proj_* = 𝟙` in each degree (`s` is a section of `proj_*`). -/
 theorem chainSec_s_g (n k : ℕ) :
-    chainSec n k ≫ (chainFunctorZMod2.map (TopCat.ofHom (proj n))).f k = 𝟙 _ := by
+    chainSec n k ≫ (singularChainMapZMod2 (TopCat.ofHom (proj n))).f k = 𝟙 _ := by
   apply Sigma.hom_ext
   intro σ
   rw [← Category.assoc, chainSec_ι, projChainMap_ι, sProj_sAnti, sProj_canLift]
@@ -238,7 +241,7 @@ theorem chainSec_s_g (n k : ℕ) :
 /-- The completeness relation `r ≫ tr + proj_* ≫ s = 𝟙` in each degree. -/
 theorem chain_splitting_id (n k : ℕ) :
     chainRetr n k ≫ projTransferChainDegree n k
-        + (chainFunctorZMod2.map (TopCat.ofHom (proj n))).f k ≫ chainSec n k = 𝟙 _ := by
+        + (singularChainMapZMod2 (TopCat.ofHom (proj n))).f k ≫ chainSec n k = 𝟙 _ := by
   apply Sigma.hom_ext
   intro τ
   rw [Preadditive.comp_add, ← Category.assoc, ← Category.assoc, chainRetr_ι, projChainMap_ι,
@@ -256,7 +259,7 @@ theorem chain_splitting_id (n k : ℕ) :
 /-- The transfer composed with the pushforward is zero in each degree
 (`proj_* ∘ tr = 0`). -/
 theorem projTransfer_comp_projChainMap_degree (n k : ℕ) :
-    projTransferChainDegree n k ≫ (chainFunctorZMod2.map (TopCat.ofHom (proj n))).f k = 0 := by
+    projTransferChainDegree n k ≫ (singularChainMapZMod2 (TopCat.ofHom (proj n))).f k = 0 := by
   apply Sigma.hom_ext
   intro σ
   rw [comp_zero, ← Category.assoc, projTransferChainDegree_ι_canLift,
@@ -268,10 +271,12 @@ theorem projTransfer_comp_projChainMap_degree (n k : ℕ) :
 
 /-- The transfer composed with the pushforward is zero as a chain map. -/
 theorem projTransfer_comp_projChainMap (n : ℕ) :
-    projTransferChainMap n ≫ chainFunctorZMod2.map (TopCat.ofHom (proj n)) = 0 := by
+    projTransferChainMap n ≫ singularChainMapZMod2 (TopCat.ofHom (proj n)) = 0 := by
   apply HomologicalComplex.hom_ext
   intro k
-  simpa using projTransfer_comp_projChainMap_degree n k
+  change projTransferChainDegree n k ≫
+      (singularChainMapZMod2 (TopCat.ofHom (proj n))).f k = 0
+  exact projTransfer_comp_projChainMap_degree n k
 
 /-- **The mod-2 Smith short exact sequence of the double cover, as a short
 complex of chain complexes.** -/
@@ -281,7 +286,7 @@ noncomputable def transferSESChain (n : ℕ) :
   X₂ := singularChainCx (TopCat.of (Sphere n))
   X₃ := singularChainCx (TopCat.of (RP n))
   f := projTransferChainMap n
-  g := chainFunctorZMod2.map (TopCat.ofHom (proj n))
+  g := singularChainMapZMod2 (TopCat.ofHom (proj n))
   zero := projTransfer_comp_projChainMap n
 
 /-- The degree-`k` short complex of `transferSESChain n` is split. -/
@@ -300,4 +305,3 @@ theorem transferSESChain_shortExact (n : ℕ) : (transferSESChain n).ShortExact 
     (fun k => (transferSESChain_degreewiseSplitting n k).shortExact)
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-

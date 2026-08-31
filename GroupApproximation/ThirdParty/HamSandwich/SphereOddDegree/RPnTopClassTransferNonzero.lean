@@ -115,20 +115,11 @@ theorem cohomologyMap_cocycleClass {X Y : TopCat.{0}}
   convert (cochainCxZMod2 X).i_cyclesMk _ _ _ _ using 1
   exact congr_arg _ (cochainCxZMod2 Y |>.i_cyclesMk _ _ _ _)
 
-/-! ## The transfer cochain map and its homology -/
+/-! ## The transfer cochain map and its homology
 
-/-- The transfer **cochain map** `C^•(Sⁿ; F₂) ⟶ C^•(RPⁿ; F₂)`, obtained by
-dualizing the transfer chain map `projTransferChainMap n`. Its homology is the
-cohomology transfer `cohTransferZMod2 n k`. -/
-abbrev projTransferCochainMap (n : ℕ) :
-    cochainCxZMod2 (TopCat.of (Sphere n)) ⟶ cochainCxZMod2 (TopCat.of (RP n)) :=
-  (dualizeCochainFunctor (ZMod 2) (ModuleCat.of (ZMod 2) (ZMod 2))).map (projTransferChainMap n).op
-
-/-- `cohTransferZMod2` is the homology of the transfer cochain map. -/
-theorem cohTransferZMod2_eq_homologyMap (n k : ℕ) :
-    cohTransferZMod2 n k = HomologicalComplex.homologyMap (projTransferCochainMap n) k := by
-  rw [cohTransferZMod2_eq]
-  rfl
+The basic declarations `projTransferCochainMap` and
+`cohTransferZMod2_eq_homologyMap` live in `CoveringTransferHomology`, alongside
+the definition of `cohTransferZMod2` itself. -/
 
 /-- `projTransferHomologyZMod2` is the homology of the transfer chain map. -/
 theorem projTransferHomologyZMod2_eq_homologyMap (n k : ℕ) :

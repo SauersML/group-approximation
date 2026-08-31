@@ -132,6 +132,18 @@ theorem cohTransferZMod2_eq (n k : ℕ) :
             (projTransferChainMap n).op) :=
   rfl
 
+/-- The transfer cochain map whose cohomology is `cohTransferZMod2`. -/
+abbrev projTransferCochainMap (n : ℕ) :
+    cochainCxZMod2 (TopCat.of (Sphere n)) ⟶ cochainCxZMod2 (TopCat.of (RP n)) :=
+  (dualizeCochainFunctor (ZMod 2) (ModuleCat.of (ZMod 2) (ZMod 2))).map
+    (projTransferChainMap n).op
+
+/-- `cohTransferZMod2` is the homology map induced by the transfer cochain map. -/
+theorem cohTransferZMod2_eq_homologyMap (n k : ℕ) :
+    cohTransferZMod2 n k = HomologicalComplex.homologyMap (projTransferCochainMap n) k := by
+  rw [cohTransferZMod2_eq]
+  rfl
+
 /-- `ZMod 2`-additivity of the cohomology transfer (it is a `ModuleCat` morphism,
 hence a bundled linear map). -/
 @[simp] theorem cohTransferZMod2_hom_add (n k : ℕ) (x y : sphereCohomology n k) :

@@ -1,6 +1,7 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CoveringTransferSES
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferNonzero
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnAdditiveCohomology
+import Mathlib.Algebra.Homology.Additive
+import Mathlib.Algebra.Homology.Opposite
 import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
 import Mathlib.Algebra.Field.ZMod
 
@@ -45,6 +46,9 @@ noncomputable section
 open CategoryTheory Limits AlgebraicTopology
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
 
 /-- The `Hom(-, M)` dualizer on chain complexes is additive. -/
 instance dualizeCochainFunctor_additive (R : Type) [CommRing R] (M : ModuleCat.{0} R) :
@@ -92,7 +96,8 @@ theorem transferSEScoch_X₂_homology (n k : ℕ) :
 /-- The induced cohomology map of the middle map is the cohomology transfer. -/
 theorem transferSEScoch_homologyMap_g (n k : ℕ) :
     HomologicalComplex.homologyMap (transferSEScoch n).g k = cohTransferZMod2 n k := by
-  rw [transferSEScoch_g, cohTransferZMod2_eq_homologyMap]
+  rw [transferSEScoch_g]
+  exact (cohTransferZMod2_eq_homologyMap n k).symm
 
 /-- **The dualized cochain short exact sequence is short exact.** Over the field
 `F₂` the degreewise-split chain sequence dualizes to a (degreewise-split, hence)
@@ -158,7 +163,8 @@ theorem rpToSphereTopTransfer_section (n : ℕ) (c : RPnCellularCochainStructure
     (cohTransferZMod2 n n).hom ((rpToSphereTopTransfer n c).hom a) = a := by
   have h := cohTransferZMod2_comp_rpToSphereTopTransferLinear n c
   have := DFunLike.congr_fun h a
-  simpa [rpToSphereTopTransfer] using this
+  change (cohTransferZMod2 n n).hom ((rpToSphereTopTransferLinear n c) a) = a
+  exact this
 
 /-- **Top-degree nonzero preservation (the deliverable).** A nonzero top class of
 `Hⁿ(RPⁿ; F₂)` transfers to a nonzero top class of `Hⁿ(Sⁿ; F₂)` under the honest
@@ -173,4 +179,3 @@ theorem rpToSphereTopTransfer_nonzero (n : ℕ) (c : RPnCellularCochainStructure
   exact hs.symm
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
