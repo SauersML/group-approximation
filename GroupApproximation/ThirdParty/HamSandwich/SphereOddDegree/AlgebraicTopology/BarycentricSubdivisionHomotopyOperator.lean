@@ -71,14 +71,15 @@ theorem singularChainMap_generator (R : Type) [CommRing R] {X Y : TopCat.{0}}
     (singularChainMap R f n).hom (chainGenerator R X n σ)
       = chainGenerator R Y n (pushSimplex f n σ) := by
   unfold singularChainMap chainGenerator pushSimplex
-  have key : (Limits.Sigma.ι (fun (_ : singularSimplices X n) => ModuleCat.of R R) σ)
-      ≫ (((singularChainComplexFunctor (ModuleCat.{0} R)).obj (ModuleCat.of R R)).map f).f n
-      = Limits.Sigma.ι (fun (_ : singularSimplices Y n) => ModuleCat.of R R)
-        ((TopCat.toSSet.map f).app (Opposite.op (SimplexCategory.mk n)) σ) := by
-    simp [singularChainComplexFunctor, SSet.singularChainComplexFunctor,
-      SimplicialObject.whiskering, Limits.sigmaConst]
-  have := DFunLike.congr_fun (congrArg ModuleCat.Hom.hom key) (1 : R)
-  simpa [ModuleCat.hom_comp, LinearMap.comp_apply] using this
+  change
+    ((SSet.chainComplexMap (TopCat.toSSet.map f) (ModuleCat.of R R)).f n).hom
+        ((Sigma.ι (fun (_ : singularSimplices X n) => ModuleCat.of R R) σ).hom 1)
+      = (Sigma.ι (fun (_ : singularSimplices Y n) => ModuleCat.of R R)
+          ((TopCat.toSSet.map f).app (Opposite.op (SimplexCategory.mk n)) σ)).hom 1
+  have key := SSet.ι_chainComplexMap_f
+    (X := TopCat.toSSet.obj X) (Y := TopCat.toSSet.obj Y)
+    (f := TopCat.toSSet.map f) (R := ModuleCat.of R R) σ
+  exact DFunLike.congr_fun (congrArg ModuleCat.Hom.hom key) (1 : R)
 
 /-- **Naturality of the boundary.** The pushforward is a chain map, so it commutes
 with the singular boundary:
@@ -114,8 +115,12 @@ noncomputable def pushUniversalHom (R : Type) [CommRing R] (X : TopCat.{0}) (n :
   ModuleCat.ofHom
     { toFun := fun r =>
         r • (singularChainMap R (TopCat.ofHom (singularSimplexAsContinuousMap X n σ)) (n + 1)).hom T
-      map_add' := by intro r s; simp [add_smul]
-      map_smul' := by intro a r; simp [mul_smul] }
+      map_add' := by
+        intro r s
+        exact add_smul r s _
+      map_smul' := by
+        intro a r
+        exact mul_smul a r _ }
 
 /-- The degree-`n` homotopy operator on singular chains of `X` determined by a
 universal chain `T` on `Δⁿ`: it pushes `T` forward along each singular simplex
@@ -132,10 +137,18 @@ theorem homotopyFromUniversal_generator (R : Type) [CommRing R] (X : TopCat.{0})
     (σ : singularSimplices X n) :
     (homotopyFromUniversal R X n T).hom (chainGenerator R X n σ)
       = (singularChainMap R (TopCat.ofHom (singularSimplexAsContinuousMap X n σ)) (n + 1)).hom T := by
-  convert one_smul _ _
-  convert congr_arg
-    (fun f : ModuleCat.of R R ⟶ singularChainGroup R X (n + 1) => f.hom 1)
-    (Sigma.ι_desc (fun σ => pushUniversalHom R X n T σ) σ) using 1
+  have h : Sigma.ι (fun (_ : singularSimplices X n) => ModuleCat.of R R) σ
+        ≫ homotopyFromUniversal R X n T
+      = pushUniversalHom R X n T σ := Sigma.ι_desc _ _
+  have h2 := congrArg
+    (fun f : ModuleCat.of R R ⟶ singularChainGroup R X (n + 1) => f.hom (1 : R)) h
+  simp only [ModuleCat.hom_comp, LinearMap.comp_apply] at h2
+  refine h2.trans ?_
+  rw [pushUniversalHom]
+  show (1 : R) •
+    (singularChainMap R
+      (TopCat.ofHom (singularSimplexAsContinuousMap X n σ)) (n + 1)).hom T = _
+  rw [one_smul]
 
 /-! ## 4. The universal homotopy chain `T_n(ι_n)` -/
 
@@ -148,14 +161,15 @@ T_n = Cone_{b_n}(ι_n - sd(ι_n) - H(∂ι_n)),
 
 where the term `H(∂ι_n)` (present only for `n ≥ 1`) applies the homotopy operator
 built from the previous universal chain `T_{n-1}` to the boundary of `ι_n`. -/
-noncomputable def barycentricHomotopyUniversal (R : Type) [CommRing R] :
-    (n : ℕ) → singularChainGroup R (TopCat.of (Delta n)) (n + 1)
+noncomputable def barycentricHomotopyUniversal (R : Type) [CommRing R] (n : ℕ) :
+    singularChainGroup R (TopCat.of (Delta n)) (n + 1) :=
+  match n with
   | 0 =>
       (coneLinearMap R 0 0 (deltaBarycenter 0)).hom
         (chainGenerator R (TopCat.of (Delta 0)) 0 (stdSimplexIdSingularSimplex 0)
           - (barycentricSubdivisionLinearMap R (TopCat.of (Delta 0)) 0).hom
               (chainGenerator R (TopCat.of (Delta 0)) 0 (stdSimplexIdSingularSimplex 0)))
-  | (m + 1) =>
+  | m + 1 =>
       (coneLinearMap R (m + 1) (m + 1) (deltaBarycenter (m + 1))).hom
         (chainGenerator R (TopCat.of (Delta (m + 1))) (m + 1) (stdSimplexIdSingularSimplex (m + 1))
           - (barycentricSubdivisionLinearMap R (TopCat.of (Delta (m + 1))) (m + 1)).hom
