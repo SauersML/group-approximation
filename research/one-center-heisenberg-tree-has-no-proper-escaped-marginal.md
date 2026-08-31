@@ -21,8 +21,10 @@ E_v=<J,X_v,Y_v |
      J central, X_v Y_v=J Y_v X_v>,
 ```
 
-and whose every edge group is the common center `Z=<J>`, embedded
-identically at both ends. Fix a primitive root `zeta` and put
+and whose every edge group is a proper subgroup containing the identified
+center `Z=<J>`. Thus an edge group is either `Z` or a maximal abelian
+subgroup of order `ell^2`; all edge embeddings identify `J`. Fix a
+primitive root `zeta` and put
 
 ```text
 q=e_(Z,zeta)=z_(E_v,pi_(v,zeta)),                      (HNG1)
@@ -76,14 +78,16 @@ P=R   if and only if   A=B and S=T.                    (HNG7)
 ```
 
 In particular no proper nonzero marginal can be shared between distinct
-Heisenberg vertices, distinct maximal abelian charts in one vertex, or
-atom-specific conjugate charts.
+maximal abelian charts, including atom-specific conjugate charts. If two
+different Heisenberg vertices share a maximal abelian edge, a proper
+marginal can pass between them only because both contexts use that very
+same finite chart; the equality is literal edge data.
 
-This closes the smallest proposed modification of the odd-prime
-Heisenberg star. A load-bearing finite-type atlas must change at least one
-of its defining features: use a vertex packet larger than the
-Stone--von Neumann Heisenberg block, use edge isotropy strictly larger than
-the common center, or use atoms whose same block entry is a genuinely
-noncentral multipath sum rather than one transported central finite type.
+This closes the smallest proposed modifications of the odd-prime
+Heisenberg star. A load-bearing finite-type atlas must use a vertex packet
+larger than the Stone--von Neumann Heisenberg block or use atoms whose same
+block entry is a genuinely noncentral multipath sum rather than one
+transported central finite type. Enlarging a Heisenberg edge from the center
+to a maximal abelian subgroup merely identifies the entire finite chart.
 The theorem is a no-go for this architecture, not a proof of the
 nonhyperlinear root.
