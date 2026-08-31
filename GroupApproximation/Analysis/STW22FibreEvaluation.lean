@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.AntipodalHomogeneousBlock
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Basic
+import Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap
 import Mathlib.Analysis.CStarAlgebra.ContinuousMap
 import Mathlib.Analysis.CStarAlgebra.CStarMatrix
 import Mathlib.Topology.UrysohnsLemma
