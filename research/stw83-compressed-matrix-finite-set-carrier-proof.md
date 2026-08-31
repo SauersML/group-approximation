@@ -48,7 +48,7 @@ U(m)->S^(2m-1),       V |-> V* xi_1.
 ```
 
 The two endpoint lifts differ by left multiplication by an element of the
-stabilizer of `xi_1`.  That stabilizer is `U(m-1)), hence path connected.
+stabilizer of `xi_1`.  That stabilizer is `U(m-1)`, hence path connected.
 Multiplying the lift by a path in the stabilizer closes it without changing
 its image in the sphere, proving (5).
 
