@@ -289,6 +289,24 @@ standard fixed-anchor construction, approximation of the interval
 coordinate itself forces the cutoff oscillation to stay above `1/4`, so
 flattening the scalar transition cannot evade the theorem.
 
+Outgoing-colour subdivision is now closed whenever it remains a genuine
+local subdivision.  `stw81-local-reconstructive-subdivision-forces-af`
+allows arbitrarily many base-dependent order-zero pieces at each stage and
+regroups them by the two proposed global labels.  At a point with chart
+weights `1-gamma` and `gamma`, the two regrouped rows become unequal
+near-partitions; after normalization, projectionlessness kills one colour
+of either row.  The surviving map approximates the fixed positive scalar
+multiple `(1-gamma)id`.  The new rigidity theorem
+`stw81-positive-scalar-order-zero-approximation-is-scalar` shows that even
+this forces a unital projectionless fibre to be scalar: the order-zero
+support is invertible, exposing a unital finite-dimensional homomorphism
+inside the fibre.  The number of pieces never enters the estimate, so
+neither bounded nor unbounded finite subdivision depth can help if each
+chart is reconstructed separately.  The sole remaining interval mechanism
+is genuinely incoming-coupled: chartwise partial sums must fail to
+approximate their scalar shares, with reconstruction appearing only after
+the charts are combined.
+
 There is now a first stably finite non-elementary exception to that
 obstruction.  `stw81-one-dim-simple-af-fields-have-dim-one`
 proves directly that a locally trivial field over a one-dimensional base
