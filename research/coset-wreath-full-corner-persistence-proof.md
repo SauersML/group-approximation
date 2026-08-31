@@ -195,18 +195,26 @@ For the pinned Kun--Thom pair over `F_2`,
 Lambda=t Gamma t^(-1) subset Gamma subset G.            (BCP11)
 ~~~
 
-The map
+Conjugacy gives the `G`-map
 
 ~~~text
-G/Lambda -> G/Gamma,          gLambda |-> gGamma        (BCP12)
+Phi:G/Gamma -> G/Lambda,       gGamma |-> g t^(-1)Lambda. (BCP12)
 ~~~
 
-is a surjective `G`-map.  By
-`kt-finitary-action-is-outer-mod-scalar-core`, at `q=2` every nonidentity
-`g in G` moves infinitely many points of `G/Gamma`.  For each moved point
-downstairs, every chosen lift in `G/Lambda` is also moved.  Thus every
-nonidentity `g` moves infinitely many points of `G/Lambda`, and Step 1
-applies to
+It is well defined because `t Gamma t^(-1)=Lambda`, and its inverse is
+
+~~~text
+Psi:G/Lambda -> G/Gamma,       gLambda |-> g t Gamma.   (BCP12b)
+~~~
+
+Thus the two homogeneous `G`-sets are equivariantly bijective.  In
+particular, the wreath in this proof is isomorphic to the pinned Kun--Thom
+wreath over `G/Gamma`.
+
+By `kt-finitary-action-is-outer-mod-scalar-core`, at `q=2` every
+nonidentity `g in G` moves infinitely many points of `G/Gamma`.  The
+bijection transfers the same statement to `G/Lambda`, and Step 1 applies
+to
 
 ~~~text
 W=(direct_sum_(G/Lambda) C_2) semidirect G.             (BCP13)
