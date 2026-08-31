@@ -45,7 +45,7 @@ is `Sigma^0_1`.
 
 Thus no uniform compiler assembled from finitely many amenable vertex
 simulators and finitely generated Bass--Serre edges can many-one encode
-`TOT`. A successful proof of amenability `Pi^0_2)-hardness for finite
+`TOT`. A successful proof of amenability `Pi^0_2`-hardness for finite
 presentations must leave this entire finite graph-of-groups class.
 
 DERIVATION
