@@ -173,6 +173,15 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   squares and right-hand-side twists therefore cannot remove odd characters.
   Only a connected cycle with at least two genuinely noncommuting source
   ports remains outside the theorem.
+- **Connect several noncommuting ports through shared Magic-Square faces.**
+  Still insufficient when the interface has a common finite frame, by
+  `row-glued-magic-squares-absorb-noncommuting-ports`.  Explicit even and odd
+  two-qubit squares agree on one full row.  Controlling them by arbitrary
+  source involutions lets any number of squares share that row and absorb all
+  ports simultaneously in one `M_4` amplification, without assuming the ports
+  commute.  The next candidate must make the shared interface sector-dependent;
+  the minimal unaudited cell is one square carrying two ports on distinct
+  line contexts.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
