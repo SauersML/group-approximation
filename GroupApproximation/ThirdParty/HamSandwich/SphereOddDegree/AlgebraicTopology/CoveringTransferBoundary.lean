@@ -70,7 +70,7 @@ set_option backward.isDefEq.respectTransparency false
 /-- The singular mod-2 chain complex of a space, as a `ChainComplex`. By
 construction `(singularChainCx X).X k = singularChainZMod2 X k`. -/
 abbrev singularChainCx (X : TopCat.{0}) : ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ :=
-  ((singularChainComplexFunctor (ModuleCat.{0} (ZMod 2))).obj transferCoeff).obj X
+  (TopCat.toSSet.obj X).chainComplex transferCoeff
 
 /-! ## 1. The mod-2 boundary on a basis simplex -/
 

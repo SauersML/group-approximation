@@ -59,25 +59,34 @@ open CategoryTheory AlgebraicTopology Limits
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
-/-- The singular mod-2 chain complex functor `TopCat ⥤ ChainComplex` whose value
-on a space `X` is `singularChainCx X`. -/
-noncomputable abbrev chainFunctorZMod2 :
-    TopCat.{0} ⥤ ChainComplex (ModuleCat.{0} (ZMod 2)) ℕ :=
-  (singularChainComplexFunctor (ModuleCat.{0} (ZMod 2))).obj transferCoeff
+set_option backward.defeqAttrib.useBackward true
+set_option backward.isDefEq.respectTransparency false
+
+/-- The singular mod-two chain map induced by a continuous map, stated directly
+in the current simplicial-set chain-complex API. -/
+noncomputable abbrev singularChainMapZMod2 {X Y : TopCat.{0}} (g : X ⟶ Y) :
+    (TopCat.toSSet.obj X).chainComplex transferCoeff ⟶
+      (TopCat.toSSet.obj Y).chainComplex transferCoeff :=
+  SSet.chainComplexMap (TopCat.toSSet.map g) transferCoeff
 
 /-- **Pushforward on a basis simplex.** The degree-`k` component of the chain map
 induced by a continuous map `g : X → Y` sends the basis generator of a singular
 simplex `σ` to the basis generator of its post-composition `g ∘ σ` (expressed
 through `TopCat.toSSetObjEquiv`). -/
-theorem singularChainFunctor_map_ι {X Y : TopCat.{0}} (g : C(X, Y)) (k : ℕ)
+theorem singularChainFunctor_map_ι {X Y : TopCat.{0}} (g : X ⟶ Y) (k : ℕ)
     (σ : singularSimplices X k) :
-    Sigma.ι (fun (_ : singularSimplices X k) => transferCoeff) σ
-        ≫ (chainFunctorZMod2.map (TopCat.ofHom g)).f k
-      = Sigma.ι (fun (_ : singularSimplices Y k) => transferCoeff)
-          ((TopCat.toSSetObjEquiv Y (Opposite.op (SimplexCategory.mk k))).symm
-            (g.comp (TopCat.toSSetObjEquiv X (Opposite.op (SimplexCategory.mk k)) σ))) := by
-  simp [chainFunctorZMod2, singularChainComplexFunctor, SSet.singularChainComplexFunctor,
-      SimplicialObject.whiskering, Limits.sigmaConst]
+    (TopCat.toSSet.obj X).ιChainComplex σ
+        ≫ (singularChainMapZMod2 g).f k
+      = (TopCat.toSSet.obj Y).ιChainComplex
+          ((TopCat.toSSet.map g).app (Opposite.op (SimplexCategory.mk k)) σ) :=
+  SSet.ι_chainComplexMap_f _ _ _ _ _
+
+/-- A singular simplex is pushed forward by postcomposition. -/
+@[simp] theorem toSSet_map_apply_singularSimplex {X Y : TopCat.{0}} (g : X ⟶ Y)
+    (k : ℕ) (σ : singularSimplices X k) :
+    (TopCat.toSSet.map g).app (Opposite.op (SimplexCategory.mk k)) σ =
+      (TopCat.toSSetObjEquiv Y (Opposite.op (SimplexCategory.mk k))).symm
+        (g.hom.comp (TopCat.toSSetObjEquiv X (Opposite.op (SimplexCategory.mk k)) σ)) :=
   rfl
 
 /-- An odd self-map of the sphere commutes with the antipodal map:
@@ -88,6 +97,14 @@ theorem oddMap_comp_antipodal {n : ℕ} (f : C(Sphere n, Sphere n)) (hf : IsOddM
   intro x
   exact hf x
 
+/-- The defining equation for the transfer, phrased with Mathlib's canonical
+singular-chain basis inclusion. -/
+theorem projTransferChainDegree_ιChain (n k : ℕ)
+    (σ : singularSimplices (TopCat.of (RP n)) k) :
+    (TopCat.toSSet.obj (TopCat.of (RP n))).ιChainComplex σ ≫
+        projTransferChainDegree n k = projTransferOnSimplex n k σ := by
+  simpa only [SSet.ιChainComplex] using projTransferChainDegree_ι n k σ
+
 /-- **Degreewise chain naturality of the transfer.** For an odd self-map `f` of
 `Sⁿ` with descent `fbar = inducedOnRP f hf`, the degree-`k` transfer commutes with
 the chain pushforwards of `f` and `fbar`:
@@ -96,29 +113,48 @@ tr_k ≫ f_* = fbar_* ≫ tr_k.
 ``` -/
 theorem projTransfer_naturality_degree {n : ℕ} (f : C(Sphere n, Sphere n)) (hf : IsOddMap f)
     (k : ℕ) :
-    projTransferChainDegree n k ≫ (chainFunctorZMod2.map (TopCat.ofHom f)).f k
-      = (chainFunctorZMod2.map (TopCat.ofHom (inducedOnRP f hf))).f k
+    projTransferChainDegree n k ≫ (singularChainMapZMod2 (TopCat.ofHom f)).f k
+      = (singularChainMapZMod2 (TopCat.ofHom (inducedOnRP f hf))).f k
           ≫ projTransferChainDegree n k := by
-  apply Sigma.hom_ext
+  apply SSet.chainComplex_hom_ext
   intro σ
+  change
+    (Sigma.ι (fun _ : singularSimplices (TopCat.of (RP n)) k => transferCoeff) σ ≫
+        projTransferChainDegree n k) ≫ (singularChainMapZMod2 (TopCat.ofHom f)).f k =
+      (Sigma.ι (fun _ : singularSimplices (TopCat.of (RP n)) k => transferCoeff) σ ≫
+        (singularChainMapZMod2 (TopCat.ofHom (inducedOnRP f hf))).f k) ≫
+          projTransferChainDegree n k
   set σc := TopCat.toSSetObjEquiv (TopCat.of (RP n)) (Opposite.op (SimplexCategory.mk k)) σ with hσc
   set v₀ : TopologicalSimplex k := Classical.arbitrary _ with hv₀
   set e : Sphere n := (proj_surjective n (σc v₀)).choose with he_def
   have he : proj n e = σc v₀ := (proj_surjective n (σc v₀)).choose_spec
   set τ : C(TopologicalSimplex k, Sphere n) := projLiftSimplex σc v₀ e he with hτ_def
   have hlift : ⇑(proj n) ∘ ⇑τ = ⇑σc := projLiftSimplex_lifts σc v₀ e he
-  rw [← Category.assoc, projTransferChainDegree_ι,
-      projTransferOnSimplex_eq_of_lift n k σ τ hlift, Preadditive.add_comp,
-      singularChainFunctor_map_ι (X := TopCat.of (Sphere n)) (Y := TopCat.of (Sphere n)) f k
+  rw [projTransferChainDegree_ι,
+      projTransferOnSimplex_eq_of_lift n k σ τ hlift]
+  change
+    ((TopCat.toSSet.obj (TopCat.of (Sphere n))).ιChainComplex
+          ((TopCat.toSSetObjEquiv (TopCat.of (Sphere n))
+            (Opposite.op (SimplexCategory.mk k))).symm τ) +
+        (TopCat.toSSet.obj (TopCat.of (Sphere n))).ιChainComplex
+          ((TopCat.toSSetObjEquiv (TopCat.of (Sphere n))
+            (Opposite.op (SimplexCategory.mk k))).symm ((antipodal n).comp τ))) ≫
+        (singularChainMapZMod2 (TopCat.ofHom f)).f k =
+      ((TopCat.toSSet.obj (TopCat.of (RP n))).ιChainComplex σ ≫
+        (singularChainMapZMod2 (TopCat.ofHom (inducedOnRP f hf))).f k) ≫
+          projTransferChainDegree n k
+  rw [Preadditive.add_comp,
+      singularChainFunctor_map_ι (X := TopCat.of (Sphere n)) (Y := TopCat.of (Sphere n))
+        (TopCat.ofHom f) k
         ((TopCat.toSSetObjEquiv (TopCat.of (Sphere n)) (Opposite.op (SimplexCategory.mk k))).symm τ),
-      singularChainFunctor_map_ι (X := TopCat.of (Sphere n)) (Y := TopCat.of (Sphere n)) f k
+      singularChainFunctor_map_ι (X := TopCat.of (Sphere n)) (Y := TopCat.of (Sphere n))
+        (TopCat.ofHom f) k
         ((TopCat.toSSetObjEquiv (TopCat.of (Sphere n)) (Opposite.op (SimplexCategory.mk k))).symm
           ((antipodal n).comp τ)),
-      ← Category.assoc,
       singularChainFunctor_map_ι (X := TopCat.of (RP n)) (Y := TopCat.of (RP n))
-        (inducedOnRP f hf) k σ,
-      projTransferChainDegree_ι]
-  simp only [Equiv.apply_symm_apply]
+        (TopCat.ofHom (inducedOnRP f hf)) k σ,
+      projTransferChainDegree_ιChain]
+  simp only [toSSet_map_apply_singularSimplex, Equiv.apply_symm_apply]
   have hτ' : ⇑(proj n) ∘ ⇑(f.comp τ)
       = ⇑(TopCat.toSSetObjEquiv (TopCat.of (RP n)) (Opposite.op (SimplexCategory.mk k))
           ((TopCat.toSSetObjEquiv (TopCat.of (RP n)) (Opposite.op (SimplexCategory.mk k))).symm
@@ -128,6 +164,16 @@ theorem projTransfer_naturality_degree {n : ℕ} (f : C(Sphere n, Sphere n)) (hf
     simp only [Function.comp_apply, ContinuousMap.comp_apply]
     rw [← projLiftSimplex_lifts_apply σc v₀ e he x]
     exact (inducedOnRP_comm f hf (τ x)).symm
+  change
+    (TopCat.toSSet.obj (TopCat.of (Sphere n))).ιChainComplex
+          ((TopCat.toSSetObjEquiv (TopCat.of (Sphere n))
+            (Opposite.op (SimplexCategory.mk k))).symm (f.comp τ)) +
+        (TopCat.toSSet.obj (TopCat.of (Sphere n))).ιChainComplex
+          ((TopCat.toSSetObjEquiv (TopCat.of (Sphere n))
+            (Opposite.op (SimplexCategory.mk k))).symm (f.comp ((antipodal n).comp τ))) =
+      projTransferOnSimplex n k
+        ((TopCat.toSSetObjEquiv (TopCat.of (RP n))
+          (Opposite.op (SimplexCategory.mk k))).symm ((inducedOnRP f hf).comp σc))
   rw [projTransferOnSimplex_eq_of_lift n k
       ((TopCat.toSSetObjEquiv (TopCat.of (RP n)) (Opposite.op (SimplexCategory.mk k))).symm
         ((inducedOnRP f hf).comp σc)) (f.comp τ) hτ']
@@ -141,11 +187,14 @@ cover is natural for an odd self-map `f` of `Sⁿ` and its descent
 projTransferChainMap n ≫ f_* = fbar_* ≫ projTransferChainMap n.
 ``` -/
 theorem projTransferChainMap_naturality_odd {n : ℕ} (f : C(Sphere n, Sphere n)) (hf : IsOddMap f) :
-    projTransferChainMap n ≫ chainFunctorZMod2.map (TopCat.ofHom f)
-      = chainFunctorZMod2.map (TopCat.ofHom (inducedOnRP f hf)) ≫ projTransferChainMap n := by
+    projTransferChainMap n ≫ singularChainMapZMod2 (TopCat.ofHom f)
+      = singularChainMapZMod2 (TopCat.ofHom (inducedOnRP f hf)) ≫ projTransferChainMap n := by
   apply HomologicalComplex.hom_ext
   intro k
-  simpa using projTransfer_naturality_degree f hf k
+  change projTransferChainDegree n k ≫ (singularChainMapZMod2 (TopCat.ofHom f)).f k
+      = (singularChainMapZMod2 (TopCat.ofHom (inducedOnRP f hf))).f k
+          ≫ projTransferChainDegree n k
+  exact projTransfer_naturality_degree f hf k
 
 /-- **Naturality of the cohomology transfer for odd self-maps.** For an odd
 self-map `f` of `Sⁿ` with descent `fbar = inducedOnRP f hf`, the genuine
@@ -165,7 +214,7 @@ theorem rpToSphereTransfer_naturality_odd {n k : ℕ}
       = cohTransferZMod2 n k ≫ inducedOnRPPullback f hf k := by
   show (HomologicalComplex.homologyFunctor (ModuleCat.{0} (ZMod 2)) (ComplexShape.up ℕ) k).map
         ((dualizeCochainFunctor (ZMod 2) (ModuleCat.of (ZMod 2) (ZMod 2))).map
-          (chainFunctorZMod2.map (TopCat.ofHom f)).op)
+          (singularChainMapZMod2 (TopCat.ofHom f)).op)
       ≫ (HomologicalComplex.homologyFunctor (ModuleCat.{0} (ZMod 2)) (ComplexShape.up ℕ) k).map
           ((dualizeCochainFunctor (ZMod 2) (ModuleCat.of (ZMod 2) (ZMod 2))).map
             (projTransferChainMap n).op)
@@ -174,7 +223,7 @@ theorem rpToSphereTransfer_naturality_odd {n k : ℕ}
             (projTransferChainMap n).op)
         ≫ (HomologicalComplex.homologyFunctor (ModuleCat.{0} (ZMod 2)) (ComplexShape.up ℕ) k).map
             ((dualizeCochainFunctor (ZMod 2) (ModuleCat.of (ZMod 2) (ZMod 2))).map
-              (chainFunctorZMod2.map (TopCat.ofHom (inducedOnRP f hf))).op)
+              (singularChainMapZMod2 (TopCat.ofHom (inducedOnRP f hf))).op)
   rw [← Functor.map_comp, ← Functor.map_comp, ← Functor.map_comp, ← Functor.map_comp]
   congr 2
   rw [← op_comp, ← op_comp, projTransferChainMap_naturality_odd f hf]
@@ -187,4 +236,3 @@ theorem rpToSphereTransferNaturalityOdd_holds (n k : ℕ) :
   fun f hf => rpToSphereTransfer_naturality_odd f hf
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-

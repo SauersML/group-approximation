@@ -74,7 +74,7 @@ abbrev transferCoeff : ModuleCat.{0} (ZMod 2) := ModuleCat.of (ZMod 2) (ZMod 2)
 `∐ fun _ : (TopCat.toSSet.obj X).obj (op ⦋k⦌) => ZMod 2` of one copy of the
 coefficients per singular `k`-simplex of `X`. -/
 abbrev singularChainZMod2 (X : TopCat.{0}) (k : ℕ) : ModuleCat.{0} (ZMod 2) :=
-  (((singularChainComplexFunctor (ModuleCat.{0} (ZMod 2))).obj transferCoeff).obj X).X k
+  ((TopCat.toSSet.obj X).chainComplex transferCoeff).X k
 
 /-- The type of singular `k`-simplices of `X` (the index set of the coproduct
 defining `singularChainZMod2 X k`). It identifies with `C(TopologicalSimplex k, X)`
