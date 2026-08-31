@@ -3,7 +3,7 @@ rg: 2
 id: amenable-base-finite-l-presentations-stable-letter-proof
 kind: route
 title: Quotient closure and the free controller quotient make the stable-kernel locus decidable
-target: amenable-base-finite-l-presentations-have-decidable-stable-letter-locus
+target: amenable-base-finite-l-stable-letter-locus-decidable
 requires:
   - genuine-hnn-switches-over-amenable-bases-are-sigma1
 ---
