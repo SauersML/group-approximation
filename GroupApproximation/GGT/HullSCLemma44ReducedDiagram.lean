@@ -33,6 +33,9 @@ structure Lemma44ReducedRelatorDiagram {G : Type u} [Group G]
   reduced : ∀ pre mid suf : List G,
     factors = pre ++ mid ++ suf →
       mid ≠ [] → mid.prod ≠ 1
+  no_cancelling_pair : ∀ pre between suf : List G, ∀ x y : G,
+    factors = pre ++ x :: (between ++ y :: suf) →
+      (between.prod)⁻¹ * x * between.prod * y ≠ 1
 
 /-- Flatten a least-area boundary certificate and spend its minimality to
 obtain the reduced-diagram cancellation condition. -/
@@ -49,6 +52,8 @@ theorem Lemma44RelatorDiagramBoundary.exists_reduced
     factors_prod := hprod
     factors_signed := hcells
     reduced := RelatorDefectBudget.no_trivial_subproduct_of_minimal
+      hlen hprod hcells D.area_minimal
+    no_cancelling_pair := RelatorDefectBudget.no_cancelling_pair_of_minimal
       hlen hprod hcells D.area_minimal
   }⟩
 

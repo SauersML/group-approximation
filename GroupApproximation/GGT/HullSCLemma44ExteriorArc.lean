@@ -1,4 +1,4 @@
-import GroupApproximation.GGT.HullSCLemma44ReducedDiagram
+import GroupApproximation.GGT.HullSCLemma44OrientedCells
 import GroupApproximation.GGT.HullSCFillingNonElementary
 import GroupApproximation.GGT.HullLemmaEe
 
@@ -26,6 +26,19 @@ open GroupApproximation.WordMetric
 
 universe u w
 
+/-- One possible interior contiguity arc of an exterior cell.  `word = []`
+records an absent arc; otherwise the published-piece certificate and the
+equal source length are exactly what the small-cancellation estimate consumes. -/
+structure Lemma44InteriorContiguityArc {G : Type u} [Group G]
+    {Λ : Type w} (E : GGT.RelGenSet G Λ)
+    (W : Set (List (GGT.RelLetter G Λ))) (eps cellLength : ℕ) where
+  word : List (GGT.RelLetter G Λ)
+  comparison : List (GGT.RelLetter G Λ)
+  source : List (GGT.RelLetter G Λ)
+  empty_or_contiguity : word = [] ∨
+    (RelWord.IsPublishedPiece E W eps word comparison source ∧
+      source.length = cellLength)
+
 /-- The explicit output of the planar contiguity step: one oriented relator
 cell, an exterior prefix, and at most three interior published pieces.  The
 three source words are rotations of the cell boundary at the level needed by
@@ -36,23 +49,11 @@ structure Lemma44ThreePieceExteriorCell {G : Type u} [Group G]
   relator : List (GGT.RelLetter G Λ)
   relator_mem : relator ∈ W
   exterior : List (GGT.RelLetter G Λ)
-  piece₁ : List (GGT.RelLetter G Λ)
-  piece₂ : List (GGT.RelLetter G Λ)
-  piece₃ : List (GGT.RelLetter G Λ)
+  arc₁ : Lemma44InteriorContiguityArc E W eps relator.length
+  arc₂ : Lemma44InteriorContiguityArc E W eps relator.length
+  arc₃ : Lemma44InteriorContiguityArc E W eps relator.length
   relator_decomposition :
-    relator = exterior ++ piece₁ ++ piece₂ ++ piece₃
-  comparison₁ : List (GGT.RelLetter G Λ)
-  comparison₂ : List (GGT.RelLetter G Λ)
-  comparison₃ : List (GGT.RelLetter G Λ)
-  source₁ : List (GGT.RelLetter G Λ)
-  source₂ : List (GGT.RelLetter G Λ)
-  source₃ : List (GGT.RelLetter G Λ)
-  contiguity₁ : RelWord.IsPublishedPiece E W eps piece₁ comparison₁ source₁
-  contiguity₂ : RelWord.IsPublishedPiece E W eps piece₂ comparison₂ source₂
-  contiguity₃ : RelWord.IsPublishedPiece E W eps piece₃ comparison₃ source₃
-  source₁_length : source₁.length = relator.length
-  source₂_length : source₂.length = relator.length
-  source₃_length : source₃.length = relator.length
+    relator = exterior ++ arc₁.word ++ arc₂.word ++ arc₃.word
   leftConnector : G
   rightConnector : G
   leftConnector_short : wordNorm E.base leftConnector ≤ eps
@@ -73,32 +74,39 @@ theorem false_of_lemma44ThreePieceExteriorCell
     {R eps rho : ℕ} {mu : ℝ}
     (Z : Lemma44ReducedRelatorDiagram A.alphabet W R)
     (hsc : RelWord.IsLemma44Input P.rel W eps mu rho)
+    (hmu_pos : 0 < mu)
     (hmu : mu ≤ 1 / 16)
     (hthreshold :
       4 * ((2 * R + 2 * eps + 1 : ℕ) : ℝ) <
         (13 / 16 : ℝ) * (rho : ℝ))
     (C : Lemma44ThreePieceExteriorCell P.rel W eps Z.boundary) : False := by
-  have hp₁raw := hsc.publishedPiecesSmall C.piece₁ C.comparison₁ C.source₁
-    C.contiguity₁
-  have hp₂raw := hsc.publishedPiecesSmall C.piece₂ C.comparison₂ C.source₂
-    C.contiguity₂
-  have hp₃raw := hsc.publishedPiecesSmall C.piece₃ C.comparison₃ C.source₃
-    C.contiguity₃
-  have hp₁ : (C.piece₁.length : ℝ) < mu * C.relator.length := by
-    have h := lt_of_le_of_lt (le_max_left _ _) hp₁raw
-    rwa [C.source₁_length] at h
-  have hp₂ : (C.piece₂.length : ℝ) < mu * C.relator.length := by
-    have h := lt_of_le_of_lt (le_max_left _ _) hp₂raw
-    rwa [C.source₂_length] at h
-  have hp₃ : (C.piece₃.length : ℝ) < mu * C.relator.length := by
-    have h := lt_of_le_of_lt (le_max_left _ _) hp₃raw
-    rwa [C.source₃_length] at h
-  have hlenNat : C.relator.length = C.exterior.length + C.piece₁.length +
-      C.piece₂.length + C.piece₃.length := by
-    rw [C.relator_decomposition]
-    simp only [List.length_append]
+  have hrhoReal : (0 : ℝ) < (rho : ℝ) := by
+    have hleft : (0 : ℝ) ≤ 4 * ((2 * R + 2 * eps + 1 : ℕ) : ℝ) := by positivity
+    have hprod : (0 : ℝ) < (13 / 16 : ℝ) * (rho : ℝ) :=
+      lt_of_le_of_lt hleft hthreshold
+    norm_num at hprod ⊢
+    linarith
+  have hrho : 0 < rho := by exact_mod_cast hrhoReal
+  have hlongNat : rho ≤ C.relator.length := hsc.long C.relator C.relator_mem
+  have hrelator_pos : 0 < C.relator.length := lt_of_lt_of_le hrho hlongNat
+  have arc_small (arc : Lemma44InteriorContiguityArc P.rel W eps C.relator.length) :
+      (arc.word.length : ℝ) < mu * C.relator.length := by
+    rcases arc.empty_or_contiguity with hempty | ⟨hpiece, hsource⟩
+    · rw [hempty]
+      simp only [List.length_nil, Nat.cast_zero]
+      exact mul_pos hmu_pos (by exact_mod_cast hrelator_pos)
+    · have hraw := hsc.publishedPiecesSmall arc.word arc.comparison arc.source hpiece
+      have h := lt_of_le_of_lt (le_max_left _ _) hraw
+      rwa [hsource] at h
+  have hp₁ := arc_small C.arc₁
+  have hp₂ := arc_small C.arc₂
+  have hp₃ := arc_small C.arc₃
+  have hlenNat : C.relator.length = C.exterior.length + C.arc₁.word.length +
+      C.arc₂.word.length + C.arc₃.word.length := by
+    have h := congrArg List.length C.relator_decomposition
+    simpa only [List.length_append] using h
   have hlen : (C.relator.length : ℝ) = (C.exterior.length : ℝ) +
-      C.piece₁.length + C.piece₂.length + C.piece₃.length := by
+      C.arc₁.word.length + C.arc₂.word.length + C.arc₃.word.length := by
     exact_mod_cast hlenNat
   have hexterior_fraction :
       (13 / 16 : ℝ) * C.relator.length < C.exterior.length := by
@@ -108,7 +116,6 @@ theorem false_of_lemma44ThreePieceExteriorCell
         (1 - 3 * mu) * C.relator.length :=
       mul_le_mul_of_nonneg_right hcoeff hnonneg
     linarith
-  have hlongNat : rho ≤ C.relator.length := hsc.long C.relator C.relator_mem
   have hlong : (rho : ℝ) ≤ C.relator.length := by exact_mod_cast hlongNat
   have hexterior_long :
       4 * ((2 * R + 2 * eps + 1 : ℕ) : ℝ) < C.exterior.length := by

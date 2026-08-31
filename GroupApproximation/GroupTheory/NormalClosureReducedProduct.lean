@@ -155,5 +155,60 @@ theorem no_trivial_subproduct_of_minimal
     omega
   omega
 
+/-- Two cells of a least-area product cannot cancel across the product of the
+cells between them.  If they did, the two cells could be deleted while the
+intervening block remained unchanged, lowering the relator count by two.
+
+This is the algebraic form of the no-cancelling-pair condition on a reduced
+van Kampen diagram; unlike adjacency-only reducedness it applies to a nested
+pair separated by an arbitrary block. -/
+theorem no_cancelling_pair_of_minimal
+    {R : Set G} {n : ℕ} {w : G} {factors : List G}
+    (hlen : factors.length = n) (hprod : factors.prod = w)
+    (hcells : ∀ x ∈ factors, IsSignedConjugate R x)
+    (hminimal : ∀ {m : ℕ}, IsRelatorProduct R m w → n ≤ m) :
+    ∀ (pre between suf : List G) (x y : G),
+      factors = pre ++ x :: (between ++ y :: suf) →
+        (between.prod)⁻¹ * x * between.prod * y ≠ 1 := by
+  intro pre between suf x y hsplit hcancel
+  let shorter := pre ++ between ++ suf
+  have hshortCells : ∀ z ∈ shorter, IsSignedConjugate R z := by
+    intro z hz
+    apply hcells z
+    rw [hsplit]
+    rcases List.mem_append.mp hz with hz | hz
+    · rcases List.mem_append.mp hz with hz | hz
+      · exact List.mem_append_left _ hz
+      · exact List.mem_append_right _
+          (List.mem_cons_of_mem x (List.mem_append_left _ hz))
+    · exact List.mem_append_right _
+        (List.mem_cons_of_mem x
+          (List.mem_append_right _ (List.mem_cons_of_mem y hz)))
+  have hcollapse : x * between.prod * y = between.prod := by
+    calc
+      x * between.prod * y =
+          between.prod * ((between.prod)⁻¹ * x * between.prod * y) := by group
+      _ = between.prod := by rw [hcancel, mul_one]
+  have hshortProd : shorter.prod = w := by
+    rw [hsplit] at hprod
+    dsimp [shorter]
+    rw [List.prod_append, List.prod_append]
+    calc
+      pre.prod * between.prod * suf.prod =
+          pre.prod * (x * between.prod * y) * suf.prod := by rw [hcollapse]
+      _ = (pre ++ x :: (between ++ y :: suf)).prod := by
+        simp only [List.prod_append, List.prod_cons]
+        group
+      _ = w := hprod
+  have hcertificate : IsRelatorProduct R shorter.length w := by
+    rw [← hshortProd]
+    exact isRelatorProduct_prod_of_signedConjugates shorter hshortCells
+  have hle : n ≤ shorter.length := hminimal hcertificate
+  have hlt : shorter.length < n := by
+    rw [← hlen, hsplit]
+    simp only [shorter, List.length_append, List.length_cons]
+    omega
+  omega
+
 end RelatorDefectBudget
 end GroupApproximation
