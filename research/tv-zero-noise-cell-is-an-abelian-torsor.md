@@ -54,9 +54,10 @@ $$
 Thus every local cell is residually finite and already has scalar
 \(J=-1\) representations.  If
 \(P=\{y|_U:y\in S\}\), then \(H\cong\{+1,-1\}^{P}\).
-Its scalar characters with \(J=-1\) are exactly the odd subsets of \(P\);
-there are \(2^{|P|-1}\), of which only the \(|P|\) singleton characters are
-dictators.
+The possible scalar \(A\)-profiles with \(J=-1\) are exactly the odd
+subsets of \(P\); there are \(2^{|P|-1}\), of which only the \(|P|\)
+singleton profiles are dictators.  Each profile extends by choosing
+arbitrary scalar signs for the free coset involutions.
 
 Consequently the exact \(\epsilon=0\) support does preserve honest perfect
 strategies, but no local relation distinguishes dictators from odd
