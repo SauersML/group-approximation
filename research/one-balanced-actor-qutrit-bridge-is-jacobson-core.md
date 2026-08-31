@@ -49,6 +49,21 @@ particular the head survives in `<K,a>` but dies in every finite quotient.
 Consequently this group is not residually finite and cannot be a virtually
 free finite amalgam.
 
+There is also a retraction in the opposite direction:
+
+```text
+epsilon:J->F_2,       S,T |-> 1,       Q |-> 0,
+epsilon_*:EL_28(J)->K,          epsilon_*(a)=1.          (BAQ4)
+```
+
+It fixes the finite qutrit envelope pointwise.  Hence the regular
+representation of `K` extends to an exact finite-dimensional
+representation of `<K,a>` which retains the qutrit proper marginal and
+its three-phase cancellation while killing the head and the actor.  A
+load-bearing overlap must therefore condition on a surviving head
+occurrence; no bare group relation in this bridge forces the actor to move
+the qutrit marginal in every finite-dimensional representation.
+
 This is the first tested bridge which escapes all preceding finite,
 virtually-abelian, finite-amalgam, and one-variable polynomial fences.  It is
 still not a proof of nonhyperlinearity: the hyperlinearity of this Jacobson
