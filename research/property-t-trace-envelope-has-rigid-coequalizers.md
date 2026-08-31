@@ -33,7 +33,7 @@ tau_r after i=tau.                                      (PTE3)
 ```
 
 The trace `tau_r` is non-CE. If `A_B` admits no unital
-star-homomorphism to `R^U`, then neither does `B_r).
+star-homomorphism to `R^U`, then neither does `B_r`.
 
 This gives an entirely explicit nonamenable property-`(T)` interface:
 take `Gamma=SL_3(Z)` with the trivial action. Then
@@ -76,7 +76,7 @@ trace-preserving quotient of `B_u` has trace-GNS algebra exactly `B_r`.
 Thus passing from full to reduced may discard a trace-invisible universal
 kernel, but no further coequalizer can alter the represented BCS algebra.
 
-This is a sharp no-go for the proposed property-`(T))
+This is a sharp no-go for the proposed property-`(T)`
 quotient/coequalizer route, not a no-go for all LCS embeddings. A unital
 map from this envelope into an LCS algebra carrying an extending trace
 would still be the terminal BCS-to-LCS theorem. The abstract group
