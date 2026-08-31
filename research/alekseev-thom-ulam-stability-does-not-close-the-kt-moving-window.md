@@ -4,15 +4,16 @@ id: alekseev-thom-ulam-stability-does-not-close-the-kt-moving-window
 kind: claim
 title: Hyperfinite Ulam stability does not close the Kun--Thom moving window
 artifacts:
-  - research/pointwise-lamp-microstates-fail-the-uniform-ball-and-leave-multiplicity-proof.md
-sources:
-  - https://arxiv.org/abs/2606.07369
+  - research/pointwise-lamp-microstates-fail-uniform-ball-proof.md
 distinct_from:
-  finite-packet-basis-rigidifiers-leave-a-multiplicity-cocycle: That gives the exact normal form for a rounded nonabelian packet; this audits the new dimension-free Ulam theorem and proves that its uniform-unit-ball hypothesis is not supplied by group microstates.
   kt-cyclic-parity-is-an-exact-quasiregular-return-correspondence: That identifies the pointed return which must be controlled; this proves that Ulam rounding of the lamp algebra neither supplies the required hypothesis globally nor controls the return multiplicity after rounding.
 ---
 
 **ESTABLISHED APPLICABILITY FENCE; THE KT ROOT REMAINS OPEN.**
+
+(Source: arXiv:2606.07369.  Related in-flight claim, not yet landed:
+finite-packet-basis-rigidifiers-leave-a-multiplicity-cocycle — the
+exact normal form for a rounded nonabelian packet.)
 
 Alekseev--Thom, arXiv:2606.07369, Theorem 3.5 is dimension-free in
 matrix size, but its input is a map
@@ -88,4 +89,4 @@ force the commutator to shrink. A valid bridge would require either:
 Neither follows from arXiv:2606.07369. The global route remains **OPEN**.
 
 DERIVATION
-pointwise-lamp-microstates-fail-the-uniform-ball-and-leave-multiplicity-proof
+pointwise-lamp-microstates-fail-uniform-ball-proof
