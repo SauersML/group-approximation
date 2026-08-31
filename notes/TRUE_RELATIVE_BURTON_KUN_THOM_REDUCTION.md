@@ -225,8 +225,8 @@ normalizer-transfer statement.
 
 `elementary-abelian-regular-normalizers-have-diffuse-coherent-fibers`
 settles the invariant finite-window calculation sharply.  If a fixed
-(B=(C_2)^m) is preserved and its permutation modules have asymptotically
-regular character, all but (o(d_n)) points are free (B)-orbits.  The
+`B=(C_2)^m` is preserved and its permutation modules have asymptotically
+regular character, all but `o(d_n)` points are free `B`-orbits.  The
 induced actor automorphisms then have canonical coherent permutation
 representatives on those orbits.
 
@@ -234,19 +234,23 @@ This does **not** make the supplied unitary normalizers close to permutations.
 On a regular packet every implementer is a canonical permutation times a
 unitary in the lamp commutant, and actor multiplication says only that these
 unitaries form a nonabelian cocycle.  The explicit models
-(U_n=P_{alpha,n}otimes F_{k_n}), with an order-four block automorphism,
-have exact covariance, exact actor products, canonical group trace, and a
-diffuse matrix-ultraproduct multiplicity algebra, but remain at normalized
-Hilbert--Schmidt distance tending to (sqrt2) from every monomial after any
-(o(d_n)) padding.
+
+```text
+U_n=P_(alpha,n) tensor F_(k_n)
+```
+
+with an order-four block automorphism have exact covariance, exact actor
+products, canonical group trace, and a diffuse matrix-ultraproduct
+multiplicity algebra, but remain at normalized Hilbert--Schmidt distance
+tending to `sqrt(2)` from every monomial after any `o(d_n)` padding.
 
 Accordingly the transfer theorem above is not refuted: it asks for the
 **existence** of coherent permutations, not for metric rounding of the chosen
-(U_{g,n}).  The precise unclosed quantifier is compatibility across the
-moving algebras (B_Emapsto B_{gE}).  One must choose commutant gauges, or
-new permutation representatives, simultaneously over increasing windows so
-that ((mathrm{RBK12}))--((mathrm{RBK13})) hold.  A theorem on one
-invariant regular packet cannot supply that moving-window coherence.
+`U_(g,n)`.  The precise unclosed quantifier is compatibility across the
+moving algebras `B_E -> B_(gE)`.  One must choose commutant gauges, or new
+permutation representatives, simultaneously over increasing windows so that
+`(RBK12)--(RBK13)` hold.  A theorem on one invariant regular packet cannot
+supply that moving-window coherence.
 
 This identifies the smallest live strengthening of the amenable conversion
 theorem:
