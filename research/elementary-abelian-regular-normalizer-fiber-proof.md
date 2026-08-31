@@ -174,11 +174,11 @@ pi'_m(a,g,t^j)
 
 The three factors show directly that `pi'_m` is an exact representation of
 `A rtimes H` and implements the prescribed lamp automorphism.  Its lamp
-restriction is `|L_m|k_m` copies of the regular `B_m)-action.
+restriction is `|L_m|k_m` copies of the regular `B_m`-action.
 
 The trace is canonical.  A nontrivial surviving lamp translation has trace
-zero.  If the `K)-coordinate is nontrivial, its eventually nontrivial left
-translation on `L_m` has trace zero.  If the `C_4)-coordinate is
+zero.  If the `K`-coordinate is nontrivial, its eventually nontrivial left
+translation on `L_m` has trace zero.  If the `C_4`-coordinate is
 nontrivial, `(EAP7)--(EAP8)` make the Fourier trace tend to zero.  These
 three cases exhaust the nonidentity elements.  For the actor element `t`,
 the matrix
