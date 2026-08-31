@@ -72,7 +72,7 @@ The first factor is a finite central subgroup.  For its defining character
 `chi(z)=z`, the central spectral projection
 
 ~~~text
-p_chi=(1/m) sum_(z in mu_m) chi(z)-bar lambda(z)          (6)
+p_chi=(1/m) sum_(z in mu_m) conj(chi(z)) lambda(z)       (6)
 ~~~
 
 has canonical trace `1/m`.  Choosing the conjugate character if required by
