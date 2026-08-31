@@ -95,3 +95,10 @@ homological-complex implementation.
 `ConcreteCategory.congr_hom`.  Its cup-product and pullback statements retain
 their upstream strength while elaborating cleanly with Mathlib v4.32's concrete
 homology API.
+
+`CoveringTransferChains` is included unchanged apart from namespace isolation.
+`CoveringTransferBoundary` uses concrete-category naturality for face maps and
+replaces the unbounded automated lift argument by an explicit two-sheet split,
+lift uniqueness, and antipodal involutivity.  Its face compatibility is proved
+through the simplicial naturality squares, preserving the genuine mod-two
+transfer chain map.
