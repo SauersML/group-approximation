@@ -47,12 +47,30 @@ per stage) yields `v_m ∈ C*(d_0, b)` exactly.  Hence
 `C(X) ⋊ Z`: the pieces of the canonical unitary are recovered from
 one weighted sum of its clopen cutdowns, as expected.
 
-**Residue.**  From three self-adjoints (`d_0, Re b, Im b`) to a
-single generator is the classical 2-to-1 step `a + ib` once the pair
-`(d_0, b)` is replaced by two self-adjoints generating the same
-algebra; whether `d_0` can always be absorbed into one of them (e.g.
-`C*(d_0 + iλ·Re b, Im b)` for generic `λ`) is left open here — the
-theorem as stated gives 2-generation, already strictly stronger than
-anything recorded on the Cartan question.  Non-principal Cartans are
-genuinely outside the method: isotropy arrows are invisible to
-diagonal corner-cutting.
+**Single generation.**  Replace `b` by the SELF-ADJOINT
+`b_sa := Σ c_n (v_n + v_n^*)` with `c_n := 4^{-n}`.  Each `v_n^*`
+implements `B_n^{-1} ⊆ G∖X = ⨆_m B_m`; compactness makes
+`B_n^{-1} = ⨆ (B_m ∩ B_n^{-1})` a FINITE union of compact open
+sub-bisections.  Regrouping, `b_sa = Σ_m f_m w_m` where `w_m`
+implements `B_m` and `f_m ∈ D` is a locally constant coefficient
+function each of whose values is a finite sum of DISTINCT `c_n`'s —
+all contributions are positive (both the `v`-side and the `v^*`-side
+enter with `+c_n`), so `f_m` is bounded below by a positive constant
+on its support and is invertible there, with inverse in
+`C*(d_0)`.  The corner-recovery argument runs verbatim on
+`b_sa` (the atom-pair pigeonhole is a statement about the partition
+`{B_m}`, not about the weights): each corner `χ_i b_sa χ_j` equals
+`f_m · (piece)` plus a summable tail, and multiplying by
+`f_m^{-1}|_{supp}` recovers the piece exactly in the limit.  Hence
+`A = C*(d_0, b_sa)` with BOTH generators self-adjoint, and
+
+```text
+T := d_0 + i·b_sa,   T^* = d_0 − i·b_sa,   ⟹   d_0, b_sa ∈ C*(T),
+```
+
+so `A = C*(T)` is singly generated.  (Model check: `M_2` with
+`T = diag(1,2) + ic(e_{12}+e_{21})` generates.)
+
+**Residue.**  Only non-principal Cartans (isotropy arrows are
+invisible to diagonal corner-cutting) and non-Cantor spectra remain
+outside the method.
