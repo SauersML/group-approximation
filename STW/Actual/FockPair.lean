@@ -1,5 +1,5 @@
 import GroupApproximation.Analysis.CalkinCStarAlgebra
-import Mathlib.Analysis.InnerProductSpace.Adjoint
+import GroupApproximation.Analysis.ShiftIsometry
 
 /-!
 # Concrete Fock-space shifts for the actual O₂ model
