@@ -37,11 +37,11 @@ reversal. The left action of `T_s/H` on `H-left-cosets in G_m` is free on
 each fiber over `T_s-left-cosets in G_m`. If its order `i` is odd, its
 group algebra over a characteristic-two splitting field is semisimple.
 Thus the oriented module is the direct sum of its `chi`-isotypic spaces.
-The Weyl element satisfies
+For every split-torus label `zeta in T_s`, the Weyl element satisfies
 
-`x t x=t^(-1)` modulo `H`,
+`x zeta x=zeta^(-1)`.
 
-so it exchanges the `chi` and `chi^(-1)` spaces. Since odd `i` has no
+It therefore exchanges the `chi` and `chi^(-1)` spaces. Since odd `i` has no
 nontrivial self-inverse character, the unoriented fixed space consists of
 the trivial fixed block and one fixed graph for every pair
 `{chi,chi^(-1)}`.
