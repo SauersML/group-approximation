@@ -182,3 +182,16 @@ because it erases scalar-phase commutators.
 
 DERIVATION
 fd-radical-kazhdan-projection-ccr-proof
+
+
+**Regular-mask realization of the pointed firewall (2026-08-31).**
+`kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall`
+shows that the warning after (FDT6) is quantitatively sharp in the canonical
+KT sector.  Tensor an arbitrary multiplicity microstate with the exact
+regular Steinberg congruence carrier of dimension `D_n`.  A fiber witness
+`I_(D_n) tensor x_n` has unchanged normalized `2`-norm and unchanged
+commutator displacement, while its entire carrier inside the adjoint Hilbert
+space has dimension ratio exactly `D_n^(-2)->0`.  The physical leak is
+macroscopic but its adjoint spectral band has vanishing normalized rank.
+Therefore no normalized low-band density estimate can prove (FDT7); the
+pointed op-norm-bounded vector condition is genuinely load-bearing.
