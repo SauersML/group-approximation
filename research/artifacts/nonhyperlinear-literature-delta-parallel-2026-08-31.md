@@ -102,6 +102,17 @@ subgroup) has LLP.  The paper also records that `SL_2(Z[1/p])` is residually
 finite but not property FD.  Thus there is no theorem-level overlap to import
 into the advertised central-extension candidate.
 
+Corollary 7.6 and Remark 7.7 give the closest stronger overlap: LLP supplies a
+ucp lift for every asymptotic representation, hence ucp stability and in
+particular weak ucp stability in Dogon's sense.  This still leaves precisely
+the missing rigidity hypothesis, because Question 1.9 leaves LLP open for
+infinite property-`(T)` and relative-property-`(T)` groups.  Moreover the
+very-flexible normalized-HS conclusion of Theorem 1.2/Corollary 7.12 imposes
+no asymptotic dimension-ratio condition, so it is not the flexible HS
+stability required by Dogon--Vigdorovich.  Remark 7.14 records actual HS
+stability for some one-relator groups with center and for chordal RAAGs, but
+neither class supplies the needed central-extension rigidity overlap.
+
 ### 3. Unnormalized Frobenius stability is a different metric
 
 [Fournier-Facio, arXiv:2512.09180v2, Theorem
@@ -253,8 +264,10 @@ groupification theorem.
 - [Fournier-Facio, arXiv:2608.02025v2, Theorem
   1.3](https://arxiv.org/html/2608.02025v2)
   ([arXiv DOI](https://doi.org/10.48550/arXiv.2608.02025)):
-  there exists a finitely presented torsion-free nonsofic group.  Its proof
-  uses a permutation/LEF obstruction and states no normalized-HS separation.
+  there exists a finitely presented torsion-free nonsofic group, chosen in
+  the proof with property `(T)`.  Its obstruction is permutation/LEF and
+  states no normalized-HS separation; property `(T)` does not change that
+  metric mismatch.
 - [Kun--Thom, arXiv:2608.06222v1, Theorem
   A](https://arxiv.org/html/2608.06222v1)
   ([arXiv DOI](https://doi.org/10.48550/arXiv.2608.06222)):
@@ -353,7 +366,8 @@ therefore **problem sharpening**, not root closure:
 
 1. formulate the commutant lane explicitly around Alekseev--Thom Open Problem
    6.2(a)/(b), rather than treating permutation centralizer rigidity or
-   whole-reduced-product rigidity as if it supplied the lift;
+   whole-reduced-product rigidity as if it supplied the lift; these are two
+   proposed stages, not a proved implication from part (a) to part (b);
 2. make perfect `epsilon=0` LIN completeness, or a trace-preserving
    BCS-to-LIN compiler that also preserves non-`R^U` satisfiability, the only
    admissible game-theoretic missing input;
