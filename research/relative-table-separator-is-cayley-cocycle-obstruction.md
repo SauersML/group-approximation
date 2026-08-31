@@ -85,12 +85,22 @@ produces a positive nonlinear relative Cayley cosystole
  \inf_{W\in\mathcal W_{\beta_n}}\mathcal E_{U_n}(W)
  \geq c>0                                                \tag{RCO8}
 \]
-despite vanishing presentation defect. Proving that the two concrete
-Iwahori cubic rows force the left side to vanish would eliminate every such
-separator and is therefore a sufficient transport route to capture. The
-converse need not hold: the full coefficient body also permits nonunitary
-Kraus frames which are not represented by a single (W). No such estimate
-is proved here; the root remains open.
+despite vanishing presentation defect.
+
+On arbitrary quotient graphs the full coefficient body also permits
+nonunitary Kraus frames, so a unitary theorem alone need not be a converse.
+For the authenticated quotients that distinction is now closed:
+right-translation-flattens-every-relative-kraus-frame and
+cayley-expansion-aligns-isometry-frame-coranges use the uniform
+property-\((T;FD)\) Cayley gap to prove
+\[
+ e_{\rm K}\leq e_{\rm unit}
+ \leq\left(1+2\sqrt{2/\gamma}\right)e_{\rm K}.
+\]
+Hence proving that the two concrete Iwahori cubic rows force the left
+side of (RCO8) to vanish is quantitatively equivalent to closing the full
+positive-definite gate, not merely sufficient. No such cubic-to-Cayley
+estimate is proved here; the root remains open.
 
 DERIVATION
 transport-separator-through-relative-unitary-zero-cochains
