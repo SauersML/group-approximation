@@ -39,7 +39,7 @@ g C_l,              g in K, 1<=l<=L,                   (FGP1)
 ```
 
 are pairwise disjoint, cover `X_free`, have diameter below `rho`, and
-satisfy `mu(gC_l)=mu(C_l)).
+satisfy `mu(gC_l)=mu(C_l)`.
 
 ## Balance the sampled cells
 
