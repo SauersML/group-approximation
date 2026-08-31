@@ -12,7 +12,7 @@ artifacts:
 ---
 
 **ESTABLISHED REFINEMENT/OVERLAP BOUNDARY.**  Let a group `G` act on a set
-`X), put `A=direct_sum_X C_2`, and write `B_E=direct_sum_E C_2` for a
+`X`, put `A=direct_sum_X C_2`, and write `B_E=direct_sum_E C_2` for a
 finite window `E subset X`.  In an exact finite-dimensional lamp
 representation define the character projections
 
@@ -93,7 +93,7 @@ U_(t,m)=Q_(t,m) tensor F_(k_m),                          (MRC8)
 ```
 
 where `Q_(t,m)` is the canonical coordinate permutation and `F_(k_m)`
-is the Fourier matrix.  Then `U_(t,m)^4=1), all actor products, all lamp
+is the Fourier matrix.  Then `U_(t,m)^4=1`, all actor products, all lamp
 covariances, all refinement identities, and all overlap identities for
 `E_m,F_m` and every subwindow are exact.  The common overlap has `m`
 coordinates and grows without bound.  Nevertheless
