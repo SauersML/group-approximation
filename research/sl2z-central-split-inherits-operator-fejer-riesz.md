@@ -17,7 +17,7 @@ Lambda=SL_2(Z)=C4 *_(C2) C6
 ```
 
 Let `z=u^2=v^3` and `e_+=(1+z)/2`, `e_-=(1-z)/2`. For a
-separable Hilbert space `E), every positive operator-valued
+separable Hilbert space `E`, every positive operator-valued
 trigonometric polynomial
 
 ```text
@@ -51,6 +51,16 @@ In the positive corner the order-two and order-three generators are
 `e_+u,e_+v`. In the negative corner they may be taken as
 `i e_-u,-e_-v`. Apply Theorem B in the two corners and add the
 orthogonal sums-of-squares factorizations.
+
+The factors can also be lifted termwise through the quotient
+
+```text
+C4*C6 -> C4 *_(C2) C6.
+```
+
+Choosing the lift of the leading central letter inside the first syllable
+preserves the extent bound. Thus `p` is the image of an upstream positive
+polynomial already written as controlled sums of squares.
 
 This positive result does not bound the authenticated Iwahori selector
 
