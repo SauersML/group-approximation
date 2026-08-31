@@ -65,6 +65,19 @@ are nonzero and they have squared norm \(1/27\).  The two possible neighbor
 sets for \(\{e_0,e_1\}\) therefore have size three and two, respectively,
 never one.
 
+For the generic active labeling
+\[
+ 1=(0,0,0),\qquad2=(1,0,0),\qquad3=(2,0,0),
+\]
+the complete two-sided phase table is flat as well:
+\[
+ \|e_bV_\eta e_a\|_2^2={1\over2592}
+ \qquad(a,b\in\mathbb F_3,\ \eta=\pm1).                 \tag{JQB3a}
+\]
+Here the residual source cut is already the rightmost factor of \(V_\eta\).
+Thus all eighteen full phase blocks are nonzero; the one-sided marginal
+flatness does not hide a sparse two-sided graph.
+
 In particular
 \[
  \|RV_\eta\|_2^2={1\over144},\qquad
