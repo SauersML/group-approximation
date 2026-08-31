@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: virtually-special-reducible-two-complex-crossed-products-coherent
+id: virtually-special-reducible-2-complex-crossed-products-coherent
 kind: claim
 title: Virtually special reducible two-complex crossed products are coherent over every division ring
 distinct_from:
