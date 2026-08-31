@@ -152,8 +152,14 @@ form of the pointed vectors.  It turns each unitary `v_n` into an exact
 trace-half projection `P(v_n)`, preserves every normalized-HS actor defect,
 and converts commutator displacement by the exact factor `1/2`.  Conversely,
 `v_n=2p_n-I` recovers a self-adjoint unitary from any trace-half projection.
-Thus Powers--Stormer, polar decomposition, and spectral cutting do not by
-themselves close `(FDT7)`.
+Thus Powers--Størmer, polar decomposition, and spectral cutting do not by
+themselves close `(FDT7)`.  Nor does the trace-half rank remove the pointed
+firewall: the rank-one support of `P(v_n)` in the adjoint Hilbert space has
+normalized trace `1/(2d_n)^2`.  Left multiplication by `P(v_n)` is a
+trace-half superoperator projection, but its displacement identity recreates
+the same FDT7 witness for the second adjoint representation.  This
+self-similar lift supplies no tracial mass for the original
+finite-dimensional-radical operator.
 
 That claim also gives an exact finite-tracial boundary model.  The Bernoulli
 crossed product for the action of `G` on `G/Lambda` contains a trace-half
