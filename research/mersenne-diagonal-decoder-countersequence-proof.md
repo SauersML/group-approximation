@@ -32,14 +32,14 @@ choices
 epsilon=1/1280,
 rho=80 epsilon=1/16,
 beta=1/4+epsilon/2,
-delta=epsilon^2=1/1638400.                              (MDP4)
+delta=epsilon^2=1/1638400.                              (MDP2)
 ```
 
 Indeed, the union-bound base is
 
 ```text
 2^(C+1) rho^(1-beta)
- =4(1/16)^(3/4-1/2560)<1.                              (MDP7)
+ =4(1/16)^(3/4-1/2560)<1.                              (MDP3)
 ```
 
 Thus the theorem supplies translated half-interval phases whose global
@@ -47,7 +47,7 @@ edge cochain `c_n` obeys
 
 ```text
 |supp(delta_1 c_n)|/|Q_n|<2/n,
-dist_E(c_n,Z^1(K_n;F_2))>=delta.                        (MDP2)
+dist_E(c_n,Z^1(K_n;F_2))>=1/1638400.                    (MDP4)
 ```
 
 Identify an edge cochain with the left-`N_n`-invariant group function
@@ -59,10 +59,10 @@ c_n(g)=c_n(N_n g).
 The two components of the cellular curl are exactly `h_a(c_n)` and
 `h_b(c_n)`. The face set is the disjoint union of the `A_n`- and
 `B_n`-cosets, including the distinct central-sign duplicate rows.
-Therefore (MDP2) says precisely
+Therefore (MDP4) says precisely
 
 ```text
-(|supp h_a(c_n)|+|supp h_b(c_n)|)/|Q_n|<2/n.            (MDP3)
+(|supp h_a(c_n)|+|supp h_b(c_n)|)/|Q_n|<2/n.            (MDP5)
 ```
 
 There is no normalization loss in the distance. Every differing edge bit
@@ -77,7 +77,7 @@ Hence
 ```text
 dist_Q(c_n,C_(N_n))
  =dist_E(c_n,Z^1(K_n;F_2))
- >=1/1638400.                                          (MDP8)
+ >=1/1638400.                                          (MDP6)
 ```
 
 Because `c_n` is left-`N_n`-invariant, the involution and inversion
@@ -90,17 +90,17 @@ give
  =12 |supp h_a(c_n)|/|Q_n|,
 
 ||(X_n T_n^2 R_n)^3-1||_2^2
- =12 |supp h_b(c_n)|/|Q_n|.                             (MDP5)
+ =12 |supp h_b(c_n)|/|Q_n|.                             (MDP7)
 ```
 
-Summing (MDP5) and applying (MDP3) proves (MDD2).
+Summing (MDP7) and applying (MDP5) proves (MDD2).
 
 Finally the exact diagonal correction formula is
 
 ```text
 inf_(c' in C_(N_n))
  ||M_((-1)^c_n)lambda(x)-M_((-1)^c')lambda(x)||_2
- =2 sqrt(dist_Q(c_n,C_(N_n))).                          (MDP6)
+ =2 sqrt(dist_Q(c_n,C_(N_n))).                          (MDP8)
 ```
 
 Equations (MDP6) and (MDP8) prove (MDD3), since
