@@ -366,6 +366,28 @@ depth `n` predicted by the firewall.  The surviving obstruction is now
 coefficient covariance: for a finite coefficient stage `D`, the map
 `f tensor d |-> f(U)d` is not multiplicative unless `U` commutes with `D`.
 
+The covariance seam has a positive side and a sharp firewall.
+`stw84-invariant-coefficient-stages-restore-two-fourier-colours` replaces
+the wrong tensor product by the finite-dimensional crossed product
+`D rtimes Z`.  It gives two colours for every invariant coefficient stage;
+moreover, coherently inner finite stages imply
+`dim_nuc(B rtimes_alpha Z)<=1` by Haar-averaging the residual Fourier
+unitary into the stage commutant and polar-correcting it.  Conversely,
+`stw84-untwisted-coefficient-symbols-pay-covariance-gap` proves that every
+u.c.p. map from `C(T) tensor D` which returns a Fourier unitary `U` and a
+coefficient unitary `d` with respective errors `epsilon_U,epsilon_d`
+satisfies
+
+```text
+||[U,d]||
+ <=4 sqrt(epsilon_U epsilon_d)+2(epsilon_U+epsilon_d).
+```
+
+Thus a nonzero covariance commutator cannot be hidden by replacing the
+failed tensor-product star-homomorphism with an approximately correct
+u.c.p. evaluation.  The remaining cyclic core must build the action into
+its symbol or abandon separate recovery of the two generators.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
