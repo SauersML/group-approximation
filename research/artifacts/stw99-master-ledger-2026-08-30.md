@@ -24,9 +24,9 @@ earlier "all 99 covered" note.*
 | XI | stw99-problem-xi-zd-crossed-stably-finite-qd | |
 | XII | stw99-problem-xii-ah-rr0-crossed-qd-afe | |
 | XIII | stw99-problem-xiii-ssa-uct | filled this wave |
-| XIV | stw99-problem-xiv-…, stw99-problem-xiv2-… | two parts |
-| XV | stw99-problem-xv-ssa-k-theory-range | filled this wave |
-| XVI | stw99-problem-xvi-ssa-k-theory-rigidity | filled this wave |
+| XIV | stw99-problem-xiv-…, stw99-problem-xiv2-… | two parts; routes from XIII both ways; O₂-exclusion in (2) K-forced |
+| XV | stw99-problem-xv-ssa-k-theory-range | CLOSED modulo self-Künneth (K torsion-free solid ⟹ known list; ssa-kunneth-forces-solid-k-theory) |
+| XVI | stw99-problem-xvi-ssa-k-theory-rigidity | SOLVED for reference targets O₂/Q/Q⊗O∞ without UCT (stw99-xvi-holds-for-reference-targets); residue Z, O∞, proper-J UHF |
 | XVII | stw99-problem-xvii-w-stability | filled this wave |
 | XVIII | stw99-problem-xviii-toms-winter-conjecture | + Toms-counterexample immunity theorem |
 | XIX | stw99-problem-xix-uniform-gamma-stably-finite-nuclear | ANSWERED NO (Toms 2026 import) |
@@ -68,7 +68,7 @@ earlier "all 99 covered" note.*
 | LV | stw99-problem-lv-quasifree-flows-o2 | **SOLVED this session** (KMS separation) |
 | LVI | stw99-problem-lvi-untwisting-cocycle-actions | |
 | LVII | stw99-problem-lvii-kk-trace-classification | |
-| LVIII | stw99-problem-lviii-pure-k1-bijective | |
+| LVIII | stw99-problem-lviii-pure-k1-bijective | simple K₁-bijectivity slice ESTABLISHED (stw58-simple-pure-k1-bijective) |
 | LIX | stw99-problem-lix-simple-k1-injective | |
 | LX | stw99-problem-lx-rr0-weak-cancellation | |
 | LXI | stw99-problem-lxi-properly-infinite-k1-injective | |
