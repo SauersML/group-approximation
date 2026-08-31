@@ -41,16 +41,6 @@ def baseScalarStarAlgHom : BaseAlgebra D →⋆ₐ[ℂ] ℂ :=
   (unitizationScalarStarAlgHom (C0DirectSum D)).comp
     (unitizationEquivBase D).symm.toStarAlgHom
 
-/-- Evaluation of a base sequence at one coordinate. -/
-def baseCoordinateStarAlgHom (n : ℕ) : BaseAlgebra D →⋆ₐ[ℂ] D n where
-  toFun x := x.1 n
-  map_zero' := rfl
-  map_one' := rfl
-  map_add' _ _ := rfl
-  map_mul' _ _ := rfl
-  commutes' _ := rfl
-  map_star' _ := rfl
-
 /-- The finite scalar-and-coordinate product used at truncation length `N`. -/
 abbrev BasePrefix (N : ℕ) := ℂ × (∀ i : Fin N, D i.1)
 
