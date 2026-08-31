@@ -115,7 +115,8 @@ degree-neutral: it is \(4\)-to-\(4\), not a hidden \(4\)-to-\(2\) reduction.
 
 ## 3. Qutrit marginal calculation
 
-Let \(F_q=\langle J,Z_1\rangle\cong C_3^2\) be the scalar qutrit subgroup.
+Let \(F_q=\langle J,X_1,Z_1,X_2,Z_2\rangle\) be the order-\(3^5\)
+scalar qutrit packet, and put \(C=\langle J,Z_1\rangle\cong C_3^2\).
 The support of
 \[
  f_\eta=2p_\eta k e k p_\eta
