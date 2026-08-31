@@ -66,9 +66,10 @@ UV=exp(2 pi i theta)VU,             theta irrational,
 
 and let `Z` act by `Ad U`.  The vector `V` has a non-torsion Koopman
 eigenvalue.  A finite-phase monomial `Z`-representation has only
-root-of-unity eigenvalues, so no strict Pauli-basis dilation exists, although
-`Z` and all of its actions are sofic.  Thus exact basis dilation is
-**strictly stronger than soficity**, not equivalent to it.
+root-of-unity eigenvalues, so no strict Pauli-basis dilation exists.  The
+actor is amenable and the crossed product is Connes embeddable; in the usual
+pmp approximation setting amenable actions are sofic.  Thus sofic/CE
+approximability does not imply strict basis dilation.
 
 Unrestricted cocycle conjugacy erases this particular example because an
 inner action is cocycle conjugate to the trivial action.  For amenable
@@ -80,8 +81,11 @@ theorem is available for nonamenable actors.
 The precise sofic equivalence occurs only after one additionally asks for
 finite **charts** of the permuted basis: in the Pauli lamp setting,
 basis charts recover the underlying set-action charts, while a sofic set
-action constructs the Pauli charts.  An exact von Neumann basis dilation
-without such charts has no soficity consequence.
+action constructs the Pauli charts.  Exact basis preservation alone does not
+imply soficity either: the Pauli Bernoulli action attached to the pinned
+Kun--Thom nonsofic set action permutes its countable Pauli-word basis exactly.
+What is unavailable is a finite common chart.  Thus exact dilation and
+soficity are not equivalent in either direction.
 
 Therefore a basis-preserving dilation of a pinned non-CE action would indeed
 solve the root problem, but proving it is already a source-specific
