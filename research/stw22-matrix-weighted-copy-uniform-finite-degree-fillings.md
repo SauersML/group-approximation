@@ -6,7 +6,7 @@ title: Matrix weighted-copy fibres have sharp dimension-free fillings in every f
 distinct_from:
   stw22-matrix-weighted-copy-codimension-two-uniform-s4-fillings: that theorem treats only degree four and codimension two; the present theorem gives every fixed finite degree and the sharp inequality 2c>=j.
   stw22-matrix-weighted-copy-uniform-s2-fillings: that theorem gives a sharper low-degree constant when c>=1; the present theorem supplies the general carrier and Bott-promotion induction.
-  stw22-diffuse-stiefel-uniform-all-finite-degree-fillings: that theorem is for diffuse finite factors; the present theorem is the normalized matrix branch and records the sharp shrinking Bott spheres below the codimension range.
+  stw22-diffuse-weighted-copy-all-finite-sphere-fillings: that theorem is for diffuse finite factors; the present theorem is the normalized matrix branch and records the sharp shrinking Bott spheres below the codimension range.
 artifacts:
   - research/artifacts/stw22-matrix-finite-degree-carrier-induction-audit-2026-08-31.md
 ---
