@@ -129,6 +129,19 @@ Theta(gamma)x=x for every gamma in Gamma,
 
 which is exactly `x in sigma(Gamma)' cap M`.
 
+Let `z_FD` denote the orthogonal projection onto the closed sum of all
+reducing subrepresentations of `Theta` weakly contained in `pi_FD`.
+Arbitrary direct sums and subrepresentations preserve weak containment, so
+this is the maximal FD-tempered subrepresentation and `z_FD` commutes with
+`Theta(G)`.  If `x` is `Lambda`-fixed, so is `z_FD x`; Step 3 makes
+`z_FD x` `Gamma`-fixed.  Therefore `z_FD x` belongs to
+`L^2(sigma(Gamma)' cap M)`, and
+
+~~~text
+dist_2(x,L^2(sigma(Gamma)' cap M))
+ <=||x-z_FD x||_2.                                      (FDP8b)
+~~~
+
 This includes the compact adjoint sector as a special case: a direct sum of
 finite-dimensional representations is weakly contained in `pi_FD`.
 It is strictly broader, because weak containment permits noncompact limits
