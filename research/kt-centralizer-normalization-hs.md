@@ -617,3 +617,33 @@ control the quantum fiber, because the carrier cancels from its equations
 and masks its character.  The remaining target is the bare source-specific
 multiplicity problem.  The theorem supplies no leaking `v` and therefore
 does not close the route.
+
+
+**2026-08-31 (the two positive edges have one backward range).**
+`kt-ab-compressors-have-one-backward-commutant-edge` computes the exact
+correspondence seen by a pointed multiplicity vector. For
+`R=sigma(Gamma)' intersect M` and
+`Phi_g=Ad(sigma(g)^*)|R`, the identity `A=C B` and normalization of
+`Gamma` by `C` give
+
+~~~text
+Phi_A=Phi_B o Phi_C,
+Phi_A(R)=Phi_B(R)=sigma(B^(-1) Gamma B)' intersect M.
+~~~
+
+Thus the pair contributes one backward endomorphism and one cyclic source
+automorphism, not two independent first-step conditional expectations.
+Moreover the canonical one-compressor sofic wreath gives an actual
+matrix-ultraproduct projection `p in R` with
+
+~~~text
+||p||=1,       dist_2(p,Phi_B(R))>=1/(2 sqrt(2)).
+~~~
+
+This rules out a property-(T) or noncommutative-martingale proof based only
+on the two root ranges, even for a pointed operator-norm-bounded vector.
+The exact surviving target is later-word holonomy: control the noncommuting
+placements of `Phi_C` through iterates of `Phi_B`, equivalently a named
+mixed-return row. Extending the one-compressor projection through that
+holonomy would itself be the missing joint hyperlinear model, so the route
+remains open.
