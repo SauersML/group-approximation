@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: periodic-laurent-reduction-preserves-finite-action-table
-kind: proof
+kind: route
 title: Periodize every finite Laurent covariance table without wraparound
 target: untwisted-bilateral-symbol-enrichment-is-lef
 requires: []
