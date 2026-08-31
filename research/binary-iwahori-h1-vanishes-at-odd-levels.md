@@ -5,7 +5,7 @@ kind: claim
 title: Binary Iwahori first cohomology vanishes at every odd congruence level
 distinct_from:
   first-mersenne-iwahori-levels-have-zero-binary-h1: that verifies m=15 and m=63 by exact elimination; this proves the identity at every odd level.
-  iwahori-uniform-infinitesimal-rigidity: that is a characteristic-zero tangent statement; this eliminates the characteristic-two Smith obstruction by congruence subgroup rigidity.
+  iwahori-uniform-infinitesimal-rigidity: that is a characteristic-zero tangent statement; this eliminates the characteristic-two Smith obstruction by exact one-root normal generation.
   proper-torus-diagonal-code-is-incomplete-cover-curl: that identifies the exact cellular complex and leaves its cohomology open; this computes that cohomology, with all duplicate face rows retained.
 ---
 
@@ -63,30 +63,29 @@ The one-skeleton is connected, so if \(V_m=|P_m\backslash G_m|\), then
  \dim_{\mathbb F_2}Z^1(K_{H,m};\mathbb F_2)=V_m-1.        \tag{BIH4}
 \]
 
-The proof has two independent parts. First, the exact relative Iwahori
-presentation has a simply connected coset development \(X\), and
-\(K_m\backslash X\) is exactly the complex in (BIH1). Pullback from the
-quotient gives an injection
+The exact relative Iwahori presentation has a simply connected coset
+development \(X\), and \(X/K_m\) is exactly the complex in (BIH1).
+Pullback from the quotient gives an injection
 
 \[
- H^1(K_m\backslash X;\mathbb F_2)
+ H^1(X/K_m;\mathbb F_2)
  \hookrightarrow \operatorname{Hom}(K_m,\mathbb F_2).    \tag{BIH5}
 \]
 
-This remains valid although \(K_m\) has vertex stabilizers.
+This remains valid although \(K_m\) has vertex stabilizers. More precisely,
+every character in the image of (BIH5) vanishes on every element of
+\(K_m\) which fixes a vertex of \(X\).
 
-Second, Serre's congruence subgroup property implies
+Mennicke's exact normal-generation theorem gives
 
 \[
- \operatorname{Hom}(K_m,\mathbb F_2)=0.                  \tag{BIH6}
+ K_m=\langle\!\langle t^m\rangle\!\rangle_\Gamma.        \tag{BIH6}
 \]
 
-Indeed, the kernel of a hypothetical binary character contains a principal
-congruence subgroup of an odd level \(j\) divisible by \(m\). After the
-single global sign is normalized on the primes dividing \(m\), the finite
-quotient \(K_m/K_j\) is a product of odd-primary congruence kernels and
-groups \(\operatorname{SL}_2(\mathbb Z/q^a\mathbb Z)\) for new odd primes
-\(q\). None has a quotient of order two.
+The element \(t^m\) fixes the base vertex, and every
+\(\Gamma\)-conjugate of \(t^m\) fixes a conjugate vertex. Thus every
+character arising in (BIH5) vanishes on the normal generating set in
+(BIH6), hence is zero. This proves (BIH2).
 
 At the corrected Mersenne levels \(m=4^n-1\),
 
