@@ -20,24 +20,30 @@ translations either
    endpoint pairs, hence contains `F_2` by ping-pong;
 2. fixes a vertex;
 3. fixes an end; or
-4. preserves a line.
+4. preserves a line without fixing an end.
 
 For the minimal Bass--Serre tree of a reduced finite graph, the last three
 cases have the following exact quotient forms.
 
 - A fixed vertex makes the tree a point, so the quotient has one vertex and
   no edge.
-- A fixed end forces the quotient to be one loop with one boundary map onto.
-  The group is the corresponding ascending HNN extension.
-- An invariant line has quotient one edge with two vertex orbits, and both
-  edge images have index at most two. After the preceding collapses, the
-  nontrivial line case has index exactly two at both endpoints.
+- If an end is fixed, orient every edge toward that end. At each vertex the
+  unique outgoing edge has edge stabilizer equal to the vertex stabilizer,
+  so its boundary map at the origin is onto. In the finite quotient, collapse
+  every non-loop outgoing edge. What remains is one loop with one boundary
+  map onto, hence an ascending HNN extension.
+- If a line is invariant and neither end is fixed, the quotient is one edge
+  with two vertex orbits. Both edge images have index two at their endpoints;
+  the index-one case would fix an end or would already have been collapsed.
 
 These assertions can also be read directly from valence. At a vertex of the
 Bass--Serre tree, the incident lifts of an edge are the cosets of its edge
-image. Any reduced quotient with an additional edge, a second cycle, or an
-index greater than two creates branching. Cocompact branching supplies the
-two disjoint hyperbolic axes used in the first case.
+image. Branching alone is not enough to infer non-elementarity: an ascending
+Bass--Serre action may branch while fixing an end. After the fixed-vertex,
+fixed-end, and invariant-line cases have been excluded, however, minimal
+cocompact branching is non-elementary. It then supplies hyperbolic elements
+with disjoint endpoint pairs, and ping-pong gives the `F_2` in the first
+alternative.
 
 The three elementary cases are amenable. The point case is a vertex group.
 An ascending HNN extension of an amenable group is an amenable direct limit
@@ -47,7 +53,9 @@ subgroup of `D_infinity`.
 
 It remains to check the arithmetical assertion. Onto-ness of an edge image is
 certified by writing each generator of the adjacent vertex group as a word in
-the finite edge-image tuple and supplying van Kampen derivations.
+the finite edge-image tuple and supplying van Kampen derivations. Each
+certified collapse is effective: substitute those certified preimage words
+for the generators of the collapsed vertex in every remaining boundary map.
 
 For index at most two of `H=<h_1,...,h_r>` in
 `B=<X|R>`, a finite certificate either proves `H=B`, or supplies a word
