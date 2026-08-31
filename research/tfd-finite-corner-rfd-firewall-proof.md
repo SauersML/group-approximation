@@ -99,7 +99,7 @@ produces an exact representation `sigma_n` on
 E_n>=d_n,        E_n/d_n-1=O(ell(P_n,pi_n))=o(1),       (10)
 ```
 
-at generalized distance `O(sqrt(ell(P_n,pi_n)))` from `rho_n).
+at generalized distance `O(sqrt(ell(P_n,pi_n)))` from `rho_n`.
 Equations `(6),(9),(10)` prove the second assertion.
 
 The construction takes a `pi_n(Gamma)`-invariant subspace and, when
