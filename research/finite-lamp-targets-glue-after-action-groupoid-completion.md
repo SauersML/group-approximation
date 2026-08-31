@@ -129,10 +129,9 @@ natural attempt to manufacture the missing masa.  In every canonical
 regular-trace central sector, a finite nonabelian packet acts as a full fixed
 matrix factor tensored with an unbounded multiplicity algebra.  Even an ideal
 left/right packet leaves the external amplification, and no equivariant rule
-from the packet tuple can select a rank-one masa.  An exact Fourier
-multiplicity gauge has canonical limiting trace, collision tending to zero,
-and distance tending to `sqrt(2)` from every monomial after sublinear
-padding.  The packet can rigidify coarse finite-factor atoms, but refining
+from the packet tuple can select a rank-one masa.  An exact doubled bent-Walsh multiplicity involution has exact canonical
+trace at every finite stage, collision tending to zero, and distance tending
+to `sqrt(2)` from every monomial after sublinear padding.  The packet can rigidify coarse finite-factor atoms, but refining
 them to rank one still requires growing actor-dependent data.
 
 ## Exact surviving direct-target seam
