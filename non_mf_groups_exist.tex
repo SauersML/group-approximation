@@ -891,10 +891,10 @@ is dense in $C^*_{\max}(G)$; contractivity extends both limits to the whole
 algebra, which is precisely amenability of $\tau_G$.
 \end{proof}
 
-The next construction works for any residually finite Kazhdan group with a
-proper finite-index self-embedding.  Let $\Gamma$ be such a countable group,
-let $\alpha\colon\Gamma\to\Gamma$ be injective with proper finite-index
-image, and choose $a\in\Gamma\setminus\alpha(\Gamma)$.  Put
+The obstruction itself only needs a proper self-embedding of a Kazhdan
+group.  Let $\Gamma$ be a countable group with property~\textup{(T)}, let
+$\alpha\colon\Gamma\to\Gamma$ be injective but not surjective, and choose
+$a\in\Gamma\setminus\alpha(\Gamma)$.  Put
 \[
  T_\alpha=\varinjlim
    (\Gamma\xrightarrow{\alpha}\Gamma
@@ -917,19 +917,9 @@ affine--Clifford witness is
 \begin{proposition}[Clifford obstruction from a proper self-embedding]
 \label{prop:clifford-self-embedding}
 The group $W$ is not MF.  More precisely, every homomorphism from $W$ to an
-MF group kills $\varepsilon$.  Moreover,
-\[
- W\cong K\rtimes\mathbb Z,
- \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha,
-\]
-where $K$ is locally residually finite.  Consequently the canonical trace on
-$C^*_{\max}(W)$ is amenable and not quasidiagonal.
+MF group kills $\varepsilon$.
 \leanverified{Sofic/CliffordWitnessDirectDefect}{GroupApproximation.CliffordWitnessDirectDefect.not_isOperatorMF}
 \leanverified{Sofic/CliffordWitnessDirectDefect}{GroupApproximation.CliffordWitnessDirectDefect.map_sign_eq_one_of_isOperatorMF_target}
-\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.ambientEquivShiftKernelForByInt}
-\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.shiftKernelFor_isLocallyResiduallyFinite}
-\leanverified{Analysis/LocallyRFByIntFactorization}{GroupApproximation.LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt}
-\leanverified{Manuscript/NinetyNineProblems/ProblemXGroups}{GroupApproximation.NinetyNineProblems.canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF}
 \end{proposition}
 
 \begin{proof}
@@ -960,7 +950,28 @@ The subgroup $\langle\varepsilon\rangle$ is finite, central, normal and
 nontrivial, so it has property~\textup{(T)}.  The one-sided compression
 criterion therefore makes every homomorphism from $W$ to an MF group kill
 $\varepsilon$.  In particular, $W$ is not MF.
+\end{proof}
 
+The extra hypotheses in the next proposition concern approximation of the
+canonical trace, not the Clifford obstruction.
+
+\begin{proposition}[the locally residually finite case]
+\label{prop:clifford-locally-rf}
+Suppose in addition that $\Gamma$ is residually finite and that
+$[\Gamma:\alpha(\Gamma)]<\infty$.  Then
+\[
+ W\cong K\rtimes\mathbb Z,
+ \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha,
+\]
+where $K$ is locally residually finite.  Consequently the canonical trace on
+$C^*_{\max}(W)$ is amenable and not quasidiagonal.
+\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.ambientEquivShiftKernelForByInt}
+\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.shiftKernelFor_isLocallyResiduallyFinite}
+\leanverified{Analysis/LocallyRFByIntFactorization}{GroupApproximation.LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt}
+\leanverified{Manuscript/NinetyNineProblems/ProblemXGroups}{GroupApproximation.NinetyNineProblems.canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF}
+\end{proposition}
+
+\begin{proof}
 Reassociating the semidirect products yields
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.ambientEquivShiftKernelForByInt}
 \[
