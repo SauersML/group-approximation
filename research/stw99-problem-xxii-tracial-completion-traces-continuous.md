@@ -26,6 +26,10 @@ artifacts:
   - research/artifacts/stw22-full-fundamental-group-all-degree-audit-2026-08-30.md
   - research/artifacts/stw22-uniform-corner-bundle-selection-audit-2026-08-30.md
   - research/artifacts/stw22-dim4-factor-bundle-breakthrough-2026-08-31.md
+  - research/artifacts/stw22-dim5-factor-bundle-breakthrough-2026-08-31.md
+  - research/artifacts/stw22-diffuse-all-degree-induction-audit-2026-08-31.md
+  - research/artifacts/stw22-matrix-finite-degree-carrier-induction-audit-2026-08-31.md
+  - research/artifacts/stw22-all-factor-finite-dimensional-breakthrough-2026-08-31.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -109,6 +113,32 @@ always have at least two unused dimensions when `m>=2`.  Consequently
 every countably generated factorial bundle over a compact Hausdorff base of
 dimension at most four, including arbitrary mixed matrix/diffuse fibres.
 
+The finite-degree bootstrap is now complete for arbitrary varying finite
+factors.  The dimension-five milestone combines the diffuse relative
+low-spectrum `B^5` recursion with matrix Bott-class cancellation in unused
+codimension two.  More generally,
+`stw22-diffuse-weighted-copy-all-finite-sphere-fillings` inducts the
+spectral-supercarrier and relative-band argument through every fixed finite
+sphere degree.  In matrices,
+`stw22-matrix-weighted-copy-uniform-finite-degree-fillings` proves the
+sharp stable-range criterion `2c>=j` in degree `j`, with an explicit
+degree-dependent modulus and shrinking essential spheres just beyond that
+range.  For a base of dimension `D`, the gap proof uses only
+`j=D-1` and an unbounded replication tail
+`m>=ceil((D-1)/2)`; half slack forces `c>=m`, hence `2c>=j`.
+The pointwise matrix/diffuse dichotomy therefore has a common modulus for
+this fixed `D`, without a continuous type stratum.
+
+Consequently
+`stw22-finite-dimensional-factor-bundles-have-uniform-traces` proves the
+trace theorem for every countably generated factorial bundle over every
+finite-dimensional compact Hausdorff base, with arbitrary matrix sizes,
+diffuse II1 isomorphism classes, and matrix/diffuse fibre variation.  This
+is a theorem separately for each finite `D`, not one modulus uniform in
+dimension.  The remaining unrestricted frontier includes
+infinite-covering-dimensional bases and bundles without countable
+generation.
+
 There is an all-degree nonhyperfinite extension when the fixed fibre has
 full fundamental group.  In
 `stw22-full-fundamental-group-weighted-copy-all-sphere-fillings`, one pointed
@@ -118,10 +148,10 @@ Consequently
 `stw22-full-fundamental-group-trivial-bundles-finite-dimensional` proves the
 trace theorem for trivial bundles with that fibre over every
 finite-dimensional compact Hausdorff base.  This includes fixed McDuff
-fibres.  The all-factor half-slack three-sphere theorem now supplies the
-degree needed for arbitrary varying bundles through dimension four, while
-full fundamental group continues to give all finite degrees in the fixed
-fibre class.
+fibres.  The arbitrary varying-fibre theorem above now supplies every fixed finite
+degree by combining the diffuse induction with the matrix stable range.
+Full fundamental group continues to give an independent all-degree route in
+the fixed-fibre class.
 
 The same mechanism is intrinsic and therefore survives nontrivial bundle
 cocycles.  `stw22-uniform-corner-bundles-have-uniform-traces`
@@ -151,11 +181,10 @@ only hypothesis is an exact continuous local tuple of orthogonal weighted
 copies.  The existing intrinsic correction lemma makes the corresponding
 fibre solution relation lower semicontinuous, but does not supply the
 uniform higher local connectivity needed to select its polar-fill
-corrections.  In the countably generated case, stabilized `L^2` selection
-and the all-factor path, loop, two-sphere, and half-slack three-sphere
-filling theorems settle the problem through dimension four.  The first
-remaining finite-dimensional hinge is the corresponding weighted degree-four
-input for dimension five.
+corrections.  In the countably generated case, stabilized `L^2` selection combines the
+all-degree diffuse induction with the matrix stable-range theorem on an
+unbounded half-slack replication tail.  It now settles every finite covering
+dimension; no finite-dimensional weighted filling hinge remains.
 
 For the first such hinge, projection-weight multicopy fibres reduce exactly
 to `U(N)/(q+U((1-q)N(1-q)))`.  The complement bound is indispensable:
@@ -221,11 +250,11 @@ the unresolved relative selection statement.
   (`b(z)=b(y')+delta_z q_z` with `tau(q_z)` fixed), so one cannot select the
   spectral cuts themselves.  The zero-dimensional theorem bypasses this:
   it lifts weighted operators, corrects only their high spectral parts,
-  and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2`
-  selection now replaces those patches through dimension four for
-  countably generated bundles.  From dimension five onward, local weighted
-  tuples require factor-uniform degree-four and higher filling data; degree
-  four is the first unresolved sphere degree.
+  and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2` selection now replaces those patches in every
+  finite covering dimension for countably generated bundles.  For each fixed
+  dimension it uses only a sufficiently far half-slack replication tail and
+  the corresponding finite matrix stable range.  The unresolved boundary is
+  infinite covering dimension or absence of countable generation.
 * **Ultrafilter attack on the negative side.**  A singular trace on
   `C_σ([0,1], R)` of the form `lim_ω τ(b(y_n) q_n)/τ(q_n)` needs projections
   `q_n` with `τ(q_n) → 0` that are asymptotically central in relative

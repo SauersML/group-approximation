@@ -33,7 +33,7 @@ minimum proves the top-degree local assertion.
 For every `2<=ell<=j`, the same inequality gives `2c>=ell`; the
 degree-`ell` matrix and diffuse moduli therefore apply. Combine their
 finitely many minima with the established degree-zero and degree-one
-all-factor moduli. This is one common `LC^0,ldots,LC^j` package for
+all-factor moduli. This is one common `LC^0,...,LC^j` package for
 the fixed `j`, so the family is equi-`LC^j`. No continuity of the
 matrix/diffuse type stratum is used or asserted. The dependence of
 `C_j` on `j` is retained throughout.
