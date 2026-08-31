@@ -1,5 +1,6 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CoveringTransferSES
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnAdditiveCohomology
+import GroupApproximation.Meta.AxiomGuard
 import Mathlib.Algebra.Homology.Additive
 import Mathlib.Algebra.Homology.Opposite
 import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
@@ -177,5 +178,8 @@ theorem rpToSphereTopTransfer_nonzero (n : ℕ) (c : RPnCellularCochainStructure
   have hs := rpToSphereTopTransfer_section n c a
   simp only [h0, map_zero] at hs
   exact hs.symm
+
+#audit_axioms cohTransferZMod2_top_surjective
+#audit_axioms rpToSphereTopTransfer_nonzero
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree

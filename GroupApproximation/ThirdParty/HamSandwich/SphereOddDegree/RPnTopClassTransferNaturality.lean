@@ -1,4 +1,5 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CoveringTransferHomology
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # Naturality of the double-cover transfer for odd self-maps
@@ -234,5 +235,8 @@ This is the form consumed by the Prompt-09 assembly of `RPnTopClassTransfer`. -/
 theorem rpToSphereTransferNaturalityOdd_holds (n k : ℕ) :
     RPToSphereTransferNaturalityOdd n k :=
   fun f hf => rpToSphereTransfer_naturality_odd f hf
+
+#audit_axioms projTransferChainMap_naturality_odd
+#audit_axioms rpToSphereTransfer_naturality_odd
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
