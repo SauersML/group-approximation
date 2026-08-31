@@ -7,7 +7,7 @@ target: one-sided-raw-qutrit-head-bridges-are-residually-finite
 requires:
   - qutrit-head-only-overlap-envelope-is-finite
   - one-balanced-actor-qutrit-bridge-is-jacobson-core
-  - property-t-free-leavitt-via-jacobson-head-root
+  - property-t-free-leavitt-full-mf-radical
 ---
 
 In `J`, the identities `Q^2=Q` and `QS=0` reduce every word in

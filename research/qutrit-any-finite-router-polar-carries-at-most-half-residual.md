@@ -7,7 +7,7 @@ artifacts:
   - research/qutrit-finite-router-polar-capacity-proof.md
 distinct_from:
   qutrit-external-cyclic-router-selects-only-one-hidden-third: that computes one minimal router and its one-third carrier; this gives the sharp universal one-half ceiling for arbitrary multi-router interference inside any finite overgroup.
-  qutrit-router-same-double-coset-interference-cannot-expand-carrier: that treats sums within one double coset by scalar Fourier diagonalization; this allows distinct double cosets and arbitrary finite analytic linear combinations.
+  qutrit-same-double-coset-interference-cannot-expand-carrier: that treats sums within one double coset by scalar Fourier diagonalization; this allows distinct double cosets and arbitrary finite analytic linear combinations.
   finite-overgroup-packing-preserves-hyperlinearity: that proves a qualitative permanence theorem; this computes the exact D8-coupled trace capacity which blocks the desired full carrier.
 ---
 

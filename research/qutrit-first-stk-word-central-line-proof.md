@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-first-stk-word-central-line-proof
-kind: proof
+kind: route
 title: Classify qutrit character restrictions and audit the first S T k closure
 target: qutrit-two-to-one-phase-graph-requires-central-line-twist
 requires:

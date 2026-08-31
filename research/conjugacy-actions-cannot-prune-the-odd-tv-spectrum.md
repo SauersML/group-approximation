@@ -8,7 +8,7 @@ artifacts:
 distinct_from:
   nested-conjugacy-stops-at-tv-dictator-projectors: that proves a scalar affine obstruction and locates the ordinary BCS relation left by Fanizza et al.; this allows noncommuting auxiliaries which permute spectral atoms and constructs finite-dimensional bad sectors.
   lcs-parity-gadgets-preserve-odd-dictator-affine-hull: that assumes scalar extensions of each honest atom; this requires no scalar extension of the auxiliary conjugators.
-  word-level-seed-wirings-preserve-marked-matricial-approximability: that transfers pre-existing matrix approximations through a word map; this directly builds finite-dimensional representations for every odd character orbit.
+  word-level-seed-wirings-preserve-matricial-approximability: that transfers pre-existing matrix approximations through a word map; this directly builds finite-dimensional representations for every odd character orbit.
 ---
 
 Let

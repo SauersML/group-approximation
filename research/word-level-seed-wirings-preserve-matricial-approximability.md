@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: word-level-seed-wirings-preserve-marked-matricial-approximability
+id: word-level-seed-wirings-preserve-matricial-approximability
 kind: claim
 title: Word-level perfect-seed wirings preserve marked matricial approximability
 artifacts:

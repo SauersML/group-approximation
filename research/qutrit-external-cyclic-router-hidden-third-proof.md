@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-external-cyclic-router-hidden-third-proof
-kind: proof
+kind: route
 title: Compute the signed cyclic Hecke star and its D8 carrier mass
 target: qutrit-external-cyclic-router-selects-only-one-hidden-third
 requires:

@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-scalar-opposite-root-phase-graph-proof
-kind: proof
+kind: route
 title: Compute the transvection double coset from two affine leaf stabilizers
 target: qutrit-scalar-opposite-root-is-diagonal-or-complete
 requires:

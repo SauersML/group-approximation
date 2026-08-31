@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-finite-router-polar-capacity-proof
-kind: proof
+kind: route
 title: Combine finite trace capacity with the D8 edge expectation
 target: qutrit-any-finite-router-polar-carries-at-most-half-residual
 requires:

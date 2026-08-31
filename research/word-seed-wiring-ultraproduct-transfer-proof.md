@@ -3,7 +3,7 @@ rg: 2
 id: word-seed-wiring-ultraproduct-transfer-proof
 kind: route
 title: Pull marked matrix models back through a seed word map
-target: word-level-seed-wirings-preserve-marked-matricial-approximability
+target: word-level-seed-wirings-preserve-matricial-approximability
 requires:
   - opposite-sign-compressions-are-spectral-routing
 ---

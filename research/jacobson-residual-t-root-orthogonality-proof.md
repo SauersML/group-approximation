@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: jacobson-residual-t-root-orthogonality-proof
-kind: proof
+kind: route
 title: Use the ST sign to flip the S2T residual cut
 target: jacobson-residual-t-root-is-orthogonal-transport
 requires:

@@ -1,9 +1,9 @@
 ---
 rg: 2
 id: qutrit-router-double-coset-scalar-proof
-kind: proof
+kind: route
 title: Fourier-diagonalize every translate of one router double coset
-target: qutrit-router-same-double-coset-interference-cannot-expand-carrier
+target: qutrit-same-double-coset-interference-cannot-expand-carrier
 requires:
   - qutrit-external-cyclic-router-selects-only-one-hidden-third
 ---

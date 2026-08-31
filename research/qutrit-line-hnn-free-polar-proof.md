@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-line-hnn-free-polar-proof
-kind: proof
+kind: route
 title: Reduce the HNN Hecke block to two free C3 projections
 target: qutrit-line-hnn-router-has-full-source-but-coincident-range
 requires:

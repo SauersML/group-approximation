@@ -7,7 +7,6 @@ artifacts:
   - research/disjoint-subgroup-flat-phase-factorization-proof.md
 distinct_from:
   jacobson-d8-polar-has-flat-nine-phase-first-row: that computes the first row for one explicit residual polar; this is the subgroup-theoretic factorization theorem applying to every operator supported in the active reduced group algebra.
-  jacobson-d8-polar-has-flat-two-sided-phase-table: that proves a stronger two-sided table by a special double-coset injectivity calculation; this gives the universal one-sided obstruction requiring only trivial subgroup intersection.
   qutrit-external-cyclic-router-selects-only-one-hidden-third: that leaves the active subgroup and obtains nonflat incidence through a nontrivial intersection line; this theorem explains exactly why such an extra line is necessary.
 ---
 

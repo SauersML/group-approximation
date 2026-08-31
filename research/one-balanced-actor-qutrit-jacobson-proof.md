@@ -8,7 +8,7 @@ requires:
   - matched-leavitt-opposite-root-qutrit-bridge-is-gl28
   - binary-jacobson-active-cycle-generates-rank-three
   - binary-jacobson-elementary-mark-is-finite-quotient-invisible
-  - property-t-free-leavitt-via-jacobson-head-root
+  - property-t-free-leavitt-full-mf-radical
 ---
 
 First verify that the displayed actor is a genuine unit.  With

@@ -6,7 +6,7 @@ title: Each D8 polar branch has a flat qutrit first row
 artifacts:
   - research/jacobson-d8-polar-qutrit-block-table-proof.md
 distinct_from:
-  jacobson-d8-spectral-polar-splits-residual-without-qutrit-selection: that computes the full range marginals and the degree-four packet covariance; this resolves every individual qutrit phase block and its ordered raw-T covariance.
+  jacobson-d8-spectral-polar-splits-residual-no-qutrit: that computes the full range marginals and the degree-four packet covariance; this resolves every individual qutrit phase block and its ordered raw-T covariance.
   qutrit-shortest-tk-word-graphs-are-diagonal-or-complete: that classifies the bare group-word blocks in the dihedral subgroup; this computes the blocks after the exact residual polar is inserted.
   qutrit-jacobson-residual-has-fixed-polar-gap: that gives the terminal norm gap if a one-complement covariance is authenticated; this proves that the D8 polar supplies no such covariance.
 ---

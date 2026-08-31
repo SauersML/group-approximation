@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-shortest-tk-word-phase-table-proof
-kind: proof
+kind: route
 title: Compare the seven dihedral matrices with the affine qutrit stabilizers
 target: qutrit-shortest-tk-word-graphs-are-diagonal-or-complete
 requires:

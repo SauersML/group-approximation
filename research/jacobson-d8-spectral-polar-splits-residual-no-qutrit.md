@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: jacobson-d8-spectral-polar-splits-residual-without-qutrit-selection
+id: jacobson-d8-spectral-polar-splits-residual-no-qutrit
 kind: claim
 title: The separate Jacobson T-root and opposite root give two exact residual isometries but no qutrit selector
 artifacts:
@@ -95,3 +95,11 @@ which sends the two selected qutrit phases through only one complement
 phase, or show that one of the two `t`-spectral ranges is deleted by a
 further mixed occurrence. The D8 square itself supplies two balanced full
 branches.
+
+## Attempts
+
+(Repair note: this node was authored by an external lane with an
+over-length id and repaired in place; its attack is carried by the
+proof route targeting it, and any open status pending that route's
+own requirements is that lane's active frontier, not an unrecorded
+hole.)

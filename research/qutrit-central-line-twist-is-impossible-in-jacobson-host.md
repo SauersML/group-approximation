@@ -7,7 +7,6 @@ artifacts:
   - research/qutrit-central-line-rank-obstruction-proof.md
 distinct_from:
   qutrit-two-to-one-phase-graph-requires-central-line-twist: that proves an asymmetric central/noncentral intersection is the only group-word mechanism for a two-to-one phase graph; this rules out that mechanism for every word in the full Jacobson host.
-  qutrit-first-stk-word-central-line-proof: that audits a bounded S/T/opposite-root closure by active-support calculations; this uses a conjugacy invariant and has no word-length bound.
   one-balanced-actor-qutrit-bridge-is-jacobson-core: that identifies the ambient group and its scalar retraction; this uses the retraction to separate the two order-three line types.
 ---
 

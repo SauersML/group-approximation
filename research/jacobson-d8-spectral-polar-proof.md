@@ -1,9 +1,9 @@
 ---
 rg: 2
 id: jacobson-d8-spectral-polar-proof
-kind: proof
+kind: route
 title: The t-sign polar has two exact full-source branches and no qutrit bias
-target: jacobson-d8-spectral-polar-splits-residual-without-qutrit-selection
+target: jacobson-d8-spectral-polar-splits-residual-no-qutrit
 requires:
   - jacobson-residual-t-root-is-orthogonal-transport
   - jacobson-pre-reduction-square-forces-sqrt-half-leakage

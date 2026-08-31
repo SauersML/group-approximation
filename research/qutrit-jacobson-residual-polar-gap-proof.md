@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-jacobson-residual-polar-gap-proof
-kind: proof
+kind: route
 title: Factor canonical trace across the odd qutrit packet and the five-sign residual
 target: qutrit-jacobson-residual-has-fixed-polar-gap
 requires:

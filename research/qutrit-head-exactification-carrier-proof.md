@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-head-exactification-carrier-proof
-kind: proof
+kind: route
 title: Exactify the finite head envelope and compute the qutrit carrier energies
 target: qutrit-head-exactification-halves-every-carrier
 requires:

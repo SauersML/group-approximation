@@ -3,7 +3,7 @@ rg: 2
 id: cartan-collision-rounding-proof
 kind: route
 title: Match localized columns and discard their diagonal phases
-target: collision-and-phase-free-cartan-observables-force-joint-lamp-targets
+target: phase-free-cartan-observables-force-joint-lamp-targets
 requires:
   - finite-lamp-targets-glue-after-action-groupoid-completion
   - finite-schreier-holonomy-is-the-lamp-gauge-obstruction

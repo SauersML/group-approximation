@@ -1,11 +1,11 @@
 ---
 rg: 2
 id: jacobson-d8-polar-qutrit-block-table-proof
-kind: proof
+kind: route
 title: Factor the D8 range trace and audit the ordered phase covariances
 target: jacobson-d8-polar-has-flat-nine-phase-first-row
 requires:
-  - jacobson-d8-spectral-polar-splits-residual-without-qutrit-selection
+  - jacobson-d8-spectral-polar-splits-residual-no-qutrit
   - qutrit-shortest-tk-word-graphs-are-diagonal-or-complete
   - thompson-27-cylinder-qutrit-cell-is-fd-invisible
 ---

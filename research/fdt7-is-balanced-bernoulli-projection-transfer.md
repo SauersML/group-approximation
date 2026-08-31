@@ -8,7 +8,7 @@ distinct_from:
   kt-ccr-holds-on-the-fd-tempered-adjoint-sector: that closes the FD-tempered cyclic sector and isolates the pointed op-norm-one estimate FDT7; this gives a reversible projection linearization and an exact non-FD-tempered counterprofile.
   kt-pointed-clifford-energy-one-compressor-no-go: that shows one-compressor scalar energy occurs in finite permutation models; this treats the full unitary commutator, preserves every actor defect under linearization, and identifies the exact Bernoulli quasi-regular module.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a nearly invariant projection under a genuine Kazhdan representation; this shows the FDT7 projection is already exact and balanced, while the actor representation is the unrounded object.
-  collision-and-phase-free-cartan-observables-force-joint-lamp-targets: that assumes a rank-one Cartan and extracts permutations; this needs only one trace-half projection and explains why its matrix-ultraproduct origin remains decisive.
+  phase-free-cartan-observables-force-joint-lamp-targets: that assumes a rank-one Cartan and extracts permutations; this needs only one trace-half projection and explains why its matrix-ultraproduct origin remains decisive.
 artifacts:
   - research/kt-centralizer-normalization-hs.md
 ---
@@ -111,15 +111,6 @@ embedding.  The balanced lamp retains trace `1/2`, squared mover
 displacement `1/2`, and all Bernoulli moments in every such corner.  Thus
 multiplicity compression cannot dilute a hypothetical hyperlinear wall; the
 unresolved issue is existence of the original embedding.
-
-Moreover,
-`boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse`
-shows that fixed-window covariance already rounds each actor arrow to a
-coarse Boolean block normalizer.  The remaining obstruction is sharp: every
-fixed atom rank diverges in every full corner, Fourier fiber unitaries can be
-at squared distance `2-o(1)` from every monomial, and rank-one fibers
-require windows of size comparable to `log_2 d_n`.  Fixed-window
-hyperlinear convergence has no such moving-window rate.
 
 Thus the Bernoulli model does not presently refute FDT7.  It proves that no
 argument valid in all finite tracial von Neumann algebras, no Jones-index

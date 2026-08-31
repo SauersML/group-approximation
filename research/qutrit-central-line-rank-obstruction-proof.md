@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-central-line-rank-obstruction-proof
-kind: proof
+kind: route
 title: Separate central and leaf qutrit lines by the retracted fixed-space rank
 target: qutrit-central-line-twist-is-impossible-in-jacobson-host
 requires:

@@ -7,7 +7,7 @@ target: canonical-regular-packets-leave-an-unbounded-cartan-reservoir
 requires:
   - fixed-extraspecial-packet-is-morita-neutral-for-code-rounding
   - irreducible-finite-packet-normalizer-words-scalarize
-  - collision-and-phase-free-cartan-observables-force-joint-lamp-targets
+  - phase-free-cartan-observables-force-joint-lamp-targets
 ---
 
 ## Step 1: canonical trace fixes the Plancherel multiplicity
@@ -304,5 +304,5 @@ Accordingly the result is a no-go for the proposed basis rigidifier, not a
 counterexample to target existence.  A separate actor-dependent Cartan might
 still exist.  Producing it with collision tending to one and phase-free mass
 tending to zero is exactly
-`collision-and-phase-free-cartan-observables-force-joint-lamp-targets`.
+`phase-free-cartan-observables-force-joint-lamp-targets`.
 No nonhyperlinear group is proved here, and the global route remains OPEN.

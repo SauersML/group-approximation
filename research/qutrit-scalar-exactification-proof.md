@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-scalar-exactification-proof
-kind: proof
+kind: route
 title: Exactify the finite scalar envelope and compute its qutrit weights
 target: qutrit-scalar-exactification-has-no-central-index
 requires:

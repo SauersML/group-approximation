@@ -6,7 +6,7 @@ title: Canonical regular packets leave an unbounded Cartan reservoir
 distinct_from:
   fixed-extraspecial-packet-is-morita-neutral-for-code-rounding: that preserves a contextual code escape under one fixed spin factor; this computes every regular-trace central sector, treats an ideal paired right action, and proves a rank-one-Cartan selector no-go.
   irreducible-finite-packet-normalizer-words-scalarize: that factors ordinary normalizer words on one irreducible sector; this adds the Plancherel multiplicity forced by canonical trace and an explicit diffuse faithful-trace model.
-  collision-and-phase-free-cartan-observables-force-joint-lamp-targets: that proves collision and phase-free Cartan observables are sufficient; this proves no fixed finite packet can manufacture the required rank-one Cartan from canonical moments.
+  phase-free-cartan-observables-force-joint-lamp-targets: that proves collision and phase-free Cartan observables are sufficient; this proves no fixed finite packet can manufacture the required rank-one Cartan from canonical moments.
   right-regular-covariance-forces-one-common-router: that removes coordinate-dependent gauges inside a fixed finite router while retaining one common multiplicity unitary; this proves that the remaining common unitary is an unbounded reservoir and cannot be removed by another finite regular packet.
 artifacts:
   - notes/TRUE_RELATIVE_BURTON_KUN_THOM_REDUCTION.md
@@ -109,7 +109,7 @@ The result does not say that a packet-factor masa is useless: its minimal
 projections have rank equal to the reservoir dimension and its actor action
 is rigid modulo that reservoir.  It says that upgrading those coarse atoms
 to the rank-one Cartan required by
-`collision-and-phase-free-cartan-observables-force-joint-lamp-targets`
+`phase-free-cartan-observables-force-joint-lamp-targets`
 still needs new, growing actor-dependent information.  The Kun--Thom
 hyperlinear-to-sofic route remains OPEN.
 

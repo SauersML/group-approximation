@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: disjoint-subgroup-flat-phase-factorization-proof
-kind: proof
+kind: route
 title: Read the identity coefficient in a product of disjoint subgroup algebras
 target: disjoint-subgroups-force-flat-finite-phase-marginals
 requires: []

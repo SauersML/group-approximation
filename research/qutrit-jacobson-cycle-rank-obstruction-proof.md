@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-jacobson-cycle-rank-obstruction-proof
-kind: proof
+kind: route
 title: Reduce a hypothetical qutrit line twist and compare permutation ranks
 target: qutrit-jacobson-central-line-twist-is-similarity-impossible
 requires:

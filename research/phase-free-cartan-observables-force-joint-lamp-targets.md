@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: collision-and-phase-free-cartan-observables-force-joint-lamp-targets
+id: phase-free-cartan-observables-force-joint-lamp-targets
 kind: claim
 title: Collision localization and phase-free Cartan mass force joint lamp targets
 distinct_from:

@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-line-hnn-heisenberg-commutator-proof
-kind: proof
+kind: route
 title: Conjugate the Heisenberg commutator across the line router
 target: qutrit-line-hnn-router-cannot-carry-heisenberg-shift
 requires:

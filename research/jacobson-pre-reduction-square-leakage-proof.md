@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: jacobson-pre-reduction-square-leakage-proof
-kind: proof
+kind: route
 title: Block the opposite root across the residual and track the four conjugate cuts
 target: jacobson-pre-reduction-square-forces-sqrt-half-leakage
 requires:

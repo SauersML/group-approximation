@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: qutrit-router-same-double-coset-interference-cannot-expand-carrier
+id: qutrit-same-double-coset-interference-cannot-expand-carrier
 kind: claim
 title: Same-double-coset interference cannot enlarge the qutrit router carrier
 artifacts:
@@ -47,3 +47,11 @@ In particular, the shortest two-coset ansatz
 interference continuation must use group elements from distinct
 `C`-double cosets with different initial `E`-character atoms, not merely
 different representatives or phases of the same double coset.
+
+## Attempts
+
+(Repair note: this node was authored by an external lane with an
+over-length id and repaired in place; its attack is carried by the
+proof route targeting it, and any open status pending that route's
+own requirements is that lane's active frontier, not an unrecorded
+hole.)

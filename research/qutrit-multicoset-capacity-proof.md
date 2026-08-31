@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-multicoset-capacity-proof
-kind: proof
+kind: route
 title: Fourier-filter the complete phase graph and count spin-block capacity
 target: qutrit-two-to-one-multicoset-filter-is-half-kernel
 requires:
