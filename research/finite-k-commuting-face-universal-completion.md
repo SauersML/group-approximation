@@ -33,6 +33,15 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   `s3-cannot-be-a-homogeneous-parity-face-factor`: distinct transpositions do
   not commute, so every face relation remains valid in a free product of
   involution colors.
+- **Attach one source phase to a Magic-Square face.**  Exactly inert by
+  `magic-square-one-port-is-a-universal-phase-absorber`: split the source
+  involution into its two spectral sectors, put the scalar square on the
+  positive sector and the Pauli square on the negative sector.  Every source
+  representation extends after tensoring by `M_4`.  Arkhipov's theorem
+  extends the obstruction to all degree-two arrangement profiles: planar
+  packets impose only total parity, while nonplanar packets absorb every
+  commuting profile in finite dimension.  A surviving packet must couple at
+  least two noncommuting source ports in one connected cell network.
 - **Repeat fixed K labels at positive density.**  This can improve the finite
   packet's empirical spectral weight but does not change the universal
   completion; an infinite kernel in the abelian-subgroup amalgam survives
