@@ -78,10 +78,10 @@ Thus the equality layer loses only an absolute constant (and the unavoidable
 source-width factor), independently of dimension and of the original
 variable degrees.
 
-The jump from occurrence three to four is sharp for pairwise-equality
-splitting.  If every copy already lies in one source equation, occurrence
-three leaves equality degree at most two, so a connected equality graph is
-a path or cycle.  On \(\mathbb C^2\), the rotating Pauli reflections
+The no-dummy direct-placement construction has a sharp occurrence-three
+obstruction.  If every equality vertex already lies in one source equation,
+occurrence three leaves equality degree at most two, so a connected equality
+graph is a path or cycle.  On \(\mathbb C^2\), the rotating Pauli reflections
 
 $$
 R_j=\cos(2\pi j/d)Z+\sin(2\pi j/d)X
@@ -90,8 +90,12 @@ $$
 have edge equality defect squared `4 sin^2(pi/d)` but average squared
 distance exactly `2` from every single reflection.  Hence every such
 degree-two synchronization inequality needs a squared constant of order
-`d^2`; the cyclic occurrence-three compiler cannot have uniform robust
-soundness.
+`d^2`; the cyclic no-dummy compiler cannot have uniform robust soundness.
 
+This is not a general occurrence-three barrier.  The stronger claim
+`dummy-subdivided-expanders-give-robust-occurrence-three` places source
+occurrences on edge-subdivision vertices and lets dummy core variables carry
+equality degree three, obtaining a uniform decoder while keeping total
+occurrence three.
 This closes a compiler seam only.  It does not supply the source LCS
 separation needed for a non-hyperlinear-group proof.
