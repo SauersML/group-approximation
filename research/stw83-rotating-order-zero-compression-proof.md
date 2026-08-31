@@ -108,6 +108,21 @@ e pi(u)(t)e=<u r(t),r(t)>e,
 
 and hence (1).
 
+The same witness also records why compression alone does not supply the
+plateau recolouring.  With `q=1-e`, every
+`a in eM_m(C(T))e` satisfies
+
+```text
+norm(pi(u)-a) >= norm(q (pi(u)-a))
+                 = norm(q pi(u)) = 1,                  (6)
+```
+
+because right multiplication by the unitary `pi(u)` preserves the norm of
+the nonzero projection `q`.  A first-colour value supported in the plateau
+corner is another possible `a`, so it cannot cancel this complementary
+leakage.  The construction controls the compressed diagonal in (1), but not
+the full-norm return required for a nuclear-dimension approximation.
+
 Finally, `kappa(x)=e pi(x)e` is ucp because `kappa(1)=e`.  If it were
 order zero, then a unital order-zero map would be a star homomorphism.  But
 there is no unital star homomorphism from the simple noncommutative algebra
@@ -116,3 +131,18 @@ there is no unital star homomorphism from the simple noncommutative algebra
 `kappa` is not order zero.  Equivalently, `e` does not commute with the
 range of `pi`.  This failure of compression to preserve order zero is
 exactly the noncommutative escape from the abelian distance-one theorem.
+
+
+## The remaining simultaneous-coupling requirement
+
+To combine this escape with
+`stw83-plateau-buffer-recolouring-hinge`, one second outgoing order-zero map
+must work on the whole prescribed finite set.  On coefficient-varying compact
+targets supported in the plateau, its complementary and cross-boundary output
+must be small, since the plateau-supported first colour cannot alter those
+blocks.  On the scalar Toeplitz generator, the same map must instead produce
+the required cross-boundary matrix terms and remain order zero jointly with
+the coefficient inputs.  The rotating witness proves the desired compressed
+phase behavior, but (6) shows that its unitary input fails the first of these
+full-norm requirements by exactly one.  No common incoming map or alternative
+nonunitary input satisfying all three requirements is constructed here.
