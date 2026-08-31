@@ -398,6 +398,23 @@ simultaneous conjugacy of the fundamental-cycle holonomy tuple.  Its
 multiplicity-one bent-phase example has exact canonical trace and covariance
 but no commutant gauge to any permutation normalizer.  A different
 permutation target still exists, so this is a gauge-rounding obstruction,
-not a counterexample to equivariant transfer.  Constructing compatible
-targets across growing windows remains OPEN.
+not a counterexample to equivariant transfer.
+
+`finite-lamp-targets-glue-after-action-groupoid-completion` attacks new
+targets directly.  A supplied finite actor/cylinder groupoid can be
+permutationized by regular isotropy carriers after quantified orbitwise rank
+balancing.  But adding `b` lamp sites costs the Fourier trace scale
+`2^(b/2)`, and one wrong site relation produces at least `1/2` Hamming
+defect on the binary character cube.  Marginal covariances cannot be
+completed one generator at a time.
+
+`collision-and-phase-free-cartan-observables-force-joint-lamp-targets`
+identifies a sufficient matrix-level strengthening.  A common rank-one masa
+refining the cylinder PVMs, fourth-power collision mass tending to one, and
+vanishing phase-free diagonal mass `||E_D(U_g)||_2^2` yield joint
+permutation targets with quantitative product, covariance, and freeness
+bounds.  Scalar canonical traces imply neither nonlinear Cartan statistic.
+Uniformly extracting them from arbitrary CE microstates is equivalent to the
+missing sofic-action spatialization.  Thus constructing the finite action
+groupoid or these Cartan observables across growing windows remains OPEN.
 
