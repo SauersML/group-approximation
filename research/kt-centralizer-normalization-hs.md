@@ -647,3 +647,42 @@ placements of `Phi_C` through iterates of `Phi_B`, equivalently a named
 mixed-return row. Extending the one-compressor projection through that
 holonomy would itself be the missing joint hyperlinear model, so the route
 remains open.
+
+
+**2026-08-31 (minimal cyclic holonomy and fixed Laurent return).**
+`kt-order-three-average-does-not-kill-the-pointed-martingale-wall` now
+identifies the first later-word equation. For
+`B_-=C^(-1)BC=I+E_31` and `D=I+E_32`,
+
+~~~text
+B_- B=D B B_-,
+Phi_B Phi_(B_-)=Phi_(B_-) Phi_B Phi_D.
+~~~
+
+Order-three averaging still cannot supply pointed control. In the full exact
+tracial binary wreath, the parity projection
+
+~~~text
+q=(1+z_Gamma z_(C^(-1)Gamma) z_(C^(-2)Gamma))/2
+~~~
+
+is Gamma-central and fixed by `Phi_C`. Nevertheless the explicit mixed
+return
+
+~~~text
+h=B^(-1)e_12(x_2)B=e_12(x_2/x_1)
+~~~
+
+satisfies
+
+~~~text
+||[q,u_h]||_2=1/sqrt(2),
+dist_2(q,Phi_B(R))>=1/(2 sqrt(2)).
+~~~
+
+Hence property (T), the cyclic average, and every exact tracial actor
+relation still leave a macroscopic pointed wall. What remains is sharply
+matrix-specific: prove that trace-faithful finite-dimensional microstates
+force the three cyclic Laurent-return commutators to vanish, or realize one
+of them in a matrix ultraproduct. The exact tracial model itself does not
+decide Connes embeddability, so the route remains open.
