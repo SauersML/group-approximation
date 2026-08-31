@@ -86,8 +86,11 @@ produces a positive nonlinear relative Cayley cosystole
  \geq c>0                                                \tag{RCO8}
 \]
 despite vanishing presentation defect. Proving that the two concrete
-Iwahori cubic rows force the left side to vanish is now an exact equivalent
-transport problem. No such estimate is proved here; the root remains open.
+Iwahori cubic rows force the left side to vanish would eliminate every such
+separator and is therefore a sufficient transport route to capture. The
+converse need not hold: the full coefficient body also permits nonunitary
+Kraus frames which are not represented by a single (W). No such estimate
+is proved here; the root remains open.
 
 DERIVATION
 transport-separator-through-relative-unitary-zero-cochains
