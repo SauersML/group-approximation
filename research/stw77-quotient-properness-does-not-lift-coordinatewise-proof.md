@@ -4,7 +4,8 @@ id: stw77-quotient-properness-does-not-lift-coordinatewise-proof
 kind: route
 title: Hide one rank-one coordinate packet in the product compact ideal
 target: stw77-quotient-properness-does-not-lift-coordinatewise
-requires: []
+requires:
+  - oinfty-map-stability-is-central-isometry-splitting
 ---
 
 Let `H` be a separable infinite-dimensional Hilbert space, set
