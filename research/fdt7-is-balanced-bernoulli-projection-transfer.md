@@ -48,6 +48,22 @@ Powers--Størmer inequalities, spectral cutting, and passage from a contraction
 to a projection cannot add missing structure: the witness may already be an
 exact macroscopic half-projection.
 
+Macroscopic physical rank does not repair the pointed/tracial gap.  If
+`p in M_D` has trace `1/2`, the projection onto the single vector `p`
+inside `L^2(M_D)` still has normalized superoperator trace `1/D^2`.
+The apparently larger lift `L_p:x->px` is a projection of normalized trace
+`1/2` on `L^2(M_D)`, but for `beta(U)=Ad(U)` one has exactly
+
+~~~text
+beta(U)L_p beta(U)^*=L_(UpU^*),
+||L_(UpU^*)-L_p||_(2,D^2)=||UpU^*-p||_(2,D).            (BBP3b)
+~~~
+
+Thus left multiplication sends a putative FDT7 refuter to the same balanced
+projection refuter for the second adjoint representation.  Iteration is a
+self-similar ascent, not positive tracial mass for the original
+finite-dimensional-radical operator.
+
 There is an exact tracial counterprofile to every argument using only those
 features.  On the Bernoulli space
 
