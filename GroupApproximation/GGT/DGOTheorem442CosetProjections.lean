@@ -57,6 +57,32 @@ theorem image_inv_smul_leftCosetOrbitAt
       subgroupOrbitAt H s := by
   rw [image_smul_leftCosetOrbitAt, inv_mul_cancel, leftCosetOrbitAt_one]
 
+omit [PseudoMetricSpace S] in
+/-- Representatives of the same left coset define the same orbit subset. -/
+theorem leftCosetOrbitAt_eq_of_inv_mul_mem
+    (H : Subgroup G) (s : S) {f g : G} (hfg : f⁻¹ * g ∈ H) :
+    leftCosetOrbitAt H f s = leftCosetOrbitAt H g s := by
+  ext x
+  constructor
+  · rintro ⟨a, ha, rfl⟩
+    refine ⟨(f⁻¹ * g)⁻¹ * a, H.mul_mem (H.inv_mem hfg) ha, ?_⟩
+    congr 1
+    group
+  · rintro ⟨a, ha, rfl⟩
+    refine ⟨(f⁻¹ * g) * a, H.mul_mem hfg ha, ?_⟩
+    congr 1
+    group
+
+/-- For an unbounded geometrically separated orbit, equality of orbit subsets
+is exactly equality of the corresponding left cosets. -/
+theorem leftCosetOrbitAt_eq_iff_inv_mul_mem
+    (H : Subgroup G) (s : S) (f g : G)
+    (hsep : GeometricallySeparatedAt H s)
+    (hunbounded : ∀ R : ℝ, ∃ h : G, h ∈ H ∧ R ≤ dist s (h • s)) :
+    leftCosetOrbitAt H f s = leftCosetOrbitAt H g s ↔ f⁻¹ * g ∈ H :=
+  ⟨fun horbit ↦ inv_mul_mem_of_leftCosetOrbitAt_eq H s f g hsep hunbounded horbit,
+    leftCosetOrbitAt_eq_of_inv_mul_mem H s⟩
+
 /-- A positive-error approximate projection to a left-coset orbit. -/
 def IsApproxLeftCosetProjectionAt (H : Subgroup G) (s : S)
     (g : G) (a x : S) (κ : ℝ) : Prop :=
