@@ -45,6 +45,10 @@ remaining closure. The following modules are green on v4.32:
 - `Basic`, `Antipodal`, and `RealProjectiveSpace`: namespace-only ports.
 - `Covering`: replaces brittle `fin_cases` reductions of the order-two deck
   action by an explicit zero/nonzero split and the already-proved `proj_neg`.
+- `AffineLastFaceIdentity`: replaces proof-term generalization and a dependent
+  `convert` with an explicit map-composition calculation.
+- `Monodromy`: makes the induced multiplicative action transparent to typeclass
+  synthesis and spells out the final projection/lift equality.
 
 The old local `SimplicialObjectHomotopy` backport is intentionally not
 vendored: Mathlib v4.32 now contains the stronger upstream module

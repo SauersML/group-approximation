@@ -3,5 +3,7 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.HomotopyToChainHomotopy
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Covering
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularHomologyHomotopyInvariance
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.AffineLastFaceIdentity
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Monodromy
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/
