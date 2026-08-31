@@ -118,7 +118,7 @@ tuple, has a finite-dimensional Stinespring representation; property
 the RMS multiplication table of a complete finite quotient window.
 
 This formulation also makes the LLP/local-reflexivity gap literal.
-\`exact-core-multiplicative-domain-does-not-descend-to-normal-quotient\`
+\`exact-core-domain-does-not-descend-to-normal-quotient\`
 gives a two-dimensional minimal Stinespring representation which is exactly
 multiplicative on a cyclic core but detects a conjugate of the killed core
 relation.  Thus \(\Theta(t^N)=1\) controls only the vacuum row; quotient
