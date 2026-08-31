@@ -4,7 +4,8 @@ id: bcv-honest-answer-reduction-readable-retention-proof
 kind: route
 title: Recover every padded answer bit at a Boolean evaluation point
 target: bcv-honest-answer-reduction-retains-readable-closure
-requires: []
+requires:
+  - bcv-perfect-answer-reduction-decodes-double-cover
 ---
 
 Restriction-free padding appends unconstrained readable and unreadable
@@ -63,6 +64,12 @@ injective. A finite Boolean algebra has dimension equal to its number of
 atoms, and an injective unital Boolean homomorphism cannot decrease that
 number, proving `(HAR2)`.
 
-Nothing here reverses Answer Reduction. BCV's quantitative soundness theorem
-retains a finite-field error even when the target error is zero, so an
-arbitrary target strategy is outside the scope of this route.
+This route records the literal left inverse on BCV's chosen forward
+completeness strategy. It is not the boundary for arbitrary targets:
+`bcv-perfect-answer-reduction-decodes-double-cover` now gives an exact
+atomwise decoder for every attained perfect target ZPC strategy and retains
+its readable closure. The finite-field term in the quantitative theorem is
+only positive-error slack. The arbitrary-target theorem naturally decodes
+to the double cover and uses synchronization or bipartiteness to recover the
+uncovered source; it need not recover the particular source strategy with
+which the forward construction began.
