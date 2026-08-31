@@ -6,6 +6,7 @@ title: For every eps > 0 there is an alphabet size making it NP-hard to tell uni
 root: true
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
+  - research/artifacts/approximation-cs-root-audit-2026-08-31.md
 ---
 
 **OPEN.**  Khot's Unique Games Conjecture: for every `eps > 0` there is an
@@ -34,8 +35,11 @@ quantum relaxation of the unique-constraint alphabet evades the wall.
 
 The live decomposition here goes through
 `rich-2to1-games-conjecture`, which is *equivalent* to this claim by
-Braverman--Khot--Minzer, and from there to a single analytic hole,
-`affine-orientation-glue-lemma`.
+Braverman--Khot--Minzer.  The proposed `F_lin` attack still has two explicit
+commitments: the analytic `affine-orientation-glue-lemma` and the separate
+soundness endgame `glue-lemma-implies-rich-2to1-hardness`.  The former now has
+only its product-uniform star-density estimate open; its conditional
+globalization half is established by two-point star-degree averaging.
 
 ## Attempts
 

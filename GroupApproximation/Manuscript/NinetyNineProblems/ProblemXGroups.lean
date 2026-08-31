@@ -71,22 +71,23 @@ theorems below are therefore stated without it; `Countable` is carried only
 inside the named proposition, where it keeps the transcription inside Brown's
 setting.
 
-## What this does not do
+## Relation to the unconditional counterexample
 
-It answers nothing.  Problem X(1) stays a binder in every statement.  The
-group-level instance at the manuscript's own group `E` is already
-`ProblemX.not_problemX1Statement_of_literalFactorizationProperty`, proved there
-from the failure of quasidiagonality of `E`'s canonical trace, and it is not
-restated here.
+The generic implications below retain Problem X(1) as a binder, but the
+manuscript's group `E` now discharges the refutation hypotheses.
+`ProblemX.literalFactorizationProperty` proves amenability of its canonical
+trace from its locally-RF-by-`ℤ` decomposition, and `ProblemX.lean` combines
+this with failure of quasidiagonality in the closed theorem
+`ProblemX.not_problemX1Statement`.
 
-The hypothesis of the refutation shape is not cheap, and its cost is worth
-naming: soficity does not supply it.  Thom (Groups Geom. Dyn. **4** (2010),
+The amenability hypothesis is not a consequence of soficity alone.  Thom
+(Groups Geom. Dyn. **4** (2010),
 195--208, arXiv:0810.2180) builds LEF --- so sofic, so hyperlinear --- Kazhdan
 groups that are not residually finite, and by Kirchberg (Math. Ann. **299**
 (1994), 551--563) a Kazhdan group with the factorization property is residually
 finite.  So those groups are hyperlinear without the factorization property,
-and the gap between the two conditions is exactly what makes the hypothesis of
-`not_problemX1Statement_of_amenable_not_operatorMF` hard to meet.
+while `E` meets the hypothesis through its additional semidirect-product
+structure.
 -/
 
 namespace GroupApproximation
@@ -175,10 +176,11 @@ Both hypotheses are about one group and neither mentions traces of other
 algebras, which is the point of restricting the quantifier: X(1) ranges over
 all C⋆-algebras, and a single group can still refute it.
 
-The instance of this at the manuscript's own group is already
-`ProblemX.not_problemX1Statement_of_literalFactorizationProperty`, which takes a
-different route --- through the failure of quasidiagonality of `E`'s canonical
-trace, and never through operator-MF; it is not restated here. -/
+The unconditional instance at the manuscript's own group is
+`ProblemX.not_problemX1Statement`.  Its underlying conditional theorem,
+`ProblemX.not_problemX1Statement_of_literalFactorizationProperty`, takes a
+different route --- through failure of quasidiagonality of `E`'s canonical
+trace, never through operator-MF; neither is restated here. -/
 theorem not_problemX1Statement_of_amenable_not_operatorMF (G : Type) [Group G]
     (hA : Quasidiagonal.IsAmenableTrace
       (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a))

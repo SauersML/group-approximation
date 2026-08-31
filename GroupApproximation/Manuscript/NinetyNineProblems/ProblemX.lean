@@ -1,7 +1,9 @@
 import GroupApproximation.Analysis.TikuisisWhiteWinterCore
 import GroupApproximation.Analysis.UCPContractiveMatrix
 import GroupApproximation.Analysis.ShulmanTraceNorms
+import GroupApproximation.Analysis.LocallyRFByIntFactorization
 import GroupApproximation.Sofic.LiteralTraceConsequence
+import GroupApproximation.Sofic.StableLetterLEFRoute
 import GroupApproximation.Sofic.TraceSeparationEndpoint
 import GroupApproximation.Meta.AxiomGuard
 
@@ -54,59 +56,24 @@ Neither half is new analysis.  Both are read off
 `LiteralTraceConsequence.markedGroup_canonicalTrace_isHyperlinearTrace_not_isMFTrace`
 --- the hyperlinear/MF separation the manuscript already prints --- once
 `Quasidiagonal.isMFTrace_of_isQuasidiagonalTrace` is applied to move from the
-MF class to the quasidiagonal one.  What is new is the reading: the same two
-facts, stated in Brown's notions, are one clause short of a counterexample to
-Problem X(1).
+MF class to the quasidiagonal one.
 
-So `E` refutes Problem X(1) the moment `τ_E` is known to be *amenable*, which
-by Brown's Theorem 4.1.9 is the moment `E` is known to have the factorization
-property.  That implication is
-`not_problemX1Statement_of_literalFactorizationProperty`, and the missing
-clause is isolated as the named open proposition
-`LiteralFactorizationProperty`.
+The additional structure of `E` closes the amenability clause.  The printed
+stable-letter decomposition gives `E ≃ E₀ ⋊ ℤ`, and every finitely generated
+subgroup of `E₀` is residually finite.  For a finite packet of group elements,
+a long cyclic integer window and one finite quotient of the finitely generated
+normal-coordinate subgroup give a finite family of cosets.  Compressing the
+corresponding quasi-regular representation gives genuinely u.c.p. maps.
+Residual separation makes their generator traces exact, while only the ends
+of the integer window contribute to the Hilbert--Schmidt multiplicative
+defect.  The boundary ratio tends to zero, and density extends the estimates
+to the full group C⋆-algebra.
 
-## Why soficity does not supply the missing clause
-
-Nothing here proves `LiteralFactorizationProperty`, and the gap is not an
-oversight in the assembly.  What soficity delivers is the *hyperlinear*
-trace: the maps `φₙ : C⋆(E) → M_{kₙ}` are cut out of permutation matrices and
-are asked to be neither positive, nor unital, nor completely positive, nor
-even exactly linear --- only asymptotically so, in the `2`-norm.  Amenability
-of the trace asks for the same defects with genuinely **u.c.p.** maps.  The
-step from one to the other is a u.c.p. lifting.
-
-**The general implication is not merely unproved; it is false.**  Thom,
-*Examples of hyperlinear groups without factorization property*, Groups Geom.
-Dyn. **4** (2010), 195--208 (arXiv:0810.2180), constructs LEF --- so sofic,
-so hyperlinear --- groups with property (T) that are not residually finite.
-Kirchberg, *Discrete groups with Kazhdan's property T and factorization
-property are residually finite*, Math. Ann. **299** (1994), 551--563, proves
-that a Kazhdan group with the factorization property *is* residually finite,
-so Thom's groups are hyperlinear and lack the factorization property.
-Soficity of `E` therefore does not yield amenability of `τ_E`, and no
-argument that uses only soficity can.
-
-What would yield it is Kirchberg's **local lifting property** for `C⋆(E)`:
-with the LLP the u.c.p. maps can be lifted locally through the matrix corona,
-and the hyperlinear models upgrade to the u.c.p. models amenability asks for.
-The LLP is known for free groups, amenable groups, limit groups,
-`3`-manifold groups and right-angled Artin groups (Fournier-Facio and
-Willett, arXiv:2603.18456).  It is not known for `E`.  So the missing clause
-is named, left open, and carried as a visible binder by the only theorem that
-consumes it.
-
-## What this file adds, and what it does not
-
-It does not resolve Problem X(1) in either direction.  It proves the two
-unconditional halves at `E`, packages them as the conjunction the research
-graph cites
-(`literalCanonicalTrace_hyperlinear_not_quasidiagonal`), names the one
-remaining clause, and records the implication from that clause to a
-counterexample.  It also proves the direction of Brown's comparison that is
-elementary here --- an amenable trace is a hyperlinear trace
-(`isHyperlinearTrace_of_isAmenableTrace`).  That last one measures the gap:
-the hypothesis of X(1) is strictly stronger than what soficity delivers, so
-none of the theorems below can settle X(1) by accident.
+`LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt`
+formalizes that construction.  Applying it to the stable-letter decomposition
+proves `literalFactorizationProperty`; combining this with the failure of
+quasidiagonality gives the unconditional negative answer
+`not_problemX1Statement`.
 -/
 
 open Filter Matrix
@@ -188,10 +155,8 @@ places the three classes in a line: quasidiagonal ⟹ amenable ⟹ hyperlinear.
 Problem X(1) asks whether the first arrow reverses.  The second arrow does
 not reverse in general --- Thom's LEF Kazhdan groups (arXiv:0810.2180) carry
 hyperlinear canonical traces without the factorization property, so without
-amenable ones --- and whether it reverses at the canonical trace of `E` is
-exactly `LiteralFactorizationProperty`, the one clause left open below.  So
-the line is what places the results below *short* of X(1) rather than at
-it. -/
+amenable ones.  The locally-RF-by-integer structure below is the extra input
+that proves amenability for the canonical trace of `E`. -/
 theorem isHyperlinearTrace_of_isAmenableTrace {A : Type u} [CStarAlgebra A]
     {τ : A → ℂ} (hτ : IsTracialState τ)
     (h : Quasidiagonal.IsAmenableTrace τ) :
@@ -270,7 +235,7 @@ theorem literalCanonicalTrace_hyperlinear_not_quasidiagonal :
   ⟨literalCanonicalTrace_isHyperlinearTrace,
     literalCanonicalTrace_not_isQuasidiagonalTrace⟩
 
-/-! ## The one open clause -/
+/-! ## The factorization property and the unconditional counterexample -/
 
 /-- **Kirchberg's factorization property for `E`, as a named proposition.**
 
@@ -279,27 +244,20 @@ exactly when `G` has the factorization property (Brown, Mem. AMS **184**
 (2006), Theorem 4.1.9), so this proposition *is* the factorization property
 for `E`, written where this development can consume it.
 
-**It is open, and it is deliberately not proved.  Soficity of `E` does not
-give it.**  Soficity gives the hyperlinear trace, whose models carry no
-positivity and no unitality; amenability of the trace asks for u.c.p. models,
-and the passage between them is a u.c.p. lifting.  That passage fails in
-general: Thom (Groups Geom. Dyn. **4** (2010), 195--208, arXiv:0810.2180)
-builds LEF --- so sofic, so hyperlinear --- Kazhdan groups that are not
-residually finite, and by Kirchberg (Math. Ann. **299** (1994), 551--563) a
-Kazhdan group with the factorization property is residually finite, so those
-groups are hyperlinear without the factorization property.
-
-The clause that *would* close the gap is Kirchberg's local lifting property
-for `C⋆(E)`, which supplies the local u.c.p. lifts the upgrade needs.  The LLP
-holds for free groups, amenable groups, limit groups, `3`-manifold groups and
-right-angled Artin groups (Fournier-Facio and Willett, arXiv:2603.18456); for
-`E` it is not known.
-
-No declaration in this file concludes this proposition; the single theorem
-that uses it takes it as a leading binder. -/
+It is proved below directly from `E ≃ E₀ ⋊ ℤ` and local residual finiteness of
+`E₀`; it is not inferred from soficity. -/
 def LiteralFactorizationProperty : Prop :=
   Quasidiagonal.IsAmenableTrace
     (fun a : MaximalGroupCStar MarkedGroup ↦ canonicalMaximalTrace MarkedGroup a)
+
+/-- The canonical maximal trace of the literal group is amenable.  This is the
+locally-RF-by-integer finite-window theorem instantiated with the exact
+stable-letter decomposition of `E`. -/
+theorem literalFactorizationProperty : LiteralFactorizationProperty :=
+  LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt
+    StableLetterLEFRoute.shiftAction
+    StableLetterLEFRoute.markedGroupEquivKernelByInt
+    StableLetterLEFRoute.telescopeKernel_locallyResiduallyFinite
 
 /-- **`E` refutes Problem X(1), given the factorization property.**
 
@@ -309,11 +267,8 @@ X(1) would make it quasidiagonal, and it is not
 `1` because `MarkedGroup : Type` and `MaximalGroupCStar` raises the level by
 one, so `C⋆(E) : Type 1`.
 
-The hypothesis is the whole cost, and it is visible in the type.  Read the
-other way, the theorem says that an affirmative answer to X(1) would prove
-that `E` fails Kirchberg's factorization property --- which is itself a
-statement no one has proved, and is a fair measure of how far X(1) is from
-being routine. -/
+The hypothesis is kept explicit because this logical bridge is also useful
+independently of the particular construction above. -/
 theorem not_problemX1Statement_of_literalFactorizationProperty
     (h : LiteralFactorizationProperty) : ¬ ProblemX1Statement.{1} := by
   intro hX
@@ -327,13 +282,11 @@ theorem not_problemX1Statement_of_literalFactorizationProperty
       (ShulmanTrace.canonicalMaximalTracialState MarkedGroup) hamen
   exact literalCanonicalTrace_not_isQuasidiagonalTrace hqd
 
-/-- The contrapositive, stated where a reader looking for the positive
-content will find it: an affirmative answer to Problem X(1) forces `E` to
-fail the factorization property, so it forces `C⋆(E)` to be a full group
-C⋆-algebra whose canonical trace is hyperlinear but not amenable. -/
-theorem not_literalFactorizationProperty_of_problemX1Statement
-    (hX : ProblemX1Statement.{1}) : ¬ LiteralFactorizationProperty :=
-  fun h ↦ not_problemX1Statement_of_literalFactorizationProperty h hX
+/-- **Unconditional negative solution to Problem X(1).**  The canonical trace
+of the full group C⋆-algebra of `E` is amenable but not quasidiagonal. -/
+theorem not_problemX1Statement : ¬ ProblemX1Statement.{1} :=
+  not_problemX1Statement_of_literalFactorizationProperty
+    literalFactorizationProperty
 
 end
 
@@ -348,5 +301,6 @@ open GroupApproximation.NinetyNineProblems
 #audit_closed_axioms literalCanonicalTrace_isHyperlinearTrace
 #audit_closed_axioms literalCanonicalTrace_not_isQuasidiagonalTrace
 #audit_closed_axioms literalCanonicalTrace_hyperlinear_not_quasidiagonal
+#audit_closed_axioms literalFactorizationProperty
 #audit_axioms not_problemX1Statement_of_literalFactorizationProperty
-#audit_axioms not_literalFactorizationProperty_of_problemX1Statement
+#audit_closed_axioms not_problemX1Statement

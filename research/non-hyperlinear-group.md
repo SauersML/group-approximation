@@ -7,6 +7,7 @@ root: true
 goal: true
 artifacts:
   - research/artifacts/nonhyperlinear-literature-delta-2026-08-30.md
+  - research/artifacts/approximation-cs-root-audit-2026-08-31.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that

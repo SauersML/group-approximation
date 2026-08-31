@@ -116,10 +116,13 @@ counterexample must be genuinely nonlinear in the memorizers.  Recorded as
 * The dossier's boxed endpoint asserts that "Cairn supplies plausible
   machinery for the subsequent globalization".  **Cairn is a build system
   for unknown facts — a bookkeeping graph, not a mathematical method.**
-  There is no Cairn theorem that converts small local defect into global
-  structure.  The globalization step is therefore recorded as an ordinary
-  OPEN claim (`triangle-defect-globalizes-to-a-bounded-label-list`), with
-  no machinery credited to the tool.
+  At ingestion this step was therefore recorded as an ordinary open claim.
+  The 2026-08-31 audit subsequently closed it by direct star-degree
+  averaging: a high-density product-uniform star relation has some line
+  `C_(b_0)` meeting the corresponding fraction of all selected lines, so
+  `Q=C_(b_0)` and `|Q|=2`.  See
+  `triangle-defect-globalization-by-star-averaging-proof`.  The analytic
+  production of the high-density star relation remains open.
 
 ## Routes deliberately WITHHELD
 

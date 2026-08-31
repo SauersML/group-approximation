@@ -3,6 +3,8 @@ rg: 2
 id: periodic-higman-large-prime-period-gap
 kind: claim
 title: The periodic-Higman spectrum omits a prime beyond the filling threshold
+artifacts:
+  - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
 distinct_from:
   periodic-higman-spectrum-has-no-odd-primes: that much stronger parity assertion excludes every odd prime and is false; this asks only for one prime above the fixed Dehn-filling threshold.
 ---
@@ -31,3 +33,10 @@ exclusion of all odd primes is being asserted.
   attack must bound the prime spectrum using the finite semisimple quotient
   and its automorphism action; that classification step is deferred rather
   than inferred from the false parity claim.
+- **Prime certificates now have an exact semisimple normal form.**
+  `periodic-higman-prime-spectrum-semisimple-reduction` proves that a prime
+  `ell in Sigma` already has a certificate on `S` or `S^ell`, for one
+  nonabelian finite simple group `S`, with the automorphism transitive on the
+  direct factors.  Closing this node therefore amounts to excluding both
+  cases for one prime above `m_0`; the reduction itself does not supply such
+  a prime.

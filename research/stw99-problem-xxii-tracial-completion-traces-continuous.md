@@ -10,6 +10,7 @@ distinct_from:
   stw99-problem-x2-hyperfinite-factor-quasidiagonal: that asks for operator-norm matrix models of the single tracial von Neumann algebra R; this asks whether the designated trace simplex of a factorial tracially complete C*-algebra already exhausts all its traces, a normality question with no matrix models involved.
   stw22-dim1-factor-bundles-have-uniform-traces: that proves the problem for countably generated factorial bundles over bases of dimension at most one; this is the unrestricted problem, with neither a dimension nor countable-generation hypothesis.
 artifacts:
+  - research/artifacts/stw01-49-high-impact-hostile-audit-2026-08-31.md
   - research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md
   - research/artifacts/stw99-xxii-trace-problem-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
@@ -47,7 +48,11 @@ states on `M` automatically `‖·‖_{2,X}`-continuous — equivalently, is
 completion `(M,T(A))` of a separable unital nuclear type I algebra and a
 tracial state on `M` which extends the extreme trace at infinity but is not
 uniform-`2`-norm continuous.  The extreme trace boundary is compact metrizable
-and Bauer, but has unbounded covering dimension.
+and Bauer, but has unbounded covering dimension.  The rogue trace is in fact
+a character obtained by weak-star compactness from late-coordinate vector
+states: simultaneous Chern zeros make the trivial line reduce every member
+of a prescribed finite packet, while passage to later coordinates kills the
+original `c0`-ideal.
 
 Known (CCEGSTW): yes when `X` is a finite-dimensional simplex (`M` is then a
 finite direct sum of factors and traces are normal); yes for uniform tracial
@@ -277,5 +282,6 @@ the unresolved relative selection statement.
   `‖b(y_n) − b(x)‖_2 = o(τ(q_n)^{1/2})` fails for sections built from the
   chosen `q_n` themselves.  This particular negative attack therefore does
   not produce a counterexample.  The later counterexample uses a different
-  mechanism: Chern-class lower bounds on finite self-commutator width in an
-  asymptotic corona, followed by Cuntz--Pedersen separation.
+  mechanism: simultaneous Chern zeros make late-coordinate vector states
+  multiplicative on arbitrary prescribed finite packets, and weak-star
+  compactness turns these into a character of the asymptotic corona.

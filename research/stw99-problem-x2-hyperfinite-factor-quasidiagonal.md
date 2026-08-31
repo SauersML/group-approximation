@@ -12,12 +12,13 @@ artifacts:
   - research/artifacts/stw10-amenable-trace-frontier-2026-08-30.md
   - research/artifacts/stw99-x2-unitary-subgroup-reduction-2026-08-30.md
   - research/artifacts/x2-popa-formulations-ingestion-2026-08-30.md
+  - research/artifacts/stw99-x2-2026-literature-and-route-audit-2026-08-31.md
 ---
 
 **Problem X(2) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Is the hyperfinite II₁ factor `R` quasidiagonal
 (as a C\*-algebra)?
 
-**Literature status (verified 2026-08-30):** open.  Popa devoted a
+**Literature status (reverified 2026-08-31):** open.  Popa devoted a
 W\*-News post to exactly this question on 2026-05-28
 (`popa-projection-formulations-of-x2` imports its equivalent
 formulations: operator-norm Folner projections on `L²(R)`, and the
@@ -29,6 +30,14 @@ is `norm-folner-projections-for-hyperfinite-factor`: Connes' Folner
 condition gives the Hilbert--Schmidt version unconditionally, and the
 norm upgrade admits no dimension-free conversion (checked rank-`n`
 projection pair in that node's Attempts).
+
+The post-Popa theorem of Alekseev--Thom (arXiv:2606.07369,
+2026-06-05) does not change this status.  It proves Ulam stability of
+`R` for defects and conclusions measured in normalized trace norm,
+after amplification; it neither asserts quasidiagonality nor upgrades
+Hilbert--Schmidt leakage of finite-rank projections to operator-norm
+leakage.  The distinction is audited in
+`research/artifacts/stw99-x2-2026-literature-and-route-audit-2026-08-31.md`.
 
 **Packet normal form (2026-08-31):** the packet quantifier in the
 local-AFD formulation collapses — X(2) is equivalent to local AFD for
@@ -43,6 +52,13 @@ refuting packet must carry full-support non-normal mass with no
 commutant-reduction escape).  Ultraproduct ambience cannot help:
 `matrix-tracial-ultraproduct-trace-not-quasidiagonal`,
 `hyperfinite-ultrapower-trace-not-quasidiagonal`.
+
+The rate-controlled cell has been sharpened:
+`stw99-x2-local-afd-at-partial-trace-rate` replaces entrywise cuts by
+one operator-valued partial-trace cut and proves local AFD whenever
+`dist_2(Y,M_d)=O(d^{-1})`.  Together with the column-isometry obstruction
+at scale `d^{-1/2}`, this narrows the relative-commutant exponent gap to
+`[1/2,1]`; it still supplies no rate for an arbitrary hyperfinite packet.
 
 Since `R` has a unique trace and that trace is faithful, this is equivalent to
 asking whether `τ_R` is a quasidiagonal trace (Brown's Proposition 4.1.3
@@ -106,6 +122,13 @@ group candidate is now excluded as well:
 `literal-group-mark-invisible-to-hyperfinite-representations` shows that its
 central mark dies in every finite injective representation.
 
+This route is NOT invalidated by `x2-witnesses-are-never-group-shaped`.
+That theorem excludes canonical `delta_e` group traces and amenable-action
+crossed-product traces.  The live route asks for a noncanonical faithful
+hyperfinite character, whose off-identity values may be nonzero.  The
+Kazhdan and marked-packet no-go theorems exclude candidate classes only;
+no general theorem here rules out a non-MF subgroup of `U(R)`.
+
 The representation-free Clifford exclusion now has its sharp finite-block
 form.  `signed-clifford-cycle-trace-formula` computes the implementing trace
 for every signed permutation of `2m` Clifford generators.  A single cycle
@@ -141,4 +164,3 @@ Blackadar--Kirchberg (`stw99-vii-restricted-to-simple-algebras` via
 literal-group counterexample (non-nuclear, non-injective GNS — it
 cannot enter these routes), X(2) is now the live ancestor of the
 whole nuclear quasidiagonality cluster.
-

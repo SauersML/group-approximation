@@ -2,47 +2,58 @@
 rg: 2
 id: affine-orientation-triangle-defect-is-small
 kind: claim
-title: Noise and boundedness force the affine orientation cocycle defect on random F_2^2 planes to be small
+title: Noise and boundedness force the product-uniform affine orientation defect to be small
 distinct_from:
   affine-orientation-glue-lemma: that is the global conclusion the soundness decoder consumes, a bounded hitting set for heavy cosets; this is the purely local estimate on one random affine plane and asserts nothing about a global label list.
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
+  - research/artifacts/approximation-cs-root-audit-2026-08-31.md
 ---
 
-**OPEN.**  The local half of `affine-orientation-glue-lemma`, in its
-geometric form.
+**OPEN.**  The analytic half of `affine-orientation-glue-lemma`.
 
 Keep the notation of that node: `f : {-1,1}^Omega -> [-1,1]`, `g = T_rho f`,
-and for `b != 0` a `(d, delta)`-heavy coset `C_b = q_b + <b>` of the
-quotient `D_b`.  Draw `b, c` independently at random from `Omega \ {0}` and
-look at the three lines
+and for each `b` in a positive-density set `B subset Omega \ {0}` a
+`(d, delta)`-heavy coset `C_b = q_b + <b>` of the quotient `D_b`.  The exact
+interface required downstream is product-uniform sampling on `B x B`: the
+analytic step must certify a set `S subset B x B` of density `1-o(1)` such
+that every `(b,c) in S` carries a point common to `C_b` and `C_c`.  A stronger
+certificate, when a selected line in direction `b+c` is available, is
 
 ```text
 C_b,   C_c,   C_{b+c}
 ```
 
-inside the affine `F_2^2`-plane they span.  Exactly two configurations
-occur:
+with a common point on all three lines.  Call failure of the relevant
+concurrency certificate the **orientation-defect event**.
 
 ```text
-star:      C_b intersect C_c intersect C_{b+c} != empty
-triangle:  the three lines are not concurrent.
+star:      C_b intersect C_c intersect C_{b+c} != empty.
 ```
 
-Write the **triangle-defect probability** for the fraction of pairs `(b,c)`
-landing in the second case.
+The former wording said that arbitrary selected lines admit "exactly two
+configurations", a star or a triangle inside the plane they span.  That is
+false in ambient dimension at least three: selected affine lines may be
+skew, and `C_(b+c)` is not even defined unless `b+c` lies in the selected
+direction set or the selector has been extended.  Those cases must be
+counted as defect, not silently identified with an affine triangle.  Also,
+conditioning on an irregular set of additive triples changes the marginal
+on `B` and is not sufficient for the uniform hitting conclusion.
 
-**Statement.**  For every fixed `rho, d, delta > 0` the triangle-defect
-probability is `o(1)` -- bounded by a function of `rho, d, delta` alone
-that tends to 0 -- unless `f` has one of a bounded number of large ambient
-low-degree influences.
+**Statement.**  For every fixed `rho, d, delta, alpha > 0`, the selected
+heavy cosets on every `B` of density at least `alpha` admit star certificates
+on a `1-o(1)` fraction of product-uniform pairs in `B x B`, with the defect
+bounded by a function of the fixed parameters alone that tends to zero.
 
-The star case is a cocycle condition: it says the chosen coset
-representatives `q_b` agree on the plane, so orientations composed around
-the plane return to where they started.  Triangles are the cocycle defect.
-The content of the statement is that high **noisy restricted** influence
-cannot be supported on many triangle configurations without an ambient
-coordinate becoming influential.
+The three-line star case is a cocycle condition: it says the chosen coset
+representatives agree at a point.  Nonconcurrent, skew, or unavailable-sum
+configurations are all part of the defect unless the proof supplies a
+separate completion.  By
+`triangle-defect-globalizes-to-a-bounded-label-list`, product-uniform star
+density immediately gives the bounded list; the whole remaining burden is
+therefore this analytic density estimate.  Its content is that high **noisy
+restricted** influence cannot be supported on many mutually inconsistent
+chosen cosets.
 
 Why this is the right place to spend boundedness.  A single direction can
 be memorized with all three of boundedness, low degree and noise intact
@@ -50,8 +61,7 @@ be memorized with all three of boundedness, low degree and noise intact
 directions can be memorized inside vanishing ambient `L^2`
 (`affine-memorizers-are-cross-direction-orthogonal`).  Neither construction
 says anything about whether the memorized cosets in *different* directions
-can be placed inconsistently inside a common plane, which is precisely what
-a triangle asks.  So the pairwise/planar compatibility is the first
+can be placed inconsistently.  So cross-direction compatibility is the first
 quantity in this circle of ideas that boundedness has a chance to control.
 
 ## Attempts

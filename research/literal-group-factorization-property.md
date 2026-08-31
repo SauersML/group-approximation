@@ -2,12 +2,17 @@
 rg: 2
 id: literal-group-factorization-property
 kind: claim
-refuted_by: [literal-group-lacks-factorization-property]
 title: The literal finitely presented group has Kirchberg's factorization property
 distinct_from:
   literal-group-sofic: that is permutation approximation of E in normalized Hamming distance; this asks that the canonical trace of C*(E) be amenable in Brown's sense, which is soficity plus a u.c.p. lifting of the resulting tracial-ultraproduct representation, and the lifting is the whole content.
   literal-central-mark-corona-invisible: that is an operator-norm obstruction; this is a Hilbert--Schmidt-norm approximation property with a lifting clause, and the two are independent.
 artifacts:
+  - GroupApproximation/Sofic/ResidualFinitePacket.lean
+  - GroupApproximation/Analysis/QuasiRegularCompression.lean
+  - GroupApproximation/Analysis/AmenableTraceGeneratorDense.lean
+  - GroupApproximation/Analysis/LocallyRFByIntAmenableTrace.lean
+  - GroupApproximation/Analysis/LocallyRFByIntAction.lean
+  - GroupApproximation/Analysis/LocallyRFByIntFactorization.lean
   - GroupApproximation/Analysis/AmenableTraceHyperlinear.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/FactorizationHyperlinearTheorem.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/FactorizationImpliesHyperlinear.lean
@@ -16,7 +21,13 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
-**ESTABLISHED (Cairn).**  Put `K=ker(E->Z)`.  The split form `E=K rtimes Z`, local residual finiteness of `K`, maximal subgroup C-star embeddings, one Arveson extension, and finite-interval Folner compression give u.c.p. matrix models for the maximal canonical trace.  The normalized Hilbert--Schmidt boundary is `O(|F|^(-1/2))`.  See `literal-fp-via-folner-rf-core`.  This is a mathematical Cairn proof; no new Lean code is asserted.
+**ESTABLISHED, unconditionally and formalized in Lean.**  Put
+`K = ker(E -> Z)`.  The split form `E = K rtimes Z` and local residual
+finiteness of `K` feed a generic locally-RF-by-integer theorem.  It builds
+u.c.p. matrix models by compressing quasi-regular representations of `E` to
+long cyclic windows.  Their normalized Hilbert--Schmidt boundary tends to
+zero.  No maximal subgroup C-star embedding or Arveson extension is used.
+See `literal-fp-via-folner-rf-core`.
 
 The literal finitely presented group `E` of `non_mf_groups_exist.tex`
 (`LiteralNonMFPresentation.MarkedGroup` in Lean) has Kirchberg's
@@ -61,12 +72,25 @@ disproof would have to run the manuscript's compression-transport argument on
 completely positive Hilbert--Schmidt-approximate models, which the manuscript
 says it cannot do for merely bounded ones.
 
-Resolved by `literal-fp-via-folner-rf-core`.  The proof uses the structure of `E` (an HNN-type extension of a
-Kazhdan--Clifford base with a telescope core that is locally residually
-finite, `literal-telescope-core-lef`) rather than soficity alone.
+Resolved by `literal-fp-via-folner-rf-core`.  The proof uses the structure of
+`E` (an HNN-type extension of a Kazhdan--Clifford base with a telescope core
+that is locally residually finite, `literal-telescope-core-lef`) rather than
+soficity alone.  At each finite stage, one normal finite-index subgroup of a
+finitely generated normal-coordinate subgroup separates every tested
+nonidentity coordinate.  The ambient quasi-regular representation is honest;
+compression to a cyclic window is therefore automatically u.c.p.  Residual
+separation makes the tested nonidentity traces exactly zero, while only cyclic
+boundary levels contribute to multiplicative Hilbert--Schmidt defect.
 
-Lean: `NinetyNineProblems.LiteralFactorizationProperty : Prop` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`), defined
-as `IsAmenableTrace` of the canonical trace of `C*(E)`; the Cairn proof above does not add a Lean inhabitant.
+Lean: `NinetyNineProblems.LiteralFactorizationProperty : Prop`
+(`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`) is defined
+as `IsAmenableTrace` of the canonical trace of `C*(E)`, and
+`NinetyNineProblems.literalFactorizationProperty` is its axiom-clean
+inhabitant.  It is the specialization of
+`LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt`
+to `StableLetterLEFRoute.shiftAction`,
+`markedGroupEquivKernelByInt`, and
+`telescopeKernel_locallyResiduallyFinite`.
 
 General form: `NinetyNineProblems.HasFactorizationProperty G` (`GroupApproximation/Manuscript/NinetyNineProblems/FactorizationProperty.lean`), with
 `literalFactorizationProperty_iff` identifying the two.

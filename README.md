@@ -20,3 +20,11 @@ The Lean code is organized as a reusable library. Generic definitions and theore
 | Public and checked interfaces | `Endpoint/`, `Meta/`, `Computability/`, `Manuscript/` | Stable exports, certificate replay, computability wrappers, statement matching, and axiom audits |
 
 Modules named `Literal*` contain fully specified examples and certificate data; the generic modules do not depend on any particular presentation.
+
+## Palomar submission
+
+Version 1 of the explicit sofic non-MF theorem is registered as
+[PALOMAR-2026-08-24-000006](https://palomar-registry.org/entry?id=PALOMAR-2026-08-24-000006&version=1).
+The Mathlib-only statement is in `Palomar/Challenge.lean`, the proved copy is
+in `Palomar/Solution.lean`, and `Palomar/comparator.json` records their
+Comparator identity.

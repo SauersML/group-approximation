@@ -13,6 +13,7 @@ distinct_from:
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
   - research/artifacts/boone-higman-fiber-product-and-shift-compiler-2026-08-24.md
+  - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
 ---
 
 For every finitely generated group `G` with solvable word problem there is a

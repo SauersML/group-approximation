@@ -9,11 +9,11 @@ import GroupApproximation.Meta.AxiomGuard
 /-!
 # Kirchberg's factorization property, and which groups are known to fail it
 
-`Manuscript/NinetyNineProblems/ProblemX.lean` leaves one clause open: whether
-the canonical trace of `C⋆(E)` is an **amenable** trace.  That clause has a
-group-theoretic name, and this file gives it one, states the theorem of
-Kirchberg's that constrains it, and proves the constraint bites on the
-manuscript's *other* headline group.
+`Manuscript/NinetyNineProblems/ProblemX.lean` proves that the canonical trace
+of `C⋆(E)` is an **amenable** trace.  That fact has a group-theoretic name,
+Kirchberg's factorization property.  This file records the trace-side
+definition, states Kirchberg's constraint on Kazhdan groups, and proves that
+the constraint bites on the manuscript's *other* headline group.
 
 ## The property, and which side of the equivalence is the definition
 
@@ -71,10 +71,11 @@ binary Leavitt elementary group `H = EL₁₂(L_{F₂}(1,2))` is simple
 **That is why `H` says nothing about STW Problem X(1).**  Problem X(1) asks
 whether every *amenable* trace is quasidiagonal; the canonical trace of
 `C⋆(H)` is not amenable, so `H` cannot be a counterexample to it however badly
-`H` fails to be MF.  The literal group `E` of `ProblemX.lean` is the open leaf
-precisely because nothing forces its trace off the amenable side: `E` is not
-known to be simple, and `LiteralFactorizationProperty` is not known either
-way.
+`H` fails to be MF.  In contrast, the literal group `E` of `ProblemX.lean`
+lies on the amenable side: its locally-residually-finite-by-integer
+decomposition gives `literalFactorizationProperty`.  Together with the
+failure of quasidiagonality, that is the unconditional negative solution of
+Problem X(1).
 
 ## Thom's refutation, in the same vocabulary
 
@@ -86,9 +87,9 @@ that is `ThomSoficKazhdanNonResiduallyFiniteInput`, also an assumed input.
 Against Kirchberg's theorem it gives
 `not_forall_sofic_hasFactorizationProperty`, and through
 `isHyperlinear_of_isSofic` the hyperlinear form.  Those two are the precise
-statement of the warning printed in `ProblemX.lean`: soficity of `E` cannot
-supply `LiteralFactorizationProperty`, because soficity does not supply the
-factorization property for anyone.
+statement of a useful warning: soficity alone cannot supply a factorization
+property.  The proof of `literalFactorizationProperty` instead uses the
+specific locally-RF-by-`ℤ` structure of `E`.
 -/
 
 namespace GroupApproximation
@@ -119,10 +120,11 @@ def HasFactorizationProperty (G : Type u) [Group G] : Prop :=
   Quasidiagonal.IsAmenableTrace
     (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a)
 
-/-- The open clause of `Manuscript/NinetyNineProblems/ProblemX.lean` is the
-factorization property for `E`, on the nose: `LiteralFactorizationProperty`
-and `HasFactorizationProperty MarkedGroup` are the same proposition, not
-merely equivalent ones. -/
+/-- The amenability theorem in
+`Manuscript/NinetyNineProblems/ProblemX.lean` is the factorization property
+for `E`, on the nose: `LiteralFactorizationProperty` and
+`HasFactorizationProperty MarkedGroup` are the same proposition, not merely
+equivalent ones. -/
 theorem literalFactorizationProperty_iff :
     LiteralFactorizationProperty ↔ HasFactorizationProperty MarkedGroup :=
   Iff.rfl
@@ -236,9 +238,9 @@ contrapositive.
 amenable trace is quasidiagonal.  `H` fails to be MF as loudly as the
 manuscript's headline says, and none of that is a counterexample to X(1),
 because the hypothesis of X(1) is not met at `H`'s canonical trace.  The
-literal group `E` of `Manuscript/NinetyNineProblems/ProblemX.lean` is the open
-leaf for the opposite reason: `E` is not known to be simple, so nothing here
-pushes `LiteralFactorizationProperty` either way. -/
+literal group `E` of `Manuscript/NinetyNineProblems/ProblemX.lean` behaves in
+the opposite way: its locally-RF-by-`ℤ` decomposition proves
+`LiteralFactorizationProperty`, without any simplicity argument. -/
 theorem rankTwelveLeavitt_not_hasFactorizationProperty
     (k : KirchbergKazhdanFactorizationInput.{0}) :
     ¬ HasFactorizationProperty RankTwelveEndpoint.H := by
@@ -274,9 +276,9 @@ would give it the factorization property; with property `(T)` Kirchberg's
 theorem would then make it residually finite, which it is not.
 
 Both inputs are leading binders, and neither is inhabited here.  This is the
-exact statement behind the warning in
-`Manuscript/NinetyNineProblems/ProblemX.lean`: no argument that uses only
-soficity of `E` can produce `LiteralFactorizationProperty`. -/
+exact statement behind the warning that no argument using only soficity can
+produce a factorization property.  The unconditional proof for `E` uses its
+additional locally-RF-by-`ℤ` structure. -/
 theorem not_forall_sofic_hasFactorizationProperty
     (k : KirchbergKazhdanFactorizationInput.{u})
     (t : ThomSoficKazhdanNonResiduallyFiniteInput.{u}) :

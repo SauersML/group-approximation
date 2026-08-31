@@ -7,6 +7,7 @@ root: true
 artifacts:
   - research/artifacts/stw99-actions-classification-cluster-2026-08-30.md
   - research/artifacts/stw99-lv-quasifree-flow-solution-2026-08-30.md
+  - research/artifacts/stw99-late-band-audit-2026-08-31.md
 ---
 
 **Problem LV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**
@@ -19,7 +20,11 @@ irrational `λ > 0` it is `W ⊗ K` (open for all `λ`).
 
 **ANSWERED (this session): cocycle conjugate iff `λ = μ`** — see
 `o2-quasifree-flows-cocycle-conjugacy-classified` and the solution
-dossier `stw99-lv-quasifree-flow-solution-2026-08-30.md`.
+dossier `stw99-lv-quasifree-flow-solution-2026-08-30.md`.  The independent
+route `stw99-lv-via-dual-trace-scaling-spectrum` writes out the
+dual-equivariant exterior-equivalence argument explicitly; it does not rely
+on the false assertion that a particular KMS state is itself invariant under
+cocycle perturbation.
 
 ## Attempts
 

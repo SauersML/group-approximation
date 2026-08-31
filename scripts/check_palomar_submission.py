@@ -132,7 +132,7 @@ def challenge(root: Path) -> Path:
 
 
 def solution(root: Path) -> Path:
-    return root / "PalomarSolution.lean"
+    return root / "Palomar" / "Solution.lean"
 
 
 def config_path(root: Path) -> Path:
@@ -617,7 +617,7 @@ def _edit_metadata(root: Path, old: str, new: str, count: int = 1) -> None:
 def copy_surface(destination: Path) -> None:
     destination.mkdir(parents=True, exist_ok=True)
     (destination / "Palomar").mkdir(exist_ok=True)
-    for rel in ("Palomar/Challenge.lean", "PalomarSolution.lean",
+    for rel in ("Palomar/Challenge.lean", "Palomar/Solution.lean",
                 "Palomar/comparator.json", "LICENSE", "lean-toolchain",
                 "lakefile.toml", "lake-manifest.json", "formalization.yaml"):
         (destination / rel).write_bytes((REPO / rel).read_bytes())

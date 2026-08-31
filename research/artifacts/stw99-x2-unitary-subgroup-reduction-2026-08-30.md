@@ -87,6 +87,18 @@ The graph deliberately separates established and open nodes:
 
 No route in this lane currently closes X(2).
 
+## Quantifier audit: the group route remains live
+
+The later theorem `x2-witnesses-are-never-group-shaped` does not supersede
+this reduction.  It rules out reduced group algebras with the canonical
+character `delta_e`, and unitary tuples having `delta_e` joint moments in
+the hyperfinite trace.  Here the desired subgroup is detected by an
+arbitrary faithful hyperfinite character `chi`; faithfulness only requires
+`chi(g) != 1` for `g != e`, not `chi(g)=0`.  Its image algebra in `R` is
+therefore not among the canonical-trace objects excluded there.  Candidate
+families below fail for additional specific reasons, but the general
+faithful-character search is still open.
+
 ---
 
 The sections below were appended by the lane that wrote the reduction; they

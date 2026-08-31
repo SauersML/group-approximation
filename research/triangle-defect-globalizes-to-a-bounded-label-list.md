@@ -4,50 +4,69 @@ id: triangle-defect-globalizes-to-a-bounded-label-list
 kind: claim
 title: A small affine orientation defect yields a dimension-free set of candidate labels hitting a constant fraction of heavy cosets
 distinct_from:
-  affine-orientation-triangle-defect-is-small: that is the analytic estimate producing a small defect; this consumes a small defect and produces the global list, and it is combinatorial rather than analytic.
+  affine-orientation-triangle-defect-is-small: that is the analytic estimate which must produce a high-density set of concurrent pairs; this consumes that density statement and produces the global list, and it is a set-theoretic averaging lemma.
 artifacts:
   - research/artifacts/unique-games-affine-orientation-2026-08-24.md
+  - research/artifacts/approximation-cs-root-audit-2026-08-31.md
 ---
 
-**OPEN.**  The globalization half of `affine-orientation-glue-lemma`:
+**ESTABLISHED.**  The exact statement needed by the globalization half is
+elementary and stronger than previously recorded.
+
+Let `B` be a nonempty finite set and let `C_b` be a nonempty set for every
+`b in B`.  Suppose `S subset B x B` is a set of **star-certified pairs** such
+that
 
 ```text
-small triangle-defect probability  ==>  a set Q with |Q| <= L and
-                                        Pr_{b in B}[C_b intersect Q != empty] >= gamma,
+Pr_(b,c uniform in B) [(b,c) in S] >= 1 - eta,                 (TDG1)
 ```
 
-with `L` and `gamma` independent of `k`.
+and every `(b,c) in S` satisfies `C_b intersect C_c != empty`.  Then there is
+`b_0 in B` for which
 
-This is a local-consistency-implies-global-structure statement of a
-familiar shape: the star configurations of
-`affine-orientation-triangle-defect-is-small` say that chosen coset
-representatives agree on almost every affine plane, and the conclusion asks
-for a bounded set of points explaining a constant fraction of the choices.
-Nothing in it is analytic; the input is a combinatorial density statement
-about `F_2^k` and the output is a bounded hitting set.
+```text
+Pr_(c uniform in B) [C_c intersect C_(b_0) != empty] >= 1-eta. (TDG2)
+```
 
-**A caveat that must not be lost.**  The dossier that opened this region
-credits "the Cairn machinery" with supplying this step.  Cairn is this
-repository's build system for unknown facts -- a bookkeeping graph over
-claims and routes.  It is not a mathematical method, and there is no
-theorem of Cairn's that converts local defect into global structure.  The
-step is an ordinary open problem, recorded as one.
+Consequently `Q=C_(b_0)` is a hitting set of size at most
+`max_b |C_b|`.  For the affine-orientation application every `C_b` is an
+affine pair, so
 
-## Attempts
+```text
+|Q| = 2,       Pr_(c in B)[C_c intersect Q != empty] >= 1-eta.
+```
 
-* **Almost-cocycle to cocycle.**  Treat `b |-> q_b` as an almost-cocycle on
-  `F_2^k` and try to correct it to an exact one, then read `Q` off the
-  corrected object.  Where it dies: the values `q_b` are coset
-  *representatives*, so the natural target group is `Omega/<b>` and varies
-  with `b`; there is no single group in which the cocycle equation lives,
-  and the usual stability arguments assume a fixed target.
-* **Density increment on planes.**  Iterate: find a plane with many stars,
-  restrict, repeat.  Where it dies: the increments are on the direction set
-  `B`, but the conclusion is about points of `Omega`, and the two are not
-  linked by the iteration -- one can drive `B` to a subspace while the
-  representatives stay spread.
-* **Bounded-list extraction from pairwise agreement.**  A sunflower or
-  regularity argument on the family `{C_b}`.  Where it dies: `|C_b| = 2`,
-  so pairwise intersections are single points and the family carries almost
-  no combinatorial structure without the defect bound doing real work; the
-  step where the defect enters is unidentified.
+Thus the desired constants are `L=2` and `gamma=1-eta`, independent of the
+ambient dimension `k`.  If the analytic input is only stated for uniformly
+random **distinct** ordered pairs, adjoining the diagonal gives instead
+
+```text
+gamma >= (1 + (|B|-1)(1-eta))/|B| >= 1-eta,
+```
+
+so the same constants work.
+
+The proof is the degree averaging identity
+
+```text
+E_(b in B) Pr_(c in B)[(b,c) in S] = |S|/|B|^2 >= 1-eta.
+```
+
+Choose `b_0` whose inner probability is at least the average.  Each certified
+pair then makes `C_c` meet `C_(b_0)`, proving (TDG2).
+
+In the original geometric language, a concurrent triple
+
+```text
+C_b intersect C_c intersect C_(b+c) != empty
+```
+
+is in particular a star certificate for `(b,c)`.  No affine-plane
+classification, cocycle correction, sunflower theorem, or regularity lemma
+is needed after the analytic step has supplied such triples with high density
+under the product-uniform measure on `B x B`.
+
+**Scope.**  This closes only the conditional globalization implication.  It
+does not show that noisy heavy cosets have small defect; that remains
+`affine-orientation-triangle-defect-is-small`.  It also does not supply the
+unwritten soundness reduction in `glue-lemma-implies-rich-2to1-hardness`.

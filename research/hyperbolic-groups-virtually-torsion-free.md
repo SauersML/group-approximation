@@ -9,6 +9,7 @@ distinct_from:
   nonsofic-hyperbolic-group: a nonsofic hyperbolic group would in particular fail residual finiteness, while this root can fail as soon as one torsion element lies in the finite residual, even if the group remains sofic
 artifacts:
   - research/artifacts/luck-2008-section-11-status-and-finite-torsion-test-2026-08-30.md
+  - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
 ---
 
 Decide whether every word-hyperbolic group has a torsion-free subgroup of

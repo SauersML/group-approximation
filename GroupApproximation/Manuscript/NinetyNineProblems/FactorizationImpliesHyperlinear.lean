@@ -130,13 +130,14 @@ theorem isHyperlinear_of_hasFactorizationProperty
   b.isHyperlinear G h
 
 /-- The literal group of `Manuscript/NinetyNineProblems/ProblemX.lean`, for
-completeness of the picture: its open clause would give hyperlinearity.
+completeness of the picture: its now-proved factorization property gives
+hyperlinearity through Brown's implication.
 
-This says nothing new about `E`, which is hyperlinear outright because it is
-sofic (`LiteralSoficAssembly.markedGroup_isHyperlinear`).  It is recorded to
-make the direction of the open clause visible: `LiteralFactorizationProperty`
-is *stronger* than anything already known about `E`, so no argument runs
-backwards from hyperlinearity to it. -/
+This conditional wiring theorem predates the unconditional inhabitant
+`literalFactorizationProperty`.  It still says nothing new about `E`, which is
+hyperlinear outright because it is sofic
+(`LiteralSoficAssembly.markedGroup_isHyperlinear`); rather, it records a second
+route from the stronger factorization property. -/
 theorem markedGroup_isHyperlinear_of_literalFactorizationProperty
     (b : BrownAmenableTraceHyperlinearInput.{0})
     (h : LiteralFactorizationProperty) :

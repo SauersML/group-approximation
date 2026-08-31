@@ -7,6 +7,7 @@ root: true
 refuted_by:
   - stw22-nuclear-type-i-counterexample-trace-problem
 artifacts:
+  - research/artifacts/stw01-49-high-impact-hostile-audit-2026-08-31.md
   - research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw22-tracial-completion-fibre-gap-audit-2026-08-30.md
@@ -59,8 +60,13 @@ T(A)=T(M)?
 constructs a separable, unital, nuclear, type I algebra `A` with compact Bauer
 trace simplex for which the inclusion above is proper.  The counterexample
 uses projective-space homogeneous blocks with vanishing normalized rank
-fraction but unbounded Chern-class commutator width; Cuntz--Pedersen separation
-then produces an additional trace on the uniform tracial completion.
+fraction.  A simultaneous Chern-class zero for the two off-diagonal columns of
+each member of a finite packet produces late-coordinate vector states that
+are multiplicative on all prescribed pairs and take value one on a fixed
+uniform-`2`-null tail element.  Weak-star compactness gives a character
+annihilating the original `c0`-sum, hence an additional trace on the uniform
+tracial completion.  This direct character construction avoids both
+polarization and a signed Hahn--Banach separator with Jordan decomposition.
 
 The positive results below remain valid on their stated regularity and
 finite-dimensional regimes; they are now recorded as sharp islands inside a

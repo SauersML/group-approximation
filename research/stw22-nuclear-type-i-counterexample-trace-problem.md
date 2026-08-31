@@ -35,14 +35,14 @@ projection and `q_s` is one tautological rank-one summand, then
 ||h_s||_2 = sqrt(2/(s+1)) -> 0.
 ```
 
-At the same time, for every fixed `ell` and every `s>=ell`, the top Chern
-class of `L_s^{+(s ell)}` forces `h_s` to remain norm-distance at least one
-from every sum of `ell` self-commutators.  Passing to the tail corona of the
-uniform tracial completion therefore leaves the class of `(h_s)` outside the
-Cuntz--Pedersen trace-zero subspace.  Cuntz--Pedersen separation supplies a
-trace on that corona which detects `(h_s)`; pulling it back gives a tracial
-state on the uniform tracial completion extending the trace at infinity but
-different from its uniform-`2`-continuous extension.
+For every finite packet in the bounded product of the `D_s`, a top Chern
+class forces a late fibre point at which the trivial line reduces every
+member of the packet.  The resulting vector state is multiplicative on all
+prescribed pairs and takes value one on `(h_s)`.  Weak-star compactness gives
+a character of the tail corona that detects `(h_s)` and kills the original
+`c0`-sum.  Pulling it back gives a tracial state on the uniform tracial
+completion extending the trace at infinity but different from its
+uniform-`2`-continuous extension.
 
 Thus STW Problem XXII has a negative answer, already within separable unital
 nuclear type I algebras with compact metrizable extreme trace boundary.

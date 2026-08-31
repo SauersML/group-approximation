@@ -78,22 +78,12 @@ Thus a norm-one separator of margin \(\delta\) forces
 Combined with (TPD3), any estimate forcing \(e_{\mathrm K}(U)\to0\) from the
 two concrete Iwahori row defects is sufficient for congruence capture.
 Conversely, a positive capture gap forces a positive multi-Kraus cosystole.
-This is the full positive-definite gate. On a general finite group the
-unitary-table energy in (RCO3) is only its flat rank-\(d\) subproblem.
+This is the full positive-definite gate. The unitary-table energy in (RCO3)
+is only its flat rank-\(d\) subproblem: the exact equivalence (MKF6) must not
+be asserted for that smaller class without a separate flattening theorem.
 
-The needed flattening theorem is now available for the present quotient
-family. Right-translation-flattens-every-relative-kraus-frame first
-normalizes every frame to tall isometries, and
-cayley-expansion-aligns-isometry-frame-coranges then gives
-\[
- e_{\mathrm K}(U)=e_{\rm iso}(U)\leq e_{\rm unit}(U)
- \leq\left(1+2\sqrt{2/\gamma}\right)e_{\mathrm K}(U)
-\]
-on every quotient with Cayley Poincare gap \(\gamma\). Property
-\((T;FD)\) makes \(\gamma\) uniform for the authenticated quotients.
-Thus unitary and full multi-Kraus vanishing are equivalent here. No
-estimate from the concrete Iwahori cubics to either energy is proved;
-the root remains open.
+No estimate from the concrete Iwahori cubics to (MKF4) is proved here. The
+root remains open.
 
 DERIVATION
 stinespring-components-give-frame-energy-and-dual-transport

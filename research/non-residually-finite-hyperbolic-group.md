@@ -11,6 +11,7 @@ distinct_from:
   nonsofic-hyperbolic-group: that claim demands a hyperbolic group that is not sofic, which is strictly stronger — non-soficity implies failure of residual finiteness, but this claim is also satisfied by a group that is sofic and not residually finite, which is exactly the shape of this repository's own literal group E
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
+  - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
 ---
 
 Produce a word-hyperbolic group that is not residually finite, or prove that

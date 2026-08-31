@@ -84,3 +84,7 @@ direct `calc` proofs for its one-step and iterated contraction estimates.
 The Alexander--Whitney face and chain-map layers use the current
 `Functor.map_comp_apply` API and make coproduct-map definitional conversions
 explicit under the v4.32 elaborator.
+
+`BarycentricSubdivisionOperator` uses the renamed `continuous_finsetSum` lemma
+and the same v4.32 definitional-equality compatibility settings as Mathlib's
+homological-complex implementation.

@@ -11,6 +11,7 @@ distinct_from:
 artifacts:
   - research/artifacts/kervaire-laudenbach-audit-2026-08-17.md
   - research/artifacts/kl-cyclic-orbit-audit-2026-08-24.md
+  - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
 ---
 
 For every group `G` and every `w in G * <t>` with `deg_t(w) = m != 0`, the

@@ -284,9 +284,8 @@ theorem normalCoordinate_mem_packetSubgroup_of_fixed (P : Packet H D) (g : G)
             rw [CyclicStack.tpow_neg]
             group
       _ = _ := by
-        rw [normalCoordinate, tw, CyclicStack.tpow,
+        rw [normalCoordinate, tw, CyclicStack.tpow, ← map_inv,
           SemidirectProduct.inl_aut]
-        group
   have hcalc : e (w⁻¹ * (g * w)) =
       SemidirectProduct.inl
         (((((Quotient.out q : H)⁻¹ * d * Quotient.out q : H)) : N)) := by
@@ -316,7 +315,8 @@ theorem normalCoordinate_mem_packetSubgroup_of_fixed (P : Packet H D) (g : G)
     ((Quotient.out q : H)⁻¹ * d * Quotient.out q) hconj
       (Quotient.out q : H)
   dsimp [d] at hd ⊢
-  convert hd using 1 <;> group
+  convert hd using 1
+  all_goals group
 
 /-- Fibre and integer level together determine the ambient coset.  This is the
 cardinality lemma hidden by an `image`-based construction: equality of the

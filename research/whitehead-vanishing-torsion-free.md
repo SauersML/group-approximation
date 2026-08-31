@@ -16,6 +16,7 @@ distinct_from:
   torsion-free-countable-non-mf: that asks for one torsion-free countable group failing an operator-algebraic approximation property; this asserts an algebraic K-theory vanishing for every torsion-free group. Neither implies nor bears on the other, which is itself one of this node's recorded findings.
 artifacts:
   - research/artifacts/whitehead-vanishing-audit-2026-08-17.md
+  - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
 ---
 
 If `G` is torsion-free then `Wh(G) = 0`, where

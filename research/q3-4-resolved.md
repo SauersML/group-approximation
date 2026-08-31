@@ -7,6 +7,8 @@ distinct_from:
   hyperlinear-nonsofic-group: that claim is one specific answer (the separation); this is the question itself, which is also resolved by proving the opposite answer hyperlinear-implies-sofic
   hyperlinear-implies-sofic: that claim is the affirmative answer; this is the question, established by either answer
 root: true
+artifacts:
+  - research/artifacts/approximation-cs-root-audit-2026-08-31.md
 ---
 
 A root question of the program, stated as the question rather than one of

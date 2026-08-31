@@ -125,7 +125,6 @@ done
 rsync -rlptz \
   -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
   "$LOCAL/GroupApproximation.lean" \
-  "$LOCAL/PalomarSolution.lean" \
   "$LOCAL/lean-toolchain" \
   "$LOCAL/lakefile.toml" "$LOCAL/lake-manifest.json" \
   "$LOCAL/formalization.yaml" \
@@ -141,11 +140,8 @@ rsync -rlptz --delete \
   --exclude='*' \
   "$LOCAL/notes/" "$USER_MSI@$LOGIN_IP:$REMOTE/notes/" || exit $?
 
-# The directory half of the Palomar submission surface lives here; the
-# root-level `PalomarSolution.lean` is synced with the other root files above.
-# Without both halves the default build fails with "some modules have bad
-# imports".  The `.json` include carries `comparator.json`, which names the two
-# modules.
+# The Palomar submission surface lives here. The `.json` include carries
+# `comparator.json`, which names the challenge and solution modules.
 rsync -rlptz --delete \
   -e "ssh -S $SOCK -o HostKeyAlias=$ALIAS -o LogLevel=ERROR" \
   --include='*/' --include='*.lean' --include='*.json' --exclude='*' \

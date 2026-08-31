@@ -13,6 +13,7 @@ distinct_from:
   one-relator-fox-magnus-descent-to-derived-linton-radical: that proves every one-relator group sofic only after quotienting by the derived Linton radical and gives a new positive class when `R' = 1`; this asks for the remaining nonabelian core as well.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
+  - research/artifacts/approximation-cs-root-audit-2026-08-31.md
 ---
 
 OPEN.  Pestov, *Hyperlinear and sofic groups: a brief guide* (arXiv:0804.3968),

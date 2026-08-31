@@ -200,12 +200,12 @@ theorem apply_eq_zero_or_one_of_mem_extremePoints {μ : FiniteMeasure K}
     μ E = 0 ∨ μ E = 1 := by
   have hmass : μ.mass = 1 := hμ.1
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   obtain ⟨h0, h1⟩ := hcon
   have hsum : μ E + μ Eᶜ = 1 := apply_add_apply_compl hmass hE
-  have ht : (0 : ℝ≥0) < μ E := lt_of_le_of_ne (zero_le _) (Ne.symm h0)
+  have ht : (0 : ℝ≥0) < μ E := lt_of_le_of_ne (zero_le : (0 : ℝ≥0) ≤ μ E) (Ne.symm h0)
   have hu : (0 : ℝ≥0) < μ Eᶜ := by
-    rcases eq_or_lt_of_le (zero_le (μ Eᶜ)) with h | h
+    rcases eq_or_lt_of_le (zero_le : (0 : ℝ≥0) ≤ μ Eᶜ) with h | h
     · exfalso
       apply h1
       rw [← hsum, ← h, add_zero]

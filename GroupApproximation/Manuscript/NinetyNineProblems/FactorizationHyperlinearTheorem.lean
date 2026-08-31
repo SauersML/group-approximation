@@ -45,12 +45,12 @@ proof does not use it --- `AmenableTraceHyperlinear`'s headline has no
 countability hypothesis --- so the primed forms below are stated without it,
 and are genuinely stronger than what the input can deliver.
 
-**Nothing new is learned about `E`.**  `E` is hyperlinear outright, because it
-is sofic (`LiteralSoficAssembly.markedGroup_isHyperlinear`).  The literal
-instance below is wiring, not information: it records that
-`LiteralFactorizationProperty` --- the one clause `ProblemX.lean` leaves open
---- would give hyperlinearity by a route independent of soficity, which is a
-statement about the *shape* of the open problem and not about `E`.
+**The literal factorization property is now known.**  `ProblemX.lean` proves
+`literalFactorizationProperty` from the locally-RF-by-`ℤ` structure of `E`.
+The literal instance below remains useful wiring: it records that this theorem
+also gives hyperlinearity by a route independent of soficity.  This adds no new
+hyperlinearity information, since
+`LiteralSoficAssembly.markedGroup_isHyperlinear` already supplies it.
 -/
 
 namespace GroupApproximation
@@ -96,16 +96,15 @@ theorem isHyperlinear_of_hasFactorizationProperty' (G : Type u) [Group G]
     (h : HasFactorizationProperty G) : IsHyperlinear G :=
   AmenableTraceHyperlinear.isHyperlinear_of_isAmenableTrace_canonicalMaximal G h
 
-/-- **The literal group, if it has the factorization property, is
-hyperlinear** --- unconditionally, the Brown input having been discharged.
+/-- **The literal group's factorization property implies hyperlinearity** ---
+unconditionally, the Brown input having been discharged.
 
 This adds nothing about `E`.  `E` is already known to be hyperlinear, from
 soficity, by `LiteralSoficAssembly.markedGroup_isHyperlinear`, and that route
-is unconditional too.  The theorem is here to close the wiring: it says that
-the open clause `LiteralFactorizationProperty` of
-`Manuscript/NinetyNineProblems/ProblemX.lean` sits *above* hyperlinearity, so
-no argument recovers it from what soficity already gives.  That direction is
-the content of Thom's examples, and it is why the clause is still open. -/
+is unconditional too.  The theorem is here to close the wiring.  Its premise
+is now supplied by `literalFactorizationProperty`; nevertheless, the reverse
+implication cannot be inferred from hyperlinearity alone, as Thom's examples
+show. -/
 theorem markedGroup_isHyperlinear_of_literalFactorizationProperty'
     (h : LiteralFactorizationProperty) :
     IsHyperlinear LiteralNonMFPresentation.MarkedGroup :=

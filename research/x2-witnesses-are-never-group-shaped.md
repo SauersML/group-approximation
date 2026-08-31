@@ -21,8 +21,12 @@ both exact and UCT).  Then:
 3. no generating tuple of unitaries of `A` generates a nonamenable
    subgroup of `U(A)` with `δ_e` joint `τ`-distribution.
 
-So the witness is group-invisible: its generators must carry
-amenable-looking mixed moments while the algebra itself fails
-exactness-with-UCT — every group-theoretic production mechanism for
-non-QD traces (the entire literal-group technology that refuted X(1)
-included) is structurally barred from refuting X(2).
+Thus canonical-trace group mechanisms are invisible here: generators of a
+witness cannot have the regular `delta_e` moment pattern of a nonamenable
+group, and the reduced-group / amenable-action constructions in (1)--(3)
+are barred.  This does NOT exclude a group-generated image coming from a
+noncanonical faithful hyperfinite character `chi`, for which
+`chi(g) != 1` but possibly `chi(g) != 0` away from the identity.  In
+particular, the live route
+`non-mf-subgroup-of-hyperfinite-factor-unitary-group` is not covered by
+this theorem; it asks for exactly such a noncanonical character.

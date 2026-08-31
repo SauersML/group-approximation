@@ -135,8 +135,11 @@ already controls.  The compatibility half is isolated as
   can be fully coherent, so a Cauchy--Schwarz over the fibre loses
   everything at the first step and there is no induction hypothesis on
   `deg <= D` that survives to `D+1` by counting alone.
-* **Local-to-global via the affine plane.**  The live route
-  `glue-lemma-from-small-triangle-defect`: bound the density of
-  nonconcurrent `(C_b, C_c, C_{b+c})` triples, then globalize.  Both halves
-  are open and are recorded as separate claims, because they fail for
-  different reasons.
+* **Local-to-global via affine stars.**  The live route
+  `glue-lemma-from-small-triangle-defect`: bound the product-uniform density
+  of pairs without a concurrency certificate, then globalize.  The
+  globalization half is now established, sharply, by
+  `triangle-defect-globalizes-to-a-bounded-label-list`: a maximum
+  star-degree affine pair is itself a two-label hitting set.  The analytic
+  star-density estimate remains open and is the only unresolved premise of
+  this route.

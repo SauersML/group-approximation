@@ -14,6 +14,7 @@ distinct_from:
   whitehead-vanishing-finitely-presented-torsion-free: that is Whitehead vanishing restricted to finitely presented torsion-free groups; this is Atiyah integrality over all torsion-free groups. Both were attacked against this repository the same day and they share no invariant.
 artifacts:
   - research/artifacts/strong-atiyah-audit-2026-08-17.md
+  - research/artifacts/high-impact-literature-roots-audit-2026-08-31.md
 ---
 
 Let `G` be a countable torsion-free group, `N(G)` its group von Neumann

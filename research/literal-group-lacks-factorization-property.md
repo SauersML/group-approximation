@@ -8,10 +8,15 @@ distinct_from:
   literal-group-factorization-property: that is the positive side; this is its negation, carried separately because both sides have live routes, in the house pattern of literal-group-sofic and literal-group-not-sofic.
   rank-twelve-leavitt-group-lacks-factorization-property: that is decided by Kirchberg's theorem because H is Kazhdan; E is not Kazhdan, so its factorization property is not decided by residual finiteness and needs the compression mechanism itself.
 artifacts:
+  - GroupApproximation/Analysis/LocallyRFByIntFactorization.lean
+  - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
-**REFUTED.**  The explicit u.c.p. Folner-compression models in `literal-fp-via-folner-rf-core` establish the opposite claim.
+**REFUTED, formally.**  The locally-RF-by-`Z` quasi-regular finite-window
+models in `literal-fp-via-folner-rf-core` establish the opposite claim.  In
+Lean this is the axiom-clean theorem
+`NinetyNineProblems.literalFactorizationProperty`.
 
 The canonical trace of `C*(E)` is not an amenable trace; equivalently `E` does
 not have Kirchberg's factorization property.

@@ -8,6 +8,7 @@ distinct_from:
   stw99-problem-lxix-null-homotopic-nccw: that asks for 1-NCCW inductive limit structure of W-stabilizations of ideal-preservingly null-homotopic algebras; this asks whether the tracial cone is a complete invariant of the W-stabilization for ALL separable nuclear algebras, and the two form the existence/uniqueness halves of the same program.
 artifacts:
   - research/artifacts/stw99-structural-cu-cluster-2026-08-30.md
+  - research/artifacts/stw99-late-band-audit-2026-08-31.md
 ---
 
 **Problem LXVIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -17,21 +18,19 @@ weights of `A`?
 
 ## Attempts
 
-* `W`-stabilization kills `K`-theory and (in the simple case) the
-  classification of `W`-stable algebras by the trace cone is the
-  known stably projectionless theorem; the nonsimple content is
-  whether the IDEAL structure is itself a trace-cone invariant —
-  ideals of `A ⊗ W ⊗ K` biject with closed faces of the trace cone
-  precisely when `A ⊗ W` has no traceless ideals... and traceless
-  `W`-stable algebras vanish? NO: traceless nuclear `W`-stable
-  algebras are `O_2 ⊗ K`-like only under pure infiniteness, which
-  `W`-stability forbids; but nowhere-scattered traceless quotients
-  are the danger zone and exactly where a counterexample would sit —
-  a nuclear `A` with a traceless ideal `I` such that `I ⊗ W ⊗ K ≠ 0`
-  yet invisible to the cone.  Whether a nonzero nuclear `W`-stable
-  algebra can be traceless is thus the pivot; Gabe's traceless
-  theorem territory says such an algebra is `O_∞`-stable, clashing
-  with finiteness of `W` — recorded as the expected no-counterexample
-  argument at the ideal level, leaving the honest content in
-  matching the classification machinery ideal-by-ideal (the
-  Elliott-tower version of the stably projectionless theorem).
+* `W`-stabilization kills `K`-theory and, in the simple case, the result is
+  known: the stably finite case follows from classification of
+  `KK`-contractible stably projectionless algebras, and the traceless case
+  gives `O_2 tensor K`.  More generally STW already record a positive answer
+  for every separable nuclear traceless algebra.  Rordam's theorem makes
+  `A tensor W tensor K` `O_infinity`-stable, hence `O_2`-stable, and the cone
+  of extended lower semicontinuous traces still records the ideal lattice;
+  Kirchberg--Gabe `O_2`-stable classification then applies.
+
+* The unresolved content is therefore mixed nonsimple structure, already
+  present for one proper nonzero ideal when finite and traceless pieces
+  interact.  A counterexample cannot be obtained merely by inserting a
+  traceless ideal and declaring it invisible: the extended trace cone has
+  the ideal-generated infinite weights described by STW, and the purely
+  traceless case is classified.  The live task is an ideal-related
+  existence/uniqueness theorem for the mixed `W`-stabilized extension.

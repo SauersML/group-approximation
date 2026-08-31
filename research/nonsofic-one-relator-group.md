@@ -19,6 +19,7 @@ distinct_from:
   boone-base-group-two-generator-one-relator: that identifies a specific base group of the Boone tower as one-relator (on three generators) and is established; this asks for a one-relator group with a nonsoficity property that base group does not have and cannot acquire from the tower, since the tower adds relators.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
+  - research/artifacts/approximation-cs-root-audit-2026-08-31.md
 ---
 
 OPEN.  Exhibit a group `G = <X | w>` with a single defining relation that is

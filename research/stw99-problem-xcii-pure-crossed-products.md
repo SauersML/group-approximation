@@ -6,6 +6,7 @@ title: Outer amenable actions on pure algebras give pure crossed products (STW P
 root: true
 artifacts:
   - research/artifacts/stw99-final-band-cluster-2026-08-30.md
+  - research/artifacts/stw99-late-band-audit-2026-08-31.md
 ---
 
 **Problem XCII of Schafhauser--Tikuisis--White, arXiv:2506.10902.**
@@ -14,22 +15,24 @@ simple separable PURE C\*-algebra, when is `A ⋊ G` pure?
 
 ## Attempts
 
-* This is the non-nuclear/non-`Z`-stable analogue of XXXVIII, aimed
-  at the selfless wave: `C*_r(F_n)` and its relatives are now pure
-  (strict comparison + sr1-territory divisibility), and crossed
-  products of such algebras by amenable groups are the natural next
-  test class.  Two halves: comparison permanence — Ozawa's
-  tensor-permanence for selflessness (Theorem 2, minimal tensor
-  products of exact selfless probability spaces) is the model result,
-  and an equivariant/crossed version of his extreme-proximality
-  mechanism is the obvious candidate tool (a topologically free
-  extremely proximal boundary for `G ⋉ A`-dynamics); divisibility
-  permanence — passes whenever the action fixes a suitable
-  almost-divisible scale, automatic here since `Cu(A)`-divisibility
-  data is `Aut`-invariant and the inclusion `A ⊆ A ⋊ G` is
-  trace-compatible with the (unique, by outerness + amenability +
-  simplicity) extended trace.  Recorded conjecture: for strongly
-  outer actions on selfless algebras with unique trace, `A ⋊_r G` is
-  again selfless — a crossed-product analogue of Ozawa's theorem
-  that would make purity automatic; the Klein-bottle/`Z^2`-on-UHF
-  history (LVI) warns that plain outerness may not suffice.
+* This is the non-nuclear/non-`Z`-stable analogue of XXXVIII.  The two
+  independent issues are comparison and almost divisibility for arbitrary
+  positive elements of the crossed product.  Automorphism-invariance of the
+  divisibility statements inside `Cu(A)` does **not** transfer those
+  statements to all of `Cu(A rtimes_r G)`.  Likewise, a simple pure algebra
+  can have many traces, and outerness plus amenability does not make the
+  crossed product uniquely tracial.  Neither shortcut is used here.
+
+* Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
+  (arXiv:2607.20361, Theorem 9.2) prove relative selflessness of the canonical
+  expectation for approximately inner actions of groups with Ozawa's PHP
+  property.  This does not give an instance of XCII with a nontrivial acting
+  group: PHP groups are C*-simple, while an amenable C*-simple discrete group
+  is trivial.  Thus the strongest 2026 crossed-product selflessness theorem
+  is transverse to, rather than a solution of, the amenable-action problem.
+
+* A genuine selflessness theorem for strongly outer amenable crossed products
+  would imply purity by Gould's 2026 selfless dichotomy, but no such theorem
+  is presently available.  Plain outerness is deliberately retained in the
+  root because that is the STW question; strengthening it to strong
+  outerness would only define a positive subproblem.

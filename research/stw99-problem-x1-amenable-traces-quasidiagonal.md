@@ -10,6 +10,12 @@ distinct_from:
   mf-implies-hyperlinear: that compares two approximation properties of a group; this compares two approximation properties of a single trace on an arbitrary C*-algebra.
   stw99-problem-ix1-nuclear-faithful-trace-quasidiagonal: that asks only about faithful traces on separable nuclear algebras and concludes quasidiagonality of the algebra; this asks about every amenable trace and concludes quasidiagonality of the trace, and it is the stronger question (route stw99-x1-implies-ix1).
 artifacts:
+  - GroupApproximation/Sofic/ResidualFinitePacket.lean
+  - GroupApproximation/Analysis/QuasiRegularCompression.lean
+  - GroupApproximation/Analysis/AmenableTraceGeneratorDense.lean
+  - GroupApproximation/Analysis/LocallyRFByIntAmenableTrace.lean
+  - GroupApproximation/Analysis/LocallyRFByIntAction.lean
+  - GroupApproximation/Analysis/LocallyRFByIntFactorization.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean
   - GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
@@ -18,7 +24,12 @@ artifacts:
   - research/artifacts/stw10-finite-crossed-product-trace-audit-2026-08-30.md
 ---
 
-**REFUTED.**  The maximal canonical trace of the literal finitely presented group `E` is amenable but not quasidiagonal.  The u.c.p. construction is `literal-fp-via-folner-rf-core`; the non-QD theorem is `literal-canonical-trace-hyperlinear-not-quasidiagonal`.
+**REFUTED, unconditionally and formalized in Lean.**  The maximal canonical
+trace of the literal finitely presented group `E` is amenable but not
+quasidiagonal.  The u.c.p. construction is the locally-RF-by-`Z` finite-window
+route `literal-fp-via-folner-rf-core`; the non-QD theorem is
+`literal-canonical-trace-hyperlinear-not-quasidiagonal`.  Their composition is
+the axiom-clean theorem `NinetyNineProblems.not_problemX1Statement`.
 
 **Problem X(1) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Are amenable traces on C\*-algebras necessarily
 quasidiagonal?
@@ -71,13 +82,18 @@ finite-dimensional unitary representations recovering the regular character.
 The repository's literal finitely presented group `E` is sofic and has a
 central involution killed by every operator-norm corona representation, so its
 canonical trace is a hyperlinear trace that is not quasidiagonal
-(`literal-canonical-trace-hyperlinear-not-quasidiagonal`).  That remaining factorization property is now established by
-`literal-fp-via-folner-rf-core`, so `E` gives the negative answer.
+(`literal-canonical-trace-hyperlinear-not-quasidiagonal`).  The needed
+factorization property is proved by finite quasi-regular compressions for the
+splitting `E = E_T rtimes Z`, using local residual finiteness of `E_T`.  Thus
+`E` gives the negative answer.
 
 Lean statement: `NinetyNineProblems.ProblemX1Statement` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`).  The same
 module proves `isHyperlinearTrace_of_isAmenableTrace` (an amenable trace is a
-hyperlinear trace) and the conditional refutation
-`not_problemX1Statement_of_literalFactorizationProperty`.
+hyperlinear trace), the reusable conditional bridge
+`not_problemX1Statement_of_literalFactorizationProperty`, the unconditional
+amenability theorem `literalFactorizationProperty`, and the closed refutation
+`not_problemX1Statement`.  The generic input is
+`LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt`.
 
 Positive instance machine-checked: on Kazhdan full group C\*-algebras the
 answer is YES (`problemX1_restricted_to_kazhdan`, `GroupApproximation/Manuscript/NinetyNineProblems/KazhdanQuasidiagonalTraces.lean`, from Brown Prop

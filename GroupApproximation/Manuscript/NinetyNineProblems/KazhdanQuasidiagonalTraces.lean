@@ -58,24 +58,22 @@ Brown 4.1.12, hence an MF trace, hence `H` operator-MF --- contradicting
 Theorem B.  Two routes, disjoint hypotheses, same conclusion; the agreement is
 a check on both.
 
-## What it does not buy, and why `E` is untouched
+## Why the Kazhdan mechanism is not the proof for `E`
 
-Nothing here says anything about the literal group `E` of
-`Manuscript/NinetyNineProblems/ProblemX.lean`, because the mechanism needs
-property `(T)` **for the whole group** and `E` is not a Kazhdan group in this
-development: no declaration asserts `HasKazhdanPropertyT MarkedGroup`, and
-property `(T)` enters the telescope construction only as a hypothesis on a base
-group (`Sofic/AscendingHNNFullTelescopeRadical.lean` carries it as
+The rigidity theorem here does not apply directly to the literal group `E` of
+`Manuscript/NinetyNineProblems/ProblemX.lean`, because it needs property `(T)`
+**for the whole group**.  No declaration asserts
+`HasKazhdanPropertyT MarkedGroup`; property `(T)` enters the telescope
+construction only through a base group
+(`Sofic/AscendingHNNFullTelescopeRadical.lean` carries
 `hΓ : HasKazhdanPropertyT.{0,0} Γ₀`).
 
-So for `E` the same rigidity would have to run **relative to the Kazhdan base
-sitting inside `E`**, transporting the `(T)` estimate from the base to the
-whole telescope through the u.c.p. Hilbert--Schmidt models.  That relative
-transport is exactly the open question, and it is the same open leaf as
-`LiteralFactorizationProperty`: `ProblemX.lean` leaves the trace's amenability
-open, and this file explains what a proof of it would have to survive.  The
-`(T)`-rigidity half is what is stated here; the relative half is not stated
-anywhere, because no one has it.
+The unconditional amenability theorem for `E` instead uses its
+locally-residually-finite-by-`ℤ` decomposition and finite quasi-regular
+compressions.  Thus `LiteralFactorizationProperty` is proved without a
+relative Kazhdan-rigidity theorem.  Combined with the nonquasidiagonality
+theorem, it yields the closed negative answer
+`ProblemX.not_problemX1Statement`.
 -/
 
 namespace GroupApproximation
@@ -192,8 +190,9 @@ finiteness theorem there, Kirchberg's u.c.p. rigidity here --- so the
 agreement is a genuine cross-check on the placement of `H`, not a
 restatement.
 
-As with the first proof, this says nothing about `E`; see the module
-docstring. -/
+As with the first proof, this particular argument does not concern `E`; its
+factorization property is supplied by the independent locally-RF-by-`ℤ`
+construction described in the module docstring. -/
 theorem rankTwelveLeavitt_not_hasFactorizationProperty'
     (k : KirchbergKazhdanQuasidiagonalInput.{0}) :
     ¬ HasFactorizationProperty RankTwelveEndpoint.H := by

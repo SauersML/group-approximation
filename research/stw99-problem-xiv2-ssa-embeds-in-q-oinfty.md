@@ -26,10 +26,14 @@ uniqueness components.
 
 ## Attempts
 
-* The `O_2`-exception is forced: `Q ⊗ O_∞` has nonzero `K_0`, while every
-  unital subalgebra... rather, `O_2`-stability would collapse the unit's
-  class; `O_2` embeds unitally into everything Kirchberg, but
-  `Q ⊗ O_∞ ⊗ O_2 ≅ O_2 ≇ Q ⊗ O_∞` distinguishes the stability form.
+* The `O_2`-exception is forced by the unit class.  A unital embedding
+  `O_2 -> (Q tensor O_infinity)_omega` would send
+  `[1_(O_2)] = 0` to the non-torsion unit class of the target ultrapower,
+  contradicting `embeddable-unit-class-non-torsion`.  In particular one
+  must NOT use the false assertion that `O_2` embeds unitally into every
+  Kirchberg algebra: `O_infinity` itself is blocked by
+  `[1_(O_infinity)] != 0`.  The absorption identity
+  `(Q tensor O_infinity) tensor O_2 = O_2` gives the same exception.
 * Any counterexample is a strongly self-absorbing algebra outside the
   known list, hence (through classification) a UCT counterexample; no
   candidate construction is known.  Winter's "microcosm" heuristic makes
