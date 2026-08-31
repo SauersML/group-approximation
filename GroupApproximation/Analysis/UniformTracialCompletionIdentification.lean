@@ -44,6 +44,7 @@ namespace UniformTracialCompletionIdentification
 
 open Filter PolarLiftingGeneralCStar
 open UniformTracialSequenceCompletion UniformTracialTwoNullIdeal
+open scoped ENNReal
 
 noncomputable section
 
@@ -95,7 +96,7 @@ theorem mem_scalarPlusJ_of_uniformTwoLimit (G : TracialTwoGauge D)
   choose c hc using ha'
   -- the coefficients are Cauchy
   have hcauchy : CauchySeq c := by
-    rw [Metric.cauchySeq_iff]
+    refine Metric.cauchySeq_iff.2 ?_
     intro ε hε
     obtain ⟨K, hK⟩ := hconv (ε / 4) (by linarith)
     refine ⟨K, fun k hk l hl ↦ ?_⟩
@@ -137,7 +138,7 @@ theorem mem_scalarPlusJ_of_uniformTwoLimit (G : TracialTwoGauge D)
   rw [mem_scalarPlusJ_iff_sub]
   refine ⟨c0, ?_⟩
   show Tendsto (fun n ↦ G.q n (x n - algebraMap ℂ (D n) c0)) atTop (nhds 0)
-  rw [Metric.tendsto_nhds]
+  refine Metric.tendsto_nhds.2 ?_
   intro ε hε
   obtain ⟨K, hK⟩ := hconv (ε / 3) (by linarith)
   have hcdist : ∀ᶠ k in atTop, dist (c k) c0 < ε / 3 :=
@@ -236,7 +237,7 @@ theorem exists_boundedCStarSequence_uniformTwoLimit
   -- each coordinate is operator-norm Cauchy
   have hcoordCauchy : ∀ n : ℕ, CauchySeq fun k ↦ a k n := by
     intro n
-    rw [Metric.cauchySeq_iff]
+    refine Metric.cauchySeq_iff.2 ?_
     intro ε hε
     have hne : max (r n) 1 ≠ 0 := (hRpos n).ne'
     obtain ⟨K, hK⟩ := hcauchy (ε / max (r n) 1) (div_pos hε (hRpos n))
@@ -247,7 +248,7 @@ theorem exists_boundedCStarSequence_uniformTwoLimit
     have h3 : max (r n) 1 * G.q n (a k n - a l n)
         < max (r n) 1 * (ε / max (r n) 1) :=
       mul_lt_mul_of_pos_left h2 (hRpos n)
-    have h4 : max (r n) 1 * (ε / max (r n) 1) = ε := by field_simp
+    have h4 : max (r n) 1 * (ε / max (r n) 1) = ε := mul_div_cancel₀ ε hne
     rw [dist_eq_norm]
     linarith
   have hex : ∀ n : ℕ, ∃ z : D n, Tendsto (fun k ↦ a k n) atTop (nhds z) :=
