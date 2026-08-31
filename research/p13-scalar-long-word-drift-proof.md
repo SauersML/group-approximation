@@ -68,7 +68,7 @@ The proved spectral dichotomy therefore puts `D_n` in the low interval.
 For `r_n=(ZXY)^n`, scalar evaluation gives
 
 ```text
-r_n=exp(int)=-1,
+r_n=exp(i*n*t)=-1,
 ```
 
 so its displacement is exactly two.
