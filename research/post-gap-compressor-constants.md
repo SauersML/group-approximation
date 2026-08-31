@@ -53,12 +53,12 @@ Consequently the marked commutator of those two unitary matrices obeys
 \]
 
 These are the exact theorems
-\`MarkedCompressionVectorChain.transported_displacement_le\`,
-\`conjugated_transport_hsDistSq_le\`, and
-\`marked_commutator_hsDistSq_le\`.
+`MarkedCompressionVectorChain.transported_displacement_le`,
+`conjugated_transport_hsDistSq_le`, and
+`marked_commutator_hsDistSq_le`.
 
 The budget used by
-\`MarkedCompressionSequentialKill.commutatorMatrix_hsDistSq_vanishing\`
+`MarkedCompressionSequentialKill.commutatorMatrix_hsDistSq_vanishing`
 is therefore exact:
 
 \[
@@ -96,7 +96,7 @@ The three inputs have the following quantitative meanings in the repository.
    the explicitly replayed multiplication/inverse defects for that word.
 
 2. **One-sided leakage and equal-rank flip.**  In
-   \`KazhdanCompressorCorner.one_sub_moved_mul_corner_vanishing\`, an
+   `KazhdanCompressorCorner.one_sub_moved_mul_corner_vanishing`, an
    operator bound
 
    \[
@@ -127,7 +127,7 @@ The three inputs have the following quantitative meanings in the repository.
    \(c=\varepsilon/192\).
 
 For a uniformly bounded asymptotic-commutant sequence with operator bound
-\(M\), \`KazhdanAsymptoticCommutant.transport_of_leakage\` uses
+\(M\), `KazhdanAsymptoticCommutant.transport_of_leakage` uses
 
 \[
  q=\min\!\left(1,\frac{\varepsilon}{40(M^2+1)}\right)
