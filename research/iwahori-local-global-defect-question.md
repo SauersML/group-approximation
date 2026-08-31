@@ -481,8 +481,10 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   positive. The associated twisted shifts are exact on both modular
   vertices and preserve the original Iwahori edge defect exactly.
   Therefore property `(T;FD)` cannot contradict the witness before those
-  same missing rows are filled; the live theorem is a nonlinear relative
-  Cayley cosystolic estimate from the two concrete cubic rows.
+  same missing rows are filled. A nonlinear relative Cayley cosystolic
+  estimate from the two concrete cubic rows would eliminate these
+  separators, though general nonunitary Kraus certificates make it a
+  sufficient route rather than a converse characterization.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
