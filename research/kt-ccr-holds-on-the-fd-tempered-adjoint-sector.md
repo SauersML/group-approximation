@@ -160,11 +160,14 @@ crossed product for the action of `G` on `G/Lambda` contains a trace-half
 projection fixed by `Lambda` and moved by every
 `gamma in Gamma minus Lambda`; its orbit signs span
 `ell^2(G/Lambda)`, necessarily a non-FD-tempered `G`-module here.
-This does not refute `(FDT7)`: no matrix-ultraproduct realization of that
-crossed-product trace follows from the present hypotheses.  It does prove
-that the missing input must use matrix approximability, and that tensoring
-with the inverse or passing to the adjoint action alone is unsafe because it
-erases scalar-phase commutators.
+Writing
+`W=(direct_sum_(G/Lambda) C_2) semidirect G`, the crossed product is
+exactly `L(W)`.  Hence hyperlinearity of `W` would turn this profile into
+a literal FDT7 and (CCR) counterexample.  The present hypotheses do not
+supply such a generalized coset-wreath model, so this remains conditional.
+It proves that the missing input must use matrix approximability, and that
+tensoring with the inverse or passing to the adjoint action alone is unsafe
+because it erases scalar-phase commutators.
 
 DERIVATION
 fd-radical-kazhdan-projection-ccr-proof
