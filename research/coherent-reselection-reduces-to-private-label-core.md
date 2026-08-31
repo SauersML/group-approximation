@@ -48,7 +48,7 @@ its private-label core:
 
 After arbitrary completion of the partial bijections, every relation in
 `R_0` has Hamming defect `o(1)`.  Every relation in `R` then also has
-defect `o(1)), by bi-invariance of Hamming distance and the chosen normal
+defect `o(1)`, by bi-invariance of Hamming distance and the chosen normal
 closure expressions.
 
 In particular, every table admitting a relation basis with empty
