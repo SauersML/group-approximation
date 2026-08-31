@@ -16,6 +16,7 @@ open scoped CStarAlgebra ComplexOrder Matrix
 
 /-! ## Entrywise form of the antipodal covariance -/
 
+set_option linter.unusedSimpArgs false in
 /-- Conjugation by the block involution multiplies the `(i,j)` entry by the
 two diagonal signs. -/
 theorem blockInvolution_conjugation_apply {s : ℕ}
@@ -23,7 +24,9 @@ theorem blockInvolution_conjugation_apply {s : ℕ}
     (i j : Fin (s + 1)) :
     (blockInvolution s * a * blockInvolution s) i j =
       blockSign i * a i j * blockSign j := by
-  simp [blockInvolution, CStarMatrix.mul_apply, Matrix.mul_apply]
+  classical
+  simp [blockInvolution, CStarMatrix.mul_apply, Matrix.diagonal_apply, ite_mul, mul_ite,
+    Finset.sum_ite_eq, Finset.sum_ite_eq', mul_assoc]
 
 /-- Antipodal covariance of a real-projective block, entry by entry. -/
 theorem realProjectiveBlock_entry_neg {d s : ℕ}

@@ -101,7 +101,7 @@ theorem blockInvolution_conj_trivialProjection (s : ℕ) :
   rw [trivialProjectionMatrix]
   simp only [mul_smul_comm, smul_mul_assoc]
   rw [mul_add, add_mul, blockInvolution_sq]
-  simp [mul_assoc]
+  simp
 
 /-- The block projection onto the trivial summand. -/
 def trivialProjection (d s : ℕ) : RealProjectiveBlock d s :=
@@ -113,16 +113,17 @@ each of the `s` complementary coordinates. -/
 def witnessMatrix (s : ℕ) : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ :=
   trivialProjectionMatrix s - (s : ℂ)⁻¹ • (1 - trivialProjectionMatrix s)
 
+set_option linter.unusedSimpArgs false in
 theorem blockInvolution_conj_witness (s : ℕ) :
     blockInvolution s * witnessMatrix s * blockInvolution s = witnessMatrix s := by
   rw [witnessMatrix]
-  simp only [mul_sub, sub_mul, mul_smul_comm, smul_mul_assoc]
-  rw [blockInvolution_conj_trivialProjection, mul_one, blockInvolution_sq,
-    blockInvolution_conj_trivialProjection]
+  simp [mul_sub, sub_mul, mul_smul_comm, smul_mul_assoc, mul_one,
+    blockInvolution_conj_trivialProjection, blockInvolution_sq]
 
 @[simp]
 theorem trivialProjectionMatrix_zero_zero (s : ℕ) : trivialProjectionMatrix s 0 0 = 1 := by
   simp [trivialProjectionMatrix, blockInvolution, blockSign, CStarMatrix.one_apply_eq]
+  norm_num
 
 @[simp]
 theorem witnessMatrix_zero_zero (s : ℕ) : witnessMatrix s 0 0 = 1 := by

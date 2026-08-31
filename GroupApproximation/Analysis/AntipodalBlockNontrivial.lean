@@ -58,8 +58,12 @@ Together with `antipodalBlock_cStarAlgebra` this makes
 `Analysis/STW22CounterexampleCompactnessRoute`. -/
 instance nontrivial_realProjectiveBlock (d s : ℕ) :
     Nontrivial (RealProjectiveBlock d s) :=
-  ⟨0, 1, fun h =>
-    zero_ne_one (α := SphereMatrixFunctions d s) (by exact_mod_cast h)⟩
+  ⟨0, 1, fun h => by
+    obtain ⟨x⟩ : Nonempty (Sphere d) := inferInstance
+    have h3 := congrArg Subtype.val h
+    rw [ZeroMemClass.coe_zero, OneMemClass.coe_one] at h3
+    have h4 := congrArg (fun f : SphereMatrixFunctions d s => f x 0 0) h3
+    simp at h4⟩
 
 end
 
