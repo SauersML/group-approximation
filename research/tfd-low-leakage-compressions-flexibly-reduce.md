@@ -46,6 +46,17 @@ from an exact representation on a dimension `D>=d`, where
 D/d-1 <= C_kappa^2 ell(P,pi).                          (TLC4)
 ```
 
+The same estimate has a useful rank-locking contrapositive.  If every
+`pi(Gamma)`-invariant projection has rank differing from `d` by at least
+`eta d`, then
+
+```text
+ell(P,pi) >= eta/C_kappa^2.                             (TLC5)
+```
+
+Thus a positive-density representation-theoretic sector mismatch forces
+macroscopic generator leakage inside every exact ambient dilation.
+
 If `rank(Q)>=d`, use the exact restriction `pi|_(QH)`.  If
 `rank(Q)<d`, add `d-rank(Q)` trivial lines to that restriction.  Thus
 `D=max(d,rank(Q))` in both cases.
