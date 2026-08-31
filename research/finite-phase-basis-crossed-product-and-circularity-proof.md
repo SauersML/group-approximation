@@ -150,7 +150,7 @@ For one acting generator, decompose `K` into permutation orbits.
   resulting operator is a bilateral shift and has no nonzero
   `l^2`-eigenvector.
 
-Hence every point eigenvalue in the target of (9) is torsion.
+Hence every point eigenvalue in the target of (10) is torsion.
 
 There is an explicit obstruction inside `R`.  Realize `R` as the weak
 closure of the irrational rotation algebra and choose unitaries
@@ -176,7 +176,7 @@ finite approximation.
 
 The example is intentionally fenced: `Ad U` is inner and therefore cocycle
 conjugate to the trivial action.  If arbitrary cocycle perturbation is
-allowed, (11) is not an invariant and cannot be used as the obstruction.
+allowed, (12) is not an invariant and cannot be used as the obstruction.
 For outer amenable actions on `R`, the relevant standardization theory is
 Ocneanu's classification of amenable-group actions on injective factors.
 That theory does not supply a universal nonamenable-actor algebraization,
