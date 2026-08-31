@@ -100,7 +100,7 @@ theorem hullQuotient₂_of_fillingData
            injOn := D.injOn_cayleyBall P.q hker
            suitable_map := F.suitable_map
            suitable_map_family := F.suitable_map_family
-           finiteOrder_lift := D.finiteOrder_lift P.q hker }⟩
+           finiteOrder_lift := D.finiteOrder_lift P.q P.surjective hker }⟩
 
 /-- **Hull's §5 over two subgroups: the cone-off exists.**
 

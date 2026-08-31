@@ -339,7 +339,7 @@ structure ConeOffData {G : Type u} [Group G] (A : Alphabet G) (K : Subgroup G)
   family does not: a vertex of `Γ(G,A)` has trivial stabiliser, and an apex has
   the elementary closure of the relator. -/
   finiteOrder_lift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-    q.ker = Subgroup.normalClosure (K : Set G) →
+    Function.Surjective q → q.ker = Subgroup.normalClosure (K : Set G) →
       ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
   /-- The conjugates of `K` rotate very much about the corresponding apices,
   in the sense of DGO Definition 2.12(c): coupled annulus points are separated
@@ -395,8 +395,8 @@ def toRotatingData {G : Type u} [Group G] {A : Alphabet G} {K : Subgroup G}
     refine P.kernel_moves_base g ?_ hg1
     rwa [rotationNormalClosure_apexRot] at hg
   finiteOrder_lift := by
-    intro Q _ q hker
-    exact P.finiteOrder_lift q (hker.trans hK.symm)
+    intro Q _ q hsurj hker
+    exact P.finiteOrder_lift q hsurj (hker.trans hK.symm)
 
 end ConeOffData
 

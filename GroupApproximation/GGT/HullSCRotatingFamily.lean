@@ -416,13 +416,14 @@ theorem torsionFree_of_dgoQuotient (hDGO : DGOQuotientStatement.{u, v})
     (hfam : IsRotatingFamily G X C Rot) (hsep : IsSeparated C ρ)
     (hvr : IsVeryRotating G X δ C Rot) (hG : IsPowerTorsionFree G)
     (hlift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-      q.ker = rotationNormalClosure C Rot →
+      Function.Surjective q → q.ker = rotationNormalClosure C Rot →
         ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y) :
     ∃ (Q : Type u) (_ : Group Q) (q : G →* Q), Function.Surjective q ∧
       q.ker = rotationNormalClosure C Rot ∧ IsPowerTorsionFree Q := by
   obtain ⟨D⟩ := hDGO δ ρ C Rot hδ hρ hhyp hfam hsep hvr
   exact ⟨D.Q, D.group, D.q, D.surjective, D.ker_eq,
-    torsionFree_of_rotatingQuotient hG D (hlift D.q D.ker_eq)⟩
+    torsionFree_of_rotatingQuotient hG D
+      (hlift D.q D.surjective D.ker_eq)⟩
 
 end HullSC
 end GroupApproximation

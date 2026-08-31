@@ -118,7 +118,7 @@ structure RotatingDataGeo₂ {G : Type u} [Group G] (A : Alphabet G) (w : G)
   clause needs is control of the stabilisers of the action, which Hull's
   cone-off has and an abstract rotating family does not. -/
   finiteOrder_lift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-    q.ker = Subgroup.normalClosure ({w} : Set G) →
+    Function.Surjective q → q.ker = Subgroup.normalClosure ({w} : Set G) →
       ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
 
 namespace RotatingDataGeo₂

@@ -118,7 +118,8 @@ structure ConeOffData₂ {G : Type u} [Group G] {Λ : Type w} (A : Alphabet G)
   same model satisfies the free splitting.  What it needs is control of the
   stabilisers of the action, which is what the cone-off supplies. -/
   finiteOrder_lift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-    q.ker = Subgroup.normalClosure (⋃ lam : Λ, (K lam : Set G)) →
+    Function.Surjective q →
+      q.ker = Subgroup.normalClosure (⋃ lam : Λ, (K lam : Set G)) →
       ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
   /-- The conjugates of each `K lam` rotate very much about the corresponding
   apices, in the sense of DGO Definition 2.12(c). -/

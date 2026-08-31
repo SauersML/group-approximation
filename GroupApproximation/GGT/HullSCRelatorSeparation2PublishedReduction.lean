@@ -124,6 +124,72 @@ theorem IsLemma49Input.mono_parameters
       mul_le_mul_of_nonneg_right hmu (Nat.cast_nonneg _)
     exact lt_of_lt_of_le hlt hle
 
+/-! ## Restriction to the one-relator symmetrized family -/
+
+/-- A member of a small-cancellation family brings its whole symmetrized
+closure with it. -/
+theorem symmetrized_subset_of_mem
+    {G : Type u} [Group G] {Λ : Type w}
+    {D : GGT.RelGenSet G Λ} {W : Set (List (GGT.RelLetter G Λ))}
+    {eps rho : ℕ} {mu : ℝ} (h : IsSmallCancellation D W eps mu rho)
+    {v : List (GGT.RelLetter G Λ)} (hv : v ∈ W) :
+    symmetrized v ⊆ W := by
+  intro z hz
+  rcases Sym.exists_rotate (mem_symmetrized.mp hz) with
+    ⟨n, rfl⟩ | ⟨n, rfl⟩
+  · exact h.rotate_mem v hv n
+  · exact h.rotate_mem (revInv v) (h.inv_mem v hv) n
+
+/-- Hull's complete `C₁` input restricts from a symmetrized family to the
+symmetrized closure of one chosen member.  This is the bridge from a family
+premise to the singleton normal closure used by Theorem 7.1. -/
+theorem IsLemma49Input.restrict_symmetrized
+    {G : Type u} [Group G] {Λ : Type w}
+    {D : GGT.RelGenSet G Λ} {W : Set (List (GGT.RelLetter G Λ))}
+    {eps rho : ℕ} {mu : ℝ} (h : IsLemma49Input D W eps mu rho)
+    {v : List (GGT.RelLetter G Λ)} (hv : v ∈ W) :
+    IsLemma49Input D (symmetrized v) eps mu rho := by
+  let V := symmetrized v
+  have hsub : V ⊆ W := symmetrized_subset_of_mem h.toIsSmallCancellation hv
+  have piece_mono {a z : List (GGT.RelLetter G Λ)}
+      (hp : IsPiece D V eps a z) : IsPiece D W eps a z := by
+    obtain ⟨hz, hpre, z', hz', hne, a', s', hz'pre,
+      y, t, hy, ht, hval, hexcl⟩ := hp
+    exact ⟨hsub hz, hpre, z', hsub hz', hne, a', s', hz'pre,
+      y, t, hy, ht, hval, hexcl⟩
+  have published_mono {a a' z : List (GGT.RelLetter G Λ)}
+      (hp : IsPublishedPiece D V eps a a' z) :
+      IsPublishedPiece D W eps a a' z := by
+    obtain ⟨hz, hpre, z', hz', s', hz'pre,
+      y, t, hy, ht, hval, hexcl⟩ := hp
+    exact ⟨hsub hz, hpre, z', hsub hz', s', hz'pre,
+      y, t, hy, ht, hval, hexcl⟩
+  have prime_mono {a a' z : List (GGT.RelLetter G Λ)}
+      (hp : IsPrimePiece D V eps a a' z) :
+      IsPrimePiece D W eps a a' z := by
+    obtain ⟨hz, middle, tail, hsplit, y, t, hy, ht, hval⟩ := hp
+    exact ⟨hsub hz, middle, tail, hsplit, y, t, hy, ht, hval⟩
+  refine
+    { toIsLemma44Input :=
+        { toIsSmallCancellation :=
+            { admissible := fun z hz => h.admissible z (hsub hz)
+              inv_mem := fun z hz =>
+                mem_symmetrized.mpr (Sym.inv (mem_symmetrized.mp hz))
+              rotate_mem := fun z hz n =>
+                mem_symmetrized.mpr (Sym.rot n (mem_symmetrized.mp hz))
+              long := fun z hz => h.long z (hsub hz)
+              deep := fun z hz a ha lam hcomp =>
+                h.deep z (hsub hz) a ha lam hcomp
+              pieces_small := fun a z hp => h.pieces_small a z (piece_mono hp) }
+          quasiGeodesic := fun z hz => h.quasiGeodesic z (hsub hz)
+          publishedPiecesSmall := fun a a' z hp =>
+            h.publishedPiecesSmall a a' z (published_mono hp)
+          stronglyBounded := h.stronglyBounded.subset (by
+            rintro a ⟨hcomp, z, hz, ha⟩
+            exact ⟨hcomp, z, hsub hz, ha⟩) }
+      primePiecesSmall := fun a a' z hp =>
+        h.primePiecesSmall a a' z (prime_mono hp) }
+
 end RelWord
 
 /-! ## The exact Lemma 4.4 cone-off record -/
@@ -184,7 +250,8 @@ instance instAction {G : Type u} [Group G] {Λ : Type w} {A : Alphabet G}
 def toConeOffData₂ {G : Type u} [Group G] {Λ : Type w} {A : Alphabet G}
     {K : Λ → Subgroup G} {L : ℝ} (P : ConeOffData₂Lemma44 A K L)
     (hfinite : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-      q.ker = Subgroup.normalClosure (⋃ lam : Λ, (K lam : Set G)) →
+      Function.Surjective q →
+        q.ker = Subgroup.normalClosure (⋃ lam : Λ, (K lam : Set G)) →
         ∀ y : Q, IsOfFinOrder y →
           ∃ g : G, q g = y ∧ orderOf g = orderOf y) :
     ConeOffData₂ A K L where
@@ -251,10 +318,81 @@ def HullLemma49FiniteOrderStatement₂Published : Prop :=
           (v : List (GGT.RelLetter G Bool)), v ∈ W →
           RelWord.IsLemma49Input E.rel W eps mu rho →
             ∀ {Q : Type u} [Group Q] (q : G →* Q),
-              q.ker = Subgroup.normalClosure
+              Function.Surjective q → q.ker = Subgroup.normalClosure
                 ({GGT.RelLetter.listVal v} : Set G) →
                 ∀ y : Q, IsOfFinOrder y →
                   ∃ g : G, q g = y ∧ orderOf g = orderOf y
+
+/-! ## The exact quotient-free kernel content of Lemma 4.9 -/
+
+/-- Every positive power that lies in `N` can be corrected by an element of
+`N` to an actual trivial power upstairs.  This is the quotient-free van
+Kampen-diagram conclusion in Hull Lemma 4.9. -/
+def KernelPowerCorrection {G : Type u} [Group G] (N : Subgroup G) : Prop :=
+  ∀ (g : G) (n : ℕ), 0 < n → g ^ n ∈ N →
+    ∃ k ∈ N, (g * k) ^ n = 1
+
+/-- For a surjection, kernel power correction is equivalent to Hull's
+order-preserving finite-order lift.  Thus all quotient and `orderOf`
+bookkeeping is discharged before the remaining diagram argument. -/
+theorem kernelPowerCorrection_iff_finiteOrderLift
+    {G : Type u} [Group G] {Q : Type w} [Group Q] (q : G →* Q)
+    (hsurj : Function.Surjective q) :
+    KernelPowerCorrection q.ker ↔
+      ∀ y : Q, IsOfFinOrder y →
+        ∃ g : G, q g = y ∧ orderOf g = orderOf y := by
+  constructor
+  · intro hcorrect y hy
+    obtain ⟨g, rfl⟩ := hsurj y
+    have hgpow : g ^ orderOf (q g) ∈ q.ker := by
+      rw [MonoidHom.mem_ker, map_pow, pow_orderOf_eq_one]
+    obtain ⟨k, hk, hpow⟩ :=
+      hcorrect g (orderOf (q g)) hy.orderOf_pos hgpow
+    have hqk : q k = 1 := MonoidHom.mem_ker.mp hk
+    have hmap : q (g * k) = q g := by simp [map_mul, hqk]
+    refine ⟨g * k, hmap, Nat.dvd_antisymm ?_ ?_⟩
+    · exact orderOf_dvd_of_pow_eq_one hpow
+    · rw [← hmap]
+      exact orderOf_map_dvd q (g * k)
+  · intro hlift g n hn hgpow
+    have hqpow : (q g) ^ n = 1 := by
+      rw [← map_pow, ← MonoidHom.mem_ker]
+      exact hgpow
+    have hgfin : IsOfFinOrder (q g) :=
+      isOfFinOrder_iff_pow_eq_one.mpr ⟨n, hn, hqpow⟩
+    obtain ⟨x, hxmap, hxord⟩ := hlift (q g) hgfin
+    let k : G := g⁻¹ * x
+    have hk : k ∈ q.ker := by
+      rw [MonoidHom.mem_ker, map_mul, map_inv, hxmap, inv_mul_cancel]
+    refine ⟨k, hk, ?_⟩
+    have hgk : g * k = x := by simp [k]
+    rw [hgk, ← orderOf_dvd_iff_pow_eq_one, hxord]
+    exact orderOf_dvd_of_pow_eq_one hqpow
+
+/-- Hull Lemma 4.9 with its conclusion reduced to the single power-correction
+statement that the diagram argument must prove. -/
+def HullLemma49PowerStatement₂Published : Prop :=
+  ∀ {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
+    (E : HypEmbeddedCore₂ A N),
+      ∃ (eps rho : ℕ) (mu : ℝ), 0 < mu ∧
+        ∀ (W : Set (List (GGT.RelLetter G Bool)))
+          (v : List (GGT.RelLetter G Bool)), v ∈ W →
+          RelWord.IsLemma49Input E.rel W eps mu rho →
+            KernelPowerCorrection (Subgroup.normalClosure
+              ({GGT.RelLetter.listVal v} : Set G))
+
+/-- The power-kernel form is exactly enough to recover the order-lifting form
+of Lemma 4.9. -/
+theorem hullLemma49FiniteOrderStatement₂Published_of_power
+    (h : HullLemma49PowerStatement₂Published.{u}) :
+    HullLemma49FiniteOrderStatement₂Published.{u} := by
+  intro G _ A N E
+  obtain ⟨eps, rho, mu, hmu, hgood⟩ := h E
+  refine ⟨eps, rho, mu, hmu, ?_⟩
+  intro W v hv hsc Q _ q hsurj hker
+  apply (kernelPowerCorrection_iff_finiteOrderLift q hsurj).mp
+  rw [hker]
+  exact hgood W v hv hsc
 
 /-- The two printed lemmas imply the combined published cone-off statement.
 
@@ -280,14 +418,24 @@ theorem hullConeOffStatement₂Published_of_lemma44_of_lemma49
       (Nat.le_max_right _ _) (min_le_right _ _) (Nat.le_max_right _ _)
   obtain ⟨⟨K, P, hclosure⟩, halphabet⟩ := hgood44 W v hv hsc44
   have hfinite : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-      q.ker = Subgroup.normalClosure (⋃ b : Bool, (K b : Set G)) →
+      Function.Surjective q →
+        q.ker = Subgroup.normalClosure (⋃ b : Bool, (K b : Set G)) →
         ∀ y : Q, IsOfFinOrder y →
           ∃ g : G, q g = y ∧ orderOf g = orderOf y := by
-    intro Q _ q hker y hy
-    apply hgood49 W v hv hsc49 q
+    intro Q _ q hsurj hker y hy
+    apply hgood49 W v hv hsc49 q hsurj
     · exact hker.trans hclosure
     · exact hy
   exact ⟨⟨K, P.toConeOffData₂ hfinite, hclosure⟩, halphabet⟩
+
+/-- The combined cone-off target from Lemma 4.4 and the reduced power-kernel
+form of Lemma 4.9. -/
+theorem hullConeOffStatement₂Published_of_lemma44_of_lemma49Power
+    (h44 : HullLemma44ConeOffStatement₂Published.{u})
+    (h49 : HullLemma49PowerStatement₂Published.{u}) :
+    HullConeOffStatement₂Published.{u} :=
+  hullConeOffStatement₂Published_of_lemma44_of_lemma49 h44
+    (hullLemma49FiniteOrderStatement₂Published_of_power h49)
 
 end HullSC
 end GroupApproximation

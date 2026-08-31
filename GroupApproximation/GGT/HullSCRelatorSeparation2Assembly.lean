@@ -72,8 +72,8 @@ def ConeOffData₂.toRotatingDataGeo {G : Type u} [Group G] {Λ : Type v}
     rw [rotationNormalClosure_apexRotFamily] at hg
     exact P.kernel_moves g hg hg1
   finiteOrder_lift := by
-    intro Q _ q hker
-    exact P.finiteOrder_lift q (hker.trans hclosure.symm)
+    intro Q _ q hsurj hker
+    exact P.finiteOrder_lift q hsurj (hker.trans hclosure.symm)
 
 end HullSC
 end GroupApproximation

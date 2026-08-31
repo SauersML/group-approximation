@@ -339,11 +339,10 @@ structure RotatingData {G : Type u} [Group G] (A : Alphabet G) (w : G)
   relator, whose finite subgroups a torsion-free ambient group makes trivial.
   So the clause belongs here, with the family Hull builds.
 
-  Stated for an arbitrary quotient by the normal closure of the relator, which
-  is the form the consumer needs and the form Hull proves; the same shape the
-  injectivity radius had before it was made quotient-free. -/
+  Stated for a surjective quotient by the normal closure of the relator, which
+  is the natural quotient map in Hull's Lemma 4.9. -/
   finiteOrder_lift : ∀ {Q : Type u} [Group Q] (q : G →* Q),
-    q.ker = Subgroup.normalClosure ({w} : Set G) →
+    Function.Surjective q → q.ker = Subgroup.normalClosure ({w} : Set G) →
       ∀ y : Q, IsOfFinOrder y → ∃ g : G, q g = y ∧ orderOf g = orderOf y
 
 namespace RotatingData
@@ -457,7 +456,7 @@ theorem hullQuotient_of_fillingData
            injOn := hinj
            suitable_map := F.suitable_map
            suitable_map_family := F.suitable_map_family
-           finiteOrder_lift := D.finiteOrder_lift P.q hker }⟩
+           finiteOrder_lift := D.finiteOrder_lift P.q P.surjective hker }⟩
 
 /-- **Hull's Theorem 5.1 with the §6 relator**, from DGO's Theorem 5.3, Hull's
 §6 and the family of his §5. -/

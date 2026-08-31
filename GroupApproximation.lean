@@ -1124,6 +1124,7 @@ import GroupApproximation.Analysis.UniformTracialTwoNullIdeal
 import GroupApproximation.Analysis.UniformTracialCompletionIdentification
 import GroupApproximation.Analysis.UniformTracialBoundedCauchyQuotient
 import GroupApproximation.Analysis.STW22ActualTraceSpaces
+import GroupApproximation.Analysis.STW22BaseAlgebraNuclear
 import GroupApproximation.Analysis.STW22ProbabilitySimplexChoquet
 import GroupApproximation.Analysis.UniformTracialCompletionTraceExtension
 import GroupApproximation.Analysis.CStarTensorProduct
@@ -2914,6 +2915,7 @@ import GroupApproximation.GGT.DGOSubdivisionLinear
 import GroupApproximation.GGT.HullLemmaEe
 import GroupApproximation.GGT.HullSCConeOffHeavyB2
 import GroupApproximation.GGT.HullSCFillingNonElementary
+import GroupApproximation.GGT.HullSCFillingSelectionTheorem316
 import GroupApproximation.GGT.HullSCPublishedSmallCancellation
 import GroupApproximation.GGT.HullSCRelatorSeparation2Published
 import GroupApproximation.GGT.HullSCRelatorSeparation2PublishedReduction
@@ -2948,6 +2950,9 @@ import GroupApproximation.GGT.HullEeTransfer
 import GroupApproximation.GGT.DGOLemma421Consequences
 import GroupApproximation.GGT.DGOAssemblyIsolation
 import GroupApproximation.GGT.DGOProposition414Assembly
+import GroupApproximation.GGT.DGOProposition414TwoHalfFlatten
+import GroupApproximation.GGT.DGOTheorem442ProjectionDiameter
+import GroupApproximation.GGT.DGOTheorem442CosetProjections
 import GroupApproximation.GGT.HullHeGXFamily
 import GroupApproximation.GGT.DGOWindmillLoxodromic
 import GroupApproximation.GGT.DGOWindmillExhaust

@@ -128,7 +128,7 @@ theorem hullQuotient₂Published_of_fillingData
            injOn := D.injOn_cayleyBall P.q hker
            suitable_map := F.suitable_map
            suitable_map_family := F.suitable_map_family
-           finiteOrder_lift := D.finiteOrder_lift P.q hker }⟩
+           finiteOrder_lift := D.finiteOrder_lift P.q P.surjective hker }⟩
 
 /-- The published cone-off plus DGO gives the published quotient half. -/
 theorem hullQuotientStatement₂Published_of_coneOff
