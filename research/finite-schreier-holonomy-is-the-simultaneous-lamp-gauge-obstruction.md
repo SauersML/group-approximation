@@ -113,7 +113,7 @@ the identity on `B_m`.  Indeed the regular permutation centralizer consists
 of right translations, whose Fourier phases are the linear characters
 `x |-> (-1)^(b dot x)`; the nonlinear bent phase `f_m` is none of them.
 Since the regular commutant is diagonal on the one-dimensional Fourier
-fibers, its gauges do not change `f_m).
+fibers, its gauges do not change `f_m`.
 
 In the original group basis every entry of `U_m` has modulus
 `d_m^(-1/2)`.  Hence
