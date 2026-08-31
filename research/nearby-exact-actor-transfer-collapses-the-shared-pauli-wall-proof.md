@@ -55,16 +55,16 @@ the approximate tuple `U`.
 For `r=r_l` and either `D_0=A` or `B`, (SPW2) gives
 
 ~~~text
-norm_2(U_r D_0 U_r^*-rho(r)D_0rho(r)^*) <=2 eta.         (4)
+norm_2(U_r D_0 U_r^* - rho(r) D_0 rho(r)^*) <=2 eta.         (4)
 ~~~
 
 Commuting the difference in (4) past a unitary costs another factor two.
 Thus every prototype row for the genuine actor has defect
 
 ~~~text
-norm_2(C rho(r_l)D_0rho(r_l)^*
-          -rho(r_l)D_0rho(r_l)^*C)
- <=d_X+4 eta=:d_X'.                                      (5)
+norm_2(C rho(r_l) D_0 rho(r_l)^*
+           - rho(r_l) D_0 rho(r_l)^* C)
+ <= d_X+4 eta=:d_X'.                                      (5)
 ~~~
 
 Replace `C,D_0` in (5) by their hatted versions.  Changing the first entry
@@ -72,9 +72,9 @@ of an additive commutator costs at most `2a`, and changing the second costs
 at most `2a`.  Hence
 
 ~~~text
-norm_2(C_hat rho(r_l)D_hat_0rho(r_l)^*
-          -rho(r_l)D_hat_0rho(r_l)^*C_hat)
- <=d_X'+4a.                                              (6)
+norm_2(C_hat rho(r_l) D_hat_0 rho(r_l)^*
+           - rho(r_l) D_hat_0 rho(r_l)^* C_hat)
+ <= d_X'+4a.                                              (6)
 ~~~
 
 ## 3. Exact equivariance propagates every ordered pair
@@ -82,8 +82,8 @@ norm_2(C_hat rho(r_l)D_hat_0rho(r_l)^*
 For `x=gGamma` define
 
 ~~~text
-A_hat_x=rho(g)A_hatrho(g)^*,
-B_hat_x=rho(g)B_hatrho(g)^*.                             (7)
+A_hat_x=rho(g) A_hat rho(g)^*,
+B_hat_x=rho(g) B_hat rho(g)^*.                             (7)
 ~~~
 
 Because the hatted pair lies in `rho(Gamma)'`, (7) is independent of the
@@ -96,7 +96,7 @@ choice:
 
 ~~~text
 norm_2(C_hat_x D_hat_y-D_hat_y C_hat_x)
- <=d_X'+4a.                                              (8)
+ <= d_X'+4a.                                              (8)
 ~~~
 
 ## 4. Finite-dimensional compactness collides two sites
@@ -114,20 +114,20 @@ Use the `A_hat,B_hat` instance of (8) and replace `B_hat_y` by
 
 ~~~text
 norm_2(A_hat_x B_hat_x-B_hat_x A_hat_x)
- <=2epsilon+d_X'+4a.                                    (10)
+ <= 2epsilon+d_X'+4a.                                    (10)
 ~~~
 
 Exact equivariance makes the left side independent of `x`.  Letting
 `epsilon->0` gives
 
 ~~~text
-norm_2(A_hat B_hat-B_hat A_hat)<=d_X'+4a.                (11)
+norm_2(A_hat B_hat-B_hat A_hat)<= d_X'+4a.                (11)
 ~~~
 
 Returning both entries to `A,B` costs another `4a`:
 
 ~~~text
-norm_2(AB-BA)<=d_X'+8a.                                  (12)
+norm_2(AB-BA) <= d_X'+8a.                                  (12)
 ~~~
 
 For unitaries,
@@ -140,8 +140,8 @@ Combine (13), the definition of `d_J`, (2), (3), and (5):
 
 ~~~text
 norm_2(J-I)
- <=d_J+d_X'+8a
- =d_J+d_X+4eta+(16/kappa)(d_H+2eta).                    (14)
+ <= d_J+d_X'+8a
+ = d_J+d_X+4 eta+(16/kappa)(d_H+2 eta).                    (14)
 ~~~
 
 This is (SPW4).
