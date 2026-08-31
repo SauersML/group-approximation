@@ -113,7 +113,7 @@ theorem isClosed_antipodalBlockStarSubalgebra (d s : ℕ)
 abbrev AntipodalBlock (d s : ℕ)
     (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
     (hu_sq : u * u = 1) (hu_star : star u = u) :=
-  ↑(antipodalBlockStarSubalgebra d s u hu_sq hu_star)
+  ↥(antipodalBlockStarSubalgebra d s u hu_sq hu_star)
 
 noncomputable instance antipodalBlock_isClosed (d s : ℕ)
     (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
