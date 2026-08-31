@@ -42,6 +42,8 @@ ranges `W_0,W_1` is therefore algebraically incompatible with retaining the
 qutrit cell.
 
 A surviving joint relation must send the conjugate of `x` to an element
-which genuinely fails to commute with `j`. In the present Leavitt/Jacobson
-lane that means a second noncentral infinite occurrence, not a finite
-Clifford or qutrit-head attachment.
+which genuinely fails to commute with `j`. A second finite Heisenberg head
+can do that only by making `j` noncentral in the new head; such a construction
+is not excluded here, but remains subject to the finite-overgroup/amenable-edge
+hyperlinearity firewall. Escaping that firewall requires the noncentral role
+to lie in a load-bearing infinite vertex.
