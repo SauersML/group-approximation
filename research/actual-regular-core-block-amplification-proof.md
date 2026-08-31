@@ -59,6 +59,25 @@ central weights (ARC3), proving the Plancherel statement. It applies only
 when the sharp band is right invariant; no such invariance follows from
 (ARP1)--(ARP5).
 
+For a general congruence endpoint, restrict each whole-group irreducible
+separately:
+
+```text
+pi restricted to B
+ =direct_sum_alpha pi_alpha tensor 1_(r_(pi,alpha)).
+```
+
+Distributing the endpoint multiplicity `M_pi` through this direct sum gives
+
+```text
+m_alpha=sum_pi r_(pi,alpha)M_pi.
+```
+
+Schur's lemma and normalized trace then give the remaining two formulas in
+(ARC4a). This is precisely the nonnegative restriction-ring map. In
+particular, changing the whole-group multiplicity vector inside its kernel
+does not change the prescribed core block algebra.
+
 ## Induction and the near-top operator commute with amplification
 
 Write `H^(r)=H tensor C^r`. There are canonical Hilbert-space
