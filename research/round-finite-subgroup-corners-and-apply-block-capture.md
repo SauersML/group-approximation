@@ -11,8 +11,9 @@ requires:
 # Torsion corners round with linear Hilbert--Schmidt cost
 
 Write \(\|\cdot\|_{2,d}\) for the Hilbert--Schmidt norm normalized on the
-whole \(d\)-dimensional space, and put \(q=1-p\) temporarily for the
-orthogonal complementary projection. Let \(U\) be unitary, \(U^m=1\), and
+whole \(d\)-dimensional space. Write \(e=1-p\) for the orthogonal
+complementary projection and \(q=\operatorname{tr}_d(p)\) for the relative
+corner rank. Let \(U\) be unitary, \(U^m=1\), and
 set
 \[
  T=pUp:p\mathbb C^d\longrightarrow p\mathbb C^d,\qquad
@@ -20,17 +21,17 @@ set
 \]
 The leakage identity
 \[
- p-T^*T=pU^*qUp=((qUp)^*(qUp))                            \tag{2}
+ p-T^*T=pU^*eUp=((eUp)^*(eUp))                            \tag{2}
 \]
 shows that a unitary completion \(V\) of the polar part of \(T\) satisfies
 \[
  \|T-V\|_{2,d}^2
  \leq\operatorname{tr}_d(p-T^*T)
- =\|qUp\|_{2,d}^2\leq\delta^2.                            \tag{3}
+ =\|eUp\|_{2,d}^2\leq\delta^2.                            \tag{3}
 \]
 This also covers a nontrivial kernel: extend the partial polar isometry
 arbitrarily between its equal-dimensional missing initial and final
-subspaces. For contractions, telescoping after inserting \(p+q=1\) gives
+subspaces. For contractions, telescoping after inserting \(p+e=1\) gives
 \[
  \|T^m-p\|_{2,d}\leq(m-1)\delta,
  \qquad
@@ -39,7 +40,7 @@ subspaces. For contractions, telescoping after inserting \(p+q=1\) gives
 For completeness, the first estimate follows inductively from
 \[
  T^{k+1}-pU^{k+1}p
- =T(T^k-pU^kp)-pUqU^kp,
+ =T(T^k-pU^kp)-pUeU^kp,
 \]
 and the second follows by telescoping \(V^m-T^m\).
 
@@ -128,9 +129,10 @@ with the linear off-diagonal term absorbed as above, proves
 \]
 which is (ACT3).
 
-Finally, if (ACT4) failed, a subsequence would have
-\(r_n<\varepsilon^2/4-\gamma\) for some \(\gamma>0\), while the powered
-term tends to zero. The displayed estimate would then give
+Finally, if projections satisfying all three conditions in (ACT4) existed,
+the strict rank condition would give
+\(r_n<\varepsilon^2/4-\gamma\) eventually for some \(\gamma>0\), while the
+powered term tends to zero. The displayed estimate would then give
 \(\limsup_nD(\pi_n)<\varepsilon\), contradicting the assumed lower bound.
 Therefore every large-carrier authentication sequence obeys the stated
 three-way alternative. The argument rounds a supplied physical carrier;
