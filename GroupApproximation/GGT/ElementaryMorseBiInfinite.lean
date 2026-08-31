@@ -45,12 +45,17 @@ Dahmani--Guirardel--Osin's `ϰ` on p.88 of arXiv:1111.7048.
 
 `ChordsFellowTravelAwayFromEnds` names precisely that quadrilateral step and
 nothing more.  It is a statement about four points of a hyperbolic space with no
-group, no chain and no orbit in it, and it is the only thing between
-`exists_bound_chain_near_chain` and the bi-infinite statement.  The repository's
+group, no chain and no orbit in it.  The repository's
 `HullGeometry.exists_close_on_other_side_of_geodesic_triangle` gives `3δ`-thin
-triangles, so a quadrilateral splits into two triangles at `6δ`; what that does
-not by itself supply is the *localisation* --- that the failure is confined to
-within the short sides' length of the ends --- which is the content below.
+triangles, so a quadrilateral splits into two triangles at `6δ`; the
+localisation proved below confines the failure to within the short sides'
+length of the ends.
+
+`exists_bound_middle_chain_near_chain` now composes that localisation with the
+two finite-chain Morse directions.  Thus the only remaining step to the DGO
+bi-infinite axis conclusion is group-specific bookkeeping: take arbitrarily
+large windows whose radius is a multiple of the exponent in
+`a hⁿ a⁻¹ = h^{±n}`, reversing the comparison chain in the negative-sign case.
 -/
 
 namespace GroupApproximation
@@ -221,6 +226,85 @@ theorem chordsFellowTravelAwayFromEnds_of_geodesic {δ : ℝ}
     have hbad := hde1 u hu
     rw [hpend] at htri
     linarith
+
+/-! ## The uniform middle of two endpoint-close chains -/
+
+/-- **Endpoint-close quasi-geodesic chains fellow travel uniformly away from
+the ends.**
+
+The endpoint error `E` is allowed to depend on the two chains.  It occurs only
+in the two hypotheses saying that the chosen vertex lies far enough from the
+ends; the resulting distance bound `K` is chosen before `E`, the chains, their
+length, and the vertex.  This is the finite-window statement needed for DGO's
+bi-infinite quasi-axis argument.
+
+The proof is the source argument verbatim at chain level.  Put the chosen
+vertex of `z` near the chord spanning `z`, use
+`ChordsFellowTravelAwayFromEnds` to cross to the chord spanning `y`, and put
+that chord point near a vertex of `y`.  The progress inequalities ensure that
+the first chord point is outside the two exceptional end regions. -/
+theorem exists_bound_middle_chain_near_chain {δ D l B : ℝ}
+    (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ) (hD0 : 0 ≤ D)
+    (hl : 0 < l) (hB0 : 0 ≤ B) (hgeo : IsGeodesicSpace X) :
+    ∃ K R : ℝ, 0 ≤ K ∧ 0 ≤ R ∧
+      ∀ (E : ℝ), 0 ≤ E → ∀ (y z : ℕ → X) (N : ℕ),
+      (∀ i, i < N → dist (y i) (y (i + 1)) ≤ D) →
+      (∀ i j, i ≤ j → j ≤ N →
+        l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j)) →
+      (∀ i, i < N → dist (z i) (z (i + 1)) ≤ D) →
+      (∀ i j, i ≤ j → j ≤ N →
+        l * ((j - i : ℕ) : ℝ) - B ≤ dist (z i) (z j)) →
+      dist (z 0) (y 0) ≤ E → dist (z N) (y N) ≤ E →
+      ∀ j, j ≤ N →
+        E + R + B ≤ l * (j : ℝ) →
+        E + R + B ≤ l * ((N - j : ℕ) : ℝ) →
+        ∃ i, i ≤ N ∧ dist (z j) (y i) ≤ K := by
+  obtain ⟨K₁, hK₁0, hchordNear⟩ :=
+    exists_bound_chord_near_chain hδ hδ0 hD0 hl hB0
+  obtain ⟨K₂, hK₂0, hchainNear⟩ :=
+    exists_bound_chain_near_chord hδ hδ0 hD0 hl hB0
+  obtain ⟨C, hC0, hquad⟩ :=
+    chordsFellowTravelAwayFromEnds_of_geodesic hδ hδ0 hgeo
+  refine ⟨K₂ + C + K₁, C + K₂, by linarith, by linarith, ?_⟩
+  intro E hE y z N hyEdge hyProg hzEdge hzProg hclose0 hcloseN
+    j hjN hfar0 hfarN
+  let Ly : ℝ := dist (y 0) (y N)
+  let Lz : ℝ := dist (z 0) (z N)
+  obtain ⟨p, hp, hp0, hp1⟩ := hgeo (y 0) (y N)
+  obtain ⟨q, hq, hq0, hq1⟩ := hgeo (z 0) (z N)
+  obtain ⟨s, hs, hzs⟩ := hchainNear z N hzEdge hzProg
+    Lz dist_nonneg q hq hq0 hq1 j hjN
+  have hzs' : dist (q s) (z j) ≤ K₂ := by
+    rwa [dist_comm]
+  have hs0 : E + C ≤ s := by
+    have hprog := hzProg 0 j (Nat.zero_le j) hjN
+    simp only [Nat.sub_zero] at hprog
+    have hparam : dist (q 0) (q s) = s := by
+      rw [hq 0 ⟨le_rfl, dist_nonneg⟩ s hs, sub_zero,
+        abs_of_nonneg hs.1]
+    have htri := dist_triangle (q 0) (q s) (z j)
+    rw [hparam, hq0] at htri
+    linarith
+  have hsN : s + E + C ≤ Lz := by
+    have hprog := hzProg j N hjN le_rfl
+    have hparam : dist (q s) (q Lz) = Lz - s := by
+      rw [hq s hs Lz ⟨dist_nonneg, le_rfl⟩,
+        abs_of_nonpos (sub_nonpos.mpr hs.2)]
+      ring
+    have htri := dist_triangle (z j) (q s) (q Lz)
+    rw [hparam, hq1] at htri
+    linarith
+  obtain ⟨t, ht, hqt⟩ := hquad E Lz Ly hE dist_nonneg dist_nonneg
+    q p hq hp
+    (by rw [hq0, hp0]; exact hclose0)
+    (by rw [hq1, hp1]; exact hcloseN)
+    s hs0 hsN
+  obtain ⟨i, hiN, hiy⟩ := hchordNear y N hyEdge hyProg
+    Ly dist_nonneg p hp hp0 hp1 t ht
+  refine ⟨i, hiN, ?_⟩
+  have htri := dist_triangle4 (z j) (q s) (p t) (y i)
+  rw [dist_comm (p t) (y i)] at htri
+  linarith
 
 end ElementaryMorse
 end GGT

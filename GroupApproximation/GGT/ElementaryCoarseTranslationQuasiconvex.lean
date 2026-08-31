@@ -1,16 +1,17 @@
 import GroupApproximation.GGT.ElementaryCoarseTranslationProperAction
-import GroupApproximation.GGT.ElementaryMorseChord
+import GroupApproximation.GGT.ElementaryMorseBiInfinite
 
 /-!
 # Quasiconvexity of an elementary-closure orbit
 
-The uniform coarse-translation conclusion of DGO Lemma 6.5 also supplies
-condition (b) in DGO Theorem 4.42.  An element of `E(h)` sends the basepoint
-within a uniform distance of a power of `h`.  To avoid assuming that the whole
-ambient space is geodesic, append that element's orbit point to the finite
-power-orbit chain.  The appended chain still has uniform step and progress
-constants, and `ElementaryMorse.exists_bound_chord_near_chain` applies to the
-particular geodesic occurring in `IsQuasiconvexOrbitAt`.
+The uniform orbit-closeness conclusion of DGO Lemma 6.5 supplies condition (b)
+in DGO Theorem 4.42: every point of the `E(h)`-orbit lies within one uniform
+distance of the power orbit of `h`.  The geodesic-space proof below obtains
+that bound directly from long periodic windows and the middle-chain Morse
+lemma.  A second route accepts the stronger coarse-translation statement as an
+input.  Once orbit closeness is known, appending the elementary-orbit endpoint
+to a finite power-orbit chain proves quasiconvexity without requiring the whole
+ambient space to be geodesic.
 -/
 
 namespace GroupApproximation
@@ -124,6 +125,223 @@ theorem elementaryClosureOrbitClose_of_coarseTranslation
   have hzero : dist (g • x) ((h ^ c) • x) ≤ K := by
     simpa using hc 0
   rwa [dist_comm] at hzero
+
+/-- **The elementary-closure orbit lies uniformly near the power orbit.**
+
+This is the finite-window form of the quasi-axis argument in DGO Lemma 6.5.
+For `a ∈ E(h)`, choose a positive `n` for which conjugation by `a` sends
+`hⁿ` to `hⁿ` or `h⁻ⁿ`.  On an arbitrarily long window whose radius is a
+multiple of `n`, compare the `h`-orbit chain translated by `a` with the
+untranslated `h`-chain.  In the reversing case compare it with the
+`h⁻¹`-chain instead.  The endpoint errors are both `d(a x, x)`, while the
+middle-chain Morse bound is independent of that error. -/
+theorem elementaryClosureOrbitClose_of_geodesic
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    {h : G} {x : X} (hlox : IsLoxodromic h x) :
+    ElementaryClosureOrbitClose h x := by
+  obtain ⟨l, hl, B, hB, hlin⟩ := hlox
+  obtain ⟨K, R, hK, _hR, hmiddle⟩ :=
+    ElementaryMorse.exists_bound_middle_chain_near_chain
+      (D := dist x (h • x)) hδ hδ0 dist_nonneg hl hB hgeo
+  refine ⟨K, hK, ?_⟩
+  intro a ha
+  obtain ⟨n, hn, hpos | hneg⟩ :=
+    exists_conj_positive_zpow_eq_or_of_mem_elementaryClosure hiso hlox ha
+  all_goals
+    let E : ℝ := dist (a • x) x
+    have hE : 0 ≤ E := dist_nonneg
+    obtain ⟨Q, hQ⟩ := exists_nat_gt ((E + R + B) / l)
+    have hQlarge : E + R + B < l * (Q : ℝ) := by
+      rw [div_lt_iff₀ hl] at hQ
+      simpa only [mul_comm] using hQ
+    let P : ℕ := n * Q
+    let N : ℕ := P + P
+    have hQPnat : Q ≤ P := by
+      dsimp [P]
+      exact Nat.le_mul_of_pos_left Q hn
+    have hQP : (Q : ℝ) ≤ (P : ℝ) := by exact_mod_cast hQPnat
+    have hfar : E + R + B ≤ l * (P : ℝ) :=
+      (le_of_lt hQlarge).trans
+        (mul_le_mul_of_nonneg_left hQP (le_of_lt hl))
+    have hPN : P ≤ N := by dsimp [N]; omega
+    have hNP : N - P = P := by dsimp [N]; omega
+    have hPcast : (P : ℤ) = (n : ℤ) * (Q : ℤ) := by
+      simp [P]
+    have hswap_of_conj : ∀ {q r : G}, a * q * a⁻¹ = r → a * q = r * a := by
+      intro q r hconj
+      calc
+        a * q = (a * q * a⁻¹) * a := by group
+        _ = r * a := by rw [hconj]
+    have hdist_of_swap : ∀ {q r : G}, a * q = r * a →
+        dist (a • (q • x)) (r • x) = E := by
+      intro q r hswap
+      calc
+        dist (a • (q • x)) (r • x) =
+            dist (r • (a • x)) (r • x) := by
+              rw [← mul_smul, hswap, mul_smul]
+        _ = dist (a • x) x := hiso r (a • x) x
+        _ = E := rfl
+  · have hPpos : a * h ^ (P : ℤ) * a⁻¹ = h ^ (P : ℤ) := by
+      calc
+        a * h ^ (P : ℤ) * a⁻¹ =
+            a * (h ^ (n : ℤ)) ^ (Q : ℤ) * a⁻¹ := by
+              rw [hPcast, zpow_mul]
+        _ = (a * h ^ (n : ℤ) * a⁻¹) ^ (Q : ℤ) :=
+          conj_zpow_eq a (h ^ (n : ℤ)) (Q : ℤ)
+        _ = (h ^ (n : ℤ)) ^ (Q : ℤ) := by rw [hpos]
+        _ = h ^ ((n : ℤ) * (Q : ℤ)) := by rw [← zpow_mul]
+        _ = h ^ (P : ℤ) := by rw [← hPcast]
+    have hPneg : a * h ^ (-(P : ℤ)) * a⁻¹ = h ^ (-(P : ℤ)) := by
+      calc
+        a * h ^ (-(P : ℤ)) * a⁻¹ =
+            (a * h ^ (P : ℤ) * a⁻¹)⁻¹ := by group
+        _ = (h ^ (P : ℤ))⁻¹ := by rw [hPpos]
+        _ = h ^ (-(P : ℤ)) := by group
+    let y : ℕ → X := ElementaryMorse.orbitChain h x P
+    let z : ℕ → X := fun i => a • ElementaryMorse.orbitChain h x P i
+    have hyEdge : ∀ i, i < N →
+        dist (y i) (y (i + 1)) ≤ dist x (h • x) := by
+      intro i _
+      exact le_of_eq (ElementaryMorse.orbitChain_edge hiso h x P i)
+    have hyProg : ∀ i j, i ≤ j → j ≤ N →
+        l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j) := by
+      intro i j hij _
+      exact ElementaryMorse.orbitChain_prog hiso hlin P hij
+    have hzEdge : ∀ i, i < N →
+        dist (z i) (z (i + 1)) ≤ dist x (h • x) := by
+      intro i _
+      dsimp [z]
+      rw [hiso]
+      exact le_of_eq (ElementaryMorse.orbitChain_edge hiso h x P i)
+    have hzProg : ∀ i j, i ≤ j → j ≤ N →
+        l * ((j - i : ℕ) : ℝ) - B ≤ dist (z i) (z j) := by
+      intro i j hij _
+      dsimp [z]
+      rw [hiso]
+      exact ElementaryMorse.orbitChain_prog hiso hlin P hij
+    have hy0 : y 0 = (h ^ (-(P : ℤ))) • x := by
+      simp [y, ElementaryMorse.orbitChain]
+    have hyN : y N = (h ^ (P : ℤ)) • x := by
+      unfold y ElementaryMorse.orbitChain
+      have hindex : ((N : ℤ) - (P : ℤ)) = (P : ℤ) := by
+        dsimp [N]
+        push_cast
+        ring
+      rw [hindex]
+    have hz0 : z 0 = a • ((h ^ (-(P : ℤ))) • x) := by
+      simp [z, ElementaryMorse.orbitChain]
+    have hzN : z N = a • ((h ^ (P : ℤ)) • x) := by
+      unfold z ElementaryMorse.orbitChain
+      have hindex : ((N : ℤ) - (P : ℤ)) = (P : ℤ) := by
+        dsimp [N]
+        push_cast
+        ring
+      rw [hindex]
+    have hclose0 : dist (z 0) (y 0) ≤ E := by
+      rw [hz0, hy0]
+      exact le_of_eq (hdist_of_swap (hswap_of_conj hPneg))
+    have hcloseN : dist (z N) (y N) ≤ E := by
+      rw [hzN, hyN]
+      exact le_of_eq (hdist_of_swap (hswap_of_conj hPpos))
+    obtain ⟨i, _hiN, hnear⟩ := hmiddle E hE y z N
+      hyEdge hyProg hzEdge hzProg hclose0 hcloseN P hPN hfar (by rwa [hNP])
+    refine ⟨(i : ℤ) - (P : ℤ), ?_⟩
+    have hzP : z P = a • x := by
+      simp [z, ElementaryMorse.orbitChain]
+    have hyi : y i = (h ^ ((i : ℤ) - (P : ℤ))) • x := rfl
+    rw [hzP, hyi] at hnear
+    rwa [dist_comm] at hnear
+  · have hPneg : a * h ^ (P : ℤ) * a⁻¹ = h ^ (-(P : ℤ)) := by
+      calc
+        a * h ^ (P : ℤ) * a⁻¹ =
+            a * (h ^ (n : ℤ)) ^ (Q : ℤ) * a⁻¹ := by
+              rw [hPcast, zpow_mul]
+        _ = (a * h ^ (n : ℤ) * a⁻¹) ^ (Q : ℤ) :=
+          conj_zpow_eq a (h ^ (n : ℤ)) (Q : ℤ)
+        _ = (h ^ (-(n : ℤ))) ^ (Q : ℤ) := by rw [hneg]
+        _ = h ^ (-(P : ℤ)) := by
+          rw [← zpow_mul]
+          congr 1
+          rw [hPcast]
+          ring
+    have hnegP : a * h ^ (-(P : ℤ)) * a⁻¹ = h ^ (P : ℤ) := by
+      calc
+        a * h ^ (-(P : ℤ)) * a⁻¹ =
+            (a * h ^ (P : ℤ) * a⁻¹)⁻¹ := by group
+        _ = (h ^ (-(P : ℤ)))⁻¹ := by rw [hPneg]
+        _ = h ^ (P : ℤ) := by group
+    have hDinv : dist x (h⁻¹ • x) = dist x (h • x) := by
+      simpa only [zpow_neg, zpow_one] using
+        (dist_zpow_neg (g := h) (x := x) hiso (1 : ℤ))
+    have hlinInv : ∀ m : ℕ,
+        l * (m : ℝ) - B ≤ dist x (((h⁻¹) ^ m) • x) := by
+      intro m
+      have hm : dist x (((h⁻¹) ^ m) • x) = dist x ((h ^ m) • x) := by
+        simpa only [zpow_neg, zpow_natCast, inv_pow] using
+          (dist_zpow_neg (g := h) (x := x) hiso (m : ℤ))
+      rw [hm]
+      exact hlin m
+    let y : ℕ → X := ElementaryMorse.orbitChain h⁻¹ x P
+    let z : ℕ → X := fun i => a • ElementaryMorse.orbitChain h x P i
+    have hyEdge : ∀ i, i < N →
+        dist (y i) (y (i + 1)) ≤ dist x (h • x) := by
+      intro i _
+      rw [← hDinv]
+      exact le_of_eq (ElementaryMorse.orbitChain_edge hiso h⁻¹ x P i)
+    have hyProg : ∀ i j, i ≤ j → j ≤ N →
+        l * ((j - i : ℕ) : ℝ) - B ≤ dist (y i) (y j) := by
+      intro i j hij _
+      exact ElementaryMorse.orbitChain_prog hiso hlinInv P hij
+    have hzEdge : ∀ i, i < N →
+        dist (z i) (z (i + 1)) ≤ dist x (h • x) := by
+      intro i _
+      dsimp [z]
+      rw [hiso]
+      exact le_of_eq (ElementaryMorse.orbitChain_edge hiso h x P i)
+    have hzProg : ∀ i j, i ≤ j → j ≤ N →
+        l * ((j - i : ℕ) : ℝ) - B ≤ dist (z i) (z j) := by
+      intro i j hij _
+      dsimp [z]
+      rw [hiso]
+      exact ElementaryMorse.orbitChain_prog hiso hlin P hij
+    have hy0 : y 0 = (h ^ (P : ℤ)) • x := by
+      unfold y ElementaryMorse.orbitChain
+      have hzero : ((0 : ℤ) - (P : ℤ)) = -(P : ℤ) := by ring
+      rw [hzero, inv_zpow, zpow_neg]
+      simp
+    have hyN : y N = (h ^ (-(P : ℤ))) • x := by
+      unfold y ElementaryMorse.orbitChain
+      have hindex : ((N : ℤ) - (P : ℤ)) = (P : ℤ) := by
+        dsimp [N]
+        push_cast
+        ring
+      rw [hindex, inv_zpow, ← zpow_neg]
+    have hz0 : z 0 = a • ((h ^ (-(P : ℤ))) • x) := by
+      simp [z, ElementaryMorse.orbitChain]
+    have hzN : z N = a • ((h ^ (P : ℤ)) • x) := by
+      unfold z ElementaryMorse.orbitChain
+      have hindex : ((N : ℤ) - (P : ℤ)) = (P : ℤ) := by
+        dsimp [N]
+        push_cast
+        ring
+      rw [hindex]
+    have hclose0 : dist (z 0) (y 0) ≤ E := by
+      rw [hz0, hy0]
+      exact le_of_eq (hdist_of_swap (hswap_of_conj hnegP))
+    have hcloseN : dist (z N) (y N) ≤ E := by
+      rw [hzN, hyN]
+      exact le_of_eq (hdist_of_swap (hswap_of_conj hPneg))
+    obtain ⟨i, _hiN, hnear⟩ := hmiddle E hE y z N
+      hyEdge hyProg hzEdge hzProg hclose0 hcloseN P hPN hfar (by rwa [hNP])
+    refine ⟨-((i : ℤ) - (P : ℤ)), ?_⟩
+    have hzP : z P = a • x := by
+      simp [z, ElementaryMorse.orbitChain]
+    have hyi : y i = (h ^ (-((i : ℤ) - (P : ℤ)))) • x := by
+      unfold y ElementaryMorse.orbitChain
+      rw [inv_zpow, ← zpow_neg]
+    rw [hzP, hyi] at hnear
+    rwa [dist_comm] at hnear
 
 /-- Uniform coarse translation makes the elementary-closure orbit
 quasiconvex.  Only the geodesic segment appearing in the definition is used;
