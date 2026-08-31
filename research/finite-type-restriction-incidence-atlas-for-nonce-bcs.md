@@ -90,8 +90,9 @@ The local invisibility and phase requirements can now be met simultaneously.
 cell by affine permutations of 27 leaves of one Thompson prefix code.  Its
 root type is annihilated by every finite-dimensional representation of
 `V`, of the corresponding copy in `EL_4(L_(F_2)(1,2))`, and of the
-lifted copy in the binary-Leavitt Steinberg groups; every support element
-outside the root chart cancels through exactly three cube-root phases.
+lifted copy in the binary-Leavitt Steinberg groups; one proper six-atom
+marginal, as well as the full root partition, cancels every escaped support
+coefficient through exactly three cube-root phases.
 Nevertheless all displayed coefficients remain in one finite extraspecial
 subgroup and have an exact regular model.  Thus ambient minimal almost
 periodicity is not the missing global incidence: the first new equality must
