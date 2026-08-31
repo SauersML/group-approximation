@@ -59,12 +59,18 @@ This is not a unitary-table counterexample: the exact representation
 \(\pi\) also has the flat zero-energy table \(W_g=\pi(g)\).
 Right-translation-flattens-every-relative-kraus-frame further shows that
 arbitrary column-Gram nonflatness can always be removed in a taller target
-without changing the table or energy. What remains for a unitary-table
-proof is to align those tall isometries' coranges with one common
-\(d\)-plane, or to select a square Gram-flat frame. Energy minimization
-followed by square fibrewise polar rounding does not supply that operation.
-No such corange-reduction theorem is proved from the two Iwahori cubics,
-so the root remains open.
+without changing the table or energy. Energy minimization followed by
+square fibrewise polar rounding alone still does not align those tall
+coranges.
+
+Cayley-expansion-aligns-isometry-frame-coranges supplies that alignment
+by a different argument: on a quotient with Poincare gap \(\gamma\), it
+compresses every tall isometry frame to a relative unitary table at the
+dimension-free energy loss \(1+2\sqrt{2/\gamma}\). Property \((T;FD)\)
+makes this uniform on the authenticated Iwahori quotients. Thus no
+square Gram-flat minimizer must be selected there. The remaining open
+step is to force the common isometry/unitary energy to vanish from the
+two cubic presentation defects.
 
 DERIVATION
 equivariant-polar-rounding-pays-gram-flatness
