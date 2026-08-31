@@ -64,63 +64,85 @@ theorem isLocallyResiduallyFinite_semidirectProduct_of_invariant_finite
 namespace CliffordWitnessLocallyRFByInt
 
 open CliffordLamp MappingTelescope MarkedCompression
-open ExplicitLinearModel LiteralNonMFLinearWitness
 open SoficMarkedCompression
 
-/-- The kernel exposed by moving the integer shift to the outside of the
-affine--Clifford witness. -/
-abbrev ShiftKernel : Type :=
-  CliffordLamp (Cosets alpha conjD_injective) ⋊[
-    SemidirectAssoc.baseAction (shiftHom alpha conjD_injective)
-      (lampAction alpha conjD_injective)]
-    Telescope alpha conjD_injective
+/-- For any injective finite-index self-embedding, the kernel exposed by
+moving the integer shift to the outside of its Clifford witness. -/
+abbrev ShiftKernelFor {Γ : Type} [Group Γ]
+    (α : Γ →* Γ) (hα : Function.Injective α) : Type :=
+  CliffordLamp (Cosets α hα) ⋊[
+    SemidirectAssoc.baseAction (shiftHom α hα) (lampAction α hα)]
+    Telescope α hα
 
-/-- The integer shift action on the lamp--telescope kernel. -/
-abbrev shiftAction : Multiplicative ℤ →* MulAut ShiftKernel :=
-  SemidirectAssoc.outerAction (shiftHom alpha conjD_injective)
-    (lampAction alpha conjD_injective)
+/-- The integer shift action on the general lamp--telescope kernel. -/
+abbrev shiftActionFor {Γ : Type} [Group Γ]
+    (α : Γ →* Γ) (hα : Function.Injective α) :
+    Multiplicative ℤ →* MulAut (ShiftKernelFor α hα) :=
+  SemidirectAssoc.outerAction (shiftHom α hα) (lampAction α hα)
 
-/-- Every finitely generated subgroup of the affine--Clifford shift kernel is
-residually finite.  A finite generating set fits into a finite invariant lamp
-subgroup over one telescope level, and that level is a copy of the residually
-finite integral affine base. -/
-theorem shiftKernel_isLocallyResiduallyFinite :
-    IsLocallyResiduallyFinite ShiftKernel := by
+/-- Every finitely generated subgroup of the shift kernel associated to a
+residually finite group and a finite-index injective self-embedding is
+residually finite. -/
+theorem shiftKernelFor_isLocallyResiduallyFinite
+    {Γ : Type} [Group Γ] [Group.ResiduallyFinite Γ]
+    (α : Γ →* Γ) (hα : Function.Injective α) [α.range.FiniteIndex] :
+    IsLocallyResiduallyFinite (ShiftKernelFor α hα) := by
   classical
-  letI : Group.ResiduallyFinite gammaBar :=
-    ExplicitIntegralLinearModel.gammaBar_residuallyFinite
   apply isLocallyResiduallyFinite_semidirectProduct_of_invariant_finite
   intro F
-  choose lvl elt hrepr using fun g : ShiftKernel ↦
-    exists_level_repr alpha conjD_injective g.right
+  choose lvl elt hrepr using fun g : ShiftKernelFor α hα ↦
+    exists_level_repr α hα g.right
   let levelNumber : ℕ := F.sup lvl
-  let H : Subgroup (Telescope alpha conjD_injective) :=
-    (level alpha conjD_injective levelNumber).range
-  let rho : H →* Equiv.Perm (Cosets alpha conjD_injective) :=
-    levelSiteAction alpha conjD_injective levelNumber
+  let H : Subgroup (Telescope α hα) :=
+    (level α hα levelNumber).range
+  let rho : H →* Equiv.Perm (Cosets α hα) :=
+    levelSiteAction α hα levelNumber
   obtain ⟨K, hKfinite, hKinvariant, hKcontains⟩ :=
     CliffordLamp.exists_finite_invariant_clifford_subgroup rho
-      (finite_levelSiteAction_orbit alpha conjD_injective levelNumber)
+      (finite_levelSiteAction_orbit α hα levelNumber)
       (F.image SemidirectProduct.left)
   refine ⟨K, H, hKfinite, ?_, ?_, ?_⟩
   · exact residuallyFinite_of_mulEquiv
       (MonoidHom.ofInjective
-        (level_injective alpha conjD_injective levelNumber)).symm
+        (level_injective α hα levelNumber)).symm
   · intro h hh n hn
     exact hKinvariant (⟨h, hh⟩ : H) n hn
   · intro g hg
     constructor
     · exact hKcontains g.left (Finset.mem_image.mpr ⟨g, hg, rfl⟩)
     · have hle : lvl g ≤ levelNumber := Finset.le_sup (f := lvl) hg
-      have hmem := level_mem_range_of_le alpha conjD_injective hle (elt g)
+      have hmem := level_mem_range_of_le α hα hle (elt g)
       rwa [hrepr g] at hmem
+
+/-- The general Clifford witness re-associated as its shift kernel extended
+by the integers. -/
+def ambientEquivShiftKernelForByInt {Γ : Type} [Group Γ]
+    (α : Γ →* Γ) (hα : Function.Injective α) :
+    Ambient α hα ≃* (ShiftKernelFor α hα ⋊[shiftActionFor α hα]
+      Multiplicative ℤ) :=
+  (SemidirectAssoc.assocEquiv (shiftHom α hα) (lampAction α hα)).symm
+
+open ExplicitLinearModel LiteralNonMFLinearWitness
+
+/-- The kernel exposed by the concrete integral affine self-embedding. -/
+abbrev ShiftKernel : Type := ShiftKernelFor alpha conjD_injective
+
+/-- The concrete integer shift action. -/
+abbrev shiftAction : Multiplicative ℤ →* MulAut ShiftKernel :=
+  shiftActionFor alpha conjD_injective
+
+/-- The general theorem specialized to the integral affine base. -/
+theorem shiftKernel_isLocallyResiduallyFinite :
+    IsLocallyResiduallyFinite ShiftKernel := by
+  letI : Group.ResiduallyFinite gammaBar :=
+    ExplicitIntegralLinearModel.gammaBar_residuallyFinite
+  exact shiftKernelFor_isLocallyResiduallyFinite alpha conjD_injective
 
 /-- The explicit affine--Clifford witness, re-associated as its locally
 residually finite shift kernel extended by the integers. -/
 def witnessGroupEquivShiftKernelByInt :
     WitnessGroup ≃* (ShiftKernel ⋊[shiftAction] Multiplicative ℤ) :=
-  (SemidirectAssoc.assocEquiv (shiftHom alpha conjD_injective)
-    (lampAction alpha conjD_injective)).symm
+  ambientEquivShiftKernelForByInt alpha conjD_injective
 
 /-- The canonical maximal trace of the explicit affine--Clifford witness is
 amenable, by its locally-residually-finite-by-integer decomposition. -/
@@ -141,6 +163,8 @@ open GroupApproximation
 open GroupApproximation.CliffordWitnessLocallyRFByInt
 
 #audit_axioms isLocallyResiduallyFinite_semidirectProduct_of_invariant_finite
+#audit_axioms shiftKernelFor_isLocallyResiduallyFinite
+#audit_axioms ambientEquivShiftKernelForByInt
 #audit_closed_axioms shiftKernel_isLocallyResiduallyFinite
 #audit_closed_axioms witnessGroupEquivShiftKernelByInt
 #audit_closed_axioms witnessCanonicalMaximalTrace_isAmenableTrace

@@ -3,17 +3,18 @@ import GroupApproximation.Sofic.NormMFCoronaRadical
 import GroupApproximation.Sofic.CliffordLampPermanence
 import GroupApproximation.Sofic.LiteralBaseDoublingIndex
 import GroupApproximation.Sofic.SoficMarkedCompression
+import GroupApproximation.Sofic.CommutingLampCollapse
+import GroupApproximation.Sofic.CliffordWitnessDirectDefect
 import GroupApproximation.Monsters.ExplicitIntegralLinearModel
 import GroupApproximation.Sofic.WitnessVerticalResiduallyFinite
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
-# Operator-MF consequences for the explicit Clifford witness
+# Consequences for the explicit affine--Clifford witness
 
-The literal presentation maps surjectively onto its affine--Clifford witness.
-The marked central sign survives there, while functoriality carries the
-literal MF-radical certificate to that sign.  Thus the witness itself is a
-finitely generated non-MF group, independently of its separate soficity
-analysis.
+The general direct Clifford obstruction applies to the affine self-embedding.
+The literal presentation supplies the independent MF-radical certificate used
+by the sharper consequences below.
 -/
 
 namespace GroupApproximation
@@ -75,6 +76,12 @@ theorem witness_sign_normMFInvisible :
   rw [← witnessHom_mark]
   exact LiteralNonMFEndpoint.literal_mark_normMFInvisible.map witnessHom
 
+/-- The actual affine--Clifford witness is non-MF by the general direct
+obstruction for a proper self-embedding. -/
+theorem witnessGroup_not_isOperatorMF_direct : ¬ IsOperatorMF WitnessGroup :=
+  CliffordWitnessDirectDefect.not_isOperatorMF alpha conjD_injective
+    v1G_not_mem_range CommutingLampCollapse.gammaBar_hasKazhdanPropertyT
+
 /-- The explicit witness has nontrivial MF radical. -/
 theorem witness_normMFResidual_ne_bot :
     normMFResidual WitnessGroup ≠ ⊥ := by
@@ -87,9 +94,7 @@ theorem witness_normMFResidual_ne_bot :
 
 /-- The explicit affine--Clifford witness is not operator-MF. -/
 theorem witnessGroup_not_isOperatorMF : ¬ IsOperatorMF WitnessGroup := by
-  intro hMF
-  exact witness_normMFResidual_ne_bot
-    (normMFResidual_eq_bot_of_isOperatorMF hMF)
+  exact witnessGroup_not_isOperatorMF_direct
 
 /-- The concrete witness's reduced group C-star algebra admits no faithful
 embedding into a norm-matrix C-star corona. -/
@@ -168,3 +173,5 @@ theorem literalWitness_reducedGroupCStar_stablyFinite_nonMF :
 end
 end LiteralWitnessConsequences
 end GroupApproximation
+
+#audit_closed_axioms GroupApproximation.LiteralWitnessConsequences.witnessGroup_not_isOperatorMF_direct
