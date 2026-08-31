@@ -62,7 +62,7 @@ U=D(P_alpha tensor 1),
 D in U((lambda_B(B) tensor 1)').                                (EAR5)
 ```
 
-For a coherent actor family, the `D)'s form a nonabelian one-cocycle in
+For a coherent actor family, the `D`'s form a nonabelian one-cocycle in
 this commutant.  Passing to the quotient by the commutant returns the
 canonical coherent permutations `P_alpha`, but gives no metric control of
 the chosen representatives.
@@ -108,7 +108,7 @@ This remains sharp after arbitrary negligible block padding.  If
 ```
 
 Thus the squared normalized Hilbert--Schmidt distance is at least
-`2-o(1)`, and the distance tends to `sqrt(2)).  This covers every
+`2-o(1)`, and the distance tends to `sqrt(2)`.  This covers every
 permutation and every `B_m`-orbit-coherent monomial representative after
 any `o(d_m)` padding.
 
@@ -128,7 +128,7 @@ block surgery.
 
 This result does **not** refute equivariant normalizer transfer: the canonical
 permutations `Q_m tensor 1` exist in the countermodel.  It refutes only the
-stronger shortcut that tries to round the given `U_m)'s themselves in
+stronger shortcut that tries to round the given `U_m`'s themselves in
 normalized Hilbert--Schmidt norm.
 
 The Kun--Thom lamps present moving algebras `B_E -> B_(gE)`, not one
