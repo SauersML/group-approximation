@@ -20,7 +20,7 @@ d_flex(phi_n, psi) >= 1/6 - 1/(6n)
 ```
 
 for every genuine representation `psi:F_2 -> GL_N(K)`. Given a surjection
-`pi:Gamma -> F_2`, Theorem 1.3 pulls these maps back along `pi); lifts in
+`pi:Gamma -> F_2`, Theorem 1.3 pulls these maps back along `pi`; lifts in
 `Gamma` of the two free generators give the identical gap against every
 genuine representation of `Gamma`.
 
