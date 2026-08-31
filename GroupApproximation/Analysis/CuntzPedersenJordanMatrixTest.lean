@@ -229,7 +229,7 @@ theorem exists_unitary_moving_entryFunctional :
     ∃ (u : M2) (hu : u ∈ unitary M2),
       conjFunctional hu entryFunctional ≠ entryFunctional := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   refine not_isTracialFunctional_entryFunctional
     (isTracialFunctional_of_unitary_invariant ?_)
   intro u hu a

@@ -82,6 +82,7 @@ theorem norm_eq_norm_apply_one (f : ℂ →L[ℂ] ℂ) : ‖f‖ = ‖f 1‖ := 
   refine le_antisymm (f.opNorm_le_bound (norm_nonneg _) fun z ↦ ?_) ?_
   · calc ‖f z‖ = ‖z‖ * ‖f 1‖ := by rw [apply_eq_mul f z, norm_mul]
       _ = ‖f 1‖ * ‖z‖ := mul_comm _ _
+      _ ≤ ‖f 1‖ * ‖z‖ := le_rfl
   · simpa using f.le_opNorm 1
 
 /-- Multiplication by a scalar, as a bounded functional on `ℂ`. -/
