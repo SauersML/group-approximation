@@ -46,8 +46,11 @@ This formulation also corrects two wording slips in the preprint: Lemma 2.3
 must be applied on `Y_n`, and a singleton `N`-orbit means that `N` fixes
 the point, so its `N`-stabilizer is all of `N`, not trivial.
 
-The hypothesis is finite generation of `N` as a group, not merely finite
-normal generation. The result is quotient-direction permanence for flexible
+The source works throughout with countable groups, and Definition 2.5 defines
+flexible P-stability for finitely generated groups. Thus `G` and its quotient
+`Q` are finitely generated in the printed convention. The extra theorem
+hypothesis is finite generation of `N` as a group, not merely finite normal
+generation. The result is quotient-direction permanence for flexible
 permutation stability; it asserts no converse and no analogue for arbitrary
 kernels or other metrics.
 

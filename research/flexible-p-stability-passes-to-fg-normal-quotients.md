@@ -9,17 +9,20 @@ distinct_from:
   sofic-stable-implies-residually-finite: that derives residual finiteness from soficity plus stability; this is the quotient-permanence theorem used before that obstruction.
 ---
 
-Let
+In the source's convention, let
 
 ```text
 1 -> N -> G -> Q -> 1
 ```
 
-be a short exact sequence with `N` finitely generated. If `G` is flexibly
-P-stable in normalized Hamming distance, then `Q` is flexibly P-stable.
+be a short exact sequence of countable groups, where `G` and `N` are
+finitely generated. If `G` is flexibly P-stable in normalized Hamming
+distance, then `Q` is flexibly P-stable.
 
-No soficity, residual finiteness, amenability, splitting, or property `(T)`
-hypothesis is needed.
+Here finite generation of `G` (and hence of `Q`) is built into
+Alekseev--Thom Definition 2.5; finite generation of the normal kernel `N`
+is the additional hypothesis in Theorem 2.6. No soficity, residual
+finiteness, amenability, splitting, or property `(T)` hypothesis is needed.
 
 **ESTABLISHED 2026-08-31** by
 [[alekseev-thom-flexible-p-quotient-permanence]].
