@@ -69,6 +69,16 @@ rank-28 exact sequence
 The left term is the infinite simple locally finite finitary group, and
 `x_ij(Q)` is a nonidentity element of it.
 
+Evaluation at `S=T=1` is a unital coefficient homomorphism
+`epsilon:J->F_2` with `epsilon(Q)=0`.  Its elementary-group map fixes
+`K` pointwise and sends `a` to the identity, so it is a retraction onto
+the finite qutrit envelope.  Composing it with the regular representation of
+`K` gives an exact finite-dimensional model which retains `q`, `R`,
+and every coefficientwise phase cancellation in the finite cell.  Thus a
+proposed microstate obstruction cannot follow merely from the presence of
+`K` and `a); it must select the nonzero head kernel rather than allowing
+this retraction sector.
+
 Finally let `phi:EL_28(J)->L` have finite image.  Restrict `phi` to a
 five-coordinate copy of `EL_5(J)` containing a chosen head root.  The
 finite-quotient invisibility theorem kills that root.  Scalar permutation
