@@ -220,6 +220,21 @@ not give one.  Hence neither absorption globalization nor pointwise use of
 the simple theorem closes this seam; a new nonsimple map-colour theorem is
 required.
 
+The most direct two-colour interval patch has now been ruled out exactly.
+`stw81-stationary-two-colour-interval-patching-forces-af` considers two
+overlapping scalar base cutoffs and copies the same two fibre-colour maps
+under both.  Any assignment of the resulting four summands to only two
+global order-zero colours forces the two fibre support elements to be
+orthogonal.  Their sum is therefore one order-zero map; if this construction
+works on every finite set, the fibre has nuclear dimension zero and is AF.
+It cannot work for `Z`.  Thus a proof that
+`dim_nuc(C([0,1]) tensor Z)<=1` must use fibre frames which genuinely vary
+or rotate across overlaps.  Mere permutation of two stationary fibre
+colours cannot improve the Tikuisis--Winter three-return-colour
+construction.  For arbitrary upper-semicontinuous fields the need for
+coherent varying frames is still stronger, since different anchor lifts
+have no canonical comparison.
+
 There is now a first stably finite non-elementary exception to that
 obstruction.  `stw81-one-dim-simple-af-fields-have-dim-one`
 proves directly that a locally trivial field over a one-dimensional base
