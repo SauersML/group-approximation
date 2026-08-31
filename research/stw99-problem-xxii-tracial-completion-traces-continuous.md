@@ -19,11 +19,8 @@ artifacts:
   - research/artifacts/stw22-diffuse-weighted-loop-extension-audit-2026-08-30.md
   - research/artifacts/stw22-fixed-factor-s2-filling-audit-2026-08-30.md
   - research/artifacts/stw22-s2-hard-carrier-obstruction-audit-2026-08-30.md
-  - research/artifacts/stw22-matrix-uniform-s2-filling-audit-2026-08-30.md
-  - research/artifacts/stw22-diffuse-two-sphere-supercarrier-audit-2026-08-30.md
-  - research/artifacts/stw22-dim3-diffuse-bundle-breakthrough-2026-08-30.md
-  - research/artifacts/stw22-dim3-all-factor-bundle-breakthrough-2026-08-31.md
   - research/artifacts/stw22-full-fundamental-group-all-degree-audit-2026-08-30.md
+  - research/artifacts/stw22-uniform-corner-bundle-selection-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -78,24 +75,23 @@ Theorem 1.2, independently remove countable generation: for every II1 factor
 free-group-factor fibre are settled. See
 `farah-vaccaro-one-dim-trivial-bundles-uniform-traces`.
 
-The first higher-dimensional trivial case was closed in
-`stw22-dim2-trivial-factor-bundles-have-uniform-traces`, and the
-fixed-factor trivial theorem subsequently reached dimension three in
-`stw22-dim3-trivial-factor-bundles-have-uniform-traces`.
+The first higher-dimensional trivial case is also closed.
+`stw22-dim2-trivial-factor-bundles-have-uniform-traces` proves that every
+trace on `C_sigma(X,N)` is canonical for every separable-predual II1
+factor `N` and every compact Hausdorff `X` with `dim(X)<=2`.  Its relative
+low-spectrum disk extension was the first proof across dimension two; the
+countably generated nontrivial-bundle theorem below strictly extends this
+conclusion.  Beyond dimension two, arbitrary nontrivial bundles remain open.
 
-The factor dependence and triviality restriction are now both removed.
-`stw22-all-finite-factor-weighted-copy-uniform-s2-fillings` combines two
-independently audited universal moduli: a matrix soft-carrier/Chern
-cancellation argument and a diffuse spectral-supercarrier/relative-`B^3`
-argument. `stw22-dim3-factor-bundles-have-uniform-traces` then applies
-stabilized Michael selection with `n=2`. Every countably generated
-factorial bundle over a compact Hausdorff base of dimension at most three
-has only uniform traces, even when matrix sizes, II1 isomorphism classes,
-and matrix/diffuse fibre type vary.
-
-The naive hard-carrier union remains non-locally-connected, but the new
-matrix and diffuse constructions bypass that union rather than selecting
-from it.
+The fixed-factor trivial case now reaches dimension three.
+`stw22-dim3-trivial-factor-bundles-have-uniform-traces` applies to every
+separable-predual `II_1` factor.  Its `S^2` filling modulus may depend on
+that fixed factor through a pointed Jekel contraction; obtaining one modulus
+simultaneously for varying factor fibres remains open.
+The naive multiplicity-three hard-carrier bootstrap is ruled out by
+`stw22-hard-carrier-unions-fail-local-connectivity`: infinitesimally split
+carriers force a fixed transverse join, breaking local connectivity (or,
+with simplex coordinates, lower semicontinuity).
 
 There is an all-degree nonhyperfinite extension when the fixed fibre has
 full fundamental group.  In
@@ -106,10 +102,20 @@ Consequently
 `stw22-full-fundamental-group-trivial-bundles-finite-dimensional` proves the
 trace theorem for trivial bundles with that fibre over every
 finite-dimensional compact Hausdorff base.  This includes fixed McDuff
-fibres.  The universal diffuse degree-two theorem now supplies common corner
-equi-`LC^2` control without full fundamental group. The next unrestricted
-step is a quantitative weighted `S^3` filling, exactly the dimension-four
-frontier.
+fibres.  For a general fixed factor, the argument stops after `S^2`: a
+pointed contraction of `U(N)` need not preserve corners, and separate corner
+contractions have no known common higher-degree modulus.
+
+The same mechanism is intrinsic and therefore survives nontrivial bundle
+cocycles.  `stw22-uniform-corner-bundles-have-uniform-traces`
+assumes one small-sphere filling modulus for all corner unitary groups across
+the fibres, through the degree dictated by the base.  Stabilization and
+Michael selection then prove the trace theorem over every finite-dimensional
+compact Hausdorff base.  In particular, countably generated bundles whose
+fibres are all isomorphic to one fixed full-fundamental-group factor satisfy
+the hypothesis without any local triviality; locally trivial bundles with
+that fibre are automatic examples.  For genuinely varying fibres, pointwise
+full fundamental group does not by itself give a common positive modulus.
 
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,
@@ -128,10 +134,11 @@ only hypothesis is an exact continuous local tuple of orthogonal weighted
 copies.  The existing intrinsic correction lemma makes the corresponding
 fibre solution relation lower semicontinuous, but does not supply the
 uniform higher local connectivity needed to select its polar-fill
-corrections.  In the countably generated case, stabilized `L^2` selection and the
-all-factor path, loop, and two-sphere filling theorems settle the problem
-through dimension three. The first remaining finite-dimensional hinge is
-a factor-uniform weighted `S^3` filling theorem for dimension four.
+corrections.  In the countably generated case the degree-zero selection
+problem is settled through dimension two by stabilized `L^2` selection and
+the all-factor weighted loop-filling theorem.  For countably generated
+bundles, sphere degrees at least two are now the first finite-dimensional
+hinge.
 
 For the first such hinge, projection-weight multicopy fibres reduce exactly
 to `U(N)/(q+U((1-q)N(1-q)))`.  The complement bound is indispensable:
@@ -152,17 +159,6 @@ moving complement give a universal cubic modulus for arbitrary positive
 weights and copy numbers.  Stabilized two-dimensional Michael selection now
 proves `stw22-dim2-factor-bundles-have-uniform-traces` for every countably
 generated factorial bundle over a base of covering dimension at most two.
-
-The degree-two hinge is now closed as well.
-`stw22-matrix-weighted-copy-uniform-s2-fillings` uses a finite barycentric
-soft carrier and cancels its sole `pi_2` obstruction by one determinant
-line. `stw22-diffuse-weighted-copy-uniform-s2-fillings` instead uses an
-inclusive spectral supercarrier and an exact relative low-spectrum
-three-ball extension. Their common minimum is
-`stw22-all-finite-factor-weighted-copy-uniform-s2-fillings`. Stabilized
-Michael selection with `n=2` proves
-`stw22-dim3-factor-bundles-have-uniform-traces` for every countably
-generated factorial bundle over a base of covering dimension at most three.
 
 The tempting matrix-cone shortcut is strictly stronger than this hinge.
 `stw22-bare-cone-projectivity-does-not-supply-ilr` exhibits a
@@ -198,10 +194,11 @@ the unresolved relative selection statement.
   spectral cuts themselves.  The zero-dimensional theorem bypasses this:
   it lifts weighted operators, corrects only their high spectral parts,
   and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2`
-  selection now replaces those patches through dimension three for
-  countably generated bundles. From dimension four onward, local weighted
-  tuples require factor-uniform `S^3` and higher filling data; degree three
-  is the first unresolved sphere degree.
+  selection now replaces those patches through dimension two for countably
+  generated bundles.  From dimension three onward, local weighted tuples
+  require uniform higher-connectivity data, and no general varying-factor
+  sphere-filling or dimension-independent orthogonal gluing estimate is
+  presently known.
 * **Ultrafilter attack on the negative side.**  A singular trace on
   `C_σ([0,1], R)` of the form `lim_ω τ(b(y_n) q_n)/τ(q_n)` needs projections
   `q_n` with `τ(q_n) → 0` that are asymptotically central in relative

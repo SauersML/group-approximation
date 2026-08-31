@@ -24,11 +24,8 @@ artifacts:
   - research/artifacts/stw22-diffuse-weighted-loop-extension-audit-2026-08-30.md
   - research/artifacts/stw22-fixed-factor-s2-filling-audit-2026-08-30.md
   - research/artifacts/stw22-s2-hard-carrier-obstruction-audit-2026-08-30.md
-  - research/artifacts/stw22-matrix-uniform-s2-filling-audit-2026-08-30.md
-  - research/artifacts/stw22-diffuse-two-sphere-supercarrier-audit-2026-08-30.md
-  - research/artifacts/stw22-dim3-diffuse-bundle-breakthrough-2026-08-30.md
-  - research/artifacts/stw22-dim3-all-factor-bundle-breakthrough-2026-08-31.md
   - research/artifacts/stw22-full-fundamental-group-all-degree-audit-2026-08-30.md
+  - research/artifacts/stw22-uniform-corner-bundle-selection-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -77,29 +74,25 @@ separable-predual II1 factor over a compact Hausdorff base of dimension at
 most two, including `C_sigma(S^2,L(F_2))`.  The countably generated
 nontrivial-bundle theorem below strictly extends this special case.
 
-The fixed-factor trivial theorem first crossed dimension three in
-`stw22-dim3-trivial-factor-bundles-have-uniform-traces`, using a pointed
-Jekel contraction with a factor-dependent modulus. The factor dependence
-is now removed, and nontrivial varying bundles are covered as well.
-`stw22-all-finite-factor-weighted-copy-uniform-s2-fillings` gives one
-two-sphere modulus for every strictly slack weighted-copy fibre in every
-separable finite factor. The matrix branch uses a triangulated soft carrier
-and one Chern-cancelling line; the diffuse branch selects an inclusive
-spectral supercarrier and fills the low spectrum relatively over `B^3`.
-The common modulus is the minimum of the two explicit moduli.
+For a fixed separable-predual factor, the trivial theorem now crosses
+dimension three in
+`stw22-dim3-trivial-factor-bundles-have-uniform-traces`.  The universal
+loop modulus makes all conjugator corners uniformly equi-`LC^1`, so a small
+Stiefel `S^2` has a small unitary lift.  A pointed Jekel contraction of the
+fixed ambient factor fills that lift with a modulus depending on the factor
+but not on the source trace, weight, copy number, or support slack.  The
+remaining dimension-three problem is factor-uniformity across varying
+fibres, not the topology of any one separable factor.
 
-Consequently `stw22-dim3-factor-bundles-have-uniform-traces` proves the
-trace theorem for every countably generated factorial bundle over a compact
-Hausdorff base of covering dimension at most three. Matrix sizes, diffuse
-II1 isomorphism classes, and matrix/diffuse fibre type may all vary. The
-stabilized weighted-copy multifunction was already lower semicontinuous
-uniformly over all finite factors, so no type stratification is needed.
-
-The earlier hard-carrier-union obstruction remains sharp for that naive
-construction: infinitesimally split branches force a fixed transverse join.
-The new proofs bypass it rather than patch it—by finite barycentric
-Grassmannian interpolation in matrices and by a single lower-semicontinuous
-fixed-trace supercarrier in diffuse factors.
+A direct attempt to make the modulus factor-uniform by patching three local
+hard spectral carriers fails sharply.
+`stw22-hard-carrier-unions-fail-local-connectivity` rotates two coincident
+carriers through an arbitrarily small angle.  The two carrier branches then
+have arbitrarily close points, but every path switching branches must contain
+their join and move a fixed positive `2`-distance.  Adding barycentric
+coordinates instead destroys lower semicontinuity at the coincident point.
+Thus a factor-uniform dimension-three proof needs a genuinely soft carrier
+or a uniform pointed contraction, not the naive nerve patch.
 
 The higher-degree pointed-contraction bootstrap does work for a large fixed
 fibre class.  If `N` has full fundamental group, every normalized nonzero
@@ -110,10 +103,25 @@ after a small-corner diameter split.  The all-degree weighted theorem
 selection yield
 `stw22-full-fundamental-group-trivial-bundles-finite-dimensional`: every
 trace on `C_sigma(K,N)` is canonical for every finite-dimensional compact
-Hausdorff `K`.  McDuff factors are included.  The universal diffuse degree-two theorem now supplies the corner-level
-equi-`LC^2` input without full fundamental group. The next unrestricted
-step is a quantitative `S^3` filling and relative low-spectrum `B^4`
-transfer, exactly the dimension-four frontier.
+Hausdorff `K`.  McDuff factors are included.  Without this corner-uniformity
+hypothesis, lifting `S^3` already asks for an unproved common equi-`LC^2`
+modulus for all corner unitary groups of `N`; the arbitrary-factor
+fixed-fibre theorem therefore remains limited to dimension three.
+
+There is also a nontrivial-bundle extension with the exact uniformity
+hypothesis exposed.  If a countably generated factorial bundle over a
+finite-dimensional compact Hausdorff base has one local sphere-filling
+modulus for all unitary groups of all fibre corners through the required
+degree, then
+`stw22-uniform-corner-bundles-have-uniform-traces`
+applies stabilized Michael selection and kills every fibre-gap trace.  This
+includes every countably generated isotrivial bundle with fixed
+full-fundamental-group fibre, even without local triviality, and hence all
+locally trivial bundles with such a fibre.  The transition cocycle causes
+no compatibility problem because contractions are used only to prove
+intrinsic metric estimates; the global copies come from selection in the
+stabilized `L^2` field.  Separate pointwise moduli for genuinely varying
+fibres are insufficient unless they have a positive common lower bound.
 
 For locally trivial hyperfinite W*-bundles over finite-dimensional compact
 metrizable bases, `stw22-locally-trivial-finite-dimensional-bundles` gives
@@ -223,9 +231,8 @@ global orthogonal weighted copies.  Thus the result needs neither
 metrizability nor a common ambient factor and covers every compact
 scattered boundary as well as perfect zero-dimensional boundaries.
 
-For countably generated factorial bundles, the theorem now reaches dimension
-three; the finite-dimensional selection frontier begins in dimension four.
-`stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
+For countably generated factorial bundles, that frontier now begins in
+dimension three.  `stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
 the intrinsic Hilbert `C(K)`-module of `L^2` sections into the standard
 module `C(K,ell^2)`.  The varying-factor weighted-copy sets thereby become
 a lower-semicontinuous, uniformly locally path-connected family of closed
@@ -243,12 +250,6 @@ argument through dimension two in
 connectivity and a uniform equi-`LC^1` modulus for every strictly slack
 weighted-copy fibre in every separable finite factor.
 
-The degree-two extension
-`stw22-all-finite-factor-weighted-copy-uniform-s2-fillings` supplies
-two-connectivity and a universal equi-`LC^2` modulus. Michael selection
-with `n=2` therefore upgrades the same stabilized argument through
-dimension three in `stw22-dim3-factor-bundles-have-uniform-traces`.
-
 For arbitrary factorial bundles in dimension at least two, the remaining
 input is now separated cleanly from the topological colouring step.
 `stw22-intrinsic-local-replication-colouring-reduction` shows that no common
@@ -257,10 +258,11 @@ after exact local replication tuples exist.  Over a `d`-dimensional compact
 metrizable base, a `(d+1)`-coloured refinement gives a range bound `d+1`
 independent of the replication number and kills every gap trace.  The
 quantitative weighted correction lemma proves lower semicontinuity of the
-fibrewise solution relation.  Stabilized selection now supplies path, loop, and two-sphere fillings
-through dimension three. In dimensions at least four it requires
-corresponding uniform local `k`-connectedness through `k=d-1`; the first
-missing input is a factor-uniform weighted `S^3` filling modulus.
+fibrewise solution relation.  Stabilized selection now supplies the needed
+path and loop filling through dimension two.  In dimensions at least three
+it would require corresponding uniform local `k`-connectedness through
+`k=d-1`; establishing or refuting those stronger connectivity estimates is
+the precise finite-dimensional frontier.
 
 The first higher-connectivity hinge has a sharp normal form.
 `stw22-multicopy-fibres-collapse-and-zero-slack-obstructs-lc1` identifies
@@ -287,15 +289,11 @@ and captures them in orthogonal projections of total trace
 `stw22-all-finite-factor-weighted-copy-uniform-loop-fillings`.  Its high
 filling is chosen with a unitary lift; bounded low spectral bands are then
 filled recursively, and each filled band explicitly trivializes the next
-moving complement.  This gives one cubic loop-filling modulus for all separable finite factors,
-weights, and copy numbers under strict support slack. The next degree is
-now closed too. `stw22-matrix-weighted-copy-uniform-s2-fillings` uses a
-dimension-free soft carrier and Chern cancellation, while
-`stw22-diffuse-weighted-copy-uniform-s2-fillings` uses the spectral
-supercarrier and relative low-spectrum `B^3` extension. Their minimum
-gives `stw22-all-finite-factor-weighted-copy-uniform-s2-fillings`, and
-stabilized Michael selection proves the trace theorem through dimension
-three in `stw22-dim3-factor-bundles-have-uniform-traces`.
+moving complement.  This gives one cubic loop-filling modulus for all
+separable finite factors, weights, and copy numbers under strict support
+slack.  Stabilized Michael selection consequently proves the trace theorem
+for countably generated factorial bundles over bases of dimension at most
+two in `stw22-dim2-factor-bundles-have-uniform-traces`.
 
 Bare projectivity of finite-dimensional matrix cones does not bypass this
 frontier. `stw22-bare-cone-projectivity-does-not-supply-ilr` gives a trivial
