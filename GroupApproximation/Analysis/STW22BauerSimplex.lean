@@ -262,7 +262,7 @@ theorem mem_coneOver_singleton {x : E} {p : E × ℝ≥0} :
     subst hy
     exact ⟨t, rfl⟩
   · rintro ⟨t, rfl⟩
-    exact mk_mem_coneOver rfl zero_le
+    exact mk_mem_coneOver rfl (zero_le : (0 : ℝ≥0) ≤ t)
 
 /-- Along the ray over a singleton, the induced order is the order of `ℝ≥0` on
 the scalar coordinate. -/
@@ -276,7 +276,7 @@ theorem coneLE_singleton_iff {x : E} {t s : ℝ≥0} :
     rw [hsnd]
     exact self_le_add_right t a
   · intro hts
-    refine ⟨((s - t) • x, s - t), mk_mem_coneOver rfl zero_le, ?_⟩
+    refine ⟨((s - t) • x, s - t), mk_mem_coneOver rfl (zero_le : (0 : ℝ≥0) ≤ s - t), ?_⟩
     have hadd : t + (s - t) = s := add_tsub_cancel_of_le hts
     apply Prod.ext
     · show s • x = t • x + (s - t) • x

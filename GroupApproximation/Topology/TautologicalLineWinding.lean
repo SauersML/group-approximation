@@ -288,6 +288,7 @@ theorem no_winding_square (c : ℂ) (hc : c ≠ 0)
 
 /-! ### The rank-one common-zero theorem -/
 
+set_option maxHeartbeats 1000000 in
 /-- **The rank-one obstruction.**  For `N ≥ 1` there is no continuous,
 nowhere-vanishing function on `ℂ^{N+1} ∖ {0}` which is homogeneous of degree
 `-1`; equivalently, every continuous section of the tautological line bundle

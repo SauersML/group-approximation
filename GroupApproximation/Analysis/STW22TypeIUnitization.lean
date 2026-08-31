@@ -117,7 +117,7 @@ theorem isScalarExtension_inr (B : Type u) [NonUnitalCStarAlgebra B] :
   refine ⟨a.fst, a.snd, ?_⟩
   have h1 : (a.fst • (1 : Unitization ℂ B)) = Unitization.inl a.fst := by
     rw [← Algebra.algebraMap_eq_smul_one]
-    exact congrFun Unitization.algebraMap_eq_inl a.fst
+    exact congrFun (Unitization.algebraMap_eq_inl ℂ B) a.fst
   have h2 : (Unitization.inrNonUnitalStarAlgHom ℂ B) a.snd
       = (a.snd : Unitization ℂ B) := rfl
   rw [h1, h2]
@@ -160,7 +160,7 @@ theorem isTypeI_of_isScalarExtension {B : Type u} [NonUnitalCStarAlgebra B]
     rw [h2, hc x]
     rfl
   · -- `π` is a nonzero irreducible representation of `B`.
-    push_neg at hzero
+    push Not at hzero
     have hirr : IsIrreducibleNonUnitalRep π := by
       refine ⟨hzero, ?_⟩
       intro M hMclosed hMinv

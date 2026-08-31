@@ -68,6 +68,10 @@ namespace CuntzPedersenJordanTracial
 
 open CuntzPedersenCoronaObstruction CuntzPedersenTraceZero
   CuntzPedersenHermitianSeparation
+-- `CStarProductCorona` is declared in `PolarLiftingGeneralCStar`, not in
+-- `CuntzPedersenCoronaObstruction`; `open` does not propagate through imports,
+-- so it must be opened here or the name auto-binds as an implicit.
+open PolarLiftingGeneralCStar
 open scoped ComplexOrder
 
 noncomputable section
