@@ -83,43 +83,61 @@ The quarter loss is forced: every nontrivial `h`-weight in
 all other characters.
 
 For the selected atoms `e_a=z_(1,a)`, the `h` exponents are
-`2+a`. Therefore
+`2+a`. Therefore the collected modes themselves have the exact
+full-`C` covariance
 
 ```text
 D_2e_0=e_2D_2,                 D_1e_1=e_2D_1.            (MDR9)
 ```
 
 Choose the three blocks in unused multiplicity copies, so the router
-commutes with the three-line selector `X`. The two-to-one typed row
+commutes with the three-line selector `X`. Let `f_t` denote the
+`h`-character atom of exponent `t` and let `e_k` be the common
+`k`-character atom in `e_0,e_1,e_2`. The correctly ordered two-source
+row is
 
 ```text
-mathcal D=D_2e_0+D_1e_1                                  (MDR10)
+mathcal T=D_2Xe_0+D_1Xe_1
+         =(D_2f_2+D_1f_0)Xe_k.                          (MDR10)
 ```
 
-has range support `p_Ne_2`. Its two branches have the same final
-support, so their ranks do not add. Applied to `X`, its exact polar
-support rank is
+It has range in the single `h` atom `f_1`. Its two branches have the
+same final `N semidirect <h>` support, so their ranks do not add. Its
+exact polar support rank is
 
 ```text
-tau(supp abs(mathcal D X)) =
+tau(supp abs(mathcal T)) =
   5/192       in the all-plus sign row,
   3/128       in every other surviving sign row.         (MDR11)
 ```
 
 These are exactly `3/8` of the original two-atom ranks `5/72` and
-`1/16`. Both lie below the one-atom target capacity `tau(Ee_2)=1/18`.
-Thus the first corrected moved-root Fourier atlas is an exact firewall,
-not a nonhyperlinearity witness.
+`1/16`: a factor `3/4` from deleting the trivial `N` character and a
+factor `1/2` from the two-to-one collision.
+
+This is only an `h`-targeted row. The selector `X` is not
+`k`-neutral, so `mathcal T` need not have range in the full atom
+`e_2=f_1e_k`. The final target compression satisfies
+
+```text
+tau(supp abs(e_2 mathcal T)) <=
+  5/192 or 3/128,                                      (MDR12)
+```
+
+and both bounds are strictly below `tau(Ee_2)=1/18`. Thus the first
+corrected moved-root Fourier atlas is an exact firewall, not a
+nonhyperlinearity witness. Proving that a `k`-typed component retains a
+large source remains open.
 
 The collected router and the finite sign packet lie in the finite group
 
 ```text
-<N,C,H,C_1,W>,                 order 4*288=1152.          (MDR12)
+<N,C,H,C_1,W>,                 order 4*288=1152.          (MDR13)
 ```
 
 Its regular representation realizes the quarter loss and the two-to-one
 collision exactly. This finite absorber contains the collected
 `ST` roots, not the uncollected raw `S` and `T` constituents. The live
-next object is therefore an occurrence in which a raw constituent is
-retained through the Fourier range cut rather than replaced by its
-finite commutator root.
+next object is therefore a full-`C` Fourier occurrence in which a raw
+constituent is retained through the final `k` range cut rather than
+replaced by its finite commutator root.
