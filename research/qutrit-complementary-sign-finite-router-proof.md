@@ -180,7 +180,7 @@ After left compression by `e_2`, this is exactly the original router
 created four independent ranges.
 
 Notice that `G_(sigma,tau)R` is generally not a projection because
-the sign roots do not commute with `R). The number `1/36` in
+the sign roots do not commute with `R`. The number `1/36` in
 `(QCS7)` is its squared Hilbert--Schmidt norm, not its polar-support
 rank. For branch-dependent routers, those support ranks and range cross
 terms must be computed rather than inferred from energy.
