@@ -3,7 +3,7 @@ rg: 2
 id: qutrit-jacobson-sign-polar-rank-proof
 kind: proof
 title: Diagonalize the 288-element sign subgroup and count induced characters
-target: qutrit-jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
+target: jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
 requires:
   - qutrit-complementary-sign-finite-router-proof
   - qutrit-mixed-orientation-jacobson-quarter-polar-proof
