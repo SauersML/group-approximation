@@ -1,5 +1,5 @@
 import GroupApproximation.GGT.HullSCFillingSelectionTheorem316
-import GroupApproximation.GGT.HullSCLemma44ExteriorArc
+import GroupApproximation.GGT.HullSCLemma44ContiguityDiagram
 import GroupApproximation.GGT.HullSCRelatorSeparation2PublishedReduction
 import GroupApproximation.GGT.RelGenSetMulEquiv
 import GroupApproximation.GroupTheory.FiniteRelatorQuotient

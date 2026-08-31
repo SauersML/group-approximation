@@ -112,5 +112,39 @@ theorem Lemma44OrientedRelatorDiagram.noCancellingCellPair
   rw [← Z.cell_values, hsplit]
   simp only [List.map_append, List.map_cons]
 
+/-- **Reducedness on the actual oriented cell boundaries.**  Let `B` be the
+product of the cells strictly between `C₁` and `C₂`.  Transporting from the
+stem of `C₁`, across `B`, to the stem of `C₂` gives
+
+`d = C₁.conjugator⁻¹ * B * C₂.conjugator`.
+
+The two relator boundaries cannot be inverse conjugates by `d`.  If they were,
+then the two complete cells would cancel across the intervening subdiagram,
+contradicting `noCancellingCellPair`.  This is the exact whole-cell exclusion
+needed when a relative cancellation matching turns a maximal common boundary
+run into a published piece; it mentions the relator words themselves rather
+than only the flattened factor values. -/
+theorem Lemma44OrientedRelatorDiagram.relators_ne_inverseConjugate
+    {G : Type u} [Group G] {Λ : Type w}
+    {A : Manuscript.NonMF.TorsionFree.Alphabet G}
+    {W : Set (List (GGT.RelLetter G Λ))} {R : ℕ}
+    (Z : Lemma44OrientedRelatorDiagram A W R)
+    (pre between suf : List (Lemma44OrientedRelatorCell W))
+    (C₁ C₂ : Lemma44OrientedRelatorCell W)
+    (hsplit : Z.cells = pre ++ C₁ :: (between ++ C₂ :: suf)) :
+    GGT.RelLetter.listVal C₂.relator ≠
+      ((C₁.conjugator⁻¹ *
+          (between.map Lemma44OrientedRelatorCell.value).prod *
+          C₂.conjugator)⁻¹ *
+        (GGT.RelLetter.listVal C₁.relator)⁻¹ *
+        (C₁.conjugator⁻¹ *
+          (between.map Lemma44OrientedRelatorCell.value).prod *
+          C₂.conjugator)) := by
+  intro hcancel
+  apply Z.noCancellingCellPair pre between suf C₁ C₂ hsplit
+  rw [Lemma44OrientedRelatorCell.value,
+    Lemma44OrientedRelatorCell.value, hcancel]
+  group
+
 end HullSC
 end GroupApproximation
