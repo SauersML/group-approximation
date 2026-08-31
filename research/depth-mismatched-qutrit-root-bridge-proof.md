@@ -20,7 +20,7 @@ Phi((c_d)_(d in D),b_2,...,b_n)
   =(sum_(d in D)s_d c_d,b_2,...,b_n).                  (DMQ4)
 ```
 
-Prefix-freeness gives, for `d in D),
+Prefix-freeness gives, for `d in D`,
 
 ```text
 t_(d_0 a)s_d =
@@ -88,7 +88,7 @@ Q_(k+1)=T P_k+Q_k.                                     (DMQ11)
 Inductively, both `P_k` and `Q_k` are monic of degree `k-1`.
 Indeed `T P_k` supplies the unique degree-`k` term of `Q_(k+1)`,
 and then `P_(k+1)=P_k+Q_(k+1)` has the same leading term.  Thus
-`z^k!=1` for every `k>=1` (for `k=1) this is immediate, and for
+`z^k!=1` for every `k>=1` (for `k=1` this is immediate, and for
 `k>=2` the lower coordinate `Q_k` has positive degree).  The product of
 the two involutions has infinite order.  Every reduced word in two
 involutions is an alternating power or an involution times one, so no further
