@@ -320,6 +320,10 @@ packet and every sublinear padding.  Normalizing actor letters factor as a
 fixed finite implementer tensored with an arbitrary projective multiplicity
 representation.  Hence a packet can rigidify coarse tensor atoms but cannot
 select the rank-one multiplicity masa needed by the collision criterion.
+A doubled bent-Walsh reservoir gives an exact finite-stage witness: it is a
+multiple of the regular representation of `K times C_2`, has collision
+mass tending to zero in the packet basis, and remains at normalized-HS
+distance `sqrt(2)-o(1)` from every monomial after sublinear padding.
 The remaining task is still actor-dependent Cartan extraction over growing
 windows; no nonhyperlinear group follows from the packet calculation alone.
 
