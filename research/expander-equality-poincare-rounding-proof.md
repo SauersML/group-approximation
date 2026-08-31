@@ -345,13 +345,25 @@ Thus the quadratic Poincare degeneration of paths and cycles is realized
 already by exact \(2\times2\) reflections; it is not an artifact of allowing
 arbitrary Hilbert-valued vectors.  Any RMS synchronization constant grows
 linearly in \(d\).  Cubic equality degree--and therefore occurrence four
-when each copy also has one source occurrence--is the first degree at which
-this pairwise-equality compiler can have a uniform spectral decoder.
+when every equality vertex also carries a source occurrence--is the first
+degree at which this no-dummy direct-placement scheme can have a uniform
+spectral decoder.
 
-## 6. Scope
+## 6. Scope and stronger padded construction
 
 Equations (4), (11), and (17) prove an exact, perfect-completeness,
-dimension-free robust compiler.  They do not produce a source LCS with a
-commuting-versus-finite perfect gap, and they do not address higher-arity
-synchronization gadgets under the occurrence-three budget.  Those remain
-separate gates.
+dimension-free robust occurrence-four compiler.  The path/cycle lower bound
+is sharp for the no-dummy scheme analyzed in Section 5, but not for all
+occurrence-three pairwise-equality compilers.
+
+The stronger route
+`subdivision-expander-occurrence-three-rounding-proof` subdivides \(d\)
+edges of a cubic expander, places source occurrences only at the new
+degree-two vertices, and uses the cubic old vertices as dummy variables.
+Used and dummy variables then both have total occurrence three, while a
+uniform Poincare decoder survives.  Thus the present occurrence-four result
+is a simpler direct-placement lemma, not the final robust occurrence
+boundary.
+
+Neither construction produces a source LCS with a
+commuting-versus-finite perfect gap.  That remains a separate gate.
