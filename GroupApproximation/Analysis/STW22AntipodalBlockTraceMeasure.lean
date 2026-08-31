@@ -1,5 +1,6 @@
 import GroupApproximation.Analysis.STW22AntipodalBlockTraceClassification
 import Mathlib.MeasureTheory.Integral.RieszMarkovKakutani.Real
+import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
 
 /-!
 # Measures representing traces on a real-projective block
@@ -176,6 +177,43 @@ theorem integral_blockTraceMeasure {d s : Nat}
     ∫ x, f x ∂blockTraceMeasure tau =
       (tau (projectiveRealCenter (s := s) f)).re := by
   exact RealRMK.integral_rieszMeasure (blockTraceRieszFunctional tau) f
+
+/-- The constant-one compactly supported test function on the compact
+projective base. -/
+def projectiveRealOne (d : Nat) :
+    CompactlySupportedContinuousMap (RP d) Real :=
+  CompactlySupportedContinuousMap.continuousMapEquiv
+    (1 : C(RP d, Real))
+
+@[simp] theorem projectiveRealOne_apply (d : Nat) (x : RP d) :
+    projectiveRealOne d x = 1 := by
+  simp [projectiveRealOne]
+
+@[simp] theorem projectiveRealCenter_one (d s : Nat) :
+    projectiveRealCenter (s := s) (projectiveRealOne d) = 1 := by
+  apply Subtype.ext
+  apply ContinuousMap.ext
+  intro x
+  simp [projectiveRealCenter_apply]
+
+/-- The RMK measure of a unital block trace has total mass one. -/
+theorem blockTraceMeasure_univ {d s : Nat}
+    (tau : TracialState (RealProjectiveBlock d s)) :
+    blockTraceMeasure tau Set.univ = 1 := by
+  rw [← ENNReal.toReal_eq_one_iff]
+  have h := integral_blockTraceMeasure tau (projectiveRealOne d)
+  rw [projectiveRealCenter_one, tau.apply_one, Complex.one_re] at h
+  simpa [integral_const, Measure.real] using h
+
+instance blockTraceMeasure_isProbability {d s : Nat}
+    (tau : TracialState (RealProjectiveBlock d s)) :
+    IsProbabilityMeasure (blockTraceMeasure tau) :=
+  ⟨blockTraceMeasure_univ tau⟩
+
+/-- The representing measure bundled as a probability measure. -/
+def blockTraceProbabilityMeasure {d s : Nat}
+    (tau : TracialState (RealProjectiveBlock d s)) : ProbabilityMeasure (RP d) :=
+  ⟨blockTraceMeasure tau, inferInstance⟩
 
 end
 
