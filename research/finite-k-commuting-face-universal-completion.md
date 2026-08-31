@@ -58,6 +58,14 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   `Omega=(bc)^2` and `Omega^2=1`, with an absolute robust commutator bound.
   Hence the single-square packet is exactly a commutativity quotient and
   supplies no noncentral escape.
+- **Glue two closed squares as a degree-two incidence graph.**  The exact
+  overlap table is in
+  `two-magic-square-incidence-overlaps-never-separate`.  The universal group
+  is not always finite: `K_(3,6)` and all overlap types with two
+  vertex-disjoint cycles are infinite.  But Arkhipov's theorem still makes
+  perfect commuting and finite-dimensional satisfiability equivalent for
+  every scalar-sign graph-incidence network.  Infinitude of the packet group
+  alone is therefore irrelevant to the marked gap.
 - **Repeat fixed K labels at positive density.**  This can improve the finite
   packet's empirical spectral weight but does not change the universal
   completion; an infinite kernel in the abelian-subgroup amalgam survives
