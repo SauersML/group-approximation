@@ -351,5 +351,5 @@ The exact finite-dimensional conclusion without Property 3 is
 insufficient: finitely presented hyperlinear examples with
 finite-dimensionally invisible central torsion already occur in this
 repository. The sole residual gate is therefore the robust
-projection-preserving multiplicative compiler in (22)--(23), not perfect
+projection-preserving multiplicative compiler in (22) together with Property 3, not perfect
 completeness of the source.
