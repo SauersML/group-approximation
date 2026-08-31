@@ -65,9 +65,9 @@ representations.
 Equivalently, an Ozawa finite sum-of-squares certificate cannot force
 Poincare distance to the literal commutant of the actual generator
 matrices. It can force concentration in a low-energy spectral band of the
-approximate conjugation Laplacian. In this construction that band contains
-\(A_n\), is orthogonal to the literal kernel, and has eigenvalues tending
-to zero.
+approximate conjugation Laplacian. In this construction the literal-kernel-orthogonal unitary
+\(A_n\) has Rayleigh quotient tending to zero, so the low band has
+nonzero mass outside the literal kernel.
 
 The theorem does not refute a source-specific propagation argument using
 the full shared-center or Kun--Thom relations. It proves that relator
