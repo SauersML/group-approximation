@@ -14,7 +14,7 @@ requires:
 
 ## 1. Rings, cosets, and the positive-depth filtration
 
-Work over (mathbf F_2). Put
+Work over `F_2`. Put
 
 ~~~text
 S=F_2[x_1,y,x_3],
@@ -26,14 +26,14 @@ Gamma_N=EL_3(P_N),
 Omega_N=Q_N/Gamma_N.
 ~~~
 
-We use right cosets, with (Q_N) acting on the left. The monomial description
+We use right cosets, with `Q_N` acting on the left. The monomial description
 
 ~~~text
 P_N=span{x_1^a y^b x_3^c:a+b+c<=N and a>=b}              (1)
 ~~~
 
-shows that (P_N) is a finite local ring: its positive-degree part is a
-nilpotent maximal ideal and its residue field is (mathbf F_2). Therefore
+shows that `P_N` is a finite local ring: its positive-degree part is a
+nilpotent maximal ideal and its residue field is `F_2`. Therefore
 
 ~~~text
 SL_3(P_N)=EL_3(P_N)=Gamma_N.                               (2)
@@ -42,18 +42,18 @@ SL_3(P_N)=EL_3(P_N)=Gamma_N.                               (2)
 For completeness, (2) is just elementary elimination over a local ring.
 A unimodular column contains a unit. Elementary row operations move that
 unit to the first position, clear the other entries, and induction clears
-the remaining (2)-by-(2) block. In characteristic two no separate sign
+the remaining `2`-by-`2` block. In characteristic two no separate sign
 matrix is needed.
 
-For an integer (M>=1), let
+For an integer `M>=1`, let
 
 ~~~text
 I_(N,M)=x_1^M P_N,
 C_(N,M)={gamma in Gamma_N:gamma=I mod I_(N,M)}.             (3)
 ~~~
 
-This is a subgroup because (I_(N,M)) is an ideal of (P_N). A basis of
-(P_N/I_(N,M)) consists exactly of the monomials in (1) with
+This is a subgroup because `I_(N,M)` is an ideal of `P_N`. A basis of
+`P_N/I_(N,M)` consists exactly of the monomials in (1) with
 
 ~~~text
 0<=a-b<M.                                                   (4)
@@ -77,7 +77,7 @@ In particular,
 b_(N,M)<=M(N+2)^2/4.                                       (6)
 ~~~
 
-Reduction of matrix entries modulo (I_(N,M)) gives the crude but useful
+Reduction of matrix entries modulo `I_(N,M)` gives the crude but useful
 index estimate
 
 ~~~text
@@ -85,8 +85,8 @@ index estimate
 ~~~
 
 No generation or bounded-width assertion is hidden in (7): the quotient
-image is merely a subset of the (3)-by-(3) matrices over the
-(b_(N,M))-dimensional vector space (P_N/I_(N,M)).
+image is merely a subset of the `3`-by-`3` matrices over the
+`b_(N,M)`-dimensional vector space `P_N/I_(N,M)`.
 
 ## 2. The first Laurent site has a codimension-two stabilizer
 
@@ -96,8 +96,8 @@ Let
 h_N=e_12(y)=I+yE_12 in Q_N.
 ~~~
 
-Since the characteristic is two and (E_{12}^2=0), (h_N^{-1}=h_N).
-Take (gammain C_(N,2)) and write
+Since the characteristic is two and `E_12^2=0`, `h_N^(-1)=h_N`.
+Take `gamma in C_(N,2)` and write
 
 ~~~text
 gamma=I+x_1^2 A,              A in M_3(P_N).
@@ -110,15 +110,15 @@ h_N^(-1) gamma h_N
  =I+x_1^2(A+yE_12 A+yA E_12+y^2 E_12 A E_12).             (8)
 ~~~
 
-Every entry added in (8) lies in (P_N). Indeed the only new scalar
+Every entry added in (8) lies in `P_N`. Indeed the only new scalar
 multipliers are
 
 ~~~text
 x_1^2,        x_1^2 y=x_1x_2,        x_1^2 y^2=x_2^2,     (9)
 ~~~
 
-and all three belong to (P). The matrix in (8) has determinant one, so
-(2) puts it in (Gamma_N). Equivalently,
+and all three belong to `P`. The matrix in (8) has determinant one, so
+(2) puts it in `Gamma_N`. Equivalently,
 
 ~~~text
 C_(N,2) subset Stab_(Gamma_N)(h_N Gamma_N).                (10)
@@ -143,23 +143,23 @@ b_(2m,2)=(m+1)(2m+1),
 b_(2m+1,2)=(m+1)(2m+3).                                   (12)
 ~~~
 
-These are the quantities denoted (b_N) in the claim.
+These are the quantities denoted `b_N` in the claim.
 
 ## 3. The ambient coset set has cubic exponential size
 
-Write (V_N=T_N/P_N) as an additive vector space. The map
+Write `V_N=T_N/P_N` as an additive vector space. The map
 
 ~~~text
 V_N -> Omega_N,       f+P_N |-> e_12(f)Gamma_N             (13)
 ~~~
 
 is injective. If two cosets in (13) agree, then
-(e_{12}(f-f')inGamma_N). Every entry of a matrix in
-(Gamma_N=EL_3(P_N)) lies in (P_N), so (f-f'in P_N).
+`e_12(f-f') in Gamma_N`. Every entry of a matrix in
+`Gamma_N=EL_3(P_N)` lies in `P_N`, so `f-f' in P_N`.
 
-The complementary monomial basis of (V_N) consists of the triples
-(a+b+c<=N) with (a<b). Its dimension, computed by pairing (a<b)
-with (a>b), is
+The complementary monomial basis of `V_N` consists of the triples
+`a+b+c<=N` with `a<b`. Its dimension, computed by pairing `a<b`
+with `a>b`, is
 
 ~~~text
 v_(2m)=m(m+1)(4m+5)/6,
@@ -174,12 +174,12 @@ Consequently
                   =2^(-N^3/12+O(N^2))->0.                 (16)
 ~~~
 
-This proves the advertised thinness of the full (Gamma_N)-orbit, not
+This proves the advertised thinness of the full `Gamma_N`-orbit, not
 merely of an orbit under a chosen Kazhdan generating set.
 
 ## 4. Every bounded Laurent-depth packet is equally thin
 
-For a monomial (x_1^a y^b x_3^c), define its positive-core deficit by
+For a monomial `x_1^a y^b x_3^c`, define its positive-core deficit by
 
 ~~~text
 def(x_1^a y^b x_3^c)=max(b-a,0).                           (17)
@@ -188,29 +188,29 @@ def(x_1^a y^b x_3^c)=max(b-a,0).                           (17)
 For a polynomial, take the maximum deficit of its monomials. The deficit
 is subadditive under multiplication.
 
-Let (F) be a finite subset of (EL_3(S)). Choose (M_F) at least the
-maximum, over every entry (u) of (g), every entry (v) of (g^{-1}),
-and every (gin F), of
+Let `F` be a finite subset of `EL_3(S)`. Choose `M_F` at least the
+maximum, over every entry `u` of `g`, every entry `v` of `g^(-1)`,
+and every `g in F`, of
 
 ~~~text
 def(u)+def(v).                                             (18)
 ~~~
 
-If (gamma=I+x_1^(M_F)Ain C_(N,M_F)), then
+If `gamma=I+x_1^(M_F)A in C_(N,M_F)`, then
 
 ~~~text
 g^(-1) gamma g=I+x_1^(M_F)g^(-1)Ag.                       (19)
 ~~~
 
 Every entry after the identity in (19) is a sum of terms
-(x_1^(M_F)uav), where (ain P_N). Equations (17)--(18) show that every
-such term lies in (P_N). The matrix has determinant one, so (2) gives
+`x_1^(M_F)uav`, where `a in P_N`. Equations (17)--(18) show that every
+such term lies in `P_N`. The matrix has determinant one, so (2) gives
 
 ~~~text
 g^(-1) C_(N,M_F) g subset Gamma_N.                         (20)
 ~~~
 
-Thus (C_(N,M_F)) fixes (gGamma_N). From (7),
+Thus `C_(N,M_F)` fixes `gGamma_N`. From (7),
 
 ~~~text
 |Gamma_N g Gamma_N/Gamma_N|
@@ -225,11 +225,11 @@ and hence
  <=|F| 2^((9/4)M_F(N+2)^2).                               (22)
 ~~~
 
-For fixed (F), (22) is (2^{O_F(N^2)}), whereas (15) is
-(2^{N^3/12+O(N^2)}).
+For fixed `F`, (22) is `2^(O_F(N^2))`, whereas (15) is
+`2^(N^3/12+O(N^2))`.
 
 The same calculation gives a useful moving-window version. For packets
-(F_N), let (M_N) satisfy (18). If
+`F_N`, let `M_N` satisfy (18). If
 
 ~~~text
 M_N=o(N),             log_2 |F_N|=o(N^3),                 (23)
@@ -242,22 +242,22 @@ then
 ~~~
 
 Therefore any packet that reaches positive coset density through this
-mechanism must have denominator depth of order (N), or itself contain
-(2^{Theta(N^3)}) words. A slowly growing diagonal word window remains
+mechanism must have denominator depth of order `N`, or itself contain
+`2^(Theta(N^3))` words. A slowly growing diagonal word window remains
 trapped.
 
 ## 5. Exact regular-character Clifford reservoir
 
-Put (M_N=|Omega_N|) in this section only and define
+Put `M_N=|Omega_N|` in this section only and define
 
 ~~~text
 H_N=ell^2(Q_N) tensor (C^2)^(tensor Omega_N),
 D_N=dim(H_N)=|Q_N| 2^(M_N).                               (25)
 ~~~
 
-Let (Q_N) act by the tensor product of its left regular action on
-(ell^2(Q_N)) and its permutation action on the qubit factors. Let the
-lamp at (zinOmega_N) act by Pauli (Z_z). This is a representation
+Let `Q_N` act by the tensor product of its left regular action on
+`ell^2(Q_N)` and its permutation action on the qubit factors. Let the
+lamp at `z in Omega_N` act by Pauli `Z_z`. This is a representation
 (ho_N) of
 
 ~~~text
@@ -265,21 +265,21 @@ W_N=(direct_sum_(Omega_N) C_2) rtimes Q_N.                 (26)
 ~~~
 
 Its normalized character is exactly the regular character. If the actor
-component (q) is nonidentity, the left-regular factor has trace zero. If
-(q=1) but the lamp (f) is nonzero, the tensor product contains a
-nontrivial Pauli (Z) and again has trace zero. Since
-(dim H_N=|W_N|), the representation is in fact unitarily equivalent to
+component `q` is nonidentity, the left-regular factor has trace zero. If
+`q=1` but the lamp `f` is nonzero, the tensor product contains a
+nontrivial Pauli `Z` and again has trace zero. Since
+`dim H_N=|W_N|`, the representation is in fact unitarily equivalent to
 the left regular representation.
 
-Let (o_N=Gamma_N), and set
+Let `o_N=Gamma_N`, and set
 
 ~~~text
 p_N=(I+Z_(o_N))/2,       U_(h,N)=rho_N(h_N).               (27)
 ~~~
 
-The group (Gamma_N) fixes (o_N), so (p_N) commutes with its entire
-image. The point (h_No_N) differs from (o_N), and the two coordinate
-projections have product trace (1/4). Hence
+The group `Gamma_N` fixes (o_N), so `p_N` commutes with its entire
+image. The point `h_No_N` differs from `o_N`, and the two coordinate
+projections have product trace `1/4`. Hence
 
 ~~~text
 ||[p_N,U_(h,N)]||_2
@@ -288,7 +288,7 @@ projections have product trace (1/4). Hence
 ~~~
 
 Thus the distinguished wall has positive normalized Hilbert--Schmidt mass
-even though its complete (Gamma_N)-orbit occupies vanishing site density.
+even though its complete `Gamma_N`-orbit occupies vanishing site density.
 
 Here is the exact adjoint-rank audit. Let
 
@@ -296,17 +296,17 @@ Here is the exact adjoint-rank audit. Let
 E_N={o_N} union O_N.
 ~~~
 
-The algebra of all lamp operators supported on (E_N) is
-(M_(2^|E_N|)otimes I). It is invariant under conjugation by
-(Gamma_N). Even granting the entire actor matrix algebra on
-(ell^2(Q_N)), the containing subspace
+The algebra of all lamp operators supported on `E_N` is
+`M_(2^|E_N|) tensor I`. It is invariant under conjugation by
+`Gamma_N`. Even granting the entire actor matrix algebra on
+`ell^2(Q_N)`, the containing subspace
 
 ~~~text
 M_(|Q_N|) tensor M_(2^|E_N|) tensor I_(2^(M_N-|E_N|))
 ~~~
 
-has dimension (|Q_N|^2 4^{|E_N|}), while
-(operatorname{End}(H_N)) has dimension (|Q_N|^2 4^{M_N}).
+has dimension `|Q_N|^2 4^|E_N|`, while
+`End(H_N)` has dimension `|Q_N|^2 4^M_N`.
 Its normalized adjoint-rank fraction is therefore exactly
 
 ~~~text
@@ -314,9 +314,9 @@ Its normalized adjoint-rank fraction is therefore exactly
 ~~~
 
 Every Pauli word, every Clifford circuit supported on these sites, and
-every Reynolds average under the full finite image (Gamma_N) remains in
-this subspace. Replacing ({1,h}) by a fixed packet (F) and using its
-(Gamma_N)-saturation gives the same conclusion by (22).
+every Reynolds average under the full finite image `Gamma_N` remains in
+this subspace. Replacing `{1,h}` by a fixed packet `F` and using its
+`Gamma_N`-saturation gives the same conclusion by (22).
 
 ## 6. Canonical moments and the precise firewall
 
@@ -326,20 +326,20 @@ The quotient maps from the coherent intermediate wreath product
 W_H=(direct_sum_(H/Gamma) C_2) rtimes H
 ~~~
 
-onto (W_N) separate every fixed group element and every fixed finite
+onto `W_N` separate every fixed group element and every fixed finite
 coset table. Pulling (ho_N) back along these maps therefore yields
 normalized characters converging pointwise to the canonical character of
 (W_H). Equations (28)--(29) occur inside exact regular-character models;
 they are not caused by trace pollution.
 
 We have therefore exhausted the proposed finite-packet amplification.
-The complete finite (Gamma_N) image, not merely a Kazhdan subset, sees
+The complete finite `Gamma_N` image, not merely a Kazhdan subset, sees
 only an exponentially thin saturation of the first Laurent site. Adding a
 finite Clifford packet does not change its support, and granting arbitrary
 multiplicity on the complementary qubits leaves (28) untouched.
 
 This is a firewall, not a nonhyperlinearity proof. Relations from the full
-Laurent actor can move through denominator depth comparable to (N);
+Laurent actor can move through denominator depth comparable to `N`;
 they are absent from the intermediate actor used here. A positive
 Kun--Thom argument must control such a linear-depth moving window. A
 countermodel must extend these exact intermediate models across that same
