@@ -3,7 +3,7 @@ rg: 2
 id: elementary-abelian-regular-normalizer-fiber-proof
 kind: route
 title: Split the free lamp orbits and insert a coherent Fourier multiplicity cocycle
-target: elementary-abelian-regular-normalizers-have-diffuse-coherent-fibers
+target: elementary-abelian-regular-normalizers-have-diffuse-fibers
 requires: []
 ---
 
@@ -49,7 +49,7 @@ condition; no choice of unitary implementers entered.
 ## Step 2: classify the exact unitary implementers
 
 On `ell^2(B) tensor C^k`, let `P_alpha` be the canonical permutation of
-the first factor.  Suppose `U` satisfies `(EAR4)), and put
+the first factor.  Suppose `U` satisfies `(EAR4)`, and put
 
 ```text
 D=U(P_alpha tensor 1)^*.
@@ -64,7 +64,7 @@ D (lambda_B(c) tensor 1) D^*
  =lambda_B(c) tensor 1.
 ```
 
-Thus `D` is in the lamp commutant and `U=D(P_alpha tensor 1)).
+Thus `D` is in the lamp commutant and `U=D(P_alpha tensor 1)`.
 Uniqueness and the converse are immediate.
 
 If `U_h=D_hP_h` is a genuine actor representation, with tensor identities
@@ -110,7 +110,7 @@ matrix and set
 U_m=Q_m tensor F_(k_m).
 ```
 
-The standard identities `F_k^2 e_r=e_(-r)` and `F_k^4=1), together with
+The standard identities `F_k^2 e_r=e_(-r)` and `F_k^4=1`, together with
 `Q_m^4=1`, give `U_m^4=1`.  Moreover,
 
 ```text
@@ -130,7 +130,7 @@ factors through `B_m rtimes_J C_4`.  Formula `(EAP5)` proves zero
 lamp-covariance defect, and `U_m^4=1` proves exact actor coherence.
 
 These representations have the canonical group trace.  If `j=0` and
-`a!=0`, then `p_m(a)!=0` for all sufficiently large `m), and its left
+`a!=0`, then `p_m(a)!=0` for all sufficiently large `m`, and its left
 translation has trace zero.  For `j=1,3`, every diagonal entry of
 `F_(k_m)^j` has modulus `k_m^(-1/2)`, so
 
@@ -174,7 +174,7 @@ This persists under every negligible block padding, not just identity
 padding.  Let `r_m=o(d_m)`, let `Z_m in U(r_m)` be arbitrary, and compare
 `U_m direct_sum Z_m` with an arbitrary monomial `M'_m` of size
 `d_m+r_m`.  The old rows contribute at most `d_m/sqrt(k_m)` to the
-unnormalized overlap and the new rows contribute at most `r_m).
+unnormalized overlap and the new rows contribute at most `r_m`.
 Cross-block choices contribute zero.  Hence
 
 ```text
@@ -188,7 +188,7 @@ permutation, every orbit-coherent permutation, and every monomial
 representative after `o(d_m)` padding.
 
 Finally, Fourier transform on the `B_m` coordinate decomposes the regular
-representation into its characters, each with multiplicity `k_m).  Thus
+representation into its characters, each with multiplicity `k_m`.  Thus
 
 ```text
 (lambda_(B_m)(B_m) tensor 1)'
