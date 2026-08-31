@@ -27,8 +27,9 @@ Adding arbitrary finite-head coefficients on either side of a raw T
 transporter, or on either side of a raw S transporter, and then taking
 any finite complex linear combination remains exactly
 finite-moment-approximable by finite quotient regular representations.
-One raw orientation plus a complementary finite D16, S4, or qutrit edge
-cannot create a normalized-Hilbert--Schmidt obstruction.
+One raw orientation plus a complementary D16, S4, or qutrit edge whose
+outer coefficients lie in that finite head cannot create a
+normalized-Hilbert--Schmidt obstruction.
 
 The two-sided three-line selector is the sharp next boundary.  Write
 ```text
