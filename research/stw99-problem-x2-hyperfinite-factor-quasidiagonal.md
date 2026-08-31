@@ -11,10 +11,24 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw10-amenable-trace-frontier-2026-08-30.md
   - research/artifacts/stw99-x2-unitary-subgroup-reduction-2026-08-30.md
+  - research/artifacts/x2-popa-formulations-ingestion-2026-08-30.md
 ---
 
 **Problem X(2) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Is the hyperfinite II₁ factor `R` quasidiagonal
 (as a C\*-algebra)?
+
+**Literature status (verified 2026-08-30):** open.  Popa devoted a
+W\*-News post to exactly this question on 2026-05-28
+(`popa-projection-formulations-of-x2` imports its equivalent
+formulations: operator-norm Folner projections on `L²(R)`, and the
+local-AFD criterion), quoting Brown--Ozawa's "this seems unlikely, but
+a proof would be nice"; an Oberwolfach problem session poses it as
+Problem 16 together with the strictly weaker MF variant, now carried
+as `hyperfinite-factor-mf`.  The positive route's exact missing lemma
+is `norm-folner-projections-for-hyperfinite-factor`: Connes' Folner
+condition gives the Hilbert--Schmidt version unconditionally, and the
+norm upgrade admits no dimension-free conversion (checked rank-`n`
+projection pair in that node's Attempts).
 
 Since `R` has a unique trace and that trace is faithful, this is equivalent to
 asking whether `τ_R` is a quasidiagonal trace (Brown's Proposition 4.1.3
