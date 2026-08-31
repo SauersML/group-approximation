@@ -74,8 +74,9 @@ dimension-independent decoder.
 
 ## Exact support-design boundary
 
-For an arbitrary mask support `M subseteq F_W`, the two-equation mechanism
-above is absent exactly when
+For an arbitrary mask support `M subseteq F_W` sampled independently of
+the query function `f`, the two-equation mechanism above is absent exactly
+when
 
 ```text
 not (f^up in M and -f^up in M)
