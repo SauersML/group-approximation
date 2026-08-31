@@ -74,10 +74,47 @@ tau_g = tau_k tau_h^(-1)            if p=g,
 tau_h = tau_g^(-1) tau_k            if p=h.             (PCR1)
 ```
 
-Each expression is a partial bijection on `(1-o(1))N` points.  The restored
-relation holds exactly wherever the displayed compositions are defined.
-Previously restored relations remain exact because their label maps are never
-changed.
+Here are the domains explicitly.  If `p=k`, use
+
+```text
+{i in dom(tau_h):tau_h(i) in dom(tau_g)}.
+```
+
+If `p=g`, the domain of `tau_g` is
+
+```text
+tau_h(dom(tau_h) intersect dom(tau_k)).
+```
+
+If `p=h`, the domain of `tau_h` is
+
+```text
+{i in dom(tau_k):tau_k(i) in ran(tau_g)}.
+```
+
+The corresponding ranges are the images of these sets under the displayed
+compositions.  A composition or inverse composition of finitely many partial
+bijections whose domains and ranges omit `o(N)` points again has domain and
+range omitting `o(N)` points: every new omission is contained in an old
+omission or its injective preimage.  Thus every expression in `(PCR1)` is a
+co-large partial bijection.  The restored relation holds exactly on its
+co-large natural root domain.  Previously restored relations remain exact
+because their label maps are never changed.
+
+Repeated labels cause no ambiguity.  Since the pivot occurs literally once,
+only the other two slots can agree.  The three possible repeated-label forms
+reduce respectively to
+
+```text
+tau_p=tau_a^2,              for a a=p,
+tau_p=tau_a tau_a^(-1),     for p a=a,
+tau_p=tau_a^(-1) tau_a,     for a p=a.
+```
+
+The last two are partial identities on `ran(tau_a)` and `dom(tau_a)`.
+All three have co-large natural domains and obey the same estimates below.
+By contrast, `a a=a` has three literal occurrences of `a`, so it has no
+private pivot and correctly remains in the core.
 
 Let `e_s` be the current pointwise shadow radius of `tau_s`, and assume
 
@@ -103,15 +140,34 @@ If `p=g`, write `y=tau_h(i)`; then
  <= e_h+zeta+e_k.                                      (PCR4)
 ```
 
-The case `p=h` follows by applying the same comparison through
-`tau_g^(-1)`, and gives radius at most `e_g+zeta+e_k`.
+If `p=h`, put `j=tau_h(i)`, so `tau_g(j)=tau_k(i)`.  Unitary
+invariance gives the direct estimate
 
-Suppose the given core family is shadow-good off a set of density `theta`.
-Because every table is finite, iterating these estimates produces a constant
-`C_T` such that every restored label has radius at most
-`C_T(e+rho+zeta)`.  Each step discards only finitely many preimages or
-images of existing exceptional sets, so the total exceptional density is at
-most `C_T(theta+eta)+o(1)`.
+```text
+||x_j-U_hx_i||
+ =||U_gx_j-U_gU_hx_i||
+ <=e_g+zeta+e_k.                                      (PCR4a)
+```
+
+This avoids assuming that an arbitrary completion of `tau_g^(-1)` shadows
+`U_g^(-1)` outside its natural range.
+
+For completeness, track exceptional densities.  In the case `p=k`, a bad
+root lies in the bad set for `tau_h`, the injective preimage under `tau_h`
+of the bad set for `tau_g`, the relation-defect set, or one of the partial
+domain omissions.  Its density is therefore at most
+
+```text
+alpha_h+alpha_g+eta+o(1).
+```
+
+For `p=g` the same bound is `alpha_h+alpha_k+eta+o(1)`, and for
+`p=h` it is `alpha_g+alpha_k+eta+o(1)`; injectivity of every partial
+bijection preserves cardinality when bad sets are pulled back to the
+natural root domain.  Starting with core bad density `theta`, finitely many
+such recurrences give a table-dependent constant `C_T`.  Hence every
+restored label has radius at most `C_T(e+rho+zeta)` and the union of all
+exceptional sets has density at most `C_T(theta+eta)+o(1)`.
 
 Labels which occur in no relation may be assigned independent tight
 matchings at the end.  Complete every partial bijection arbitrarily.  The
@@ -153,7 +209,10 @@ reverse-peeling construction proves extension from the core.  If the core is
 empty, start with no assigned maps and obtain the whole coherent family.
 This proves the claimed reduction and the empty-core positive subclass.
 
-The subclass is strictly larger than one-overlap forests: after defining
-`c=ab`, the relation `ac=d` reuses both `a` and `c` but its private
-label `d` is assigned by `tau_d=tau_a tau_c`; no coupled matching is
-needed.
+The subclass is strictly larger than one-overlap forests.  Take
+`a,b,c,d` to be four distinct labels.  The two relation supports
+`{a,b,c}` and `{a,c,d}` intersect in the two labels `a,c`, so whichever
+relation is ordered second, it does not meet the previously seen labels in
+exactly one label.  Nevertheless, after defining `c=ab`, the relation
+`ac=d` has private label `d`, assigned by
+`tau_d=tau_a tau_c`; no coupled matching is needed.
