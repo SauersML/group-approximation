@@ -3,8 +3,6 @@ rg: 2
 id: right-core-cayley-average-gives-toeplitz-window
 kind: claim
 title: Right-core-equivariant Cayley averaging produces the full relative Toeplitz window
-requires:
-  - finite-positive-definite-window-is-a-relative-corner-selector
 distinct_from:
   induced-rounding-needs-rms-section-fillings: that bounds one word-section gauge by relative van Kampen areas; this gives the exact positive kernel for an arbitrary coset gauge and isolates its optimized edge energy.
   gauge-optimized-induced-energy-target: that proposes a uniform estimate after moving the exact core; this proves the finite averaging identity to which such an estimate would apply.

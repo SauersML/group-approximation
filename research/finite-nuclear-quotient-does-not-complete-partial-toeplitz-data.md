@@ -4,7 +4,7 @@ id: finite-nuclear-quotient-does-not-complete-partial-toeplitz-data
 kind: claim
 title: Finite nuclear quotients do not complete arbitrary partial Toeplitz data
 distinct_from:
-  exact-core-multiplicative-domain-does-not-descend-to-normal-quotient: that gives a ucp map on a free-group algebra whose minimal dilation detects a killed normal conjugate; this gives a quantitative nonextension gap for partially positive data even when the desired quotient algebra itself is finite-dimensional and nuclear.
+  exact-core-domain-does-not-descend-to-normal-quotient: that gives a ucp map on a free-group algebra whose minimal dilation detects a killed normal conjugate; this gives a quantitative nonextension gap for partially positive data even when the desired quotient algebra itself is finite-dimensional and nuclear.
   finite-positive-definite-window-is-a-relative-corner-selector: that proves a full positive-definite finite-group table produces the desired corner; this shows that facewise positivity on a generating pattern does not produce that full table.
 ---
 
