@@ -3,6 +3,9 @@ rg: 2
 id: even-congruence-regular-microstates-obstruct-odd-correction
 kind: claim
 title: Even-level regular representations stay far from every odd-congruence projective correction
+invalidates:
+  - correctability-from-extreme-point-exhaustion
+  - sl3-collapse-from-congruence-correctability
 distinct_from:
   sl3z-regular-microstates-are-congruence-correctable: that asserted universal odd-level correction; this gives an explicit exact regular-trace countersequence.
   infinite-hyperlinear-kazhdan-group-is-not-hs-stable: that concerns strict correction to arbitrary exact representations; the present obstruction survives flexible padding but uses the artificial coprime-level target restriction.
