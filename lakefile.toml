@@ -11,12 +11,12 @@ rev = "v4.32.0"
 name = "GroupApproximation"
 moreLeanArgs = ["-DwarningAsError=true"]
 
-# Actual operator-algebra foundations for the STW problems.  The roots in
-# this library are concrete mathematical constructions, not theorem-shaped
-# assumptions.  More roots are added here as the dependency tree grows.
+# Actual operator-algebra foundations for the STW problems.  `STW.Actual` is
+# the single import root; every genuine XXII/LV/XCV dependency is added under
+# it so the dedicated CI lane compiles the whole actual formalization tree.
 [[lean_lib]]
 name = "STWActual"
-roots = ["STW.Actual.FockPair"]
+roots = ["STW.Actual"]
 moreLeanArgs = ["-DwarningAsError=true"]
 
 # Standalone statement/assembly root for the three STW problems.
