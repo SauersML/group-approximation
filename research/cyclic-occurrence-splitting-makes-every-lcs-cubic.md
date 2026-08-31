@@ -53,7 +53,8 @@ This is an exact presentation theorem only.  Approximate equality errors
 can accumulate around a cycle of length `d`, so the construction does not
 claim a degree-independent Hilbert--Schmidt soundness constant.
 
-`expander-equality-splitting-is-a-robust-occurrence-four-compiler` repairs
-this quantitative loss by spending one more occurrence per copy.  Its
-rotating-Pauli example also proves that the degree-two equality cycle here
-has an unavoidable quadratic Poincare degeneration.
+`dummy-subdivided-expanders-give-robust-occurrence-three` repairs this
+quantitative loss without raising the occurrence budget: source copies sit
+on degree-two edge subdivisions while dummy variables form a cubic expander
+core.  The rotating-Pauli example still proves that the no-dummy equality
+cycle here has an unavoidable quadratic Poincare degeneration.
