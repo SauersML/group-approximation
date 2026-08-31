@@ -6,7 +6,7 @@ title: Normalize third rows and split dyadic unit ratios by exponent parity
 target: dyadic-iwahori-development-is-unimodular-clique
 requires:
   - iwahori-square-free-bs14-presentation
-  - relative-development-and-csp-kill-binary-h1
+  - proper-torus-diagonal-code-is-incomplete-cover-curl
 ---
 
 Use the arithmetic representatives
