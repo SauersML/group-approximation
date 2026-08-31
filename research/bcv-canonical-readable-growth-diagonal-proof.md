@@ -6,7 +6,6 @@ title: Deduce canonical readable growth from the arbitrary-strategy BCV diagonal
 target: bcv-canonical-readable-growth-no-computable-bound
 requires:
   - bcv-no-computable-perfect-halt-readable-bound
-  - bcv-arbitrary-perfect-halt-readable-diagonal-proof
 ---
 
 The strategy `S_M^can` is an attained-perfect finite-dimensional ZPC
