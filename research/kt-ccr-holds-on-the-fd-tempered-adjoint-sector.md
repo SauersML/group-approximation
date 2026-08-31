@@ -88,38 +88,49 @@ commutant and use
 `v=a+i sqrt(1-a^2)`; conditional expectation shows that its distance from
 the smaller commutant is at least the distance of `a`.
 
-For a trace-faithful matrix-ultraproduct `sigma=[pi_n]`, the enemy is even
-more specific.  The adjoint lifts
+For a trace-faithful matrix-ultraproduct `sigma=[pi_n]`, the enemy is
+more specific at the pointed-vector level.  The adjoint lifts
 
 ~~~text
 beta_n(g)=Ad(pi_n(g)) in U(d_n^2)
 ~~~
 
-define another trace-faithful matrix-ultraproduct representation because
+are trace-faithful microstates because
 
 ~~~text
 tr_(d_n^2)(Ad(U))=|tr_(d_n)(U)|^2.                       (FDT6)
 ~~~
 
-A failure of (CCR) therefore makes one of the finite-dimensional-radical
-elements `a_gamma` visible in a trace-faithful representation built from
-adjoint lifts of the original microstates.  This is strictly stronger than
-saying that some abstract representation detects the FD radical.
+A failure of (CCR) supplies distinguished unit vectors
+`xi_n=vec(v_n)`, where `v_n` are op-norm-one unitaries, such that the
+`Lambda`-generator displacement tends to zero while one
+`Gamma`-displacement stays positive.  Equivalently, one of the
+finite-dimensional-radical elements `a_gamma` acts nontrivially on this
+pointed ultralimit of adjoint microstates.
 
-Robust `(T;FD)_rob` supplies the stable low-spectrum projection representing
-`p_Lambda` for the approximate adjoint coordinates.  It does not force
-`(u_gamma-1)p_Lambda` to vanish.  That last product is exactly the
-compression-collapse term.  Hence robust spectral gap, finite-dimensional
-image collapse, and the op-norm-one unitary reduction leave one sharply
-named requirement:
+This pointed conclusion must not be confused with nonvanishing in the
+tracial matrix ultraproduct of the `d_n^2 by d_n^2` superoperators.  A
+vanishing normalized-rank superoperator can still move one distinguished
+unit vector.  The op-norm-one matricial origin of `xi_n` is therefore
+load-bearing.
+
+Robust `(T;FD)_rob` supplies stable low-spectrum control for the approximate
+adjoint coordinates.  It does not force the low-spectrum vectors of the
+special form `vec(v_n)` to be fixed by `gamma`.  The remaining
+bounded-vector estimate is exactly
 
 ~~~text
-trace-faithful adjoint-lift microstates annihilate a_gamma.             (FDT7)
+max_(s in S)||beta_n(s)vec(v_n)-vec(v_n)|| ->0
+and ||v_n||_op=1
+imply
+||(beta_n(gamma)-I)vec(v_n)|| ->0.                       (FDT7)
 ~~~
 
-Proving `(FDT7)` for the Kun--Thom actor proves (CCR).  Refuting it produces
-a non-FD-tempered spherical module of the special adjoint-lift form.
-Nothing here establishes `(FDT7)`, (CCR), or a nonhyperlinear group.
+Here vector norms are the normalized Hilbert--Schmidt norms of the matrices
+`v_n`.  Proving `(FDT7)` for the Kun--Thom actor proves (CCR).  Refuting it
+produces a non-FD-tempered spherical module of the special pointed
+adjoint-lift form.  Nothing here establishes `(FDT7)`, (CCR), or a
+nonhyperlinear group.
 
 DERIVATION
 fd-radical-kazhdan-projection-ccr-proof
