@@ -98,7 +98,7 @@ Therefore the simultaneous equations `V_s=Z U_s Z^*` are precisely
 `(FSP1)`, and Step 1 applies orbit by orbit.
 
 When the actor multiplication laws are exact, a closed labelled path at
-`chi` is an actor word in the stabilizer of `chi), and its connection
+`chi` is an actor word in the stabilizer of `chi`, and its connection
 product is the corresponding stabilizer action on the multiplicity fiber.
 Actor relators identify some graph loops, but they do not force all
 stabilizer returns to be trivial.  A spanning tree plus the finitely many
@@ -107,7 +107,7 @@ must match.
 
 ## Step 3: a flat-Walsh normalizer with canonical trace
 
-Identify `B_m` and its dual with `F_2^(2m)).  Put
+Identify `B_m` and its dual with `F_2^(2m)`.  Put
 
 ```text
 q_m(x)=sum_(j=1)^m x_(2j-1)x_(2j),
