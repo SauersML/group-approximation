@@ -16,6 +16,6 @@ for `x != y`.
 
 Consequently an exact finite-dimensional quantum solution cannot witness a
 quantum/classical gap for a group table.  Any witness to
-`finite-table-quantum-classical-hamming-gap` must have defect tending to zero
+`regular-finite-table-quantum-classical-hamming-gap` must have defect tending to zero
 only along unbounded matrix dimensions; the zero quantum infimum cannot be
 attained in one finite dimension.

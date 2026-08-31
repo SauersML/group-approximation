@@ -9,6 +9,11 @@ refuted_by:
 artifacts:
   - research/artifacts/stw99-lxxvi-soft-comparison-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-strong-pure-infiniteness-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxvi-finite-graph-compact-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxvi-finite-tree-noncompact-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxvi-finite-graph-projectionless-cycle-audit-2026-08-31.md
+  - research/artifacts/stw99-lxxvi-unicyclic-enriched-cu-audit-2026-08-31.md
+  - research/artifacts/stw99-lxxvi-cactus-enriched-cu-audit-2026-08-31.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -66,6 +71,68 @@ The same is now proved for circle fields in
 `stw99-lxxvi-circle-fields-over-simple-pure-fibers`: stable rank one cancels
 the compact clutching term, while the noncompact term is pointwise.  In
 particular `C(T) tensor C*_r(F_2)` is Cu-regular but not Z-stable.
+
+
+The compact wing is now completely controlled over every finite graph,
+without a `K_1`-vanishing hypothesis.
+`stw99-lxxvi-finite-graph-compact-clutching-rigidity` classifies projection
+bundles by their fiber class and one `K_1`-clutching coordinate per cycle,
+and proves that the actual first-factor map preserves all of them.  Thus for
+a simple stably finite pure fiber `D`, every compact class of `C(X,D)`
+survives tensoring with `Z` for every finite graph `X`.  This does not give
+the full Cu isomorphism: Phillips's circle-with-a-tail phenomenon leaves a
+genuinely noncompact, supportwise-clutching corridor when `K_1(D)` is
+nonzero.
+
+The full noncompact wing is now controlled over every finite tree, with no
+`K_1`-vanishing assumption.
+`stw99-lxxvi-finite-tree-formation-preserves-cu-regularity` proves the
+natural pointwise formula
+`Cu(C(T,D))~=Lsc(T,Cu(D))` for a simple separable stable-rank-one fiber.
+The proof attaches leaf edges one at a time: a nonzero unitary mismatch may
+flow toward the unprescribed endpoint or disappear where the comparison
+vector vanishes, and no cycle forces it back to a prescribed value.  Thus a
+simple stably finite pure fiber gives a pure Cu-regular field over every
+finite tree, even when its `K_1` is nonzero.  Cyclic graphs remain outside
+this theorem.
+
+
+Cycles are also controlled when the fiber is stably projectionless.
+`stw99-lxxvi-stably-projectionless-finite-graph-cu-regularity` proves the
+natural pointwise formula `Cu(C(X,D))~=Lsc(X,Cu(D))` for every finite graph,
+still with arbitrary `K_1(D)`. After cutting the chords, small spectral slices
+at the finitely many paired endpoints erase all clutching mismatches at
+arbitrarily small cost, and one simultaneous unitary lift closes every cut.
+Thus a simple stably finite pure stably projectionless fiber gives a pure
+Cu-regular field over every finite graph. This does not cover coefficients
+with nonzero projections or infinite graphs.
+
+
+The projectionful one-cycle corridor is now classified exactly.
+`stw99-lxxvi-unicyclic-enriched-cu-classification` identifies the full Cu
+semigroup of a connected unicyclic field with the fiber product of its actual
+circle Cu semigroup and its global `Lsc` function over circle evaluation.
+Point evaluation is surjective; its fiber is a singleton except when the
+function restricts to a nonzero constant compact class on the unique cycle,
+where the fiber is `K_1(D)`. This records Phillips's globally noncompact
+circle-with-a-tail classes without overdecorating soft cyclic support. It also
+proves that finite-pseudoforest formation preserves Cu-regularity for simple
+stable-rank-one fibers, so every simple stably finite pure fiber gives a pure
+Cu-regular field over every finite pseudoforest with arbitrary projections
+and arbitrary `K_1`. That theorem is the one-cycle case of the cactus result below.
+
+
+Articulation gluing now pushes the projectionful theorem past one cycle.
+`stw99-lxxvi-cactus-enriched-cu-classification` proves a one-point wedge Cu
+pullback theorem and therefore reduces every finite graph exactly to the
+actual Cu semigroups of its 2-connected blocks. For a cactus those blocks are
+only edges and circles, yielding a full enriched formula with one independent
+`K_1(D)` label on each cyclic block where the pointwise function restricts to
+a nonzero constant compact class. Thus finite-cactus formation preserves
+Cu-regularity for simple stable-rank-one fibers, and simple stably finite pure
+fibers give pure Cu-regular fields over cacti with arbitrarily many cycles,
+arbitrary projections, and arbitrary `K_1`. The unresolved graph boundary is
+a 2-connected block of first Betti number at least two, such as a theta graph.
 
 There is now a broader one-dimensional-base theorem at the exact idealwise
 `K_1`-free boundary.  For every second-countable locally compact Hausdorff
@@ -171,6 +238,7 @@ summand kills `alpha`, for arbitrary endpoint multiplicity matrices.  The
 circle theorem separately shows
 that no one-dimensional clutching analogue can work on a single circle.  The
 one-dimensional theorem rules out every second-countable locally compact base
-when the simple fiber has trivial `K_1`.  For arbitrary `K_1`, even a finite
-graph with a cycle can retain supportwise clutching data not visible in
-pointwise `Lsc` functions, so no unrestricted pointwise formula is claimed.
+when the simple fiber has trivial `K_1`.  For arbitrary `K_1` outside the stably projectionless class, the unicyclic
+classification records the exact supportwise clutching fiber missed by
+pointwise `Lsc` functions. No unrestricted pointwise formula is claimed, and
+a 2-connected block containing two or more independent cycles remains unresolved.

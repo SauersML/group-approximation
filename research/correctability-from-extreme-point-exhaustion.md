@@ -8,7 +8,12 @@ requires:
   - factorial-commutant-regular-embeddings-are-congruence
 ---
 
-**Step 1 (from almost-representations to embeddings).**  A regular-
+**REFUTED ROUTE.** The target's odd-level conclusion is false. In
+particular, the stated factorial-commutant requirement only promises a
+congruence realization; Step 3 had no mechanism forcing its level to be odd.
+The exact even regular tower is the counterexample.
+
+**Step 1 (historical reduction from almost-representations to embeddings).**  A regular-
 trace almost-multiplicative sequence `sigma_m` defines a
 trace-preserving embedding `iota : L(SL_3(Z)) -> M = prod_U M_(d_m)`
 (the trace is `delta_e`, whose GNS closure is the group factor).

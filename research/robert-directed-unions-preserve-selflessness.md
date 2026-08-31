@@ -15,4 +15,4 @@ family of unital C*-subalgebras with norm-dense union.  If every
 
 **Established (literature).**  This is Theorem 4.1 of Leonel Robert,
 *Selfless C*-algebras*, arXiv:2309.14188v3 / *Advances in Mathematics* 478
-(2025), 110403.  It is imported here, not reproved.
+(2025), 110409.  It is imported here, not reproved.

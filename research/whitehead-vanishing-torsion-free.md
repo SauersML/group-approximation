@@ -7,7 +7,7 @@ root: true
 distinct_from:
   whitehead-vanishing-universal-test-group: that claim is the same assertion concentrated on one explicitly constructed group, and is equivalent to this one; this is the global statement, and the equivalence is the content of the route between them rather than a duplication.
   whitehead-vanishing-recursively-presented-torsion-free: that claim restricts to finitely generated recursively presented groups, a countable class; this is the global statement over all torsion-free groups, and the reduction between them is a theorem, not a rephrasing.
-  whitehead-vanishing-finitely-presented-torsion-free: that claim restricts to finitely presented groups; this is global, and no route from that class to this one is known -- the gap is exactly whitehead-injective-torsion-free-embedding.
+  whitehead-vanishing-finitely-presented-torsion-free: that claim restricts to finitely presented groups; the established Whitehead-injective Higman embedding and finite-support reduction now prove it equivalent to this global statement.
   degree-one-assembly-surjective-torsion-free: that claim is about a map of spectra-level invariants being onto; this is the vanishing of a quotient group. They are equivalent by whitehead-is-degree-one-assembly-cokernel, which is the point of that node.
   hnn-torsion-theorem: that claim is combinatorial group theory -- torsion-freeness passes from the base of an HNN extension to the extension -- and produces torsion-free groups; this claim consumes torsion-freeness as a hypothesis and asserts something about K_1 of the integral group ring. Shared vocabulary, disjoint content.
   infinite-order-central-mark-group: that claim asks for a torsion-free finitely presented group carrying specific transport data for the non-MF program; this asserts a K-theoretic vanishing for every torsion-free group and requires no witness group at all.
@@ -79,13 +79,14 @@ it stops.
    topological `K_1` is zero, so the induced map annihilates every algebraic
    class and certifies nothing in either direction.  This is a zero target,
    not a small one.
-3. **Route through finitely presented torsion-free groups.**  The group
-   theory all works -- `torsion-free-higman-embedding` is a theorem, and
-   `finite-torsion-free-pattern-realizable-finitely-presented` moves an
-   invertible matrix with its inverse.  *Dies* at
-   `whitehead-injective-torsion-free-embedding`: the factorization found
-   upstairs may use elements no homomorphism carries home.  This is the
-   closest of the four; it is exactly one `K_1` statement short.
+3. **Route through finitely presented torsion-free groups.**  **Reduction
+   completed 2026-08-30.**  The Waldhausen--Higman rope now supplies a
+   finitely presented torsion-free host with an injective Whitehead map.
+   Together with the recursively-presented finite-support reduction, this
+   proves the global conjecture equivalent to
+   `whitehead-vanishing-finitely-presented-torsion-free`.  It is a complete
+   concentration theorem, not a vanishing proof: the latter node remains
+   open.
 4. **Farrell--Jones.**  Not attempted here and *deferred*, not refuted: it is
    the only lane with a track record (`degree-one-assembly-surjective-torsion-free`),
    and this graph has none of the controlled-topology machinery it needs.

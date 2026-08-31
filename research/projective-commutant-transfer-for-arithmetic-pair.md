@@ -35,6 +35,16 @@ asymptotically scalar.  That is already fatal to a regular microstate,
 because a scalar unitary commutator has trace modulus `1` while the
 regular trace of the nontrivial commutator word is `0`.
 
+The exact scalar bookkeeping is now closed by
+`trace-square-energy-splits-into-block-energy-and-phase-variance`.
+In particular positive trace-square energy cannot hide on a vanishing-rank
+corner: energy `epsilon` forces exceptional normalized rank at least
+`(1-sqrt(1-epsilon))/2`.  What can survive reducible decompositions is the
+separate phase-variance term in `(TSE3)` (for example equal `I` and `-I`
+blocks).  Thus the remaining arithmetic transfer problem is phase
+synchronization across approximate blocks, not a missing corner-normalizing
+factor or a sparse-rank escape.
+
 **Exact case: now a QUANTITATIVE theorem on both pairs.**  For exact
 finite-dimensional `rho` the inequality `(PRT1)` holds with zero
 defect term and explicit dimension-free constants:
@@ -504,3 +514,16 @@ exact variety to `delta`-representations, i.e. the outlier sector.
   `sl3-collapse-from-projective-transfer` the `SL_3` instance of this
   claim now also implies the full collapse `(RC3)`, so the projective
   lane and the exact lane converge at higher rank.
+- **Every enemy is now localized in a vanishing-density heat singular
+  subspace.**  `arithmetic-leak-has-sparse-heat-capture` diagonalizes the
+  finite-dimensional-null Kazhdan heat filters along any canonical
+  projective-transfer enemy.  At depths `N_j->infinity`, the evaluated
+  operators have normalized superoperator Hilbert--Schmidt norm tending to
+  zero, but retain norm at least `sqrt(2 epsilon)` on the selected
+  full-rank inner automorphism.  A fixed singular cutoff therefore has
+  vanishing normalized rank while capturing at least `epsilon/8` of the
+  selected vector's mass.  This is the exact dimension-free residue:
+  robust spectral gap and supertrace decay already make the bad carrier
+  sparse, but cannot kill its correlation with the selected inner vector.
+  A completion must add selected-vector incidence or prove that inner
+  automorphisms cannot concentrate in these arithmetic heat cutoffs.

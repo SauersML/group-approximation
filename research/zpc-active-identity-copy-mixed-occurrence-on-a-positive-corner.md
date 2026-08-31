@@ -31,10 +31,16 @@ non-rank-preserving cross-Gram or one-sided proper-corner incidence must
 authenticate the active actors and commuting-label actors on the same
 multiplicity reservoir.
 
-Equations `(AIM1)--(AIM2)` would make the residual commutator in `(CPM6)`
-asymptotically trivial on a positive fraction of every active-mismatch atom;
-the controlled-Pauli relation would then charge that atom.  Iteration or a
-bounded packing argument would still be needed if `c<1`.
+The two occurrence estimates are not sufficient while their frames are
+independent. `separate-occurrence-arrows-do-not-lock-pauli-gauge` gives an
+exact finite Clifford model with `R=E_11`, `c=1`, and zero defect in
+`(AIM1)--(AIM2)`, yet the original multiplicity actors have commutator `-1`:
+the two arrows separately rotate both actors to the same commuting Pauli
+axis. The packet must therefore add a **joint-frame** relation--one common
+arrow, or a mixed Gram constraint controlling `W_A^*W_B` on `R`. With that
+coherence added, `(AIM1)--(AIM2)` would make the residual commutator in
+`(CPM6)` asymptotically trivial on a positive fraction of the active atom;
+iteration or a bounded packing argument would still be needed if `c<1`.
 
 Packet dressing cannot supply `(AIM1)` by
 `pauli-gauge-word-retains-and-cocycle`.
@@ -57,3 +63,42 @@ Exact finite-character transport does not bypass this requirement.
 with one edge preserves the AND cocycle, while transporting actors separately
 leaves an arbitrary compressed relative stable word.  The remaining seam is
 therefore a genuinely mixed row, not another atom-transport theorem.
+
+The explicit two-qutrit AND cell cannot supply that joint frame internally.
+`two-qutrit-and-atom-has-no-internal-joint-frame` proves that its active atom
+`E_11=p_(0,0)` is rank-one and minimal in the marked `M_9` packet. It has no
+nonzero proper packet subcorner; an internal arrow is either scalar on that
+atom or transports the whole atom at equal rank. After tensoring a gauge
+reservoir, every proper subcorner lies entirely in the external factor and
+the selector packet compresses to scalars. Thus the next construction must
+add a genuinely mixed selector--reservoir generator; reusing another
+multipath sum or finite-packet arrow cannot provide the coherent occurrence.
+
+The common-arrow endpoint itself is quantitative and sharp.
+`two-qutrit-common-intertwiner-is-scalar-or-universal` proves, for one
+partial isometry `w` with source `r`, that
+
+```text
+||w([A,B]-1)||_2
+ <=2||A^o w-wA||_2+2||B^o w-wB||_2
+   +||([A^o,B^o]-1)ww^*||_2.
+```
+
+With the active Pauli gauge `[A,B]r=-r`, the left side is exactly
+`2 sqrt(tau(r))`. A genuine common frame therefore gives the desired
+normalized-HS charge. But the telescoping proof works in every tracial
+C-star algebra, so exact common-intertwiner rows are a universal lock. The
+remaining finite-specific task is precisely to extract such a positive
+model-dependent `r,w` from small matrix defects without requiring the
+infinite escape to contain that positive common occurrence.
+
+The BCV Question-Reduction apparatus is not the missing matrix-origin
+occurrence. `bcv-qr-cz-and-identity-gauges-remain-independent` puts
+`C_Z tensor sigma_z` on one Intro side and `I tensor sigma_x` on the
+other while passing every Pauli, SamZ, consistency, and hiding check exactly
+when the Intro edge autoaccepts. For every projection `R`, both possible
+central-sign comparisons have squared norm `2 tau(R)`. Pauli-X translations
+retain the first gauge, and combinatorial-detyping anchors have answer length
+zero. Thus BCV block exactification supplies separate frames only; using a
+common-fibre synchronization check would add exactly the non-autoaccept mixed
+relation sought here.

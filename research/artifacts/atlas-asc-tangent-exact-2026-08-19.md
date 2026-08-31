@@ -262,21 +262,42 @@ the ratio there is at most `4118.07 / 2 = 2059`, and at least `686`.  That
 class is therefore settled up to a factor of three, and it is settled
 positively.
 
-## 5. The proof-shaped residue
+## 5. Exact rational certificate completed on 2026-08-30
 
-`C_loc <= C` is equivalent to positivity, in every representation of `A_8`,
-of the single element
+The proposed finite-group calculation is now complete.  The verifier
 
-    C * W_pkt - W_cov   in Z[A_8]        (support 101 and 3 group elements).
+    experiments/verify_atlas_asc_one_fourteenth.py
 
-That is a finite rational statement about one element of an integral group
-algebra of order 20160: checkable in exact arithmetic irrep by irrep (14
-irreducibles, dimensions up to 70), or by exhibiting a sum-of-squares
-certificate `C W_pkt - W_cov = sum_i y_i^* y_i` in `Q[A_8]`.  Either form is
-small enough to be certified rather than measured, and is the natural next
-artifact for this lane -- and, unlike the tracial SOS route the node rules
-out in its item 6, this positivity is inside a *finite* group algebra, so
-the ruled-out obstruction does not apply to it.
+rebuilds the 234 signed-prefix elements and proves exactly over `Q` that
+
+    W_pkt - 14 W_cov >= 0
+
+in every representation of `A_8`.  It reconstructs all `20160` elements of
+the exceptional isomorphism `GL(4,2) ~= A_8`, then checks twelve rational
+Young-seminormal `S_8` sectors, one from each conjugate pair of partitions of
+`8`.  Their restrictions cover every `A_8` irreducible; self-conjugate
+sectors may split, but positivity on the full restriction checks both
+summands.
+
+Each sector passes exact Coxeter relations, an exact positive invariant Gram
+form, and rational symmetric elimination of
+`G sigma(W_pkt-14 W_cov)`.  The coefficient fingerprint is
+
+    b2cb3ba7e9abb8e7d23f43670707420b94b489f070977a27aedaa00d0ed7c3f5.
+
+Equality with positive covariance occurs in the `[6,2]`, `[5,1,1,1]`, and
+`[4,4]` sectors, so the constant `1/14` is sharp, not merely an upper bound.
+The replay summary is
+
+    experiments/atlas-asc-one-fourteenth-exact.json.
+
+This closes only the finite-group-algebra exactness gap.  The analytic link
+
+    sum_s ||rho(z_s)U||_2^2
+      <= C * sum_s ||pi_U(s)-1||_2^2
+
+after adjoining the required interior separator remains open, and therefore
+the nonhyperlinear-group root remains open.
 
 ## 6. Reproduction
 
@@ -284,10 +305,12 @@ the ruled-out obstruction does not apply to it.
     python3 experiments/atlas_asc_tangent_exact.py --words all
     python3 experiments/atlas_asc_tangent_exact.py --words tangent5
     python3 experiments/atlas_asc_tangent_exact.py --words certified24
+    python3 experiments/verify_atlas_asc_one_fourteenth.py
     # and the U = I gate of the full model:
     python3 experiments/atlas_asc_covariance_gpu.py --init identity --iterations 0
 
 Raw outputs: `experiments/asc-exact.json`,
 `experiments/asc-exact-tangent5.json`, `experiments/asc-exact-certified24.json`,
-`experiments/asc-bench.out`.  Evidence, not proof: the eigenvalues are
-double precision, and Section 5 is what would make them a certificate.
+`experiments/asc-bench.out`.  Those eigenvalues are double-precision
+cross-checks.  The last command and its checked JSON output are the exact
+rational certificate described in Section 5.

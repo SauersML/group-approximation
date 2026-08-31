@@ -24,6 +24,11 @@ is the bi-infinite iterated amalgam of the one-relator pieces
 `B_i = <a_{m+i}, …, a_{n+i} | W_i>` over the free Magnus subgroups
 `C_i = <a_{m+i+1}, …, a_{n+i}>` (Freiheitssatz).
 
+By [[groups-with-staggered-presentations-are-coherent]], every such infinite
+staggered chain `K` is coherent. This is a genuine finiteness theorem for all
+of its finitely generated subgroups, but it does not imply the finite
+permutation approximations required below.
+
 Claim: every such `K` is sofic.
 
 Because `G/K ≅ Z` is amenable and soficity passes to subgroups, `G` is sofic
@@ -50,12 +55,12 @@ a much smaller class, and the one-relator origin is the only leverage available.
    already established on the sub-family `n - m <= 1`.
 2. **Induct on relator length.**  *Dies on the window, not on the edge.*  The
    pieces `B_i` are shorter one-relator groups, so induction looks available —
-   but a finite interval of the chain is **not** a one-relator group.  It carries
-   several staggered relators `W_i`, so the induction hypothesis does not apply
-   to any finite approximant, and the induction never starts.  This is the
-   precise failure point, and it is worth stating in this form because "each
-   piece is a smaller one-relator group" is true and misleading in the same
-   breath.
+   but a finite interval of the chain is **not** a one-relator group. It carries
+   several staggered relators `W_i`. Jaikin-Zapirain--Linton now prove that
+   every such finite staggered window is coherent, but the induction hypothesis
+   needed here is soficity, so the induction still never starts. The distinction
+   matters because "each piece is a smaller one-relator group" is true and
+   misleading in the same breath.
 3. **Rank `>= 2` edge groups via general amalgamation permanence.**  *Dies for
    want of a theorem.*  When `rank C_i = n - m >= 2` the edge group is a
    nonamenable free group and nothing in the standard permanence toolkit

@@ -77,6 +77,10 @@ artifacts:
   - research/binary-jacobson-elementary-mark-is-finite-quotient-invisible.md
   - research/binary-jacobson-steinberg-head-root-is-mf-invisible.md
   - research/property-t-free-leavitt-via-jacobson-head-root.md
+  - research/infinite-orthogonal-mark-orbit-is-mf-compatible.md
+  - research/binary-leavitt-single-root-character-orbit-has-zero-gap.md
+  - research/properly-infinite-cstar-quotient-is-compatible-with-fp-mf-group.md
+  - research/group-algebra-corners-exclude-traceless-leavitt-inputs.md
 ---
 
 OPEN.  Let `R=L_(F_2)(1,2)` and let
@@ -257,6 +261,24 @@ fixed `M` are compatible with sparse escape and still fall short of
 can return the sparse carrier.  The load-bearing mixed-root row must fold
 this intrinsically infinite orbit back to one finite projective reservoir.
 
+Orbit infinitude cannot replace that fold, even after normal generation is
+added.  `infinite-orthogonal-mark-orbit-is-mf-compatible` realizes a
+finite-order normal generator of the simple locally finite group `A_fin` in
+a faithful norm matrix corona so that its marked spectral atom has infinitely
+many pairwise orthogonal conjugates, each of eventual rank two.  The group is
+still operator-MF and the rank-two marked corner cannot carry Atomic Morita
+Return.  Thus outward orthogonal packing, simplicity and normal generation
+jointly stop strictly before a same-atom return.
+
+The root subgroup which proves the literal orbit is infinite supplies no
+hidden expansion either.  `binary-leavitt-single-root-character-orbit-has-zero-gap`
+identifies it with the regular translation action of an infinite elementary
+abelian quotient `L/K`.  Every finite actor menu generates a finite
+translation subgroup, so the normalized Schreier operator has norm one.
+Consequently the existing one-root orbit cannot be combined with an
+infinite-orbit expansion lemma without adding genuinely new parabolic actors
+and a new uniform gap theorem.
+
 There is no generic rank-or-commutant dichotomy which closes this seam.
 `sparse-dyadic-rank-germ-carries-haar-cyclic-holonomy` gives one nonzero
 vanishing-density corona projection which is divisible through every fixed
@@ -329,6 +351,28 @@ Leavitt algebra and the head root maps exactly to `z`, so
 `property-t-free-leavitt-via-jacobson-head-root` closes the full goal from
 that one result.  Its only known escape is rectangular Morita typing; all
 finite-group and finite-ring models already kill the head.
+
+A complex stable-finiteness quotient does not bypass that typing seam.
+`properly-infinite-cstar-quotient-is-compatible-with-fp-mf-group` gives an
+explicit surjection from the residually finite-dimensional full C-star
+algebra `C*(F_3)` onto `O_2`, using three concrete Julia unitaries.  Thus a
+finitely presented operator-MF group can have a unitary-generated C-star
+quotient with a literal one-sided inverse.  A Leavitt/Cuntz quotient of the
+present full group C-star algebra would therefore prove nothing until the
+one-sided inverse is retained in every group-faithful corona image; that
+retention is the same-atom decoder, not a consequence of quotient
+stable-finiteness.
+
+The complementary hereditary shortcut is algebraically unavailable.
+`group-algebra-corners-exclude-traceless-leavitt-inputs` normalizes the
+faithful coefficient trace on every nonzero projection corner of every
+complex group algebra.  Hence no complex Cuntz/Leavitt star algebra maps
+unitally into such a corner; the characteristic-two algebra is excluded
+already by scalar characteristic.  Thus the Leavitt one-sided inverse can
+live in a quotient, where it is not MF-detecting, or in a retained corner,
+where the canonical trace forbids it.  A successful group proof must decode
+the relations representation-by-representation on a selected matrix corner,
+rather than embed a universal traceless Leavitt algebra in the group ring.
 
 The independent matrix-only audit reaches the same seam from the opposite
 direction.  Weighted Hall deficit, rectangular rank deficiency,

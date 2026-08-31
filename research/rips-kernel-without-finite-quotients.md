@@ -37,10 +37,11 @@ they observe it would suffice to start from a hyperbolic group with no
 nontrivial finite quotients, and that the existence of such a group is
 *equivalent* to the existence of a non-residually-finite hyperbolic group.
 
-The claim above is deliberately **not** that stronger statement.  `N` is only
-a quotient of a hyperbolic group, and a quotient of a residually finite group
-can perfectly well have no finite quotients, so the claim is not circular on
-its face.  What is missing is a construction that forces the property.
+Kapovich--Wise together with Belegradek--Osin shows that the claim is exactly
+equivalent to the existence of a non-residually-finite hyperbolic group; see
+[[rips-kernel-target-iff-hyperbolic-nonrf]]. Thus this target is circular at
+the existence level even though a quotient of a residually finite group can,
+in isolation, have no finite quotients.
 
 ## Attempts
 

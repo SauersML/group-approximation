@@ -3,6 +3,8 @@ rg: 2
 id: atlas-a4-joint-weighted-cycle-ceiling
 kind: claim
 title: Jointly weighting the S3 detector and t21 synthesis beats the collision floor
+refuted_by:
+  - atlas-m2-escape-refutes-six-a4-cycle-bridge-ceilings
 distinct_from:
   atlas-a4-optimized-weighted-four-cycle-ceiling: that fixes equal weight on the two raw S3 covariance defects before optimizing the t21 word; this target also optimizes the relative price of the synthesized t21 detector against the direct t12 detector.
 ---

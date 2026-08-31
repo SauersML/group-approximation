@@ -38,3 +38,7 @@ z in Rad_MF(E_3).                                      (DER2)
   triviality of the radical, `(DER1)` is equivalent to the open claim that
   `E_3` is not MF.  Finite-dimensional invisibility alone does not establish
   this asymptotic operator-norm assertion.
+- `deligne-triple-cover-mf-radical-dichotomy` now records the unconditional
+  result: the radical is either `1` or the order-three covering kernel
+  `C_3`.  The nontrivial branch is equivalently the open point-norm sector
+  exclusion `deligne-nontrivial-maslov-opnorm-sectors-are-empty`.

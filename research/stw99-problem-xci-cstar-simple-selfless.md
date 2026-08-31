@@ -7,6 +7,7 @@ root: true
 distinct_from:
   stw99-problem-xc-cstar-simple-strict-comparison: that asks for strict comparison; this asks for Robert's selflessness, which implies strict comparison (Robert, Theorem 3.1) and is the refinement STW record as Problem XCI.
 artifacts:
+  - research/artifacts/stw91-graph-component-selflessness-audit-2026-08-30.md
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw91-selfless-group-frontier-2026-08-30.md
   - research/artifacts/stw91-cograph-product-permanence-audit-2026-08-30.md
@@ -15,6 +16,9 @@ artifacts:
   - research/artifacts/stw91-php-crossed-product-selflessness-audit-2026-08-30.md
   - research/artifacts/fkop-graph-product-selflessness-v3-audit-2026-08-30.md
   - research/artifacts/stw91-locally-finite-permutation-wreath-audit-2026-08-30.md
+  - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
+  - research/artifacts/stw91-universal-vertex-absorption-audit-2026-08-30.md
+  - research/artifacts/stw91-complete-graph-anchor-audit-2026-08-30.md
 ---
 
 **Problem XCI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026)** (Robert).  Is `C*_r(F₂)` selfless?  If `G` is a
@@ -36,6 +40,15 @@ the free product to the ultrapower**, not conversely.  Selfless tracial
 algebras are simple, have stable rank one and strict comparison, and their
 trace is the unique trace and unique normalized 2-quasitrace (Robert,
 Theorem 3.1).
+
+Gould, arXiv:2606.09654v2, Theorem 2 and Corollary 3, completes the structural
+dichotomy beyond the tracial setting: every selfless C-star algebra is pure;
+a selfless probability space is simple, with the stable-rank-one package in
+the tracial case and pure infiniteness in the nontracial case.  Theorem 2.5
+settles the formerly missing nonfaithful-state case by proving pure
+infiniteness and simplicity.  This is recorded as
+`gould-selfless-dichotomy-and-purity`; it gives consequences of selflessness
+and does not prove the universal group assertion in XCI.
 
 The first part is solved: `C*_r(F_n)` is selfless for `n ≥ 2`
 (Amrutam--Gao--Kunnawalkam Elayavalli--Patchell, arXiv:2412.06031, published
@@ -111,3 +124,16 @@ selflessness machinery of Gao--Junge--Kunnawalkam Elayavalli--Patchell--Robert
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete negative
   certificate in ordered `K_0` using averaging projections of finite
   subgroups.
+
+- `graph-products-no-universal-vertex-selfless-criterion` gives an exact
+  solution for graph products with no universal vertex: C-star-simplicity is
+  equivalent to selflessness, and the sole obstruction is a two-vertex
+  complement component labelled by `C_2,C_2`.  For C-star-simple vertex
+  groups the resulting algebra is completely selfless, with no exactness or
+  prior vertex-selflessness assumption.
+
+- `graph-products-noncomplete-selfless-criterion` settles every graph-product instance whose defining graph is noncomplete, including graphs with arbitrarily many universal vertices labelled by arbitrary C-star-simple groups. One nonsingleton complement component supplies a completely selfless tensor anchor that absorbs the entire remaining C-star-simple factor without exactness. The complete-graph case is the exact residual boundary; a one-vertex complete graph is the universal problem itself.
+
+- `complete-graph-products-selfless-anchor` settles the complementary complete-graph class whenever one vertex reduced algebra is completely selfless: the other countably many vertex groups may be arbitrary C-star-simple groups, even nonexact. For finite complete graphs with all vertex factors completely selfless, the product is completely selfless. The anchor hypothesis is not automatic and therefore does not close the universal root.
+
+- `paired-selflessness-witnesses-do-not-tensor` gives an exact fourth-moment obstruction to the naive tensoring of two ordinary selflessness witnesses. The paired copies contain crossed-coordinate centered elements whose alternating fourth moment is strictly positive, so separate free-product splittings do not become a splitting for the tensor product. This does not refute tensor permanence; it isolates the need for a genuinely entangling or completely selfless construction.

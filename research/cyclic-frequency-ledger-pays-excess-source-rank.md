@@ -107,9 +107,10 @@ it has `q=0` and occupies only the single unpaid direction in `(CFR7)`.  As
 soon as a packet asks for multiple independent sources, the excess rank has
 a cubic frequency price.
 
-Combining with `(TSG4)`, two already extracted cubic source isometries may be
-Gram-aligned to `W`, after which their inversion defects pay every
-beyond-capacity direction at the dimension-free passive rate `(CFR6)`.
+Conditionally on the two-source estimate `(TSG4)`, two already extracted
+cubic source isometries may be Gram-aligned to `W`, after which their inversion
+defects pay every beyond-capacity direction at the dimension-free passive
+rate `(CFR6)`.  This application is context, not a premise of `(CFR3)--(CFR7)`.
 
 ## Remaining scope
 

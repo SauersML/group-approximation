@@ -205,16 +205,19 @@ The character theorems found in the primary-source audit do not fill this
 gap.
 
 - Peterson--Thom, *Character rigidity for special linear groups*,
-  arXiv:1303.4007, treats infinite fields and localizations of orders in
-  number fields.  Its operator-algebraic superrigidity theorem says that a
-  generating factor representation of the relevant arithmetic `PSL` group
-  is its regular factor (up to the finite/precompact sector).  Consequently,
-  constructing the desired generating non-CE representation for one of
-  those groups would already prove the final theorem directly.
+  arXiv:1303.4007v3, Theorem 3.6, treats
+  `PSL_m(BS^(-1))`, where `B` is an order and `m>=2` (with infinitely many
+  units required when `m=2`).  Its operator-algebraic superrigidity theorem
+  identifies a generating `II_1` factor representation in this range with
+  the regular factor.  Consequently, constructing the desired generating
+  non-CE representation for one of those groups would already prove the
+  final theorem directly.
 - Lavi--Levit, *Characters of the group EL_d(R) for a commutative Noetherian
-  ring R*, arXiv:2007.15547 / Adv. Math. 419 (2023), assumes exactly that the
-  coefficient ring is commutative and Noetherian.  A BCS star algebra is
-  noncommutative, and the theorem does not apply.
+  ring R*, arXiv:2007.15547 / Adv. Math. 419 (2023), Theorem 1.1 and
+  Corollary 1.3, assume that `R` is commutative, Noetherian, and unital and
+  that `d>max(sr(R),2)`.  Their further-questions section leaves the
+  noncommutative-ring extension open.  A BCS star algebra is noncommutative,
+  so the theorem does not apply.
 - Odd/unitary Steinberg presentations over rings with involution provide
   algebraic central extensions of form-preserving groups, not positive
   Hilbert-space unitary representations of the canonical coefficient
@@ -232,4 +235,3 @@ inputs:
 Input 1 is the existing twisted-factor gate.  Input 2 already proves the
 group's regular factor non-CE by the character theorem.  Neither is a weaker
 compiler from the current BCS algebra.
-

@@ -224,3 +224,12 @@ positive branch aggregation is either rank-deficient or, at the sharp
 threshold, vacuous.  The live checksum must make a payload-coupled returned
 channel pay the forbidden source mass; it cannot be assembled by adding the
 two range-sum branches.
+
+Nor does passing from the two native branches to all packet translates help.
+`weyl-return-frame-is-exact-rectangular-escape` realizes the sharp threshold
+canonically at every refinement depth: the `p^(2r)` Weyl-indexed target
+returns have orthogonal initial Grams whose sum is exactly `R_s`.  Hence
+packet-symmetric source coverage is already exact in the rectangular model.
+What can pay is not completeness of that frame but a full-presentation
+collision between two distinct Weyl indices, or a proper-subframe deficit
+whose omitted Gram is independently charged.

@@ -26,9 +26,14 @@ Then `Ad pi(t)(N)=N_t>=N`, and a relative wall -- a unitary `v in N` with
 `[v,pi(t^(-1) gamma t)]!=0` for some `gamma in Gamma` -- exists **iff**
 `N!=N_t`.  The marked predecessor `h` is not data.
 
-Involutive form: a Clifford wall exists iff there are `gamma in Gamma` and a
-self-adjoint involution `w in N_t` with
-`w (pi(gamma) w pi(gamma)^*)+(pi(gamma) w pi(gamma)^*) w=0`.
+Involutive form (**an extra condition, not a consequence of `N!=N_t`**): a
+Clifford wall exists iff there are `gamma in Gamma` and a self-adjoint
+involution `w in N_t` with
+`w (pi(gamma) w pi(gamma)^*)+(pi(gamma) w pi(gamma)^*) w=0`.  The strict
+inclusion supplies a bare noncommuting wall only.  The elementary
+`proper-finite-tracial-inclusion-does-not-force-majorana` counterexample
+records why an anticommuting Majorana cannot be extracted from properness
+alone.
 
 **Invariance form.**  If `Gamma` is infranormal, a wall exists for *some*
 compressor iff `N` is not `Ad pi(G)`-invariant.  This is the exact

@@ -10,6 +10,8 @@ artifacts:
   - experiments/atlas_asc_kernel_exact.py
   - experiments/asc-kernel-exact.json
   - experiments/asc-exact.json
+  - experiments/verify_atlas_asc_one_fourteenth.py
+  - experiments/atlas-asc-one-fourteenth-exact.json
   - research/artifacts/atlas-asc-tangent-exact-2026-08-19.md
 ---
 
@@ -43,23 +45,47 @@ W_pkt = sum_s z_s^* z_s        (support 101, trace 1516, coefficient sum 0),
 W_cov = 4 - 2 h_a - 2 h_b      (support 3, trace 4, coefficient sum 0).
 ```
 
-## The eigenvalue problem
+## Exact finite-group certificate
 
-`rho` and `lambda` are unitary representations of `A_8` containing every
-irreducible constituent, and the generalized spectrum of a pair of group
-algebra elements depends only on which irreducibles occur.  So the constant
+The desired constant is equivalent to positivity of
 
 ```text
-C_loc = max { lambda : rho(W_cov) x = lambda rho(W_pkt) x }
+W_pkt - 14 W_cov
 ```
 
-may be computed in the left regular representation: build the two
-`20160 x 20160` group matrices `L[i,j] = W(m_i m_j^(-1))`, diagonalize the
-positive one, check the kernel leak, and read the top eigenvalue of the
-compression of the other to the support.  In double precision on one A100
-the whole computation is 69 s, of which 33 s enumerates `GL(4,2)`.
+in every representation of `A_8`.  The verifier
+`experiments/verify_atlas_asc_one_fourteenth.py` checks this without floating
+point.  It reconstructs the 234 literal boundary words, obtains `W_pkt` with
+support `101`, identity coefficient `1516`, and coefficient sum `0`, and
+rebuilds the exceptional isomorphism `GL(4,2) ~= A_8` on all `20160`
+elements.
 
-## Numbers
+The irreducible check uses one partition in every conjugate pair of
+partitions of `8`.  Restriction from `S_8` to `A_8` identifies conjugate
+non-self-conjugate Specht modules, while a self-conjugate Specht module
+splits into the two corresponding `A_8` irreducibles.  Thus the twelve
+selected rational Young-seminormal sectors cover all fourteen irreducible
+`A_8` representations; positivity on a full self-conjugate restriction
+checks both summands.
+
+For each sector the verifier checks the Coxeter relations exactly, constructs
+a positive rational diagonal Gram form `G`, verifies that
+`G sigma(W_pkt-14 W_cov)` is symmetric, and performs exact rational symmetric
+elimination.  Positive pivots are removed by Schur complement; when no
+positive diagonal remains, the residual matrix is required to be exactly
+zero.  Hence every sector is positive semidefinite.  The coefficient hash is
+
+```text
+b2cb3ba7e9abb8e7d23f43670707420b94b489f070977a27aedaa00d0ed7c3f5.
+```
+
+The exact kernels carry nonzero `W_cov` in the `[6,2]`, `[5,1,1,1]`, and
+`[4,4]` sectors, so equality is attained with positive covariance and the
+constant `1/14` is sharp.  The machine-readable sector summary is
+`experiments/atlas-asc-one-fourteenth-exact.json`.
+
+The earlier regular-representation computation remains an independent
+numerical cross-check:
 
 ```text
 all 234 words   ker 120   leak 2.36e-17   C_loc = 0.07142857142857525
@@ -67,18 +93,8 @@ five words      ker 120   leak 2.18e-17   C_loc = 1.000000000000068
 certified 24    ker 2358  leak 6.000000000009  -> first-order escape
 ```
 
-`120 = 20160/168 = [A_8 : GL_3(2)]` is the dimension of the permutation
-module on `A_8/H`, which is the `H`-fixed space summed over all irreducibles
-with multiplicity -- an independent confirmation of the kernel identification
-in `point15-boundary-tangent-equals-s3-covariance-kernel`, now for the whole
-packet rather than the five-word screen.
-
-## What would upgrade this from measured to certified
-
-`C_loc <= C` is exactly positivity of the single element `C W_pkt - W_cov` of
-`Q[A_8]` in every representation: 14 irreducibles of dimension at most 70, so
-it is checkable in exact arithmetic, or by a sum-of-squares certificate
-`C W_pkt - W_cov = sum_i y_i^* y_i` in `Q[A_8]`.  The tracial-SOS obstruction
-recorded as item 6 of `atlas-two-s3-covariance-collapse` does not apply: that
-rules out certificates valid in every finite tracial von Neumann algebra,
-whereas this positivity lives in one finite group algebra.
+Here `120 = 20160/168 = [A_8 : GL_3(2)]` is the dimension of the permutation
+module on `A_8/H`, agreeing independently with the exact kernel
+identification.  The finite-group certificate does not address the remaining
+analytic comparison between linear energy and the full nonlinear packet
+defect.

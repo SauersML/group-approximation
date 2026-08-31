@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **Established by citation.**  Dogon--Vigdorovich, arXiv:2506.20843v2,
-Theorem 1.5 (`thm:main_S_arith` in the source):
+Theorem 4.1 (`thm:main_S_arith` in the source):
 
 > Let `F` be a totally real number field, `S` a finite set of valuations on `F`
 > including all Archimedean ones, and `O_S` the ring of `S`-integers in `F`.

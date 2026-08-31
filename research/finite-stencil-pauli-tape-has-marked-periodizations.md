@@ -21,11 +21,13 @@ Gamma_D=<t,p,q,J |
        (a,b in {p,q}, r in D)> .                         (FSP1)
 ```
 
-Choose an integer
+If `D` is nonempty, choose an integer
 
 ```text
 m>max_(r in D)|r|.                                      (FSP2)
 ```
+
+For `D` empty, choose any positive `m`.
 
 Let `K_m` be the central product of `m` copies of the one-qubit Pauli
 group, with generators

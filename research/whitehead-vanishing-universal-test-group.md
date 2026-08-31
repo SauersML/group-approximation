@@ -48,6 +48,16 @@ groups only, and the reduction above delivers finitely generated ones.  That
 mismatch is the subject of
 `whitehead-vanishing-recursively-presented-torsion-free`.
 
+## Finite tester upgrade
+
+A stronger packaging theorem is now established in
+[[whitehead-universal-finitely-presented-torsion-free-group]]: there is a
+single finitely presented torsion-free U such that Wh(U)=0 is equivalent to
+this claim and to the global conjecture. That does not establish vanishing;
+it replaces this node's uncountable restricted product by a finite
+presentation without losing any Whitehead class from the finitely presented
+case.
+
 ## Attempts
 
 **Compute it directly.**  `K_1` commutes with directed colimits of rings, and

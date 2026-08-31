@@ -4,10 +4,21 @@ id: stw99-problem-xlvii-af-cartan-criterion
 kind: claim
 title: Cantor C*-diagonals in AF algebras are AF Cartans (STW Problem XLVII, sharp form)
 root: true
+refuted_by:
+  - stw47-car-non-af-cantor-diagonal
 artifacts:
   - research/artifacts/stw99-presentations-cartan-cluster-2026-08-30.md
   - research/artifacts/stw47-normalizer-full-group-audit-2026-08-30.md
+  - research/artifacts/stw47-paper-folding-refutation-2026-08-30.md
 ---
+## Resolution (2026-08-30)
+
+**Refuted in the sharp encoded form.**  Kopsacheilis--Winter construct a
+Cantor-spectrum C-star-diagonal in the CAR algebra which is not an AF
+diagonal.  Since the CAR algebra is AF, `stw47-car-non-af-cantor-diagonal`
+is a literal counterexample.  The broader recognition problem remains: the
+established normalizer criterion still characterizes which diagonals are AF.
+
 
 **Problem XLVII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
 asks (in Effros's deliberately vague style) for an abstract criterion
@@ -16,15 +27,15 @@ Encoded here in the sharp testable form the literature pins down: is
 every C\*-DIAGONAL (Cartan with the unique extension property) with
 Cantor spectrum in an AF algebra an AF Cartan?
 
-Known: AF Cartans are unique up to automorphism (Power), and are
+Historical status before the 2026 refutation: AF Cartans are unique up to automorphism (Power), and are
 C\*-diagonals with Cantor spectrum; Mitscher--Spielberg construct
 non-AF Cantor CARTANS in irrational-rotation AF algebras, but their
 examples come from non-principal groupoids, hence fail the unique
 extension property — STW record that no non-AF Cantor DIAGONAL in an
-AF algebra is known.  So principality (= diagonality) is the candidate
-criterion, unrefuted.
+AF algebra is known.  Kopsacheilis--Winter's paper-folding diagonal now refutes that candidate
+criterion inside the CAR algebra.
 
-## Attempts
+## Historical attempts
 
 * Positive strategy: a Cantor diagonal gives a principal étale
   groupoid model of the AF algebra; AF-ness of the algebra plus
@@ -32,14 +43,13 @@ criterion, unrefuted.
   relation — this is a groupoid-homology/dimension statement
   (principal + `dim_nuc = 0` ⟹ AF groupoid?) that fails for
   non-principal groupoids (Mitscher--Spielberg have nuclear dimension
-  0 models with nontrivial isotropy) and is open for principal ones;
+  0 models with nontrivial isotropy) and was open for principal ones;
   the missing tool is exactness of the passage from local finiteness
   of the ALGEBRA to local finiteness of the RELATION, a Feldman--Moore
   style statement outside the measured setting.  Refutation strategy:
   run Mitscher--Spielberg with an isotropy-free replacement groupoid —
   their K-theory bookkeeping does not obviously need the isotropy, so
-  this problem is live in both directions and is flagged as the
-  cheapest place in this cluster where a counterexample might drop.
+  the paper-folding construction now supplies exactly that counterexample.
 * There is now an exact intrinsic recognition theorem
   (`stw47-normalizer-full-group-recognizes-af-cartans`): for a separable
   unital C-star-diagonal pair with Cantor spectrum, `D` is an AF Cartan if
@@ -48,9 +58,8 @@ criterion, unrefuted.
   normalizers is subhomogeneous.  The proof
   identifies this quotient with the topological full group, builds the AF
   relation from its finite subgroups, and coherently trivializes every twist
-  over that AF relation.  Thus the ambient-AF question has a finite witness:
-  a counterexample must contain finitely many normalizing unitaries whose
-  images generate an infinite group.  What remains open is precisely why
-  finite-dimensional approximation of the ambient algebra should rule out
-  such a packet; ordinary AF approximation need not preserve `D` or its
-  normalizers.
+  over that AF relation.  Thus the ambient-AF question had a finite witness: a counterexample had to
+  contain finitely many normalizing unitaries whose images generate an
+  infinite group.  The paper-folding example now realizes this alternative;
+  ordinary AF approximation of the ambient algebra does not preserve `D` or
+  its normalizers.

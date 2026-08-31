@@ -29,10 +29,12 @@ There are three separate promotion steps.
    projection under `a` with a projection under `b`; taking the Cuntz
    supremum proves strict comparison for arbitrary positive elements.  No
    uniform spectral-gap or compactness assertion is inserted.
-3. Unique trace supplies uniform Gamma by the known Sato/trace-kernel
-   argument.  CETW then turns strict comparison into Z-stability.  Conversely,
-   the Gong--Jiang--Su ordered-`K_0` theorem makes every simple unital
-   Z-stable algebra weakly unperforated.
+3. The unique trace is a compact zero-dimensional extreme tracial boundary.
+   The Toms--White--Winter finite-boundary theorem therefore turns strict
+   comparison into Z-stability (equivalently one can factor this through
+   unique-trace uniform Gamma and CETW).  Conversely, the Gong--Jiang--Su
+   ordered-`K_0` theorem makes every simple unital Z-stable algebra weakly
+   unperforated.
 
 ## Primary sources
 
@@ -55,10 +57,12 @@ There are three separate promotion steps.
 * Mikael Rordam, *The stable and the real rank of Z-absorbing C-star
   algebras*, International Journal of Mathematics 15 (2004), 1065--1084, for
   almost unperforation under Z-stability;
-* Jorge Castillejos, Samuel Evington, Aaron Tikuisis, and Stuart White,
-  *Uniform property Gamma*, International Mathematics Research Notices
-  (2022), Theorem 5.6, together with Sato's unique-trace central-sequence
-  theorem, for the final strict-comparison-to-Z-stability step.
+* Andrew Toms, Stuart White, and Wilhelm Winter, *Z-stability and finite
+  dimensional tracial boundaries*, International Mathematics Research
+  Notices (2015), for the final strict-comparison-to-Z-stability step; the
+  unique trace gives the singleton boundary case.  The equivalent factorized
+  route uses the unique-trace central-sequence theorem and the
+  Castillejos--Evington--Tikuisis--White uniform-Gamma characterization.
 
 ## Boundary
 

@@ -3,6 +3,7 @@ rg: 2
 id: carmichael-edge-hodge-operator-has-root-m-norm
 kind: claim
 title: The Carmichael edge incidence operator of an R5 packet has square-root norm
+refuted_by: scalar-phase-refutes-r5-subquadratic-energy
 artifacts:
   - research/artifacts/thompson-subquadratic-carmichael-energy-2026-08-24.md
 distinct_from:

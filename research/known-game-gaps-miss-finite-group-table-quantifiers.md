@@ -4,14 +4,14 @@ id: known-game-gaps-miss-finite-group-table-quantifiers
 kind: claim
 title: Known nonlocal-game gaps miss the finite group-table quantifiers
 distinct_from:
-  finite-table-quantum-classical-hamming-gap: that asks for one coherent regular-character multiplication table; this audits the existing exact, gapped, and nonclosed game sources and shows why none currently supplies it.
+  regular-finite-table-quantum-classical-hamming-gap: that asks for one coherent regular-character multiplication table; this audits the existing exact, gapped, and nonclosed game sources and shows why none currently supplies it.
   exact-finite-dimensional-group-table-classicalizes: that rules out one exact separated unitary table; this combines it with the two other game-value regimes and the explicit permutation model of Slofstra's marked sign.
   perfect-decoding-does-not-imply-quantum-value-gap: that records the existence of a nonclosed LCS game with quantum value one; this checks its natural solution-group table against permutation approximability.
 ---
 
 **ESTABLISHED SOURCE AUDIT.** None of the finite synchronous/nonlocal-game
 sources currently established in Cairn proves
-`finite-table-quantum-classical-hamming-gap`. The obstruction is a precise
+`regular-finite-table-quantum-classical-hamming-gap`. The obstruction is a precise
 three-way quantifier mismatch.
 
 1. **Strict finite-dimensional quantum gaps have the wrong first line.** If

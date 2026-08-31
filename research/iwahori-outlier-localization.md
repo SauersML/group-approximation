@@ -6,7 +6,9 @@ title: Iwahori central-regular outlier localization
 artifacts:
   - notes/TRUE_IWAHORI_CENTRAL_REGULAR_OUTLIER_LOCALIZATION.md
 target: iwahori-outlier-repair
-requires: [edge-pair-mixed-gap-collapse]
+requires:
+  - central-regular-edge-constituents-are-fell-pure
+  - edge-pair-mixed-gap-collapse
 ---
 
 The mixed edge character converges to the regular character of
@@ -18,3 +20,13 @@ with full multiplicity rectangles. With the dimension-tight theorem this
 reduces the outlier-repair endpoint iwahori-outlier-repair to mixed-gap collapse for
 high-dimensional edge-irreducible pairs, edge-pair-mixed-gap-collapse — arbitrary sparse operator
 subspaces are out of the gate.
+
+The extreme-trace purification theorem
+`central-regular-edge-constituents-are-fell-pure` sharpens the surviving
+pairs: after deleting `o(1)` overlap mass, both edge irreducibles may be
+required individually to have dimensions tending to infinity and normalized
+characters converging pointwise to the regular character of
+`B/<z> ~= Z*C_2`.  This removes cancellation among nonregular constituent
+characters as a source of the outlier.  It does not remove a sparse
+low-energy line represented by a full-rank near-intertwiner, which remains
+the content of `edge-pair-mixed-gap-collapse`.

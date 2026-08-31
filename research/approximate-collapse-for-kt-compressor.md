@@ -463,3 +463,35 @@ the missing step in the HNN route for ANY co-dense Kazhdan pair, stable
 base or not; a disproof of flexible stability of `SL_2(Z[1/p])` would
 show that the exotic representations whose existence (AC) must survive
 also exist for a non-(T) base.
+
+
+**Canonical regular-sector calibration (2026-08-31).**
+`canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants`
+constructs full-actor regular-character microstates by deleting one line from
+an explicit tensor-Steinberg congruence representation.  They are uniformly
+far from every same-dimensional genuine `Gamma`-representation, so
+same-dimensional exactification cannot be inserted into this claim.  Yet
+one-line padding restores the congruence representation and a direct
+Kazhdan-Hom estimate gives
+
+```text
+rho(Gamma)'=C=rho(t Gamma t^(-1))'.
+```
+
+Thus the standard regular irreducible nonliftable sector satisfies (AC) and
+the named mixed-return condition for a stronger reason: every low-energy
+commutant vector is asymptotically scalar.  Any counterexample to (AC) must
+carry a positive-density multiplicity algebra through all negligible
+padding; strict deleted-line instability alone is now excluded.
+
+
+**Trace-mask sharpening (2026-08-31).**
+`kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall`
+proves that the regular-character hypothesis can be removed from this wall.
+Tensoring any arbitrary actor microstate `v_n` with the exact regular
+Steinberg congruence carrier makes it trace-faithful and preserves every
+multiplicity commutator isometrically.  Hence a non-trace-faithful
+counterexample to (AC) would automatically give a trace-faithful one.
+Canonical group traces and the large congruence carrier cannot constrain the
+positive-density multiplicity cocycle; only a source-specific theorem on the
+bare approximate actor can.

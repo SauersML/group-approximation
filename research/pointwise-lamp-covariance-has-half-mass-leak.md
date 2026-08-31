@@ -67,3 +67,19 @@ existence of a specially selected lift.  For the atomic Schreier route this
 is the exact remaining distinction: a positive theorem must select one
 globally actor-compatible lift from the marked microstate with a **uniform
 whole-module** modulus.  Pointwise corona data alone cannot do so.
+
+For `A=F_2=<a,b>` the same construction has a sharper property-`(T)`-free
+calibration.  Every finite nonempty `E_n` has trivial translation
+stabilizer, so the orbit of `chi_(E_n)` is regular and has Kesten gap
+
+```text
+gamma_0=1-sqrt(3)/2>0.
+```
+
+For each standard generator, the complete two-sided PVM transport energy is
+exactly `1`: one half comes from the present moving atom whose target is
+absent, and one half from the absent inverse-source atom targeting the
+present atom.  Taking the flip matrix `z` and `J=-I` also gives the exact
+marked relation `[rho_n(delta_e),z]=J`.  Thus uniform expansion of every
+occurring moving atom and an exact finite Pauli seed still do not turn
+fixed-window covariance into whole-module energy control.

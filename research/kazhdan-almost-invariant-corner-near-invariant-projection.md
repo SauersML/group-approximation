@@ -62,8 +62,8 @@ of a sofic embedding of a Kazhdan group is a metric ultraproduct of
 permutation centralizers (arXiv:2608.05362), and the standalone form of
 the "(T)-lifting into the congruence commutant tower" steps of
 `odd-congruence-lambda-exact-sector-collapses`.  For INEXACT microstates
-nothing of the sort holds — that gap is the correctability frontier
-(`sl3z-regular-microstates-are-congruence-correctable`).
+nothing of the sort holds — the live correctability frontier is the
+unrestricted `sl3-z-weakly-ucp-stable`; the odd-only formulation is refuted.
 
 **What it is not.**  It does not correct an almost-REPRESENTATION: if
 `pi` is only approximately multiplicative, `Ad pi` is not a

@@ -49,6 +49,3 @@ every bounded positive trace on every fibre gap `K_x/J_x`.  Finally
 trace on the completion with integration of the fibre trace against a
 probability measure and proves uniform-`2`-norm continuity.
 
-The route remains a valid dimension-two proof.  Its dimensional bound is
-superseded by `stw22-finite-dim-weighted-selection-proof`, which applies the
-same Michael and colouring steps using all finite sphere degrees.

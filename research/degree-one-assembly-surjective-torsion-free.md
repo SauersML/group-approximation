@@ -19,40 +19,43 @@ For every torsion-free group `G` the degree-one assembly map
 
 is surjective.
 
-This is where the real work on `whitehead-vanishing-torsion-free` has always
-happened.  It is implied by the `K`-theoretic Farrell--Jones conjecture, and
-is therefore **known** for Lueck's Farrell--Jones class: hyperbolic groups,
-finite-dimensional CAT(0)-groups, lattices in virtually connected Lie groups,
-fundamental groups of manifolds of dimension at most three, and S-arithmetic
-groups (arXiv:2507.11337, class `FJ`; read at survey level, not from the
-individual proofs).
+This is equivalent to [[whitehead-vanishing-torsion-free]] by
+[[whitehead-is-degree-one-assembly-cokernel]]. It is implied by the
+K-theoretic Farrell--Jones conjecture and is therefore known for Lueck's
+Farrell--Jones class, including hyperbolic groups, finite-dimensional
+CAT(0)-groups, lattices in virtually connected Lie groups, fundamental
+groups of manifolds of dimension at most three, and S-arithmetic groups
+(arXiv:2507.11337, read at survey level).
 
-Attacking it *through* Farrell--Jones has a structural advantage this graph
-should not lose sight of: the full conjecture is inherited under subgroups
-and directed colimits, and the bare assertion `Wh = 0` is not.  That
-asymmetry is exactly why Lueck's reduction of Farrell--Jones to one universal
-finitely presented group works, while the analogous packaging for Whitehead
-vanishing (`whitehead-vanishing-universal-test-group`) buys nothing.
+The class-wide problem now has an exact finite tester.
+[[degree-one-assembly-single-fp-tester-equivalence]] constructs one finitely
+presented torsion-free group `U` for which
 
-Open in general.  No route here; the node exists to record that the FJ lane,
-not the operator-algebraic lanes, is where a proof would come from.
+```text
+A_1^U is onto
+    <=>
+A_1^G is onto for every torsion-free G.
+```
 
-## Attempts
+Thus the unresolved input is the single computation
+[[degree-one-assembly-surjective-universal-tester]].
 
-**Deferred, deliberately, and this is the one lane where that is the right
-call.**  Every known case is proved by controlled topology -- Farrell--Hsiang
-transfer arguments, flow spaces for CAT(0) and hyperbolic groups, geodesic
-flow estimates -- and each such proof is engineered for its geometry rather
-than derived from a general principle.  Nothing in this repository builds
-classifying spaces or flow spaces, so attacking it here would mean starting
-that machinery from nothing.
+## Colimits are not the obstruction
 
-Where a *general* attack dies, for the record: the class `FJ` is closed under
-subgroups, finite products, free products and directed colimits, which is why
-Lueck can reduce the full conjecture to one universal finitely presented
-group.  Trying to run the same reduction for the bare degree-one statement
-fails at the colimit step, because surjectivity of assembly in one degree is
-not inherited by colimits in the way the full conjecture's isomorphism
-statement is.  That asymmetry is the reason the packaging trick that works
-for Farrell--Jones does not work here, and it recurs one level down at
-`whitehead-vanishing-universal-test-group`.
+The previous version of this node incorrectly said that degree-one
+surjectivity fails to pass through directed colimits. It does pass:
+`H_1(BG;K(Z))=C_2 direct-sum G_ab`, group abelianization, group rings,
+and algebraic `K_1` all commute with filtered colimits. The assembly maps
+are compatible, and filtered colimits of surjective homomorphisms are
+surjective. Equivalently, ordinary Whitehead groups commute with filtered
+colimits.
+
+The genuine obstruction to the classical universal-group shortcut was
+subgroup inheritance. From an arbitrary embedding `H<=U`, vanishing of
+`Wh(U)` need not imply vanishing of `Wh(H)`. The new construction repairs
+exactly that step by making every induced map `Wh(H)->Wh(U)` injective for
+the recursively presented support groups needed by the global reduction.
+
+The statement remains **OPEN**. The reduction changes its quantifier shape
+from a proper class of groups to one finite presentation; it does not compute
+that presentation's assembly map.

@@ -138,11 +138,25 @@ one-colour approximation of a nonzero matrix algebra over `C(T)`.  Any
 successful two-colour proof must therefore be finite-set adaptive and use its
 second inner colour to carry scalar off-diagonal terms across the plateau
 boundary.  Even that transport is not sufficient if its plateau diagonal
-remains coefficient-blind.  The quantitative separation theorem
-`stw83-circle-unitary-order-zero-plus-constants-gap` gives a universal
-`delta>0`: in a rank-one plateau corner, the circle generator cannot be
-approximated within `delta` by one finite-dimensional order-zero colour plus
-a constant.  This permits arbitrary off-diagonal entries in the second
-colour.  Hence a successful adaptive construction must make the second
-colour carry both cross-boundary matrix terms and genuinely circle-varying
-information on the plateau diagonal.
+remains coefficient-blind.  The sharp separation theorem
+`stw83-circle-unitary-order-zero-plus-constants-gap` computes the exact
+distance as `1`: in a rank-one plateau corner, the circle generator cannot
+be approximated below error one by one finite-dimensional order-zero colour
+plus a constant, even with arbitrary off-diagonal entries in the second
+colour.  This does not prove a lower bound of two.  Ordinary two-colour
+approximations of the circle make both plateau diagonals coefficient-varying,
+and compression by the rank-one corner need not preserve order zero.  In fact, `stw83-compressed-one-colour-carries-circle-matrix-finite-sets`
+constructs, for every finite subset of every `M_k(C(T))` and every
+tolerance, star-homomorphic incoming and outgoing maps whose return becomes
+accurate after compression to a constant rank-`k` corner; constant matrix
+data is preserved exactly.  Thus the noncommutative escape has full
+simultaneous finite-set strength on the plateau diagonal.  Its price is now
+quantified by
+`stw83-star-homomorphic-plateau-carriers-have-norm-one-leakage`: on a
+positive coefficient cutoff ranging from zero to one, the uncompressed
+moving homomorphism carries asymptotically norm-one mass in the complementary
+corner at a zero of the target.  A successful adaptive construction must
+therefore taper a genuinely nonunital order-zero support across the scalar
+buffer and coordinate it with the Toeplitz shift and both global
+orthogonality pairings.  A lower-bound proof would have to show that no such
+tapered moving frame exists.

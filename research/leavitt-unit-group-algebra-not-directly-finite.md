@@ -100,11 +100,10 @@ for `F_2[R^x]` and Gottschalk for `R^x` are now the same problem.
   `c_0(G,Z_2)` is equivalent, at scalar and every matrix size.  The completion
   supplies no escape hatch; `leavitt-padic-convolution-not-directly-finite`
   is the same open problem.
-* With the explicit idempotents `f<e` of
-  `leavitt-primitive-corner-recursive-extension`, it is enough to prove
-  `leavitt-e-f-murray-von-neumann-equivalence`: finite-support `x in eSf`,
-  `y in fSe` with `xy=e`, `yx=f`.  Evaluation fixes the reverse product at
-  `s_0t_0<1`, and the existing corner-padding route finishes the witness.
+* The former explicit-idempotent shortcut through
+  `leavitt-e-f-murray-von-neumann-equivalence` is refuted: the canonical
+  coefficient trace takes different values on `e` and `f`, so cyclicity
+  forbids `xy=e`, `yx=f`.  It is not a live reformulation of the target.
 
 On the corner lanes, one should be precise about why the corner.  The
 `F_2`-augmentation excludes a full **Leavitt family** from `A` itself and from
@@ -196,5 +195,7 @@ ordered pairs of genuinely mixed eight-root elements through word length four:
 only 1,394 survive the trace filter and none solves the equation.  This is a
 bounded family result, not a global no-go.
 
-The current target is therefore precise: prove `e~f`, or solve the two-packet
-equation subject to odd intersection.  Neither direction is completed.
+The current target is therefore precise: solve the two-packet equation
+subject to odd intersection, lift a full Leavitt family into the unit corner,
+or construct a one-sided inverse pair by a genuinely different finite-support
+mechanism.  The tempting `e~f` branch is impossible and must not be reused.

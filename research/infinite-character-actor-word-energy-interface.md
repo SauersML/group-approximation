@@ -45,6 +45,11 @@ E_s=sum_chi ||C_sP_chi C_s^*-P_(s chi)||_2^2.          (IWE1)
 > E_s=Average_m d_s(m)^2.                              (IWE2)
 > ```
 
+This identity is now formalized independently as
+`whole-module-covariance-average-equals-character-transport`; the open
+content of the present node begins at the uniform finite-presentation
+estimate `(IWE6)`.
+
 Indeed the block expansion from
 `finite-covariance-energy-sees-only-character-restrictions` gives
 
@@ -166,3 +171,29 @@ do not provide either mechanism.
   swap is its mandatory first falsifier: if the swap preserves the proposed
   average and actor relations, the route adds no information beyond the
   mixed-word no-go.
+
+- **Use a sofic set action and hope its local charts assemble the global
+  energy.**  `sofic-chart-quotient-forces-character-energy-floor`
+  Fourier-linearizes the charts into an exact representation of the whole
+  module.  Every fixed covariance word then has vanishing defect and the
+  seed retains asymptotic negative mass `1/2`, but the seed-visible Schreier
+  gap forces complete character transport energy at least `gamma-o(1)`.
+  Thus the missing uniformity is witnessed by a moving virtual module word,
+  not merely by an abstract two-block swap.  A viable packet must prove the
+  action nonsofic or add a controller relation which fails in the
+  replicated-center Pauli quotient.
+- **Treat the central D8 seed as the source of nonhyperlinearity.**
+  `central-d8-seed-preserves-hyperlinearity` identifies the exact normal
+  form
+
+  ```text
+  P(G,m_0)=(G x C_2) *_(C_2 x C_2) D_8.
+  ```
+
+  The edge is finite, so the marked seed group is hyperlinear exactly when
+  the unmarked actor--module base `G=M rtimes A` is.  The D8 relation remains
+  a useful finite word detecting the seed sector, but it cannot be the first
+  source of a matrix-microstate obstruction.  Any successful proof of this
+  interface must therefore exclude hyperlinearity of the base itself; exact
+  finite-dimensional invisibility of the marked sector does not weaken that
+  requirement.

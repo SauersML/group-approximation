@@ -71,11 +71,12 @@ exists once the edge action is free.  A successful sofic construction must
 therefore use approximations of `K` that do **not** factor through finite
 quotients --- they must keep `L` acting freely while separating the
 closure points `cl(L) \ L` --- and only then choose the stable letter in
-the centralizer.  Both requirements are simultaneously satisfiable only by
-genuinely approximate (perturbed) models, which is precisely the content
-of the open lemma below.
+the centralizer.  The assertion that both requirements can be satisfied
+simultaneously is the separate open claim
+[[centralizing-hnn-perturbed-edge-separation]]; it is not part of the no-go
+and centralizer computation proved here.
 
-**The remaining lemma (restated).**  Choose `sigma_v` uniformly at random from
+**The separate remaining lemma (restated).**  Choose `sigma_v` uniformly at random from
 `C_n` (uniform orbit permutation, uniform `L_n`-labels).  For every
 Britton-reduced word
 
@@ -86,8 +87,9 @@ w = k_0 v^{e_1} k_1 ... v^{e_m} k_m,   k_i notin L at the pinches,
 show that with probability tending to one the permutation
 `pi_n(k_0) sigma_v^{e_1} ... sigma_v^{e_m} pi_n(k_m)` moves at least a
 fixed fraction of `Q_n`.  This is the sofic analogue of Ueda's reduced
-normal form, and it is the only missing step: everything else in the
-construction is exact.
+normal form.  It is the only missing step in the proposed soficity
+construction, but it is deliberately owned by the separate claim above so
+establishing this node cannot silently establish that lemma.
 
 **Why the obvious obstruction does not apply.**  The recorded no-go for
 random sofic approximations (a Haar-random model of `L` has trivial

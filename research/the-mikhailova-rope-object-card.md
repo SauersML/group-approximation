@@ -32,6 +32,7 @@ operator-MF                             yes (compiler)
 torsion-free                            yes  [[mf-compiler-positive-branch-is-torsion-free]]
 residually finite                       NO   (the edge is non-separable:
                                               [[centralizing-hnn-is-residually-finite-iff-edge-is-separable]])
+LEF                                     NO   [[mikhailova-positive-rope-is-not-lef]]
 contains a free subgroup of rank two    yes (K does)
 amenable                                NO
 ```
@@ -40,7 +41,6 @@ amenable                                NO
 
 ```text
 sofic        <=>  SOFIC_fp is Pi^0_2-complete      [[sofic-safe-finite-presentation-compiler]]
-LEF          =>   sofic
 hyperlinear  <=>  the hyperlinear finite-presentation cell
                   [[hyperlinear-fp-recognition-complete-iff-nonhyperlinear-group]]
 ```

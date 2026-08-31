@@ -15,14 +15,16 @@ simplification of the 2026 Chatterji--Kassabov construction, (b) a
 near-solution whose single surviving hypothesis is sharply identified, and
 (c) four alternative targets plus a set of closed attacks.
 
-**What this audit changes relative to the source.**  Two of the source's
-citations do not verify (§A.3), and one of them is load-bearing for a
-rhetorical claim the source makes twice — that the 2026
-Fournier-Facio--Wu--Zaremsky paper "explicitly isolates the same issue", used
-as an independent consistency check that the gap is genuine.  That check is
-withdrawn here.  A third citation is unverifiable in principle right now
-(§A.4).  The mathematics is unaffected in every case; the attributions are
-not.
+**What this audit changes relative to the source.**  A 2026-08-30
+freshness pass corrects this audit's earlier negative finding about
+Fournier-Facio--Wu--Zaremsky: the current arXiv v2 does contain both Lemma
+5.5's finite-bi-index criterion and Question 5.9's finite-normal-generation
+problem.  The source's independent-confirmation argument is therefore
+restored, with the important boundary that FFWZ pose the upgrade as an open
+question rather than prove it.  The continuous-automatic preliminary
+preprint is also now publicly readable; it proves no Boone--Higman result
+and no finite presentability of the associated full groups.  The mathematics
+of the graph remains open; these are corrections to its literature boundary.
 
 ---
 
@@ -176,51 +178,47 @@ Evans (1978) and Evans--Mandelberg--Neff (1975) on the universal-algebra
 analogue, used only as commentary.  None of these carries a node's weight
 alone.
 
-### A.3 Read from source and **NOT** confirmed — two failed citations
+### A.3 Read from current source and confirmed — correction of the earlier audit
 
-The source's reference list, item 2, asserts of arXiv:2603.24687v2: "Lemma
-5.5 gives the finite-bi-index criterion and Question 5.9 explicitly asks for
-finitely normally generated kernels in relatively simple upgrades."  Section
-5 of that paper was retrieved this session.  It discusses embedding results,
-the Boone--Higman conjecture and relative versions of it, and it contains
-**neither** the term "bi-index" **nor** a Question 5.9 of the described
-content.  A targeted search for "bi-index" in this literature returns the
-Zaremsky and Fournier-Facio--Wu--Zaremsky papers with no such term.
+The current arXiv source for **arXiv:2603.24687v2**,
+Fournier-Facio--Wu--Zaremsky, *Abstract twisted Brin--Thompson groups*, does
+contain the two items which the 2026-08-17 retrieval incorrectly reported
+absent.
 
-Two consequences, both recorded in the graph:
+* **Lemma 5.5** gives the finite-bi-index characterization of relative PBH:
+  the relevant group embeds in a finitely generated subgroup of finite
+  bi-index inside a finitely presented group, with every nontrivial core
+  element conjugatable out of that subgroup.
+* **Question 5.9** asks whether an action kernel, or the largest normal
+  subgroup of a relatively simple pair, can be made finitely normally
+  generated.
 
-1. **The finite-presentation criterion is Zaremsky's** (arXiv:2405.18354,
-   §A.1), reachable equally from FFWZ Definition 1.3 + Theorem B.  The
-   attribution moves; the criterion is verified and Route B is unaffected.
-   "Bi-index" is retained in the graph as *this repository's* name for
-   `|S\Γ/S|`, defined where it is used, not as a quotation.
-2. **The independent-confirmation argument is withdrawn.**  The source's §13
-   and §22 lean on FFWZ having isolated the same finite-normal-generation
-   obstruction, and present that as evidence the gap is genuine rather than a
-   missed elementary Tietze move.  No node may cite that.  The gap is genuine
-   for a reason that needs no external corroboration — Proposition 7.1 (§B.4
-   below) proves the obstruction is *equivalent* to the missing conclusion,
-   and §8's counterexample shows the tempting shortcut is false — so nothing
-   downstream weakens.  What is lost is only the appeal to authority.
+Primary source: <https://arxiv.org/html/2603.24687v2>, Lemma 5.5 and Question
+5.9.
 
-### A.4 Unverifiable at present
+The citation therefore verifies after all.  It independently confirms that
+finite normal generation is the exact obstruction in the passage from a
+finitely presented actor or relatively simple envelope to a finitely
+presented simple quotient.  It does **not** close the CK leaf: Question 5.9
+is open, and the normal pairs in FFWZ are not automatically the particular
+elementary matrix envelope used here.  The graph's definition of bi-index
+agrees with the paper's usage and should no longer be described as merely
+repository-local.
+
+### A.4 Continuous-automatic preliminary preprint now readable
 
 Belk--Bleak--Chatterji--Matucci--Perego, *Rational embeddings of continuous
-automatic groups*, described by the source as a 2026 preliminary version.
-The preprint is real — it is listed on Matucci's publication page as
-"Rational embeddings of continuous automatic groups (preliminary), with
-J. Belk, C. Bleak, I. Chatterji, D. Perego" — but no public text was
-reachable this session, so **neither its Remark 1.2 nor its definition of a
-continuous language of normal forms could be read**.
+automatic groups* (preliminary 2026), is now publicly readable at
+<https://jimbelk.github.io/web/RationalEmbeddingsContinuousAutomaticPreliminary.pdf>.
+It proves rational embedding results for continuous asynchronous automatic
+groups, but explicitly proves no Boone--Higman result and does not prove
+finite presentability of the associated topological full groups.  New
+techniques are said to be required for that step.
 
-This matters for exactly one node.  The source's §17 claims to answer that
-Remark 1.2.  The graph records the *theorem* §17 proves, stated
-self-containedly so that it depends on no unread definition, and records the
-"answers Remark 1.2" reading as an unverified motivation.  If the paper's
-definition additionally demands regularity of the language — which the
-source itself concedes its construction does not provide — then the
-construction answers a weaker question than claimed and the node is still
-true as stated.  Nothing in the Boone--Higman lanes touches it.
+Consequently the preprint does not close the shift compiler or the general
+conjecture.  The self-contained normal-form theorem recorded in §E remains a
+side result; no Boone--Higman lane depends on reading it as an answer to the
+preprint's motivation.
 
 ---
 
@@ -338,8 +336,7 @@ set.  The graph records the shortcut as a dead route killed by B.4 itself.
 
 ### B.5 Coset action of the core, and the bi-index
 
-Write the **bi-index** of `H <= Γ` for `|H \ Γ / H|`.  (This repository's
-term; see §A.3.)
+Write the **bi-index** of `H <= Γ` for `|H \ Γ / H|`.  (FFWZ Lemma 5.5; see §A.3.)
 
 *Claim.*  Under B.2's hypotheses with `S != Γ`, the left multiplication
 action `Γ ↷ Γ/S` is faithful.

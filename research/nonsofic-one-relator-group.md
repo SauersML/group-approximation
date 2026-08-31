@@ -9,7 +9,7 @@ distinct_from:
   nonsofic-one-relator-relator-has-primitivity-rank-two: that is a necessary condition on any such group and is closed; this asks for one to exist and is open.
   nonsofic-hyperbolic-group: that asks for a nonsofic group in the hyperbolic class; this asks for one in the one-relator class. The classes overlap only at negative immersions, where one-relator groups are hyperbolic and virtually special hence sofic, so no witness can serve both.
   kun-thom-nonsofic-wreath: that records existing nonsofic groups, all built from Kazhdan pairs; this asks for one with a one-relator presentation, which by the local-indicability obstruction cannot contain any of them.
-  hyperlinear-nonsofic-group: that asks for a nonsofic group that is additionally hyperlinear, answering Pestov 3.4; this asks for one that is additionally one-relator, answering Pestov 4.9. Different questions, and no witness is known to serve either, let alone both.
+  hyperlinear-nonsofic-group: that asks for a nonsofic group that is additionally hyperlinear, answering Pestov 3.4; this asks for one that is additionally one-relator, answering Pestov 4.10. Different questions, and no witness is known to serve either, let alone both.
   residually-rationally-solvable-one-relator-sofic: that establishes soficity on a subclass of the same groups; this asks for a nonsofic member of the complementary subclass. The first is a theorem, the second an open search, and the first constrains where the second may look.
   linton-shell-sofic: that is a positive statement about the shell of every one-relator group; this asks for a single one-relator group that is nonsofic. Establishing this refutes that; they are opposite answers reached through different objects.
   linton-radical-sofic: that concerns the radical alone and would be one input to a positive answer; this asks for the whole group to fail, and by the failure of semidirect closure a sofic radical does not prevent it.
@@ -22,8 +22,14 @@ artifacts:
 ---
 
 OPEN.  Exhibit a group `G = <X | w>` with a single defining relation that is
-**not sofic** — the negative answer to Pestov's Open Question 4.9, whose
+**not sofic** — the negative answer to Pestov's Open Question 4.10, whose
 affirmative answer is [[one-relator-groups-sofic]].
+
+The exact reduction
+[[one-relator-soficity-is-torsion-free-two-generator-case]] now shows that
+any witness can be replaced by a torsion-free two-generator one-relator
+witness. Thus the negative search loses no generality by imposing both
+restrictions simultaneously.
 
 Any such `G` is heavily constrained before the search starts.  By
 [[nonsofic-one-relator-relator-has-primitivity-rank-two]] it has `π(w) = 2`, is
@@ -35,6 +41,12 @@ rationally solvable, so its Linton radical `R = G_Q^(ω) = <<r>>_G` is nontrivia
 and (in the torsion-free case) infinitely generated; and by
 [[one-relator-soficity-localizes-at-rational-derived-stage]] the nonsoficity is
 already present in `E = G_Q^(n) ≅ R ⋊ F₀` for some `n <= |w|`.
+
+Independently, [[one-relator-groups-are-coherent]] and
+[[characteristic-zero-one-relator-group-algebras-are-coherent]] show that every
+hypothetical witness `G` and every `K[G]` over a characteristic-zero field are
+coherent.  Thus incoherence cannot supply the missing nonsoficity mechanism;
+these finiteness theorems constrain the search without deciding it.
 
 There is now one further exact constraint.  By
 [[one-relator-fox-magnus-descent-to-derived-linton-radical]], `G/R'` is sofic,
@@ -69,14 +81,16 @@ generated subgroup surjecting onto `Z`.
    with perfect target, the relation module's coinvariants surject onto `Z²`,
    so the module is not cyclic and the kernel is not the normal closure of one
    element.
-3. **Force a nonsofic quotient with amenable kernel.**  *Dies on the direction
-   of the permanence theorem.*  Soficity is not known to pass to quotients at
-   all, and the available theorem is sofic **kernel** plus amenable
-   **quotient** ⟹ sofic, which says nothing about a quotient by an amenable
-   normal subgroup.  So a one-relator `G` with `1 → A → G → Q → 1`, `A`
-   amenable and `Q` nonsofic, is not a contradiction with soficity of `G` and is
-   not a witness either.  This killed several Rips- and HNN-style constructions
-   at once.
+3. **Force a nonsofic quotient with amenable kernel.** *Dies on the direction
+   of the permanence theorem.* Arbitrary quotient permanence is false by
+   [[sofic-quotient-nonclosure]], so a nonsofic quotient alone cannot force the
+   source to be nonsofic. The narrower statement needed here, permanence under
+   quotienting by an amenable normal subgroup, is not supplied by the standard
+   theorem. That theorem goes the other way: sofic **kernel** plus amenable
+   **quotient** implies sofic. Thus a one-relator `G` with
+   `1 → A → G → Q → 1`, `A` amenable and `Q` nonsofic, is neither contradicted
+   by known permanence nor proved nonsofic. This kills the naive Rips- and
+   HNN-style constructions.
 4. **Boone/Higman-style compression of a finitely presented nonsofic group.**
    *Dies on presentation count.*  The clean base in this corpus is genuinely
    one-relator ([[boone-base-group-two-generator-one-relator]] — three

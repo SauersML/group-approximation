@@ -3,13 +3,17 @@ rg: 2
 id: atlas-centralizer-products-19243-classicalize
 kind: claim
 title: The thirty shifted A4 centralizer products plus collision 19243 force a classical chart branch
+refuted_by:
+  - atlas-m2-refutes-five-global-a4-compilers
 distinct_from:
-  atlas-thirty-centralizer-products-classicalize: that packet-only target is refuted by 202 exact GL5(F2) models; this corrected target includes the interior collision which kills every one of those models.
+  atlas-thirty-centralizer-products-classicalize: that omits collision and is refuted by exact GL5(F2) packet models; this includes collision but is refuted by the exact multiplicity-two GL8(F2) packet-and-collision frame.
   atlas-a4-root-energy-ellipse-ceiling: that asks only for one scalar energy inequality; this asks for the stronger geometric conclusion that the whole relative frame approaches a classical chart alignment modulo gauge.
 artifacts:
   - experiments/atlas_a4_reference_alignment.py
   - experiments/atlas_a4_gl5_packet_screen.py
 ---
+
+**REFUTED.**  On the exact multiplicity-two regular frame, the packet compiler gives membership in every shifted centralizer product and collision is the identity.  The collision word is `8`-Lipschitz in the relative frame and has regular defect `sqrt(2)` on every classical branch but defect zero on the witness.  Thus its distance from the branch union is at least `sqrt(2)/8`, uniformly under amplification, and it violates `(A4+Q-CLASS)`.  See `atlas-m2-refutes-five-global-a4-compilers`.
 
 Fix `rho_k=Reg(A8) tensor I_k` and the exact packet reference alignment
 `R_k=rho_k(r_0)` from `atlas-a4-packet-centralizer-product-compiler`.  For the
@@ -39,7 +43,7 @@ The right factor `N_k` is essential: `U` and `U C`, `C in N_k`, represent the
 same second chart, so a finite set of literal unitary points cannot be the
 correct gauge-invariant target.
 
-**Claim.**  For every sequence `k_n` and every relative unitary sequence
+**Original false claim.**  For every sequence `k_n` and every relative unitary sequence
 `U_n in U(20160 k_n)`,
 
 ```text
@@ -56,7 +60,7 @@ dist_2(U_n,B_(k_n)) -> 0.                            (A4+Q-CLASS)
 
 The modulus must be independent of the external multiplicity.
 
-## Why this is the corrected joint target
+## Historical rationale
 
 - Packet-only classicalization is false: `atlas-a4-gl5-packet-collision-screen`
   gives 202 exact regular-margin packet models in `GL5(F2)`, including 172
@@ -78,7 +82,7 @@ The modulus must be independent of the external multiplicity.
   finite noncommutative holonomy-rigidity problem; the ambient dimension
   `20160 k` is not the true number of variables.
 
-## Concrete attacks
+## Historical attacks
 
 1. **Rank-three completion first.**  In the exact reference geometry, a raw
    `S3` together with one aligned central `C3` has two overlapping regular-A4

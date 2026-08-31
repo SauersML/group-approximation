@@ -106,7 +106,7 @@ Open targets: `definetti-group-table-rounding` (its Target A),
 `spherical-candidate-hypergraph-quasirandom` and
 `hypergraph-absorption-schreier-matching`,
 `group-table-cpsd-cp-face-collapse`,
-`finite-table-quantum-classical-hamming-gap` +
+`regular-finite-table-quantum-classical-hamming-gap` +
 `coherent-groupification-of-table-gap` (Target C),
 `traffic-branching-rounding-hierarchy`,
 `coherent-configuration-orbital-rounding`.

@@ -3,6 +3,8 @@ rg: 2
 id: atomic-three-row-compiler-is-prototype-gap-equivalent
 kind: claim
 title: A prescribed-atom three-row compiler is exactly a finite prototype gap
+invalidates:
+  - binary-leavitt-atomic-return-via-three-row-compiler
 distinct_from:
   bounded-prototype-rows-imply-atomic-morita-return: that proves a prototype-controlled three-row construction collapses the marked atom; this proves the construction hypothesis itself is quantitatively equivalent to a direct lower bound on one prototype discrepancy whenever that atom survives.
   affine-leavitt-decoder-interface-is-mark-collapse-equivalent: that audits an existential normalized-Hilbert--Schmidt carrier which can be chosen zero; this concerns a prescribed nonzero operator-norm spectral atom and uses the zero coefficient tuple only after a prototype gap is already known.

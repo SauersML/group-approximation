@@ -11,14 +11,24 @@ distinct_from:
   binary-jacobson-first-mixed-kernel-is-three-syllable: that identifies the shortest alternating relation beyond the complete finite overlap as the three-balanced controlled swap; this asks for the further occurrence semantics turning mixed holonomy into one common degree-two-to-degree-four intertwiner.
 ---
 
-**OPEN.**  Use the fixed presentation of
+**OPEN.**  Use a fixed finite presentation of
 
 ```text
-E=EL_3(F_2<S,T | TS=1>)=<a_12,x_12(1),x_23(1),x_31(1)>
+J=F_2<S,T | TS=1>,       Gamma_T=St_5(J)~=EL_5(J).
 ```
 
-from `binary-jacobson-active-cycle-generates-rank-three`.  Let
-`w=x_13(1-ST)`.  Give a deterministic finite-matrix operation, made from
+Inside its upper-left block retain the named active subgroup package
+
+```text
+H_3=<a_12,x_12(1),x_23(1),x_31(1)>=EL_3(J),
+```
+
+from `binary-jacobson-active-cycle-generates-rank-three`.  This is a
+subgroup-generation statement, not the ambient presentation: the target
+words `x_14(Q)` and `x_43(1)` below live in `Gamma_T`, not in `H_3`.
+All active-cycle and target words are to be evaluated in the same fixed
+rank-five presentation.  Let `w=x_13(1-ST)`.  Give a deterministic
+finite-matrix operation, made from
 evaluations of a fixed finite word package, spectral cuts, compression,
 polar decomposition and matrix arithmetic, with the following uniform
 operator-norm semantics.
@@ -48,6 +58,24 @@ stated compression/polar expression in the **same** raw-cycle word
 occurrences used to derive all four rows.  Four unrelated Schur gauges, an
 abstract isomorphism of packet representations, or a newly chosen analytic
 intertwiner do not satisfy `(JPI1)`.
+
+**AMBIENT-TYPE AND QUANTIFIER AUDIT.**  The rank-five correction above is
+necessary just to make the target tuple well typed.  With that correction,
+however, the current existential sequential formulation is equivalent to
+the desired head MF-invisibility theorem, not a smaller open seam.
+`binary-jacobson-typed-pi-selector-is-still-target-equivalent` proves that
+head invisibility supplies a uniform presentation gap below which no
+nonzero rounded head cut exists.  Hence there is no defect-to-zero sequence
+on which the selector's typed conclusion is tested.  The implication from
+an actual selector to head invisibility remains valid, but this formulation
+is invalidated as a research decomposition.
+
+A replacement must state the actual mixed `S/T` compression/polar formula
+and its numerical defect estimate, or impose a separately proved
+nonvacuity/calibration condition on a partial-presentation family.  Merely
+requiring an existential fixed operation, occurrence typing and an
+unspecified modulus under full-presentation defect does not avoid the
+compactness gap.
 
 There is now a canonical degree-two **source candidate**:
 `binary-jacobson-head-weyl-cut-is-native-pi-source` canonically cuts the
@@ -119,6 +147,17 @@ is already a partial isometry, but both of its supports lie in the positive
 coisometry in `(JPI1)`.  A continuation must authenticate the complementary
 `x_23(1)=-1` occurrence and identify its covariance with the same literal
 target rows, or abandon this polar for a different alternating square return.
+
+The composite full-cycle switch does not supply that complementary
+occurrence by itself.
+`binary-jacobson-u-packet-plus-full-cycle-switch-is-marked-mf` places the
+complete balanced compression packet, the switch `omega`, and `x_23(T)` in
+an amenable subgroup whose regular MF character retains the head with
+asymptotic negative-cut density one half.  Thus all relations visible from
+`u=x_21(T)` and the already evaluated composite switch have a
+positive-density counterprofile.  The alternating continuation must retain
+`k=x_31(1)` as a separately compressed occurrence; its appearance only
+inside the value of the Weyl word `omega` is insufficient.
 
 The obvious native completion is also fully audited.
 `binary-jacobson-native-v4-polar-orbit-leaves-one-residual` conjugates the

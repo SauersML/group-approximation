@@ -3,7 +3,7 @@ rg: 2
 id: slofstra-radical-word-gives-table-gap
 kind: route
 title: Haarize the Slofstra tracial image and expose one radical word
-target: finite-table-quantum-classical-hamming-gap
+target: regular-finite-table-quantum-classical-hamming-gap
 requires:
   - slofstra-tracial-image-has-radical-word
   - sofic-radical-soficization
@@ -30,4 +30,4 @@ By the local definitions, nonsoficity supplies one finite multiplication
 window and a positive Hamming defect floor for every permutation model,
 while hyperlinearity supplies arbitrarily accurate regular-character unitary
 models of that same window. This is exactly
-`finite-table-quantum-classical-hamming-gap`.
+`regular-finite-table-quantum-classical-hamming-gap`.

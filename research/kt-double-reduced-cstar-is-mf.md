@@ -4,11 +4,13 @@ id: kt-double-reduced-cstar-is-mf
 kind: claim
 title: The reduced C-star algebra of the q=2 Kun--Thom double is MF
 distinct_from:
-  reduced-amalgam-canonical-trace-is-mf: that asks for operator-norm microstates selecting the canonical trace on the full group C-star algebra; this asks for a norm-corona embedding of the reduced group C-star algebra, after which the trace is selected automatically by uniqueness.
+  reduced-amalgam-canonical-trace-is-mf: that asks for an MF trace on the full group C-star algebra without asymptotic isometry; this asks for a faithful norm-corona embedding of the reduced group C-star algebra, after which the trace is selected automatically by uniqueness.
   symmetric-double-weak-mf: that embeds the abstract group, and in the proof a full auxiliary symmetric amalgam, into a norm matrix corona; neither conclusion says that the regular representation norm is approximated.
   kt-double-mixed-word-trace-selection: that is equivalent to hyperlinearity and controls normalized Hilbert--Schmidt moments only; reduced C-star MF additionally controls operator norms of every group-ring element.
+  kt-strong-nielsen-covariant-microstates: that is the equivalent concrete strong-covariance package after splitting the free fold kernel; this is the intrinsic reduced-C-star formulation.
 artifacts:
   - notes/UNIQUE_TRACE_KUN_THOM_DOUBLE.md
+  - research/artifacts/kt-double-mf-trace-literature-audit-2026-08-30.md
 ---
 
 **OPEN.**  For the explicit Kun--Thom pair over `F_2`, put
@@ -20,12 +22,13 @@ Gamma < G,                 D=G *_Gamma G.
 Prove that `C*_r(D)` embeds into a norm matrix corona.
 
 The target is stronger than hyperlinearity of `D`.  Its value is that the
-reduced algebra has a unique tracial state: the `q=2` Bass--Serre calculation
-in the cited artifact gives a faithful non-elementary tree action and trivial
-amenable radical, so the BKKO theorem makes the canonical regular trace the
-only trace on `C*_r(D)`.  Consequently any MF embedding of this reduced
-algebra automatically induces the canonical trace in a tracial matrix
-ultraproduct and makes `D` hyperlinear.
+reduced algebra has a unique tracial state.  This input is now named and
+established in the graph: `kt-q2-double-has-trivial-amenable-radical` proves
+the Bass--Serre calculation, and
+`kt-q2-double-reduced-algebra-has-unique-trace` applies the BKKO theorem.
+Consequently any MF embedding of this reduced algebra automatically induces
+the canonical trace in a tracial matrix ultraproduct and makes `D`
+hyperlinear.
 
 This is not supplied by residual finiteness of `G` or by Shulman's symmetric
 full-amalgam theorem.  In particular, MF passes to C-star subalgebras, so the
@@ -40,6 +43,15 @@ completion carrying an abstract regular trace; it does not supply `(KRC1)`.
 The concrete profinite regular completion used in
 `symmetric-double-weak-mf-proof` fails to factor through `C*_r(G)` by
 `kt-shulman-profinite-vertex-model-is-nontempered`.
+
+The maximal completion cannot be used as an intermediate either.
+`kt-full-double-cstar-is-not-mf` proves that `C*(D)` itself is not MF: the
+strict Kazhdan compressor already gives a proper isometry there.  This is
+fully compatible with the present target, because that compression
+obstruction disappears in the regular quotient, whose canonical trace is
+faithful.  Thus the reduced problem remains open, but every positive model
+must be native to the reduced norm rather than descended from either the
+profinite auxiliary completion or an MF embedding of `C*(D)`.
 
 The remaining relative-microstate architecture is quantitatively constrained
 by `kt-return-expectation-pays-one-full-edge-principal-angle`.  For the fixed
@@ -106,3 +118,27 @@ successful propagation must therefore use a finite-matrix-only ingredient:
 moving-radius/nonsummable control plus a presentation mechanism, one fixed
 multiscale checksum, or authentication of the quarter-trace support as a
 common reducing carrier.
+
+There is now an exact group-level coordinate form for the positive problem.
+`kt-double-is-nielsen-semidirect-product` computes
+
+```text
+D=F({b_x:x in G/Gamma-{Gamma}}) semidirect G,
+g b_x g^(-1)=b_(gx)b_(gGamma)^(-1).                     (KRC4)
+```
+
+The two routes through `kt-strong-nielsen-covariant-microstates` prove that
+the present claim is equivalent to operator-norm strong microstates for this
+one affine Nielsen action.  This is sharper than asking for unspecified
+relative models: it gives the complete finite-stage data and the exact norm
+test `(SNM2)--(SNM6)`.
+
+The exact-action specialization is ruled out maximally.
+`kt-nielsen-models-have-maximal-exact-rounding-gap` proves that every strong
+package is at operator-norm distance tending to `2` on one fixed free
+generator from every exact finite-dimensional equivariant model.  Thus
+current strong-crossed-product theorems whose input is an exact finite-stage
+action cannot close the node.  A positive construction must make the actor
+and covariance laws genuinely approximate before passing to the norm
+corona; a negative proof must show that this asymptotic escape cannot carry
+the regular norms.

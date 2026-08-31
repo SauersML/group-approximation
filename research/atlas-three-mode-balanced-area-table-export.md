@@ -62,3 +62,19 @@ complete packet is a remote/MSI job rather than a local run.  The script has a
 hard live-state cap and prints the exact remote command on overflow.  It also
 maintains the incremental gcd of `f_s(t)-1` and a checked Bezout certificate,
 so a negative decision may stop before exporting the rest of the packet.
+
+The completed exact run stopped rigorously after the first row, as the target
+claim explicitly permits for a negative decision.  It found
+
+```text
+f_(root_12_1e)(t)   = 16953689/41287680,
+f_(root_12_1e)(t)-1 = -24333991/41287680.
+```
+
+The constant multiplier `-41287680/24333991` gives Bezout identity `1`, so
+the running Laurent-polynomial gcd is exactly `1` and no common nonzero root
+exists.  The packet hash is the exporter hash above; peak sparse state count
+was `30,812`.  The checked JSON and execution log are
+`experiments/atlas-rank5-balanced-area.json` and
+`experiments/atlas-rank5-balanced-area-17081560.log`.  A fresh local replay
+reproduced the JSON byte for byte.

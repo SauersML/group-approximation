@@ -3,9 +3,13 @@ rg: 2
 id: atlas-a4-relative-packet-commutator-collapse
 kind: claim
 title: Exact A4 holonomy plus collision 19243 makes the two chart frames packet-central
+refuted_by:
+  - atlas-m2-refutes-five-global-a4-compilers
 distinct_from:
   atlas-a4-holonomy-coherence-gap: that asks directly for a numerical ceiling on two S3 covariance coordinates; this target asks for vanishing of one ten-letter packet commutator energy and then delegates the quantitative conversion to the packet commutant theorem.
 ---
+
+**REFUTED.**  The exact multiplicity-two regular packet/collision frame has raw-S3 covariance energy `4`.  The established packet-energy comparison therefore gives `E_packet>=5040/28363>0`, contradicting the asserted convergence to zero on this constant normalized network.  See `atlas-m2-refutes-five-global-a4-compilers`.
 
 Let `sigma_n` satisfy the exact-regular normalized A4 context-network hypotheses
 of `atlas-a4-holonomy-coherence-gap`.  Choose arbitrary unitary chart frames
@@ -37,7 +41,7 @@ This quantity is independent of the arbitrary chart-frame gauges: changing
 `F_(i,n)` multiplies `U_n` on the left and right by elements of the
 right-regular commutant, which does not change any packet commutator norm.
 
-## Attempts
+## Historical attempts
 
 - **Do not resurrect the deleted single-context gauge argument.**  A stable
   letter close to identity does not by itself canonically identify one

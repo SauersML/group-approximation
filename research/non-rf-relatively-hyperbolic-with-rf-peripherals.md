@@ -6,7 +6,7 @@ title: A relatively hyperbolic group that is not residually finite, with residua
 distinct_from:
   oyakawa-graph-wreath-rf-iff-acting-group-rf: that settles residual finiteness inside Oyakawa's proper-cocompact hyperbolic family by discharging a published criterion; this asks for the existence of a relatively hyperbolic group with a specific pair of properties, and the one contact between them — Oyakawa's relative Theorem 1.3 as a possible source of such a group — is recorded as an open attack, not as an overlap of statements
   persistent-degree-two-class-on-hyperbolic-group: that is a cohomological statement about a group already known to be residually finite; this is a group-existence statement whose content is the peripheral structure, and neither implies the other
-  non-residually-finite-hyperbolic-group: that asks for an ordinary word-hyperbolic group; this asks only for relative hyperbolicity but adds a condition on the peripheral subgroups, and by the filling route the two are equivalent in one direction — this claim implies that one, not conversely
+  non-residually-finite-hyperbolic-group: that asks for an ordinary word-hyperbolic group; the two existence statements are exactly equivalent by filling in one direction and adjoining a malnormal cyclic free factor in the other, as recorded in relative-nonrf-target-iff-hyperbolic-nonrf
 artifacts:
   - research/artifacts/hyperbolic-residual-finiteness-audit-2026-08-17.md
 ---
@@ -25,11 +25,11 @@ constraint that makes the filling route work — it is what lets every
 peripheral be filled by a **finite-index** normal subgroup, so that the filled
 group is hyperbolic relative to finite subgroups, i.e. word-hyperbolic.
 
-By `non-rf-hyperbolic-via-relative-dehn-filling` this claim therefore implies
-`non-residually-finite-hyperbolic-group`.  That is a warning, not an
-encouragement: the relative problem is not a softer version of the hyperbolic
-one, it is a repackaging, and any construction that looks like it produces
-this is producing the hyperbolic counterexample.
+By `relative-nonrf-target-iff-hyperbolic-nonrf`, this claim is exactly
+equivalent to `non-residually-finite-hyperbolic-group`. That is a warning,
+not an encouragement: the relative problem is not a softer version of the
+hyperbolic one, it is a repackaging, and any construction that looks like it
+produces this is producing the hyperbolic counterexample.
 
 ## Attempts
 

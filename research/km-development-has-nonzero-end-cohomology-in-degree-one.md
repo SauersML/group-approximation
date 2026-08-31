@@ -3,6 +3,8 @@ rg: 2
 id: km-development-has-nonzero-end-cohomology-in-degree-one
 kind: claim
 title: The Levi-triangle development of a simple Kazhdan Kac-Moody lattice has nonzero degree-one end cohomology
+refuted_by:
+  - km-group-ring-h2-vanishes-for-the-lattices
 artifacts:
   - research/artifacts/km-lattice-cohomology-and-lp-fork-2026-08-23.md
 distinct_from:

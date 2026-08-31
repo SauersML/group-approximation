@@ -114,7 +114,11 @@ note, and `clifford-compressor-site-growth` for the values).
 even CAR core, and a Connes-embeddable character seeing `z` are one problem
 (`clifford-ce-targets-are-equivalent`), and an operator-norm certificate for
 them is impossible, not merely unavailable
-(`kun-thom-clifford-extension-not-weak-mf`).  The Bernoulli corner is *implied* by
+(`kun-thom-clifford-extension-not-weak-mf`).  In fact
+`kun-thom-car-crossed-product-is-not-mf` records the exact C-star consequence:
+the canonical full and reduced CAR crossed products are not MF and admit no
+unital norm-corona representation.  This does not decide the present tracial
+von Neumann question.  The Bernoulli corner is *implied* by
 this one (`clifford-ce-implies-bernoulli-ce`), so this claim is equivalent to
 hyperlinearity of the whole cover `Wtilde`, and the deduction chain down to
 Q3.4 is `thom-central-corner-criterion` (Thom Lemma 3.3 and Remark 3.4,

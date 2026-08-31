@@ -11,7 +11,7 @@ distinct_from:
 ---
 
 MacMahon, arXiv:2608.15409v1, defines C-star invariants `h(A)` and
-`h^top(A)` and proves
+`h^top(A)` and, when `T(A)` is nonempty, proves
 
 ```text
 h^top(A) <= h(A),                                      (CBE1)
@@ -28,9 +28,19 @@ embeddable and hence has entropy `-infinity`, any other character with
 larger entropy dominates `(CBE2)`.  Therefore
 
 ```text
-entropy of C^*(G) alone does not promote a non-CE trace to the
-canonical group trace and cannot by itself certify non-hyperlinearity. (CBE3)
+the scalar h(C^*(G)) does not identify the canonical group trace, and
+CBE2 alone cannot certify non-hyperlinearity merely from a negative or
+non-CE summand.                                             (CBE3)
 ```
+
+In fact the masking term is always present: the trivial representation gives
+a character `epsilon:C^*(G)->C`, its GNS algebra is `C`, and `h(C)=0`.
+Consequently a canonical value `h(L(G))=-infinity` is dominated by the
+trivial character and the aggregate satisfies `h(C^*(G))>=0`.  No
+hypothesis about the existence of an additional exotic trace is needed for
+this fence.  This conclusion concerns the information retained by the
+variational supremum; it does not rule out a different scalar criterion
+supplemented by additional structure.
 
 This is a fence, not a dismissal of entropy at a fixed trace: Hayes's
 von Neumann invariant can still constrain `L(G)` once the canonical trace

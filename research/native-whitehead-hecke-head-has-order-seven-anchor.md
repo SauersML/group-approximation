@@ -106,30 +106,14 @@ that inheritance is proved, `(OWH6)` removes the projective spectator gauge
 without Property `(T)`, Kazhdan input, a canonical trace profile, or a
 literature theorem.
 
-There is also a separate upstairs typing check for the manuscript's current
-group `St_20(R)`.  Equality of the displayed elementary matrices does not
-formally imply equality of arbitrary chosen Steinberg lifts: the seventh
-power may a priori be a central `K_2` word.  Thus `(OWH3)` may be consumed
-immediately in the `EL_20(R)` lane.  Consuming it in `St_20(R)` requires
-either a direct Steinberg collection of this sevenfold word or an internal
-splitting of the restricted finite packet.  No such splitting is being
-silently assumed here.
-
-For an unconditional finitely presented proof vehicle, the lift ambiguity
-can instead be removed without any `K_2` calculation.  If `r_i` denotes the
-two written seventh powers in `St_20(R)`, set
-
-```text
-Delta_7=St_20(R)/<<r_1,r_2>>.                           (OWH8)
-```
-
-The canonical map to `EL_20(R)` factors through `Delta_7` by `(OWH3)`, so
-the marked root remains nontrivial there.  The two order-seven anchors hold
-by presentation in `Delta_7`, and only two explicit relators have been
-added.  Thus a Property-`(T)`-free MF-collapse proof using `(OWH3)` may work
-in `Delta_7` directly and does not need a literature computation of the
-Steinberg kernel.  Proving the stronger statement for the unquotiented
-`St_20(R)` still requires the lift check just described.
+The separate upstairs typing check for the manuscript's group `St_20(R)` is
+now closed by `two-native-singers-and-endpoint-generate-literal-gl6`.  Its
+coherent projective matrix units place both displayed order-seven packets
+inside one copy of `St_6(F_2)`.  Since
+`K_2(F_2)=0`, the map `St_6(F_2)->SL_6(F_2)` is injective, and both seventh
+powers in `(OWH3)` are the identity for the written Steinberg lifts, not
+merely after projection to `EL_20(R)`.  The earlier quotient workaround
+`St_20(R)/<<r_1,r_2>>` is therefore unnecessary.
 
 DERIVATION
 native-whitehead-hecke-order-seven-proof
