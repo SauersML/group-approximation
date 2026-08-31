@@ -133,12 +133,27 @@ mover energy.
 
 ## Step 4: the apparently weaker corner hypothesis is already full
 
-Let `sigma(g)=Theta(u_g)` and `p=Theta(p_(x_0))`.  Suppose a projection
-`e` commutes with every `sigma(g)` and with `p`.  Transitivity says every
-lamp projection has the form
+Let `sigma(g)=Theta(u_g)` and `p=Theta(p_(x_0))`.  Suppose a
+projection `e` commutes with every `sigma(g)`, and suppose the natural
+compressed lamp `q=epe` is itself a projection in `eMe`.  Then
 
 ~~~text
-p_x=sigma(g)p sigma(g)^*                                (BCP9)
+0=q-q^2=e p (1-e) p e
+       =((1-e)pe)^*((1-e)pe).                           (BCP9)
+~~~
+
+Thus `(1-e)pe=0`; taking adjoints also gives `ep(1-e)=0`.  Therefore
+`pe=epe=ep`, so `e` commutes with `p`.
+
+Equivalently, if `a=2p-1`, requiring `eae` to remain an involution in
+the corner makes `epe=(e+eae)/2` a projection and gives the same
+conclusion.  Hence an actor-central corner which retains the exact lamp
+relation automatically reduces the base lamp.
+
+Transitivity says every lamp projection has the form
+
+~~~text
+p_x=sigma(g)p sigma(g)^*.                               (BCP9b)
 ~~~
 
 for some `g`.  Hence `e` commutes with every `p_x`.  The orbit projections
