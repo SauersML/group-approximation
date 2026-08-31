@@ -50,7 +50,7 @@ By construction `tau_s=sigma_s c_s`. The exact permutation gauge law
 rewrites
 
 ```text
-tau_g tau_h tau_k^(-1)
+tau_k^(-1) tau_g tau_h
 ```
 
 as the corresponding defect expression in `c_g,c_h,c_k`. Hence the two
