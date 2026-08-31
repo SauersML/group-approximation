@@ -18,11 +18,13 @@ open Set Filter Topology CStarExactness
 
 noncomputable section
 
-universe u v
+set_option linter.unusedSectionVars false
+
+universe u
 
 variable {X : Type u} [TopologicalSpace X] [CompactSpace X] [T2Space X]
   [Nonempty X]
-variable {B : Type v} [CStarAlgebra B] [FiniteDimensional ℂ B]
+variable {B : Type} [CStarAlgebra B] [FiniteDimensional ℂ B]
 
 /-- The common variation neighborhood of a finite family at a point. -/
 def variationNeighborhood (F : Finset C(X, B)) (eps : ℝ) (x : X) : Set X :=
@@ -97,7 +99,7 @@ theorem norm_interpolation_evaluation_sub_le
     (hwsum : ∀ y, ∑ i, w i y = 1) (hw : ∀ i y, 0 ≤ w i y)
     (f : C(X, B)) (hf : f ∈ F) :
     ‖finiteInterpolation (B := B) w (finiteEvaluationStarAlgHom sample f) - f‖ ≤ eps := by
-  rw [ContinuousMap.norm_le heps.le]
+  apply (ContinuousMap.norm_le _ heps.le).2
   intro y
   rw [ContinuousMap.sub_apply, finiteInterpolation_apply w hw]
   have hfy : f y = ∑ i, (w i y : ℂ) • f y := by
@@ -114,7 +116,7 @@ theorem norm_interpolation_evaluation_sub_le
       rw [← smul_sub, norm_smul, Complex.norm_real,
         Real.norm_eq_abs, abs_of_nonneg (hw i y)]
       by_cases hwi : w i y = 0
-      · simp [hwi, heps.le]
+      · simp [hwi]
       · have hysupport : y ∈ Function.support (w i) := by
           simpa [Function.mem_support] using hwi
         have hyvariation := hwsub i (subset_closure hysupport)
@@ -136,8 +138,9 @@ theorem isNuclearCStarAlgebra_continuousMap :
   let down : C(X, B) →ₗ[ℂ] D := (finiteEvaluationStarAlgHom sample).toLinearMap
   let up : D →ₗ[ℂ] C(X, B) := finiteInterpolation w
   refine ⟨D, down, up, ?_, ?_, ?_, ?_, ?_⟩
-  · exact isCompletelyPositive_of_starAlgHom
-      (finiteEvaluationStarAlgHom sample).toNonUnitalStarAlgHom
+  · dsimp only [down, D]
+    exact isCompletelyPositive_of_starAlgHom
+      (finiteEvaluationStarAlgHom (B := B) sample).toNonUnitalStarAlgHom
   · exact isCompletelyPositive_finiteInterpolation w
   · exact norm_finiteEvaluationStarAlgHom_le sample
   · exact norm_finiteInterpolation_le w hw hwsum
