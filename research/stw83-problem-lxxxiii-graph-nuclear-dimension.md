@@ -145,12 +145,18 @@ be approximated below error one by one finite-dimensional order-zero colour
 plus a constant, even with arbitrary off-diagonal entries in the second
 colour.  This does not prove a lower bound of two.  Ordinary two-colour
 approximations of the circle make both plateau diagonals coefficient-varying,
-and compression by the rank-one corner need not preserve order zero.  In fact,
-`stw83-rotating-order-zero-compression-escapes-circle-gap` constructs, for
-every tolerance, a single star-homomorphic matrix colour crossing a constant
-rank-one corner whose compression approximates the circle generator.  Thus
-the noncommutative escape has full asymptotic strength on the diagonal.  A
-successful adaptive construction must still coordinate that moving colour
-with the entire Toeplitz finite set and the two global orthogonality pairings;
-a lower-bound proof needs new rigidity coupling the diagonal to the Toeplitz
-shift.
+and compression by the rank-one corner need not preserve order zero.  In fact, `stw83-compressed-one-colour-carries-circle-matrix-finite-sets`
+constructs, for every finite subset of every `M_k(C(T))` and every
+tolerance, star-homomorphic incoming and outgoing maps whose return becomes
+accurate after compression to a constant rank-`k` corner; constant matrix
+data is preserved exactly.  Thus the noncommutative escape has full
+simultaneous finite-set strength on the plateau diagonal.  Its price is now
+quantified by
+`stw83-star-homomorphic-plateau-carriers-have-norm-one-leakage`: on a
+positive coefficient cutoff ranging from zero to one, the uncompressed
+moving homomorphism carries asymptotically norm-one mass in the complementary
+corner at a zero of the target.  A successful adaptive construction must
+therefore taper a genuinely nonunital order-zero support across the scalar
+buffer and coordinate it with the Toeplitz shift and both global
+orthogonality pairings.  A lower-bound proof would have to show that no such
+tapered moving frame exists.
