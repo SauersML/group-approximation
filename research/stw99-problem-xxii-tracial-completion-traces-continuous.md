@@ -4,10 +4,13 @@ id: stw99-problem-xxii-tracial-completion-traces-continuous
 kind: claim
 title: All traces on a factorial tracially complete C*-algebra are uniform-2-norm continuous (STW Problem XXII)
 root: true
+refuted_by:
+  - stw22-nuclear-type-i-counterexample-trace-problem
 distinct_from:
   stw99-problem-x2-hyperfinite-factor-quasidiagonal: that asks for operator-norm matrix models of the single tracial von Neumann algebra R; this asks whether the designated trace simplex of a factorial tracially complete C*-algebra already exhausts all its traces, a normality question with no matrix models involved.
   stw22-dim1-factor-bundles-have-uniform-traces: that proves the problem for countably generated factorial bundles over bases of dimension at most one; this is the unrestricted problem, with neither a dimension nor countable-generation hypothesis.
 artifacts:
+  - research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md
   - research/artifacts/stw99-xxii-trace-problem-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
@@ -38,6 +41,13 @@ artifacts:
 Let `(M, X)` be a factorial tracially complete C\*-algebra.  Are all tracial
 states on `M` automatically `‖·‖_{2,X}`-continuous — equivalently, is
 `X ⊆ T(M)` an equality?
+
+**REFUTED 2026-08-31.**
+`stw22-nuclear-type-i-counterexample-trace-problem` gives a uniform tracial
+completion `(M,T(A))` of a separable unital nuclear type I algebra and a
+tracial state on `M` which extends the extreme trace at infinity but is not
+uniform-`2`-norm continuous.  The extreme trace boundary is compact metrizable
+and Bauer, but has unbounded covering dimension.
 
 Known (CCEGSTW): yes when `X` is a finite-dimensional simplex (`M` is then a
 finite direct sum of factors and traces are normal); yes for uniform tracial
@@ -97,18 +107,20 @@ argument.  `stw22-dim3-factor-bundles-have-uniform-traces` then applies
 stabilized Michael selection with `n=2`.  Every countably generated
 factorial bundle over a compact Hausdorff base of dimension at most three
 has only uniform traces, even when matrix sizes, II1 isomorphism classes,
-and matrix/diffuse fibre type vary.
+and matrix/diffuse fibre type vary.  The
+stabilized weighted-copy multifunction was already lower semicontinuous
+uniformly over all finite factors, so no type stratification is needed.
 
-The naive hard-carrier union remains non-locally-connected, but the new
-matrix and diffuse constructions bypass that union rather than selecting
-from it.
-
-The dimension-four step is now closed as well.  Diffuse factors admit a
-universal weighted `S^3` filling through the new relative low-spectrum
-`B^4` recursion.  Matrix factors have a sharp codimension-one `SU(2)`
-obstruction, but the half-slack replicated values used to kill gap traces
-always have at least two unused dimensions when `m>=2`.  Consequently
-`stw22-half-slack-all-factor-weighted-copy-uniform-s3-fillings` and
+The next degree is now closed in the exact replication regime needed for
+gap traces.  `stw22-diffuse-weighted-copy-uniform-s3-fillings` transfers the
+universal diffuse Stiefel three-sphere modulus through a relative
+low-spectrum `B^4` extension.  In matrices,
+`stw22-matrix-weighted-copy-codimension-two-uniform-s3-fillings` proves the
+same conclusion with at least two unused dimensions and exhibits essential
+arbitrarily small `SU(2)` spheres when only one dimension is unused.  The
+half-slack condition `m tau(supp(a))<=1/2`, with `m>=2`, always lies on the
+positive side in matrices and is automatic after the gap spectral cut.
+Thus `stw22-half-slack-all-factor-weighted-copy-uniform-s3-fillings` and
 `stw22-dim4-factor-bundles-have-uniform-traces` prove the trace theorem for
 every countably generated factorial bundle over a compact Hausdorff base of
 dimension at most four, including arbitrary mixed matrix/diffuse fibres.
@@ -135,9 +147,10 @@ trace theorem for every countably generated factorial bundle over every
 finite-dimensional compact Hausdorff base, with arbitrary matrix sizes,
 diffuse II1 isomorphism classes, and matrix/diffuse fibre variation.  This
 is a theorem separately for each finite `D`, not one modulus uniform in
-dimension.  The remaining unrestricted frontier includes
-infinite-covering-dimensional bases and bundles without countable
-generation.
+dimension.  This positive theorem is unaffected.  The unrestricted statement
+is now refuted by `stw22-nuclear-type-i-counterexample-trace-problem`; its
+Bauer boundary has unbounded covering dimension, precisely outside the finite
+`D` regime.
 
 There is an all-degree nonhyperfinite extension when the fixed fibre has
 full fundamental group.  In
@@ -253,12 +266,16 @@ the unresolved relative selection statement.
   and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2` selection now replaces those patches in every
   finite covering dimension for countably generated bundles.  For each fixed
   dimension it uses only a sufficiently far half-slack replication tail and
-  the corresponding finite matrix stable range.  The unresolved boundary is
-  infinite covering dimension or absence of countable generation.
+  the corresponding finite matrix stable range.  Before the counterexample,
+  infinite covering dimension was the surviving frontier.  The later
+  projective-bundle corona construction shows that no unrestricted positive
+  extension across that frontier is possible.
 * **Ultrafilter attack on the negative side.**  A singular trace on
   `C_σ([0,1], R)` of the form `lim_ω τ(b(y_n) q_n)/τ(q_n)` needs projections
   `q_n` with `τ(q_n) → 0` that are asymptotically central in relative
   1-norm against the values of *all* sections; the required rate
   `‖b(y_n) − b(x)‖_2 = o(τ(q_n)^{1/2})` fails for sections built from the
-  chosen `q_n` themselves.  No counterexample results, but the failure is
-  quantitative, not structural.
+  chosen `q_n` themselves.  This particular negative attack therefore does
+  not produce a counterexample.  The later counterexample uses a different
+  mechanism: Chern-class lower bounds on finite self-commutator width in an
+  asymptotic corona, followed by Cuntz--Pedersen separation.
