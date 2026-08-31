@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-directed-cuntz-cycle-rank-four-proof
-kind: proof
+kind: route
 title: Generate GL4 from the two selector returns and compute the 32-element cycle row
 target: qutrit-first-directed-cuntz-cycle-is-full-leavitt-rank-four
 requires:
