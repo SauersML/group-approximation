@@ -5,7 +5,7 @@ kind: route
 title: Search the canonical microstate promised by hyperlinearity and feed its code to the BCV exactifier
 target: non-hyperlinear-group
 requires:
-  - decidable-word-problem-hyperlinear-has-computable-canonical-microstate-modulus
+  - decidable-wp-hyperlinear-computable-microstate-modulus
   - bcv-universal-halt-canonical-microstate-exactification
   - bcv-no-computable-perfect-halt-readable-bound
 ---
