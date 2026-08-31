@@ -42,6 +42,13 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   packets impose only total parity, while nonplanar packets absorb every
   commuting profile in finite dimension.  A surviving packet must couple at
   least two noncommuting source ports in one connected cell network.
+- **Glue noncommuting ports through one common Pauli face.**  Also inert by
+  `row-glued-magic-squares-absorb-noncommuting-ports`.  The even and odd
+  square sectors admit four-dimensional realizations agreeing on a full row,
+  so spectral control attaches arbitrarily many mutually noncommuting ports
+  to that shared row using one `M_4` factor.  Mere connectedness and a common
+  packet context do not lock the multiplicity frame; a survivor needs a
+  sector-dependent transverse interface with no amplified alignment.
 - **Repeat fixed K labels at positive density.**  This can improve the finite
   packet's empirical spectral weight but does not change the universal
   completion; an infinite kernel in the abelian-subgroup amalgam survives
