@@ -133,5 +133,5 @@ along `E` is exactly a finite-overgroup amalgam, so the finite-overgroup
 packing theorem extends every hyperlinear model of the base across this
 attachment. Attaching finitely many independent copies does not change that
 conclusion. Hence a bare collection of these routers cannot make the
-Jacobian or Leavitt base nonhyperlinear; a further joint relation on their
+Jacobson or Leavitt base nonhyperlinear; a further joint relation on their
 multiplicity spaces would have to do the load-bearing work.
