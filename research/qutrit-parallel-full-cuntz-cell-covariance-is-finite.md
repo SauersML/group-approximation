@@ -2,7 +2,7 @@
 rg: 2
 id: qutrit-parallel-full-cuntz-cell-covariance-is-finite
 kind: claim
-title: Every finite parallel family of full-Cuntz qutrit cells has a finite covariant packet
+title: Every parallel full-Cuntz family in the qutrit block has a finite covariant packet
 artifacts:
   - research/qutrit-parallel-cuntz-cell-finite-packet-proof.md
 distinct_from:
@@ -12,7 +12,7 @@ distinct_from:
 ---
 
 Fix trivial `C` coordinates `i,k` in the `h=J^2Z`-fixed block and
-choose `m>=1` intermediate coordinates `j_1,...,j_m` in the
+choose `1<=m<=6` intermediate coordinates `j_1,...,j_m` in the
 nontrivial `C`-type killed by `h`. For every `a` and `r=0,1` put
 
 ```text
