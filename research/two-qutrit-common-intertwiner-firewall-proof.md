@@ -27,7 +27,7 @@ g=J^c X_1^u Z_1^v X_2^s Z_2^t
 sends `|0,0>` to a scalar multiple of `|u,s>`. Its compression to
 `C|0,0>` is therefore zero unless `u=s=0`. In the remaining case the two
 `Z` powers act by one and `J^c` acts by `omega^c`, proving `(TCI1)`.
-Linearity proves `p C[F]p=Cp`.
+Linearity proves `p C[E]p=Cp`.
 
 On an isotypic carrier the packet representation is
 
