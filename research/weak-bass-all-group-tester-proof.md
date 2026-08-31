@@ -6,7 +6,7 @@ title: Use identity-coefficient finite support at arbitrary colimits
 target: weak-bass-fixed-two-generator-all-group-tester
 requires:
   - universal-all-group-subgroup-colimit-class-tester
-  - weak-bass-two-generator-tester-proof
+  - weak-bass-fixed-two-generator-torsion-free-tester
 ---
 
 Let `B_w` be the class of groups satisfying integral weak Bass.

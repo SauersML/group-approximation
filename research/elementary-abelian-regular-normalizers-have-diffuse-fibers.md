@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: elementary-abelian-regular-normalizers-have-diffuse-coherent-fibers
+id: elementary-abelian-regular-normalizers-have-diffuse-fibers
 kind: claim
 title: Regular elementary-abelian windows classicalize only after quotienting diffuse normalizer fibers
 distinct_from:
