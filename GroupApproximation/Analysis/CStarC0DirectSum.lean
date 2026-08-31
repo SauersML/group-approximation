@@ -29,7 +29,7 @@ open scoped ENNReal
 
 noncomputable section
 
-universe u
+universe u v
 
 variable (D : ℕ → Type u) [∀ n, CStarAlgebra (D n)]
   [∀ n, Nontrivial (D n)]
@@ -211,7 +211,7 @@ theorem tendsto_truncation (b : C0DirectSum D) :
 /-- A nonunital star representation is continuous, by automatic
 contractivity. -/
 private theorem nonUnitalStarAlgHom_continuous
-    {A B : Type u} [NonUnitalCStarAlgebra A] [NonUnitalCStarAlgebra B]
+    {A : Type u} {B : Type v} [NonUnitalCStarAlgebra A] [NonUnitalCStarAlgebra B]
     (f : A →⋆ₙₐ[ℂ] B) : Continuous f := by
   exact (LipschitzWith.of_dist_le_mul (K := 1) fun x y ↦ by
     rw [NNReal.coe_one, one_mul, dist_eq_norm, ← map_sub]
@@ -223,7 +223,7 @@ private theorem nonUnitalStarAlgHom_continuous
 /-- The coordinate summands are exhaustive: a representation which vanishes
 on every one of them vanishes on the whole `c₀`-sum. -/
 theorem summandInclusion_isSummandExhaustive :
-    IsSummandExhaustive (summandInclusion D) := by
+    IsSummandExhaustive.{u, v} (summandInclusion D) := by
   intro H _ _ _ π hπ b
   have hzero : ∀ N, π (truncation D b N) = 0 := by
     intro N
@@ -238,15 +238,15 @@ theorem summandInclusion_isSummandExhaustive :
 /-- Type I passes to the genuine countable `c₀`-sum, with no abstract
 `HomogeneousBlockTypeIInputsNonUnital` bundle in the statement. -/
 theorem isTypeINonUnital_c0DirectSum
-    (hD : ∀ n, IsTypeINonUnital (D n)) :
-    IsTypeINonUnital (C0DirectSum D) :=
+    (hD : ∀ n, IsTypeINonUnital.{u, v} (D n)) :
+    IsTypeINonUnital.{u, v} (C0DirectSum D) :=
   isTypeINonUnital_of_summands (summandInclusion D)
     (summandInclusion_isIdeal D) (summandInclusion_isSummandExhaustive D) hD
 
 /-- Consequently the ordinary unitization of the genuine `c₀`-sum is type I. -/
 theorem isTypeI_unitization_c0DirectSum
-    (hD : ∀ n, IsTypeINonUnital (D n)) :
-    IsTypeI (Unitization ℂ (C0DirectSum D)) :=
+    (hD : ∀ n, IsTypeINonUnital.{u, v} (D n)) :
+    IsTypeI.{u, v} (Unitization ℂ (C0DirectSum D)) :=
   isTypeI_unitization (isTypeINonUnital_c0DirectSum D hD)
 
 end
