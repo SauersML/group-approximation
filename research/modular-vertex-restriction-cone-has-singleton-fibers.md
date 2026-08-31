@@ -57,7 +57,16 @@ every fixed level its multiplicity vector is the integral endpoint vector
 M_pi=dim(pi),       pi in Irr(Q_m),                      (MVC4)
 ```
 
-whose normalized type weights are `dim(pi)^2/|Q_m|`.
+whose normalized type weights are `dim(pi)^2/|Q_m|`. In
+particular, if `K_m` is the real feasible multiplicity cone, then
+
+```text
+K_m=R_+^(Irr(Q_m)),       K_m^*=K_m,
+<y,M_Plancherel>=sum_pi y_pi dim(pi)>0                  (MVC4a)
+```
+
+for every nonzero `y in K_m^*`. Thus the Plancherel vector is in the
+relative interior and admits no fixed-level Farkas separation.
 
 There is also an explicit exact finite-window approximation at the infinite
 modular vertex. For every finite `F subset C`, choose one nonzero entry
