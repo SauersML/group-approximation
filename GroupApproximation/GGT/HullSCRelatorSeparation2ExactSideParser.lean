@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyExact
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyGap
+import GroupApproximation.GGT.HullSCRelatorSeparation2CyclicSegment
 import GroupApproximation.GGT.OsinTheorem54SepPolygonVertex
 
 /-!
@@ -165,6 +166,90 @@ theorem index_window_of_blockCount
       forward_index_gap_le_of_blockCount E cnt hcount hp hv hu hdi hi hmem⟩
   · exact Or.inr ⟨hid,
       reverse_index_gap_le_of_blockCount E cnt hcount hp hv hu hid hd hmem⟩
+
+/-- A forward span in a prefix of a symmetrized relator is a prefix of a
+rotation based at the first endpoint, either in the relator or in its formal
+inverse.  This is the cyclic normalization consumed by the exact-design seam
+parser. -/
+theorem forward_span_prefix_sym_cases
+    (E : HypEmbeddedCore₂ A N) {p : List G} {ms : List ℕ}
+    {v u tl : List (GGT.RelLetter G Bool)}
+    (hv : RelWord.Sym
+      (relatorWord₂ p (E.lox false) (E.lox true) ms) v)
+    (hu : v = u ++ tl) {d i : ℕ} (hdi : d ≤ i) (hi : i ≤ u.length) :
+    (∃ c : ℕ,
+      (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
+          GGT.OsinComponents.vertex (1 : G) u i =
+        GGT.RelLetter.listVal
+          ((relatorWord₂ p (E.lox false) (E.lox true) ms).rotate c |>.take
+            (i - d))) ∨
+      (∃ c : ℕ,
+        (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
+            GGT.OsinComponents.vertex (1 : G) u i =
+          GGT.RelLetter.listVal
+            ((RelWord.revInv
+              (relatorWord₂ p (E.lox false) (E.lox true) ms)).rotate c |>.take
+                (i - d))) := by
+  have hd : d ≤ u.length := le_trans hdi hi
+  have hvd : GGT.OsinComponents.vertex (1 : G) v d =
+      GGT.OsinComponents.vertex (1 : G) u d := by
+    rw [hu]
+    exact GGT.OsinComponents.vertex_append_of_le u tl 1 d hd
+  have hvi : GGT.OsinComponents.vertex (1 : G) v i =
+      GGT.OsinComponents.vertex (1 : G) u i := by
+    rw [hu]
+    exact GGT.OsinComponents.vertex_append_of_le u tl 1 i hi
+  have hiv : i ≤ v.length := by rw [hu, List.length_append]; omega
+  have hiR : i ≤
+      (relatorWord₂ p (E.lox false) (E.lox true) ms).length := by
+    rw [← hv.length_eq]
+    exact hiv
+  rcases hv.exists_rotate with ⟨c, hc⟩ | ⟨c, hc⟩
+  · refine Or.inl ⟨c + d, ?_⟩
+    rw [← hvd, ← hvi, hc]
+    exact span_rotate_eq_listVal_take_rotate _ hdi hiR
+  · refine Or.inr ⟨c + d, ?_⟩
+    rw [← hvd, ← hvi, hc]
+    apply span_rotate_eq_listVal_take_rotate _ hdi
+    simpa only [RelWord.length_revInv] using hiR
+
+/-- In the reverse endpoint order, the side span is the inverse of the same
+normalized cyclic prefix based at the smaller endpoint. -/
+theorem reverse_span_prefix_sym_cases
+    (E : HypEmbeddedCore₂ A N) {p : List G} {ms : List ℕ}
+    {v u tl : List (GGT.RelLetter G Bool)}
+    (hv : RelWord.Sym
+      (relatorWord₂ p (E.lox false) (E.lox true) ms) v)
+    (hu : v = u ++ tl) {d i : ℕ} (hid : i ≤ d) (hd : d ≤ u.length) :
+    (∃ c : ℕ,
+      (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
+          GGT.OsinComponents.vertex (1 : G) u i =
+        (GGT.RelLetter.listVal
+          ((relatorWord₂ p (E.lox false) (E.lox true) ms).rotate c |>.take
+            (d - i)))⁻¹) ∨
+      (∃ c : ℕ,
+        (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
+            GGT.OsinComponents.vertex (1 : G) u i =
+          (GGT.RelLetter.listVal
+            ((RelWord.revInv
+              (relatorWord₂ p (E.lox false) (E.lox true) ms)).rotate c |>.take
+                (d - i)))⁻¹) := by
+  rcases forward_span_prefix_sym_cases E hv hu hid hd with
+    ⟨c, hc⟩ | ⟨c, hc⟩
+  · refine Or.inl ⟨c, ?_⟩
+    calc
+      (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
+          GGT.OsinComponents.vertex (1 : G) u i =
+          ((GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
+            GGT.OsinComponents.vertex (1 : G) u d)⁻¹ := by group
+      _ = _ := congrArg Inv.inv hc
+  · refine Or.inr ⟨c, ?_⟩
+    calc
+      (GGT.OsinComponents.vertex (1 : G) u d)⁻¹ *
+          GGT.OsinComponents.vertex (1 : G) u i =
+          ((GGT.OsinComponents.vertex (1 : G) u i)⁻¹ *
+            GGT.OsinComponents.vertex (1 : G) u d)⁻¹ := by group
+      _ = _ := congrArg Inv.inv hc
 
 end Parser
 
