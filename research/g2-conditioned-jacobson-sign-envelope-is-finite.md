@@ -4,7 +4,7 @@ id: g2-conditioned-jacobson-sign-envelope-is-finite
 kind: claim
 title: The long router and every Jacobson sign polar still have an exact finite head-retaining model
 distinct_from:
-  qutrit-jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16: that computes the exact polar ranks inside the sign subgroup; this proves adjoining every power of the long router still cannot authenticate those ranks
+  jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16: that computes the exact polar ranks inside the sign subgroup; this proves adjoining every power of the long router still cannot authenticate those ranks
   qutrit-two-scalar-routers-close-full-leavitt-but-head-packet-stays-finite: that traps scalar-conjugated head roots over the two-element idempotent algebra; this enlarges the finite coefficient envelope to include the mixed root C_1 labelled by QT
   qutrit-complementary-jacobson-signs-with-minimal-router-are-finite: that treats the minimal router together with raw U and V using a triangular flag; this treats the long router but only the head-masked sign data
 ---
