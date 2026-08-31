@@ -93,3 +93,17 @@ there is no genuine second representation on which to apply its bimodule
 gap.  Even qualitative liftability still needs a legal core-preserving
 truncation of operator-hard, rank-paid normal tails to yield a uniform
 linear modulus.
+
+The finite-dilation boundary is now exact.
+`tfd-finite-corner-collapse-and-rfd-firewall` proves that **any**
+finite-dimensional exact corner dilation of `(AUL2)`, even in an
+arbitrarily larger ambient dimension, automatically reduces by property
+`(T;FD)` to a congruence endpoint on `d_n+o(d_n)` dimensions.  Thus
+padding control is not an extra gate after a finite corner is found.
+However the LLP/RFD very-flexible theorem cannot find that corner:
+`C^*(SL_2(Z[1/2]))` is not RFD, because RFD plus `(T;FD)` would imply
+full property `(T)`.  LLP alone yields only a possibly
+infinite-dimensional Stinespring corner, and current MF amalgam theorems
+produce existential norm embeddings rather than coordinate lifts of this
+prescribed tracial homomorphism.  The surviving gate is exactly
+finite-dimensional relative lift production.
