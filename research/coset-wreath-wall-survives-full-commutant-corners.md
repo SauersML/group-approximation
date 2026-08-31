@@ -64,8 +64,12 @@ tau_e(p_e)=1/2,
 ~~~
 
 All Boolean independence moments of the orbit projections survive the corner
-as well.  More generally it is enough to assume
-`e in Theta(G)' cap M` and `[e,Theta(p)]=0`: these two conditions force
+as well.  More generally, suppose only that
+`e in Theta(G)' cap M` and that the compressed lamp
+`eTheta(p)e` is a projection in `eMe`--equivalently,
+`eTheta(a_(x_0))e` is an involution.  Compression of one projection by
+another is a projection only when the two projections commute.  Hence
+`[e,Theta(p)]=0`, and actor covariance then forces
 `e in Theta(L(W))' cap M`.
 
 For the Kun--Thom specialization over `F_2`, take
