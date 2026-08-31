@@ -30,7 +30,7 @@ For `eta in {+1,-1}`, define
 p_eta=(1+eta t)/2,        A_eta=p_eta k e.
 ```
 
-Then the separate `u)- and `k)-occurrences force the exact Gram
+Then the separate `u`- and `k`-occurrences force the exact Gram
 identity
 
 ```text
@@ -51,8 +51,8 @@ f_eta=V_eta V_eta^*=2p_eta k e k p_eta<=p_eta,
 f_+ f_-=0.                                              (JD82)
 ```
 
-Thus either raw `t)-sign branch covers the whole residual before the
-commutator is reduced to `u). This is a full-support, occurrence-typed
+Thus either raw `t`-sign branch covers the whole residual before the
+commutator is reduced to `u`. This is a full-support, occurrence-typed
 pre-reduction polar, not merely the lower leakage bound.
 
 The polar has exact packet covariance whenever the packet respects the
@@ -62,8 +62,8 @@ two cuts. In particular, the alternate native two-qubit tuple
 D=(x_14(Q),x_43(1),x_15(Q),x_53(1))                    (JD83)
 ```
 
-reduces `e), commutes with both `t` and `u), and generates
-`M_4 tensor I` on `e). For every row `D_j`,
+reduces `e`, commutes with both `t` and `u), and generates
+`M_4 tensor I` on `e`. For every row `D_j`,
 
 ```text
 V_eta D_j
@@ -92,6 +92,6 @@ the same `2:1` split between `R` and `q-R`.
 The exact two-branch polar therefore closes the support question but not the
 Hall question. A decisive continuation must prove an additional covariance
 which sends the two selected qutrit phases through only one complement
-phase, or show that one of the two `t)-spectral ranges is deleted by a
+phase, or show that one of the two `t`-spectral ranges is deleted by a
 further mixed occurrence. The D8 square itself supplies two balanced full
 branches.
