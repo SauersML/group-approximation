@@ -70,7 +70,7 @@ to relabel the common length-one range: the failure is measured by the
 third positive root direction `D`. It is the endomorphism form of the
 Steinberg commutator `[I+E_31,I+E_12]=I+E_32`.
 
-# 2. The cyclic average retains a quantitative wall
+# 2. A cyclically invariant projection retains the full wall
 
 Let `X=G/Gamma` and
 
@@ -79,37 +79,32 @@ W=(direct_sum_X C_2) rtimes G.
 ~~~
 
 Write `z_x` for the lamp involution at `x in X` and work in
-`M=L(W)` with its canonical trace. Define three root-normalizer lamps and
-their average by
+`M=L(W)` with its canonical trace. Put
 
 ~~~text
-p_i=(1+z_(C^(-i)Gamma))/2,       i=0,1,2,
-q=(p_0+p_1+p_2)/3.
+P={Gamma,C^(-1)Gamma,C^(-2)Gamma},
+v=product_(x in P) z_x,
+q=(1+v)/2.
 ~~~
 
 The stabilizer of `C^(-i)Gamma` is
-`C^(-i) Gamma C^i=Gamma`. Hence every `p_i`, and therefore
-`q`, belongs to `R`. The map `Theta=Ad(sigma(C)^*)` cycles
-the three projections:
+`C^(-i) Gamma C^i=Gamma`. Hence every lamp in the product commutes
+with `sigma(Gamma)` and `q in R`. The map
+`Theta=Ad(sigma(C)^*)` cyclically permutes the three factors. Since the
+lamps commute,
 
 ~~~text
-Theta(p_i)=p_(i+1 mod 3),       Theta(q)=q.               (6)
+Theta(v)=v,              Theta(q)=q.                     (6)
 ~~~
 
-Thus `q` is exactly what order-three averaging produces. It is a positive
-operator-norm-one contraction.
+The three lamp sites are distinct, so `v` is a nonidentity self-adjoint
+involution with trace zero. Thus `q` is a projection of trace one half.
+It is already fixed by the order-three averaging operator.
 
-Strictness gives
-`Gamma properly contained in B^(-1) Gamma B`. Use the explicit element
-`h` from Section 3 below. Put
-
-~~~text
-P={Gamma,C^(-1)Gamma,C^(-2)Gamma}.
-~~~
-
-The six cosets in `P disjoint_union hP` are distinct. Indeed the three
-cosets in `P` are distinct because their actor components modulo
-`Gamma` are `1,C^(-1),C^(-2)`. If
+Use the explicit element `h` from Section 3 below. The six cosets in
+`P disjoint_union hP` are distinct. Indeed the three cosets in `P` are
+distinct because their actor components modulo `Gamma` are
+`1,C^(-1),C^(-2)`. If
 
 ~~~text
 h C^(-i)Gamma=C^(-j)Gamma,
@@ -120,21 +115,20 @@ then `C^j h C^(-i)` belongs to `Gamma`. Its actor component forces
 `C^i h C^(-i)` lies in `Gamma`, contrary to its Laurent denominator.
 The cosets within `hP` are distinct by cancellation.
 
-Now
+Conjugation transports the parity lamp to the disjoint parity lamp:
 
 ~~~text
-q=1/2+(1/6) sum_(x in P) z_x,
-sigma(h)q sigma(h)^*
- =1/2+(1/6) sum_(x in P) z_(h x).
+sigma(h)v sigma(h)^*=product_(x in P) z_(h x)=:v_h.
 ~~~
 
-The six displayed lamp group elements are trace orthogonal, so
+The distinct nonidentity lamp group elements `v` and `v_h` are trace
+orthogonal. Therefore
 
 ~~~text
 ||[q,sigma(h)]||_2
  =||q-sigma(h)q sigma(h)^*||_2
- =sqrt(6/36)
- =1/sqrt(6).                                             (7)
+ =(1/2)||v-v_h||_2
+ =1/sqrt(2).                                             (7)
 ~~~
 
 Every element of
@@ -146,7 +140,7 @@ Phi_B(R)=sigma(B^(-1) Gamma B)' intersect M
 commutes with `sigma(h)`. For `a in Phi_B(R)`, (7) gives
 
 ~~~text
-1/sqrt(6)
+1/sqrt(2)
  =||[q-a,sigma(h)]||_2
  <=2||q-a||_2.
 ~~~
@@ -154,7 +148,7 @@ commutes with `sigma(h)`. For `a in Phi_B(R)`, (7) gives
 Taking the infimum proves
 
 ~~~text
-dist_2(q,Phi_B(R))>=1/(2 sqrt(6)).                       (8)
+dist_2(q,Phi_B(R))>=1/(2 sqrt(2)).                       (8)
 ~~~
 
 Equations (6) and (8) prove the failure of (KHL4). This is a counterexample
@@ -201,7 +195,7 @@ also lies outside `Gamma`. Equation (6), trace invariance, and the cyclic
 symmetry of `q` give
 
 ~~~text
-||[q,sigma(h_i)]||_2=1/sqrt(6).                          (10)
+||[q,sigma(h_i)]||_2=1/sqrt(2).                          (10)
 ~~~
 
 This three-word packet is the first explicit target for pointed
