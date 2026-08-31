@@ -46,6 +46,14 @@ dimension zero is O-infinity-stable.
 - The `B(H)`-target theorem supplies a different positive mechanism:
   essential representation absorption merges two whole copies of the range
   and never asks finite-dimensional support projections to return.
+- This mechanism cannot be turned into a general envelope-and-descent proof.
+  `stw77-infinite-amplification-hides-finite-model-supports` shows that
+  infinite amplification makes even a rank-one junk support properly
+  infinite and gives exact central isometries upstairs, while every pair of
+  orthogonal isometries downstairs has commutator defect at least
+  `1/sqrt(2)` with that support.  Thus product/type-I envelopes erase
+  precisely the finite-support information which proper-block clustering
+  must resolve; norm descent is impossible before the clustering step.
 - One-sided approximation alone is insufficient because generated models can
   contain finite blocks carried by representations which become pointwise
   indistinguishable. A viable proof must centralize the finite tuple while
