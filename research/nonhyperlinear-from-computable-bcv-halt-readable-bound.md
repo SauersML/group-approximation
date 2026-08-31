@@ -4,8 +4,6 @@ id: nonhyperlinear-from-computable-bcv-halt-readable-bound
 kind: route
 title: Closed route from a computable BCV HALT readable bound
 target: non-hyperlinear-group
-refuted_by:
-  - bcv-no-computable-perfect-halt-readable-bound
 requires:
   - bcv-halt-completeness-has-computable-readable-factor-bound
   - computable-bcv-halt-bound-diagonalizes-to-finite-readable-gap
