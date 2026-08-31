@@ -7,7 +7,7 @@ requires:
   - finite-positive-definite-window-is-a-relative-corner-selector
 distinct_from:
   induced-rounding-needs-rms-section-fillings: that constructs one canonical isometry from word evaluations and bounds its defect; this parametrizes all possible relative ucp windows by all core-intertwining isometries in the same finite induced space.
-  right-core-equivariant-cayley-average-produces-relative-toeplitz-window: that gives a sufficient unitary-fibre gauge family; this proves the exact universal parametrization, including kernels outside that ansatz.
+  right-core-cayley-average-gives-toeplitz-window: that gives a sufficient unitary-fibre gauge family; this proves the exact universal parametrization, including kernels outside that ansatz.
   tfd-finite-corner-collapse-and-rfd-firewall: that collapses a finite corner after it has been found; this identifies a single finite representation in which every such corner can be sought.
 ---
 
