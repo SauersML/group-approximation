@@ -548,3 +548,40 @@ cannot identify the two fixed spaces; the exact wreath vector above proves
 this already in a finite tracial algebra.  Hence the matrix-internal
 cluster/fullness theorem, not spectral gap alone, is the precise remaining
 bridge.
+
+
+**2026-08-31 (canonical Steinberg regular sector: strict instability but
+no leak).**  `canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants`
+constructs an explicit regular-character family for the full binary actor.
+For odd primes `m`, decompose
+
+```text
+F_2[(Z/mZ)^3] = product_O F_(2^|O|)
+```
+
+over Frobenius orbits and tensor the Steinberg modules of every elementary
+factor.  The join-of-buildings model extends this irreducible elementary
+representation to the full congruence semidirect quotient.  Both `Gamma` and
+`t Gamma t^(-1)` surject onto the elementary image, so both coordinate
+commutants are scalar.
+
+Deleting one line and polar-compressing produces a trace-faithful
+everywhere-inexact embedding which stays a Kazhdan distance from every
+same-dimensional genuine `Gamma`-representation.  Thus literal
+same-dimensional profinite classification is false even in the canonical
+regular-character sector.  However one-line padding recovers the exact
+congruence representation, and the same Kazhdan gap proves the quantitative
+low-band estimate
+
+```text
+dist_2(X,C)
+ <= kappa^(-1) max_(s in S)||[X,rho_m(s)]||_2
+    + O(D_m^(-1/2)).
+```
+
+Consequently both ultraproduct commutants remain `C`, and every fixed
+mixed-return leakage vanishes.  This gives a nontrivial inexact instance of
+Alekseev--Thom Open Problem 6.2 but does not settle the universal statement:
+a counterexample must combine padding-stable positive-density instability
+with macroscopic multiplicity.  The regular irreducible deleted-line
+mechanism has neither and cannot carry the Pauli wall.
