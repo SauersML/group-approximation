@@ -54,7 +54,7 @@ theorem pushSimplex_continuousMap {X Y : TopCat.{0}} (f : X ⟶ Y) (n : ℕ)
   apply ContinuousMap.ext
   intro x
   simp only [pushSimplex, singularSimplexAsContinuousMap, TopCat.toSSetObjEquiv, TopCat.toSSet,
-    Equiv.trans_apply, ContinuousMap.comp_apply]
+    ContinuousMap.comp_apply]
   rfl
 
 /-! ## 1. `∂∂ = 0` -/
@@ -206,10 +206,11 @@ theorem barycentricHomotopyUniversal_succ_eq (R : Type) [CommRing R] (m : ℕ) :
 `H_m(∂_m c)`, i.e. `barycentricSubdivisionHomotopyLinearMap R X m` applied to
 `singularBoundary R X m c`.  This is exactly `H_{n-1}(∂_{n-1} c)` with the project's
 index convention. -/
-noncomputable def homotopyBoundaryTerm (R : Type) [CommRing R] (X : TopCat.{0}) :
-    (n : ℕ) → singularChainGroup R X n → singularChainGroup R X n
-  | 0, _ => 0
-  | (m+1), c => (barycentricSubdivisionHomotopyLinearMap R X m).hom
+noncomputable def homotopyBoundaryTerm (R : Type) [CommRing R] (X : TopCat.{0})
+    (n : ℕ) : singularChainGroup R X n → singularChainGroup R X n :=
+  match n with
+  | 0 => fun _ => 0
+  | m + 1 => fun c => (barycentricSubdivisionHomotopyLinearMap R X m).hom
       ((singularBoundary R X m).hom c)
 
 /-- Value of `homotopyBoundaryTerm` in positive degree. -/
@@ -277,7 +278,7 @@ theorem barycentricSubdivisionHomotopy_boundary_formula (R : Type) [CommRing R]
     have key : barycentricSubdivisionHomotopyLinearMap R X 0 ≫ singularBoundary R X 0
         = 𝟙 _ - barycentricSubdivisionLinearMap R X 0 := by
       apply Sigma.hom_ext; intro σ; ext
-      simp only [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_sub, LinearMap.sub_apply]
+      simp only [ModuleCat.hom_comp, LinearMap.comp_apply]
       exact gen X σ
     have h2 := DFunLike.congr_fun (congrArg ModuleCat.Hom.hom key) c
     simpa [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_sub, LinearMap.sub_apply,
@@ -352,8 +353,7 @@ theorem barycentricSubdivisionHomotopy_boundary_formula (R : Type) [CommRing R]
         + singularBoundary R X m ≫ barycentricSubdivisionHomotopyLinearMap R X m
         = 𝟙 _ - barycentricSubdivisionLinearMap R X (m+1) := by
       apply Sigma.hom_ext; intro σ; ext
-      simp only [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_add, LinearMap.add_apply,
-        ModuleCat.hom_sub, LinearMap.sub_apply]
+      simp only [ModuleCat.hom_comp, LinearMap.comp_apply]
       exact gen X σ
     have h2 := DFunLike.congr_fun (congrArg ModuleCat.Hom.hom key) c
     simpa [ModuleCat.hom_comp, LinearMap.comp_apply, ModuleCat.hom_add, LinearMap.add_apply,
