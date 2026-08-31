@@ -100,6 +100,25 @@ restriction from `C` is onto. Pull back the left regular representation of
 of reduction and zero off that kernel. By (MVP4), it agrees with
 `delta_e` on all of `F`, proving (MVC5)--(MVC6).
 
+For the coefficient-table statement, fix finite `W,K subset C` and form
+
+```text
+S={h^(-1)wk: h,k in K, w in W, h^(-1)wk!=e}.           (MVP4a)
+```
+
+Apply the same explicit-modulus construction to `S`. Reduction modulo the
+resulting `m` has the property
+
+```text
+h mod m = (wk) mod m       iff       h=wk              (MVP4b)
+```
+
+for `h,k in K` and `w in W`. It is injective on `K`, so define
+`J_K delta_k=delta_(k mod m)`. The `(h,k)` matrix entry of the left side
+of (MVC7) is one exactly when the left condition in (MVP4b) holds; the
+corresponding matrix entry of the right side is one exactly when `h=wk`.
+All entries agree, proving (MVC7).
+
 Finally let `L` be any real affine functional depending on finitely many
 character coordinates and nonnegative on all normalized endpoint
 characters. Apply the construction to a finite set containing every
