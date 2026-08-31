@@ -148,5 +148,5 @@ Finally, apply the argument coordinatewise. If `Delta_n` does not tend
 to zero, pass to a subsequence on which `Delta_n>=epsilon`. Equations
 (BDP2)--(BDP3) produce `Y_n` with normalized HS norm one, operator norm
 at most `2/epsilon`, and dual gap at least `epsilon`. Conversely any
-such dual gap is bounded above by `Delta_n) by the first inequality in
+such dual gap is bounded above by `Delta_n` by the first inequality in
 the proof. This is precisely the equivalence (BDW4).
