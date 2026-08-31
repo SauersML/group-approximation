@@ -64,15 +64,23 @@ On G=G_(sigma,+) it satisfies
 ```text
 X^*X >=(1/256)G.                                         (RCS3)
 ```
-It commutes with the source h-character cut R=e_0+e_1.  Hence, with
+The projections G and R lie in one fixed finite-head C*-algebra.  Put
 ```text
-P=GR,
+P=supp(RGR)
 ```
-the operator XR has initial support P and
+and let gamma be the least positive eigenvalue of RGR across that finite
+C*-algebra.  Thus gamma>0 is dimension-independent and
 ```text
-(XR)^*(XR)>=(1/256)P.                                    (RCS4)
+RGR>=gamma P.
 ```
-The two possible source traces and the target trace are
+Compressing (RCS3) gives
+```text
+(XR)^*(XR)=R X^*X R
+ >=(1/256)RGR
+ >=(gamma/256)P.                                         (RCS4)
+```
+In particular XR has initial support P.  The two possible source traces
+and the target trace are
 ```text
 tau(P)=5/72     or     1/16,
 tau(Q_b)=tau(Ee_b)=1/18.                                 (RCS5)
@@ -90,10 +98,10 @@ For every projection Q,
 The last inequality uses tau(R_A)=tau(P) and
 tau(R_AQ)<=tau(Q).
 
-Taking A=g_2XR, c=1/16, and Q=Q_b gives
+Taking A=g_2XR, c^2=gamma/256, and Q=Q_b gives
 ```text
-||(1-Q_b)g_2XR||_2^2 >=1/18432       if sigma=+,
-||(1-Q_b)g_2XR||_2^2 >=1/36864       if sigma=-.          (RCS7)
+||(1-Q_b)g_2XR||_2^2 >=gamma/18432       if sigma=+,
+||(1-Q_b)g_2XR||_2^2 >=gamma/36864       if sigma=-.      (RCS7)
 ```
 Thus the missing range is not merely nonzero: it has a dimension-free
 energy floor in every tracial representation retaining the stated
@@ -106,7 +114,7 @@ outside-target component,
 ```
 then (RCS7) forces
 ```text
-||BP||_2^2 >=1/18432       or       1/36864.              (RCS8)
+||BP||_2^2 >=gamma/18432       or       gamma/36864.      (RCS8)
 ```
 More decisively, if (g_2XR+B)P were still bounded below on all of P and
 had range in Q_b, its initial and range supports would have equal trace,
