@@ -37,9 +37,10 @@ an isomorphism of `ModuleCat`-modules, hence the chain map is a quasi-isomorphis
 -/
 
 open CategoryTheory AlgebraicTopology
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 
 variable {R : Type} [CommRing R] {X : TopCat.{0}}
