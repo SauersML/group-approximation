@@ -53,7 +53,7 @@ clutching construction plus stable-rank-one cancellation, gives
 ```text
 V(C(Gamma,D))
  ~= {0} disjointUnion
-    ((V(D) minus {0}) times K_1(D)).                       (UC4)
+    (V(D) minus {0}) times K_1(D).                         (UC4)
 ```
 
 For `0 not equal p in V(D)`, simplicity makes
@@ -272,8 +272,8 @@ An independent audit checked:
 - iteration over all rooted trees attached to the unique circle; and
 - the pure-pseudoforest first-factor map.
 
-No counterexample was found. The audit rejected any naive
-`H^1(supp(F);K_1(D))` decoration and any claim beyond pseudoforests.
+No counterexample was found. The audit rejected any naive support-cohomology decoration with coefficients
+in `K_1(D)`, and any claim beyond pseudoforests.
 
 ## Primary sources checked
 
