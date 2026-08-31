@@ -19,6 +19,7 @@ artifacts:
   - research/artifacts/stw22-diffuse-weighted-loop-extension-audit-2026-08-30.md
   - research/artifacts/stw22-fixed-factor-s2-filling-audit-2026-08-30.md
   - research/artifacts/stw22-s2-hard-carrier-obstruction-audit-2026-08-30.md
+  - research/artifacts/stw22-full-fundamental-group-all-degree-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -90,6 +91,19 @@ The naive multiplicity-three hard-carrier bootstrap is ruled out by
 `stw22-hard-carrier-unions-fail-local-connectivity`: infinitesimally split
 carriers force a fixed transverse join, breaking local connectivity (or,
 with simplex coordinates, lower semicontinuity).
+
+There is an all-degree nonhyperfinite extension when the fixed fibre has
+full fundamental group.  In
+`stw22-full-fundamental-group-weighted-copy-all-sphere-fillings`, one pointed
+Jekel contraction transports to every normalized corner, giving the common
+corner moduli needed by controlled Michael lifting in every finite degree.
+Consequently
+`stw22-full-fundamental-group-trivial-bundles-finite-dimensional` proves the
+trace theorem for trivial bundles with that fibre over every
+finite-dimensional compact Hausdorff base.  This includes fixed McDuff
+fibres.  For a general fixed factor, the argument stops after `S^2`: a
+pointed contraction of `U(N)` need not preserve corners, and separate corner
+contractions have no known common higher-degree modulus.
 
 For locally trivial hyperfinite W\*-bundles over a finite-dimensional
 compact metrizable base,

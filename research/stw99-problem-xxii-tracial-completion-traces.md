@@ -24,6 +24,7 @@ artifacts:
   - research/artifacts/stw22-diffuse-weighted-loop-extension-audit-2026-08-30.md
   - research/artifacts/stw22-fixed-factor-s2-filling-audit-2026-08-30.md
   - research/artifacts/stw22-s2-hard-carrier-obstruction-audit-2026-08-30.md
+  - research/artifacts/stw22-full-fundamental-group-all-degree-audit-2026-08-30.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -91,6 +92,20 @@ their join and move a fixed positive `2`-distance.  Adding barycentric
 coordinates instead destroys lower semicontinuity at the coincident point.
 Thus a factor-uniform dimension-three proof needs a genuinely soft carrier
 or a uniform pointed contraction, not the naive nerve patch.
+
+The higher-degree pointed-contraction bootstrap does work for a large fixed
+fibre class.  If `N` has full fundamental group, every normalized nonzero
+corner is isomorphic to `N`.  The single pointed Jekel contraction of
+`U(N)` therefore supplies one local modulus for all corner stabilizers,
+after a small-corner diameter split.  The all-degree weighted theorem
+`stw22-full-fundamental-group-weighted-copy-all-sphere-fillings` and Michael
+selection yield
+`stw22-full-fundamental-group-trivial-bundles-finite-dimensional`: every
+trace on `C_sigma(K,N)` is canonical for every finite-dimensional compact
+Hausdorff `K`.  McDuff factors are included.  Without this corner-uniformity
+hypothesis, lifting `S^3` already asks for an unproved common equi-`LC^2`
+modulus for all corner unitary groups of `N`; the arbitrary-factor
+fixed-fibre theorem therefore remains limited to dimension three.
 
 For locally trivial hyperfinite W*-bundles over finite-dimensional compact
 metrizable bases, `stw22-locally-trivial-finite-dimensional-bundles` gives
