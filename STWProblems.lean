@@ -1,31 +1,17 @@
 import Mathlib
 import GroupApproximation.Manuscript.NinetyNineProblems.ProblemXCVCompactKTheory
+import STW.Actual.FockPair
 
 /-!
-# STW Problems XXII, LV, and XCV: unconditional kernel cores
+# STW Problems XXII, LV, and XCV
 
-This file records the parts of the three operator-algebra arguments that can
-currently be stated and proved in Lean without introducing any new axiom,
-`sorry`, `admit`, or placeholder theorem.
+The `STW.Actual` import tree is the unconditional formalization of the actual
+operator-algebra objects used by Problems XXII, LV, and XCV.  No theorem in
+that tree may replace an operator-algebra bridge by an assumption, an axiom,
+`sorry`, `admit`, or a proposition engineered to encode the desired conclusion.
 
-The surrounding operator-algebraic infrastructure is intentionally not
-postulated here.  In particular, Mathlib currently has no API for the Cuntz
-semigroup or operator K-theory used in Problem XCV, no crossed-product/KMS
-formalization sufficient for Problem LV, and no factorial tracially complete
-C*-bundle plus Michael-selection formalization sufficient for Problem XXII.
-Encoding those missing results as hypotheses would make the claimed solutions
-conditional rather than unconditional.
-
-What is checked here is therefore the exact terminal mathematics used by the
-three arguments:
-
-* XXII: an unbounded family of replication inequalities
-  `m * sigma(b) <= C` forces the nonnegative trace value `sigma(b)` to vanish;
-* LV: the quasifree KMS equation has at most one inverse temperature for each
-  positive parameter, and a common inverse temperature determines the
-  parameter uniquely;
-* XCV: the compact K-theory endpoint `Z !~= Z x Z`, re-exported from the
-  existing axiom-free module.
+The older endpoint lemmas below remain useful sublemmas while the actual
+objects are assembled above them.
 -/
 
 namespace GroupApproximation.NinetyNineProblems
