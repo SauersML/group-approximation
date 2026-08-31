@@ -94,7 +94,7 @@ Both bounds are sharp. Thus the optimal normalized counting or
 point-carrier inverse defect is
 
 ~~~text
-sqrt(1-2^(-k_N))) -> 1,                                   (NIA6)
+sqrt(1-2^(-k_N)) -> 1,                                   (NIA6)
 ~~~
 
 not zero. Equivalently, on `ell^2(A_N)`, the composition operator of
