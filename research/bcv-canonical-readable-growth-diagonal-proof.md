@@ -50,7 +50,7 @@ value-one obstruction. The claim
 `bcv-perfect-answer-reduction-decodes-double-cover` proves directly from
 Definition 5.79 that every attained perfect Answer Reduced strategy has a
 single joint PVM of polynomial-table atoms. The reason is specific to zero
-loss: equation `(181)) with `s=0) supplies a DLine through every pair of
+loss: equation `(181)` with `s=0` supplies a DLine through every pair of
 points, so their PVMs are exact coarse-grainings of one line PVM and commute.
 ALine restrictions then make each joint atom individual-degree nine, and the
 pointwise PCP checks decode every supported atom. For a perfect ZPC model the
@@ -67,11 +67,11 @@ longer blocks an exact backward analysis of arbitrary attained-perfect
 strategies.
 
 This correction does not by itself upgrade the honest lower bound
-`(CRG2)` to every perfect strategy of `G_M). Such an upgrade must also
+`(CRG2)` to every perfect strategy of `G_M`. Such an upgrade must also
 show that an arbitrary strategy can be carried backward through the
 remaining compression wrappers and that the Pauli normal form of BCV
 Remark 4.22 embeds its full `ell^infinity(F_2^k)` factor, with the required
-readable typing, into the original strategy's `D_infinity). Merely
+readable typing, into the original strategy's `D_infinity`. Merely
 obtaining a perfect decoded source strategy does not prove that block
 inclusion. Until that separate universal-amplification statement is
 established, this route still rules out a computable bound only for the
