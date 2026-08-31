@@ -126,6 +126,81 @@ theorem blockWord_drop_succ_of_read (h₀ h₁ : G) (ms : List ℕ)
   rw [heq.1] at hs'
   exact hs'
 
+/-- Away from the base seam, the second letter after rotating to the `q`-th
+block is the `(q+1)`-st block. -/
+theorem getElem?_one_rotate_at_block_of_succ_lt
+    (base h₀ h₁ : G) (ms : List ℕ) {q : ℕ}
+    (hq : q + 1 < ms.length) :
+    ((relatorWord₂ [base] h₀ h₁ ms).rotate (q + 1))[1]? =
+      (blockWord h₀ h₁ false ms)[q + 1]? := by
+  rw [rotate_relatorWord₂_singleton_at_block base h₀ h₁ ms (by omega)]
+  have hqB : q < (blockWord h₀ h₁ false ms).length := by
+    simpa only [length_blockWord] using (show q < ms.length by omega)
+  have hdrop : (blockWord h₀ h₁ false ms).drop q =
+      (blockWord h₀ h₁ false ms)[q]'hqB ::
+        (blockWord h₀ h₁ false ms).drop (q + 1) :=
+    List.drop_eq_getElem_cons hqB
+  rw [hdrop]
+  change
+    ((blockWord h₀ h₁ false ms).drop (q + 1) ++
+      GGT.RelLetter.base base ::
+        (blockWord h₀ h₁ false ms).take q)[0]? =
+      (blockWord h₀ h₁ false ms)[q + 1]?
+  rw [List.getElem?_append_left]
+  · rw [List.getElem?_drop]
+  · simp only [List.length_drop, length_blockWord]
+    omega
+
+/-- At the final block, the second letter of the canonical rotation is the
+unique base letter. -/
+theorem getElem?_one_rotate_at_last_block
+    (base h₀ h₁ : G) (ms : List ℕ) {q : ℕ}
+    (hq : q + 1 = ms.length) :
+    ((relatorWord₂ [base] h₀ h₁ ms).rotate (q + 1))[1]? =
+      some (GGT.RelLetter.base base) := by
+  rw [rotate_relatorWord₂_singleton_at_block base h₀ h₁ ms (by omega)]
+  have hqB : q < (blockWord h₀ h₁ false ms).length := by
+    rw [length_blockWord]
+    omega
+  have hdrop : (blockWord h₀ h₁ false ms).drop q =
+      (blockWord h₀ h₁ false ms)[q]'hqB :: [] := by
+    rw [List.drop_eq_getElem_cons hqB]
+    apply congrArg (fun tail =>
+      (blockWord h₀ h₁ false ms)[q]'hqB :: tail)
+    apply List.drop_eq_nil_of_le
+    rw [length_blockWord]
+    omega
+  rw [hdrop]
+  change
+    (GGT.RelLetter.base base ::
+      (blockWord h₀ h₁ false ms).take q)[0]? =
+        some (GGT.RelLetter.base base)
+  simp
+
+/-- If the run has at least two blocks, the third letter after its final block
+is the first block (the second letter is the base seam). -/
+theorem getElem?_two_rotate_at_last_block
+    (base h₀ h₁ : G) (ms : List ℕ) {q : ℕ}
+    (hq : q + 1 = ms.length) (hms2 : 2 ≤ ms.length) :
+    ((relatorWord₂ [base] h₀ h₁ ms).rotate (q + 1))[2]? =
+      (blockWord h₀ h₁ false ms)[0]? := by
+  rw [rotate_relatorWord₂_singleton_at_block base h₀ h₁ ms (by omega)]
+  have hqB : q < (blockWord h₀ h₁ false ms).length := by
+    rw [length_blockWord]
+    omega
+  have hdrop : (blockWord h₀ h₁ false ms).drop q =
+      (blockWord h₀ h₁ false ms)[q]'hqB :: [] := by
+    rw [List.drop_eq_getElem_cons hqB]
+    apply congrArg (fun tail =>
+      (blockWord h₀ h₁ false ms)[q]'hqB :: tail)
+    apply List.drop_eq_nil_of_le
+    rw [length_blockWord]
+    omega
+  rw [hdrop]
+  change ((blockWord h₀ h₁ false ms).take q)[0]? =
+    (blockWord h₀ h₁ false ms)[0]?
+  exact List.getElem?_take_of_lt (by omega)
+
 end Bookkeeping
 
 section ExactAvoidance
@@ -274,6 +349,155 @@ theorem ExactRelatorDesign₂.peeledLastBaseFirst_not_mem
     show k - 1 = (k - 2) + 1 by omega, List.take_succ_cons,
     RelWord.listVal_cons, GGT.RelLetter.val, blockWord_take] at hmem
   simpa [mul_assoc] using hmem
+
+/-- A positive bounded prefix of a direct cyclic relator, starting and ending
+at component letters of the same index, cannot spell an element of that
+peripheral subgroup. -/
+theorem ExactRelatorDesign₂.directCyclicPrefix_not_mem
+    (E : HypEmbeddedCore₂ A N) {baseLetter : G}
+    {rho eps diffRadius W target : ℕ} {ms : List ℕ}
+    (h : ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms)
+    (heven : Even ms.length) {c k : ℕ} {s : Bool} {x y : G}
+    (hk0 : 0 < k) (hkW : k ≤ W)
+    (hhead : ((relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms).rotate c)[0]?
+      = some (GGT.RelLetter.comp s x))
+    (hend : ((relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms).rotate c)[k]?
+      = some (GGT.RelLetter.comp s y)) :
+    GGT.RelLetter.listVal
+        ((relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms).rotate c |>.take k)
+      ∉ E.rel.fam s := by
+  let R := relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms
+  have hRpos : 0 < R.length := by simp [R, length_relatorWord₂]
+  have hcRead := getElem?_of_rotate (l := R) (c := c) (d := 0)
+    hRpos hhead
+  obtain ⟨q, hqpos, hq, hqread⟩ := blockIndex_of_relatorWord₂ hcRead
+  simp only [List.length_singleton] at hqpos
+  have hcanon : R.rotate c = R.rotate (q + 1) :=
+    rotate_eq_at_block_of_head baseLetter (E.lox false) (E.lox true) ms
+      (by
+        intro b
+        cases b
+        · simpa using injective_pow_lox₂ E false
+        · simpa using injective_pow_lox₂ E true)
+      h.2.1 hq hhead hqread
+  change GGT.RelLetter.listVal ((R.rotate c).take k) ∉ E.rel.fam s
+  rw [hcanon] at hend ⊢
+  have hkR : k < R.length := by
+    have hkrot := (List.getElem?_eq_some_iff.mp hend).choose
+    simpa only [List.length_rotate] using hkrot
+  have hklen : k ≤ ms.length := by
+    simp only [R, length_relatorWord₂, List.length_singleton] at hkR
+    omega
+  rcases lt_or_eq_of_le (show q + 1 ≤ ms.length by omega) with hqnext | hqlast
+  · have hsecond := getElem?_one_rotate_at_block_of_succ_lt
+      baseLetter (E.lox false) (E.lox true) ms hqnext
+    obtain ⟨b, z, hnext⟩ := blockWord_getElem?_comp
+      (E.lox false) (E.lox true) false ms hqnext
+    have hb := blockWord_index_alternates
+      (E.lox false) (E.lox true) false ms q s b x z hqread hnext
+    have hk2 : 2 ≤ k := by
+      by_contra hnot
+      have hk1 : k = 1 := by omega
+      subst k
+      rw [hsecond, hnext] at hend
+      have heq := Option.some.inj hend
+      rw [GGT.RelLetter.comp.injEq] at heq
+      rw [hb] at heq
+      cases s <;> simp at heq
+    have htail :
+        GGT.RelLetter.listVal
+          (((blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) ++
+            GGT.RelLetter.base baseLetter ::
+              (blockWord (E.lox false) (E.lox true) false ms).take q).take
+                (k - 1)) ∉ E.rel.fam s := by
+      rcases le_or_gt (k - 1) (ms.length - (q + 1)) with hbefore | hcross
+      · exact h.peeledPure_not_mem E hqnext hqread (by omega) (by omega) hbefore
+      · exact h.peeledThroughBase_not_mem E hqnext hqread (by omega) (by omega)
+          hcross
+    intro hmem
+    apply htail
+    have hword := take_succ_rotate_relatorWord₂_singleton_at_block
+      baseLetter (E.lox false) (E.lox true) ms hq hqread (k := k - 1)
+    have hword' : (R.rotate (q + 1)).take k =
+        GGT.RelLetter.comp s x ::
+          ((blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) ++
+            GGT.RelLetter.base baseLetter ::
+              (blockWord (E.lox false) (E.lox true) false ms).take q).take
+                (k - 1) := by
+      rw [show k = (k - 1) + 1 by omega]
+      exact hword
+    rw [hword', RelWord.listVal_cons, GGT.RelLetter.val] at hmem
+    obtain ⟨m, -, hxpow⟩ := blockWord_getElem?_exponent
+      (E.lox false) (E.lox true) false ms q s x hqread
+    have hxmem : x ∈ E.rel.fam s := by
+      rw [hxpow]
+      have hloxfam : E.lox s ∈ E.rel.fam s := by
+        rw [E.fam_eq]
+        exact E.lox_mem s
+      cases s <;> simpa using pow_mem hloxfam m
+    exact ((E.rel.fam s).mul_mem_cancel_left hxmem).mp hmem
+  · have hsecond := getElem?_one_rotate_at_last_block
+      baseLetter (E.lox false) (E.lox true) ms hqlast
+    have hk2 : 2 ≤ k := by
+      by_contra hnot
+      have hk1 : k = 1 := by omega
+      subst k
+      rw [hsecond] at hend
+      cases hend
+    have hms0 : 0 < ms.length := by omega
+    obtain ⟨z, hlast⟩ := exists_last_true_of_even_blockWord
+      (E.lox false) (E.lox true) ms heven hms0
+    have hqeq : q = ms.length - 1 := by omega
+    rw [← hqeq] at hlast
+    rw [hqread] at hlast
+    have hs : s = true := (GGT.RelLetter.comp.inj (Option.some.inj hlast)).1
+    subst s
+    have hms2 : 2 ≤ ms.length := by
+      obtain ⟨r, hr⟩ := heven
+      omega
+    have hthird := getElem?_two_rotate_at_last_block
+      baseLetter (E.lox false) (E.lox true) ms hqlast hms2
+    obtain ⟨b₀, z₀, hfirst⟩ := blockWord_getElem?_comp
+      (E.lox false) (E.lox true) false ms (show 0 < ms.length by omega)
+    have hb₀ : b₀ = false := by
+      obtain ⟨n₀, post, hms⟩ : ∃ n₀ post, ms = n₀ :: post := by
+        cases ms with
+        | nil => simp at hms2
+        | cons n₀ post => exact ⟨n₀, post, rfl⟩
+      rw [hms, blockWord_cons, List.getElem?_cons_zero] at hfirst
+      exact (GGT.RelLetter.comp.inj (Option.some.inj hfirst)).1.symm
+    have hk3 : 3 ≤ k := by
+      by_contra hnot
+      have hk2eq : k = 2 := by omega
+      subst k
+      rw [hthird, hfirst] at hend
+      have heq := GGT.RelLetter.comp.inj (Option.some.inj hend)
+      rw [hb₀] at heq
+      simp at heq
+    have htail := h.peeledLastBaseFirst_not_mem E (k := k - 1)
+      hqlast (by omega) (by omega) (by omega)
+    intro hmem
+    apply htail
+    have hword := take_succ_rotate_relatorWord₂_singleton_at_block
+      baseLetter (E.lox false) (E.lox true) ms hq hqread (k := k - 1)
+    have hword' : (R.rotate (q + 1)).take k =
+        GGT.RelLetter.comp true x ::
+          ((blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) ++
+            GGT.RelLetter.base baseLetter ::
+              (blockWord (E.lox false) (E.lox true) false ms).take q).take
+                (k - 1) := by
+      rw [show k = (k - 1) + 1 by omega]
+      exact hword
+    rw [hword', RelWord.listVal_cons, GGT.RelLetter.val] at hmem
+    obtain ⟨m, -, hxpow⟩ := blockWord_getElem?_exponent
+      (E.lox false) (E.lox true) false ms q true x hqread
+    have hxmem : x ∈ E.rel.fam true := by
+      rw [hxpow]
+      have hloxfam : E.lox true ∈ E.rel.fam true := by
+        rw [E.fam_eq]
+        exact E.lox_mem true
+      simpa using pow_mem hloxfam m
+    exact ((E.rel.fam true).mul_mem_cancel_left hxmem).mp hmem
 
 end ExactAvoidance
 
