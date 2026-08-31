@@ -92,6 +92,27 @@ is an exact representation of the fixed group `A rtimes_J C_4`, factoring
 through `B_m rtimes_J C_4`.  The lamp restriction is `k_m` copies of the
 regular permutation representation, all covariance rows and all actor
 products have zero defect, and the sequence has the canonical group trace.
+The actor can even be made infinite, residually finite, and Kazhdan without
+changing this phenomenon.  Take `K=SL_3(Z)`, choose separating finite
+quotients `L_m` of `K`, and let `H=K times C_4` act on `A` through
+the `C_4` factor.  On
+
+```text
+ell^2(B_m) tensor ell^2(L_m) tensor C^(k_m)
+```
+
+use
+
+```text
+U_m(g,t^j)
+ =Q_m^j tensor lambda_(L_m)(g_bar) tensor F_(k_m)^j.             (EAR10)
+```
+
+This gives exact coherent normalizers for the Kazhdan actor `H`, a regular
+lamp module of multiplicity `|L_m|k_m`, and the canonical trace of
+`A rtimes H`.  The unitary for `t` has the same Fourier-row distance
+bound below.
+
 Nevertheless, for every monomial matrix `M_m` in the displayed lamp basis,
 
 ```text
