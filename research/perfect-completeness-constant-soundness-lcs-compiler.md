@@ -145,6 +145,15 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   identically one.  If only a smaller honest support `S` is protected, the
   best decoder constant is at most `1/|S|`, exactly the repeated source's
   random-guessing floor.
+- **Add more parity equations or auxiliary LCS variables.**  Dies locally by
+  `lcs-parity-gadgets-preserve-odd-dictator-affine-hull`.  Scalar solutions
+  of every binary LCS form an affine coset.  If each honest spectral atom
+  has a scalar extension, every odd product of those extensions survives;
+  for the full folded long code there are exactly `2^{|S|-1}` such projected
+  solutions.  This is sharp and independent of the mask law or folding
+  section.  A revival must use cross-context structure that prevents
+  atomwise scalar extension, a genuinely non-affine intermediate test, or a
+  native LCS gap.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
