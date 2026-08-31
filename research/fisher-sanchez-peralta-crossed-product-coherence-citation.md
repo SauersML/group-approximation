@@ -3,7 +3,7 @@ rg: 2
 id: fisher-sanchez-peralta-crossed-product-coherence-citation
 kind: route
 title: Import all-characteristic crossed-product coherence for virtually special reducible two-complex groups
-target: virtually-special-reducible-2-complex-crossed-products-coherent
+target: virtually-special-reducible-2complex-crossed-products-coherent
 requires: []
 ---
 
