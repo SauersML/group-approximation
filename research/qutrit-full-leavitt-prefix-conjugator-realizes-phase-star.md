@@ -34,7 +34,7 @@ gJg^(-1)=h,                  C intersect gCg^(-1)=<h>.   (QLP1)
 ```
 
 The matrix `g` uses only the standard binary comb prefix codes of sizes
-`6,9,10,16`. In particular every entry is a finite sum of words `s_d t_e`,
+`6,9,10,16`. In particular every entry is a finite sum of Leavitt monomials (the rectangular blocks are `t_d s_e`),
 its inverse is written by reversing the two rectangular prefix
 equivalences, and `g` is a finite word in a fixed finite elementary
 generating set of `EL_28(L)`.
