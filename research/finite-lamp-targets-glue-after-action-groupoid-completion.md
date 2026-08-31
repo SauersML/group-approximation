@@ -142,6 +142,16 @@ approximately multiplicative action groupoid on the cylinder atoms, then
 the remaining integer transport can be glued with the explicit losses
 `(FTG4)--(FTG6)`.
 
+`boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse`
+now supplies the strongest automatic precursor to that groupoid.  Its
+overlap coupling rounds every fixed actor arrow to a coarse Boolean
+block-normalizer with a root-sum-square covariance bound.  In every nonzero
+full corner of a hypothetical pinned-wreath embedding, however, every fixed
+Boolean atom has rank tending to infinity; a Fourier unitary in that fiber
+can stay at squared distance `2-o(1)` from every monomial.  Thus pairwise
+objects and arrows are available, while their point carriers and joint
+multiplication remain exactly the missing data.
+
 Constructing that groupoid is the unsolved step.  Scalar canonical mixed
 traces do not select it: for every nonidentity actor word `g` and lamp word
 `a`, the canonical group trace of `a g` is zero.  Actor multiplication
