@@ -25,6 +25,7 @@ artifacts:
   - research/artifacts/stw22-dim3-all-factor-bundle-breakthrough-2026-08-31.md
   - research/artifacts/stw22-full-fundamental-group-all-degree-audit-2026-08-30.md
   - research/artifacts/stw22-uniform-corner-bundle-selection-audit-2026-08-30.md
+  - research/artifacts/stw22-dim4-factor-bundle-breakthrough-2026-08-31.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -98,6 +99,16 @@ The naive hard-carrier union remains non-locally-connected, but the new
 matrix and diffuse constructions bypass that union rather than selecting
 from it.
 
+The dimension-four step is now closed as well.  Diffuse factors admit a
+universal weighted `S^3` filling through the new relative low-spectrum
+`B^4` recursion.  Matrix factors have a sharp codimension-one `SU(2)`
+obstruction, but the half-slack replicated values used to kill gap traces
+always have at least two unused dimensions when `m>=2`.  Consequently
+`stw22-half-slack-all-factor-weighted-copy-uniform-s3-fillings` and
+`stw22-dim4-factor-bundles-have-uniform-traces` prove the trace theorem for
+every countably generated factorial bundle over a compact Hausdorff base of
+dimension at most four, including arbitrary mixed matrix/diffuse fibres.
+
 There is an all-degree nonhyperfinite extension when the fixed fibre has
 full fundamental group.  In
 `stw22-full-fundamental-group-weighted-copy-all-sphere-fillings`, one pointed
@@ -107,10 +118,10 @@ Consequently
 `stw22-full-fundamental-group-trivial-bundles-finite-dimensional` proves the
 trace theorem for trivial bundles with that fibre over every
 finite-dimensional compact Hausdorff base.  This includes fixed McDuff
-fibres.  The universal diffuse degree-two theorem now supplies common corner
-equi-`LC^2` control without full fundamental group.  The next unrestricted
-step is a quantitative weighted `S^3` filling, exactly the dimension-four
-frontier.
+fibres.  The all-factor half-slack three-sphere theorem now supplies the
+degree needed for arbitrary varying bundles through dimension four, while
+full fundamental group continues to give all finite degrees in the fixed
+fibre class.
 
 The same mechanism is intrinsic and therefore survives nontrivial bundle
 cocycles.  `stw22-uniform-corner-bundles-have-uniform-traces`
@@ -141,9 +152,10 @@ copies.  The existing intrinsic correction lemma makes the corresponding
 fibre solution relation lower semicontinuous, but does not supply the
 uniform higher local connectivity needed to select its polar-fill
 corrections.  In the countably generated case, stabilized `L^2` selection
-and the all-factor path, loop, and two-sphere filling theorems settle the
-problem through dimension three.  The first remaining finite-dimensional
-hinge is a factor-uniform weighted `S^3` filling theorem for dimension four.
+and the all-factor path, loop, two-sphere, and half-slack three-sphere
+filling theorems settle the problem through dimension four.  The first
+remaining finite-dimensional hinge is the corresponding weighted degree-four
+input for dimension five.
 
 For the first such hinge, projection-weight multicopy fibres reduce exactly
 to `U(N)/(q+U((1-q)N(1-q)))`.  The complement bound is indispensable:
@@ -210,10 +222,10 @@ the unresolved relative selection statement.
   spectral cuts themselves.  The zero-dimensional theorem bypasses this:
   it lifts weighted operators, corrects only their high spectral parts,
   and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2`
-  selection now replaces those patches through dimension three for
-  countably generated bundles.  From dimension four onward, local weighted
-  tuples require factor-uniform `S^3` and higher filling data; degree three
-  is the first unresolved sphere degree.
+  selection now replaces those patches through dimension four for
+  countably generated bundles.  From dimension five onward, local weighted
+  tuples require factor-uniform degree-four and higher filling data; degree
+  four is the first unresolved sphere degree.
 * **Ultrafilter attack on the negative side.**  A singular trace on
   `C_σ([0,1], R)` of the form `lim_ω τ(b(y_n) q_n)/τ(q_n)` needs projections
   `q_n` with `τ(q_n) → 0` that are asymptotically central in relative

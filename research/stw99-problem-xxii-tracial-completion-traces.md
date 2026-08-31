@@ -30,6 +30,7 @@ artifacts:
   - research/artifacts/stw22-dim3-all-factor-bundle-breakthrough-2026-08-31.md
   - research/artifacts/stw22-full-fundamental-group-all-degree-audit-2026-08-30.md
   - research/artifacts/stw22-uniform-corner-bundle-selection-audit-2026-08-30.md
+  - research/artifacts/stw22-dim4-factor-bundle-breakthrough-2026-08-31.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -96,6 +97,21 @@ II1 isomorphism classes, and matrix/diffuse fibre type may all vary.  The
 stabilized weighted-copy multifunction was already lower semicontinuous
 uniformly over all finite factors, so no type stratification is needed.
 
+The next degree is now closed in the exact replication regime needed for
+gap traces.  `stw22-diffuse-weighted-copy-uniform-s3-fillings` transfers the
+universal diffuse Stiefel three-sphere modulus through a relative
+low-spectrum `B^4` extension.  In matrices,
+`stw22-matrix-weighted-copy-codimension-two-uniform-s3-fillings` proves the
+same conclusion with at least two unused dimensions and exhibits essential
+arbitrarily small `SU(2)` spheres when only one dimension is unused.  The
+half-slack condition `m tau(supp(a))<=1/2`, with `m>=2`, always lies on the
+positive side in matrices and is automatic after the gap spectral cut.
+Thus `stw22-half-slack-all-factor-weighted-copy-uniform-s3-fillings` and
+degree-three Michael selection prove
+`stw22-dim4-factor-bundles-have-uniform-traces`: every countably generated
+factorial bundle over a compact Hausdorff base of dimension at most four
+has only uniform traces, with arbitrary matrix/diffuse fibre variation.
+
 The earlier hard-carrier-union obstruction remains sharp for that naive
 construction: infinitesimally split branches force a fixed transverse join.
 The new proofs bypass it rather than patch it—by finite barycentric
@@ -111,11 +127,10 @@ after a small-corner diameter split.  The all-degree weighted theorem
 selection yield
 `stw22-full-fundamental-group-trivial-bundles-finite-dimensional`: every
 trace on `C_sigma(K,N)` is canonical for every finite-dimensional compact
-Hausdorff `K`.  McDuff factors are included.  The universal diffuse
-degree-two theorem now supplies corner-level equi-`LC^2` control without
-full fundamental group.  The next unrestricted step is a quantitative
-`S^3` filling and relative low-spectrum `B^4` transfer, exactly the
-dimension-four frontier.
+Hausdorff `K`.  McDuff factors are included.  For arbitrary varying fibres,
+the universal diffuse three-sphere theorem and the matrix half-slack split
+now reach dimension four; full fundamental group still supplies all finite
+degrees for the fixed-fibre class.
 
 There is also a nontrivial-bundle extension with the exact uniformity
 hypothesis exposed.  If a countably generated factorial bundle over a
@@ -241,8 +256,8 @@ metrizability nor a common ambient factor and covers every compact
 scattered boundary as well as perfect zero-dimensional boundaries.
 
 For countably generated factorial bundles, the theorem now reaches
-dimension three; the finite-dimensional selection frontier begins in
-dimension four.  `stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
+dimension four; the unrestricted finite-dimensional selection frontier
+begins in dimension five.  `stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
 the intrinsic Hilbert `C(K)`-module of `L^2` sections into the standard
 module `C(K,ell^2)`.  The varying-factor weighted-copy sets thereby become
 a lower-semicontinuous, uniformly locally path-connected family of closed
@@ -266,6 +281,13 @@ two-connectivity and a universal equi-`LC^2` modulus.  Michael selection
 with `n=2` therefore upgrades the same stabilized argument through
 dimension three in `stw22-dim3-factor-bundles-have-uniform-traces`.
 
+The degree-three extension is necessarily slack-sensitive in matrices.
+Essential `SU(2)` spheres rule out a modulus for every merely-strictly-slack
+value, but the half-slack replicated values used by the gap argument have
+matrix codimension at least two.  Combining that matrix theorem with the
+diffuse relative-`B^4` theorem and applying Michael with `n=3` yields
+`stw22-dim4-factor-bundles-have-uniform-traces`.
+
 For arbitrary factorial bundles in dimension at least two, the remaining
 input is now separated cleanly from the topological colouring step.
 `stw22-intrinsic-local-replication-colouring-reduction` shows that no common
@@ -275,10 +297,10 @@ metrizable base, a `(d+1)`-coloured refinement gives a range bound `d+1`
 independent of the replication number and kills every gap trace.  The
 quantitative weighted correction lemma proves lower semicontinuity of the
 fibrewise solution relation.  Stabilized selection now supplies path, loop,
-and two-sphere fillings through dimension three.  In dimensions at least
-four it requires corresponding uniform local `k`-connectedness through
-`k=d-1`; the first missing input is a factor-uniform weighted `S^3` filling
-modulus.
+two-sphere, and the necessary half-slack three-sphere fillings through
+dimension four.  In dimensions at least five it requires corresponding
+uniform local `k`-connectedness through `k=d-1`; degree four is the first
+missing weighted sphere input in the unrestricted varying-factor setting.
 
 The first higher-connectivity hinge has a sharp normal form.
 `stw22-multicopy-fibres-collapse-and-zero-slack-obstructs-lc1` identifies
