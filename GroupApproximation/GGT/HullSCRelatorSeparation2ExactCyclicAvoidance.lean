@@ -201,6 +201,69 @@ theorem getElem?_two_rotate_at_last_block
     (blockWord h₀ h₁ false ms)[0]?
   exact List.getElem?_take_of_lt (by omega)
 
+/-- Formal inversion exchanges an initial segment with the complementary final
+segment. -/
+theorem revInv_take_eq_drop_revInv {G : Type u} [Group G] {Λ : Type*}
+    (v : List (GGT.RelLetter G Λ)) (k : ℕ) :
+    RelWord.revInv (v.take k) =
+      (RelWord.revInv v).drop (v.length - k) := by
+  have hsplit : RelWord.revInv v =
+      RelWord.revInv (v.drop k) ++ RelWord.revInv (v.take k) := by
+    conv_lhs => rw [← List.take_append_drop k v]
+    rw [RelWord.revInv_append]
+  rw [hsplit]
+  have hlen : (RelWord.revInv (v.drop k)).length = v.length - k := by
+    rw [RelWord.length_revInv, List.length_drop]
+  rw [← hlen, List.drop_append_of_le_length (le_refl _), List.drop_length]
+  simp
+
+/-- Moving forward by `k` and then retaining the final `k` letters recovers
+the first `k` letters before the move. -/
+theorem drop_rotate_add_eq_take_rotate {α : Type*} (v : List α)
+    {c k : ℕ} (hk : k ≤ v.length) :
+    (v.rotate (c + k)).drop (v.length - k) = (v.rotate c).take k := by
+  rw [← List.rotate_rotate, List.rotate_eq_drop_append_take (by simpa)]
+  have hlen : ((v.rotate c).drop k).length = v.length - k := by
+    simp only [List.length_drop, List.length_rotate]
+  rw [← hlen, List.drop_append_of_le_length (le_refl _), List.drop_length]
+  simp
+
+/-- Rotating once past a chosen block and taking at most the remaining cyclic
+run length is exactly the peeled tail used by the three exact-design clauses. -/
+theorem take_rotate_after_block_eq_peeled_tail
+    (base h₀ h₁ : G) (ms : List ℕ) {q k : ℕ}
+    {x : GGT.RelLetter G Bool}
+    (hq : q < ms.length)
+    (hread : (blockWord h₀ h₁ false ms)[q]? = some x)
+    (hk : k ≤ ms.length) :
+    ((relatorWord₂ [base] h₀ h₁ ms).rotate (q + 2)).take k =
+      ((blockWord h₀ h₁ false ms).drop (q + 1) ++
+        GGT.RelLetter.base base ::
+          (blockWord h₀ h₁ false ms).take q).take k := by
+  let T :=
+    (blockWord h₀ h₁ false ms).drop (q + 1) ++
+      GGT.RelLetter.base base ::
+        (blockWord h₀ h₁ false ms).take q
+  have hTlen : T.length = ms.length := by
+    simp only [T, List.length_append, List.length_drop, length_blockWord,
+      List.length_cons, List.length_take]
+    omega
+  have hcanon :
+      (relatorWord₂ [base] h₀ h₁ ms).rotate (q + 1) = x :: T := by
+    have hword := take_succ_rotate_relatorWord₂_singleton_at_block
+      base h₀ h₁ ms hq hread (k := ms.length)
+    rw [List.take_of_length_le (by
+      simp only [List.length_rotate, length_relatorWord₂,
+        List.length_singleton]
+      omega),
+      List.take_of_length_le (by omega : T.length ≤ ms.length)] at hword
+    exact hword
+  rw [show q + 2 = (q + 1) + 1 by omega, ← List.rotate_rotate, hcanon,
+    List.rotate_eq_drop_append_take (by simp), List.drop_succ_cons,
+    List.drop_zero, List.take_succ_cons, List.take_zero]
+  change (T ++ [x]).take k = T.take k
+  exact List.take_append_of_le_length (by simpa [hTlen] using hk)
+
 end Bookkeeping
 
 section ExactAvoidance
@@ -498,6 +561,138 @@ theorem ExactRelatorDesign₂.directCyclicPrefix_not_mem
         exact E.lox_mem true
       simpa using pow_mem hloxfam m
     exact ((E.rel.fam true).mul_mem_cancel_left hxmem).mp hmem
+
+/-- A positive bounded prefix of a formally inverted cyclic relator, starting
+and ending at component letters of the same index, is excluded from that
+peripheral subgroup.  Inverting the prefix turns it into the peeled direct tail
+after its endpoint anchor. -/
+theorem ExactRelatorDesign₂.revInvCyclicPrefix_not_mem
+    (E : HypEmbeddedCore₂ A N) {baseLetter : G}
+    {rho eps diffRadius W target : ℕ} {ms : List ℕ}
+    (h : ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms)
+    (heven : Even ms.length) {c k : ℕ} {s : Bool} {x y : G}
+    (hk0 : 0 < k) (hkW : k ≤ W)
+    (hhead : ((RelWord.revInv
+        (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms)).rotate c)[0]?
+      = some (GGT.RelLetter.comp s x))
+    (hend : ((RelWord.revInv
+        (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms)).rotate c)[k]?
+      = some (GGT.RelLetter.comp s y)) :
+    GGT.RelLetter.listVal
+        ((RelWord.revInv
+          (relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms)).rotate c
+            |>.take k)
+      ∉ E.rel.fam s := by
+  let R := relatorWord₂ [baseLetter] (E.lox false) (E.lox true) ms
+  let M := RelWord.revInv R
+  have hMpos : 0 < M.length := by
+    simp only [M, R, RelWord.length_revInv, length_relatorWord₂,
+      List.length_singleton]
+    omega
+  have hkM : k < M.length := by
+    have hkrot := (List.getElem?_eq_some_iff.mp hend).choose
+    simpa only [M, R, List.length_rotate] using hkrot
+  have hklen : k ≤ ms.length := by
+    simp only [M, R, RelWord.length_revInv, length_relatorWord₂,
+      List.length_singleton] at hkM
+    omega
+  have htread := getElem?_of_rotate (l := M) (c := c) (d := k) hkM hend
+  let t := (c + k) % M.length
+  change M[t]? = some (GGT.RelLetter.comp s y) at htread
+  obtain ⟨ht, hbi⟩ := blockIndex_of_revInv_relatorWord₂ htread
+  let q := ms.length - 1 - t
+  have htq : t + q + 1 = ms.length := by
+    simp only [q]
+    omega
+  have hq : q < ms.length := by omega
+  obtain ⟨b, z, hqread⟩ := blockWord_getElem?_comp
+    (E.lox false) (E.lox true) false ms hq
+  have hmirror :
+      (RelWord.revInv
+        (blockWord (E.lox false) (E.lox true) false ms))[t]? =
+          some (GGT.RelLetter.comp b z⁻¹) := by
+    rw [getElem?_revInv' (by simpa only [length_blockWord] using htq), hqread]
+    rfl
+  rw [hbi] at hmirror
+  have hbs := (GGT.RelLetter.comp.inj (Option.some.inj hmirror)).1
+  subst b
+  have hrot : M.rotate (c + k) = M.rotate t := by
+    rw [← List.rotate_mod M (c + k)]
+  have hqR : q + 2 ≤ R.length := by
+    simp only [R, length_relatorWord₂, List.length_singleton]
+    omega
+  have hrevRot := RelWord.revInv_rotate R hqR
+  have hamount : R.length - (q + 2) = t := by
+    simp only [R, length_relatorWord₂, List.length_singleton, q]
+    omega
+  rw [hamount] at hrevRot
+  have hrevRot' : RelWord.revInv (R.rotate (q + 2)) = M.rotate (c + k) := by
+    exact hrevRot.trans hrot.symm
+  have htakeInv := revInv_take_eq_drop_revInv (R.rotate (q + 2)) k
+  rw [hrevRot'] at htakeInv
+  have hRMlen : R.length = M.length := by
+    simp only [M, RelWord.length_revInv]
+  rw [List.length_rotate, hRMlen] at htakeInv
+  have hprefixInv :
+      RelWord.revInv ((R.rotate (q + 2)).take k) = (M.rotate c).take k :=
+    htakeInv.trans (drop_rotate_add_eq_take_rotate M (by omega))
+  have hpeeled := take_rotate_after_block_eq_peeled_tail
+    baseLetter (E.lox false) (E.lox true) ms hq hqread hklen
+  have hprefixTail :
+      RelWord.revInv ((M.rotate c).take k) =
+        ((blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) ++
+          GGT.RelLetter.base baseLetter ::
+            (blockWord (E.lox false) (E.lox true) false ms).take q).take k := by
+    rw [← hpeeled, ← hprefixInv, RelWord.revInv_revInv]
+  have htail :
+      GGT.RelLetter.listVal
+        (((blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) ++
+          GGT.RelLetter.base baseLetter ::
+            (blockWord (E.lox false) (E.lox true) false ms).take q).take k)
+        ∉ E.rel.fam s := by
+    rcases lt_or_eq_of_le (show q + 1 ≤ ms.length by omega) with hqnext | hqlast
+    · rcases le_or_gt k (ms.length - (q + 1)) with hbefore | hcross
+      · exact h.peeledPure_not_mem E hqnext hqread hk0 hkW hbefore
+      · exact h.peeledThroughBase_not_mem E hqnext hqread hkW hklen hcross
+    · have hms0 : 0 < ms.length := by omega
+      obtain ⟨zlast, hlast⟩ := exists_last_true_of_even_blockWord
+        (E.lox false) (E.lox true) ms heven hms0
+      have hqeq : q = ms.length - 1 := by omega
+      rw [← hqeq, hqread] at hlast
+      have hs : s = true := (GGT.RelLetter.comp.inj (Option.some.inj hlast)).1
+      subst s
+      have hk2 : 2 ≤ k := by
+        by_contra hnot
+        have hk1 : k = 1 := by omega
+        subst k
+        have hPhead : ((M.rotate c).take 1)[0]? =
+            some (GGT.RelLetter.comp true x) := by
+          rw [List.getElem?_take_of_lt (by omega)]
+          exact hhead
+        have hPinv := getElem?_revInv'
+          (l := (M.rotate c).take 1) (t := 0) (q := 0) (by
+            simp only [List.length_take, List.length_rotate]
+            omega)
+        rw [hPhead] at hPinv
+        have hdropnil :
+            (blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) = [] := by
+          apply List.drop_eq_nil_of_le
+          rw [length_blockWord]
+          omega
+        have hbase :
+            (((blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) ++
+              GGT.RelLetter.base baseLetter ::
+                (blockWord (E.lox false) (E.lox true) false ms).take q).take 1)[0]?
+              = some (GGT.RelLetter.base baseLetter) := by
+          rw [hdropnil]
+          simp
+        rw [hprefixTail, hbase] at hPinv
+        cases hPinv
+      exact h.peeledLastBaseFirst_not_mem E hqlast hk2 hkW hklen
+  intro hmem
+  apply htail
+  rw [← hprefixTail, RelWord.listVal_revInv]
+  exact (E.rel.fam s).inv_mem hmem
 
 end ExactAvoidance
 
