@@ -18,20 +18,20 @@ themselves make the active multiplicity commutator trivial when the two
 occurrence identifications `W_A,W_B` are independent.
 
 On a positive active selector atom `E_11`, take a label factor `L` and a
-gauge qubit `G` with Pauli involutions `X_g,Z_g). Set
+gauge qubit `G` with Pauli involutions `X_g,Z_g`. Set
 
 ```text
 A_11=I_L tensor X_g,             B_11=I_L tensor Z_g,
 A^o =B^o=I_L tensor Z_g.                              (SAF1)
 ```
 
-Let `H_g` be the Hadamard involution, so `H_g X_g H_g=Z_g), and put
+Let `H_g` be the Hadamard involution, so `H_g X_g H_g=Z_g`, and put
 
 ```text
 R=E_11,             W_A=I_L tensor H_g,       W_B=I.  (SAF2)
 ```
 
-Extend the two arrows block diagonally outside `E_11). Then they preserve
+Extend the two arrows block diagonally outside `E_11`. Then they preserve
 the selector atom rather than transporting it elsewhere, and
 
 ```text
@@ -54,6 +54,6 @@ All actors and arrows lie in a finite Clifford group, and tensoring
 spectators preserves the example. Therefore the remaining mixed-occurrence
 gate must contain a **joint-frame** condition: for example, one common
 occurrence arrow for both actors, or a mixed Gram relation controlling
-`W_A^*W_B` on `R). Two separate operator occurrences plus commutation of
+`W_A^*W_B` on `R`. Two separate operator occurrences plus commutation of
 their targets carry no information about the commutator of the original
 pair.
