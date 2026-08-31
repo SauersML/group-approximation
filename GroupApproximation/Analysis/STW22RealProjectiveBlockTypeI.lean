@@ -31,7 +31,7 @@ noncomputable section
 
 open scoped CStarAlgebra ComplexOrder Matrix
 
-universe u
+universe u v
 
 /-! ## Sphere-coordinate generators -/
 
@@ -404,7 +404,7 @@ def projectiveBlockGenerator (d s : ℕ) :
 
 section Representation
 
-variable {d s : ℕ} {H : Type} [NormedAddCommGroup H]
+variable {d s : ℕ} {H : Type v} [NormedAddCommGroup H]
   [InnerProductSpace ℂ H] [CompleteSpace H]
   (π : RealProjectiveBlock d s →⋆ₐ[ℂ] (H →L[ℂ] H))
 
@@ -519,7 +519,7 @@ end Representation
 
 section Burnside
 
-variable {d s : ℕ} {H : Type} [NormedAddCommGroup H]
+variable {d s : ℕ} {H : Type v} [NormedAddCommGroup H]
   [InnerProductSpace ℂ H] [CompleteSpace H]
 
 /-- The multiplicative-monoid representation underlying a C-star
@@ -613,7 +613,8 @@ theorem realProjectiveBlock_irreducible_surjective
 
 /-- The concrete real-projective homogeneous block is type I, with no
 classification hypothesis on its irreducible representations. -/
-theorem isTypeI_realProjectiveBlock (d s : ℕ) : IsTypeI (RealProjectiveBlock d s) := by
+theorem isTypeI_realProjectiveBlock (d s : ℕ) :
+    IsTypeI.{0, v} (RealProjectiveBlock d s) := by
   intro H _ _ _ π hπ T _
   exact realProjectiveBlock_irreducible_surjective π hπ T
 
@@ -625,8 +626,8 @@ end Burnside
 by the genuine `c₀` direct sum.  An irreducible nonunital representation of a
 unital algebra automatically maps the unit to the identity: its fixed space is
 a nonzero closed invariant subspace. -/
-theorem IsTypeI.isTypeINonUnital {A : Type u} [CStarAlgebra A] (hA : IsTypeI A) :
-    IsTypeINonUnital A := by
+theorem IsTypeI.isTypeINonUnital {A : Type u} [CStarAlgebra A]
+    (hA : IsTypeI.{u, v} A) : IsTypeINonUnital.{u, v} A := by
   intro H _ _ _ π hπ T hT
   let e : H →L[ℂ] H := π (1 : A)
   let M : Submodule ℂ H := LinearMap.ker ((1 : H →L[ℂ] H) - e : H →ₗ[ℂ] H)
@@ -688,14 +689,14 @@ theorem IsTypeI.isTypeINonUnital {A : Type u} [CStarAlgebra A] (hA : IsTypeI A) 
 /-- The concrete blocks satisfy the nonunital type-I input of the genuine
 `c₀`-sum theorem. -/
 theorem isTypeINonUnital_realProjectiveBlock (d s : ℕ) :
-    IsTypeINonUnital (RealProjectiveBlock d s) :=
+    IsTypeINonUnital.{0, v} (RealProjectiveBlock d s) :=
   (isTypeI_realProjectiveBlock d s).isTypeINonUnital
 
 /-- Any countable `c₀`-sum of the concrete real-projective blocks, followed
 by ordinary unitization, is type I. -/
 theorem isTypeI_unitization_c0DirectSum_realProjectiveBlocks
     (d s : ℕ → ℕ) :
-    IsTypeI (Unitization ℂ
+    IsTypeI.{0, v} (Unitization ℂ
       (CStarC0DirectSum.C0DirectSum (fun n ↦ RealProjectiveBlock (d n) (s n)))) :=
   CStarC0DirectSum.isTypeI_unitization_c0DirectSum
     (D := fun n ↦ RealProjectiveBlock (d n) (s n))
