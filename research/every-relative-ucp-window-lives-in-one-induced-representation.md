@@ -112,9 +112,9 @@ All core generators are exact automatically.  Consequently
 is sufficient, via property \((T;FD)\), for the authenticated flexible
 Iwahori lift.
 
-The canonical identity-coset inclusion is not enough.  Since \(x\notin
-B_N\), its \(x\)-coefficient is zero, so its distance from a unitary \(X\)
-is exactly one.  Equivalently,
+The canonical identity-coset inclusion is not enough at every nondegenerate
+level with \(x\notin B_N\).  Its \(x\)-coefficient is then zero, so its
+distance from a unitary \(X\) is exactly one.  Equivalently,
 'exact-core-multiplicative-domain-does-not-descend-to-normal-quotient'
 shows that the conjugated \(t^N\)-row of the corresponding infinite induced
 model has defect \(\sqrt2\).  The required isometry in (UIR8) must therefore
