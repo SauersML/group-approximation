@@ -39,6 +39,15 @@ functoriality of Künneth against `ι₁ ⊗ id` vs `id ⊗ ι₁`, both
 approximately unitarily equivalent to the same triple embedding
 `D → D^{⊗3}`.
 
+**Torsion-freeness.**  Run Künneth in degree one: the tensor part
+`K_0 ⊗ K_1 ⊕ K_1 ⊗ K_0` vanishes since `K_1 = 0`, so the sequence
+collapses to a natural isomorphism
+`K_1(D ⊗ D) ≅ Tor(K_0(D), K_0(D))` (the degree-one Tor term is
+`⊕_{i+j=0} Tor(K_i, K_j) = Tor(K_0, K_0)`).  The first-factor
+embedding is a `K_1`-isomorphism, so `K_1(D ⊗ D) ≅ K_1(D) = 0`,
+whence `Tor(K_0, K_0) = 0`; for an abelian group this means the
+torsion subgroup vanishes.
+
 **Classification.**  A ring with `A ⊗_Z A ≅ A` via multiplication is
 solid; Bousfield--Kan (Core of a ring, JPAA 1972) classify solid
 rings as `Z[J^{-1}]`, `Z/n`, compatible products `Z[J^{-1}] × Z/n`

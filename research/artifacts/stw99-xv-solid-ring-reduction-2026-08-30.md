@@ -42,3 +42,27 @@ isomorphism `x ↦ x ⊗ [1]`).
 (`Q`); `O_2` (zero ring) — the known list realizes exactly the
 occurring torsion-free solids, and no known SSA algebra realizes a
 torsion solid, as the theorem predicts if XV is true.
+
+
+## Upgrade (same day, later): torsion-freeness is automatic — XV closes modulo self-Künneth
+
+The degree-ONE Künneth sequence was left unused in the first pass.
+With `K_1(D) = 0` its tensor part vanishes, so
+`K_1(D ⊗ D) ≅ Tor(K_0, K_0)`; the first-factor isomorphism kills it,
+and `Tor(A, A) = 0` means `A` is torsion-free.  So the product solids
+`Z[J^{-1}] × Z/n` — the residue left by the unit-torsion lemma — are
+DEAD as well: every strongly self-absorbing algebra satisfying the
+Künneth sequence against itself has `K`-theory `(Z[J^{-1}], 0)` or
+`(0, 0)`, i.e. the `K`-theory of a known strongly self-absorbing
+algebra.  **STW Problem XV is closed in full modulo the single
+hypothesis of self-Künneth**, and a counterexample must violate the
+Künneth sequence for the pair `(D, D)` — a UCT-level event.  In the
+`K = 0` case the XVI reference theorem upgrades to `D ≅ O_2`.
+
+Downstream consolidation for XIII (the known-list problem): modulo
+self-Künneth, a strongly self-absorbing `D` has the ordered
+`K`-theory of a known `E`, and the XVI machinery then reduces
+`D ≅ E` to (i) embeddability (Problem XIV(2)) and (ii) the
+`J`-adapted-model wall for proper-`J` UHF targets and `Z`/`O_∞`.  So
+XIII factors as: self-Künneth + XIV(2) + `J`-adapted models — three
+named residues, each strictly weaker than the UCT.

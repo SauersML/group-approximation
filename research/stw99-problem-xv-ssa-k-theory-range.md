@@ -31,6 +31,9 @@ self-absorbing algebra?
   Künneth-against-itself, that `K_0(D)` is a Bousfield--Kan SOLID
   ring; torsion-free solids are exactly the localizations `Z[J^{-1}]`
   realized by the known list, giving the route
-  `stw99-iv-implies-xv-torsion-free`.  The surviving content of this
-  problem is the `K_0`-torsion solids (`Z/n`, `Z[J^{-1}] × Z/n`),
-  where the embeddability hypothesis must finally be spent.
+  `stw99-iv-implies-xv-torsion-free`.  UPGRADE: the degree-one Künneth
+  sequence kills ALL torsion (`K_1(D⊗D) ≅ Tor(K_0,K_0) = 0` via the
+  first-factor isomorphism), so the problem is CLOSED IN FULL modulo
+  self-Künneth: the K-theory is `(Z[J^{-1}],0)` or `(0,0)`, always
+  that of a known algebra; a counterexample must break the Künneth
+  sequence for `(D,D)` itself.
