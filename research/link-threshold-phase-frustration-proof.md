@@ -13,7 +13,7 @@ The order and cardinality statements in (LTF1)-(LTF2) follow from the
 link-firewall proof and the subgroup orders
 
 ```text
-|H|=n,       |N|=2n,       |P|=mn.
+|H|=2n,      |N|=4n,       |P|=2mn.
 ```
 
 The edge graph has degree `[P:H]=m`, so the edge count is also the
@@ -52,9 +52,12 @@ L+sum_(j=1)^(n-1)2*4^(j-1)
  =(m-1)/2+(m-3)/6.                                      (LTP2)
 ```
 
-Adding (LTP1) and (LTP2) gives `m-1`. Multiplying by the two crossings per
-least residue proves (LTF4). Translation of the interval is an
-automorphism of the circulant link and preserves this count.
+Adding (LTP1) and (LTP2) gives `m-1`. The projective torus element
+`h(2)` has order `2n`: its conjugation action on `U` has period `n`,
+so every displayed connection step occurs twice. Multiplying by the two
+crossings per least residue and by this central-sign multiplicity proves
+`|partial_link I|=4(m-1)`. Translation of the interval is an automorphism
+of the circulant link and preserves this count.
 
 Now fix one vertex `v`. A selected triangular face containing `v`
 corresponds to one edge of `link(v)`. The star cochain `s_(v,S)` is zero
@@ -78,7 +81,7 @@ which is (LTF7). Around a triangle, each vertex contributes exactly its
 two incident half-edge bits. Regrouping the six bits by vertices proves
 the identity (LTF8). The support of a sum of binary functions is contained
 in the union of their supports. Equations (LTF4) and (LTF8) therefore give
-(LTF9). Since `|G|=|V||P|=|V|mn`, division proves (LTF10).
+(LTF9). Since `|G|=|V||P|=2|V|mn`, division proves (LTF10).
 
 Finally let `R` be a set of vertices and let `c` be the sum of their
 threshold star cochains. For each `v in R`, choose either zero or the
