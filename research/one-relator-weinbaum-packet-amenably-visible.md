@@ -11,15 +11,22 @@ artifacts:
   - research/artifacts/one-relator-weinbaum-gate-and-berlai-calibration-2026-08-30.md
 ---
 
-OPEN.  For every finite-rank free product `F=A*B`, every cyclically reduced
-word `v` of free-product syllable length at least two that is not a proper
-power, and every `m>=1`, does
+OPEN. For every finite-rank free **group** `F`, every decomposition
+`F=A*B` into two nontrivial free factors, every cyclically reduced word `v`
+of free-product syllable length at least two that is not a proper power, and
+every `m>=1`, does
 
     G=F/<<v^m>>
 
 admit a homomorphism to an amenable locally indicable group that is nontrivial
 on every proper nonempty contiguous subword of the fixed cyclic spelling of
 `v`?
+
+The free-group hypothesis is essential. If arbitrary finitely generated
+factors were allowed, `F=C_2*C_2`, `v=ab`, and `m=1` would be a
+counterexample: the quotient is `C_2`, and locally indicable groups are
+torsion-free, so both one-letter packet elements die. The claim here is only
+the one-relator free-group question.
 
 This is a finite, presentation-local weakening of residual amenability.  By
 [[proper-subword-amenable-visibility-criterion]] it is sufficient for
