@@ -48,7 +48,7 @@ Since `|E_0|=ell^3`, `|Z|=ell`, and `dim(pi_zeta)=ell`,
 formula `(HPS5)` follows. It is the equality case of the large-root-
 intersection theorem. The clean-face packing obstruction does not apply
 inside a context: all `ell` atoms there use the same subgroup `A_i`, so
-their pairwise atom-group intersection is `A_i), not merely `Z`.
+their pairwise atom-group intersection is `A_i`, not merely `Z`.
 
 At an element `J^a X_i^b` with `b!=0`, all `ell` coefficients in
 `(HPS9)` are nonzero and their sum is zero by the same root-of-unity
