@@ -134,5 +134,40 @@ gauge on both generators.  It sharpens the remaining gate from an arbitrary
 two-compressor incompatibility to nonamenable multiplicity-cocycle
 extension/vanishing.
 
+
+## One backward edge, with all incompatibility in its holonomy
+
+`kt-ab-compressors-have-one-backward-commutant-edge` shows that the
+operator-algebraic first-step geometry is even more degenerate than the
+infinite-index calculation suggests. If
+
+~~~text
+R=sigma(Gamma)' intersect M,
+Phi_g=Ad(sigma(g)^*)|R,
+Theta=Phi_C,
+~~~
+
+then
+
+~~~text
+Phi_A=Phi_B o Theta,
+Phi_A(R)=Phi_B(R).
+~~~
+
+Indeed `A^(-1) Gamma A=B^(-1) Gamma B`. Hence the two root conditional
+expectations are literally equal. The global incompatibility proved here
+cannot be converted into a sum of two root Poincare inequalities; it resides
+in the noncommuting transport of `Theta` through later copies of `Phi_B`.
+
+This is a sharp boundary, not merely a missing estimate. The canonical
+one-compressor sofic wreath has a norm-one root projection `p in R` with
+
+~~~text
+dist_2(p,Phi_B(R))>=1/(2 sqrt(2))
+~~~
+
+inside a genuine matrix tracial ultraproduct. What remains is exactly to
+force or obstruct a `Theta`-compatible extension of this pointed wall.
+
 DERIVATION
 kt-two-positive-compressors-generate-full-obstruction-proof
