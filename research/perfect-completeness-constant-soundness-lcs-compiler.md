@@ -204,6 +204,18 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   the group but cannot create perfect finite-versus-commuting separation.
   A live coupling must use operator ports, higher variable occurrence, or a
   non-incidence cross-block equation.
+- **Rename line products as operator ports while keeping total degree two.**
+  This is only syntax, by
+  `degree-two-operator-ports-are-boundary-edges`.  Moving a port involution
+  to the left makes it an ordinary edge; if it appears in exactly one other
+  parity context, the closed network is graph incidence and still has
+  perfect `qc` iff perfect finite-dimensional `q`.  For genuinely unpaired
+  ports, `operator-port-incidence-doubling-proof` embeds the partial
+  universal group as a retract of a closed incidence group by doubling along
+  its boundary.  Separating all boundary words in finite dimensions is
+  therefore equivalent to separating all elements of all graph-incidence
+  groups, not a consequence of Arkhipov's marked-`J` theorem.  The first
+  syntactic escape is occurrence at least three or a non-parity relation.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
