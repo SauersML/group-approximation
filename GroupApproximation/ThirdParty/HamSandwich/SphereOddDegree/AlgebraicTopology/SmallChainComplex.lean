@@ -44,9 +44,10 @@ We do **not** prove here that `smallChainsInclusion` is a quasi-isomorphism.
 -/
 
 open CategoryTheory AlgebraicTopology
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 
 variable {R : Type} [CommRing R] {X : TopCat.{0}}
@@ -73,8 +74,12 @@ noncomputable def smallBoundary (R : Type) [CommRing R] (X : TopCat.{0})
 theorem smallBoundary_comp_smallBoundary
     {𝒰 : OpenCoverData X} (n : ℕ) :
     smallBoundary R X 𝒰 (n + 1) ≫ smallBoundary R X 𝒰 n = 0 := by
-  ext c ; simp +decide [ smallBoundary ];
-  convert congr_arg ( fun f => f c.val ) ( singularChainComplex R X |>.d_comp_d ( n + 2 ) ( n + 1 ) n ) using 1
+  ext c
+  have h := congrArg (fun f => f.hom c.val)
+    ((singularChainComplex R X).d_comp_d (n + 2) (n + 1) n)
+  change (singularBoundary R X n).hom
+    ((singularBoundary R X (n + 1)).hom c.val) = 0 at h
+  exact h
 
 /-! ## 2. The small-chain complex -/
 
@@ -95,7 +100,11 @@ noncomputable def smallChainComplex (R : Type) [CommRing R] (X : TopCat.{0})
 @[simp] theorem smallChainComplex_d
     {𝒰 : OpenCoverData X} (n : ℕ) :
     (smallChainComplex R X 𝒰).d (n + 1) n = smallBoundary R X 𝒰 n :=
-  ChainComplex.of_d _ _ _ n
+  by
+    unfold smallChainComplex
+    exact ChainComplex.of_d
+      (fun k => ModuleCat.of R (smallChainSubmodule R X 𝒰 k))
+      (fun k => smallBoundary R X 𝒰 k) n
 
 /-! ## 3. Small generators -/
 
