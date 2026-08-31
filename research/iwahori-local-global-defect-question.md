@@ -473,6 +473,16 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   operator-valued metric separator with uniform margin `c epsilon^2`
   against the whole table body. The separator may move in quotient support
   and rank; excluding these witnesses is now the precise arithmetic task.
+- **The operator separator is a nonlinear Cayley cosystole.**
+  `relative-table-separator-is-cayley-cocycle-obstruction` transports a
+  norm-one separator through every relative unitary zero-cochain `W_g`.
+  Its margin pairs exactly with the row coboundary
+  `U_s W_g-W_(sg)`, forcing the RMS multiplication-table energy to stay
+  positive. The associated twisted shifts are exact on both modular
+  vertices and preserve the original Iwahori edge defect exactly.
+  Therefore property `(T;FD)` cannot contradict the witness before those
+  same missing rows are filled; the live theorem is a nonlinear relative
+  Cayley cosystolic estimate from the two concrete cubic rows.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
