@@ -54,7 +54,7 @@ theorem exists_brokenHalfAssignment
     (chordLength : ℕ) (chordPos : ℕ → ℕ)
     (hpos : Set.InjOn pos (↑I : Set ℕ))
     (hsep : ∀ s ∈ brokenSet I survives, ∀ t ∈ brokenSet I survives,
-      pos s ≠ pos t →
+      lam s = lam t → pos s ≠ pos t →
       ¬ Connected D.fam (lam s) halfBase half (pos s) (pos t))
     (hexists : ∀ s ∈ brokenSet I survives, ∃ y : ℕ,
       y < chordLength ∧ IsCompStart (lam s) half (chordPos y) ∧
@@ -77,11 +77,32 @@ theorem exists_brokenHalfAssignment
         (chordPos (partner s)) := by
     intro s hs
     simpa [partner, hs] using Classical.choose_spec (hexists s hs)
-  have hfullInj : Set.InjOn (fun s => chordPos (partner s)) (↑B : Set ℕ) :=
-    chordPartner_injOn D halfBase half B lam pos
-      (fun s => chordPos (partner s)) hposB hsep
-      (fun s hs => (hpartner s hs).2.1)
-      (fun s hs => (hpartner s hs).2.2)
+  have hfullInj : Set.InjOn (fun s => chordPos (partner s)) (↑B : Set ℕ) := by
+    intro s hs t ht heq
+    obtain ⟨ks, hcs⟩ := (hpartner s hs).2.1
+    obtain ⟨kt, hct⟩ := (hpartner t ht).2.1
+    have hslen : chordPos (partner s) < half.length :=
+      lt_of_lt_of_le hcs.1 hcs.2.1
+    have hsComp : (half[chordPos (partner s)]'hslen).IsCompOf (lam s) :=
+      hcs.2.2.1 _ le_rfl hcs.1 hslen
+    have htlen : chordPos (partner t) < half.length :=
+      lt_of_lt_of_le hct.1 hct.2.1
+    have htComp : (half[chordPos (partner s)]'hslen).IsCompOf (lam t) := by
+      have h := hct.2.2.1 _ le_rfl hct.1 htlen
+      simpa [heq] using h
+    have hlam : lam s = lam t := eq_of_isCompOf_of_isCompOf hsComp htComp
+    have hposEq : pos s = pos t := by
+      by_contra hne
+      have hconnT : Connected D.fam (lam s) halfBase half
+          (pos t) (chordPos (partner t)) := by
+        rw [hlam]
+        exact (hpartner t ht).2.2
+      have hthrough : Connected D.fam (lam s) halfBase half (pos s) (pos t) := by
+        change chordPos (partner s) = chordPos (partner t) at heq
+        rw [← heq] at hconnT
+        exact connected_trans (hpartner s hs).2.2 (connected_symm hconnT)
+      exact hsep s hs t ht hlam hne hthrough
+    exact hposB hs ht hposEq
   have hinj : Set.InjOn partner (↑B : Set ℕ) := by
     intro s hs t ht heq
     apply hfullInj hs ht

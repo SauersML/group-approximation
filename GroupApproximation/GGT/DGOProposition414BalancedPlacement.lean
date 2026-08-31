@@ -123,14 +123,14 @@ structure BalancedSplitComponentPlacement
       IsIsolated D.fam (P.label t) B.firstBase B.firstWord (firstPos t)),
     ∀ t ∈ brokenSet firstTarget (fun t =>
       IsIsolated D.fam (P.label t) B.firstBase B.firstWord (firstPos t)),
-      firstPos s ≠ firstPos t →
+      P.label s = P.label t → firstPos s ≠ firstPos t →
       ¬ Connected D.fam (P.label s) B.firstBase B.firstWord
         (firstPos s) (firstPos t)
   second_separated : ∀ s ∈ brokenSet secondTarget (fun t =>
       IsIsolated D.fam (P.label t) B.secondBase B.secondWord (secondPos t)),
     ∀ t ∈ brokenSet secondTarget (fun t =>
       IsIsolated D.fam (P.label t) B.secondBase B.secondWord (secondPos t)),
-      secondPos s ≠ secondPos t →
+      P.label s = P.label t → secondPos s ≠ secondPos t →
       ¬ Connected D.fam (P.label s) B.secondBase B.secondWord
         (secondPos s) (secondPos t)
   first_partner : ∀ s ∈ brokenSet firstTarget (fun t =>
