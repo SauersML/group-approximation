@@ -22,8 +22,12 @@ noncomputable def coneGeneratorHom (R : Type) [CommRing R] (n k : ℕ) (v : Delt
     ModuleCat.of R R ⟶ singularChainGroup R (TopCat.of (Delta n)) (k + 1) :=
   ModuleCat.ofHom
     { toFun := fun r => r • coneGenerator R n k v σ
-      map_add' := by intro r s; simp [add_smul]
-      map_smul' := by intro a r; simp [mul_smul] }
+      map_add' := by
+        intro r s
+        exact add_smul r s _
+      map_smul' := by
+        intro a r
+        exact mul_smul a r _ }
 
 /-- **The cone operator on chains** `Cone_v : C_k(Δⁿ; R) → C_{k+1}(Δⁿ; R)`. -/
 noncomputable def coneLinearMap (R : Type) [CommRing R] (n k : ℕ) (v : Delta n) :
@@ -38,8 +42,16 @@ theorem coneLinearMap_generator (R : Type) [CommRing R] (n k : ℕ) (v : Delta n
     (σ : singularSimplices (TopCat.of (Delta n)) k) :
     (coneLinearMap R n k v).hom (chainGenerator R (TopCat.of (Delta n)) k σ)
       = coneGenerator R n k v σ := by
-  convert one_smul _ _;
-  convert congr_arg ( fun f : ModuleCat.of R R ⟶ singularChainGroup R { carrier := ( Delta n ), str := instTopologicalSpaceSubtype } ( k + 1 ) => f.hom 1 ) ( Sigma.ι_desc ( fun σ => coneGeneratorHom R n k v σ ) σ ) using 1
+  have h : Sigma.ι (fun (_ : singularSimplices (TopCat.of (Delta n)) k) =>
+        ModuleCat.of R R) σ ≫ coneLinearMap R n k v
+      = coneGeneratorHom R n k v σ := Sigma.ι_desc _ _
+  have h2 := congrArg
+    (fun f : ModuleCat.of R R ⟶ singularChainGroup R (TopCat.of (Delta n)) (k + 1) =>
+      f.hom (1 : R)) h
+  simp only [ModuleCat.hom_comp, LinearMap.comp_apply] at h2
+  refine h2.trans ?_
+  rw [coneGeneratorHom]
+  show (1 : R) • coneGenerator R n k v σ = _
+  rw [one_smul]
 end AffineBarycentricSubdivision
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
