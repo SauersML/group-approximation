@@ -72,6 +72,25 @@ another is a projection only when the two projections commute.  Hence
 `[e,Theta(p)]=0`, and actor covariance then forces
 `e in Theta(L(W))' cap M`.
 
+The same statement is quantitatively stable.  For any two projections
+`e,p` and `q=epe`,
+
+~~~text
+||[e,p]||_2^2=2 tau(q-q^2).                             (BWC5b)
+~~~
+
+If `tau(e)>0`, then
+
+~~~text
+||[e,p]||_2^2/tau(e)
+ <=2||q-q^2||_(2,e).                                    (BWC5c)
+~~~
+
+Thus a positive-density actor-central corner in which the compressed lamp is
+asymptotically a projection must asymptotically commute with the base lamp
+and, on every fixed orbit window, with the whole lamp algebra.  The exact
+full-corner theorem is the ultraproduct limit of this estimate.
+
 For the Kun--Thom specialization over `F_2`, take
 `Lambda=t Gamma t^(-1)` and `X=G/Lambda`.
 The equivariant map `G/Lambda->G/Gamma` and
