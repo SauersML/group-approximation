@@ -39,7 +39,7 @@ There is `q in SL_2(Z)` and `v_1,v_2 in N` with
 monomial `x^z` lies in a monomial transform `q(k[N^d])).  Elementary
 matrices are additive in their coefficient, so the conjugates
 `q Gamma q^(-1)` generate every elementary matrix over `R_pm).  Therefore
-the normal closure of `Gamma` under `Q` is `E_pm), and projection to the
+the normal closure of `Gamma` under `Q` is `E_pm`, and projection to the
 external factor proves
 
 ```text
