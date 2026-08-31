@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution"]
+defaultTargets = ["GroupApproximation", "STWProblems", "PalomarChallenge", "PalomarSolution"]
 
 [[require]]
 name = "mathlib"
@@ -9,6 +9,15 @@ rev = "v4.32.0"
 
 [[lean_lib]]
 name = "GroupApproximation"
+moreLeanArgs = ["-DwarningAsError=true"]
+
+# Standalone, axiom-free kernel cores for the three STW operator-algebra
+# problems tracked in `STWProblems.lean`.  This is a separate root because the
+# missing Cuntz/K-theory, KMS/crossed-product, and W*-bundle selection
+# foundations are not part of the GroupApproximation library yet.
+[[lean_lib]]
+name = "STWProblems"
+roots = ["STWProblems"]
 moreLeanArgs = ["-DwarningAsError=true"]
 
 # The audit's own library: detector logic only, no side effects, so it can be
@@ -37,7 +46,7 @@ roots = ["Audit.DeclFilter", "Audit.Scan", "Audit.Plants"]
 # compares the exported statements SYNTACTICALLY, and recursively requires
 # every constant they mention to be identical in both environments, so the
 # copy cannot be replaced by an import -- and then proves the theorem from
-# the development.  `scripts/check_palomar_submission.py` gates the copy.
+# development.  `scripts/check_palomar_submission.py` gates the copy.
 #
 # No `warningAsError` here: the challenge's hole is a deliberate warning.
 
