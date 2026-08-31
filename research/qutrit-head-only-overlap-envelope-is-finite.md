@@ -17,7 +17,7 @@ In the outer 27-leaf chart, put
 Q=1-s_0t_0=s_1t_1,        A_Q=F_2[Q].
 ```
 
-Let `F` be the transitive qutrit packet and, for `n>=2), define
+Let `F` be the transitive qutrit packet and, for `n>=2`, define
 
 ```text
 H_Q=<D_n(F),e_12(s_0),e_21(t_0),e_12(s_0Q)> <= EL_n(R).
