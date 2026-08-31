@@ -14,7 +14,7 @@ artifacts:
 
 **ESTABLISHED FINITE GLUING; ACTION COMPLETION OPEN.**  Let `C` be a finite
 groupoid and let `r_i` be a nonnegative integer capacity at every object.
-For one connected component `O`, choose a root `o), put
+For one connected component `O`, choose a root `o`, put
 `H_O=Aut_C(o)`, and define
 
 ```text
@@ -126,7 +126,7 @@ Kun--Thom pair, `finite-quotient-blindness` and the marked two-point
 obstruction show that exact finite actions collapse a required pair of coset
 sites.  More generally, a strict compressor
 `c Gamma c^(-1) proper-subset Gamma` puts elements of
-`c^(-1)Gamma c minus Gamma` in the profinite closure of `Gamma).
+`c^(-1)Gamma c minus Gamma` in the profinite closure of `Gamma`.
 Thus a disjoint union of exact finite action blocks cannot supply the needed
 pointed chart.
 
