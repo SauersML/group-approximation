@@ -61,17 +61,24 @@ Thus
 A relative unitary zero-cochain is precisely the special case
 \(R=d\), with \(V_g=W_g^*\). Therefore arbitrary Kraus nonflatness is not
 an obstruction to an isometry-valued synchronization theorem: it can
-always be removed by the explicit amplification (RTF1). What remains
-between the full gate and the unitary subproblem is target-dimension or
-common-corange reduction. The construction may enlarge \(R\) by the
-moving factor \(|G|\), so it does not supply unitaries on the original
-carrier or an \(o(d)\)-dimensional completion.
+always be removed by the explicit amplification (RTF1). The construction
+itself may enlarge \(R\) by the moving factor \(|G|\), so it does not
+supply unitaries on the original carrier or an \(o(d)\)-dimensional
+completion.
 
-Consequently a nonlinear Poincare estimate forcing the isometry energy in
-(RTF7) to vanish from the two Iwahori cubics would close the full
-positive-definite gate directly. A theorem only for \(R=d\) remains
-sufficient but is stronger in a different direction. No such concrete
-Iwahori estimate is proved here, and the root remains open.
+The additional common-corange step is now supplied, on every uniformly
+expanding quotient family, by
+cayley-expansion-aligns-isometry-frame-coranges. If the Cayley Poincare
+gap is \(\gamma\), that theorem converts every isometry frame of energy
+\(e\) to a relative unitary table of energy at most
+\[
+ \left(1+2\sqrt{2/\gamma}\right)e.
+\]
+Property \((T;FD)\) makes \(\gamma\) uniform on the authenticated finite
+quotients. Thus unitary synchronization and the full multi-Kraus gate are
+quantitatively equivalent in the concrete Iwahori family. What remains
+open is the nonlinear estimate forcing either energy to vanish from the
+two cubic presentation defects; no such estimate is proved here.
 
 DERIVATION
 amplify-right-translates-and-preserve-frame-energy
