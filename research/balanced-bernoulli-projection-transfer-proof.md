@@ -91,6 +91,42 @@ This is why polar and spectral methods stop here.  There is no approximate
 partial isometry or fuzzy spectral cut left to repair: `p_n` is already an
 exact projection of macroscopic rank.
 
+## Step 2b: physical rank is not adjoint rank
+
+Let `H_D=L^2(M_D,tr_D)`; it has Hilbert dimension `D^2`.  Although a
+balanced `p` has physical rank `D/2`, the orthogonal projection `e_p`
+onto its one-dimensional vector span in `H_D` satisfies
+
+~~~text
+tr_(End(H_D))(e_p)=1/D^2.                                (BBQ4b)
+~~~
+
+So balancing does not by itself turn the pointed vector into positive
+normalized rank for the finite-dimensional-radical operator.
+
+There is a tempting macroscopic lift.  Let `L_p` denote left multiplication
+by `p` on `H_D`.  It is an orthogonal projection of rank `D^2/2`.
+For every `a in M_D`, an orthonormal matrix-unit calculation gives
+
+~~~text
+||L_a||_(2,D^2)^2=tr_D(a^*a).                            (BBQ4c)
+~~~
+
+If `beta(U)=Ad(U)` on `H_D`, direct composition gives
+
+~~~text
+beta(U)L_p beta(U)^*=L_(UpU^*),
+||beta(U)L_p beta(U)^*-L_p||_(2,D^2)
+  =||UpU^*-p||_(2,D).                                    (BBQ4d)
+~~~
+
+Thus `L_p` has macroscopic superoperator trace, but it is exactly the same
+balanced-projection witness for the actor `Ad(beta)` one level higher.
+Applying the rank-one support argument there gives trace `1/D^4`; applying
+left multiplication again merely repeats `(BBQ4d)`.  No finite iteration
+forces the original `beta(a_gamma)` to have nonzero normalized rank.  The
+construction is a self-similar restatement of FDT7, not a closure of it.
+
 ## Step 3: the exact Bernoulli profile
 
 Let `X=G/Lambda` and let
