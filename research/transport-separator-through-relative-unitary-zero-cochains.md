@@ -101,6 +101,9 @@ The transport has therefore not created an exact representation to which a
 property-\((T;FD)\) invariant-vector theorem could be applied. It has
 replicated the original exact-vertex, defective-edge pair and turned a
 relative table into a unitary-valued almost-invariant vector for that pair.
-A uniform positive separator is exactly a uniform positive lower bound on
-all such vectors' Dirichlet energy. This proves the surviving-cocycle
-interpretation and isolates the missing nonlinear cosystolic estimate.
+A uniform positive separator therefore yields a uniform positive lower
+bound on all such vectors' Dirichlet energy. The reverse implication is not
+asserted, because a general feasible positive-definite table may use several
+nonunitary Kraus operators rather than one unitary-valued zero-cochain. This
+proves the necessary surviving-cocycle obstruction and isolates one
+sufficient nonlinear cosystolic route.
