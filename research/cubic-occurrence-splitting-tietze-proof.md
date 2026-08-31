@@ -133,3 +133,10 @@ small Hilbert--Schmidt defects, telescoping from `x^{(1)}` to a remote
 `x^{(i)}` costs the sum of the intervening equality defects.  With an
 unbounded occurrence cycle, that loss is unbounded.  No constant-soundness
 claim follows from the Tietze isomorphism alone.
+
+The separate route
+`expander-equality-poincare-rounding-proof` replaces this cycle by a cubic
+Ramanujan equality graph, obtaining a dimension-free decoder at maximum
+occurrence four.  It also realizes the cycle's quadratic Poincare loss with
+rotating `2 by 2` Pauli reflections, so the failure above is sharp for
+pairwise equality under the occurrence-three budget.
