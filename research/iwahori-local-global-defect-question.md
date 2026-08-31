@@ -426,10 +426,9 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   positive. The associated twisted shifts are exact on both modular
   vertices and preserve the original Iwahori edge defect exactly.
   Therefore property `(T;FD)` cannot contradict the witness before those
-  same missing rows are filled. A nonlinear relative Cayley cosystolic
-  estimate from the two concrete cubic rows would eliminate these
-  separators, though general nonunitary Kraus certificates make it a
-  sufficient route rather than a converse characterization.
+  same missing rows are filled. The common-corange theorem below now makes
+  a cubic-to-unitary Cayley estimate quantitatively equivalent to excluding
+  the full operator-valued separator, rather than merely sufficient.
 - **The full positive-definite gate is a multi-Kraus cosystole.**
   `multi-kraus-frame-energy-is-the-full-relative-pd-gate` resolves every
   relative coefficient table into rectangular Stinespring components and
@@ -438,26 +437,33 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   multi-Kraus energy equivalent to approaching the whole coefficient body,
   and the metric separator transports isometrically through every such
   frame. Thus forcing `e_K -> 0` from the two Iwahori rows is
-  exactly the remaining full-PD sufficient gate. Unitary zero-cochains are
-  only the flat square subclass, so a unitary synchronization theorem alone
-  must not be advertised as an equivalence without an additional flattening
-  argument.
+  exactly the remaining full-PD gate.
 - **The full frame gate is exactly isometry synchronization.**
   `right-translation-flattens-every-relative-kraus-frame` replaces
   every rectangular frame by right-translated components whose scaled
   fibres are literal isometries, preserving the entire coefficient
   function and row energy. Hence `e_K` is exactly the infimum of
   Cayley energy over relative isometry-valued zero-cochains of arbitrary
-  common target dimension. Unitary tables are only the target-dimension
-  `R=d` slice; the missing flattening issue is common corange, not
-  column Gram.
+  common target dimension.
+- **Cayley expansion closes the common-corange gap.**
+  `cayley-expansion-aligns-isometry-frame-coranges` writes
+  `P_g=V_gV_g^*` and proves the exact principal-angle bound
+  `||P_(sg)-P_g||_F^2/d <= 2||V_(sg)U_s-V_g||_(2,d)^2`.
+  Hilbert-valued Poincare, followed by a sharp Ky Fan tail estimate,
+  produces one rank-`d` plane of average leakage at most
+  `2e_K^2/gamma`. Compression and equivariant polar rounding give
+  `e_unit <= (1+2sqrt(2/gamma))e_K`. Property `(T;FD)`
+  supplies one `gamma>0` for every authenticated finite quotient.
+  Thus unitary and full multi-Kraus vanishing are quantitatively equivalent;
+  the sole surviving selector gate is whether the two concrete cubic
+  defects force this common energy to vanish.
 - **Square Gram-flat frames do polarize.**
   `gram-flat-kraus-frames-polarize-to-unitary-tables` gives
   `E_unit <= E_K+2 sqrt(eta_Gram)`. A rank-one Fourier frame of
   any nontrivial irreducible has zero Kraus energy but Gram defect
-  `2(1-1/d)`; right-translation makes it a tall isometry, not an
-  original-dimension unitary. Thus alternating polar minimization needs a
-  common-corange or square-frame selector and cannot use energy alone.
+  `2(1-1/d)`; this proves only that an arbitrary minimizing frame
+  need not polarize square-fibrewise. The expander common-corange theorem
+  bypasses that obstruction by aligning its right-translate isometries.
 - **Matrix-algebra Ulam stability starts after the missing leakage
   estimate.** `matrix-ulam-stability-needs-full-unit-ball-control`
   records the exact Alekseev--Thom input and a sharp two-by-two separation:
