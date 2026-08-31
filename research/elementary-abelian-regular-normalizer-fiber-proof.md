@@ -169,7 +169,7 @@ define
 pi'_m(a,g,t^j)
  =(lambda_(B_m)(p_m(a)) Q_m^j)
   tensor lambda_(L_m)(q_m(g))
-  tensor F_(k_m)^j.                                      (EAP9)
+  tensor F_(k_m)^j.                                     (EAPK1)
 ```
 
 The three factors show directly that `pi'_m` is an exact representation of
