@@ -6,7 +6,7 @@ title: Exact BCV Pauli amplification makes the packet Haar but leaves the source
 distinct_from:
   bcv-every-perfect-question-reduction-amplifies-readable-closure: that proves the universal tensor inclusion of readable algebras; this computes the trace on that tensor form and shows why the inclusion is not a canonical groupification.
   controlled-pauli-corner-has-clifford-groupification: that realizes a finite controlled-Pauli covariance by a group element while leaving its multiplicity involution uncontrolled; this applies the same multiplicity boundary to the entire BCV Question Reduction packet.
-  finite-invariant-partition-only-reduces-irs-to-fiber-irs: that gives the corresponding IRS boundary for a finite invariant object partition; this gives an explicit Pauli/source tensor formula and a padded one-question ZPC countermodel.
+  finite-invariant-partition-only-reduces-irs-to-fiber-irs: that gives the corresponding IRS boundary for a finite invariant object partition; this gives an explicit Pauli/source tensor formula and a one-question equal-length ZPC countermodel.
 ---
 
 **ESTABLISHED.** In the exact normal form of
