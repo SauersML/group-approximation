@@ -6,6 +6,7 @@ title: Bound compression depth and decide halting by a computable tower
 target: bcv-canonical-readable-growth-no-computable-bound
 requires:
   - bcv-honest-compression-amplifies-readable-closure
+  - bcv-perfect-answer-reduction-decodes-double-cover
 ---
 
 If `j<h_M`, then `T_j<N`, so the machine has not halted by level `T_j`.
@@ -44,27 +45,35 @@ never halts. This would decide the halting problem, so no such `B` exists.
 
 ## Exact boundary
 
-The same argument cannot presently be applied to every perfect strategy of
-`G_M`. BCV Remark 4.22 does give an exact Pauli decomposition and an honest
-source strategy from every perfect Question Reduction strategy. Answer
-Reduction is different: Theorem 5.1 gives, from target error `epsilon`,
-source error bounded by
+The finite-field floor in BCV's robust soundness estimate is not an exact
+value-one obstruction. The claim
+`bcv-perfect-answer-reduction-decodes-double-cover` proves directly from
+Definition 5.79 that every attained perfect Answer Reduced strategy has a
+single joint PVM of polynomial-table atoms. The reason is specific to zero
+loss: equation `(181)) with `s=0) supplies a DLine through every pair of
+points, so their PVMs are exact coarse-grainings of one line PVM and commute.
+ALine restrictions then make each joint atom individual-degree nine, and the
+pointwise PCP checks decode every supported atom. For a perfect ZPC model the
+decoder preserves the readable/unreadable typing and gives
 
 ```text
-c((n lambda)^c epsilon^(1/c)+(n lambda)^(-1/c)).          (CRG4)
+D_infinity(decoded DoubleCover source)
+    subseteq D_infinity(target).                         (CRG4)
 ```
 
-The second term remains when `epsilon=0`. Its low-individual-degree
-extraction has the analogous finite-field `q^(-1)` slack. Point-line
-consistency on the test incidence graph does not by itself give a single
-joint PVM for all unreadable point evaluations; Z-alignment makes all
-readable point observables diagonal but does not force the unreadable
-observables at different points to commute. Thus there is no established
-exact inverse that would carry an arbitrary perfect answer-reduced ZPC
-strategy back to a perfect source ZPC strategy while retaining readable
-closure.
+The actual source fed from Question Reduction is bipartite after detyping,
+so Remark 3.55 removes the double cover exactly. Thus Answer Reduction no
+longer blocks an exact backward analysis of arbitrary attained-perfect
+strategies.
 
-Accordingly, this route rules out a uniform reset in the published forward
-construction, but it neither disproves
-`bcv-halt-completeness-has-computable-readable-factor-bound` nor closes the
-nonhyperlinear-group source premise.
+This correction does not by itself upgrade the honest lower bound
+`(CRG2)` to every perfect strategy of `G_M). Such an upgrade must also
+show that an arbitrary strategy can be carried backward through the
+remaining compression wrappers and that the Pauli normal form of BCV
+Remark 4.22 embeds its full `ell^infinity(F_2^k)` factor, with the required
+readable typing, into the original strategy's `D_infinity). Merely
+obtaining a perfect decoded source strategy does not prove that block
+inclusion. Until that separate universal-amplification statement is
+established, this route still rules out a computable bound only for the
+published forward construction and does not close
+`bcv-halt-completeness-has-computable-readable-factor-bound`.
