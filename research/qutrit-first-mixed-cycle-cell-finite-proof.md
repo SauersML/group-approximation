@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-first-mixed-cycle-cell-finite-proof
-kind: proof
+kind: route
 title: Collect the mixed st cell and close its qutrit orbit in a finite triangular algebra
 target: qutrit-first-mixed-cycle-cell-is-finite
 requires:

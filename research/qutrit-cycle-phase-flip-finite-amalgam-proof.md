@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-cycle-phase-flip-finite-amalgam-proof
-kind: proof
+kind: route
 title: Compute the four translated phase rows and build the virtually free flip cover
 target: qutrit-first-cycle-phase-flip-is-a-finite-amalgam
 requires:
