@@ -91,3 +91,14 @@ C-star algebra, so exact common-intertwiner rows are a universal lock. The
 remaining finite-specific task is precisely to extract such a positive
 model-dependent `r,w` from small matrix defects without requiring the
 infinite escape to contain that positive common occurrence.
+
+The BCV Question-Reduction apparatus is not the missing matrix-origin
+occurrence. `bcv-qr-cz-and-identity-gauges-remain-independent` puts
+`C_Z tensor sigma_z` on one Intro side and `I tensor sigma_x` on the
+other while passing every Pauli, SamZ, consistency, and hiding check exactly
+when the Intro edge autoaccepts. For every projection `R`, both possible
+central-sign comparisons have squared norm `2 tau(R)`. Pauli-X translations
+retain the first gauge, and combinatorial-detyping anchors have answer length
+zero. Thus BCV block exactification supplies separate frames only; using a
+common-fibre synchronization check would add exactly the non-autoaccept mixed
+relation sought here.
