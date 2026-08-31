@@ -6,14 +6,14 @@ The proof ledger grades claims; this census grades **sentences**, which is the g
 
 | status | sentences |
 | --- | --- |
-| `formalized` | 151 |
-| `definition` | 37 |
-| `structural` | 25 |
-| `attribution` | 13 |
+| `formalized` | 189 |
+| `definition` | 43 |
+| `structural` | 31 |
+| `attribution` | 14 |
 | `provenance` | 1 |
-| **total** | **227** |
+| **total** | **278** |
 
-Completely formalized or definitional: **188/227** (82.8%).
+Completely formalized or definitional: **232/278** (83.5%).
 
 A sentence under a single-row ledger anchor inherits that forced row.  A sentence under a multi-row anchor must name its row or rows explicitly in `metadata/NON_MF_SENTENCE_MAP.tsv`; no text-similarity guess and no whole-anchor fallback is accepted.
 
@@ -25,14 +25,15 @@ Every sentence carries a declaration, a ledger row, or a reason no declaration a
 
 | section | sentences | unassigned |
 | --- | --- | --- |
-| (front matter) | 6 | 0 |
-| Introduction | 33 | 0 |
+| (front matter) | 8 | 0 |
+| Introduction | 35 | 0 |
 | Relation to prior work | 14 | 0 |
 | Corona homomorphisms | 4 | 0 |
 | Kazhdan transport in normalized Hilbert--Schmidt norm | 46 | 0 |
 | From Hilbert--Schmidt to operator norm | 27 | 0 |
 | The maximal group \texorpdfstring{$C^*$ | 15 | 0 |
 | The binary Leavitt group | 48 | 0 |
+| An amenable nonquasidiagonal trace | 47 | 0 |
 | A torsion-free finitely presented example | 31 | 0 |
 | Acknowledgments | 2 | 0 |
 | Use of AI and formal methods | 1 | 0 |

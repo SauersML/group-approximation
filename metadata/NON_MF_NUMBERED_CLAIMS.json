@@ -36,7 +36,7 @@
       "id": "thm:headline",
       "environment": "mainthm",
       "title": "the binary Leavitt group",
-      "statement_sha256": "83d0d818110806c4016118cf598ec8d6463d7bce29cfd7504462529ef20d0155",
+      "statement_sha256": "b6147b9750a37bb816c7182e6ef2186fd921a0d4200bf814a936bc43cf3569a7",
       "status": "exact",
       "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
       "dependencies": [
@@ -251,6 +251,55 @@
       ]
     },
     {
+      "id": "lem:proper-isometry",
+      "environment": "lemma",
+      "title": "strictly dominated projections",
+      "statement_sha256": "137d667dc1c99646fed4c89035c88e8775d321aaad5f9d318792490111ef916b",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/ProperIsometryStrictOrder",
+          "declaration": "GroupApproximation.manuscriptProperIsometryStrictOrder",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:max-infinite",
+      "environment": "proposition",
+      "title": "proper one-sided compression",
+      "statement_sha256": "4aa947568f70be77e73f7cb262a579bface708796949a655e34bf4296944c670",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "lem:kazhdan-projection-order",
+        "lem:proper-isometry"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/StrictCompressionFromPrinted",
+          "declaration": "GroupApproximation.MaximalCStarPrintedHypotheses.manuscriptMaximalCStarRemarkFromPrintedHypotheses",
+          "covers": "the complete printed proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Analysis/QuasiRegularWitness",
+          "declaration": "GroupApproximation.QuasiRegularWitness.baseVector_apply_base",
+          "covers": "a printed conclusion of the proposition"
+        }
+      ]
+    },
+    {
       "id": "lem:tau-elementary",
       "environment": "lemma",
       "title": "",
@@ -335,6 +384,75 @@
       ]
     },
     {
+      "id": "thm:factorization-nonmf-trace",
+      "environment": "theorem",
+      "title": "canonical-trace obstruction",
+      "statement_sha256": "55d42a29de8b049eb33b9327bfd7ae940636eae2d4763c12f95a4d9ee202a6a5",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Manuscript/NinetyNineProblems/ProblemXGroups",
+          "declaration": "GroupApproximation.NinetyNineProblems.canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "prop:locally-rf-by-z-trace",
+      "environment": "proposition",
+      "title": "locally-RF-by-$\\mathbb Z$ groups",
+      "statement_sha256": "e2f406f095c7e508ecb2a81bca883111f5837ba81252c319e678784a8dae1e7e",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Analysis/LocallyRFByIntFactorization",
+          "declaration": "GroupApproximation.LocallyRFByIntFactorization.canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
+      "id": "cor:affine-clifford-trace",
+      "environment": "corollary",
+      "title": "the affine--Clifford trace",
+      "statement_sha256": "740d60547a89b23ed8b893f87b92a8c2e5cb3e0eeb2474fabf5f7bd9e9e3671c",
+      "status": "exact",
+      "object_identity": "The printed environment and the named declaration use the same literal objects and outer proposition.",
+      "dependencies": [
+        "prop:locally-rf-by-z-trace",
+        "thm:factorization-nonmf-trace"
+      ],
+      "extra_assumptions": [],
+      "external_inputs": [],
+      "coverage_gap": "",
+      "lean": [
+        {
+          "role": "exact",
+          "module": "Sofic/CliffordWitnessLocallyRFByInt",
+          "declaration": "GroupApproximation.CliffordWitnessLocallyRFByInt.witnessCanonicalMaximalTrace_isAmenableTrace",
+          "covers": "a printed conclusion of the proposition"
+        },
+        {
+          "role": "exact",
+          "module": "Manuscript/NinetyNineProblems/ProblemXCliffordWitness",
+          "declaration": "GroupApproximation.NinetyNineProblems.witnessCanonicalTrace_amenable_not_quasidiagonal",
+          "covers": "the complete printed proposition"
+        }
+      ]
+    },
+    {
       "id": "thm:hull",
       "environment": "theorem",
       "title": "Hull's small cancellation theorem",
@@ -372,7 +490,7 @@
       "id": "lem:commutator-in-defect",
       "environment": "lemma",
       "title": "",
-      "statement_sha256": "b35684487a9c776e11ad9c63419b84162d1c3b97741041113ee44c95cc21dbf4",
+      "statement_sha256": "8202b4e88cca46ee5691f0b1b98763213d1182a7bb708cf952fdaadec9b5279a",
       "status": "paper-proof",
       "object_identity": "The complete proof is given in the manuscript.",
       "dependencies": [],

@@ -120,16 +120,17 @@ is amenable and not quasidiagonal.**
 This packages the two hypotheses in the exact trace-theoretic form used by
 Problem X(1).  The failure of quasidiagonality is forced by `hnot`; it is not
 an additional input. -/
-theorem canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF
-    (G : Type*) [Group G]
-    (hamen : Quasidiagonal.IsAmenableTrace
-      (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a))
-    (hnot : ¬ IsOperatorMF G) :
-    Quasidiagonal.IsAmenableTrace
-        (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) ∧
-      ¬ Quasidiagonal.IsQuasidiagonalTrace
-        (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) :=
-  ⟨hamen,
+theorem canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF :
+    ∀ (G : Type*) [Group G],
+      Quasidiagonal.IsAmenableTrace
+          (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) →
+        (¬ IsOperatorMF G) →
+          Quasidiagonal.IsAmenableTrace
+              (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) ∧
+            ¬ Quasidiagonal.IsQuasidiagonalTrace
+              (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) := by
+  intro G _ hamen hnot
+  exact ⟨hamen,
     canonicalMaximalTrace_not_isQuasidiagonalTrace_of_not_isOperatorMF G hnot⟩
 
 /-- **Problem X(1) makes a group with an amenable canonical trace
@@ -217,10 +218,12 @@ The unconditional instance at the manuscript's own group is
 `ProblemX.not_problemX1Statement_of_literalFactorizationProperty`, is the
 literal-group specialization of the same amenable/non-quasidiagonal witness
 shape. -/
-theorem not_problemX1Statement_of_amenable_not_operatorMF (G : Type) [Group G]
-    (hA : Quasidiagonal.IsAmenableTrace
-      (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a))
-    (hnot : ¬ IsOperatorMF G) : ¬ ProblemX1Statement.{1} := by
+theorem not_problemX1Statement_of_amenable_not_operatorMF :
+    ∀ (G : Type) [Group G],
+      Quasidiagonal.IsAmenableTrace
+          (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) →
+        (¬ IsOperatorMF G) → ¬ ProblemX1Statement.{1} := by
+  intro G _ hA hnot
   obtain ⟨hamen, hnotQD⟩ :=
     canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF
       G hA hnot
@@ -231,3 +234,8 @@ theorem not_problemX1Statement_of_amenable_not_operatorMF (G : Type) [Group G]
 end NinetyNineProblems
 
 end GroupApproximation
+
+open GroupApproximation.NinetyNineProblems
+
+#audit_axioms canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF
+#audit_axioms not_problemX1Statement_of_amenable_not_operatorMF

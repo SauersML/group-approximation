@@ -127,6 +127,8 @@ def build_index(repo: Path | None = None) -> dict[str, Path]:
             continue
         paths = sorted(root.rglob("*.lean")) if root.is_dir() else [root]
         for path in paths:
+            if path.name.startswith("._"):
+                continue
             index.update(index_file(path))
     return index
 

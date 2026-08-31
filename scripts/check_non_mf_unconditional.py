@@ -785,6 +785,8 @@ def build_corpus(root: Path) -> Corpus:
     modules: dict[Path, dict[str, Declaration]] = {}
     corpus_namespaces: set[str] = set()
     for path in sorted((root / "GroupApproximation").rglob("*.lean")):
+        if path.name.startswith("._"):
+            continue
         modules[path] = scan_module(path)
         # Namespaces the corpus actually opens, so `resolve` can tell a corpus
         # name wearing its namespace from a Mathlib name that merely ends the

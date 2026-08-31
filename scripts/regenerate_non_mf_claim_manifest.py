@@ -77,6 +77,25 @@ EXACT_TARGETS: dict[str, tuple[str, str]] = {
         "Manuscript/OneSidedMFRadical/RankTwelveConfiguration",
         "GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint."
         "manuscriptPropositionDefect"),
+    "lem:proper-isometry": (
+        "Analysis/ProperIsometryStrictOrder",
+        "GroupApproximation.manuscriptProperIsometryStrictOrder"),
+    "prop:max-infinite": (
+        "Analysis/StrictCompressionFromPrinted",
+        "GroupApproximation.MaximalCStarPrintedHypotheses."
+        "manuscriptMaximalCStarRemarkFromPrintedHypotheses"),
+    "thm:factorization-nonmf-trace": (
+        "Manuscript/NinetyNineProblems/ProblemXGroups",
+        "GroupApproximation.NinetyNineProblems."
+        "canonicalMaximalTrace_amenable_not_isQuasidiagonalTrace_of_not_isOperatorMF"),
+    "prop:locally-rf-by-z-trace": (
+        "Analysis/LocallyRFByIntFactorization",
+        "GroupApproximation.LocallyRFByIntFactorization."
+        "canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt"),
+    "cor:affine-clifford-trace": (
+        "Manuscript/NinetyNineProblems/ProblemXCliffordWitness",
+        "GroupApproximation.NinetyNineProblems."
+        "witnessCanonicalTrace_amenable_not_quasidiagonal"),
 }
 
 
@@ -121,6 +140,13 @@ DEPENDENCIES: dict[str, list[str]] = {
     "prop:leavitt-compression": ["lem:tau-elementary"],
     "prop:simple": [],
     "prop:defect": ["prop:leavitt-compression"],
+    "lem:proper-isometry": [],
+    "prop:max-infinite": [
+        "lem:kazhdan-projection-order", "lem:proper-isometry"],
+    "thm:factorization-nonmf-trace": [],
+    "prop:locally-rf-by-z-trace": [],
+    "cor:affine-clifford-trace": [
+        "prop:locally-rf-by-z-trace", "thm:factorization-nonmf-trace"],
     "thm:hull": [],
     "lem:saturation": ["thm:hull"],
     "lem:commutator-in-defect": [],

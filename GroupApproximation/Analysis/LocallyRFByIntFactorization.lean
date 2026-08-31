@@ -213,12 +213,14 @@ theorem tendsto_stage_generator_trace
 
 /-- If `G` is countable and isomorphic to a semidirect product of a locally
 residually finite group by `ℤ`, then its canonical maximal trace is amenable. -/
-theorem canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt
-    (α : Multiplicative ℤ →* MulAut N)
-    (e : G ≃* (N ⋊[α] Multiplicative ℤ))
-    (hN : IsLocallyResiduallyFinite N) :
-    IsAmenableTrace
-      (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) := by
+theorem canonicalMaximalTrace_isAmenableTrace_of_locallyRFByInt :
+    ∀ {G N : Type} [Group G] [Group N] [Countable G]
+      (α : Multiplicative ℤ →* MulAut N)
+      (_e : G ≃* (N ⋊[α] Multiplicative ℤ)),
+      IsLocallyResiduallyFinite N →
+        IsAmenableTrace
+          (fun a : MaximalGroupCStar G ↦ canonicalMaximalTrace G a) := by
+  intro G N _ _ _ α e hN
   refine ⟨amenableTraceModel_of_dense_generators
     (stageMap α e hN) (stageMap_one α e hN)
     (stageMap_completelyPositive α e hN) (norm_stageMap_le α e hN)

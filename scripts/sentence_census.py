@@ -800,7 +800,7 @@ def declared_names() -> set[str]:
     names: set[str] = set()
     for base, _dirs, files in os.walk(os.path.join(ROOT, "GroupApproximation")):
         for fn in files:
-            if not fn.endswith(".lean"):
+            if not fn.endswith(".lean") or fn.startswith("._"):
                 continue
             with open(os.path.join(base, fn), encoding="utf-8") as fh:
                 for line in fh:
