@@ -139,7 +139,7 @@ cancellation.
 
 ## Step 5: why a uniform Boolean Ulam theorem is the target itself
 
-Let `G` act p.m.p. on `(X,mu)), and suppose
+Let `G` act p.m.p. on `(X,mu)`, and suppose
 `L^infinity(X) crossed_product G` is Connes embeddable.  For every finite
 family of measurable sets, actor words, products, and covariance relations,
 Connes embeddability supplies matrix microstates matching that finite
