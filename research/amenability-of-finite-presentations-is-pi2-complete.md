@@ -53,7 +53,7 @@ branches, or stable letters cannot raise the amenable locus from
 `Sigma^0_1` to `Pi^0_2`.
 
 The non-genuine finite-`L`-presentation route is also closed by
-[[amenable-base-finite-l-presentations-have-decidable-stable-letter-locus]].
+[[amenable-base-l-presentations-have-recursive-locus]].
 Adding every substitution iterate of finitely many relators to an amenable
 base only takes a quotient and is always amenable. Its raw finite
 stable-letter simulator is amenable with zero or one substitution letter and
