@@ -91,7 +91,7 @@ relators, there is a presentation-dependent constant `A` such that
 
 in one sector. For a direct sum with sector-dependent phases, let
 `Gamma` be the block-scalar unitary whose blocks are the corresponding
-`gamma)'s. The identical fixed derivation gives
+`gamma` values. The identical fixed derivation gives
 
 ```text
 ||Gamma-I||_2<=A delta.                                 (PSR6)
