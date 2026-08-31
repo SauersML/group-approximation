@@ -5,7 +5,7 @@ kind: route
 title: Reduce two-supported independent-set questions to a tracial Boolean 2-CSP
 target: lin-independent-set-synchbcs-has-uniform-nonaffine-onehot-mass
 requires:
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
   - binary-tracial-two-csp-has-classical-solution
 ---
 
