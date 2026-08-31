@@ -118,10 +118,15 @@ The first router `g_1` fixes the support of `H`, hence commutes with
 e_2g_1GR=Ee_2g_1GR.
 ```
 
-Its range projection is below `Ee_2`, while its source projection is
-below `GR`. The latter has trace `1/36` and the former ambient target
-has trace `1/18`. Thus this literal mixed word has spare target capacity;
-it cannot yield a Hall contradiction.
+Its range projection is below `Ee_2`. Moreover
+```text
+||e_2g_1GR||_2^2<=||GR||_2^2=tau(RG)=1/36.
+```
+But `G` and `R` need not commute, so `GR` is not a source
+projection and this energy does not determine the initial polar-support
+trace. No Hall lower bound follows from the overlap number alone. The
+finite complementary-sign packet constructed next supplies an exact
+countermodel for the natural common-router recombination.
 
 ## Identification of the generated group
 
@@ -153,8 +158,8 @@ so no finite quotient or finite regular representation of this whole
 packet can retain its canonical carrier. This is precisely where the
 one-letter residual-finiteness proof stops applying.
 
-The result does not decide hyperlinearity. The canonical nested polar
-exists, but its support decreases from `ER` of trace `1/9` to `PR` of
-trace `1/18` and then `GR` of trace `1/36`. A successful continuation
-must combine complementary sign projections, not iterate the same
-one-sided D8 compression.
+The result does not decide hyperlinearity. The canonical nested polar exists, and its qutrit overlap energies are
+`1/9,1/18,1/36`; these are not ranks of the cut-down polar supports.
+A successful continuation must combine complementary sign projections
+with distinct routers and compute those support ranks, not infer them
+from Hilbert--Schmidt energy.
