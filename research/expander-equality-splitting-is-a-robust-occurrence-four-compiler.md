@@ -11,23 +11,23 @@ distinct_from:
   one-triple-variable-lcs-has-no-perfect-model-gap: that treats one exceptional triple-used variable exactly; this compiler can split every high-degree variable and makes no perfect-model separation claim.
 ---
 
-Every finite binary LCS of maximum equation width \`w\` has an effective,
+Every finite binary LCS of maximum equation width `w` has an effective,
 linear-size compiler to a binary LCS of maximum variable occurrence four
 which:
 
 1. preserves the solution group exactly, including the central involution
-   \`J\`;
+   `J`;
 2. preserves perfect completeness in every operator model; and
 3. has a dimension-independent normalized-Hilbert--Schmidt decoder.
 
-For a source variable with \`d>=3\` occurrences, take the least
-\`n=6*2^k>=d\`, put the occurrences on distinct vertices of a connected
-3-regular bipartite Ramanujan graph \`H_d\` on \`n\` vertices, and add the
+For a source variable with `d>=3` occurrences, take the least
+`n=6*2^k>=d`, put the occurrences on distinct vertices of a connected
+3-regular bipartite Ramanujan graph `H_d` on `n` vertices, and add the
 even equality equation
 
-\`\`\`text
+```text
 X_u X_v = 1
-\`\`\`
+```
 
 on every edge.  Marcus--Spielman--Srivastava's good 2-lifts give such a
 family with
@@ -42,7 +42,7 @@ as a uniform normalized-Laplacian gap.  A used vertex occurs in one source
 context and three equality contexts, hence four times; a padding vertex
 occurs three times.
 
-Let \`N\` be the total number of source occurrences.  For reflection-valued
+Let `N` be the total number of source occurrences.  For reflection-valued
 copies in any finite tracial algebra, put
 
 $$
@@ -54,7 +54,7 @@ $$
  =\frac1N\sum_{x:d_x\geq3}d_x\delta_x^2 .
 $$
 
-There are representative copies \`\widehat X_x\`, themselves exact
+There are representative copies `\widehat X_x`, themselves exact
 reflections, such that
 
 $$
@@ -63,9 +63,9 @@ $$
  \leq \frac{2}{\lambda_*}\varepsilon_{\rm eq}^2.       \tag{1}
 $$
 
-If \`D_{\rm copy}\` is the equation-normalized RMS defect of all source
+If `D_{\rm copy}` is the equation-normalized RMS defect of all source
 product relators and all within-source-context commutator relators, and
-\`D_{\rm dec}\` is the same defect after replacing every copy by its
+`D_{\rm dec}` is the same defect after replacing every copy by its
 representative, then
 
 $$
@@ -87,10 +87,10 @@ $$
 R_j=\cos(2\pi j/d)Z+\sin(2\pi j/d)X
 $$
 
-have edge equality defect squared \`4 sin^2(pi/d)\` but average squared
-distance exactly \`2\` from every single reflection.  Hence every such
+have edge equality defect squared `4 sin^2(pi/d)` but average squared
+distance exactly `2` from every single reflection.  Hence every such
 degree-two synchronization inequality needs a squared constant of order
-\`d^2\`; the cyclic occurrence-three compiler cannot have uniform robust
+`d^2`; the cyclic occurrence-three compiler cannot have uniform robust
 soundness.
 
 This closes a compiler seam only.  It does not supply the source LCS
