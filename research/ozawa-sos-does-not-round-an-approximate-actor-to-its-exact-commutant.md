@@ -7,6 +7,7 @@ distinct_from:
   compactness-closes-exact-actor-pauli-window: that proves dimension-free shared-sign collapse when the actor coordinates are genuine representations; this proves that replacing their commutant by the exact commutant of arbitrary approximate actor matrices is impossible.
   high-type-mass-is-discontinuous-at-exact-code-tuples: that makes the generated algebra jump under a small perturbation of an exact code tuple; this quantifies the failure for commutant rounding, preserves any finite actor moment profile after amplification, and evaluates the lifted Kazhdan SOS certificate.
   property-t-does-not-kill-boolean-fiber-holonomy: that gives an exact multiplicity-cocycle obstruction after spatialization; this obstruction occurs before spatialization, at the proposed approximate-actor exactification step.
+  generic-perturbations-destroy-exact-commutant-gap: that specializes the disappearing-kernel mechanism to trace-faithful regular finite-quotient coordinates of the Kun--Thom elementary actor; this gives the certificate inequality and the universal arbitrary-profile amplification.
 ---
 
 **EXACT-COMMUTANT ROUNDING REFUTED; SHARED-PAULI ROUTE REMAINS OPEN.**
