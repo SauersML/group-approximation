@@ -235,79 +235,93 @@ completeness for the Lin source.
 
 Let
 
-[
- Delta=1-omega_*(I)>0                                 	ag{23}
-]
+```text
+Delta=1-omega_*(I)>0.                                    (23)
+```
 
-be the finite-dimensional value gap of the fixed Lin independent-set
-game.  In any finite-dimensional packet/router representation with
-(e_r
-e0), equations (5)--(7) give a finite-dimensional strategy.
-Write the game loss as a convex combination of losing correlations:
+In any finite-dimensional packet/router representation with `e_r!=0`,
+equations `(5)--(7)` give a finite-dimensional strategy.  Let
+`mathcal L` be the fixed finite set of losing tuples and write the
+actual loss functional as
 
-[
- operatorname{Loss}
- =sum_{ell}eta_ell,
-   	au_r(A_{x_ell,a_ell}A_{y_ell,b_ell}),
- qquad eta_ell>0,quadsum_elleta_ell=1.        	ag{24}
-]
+```text
+Loss_I
+ =sum_(ell in mathcal L) beta_ell
+   tau_r(A_(x_ell,a_ell)A_(y_ell,b_ell)),
+beta_ell>0,
+W_I=sum_ell beta_ell.                                    (24)
+```
 
-The gap gives (operatorname{Loss}geDelta), so at least one
-losing tuple satisfies
+The standard game convention need not have `W_I=1`: the question weight
+for `(x,y)` occurs once for every losing output pair at that question.
+The finite-dimensional value gap and the three-corner identity `(10)`
+give the canonical fixed aggregate estimate
 
-[
- 	au_r(A_{x,a}A_{y,b})geDelta.                       	ag{25}
-]
+```text
+sum_ell beta_ell ||B_ell||_2^2
+ >=Delta tau(e_r).                                       (25)
+```
 
-For its coefficient (B), equations (10) and (4) give
+Set
 
-[
- mu:=	au(B^*B)geDelta,	au(e_r).                   	ag{26}
-]
+```text
+delta=Delta/W_I.
+```
 
-By (3), (	au(e_a)=	au(e_r)=:ho).  Put
-(X=B^*B).  Since (B) is a contraction with right support below
-(e_a),
+Since every normalized correlation lies in `[0,1]`, one has
+`0<delta<=1`.  Equation `(25)` implies that at least one losing tuple
+(depending on the representation) satisfies
 
-[
- 0le Xle e_a,qquad 	au(X)geDeltaho.             	ag{27}
-]
+```text
+tau_r(A_(x,a)A_(y,b))>=delta,
+tau(B^*B)>=delta tau(e_r).                               (26)
+```
+
+By `(3)`, `tau(e_a)=tau(e_r)=:rho`.  Put `X=B^*B`.  Since
+`B` is a contraction with right support below `e_a`,
+
+```text
+0<=X<=e_a,                    tau(X)>=delta rho.          (27)
+```
 
 Take the spectral projection
 
-[
- R=1_{[Delta/2,1]}(X).                                 	ag{28}
-]
+```text
+R=1_[delta/2,1](X).                                     (28)
+```
 
-Using (XleDelta/2) off (R) and (Xle1) on (R),
+Using `X<=delta/2` off `R` and `X<=1` on `R`,
 
-[
- Deltaho
- le	au(X)
- leracDelta2(ho-	au(R))+	au(R).                 	ag{29}
-]
+```text
+delta rho
+ <=tau(X)
+ <=delta/2 (rho-tau(R))+tau(R).                         (29)
+```
 
 Rearranging,
 
-[
- 	au(R)gerac{Delta}{2-Delta}ho
-          geracDelta2ho.                          	ag{30}
-]
+```text
+tau(R)>=delta/(2-delta) rho
+      >=delta/2 rho.                                    (30)
+```
 
 Functional calculus also gives
 
-[
- B^*BRgeracDelta2 R.                                	ag{31}
-]
+```text
+B^*B R>=delta/2 R.                                      (31)
+```
 
-Thus (BR) has a uniform singular floor
-(sqrt{Delta/2}) on a source corner of fixed relative density at
-least (Delta/(2-Delta)).  Its polar range lies below the named
-target atom (e_b).
+Thus `BR` has a uniform singular floor `sqrt(delta/2)` on a source
+corner of fixed relative density at least `delta/(2-delta)`.  Its polar
+range lies below the named target atom `e_b`.
 
-This is precisely the support information absent from diagonal
-occurrence conditioning: the selected projection (R) is a spectral
-projection of the literal cross-context coefficient (8).
+The quantifiers matter.  The weighted sum of squares in `(25)` is a
+single fixed finite package determined by the game.  The losing tuple
+selected in `(26)` and its spectral projection `R` may vary with the
+finite-dimensional representation.  They cannot be inserted as fixed
+generators or relators without a separate finite selector/wordization
+argument.  This is precisely the support information absent from diagonal
+occurrence conditioning, but it is not yet an ordinary-word theorem.
 
 ## 7. Exact remaining raw-word gate
 

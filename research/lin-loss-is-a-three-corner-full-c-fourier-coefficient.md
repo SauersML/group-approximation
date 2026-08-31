@@ -73,31 +73,52 @@ After relabelling (r=0), every perfect Lin strategy makes every losing
 coefficient (TCF2) exactly zero.
 
 Conversely, in every finite-dimensional packet/router representation,
-the normalized trace on (e_r) and the POVMs (TCF1) give a legitimate
-finite-dimensional strategy.  If the Lin game has gap
-(Delta=1-omega_*(I)>0), some losing coefficient satisfies
+the normalized trace on `e_r` and the POVMs `(TCF1)` give a
+legitimate finite-dimensional strategy.  Let `mathcal L` be the fixed
+finite set of losing tuples and write the actual game-loss functional as
 
-[
- 	au(B^*B)ge 	au(e_r)Delta.                          	ag{TCF7}
-]
+```text
+Loss_I=sum_(ell in mathcal L) beta_ell
+       tau_r(A_(x_ell,a_ell)A_(y_ell,b_ell)),
+beta_ell>0,                  W_I=sum_ell beta_ell.       (TCF7)
+```
 
-For
+No normalization `W_I=1` is assumed: in the standard game convention a
+question weight is repeated once for every losing answer pair.  If
+`Delta=1-omega_*(I)>0`, the exact three-corner identity gives the fixed,
+representation-independent weighted sum-of-squares bound
 
-[
- R=1_{[Delta/2,1]}(B^*B),
-]
+```text
+sum_ell beta_ell ||B_ell||_2^2 >= Delta tau(e_r).        (TCF8)
+```
 
-one has the dimension-free bounds
+Consequently some losing tuple, which may depend on the representation,
+satisfies
 
-[
- 	au(R)gerac{Delta}{2-Delta}	au(e_r)
-          gerac{Delta}{2}	au(e_r),qquad
- B^*BRgerac{Delta}{2}R.                             	ag{TCF8}
-]
+```text
+tau(B^*B)>=delta tau(e_r),          delta=Delta/W_I.      (TCF9)
+```
 
-Hence the off-diagonal full-(C) coefficient has a fixed-density
-initial corner and a uniform singular floor whenever finite-dimensional
-Lin soundness fires.
+Here `0<delta<=1`.  For that tuple put
+
+```text
+R=1_[delta/2,1](B^*B).
+```
+
+Then
+
+```text
+tau(R)>=delta/(2-delta) tau(e_r)
+      >=delta/2 tau(e_r),
+B^*B R>=delta/2 R.                                      (TCF10)
+```
+
+Hence the off-diagonal full-`C` coefficient has a fixed-density initial
+corner and a uniform singular floor whenever finite-dimensional Lin
+soundness fires.  The weighted aggregate `(TCF8)` is one fixed finite
+package.  The tuple selected from it and the spectral projection `R` in
+`(TCF9)--(TCF10)` are representation-dependent and are not themselves
+named group-presentation data.
 
 Equations (TCF2)--(TCF8) close the occurrence-support identification
 requested after the moved-root rank audit.  They do **not** yet make
