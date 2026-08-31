@@ -59,9 +59,10 @@ in the small-chain homology, proving injectivity.
 -/
 
 open CategoryTheory AlgebraicTopology
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 
 variable {R : Type} [CommRing R] {X : TopCat.{0}}
@@ -77,13 +78,11 @@ theorem exists_d_eq_iCycles_of_homologyπ_zero
     ∃ b : K.X (n + 1), (K.d (n + 1) n).hom b = (K.iCycles n).hom W := by
   -- `homologyπ` is the cokernel of `toCycles`, so `W` lies in the image of `toCycles`.
   have hW_im : ∃ b : K.X (n + 1), (K.toCycles (n + 1) n).hom b = W := by
-    have := HomologicalComplex.homologyIsCokernel K ( n + 1 ) n ( by simp +decide [ ComplexShape.prev ] );
-    replace := this.existsUnique;
-    obtain ⟨ d, hd₁, hd₂ ⟩ := this ( Limits.CokernelCofork.ofπ ( ModuleCat.ofHom ( Submodule.mkQ ( LinearMap.range ( K.toCycles ( n + 1 ) n ).hom ) ) ) ( by aesop ) );
-    have := hd₁ Limits.WalkingParallelPair.one; simp_all +decide ;
-    replace this := congr_arg ( fun f => f.hom W ) this; simp_all +decide ;
-    rw [ eq_comm, Submodule.Quotient.mk_eq_zero ] at this;
-    exact this;
+    let S := ShortComplex.mk (K.toCycles (n + 1) n) (K.homologyπ n)
+      (K.toCycles_comp_homologyπ (n + 1) n)
+    have hS : S.Exact := ShortComplex.exact_of_g_is_cokernel S
+      (K.homologyIsCokernel (n + 1) n (by simp [ComplexShape.prev]))
+    exact (ShortComplex.moduleCat_exact_iff S).1 hS W h
   obtain ⟨ b, hb ⟩ := hW_im; use b;
   rw [ ← hb ];
   convert congr_arg ( fun f => f.hom b ) ( HomologicalComplex.toCycles_i K ( n + 1 ) n ) using 1;
@@ -196,16 +195,19 @@ theorem smallChainsInclusion_injective_on_homology
   -- By naturality of the homology map, we have $(F.homologyπ n).hom ((S.cyclesMap ι n).hom w) = 0$.
   have hWfull : (singularChainComplex R X).homologyπ n ((smallChainComplex R X 𝒰).cyclesMap (smallChainsInclusion R X 𝒰) n w) = 0 := by
     have hWfull : (singularChainComplex R X).homologyπ n ((smallChainComplex R X 𝒰).cyclesMap (smallChainsInclusion R X 𝒰) n w) = (HomologicalComplex.homologyMap (smallChainsInclusion R X 𝒰) n).hom ((smallChainComplex R X 𝒰).homologyπ n w) := by
-      convert congr_arg ( fun m => m w ) ( HomologicalComplex.homologyπ_naturality ( smallChainsInclusion R X 𝒰 ) n ) using 1;
-      · simp +decide [ HomologicalComplex.homologyπ_naturality ];
-      · convert congr_arg ( fun m => m w ) ( HomologicalComplex.homologyπ_naturality ( smallChainsInclusion R X 𝒰 ) n ) using 1;
+      have hnat := congrArg (fun m => m.hom w)
+        (HomologicalComplex.homologyπ_naturality (smallChainsInclusion R X 𝒰) n)
+      simpa only [ModuleCat.hom_comp, LinearMap.comp_apply] using hnat.symm
     simp_all +decide [ homologyMapInDegree ];
   -- By `exists_d_eq_iCycles_of_homologyπ_zero`, there exists `b : F.X (n+1)` such that `(F.d (n+1) n).hom b = (F.iCycles n).hom ((S.cyclesMap ι n).hom w)`.
   obtain ⟨b, hb⟩ : ∃ b : singularChainGroup R X (n + 1), (singularBoundary R X n).hom b = (smallChainsInclusion R X 𝒰).f n ((smallChainComplex R X 𝒰).iCycles n w) := by
-    convert exists_d_eq_iCycles_of_homologyπ_zero ( singularChainComplex R X ) n _ hWfull using 1;
-    ext; simp +decide ;
-    convert Iff.rfl;
-    convert congr_arg ( fun f => f w ) ( HomologicalComplex.cyclesMap_i ( smallChainsInclusion R X 𝒰 ) n ) using 1;
+    obtain ⟨b, hb⟩ := exists_d_eq_iCycles_of_homologyπ_zero
+      (singularChainComplex R X) n _ hWfull
+    refine ⟨b, ?_⟩
+    change (singularBoundary R X n).hom b = _ at hb
+    have hcycles := congrArg (fun f => f.hom w)
+      (HomologicalComplex.cyclesMap_i (smallChainsInclusion R X 𝒰) n)
+    simpa only [ModuleCat.hom_comp, LinearMap.comp_apply] using hb.trans hcycles
   -- By `exists_small_boundary_witness`, there exists `bChain : singularChainGroup R X (n+1)` such that `bChain ∈ smallChainSubmodule R X 𝒰 (n+1)` and `(singularBoundary R X n).hom bChain = (singularBoundary R X n).hom b`.
   obtain ⟨bChain, hbChain_mem, hbChain_eq⟩ : ∃ bChain : singularChainGroup R X (n + 1), bChain ∈ smallChainSubmodule R X 𝒰 (n + 1) ∧ (singularBoundary R X n).hom bChain = (singularBoundary R X n).hom b := by
     apply exists_small_boundary_witness
