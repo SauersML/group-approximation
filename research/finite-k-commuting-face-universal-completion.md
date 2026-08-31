@@ -85,14 +85,15 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   maximum occurrence three by cyclic equality copies, with a
   `J`-preserving solution-group isomorphism.  Its equality-cycle stability
   degrades quadratically with the original occurrence.
-- **Raise the equality budget to occurrence four.**  The quantitative
-  problem is now closed by
-  `expander-equality-splitting-is-a-robust-occurrence-four-compiler`.
-  Cubic bipartite Ramanujan equality graphs give a dimension-free
-  Hilbert--Schmidt representative decoder and full source-relator loss
-  `3w sqrt(2/lambda_*)`.  Rotating Pauli reflections prove that every
-  connected degree-two equality path or cycle has the sharp quadratic
-  obstruction.  Thus a packet construction may assume occurrence four
+- **Add a cubic dummy equality core.**  The quantitative problem is now
+  closed without raising the occurrence budget, by
+  `dummy-subdivided-expanders-give-robust-occurrence-three`.
+  Source occurrences occupy degree-two subdivision vertices and dummy
+  variables occupy the cubic Ramanujan core.  A dimension-free
+  Hilbert--Schmidt representative decoder transfers every source relator
+  with constant loss.  Rotating Pauli reflections still prove the sharp
+  quadratic obstruction for a no-dummy path or cycle, but dummy expansion
+  evades it.  Thus a packet construction may assume occurrence three
   without paying a degree-dependent synchronization loss; this does not
   create the missing finite-versus-commuting source separation.
 - **Repeat fixed K labels at positive density.**  This can improve the finite
