@@ -6,7 +6,7 @@ title: Thompson V gives an explicit finitely presented shared-center Pauli host
 distinct_from:
   shared-center-pauli-tape-has-same-fp-gate: that proves the abstract if-and-only-if criterion; this verifies every input for one named highly transitive action and writes the resulting finite presentation.
   thompson-even-lamp-fp-finite-state-detector: that uses the even Boolean lamp and proves all finite-dimensional images trivial; this uses two full Pauli coordinates with one common central sign.
-  andre-guirardel-sharp-t-actor-audit: that has property (T) and sharp two-transitivity but lacks the two finiteness inputs; Thompson V supplies both finiteness inputs but not property (T).
+  andre-guirardel-sharp-t-actor-audit: that has property (T) and sharp two-transitivity but lacks the two finiteness inputs; the cited Thompson V results supply both finiteness inputs, but no property-(T) input is used here.
 ---
 
 **FINITE PRESENTATION AND EXACT SIGN INVISIBILITY ESTABLISHED;
