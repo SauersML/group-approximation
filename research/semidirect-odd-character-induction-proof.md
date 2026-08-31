@@ -147,8 +147,8 @@ through (3).  Likewise, a joint spectral-projector relation is not a group
 relation at all.  These are outside the theorem.
 
 There is still a sharp finite fence: if the enlarged auxiliary group is
-itself finite and contains \(H\), then the ordinary finite-dimensional
-induced representation \(\operatorname{Ind}_H^G\chi\) exists for every
+itself finite, contains \(H\), and keeps \(z\) central as the marked sign,
+then the ordinary finite-dimensional induced representation \(\operatorname{Ind}_H^G\chi\) exists for every
 \(\chi\), split or not.  Hence a nonsplit escape capable of eliminating all
 bad finite-dimensional sectors must already be an infinite extension in
 which the marked finite subgroup \(H\) fails to survive in the relevant
