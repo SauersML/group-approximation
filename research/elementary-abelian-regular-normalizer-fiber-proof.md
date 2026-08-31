@@ -80,27 +80,23 @@ force `D_h` to be near a monomial.
 
 ## Step 3: an increasing trace-faithful coherent model
 
-Give `F_2^3` a basis `e_1,e_2,e_3`, let
+Give `F_2^4` a basis `e_0,e_1,e_2,e_3`, and let
 
 ```text
-N e_1=0,       N e_2=e_1,       N e_3=e_2,
+J e_i=e_(i+1 mod 4).                                      (EAP4)
 ```
 
-and put `J=1+N`.  In characteristic two,
+Thus `J` has order four and, importantly, it permutes the four coordinate
+lamps rather than mixing them linearly.  Let
 
 ```text
-J^2=1+N^2 != 1,             J^4=1+N^4=1,                (EAP4)
+A=direct_sum_(r>=1) F_2^4,
+B_m=direct_sum_(r=1)^m F_2^4,
 ```
 
-so `J` has order four.  Let
-
-```text
-A=direct_sum_(r>=1) F_2^3,
-B_m=direct_sum_(r=1)^m F_2^3,
-```
-
-and let `C_4=<t>` act blockwise by `J`.  Truncation
-`p_m:A -> B_m` is `C_4`-equivariant.
+and let `C_4=<t>` act blockwise by `J`.  Equivalently, the lamp site set
+is `N times (Z/4)` and `t` cyclically permutes the second coordinate.
+Truncation `p_m:A -> B_m` is `C_4`-equivariant.
 
 Let `Q_m delta_b=delta_(Jb)` on `ell^2(B_m)`.  For any sequence
 `k_m -> infinity`, let `F_(k_m)` be the normalized discrete Fourier
