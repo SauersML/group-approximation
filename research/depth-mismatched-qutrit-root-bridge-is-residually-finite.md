@@ -14,7 +14,7 @@ distinct_from:
 Let `R=L_(F_2)(1,2)`.  Let `D` be a finite maximal binary prefix code,
 choose `d_0 in D`, let `a` be a nonempty binary word, and let
 `F<=Sym(D)` be finite and transitive in the standard prefix-permutation
-copy.  For `n>=2), set
+copy.  For `n>=2`, set
 
 ```text
 H=<D_n(F),e_12(s_(d_0)),e_21(t_(d_0 a))> <= EL_n(R).
@@ -32,7 +32,7 @@ is infinite and residually finite, hence sofic and hyperlinear.  The two
 displayed opposite roots alone generate the infinite dihedral group
 `D_infinity`.
 
-For the qutrit packet take `D=D_27`, `d_0=0`, and `a=0).  Thus the
+For the qutrit packet take `D=D_27`, `d_0=0`, and `a=0`.  Thus the
 first incompatible literal pair
 
 ```text
