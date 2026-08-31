@@ -280,7 +280,7 @@ theorem exists_bound_middle_chain_near_chain {δ D l B : ℝ}
     have hprog := hzProg 0 j (Nat.zero_le j) hjN
     simp only [Nat.sub_zero] at hprog
     have hparam : dist (q 0) (q s) = s := by
-      rw [hq 0 ⟨le_rfl, dist_nonneg⟩ s hs, sub_zero,
+      rw [hq 0 ⟨le_rfl, dist_nonneg⟩ s hs, zero_sub, abs_neg,
         abs_of_nonneg hs.1]
     have htri := dist_triangle (q 0) (q s) (z j)
     rw [hparam, hq0] at htri

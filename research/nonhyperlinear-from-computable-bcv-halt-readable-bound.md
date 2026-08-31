@@ -2,7 +2,7 @@
 rg: 2
 id: nonhyperlinear-from-computable-bcv-halt-readable-bound
 kind: route
-title: Diagonalize a uniform BCV readable bound and embed the resulting quotient in the universal host
+title: Closed route from a computable BCV HALT readable bound
 target: non-hyperlinear-group
 requires:
   - bcv-halt-completeness-has-computable-readable-factor-bound
@@ -12,18 +12,19 @@ requires:
   - local-approximation-properties-are-marked-closed
 ---
 
-Apply the computable BCV bound from the first prerequisite to the bounded
-diagonal theorem.  It supplies a finite tailored game `G_(M_0)` on a
-nonhalting instance with a perfect ZPC-IRS strategy, a strict quantum gap,
-and a full readable translate algebra with finitely many atoms.
+**CLOSED ROUTE.** The first prerequisite is false.
+`bcv-no-computable-perfect-halt-readable-bound` proves that no total
+computable machine-description bound can control even the smallest
+readable algebra among perfect strategies of the halting BCV games.
 
-The finite-readable groupification theorem applies to any atom orbit and
-constructs a finitely presented nonhyperlinear stabilizer quotient `K_T`.
-This already proves existence of a nonhyperlinear discrete group.
+Had that premise held, the remainder of the route would have been valid:
+bounded diagonalization would have supplied a finite-readable NONHALT gap,
+finite-readable groupification would have produced a finitely presented
+nonhyperlinear stabilizer quotient, and the universal-host embedding would
+have put it in the fixed host. But a false antecedent supplies none of those
+objects.
 
-For the fixed explicit endpoint used elsewhere in this graph, take the
-computable free product of the enumeration of all finite group presentations
-and apply the Mikaelian--Higman embedding once to obtain the fixed finitely
-presented universal host `V`.  The group `K_T` embeds in `V`.
-Hyperlinearity passes to subgroups by the local-approximation prerequisite.
-Thus `V` cannot be hyperlinear.
+Accordingly this node is not evidence that the target is proved. It records
+a definitively eliminated strategy for reaching
+`non-hyperlinear-group`; a different source of a finite-readable gap or a
+different groupification mechanism is still required.

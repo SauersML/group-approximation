@@ -4,7 +4,10 @@ id: stw99-problem-xxii-tracial-completion-traces
 kind: claim
 title: Every trace on a uniform tracial completion is uniformly 2-norm continuous (STW Problem XXII)
 root: true
+refuted_by:
+  - stw22-nuclear-type-i-counterexample-trace-problem
 artifacts:
+  - research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw22-tracial-completion-fibre-gap-audit-2026-08-30.md
   - research/artifacts/stw22-low-spectrum-boundary-extension-audit-2026-08-30.md
@@ -31,6 +34,10 @@ artifacts:
   - research/artifacts/stw22-full-fundamental-group-all-degree-audit-2026-08-30.md
   - research/artifacts/stw22-uniform-corner-bundle-selection-audit-2026-08-30.md
   - research/artifacts/stw22-dim4-factor-bundle-breakthrough-2026-08-31.md
+  - research/artifacts/stw22-dim5-factor-bundle-breakthrough-2026-08-31.md
+  - research/artifacts/stw22-diffuse-all-degree-induction-audit-2026-08-31.md
+  - research/artifacts/stw22-matrix-finite-degree-carrier-induction-audit-2026-08-31.md
+  - research/artifacts/stw22-all-factor-finite-dimensional-breakthrough-2026-08-31.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, *Nuclear C*-algebras:
@@ -48,10 +55,16 @@ Equivalently, does restriction identify
 T(A)=T(M)?
 ```
 
-The problem remains open in general, including for nuclear `A`.  The source
-records positive answers for finite-dimensional trace simplices, for
-completions with complemented partitions of unity, and in further Bauer
-cases.
+**REFUTED 2026-08-31.**  `stw22-nuclear-type-i-counterexample-trace-problem`
+constructs a separable, unital, nuclear, type I algebra `A` with compact Bauer
+trace simplex for which the inclusion above is proper.  The counterexample
+uses projective-space homogeneous blocks with vanishing normalized rank
+fraction but unbounded Chern-class commutator width; Cuntz--Pedersen separation
+then produces an additional trace on the uniform tracial completion.
+
+The positive results below remain valid on their stated regularity and
+finite-dimensional regimes; they are now recorded as sharp islands inside a
+false unrestricted statement.
 
 For trivial UHF fields the new spectral-band theorem crosses every finite
 selection threshold.  `stw22-finite-dimensional-trivial-field-traces`
@@ -112,6 +125,33 @@ degree-three Michael selection prove
 factorial bundle over a compact Hausdorff base of dimension at most four
 has only uniform traces, with arbitrary matrix/diffuse fibre variation.
 
+The finite-degree bootstrap is now complete for arbitrary varying finite
+factors.  The dimension-five milestone combines the diffuse relative
+low-spectrum `B^5` recursion with matrix Bott-class cancellation in unused
+codimension two.  More generally,
+`stw22-diffuse-weighted-copy-all-finite-sphere-fillings` inducts the
+spectral-supercarrier and relative-band argument through every fixed finite
+sphere degree.  In matrices,
+`stw22-matrix-weighted-copy-uniform-finite-degree-fillings` proves the
+sharp stable-range criterion `2c>=j` in degree `j`, with an explicit
+degree-dependent modulus and shrinking essential spheres just beyond that
+range.  For a base of dimension `D`, the gap proof uses only
+`j=D-1` and an unbounded replication tail
+`m>=ceil((D-1)/2)`; half slack forces `c>=m`, hence `2c>=j`.
+The pointwise matrix/diffuse dichotomy therefore has a common modulus for
+this fixed `D`, without a continuous type stratum.
+
+Consequently
+`stw22-finite-dimensional-factor-bundles-have-uniform-traces` proves the
+trace theorem for every countably generated factorial bundle over every
+finite-dimensional compact Hausdorff base, with arbitrary matrix sizes,
+diffuse II1 isomorphism classes, and matrix/diffuse fibre variation.  This
+is a theorem separately for each finite `D`, not one modulus uniform in
+dimension.  This finite-dimensional positive theorem remains intact.  The
+unrestricted problem is now refuted by
+`stw22-nuclear-type-i-counterexample-trace-problem`, whose compact metrizable
+Bauer boundary contains projective spaces of unbounded dimension.
+
 The earlier hard-carrier-union obstruction remains sharp for that naive
 construction: infinitesimally split branches force a fixed transverse join.
 The new proofs bypass it rather than patch it—by finite barycentric
@@ -127,10 +167,10 @@ after a small-corner diameter split.  The all-degree weighted theorem
 selection yield
 `stw22-full-fundamental-group-trivial-bundles-finite-dimensional`: every
 trace on `C_sigma(K,N)` is canonical for every finite-dimensional compact
-Hausdorff `K`.  McDuff factors are included.  For arbitrary varying fibres,
-the universal diffuse three-sphere theorem and the matrix half-slack split
-now reach dimension four; full fundamental group still supplies all finite
-degrees for the fixed-fibre class.
+Hausdorff `K`.  McDuff factors are included.  For arbitrary varying fibres, the all-degree diffuse supercarrier induction
+and stable-range matrix induction now supply every fixed finite degree as
+explained above.  The full-fundamental-group theorem remains an independent
+fixed-fibre route with different hypotheses.
 
 There is also a nontrivial-bundle extension with the exact uniformity
 hypothesis exposed.  If a countably generated factorial bundle over a
@@ -229,8 +269,10 @@ multifunction lower semicontinuous; clopen selection then produces
 orthogonal copies inside the moving fibres themselves.  This kills the
 escaping quotient at every countable limit rank and covers arbitrary
 countable successor and limit Cantor--Bendixson height without transfinite
-descent.  The unresolved boundary is whether general factorial tracial
-bundles possess such a continuous common-ambient expectation presentation.
+descent.  This remains a useful sufficient presentation theorem, but it is
+not a route to an unrestricted positive result: the projective-bundle corona
+counterexample below shows that general factorial tracial completions can
+carry additional discontinuous traces.
 
 There is also a nonmetrizable positive class requiring no common ambient
 factor.  `stw22-finite-derived-set-factor-bundles-have-uniform-traces`
@@ -255,9 +297,9 @@ global orthogonal weighted copies.  Thus the result needs neither
 metrizability nor a common ambient factor and covers every compact
 scattered boundary as well as perfect zero-dimensional boundaries.
 
-For countably generated factorial bundles, the theorem now reaches
-dimension four; the unrestricted finite-dimensional selection frontier
-begins in dimension five.  `stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
+For countably generated factorial bundles, the theorem now reaches every
+finite covering dimension; there is no remaining finite-dimensional
+selection frontier.  `stw22-dim1-factor-bundles-have-uniform-traces` stabilizes
 the intrinsic Hilbert `C(K)`-module of `L^2` sections into the standard
 module `C(K,ell^2)`.  The varying-factor weighted-copy sets thereby become
 a lower-semicontinuous, uniformly locally path-connected family of closed
@@ -296,11 +338,11 @@ after exact local replication tuples exist.  Over a `d`-dimensional compact
 metrizable base, a `(d+1)`-coloured refinement gives a range bound `d+1`
 independent of the replication number and kills every gap trace.  The
 quantitative weighted correction lemma proves lower semicontinuity of the
-fibrewise solution relation.  Stabilized selection now supplies path, loop,
-two-sphere, and the necessary half-slack three-sphere fillings through
-dimension four.  In dimensions at least five it requires corresponding
-uniform local `k`-connectedness through `k=d-1`; degree four is the first
-missing weighted sphere input in the unrestricted varying-factor setting.
+fibrewise solution relation.  Stabilized selection now supplies every fixed finite sphere degree.
+The diffuse induction provides all degrees outright, while the matrix
+stable-range theorem applies on the unbounded half-slack replication tail
+chosen for the fixed base dimension.  Thus no finite-dimensional weighted
+sphere input remains missing in the countably generated setting.
 
 The first higher-connectivity hinge has a sharp normal form.
 `stw22-multicopy-fibres-collapse-and-zero-slack-obstructs-lc1` identifies

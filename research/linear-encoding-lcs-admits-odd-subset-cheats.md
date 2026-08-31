@@ -79,3 +79,12 @@ relaxation's soundness follow from the family's.
   global-solution form of extendability the statement is vacuous exactly
   for unsatisfiable sources.  Consumers that read "encodings cannot create
   LCS hardness" unconditionally are now conditional on that hypothesis.
+- **REPAIRED ACYCLIC CASE (2026-08-31).**
+  `join-tree-overlap-gadgets-have-no-contextual-escape` proves the correct
+  global theorem when the contexts admit a join tree and adjacent support
+  projections agree.  Compatible F_2 odd subsets then lift, by an explicit
+  tree transportation argument, to an odd F_2 combination of global
+  solutions.  It also proves probability gluing without the support
+  hypothesis and the robust obstruction `sum eta_c+sum delta_e>=1` for an
+  unsatisfiable join-tree system.  Thus a shared-auxiliary escape must be
+  genuinely cyclic.

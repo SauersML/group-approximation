@@ -15,8 +15,9 @@ nonuniform. Then `Gamma` satisfies the Baum--Connes conjecture with
 coefficients with finite wreath products. Thus, for every finite group
 `F`, the group `Gamma wr F` satisfies Baum--Connes with coefficients.
 
-This includes nonuniform lattices in `Sp(n,1)`, where ordinary
-Baum--Connes had remained open before the cited work.
+This includes nonuniform lattices in `Sp(n,1)`. The strengthened content
+is Baum--Connes with arbitrary coefficients after every finite wreath
+product; no novelty claim is made for Baum--Connes without coefficients.
 
 **ESTABLISHED 2025-10-08** by
 [[nishikawa-petrosyan-rank-one-lattice-bcc-citation]].

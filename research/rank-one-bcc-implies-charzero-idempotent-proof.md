@@ -10,12 +10,13 @@ requires:
 
 By [[real-rank-one-lattices-bcc-finite-wreath-products]], `Gamma`
 satisfies Baum--Connes with coefficients, hence ordinary Baum--Connes and
-in particular surjectivity of its assembly map. For a torsion-free group,
-Baum--Connes surjectivity implies the Kadison--Kaplansky conjecture.
-Nishikawa--Petrosyan recall this implication in Section 2.1 of
-*Dehn fillings, equivariant homology, and the Baum--Connes conjecture*,
-arXiv:2509.15070v2, citing Gomez Aparicio--Julg--Valette,
-Proposition 4.20. Therefore `C_r^*(Gamma)` has no nontrivial idempotent.
+in particular surjectivity of its assembly map. Jens Kaad and Valerio
+Proietti, *Index theory on the Miščenko bundle*, Kyoto Journal of
+Mathematics 62 (2022), 103--131,
+doi:10.1215/21562261-2021-0021, Corollary 1.6, prove that for a countable
+discrete torsion-free group this surjectivity forces every idempotent in
+`C_r^*(Gamma)` to be `0` or `1`. Therefore the analytic conclusion
+holds here.
 
 It remains to justify the stated all-characteristic-zero algebraic
 consequence. Suppose that `p in k[Gamma]` is a nontrivial idempotent.
@@ -35,3 +36,4 @@ The torsion-free hypothesis is essential to this implication and is not
 silently dropped.
 Checked 2026-08-31:
 https://arxiv.org/abs/2509.15070
+https://doi.org/10.1215/21562261-2021-0021

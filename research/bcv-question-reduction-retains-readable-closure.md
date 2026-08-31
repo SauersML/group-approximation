@@ -4,7 +4,7 @@ id: bcv-question-reduction-retains-readable-closure
 kind: claim
 title: Honest BCV Question Reduction retains the source readable translate algebra in every Pauli block
 distinct_from:
-  bcv-halt-completeness-has-computable-readable-factor-bound: that asks for a total bound on some perfect HALT strategy independent of halting time; this proves that the published honest Question Reduction strategy does not reset source readable complexity.
+  bcv-halt-completeness-has-computable-readable-factor-bound: that proposed a total bound on some perfect HALT strategy and is now refuted; this proves only that the published honest Question Reduction strategy does not reset source readable complexity.
   bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs: that separates the finite HALT strategy from the compactness-selected NONHALT witness; this is an internal monotonicity statement about one explicit HALT completeness transformation.
   finite-depth-readable-groupoid-closes-iff-full-orbit-is-finite: that gives an abstract orbit-closure criterion and Bernoulli obstruction; this identifies the source algebra inside BCV's concrete Pauli/introspection packet.
 ---

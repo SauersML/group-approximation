@@ -6,7 +6,7 @@ title: Countably generated factorial bundles over every finite-dimensional base 
 distinct_from:
   stw22-dim5-factor-bundles-have-uniform-traces: that theorem stops at covering dimension five; the present theorem chooses a dimension-dependent replication tail and covers every finite dimension.
   stw22-finite-dim-diffuse-bundles-have-uniform-traces: that theorem assumes all fibres are diffuse II1; the present theorem permits arbitrary varying matrix and diffuse finite factors.
-  stw99-problem-xxii-tracial-completion-traces-continuous: that root problem has neither finite-dimensionality nor countable generation as a hypothesis and remains open outside the present scope.
+  stw99-problem-xxii-tracial-completion-traces-continuous: that unrestricted positive statement is refuted by the projective-bundle counterexample; the present theorem remains the positive result over every fixed finite-dimensional base.
 artifacts:
   - research/artifacts/stw22-all-factor-finite-dimensional-breakthrough-2026-08-31.md
 ---

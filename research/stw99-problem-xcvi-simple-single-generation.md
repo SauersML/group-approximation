@@ -23,3 +23,20 @@ every unital simple infinite-dimensional C*-algebra is nowhere scattered, while
 the remaining simple algebras are matrix algebras and are singly generated.  The
 converse implication was never formal, because a general nowhere-scattered
 algebra need not be simple and single generation is not extension-permanent.
+
+## Attempts
+
+* Cartan reduction (2026-08-30 lane note, answering STW's prose
+  question "is a Cartan subalgebra enough for single generation?"):
+  for a CANTOR-spectrum Cartan (ample Hausdorff Weyl groupoid), the
+  arrow space off the unit space decomposes into countably many
+  PAIRWISE DISJOINT compact open bisections (disjointify a basis of
+  compact open bisections), so `A = C*(d_0, {v_n})` with `d_0`
+  generating the Cartan and normalizers `v_n` having pairwise
+  disjoint germ sets.  Single generation then reduces to recovering
+  each `v_n` from one weighted sum `b = Σ c_n v_n`: the obstruction
+  is exactly the CROSS TERMS `v_m^* v_l` (disjoint arrows do not give
+  disjoint sources, so spectral cutdowns of `d_0` cannot separate the
+  summands directly).  A generic-weights argument in the style of
+  Olsen--Zame/Ge--Popa is the candidate finish; the cross-term (NOW SOLVED for diagonals: see cantor-diagonal-algebras-are-two-generated)
+  analysis over the ample groupoid is the precise remaining lemma.

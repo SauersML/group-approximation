@@ -221,6 +221,112 @@ the quotient matrices outside that window.  Extracting a single finite
 `Y` on which all relevant quotient generators act coherently is exactly the
 normalizer-transfer statement.
 
+### Fixed invariant window: the exact quotient/fiber boundary
+
+`elementary-abelian-regular-normalizers-have-diffuse-fibers`
+settles the invariant finite-window calculation sharply.  If a fixed
+`B=(C_2)^m` is preserved and its permutation modules have asymptotically
+regular character, all but `o(d_n)` points are free `B`-orbits.  The
+induced actor automorphisms then have canonical coherent permutation
+representatives on those orbits.
+
+This does **not** make the supplied unitary normalizers close to permutations.
+On a regular packet every implementer is a canonical permutation times a
+unitary in the lamp commutant, and actor multiplication says only that these
+unitaries form a nonabelian cocycle.  The explicit models
+
+```text
+U_n=P_(alpha,n) tensor F_(k_n)
+```
+
+with an order-four block automorphism have exact covariance, exact actor
+products, canonical group trace, and a diffuse matrix-ultraproduct
+multiplicity algebra.  Tensoring with separating regular quotients of
+`SL_3(Z)` makes the actor infinite, residually finite, and Kazhdan without
+changing the obstruction.  The chosen normalizers remain at normalized
+Hilbert--Schmidt distance
+tending to `sqrt(2)` from every monomial after any `o(d_n)` padding.
+
+Accordingly the transfer theorem above is not refuted: it asks for the
+**existence** of coherent permutations, not for metric rounding of the chosen
+`U_(g,n)`.  The precise unclosed quantifier is compatibility across the
+moving algebras `B_E -> B_(gE)`.  One must choose commutant gauges, or new
+permutation representatives, simultaneously over increasing windows so that
+`(RBK12)--(RBK13)` hold.  A theorem on one invariant regular packet cannot
+supply that moving-window coherence.
+
+The overlap algebra is now formalized as well.
+`moving-lamp-refinement-cocycle-has-diffuse-fibers` shows that finite-window
+character projections and actor blocks form a strict refinement/action
+groupoid cocycle.  Covariance on two windows glues quantitatively to their
+union with projection error at most half the sum of the coordinate errors.
+Thus ordinary Cech overlap consistency is automatic.  A growing-overlap
+Fourier model nevertheless leaves an arbitrary diffuse fiber and stays
+`sqrt(2)-o(1)` from every monomial.  The unsolved statement is therefore
+not overlap gluing of the lamp PVMs, but simultaneous permutation
+spatialization of the compatible fiber cocycle over an unbounded moving
+exhaustion.
+
+The fixed-window obstruction is now completely finite.
+`finite-schreier-holonomy-is-the-lamp-gauge-obstruction`
+shows that, after a spanning-tree gauge on the character Schreier graph,
+simultaneous gauge equivalence to a proposed permutation target holds if and
+only if one root unitary simultaneously conjugates every fundamental-cycle
+holonomy to the target holonomy.  The residual HS errors agree chord by
+chord.  A multiplicity-one bent-phase model has exact canonical trace and
+exact covariance but is not commutant-gauge spatializable, even after
+`o(d)` padding.  The identity permutation is nevertheless a different
+valid target in that model.  Thus the theorem still needed here must
+construct targets and make their holonomy profiles refinement-compatible;
+it cannot merely trivialize the supplied cocycle.
+
+The direct target side is now separated into two steps by
+`finite-lamp-targets-glue-after-action-groupoid-completion`.  Given a
+finite actor/cylinder groupoid, regular isotropy carriers and orbitwise rank
+balancing produce coherent permutation transports with an explicit
+spanning-tree loss.  Fourier Parseval prices enlargement from `E` to
+`S=union_(g in F)gE`: at uniform trace tolerance, adding `b=|S-E|`
+sites costs the scale `2^(b/2)`.  But one wrong site relation on the
+regular character cube already has Hamming cost at least `1/2`.
+Consequently boundary completion is not a small perturbation.  The sole
+surviving direct-target datum is the approximately multiplicative finite
+action groupoid itself; scalar mixed traces and marginal window couplings do
+not construct it.
+
+A concrete sufficient observable is now isolated by
+`collision-and-phase-free-cartan-observables-force-joint-lamp-targets`.
+Relative to one rank-one masa refining every tested cylinder PVM, normalized
+fourth-power entry collision tending to one forces monomial actor matrices,
+while `||E_D(U_g)||_2^2->0` removes phase cancellation and forces the
+underlying permutations to be asymptotically free.  The claim gives explicit
+Hamming bounds for actor products and cylinder covariance.  But producing
+this common growing masa and the two estimates from arbitrary CE
+crossed-product microstates would itself imply Păunescu soficity.  This is an
+exact circularity firewall: ordinary finite-dimensional Ulam stability does
+not supply the required Cartan observables.
+
+The finite-packet rigidifier is also closed at its exact boundary by
+`canonical-regular-packets-leave-an-unbounded-cartan-reservoir`.  If a fixed
+nonabelian packet is put at each lamp site and one selects a simple central
+character, canonical regular trace forces the sector decomposition
+
+```text
+M_s tensor I_(rs).
+```
+
+Supplying the ideal right-regular partner improves this only to
+`M_(s^2) tensor I_r`.  The external `M_r` reservoir survives every fixed
+packet and every sublinear padding.  Normalizing actor letters factor as a
+fixed finite implementer tensored with an arbitrary projective multiplicity
+representation.  Hence a packet can rigidify coarse tensor atoms but cannot
+select the rank-one multiplicity masa needed by the collision criterion.
+A doubled bent-Walsh reservoir gives an exact finite-stage witness: it is a
+multiple of the regular representation of `K times C_2`, has collision
+mass tending to zero in the packet basis, and remains at normalized-HS
+distance `sqrt(2)-o(1)` from every monomial after sublinear padding.
+The remaining task is still actor-dependent Cartan extraction over growing
+windows; no nonhyperlinear group follows from the packet calculation alone.
+
 This identifies the smallest live strengthening of the amenable conversion
 theorem:
 

@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-finite-tree-noncompact-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-finite-graph-projectionless-cycle-audit-2026-08-31.md
   - research/artifacts/stw99-lxxvi-unicyclic-enriched-cu-audit-2026-08-31.md
+  - research/artifacts/stw99-lxxvi-cactus-enriched-cu-audit-2026-08-31.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -118,7 +119,20 @@ circle-with-a-tail classes without overdecorating soft cyclic support. It also
 proves that finite-pseudoforest formation preserves Cu-regularity for simple
 stable-rank-one fibers, so every simple stably finite pure fiber gives a pure
 Cu-regular field over every finite pseudoforest with arbitrary projections
-and arbitrary `K_1`. Components with two interacting cycles remain open.
+and arbitrary `K_1`. That theorem is the one-cycle case of the cactus result below.
+
+
+Articulation gluing now pushes the projectionful theorem past one cycle.
+`stw99-lxxvi-cactus-enriched-cu-classification` proves a one-point wedge Cu
+pullback theorem and therefore reduces every finite graph exactly to the
+actual Cu semigroups of its 2-connected blocks. For a cactus those blocks are
+only edges and circles, yielding a full enriched formula with one independent
+`K_1(D)` label on each cyclic block where the pointwise function restricts to
+a nonzero constant compact class. Thus finite-cactus formation preserves
+Cu-regularity for simple stable-rank-one fibers, and simple stably finite pure
+fibers give pure Cu-regular fields over cacti with arbitrarily many cycles,
+arbitrary projections, and arbitrary `K_1`. The unresolved graph boundary is
+a 2-connected block of first Betti number at least two, such as a theta graph.
 
 There is now a broader one-dimensional-base theorem at the exact idealwise
 `K_1`-free boundary.  For every second-countable locally compact Hausdorff
@@ -227,4 +241,4 @@ one-dimensional theorem rules out every second-countable locally compact base
 when the simple fiber has trivial `K_1`.  For arbitrary `K_1` outside the stably projectionless class, the unicyclic
 classification records the exact supportwise clutching fiber missed by
 pointwise `Lsc` functions. No unrestricted pointwise formula is claimed, and
-compatibility between two or more interacting cycles remains unresolved.
+a 2-connected block containing two or more independent cycles remains unresolved.

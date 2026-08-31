@@ -49,10 +49,14 @@ Gamma=SL_2(Z[1/2]),
 ```
 
 Dogon--Vigdorovich prove property `(T;FD)`, while `Gamma` is not a
-property-`(T)` group. Hence `C^*(Gamma)` is **not RFD**. The
-Fournier-Facio--Willett theorem that LLP plus RFD gives
-finite-dimensional very-flexible dilations therefore cannot be applied to
-the regular Iwahori microstate. LLP alone gives a ucp lift, or a corner in a
+property-`(T)` group. Hence `C^*(Gamma)` is **not RFD**. Fournier-Facio and Willett, `arXiv:2603.18456v2`, Theorem 7.11,
+prove very flexible stability when `Gamma` has LLP and the desired family
+of endpoint representations is Fell-dense and closed under finite sums,
+unitary equivalence, and subrepresentations. Taking all finite-dimensional
+representations requires RFD; taking finite-quotient representations requires
+property FD. Neither choice is available here because `C^*(Gamma)` is not
+RFD. Thus their finite-dimensional corner theorem cannot be applied to the
+regular Iwahori microstate. LLP alone gives a ucp lift, or a corner in a
 possibly infinite-dimensional representation; property `(T;FD)` cannot
 round that infinite-dimensional Stinespring corner because its spectral gap
 is only asserted for finite-dimensional representations.
@@ -61,12 +65,35 @@ The 2026 MF amalgam theorems do not replace RFD here. MF is the existence of
 a norm-microstate embedding, whereas
 `authenticated-core-union-basin-is-relative-liftability` asks to lift a
 **prescribed** tracial-ultraproduct homomorphism by exact coordinates.
-Moreover Shulman's unconditional theorem `A *_C A is MF` uses the same
-inclusion of `C` into both factors. The Iwahori amalgam is twisted by the
-commensuration sending a primitive parabolic to its square; that edge map
-does not extend to an automorphism of `SL_2(Z)`. Her general amalgam
-theorem gives an MF criterion in terms of compatible norm-ultraproduct
-embeddings, not relative coordinate liftability.
+Shulman, `arXiv:2603.13564v2`, Theorem 10, proves that
+`A *_C A` is MF for an MF algebra `A` and an arbitrary subalgebra `C`,
+but explicitly uses the same inclusion of `C` into both factors. The
+Iwahori amalgam is twisted by the commensuration sending a primitive
+parabolic to its square; that edge map does not extend to an automorphism of
+`SL_2(Z)`. Her Theorem 20 characterizes a general MF amalgam by the
+existence of compatible embeddings of the two factors into one norm
+matrix-ultraproduct. It does not lift the prescribed tracial embedding, keep
+the supplied core coordinates, or produce exact coordinate representations.
+
+There is not even an ambient LLP on the reduced regular branch.
+Davidson, Paulsen, and Rahaman, `arXiv:2510.25299`, Corollary 3.6, prove
+that for every finitely generated nonamenable hyperlinear group the reduced
+operator system spanned by a finite generating set and its adjoints fails
+the lifting property; consequently the reduced group algebra fails LLP.
+The present `Gamma` is residually finite, hence hyperlinear, and contains
+the nonamenable modular subgroup. Thus its reduced regular generator system
+has no generic ucp lifting theorem. A hypothetical LLP argument for the full
+group algebra would use the larger full operator-system order and cannot be
+silently treated as a reduced, regular, or finite-dimensional relative lift.
+
+A general 2025 no-lift theorem makes the logical limitation of ultrapower
+exactness explicit. Gao and Jekel, `arXiv:2512.10129`, Theorem A, construct
+separable II1 factors with elementary self-ultrapower embeddings that admit
+no sequence of ucp lifts. This is not an Iwahori counterexample and does not
+concern finite matrix coordinates, but it rules out the generic inference
+that an exact or even elementary ultrapower embedding automatically has ucp
+coordinate lifts. Any positive result here must use the concrete relative
+group structure.
 
 Thus the terminal boundary is exact: any theorem that supplies a
 finite-dimensional corner of the given regular microstate immediately

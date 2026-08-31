@@ -362,3 +362,144 @@ No groupoids, medians, or atomic invariants appear.  Consequences:
 congruence models can never refute the route, and the open remainder
 of THIS node is exactly the transport of that uniformity across the
 approximate-coordinate gap (the OP 6.2 locus) for arbitrary `σ`.
+
+**2026-08-31 (elementary-abelian regular-window boundary, no global
+resolution).**  The claim
+`elementary-abelian-regular-normalizers-have-diffuse-fibers` settles the
+local normalizer question in both directions.
+
+1. For one fixed invariant `B=(C_2)^m`, asymptotic regular character leaves
+   `1-o(1)` free `B`-orbits.  Every genuine actor action on `B` therefore
+   has canonical coherent permutation representatives on that window.
+2. The given unitary normalizers need not be close to those representatives.
+   An exact Fourier multiplicity cocycle stays at normalized-HS distance
+   `sqrt(2)-o(1)` from every monomial after arbitrary `o(d)` padding,
+   while preserving exact covariance, exact actor products, and canonical
+   group trace.  Tensoring with separating regular quotients of `SL_3(Z)`
+   makes the actor infinite, residually finite, and Kazhdan, so ordinary
+   property-`(T)` rigidity does not remove the cocycle.
+
+This refutes only metric rounding of the supplied normalizers, not (CCR) and
+not equivariant normalizer transfer: canonical permutations exist in the
+countermodel.  `moving-lamp-refinement-cocycle-has-diffuse-fibers` now
+packages all finite character blocks as a strict refinement/action-groupoid
+cocycle and proves that covariance on overlapping windows glues
+quantitatively to their union.  Thus the exact missing coherence is still
+global and moving-window:
+for `B_E -> B_(gE)`, choose commutant gauges or new permutations
+simultaneously over increasing `E` so that all actor products agree on
+almost every point.  The local quotients use different multiplicity
+commutants and provide no comparison maps between them.
+
+`finite-schreier-holonomy-is-the-lamp-gauge-obstruction`
+sharpens the fixed-window part: after a spanning-tree gauge, simultaneous
+spatialization relative to a proposed permutation target is exactly
+simultaneous conjugacy of the fundamental-cycle holonomy tuple.  Its
+multiplicity-one bent-phase example has exact canonical trace and covariance
+but no commutant gauge to any permutation normalizer.  A different
+permutation target still exists, so this is a gauge-rounding obstruction,
+not a counterexample to equivariant transfer.  Constructing compatible
+targets across growing windows remains OPEN.
+
+
+**2026-08-31 (shared-center extraspecial boundary, exact FD wall but HS
+route open).**  The claim
+`shared-center-extraspecial-wreath-has-fd-invisible-spin-sector` replaces
+the independent Boolean lamps by Pauli pairs sharing one central involution
+`J`.  The resulting transitive semidirect product is finitely generated,
+`J!=1`, and every exact finite-dimensional unitary representation kills
+`J`: on a `J=-1` summand the `m`-site extraspecial subgroup forces dimension
+divisible by `2^m` for every `m`.
+
+The canonical group trace nonetheless gives `e_-=(1-J)/2` fixed trace
+`1/2`.  Its `m`-site algebra is exactly `M_(2^m)` with tensor-independent
+site factors, and an actor normalizer is quantitatively
+`P_beta tensor W` up to `2sqrt(2)m epsilon`.  Thus the packet removes all
+internal site gauges, but the external multiplicity unitary `W in U(r)` is
+arbitrary.  Here `r=D_-/2^m`, so fixed windows remain diffuse and bounded
+multiplicity again requires `m>=log_2(D_-)-O(1)`.  The exact
+finite-dimensional divisibility wall therefore has no dimension-free
+normalized-HS consequence.
+
+For a sharply two-transitive actor,
+`Gamma=C_G(j)` and `|Gamma backslash G/Gamma|=2`, so all off-site packet
+commutators have finitely many actor orbits.  The Andre--Guirardel
+property-`(T)` actor does not close the presentation interface: the
+published construction proves neither finite presentation of `G` nor finite
+generation of `C_G(j)`.  Moreover finite presentation of the direct
+extraspecial semidirect product would imply finite presentation of `G` by
+killing the two root packet generators.  The pinned extraspecial group
+contains the known nonsofic `C_2` wreath, but its hyperlinearity and the
+required moving-window multiplicity classicalization remain OPEN.
+
+
+
+**2026-08-31 (exact-actor Pauli collapse and SOS firewall).**  The exact
+coordinate regime is now closed by
+`kazhdan-stabilizer-collapses-shared-pauli-sign`.  If the point stabilizer
+has Kazhdan pair `(Q,kappa)`, the action has finite ordered-pair rank, and
+the actor matrices form a genuine representation, then root-commutant
+rounding, finite double-coset propagation, and compactness of `U(D)^2` give
+
+~~~text
+norm_2(J-I) <= 2 delta + 16 delta/kappa.
+~~~
+
+This is dimension-free and consumes no multiplicity bound.
+
+Exactness is load-bearing.  The claims
+`generic-perturbations-destroy-exact-commutant-gap` and
+`ozawa-sos-does-not-round-an-approximate-actor-to-its-exact-commutant`
+show that arbitrarily small operator-norm perturbations of trace-faithful
+regular quotient coordinates can make the literal generator commutant
+scalar while retaining a trace-zero unitary which is `o(1)`-central.
+Every fixed relator, multiplication row, word trace, and canonical actor
+trace is preserved to `o(1)`.  Thus neither property `(T;FD)_rob` nor an
+Ozawa certificate permits projection to the exact commutant of the supplied
+approximate matrices.
+
+The certificate still gives the valid bounded-vector inequality
+
+~~~text
+kappa <Delta_U T,T>
+ <= norm_2(Delta_U T)^2 + C_R epsilon norm_op(T)^2.
+~~~
+
+It controls a low spectral band, not equality of that band with
+`ker Delta_U`.  Consequently the live source-specific task is sharper than
+actor exactification by literal commutant projection: propagate the robust
+low band through the finite double-coset Pauli rows, or round to a nearby
+genuine actor using canonical lamp separation.  Ordinary finite actor
+moments cannot do this, because the generic perturbation preserves every
+fixed moment profile.
+
+The full rows do exclude the generic near-exact witnesses.
+`full-shared-pauli-wall-excludes-nearby-exact-actor` proves that if `eta`
+is the fixed-packet distance to a genuine actor, then
+
+~~~text
+norm_2(J-I)
+ <= d_J+d_X+4 eta+(16/kappa)(d_H+2 eta).
+~~~
+
+Thus a separated sign forces a uniform actor-instability wall.  However,
+`full-shared-pauli-rows-have-an-exact-finite-tracial-model` supplies a
+strict tracial firewall: in the negative central corner all Pauli and actor
+rows hold exactly, `J=-1`, the base is `tensor_X M_2=R`, and the corner is
+`R crossed_product G`.  No universal tracial sum-of-squares argument can
+collapse the sign.  A successful low-band theorem must use genuinely
+finite-dimensional rank/compactness, or prove this exact crossed product
+non-Connes-embeddable.
+
+Two concrete finite-presentation calibrations are now recorded.
+`thompson-rational-orbit-shared-center-pauli-host-is-fp` gives a named
+finitely presented two-transitive Pauli tape whose central sign is nontrivial
+and killed by every exact finite-dimensional representation; its
+hyperlinearity is exactly a new generalized-wreath converse problem.
+`abels-prufer-quotient-is-fp-sofic-with-fd-invisible-center` gives a
+finitely presented amenable, hence sofic, group with nontrivial central
+`p`-torsion killed by every exact finite-dimensional representation but
+retained by canonical HS microstates.  The latter proves that finite
+presentation plus exact FD invisibility, even after adjoining a nonamenable
+property-(T) factor, has no abstract approximate-collapse consequence.
+The global nonhyperlinearity route remains **OPEN**.

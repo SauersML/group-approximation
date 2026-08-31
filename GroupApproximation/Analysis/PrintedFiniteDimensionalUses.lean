@@ -1,6 +1,7 @@
 import GroupApproximation.Sofic.UltraproductDedekindFinite
 import GroupApproximation.Sofic.FaithfullyTracedCoordinateNoGo
 import GroupApproximation.Analysis.LimitsTraceStandardForm
+import GroupApproximation.Analysis.FiniteDimensionalFactorialTraceCore
 
 /-!
 # Where `thm:kazhdan-transport` uses finite dimensionality, and what happens

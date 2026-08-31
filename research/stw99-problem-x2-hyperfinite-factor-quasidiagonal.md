@@ -103,3 +103,14 @@ needed to decide X(2).  The argument works separately in every nontrivial
 spectral sector of an arbitrary finite-order central mark, so it also
 excludes odd-prime marked variants when the corresponding finite packets
 satisfy the same fixed-block trace test.
+
+**Downstream (2026-08-30 rewiring):** a positive X(2) restricts
+through injective GNS closures, so it implies that EVERY trace on
+every separable nuclear C\*-algebra is quasidiagonal — in particular
+Problem IX(1) (`stw99-x2-implies-ix1`) and the simple case of
+Blackadar--Kirchberg (`stw99-vii-restricted-to-simple-algebras` via
+`stw99-ix1-implies-vii-simple`).  With X(1) refuted by the
+literal-group counterexample (non-nuclear, non-injective GNS — it
+cannot enter these routes), X(2) is now the live ancestor of the
+whole nuclear quasidiagonality cluster.
+

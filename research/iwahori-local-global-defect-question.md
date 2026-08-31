@@ -98,6 +98,19 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   bounded branching (`notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md`)
   and this does not stop the identity's mass spreading over growing many
   cross-pairs.  Recorded negative.
+- **The full modular-vertex restriction cone has no Farkas
+  obstruction.**
+  `modular-vertex-restriction-cone-has-singleton-fibers` proves that
+  restriction from `SL_2(Z[1/p])` to `SL_2(Z)` is an order equivalence
+  onto the prime-to-`p` congruence representations. At every finite
+  quotient the restriction matrix is the identity, its projectivized
+  feasible cone is the full simplex, and the Plancherel vector is an
+  integral interior point. Every finite regular character window, and even
+  every finite compressed regular coefficient table, is matched exactly by
+  a finite endpoint regular representation. Thus no fixed-level or
+  finite-support multiplicity/character separator can refute the target.
+  The missing obstruction or repair must live in coordinate alignment over
+  the smaller moving Iwahori/BS core.
 - **Refutation by character rigidity is unavailable.**  By
   `character-rigidity-equals-hyperfinite-hs-stability`, stability implies
   character rigidity, so a failure of character rigidity would refute the
@@ -148,6 +161,46 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   constant under arbitrary odd weights. Thus exact mixed congruence pairs
   are uniformly repairable; the remaining question is vertex exactification
   of arbitrary approximate representations.
+- **The full remaining modulus is exactly congruence capture.**
+  `dv-distance-is-defect-plus-congruence-capture` defines
+  \(A_{\mathrm{cong}}\) as generalized-HS distance to the union of all exact
+  congruence vertex pairs, in all dimensions and at all mixed levels. The
+  unbounded mixed repair theorem and one fixed word-length estimate give
+  \[
+  A_{\mathrm{cong}}(\pi)\le D(\pi)\le
+  K_{\mathrm{cong}}\operatorname{def}(\pi)
+  +(1+2K_{\mathrm{cong}}L_B)A_{\mathrm{cong}}(\pi).
+  \]
+  Hence Question 1.4 is equivalent to
+  \(\operatorname{def}(\pi_n)\to0\Rightarrow
+  A_{\mathrm{cong}}(\pi_n)\to0\). This extends the positive restricted
+  result from exact congruence inputs to every sequence asymptotically near
+  the congruence locus, with no conductor bound. The established uniform
+  infinitesimal rigidity closes the local congruence cosystolic angle; the
+  only surviving enemy is global noncongruence basin escape.
+
+- **High-dimensional escape is now isolated exactly.**
+  `bounded-dimension-iwahori-pairs-have-holder-capture` applies the global
+  semialgebraic Lojasiewicz inequality to every fixed matrix size: the full
+  noncongruence modular representation variety has a same-dimensional
+  Holder congruence-capture modulus, so every countersequence has dimensions
+  tending to infinity. `capture-gap-localizes-to-regular-character-face`
+  then cuts any positive capture gap onto a pure regular-character corner;
+  if the original gap is epsilon, that corner has trace weight at least
+  epsilon squared over four and retains the gap after normalization. Finally
+  `regular-modular-microstates-have-no-bounded-atomic-mass` shows that every
+  fixed irreducible-dimension window has vanishing physical rank there.
+  Thus the sole enemy is a pure regular corner built from unbounded modular
+  types, not a moving mixture of bounded continuous atoms.
+- **Regular moments do not condition the raw restriction charts.**
+  `regular-trace-does-not-bound-iwahori-word-jacobian` computes a Pauli
+  branch whose Iwahori restriction Jacobian has determinant
+  `3 cos^2(2 theta)(5-2 cos^2(2 theta))` and a singular value at most
+  `sqrt(3/2)|cos(2 theta)|`. Tensoring with deep odd-congruence regular
+  representations makes the character regular while preserving that
+  vanishing singular value. This fences a separate-chart Haar/free argument;
+  it does not contradict the established coupled arithmetic angle at
+  compatible congruence endpoints and does not produce a countersequence.
 - **Full exact cubics do not select a bounded odd level.**
   `full-iwahori-relations-do-not-bound-unipotent-torsion` separates the two
   exact facts at the noncongruence frontier. BS covariance makes each finite

@@ -121,6 +121,22 @@ machine-indexed binary LCS compiler or a separate direct terminal.
 
 ## Attempts
 
+- **Reweight or flag the published positive-noise test.** Dies
+  presentation-theoretically by
+  `taller-vidick-positive-noise-collapses-central-sign`. For every
+  `0<epsilon<1`, two supported masks `mu=f` and `mu=-f` produce the
+  same folded three-variable left-hand side with opposite parity signs.
+  Hence the output solution group has an explicit two-equation proof
+  `J=1`, for every source instance. Reweighting keeps both equations.
+  The exact repair audit
+  `tv-central-flags-and-private-slacks-cannot-exactify` sharpens the
+  remaining folklore: a direct-sum block carrying both equations has zero
+  support in every perfect `J=-I` model; an ordinary central group-word
+  flag cannot express source-oblivious conditional checking; and fresh
+  equationwise parity slacks create a one-dimensional `J=-1` solution on
+  every source instance. A successful exactification must use genuinely
+  source-dependent shared noncentral structure and replace the lost
+  zero-noise decoder.
 - **Remove the mask from the Taller--Vidick decoder.**  Dies by
   `linear-encoding-lcs-admits-odd-subset-cheats`: without noise every
   linear test on a linear encoding is passed by odd-subset characters with
@@ -135,6 +151,102 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   identically one.  If only a smaller honest support `S` is protected, the
   best decoder constant is at most `1/|S|`, exactly the repeated source's
   random-guessing floor.
+- **Add more parity equations or auxiliary LCS variables.**  Dies locally by
+  `lcs-parity-gadgets-preserve-odd-dictator-affine-hull`.  Scalar solutions
+  of every binary LCS form an affine coset.  If each honest spectral atom
+  has a scalar extension, every odd product of those extensions survives;
+  for the full folded long code there are exactly `2^{|S|-1}` such projected
+  solutions.  This is sharp and independent of the mask law or folding
+  section.  A revival must use cross-context structure that prevents
+  atomwise scalar extension, a genuinely non-affine intermediate test, or a
+  native LCS gap.
+- **Share auxiliaries across contexts.**  Acyclic sharing dies by
+  `join-tree-overlap-gadgets-have-no-contextual-escape`.  Compatible context
+  laws on a join tree glue to a global scalar law, and an unsatisfiable
+  instance obeys the robust distributional certificate
+  `sum eta_c+sum delta_e>=1`.  Under edgewise support extendability, compatible
+  odd subsets also lift to an odd combination of global assignments.  The
+  Mermin--Peres square shows that cyclic incidence can evade this no-go, but
+  it already has a four-dimensional perfect strategy and supplies no source
+  decoder.  The live target is therefore a source-dependent cyclic coupling
+  with a dimension-independent reverse decoder.
+- **Twist a contextual cycle by source signs.**  One-port and commuting-profile
+  couplings die by `magic-square-one-port-is-a-universal-phase-absorber`.
+  Every source involution extends through a one-port Magic Square after a
+  four-dimensional amplification.  More generally, Arkhipov's theorem makes
+  every degree-two arrangement either a planar affine total-parity check or
+  a nonplanar finite-dimensional absorber for every sign profile.  Private
+  squares and right-hand-side twists therefore cannot remove odd characters.
+  Only a connected cycle with at least two genuinely noncommuting source
+  ports remains outside the theorem.
+- **Connect several noncommuting ports through shared Magic-Square faces.**
+  Still insufficient when the interface has a common finite frame, by
+  `row-glued-magic-squares-absorb-noncommuting-ports`.  Explicit even and odd
+  two-qubit squares agree on one full row.  Controlling them by arbitrary
+  source involutions lets any number of squares share that row and absorb all
+  ports simultaneously in one `M_4` amplification, without assuming the ports
+  commute.  The next candidate must make the shared interface sector-dependent;
+  the minimal unaudited cell is one square carrying two ports on distinct
+  line contexts.
+- **Put two ports on transverse lines of one square.**  This minimal cell is
+  now closed exactly by `two-port-magic-square-commutator-is-holonomy-square`.
+  Elimination gives `(bc)^4=1` and `ZW=kappa(bc)^2`, so every perfect
+  representation forces `ZW=WZ`; conversely every commuting pair extends
+  after one `M_4` amplification by joint spectral control of even scalar and
+  odd Pauli squares.  The induced commutator has an absolute six-defect
+  Hilbert--Schmidt estimate.  Thus a single square is neither a transparent
+  noncommuting absorber nor a finite-versus-commuting decoder: it is exactly
+  a robust commutativity quotient.  The next candidate must use multiple
+  irreducible cycles and a port relation already valid in the intended
+  commuting-operator source model.
+- **Add a second square but keep degree-two scalar incidence syntax.**
+  Also exhausted by `two-magic-square-incidence-overlaps-never-separate`.
+  Simple context overlaps are `G_(r,c)=K_(3,3) union_(K_(r,c)) K_(3,3)`.
+  Most already have infinite incidence group (two disjoint cycles), and the
+  common-partition case `K_(3,6)` is infinite; so a blanket finite-Clifford
+  explanation is false.  The marked obstruction nevertheless vanishes:
+  Arkhipov's theorem says every graph-incidence `J` survives universally iff
+  it survives in finite dimension.  A second scalar-sign cycle can enlarge
+  the group but cannot create perfect finite-versus-commuting separation.
+  A live coupling must use operator ports, higher variable occurrence, or a
+  non-incidence cross-block equation.
+- **Rename line products as operator ports while keeping total degree two.**
+  This is only syntax, by
+  `degree-two-operator-ports-are-boundary-edges`.  Moving a port involution
+  to the left makes it an ordinary edge; if it appears in exactly one other
+  parity context, the closed network is graph incidence and still has
+  perfect `qc` iff perfect finite-dimensional `q`.  For genuinely unpaired
+  ports, `operator-port-incidence-doubling-proof` embeds the partial
+  universal group as a retract of a closed incidence group by doubling along
+  its boundary.  Separating all boundary words in finite dimensions is
+  therefore equivalent to separating all elements of all graph-incidence
+  groups, not a consequence of Arkhipov's marked-`J` theorem.  The first
+  syntactic escape is occurrence at least three or a non-parity relation.
+- **Use just one occurrence-three variable.**  Still no perfect model gap,
+  by `one-triple-variable-lcs-has-no-perfect-model-gap`.  Deleting that
+  variable leaves degree-two components, and the only distributions
+  `3`, `2+1`, and `1+1+1` reduce to scalar parity, a graph-incidence
+  factor, and planar-pin/nonplanar-absorber one-port factors.  Whenever
+  `J!=1`, these assemble into a finite-dimensional `J=-I` model.  At least
+  two triple variables are required.
+- **Bound all occurrences by three.**  Exact expressiveness returns fully:
+  `cyclic-occurrence-splitting-makes-every-lcs-cubic` replaces the
+  `d` occurrences of a variable by a cycle of `d` equality-linked copies.
+  Tietze elimination gives an isomorphism of solution groups fixing `J`.
+  Thus occurrence two versus three is a sharp exact boundary.
+- **Demand a robust bounded-occurrence compiler.**  This is now closed
+  already at occurrence three by
+  `dummy-subdivided-expanders-give-robust-occurrence-three`.
+  Subdivide `d` edges of a cubic bipartite Ramanujan graph, put the `d`
+  source occurrences on the new degree-two vertices, and leave the cubic
+  core as dummy equality variables.  Both used and dummy variables then
+  occur exactly three times.  Hilbert-valued Poincare rounding selects one
+  actual copy reflection and transfers every source product and context
+  commutator with a dimension- and degree-independent constant.  The
+  rotating-Pauli path/cycle lower bound remains sharp only for the no-dummy
+  construction: the dummy core is precisely what evades it.
+  This solves only the bounded-occurrence synchronization layer; the native
+  perfect source gap and its reverse decoder remain open.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
@@ -176,14 +288,13 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   nonhalting inputs, which is the other orientation
   (`kleene-mipco-self-destroying-game`).
 - **Reverse Kleene does not manufacture perfect completeness.**
-  `reverse-kleene-does-not-remove-tv-completeness-loss` runs the exact
-  self-referential proof search for `J=1`.  The NONHALT branch would close the
-  goal, but a HALT proof gives only an instance-dependent upper gap
-  `gamma(D)` and conflicts with completeness `1-epsilon` only if
-  `epsilon<gamma(D)`.  Since `epsilon` was fixed before `D` is found, this is
-  another threshold-crossing obligation.  At `epsilon=0` the Bernoulli mask
-  support collapses and the Taller--Vidick decoder becomes vacuous, so no
-  algebraic limiting argument repairs it.
+  `reverse-kleene-does-not-remove-tv-completeness-loss` now has an explicit
+  outcome: on every positive-noise output, proof search finds the same
+  two-mask certificate `J=1`, so the fixed-point machine halts. Any
+  certificate-derived upper gap `gamma(D)` satisfies
+  `gamma(D)<=epsilon` on the honest halting strategy, precluding the
+  desired crossing. At `epsilon=0` the certificate disappears only because
+  the support changes, while the published decoder becomes vacuous.
 - **2026 shortcut audit.**  Cleve--Culf--Taller, arXiv:2607.06876, now give
   RE-hard tilted-XOR games, but their inherited completeness is
   `3/4-epsilon`, not one.  Culf, arXiv:2603.14746, rounds almost-perfect
