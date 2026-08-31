@@ -8,7 +8,7 @@ requires:
 distinct_from:
   induced-rounding-needs-rms-section-fillings: that bounds one word-section gauge by relative van Kampen areas; this gives the exact positive kernel for an arbitrary coset gauge and isolates its optimized edge energy.
   gauge-optimized-induced-energy-target: that proposes a uniform estimate after moving the exact core; this proves the finite averaging identity to which such an estimate would apply.
-  exact-core-multiplicative-domain-does-not-descend-to-normal-quotient: that shows the identity-coset induced corner misses translated normal rows; this averages all translated rows and identifies the exact energy required to repair them.
+  exact-core-domain-does-not-descend-to-normal-quotient: that shows the identity-coset induced corner misses translated normal rows; this averages all translated rows and identifies the exact energy required to repair them.
 ---
 
 Let \(G\) be finite, \(B<G\), and
