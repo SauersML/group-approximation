@@ -216,6 +216,21 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   therefore equivalent to separating all elements of all graph-incidence
   groups, not a consequence of Arkhipov's marked-`J` theorem.  The first
   syntactic escape is occurrence at least three or a non-parity relation.
+- **Use just one occurrence-three variable.**  Still no perfect model gap,
+  by `one-triple-variable-lcs-has-no-perfect-model-gap`.  Deleting that
+  variable leaves degree-two components, and the only distributions
+  `3`, `2+1`, and `1+1+1` reduce to scalar parity, a graph-incidence
+  factor, and planar-pin/nonplanar-absorber one-port factors.  Whenever
+  `J!=1`, these assemble into a finite-dimensional `J=-I` model.  At least
+  two triple variables are required.
+- **Bound all occurrences by three.**  Exact expressiveness returns fully:
+  `cyclic-occurrence-splitting-makes-every-lcs-cubic` replaces the
+  `d` occurrences of a variable by a cycle of `d` equality-linked copies.
+  Tietze elimination gives an isomorphism of solution groups fixing `J`.
+  Thus occurrence two versus three is a sharp exact boundary.  The cycle's
+  telescoping loss grows with `d`, so this does not supply the uniform robust
+  compiler sought here; the live target is a bounded-degree equality
+  expander or another constant-cost diagonal synchronization mechanism.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
