@@ -38,7 +38,7 @@ tau_g = tau_k tau_h^(-1)            if p=g,
 tau_h = tau_g^(-1) tau_k            if p=h.             (PCR1)
 ```
 
-Each expression is a partial bijection on `(1-o(1))N) points.  The restored
+Each expression is a partial bijection on `(1-o(1))N` points.  The restored
 relation holds exactly wherever the displayed compositions are defined.
 Previously restored relations remain exact because their label maps are never
 changed.
@@ -68,11 +68,11 @@ If `p=g`, write `y=tau_h(i)`; then
 ```
 
 The case `p=h` follows by applying the same comparison through
-`tau_g^(-1)), and gives radius at most `e_g+zeta+e_k`.
+`tau_g^(-1)`, and gives radius at most `e_g+zeta+e_k`.
 
 Because every table is finite, iterating these estimates produces a constant
 `C_T` such that every restored label has radius at most
-`C_T(e+rho+zeta)).  Each step discards only finitely many preimages or
+`C_T(e+rho+zeta)`.  Each step discards only finitely many preimages or
 images of existing exceptional sets, so the total exceptional density is at
 most `C_T eta+o(1)`.
 
