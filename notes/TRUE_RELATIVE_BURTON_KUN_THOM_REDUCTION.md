@@ -223,7 +223,7 @@ normalizer-transfer statement.
 
 ### Fixed invariant window: the exact quotient/fiber boundary
 
-`elementary-abelian-regular-normalizers-have-diffuse-coherent-fibers`
+`elementary-abelian-regular-normalizers-have-diffuse-fibers`
 settles the invariant finite-window calculation sharply.  If a fixed
 `B=(C_2)^m` is preserved and its permutation modules have asymptotically
 regular character, all but `o(d_n)` points are free `B`-orbits.  The
