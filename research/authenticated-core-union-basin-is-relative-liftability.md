@@ -177,33 +177,33 @@ as uniform top-Hecke-spectrum **coverage**, not merely existence of a top
 eigenvector or scalar character agreement.
 
 The spectral criterion has an exact trace-flexible form.
-`almost-full-hecke-frame-gives-flexible-corner` allows a contractive
-near-top frame whose uncovered carrier has trace (delta), at total
-corner cost (sqrt{2epsilon+4delta}).
-`near-top-hecke-coverage-has-exact-hole-dual` computes the optimal
-covered trace by a finite positive right-multiplier SDP.  Thus every
+'almost-full-hecke-frame-gives-flexible-corner' allows a contractive
+near-top frame whose uncovered carrier has trace \(\delta\), at total
+corner cost \(\sqrt{2\epsilon+4\delta}\).
+'near-top-hecke-coverage-has-exact-hole-dual' computes the optimal
+covered trace by a finite positive right-multiplier SDP. Thus every
 negative sequence must retain a uniformly subunit-trace positive
 majorant for the entire moving near-top module.
 
 Raw spectral dimension does not settle that SDP.
-`hecke-rank-controls-coverage-but-has-half-space-ceiling` proves the
-valid bound (c_epsilongeqoperatorname{rank}(Q_epsilon)/dim D), but
-also computes
-(operatorname{Tr}_{L^2(D)}T_X=0) whenever the Weyl element is outside
-the core.  Hence the ([1-epsilon,1]) band occupies at most
-(1/(2-epsilon)) of (L^2(D)), even before imposing residual estimates.
+'hecke-rank-controls-coverage-but-has-half-space-ceiling' proves the
+valid bound
+\(c_\epsilon\geq\operatorname{rank}(Q_\epsilon)/\dim D\), but also computes
+\(\operatorname{Tr}_{L^2(D)}T_X=0\) whenever the Weyl element is outside
+the core. Hence the \([1-\epsilon,1]\) band occupies at most
+\(1/(2-\epsilon)\) of \(L^2(D)\), even before imposing residual estimates.
 Exact endpoints already show why this is compatible with coverage one:
 a small, correctly positioned right module can contain a unital frame.
 
 Finally,
-`hecke-stabilizer-averaging-leaves-indefinite-sector` identifies the
-canonical exact symmetries.  The near-top space is a bimodule over the
+'hecke-stabilizer-averaging-leaves-indefinite-sector' identifies the
+canonical exact symmetries. The near-top space is a bimodule over the
 right-regular algebra of the finite quotient on the left and the exact
 commutant of the supplied extender on the right, so a dual certificate
-may be averaged into a relative commutant.  An explicit full-support
+may be averaged into a relative commutant. An explicit full-support
 finite matrix bimodule nevertheless retains an indefinite separator after
 this entire averaging, and approximate covariance does not preserve a
-moving sharp spectral band without a margin.  The remaining theorem must
+moving sharp spectral band without a margin. The remaining theorem must
 therefore use the concrete Iwahori Hecke matrix to control module position,
 not just stabilizer size, raw band rank, or vanishing residual covariance.
 
