@@ -1,6 +1,8 @@
 import GroupApproximation.Analysis.CStarContinuousMapNuclear
 import GroupApproximation.Analysis.CStarNuclearRetract
+import GroupApproximation.Analysis.AntipodalBlockNontrivial
 import GroupApproximation.Analysis.STW22AntipodalExpectation
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 /-!
 # Nuclearity of the antipodal real-projective blocks
@@ -16,6 +18,31 @@ open CStarExactness
 open CStarContinuousMapFiniteInterpolation
 
 noncomputable section
+
+open scoped CStarAlgebra ComplexOrder Matrix
+
+local instance realProjectiveAmbientCStarAlgebra (d s : ℕ) :
+    CStarAlgebra (SphereMatrixFunctions d s) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+local instance realProjectiveMatrixFiniteDimensional (s : ℕ) :
+    FiniteDimensional ℂ (CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ) :=
+  inferInstanceAs (FiniteDimensional ℂ
+    (Matrix (Fin (s + 1)) (Fin (s + 1)) ℂ))
+
+local instance realProjectiveBlockCStarAlgebra (d s : ℕ) :
+    CStarAlgebra (RealProjectiveBlock d s) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
 
 /-- Every concrete real-projective block is nuclear. -/
 theorem isNuclearCStarAlgebra_realProjectiveBlock (d s : ℕ) :
