@@ -7,6 +7,7 @@ distinct_from:
   bcv-question-reduction-retains-readable-closure: that treats the Pauli and introspection packet in honest Question Reduction; this treats the subsequent PCP and low-individual-degree completeness construction.
   bcv-halt-completeness-has-computable-readable-factor-bound: that asks for a total bound on some perfect HALT strategy independent of halting time; this is only monotonicity of the published honest completeness map.
   bcv-halt-readable-finite-orbit-does-not-transfer-to-gap-irs: that separates finite HALT models from the compactness-selected NONHALT witness; this stays entirely inside one finite HALT-side strategy construction.
+  bcv-perfect-answer-reduction-decodes-double-cover: that decodes every attained perfect target backward to the source double cover; this identifies a literal left inverse on the particular published forward model.
 ---
 
 Let `V_n` be an input game satisfying the hypotheses of
@@ -34,6 +35,10 @@ Consequently,
 dim D_infinity(AR_n(S)) >= dim D_infinity(S).            (HAR2)
 ```
 
-This is a statement about BCV's explicit forward completeness strategy. It
-does not assert that an arbitrary perfect strategy of the answer-reduced game
-decodes to a perfect strategy of `V_n`.
+This statement remains about BCV's explicit forward completeness strategy.
+The separate exact theorem
+`bcv-perfect-answer-reduction-decodes-double-cover` handles arbitrary
+attained perfect targets: it universally returns `DoubleCover(V_n)` and
+returns `V_n` itself under synchronization or bipartiteness. The present
+claim is stronger only in identifying the given source strategy as a literal
+left inverse of its own chosen forward construction.
