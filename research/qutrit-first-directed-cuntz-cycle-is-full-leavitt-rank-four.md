@@ -7,7 +7,7 @@ artifacts:
   - research/qutrit-directed-cuntz-cycle-rank-four-proof.md
 distinct_from:
   qutrit-first-nonparallel-cuntz-return-chain-is-finite: that proves every acyclic return chain is finite; this adds one scalar coordinate cycle and identifies the resulting concrete subgroup.
-  qutrit-full-cuntz-four-root-cell-is-finite-but-generates-full-leavitt-group: that needs the entire scalar group K as an external closure; this shows one explicit four-cycle permutation and the two scalar returns already generate the required local GL4.
+  qutrit-four-root-cell-finite-but-generates-full-leavitt: that needs the entire scalar group K as an external closure; this shows one explicit four-cycle permutation and the two scalar returns already generate the required local GL4.
   matched-leavitt-opposite-root-qutrit-bridge-is-gl28: that uses one matched leaf chart and obtains a finite scalar group; this uses both binary branches, closes a coordinate cycle, and obtains the full infinite Leavitt coefficient group.
 ---
 

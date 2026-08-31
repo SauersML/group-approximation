@@ -3,7 +3,7 @@ rg: 2
 id: deligne-q8-amalgam-and-central-sector-equivalence-proof
 kind: route
 title: Identify the Deligne-Q8 amalgam and transfer its central HS sectors in both directions
-target: deligne-q8-finite-edge-terminal-compiler-is-equivalent-to-source-gap
+target: deligne-q8-finite-edge-terminal-compiler-iff-source-gap
 requires:
   - deligne-triple-cover-fd-central-invisibility
   - deligne-sector-gap-is-exactly-nonhyperlinearity

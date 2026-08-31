@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: deligne-q8-finite-edge-terminal-compiler-is-equivalent-to-source-gap
+id: deligne-q8-finite-edge-terminal-compiler-iff-source-gap
 kind: claim
 title: The Deligne-Q8 property-T terminal compiler is exactly equivalent to the source gap
 artifacts:
