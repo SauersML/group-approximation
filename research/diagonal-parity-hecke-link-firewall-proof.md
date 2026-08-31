@@ -61,7 +61,7 @@ decomposition.
 
 It remains to compute one vertex link. Write
 
-`d=ord_m(4)` and `H={h^k:0<=k<d}`, where `h=h(2)`.
+`d=ord_m(4)`, `ell=|H|`, and `H={h^k:0<=k<ell}`, where `h=h(2)`.
 
 Every element of `P=UH=HU` has a unique form `h^k u(z)`, and the incident
 edge represented by it has link coordinate `z`. The conjugation rule is
@@ -73,8 +73,9 @@ represented by `g` and `tg`. If `g=h^k u(z)`, then
 
 `t g=h^k u(z+4^(-k))`.
 
-As `k` varies, these differences are precisely `K_m=<4>`. An undirected
-link edge contributes both signs of every difference.
+As `k` varies, these differences are precisely `K_m=<4>`, each with
+multiplicity `ell/d`. An undirected link edge contributes both signs of
+every difference.
 
 For the `b=x t^2 r` face, put `y=t^2r`. The same triangle calculation
 uses `g` and `yg`. Since
@@ -82,8 +83,10 @@ uses `g` and `yg`. Since
 `y h^k u(z)=t^2h^(k+1)u(z)
             =h^(k+1)u(z+(1/2)4^(-k))`,
 
-the second connection multiset is `(1/2)K_m`. The two face orbits each
-give degree `2d`, proving the normalized adjacency formula (DHT6).
+the second connection multiset is `(1/2)K_m`, again with multiplicity
+`ell/d`. The two face orbits each give degree `2ell`. Dividing the
+adjacency sum by total degree `4ell` cancels the common multiplicity and
+proves the normalized formula (DHT6).
 
 Now take `m_n=4^n-1`. Certainly `4^n=1 mod m_n`; if `0<j<n`, then
 `0<4^j-1<m_n`, so `4^j` is not one modulo `m_n`. Hence
