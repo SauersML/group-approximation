@@ -339,6 +339,15 @@ noncomputable instance boundedUniformTwoCompletionStar :
 noncomputable instance boundedUniformTwoCompletionStarRing :
     StarRing (BoundedUniformTwoCompletion G r hr) := (realizationEquiv G hr).starRing
 
+@[simp] theorem realizationEquiv_mul (x y : BoundedUniformTwoCompletion G r hr) :
+    realizationEquiv G hr (x * y) =
+      realizationEquiv G hr x * realizationEquiv G hr y :=
+  map_mul (Equiv.ringEquiv (realizationEquiv G hr)) x y
+
+@[simp] theorem realizationEquiv_star (x : BoundedUniformTwoCompletion G r hr) :
+    realizationEquiv G hr (star x) = star (realizationEquiv G hr x) := by
+  exact (realizationEquiv G hr).apply_symm_apply _
+
 noncomputable instance boundedUniformTwoCompletionNormedRing :
     NormedRing (BoundedUniformTwoCompletion G r hr) := (realizationEquiv G hr).normedRing
 
@@ -366,8 +375,7 @@ noncomputable instance boundedUniformTwoCompletionCStarRing :
   norm_mul_self_le x := by
     rw [← norm_realizationEquiv G hr x,
       ← norm_realizationEquiv G hr (star x * x)]
-    change ‖realizationEquiv G hr x‖ * ‖realizationEquiv G hr x‖ ≤
-      ‖star (realizationEquiv G hr x) * realizationEquiv G hr x‖
+    rw [realizationEquiv_mul, realizationEquiv_star]
     exact CStarRing.norm_mul_self_le _
 
 /-- The actual Cauchy quotient carries the C-star structure transported from
@@ -386,16 +394,11 @@ noncomputable instance boundedUniformTwoCompletionCStarAlgebra :
 noncomputable def realizationStarAlgEquiv :
     BoundedUniformTwoCompletion G r hr ≃⋆ₐ[ℂ] scalarPlusJSubalgebra G :=
   { realizationEquiv G hr with
-    map_add' := fun _ _ ↦ rfl
-    map_mul' := fun _ _ ↦ rfl
-    map_star' := fun _ ↦ rfl
+    map_add' := map_add (Equiv.ringEquiv (realizationEquiv G hr))
+    map_mul' := realizationEquiv_mul G hr
+    map_star' := realizationEquiv_star G hr
     map_smul' := fun c x ↦
       map_smul (Equiv.algEquiv ℂ (realizationEquiv G hr)) c x }
-
-@[simp] theorem realizationStarAlgEquiv_apply
-    (x : BoundedUniformTwoCompletion G r hr) :
-    realizationStarAlgEquiv G hr x = realize G hr x := by
-  exact realizationEquiv_apply G hr x
 
 end
 
