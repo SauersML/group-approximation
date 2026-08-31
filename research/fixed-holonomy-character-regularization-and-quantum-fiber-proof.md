@@ -3,10 +3,9 @@ rg: 2
 id: fixed-holonomy-character-regularization-and-quantum-fiber-proof
 kind: route
 title: Fixed-holonomy character regularization and an exact quantum-fiber countermodel
-proves:
-  - property-t-does-not-kill-boolean-fiber-holonomy
-uses:
-  - boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse
+target: property-t-does-not-kill-boolean-fiber-holonomy
+requires:
+  - boolean-atom-overlap-spatializes-arrows-corners-stay-diffuse
   - finite-schreier-holonomy-is-the-lamp-gauge-obstruction
   - coset-wreath-wall-survives-full-commutant-corners
 ---
