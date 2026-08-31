@@ -7,7 +7,7 @@ proves:
   - property-t-does-not-kill-boolean-fiber-holonomy
 uses:
   - boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse
-  - finite-schreier-holonomy-rounding-criterion
+  - finite-schreier-holonomy-is-the-lamp-gauge-obstruction
   - coset-wreath-wall-survives-full-commutant-corners
 ---
 
