@@ -48,7 +48,7 @@ norm data and faithfulness come from the first summand, and the trace is the
 average, so `Re tr(g) <= 1-c_g/2` --- and then `P=1` is an invariant corner
 satisfying `(I1)`--`(I2)`.
 
-So what this claim really asserts is **elementwise trace-controlled MF**:
+So what this now-refuted claim asserted is **elementwise trace-controlled MF**:
 that the weak norm-corona property can always be upgraded, one element at a
 time, to a model whose trace also sees that element.  The corner is how one
 would build such a model, not an extra assumption.  That places it in the
@@ -60,22 +60,22 @@ regular character is an MF trace  =>  this claim  =>  mf-implies-hyperlinear
 
 --- the first implication because the proof of
 `regular-character-mf-trace-implies-group-mf` manufactures exactly such
-models, the second by `mf-implies-hyperlinear-via-invariant-corner`.  Both
-converses are unavailable here, but no strictness example is known: the weak
-Shulman/Carrión--Dadarlat--Eckhardt convention and Schafhauser's
-trace-controlled one are recorded as a priori different in `notes/NOTEPAD.md`,
-and no group is known to separate them.
+models, the second by `mf-implies-hyperlinear-via-invariant-corner`.  The
+integer compression-lamp group in
+`agent-mf-hyperlinear-shadow-refutes-corner-route` is the strictness example:
+it is weak MF, while one nontrivial commutator is trace-blind in every
+operator-norm almost representation.  Hence the weak and trace-controlled
+group-MF conventions are separated.
 
-## Position among the open holes
+## Former position among the open holes
 
-This claim is formally stronger than the other open hole of the cluster:
+Before its refutation, this claim was formally stronger than the other open
+hole of the cluster:
 `corner-visibility-gives-rate-profile` derives
 `mf-trace-gap-defect-ratio-models` from it, because a trace gap bounded below
 makes the rate `epsilon_n^2/kappa_n -> 0` automatic.  No converse is known.
-Anyone choosing between
-the two should work the rate claim; this one is worth stating because it
-records the structural mechanism and because its known instances below are
-proved by construction rather than by rate control.
+The rate claim remains open; this node is retained only to record the failed
+structural mechanism and its positive instances below.
 
 ## Known instances
 
@@ -113,13 +113,15 @@ known to be weak MF.  In particular, Shulman's 2026 symmetric-amalgam theorem
 produces weak-MF doubles while explicitly controlling no prescribed trace
 (`shulman-symmetric-double-has-no-stable-trace-upgrade`).  Visibility of a
 nontrivial fold-kernel word in those doubles is precisely extra trace data,
-not a consequence of their norm-corona embedding.  The honest reading of the
-present claim is therefore that it asks to extend trace-controlled MF from
-the amenable/LEF and finite-phase cases to every weak-MF-visible element.
+not a consequence of their norm-corona embedding.  Historically this asked
+to extend trace-controlled MF from the amenable/LEF and finite-phase cases to
+every weak-MF-visible element.  The compression-lamp refuter proves that
+extension false.
 
 ## Literature convention guardrail (checked through August 2026)
 
-The universal statement is not a theorem hidden behind terminology.
+The universal statement was not a theorem hidden behind terminology, and is
+now refuted under the weak convention.
 Korchagin, arXiv:1704.06906v3, Definition 1, uses the weak embedding
 `G -> U(prod M_n/directSum M_n)` and explicitly observes that faithfulness
 can be lost after passage to normalized Hilbert--Schmidt norm.  Shulman,
@@ -132,9 +134,9 @@ then correctly concludes that every MF group **in that stronger sense** is
 hyperlinear.  That sentence cannot be imported into the present weak
 convention.
 
-Thus establishing this claim in general would give a new solution of
-`mf-implies-hyperlinear`; no source located in the current literature sweep
-provides the missing trace-selection step.  Bachner--Dogon--Lubotzky,
+The failure of this claim does not refute `mf-implies-hyperlinear`, because
+Hilbert--Schmidt almost representations need not arise from operator-norm
+models.  Bachner--Dogon--Lubotzky,
 arXiv:2508.17392v3, Proposition 1.6, supplies only the finite-normal-kernel
 case already recorded in this cluster.
 

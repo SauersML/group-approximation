@@ -21,3 +21,10 @@ x_0=[p],                 x_n=2 x_(n+1)  for every n.
 Thus a CAR-containing finite corner requires coherent dyadic divisibility in
 the projection monoid, not merely divisibility of `[p]` separately by every
 power of two in `K_0(B)`.
+
+The abstract monoid axioms do permit this configuration together with a
+properly infinite order unit: see
+`stw99-lxvi-truncated-dyadic-monoid-has-finite-halving-seed`.  That consistency
+model does not assert C-star realizability, but it shows that the implication
+above cannot be turned into a contradiction using only simplicity,
+conicality, finiteness, and coherent halving.

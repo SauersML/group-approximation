@@ -117,3 +117,31 @@ cohomology using Mathlib's current homology-map API.
 the coproduct-defined cocycle through the morphism-level `Sigma.ι_desc`
 identity, avoiding a v4.32-dependent mismatch between definitionally equal
 coproduct-family lambdas.
+
+`H1ClassifierZMod2` replaces proof-sensitive conversions by the additive and
+scalar Kronecker identities with explicit cocycle witnesses.  Its descent to
+cohomology is proved through `homologyπ`, and the boundary-annihilation step is
+an explicit categorical calculation with `toCycles_i` and `iCycles_d`.  The
+surjectivity theorem and its injective-module construction are unchanged in
+strength.
+
+`KroneckerNaturality` proves the evaluation square using the current
+`homologyπ_naturality` and `cyclesMap_i` morphism equalities via
+`ConcreteCategory.congr_hom`.  It preserves both naturality and bijectivity of
+the mod-two Kronecker classifier.
+
+`DoubleCoverClass` is included unchanged apart from namespace isolation.
+`MonodromyNontrivial` now obtains the path between antipodes directly from
+`IsPathConnected.joinedIn(...).joined_subtype` and identifies monodromy with
+the endpoint of the canonical lift by definition.  The resulting nontriviality
+and surjectivity statements for the double-cover classifying character are
+unchanged.
+
+`MonodromyCharacter` and `ConstructRPAlpha` are included unchanged apart from
+namespace isolation.  `RPnMonodromyFunctional` evaluates its coproduct-defined
+defect cochain through `Sigma.ι_desc` and proves additivity of cocycle classes
+by injectivity of `iCycles`, preserving the construction and odd-map invariance
+of the projective degree-one class.
+
+`ActualRPAlpha` is included unchanged apart from namespace isolation, tying the
+abstractly constructed degree-one class to the concrete `w₁` cocycle.

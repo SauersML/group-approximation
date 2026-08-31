@@ -5,15 +5,16 @@ kind: claim
 title: Strongly self-absorbing algebras satisfying Kunneth have solid K-theory rings
 artifacts:
   - research/artifacts/stw99-xv-solid-ring-reduction-2026-08-30.md
+  - research/artifacts/ssa-self-kunneth-xiv2-audit-2026-08-31.md
 ---
 
 Let `D` be a strongly self-absorbing C\*-algebra satisfying the
 Künneth short exact sequence for the pair `(D, D)`.  Then:
 
-1. `K_1(D) = 0` (this part is unconditional: the approximately inner
-   flip plus `K_1`-injectivity, which is automatic since SSA algebras
-   are `Z`-stable by Winter and `Z`-stable algebras are `K_1`-bijective
-   by Jiang).
+1. `K_1(D) = 0`. This is a consequence of the self-Kunneth
+   hypothesis: the first-factor K-isomorphism forces unit insertion
+   into the graded tensor square to be onto, which kills the odd
+   group. It is not an unconditional consequence of SSA.
 2. The tensor multiplication makes `K_0(D)` a commutative unital ring
    whose multiplication map `K_0(D) ⊗_Z K_0(D) → K_0(D)` is an
    ISOMORPHISM — a *solid ring* in the sense of Bousfield--Kan.

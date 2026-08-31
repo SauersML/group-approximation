@@ -9,6 +9,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw99-master-ledger-2026-08-30.md
   - research/artifacts/stw99-xv-solid-ring-reduction-2026-08-30.md
+  - research/artifacts/ssa-self-kunneth-xiv2-audit-2026-08-31.md
 ---
 
 **Problem XV of Schafhauser--Tikuisis--White, arXiv:2506.10902.**
@@ -26,9 +27,12 @@ self-absorbing algebra?
   `O_{n+1}`... which are excluded here by `(Q⊗O_∞)_ω`-embeddability
   killing torsion against `Q`) — UPDATE (this session): the invariant side is now
   closed on the torsion-free locus —
-  `ssa-kunneth-forces-solid-k-theory` proves `K_1(D) = 0`
-  unconditionally (Toms--Winter flip + Winter + Jiang) and, under
-  Künneth-against-itself, that `K_0(D)` is a Bousfield--Kan SOLID
+  `ssa-self-kunneth-exact-k-theory-criterion` proves that the external
+  product is always split-surjective and identifies self-Künneth with
+  unit-insertion surjectivity plus vanishing self-Tor (unit insertion is
+  already split-injective). Under
+  Künneth-against-itself, `ssa-kunneth-forces-solid-k-theory` proves
+  `K_1(D)=0` and that `K_0(D)` is a Bousfield--Kan SOLID
   ring; torsion-free solids are exactly the localizations `Z[J^{-1}]`
   realized by the known list, giving the route
   `stw99-iv-implies-xv-torsion-free`.  UPGRADE: the degree-one Künneth
@@ -37,3 +41,8 @@ self-absorbing algebra?
   self-Künneth: the K-theory is `(Z[J^{-1}],0)` or `(0,0)`, always
   that of a known algebra; a counterexample must break the Künneth
   sequence for `(D,D)` itself.
+  For the embeddable algebras actually quantified over here,
+  `embeddable-ssa-self-kunneth-obstruction-is-purely-torsion` sharpens this:
+  XIV(2)-type absorption forces the rational external product to be an
+  isomorphism, so every surviving kernel and self-Tor obstruction is purely
+  torsion.

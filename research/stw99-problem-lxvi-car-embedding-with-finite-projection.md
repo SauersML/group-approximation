@@ -9,6 +9,7 @@ artifacts:
   - research/artifacts/stw99-lxvi-coherent-car-no-go-audit-2026-08-30.md
   - research/artifacts/stw99-lxvi-triangular-bundle-feasibility-2026-08-30.md
   - research/artifacts/stw99-lxvi-unbounded-cu-perforation-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxiii-lxvi-focused-audit-2026-08-31.md
 ---
 
 **Problem LXVI of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras:
@@ -130,6 +131,16 @@ Thus every LXVI witness has almost-unperforation failures with unbounded
 coefficients.  This excludes every simple ambient algebra with almost
 unperforated Cuntz semigroup, independently of Z-stability, separability,
 nuclearity, or the inclusion index of the CAR copy.
+
+These order constraints are now known to be algebraically compatible.
+`stw99-lxvi-truncated-dyadic-monoid-has-finite-halving-seed` gives a simple
+conical monoid with a finite coherent dyadic seed, properly infinite order
+unit, and comparison thresholds `m_n=2^(n+1)`, sharply matching the forced
+unbounded-perforation ladder.  It is not asserted to be a C-star projection
+monoid.  The point is a decisive boundary: conicality, simplicity, dyadic
+divisibility, and the known perforation equations cannot by themselves
+impossibilize the coherent chain; a proof must use an additional C-star
+realizability constraint.
 
 There is also a direct consequence for another STW problem:
 `stw99-lxvi-witness-refutes-lxxviii` proves that every LXVI witness yields a

@@ -4,17 +4,19 @@ id: ssa-solid-k-theory-proof
 kind: route
 title: The first-factor isomorphism inverts the Kunneth multiplication
 target: ssa-kunneth-forces-solid-k-theory
-requires: []
+requires:
+  - ssa-self-kunneth-exact-k-theory-criterion
 artifacts:
   - research/artifacts/stw99-xv-solid-ring-reduction-2026-08-30.md
+  - research/artifacts/ssa-self-kunneth-xiv2-audit-2026-08-31.md
 ---
 
-**`K_1 = 0`** (unconditional; cited chain).  Toms--Winter's analysis
-of strongly self-absorbing algebras shows a `K_1`-injective SSA
-algebra has trivial `K_1` (the approximately inner flip makes `u ⊗ 1`
-and `1 ⊗ u` homotopic, and self-absorption turns this into
-`u ∼_h 1`); `K_1`-injectivity is automatic by Winter
-(SSA ⟹ `Z`-stable) plus Jiang (`Z`-stable ⟹ `K_1`-bijective).
+**`K_1 = 0` under self-Kunneth.** By
+`ssa-self-kunneth-exact-k-theory-criterion`, the first-factor
+K-isomorphism factors through the external product and forces
+`x |-> x tensor [1]` to be an isomorphism onto the graded tensor square.
+The odd summands then force `K_1(D)=0`. Automatic `K_1`-injectivity of SSA
+algebras is not K-group vanishing and is not used here.
 
 **Solidity.**  By strong self-absorption there is an isomorphism
 `φ : D → D ⊗ D` approximately unitarily equivalent to the

@@ -36,3 +36,9 @@ known in this generality.
 - Replacing the packet by orthogonal source and range corners is exactly a
   two-divisibility problem, so assuming such corners would import the missing
   Global Glimm content rather than prove it.
+- The exact laminar subcase is now closed by
+  `laminar-square-zero-packets-fuse-intrinsically`.  After retaining one
+  generator for each maximal packet ideal, those ideals are pairwise
+  orthogonal, so their generators add with every mixed product zero.  A
+  counterexample to general fusion must therefore contain two incomparable
+  packet ideals with nonzero intersection.

@@ -33,3 +33,12 @@ The remaining viable route is internal: alter the projection monoid of a
 mixed example so that a finite class has a nested sequence of positive
 halves, while preventing any finite partial sum of the resulting CAR tower
 from absorbing an ambient infinite projection.
+
+There is no contradiction at the level of the bare projection-monoid
+equations.  `stw99-lxvi-truncated-dyadic-monoid-has-finite-halving-seed`
+constructs a simple conical monoid with a properly infinite order unit, a
+finite element with coherent dyadic halves, and the sharp unbounded
+comparison thresholds forced in every LXVI witness.  It is not a C-star
+realization.  Consequently the remaining obstruction is specifically to
+realize such saturated order as `V(B)` while retaining analytic finiteness;
+conicality, simplicity, and perforation alone cannot refute the construction.

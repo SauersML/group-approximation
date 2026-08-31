@@ -11,6 +11,7 @@ artifacts:
   - non_mf_groups_exist.tex
   - notes/NON_MF_FINAL_REVIEW_AND_RESOLUTION_2026-08-14.md
   - research/artifacts/mf-hyperlinear-frontier-2026-08-19.md
+  - research/artifacts/approximation-recognition-roots-audit-2026-08-31.md
 ---
 
 Every MF group in the Carrión--Dadarlat--Eckhardt norm-matrix-corona sense is
@@ -55,14 +56,16 @@ weak-MF group is hyperlinear.  This does not close the root: the quotient can
 have nontrivial kernel for a nonsimple source, and the audited Kazhdan-envelope
 shortcut uses quotient operations that do not preserve weak MF.
 
-**Exact frontier after the August 19 pass.**  The two surviving mechanisms are
-still `mf-trace-gap-defect-ratio-models` and the stronger
-`mf-invariant-corner-visibility`.  The first asks for models with
-`epsilon_n^2/kappa_n -> 0`; the second asks to make each MF-visible element
-macroscopically visible on an invariant renormalized corner.  Universal
-post-processing is not a substitute: `FALSE_FERMIONIC_AMPLIFICATION.md`
-proves the square-root Lipschitz cost, and padding proves the complementary
-model-level no-go.  See `research/artifacts/mf-hyperlinear-frontier-2026-08-19.md`.
+**Exact frontier after the August 31 pass.**  The invariant-corner mechanism
+is no longer live: `agent-mf-hyperlinear-shadow-refutes-corner-route` refutes
+`mf-invariant-corner-visibility` using the integer compression-lamp group.
+The surviving general mechanism is the padding-invariant intrinsic profile
+`mf-hs-defect-gap-profile`, which asks for actual normalized-HS relation
+defect `eta_n` and marked trace gap `kappa_n` satisfying
+`eta_n^2/kappa_n -> 0`.  Universal post-processing is not a substitute:
+`FALSE_FERMIONIC_AMPLIFICATION.md` proves the square-root Lipschitz cost, and
+padding proves the complementary model-level no-go.  See
+`research/artifacts/approximation-recognition-roots-audit-2026-08-31.md`.
 
 **Established fragments.**  `mf-finite-normal-tracially-visible` (finite
 normal subgroups), `mf-hyperlinear-of-finite-normal-quotient` (=
@@ -71,11 +74,15 @@ in `mf-nonhyperlinear-collapse-structure`: its hyperlinear residual is
 infinite and contains no finite normal subgroup.  The torsion-central
 mechanism producing the non-MF theorems therefore cannot be recycled.
 
-**Two live mechanisms, one constant.**  Amplification
-(`mf-implies-hyperlinear-via-rank-profile`) and invariant corners
-(`mf-implies-hyperlinear-via-invariant-corner`).  By
-`corner-renormalization-cost` both are governed by `sqrt(d/r)`; a functor pays
-it in the defect, a corner pays it structurally.
+**One live general mechanism, plus a new fragment.**  The phase-cancelled
+amplification route through `mf-hyperlinear-via-hs-defect-gap-profile`
+survives.  The invariant-corner route is a valid conditional implication but
+its universal prerequisite is false.  The unconditional fragment
+`mf-characterless-corona-image-has-hyperlinear-quotient` shows instead that a
+corona realization through which augmentation does not factor always gives a
+nontrivial hyperlinear quotient, and gives hyperlinearity for a nonabelian
+simple source.  It does not solve the root because augmentation may factor
+through every weak-MF corona image.
 
 **Dead ends already recorded.**  Raw tensor powers accumulate a scalar phase
 and can return the trace to `1`; direct sums dilute one summand's visibility;

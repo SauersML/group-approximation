@@ -8,6 +8,7 @@ distinct_from:
   stw99-problem-xiv-finite-ssa-quasidiagonal: that is the finite case, quasidiagonality of finite strongly self-absorbing algebras; this is Kirchberg's general conjecture (Abel Conjecture 4.7) that every strongly self-absorbing D other than O_2 embeds into (Q ⊗ O_∞)_ω, equivalently Q ⊗ O_∞ is D-stable, and it implies the finite case by Schafhauser's recent theorem.
 artifacts:
   - research/artifacts/stw99-x2-unitary-subgroup-reduction-2026-08-30.md
+  - research/artifacts/ssa-self-kunneth-xiv2-audit-2026-08-31.md
 ---
 
 **Problem XIV(2) of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -39,3 +40,10 @@ uniqueness components.
   candidate construction is known.  Winter's "microcosm" heuristic makes
   this and Problem XIII the concentrated form of the UCT problem
   (Problem II of STW).
+* `ssa-qoinfty-absorption-forces-rational-k-profile` gives a UCT-free
+  necessary condition: every positive instance satisfies
+  `K_0(D) tensor Q ~= Q` (unit to one) and
+  `K_1(D) tensor Q=0`. Thus any exotic SSA algebra other than `O_2`
+  with a different rational profile refutes XIV(2) immediately. The
+  converse is not asserted: rational K-theory contains no embedding or
+  central-sequence data.

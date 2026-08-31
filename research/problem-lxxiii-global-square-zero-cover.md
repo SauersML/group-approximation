@@ -6,6 +6,7 @@ title: Problem LXXIII has a positive answer for every C-star algebra without fin
 root: true
 artifacts:
   - research/artifacts/problem-lxxiii-literature-audit-2026-08-30.md
+  - research/artifacts/stw99-lxxiii-lxvi-focused-audit-2026-08-31.md
 ---
 
 Let `A` be a C-star algebra with no nonzero finite-dimensional
@@ -37,6 +38,11 @@ prescribed compact cutdown.
   covers individual cutdowns when `1_(M(A))` is finite.
 - Adding the packet elements does not work: cross products need not vanish,
   so the sum need not be square-zero.
+- This addition obstruction is now completely removed for laminar ideal
+  lattices by `laminar-ideal-lattice-solves-lxxiii`.  Incomparable maximal
+  packet ideals then have zero intersection, all cross products vanish, and
+  their nilpotents fuse without stabilization.  Thus any counterexample to
+  the finite-fusion route needs overlapping incomparable packet ideals.
 - Stabilizing gives an immediate off-diagonal matrix nilpotent, but that
   element lies in a matrix algebra over `A`; the local multiplier theorem
   handles this whenever the reserved cutdown has a properly infinite

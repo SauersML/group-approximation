@@ -7,8 +7,8 @@
 
 ## The theorem in one line
 
-SSA + Künneth-against-itself ⟹ `K_1 = 0` (unconditional via
-Toms--Winter flip + Winter `Z`-stability + Jiang `K_1`-injectivity)
+SSA + Künneth-against-itself ⟹ `K_1 = 0` (by the graded
+unit-insertion isomorphism; this is conditional on self-Künneth)
 and `K_0` is a Bousfield--Kan SOLID ring (multiplication
 `K_0 ⊗ K_0 → K_0` is bijective, being inverse to the first-factor
 isomorphism `x ↦ x ⊗ [1]`).
@@ -32,9 +32,11 @@ isomorphism `x ↦ x ⊗ [1]`).
   `Z[J^{-1}] × Z/n`, whose unit `(1,1)` is non-torsion.  The same
   lemma shows the `O_2`-exclusion in Kirchberg's Problem XIV(2) is
   K-theoretically forced.
-* Correction to the XV root's earlier Attempts: `K_1(D) = 0` is not
-  merely "accessible" — it is unconditional literature (the cited
-  chain); the node text is updated.
+* Correction (2026-08-31): automatic `K_1`-injectivity of SSA algebras
+  is not `K_1`-vanishing. Toms--Winter derive `K_1(D)=0` under the
+  UCT/Kunneth hypothesis. The theorem here remains valid because
+  self-Kunneth itself forces the graded unit-insertion map to be an
+  isomorphism and hence forces `K_1(D)=0`.
 
 ## Sanity models
 

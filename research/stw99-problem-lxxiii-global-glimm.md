@@ -10,6 +10,7 @@ distinct_from:
 artifacts:
   - research/artifacts/stw99-structural-cu-cluster-2026-08-30.md
   - research/artifacts/stw99-lxxii-weakly-pi-recon-2026-08-30.md
+  - research/artifacts/stw99-lxxiii-lxvi-focused-audit-2026-08-31.md
 ---
 
 **Problem LXXIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -49,3 +50,9 @@ this problem into the XXXVIII/XXXIX central-sequence circle.
   realization breakthrough; a realization method would likely settle
   both negatively at once, while structural progress on join-fitting
   settles LXXIII's two-generator case positively.
+* `laminar-ideal-lattice-solves-lxxiii` is a new exact positive class.
+  The finite primitive-ideal packet is reduced to its maximal generated
+  ideals; under laminarity those maxima are orthogonal, so their square-zero
+  generators add without mixed products and generate the whole packet sum.
+  Hence the remaining support-preserving destabilization obstruction already
+  requires two incomparable packet ideals with nonzero intersection.

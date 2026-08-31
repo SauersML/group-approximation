@@ -8,6 +8,7 @@ distinct_from:
   stw99-problem-ii-nuclear-uct: that asks the UCT for all separable nuclear algebras; this asks it only for strongly self-absorbing ones, where it is equivalent to identifying the known list, and is implied by II.
 artifacts:
   - research/artifacts/stw99-master-ledger-2026-08-30.md
+  - research/artifacts/ssa-self-kunneth-xiv2-audit-2026-08-31.md
 ---
 
 **Problem XIII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -32,3 +33,9 @@ products of `O_∞` with UHF)?
   II factors through Kirchberg's `O_2`-absorption reductions, which
   are exactly statements about SSA-adjacent algebras; XIII is the
   honest minimal core of II (route `stw99-ii-implies-xiii`).
+* The K-theoretic part is now exact rather than heuristic:
+  `ssa-self-kunneth-exact-k-theory-criterion` proves that the external
+  product is always split-surjective and that self-Kunneth is equivalent
+  to `K_1(D)=0` with `K_0(D)` a torsion-free solid ring. This closes the
+  invariant range if self-Kunneth holds, but supplies neither XIV(2)
+  embeddability nor XVI uniqueness; those remain independent gates.

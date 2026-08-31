@@ -26,5 +26,13 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.InducedOnRPCohomology
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CoveringTransferHomology
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnW1Cochain
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.H1ClassifierZMod2
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.KroneckerNaturality
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.DoubleCoverClass
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.MonodromyNontrivial
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.MonodromyCharacter
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ConstructRPAlpha
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnMonodromyFunctional
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ActualRPAlpha
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/
