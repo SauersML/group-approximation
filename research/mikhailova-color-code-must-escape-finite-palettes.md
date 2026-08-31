@@ -17,7 +17,7 @@ maps
 sigma_n:F->Sym(A_n)
 ```
 
-and its color point by `c_n:A_n->N`.  Let
+and its color point by `c_n:A_n->Nat`, where `Nat` is a fixed countable palette.  Let
 
 ```text
 mu_n(j)=|c_n^(-1)(j)|/|A_n|
@@ -26,7 +26,7 @@ mu_n(j)=|c_n^(-1)(j)|/|A_n|
 be the color distribution.  Then for every fixed integer `K>=1`,
 
 ```text
-max_{C subset N, |C|<=K} mu_n(C) -> 0.                 (MCE1)
+max_{C subset Nat, |C|<=K} mu_n(C) -> 0.                 (MCE1)
 ```
 
 (The convergence is along the ultrafilter defining the witness, or along
