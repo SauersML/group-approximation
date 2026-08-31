@@ -65,12 +65,11 @@ tau_S(1 tensor b)=tau_T(b).                              (PHT7)
 
 ## A perfect ZPC countermodel to canonical group trace
 
-Take a padded one-question synchronous tailored game with a fixed dummy
-readable coordinate and one linear/unreadable answer bit. The predicate
-requires the dummy coordinate to have its fixed value and tests synchronous
-equality of the unreadable bit. Equivalently, start with this one-question
-game and apply BCV Padding so the Question Reduction source has the required
-positive equal answer lengths.
+Take a one-question synchronous tailored game with answer lengths
+`ell_R=ell_L=1`: one readable bit and one linear/unreadable bit. Its sole
+loop predicate forces the readable bit to zero and tests equality of the two
+unreadable answers. Thus the source already has the positive equal answer
+lengths required by Question Reduction; no padding convention is involved.
 
 Every signed-permutation involution `U` on `C^m`, used at both ends of
 the sole loop, is a perfect ZPC strategy. The readable dummy measurement is
