@@ -97,8 +97,13 @@ rank-one Cartan or spatialize that common router.
 For the order-`27` qutrit Heisenberg group, a nontrivial central character
 has `s=3`.  Its regular central corner has trace `1/3` and is
 `M_3 tensor I_(3r)`; the ideal left/right pair is
-`M_9 tensor I_r`.  This concrete central-character candidate therefore
-has exactly the reservoir described above.
+`M_9 tensor I_r`.  On a window of `n` qutrit packet sites, the selected
+central projection has trace `3^(-n)`, the left packet corner is
+`M_(3^n) tensor I_(r 3^n)`, and the ideal paired corner is
+`M_(9^n) tensor I_r`.  Thus pairing kills the intrinsic `3^n` regular
+multiplicity, but it kills the external reservoir only under the additional
+multiplicity-one assumption `r=1`.  Canonical trace does not force that
+assumption and is invariant under arbitrary amplification.
 
 The result does not say that a packet-factor masa is useless: its minimal
 projections have rank equal to the reservoir dimension and its actor action
