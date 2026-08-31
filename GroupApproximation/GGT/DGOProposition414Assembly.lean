@@ -306,6 +306,138 @@ def auxiliaryCycleCertificate_of_paths_withConnectorTarget
   · exact htarget_component
   · exact htarget_isolated
 
+/-! ## Per-interval component and isolation configurations -/
+
+/-- **The exact component configuration needed on one auxiliary interval.**
+
+`Target` contains the inherited distinguished sides, the selected chord side,
+and the nonempty connectors.  `All` is deliberately larger: it records every
+same-label component start that could oppose a target, including components
+created at the ends of a restricted type-(2) quasigeodesic side.  The three
+geometric clauses are precisely the inputs of
+`isIsolated_auxiliaryCycle_sides`; in particular no chord-order or planar
+noncrossing assertion is included.
+
+For concrete greedy intervals, `targetComponent` is supplied by the arc,
+connector, and chord component dictionaries; `exhaust` comes from
+`auxiliaryCycle_componentStarts_exhausted`; and `separated` is discharged by
+the same-path, charged-anchor, and type-(2) separation lemmas. -/
+structure AuxiliaryCycleComponentConfiguration (D : RelGenSet G Λ) (v : G)
+    (left arc right chord : List (RelLetter G Λ)) (nArc : ℕ)
+    (arcCut : ℕ → ℕ) (Target : Finset ℕ) (label : ℕ → Λ) where
+  all : Finset ℕ
+  allLabel : ℕ → Λ
+  allPos : ℕ → ℕ
+  targetComponent : ∀ s ∈ Target,
+    IsComp (label s) (auxiliaryCycleWord left arc right chord)
+      (auxiliaryCycleCut left nArc arcCut right s)
+      (auxiliaryCycleCut left nArc arcCut right (s + 1))
+  exhaust : ∀ s ∈ Target, ∀ q : ℕ,
+    IsCompStart (label s) (auxiliaryCycleWord left arc right chord) q →
+      ∃ t ∈ all, allLabel t = label s ∧ allPos t = q
+  separated : ∀ s ∈ Target, ∀ t ∈ all,
+    allLabel t = label s →
+    allPos t ≠ auxiliaryCycleCut left nArc arcCut right s →
+    ¬ Connected D.fam (label s) v
+      (auxiliaryCycleWord left arc right chord)
+      (auxiliaryCycleCut left nArc arcCut right s) (allPos t)
+
+namespace AuxiliaryCycleComponentConfiguration
+
+/-- **Construct the configuration file from a complete component cover.**
+
+This is the form produced by the four-path case split.  Recording every
+same-label peripheral letter inside one member of `All` is enough: the generic
+exhaustion lemma proves that every component *start* is the recorded start,
+including components born at a restricted path endpoint. -/
+def ofComponentCover {D : RelGenSet G Λ} {v : G}
+    {left arc right chord : List (RelLetter G Λ)} {nArc : ℕ}
+    {arcCut : ℕ → ℕ} {Target All : Finset ℕ}
+    {label allLabel : ℕ → Λ} {allPos allFinish : ℕ → ℕ}
+    (htarget : ∀ s ∈ Target,
+      IsComp (label s) (auxiliaryCycleWord left arc right chord)
+        (auxiliaryCycleCut left nArc arcCut right s)
+        (auxiliaryCycleCut left nArc arcCut right (s + 1)))
+    (hrecord : ∀ t ∈ All,
+      IsComp (allLabel t) (auxiliaryCycleWord left arc right chord)
+        (allPos t) (allFinish t))
+    (hcover : ∀ s ∈ Target, ∀ q : ℕ,
+      ∀ hq : q < (auxiliaryCycleWord left arc right chord).length,
+      ((auxiliaryCycleWord left arc right chord)[q]'hq).IsCompOf (label s) →
+      ∃ t ∈ All, allLabel t = label s ∧
+        allPos t ≤ q ∧ q < allFinish t)
+    (hsep : ∀ s ∈ Target, ∀ t ∈ All,
+      allLabel t = label s →
+      allPos t ≠ auxiliaryCycleCut left nArc arcCut right s →
+      ¬ Connected D.fam (label s) v
+        (auxiliaryCycleWord left arc right chord)
+        (auxiliaryCycleCut left nArc arcCut right s) (allPos t)) :
+    AuxiliaryCycleComponentConfiguration D v left arc right chord
+      nArc arcCut Target label where
+  all := All
+  allLabel := allLabel
+  allPos := allPos
+  targetComponent := htarget
+  exhaust := auxiliaryCycle_componentStarts_exhausted left arc right chord
+    Target All label allLabel allPos allFinish hrecord hcover
+  separated := hsep
+
+/-- A complete local configuration supplies isolation of every target side. -/
+theorem targetIsolated {D : RelGenSet G Λ} {v : G}
+    {left arc right chord : List (RelLetter G Λ)} {nArc : ℕ}
+    {arcCut : ℕ → ℕ} {Target : Finset ℕ} {label : ℕ → Λ}
+    (C : AuxiliaryCycleComponentConfiguration D v left arc right chord
+      nArc arcCut Target label) :
+    ∀ s ∈ Target,
+      IsIsolated D.fam (label s) v
+        (auxiliaryCycleWord left arc right chord)
+        (auxiliaryCycleCut left nArc arcCut right s) := by
+  apply isIsolated_auxiliaryCycle_sides D v left arc right chord
+    Target C.all label C.allLabel
+    (fun s ↦ auxiliaryCycleCut left nArc arcCut right s) C.allPos
+  · intro s hs
+    exact ⟨auxiliaryCycleCut left nArc arcCut right (s + 1),
+      C.targetComponent s hs⟩
+  · exact C.exhaust
+  · exact C.separated
+
+end AuxiliaryCycleComponentConfiguration
+
+/-- **Build one certified greedy interval from its component configuration.**
+
+Compared with `auxiliaryCycleCertificate_of_paths_withConnectorTarget`, the
+caller no longer proves isolatedness target-by-target.  It supplies the actual
+finite component file (`All`, exhaustion, and pairwise separation), and the
+generic Target-vs-All theorem derives every isolation clause uniformly. -/
+def auxiliaryCycleCertificate_of_paths_withComponentConfiguration
+    (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {b : ℝ} (hb : 0 ≤ b)
+    (v : G) (left arc right chord : List (RelLetter G Λ)) {nArc : ℕ}
+    {arcCut : ℕ → ℕ}
+    (harc : IsCutPolygon D b nArc
+      (v * RelLetter.listVal (revWord left)) arc arcCut)
+    {g : G} (hchord : IsGeodesicWord D
+      (v * RelLetter.listVal ((revWord left ++ arc) ++ right)) g chord)
+    (hleft : ∀ x ∈ left, D.IsLetter x)
+    (hright : ∀ x ∈ right, D.IsLetter x)
+    (hclose : RelLetter.listVal left = RelLetter.listVal arc *
+      RelLetter.listVal right * RelLetter.listVal chord)
+    (LocalTarget : Finset ℕ) (label : ℕ → Λ)
+    (hlocal_lt : ∀ s ∈ LocalTarget,
+      s < left.length + nArc + right.length + chord.length)
+    (hlocal_edge : ∀ s ∈ LocalTarget,
+      auxiliaryCycleCut left nArc arcCut right (s + 1) =
+        auxiliaryCycleCut left nArc arcCut right s + 1)
+    (C : AuxiliaryCycleComponentConfiguration D v left arc right chord
+      nArc arcCut
+      (LocalTarget ∪
+        DGOPolygonCut.auxiliaryCycleConnectorTarget left right nArc) label) :
+    AuxiliaryCycleCertificate D b
+      (left.length + nArc + right.length + chord.length) :=
+  auxiliaryCycleCertificate_of_paths_withConnectorTarget D hsymm hb v
+    left arc right chord harc hchord hleft hright hclose LocalTarget label
+    hlocal_lt hlocal_edge C.targetComponent C.targetIsolated
+
 namespace AuxiliaryCycleCertificate
 
 /-- The group element represented by a distinguished side of a certified
@@ -413,6 +545,85 @@ theorem exists_twoHalfAuxiliaryCycleFamily (D : RelGenSet G Λ) (b : ℝ)
     secondSides := fun j => (secondData j).1
     secondChildren := fun j => (secondData j).2
   }⟩
+
+/-! ## Charging across the disjoint union of the two half families -/
+
+/-- **The global owner file for two certified half families.**
+
+An original distinguished component is owned by exactly one child, represented
+by the disjoint union of the first- and second-half connector intervals.  The
+two charge clauses are kept separate so that each is proved in its own half's
+coordinates.  No relation between the two greedy partner orders is used.
+
+`original_mem` is the survivor-or-quadrilateral conclusion for the original
+side.  `firstCharge` and `secondCharge` say that all radii owned by one child
+are paid for by that child's actual target radii. -/
+structure TwoHalfChargingConfiguration (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    {I₁ I₂ : Finset ℕ} {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ}
+    {chordLength : ℕ}
+    {index : DGOPolygonCut.TwoHalfGreedyFamilyIndex I₁ I₂
+      pos₁ partner₁ pos₂ partner₂ chordLength}
+    (A : TwoHalfAuxiliaryCycleFamily D (b : ℝ) index)
+    (I : Finset ℕ) (lam : ℕ → Λ) (span : ℕ → G) where
+  owner : ℕ → Sum (Fin index.first.pieceCount) (Fin index.second.pieceCount)
+  radius : Sum (Fin index.first.pieceCount) (Fin index.second.pieceCount) →
+    ℕ → ℕ
+  original_mem : ∀ s ∈ I,
+    span s ∈ D.relBall (lam s) (radius (owner s) s)
+  firstCharge : ∀ j : Fin index.first.pieceCount,
+    ∑ s ∈ I, (if owner s = Sum.inl j then radius (Sum.inl j) s else 0) ≤
+      ∑ t ∈ (A.firstChildren j).target,
+        (A.firstChildren j).radius D hsymm b hδ t
+  secondCharge : ∀ j : Fin index.second.pieceCount,
+    ∑ s ∈ I, (if owner s = Sum.inr j then radius (Sum.inr j) s else 0) ≤
+      ∑ t ∈ (A.secondChildren j).target,
+        (A.secondChildren j).radius D hsymm b hδ t
+
+/-- **Two-half charging produces the transferred `SumBound` radius.**
+
+This is Steps 4--5 at the finite-accounting level.  It combines the owner
+fibres without flattening the two source orders and bounds the result by the
+sum of the least costs of all certified children. -/
+theorem consequences_of_twoHalfChargingConfiguration (D : RelGenSet G Λ)
+    (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
+    (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
+    {I₁ I₂ : Finset ℕ} {pos₁ partner₁ pos₂ partner₂ : ℕ → ℕ}
+    {chordLength : ℕ}
+    {index : DGOPolygonCut.TwoHalfGreedyFamilyIndex I₁ I₂
+      pos₁ partner₁ pos₂ partner₂ chordLength}
+    (A : TwoHalfAuxiliaryCycleFamily D (b : ℝ) index)
+    {I : Finset ℕ} {lam : ℕ → Λ} {span : ℕ → G}
+    (C : TwoHalfChargingConfiguration D hsymm b hδ A I lam span) :
+    ∃ r : ℕ → ℕ,
+      (∀ s ∈ I, span s ∈ D.relBall (lam s) (r s)) ∧
+      ∑ s ∈ I, r s ≤
+        (∑ j, sumCost D hsymm b hδ (A.firstSides j)) +
+          ∑ j, sumCost D hsymm b hδ (A.secondSides j) := by
+  let bound : Sum (Fin index.first.pieceCount) (Fin index.second.pieceCount) →
+      ℕ := Sum.elim
+    (fun j ↦ ∑ t ∈ (A.firstChildren j).target,
+      (A.firstChildren j).radius D hsymm b hδ t)
+    (fun j ↦ ∑ t ∈ (A.secondChildren j).target,
+      (A.secondChildren j).radius D hsymm b hδ t)
+  have hcharge : ∀ q, ∑ s ∈ I,
+      (if C.owner s = q then C.radius q s else 0) ≤ bound q := by
+    intro q
+    cases q with
+    | inl j => simpa [bound] using C.firstCharge j
+    | inr j => simpa [bound] using C.secondCharge j
+  obtain ⟨r, hrmem, hrsum⟩ := combine_relBall_witnesses_finite D I C.owner
+    lam span C.radius bound C.original_mem hcharge
+  refine ⟨r, hrmem, hrsum.trans ?_⟩
+  rw [Fintype.sum_sum_type]
+  exact Nat.add_le_add
+    (Finset.sum_le_sum fun j _ ↦
+      AuxiliaryCycleCertificate.sum_radius_le_sumCost D hsymm b hδ
+        (A.firstChildren j))
+    (Finset.sum_le_sum fun j _ ↦
+      AuxiliaryCycleCertificate.sum_radius_le_sumCost D hsymm b hδ
+        (A.secondChildren j))
 
 /-- **A local family of auxiliary cycles with all charging and count data.**
 
