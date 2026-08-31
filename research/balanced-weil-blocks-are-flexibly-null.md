@@ -6,6 +6,7 @@ title: Every balanced Weil block amplification is flexibly null
 distinct_from:
   regular-iwahori-strict-congruence-exactification-is-false: that proves a fixed positive distance from every same-dimensional endpoint for one balanced block; this proves that arbitrary orthogonal amplifications of those blocks are always repaired by asymptotically negligible padding when their defect vanishes.
   direct-sum-weil-compressions-have-quadratic-padding: that treats the positive-central compressed even packets; this adds the exact negative-central odd packets needed for the regular SL2 trace and tracks the resulting flexible endpoint.
+  weil-reservoir-mixing-has-energy-paid-completion: that proves the energy-paid completion after an arbitrary mixed positive even-Weil reservoir has been authenticated; this adds the negative-central balance and proves regular SL2 trace for the post-torsion strict-counterpacket amplification.
   bs14-flexible-cross-packet-boundary-reconciliation: that asks for energy-paid completion of arbitrary cross-packet mixtures; this closes only the block-diagonal balanced Weil family.
 ---
 
