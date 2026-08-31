@@ -9,6 +9,7 @@ distinct_from:
   simple-core-bi-index-counts-coset-action-pair-orbits: that PROVES the coset action is faithful and identifies its pair-orbits with double cosets, for any envelope; this asserts that the count can be made finite, which is the open part and is a statement about the construction rather than about the action.
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
+  - research/artifacts/boone-higman-direct-ck-double-coset-no-go-2026-08-31.md
 ---
 
 The embedding of `chatterji-kassabov-normal-generator-embedding` can be
@@ -38,15 +39,14 @@ tools.
 
 ## Attempts
 
-1. **Read it off the existing construction.**  *Fails immediately.*  The
-   Chatterji--Kassabov proof controls a normal-generation relation and a
-   presentation; it says nothing about `S \ Gamma / S`, and the intermediate
-   objects — a group ring, a ring extension, an elementary matrix group —
-   carry no double-coset bookkeeping to inspect.  With
-   `universal-sandwich-ring-is-finitely-presented-and-injective` the envelope
-   is now the explicit `EL_4(U)`, so the double cosets of `S` in a matrix
-   group over an explicit finitely presented ring are at least a concrete
-   object to compute with.  Nothing was computed here.
+1. **Read it off the direct universal-sandwich construction.**  *Refuted for
+   that construction.*  By `direct-ck-corner-core-has-infinite-bi-index`, the
+   canonical upper-left corner copy of `S` in `EL_4(U)` centralizes the whole
+   spare root subgroup `{e_23(a):a in U}`, and distinct parameters give
+   distinct `S`-double cosets.  Thus `|S \ EL_4(U) / S| >= |U|` is infinite.
+   Any successful arrangement must change the envelope or genuinely change
+   how the core occupies it; the direct elementary envelope does not merely
+   fail to prove finite bi-index, it has the opposite property.
 2. **Derive finiteness from the normal-generation property.**  *No
    implication found.*  Normal generation constrains the normal closure of
    one element; a bi-index bound constrains the whole double coset space.
