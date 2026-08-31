@@ -18,7 +18,7 @@ artifacts:
 
 ## 1. The diagonal-coset witness
 
-Use the pinned Kun--Thom pair `Gamma<G).  The group `G` is residually
+Use the pinned Kun--Thom pair `Gamma<G`.  The group `G` is residually
 finite and hence sofic, while the action `G action G/Gamma` is not sofic.
 Put
 
@@ -90,10 +90,10 @@ reason the two restricted models fail to combine.
 ## 3. A common Pauli chart would recover the forbidden action
 
 Let `beta:G times G action P_Y` be the automorphism action induced by
-`alpha).  Suppose that `beta` were a sofic-`C` action in the sense of
-Alekseev--Bradford Definition 4.23, for some target class `C).
+`alpha`.  Suppose that `beta` were a sofic-`C` action in the sense of
+Alekseev--Bradford Definition 4.23, for some target class `C`.
 
-Choose a finite site window `E subset Y) and put the single-site generators
+Choose a finite site window `E subset Y` and put the single-site generators
 `A_y`, `y in E`, in the lamp window of the chart.  The chart maps are
 injective on that finite lamp window and obey exact covariance on their good
 carriers.  Since
@@ -102,13 +102,13 @@ carriers.  Since
 (g_1,g_2) A_y (g_1,g_2)^(-1)=A_(alpha(g_1,g_2)y),         (7)
 ~~~
 
-reading the finitely many labels of the `A_y)'s gives exactly an orbit
-approximation of the set action `alpha).  This is
+reading the finitely many labels of the `A_y`'s gives exactly an orbit
+approximation of the set action `alpha`.  This is
 `lamp-charts-recover-set-action`; neither the second Pauli coordinate nor
 the value of the center is used in that transfer.
 
 It follows that `alpha` would be a sofic action, contradicting Section 1.
-Therefore `beta` has no such chart for any `C).  In particular, the two
+Therefore `beta` has no such chart for any `C`.  In particular, the two
 models from Section 2 cannot be obtained as restrictions of one common
 Pauli chart.
 
@@ -154,14 +154,14 @@ C in I_(2^|D|) tensor
      U(2^(m-|D|) r),                                     (11)
 ~~~
 
-after ordering the `D)-legs first.  Equivalently,
+after ordering the `D`-legs first.  Equivalently,
 
 ~~~text
 U=P_(b_bar) C.                                            (12)
 ~~~
 
 For `D=Z`, (11) is the familiar arbitrary multiplicity factor
-`I_(2^m) tensor U(r)).  For a proper partial window, the entire boundary
+`I_(2^m) tensor U(r)`.  For a proper partial window, the entire boundary
 tensor factor joins that multiplicity.  Different extensions `b_bar`
 differ by a unitary in exactly the same commutant.
 
@@ -206,7 +206,7 @@ set action sofic + actor hyperlinear + base CE
 
 It contains no converse.  Their Question 4.4 asks for the converse in the
 **sofic-group** metric, not the Hilbert--Schmidt metric.  At the sofic level,
-a positive answer to Question 4.4 for the `C_2)-lamp, combined with
+a positive answer to Question 4.4 for the `C_2`-lamp, combined with
 (14), would turn soficity of `Pi_X` into soficity of the set action.
 At the hyperlinear level no such theorem is known; proving it for (14)
 would already decide the original Kun--Thom hyperlinearity problem.
@@ -218,7 +218,7 @@ the abelian Bernoulli base by
 e_- L(Pi_X)=R semidirect_crossed_product G,               (17)
 ~~~
 
-where `R` is the infinite tensor product of the site `M_2)'s.
+where `R` is the infinite tensor product of the site `M_2`'s.
 Equations (8)--(12) show that this strengthens fixed-window leg recognition
 but leaves the common-chart seam unchanged.  Therefore
 
