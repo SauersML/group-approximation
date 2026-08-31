@@ -442,6 +442,17 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   only the flat square subclass, so a unitary synchronization theorem alone
   must not be advertised as an equivalence without an additional flattening
   argument.
+- **Polar synchronization works exactly under Gram flatness.**
+  `gram-flat-kraus-frames-polarize-to-unitary-tables` proves that a
+  square relative frame with Kraus energy `e` and average pointwise
+  Gram defect `eta` polarizes equivariantly to a unitary table of
+  energy at most `e+2 sqrt(eta)`. The extra hypothesis cannot be
+  dropped from this argument: every irreducible finite-group representation
+  has a rank-one Fourier Stinespring frame with zero energy but Gram defect
+  `2(1-1/d)`. An exact endpoint also has a different flat frame,
+  so this is not a counterexample to synchronization; it proves that
+  alternating minimization plus polar rounding must select a flat minimizer,
+  not merely an arbitrary low-energy one.
 - **Matrix-algebra Ulam stability starts after the missing leakage
   estimate.** `matrix-ulam-stability-needs-full-unit-ball-control`
   records the exact Alekseev--Thom input and a sharp two-by-two separation:
