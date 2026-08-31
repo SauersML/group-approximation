@@ -49,8 +49,9 @@ plateau boundary.  There is no residual topological or complete-positivity
 obstruction at the compressed-return level.
 
 This does not prove `dim_nuc(A_N)=1`.  The uncompressed return
-`psi phi(x)` has additional matrix blocks outside `p`; deleting those
-blocks by compression destroys order zero.  The exact remaining task is
+`psi phi(x)` has additional matrix blocks outside `p`; compression is
+not an order-zero operation in general, and in the nontrivial moving-frame
+cases it does not preserve order zero.  The exact remaining task is
 therefore to absorb or align this off-plateau leakage with the scalar
 Toeplitz buffer while preserving the two global orthogonality pairings in
 [[stw83-plateau-buffer-recolouring-hinge]].
