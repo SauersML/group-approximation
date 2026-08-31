@@ -6,7 +6,7 @@ title: Apply Full Farrell--Jones inheritance to the all-group host
 target: full-farrell-jones-fixed-two-generator-all-group-tester
 requires:
   - universal-all-group-subgroup-colimit-class-tester
-  - full-farrell-jones-fixed-tester-via-subgroups-and-colimits
+  - full-farrell-jones-fixed-fp-torsion-free-tester
 ---
 
 Wolfgang Lueck, *Survey on the Farrell--Jones Conjecture*, Bull. Amer.

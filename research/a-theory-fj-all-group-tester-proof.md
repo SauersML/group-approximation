@@ -6,7 +6,7 @@ title: Apply A-theoretic Farrell--Jones inheritance without a torsion restrictio
 target: a-theory-fj-fixed-two-generator-all-group-tester
 requires:
   - universal-all-group-subgroup-colimit-class-tester
-  - a-theory-fj-two-generator-tester-proof
+  - a-theory-fj-fixed-two-generator-tester
 ---
 
 Enkelmann--Lueck--Pieper--Ullmann--Winges, *On the Farrell--Jones

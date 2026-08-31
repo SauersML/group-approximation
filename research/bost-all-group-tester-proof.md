@@ -6,7 +6,7 @@ title: Check every subgroup of every finite-presentation stage
 target: bost-fixed-two-generator-all-group-tester
 requires:
   - whitehead-universal-finitely-presented-container
-  - bost-fixed-two-generator-torsion-free-tester-proof
+  - bost-fixed-two-generator-torsion-free-tester
 ---
 
 Fix the all-group universal host `U` from
