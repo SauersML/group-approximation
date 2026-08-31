@@ -90,7 +90,7 @@ for every `s in S`.  A weak-star cluster point of the associated states
 on `ell^infinity(H)` is a left-invariant mean.  Hence `H` is amenable.
 
 The GKP definition avoids this conclusion because its maps
-`pi_a:E->B` use an arbitrary auxiliary color set and vary with `a);
+`pi_a:E->B` use an arbitrary auxiliary color set and vary with `a`;
 they need not arise by restricting one map `z_n:A_n->H`.  Thus
 `(MLP6)` closes the global-coordinate and Følner-coinduction ansatz, not
 the general one-color code.
