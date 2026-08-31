@@ -26,9 +26,10 @@ gives short exactness of the chain complexes
 -/
 
 open CategoryTheory AlgebraicTopology Limits TopologicalSpace
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 
 open Classical
@@ -100,7 +101,7 @@ theorem mvIncl_comp_eq (U V : Opens X) (hUV : U ⊔ V = ⊤) :
   rfl
 
 /-- **The left map** `C_*(U ∩ V) ⟶ C_*(U) ⊕ C_*(V)`, `c ↦ (c, -c)`. -/
-noncomputable def mvLeftChainMap (U V : Opens X) (hUV : U ⊔ V = ⊤) :
+noncomputable def mvLeftChainMap (U V : Opens X) (_hUV : U ⊔ V = ⊤) :
     subChainComplex R X ((U : Set X) ∩ (V : Set X)) ⟶
       subChainComplex R X (U : Set X) ⊞ subChainComplex R X (V : Set X) :=
   biprod.lift (mvInclUV_U R U V) (-(mvInclUV_V R U V))
@@ -223,8 +224,8 @@ noncomputable def routeV (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
 
 /-- Degree-`k` projection of a `V`-chain to its `U ∩ V`-part. -/
 noncomputable def projVtoUV (U V : Opens X) (k : ℕ) :
-    ModuleCat.of R (subChainSubmodule R X (V : Set X) k) ⟶
-      ModuleCat.of R (subChainSubmodule R X ((U : Set X) ∩ (V : Set X)) k) :=
+    (subChainComplex R X (V : Set X)).X k ⟶
+      (subChainComplex R X ((U : Set X) ∩ (V : Set X))).X k :=
   restrictKeep R (IsSubordinate (U : Set X)) _ _ (keepHom_V_mem_UV R U V k)
 
 /-
@@ -244,16 +245,18 @@ Component identity `i_U ≫ routeU = id`.
 -/
 theorem mvInclU_small_comp_routeU (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
     (mvInclU_small R U V hUV).f k ≫ routeU R U V hUV k = 𝟙 _ := by
-  ext c;
-  convert keepHom_eq_self_of_mem c.2 using 1
+  ext c
+  change (keepHom R X (IsSubordinate (U : Set X))).hom c.val = c.val
+  exact keepHom_eq_self_of_mem c.2
 
 /-
 Component identity `i_U ≫ routeV = 0`.
 -/
 theorem mvInclU_small_comp_routeV (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
     (mvInclU_small R U V hUV).f k ≫ routeV R U V hUV k = 0 := by
-  ext c;
-  convert keepHom_PV_eq_zero_of_mem_U R U V k _ c.2 using 1
+  ext c
+  change (keepHom R X (IsSubVnotU U V)).hom c.val = 0
+  exact keepHom_PV_eq_zero_of_mem_U R U V k _ c.2
 
 /-
 Component identity `i_V ≫ routeU = projVtoUV ≫ i_{U∩V→U}`.
@@ -261,7 +264,8 @@ Component identity `i_V ≫ routeU = projVtoUV ≫ i_{U∩V→U}`.
 theorem mvInclV_small_comp_routeU (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
     (mvInclV_small R U V hUV).f k ≫ routeU R U V hUV k
       = projVtoUV R U V k ≫ (mvInclUV_U R U V).f k := by
-  convert rfl using 1
+  symm
+  rfl
 
 /-
 Element-level splitting on a `V`-chain: keeping `U` plus keeping "`V` not
@@ -276,11 +280,13 @@ theorem keepHom_split_subV (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ)
 /-
 Component identity `i_{U∩V→V} ≫ projVtoUV = id`.
 -/
-theorem mvInclUV_V_comp_projVtoUV (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
+theorem mvInclUV_V_comp_projVtoUV (U V : Opens X) (_hUV : U ⊔ V = ⊤) (k : ℕ) :
     (mvInclUV_V R U V).f k ≫ projVtoUV R U V k = 𝟙 _ := by
-  ext c;
-  convert keepHom_eq_self_of_mem _;
-  convert Submodule.coe_mem ( Submodule.inclusion ( subChainSubmodule_mono Set.inter_subset_left k ) c ) using 1
+  ext c
+  apply Subtype.ext
+  change (keepHom R X (IsSubordinate (U : Set X))).hom c.val = c.val
+  exact keepHom_eq_self_of_mem
+    (subChainSubmodule_mono Set.inter_subset_left k c.2)
 
 /-- The degree-`k` "split" short complex with the genuine `ModuleCat` biproduct
 in the middle. -/
@@ -294,13 +300,14 @@ noncomputable def mvSplitSC (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
       have : (mvInclUV_U R U V).f k ≫ (mvInclU_small R U V hUV).f k
           = (mvInclUV_V R U V).f k ≫ (mvInclV_small R U V hUV).f k := by
         ext c; apply Subtype.ext; rfl
-      rw [this]; simp [Preadditive.neg_comp])
+      rw [this]
+      rw [Preadditive.neg_comp, add_neg_cancel])
 
 /-- The retraction for the degreewise splitting. -/
 noncomputable def mvSplit_r (U V : Opens X) (k : ℕ) :
-    ModuleCat.of R (subChainSubmodule R X (U : Set X) k)
-        ⊞ ModuleCat.of R (subChainSubmodule R X (V : Set X) k) ⟶
-      ModuleCat.of R (subChainSubmodule R X ((U : Set X) ∩ (V : Set X)) k) :=
+    (subChainComplex R X (U : Set X)).X k
+        ⊞ (subChainComplex R X (V : Set X)).X k ⟶
+      (subChainComplex R X ((U : Set X) ∩ (V : Set X))).X k :=
   -(biprod.snd ≫ projVtoUV R U V k)
 
 /-- The section for the degreewise splitting. -/
@@ -313,25 +320,27 @@ noncomputable def mvSplit_s (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
 /-
 `r` is a retraction of `f`.
 -/
+set_option backward.defeqAttrib.useBackward true in
+set_option backward.isDefEq.respectTransparency false in
 theorem mvSplit_f_r (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
     (mvSplitSC R U V hUV k).f ≫ mvSplit_r R U V k = 𝟙 _ := by
-  convert mvInclUV_V_comp_projVtoUV R U V hUV k using 1;
-  convert congr_arg ( fun f => f ≫ projVtoUV R U V k ) ( biprod.lift_snd _ _ ) using 1;
-  rotate_left;
-  exact ModuleCat.of R ( subChainSubmodule R X ( U : Set X ) k );
-  exact 0;
-  convert congr_arg ( fun f => -f ≫ projVtoUV R U V k ) ( biprod.lift_snd _ _ ) using 1;
-  simp +decide [ neg_neg ]
+  dsimp only [mvSplitSC, mvSplit_r]
+  rw [Preadditive.comp_neg, ← Category.assoc, biprod.lift_snd,
+    Preadditive.neg_comp, neg_neg]
+  exact mvInclUV_V_comp_projVtoUV R U V hUV k
 
 /-
 `s` is a section of `g`.
 -/
 theorem mvSplit_s_g (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
     mvSplit_s R U V hUV k ≫ (mvSplitSC R U V hUV k).g = 𝟙 _ := by
-  ext x;
-  apply Subtype.ext;
-  convert keepHom_split_small R U V hUV k x.val x.2 using 1;
-  erw [ biprod.lift_desc ] ; aesop;
+  change biprod.lift (routeU R U V hUV k) (routeV R U V hUV k) ≫
+      biprod.desc ((mvInclU_small R U V hUV).f k)
+        ((mvInclV_small R U V hUV).f k) = 𝟙 _
+  rw [biprod.lift_desc]
+  ext x
+  apply Subtype.ext
+  exact keepHom_split_small R U V hUV k x.val x.2
 
 /-
 The element-level splitting identity on `V`-chains: the `U`-part (routed back
@@ -346,10 +355,13 @@ theorem projVtoUV_inclUV_V_add_inclV_routeV (U V : Opens X) (hUV : U ⊔ V = ⊤
           ⟶ ModuleCat.of R (subChainSubmodule R X (V : Set X) k)))
       = 𝟙 (ModuleCat.of R (subChainSubmodule R X (V : Set X) k)) := by
   ext c
-  have h := keepHom_split_subV R U V hUV k c.1 c.2
-  convert h using 1
+  change (keepHom R X (IsSubordinate (U : Set X))).hom c.val +
+    (keepHom R X (IsSubVnotU U V)).hom c.val = c.val
+  exact keepHom_split_subV R U V hUV k c.1 c.2
 
-/-- The splitting identity `r ≫ f + g ≫ s = 𝟙`. -/
+/- The splitting identity `r ≫ f + g ≫ s = 𝟙`. -/
+set_option backward.defeqAttrib.useBackward true in
+set_option backward.isDefEq.respectTransparency false in
 theorem mvSplit_id (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
     ((mvSplit_r R U V k ≫ (mvSplitSC R U V hUV k).f :
         (mvSplitSC R U V hUV k).X₂ ⟶ (mvSplitSC R U V hUV k).X₂)
@@ -365,11 +377,13 @@ theorem mvSplit_id (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
       = 𝟙 (ModuleCat.of R (subChainSubmodule R X (U : Set X) k)
           ⊞ ModuleCat.of R (subChainSubmodule R X (V : Set X) k)) from rfl]
   apply biprod.hom_ext' <;> apply biprod.hom_ext
-  · simp [mvInclU_small_comp_routeU]
-  · simp [mvInclU_small_comp_routeV]
-  · simp [mvInclV_small_comp_routeU]
-  · simp only [Preadditive.add_comp, Preadditive.comp_add, Preadditive.comp_neg,
-      Preadditive.neg_comp]
+  · simp only [Preadditive.comp_add, Preadditive.add_comp, Category.assoc]
+    simpa using mvInclU_small_comp_routeU R U V hUV k
+  · simp only [Preadditive.comp_add, Preadditive.add_comp, Category.assoc]
+    simpa using mvInclU_small_comp_routeV R U V hUV k
+  · simp only [Preadditive.comp_add, Preadditive.add_comp, Category.assoc]
+    simp [mvInclV_small_comp_routeU]
+  · simp only [Preadditive.add_comp, Preadditive.comp_add, Category.assoc]
     simpa using projVtoUV_inclUV_V_add_inclV_routeV R U V hUV k
 
 /-- The splitting of the degree-`k` split short complex. -/
@@ -394,9 +408,11 @@ theorem biprodXIso_lift_f
     {K L M : ChainComplex (ModuleCat.{0} R) ℕ} (a : K ⟶ L) (b : K ⟶ M) (k : ℕ) :
     (biprod.lift a b).f k ≫ (HomologicalComplex.biprodXIso L M k).hom
       = biprod.lift (a.f k) (b.f k) := by
-  apply biprod.hom_ext;
-  · simp +decide [ Category.assoc, HomologicalComplex.biprodXIso ];
-  · simp +decide [ HomologicalComplex.biprodXIso, biprod.lift ]
+  apply biprod.hom_ext
+  · simp only [Category.assoc, HomologicalComplex.biprodXIso_hom_fst,
+      HomologicalComplex.biprod_lift_fst_f, biprod.lift_fst]
+  · simp only [Category.assoc, HomologicalComplex.biprodXIso_hom_snd,
+      HomologicalComplex.biprod_lift_snd_f, biprod.lift_snd]
 
 /-
 `biprodXIso.inv ≫ (biprod.desc a b).f k = biprod.desc (a.f k) (b.f k)`.
@@ -405,9 +421,11 @@ theorem biprodXIso_desc_f
     {K L M : ChainComplex (ModuleCat.{0} R) ℕ} (a : L ⟶ K) (b : M ⟶ K) (k : ℕ) :
     (HomologicalComplex.biprodXIso L M k).inv ≫ (biprod.desc a b).f k
       = biprod.desc (a.f k) (b.f k) := by
-  apply biprod.hom_ext';
-  · simp +decide [ HomologicalComplex.biprodXIso, biprod.inl_desc ];
-  · simp +decide [ ← Category.assoc, HomologicalComplex.biprodXIso ]
+  apply biprod.hom_ext'
+  · simp only [← Category.assoc, HomologicalComplex.inl_biprodXIso_inv,
+      HomologicalComplex.biprod_inl_desc_f, biprod.inl_desc]
+  · simp only [← Category.assoc, HomologicalComplex.inr_biprodXIso_inv,
+      HomologicalComplex.biprod_inr_desc_f, biprod.inr_desc]
 
 /-
 The degree-`k` mapped short complex is isomorphic to the split short complex.
@@ -418,20 +436,19 @@ noncomputable def mvEvalIso (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
   ShortComplex.isoMk (Iso.refl _)
     (HomologicalComplex.biprodXIso _ _ k) (Iso.refl _)
     (by
-    simp +decide [ mvSplitSC, mvShortComplex, mvLeftChainMap ];
-    rw [ biprodXIso_lift_f ];
-    congr)
+      change 𝟙 _ ≫ biprod.lift ((mvInclUV_U R U V).f k)
+          (-(mvInclUV_V R U V).f k) =
+        (biprod.lift (mvInclUV_U R U V) (-(mvInclUV_V R U V))).f k ≫
+          (HomologicalComplex.biprodXIso _ _ k).hom
+      rw [Category.id_comp, biprodXIso_lift_f]
+      rfl)
     (by
-      simp only [Iso.refl_hom, Category.comp_id]
-      rw [show ((HomologicalComplex.eval (ModuleCat.{0} R) (ComplexShape.down ℕ) k).mapShortComplex.obj
-            (mvShortComplex R U V hUV)).g
-          = (mvRightChainMap R U V hUV).f k from rfl,
-        show (mvSplitSC R U V hUV k).g
-          = biprod.desc ((mvInclU_small R U V hUV).f k) ((mvInclV_small R U V hUV).f k) from rfl,
-        show (mvRightChainMap R U V hUV)
-          = biprod.desc (mvInclU_small R U V hUV) (mvInclV_small R U V hUV) from rfl,
-        ← biprodXIso_desc_f, Iso.hom_inv_id_assoc])
-        -- placeholder
+      change (HomologicalComplex.biprodXIso _ _ k).hom ≫
+          biprod.desc ((mvInclU_small R U V hUV).f k)
+            ((mvInclV_small R U V hUV).f k) =
+        (biprod.desc (mvInclU_small R U V hUV)
+          (mvInclV_small R U V hUV)).f k ≫ 𝟙 _
+      rw [Category.comp_id, ← biprodXIso_desc_f, Iso.hom_inv_id_assoc])
 
 /-- **Degreewise short exactness** of the Mayer–Vietoris short complex. -/
 theorem mvShortComplex_degreewise_shortExact (U V : Opens X) (hUV : U ⊔ V = ⊤) (k : ℕ) :
