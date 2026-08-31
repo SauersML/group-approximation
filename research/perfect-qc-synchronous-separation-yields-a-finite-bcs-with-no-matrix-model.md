@@ -116,6 +116,17 @@ back its normalized corner trace makes the host non-CE and the finite
 central-character compiler produces a nonhyperlinear group.  This is an
 exact terminal implication, not a construction of the missing map.
 
+The universal free-label shortcut is also exact but circular.
+`free-label-haarization-erases-the-source-and-canceling-labels-restate-the-group-factor-gate`
+shows that `v_i=u_i tensor lambda(s_i)` always generates a copy of
+`L(F_n)`, independently of the source tuple.  Adding
+`b_i=1 tensor lambda(s_i)` recovers `u_i tensor 1`, but the generated
+abstract group is exactly `H times F_n`.  Its ambient trace is canonical
+if and only if `tau(h)=0` for every nonidentity `h in H`, equivalently
+the original GNS algebra was already trace-isomorphic to `L(H)`.  Thus
+free labels either erase the non-CE source or restate the group-factor
+gate.
+
 Thus the 2025 literature closes the perfect-completeness source gate and
 reduces it to a finite independent-set/BCS algebra. The unresolved gate is
 solely a robust multiplicative group-corner realization of its partition
