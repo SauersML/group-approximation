@@ -193,6 +193,17 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   a robust commutativity quotient.  The next candidate must use multiple
   irreducible cycles and a port relation already valid in the intended
   commuting-operator source model.
+- **Add a second square but keep degree-two scalar incidence syntax.**
+  Also exhausted by `two-magic-square-incidence-overlaps-never-separate`.
+  Simple context overlaps are `G_(r,c)=K_(3,3) union_(K_(r,c)) K_(3,3)`.
+  Most already have infinite incidence group (two disjoint cycles), and the
+  common-partition case `K_(3,6)` is infinite; so a blanket finite-Clifford
+  explanation is false.  The marked obstruction nevertheless vanishes:
+  Arkhipov's theorem says every graph-incidence `J` survives universally iff
+  it survives in finite dimension.  A second scalar-sign cycle can enlarge
+  the group but cannot create perfect finite-versus-commuting separation.
+  A live coupling must use operator ports, higher variable occurrence, or a
+  non-incidence cross-block equation.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
