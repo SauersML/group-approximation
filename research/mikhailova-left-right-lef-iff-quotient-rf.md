@@ -27,7 +27,7 @@ G acts on H,        (u,v).h=q(u)h q(v)^(-1)            (MLA1)
 
 is a LEF action in the sense of Alekseev--Bradford.
 2. `H` is residually finite.
-3. `M_H` is separable in `G).
+3. `M_H` is separable in `G`.
 
 The new implication is `1 => 3`.  Alekseev--Bradford identify LEFness of a
 transitive action `G` on `G/M_H` with `M_H` being almost of finite
