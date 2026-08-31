@@ -3,8 +3,6 @@ rg: 2
 id: regular-core-window-is-a-hecke-kraus-hull
 kind: claim
 title: The regular-core relative window is a finite Hecke--Kraus hull
-requires:
-  - every-relative-ucp-window-lives-in-one-induced-representation
 distinct_from:
   regular-congruence-endpoint-orbit-has-uniform-selberg-retraction: that controls the unitary commutant orbit of one exact regular endpoint; this identifies the larger matrix-convex set of all core-exact ucp corners before endpoint rounding.
   congruence-endpoint-orbits-are-restriction-ring-fibers: that classifies unitary exact endpoint orbits; this gives the finite Kraus parametrization of nonmultiplicative relative windows.
@@ -126,3 +124,6 @@ regular microstate would produce the finite corners and, by property
 \((T;FD)\), the flexible endpoint.  No uniform estimate of that kind is
 currently known; (HKH9) supplies a concrete way to search for a genuine
 moving-level obstruction, but does not assert one.  The root remains open.
+
+DERIVATION
+regular-core-hecke-kraus-hull-proof
