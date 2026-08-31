@@ -36,7 +36,7 @@ By the half-slack finite-degree theorem, the values are `j`-connected and
 equi-`LC^j`, with a common modulus for this fixed `D`. Compact Hausdorff
 spaces are paracompact, and `dim(K)=D=j+1`, so Michael selection with index
 `j` gives a continuous exact `m`-tuple. Operator-ball recovery returns
-it to `M_1^m). Factor type may change because lower semicontinuity and all
+it to `M_1^m`. Factor type may change because lower semicontinuity and all
 degreewise moduli are type-free.
 
 Now fix `x_0 in K`, a bounded positive trace `sigma` on the fibre gap

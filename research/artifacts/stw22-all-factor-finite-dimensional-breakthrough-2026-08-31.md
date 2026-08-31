@@ -23,7 +23,7 @@ k=m rank(supp(a)),       c=n-k.
 ```
 
 Half slack gives `c>=k>=m` for every nonzero weight. Thus
-`m>=ceil(j/2)` implies `2c>=j), exactly the sharp stable range of the
+`m>=ceil(j/2)` implies `2c>=j`, exactly the sharp stable range of the
 audited matrix carrier/Bott induction. Its degree-`j` weighted radius is
 
 ```text
