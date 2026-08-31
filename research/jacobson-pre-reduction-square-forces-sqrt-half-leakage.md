@@ -19,7 +19,7 @@ u=[t,k]=t k t k=x_21(T).
 ```
 
 The root `t` commutes with `e`, while `e u e=0`. Therefore the
-separate opposite-root occurrence has the sharp universal lower bound
+separate opposite-root occurrence has the universal lower bound
 
 ```text
 ||(1-e) k e||_op >= 1/sqrt(2).                          (JPS1)
