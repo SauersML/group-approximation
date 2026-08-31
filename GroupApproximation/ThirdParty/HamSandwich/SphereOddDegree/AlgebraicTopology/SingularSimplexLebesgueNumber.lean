@@ -26,11 +26,11 @@ domain diameter `< ε`, its image under `σ` lies in some `U ∈ 𝒰`.
 -/
 
 open CategoryTheory AlgebraicTopology
-open AffineBarycentricSubdivision
 open scoped Topology
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
+open AffineBarycentricSubdivision
 
 /-- A subset `A ⊆ Δⁿ` has its `σ`-image contained in a single member of the open
 cover `𝒰`. -/
