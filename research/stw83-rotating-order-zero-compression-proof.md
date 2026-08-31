@@ -114,5 +114,5 @@ there is no unital star homomorphism from the simple noncommutative algebra
 `M_m`, `m>=2`, to the abelian algebra
 `eM_m(C(T))e=C(T)e`: a nonzero homomorphism would be injective.  Thus
 `kappa` is not order zero.  Equivalently, `e` does not commute with the
-range of `pi).  This failure of compression to preserve order zero is
+range of `pi`.  This failure of compression to preserve order zero is
 exactly the noncommutative escape from the abelian distance-one theorem.
