@@ -1,9 +1,9 @@
 ---
 rg: 2
 id: qutrit-full-cuntz-four-root-cell-proof
-kind: proof
+kind: route
 title: Compute the 256-element Cuntz cell and its finite-amalgam shadow
-target: qutrit-full-cuntz-four-root-cell-is-finite-but-generates-full-leavitt-group
+target: qutrit-four-root-cell-finite-but-generates-full-leavitt
 requires:
   - qutrit-first-infinite-prefix-holonomy-is-dihedral-amenable
   - amenable-edge-cycles-cannot-create-an-lcs-gap

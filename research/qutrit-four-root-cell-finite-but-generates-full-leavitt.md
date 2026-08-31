@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: qutrit-full-cuntz-four-root-cell-is-finite-but-generates-full-leavitt-group
+id: qutrit-four-root-cell-finite-but-generates-full-leavitt
 kind: claim
 title: The first full-Cuntz qutrit cell is finite but its scalar closure is the full Leavitt group
 artifacts:

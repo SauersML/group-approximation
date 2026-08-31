@@ -6,7 +6,7 @@ title: Every finite parallel family of full-Cuntz qutrit cells has a finite cova
 artifacts:
   - research/qutrit-parallel-cuntz-cell-finite-packet-proof.md
 distinct_from:
-  qutrit-full-cuntz-four-root-cell-is-finite-but-generates-full-leavitt-group: that isolates one 256-element cell and asks for a kernel relation between distinct scalar conjugates; this supplies the first such relations and closes every finite parallel family.
+  qutrit-four-root-cell-finite-but-generates-full-leavitt: that isolates one 256-element cell and asks for a kernel relation between distinct scalar conjugates; this supplies the first such relations and closes every finite parallel family.
   qutrit-matched-prefix-router-family-is-one-finite-hnn-chart: that treats several central-line routers sharing one rectangular equivalence; this treats several inequivalent Cuntz triangles sharing their full four-dimensional return center.
   finite-overgroup-packing-preserves-hyperlinearity: that is a general permanence theorem for an already finite packet graph; this identifies and counts the concrete finite overgroup which absorbs all parallel-cell covariance.
 ---
