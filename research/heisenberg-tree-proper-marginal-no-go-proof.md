@@ -44,14 +44,18 @@ is a linear subspace. There are only three cases.
   `pi_(F,zeta)`, whose central idempotent is again `q`.
 
 The first and third cases cannot occur in a partition with at least two
-nonzero atoms: one atom would already equal the unit `q). Thus every atom
+nonzero atoms: one atom would already equal the unit `q`. Thus every atom
 is a character idempotent of a maximal abelian subgroup containing `Z`.
 
-Two distinct Bass--Serre vertex stabilizers intersect in the stabilizer of
-their connecting path, which is `Z` because every edge stabilizer is the
-same central subgroup. Two distinct maximal abelian subgroups in one
-Heisenberg vertex also intersect in `Z`, since they are inverse images of
-distinct lines in `F/Z). Therefore two atom charts `A,B` either agree
+Two distinct maximal abelian subgroups in one Heisenberg vertex
+intersect in `Z`, since they are inverse images of distinct lines in
+`F/Z`. For distinct Bass--Serre vertex stabilizers, their intersection
+fixes the whole connecting path and is contained in every edge stabilizer
+on that path. Each such stabilizer is either `Z` or a maximal abelian
+order-`ell^2` subgroup. Their intersection is therefore `Z` unless all
+of them contain one common maximal abelian subgroup. In the latter case,
+an atom chart contained at both endpoints must equal that common subgroup.
+Consequently two atom charts `A,B` either agree as subgroups of `Gamma`
 or satisfy
 
 ```text
@@ -68,7 +72,7 @@ tau(z_(A,alpha) z_(B,beta))
 ```
 
 Such atoms are not orthogonal. Hence every atom in `(HNG3)` uses one and
-the same maximal abelian chart `A). Distinct atoms use distinct characters.
+the same maximal abelian chart `A`. Distinct atoms use distinct characters.
 Each has trace `1/ell^2`, whereas `tau(q)=1/ell`; the trace equality in
 `(HNG3)` forces exactly `ell` atoms. These are all characters of `A`
 whose restriction to `Z` is `zeta`, proving `(HNG5)`.
@@ -82,7 +86,7 @@ C[A] intersect C[B]=C[A intersect B].                   (HNG11)
 
 If `A!=B`, then `(HNG9)` puts it in `C[Z]`. It is a projection below
 the primitive character idempotent `q in C[Z]`, so it is either zero or
-`q), contradicting proper nonemptiness. Thus `A=B`. The marked
+`q`, contradicting proper nonemptiness. Thus `A=B`. The marked
 character idempotents of the finite abelian group `A` are linearly
 independent primitive projections, so equality of their subset sums gives
 `S=T`. This proves `(HNG7)` and the claimed no-go.
