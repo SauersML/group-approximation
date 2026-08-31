@@ -401,3 +401,32 @@ permutation target still exists, so this is a gauge-rounding obstruction,
 not a counterexample to equivariant transfer.  Constructing compatible
 targets across growing windows remains OPEN.
 
+
+
+**2026-08-31 (finite nonabelian packet rigidifier, exact no-go).**
+The claim `canonical-regular-packets-leave-an-unbounded-cartan-reservoir` tests the strongest fixed-packet version of the
+basis-selection idea.  For an irreducible packet sector of dimension `s`,
+canonical regular trace forces
+
+```text
+M_s tensor I_(rs),
+```
+
+not a multiplicity-one matrix algebra.  Even granting the actual
+right-regular algebra on the same sector only improves this to
+`M_(s^2) tensor I_r`; an ordinary second commuting packet is another left
+regular factor and does not achieve that improvement.  The pointwise packet
+stabilizer contains `U(r)`, so connectedness forbids any equivariant
+rank-one-masa selector.  Normalizing actors retain an arbitrary projective
+multiplicity representation.
+
+The obstruction is realized by exact models.  A doubled bent-Walsh
+involution `W_m=V_m direct_sum (-V_m)` represents the `C_2` reservoir
+with zero trace exactly.  Thus `lambda_K tensor W_m` is a multiple of the
+regular representation of `K times C_2` at every finite stage and has
+exact packet covariance, but its packet-product collision tends to zero and
+its squared normalized-HS distance from every monomial tends to `2`,
+unchanged by sublinear padding.  Thus extraspecial or paired packets can
+rigidify only coarse finite-factor atoms.  The actor-dependent growing
+Cartan required for the direct target remains OPEN; this does not prove
+(CCR), equivariant normalizer transfer, or a nonhyperlinear group.
