@@ -83,3 +83,16 @@ load-bearing **proper** marginal must use atom-specific chart groups with
 non-clean intersections or a genuinely noncentral multipath restriction
 sum; a finite graph of finite groups, graph product, or finite biunitary
 packet does not qualify.
+
+
+The local invisibility and phase requirements can now be met simultaneously.
+`thompson-27-cylinder-qutrit-cell-is-fd-invisible` realizes the two-qutrit
+cell by affine permutations of 27 leaves of one Thompson prefix code.  Its
+root type is annihilated by every finite-dimensional representation of
+`V`, of the corresponding copy in `EL_4(L_(F_2)(1,2))`, and of the
+lifted copy in the binary-Leavitt Steinberg groups; every support element
+outside the root chart cancels through exactly three cube-root phases.
+Nevertheless all displayed coefficients remain in one finite extraspecial
+subgroup and have an exact regular model.  Thus ambient minimal almost
+periodicity is not the missing global incidence: the first new equality must
+use an off-code, mixed nontransport support element.
