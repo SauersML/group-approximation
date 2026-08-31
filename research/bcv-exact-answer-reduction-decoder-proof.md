@@ -60,8 +60,8 @@ s_(Player,Space)(z,(u,s,r))
 It then states that the two component edges are sampled independently
 (lines 18792--18800). On a Player self-loop, Definition 4.38 feeds the same
 seed z to the same map at both ends, so both outputs are the same packet w.
-Every packet that is a game vertex has a nonempty finite seed fibre and
-therefore positive loop mass. Independently pairing that loop with any
+Every packet in the support of the game has a nonempty finite seed fibre
+and therefore positive loop mass; unsupported formal vertices are irrelevant. Independently pairing that loop with any
 supported low-degree incidence holds v fixed while sampling that incidence.
 
 The Point sampler is BCV equation `(178)`,
@@ -95,8 +95,9 @@ Equations `(178)--(181)` quantify over every `s in F_q`, so
 `s=0` is in the sampler domain. At that value `chi(s)=1`. The paper
 defines `pi_i` by zeroing the first i coordinates (lines 18468--18473),
 hence `pi_0(r)=r`. Given distinct points `p,p'`, choose
-`r=p'-p` and `u=p`. Equation `(EAD5)` then samples a copy of the
-affine line through both points and both incidences. Uniform finite seeds
+`r=p'-p` and `u=p`. Fact 5.74 gives `null_r(p)=null_r(p')`, so both seeds produce the same
+DLine copy. Equation `(EAD5)` therefore samples the affine line through
+both points and both incidences. Uniform finite seeds
 give it positive mass. This is the BCV DLine support statement; it is not
 imported from the analogous JNVWY test.
 
