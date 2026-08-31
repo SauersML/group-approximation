@@ -117,7 +117,7 @@ intersects it only in `Z`, and cannot contain `Z_2`. Thus the subgroup
 must lie in `F`, where it was just excluded. This proves `(TQM6)`.
 
 Finally, `q C[F]q` is the full marked spin block `M_9(C)`. Since
-`P` has rank three, it is neither zero nor `q) and is noncentral.
+`P` has rank three, it is neither zero nor `q` and is noncentral.
 Bass--Serre theory makes the finite amalgam `Gamma` virtually free. Thus
 the construction solves exactly the local algebraic multipath problem but
 remains a hyperlinear, finite-dimensional-visible boundary model.
