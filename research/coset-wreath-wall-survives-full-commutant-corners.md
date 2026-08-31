@@ -110,6 +110,16 @@ matrix-ultraproduct embedding of `L(W)`, and every nonzero full multiplicity
 corner of it, realizes the forbidden balanced projection transfer `(BWC5)`.
 No amplification or commutant corner can hide the wall.
 
+The follow-up
+`boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse`
+diagonalizes every fixed finite lamp algebra and proves a sharp pairwise
+arrow theorem: the wrong-atom coupling mass is at most one quarter of the
+summed generator covariance energy, so each actor arrow is close to a
+coarse Boolean block normalizer.  But `(BWC3)` forces every fixed Boolean
+atom in every nonzero full corner to have rank tending to infinity.
+Rank-one fibers require windows of size at least logarithmic in the corner
+dimension, a scale not controlled by fixed-window hyperlinear convergence.
+
 By `wreath-not-sofic`, this same `W` is already known to be nonsofic.
 Thus a hyperlinear embedding would give the desired hyperlinear--nonsofic
 separation, and the theorem says that every exact corner of such an embedding
