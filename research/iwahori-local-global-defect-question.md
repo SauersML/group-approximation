@@ -454,6 +454,16 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   Therefore full fusion data regroups the Plancherel atoms
   dimension-freely once a quotient lift exists. It still does not produce
   the moving multiplication table from the raw Iwahori pair.
+- **No bounded scalar window can compute the global grouping.**
+  `bounded-moments-cannot-recover-plancherel-grouping-score` compares, in
+  the same dimension `|PSL_2(F_p)|`, the regular endpoint with
+  `(|G_p|/p)` copies of Steinberg. Every fixed word/multiplication moment
+  differs by at most `1/p`, but the global regular-grouping scores are
+  exactly zero and one. Amplified regular endpoints at two distinct large
+  primes even have identical fixed windows in one common dimension.
+  Therefore a quotient selector must use a window growing with the modulus
+  or genuinely operator-valued table data; bounded character separation
+  cannot feed the Plancherel criterion.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
