@@ -51,15 +51,14 @@ theorem exists_brokenHalfAssignment
     (D : RelGenSet G Λ) (halfBase : G)
     (half : List (RelLetter G Λ)) (I : Finset ℕ)
     (survives : ℕ → Prop) (lam : ℕ → Λ) (pos : ℕ → ℕ)
-    (chordLength : ℕ) (ChordStart : ℕ → Prop)
-    (hChordRange : ∀ q, ChordStart q → q < chordLength)
+    (chordLength : ℕ) (chordPos : ℕ → ℕ)
     (hpos : Set.InjOn pos (↑I : Set ℕ))
     (hsep : ∀ s ∈ brokenSet I survives, ∀ t ∈ brokenSet I survives,
       pos s ≠ pos t →
       ¬ Connected D.fam (lam s) halfBase half (pos s) (pos t))
-    (hexists : ∀ s ∈ brokenSet I survives, ∃ q : ℕ,
-      ChordStart q ∧ IsCompStart (lam s) half q ∧
-      Connected D.fam (lam s) halfBase half (pos s) q) :
+    (hexists : ∀ s ∈ brokenSet I survives, ∃ y : ℕ,
+      y < chordLength ∧ IsCompStart (lam s) half (chordPos y) ∧
+      Connected D.fam (lam s) halfBase half (pos s) (chordPos y)) :
     Nonempty (BrokenHalfAssignment I survives pos chordLength) := by
   classical
   let B := brokenSet I survives
@@ -69,16 +68,28 @@ theorem exists_brokenHalfAssignment
     · exact (mem_brokenSet_iff.mp hs).1
     · exact (mem_brokenSet_iff.mp ht).1
     · exact heq
-  have hexists' : ∀ s ∈ B, ∃ q : ℕ,
-      ChordStart q ∧ IsCompStart (lam s) half q ∧
-        Connected D.fam (lam s) halfBase half (pos s) q := by
-    exact hexists
-  obtain ⟨partner, hpartner, hinj⟩ :=
-    exists_injective_chordPartner D halfBase half B lam pos ChordStart
-      hposB hsep hexists'
+  let partner : ℕ → ℕ := fun s =>
+    if hs : s ∈ B then Classical.choose (hexists s hs) else 0
+  have hpartner : ∀ s ∈ B,
+      partner s < chordLength ∧
+      IsCompStart (lam s) half (chordPos (partner s)) ∧
+      Connected D.fam (lam s) halfBase half (pos s)
+        (chordPos (partner s)) := by
+    intro s hs
+    simpa [partner, hs] using Classical.choose_spec (hexists s hs)
+  have hfullInj : Set.InjOn (fun s => chordPos (partner s)) (↑B : Set ℕ) :=
+    chordPartner_injOn D halfBase half B lam pos
+      (fun s => chordPos (partner s)) hposB hsep
+      (fun s hs => (hpartner s hs).2.1)
+      (fun s hs => (hpartner s hs).2.2)
+  have hinj : Set.InjOn partner (↑B : Set ℕ) := by
+    intro s hs t ht heq
+    apply hfullInj hs ht
+    change chordPos (partner s) = chordPos (partner t)
+    rw [heq]
   have hrange : ∀ s ∈ B, partner s < chordLength := by
     intro s hs
-    exact hChordRange (partner s) (hpartner s hs).1
+    exact (hpartner s hs).1
   obtain ⟨index⟩ := exists_greedyHalfFamilyIndex B pos partner chordLength
     hposB hinj hrange
   exact ⟨{
@@ -90,21 +101,22 @@ theorem exists_brokenHalfAssignment
 
 /-- The two broken sets and partner assignments obtained independently from
 the two balanced halves. -/
-structure TwoHalfBrokenAssignment (I : Finset ℕ)
+structure TwoHalfBrokenAssignment (firstI secondI : Finset ℕ)
     (firstSurvives secondSurvives : ℕ → Prop)
     (firstPos secondPos : ℕ → ℕ) (chordLength : ℕ) where
-  first : BrokenHalfAssignment I firstSurvives firstPos chordLength
-  second : BrokenHalfAssignment I secondSurvives secondPos chordLength
+  first : BrokenHalfAssignment firstI firstSurvives firstPos chordLength
+  second : BrokenHalfAssignment secondI secondSurvives secondPos chordLength
 
 namespace TwoHalfBrokenAssignment
 
 /-- The two constructed half indices form the common two-half greedy index. -/
-def index {I : Finset ℕ} {firstSurvives secondSurvives : ℕ → Prop}
+def index {firstI secondI : Finset ℕ}
+    {firstSurvives secondSurvives : ℕ → Prop}
     {firstPos secondPos : ℕ → ℕ} {chordLength : ℕ}
-    (A : TwoHalfBrokenAssignment I firstSurvives secondSurvives
+    (A : TwoHalfBrokenAssignment firstI secondI firstSurvives secondSurvives
       firstPos secondPos chordLength) :
     TwoHalfGreedyFamilyIndex
-      (brokenSet I firstSurvives) (brokenSet I secondSurvives)
+      (brokenSet firstI firstSurvives) (brokenSet secondI secondSurvives)
       firstPos A.first.partner secondPos A.second.partner chordLength where
   first := A.first.index
   second := A.second.index
