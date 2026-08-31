@@ -9,8 +9,9 @@ distinct_from:
   amenable-domain-linear-sofic-models-are-unique: that is approximation conjugacy for arbitrary amenable domains; this is the exact liftability criterion for amenable group algebras.
 ---
 
-Let `Gamma` be a torsion-free amenable group and let `K` be a field such
-that the group algebra `K[Gamma]` has no zero divisors. Then
+Let `Gamma` be a finitely generated torsion-free amenable group and let
+`K` be a field such that the group algebra `K[Gamma]` has no zero
+divisors. Then
 
 ```text
 K[Gamma] is weakly stable in the normalized rank metric
