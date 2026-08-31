@@ -46,9 +46,10 @@ small-chain homology `H_*(C_*^{U,V}(X))` by the singular homology `H_*(X)`.
 -/
 
 open CategoryTheory Limits TopologicalSpace ShortComplex
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 
 open Classical
@@ -156,12 +157,14 @@ noncomputable def mvConnectingIso (U V : Opens X) (hUV : U ⊔ V = ⊤)
     (hUj : IsZero ((subChainComplex R X (U : Set X)).homology j))
     (hVj : IsZero ((subChainComplex R X (V : Set X)).homology j)) :
     (twoOpenCoverSmallChains R U V hUV).homology i
-      ≅ (subChainComplex R X ((U : Set X) ∩ (V : Set X))).homology j :=
-  haveI : IsIso ((mvShortExact R U V hUV).δ i j hij) :=
-    isIso_shortExact_δ R (mvShortExact R U V hUV) i j hij
+      ≅ (subChainComplex R X ((U : Set X) ∩ (V : Set X))).homology j := by
+  let hS := mvShortExact R U V hUV
+  let d := hS.δ i j hij
+  let hd : IsIso d :=
+    isIso_shortExact_δ R hS i j hij
       (isZero_mvX₂_homology R U V hUV i hUi hVi)
       (isZero_mvX₂_homology R U V hUV j hUj hVj)
-  asIso ((mvShortExact R U V hUV).δ i j hij)
+  exact @asIso _ _ _ _ d hd
 
 /-- **The singular Mayer–Vietoris connecting isomorphism.**
 
