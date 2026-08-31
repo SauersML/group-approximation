@@ -5,7 +5,6 @@ kind: route
 title: Separate pointwise lamp control from uniform Ulam control
 target: alekseev-thom-ulam-stability-does-not-close-the-kt-moving-window
 requires:
-  - finite-packet-basis-rigidifiers-leave-a-multiplicity-cocycle
   - kt-cyclic-parity-is-an-exact-quasiregular-return-correspondence
 ---
 
