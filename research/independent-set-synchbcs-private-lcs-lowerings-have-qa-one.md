@@ -8,7 +8,7 @@ artifacts:
 distinct_from:
   lcs-parity-gadgets-preserve-odd-dictator-affine-hull: that is the generic atomwise affine-closure theorem; this computes the two predicates in the canonical 2025 independent-set BCS, glues their local ghosts globally, and obtains a one-dimensional negative-J model.
   magic-square-one-port-is-a-universal-phase-absorber: that classifies one local contextual cell; this applies all audited private and common-row cells to one global source assignment and concludes that the compiled game has qa value one.
-  perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model: that supplies the no-matrix SynchBCS source; this proves that the most direct LCS and Magic-Square lowerings destroy its strict qa gap.
+  perfect-qc-separation-yields-finite-bcs-with-no-matrix-model: that supplies the no-matrix SynchBCS source; this proves that the most direct LCS and Magic-Square lowerings destroy its strict qa gap.
   perfect-completeness-constant-soundness-lcs-compiler: that is the open unrestricted compiler; this closes only source-oblivious context-local and the explicitly listed Magic-Square architectures.
 ---
 
@@ -17,7 +17,7 @@ REMAINS OPEN.**
 
 Let \(I\) be the finite independent-set game and \(B_I\) its canonical
 SynchBCS from
-perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model.
+perfect-qc-separation-yields-finite-bcs-with-no-matrix-model.
 Write \(\xi_{i,v}\in\mathbf F_2\) for the bit selecting outcome \(v\) on
 question \(i\). The only scalar predicate supports in this presentation
 are
