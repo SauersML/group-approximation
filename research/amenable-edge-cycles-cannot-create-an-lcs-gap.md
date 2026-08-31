@@ -38,6 +38,13 @@ amalgamated products and HNN cycles, and in particular every network made from
 finite local group cells glued along finite, cyclic, abelian, or other amenable
 interfaces.
 
+There is a stronger exact conclusion for a finite graph of finite local
+cells: its fundamental group is virtually free and residually finite. If
+\(J\ne1\), a finite quotient detects \(J\), and the negative \(J\)-eigenspace
+of the quotient's regular representation is a finite-dimensional exact
+operator solution. Thus this common finite-cell architecture admits a
+perfect finite-dimensional strategy, not merely near-perfect strategies.
+
 The reason is structural. Fima and Freslon's graph-of-algebras permanence
 theorem makes (Gamma_B) hyperlinear. If (B) is tracially satisfiable, then
 (J
