@@ -95,7 +95,7 @@ The matrix-unit algebra `P` meets the scalar coefficient field in
 P intersect F_2={0,1}.
 ```
 
-Indeed its identity is `1` by `(QFC8)` and its other seven nonzero
+Indeed its identity is `1` by `(QFC8)` and its other fourteen nonzero
 elements are non-scalar matrix-unit combinations. Hence
 
 ```text
