@@ -432,3 +432,56 @@ killing the two root packet generators.  The pinned extraspecial group
 contains the known nonsofic `C_2` wreath, but its hyperlinearity and the
 required moving-window multiplicity classicalization remain OPEN.
 
+
+
+**2026-08-31 (exact-actor Pauli collapse and SOS firewall).**  The exact
+coordinate regime is now closed by
+`kazhdan-stabilizer-collapses-shared-pauli-sign`.  If the point stabilizer
+has Kazhdan pair `(Q,kappa)`, the action has finite ordered-pair rank, and
+the actor matrices form a genuine representation, then root-commutant
+rounding, finite double-coset propagation, and compactness of `U(D)^2` give
+
+~~~text
+norm_2(J-I) <= 2 delta + 16 delta/kappa.
+~~~
+
+This is dimension-free and consumes no multiplicity bound.
+
+Exactness is load-bearing.  The claims
+`generic-perturbations-destroy-exact-commutant-gap` and
+`ozawa-sos-does-not-round-an-approximate-actor-to-its-exact-commutant`
+show that arbitrarily small operator-norm perturbations of trace-faithful
+regular quotient coordinates can make the literal generator commutant
+scalar while retaining a trace-zero unitary which is `o(1)`-central.
+Every fixed relator, multiplication row, word trace, and canonical actor
+trace is preserved to `o(1)`.  Thus neither property `(T;FD)_rob` nor an
+Ozawa certificate permits projection to the exact commutant of the supplied
+approximate matrices.
+
+The certificate still gives the valid bounded-vector inequality
+
+~~~text
+kappa <Delta_U T,T>
+ <= norm_2(Delta_U T)^2 + C_R epsilon norm_op(T)^2.
+~~~
+
+It controls a low spectral band, not equality of that band with
+`ker Delta_U`.  Consequently the live source-specific task is sharper than
+actor exactification by literal commutant projection: propagate the robust
+low band through the finite double-coset Pauli rows, or round to a nearby
+genuine actor using canonical lamp separation.  Ordinary finite actor
+moments cannot do this, because the generic perturbation preserves every
+fixed moment profile.
+
+Two concrete finite-presentation calibrations are now recorded.
+`thompson-rational-orbit-shared-center-pauli-host-is-fp` gives a named
+finitely presented two-transitive Pauli tape whose central sign is nontrivial
+and killed by every exact finite-dimensional representation; its
+hyperlinearity is exactly a new generalized-wreath converse problem.
+`abels-prufer-quotient-is-fp-sofic-with-fd-invisible-center` gives a
+finitely presented amenable, hence sofic, group with nontrivial central
+`p`-torsion killed by every exact finite-dimensional representation but
+retained by canonical HS microstates.  The latter proves that finite
+presentation plus exact FD invisibility, even after adjoining a nonamenable
+property-(T) factor, has no abstract approximate-collapse consequence.
+The global nonhyperlinearity route remains **OPEN**.
