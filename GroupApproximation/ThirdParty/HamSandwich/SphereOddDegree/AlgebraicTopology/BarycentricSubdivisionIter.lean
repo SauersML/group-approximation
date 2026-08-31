@@ -64,10 +64,11 @@ namespace AffineBarycentricSubdivision
 /-- The `N`-fold barycentric subdivision chain map `sd^N`, defined by
 `sd^0 = 𝟙` and `sd^(N+1) = sd ≫ sd^N`. -/
 noncomputable def barycentricSubdivisionIterChainMap
-    (R : Type) [CommRing R] (X : TopCat.{0}) :
-    ℕ → (singularChainComplex R X ⟶ singularChainComplex R X)
+    (R : Type) [CommRing R] (X : TopCat.{0}) (N : ℕ) :
+    singularChainComplex R X ⟶ singularChainComplex R X :=
+  match N with
   | 0 => 𝟙 _
-  | (N+1) => barycentricSubdivisionChainMap R X ≫ barycentricSubdivisionIterChainMap R X N
+  | N + 1 => barycentricSubdivisionChainMap R X ≫ barycentricSubdivisionIterChainMap R X N
 
 @[simp] theorem barycentricSubdivisionIterChainMap_zero
     (R : Type) [CommRing R] (X : TopCat.{0}) :
@@ -115,10 +116,11 @@ theorem barycentricSubdivisionIterLinearMap_commutes_boundary
 `H^(N) = Σ_{r=0}^{N-1} (sd^r) ∘ H`, defined by `H^(0) = 0` and
 `H^(N+1)_n = H^(N)_n + (sd^N)_{n+1} ∘ H_n`. -/
 noncomputable def barycentricSubdivisionIterHomotopyLinearMap
-    (R : Type) [CommRing R] (X : TopCat.{0}) :
-    (N n : ℕ) → (singularChainGroup R X n →ₗ[R] singularChainGroup R X (n + 1))
-  | 0, _ => 0
-  | (N+1), n => barycentricSubdivisionIterHomotopyLinearMap R X N n
+    (R : Type) [CommRing R] (X : TopCat.{0}) (N n : ℕ) :
+    singularChainGroup R X n →ₗ[R] singularChainGroup R X (n + 1) :=
+  match N with
+  | 0 => 0
+  | N + 1 => barycentricSubdivisionIterHomotopyLinearMap R X N n
       + (barycentricSubdivisionIterLinearMap R X N (n+1)) ∘ₗ
           (barycentricSubdivisionHomotopyLinearMap R X n).hom
 
@@ -138,10 +140,11 @@ theorem barycentricSubdivisionIterHomotopyLinearMap_succ
 index convention `∂ : C_{n+1} → C_n = singularBoundary R X n`, exactly as
 `homotopyBoundaryTerm` did for the one-step formula. -/
 noncomputable def barycentricSubdivisionIterHomotopyBoundaryTerm
-    (R : Type) [CommRing R] (X : TopCat.{0}) (N : ℕ) :
-    (n : ℕ) → singularChainGroup R X n → singularChainGroup R X n
-  | 0, _ => 0
-  | (m+1), c => barycentricSubdivisionIterHomotopyLinearMap R X N m
+    (R : Type) [CommRing R] (X : TopCat.{0}) (N n : ℕ) :
+    singularChainGroup R X n → singularChainGroup R X n :=
+  match n with
+  | 0 => fun _ => 0
+  | m + 1 => fun c => barycentricSubdivisionIterHomotopyLinearMap R X N m
       ((singularBoundary R X m).hom c)
 
 theorem barycentricSubdivisionIterHomotopyBoundaryTerm_zero
