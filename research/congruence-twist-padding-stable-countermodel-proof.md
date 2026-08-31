@@ -129,7 +129,7 @@ copies of the nontrivial irreducible `xi_p`.  Therefore
 
 Suppose instead that `B=H`.  Again `A<G_p`.  The common quotient cannot
 be trivial, since then `P=A times H` and the line would be invariant under
-`H), while its restriction is a sum of copies of the nontrivial
+`H`, while its restriction is a sum of copies of the nontrivial
 irreducible `rho`.  Simplicity of `H` gives `Q=H`, so `A` surjects
 onto `H`.  If `[G_p:A]<7N_p`, the small-index lemma would put `A`
 inside a parabolic, contradicting (CTP14).  Thus (CTP16) holds in this case
