@@ -76,8 +76,10 @@ legal reducible congruence endpoint with a one-dimensional payload. This
 proves that the divergence is entirely an artifact of the central
 refinement.
 
-The countermodel is exact, so adding more accurate character moments or a
-larger Kazhdan set does not reduce the ambiguity. What is absent from the
-central data is the global decision to group all Plancherel atoms into the
-single regular endpoint representation. Recovering that grouping requires
-structure beyond isotypic projectors and their commutant gaps.
+The countermodel is exact, so a larger Kazhdan set does not reduce the
+commutant ambiguity inside any fixed isotypic block. The full multiplicity
+vector does, of course, recognize the regular representation once the
+candidate quotient is supplied. Using that information is a global
+representation-ring regrouping step, not a consequence of the blockwise
+commutant gap. The theorem isolates the necessity of that extra step; it
+does not rule out performing it.
