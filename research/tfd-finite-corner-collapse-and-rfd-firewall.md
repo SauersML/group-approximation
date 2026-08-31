@@ -75,6 +75,17 @@ existence of compatible embeddings of the two factors into one norm
 matrix-ultraproduct. It does not lift the prescribed tracial embedding, keep
 the supplied core coordinates, or produce exact coordinate representations.
 
+There is not even an ambient LLP on the reduced regular branch.
+Davidson, Paulsen, and Rahaman, `arXiv:2510.25299`, Corollary 3.6, prove
+that for every finitely generated nonamenable hyperlinear group the reduced
+operator system spanned by a finite generating set and its adjoints fails
+the lifting property; consequently the reduced group algebra fails LLP.
+The present `Gamma` is residually finite, hence hyperlinear, and contains
+the nonamenable modular subgroup. Thus its reduced regular generator system
+has no generic ucp lifting theorem. A hypothetical LLP argument for the full
+group algebra would use the larger full operator-system order and cannot be
+silently treated as a reduced, regular, or finite-dimensional relative lift.
+
 A general 2025 no-lift theorem makes the logical limitation of ultrapower
 exactness explicit. Gao and Jekel, `arXiv:2512.10129`, Theorem A, construct
 separable II1 factors with elementary self-ultrapower embeddings that admit
