@@ -194,7 +194,18 @@ theorem isTypeI_complex : IsTypeI ℂ := isHomogeneousRep_one_complex.isTypeI
 The last two clauses are hypotheses: proving them needs the theory of
 irreducible representations of ideals and quotients, which Mathlib does not
 have.  They are stated exactly as used, so a later formalisation can discharge
-them without changing any consumer. -/
+them without changing any consumer.
+
+**SUPERSEDED — do not instantiate this at the counterexample.**  Typing `B` as
+`[CStarAlgebra B]` forces the `c₀`-sum to be unital, which it is not; that is
+the whole reason the unitization appears in the construction.  So this bundle,
+while satisfiable (see `homogeneousBlockTypeIInputs_model`), cannot be
+discharged by the intended instance.  The correctly typed replacement is
+`HomogeneousBlockTypeIInputsNonUnital` in `Analysis/STW22TypeIC0Sum`, whose
+`B` is a `NonUnitalCStarAlgebra` and whose two permanence clauses are theorems
+(`isTypeI_unitization`, `isTypeINonUnital_of_summands`) rather than fields.
+This declaration is kept only because the unital derivation below costs
+nothing and documents the shape of the argument. -/
 structure HomogeneousBlockTypeIInputs (d : ℕ → ℕ) (D : ℕ → Type u) [∀ s, CStarAlgebra (D s)]
     (B : Type u) [CStarAlgebra B] (A : Type u) [CStarAlgebra A] : Prop where
   /-- Every block is homogeneous of the stated degree. -/
