@@ -4,8 +4,7 @@ id: exterior-power-and-determinant-blindness-proof
 kind: proof
 title: Compute the balanced exterior characters and their Hilbert--Schmidt Lipschitz loss
 target: jacobson-head-evades-determinant-and-fixed-exterior-power
-requires:
-  - binary-jacobson-steinberg-head-root-is-mf-invisible
+requires: []
 ---
 
 Put `d=2m`. The characteristic generating polynomial of the
