@@ -6,27 +6,49 @@ title: Regular Iwahori pairs are relatively congruence-exactifiable
 distinct_from:
   odd-label-stabilization-has-uniform-repair: that completes repair of an already congruence mixed-CRT pair; this asks to move an arbitrary exact modular-vertex pair into that locus before applying the repair.
   iwahori-outlier-repair: that asks directly for a full-rank compatible correction in the localized sector; this isolates a stronger but sharply arithmetic preprocessing theorem sufficient for it.
-  character-rigidity-equals-hyperfinite-hs-stability: that controls hyperfinite character sectors and finite-quotient approximability in a weak sense; this asks for generatorwise normalized-HS proximity to congruence vertex representations.
+  character-rigidity-equals-hyperfinite-hs-stability: that controls hyperfinite character sectors and finite-quotient approximability in a weak sense; this asks for generatorwise generalized-HS proximity to congruence vertex representations.
+  regular-iwahori-strict-congruence-exactification-is-false: that gives a regular-trace SL2 countersequence to the former same-dimensional formulation; the present claim permits asymptotically negligible padding.
 ---
 
 Let `pi_(n,+),pi_(n,-):SL_2(Z)->U(d_n)` be exact vertex
 representations with Iwahori defect tending to zero.  Suppose the compatible
 homomorphism of `SL_2(Z[1/2])` induced in the matrix ultraproduct has the
-regular trace.  Then there are exact, same-dimensional vertex
-representations `rho_(n,+),rho_(n,-)`, each factoring through a congruence
-quotient, such that
+regular trace.  Then there are dimensions `D_n>=d_n` and exact vertex
+representations
 
 ```text
-d_2(pi_(n,+),rho_(n,+))+d_2(pi_(n,-),rho_(n,-)) -> 0,   (RCE1)
-def(rho_(n,+),rho_(n,-)) -> 0.                          (RCE2)
+rho_(n,+),rho_(n,-):SL_2(Z)->U(D_n),
 ```
+
+each factoring through a congruence quotient, such that
+
+```text
+d_2^gen(pi_(n,+),rho_(n,+))
+ +d_2^gen(pi_(n,-),rho_(n,-)) -> 0,                    (RCE1)
+def(rho_(n,+),rho_(n,-)) -> 0.                         (RCE2)
+```
+
+Here `d_2^gen` is Dogon--Vigdorovich's generalized flexible
+Hilbert--Schmidt metric.  In particular `(RCE1)` includes
+`D_n/d_n->1`; equivalently the comparison uses almost-full isometries and
+only `o(d_n)` added dimensions.
 
 This is the sharp arithmetic theorem still missing after exact congruence
 repair.  It is deliberately a *relative* statement: the inputs are already
 honest representations of each modular vertex, and only their gluing is
-asymptotic.  It asserts neither HS stability of arbitrary approximate
+asymptotic.  It asserts neither strict HS stability of arbitrary approximate
 `SL_2(Z)` representations nor a classification of all its finite-dimensional
 representations.
+
+The word **flexible** is load-bearing.
+`regular-iwahori-strict-congruence-exactification-is-false` balances a
+torsion-normalized compressed even-Weil packet with an exact odd-Weil
+packet.  The resulting exact vertex pairs satisfy the regular trace
+hypothesis for `SL_2` and remain uniformly far from every exact
+same-dimensional endpoint, but adding one positive-central line repairs
+them.  Thus the former same-dimensional version of this node is false,
+while the generalized formulation above survives and is exactly the
+published metric regime.
 
 The claim is open.  Regular trace alone is insufficient to prove it by
 spectral bookkeeping, because
@@ -188,7 +210,7 @@ congruence quotients.  It does not establish `(RCE1)`.
   `regular-iwahori-exactification-is-regular-branch-liftability` proves that
   this claim is equivalent, using the already established modular-vertex
   exactification, odd-congruence repair and finite-dimensional endpoint
-  classification, to same-dimensional correction of every regular
+  classification, to flexible generalized-metric correction of every regular
   microstate of `SL_2(Z[1/2])`.  Thus passing to an exact regular
   ultraproduct homomorphism does not weaken the missing theorem.  The two
   vertex restrictions always lift exactly; lifting their common Iwahori
