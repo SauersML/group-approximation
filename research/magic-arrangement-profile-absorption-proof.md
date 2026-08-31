@@ -97,8 +97,9 @@ when its intersection graph is nonplanar.  Its planar direction says that
 no odd-parity operator realization exists.  Its nonplanar direction gives
 one finite-dimensional odd-parity realization; the construction reduces to
 the `K_5` and `K_(3,3)` Pauli models along a Kuratowski subdivision.
-Paddock, `Arkhipov's theorem, graph minors, and linear system games`,
-Algebraic Combinatorics 6 (2023), gives a group-theoretic rederivation.
+Paddock--Russo--Silverthorne--Slofstra, `Arkhipov's theorem, graph
+minors, and linear system nonlocal games`, Algebraic Combinatorics 6 (2023),
+gives a group-theoretic rederivation.
 
 Combine that theorem with `(MAP6)`:
 
