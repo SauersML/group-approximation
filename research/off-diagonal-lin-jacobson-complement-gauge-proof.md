@@ -11,13 +11,13 @@ requires:
 
 ## 1. Rectangular covariance has a complete normal form
 
-Let `S:H_S-->H_T` be an isometry, put `T=S^*), and define
+Let `S:H_S-->H_T` be an isometry, put `T=S^*`, and define
 
 ```text
 Q=I_(H_T)-ST.                                            (OLJ6)
 ```
 
-Then `TS=I_(H_S)`, `QS=0`, and `TQ=0).  Let
+Then `TS=I_(H_S)`, `QS=0`, and `TQ=0`.  Let
 `pi_S,pi_T` be unitary representations of an arbitrary group
 `Gamma` satisfying
 
@@ -37,9 +37,9 @@ Consequently
 pi_T(g)ST=S pi_S(g)T=ST pi_T(g).                        (OLJ9)
 ```
 
-Thus `Q` commutes with `pi_T(Gamma)).  The range `SH_S` and
-the cokernel `QH_T` both reduce `pi_T), and the unitary
-`S:H_S-->SH_S` identifies the first restriction with `pi_S).
+Thus `Q` commutes with `pi_T(Gamma)`.  The range `SH_S` and
+the cokernel `QH_T` both reduce `pi_T`, and the unitary
+`S:H_S-->SH_S` identifies the first restriction with `pi_S`.
 If
 
 ```text
@@ -52,7 +52,7 @@ then
 pi_T is unitarily equivalent to alpha direct-sum pi_S.  (OLJ10)
 ```
 
-Conversely, for every pair of representations `alpha,pi_S), their
+Conversely, for every pair of representations `alpha,pi_S`, their
 direct sum with `S` the inclusion of the second summand satisfies
 `(OLJ7)`.  Therefore `alpha` is not merely unknown; it is a free
 parameter in the exact solution set of all rectangular covariance rows.
@@ -108,7 +108,7 @@ a=[ Q  S ],                    z=[ I   0 ].
   [ T  0 ]                       [ 0  -I ]
 ```
 
-Using `Q^2=Q`, `QS=TQ=0`, `ST=I-Q), and `TS=I), direct
+Using `Q^2=Q`, `QS=TQ=0`, `ST=I-Q`, and `TS=I`, direct
 multiplication gives
 
 ```text
@@ -133,7 +133,7 @@ The top-right entry of `D_g a` is the literal decorated edge
 pi_T(g)S=S pi_S(g).                                     (OLJ16)
 ```
 
-If `g^2=1), as for a Lin binary observable, then
+If `g^2=1`, as for a Lin binary observable, then
 
 ```text
 (D_g a)^2=I.                                            (OLJ17)
@@ -141,7 +141,7 @@ If `g^2=1), as for a Lin binary observable, then
 
 More generally, all products of decorated reflections reduce to the
 corresponding products of the diagonal representation and the fixed
-reflection `a).  The generated image is a quotient of
+reflection `a`.  The generated image is a quotient of
 
 ```text
 pi(Gamma) times D_8.                                    (OLJ18)
@@ -193,16 +193,16 @@ No one of these conclusions implies the other two.
 
 ## 5. The relation which is genuinely missing
 
-Let `W` be a proposed equality router with final projection `Q).
+Let `W` be a proposed equality router with final projection `Q`.
 Rank equality and full-`C` typing of `W` do not constrain
-`alpha).  A non-Morita-neutral row must instead impose covariance on
+`alpha`.  A non-Morita-neutral row must instead impose covariance on
 the cokernel itself, for example
 
 ```text
 alpha(g)W=W rho(g)                                      (OLJ22)
 ```
 
-for an independently named source tuple `rho), with `W^*W` already
+for an independently named source tuple `rho`, with `W^*W` already
 authenticated before `W` is chosen.  Equivalently, the mixed return
 must fail to commute with `mathcal Q` in `(OLJ13)`.
 
@@ -210,7 +210,7 @@ If the intended finite target makes `alpha` trivial or degree four
 while `rho` is the degree-two Lin tuple, `(OLJ22)` is exactly the
 new information.  It is not a consequence of putting `rho(g)` in
 the `S/T` off-diagonal, because `(OLJ12)` says that edge never
-reaches `Q).
+reaches `Q`.
 
 Therefore the literal off-diagonal construction closes as a no-go.  The
 live object is a left-right equality router with an explicit Lin
