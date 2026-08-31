@@ -14,11 +14,12 @@ is `σ`.
 theorem coneSimplex_face_zero (n k : ℕ) (v : Delta n)
     (σ : singularSimplices (TopCat.of (Delta n)) k) :
     AlexanderWhitney.faceSimplex (TopCat.of (Delta n)) k 0 (coneSimplex n k v σ) = σ := by
-  have h_cont : (singularSimplexAsContinuousMap (TopCat.of (Delta n)) (k + 1) (coneSimplex n k v σ)).comp (cofaceTop k 0) = singularSimplexAsContinuousMap (TopCat.of (Delta n)) k σ := by
-    ext y;
-    convert congr_fun ( cone_face_zero v ( fun y => singularSimplexAsContinuousMap ( TopCat.of ( Delta n ) ) k σ y ) ) y |> congr_arg ( fun f => f ‹_› ) using 1;
-  apply singularSimplices_ext;
-  convert h_cont using 1
+  apply singularSimplices_ext
+  rw [faceSimplex_continuousMap, coneSimplex_continuousMap]
+  apply ContinuousMap.ext
+  intro y
+  exact congrFun
+    (cone_face_zero v
+      (fun z => singularSimplexAsContinuousMap (TopCat.of (Delta n)) k σ z)) y
 end AffineBarycentricSubdivision
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
