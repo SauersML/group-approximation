@@ -54,15 +54,13 @@ into the audit's (A18): the extension map is not surjective, i.e.
 `T(A) ⊊ T(M)`.  Nothing about surjectivity is assumed; the proper inclusion is
 the theorem.
 
-## What is still not proved
+## The total map
 
-That the extension map is *total* --- that every trace of `A` really does extend
-continuously --- is not proved here and is not needed for non-surjectivity.  Its
-proof needs `|τ a| ≤ ‖a‖_{2,T(A)}` for a tracial state `τ` of `A`, which for an
-abstract `TracialTwoGauge` is an extra hypothesis relating the gauge to the
-tracial two-norms rather than a consequence of the recorded fields.  Stating it
-would add an assumption; leaving it out costs nothing, because a map with a
-point outside its image is not surjective whatever its domain.
+For an abstract `TracialTwoGauge`, totality needs an additional comparison
+between the gauge and every base trace two-norm.  The intended all-traces gauge
+has exactly that comparison.  It is proved, and the resulting total injective
+canonical extension map is constructed, in
+`Analysis/STW22CanonicalTraceExtension`.
 -/
 
 namespace GroupApproximation
