@@ -6,8 +6,6 @@ title: DV stability plus Brown disintegration reassembles correctability from it
 target: sl3z-regular-microstates-are-congruence-correctable
 requires:
   - factorial-commutant-regular-embeddings-are-congruence
-refuted_by:
-  - even-congruence-regular-microstates-obstruct-odd-correction
 ---
 
 **REFUTED ROUTE.** The target's odd-level conclusion is false. In

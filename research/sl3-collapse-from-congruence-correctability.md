@@ -7,8 +7,6 @@ target: sl3-pair-relative-commutant-route
 requires:
   - odd-congruence-lambda-exact-sector-collapses
   - sl3z-regular-microstates-are-congruence-correctable
-refuted_by:
-  - even-congruence-regular-microstates-obstruct-odd-correction
 ---
 
 **REFUTED ROUTE.** Its second requirement is false: the exact even-level
