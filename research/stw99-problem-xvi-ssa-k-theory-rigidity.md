@@ -15,6 +15,16 @@ a strongly self-absorbing `D` is `(Q ⊗ O_∞)_ω`-embeddable (or even
 quasidiagonal) and has the same ordered `K`-theory as a known
 strongly self-absorbing `E`, must `D ≅ E`?
 
+**Partially SOLVED (this session), no UCT:** the three reference
+targets are closed — `stw99-xvi-holds-for-reference-targets`:
+`[1] = 0 ⟹ D ≅ O_2` (no extra hypothesis); embeddable + `K` of
+`Q ⊗ O_∞` ⟹ `D ≅ Q ⊗ O_∞`; quasidiagonal + `K` of `Q` ⟹ `D ≅ Q`.
+Engine: `ssa-unit-divisibility-forces-uhf-absorption` (unit-class
+divisibility ⟹ UHF absorption; tensor-shift central upgrade turns
+ultrapower embeddings into absorption).  Residue: `Z`, `O_∞`, and
+proper-`J` UHF targets, where the wall is `J`-adapted matrix-model
+sizes, not divisibility.
+
 ## Attempts
 
 * Implied by XIII.  The UCT-free content: classification of SSA
