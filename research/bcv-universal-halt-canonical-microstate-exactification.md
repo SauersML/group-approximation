@@ -48,7 +48,9 @@ This interface is deliberately only as strong as the diagonal needs:
 halting inputs. A stronger total constructor returning the strategy itself
 would imply it.
 
-## Why fixed-dimension quantifier elimination does not fill the interface
+## Attempts
+
+### Fixed-dimension quantifier elimination is circular
 
 For a fixed game \(G_M\) and a fixed dimension \(d\), the perfect ZPC
 conditions are a finite real semialgebraic problem; with literal
@@ -77,6 +79,8 @@ The gaps may shrink faster than the chosen tolerances while the dimensions
 escape. This is the ordinary nonclosure mechanism for finite-dimensional
 correlations. Quantifier elimination therefore gives no total stopping rule
 and no computable bound on the first dimension carrying an exact strategy.
+
+### Finite-packet HS stability stops at the source tail
 
 A dimension-independent flexible HS-stability theorem for the **whole**
 BCV presentation, with a computable tolerance and computable dimension
