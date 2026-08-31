@@ -2,11 +2,12 @@
 rg: 2
 id: regular-iwahori-exactification-is-regular-branch-liftability
 kind: claim
-title: Regular Iwahori exactification is exactly regular-branch HS liftability
+title: Regular Iwahori exactification is exactly flexible regular-branch HS liftability
 distinct_from:
   regular-iwahori-relative-congruence-exactification: that states the arithmetic exactification target for exact modular vertices; this proves that, after the established vertex and congruence repair theorems, the target is equivalent to correcting every regular microstate of the whole group.
   regular-branch-liftability-plus-fd-kernel-forces-nonhyperlinear: that turns regular-branch liftability plus a finite-dimensional residual kernel into nonhyperlinearity; this identifies regular Iwahori exactification itself with the liftability hypothesis for the arithmetic endpoint.
   relative-first-triangle-rounding-has-an-odd-root-branch-firewall: that gives an explicit failure of independently lifting the square-root branch after one triangle is rounded; this is the global equivalence showing why qualitative ultraproduct lifting cannot bypass relative exactification.
+  regular-iwahori-strict-congruence-exactification-is-false: that refutes all three same-dimensional versions by a balanced even/odd Weil boundary; this equivalence is only in generalized flexible distance.
 ---
 
 Put
@@ -20,21 +21,24 @@ with the Iwahori identification used in
 `iwahori-local-global-defect-question`.  The following three properties are
 equivalent.
 
-1. **Regular relative congruence exactification.**  Every sequence of exact
-   vertex representations `pi_(n,+),pi_(n,-):C_+*C_->U(d_n)` whose edge
-   defect tends to zero and whose induced ultraproduct representation of
-   `Gamma` has the regular character is `o(1)`-close to a pair of exact odd
-   congruence vertex representations with edge defect tending to zero.
+1. **Flexible regular relative congruence exactification.**  Every sequence
+   of exact vertex representations
+   `pi_(n,+),pi_(n,-):C_+*C_->U(d_n)` whose edge defect tends to zero and
+   whose induced ultraproduct representation of `Gamma` has the regular
+   character is at generalized distance `o(1)` from a pair of exact odd
+   congruence vertex representations on common dimensions
+   `D_n>=d_n`, with `D_n/d_n->1` and edge defect tending to zero.
 
-2. **Same-dimensional regular-branch liftability.**  Every normalized-HS
-   microstate sequence of `Gamma` with limiting character `delta_e` is
-   `o(1)`-close on a fixed generating set to genuine representations
+2. **Flexible regular-branch liftability.**  Every normalized-HS microstate
+   sequence of `Gamma` on dimensions `d_n`, with limiting character
+   `delta_e`, is at generalized distance `o(1)` on a fixed generating set
+   from genuine representations
 
    ```text
-   rho_n:Gamma->U(d_n).
+   rho_n:Gamma->U(D_n),       D_n>=d_n,       D_n/d_n->1.
    ```
 
-3. **Congruence-core endpoint liftability.**  Let
+3. **Flexible congruence-core endpoint liftability.**  Let
 
    ```text
    sigma_n:Gamma->U(d_n)
@@ -49,12 +53,18 @@ equivalent.
    ```
 
    is a regular-character microstate for the five square-free Iwahori words
-   is `o(1)`-close to genuine representations of `Gamma`.
+   is at generalized distance `o(1)` from genuine representations of
+   `Gamma` on dimensions `D_n>=d_n` with `D_n/d_n->1`.
 
 The equivalence uses three established inputs: same-dimensional HS stability
 of each modular vertex, uniform repair of arbitrary odd-congruence Iwahori
 pairs, and the classification of every finite-dimensional representation of
 `Gamma` as an odd-congruence representation.
+
+`regular-iwahori-strict-congruence-exactification-is-false` proves that the
+same-dimensional versions of all three items are false, even on the regular
+SL2 trace face.  Its one deleted positive-central line is asymptotically
+negligible, so it does not separate any of the flexible properties above.
 
 The implication from item 3 to item 2 additionally uses
 `regular-bs14-cores-align-with-congruence-endpoint-restrictions`.  First
@@ -69,8 +79,9 @@ Therefore the qualitative ultraproduct version of basin capture is not a
 weaker substitute for the missing quantitative theorem.  Exactifying the
 two `PSL_2(Z)`/`SL_2(Z)` triangles merely puts an arbitrary regular
 microstate into the normal form in item 1.  Proving that the resulting exact
-ultraproduct homomorphism has nearby coordinatewise exact congruence lifts is
-already the entire regular-branch stability problem.
+ultraproduct homomorphism has almost-full coordinatewise exact congruence
+lifts, with only `o(d_n)` boundary dimensions, is already the entire flexible
+regular-branch stability problem.
 
 In particular, exact endpoint classification and character rigidity do not
 provide a lifting principle.  They say respectively what a coordinatewise
