@@ -464,6 +464,15 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   Therefore a quotient selector must use a window growing with the modulus
   or genuinely operator-valued table data; bounded character separation
   cannot feed the Plancherel criterion.
+- **The moving quotient has an exact table-or-separator alternative.**
+  `relative-pd-body-has-table-or-separator-dichotomy` takes Hilbert--
+  Schmidt distance `Delta` from the raw marked tuple to the compact convex
+  body of relative positive-definite coefficient tables on its forced
+  finite quotient. Stinespring plus property `(T;FD)` gives
+  `D <= C sqrt(Delta)`. Hence any fixed capture gap produces a norm-one
+  operator-valued metric separator with uniform margin `c epsilon^2`
+  against the whole table body. The separator may move in quotient support
+  and rank; excluding these witnesses is now the precise arithmetic task.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
