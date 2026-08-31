@@ -51,11 +51,11 @@ There is an exact tracial counterprofile to every argument using only those
 features.  On the Bernoulli space
 
 ~~~text
-Omega={+1,-1}^(Gamma/Lambda)
+Omega={+1,-1}^(G/Lambda)
 ~~~
 
 let `z_x` be the sign at `x` and put
-`N=L^infinity(Omega) crossed_product Gamma`.  For the base coset
+`N=L^infinity(Omega) crossed_product G`.  For the base coset
 `o=Lambda`, set `v=z_o` and `p=(1+v)/2`.  Then
 
 ~~~text
@@ -67,7 +67,7 @@ u_lambda p u_lambda^*=p                    for lambda in Lambda,
 All actor relations, projection relations, property-(T) hypotheses, and
 tracial identities are exact.  The orbit signs `z_(g o)` are orthonormal,
 so their cyclic conjugation representation is exactly the quasi-regular
-representation on `ell^2(Gamma/Lambda)`.  By
+representation on `ell^2(G/Lambda)`.  By
 `kt-ccr-holds-on-the-fd-tempered-adjoint-sector`, this module is not
 FD-tempered for the Kun--Thom pair.
 
