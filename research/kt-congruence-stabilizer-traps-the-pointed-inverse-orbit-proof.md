@@ -359,17 +359,47 @@ this subspace. Replacing `{1,h}` by a fixed packet `F` and using its
 
 ## 6. Canonical moments and the precise firewall
 
-The quotient maps from the coherent intermediate wreath product
+Let
+
+~~~text
+H=EL_3(F_2[x_1,y,x_3]),          Gamma=EL_3(P).
+~~~
+
+The three elements `x_1,x_1y,x_3` are algebraically independent, so
+`P` is a polynomial ring over `F_2`. Suslin elementary generation gives
+
+~~~text
+SL_3(P)=EL_3(P)=Gamma.                                    (30)
+~~~
+
+This verifies the separation assertion rather than assuming it. Suppose
+`gGamma` and `g'Gamma` are distinct cosets in `H/Gamma`. Then
+`d=g'^(-1)g` is not in `Gamma`. If every entry of `d` belonged to
+`P`, equation (30) would put `d` in `Gamma`, a contradiction.
+Thus one entry contains a monomial `x_1^a y^b x_3^c` with `a<b`.
+For every truncation deeper than the degree of that entry, the same
+monomial shows that the image of `d` is not in `Gamma_N`. Hence every
+fixed finite coset table in `H/Gamma` injects into `Omega_N` for all
+large `N`.
+
+The maps `H->Q_N` and `Gamma->Gamma_N` are onto because elementary
+root entries lift. They induce quotient maps from the coherent
+intermediate wreath product
 
 ~~~text
 W_H=(direct_sum_(H/Gamma) C_2) rtimes H
 ~~~
 
-onto `W_N` separate every fixed group element and every fixed finite
-coset table. Pulling (ho_N) back along these maps therefore yields
-normalized characters converging pointwise to the canonical character of
-`W_H`. Equations (28)--(29) occur inside exact regular-character models;
-they are not caused by trace pollution.
+onto `W_N`: lamps in one finite-quotient fiber are added modulo two.
+The eventual injectivity of each fixed coset table prevents cancellation
+of any fixed nonzero lamp. Polynomial truncation also separates each fixed
+nonidentity actor. Therefore these quotient maps separate every fixed
+element of `W_H`.
+
+Pulling `rho_N` back along these maps yields normalized characters
+converging pointwise to the canonical character of `W_H`.
+Equations (28)--(29) occur inside exact regular-character models; they are
+not caused by trace pollution.
 
 We have therefore exhausted the proposed finite-packet amplification.
 The complete finite `Gamma_N` image, not merely a Kazhdan subset, sees
