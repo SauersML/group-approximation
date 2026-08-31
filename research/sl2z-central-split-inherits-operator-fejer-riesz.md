@@ -7,6 +7,7 @@ distinct_from:
   relative-induced-selector-gap-has-bounded-dual-witness: that gives the dual separator for the full relative Iwahori selector; this factors positive operator-valued polynomials inside one exact modular vertex and explains why those are different cones.
   iwahori-local-global-defect-question: that asks for uniform repair across the infinite Iwahori edge; this closes only the finite central amalgam internal to each modular vertex.
   finite-index-double-theorem-misses-iwahori-twist: that fences an MF theorem for an untwisted double; this audits an operator-valued sums-of-squares theorem and locates its failure at quotient positivity.
+  moving-dihedral-quotients-force-linear-positive-lift-extent: that proves moving relation ideals can force linearly growing positive-lift extent even for C2*C2; this gives the fixed central-amalgam factorization before any moving quotient is imposed.
 ---
 
 Use the standard presentation
@@ -74,6 +75,12 @@ not a positive polynomial on one modular vertex. Theorem B assumes
 positivity in every representation of a scalar free product; the Iwahori
 dual cone imposes an infinite edge identification and the translated
 normal-closure rows.
+
+The mismatch has a quantitative moving-level firewall. The claim
+`moving-dihedral-quotients-force-linear-positive-lift-extent` gives
+extent-two polynomials positive in the finite dihedral quotient of
+`C2*C2` whose every upstream positive lift has extent at least `N`.
+Thus no uniform relation-ideal correction can depend only on input extent.
 
 The mismatch is algebraically sharp. If `q:W->H` is a group quotient,
 `r` is a killed relation word, and
