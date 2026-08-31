@@ -14,6 +14,8 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Published
 import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCUnionGeometryAssembly
+import GroupApproximation.GGT.HullTheorem316Assembly
+import GroupApproximation.GGT.HullYiFiniteFamilyPair
 import GroupApproximation.GGT.TreeWPDAxis
 
 /-!
@@ -119,7 +121,15 @@ open GroupApproximation.HullGeometry
 
 /-! ## Hull's small cancellation theorem and its companion -/
 
-/-- **DEBT (literature).**  Hull, §5 (his Corollary 5.7 with Lemma 5.8, after
+/-- **DEBT (literature).**  Hull, Corollary 5.7, in the printed finite-family
+form needed to select all cyclic peripherals before applying Lemma 4.4 once.
+Theorem 3.16 supplies the hyperbolic embedding of the resulting simultaneous
+family unconditionally. -/
+theorem hullYiSuitableFiniteFamily : HullSC.YiSuitableFiniteFamily.{0} := by
+  sorry
+
+/-- **Reduction to the finite-family Yi statement.**  Hull, §5 (his
+Corollary 5.7 with Lemma 5.8, after
 Dahmani–Guirardel–Osin and Osin's Theorem 5.4), in the hyperbolic-embedding
 form **over a pair**: a suitable subgroup contains two subgroups whose cone-off
 over Hull's own alphabet is hyperbolically embedded, which contain independent
@@ -169,7 +179,8 @@ that member in the relative ball of radius three, so `{⟨a²⟩, ⟨b⟩}` over
 is not hyperbolically embedded
 (`GGT.HullSC.not_isHyperbolicallyEmbedded_zpowers_pow`). -/
 theorem hullHypEmbeddedConeOff : HullSC.ExistsHypEmbeddedConeOff₂.{0} := by
-  sorry
+  exact HullSC.existsHypEmbeddedConeOff₂_of_yi_theorem316
+    (HullSC.yiSuitablePair_of_finiteFamily hullYiSuitableFiniteFamily)
 
 /-- **DEBT (literature).**  Dahmani–Guirardel–Osin, *Hyperbolically embedded
 subgroups and rotating families*, Theorem 5.3(b): for a separated very rotating
@@ -216,13 +227,6 @@ kernel-power correction is precisely the diagram property needed to lift a
 finite-order quotient element with its order preserved. -/
 theorem hullLemma49KernelPower :
     HullSC.HullLemma49KernelPowerStatement.{0, 0} := by
-  sorry
-
-/-- **DEBT (literature).**  Hull, Corollary 5.7, in the printed finite-family
-form needed to select all cyclic peripherals before applying Lemma 4.4 once.
-Theorem 3.16 supplies the hyperbolic embedding of the resulting simultaneous
-family unconditionally. -/
-theorem hullYiSuitableFiniteFamily : HullSC.YiSuitableFiniteFamily.{0} := by
   sorry
 
 /-- Hull's torsion-free canonical filling quotient, assembled directly from
