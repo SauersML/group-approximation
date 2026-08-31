@@ -11,21 +11,21 @@ distinct_from:
   canonical-sign-corners-maximally-mix-the-tv-odd-spectrum: that computes the canonical trace on one finite torsor subgroup; this rules out a whole group-theoretic architecture independently of the chosen trace.
 ---
 
-Let (B) be a finite linear constraint system, let (Gamma_B) be its
-solution group, and let (J) be the distinguished central involution. Suppose
-that (Gamma_B) is the fundamental group of a graph of groups
-(mathcal G) such that
+Let \(B\) be a finite linear constraint system, let \(\Gamma_B\) be its
+solution group, and let \(J\) be the distinguished central involution. Suppose
+that \(\Gamma_B\) is the fundamental group of a graph of groups
+\(\mathcal G\) such that
 
-1. every vertex group of (mathcal G) is hyperlinear; and
-2. every edge group of (mathcal G) is amenable.
+1. every vertex group of \(\mathcal G\) is hyperlinear; and
+2. every edge group of \(\mathcal G\) is amenable.
 
 Then
 
-[
- B	ext{ is tracially satisfiable}
- quadLongrightarrowquad
- B	ext{ is }mathcal R^{mathcal U}	ext{-satisfiable}.                 	ag{1}
-]
+\[
+ B\text{ is tracially satisfiable}
+ \quad\Longrightarrow\quad
+ B\text{ is }\mathcal R^{\mathcal U}\text{-satisfiable}.                 \tag{1}
+\]
 
 Equivalently, an LCS whose solution group has such a Bass-Serre decomposition
 cannot have a perfect commuting-operator strategy together with a constant
@@ -46,11 +46,10 @@ operator solution. Thus this common finite-cell architecture admits a
 perfect finite-dimensional strategy, not merely near-perfect strategies.
 
 The reason is structural. Fima and Freslon's graph-of-algebras permanence
-theorem makes (Gamma_B) hyperlinear. If (B) is tracially satisfiable, then
-(J
-e 1). Hyperlinearity keeps (J) nontrivial in matrix approximations, and
-the Paddock-Slofstra solution-group criterion then gives the right side of
-(1).
+theorem makes \(\Gamma_B\) hyperlinear. If \(B\) is tracially satisfiable,
+then \(J\ne1\). Hyperlinearity keeps \(J\) nontrivial in matrix
+approximations, and the Paddock-Slofstra solution-group criterion then gives
+the right side of (1).
 
 Consequently, a cyclic group-relation compiler can create a terminal
 Hilbert-Schmidt obstruction only by leaving at least one hypothesis above.
