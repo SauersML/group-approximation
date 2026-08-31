@@ -211,7 +211,7 @@ Both matrices are unitary, so
  >=2-2/sqrt(k_m),
 ```
 
-which is `(EAR7)`.
+which is `(EAR8)`.
 
 This persists under every negligible block padding, not just identity
 padding.  Let `r_m=o(d_m)`, let `Z_m in U(r_m)` be arbitrary, and compare
