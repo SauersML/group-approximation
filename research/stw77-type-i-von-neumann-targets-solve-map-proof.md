@@ -31,9 +31,9 @@ and
 ||phi_x(a_n)||_ess<r.
 ```
 
-Conversely, these two inequalities imply that the spectral projection of
-`phi_x(a_n)` above `r` is nonzero and finite-rank, so
-`(phi_x(a_n)-r)_+` is nonzero and finite-rank. The norm and essential norm of a
+Conversely, these two inequalities imply that
+`(phi_x(a_n)-r)_+` is nonzero and finite rank: the spectrum above `r` is
+finite because the essential norm is below `r`. The norm and essential norm of a
 measurable operator field are measurable, so the nonessential fibres are a
 countable union of the measurable sets defined by these inequalities.
 
