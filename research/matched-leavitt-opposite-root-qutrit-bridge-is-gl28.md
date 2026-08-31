@@ -11,7 +11,7 @@ distinct_from:
   partial-whitehead-cell-has-marked-finite-model: that constructs a finite specialization of a local occurrence table; this identifies the literal subgroup in the binary Leavitt host.
 ---
 
-Let `R=L_(F_2)(1,2)`, let `D` be a finite maximal binary prefix code,
+Let `R=L_(F_2)(1,2)`, let `D` be a finite maximal binary prefix code with `|D|>=2`,
 choose `d_0 in D`, and let `F<=Sym(D)` be a finite transitive subgroup
 in the standard prefix-permutation copy.  For `n>=2`, put
 
@@ -27,7 +27,7 @@ H isomorphic to GL_(m+1)(F_2),                           (MLO2)
 ```
 
 acting trivially on the last `n-2` module coordinates.  In particular, for
-the transitive order-`3^5` qutrit packet on `D_27), the first literal
+the transitive order-`3^5` qutrit packet on `D_27`, the first literal
 matched Leavitt opposite-root bridge is exactly
 
 ```text
