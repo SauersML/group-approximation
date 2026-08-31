@@ -104,8 +104,8 @@ loop or unprinted cross-player block identity is being assumed.
 
 ## 3. Iterate the readable inclusions
 
-Start with an arbitrary attained-perfect finite-dimensional
-signed-permutation ZPC strategy `S_0` for `V_(T_0)=G_M`. For every
+Start with an arbitrary attained-perfect finite-dimensional ZPC strategy
+`S_0` for `V_(T_0)=G_M`. For every
 `0<=j<h`, use `(NHP1)` and the full backward compression theorem.
 The support calculation above supplies a perfect ZPC strategy `S_(j+1)`
 for `V_(T_(j+1))` and a monomial unitary `W_j` such that
@@ -172,5 +172,7 @@ All parameter conditions used above are explicit: `C` is the fixed
 positive threshold of Compression; `T_j>=C` makes every wrapper defined;
 `K(T_j)>=1`; `lambda(M)` is a computable positive integer; all sampler
 claims concern positive-weight support; and the strategies are attained,
-perfect, and finite-dimensional. Unsupported formal questions can be
+perfect, and finite-dimensional. By BCV Definition 2.27, `ZPC` itself means
+Z-aligned signed-permutation and commuting along edges, so no additional
+implementation hypothesis has been inserted. Unsupported formal questions can be
 filled with trivial PVMs and do not affect value, ZPC, or readable closure.
