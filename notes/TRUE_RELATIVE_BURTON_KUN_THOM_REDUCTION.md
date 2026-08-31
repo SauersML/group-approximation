@@ -255,6 +255,18 @@ permutation representatives, simultaneously over increasing windows so that
 `(RBK12)--(RBK13)` hold.  A theorem on one invariant regular packet cannot
 supply that moving-window coherence.
 
+The overlap algebra is now formalized as well.
+`moving-lamp-refinement-cocycle-has-diffuse-fibers` shows that finite-window
+character projections and actor blocks form a strict refinement/action
+groupoid cocycle.  Covariance on two windows glues quantitatively to their
+union with projection error at most half the sum of the coordinate errors.
+Thus ordinary Cech overlap consistency is automatic.  A growing-overlap
+Fourier model nevertheless leaves an arbitrary diffuse fiber and stays
+`sqrt(2)-o(1)` from every monomial.  The unsolved statement is therefore
+not overlap gluing of the lamp PVMs, but simultaneous permutation
+spatialization of the compatible fiber cocycle over an unbounded moving
+exhaustion.
+
 This identifies the smallest live strengthening of the amenable conversion
 theorem:
 
