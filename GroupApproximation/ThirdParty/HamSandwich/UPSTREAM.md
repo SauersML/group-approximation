@@ -70,3 +70,6 @@ used by Mathlib for downward-complex tensor signs.
 `Degree` now unfolds the categorical endomorphism multiplication explicitly,
 and `AlexanderWhitney` applies naturality through
 `ConcreteCategory.congr_hom`; these are proof-preserving v4.32 API updates.
+
+`CoveringSimplexLift` uses the renamed `LocallyPathConnectedSpace` class, and
+`DegreeAPIStrengthening` explicitly closes a post-rewrite reflexive goal.
