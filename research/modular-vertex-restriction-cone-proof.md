@@ -103,7 +103,7 @@ of reduction and zero off that kernel. By (MVP4), it agrees with
 For the coefficient-table statement, fix finite `W,K subset C` and form
 
 ```text
-S={h^(-1)wk: h,k in K, w in W, h^(-1)wk!=e}.           (MVP4a)
+S={h^(-1)wk: h,k in K, w in W union {e}, h^(-1)wk!=e}. (MVP4a)
 ```
 
 Apply the same explicit-modulus construction to `S`. Reduction modulo the
