@@ -123,11 +123,21 @@ If the genuine operator-level right copy is also supplied, `(RPM6)` gives
 M_9 tensor I_r.                                         (RPM10)
 ~~~
 
+For a window of `n` qutrit sites, tensoring the same calculation gives
+
+~~~text
+tau(e_chi^(tensor n))=3^(-n),
+left corner =M_(3^n) tensor I_(r 3^n),
+ideal paired corner =M_(9^n) tensor I_r.                (RPM10b)
+~~~
+
 Thus the most favorable qutrit sector has a full finite matrix factor, but
-its commutant is still `M_(3r)` in the group-algebra construction and
-`M_r` even in the ideal paired construction.  Higher extraspecial groups and
-tensor products merely replace the fixed first-factor size; they do not
-remove `r`.
+its commutant is still `M_(r 3^n)` in the group-algebra construction and
+`M_r` even in the ideal paired construction.  Pairing kills the intrinsic
+regular multiplicity, not arbitrary amplification.  Only the extra
+multiplicity-one hypothesis `r=1` makes the paired window a full matrix
+algebra on the whole selected corner; canonical trace is unchanged by
+amplification and cannot force that hypothesis.
 
 ## Step 4: covariance factors through the reservoir
 
