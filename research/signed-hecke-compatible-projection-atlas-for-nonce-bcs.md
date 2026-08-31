@@ -175,6 +175,17 @@ global, so the rowwise freedom cannot be used to change the BCS semantics.
   contexts share it exactly. This crosses the local syntax gate but not the
   load-bearing one: its support group is a finite amalgam and remains
   virtually free, hyperlinear, and finite-dimensional-visible.
+- **Flat Morita arrows still do not glue the proper multipath marginal.**
+  `flat-morita-three-cycles-do-not-glue-multipath-marginals` puts three
+  copies of the two-qutrit rank-three marginal in one canonical nonzero
+  finite-group corner and joins them by exact matrix-unit partial isometries.
+  The source/range equations, Steinberg swaps, and flat three-cycle holonomy
+  all hold, while the three projections remain pairwise orthogonal and hence
+  unequal.  Equal trace and equal `K_0` class therefore do not upgrade
+  transport to `(BPA3)`.  Any successful cycle must impose a genuinely mixed
+  nontransport relation that distinguishes literal equality from Morita
+  equivalence; flat arrows alone have an exact finite-dimensional
+  countermodel.
 - **Narrow live cell.**  The route
   `signed-hecke-balanced-holonomy-route` leaves only
   `signed-hecke-block-escaping-cycle-holonomy`: realize the residual chord
