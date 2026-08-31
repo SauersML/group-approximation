@@ -30,6 +30,20 @@ condition gives the Hilbert--Schmidt version unconditionally, and the
 norm upgrade admits no dimension-free conversion (checked rank-`n`
 projection pair in that node's Attempts).
 
+**Packet normal form (2026-08-31):** the packet quantifier in the
+local-AFD formulation collapses — X(2) is equivalent to local AFD for
+all THREE-operator packets `{u, w, x}` (two unitaries and a
+contraction), by the clock-shift encoding of
+`x2-reduces-to-three-operator-packets`.  Commuting packets are solved
+(`x2-local-afd-holds-on-abelian-packets`), rate-controlled packets are
+solved (`x2-local-afd-holds-at-rate-controlled-packets`), and any
+refuting packet must carry full-support non-normal mass with no
+2-norm approximation rate
+(`shadow-avoidance-fails-at-column-isometries` closes the
+commutant-reduction escape).  Ultraproduct ambience cannot help:
+`matrix-tracial-ultraproduct-trace-not-quasidiagonal`,
+`hyperfinite-ultrapower-trace-not-quasidiagonal`.
+
 Since `R` has a unique trace and that trace is faithful, this is equivalent to
 asking whether `τ_R` is a quasidiagonal trace (Brown's Proposition 4.1.3
 argument: a faithful quasidiagonal trace makes the algebra quasidiagonal by
