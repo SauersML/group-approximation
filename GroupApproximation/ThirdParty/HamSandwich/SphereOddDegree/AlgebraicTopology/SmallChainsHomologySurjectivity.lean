@@ -30,10 +30,10 @@ full homology.  As `sdᴺ z = ι(sdᴺ z)` is the image of a small cycle, the cl
 -/
 
 open CategoryTheory AlgebraicTopology
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
+open AffineBarycentricSubdivision
 
 variable {R : Type} [CommRing R] {X : TopCat.{0}}
 
