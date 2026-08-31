@@ -344,8 +344,8 @@ $$
 Thus the quadratic Poincare degeneration of paths and cycles is realized
 already by exact \(2\times2\) reflections; it is not an artifact of allowing
 arbitrary Hilbert-valued vectors.  Any RMS synchronization constant grows
-linearly in \(d\).  Cubic equality degree—and therefore occurrence four
-when each copy also has one source occurrence—is the first degree at which
+linearly in \(d\).  Cubic equality degree--and therefore occurrence four
+when each copy also has one source occurrence--is the first degree at which
 this pairwise-equality compiler can have a uniform spectral decoder.
 
 ## 6. Scope
