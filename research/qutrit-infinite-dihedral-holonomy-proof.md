@@ -132,19 +132,58 @@ tau(q)=1/3,                  tau(R)=2/9;                 (QID12)
 
 there is no scalar Hall deficit.
 
+## The concrete matrix group is residually finite
+
+Let
+
+```text
+B=F_2<s_0,s_1> subset L_(F_2)(1,2)
+```
+
+be the positive-word subalgebra. It is a free associative algebra:
+distinct positive binary words are linearly independent in the Leavitt
+normal form. Every entry of `K` is scalar and every entry of `X,Y`
+belongs to `B`. Scalar conjugation by `P_h` does not change this.
+Consequently the actual matrix group satisfies
+
+```text
+<K,X,Y> <= GL_28(B).                                    (QID13)
+```
+
+For `N>=1` let `I_N` be the two-sided ideal of `B` spanned by all
+words of length at least `N`. The quotient
+
+```text
+B_N=B/I_N
+```
+
+is a finite ring, and every nonzero polynomial in `B` survives in
+`B_N` once `N` is larger than all of its word lengths. If
+`g in GL_28(B)` is not the identity, choose a nonzero entry of `g-I`
+and such an `N`. Coefficient reduction gives
+
+```text
+GL_28(B) -> GL_28(B_N)
+```
+
+and does not kill `g`. Hence `GL_28(B)`, and in particular
+`<K,X,Y>`, is residually finite. The concrete holonomy package is
+therefore sofic and hyperlinear, independently of any Bass--Serre
+injectivity question.
+
 ## The amenable infinite-vertex cover
 
 The subgroup `D=<X,Y>` commutes with `h`. By `(QID9)`,
 
 ```text
 H=<h,X,Y>=<h> times D_infinity,
-H intersect K=<h>.                                      (QID13)
+H intersect K=<h>.                                      (QID14)
 ```
 
 Thus the relations proved above give a surjection
 
 ```text
-K *_(<h>) H -> <K,X,Y>.                                 (QID14)
+K *_(<h>) H -> <K,X,Y>.                                 (QID15)
 ```
 
 This is an actual finite-presentation consequence: one may present the
@@ -158,7 +197,7 @@ H=<h,X,Y |
 The scalar vertex `K` is finite, `H` is virtually cyclic, and the edge
 `<h>` is finite. Standard closure of sofic and hyperlinear groups under
 amalgamation over amenable subgroups shows that the group on the left of
-`(QID14)` is sofic and hyperlinear.
+`(QID15)` is sofic and hyperlinear.
 
 There is also an explicit approximation picture. Replace
 `D_infinity` by finite dihedral quotients of increasing rotation order,
@@ -170,7 +209,9 @@ trace-zero once the rotation order is large enough. All relations and
 atom tables `(QID1)--(QID3)` therefore have zero asymptotic
 Hilbert--Schmidt defect.
 
-The natural homomorphism `(QID14)` could have additional kernel; no
-quotient-permanence assertion is made. What is exact is the requested
-firewall: the first infinite-order, noncommuting, nonconstant-word
-prefix holonomy still admits a sofic regular-multiplicity countermodel.
+The natural homomorphism `(QID15)` could have additional kernel, but
+this no longer affects the conclusion: `(QID13)` proves residual
+finiteness of the actual concrete subgroup directly. Thus the first
+infinite-order, noncommuting, nonconstant-word prefix holonomy has
+canonical finite-quotient microstates and cannot provide a qutrit
+Hilbert--Schmidt obstruction.
