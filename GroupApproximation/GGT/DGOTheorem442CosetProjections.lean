@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.DGOTheorem442ProjectionDiameter
+import GroupApproximation.GGT.DGOWindmillQuasiconvex
 
 /-!
 # DGO Theorem 4.42: equivariant projections between coset orbits
@@ -16,6 +17,7 @@ namespace GGT
 namespace Elementary
 
 open GroupApproximation.HullGeometry
+open GroupApproximation.DGOWindmill
 
 universe u v
 
@@ -239,6 +241,63 @@ theorem approxCosetProjectionSet_smul
       exact ⟨a, ha, rfl⟩
     · rw [cosetOrbitAt_smul]
       exact isApproxProjectionTo_smul hiso g (cosetOrbitAt H s Y) hx
+
+/-! ## Quasiconvexity of every orbit vertex -/
+
+/-- The orbit formulation used by Theorem 4.42 is exactly quasiconvexity of
+the subgroup-orbit subset. -/
+theorem isQuasiconvexSet_subgroupOrbitAt {H : Subgroup G} {s : S} {σ : ℝ}
+    (hquasi : ∀ (p q : G), p ∈ H → q ∈ H →
+      ∀ f : ℝ → S, IsGeodesicSegment f 0 (dist (p • s) (q • s)) →
+        f 0 = p • s → f (dist (p • s) (q • s)) = q • s →
+          ∀ t ∈ Set.Icc (0 : ℝ) (dist (p • s) (q • s)),
+            ∃ c : G, c ∈ H ∧ dist (f t) (c • s) ≤ σ) :
+    IsQuasiconvexSet (subgroupOrbitAt H s) σ := by
+  intro x hx y hy f hf hf0 hf1 t ht
+  obtain ⟨p, hp, rfl⟩ := hx
+  obtain ⟨q, hq, rfl⟩ := hy
+  obtain ⟨c, hc, hdist⟩ := hquasi p q hp hq f hf hf0 hf1 t ht
+  exact ⟨c • s, ⟨c, hc, rfl⟩, hdist⟩
+
+/-- Isometries preserve quasiconvex subsets with the same constant. -/
+theorem IsQuasiconvexSet.image_smul
+    (hiso : IsIsometricAction G S) {Q : Set S} {σ : ℝ}
+    (hQ : IsQuasiconvexSet Q σ) (g : G) :
+    IsQuasiconvexSet ((fun z : S ↦ g • z) '' Q) σ := by
+  rintro _ ⟨x, hx, rfl⟩ _ ⟨y, hy, rfl⟩ f hf hf0 hf1 t ht
+  let f₀ : ℝ → S := fun r ↦ g⁻¹ • f r
+  have hf₀ : IsGeodesicSegment f₀ 0 (dist x y) := by
+    have hsmul := hf.smul hiso g⁻¹
+    simpa only [hiso g x y, inv_smul_smul] using hsmul
+  have hf₀0 : f₀ 0 = x := by
+    dsimp [f₀]
+    rw [hf0, inv_smul_smul]
+  have hf₀1 : f₀ (dist x y) = y := by
+    dsimp [f₀]
+    rw [← hiso g x y, hf1, inv_smul_smul]
+  have ht₀ : t ∈ Set.Icc (0 : ℝ) (dist x y) := by
+    simpa only [hiso g x y] using ht
+  obtain ⟨q, hq, hd⟩ := hQ x hx y hy f₀ hf₀ hf₀0 hf₀1 t ht₀
+  refine ⟨g • q, ⟨q, hq, rfl⟩, ?_⟩
+  calc
+    dist (f t) (g • q) = dist (g • f₀ t) (g • q) := by
+      simp only [f₀, smul_smul, mul_inv_cancel, one_smul]
+    _ = dist (f₀ t) q := hiso g (f₀ t) q
+    _ ≤ σ := hd
+
+/-- Every left-coset orbit has the subgroup orbit's quasiconvexity constant. -/
+theorem isQuasiconvexSet_leftCosetOrbitAt
+    (hiso : IsIsometricAction G S) {H : Subgroup G} {s : S} {σ : ℝ}
+    (hquasi : ∀ (p q : G), p ∈ H → q ∈ H →
+      ∀ f : ℝ → S, IsGeodesicSegment f 0 (dist (p • s) (q • s)) →
+        f 0 = p • s → f (dist (p • s) (q • s)) = q • s →
+          ∀ t ∈ Set.Icc (0 : ℝ) (dist (p • s) (q • s)),
+            ∃ c : G, c ∈ H ∧ dist (f t) (c • s) ≤ σ)
+    (g : G) : IsQuasiconvexSet (leftCosetOrbitAt H g s) σ := by
+  have hbase := isQuasiconvexSet_subgroupOrbitAt hquasi
+  rw [← leftCosetOrbitAt_one H s] at hbase
+  simpa only [image_smul_leftCosetOrbitAt, mul_one] using
+    IsQuasiconvexSet.image_smul hiso hbase g
 
 end Elementary
 end GGT
