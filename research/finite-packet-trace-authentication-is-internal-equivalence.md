@@ -31,17 +31,19 @@ Equality in the canonical regular trace is strictly weaker. If
 where the ranks differ and repeat it. This gives exact finite packet models
 with a fixed normalized source-target rank mismatch.
 
-For the qutrit head packet, the projections
+For the qutrit head packet, the established calculation
 
 ```text
-E e_b,                       tau_reg(Ee_b)=1/18,
+tau_reg(E e_b)=1/18
 ```
 
-in one qutrit orbit are conjugate by the finite qutrit cycle because `E`
-commutes with the qutrit torus. They satisfy `(FPT1)` inside the finite
-packet. Likewise the minimal coordinate projections in every finite
-Clifford matrix packet are connected by its matrix units. These tags do
-force equal ranks, but only through an internal finite absorber.
+is only canonical regular-trace data. It does not by itself prove equality
+of the irreducible rank vectors. If an enlarged qutrit packet supplies an
+explicit conjugator or matrix units proving equality in every irreducible
+block, condition 3 then supplies an internal finite absorber. The same
+dichotomy applies to a Clifford packet: matrix units inside one selected
+representation are not enough unless they belong to the packet algebra
+with the required blockwise source and target ranks.
 
 Consequently the canonical value `alpha=1/18` does not by itself close the
 rectangular Jacobson seam. A finite qutrit or Clifford tag gives either:
