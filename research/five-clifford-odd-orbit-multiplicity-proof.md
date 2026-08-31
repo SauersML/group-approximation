@@ -23,15 +23,15 @@ x_1+x_2+x_3+x_4+x_5=0.
 ```
 The commutator pairing on the span of `x_1,...,x_4` is the alternating
 matrix with zero diagonal and all off-diagonal entries one.  Its kernel is
-zero: if `v=(v_1,...,v_4)` and `s=sum_i v_i`, then the `j)-th
+zero: if `v=(v_1,...,v_4)` and `s=sum_i v_i`, then the `j`-th
 coordinate of its product with this matrix is `s+v_j`; all four vanish
-only when all `v_j=s), and then `s=4s=0`, hence `v=0`.
+only when all `v_j=s`, and then `s=4s=0`, hence `v=0`.
 Thus the quotient has dimension four and the commutator form is
 nondegenerate.
 
 The presentation is consistent: five complex Clifford involutions in
 dimension four can be signed so that their product is `-I`; take
-`J=-I`.  Hence `|K|=2^(1+4)=32), `Z(K)=<J>`, and `K` is
+`J=-I`.  Hence `|K|=2^(1+4)=32`, `Z(K)=<J>`, and `K` is
 extraspecial.  Its character theory has sixteen linear representations,
 all killing `J`, and one nonlinear representation
 ```text
@@ -59,15 +59,15 @@ L=K semidirect_alpha C_5=<K,g | g^5=1, gX_i g^-1=X_(i+1)>.
 Uniqueness of `rho` makes `rho composed with alpha` equivalent to
 `rho`.  Choose an implementer `h`; since `h^5` is scalar, rescaling
 `h` by a fifth root makes `h^5=I`.  Hence `rho` extends to a
-four-dimensional representation `tilde rho` of `L), with
+four-dimensional representation `tilde rho` of `L`, with
 `tilde rho(g)=h`.
 
-Let `pi` be any representation of `L) with `pi(J)=-I`.  After a
+Let `pi` be any representation of `L` with `pi(J)=-I`.  After a
 unitary identification,
 ```text
 pi(k)=rho(k) tensor I_M              (k in K).
 ```
-The operator `(h^* tensor I)pi(g)` commutes with `rho(K) tensor I), so
+The operator `(h^* tensor I)pi(g)` commutes with `rho(K) tensor I`, so
 Schur's lemma gives
 ```text
 pi(g)=h tensor D,                    D^5=I_M.             (FC2)
@@ -77,12 +77,12 @@ calculation omits.
 
 ## 3. The odd orbit cancels the Clifford phase, not the payload
 
-Adjoin an involution `V` which centralizes `K), with no relation
-between `V` and `g):
+Adjoin an involution `V` which centralizes `K`, with no relation
+between `V` and `g`:
 ```text
 widehat L=<L,V | V^2=1, [V,K]=1>.
 ```
-For any involution `A in U(M)` and any `D in U(M)` with `D^5=I),
+For any involution `A in U(M)` and any `D in U(M)` with `D^5=I`,
 there is a representation
 ```text
 pi(k)=rho(k) tensor I,
@@ -106,7 +106,7 @@ Thus the proposed correction `J^a` removes precisely the spin phase.
 It does not make the multiplicity norm `N_D(A)` equal to `A`.
 
 This failure occurs in a completely finite exact model.  Take
-`M=C^5), let `D` cyclically permute the coordinate basis, and put
+`M=C^5`, let `D` cyclically permute the coordinate basis, and put
 ```text
 A=diag(-1,1,1,1,1).
 ```
@@ -124,14 +124,14 @@ choice of Clifford signs can repair this orbit extractor.
 
 There is also a dimension obstruction to hiding the problem in a
 "unique spin" finite overgroup.  Suppose a finite group `G` contains
-`K), keeps `J` central, and its entire `J=-1` block consists of one
+`K`, keeps `J` central, and its entire `J=-1` block consists of one
 irreducible representation of dimension four.  Then
 ```text
 dim_C p_- C[G]=|G|/2=4^2=16.
 ```
-Hence `|G|=32), so `G=K).  Such a group has no outer mover.  Every
+Hence `|G|=32`, so `G=K`.  Such a group has no outer mover.  Every
 proper finite extension either introduces several negative types or
-introduces multiplicity in restriction to `K).  Even when one selected
+introduces multiplicity in restriction to `K`.  Even when one selected
 irreducible extension restricts with multiplicity one, arbitrary marked
 representations may take direct sums of quotient twists; (FC2) then
 recovers a nonscalar `D`.
@@ -140,7 +140,7 @@ recovers a nonscalar `D`.
 
 For the cyclic extension, a character projection `q` for `C_5` makes
 `D` scalar on its range.  If the payload operator `V` also reduces
-`q`, then (FC5) becomes `A^5=A).  But reduction is an additional
+`q`, then (FC5) becomes `A^5=A`.  But reduction is an additional
 global constraint, not a consequence of the Clifford packet.  Without
 it, compression is not multiplicative.  For every projection `q` and
 operators `x,y`,
