@@ -713,6 +713,46 @@ class Corpus:
 # field or namespace component spelled `sorry` is not mistaken for the tactic.
 SORRY_TOKEN = re.compile(r"(?<![\w.])(?:sorry|sorryAx|admit)(?![\w'])")
 
+# `--strict` is the completion gate for the whole non-MF manuscript, not only
+# for the declarations carrying a `\leanverified` badge.  Some central results
+# (most importantly Theorem C) are assembled in this tree and are discussed in
+# the paper without a badge on every intervening sentence.  A badge-only scan
+# therefore used to print "unconditional" while `TheoremCDebts.lean` still
+# contained six `sorry`s.  Scan the authoritative manuscript source tree as a
+# separate invariant so that cannot happen again.
+NON_MF_MANUSCRIPT_ROOT = Path("GroupApproximation/Manuscript/NonMF")
+AXIOM_DECL = re.compile(rf"^\s*{MODIFIERS}axiom\s+", re.UNICODE)
+
+
+def manuscript_source_integrity_problems(root: Path) -> list[str]:
+    """Direct placeholders or axiom declarations in the non-MF manuscript.
+
+    This deliberately complements, rather than replaces, the transitive
+    declaration analysis below.  The latter starts from badges; this source
+    invariant covers every manuscript declaration, including unbadged
+    assembly modules.  Block and line comments are ignored, so prose about a
+    remaining `sorry` does not itself fail the gate.
+    """
+    source_root = root / NON_MF_MANUSCRIPT_ROOT
+    if not source_root.is_dir():
+        return [f"missing non-MF manuscript source tree {source_root}"]
+    problems: list[str] = []
+    for path in sorted(source_root.rglob("*.lean")):
+        source = _strip_block_comments(path.read_text(encoding="utf-8"))
+        for line_number, raw in enumerate(source.splitlines(), start=1):
+            code = raw.split("--", 1)[0]
+            if SORRY_TOKEN.search(code):
+                problems.append(
+                    f"{path.relative_to(root)}:{line_number}: "
+                    "placeholder in non-MF manuscript source"
+                )
+            if AXIOM_DECL.match(code):
+                problems.append(
+                    f"{path.relative_to(root)}:{line_number}: "
+                    "axiom declaration in non-MF manuscript source"
+                )
+    return problems
+
 IDENTIFIER_PATH = re.compile(IDENT)
 
 
@@ -1420,6 +1460,28 @@ def audit_corpus(root: Path) -> int:
 def self_test() -> int:
     with tempfile.TemporaryDirectory() as directory:
         root = Path(directory)
+        integrity_root = root / "integrity"
+        integrity_tree = integrity_root / NON_MF_MANUSCRIPT_ROOT
+        integrity_tree.mkdir(parents=True)
+        (integrity_tree / "Clean.lean").write_text(
+            "/- sorry and axiom in prose are ignored -/\n"
+            "theorem clean : True := by trivial\n",
+            encoding="utf-8",
+        )
+        if manuscript_source_integrity_problems(integrity_root):
+            print("self-test: clean manuscript source failed integrity scan",
+                  file=sys.stderr)
+            return 1
+        (integrity_tree / "Debt.lean").write_text(
+            "theorem debt : True := by sorry\n"
+            "axiom assumed : True\n",
+            encoding="utf-8",
+        )
+        integrity_findings = manuscript_source_integrity_problems(integrity_root)
+        if len(integrity_findings) != 2:
+            print("self-test: manuscript source integrity scan missed a "
+                  f"placeholder/axiom: {integrity_findings}", file=sys.stderr)
+            return 1
         module = root / "GroupApproximation" / "Fake"
         module.mkdir(parents=True)
         (module / "Inputs.lean").write_text(
@@ -1830,6 +1892,7 @@ def main() -> int:
 
     if args.strict:
         baseline = {}
+        problems.extend(manuscript_source_integrity_problems(root))
     else:
         problems.extend(baseline_problems)
     accepted, new, stale = apply_baseline(findings, baseline)
