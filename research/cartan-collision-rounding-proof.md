@@ -33,7 +33,7 @@ J={j:m_j>=1-sqrt(eta)}
 has size at least `(1-sqrt(eta))d`.  Because
 `1-sqrt(eta)>1/2`, two good columns cannot have their maximum in the same
 row: the squared moduli in that row would sum to more than one.  The
-maximizing-row map is therefore injective on `J).
+maximizing-row map is therefore injective on `J`.
 
 Extend it arbitrarily to a permutation `pi` of all rows and columns.  Put
 a phase of modulus one at `(pi(j),j)`, choosing the phase of
@@ -58,7 +58,7 @@ For `0<=x<=1`, `(1-x)^(3/2)>=1-(3/2)x`.  Hence
 
 This proves `(CPC3)`.  Write `M=A sigma` with `A` diagonal unitary and
 `sigma` a permutation matrix.  Conjugation by `M` and by `sigma`
-agree on `D_d), so all diagonal phases may be discarded for the action on
+agree on `D_d`, so all diagonal phases may be discarded for the action on
 cylinder projections.
 
 ## Step 2: actor multiplication survives phase removal
