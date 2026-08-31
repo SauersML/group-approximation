@@ -48,7 +48,8 @@ def ExactRelatorDesign₂ (E : HypEmbeddedCore₂ A N) (baseLetter : G)
         E.lox s ^ n * GGT.RelLetter.listVal
             (blockWord (E.lox false) (E.lox true) t (post.take r))
           ∉ E.rel.fam (!s)) ∧
-    CyclicThroughBaseAvoidance E.rel E.lox baseLetter W ms
+    CyclicThroughBaseAvoidance E.rel E.lox baseLetter W ms ∧
+    BaseFirstAvoidance E.rel E.lox baseLetter W ms
 
 /-- The exact finite-avoidance construction, packaged without weakening any
 of its clauses. -/
@@ -87,9 +88,23 @@ theorem ExactRelatorDesign₂.throughBase_not_mem_anchorFamily
         baseLetter * GGT.RelLetter.listVal
         (blockWord (E.lox false) (E.lox true) b₁ (pre.take r₁))
       ∉ E.rel.fam s := by
-  have hthrough := h.2.2.2.2.2.2 pre post n hsplit (!s) b₀ b₁ r₀ r₁
+  have hthrough := h.2.2.2.2.2.2.1 pre post n hsplit (!s) b₀ b₁ r₀ r₁
     hr₀ hr₁
   simpa using hthrough
+
+/-- The exceptional seam after the final `true` block starts at the base
+letter and continues through the first `false` block. -/
+theorem ExactRelatorDesign₂.baseFirst_not_mem_trueFamily
+    {E : HypEmbeddedCore₂ A N} {baseLetter : G}
+    {rho eps diffRadius W target : ℕ} {ms : List ℕ}
+    (h : ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms)
+    {n : ℕ} {post : List ℕ} (hms : ms = n :: post)
+    {r : ℕ} (hr : r ≤ W) :
+    baseLetter * E.lox false ^ n * GGT.RelLetter.listVal
+        (blockWord (E.lox false) (E.lox true) true (post.take r))
+      ∉ E.rel.fam true := by
+  subst ms
+  exact h.2.2.2.2.2.2.2 r hr
 
 /-- The one remaining same-side implication, scoped only to the exact lists
 the construction can produce.  Its window and difference radius is
@@ -97,8 +112,10 @@ the construction can produce.  Its window and difference radius is
 by the four-way composition. -/
 def SideExclusionOfExactDesign₂ (E : HypEmbeddedCore₂ A N)
     (cnt : ℕ) : Prop :=
+  RelatorBlockCountInputOne₂ E cnt →
   ∀ (baseLetter : G), baseLetter ∈ E.rel.base → ∀ (eps rho epsD Cm : ℕ),
     ∀ (target : ℕ) (ms : List ℕ),
+      Even target →
       ExactRelatorDesign₂ E baseLetter (max rho (Cm * 4)) epsD
           (1 + blockConst [baseLetter] (max cnt (eps + 2)))
           (1 + blockConst [baseLetter] (max cnt (eps + 2))) target ms →
@@ -144,19 +161,28 @@ theorem separationNe₂_clause_of_exactDesign (E : HypEmbeddedCore₂ A N)
   intro epsD Cm L
   let cw := max cnt (eps + 2)
   let W := 1 + blockConst p cw
-  let target := max L (p.length + 5 * blockSeparation p cw eps + 3)
+  let threshold := p.length + 5 * blockSeparation p cw eps + 3
+  let target := 2 * max L threshold
   obtain ⟨ms, hdesign⟩ :=
     exists_exactRelatorDesign₂ E (max rho (Cm * 4)) epsD W (t⁻¹) W target
-  rcases hdesign with ⟨hlen, hnodup, hdeep, hsep, hdiff, hwin, hthrough⟩
+  rcases hdesign with
+    ⟨hlen, hnodup, hdeep, hsep, hdiff, hwin, hthrough, hbaseFirst⟩
+  have htargetEven : Even target := by
+    refine ⟨max L threshold, ?_⟩
+    simp only [target, two_mul]
   have hlong : p.length + 5 * blockSeparation p cw eps + 3 ≤ ms.length := by
     rw [hlen]
-    exact Nat.le_max_right _ _
+    simp only [target, threshold]
+    omega
   have hexcl : RelatorSideExclusionAt₂ E p ms := by
-    have hs := hside (t⁻¹) ht eps rho epsD Cm target ms
+    have hs := hside hcount (t⁻¹) ht eps rho epsD Cm target ms
     simpa only [p, cw, W] using
-      hs ⟨hlen, hnodup, hdeep, hsep, hdiff, hwin, hthrough⟩ hlong
-  exact ⟨ms, by rw [hlen]; exact Nat.le_max_left _ _, hnodup, hdeep, hsep,
-    hexcl⟩
+      hs htargetEven
+        ⟨hlen, hnodup, hdeep, hsep, hdiff, hwin, hthrough, hbaseFirst⟩ hlong
+  refine ⟨ms, ?_, hnodup, hdeep, hsep, hexcl⟩
+  rw [hlen]
+  simp only [target]
+  omega
 
 end ExactDesign
 
