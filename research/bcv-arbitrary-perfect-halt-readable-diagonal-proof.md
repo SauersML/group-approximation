@@ -6,7 +6,6 @@ title: Invert the BCV fixed point along every perfect strategy and diagonalize i
 target: bcv-no-computable-perfect-halt-readable-bound
 requires:
   - bcv-every-perfect-compression-amplifies-readable-closure
-  - bcv-perfect-compression-backward-amplification-proof
 ---
 
 Let `lambda=lambda(M)>0` be the polynomial-time computable integer supplied
