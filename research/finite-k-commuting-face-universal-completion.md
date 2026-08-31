@@ -66,6 +66,14 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   perfect commuting and finite-dimensional satisfiability equivalent for
   every scalar-sign graph-incidence network.  Infinitude of the packet group
   alone is therefore irrelevant to the marked gap.
+- **Use operator-valued products but keep every variable at occurrence
+  two.**  `degree-two-operator-ports-are-boundary-edges` shows this remains
+  an ordinary graph-incidence presentation after moving each port to the
+  left.  Unpaired boundary groups split-embed into closed incidence groups
+  by boundary doubling.  Thus the port-word finite-dimensionality question
+  is exactly the general element-separation question for graph-incidence
+  groups; Arkhipov settles only `J`.  A packet escape must raise occurrence
+  to at least three or leave parity-context syntax.
 - **Repeat fixed K labels at positive density.**  This can improve the finite
   packet's empirical spectral weight but does not change the universal
   completion; an infinite kernel in the abelian-subgroup amalgam survives
