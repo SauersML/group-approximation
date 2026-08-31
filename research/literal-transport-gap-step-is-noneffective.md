@@ -13,6 +13,8 @@ artifacts:
   - GroupApproximation/Sofic/LiteralBasePropertyTBridge.lean
   - GroupApproximation/Sofic/LiteralP13HodgeCertificate.lean
   - GroupApproximation/Sofic/LiteralP13HodgeReplay.lean
+  - experiments/literal_base_laplacian_sos.py
+  - experiments/literal_base_sos_results.md
 ---
 
 **ESTABLISHED BY SOURCE AUDIT.** The current finite-stage transport path does
@@ -94,6 +96,15 @@ circumcenter proof cannot simply replace “rotation fixed” by “in the low
 rotation spectral cluster”; a new finite relative-\((T)\) estimate or a
 full-base certificate is logically required.
 
+
+The archived full-base scalar-SOS screen does not already supply this input.
+`experiments/literal_base_laplacian_sos.py` has a proof-carrying
+twenty-relator reducer, but intentionally no solver or certificate.
+`experiments/literal_base_sos_results.md` reports numerical gap zero at
+radius one and an uncertifiable `7.01e-9` at radius two against
+`1.18e-8` feasibility error; the radius-three Gram dimension is `684`.
+Thus there is no hidden positive affine certificate in the archived
+experiment.
 
 The smallest sufficient new input is therefore either
 
