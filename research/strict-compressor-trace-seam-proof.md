@@ -5,7 +5,7 @@ kind: route
 title: Show that conjugation averaging annihilates the Kazhdan projection difference before any IRS limit
 target: strict-compressor-kazhdan-radical-is-tracially-zero
 requires:
-  - strict-kazhdan-compressor-kazhdan-projection-proof
+  - strict-kazhdan-compressor-forces-non-rfd
   - coinduction-preserves-but-cannot-create-algebraic-envelope
   - probability-coinduction-retains-factor-but-not-group-generation
   - manzoor-native-haar-envelope-is-ce-after-corners

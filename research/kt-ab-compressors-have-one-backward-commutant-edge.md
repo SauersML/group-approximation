@@ -8,7 +8,7 @@ artifacts:
 distinct_from:
   kt-two-positive-compressors-generate-full-obstruction: That proves the pair generates the full actor and has a global permutation incompatibility; this computes the operator-algebraic correspondence induced by the pair and shows its two first ranges coincide.
   strict-compressor-mixed-return-collapses-shared-pauli-sign: That gives a conditional low-band estimate using one off-site mixed return; this proves that the second named positive compressor supplies no independent first-step martingale projection with which to bound that leakage.
-  kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall: That embeds arbitrary multiplicity defects behind a regular trace mask; this identifies the exact one-endomorphism/one-automorphism cocycle which such a defect must satisfy.
+  kt-regular-mask-removes-trace-faithfulness-from-commutant-wall: That embeds arbitrary multiplicity defects behind a regular trace mask; this identifies the exact one-endomorphism/one-automorphism cocycle which such a defect must satisfy.
 ---
 
 **ESTABLISHED STRUCTURAL NO-GO; THE GLOBAL ROUTE REMAINS OPEN.**

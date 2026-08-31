@@ -1,13 +1,13 @@
 ---
 rg: 2
 id: g2-one-raw-letter-sign-atlas-rf-proof
-kind: proof
+kind: route
 title: Give triangular and finite-truncation models for the two one-letter envelopes
 target: g2-one-raw-letter-sign-atlas-is-residually-finite
 requires:
-  - three-dimensional-qt-coefficient-algebra-proof
-  - qutrit-one-raw-letter-triangular-proof
-  - qutrit-jacobson-sign-polar-rank-proof
+  - g2-conditioned-jacobson-sign-envelope-is-finite
+  - qutrit-one-raw-letter-head-router-is-residually-finite
+  - jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
 ---
 
 ## 1. The raw negative letter

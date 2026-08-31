@@ -3,9 +3,9 @@ rg: 2
 id: perfect-game-loss-actor-variance-and-regular-orbit-proof
 kind: route
 title: Perfect-game loss forces actor variance and exits the regular compressor orbit
-target: perfect-synchbcs-forces-actor-mass-beyond-the-two-compressor-regular-orbit
+target: perfect-synchbcs-forces-actor-mass-beyond-regular-orbit
 requires:
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
   - actor-fourier-mixing-is-the-naimark-defect-of-the-base-povm
   - kt-two-compressor-lamp-orbit-is-a-sofic-regular-wreath
   - property-t-actor-keeps-fd-invisible-center-in-lef-models

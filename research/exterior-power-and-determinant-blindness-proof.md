@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: exterior-power-and-determinant-blindness-proof
-kind: proof
+kind: route
 title: Compute the balanced exterior characters and their Hilbert--Schmidt Lipschitz loss
 target: jacobson-head-evades-determinant-and-fixed-exterior-power
 requires: []

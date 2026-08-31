@@ -196,6 +196,6 @@ Cross-links:
 - `strict-compressor-mixed-return-collapses-shared-pauli-sign` isolates a
   sufficient named mixed-return estimate; (5) explains why the `A`-edge
   cannot supply that estimate merely as a second root expectation.
-- `kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall`
+- `kt-regular-mask-removes-trace-faithfulness-from-commutant-wall`
   shows why trace-faithfulness cannot eliminate the pointed multiplicity
   vector.

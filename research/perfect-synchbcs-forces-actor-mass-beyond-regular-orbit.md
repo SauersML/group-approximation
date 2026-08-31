@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: perfect-synchbcs-forces-actor-mass-beyond-the-two-compressor-regular-orbit
+id: perfect-synchbcs-forces-actor-mass-beyond-regular-orbit
 kind: claim
 title: The perfect SynchBCS forces actor mass beyond the two-compressor regular orbit
 distinct_from:
