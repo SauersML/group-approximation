@@ -9,9 +9,6 @@ for the STW problem.  We use the full Fock Hilbert space over two letters,
 `ℓ²(List Bool)`, and the two left-prefix shifts.  They are orthogonal
 isometries.  Their range projections miss exactly the vacuum; after passing to
 the Calkin algebra that rank-one defect vanishes, giving the Cuntz relation.
-
-This file establishes the isometry and orthogonality half.  The Calkin Cuntz
-relation is built in the next layer.
 -/
 
 namespace STW.Actual
@@ -145,6 +142,9 @@ def prefixIsometry (b : Bool) : FockSpace →ₗᵢ[ℂ] FockSpace :=
 def prefixOp (b : Bool) : FockSpace →L[ℂ] FockSpace :=
   (prefixIsometry b).toContinuousLinearMap
 
+@[simp] theorem prefixOp_apply (b : Bool) (f : FockSpace) :
+    prefixOp b f = prefixFun b f := rfl
+
 /-- Each prefix operator is an isometry: `S_b* S_b = 1`. -/
 theorem prefixOp_star_mul_self (b : Bool) :
     star (prefixOp b) * prefixOp b = 1 := by
@@ -172,6 +172,42 @@ theorem prefixOp_star_mul_of_ne {b c : Bool} (hbc : b ≠ c) :
 @[simp] theorem prefixOp_star_mul_true_false :
     star (prefixOp true) * prefixOp false = 0 :=
   prefixOp_star_mul_of_ne (by decide)
+
+/-! ## The adjoint deletes the first letter -/
+
+/-- Restrict a Fock vector to words beginning with `b`, then delete `b`. -/
+def suffixFun (b : Bool) (f : FockSpace) : FockSpace := by
+  refine ⟨fun w => f (prefixMap b w), ?_⟩
+  apply memℓp_gen
+  have h := (memℓp_gen_iff (by norm_num)).1 (lp.memℓp f)
+  exact h.comp_injective (prefixMap_injective b)
+
+@[simp] theorem suffixFun_apply (b : Bool) (f : FockSpace) (w : FockIndex) :
+    suffixFun b f w = f (prefixMap b w) := rfl
+
+/-- Prefixing and deleting a prefix are adjoint operations. -/
+theorem inner_prefix_suffix (b : Bool) (f g : FockSpace) :
+    ⟪prefixFun b f, g⟫_ℂ = ⟪f, suffixFun b g⟫_ℂ := by
+  rw [lp.inner_eq_tsum, lp.inner_eq_tsum]
+  have hfun : (fun y : FockIndex ↦ ⟪prefixFun b f y, g y⟫_ℂ)
+      = Function.extend (prefixMap b)
+          (fun x ↦ ⟪f x, suffixFun b g x⟫_ℂ) 0 := by
+    funext y
+    rcases em (∃ x, prefixMap b x = y) with ⟨x, rfl⟩ | hy
+    · rw [(prefixMap_injective b).extend_apply, prefixFun_apply_prefix,
+        suffixFun_apply]
+    · rw [Function.extend_apply' _ _ _ hy, prefixFun_apply_off _ _ hy]
+      simp
+  rw [hfun]
+  exact tsum_eq_tsum_of_hasSum_iff_hasSum fun {a} ↦
+    hasSum_extend_zero (prefixMap_injective b)
+
+/-- The Hilbert-space adjoint of a prefix shift deletes that prefix. -/
+theorem adjoint_prefixOp_apply (b : Bool) (g : FockSpace) :
+    ContinuousLinearMap.adjoint (prefixOp b) g = suffixFun b g := by
+  refine ext_inner_left ℂ fun f => ?_
+  rw [ContinuousLinearMap.adjoint_inner_right]
+  exact inner_prefix_suffix b f g
 
 end
 
