@@ -267,6 +267,19 @@ not overlap gluing of the lamp PVMs, but simultaneous permutation
 spatialization of the compatible fiber cocycle over an unbounded moving
 exhaustion.
 
+The fixed-window obstruction is now completely finite.
+`finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction`
+shows that, after a spanning-tree gauge on the character Schreier graph,
+simultaneous gauge equivalence to a proposed permutation target holds if and
+only if one root unitary simultaneously conjugates every fundamental-cycle
+holonomy to the target holonomy.  The residual HS errors agree chord by
+chord.  A multiplicity-one bent-phase model has exact canonical trace and
+exact covariance but is not commutant-gauge spatializable, even after
+`o(d)` padding.  The identity permutation is nevertheless a different
+valid target in that model.  Thus the theorem still needed here must
+construct targets and make their holonomy profiles refinement-compatible;
+it cannot merely trivialize the supplied cocycle.
+
 This identifies the smallest live strengthening of the amenable conversion
 theorem:
 
