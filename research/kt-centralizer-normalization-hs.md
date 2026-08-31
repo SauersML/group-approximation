@@ -449,7 +449,7 @@ This is dimension-free and consumes no multiplicity bound.
 
 Exactness is load-bearing.  The claims
 `generic-perturbations-destroy-exact-commutant-gap` and
-`ozawa-sos-does-not-round-an-approximate-actor-to-its-exact-commutant`
+`ozawa-sos-does-not-round-approximate-actor-to-exact-commutant`
 show that arbitrarily small operator-norm perturbations of trace-faithful
 regular quotient coordinates can make the literal generator commutant
 scalar while retaining a trace-zero unitary which is `o(1)`-central.
@@ -471,19 +471,7 @@ actor exactification by literal commutant projection: propagate the robust
 low band through the finite double-coset Pauli rows, or round to a nearby
 genuine actor using canonical lamp separation.  Ordinary finite actor
 moments cannot do this, because the generic perturbation preserves every
-fixed moment profile.  However,
-`full-shared-pauli-wall-excludes-nearby-exact-actor` proves that the generic
-perturbations cannot be extended through the full Pauli rows: if `eta` is
-the fixed-packet distance to a genuine actor, then
-
-~~~text
-norm_2(J-I)
- <= d_J+d_X+4 eta+(16/kappa)(d_H+2 eta).
-~~~
-
-Thus a separated sign forces a uniform actor-instability wall.  The only
-remaining SOS possibility is genuinely source-specific propagation inside
-a low band which stays far from every exact actor coordinate.
+fixed moment profile.
 
 Two concrete finite-presentation calibrations are now recorded.
 `thompson-rational-orbit-shared-center-pauli-host-is-fp` gives a named

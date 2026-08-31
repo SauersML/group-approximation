@@ -5,7 +5,7 @@ kind: route
 title: Separate elementary syntactic faithfulness from unitary trace transport
 target: steinberg-unitization-encodes-hecke-sums-but-is-trace-blind
 requires:
-  - unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra
+  - central-block-hecke-predicates-force-affine-group-spectra
   - split-steinberg-conditional-swap-has-root-kernel-countermodel
   - amenable-edge-cycles-cannot-create-an-lcs-gap
 ---

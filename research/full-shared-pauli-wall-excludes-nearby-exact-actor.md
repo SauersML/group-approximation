@@ -74,4 +74,4 @@ coordinate model.  No collapse of such arbitrary low-band models, and no
 nonhyperlinear group, is proved here.
 
 DERIVATION
-nearby-exact-actor-transfer-collapses-the-shared-pauli-wall-proof
+nearby-exact-actor-transfer-collapses-shared-pauli-wall-proof

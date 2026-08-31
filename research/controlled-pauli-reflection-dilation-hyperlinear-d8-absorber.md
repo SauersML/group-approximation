@@ -1,13 +1,13 @@
 ---
 rg: 2
-id: controlled-pauli-reflection-dilation-is-a-hyperlinear-d8-absorber
+id: controlled-pauli-reflection-dilation-hyperlinear-d8-absorber
 kind: claim
 title: Controlled-Pauli reflection dilation is a hyperlinear D8 absorber
 distinct_from:
   steinberg-unitization-encodes-hecke-sums-but-is-trace-blind: that proves homogeneous elementary-root attachments retract and finite coefficient matrix groups are linear; this tests the first nonhomogeneous relation which identifies a root word with a genuine reflection.
   prime-cyclic-finite-packet-amalgams-reflect-the-source-hs-gap: that treats arbitrary prime cyclic finite-packet selectors and proves quantitative source-gap equivalence; this gives the explicit order-two Julia/controlled-Pauli formula and identifies exactly what projection an arbitrary unitary representation recovers.
   split-steinberg-conditional-swap-has-root-kernel-countermodel: that kills the Whitehead word in an exact split countermodel; this preserves a nontrivial Whitehead reflection by a load-bearing relation but proves that the new finite attachment cannot create a gap.
-  unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra: that rules out group-native nonaffine joint spectra in a simple finite central block; this shows why the projection recovered from the new commutator remains unrelated to the original predicate.
+  central-block-hecke-predicates-force-affine-group-spectra: that rules out group-native nonaffine joint spectra in a simple finite central block; this shows why the projection recovered from the new commutator remains unrelated to the original predicate.
 ---
 
 **EXACT MIXED-RELATION CLASSIFICATION; PERFECT TRACE EXTENSION AND
@@ -118,7 +118,7 @@ Trying to identify \(P_\rho\) in (CPD7) with a nonaffine BCS atom returns to
 the original gate.  A finite group-element identity which makes the
 reflection a function of commuting selector involutions has affine joint
 support by
-unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra.
+central-block-hecke-predicates-force-affine-group-spectra.
 A Hecke-sum identity is not a group relator.  Therefore the controlled-Pauli
 dilation gives perfect completeness and exact survival, but no
 finite-dimensional or hyperlinear soundness beyond the source reflection.

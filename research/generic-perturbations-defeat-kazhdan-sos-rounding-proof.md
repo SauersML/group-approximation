@@ -1,11 +1,11 @@
 ---
 rg: 2
-id: generic-perturbations-defeat-kazhdan-sos-commutant-rounding-proof
+id: generic-perturbations-defeat-kazhdan-sos-rounding-proof
 kind: route
 title: Lift the SOS identity, then exhibit the disappearing-kernel obstruction
-target: ozawa-sos-does-not-round-an-approximate-actor-to-its-exact-commutant
+target: ozawa-sos-does-not-round-approximate-actor-to-exact-commutant
 requires:
-  - compactness-closes-exact-actor-pauli-window
+  - kazhdan-stabilizer-collapses-shared-pauli-sign
   - high-type-mass-is-discontinuous-at-exact-code-tuples
   - generic-perturbations-destroy-exact-commutant-gap
 ---
@@ -222,7 +222,7 @@ defect into an adjoint-action estimate.
 For an exact actor representation, the relator term in (16) vanishes for
 every vector.  The polynomial spectral inequality excludes spectrum in
 `(0,kappa)` and gives the projection onto the exact invariant space used in
-`compactness-closes-exact-actor-pauli-window`.
+`kazhdan-stabilizer-collapses-shared-pauli-sign`.
 
 For an approximate actor, (16) has an additive error depending on
 `norm_op(T)`.  The two-dimensional tuple in Section 1 has positive

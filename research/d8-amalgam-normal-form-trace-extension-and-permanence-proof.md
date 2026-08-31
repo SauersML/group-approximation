@@ -3,7 +3,7 @@ rg: 2
 id: d8-amalgam-normal-form-trace-extension-and-permanence-proof
 kind: route
 title: Realize the mixed reflection relation by a controlled Pauli pair
-target: controlled-pauli-reflection-dilation-is-a-hyperlinear-d8-absorber
+target: controlled-pauli-reflection-dilation-hyperlinear-d8-absorber
 requires:
   - steinberg-unitization-encodes-hecke-sums-but-is-trace-blind
   - amenable-edge-cycles-cannot-create-an-lcs-gap

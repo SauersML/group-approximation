@@ -1,12 +1,12 @@
 ---
 rg: 2
-id: d8-per-projection-synchronous-compiler-is-affine-hull-transparent
+id: d8-per-projection-synchronous-compiler-affine-hull-transparent
 kind: claim
 title: A D8 cell at every synchronous projection is transparent to the affine-hull solution group
 distinct_from:
-  controlled-pauli-reflection-dilation-is-a-hyperlinear-d8-absorber: that classifies one reflection cell; this iterates the cells over an entire synchronous context and computes the exact one-hot and arbitrary-predicate residue.
+  controlled-pauli-reflection-dilation-hyperlinear-d8-absorber: that classifies one reflection cell; this iterates the cells over an entire synchronous context and computes the exact one-hot and arbitrary-predicate residue.
   finite-selector-gadget-induction-barrier: that uses induction to recreate central selector characters for an arbitrary finite overgroup; this gives an explicit extension of every representation through the proposed D8 graph and an iff theorem for hyperlinearity.
-  unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra: that rules out nonlinear group spectra after selecting one simple central block; this shows that leaving the D8 blocks separate does not select anything at all.
+  central-block-hecke-predicates-force-affine-group-spectra: that rules out nonlinear group spectra after selecting one simple central block; this shows that leaving the D8 blocks separate does not select anything at all.
   fd-invisible-coequalizers-have-only-affine-tv-packets: that computes the Taller--Vidick Fourier residue under automorphic coequalizers; this proves the same affine-hull boundary for arbitrary synchronous PVM and pair-predicate contexts.
 ---
 
@@ -103,7 +103,7 @@ representation-theoretic soundness and hyperlinearity.
 
 There are only two ways to leave this theorem.  Coupling the cells inside a
 single finite selected central block returns to
-unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra:
+central-block-hecke-predicates-force-affine-group-spectra:
 the unique block has flat affine joint spectra.  Leaving the predicate
 projections as genuine Hecke sums avoids that theorem, but equality of
 those sums across contexts is not a group relator and the Steinberg

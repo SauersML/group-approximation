@@ -1,11 +1,10 @@
 ---
 rg: 2
-id: unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra
+id: central-block-hecke-predicates-force-affine-group-spectra
 kind: claim
 title: A unique finite central block realizes every predicate as Hecke data but forces every group-native joint spectrum to be affine
 distinct_from:
   finite-selector-gadget-induction-barrier: that shows induction recreates every central selector character in some irreducible sector; this removes all hidden sectors by making the selected central block simple, then proves that simplicity itself forces flat affine spectra for commuting group elements.
-  true-bcs-predicates-are-local-finite-group-corners: that realizes an arbitrary predicate in a corner of an elementary abelian group algebra but uses a corner with many one-dimensional types; this gives an augmentation-zero Heisenberg block with exactly one selected irreducible type.
   controlled-central-phase-finite-group-barrier: that rules out a nonlinear scalar central phase over Boolean selectors; this permits arbitrary nonlinear diagonal Hecke projections, and locates the obstruction precisely at requiring those coordinates to be actual group elements.
   one-center-heisenberg-tree-has-no-proper-escaped-marginal: that classifies finite-type partitions across a tree of prime Heisenberg charts; this is a one-vertex character theorem for every finite group with a simple central-character block.
 ---

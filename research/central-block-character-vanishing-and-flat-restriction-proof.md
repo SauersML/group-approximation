@@ -3,9 +3,8 @@ rg: 2
 id: central-block-character-vanishing-and-flat-restriction-proof
 kind: route
 title: Compute the unique central-block character and its abelian restrictions
-target: unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra
-requires:
-  - true-bcs-predicates-are-local-finite-group-corners
+target: central-block-hecke-predicates-force-affine-group-spectra
+requires: []
 ---
 
 # Compute the unique central-block character and its abelian restrictions

@@ -4,7 +4,6 @@ id: common-mf-envelope-fences-asymmetric-amalgams
 kind: claim
 title: A common MF envelope fences an asymmetric amalgam
 artifacts:
-  - research/embed-asymmetric-amalgam-in-a-symmetric-mf-double.md
 distinct_from:
   shulman-amalgam-mf-criterion: that is the exact C*-algebraic common-corona criterion; this is a concrete group-normal-form sufficient condition using one common MF group envelope.
   mf-is-invariant-under-symmetric-doubling: that treats two full copies of one vertex group; this embeds genuinely different vertex groups into such a symmetric double.

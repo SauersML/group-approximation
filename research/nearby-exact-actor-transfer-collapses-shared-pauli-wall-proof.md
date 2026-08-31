@@ -1,11 +1,11 @@
 ---
 rg: 2
-id: nearby-exact-actor-transfer-collapses-the-shared-pauli-wall-proof
+id: nearby-exact-actor-transfer-collapses-shared-pauli-wall-proof
 kind: route
 title: Transfer the finite Pauli packet to a genuine actor and invoke compactness
 target: full-shared-pauli-wall-excludes-nearby-exact-actor
 requires:
-  - compactness-closes-exact-actor-pauli-window
+  - kazhdan-stabilizer-collapses-shared-pauli-sign
   - generic-perturbations-destroy-exact-commutant-gap
 ---
 

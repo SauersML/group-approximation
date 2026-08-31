@@ -4,10 +4,9 @@ id: steinberg-unitization-encodes-hecke-sums-but-is-trace-blind
 kind: claim
 title: Steinberg unitization encodes every finite Hecke sum but is blind to the non-CE trace
 distinct_from:
-  unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra: that proves the local simple-block construction and the affine obstruction for commuting group elements; this tests the proposed escape of replacing each Hecke sum by an elementary-matrix group word.
+  central-block-hecke-predicates-force-affine-group-spectra: that proves the local simple-block construction and the affine obstruction for commuting group elements; this tests the proposed escape of replacing each Hecke sum by an elementary-matrix group word.
   split-steinberg-conditional-swap-has-root-kernel-countermodel: that gives a payload-positive countermodel for one selected orthogonal aggregate; this proves the general root-retraction and linear-sofic firewalls for arbitrary finite Heisenberg predicate blocks.
   hs-steinberg-root-kernel-is-linear-sofic: that asks for a rank-metric coefficient quotient from an arbitrary matrix ultraproduct representation; this shows why a coefficient trace does not even define a unitary representation of the characteristic-zero root presentation.
-  true-bcs-predicates-are-local-finite-group-corners: that isolates the augmentation-zero signed-Hecke target; this proves that pure finite-coefficient matrix unitization cannot globalize that target.
 ---
 
 **EXACT SYNTACTIC COMPILER AND TRACE/SOFICITY FIREWALL; NO
@@ -83,7 +82,7 @@ and equations \(x_{ij}(a)=x_{ij}(b)\) all become identities after (SUT5).
 Consequently the presentation retains every external bad sector with all
 coefficient tests trivial.  In particular, adjoining the words (SUT1) for
 the Heisenberg predicate projections from
-unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra
+central-block-hecke-predicates-force-affine-group-spectra
 does not authenticate those projections in an arbitrary unitary
 representation.
 

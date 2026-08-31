@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-mixed-cell-threshold-proof
-kind: proof
+kind: route
 title: Grade the two-cell quiver and close the third cell to GL4
 target: qutrit-two-mixed-cells-are-rf-three-are-full-leavitt
 requires:

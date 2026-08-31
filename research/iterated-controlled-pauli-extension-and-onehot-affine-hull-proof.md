@@ -3,10 +3,10 @@ rg: 2
 id: iterated-controlled-pauli-extension-and-onehot-affine-hull-proof
 kind: route
 title: Compute the affine residue and extend every sector through all D8 cells
-target: d8-per-projection-synchronous-compiler-is-affine-hull-transparent
+target: d8-per-projection-synchronous-compiler-affine-hull-transparent
 requires:
-  - controlled-pauli-reflection-dilation-is-a-hyperlinear-d8-absorber
-  - unique-central-block-realizes-hecke-predicates-but-forces-affine-group-spectra
+  - controlled-pauli-reflection-dilation-hyperlinear-d8-absorber
+  - central-block-hecke-predicates-force-affine-group-spectra
 ---
 
 # Compute the affine residue and extend every sector through all D8 cells
