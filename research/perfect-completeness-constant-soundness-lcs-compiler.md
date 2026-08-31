@@ -164,6 +164,15 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   it already has a four-dimensional perfect strategy and supplies no source
   decoder.  The live target is therefore a source-dependent cyclic coupling
   with a dimension-independent reverse decoder.
+- **Twist a contextual cycle by source signs.**  One-port and commuting-profile
+  couplings die by `magic-square-one-port-is-a-universal-phase-absorber`.
+  Every source involution extends through a one-port Magic Square after a
+  four-dimensional amplification.  More generally, Arkhipov's theorem makes
+  every degree-two arrangement either a planar affine total-parity check or
+  a nonplanar finite-dimensional absorber for every sign profile.  Private
+  squares and right-hand-side twists therefore cannot remove odd characters.
+  Only a connected cycle with at least two genuinely noncommuting source
+  ports remains outside the theorem.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
