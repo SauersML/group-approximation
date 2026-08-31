@@ -45,12 +45,15 @@ the exact gauge family
 \]
 On the sharp crossing
 \(|s|\asymp|\theta-\theta_0|\), its edge displacement is comparable to
-\(|\theta-\theta_0|^2\), while (PTC3) gives a global repair of order
+\(|\theta-\theta_0|^2\). Whenever a coupled assembly realizes this crossing
+as its whole Iwahori defect, (PTC3) gives a global repair of order
 \[
  O\!\left(\operatorname{def}^{1/2}\right).              \tag{PTC4}
 \]
-Thus the square-root exponent is the correct local price after the coupled
-endpoint union and all gauge freedoms are restored.
+Thus the square-root exponent is the correct local price for that coupled
+slice after the endpoint union and all gauge freedoms are restored. No
+quadratic estimate is asserted when an additional opposite-Iwahori mismatch
+is present.
 
 The theorem does not control regular-character charts that stay a positive
 RMS distance from every finite-dimensional congruence stratum. By
