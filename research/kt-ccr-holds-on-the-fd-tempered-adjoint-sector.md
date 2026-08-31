@@ -171,6 +171,11 @@ Writing
 exactly `L(W)`.  Hence hyperlinearity of `W` would turn this profile into
 a literal FDT7 and (CCR) counterexample.  The present hypotheses do not
 supply such a generalized coset-wreath model, so this remains conditional.
+At `q=2`, `coset-wreath-wall-survives-full-commutant-corners` further
+proves that `L(W)` is a factor and every nonzero full relative-commutant
+corner of a hypothetical embedding preserves the canonical trace and the
+squared wall displacement `1/2`.  Thus multiplicity corners cannot weaken
+the conditional refuter.
 It proves that the missing input must use matrix approximability, and that
 tensoring with the inverse or passing to the adjoint action alone is unsafe
 because it erases scalar-phase commutators.
