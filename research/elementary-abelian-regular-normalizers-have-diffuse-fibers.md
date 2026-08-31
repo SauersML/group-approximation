@@ -105,7 +105,7 @@ use
 
 ```text
 U_m(g,t^j)
- =Q_m^j tensor lambda_(L_m)(g_bar) tensor F_(k_m)^j.             (EAR10)
+ =Q_m^j tensor lambda_(L_m)(g_bar) tensor F_(k_m)^j.             (EAR7)
 ```
 
 This gives exact coherent normalizers for the Kazhdan actor `H`, a regular
@@ -116,7 +116,7 @@ bound below.
 Nevertheless, for every monomial matrix `M_m` in the displayed lamp basis,
 
 ```text
-||U_m-M_m||_2^2 >= 2-2/sqrt(k_m).                              (EAR7)
+||U_m-M_m||_2^2 >= 2-2/sqrt(k_m).                              (EAR8)
 ```
 
 This remains sharp after arbitrary negligible block padding.  If
@@ -125,7 +125,7 @@ This remains sharp after arbitrary negligible block padding.  If
 
 ```text
 |tr((M'_m)^*(U_m direct_sum Z_m))|
- <=(d_m/sqrt(k_m)+r_m)/(d_m+r_m) -> 0.                         (EAR8)
+ <=(d_m/sqrt(k_m)+r_m)/(d_m+r_m) -> 0.                         (EAR9)
 ```
 
 Thus the squared normalized Hilbert--Schmidt distance is at least
@@ -137,7 +137,7 @@ Fourier diagonalization gives
 
 ```text
 (lambda_(B_m)(B_m) tensor 1)'
-  isomorphic_to direct_sum_(chi in dual(B_m)) M_(k_m)(C).       (EAR9)
+  isomorphic_to direct_sum_(chi in dual(B_m)) M_(k_m)(C).       (EAR10)
 ```
 
 In particular the tracial ultraproduct contains the diffuse algebra
