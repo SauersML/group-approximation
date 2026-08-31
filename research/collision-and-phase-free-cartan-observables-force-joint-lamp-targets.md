@@ -5,7 +5,7 @@ kind: claim
 title: Collision localization and phase-free Cartan mass force joint lamp targets
 distinct_from:
   finite-lamp-targets-glue-after-action-groupoid-completion: that glues a finite groupoid after its objects and arrows are supplied; this gives matrix observables sufficient to extract the arrows as approximately multiplicative permutations.
-  finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction: that asks whether supplied normalizers are related to a prescribed target by commutant gauge; this rounds near-Cartan normalizers and then discards all phases.
+  finite-schreier-holonomy-is-the-lamp-gauge-obstruction: that asks whether supplied normalizers are related to a prescribed target by commutant gauge; this rounds near-Cartan normalizers and then discards all phases.
   invariant-cartan-completion: that asks abstractly for an actor-invariant Cartan in the ultraproduct; this identifies two finite-dimensional numerical observables, proves quantitative target bounds, and shows why deriving them from ordinary moments is the same open theorem.
   elementary-abelian-regular-normalizers-have-diffuse-fibers: that supplies exact diffuse normalizers far from monomials; this isolates the extra collision statistic which those local hypotheses do not control.
 artifacts:
@@ -87,7 +87,7 @@ Ordinary canonical traces do not control `(CPC1)--(CPC2)`.
   `Fix_D(F_d)=1/d`.  Phase-free diagonal mass can be small while the
   unitary is maximally delocalized and far from every monomial.
 - The multiplicity-one bent normalizer in
-  `finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction`
+  `finite-schreier-holonomy-is-the-lamp-gauge-obstruction`
   is diagonal in its lamp-character masa.  It has
   `Col_D(U_m)=Fix_D(U_m)=1`, even though its scalar trace and every fixed
   nonidentity group trace tend to zero.  Collision localization can be
