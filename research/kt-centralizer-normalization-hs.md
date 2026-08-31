@@ -401,3 +401,36 @@ permutation target still exists, so this is a gauge-rounding obstruction,
 not a counterexample to equivariant transfer.  Constructing compatible
 targets across growing windows remains OPEN.
 
+**2026-08-31 (FDT7 balanced-projection, wreath, and corner boundary;
+(CCR) still OPEN).**  The claim
+`fdt7-is-balanced-bernoulli-projection-transfer`, with derivation
+`balanced-bernoulli-projection-transfer-proof`, gives a reversible
+two-by-two reduction of the pointed unitary estimate to trace-half projection
+transfer.  For `J(v)=[[0,v],[v^*,0]]` and `P=(I+J)/2`, diagonal actor
+doubling preserves every normalized-HS actor defect and projection
+displacement is exactly one half of the original commutator displacement.
+The converse is `v=2p-I`.  Physical half-rank does not create adjoint
+tracial mass: left multiplication merely recreates FDT7 at the second
+adjoint level.
+
+The exact finite-tracial profile is the Bernoulli crossed product for `G`
+acting on `G/Lambda`, equivalently
+`L((direct_sum_(G/Lambda) C_2) semidirect G)`.  Its base projection is
+`Lambda`-fixed, has trace `1/2`, and has squared displacement `1/2`
+under `gamma in Gamma minus Lambda`.  Hyperlinearity of this explicit
+coset wreath would therefore refute FDT7 and (CCR), but remains OPEN.
+
+The unconditional claim
+`coset-wreath-wall-survives-full-commutant-corners`, proved in
+`coset-wreath-full-corner-persistence-proof`, sharpens that dichotomy at
+`q=2`.  The coset wreath is ICC.  In every trace-preserving embedding of
+its factor, every nonzero full relative-commutant projection gives a
+trace-preserving corner embedding retaining all Bernoulli moments and the
+same squared wall displacement `1/2`.  A corner of a tracial matrix
+ultraproduct is again a tracial matrix ultraproduct with positive limiting
+rank density.  Thus amplification and full multiplicity corners cannot
+dilute a hypothetical wall; the remaining gate is existence or exclusion of
+the original embedding.  This is compatible with
+`coset-bernoulli-ce-refutes-relative-commutant-collapse` and does not prove
+a nonhyperlinear group.
+
