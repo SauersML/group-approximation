@@ -34,16 +34,18 @@ its private-label core:
 2. every coherent family on the core extends across all deleted relations on
    the same cloud, using only independent tight single-label matchings and
    exact composition or inverse composition; and
-3. if the core shadow radius is `e`, the single-label matching radius is
-   `rho`, and every unitary relation defect is at most `zeta` off an
-   exceptional set of density `eta`, then the extension has shadow radius
+3. if the core family has shadow radius `e` off a set of density `theta`,
+   the single-label matching radius is `rho`, and every unitary relation
+   defect is at most `zeta` off a set of density `eta`, then the extension
+   has shadow radius
    at most
 
    ```text
    C_T (e+rho+zeta)
    ```
 
-   and exceptional density at most `C_T eta+o(1)`, for a constant depending
+   and exceptional density at most `C_T(theta+eta)+o(1)`, for a constant
+   depending
    only on the finite table.
 
 After arbitrary completion of the partial bijections, every relation in
