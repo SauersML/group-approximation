@@ -49,14 +49,15 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   to that shared row using one `M_4` factor.  Mere connectedness and a common
   packet context do not lock the multiplicity frame; a survivor needs a
   sector-dependent transverse interface with no amplified alignment.
-- **Put two ports on transverse lines of the same square.**  This does
-  create an exact nonabelian carrier, but fixed Pauli completion now goes too
-  far.  By `two-port-magic-square-commutator-is-holonomy-square`, the
-  row-versus-column ordering word `Omega` is derived and satisfies
-  `[W,Z]=Omega^2`.  In every class-two packet image `Omega` is central, which
-  forces `W` and `Z` to commute; such a packet merely imposes a quotient of
-  the source and is not a universal absorber.  A live construction must
-  realize and control `Omega` noncentrally.
+- **Put two ports on transverse lines of the same square.**  This is now
+  closed in both directions by
+  `two-port-magic-square-commutator-is-holonomy-square`.  Exact elimination
+  forces `ZW=WZ` in every representation, not merely in class-two packet
+  sectors; conversely every commuting pair extends through controlled
+  four-dimensional even/odd square models.  The holonomy satisfies
+  `Omega=(bc)^2` and `Omega^2=1`, with an absolute robust commutator bound.
+  Hence the single-square packet is exactly a commutativity quotient and
+  supplies no noncentral escape.
 - **Repeat fixed K labels at positive density.**  This can improve the finite
   packet's empirical spectral weight but does not change the universal
   completion; an infinite kernel in the abelian-subgroup amalgam survives
