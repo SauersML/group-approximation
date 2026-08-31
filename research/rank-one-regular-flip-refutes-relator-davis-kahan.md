@@ -65,6 +65,15 @@ Therefore
 \|T_X-T_0\|_{L^2(D)\to L^2(D)}=2.                    \tag{RDK7}
 \]
 
+At a prime Iwahori level, every transfer in the regular endpoint orbit is
+unitarily conjugate to \(T_0\) and has spectrum \(\{1,-1/p\}\), whereas
+\(-1\in\operatorname{spec}(T_X)\). Hence, for every \(U\in U(D)\),
+
+\[
+\left\|T_X-T_{U^*X_0U}\right\|_{2\to2}
+ \geq1-\frac1p.                                       \tag{RDK8}
+\]
+
 For every \(0\leq\epsilon<2\), the sharp near-top spectral projector loses
 the \(P\)-direction, so its operator-norm distance from the canonical top
 projector is one.
