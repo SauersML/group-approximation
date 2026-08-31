@@ -149,6 +149,49 @@ normalized traces of `lambda_(B_m)(p_m(a))Q_m^j` and `F_(k_m)^j`.  The
 first factor has modulus at most one, while `(EAP7)`--`(EAP8)` tend to
 zero.  Thus every fixed nonidentity element has limiting trace zero.
 
+## Step 3b: the actor may be Kazhdan
+
+Let `K=SL_3(Z)`.  This group is residually finite and has property `(T)`.
+Choose finite quotients `q_m:K -> L_m` which separate every fixed
+nonidentity element eventually; passing to cumulative products gives such a
+single sequence.  Put `H=K times C_4`.  It is again residually finite and
+Kazhdan, and let it act on `A` through the second factor.
+
+On
+
+```text
+H'_m=ell^2(B_m) tensor ell^2(L_m) tensor C^(k_m)
+```
+
+define
+
+```text
+pi'_m(a,g,t^j)
+ =(lambda_(B_m)(p_m(a)) Q_m^j)
+  tensor lambda_(L_m)(q_m(g))
+  tensor F_(k_m)^j.                                      (EAP9)
+```
+
+The three factors show directly that `pi'_m` is an exact representation of
+`A rtimes H` and implements the prescribed lamp automorphism.  Its lamp
+restriction is `|L_m|k_m` copies of the regular `B_m)-action.
+
+The trace is canonical.  A nontrivial surviving lamp translation has trace
+zero.  If the `K)-coordinate is nontrivial, its eventually nontrivial left
+translation on `L_m` has trace zero.  If the `C_4)-coordinate is
+nontrivial, `(EAP7)--(EAP8)` make the Fourier trace tend to zero.  These
+three cases exhaust the nonidentity elements.  For the actor element `t`,
+the matrix
+
+```text
+Q_m tensor 1_(ell^2(L_m)) tensor F_(k_m)
+```
+
+still has exactly `k_m` entries of modulus `k_m^(-1/2)` in every row.
+Consequently the distance and padding estimates below hold verbatim with
+`d'_m=|B_m||L_m|k_m`.  Thus even an infinite residually finite Kazhdan
+actor does not remove the coherent Fourier multiplicity fiber.
+
 ## Step 4: the sharp monomial distance, including padding
 
 In the product lamp basis, every row of `U_m=Q_m tensor F_(k_m)` has
