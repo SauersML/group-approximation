@@ -18,7 +18,7 @@ K=<J,X_1,...,X_5 |
  X_1 X_2 X_3 X_4 X_5=J>.
 ```
 Then `K` is extraspecial of order `32` and has a unique irreducible
-`J=-1` representation `rho), of dimension four.  Cyclic permutation
+`J=-1` representation `rho`, of dimension four.  Cyclic permutation
 of the five `X_i` is an outer automorphism `alpha` of order five.
 For
 ```text
@@ -32,7 +32,7 @@ pi(g)=h tensor D,                         D^5=I_M.        (FCO1)
 ```
 The factor `D` is unconstrained automorphism-extension multiplicity.
 
-Adjoin an involution `V` centralizing `K), put
+Adjoin an involution `V` centralizing `K`, put
 `pi(V)=I_4 tensor A`, and set `U=X_1^a V`, `a in {0,1}`.  The
 suggested odd-orbit extractor has the exact value
 ```text
