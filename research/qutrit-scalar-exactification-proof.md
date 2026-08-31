@@ -16,7 +16,7 @@ which exhaust a group containing the finite subgroup
 K=GL_28(F_2).
 ```
 
-After a diagonal extraction, all multiplication defects on `K) tend to
+After a diagonal extraction, all multiplication defects on `K` tend to
 zero in normalized Hilbert--Schmidt norm.
 
 Finite-group normalized-Hilbert--Schmidt stability applies here. One
@@ -27,11 +27,11 @@ V_l xi=|K|^(-1/2) sum_(g in K) delta_g tensor phi_l(g)^* xi
 ```
 
 from the microstate space to the tensor product of the left regular
-`K)-space with that microstate space. Averaging its range projection over
+`K`-space with that microstate space. Averaging its range projection over
 the exact left regular action, then taking the polar part of the resulting
 almost-intertwiner, produces an invariant subspace and an exact
-representation. The discarded and added dimensions are `o(d_l)), and the
-polar intertwiner changes every named `K)-matrix by `o(1)) in normalized
+representation. The discarded and added dimensions are `o(d_l)`, and the
+polar intertwiner changes every named `K`-matrix by `o(1)` in normalized
 Hilbert--Schmidt norm. Equivalently, this is the finite-group case of
 normalized Frobenius stability for approximate unitary representations.
 
@@ -54,7 +54,7 @@ m_(pi,l)/D_l
  -> dim(pi)/|K|.                                        (QSE3)
 ```
 
-Thus the exact restrictions have the regular `K)-type proportions. If
+Thus the exact restrictions have the regular `K`-type proportions. If
 `p` is any self-adjoint idempotent in `C[K]`, then
 `sigma_l(p)` is a projection and `(QSE2)`, applied coefficientwise,
 gives
@@ -100,11 +100,11 @@ is `gcd(28,1)=1`. Therefore
 H_1(K,Z)=0,                  H_2(K,Z)=0.                 (QSE5)
 ```
 
-For a trivial `K)-module `A`, the universal-coefficient sequence and
+For a trivial `K`-module `A`, the universal-coefficient sequence and
 `(QSE5)` give `H^2(K,A)=0`. Every central extension of `K` by the
 abelian group `A` therefore splits. Its splittings form a torsor for
 `Hom(K,A)`, which is also zero because `K` is perfect, so the splitting
-is unique. In particular, a central involution only gives `K x C_2).
+is unique. In particular, a central involution only gives `K x C_2`.
 
 This computation does not address a noncentral head cut. In a canonical
 microstate a nonidentity head involution has trace tending to zero, so its
