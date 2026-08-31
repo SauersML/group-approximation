@@ -41,16 +41,36 @@ The Jacobson normal forms `1,T,T^2` are linearly independent. Vanishing
 of the two non-scalar coefficients is equivalent to `P` fixing `i,j`.
 This proves the rows for `t` and `u`.
 
-The remaining four rows follow by the same coefficient comparison. For
-`ktk=I+T e_2(e_1^*+e_3^*)`, a permutation must fix coordinate `2`
-and preserve the set `{1,3}`. Every element of `C` has odd order, so
-it cannot swap two coordinates and must fix both. The transpose-shaped
-calculation for `tkt` gives the same three fixed coordinates. For
-`kt` and `tk`, inspection of the three active columns first forces
-the active triple to be preserved; either nontrivial three-cycle leaves a
-nonzero `T`-coefficient, so the triple is fixed pointwise. Conversely a
-permutation fixing the listed coordinates commutes with the displayed
-matrix. This proves `(QDW2)`.
+For the remaining rows, abbreviate
+
+```text
+A=E_31,       B=E_23,       C_0=E_21,       D=B+C_0.
+```
+
+For `ktk=I+TD`, comparison of the `T)-coefficient says that `P`
+commutes with `D=e_2(e_1^*+e_3^*)). Thus it fixes coordinate `2` and
+preserves the set `{1,3}`. Every element of the odd-order group `C`
+has odd order, so it cannot swap two coordinates and must fix both.
+
+For each of `tkt`, `kt`, and `tk`, the scalar coefficient of
+`gPg^(-1)` is
+
+```text
+(I+A)P(I+A).
+```
+
+The scalar transvection calculation first forces `P` to fix coordinates
+`1,3`, after which `P` commutes with `A`. The remaining
+`T)-coefficient reduces respectively to
+
+```text
+C_0P+PC_0,          DP+PD,          BP+PB.
+```
+
+Its vanishing forces coordinate `2` to be fixed as well; the
+`T^2)-coefficient then vanishes automatically. Conversely a permutation
+fixing the listed coordinates commutes with the displayed matrix. This
+proves `(QDW2)`.
 
 If `c in C intersect gCg^(-1)`, write `c=gc'g^(-1)` with
 `c' in C`. Both sides are scalar permutation matrices, so `(QDW2)`
