@@ -4,7 +4,7 @@ id: finite-lamp-targets-glue-after-action-groupoid-completion
 kind: claim
 title: Finite lamp targets glue after action-groupoid completion, but site relation errors amplify
 distinct_from:
-  finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction: that classifies gauges between supplied normalizer connections; this discards the supplied normalizers and constructs a new finite permutation transport once a finite action groupoid is given.
+  finite-schreier-holonomy-is-the-lamp-gauge-obstruction: that classifies gauges between supplied normalizer connections; this discards the supplied normalizers and constructs a new finite permutation transport once a finite action groupoid is given.
   moving-lamp-refinement-cocycle-has-diffuse-fibers: that proves spectral refinement and overlap covariance; this balances the refined atom multiplicities and identifies the separate finite-action-completion gate.
   finite-sheet-transport-networks-are-exactly-matricial: that realizes already supplied sheet bijections with arbitrary monodromy; this constructs a free finite groupoid carrier from rank capacities and quantifies both Fourier balancing and actor-relation loss.
   lamp-charts-recover-set-action: that turns a completed lamp chart system into a sofic set action; this proves the finite transport lemma and shows exactly why producing the required chart groupoid remains open.
