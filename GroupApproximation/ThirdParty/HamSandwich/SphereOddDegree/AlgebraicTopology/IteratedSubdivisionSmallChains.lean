@@ -68,7 +68,7 @@ theorem barycentricSubdivision_maps_smallChainSubmodule (R : Type) [CommRing R]
   have hle : smallChainSubmodule R X 𝒰 n ≤ Submodule.comap (barycentricSubdivisionLinearMap R X n).hom (smallChainSubmodule R X 𝒰 n) := by
     refine' Submodule.span_le.mpr _;
     rintro c ⟨σ, hσ, rfl⟩
-    simp [barycentricSubdivisionLinearMap_generator_sum, IsSmallSimplex.barycentricSubdivSimplex hσ];
+    simp [barycentricSubdivisionLinearMap_generator_sum];
     exact Submodule.sum_mem _ fun π _ => Submodule.smul_mem _ _ ( chainGenerator_mem_smallChainSubmodule ( IsSmallSimplex.barycentricSubdivSimplex hσ π ) )
   exact hle hc
 
@@ -116,17 +116,23 @@ The basis generators `[σ]` span the singular chain group (it is the free
 -/
 theorem chainGenerator_span_top (R : Type) [CommRing R] (n : ℕ) :
     Submodule.span R (Set.range (chainGenerator R X n)) = ⊤ := by
-  refine' Submodule.eq_top_iff'.mpr fun x => _;
-  obtain ⟨c, hc⟩ : ∃ c : singularChainGroup R X n, x = c := by
-    use x;
-  -- Apply the `Limits.Sigma.hom_ext` lemma to conclude that `q = 0`.
+  apply Submodule.eq_top_iff'.mpr
+  intro x
   have hq_zero : (ModuleCat.ofHom (Submodule.mkQ (Submodule.span R (Set.range (chainGenerator R X n)))) : singularChainGroup R X n ⟶ ModuleCat.of R (singularChainGroup R X n ⧸ Submodule.span R (Set.range (chainGenerator R X n)))) = 0 := by
-    apply Limits.colimit.hom_ext;
-    intro j; ext; simp [chainGenerator];
-    convert Submodule.Quotient.mk_eq_zero _ |>.2 <| Submodule.subset_span <| Set.mem_range_self j.as;
-  convert Submodule.Quotient.mk_eq_zero _ |>.1 _;
-  convert congr_arg ( fun f : singularChainGroup R X n ⟶ _ => f.hom c ) hq_zero using 1;
-  exact hc ▸ rfl
+    apply Limits.colimit.hom_ext
+    intro j
+    apply ModuleCat.hom_ext
+    apply LinearMap.ext_ring
+    change Submodule.Quotient.mk (chainGenerator R X n j.as) = 0
+    exact (Submodule.Quotient.mk_eq_zero _).2
+      (Submodule.subset_span (Set.mem_range_self j.as))
+  apply (Submodule.Quotient.mk_eq_zero _).1
+  have hx := congrArg
+    (fun f : singularChainGroup R X n ⟶
+      ModuleCat.of R (singularChainGroup R X n ⧸
+        Submodule.span R (Set.range (chainGenerator R X n))) => f.hom x) hq_zero
+  change Submodule.Quotient.mk x = 0 at hx
+  exact hx
 
 /-! ## 4. Main theorem -/
 
