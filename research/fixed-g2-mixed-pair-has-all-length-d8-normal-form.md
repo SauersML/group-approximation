@@ -4,7 +4,6 @@ id: fixed-g2-mixed-pair-has-all-length-d8-normal-form
 kind: claim
 title: One g2-shifted mixed pair is exhausted at every word length
 artifacts:
-  - research/fixed-g2-mixed-pair-all-length-normal-form-proof.md
 distinct_from:
   first-uncancelled-g2-mixed-carrier-has-no-hall-deficit: that treats the two shortest orders VU_2 and U_2V; this classifies every word in the same shifted pair.
   g2-one-raw-letter-sign-atlas-is-residually-finite: that closes the one-orientation rows; this shows every remaining row is one of the two already computed mixed carriers.
