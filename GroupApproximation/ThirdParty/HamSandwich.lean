@@ -15,5 +15,6 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CoveringSimplexLift
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.DegreeAPIStrengthening
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CupProduct
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.BarycentricSubdivisionDiameter
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/

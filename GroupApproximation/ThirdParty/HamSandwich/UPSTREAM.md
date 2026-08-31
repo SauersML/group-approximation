@@ -77,3 +77,6 @@ and `AlexanderWhitney` applies naturality through
 `CupProduct` uses v4.32's `SSet.ι_chainComplexMap_f` for singular-chain
 generators and explicitly closes the definitional conversions around coproduct
 inclusions.
+
+`BarycentricSubdivisionDiameter` uses the current singleton-sum identity and
+direct `calc` proofs for its one-step and iterated contraction estimates.
