@@ -174,7 +174,7 @@ Re-pin after reviewing the rows an edit to the `.tex` touches.
 | `prop:defect-saturation` functoriality and saturation | `GroupApproximation.Manuscript.OneSidedMFRadical.manuscriptDefectSaturation` | closed |
 | `eq:defect-functoriality` the image inequality itself | `GroupApproximation.Manuscript.OneSidedMFRadical.map_printedDefect_to_range_le` | conditional |
 | `eq:pq` `q` is nonzero at the manuscript's ring | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.q_ne_zero` | closed |
-| `eq:matrix-compression` the unital injective endomorphism `Psi` | `GroupApproximation.LeavittFamily.matrixCompression` | conditional |
+| `eq:matrix-compression`: `Psi` is injective, multiplicative, and identity-preserving but not additive; its restriction to units is an injective group homomorphism | `GroupApproximation.LeavittFamily.matrixCompression`; `GroupApproximation.Manuscript.OneSidedMFRadical.PrintedLeavittEquations.printed_matrixCompression_not_additive`; `GroupApproximation.LeavittFamily.matrixCompressionHom` | closed |
 | `eq:tau` `tau = diag(X, Y)` as a unit of the twelve-by-twelve matrix ring | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL` | closed |
 | `eq:whitehead-factorization` the six block-unipotent factors | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.tauUnit_eq_six_elementary` | closed |
 | `lem:tau-elementary` the printed `tau` of `eq:tau` belongs to `EL_12(R)` | `GroupApproximation.Manuscript.OneSidedMFRadical.RankTwelveEndpoint.printedTauGL_mem` | closed |

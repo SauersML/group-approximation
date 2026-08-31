@@ -612,7 +612,7 @@
     'π': entry('the map pi', 'The Greek letter pi names a [[homomorphism]] or [[representation]].', '\\pi'),
     'ρ': entry('the representation rho', 'The Greek letter rho names the [[representation]] that assigns an invertible linear operator to each element of G.', '\\rho'),
     'Θ': entry('the corona representation Theta', 'The Greek letter Theta names the [[homomorphism]] from G into the unitary group of a [[norm matrix corona]].', '\\Theta'),
-    'Ψ': entry('the compression map Psi', 'The Greek letter Psi names the injective [[endomorphism]] that compresses a 3-by-3 matrix A into one Leavitt piece and uses q on the complementary diagonal piece.', '\\Psi'),
+    'Ψ': entry('the compression map Psi', 'The Greek letter Psi names the injective identity-preserving multiplicative map that compresses a 3-by-3 matrix A into one Leavitt piece and uses q on the complementary diagonal piece. It is not additive, but it restricts to an injective homomorphism of unit groups.', '\\Psi'),
     'κ': entry('the Kazhdan constant kappa', 'The Greek letter kappa names a positive [[Kazhdan constant]] for the finite Kazhdan set S.', '\\kappa'),
     'ξ': entry('the vector xi', 'The Greek letter xi names a [[vector]] fixed by the represented subgroup L.', '\\xi'),
     'τ': entry('the matrix tau', 'The [[Greek letter]] tau names the [[invertible]] [[matrix]] that sends L back inside itself by [[conjugation]].', '\\tau'),

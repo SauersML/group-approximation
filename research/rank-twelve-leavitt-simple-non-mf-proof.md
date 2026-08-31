@@ -18,7 +18,9 @@ Put `p=s_0*t_0` and `q=s_1*t_1`.  On `M_3(R)`, the map
 Psi(A)=q*I_3+s_0*A*t_0
 ```
 
-is a unital injective endomorphism.  Define the `6 x 6` inverse pair
+is injective, multiplicative, and identity-preserving, but not additive
+(`Psi(0)=qI_3 != 0`).  Its restriction to the unit group is an injective
+group homomorphism.  Define the `6 x 6` inverse pair
 
 ```text
 U=[[s_0 I_3, s_1 t_0 I_3], [0, t_1 I_3]],

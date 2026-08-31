@@ -418,10 +418,10 @@ proves simplicity without his theorem.  See the ranked list after the table.
 | 203 | 830–833 | `eq:pq` second half: `t_1 q s_1 = 1`. | `LeavittFamily.t1_mul_p1_mul_s1` | CARRIED |
 | 204 | 834 | "In particular `q ≠ 0`." | `RTE.q_ne_zero`; `LeavittFamily.p1_ne_zero` | CARRIED |
 | 205 | 836–839 | "We use indices `0,…,11`, and identify `GL_3(R)` with the matrices `diag(A,I_9)` in `GL_12(R)`." | `RankTwelve.fullCorner`, `RankTwelve.halfCorner`; `RTE.frame12`, `RTE.flat12`, `RTE.cornerIndex` | CARRIED |
-| 206 | 838–842 | `eq:matrix-compression`: `Ψ(A) = qI_3 + s_0At_0`, "the unital injective endomorphism". | `LeavittFamily.matrixCompression` | CARRIED |
+| 206 | 838–842 | `eq:matrix-compression`: `Ψ(A) = qI_3 + s_0At_0`, an injective identity-preserving multiplicative map, not a ring endomorphism. | `LeavittFamily.matrixCompression`; `PrintedLeavittEquations.printed_matrixCompression_not_additive` | CARRIED (CORRECTED) |
 | 207 | 843 | "Here `s_0At_0` denotes the matrix `(s_0a_{ij}t_0)_{ij}`." | `LeavittFamily.matrixCompression_apply` | CARRIED |
 | 208 | 843–845 | "The relations `qs_0 = t_0q = 0` and `t_0s_0 = 1` show that `Ψ` is multiplicative and unital." | `LeavittFamily.p1_mul_s0`, `t0_mul_p1`, `t0_s0`; `PrintedLeavittEquations.printed_q_mul_s0`, `printed_t0_mul_q`; `matrixCompression_mul`, `matrixCompression_one` | CARRIED |
-| 209 | 845 | "The identity `t_0Ψ(A)s_0 = A` proves injectivity." | `LeavittFamily.matrixCompression_recover`, `matrixCompressionHom_injective`; `PrintedLeavittEquations.printed_matrixCompression_injective` | CARRIED |
+| 209 | 845 | "The identity `t_0Ψ(A)s_0 = A` proves injectivity; `Ψ(0)=qI_3≠0` proves nonadditivity; on units the multiplicative map is an injective group homomorphism." | `LeavittFamily.matrixCompression_recover`, `matrixCompressionHom_injective`; `PrintedLeavittEquations.printed_matrixCompression_injective`, `printed_matrixCompression_zero_ne_zero`, `printed_matrixCompression_not_additive` | CARRIED (CORRECTED) |
 | 210 | 845–846 | "The term `qI_3` is needed for unitality because the map `A ↦ s_0At_0` sends `I_3` to `pI_3`." | `PrintedLeavittEquations.printed_scalarDiagonal_image_of_one`, `printed_p0_ne_one`, `printed_scalarDiagonal_p0_ne_one`; `matrixCompression_one` | CARRIED |
 | 211 | 848–853 | Display: `X` and `Y` as `2×2` block matrices over `M_3(R)`. | `RankTwelve.shift`, `RankTwelve.shiftInv` | CARRIED |
 | 212 | 854 | "A direct calculation using `eq:leavitt` gives `XY = YX = I_6`." | `RankTwelve.shift_mul_shiftInv`, `RankTwelve.shiftInv_mul_shift` | CARRIED |
