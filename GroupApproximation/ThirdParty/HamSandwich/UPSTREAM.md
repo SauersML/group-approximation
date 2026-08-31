@@ -160,3 +160,8 @@ uses the current `PiLp` simplifier API rather than the deprecated
 `PermSignLastFaceFinished` replaces a proof-sensitive permutation factorization
 conversion by pointwise evaluation on the last vertex and its `castPred`
 complement.  The unit- and coefficient-valued sign identities are unchanged.
+
+The affine internal-swap, adjacent-sign, finite-cancellation, and
+`BarycentricBoundaryCancellation` modules complete the paired-term cancellation
+layer.  The boundary module uses the v4.32 definitional-equality compatibility
+settings and the current minimal `toSSetObjEquiv` simplifier set.

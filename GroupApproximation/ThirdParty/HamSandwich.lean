@@ -37,5 +37,6 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ActualRPAlpha
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCupProductGenerator
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPAlphaEqualsModelGenerator
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.PermSignLastFaceFinished
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.BarycentricBoundaryCancellation
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/
