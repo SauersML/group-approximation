@@ -18,11 +18,31 @@ namespace GroupApproximation
 namespace STW22
 
 open GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-open CStarExactness LanceMatrixSubalgebra
+open CStarExactness
 
 noncomputable section
 
-open scoped CStarAlgebra
+open scoped CStarAlgebra ComplexOrder Matrix
+
+/-- A coherence-friendly presentation of the continuous-section C-star
+structure.  Its inherited algebraic structures are the pointwise
+`ContinuousMap` structures used by the explicit formulas below. -/
+local instance sphereMatrixFunctionsCStarAlgebra (d s : ℕ) :
+    CStarAlgebra (SphereMatrixFunctions d s) where
+  toNormedRing := inferInstance
+  toStarRing := inferInstance
+  toCompleteSpace := inferInstance
+  toCStarRing := inferInstance
+  toNormedAlgebra := inferInstance
+  toStarModule := inferInstance
+
+local instance sphereMatrixFunctionsPartialOrder (d s : ℕ) :
+    PartialOrder (SphereMatrixFunctions d s) :=
+  CStarAlgebra.spectralOrder _
+
+local instance sphereMatrixFunctionsStarOrderedRing (d s : ℕ) :
+    StarOrderedRing (SphereMatrixFunctions d s) :=
+  CStarAlgebra.spectralOrderedRing _
 
 /-- The order-two star automorphism whose fixed points are the antipodal
 block. -/
@@ -81,6 +101,7 @@ def antipodalActionEquiv (d s : ℕ)
     intro x
     change u * star (f (-x)) * u = star (u * f (-x) * u)
     rw [star_mul, star_mul, hu_star]
+    noncomm_ring
 
 @[simp] theorem antipodalActionEquiv_apply (d s : ℕ)
     (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
@@ -94,14 +115,16 @@ def antipodalAverageLinearMap (d s : ℕ)
     (hu_sq : u * u = 1) (hu_star : star u = u) :
     SphereMatrixFunctions d s →ₗ[ℂ] SphereMatrixFunctions d s :=
   ((2 : ℂ)⁻¹) •
-    (LinearMap.id + (antipodalActionEquiv d s u hu_sq hu_star).toLinearMap)
+    (LinearMap.id +
+      (antipodalActionEquiv d s u hu_sq hu_star).toStarAlgHom.toLinearMap)
 
 @[simp] theorem antipodalAverageLinearMap_apply (d s : ℕ)
     (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
     (hu_sq : u * u = 1) (hu_star : star u = u)
     (f : SphereMatrixFunctions d s) (x : Sphere d) :
     antipodalAverageLinearMap d s u hu_sq hu_star f x =
-      (2 : ℂ)⁻¹ • (f x + u * f (-x) * u) := rfl
+      (2 : ℂ)⁻¹ • (f x + u * f (-x) * u) := by
+  simp [antipodalAverageLinearMap, antipodalActionEquiv_apply]
 
 /-- The antipodal average satisfies the covariance relation. -/
 theorem antipodalAverage_isCovariant (d s : ℕ)
@@ -111,10 +134,9 @@ theorem antipodalAverage_isCovariant (d s : ℕ)
     IsAntipodalCovariant u (antipodalAverageLinearMap d s u hu_sq hu_star f) := by
   intro x
   rw [antipodalAverageLinearMap_apply, antipodalAverageLinearMap_apply, neg_neg]
-  change (2 : ℂ)⁻¹ • (f (-x) + u * f x * u) =
-    u * ((2 : ℂ)⁻¹ • (f x + u * f (-x) * u)) * u
   rw [Algebra.mul_smul_comm, Algebra.smul_mul_assoc]
   congr 1
+  symm
   calc
     u * (f x + u * f (-x) * u) * u =
         u * f x * u + (u * u) * f (-x) * (u * u) := by noncomm_ring
@@ -128,8 +150,12 @@ def antipodalExpectation (d s : ℕ)
     SphereMatrixFunctions d s →ₗ[ℂ] AntipodalBlock d s u hu_sq hu_star where
   toFun f := ⟨antipodalAverageLinearMap d s u hu_sq hu_star f,
     antipodalAverage_isCovariant d s u hu_sq hu_star f⟩
-  map_add' _ _ := by apply Subtype.ext; rfl
-  map_smul' _ _ := by apply Subtype.ext; rfl
+  map_add' f g := by
+    apply Subtype.ext
+    exact map_add (antipodalAverageLinearMap d s u hu_sq hu_star) f g
+  map_smul' c f := by
+    apply Subtype.ext
+    exact map_smul (antipodalAverageLinearMap d s u hu_sq hu_star) c f
 
 @[simp] theorem antipodalExpectation_coe (d s : ℕ)
     (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
@@ -144,7 +170,7 @@ def antipodalBlockInclusion (d s : ℕ)
     (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
     (hu_sq : u * u = 1) (hu_star : star u = u) :
     AntipodalBlock d s u hu_sq hu_star →⋆ₙₐ[ℂ] SphereMatrixFunctions d s :=
-  (antipodalBlockStarSubalgebra d s u hu_sq hu_star).subtype
+  (antipodalBlockStarSubalgebra d s u hu_sq hu_star).subtype.toNonUnitalStarAlgHom
 
 /-- Averaging fixes every covariant section. -/
 theorem antipodalExpectation_inclusion (d s : ℕ)
@@ -159,17 +185,9 @@ theorem antipodalExpectation_inclusion (d s : ℕ)
   rw [antipodalExpectation_coe, antipodalAverageLinearMap_apply]
   have hf := f.2 (-x)
   rw [neg_neg] at hf
-  rw [hf]
-  calc
-    (2 : ℂ)⁻¹ • (f.1 x + u * (u * f.1 x * u) * u) =
-        (2 : ℂ)⁻¹ • (f.1 x + f.1 x) := by
-          congr 1
-          rw [show u * (u * f.1 x * u) * u = f.1 x by
-            calc
-              u * (u * f.1 x * u) * u =
-                  (u * u) * f.1 x * (u * u) := by noncomm_ring
-              _ = f.1 x := by rw [hu_sq]; simp]
-    _ = f.1 x := by module
+  change (2 : ℂ)⁻¹ • (f.1 x + u * f.1 (-x) * u) = f.1 x
+  rw [← hf]
+  module
 
 /-- The ambient antipodal average is completely positive. -/
 theorem isCompletelyPositive_antipodalAverageLinearMap (d s : ℕ)
@@ -180,10 +198,12 @@ theorem isCompletelyPositive_antipodalAverageLinearMap (d s : ℕ)
       (LinearMap.id : SphereMatrixFunctions d s →ₗ[ℂ] SphereMatrixFunctions d s) :=
     isCompletelyPositive_id
   have haction : IsCompletelyPositive
-      (antipodalActionEquiv d s u hu_sq hu_star).toLinearMap :=
+      (antipodalActionEquiv d s u hu_sq hu_star).toStarAlgHom.toLinearMap :=
     isCompletelyPositive_of_starAlgHom
       (antipodalActionEquiv d s u hu_sq hu_star).toStarAlgHom.toNonUnitalStarAlgHom
-  exact (hid.add haction).nonnegativeReal_smul (1 / 2) (by norm_num)
+  simpa [antipodalAverageLinearMap] using
+    (BlackadarKirchberg.CStarExactness.IsCompletelyPositive.add hid haction).nonnegativeReal_smul
+      (1 / 2) (by norm_num)
 
 /-- Corestricting the average to its closed fixed-point algebra preserves
 complete positivity. -/
@@ -213,9 +233,10 @@ theorem isCompletelyPositive_antipodalExpectation (d s : ℕ)
       ((((star Q * Q) i j : AntipodalBlock d s u hu_sq hu_star) :
           SphereMatrixFunctions d s)) = (star P * P) i j := by
     rw [CStarMatrix.mul_apply, CStarMatrix.mul_apply]
-    change (↑(∑ x, star (Q x i) * Q x j) : SphereMatrixFunctions d s) =
+    change (antipodalBlockStarSubalgebra d s u hu_sq hu_star).subtype
+        (∑ x, star (Q x i) * Q x j) =
       ∑ x, star (P x i) * P x j
-    rw [map_sum]
+    rw [map_sum (antipodalBlockStarSubalgebra d s u hu_sq hu_star).subtype]
     apply Finset.sum_congr rfl
     intro k _
     rfl
@@ -232,7 +253,7 @@ theorem norm_antipodalExpectation_le (d s : ℕ)
       (2 : ℂ)⁻¹ •
         (f + antipodalActionEquiv d s u hu_sq hu_star f) by rfl,
     norm_smul]
-  have hscalar : ‖((2 : ℂ)⁻¹‖ = (1 / 2 : ℝ) := by norm_num
+  have hscalar : ‖((2 : ℂ)⁻¹)‖ = (1 / 2 : ℝ) := by norm_num
   rw [hscalar]
   calc
     (1 / 2 : ℝ) * ‖f + antipodalActionEquiv d s u hu_sq hu_star f‖ ≤
