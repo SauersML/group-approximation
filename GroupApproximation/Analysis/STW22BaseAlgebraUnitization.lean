@@ -3,6 +3,7 @@ import GroupApproximation.Analysis.STW22AntipodalBlockData
 import GroupApproximation.Analysis.STW22ActualTraceSpaces
 import GroupApproximation.Analysis.STW22RealProjectiveBlockSeparable
 import GroupApproximation.Analysis.STW22RealProjectiveBlockTypeI
+import GroupApproximation.Meta.AxiomGuard
 
 /-!
 # The concrete STW base algebra is the ordinary unitization
@@ -22,7 +23,7 @@ open UniformTracialTwoNullIdeal STW22ActualTraceSpaces
 
 noncomputable section
 
-universe u
+universe u v
 
 variable (D : ℕ → Type u) [∀ n, CStarAlgebra (D n)]
   [∀ n, Nontrivial (D n)]
@@ -122,8 +123,8 @@ def unitizationEquivBase :
 /-- Type I transports from the ordinary unitization to the concrete
 scalar-plus-`c₀` base model along the explicit equivalence. -/
 theorem isTypeI_baseAlgebra_of_unitization
-    (hU : STW22.IsTypeI (Unitization ℂ (C0DirectSum D))) :
-    STW22.IsTypeI (BaseAlgebra D) := by
+    (hU : STW22.IsTypeI.{u, v} (Unitization ℂ (C0DirectSum D))) :
+    STW22.IsTypeI.{u, v} (BaseAlgebra D) := by
   intro H _ _ _ π hπ T hT
   let ρ : Unitization ℂ (C0DirectSum D) →⋆ₐ[ℂ] (H →L[ℂ] H) :=
     π.comp (unitizationToBase D)
@@ -174,7 +175,7 @@ theorem separableSpace_baseAlgebra
 /-- The actual scalar-plus-`c₀` base built from arbitrary real-projective
 blocks is type I. -/
 theorem isTypeI_baseAlgebra_realProjectiveBlocks (d s : ℕ → ℕ) :
-    STW22.IsTypeI (BaseAlgebra
+    STW22.IsTypeI.{0, v} (BaseAlgebra
       (fun n ↦ STW22.RealProjectiveBlock (d n) (s n))) :=
   isTypeI_baseAlgebra_of_unitization
     (fun n ↦ STW22.RealProjectiveBlock (d n) (s n))
@@ -189,7 +190,8 @@ theorem separableSpace_baseAlgebra_realProjectiveBlocks (d s : ℕ → ℕ) :
 
 /-- The literal base algebra used by the antipodal counterexample is type I. -/
 theorem isTypeI_baseAlgebra_antipodalCounterexampleBlock :
-    STW22.IsTypeI (BaseAlgebra STW22.AntipodalCounterexampleBlock) :=
+    STW22.IsTypeI.{0, v}
+      (BaseAlgebra STW22.AntipodalCounterexampleBlock) :=
   isTypeI_baseAlgebra_realProjectiveBlocks
     STW22.antipodalBlockDimension STW22.antipodalBlockSize
 
@@ -200,6 +202,8 @@ theorem separableSpace_baseAlgebra_antipodalCounterexampleBlock :
       (BaseAlgebra STW22.AntipodalCounterexampleBlock) :=
   separableSpace_baseAlgebra_realProjectiveBlocks
     STW22.antipodalBlockDimension STW22.antipodalBlockSize
+
+#audit_closed_axioms isTypeI_baseAlgebra_antipodalCounterexampleBlock
 
 end
 
