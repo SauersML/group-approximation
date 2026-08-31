@@ -15,13 +15,18 @@ theorem singularBoundary_coneLinearMap (R : Type) [CommRing R] (n m : ℕ) (v : 
     coneLinearMap R n (m + 1) v ≫ singularBoundary R (TopCat.of (Delta n)) (m + 1)
         + singularBoundary R (TopCat.of (Delta n)) m ≫ coneLinearMap R n m v
       = 𝟙 (singularChainGroup R (TopCat.of (Delta n)) (m + 1)) := by
-  apply Sigma.hom_ext;
-  intro σ; ext; simp +decide [ ModuleCat.hom_comp, ModuleCat.hom_add, LinearMap.add_apply ] ;
-  convert congr_arg ( fun x => x + ( coneLinearMap R n m v ).hom ( ( singularBoundary R { carrier := ( Delta n ), str := instTopologicalSpaceSubtype } m ).hom ( chainGenerator R { carrier := ( Delta n ), str := instTopologicalSpaceSubtype } ( m + 1 ) σ ) ) ) ( singularBoundary_coneGenerator_succ R n m v σ ) using 1 ; ring!;
-  · convert rfl;
-    convert coneLinearMap_generator R n ( m + 1 ) v σ |> Eq.symm;
-  · simp +decide [ chainGenerator ];
-    rfl
+  apply Sigma.hom_ext
+  intro σ
+  ext
+  change
+    (singularBoundary R (TopCat.of (Delta n)) (m + 1)).hom
+        ((coneLinearMap R n (m + 1) v).hom
+          (chainGenerator R (TopCat.of (Delta n)) (m + 1) σ))
+      + (coneLinearMap R n m v).hom
+          ((singularBoundary R (TopCat.of (Delta n)) m).hom
+            (chainGenerator R (TopCat.of (Delta n)) (m + 1) σ))
+      = chainGenerator R (TopCat.of (Delta n)) (m + 1) σ
+  rw [coneLinearMap_generator, singularBoundary_coneGenerator_succ]
+  abel
 end AffineBarycentricSubdivision
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
