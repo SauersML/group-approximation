@@ -1,7 +1,7 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferSurjective
 import Mathlib.Algebra.Homology.HomologySequence
 import Mathlib.Algebra.Homology.ShortComplex.ModuleCat
-import Mathlib.Algebra.Exact
+import Mathlib.Algebra.Exact.Basic
 
 /-!
 # The Smith/Gysin connecting map in cohomology for `Sⁿ → RPⁿ`
@@ -115,4 +115,3 @@ theorem rpGysin_mem_image_of_connecting_eq_zero (n k : ℕ) (x : rpCohomology n 
   exact hx
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-

@@ -2,7 +2,6 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnActualTopPow
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnActualAlphaPowerNoCup
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferSurjective
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnTopClassTransferNaturality
-import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.Branch4TransferNonvanishingUnconditional
 import Mathlib
 
 /-!
