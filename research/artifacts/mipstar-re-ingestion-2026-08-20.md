@@ -26,12 +26,17 @@ Added: `mipstar-equals-re` (their Thm 12.9 and Cor 12.10) and
 
 ## 2. Two things worth carrying forward
 
-**The authors state this program's goal as their own open question.**  Their
-Section 1.3: one may ask whether the counterexample "can eventually lead to a
-construction of a group that is not sofic, or even not hyperlinear".  So the
-gap between "non-Connes-embeddable tracial von Neumann algebra" and
-"non-hyperlinear group" is not an artifact of how this repository has framed the
-problem; it is the gap the source itself flags.  Recorded on `mipstar-equals-re`.
+**The authors state this program's goal as their own open question.** Their
+arXiv v3 Section 1.4 asks whether the counterexample "can eventually lead to
+a construction of a group that is not sofic, or even not hyperlinear". So
+the gap between "non-Connes-embeddable tracial von Neumann algebra" and
+"non-hyperlinear group" is not an artifact of how this repository has framed
+the problem; it is the gap the source itself flags. Recorded on
+`mipstar-equals-re`.
+
+The exact gap is canonical-trace selection: a bad arbitrary character on a
+group does not have to be the regular character that defines
+hyperlinearity.
 
 **The explicit separating game comes with no explicit strategy.**  Theorem 12.13
 gives a concrete finite game `G^sep` with `val^co = 1` and `val* <= 1/2`, but
