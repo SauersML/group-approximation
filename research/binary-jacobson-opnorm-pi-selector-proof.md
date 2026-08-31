@@ -11,16 +11,6 @@ requires:
   - opnorm-common-intertwiner-pi-gap-is-sparse-terminal
 ---
 
-**VALID IMPLICATION; INVALIDATED AS A REDUCTION.**  The argument below is
-correct after all words are evaluated in the fixed rank-five presentation.
-However,
-`binary-jacobson-typed-pi-selector-is-still-target-equivalent` proves that
-its selector prerequisite, with its current existential sequential
-quantifiers, is equivalent to this route's target.  The route therefore
-does not provide an independent path to head MF-invisibility and is
-invalidated pending an explicitly calibrated, independently nonvacuous
-occurrence formula.
-
 Assume a norm-corona representation retains the head.  Choose coordinate
 lifts of the fixed Jacobson presentation and round the head involution.  On
 an infinite subsequence its negative cut is nonzero.

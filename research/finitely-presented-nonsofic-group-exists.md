@@ -11,7 +11,6 @@ distinct_from:
   literal-central-mark-corona-invisible: That is about corona invisibility of a central mark in the non-MF lane; this is about soficity, and the two share no object.
   literal-group-fails-mf-conventions: That records which MF conventions the manuscript's E fails, and E is sofic; this asserts existence of a group that fails soficity itself.
   boone-final-group-finitely-presented: That is finite presentability of the Boone tower, a group whose word problem is the point and whose soficity is not at issue; this is existence of a finitely presented group that fails soficity.
-  sofic-quotient-nonclosure: that refutes quotient permanence using a fixed two-generator finitely presented nonsofic quotient of F2; this claim constructs a finitely presented witness directly from a forbidden table and cannot use quotient permanence.
 artifacts:
   - GroupApproximation/Endpoint/MainResults.lean
   - GroupApproximation/Covers/TableCover.lean
@@ -31,16 +30,11 @@ conjunct of its profile).
 ## Why the finite-table cover is needed at all
 
 The explicit witness of [[universal-leavitt-el4-nonsofic]] is finitely
-generated, not finitely presented. `Covers/TableCover` supplies the missing
-step. Choose a finite multiplication table and a positive tolerance witnessing
-failure of soficity, enlarge the table to contain generators, and impose its
-multiplication equalities as relators. Every model of the resulting finitely
-presented table group's distinguished table pulls back to a model of the
-forbidden table, so the table group is nonsofic. The construction also retains
-a quotient map onto the original group, but that map is used only for the
-cover and infinitude statements; it is not the source of nonsoficity.
-Arbitrary sofic quotient permanence is false by
-[[sofic-quotient-nonclosure]].
+generated, not finitely presented.  `Covers/TableCover` supplies the missing
+step: a finitely generated nonsofic group has a finitely presented nonsofic
+cover, by the finite-table construction
+(`exists_finitelyPresented_cover_of_not_isSofic`, which retains the quotient
+map).  Nonsoficity is inherited upward because soficity passes to quotients.
 
 ## Its place in the two programs
 

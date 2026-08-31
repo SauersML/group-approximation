@@ -79,13 +79,9 @@ In particular, on a sector where `u(U)=-1`,
 sum_r p_r ||r(U)-1||_2^2 >= 4/A_p(D).                   (TVF8)
 ```
 
-For the Taller--Vidick support the relevant derivation is now explicit:
-`taller-vidick-positive-noise-collapses-central-sign` uses the two masks
-`mu=f` and `mu=-f` to give identical left-hand sides with opposite
-parity signs, hence a two-equation certificate `J=1`. Thus every
-positive-noise presentation is algebraically imperfect, independently of
-the source. The weighted gap from `(TVF7)` still depends on the probabilities
-of those two mask cells, which can be extremely small.
+This is a certificate-dependent proof gap, not a perfect-completeness
+upgrade.  It applies only after a derivation of `u=1` is known, and its
+denominator depends on both that derivation and the sampling weights.
 
 Finally, the published main reduction does not fix `u` while taking
 `epsilon` to zero.  In the proof of its main theorem, `u` is selected after

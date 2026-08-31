@@ -6,15 +6,12 @@ title: A nonsofic hyperbolic group — the second nonsoficity mechanism
 distinct_from:
   hyperlinear-nonsofic-group: that claim demands a group that is hyperlinear yet not sofic; this one demands a nonsofic group that is hyperbolic, and says nothing about hyperlinearity
   wreath-not-sofic: that is nonsoficity of this program's own (T)-compression wreath candidate; this is a different group produced by a different mechanism
-  non-residually-finite-hyperbolic-group: that is strictly weaker; nonsoficity implies failure of residual finiteness, but no converse is known in the hyperbolic class.
 root: true
 ---
 
-Produce a hyperbolic group that is not sofic. This would in particular
-produce a non-residually-finite hyperbolic group, since every residually
-finite group is sofic. The implication is one-way: a non-residually-finite
-hyperbolic group could still be sofic. The weaker Gromov problem is carried
-separately at [[non-residually-finite-hyperbolic-group]].
+Produce a hyperbolic group that is not sofic.  Equivalently — since a
+nonsofic hyperbolic group cannot be residually finite — this simultaneously
+answers whether non-residually-finite hyperbolic groups exist.
 
 ## Why this sits in this program
 

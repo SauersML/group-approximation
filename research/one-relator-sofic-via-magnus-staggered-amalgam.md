@@ -2,7 +2,7 @@
 rg: 2
 id: one-relator-sofic-via-magnus-staggered-amalgam
 kind: route
-title: Answer Pestov 4.10 affirmatively through the Magnus hierarchy
+title: Answer Pestov 4.9 affirmatively through the Magnus hierarchy
 target: one-relator-groups-sofic
 requires: [magnus-staggered-chain-sofic]
 artifacts:

@@ -2,7 +2,7 @@
 rg: 2
 id: stw22-row-amplified-high-low-s4-transfer-proof
 kind: route
-title: Transfer the diffuse Stiefel four-sphere modulus through one rectangular row
+title: Transfer diffuse four-sphere fillings through a rectangular high-low decomposition
 target: stw22-diffuse-weighted-copy-uniform-s4-fillings
 requires:
   - stw22-diffuse-stiefel-uniform-four-sphere-fillings
@@ -12,30 +12,39 @@ artifacts:
   - research/artifacts/stw22-dim5-factor-bundle-breakthrough-2026-08-31.md
 ---
 
-Use `R(v)=sum e_1j tensor v_j` in the first row of `M_m(N)` with
-normalized trace. A fixed reference frame identifies the rectangular high
-polar-frame space isometrically with a Stiefel space in the normalized
-diffuse corner `e_11M_m(N)e_11`; its metric is exactly the tuple
-Hilbert-sum metric.
-
-With `epsilon_0=min(epsilon,1)`, set `eta=(epsilon_0/12)^2` and split the
-fixed weight at `eta`. The high polar `S^4` moves by at most
-`eta^(-1/2)` times the weighted input distance, so the degree-four
-Stiefel theorem fills it over `B^5` at weighted cost `epsilon_0/3` when
+Use the exact row amplification in `M_m(N)`:
 
 ```text
-delta<=sqrt(eta)rho_St,4(epsilon_0/3)/2
-     =epsilon_0^3/216000000.                            (W4-2)
+R(v)=sum_j e_1j tensor v_j,       R(v)^*R(v)=diag(a,...,a).
 ```
 
-The low first-row operator has source `diag(ap_l,...,ap_l)` and lies in
-the moving high complement. The relative five-ball theorem fills all
-copies at once; its tuple displacement is
+With normalized matrix trace, the normalized `2`-metric in the first-row
+corner is exactly the Hilbert-sum tuple metric.  Put
 
 ```text
-2sqrt(m tau(ap_l))<=2sqrt(eta)=epsilon_0/6.            (W4-3)
+epsilon_0=min(epsilon,1),       eta=(epsilon_0/12)^2,
+p_h=1_[eta,1](a),              p_l=1_(0,eta)(a).
 ```
 
-Unpacking and recombining gives the exact weighted filling. Arbitrary high
-four-spheres fill by global Stiefel four-connectivity, and the same relative
-step proves global four-connectivity of the weighted fibre.
+The high polar row amplifies the weighted input by at most
+`eta^(-1/2)`.  Fill its `S^4` at output radius `epsilon_0/3` by the
+diffuse Stiefel theorem.  A conservative input radius is
+
+```text
+sqrt(eta)rho_(St,4)(epsilon_0/3)/2
+ =epsilon_0^3/216000000.                              (W4-1)
+```
+
+The low boundary row has fixed diagonal weight `b=ap_l`, lies in the
+moving high complement, and satisfies the strict trace reserve required by
+the relative five-ball theorem.  Extend the whole row at once.  Unpacking
+the row preserves all cross orthogonality relations, and its tuple
+displacement is at most
+
+```text
+2sqrt(m tau(b))<=2sqrt(eta)=epsilon_0/6.               (W4-2)
+```
+
+Recombine high and low parts.  For an arbitrary weighted `S^4`, use global
+fourconnectivity of the high Stiefel space and the same relative extension.
+

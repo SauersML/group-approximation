@@ -88,11 +88,10 @@ tau(ER)=1/9,                 tau(E(q-R))=1/18.           (QTS6)
 
 A full-source partial isometry from `ER` into one complement carrier
 would violate trace by `1/18`. But the candidate compression in
-`(QTS5)` is zero. Before the qutrit cut, `E T_1 E` has polar support `F_+`, half of
-`E`. Its overlap energy on `R` is `tau(F_+R)=1/18`; because
-`F_+` need not commute with `R`, this is not the rank of a cut-down
-polar support. The decisive no-go here is instead the exact vanishing
-`(q-R)vR=0` for every `v in G_3`.
+`(QTS5)` is zero. Even before the qutrit cut, `E T_1 E` has source
+`F_+` of trace only half that of `E`, exactly the amount that fits in
+one complement carrier. The third-cell word therefore saturates, rather
+than violates, the Hall capacity.
 
 The finite-presentation status is positive. The binary Leavitt algebra
 has a finite ring presentation, so the Krstic--McCool finite-presentation

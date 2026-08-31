@@ -3,24 +3,11 @@ rg: 2
 id: benign-witness-finite-quotients-refine-the-fold
 kind: claim
 title: The Higman benign witness has finite quotients refining the fold on its symmetric double
-refuted_by: arbitrary-benign-witness-fold-refinement-counterexample
 distinct_from:
   positive-rope-profinite-edge-synchronization: that asks for cofinal finite quotients of the whole product separating every element of the witness group, i.e. residual finiteness of the witness, which fails; this asks only for finite quotients of the witness that close S and refine the fold on S, which is all the twisted-edge theorem consumes.
   mf-safe-asymmetric-hnn-replacement: that asks for an MF-safe replacement of the rope edge; this is the purely group-theoretic profinite condition that, by the twisted-edge theorem, makes the original edge MF-safe without replacement.
   higman-half-row-has-regular-mf-benign-witness: that proves the half-row witness is regularly MF; this asks for finite quotients of the full witness, a different (profinite, not analytic) property.
 ---
-
-**REFUTED AS STATED.**  Benignness alone does not imply either `(i)` or
-`(ii)`: [[arbitrary-benign-witness-fold-refinement-counterexample]] takes a
-rank-two free subgroup of Thompson's finitely presented infinite simple group
-`V`, with `N=L=1`.  Every finite quotient of the resulting rope group kills
-both copies of `F`, so it cannot refine any nontrivial finite quotient of the
-fold; the same finite-quotient invisibility also makes `S` nonclosed.
-
-The narrower construction problem for the *particular* benign witness chosen
-by the compiler is not decided by this counterexample.  A repaired claim must
-name that witness, or add the relative profinite hypotheses which are absent
-from the universal statement below.
 
 Let `F` be a free group of finite rank, `N` a normal subgroup with `F/N`
 residually finite, `K` a finitely presented benign witness for `N` with

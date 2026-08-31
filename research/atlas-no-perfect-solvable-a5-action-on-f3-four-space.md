@@ -26,11 +26,8 @@ The possible primes and exponents in `R` are finite and exact.  The 2-part of
 The 5-part is already exhausted by the quotient `A5`.
 
 No factor 13 can occur.  If `O_13(R)` is nontrivial, it is cyclic of order 13;
-the perfect group `X` centralizes it because `Aut(C13)` is abelian.  A
-nontrivial irreducible `F3[C13]` constituent has dimension
-`ord_13(3)=3`.  Centrality makes the restriction of the irreducible
-four-dimensional `X`-module homogeneous, which is impossible because three
-does not divide four.  If `13` divides `|R|` but `O_13(R)=1`, then
+the perfect group `X` centralizes it, and absolute irreducibility would make it
+a scalar, impossible over `F3`.  If `13` divides `|R|` but `O_13(R)=1`, then
 `F(R)=O_2(R)`: a faithful irreducible characteristic-three action has trivial
 3-core.  The Fitting centralizer theorem embeds the remaining odd action into
 `Aut(O_2(R))`.  For a 2-group of order at most `2^7`, every odd prime in its

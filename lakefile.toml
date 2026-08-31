@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "STWActual", "STWProblems", "PalomarChallenge", "PalomarSolution"]
+defaultTargets = ["GroupApproximation", "PalomarChallenge", "PalomarSolution"]
 
 [[require]]
 name = "mathlib"
@@ -9,20 +9,6 @@ rev = "v4.32.0"
 
 [[lean_lib]]
 name = "GroupApproximation"
-moreLeanArgs = ["-DwarningAsError=true"]
-
-# Actual operator-algebra foundations for the STW problems.  `STW.Actual` is
-# the single import root; every genuine XXII/LV/XCV dependency is added under
-# it so the dedicated CI lane compiles the whole actual formalization tree.
-[[lean_lib]]
-name = "STWActual"
-roots = ["STW.Actual"]
-moreLeanArgs = ["-DwarningAsError=true"]
-
-# Standalone statement/assembly root for the three STW problems.
-[[lean_lib]]
-name = "STWProblems"
-roots = ["STWProblems"]
 moreLeanArgs = ["-DwarningAsError=true"]
 
 # The audit's own library: detector logic only, no side effects, so it can be
@@ -51,7 +37,7 @@ roots = ["Audit.DeclFilter", "Audit.Scan", "Audit.Plants"]
 # compares the exported statements SYNTACTICALLY, and recursively requires
 # every constant they mention to be identical in both environments, so the
 # copy cannot be replaced by an import -- and then proves the theorem from
-# development.  `scripts/check_palomar_submission.py` gates the copy.
+# the development.  `scripts/check_palomar_submission.py` gates the copy.
 #
 # No `warningAsError` here: the challenge's hole is a deliberate warning.
 

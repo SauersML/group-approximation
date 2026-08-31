@@ -2,5 +2,6 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCohomologyRi
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.AffineBarycentricSubdivision
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.HomotopyToChainHomotopy
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Covering
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularHomologyHomotopyInvariance
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/

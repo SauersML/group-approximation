@@ -6,7 +6,6 @@ title: Properly infinite unital C*-algebras are K1-injective (STW Problem LXI, B
 root: true
 artifacts:
   - research/artifacts/stw99-k1-kk-cluster-2026-08-30.md
-  - research/artifacts/stw61-blanchard-preprint-firewall-2026-08-30.md
 ---
 
 **Problem LXI of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -15,17 +14,6 @@ Kirchberg's squeezing property was invented for it).  Are all properly
 infinite unital C\*-algebras `K_1`-injective?  BRR reduce it to the
 single algebra `O_∞ * O_∞` (full unital free product); properly
 infinite algebras are always `K_1`-surjective (Cuntz).
-
-## Literature false-positive firewall
-
-Blanchard's arXiv:1606.04773v1 advertises
-`T_2 *_[C] T_2` as a properly infinite non-`K_1`-injective algebra.  It does
-not close this root.  Proposition 2(5), Step 1 passes finite-stage
-non-null-homotopy to an inductive limit solely from injectivity of the
-C\*-connecting maps.  Injective C\*-maps need not be injective on unstable
-unitary homotopy classes, so the implication used there is unavailable.
-The attached firewall artifact records the exact gap and the current primary
-source boundary.  STW v2 continues to state LXI as open.
 
 ## Attempts
 

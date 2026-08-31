@@ -18,8 +18,6 @@ artifacts:
   - research/artifacts/stw10-finite-crossed-product-trace-audit-2026-08-30.md
 ---
 
-**REFUTED.**  The maximal canonical trace of the literal finitely presented group `E` is amenable but not quasidiagonal.  The u.c.p. construction is `literal-fp-via-folner-rf-core`; the non-QD theorem is `literal-canonical-trace-hyperlinear-not-quasidiagonal`.
-
 **Problem X(1) of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Are amenable traces on C\*-algebras necessarily
 quasidiagonal?
 
@@ -71,8 +69,9 @@ finite-dimensional unitary representations recovering the regular character.
 The repository's literal finitely presented group `E` is sofic and has a
 central involution killed by every operator-norm corona representation, so its
 canonical trace is a hyperlinear trace that is not quasidiagonal
-(`literal-canonical-trace-hyperlinear-not-quasidiagonal`).  That remaining factorization property is now established by
-`literal-fp-via-folner-rf-core`, so `E` gives the negative answer.
+(`literal-canonical-trace-hyperlinear-not-quasidiagonal`).  The one thing
+standing between that fact and a negative answer to this problem is the
+factorization property of `E` (`literal-group-factorization-property`).
 
 Lean statement: `NinetyNineProblems.ProblemX1Statement` (`GroupApproximation/Manuscript/NinetyNineProblems/ProblemX.lean`).  The same
 module proves `isHyperlinearTrace_of_isAmenableTrace` (an amenable trace is a
@@ -86,8 +85,8 @@ non-Kazhdan, which the literal group `E` is designed to be.
 
 ## August 2026 audit and attempts
 
-The universal question is refuted by the literal-group witness above.
-Shulman's permanence theorem was part of the pre-resolution frontier.  The current
+The universal question remains open.  Shulman's arXiv:2508.00125 adds a
+homotopy-domination permanence theorem but does not resolve it.  The current
 unconditional reductions are:
 
 - `directed-unions-preserve-trace-approximations`, which makes both trace

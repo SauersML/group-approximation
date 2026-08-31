@@ -5,12 +5,9 @@ kind: claim
 title: The reduced C*-algebra of every C*-simple group has strict comparison (STW Problem XC)
 root: true
 artifacts:
-  - research/artifacts/stw91-graph-component-selflessness-audit-2026-08-30.md
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw90-strict-comparison-group-frontier-2026-08-30.md
   - research/artifacts/stw91-locally-finite-permutation-wreath-audit-2026-08-30.md
-  - research/artifacts/stw91-universal-vertex-absorption-audit-2026-08-30.md
-  - research/artifacts/stw91-complete-graph-anchor-audit-2026-08-30.md
 ---
 
 **Problem XC of Schafhauser--Tikuisis--White, *Nuclear C\*-algebras: 99 problems*, arXiv:2506.10902 (v2, addenda through April 2026).**  Let `G` be a countable discrete C\*-simple group.
@@ -53,13 +50,3 @@ trace is the unique quasitrace
   finitary-action theorem.
 - `stw91-finite-subgroup-projection-obstruction` gives a concrete ordered-`K_0`
   certificate whose violation would refute this problem.
-
-- `graph-products-no-universal-vertex-selfless-criterion` completely settles
-  the no-universal-vertex graph-product class: C-star-simplicity is equivalent
-  to selflessness, with the sole obstruction a two-vertex complement component
-  labelled by `C_2,C_2`; hence every C-star-simple group in this class has
-  strict comparison.
-
-- `graph-products-noncomplete-selfless-criterion` settles XC for every graph product whose defining graph is noncomplete, including arbitrary C-star-simple universal vertex factors and without exactness. The only remaining graph-product boundary is a complete defining graph, whose one-vertex case already contains the universal problem.
-
-- `complete-graph-products-selfless-anchor` settles XC for countable complete graph products whenever one vertex algebra is completely selfless and every vertex group is C-star-simple; no exactness is required on the remaining factors. This complements the full noncomplete-graph classification.

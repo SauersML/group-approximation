@@ -13,7 +13,7 @@ distinct_from:
   binary-jacobson-finitary-whitehead-shift-is-marked-lef: that gives marked finite partial models for the entire finitary head together with the literal Whitehead shift; this must use relations from the remaining Laurent-symbol elementary quotient.
   binary-jacobson-monomial-symbol-preimage-is-marked-mf: that enlarges the preceding cyclic subsystem to the preimage of every determinant-one monomial Laurent symbol and still retains the mark in an MF model; this must use the interaction with a raw nonmonomial Laurent root.
   binary-jacobson-elementary-symbols-have-zero-toeplitz-index: that proves the ordinary Laurent determinant/index boundary vanishes on every elementary symbol; this must recover a nonabelian same-square occurrence rather than an unbalanced Fredholm index.
-  binary-jacobson-untyped-square-decoder-is-target-equivalent: that proves arbitrary coordinate-dependent Toeplitz data merely restate MF-invisibility; the stronger typed audit below shows that a fixed package and an unspecified defect modulus still do not remove the circularity.
+  binary-jacobson-untyped-square-decoder-is-target-equivalent: that proves arbitrary coordinate-dependent Toeplitz data merely restate MF-invisibility; this requires a fixed occurrence package and a quantitative relator-to-decoder estimate.
   binary-jacobson-balanced-shift-transport-is-xor: that computes the first literal monomial/raw-root conjugation row and obtains only symmetric difference; this must add an authenticated occurrence which orients that row.
   binary-jacobson-balanced-split-conserves-pauli-parity: that follows a whole constant A2 pair through the involutive balanced split and shows the source is Pauli exactly when only one target branch is Pauli; this must use the closing incidence as a genuine overlap rather than another conjugacy return.
   binary-jacobson-three-cycle-is-controlled-swap-and-marked-mf: that closes three cyclic triangular rows to a head-controlled swap and proves that the three shifts, Weyl swaps, and one raw root in a common target column remain an amenable marked subsystem; this must leave that common-column semidirect product.
@@ -51,27 +51,12 @@ such that, uniformly in the dimension,
 max(||Y X-C||_op,||P-(C-X Y)||_op) <= omega(epsilon).  (JSD1)
 ```
 
-**QUANTIFIER AUDIT.**  As stated, this is equivalent to the desired head
-MF-invisibility theorem, not a smaller open seam.  The established claim
-`binary-jacobson-typed-square-decoder-is-still-target-equivalent` shows that
-invisibility itself gives a uniform finite-presentation gap below which the
-nonzero-cut antecedent is empty; above that gap the fixed spectral default
-`C=P=P_-`, `X=Y=C` satisfies `(JSD1)` with a bounded allowance.  The route
-through this formulation is therefore invalidated as a research
-decomposition, although its forward implication remains correct.
-
-A replacement must prescribe an actual mixed `S/T` occurrence formula and
-prove a numerical defect estimate for it, or separately certify a
-nonvacuous calibration family.  The discussion below records the intended
-occurrence constraints and the surviving algebraic seam for that stronger
-replacement.
-
-Every intended output must retain its occurrence type: `C,P,X,Y` should be
-the prescribed `S/T`-bearing spectral/compressed/polar expressions in the
-fixed word evaluations.  Merely allowing the operation to choose and name
-its own fixed spectral expressions is not enough: by the typed equivalence
-audit, that assertion is still the desired MF-invisibility theorem in
-disguise.
+Every output must retain its occurrence type: `C,P,X,Y` must be the stated
+spectral/compressed/polar expressions in the fixed word evaluations.  It is
+not enough to assert that some matrices satisfying `(JSD1)` exist after
+seeing a surviving sequence; by
+`binary-jacobson-untyped-square-decoder-is-target-equivalent` that assertion
+is just the desired MF-invisibility theorem in disguise.
 
 The selection may and must be representation-dependent, but its algorithm
 and named occurrence package are fixed.  A fixed group-algebra projection or

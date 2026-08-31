@@ -15,8 +15,6 @@ artifacts:
   - experiments/atlas_asc_tangent_exact.py
   - experiments/atlas_asc_packet_build.py
   - experiments/atlas_asc_covariance_gpu.py
-  - experiments/verify_atlas_asc_one_fourteenth.py
-  - experiments/atlas-asc-one-fourteenth-exact.json
 ---
 
 ESTABLISHED by exact reduction to one integral group algebra, then one
@@ -70,15 +68,9 @@ Then:
 
    because `h_a, h_b` lie in `H`.  So the kernel inclusion -- the crux, since
    its failure would make the constant infinite -- is proved rather than
-   measured.  The value `1/14` is now exact as well:
-   `experiments/verify_atlas_asc_one_fourteenth.py` reconstructs the integral
-   packet and proves `W_pkt-14 W_cov >= 0` over `Q` on twelve rational
-   Young-seminormal `S_8` sectors whose restrictions cover every irreducible
-   `A_8` representation.  Exact equality with positive covariance occurs in
-   the `[6,2]`, `[5,1,1,1]`, and `[4,4]` sectors.  The coefficient fingerprint
-   is `b2cb3ba7e9abb8e7d23f43670707420b94b489f070977a27aedaa00d0ed7c3f5`.
-   The kernel script also runs the opposite coset family as a control, where
-   `W_cov` fails on 114 of the 120, so the test is not vacuous.
+   measured; only the VALUE 1/14 is still double precision.  The same script
+   runs the opposite coset family as a control, where `W_cov` fails on 114 of
+   the 120, so the test is not vacuous.
 
 3. **Sharp constants**, valid for every matrix `U`.
 
@@ -87,9 +79,7 @@ Ncov(A) <= (1/14) * D(A)                                (all 234 words)
 Ncov(A) <=   1    * D_{0,11,30,44,55}(A)                (the five tangent words)
 ```
 
-   both attained.  The first value and its attainment are certified exactly
-   over `Q`; the displayed decimal `0.07142857142857525` is retained only as
-   the original numerical cross-check.  The five-word value is measured as
+   both attained, the first as `0.07142857142857525` and the second as
    `1.000000000000068`.
 
 4. **The constant is dimension-free.**  At multiplicity `k` the tangent

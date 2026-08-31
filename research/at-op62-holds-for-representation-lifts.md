@@ -33,10 +33,9 @@ has nothing to average against; moreover the exact centralizer
 `{x : [x, u_n(gamma)] = 0}` is not stable under HS-small perturbation of
 the coordinates `u_n`, so `(OP1)` does not transport along a flexible
 correction of the microstates even where one exists.  The problem is
-therefore open exactly on the everywhere-inexact sector — the unrestricted
-regular-sector habitat inside `sl3-z-weakly-ucp-stable` and the outlier
-complement of `subgroup-exact-outliers-do-not-exist`. The former odd-only
-formulation is refuted. Through
+therefore open exactly on the everywhere-inexact sector — the same
+habitat as `sl3z-regular-microstates-are-congruence-correctable` and the
+outlier complement of `subgroup-exact-outliers-do-not-exist`.  Through
 `wall-coordinate-reduction-under-at-op62`, on any wall model whose
 windows are realized by genuine representations the wall is already a
 finite-dimensional nested-centralizer demand `lim_omega

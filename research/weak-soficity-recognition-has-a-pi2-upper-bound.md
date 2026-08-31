@@ -29,22 +29,6 @@ soficity reads: either every group is weakly sofic, or weak soficity is
 holds for finite presentations as membership (`Pi^0_2`) and for the
 `Sigma^0_1`-hard side.
 
-The dichotomy has one fixed target. For the two-generator finitely presented
-group `V` of
-[[universal-local-approximation-fixed-two-generator-test-group]],
-
-```text
-V is weakly sofic
-  <=> every group is weakly sofic
-  <=> weak soficity is closed under arbitrary quotients.
-```
-
-Consequently the trivial side occurs exactly when `V` is weakly sofic, and
-the `Pi^0_2`-complete side occurs exactly when `V` is not weakly sofic.
-This is an exact reduction, not a claim that either value of `V` is known;
-the quotient equivalence is
-[[fixed-finite-relator-quotient-tests-local-permanence]].
-
 The certificate is a finite group in which the listed nontrivial words
 avoid every product of `m` conjugates of the listed relator instances: a
 bounded-area non-membership statement, checkable by finite enumeration.

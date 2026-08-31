@@ -4,7 +4,7 @@ id: selected-corner-correction-contains-regular-correction
 kind: claim
 title: Correcting a selected regular lattice corner is already the full regular-microstate correction problem
 distinct_from:
-  sl3z-regular-microstates-are-congruence-correctable: that refuted claim imposed odd congruence targets; this proves only that selected-corner correction contains the matching unrestricted regular-correction problem.
+  sl3z-regular-microstates-are-congruence-correctable: that asks for correction of the whole regular-trace lattice microstate; this proves that selecting a positive-density approximately reducing corner does not weaken that problem unless cross-corner actor data is used simultaneously.
   stable-representation-block-rounding: that rounds an almost-reducing projection after the ambient tuple has already been corrected to a genuine representation of a stable group; this shows why obtaining that ambient correction is still load-bearing for the regular lattice.
   character-rigidity-equals-hyperfinite-hs-stability: that corrects amenable-limit traces; this computes that the selected four-atom traces in the G_cc canonical model are regular and hence nonamenable.
 ---
@@ -25,9 +25,8 @@ putatively weaker correction principle.
 > can be corrected, in normalized HS norm (with the corresponding flexible
 > or projective convention), to genuine representations of `C`.
 
-This principle already implies unrestricted regular-sector flexible
-correction. It does not imply the refuted requirement that the corrector
-factor through an odd congruence quotient.  Indeed, start with
+This principle already implies the matching version of
+`sl3z-regular-microstates-are-congruence-correctable`.  Indeed, start with
 an arbitrary regular-trace microstate `U_n` of `C`, amplify it by one
 external bit,
 

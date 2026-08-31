@@ -13,23 +13,12 @@ artifacts:
 ## Why sufficient
 
 The prerequisite gives a finitely generated group `G` that is not sofic.
-Choose a finite table `F_0` and `epsilon>0` witnessing this failure. The
-construction in `Covers/TableCover` enlarges `F_0` to a finite table `F`
-containing a finite generating set and forms the finitely presented table
-group `H = tableGroup F h_1`.
-
-The load-bearing step is direct. `tableGroup_no_model` sends any
-`epsilon`-model of `H`'s distinguished table through `pullbackTableModel` to
-an `epsilon`-model of the forbidden table in `G`. Hence `H`'s distinguished
-table has no `epsilon`-model. If `H` were sofic,
-`tableModel_of_isSofic` would supply such a model, contradicting
-`tableGroup_no_model`; this is exactly `tableGroup_not_isSofic`.
-
-The canonical table-evaluation homomorphism `H -> G` is surjective because
-`F` contains a generating set. That epimorphism proves the cover assertion
-and, in the strengthened endpoint, infinitude. It is not used to prove that
-`H` is nonsofic: arbitrary sofic quotient permanence is false by
-[[sofic-quotient-nonclosure]].
+`Covers/TableCover.exists_finitelyPresented_cover_of_not_isSofic` turns that
+into a finitely presented `H` with `not IsSofic H`: the finite-table
+construction produces a finitely presented group surjecting onto `G`, and
+soficity passes to quotients, so `H` cannot be sofic either.  Finite generation
+of `G` is what the construction consumes, and the prerequisite supplies it as
+part of its profile.
 
 ## Not a restatement
 

@@ -4,8 +4,7 @@ id: stw25-real-rank-zero-projection-comparison-proof
 kind: route
 title: Exhaust positive elements by projections and collapse K0 states to the unique trace
 target: stw25-real-rank-zero-k0-perforation-is-exact-obstruction
-requires:
-  - stw18-finite-trace-boundary-toms-winter
+requires: []
 artifacts:
   - research/artifacts/stw25-real-rank-zero-k0-audit-2026-08-30.md
 ---
@@ -83,13 +82,17 @@ p_n is Cuntz subequivalent to q_m is Cuntz subequivalent to b.
 The Cuntz classes `[p_n]` increase to `[a]`; hence `[a]<=[b]`.  Thus `A`
 has strict comparison of positive elements.
 
-The unique trace is the sole point of the compact zero-dimensional extreme
-boundary of `T(A)`.  Hence
-`stw18-finite-trace-boundary-toms-winter`
-applies to the strict comparison just proved and gives `Z`-stability.  This
-is equivalently the unique-trace uniform-Gamma plus CETW route, but the
-finite-boundary theorem packages that lifting step without any additional
-hypothesis.  This proves the reverse implication in `(RR0-K)`.
+For a nuclear simple unique-trace algebra, uniform property Gamma is
+automatic from the finite-dimensional compact extreme-boundary theorem
+(equivalently, from the unique hyperfinite GNS fibre together with Sato's
+central-sequence surjection and trace-kernel sigma-ideal lifting).  The
+Castillejos--Evington--Tikuisis--White characterization
+
+```text
+strict comparison + uniform Gamma  iff  Z-stability
+```
+
+now proves the reverse implication in `(RR0-K)`.
 
 For the forward implication, the Gong--Jiang--Su ordered-`K_0` theorem says
 directly that a simple unital Z-stable algebra has weakly unperforated

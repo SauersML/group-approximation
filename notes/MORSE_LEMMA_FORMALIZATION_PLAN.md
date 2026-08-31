@@ -16,6 +16,25 @@ prove is the vocabulary: `IsBetween`, `exists_isBetween`,
 `twiceGromovProduct_le_of_isBetween`, and slimness for bounded metrics.  Step 2
 below therefore has an extra prerequisite: `FourPointImpliesSlim`.
 
+**Correction to the correction (2026-08-30).**  The paragraph above is now
+itself out of date, and the note has been contradicting itself in the meantime:
+step 2 below already cites `isSlimTriangles_of_isFourPointHyperbolic` as
+available in the exact form its recursion needs.  It is.
+`Algebra/HyperbolicSlimFourPoint.lean` --- a module that did not exist on
+2026-08-19 --- proves both directions: `slimImpliesFourPoint` at `3δ + 1`,
+`fourPointImpliesSlim` at `4δ`, the equivalence
+`exists_isSlimTriangles_iff_exists_isFourPointHyperbolic`, and the two working
+forms `isFourPointHyperbolic_of_isSlimTriangles` and
+`isSlimTriangles_of_isFourPointHyperbolic`, which four modules of `GGT/` now
+consume.  The geometric input the 08-19 paragraph called missing is
+`exists_isBetween_twiceGromovProduct_le`, proved there by a discrete transition
+argument rather than the textbooks' continuity argument.  **Step 2 has no extra
+prerequisite**: `FourPointImpliesSlim` is discharged.  The 08-19 paragraph is
+kept because it records a real mis-derivation, but it no longer describes the
+checkout.  The header of `Algebra/HyperbolicSlimTriangles.lean` said "Open" in
+three places for eleven days after that stopped being true; repaired the same
+day as this note.
+
 What no reformulation gives is invariance under change of generating set, and
 that is not a bookkeeping gap: transporting the four-point condition through a
 `(K,C)`-quasi-isometry --- or through a plain bi-Lipschitz map, additive error

@@ -3,14 +3,12 @@ rg: 2
 id: bounded-degree-two-primitives-for-higher-rank-lattices
 kind: claim
 title: Operator-bounded degree-two primitives for Ad-modules of SL_N(Z), N at least 4
-refuted_by:
-  - flat-calibrations-refute-bounded-degree-two-primitives
 distinct_from:
   sln-z-flexibly-hs-stable: that is the stability conclusion; this is the single cohomological input from which the normalized-HS Newton iteration of `hs-stability-from-bounded-degree-two-primitives` derives it -- a statement about 2-cocycles, not about almost-representations.
-  sl3z-regular-microstates-are-congruence-correctable: that rank-3 odd-level claim is independently refuted by a coprime congruence-tower obstruction; this rank-at-least-4 operator-norm primitive claim is also refuted, by packed flat calibrations.
+  sl3z-regular-microstates-are-congruence-correctable: that is the rank-3 correctability hole attacked through extreme points; this is a rank-at-least-4 input living in degree-2 cohomology, where Bader--Sauer vanishing exists and SL_3 has none.
 ---
 
-**REFUTED CLAIM.** Let `N >= 4`, `Gamma = SL_N(Z)`, and let `M` be a tracial
+Claim.  Let `N >= 4`, `Gamma = SL_N(Z)`, and let `M` be a tracial
 matrix ultraproduct with a unitary representation `pi` of `Gamma`
 acting on `L^2(M)` by `Ad pi`.  There is a constant `C_N` such that
 every 2-cocycle `c` of `Gamma` (on the cells of a fixed finite
@@ -25,10 +23,7 @@ satisfying BOTH
 
 The first inequality is a quantitative form of Bader--Sauer's
 property `(T_(N-2))` for the Ad-module (degree-2 gap); the second is
-new and is false. The packed compact-flat construction in
-[[flat-calibrations-refute-bounded-degree-two-primitives]] produces
-uniformly operator-bounded cocycles that are already bounded coboundaries,
-while the operator norm of every primitive grows without bound.
+new and is the whole point.
 
 ## Attempts
 

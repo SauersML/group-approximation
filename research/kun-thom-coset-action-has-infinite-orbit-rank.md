@@ -43,16 +43,12 @@ that calculation proves that one particular orbital has infinite degree.
 
 Two programme consequences are immediate.
 
-1. The finite-rank compactness proof does not apply to this original
+1. The finite-rank exact-actor Pauli collapse theorem and its
+padding-stable correction estimate do not apply to this original
 Kun--Thom \(G\)-set: there is no finite list of double-coset prototype rows.
-This is no longer an exact-actor obstruction.  The later theorem
-\(\textit{strict-compressor-mixed-return-collapses-shared-pauli-sign}\)
-uses one strict compressor and one fixed mixed return, and therefore gives
-a stronger exact-actor and finite-corner estimate without finite orbit rank.
 2. The shared-center Pauli semidirect product over this \(X\) is not finitely
 presented, by the necessary finite-double-coset condition in
-the shared-center Pauli finite-presentation criterion.  The new one-row
-collapse does not alter this independent presentation obstruction.
+the shared-center Pauli finite-presentation criterion.
 
 Thus the finite-rank Kazhdan-stabilizer Pauli route is a genuinely different
 host search.  Gao--Kunnawalkam Elayavalli--Patchell's sofic-action machinery

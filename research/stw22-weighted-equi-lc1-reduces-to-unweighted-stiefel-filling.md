@@ -7,6 +7,7 @@ distinct_from:
   stw22-one-dimensional-trivial-field-trace-continuity: that theorem proves uniform local path connectedness and settles bases of dimension at most one; the present theorem identifies the additional, genuinely two-dimensional uniform filling property.
   stw22-lwcl-on-fixed-support-strata: that theorem gives local sections on a continuous fixed-support stratum; the present theorem concerns uniform null-homotopies of loops simultaneously over all support traces below a fixed corner.
   stw22-finite-dimensional-colouring-from-local-lifts: that theorem conditionally turns local weighted lifts into trace vanishing; the present theorem isolates an equivalent operator-topological condition for obtaining those lifts in dimension two.
+  stw22-weighted-purification-all-sphere-fillings: that later theorem proves the analogous modulus in every finite sphere degree; the present node is retained as its loop case.
 artifacts:
   - research/artifacts/stw22-dimension-two-stiefel-filling-obstruction-audit-2026-08-30.md
 ---
@@ -47,4 +48,6 @@ The unweighted modulus is established by
 low-spectrum extension is established by
 `stw22-low-spectrum-weighted-boundary-filling`.  Consequently the weighted
 metric-uniform loop-filling property, and hence the equi-`LC^1` input for
-two-dimensional Michael selection, hold unconditionally.
+two-dimensional Michael selection, hold unconditionally.  This is retained
+as the degree-one special case of
+`stw22-weighted-purification-all-sphere-fillings`.

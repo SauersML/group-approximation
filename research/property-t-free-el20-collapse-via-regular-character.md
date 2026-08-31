@@ -5,7 +5,7 @@ kind: route
 title: Reblock a surviving representation to a nontrivial MF character, Diracize it, and use simplicity to reach the regular character
 target: property-t-free-el20-full-mf-radical
 requires:
-  - leavitt-regular-character-not-mf-without-property-t
+  - leavitt-regular-character-is-not-mf
   - torsion-normal-generator-mf-character-criterion
   - character-diracization-limit
   - binary-leavitt-elementary-group-is-simple
@@ -28,8 +28,7 @@ unitary character of the perfect group `H`, hence `chi=1`, contradicting
 nontriviality.  Since `H` is simple, `K_chi=1` and `1_(K_chi)=delta_e`.
 
 Thus `delta_e` is an MF character of `H`, contradicting
-`leavitt-regular-character-not-mf-without-property-t`.  Hence
-`Rad_MF(H)=H` by an argument with the required provenance.
+`leavitt-regular-character-is-not-mf`.  Hence `Rad_MF(H)=H`.
 
 Conversely, if `delta_e` were an MF character, the witnessing `V_k` would
 satisfy `||V_k(g)-1||_2 -> sqrt 2` for `g!=1`, so they would be asymptotically

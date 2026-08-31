@@ -26,12 +26,8 @@ Consider the strongest finite-Morita version of a local toric compiler:
 
 1. a full corner of a matrix amplification of `p_- C*(F)` is strongly
    Morita equivalent to `C^R`; and
-2. under the composite Morita center isomorphism
-   `Z(C^R) -> Z(e M_k(p_-C*(F)) e) -> Z(p_-C*(F))`, the coordinate
-   function `f_i` maps to the marked group element `p_- z_i`.
-
-The second condition concerns the intrinsic center isomorphism, not merely a
-compression which happens to be scalar in one chosen matrix corner.
+2. under the induced isomorphism of centers, the coordinate function `f_i`
+   is represented by the marked group element `p_- z_i`.
 
 > **Theorem.**  Such a compiler exists only when `R` is affine over `F_2`.
 > In particular it cannot encode a genuinely nonlinear BCS predicate.

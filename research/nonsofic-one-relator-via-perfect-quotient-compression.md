@@ -2,7 +2,7 @@
 rg: 2
 id: nonsofic-one-relator-via-perfect-quotient-compression
 kind: route
-title: Refute Pestov 4.10 by compressing a two-generator perfect nonsofic quotient to one relation
+title: Refute Pestov 4.9 by compressing a two-generator perfect nonsofic quotient to one relation
 target: nonsofic-one-relator-group
 requires: []
 artifacts:

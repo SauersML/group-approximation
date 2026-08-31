@@ -14,7 +14,7 @@ distinct_from:
   iwahori-nielsen-hs-bilipschitz: that is a dimension-free bi-Lipschitz estimate for one fixed Nielsen involution on the coordinates of Z*C_2 representations; this is the existence of a global modulus relating local Iwahori defect to distance to the compatible subvariety, over the whole representation variety of the free product of two copies of SL_2(Z).
 ---
 
-**Dogon--Vigdorovich, arXiv:2506.20843v2, Question 1.4** (`problem!` in the
+**Dogon--Vigdorovich, arXiv:2506.20843v2, Question 1.2** (`problem!` in the
 source), stated in their notation.
 
 Let `Lambda = SL_2(Z) * SL_2(Z)` and let `X_FD(Lambda)` be the representation
@@ -46,7 +46,7 @@ representations of `SL_2(Z)` that almost factor through a congruence quotient
 `SL_2(Z/n)` with `n` odd are close to ones that genuinely do.
 
 By `dv-s-arithmetic-hs-stable-nonhyperlinear-extension` and their
-Corollary 1.5, a positive answer yields a non-hyperlinear finite central
+Corollary 1.3, a positive answer yields a non-hyperlinear finite central
 extension of `SL_2(Z[1/2])`.
 
 ## Transcription note
@@ -55,7 +55,7 @@ The source also asserts, in **commented-out** text, that this question is
 equivalent to Hilbert--Schmidt stability of `SL_2(Z[1/p])` and that `SL_2(Z)`
 is Hilbert--Schmidt stable.  Those sentences are not printed in v2 and are not
 used here.  Only the printed implication (positive answer implies a
-non-hyperlinear group, their Corollary 1.5) is consumed.
+non-hyperlinear group, their Corollary 1.3) is consumed.
 
 ## Attempts
 
@@ -98,19 +98,6 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   bounded branching (`notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md`)
   and this does not stop the identity's mass spreading over growing many
   cross-pairs.  Recorded negative.
-- **The full modular-vertex restriction cone has no Farkas
-  obstruction.**
-  `modular-vertex-restriction-cone-has-singleton-fibers` proves that
-  restriction from `SL_2(Z[1/p])` to `SL_2(Z)` is an order equivalence
-  onto the prime-to-`p` congruence representations. At every finite
-  quotient the restriction matrix is the identity, its projectivized
-  feasible cone is the full simplex, and the Plancherel vector is an
-  integral interior point. Every finite regular character window, and even
-  every finite compressed regular coefficient table, is matched exactly by
-  a finite endpoint regular representation. Thus no fixed-level or
-  finite-support multiplicity/character separator can refute the target.
-  The missing obstruction or repair must live in coordinate alignment over
-  the smaller moving Iwahori/BS core.
 - **Refutation by character rigidity is unavailable.**  By
   `character-rigidity-equals-hyperfinite-hs-stability`, stability implies
   character rigidity, so a failure of character rigidity would refute the
@@ -161,56 +148,6 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   constant under arbitrary odd weights. Thus exact mixed congruence pairs
   are uniformly repairable; the remaining question is vertex exactification
   of arbitrary approximate representations.
-- **The full remaining modulus is exactly congruence capture.**
-  `dv-distance-is-defect-plus-congruence-capture` defines
-  \(A_{\mathrm{cong}}\) as generalized-HS distance to the union of all exact
-  congruence vertex pairs, in all dimensions and at all mixed levels. The
-  unbounded mixed repair theorem and one fixed word-length estimate give
-  \[
-  A_{\mathrm{cong}}(\pi)\le D(\pi)\le
-  K_{\mathrm{cong}}\operatorname{def}(\pi)
-  +(1+2K_{\mathrm{cong}}L_B)A_{\mathrm{cong}}(\pi).
-  \]
-  Hence Question 1.4 is equivalent to
-  \(\operatorname{def}(\pi_n)\to0\Rightarrow
-  A_{\mathrm{cong}}(\pi_n)\to0\). This extends the positive restricted
-  result from exact congruence inputs to every sequence asymptotically near
-  the congruence locus, with no conductor bound. The established uniform
-  infinitesimal rigidity closes the local congruence cosystolic angle; the
-  only surviving enemy is global noncongruence basin escape.
-
-- **High-dimensional escape is now isolated exactly.**
-  `bounded-dimension-iwahori-pairs-have-holder-capture` applies the global
-  semialgebraic Lojasiewicz inequality to every fixed matrix size: the full
-  noncongruence modular representation variety has a same-dimensional
-  Holder congruence-capture modulus, so every countersequence has dimensions
-  tending to infinity. `capture-gap-localizes-to-regular-character-face`
-  then cuts any positive capture gap onto a pure regular-character corner;
-  if the original gap is epsilon, that corner has trace weight at least
-  epsilon squared over four and retains the gap after normalization. Finally
-  `regular-modular-microstates-have-no-bounded-atomic-mass` shows that every
-  fixed irreducible-dimension window has vanishing physical rank there.
-  Thus the sole enemy is a pure regular corner built from unbounded modular
-  types, not a moving mixture of bounded continuous atoms.
-- **Regular moments do not condition the raw restriction charts.**
-  `regular-trace-does-not-bound-iwahori-word-jacobian` computes a Pauli
-  branch whose Iwahori restriction Jacobian has determinant
-  `3 cos^2(2 theta)(5-2 cos^2(2 theta))` and a singular value at most
-  `sqrt(3/2)|cos(2 theta)|`. Tensoring with deep odd-congruence regular
-  representations makes the character regular while preserving that
-  vanishing singular value. This fences a separate-chart Haar/free argument;
-  it does not contradict the established coupled arithmetic angle at
-  compatible congruence endpoints and does not produce a countersequence.
-  `pauli-kernel-integrates-and-has-quadratic-crossing` identifies the zero
-  mode as an exact edge-commutant gauge: all pure Taylor terms vanish, the
-  transverse normal form is a sharp product crossing, and distance to its
-  local zero set is controlled by the square root of the residual.
-  `pauli-tensor-charts-are-globally-congruence-captured` then closes every
-  coupled direct-sum/tensor/gauge assembly near that branch. Replacing each
-  block by its mod-two base costs its physical RMS branch displacement and
-  lands in the exact mixed-congruence locus, so the global capture triangle
-  repairs the pair. Any surviving regular enemy must stay a positive RMS
-  distance from every such finite-dimensional congruence stratum.
 - **Full exact cubics do not select a bounded odd level.**
   `full-iwahori-relations-do-not-bound-unipotent-torsion` separates the two
   exact facts at the noncongruence frontier. BS covariance makes each finite
@@ -403,62 +340,11 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   `sl2-half-stability-excludes-hnn-hyperlinearity` they would also have to
   admit, to refute through the HNN group, an almost-centralizer of
   `SL_2(Z)` that is not an almost-centralizer of `SL_2(Z[1/2])`.
-- **Approximate central authentication has a sharp trichotomy.**
-  `approximate-central-tensor-coverage-forces-capture` proves that if a
-  rank-\(1-r\) projection almost commutes with the four modular-vertex
-  torsion generators and its rounded corner is \(\zeta\)-close to the
-  bounded-payload congruence tensor hull, then
-  \(D\leq2\sqrt r+C(\operatorname{def}+\Omega+\zeta)^\alpha\).
-  The polar and finite-spectrum rounding step is linear and
-  dimension-free. Hence a fixed capture gap forces positive uncovered rank,
-  nonvanishing off-diagonal mass, or failure of every bounded-payload
-  tensor model. Extracting the almost-central carrier and authenticating its
-  tensor factors remain open.
-- **Literal high-dimensional irreducibility is not payload escape.**
-  `steinberg-endpoints-are-indecomposable-but-payload-width-one` takes the
-  dimension-\(p\) Steinberg representation of `PSL_2(F_p)` along odd
-  reduction. Both modular vertices and the Iwahori edge map onto the finite
-  group, so all restrictions are irreducible; Selberg expansion gives a
-  uniform adjoint commutator gap, ruling out even approximate
-  positive-density peeling. Nevertheless the pair is an exact endpoint and
-  has residual payload width one. Thus alternative (3) must be measured
-  only after absorbing every compatible congruence factor; the remaining
-  issue is noncongruence alignment, not raw irreducible dimension.
-- **Supplied endpoint factors are uniformly authenticated.**
-  `endpoint-expander-authenticates-bounded-residual-width` defines residual
-  width only after absorbing all compatible congruence factors. For a
-  supplied common block carrier and irreducible endpoint factor, property
-  `(T;FD)` sends every untwisted generator to the residual matrix algebra
-  with a uniform conditional-expectation constant; polar and torsion
-  rounding then produce exact bounded payloads. Thus endpoint adjoint-gap
-  collapse is not an escape. A negative sequence must fail factor/carrier
-  discovery or retain unbounded residual width after every absorption.
-- **Central character refinement can invent unbounded payload.**
-  `central-projectors-overcount-regular-endpoint-payload` uses the exact
-  regular endpoint of `PSL_2(F_p)`. Its true residual width is one, but
-  Plancherel refinement exposes multiplicity `dim(rho)` on every
-  `rho`-block; outside the rank-one trivial block these dimensions are at
-  least `(p-1)/2`. The entire multiplicity algebra is fixed by endpoint
-  conjugation, so property `(T;FD)` and all central character projectors
-  assign it zero authentication energy. Blockwise irreducible-projector
-  tests therefore cannot choose the minimal endpoint grouping; the full
-  multiplicity vector may still be regrouped globally through the
-  representation ring or complete multiplication data.
-- **The full Plancherel vector repairs the repeated-irrep ambiguity.**
-  `plancherel-score-recovers-reducible-endpoint-grouping` minimizes the
-  weighted `L1` distance from the complete multiplicity vector
-  `(m_rho)` to a regular ray `k(dim(rho))`. The score is exactly the total
-  physical rank needing deletion/padding to obtain `k lambda_G`, and a
-  mixed-intertwiner property-`(T;FD)` argument makes it uniformly stable
-  under small Hilbert--Schmidt motion between exact quotient lifts.
-  Therefore full fusion data regroups the Plancherel atoms
-  dimension-freely once a quotient lift exists. It still does not produce
-  the moving multiplication table from the raw Iwahori pair.
-- **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
-  Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
-  analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
-  refuted by the exact two-primary regular tower. The live unrestricted
-  higher-rank correctability problem is `sl3-z-weakly-ucp-stable`, but it
-  cannot feed `odd-congruence-lambda-exact-sector-collapses` without a
-  separate theorem closing the two-primary sector. Techniques may transfer
-  between the rank-one and higher-rank problems; their statements do not.
+- **Deep-rank sibling (2026-08-21).**  This question is DV's Question
+  1.4 (arXiv:2506.20843v2); its higher-rank lattice analogue is
+  `sl3z-regular-microstates-are-congruence-correctable`, which the
+  Weyl-sector route consumes at any `n >= 3` WITHOUT the central
+  extension that forces DV to `SL_2` (infinite `pi_1`): the rank-two
+  Weyl evaluation of `odd-congruence-lambda-exact-sector-collapses`
+  replaces the extension mechanism.  Progress on either instance
+  transfers its techniques, not its statement, to the other.

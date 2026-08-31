@@ -25,11 +25,10 @@ nilpotent group has finite index.  Its image in `Gamma_ab` therefore has
 finite index, so `phi_i` induces a full-rank map on the free part of
 `Gamma_ab`.
 
-Choose a prime `p` avoiding the torsion order of `Gamma_ab`, all the nonzero
-determinants of those finitely many maps, and the finite exceptional set for
-residual `p`-finiteness.  Finitely generated torsion-free nilpotent groups are
-residually finite `p` for all but finitely many primes.  Thus `Gamma` embeds
-in its pro-`p` completion `P`, with `y` nontrivial.  Every
+Choose a prime `p` avoiding the torsion order of `Gamma_ab` and all the
+nonzero determinants of those finitely many maps.  Finitely generated
+torsion-free nilpotent groups are residually `p` for every prime.  Thus
+`Gamma` embeds in its pro-`p` completion `P`, with `y` nontrivial.  Every
 `phi_i` extends continuously to `P`, and acts invertibly on
 
 ```text

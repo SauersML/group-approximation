@@ -35,23 +35,5 @@ soficity is hereditary, local, and contains the sofic hence the residually
 finite groups (permutation matrices), so
 [[second-level-rice-theorem-for-local-approximation-properties]] applies:
 either every group is linear sofic over `F`, or linear soficity over `F`
-is `Pi^0_2`-complete on two-generator recursive presentations,
-undecidable with non-r.e. complement on finite presentations.
-
-This dichotomy also has one fixed target. Let `V` be the two-generator
-finitely presented group of
-[[universal-local-approximation-fixed-two-generator-test-group]]. For each
-fixed computable field `F`, separately,
-
-```text
-V is linear sofic over F
-  <=> every group is linear sofic over F
-  <=> F-linear soficity is closed under arbitrary quotients.
-```
-
-Hence the trivial side for `F` occurs exactly when `V` is
-`F`-linear-sofic, and the `Pi^0_2`-complete side occurs exactly when it
-is not. The same group `V` works for every `F`; the equivalence does not
-choose a field and does not decide either fieldwise value. The quotient
-equivalence is
-[[fixed-finite-relator-quotient-tests-local-permanence]].
+is `Pi^0_2`-complete on two-generator recursive presentations, undecidable
+with non-r.e. complement on finite presentations.

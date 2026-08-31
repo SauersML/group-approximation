@@ -51,8 +51,8 @@ fails: `diag(z,1,...,1)` is an essential determinant loop in `U(n)` and has
 normalized `2`-radius `2/sqrt(n)`. Conversely, the proof needs only one
 unused matrix dimension, not a uniform trace-sized complement.
 
-No diffuse-factor conclusion is recorded. The missing input there is a
-continuous small-trace spectral-capture projection for `2`-norm-continuous
-loops. The matrix proof obtains it from operator-norm continuity in fixed
-dimension, an implication which is false uniformly and false in a
-`II_1` factor.
+No diffuse-factor conclusion is part of the matrix proof. It would require
+a continuous small-trace spectral-capture projection for `2`-norm-continuous
+loops, whereas the argument here obtains its carrier from operator-norm
+continuity in fixed dimension. The separate summable-carrier package now
+supplies the diffuse projection-weight replacement.

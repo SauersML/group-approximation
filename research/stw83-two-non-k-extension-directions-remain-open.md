@@ -71,14 +71,3 @@ it cannot leave its plateau diagonal scalar: on the finite set containing the
 corner circle generator, the first plateau colour plus that scalar diagonal
 has a fixed error floor.  Any successful adaptive colour must transport
 coefficient variation as well as matrix entries across the support split.
-
-The cone firewall
-`stw83-commuting-cone-two-colour-firewall` also rules out a coupled scalar
-functional-calculus repair.  If the coefficient phase is carried throughout
-a continuous Toeplitz cutoff, their joint spectrum is
-`Cone(T)=D^2`; two commuting support labels would give arbitrarily fine
-two-coloured covers of the disk and force its covering dimension to be at
-most one.  Thus the viable buffer escape must first extinguish coefficient
-variation, and its subsequent support transport must be stage-dependent and
-genuinely matrix-valued.  This restriction does not itself construct the
-missing maps or decide the nuclear dimension.

@@ -28,8 +28,8 @@ outside the finite-decomposition-rank region.  In the finite-nuclear-dimension
 region it must have a nonzero purely infinite simple subquotient and cannot
 itself be purely infinite.  Moreover,
 `stw96-countable-zstable-filtrations-have-generators` shows that it must have
-infinitely many ideals and cannot admit a continuous countable composition
+infinitely many ideals and cannot admit a continuous ordinal composition
 series with simple successor quotients.  The local fibre-gluing theorem
 `stw96-locally-hausdorff-primitive-spaces-have-generators` further forces its
 primitive ideal space to be non-locally-Hausdorff and rules out any continuous
-countable filtration by locally Hausdorff successor layers.
+ordinal filtration by locally Hausdorff successor layers.

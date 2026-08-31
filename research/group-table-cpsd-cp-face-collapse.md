@@ -5,7 +5,7 @@ kind: claim
 title: Classical and quantum conic descriptions of a group table have equal closures
 distinct_from:
   hyperlinear-implies-sofic: that is the group statement quantified over all groups; this is a convex-geometry statement about two cones associated with one finite table, whose failure would be a finite certificate and whose proof would explain the group statement rather than restate it.
-  regular-finite-table-quantum-classical-hamming-gap: that is the negation of this claim in its quantitative form — an exposed functional separating the two feasible regions on some table. Establishing either forecloses the other; they are recorded separately because their consumers differ, one feeding the affirmative answer and one feeding the separation.
+  finite-table-quantum-classical-hamming-gap: that is the negation of this claim in its quantitative form — an exposed functional separating the two feasible regions on some table. Establishing either forecloses the other; they are recorded separately because their consumers differ, one feeding the affirmative answer and one feeding the separation.
   definetti-group-table-rounding: that is a rate — a rounding map at a finite symmetric-extension level with explicit parameters; this is an exact statement about closures with no rate at all, and could hold with no effective bound whatsoever.
 artifacts:
   - research/artifacts/hyperlinear-divergent-strategies-2026-08-18.md
@@ -71,6 +71,6 @@ though it has no rate.
   no analogue for higher stochastic tensors.
 - **Deferred, and cheap:** compile a tiny table into both relaxations and ask a
   solver for a separating dual functional.  A robust separator refutes this
-  claim and is the seed of `regular-finite-table-quantum-classical-hamming-gap`; the
+  claim and is the seed of `finite-table-quantum-classical-hamming-gap`; the
   absence of separators across many small tables is evidence for the collapse
   and tells the affirmative programme where to look.

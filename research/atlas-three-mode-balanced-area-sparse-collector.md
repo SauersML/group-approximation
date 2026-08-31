@@ -75,7 +75,6 @@ and log are `experiments/atlas-rank5-balanced-area.json` and
 `experiments/atlas-rank5-balanced-area-17081560.log`; the mathematical no-go is
 recorded in `atlas-first-rank-five-relator-kills-order-one-weyl-slice`.
 
-This establishes the collector and certificate format.  The returned artifact
-has now been audited by an independent local replay, which reproduced the
-checked-in JSON byte for byte.  Its first exact row is the complete negative
-certificate permitted by the coefficient-table claim.
+This establishes the collector and certificate format, not the coefficient
+table or common-root decision.  Those remain open until the remote artifact is
+returned and audited.

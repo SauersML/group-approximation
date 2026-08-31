@@ -34,9 +34,3 @@ than Connes-embeddable traces.
 
 The direct compression fence is
 `deligne-fixed-projective-representation-folner-compression-no-go`.
-
-There is also a completely Property-`(T)`-free proof:
-`deligne-twisted-no-amenable-trace-via-character-rigidity` tensors an
-amenable full-central-character trace with its conjugate, cancels the
-Maslov multiplier, and would make the canonical trace of the nonamenable
-group `PSp_4(Z)` amenable.

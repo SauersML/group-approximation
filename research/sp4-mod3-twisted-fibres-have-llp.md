@@ -144,17 +144,12 @@ hyperlinear whenever `E_3` is hyperlinear.  Thus this claim **alone** forces
   the goal would close by a different mouth (the trace route), so BOTH
   the C*-lifting and the von Neumann embedding questions for `(TF3)` are
   goal-relevant and unrecorded.  The embedding side carries a second
-  major stake: the twisted von Neumann fibre inherits property (T) from
+  famous stake: the twisted von Neumann fibre inherits property (T) from
   the Kazhdan group (Connes--Jones through the alpha-regular
-  representation).  Non-Connes-embeddable property-(T) `II_1` factors
-  are already known abstractly: Chifan--Drimbe--Ioana's embedding-
-  universality theorem (Adv. Math. 417 (2023), arXiv:2205.07442,
-  Theorem A), combined with the negative solution of CEP, supplies such
-  factors.  What remains open here is the much more structured endpoint:
-  a non-CE twisted group factor of this concrete arithmetic Kazhdan group.
-  Such a fibre would make the finite central extension `E_3`
-  nonhyperlinear and hence give a non-CE property-(T) **group** factor;
-  CE fibres for all three characters are exactly hyperlinearity of `E_3`
+  representation), and no property (T) von Neumann algebra is currently
+  known to fail Connes embeddability; so a non-CE fibre would settle
+  that open problem and the goal at once, while CE fibres for all three
+  characters are exactly hyperlinearity of `E_3`
   (`deligne-sector-gap-is-exactly-nonhyperlinearity`).  The peers'
   `maslov-bounded-block-sector-gap` already fences the would-be
   hyperlinear models of the twisted sectors to decompositions in which

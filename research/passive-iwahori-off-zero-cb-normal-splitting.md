@@ -81,21 +81,9 @@ centralization nor spectral reduction is available.
 
 At an exact endpoint,
 `exact-passive-jacobian-is-two-reynolds-expectations` identifies the
-remaining operator-space problem explicitly.  In the original coordinates
-the derivative is the shifted pair of order-three conditional expectations
-
-```text
-3(E_(XS^2) Ad_(S^(-2)), E_(XRS) Ad_(S^(-1))),
-```
-
-restricted to the fixed-`R`, `X`-odd tangent space.  Equivalently, conjugating
-the two output rows (not the common input variable) turns it into
-
-```text
-3(E_(S^2 X),E_(S X R))
-```
-
-on that same tangent space.
+remaining operator-space problem explicitly: after two unitary coordinate
+changes the derivative is the pair of order-three conditional expectations
+`3(E_(XS^2),E_(XRS))`, restricted to the fixed-`R`, `X`-odd tangent space.
 Thus the exact-zero part of `(PCB3)` is the uniform cb complementability of
 this constrained Reynolds column over all congruence levels and
 amplifications.  `two-reynolds-l2-gap-does-not-bound-the-cb-normal-inverse`

@@ -15,9 +15,8 @@ Let
 Gamma = <S | r_1,r_2,...>
 ```
 
-have a finite generating set and any finite or countable enumeration of its
-relators, with no effectiveness assumption, and let `w in F(S)`.  The
-following are equivalent:
+have a finite generating set and a finite or recursively enumerable relator
+list, and let `w in F(S)`.  The following are equivalent:
 
 1. every homomorphism from `Gamma` to a tracial matrix ultraproduct kills
    `w`, equivalently `w` belongs to the hyperlinear radical of `Gamma`;
@@ -31,8 +30,5 @@ following are equivalent:
 
    also satisfies `||w(U)-I||_2<epsilon`.
 
-For a finite presentation one may always take the whole relator list.  For a
-recursively enumerable presentation this specializes to the effective input
-format used elsewhere in the repository, but the compactness equivalence
-itself does not need recursive enumerability.  Neither `N` nor `delta` is
-asserted computable.
+For a finite presentation one may always take the whole relator list.  Neither
+`N` nor `delta` is asserted computable.

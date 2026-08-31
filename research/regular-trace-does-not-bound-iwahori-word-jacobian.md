@@ -54,9 +54,7 @@ then
 \]
 has regular limiting character and retains the singular value in (RTJ2)
 exactly on the reducing tangent sector
-\(M_2\otimes\mathbb C1\). The witnessing Pauli tangent is invertible on the
-whole tensor-product Hilbert space and has uniformly bounded operator norm;
-it is not a vanishing-rank operator-space outlier.
+\(M_2\otimes\mathbb C1\).
 
 The Iwahori Nielsen map
 \[

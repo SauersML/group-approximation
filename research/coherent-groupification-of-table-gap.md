@@ -11,7 +11,7 @@ artifacts:
 
 **Target (second half of Target C of the source dossier).**  Given a finite
 table `T` with the robust quantum/classical gap of
-`regular-finite-table-quantum-classical-hamming-gap`, there is a group `G` that is
+`finite-table-quantum-classical-hamming-gap`, there is a group `G` that is
 hyperlinear and contains a nested sequence of finite windows whose tables
 realize the quantum optimum of `T` asymptotically — coherently, meaning that
 the unitary models of the successive windows are compatible enough to assemble
@@ -54,6 +54,6 @@ preserving a spectral gap.
 - **Use a wreath product over the gadget, as in the nonsofic constructions.**
   Deferred: this is exactly the shape of the known nonsofic groups, and the
   open question is whether the conic certificate survives the coset action.  It
-  is worth attempting only after `regular-finite-table-quantum-classical-hamming-gap`
+  is worth attempting only after `finite-table-quantum-classical-hamming-gap`
   has an actual instance, since the construction must be tailored to the
   certificate.

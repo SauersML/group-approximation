@@ -3,8 +3,6 @@ rg: 2
 id: atlas-a4-full-packet-normal-generator-table-compiler
 kind: claim
 title: The full A4 packet compiles residual holonomy to an approximate A8 table whose 19243 entry is small
-refuted_by:
-  - atlas-m2-refutes-five-global-a4-compilers
 distinct_from:
   atlas-a4-full-packet-normal-generator-holonomy-compiler: that stronger target asks to round the residual holonomy to an exact A8 representation and track its invariant sector; this target keeps only an approximate multiplication table and therefore avoids representation rounding completely.
   atlas-a4-rank-three-core-commutant-collapse: that route discards the central C3 packet directions and stops at GL3(2); this compiler retains exactly the full-chart information needed for b to normally generate.
@@ -12,8 +10,6 @@ artifacts:
   - research/artifacts/a4-context-virtually-free-compiler-2026-08-19.md
   - experiments/atlas_a4_19243_normal_closure.py
 ---
-
-**REFUTED.**  On the exact multiplicity-two zero-residual network, `(A4-TABLE-1)` gives an exact A8 table and `(A4-TABLE-2)` makes its normal generator trivial.  The established table theorem makes every table entry trivial, so `(A4-TABLE-3)` forces the relative frame into the chart commutant, contradicting its exact raw-S3 energy `4`.  See `atlas-m2-refutes-five-global-a4-compilers`.
 
 Let `sigma_n,U_n,eta_n` be as in
 `atlas-a4-full-packet-normal-generator-holonomy-compiler`.  From the canonical
@@ -55,7 +51,7 @@ to label bounded products of those holonomies by the 20160 states of the fixed
 `A8` multiplication table with `o(1)` local consistency error, while the
 collision word reads the one state `b`.
 
-## Historical attempts
+## Attempts
 
 - **Do not round a cocycle if the table already suffices.**  A representation
   stability theorem is unnecessary.  It is enough to prove multiplication

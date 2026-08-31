@@ -13,6 +13,7 @@ artifacts:
   - research/artifacts/stw84-finite-stabilizer-menu-wreath-2026-08-30.md
   - research/artifacts/stw84-arbitrary-stabilizer-wreath-2026-08-30.md
   - research/artifacts/stw84-abelian-by-local-virnil-audit-2026-08-30.md
+  - research/artifacts/stw84-alternating-shift-coherence-audit-2026-08-30.md
   - research/artifacts/stw-operator-literature-exact-imports-2026-08-30.md
 ---
 
@@ -388,6 +389,27 @@ Thus a nonzero covariance commutator cannot be hidden by replacing the
 failed tensor-product star-homomorphism with an approximately correct
 u.c.p. evaluation.  The remaining cyclic core must build the action into
 its symbol or abandon separate recovery of the two generators.
+
+The alternating-shift test now locates that action-built seam more sharply.
+`stw84-alternating-shift-approximate-representability-gate`
+shows that every finite coefficient packet is implemented **exactly** by a
+group unitary inside a larger finite group algebra.  Thus finite-set
+covariance is not the missing ingredient.  But every nontrivial group
+implementer `lambda_p` has
+
+```text
+||alpha(lambda_p)-lambda_p||>=sqrt(3),
+```
+
+so the natural partial-shift stages cannot be coherently inner.  Arbitrary
+coherently inner stages would force the stronger property of approximate
+representability, equivalently the Rokhlin property for the dual circle
+action.  Exact control on a proper coefficient subalgebra does not suffice
+for the Haar correction: already in `M_2 tensor M_2`, a unitary may commute
+with the entire first tensor factor while remaining distance one from the
+commutant of the full stage.  The unresolved stress test is therefore the
+construction or obstruction of non-group, shift-almost-fixed implementers,
+not another finite-set partial translation.
 
 ## Attempts
 

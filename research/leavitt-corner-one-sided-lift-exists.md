@@ -60,14 +60,12 @@ conclusion — `leavitt-corner-kernel-is-jacobson-radical` — and it is now
 refuted (`leavitt-corner-kernel-not-jacobson-radical`), so the corner lane
 runs through this claim alone.
 
-The formerly advertised sharper target
-`leavitt-e-f-murray-von-neumann-equivalence` is **refuted**.  The canonical
-coefficient trace has `tau(e)=0` and `tau(f)=1`, whereas cyclicity would force
-`tau(e)=tau(xy)=tau(yx)=tau(f)` for an equivalence.  Thus the primitive
-idempotent from the recursive extension cannot be the reverse product of a
-corner witness.  This removes that route completely; the only surviving
-route currently recorded is to lift a full binary Leavitt family into the
-unit corner, or to construct an unrelated pair directly.
+A sharper sufficient target is now explicit:
+`leavitt-e-f-murray-von-neumann-equivalence`.  It asks only for `e~f`, where
+`f<e` is the primitive idempotent already constructed in the group algebra.
+If `xy=e` and `yx=f`, then `pi_e(yx)=s_0t_0!=1` automatically.  This is weaker
+than lifting the full Leavitt family and pins the missing finite-support
+identity to one exact equivalence problem.
 
 ## Attempts
 

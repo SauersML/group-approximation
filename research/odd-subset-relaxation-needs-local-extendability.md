@@ -2,7 +2,7 @@
 rg: 2
 id: odd-subset-relaxation-needs-local-extendability
 kind: claim
-title: The unrestricted odd-subset relaxation theorem fails without local extendability
+title: The odd-subset relaxation solves a linearly encoded LCS only when every local assignment is locally extendable
 invalidates:
   - linear-encoding-lcs-admits-odd-subset-cheats-proof
 distinct_from:
@@ -51,12 +51,15 @@ joint profile differs.
 
 **What survives, and what it costs.**  The within-context classification
 (solutions of the long-code relations `a_phi a_psi = a_(phi psi)`,
-`a_(-1) = J` are exactly the odd-support characters) is correct.  A
-plausible repaired theorem would assume LOCAL EXTENDABILITY -- every
-`s in S_C` extends to a locally consistent tuple over the contexts of each
-constraint -- together with a product-over-overlaps factorization.  The
-stronger hypothesis "extends to a global solution of `B`" would make the
-statement vacuous exactly for unsatisfiable `B`, which is the soundness side
-the programme needs.  No repaired universal theorem is asserted here.
-The route is invalid as written, and the unrestricted claim
-`linear-encoding-lcs-admits-odd-subset-cheats` is refuted.
+`a_(-1) = J` are exactly the odd-support characters) is correct.  The
+global statement holds under LOCAL EXTENDABILITY -- every `s in S_C`
+extends to a locally consistent tuple over the contexts of each
+constraint -- together with the product-over-overlaps form of the
+factorization; the stronger hypothesis "extends to a global solution of
+`B`" would make the statement vacuous exactly for unsatisfiable `B`,
+which is the soundness side the programme needs.  Hence the route is
+invalid as written and `linear-encoding-lcs-admits-odd-subset-cheats`
+returns to OPEN; every fence downstream that reads "encodings cannot
+create LCS hardness" unconditionally is conditional on local
+extendability, and non-extendable local assignments are a live escape
+the lane had closed prematurely.

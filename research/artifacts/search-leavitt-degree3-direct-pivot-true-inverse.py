@@ -143,11 +143,6 @@ for topology_index, (negative, signs, valences) in enumerate(all_topologies):
     assert len(unary_indices) == 2
     for slots in multiset_permutations(PACKET):
         layouts_tested += 1
-        # ``reduce_free_product`` is globally memoized by the shared chart
-        # module.  The census visits millions of one-use words, so retaining
-        # the whole cache only increases memory and cannot affect exactness.
-        if layouts_tested % 10000 == 0:
-            P.reduce_free_product.cache_clear()
         words = tuple(orbit_word(slots, signs, start)
                       for start in range(3))
         for unary_index in unary_indices:

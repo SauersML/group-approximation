@@ -5,7 +5,7 @@ kind: claim
 title: Every residually rationally solvable one-relator group is sofic
 distinct_from:
   one-relator-soficity-localizes-at-rational-derived-stage: that is the reduction available for *every* one-relator group and decides nothing; this is the outright positive answer on the subclass where the reduction's shell is free, and it closes those groups.
-  one-relator-groups-sofic: that is Pestov's Question 4.10 in full and is open; this settles it on a proper subclass, and the residual hypothesis is exactly what a counterexample must fail.
+  one-relator-groups-sofic: that is Pestov's Question 4.9 in full and is open; this settles it on a proper subclass, and the residual hypothesis is exactly what a counterexample must fail.
 artifacts:
   - research/artifacts/one-relator-soficity-audit-2026-08-17.md
 ---
@@ -25,7 +25,7 @@ sofic (Elek--Szabó).  ∎
 ## Why this is worth a node
 
 It is a genuinely large positive class, and it is the *cleanest* thing the
-2026-08-17 external attempt on Question 4.10 produced.  The class contains every
+2026-08-17 external attempt on Question 4.9 produced.  The class contains every
 free group, every one-relator group with solvable rational derived series
 (so all the classical residually-solvable families), and every surface group;
 `[a,b]` gives `E = [S,S]`, free because infinite-index subgroups of surface

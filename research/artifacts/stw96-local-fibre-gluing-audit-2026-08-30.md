@@ -7,7 +7,7 @@ problem has a local-to-global solution whenever the primitive ideal space is
 locally Hausdorff.  This removes ideal spaces with perfect, non-scattered
 Hausdorff pieces and does not require a composition series.
 
-The same proof applies layerwise to a continuous countable ideal filtration
+The same proof applies layerwise to a continuous ordinal ideal filtration
 whose successor quotients have locally Hausdorff primitive spectra.  Thus the
 total primitive space may itself be non-locally-Hausdorff.
 
@@ -67,10 +67,12 @@ is all of `A`; inductive-limit permanence completes the proof.
 
 Any counterexample among separable nowhere-scattered finite-nuclear-dimension
 real-rank-zero C*-algebras must now have a primitive ideal space that is not
-locally Hausdorff.  More sharply, it cannot admit a continuous countable ideal
+locally Hausdorff.  More sharply, it cannot admit a continuous ordinal ideal
 filtration whose successor quotients have locally Hausdorff primitive spectra.
-In particular, it has infinitely many ideals and no continuous countable
-composition series with simple successor quotients.
+In particular, it has infinitely many ideals and no continuous ordinal
+composition series with simple successor quotients.  At limits of uncountable
+cofinality, separability forces the ideal filtration to stabilize; only
+countable-cofinality limits require inductive-limit permanence.
 
 We do not claim that every zero-dimensional primitive ideal space is locally
 Hausdorff.  A compact-open basis in a non-Hausdorff `T_0` space does not provide

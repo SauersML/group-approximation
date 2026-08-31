@@ -94,10 +94,3 @@ infinitely many relators of `S` are absorbed by the automorphism structure.
    Its hypothesis is finite presentability of `S`, which is what one is
    trying to produce; a positive answer there gives universality of twisted
    Brin--Thompson groups, not an envelope for a computably presented core.
-4. **Form the abstract twisted Brin--Thompson group before quotienting the
-   action kernel.**  *Dies at the same finite-presentation hole.*
-   `abstract-btb-simple-quotient-fp-gate`,
-   imported from Fournier-Facio--Wu--Zaremsky Corollary 4.2, says that once
-   the abstract group is finitely presented, its canonical simple quotient is
-   finitely presented **if and only if** `A/K` is.  Relative simplicity is a
-   genuine new tool, but it cannot compress this kernel for free.

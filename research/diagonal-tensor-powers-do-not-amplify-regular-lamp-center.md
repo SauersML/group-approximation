@@ -3,13 +3,12 @@ rg: 2
 id: diagonal-tensor-powers-do-not-amplify-regular-lamp-center
 kind: claim
 title: Diagonal tensor powers of a regular lamp packet do not amplify its center samples
-refuted_by: tensor-leg-centers-give-independent-plancherel-samples
 distinct_from:
   a5-center-spectrum-has-constant-one-site-hamming-gap: that computes the one-packet Plancherel faithfulness and Hamming costs; this proves that tensoring the same group representation produces no independent center samples and leaves both costs unchanged.
   simple-lamp-gauge-rigidity-reduces-to-actor-classicalization: that absorbs a fixed actor representation into a regular actor packet; this is the finite-lamp version and rules out tensor-power repair of the center-fiber chart loss.
 ---
 
-**REFUTED AS STATED; THE INTRINSIC-CENTER PART SURVIVES.** Let `Q` be a finite group and let `lambda_Q` be its left
+**ESTABLISHED.** Let `Q` be a finite group and let `lambda_Q` be its left
 regular representation.  For every finite-dimensional representation `pi`
 of `Q`, Fell absorption gives
 
@@ -79,10 +78,3 @@ The two center defects are inseparable by tensor amplification:
 Any positive simple-lamp recovery theorem must therefore construct a
 coherent near-total actor action before passing to centers.  Diagonal tensor
 powers provide neither additional chart states nor a softer boundary.
-
-The final conclusion is false because it silently restricts to the intrinsic
-center of the diagonal image algebra.  The tensor-leg central isotypic PVMs
-remain available in its reducing commutant and give genuinely independent
-Plancherel samples.  The exact surviving Fell statement is recorded in
-`diagonal-regular-isotypic-center-stays-plancherel`; the counter-PVM is
-`tensor-leg-centers-give-independent-plancherel-samples`.

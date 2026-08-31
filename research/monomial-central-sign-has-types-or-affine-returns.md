@@ -46,11 +46,9 @@ pi_(chi,sigma)|_D
 ```
 
 In particular `pi_(chi,sigma)(J)=-I` exactly when `chi in Omega_-`.
-Therefore a **unique orbit** on `Omega_-` does not by itself imply a unique
-marked type: for each `sigma in Irr(K_chi)` it supplies a different `J=-1`
-irreducible.  If `K_chi` is nontrivial, there are at least two such `sigma`.
-If there is more than one `K`-orbit in `Omega_-`, choosing one representative
-from each orbit already gives multiple marked types.
+Therefore a **unique orbit** on `Omega_-` is not a unique marked type: for
+each `sigma in Irr(K_chi)` it supplies a different `J=-1` irreducible.  If
+`K_chi` is nontrivial, there are at least two such `sigma`.
 
 If the central-sign irreducible really is unique, `K` must be transitive on
 `Omega_-` and `K_chi` must be trivial.  Thus `K` acts freely and transitively
@@ -79,9 +77,8 @@ phase; it cannot supply a selector-dependent choice among different Pauli
 or root elements.  Thus the two possibilities are exact:
 
 ```text
-multiple orbits or a nontrivial little group -> multiple J=-1 types;
-unique J=-1 type -> one free-transitive orbit and only affine
-                    literal diagonal returns.                    (CSM6)
+nontrivial little group  -> multiple J=-1 types;
+unique J=-1 type         -> only affine literal diagonal returns. (CSM6)
 ```
 
 *Proof of (CSM2)--(CSM3).*  Since the semidirect product is split and `chi`
@@ -95,13 +92,12 @@ freeness makes a weight-preserving `k` the identity, proving `(CSM5)`.
 
 Let `E normal H` be an extraspecial `2`-group with center `<J>`, and assume
 `J` is central in the finite group `H`.  Let `rho` be the unique spin
-irreducible of `E` with `rho(J)=-I`, put `L=H/E`, and choose a section
-`s:L -> H` with `s(1)=1`.  On every `J=-1` representation of `H`, Clifford
-theory has the form
+irreducible of `E` with `rho(J)=-I`, and put `L=H/E`.  On every `J=-1`
+representation of `H`, Clifford theory has the form
 
 ```text
 pi|_E = rho tensor I_M,
-pi(e s(l)) = rho(e) U_l tensor V_l,    e in E, l in L. (CSM7)
+pi(h) = U_(hE) tensor V_(hE)                           (CSM7)
 ```
 
 after choosing spin implementers `U_l`.  The operators `V_l` form a
@@ -117,8 +113,8 @@ twisted regular representation, impossible because the `u_l` are a basis.
 Consequently
 
 ```text
-pi(e s(l))=rho(e)U_l tensor I_M in every J=-1 representation
-                  implies l=1, hence e s(l) in E.      (CSM8)
+pi(h)=U tensor I_M in every J=-1 representation
+                  implies h in E.                     (CSM8)
 ```
 
 This remains true when `C^alpha[L]` is simple: its unique module is faithful,

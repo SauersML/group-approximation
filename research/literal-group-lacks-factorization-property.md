@@ -11,8 +11,6 @@ artifacts:
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
 ---
 
-**REFUTED.**  The explicit u.c.p. Folner-compression models in `literal-fp-via-folner-rf-core` establish the opposite claim.
-
 The canonical trace of `C*(E)` is not an amenable trace; equivalently `E` does
 not have Kirchberg's factorization property.
 

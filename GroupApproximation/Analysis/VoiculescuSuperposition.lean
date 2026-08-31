@@ -191,25 +191,140 @@ theorem norm_superposition_le_one (P : QuasicentralPartition K d)
   refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun x ↦ ?_
   simpa using norm_superposition_apply_le P hiso horth N x
 
-/-! ## The strong-limit recursion seam -/
+/-! ## The strong limit -/
 
-/-- **A pointwise-Cauchy superposition has an isometric strong limit.**
+/-- A partial superposition is orthogonal to every summand whose index is past
+the end of the partial sum. -/
+theorem inner_superposition_apply_eq_zero_of_le
+    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
+    {N j : ℕ} (hNj : N ≤ j) (x y : K) :
+    ⟪superposition V d N x, V j y⟫_ℂ = 0 := by
+  rw [superposition, sum_apply, sum_inner]
+  refine Finset.sum_eq_zero fun i hi ↦ ?_
+  have hij : i ≠ j :=
+    ne_of_lt (lt_of_lt_of_le (Finset.mem_range.mp hi) hNj)
+  rw [← ContinuousLinearMap.adjoint_inner_right,
+    ← ContinuousLinearMap.comp_apply, horth i j hij, zero_apply,
+    inner_zero_right]
+
+/-- **Finite-interval Pythagoras.**  The square norm of a tail of the
+superposition is exactly the corresponding tail of the partition's square
+sum. -/
+theorem norm_superposition_sub_apply_sq (P : QuasicentralPartition K d)
+    (hiso : ∀ j, ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
+    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
+    {N M : ℕ} (hNM : N ≤ M) (x : K) :
+    ‖superposition V P.d M x - superposition V P.d N x‖ ^ 2 =
+      (∑ j ∈ Finset.range M, ‖P.d j x‖ ^ 2) -
+        ∑ j ∈ Finset.range N, ‖P.d j x‖ ^ 2 := by
+  induction M with
+  | zero =>
+      have hN : N = 0 := Nat.eq_zero_of_le_zero hNM
+      subst N
+      simp
+  | succ M ih =>
+      by_cases hN : N = M + 1
+      · subst N
+        simp
+      · have hNM' : N ≤ M := by omega
+        have hsucc :
+            superposition V P.d (M + 1) x =
+              superposition V P.d M x + V M (P.d M x) := by
+          simp [superposition, Finset.sum_range_succ]
+        have horthM :
+            ⟪superposition V P.d M x, V M (P.d M x)⟫_ℂ = 0 :=
+          inner_superposition_apply_eq_zero_of_le (d := P.d) horth
+            (le_refl M) x (P.d M x)
+        have horthN :
+            ⟪superposition V P.d N x, V M (P.d M x)⟫_ℂ = 0 :=
+          inner_superposition_apply_eq_zero_of_le (d := P.d) horth hNM'
+            x (P.d M x)
+        have htailOrth :
+            ⟪superposition V P.d M x - superposition V P.d N x,
+              V M (P.d M x)⟫_ℂ = 0 := by
+          rw [inner_sub_left, horthM, horthN, sub_self]
+        have hVnorm : ‖V M (P.d M x)‖ = ‖P.d M x‖ := by
+          have hV : Isometry (V M) :=
+            (ContinuousLinearMap.isometry_iff_adjoint_comp_self (V M)).mpr
+              (hiso M)
+          exact hV.norm_map_of_map_zero (map_zero _) _
+        rw [hsucc]
+        have hsplit :
+            (superposition V P.d M x + V M (P.d M x)) -
+                superposition V P.d N x =
+              (superposition V P.d M x - superposition V P.d N x) +
+                V M (P.d M x) := by
+          abel
+        rw [hsplit]
+        calc
+          ‖(superposition V P.d M x - superposition V P.d N x) +
+              V M (P.d M x)‖ ^ 2 =
+              ‖superposition V P.d M x - superposition V P.d N x‖ ^ 2 +
+                ‖V M (P.d M x)‖ ^ 2 := by
+            simpa [pow_two] using
+              norm_add_sq_eq_norm_sq_add_norm_sq_of_inner_eq_zero
+                (superposition V P.d M x - superposition V P.d N x)
+                (V M (P.d M x)) htailOrth
+          _ = (∑ j ∈ Finset.range (M + 1), ‖P.d j x‖ ^ 2) -
+                ∑ j ∈ Finset.range N, ‖P.d j x‖ ^ 2 := by
+            rw [ih hNM', hVnorm, Finset.sum_range_succ]
+            ring
+
+/-- The partial superpositions are pointwise Cauchy.  This is the exact
+Hilbert-series step: finite-interval Pythagoras turns convergence of the
+partition's scalar square sums into convergence of the vector series. -/
+theorem cauchySeq_superposition (P : QuasicentralPartition K d)
+    (hiso : ∀ j, ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
+    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
+    (x : K) : CauchySeq fun N ↦ superposition V P.d N x := by
+  rw [Metric.cauchySeq_iff]
+  intro ε hε
+  let q : ℕ → ℝ := fun N ↦ ∑ j ∈ Finset.range N, ‖P.d j x‖ ^ 2
+  have hqmono : Monotone q := by
+    refine monotone_nat_of_le_succ fun N ↦ ?_
+    dsimp [q]
+    rw [Finset.sum_range_succ]
+    positivity
+  have hqtend : Tendsto q atTop (𝓝 (‖x‖ ^ 2)) := P.tendsto_sum_norm_sq x
+  have hqle : ∀ N, q N ≤ ‖x‖ ^ 2 := fun N ↦ hqmono.ge_of_tendsto hqtend N
+  obtain ⟨N, hN⟩ :=
+    (Metric.tendsto_atTop.1 hqtend) (ε ^ 2) (sq_pos_of_pos hε)
+  refine ⟨N, fun m hm n hn ↦ ?_⟩
+  have htail : ∀ a b, N ≤ a → a ≤ b →
+      dist (superposition V P.d b x) (superposition V P.d a x) < ε := by
+    intro a b ha hab
+    have hnear : dist (q a) (‖x‖ ^ 2) < ε ^ 2 := hN a ha
+    have htailSq := norm_superposition_sub_apply_sq P hiso horth hab x
+    have hqba : q b - q a < ε ^ 2 := by
+      rw [Real.dist_eq, abs_of_nonpos (sub_nonpos.mpr (hqle a))] at hnear
+      linarith [hqle b]
+    rw [dist_eq_norm]
+    change ‖superposition V P.d b x - superposition V P.d a x‖ < ε
+    change ‖superposition V P.d b x - superposition V P.d a x‖ ^ 2 =
+      q b - q a at htailSq
+    nlinarith [norm_nonneg
+      (superposition V P.d b x - superposition V P.d a x)]
+  rcases le_total n m with hnm | hmn
+  · exact htail n m hn hnm
+  · rw [dist_comm]
+    exact htail m n hm hmn
+
+/-- **The superposition has an isometric strong limit.**
 
 The finite Gram identities do all the operator-theoretic work: they uniformly
 bound the partial maps and identify the norm of their limit with the partition
-sum.  The sole hypothesis left here is pointwise Cauchy-ness of the orthogonal
-series.  It is the exact Hilbert-series lemma still needed to turn the finite
-partial construction into the general V4 isometry; no block-diagonal or Glimm
-input is hidden in it. -/
+sum.  Finite-interval Pythagoras supplies pointwise Cauchy-ness, so no
+infinite-series assumption remains. -/
 theorem exists_isometric_superposition_limit
     (P : QuasicentralPartition K d)
     (hiso : ∀ j, ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
-    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
-    (hcauchy : ∀ x : K, CauchySeq fun N ↦ superposition V P.d N x) :
+    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0) :
     ∃ W : K →L[ℂ] H,
       (∀ x : K, Tendsto (fun N ↦ superposition V P.d N x) atTop (𝓝 (W x))) ∧
       ContinuousLinearMap.adjoint W ∘L W = 1 := by
   classical
+  have hcauchy : ∀ x : K, CauchySeq fun N ↦ superposition V P.d N x :=
+    fun x ↦ cauchySeq_superposition P hiso horth x
   let f : K → H := fun x ↦
     Classical.choose (cauchySeq_tendsto_of_complete (hcauchy x))
   have hf : ∀ x : K,
@@ -263,6 +378,61 @@ theorem superposition_defect_term (S : H →L[ℂ] H) (R : K →L[ℂ] K) (j : �
     add_apply, map_sub]
   abel
 
+omit [CompleteSpace K] [CompleteSpace H] in
+/-- The defect of a finite superposition is the finite sum of its one-piece
+defects. -/
+theorem superposition_defect_eq_sum (S : H →L[ℂ] H) (R : K →L[ℂ] K)
+    (N : ℕ) :
+    S ∘L superposition V d N - superposition V d N ∘L R =
+      ∑ j ∈ Finset.range N,
+        ((S ∘L V j - V j ∘L R) ∘L d j +
+          V j ∘L (R ∘L d j - d j ∘L R)) := by
+  rw [← Finset.sum_congr rfl fun j _ ↦ superposition_defect_term d S R j]
+  refine ContinuousLinearMap.ext fun x ↦ ?_
+  rw [sum_apply]
+  simp only [ContinuousLinearMap.coe_comp, Function.comp_apply, sub_apply]
+  rw [superposition, sum_apply, sum_apply, map_sum, ← Finset.sum_sub_distrib]
+  exact Finset.sum_congr rfl fun j _ ↦ rfl
+
+/-- The norm of a one-piece defect is bounded by its intertwining error and
+its commutator error. -/
+theorem norm_superposition_defect_term_le
+    (hViso : ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
+    (hd : ‖d j‖ ≤ 1) (S : H →L[ℂ] H) (R : K →L[ℂ] K) :
+    ‖(S ∘L V j - V j ∘L R) ∘L d j +
+        V j ∘L (R ∘L d j - d j ∘L R)‖
+      ≤ ‖S ∘L V j - V j ∘L R‖ + ‖d j * R - R * d j‖ := by
+  have hVnorm : ‖V j‖ ≤ 1 := by
+    refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun x ↦ ?_
+    rw [one_mul]
+    have hiso :=
+      (ContinuousLinearMap.isometry_iff_adjoint_comp_self (V j)).mpr hViso
+    exact le_of_eq (hiso.norm_map_of_map_zero (map_zero _) x)
+  refine le_trans (norm_add_le _ _) ?_
+  have h1 : ‖(S ∘L V j - V j ∘L R) ∘L d j‖
+      ≤ ‖S ∘L V j - V j ∘L R‖ := by
+    refine le_trans ((S ∘L V j - V j ∘L R).opNorm_comp_le (d j)) ?_
+    calc
+      ‖S ∘L V j - V j ∘L R‖ * ‖d j‖
+          ≤ ‖S ∘L V j - V j ∘L R‖ * 1 :=
+        mul_le_mul_of_nonneg_left hd (norm_nonneg _)
+      _ = ‖S ∘L V j - V j ∘L R‖ := mul_one _
+  have h2 : ‖V j ∘L (R ∘L d j - d j ∘L R)‖
+      ≤ ‖d j * R - R * d j‖ := by
+    refine le_trans ((V j).opNorm_comp_le _) ?_
+    have hrw : ‖R ∘L d j - d j ∘L R‖ = ‖d j * R - R * d j‖ := by
+      rw [← norm_neg]
+      congr 1
+      rw [ContinuousLinearMap.mul_def, ContinuousLinearMap.mul_def]
+      abel
+    calc
+      ‖V j‖ * ‖R ∘L d j - d j ∘L R‖
+          ≤ 1 * ‖R ∘L d j - d j ∘L R‖ :=
+        mul_le_mul_of_nonneg_right hVnorm (norm_nonneg _)
+      _ = ‖R ∘L d j - d j ∘L R‖ := one_mul _
+      _ = ‖d j * R - R * d j‖ := hrw
+  linarith
+
 /-- **The defect estimate.**  The superposition's defect is bounded by the
 per-piece defects plus the commutators of the partition with `R`. -/
 theorem norm_superposition_defect_le
@@ -271,44 +441,35 @@ theorem norm_superposition_defect_le
     ‖S ∘L superposition V d N - superposition V d N ∘L R‖
       ≤ (∑ j ∈ Finset.range N, ‖S ∘L V j - V j ∘L R‖)
         + ∑ j ∈ Finset.range N, ‖d j * R - R * d j‖ := by
-  have hVnorm : ∀ j, ‖V j‖ ≤ 1 := by
-    intro j
-    refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun x ↦ ?_
-    rw [one_mul]
-    have hiso := (ContinuousLinearMap.isometry_iff_adjoint_comp_self (V j)).mpr
-      (hViso j)
-    exact le_of_eq (hiso.norm_map_of_map_zero (map_zero _) x)
-  have hsplit : S ∘L superposition V d N - superposition V d N ∘L R
-      = ∑ j ∈ Finset.range N,
-        ((S ∘L V j - V j ∘L R) ∘L d j + V j ∘L (R ∘L d j - d j ∘L R)) := by
-    rw [← Finset.sum_congr rfl fun j _ ↦ superposition_defect_term d S R j]
-    refine ContinuousLinearMap.ext fun x ↦ ?_
-    rw [sum_apply]
-    simp only [ContinuousLinearMap.coe_comp, Function.comp_apply, sub_apply]
-    rw [superposition, sum_apply, sum_apply, map_sum, ← Finset.sum_sub_distrib]
-    refine Finset.sum_congr rfl fun j _ ↦ rfl
-  rw [hsplit]
+  rw [superposition_defect_eq_sum]
   refine le_trans (norm_sum_le _ _) ?_
   rw [← Finset.sum_add_distrib]
   refine Finset.sum_le_sum fun j _ ↦ ?_
-  refine le_trans (norm_add_le _ _) ?_
-  have h1 : ‖(S ∘L V j - V j ∘L R) ∘L d j‖ ≤ ‖S ∘L V j - V j ∘L R‖ := by
-    refine le_trans ((S ∘L V j - V j ∘L R).opNorm_comp_le (d j)) ?_
-    calc ‖S ∘L V j - V j ∘L R‖ * ‖d j‖ ≤ ‖S ∘L V j - V j ∘L R‖ * 1 :=
-          mul_le_mul_of_nonneg_left (hd j) (norm_nonneg _)
-      _ = ‖S ∘L V j - V j ∘L R‖ := mul_one _
-  have h2 : ‖V j ∘L (R ∘L d j - d j ∘L R)‖ ≤ ‖d j * R - R * d j‖ := by
-    refine le_trans ((V j).opNorm_comp_le _) ?_
-    have hrw : ‖R ∘L d j - d j ∘L R‖ = ‖d j * R - R * d j‖ := by
-      rw [← norm_neg]
-      congr 1
-      rw [ContinuousLinearMap.mul_def, ContinuousLinearMap.mul_def]
-      abel
-    calc ‖V j‖ * ‖R ∘L d j - d j ∘L R‖ ≤ 1 * ‖R ∘L d j - d j ∘L R‖ :=
-          mul_le_mul_of_nonneg_right (hVnorm j) (norm_nonneg _)
-      _ = ‖R ∘L d j - d j ∘L R‖ := one_mul _
-      _ = ‖d j * R - R * d j‖ := hrw
-  linarith
+  exact norm_superposition_defect_term_le (hViso j) (hd j) S R
+
+/-- **The partial defects converge in operator norm.**  The limit here is
+written as the sum of the one-piece defects.  Identifying it with the defect of
+the strong superposition limit is a separate continuity argument; the norm
+convergence itself uses exactly the two summability inputs of the construction. -/
+theorem tendsto_superposition_defect
+    (hViso : ∀ j, ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
+    (hd : ∀ j, ‖d j‖ ≤ 1) (S : H →L[ℂ] H) (R : K →L[ℂ] K)
+    (hpiece : Summable fun j ↦ ‖S ∘L V j - V j ∘L R‖)
+    (hcomm : Summable fun j ↦ ‖d j * R - R * d j‖) :
+    Tendsto
+      (fun N ↦ S ∘L superposition V d N - superposition V d N ∘L R)
+      atTop
+      (𝓝 (∑' j, (S ∘L V j - V j ∘L R) ∘L d j +
+        V j ∘L (R ∘L d j - d j ∘L R))) := by
+  have hmajorant : Summable fun j ↦
+      ‖S ∘L V j - V j ∘L R‖ + ‖d j * R - R * d j‖ :=
+    hpiece.add hcomm
+  have hsum : Summable fun j ↦
+      (S ∘L V j - V j ∘L R) ∘L d j +
+        V j ∘L (R ∘L d j - d j ∘L R) :=
+    Summable.of_norm_bounded hmajorant fun j ↦
+      norm_superposition_defect_term_le (hViso j) (hd j) S R
+  simpa only [superposition_defect_eq_sum] using hsum.hasSum.tendsto_sum_nat
 
 end
 

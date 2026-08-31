@@ -9,7 +9,6 @@ distinct_from:
   literal-group-not-sofic: that is a refuted claim about one concrete group `E`, asserting `E` fails soficity, which turned out false; this is an established implication between two existence statements in the weak-sofic class and names no group
   literal-group-sofic: that is soficity of the concrete group `E`, a positive approximation result about one group; this is a reduction principle that transfers a hypothetical failure of weak soficity from an arbitrary group to a finitely presented one
   torsion-free-finitely-presented-non-mf: that is an open existence target for a finitely presented group with an extra algebraic property, in the MF class; this is an established transfer principle in the weak-sofic class, which imposes no torsion condition and asserts no existence
-  universal-local-approximation-fixed-two-generator-test-group: that strengthens the existential finitely presented reduction here to one prescribed two-generator finitely presented target; this node records the older Glebsky--Rivera finite-relator argument and its explicit bounded conjugacy-product obstruction.
 artifacts:
   - research/artifacts/non-weakly-sofic-audit-2026-08-17.md
 ---
@@ -40,22 +39,3 @@ about the whole relation subgroup, only about finitely many of its elements.
 That is the same "fixed finite list" phenomenon that
 `literal-mark-conjugacy-width-unbounded` shows this repository's non-MF
 witness cannot supply.
-
-## Fixed-target sharpening
-
-The later universal tester makes the existential conclusion exact. For its
-one prescribed two-generator finitely presented group `V`,
-
-```text
-some group is not weakly sofic
-  <=> V is not weakly sofic
-  <=> weak soficity is not closed under arbitrary quotients.
-```
-
-Thus a counterexample, if one exists, need not merely have some finitely
-presented replacement: this fixed `V` is already a replacement. This
-sharpens the search target without asserting that `V` is non-weakly-sofic.
-The Glebsky--Rivera proof above remains independently useful because it
-exposes the finite conjugacy-product obstruction rather than only the
-universal container. The quotient equivalence is
-[[fixed-finite-relator-quotient-tests-local-permanence]].

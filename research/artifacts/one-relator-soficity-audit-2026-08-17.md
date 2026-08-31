@@ -1,4 +1,4 @@
-# 2026-08-17 — Pestov Question 4.10 (are all one-relator groups sofic?): ingestion audit of an external resolution attempt
+# 2026-08-17 — Pestov Question 4.9 (are all one-relator groups sofic?): ingestion audit of an external resolution attempt
 
 Source: a user-supplied external resolution attempt, "Pestov Open Question
 4.9: are all one-relator groups sofic? — Resolution attempt, 17 August 2026",
@@ -6,7 +6,7 @@ unrefereed, written against a snapshot archive of this repository.  This file
 records the ingestion audit and carries the proofs the new graph nodes cite;
 the canonical statements live in the graph.
 
-**Headline of the source, which this audit confirms.**  Pestov's Question 4.10
+**Headline of the source, which this audit confirms.**  Pestov's Question 4.9
 is **not** resolved, in either direction, and the source says so in its own
 first line rather than dressing a gap as a proof.  What it produces is a
 reduction package plus a set of obstructions:
@@ -25,7 +25,7 @@ reduction package plus a set of obstructions:
 
 The follow-up argument now recorded in
 `one-relator-fox-magnus-descent-to-derived-linton-radical` is a genuine advance
-over this audit, but still not a resolution of Pestov 4.10.  With the same
+over this audit, but still not a resolution of Pestov 4.9.  With the same
 Linton data, the Magnus relation sequence
 
     0 -> N/N' -> (ZH)^d -> I_H -> 0
@@ -148,7 +148,7 @@ with this proof rather than the source's attribution.
 
 ## C. What the audit did **not** confirm
 
-* No proof and no counterexample.  Nothing in the source resolves Question 4.10
+* No proof and no counterexample.  Nothing in the source resolves Question 4.9
   and the source does not claim otherwise.
 * The conditional in the source's §7 (Alekseev--Bradford) is genuinely
   conditional: neither hypothesis was verified for Linton radicals, and their
@@ -163,13 +163,6 @@ with this proof rather than the source's attribution.
   is the misleading part and the source read the body.
 
 ---
-
-> **Editorial numbering correction (2026-08-30).**  The supplied document
-> below calls the one-relator question “Pestov Open Question 4.9.”  In
-> arXiv:0804.3968v8, Question 4.9 instead asks whether a sofic group can fail
-> to be initially subamenable; the one-relator hyperlinear/sofic question is
-> Question 4.10.  The supplied text is preserved verbatim, so its occurrences
-> of “4.9” are retained as source errors rather than silently rewritten.
 
 # Source document, as supplied
 
@@ -257,9 +250,8 @@ The standard sofic permanence facts used below are:
 
 I do **not** use closure under arbitrary quotients, arbitrary extensions,
 arbitrary semidirect products, or arbitrary amalgamation over nonamenable
-subgroups. Arbitrary quotient closure is false by
-[[sofic-quotient-nonclosure]]; the other listed closure principles are
-unavailable, and generic semidirect-product closure is now false.
+subgroups.  Those closure properties are unavailable, and in the
+semidirect-product case generic closure is now false.
 
 ---
 
@@ -727,20 +719,21 @@ obstruction rather than a presentation-search inconvenience.
 ## 12. Why quotient constructions do not automatically give a counterexample
 
 Another natural plan is to force a known nonsofic group `Q` as a quotient of a
-one-relator group `G`. This is insufficient for a stronger reason than was
-historically available: arbitrary sofic quotient permanence is false by
-[[sofic-quotient-nonclosure]]. A nonsofic quotient therefore cannot force its
-source to be nonsofic.
+one-relator group `G`.
+
+That is insufficient: soficity is **not known to pass to arbitrary quotients**.
+Indeed, the modern nonsofic constructions make quotient behavior one of the
+delicate points of the theory.
 
 One may try to repair the idea by arranging an amenable kernel
-`1 → A → G → Q → 1` with `A` amenable. The standard permanence theorem goes
-in the other direction: if the **kernel** is sofic and the **quotient** is
-amenable, then the total group is sofic. It does not supply the narrower
-amenable-kernel quotient permanence that this plan would need.
+`1 → A → G → Q → 1` with `A` amenable.  But the standard permanence theorem
+goes in the other direction: if the **kernel** is sofic and the **quotient** is
+amenable, then the total group is sofic.  It does not say that a quotient by an
+amenable normal subgroup of a sofic group must be sofic.
 
-Therefore "make the kernel amenable and quotient nonsofic" neither contradicts
-soficity of `G` nor proves `G` nonsofic. This kills the naive Rips/HNN quotient
-constructions.
+Therefore "make the kernel amenable and quotient nonsofic" is not presently a
+contradiction to soficity of `G`.  This killed a number of seemingly attractive
+Rips/HNN quotient constructions.
 
 ---
 
@@ -987,10 +980,9 @@ explicitly prohibits using it as a closure step.  Additionally, if the target is
 2-generated and perfect, Proposition 11.1 blocks the naive same-generator
 one-relator presentation.
 
-**22.3 Force a nonsofic quotient with amenable kernel.** *Failure:* arbitrary
-quotient permanence is false by [[sofic-quotient-nonclosure]], and the narrower
-amenable-kernel quotient statement needed here is not supplied by the standard
-extension theorem. That theorem has sofic **kernel**, amenable **quotient**.
+**22.3 Force a nonsofic quotient with amenable kernel.**  *Failure:* quotient
+closure in that direction is not available.  The standard extension theorem is
+sofic **kernel**, amenable **quotient**.
 
 **22.4 Use Ji--Ogle--Ramsey to pass from the radical.**  *Failure:* the preprint
 making the needed claim is withdrawn for an error in the relevant theorem's

@@ -21,9 +21,8 @@ contains no nonidentity element of finite order.
 By `finite-torsion-carrier-virtual-torsionfree-criterion` and the standard
 fact that a hyperbolic group has only finitely many conjugacy classes of
 finite subgroups, this is equivalent to every hyperbolic group being
-virtually torsion-free. Wise's Proposition 9.2 and power-quotient argument
-show that, universally over hyperbolic groups, this assertion is equivalent
-to residual finiteness; see [[universal-hyperbolic-vtf-iff-rf]].
+virtually torsion-free.  It is deliberately not strengthened to
+`R_f(G)={1}`, which would be the still harder residual-finiteness problem.
 
 ## Attempts
 

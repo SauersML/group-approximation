@@ -112,8 +112,7 @@ central finite-radical alternative is not eliminated.
   groups with different Dehn functions*: https://arxiv.org/abs/2008.01211
 - T. Haettel, *ell-p metrics on cell complexes*, including the current
   CAT(0) status statement: https://doi.org/10.1112/jlms.70062
-- N. Andrew, Y. Guerch, S. Hughes,
+- S. Hughes, E. Martínez-Pedroza, L. Sánchez Saldaña,
   *Automorphisms of relatively hyperbolic groups and the Farrell--Jones
-  conjecture*, including the one-ended torsion case and the remaining
-  infinitely-ended boundary:
+  conjecture*, including the current virtual-torsion-freeness status:
   https://arxiv.org/abs/2311.14036

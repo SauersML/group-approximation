@@ -13,7 +13,6 @@ artifacts:
   - research/artifacts/stw11-transfinite-clopen-filtration-audit-2026-08-30.md
   - research/artifacts/stw11-lattice-coupled-cyclic-products-audit-2026-08-30.md
   - research/artifacts/stw11-folner-capacity-audit-2026-08-30.md
-  - research/artifacts/stw11-bell-circle-actions-primary-source-2026-08-30.md
 ---
 
 **Problem XI of Schafhauser--Tikuisis--White, arXiv:2506.10902.**  Let
@@ -45,18 +44,6 @@ quasidiagonal ⟺ stably finite ⟺ no open `U` with `α(U) ⊊ U`.
   tracial weight), Gabe's GAFA theorem gives stably finite ⟺
   quasidiagonal ⟺ AF-embeddable outright, with the primitive-ideal
   criterion.
-* **Free abelian circle actions are quasidiagonal, including the non-minimal
-  extension case.**  Bell, arXiv:2604.18410v2, Theorem 3.14 (Theorem A(iii)),
-  proves that `C(T) rtimes G` is quasidiagonal for every free action of a
-  countably infinite discrete abelian group `G`.  For `G=Z^d`, `d>=2`, this
-  gives an exact positive subclass of XI beyond the global-faithful-trace
-  regime: in the non-minimal case the unique invariant measure is supported
-  on the proper minimal set, while Bell crosses the extension with ideal a
-  direct sum of stabilized `C_0(R)` algebras.  The imported claim is
-  `bell-free-abelian-circle-crossed-products-are-qd`.  Bell's Remark 3.15
-  explicitly leaves AF embeddability unverified for the non-minimal case, so
-  neither that conclusion nor arbitrary compact coefficient spaces are
-  promoted here.
 * **An exact orbit-capacity test for the faithful regime.**
   `stw11-folner-capacity-faithful-trace-criterion` shows that a faithful
   invariant probability exists exactly when every nonzero positive

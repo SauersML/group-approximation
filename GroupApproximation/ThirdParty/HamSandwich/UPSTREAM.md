@@ -49,3 +49,9 @@ remaining closure. The following modules are green on v4.32:
 The old local `SimplicialObjectHomotopy` backport is intentionally not
 vendored: Mathlib v4.32 now contains the stronger upstream module
 `Mathlib.AlgebraicTopology.SimplicialObject.Homotopy`.
+
+Likewise, Mathlib v4.32 now proves that a `TopCat.Homotopy` induces a chain
+homotopy on singular chains. `SingularHomologyHomotopyInvariance` preserves the
+upstream public API while discharging `SingularPrismOperator` directly from
+`TopCat.Homotopy.singularChainComplexFunctorObjMap`; the old custom prism and
+its backports are excluded from the local dependency slice.

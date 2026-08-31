@@ -3,8 +3,6 @@ rg: 2
 id: atlas-a4-parabolic-c3-bridge-energy-ceiling
 kind: claim
 title: The A4 packet and 19243 keep the four-coordinate parabolic-C3 bridge energy at most one sixth
-refuted_by:
-  - atlas-m2-escape-refutes-six-a4-cycle-bridge-ceilings
 distinct_from:
   atlas-a4-t30-energy-ceiling-below-q14-wall: that asks directly for the transverse t30 covariance ceiling; this isolates the exact four named packet/collision coordinates which imply it through a certified shortest group word.
   atlas-a4-rank-three-core-commutant-collapse: that asks for convergence to the entire GL3(2) commutant; this only asks for a strict weighted energy budget on one H6 letter, one K letter, the central C3 escape, and the collision translation.

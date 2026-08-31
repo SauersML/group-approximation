@@ -56,12 +56,3 @@ ultraproduct the limiting `M`-spectral measure can be diffuse and
 `A`-invariant, as it is in the displayed infinite model.  Finite atomic
 support is the matrix-only input, so it must be retained quantitatively at
 finite stages rather than passed through an arbitrary tracial limit.
-
-There is also an exact permanence boundary.  By
-`central-d8-seed-preserves-hyperlinearity`, adjoining `(ICA2)` realizes the
-marked group as a finite-edge amalgam and preserves as well as reflects
-hyperlinearity of `M semidirect A`.  Thus killing `J` in every exact
-finite-dimensional representation does not by itself obstruct hyperlinear
-microstates.  A successful quantitative version must prove that the
-underlying actor--module group is already nonhyperlinear; the D8 seed only
-turns that failure into one fixed marked word.

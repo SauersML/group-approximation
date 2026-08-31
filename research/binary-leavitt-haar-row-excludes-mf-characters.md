@@ -7,7 +7,7 @@ target: binary-leavitt-steinberg-mf-characters-are-trivial
 requires:
   - binary-leavitt-haar-row-profile-is-not-mf-character-restriction
   - character-diracization-limit
-  - binary-leavitt-full-row-elements-normally-generate
+  - binary-leavitt-nonzero-roots-have-uniform-corona-rank-scale
 ---
 
 Suppose `chi` is a nontrivial MF character of `Delta` and put
@@ -27,11 +27,10 @@ Hence `K=Delta` would make the GNS representation scalar and force `chi=1`,
 contrary to assumption.  Thus `K` is proper.
 
 Every nonidentity element of a full row or column root module normally
-generates `Delta` by
-`binary-leavitt-full-row-elements-normally-generate`: one transverse
-commutator isolates a nonzero coefficient root, whose normal closure is the
-whole group.  This is purely algebraic and does not use the quantitative
-corona-rank theorem.  Therefore `K intersect N={1}`.  It follows that
+generates `Delta`.  Commute it with a suitable transverse elementary root to
+isolate one nonzero coefficient root; the uniform root-normal-word theorem
+then reaches the marked root, which normally generates the group.  Therefore
+`K intersect N={1}`.  It follows that
 
 ```text
 1_K|_N=delta_1,

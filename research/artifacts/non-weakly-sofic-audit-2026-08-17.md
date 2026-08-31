@@ -811,7 +811,7 @@ with `x notin <<g_1,...,g_k>>`. Without such a theorem there is no Glebsky--Rive
 
 ### 5.8 Quotient nonclosure and profinite twins do not bridge the gap
 
-`GroupApproximation/Endpoint/MainResults.lean` proves `exists_sofic_with_nonsofic_quotient`; [[sofic-quotient-nonclosure]] sharpens this to a fixed finite-relator quotient of `F_2`. This says nothing about weak soficity of the quotient: weak soficity is a different approximation class, and the nonsofic quotient may be weakly sofic.
+`GroupApproximation/Endpoint/QuotientNonclosure.lean:6-48` proves that soficity is not closed under quotients, using a free-group presentation of a nonsofic group. This says nothing about weak soficity of the quotient: weak soficity is a different approximation class, and the nonsofic quotient may be weakly sofic.
 
 `GroupApproximation/Sofic/ProfiniteTwins.lean:6-29` constructs groups with canonically identical finite representations but opposite MF status. This proves, rather strongly, that finite-quotient data alone does not determine MF status. It does not give the fixed conjugacy-product failure in Theorem 3.1.
 
@@ -828,7 +828,7 @@ with `x notin <<g_1,...,g_k>>`. Without such a theorem there is no Glebsky--Rive
 | `research/weakly-sofic-not-sofic-proof.md` | Kun--Thom wreath is weakly sofic and nonsofic | Directly disproves `nonsofic => non-weakly-sofic` |
 | `notes/TRUE_RELATIVE_WALL_IS_COMMUTANT_GROWTH.md:1106-1147` | Clifford wall occurs in a weakly sofic nonsofic group | Pure wall arguments cannot obstruct weak soficity |
 | `SoficEnvelopeSimplicity.lean:326-345` | Fixed conjugacy length is structurally important | Correct insight, but no profinite witness is supplied |
-| `Endpoint/MainResults.lean`, `exists_sofic_with_nonsofic_quotient` | Soficity is not quotient-closed | No conclusion about weak soficity |
+| `Endpoint/QuotientNonclosure.lean` | Soficity is not quotient-closed | No conclusion about weak soficity |
 | `Sofic/ProfiniteTwins.lean` | Same finite quotients can have opposite MF status | Finite quotients do not encode the needed metric approximation property |
 
 ---
@@ -1704,7 +1704,7 @@ Section 7.3.
 * `GroupApproximation/Sofic/LiteralFiniteDimensionalObstruction.lean`, lines 55-78.
 * `GroupApproximation/Sofic/SoficEnvelopeSimplicity.lean`, lines 326-345.
 * `GroupApproximation/Sofic/BoundedConjProductAlgebra.lean`, lines 4-55.
-* `GroupApproximation/Endpoint/MainResults.lean`, theorem `exists_sofic_with_nonsofic_quotient`.
+* `GroupApproximation/Endpoint/QuotientNonclosure.lean`, lines 6-48.
 * `GroupApproximation/Sofic/ProfiniteTwins.lean`, lines 6-81.
 * `research/glebsky-weak-soficity-is-metric-free.md`, lines 16-47.
 * `research/weakly-sofic-not-sofic-proof.md`, lines 12-34.

@@ -2,7 +2,7 @@
 rg: 2
 id: schur-toeplitz-head-swap-exposes-the-steinberg-injectivity-fork
 kind: claim
-title: The odd-characteristic Schur Toeplitz head is finitely actuated, but a faithful finitely presented HNN model still needs Steinberg shift injectivity
+title: The odd-characteristic Schur Toeplitz head is finitely actuated, but finite presentation still needs Steinberg shift injectivity
 distinct_from:
   toeplitz-tail-plus-one-swap-generates: that proves the characteristic-two formula `1+e_0+e_1+a+b` for the bare binary Toeplitz ring; this supplies the sign-corrected actuator over the odd splitting field required by the Schur packet and audits the resulting Steinberg/elementary finite-presentation fork.
   schur-toeplitz-envelope-has-proper-self-embedding: that proves injectivity of the coefficient-ring endomorphism and of its elementary-matrix realization; this identifies why ring injectivity does not by itself prove injectivity on the finitely presented Steinberg cover.
@@ -11,11 +11,9 @@ distinct_from:
 ---
 
 **ESTABLISHED AUDIT.**  The existing Schur--Toeplitz nodes do not yet supply
-the faithful finitely presented recursive HNN model assumed by the
-corrected-child collision.  A finite HNN presentation can already be written;
-what is missing is embedding of its Steinberg base, hence survival of the
-marked completeness witness.  Head generation is repairable by one exact
-sign correction.  The first remaining algebraic identity is
+the finitely presented recursive syntax assumed by the corrected-child
+collision.  Head generation is repairable by one exact sign correction.  The
+first remaining algebraic identity is
 
 ```text
 ker(St_5(sigma):St_5(R_f)->St_5(R_f))=1.              (SFI1)
@@ -97,15 +95,8 @@ map on the subring `sigma(R_f)`, but on all of `R_f`
 
 which need not equal `yabx`.  Hence it is not a ring retraction
 `R_f->R_f`, and functoriality gives no left inverse to `St_5(sigma)`.
-For example, if `rho(r)=yrx`, then
-
-```text
-rho(x)rho(y)=xy=1-P,                 rho(xy)=y(xy)x=1.  (SFI9a)
-```
-
-More precisely, because the elementary map is injective, any kernel of
-`St_5(sigma)` lies in the Steinberg `K_2` kernel; coefficient-ring
-injectivity alone does not control it.
+Equivalently, inclusion of a coefficient subring can acquire a kernel on
+Steinberg `K_2` even when the coefficient inclusion is injective.
 
 An ascending-HNN presentation on a finite Steinberg generating set can be
 written with finitely many relators whether or not `(SFI1)` holds.  But
@@ -160,5 +151,3 @@ collision estimate (TSC5)--(TSC11)            ESTABLISHED.   (SFI13)
 This separates two syntactic obligations from the already completed scalar
 soundness argument.  Neither `toeplitz-tail-retains-contextual-schur-density`
 nor the proper coefficient self-embedding silently supplies them.
-In particular, this audit establishes the fork `(SFI13)`; it establishes
-neither `(SFI1)` nor the corrected-child coefficient identity.

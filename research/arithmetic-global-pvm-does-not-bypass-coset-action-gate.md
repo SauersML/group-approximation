@@ -6,7 +6,7 @@ title: A global lamp PVM turns the arithmetic enemy into the old coset-action mo
 distinct_from:
   coset-bernoulli-ce-refutes-relative-commutant-collapse: that gives the tracial crossed-product falsifier; this identifies what a finite-stage global-PVM decoder produces.
   property-t-must-upgrade-global-augmentation-rounding: that asks for the PVM decoder itself; this describes the residual enemy even after granting that decoder.
-  sl3z-regular-microstates-are-congruence-correctable: that proposed odd-sector eliminator is refuted by the exact even congruence tower; this proves that a different mixed-level elimination theorem is still required.
+  sl3z-regular-microstates-are-congruence-correctable: that would eliminate the residual approximate arithmetic actions by correction; this proves that such an additional elimination theorem is still required.
 ---
 
 ESTABLISHED as a reduction.  Let
@@ -54,8 +54,9 @@ finite-stage representative of a hypothetical embedding, but it does not
 by itself prove that no such representative exists.
 
 The arithmetic transverse packets therefore do not presently bypass the
-old gate.  They would eliminate it only after proving an open approximate-to-exact transfer statement such as
-`projective-commutant-transfer-for-arithmetic-pair`. The former proposed
-odd-level transfer, `sl3z-regular-microstates-are-congruence-correctable`,
-is refuted by the exact even congruence tower and is no longer a live gate.
+old gate.  They would eliminate it only after proving one of the existing
+open approximate-to-exact transfer statements, such as
+`sl3z-regular-microstates-are-congruence-correctable` or
+`projective-commutant-transfer-for-arithmetic-pair`.  Those are precisely
+the matrix-coordinate assertions which rule out the finite atomic enemy.
 

@@ -1,5 +1,6 @@
 import GroupApproximation.GGT.ElementaryCoarseTranslationProperAction
 import GroupApproximation.GGT.ElementaryMorseBiInfinite
+import GroupApproximation.GGT.DGOLemma64
 
 /-!
 # Quasiconvexity of an elementary-closure orbit
@@ -252,6 +253,7 @@ theorem elementaryClosureOrbitClose_of_geodesic
     have hyi : y i = (h ^ ((i : ℤ) - (P : ℤ))) • x := rfl
     rw [hzP, hyi] at hnear
     rwa [dist_comm] at hnear
+
   · have hPneg : a * h ^ (P : ℤ) * a⁻¹ = h ^ (-(P : ℤ)) := by
       calc
         a * h ^ (P : ℤ) * a⁻¹ =
@@ -342,6 +344,191 @@ theorem elementaryClosureOrbitClose_of_geodesic
       rw [inv_zpow, ← zpow_neg]
     rw [hzP, hyi] at hnear
     rwa [dist_comm] at hnear
+
+/-- Eventual WPD controls coarse pair stabilizers at large positive and
+negative powers alike.  The negative-power stabilizer conjugates injectively
+into the corresponding positive-power stabilizer. -/
+theorem exists_eventually_finite_pairStab_zpow
+    (hiso : IsIsometricAction G X) {h : G} {x : X}
+    (hwpd : IsWPDAtEventually h x) {ε : ℝ} (hε : 0 ≤ ε) :
+    ∃ N : ℕ, ∀ c : ℤ, N ≤ c.natAbs →
+      (pairStab G ε x ((h ^ c) • x)).Finite := by
+  obtain ⟨N, hN⟩ := hwpd ε hε
+  refine ⟨N, ?_⟩
+  intro c hc
+  rcases Int.natAbs_eq c with hpos | hneg
+  · simpa only [← zpow_natCast, hpos] using hN c.natAbs hc
+  · let m : ℕ := c.natAbs
+    have hposFin : (pairStab G ε x ((h ^ m) • x)).Finite := hN m hc
+    refine (hposFin.image
+      (fun q : G => h ^ (-(m : ℤ)) * q * h ^ (m : ℤ))).subset ?_
+    intro q hq
+    rw [mem_pairStab] at hq
+    let k : G := h ^ (m : ℤ) * q * h ^ (-(m : ℤ))
+    have hk0 : dist x (k • x) ≤ ε := by
+      have hm := hiso (h ^ (-(m : ℤ))) x (k • x)
+      have hleft : (h ^ (-(m : ℤ))) • x = (h ^ c) • x := by rw [← hneg]
+      have hright : (h ^ (-(m : ℤ))) • (k • x) = q • ((h ^ c) • x) := by
+        simp only [k, ← mul_smul]
+        rw [← hneg]
+        congr 1
+        group
+      rw [hleft, hright] at hm
+      exact hm.symm.trans_le hq.2
+    have hkm : dist ((h ^ m) • x) (k • ((h ^ m) • x)) ≤ ε := by
+      have hm := hiso (h ^ (m : ℤ)) x (q • x)
+      have hright : k • ((h ^ m) • x) = (h ^ (m : ℤ)) • (q • x) := by
+        simp only [k, ← mul_smul, zpow_natCast]
+        congr 1
+        group
+      rw [hright, zpow_natCast]
+      exact hm.trans_le hq.1
+    refine ⟨k, ?_, ?_⟩
+    · rw [mem_pairStab]
+      exact ⟨hk0, hkm⟩
+    · dsimp [k]
+      group
+
+/-- **Uniform orbit closeness and WPD give a finite cyclic transversal.**
+
+Normalize `g ∈ E(h)` by a nearby power of `h`; the resulting element moves the
+basepoint by at most the orbit-closeness constant `K`.  To prove that the set
+of all such normalized movers is finite, sample one sufficiently large power
+`h^M`.  Orbit closeness assigns to every mover `f` an exponent `c` with
+`f h^M x` near `h^c x`.  Loxodromy bounds these `c` in a finite set and forces
+their absolute values beyond the eventual-WPD threshold.  Inside one exponent
+fiber, quotients `f r⁻¹` lie in a fixed finite coarse pair stabilizer. -/
+theorem exists_finite_transversal_elementaryClosure_of_orbitClose
+    (hiso : IsIsometricAction G X) {h : G} {x : X}
+    (hlox : IsLoxodromic h x) (hwpd : IsWPDAtEventually h x)
+    (hclose : ElementaryClosureOrbitClose h x) :
+    ElementaryClosureFiniteTransversal h := by
+  obtain ⟨K, hK, hclose⟩ := hclose
+  obtain ⟨l, hl, B, _hB, hlin⟩ := hlox
+  let D : ℝ := dist x (h • x)
+  have h2K : 0 ≤ K + K := add_nonneg hK hK
+  obtain ⟨N, hNfin⟩ :=
+    exists_eventually_finite_pairStab_zpow hiso hwpd h2K
+  obtain ⟨M, hM⟩ := exists_nat_gt (((N : ℝ) * D + (K + K) + B) / l)
+  have hMlarge : (N : ℝ) * D + (K + K) < l * (M : ℝ) - B := by
+    rw [div_lt_iff₀ hl] at hM
+    linarith
+  let A : Set G := {f : G | f ∈ elementaryClosure h ∧ dist x (f • x) ≤ K}
+  let C : Set ℤ := {c : ℤ |
+    dist x ((h ^ c) • x) ≤ (M : ℝ) * D + (K + K)}
+  let Cfar : Set ℤ := {c : ℤ | c ∈ C ∧ N ≤ c.natAbs}
+  have hCfin : C.Finite :=
+    finite_zpow_displacement hiso hlox ((M : ℝ) * D + (K + K))
+  have hCfarFin : Cfar.Finite := hCfin.subset fun _ hc => hc.1
+  let S : ℤ → Set G := fun c => {f : G | f ∈ A ∧
+    dist ((h ^ c) • x) ((f * h ^ M) • x) ≤ K}
+  have hSfin : ∀ c ∈ Cfar, (S c).Finite := by
+    intro c hc
+    have hstabFin := hNfin c hc.2
+    by_cases hSc : (S c).Nonempty
+    · obtain ⟨r, hrA, hrc⟩ := hSc
+      refine (hstabFin.image (fun q : G => q * r)).subset ?_
+      intro f hf
+      refine ⟨f * r⁻¹, ?_, by group⟩
+      rw [mem_pairStab]
+      constructor
+      · have hri : dist x (r⁻¹ • x) = dist x (r • x) := by
+          simpa only [zpow_neg, zpow_one] using
+            (dist_zpow_neg (g := r) (x := x) hiso (1 : ℤ))
+        calc
+          dist x ((f * r⁻¹) • x) ≤
+              dist x (f • x) + dist (f • x) ((f * r⁻¹) • x) :=
+            dist_triangle _ _ _
+          _ = dist x (f • x) + dist x (r⁻¹ • x) := by
+            rw [show (f * r⁻¹) • x = f • (r⁻¹ • x) by rw [mul_smul],
+              hiso f x (r⁻¹ • x)]
+          _ = dist x (f • x) + dist x (r • x) := by rw [hri]
+          _ ≤ K + K := add_le_add hf.1.2 hrA.2
+      · let y : X := (h ^ c) • x
+        let u : X := (h ^ M) • x
+        have hfu : dist y (f • u) ≤ K := by
+          simpa only [y, u, ← mul_smul, zpow_natCast] using hf.2
+        have hru : dist (r • u) y ≤ K := by
+          simpa only [y, u, ← mul_smul, zpow_natCast, dist_comm] using hrc
+        have hmove : dist (f • u) ((f * r⁻¹) • y) = dist (r • u) y := by
+          have h₁ := hiso f u (r⁻¹ • y)
+          have h₂ := hiso r (r⁻¹ • y) u
+          calc
+            dist (f • u) ((f * r⁻¹) • y) = dist u (r⁻¹ • y) := by
+              simpa only [mul_smul] using h₁
+            _ = dist (r⁻¹ • y) u := dist_comm _ _
+            _ = dist y (r • u) := by
+              simpa only [inv_smul_smul] using h₂.symm
+            _ = dist (r • u) y := dist_comm _ _
+        exact (dist_triangle y (f • u) ((f * r⁻¹) • y)).trans
+          (by rw [hmove]; exact add_le_add hfu hru)
+    · rw [Set.not_nonempty_iff_eq_empty.mp hSc]
+      exact Set.finite_empty
+  have hAfin : A.Finite := by
+    refine (hCfarFin.biUnion hSfin).subset ?_
+    intro f hfA
+    have hfhM : f * h ^ M ∈ elementaryClosure h :=
+      (elementaryClosure h).mul_mem hfA.1
+        (pow_mem (self_mem_elementaryClosure h) M)
+    obtain ⟨c, hc⟩ := hclose (f * h ^ M) hfhM
+    have hpowM : dist x ((h ^ M) • x) ≤ (M : ℝ) * D :=
+      dist_pow_le hiso h x M
+    have hfc : dist x ((h ^ c) • x) ≤ (M : ℝ) * D + (K + K) := by
+      have hfu : dist (f • x) ((f * h ^ M) • x) = dist x ((h ^ M) • x) := by
+        simpa only [mul_smul] using hiso f x ((h ^ M) • x)
+      calc
+        dist x ((h ^ c) • x) ≤ dist x (f • x) +
+            dist (f • x) ((f * h ^ M) • x) +
+            dist ((f * h ^ M) • x) ((h ^ c) • x) :=
+          dist_triangle4 _ _ _ _
+        _ ≤ K + (M : ℝ) * D + K := by
+          rw [hfu]
+          exact add_le_add (add_le_add hfA.2 hpowM) (by rwa [dist_comm] at hc)
+        _ = (M : ℝ) * D + (K + K) := by ring
+    have hcFar : N ≤ c.natAbs := by
+      by_contra hcN
+      have hcN' : c.natAbs < N := by omega
+      have hcCast : |(c : ℝ)| ≤ (N : ℝ) := by
+        have hcast : (c.natAbs : ℝ) ≤ (N : ℝ) := by exact_mod_cast hcN'.le
+        simpa only [← Int.cast_natCast, Int.natCast_natAbs, Int.cast_abs] using hcast
+      have hcUpper : dist x ((h ^ c) • x) ≤ (N : ℝ) * D :=
+        (dist_zpow_le hiso h x c).trans
+          (mul_le_mul_of_nonneg_right hcCast dist_nonneg)
+      have hfu : dist (f • x) ((f * h ^ M) • x) = dist x ((h ^ M) • x) := by
+        simpa only [mul_smul] using hiso f x ((h ^ M) • x)
+      have htri := dist_triangle4 (f • x) x ((h ^ c) • x)
+        ((f * h ^ M) • x)
+      rw [hfu, dist_comm (f • x) x] at htri
+      have hlow := hlin M
+      have hclose' : dist ((h ^ c) • x) ((f * h ^ M) • x) ≤ K := hc
+      linarith
+    exact Set.mem_iUnion.mpr ⟨c, Set.mem_iUnion.mpr
+      ⟨⟨hfc, hcFar⟩, ⟨hfA, hc⟩⟩⟩
+  refine ⟨A, hAfin, ?_⟩
+  intro g hg
+  obtain ⟨c, hc⟩ := hclose g hg
+  refine ⟨c, h ^ (-c) * g, ?_, by group⟩
+  constructor
+  · exact (elementaryClosure h).mul_mem
+      (Subgroup.zpow_mem _ (self_mem_elementaryClosure h) (-c)) hg
+  · have hm := hiso (h ^ (-c)) ((h ^ c) • x) (g • x)
+    have hleft : (h ^ (-c)) • ((h ^ c) • x) = x := by
+      rw [← mul_smul, ← zpow_add]
+      simp
+    have hright : (h ^ (-c)) • (g • x) = (h ^ (-c) * g) • x := by
+      rw [mul_smul]
+    rw [hleft, hright] at hm
+    exact hm.trans_le hc
+
+/-- The WPD finite-transversal conclusion on a geodesic hyperbolic space. -/
+theorem exists_finite_transversal_elementaryClosure_of_geodesic
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ X) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace X) (hiso : IsIsometricAction G X)
+    {h : G} {x : X} (hlox : IsLoxodromic h x) (hwpd : IsWPDAt h x) :
+    ElementaryClosureFiniteTransversal h :=
+  exists_finite_transversal_elementaryClosure_of_orbitClose hiso hlox
+    (isWPDAtEventually_of_geodesic hδ hδ0 hgeo hiso hlox hwpd)
+    (elementaryClosureOrbitClose_of_geodesic hδ hδ0 hgeo hiso hlox)
 
 /-- Uniform coarse translation makes the elementary-closure orbit
 quasiconvex.  Only the geodesic segment appearing in the definition is used;

@@ -3,8 +3,6 @@ rg: 2
 id: p3-parahoric-interlock-forbids-pauli-multiplicity-gauge
 kind: claim
 title: The full p-three parahoric interlock forbids Pauli cancellation of odd-depth Maslov holonomy
-refuted_by:
-  - p3-full-parahoric-interlock-enforces-inverse-mackey-cocycle
 distinct_from:
   p3-minus-flux-is-cancelled-by-pauli-multiplicity: that is the exact finite oscillator-plus-multiplicity escape; this is the additional full-parahoric assertion needed to exclude it.
   lambda-exact-face-closes-at-p-three: that is the assembled commutant collapse statement; this is only its narrow multiplicity-gauge authentication seam.

@@ -2,39 +2,57 @@
 rg: 2
 id: finite-normal-generator-hs-trivialization-proof
 kind: route
-title: Average bounded normal words onto the invariant projection
+title: Telescope a finite conjugacy generating set and average the representation
 target: finite-normal-generator-hs-trivialization
 requires: []
 ---
 
-Let `S` be the finite conjugacy-invariant symmetric set of all conjugates of
-`g` and `g^-1`.  Normal generation says `S` generates `G`; let `L` be the
-diameter of `Cay(G,S)`.  Unitary conjugation invariance and
+Because `g` normally generates the finite group `G`, finitely many conjugates
+of `g` and `g^-1` form a symmetric generating set `S`.  Let `L` be the diameter
+of the finite Cayley graph `Cay(G,S)`.
+
+Put
 
 ```text
-||pi(g^-1)-1||_2=||pi(g)^*-1||_2=||pi(g)-1||_2
+delta = ||pi(g)-1||_2.
 ```
 
-show that every `s in S` has defect `||pi(g)-1||_2`.  Write any `x in G` as
-a product of at most `L` elements of `S`.  Unitary telescoping gives
+For every `s in S`, unitary conjugation invariance gives
 
 ```text
-||pi(x)-1||_2<=L||pi(g)-1||_2.                        (1)
+||pi(s)-1||_2 = delta.
 ```
 
-The finite-group Reynolds average is exactly the invariant projection:
+If `x=s_1 ... s_l` is a shortest `S`-word, then `l<=L` and the usual unitary
+telescoping identity gives
 
 ```text
-Q_pi=|G|^-1 sum_(x in G) pi(x).
+||pi(x)-1||_2
+ <= sum_(j=1)^l ||pi(s_j)-1||_2
+ <= L delta.                                           (1)
 ```
 
-Since `1-Q_pi` is a projection, `(1)` and the triangle inequality give
+Average `(1)` over `x in G`.  Since
 
 ```text
-sqrt(tr_d(1-Q_pi))
- =||1-Q_pi||_2
- <=|G|^-1 sum_x ||1-pi(x)||_2
- <=L||pi(g)-1||_2.
+Q_pi=(1/|G|)sum_x pi(x)
 ```
 
-Squaring proves `(FNG-HS)`.
+is the orthogonal projection onto the invariant vectors,
+
+```text
+||1-Q_pi||_2
+ = ||(1/|G|)sum_x (1-pi(x))||_2
+ <= (1/|G|)sum_x ||1-pi(x)||_2
+ <= L delta.
+```
+
+Finally `1-Q_pi` is itself a projection, so for normalized matrix trace
+
+```text
+tr_d(1-Q_pi)=||1-Q_pi||_2^2 <= L^2 delta^2.
+```
+
+The constant depends only on the fixed finite pair `(G,g)` and is therefore
+unchanged under arbitrary matrix amplification.  This proves both asserted
+bounds.

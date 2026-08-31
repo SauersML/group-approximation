@@ -5,8 +5,6 @@ kind: claim
 title: Exhibit an explicit non-hyperlinear group
 root: true
 goal: true
-artifacts:
-  - research/artifacts/nonhyperlinear-literature-delta-2026-08-30.md
 ---
 
 The primary target of the program (AGENDA.md header): an explicit group that
@@ -18,26 +16,6 @@ The organizing mechanism is (T)-compression: `Γ ≤ G` with a compressor `t`
 monotone size the compression collapses (invariant-size-collapse); the `II₁` branch survives
 because the trace is refinement-blind, and that failure is sharp (trace-blindness-sharpness).
 The obstruction, if there is one, can only be stability.
-
-## Existence compression and literature boundary (2026-08-30)
-
-`nonhyperlinear-existence-is-two-generator-simple` proves that a
-nonhyperlinear countable group exists if and only if a two-generator
-nonabelian simple nonhyperlinear group exists.  In that simple envelope one
-nontrivial word is forced to collapse by a finite relator window at every
-normalized-HS scale.  The reduction uses locality, subgroup heredity,
-Schupp's simple-envelope theorem, and ultraproduct compactness.  It is
-non-effective and supplies no explicit presentation, so it sharpens the
-search space without establishing this root.
-
-The primary-source delta through 2026-08-30 is recorded in
-`research/artifacts/nonhyperlinear-literature-delta-2026-08-30.md`.  No
-unconditional discrete-group witness was found.  The closest unincorporated
-papers instead reinforce three boundaries: arbitrary non-CE traces can live
-on residually finite groups; coordinate recognition for an entire
-normalized-HS reduced product does not identify embedded relative
-commutants; and recent quantum-group stability theorems do not supply the
-nonamenable discrete HS stability needed by the arithmetic candidates.
 
 ## Arithmetic exact face closed at large primes (2026-08-25)
 

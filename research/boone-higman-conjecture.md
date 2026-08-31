@@ -101,15 +101,12 @@ carries the arguments.
    the ambient group gives properness of the union, not stabilization of the
    chain.  What would rescue it is a Max-n condition on the normal lattice,
    and none was found.  Deferred rather than noded: nothing is refuted.
-3. **Property (T) as a source of that Max-n condition.**  *Dies as a general
-   principle.*  By
-   `kazhdan-hyperbolic-continuum-non-fng-maximal-kernels`, one torsion-free
-   finitely presented word-hyperbolic property-`(T)` group has continuum many
-   maximal normal subgroups that are not finitely normally generated.  Hence
-   even those combined hypotheses do not imply normal-lattice Noetherianity.
-   The construction-specific possibility that the Chatterji--Kassabov
-   elementary-matrix envelope has one specially chosen compact maximal kernel
-   remains open.
+3. **Property (T) as a source of that Max-n condition.**  *Deferred, no
+   implication found.*  The 2026 "just finite presentations" phenomena
+   concern deleting relators from a *chosen* finite presentation, which is a
+   different statement from finite normal generation of an *arbitrary*
+   maximal normal subgroup.  Property (T) supplies no normal-lattice
+   Noetherianity that this audit could locate.
 4. **Make the coefficient ring simple.**  Split in two.  The naive form —
    the one-relation universal sandwich already gives a simple ring — *dies*
    at `one-sided-sandwich-leaves-an-ideal-missing-the-core`, by an explicit
@@ -160,15 +157,3 @@ effective simple envelope produced directly from the construction.  The
 obvious effective-Zorn attack needs to decide `<<M, x>> ∩ S = 1`, and the
 clean criterion of `proper-normal-subgroups-miss-the-normally-generating-core`
 (`N` proper iff `N ∩ S = 1`) is not effective in the required direction.
-
-## August 2026 property-(T)-free normalization
-
-`bht-trivial-normal-intersection-envelope`, imported from
-Fournier-Facio--Wu--Zaremsky Appendix A, shows that the near-solution does not
-intrinsically need the Chatterji--Kassabov property-`(T)` envelope.  Every
-finitely generated solvable-word-problem group embeds in a finitely presented
-`P` while missing **every** proper normal subgroup of `P`; equivalently every
-nontrivial quotient of `P` preserves the input.  Thus the simple-core survival
-part is a theorem in a property-`(T)`-free form.  The remaining obstruction is
-unchanged and exact: a maximal kernel supplied by Zorn need not be finitely
-normally generated, so its simple quotient need not be finitely presented.

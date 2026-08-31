@@ -72,4 +72,4 @@ real gain or only a relocation of the difficulty is the content of the claim.
   tables — zero defect — for which every finite cloud and every geometric
   shadowing choice has a fixed positive relation defect.  Such an example
   would refute this claim and would be evidence for a genuine integrality gap
-  in the sense of `regular-finite-table-quantum-classical-hamming-gap`.
+  in the sense of `finite-table-quantum-classical-hamming-gap`.

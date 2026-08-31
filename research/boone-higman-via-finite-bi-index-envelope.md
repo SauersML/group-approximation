@@ -7,7 +7,6 @@ target: boone-higman-conjecture
 requires: [boone-higman-thompson-simple-envelope, chatterji-kassabov-normal-generator-embedding, simple-core-bi-index-counts-coset-action-pair-orbits, ck-envelope-simple-core-has-finite-bi-index, twisted-brin-thompson-finite-presentation-criterion]
 artifacts:
   - research/artifacts/boone-higman-audit-2026-08-17.md
-  - research/artifacts/boone-higman-direct-ck-double-coset-no-go-2026-08-31.md
 ---
 
 Let `G` be finitely generated with solvable word problem.  Build
@@ -54,11 +53,3 @@ cosets of a matrix group over the explicit finitely presented ring `U` of
 that, the first route needs its finiteness only for *one* maximal subgroup
 while this one needs a global bound, and the known construction offers no
 reason to expect it.
-
-There is now a construction-specific exclusion, not just an absence of
-evidence.  `direct-ck-corner-core-has-infinite-bi-index` proves that the
-canonical corner copy of `S` in the direct envelope `EL_4(U)` has at least
-`|U|` double cosets, witnessed by the commuting root elements `e_23(a)`.
-Therefore this route cannot use that direct envelope unchanged.  The open
-claim remains existential over other arrangements, other envelopes and
-other faithful actions.

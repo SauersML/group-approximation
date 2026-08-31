@@ -2,7 +2,7 @@
 rg: 2
 id: one-relator-sofic-via-residually-amenable-quotient
 kind: route
-title: Answer Pestov 4.10 from a sofic radical and a residually amenable quotient
+title: Answer Pestov 4.9 from a sofic radical and a residually amenable quotient
 target: one-relator-groups-sofic
 requires: []
 artifacts:
@@ -17,7 +17,7 @@ Linton's Theorem 1.1 gives `R = G_Q^(ω) = <<r>>_G` with `G/R = F/<<r>>`
 amenable.  So if an extension with sofic kernel and residually amenable quotient
 were sofic, then soficity of the radical `R` ([[linton-radical-sofic]]) would
 immediately give soficity of `G` — no shell, no action hypothesis, no Magnus
-chain.  Pestov's Question 4.10 would reduce, in one line, to a statement about
+chain.  Pestov's Question 4.9 would reduce, in one line, to a statement about
 normally-one-generated rationally perfect groups.
 
 **Dead: the extension theorem is withdrawn.**  Its only source is

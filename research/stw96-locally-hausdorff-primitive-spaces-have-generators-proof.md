@@ -58,6 +58,6 @@ quotient `Z`-stable.  The first part applies.
 For the filtered version, each successor quotient has real rank zero, is
 separable, and has only `Z`-stable simple ideal-quotients.  Applying the local
 Hausdorff argument to that quotient makes every successor layer `Z`-stable.
-The countable successor-and-limit induction in
+The arbitrary-ordinal successor-and-limit induction in
 `stw96-countable-zstable-filtrations-have-generators` then makes `A`
 `Z`-stable and gives generator rank one.

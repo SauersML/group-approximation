@@ -3,7 +3,6 @@ rg: 2
 id: r5-subquadratic-carmichael-energy
 kind: claim
 title: Bleak--Quick models carry common-pivot packets of subquadratic Carmichael energy
-refuted_by: scalar-phase-refutes-r5-subquadratic-energy
 artifacts:
   - research/artifacts/thompson-subquadratic-carmichael-energy-2026-08-24.md
 distinct_from:

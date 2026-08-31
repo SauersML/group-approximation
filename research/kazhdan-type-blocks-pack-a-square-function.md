@@ -64,7 +64,7 @@ same router and `(KSP6)` packs them without an address-length loss or a depth
 union bound.  Combining `(KSP6)` with a recurrence
 
 ```text
-a_n<=lambda a_(n+1)+C s_n,       0<lambda<1, C>0,       (KSP7)
+a_n<=lambda a_(n+1)+C s_n,          lambda<1,           (KSP7)
 ```
 
 immediately gives the HS floor of

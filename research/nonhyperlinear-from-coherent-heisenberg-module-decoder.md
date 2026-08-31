@@ -20,11 +20,3 @@ The finite-matrix Leavitt trace inequality forces the trace of this module
 corner to be bounded by the sum of its relation defects, which tend to zero.
 This contradicts positive density.  Normal generation of the chosen root
 then rules out a faithful hyperlinear model of the whole group.
-
-The implication is therefore formal once the decoder is supplied.  The
-finite Stone--von Neumann normal form
-`heisenberg-sector-is-schrodinger-times-free-multiplicity` does not
-by itself supply that hypothesis: it reduces every nontrivial central phase
-to one Schrödinger factor but leaves an arbitrary full unitary gauge on its
-multiplicity factor.  The route remains open exactly at the decoder, not at
-finite Heisenberg representation theory or at the terminal trace estimate.

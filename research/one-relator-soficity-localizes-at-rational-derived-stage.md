@@ -25,7 +25,7 @@ an `n <= |w|` such that, writing `E = G_Q^(n)`:
 3. **`G` is sofic if and only if `E` is sofic.**
 
 Part 3 is the point.  It is an *equivalence*, not a sufficient condition: the
-whole of Pestov's Question 4.10 sits inside the shell `E`, and `E` is a very
+whole of Pestov's Question 4.9 sits inside the shell `E`, and `E` is a very
 particular object — free-by-(normally-one-generated rationally perfect) — not
 an arbitrary group.
 

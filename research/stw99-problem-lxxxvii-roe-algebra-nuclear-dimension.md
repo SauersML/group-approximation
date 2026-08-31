@@ -11,6 +11,7 @@ artifacts:
   - research/artifacts/stw87-z2-boundary-limit-operator-audit-2026-08-30.md
   - research/artifacts/stw87-minimal-boundary-dimension-collapse-audit-2026-08-30.md
   - research/artifacts/stw87-diagonal-bimodular-localization-no-go-audit-2026-08-30.md
+  - research/artifacts/stw87-property-a-ghost-packet-firewall-audit-2026-08-30.md
 ---
 
 **Problem LXXXVII of Schafhauser--Tikuisis--White, arXiv:2506.10902** (Willett--Winter, [449, Question 9.5]).  For a
@@ -74,6 +75,16 @@ commutative packet as order zero has combined diagonal-fixing and
 singleton-corner bimodularity defect at least `1/2`, while retaining a matrix
 packet forces defect at least `1`
 (`stw87-approximate-diagonal-bimodularity-order-zero-threshold`).
+
+Ghosts do not furnish a finite-packet escape from these no-go results.  On a
+property-A space the ghost ideal is exactly the compact operators, and every
+finite ghost packet has a zero-colour approximation through one finite
+coordinate matrix corner
+(`stw87-property-a-ghost-packets-are-zero-dimensional`).  This argument uses
+an unrestricted c.p.c. compression and a star-homomorphic return map, so it is
+independent of diagonal bimodularity.  Ghosts also vanish in the uniform Roe
+corona.  Thus a successful ghost obstruction would have to be genuinely
+global, or be coupled to non-ghost ambient elements.
 
 For amenable groups there is another natural attempt: an invariant mean
 averages crossed-product coefficients and gives a conditional expectation

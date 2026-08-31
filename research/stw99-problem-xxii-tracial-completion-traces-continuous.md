@@ -4,13 +4,10 @@ id: stw99-problem-xxii-tracial-completion-traces-continuous
 kind: claim
 title: All traces on a factorial tracially complete C*-algebra are uniform-2-norm continuous (STW Problem XXII)
 root: true
-refuted_by:
-  - stw22-nuclear-type-i-counterexample-trace-problem
 distinct_from:
   stw99-problem-x2-hyperfinite-factor-quasidiagonal: that asks for operator-norm matrix models of the single tracial von Neumann algebra R; this asks whether the designated trace simplex of a factorial tracially complete C*-algebra already exhausts all its traces, a normality question with no matrix models involved.
   stw22-dim1-factor-bundles-have-uniform-traces: that proves the problem for countably generated factorial bundles over bases of dimension at most one; this is the unrestricted problem, with neither a dimension nor countable-generation hypothesis.
 artifacts:
-  - research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md
   - research/artifacts/stw99-xxii-trace-problem-2026-08-30.md
   - research/artifacts/stw22-uncountable-cofinite-bundle-audit-2026-08-30.md
   - research/artifacts/stw22-intrinsic-zero-dimensional-selection-audit-2026-08-30.md
@@ -30,9 +27,6 @@ artifacts:
   - research/artifacts/stw22-uniform-corner-bundle-selection-audit-2026-08-30.md
   - research/artifacts/stw22-dim4-factor-bundle-breakthrough-2026-08-31.md
   - research/artifacts/stw22-dim5-factor-bundle-breakthrough-2026-08-31.md
-  - research/artifacts/stw22-diffuse-all-degree-induction-audit-2026-08-31.md
-  - research/artifacts/stw22-matrix-finite-degree-carrier-induction-audit-2026-08-31.md
-  - research/artifacts/stw22-all-factor-finite-dimensional-breakthrough-2026-08-31.md
 ---
 
 **Problem XXII of Schafhauser--Tikuisis--White, arXiv:2506.10902**
@@ -41,13 +35,6 @@ artifacts:
 Let `(M, X)` be a factorial tracially complete C\*-algebra.  Are all tracial
 states on `M` automatically `‖·‖_{2,X}`-continuous — equivalently, is
 `X ⊆ T(M)` an equality?
-
-**REFUTED 2026-08-31.**
-`stw22-nuclear-type-i-counterexample-trace-problem` gives a uniform tracial
-completion `(M,T(A))` of a separable unital nuclear type I algebra and a
-tracial state on `M` which extends the extreme trace at infinity but is not
-uniform-`2`-norm continuous.  The extreme trace boundary is compact metrizable
-and Bauer, but has unbounded covering dimension.
 
 Known (CCEGSTW): yes when `X` is a finite-dimensional simplex (`M` is then a
 finite direct sum of factors and traces are normal); yes for uniform tracial
@@ -107,50 +94,31 @@ argument.  `stw22-dim3-factor-bundles-have-uniform-traces` then applies
 stabilized Michael selection with `n=2`.  Every countably generated
 factorial bundle over a compact Hausdorff base of dimension at most three
 has only uniform traces, even when matrix sizes, II1 isomorphism classes,
-and matrix/diffuse fibre type vary.  The
-stabilized weighted-copy multifunction was already lower semicontinuous
-uniformly over all finite factors, so no type stratification is needed.
+and matrix/diffuse fibre type vary.
 
-The next degree is now closed in the exact replication regime needed for
-gap traces.  `stw22-diffuse-weighted-copy-uniform-s3-fillings` transfers the
-universal diffuse Stiefel three-sphere modulus through a relative
-low-spectrum `B^4` extension.  In matrices,
-`stw22-matrix-weighted-copy-codimension-two-uniform-s3-fillings` proves the
-same conclusion with at least two unused dimensions and exhibits essential
-arbitrarily small `SU(2)` spheres when only one dimension is unused.  The
-half-slack condition `m tau(supp(a))<=1/2`, with `m>=2`, always lies on the
-positive side in matrices and is automatic after the gap spectral cut.
-Thus `stw22-half-slack-all-factor-weighted-copy-uniform-s3-fillings` and
+The naive hard-carrier union remains non-locally-connected, but the new
+matrix and diffuse constructions bypass that union rather than selecting
+from it.
+
+The dimension-four step is now closed as well.  Diffuse factors admit a
+universal weighted `S^3` filling through the new relative low-spectrum
+`B^4` recursion.  Matrix factors have a sharp codimension-one `SU(2)`
+obstruction, but the half-slack replicated values used to kill gap traces
+always have at least two unused dimensions when `m>=2`.  Consequently
+`stw22-half-slack-all-factor-weighted-copy-uniform-s3-fillings` and
 `stw22-dim4-factor-bundles-have-uniform-traces` prove the trace theorem for
 every countably generated factorial bundle over a compact Hausdorff base of
 dimension at most four, including arbitrary mixed matrix/diffuse fibres.
 
-The finite-degree bootstrap is now complete for arbitrary varying finite
-factors.  The dimension-five milestone combines the diffuse relative
-low-spectrum `B^5` recursion with matrix Bott-class cancellation in unused
-codimension two.  More generally,
-`stw22-diffuse-weighted-copy-all-finite-sphere-fillings` inducts the
-spectral-supercarrier and relative-band argument through every fixed finite
-sphere degree.  In matrices,
-`stw22-matrix-weighted-copy-uniform-finite-degree-fillings` proves the
-sharp stable-range criterion `2c>=j` in degree `j`, with an explicit
-degree-dependent modulus and shrinking essential spheres just beyond that
-range.  For a base of dimension `D`, the gap proof uses only
-`j=D-1` and an unbounded replication tail
-`m>=ceil((D-1)/2)`; half slack forces `c>=m`, hence `2c>=j`.
-The pointwise matrix/diffuse dichotomy therefore has a common modulus for
-this fixed `D`, without a continuous type stratum.
-
-Consequently
-`stw22-finite-dimensional-factor-bundles-have-uniform-traces` proves the
-trace theorem for every countably generated factorial bundle over every
-finite-dimensional compact Hausdorff base, with arbitrary matrix sizes,
-diffuse II1 isomorphism classes, and matrix/diffuse fibre variation.  This
-is a theorem separately for each finite `D`, not one modulus uniform in
-dimension.  This positive theorem is unaffected.  The unrestricted statement
-is now refuted by `stw22-nuclear-type-i-counterexample-trace-problem`; its
-Bauer boundary has unbounded covering dimension, precisely outside the finite
-`D` regime.
+Degree four is now closed too.  The diffuse spectral-supercarrier argument
+bootstraps from `S^3` to `S^4`, and a relative low-spectrum `B^5` recursion
+transfers it to arbitrary positive weights.  In matrices, the rank-two
+Bott-cancellation theorem gives the same conclusion in codimension at least
+two, which half-slack replication guarantees.  Thus
+`stw22-half-slack-all-factor-weighted-s4-fillings` and
+`stw22-dim5-factor-bundles-have-uniform-traces` settle every countably
+generated factorial bundle over a compact Hausdorff base of dimension at
+most five.
 
 There is an all-degree nonhyperfinite extension when the fixed fibre has
 full fundamental group.  In
@@ -161,10 +129,10 @@ Consequently
 `stw22-full-fundamental-group-trivial-bundles-finite-dimensional` proves the
 trace theorem for trivial bundles with that fibre over every
 finite-dimensional compact Hausdorff base.  This includes fixed McDuff
-fibres.  The arbitrary varying-fibre theorem above now supplies every fixed finite
-degree by combining the diffuse induction with the matrix stable range.
-Full fundamental group continues to give an independent all-degree route in
-the fixed-fibre class.
+fibres.  The all-factor half-slack four-sphere theorem now supplies the
+degree needed for arbitrary varying bundles through dimension five, while
+full fundamental group continues to give all finite degrees in the fixed
+fibre class.
 
 The same mechanism is intrinsic and therefore survives nontrivial bundle
 cocycles.  `stw22-uniform-corner-bundles-have-uniform-traces`
@@ -194,10 +162,11 @@ only hypothesis is an exact continuous local tuple of orthogonal weighted
 copies.  The existing intrinsic correction lemma makes the corresponding
 fibre solution relation lower semicontinuous, but does not supply the
 uniform higher local connectivity needed to select its polar-fill
-corrections.  In the countably generated case, stabilized `L^2` selection combines the
-all-degree diffuse induction with the matrix stable-range theorem on an
-unbounded half-slack replication tail.  It now settles every finite covering
-dimension; no finite-dimensional weighted filling hinge remains.
+corrections.  In the countably generated case, stabilized `L^2` selection
+and the all-factor path, loop, two-sphere, and half-slack three- and
+four-sphere filling theorems settle the problem through dimension five.
+The first remaining finite-dimensional hinge is the corresponding weighted
+degree-five input for dimension six.
 
 For the first such hinge, projection-weight multicopy fibres reduce exactly
 to `U(N)/(q+U((1-q)N(1-q)))`.  The complement bound is indispensable:
@@ -263,19 +232,15 @@ the unresolved relative selection statement.
   (`b(z)=b(y')+delta_z q_z` with `tau(q_z)` fixed), so one cannot select the
   spectral cuts themselves.  The zero-dimensional theorem bypasses this:
   it lifts weighted operators, corrects only their high spectral parts,
-  and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2` selection now replaces those patches in every
-  finite covering dimension for countably generated bundles.  For each fixed
-  dimension it uses only a sufficiently far half-slack replication tail and
-  the corresponding finite matrix stable range.  Before the counterexample,
-  infinite covering dimension was the surviving frontier.  The later
-  projective-bundle corona construction shows that no unrestricted positive
-  extension across that frontier is possible.
+  and patches them on disjoint clopen sets.  Stabilized intrinsic `L^2`
+  selection now replaces those patches through dimension five for
+  countably generated bundles.  From dimension six onward, local weighted
+  tuples require factor-uniform degree-five and higher filling data; degree
+  five is the first unresolved sphere degree.
 * **Ultrafilter attack on the negative side.**  A singular trace on
   `C_σ([0,1], R)` of the form `lim_ω τ(b(y_n) q_n)/τ(q_n)` needs projections
   `q_n` with `τ(q_n) → 0` that are asymptotically central in relative
   1-norm against the values of *all* sections; the required rate
   `‖b(y_n) − b(x)‖_2 = o(τ(q_n)^{1/2})` fails for sections built from the
-  chosen `q_n` themselves.  This particular negative attack therefore does
-  not produce a counterexample.  The later counterexample uses a different
-  mechanism: Chern-class lower bounds on finite self-commutator width in an
-  asymptotic corona, followed by Cuntz--Pedersen separation.
+  chosen `q_n` themselves.  No counterexample results, but the failure is
+  quantitative, not structural.

@@ -37,7 +37,7 @@ theorem hands over a one-relator group's quotient `G/R = F/<<r>>` as
 amenable.  Combined with the withdrawn statement, a sofic Linton radical `R`
 would immediately give `G` sofic and, with
 [[residually-rationally-solvable-one-relator-sofic]], reduce all of Pestov's
-Question 4.10 to soficity of the radicals.  That is a large enough prize that
+Question 4.9 to soficity of the radicals.  That is a large enough prize that
 anyone reading Linton next to Ji--Ogle--Ramsey will try it; the external attempt
 audited here did try it, and retracted after checking the arXiv record.
 

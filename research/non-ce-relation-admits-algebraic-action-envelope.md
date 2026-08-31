@@ -25,21 +25,6 @@ non-hyperlinear group `hat K rtimes Lambda`.
 
 ## Attempts
 
-- **Normalized relation holonomy leaves one extrinsic-isotropy seam
-  (proved, 2026-08-30).**
-  `relation-cocycles-preserve-full-group-rectangles` shows that twisting the
-  canonical full-group unitaries by any normalized finite-rank cocycle of the
-  principal relation keeps the fixed-point character exactly and keeps a
-  four-term algebraic kernel for disjoint supports.  Scalar rephasing cannot
-  restore projective linear independence.  This does not cover an arbitrary
-  cocycle of the transformation groupoid: such a cocycle may carry a
-  nontrivial phase on fixed-point isotropy and can in principle cancel the
-  fixed-set trace.  Any surviving repair within the cocycle-decorated
-  canonical-normalizer ansatz would therefore need an extrinsic
-  isotropy-sensitive cocycle whose fixed-set integrals vanish while its
-  decorated normalizers still recover the non-CE algebra; no such cocycle or
-  algebraic Haar realization is known.
-
 - **The canonical Feldman--Moore/Stone-lamp compiler fails for every actor
   and every nonzero corner (proved, 2026-08-25).**  Start with any countable
   invariant atomless Boolean generator of the source Cartan and forget

@@ -26,7 +26,7 @@ G=colim_i P_i
 ```
 
 of finitely presented groups, using finite generator-and-relator
-approximants of any presentation. Every `P_i` embeds in `V`, so every
+approximants of any presentation. Every `P_i` embeds in `V), so every
 `k[P_i]` is directly finite. Since `k[G]=colim_i k[P_i]`, any alleged
 failure `AB=1`, `BA!=1` lifts to one stage and its equality holds at a
 later stage; the inequality remains there because its colimit image is

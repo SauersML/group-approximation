@@ -7,8 +7,6 @@ artifacts:
   - research/leavitt-degree3-algebraic-corner-cycle-proof.md
   - research/artifacts/search-leavitt-degree3-postpivot.py
   - research/artifacts/search-leavitt-degree3-two-pivot.sbatch
-  - research/leavitt-degree3-algebraic-corner-cycle-true-inverse-proof.md
-  - research/artifacts/search-leavitt-degree3-postpivot-true-inverse.py
 distinct_from:
   leavitt-degree3-formal-corner-cycle-is-absent: that excludes equality of distinct formal slot words; this tests all exact equalities caused by the actual Leavitt coefficient relations.
   leavitt-degree3-direct-pivot-screen-is-empty: that uses either unary orbit alone; this identifies the second unary corner with the pivot before reducing the target.
@@ -19,12 +17,6 @@ placement of the full Leavitt packet, no orientation of the unique long target
 corner collides with either unary corner so that identifying the two unary
 corners, substituting the pivot, and cyclically reducing the target yields the
 central involution `[c_i,d_i]` in a coefficient copy.
-
-Here a target corner means a corner of the *actual reduced orbit word*.
-Deleting an identity coefficient can merge or cancel neighbouring powers of
-`z=t^3`, so the certified screen recomputes every corner after those
-cancellations instead of transferring the position of the unique formal
-three-letter corner.
 
 Combined with the long-corner peeling criterion and the formal topology
 screen, this fences the minimal two-relator corner-cycle compiler in degree

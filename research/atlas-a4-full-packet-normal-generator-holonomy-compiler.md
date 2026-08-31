@@ -3,8 +3,6 @@ rg: 2
 id: atlas-a4-full-packet-normal-generator-holonomy-compiler
 kind: claim
 title: The full A4 packet compiles multiplicity holonomy to an A8 representation on which collision 19243 reads the normal generator
-refuted_by:
-  - atlas-m2-refutes-five-global-a4-compilers
 distinct_from:
   atlas-a4-rank-three-core-commutant-collapse: the fourteen-word route stops inside H=GL3(2); this compiler deliberately retains the central C3 packet directions so the residual holonomy closes to the full simple chart group A8.
   atlas-a4-componentwise-commutant-collapse: that asks directly for closeness to two subgroup commutants; this target asks for a representation-valued compiler certificate from which commutant collapse follows by normal-generator stability.
@@ -12,8 +10,6 @@ artifacts:
   - research/artifacts/a4-context-virtually-free-compiler-2026-08-19.md
   - experiments/atlas_a4_19243_normal_closure.py
 ---
-
-**REFUTED.**  On the exact multiplicity-two zero-residual network, `(A4-NG-COMP-2)` forces `pi(b)=1`; A8 normal-generator stability then kills all nontrivial invariant mass, and `(A4-NG-COMP-1)` forces the relative frame into the full chart commutant.  Its exact raw-S3 energy is instead `4`.  Hence the stated compiler outputs cannot exist.  See `atlas-m2-refutes-five-global-a4-compilers`.
 
 Let `sigma_n` be an exact-regular normalized thirty-context A4 network as in
 `atlas-a4-holonomy-coherence-gap`, let `U_n` be its relative `A8` chart frame,
@@ -59,7 +55,7 @@ to `A8`, and collision `19243` reads one normal generator of that finite group.
 Once this interface is proved, `atlas-a8-19243-normal-generator-hs-stability`
 annihilates every nontrivial multiplicity sector automatically.
 
-## Historical attempts
+## Attempts
 
 - **Gauge the two bicliques first.**  Apply
   `unitary-k2m-rectangle-synchronization` to `K_(2,2) disjoint_union K_(2,4)`.
