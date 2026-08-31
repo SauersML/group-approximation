@@ -241,7 +241,10 @@ U_n=P_(alpha,n) tensor F_(k_n)
 
 with an order-four block automorphism have exact covariance, exact actor
 products, canonical group trace, and a diffuse matrix-ultraproduct
-multiplicity algebra, but remain at normalized Hilbert--Schmidt distance
+multiplicity algebra.  Tensoring with separating regular quotients of
+`SL_3(Z)` makes the actor infinite, residually finite, and Kazhdan without
+changing the obstruction.  The chosen normalizers remain at normalized
+Hilbert--Schmidt distance
 tending to `sqrt(2)` from every monomial after any `o(d_n)` padding.
 
 Accordingly the transfer theorem above is not refuted: it asks for the
