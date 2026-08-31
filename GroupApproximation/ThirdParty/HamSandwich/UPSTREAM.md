@@ -33,6 +33,13 @@ The upstream kernel audit reports:
 ## Port status
 
 The first v4.32 incompatibility layer is being ported before importing the
-remaining closure. `RPnCohomologyRingModel` is green on v4.32. Its type is now
-an `abbrev`, allowing v4.32 to reuse the quotient ring's canonical `CommRing`
-and `Algebra` instances without mismatched transported instances.
+remaining closure. The following modules are green on v4.32:
+
+- `RPnCohomologyRingModel`: its model type is now an `abbrev`, allowing v4.32
+  to reuse the quotient ring's canonical instances.
+- `AffineBarycentricSubdivision`: its final dependent barycenter rewrite is an
+  explicit equality calculation compatible with v4.32.
+
+The old local `SimplicialObjectHomotopy` backport is intentionally not
+vendored: Mathlib v4.32 now contains the stronger upstream module
+`Mathlib.AlgebraicTopology.SimplicialObject.Homotopy`.
