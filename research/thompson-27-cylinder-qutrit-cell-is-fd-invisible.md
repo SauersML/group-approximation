@@ -76,15 +76,28 @@ is a proper noncentral marginal:
 Thus the fine context `{p_(a,b)}` and the coarse context `{P,q-P}`
 share the proper plus marginal `P`.
 
-This realization meets the phase-balance escape sharply.  Every group element
-in the support of the fine context which lies outside the root subgroup
-`K` has a unique form
+There is also one proper marginal which itself carries the three-phase
+cancellation.  Put
 
 ```text
-J^j Z_1^k B_a^t,                         t in {1,2},     (TVQ8)
+R=sum_(a in {0,1}, b in F_3) p_(a,b)
+ =z_(C,chi_0)+z_(C,chi_1)=q-z_(C,chi_2).                (TVQ7a)
 ```
 
-for one `a`.  It occurs in exactly the three atoms `p_(a,b)`,
+Then `0<R<q`, `tau_V(R)=2/9`, and the fine context and
+`{R,q-R}` share `R`.  In the nine-dimensional spin block `R` has
+rank six, so it is noncentral and is not a marked central type of any
+subgroup of the finite packet `F`.
+
+This realization meets the phase-balance escape sharply.  Every group element
+appearing in the selected six-atom expression for `R` but lying outside
+`C` has a unique form
+
+```text
+J^j Z_1^k B_a^t,              a in {0,1}, t in {1,2},   (TVQ8)
+```
+
+and occurs in exactly the three selected atoms `p_(a,b)`,
 `b in F_3`, with equal-modulus coefficients whose phases are a common
 scalar times
 
@@ -92,9 +105,11 @@ scalar times
 1, omega^(-t), omega^(-2t).                            (TVQ9)
 ```
 
-Their sum is zero.  Hence there are no escaped support leaves and no
-degree-two term pairings: cancellation outside `K` is genuinely
-three-phase, coefficient by coefficient.
+Their sum is zero, which is why `R` has support only in `C`.
+The full nine-atom context has the same triple cancellation outside the root
+subgroup `K`.  Hence there are no escaped support leaves and no
+degree-two term pairings: the proper marginal and the context both use
+genuine three-phase coefficientwise cancellation.
 
 At the same time the selected root type is finite-dimensional-invisible in
 each of the following ambient groups:
