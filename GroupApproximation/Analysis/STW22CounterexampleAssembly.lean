@@ -421,7 +421,7 @@ theorem not_isUniformTwoContinuous_iff (G : TracialTwoGauge D)
   constructor
   · intro h
     by_contra hcon
-    push_neg at hcon
+    push Not at hcon
     exact h hcon
   · rintro ⟨x, hx, hnx⟩ hcont
     exact hnx (hcont x hx)
