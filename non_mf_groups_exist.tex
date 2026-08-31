@@ -914,6 +914,21 @@ affine--Clifford witness is
  W=\operatorname{Cl}(X)\rtimes V.
 \end{equation}
 
+\begin{proposition}[Clifford obstruction from a proper self-embedding]
+\label{prop:clifford-self-embedding}
+The group $W$ is not MF.  More precisely, every homomorphism from $W$ to an
+MF group kills $\varepsilon$.  Moreover,
+\[
+ W\cong K\rtimes\mathbb Z,
+ \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha,
+\]
+where $K$ is locally residually finite.  Consequently the canonical trace on
+$C^*_{\max}(W)$ is amenable and not quasidiagonal.
+\leanverified{Sofic/CliffordWitnessDirectDefect}{GroupApproximation.CliffordWitnessDirectDefect.not_isOperatorMF}
+\leanverified{Sofic/CliffordWitnessDirectDefect}{GroupApproximation.CliffordWitnessDirectDefect.map_sign_eq_one_of_isOperatorMF_target}
+\end{proposition}
+
+\begin{proof}
 Let $c$ be the lamp at the root coset.  It centralizes the level-zero copy of
 $\Gamma$.  The two cosets supporting $tct^{-1}$ and
 $a(tct^{-1})a^{-1}$ are distinct precisely because
@@ -940,8 +955,7 @@ $\mathfrak D_W(\Gamma)$.  Thus
 The subgroup $\langle\varepsilon\rangle$ is finite, central, normal and
 nontrivial, so it has property~\textup{(T)}.  The one-sided compression
 criterion therefore makes every homomorphism from $W$ to an MF group kill
-$\varepsilon$.  In particular, $W$ is not MF.  Notice that this argument is
-directly inside $W$ and uses no auxiliary presentation.
+$\varepsilon$.  In particular, $W$ is not MF.
 
 Reassociating the semidirect products yields
 \leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.witnessGroupEquivShiftKernelByInt}
@@ -950,7 +964,7 @@ Reassociating the semidirect products yields
  \qquad K=\operatorname{Cl}(X)\rtimes T_\alpha.
 \]
 The group $K$ is locally residually finite
-\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.shiftKernel_isLocallyResiduallyFinite}.
+\leanverified{Sofic/CliffordWitnessLocallyRFByInt}{GroupApproximation.CliffordWitnessLocallyRFByInt.shiftKernelFor_isLocallyResiduallyFinite}.
 Every finite subset of $K$ involves finitely many Clifford generators and
 lies over a single telescope level
 $\Gamma_n\cong\Gamma$.  The $\Gamma_n$-orbits of these generators
@@ -963,10 +977,30 @@ where the Clifford group $C_Y$ is finite.  This semidirect product is
 residually finite because its kernel is finite, its quotient
 $\Gamma_n$ is residually finite, and the action has finite image.
 Therefore every finitely generated subgroup of $K$ is residually finite.
+Proposition~\ref{prop:locally-rf-by-z-trace} now makes the canonical trace
+amenable, and Theorem~\ref{thm:factorization-nonmf-trace} makes it
+nonquasidiagonal.
+\end{proof}
 
-For a concrete instance, take the full integral affine group
+For a concrete instance, use the following six integral affine matrices:
 \[
- \bar\Gamma
+\begin{gathered}
+ x=\begin{pmatrix}0&1&0&0\\0&0&1&0\\1&0&0&0\\0&0&0&1\end{pmatrix},
+\quad
+ y=\begin{pmatrix}1&0&1&0\\0&-1&-1&0\\0&1&0&0\\0&0&0&1\end{pmatrix},
+\quad
+ z=\begin{pmatrix}0&1&0&0\\1&0&0&0\\-1&-1&-1&0\\0&0&0&1\end{pmatrix},
+\\[4pt]
+ v_1=\begin{pmatrix}1&0&0&1\\0&1&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix},
+\quad
+ v_2=\begin{pmatrix}1&0&0&0\\0&1&0&1\\0&0&1&0\\0&0&0&1\end{pmatrix},
+\quad
+ v_3=\begin{pmatrix}1&0&0&0\\0&1&0&0\\0&0&1&1\\0&0&0&1\end{pmatrix}.
+\end{gathered}
+\]
+They generate
+\[
+ \bar\Gamma=\langle x,y,z,v_1,v_2,v_3\rangle
  =\left\{
    \begin{pmatrix}A&v\\0&1\end{pmatrix}:
    A\in\SL_3(\mathbb Z),\ v\in\mathbb Z^3
@@ -977,8 +1011,8 @@ It is residually finite and has property~\textup{(T)}.  The first assertion
 follows directly from reduction modulo integers separating distinct integral
 matrices.  For the second, the pair $(\bar\Gamma,\mathbb Z^3)$ has relative
 property~\textup{(T)} and the quotient $\SL_3(\mathbb Z)$ has
-property~\textup{(T)}, so the fixed subspace supplied by the relative
-property contains a nonzero vector fixed by the quotient.
+property~\textup{(T)}; the standard extension criterion therefore gives
+property~\textup{(T)} for $\bar\Gamma$.
 \leanverified{Sofic/CommutingLampCollapse}{GroupApproximation.CommutingLampCollapse.gammaBar_hasKazhdanPropertyT}
 \leanverified{Monsters/ExplicitIntegralLinearModel}{GroupApproximation.ExplicitIntegralLinearModel.gammaBar_residuallyFinite}
 
