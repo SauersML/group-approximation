@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: kazhdan-hellinger-block-balance-proof
-kind: proof
+kind: route
 title: Apply the Kazhdan gap to square roots of block multiplicities
 target: property-t-kills-multiplicity-only-jacobson-gauges
 requires:

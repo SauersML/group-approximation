@@ -3,7 +3,7 @@ rg: 2
 id: shadow-avoidance-fails-at-column-isometries
 kind: claim
 title: Column isometries defeat dimension-free shadow avoidance
-invalidates: [dimension-free-shadow-avoidance-in-hyperfinite-factor]
+invalidates: [x2-via-dimension-free-shadow-avoidance]
 distinct_from:
   dimension-free-shadow-avoidance-in-hyperfinite-factor: that asserted a dimension-free threshold; this is its refutation by an explicit one-element family whose 2-norm vanishes while every commutant projection is fully shadowed.
   x2-local-afd-holds-at-rate-controlled-packets: that positive cell survives — its rate hypothesis delta below eps d^{-5/2} excludes this family, whose 2-norm is d^{-1/2}; together they pin the critical rate exponent into [1/2, 5/2].
