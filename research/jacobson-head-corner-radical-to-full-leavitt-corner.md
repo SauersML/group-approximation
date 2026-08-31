@@ -7,7 +7,7 @@ artifacts:
   - research/jacobson-to-leavitt-corner-graph-monoid-proof.md
 distinct_from:
   binary-jacobson-core-is-weakly-sofic-with-fd-head-radical: that identifies the finitary group kernel and exact unitary-representation collapse; this identifies the coefficient corner and the graph-monoid change caused by the complementary branch.
-  qutrit-first-mixed-orientation-head-return-is-jacobson-quarter-polar: that computes the mixed Q/QT sign packet; this locates all of its non-scalar coefficients in the finite-dimensional coefficient radical.
+  qutrit-mixed-orientation-head-return-is-quarter-polar: that computes the mixed Q/QT sign packet; this locates all of its non-scalar coefficients in the finite-dimensional coefficient radical.
   property-t-free-leavitt-full-mf-radical: that asks for collapse in norm-matrix coronas; this proves only exact finite-dimensional coefficient collapse and explicitly records why fullness does not decode arbitrary group microstates.
 ---
 

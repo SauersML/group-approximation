@@ -5,7 +5,6 @@ kind: claim
 title: Torsion Laurent symbols exactify on a large corner but the torus symbol has no automatic spectral absorber
 distinct_from:
   stable-laurent-k2-has-minimal-three-symbol-packet: that identifies the algebraically minimal quotient packet; this separates the positive finite-order Hilbert--Schmidt exactification from the infinite-order gap
-  mf-central-involution-defect-forces-balanced-dimension: that uses a fixed two-point spectrum to force dimension balance; this gives the general finite cyclic estimate and an infinite-cyclic sharp firewall
 ---
 
 Use the stable-range notation of the three-symbol packet and let `pi` be an

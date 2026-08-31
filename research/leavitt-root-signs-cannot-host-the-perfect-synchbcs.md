@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: leavitt-root-signs-and-clifford-base-corners-cannot-host-the-perfect-synchbcs
+id: leavitt-root-signs-cannot-host-the-perfect-synchbcs
 kind: claim
 title: Leavitt root signs and Clifford base corners cannot host the perfect SynchBCS source
 distinct_from:
@@ -16,7 +16,7 @@ artifacts:
 CLAIMED.**
 
 Let \(\mathcal A_I\) be the finite complex SynchBCS algebra from
-`perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model`.
+`perfect-qc-separation-yields-finite-bcs-with-no-matrix-model`.
 It has a tracial state but no unital finite-dimensional star representation.
 
 ## 1. The Leavitt coefficient/root fork

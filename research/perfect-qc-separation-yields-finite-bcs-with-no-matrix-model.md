@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+id: perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
 kind: claim
 title: A 2025 perfect commuting separation yields a finite BCS with no matrix model
 distinct_from:
@@ -104,7 +104,7 @@ by complete Fejer--Riesz/factorisation properties; they provide completely
 positive maps, not projection-preserving star-homomorphisms.
 
 The node
-`naimark-stinespring-does-not-weaken-the-finite-synchbcs-pauli-corner-gate`
+`naimark-stinespring-keeps-the-synchbcs-pauli-corner-gate`
 now closes the formal dilation shortcuts around (PQB5).  If ambient
 Naimark projections compress to the sharp SynchBCS PVMs, the identity
 `pPp-(pPp)^2=pP(1-p)Pp` forces the corner to reduce every projection.
@@ -117,7 +117,7 @@ central-character compiler produces a nonhyperlinear group.  This is an
 exact terminal implication, not a construction of the missing map.
 
 The universal free-label shortcut is also exact but circular.
-`free-label-haarization-erases-the-source-and-canceling-labels-restate-the-group-factor-gate`
+`free-label-haarization-restates-the-group-factor-gate`
 shows that `v_i=u_i tensor lambda(s_i)` always generates a copy of
 `L(F_n)`, independently of the source tuple.  Adding
 `b_i=1 tensor lambda(s_i)` recovers `u_i tensor 1`, but the generated

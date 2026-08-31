@@ -1,12 +1,12 @@
 ---
 rg: 2
-id: negative-central-corner-is-the-exact-pauli-tracial-firewall-proof
+id: negative-central-corner-is-pauli-tracial-firewall-proof
 kind: route
 title: Identify the negative central group-algebra corner with the Pauli Bernoulli crossed product
 target: full-shared-pauli-rows-have-an-exact-finite-tracial-model
 requires:
-  - shared-center-extraspecial-wreath-sector-and-normalizer-proof
-  - kun-thom-diagonal-pauli-common-chart-obstruction
+  - shared-center-extraspecial-wreath-has-fd-invisible-spin-sector
+  - commuting-sofic-pauli-atlases-need-not-glue
 ---
 
 # The negative central corner is an exact tracial firewall

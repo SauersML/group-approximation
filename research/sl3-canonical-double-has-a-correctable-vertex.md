@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/sl3-double-frobenius-normalization-audit-2026-08-21.md
 distinct_from:
   sl3-double-one-near-vertex-forces-joint-near-exactness: that starts from one correctable vertex and corrects the other; this is the minimal missing source of that first anchor.
-  sl3-z-weakly-ucp-stable: that asks to correct every lattice approximation at unrestricted level; this asks only for one full A vertex in a canonical microstate of A amalgamated over C with A.
+  sl3z-regular-microstates-are-congruence-correctable: that asks to correct a regular microstate of the lattice C; this asks for one full A vertex in a canonical microstate of A amalgamated over C with A.
   sln-z-flexibly-hs-stable: that quantifies over all almost representations of one lattice; this is restricted to the two vertex marginals occurring in canonical-character microstates of one fixed double.
 ---
 

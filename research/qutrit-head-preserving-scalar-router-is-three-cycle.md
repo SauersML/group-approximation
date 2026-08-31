@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: qutrit-first-head-preserving-complete-scalar-router-is-three-cycle
+id: qutrit-head-preserving-scalar-router-is-three-cycle
 kind: claim
 title: The first head-preserving complete scalar router is a three-cycle with a finite head envelope
 artifacts:

@@ -3,7 +3,7 @@ rg: 2
 id: slofstra-natural-negative-corner-radical-route
 kind: route
 title: Extract a radical word from Slofstra's natural negative-corner character
-target: regular-finite-table-quantum-classical-hamming-gap
+target: finite-table-quantum-classical-hamming-gap
 requires: []
 ---
 

@@ -7,7 +7,7 @@ artifacts:
   - research/artifacts/sl3-double-one-vertex-anchor-2026-08-21.md
 distinct_from:
   sl3-arithmetic-double-near-exact-vertices-fold-projectively: that assumes both vertex restrictions are near exact and folds them; this proves that one near-exact vertex automatically supplies the missing exactness of the other.
-  sl3-z-weakly-ucp-stable: that asks for unrestricted correction of every lattice approximation; this uses the amalgamating relations and assumes one ambient A-vertex is already near exact.
+  sl3z-regular-microstates-are-congruence-correctable: that asks to correct every regular lattice microstate; this uses the amalgamating relations and assumes one ambient A-vertex is already near exact.
   sl3-regular-arithmetic-double-fold-mark-collapse: that asks for collapse with no near-exact vertex; this removes precisely the one-vertex-outlier sector and leaves only simultaneous two-vertex outliers.
 ---
 

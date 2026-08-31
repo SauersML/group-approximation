@@ -4,7 +4,7 @@ id: linton-radical-sofic
 kind: claim
 title: The maximal rationally perfect radical of a one-relator group is sofic
 distinct_from:
-  linton-shell-sofic: that asks for soficity of `R ⋊ F₀`, which is equivalent to the whole of Pestov 4.10; this asks only for soficity of the normal factor `R`, which by the failure of semidirect closure is strictly weaker and does not suffice on its own.
+  linton-shell-sofic: that asks for soficity of `R ⋊ F₀`, which is equivalent to the whole of Pestov 4.9; this asks only for soficity of the normal factor `R`, which by the failure of semidirect closure is strictly weaker and does not suffice on its own.
   linton-radical-free-action-sofic: that is a statement about the action of the free complement on `R` and says nothing about whether `R` is sofic; this is the statement about `R` alone. Together they give the shell; separately neither does.
   linton-radical-abelianization-is-truncated-group-ring: that computes `R_ab` exactly and is closed; this asks for an approximation property of `R` itself and is open. The computation constrains the answer without deciding it.
   one-relator-fox-magnus-descent-to-derived-linton-radical: that proves the quotient `G/R'`, and in particular `R/R'`, sofic by an explicit embedding; this asks for soficity of the full nonabelian radical, including the derived core that the Magnus map kills.

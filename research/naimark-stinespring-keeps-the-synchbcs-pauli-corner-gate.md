@@ -1,17 +1,17 @@
 ---
 rg: 2
-id: naimark-stinespring-does-not-weaken-the-finite-synchbcs-pauli-corner-gate
+id: naimark-stinespring-keeps-the-synchbcs-pauli-corner-gate
 kind: claim
 title: Naimark and matrix-unit dilation do not weaken the finite SynchBCS Pauli-corner gate
 distinct_from:
-  perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model: that supplies the finite SynchBCS algebra whose every trace is non-Connes-embeddable; this audits the proposed finite amplification, Naimark, Stinespring, inverse-semigroup, and Pauli crossed-product compilers.
+  perfect-qc-separation-yields-finite-bcs-with-no-matrix-model: that supplies the finite SynchBCS algebra whose every trace is non-Connes-embeddable; this audits the proposed finite amplification, Naimark, Stinespring, inverse-semigroup, and Pauli crossed-product compilers.
   unitary-corner-compressions-force-reduction: that treats compressed unitaries; this proves the projection and full multiplicative-domain versions needed for PVMs and matrix-unit refinements.
   inverse-semigroup-globalization-cannot-groupify-nonru-bcs: that rules out one global inverse semigroup abstractly; this places the same obstruction inside the exact finite SynchBCS-to-Pauli dilation and couples it to the non-CE trace.
-  finite-phase-pauli-basis-dilation-is-a-twisted-group-factor-compiler: that compiles a successful invariant-basis crossed product; this proves that the standard dilation devices cannot construct the required embedding for free.
+  finite-phase-pauli-dilation-is-twisted-group-factor-compiler: that compiles a successful invariant-basis crossed product; this proves that the standard dilation devices cannot construct the required embedding for free.
 ---
 
 Let `A_I` be the finite SynchBCS algebra supplied by
-`perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model`.
+`perfect-qc-separation-yields-finite-bcs-with-no-matrix-model`.
 It has tracial states, but **every** tracial state on `A_I` is
 non-Connes-embeddable.
 
@@ -81,4 +81,4 @@ non-Cartan group-algebra elements whose multiplication already realizes the
 SynchBCS algebra.  No nonhyperlinear group is claimed here.
 
 DERIVATION
-projection-compression-and-multiplicative-domain-close-the-synchbcs-dilation-shortcuts
+projection-compression-closes-synchbcs-dilation-shortcuts

@@ -1,12 +1,12 @@
 ---
 rg: 2
-id: projection-compression-and-multiplicative-domain-close-the-synchbcs-dilation-shortcuts
+id: projection-compression-closes-synchbcs-dilation-shortcuts
 kind: route
 title: Exact sharp compressions are already reducing SynchBCS corners
-target: naimark-stinespring-does-not-weaken-the-finite-synchbcs-pauli-corner-gate
+target: naimark-stinespring-keeps-the-synchbcs-pauli-corner-gate
 requires:
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
-  - finite-phase-pauli-basis-dilation-is-a-twisted-group-factor-compiler
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
+  - finite-phase-pauli-dilation-is-twisted-group-factor-compiler
   - inverse-semigroup-globalization-cannot-groupify-nonru-bcs
   - tracial-bcs-rationalizes-full-overlap-distributions
 ---

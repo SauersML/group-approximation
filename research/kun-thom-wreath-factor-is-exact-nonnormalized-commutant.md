@@ -1,12 +1,10 @@
 ---
 rg: 2
-id: canonical-kun-thom-wreath-factor-is-an-exact-nonnormalized-commutant
+id: kun-thom-wreath-factor-is-exact-nonnormalized-commutant
 kind: claim
 title: The canonical Kun--Thom wreath factor has an exact nonnormalized relative commutant
 distinct_from:
   kt-centralizer-normalization-hs: that asks whether the matrix-ultraproduct hypothesis restores normalization; this proves normalization is false in the canonical finite tracial wreath algebra and makes Connes embeddability the exact remaining fork.
-  kt-pair-non-hyperlinear-commutant: that records the conditional lamp contradiction from a positive normalization theorem; this packages the converse as an explicit counterrepresentation whenever the pinned wreath product is hyperlinear.
-  nonsofic-wreath-product: that proves the same group is nonsofic through permutation cluster rigidity; this computes its von Neumann relative commutant without assuming a permutation model.
 ---
 
 Let `Gamma<G` be infranormal and nonnormal.  Put

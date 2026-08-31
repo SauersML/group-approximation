@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: direct-sum-concavity-preserves-head-modulus-proof
-kind: proof
+kind: route
 title: Concavity makes the bounded-dimension head modulus stable under arbitrary direct sums
 target: bounded-block-jacobson-microstates-also-collapse
 requires:

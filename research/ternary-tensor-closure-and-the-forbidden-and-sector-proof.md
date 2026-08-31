@@ -3,9 +3,9 @@ rg: 2
 id: ternary-tensor-closure-and-the-forbidden-and-sector-proof
 kind: route
 title: Tensor three marked extensions to manufacture the forbidden atom
-target: central-character-extension-profiles-are-affine-under-odd-tensor-products
+target: central-character-profiles-affine-under-odd-tensor-products
 requires:
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
 ---
 
 # Tensor three marked extensions to manufacture the forbidden atom

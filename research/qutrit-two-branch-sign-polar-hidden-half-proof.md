@@ -1,13 +1,13 @@
 ---
 rg: 2
 id: qutrit-two-branch-sign-polar-hidden-half-proof
-kind: proof
+kind: route
 title: Count the extra branch sign and the nine-dimensional Cuntz-chain absorber
 target: qutrit-two-branch-sign-polar-has-hidden-half-absorber
 requires:
-  - qutrit-jacobson-sign-polar-rank-proof
-  - qutrit-complementary-sign-finite-router-proof
-  - qutrit-parallel-cuntz-cell-finite-packet-proof
+  - jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
+  - qutrit-complementary-jacobson-signs-minimal-router-finite
+  - qutrit-parallel-full-cuntz-cell-covariance-is-finite
 ---
 
 ## 1. The literal two-branch chain

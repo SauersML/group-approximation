@@ -3,11 +3,11 @@ rg: 2
 id: hecke-and-absorber-and-rf-corner-proof
 kind: route
 title: Compute the D8 AND compression and detect every algebraic RF corner in a finite quotient
-target: hecke-and-zero-compression-has-a-fixed-density-bass-serre-absorber
+target: hecke-zero-compression-has-fixed-density-bass-serre-absorber
 requires:
   - finite-character-hecke-intersection-formula
   - central-marked-two-cycle-zero-compression-cell
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
   - amenable-edge-cycles-cannot-create-an-lcs-gap
 ---
 
@@ -173,7 +173,7 @@ map never entered.
 
 Apply this to the finite SynchBCS algebra whose lack of matrix
 representations is proved in
-perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model.
+perfect-qc-separation-yields-finite-bcs-with-no-matrix-model.
 It cannot have a unital realization in any nonzero algebraic corner of an
 RF group.
 

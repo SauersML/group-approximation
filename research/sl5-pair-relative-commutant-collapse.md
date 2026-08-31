@@ -6,7 +6,7 @@ title: The rank-four pair carries the whole collapse lane and is the only instan
 distinct_from:
   sl3-pair-relative-commutant-route: that is the n = 3 instance, chosen for property (T) of the subgroup; this is the n = 5 instance, which keeps every established lane theorem verbatim (trivial center, odd n, rank >= 2) and additionally has Bader-Sauer property (T_2) and (T_3) -- degree-2 unitary cohomology vanishing infrastructure that n = 3 PROVABLY lacks (non-vanishing at degree N-1 for N in {3,4}).
   relative-commutant-collapse-for-sl2-pair: that is the rank-one pair where the subgroup is only Haagerup and the Weyl system degenerates to one involution; this is the deepest-rank instance, where every rigidity asset of the lane is simultaneously available.
-  sl3z-regular-microstates-are-congruence-correctable: that odd-only n = 3 strengthening is refuted by the exact two-primary regular tower; the identical odd-only strengthening at n = 5 fails for the same reason, so the live n = 5 hole must allow unrestricted levels and retain a two-primary sector argument.
+  sl3z-regular-microstates-are-congruence-correctable: that is the correctability hole at n = 3; the same hole instantiated here is the one place a cohomological attack (normalized-HS DGLT criterion over reduced (T_2) vanishing) has existing literature footing.
 ---
 
 Let `Lambda = SL_5(Z)`, `Gamma = SL_5(Z[1/2])`,

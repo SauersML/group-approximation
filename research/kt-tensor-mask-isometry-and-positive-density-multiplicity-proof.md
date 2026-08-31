@@ -3,9 +3,9 @@ rg: 2
 id: kt-tensor-mask-isometry-and-positive-density-multiplicity-proof
 kind: route
 title: Cancel the KT regular carrier and expose the bare multiplicity cocycle
-target: kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall
+target: kt-regular-mask-removes-trace-faithfulness-from-commutant-wall
 requires:
-  - canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants
+  - kt-steinberg-deleted-line-embeddings-have-scalar-commutants
   - kt-two-positive-compressors-generate-full-obstruction
   - strict-compressor-mixed-return-collapses-shared-pauli-sign
 ---

@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: central-character-extension-profiles-are-affine-under-odd-tensor-products
+id: central-character-profiles-affine-under-odd-tensor-products
 kind: claim
 title: Every ordinary-group central-character extension profile is affine
 distinct_from:

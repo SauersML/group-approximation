@@ -3,9 +3,9 @@ rg: 2
 id: leavitt-characteristic-fork-root-overlap-and-clifford-base-proof
 kind: route
 title: The characteristic fork, root-overlap modulus, and Clifford-base locality proof
-target: leavitt-root-signs-and-clifford-base-corners-cannot-host-the-perfect-synchbcs
+target: leavitt-root-signs-cannot-host-the-perfect-synchbcs
 requires:
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
   - orthogonal-steinberg-root-spectral-support-is-not-additive
   - group-algebra-corners-exclude-traceless-leavitt-inputs
   - shared-center-extraspecial-wreath-has-fd-invisible-spin-sector

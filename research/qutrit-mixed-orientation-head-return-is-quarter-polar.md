@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: qutrit-first-mixed-orientation-head-return-is-jacobson-quarter-polar
+id: qutrit-mixed-orientation-head-return-is-quarter-polar
 kind: claim
 title: The first mixed-orientation head return is Jacobson and its polar has quarter source
 artifacts:
@@ -60,19 +60,17 @@ tau(ER)=1/9,           tau(PR)=1/18,
 tau(GR)=1/36.                                           (QJM6)
 ```
 
-These are exact overlap energies:
-```text
-||PR||_2^2=1/18,                 ||GR||_2^2=1/36.
-```
-They are not polar-support ranks, because `P,G` need not commute with
-the qutrit cut `R`. In particular the routed operator
+The first mixed polar exactly fits the target `Ee_2` of trace `1/18`;
+the second uses only half of that target. In particular the routed
+operator
+
 ```text
 e_2g_1GR
 ```
-has range below `Ee_2` and squared norm at most `1/36`, but its
-initial polar support cannot be read off from that number. Thus
-`(QJM6)` supplies no Hall lower bound; the finite sign-packet theorem
-gives the exact countermodel for the natural recombinations.
+
+has polar source of trace at most `1/36` and range below `Ee_2`. The
+first nonabsorbed coefficient relation therefore still produces no Hall
+excess.
 
 Let `K=GL_28(F_2)`. The generated group is exactly
 
@@ -89,6 +87,7 @@ the first routed packet to pass that gate.
 
 This is an exact algebraic candidate, not a nonhyperlinearity theorem.
 The established Jacobson results do not decide whether `EL_28(J)` is
-hyperlinear, and `(QJM6)` supplies no trace contradiction. The next relation must recombine complementary sign branches of `C_1`
-and `W` with different routers and control the resulting polar-support
-ranks. A common router merely sums the four quarters back to `E`.
+hyperlinear, and `(QJM6)` supplies no trace contradiction. The next
+relation must recombine complementary sign branches of `C_1` and `W`
+so that their joint polar covers more than one complement capacity,
+rather than selecting the single quarter `G`.

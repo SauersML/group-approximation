@@ -5,7 +5,7 @@ kind: claim
 title: Group factorization and quasidiagonality of the full canonical trace are finitely local
 distinct_from:
   stw99-problem-x1-fails-on-full-group-algebras: that asks for one factorization-property group whose canonical trace is not QD; this says both clauses can be tested on all finitely generated subgroups.
-  literal-group-factorization-property: that is the now-established factorization claim for one finitely presented group; finite locality alone did not decide it.
+  literal-group-factorization-property: that is the still-open factorization claim for one finitely presented group; finite locality does not decide it.
 artifacts:
   - research/artifacts/stw10-amenable-trace-frontier-2026-08-30.md
 ---

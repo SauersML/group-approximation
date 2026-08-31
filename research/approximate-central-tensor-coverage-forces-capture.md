@@ -7,7 +7,6 @@ artifacts:
   - research/round-finite-subgroup-corners-and-apply-block-capture.md
 distinct_from:
   bounded-payload-congruence-tensors-have-uniform-capture: that assumes an exact common reducing tensor decomposition; this permits an approximately central carrier and quantifies the off-diagonal mass needed to authenticate it.
-  iwahori-outlier-localization: that localizes low-energy operator spaces without producing a reducing physical carrier; this starts from a candidate physical carrier and proves that finite-subgroup spectral rounding creates no additional obstruction.
   raw-core-central-reynolds-authentication-is-circular: that fences central idempotents evaluated through an unauthenticated moving quotient; this gives the exact consequence once a candidate projection and its tensor-block interpretation have actually been produced.
 ---
 

@@ -6,7 +6,7 @@ title: Jacobson head-retaining microstates must put positive trace mass in unbou
 distinct_from:
   bounded-dimension-jacobson-head-has-algebraic-collapse: that treats one tuple of bounded total dimension; this is stable under arbitrarily many direct sums and quantifies the trace mass which must escape every fixed block size
   jacobson-property-t-and-finite-k-do-not-exactify-the-head: that isolates the global normalized-HS modulus; this rules out the entire subhomogeneous part of any putative countersequence
-  qutrit-complementary-jacobson-signs-with-minimal-router-are-finite: that gives a finite packet model; this shows bounded finite-packet sectors cannot carry the head in a full-presentation microstate
+  qutrit-complementary-jacobson-signs-minimal-router-finite: that gives a finite packet model; this shows bounded finite-packet sectors cannot carry the head in a full-presentation microstate
 ---
 
 Fix the finite presentation and head word from

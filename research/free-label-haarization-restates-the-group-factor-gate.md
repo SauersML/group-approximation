@@ -1,10 +1,10 @@
 ---
 rg: 2
-id: free-label-haarization-erases-the-source-and-canceling-labels-restate-the-group-factor-gate
+id: free-label-haarization-restates-the-group-factor-gate
 kind: claim
 title: Free labels Haarize every tuple, while canceling labels restate the group-factor gate
 distinct_from:
-  finite-phase-pauli-basis-dilation-is-a-twisted-group-factor-compiler: that assumes a source-specific finite-phase projective basis and compiles it; this rules out the universal free-label tensor trick as a way to construct such a basis.
+  finite-phase-pauli-dilation-is-twisted-group-factor-compiler: that assumes a source-specific finite-phase projective basis and compiles it; this rules out the universal free-label tensor trick as a way to construct such a basis.
   unrestricted-algebraic-envelope-equals-nonhyperlinearity: that gives an abstract circularity equivalence; this computes the proposed labeled generators and their restricted trace exactly.
   group-basis-actions-have-permutation-koopman-spectrum: that gives a spectral obstruction to basis actions; this no-go already occurs before any actor action is considered.
 ---

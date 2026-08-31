@@ -4,10 +4,10 @@ id: actor-fourier-mixing-is-the-naimark-defect-of-the-base-povm
 kind: claim
 title: Actor Fourier mixing is exactly the Naimark defect of the base POVM
 distinct_from:
-  naimark-stinespring-does-not-weaken-the-finite-synchbcs-pauli-corner-gate: that proves a general sharp-compression multiplicative-domain theorem; this derives every Fourier coefficient equation in an algebraic crossed product and quantifies the exact actor mass needed to cancel the marked quarter overlap.
-  leavitt-root-signs-and-clifford-base-corners-cannot-host-the-perfect-synchbcs: that proves the base-only and root-sign firewalls; this treats genuinely mixed finite actor Fourier sums in the full negative Kun--Thom corner.
+  naimark-stinespring-keeps-the-synchbcs-pauli-corner-gate: that proves a general sharp-compression multiplicative-domain theorem; this derives every Fourier coefficient equation in an algebraic crossed product and quantifies the exact actor mass needed to cancel the marked quarter overlap.
+  leavitt-root-signs-cannot-host-the-perfect-synchbcs: that proves the base-only and root-sign firewalls; this treats genuinely mixed finite actor Fourier sums in the full negative Kun--Thom corner.
   shared-center-extraspecial-wreath-has-fd-invisible-spin-sector: that identifies the negative base as a UHF spin algebra and the actor-normalizer multiplicity; this classifies the identity-coefficient defect of arbitrary algebraic PVMs in its crossed product.
-  hecke-and-zero-compression-has-a-fixed-density-bass-serre-absorber: that constructs one finite D8 zero-compression cell; this shows abstractly that every one-context actor cancellation is a Naimark dilation and records the coefficient movement needed before any cancellation is possible.
+  hecke-zero-compression-has-fixed-density-bass-serre-absorber: that constructs one finite D8 zero-compression cell; this shows abstractly that every one-context actor cancellation is a Naimark dilation and records the coefficient movement needed before any cancellation is possible.
 artifacts:
   - research/crossed-product-pvm-coefficient-gram-and-quarter-bound-proof.md
 ---

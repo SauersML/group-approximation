@@ -1,12 +1,12 @@
 ---
 rg: 2
 id: three-dimensional-qt-coefficient-algebra-proof
-kind: proof
+kind: route
 title: Compute the eight-element Q-QT algebra and absorb all long-router sign words
 target: g2-conditioned-jacobson-sign-envelope-is-finite
 requires:
   - jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
-  - qutrit-two-scalar-router-full-closure-proof
+  - qutrit-two-scalar-routers-leave-head-packet-finite
 ---
 
 ## The coefficient algebra

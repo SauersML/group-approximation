@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: boundary-transvection-is-conjugate-to-head-proof
-kind: proof
+kind: route
 title: The Toeplitz truncation error and head are conjugate rank-one transvections
 target: toeplitz-folner-compressions-cannot-retain-jacobson-head
 requires:

@@ -3,10 +3,10 @@ rg: 2
 id: free-label-word-traces-and-the-direct-product-cancellation-proof
 kind: route
 title: Compute the free-label word trace and the canceling-label group
-target: free-label-haarization-erases-the-source-and-canceling-labels-restate-the-group-factor-gate
+target: free-label-haarization-restates-the-group-factor-gate
 requires:
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
-  - finite-phase-basis-crossed-product-and-circularity-proof
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
+  - finite-phase-pauli-dilation-is-twisted-group-factor-compiler
   - unrestricted-algebraic-envelope-equals-nonhyperlinearity
 ---
 
@@ -193,7 +193,7 @@ provided by the labeled generators.
 ## 5. Consequence for the finite SynchBCS source
 
 Choose a tracial state on the finite SynchBCS algebra from
-`perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model`
+`perfect-qc-separation-yields-finite-bcs-with-no-matrix-model`
 and let `A` be its GNS von Neumann algebra.  It is non-CE.  Its finite
 projection generating set can be replaced by finitely many generating
 symmetries, so the calculation above applies.

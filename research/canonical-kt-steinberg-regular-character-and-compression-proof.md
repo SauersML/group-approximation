@@ -3,7 +3,7 @@ rg: 2
 id: canonical-kt-steinberg-regular-character-and-compression-proof
 kind: route
 title: Build the KT regular Steinberg tower and compute its deleted-line commutants
-target: canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants
+target: kt-steinberg-deleted-line-embeddings-have-scalar-commutants
 requires:
   - el-r-polynomial-robust-spectral-gap
   - strict-compressor-mixed-return-collapses-shared-pauli-sign

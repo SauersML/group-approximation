@@ -1,12 +1,12 @@
 ---
 rg: 2
-id: kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall
+id: kt-regular-mask-removes-trace-faithfulness-from-commutant-wall
 kind: claim
 title: A KT regular congruence mask makes every multiplicity leak trace-faithful
 artifacts:
   - research/kt-tensor-mask-isometry-and-positive-density-multiplicity-proof.md
 distinct_from:
-  canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants: that constructs the exact regular-character carrier and proves its own negligible-boundary commutants are scalar; this tensors that carrier with an arbitrary multiplicity microstate and proves the carrier cannot constrain the multiplicity wall.
+  kt-steinberg-deleted-line-embeddings-have-scalar-commutants: that constructs the exact regular-character carrier and proves its own negligible-boundary commutants are scalar; this tensors that carrier with an arbitrary multiplicity microstate and proves the carrier cannot constrain the multiplicity wall.
   kt-two-compressor-irrep-flow-has-profinite-stationary-points: that shows scalar irrep weights have common profinite stationary points; this retains the full multiplicity algebra and proves all two-compressor defects survive isometrically.
   strict-compressor-mixed-return-collapses-shared-pauli-sign: that identifies the mixed-return condition needed from a trace-faithful actor microstate; this proves trace-faithfulness itself gives no leverage toward that condition.
   generic-perturbations-destroy-exact-commutant-gap: that constructs low spectral bands after perturbing exact coordinates; this is an exact tensor reduction for arbitrary multiplicity microstates.
@@ -21,7 +21,7 @@ alpha_n:G->U(D_n)
 ```
 
 be the exact regular-character congruence representations of
-`canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants`.
+`kt-steinberg-deleted-line-embeddings-have-scalar-commutants`.
 Thus `tr(alpha_n(g))->0` for every `g!=1`.  Let
 
 ```text
@@ -101,24 +101,6 @@ sqrt(D_n k_n/(D_n k_n+q_n))=1-o(1),                     (KTM7)
 ```
 
 so the displayed leak itself is not diluted by negligible padding.
-
-There is an exact physical-mass versus adjoint-rank split.  In
-`L^2(M_(D_n k_n))` the multiplicity sector is
-
-```text
-C I_(D_n) tensor L^2(M_(k_n)).
-```
-
-It contains every unit vector `I tensor x_n` above, but its dimension ratio
-inside the full adjoint Hilbert space is
-
-```text
-k_n^2/(D_n^2 k_n^2)=D_n^(-2)->0.                        (KTM8)
-```
-
-Thus the leak has full physical `2`-mass while occupying a vanishing-density
-adjoint sector.  Global low-band rank or normalized superoperator-trace
-estimates cannot see it; a pointed bounded-vector estimate is indispensable.
 
 **Meaning.**  Repeating the irreducible Steinberg carrier with a trivial
 multiplicity action gives a large matrix commutant which the actor fixes.

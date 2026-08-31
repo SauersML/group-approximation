@@ -6,7 +6,7 @@ title: Turn finite-dimensional commutant no-growth into a one-row Pauli estimate
 target: strict-compressor-mixed-return-collapses-shared-pauli-sign
 requires:
   - commutant-no-growth
-  - finite-corner-dilation-collapses-finite-rank-pauli-sign
+  - very-flexible-actor-stability-closes-finite-rank-pauli-host
   - full-shared-pauli-rows-have-an-exact-finite-tracial-model
 ---
 

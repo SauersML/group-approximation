@@ -5,10 +5,10 @@ kind: route
 title: Crossed-product PVM coefficient Gram equations and the quarter-overlap bound
 target: actor-fourier-mixing-is-the-naimark-defect-of-the-base-povm
 requires:
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
   - orthogonal-steinberg-root-spectral-support-is-not-additive
   - shared-center-extraspecial-wreath-has-fd-invisible-spin-sector
-  - leavitt-root-signs-and-clifford-base-corners-cannot-host-the-perfect-synchbcs
+  - leavitt-root-signs-cannot-host-the-perfect-synchbcs
 ---
 
 # Crossed-product PVM coefficient Gram equations and the quarter-overlap bound

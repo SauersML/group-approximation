@@ -1,13 +1,13 @@
 ---
 rg: 2
 id: jacobson-to-leavitt-corner-graph-monoid-proof
-kind: proof
+kind: route
 title: Compute the Toeplitz sink corner and its binary-Leavitt full-corner upgrade
 target: jacobson-head-corner-radical-to-full-leavitt-corner
 requires:
-  - binary-jacobson-weak-sofic-status-proof
-  - qutrit-mixed-orientation-jacobson-quarter-polar-proof
-  - qutrit-mixed-cell-threshold-proof
+  - binary-jacobson-core-is-weakly-sofic-with-fd-head-radical
+  - qutrit-mixed-orientation-head-return-is-quarter-polar
+  - qutrit-two-mixed-cells-are-rf-three-are-full-leavitt
 ---
 
 ## 1. The Jacobson algebra is the algebraic Toeplitz graph

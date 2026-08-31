@@ -5,8 +5,7 @@ kind: claim
 title: The negative central corner exactly realizes every shared-Pauli row in a finite tracial algebra
 distinct_from:
   kazhdan-stabilizer-collapses-shared-pauli-sign: that uses compactness of a fixed finite-dimensional unitary group to collapse the sign for exact finite-dimensional actors; this proves the same rows have an exact model in a finite von Neumann algebra, so finite-dimensionality is essential.
-  ozawa-sos-does-not-round-an-approximate-actor-to-its-exact-commutant: that refutes literal-commutant rounding by generic matrix perturbations; this refutes any collapse derived only from tracial positivity or a universal sum-of-squares identity, even after all Pauli rows are imposed.
-  kun-thom-diagonal-pauli-common-chart-obstruction: that identifies the negative corner as a Bernoulli crossed product and isolates the common-chart converse; this turns that identification into an explicit no-go for dimension-free tracial collapse inequalities.
+  ozawa-sos-does-not-round-approximate-actor-to-exact-commutant: that refutes literal-commutant rounding by generic matrix perturbations; this refutes any collapse derived only from tracial positivity or a universal sum-of-squares identity, even after all Pauli rows are imposed.
 ---
 
 Let `G` act on a countably infinite set `X` and let
@@ -75,4 +74,4 @@ sum-of-squares reasoning.  Hyperlinearity of the pinned shared-Pauli group
 and the global nonhyperlinearity target remain **OPEN**.
 
 DERIVATION
-negative-central-corner-is-the-exact-pauli-tracial-firewall-proof
+negative-central-corner-is-pauli-tracial-firewall-proof

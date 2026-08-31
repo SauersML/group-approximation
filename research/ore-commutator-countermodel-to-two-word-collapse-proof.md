@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: ore-commutator-countermodel-to-two-word-collapse-proof
-kind: proof
+kind: route
 title: Use Ore surjectivity in PSL28 over F2 to build an exact finite countermodel
 target: two-jacobson-commutators-plus-perfectness-have-finite-model
 requires:

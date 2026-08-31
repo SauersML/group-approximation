@@ -1,12 +1,12 @@
 ---
 rg: 2
 id: perfect-scalar-root-and-two-commutators-proof
-kind: proof
+kind: route
 title: Perfectness fixes the scalar phase while opposite commutators expose both Toeplitz endpoints
 target: scalar-rephased-toeplitz-sections-still-collapse-head
 requires:
   - binary-gl-finite-sections-have-no-projective-k2-phase
-  - boundary-transvection-is-conjugate-to-head-proof
+  - toeplitz-folner-compressions-cannot-retain-jacobson-head
 ---
 
 ## The two endpoint words

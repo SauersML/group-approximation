@@ -1,13 +1,13 @@
 ---
 rg: 2
-id: qutrit-complementary-jacobson-signs-with-minimal-router-are-finite
+id: qutrit-complementary-jacobson-signs-minimal-router-finite
 kind: claim
 title: All complementary Jacobson sign branches with the minimal router have a finite regular model
 artifacts:
   - research/qutrit-complementary-sign-finite-router-proof.md
 distinct_from:
-  qutrit-first-mixed-orientation-head-return-is-jacobson-quarter-polar: that computes one nested plus-plus quarter and identifies the full scalar closure as the Jacobson core; this recombines all four sign quarters and proves the minimal qutrit router still lies in a finite acyclic packet.
-  qutrit-first-head-preserving-complete-scalar-router-is-three-cycle: that computes the complete qutrit graph of the scalar three-cycle; this closes its entire orbit of the mixed S/T chain and identifies the exact finite unipotent group.
+  qutrit-mixed-orientation-head-return-is-quarter-polar: that computes one nested plus-plus quarter and identifies the full scalar closure as the Jacobson core; this recombines all four sign quarters and proves the minimal qutrit router still lies in a finite acyclic packet.
+  qutrit-head-preserving-scalar-router-is-three-cycle: that computes the complete qutrit graph of the scalar three-cycle; this closes its entire orbit of the mixed S/T chain and identifies the exact finite unipotent group.
   qutrit-first-nonparallel-cuntz-return-chain-is-finite: that treats one four-coordinate chain; this includes a three-fold scalar orbit, the Jacobson head, and every complementary polar branch.
 ---
 
@@ -26,12 +26,8 @@ They are pairwise orthogonal, have sum `E`, and for every qutrit atom
 tau(zG_(sigma,tau))=1/72.                               (QCS2)
 ```
 
-Thus
-```text
-||G_(sigma,tau)R||_2^2=tau(RG_(sigma,tau))=1/36,
-```
-and the four overlap energies sum to `tau(ER)=1/9`. These are not
-support ranks: the sign projections need not commute with `R`.
+Thus on `R=e_0+e_1` each sign quarter has trace `1/36` and all four
+quarters recover `tau(ER)=1/9`.
 
 Let `g_1=(c_0d_0d_1)` be the support-minimal complete router and put
 `M={c_0,d_0,d_1}`. Its conjugates give
@@ -87,20 +83,12 @@ from `C,g_1,H,U,V` lies in the complex group algebra of one finite
 group. Its faithful regular representation has the canonical qutrit
 weights and realizes all four projections in `(QCS1)` exactly.
 
-This is an explicit approximate-model firewall. If
-`A_(sigma,tau)=G_(sigma,tau)R`, then
-```text
-A_(sigma,tau)^*A_(sigma',tau')=0
-                    for (sigma,tau)!=(sigma',tau'),
-sum_(sigma,tau) A_(sigma,tau)=ER.                       (QCS7)
-```
-Consequently applying the same router to all four branches gives merely
-`g_1ER`; after the `e_2` cut it is the original leaky compression,
-not four independent arrows. With branch-dependent powers of `g_1`,
-all cross terms still live in the finite regular model in `(QCS5)`.
-No polar-support conclusion is inferred from the overlap energies alone,
-and no Cuntz pair with two full-domain left inverses occurs in this
-finite packet.
+This is an explicit approximate-model firewall. Two sign quarters have
+total `R`-trace `1/18` and can fit one target `Ee_2`; any proposed sum
+of three or four into that same target fails to be an isometry already
+in the finite regular model. Cross terms or leakage remove the excess.
+No Cuntz pair with two full-domain left inverses can arise in this finite
+packet.
 
 The long scalar cycle `g_2` destroys the flag `(QCS6)` and enlarges the
 ambient group to `EL_28(J)`, where no finite regular head model exists.

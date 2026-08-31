@@ -3,9 +3,9 @@ rg: 2
 id: finite-phase-basis-crossed-product-and-circularity-proof
 kind: route
 title: Compute the twisted semidirect basis and separate exact dilation from finite charts
-target: finite-phase-pauli-basis-dilation-is-a-twisted-group-factor-compiler
+target: finite-phase-pauli-dilation-is-twisted-group-factor-compiler
 requires:
-  - group-basis-permutation-koopman-proof
+  - group-basis-actions-have-permutation-koopman-spectrum
   - unrestricted-algebraic-envelope-equals-nonhyperlinearity
   - lamp-charts-recover-set-action
   - sofic-action-gives-marked-pauli-central-product-microstates

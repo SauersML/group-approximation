@@ -7,7 +7,7 @@ target: stw22-nuclear-typei-trace-problem-counterexample
 requires:
   - stw22-chern-l2-small-unbounded-commutator-width
 artifacts:
-  - research/artifacts/stw22-trace-problem-counterexample-2026-08-31.md
+  - research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md
 ---
 
 For the blocks `D_s` and elements `h_s` from the prerequisite, set

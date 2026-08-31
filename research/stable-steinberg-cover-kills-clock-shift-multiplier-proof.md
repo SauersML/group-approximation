@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: stable-steinberg-cover-kills-clock-shift-multiplier-proof
-kind: proof
+kind: route
 title: Vanishing K-two of F2 makes every large binary projective representation linear
 target: binary-gl-finite-sections-have-no-projective-k2-phase
 requires:

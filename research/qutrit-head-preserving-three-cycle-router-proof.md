@@ -1,11 +1,11 @@
 ---
 rg: 2
 id: qutrit-head-preserving-three-cycle-router-proof
-kind: proof
+kind: route
 title: Compute the support-three scalar router, its head compression, and its finite envelope
-target: qutrit-first-head-preserving-complete-scalar-router-is-three-cycle
+target: qutrit-head-preserving-scalar-router-is-three-cycle
 requires:
-  - qutrit-mismatched-root-holonomy-proof
+  - qutrit-first-mismatched-prefix-holonomy-is-d8
   - qutrit-third-cell-head-selector-is-h-centralizer-zero
   - qutrit-head-only-overlap-envelope-is-finite
 ---

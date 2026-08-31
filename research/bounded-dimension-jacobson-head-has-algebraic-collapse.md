@@ -5,7 +5,7 @@ kind: claim
 title: The Jacobson head has a quantitative collapse modulus in every bounded dimension
 distinct_from:
   jacobson-property-t-and-finite-k-do-not-exactify-the-head: that identifies the missing dimension-free normalized-HS modulus; this proves the strongest modulus supplied by finite-dimensional compactness and shows exactly where its constants depend on dimension
-  qutrit-complementary-jacobson-signs-with-minimal-router-are-finite: that constructs an exact finite model for all four mixed sign quarters; this uses that model to prove the mixed subpresentation cannot itself have any head-collapse modulus
+  qutrit-complementary-jacobson-signs-minimal-router-finite: that constructs an exact finite model for all four mixed sign quarters; this uses that model to prove the mixed subpresentation cannot itself have any head-collapse modulus
   binary-jacobson-core-is-weakly-sofic-with-fd-head-radical: that proves exact finite-dimensional annihilation; this upgrades it to a semialgebraic quantitative estimate for each bounded dimension
 ---
 

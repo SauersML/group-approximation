@@ -1,13 +1,13 @@
 ---
 rg: 2
 id: qutrit-two-scalar-router-full-closure-proof
-kind: proof
+kind: route
 title: Generate GL28 with the head cycle and trap every returned head in F2 squared
-target: qutrit-two-scalar-routers-close-full-leavitt-but-head-packet-stays-finite
+target: qutrit-two-scalar-routers-leave-head-packet-finite
 requires:
-  - qutrit-head-preserving-three-cycle-router-proof
-  - qutrit-mixed-cell-threshold-proof
-  - qutrit-head-only-finite-envelope-proof
+  - qutrit-head-preserving-scalar-router-is-three-cycle
+  - qutrit-two-mixed-cells-are-rf-three-are-full-leavitt
+  - qutrit-head-only-overlap-envelope-is-finite
   - leavitt-gl-equals-el-and-perfect-unit-group
 ---
 

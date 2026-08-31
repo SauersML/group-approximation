@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: finite-phase-pauli-basis-dilation-is-a-twisted-group-factor-compiler
+id: finite-phase-pauli-dilation-is-twisted-group-factor-compiler
 kind: claim
 title: A finite-phase Pauli-basis dilation is a twisted group-factor compiler, not a free hyperfinite dilation
 distinct_from:

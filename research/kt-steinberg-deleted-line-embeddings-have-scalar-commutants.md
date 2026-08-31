@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants
+id: kt-steinberg-deleted-line-embeddings-have-scalar-commutants
 kind: claim
 title: Canonical KT Steinberg deleted-line embeddings are strictly unstable but have scalar relative commutants
 artifacts:

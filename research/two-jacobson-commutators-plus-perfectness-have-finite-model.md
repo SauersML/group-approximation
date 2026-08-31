@@ -6,7 +6,7 @@ title: Two Jacobson commutator equations and a perfect scalar packet do not forc
 distinct_from:
   scalar-rephased-toeplitz-sections-still-collapse-head: that uses the common truncated-shift realization to conjugate the two endpoint transvections; this removes that realization and proves the remaining abstract identities have a finite countermodel
   jacobson-property-t-and-finite-k-do-not-exactify-the-head: that gives a general finite-window firewall; this targets exactly the proposed two-commutator-plus-perfectness argument
-  qutrit-first-mixed-orientation-head-return-is-jacobson-quarter-polar: that realizes both commutators with prescribed root actors; this shows why those actor types, rather than the commutator values alone, are load-bearing
+  qutrit-mixed-orientation-head-return-is-quarter-polar: that realizes both commutators with prescribed root actors; this shows why those actor types, rather than the commutator values alone, are load-bearing
 ---
 
 Let

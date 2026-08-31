@@ -1,12 +1,12 @@
 ---
 rg: 2
-id: qutrit-two-scalar-routers-close-full-leavitt-but-head-packet-stays-finite
+id: qutrit-two-scalar-routers-leave-head-packet-finite
 kind: claim
 title: Two scalar routers close the full Leavitt host but every scalar-head return remains finite
 artifacts:
   - research/qutrit-two-scalar-router-full-closure-proof.md
 distinct_from:
-  qutrit-first-head-preserving-complete-scalar-router-is-three-cycle: that gives the support-minimal complete arrow and its local finite envelope; this adds a head-touching actor which reaches every scalar coordinate and computes the resulting full ambient subgroup.
+  qutrit-head-preserving-scalar-router-is-three-cycle: that gives the support-minimal complete arrow and its local finite envelope; this adds a head-touching actor which reaches every scalar coordinate and computes the resulting full ambient subgroup.
   qutrit-head-only-overlap-envelope-is-finite: that proves finiteness after the whole scalar group is already present; this gives two explicit permutations, their qutrit intersections, the first returned head commutator, and the precise full-Leavitt generation threshold.
   qutrit-two-mixed-cells-are-rf-three-are-full-leavitt: that reaches an active EL4 core through three coefficient cells; this spreads that core to all 28 coordinates with one literal scalar cycle.
 ---

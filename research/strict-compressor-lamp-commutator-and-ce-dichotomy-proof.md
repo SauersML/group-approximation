@@ -3,11 +3,10 @@ rg: 2
 id: strict-compressor-lamp-commutator-and-ce-dichotomy-proof
 kind: route
 title: Compute the exact wreath commutant defect and locate the matrix-only gate
-target: canonical-kun-thom-wreath-factor-is-an-exact-nonnormalized-commutant
+target: kun-thom-wreath-factor-is-exact-nonnormalized-commutant
 requires:
   - kt-centralizer-normalization-hs
-  - kt-pair-non-hyperlinear-commutant
-  - nonsofic-wreath-product
+  - non-hyperlinear-group
 ---
 
 # The canonical wreath algebra is the exact counterprofile

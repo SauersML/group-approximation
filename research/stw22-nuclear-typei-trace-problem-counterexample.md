@@ -4,7 +4,7 @@ id: stw22-nuclear-typei-trace-problem-counterexample
 kind: claim
 title: A separable unital nuclear type-I algebra has a uniform tracial completion with a discontinuous trace
 artifacts:
-  - research/artifacts/stw22-trace-problem-counterexample-2026-08-31.md
+  - research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md
   - research/artifacts/stw22-chern-commutator-width-audit-2026-08-31.md
 distinct_from:
   stw22-finite-dimensional-factor-bundles-have-uniform-traces: that positive theorem assumes finite covering dimension; the present counterexample has a compact metrizable Bauer extreme boundary containing CP^(s^2) for every s and therefore infinite covering dimension.

@@ -3,7 +3,7 @@ rg: 2
 id: perfect-qc-graph-algebra-and-fourier-multiplicative-domain-proof
 kind: route
 title: Extract the perfect qc graph algebra and audit the new embedding arrows
-target: perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+target: perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
 requires:
   - every-bcs-is-a-trace-pullback-quotient-of-an-lcs
   - central-block-hecke-predicates-force-affine-group-spectra

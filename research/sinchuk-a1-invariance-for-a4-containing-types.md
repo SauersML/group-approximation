@@ -4,7 +4,6 @@ id: sinchuk-a1-invariance-for-a4-containing-types
 kind: claim
 title: Unstable K2 is A1-invariant for simply-laced types containing A4
 distinct_from:
-  polynomial-k2-vanishing-lifts-cones-to-laurent-steinberg-proof: that uses stable Quillen homotopy invariance and classical dimension-dependent stability; this is the 2026 unstable A1-invariance input that removes spectator polynomial variables before stabilizing
 ---
 
 **Literature input (source re-read 2026-08-31, arXiv:2412.06944,

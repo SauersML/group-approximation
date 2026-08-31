@@ -6,8 +6,8 @@ title: Jacobson sign-quarter polar ranks are 5/72 and 1/16, not their overlap en
 artifacts:
   - research/qutrit-jacobson-sign-polar-rank-proof.md
 distinct_from:
-  qutrit-complementary-jacobson-signs-with-minimal-router-are-finite: that gives the finite regular model and exact common-router recombination; this diagonalizes the relevant 288-element subgroup and computes every cut-down polar rank.
-  qutrit-first-mixed-orientation-head-return-is-jacobson-quarter-polar: that computes the nested projections and their overlap energies; this corrects the missing rank calculation for their qutrit cuts.
+  qutrit-complementary-jacobson-signs-minimal-router-finite: that gives the finite regular model and exact common-router recombination; this diagonalizes the relevant 288-element subgroup and computes every cut-down polar rank.
+  qutrit-mixed-orientation-head-return-is-quarter-polar: that computes the nested projections and their overlap energies; this corrects the missing rank calculation for their qutrit cuts.
   weighted-unitary-hall-deficit-gap: that turns an authenticated source-target rank deficit into a terminal; this supplies the exact source ranks which a future mixed router would have to preserve.
 ---
 

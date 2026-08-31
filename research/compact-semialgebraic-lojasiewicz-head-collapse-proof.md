@@ -1,13 +1,13 @@
 ---
 rg: 2
 id: compact-semialgebraic-lojasiewicz-head-collapse-proof
-kind: proof
+kind: route
 title: Compact semialgebraic separation gives the bounded-dimension head modulus
 target: bounded-dimension-jacobson-head-has-algebraic-collapse
 requires:
   - binary-jacobson-core-is-weakly-sofic-with-fd-head-radical
   - binary-jacobson-steinberg-cover-is-elementary
-  - qutrit-complementary-jacobson-signs-with-minimal-router-are-finite
+  - qutrit-complementary-jacobson-signs-minimal-router-finite
 ---
 
 ## The finite presentation really exists

@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: hecke-and-zero-compression-has-a-fixed-density-bass-serre-absorber
+id: hecke-zero-compression-has-fixed-density-bass-serre-absorber
 kind: claim
 title: The Hecke AND zero-compression cell has a fixed-density Bass--Serre absorber
 distinct_from:
@@ -87,7 +87,7 @@ range of the image of `q`.
 
 Consequently `(HAZ8)` is impossible when `A` is the finite perfect-qc
 SynchBCS algebra from
-`perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model`.
+`perfect-qc-separation-yields-finite-bcs-with-no-matrix-model`.
 In particular it is impossible when `Gamma` is the fundamental group of a
 finite graph of finite groups, because such a group is virtually free and
 residually finite.
