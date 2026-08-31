@@ -15,8 +15,14 @@ Fix a finite presentation
 G=EL_28(F_2<S,T | TS=1>)=<Sigma | R>
 ```
 
-and a word `w` representing the head root `x_13(1-ST)`.  For every integer
-`D>=1` there are constants
+and a word `w` representing the head root `x_13(1-ST)`. This is an
+unconditional choice, not an extra finite-presentability hypothesis:
+`J=F_2<S,T | TS=1>` is a finitely presented unital ring,
+Krstic--McCool finite presentability gives a finite presentation of
+`St_28(J)`, and the stable-rank and K-two calculation identifies
+`St_28(J)~=E_28(J)`.
+
+For every integer `D>=1` there are constants
 
 ```text
 C_D<infinity,       alpha_D>0,                            (BDJ1)
