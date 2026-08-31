@@ -26,7 +26,7 @@ Let
 J=F_2<S,T | TS=1>.
 ```
 
-Under the outer 27-leaf module chart, `S |-> s_0` and `T |-> t_0),
+Under the outer 27-leaf module chart, `S |-> s_0` and `T |-> t_0`,
 and
 
 ```text
