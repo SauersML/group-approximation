@@ -8,6 +8,7 @@ requires:
   - kazhdan-stabilizer-collapses-shared-pauli-sign
   - shared-center-pauli-tape-has-same-fp-gate
   - kt-local-actor-correction-pays-majorana-return
+  - full-shared-pauli-wall-excludes-nearby-exact-actor
 ---
 
 # Pay for the shared Pauli sign with correction on one finite actor packet
@@ -27,7 +28,8 @@ finite Kazhdan set \(Q\subseteq\Gamma\), with Kazhdan constant
 Put
 \[
  T=Q\cup\{r_1,\ldots,r_s\},\qquad
- C_\kappa=2+\frac{16}{\kappa}.                              \tag{2}
+ C_\kappa=2+\frac{16}{\kappa},\qquad
+ K_\kappa=4+\frac{32}{\kappa}=2C_\kappa.                  \tag{2}
 \]
 
 Let \(A,B,J\in U(d)\), and let \(u_t\in U(d)\) for \(t\in T\).  No
@@ -95,25 +97,32 @@ give
  \|F_{C^+}(\rho(r_\ell),D_0^+)\|_{2,D}
  \le\lambda\delta+4\epsilon.                               \tag{11}
 \]
-The same-site row has defect at most \(\lambda\delta\).  Thus the exact-actor
-collapse theorem applies to
-\((A^+,B^+,J^+,\rho)\) with the common error
+Keep the three row errors separate.  The proof of the exact-actor collapse
+gives the asymmetric estimate
 \[
- \eta=\lambda\delta+4\epsilon.                             \tag{12}
+ \|J-I\|_2\le d_J+d_X+\frac{16}{\kappa}d_H,                \tag{12}
 \]
-It yields
+where \(d_J,d_H,d_X\) are respectively the same-site, stabilizer, and
+cross-prototype defects.  This is also the zero-correction case of
+\(\textit{full-shared-pauli-wall-excludes-nearby-exact-actor}\).
+Applying (12) to the padded tuple and using (8), (11), and the
+\(\lambda\)-scaled same-site defect gives
 \[
- \|J^+-I_D\|_{2,D}\le C_\kappa\eta.                        \tag{13}
+ \|J^+-I_D\|_{2,D}
+ \le \lambda\!\left(\delta_0+\delta_2+
+                     \frac{16}{\kappa}\delta_1\right)
+       +K_\kappa\epsilon
+ \le \lambda C_\kappa\delta+K_\kappa\epsilon.              \tag{13}
 \]
 But
 \[
  \|J^+-I_D\|_{2,D}=\lambda\|J-I_d\|_{2,d}.                 \tag{14}
 \]
-Combining (12)--(14) proves the sharp interface estimate
+Combining (13)--(14) proves the sharp interface estimate
 \[
  \boxed{\quad
  \lambda\|J-I_d\|_{2,d}
- \le C_\kappa\bigl(\lambda\delta+4\epsilon\bigr).
+ \le \lambda C_\kappa\delta+K_\kappa\epsilon.
  \quad}                                                    \tag{15}
 \]
 
@@ -125,8 +134,8 @@ matrices were not corrected, and no growing actor window was used.
 Rearranging (15) gives
 \[
  \epsilon\ge
- \frac{\lambda}{4}
- \left(\frac{\|J-I_d\|_{2,d}}{C_\kappa}-\delta\right).      \tag{16}
+ \frac{\lambda}{K_\kappa}
+ \left(\|J-I_d\|_{2,d}-C_\kappa\delta\right).              \tag{16}
 \]
 Consequently, if a sequence has
 \[
@@ -137,12 +146,12 @@ then every padded genuine actor representation satisfies
 \[
  \liminf_n\max_{t\in T}
  \|\rho_n(t)-(u_{n,t}\oplus v_{n,t})\|_{2,d_n+p_n}
- \ge \frac{c}{4C_\kappa}.                                 \tag{18}
+ \ge \frac{c}{K_\kappa}.                                  \tag{18}
 \]
 For a tracial Pauli microstate with \(\operatorname{tr}(J_n)\to0\), one has
 \(c=\sqrt2\), so the right side is
 \[
- \frac{\sqrt2}{4(2+16/\kappa)}.                            \tag{19}
+ \frac{\sqrt2}{4+32/\kappa}.                               \tag{19}
 \]
 Thus the hidden spin sector is not merely uncorrectable in the same
 dimension: it stays a definite distance from every genuine actor after
@@ -173,7 +182,7 @@ Apply (15) with \(p=0\) and the right side of (21) in place of
 \(\epsilon\).  If \(\theta_n\to0\), \(\delta_n\to0\), and the sign has the
 separation (17), then
 \[
- \liminf_n\epsilon_{P,n}\ge\frac{c}{4C_\kappa}.            \tag{22}
+ \liminf_n\epsilon_{P,n}\ge\frac{c}{K_\kappa}.             \tag{22}
 \]
 This statement requires a common reducing corner.  An arbitrary compression
 which is not approximately reducing is not an actor representation and is
