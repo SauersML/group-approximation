@@ -201,6 +201,16 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   vanishing singular value. This fences a separate-chart Haar/free argument;
   it does not contradict the established coupled arithmetic angle at
   compatible congruence endpoints and does not produce a countersequence.
+  `pauli-kernel-integrates-and-has-quadratic-crossing` identifies the zero
+  mode as an exact edge-commutant gauge: all pure Taylor terms vanish, the
+  transverse normal form is a sharp product crossing, and distance to its
+  local zero set is controlled by the square root of the residual.
+  `pauli-tensor-charts-are-globally-congruence-captured` then closes every
+  coupled direct-sum/tensor/gauge assembly near that branch. Replacing each
+  block by its mod-two base costs its physical RMS branch displacement and
+  lands in the exact mixed-congruence locus, so the global capture triangle
+  repairs the pair. Any surviving regular enemy must stay a positive RMS
+  distance from every such finite-dimensional congruence stratum.
 - **Full exact cubics do not select a bounded odd level.**
   `full-iwahori-relations-do-not-bound-unipotent-torsion` separates the two
   exact facts at the noncongruence frontier. BS covariance makes each finite
