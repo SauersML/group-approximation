@@ -5,7 +5,7 @@ kind: route
 title: Apply the all-factor degree-two modulus in the stabilized L2 bundle
 target: stw22-dim3-factor-bundles-have-uniform-traces
 requires:
-  - stw22-stabilize-l2-bundle-and-select-weighted-copies-proof
+  - stw22-dim1-factor-bundles-have-uniform-traces
   - stw22-all-finite-factor-weighted-copy-uniform-s2-fillings
   - stw22-tracefree-fibre-gap-ideals-force-trace-continuity
 artifacts:
