@@ -64,13 +64,15 @@ makes the phase well defined. The formula for
 Thus every entry is a sum of at most three explicit torus phases.
 
 The right-\(U\)-fixed part, where \(U=\langle t\rangle\), is the usual
-principal-series slice:
+principal-series slice. Concretely, up to inversion of left and right
+actions, it is
 \[
- (C^1_\chi)^U\cong
- \left(\operatorname{Ind}_{T_sU}^{G}\chi^{-1}\right)^N. \tag{BTH5}
+ \{f:G\to\mathbb E:\ f(ng)=f(g),\ f(gu)=f(g),\
+       f(gs)=\chi(s)f(g)\},                             \tag{BTH5}
 \]
-It is a reducing slice of (BTH3), but it is not the whole binary
-cochain space.
+the \(N\)-fixed subspace of the principal series induced from
+\(T_sU\). It is a reducing slice of (BTH3), but it is not the whole
+binary cochain space.
 
 If \(m=2^\nu m_0\) with \(m_0\) odd, the odd-character blocks survive in
 the semisimple quotient and each carries a length-\(2^\nu\) radical
