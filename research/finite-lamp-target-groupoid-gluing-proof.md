@@ -112,7 +112,7 @@ when `S` grows before the tolerance is decreased.
 Refinement itself introduces no inconsistency.  The projection for a coarse
 character is the sum of its fine extensions, as proved in
 `moving-lamp-refinement-cocycle-has-diffuse-fibers`.  Once all windows have
-been refined to `S), Step 1 applies to the fine atom capacities.  What it
+been refined to `S`, Step 1 applies to the fine atom capacities.  What it
 assumes, and does not produce, is a finite groupoid containing all actor
 multiplication arrows on those atoms.
 
