@@ -5,6 +5,7 @@ kind: route
 title: Compute the Q8/BS(2,3) terminal mark and its unavoidable HS wall
 target: q8-bs23-terminal-mark-is-exactly-invisible-but-hyperlinear
 requires:
+  - fd-invisible-coequalizers-have-only-affine-tv-packets
   - amenable-edge-cycles-cannot-create-an-lcs-gap
 ---
 
