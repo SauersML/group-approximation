@@ -444,6 +444,16 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   tests therefore cannot choose the minimal endpoint grouping; the full
   multiplicity vector may still be regrouped globally through the
   representation ring or complete multiplication data.
+- **The full Plancherel vector repairs the repeated-irrep ambiguity.**
+  `plancherel-score-recovers-reducible-endpoint-grouping` minimizes the
+  weighted `L1` distance from the complete multiplicity vector
+  `(m_rho)` to a regular ray `k(dim(rho))`. The score is exactly the total
+  physical rank needing deletion/padding to obtain `k lambda_G`, and a
+  mixed-intertwiner property-`(T;FD)` argument makes it uniformly stable
+  under small Hilbert--Schmidt motion between exact quotient lifts.
+  Therefore full fusion data regroups the Plancherel atoms
+  dimension-freely once a quotient lift exists. It still does not produce
+  the moving multiplication table from the raw Iwahori pair.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
