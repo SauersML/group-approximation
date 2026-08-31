@@ -161,6 +161,24 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   constant under arbitrary odd weights. Thus exact mixed congruence pairs
   are uniformly repairable; the remaining question is vertex exactification
   of arbitrary approximate representations.
+- **The full remaining modulus is exactly congruence capture.**
+  \`dv-distance-is-defect-plus-congruence-capture\` defines
+  \(A_{\mathrm{cong}}\) as generalized-HS distance to the union of all exact
+  congruence vertex pairs, in all dimensions and at all mixed levels. The
+  unbounded mixed repair theorem and one fixed word-length estimate give
+  \[
+  A_{\mathrm{cong}}(\pi)\le D(\pi)\le
+  K_{\mathrm{cong}}\operatorname{def}(\pi)
+  +(1+2K_{\mathrm{cong}}L_B)A_{\mathrm{cong}}(\pi).
+  \]
+  Hence Question 1.4 is equivalent to
+  \(\operatorname{def}(\pi_n)\to0\Rightarrow
+  A_{\mathrm{cong}}(\pi_n)\to0\). This extends the positive restricted
+  result from exact congruence inputs to every sequence asymptotically near
+  the congruence locus, with no conductor bound. The established uniform
+  infinitesimal rigidity closes the local congruence cosystolic angle; the
+  only surviving enemy is global noncongruence basin escape.
+
 - **Full exact cubics do not select a bounded odd level.**
   `full-iwahori-relations-do-not-bound-unipotent-torsion` separates the two
   exact facts at the noncongruence frontier. BS covariance makes each finite
