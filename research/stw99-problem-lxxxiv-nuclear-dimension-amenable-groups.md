@@ -374,13 +374,14 @@ moreover, coherently inner finite stages imply
 `dim_nuc(B rtimes_alpha Z)<=1` by Haar-averaging the residual Fourier
 unitary into the stage commutant and polar-correcting it.  Conversely,
 `stw84-untwisted-coefficient-symbols-pay-covariance-gap` proves that every
-u.c.p. map from `C(T) tensor D` which returns a Fourier unitary `U` and a
-coefficient unitary `d` with respective errors `epsilon_U,epsilon_d`
-satisfies
+c.p.c. map from `C(T) tensor D` which returns a Fourier unitary `U` and a
+coefficient unitary `d` with respective errors `epsilon_U,epsilon_d` and
+unit defect `eta` satisfies
 
 ```text
 ||[U,d]||
- <=4 sqrt(epsilon_U epsilon_d)+2(epsilon_U+epsilon_d).
+ <=2 sqrt((eta+2epsilon_U)(eta+2epsilon_d))
+   +2(epsilon_U+epsilon_d).
 ```
 
 Thus a nonzero covariance commutator cannot be hidden by replacing the

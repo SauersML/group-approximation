@@ -19,46 +19,48 @@ x=Phi(a),           y=Phi(b).
 ```
 
 Thus `a` and `b` are commuting unitaries, while `x` and `y` are
-contractions.  Closeness to the target unitaries gives all four Schwarz
-defect bounds
+contractions.  Write `e=Phi(1)`.  Closeness to the target unitaries and
+`||e-1||=eta` give all four Schwarz defect bounds
 
 ```text
-||1-x^*x||, ||1-xx^*|| <=2 epsilon_U,
-||1-y^*y||, ||1-yy^*|| <=2 epsilon_d.                (UCP1)
+||e-x^*x||, ||e-xx^*|| <=eta+2 epsilon_U,
+||e-y^*y||, ||e-yy^*|| <=eta+2 epsilon_d.             (UCP1)
 ```
 
 For example,
 
 ```text
-||1-x^*x||
- <=||U^*(U-x)||+||(U^*-x^*)x||
- <=2 epsilon_U,                                      (UCP2)
+||e-x^*x||
+ <=||e-1||+||U^*(U-x)||+||(U^*-x^*)x||
+ <=eta+2 epsilon_U,                                  (UCP2)
 ```
 
 and the other estimates are identical.
 
-Choose a Stinespring representation `Phi(c)=V^*pi(c)V` and put
-`P=VV^*`.  Cauchy--Schwarz in the two off-range factors gives
+Choose a Stinespring representation `Phi(c)=V^*pi(c)V`; here `V` is a
+contraction and `P=VV^*<=1`.  Cauchy--Schwarz through `(1-P)^(1/2)` gives
 
 ```text
 ||Phi(ab)-xy||
  =||V^*pi(a)(1-P)pi(b)V||
  <=||V^*pi(a)(1-P)|| ||(1-P)pi(b)V||
- <=2 sqrt(epsilon_U epsilon_d).                       (UCP3)
+ <=sqrt((eta+2epsilon_U)(eta+2epsilon_d)).             (UCP3)
 ```
 
 Indeed, the squares of the last two norms are bounded respectively by
-`||1-xx^*||` and `||1-y^*y||`.  Applying the same computation to `ba`
+`||e-xx^*||` and `||e-y^*y||`.  Applying the same computation to `ba`
 gives
 
 ```text
-||Phi(ba)-yx||<=2 sqrt(epsilon_U epsilon_d).           (UCP4)
+||Phi(ba)-yx||
+ <=sqrt((eta+2epsilon_U)(eta+2epsilon_d)).             (UCP4)
 ```
 
 Since `ab=ba`, equations `(UCP3)--(UCP4)` imply
 
 ```text
-||[x,y]||<=4 sqrt(epsilon_U epsilon_d).                (UCP5)
+||[x,y]||
+ <=2 sqrt((eta+2epsilon_U)(eta+2epsilon_d)).           (UCP5)
 ```
 
 Finally,
@@ -72,8 +74,9 @@ Finally,
 Combining `(UCP5)` and `(UCP6)` proves `(UCG2)`, and setting the two
 errors equal proves `(UCG3)`.
 
-If `y=d` is unitary, equality holds in both Schwarz inequalities for `b`.
-Thus `b` belongs to the multiplicative domain of `Phi`.  Since `a` and `b`
+If `y=d` is unitary, Schwarz gives `1=d^*d<=Phi(1)<=1`, so `Phi` is unital,
+and equality holds in both Schwarz inequalities for `b`.  Thus `b` belongs
+to the multiplicative domain of `Phi`.  Since `a` and `b`
 commute,
 
 ```text

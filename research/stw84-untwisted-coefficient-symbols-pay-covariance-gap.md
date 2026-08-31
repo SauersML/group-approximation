@@ -17,7 +17,13 @@ unitary in `C(T)`, and let
 Phi:C(T) tensor D -> A
 ```
 
-be u.c.p.  If `v in D` and `U,d in A` are unitaries and
+be c.p.c.  If `v in D` and `U,d in A` are unitaries, put
+
+```text
+eta=||Phi(1)-1||.
+```
+
+If
 
 ```text
 ||Phi(z tensor 1)-U||<=epsilon_U,
@@ -28,10 +34,12 @@ then
 
 ```text
 ||[U,d]||
- <=4 sqrt(epsilon_U epsilon_d)+2(epsilon_U+epsilon_d). (UCG2)
+ <=2 sqrt((eta+2epsilon_U)(eta+2epsilon_d))
+   +2(epsilon_U+epsilon_d).                           (UCG2)
 ```
 
-In particular, if both errors are at most `epsilon`, then
+For a u.c.p. map `eta=0`.  In particular, if both errors are at most
+`epsilon`, then
 
 ```text
 epsilon >= ||[U,d]||/8.                              (UCG3)
@@ -49,10 +57,11 @@ holds.
 
 Consequently the coefficient seam in the weighted Fourier-row approach to
 STW Problem LXXXIV cannot be crossed by replacing the scalar
-star-homomorphism `C(T)->A` with u.c.p. evaluation on the untwisted algebra
-`C(T) tensor D`.  For a coefficient unitary with a fixed nonzero covariance
-commutator, every such evaluation has a fixed norm gap.  The correct symbol
-must encode the action—by a finite-stage crossed product as in
+star-homomorphism `C(T)->A` with an asymptotically unital c.p.c. evaluation
+on the untwisted algebra `C(T) tensor D`.  For a coefficient unitary with a
+fixed nonzero covariance commutator, every such evaluation has a fixed norm
+gap.  The correct symbol must encode the action—by a finite-stage crossed
+product as in
 `stw84-invariant-coefficient-stages-restore-two-fourier-colours`—or abandon
 simultaneous recovery of the Fourier and coefficient generators.
 
