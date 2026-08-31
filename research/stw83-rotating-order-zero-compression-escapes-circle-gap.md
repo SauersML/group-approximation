@@ -33,9 +33,21 @@ is ucp but is not order zero.  Thus the exact distance-one theorem
 replacing an order-zero map into the plateau corner with the compression of
 an arbitrary order-zero map into the full matrix-over-circle corner.
 
-For the canonical circle-by-circle Toeplitz test, this proves that
-coefficient variation on a plateau diagonal is compatible with a single
-cross-boundary order-zero colour to arbitrary accuracy.  It does not prove
+This escape is purely a compression statement.  Put `q=1-e`.  For the
+witnesses above and every `a in eM_m(C(T))e`,
+
+```text
+norm(pi(u)-a) >= norm(q pi(u)) = 1,                      (2)
+```
+
+because `pi(u)` is unitary and `q` is nonzero.  In particular, even after
+adding an arbitrary first-colour value supported in `eM_m(C(T))e`, the
+specific second-colour value `pi(u)` cannot approximate `z e` in the full
+matrix norm.  Its complementary leakage has norm exactly one.
+
+For the canonical circle-by-circle Toeplitz test, (1) proves only that
+coefficient variation on a plateau diagonal is visible in the compression of
+a single cross-boundary order-zero colour to arbitrary accuracy.  It does not prove
 the relative two-colour approximation required by
 [[stw83-plateau-buffer-recolouring-hinge]]: one must still approximate the
 entire prescribed Toeplitz finite set while maintaining the two global
