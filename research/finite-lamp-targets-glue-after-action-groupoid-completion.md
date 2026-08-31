@@ -124,6 +124,17 @@ every Connes-embeddable p.m.p. action admitting the extraction is sofic.
 For the Kun--Thom Bernoulli action this is exactly the desired contradiction,
 not an independent finite-dimensional Ulam theorem.
 
+[[canonical-regular-packets-leave-an-unbounded-cartan-reservoir]] rules out a
+natural attempt to manufacture the missing masa.  In every canonical
+regular-trace central sector, a finite nonabelian packet acts as a full fixed
+matrix factor tensored with an unbounded multiplicity algebra.  Even an ideal
+left/right packet leaves the external amplification, and no equivariant rule
+from the packet tuple can select a rank-one masa.  An exact Fourier
+multiplicity gauge has canonical limiting trace, collision tending to zero,
+and distance tending to `sqrt(2)` from every monomial after sublinear
+padding.  The packet can rigidify coarse finite-factor atoms, but refining
+them to rank one still requires growing actor-dependent data.
+
 ## Exact surviving direct-target seam
 
 The theorem above deliberately abandons conjugating the supplied unitary
