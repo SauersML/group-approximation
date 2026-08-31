@@ -16,7 +16,7 @@ prerequisite is
 H=ell^2(A) tensor K.
 ```
 
-Normalized matrix trace therefore factors as `tr_A tensor tau_K). In the
+Normalized matrix trace therefore factors as `tr_A tensor tau_K`. In the
 standard packet basis,
 
 ```text
@@ -66,7 +66,7 @@ factorizations supplies no compatible inclusions, endomorphism, or
 normalizing shift unitary. Thus the syntactic fixed point cannot imply a
 crossed product.
 
-The packet `X)-action also cannot serve as a lamp-site shift. On
+The packet `X`-action also cannot serve as a lamp-site shift. On
 `D=L(F_2^k)`, equation `(PHT10)` translates the spectrum. A nonzero
 translation moves the trivial character, whereas the dual of a group
 automorphism fixes it. The resulting finite crossed product is the full
@@ -84,7 +84,7 @@ and the conditional-expectation condition give
 Indeed, every `g!=h` cross term has a factor `v_(g^(-1)h)` and zero
 conditional expectation, while the diagonal terms are the displayed
 squares. Hence the integrated covariant representation preserves the
-faithful canonical trace and is `L^2)-isometric. It extends normally and
+faithful canonical trace and is `L^2`-isometric. It extends normally and
 injectively to the von Neumann crossed product, and its image is exactly
 `W^*(D,{v_g})`. This proves `(PHT12)` and shows that coherent action
 unitaries plus Fourier vanishing are precisely the additional data absent
