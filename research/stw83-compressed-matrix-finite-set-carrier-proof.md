@@ -95,9 +95,9 @@ This commutes with `R(t) tensor 1_k`, so (6) gives (2) exactly.
 
 Both legs of the factorization are star homomorphisms.  The only
 non-order-zero operation is the final compression by `p`.  Its complement
-contains the extra conjugated evaluation blocks from (6).  Suppressing those
-blocks while keeping an order-zero outgoing map would turn (7) into a
-one-colour approximation of `M_k(C(T))), contradicting its nuclear
-dimension one.  Hence the leakage is not a dispensable artifact of the
+contains the extra conjugated evaluation blocks from (6).  If those blocks
+could be suppressed by an order-zero outgoing map uniformly for every finite
+set and tolerance, (7) would give one-colour approximations of
+`M_k(C(T))`, contradicting its nuclear dimension one.  Hence the leakage is not a dispensable artifact of the
 proof; coordinating it with the Toeplitz buffer is precisely the remaining
 global recolouring problem.
