@@ -3,12 +3,8 @@ rg: 2
 id: finite-nuclear-quotient-does-not-complete-partial-toeplitz-data
 kind: claim
 title: Finite nuclear quotients do not complete arbitrary partial Toeplitz data
-requires:
-  - finite-positive-definite-window-is-a-relative-corner-selector
-  - operator-system-face-colimit-need-not-have-concrete-group-order
 distinct_from:
   exact-core-multiplicative-domain-does-not-descend-to-normal-quotient: that gives a ucp map on a free-group algebra whose minimal dilation detects a killed normal conjugate; this gives a quantitative nonextension gap for partially positive data even when the desired quotient algebra itself is finite-dimensional and nuclear.
-  z2-cross-operator-system-colimit-gap-citation: that imports the qualitative infinite-lattice C-star-envelope obstruction from arXiv:2603.29958; this gives an explicit two-by-two witness on the finite square and a normalized-HS lower bound.
   finite-positive-definite-window-is-a-relative-corner-selector: that proves a full positive-definite finite-group table produces the desired corner; this shows that facewise positivity on a generating pattern does not produce that full table.
 ---
 
