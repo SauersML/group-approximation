@@ -167,6 +167,14 @@ global, so the rowwise freedom cannot be used to change the BCS semantics.
   Uniform answers and the external coordinate symmetry therefore solve no
   cross-context equality.  A source-specific escape must use the full
   Pauli-PCP incidence through a genuinely nontransport chord.
+- **A proper noncentral multipath marginal now exists locally.**
+  `two-qutrit-controlled-bases-give-proper-multipath-marginal` replaces one
+  one-qutrit Heisenberg vertex by the order-`3^5` extraspecial packet. Three
+  controlled Pauli-basis atoms add to a proper rank-three projection which is
+  not any transported central finite type, and the resulting coarse/fine
+  contexts share it exactly. This crosses the local syntax gate but not the
+  load-bearing one: its support group is a finite amalgam and remains
+  virtually free, hyperlinear, and finite-dimensional-visible.
 - **Narrow live cell.**  The route
   `signed-hecke-balanced-holonomy-route` leaves only
   `signed-hecke-block-escaping-cycle-holonomy`: realize the residual chord
