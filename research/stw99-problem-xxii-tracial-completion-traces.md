@@ -4,7 +4,10 @@ id: stw99-problem-xxii-tracial-completion-traces
 kind: claim
 title: Every trace on a uniform tracial completion is uniformly 2-norm continuous (STW Problem XXII)
 root: true
+refuted_by:
+  - stw22-nuclear-type-i-counterexample-trace-problem
 artifacts:
+  - research/artifacts/stw22-trace-problem-counterexample-audit-2026-08-31.md
   - research/artifacts/nuclear-99-problems-ingestion-2026-08-27.md
   - research/artifacts/stw22-tracial-completion-fibre-gap-audit-2026-08-30.md
   - research/artifacts/stw22-low-spectrum-boundary-extension-audit-2026-08-30.md
@@ -52,10 +55,16 @@ Equivalently, does restriction identify
 T(A)=T(M)?
 ```
 
-The problem remains open in general, including for nuclear `A`.  The source
-records positive answers for finite-dimensional trace simplices, for
-completions with complemented partitions of unity, and in further Bauer
-cases.
+**REFUTED 2026-08-31.**  `stw22-nuclear-type-i-counterexample-trace-problem`
+constructs a separable, unital, nuclear, type I algebra `A` with compact Bauer
+trace simplex for which the inclusion above is proper.  The counterexample
+uses projective-space homogeneous blocks with vanishing normalized rank
+fraction but unbounded Chern-class commutator width; Cuntz--Pedersen separation
+then produces an additional trace on the uniform tracial completion.
+
+The positive results below remain valid on their stated regularity and
+finite-dimensional regimes; they are now recorded as sharp islands inside a
+false unrestricted statement.
 
 For trivial UHF fields the new spectral-band theorem crosses every finite
 selection threshold.  `stw22-finite-dimensional-trivial-field-traces`
@@ -138,9 +147,10 @@ trace theorem for every countably generated factorial bundle over every
 finite-dimensional compact Hausdorff base, with arbitrary matrix sizes,
 diffuse II1 isomorphism classes, and matrix/diffuse fibre variation.  This
 is a theorem separately for each finite `D`, not one modulus uniform in
-dimension.  The remaining unrestricted frontier includes
-infinite-covering-dimensional bases and bundles without countable
-generation.
+dimension.  This finite-dimensional positive theorem remains intact.  The
+unrestricted problem is now refuted by
+`stw22-nuclear-type-i-counterexample-trace-problem`, whose compact metrizable
+Bauer boundary contains projective spaces of unbounded dimension.
 
 The earlier hard-carrier-union obstruction remains sharp for that naive
 construction: infinitesimally split branches force a fixed transverse join.
@@ -259,8 +269,10 @@ multifunction lower semicontinuous; clopen selection then produces
 orthogonal copies inside the moving fibres themselves.  This kills the
 escaping quotient at every countable limit rank and covers arbitrary
 countable successor and limit Cantor--Bendixson height without transfinite
-descent.  The unresolved boundary is whether general factorial tracial
-bundles possess such a continuous common-ambient expectation presentation.
+descent.  This remains a useful sufficient presentation theorem, but it is
+not a route to an unrestricted positive result: the projective-bundle corona
+counterexample below shows that general factorial tracial completions can
+carry additional discontinuous traces.
 
 There is also a nonmetrizable positive class requiring no common ambient
 factor.  `stw22-finite-derived-set-factor-bundles-have-uniform-traces`
