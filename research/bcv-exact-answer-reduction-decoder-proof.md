@@ -44,12 +44,25 @@ is used.
 
 ## 2. The actual BCV samplers see all required lines
 
-Fix the complete first-coordinate data packet
-`v=(Player,w)` or `v=(Oracle,z)`. Write `P_(v,p)` for its Point
-PVM, `A_(v,L)` for an ALine PVM, and `R_(v,L)` for a DLine PVM.
-Figure 17 gives every packet type the relevant positive self-loop, so the
-following low-degree incidences occur while that first-coordinate packet is
-held fixed.
+Fix a complete first-coordinate data packet v=(Player,w), where Player
+is A, B, or Oracle. Write `P_(v,p)` for its Point PVM,
+`A_(v,L)` for an ALine PVM, and `R_(v,L)` for a DLine PVM.
+The fixed-packet support assertion follows from the sampler itself.
+Definition 5.79 says that the type graph is the tensor product of
+A--Oracle--B and ALine--Point--DLine, both including every self-loop
+(page 173, lines 18751--18754), and defines
+
+```text
+s_(Player,Space)(z,(u,s,r))
+    =(s_Player(z),s_Space(u,s,r)).                       (EAD3a)
+```
+
+It then states that the two component edges are sampled independently
+(lines 18792--18800). On a Player self-loop, Definition 4.38 feeds the same
+seed z to the same map at both ends, so both outputs are the same packet w.
+Every packet that is a game vertex has a nonempty finite seed fibre and
+therefore positive loop mass. Independently pairing that loop with any
+supported low-degree incidence holds v fixed while sampling that incidence.
 
 The Point sampler is BCV equation `(178)`,
 
@@ -78,11 +91,14 @@ s_DLine(u,s,r)
  =(null_(pi_(chi(s)-1)(r))(u),s,pi_(chi(s)-1)(r)).       (EAD5)
 ```
 
-At `s=0`, `chi(s)=1` and `pi_0(r)=r`. Given distinct points
-`p,p'`, choose `r=p'-p` and `u=p`. Equation `(EAD5)` then samples
-the affine line through both points and both of its incidences. All seed
-tuples have positive mass. This is the BCV DLine support statement; it is
-not imported from the analogous JNVWY test.
+Equations `(178)--(181)` quantify over every `s in F_q`, so
+`s=0` is in the sampler domain. At that value `chi(s)=1`. The paper
+defines `pi_i` by zeroing the first i coordinates (lines 18468--18473),
+hence `pi_0(r)=r`. Given distinct points `p,p'`, choose
+`r=p'-p` and `u=p`. Equation `(EAD5)` then samples a copy of the
+affine line through both points and both incidences. Uniform finite seeds
+give it positive mass. This is the BCV DLine support statement; it is not
+imported from the analogous JNVWY test.
 
 Apply `(EAD2)` to each sampled incidence. For `p in L`,
 
@@ -192,17 +208,30 @@ P_(A,x,p)=P_(Oracle,z,p)[Restrict_A],
 P_(B,y,p)=P_(Oracle,z,p)[Restrict_B].                    (EAD13)
 ```
 
-Evaluation on all points separates individual-degree-nine polynomials.
-Moreover `H` is the unique joint refinement of those Point PVMs.
-Therefore `(EAD13)` glues globally:
+Every point identity in `(EAD13)` has positive support: pair the
+A--Oracle or B--Oracle first-coordinate edge with the Point self-loop and
+use `(178)` for the desired p. Evaluation on all points separates
+individual-degree-nine polynomials. More explicitly, uniqueness of the
+joint refinement gives, for every player polynomial tuple h,
+
+```text
+H_(A,x)^h
+ = product_p P_(A,x,p)^(h(p))
+ = sum_(Pi: Restrict_A(Pi)(p)=h(p) for every p)
+       H_(Oracle,z)^Pi
+ = sum_(Pi: Restrict_A(Pi)=h) H_(Oracle,z)^Pi,           (EAD14)
+```
+
+and analogously for B. The last equality uses q>9, so two allowed reduced
+polynomials agreeing at every point are equal. Thus, as PVM identities,
 
 ```text
 H_(A,x)=H_(Oracle,z)[Restrict_A],
-H_(B,y)=H_(Oracle,z)[Restrict_B].                        (EAD14)
+H_(B,y)=H_(Oracle,z)[Restrict_B].                        (EAD15)
 ```
 
 Coarse-grain the three PVMs by `Res`. Equation `(EAD12)` says every
-nonzero Oracle atom is source-accepted, and `(EAD14)` says its A and B
+nonzero Oracle atom is source-accepted, and `(EAD15)` says its A and B
 marginals are exactly the isolated PVMs. These are precisely the
 measurements of a perfect strategy for
 `Oracle(DoubleCover(V_n))`. Restricting to isolated vertices, as in
@@ -217,13 +246,18 @@ exact identification:
 - Remark 3.55 supplies it for a bipartite source by choosing opposite sheets
   on the two sides.
 
-The latter applies to the real compression wrapper. Theorem 4.36 feeds
-Answer Reduction with `DeType(QueRed(...))`. In Definition 4.40 its
-genuine A and B questions occupy disjoint copies; the only overlapping zero
-anchor has answer length zero and its incident tests autoaccept. Select the
-plus sheet on the A copy and the minus sheet on the B copy. Fact 5.41
-undoes purification value-preservingly, and Fact 4.48 removes padding by
-restriction.
+The bipartite alternative applies to the real Answer Reduction input.
+Theorem 4.36 produces `H=DeType(Q)` with `Q=QueRed(...)`. In
+Definition 4.40 the genuine A and B questions of H occupy disjoint copies;
+the only overlapping zero anchor has answer length zero and its incident
+tests autoaccept. After inverse purification and padding, select the plus
+sheet on the A copy and the minus sheet on the B copy, assigning the trivial
+measurement on anchors and ignored dummies. This recovers a perfect H while
+retaining every non-anchor generator. Corollary 4.42 at error zero then
+restricts H to `DoubleCover(Q)`; because the typed graph of Q has all
+self-loops (Figure 14), Corollary 4.43/Claim 3.54 synchronizes the two
+copies and returns Q. Fact 5.41 and Fact 4.48 are the exact
+value-preserving inverse purification and unpadding operations.
 
 Without either hypothesis, the loopless odd-cycle inequality game shows
 that recovery of `V_n` is false: binary edge perfection around an odd
@@ -235,12 +269,14 @@ cover is an even cycle and is classically perfect.
 
 Assume now that the target model is ZPC. Let `q=2^t`, and choose an
 `F_2`-linear functional `lambda:F_q->F_2` with `lambda(1)=1`.
-For a decoded source coordinate `xi`, Corollary 5.72's restriction map
-evaluates the corresponding polynomial at its Boolean-subcube point
-`p_xi`:
+Definition 5.17 defines `Res(g)` as literal restriction to the
+Boolean subcube. Corollary 5.72 and the assignment condition of Definition
+5.25 ensure that the supported g-polynomials take values in
+`F_2={0,1}` there. Hence, for a decoded source coordinate `xi` and
+its Boolean-subcube point `p_xi`,
 
 ```text
-Res(g)_xi=g(p_xi) in {0,1} subset F_q.                  (EAD15)
+Res(g)_xi=g(p_xi) in {0,1} subset F_q.                  (EAD17)
 ```
 
 The signed observable for `lambda(g(p_xi))` is a product of the target
@@ -249,12 +285,15 @@ of signed permutation matrices remain signed permutations. All such Point
 observables at a fixed packet commute by `(EAD6)--(EAD7)`, so their joint
 spectral PVM is exactly the decoded answer PVM.
 
-The typing is literal. If the source coordinate is readable, `(EAD15)`
+The typing is literal. Table 3 places every field bit of an R-labelled
+Point value in the readable answer and every field bit of an L-labelled
+Point value in the linear answer. If the source coordinate is readable,
+`(EAD16)`
 uses only the field bits of its `R`-labelled polynomial component; Table 3
 marks those target Point bits readable, hence diagonal. If the source
 coordinate is structural unreadable, it uses only the corresponding
 `L`-labelled target generators. Finally, for a source edge `xy`, choose
-its Oracle packet `z`. Equation `(EAD14)` makes the A and B decoded
+its Oracle packet `z`. Equation `(EAD15)` makes the A and B decoded
 PVMs coarse-grainings of the single Oracle PVM, so all source answer
 variables commute across that edge. Thus the decoded strategy is ZPC.
 
@@ -265,7 +304,7 @@ a source unreadable word `w` and a decoded readable element `d` have
 already been represented, then
 
 ```text
-w d w^*                                                    (EAD16)
+w d w^*                                                    (EAD17)
 ```
 
 is the same conjugation by the corresponding target unreadable word.
@@ -273,11 +312,11 @@ Induction on word length and closure under Boolean operations gives the
 literal inclusion
 
 ```text
-D_infinity(Dec(S)) subseteq D_infinity(S).               (EAD17)
+D_infinity(Dec(S)) subseteq D_infinity(S).               (EAD18)
 ```
 
 Sheet selection, isolated-vertex restriction, inverse purification, and
-unpadding only discard measurements, so they preserve `(EAD17)`.
+unpadding only discard measurements, so they preserve `(EAD18)`.
 
 This proof is for an attained perfect faithful-tracial model. A sequence of
 finite-dimensional strategies with errors tending to zero may first be
