@@ -71,7 +71,7 @@ row and 2 in the other row, namely normalized traces `1/72` and
 `1/144`.  Its two rank-eight branches have exact full-`C` source and
 target typing.
 
-Consequently full target, trace `1/18), and a uniform singular floor
+Consequently full target, trace `1/18`, and a uniform singular floor
 are analytically compatible.  They become nontrivial only if a mixed
 raw return relation selects those two rank-eight source subspaces from
 the already named Lin occurrence.  A commuting raw packet cannot do so,
