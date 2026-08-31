@@ -54,8 +54,7 @@ agree.  This fixes the common sign ambiguity: changing the commutator
 convention replaces `theta` by `-theta`, which gives an isomorphic
 rotation algebra but changes formulas if it is left unstated.
 
-## 2. The rational boundary is finite-dimensional only after taking an
-## irreducible fibre
+## 2. The rational boundary is finite-dimensional only after taking an irreducible fibre
 
 Let `theta=p/q` in lowest terms and set
 `omega=exp(2 pi i p/q)`.  In an irreducible representation,
