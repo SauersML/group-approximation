@@ -10,7 +10,14 @@ requires:
 ---
 
 Let \(P_D\) be the Reynolds projection onto \(D\) and let
-\(S=L_{X_0}R_X\) on the full Hilbert--Schmidt space. The transfer is the
+\(S=L_{X_0}R_X\) on the full Hilbert--Schmidt space. Since \(S=S^*=S^{-1}\),
+the operator \(S P_D S\) is the projection onto \(S D\), and
+
+\[
+(P_DSP_D)^*(P_DSP_D)=P_D(SP_DS)P_D.
+\]
+
+This proves the principal-angle formula (HMI0). The transfer is the
 restriction of \(P_DSP_D\). Therefore
 
 \[
