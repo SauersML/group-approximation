@@ -9,8 +9,8 @@ requires:
   - trace-extending-bcs-to-lcs-maps-are-already-terminal
 ---
 
-Let `alpha:Gamma->Aut(A_B)` preserve `tau). On the algebraic crossed
-product write its monomials as `a u_g). The reduced conditional
+Let `alpha:Gamma->Aut(A_B)` preserve `tau`. On the algebraic crossed
+product write its monomials as `a u_g`. The reduced conditional
 expectation is
 
 ```text
@@ -21,7 +21,7 @@ It is unital, completely positive, and faithful. The canonical copy of
 `A_B` in the reduced crossed product is unital and injective.
 
 Define `tau_r=tau after E`. For two monomials, both cyclic orders have
-zero `tau_r)-value unless `h=g^(-1)`. In that case,
+zero `tau_r`-value unless `h=g^(-1)`. In that case,
 
 ```text
 tau_r((a u_g)(b u_(g^(-1))))
@@ -31,19 +31,19 @@ tau_r((a u_g)(b u_(g^(-1))))
  =tau_r((b u_(g^(-1)))(a u_g)).                         (CTR2)
 ```
 
-The middle equalities use traciality and `alpha)-invariance. Density
+The middle equalities use traciality and `alpha`-invariance. Density
 proves that `tau_r` is a tracial state, and (CTR1) gives
 
 ```text
 tau_r(i(a))=tau(a).                                     (CTR3)
 ```
 
-If `tau` is faithful and `tau_r(x* x)=0`, faithfulness of `tau)
-gives `E(x* x)=0), and faithfulness of `E` gives `x=0`. Thus
+If `tau` is faithful and `tau_r(x* x)=0`, faithfulness of `tau`
+gives `E(x* x)=0`, and faithfulness of `E` gives `x=0`. Thus
 `tau_r` is faithful.
 
 Connes embeddability of a trace passes to its restriction along a unital
-star-homomorphism. Therefore CE of `tau_r` would imply CE of `tau),
+star-homomorphism. Therefore CE of `tau_r` would imply CE of `tau`,
 contrary to the hypothesis. Likewise, if `A_B` has no unital
 star-homomorphism to `R^U`, a map `B_r->R^U` would contradict this
 after composition with `i`.
@@ -124,7 +124,7 @@ D/N_sigma  is isomorphic to  B_u/N_(tau_u)
 
 Thus a full crossed-product quotient can discard only trace-null
 universal relations; its represented trace algebra is unchanged. This
-also explains the precise boundary of the property-`(T)) factor and
+also explains the precise boundary of the property-`(T)` factor and
 equivalence-relation envelope results: an embedding into a rigid tracial
 algebra supplies an ambient trace, but it does not present that faithful
 GNS algebra as a finite LCS solution algebra.
