@@ -69,6 +69,27 @@ tau_e(Theta_e(x))
 It is therefore trace preserving and, because the canonical factor trace is
 faithful, injective.
 
+If `M=product_omega M_(d_n)`, lift `e` to self-adjoint contractions and
+cut their spectra at `1/2`.  The ultraproduct projection relation makes the
+resulting projections `e_n` represent `e`.  With
+`r_n=rank(e_n)`,
+
+~~~text
+r_n/d_n -> tau(e)>0.                                    (BCP5b)
+~~~
+
+The coordinate identifications
+`e_n M_(d_n)e_n congruent_to M_(r_n)` induce
+
+~~~text
+(eMe,tau_e) congruent_to product_omega (M_(r_n),tr_(r_n)). (BCP5c)
+~~~
+
+Indeed `tr_(r_n)(e_n x_n e_n)=tr_(d_n)(e_nx_ne_n)/(r_n/d_n)`,
+and the denominator converges to `tau(e)`.  Hence the corner is again a
+tracial matrix ultraproduct, with dimensions tending to infinity, and the
+argument has not changed approximation class.
+
 This is the point at which factoriality matters.  For a nonfactor, a
 relative-commutant corner can select a different central trace.  Here there
 is only one normalized trace to select.
