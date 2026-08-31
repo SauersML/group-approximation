@@ -11,6 +11,7 @@ import GroupApproximation.GGT.HullSCRelatorFamily
 import GroupApproximation.GGT.HullSCRelatorWord
 import GroupApproximation.GGT.HullSCConeOffSpace
 import GroupApproximation.GGT.HullSCRelatorSeparation2Published
+import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCUnionGeometryAssembly
 import GroupApproximation.GGT.TreeWPDAxis
@@ -77,28 +78,18 @@ theorem, shared by the two lanes that stand on it.
   (`HullSCCommonQuotientCorrected.not_freeProductStatement`): it omits the
   non-elementarity of `H₀`, which `HullCommonQuotientStatement` supplies twice
   over.
-* `hullHypEmbeddedConeOff`, `dgoTheorem53`, `hullConeOff`,
-  `hullSection6Relator` — Hull's §5 and §6, with
-  Dahmani–Guirardel–Osin's Theorem 5.3 separated out.  The one-pair instance
-  of Corollary 4.27 used after `t` is known is now proved directly.
-  **The subgroup and cone-off clauses are recorded
-  over a pair of hyperbolically embedded subgroups** rather than over one: over
-  one, Hull's relator has all of its `H`-letters in a single component of
-  `Γ(G, X ⊔ H)` and is therefore not quasi-geodesic
-  (`HullSC.not_quasiGeodesic_relatorWord`), which his §5 requires it to be.  The
-  single-subgroup forms are superseded, and the §6 row's single-subgroup form is
-  refuted outright; the row's docstring carries both readings.
-  **`hullTheorem71` is not one of the debts any longer**, and neither is
-  `hullTheorem51`: the first is proved through `hullOneStep`
-  (`HullSC.hullOneStep_of_published₂`) and
-  `HullSC.hullBallFormNG_of_oneStep`,
-  the second through `HullSC.hullQuotient₂Published_of_fillingData`.  What the reduction
-  contributes is the
-  whole of the manuscript's own bookkeeping — the induction on `m`, the two
-  clauses that mention the targets `t₁, …, t_m`, and the arithmetic of the
-  kernel (`HullSC.ker_comp_eq`), so that the manuscript's separate remark on
-  Hull's construction is a citation only at `m = 1`, where it reads `ker q` is
-  the normal closure of the single relator `t⁻¹u`.
+* `hullLemma44Canonical`, `hullLemma49KernelPower`,
+  `hullSection6Relator` — the source-faithful §5 and §6 leaves.  Lemma 4.4 is
+  recorded only as injectivity of the natural quotient on the requested ball
+  and preservation of the simultaneously selected peripheral family.  Lemma
+  4.9 is recorded as its quotient-free kernel-power correction, exactly
+  equivalent to order-preserving finite-order lifts.  Neither lemma is
+  attributed a cone-off, rotating family, apex separation, or DGO conclusion.
+  `HullSC.torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49`
+  assembles their literal quotient `G ⧸ normalClosure {w}`.  The remaining
+  interface work is to state the §6 relator over the selected auxiliary index
+  family; the historical Bool-pair one-step seam is deliberately not presented
+  as a consequence of these lemmas.
 * `hullTheorem71`, `osinLemma71` — the two fields of
   `HullCorrectedInputs.HullInputsCorrected`, both of them now proved.  They
   replace the four fields of
@@ -211,55 +202,47 @@ rotation subgroup nor loxodromic. -/
 theorem dgoTheorem53 : HullSC.DGOQuotientStatementGeodesic.{0, 0} := by
   exact DGOWindmill.dgoQuotientStatementGeodesic
 
-/-- **DEBT (literature).**  Hull, §5, with Dahmani–Guirardel–Osin's Theorem 5.3
-taken out of it: for every radius and every prescribed family of suitable
-subgroups there are parameters `ε, μ, ρ` such that every published `C₁` family
-gives a separated very rotating family on the cone-off, with separation above
-`2R` and with the rotations generating the normal closure of the relator; and
-every quotient by that normal closure carries a Hull alphabet containing the
-image of `A` in which the images of the prescribed subgroups are suitable.
-
-The premise is not the repository's weaker historical
-`HullSC.RelWord.IsSmallCancellation`.  Issue #179 records that Hull's Lemmas
-4.4 and 4.9 additionally use quasi-geodesicity, published two-sided piece
-control, strong boundedness, and the `ε`-primepiece estimate.  The live target
-therefore consumes `HullSC.RelWord.IsLemma49Input`, whose parent structure
-contains the Lemma 4.4 fields and whose final field is precisely the
-prime-piece clause used for no-new-torsion.
-
-The space carrying the family is abstract, and it has to be:
-`HullSC.rot_eq_bot_of_cayley` proves that a rotating family on a Cayley graph of
-`G` has trivial rotation subgroups, since the translation action is free, so
-Theorem 5.3 applied on `Γ(G, A ⊔ H)` would produce only the identity.
-
-**Over a pair**, for the reason recorded at `hullHypEmbeddedConeOff`: the
-single-subgroup form cannot carry Hull's relator, which is not quasi-geodesic
-when all of its `H`-letters lie in one component.  The cone-off is asked for
-along a family, and the space is asked to be geodesic — the repaired form of
-Theorem 5.3 needs it, and `HullSC.ConeOffData₂` carries it. -/
-theorem hullConeOff : HullSC.HullConeOffStatement₂Published.{0} := by
+/-- **DEBT (literature).**  Hull, Lemma 4.4, after the simultaneous auxiliary
+peripheral family has been selected.  This is the exact natural-quotient
+conclusion: injectivity on the requested Cayley ball and hyperbolic embedding
+of every mapped peripheral.  No rotating-space geometry is attributed to the
+lemma. -/
+theorem hullLemma44Canonical :
+    HullSC.HullLemma44CanonicalQuotientStatement.{0} := by
   sorry
 
-/-- Hull's §5 in the form Theorem 5.1 consumes it, from the cone-off above.  The
-rotating family is not among the data: its apices are the orbits of the cone
-points, its rotations are the conjugates of the cyclic groups on the relator,
-and `HullSC.isRotatingFamily_apexRotFamily` with
-`HullSC.rotationNormalClosure_apexRotFamily` proves the three axioms and the
-identification of the kernel with the normal closure of the relator. -/
-theorem hullFillingData : HullSC.HullFillingDataStatement₂Published.{0} :=
-  HullSC.hullFillingDataStatement₂Published_of_coneOff hullConeOff
+/-- **DEBT (literature).**  Hull, Lemma 4.9, in its quotient-free form.  The
+kernel-power correction is precisely the diagram property needed to lift a
+finite-order quotient element with its order preserved. -/
+theorem hullLemma49KernelPower :
+    HullSC.HullLemma49KernelPowerStatement.{0, 0} := by
+  sorry
 
-/-- **Hull, Theorem 5.1**, proved rather than cited: the two debts above give
-it through `HullSC.hullQuotient₂Published_of_fillingData`, which supplies six of the ten
-clauses of the filling quotient from Dahmani–Guirardel–Osin's theorem — the
-quotient group and map, surjectivity and the kernel — and two more from the
-family Hull builds: injectivity on the `R`-ball of `Γ(G,A)` through
-`HullSC.RotatingDataGeo₂.injOn_cayleyBall`, and the lifting of finite order.
-Those two are with the family and not with the quotient because neither is a
-conclusion of Theorem 5.3; the second was refuted in that position (issue #50).
-Only the three alphabet clauses are carried by `hullFillingData`. -/
-theorem hullTheorem51 : HullSC.HullQuotientStatement₂Published.{0} :=
-  HullSC.hullQuotient₂Published_of_fillingData dgoTheorem53 hullFillingData
+/-- **DEBT (literature).**  Hull, Corollary 5.7, in the printed finite-family
+form needed to select all cyclic peripherals before applying Lemma 4.4 once.
+Theorem 3.16 supplies the hyperbolic embedding of the resulting simultaneous
+family unconditionally. -/
+theorem hullYiSuitableFiniteFamily : HullSC.YiSuitableFiniteFamily.{0} := by
+  sorry
+
+/-- Hull's torsion-free canonical filling quotient, assembled directly from
+Lemmas 4.4 and 4.9.  The quotient is literally the quotient by the normal
+closure of the chosen relator; Lemma 5.8 supplies its alphabet and suitability
+clauses. -/
+theorem hullCanonicalQuotient :
+    HullSC.TorsionFreeHullCanonicalQuotientStatement.{0} :=
+  HullSC.torsionFreeHullCanonicalQuotientStatement_of_lemma44_of_lemma49
+    (HullSC.simultaneousAuxiliaryPeripheralSelection_of_finiteYi_theorem316
+      hullYiSuitableFiniteFamily)
+    hullLemma44Canonical hullLemma49KernelPower
+
+/-- **Temporary exact interface debt.**  The historical Bool-pair quotient
+statement is still consumed by the existing one-step reduction below.  The
+canonical quotient above uses the full selected auxiliary index family, so it
+cannot be projected to this statement without restating §6 over that same
+family. -/
+theorem hullTheorem51 : HullSC.HullQuotientStatement₂Published.{0} := by
+  sorry
 
 /-- **DEBT (literature).**  Hull, §6 over a pair: the relator can be chosen.
 For any parameters `ε, μ, ρ` there is `u ∈ N` and a published `C₁` family over

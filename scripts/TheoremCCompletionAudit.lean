@@ -24,7 +24,9 @@ manuscript tree.
 -/
 
 #audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullHypEmbeddedConeOff
-#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullConeOff
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullYiSuitableFiniteFamily
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullLemma44Canonical
+#audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullLemma49KernelPower
 #audit_closed_axioms GroupApproximation.Manuscript.NonMF.TorsionFree.hullSection6Relator
 #audit_closed_axioms GroupApproximation.Manuscript.NonMF.TheoremC.kotowskiOllivier
 #audit_closed_axioms GroupApproximation.Manuscript.NonMF.TheoremC.smallCancellationQuotient
