@@ -276,7 +276,7 @@ Boolean subcube. Corollary 5.72 and the assignment condition of Definition
 its Boolean-subcube point `p_xi`,
 
 ```text
-Res(g)_xi=g(p_xi) in {0,1} subset F_q.                  (EAD17)
+Res(g)_xi=g(p_xi) in {0,1} subset F_q.                  (EAD16)
 ```
 
 The signed observable for `lambda(g(p_xi))` is a product of the target
