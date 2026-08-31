@@ -72,7 +72,7 @@ Direct sums scale the three original row defects by \(\lambda\).  For
 \(q\in Q\),
 \[
  \|[A^+,\rho(q)]\|_{2,D}
- \le \lambda\delta+2\epsilon,                              \tag{8}
+ \le \lambda\delta_1+2\epsilon,                            \tag{8}
 \]
 and the same estimate holds with \(B^+\).  Indeed replacing one unitary in
 a commutator changes its normalized Hilbert--Schmidt norm by at most twice
@@ -84,8 +84,8 @@ For a double-coset representative, write
 \]
 The elementary estimates
 \[
- \|\rho(r_\ell)D_0\rho(r_\ell)^*
-       -u_{r_\ell}^+D_0(u_{r_\ell}^+)^*\|_{2,D}
+ \|\rho(r_\ell)D_0^+\rho(r_\ell)^*
+       -u_{r_\ell}^+D_0^+(u_{r_\ell}^+)^*\|_{2,D}
  \le2\epsilon                                             \tag{9}
 \]
 and
@@ -95,7 +95,7 @@ and
 give
 \[
  \|F_{C^+}(\rho(r_\ell),D_0^+)\|_{2,D}
- \le\lambda\delta+4\epsilon.                               \tag{11}
+ \le\lambda\delta_2+4\epsilon.                             \tag{11}
 \]
 Keep the three row errors separate.  The proof of the exact-actor collapse
 gives the asymmetric estimate
