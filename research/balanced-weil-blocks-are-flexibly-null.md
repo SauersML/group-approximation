@@ -29,7 +29,9 @@ E(Phi) = sum_j (
 epsilon(Phi)^2 = E(Phi)/N.                              (BWF2)
 ```
 
-Then
+The fixed square-free/Tietze coordinate changes compare `epsilon(Phi)` with
+the original Iwahori local defect by universal constants, independent of all
+primes and multiplicities.  Then
 
 ```text
 K/N <= (23/2) epsilon(Phi)^2.                           (BWF3)
