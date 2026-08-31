@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-matched-prefix-router-flow-firewall-proof
-kind: proof
+kind: route
 title: Factor every matched prefix router through one scalar potential and solve all line flows uniformly
 target: qutrit-matched-prefix-router-family-is-one-finite-hnn-chart
 requires:

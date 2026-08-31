@@ -1,12 +1,12 @@
 ---
 rg: 2
-id: boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse
+id: boolean-atom-overlap-spatializes-arrows-corners-stay-diffuse
 kind: claim
 title: Boolean overlap spatializes each actor arrow, but every full corner keeps diffuse fibers
 distinct_from:
   moving-lamp-refinement-cocycle-has-diffuse-fibers: that telescopes covariance to each refined atom and exhibits a supplied-normalizer fiber cocycle; this uses the joint overlap coupling of two whole atom PVMs to obtain a sum-of-squares block-spatialization bound.
   finite-lamp-targets-glue-after-action-groupoid-completion: that glues integer transports after a finite action groupoid has been supplied; this produces one coarse block transport for each actor arrow but shows why the positive-rank blocks do not supply a common point carrier.
-  collision-and-phase-free-cartan-observables-force-joint-lamp-targets: that assumes a common rank-one masa and then extracts point permutations; this proves that canonical hyperlinear models yield only coarse Boolean atoms and that no positive-density full corner can make those atoms rank one.
+  phase-free-cartan-observables-force-joint-lamp-targets: that assumes a common rank-one masa and then extracts point permutations; this proves that canonical hyperlinear models yield only coarse Boolean atoms and that no positive-density full corner can make those atoms rank one.
   elementary-abelian-regular-normalizers-have-diffuse-fibers: that gives an exact Fourier-fiber normalizer far from monomial on one invariant regular window; this proves the overlap estimate forcing coarse block transport in arbitrary models and shows the same fiber size diverges in every full corner.
   coset-wreath-wall-survives-full-commutant-corners: that preserves the canonical balanced wall and trace under full corners; this applies that trace identity to every finite Boolean atom and derives an unavoidable diffuse-multiplicity scale.
 artifacts:

@@ -6,7 +6,7 @@ title: Amenable-edge cycles cannot create an LCS gap
 artifacts:
   - research/amenable-edge-cycle-hyperlinearity-proof.md
 distinct_from:
-  word-level-seed-wirings-preserve-marked-matricial-approximability: that pulls approximations through a marked word map; this is a pointwise closure theorem for source-dependent Bass-Serre networks with no such map.
+  word-level-seed-wirings-preserve-matricial-approximability: that pulls approximations through a marked word map; this is a pointwise closure theorem for source-dependent Bass-Serre networks with no such map.
   conjugacy-actions-cannot-prune-the-odd-tv-spectrum: that explicitly induces finite-dimensional odd sectors for semidirect products; this covers arbitrary graph cycles and only concludes quantum-approximability.
   canonical-sign-corners-maximally-mix-the-tv-odd-spectrum: that computes the canonical trace on one finite torsor subgroup; this rules out a whole group-theoretic architecture independently of the chosen trace.
 ---

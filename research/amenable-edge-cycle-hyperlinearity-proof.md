@@ -3,6 +3,7 @@ rg: 2
 id: amenable-edge-cycle-hyperlinearity-proof
 kind: route
 title: Close source-dependent Bass-Serre networks under hyperlinearity
+requires: []
 target: amenable-edge-cycles-cannot-create-an-lcs-gap
 ---
 

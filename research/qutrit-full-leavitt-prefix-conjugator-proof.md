@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-full-leavitt-prefix-conjugator-proof
-kind: proof
+kind: route
 title: Build the qutrit phase-star conjugator from rectangular prefix equivalences
 target: qutrit-full-leavitt-prefix-conjugator-realizes-phase-star
 requires:

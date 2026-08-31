@@ -3,7 +3,7 @@ rg: 2
 id: boolean-atom-overlap-coupling-and-diffuse-corner-proof
 kind: route
 title: Couple Boolean atoms, perform block Procrustes matching, and count full-corner multiplicity
-target: boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse
+target: boolean-atom-overlap-spatializes-arrows-corners-stay-diffuse
 requires:
   - coset-wreath-wall-survives-full-commutant-corners
   - moving-lamp-refinement-cocycle-has-diffuse-fibers

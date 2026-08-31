@@ -4,7 +4,7 @@ id: dyadic-iwahori-development-is-unimodular-clique
 kind: claim
 title: The Iwahori development is the dyadic unimodular-row clique complex
 distinct_from:
-  binary-iwahori-h1-vanishes-at-odd-levels: that obtains binary cohomology vanishing from the relative development and monodromy; this identifies the development directly with Hutchinson's clique complex and audits every finite triangle.
+  binary-iwahori-h1-vanishes-at-odd-levels: that obtains binary cohomology vanishing from a relative presentation and monodromy; this identifies the development directly with Hutchinson's clique complex and audits every finite triangle.
   proper-torus-diagonal-code-is-incomplete-cover-curl: that builds the finite cellular curl from cosets; this proves that its two face orbits exhaust the full refined clique two-skeleton, with the exact Mersenne multiplicity.
 ---
 
