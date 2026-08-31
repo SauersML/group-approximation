@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: superperfect-lift-and-abelian-exponent-bound-proof
-kind: proof
+kind: route
 title: Lift every projective sector and bound its residual scalar by relator exponents
 target: projective-jacobson-multipliers-have-a-linear-head-bound
 requires:

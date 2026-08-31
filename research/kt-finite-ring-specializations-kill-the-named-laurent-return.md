@@ -6,7 +6,7 @@ title: Every finite-ring Kun--Thom specialization kills the named Laurent return
 artifacts:
   - research/finite-unit-inverses-collapse-the-kt-positive-core-proof.md
 distinct_from:
-  canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants: That constructs one regular-character congruence tower and proves scalar commutants after a one-line compression; this applies to every finite target ring before choosing a representation and identifies why the Laurent return disappears algebraically.
+  kt-steinberg-deleted-line-embeddings-have-scalar-commutants: That constructs one regular-character congruence tower and proves scalar commutants after a one-line compression; this applies to every finite target ring before choosing a representation and identifies why the Laurent return disappears algebraically.
   kt-cyclic-parity-is-an-exact-quasiregular-return-correspondence: That proves the return has a maximal exact Fourier wall in the infinite tracial wreath; this proves no finite-ring specialization can retain it.
 ---
 

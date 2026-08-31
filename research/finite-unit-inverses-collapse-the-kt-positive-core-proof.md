@@ -5,8 +5,8 @@ kind: route
 title: Collapse Laurent inverses in every finite target ring
 target: kt-finite-ring-specializations-kill-the-named-laurent-return
 requires:
-  - canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants
-  - kt-minimal-cyclic-holonomy-and-explicit-laurent-return-proof
+  - kt-steinberg-deleted-line-embeddings-have-scalar-commutants
+  - kt-order-three-average-does-not-kill-the-pointed-martingale-wall
 ---
 
 Let `theta:R->T` be a unital ring homomorphism and suppose `T` is

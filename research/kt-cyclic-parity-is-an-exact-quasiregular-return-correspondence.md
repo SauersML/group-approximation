@@ -7,7 +7,7 @@ artifacts:
   - research/kt-parity-fourier-orbit-and-conditional-expectation-proof.md
 distinct_from:
   kt-order-three-average-does-not-kill-the-pointed-martingale-wall: That proves a fixed commutator and a lower bound on distance from the backward range; this identifies the entire orbit correspondence and computes the conditional expectation and distance exactly.
-  kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall: That embeds an arbitrary pre-existing multiplicity vector behind a regular character; this identifies the precise quasi-regular pointed representation which such a vector must realize.
+  kt-regular-mask-removes-trace-faithfulness-from-commutant-wall: That embeds an arbitrary pre-existing multiplicity vector behind a regular character; this identifies the precise quasi-regular pointed representation which such a vector must realize.
 ---
 
 **ESTABLISHED EXACT FOURIER CALCULATION; THE MATRIX GATE REMAINS OPEN.**
