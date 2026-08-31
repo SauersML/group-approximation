@@ -84,8 +84,17 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   `cyclic-occurrence-splitting-makes-every-lcs-cubic` turns any LCS into
   maximum occurrence three by cyclic equality copies, with a
   `J`-preserving solution-group isomorphism.  Its equality-cycle stability
-  degrades with the original occurrence, so the remaining packet problem is
-  quantitative rather than exact.
+  degrades quadratically with the original occurrence.
+- **Raise the equality budget to occurrence four.**  The quantitative
+  problem is now closed by
+  `expander-equality-splitting-is-a-robust-occurrence-four-compiler`.
+  Cubic bipartite Ramanujan equality graphs give a dimension-free
+  Hilbert--Schmidt representative decoder and full source-relator loss
+  `3w sqrt(2/lambda_*)`.  Rotating Pauli reflections prove that every
+  connected degree-two equality path or cycle has the sharp quadratic
+  obstruction.  Thus a packet construction may assume occurrence four
+  without paying a degree-dependent synchronization loss; this does not
+  create the missing finite-versus-commuting source separation.
 - **Repeat fixed K labels at positive density.**  This can improve the finite
   packet's empirical spectral weight but does not change the universal
   completion; an infinite kernel in the abelian-subgroup amalgam survives
