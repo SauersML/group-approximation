@@ -5,6 +5,7 @@ kind: claim
 title: Shared-center Pauli lamps have the Boolean finite-presentation gate and a logarithmic multiplicity seam
 distinct_from:
   finite-bi-index-clifford-tape-presentation: that gives a sufficient presentation for one complete-graph Clifford generator and a finite-bi-index pair; this gives an if-and-only-if criterion for two-generator Heisenberg sites and computes the negative-center matrix factor.
+  shared-center-extraspecial-wreath-has-fd-invisible-spin-sector: that proves finite-dimensional invisibility, the positive spin corner, and quantitative fixed-window normalizer factorization for the same group; this adds the missing necessary-and-sufficient finite-presentation criterion by quotienting to the Boolean wreath.
   augmentation-lamp-finite-presentation-criterion: that treats the abelian augmentation lamp; this shows that adjoining a shared nonabelian Pauli center does not weaken either actor finiteness requirement.
   sharply-two-transitive-augmentation-lamp-host-audit: that audits the published Andre--Guirardel actor for abelian lamps; this applies the same audit to shared-center Heisenberg lamps and exposes the remaining logarithmic multiplicity.
   moving-tail-fixed-traces-keep-quantum-fibers: that gives an exact same-dimension moving-tail countermodel; this identifies the corresponding multiplicity group inside every negative-center Pauli window.
