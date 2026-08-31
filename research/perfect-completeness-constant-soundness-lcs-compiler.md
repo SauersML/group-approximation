@@ -127,10 +127,16 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   `0<epsilon<1`, two supported masks `mu=f` and `mu=-f` produce the
   same folded three-variable left-hand side with opposite parity signs.
   Hence the output solution group has an explicit two-equation proof
-  `J=1`, for every source instance. Reweighting keeps both equations;
-  strategy-level direct sums and accept flags cannot create a representation
-  with `J=-1`. A successful exactification must change the finite
-  presentation and replace the lost zero-noise decoder.
+  `J=1`, for every source instance. Reweighting keeps both equations.
+  The exact repair audit
+  `tv-central-flags-and-private-slacks-cannot-exactify` sharpens the
+  remaining folklore: a direct-sum block carrying both equations has zero
+  support in every perfect `J=-I` model; an ordinary central group-word
+  flag cannot express source-oblivious conditional checking; and fresh
+  equationwise parity slacks create a one-dimensional `J=-1` solution on
+  every source instance. A successful exactification must use genuinely
+  source-dependent shared noncentral structure and replace the lost
+  zero-noise decoder.
 - **Remove the mask from the Taller--Vidick decoder.**  Dies by
   `linear-encoding-lcs-admits-odd-subset-cheats`: without noise every
   linear test on a linear encoding is passed by odd-subset characters with
