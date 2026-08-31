@@ -4,6 +4,7 @@ id: coset-wreath-wall-survives-full-commutant-corners
 kind: claim
 title: The coset-wreath balanced wall survives every full multiplicity corner
 distinct_from:
+  hyperlinear-wreath-model: that asks whether the pinned wreath over G/Gamma is hyperlinear; conjugacy gives a G-set bijection G/Gamma congruent_to G/Lambda, so this treats the same group but proves only ICC and corner persistence conditional on an embedding.
   coset-bernoulli-ce-refutes-relative-commutant-collapse: that identifies Connes embeddability of a generalized Bernoulli crossed product as a conditional commutant refuter; this proves ICC and exact persistence of the refuting projection through every full relative-commutant corner.
   fdt7-is-balanced-bernoulli-projection-transfer: that turns an arbitrary pointed unitary FDT7 witness into a balanced projection and identifies the Bernoulli profile; this uses the entire canonical coset-wreath trace and shows multiplicity compression cannot dilute that profile.
   fct8-left-lift-and-rotated-defect-firewall: that studies rank ascent by left multiplication and shows the returned range is not pointwise fixed; this performs no adjoint ascent and instead uses factorial trace uniqueness in the original embedding.
@@ -92,8 +93,15 @@ and, on every fixed orbit window, with the whole lamp algebra.  The exact
 full-corner theorem is the ultraproduct limit of this estimate.
 
 For the Kun--Thom specialization over `F_2`, take
-`Lambda=t Gamma t^(-1)` and `X=G/Lambda`.
-The equivariant map `G/Lambda->G/Gamma` and
+`Lambda=t Gamma t^(-1)` and `X=G/Lambda`.  Conjugacy gives the
+`G`-equivariant bijection
+
+~~~text
+G/Gamma -> G/Lambda,       gGamma |-> g t^(-1)Lambda.   (BWC5d)
+~~~
+
+Thus this `W` is exactly the pinned Kun--Thom wreath candidate, not an
+auxiliary group.  The bijection and
 `kt-finitary-action-is-outer-mod-scalar-core` show that every nonidentity
 actor moves infinitely many points of `X`.  Hence the theorem applies.
 Consequently, if this explicit `W` is hyperlinear, every trace-preserving
