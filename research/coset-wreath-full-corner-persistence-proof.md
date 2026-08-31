@@ -134,16 +134,35 @@ mover energy.
 ## Step 4: the apparently weaker corner hypothesis is already full
 
 Let `sigma(g)=Theta(u_g)` and `p=Theta(p_(x_0))`.  Suppose a
-projection `e` commutes with every `sigma(g)`, and suppose the natural
-compressed lamp `q=epe` is itself a projection in `eMe`.  Then
+projection `e` commutes with every `sigma(g)`, and set `q=epe`.  For
+arbitrary projections `e,p` one has
 
 ~~~text
-0=q-q^2=e p (1-e) p e
-       =((1-e)pe)^*((1-e)pe).                           (BCP9)
+q-q^2=e p (1-e) p e
+     =((1-e)pe)^*((1-e)pe).                             (BCP9)
 ~~~
 
-Thus `(1-e)pe=0`; taking adjoints also gives `ep(1-e)=0`.  Therefore
-`pe=epe=ep`, so `e` commutes with `p`.
+The two off-diagonal corners in
+`[e,p]=ep(1-e)-(1-e)pe` are orthogonal in `L^2(M)`.  Consequently
+
+~~~text
+||[e,p]||_2^2
+ =2||(1-e)pe||_2^2
+ =2tau(q-q^2).                                          (BCP9a)
+~~~
+
+If `tau(e)>0`, positivity and Cauchy--Schwarz in the normalized corner
+give the dimension-free estimate
+
+~~~text
+||[e,p]||_2^2/tau(e)
+ =2tau_e(q-q^2)
+ <=2||q-q^2||_(2,e).                                    (BCP9b)
+~~~
+
+In particular, if the natural compressed lamp `q` is a projection in
+`eMe`, then `q-q^2=0`, so `(1-e)pe=0`.  Taking adjoints also gives
+`ep(1-e)=0`.  Therefore `pe=epe=ep`, and `e` commutes with `p`.
 
 Equivalently, if `a=2p-1`, requiring `eae` to remain an involution in
 the corner makes `epe=(e+eae)/2` a projection and gives the same
@@ -153,7 +172,7 @@ relation automatically reduces the base lamp.
 Transitivity says every lamp projection has the form
 
 ~~~text
-p_x=sigma(g)p sigma(g)^*.                               (BCP9b)
+p_x=sigma(g)p sigma(g)^*.                               (BCP9c)
 ~~~
 
 for some `g`.  Hence `e` commutes with every `p_x`.  The orbit projections
