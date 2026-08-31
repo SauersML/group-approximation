@@ -11,210 +11,193 @@ requires: []
 
 Put
 
-[
- V_n^{mathrm{fr}}
-   ={xin V_n:operatorname{Stab}_B(x)={0}}.
-]
+```text
+V_n^fr={x in V_n : Stab_B(x)={0}}.
+```
 
-Because (B) is fixed,
+Because `B` is fixed,
 
-[
- V_nsetminus V_n^{mathrm{fr}}
-   =igcup_{0
-e bin B}operatorname{Fix}(sigma_n(b)),
-]
+```text
+V_n - V_n^fr = union_(0!=b in B) Fix(sigma_n(b)),
+```
 
-and hence ((mathrm{EAR1})) gives
+and hence `(EAR1)` gives
 
-[
- rac{|V_nsetminus V_n^{mathrm{fr}}|}{|V_n|}
- lesum_{0
-e bin B}
-      rac{|operatorname{Fix}(sigma_n(b))|}{|V_n|}
- longrightarrow0.                                    	ag{EAP1}
-]
+```text
+|V_n-V_n^fr|/|V_n|
+ <=sum_(0!=b in B) |Fix(sigma_n(b))|/|V_n| -> 0.        (EAP1)
+```
 
-The free set and its complement are both (B)-invariant.  Choose one
-basepoint (x_i) in every free orbit.  Define
+The free set and its complement are both `B`-invariant.  Choose one
+basepoint `x_i` in every free orbit.  Define
 
-[
- P_n(h)(sigma_n(b)x_i)=sigma_n(alpha_h(b))x_i
-                                                               	ag{EAP2}
-]
+```text
+P_n(h)(sigma_n(b)x_i)=sigma_n(alpha_h(b))x_i            (EAP2)
+```
 
-on the free set, and define (P_n(h)) to be the identity on the complement.
-Freeness makes ((mathrm{EAP2})) well-defined.  The homomorphism law for
-(alpha) gives (P_n(h)P_n(k)=P_n(hk)) on every free orbit, and it is also
-true on the complement.  Thus (P_n) is a genuine permutation
-representation of (H).
+on the free set, and define `P_n(h)` to be the identity on the complement.
+Freeness makes `(EAP2)` well-defined.  The homomorphism law for `alpha`
+gives `P_n(h)P_n(k)=P_n(hk)` on every free orbit, and it is also true on
+the complement.  Thus `P_n` is a genuine permutation representation of
+`H`.
 
-Covariance is exact on (V_n^{mathrm{fr}}).  Its possible disagreement set
-on the complement has measure bounded by the left side of ((mathrm{EAP1})),
-which proves ((mathrm{EAR3})).  Notice that the construction used only the
-regular-character condition; no choice of unitary implementers entered.
+Covariance is exact on `V_n^fr`.  Its possible disagreement set on the
+complement has measure bounded by the left side of `(EAP1)`, which proves
+`(EAR3)`.  Notice that the construction used only the regular-character
+condition; no choice of unitary implementers entered.
 
 ## Step 2: classify the exact unitary implementers
 
-On (ell^2(B)otimesmathbb C^k), let (P_alpha) be the canonical
-permutation of the first factor.  Suppose (U) satisfies
-((mathrm{EAR4})), and put
+On `ell^2(B) tensor C^k`, let `P_alpha` be the canonical permutation of
+the first factor.  Suppose `U` satisfies `(EAR4)), and put
 
-[
- D=U(P_alphaotimes1)^*.
-]
+```text
+D=U(P_alpha tensor 1)^*.
+```
 
-For every (cin B),
+For every `c in B`,
 
-[
-egin{aligned}
- D(lambda_B(c)otimes1)D^*
- &=U(P_alpha^*lambda_B(c)P_alphaotimes1)U^*\
- &=U(lambda_B(alpha^{-1}(c))otimes1)U^*\
- &=lambda_B(c)otimes1.
-end{aligned}
-]
+```text
+D (lambda_B(c) tensor 1) D^*
+ =U (P_alpha^* lambda_B(c) P_alpha tensor 1) U^*
+ =U (lambda_B(alpha^(-1)(c)) tensor 1) U^*
+ =lambda_B(c) tensor 1.
+```
 
-Thus (D) is in the lamp commutant and (U=D(P_alphaotimes1)).
+Thus `D` is in the lamp commutant and `U=D(P_alpha tensor 1)).
 Uniqueness and the converse are immediate.
 
-If (U_h=D_hP_h) is a genuine actor representation, with tensor identities
+If `U_h=D_hP_h` is a genuine actor representation, with tensor identities
 suppressed, then
 
-[
- D_{hk}=D_h,operatorname{Ad}(P_h)(D_k).               	ag{EAP3}
-]
+```text
+D_(hk)=D_h Ad(P_h)(D_k).                                  (EAP3)
+```
 
 So actor multiplication controls the multiplicity freedom only by the
-ordinary nonabelian cocycle equation.  It does not force (D_h=1), or even
-force (D_h) to be near a monomial.
+ordinary nonabelian cocycle equation.  It does not force `D_h=1`, or even
+force `D_h` to be near a monomial.
 
 ## Step 3: an increasing trace-faithful coherent model
 
-Give (mathbb F_2^3) a basis (e_1,e_2,e_3), let
+Give `F_2^3` a basis `e_1,e_2,e_3`, let
 
-[
- Ne_1=0,qquad Ne_2=e_1,qquad Ne_3=e_2,
-]
+```text
+N e_1=0,       N e_2=e_1,       N e_3=e_2,
+```
 
-and put (J=1+N).  In characteristic two,
+and put `J=1+N`.  In characteristic two,
 
-[
- J^2=1+N^2
-e1,qquad J^4=1+N^4=1,                     	ag{EAP4}
-]
+```text
+J^2=1+N^2 != 1,             J^4=1+N^4=1,                (EAP4)
+```
 
-so (J) has order four.  Let
+so `J` has order four.  Let
 
-[
- A=igoplus_{rge1}mathbb F_2^3,qquad
- B_m=igoplus_{r=1}^mmathbb F_2^3,
-]
+```text
+A=direct_sum_(r>=1) F_2^3,
+B_m=direct_sum_(r=1)^m F_2^3,
+```
 
-and let (C_4=langle tangle) act blockwise by (J).  Truncation
-(p_m:A	o B_m) is (C_4)-equivariant.
+and let `C_4=<t>` act blockwise by `J`.  Truncation
+`p_m:A -> B_m` is `C_4`-equivariant.
 
-Let (Q_mdelta_b=delta_{Jb}) on (ell^2(B_m)).  For any sequence
-(k_m	oinfty), let (F_{k_m}) be the normalized discrete Fourier matrix
-and set
+Let `Q_m delta_b=delta_(Jb)` on `ell^2(B_m)`.  For any sequence
+`k_m -> infinity`, let `F_(k_m)` be the normalized discrete Fourier
+matrix and set
 
-[
- U_m=Q_motimes F_{k_m}.
-]
+```text
+U_m=Q_m tensor F_(k_m).
+```
 
-The standard identities (F_k^2e_r=e_{-r}) and (F_k^4=1), together with
-(Q_m^4=1), give (U_m^4=1).  Moreover,
+The standard identities `F_k^2 e_r=e_(-r)` and `F_k^4=1), together with
+`Q_m^4=1`, give `U_m^4=1`.  Moreover,
 
-[
- U_m(lambda_{B_m}(b)otimes1)U_m^*
-   =lambda_{B_m}(Jb)otimes1.                          	ag{EAP5}
-]
+```text
+U_m (lambda_(B_m)(b) tensor 1) U_m^*
+ =lambda_(B_m)(Jb) tensor 1.                              (EAP5)
+```
 
 Consequently
 
-[
- pi_m(a,t^j)
-  =(lambda_{B_m}(p_m(a))otimes1)U_m^j                	ag{EAP6}
-]
+```text
+pi_m(a,t^j)
+ =(lambda_(B_m)(p_m(a)) tensor 1) U_m^j                  (EAP6)
+```
 
-is an exact representation of the fixed group (Atimes_J C_4).
-It factors through (B_mtimes_J C_4).  Formula ((mathrm{EAP5})) proves
-zero lamp-covariance defect, and (U_m^4=1) proves exact actor coherence.
+is an exact representation of the fixed group `A rtimes_J C_4`.  It
+factors through `B_m rtimes_J C_4`.  Formula `(EAP5)` proves zero
+lamp-covariance defect, and `U_m^4=1` proves exact actor coherence.
 
-These representations have the canonical group trace.  If (j=0) and
-(a
-e0), then (p_m(a)
-e0) for all sufficiently large (m), and its left
-translation has trace zero.  For (j=1,3), every diagonal entry of
-(F_{k_m}^j) has modulus (k_m^{-1/2}), so
+These representations have the canonical group trace.  If `j=0` and
+`a!=0`, then `p_m(a)!=0` for all sufficiently large `m), and its left
+translation has trace zero.  For `j=1,3`, every diagonal entry of
+`F_(k_m)^j` has modulus `k_m^(-1/2)`, so
 
-[
- |operatorname{tr}_{k_m}(F_{k_m}^j)|le k_m^{-1/2}.    	ag{EAP7}
-]
+```text
+|tr_(k_m)(F_(k_m)^j)| <= k_m^(-1/2).                    (EAP7)
+```
 
-The permutation (F_{k_m}^2) has at most two fixed basis vectors, and hence
+The permutation `F_(k_m)^2` has at most two fixed basis vectors, and hence
 
-[
- |operatorname{tr}_{k_m}(F_{k_m}^2)|le2/k_m.         	ag{EAP8}
-]
+```text
+|tr_(k_m)(F_(k_m)^2)| <= 2/k_m.                         (EAP8)
+```
 
-For (j
-e0), the normalized trace of ((mathrm{EAP6})) is the product of
-the normalized traces of
-(lambda_{B_m}(p_m(a))Q_m^j) and (F_{k_m}^j).  The first factor has
-modulus at most one, while ((mathrm{EAP7}))--((mathrm{EAP8})) tend to
+For `j!=0`, the normalized trace of `(EAP6)` is the product of the
+normalized traces of `lambda_(B_m)(p_m(a))Q_m^j` and `F_(k_m)^j`.  The
+first factor has modulus at most one, while `(EAP7)`--`(EAP8)` tend to
 zero.  Thus every fixed nonidentity element has limiting trace zero.
 
 ## Step 4: the sharp monomial distance, including padding
 
-In the product lamp basis, every row of (U_m=Q_motimes F_{k_m}) has
-exactly (k_m) nonzero entries, all of modulus (k_m^{-1/2}).  A monomial
+In the product lamp basis, every row of `U_m=Q_m tensor F_(k_m)` has
+exactly `k_m` nonzero entries, all of modulus `k_m^(-1/2)`.  A monomial
 matrix selects at most one entry in each row.  With
-(d_m=|B_m|k_m), it follows that for every monomial (M_m),
+`d_m=|B_m|k_m`, it follows that for every monomial `M_m`,
 
-[
- left|operatorname{tr}_{d_m}(M_m^*U_m)ight|
- le k_m^{-1/2}.                                       	ag{EAP9}
-]
+```text
+|tr_(d_m)(M_m^* U_m)| <= k_m^(-1/2).                    (EAP9)
+```
 
 Both matrices are unitary, so
 
-[
- |U_m-M_m|_{2,d_m}^2
- =2-2operatorname{Re}operatorname{tr}_{d_m}(M_m^*U_m)
- ge2-rac2{sqrt{k_m}},
-]
+```text
+||U_m-M_m||_(2,d_m)^2
+ =2-2 Re tr_(d_m)(M_m^*U_m)
+ >=2-2/sqrt(k_m),
+```
 
-which is ((mathrm{EAR7})).
+which is `(EAR7)`.
 
 This persists under every negligible block padding, not just identity
-padding.  Let (r_m=o(d_m)), let (Z_min U(r_m)) be arbitrary, and compare
-(U_moplus Z_m) with an arbitrary monomial (M'_m) of size (d_m+r_m).
-The old rows contribute at most (d_m/sqrt{k_m}) to the unnormalized
-overlap and the new rows contribute at most (r_m).  Cross-block choices
-contribute zero.  Hence
+padding.  Let `r_m=o(d_m)`, let `Z_m in U(r_m)` be arbitrary, and compare
+`U_m direct_sum Z_m` with an arbitrary monomial `M'_m` of size
+`d_m+r_m`.  The old rows contribute at most `d_m/sqrt(k_m)` to the
+unnormalized overlap and the new rows contribute at most `r_m).
+Cross-block choices contribute zero.  Hence
 
-[
- left|operatorname{tr}_{d_m+r_m}
-   ((M'_m)^*(U_moplus Z_m))ight|
- lerac{d_m/sqrt{k_m}+r_m}{d_m+r_m}longrightarrow0. 	ag{EAP10}
-]
+```text
+|tr_(d_m+r_m)((M'_m)^*(U_m direct_sum Z_m))|
+ <=(d_m/sqrt(k_m)+r_m)/(d_m+r_m) -> 0.                 (EAP10)
+```
 
 Therefore the squared normalized Hilbert--Schmidt distance is at least
-(2-o(1)), and the distance tends to (sqrt2).  This covers every
+`2-o(1)`, and the distance tends to `sqrt(2)`.  This covers every
 permutation, every orbit-coherent permutation, and every monomial
-representative after (o(d_m)) padding.
+representative after `o(d_m)` padding.
 
-Finally, Fourier transform on the (B_m)-coordinate decomposes the regular
-representation into its characters, each with multiplicity (k_m).  Thus
+Finally, Fourier transform on the `B_m` coordinate decomposes the regular
+representation into its characters, each with multiplicity `k_m).  Thus
 
-[
- (lambda_{B_m}(B_m)otimes1)'
- congigoplus_{chiinwidehat B_m}M_{k_m}(mathbb C).
-]
+```text
+(lambda_(B_m)(B_m) tensor 1)'
+ isomorphic_to direct_sum_(chi in dual(B_m)) M_(k_m)(C).
+```
 
-The subalgebra (1otimes M_{k_m}) has a diffuse tracial ultraproduct because
-(k_m	oinfty), and (1otimes F_{k_m}) is precisely the nonclassical
-factor of (U_m).  The obstruction is therefore a macroscopic diffuse
+The subalgebra `1 tensor M_(k_m)` has a diffuse tracial ultraproduct because
+`k_m -> infinity`, and `1 tensor F_(k_m)` is precisely the nonclassical
+factor of `U_m`.  The obstruction is therefore a macroscopic diffuse
 multiplicity cocycle.
 
 For comparison with the published frontier: Kun--Thom Theorem 4.1
