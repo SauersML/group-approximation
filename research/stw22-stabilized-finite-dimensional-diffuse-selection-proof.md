@@ -3,7 +3,7 @@ rg: 2
 id: stw22-stabilized-finite-dimensional-diffuse-selection-proof
 kind: route
 title: Choose the finite weighted sphere degree dictated by the base dimension
-target: stw22-finite-dimensional-diffuse-factor-bundles-have-uniform-traces
+target: stw22-finite-dim-diffuse-bundles-have-uniform-traces
 requires:
   - stw22-dim1-factor-bundles-have-uniform-traces
   - stw22-diffuse-weighted-copy-all-finite-sphere-fillings
