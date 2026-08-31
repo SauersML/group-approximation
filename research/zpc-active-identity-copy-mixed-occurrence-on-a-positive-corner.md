@@ -63,3 +63,13 @@ Exact finite-character transport does not bypass this requirement.
 with one edge preserves the AND cocycle, while transporting actors separately
 leaves an arbitrary compressed relative stable word.  The remaining seam is
 therefore a genuinely mixed row, not another atom-transport theorem.
+
+The explicit two-qutrit AND cell cannot supply that joint frame internally.
+`two-qutrit-and-atom-has-no-internal-joint-frame` proves that its active atom
+`E_11=p_(0,0)` is rank-one and minimal in the marked `M_9` packet. It has no
+nonzero proper packet subcorner; an internal arrow is either scalar on that
+atom or transports the whole atom at equal rank. After tensoring a gauge
+reservoir, every proper subcorner lies entirely in the external factor and
+the selector packet compresses to scalars. Thus the next construction must
+add a genuinely mixed selector--reservoir generator; reusing another
+multipath sum or finite-packet arrow cannot provide the coherent occurrence.
