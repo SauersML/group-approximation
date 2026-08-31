@@ -54,8 +54,8 @@ The following boundary is established.
    convergence is the separability condition above.  A uniform root would
    target `delta_(M_H)`, but this is an IRS only when `H` is abelian.
    Every hypothetical GKP witness can instead be amplified so the actor
-   embedding is faithful and its ordinary random stabilizers tend to
-   `{1}`; `M_H` survives only as an external color stabilizer.
+   embedding is faithful and the induced Loeb action is essentially free;
+   `M_H` survives only as an external color stabilizer.
 8. For infinite `H`, that external color is necessarily diffuse.  For
    every fixed `K`, the maximum mass carried by any `K` colors tends
    to zero.  Hence no bounded alphabet, tight finite palette, or finite
