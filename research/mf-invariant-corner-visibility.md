@@ -3,11 +3,19 @@ rg: 2
 id: mf-invariant-corner-visibility
 kind: claim
 title: Every MF-visible element is visible in an invariant corner
+refuted_by:
+  - agent-mf-hyperlinear-shadow-refutes-corner-route
 distinct_from:
   mf-trace-gap-defect-ratio-models: That claim asks for a quantitative rate in a fixed model; this one asks for no rate at all, only that some operator-norm realization see the element tracially.
   mf-finite-normal-tracially-visible: That established claim produces such a corner when the element lies in a finite normal subgroup; this claim asserts one always exists.
   bounded-rank-corners-excluded: That established claim constrains the rank of a detecting corner over a Kazhdan source; this one asserts existence of a corner for an arbitrary element of an MF group, with no Kazhdan data in the hypotheses.
 ---
+
+**REFUTED.**  The integer compression-lamp group and its marked commutator
+constructed in `agent-mf-hyperlinear-shadow-refutes-corner-route` separate
+weak norm-corona MF from this elementwise trace-controlled strengthening.
+The statement below is retained to record the formerly proposed mechanism
+and its known positive instances.
 
 Let `G` be a countable MF group and let `g != 1`.  Then there exist a matrix
 corona `Q`, a faithful homomorphism `u : G -> U(Q)`, and a nonzero projection
