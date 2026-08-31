@@ -12,7 +12,7 @@ distinct_from:
 ---
 
 Let `D` be a finite maximal binary prefix code, let
-`F<=Sym(D)<=V` be a finite subgroup acting transitively on `D), and
+`F<=Sym(D)<=V` be a finite subgroup acting transitively on `D`, and
 fix one leaf `d_0 in D`.  Let `h` be any nonidentity element of
 Thompson's group supported inside the cylinder `[d_0]`; thus `h` is an
 off-code refinement actor, not a permutation of the leaves of `D`.
