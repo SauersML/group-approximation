@@ -145,5 +145,26 @@ produces a non-FD-tempered spherical module of the special pointed
 adjoint-lift form.  Nothing here establishes `(FDT7)`, (CCR), or a
 nonhyperlinear group.
 
+
+The reversible two-by-two linearization in
+`fdt7-is-balanced-bernoulli-projection-transfer` sharpens the special
+form of the pointed vectors.  It turns each unitary `v_n` into an exact
+trace-half projection `P(v_n)`, preserves every normalized-HS actor defect,
+and converts commutator displacement by the exact factor `1/2`.  Conversely,
+`v_n=2p_n-I` recovers a self-adjoint unitary from any trace-half projection.
+Thus Powers--Stormer, polar decomposition, and spectral cutting do not by
+themselves close `(FDT7)`.
+
+That claim also gives an exact finite-tracial boundary model.  The Bernoulli
+crossed product for the action of `G` on `G/Lambda` contains a trace-half
+projection fixed by `Lambda` and moved by every
+`gamma in Gamma minus Lambda`; its orbit signs span
+`ell^2(G/Lambda)`, necessarily a non-FD-tempered `G`-module here.
+This does not refute `(FDT7)`: no matrix-ultraproduct realization of that
+crossed-product trace follows from the present hypotheses.  It does prove
+that the missing input must use matrix approximability, and that tensoring
+with the inverse or passing to the adjoint action alone is unsafe because it
+erases scalar-phase commutators.
+
 DERIVATION
 fd-radical-kazhdan-projection-ccr-proof
