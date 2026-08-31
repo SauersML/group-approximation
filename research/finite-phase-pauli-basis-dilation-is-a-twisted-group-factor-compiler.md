@@ -52,8 +52,10 @@ iff
 a countable nonhyperlinear group exists.                  (PBD4)
 ~~~
 
-For the reverse implication take `K=S_fin(N)`, so `L(K)=R`, and let a
-nonhyperlinear group act trivially on the canonical group basis.
+For the reverse implication take the standard countable tensor-Pauli index
+`K=direct_sum_N(F_2^2)` with its symplectic sign cocycle, so
+`L_omega(K)=tensor_N M_2=R`, and let a nonhyperlinear group act trivially on
+that projective basis.
 
 A strict dilation also has a concrete obstruction.  Its Koopman
 representation must be a subrepresentation of a countable finite-phase
