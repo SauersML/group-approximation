@@ -90,7 +90,7 @@ has the same image under `q` and satisfies `W(0)=W(2 pi)`.  It therefore
 defines a continuous unitary `W in M_m(C(T))` with
 
 ```text
-W(t)* e_1=r(t).                                         (5)
+W(t)* xi_0=r(t).                                         (5)
 ```
 
 Define
@@ -100,7 +100,7 @@ pi(x)(t)=W(t)xW(t)*.
 ```
 
 This is a unital star homomorphism, hence a cpc order-zero map.  For the
-constant projection `e=e_(11)`, the projection onto `C xi_0`,, equations (4)--(5) give
+constant projection `e=e_(11)`, the projection onto `C xi_0`, equations (4)--(5) give
 
 ```text
 e pi(u)(t)e=<u r(t),r(t)>e,
