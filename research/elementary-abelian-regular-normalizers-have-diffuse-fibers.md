@@ -73,13 +73,14 @@ There is a trace-faithful increasing-window model in which the cocycle in
 `(EAR5)` is maximally nonmonomial.  Put
 
 ```text
-A=direct_sum_(r>=1) F_2^3
+A=direct_sum_(r>=1) F_2^4
 ```
 
-and let `t` act on each three-dimensional block by `J=1+N`, where
-`N^3=0!=N^2`.  Thus `J` has order four.  Let `B_m` be the first `m`
-blocks, let `p_m:A -> B_m` be truncation, choose `k_m -> infinity`, let
-`Q_m` be the permutation implementing `J` on `ell^2(B_m)`, and let
+and let `t` cyclically permute the four coordinate lamps in every block.
+This is a literal permutation of the lamp sites and has order four.  Let
+`B_m` be the first `m` blocks, let `p_m:A -> B_m` be truncation, choose
+`k_m -> infinity`, let `Q_m` be the permutation implementing `t` on
+`ell^2(B_m)`, and let
 `F_(k_m)` be the normalized Fourier matrix.  Then
 
 ```text
