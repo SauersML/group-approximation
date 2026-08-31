@@ -585,3 +585,35 @@ Alekseev--Thom Open Problem 6.2 but does not settle the universal statement:
 a counterexample must combine padding-stable positive-density instability
 with macroscopic multiplicity.  The regular irreducible deleted-line
 mechanism has neither and cannot carry the Pauli wall.
+
+
+**2026-08-31 (regular trace mask removes the trace hypothesis).**
+`kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall`
+shows that the canonical Steinberg tower is a transparent tensor mask.  If
+`v_n:G->U(k_n)` is any asymptotic representation, with no trace condition,
+and `alpha_n` is the exact regular-character congruence tower, then
+
+```text
+u_n(g)=alpha_n(g) tensor v_n(g)
+```
+
+is trace-faithful, while every multiplication defect, two-compressor
+relator defect, and multiplicity commutator is preserved exactly:
+
+```text
+||[I tensor X,u_n(g)]||_2=||[X,v_n(g)]||_2.
+```
+
+Consequently (CCR), and likewise `G`-normalization of the
+`Gamma`-commutant, holds for every trace-faithful matrix-ultraproduct
+representation if and only if it holds for every matrix-ultraproduct
+representation with no character hypothesis.  A pre-existing multiplicity
+leak remains positive-mass after the tensor mask and after arbitrary
+negligible direct-sum padding.
+
+This closes a tempting use of canonical mixed traces: trace-faithfulness,
+congruence provenance of a large carrier, and joint `A,B` coherence cannot
+control the quantum fiber, because the carrier cancels from its equations
+and masks its character.  The remaining target is the bare source-specific
+multiplicity problem.  The theorem supplies no leaking `v` and therefore
+does not close the route.
