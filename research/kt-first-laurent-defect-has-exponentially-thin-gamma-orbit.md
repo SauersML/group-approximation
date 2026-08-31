@@ -38,9 +38,9 @@ v_(2m+1)=(m+1)(m+2)(4m+3)/6.                             (PAG2)
 Then
 
 ~~~text
-|O_N| <= 2^(9b_N),
+|O_N| <= 2^(8b_N),
 |Omega_N| >= 2^(v_N),
-|O_N|/|Omega_N| <= 2^(9b_N-v_N)
+|O_N|/|Omega_N| <= 2^(8b_N-v_N)
                     =2^(-N^3/12+O(N^2)) ->0.             (PAG3)
 ~~~
 
@@ -59,7 +59,8 @@ x_1^2,   x_1^2y=x_1x_2,   x_1^2y^2=x_2^2,
 ~~~
 
 all of which lie in `P_N`. The quotient `P_N/x_1^2P_N` has dimension
-`b_N`, giving the orbit bound.
+`b_N`. Its special linear group has size `168*2^(8(b_N-1))`, giving the
+stated orbit bound.
 
 This thinness persists for every fixed finite packet of intermediate-ring
 words. If `F subset EL_3(F_2[x_1,y,x_3])` is fixed, there is an integer
@@ -73,9 +74,15 @@ at most |F| 2^(O_F(N^2)).                                 (PAG4)
 
 More sharply, if packets `F_N` have maximum denominator deficit
 `M_N=o(N)` and `log_2|F_N|=o(N^3)`, their complete `Gamma_N`-saturation
-still has zero density in `Omega_N`. Thus a packet-density proof must use
-Laurent denominator depth linear in the truncation scale, or an
-exponentially cubic number of words.
+still has zero density in `Omega_N`. The conclusion remains true in the
+initial linear regime
+
+~~~text
+M_N/N < c_*:=1-(7/8)^(1/3)=0.0435344086... .              (PAG4a)
+~~~
+
+Thus a packet-density proof must cross an explicit positive fraction of
+the truncation depth, or use an exponentially cubic number of words.
 
 There is an exact canonical multiplicity countermodel. On
 
@@ -124,7 +131,7 @@ The representations above pull back to the coherent wreath over
 `H/Gamma` and converge to its canonical character. Therefore canonical
 mixed moments, full Gamma covariance, and a finite Clifford rigidifier do
 not repair (PAG6). A successful amplification must use Laurent words whose
-denominator depth grows linearly with `N` and connects a positive fraction
+denominator depth exceeds `c_*N` and connects a positive fraction
 of the missing Gamma orbits. That is precisely the still-open moving-window
 coherence step.
 
