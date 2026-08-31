@@ -18,19 +18,19 @@ S^k,             S^i Q,                   k,i>=0.       (ORQ3)
 ```
 
 These normal words are linearly independent.  Indeed
-`S^iQ=S^i-S^(i+1)T), and the standard Jacobson normal forms
+`S^iQ=S^i-S^(i+1)T`, and the standard Jacobson normal forms
 `S^pT^q` are linearly independent.  The terms with `q=1` first force
 all coefficients of `S^iQ` to vanish, after which the pure `S^k`
-coefficients vanish.  This proves the asserted embedding of `A_+).
+coefficients vanish.  This proves the asserted embedding of `A_+`.
 
-For `N>=0`, let `V_N` have basis `e_0,...,e_N).  Define
+For `N>=0`, let `V_N` have basis `e_0,...,e_N`.  Define
 
 ```text
 S_N e_j=e_(j+1) for j<N,       S_N e_N=0,
 Q_N e_0=e_0,                   Q_N e_j=0 for j>0.       (ORQ4)
 ```
 
-Then `Q_N^2=Q_N` and `Q_NS_N=0), so `(ORQ4)` defines a unital
+Then `Q_N^2=Q_N` and `Q_NS_N=0`, so `(ORQ4)` defines a unital
 homomorphism
 
 ```text
@@ -41,7 +41,7 @@ Write a nonzero element as `f(S)+g(S)Q` using `(ORQ3)`.  If
 `f!=0`, choose `N` larger than both degrees plus one and apply the
 matrix to `e_1); the `g(S)Q` term vanishes and the distinct shifts in
 `f(S)e_1` cannot cancel.  If `f=0`, apply to `e_0` with
-`N>deg(g)).  Thus some finite matrix representation detects every nonzero
+`N>deg(g)`.  Thus some finite matrix representation detects every nonzero
 element, proving that `A_+` is residually finite dimensional.
 
 The negative algebra is symmetric at the level of the calculation.  Words
@@ -53,7 +53,7 @@ T^k,             Q T^i.
 
 Use the backward nilpotent shift
 `T_Ne_j=e_(j-1)` for `j>0), `T_Ne_0=0), and the same projection
-`Q_N) onto `e_0`.  Then `T_NQ_N=0).  Acting first on a sufficiently
+`Q_N` onto `e_0`.  Then `T_NQ_N=0`.  Acting first on a sufficiently
 far basis vector detects the pure polynomial part; acting on the appropriate
 `e_i` detects a nonzero `QT^i` coefficient.  Hence `A_-` is also
 residually finite dimensional.
