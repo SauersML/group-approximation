@@ -293,6 +293,18 @@ surviving direct-target datum is the approximately multiplicative finite
 action groupoid itself; scalar mixed traces and marginal window couplings do
 not construct it.
 
+A concrete sufficient observable is now isolated by
+`collision-and-phase-free-cartan-observables-force-joint-lamp-targets`.
+Relative to one rank-one masa refining every tested cylinder PVM, normalized
+fourth-power entry collision tending to one forces monomial actor matrices,
+while `||E_D(U_g)||_2^2->0` removes phase cancellation and forces the
+underlying permutations to be asymptotically free.  The claim gives explicit
+Hamming bounds for actor products and cylinder covariance.  But producing
+this common growing masa and the two estimates from arbitrary CE
+crossed-product microstates would itself imply Păunescu soficity.  This is an
+exact circularity firewall: ordinary finite-dimensional Ulam stability does
+not supply the required Cartan observables.
+
 This identifies the smallest live strengthening of the amenable conversion
 theorem:
 
