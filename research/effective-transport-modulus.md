@@ -45,6 +45,17 @@ gamma = 28329113480286/10^16,
   subspace, so naive relator telescoping is not uniform. A full-base rational
   sum-of-squares certificate or an explicit robust relative-property-(T)
   theorem is still needed.
+- `p13-low-cluster-does-not-control-long-rotation-words` proves that this
+  obstruction is sharp for the direct circumcenter robustification. On the
+  scalar tuple
+  `v1=v2=v3=1, X=exp(i*pi/n), Y=Z=1`, all twelve nonrotation base
+  relators are exact, the rotation defect is at most `6*pi/n`, and the
+  P13 energy is at most `22*pi^2/n^2`; nevertheless
+  `(ZXY)^n=-1`. Thus no modulus tending to zero can make every escaping
+  rotation conjugator almost fix every P13-low vector. This does not refute
+  a full affine gap, but it rules out closing it by ordinary word telescoping
+  after merely replacing the exact rotation-fixed projection by the low
+  spectral projection.
 - `post-gap-compressor-constants` closes the dimension-free analytic
   vector chain once its three stage inputs are supplied. If (f) is the
   top-corner fixing error, (ell) the reverse leakage, and (c) the
