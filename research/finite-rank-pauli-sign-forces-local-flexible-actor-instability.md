@@ -7,6 +7,7 @@ artifacts:
   - research/padded-actor-correction-collapses-finite-rank-pauli-sign.md
 distinct_from:
   kazhdan-stabilizer-collapses-shared-pauli-sign: that treats a coordinatewise genuine actor; this measures the exact perturbation cost from arbitrary Pauli-compatible actor matrices to a genuine actor after padding or deletion.
+  full-shared-pauli-wall-excludes-nearby-exact-actor: that gives the sharp same-dimension distance wall; this proves its survival under arbitrary sublinear padding and deletion of a negligible common reducing corner.
   kt-local-actor-correction-pays-majorana-return: that gives the analogous local correction estimate for the Kun--Thom Majorana return; this treats the finite-rank shared-center Pauli sign and all double-coset prototype rows.
   infinite-hyperlinear-kazhdan-group-is-not-hs-stable: that obstructs strict local HS stability for an entire Kazhdan group; this is a weaker source-specific assertion on one fixed actor packet, but it survives sublinear padding.
 ---
@@ -24,7 +25,8 @@ choose the finitely many nontrivial double-coset representatives
 Set
 \[
  T=Q\cup\{r_1,\ldots,r_s\},\qquad
- C_\kappa=2+\frac{16}{\kappa}.
+ C_\kappa=2+\frac{16}{\kappa},\qquad
+ K_\kappa=4+\frac{32}{\kappa}=2C_\kappa.
 \]
 
 Let \(A,B,J,u_t\in U(d)\), \(t\in T\).  Let \(\delta\) be the maximum defect
@@ -51,7 +53,7 @@ Then, with \(\lambda=\sqrt{d/(d+p)}\),
 \[
  \boxed{\quad
  \lambda\|J-I_d\|_{2,d}
- \le C_\kappa\bigl(\lambda\delta+4\epsilon\bigr).
+ \le \lambda C_\kappa\delta+K_\kappa\epsilon.
  \quad}                                                    \tag{PFA1}
 \]
 
@@ -63,12 +65,12 @@ then every such padded exact actor satisfies
 \[
  \liminf_n\max_{t\in T}
  \|\rho_n(t)-(u_{n,t}\oplus v_{n,t})\|_2
- \ge\frac{c}{4C_\kappa}.                                  \tag{PFA2}
+ \ge\frac{c}{K_\kappa}.                                   \tag{PFA2}
 \]
 For the tracial spin sector, \(c=\sqrt2\).  Thus the obstruction survives
 arbitrary sublinear padding with the explicit floor
 \[
- \frac{\sqrt2}{4(2+16/\kappa)}.                            \tag{PFA3}
+ \frac{\sqrt2}{4+32/\kappa}.                               \tag{PFA3}
 \]
 
 It also survives deletion.  If a projection of relative rank at least
@@ -79,7 +81,7 @@ of \(G\), then
  \theta_n\to0,\quad\delta_n\to0,\quad
  \liminf_n\|J_n-I\|_2\ge c
  \quad\Longrightarrow\quad
- \liminf_n\epsilon_n\ge\frac{c}{4C_\kappa}.                \tag{PFA4}
+ \liminf_n\epsilon_n\ge\frac{c}{K_\kappa}.                 \tag{PFA4}
 \]
 
 Only the fixed packet \(T\) must be corrected.  Full flexible HS stability
