@@ -17,7 +17,7 @@ distinct_from:
 p=ST=p_(0,0).
 ```
 
-On the marked spin block `q C[F]q=M_9(C)`, this is the rank-one
+On the marked spin block `q C[E]q=M_9(C)`, this is the rank-one
 projection onto the joint eigenvector `|0,0>` of `Z_1,Z_2`. For the
 normal-form packet element
 
@@ -35,7 +35,7 @@ p g p = omega^c p     if (u,s)=(0,0).                  (TCI1)
 Consequently
 
 ```text
-p C[F]p=Cp.                                             (TCI2)
+p C[E]p=Cp.                                             (TCI2)
 ```
 
 On an isotypic carrier `C^9 tensor M`, every packet-internal based arrow is
