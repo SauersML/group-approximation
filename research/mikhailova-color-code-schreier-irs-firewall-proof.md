@@ -87,11 +87,10 @@ point eventually.  Hence `[phi'_n(g)]_U` has Hamming distance one from
 the identity.  The resulting `Phi':G->S_U` is injective and still
 satisfies `(MSP1)`.
 
-The same observation shows that the ordinary stabilizer of a uniformly
-chosen point in these amplified models converges to `{1}`: every fixed
-nonidentity element has zero fixed-point proportion eventually.  The
-subgroup `M` survives only as the stabilizer of the external color point
-`xi`.
+The same observation shows that every fixed nonidentity element has
+fixed-point proportion zero eventually.  The induced Loeb action of `G`
+is therefore essentially free, while `M` survives as the stabilizer of the
+external color point `xi`.
 
 ## Finite presentation reduces all invariance tests to finitely many
 
@@ -192,6 +191,6 @@ of `M` without the finite models carrying stabilizer subgroups close to
 `M`.
 
 This proves the firewall: pointed Schreier limits demand separability,
-uniform roots demand an IRS, and faithful actor amplification sees the
-trivial ordinary stabilizer.  None is equivalent to the external-color
+uniform roots demand an IRS, and faithful actor amplification produces an
+essentially free Loeb action.  None is equivalent to the external-color
 criterion `(MSI1)--(MSI3)`.
