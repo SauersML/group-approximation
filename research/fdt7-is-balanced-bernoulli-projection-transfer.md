@@ -112,6 +112,15 @@ displacement `1/2`, and all Bernoulli moments in every such corner.  Thus
 multiplicity compression cannot dilute a hypothetical hyperlinear wall; the
 unresolved issue is existence of the original embedding.
 
+Moreover,
+`boolean-atom-overlap-spatializes-arrows-but-full-corners-stay-diffuse`
+shows that fixed-window covariance already rounds each actor arrow to a
+coarse Boolean block normalizer.  The remaining obstruction is sharp: every
+fixed atom rank diverges in every full corner, Fourier fiber unitaries can be
+at squared distance `2-o(1)` from every monomial, and rank-one fibers
+require windows of size comparable to `log_2 d_n`.  Fixed-window
+hyperlinear convergence has no such moving-window rate.
+
 Thus the Bernoulli model does not presently refute FDT7.  It proves that no
 argument valid in all finite tracial von Neumann algebras, no Jones-index
 calculation detached from matrix approximability, and no property-(T)
