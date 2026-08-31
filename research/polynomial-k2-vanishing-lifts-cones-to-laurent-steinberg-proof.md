@@ -83,3 +83,25 @@ K2(R_pm)
 For finite `k`, the three terms are `0`, `2(k^*)`, and `Z`,
 respectively.  This proves (TKO3).  The calculation is stable; no unstable
 rank-three identification is used or claimed.
+
+For completeness, the finite-rank assertion uses classical injective
+stability, not an identification special to these rings.  If a commutative
+noetherian ring `S` has Krull dimension at most `d`, the
+Dennis--Vaserstein--van der Kallen--Suslin--Tulenbaev theorem gives
+
+```text
+K2(r,S)=ker(St_r(S)->E_r(S)) ~= K2(S),       r>=d+3.           (PKL7)
+```
+
+All four rings `R_0,R_+,R_-,R_pm` are noetherian of dimension at most
+`d`.  Hence (PKL7) makes the finite-rank Steinberg maps for
+`R_0,R_+,R_-` isomorphisms, by (PKL2), and identifies the Laurent kernel
+with the group in (TKO3).  Repeat (PKL3)--(PKL6) with `St_r,E_r`.
+The factorization (PKL5) only needs a third matrix index, which is available
+in the stated range.  Therefore the kernel of the finite-rank map surjects
+onto `K2(r,R_pm)~=K2(R_pm)`.
+
+This argument says exactly where stability is used.  Below the range
+`r>=d+3`, neither injectivity of stabilization nor the vanishing of the
+polynomial vertex kernels follows from (PKL7); no rank-three conclusion is
+being imported from stable K-theory.
