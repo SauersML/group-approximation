@@ -24,7 +24,7 @@ For every binary cochain \(c\),
  =\operatorname{Fill}_2(\overline Dc).                 \tag{CGF2}
 \]
 Thus a uniform Hamming decoder is exactly a uniform support estimate for
-(CGf1), after normalization by \(E\) and \(F\).
+(CGF1), after normalization by \(E\) and \(F\).
 
 A positive smallest nonzero singular value of
 \(D_{\mathbb C}\) controls instead the real Hilbert filling problem
