@@ -143,8 +143,9 @@ host therefore requires a non-coordinate code.
 1. **Schreier and IRS.**  Exact pointed Schreier convergence is already
    `(MFP2)`.  Uniform roots produce IRSs, whereas `delta_(M_H)` is an
    IRS only if `M_H` is normal, equivalently only if `H` is abelian.
-   After faithful amplification, ordinary random point stabilizers instead
-   tend to `{1}`.  Finite color-equality sets need not be subgroups.
+   After faithful amplification, every nonidentity element has
+   fixed-point proportion tending to zero, so the induced Loeb action is
+   essentially free.  Finite color-equality sets need not be subgroups.
    See [[mikhailova-color-code-schreier-irs-firewall]].
 2. **Palette escape.**  For `m` distinct quotient elements and any set
    `C` of `K` colors, pairwise translated-color agreement at most
