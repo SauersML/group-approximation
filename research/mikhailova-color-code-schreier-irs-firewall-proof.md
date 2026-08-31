@@ -73,7 +73,7 @@ rho_n:G->Q_n
 so that every fixed `g != 1` has `rho_n(g) != 1` for all sufficiently
 large `n`.  Let `Q_n` act on itself regularly.  Represent `Phi` on
 finite sets `A_n` by permutations `phi_n(g)`, and represent `xi` by
-colorings `c_n:A_n->N`.  On `A_n x Q_n` use
+colorings `c_n:A_n->Nat`, where `Nat` is a fixed countable palette.  On `A_n x Q_n` use
 
 ```text
 phi'_n(g)(s,t)=(phi_n(g)s,rho_n(g)t),
