@@ -18,7 +18,7 @@ J=F_2<S,T | TS=1>,          Q=1-ST,
 a=[[S,Q,0],[0,T,0],[0,0,1]] in EL_3(J).                 (BAQ1)
 ```
 
-Embed this block in `EL_28(J)), and let
+Embed this block in `EL_28(J)`, and let
 
 ```text
 K=GL_28(F_2)=EL_28(F_2).
@@ -44,7 +44,7 @@ a |-> diag(z,z^(-1),1).                                 (BAQ3)
 ```
 
 Its elementary-group kernel is the infinite simple locally finite finitary
-linear group and contains every nonzero head root `x_ij(Q)).  In
+linear group and contains every nonzero head root `x_ij(Q)`.  In
 particular the head survives in `<K,a>` but dies in every finite quotient.
 Consequently this group is not residually finite and cannot be a virtually
 free finite amalgam.
