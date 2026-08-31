@@ -158,7 +158,7 @@ theorem singularHomologyCoefficientReduction_naturality (n : ℕ) {X Y : TopCat.
   have h := (singularHomologyCoefficientReduction n).naturality f
   have happ := congrArg (fun m : (singularHomologyℤ n).obj X ⟶
       (singularHomologyCoeffZMod2 n).obj Y => m.hom x) h
-  simpa only [ModuleCat.comp_apply] using happ
+  simpa only [redHomology, ModuleCat.comp_apply] using happ
 
 /-! ## 4. Two-torsion of the reduced theory -/
 
@@ -199,6 +199,7 @@ theorem coeffHomology_two_smul_id (n : ℕ) (X : TopCat.{0}) :
       = (2 : ℤ) • 𝟙 ((singularChainCoeffZMod2.obj X).homology n) := by
     rw [Functor.map_zsmul]; congr 1; exact CategoryTheory.Functor.map_id _ _
   rw [← e1, coeffChain_two_smul_id_complex, Functor.map_zero]
+  rfl
 
 /-- **Two-torsion of `Hₙ(X; F₂)`.** Every element of the `F₂`-coefficient singular
 homology is killed by `2`. -/
@@ -413,4 +414,3 @@ theorem modTwoTopClassComparison_of_data {n : ℕ} (e : SphereTopHomologyIso n)
   modTwoTopClassComparison_of_topHomologyScalar e (modTwoTopHomologyScalar_of_data e d)
 
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
