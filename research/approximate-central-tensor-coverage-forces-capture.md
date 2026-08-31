@@ -62,10 +62,11 @@ authentication faces the following sharp alternative:
 3. its authenticated corner stays away from every bounded-dimensional
    payload tensor stratum.
 
-On the pure regular-character face, the third alternative is precisely an
-unbounded irreducible-payload obstruction on positive physical rank.
-Finite-subgroup spectral projection rounding itself is not a remaining
-gate.
+Within an authenticated common tensor-factor model on the pure
+regular-character face, the third alternative is an unbounded-payload
+obstruction on positive physical rank. Without such a model it also includes
+failure of tensor-factor identification. Finite-subgroup spectral projection
+rounding itself is not a remaining gate.
 
 This theorem does not construct \(p\) or identify its tensor factors.
 Producing an almost-central carrier with \(\zeta\to0\), or proving that none
