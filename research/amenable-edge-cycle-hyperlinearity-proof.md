@@ -65,12 +65,12 @@ use the corner identity
  \operatorname{HNN}(M,N,\theta)
  \cong
  e_{11}\left(
-   (M_2(\mathbb C)\mathbin{*}_{N\oplus N})
+   (M_2(\mathbb C)\otimes M)
+   \mathbin{*}_{N\oplus N}
    (M_2(\mathbb C)\otimes N)
- \right)e_{11},                                         \tag{3}
+ \right)e_{11}.                                         \tag{3}
 \]
 
-with the first factor in (3) understood as \(M_2(\mathbb C)\otimes M\).
 Thus the same \({\cal R}^{\omega}\)-embeddability permanence handles the
 cycle edges. Applying the corollary to (2) proves (1).
 
