@@ -18,11 +18,10 @@ theorem singularBoundary_coneGenerator_succ (R : Type) [CommRing R] (n m : ℕ) 
         - (coneLinearMap R n m v).hom
             ((singularBoundary R (TopCat.of (Delta n)) m).hom
               (chainGenerator R (TopCat.of (Delta n)) (m + 1) σ)) := by
-  convert singularBoundary_chainGenerator_formula R { carrier := ( Delta n ), str := instTopologicalSpaceSubtype } ( m + 1 ) ( coneSimplex n ( m + 1 ) v σ ) using 1;
+  rw [coneGenerator, singularBoundary_chainGenerator_formula]
   rw [ Fin.sum_univ_succ ];
   simp +decide [ singularBoundary_chainGenerator_formula, coneSimplex_face_zero, coneSimplex_face_succ, coneLinearMap_generator ];
   simp +decide [ pow_succ', neg_smul, Finset.sum_neg_distrib, sub_eq_add_neg ];
   rfl
 end AffineBarycentricSubdivision
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
