@@ -152,7 +152,91 @@ generator \(J^{u_1}Z_1\) has values
 The three restrictions are distinct, so exactly the diagonal blocks occur,
 each with squared norm \(1/27\).
 
-## 4. Hall audit
+## 4. The full two-sided table for the generic active triple
+
+Choose the freely assignable outer labels
+\[
+ 1=(0,0,0),\qquad2=(1,0,0),\qquad3=(2,0,0).             \tag{JQB18a}
+\]
+Thus the three active leaves have pairwise different \(u_1\)-labels.
+
+Every element of \(N\) has the matrix form
+\[
+ n=I+E_{13}(A_n)+E_{23}(B_n).
+\]
+Let
+\[
+ {\cal M}_0=\{kn,tkn:n\in N\}.
+\]
+The two displayed cosets are disjoint.  Indeed, an equality
+\(kn=tkn'\) would give \(n=ktkn'\).  The matrix
+\[
+ ktk=I+T(E_{23}+E_{21})
+\]
+has a forced \(E_{21}(T)\) entry after multiplication by any \(n'\), while
+an element of \(N\) has entries only in positions \(13\) and \(23\).
+Consequently \(|{\cal M}_0|=64\).
+
+We now prove that the multiplication map
+\[
+ C\times{\cal M}_0\times C\longrightarrow GL_{28}(J),
+ \qquad(c_1,m,c_2)\longmapsto c_1mc_2                 \tag{JQB18b}
+\]
+is injective.  Suppose
+\[
+ c_1mc_2=c_1'm'c_2'.
+\]
+The left side agrees with the scalar permutation \(P=c_1c_2\) on the
+twenty-five input columns which \(c_2\) does not send into the active
+triple.  The right side similarly agrees with \(P'=c_1'c_2'\) on
+twenty-five columns.  Hence \(P\) and \(P'\) agree on at least twenty-two
+columns.  Their quotient lies in \(C\).  A nonidentity element of \(C\)
+moves at least eighteen qutrit leaves, so a quotient moving at most six
+coordinates must be the identity.  Therefore \(P=P'\).
+
+Since \(C\) is abelian, write
+\[
+ c_1'=c_1d,\qquad c_2'=d^{-1}c_2
+\]
+for \(d\in C\).  Cancellation gives \(m=dm'd^{-1}\).  Every member of
+\({\cal M}_0\) has a forced scalar coefficient \(1\) in position \(31\);
+multiplication by \(n\) and by \(t\) does not remove that entry.  All its
+nonidentity entries remain inside the active three-by-three block.
+It follows that \(d(1)\) and \(d(3)\) both belong to the active triple.
+The action of \(C\) preserves \(u_1\), and (JQB18a) contains exactly one
+active leaf for each \(u_1\)-value.  Thus \(d\) fixes coordinates \(1\)
+and \(3\).  Their \(u_1\)-labels are different, so their point stabilizers
+in \(C\) intersect trivially.  Hence \(d=1\), and then \(m=m'\).  This
+proves injectivity of (JQB18b).
+
+Write the signed residual expansion as
+\[
+ e={1\over32}\sum_{n\in N}\sigma(n)n,\qquad
+ \sigma(n)\in\{+1,-1\}.
+\]
+Then
+\[
+ V_\eta={1\over32\sqrt2}
+ \sum_{n\in N}\sigma(n)(kn+\eta tkn).                   \tag{JQB18c}
+\]
+Expanding \(e_bV_\eta e_a\) gives exactly
+\[
+ |C|\cdot|{\cal M}_0|\cdot|C|=9\cdot64\cdot9=5184
+\]
+terms.  By (JQB18b) their group elements are distinct.  Every coefficient
+has modulus
+\[
+ {1\over9\cdot32\sqrt2\cdot9}.
+\]
+There is therefore no coefficient collision or phase cancellation, and
+\[
+ \|e_bV_\eta e_a\|_2^2
+ ={5184\over2(9\cdot32\cdot9)^2}
+ ={1\over2592}                                          \tag{JQB18d}
+\]
+for all \(a,b\) and both signs \(\eta\).
+
+## 5. Hall audit
 
 Orthogonality of \(e_0,e_1,e_2\) and (JQB11) give
 \[
