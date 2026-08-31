@@ -112,3 +112,8 @@ their upstream formulations.
 `CoveringTransferHomology` is included unchanged apart from namespace
 isolation; it descends the transfer chain map and its dual to homology and
 cohomology using Mathlib's current homology-map API.
+
+`RPnW1Cochain` uses the current `LocallyPathConnectedSpace` API and evaluates
+the coproduct-defined cocycle through the morphism-level `Sigma.ι_desc`
+identity, avoiding a v4.32-dependent mismatch between definitionally equal
+coproduct-family lambdas.
