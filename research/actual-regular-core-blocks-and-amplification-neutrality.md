@@ -44,6 +44,27 @@ full right `D_reg`-module, its optimal coverage is exactly the Plancherel
 mass of its active `B`-types. In general the sharp-band compression need not
 be right invariant, so the large blocks alone do not force coverage.
 
+For a general exact congruence endpoint
+
+```text
+sigma=direct_sum_(pi in Irr(G)) pi tensor 1_(M_pi),
+r_(pi,alpha)=dim Hom_B(H_alpha,H_pi restricted to B),
+```
+
+the actual prescribed core `beta=sigma restricted to B` has
+
+```text
+m_alpha=sum_pi r_(pi,alpha) M_pi,
+D_beta=direct_sum_alpha M_(m_alpha),
+w_alpha=d_alpha m_alpha/dim(sigma).                    (ARC4a)
+```
+
+Thus its block vector is exactly the finite restriction matrix applied to
+the endpoint multiplicity vector. Different points of a restriction-ring
+fiber have the same `beta` and hence the same block algebra, while
+regular-character convergence across moving levels does not determine the
+individual entries of (ARC4a).
+
 There is an exact amplification firewall. For any prescribed finite core
 `beta:B->U(H)`, any selfadjoint involution `X`, and any `r>=1`, set
 
