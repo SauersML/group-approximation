@@ -14,6 +14,7 @@ requires:
   - kaplansky-three-properties-fixed-fp-torsion-free-tester
   - kaplansky-all-fields-reduce-to-finite-fields-on-one-group
   - universal-torsion-free-subgroup-colimit-class-tester
+  - classical-bass-fixed-two-generator-testers
 ---
 
 Use the construction in
@@ -22,10 +23,10 @@ Use the construction in
 compression. We have an embedding `U->E` which injects every connective
 Whitehead group, and `E` is torsion-free.
 
-If `Wh(E)=0`, then `Wh(U)=0), so the original universal Whitehead theorem
-gives `Wh(G)=0` for every torsion-free `G`. The converse applies the
-global assertion to `E`. Translating ordinary Whitehead vanishing through
-the degree-one assembly cokernel gives item 2.
+If `Wh(E)=0`, then `Wh(U)=0`, so the original universal Whitehead
+theorem gives `Wh(G)=0` for every torsion-free `G`. The converse applies
+the global assertion to `E`. Translating ordinary Whitehead vanishing
+through the degree-one assembly cokernel gives item 2.
 
 If the connective Loday assembly for `E` is a weak equivalence, its whole
 connective Whitehead space is weakly contractible. Higher Whitehead
@@ -38,9 +39,15 @@ Full Farrell--Jones, each fixed-field Kaplansky property, and every class
 truth for `E` implies truth for its subgroup `U`. The corresponding
 fixed-`U` tester theorem then gives the global statement. Each converse
 uses that `E` itself is torsion-free. Finally, finite-field transfer on the
-fixed group applies verbatim with `E`, yielding the last equivalence. QED
+fixed group applies verbatim with `E`, yielding the last equivalence.
 
-The Full Farrell--Jones statement retains its coefficient-rich, finite-wreath
-meaning. The connective Loday statement does not include negative K-groups,
-arbitrary coefficient categories, the virtually cyclic family, L-theory, or
-finite wreath products.
+The torsion-free half of
+[[classical-bass-fixed-two-generator-testers]] uses exactly this compressed
+universal Whitehead host `E`: its construction proves that every recursive
+torsion-free input embedding into `E` is Frattini. Hence its equivalence
+supplies item 7 without replacing `E`. QED
+
+The Full Farrell--Jones statement retains its coefficient-rich,
+finite-wreath meaning. The connective Loday statement does not include
+negative K-groups, arbitrary coefficient categories, the virtually cyclic
+family, L-theory, or finite wreath products.

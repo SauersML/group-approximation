@@ -7,6 +7,7 @@ distinct_from:
   two-generator-fp-torsion-free-master-tester: that packages Whitehead, assembly, Farrell--Jones, class, and Kaplansky group-ring tests but does not include the weak Bass trace identity.
   kaplansky-three-properties-fixed-fp-torsion-free-tester: that concerns elements and idempotents in group rings over fields; this concerns two traces on the projective class group of the integral group ring.
   full-farrell-jones-fixed-fp-torsion-free-tester: that tests a substantially stronger coefficient-rich assembly conjecture; this is an exact tester for the weak Bass consequence alone.
+  classical-bass-fixed-two-generator-testers: that controls every conjugacy-class component and also supplies an all-group tester; this node only compares total augmentation with the identity coefficient.
 ---
 
 There exists one two-generator finitely presented torsion-free group `E`,
@@ -36,7 +37,8 @@ epsilon_G = kappa_G for every torsion-free group G.
 
 This is an exact reduction, not a proof of the weak Bass conjecture. It does
 not assert the classical Bass conjecture, whose individual nonidentity
-conjugacy-class components require additional control.
+conjugacy-class components require additional control; that control is
+supplied separately by [[classical-bass-fixed-two-generator-testers]].
 
 **ESTABLISHED 2026-08-30** by
 [[weak-bass-two-generator-tester-proof]].
