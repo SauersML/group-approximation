@@ -401,32 +401,3 @@ permutation target still exists, so this is a gauge-rounding obstruction,
 not a counterexample to equivariant transfer.  Constructing compatible
 targets across growing windows remains OPEN.
 
-
-
-**2026-08-31 (the FD-tempered adjoint sector of (CCR) is closed).**
-The claim `kt-ccr-holds-on-the-fd-tempered-adjoint-sector` combines property `(T)` with
-`fd-invisibility-of-compression`.  If a unitary representation
-`theta:G->U(H)` is weakly contained in the direct sum of the genuine
-finite-dimensional representations of `G`, then
-
-```text
-Fix(theta(t Gamma t^(-1)))=Fix(theta(Gamma)).
-```
-
-Equivalently, with `p_Lambda` the Kazhdan projection, every element
-`a_gamma=(u_gamma-1)p_Lambda` lies in the finite-dimensional radical
-ideal of `C^*_max(G)`, and every FD-tempered representation kills it.
-Thus (CCR) holds for every relative-commutant element whose cyclic adjoint
-module is FD-tempered.
-
-A strict (CCR) inclusion can always be witnessed by an op-norm-one unitary
-`v`.  Its cyclic adjoint module is necessarily non-FD-tempered.  In matrix
-coordinates the witness has the pointed form
-`xi_n=vec(v_n)`: the adjoint microstates are trace-faithful, their
-`Lambda`-generator displacement on `xi_n` vanishes, but one
-`Gamma` displacement does not.  Robust `(T;FD)_rob` isolates the low
-spectral sector but does not control `gamma` on this distinguished vector.
-A vanishing normalized-rank superoperator corner can still move one vector,
-so no trace-only Jones/rank estimate closes the gap.  The exact residue is
-bounded-vector continuity of the FD-radical elements on op-norm-one
-unitary vectorizations.  Full (CCR) remains OPEN.
