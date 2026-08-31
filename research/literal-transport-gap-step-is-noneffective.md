@@ -6,6 +6,8 @@ title: The current literal transport path has a non-effective spectral-gap gate
 distinct_from:
   effective-transport-modulus: This identifies the exact missing gate in the current proof; it does not assert that no effective modulus exists.
   uniform-finite-mf-obstruction: That compactness theorem proves existence of a finite threshold; this claim audits why it does not compute one.
+  p13-low-cluster-does-not-control-long-rotation-words: That gives a scalar counterfamily to the naive low-cluster robustification; this audits the actual non-effective call and records the general word-length loss.
+  post-gap-compressor-constants: That closes the downstream dimension-free vector-chain inequalities conditional on finite-stage inputs; this identifies why those inputs are not yet functions of the displayed relator defect.
 artifacts:
   - GroupApproximation/Sofic/WeakMFVectorGNS.lean
   - GroupApproximation/Sofic/KazhdanCornerCompression.lean
@@ -94,8 +96,11 @@ before any approximate-relator replay error is added. The last term is
 unbounded on the translation lattice for every \(\alpha>0\). Thus the exact
 circumcenter proof cannot simply replace “rotation fixed” by “in the low
 rotation spectral cluster”; a new finite relative-\((T)\) estimate or a
-full-base certificate is logically required.
-
+full-base certificate is logically required. The scalar family in
+`p13-low-cluster-does-not-control-long-rotation-words` realizes this
+failure with vanishing rotation defect and P13 energy but displacement two
+for an escaping word; it is the sharp counterexample, while (NT1)--(NT2)
+record the general deterministic loss.
 
 The archived full-base scalar-SOS screen does not already supply this input.
 `experiments/literal_base_laplacian_sos.py` has a proof-carrying
@@ -114,10 +119,13 @@ The smallest sufficient new input is therefore either
    relations that converts the P13 low cluster and the nine affine relator
    defects into a full-base spectral cutoff with a numerical residual.
 
-After that gate, a separate finite ledger is still required for compressor
-transport, central spectral-corner restriction, and the marked-word estimate.
-Accordingly no explicit positive defect threshold for
-`effective-transport-modulus` is yet justified.
+`post-gap-compressor-constants` already closes the downstream
+dimension-free analytic vector chain, including the exact marked-commutator
+budget. After the affine gate, what remains is presentation-specific finite
+replay that instantiates its top-corner fixing, leakage, root-capture, and
+fixed compressor/marked-word inputs from the displayed relators. Accordingly
+no explicit positive defect threshold for `effective-transport-modulus` is
+yet justified.
 
 No `invalidates` entry is attached: current main has no route targeting
 `effective-transport-modulus`; this node records the obstruction without
