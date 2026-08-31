@@ -141,3 +141,6 @@ No current congruence or operator-algebraic theorem proves that (RCA10)
 vanishes for every Iwahori microstate.  Hence (RCA10) is a finite, double-coset synchronization target.  It is a
 sufficient gauge ansatz, not an assertion that every relative ucp kernel has
 this unitary-fibre form, and not a completed proof of the root.
+
+DERIVATION
+right-core-cayley-toeplitz-window-proof
