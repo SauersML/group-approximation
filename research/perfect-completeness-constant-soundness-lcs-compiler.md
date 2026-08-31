@@ -154,6 +154,16 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   section.  A revival must use cross-context structure that prevents
   atomwise scalar extension, a genuinely non-affine intermediate test, or a
   native LCS gap.
+- **Share auxiliaries across contexts.**  Acyclic sharing dies by
+  `join-tree-overlap-gadgets-have-no-contextual-escape`.  Compatible context
+  laws on a join tree glue to a global scalar law, and an unsatisfiable
+  instance obeys the robust distributional certificate
+  `sum eta_c+sum delta_e>=1`.  Under edgewise support extendability, compatible
+  odd subsets also lift to an odd combination of global assignments.  The
+  Mermin--Peres square shows that cyclic incidence can evade this no-go, but
+  it already has a four-dimensional perfect strategy and supplies no source
+  decoder.  The live target is therefore a source-dependent cyclic coupling
+  with a dimension-independent reverse decoder.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
