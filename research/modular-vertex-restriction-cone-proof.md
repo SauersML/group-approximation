@@ -66,19 +66,20 @@ the feasible semigroup, not merely a real-cone limit.
 ## Exact finite Plancherel windows
 
 Let `F subset C` be finite. For every `g in F minus {e}` choose
-one nonzero integer entry `a_g` of the matrix `g-I`. Choose a
-prime `ell` which is different from `p` and divides none of the
-finitely many nonzero integers `a_g`. Then
+one nonzero integer entry `a_g` of the matrix `g-I`. Define `P_F` and
+`m_F` by (MVC5). Then
 
 ```text
-g mod ell != I       for every g in F minus {e}.        (MVP4)
+gcd(m_F,p)=1,       m_F>|a_g|>0,
+g mod m_F != I       for every g in F minus {e}.        (MVP4)
 ```
 
-Reduction of `A` modulo `ell` is defined because `p` is
-invertible, and it is onto because its restriction from `C` is onto.
-Pull back the left regular representation of
-`Q_ell=SL_2(F_ell)`. Its normalized character equals one on the kernel
-of reduction and zero off that kernel. By (MVP4), it therefore agrees with
+The first assertion follows from `m_F=1 mod p`; the second follows because
+the positive product `P_F` is at least each factor `|a_g|`. Reduction of
+`A` modulo `m_F` is therefore defined, and it is onto because its
+restriction from `C` is onto. Pull back the left regular representation of
+`Q_(m_F)=SL_2(Z/m_F)`. Its normalized character equals one on the kernel
+of reduction and zero off that kernel. By (MVP4), it agrees with
 `delta_e` on all of `F`, proving (MVC5)--(MVC6).
 
 Finally let `L` be any real affine functional depending on finitely many
