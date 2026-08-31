@@ -262,6 +262,36 @@ norm. Therefore
 which is `(QLP3)`. The Hall excess is real, but it is forced to leak out
 of `q` rather than producing a violated relator.
 
+The hidden sectors can be named exactly. Write `p_(j,z)` for the full
+`C`-character projection with `J`-eigenvalue `omega^j` and
+`Z`-eigenvalue `omega^z`. The same intersection calculation as in
+Section 4 gives the universal algebraic support rule
+
+```text
+p_(j,z) g e_a !=0  only if  2j+z=1.
+```
+
+Thus, in every unitary representation,
+
+```text
+g e_a=(p_(1,2)+p_(0,1)+p_(2,0)) g e_a,                  (QLP15a)
+p_(1,2)=e_2.
+```
+
+The last two summands lie in the `J=1` and `J=omega^2` thirds, outside
+`q`. The forbidden blocks vanish in the abstract group algebra and hence
+universally, but an allowed block may vanish in a nonfaithful
+representation. Only the canonical group trace forces all three allowed
+blocks to be nonzero; there each has squared norm `1/27`, so in fact
+
+```text
+||(1-q)gR||_2^2=4/27.                                    (QLP15b)
+```
+
+This is the universal Hall-support firewall: the phase star has two
+specific legal escape characters, and no relation used so far returns
+either one to the selected `q` corner.
+
 There is an exact finite-dimensional firewall. Let `F` be the finite
 qutrit head and use its left regular representation. Every `C`-character
 projection then has normalized rank `1/9`. The matrices `J` and `h` are
