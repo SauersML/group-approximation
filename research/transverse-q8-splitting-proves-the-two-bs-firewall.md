@@ -173,7 +173,7 @@ Right multiplication by the unitary ((XY)^*) gives
 ]
 Therefore
 [
-egin{aligned}
+\begin{aligned}
  |Z-I|_2
  &le |ZXY-YX|_2+|YX-XY|_2\
  &le epsilon_Q+2|X-Y|_2.                             	ag{12}
@@ -194,7 +194,7 @@ Combining (12) and (13) proves
 Apply (14) to the hyperlinear models from (10). Their Q8 and covariance
 row defects tend to zero. For each (i),
 [
- liminf|[W_i,X]|_2gerac{sqrt2}{2}.                 	ag{15}
+ liminf|[W_i,X]|_2ge\frac{sqrt2}{2}.                 	ag{15}
 ]
 Every exact finite-dimensional actor representation kills (w_i), but
 approximate representations of the full amalgam keep both invisible words
