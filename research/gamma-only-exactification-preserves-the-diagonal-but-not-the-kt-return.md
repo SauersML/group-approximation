@@ -105,9 +105,10 @@ needed exactification for this concrete source.
   same-dimensional normalized-HS stability for every infinite hyperlinear
   property-`(T)` group, hence for this residually finite `Gamma`.
 - The Lavi--Levit character theorem, arXiv:2007.15547, assumes elementary
-  rank strictly above the stable range of the coefficient ring. It does not
-  cover the pinned rank-three, three-variable group by its stated
-  hypothesis.
+  rank strictly above the stable range of the coefficient ring. Its stated
+  general hypothesis does not yield the pinned rank-three case: the standard
+  dimension bound gives only `stable_range(R)<=4`, not the required
+  `3>stable_range(R)`.
 - Character rigidity or hyperfinite-HS stability would in any event control
   only the appropriate limiting-character sector; the canonical wreath
   restriction has regular character and nonamenable GNS algebra.
