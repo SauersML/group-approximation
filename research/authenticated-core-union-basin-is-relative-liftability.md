@@ -235,6 +235,23 @@ is the opposite extreme: its Plancherel multiplicities permit a
 vanishing-density full-rank outlier, so the remaining arithmetic task is
 coherence across multiplicity sectors.
 
+The actual regular congruence restriction is computed in
+`actual-regular-core-blocks-and-amplification-neutrality`. If
+`q=[A_N:B_N]`, then
+
+```text
+lambda_(A_N) restricted to B_N = q lambda_(B_N),
+D_beta = direct_sum_alpha M_(q d_alpha),
+tr(e_alpha)=d_alpha^2/|B_N|.
+```
+
+The same node proves that simultaneous matrix amplification of the core and
+extender preserves both the selector distance and the near-top coverage
+number exactly, while multiplying every commutant-block size. Hence neither
+bounded multiplicity nor large multiplicity can settle the gate. The two
+cubic rows must control the position and coherence of the band inside these
+Plancherel-weighted blocks.
+
 The same reduction now holds for every prescribed core type, not only the
 regular face. `relative-induced-selector-has-intertwiner-order-dual`
 replaces the whole-group Choi variables by the finite right module
