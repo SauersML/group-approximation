@@ -103,7 +103,7 @@ has order \(D^3\).  For the primitive character
  \tag{UCB9}
 \]
 
-and this block has one irreducible representation.  In its Schrödinger
+and this block has one irreducible representation.  In its Schrodinger
 basis \(e_t\), \(t\in\mathbf Z/D\mathbf Z\), define
 
 \[
