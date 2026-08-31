@@ -6,7 +6,7 @@ title: Match localized columns and discard their diagonal phases
 target: collision-and-phase-free-cartan-observables-force-joint-lamp-targets
 requires:
   - finite-lamp-targets-glue-after-action-groupoid-completion
-  - finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction
+  - finite-schreier-holonomy-is-the-lamp-gauge-obstruction
 ---
 
 ## Step 1: collision mass gives a large injective column matching
