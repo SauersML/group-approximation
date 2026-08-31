@@ -348,3 +348,105 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   Weyl evaluation of `odd-congruence-lambda-exact-sector-collapses`
   replaces the extension mechanism.  Progress on either instance
   transfers its techniques, not its statement, to the other.
+- **Approximate central authentication has a sharp trichotomy.**
+  `approximate-central-tensor-coverage-forces-capture` proves that if a
+  rank-\(1-r\) projection almost commutes with the four modular-vertex
+  torsion generators and its rounded corner is \(\zeta\)-close to the
+  bounded-payload congruence tensor hull, then
+  \(D\leq2\sqrt r+C(\operatorname{def}+\Omega+\zeta)^\alpha\).
+  The polar and finite-spectrum rounding step is linear and
+  dimension-free. Hence a fixed capture gap forces positive uncovered rank,
+  nonvanishing off-diagonal mass, or failure of every bounded-payload
+  tensor model. Extracting the almost-central carrier and authenticating its
+  tensor factors remain open.
+- **Literal high-dimensional irreducibility is not payload escape.**
+  `steinberg-endpoints-are-indecomposable-but-payload-width-one` takes the
+  dimension-\(p\) Steinberg representation of `PSL_2(F_p)` along odd
+  reduction. Both modular vertices and the Iwahori edge map onto the finite
+  group, so all restrictions are irreducible; Selberg expansion gives a
+  uniform adjoint commutator gap, ruling out even approximate
+  positive-density peeling. Nevertheless the pair is an exact endpoint and
+  has residual payload width one. Thus alternative (3) must be measured
+  only after absorbing every compatible congruence factor; the remaining
+  issue is noncongruence alignment, not raw irreducible dimension.
+- **Supplied endpoint factors are uniformly authenticated.**
+  `endpoint-expander-authenticates-bounded-residual-width` defines residual
+  width only after absorbing all compatible congruence factors. For a
+  supplied common block carrier and irreducible endpoint factor, property
+  `(T;FD)` sends every untwisted generator to the residual matrix algebra
+  with a uniform conditional-expectation constant; polar and torsion
+  rounding then produce exact bounded payloads. Thus endpoint adjoint-gap
+  collapse is not an escape. A negative sequence must fail factor/carrier
+  discovery or retain unbounded residual width after every absorption.
+- **Central character refinement can invent unbounded payload.**
+  `central-projectors-overcount-regular-endpoint-payload` uses the exact
+  regular endpoint of `PSL_2(F_p)`. Its true residual width is one, but
+  Plancherel refinement exposes multiplicity `dim(rho)` on every
+  `rho`-block; outside the rank-one trivial block these dimensions are at
+  least `(p-1)/2`. The entire multiplicity algebra is fixed by endpoint
+  conjugation, so property `(T;FD)` and all central character projectors
+  assign it zero authentication energy. Blockwise irreducible-projector
+  tests therefore cannot choose the minimal endpoint grouping; the full
+  multiplicity vector may still be regrouped globally through the
+  representation ring or complete multiplication data.
+- **The full Plancherel vector repairs the repeated-irrep ambiguity.**
+  `plancherel-score-recovers-reducible-endpoint-grouping` minimizes the
+  weighted `L1` distance from the complete multiplicity vector
+  `(m_rho)` to a regular ray `k(dim(rho))`. The score is exactly the total
+  physical rank needing deletion/padding to obtain `k lambda_G`, and a
+  mixed-intertwiner property-`(T;FD)` argument makes it uniformly stable
+  under small Hilbert--Schmidt motion between exact quotient lifts.
+  Therefore full fusion data regroups the Plancherel atoms
+  dimension-freely once a quotient lift exists. It still does not produce
+  the moving multiplication table from the raw Iwahori pair.
+- **No bounded scalar window can compute the global grouping.**
+  `bounded-moments-cannot-recover-plancherel-grouping-score` compares, in
+  the same dimension `|PSL_2(F_p)|`, the regular endpoint with
+  `(|G_p|/p)` copies of Steinberg. Every fixed word/multiplication moment
+  differs by at most `1/p`, but the global regular-grouping scores are
+  exactly zero and one. Amplified regular endpoints at two distinct large
+  primes even have identical fixed windows in one common dimension.
+  Therefore a quotient selector must use a window growing with the modulus
+  or genuinely operator-valued table data; bounded character separation
+  cannot feed the Plancherel criterion.
+- **The moving quotient has an exact table-or-separator alternative.**
+  `relative-pd-body-has-table-or-separator-dichotomy` takes Hilbert--
+  Schmidt distance `Delta` from the raw marked tuple to the compact convex
+  body of relative positive-definite coefficient tables on its forced
+  finite quotient. Stinespring plus property `(T;FD)` gives
+  `D <= C sqrt(Delta)`. Hence any fixed capture gap produces a norm-one
+  operator-valued metric separator with uniform margin `c epsilon^2`
+  against the whole table body. The separator may move in quotient support
+  and rank; excluding these witnesses is now the precise arithmetic task.
+- **The operator separator is a nonlinear Cayley cosystole.**
+  `relative-table-separator-is-cayley-cocycle-obstruction` transports a
+  norm-one separator through every relative unitary zero-cochain `W_g`.
+  Its margin pairs exactly with the row coboundary
+  `U_s W_g-W_(sg)`, forcing the RMS multiplication-table energy to stay
+  positive. The associated twisted shifts are exact on both modular
+  vertices and preserve the original Iwahori edge defect exactly.
+  Therefore property `(T;FD)` cannot contradict the witness before those
+  same missing rows are filled. A nonlinear relative Cayley cosystolic
+  estimate from the two concrete cubic rows would eliminate these
+  separators, though general nonunitary Kraus certificates make it a
+  sufficient route rather than a converse characterization.
+- **The full positive-definite gate is a multi-Kraus cosystole.**
+  `multi-kraus-frame-energy-is-the-full-relative-pd-gate` resolves every
+  relative coefficient table into rectangular Stinespring components and
+  defines their RMS row energy `e_K`. The exact comparison
+  `Delta <= e_K <= sqrt(Delta^2+2 Delta)` makes vanishing
+  multi-Kraus energy equivalent to approaching the whole coefficient body,
+  and the metric separator transports isometrically through every such
+  frame. Thus forcing `e_K -> 0` from the two Iwahori rows is
+  exactly the remaining full-PD sufficient gate. Unitary zero-cochains are
+  only the flat square subclass, so a unitary synchronization theorem alone
+  must not be advertised as an equivalence without an additional flattening
+  argument.
+- **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
+  Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
+  analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
+  refuted by the exact two-primary regular tower. The live unrestricted
+  higher-rank correctability problem is `sl3-z-weakly-ucp-stable`, but it
+  cannot feed `odd-congruence-lambda-exact-sector-collapses` without a
+  separate theorem closing the two-primary sector. Techniques may transfer
+  between the rank-one and higher-rank problems; their statements do not.

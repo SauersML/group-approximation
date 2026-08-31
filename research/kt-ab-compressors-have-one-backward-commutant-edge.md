@@ -111,5 +111,44 @@ multi-compressor hyperlinearity problem. Nothing here constructs a
 hyperlinear model of the full Kun--Thom wreath, so the non-hyperlinear-group
 root remains **OPEN**.
 
+
+## The first later-word loop and its exact tracial boundary
+
+`kt-order-three-average-does-not-kill-the-pointed-martingale-wall` writes
+the first noncommuting loop explicitly. With
+
+~~~text
+B_-=C^(-1)BC=I+E_31,       D=I+E_32,
+~~~
+
+the Steinberg relation is
+
+~~~text
+B_- B=D B B_-,
+Phi_B Phi_(B_-)=Phi_(B_-) Phi_B Phi_D.
+~~~
+
+In the full exact binary wreath, the cyclic parity projection
+
+~~~text
+q=(1+z_Gamma z_(C^(-1)Gamma) z_(C^(-2)Gamma))/2
+~~~
+
+is Gamma-central and Theta-fixed, but the fixed Laurent return
+
+~~~text
+h=B^(-1)e_12(x_2)B=e_12(x_2/x_1)
+~~~
+
+satisfies `||[q,u_h]||_2=1/sqrt(2)` and hence
+
+~~~text
+dist_2(q,Phi_B(R))>=1/(2 sqrt(2)).
+~~~
+
+Thus even the exact order-three average cannot kill the wall by a tracial
+or property-(T) argument. The only possible positive theorem is
+matrix-specific control of this named return packet.
+
 DERIVATION
 kt-ab-commutant-cocycle-and-pointed-martingale-no-go-proof

@@ -485,3 +485,184 @@ retained by canonical HS microstates.  The latter proves that finite
 presentation plus exact FD invisibility, even after adjoining a nonamenable
 property-(T) factor, has no abstract approximate-collapse consequence.
 The global nonhyperlinearity route remains **OPEN**.
+**2026-08-31 (Kun--Thom v3 exact counterprofile and CE fork).**
+`canonical-kun-thom-wreath-factor-is-an-exact-nonnormalized-commutant`
+shows that the proposed normalization is false before the matrix/CE
+hypothesis is imposed.  In the canonical finite tracial algebra `L(W)`, the
+base lamp `a_Gamma` lies in the `Gamma`-commutant, while for a strict
+compressor `t` and `gamma_0 in Gamma minus t Gamma t^(-1)`,
+
+~~~text
+norm_2(
+  gamma_0 a_(tGamma) gamma_0^(-1)-a_(tGamma)
+)=sqrt(2).
+~~~
+
+Thus the translated lamp is at distance at least `1/sqrt(2)` from the
+`Gamma`-commutant.  Consequently there is an unconditional fork:
+
+~~~text
+W is nonhyperlinear,
+or
+a CE embedding of L(W) is a trace-faithful matrix-ultraproduct
+counterexample to centralizer normalization.
+~~~
+
+The derivation
+`strict-compressor-lamp-commutator-and-ce-dichotomy-proof` also audits the
+v3 proof of Kun--Thom Theorem 4.1.  Its permutation-only fullness step is
+now pinned exactly: Lemma 4.2(4) represents every centralizer permutation
+by a total bisection; compressor transport gives a faithful groupoid
+functor; the two median arguments make orbit and isotropy-order ratios tend
+to one; and the residual finite isotropy index is an integer below two, so
+the Hom-torsor map is onto and the transported bisection can be completed.
+There is no known matrix counterpart of the total-bisection
+representation or integer-index surjectivity.
+
+Alekseev--Thom Open Problem 6.2 is the coordinate-description gate, but
+the relative application also needs joint compatibility: the coordinate
+algebras for `Gamma` and `t Gamma t^(-1)` must use the same compressor lifts,
+and the automatic one-sided inclusion must be upgraded uniformly on their
+operator-norm unit balls.  Property `(T)` supplies adjoint spectral gap but
+cannot identify the two fixed spaces; the exact wreath vector above proves
+this already in a finite tracial algebra.  Hence the matrix-internal
+cluster/fullness theorem, not spectral gap alone, is the precise remaining
+bridge.
+
+
+**2026-08-31 (canonical Steinberg regular sector: strict instability but
+no leak).**  `canonical-kt-steinberg-deleted-line-embeddings-have-scalar-relative-commutants`
+constructs an explicit regular-character family for the full binary actor.
+For odd primes `m`, decompose
+
+```text
+F_2[(Z/mZ)^3] = product_O F_(2^|O|)
+```
+
+over Frobenius orbits and tensor the Steinberg modules of every elementary
+factor.  The join-of-buildings model extends this irreducible elementary
+representation to the full congruence semidirect quotient.  Both `Gamma` and
+`t Gamma t^(-1)` surject onto the elementary image, so both coordinate
+commutants are scalar.
+
+Deleting one line and polar-compressing produces a trace-faithful
+everywhere-inexact embedding which stays a Kazhdan distance from every
+same-dimensional genuine `Gamma`-representation.  Thus literal
+same-dimensional profinite classification is false even in the canonical
+regular-character sector.  However one-line padding recovers the exact
+congruence representation, and the same Kazhdan gap proves the quantitative
+low-band estimate
+
+```text
+dist_2(X,C)
+ <= kappa^(-1) max_(s in S)||[X,rho_m(s)]||_2
+    + O(D_m^(-1/2)).
+```
+
+Consequently both ultraproduct commutants remain `C`, and every fixed
+mixed-return leakage vanishes.  This gives a nontrivial inexact instance of
+Alekseev--Thom Open Problem 6.2 but does not settle the universal statement:
+a counterexample must combine padding-stable positive-density instability
+with macroscopic multiplicity.  The regular irreducible deleted-line
+mechanism has neither and cannot carry the Pauli wall.
+
+
+**2026-08-31 (regular trace mask removes the trace hypothesis).**
+`kt-regular-congruence-mask-removes-trace-faithfulness-from-the-commutant-wall`
+shows that the canonical Steinberg tower is a transparent tensor mask.  If
+`v_n:G->U(k_n)` is any asymptotic representation, with no trace condition,
+and `alpha_n` is the exact regular-character congruence tower, then
+
+```text
+u_n(g)=alpha_n(g) tensor v_n(g)
+```
+
+is trace-faithful, while every multiplication defect, two-compressor
+relator defect, and multiplicity commutator is preserved exactly:
+
+```text
+||[I tensor X,u_n(g)]||_2=||[X,v_n(g)]||_2.
+```
+
+Consequently (CCR), and likewise `G`-normalization of the
+`Gamma`-commutant, holds for every trace-faithful matrix-ultraproduct
+representation if and only if it holds for every matrix-ultraproduct
+representation with no character hypothesis.  A pre-existing multiplicity
+leak remains positive-mass after the tensor mask and after arbitrary
+negligible direct-sum padding.
+
+This closes a tempting use of canonical mixed traces: trace-faithfulness,
+congruence provenance of a large carrier, and joint `A,B` coherence cannot
+control the quantum fiber, because the carrier cancels from its equations
+and masks its character.  The remaining target is the bare source-specific
+multiplicity problem.  The theorem supplies no leaking `v` and therefore
+does not close the route.
+
+
+**2026-08-31 (the two positive edges have one backward range).**
+`kt-ab-compressors-have-one-backward-commutant-edge` computes the exact
+correspondence seen by a pointed multiplicity vector. For
+`R=sigma(Gamma)' intersect M` and
+`Phi_g=Ad(sigma(g)^*)|R`, the identity `A=C B` and normalization of
+`Gamma` by `C` give
+
+~~~text
+Phi_A=Phi_B o Phi_C,
+Phi_A(R)=Phi_B(R)=sigma(B^(-1) Gamma B)' intersect M.
+~~~
+
+Thus the pair contributes one backward endomorphism and one cyclic source
+automorphism, not two independent first-step conditional expectations.
+Moreover the canonical one-compressor sofic wreath gives an actual
+matrix-ultraproduct projection `p in R` with
+
+~~~text
+||p||=1,       dist_2(p,Phi_B(R))>=1/(2 sqrt(2)).
+~~~
+
+This rules out a property-(T) or noncommutative-martingale proof based only
+on the two root ranges, even for a pointed operator-norm-bounded vector.
+The exact surviving target is later-word holonomy: control the noncommuting
+placements of `Phi_C` through iterates of `Phi_B`, equivalently a named
+mixed-return row. Extending the one-compressor projection through that
+holonomy would itself be the missing joint hyperlinear model, so the route
+remains open.
+
+
+**2026-08-31 (minimal cyclic holonomy and fixed Laurent return).**
+`kt-order-three-average-does-not-kill-the-pointed-martingale-wall` now
+identifies the first later-word equation. For
+`B_-=C^(-1)BC=I+E_31` and `D=I+E_32`,
+
+~~~text
+B_- B=D B B_-,
+Phi_B Phi_(B_-)=Phi_(B_-) Phi_B Phi_D.
+~~~
+
+Order-three averaging still cannot supply pointed control. In the full exact
+tracial binary wreath, the parity projection
+
+~~~text
+q=(1+z_Gamma z_(C^(-1)Gamma) z_(C^(-2)Gamma))/2
+~~~
+
+is Gamma-central and fixed by `Phi_C`. Nevertheless the explicit mixed
+return
+
+~~~text
+h=B^(-1)e_12(x_2)B=e_12(x_2/x_1)
+~~~
+
+satisfies
+
+~~~text
+||[q,u_h]||_2=1/sqrt(2),
+dist_2(q,Phi_B(R))>=1/(2 sqrt(2)).
+~~~
+
+Hence property (T), the cyclic average, and every exact tracial actor
+relation still leave a macroscopic pointed wall. What remains is sharply
+matrix-specific: prove that trace-faithful finite-dimensional microstates
+force the three cyclic Laurent-return commutators to vanish, or realize one
+of them in a matrix ultraproduct. The exact tracial model itself does not
+decide Connes embeddability, so the route remains open.
