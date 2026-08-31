@@ -70,6 +70,29 @@ This is an affine packet. In particular, if every honest singleton
 character survives, then \(L=1\), and every odd character survives,
 including every odd high-degree nondictator.
 
+There is also an exact unitality obstruction. For
+\[
+ e_\chi=|H|^{-1}\sum_{h\in H}\chi(h)h,\qquad
+ p_-=\frac{1-z}{2},\qquad
+ q_{\rm dict}=\sum_{p\in P}e_{\chi_{\{p\}}},
+\]
+the extension statement makes \(K_\alpha\to\Pi\) injective. Hence, when
+all singleton characters survive and \(|P|\geq3\),
+\[
+ p_--q_{\rm dict}
+ =\sum_{\substack{\beta\subseteq P\\|\beta|\ {\rm odd},\ |\beta|\geq3}}
+   e_{\chi_\beta}\ne0.                                  \tag{5}
+\]
+Thus the canonical local predicate map
+\[
+ \mathbb C^P\longrightarrow p_-C^*(\Pi)p_-,
+ \qquad \delta_p\longmapsto e_{\chi_{\{p\}}},
+\]
+is not unital: its image unit is \(q_{\rm dict}\), not the central LCS
+sign unit \(p_-\). This rules out an exact perfect-completeness transfer
+through this canonical Fourier/dictator map, independently of which
+trace one tries to extend.
+
 Thus a nonamenable property-(T) interface of the form (2) cannot turn the
 central sign sector into the signed-Hecke dictator block. It has only two
 outcomes:
