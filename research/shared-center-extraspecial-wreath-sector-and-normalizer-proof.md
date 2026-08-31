@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: shared-center-extraspecial-wreath-sector-and-normalizer-proof
-kind: proof
+kind: route
 title: Shared-center extraspecial normal forms, spin corners, and the surviving multiplicity cocycle
 proves:
   - shared-center-extraspecial-wreath-has-fd-invisible-spin-sector

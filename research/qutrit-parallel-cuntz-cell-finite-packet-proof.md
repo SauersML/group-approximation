@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-parallel-cuntz-cell-finite-packet-proof
-kind: proof
+kind: route
 title: Count the shared-center parallel Cuntz packet and its scalar covariance
 target: qutrit-parallel-full-cuntz-cell-covariance-is-finite
 requires:

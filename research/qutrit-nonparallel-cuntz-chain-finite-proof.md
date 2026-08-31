@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-nonparallel-cuntz-chain-finite-proof
-kind: proof
+kind: route
 title: Compute the 13-dimensional nilpotent algebra of the first Cuntz return chain
 target: qutrit-first-nonparallel-cuntz-return-chain-is-finite
 requires:
