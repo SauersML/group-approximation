@@ -19,6 +19,7 @@ T_n=lambda_Qn(t).
 ```
 
 For every sufficiently large `n`, there are left-`N_n`-invariant functions
+
 ```text
 c_n:Q_n -> F_2
 ```
