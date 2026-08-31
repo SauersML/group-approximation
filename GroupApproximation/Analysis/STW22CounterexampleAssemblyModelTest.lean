@@ -243,7 +243,7 @@ theorem isUniformTwoContinuous_of_bound (G : TracialTwoGauge D)
     IsUniformTwoContinuous G σ := by
   intro x hx
   rw [tendsto_zero_iff_norm_tendsto_zero]
-  refine squeeze_zero' (Eventually.of_forall fun N ↦ norm_nonneg _)
+  refine squeeze_zero' (Eventually.of_forall fun _ ↦ norm_nonneg _)
     (Eventually.of_forall fun N ↦ hK (x N)) ?_
   have h := hx.const_mul K
   rwa [mul_zero] at h
