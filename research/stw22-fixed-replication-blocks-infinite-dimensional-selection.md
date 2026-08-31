@@ -6,7 +6,7 @@ title: Fixed replication cannot make half-slack matrix fibres infinitely connect
 distinct_from:
   stw22-finite-dimensional-factor-bundles-have-uniform-traces: that theorem chooses replication after fixing the finite base dimension and needs only one finite sphere degree; the present obstruction applies when one fixed replication is asked to handle all degrees.
   stw22-matrix-weighted-copy-uniform-finite-degree-fillings: that theorem proves the positive range 2c>=j degree by degree; the present theorem exhibits the first sphere beyond that range and makes it metrically shrink by varying the weight.
-  stw99-problem-xxii-tracial-completion-traces-continuous: the root problem remains open over infinite-dimensional or non-countably-generated bundles; this is a no-go for one selection strategy, not a counterexample to trace continuity.
+  stw99-problem-xxii-tracial-completion-traces-continuous: this node itself is only a no-go for one selection strategy; the later projective-bundle corona construction gives the actual counterexample to the root statement.
 artifacts:
   - research/artifacts/stw22-infinite-dimensional-selection-barrier-audit-2026-08-31.md
 ---
@@ -48,7 +48,8 @@ stabilized Michael argument cannot fix one finite m and demand
 C-infinity, equi-LC-infinity matrix values.
 
 This does not obstruct the finite-dimensional theorem: for a base of
-dimension D it chooses m>=ceil((D-1)/2) and uses only degree D-1.  It
-also does not exclude a skeletonwise or telescope construction with
-replication increasing, another selection principle, or a different
-proof of STW Problem XXII.
+dimension D it chooses m>=ceil((D-1)/2) and uses only degree D-1.  This
+node by itself is only a no-go for the fixed-replication selection route.
+The later `stw22-nuclear-type-i-counterexample-trace-problem` obtains an
+actual rogue trace by feeding an unbounded projective-bundle commutator
+obstruction into the Cuntz--Pedersen quotient.
