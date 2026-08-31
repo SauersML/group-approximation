@@ -27,7 +27,7 @@ Let
 and let (alpha) be the involutive automorphism interchanging (x,y)
 and fixing (z). Define the explicit seven-generator group
 [
-egin{aligned}
+\begin{aligned}
  Pi_2=langle x,y,z,a_0,t_0,a_1,t_1mid;&Q_8, t_i a_i^2t_i^{-1}=a_i^3,\
  &[z,a_i]=[z,t_i]=1,\
  &w_i xw_i^{-1}=y,quad w_i yw_i^{-1}=x
