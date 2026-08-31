@@ -31,10 +31,10 @@ subcomplex of the singular chain complex.
 -/
 
 open CategoryTheory AlgebraicTopology
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
+open AffineBarycentricSubdivision
 
 variable {R : Type} [CommRing R] {X : TopCat.{0}}
 
