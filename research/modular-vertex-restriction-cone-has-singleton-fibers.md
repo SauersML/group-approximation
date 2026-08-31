@@ -40,6 +40,16 @@ More explicitly:
    semigroup is the whole nonnegative orthant and every restriction fiber
    is a singleton, modulo harmless inflation to a common level.
 
+After projectivizing by dimension, the closure of the normalized endpoint
+rays is the full standard simplex
+
+```text
+theta_pi>=0,       sum_pi theta_pi=1,
+theta_pi=M_pi dim(pi)/sum_rho M_rho dim(rho).           (MVC3a)
+```
+
+Every rational simplex point is realized by an integral multiplicity vector.
+
 The Plancherel target is not merely in the closure of the feasible rays. At
 every fixed level its multiplicity vector is the integral endpoint vector
 
