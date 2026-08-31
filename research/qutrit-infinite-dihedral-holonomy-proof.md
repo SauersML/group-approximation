@@ -6,7 +6,7 @@ title: Prove the positive-letter opposite-root product is infinite and has an am
 target: qutrit-first-infinite-prefix-holonomy-is-dihedral-amenable
 requires:
   - qutrit-first-mismatched-prefix-holonomy-is-d8
-  - amenable-edge-amalgams-preserve-hyperlinearity
+  - amenable-edge-cycles-cannot-create-an-lcs-gap
 ---
 
 ## The relative intertwiners
@@ -78,8 +78,12 @@ W^2=
 
 so it is not a scalar or finite-code permutation matrix.
 
-The same leading-term argument applies to `W^(-n)=(YX)^n` and to the
-reflection normal forms. Every nonidentity element of `<X,Y>` has a
+For `n>0`, the `(2,1)` entry of `W^n` has the unique leading word
+`b(ab)^(n-1)`, so the same entry survives unchanged in the reflection
+`XW^n`. The negative powers use the symmetric leading words in
+`(YX)^n`; the remaining reflection normal forms are identical after
+interchanging `a,b` and the two coordinates. Together with the cases
+`X,Y`, this shows that every nonidentity element of `<X,Y>` has a
 nonzero positive-degree matrix entry. Hence
 
 ```text
