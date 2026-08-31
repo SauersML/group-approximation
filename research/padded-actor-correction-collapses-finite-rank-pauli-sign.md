@@ -237,3 +237,41 @@ Accordingly, the exact external theorem still needed for the finite-rank
 Pauli route is the quoted Pauli-compatible, \(T\)-relative flexible actor
 stability statement.  Without it, (15) is a quantitative boundary, not a
 nonhyperlinearity proof.
+
+
+## 7. Named-host audit
+
+The repository's named candidates do not currently instantiate the missing
+relative theorem.
+
+- The claim \( \textit{hs-stable-finite-bi-index-kazhdan-pair-exists}\) is
+  explicitly an open search.  It asks for same-dimensional HS stability of
+  the whole actor, which would imply more than the source-specific flexible
+  correction used in (15).
+- The André--Guirardel sharply two-transitive actor has finite orbit rank,
+  but the published construction supplies neither finite presentation of
+  the actor nor finite generation or property \((T)\) of the point
+  stabilizer.  It also supplies no normalized-HS flexible correction
+  theorem.
+- For the original Kun--Thom/GKP coset action, the projection
+  \[
+   \operatorname{EL}_r(R)\rtimes\operatorname{SL}_d(\mathbb Z)
+   \longrightarrow\operatorname{SL}_d(\mathbb Z)
+  \]
+  kills \(\Gamma=\operatorname{EL}_r(R_+)\), and therefore descends to a
+  surjection
+  \[
+   \Gamma\backslash G/\Gamma\longrightarrow
+   \operatorname{SL}_d(\mathbb Z).
+  \]
+  Its double-coset rank is infinite.  Thus this action fails (1) before the
+  correction question is reached; see
+  \( \textit{kun-thom-coset-action-has-infinite-orbit-rank}\).
+
+Accordingly no named finitely presented infinite finite-rank action in the
+audited graph has both a Kazhdan stabilizer and the restricted correction
+modulus used in (15).  The minimal external input is not “the actor is HS
+stable,” but the following fixed-interface statement: Pauli-compatible
+microstates admit \(o(d)\)-flexible correction on \(T\) to one genuine actor
+representation.  Equations (16) and (18) give the exact modulus that such a
+theorem must beat.
