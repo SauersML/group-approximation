@@ -68,9 +68,22 @@ reuse two assigned maps: if its third label is fresh, define that map by exact
 composition or inverse composition.  Fully old closing relations also cost
 nothing when they are formal consequences of the peeled basis.
 
+A second positive region reaches a genuinely nonempty closing core.
+[[finite-group-actions-have-coherent-same-cloud-shadows]] treats the complete
+multiplication table of every finite group whenever the unitary colours form
+an exact faithful representation, and quantitatively also any colours already
+normalized-HS close to such a representation.  It constructs exact regular
+orbits directly on the same iid cloud by balancing sample counts in a fine
+equivariant fundamental-domain partition.  This closes the fixed near-orbit
+packing gap for that subclass and does not pass through gauge equivalence.  It
+does not assert that arbitrary finite-group microstates are close to exact
+representations on the same Hilbert space.
+
 Hence the live problem is confined to a **nonempty, nonredundant
-private-label core**.  There every remaining relation uses only labels that
-also occur elsewhere, so no fresh map is available for definition.
+private-label core** outside these exact-model-close finite-group tables.
+There every remaining relation uses only labels that also occur elsewhere,
+so no fresh map is available for definition and no equivariant finite action
+is already available.
 
 ## Attempts
 
