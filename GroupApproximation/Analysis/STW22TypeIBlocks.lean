@@ -43,10 +43,10 @@ contains the compacts.
 
 ## Universes
 
-`IsTypeI A` quantifies over Hilbert spaces in the *same* universe as `A`.  This
-is the usual convention: a separable C⋆-algebra's irreducible representations
-may be taken on separable Hilbert spaces, so nothing is lost for the intended
-instances, and it keeps `IsTypeI` a `Prop` with a single universe parameter.
+The carrier of the represented C⋆-algebra and the representation Hilbert
+space live in independent universes.  Thus `IsTypeI.{u,v} A` is the literal
+GCR condition for representations of `A : Type u` on Hilbert spaces in
+`Type v`; every theorem below is polymorphic in `v`.
 
 ## What is proved
 
@@ -78,13 +78,13 @@ set_option linter.unusedSectionVars false
 
 noncomputable section
 
-universe u
+universe u v
 
 /-! ## Representations, invariance, irreducibility -/
 
 section Defs
 
-variable {A : Type u} [CStarAlgebra A] {H : Type u} [NormedAddCommGroup H]
+variable {A : Type u} [CStarAlgebra A] {H : Type v} [NormedAddCommGroup H]
   [InnerProductSpace ℂ H] [CompleteSpace H]
 
 /-- A closed subspace of `H` invariant under every operator in the range of the
@@ -113,7 +113,7 @@ end Defs
 /-- **Type I (GCR).**  Every irreducible representation of `A` has the compact
 operators inside its range. -/
 def IsTypeI (A : Type u) [CStarAlgebra A] : Prop :=
-  ∀ (H : Type u) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  ∀ (H : Type v) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (π : A →⋆ₐ[ℂ] (H →L[ℂ] H)), IsIrreducibleRep π →
       ∀ T : H →L[ℂ] H, IsCompactOperator T → ∃ a : A, π a = T
 
@@ -121,14 +121,14 @@ def IsTypeI (A : Type u) [CStarAlgebra A] : Prop :=
 dimensional and onto — the fibres are exactly `Mₙ`.  This is the audit's
 description of `D s = Γ(End(1 ⊕ L_s^{⊕s}))`, with `n = s + 1`. -/
 def IsHomogeneousRep (n : ℕ) (A : Type u) [CStarAlgebra A] : Prop :=
-  ∀ (H : Type u) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  ∀ (H : Type v) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (π : A →⋆ₐ[ℂ] (H →L[ℂ] H)), IsIrreducibleRep π →
       Module.finrank ℂ H = n ∧ Function.Surjective (π : A → H →L[ℂ] H)
 
 /-- A homogeneous algebra is type I: its irreducible representations are onto,
 so a fortiori they contain every compact operator. -/
 theorem IsHomogeneousRep.isTypeI {n : ℕ} {A : Type u} [CStarAlgebra A]
-    (h : IsHomogeneousRep n A) : IsTypeI A := by
+    (h : IsHomogeneousRep.{u, v} n A) : IsTypeI.{u, v} A := by
   intro H _ _ _ π hπ T _
   exact (h H π hπ).2 T
 
@@ -140,7 +140,7 @@ out of `ℂ` sends `c` to `c • 1`, so *every* subspace is invariant; irreducib
 then forces the space to be a line, on which every operator is a scalar.
 -/
 
-theorem isHomogeneousRep_one_complex : IsHomogeneousRep 1 ℂ := by
+theorem isHomogeneousRep_one_complex : IsHomogeneousRep.{0, v} 1 ℂ := by
   intro H _ _ _ π hπ
   have hπc : ∀ (c : ℂ) (x : H), π c x = c • x := by
     intro c x
@@ -177,7 +177,8 @@ theorem isHomogeneousRep_one_complex : IsHomogeneousRep 1 ℂ := by
     rw [← hd, hπc c (d • v), ContinuousLinearMap.map_smul T d v, ← hc]
     exact smul_comm c d v
 
-theorem isTypeI_complex : IsTypeI ℂ := isHomogeneousRep_one_complex.isTypeI
+theorem isTypeI_complex : IsTypeI.{0, v} ℂ :=
+  isHomogeneousRep_one_complex.isTypeI
 
 /-! ## The audit's step (A5), assembled -/
 
@@ -209,24 +210,24 @@ nothing and documents the shape of the argument. -/
 structure HomogeneousBlockTypeIInputs (d : ℕ → ℕ) (D : ℕ → Type u) [∀ s, CStarAlgebra (D s)]
     (B : Type u) [CStarAlgebra B] (A : Type u) [CStarAlgebra A] : Prop where
   /-- Every block is homogeneous of the stated degree. -/
-  blocks_homogeneous : ∀ s : ℕ, IsHomogeneousRep (d s) (D s)
+  blocks_homogeneous : ∀ s : ℕ, IsHomogeneousRep.{u, v} (d s) (D s)
   /-- Type I passes through the countable `c₀`-sum. -/
-  sum_typeI : (∀ s : ℕ, IsTypeI (D s)) → IsTypeI B
+  sum_typeI : (∀ s : ℕ, IsTypeI.{u, v} (D s)) → IsTypeI.{u, v} B
   /-- Type I passes through the unitization. -/
-  unitization_typeI : IsTypeI B → IsTypeI A
+  unitization_typeI : IsTypeI.{u, v} B → IsTypeI.{u, v} A
 
 /-- **Audit step (A5).**  Homogeneous blocks, a `c₀`-sum and a unitization give a
 type I algebra. -/
 theorem HomogeneousBlockTypeIInputs.isTypeI {d : ℕ → ℕ} {D : ℕ → Type u}
     [∀ s, CStarAlgebra (D s)] {B : Type u} [CStarAlgebra B] {A : Type u} [CStarAlgebra A]
-    (h : HomogeneousBlockTypeIInputs d D B A) : IsTypeI A :=
+    (h : HomogeneousBlockTypeIInputs.{u, v} d D B A) : IsTypeI.{u, v} A :=
   h.unitization_typeI (h.sum_typeI fun s => (h.blocks_homogeneous s).isTypeI)
 
 /-- **Model test.**  The bundle is satisfiable: constant blocks `D s = ℂ` of
 degree one, with `B = A = ℂ`, meet every clause.  The homogeneity clause is the
 proved `isHomogeneousRep_one_complex`, so this is not a vacuous witness. -/
 theorem homogeneousBlockTypeIInputs_model :
-    HomogeneousBlockTypeIInputs (fun _ => 1) (fun _ => ℂ) ℂ ℂ where
+    HomogeneousBlockTypeIInputs.{0, v} (fun _ => 1) (fun _ => ℂ) ℂ ℂ where
   blocks_homogeneous := fun _ => isHomogeneousRep_one_complex
   sum_typeI := fun h => h 0
   unitization_typeI := fun h => h
