@@ -19,7 +19,7 @@ Because `A` is a unital subalgebra containing `F`, each block matrix
 D(f)=diag(f,1,...,1),                  f in F,
 ```
 
-belongs to `GL_n(A)); its inverse is `D(f^(-1))).  For every selected
+belongs to `GL_n(A)`; its inverse is `D(f^(-1))`.  For every selected
 coefficient `r_alpha in S<=A`, both positive and negative root positions
 give
 
@@ -98,7 +98,7 @@ is a finite unital coefficient algebra.  The standard prefix permutation
 u_sigma=sum_(d in D)m_(sigma(d),d),                     (FCQ8)
 ```
 
-so the qutrit packet `F<=Sym(D)` lies in `A_D^x).  Taking
+so the qutrit packet `F<=Sym(D)` lies in `A_D^x`.  Taking
 `S<=A_D` makes the algebra in `(FCQ1)` a subalgebra of `A_D`, hence
 finite-dimensional.  This covers arbitrary mixed signs and all same-chart
 Weyl returns, not just same-code conjugation.
