@@ -18,11 +18,14 @@ For each `d in D`, choose `f_d in F` with `f_d(d_0)=d` and set
 h_d=f_d h f_d^(-1).                                    (SOB3)
 ```
 
-This does not depend on the choice of `f_d`.  Indeed, two choices differ
-on the right by an element of the stabilizer of `d_0`.  An element of the
-fixed prefix-permutation group `Sym(D)` which fixes the leaf `d_0`
-acts pointwise on the whole cylinder `[d_0]`, and hence commutes with
-every element supported there.
+`Sym(D)` here means the standard prefix-permutation copy:
+`f(d xi)=f(d) xi` for every leaf `d` and every infinite tail `xi`.  Hence
+the stabilizer in `F` of `d_0` acts identically, point by point, on the
+whole cylinder `[d_0]`.
+
+It follows that `(SOB3)` does not depend on the choice of `f_d`.  Indeed,
+two choices differ on the right by an element of that leaf stabilizer, which
+commutes with every element supported in `[d_0]`.
 
 The support of `h_d` is contained in `[d]`.  Distinct code cylinders
 are disjoint, so
@@ -38,7 +41,7 @@ product_(d in D) h_d^(n_d)=1,
 ```
 
 then restriction to `[d]` gives `h_d^(n_d)=1` for each `d`.
-Thus `n_d=0 mod m`, with the evident interpretation when `m=infinity).
+Thus `n_d=0 mod m`, with the evident interpretation when `m=infinity`.
 Consequently
 
 ```text
@@ -56,8 +59,9 @@ coordinate permutations.  Every word in `F union {h}` rewrites into
 `N F`.
 
 Finally `N intersect F={1}`.  Every element of `N` preserves each
-cylinder `[d]` setwise.  An element of `F<=Sym(D)` with this property
-fixes every leaf of `D), hence is the identity prefix permutation.
+cylinder `[d]` setwise.  If such an element also lies in `F`, its leaf
+permutation is trivial; by faithfulness of the standard `Sym(D)` action it
+is the identity on every `[d]`, hence is the identity element.
 Equations `(SOB5)--(SOB6)` therefore prove the internal semidirect product
 
 ```text
@@ -68,7 +72,7 @@ If `m<infinity`, this group is finite.  If `m=infinity`, the subgroup
 `N isomorphic to Z^D` has finite index `|F|`; hence `Gamma` is
 virtually free abelian.  In both cases it is amenable and hyperlinear.
 
-The conjugate qutrit packet `hFh^(-1)` belongs to `Gamma).  More
+The conjugate qutrit packet `hFh^(-1)` belongs to `Gamma`.  More
 importantly, allowing an overlap coefficient to be a sum of many words does
 not leave `C[Gamma]`: addition changes the group-ring element, not its
 support group.  Thus any finite family of exact projection and marginal
