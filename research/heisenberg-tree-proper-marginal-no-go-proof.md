@@ -14,7 +14,7 @@ The identified element `J` is central in `Gamma`, and
 Jq=zeta q.                                               (HNG8)
 ```
 
-Every atom in `(HNG3)` satisfies `p_a<=q), hence `Jp_a=zeta p_a`.
+Every atom in `(HNG3)` satisfies `p_a<=q`, hence `Jp_a=zeta p_a`.
 Write its transported support subgroup as
 `A_a=g_a H_a g_a^(-1)`. The identity coefficient of `p_a` is
 
@@ -23,9 +23,9 @@ dim(rho_a)^2/|A_a|>0.
 ```
 
 The coefficient of `J` on the left of `Jp_a=zeta p_a` is therefore
-nonzero. It follows that `J in A_a). Since `J` is central, Schur's lemma
+nonzero. It follows that `J in A_a`. Since `J` is central, Schur's lemma
 and the same equality say that the transported type has central character
-`zeta).
+`zeta`.
 
 A finite subgroup of a group acting on a tree fixes a vertex. Applied to
 the Bass--Serre tree, this puts `A_a` inside a conjugate `F` of one
