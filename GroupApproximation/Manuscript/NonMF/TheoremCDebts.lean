@@ -12,6 +12,7 @@ import GroupApproximation.GGT.HullSCRelatorWord
 import GroupApproximation.GGT.HullSCConeOffSpace
 import GroupApproximation.GGT.HullSCRelatorSeparation2Published
 import GroupApproximation.GGT.HullSCCanonicalQuotientPublished
+import GroupApproximation.GGT.HullSCLemma49PowerDiagram
 import GroupApproximation.GGT.HullSCFreeProductFactor
 import GroupApproximation.GGT.HullSCUnionGeometryAssembly
 import GroupApproximation.GGT.HullTheorem316Assembly
@@ -222,12 +223,20 @@ theorem hullLemma44Canonical :
     HullSC.HullLemma44CanonicalQuotientStatement.{0} := by
   sorry
 
-/-- **DEBT (literature).**  Hull, Lemma 4.9, in its quotient-free form.  The
-kernel-power correction is precisely the diagram property needed to lift a
-finite-order quotient element with its order preserved. -/
-theorem hullLemma49KernelPower :
-    HullSC.HullLemma49KernelPowerStatement.{0, 0} := by
+/-- **Temporary exact geometric debt.**  This is Hull's Lemma 4.9 after the
+quotient, order, normal-closure, least-area, and reducedness bookkeeping has
+been proved internally.  What remains is exactly the correction construction
+for a nontrivial reduced power diagram. -/
+theorem hullLemma49ReducedDiagram :
+    HullSC.HullLemma49ReducedDiagramStatement.{0, 0} := by
   sorry
+
+/-- Hull's quotient-free kernel-power conclusion, derived from the exact
+reduced-diagram statement above. -/
+theorem hullLemma49KernelPower :
+    HullSC.HullLemma49KernelPowerStatement.{0, 0} :=
+  HullSC.hullLemma49KernelPowerStatement_of_reducedDiagram
+    hullLemma49ReducedDiagram
 
 /-- Hull's torsion-free canonical filling quotient, assembled directly from
 Lemmas 4.4 and 4.9.  The quotient is literally the quotient by the normal
