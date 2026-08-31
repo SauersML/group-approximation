@@ -117,7 +117,7 @@ theorem bounded_positive_gap_values_vanish
     (C : ℝ)
     (M : ℕ)
     (hpos : ∀ a, 0 ≤ σ a)
-    (hrep : ∀ a m : ℕ, M ≤ m → (m : ℝ) * σ a ≤ C) :
+    (hrep : ∀ (a : α) (m : ℕ), M ≤ m → (m : ℝ) * σ a ≤ C) :
     ∀ a, σ a = 0 := by
   intro a
   exact nonneg_eq_zero_of_eventual_nat_mul_le (hpos a) M (hrep a)
