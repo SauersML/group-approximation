@@ -268,7 +268,7 @@ spatialization of the compatible fiber cocycle over an unbounded moving
 exhaustion.
 
 The fixed-window obstruction is now completely finite.
-`finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction`
+`finite-schreier-holonomy-is-the-lamp-gauge-obstruction`
 shows that, after a spanning-tree gauge on the character Schreier graph,
 simultaneous gauge equivalence to a proposed permutation target holds if and
 only if one root unitary simultaneously conjugates every fundamental-cycle
