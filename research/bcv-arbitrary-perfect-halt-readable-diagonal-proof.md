@@ -85,7 +85,7 @@ vertices and every right endpoint a tuple of right-range vertices. Hence
 the two endpoint ranges intersect only in `(o,...,o)`, whose total answer
 length is zero. Removing that harmless zero-answer vertex leaves a genuine
 bipartition of the entire supported graph of `(NHP2)`. By Lemma 2.59
-clause 1, the same is true for every `V_m), in particular for
+clause 1, the same is true for every `V_m`, in particular for
 `m=T_(j+1)`. Thus opposite-sheet selection in the exact Question
 Reduction decoder is valid at every recursive handoff. No synchronization
 loop or unprinted cross-player block identity is being assumed.
@@ -140,7 +140,7 @@ Assume for contradiction that a total computable `B` satisfies
 r=floor(log_2(max(1,B(M))))+1,
 ```
 
-then compute the finite tower value `T_r) and simulate `M` for exactly
+then compute the finite tower value `T_r` and simulate `M` for exactly
 `T_r` steps. If it halts, answer HALT.
 
 Suppose it has not halted by `T_r` but later first halts at time `N`.
