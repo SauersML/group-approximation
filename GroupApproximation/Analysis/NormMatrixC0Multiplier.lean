@@ -262,7 +262,8 @@ theorem opNorm_leftMultiplier (a : Product X) :
   have hbound :
       HilbertModule.Adjointable.IsBoundedBy (leftMultiplier X a) ‖a‖ := by
     intro x
-    change ‖a * x.1‖ ≤ ‖a‖ * ‖x.1‖
+    rw [leftMultiplier_apply]
+    simp only [HilbertModule.selfModule_norm]
     exact norm_mul_le a x.1
   have hbounded :
       HilbertModule.Adjointable.IsBounded (leftMultiplier X a) :=
@@ -281,7 +282,8 @@ theorem opNorm_leftMultiplier (a : Product X) :
         simp [leftMultiplier, coordinateUnit]
       _ ≤ ‖(leftMultiplier X a).toFun (coordinateUnit X n)‖ := hcoord
       _ ≤ HilbertModule.Adjointable.opNorm (leftMultiplier X a) *
-          ‖coordinateUnit X n‖ := happ
+          ‖coordinateUnit X n‖ := by
+        simpa only [HilbertModule.selfModule_norm] using happ
       _ = HilbertModule.Adjointable.opNorm (leftMultiplier X a) := by
         rw [norm_coordinateUnit, mul_one]
 
