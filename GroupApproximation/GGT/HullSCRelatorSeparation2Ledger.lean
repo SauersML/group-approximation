@@ -523,15 +523,16 @@ exclusions.  `index_window_of_blockCount` supplies the two bounded orientations:
     hcount item 2: the block count, at every closure member of the fixed relator
     hexcl  item 3: the two same-side exclusions
 
-and on nothing else.  The side exclusions are now discharged from the exact
-design.  The remaining geometric debt is a useful fixed-list count with a
-constant chosen before the length threshold; the tautological unconditional
-bound `relatorBlockCountAt₂_length` is true but grows with the list and therefore
-does not meet that uniformity requirement.
-
-Item 2 is not independent of item 1, though item 1 is marked closed: the count
-needs item 1's bound at `mu = 4` for a two-sided figure, and item 1 is
-discharged only at `mu = 1` with `n ≤ 6`.  They move together.
+and on nothing else.  The side exclusions and the geometric count are now
+discharged jointly from the exact design.
+`ExactRelatorDesign₂.blockCountAt_one` closes a segment by a geodesic chord,
+treats every edge as a `(1,1)` polygon side, and uses the explicit isolated
+component radius at twice the fixed target length.  One possible final
+component is omitted because it may merge into the chord; together with the
+unique base letter this gives `RelatorBlockCountAt₂ ... 1`, an absolute count
+constant independent of the selected list.  The producer-facing theorem
+`exists_exactRelatorDesign₂_with_count_one` chooses that radius and the whole
+target window before selecting `ms`, then derives `sideExclusionAt` immediately.
 
 ## One correction worth keeping
 
