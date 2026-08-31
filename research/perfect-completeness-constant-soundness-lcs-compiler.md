@@ -227,10 +227,19 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   `cyclic-occurrence-splitting-makes-every-lcs-cubic` replaces the
   `d` occurrences of a variable by a cycle of `d` equality-linked copies.
   Tietze elimination gives an isomorphism of solution groups fixing `J`.
-  Thus occurrence two versus three is a sharp exact boundary.  The cycle's
-  telescoping loss grows with `d`, so this does not supply the uniform robust
-  compiler sought here; the live target is a bounded-degree equality
-  expander or another constant-cost diagonal synchronization mechanism.
+  Thus occurrence two versus three is a sharp exact boundary.
+- **Demand a robust bounded-occurrence compiler.**  This is now closed at
+  occurrence four by
+  `expander-equality-splitting-is-a-robust-occurrence-four-compiler`.
+  Put the copies on cubic bipartite Ramanujan graphs and test equality on
+  edges.  Hilbert-valued Poincare rounding selects one actual copy reflection
+  and transfers the full source product-plus-commutator RMS defect with loss
+  at most `3w sqrt(2/lambda_*)`, independent of dimension and source
+  occurrence.  The rotating-Pauli assignment on every degree-two path or
+  cycle has edge energy `Theta(d^-2)` but constant distance from every
+  reflection, proving the occurrence-three pairwise-equality loss is sharp.
+  This solves only the bounded-occurrence synchronization layer; the native
+  perfect source gap and its reverse decoder remain open.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
