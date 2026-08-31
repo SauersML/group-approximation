@@ -231,7 +231,7 @@ projection complex unnecessary. -/
 theorem dgoTheorem442_boundedOrbit :
     ∀ (G : Type u) [Group G] (S : Type v) [PseudoMetricSpace S] [MulAction G S]
       (H : Subgroup G) (s : S) (δ : ℝ),
-      IsIsometricAction G S → IsHyperbolicSpace δ S →
+      IsIsometricAction G S → IsHyperbolicSpace δ S → IsGeodesicSpace S →
         IsQuasiconvexOrbitAt H s → GeometricallySeparatedAt H s →
           HasBoundedOrbitAt H s →
             ∃ (D : RelGenSet G Unit) (α : ℝ), 0 < α ∧
@@ -239,7 +239,7 @@ theorem dgoTheorem442_boundedOrbit :
               (∃ δ' : ℝ, IsHyperbolicSpace δ' (Cayley D.alphabet)) ∧
               ∀ (n : ℕ) (h : G), h ∈ D.relBall () n →
                 α * dist s (h • s) ≤ (n : ℝ) := by
-  intro G _ S _ _ H s _δ _hiso _hhyp _hqc _hsep hbounded
+  intro G _ S _ _ H s _δ _hiso _hhyp _hgeo _hqc _hsep hbounded
   exact exists_dgoTheorem442Output_of_boundedOrbit H s hbounded
 
 end BoundedOrbit

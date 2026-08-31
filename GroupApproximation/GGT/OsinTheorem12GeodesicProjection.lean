@@ -125,7 +125,7 @@ theorem dgoTheorem68_of_geodesic_projection
         (hpower G D))
   have hemb : IsHypEmbedded G (elementaryClosure D.elt) :=
     isHypEmbedded_of_dgo442 h442 (elementaryClosure D.elt) D.base D.delta
-      D.isometric D.hyperbolic hqc hsep hproper
+      D.isometric D.hyperbolic D.geodesic hqc hsep hproper
   have hne : elementaryClosure D.elt ≠ ⊤ :=
     elementaryClosure_ne_top_of_finiteTransversal hfin hnvc
   exact ⟨elementaryClosure D.elt, self_mem_elementaryClosure D.elt, hne, hemb⟩

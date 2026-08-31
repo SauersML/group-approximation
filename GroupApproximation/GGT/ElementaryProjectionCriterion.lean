@@ -229,12 +229,18 @@ end Defs
 See the module docstring for the verbatim statement.  Inequality (41) is
 expressed through `relBall`, since `h ∈ D.relBall () n` is `d̂(1,h) ≤ n`.
 
+The explicit `IsGeodesicSpace S` premise is part of DGO's standing meaning of
+"hyperbolic space" and is used immediately in Lemma 4.44 and throughout the
+projection estimates.  The repository's `IsHyperbolicSpace` is only the
+four-point inequality, so omitting geodesicity here would silently strengthen
+the cited theorem.
+
 This is a citation, not proved here: its proof is §4.5, the projection complex
 of Bestvina--Bromberg--Fujiwara. -/
 def DGOTheorem442 : Prop :=
   ∀ (G : Type u) [Group G] (S : Type v) [PseudoMetricSpace S] [MulAction G S]
     (H : Subgroup G) (s : S) (δ : ℝ),
-    IsIsometricAction G S → IsHyperbolicSpace δ S →
+    IsIsometricAction G S → IsHyperbolicSpace δ S → IsGeodesicSpace S →
       IsQuasiconvexOrbitAt H s → GeometricallySeparatedAt H s →
         ∃ (D : RelGenSet G Unit) (α : ℝ), 0 < α ∧
           D.fam = (fun _ => H) ∧
@@ -291,10 +297,12 @@ quasiconvexity, geometric separation and properness deliver
 `H ↪_h G`. -/
 theorem isHypEmbedded_of_dgo442 (h442 : DGOTheorem442.{u, v})
     (H : Subgroup G) (s : S) (δ : ℝ) (hiso : IsIsometricAction G S)
-    (hδ : IsHyperbolicSpace δ S) (hqc : IsQuasiconvexOrbitAt H s)
+    (hδ : IsHyperbolicSpace δ S) (hgeo : IsGeodesicSpace S)
+    (hqc : IsQuasiconvexOrbitAt H s)
     (hsep : GeometricallySeparatedAt H s) (hproper : ActsProperlyAt H s) :
     IsHypEmbedded G H := by
-  obtain ⟨D, α, hα, hfam, hhyp, hlow⟩ := h442 G S H s δ hiso hδ hqc hsep
+  obtain ⟨D, α, hα, hfam, hhyp, hlow⟩ :=
+    h442 G S H s δ hiso hδ hgeo hqc hsep
   exact (isHypEmbeddedOf_of_orbitLowerBound_of_actsProperly hfam hα hhyp hlow
     hproper).isHypEmbedded
 
