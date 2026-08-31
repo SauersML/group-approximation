@@ -305,6 +305,24 @@ crossed-product microstates would itself imply Păunescu soficity.  This is an
 exact circularity firewall: ordinary finite-dimensional Ulam stability does
 not supply the required Cartan observables.
 
+The finite-packet rigidifier is also closed at its exact boundary by
+`canonical-regular-packets-leave-an-unbounded-cartan-reservoir`.  If a fixed
+nonabelian packet is put at each lamp site and one selects a simple central
+character, canonical regular trace forces the sector decomposition
+
+```text
+M_s tensor I_(rs).
+```
+
+Supplying the ideal right-regular partner improves this only to
+`M_(s^2) tensor I_r`.  The external `M_r` reservoir survives every fixed
+packet and every sublinear padding.  Normalizing actor letters factor as a
+fixed finite implementer tensored with an arbitrary projective multiplicity
+representation.  Hence a packet can rigidify coarse tensor atoms but cannot
+select the rank-one multiplicity masa needed by the collision criterion.
+The remaining task is still actor-dependent Cartan extraction over growing
+windows; no nonhyperlinear group follows from the packet calculation alone.
+
 This identifies the smallest live strengthening of the amenable conversion
 theorem:
 
