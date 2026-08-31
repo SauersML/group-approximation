@@ -3,8 +3,6 @@ rg: 2
 id: bcv-no-computable-perfect-halt-readable-bound
 kind: claim
 title: No computable bound controls the readable algebra of a perfect BCV HALT strategy
-refutes:
-  - bcv-halt-completeness-has-computable-readable-factor-bound
 distinct_from:
   bcv-canonical-readable-growth-no-computable-bound: that treats only the particular forward completeness strategy; this lower bound holds for every attained-perfect finite-dimensional ZPC strategy of the tailored HALT game.
   computable-bcv-halt-bound-diagonalizes-to-finite-readable-gap: that is a valid conditional implication from the now-refuted bound; this proves that its premise is impossible.
