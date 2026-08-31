@@ -440,9 +440,10 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   `rho`-block; outside the rank-one trivial block these dimensions are at
   least `(p-1)/2`. The entire multiplicity algebra is fixed by endpoint
   conjugation, so property `(T;FD)` and all central character projectors
-  assign it zero authentication energy. Projector tests therefore cannot
-  distinguish intrinsic multiplicity of one reducible endpoint from an
-  external payload; global grouping/multiplication data are indispensable.
+  assign it zero authentication energy. Blockwise irreducible-projector
+  tests therefore cannot choose the minimal endpoint grouping; the full
+  multiplicity vector may still be regrouped globally through the
+  representation ring or complete multiplication data.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
