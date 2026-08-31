@@ -423,47 +423,68 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   norm-one separator through every relative unitary zero-cochain `W_g`.
   Its margin pairs exactly with the row coboundary
   `U_s W_g-W_(sg)`, forcing the RMS multiplication-table energy to stay
-  positive. The associated twisted shifts are exact on both modular
-  vertices and preserve the original Iwahori edge defect exactly.
-  Therefore property `(T;FD)` cannot contradict the witness before those
-  same missing rows are filled. The common-corange theorem below now makes
-  a cubic-to-unitary Cayley estimate quantitatively equivalent to excluding
-  the full operator-valued separator, rather than merely sufficient.
+  positive. The associated twisted shifts preserve the original Iwahori
+  presentation defect. Property `(T;FD)` cannot contradict the witness
+  before those same missing rows are filled.
 - **The full positive-definite gate is a multi-Kraus cosystole.**
   `multi-kraus-frame-energy-is-the-full-relative-pd-gate` resolves every
   relative coefficient table into rectangular Stinespring components and
   defines their RMS row energy `e_K`. The exact comparison
   `Delta <= e_K <= sqrt(Delta^2+2 Delta)` makes vanishing
   multi-Kraus energy equivalent to approaching the whole coefficient body,
-  and the metric separator transports isometrically through every such
-  frame. Thus forcing `e_K -> 0` from the two Iwahori rows is
-  exactly the remaining full-PD gate.
-- **The full frame gate is exactly isometry synchronization.**
-  `right-translation-flattens-every-relative-kraus-frame` replaces
-  every rectangular frame by right-translated components whose scaled
-  fibres are literal isometries, preserving the entire coefficient
-  function and row energy. Hence `e_K` is exactly the infimum of
-  Cayley energy over relative isometry-valued zero-cochains of arbitrary
-  common target dimension.
+  and the metric separator transports isometrically through every frame.
+  `right-translation-flattens-every-relative-kraus-frame` further
+  identifies `e_K` with the infimum over relative isometry tables.
 - **Cayley expansion closes the common-corange gap.**
   `cayley-expansion-aligns-isometry-frame-coranges` writes
-  `P_g=V_gV_g^*` and proves the exact principal-angle bound
+  `P_g=V_gV_g^*` and proves
   `||P_(sg)-P_g||_F^2/d <= 2||V_(sg)U_s-V_g||_(2,d)^2`.
-  Hilbert-valued Poincare, followed by a sharp Ky Fan tail estimate,
-  produces one rank-`d` plane of average leakage at most
-  `2e_K^2/gamma`. Compression and equivariant polar rounding give
+  Poincare and a sharp Ky Fan tail estimate produce one rank-`d` plane
+  of leakage at most `2e_K^2/gamma`; equivariant polar rounding gives
   `e_unit <= (1+2sqrt(2/gamma))e_K`. Property `(T;FD)`
-  supplies one `gamma>0` for every authenticated finite quotient.
-  Thus unitary and full multi-Kraus vanishing are quantitatively equivalent;
-  the sole surviving selector gate is whether the two concrete cubic
-  defects force this common energy to vanish.
+  supplies uniform `gamma`, so unitary and full Kraus energies are
+  quantitatively equivalent on every authenticated finite quotient.
+- **Frozen-core cubic-to-Cayley control is false even for the full body.**
+  `cyclic-core-twist-forces-full-relative-cayley-cosystole` tensors the
+  regular endpoint with the exact core character
+  `theta_K(r)=exp(2pi i/K), theta_K(t)=1` at
+  `N=4^K-1`. All square-free presentation defects are
+  `O(1/K)`, but a mixed-intertwiner property-`(T;FD)` gap gives
+  `e_K,e_unit >= sqrt(gamma)/2` and a fixed positive
+  `Delta`. The tuple is nevertheless `O(1/K)` from the untwisted
+  exact endpoint, so this is not a DV counterexample. It proves a fixed
+  relative coefficient body can stay far while ordinary endpoint distance
+  vanishes; presentation rows alone cannot exclude its separator.
+- **The cubics are curvature, but expansion does not fill it.**
+  `iwahori-cubics-are-relative-schreier-curvature` collapses the exact
+  BS core in a labelled Schreier multigraph. Relative table energy is
+  exactly a unitary connection energy; `(xt)^3` and
+  `(xt^2r)^3` are literal triangle holonomies. A spanning-tree
+  gauge kills all tree edges and leaves fundamental-cycle holonomy on the
+  chords, with the usual `A(e) delta` van Kampen loss. The cyclic
+  twist has uniform one-skeleton expansion and vanishing local curvature
+  but macroscopic synchronization energy, so an expander filling argument
+  must first quotient exact core motion.
+- **Optimized-core full-PD energy is the corrected selector.**
+  `optimized-core-full-pd-energy-is-intrinsic-selector` defines
+  `mathfrak E_K` by moving to any exact finite BS core and then
+  minimizing over the entire relative Kraus body. It proves
+  `D_flex <= C sqrt(mathfrak E_K)` and
+  `mathfrak E_K <= mathfrak E_unit <= C_gamma^2 mathfrak E_K`.
+  This intrinsic target is weaker than the chosen-section functional
+  `G_N` but still sufficient, and it absorbs both the cyclic twist and
+  endpoint-conjugation families at their exact core-motion scale. The live
+  selector gate is the optimized inequality
+  `mathfrak E_K <= C E_end`, not frozen-core
+  defect-to-energy control.
 - **Square Gram-flat frames do polarize.**
   `gram-flat-kraus-frames-polarize-to-unitary-tables` gives
   `E_unit <= E_K+2 sqrt(eta_Gram)`. A rank-one Fourier frame of
-  any nontrivial irreducible has zero Kraus energy but Gram defect
-  `2(1-1/d)`; this proves only that an arbitrary minimizing frame
-  need not polarize square-fibrewise. The expander common-corange theorem
-  bypasses that obstruction by aligning its right-translate isometries.
+  a nontrivial irreducible has zero Kraus energy but large Gram defect,
+  proving only that an arbitrary minimizing frame need not polarize
+  square-fibrewise. Expander common-corange alignment bypasses that local
+  obstruction.
+
 - **Matrix-algebra Ulam stability starts after the missing leakage
   estimate.** `matrix-ulam-stability-needs-full-unit-ball-control`
   records the exact Alekseev--Thom input and a sharp two-by-two separation:
