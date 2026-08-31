@@ -103,6 +103,15 @@ counterexample to FDT7 and (CCR).  No result used in this route promotes the
 available actor microstates of `G` to a hyperlinear model of this
 generalized coset wreath product.
 
+For the `q=2` Kun--Thom specialization,
+`coset-wreath-wall-survives-full-commutant-corners` proves that this
+`W` is ICC and that every nonzero projection in the full relative
+commutant of any trace-preserving embedding defines a trace-preserving corner
+embedding.  The balanced lamp retains trace `1/2`, squared mover
+displacement `1/2`, and all Bernoulli moments in every such corner.  Thus
+multiplicity compression cannot dilute a hypothetical hyperlinear wall; the
+unresolved issue is existence of the original embedding.
+
 Thus the Bernoulli model does not presently refute FDT7.  It proves that no
 argument valid in all finite tracial von Neumann algebras, no Jones-index
 calculation detached from matrix approximability, and no property-(T)
