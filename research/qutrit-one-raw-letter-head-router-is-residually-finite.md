@@ -77,10 +77,10 @@ router still has
 ||e_2 g_1T_0ER||_2^2=1/81                               (QRL7)
 ```
 
-and target capacity `tau(Ee_2)=1/18`. The surviving branch creates the
-raw `t_1` return, but its D8 polar has already reduced the source from
-`1/9` to `1/18`, exactly the one-complement capacity. Neither branch
-gives a Hall excess.
+and target capacity `tau(Ee_2)=1/18`. The surviving branch creates the raw `t_1` return and has
+pre-target squared norm `1/18`. This is an overlap energy, not a
+polar-support rank, because its support projection need not commute with
+`R`. Neither branch supplies a Hall lower bound.
 
 For every finite collection of words in `(QRL3)`, reduction of
 `F_2[x]` modulo a sufficiently high power of `x` gives a finite ring

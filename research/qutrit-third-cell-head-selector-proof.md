@@ -197,8 +197,10 @@ has source `F_+` with
 tau(F_+R)=1/18.
 ```
 
-It fits the one-complement capacity exactly. This proves the claimed
-Hall no-go.
+This is the exact overlap energy with `R`, not a cut-down support
+rank, because `F_+` need not commute with `R`. The claimed no-go
+does not rely on that comparison: the literal qutrit-filtered operator is
+zero by `(QTS15)`.
 
 ## Finite-presentation status
 

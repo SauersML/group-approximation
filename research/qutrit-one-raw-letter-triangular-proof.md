@@ -198,9 +198,10 @@ The two right supports are orthogonal, proving
 The target polar remains below `Ee_2`, of trace `1/18`. The raw
 `t_0` letter has not repaired the missing half of the `ER` source.
 
-For the surviving branch, `(QRL16)` already shows that the D8
-compression has energy `1/18` before the final qutrit target cut. It
-cannot create a source larger than the one-complement capacity.
+For the surviving branch, `(QRL16)` shows that the D8 compression has
+squared norm `1/18` before the final qutrit target cut. Since its
+support projection need not commute with `R`, this energy is not a
+polar-support rank and yields no capacity inequality by itself.
 
 ## Finite regular countermodels
 

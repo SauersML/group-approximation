@@ -124,7 +124,9 @@ On tangent vectors
 \]
 the torsion constraints and the restriction differential are exactly (2)
 and (3), tensored with \(1\). Both input and output normalized
-Hilbert--Schmidt norms acquire the same factor. Hence every singular value
+Hilbert--Schmidt norms acquire the same factor. Moreover \(B_1\) is
+invertible, so the witness \(B_1\otimes1\) has full physical support and
+uniformly bounded operator norm. Hence every singular value
 of \(J_{\theta_n}\) occurs in the full tensor-product differential, and
 \[
  s_{\min}^{+}(d\operatorname{Res}_{\Pi_n})

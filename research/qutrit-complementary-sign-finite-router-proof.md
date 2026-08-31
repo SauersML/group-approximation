@@ -155,19 +155,42 @@ representation. The restriction to `C` is a multiple of the regular
 representation, so every qutrit atom has normalized rank `1/9` and
 `(QCS7)` holds literally.
 
-Suppose orthogonal-source branch operators are summed before taking a
-polar. Cross terms on the source side vanish exactly when their source
-sign projections are different. On the range side, however, three
-quarters of `R` have total trace `3/36=1/12`, larger than the one-target
-capacity `tau(Ee_2)=1/18`. Finite-dimensional rank then forces either
-nonorthogonal ranges, a nonzero cross term, or loss of source support.
-For four quarters the excess is larger. Two quarters have trace exactly
-`1/18` and may fit, so they give no strict inequality.
+Put
+```text
+A_(sigma,tau)=G_(sigma,tau)R.
+```
+The sign projections are orthogonal, so the exact source-side cross
+terms are
+```text
+A_(sigma,tau)^*A_(sigma',tau')
+ =R G_(sigma,tau)G_(sigma',tau')R
+ =0
+```
+for distinct signs. Moreover
+```text
+sum_(sigma,tau)A_(sigma,tau)=ER.                         (QCS13)
+```
+Thus summing all four branches before polarizing and applying one common
+router gives
+```text
+sum_(sigma,tau)g_1A_(sigma,tau)=g_1ER.
+```
+After left compression by `e_2`, this is exactly the original router
+`e_2g_1ER`, whose squared norm is `1/81`; sign resolution has not
+created four independent ranges.
 
-Thus every proposed Cuntz-pair or three-quarter routing identity fails
-inside a faithful exact finite-dimensional model of the whole minimal
-packet. This is stronger than producing one balanced-flow vector: it
-simultaneously models every sign recombination and every cross term.
+Notice that `G_(sigma,tau)R` is generally not a projection because
+the sign roots do not commute with `R`. The number `1/36` in
+`(QCS7)` is its squared Hilbert--Schmidt norm, not its polar-support
+rank. For branch-dependent routers, those support ranks and range cross
+terms must be computed rather than inferred from energy.
+
+All such words using powers of `g_1` still lie in the faithful finite
+model `(QCS12)`. Hence any proposed exact Cuntz-pair or over-capacity
+identity made from this packet can be checked there and fails if it
+would contradict finite-dimensional rank. The result simultaneously
+models every sign recombination and every cross term without asserting
+a false rank formula.
 
 The actor `g_2` does not preserve `(QCS11)`. Once it is adjoined, scalar
 propagation gives `EL_28(J)` and the finite model disappears. Any
