@@ -5,7 +5,7 @@ kind: proof
 title: Compute the eight-element Q-QT algebra and absorb all long-router sign words
 target: g2-conditioned-jacobson-sign-envelope-is-finite
 requires:
-  - qutrit-jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
+  - jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
   - qutrit-two-scalar-router-full-closure-proof
 ---
 
