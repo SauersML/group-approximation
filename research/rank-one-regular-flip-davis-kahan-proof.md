@@ -29,8 +29,11 @@ using commutation of \(C\) with \(X_0\) and right \(D\)-bimodularity of
 the expectation. Since \(P\) is in the canonical top right-regular algebra,
 (RDK6) follows. After normalizing \(P\) in \(L^2(D)\), the transfer
 difference has norm two; two contractions can differ by at most two, so
-(RDK7) is exact. The same vector witnesses norm-one movement of the sharp
-spectral projection.
+(RDK7) is exact. The complete-graph endpoint formula shows that every
+regular-orbit endpoint transfer has spectrum \(\{1,-1/p\}\). Spectral
+Hausdorff distance for selfadjoint operators, applied to the eigenvalue
+\(-1\) of \(T_X\), proves (RDK8). The vector \(P\) also witnesses
+norm-one movement of the canonical sharp spectral projection.
 
 Finally, \(T_0(1-P)=1-P\) and \((1-P)C=1-P\), so \(1-P\) is an exact top
 vector for \(T_X\). Its square is the contractive carrier \(1-P\), whose
