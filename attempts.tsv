@@ -247,3 +247,4 @@
 33345190810	2026-08-31T00:39:35Z	GroupApproximation/Sofic/CliffordBSAmenableMF.lean	opLength_commutator
 33363480931	2026-08-31T06:17:27Z	GroupApproximation/Analysis/CuntzPedersenCoronaObstruction.lean	selfCommutator_apply
 33400729195	2026-08-31T14:07:32Z	GroupApproximation/Analysis/UniformTracialGNSTwoGauge.lean	obstruction_mem_twoNullIdeal_allTraces
+33434484203	2026-08-31T20:10:10Z	GroupApproximation/Analysis/UniformTracialTwoNullIdeal.lean	obstruction_mem_twoNullIdeal_not_mem_nullIdeal
