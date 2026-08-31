@@ -192,6 +192,44 @@ theorem continuous_fill (N : ℕ) (i₁ : Fin (N + 1)) :
     (hk.smul continuous_const).add (hn.smul continuous_const)
   exact hsum
 
+/-! ### The square read at unit-interval parameters
+
+The four edge identities are restated here at `unitInterval` arguments, and
+`fill` is made irreducible immediately afterwards.  Both are load-bearing for
+elaboration cost, not for readability.
+
+The assembly in `not_nonvanishing_homogeneous` compares `fill N i₁ ↑(0 : I) r`
+with `fill N i₁ 0 r`.  Asking the elaborator to cross
+`((0 : unitInterval) : ℝ) = 0` in that position lets `isDefEq` fall back to
+unfolding `fill` on both sides, and `fill` contains `kap`, which contains
+`circleLoop`, which is `Complex.exp` -- so the fallback is a `whnf` blowup
+rather than an arithmetic one.  Crossing the coercion *before* it is placed
+under `fill`, as below, keeps every later comparison on the cheap congruence
+path, and each edge lemma is its own declaration with its own budget. -/
+
+theorem coe_unitInterval_zero : ((0 : unitInterval) : ℝ) = 0 := rfl
+
+theorem coe_unitInterval_one : ((1 : unitInterval) : ℝ) = 1 := rfl
+
+theorem fill_left_edge (N : ℕ) (i₁ : Fin (N + 1)) (t : unitInterval) :
+    fill N i₁ ((0 : unitInterval) : ℝ) (t : ℝ)
+      = circleLoop (t : ℝ) • basePoint N := by
+  rw [coe_unitInterval_zero, fill_zero_left]
+
+theorem fill_right_edge (N : ℕ) (i₁ : Fin (N + 1)) (t : unitInterval) :
+    fill N i₁ ((1 : unitInterval) : ℝ) (t : ℝ) = basePoint N := by
+  rw [coe_unitInterval_one, fill_one_left]
+
+theorem fill_bot_edge (N : ℕ) (i₁ : Fin (N + 1)) (s : unitInterval) :
+    fill N i₁ (s : ℝ) ((0 : unitInterval) : ℝ) = basePoint N := by
+  rw [coe_unitInterval_zero, fill_zero_right]
+
+theorem fill_top_edge (N : ℕ) (i₁ : Fin (N + 1)) (s : unitInterval) :
+    fill N i₁ (s : ℝ) ((1 : unitInterval) : ℝ) = basePoint N := by
+  rw [coe_unitInterval_one, fill_one_right]
+
+attribute [local irreducible] fill
+
 /-! ### The covering-space core -/
 
 /-- **No winding square.**  A continuous square in `ℂ ∖ {0}` cannot be constant
@@ -288,7 +326,6 @@ theorem no_winding_square (c : ℂ) (hc : c ≠ 0)
 
 /-! ### The rank-one common-zero theorem -/
 
-set_option maxHeartbeats 1000000 in
 /-- **The rank-one obstruction.**  For `N ≥ 1` there is no continuous,
 nowhere-vanishing function on `ℂ^{N+1} ∖ {0}` which is homogeneous of degree
 `-1`; equivalently, every continuous section of the tautological line bundle
@@ -317,21 +354,18 @@ theorem not_nonvanishing_homogeneous {N : ℕ} (hN : 1 ≤ N)
       g (fill N i₁ (p.1 : ℝ) (p.2 : ℝ)) := hcont.comp_continuous hcf hmem
   refine no_winding_square (g (basePoint N)) hcne
     (fun p => g (fill N i₁ (p.1 : ℝ) (p.2 : ℝ))) hsq ?_ ?_ ?_ ?_ ?_
+  -- Each edge is discharged by rewriting with its own lemma and then applying
+  -- `g`; nothing here asks `isDefEq` to look inside `fill`.
   · exact fun p => hne _ (hmem p)
   · intro t
-    show g (fill N i₁ (0 : ℝ) (t : ℝ))
-        = (circleLoop (t : ℝ))⁻¹ * g (basePoint N)
-    rw [fill_zero_left]
-    exact hhom (circleLoop (t : ℝ)) (basePoint N) (circleLoop_ne_zero _) hbase
+    exact (congrArg g (fill_left_edge N i₁ t)).trans
+      (hhom (circleLoop (t : ℝ)) (basePoint N) (circleLoop_ne_zero _) hbase)
   · intro t
-    show g (fill N i₁ (1 : ℝ) (t : ℝ)) = g (basePoint N)
-    rw [fill_one_left]
+    exact congrArg g (fill_right_edge N i₁ t)
   · intro s
-    show g (fill N i₁ (s : ℝ) (0 : ℝ)) = g (basePoint N)
-    rw [fill_zero_right]
+    exact congrArg g (fill_bot_edge N i₁ s)
   · intro s
-    show g (fill N i₁ (s : ℝ) (1 : ℝ)) = g (basePoint N)
-    rw [fill_one_right]
+    exact congrArg g (fill_top_edge N i₁ s)
 
 /-- The rank-one case of `TautologicalCommonZero.CommonZeroProperty`: over
 `ℂPᴺ` with `N ≥ 1`, a section of `L^{⊕κ}` with `κ` a subsingleton has a
