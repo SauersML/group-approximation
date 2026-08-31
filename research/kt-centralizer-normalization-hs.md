@@ -362,3 +362,29 @@ No groupoids, medians, or atomic invariants appear.  Consequences:
 congruence models can never refute the route, and the open remainder
 of THIS node is exactly the transport of that uniformity across the
 approximate-coordinate gap (the OP 6.2 locus) for arbitrary `σ`.
+
+**2026-08-31 (elementary-abelian regular-window boundary, no global
+resolution).**  The claim
+`elementary-abelian-regular-normalizers-have-diffuse-fibers` settles the
+local normalizer question in both directions.
+
+1. For one fixed invariant `B=(C_2)^m`, asymptotic regular character leaves
+   `1-o(1)` free `B)-orbits.  Every genuine actor action on `B` therefore
+   has canonical coherent permutation representatives on that window.
+2. The given unitary normalizers need not be close to those representatives.
+   An exact Fourier multiplicity cocycle stays at normalized-HS distance
+   `sqrt(2)-o(1)` from every monomial after arbitrary `o(d)` padding,
+   while preserving exact covariance, exact actor products, and canonical
+   group trace.  Tensoring with separating regular quotients of `SL_3(Z)`
+   makes the actor infinite, residually finite, and Kazhdan, so ordinary
+   property-`(T)` rigidity does not remove the cocycle.
+
+This refutes only metric rounding of the supplied normalizers, not (CCR) and
+not equivariant normalizer transfer: canonical permutations exist in the
+countermodel.  The exact missing coherence is still global and moving-window:
+for `B_E -> B_(gE)`, choose commutant gauges or new permutations
+simultaneously over increasing `E` so that all actor products agree on
+almost every point.  The local quotients use different multiplicity
+commutants and provide no comparison maps between them.  Thus this node
+remains OPEN.
+
