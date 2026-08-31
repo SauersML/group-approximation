@@ -179,6 +179,28 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   infinitesimal rigidity closes the local congruence cosystolic angle; the
   only surviving enemy is global noncongruence basin escape.
 
+- **High-dimensional escape is now isolated exactly.**
+  `bounded-dimension-iwahori-pairs-have-holder-capture` applies the global
+  semialgebraic Lojasiewicz inequality to every fixed matrix size: the full
+  noncongruence modular representation variety has a same-dimensional
+  Holder congruence-capture modulus, so every countersequence has dimensions
+  tending to infinity. `capture-gap-localizes-to-regular-character-face`
+  then cuts any positive capture gap onto a pure regular-character corner;
+  if the original gap is epsilon, that corner has trace weight at least
+  epsilon squared over four and retains the gap after normalization. Finally
+  `regular-modular-microstates-have-no-bounded-atomic-mass` shows that every
+  fixed irreducible-dimension window has vanishing physical rank there.
+  Thus the sole enemy is a pure regular corner built from unbounded modular
+  types, not a moving mixture of bounded continuous atoms.
+- **Regular moments do not condition the raw restriction charts.**
+  `regular-trace-does-not-bound-iwahori-word-jacobian` computes a Pauli
+  branch whose Iwahori restriction Jacobian has determinant
+  `3 cos^2(2 theta)(5-2 cos^2(2 theta))` and a singular value at most
+  `sqrt(3/2)|cos(2 theta)|`. Tensoring with deep odd-congruence regular
+  representations makes the character regular while preserving that
+  vanishing singular value. This fences a separate-chart Haar/free argument;
+  it does not contradict the established coupled arithmetic angle at
+  compatible congruence endpoints and does not produce a countersequence.
 - **Full exact cubics do not select a bounded odd level.**
   `full-iwahori-relations-do-not-bound-unipotent-torsion` separates the two
   exact facts at the noncongruence frontier. BS covariance makes each finite
