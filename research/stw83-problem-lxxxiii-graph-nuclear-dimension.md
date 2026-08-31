@@ -145,8 +145,12 @@ be approximated below error one by one finite-dimensional order-zero colour
 plus a constant, even with arbitrary off-diagonal entries in the second
 colour.  This does not prove a lower bound of two.  Ordinary two-colour
 approximations of the circle make both plateau diagonals coefficient-varying,
-and compression by the rank-one corner need not preserve order zero.  Hence a
-successful adaptive construction must make the second colour carry both
-cross-boundary matrix terms and genuinely circle-varying information on the
-plateau diagonal; a lower-bound proof would need new rigidity coupling that
-diagonal to the Toeplitz shift.
+and compression by the rank-one corner need not preserve order zero.  In fact,
+`stw83-rotating-order-zero-compression-escapes-circle-gap` constructs, for
+every tolerance, a single star-homomorphic matrix colour crossing a constant
+rank-one corner whose compression approximates the circle generator.  Thus
+the noncommutative escape has full asymptotic strength on the diagonal.  A
+successful adaptive construction must still coordinate that moving colour
+with the entire Toeplitz finite set and the two global orthogonality pairings;
+a lower-bound proof needs new rigidity coupling the diagonal to the Toeplitz
+shift.
