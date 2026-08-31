@@ -199,68 +199,88 @@ The same proof applies after adjoining finite-sector actor implementers
 Actor-dependent observables can break `G_m`, but then the needed basis comes
 from the growing actor family rather than from the fixed packet.
 
-## Step 6: an exact canonical-trace Fourier escape
+## Step 6: an exact canonical-trace bent escape
 
-Let `q=|K|` and let `F_r` be the unitary discrete Fourier matrix
-
-~~~text
-(F_r)_(a,b)=r^(-1/2) exp(2 pi i ab/r),      0<=a,b<r.
-~~~
-
-It satisfies `F_r^2 delta_b=delta_(-b)` and hence `F_r^4=I`.  Define an
-exact representation of `K times C_4` on
-`ell^2(K) tensor C^r` by
+Let `B_m=F_2^(2m)`, `d_m=|B_m|=2^(2m)`, and
 
 ~~~text
-Pi_r(k,t^a)=lambda_K(k) tensor F_r^a.                    (RPM16)
+q_m(x)=sum_(j=1)^m x_(2j-1)x_(2j),
+f_m(x)=(-1)^(q_m(x)).                                   (RPM16)
 ~~~
 
-If `k!=1`, the trace of `lambda_K(k)` is zero.  If `k=1` and
-`a=1` or `3`, the elementary quadratic Gauss bound gives
+Let `H_m` be the normalized Walsh matrix of `B_m` and put
 
 ~~~text
-|Tr(F_r^a)|<=sqrt(2).
+V_m=H_m^* diag(f_m) H_m.
 ~~~
 
-For `a=2`, `F_r^2` is inversion and has at most two fixed points.  Therefore
+Since `f_m` takes values in `{+1,-1}`, `V_m^2=I`.  Moreover,
 
 ~~~text
-tau(Pi_r(k,t^a))->0 for every (k,t^a)!=(1,1).            (RPM17)
+(V_m)_(a,b)
+ =d_m^(-1) sum_(x in B_m)
+    (-1)^(q_m(x)+<x,a+b>).                              (RPM17)
 ~~~
 
-The representation has the canonical limiting group trace, while all packet
-relations and the trivial actor covariance are exact.
-
-Use the tensor basis consisting of group points and Fourier coordinates.
-For `U_r=I_q tensor F_r`, direct calculation gives
+The sum factors over the `m` hyperbolic pairs.  For one pair,
 
 ~~~text
-Col_D(U_r)
- =(qr)^(-1) sum_(i,j)|(U_r)_(i,j)|^4
- =1/r.                                                   (RPM18)
+sum_(u,v in F_2)(-1)^(uv+alpha u+beta v)
+ =2(-1)^(alpha beta).
 ~~~
 
-If `M` is monomial, it selects at most one entry in each column.  Every
-nonzero entry of an old column has modulus `1/sqrt(r)`, whence
+Hence every sum in `(RPM17)` has modulus `2^m=sqrt(d_m)`, and every
+entry of `V_m` has modulus `1/sqrt(d_m)`.
+
+The trace of `V_m` need not vanish, so balance it without changing its flat
+blocks:
 
 ~~~text
-|tau(M^*U_r)|<=1/sqrt(r),
-||U_r-M||_2^2>=2-2/sqrt(r).                              (RPM19)
+W_m=V_m direct_sum (-V_m),       R_m=2d_m.              (RPM18)
 ~~~
 
-This is stable under sublinear padding.  If `p_r=o(qr)` and
-`V_r=U_r direct_sum I_(p_r)`, then every monomial `N_r` satisfies
+Then `W_m^2=I` and `Tr(W_m)=0`.  Therefore the assignment
 
 ~~~text
-|Tr(N_r^* V_r)|<=q sqrt(r)+p_r,
-||V_r-N_r||_2^2
- >=2-2(q sqrt(r)+p_r)/(qr+p_r) ->2.                      (RPM20)
+Pi_m(k,t^a)=lambda_K(k) tensor W_m^a,       t^2=1,       (RPM19)
 ~~~
 
-Thus exact finite-packet covariance and canonical group trace permit a common
-reservoir unitary whose collision tends to zero and whose normalized
-Hilbert--Schmidt distance from every monomial tends to `sqrt(2)`, even after
-arbitrary sublinear padding.
+is an exact representation of `K times C_2` and has the exact canonical
+group trace at every finite stage.  Indeed, nonidentity `k` has zero trace
+in `lambda_K`, while `Tr(W_m)=0`; equivalently the `C_2` representation
+`W_m` is exactly `d_m` copies of its regular representation.
+
+Let `q=|K|` and use the fixed product basis consisting of group points and
+the two Walsh blocks.  Each of the two `d_m by d_m` blocks has
+`d_m^2` entries of fourth power `d_m^(-2)`.  Thus
+
+~~~text
+Col_D(I_q tensor W_m)=1/d_m.                            (RPM20)
+~~~
+
+If `M` is monomial, it selects at most one entry in each column, and every
+nonzero entry has modulus `1/sqrt(d_m)`.  Therefore
+
+~~~text
+|tau(M^*(I_q tensor W_m))|<=1/sqrt(d_m),
+||I_q tensor W_m-M||_2^2>=2-2/sqrt(d_m).                (RPM21)
+~~~
+
+This remains true asymptotically under arbitrary sublinear padding.  If
+`p_m=o(2q d_m)` and
+`Z_m=(I_q tensor W_m) direct_sum I_(p_m)`, then every monomial `N_m`
+satisfies
+
+~~~text
+|Tr(N_m^* Z_m)|<=2q sqrt(d_m)+p_m,
+||Z_m-N_m||_2^2
+ >=2-2(2q sqrt(d_m)+p_m)/(2q d_m+p_m) ->2.              (RPM22)
+~~~
+
+Thus exact finite-packet covariance and exact canonical group trace permit a
+common reservoir involution whose collision tends to zero and whose
+normalized Hilbert--Schmidt distance from every monomial tends to `sqrt(2)`,
+even after arbitrary sublinear padding.
 
 ## Step 7: exact boundary for the Kun--Thom route
 
