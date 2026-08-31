@@ -137,11 +137,39 @@ contained in `pi_FD`.  The base vector is `Lambda`-fixed, so
 lies exactly in the non-FD-tempered sector isolated there.
 
 The construction uses no approximation and works in a finite tracial von
-Neumann algebra for every proper subgroup.  It follows that property `(T)`,
-conditional expectations, projection rank `1/2`, and abstract finite-factor
-inequalities cannot alone imply `(BBP3)`.  What is unknown for the
-Kun--Thom profile is precisely whether this crossed-product trace can occur
-inside a tracial matrix ultraproduct.
+Neumann algebra for every proper subgroup.  Its matrix boundary can be
+stated exactly.  Let
+
+~~~text
+A=direct_sum_(G/Lambda) C_2,       W=A semidirect G,      (BBQ6b)
+~~~
+
+with the coordinate-permutation action.  Pontryagin duality identifies
+`L(A)` with `L^infinity(Omega)`, intertwines the two `G`-actions, and
+therefore gives the trace-preserving isomorphism
+
+~~~text
+L(W)=L(A semidirect G)
+    congruent_to L^infinity(Omega) crossed_product G=N.  (BBQ6c)
+~~~
+
+A countable group is hyperlinear exactly when its group von Neumann algebra
+has a trace-preserving embedding into a tracial matrix ultraproduct.
+Therefore this Bernoulli profile has such a realization exactly when `W`
+is hyperlinear.  If it does, restrict the embedding of `L(W)` to the
+canonical `G`-unitaries.  Their trace is the canonical group trace, so this
+is a trace-faithful actor microstate.  The embedded base-coordinate
+projection `p` is `Lambda`-central and, by `(BBQ6)`, is moved a fixed
+distance by `gamma`.  It is then an actual counterexample to `(BBP3)`,
+FDT7, and (CCR).
+
+No closure theorem used in the Kun--Thom route constructs a hyperlinear model
+of this generalized coset wreath product from the available actor
+microstates.  Thus `(BBQ6b)` is a conditional refuter, not a refutation.
+It follows unconditionally that property `(T)`, conditional expectations,
+projection rank `1/2`, and abstract finite-factor inequalities cannot alone
+imply `(BBP3)`.  The exact missing input is hyperlinearity of `W), or
+equivalently matrix embeddability of `N`.
 
 ## Step 4: projective tensoring erases scalar displacement
 
