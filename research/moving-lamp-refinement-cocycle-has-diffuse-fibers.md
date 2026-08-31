@@ -113,6 +113,22 @@ is already a coherent permutation family.  It proves that neither growing
 overlap nor property `(T)` forces the given refinement cocycle to have
 small gauge.
 
+## Finite-cycle sharpening
+
+[[finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction]]
+now gives an exact check on one regular packet.  After gauging a spanning
+tree in the finite character Schreier graph, simultaneous gauge equivalence
+to any proposed target is equivalent to simultaneous unitary conjugacy of
+the source and target holonomies on the fundamental chords.  The
+Hilbert--Schmidt residual on each chord is exactly its holonomy-conjugacy
+residual, with no path-length loss.
+
+A multiplicity-one bent-phase model shows this obstruction is substantive:
+exact canonical trace and exact covariance need not make the supplied
+normalizer commutant-gauge equivalent to any permutation normalizer.  A
+different permutation representative still exists, so target construction
+rather than gauge trivialization remains the live issue.
+
 ## Exact surviving global seam
 
 The open datum is a compatible **spatialization**, not overlap gluing:
