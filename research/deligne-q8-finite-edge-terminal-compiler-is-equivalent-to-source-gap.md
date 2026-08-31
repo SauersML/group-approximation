@@ -5,10 +5,6 @@ kind: claim
 title: The Deligne-Q8 property-T terminal compiler is exactly equivalent to the source gap
 artifacts:
   - research/deligne-q8-amalgam-and-central-sector-equivalence-proof.md
-requires:
-  - deligne-triple-cover-fd-central-invisibility
-  - deligne-sector-gap-is-exactly-nonhyperlinearity
-  - amenable-edge-cycles-cannot-create-an-lcs-gap
 distinct_from:
   q8-bs23-terminal-mark-is-exactly-invisible-but-hyperlinear: that uses an infinite-order BS(2,3) residual word and proves the output hyperlinear; this uses the order-three Deligne mark and proves that output hyperlinearity and one-word HS collapse are each exactly equivalent to the unresolved Deligne source question.
   shared-center-extraspecial-wreath-has-fd-invisible-spin-sector: that obtains exact finite-dimensional invisibility from unbounded Pauli rank but lacks a finite presentation in the pinned actor; this uses one Q8 packet and a finite property-T vertex, at the cost of inheriting the source's full HS gap.
