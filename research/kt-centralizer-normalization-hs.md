@@ -401,3 +401,34 @@ permutation target still exists, so this is a gauge-rounding obstruction,
 not a counterexample to equivariant transfer.  Constructing compatible
 targets across growing windows remains OPEN.
 
+
+**2026-08-31 (shared-center extraspecial boundary, exact FD wall but HS
+route open).**  The claim
+`shared-center-extraspecial-wreath-has-fd-invisible-spin-sector` replaces
+the independent Boolean lamps by Pauli pairs sharing one central involution
+`J`.  The resulting transitive semidirect product is finitely generated,
+`J!=1`, and every exact finite-dimensional unitary representation kills
+`J`: on a `J=-1` summand the `m`-site extraspecial subgroup forces dimension
+divisible by `2^m` for every `m`.
+
+The canonical group trace nonetheless gives `e_-=(1-J)/2` fixed trace
+`1/2`.  Its `m`-site algebra is exactly `M_(2^m)` with tensor-independent
+site factors, and an actor normalizer is quantitatively
+`P_beta tensor W` up to `2sqrt(2)m epsilon`.  Thus the packet removes all
+internal site gauges, but the external multiplicity unitary `W in U(r)` is
+arbitrary.  Here `r=D_-/2^m`, so fixed windows remain diffuse and bounded
+multiplicity again requires `m>=log_2(D_-)-O(1)`.  The exact
+finite-dimensional divisibility wall therefore has no dimension-free
+normalized-HS consequence.
+
+For a sharply two-transitive actor,
+`Gamma=C_G(j)` and `|Gamma backslash G/Gamma|=2`, so all off-site packet
+commutators have finitely many actor orbits.  The Andre--Guirardel
+property-`(T)` actor does not close the presentation interface: the
+published construction proves neither finite presentation of `G` nor finite
+generation of `C_G(j)`.  Moreover finite presentation of the direct
+extraspecial semidirect product would imply finite presentation of `G` by
+killing the two root packet generators.  The pinned extraspecial group
+contains the known nonsofic `C_2` wreath, but its hyperlinearity and the
+required moving-window multiplicity classicalization remain OPEN.
+
