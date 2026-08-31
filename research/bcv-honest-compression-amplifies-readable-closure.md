@@ -5,7 +5,7 @@ kind: claim
 title: Honest BCV compression block-amplifies the source readable translate algebra
 distinct_from:
   bcv-question-reduction-retains-readable-closure: that proves the tensor inclusion only at the bare honest Question Reduction stage; this follows the inclusion through the complete Question Reduction, Answer Reduction, anchoring, detyping, and Parallel Repetition pipeline.
-  bcv-halt-completeness-has-computable-readable-factor-bound: that asks whether some perfect strategy has a total machine-computable bound; this concerns only the strategy produced by the published completeness pipeline.
+  bcv-halt-completeness-has-computable-readable-factor-bound: that proposed a total machine-computable bound and is now refuted by the arbitrary-strategy theorem; this concerns only the strategy produced by the published completeness pipeline.
   computable-bcv-halt-bound-diagonalizes-to-finite-readable-gap: that assumes a uniform existential bound and extracts a NONHALT gap witness; this supplies a lower bound on one explicit HALT-side construction.
 ---
 
