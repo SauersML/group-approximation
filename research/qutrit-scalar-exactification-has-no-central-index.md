@@ -32,7 +32,7 @@ rank(sigma_l(q-R))/d_l     -> 1/9.                       (QSE1)
 
 For any actor unitary `U_l`, conjugation preserves all three ranks.
 Therefore a relation which only transports the qutrit cell by conjugacy
-cannot create an index or weighted Hall deficit after `K)-exactification.
+cannot create an index or weighted Hall deficit after `K`-exactification.
 
 The finite-central alternative also gives no obstruction. The group
 `K=PSL_28(F_2)` is perfect and has trivial Schur multiplier, hence is
