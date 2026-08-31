@@ -131,15 +131,16 @@ Hence no such argument can prove (FTC5).  This includes any attempt to
 combine the lifted Kazhdan identity with the full Pauli rows while using only
 dimension-free norm inequalities.  The exact finite-dimensional collapse
 does not contradict this statement: its final collision step uses
-compactness of `U(D) times U(D)` for one fixed `D`.  The infinite tensor
-family
+compactness of `U(D) times U(D)` for one fixed `D`.  For distinct sites, tensor independence gives
 
 ~~~text
-x -> (A_x,B_x)
+tau_-(A_x A_y)=tau_-(B_x B_y)=0,
+norm_2(A_x-A_y)=norm_2(B_x-B_y)=sqrt(2).                 (9)
 ~~~
 
-has no repeated or convergent pair in the `L^2` metric of `R`, so that step
-fails in (8).
+Thus the infinite tensor family `x -> (A_x,B_x)` is uniformly separated,
+not merely nonconvergent, in the `L^2` metric of `R`.  The compactness step
+fails maximally in (8).
 
 A matrix theorem must therefore detect more than the universal tracial
 relations.  Equivalently, it must prove that the exact tracial algebra (8)
