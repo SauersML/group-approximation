@@ -57,6 +57,19 @@ is weakly contained in `pi_FD`, then `x in sigma(Gamma)' cap M`.
 Consequently (CCR) holds on the entire FD-tempered part of the adjoint
 representation.
 
+More quantitatively, let `z_FD` be the orthogonal projection onto the maximal
+FD-tempered subrepresentation of `Ad(sigma)` on `L^2(M)`.  For every
+`x in sigma(Lambda)' cap M`,
+
+~~~text
+dist_2(x,L^2(sigma(Gamma)' cap M))
+ <=||(1-z_FD)x||_2.                                      (FDT3b)
+~~~
+
+Thus a commutant defect of size `c` forces at least `c` of genuinely
+non-FD-tempered adjoint mass; it cannot be hidden in the compact or any other
+FD-approximable summand.
+
 There is an exact C-star formulation.  Let `p_Lambda` be the Kazhdan
 projection and let `u_gamma` be the canonical group unitary.  For every
 `gamma in Gamma`,
