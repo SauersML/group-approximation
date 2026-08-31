@@ -96,3 +96,43 @@ perturbation problem (XCIX), and the group problems (XC--XCIII) each
 carry their own fenced frontier on their nodes; several
 (LII-Blackadar, LXIII/LXIV, XLIX) have designated kill-shot
 experiments recorded.
+
+## Update (pushes 45–59): solved cells landed after the atlas
+
+* Gate 3 (glueing): its entire solved locus is now ONE formal cell,
+  `uniform-gamma-on-finite-dim-boundaries` (no comparison
+  hypothesis); XXI and XXVIII hold outright there.  The
+  noncommutative dynamics cluster XXXVIII/XXXIX/LI/LIII is uniformly
+  split: purely infinite halves SOLVED
+  (`stw99-*-holds-on-kirchberg-targets` ×4), stably finite halves =
+  the gate.
+* Gate 4 (comparison/divisibility): new solved cell
+  `stw99-xviii-holds-on-rr0-lfnd-locus` (Toms--Winter for real rank
+  zero + locally finite nuclear dimension, trace simplex
+  unconstrained), by composing the fleet's RR0-divisibility theorem
+  with Winter.
+* Gate 5 (X(2)): `x2-witnesses-are-never-group-shaped` — witnesses
+  cannot be group algebras, amenable crossed products, or carry
+  nonamenable δ_e-tuples; the X(1) technology is provably useless
+  here.  X(2) → IX(1) → VII-simple is wired
+  (`stw99-x2-implies-ix1`, `stw99-ix1-implies-vii-simple`).
+* Commutative dynamics: XXXII carries its strongest cells
+  (Kerr--Naryshkin elementary amenable; GGKN paradoxical towers);
+  XXXIII its founding and strongest cells (Glasner--Weiss Cantor-`Z`;
+  Naryshkin polynomial growth).
+* Group problems: XC/XCI hold on linear groups
+  (`stw99-xci-holds-for-linear-groups`, BKKO + Vigdorovich).
+* Other problems: LXXV's known arcs formalized (`Z`-stable ⟹
+  Cu-regular; FND ⟹ pure), pinning three open arcs; LXXXVI's known
+  half formalized (polynomial growth ⟹ finite dr); LXI's corona cell
+  (Gabe--Ruiz); XLVI's stable half
+  (`stable-classifiable-algebras-are-z-crossed-products`); LXXXII's
+  subhomogeneous cell and LXXXIII's stably-finite-graph work are in
+  the peer stw82/stw83 lanes.
+* New original theorems since the atlas:
+  `cantor-diagonal-algebras-are-two-generated` (settling STW's Cartan
+  generation question on the principal Cantor class, scope-corrected),
+  the `ssa-kunneth` upgrade closing XV modulo self-Künneth
+  (torsion-freeness via degree-one Künneth), and the
+  `embeddable-unit-class-non-torsion` lemma forcing the `O_2`
+  exclusion in XIV(2).
