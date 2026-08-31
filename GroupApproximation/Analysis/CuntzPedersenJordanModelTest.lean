@@ -172,14 +172,14 @@ theorem hasUniqueJordanDecomposition_complex :
       exact hval
     exact_mod_cast h
   have hnormsub : ‖p - q‖ = |a - b| := by
+    have hpq1 : (p - q) 1 = p 1 - q 1 := rfl
     have h1 : (p - q) 1 = ((a - b : ℝ) : ℂ) := by
-      rw [Complex.ofReal_sub, ← hpa, ← hqb]
-      rfl
+      rw [hpq1, hpa, hqb, Complex.ofReal_sub]
     rw [norm_eq_norm_apply_one (p - q), h1, Complex.norm_real, Real.norm_eq_abs]
   have hnormsub' : ‖p' - q'‖ = |a' - b'| := by
+    have hpq1 : (p' - q') 1 = p' 1 - q' 1 := rfl
     have h1 : (p' - q') 1 = ((a' - b' : ℝ) : ℂ) := by
-      rw [Complex.ofReal_sub, ← hpa', ← hqb']
-      rfl
+      rw [hpq1, hpa', hqb', Complex.ofReal_sub]
     rw [norm_eq_norm_apply_one (p' - q'), h1, Complex.norm_real,
       Real.norm_eq_abs]
   have hkey : |a - b| = a + b := by
@@ -227,7 +227,8 @@ theorem traceZeroSpace_complex : traceZeroSpace ℂ = {0} := by
       rw [selfCommutator_apply, mul_comm, sub_self]
     · rintro rfl
       exact isFiniteSelfCommutatorSum_zero
-  rw [traceZeroSpace, hsets, closure_singleton]
+  show closure {x : ℂ | IsFiniteSelfCommutatorSum x} = {0}
+  rw [hsets, closure_singleton]
 
 /-- Direct proof of the separation property at `ℂ`. -/
 theorem hasCuntzPedersenSeparation_complex : HasCuntzPedersenSeparation ℂ := by

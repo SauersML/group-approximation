@@ -282,11 +282,11 @@ theorem conjFunctional_conjFunctional {u : A} (hu : u ∈ unitary A)
     (f : A →L[ℂ] ℂ) :
     conjFunctional (Unitary.star_mem hu) (conjFunctional hu f) = f := by
   refine ContinuousLinearMap.ext fun a ↦ ?_
-  rw [conjFunctional_apply, conjFunctional_apply, star_star]
-  congr 1
-  calc u * (star u * a * u) * star u
-      = (u * star u) * a * (u * star u) := by noncomm_ring
-    _ = a := by rw [Unitary.mul_star_self_of_mem hu, one_mul, mul_one]
+  have hrw : u * (star u * a * u) * star u = a := by
+    calc u * (star u * a * u) * star u
+        = (u * star u) * a * (u * star u) := by noncomm_ring
+      _ = a := by rw [Unitary.mul_star_self_of_mem hu, one_mul, mul_one]
+  rw [conjFunctional_apply, conjFunctional_apply, star_star, hrw]
 
 /-- Conjugation by a unitary is an isometry of the dual. -/
 theorem norm_conjFunctional {u : A} (hu : u ∈ unitary A) (f : A →L[ℂ] ℂ) :
@@ -318,9 +318,9 @@ theorem conjFunctional_eq_self_of_isTracial {u : A} (hu : u ∈ unitary A)
     {f : A →L[ℂ] ℂ} (hf : IsTracialFunctional f) :
     conjFunctional hu f = f := by
   refine ContinuousLinearMap.ext fun a ↦ ?_
-  rw [conjFunctional_apply, hf (u * a) (star u)]
-  congr 1
-  rw [← mul_assoc, Unitary.star_mul_self_of_mem hu, one_mul]
+  have hrw : star u * (u * a) = a := by
+    rw [← mul_assoc, Unitary.star_mul_self_of_mem hu, one_mul]
+  rw [conjFunctional_apply, hf (u * a) (star u), hrw]
 
 /-- **Conversely**, a functional fixed by every unitary conjugation is
 tracial.  This is where the unitaries have to span: the invariance gives
@@ -341,9 +341,8 @@ theorem isTracialFunctional_of_unitary_invariant {f : A →L[ℂ] ℂ}
   subst hb
   rw [Finset.mul_sum, Finset.sum_mul, map_sum, map_sum]
   refine Finset.sum_congr rfl fun i _ ↦ ?_
-  rw [mul_smul_comm, smul_mul_assoc, map_smul, map_smul]
-  congr 1
-  exact (step (v i : A) (v i).2 a).symm
+  rw [mul_smul_comm, smul_mul_assoc, map_smul, map_smul,
+    step (v i : A) (v i).2 a]
 
 /-! ## The Jordan decomposition, as a named hypothesis -/
 
@@ -460,12 +459,13 @@ theorem hasCuntzPedersenSeparation_of_jordan
   intro x hxstar hx
   obtain ⟨φ, hφx, -⟩ := exists_hermitianTrace_detecting hxstar hx
   have hfx : φ.toContinuousLinearMap x ≠ 0 := hφx
+  have hgh : IsHermitianFunctional φ.toContinuousLinearMap := fun a ↦ φ.map_star' a
+  have hgt : IsTracialFunctional φ.toContinuousLinearMap :=
+    fun a b ↦ φ.map_mul_comm' a b
   obtain ⟨p, q, hp, hq, hpt, hqt, hfpq, -⟩ :=
-    exists_positive_tracial_jordan (f := φ.toContinuousLinearMap) hJ huniq
-      (fun a ↦ φ.map_star' a) (fun a b ↦ φ.map_mul_comm' a b)
-  have hsub : φ.toContinuousLinearMap x = p x - q x := by
-    rw [hfpq]
-    rfl
+    exists_positive_tracial_jordan hJ huniq hgh hgt
+  have hsub : φ.toContinuousLinearMap x = p x - q x :=
+    DFunLike.congr_fun hfpq x
   by_cases hpx : p x = 0
   · refine exists_tracialState_of_positive_tracial hq hqt (x := x) ?_
     intro hqx
