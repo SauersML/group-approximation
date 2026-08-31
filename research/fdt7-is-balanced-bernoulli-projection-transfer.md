@@ -4,6 +4,7 @@ id: fdt7-is-balanced-bernoulli-projection-transfer
 kind: claim
 title: FDT7 is exactly a balanced Bernoulli projection transfer
 distinct_from:
+  coset-bernoulli-ce-refutes-relative-commutant-collapse: that records generalized Bernoulli Connes embeddability as a conditional commutant refuter for an arbitrary subgroup pair; this derives the same boundary from the special pointed-unitary FDT7 problem by a reversible balanced-projection linearization, with exact normalized-HS constants and phase-loss/Ulam no-gos.
   kt-ccr-holds-on-the-fd-tempered-adjoint-sector: that closes the FD-tempered cyclic sector and isolates the pointed op-norm-one estimate FDT7; this gives a reversible projection linearization and an exact non-FD-tempered counterprofile.
   kt-pointed-clifford-energy-one-compressor-no-go: that shows one-compressor scalar energy occurs in finite permutation models; this treats the full unitary commutator, preserves every actor defect under linearization, and identifies the exact Bernoulli quasi-regular module.
   kazhdan-almost-invariant-corner-near-invariant-projection: that rounds a nearly invariant projection under a genuine Kazhdan representation; this shows the FDT7 projection is already exact and balanced, while the actor representation is the unrounded object.
