@@ -93,7 +93,7 @@ For each \(g\in\Gamma\), fix once and for all a word
 \[
  w_g=w_g(s_1^{\pm1},\ldots,s_k^{\pm1})
 \]
-representing it, with \(w_1\) empty. Define
+representing it, with \(w_1\) empty and \(w_{s_i}=s_i\). Define
 \[
  \theta_n(g)=w_g(U_{1,n},\ldots,U_{k,n}).                 \tag{4}
 \]
