@@ -138,3 +138,21 @@ none of those ambient properties turns facewise positivity into the complete
 finite quotient window: LLP can lift a ucp map on the *concrete* Fourier
 operator system only after arithmetic compatibility with all cross-difference
 rows has been proved.
+
+
+At a fixed one-power level the relative ucp search now has a universal
+finite host.  By
+\`every-relative-ucp-window-lives-in-one-induced-representation\`, every
+positive kernel exact on \(\beta_n\) is a compression of the single
+representation
+
+\[
+\operatorname{Ind}_{B_{N_n}}^{A_{N_n}}\beta_n .
+\]
+
+Thus finite-corner production is equivalent to finding a
+\(B_{N_n}\)-intertwining isometry whose compressed extender approaches
+\(X_n\).  The explicit unitary-fibre subfamily in
+\`right-core-equivariant-cayley-average-produces-relative-toeplitz-window\`
+reduces this to a double-coset synchronization energy.  Its zero set is
+exactly the endpoint set, but no uniform moving-level estimate is known.
