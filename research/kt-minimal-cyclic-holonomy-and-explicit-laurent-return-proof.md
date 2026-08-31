@@ -70,7 +70,7 @@ to relabel the common length-one range: the failure is measured by the
 third positive root direction `D`. It is the endomorphism form of the
 Steinberg commutator `[I+E_31,I+E_12]=I+E_32`.
 
-# 2. The order-three average fixes the obstructing projection
+# 2. The cyclic average retains a quantitative wall
 
 Let `X=G/Gamma` and
 
@@ -79,40 +79,62 @@ W=(direct_sum_X C_2) rtimes G.
 ~~~
 
 Write `z_x` for the lamp involution at `x in X` and work in
-`M=L(W)` with its canonical trace. The root projection is
+`M=L(W)` with its canonical trace. Define three root-normalizer lamps and
+their average by
 
 ~~~text
-p=(1+z_Gamma)/2.
+p_i=(1+z_(C^(-i)Gamma))/2,       i=0,1,2,
+q=(p_0+p_1+p_2)/3.
 ~~~
 
-The stabilizer of the root coset is `Gamma`, so `p` commutes with
-`sigma(Gamma)` and belongs to `R`. Moreover `C` normalizes
-`Gamma`. Thus `C^(-1)Gamma=Gamma` as a coset and
+The stabilizer of `C^(-i)Gamma` is
+`C^(-i) Gamma C^i=Gamma`. Hence every `p_i`, and therefore
+`q`, belongs to `R`. The map `Theta=Ad(sigma(C)^*)` cycles
+the three projections:
 
 ~~~text
-Theta(p)=sigma(C)^* p sigma(C)
-        =(1+z_(C^(-1)Gamma))/2
-        =p.                                              (6)
+Theta(p_i)=p_(i+1 mod 3),       Theta(q)=q.               (6)
 ~~~
 
-In particular the order-three average
-
-~~~text
-(1/3)(p+Theta(p)+Theta^2(p))
-~~~
-
-is exactly `p`; it does not change the vector at all.
+Thus `q` is exactly what order-three averaging produces. It is a positive
+operator-norm-one contraction.
 
 Strictness gives
-`Gamma properly contained in B^(-1) Gamma B`. Choose any
-`h in B^(-1) Gamma B setminus Gamma`. Then `hGamma!=Gamma`,
-and the two distinct lamp group elements are trace orthogonal. Therefore
+`Gamma properly contained in B^(-1) Gamma B`. Use the explicit element
+`h` from Section 3 below. Put
 
 ~~~text
-||[p,sigma(h)]||_2
- =||p-sigma(h)p sigma(h)^*||_2
- =(1/2)||z_Gamma-z_(hGamma)||_2
- =1/sqrt(2).                                             (7)
+P={Gamma,C^(-1)Gamma,C^(-2)Gamma}.
+~~~
+
+The six cosets in `P disjoint_union hP` are distinct. Indeed the three
+cosets in `P` are distinct because their actor components modulo
+`Gamma` are `1,C^(-1),C^(-2)`. If
+
+~~~text
+h C^(-i)Gamma=C^(-j)Gamma,
+~~~
+
+then `C^j h C^(-i)` belongs to `Gamma`. Its actor component forces
+`i=j mod 3`, after which this would say that the cyclic Laurent conjugate
+`C^i h C^(-i)` lies in `Gamma`, contrary to its Laurent denominator.
+The cosets within `hP` are distinct by cancellation.
+
+Now
+
+~~~text
+q=1/2+(1/6) sum_(x in P) z_x,
+sigma(h)q sigma(h)^*
+ =1/2+(1/6) sum_(x in P) z_(h x).
+~~~
+
+The six displayed lamp group elements are trace orthogonal, so
+
+~~~text
+||[q,sigma(h)]||_2
+ =||q-sigma(h)q sigma(h)^*||_2
+ =sqrt(6/36)
+ =1/sqrt(6).                                             (7)
 ~~~
 
 Every element of
@@ -121,23 +143,23 @@ Every element of
 Phi_B(R)=sigma(B^(-1) Gamma B)' intersect M
 ~~~
 
-commutes with `sigma(h)`. For `q in Phi_B(R)`, (7) gives
+commutes with `sigma(h)`. For `a in Phi_B(R)`, (7) gives
 
 ~~~text
-1/sqrt(2)
- =||[p-q,sigma(h)]||_2
- <=2||p-q||_2.
+1/sqrt(6)
+ =||[q-a,sigma(h)]||_2
+ <=2||q-a||_2.
 ~~~
 
 Taking the infimum proves
 
 ~~~text
-dist_2(p,Phi_B(R))>=1/(2 sqrt(2)).                       (8)
+dist_2(q,Phi_B(R))>=1/(2 sqrt(6)).                       (8)
 ~~~
 
-Equations (6) and (8) prove the failure of (KHL4). Notice that this is a
-counterexample in a finite tracial algebra satisfying the complete actor and
-wreath relations, not merely the two displayed endomorphism equations.
+Equations (6) and (8) prove the failure of (KHL4). This is a counterexample
+in a finite tracial algebra satisfying the complete actor and wreath
+relations, not merely the two displayed endomorphism equations.
 
 # 3. A fixed elementary Laurent return
 
@@ -175,10 +197,11 @@ Because `C` normalizes `Gamma`, every
 h_i=C^(-i) h C^i,       i=0,1,2,
 ~~~
 
-also lies outside `Gamma`. Equation (6) and trace invariance give
+also lies outside `Gamma`. Equation (6), trace invariance, and the cyclic
+symmetry of `q` give
 
 ~~~text
-||[p,sigma(h_i)]||_2=1/sqrt(2).                          (10)
+||[q,sigma(h_i)]||_2=1/sqrt(6).                          (10)
 ~~~
 
 This three-word packet is the first explicit target for pointed
