@@ -34,5 +34,7 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.MonodromyCharac
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ConstructRPAlpha
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnMonodromyFunctional
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.ActualRPAlpha
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPnCupProductGenerator
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.RPAlphaEqualsModelGenerator
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/

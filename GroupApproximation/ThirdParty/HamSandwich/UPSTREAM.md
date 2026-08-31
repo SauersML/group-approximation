@@ -145,3 +145,14 @@ of the projective degree-one class.
 
 `ActualRPAlpha` is included unchanged apart from namespace isolation, tying the
 abstractly constructed degree-one class to the concrete `w₁` cocycle.
+
+The `RPnCupProductGenerator` and `RPAlphaEqualsModelGenerator` dependency slice
+adds the equatorial-inclusion, additive cellular, cup-product/model, and
+degree-one-generator layers.  The v4.32 port enables Mathlib's backward
+definitional-equality compatibility where the upstream aliases for genuine
+singular (co)homology elaborate with distinct inferred structure instances.
+It also replaces fragile rewrites by direct linear-map, scalar-distributivity,
+and `smul_mul_smul_comm` arguments; all theorem statements and topological
+hypotheses retain their upstream strength.  The fundamental-loop calculation
+uses the current `PiLp` simplifier API rather than the deprecated
+`EuclideanSpace.norm_single` name.
