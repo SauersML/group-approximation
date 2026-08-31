@@ -2,7 +2,7 @@
 rg: 2
 id: central-projectors-overcount-regular-endpoint-payload
 kind: claim
-title: Central projectors overcount the residual width of regular endpoints
+title: Irreducible central refinement overcounts regular endpoint payload
 artifacts:
   - research/regular-plancherel-multiplicity-is-character-invisible.md
 distinct_from:
