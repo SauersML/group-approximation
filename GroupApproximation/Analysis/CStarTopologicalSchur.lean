@@ -22,9 +22,9 @@ noncomputable section
 open scoped CStarAlgebra ComplexOrder
 open StateExtension
 
-universe u
+universe u v
 
-variable {A H : Type u} [CStarAlgebra A] [NormedAddCommGroup H]
+variable {A : Type u} {H : Type v} [CStarAlgebra A] [NormedAddCommGroup H]
   [InnerProductSpace ℂ H] [CompleteSpace H]
 
 private def lowerBump (r : ℝ) : ℝ → ℝ := fun t ↦ max (r - t) 0
