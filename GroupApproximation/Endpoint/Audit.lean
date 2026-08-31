@@ -627,6 +627,7 @@ escaped by not being cited.
 #audit_axioms GroupApproximation.ExactCoronaNegativeCorner.negativeCorner_exact_in_corona_asymptotic_in_matrices
 #audit_axioms GroupApproximation.DihedralCoronaParity.eventually_not_odd_card
 #audit_axioms GroupApproximation.GGT.RelGenSet.eeLocalFiniteness
+#audit_axioms GroupApproximation.GGT.RelGenSet.eeOneStep
 #audit_axioms GroupApproximation.KazhdanHyp.girthEightSDPChecks_of_ldl
 #audit_axioms GroupApproximation.KazhdanHyp.hasKazhdanPropertyT_of_girthEightLDL
 #audit_axioms GroupApproximation.ShulmanTailDihedralParity.false_of_tailLift_of_eventually_odd
