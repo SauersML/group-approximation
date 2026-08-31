@@ -334,7 +334,7 @@ D_N=dim(H_N)=|Q_N| 2^(M_N).                               (25)
 Let `Q_N` act by the tensor product of its left regular action on
 `ell^2(Q_N)` and its permutation action on the qubit factors. Let the
 lamp at `z in Omega_N` act by Pauli `Z_z`. This is a representation
-(`rho_N`) of
+`rho_N` of
 
 ~~~text
 W_N=(direct_sum_(Omega_N) C_2) rtimes Q_N.                 (26)
