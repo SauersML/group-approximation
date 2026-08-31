@@ -23,14 +23,14 @@ finite-dimensional image-collapse property
 for every finite-dimensional unitary representation \(\rho\) of \(G\).
 The pinned Kun-Thom compressor has (1).
 
-Let \(K\) be a finite group, let
-\(\alpha_1,\ldots,\alpha_m\in\operatorname{Aut}(K)\), and choose
+Let \(K\) be a finite group with a central involution \(z\). Let
+\(\alpha_1,\ldots,\alpha_m\in\operatorname{Aut}(K)\) fix \(z\), and choose
 \(\gamma_i\in\Gamma\). Form the explicit source-dependent coequalizer
 
 \[
  \Pi=
  \left\langle K,G\ \middle|\
- [K,\Lambda]=1,\quad
+ [K,\Lambda]=1,\quad [z,G]=1,\quad
  \gamma_i k\gamma_i^{-1}=\alpha_i(k)
  \ (k\in K,\ 1\leq i\leq m)
  \right\rangle .                                        \tag{2}
@@ -56,7 +56,7 @@ Then the restrictions to \(K\) of finite-dimensional representations of
 2. every representation of \(K_{\alpha}\) extends to \(\Pi\) by sending
    \(G\) to the identity.
 
-Now let \(H=(C_2)^P\leq K\), and let \(z\in H\) be the
+Now let \(H=(C_2)^P\leq K\) contain \(z\), with \(z\) the
 constant-minus-one element of a zero-noise Taller-Vidick cell. Let \(L\)
 be the kernel of \(H\to K_{\alpha}\). If the image of \(z\) is nontrivial,
 the \(H\)-characters occurring in finite-dimensional \(z=-1\) sectors of
