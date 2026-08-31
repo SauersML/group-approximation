@@ -63,6 +63,44 @@ completeness because it leaves the two contradictory parity equations in
 the support. Deleting them reaches a different zero-noise presentation and
 loses the published decoder.
 
+## Coherent refinements cannot repair old rare rows
+
+The same two-row certificate rules out a diagonal tower in which a later
+honest tuple is required to approximate **all** relators of an earlier
+positive-noise output.  Write the two earlier equations as
+
+\`\`\`text
+L=J^a,                    L=J^(a+1).                    (TVK2)
+\`\`\`
+
+For any unitary evaluation with \`J=-I\`, put
+\`X=(-I)^a L(U)\`.  Normalized Hilbert--Schmidt norm satisfies the exact
+parallelogram identity
+
+\`\`\`text
+||X-I||_2^2+||X+I||_2^2=4.                             (TVK3)
+\`\`\`
+
+Consequently at least one of the two row defects in \`(TVK2)\` is at least
+\`sqrt(2)\`.  This lower bound is independent of the later dimension, the
+earlier proof length, the repetition count, and both noise parameters.
+Thus no sign-preserving sequence of later observables can have maximum
+defect tending to zero on every earlier row.
+
+There is an equivalent exact obstruction.  Since \`J=1\` in every
+positive-noise solution group, no group homomorphism from an earlier output
+to a later marked solution group can send the earlier \`J\` to a nontrivial
+later sign.  A proposed approximate marked homomorphism is blocked
+quantitatively by \`(TVK3)\`.
+
+The only way a refinement can evade this wall is to delete at least one
+member of every antipodal mask pair.  That is a support change, not a
+smaller positive weight: at zero noise the row disappears, while the
+published Fourier soundness factor disappears with it.  Hence choosing a
+later \`epsilon_n\` after discovering the length of an earlier van Kampen
+proof cannot work.  The obstruction has area two and constant unweighted
+defect before any proof-length estimate is used.
+
 Therefore a reverse-Kleene upgrade needs genuinely new finite equations or
 a new zero-noise decoder. It does not follow from
 `LIN*_(1-epsilon,s)=RE`. The earlier source audit is retained in
