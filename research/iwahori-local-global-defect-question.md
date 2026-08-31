@@ -485,6 +485,18 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   estimate from the two concrete cubic rows would eliminate these
   separators, though general nonunitary Kraus certificates make it a
   sufficient route rather than a converse characterization.
+- **The full positive-definite gate is a multi-Kraus cosystole.**
+  `multi-kraus-frame-energy-is-the-full-relative-pd-gate` resolves every
+  relative coefficient table into rectangular Stinespring components and
+  defines their RMS row energy `e_K`. The exact comparison
+  `Delta <= e_K <= sqrt(Delta^2+2 Delta)` makes vanishing
+  multi-Kraus energy equivalent to approaching the whole coefficient body,
+  and the metric separator transports isometrically through every such
+  frame. Thus forcing `e_K -> 0` from the two Iwahori rows is
+  exactly the remaining full-PD sufficient gate. Unitary zero-cochains are
+  only the flat square subclass, so a unitary synchronization theorem alone
+  must not be advertised as an equivalence without an additional flattening
+  argument.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
