@@ -309,10 +309,10 @@ def toPathInput
 
 /-- Side-count facts proved by the raw interval decomposition.
 
-The chord clauses identify the sum of the actual oriented segment lengths with
-the endpoint-augmented traversal.  They are indexing statements, not metric
-estimates; the metric estimate is then supplied unconditionally by
-`twoHalf_chordTraversal_with_endpoints_le`. -/
+The common chord has the same length as the chord-coordinate interval used by
+the greedy family.  Together with the endpoint bounds stored in each interval,
+this controls every oriented chord segment directly; no monotonic ordering of
+the partner coordinates is required. -/
 structure SideBounds
     {D : RelGenSet G Λ} {hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base}
     {b : ℕ} {I₁ I₂ : Finset ℕ}
@@ -329,12 +329,7 @@ structure SideBounds
     (S.first j).left.length + (S.first j).right.length ≤ 2
   second_connectors : ∀ j,
     (S.second j).left.length + (S.second j).right.length ≤ 2
-  first_chord_partition :
-    (∑ j, Nat.dist (S.first j).chordStart (S.first j).chordFinish) =
-      chordTraversalCost (0 :: index.first.partners ++ [chordLength])
-  second_chord_partition :
-    (∑ j, Nat.dist (S.second j).chordStart (S.second j).chordFinish) =
-      chordTraversalCost (0 :: index.second.partners ++ [chordLength])
+  chord_length : globalChord.length = chordLength
   first_small : ∀ j,
     5 * ((S.toPathInput).first j).sideCount ≤ 4 * n
   second_small : ∀ j,
@@ -368,6 +363,46 @@ theorem toPathLengthBounds
     intro j _
     exact length_orientedSegment globalChord
       (S.second j).chordStart_le (S.second j).chordFinish_le
+  have hfirstDist : ∀ j : Fin index.first.pieceCount,
+      Nat.dist (S.first j).chordStart (S.first j).chordFinish ≤ chordLength := by
+    intro j
+    have hstart : (S.first j).chordStart ≤ chordLength := by
+      simpa [H.chord_length] using (S.first j).chordStart_le
+    have hfinish : (S.first j).chordFinish ≤ chordLength := by
+      simpa [H.chord_length] using (S.first j).chordFinish_le
+    unfold Nat.dist
+    omega
+  have hsecondDist : ∀ j : Fin index.second.pieceCount,
+      Nat.dist (S.second j).chordStart (S.second j).chordFinish ≤ chordLength := by
+    intro j
+    have hstart : (S.second j).chordStart ≤ chordLength := by
+      simpa [H.chord_length] using (S.second j).chordStart_le
+    have hfinish : (S.second j).chordFinish ≤ chordLength := by
+      simpa [H.chord_length] using (S.second j).chordFinish_le
+    unfold Nat.dist
+    omega
+  have hfirstSum :
+      (∑ j, Nat.dist (S.first j).chordStart (S.first j).chordFinish) ≤
+        index.first.pieceCount * chordLength := by
+    calc
+      _ ≤ ∑ _j : Fin index.first.pieceCount, chordLength :=
+        Finset.sum_le_sum fun j _ => hfirstDist j
+      _ = index.first.pieceCount * chordLength := by simp
+  have hsecondSum :
+      (∑ j, Nat.dist (S.second j).chordStart (S.second j).chordFinish) ≤
+        index.second.pieceCount * chordLength := by
+    calc
+      _ ≤ ∑ _j : Fin index.second.pieceCount, chordLength :=
+        Finset.sum_le_sum fun j _ => hsecondDist j
+      _ = index.second.pieceCount * chordLength := by simp
+  have hfirstPieces :
+      index.first.pieceCount * chordLength ≤
+        (chordLength + 1) * chordLength :=
+    Nat.mul_le_mul_right chordLength index.first.pieceCount_le
+  have hsecondPieces :
+      index.second.pieceCount * chordLength ≤
+        (chordLength + 1) * chordLength :=
+    Nat.mul_le_mul_right chordLength index.second.pieceCount_le
   refine
     { arc_partition := ?_
       first_connectors := ?_
@@ -378,9 +413,16 @@ theorem toPathLengthBounds
   · exact H.arc_partition
   · exact H.first_connectors
   · exact H.second_connectors
-  · rw [hfirstLength, hsecondLength, H.first_chord_partition,
-      H.second_chord_partition]
-    exact twoHalf_chordTraversal_with_endpoints_le index
+  · rw [hfirstLength, hsecondLength]
+    calc
+      _ ≤ index.first.pieceCount * chordLength +
+          index.second.pieceCount * chordLength :=
+        Nat.add_le_add hfirstSum hsecondSum
+      _ ≤ (chordLength + 1) * chordLength +
+          (chordLength + 1) * chordLength :=
+        Nat.add_le_add hfirstPieces hsecondPieces
+      _ ≤ 2 * (chordLength * chordLength) + 4 * chordLength := by
+        nlinarith
 
 /-- Feed raw intervals on the common chord directly into the exact
 Proposition 4.14 family certificate. -/
