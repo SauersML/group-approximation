@@ -47,12 +47,18 @@ binary wreath
 W=(direct_sum_(G/Gamma) C_2) rtimes G
 ~~~
 
-inside `L(W)`, let `p=(1+z_Gamma)/2` be the root lamp
-projection. Then
+inside `L(W)`, let
 
 ~~~text
-p in R,             Theta(p)=p,
-dist_2(p,Phi_B(R)) >= 1/(2 sqrt(2)).                     (KHL3)
+p_i=(1+z_(C^(-i)Gamma))/2,       i=0,1,2,
+q=(p_0+p_1+p_2)/3.
+~~~
+
+Then `q` is a positive contraction and
+
+~~~text
+q in R,             Theta(q)=q,
+dist_2(q,Phi_B(R)) >= 1/(2 sqrt(6)).                     (KHL3)
 ~~~
 
 Consequently no inequality of the form
@@ -65,7 +71,7 @@ dist_2(x,Phi_B(R))
 
 can hold for all operator-norm-one contractions in finite tracial models,
 for any finite `K` and any Kazhdan set `S_Gamma`. Both terms on the
-right vanish at `x=p` while the left side has the displayed fixed lower
+right vanish at `x=q` while the left side has the displayed fixed lower
 bound. Property (T) and the finite cyclic average round into `R^Theta`,
 not into the strictly smaller algebra `Phi_B(R)`.
 
@@ -81,7 +87,7 @@ h=B^(-1) gamma B=e_12(x_2/x_1)
 Then, in the same canonical model,
 
 ~~~text
-||[p,sigma(h)]||_2=1/sqrt(2).                            (KHL6)
+||[q,sigma(h)]||_2=1/sqrt(6).                            (KHL6)
 ~~~
 
 The two cyclic conjugates `C^(-i)hC^i`, `i=1,2`, have the
