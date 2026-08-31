@@ -182,6 +182,17 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   commute.  The next candidate must make the shared interface sector-dependent;
   the minimal unaudited cell is one square carrying two ports on distinct
   line contexts.
+- **Put two ports on transverse lines of one square.**  The exact residual
+  is now computed by `two-port-magic-square-commutator-is-holonomy-square`.
+  If `Omega` compares the column-major and row-major products, then
+  `Omega` lies in the cell group's derived subgroup and
+  `[W,Z]=Omega^2`.  Every class-two (hence every fixed Pauli/extraspecial)
+  completion makes `Omega` central and therefore quotients the ports to
+  `WZ=ZW`; it is not a transparent absorber for arbitrary source pairs.
+  The relation has a dimension-free six-defect estimate.  What remains is
+  genuinely noncentral derived holonomy: either construct finite-dimensional
+  extensions for arbitrary pairs through that channel or turn control of
+  `Omega^2` into the missing finite-versus-commuting decoder.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
   distinct cosets of `<J>` are linearly independent in `C[Gamma]/(J+1)`, so
   commuting group-element involutions satisfy only affine joint-spectrum
