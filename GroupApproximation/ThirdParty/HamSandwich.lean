@@ -18,5 +18,7 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.BarycentricSubdivisionDiameter
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.AlexanderWhitneyChainMap
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.BarycentricSubdivisionOperator
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CochainCupLeibniz
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CohomologyCupProduct
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/

@@ -88,3 +88,10 @@ explicit under the v4.32 elaborator.
 `BarycentricSubdivisionOperator` uses the renamed `continuous_finsetSum` lemma
 and the same v4.32 definitional-equality compatibility settings as Mathlib's
 homological-complex implementation.
+
+`CochainCupLeibniz` is included unchanged apart from namespace isolation.
+`CohomologyCupProduct` replaces fragile element-level conversions through
+`forget₂` by applications of categorical morphism equalities via
+`ConcreteCategory.congr_hom`.  Its cup-product and pullback statements retain
+their upstream strength while elaborating cleanly with Mathlib v4.32's concrete
+homology API.
