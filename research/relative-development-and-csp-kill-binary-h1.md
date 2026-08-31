@@ -184,3 +184,25 @@ Therefore \(\chi_z=0\). By (RDP10), \(z\) is a coboundary, proving
 Finally, \(P_\infty\) together with \(x\) generates \(\Gamma\), so the
 one-skeleton of \(Y_m\) is connected. Its binary vertex-coboundary space
 has dimension \(V_m-1\), and (BIH3) gives (BIH4).
+
+
+## Independent prime-level corroboration
+
+This is not used in the proof. Pedro H. Amorim, Isadora V. Picinini,
+Bruno R. Ramos, and Thiago Verissimo, *On the abelianization of
+congruence subgroups of SL2 over S-integers*, arXiv:2608.17763,
+Theorem 3.4 and Corollary 3.7, compute for
+\(A=\mathbb Z[1/2]\)
+
+\[
+ H_1(\Gamma(A,pA),\mathbb Z)\cong
+ \begin{cases}
+  (\mathbb Z/p)^3\oplus\mathbb Z/3,&p>3,\\
+  (\mathbb Z/3)^3,&p=3.
+ \end{cases}                                             \tag{RDP14}
+\]
+
+Thus the principal subgroup has no binary character at every odd prime
+level, independently confirming the prime-level shadow of the argument
+above. The exact normal-generation proof is what treats all composite odd
+levels at once. Source: https://arxiv.org/html/2608.17763.
