@@ -57,12 +57,12 @@ gamma = 28329113480286/10^16,
   after merely replacing the exact rotation-fixed projection by the low
   spectral projection.
 - `post-gap-compressor-constants` closes the dimension-free analytic
-  vector chain once its three stage inputs are supplied. If (f) is the
-  top-corner fixing error, (ell) the reverse leakage, and (c) the
+  vector chain once its three stage inputs are supplied. If `f` is the
+  top-corner fixing error, `ell` the reverse leakage, and `c` the
   normalized capture mass, then transported displacement is at most
-  (2f^2+16ell^2+16c), and the marked commutator is at most
-  (8f^2+64ell^2+64c). The committed budget
-  (f^2=arepsilon/24), (ell^2=c=arepsilon/192) is exact.
+  `2*f^2 + 16*ell^2 + 16*c`, and the marked commutator is at most
+  `8*f^2 + 64*ell^2 + 64*c`. The committed budget
+  `f^2=epsilon/24` and `ell^2=c=epsilon/192` is exact.
 - The current Lean transport route still calls
   `WeakMFVectorGNS.hermitianAverage_eventually_no_intermediate_eigenvalues`,
   an ultralimit contradiction with an unspecified `exists N`. After a
