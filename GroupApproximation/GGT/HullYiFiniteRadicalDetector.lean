@@ -60,6 +60,7 @@ theorem exists_finite_loxodromic_detector
     (A : HullGeneratingSet G) {S : Subgroup G}
     (hS : Suitable A.alphabet S) :
     ∃ F : Finset G,
+      2 ≤ F.card ∧
       (∀ h ∈ F, h ∈ S ∧ IsLoxodromic h (Cayley.base A.alphabet)) ∧
       ∀ x : G, x ∈ loxRadical A.alphabet S ↔
         ∀ h ∈ F, x ∈ elementaryClosure h := by
@@ -98,6 +99,19 @@ theorem exists_finite_loxodromic_detector
     simp only [pick, dif_pos hx]
     exact hwexclude x hx
   let F : Finset G := {a, b} ∪ hBfin.toFinset.image pick
+  have hab : a ≠ b := by
+    intro hab
+    subst b
+    exact not_independent_of_common_zpow
+      (isIsometricAction_cayley A.alphabet) halox one_ne_zero one_ne_zero
+        (by simp) hind
+  have hFcard : 2 ≤ F.card := by
+    have hsubset : ({a, b} : Finset G) ⊆ F := by
+      intro x hx
+      exact Finset.mem_union_left _ hx
+    have hcardPair : ({a, b} : Finset G).card = 2 := by simp [hab]
+    rw [← hcardPair]
+    exact Finset.card_le_card hsubset
   have hFdata : ∀ h ∈ F,
       h ∈ S ∧ IsLoxodromic h (Cayley.base A.alphabet) := by
     intro h hh
@@ -110,7 +124,7 @@ theorem exists_finite_loxodromic_detector
     · obtain ⟨x, hxB, rfl⟩ := Finset.mem_image.mp hh
       have hx : x ∈ B := hBfin.mem_toFinset.mp hxB
       exact ⟨hpickS x hx, hpickLox x hx⟩
-  refine ⟨F, hFdata, ?_⟩
+  refine ⟨F, hFcard, hFdata, ?_⟩
   · intro x
     constructor
     · intro hx h hh
@@ -133,16 +147,46 @@ theorem exists_finite_loxodromic_family_trivial_intersection
     (A : HullGeneratingSet G) {S : Subgroup G}
     (hS : Suitable A.alphabet S) :
     ∃ F : Finset G,
+      2 ≤ F.card ∧
       (∀ h ∈ F, h ∈ S ∧ IsLoxodromic h (Cayley.base A.alphabet)) ∧
       ∀ x : G, (∀ h ∈ F, x ∈ elementaryClosure h) → x = 1 := by
-  obtain ⟨F, hF, hdetect⟩ := exists_finite_loxodromic_detector A hS
-  refine ⟨F, hF, ?_⟩
+  obtain ⟨F, hFcard, hF, hdetect⟩ := exists_finite_loxodromic_detector A hS
+  refine ⟨F, hFcard, hF, ?_⟩
   intro x hx
   have hxrad : x ∈ loxRadical A.alphabet S := (hdetect x).mpr hx
   rw [loxRadical_eq_bot_of_suitable
     (elementaryClosureVirtuallyCyclic_hullGeneratingSet A) hS,
     Subgroup.mem_bot] at hxrad
   exact hxrad
+
+/-- The detector in the finite-indexed form consumed by Hull's cyclic product
+construction.  Its size is at least two, and its elementary closures have
+trivial total intersection. -/
+theorem exists_fin_loxodromic_family_trivial_intersection
+    (A : HullGeneratingSet G) {S : Subgroup G}
+    (hS : Suitable A.alphabet S) :
+    ∃ (k : ℕ) (f : Fin k → G), 2 ≤ k ∧
+      (∀ i, f i ∈ S) ∧
+      (∀ i, IsLoxodromic (f i) (Cayley.base A.alphabet)) ∧
+      ∀ x : G, (∀ i, x ∈ elementaryClosure (f i)) → x = 1 := by
+  classical
+  obtain ⟨F, hFcard, hF, hinter⟩ :=
+    exists_finite_loxodromic_family_trivial_intersection A hS
+  let f : Fin F.card → G := fun i => (F.equivFin.symm i : F)
+  refine ⟨F.card, f, hFcard, ?_, ?_, ?_⟩
+  · intro i
+    exact (hF (f i) (F.equivFin.symm i).property).1
+  · intro i
+    exact (hF (f i) (F.equivFin.symm i).property).2
+  · intro x hx
+    apply hinter x
+    intro h hh
+    let i : Fin F.card := F.equivFin ⟨h, hh⟩
+    have hfi : f i = h := by
+      change ((F.equivFin.symm (F.equivFin ⟨h, hh⟩) : F) : G) = h
+      simp
+    rw [← hfi]
+    exact hx i
 
 end HullSC
 end GroupApproximation

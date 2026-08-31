@@ -1,6 +1,7 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2WindowExact
 import GroupApproximation.GGT.HullSCRelatorSeparation2Diff
 import GroupApproximation.GGT.HullSCRelatorSeparation2ThroughBase
+import GroupApproximation.GGT.HullSCRelatorSeparation2CyclicThroughBase
 import GroupApproximation.GGT.HullSCRelatorSeparation2Core
 
 /-!
@@ -41,7 +42,7 @@ theorem exists_separated_exponents_window_diff_through_exact
     {D : GGT.RelGenSet G Bool}
     (hemb : D.IsHyperbolicallyEmbedded) {a : Bool → G}
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
-    (hfam : ∀ s : Bool, a s ∈ D.fam s) (h₀ h₁ : G)
+    (hfam : ∀ s : Bool, a s ∈ D.fam s)
     {K : Set G} (hK : K.Finite) {T : Set G} (hT : T.Finite)
     {B : Set G} (hB : B.Finite) (baseLetter : G) (W L : ℕ) :
     ∃ ms : List ℕ, ms.length = L ∧ ms.Nodup ∧
@@ -51,15 +52,10 @@ theorem exists_separated_exponents_window_diff_through_exact
       (∀ i ∈ ms, ∀ j ∈ ms, j < i → ∀ s : Bool, a s ^ (i - j) ∉ B) ∧
       (∀ pre post : List ℕ, ∀ n : ℕ, ms = pre ++ n :: post →
         ∀ s t : Bool, ∀ r : ℕ, r ≤ W →
-          a s ^ n * GGT.RelLetter.listVal (blockWord h₀ h₁ t (post.take r))
+          a s ^ n * GGT.RelLetter.listVal
+            (blockWord (a false) (a true) t (post.take r))
             ∉ D.fam (!s)) ∧
-      ∀ pre post : List ℕ, ∀ n : ℕ, ms = pre ++ n :: post →
-        ∀ s b₀ b₁ : Bool, ∀ r₀ r₁ : ℕ, r₀ ≤ W → r₁ ≤ W →
-          a s ^ n *
-              GGT.RelLetter.listVal (blockWord h₀ h₁ b₀ (post.take r₀)) *
-              baseLetter *
-              GGT.RelLetter.listVal (blockWord h₀ h₁ b₁ (post.take r₁))
-            ∉ D.fam (!s) := by
+      CyclicThroughBaseAvoidance D a baseLetter W ms := by
   induction L with
   | zero =>
       refine ⟨[], rfl, List.nodup_nil, ?_, ?_, ?_, ?_, ?_⟩
@@ -76,13 +72,18 @@ theorem exists_separated_exponents_window_diff_through_exact
   | succ L ih =>
       obtain ⟨ms, hlen, hnodup, hdeep, hsep, hdiff, hwin, hthrough⟩ := ih
       let C : Set G :=
-        K ∪ (windowBadPow D a h₀ h₁ ms W ∪
-          (diffBad a B ms ∪ throughBaseBadPow D a h₀ h₁ ms W baseLetter))
+        K ∪ (windowBadPow D a (a false) (a true) ms W ∪
+          (diffBad a B ms ∪
+            (throughBaseBadPow D a (a false) (a true) ms W baseLetter ∪
+              cyclicThroughBasePrefixBadPow D a ms W baseLetter)))
       have hC : C.Finite := by
         exact hK.union
-          ((finite_windowBadPow hemb hinj hfam h₀ h₁ ms W).union
+          ((finite_windowBadPow hemb hinj hfam (a false) (a true) ms W).union
             ((finite_diffBad a hB ms).union
-              (finite_throughBaseBadPow hemb hinj hfam h₀ h₁ ms W baseLetter)))
+              ((finite_throughBaseBadPow hemb hinj hfam (a false) (a true) ms W
+                  baseLetter).union
+                (finite_cyclicThroughBasePrefixBadPow hemb hinj hfam ms W
+                  baseLetter hthrough))))
       obtain ⟨m, hm, hdeepm, hnew⟩ :=
         exists_pow_separated_family hinj hT ms C hC (ms.sum + 1)
       have hgt : ∀ j ∈ ms, j < m := by
@@ -90,7 +91,8 @@ theorem exists_separated_exponents_window_diff_through_exact
         have hle := le_sum_of_mem_nat hj
         omega
       have hnotmem : m ∉ ms := fun hmem => Nat.lt_irrefl m (hgt m hmem)
-      have hwinm : ∀ s : Bool, a s ^ m ∉ windowBadPow D a h₀ h₁ ms W := by
+      have hwinm : ∀ s : Bool,
+          a s ^ m ∉ windowBadPow D a (a false) (a true) ms W := by
         intro s hc
         exact (hdeepm s).1 (Set.mem_union_right _ (Set.mem_union_left _ hc))
       have hdiffm : ∀ s : Bool, a s ^ m ∉ diffBad a B ms := by
@@ -98,10 +100,18 @@ theorem exists_separated_exponents_window_diff_through_exact
         exact (hdeepm s).1
           (Set.mem_union_right _ (Set.mem_union_right _ (Set.mem_union_left _ hc)))
       have hthroughm : ∀ s : Bool,
-          a s ^ m ∉ throughBaseBadPow D a h₀ h₁ ms W baseLetter := by
+          a s ^ m ∉ throughBaseBadPow D a (a false) (a true) ms W
+            baseLetter := by
         intro s hc
         exact (hdeepm s).1
-          (Set.mem_union_right _ (Set.mem_union_right _ (Set.mem_union_right _ hc)))
+          (Set.mem_union_right _ (Set.mem_union_right _
+            (Set.mem_union_right _ (Set.mem_union_left _ hc))))
+      have hprefixm : ∀ s : Bool,
+          a s ^ m ∉ cyclicThroughBasePrefixBadPow D a ms W baseLetter := by
+        intro s hc
+        exact (hdeepm s).1
+          (Set.mem_union_right _ (Set.mem_union_right _
+            (Set.mem_union_right _ (Set.mem_union_right _ hc))))
       refine ⟨m :: ms, by simp [hlen], List.nodup_cons.mpr ⟨hnotmem, hnodup⟩,
         ?_, ?_, ?_, ?_, ?_⟩
       · intro i hi
@@ -147,24 +157,17 @@ theorem exists_separated_exponents_window_diff_through_exact
         | cons x pre' =>
             rw [List.cons_append, List.cons.injEq] at hsplit
             exact hwin pre' post n hsplit.2 s t r hr
-      · intro pre post n hsplit s b₀ b₁ r₀ r₁ hr₀ hr₁
-        cases pre with
-        | nil =>
-            rw [List.nil_append, List.cons.injEq] at hsplit
-            obtain ⟨hmn, hmspost⟩ := hsplit
-            subst hmn
-            subst hmspost
-            exact notMem_throughBaseBad_of_notMem hthroughm s hr₀ hr₁ b₀ b₁
-        | cons x pre' =>
-            rw [List.cons_append, List.cons.injEq] at hsplit
-            exact hthrough pre' post n hsplit.2 s b₀ b₁ r₀ r₁ hr₀ hr₁
+      · refine cyclicThroughBaseAvoidance_cons hthrough ?_ hprefixm
+        intro s b₀ b₁ r₀ hr₀
+        exact notMem_throughBaseBad_of_notMem hthroughm s hr₀
+          (Nat.zero_le _) b₀ b₁
 
 /-- The combined exact design without reading the through-base clause. -/
 theorem exists_separated_exponents_window_diff_exact
     {D : GGT.RelGenSet G Bool}
     (hemb : D.IsHyperbolicallyEmbedded) {a : Bool → G}
     (hinj : ∀ s : Bool, Function.Injective (fun n : ℕ => a s ^ n))
-    (hfam : ∀ s : Bool, a s ∈ D.fam s) (h₀ h₁ : G)
+    (hfam : ∀ s : Bool, a s ∈ D.fam s)
     {K : Set G} (hK : K.Finite) {T : Set G} (hT : T.Finite)
     {B : Set G} (hB : B.Finite) (W L : ℕ) :
     ∃ ms : List ℕ, ms.length = L ∧ ms.Nodup ∧
@@ -174,11 +177,12 @@ theorem exists_separated_exponents_window_diff_exact
       (∀ i ∈ ms, ∀ j ∈ ms, j < i → ∀ s : Bool, a s ^ (i - j) ∉ B) ∧
       ∀ pre post : List ℕ, ∀ n : ℕ, ms = pre ++ n :: post →
         ∀ s t : Bool, ∀ r : ℕ, r ≤ W →
-          a s ^ n * GGT.RelLetter.listVal (blockWord h₀ h₁ t (post.take r))
+          a s ^ n * GGT.RelLetter.listVal
+            (blockWord (a false) (a true) t (post.take r))
             ∉ D.fam (!s) := by
   obtain ⟨ms, hlen, hnodup, hdeep, hsep, hdiff, hwin, -⟩ :=
     exists_separated_exponents_window_diff_through_exact
-      hemb hinj hfam h₀ h₁ hK hT hB 1 W L
+      hemb hinj hfam hK hT hB 1 W L
   exact ⟨ms, hlen, hnodup, hdeep, hsep, hdiff, hwin⟩
 
 /-! ## The source-facing specialization -/
@@ -207,20 +211,14 @@ theorem exists_relator_exponents_window_diff_through_exact
           E.lox s ^ n * GGT.RelLetter.listVal
               (blockWord (E.lox false) (E.lox true) t (post.take r))
             ∉ E.rel.fam (!s)) ∧
-      ∀ pre post : List ℕ, ∀ n : ℕ, ms = pre ++ n :: post →
-        ∀ s b₀ b₁ : Bool, ∀ r₀ r₁ : ℕ, r₀ ≤ W → r₁ ≤ W →
-          E.lox s ^ n * GGT.RelLetter.listVal
-              (blockWord (E.lox false) (E.lox true) b₀ (post.take r₀)) *
-              baseLetter * GGT.RelLetter.listVal
-              (blockWord (E.lox false) (E.lox true) b₁ (post.take r₁))
-            ∉ E.rel.fam (!s) := by
+      CyclicThroughBaseAvoidance E.rel E.lox baseLetter W ms := by
   have hfam : ∀ s : Bool, E.lox s ∈ E.rel.fam s := by
     intro s
     rw [E.fam_eq]
     exact E.lox_mem s
   obtain ⟨ms, hlen, hnodup, hdeep, hsep, hdiff, hwin, hthrough⟩ :=
     exists_separated_exponents_window_diff_through_exact E.embedded
-      (injective_pow_lox₂ E) hfam (E.lox false) (E.lox true)
+      (injective_pow_lox₂ E) hfam
       ((E.embedded.locallyFinite false rho).union
         (E.embedded.locallyFinite true rho))
       ((E.embedded.locallyFinite false eps).union

@@ -48,13 +48,7 @@ def ExactRelatorDesign₂ (E : HypEmbeddedCore₂ A N) (baseLetter : G)
         E.lox s ^ n * GGT.RelLetter.listVal
             (blockWord (E.lox false) (E.lox true) t (post.take r))
           ∉ E.rel.fam (!s)) ∧
-    ∀ pre post : List ℕ, ∀ n : ℕ, ms = pre ++ n :: post →
-      ∀ s b₀ b₁ : Bool, ∀ r₀ r₁ : ℕ, r₀ ≤ W → r₁ ≤ W →
-        E.lox s ^ n * GGT.RelLetter.listVal
-            (blockWord (E.lox false) (E.lox true) b₀ (post.take r₀)) *
-            baseLetter * GGT.RelLetter.listVal
-            (blockWord (E.lox false) (E.lox true) b₁ (post.take r₁))
-          ∉ E.rel.fam (!s)
+    CyclicThroughBaseAvoidance E.rel E.lox baseLetter W ms
 
 /-- The exact finite-avoidance construction, packaged without weakening any
 of its clauses. -/
@@ -64,6 +58,38 @@ theorem exists_exactRelatorDesign₂ (E : HypEmbeddedCore₂ A N)
       ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms := by
   exact exists_relator_exponents_window_diff_through_exact E rho eps
     diffRadius baseLetter W target
+
+/-- After peeling an anchor of index `s`, a bounded pure-run window begins
+with an `!s`-letter and cannot return to the anchor family. -/
+theorem ExactRelatorDesign₂.pureWindow_not_mem_anchorFamily
+    {E : HypEmbeddedCore₂ A N} {baseLetter : G}
+    {rho eps diffRadius W target : ℕ} {ms : List ℕ}
+    (h : ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms)
+    {pre post : List ℕ} {n : ℕ} (hsplit : ms = pre ++ n :: post)
+    (s t : Bool) {r : ℕ} (hr : r ≤ W) :
+    E.lox (!s) ^ n * GGT.RelLetter.listVal
+        (blockWord (E.lox false) (E.lox true) t (post.take r))
+      ∉ E.rel.fam s := by
+  have hwin := h.2.2.2.2.2.1 pre post n hsplit (!s) t r hr
+  simpa using hwin
+
+/-- The analogous peeled window when the cyclic interval crosses the unique
+base letter.  The suffix comes from `post` and the complementary prefix from
+`pre`; this is the corrected cyclic orientation. -/
+theorem ExactRelatorDesign₂.throughBase_not_mem_anchorFamily
+    {E : HypEmbeddedCore₂ A N} {baseLetter : G}
+    {rho eps diffRadius W target : ℕ} {ms : List ℕ}
+    (h : ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms)
+    {pre post : List ℕ} {n : ℕ} (hsplit : ms = pre ++ n :: post)
+    (s b₀ b₁ : Bool) {r₀ r₁ : ℕ} (hr₀ : r₀ ≤ W) (hr₁ : r₁ ≤ W) :
+    E.lox (!s) ^ n * GGT.RelLetter.listVal
+        (blockWord (E.lox false) (E.lox true) b₀ (post.take r₀)) *
+        baseLetter * GGT.RelLetter.listVal
+        (blockWord (E.lox false) (E.lox true) b₁ (pre.take r₁))
+      ∉ E.rel.fam s := by
+  have hthrough := h.2.2.2.2.2.2 pre post n hsplit (!s) b₀ b₁ r₀ r₁
+    hr₀ hr₁
+  simpa using hthrough
 
 /-- The one remaining same-side implication, scoped only to the exact lists
 the construction can produce.  Its window and difference radius is

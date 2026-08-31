@@ -1,6 +1,8 @@
 import GroupApproximation.GGT.HullSCConeOffCyclicReduction
 import GroupApproximation.GGT.HullSCConeOffHeavyNonComm
 import GroupApproximation.GGT.HullYiFiniteRadicalDetector
+import GroupApproximation.GGT.HullYiCyclicOrientation
+import GroupApproximation.GGT.HullYiMatchedProductRigidity
 import GroupApproximation.GGT.DGOCorollary66
 
 /-!
@@ -172,9 +174,11 @@ That lemma's third characterisation of `E_G(h)`, `∃ k m ≠ 0, g⁻¹h^k g = h
 `h^{±n}` form and `E⁺(h) = C_G(h^r)` are now proved in `DGOCorollary66`, modulo
 the finite-transversal conclusion of DGO Lemma 6.5.  Thus the remaining Yi
 work is the production of a pairwise non-commensurable, orientation-pure
-detecting family and the component matching and orientation argument from
-Lemma 4.21(b).  The finite-family-to-`loxRadical` bridge is closed in
-`HullYiFiniteRadicalDetector`; it is not part of the residue. -/
+  detecting family and the geometric consecutive-component producer from
+  Lemma 4.21(b).  The finite-family-to-`loxRadical` bridge is closed in
+  `HullYiFiniteRadicalDetector`, the inverse-orientation contradiction in
+  `HullYiCyclicOrientation`, and the connector propagation and final prefix
+  calculation in `HullYiMatchedProductRigidity`; none is part of the residue. -/
 def YiSuitablePair : Prop :=
   ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) {N : Subgroup G},
     Suitable A.alphabet N →

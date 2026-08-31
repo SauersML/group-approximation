@@ -79,7 +79,11 @@ theorem finite_cyclicThroughBasePrefixBadPow
     GGT.RelLetter.listVal
       (blockWord (a false) (a true) (!b₁) ((ms.take k).take r₁))
   have hsplit : ms = ms.take k ++ ms[k] :: ms.drop (k + 1) := by
-    rw [← List.drop_eq_getElem_cons k.isLt, ← List.take_append_drop k ms]
+    calc
+      ms = ms.take k ++ ms.drop k := (List.take_append_drop k ms).symm
+      _ = ms.take k ++ ms[k] :: ms.drop (k + 1) := by
+        rw [List.drop_eq_getElem_cons k.isLt]
+        rfl
   have hmid : ¬ (b₁ = !s ∧ A ∈ D.fam (!s)) := by
     rintro ⟨hbs, hA⟩
     have hnot := hold (ms.take k) (ms.drop (k + 1)) ms[k] hsplit s b₀ b₁
@@ -119,7 +123,7 @@ theorem cyclicThroughBaseAvoidance_cons
       simpa only [List.take_nil] using hnewHead s b₀ b₁ r₀ hr₀
   | cons x pre' =>
       rw [List.cons_append, List.cons.injEq] at hsplit
-      have htail : ms = pre' ++ n :: post := hsplit.2
+      rcases hsplit with ⟨rfl, htail⟩
       cases r₁ with
       | zero =>
           simpa only [List.take_zero, blockWord_nil,
@@ -143,10 +147,21 @@ theorem cyclicThroughBaseAvoidance_cons
             Set.mem_iUnion.mpr ⟨b₀, Set.mem_iUnion.mpr ⟨b₁, ?_⟩⟩⟩⟩
           refine Set.mem_biUnion hr₀ (Set.mem_biUnion hr ?_)
           refine ⟨m, ?_, rfl⟩
+          change
+            a s ^ ms[k] *
+                GGT.RelLetter.listVal
+                  (blockWord (a false) (a true) b₀
+                    ((ms.drop (k + 1)).take r₀)) *
+                baseLetter * a b₁ ^ m *
+                GGT.RelLetter.listVal
+                  (blockWord (a false) (a true) (!b₁)
+                    ((ms.take k).take r))
+              ∈ D.fam (!s)
           have hab : (if b₁ then a true else a false) = a b₁ := by
             cases b₁ <;> rfl
           simpa only [hkval, hkdrop, hktake, List.take_succ_cons,
-            blockWord_cons, RelWord.listVal_cons, hab, mul_assoc]
+            blockWord_cons, RelWord.listVal_cons, GGT.RelLetter.val, hab,
+            mul_assoc]
             using hc
 
 end CyclicThroughBase

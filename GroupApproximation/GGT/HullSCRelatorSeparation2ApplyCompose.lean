@@ -354,7 +354,7 @@ theorem separationNe₂_clause_of_spelling_of_producer (E : HypEmbeddedCore₂ A
       fun i j hij hj => qgClause_of_le (hcu' i j hij hj)
     obtain ⟨hqside, hsside⟩ :=
       hexcl py pz u₀ u₀' ⟨w, sfx, hw, hsfx⟩ ⟨w', sfx', hw', hsfx'⟩
-        hpy hpz
+        hpy hpz hpy0 hpz0
     have hconj := listVal_conj_of_sym_pieces hpair hmatch hnodup
       (injective_pow_lox₂ E) hsymm hsepD hdisj
       (fun m hm b => hdeepD m hm b b) (Nat.le_max_right rho (Cm * 4)) hp0

@@ -30,6 +30,59 @@ section Parser
 
 variable {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
 
+/-- A component start whose declared coordinate lies on the first long side
+really is a component letter of that side.  Positivity of the following
+base-spelled side excludes the endpoint coordinate; this is why the active
+side-exclusion API carries the two nonempty short-side certificates. -/
+theorem exists_comp_letter_of_firstLongSide_start
+    {py pz u u' : List (GGT.RelLetter G Bool)} {s : Bool} {i : ℕ}
+    (hpz : ∀ x ∈ pz, ∃ g : G, x = GGT.RelLetter.base g)
+    (hpz0 : 0 < pz.length) (hi : i ≤ u.length)
+    (hstart : GGT.OsinComponents.IsCompStart s
+      (py ++ u ++ pz ++ GGT.OsinComponents.revWord u') (py.length + i)) :
+    ∃ (_hil : i < u.length) (x : G),
+      u[i]? = some (GGT.RelLetter.comp s x) := by
+  have hil : i < u.length := by
+    by_contra hnot
+    have hieq : i = u.length := by omega
+    apply GGT.OsinComponents.not_isCompStart_fourGon_r py u pz u' s hpz
+      (o := py.length + i) (by omega) (by omega)
+    exact hstart
+  obtain ⟨hglobal, hcomp⟩ :=
+    GGT.OsinComponents.isCompOf_getElem_of_isCompStart hstart
+  have hread := GGT.OsinComponents.getElem_fourGon_q py u pz u' hil rfl hglobal
+  rw [hread] at hcomp
+  obtain ⟨x, hx⟩ := getElem?_comp_of_isCompOf hil hcomp
+  exact ⟨hil, x, hx⟩
+
+/-- A component start in the oppositely traversed fourth side has a positive
+endpoint coordinate in `u'`, and the preceding letter of `u'` is a component
+letter of the same index. -/
+theorem exists_comp_letter_of_secondLongSide_start
+    {py pz u u' : List (GGT.RelLetter G Bool)} {s : Bool} {m : ℕ}
+    (hm : m ≤ u'.length)
+    (hstart : GGT.OsinComponents.IsCompStart s
+      (py ++ u ++ pz ++ GGT.OsinComponents.revWord u')
+      (py.length + u.length + pz.length + (u'.length - m))) :
+    ∃ (_hm0 : 0 < m) (x : G),
+      u'[m - 1]? = some (GGT.RelLetter.comp s x) := by
+  have hm0 : 0 < m := by
+    by_contra hnot
+    have hmz : m = 0 := by omega
+    subst hmz
+    obtain ⟨k, hk⟩ := hstart
+    have hstartlt : py.length + u.length + pz.length + (u'.length - 0) <
+        (py ++ u ++ pz ++ GGT.OsinComponents.revWord u').length :=
+      lt_of_lt_of_le hk.1 hk.2.1
+    have hlen : (py ++ u ++ pz ++ GGT.OsinComponents.revWord u').length =
+        py.length + u.length + pz.length + u'.length := by
+      rw [GGT.OsinComponents.length_fourGon]
+    rw [hlen] at hstartlt
+    omega
+  obtain ⟨x, hx⟩ := GGT.OsinComponents.exists_comp_of_isCompStart_rev
+    py u pz u' s hm0 hm hstart
+  exact ⟨hm0, x, hx⟩
+
 /-- A forward peripheral span in a prefix of a symmetrized relator has bounded
 index length. -/
 theorem forward_index_gap_le_of_blockCount

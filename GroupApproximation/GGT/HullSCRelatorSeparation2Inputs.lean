@@ -95,6 +95,7 @@ def RelatorSideExclusionAt₂ (E : HypEmbeddedCore₂ A N) (p : List G)
           v = u' ++ tl) →
       (∀ x ∈ py, ∃ g : G, x = GGT.RelLetter.base g) →
       (∀ x ∈ pz, ∃ g : G, x = GGT.RelLetter.base g) →
+      0 < py.length → 0 < pz.length →
       (∀ (s : Bool) (d i' : ℕ),
         GGT.OsinComponents.IsComp s u d (d + 1) →
         i' ≤ u.length → i' ≠ d →
