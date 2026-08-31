@@ -10,7 +10,6 @@ artifacts:
   - research/artifacts/shulman-2603-13564-verified.md
 ---
 
-
 **PRIMARY-SOURCE FIREWALL (operator norm only).** The current arXiv version is
 [arXiv:2603.13564v2](https://arxiv.org/html/2603.13564v2), revised
 22 March 2026 (v1 was submitted 13 March 2026). In the paper's convention,
@@ -18,7 +17,6 @@ artifacts:
 two copies. No amenability, finite dimensionality, or relative property
 assumption is placed on \(C\). Thus Theorem 10 applies unchanged when the
 edge algebra comes from a nonamenable or property-\((T)\) subgroup.
-
 
 Shulman, *The MF property for amalgamated free products*, arXiv:2603.13564v2,
 **Theorem 16** (v2 body numbering; verbatim in the artifact): for separable C*-algebras
@@ -31,7 +29,7 @@ amalgam `A *_C B` is MF **if and only if** there are embeddings
 separable MF and `C <= A` is any C*-subalgebra.
 
 Group bridge, also from the paper:
-\`C*(G_1 *_H G_2) = C*(G_1) *_{C*(H)} C*(G_2)\`. Its introduction states
+`C*(G_1 *_H G_2) = C*(G_1) *_{C*(H)} C*(G_2)`. Its introduction states
 the separate group-level corollary that if \(G\) is an MF group, then
 \(G *_H G\) is MF for every subgroup \(H\leq G\). Here group MF means
 embedding in the unitary group of the **operator-norm** matrix corona.
