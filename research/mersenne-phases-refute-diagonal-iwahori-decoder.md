@@ -18,9 +18,7 @@ R_n=lambda_Qn(r),
 T_n=lambda_Qn(t).
 ```
 
-There are a constant `delta>0` and, for every sufficiently large `n`,
-left-`N_n`-invariant functions
-
+For every sufficiently large `n`, there are left-`N_n`-invariant functions
 ```text
 c_n:Q_n -> F_2
 ```
@@ -47,14 +45,14 @@ left-`N_n`-invariant functions satisfying both cubic parity rows. Then
 
 ```text
 inf_(c' in C_(N_n))
- ||X_n-M_((-1)^c') lambda_Qn(x)||_2 >=2 sqrt(delta).    (MDD3)
+ ||X_n-M_((-1)^c') lambda_Qn(x)||_2 >=1/640.             (MDD3)
 ```
 
 Equivalently,
 
 ```text
 (|supp h_a(c_n)|+|supp h_b(c_n)|)/|Q_n| <2/n,
-dist_(N_n\Q_n)(c_n,C_(N_n))>=delta.                    (MDD4)
+dist_(N_n\Q_n)(c_n,C_(N_n))>=1/1638400.                (MDD4)
 ```
 
 Thus no dimension-free modulus tending to zero can decode the two cubic
