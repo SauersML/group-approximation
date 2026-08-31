@@ -4,6 +4,7 @@ id: coset-wreath-wall-survives-full-commutant-corners
 kind: claim
 title: The coset-wreath balanced wall survives every full multiplicity corner
 distinct_from:
+  wreath-not-sofic: that establishes nonsoficity of the pinned Kun--Thom wreath; this constrains every hypothetical hyperlinear embedding and its corners but neither constructs nor excludes one.
   hyperlinear-wreath-model: that asks whether the pinned wreath over G/Gamma is hyperlinear; conjugacy gives a G-set bijection G/Gamma congruent_to G/Lambda, so this treats the same group but proves only ICC and corner persistence conditional on an embedding.
   coset-bernoulli-ce-refutes-relative-commutant-collapse: that identifies Connes embeddability of a generalized Bernoulli crossed product as a conditional commutant refuter; this proves ICC and exact persistence of the refuting projection through every full relative-commutant corner.
   fdt7-is-balanced-bernoulli-projection-transfer: that turns an arbitrary pointed unitary FDT7 witness into a balanced projection and identifies the Bernoulli profile; this uses the entire canonical coset-wreath trace and shows multiplicity compression cannot dilute that profile.
@@ -109,9 +110,14 @@ matrix-ultraproduct embedding of `L(W)`, and every nonzero full multiplicity
 corner of it, realizes the forbidden balanced projection transfer `(BWC5)`.
 No amplification or commutant corner can hide the wall.
 
+By `wreath-not-sofic`, this same `W` is already known to be nonsofic.
+Thus a hyperlinear embedding would give the desired hyperlinear--nonsofic
+separation, and the theorem says that every exact corner of such an embedding
+still carries the canonical commutant wall.
+
 This is a sharp dichotomy, not a proof that `W` is nonhyperlinear.  The open
-step remains excluding the original trace-preserving embedding; factorial
-corner reduction creates no weaker model to attack.
+step remains excluding or constructing the original trace-preserving
+embedding; factorial corner reduction creates no weaker model to attack.
 
 DERIVATION
 coset-wreath-full-corner-persistence-proof
