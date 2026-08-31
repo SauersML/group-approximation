@@ -56,9 +56,10 @@ Together with `antipodalBlock_cStarAlgebra` this makes
 `D s := RealProjectiveBlock d s` a legal instantiation of every theorem in
 `Analysis/STW22CounterexampleAssembly` and
 `Analysis/STW22CounterexampleCompactnessRoute`. -/
-theorem nontrivial_realProjectiveBlock (d s : ℕ) :
+instance nontrivial_realProjectiveBlock (d s : ℕ) :
     Nontrivial (RealProjectiveBlock d s) :=
-  inferInstance
+  ⟨0, 1, fun h =>
+    zero_ne_one (α := SphereMatrixFunctions d s) (by exact_mod_cast h)⟩
 
 end
 
