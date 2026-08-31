@@ -124,7 +124,7 @@ V_n=1 tensor lambda_F(z_0),
 p_n=(1+V_n)/2.                                           (DCE9)
 ~~~
 
-Fourier transform the `B` coordinate in `ell^2(F)). The matrices
+Fourier transform the `B` coordinate in `ell^2(F)`. The matrices
 `lambda_F(b)`, `b in B`, are then diagonal. In particular `p_n` is a
 literal diagonal projection of normalized trace `1/2`.
 
@@ -208,9 +208,9 @@ d>max{stable_range(R),2}.                                 (DCE12)
 ~~~
 
 Its stated general theorem does not supply the pinned `d=3` case over
-`R=F_2[x_1,x_2,x_3]`; the standard Bass dimension estimate gives only a
-stable-range bound at the four-variable threshold, not the strict inequality
-needed in `(DCE12)`. More importantly, classification of limiting
+`R=F_2[x_1,x_2,x_3]`; the standard Bass dimension estimate gives only
+`stable_range(R)<=4`, which does not imply the strict inequality
+`3>stable_range(R)` needed in `(DCE12)`. More importantly, classification of limiting
 characters is not by itself a perturbation theorem for a prescribed
 regular-character microstate.
 
