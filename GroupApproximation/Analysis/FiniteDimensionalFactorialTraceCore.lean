@@ -146,3 +146,5 @@ theorem finite_dimensional_xxii_numerical_spine
 
 end FiniteDimensionalFactorialTraceCore
 end GroupApproximation
+
+-- CI-only branch marker: no semantic change from `main`.
