@@ -57,6 +57,44 @@ rotation-fixed subspace. The two-conjugate translation normal form uses
 rotation conjugators of unbounded word length, so generator-level error
 telescoping is not uniform over the translation lattice.
 
+The loss can be written exactly. Suppose a vector \(p\) satisfies
+\(\max_i\|U_i p-p\|\le\alpha\) for the six elementary-root unitaries, and let
+\(R\) be a word of length \(L\) in those unitaries and their inverses.
+Telescoping gives \(\|Rp-p\|\le L\alpha\). For every unitary \(V\),
+
+\[
+ \left|\|RVR^*p-p\|-\|Vp-p\|\right|\le 2L\alpha.
+\tag{NT1}
+\]
+
+Indeed, with \(q=R^*p\), the first norm is \(\|Vq-q\|\), while
+\(\|q-p\|=\|Rp-p\|\le L\alpha\); two applications of the triangle inequality
+give (NT1).
+
+The literal two-conjugate normal form uses
+
+\[
+ r=e_{13}^{\,m}e_{23}^{\,n},\qquad s=e_{32}^{\,k}.
+\]
+
+Their elementary-root word lengths are
+\(|m|+|n|\) and \(|k|\). Even if one grants the exact translation normal-form
+identity for free, its direct robustification therefore yields only
+
+\[
+ \|\rho(t)p-p\|
+ \le \|\rho(v_3)p-p\|+\|\rho(v_2)p-p\|
+      +2\alpha(|m|+|n|+|k|),
+\tag{NT2}
+\]
+
+before any approximate-relator replay error is added. The last term is
+unbounded on the translation lattice for every \(\alpha>0\). Thus the exact
+circumcenter proof cannot simply replace “rotation fixed” by “in the low
+rotation spectral cluster”; a new finite relative-\((T)\) estimate or a
+full-base certificate is logically required.
+
+
 The smallest sufficient new input is therefore either
 
 1. a finite rational sum-of-squares certificate for the literal affine base,
