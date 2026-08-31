@@ -88,3 +88,36 @@ refute XVI; a positive general answer closes the UHF cases.  This is
 a clean, previously unnamed approximation problem ("J-smooth
 quasidiagonality"), and by the extraction lemma it is INDEPENDENT of
 which embedding `Φ` one starts from.
+
+## Addendum 2: the tracial half of the J-adapted wall is free for |J| ≥ 2
+
+Two further structural facts about gate 2' (the UHF cases of XVI):
+
+1. **Ratio-density kills the size gap tracially.**  For `|J| ≥ 2`
+   (two distinct primes `p, q ∈ J`), the `J`-smooth integers
+   `p^a q^b` are LOG-DENSE, so every matrix model `D → M_n` embeds as
+   a corner of `M_s` with `s` `J`-smooth and `s/n ≤ 1 + ε`.  Together
+   with trace-controlled Cuntz comparison in UHF ultrapowers
+   (componentwise trace-null projections are Cuntz-small) and the
+   tensor-tail centrality of `M_{J^∞}`, this yields order-zero maps
+   `φ : D → (M_{J^∞})_ω ∩ M_{J^∞}'` with `1 − φ(1)` trace-null: the
+   TRACIALLY-`D`-absorbing half of `M_{J^∞} ≅ M_{J^∞} ⊗ D` is free
+   whenever `D` is quasidiagonal and `|J| ≥ 2`.  For a single prime
+   the `J`-powers are ratio-`p`-sparse and even this half is blocked.
+
+2. **The genuine half is an order-zero repair problem, and no
+   unconditional lifting theorem can close it.**  Upgrading the
+   trace-null unit defect to an exact unital embedding is precisely
+   the tracial-versus-genuine absorption gap (Hirshberg--Orovitz
+   territory); the repair of lifted order-zero models to exact ones
+   inside a UHF target uses semiprojective finite stages of `D`,
+   which an exotic strongly self-absorbing `D` need not have.
+   SANITY BOUND on any hoped-for shortcut: `M_2` embeds unitally into
+   `R^ω ∩ R'` (von Neumann tail trick), yet `Z ⊗ M_2 ≇ Z`; so
+   "nuclear `D` into the von Neumann central sequence algebra implies
+   `D` into the C*-central sequence algebra" is FALSE in general, and
+   any correct lifting theorem must consume divisibility/
+   semiprojectivity data of `D` — exactly gate 2' again.  This
+   check is what separates the solved reference cases (where the
+   hypothesis ultrapower already matches the target) from the UHF
+   residue.
