@@ -44,7 +44,7 @@ Hence `<K,a>` contains every `J`-labelled elementary root in that
 three-coordinate block.  Scalar permutation matrices belong to `K`.
 Conjugating by them moves a fixed ordered pair of the block to any ordered
 pair among the 28 coordinates, without changing its coefficient in
-characteristic two.  Therefore `<K,a>` contains every `x_ij(r)) with
+characteristic two.  Therefore `<K,a>` contains every `x_ij(r)` with
 `r in J` and `i!=j`, so it contains `EL_28(J)`.  The reverse
 containment is immediate from `K<=EL_28(J)` and `a in EL_28(J)`.  This
 proves `(BAQ2)`.
@@ -76,7 +76,7 @@ the finite qutrit envelope.  Composing it with the regular representation of
 `K` gives an exact finite-dimensional model which retains `q`, `R`,
 and every coefficientwise phase cancellation in the finite cell.  Thus a
 proposed microstate obstruction cannot follow merely from the presence of
-`K` and `a); it must select the nonzero head kernel rather than allowing
+`K` and `a`; it must select the nonzero head kernel rather than allowing
 this retraction sector.
 
 Finally let `phi:EL_28(J)->L` have finite image.  Restrict `phi` to a
