@@ -78,7 +78,9 @@ congruence gap remains uniform. At the vertex (P) of the cell complex
 K_m={4^j:0<=j<d},
 ```
 
-then the normalized link adjacency is
+then the normalized link adjacency is as follows. If `ell=|H|`,
+each displayed step occurs with multiplicity `ell/d`; this multiplicity
+cancels against the link degree `4ell`:
 
 ```text
 (L_link f)(z)
