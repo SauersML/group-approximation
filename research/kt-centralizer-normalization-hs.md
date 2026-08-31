@@ -449,7 +449,7 @@ This is dimension-free and consumes no multiplicity bound.
 
 Exactness is load-bearing.  The claims
 `generic-perturbations-destroy-exact-commutant-gap` and
-`ozawa-sos-does-not-round-approximate-actor-to-exact-commutant`
+`ozawa-sos-does-not-round-an-approximate-actor-to-its-exact-commutant`
 show that arbitrarily small operator-norm perturbations of trace-faithful
 regular quotient coordinates can make the literal generator commutant
 scalar while retaining a trace-zero unitary which is `o(1)`-central.
@@ -472,6 +472,24 @@ low band through the finite double-coset Pauli rows, or round to a nearby
 genuine actor using canonical lamp separation.  Ordinary finite actor
 moments cannot do this, because the generic perturbation preserves every
 fixed moment profile.
+
+The full rows do exclude the generic near-exact witnesses.
+`full-shared-pauli-wall-excludes-nearby-exact-actor` proves that if `eta`
+is the fixed-packet distance to a genuine actor, then
+
+~~~text
+norm_2(J-I)
+ <= d_J+d_X+4 eta+(16/kappa)(d_H+2 eta).
+~~~
+
+Thus a separated sign forces a uniform actor-instability wall.  However,
+`full-shared-pauli-rows-have-an-exact-finite-tracial-model` supplies a
+strict tracial firewall: in the negative central corner all Pauli and actor
+rows hold exactly, `J=-1`, the base is `tensor_X M_2=R`, and the corner is
+`R crossed_product G`.  No universal tracial sum-of-squares argument can
+collapse the sign.  A successful low-band theorem must use genuinely
+finite-dimensional rank/compactness, or prove this exact crossed product
+non-Connes-embeddable.
 
 Two concrete finite-presentation calibrations are now recorded.
 `thompson-rational-orbit-shared-center-pauli-host-is-fp` gives a named
