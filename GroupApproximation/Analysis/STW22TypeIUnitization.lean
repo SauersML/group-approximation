@@ -50,14 +50,14 @@ set_option linter.unusedSectionVars false
 
 noncomputable section
 
-universe u
+universe u v
 
 /-! ## A space with no proper closed subspaces is a line -/
 
 /-- If a nonzero Hilbert space has no closed subspaces other than `⊥` and `⊤`,
 it is one dimensional and every continuous operator on it is a scalar. -/
 theorem finrank_one_and_scalar_of_closed_submodules_trivial
-    {H : Type u} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+    {H : Type v} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (hne : ∃ v : H, v ≠ 0)
     (htriv : ∀ M : Submodule ℂ H, IsClosed (M : Set H) → M = ⊥ ∨ M = ⊤) :
     Module.finrank ℂ H = 1 ∧ ∀ T : H →L[ℂ] H, ∃ c : ℂ, ∀ x : H, T x = c • x := by
@@ -87,7 +87,7 @@ theorem finrank_one_and_scalar_of_closed_submodules_trivial
 
 /-- Topological irreducibility for a representation of a non-unital
 C⋆-algebra. -/
-def IsIrreducibleNonUnitalRep {B : Type u} [NonUnitalCStarAlgebra B] {H : Type u}
+def IsIrreducibleNonUnitalRep {B : Type u} [NonUnitalCStarAlgebra B] {H : Type v}
     [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (π : B →⋆ₙₐ[ℂ] (H →L[ℂ] H)) : Prop :=
   (∃ b : B, π b ≠ 0) ∧
@@ -97,7 +97,7 @@ def IsIrreducibleNonUnitalRep {B : Type u} [NonUnitalCStarAlgebra B] {H : Type u
 /-- **Type I (GCR) for a non-unital C⋆-algebra.**  Clause for clause the same
 condition as `IsTypeI`, with non-unital `⋆`-homomorphisms. -/
 def IsTypeINonUnital (B : Type u) [NonUnitalCStarAlgebra B] : Prop :=
-  ∀ (H : Type u) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  ∀ (H : Type v) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
     (π : B →⋆ₙₐ[ℂ] (H →L[ℂ] H)), IsIrreducibleNonUnitalRep π →
       ∀ T : H →L[ℂ] H, IsCompactOperator T → ∃ b : B, π b = T
 
@@ -130,7 +130,7 @@ minimal unitization.  This discharges `HomogeneousBlockTypeIInputs`'s
 `unitization_typeI` clause. -/
 theorem isTypeI_of_isScalarExtension {B : Type u} [NonUnitalCStarAlgebra B]
     {A : Type u} [CStarAlgebra A] (ι : B →⋆ₙₐ[ℂ] A) (hext : IsScalarExtension ι)
-    (h : IsTypeINonUnital B) : IsTypeI A := by
+    (h : IsTypeINonUnital.{u, v} B) : IsTypeI.{u, v} A := by
   intro H _ _ _ σ hσ T hT
   obtain ⟨π, hπ⟩ : ∃ π : B →⋆ₙₐ[ℂ] (H →L[ℂ] H), ∀ b : B, π b = σ (ι b) :=
     ⟨(σ.toNonUnitalStarAlgHom).comp ι, fun _ => rfl⟩
@@ -179,7 +179,8 @@ theorem isTypeI_of_isScalarExtension {B : Type u} [NonUnitalCStarAlgebra B]
 
 /-- The unitization form, stated at `Unitization ℂ B` itself. -/
 theorem isTypeI_unitization {B : Type u} [NonUnitalCStarAlgebra B]
-    (h : IsTypeINonUnital B) : IsTypeI (Unitization ℂ B) :=
+    (h : IsTypeINonUnital.{u, v} B) :
+    IsTypeI.{u, v} (Unitization ℂ B) :=
   isTypeI_of_isScalarExtension (Unitization.inrNonUnitalStarAlgHom ℂ B)
     (isScalarExtension_inr B) h
 
