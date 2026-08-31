@@ -32,7 +32,7 @@ phi(a,b)=q(tilde_phi(a,b))=b 1_Q.
 ```
 
 The unit of `Q` is properly infinite: two fixed orthogonal isometries in
-`B(H)), viewed as constant sequences, remain orthogonal isometries after
+`B(H)`, viewed as constant sequences, remain orthogonal isometries after
 applying `q`. Hence every nonzero positive element of the scalar range
 `phi(A)=C1_Q` is properly infinite.
 
