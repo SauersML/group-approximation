@@ -67,24 +67,29 @@ on which all `W_g`'s have the collision and phase-free bounds.  This is
 exactly the missing Cartan extraction problem, not rigidity supplied by the
 packet.
 
-The failure occurs with exact relations and canonical trace.  Let `F_r`
-be the `r`-point discrete Fourier matrix and represent `K times C_4` by
+The failure occurs with exact relations and exact canonical trace at every
+finite stage.  Put `d_m=2^(2m)`.  A nondegenerate quadratic Boolean phase
+gives a Walsh-conjugated involution `V_m` all of whose entries have modulus
+`1/sqrt(d_m)`.  On a reservoir of dimension `R_m=2d_m`, put
 
 ~~~text
-pi_r(k,t^a)=lambda_K(k) tensor F_r^a.                    (RPC4)
+W_m=V_m direct_sum (-V_m),
+pi_m(k,t^a)=lambda_K(k) tensor W_m^a,    t^2=1.          (RPC4)
 ~~~
 
-This is an exact representation, `F_r^4=I`, and its normalized character
-converges to the canonical group trace.  Nevertheless, in the fixed
+Then `W_m^2=I` and `Tr(W_m)=0`, so `pi_m` is exactly `d_m`
+copies of the regular representation of `K times C_2`.  In the fixed
 packet-product basis,
 
 ~~~text
-Col_D(I tensor F_r)=1/r,
-inf_(M monomial) ||I tensor F_r-M||_2^2 >=2-2/sqrt(r).   (RPC5)
+Col_D(I tensor W_m)=1/d_m,
+inf_(M monomial) ||I tensor W_m-M||_2^2
+  >=2-2/sqrt(d_m).                                      (RPC5)
 ~~~
 
-The same lower bound tends to `2` after arbitrary `o(r|K|)` padding.
-All finite-packet relations and covariance are exact.  Thus a finite
+The same lower bound tends to `2` after arbitrary
+`o(R_m|K|)` padding.  All finite-packet relations, covariance, and
+canonical group traces are exact.  Thus a finite
 nonabelian packet can rigidify its finite tensor factor and can collapse
 coordinate-dependent gauges to one common router, but it cannot force the
 rank-one Cartan or spatialize that common router.
