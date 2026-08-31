@@ -135,8 +135,8 @@ unbounded occurrence cycle, that loss is unbounded.  No constant-soundness
 claim follows from the Tietze isomorphism alone.
 
 The separate route
-`expander-equality-poincare-rounding-proof` replaces this cycle by a cubic
-Ramanujan equality graph, obtaining a dimension-free decoder at maximum
-occurrence four.  It also realizes the cycle's quadratic Poincare loss with
-rotating `2 by 2` Pauli reflections, so the failure above is sharp for
-pairwise equality under the occurrence-three budget.
+`subdivision-expander-occurrence-three-rounding-proof` replaces this cycle
+by a cubic Ramanujan dummy core whose selected edges are subdivided by the
+source-occurrence copies.  It obtains a dimension-free decoder while keeping
+maximum occurrence three.  Rotating `2 by 2` Pauli reflections show that the
+cycle's quadratic loss is sharp only for the no-dummy construction.
