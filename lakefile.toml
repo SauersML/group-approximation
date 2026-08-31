@@ -1,6 +1,6 @@
 name = "GroupApproximation"
 version = "0.1.0"
-defaultTargets = ["GroupApproximation", "STWProblems", "PalomarChallenge", "PalomarSolution"]
+defaultTargets = ["GroupApproximation", "STWActual", "STWProblems", "PalomarChallenge", "PalomarSolution"]
 
 [[require]]
 name = "mathlib"
@@ -11,10 +11,15 @@ rev = "v4.32.0"
 name = "GroupApproximation"
 moreLeanArgs = ["-DwarningAsError=true"]
 
-# Standalone, axiom-free kernel cores for the three STW operator-algebra
-# problems tracked in `STWProblems.lean`.  This is a separate root because the
-# missing Cuntz/K-theory, KMS/crossed-product, and W*-bundle selection
-# foundations are not part of the GroupApproximation library yet.
+# Actual operator-algebra foundations for the STW problems.  The roots in
+# this library are concrete mathematical constructions, not theorem-shaped
+# assumptions.  More roots are added here as the dependency tree grows.
+[[lean_lib]]
+name = "STWActual"
+roots = ["STW.Actual.FockPair"]
+moreLeanArgs = ["-DwarningAsError=true"]
+
+# Standalone statement/assembly root for the three STW problems.
 [[lean_lib]]
 name = "STWProblems"
 roots = ["STWProblems"]
