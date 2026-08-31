@@ -52,3 +52,39 @@ landing.
 With XIX/XX/LV/LXII/LXXXIX/XCVIII∞/X(1) and the earlier partials,
 this makes XVI the ninth problem with a substantial solved region:
 three of its seven target cases are theorems.
+
+## Addendum: the J-adapted wall is exactly one-sided (model-size extraction lemma)
+
+Let `D` be finite strongly self-absorbing with `[1]` `J`-divisible
+(so `D ≅ D ⊗ M_{J^k}` for all `k`), and let
+`Φ : D → ∏_ω M_{n_i}` be any unital embedding (from
+quasidiagonality + nuclearity).  Two observations:
+
+1. **Forced `J`-divisibility.**  Restricting `Φ` to a unital
+   `M_{J^k} ⊆ D` and perturbing componentwise (semiprojectivity of
+   matrix algebras) shows `J^k | n_i` for ω-many `i`; the diagonal
+   trick (`h(i) := max{k ≤ i : J^k | n_i}`) gives `n_i = J^{h(i)}·m_i`
+   with `h(i) → ∞` along the ultrafilter.  So the `J`-part of the
+   model sizes can be made to grow without bound — the sizes are
+   "asymptotically `J`-divisible" for free.
+
+2. **Extraction.**  Conjugate so that `Φ(1 ⊗ M_{J^{h(i)}})` (from
+   `D ≅ D ⊗ M_{J^{h(i)}}`) is the exact left leg
+   `M_{J^{h(i)}} ⊗ 1 ⊆ M_{n_i}`.  The image of `D ⊗ 1` asymptotically
+   commutes with the left leg, and Haar-averaging over
+   `U(M_{J^{h(i)}})` (an exactly-commutant-valued conditional
+   expectation moving elements by at most their commutator norm)
+   yields unital asymptotically multiplicative maps `D → M_{m_i}` —
+   models of `D` of the QUOTIENT sizes.
+
+So the two operations available both preserve the co-`J` part `m_i`
+untouched: divisibility inserts `J`-legs, extraction removes them, and
+neither can convert `m_i` into a `J`-number.  The residue of Problem
+XVI for `E = M_{J^∞}` (and with it the corresponding XIII case) is
+therefore EXACTLY: does some quasidiagonal model family of `D` exist
+with co-`J`-parts bounded (equivalently `= 1`)?  A negative answer for
+a single Künneth-compatible `D` with `K = (Z[J^{-1}], 0)` would
+refute XVI; a positive general answer closes the UHF cases.  This is
+a clean, previously unnamed approximation problem ("J-smooth
+quasidiagonality"), and by the extraction lemma it is INDEPENDENT of
+which embedding `Φ` one starts from.
