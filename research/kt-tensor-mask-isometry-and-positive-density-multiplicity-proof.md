@@ -232,7 +232,40 @@ needed for that stronger conclusion.  It does prove that rank dilution,
 regular-character tests, and arbitrary added spectator blocks do not remove
 an already-existing leak.
 
-## 7. The precise frontier
+## 7. Full physical mass lives in vanishing adjoint rank
+
+Identify
+
+```text
+L^2(M_(D_n k_n))
+ =L^2(M_(D_n)) tensor L^2(M_(k_n)).                     (22)
+```
+
+The adjoint action of `u_n` is
+`Ad(alpha_n) tensor Ad(v_n)`.  Its multiplicity copy is the invariant
+carrier line tensored with the whole fiber:
+
+```text
+K_n=C I_(D_n) tensor L^2(M_(k_n)).                      (23)
+```
+
+Every witness `I_(D_n) tensor x_n` belongs to `K_n` and has normalized
+`2`-norm exactly `||x_n||_2`.  Yet
+
+```text
+dim(K_n)/dim(L^2(M_(D_n k_n)))
+ =k_n^2/(D_n^2 k_n^2)
+ =D_n^(-2)->0.                                          (24)
+```
+
+Thus a multiplicity leak is macroscopic as a matrix and pointed vector but
+microscopic as a proportion of the full adjoint carrier.  A bound on the
+normalized rank, trace, or spectral density of the low-energy superoperator
+sector can converge to zero while the distinguished op-norm-one vector keeps
+a fixed displacement.  This realizes exactly the pointed-vector firewall in
+`kt-ccr-holds-on-the-fd-tempered-adjoint-sector`.
+
+## 8. The precise frontier
 
 The trivial multiplicity choice `v_n(g)=I` gives a large commutant
 `I tensor M_(k_n)` which every actor matrix fixes.  A nontrivial
