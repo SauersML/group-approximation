@@ -138,7 +138,7 @@ Suppose `Phi:M->L_omega(K)` is strictly equivariant.  Trace preservation
 extends `Phi` to an isometric intertwiner
 
 ~~~text
-L^2(M) -> l^2(K).                                        (9)
+L^2(M) -> l^2(K).                                       (10)
 ~~~
 
 Under (PBD1), the target Koopman representation is finite-phase monomial.
@@ -157,17 +157,17 @@ closure of the irrational rotation algebra and choose unitaries
 
 ~~~text
 UV=lambda VU,             lambda=exp(2 pi i theta),
-theta irrational.                                          (10)
+theta irrational.                                          (11)
 ~~~
 
 Let the generator of `Z` act by `alpha=Ad U`.  Then
 
 ~~~text
-alpha(V)=lambda V,                                        (11)
+alpha(V)=lambda V,                                        (12)
 ~~~
 
 so `V in L^2(R)` is an eigenvector with non-torsion eigenvalue.  Equations
-(9)--(11) rule out every strict finite-phase basis dilation.
+(10)--(12) rule out every strict finite-phase basis dilation.
 
 This is not a sofic obstruction.  The actor `Z` is amenable, its action has
 an injective/Connes-embeddable crossed product, and amenable pmp actions have
