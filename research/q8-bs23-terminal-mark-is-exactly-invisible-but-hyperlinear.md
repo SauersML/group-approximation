@@ -4,10 +4,6 @@ id: q8-bs23-terminal-mark-is-exactly-invisible-but-hyperlinear
 kind: claim
 title: A five-generator terminal coequalizer has an exact invisible mark but remains hyperlinear
 artifacts:
-  - research/q8-bs23-amalgam-normal-form-and-hs-wall-proof.md
-requires:
-  - fd-invisible-coequalizers-have-only-affine-tv-packets
-  - amenable-edge-cycles-cannot-create-an-lcs-gap
 distinct_from:
   wagon-wheel-exact-radical-has-hs-wall: that locates a fixed HS wall in Slofstra's solution-group output; this gives a much smaller explicit Q8/BS(2,3) coequalizer, proves the mark survives by one amalgam normal form, and proves hyperlinearity directly from amenable-edge permanence.
   exact-fd-invisibility-has-no-general-hs-robustification: that is a general logical firewall; this realizes both sides in one finite presentation tailored to the terminal automorphic-coequalizer branch.
@@ -90,3 +86,7 @@ construction inside a closure class that supplies the HS countermodels
 architecture, or add relations whose quantitative force is not captured
 by exact finite-dimensional image collapse. No nonhyperlinear group is
 constructed here.
+
+## Attempts
+
+(Repair note: invalid requires-block and dangling proof-artifact removed; the authoring lane's route has not landed and carries the attack.)
