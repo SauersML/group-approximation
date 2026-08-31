@@ -68,6 +68,49 @@ for every word \(w\) in a cyclic spanning window.  The \(w=x^{-1}\) row is
 exactly what fails in (CMD2).  Core exactness controls the empty row of
 this normal-closure table, not the translated rows.
 
+The same obstruction occurs canonically in the actual Iwahori group, with
+no free-group surrogate.  Put
+
+\[
+A=PSL_2(\mathbb Z[1/2]),\qquad B=\langle r,t\rangle=BS(1,4),
+\]
+
+and let \(\beta:B\to U(d)\) satisfy \(\beta(t)^N=1\).  In the induced
+representation
+
+\[
+\rho=\operatorname{Ind}_B^A(\beta)
+\]
+
+let \(V:\mathbb C^d\to H_\rho\) be the canonical copy supported on the
+identity coset.  Then
+
+\[
+\rho(b)V=V\beta(b)\quad(b\in B),\qquad
+(\rho(t)^N-1)V=0.                                      \tag{CMD4}
+\]
+
+Nevertheless the translated row is maximally bad.  In the standard matrix
+model, \(B\) is upper triangular, whereas
+
+\[
+xt^Nx^{-1}=
+ \begin{pmatrix}1&0\\-N&1\end{pmatrix}\notin B.         \tag{CMD5}
+\]
+
+Consequently \(\rho(xt^Nx^{-1})V\mathbb C^d\) and
+\(V\mathbb C^d\) are supported on distinct cosets and are orthogonal.  Hence
+
+\[
+{1\over\sqrt d}
+ \|(\rho(xt^Nx^{-1})-1)V\|_F=\sqrt2.                   \tag{CMD6}
+\]
+
+Thus the canonical relative induced dilation is exact on every core word
+but misses the first extender-translated normal row by the largest generic
+Hilbert-space amount.  This does not exclude a different positive window;
+it proves that induction or a core expectation alone cannot be that window.
+
 This fences the natural operator-algebraic shortcuts in the authenticated
 Iwahori problem.  There \(z=t^N\) and the finite quotient is
 
