@@ -102,3 +102,9 @@ replaces the unbounded automated lift argument by an explicit two-sheet split,
 lift uniqueness, and antipodal involutivity.  Its face compatibility is proved
 through the simplicial naturality squares, preserving the genuine mod-two
 transfer chain map.
+
+`CupProductPowers` is included unchanged apart from namespace isolation.
+`InducedOnRPCohomology` enables Mathlib's v4.32 backward definitional-equality
+compatibility for the contravariant functor composition identities; all
+identity, composition, naturality, and deck-transformation statements retain
+their upstream formulations.
