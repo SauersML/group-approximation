@@ -1,6 +1,7 @@
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.Basic
 import Mathlib.Analysis.CStarAlgebra.ContinuousMap
 import Mathlib.Analysis.CStarAlgebra.CStarMatrix
+import Mathlib.Analysis.CStarAlgebra.Classes
 
 /-!
 # Homogeneous matrix blocks over a real projective space
@@ -113,7 +114,7 @@ theorem isClosed_antipodalBlockStarSubalgebra (d s : ℕ)
 abbrev AntipodalBlock (d s : ℕ)
     (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
     (hu_sq : u * u = 1) (hu_star : star u = u) :=
-  ↥(antipodalBlockStarSubalgebra d s u hu_sq hu_star)
+  ↑(antipodalBlockStarSubalgebra d s u hu_sq hu_star)
 
 noncomputable instance antipodalBlock_isClosed (d s : ℕ)
     (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
@@ -121,6 +122,27 @@ noncomputable instance antipodalBlock_isClosed (d s : ℕ)
     IsClosed ((antipodalBlockStarSubalgebra d s u hu_sq hu_star :
       StarSubalgebra ℂ (SphereMatrixFunctions d s)) : Set (SphereMatrixFunctions d s)) :=
   isClosed_antipodalBlockStarSubalgebra d s u hu_sq hu_star
+
+/-- A closed star subalgebra of the continuous-function C-star algebra is a
+C-star algebra in its inherited norm. -/
+noncomputable instance antipodalBlock_cStarAlgebra (d s : ℕ)
+    (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
+    (hu_sq : u * u = 1) (hu_star : star u = u) :
+    CStarAlgebra ↥(antipodalBlockStarSubalgebra d s u hu_sq hu_star) :=
+  letI _iRing : Ring (SphereMatrixFunctions d s) := inferInstance
+  letI _iStar : StarRing (SphereMatrixFunctions d s) := inferInstance
+  letI _iAlg : Algebra ℂ (SphereMatrixFunctions d s) := inferInstance
+  letI _iMod : StarModule ℂ (SphereMatrixFunctions d s) := inferInstance
+  letI _iSub : SubringClass (StarSubalgebra ℂ (SphereMatrixFunctions d s))
+      (SphereMatrixFunctions d s) := StarSubalgebra.subringClass
+  letI _iSMul : SMulMemClass (StarSubalgebra ℂ (SphereMatrixFunctions d s)) ℂ
+      (SphereMatrixFunctions d s) := StarSubalgebra.smulMemClass
+  letI _iMem : StarMemClass (StarSubalgebra ℂ (SphereMatrixFunctions d s))
+      (SphereMatrixFunctions d s) := inferInstance
+  haveI _iCl : IsClosed ((antipodalBlockStarSubalgebra d s u hu_sq hu_star :
+      StarSubalgebra ℂ (SphereMatrixFunctions d s)) : Set (SphereMatrixFunctions d s)) :=
+    isClosed_antipodalBlockStarSubalgebra d s u hu_sq hu_star
+  StarSubalgebra.cstarAlgebra (antipodalBlockStarSubalgebra d s u hu_sq hu_star)
 
 /-- The sign of a summand: the distinguished trivial line has sign `+1`, and
 every tautological summand has sign `-1`. -/
