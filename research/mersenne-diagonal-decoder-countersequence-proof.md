@@ -25,14 +25,25 @@ dim Z^1(K_n;F_2)=V_n-1.                                (MDP1)
 ```
 
 Consequently the hypothesis `k_n<=C V_n` of the sequential phase-entropy
-theorem holds at every level with `C=1`. That theorem supplies a constant
+theorem holds at every level with `C=1`. Its proof permits the explicit
+choices
 
 ```text
-delta=delta_1>0
+epsilon=1/1280,
+rho=80 epsilon=1/16,
+beta=1/4+epsilon/2,
+delta=epsilon^2=1/1638400.                              (MDP4)
 ```
 
-and translated half-interval phases whose global edge cochain `c_n`
-obeys
+Indeed, the union-bound base is
+
+```text
+2^(C+1) rho^(1-beta)
+ =4(1/16)^(3/4-1/2560)<1.                              (MDP7)
+```
+
+Thus the theorem supplies translated half-interval phases whose global
+edge cochain `c_n` obeys
 
 ```text
 |supp(delta_1 c_n)|/|Q_n|<2/n,
@@ -66,7 +77,7 @@ Hence
 ```text
 dist_Q(c_n,C_(N_n))
  =dist_E(c_n,Z^1(K_n;F_2))
- >=delta.                                                (MDP4)
+ >=1/1638400.                                          (MDP8)
 ```
 
 Because `c_n` is left-`N_n`-invariant, the involution and inversion
@@ -92,7 +103,8 @@ inf_(c' in C_(N_n))
  =2 sqrt(dist_Q(c_n,C_(N_n))).                          (MDP6)
 ```
 
-Equations (MDP4) and (MDP6) prove (MDD3). Since the right side stays
+Equations (MDP6) and (MDP8) prove (MDD3), since
+`2 sqrt(1/1638400)=1/640`. Since the right side stays
 positive while (MDD2) tends to zero, a diagonal Hamming modulus cannot
 exist. Nothing in this argument lower-bounds distance to nondiagonal
 endpoints or to flexible padded endpoints, which is the stated firewall.
