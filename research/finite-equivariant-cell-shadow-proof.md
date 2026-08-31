@@ -107,11 +107,28 @@ norm(x_(tau_s(i))-U_s x_i)
 
 This proves (FGS2).
 
-For a sequence of representations, first choose `rho_n,t_n` tending to
-zero slowly enough that `kappa_(s,n)^2/t_n^2` tends to zero.  For the
-resulting finite equivariant partition in dimension `dim(H_n)), take the
-cloud size large enough that its finitely many cell counts satisfy (FGP2).
-Diagonalization gives vanishing radius and exceptional density.
+For a dimension-varying sequence, put
+
+```text
+kappa_n=max_(s in K) kappa_(s,n),       rho_n=1/n,
+t_n=sqrt(kappa_n) if kappa_n>0, and t_n=1/n otherwise.
+```
+
+Then `rho_n,t_n->0` and
+
+```text
+max_s kappa_(s,n)^2/t_n^2 <= kappa_n -> 0.              (FGP6)
+```
+
+For the resulting finite equivariant partition in dimension `dim(H_n)`,
+choose the cloud size `N_n` so large that, with probability at least
+`1-1/n`, the balancing loss in `(FGP2)` is at most `N_n/n` and every
+empirical perturbation frequency differs from its spherical measure by at
+most `1/n`.  Such an `N_n` exists because the partition and the label set
+are finite for each fixed `n`.  Choose one cloud on this event.  Equations
+`(FGS2)` and `(FGP6)` now give shadow radius `rho_n+t_n->0` and
+exceptional density at most `kappa_n+2/n->0`.  This is the required
+dimension-varying diagonalization.
 
 Finally, an exact regular-character representation of a finite group is
 faithful: if `V_g=1` for `g!=e`, its normalized trace at `g` would be
