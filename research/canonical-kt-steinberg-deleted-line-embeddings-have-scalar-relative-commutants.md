@@ -102,11 +102,20 @@ rho(Gamma)'  intersect product_U M_(d_m) = C,
 rho(Lambda)' intersect product_U M_(d_m) = C.              (KSD3)
 ```
 
+The conclusion is quantitative.  For contractions `X_m` and the same
+Kazhdan data,
+
+```text
+dist_(2,d_m)(X_m,C)
+ <= kappa^(-1) max_(s in S)||[X_m,rho_m(s)]||_(2,d_m)
+    + 6/(kappa sqrt(d_m)).                                (KSD4)
+```
+
 Hence the coordinate algebras `C I_(d_m)` witness the coordinate-commutant
 conclusion of Open Problem 6.2 for this everywhere-inexact embedding; every
-requested conjugation coherence is automatic.  In particular the
-mixed-return condition of
-`strict-compressor-mixed-return-collapses-shared-pauli-sign` holds here, and
+requested conjugation coherence is automatic.  Formula (KSD4) makes every
+fixed mixed-return leakage tend to zero, so the condition of
+`strict-compressor-mixed-return-collapses-shared-pauli-sign` holds here and
 the compressor commutant inclusion is equality.
 
 **Boundary exposed.**  The assertion that every trace-faithful KT embedding
