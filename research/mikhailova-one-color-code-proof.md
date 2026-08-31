@@ -57,7 +57,7 @@ zero/one displacement coefficient of that point.
 
 ## Finite color normal form
 
-Represent `c` by colorings `c_n:A_n->N`.  Restrict `Phi` to the two
+Represent `c` by colorings `c_n:A_n->Nat`, where `Nat` is a fixed countable palette.  Restrict `Phi` to the two
 free factors.  Choose representative permutations for the images of a free
 basis and extend them, using freeness, to exact homomorphisms
 
