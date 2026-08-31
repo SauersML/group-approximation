@@ -45,9 +45,9 @@ No finite additive-overlap atlas supported by this subgroup can establish
 nonhyperlinearity downstairs in `EL_n(R)`.
 
 For `n>=5`, the corresponding subgroup `Gamma<=St_n(R)` maps onto
-`H` with central kernel.  This result does not claim that the restricted
-central extension splits or is hyperlinear.  Unlike the finite quotient in
-the one-chart theorem, the polynomial quotient does not make `Gamma`
-amenable automatically.  The Steinberg-kernel restriction is therefore an
-honest remaining seam; the literal subgroup downstairs is completely
-closed.
+`H` with central kernel.  The polynomial quotient alone does not make
+`Gamma` amenable automatically.  However
+`polynomial-qutrit-chart-has-hyperlinear-steinberg-lift` constructs a
+section from `St_28(F_2[T])` and shows that the specified Thompson and root
+lifts differ from it only by a finite central group.  Consequently this
+`Gamma` is hyperlinear as well.
