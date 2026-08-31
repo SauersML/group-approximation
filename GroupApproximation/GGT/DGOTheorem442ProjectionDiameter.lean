@@ -44,6 +44,31 @@ def IsApproxOrbitProjectionAt (H : Subgroup G) (s a x : S) (δ : ℝ) : Prop :=
   x ∈ subgroupOrbitAt H s ∧
     ∀ z ∈ subgroupOrbitAt H s, dist a x ≤ dist a z + δ
 
+/-- Approximate orbit projections always exist for a positive error.  No
+properness or completeness is needed: choose a value within `κ` of the
+infimum of the nonempty, nonnegative set of orbit distances. -/
+theorem exists_isApproxOrbitProjectionAt (H : Subgroup G) (s a : S)
+    {κ : ℝ} (hκ : 0 < κ) :
+    ∃ x : S, IsApproxOrbitProjectionAt H s a x κ := by
+  let values : Set ℝ :=
+    {r | ∃ x : S, x ∈ subgroupOrbitAt H s ∧ dist a x = r}
+  have hvalues : values.Nonempty := by
+    refine ⟨dist a s, s, ⟨1, H.one_mem, by simp⟩, rfl⟩
+  have hbelow : BddBelow values := by
+    refine ⟨0, ?_⟩
+    intro r hr
+    obtain ⟨x, -, rfl⟩ := hr
+    exact dist_nonneg
+  have hinf : sInf values < sInf values + κ := by linarith
+  obtain ⟨r, hrvalues, hr⟩ := exists_lt_of_csInf_lt hvalues hinf
+  obtain ⟨x, hxOrbit, hxr⟩ := hrvalues
+  refine ⟨x, hxOrbit, ?_⟩
+  intro z hzOrbit
+  have hzvalues : dist a z ∈ values := ⟨z, hzOrbit, rfl⟩
+  have hinf_le : sInf values ≤ dist a z := csInf_le hbelow hzvalues
+  rw [hxr]
+  linarith
+
 /-- **DGO Lemma 4.44, with the repository's `3δ` thin-triangle constant.**
 
 Two `δ`-approximate projections of one point to a `σ`-quasiconvex subgroup
