@@ -9,6 +9,9 @@ requires:
   - two-generator-frattini-universal-containers
   - universal-all-group-subgroup-colimit-class-tester
   - universal-local-approximation-fixed-two-generator-test-group
+  - full-farrell-jones-fixed-two-generator-all-group-tester
+  - a-theory-fj-fixed-two-generator-all-group-tester
+  - bost-fixed-two-generator-all-group-tester
   - classical-bass-fixed-two-generator-testers
   - luck-determinant-fixed-two-generator-tester
   - gottschalk-surjunctivity-fixed-two-generator-tester
@@ -24,9 +27,11 @@ Each required theorem makes an explicit compatible choice:
 
 - the abstract subgroup-and-colimit theorem chooses this `U`;
 - the local-approximation proof chooses this `U`;
+- the all-group Full Farrell--Jones, A-theoretic Farrell--Jones, Bost, and
+  determinant testers apply the abstract theorem to this `U`;
 - the all-group half of the classical Bass theorem uses the Frattini
   strengthening of this `U`;
-- the determinant and Gottschalk testers apply the abstract theorem to
+- the Gottschalk tester applies its independently proved colimit closure to
   this `U`; and
 - the direct/stable-finiteness proof chooses this `U`.
 
