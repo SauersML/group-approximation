@@ -14,7 +14,7 @@ Use the odd congruence level
 
 ```text
 m=4^n-1,   G=SL_2(Z/mZ)/{+-I},   d=ord_m(4)=n,
-H=<h(2)>,  N=<H,x>,               P=UH.                 (LTF1)
+|H|=2n,     |N|=4n,               |P|=2mn.              (LTF1)
 ```
 
 Let `K_(H,m)` be the edge-refined two-triangle complex with
@@ -26,7 +26,7 @@ V=P\G,       E=N\G.
 It is `m`-regular, and
 
 ```text
-|V|=|G|/(mn),       |E|=|G|/(2n)=m|V|/2.               (LTF2)
+|V|=|G|/(2mn),      |E|=|G|/(4n)=m|V|/2.               (LTF2)
 ```
 
 At every vertex, identify its link vertices with `Z/mZ` as in the link
@@ -46,7 +46,7 @@ the number of link edges crossing from `I` to its complement, with the
 face multiplicities retained, is exactly
 
 ```text
-|partial_link I|=2(m-1).                                (LTF4)
+|partial_link I|=4(m-1).                                (LTF4)
 ```
 
 The same holds for every additive translate of `I`.
@@ -92,14 +92,15 @@ in that face. Consequently
 ```text
 |supp(delta_1 c_eta)|
  <=sum_(v in V)|partial_link I_v|
- =2|V|(m-1),                                            (LTF9)
+ =4|V|(m-1),                                            (LTF9)
 ```
 
 and the normalization used by the diagonal code gives
 
 ```text
 |supp(delta_1 c_eta)|/|G|
- <=2(m-1)/(mn)
+ <=4|V|(m-1)/|G|
+ =2(m-1)/(mn)
  <2/n.                                                   (LTF10)
 ```
 
