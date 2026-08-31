@@ -37,6 +37,8 @@ The coequalizer group in the claim has the finite presentation
   R_K,\ R_G,\\
   [t,\ell_j]=1
     \quad(t\in T,\ 1\leq j\leq a),\\
+  [z,s]=1
+    \quad(s\in S),\\
   c_i t c_i^{-1}=w_{i,t}
     \quad(t\in T,\ 1\leq i\leq m)
  \end{array}
@@ -47,15 +49,16 @@ Commuting the two finite generating sets gives
 \([K,\Lambda]=1\), and the last line gives
 \(\gamma_i k\gamma_i^{-1}=\alpha_i(k)\) for every \(k\in K\).
 
-For the marked application, assume that \(z\in Z(K)\) is an involution
-fixed by every \(\alpha_i\). One may add the finitely many relations
+For the marked application, \(z\in Z(K)\) is an involution fixed by
+every \(\alpha_i\); choose a \(T\)-word for \(z\). The third line of (2)
+is the finite family
 
 \[
- [z,s]=1\qquad(s\in S)                                  \tag{3}
+ [z,s]=1\qquad(s\in S),                                  \tag{3}
 \]
 
-so that \(z\) is central in \(\Pi\). Everything below remains valid with
-or without (3). We include (3) when interpreting \(z\) as an LCS mark.
+so \(z\) is central in \(\Pi\). Omitting this line leaves the restriction
+theorem below valid, but an LCS mark requires the displayed centrality.
 
 Define the finite coinvariant quotient
 
@@ -144,7 +147,9 @@ We have proved the exact equality
 where \(q:K\to K_\alpha\) is the quotient map. Notice that (11) is
 stronger than a one-way soundness statement: every sector left by the
 finite quotient really occurs in a finite-dimensional representation of
-the full nonamenable interface.
+the full nonamenable interface. In particular, the natural map
+\(K_\alpha\to\Pi\) is injective: the faithful regular representation of
+the finite group \(K_\alpha\) extends by (9).
 
 ## 3. Character packet on the TV torsor
 
@@ -237,17 +242,40 @@ degree at least three. The automorphic coequalizer has not produced the
 dictator packet. It has reproduced the entire sign-compatible affine
 slice.
 
-In group-algebra language, let
+In group-algebra language, define
 
 \[
- p_-=\frac{1-\bar z}{2}\in\mathbb C[K_\alpha].           \tag{19}
+ e_\chi=\frac1{|H|}\sum_{h\in H}\chi(h)h,\qquad
+ p_-=\frac{1-z}{2},\qquad
+ q_{\rm dict}=\sum_{p\in P}e_{\chi_{\{p\}}}.             \tag{19}
 \]
 
-When all singleton characters survive, the restriction of the
-\(p_-\)-sector to \(H\) contains every odd minimal Fourier projection.
-It therefore cannot equal the signed-Hecke block whose \(H\)-spectrum is
-only the singleton characters. This is exactly the missing
-signed-corner-to-central-sign bridge needed for an LCS.
+View these elements in \(C^*(\Pi)\). Injectivity from Section 2 makes the
+\(e_\chi\)'s nonzero mutually orthogonal projections. If all singleton
+characters survive, (17) gives
+
+\[
+ p_--q_{\rm dict}
+ =
+ \sum_{\substack{\beta\subseteq P\\
+                   |\beta|\ {\rm odd},\ |\beta|\geq3}}
+ e_{\chi_\beta}\ne0
+ \qquad(|P|\geq3).                                      \tag{20}
+\]
+
+Consequently the canonical local predicate homomorphism
+
+\[
+ \eta:\mathbb C^P\longrightarrow p_-C^*(\Pi)p_-,
+ \qquad
+ \eta(\delta_p)=e_{\chi_{\{p\}}},                        \tag{21}
+\]
+
+has \(\eta(1)=q_{\rm dict}\ne p_-\). It is not unital as a map to the
+central LCS sign corner. No trace, Connes-embeddable or not, can repair
+the missing unit. This is an exact perfect-completeness obstruction for
+the canonical Fourier/dictator transfer, not merely a failure of
+finite-dimensional soundness.
 
 ## 5. The all-or-terminal dichotomy
 
@@ -255,7 +283,7 @@ If \(\bar z=1\) in \(K_\alpha\), Section 2 implies
 
 \[
  \pi(z)=I
- \quad\text{for every finite-dimensional }\pi:\Pi\to U(d). \tag{20}
+ \quad\text{for every finite-dimensional }\pi:\Pi\to U(d). \tag{22}
 \]
 
 This is stronger exact soundness than pruning the nondictators: it deletes
