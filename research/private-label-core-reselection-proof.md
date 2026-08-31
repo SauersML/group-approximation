@@ -70,11 +70,12 @@ If `p=g`, write `y=tau_h(i)`; then
 The case `p=h` follows by applying the same comparison through
 `tau_g^(-1)`, and gives radius at most `e_g+zeta+e_k`.
 
+Suppose the given core family is shadow-good off a set of density `theta`.
 Because every table is finite, iterating these estimates produces a constant
 `C_T` such that every restored label has radius at most
 `C_T(e+rho+zeta)`.  Each step discards only finitely many preimages or
 images of existing exceptional sets, so the total exceptional density is at
-most `C_T eta+o(1)`.
+most `C_T(theta+eta)+o(1)`.
 
 Labels which occur in no relation may be assigned independent tight
 matchings at the end.  Complete every partial bijection arbitrarily.  The
