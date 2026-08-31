@@ -15,7 +15,7 @@ artifacts:
 **ESTABLISHED FINITE GLUING; ACTION COMPLETION OPEN.**  Let `C` be a finite
 groupoid and let `r_i` be a nonnegative integer capacity at every object.
 For one connected component `O`, choose a root `o), put
-`H_O=Aut_C(o)), and define
+`H_O=Aut_C(o)`, and define
 
 ```text
 k_O=|H_O| floor(min_(i in O) r_i / |H_O|).              (FTG1)
