@@ -42,17 +42,17 @@ stays in such a mixed-sign package can establish nonhyperlinearity.
 
 In particular the hypothesis holds when all coefficients lie in either
 
-1. the finite `F_2)-algebra spanned by the finite packet `F`; or
-2. one fixed full prefix-code matrix chart
+1. the finite `F_2`-algebra spanned by the finite packet `F`; or
+2. one fixed full prefix-code matrix chart containing the packet,
    `A_D=span_(F_2){s_d t_e:d,e in D}`.
 
 Thus scalar roots, packet-labelled roots, and arbitrary positive/negative
-roots or Weyl words labelled inside one fixed code all remain finite
-downstairs and central-by-finite upstairs.  Opposite signs alone are not an
-escape.
+roots or Weyl words labelled inside one fixed code containing the packet all
+remain finite downstairs and central-by-finite upstairs.  Opposite signs
+alone are not an escape.
 
 The boundary is exact: a surviving mixed-root bridge must make its
-`F_2)-coefficient algebra infinite-dimensional.  The literal Leavitt
+`F_2`-coefficient algebra infinite-dimensional.  The literal Leavitt
 one-sided inverses `s_i,t_i`, with `t_i s_j=delta_(ij)`, are the first
 natural coefficients not covered by this theorem.  Finitely generated is
 not enough; `L_(F_2)(1,2)` itself is finitely generated but
