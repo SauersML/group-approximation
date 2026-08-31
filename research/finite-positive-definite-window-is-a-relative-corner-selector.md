@@ -3,9 +3,6 @@ rg: 2
 id: finite-positive-definite-window-is-a-relative-corner-selector
 kind: claim
 title: A finite positive-definite quotient window is an exact relative corner selector
-requires:
-  - tfd-finite-corner-collapse-and-rfd-firewall
-  - one-core-endpoint-union-is-one-finite-restriction-fiber
 distinct_from:
   induced-rounding-needs-rms-section-fillings: that constructs one particular relative induced corner from Schreier fillings; this identifies the exact finite matrix-order certificate needed for any corner construction, independently of a chosen section.
   authenticated-core-union-basin-is-relative-liftability: that states the moving coordinate-lifting target; this proves a finite-window sufficient criterion and does not assert that the criterion holds for the Iwahori microstates.

@@ -1,10 +1,8 @@
 ---
 rg: 2
-id: exact-core-multiplicative-domain-does-not-descend-to-normal-quotient
+id: exact-core-domain-does-not-descend-to-normal-quotient
 kind: claim
 title: Exact core multiplicative domain does not force descent through its normal quotient
-requires:
-  - finite-positive-definite-window-is-a-relative-corner-selector
 distinct_from:
   tfd-finite-corner-collapse-and-rfd-firewall: that explains why LLP without RFD may leave an infinite Stinespring space; this gives the finite-dimensional two-by-two obstruction showing why exactness on the core still does not make that Stinespring representation factor through the one-power quotient.
   raw-core-central-reynolds-authentication-is-circular: that blocks central-idempotent reconstruction from approximate word sections; this blocks the operator-algebraic shortcut from core multiplicative domain to annihilation of the normal-closure ideal.
