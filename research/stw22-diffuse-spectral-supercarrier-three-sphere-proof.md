@@ -6,7 +6,6 @@ title: Bootstrap the spectral supercarrier through projection and stabilizer deg
 target: stw22-diffuse-stiefel-uniform-three-sphere-fillings
 requires:
   - stw22-diffuse-stiefel-uniform-two-sphere-fillings
-  - stw22-diffuse-spectral-supercarrier-two-sphere-proof
 artifacts:
   - research/artifacts/stw22-diffuse-three-sphere-supercarrier-audit-2026-08-31.md
 ---
