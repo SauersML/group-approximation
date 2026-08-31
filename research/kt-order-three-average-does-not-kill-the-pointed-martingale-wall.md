@@ -50,15 +50,15 @@ W=(direct_sum_(G/Gamma) C_2) rtimes G
 inside `L(W)`, let
 
 ~~~text
-p_i=(1+z_(C^(-i)Gamma))/2,       i=0,1,2,
-q=(p_0+p_1+p_2)/3.
+v=z_Gamma z_(C^(-1)Gamma) z_(C^(-2)Gamma),
+q=(1+v)/2.
 ~~~
 
-Then `q` is a positive contraction and
+Then `q` is a trace-one-half projection and
 
 ~~~text
 q in R,             Theta(q)=q,
-dist_2(q,Phi_B(R)) >= 1/(2 sqrt(6)).                     (KHL3)
+dist_2(q,Phi_B(R)) >= 1/(2 sqrt(2)).                     (KHL3)
 ~~~
 
 Consequently no inequality of the form
@@ -87,13 +87,13 @@ h=B^(-1) gamma B=e_12(x_2/x_1)
 Then, in the same canonical model,
 
 ~~~text
-||[q,sigma(h)]||_2=1/sqrt(6).                            (KHL6)
+||[q,sigma(h)]||_2=1/sqrt(2).                            (KHL6)
 ~~~
 
 The two cyclic conjugates `C^(-i)hC^i`, `i=1,2`, have the
 same norm. Therefore any successful matrix-ultraproduct argument must use a
 source-specific estimate forcing this fixed Laurent-return packet to have
-small action on the pointed contraction. Order-three averaging and the
+small action on the pointed projection. Order-three averaging and the
 Gamma spectral gap alone provably cannot do it.
 
 The model in (KHL3)--(KHL6) is the full exact finite tracial wreath model.
