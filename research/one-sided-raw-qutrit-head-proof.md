@@ -39,7 +39,7 @@ rho_N^+:A_+ -> M_(N+1)(F_2).
 
 Write a nonzero element as `f(S)+g(S)Q` using `(ORQ3)`.  If
 `f!=0`, choose `N` larger than both degrees plus one and apply the
-matrix to `e_1); the `g(S)Q` term vanishes and the distinct shifts in
+matrix to `e_1`; the `g(S)Q` term vanishes and the distinct shifts in
 `f(S)e_1` cannot cancel.  If `f=0`, apply to `e_0` with
 `N>deg(g)`.  Thus some finite matrix representation detects every nonzero
 element, proving that `A_+` is residually finite dimensional.
@@ -52,7 +52,7 @@ T^k,             Q T^i.
 ```
 
 Use the backward nilpotent shift
-`T_Ne_j=e_(j-1)` for `j>0), `T_Ne_0=0), and the same projection
+`T_Ne_j=e_(j-1)` for `j>0`, `T_Ne_0=0`, and the same projection
 `Q_N` onto `e_0`.  Then `T_NQ_N=0`.  Acting first on a sufficiently
 far basis vector detects the pure polynomial part; acting on the appropriate
 `e_i` detects a nonzero `QT^i` coefficient.  Hence `A_-` is also
