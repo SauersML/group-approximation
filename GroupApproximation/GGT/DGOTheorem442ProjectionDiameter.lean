@@ -60,16 +60,17 @@ theorem isApproxProjectionTo_smul
   rw [hiso g a x, hiso g a w]
   exact h.2 w hwY
 
-/-- Approximate orbit projections always exist for a positive error.  No
-properness or completeness is needed: choose a value within `κ` of the
-infimum of the nonempty, nonnegative set of orbit distances. -/
-theorem exists_isApproxOrbitProjectionAt (H : Subgroup G) (s a : S)
-    {κ : ℝ} (hκ : 0 < κ) :
-    ∃ x : S, IsApproxOrbitProjectionAt H s a x κ := by
+/-- Approximate projections to any nonempty set exist for a positive error.
+No properness or completeness is needed: choose a value within `κ` of the
+infimum of the nonempty, nonnegative set of target distances. -/
+theorem exists_isApproxProjectionTo (Y : Set S) (a : S)
+    (hY : Y.Nonempty) {κ : ℝ} (hκ : 0 < κ) :
+    ∃ x : S, IsApproxProjectionTo Y a x κ := by
   let values : Set ℝ :=
-    {r | ∃ x : S, x ∈ subgroupOrbitAt H s ∧ dist a x = r}
+    {r | ∃ x : S, x ∈ Y ∧ dist a x = r}
   have hvalues : values.Nonempty := by
-    refine ⟨dist a s, s, ⟨1, H.one_mem, by simp⟩, rfl⟩
+    obtain ⟨y, hy⟩ := hY
+    exact ⟨dist a y, y, hy, rfl⟩
   have hbelow : BddBelow values := by
     refine ⟨0, ?_⟩
     intro r hr
@@ -84,6 +85,14 @@ theorem exists_isApproxOrbitProjectionAt (H : Subgroup G) (s a : S)
   have hinf_le : sInf values ≤ dist a z := csInf_le hbelow hzvalues
   rw [hxr]
   linarith
+
+/-- Approximate subgroup-orbit projections always exist for positive error. -/
+theorem exists_isApproxOrbitProjectionAt (H : Subgroup G) (s a : S)
+    {κ : ℝ} (hκ : 0 < κ) :
+    ∃ x : S, IsApproxOrbitProjectionAt H s a x κ := by
+  apply exists_isApproxProjectionTo (subgroupOrbitAt H s) a
+  · exact ⟨s, 1, H.one_mem, by simp⟩
+  · exact hκ
 
 /-- **DGO Lemma 4.44, with the repository's `3δ` thin-triangle constant.**
 
