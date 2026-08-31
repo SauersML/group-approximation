@@ -54,8 +54,8 @@ Its action determines `r=(r_1,r_2)` from the translation of `u`, then
 determines `t=(t_1,t_2)` and `c` from the affine function added to
 `s`.  Thus the `3^5` normal forms give distinct permutations.  The
 presentation in `(TVQ3)` gives at most `3^5` forms, so the generated
-group is exactly the claimed extraspecial group `F), faithfully embedded
-in `V).
+group is exactly the claimed extraspecial group `F`, faithfully embedded
+in `V`.
 
 ## 2. The nine finite types
 
@@ -85,15 +85,15 @@ sum_(a,b) p_(a,b)
  =q.                                                   (TVQ13)
 ```
 
-For fixed `a), the three `p_(a,b)` are distinct character idempotents
-of the abelian group `A_a` and are orthogonal.  For `a!=c), the
+For fixed `a`, the three `p_(a,b)` are distinct character idempotents
+of the abelian group `A_a` and are orthogonal.  For `a!=c`, the
 projections `p_(a,b)` and `p_(c,d)` lie below the distinct orthogonal
-character idempotents `z_(C,chi_a)` and `z_(C,chi_c)).  This proves all
+character idempotents `z_(C,chi_a)` and `z_(C,chi_c)`.  This proves all
 of `(TVQ5)`.
 
 The group `K=<J,X_1,Z_1>` is the order-27 Heisenberg group.  Its unique
 three-dimensional irreducible representation with central character
-`omega` has central idempotent `e_(<J>,omega)), proving
+`omega` has central idempotent `e_(<J>,omega)`, proving
 `q=z_(K,pi_omega)`.  Likewise, in `F` the `omega`-central block is
 the unique nine-dimensional spin block, so
 
@@ -138,9 +138,9 @@ balance.
 
 ## 4. Finite-dimensional invisibility in the three hosts
 
-Let `rho` be a finite-dimensional unitary representation of `V).
+Let `rho` be a finite-dimensional unitary representation of `V`.
 The Thompson minimal-almost-periodicity theorem makes its restriction
-trivial.  In particular `rho(J)=I), and hence
+trivial.  In particular `rho(J)=I`, and hence
 
 ```text
 rho(q)=(1/3)(1+omega^(-1)+omega^(-2))I=0.               (TVQ17)
@@ -161,11 +161,11 @@ them are annihilated as well.
 
 ## 5. Why the construction stops locally
 
-All coefficients in `q`, the nine `p_(a,b)), and `P` belong to
+All coefficients in `q`, the nine `p_(a,b)`, and `P` belong to
 `C[F]`, where `F` is finite.  The left regular representation of `F`
 is an exact finite-dimensional model; its canonical trace gives
 `tau(q)=1/3`, so it does not annihilate the selected corner.  It need not
-extend to a representation of `V), and this is precisely the difference
+extend to a representation of `V`, and this is precisely the difference
 between ambient fd-invisibility and a support-level obstruction.
 
 More generally, if all projections and overlap coefficients of a proposed
