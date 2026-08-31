@@ -280,6 +280,19 @@ valid target in that model.  Thus the theorem still needed here must
 construct targets and make their holonomy profiles refinement-compatible;
 it cannot merely trivialize the supplied cocycle.
 
+The direct target side is now separated into two steps by
+`finite-lamp-targets-glue-after-action-groupoid-completion`.  Given a
+finite actor/cylinder groupoid, regular isotropy carriers and orbitwise rank
+balancing produce coherent permutation transports with an explicit
+spanning-tree loss.  Fourier Parseval prices enlargement from `E` to
+`S=union_(g in F)gE`: at uniform trace tolerance, adding `b=|S-E|`
+sites costs the scale `2^(b/2)`.  But one wrong site relation on the
+regular character cube already has Hamming cost at least `1/2`.
+Consequently boundary completion is not a small perturbation.  The sole
+surviving direct-target datum is the approximately multiplicative finite
+action groupoid itself; scalar mixed traces and marginal window couplings do
+not construct it.
+
 This identifies the smallest live strengthening of the amenable conversion
 theorem:
 
