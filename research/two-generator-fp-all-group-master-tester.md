@@ -27,9 +27,12 @@ which simultaneously has all of the following exact tester properties.
    wreath products iff every group does.
 5. `U` satisfies the Bost conjecture with arbitrary separable coefficients
    iff every discrete group does.
-6. `U` satisfies the integral classical Bass conjecture iff every group
+6. Separately, `U` satisfies the integral classical Bass conjecture iff
+   every group does, and `U` satisfies integral weak Bass iff every group
    does.
-7. `U` satisfies Lueck's determinant conjecture iff every group does.
+7. Separately, `U` satisfies Lueck's determinant conjecture iff every group
+   does, and the Fuglede--Kadison determinant is trivial on `Wh(U)` iff it
+   is trivial on `Wh(G)` for every group `G`.
 8. `U` is surjunctive iff every group is surjunctive.
 9. For every field `k`, `k[U]` is directly finite iff it is stably finite
    iff `k[G]` is directly finite for every group `G` iff `k[G]` is stably

@@ -13,7 +13,9 @@ requires:
   - a-theory-fj-fixed-two-generator-all-group-tester
   - bost-fixed-two-generator-all-group-tester
   - classical-bass-fixed-two-generator-testers
+  - weak-bass-fixed-two-generator-all-group-tester
   - luck-determinant-fixed-two-generator-tester
+  - whitehead-trivial-fuglede-kadison-fixed-two-generator-tester
   - gottschalk-surjunctivity-fixed-two-generator-tester
   - kaplansky-direct-stable-finiteness-one-universal-group
 ---
@@ -27,8 +29,9 @@ Each required theorem makes an explicit compatible choice:
 
 - the abstract subgroup-and-colimit theorem chooses this `U`;
 - the local-approximation proof chooses this `U`;
-- the all-group Full Farrell--Jones, A-theoretic Farrell--Jones, and
-  determinant testers apply the abstract theorem to this `U`;
+- the all-group Full Farrell--Jones, A-theoretic Farrell--Jones, weak Bass,
+  Lueck determinant, and Whitehead-determinant testers apply the abstract
+  theorem to this `U`;
 - the Bost tester embeds every finite-presentation stage and each of its
   subgroups in this `U` before applying the arbitrary-map colimit theorem;
 - the all-group half of the classical Bass theorem uses the Frattini
