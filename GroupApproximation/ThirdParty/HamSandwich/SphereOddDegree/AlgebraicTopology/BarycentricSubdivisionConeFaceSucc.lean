@@ -14,14 +14,13 @@ theorem cone_face_succ {n k : ℕ} (v : Delta n) (τ : Delta (k + 1) → Delta n
       = (fun y : Delta (k + 1) => affineConeMap v (fun z : Delta k => τ (cofaceTop k j z)) y) := by
   funext y;
   ext c;
-  by_cases hy : ( y : Fin ( k + 1 + 1 ) → ℝ ) 0 = 1 <;> simp_all +decide [ affineConeMap_coord, cofaceTop_eq ];
-  · simp +decide [ cofaceTop, stdSimplex.map_coe, FunOnFinite.linearMap_apply_apply, Fin.succ_succAbove_zero ];
-    rw [ Finset.sum_eq_single 0 ] <;> simp_all +decide [ Fin.succ_succAbove_zero ];
+  by_cases hy : ( y : Fin ( k + 1 + 1 ) → ℝ ) 0 = 1 <;> simp_all +decide [ affineConeMap_coord ];
+  · simp +decide [ cofaceTop, stdSimplex.map_coe, FunOnFinite.linearMap_apply_apply ];
+    rw [ Finset.sum_eq_single 0 ] <;> simp_all +decide;
     intro b hb hb'; rw [ Fin.succAbove ] at hb; aesop;
   · rw [ show ( cofaceTop ( k + 1 ) j.succ ) y 0 = y 0 from ?_, coneTail_cofaceTop_succ j y hy ];
-    unfold cofaceTop; simp +decide [ stdSimplex.map_coe, FunOnFinite.linearMap_apply_apply, Fin.succ_succAbove_zero ] ;
-    rw [ Finset.sum_eq_single 0 ] <;> simp +decide [ Fin.succ_succAbove_zero ];
+    unfold cofaceTop; simp +decide [ stdSimplex.map_coe, FunOnFinite.linearMap_apply_apply ] ;
+    rw [ Finset.sum_eq_single 0 ] <;> simp +decide;
     intro b hb hb'; rw [ Fin.succAbove ] at hb; aesop;
 end AffineBarycentricSubdivision
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
