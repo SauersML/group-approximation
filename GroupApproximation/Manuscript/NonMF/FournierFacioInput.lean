@@ -271,6 +271,7 @@ theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := 
   haveI := hPfp
   haveI : Group.IsFinitelyPresented FreeCommutatorWitness :=
     freeCommutatorWitness_finitelyPresented
+  let groupFreeCommutatorWitness : Group FreeCommutatorWitness := inferInstance
   -- "Consequently, `P` has property (T)."
   have hPT : HasKazhdanPropertyT.{0, 0} P :=
     kazhdan_of_fournierFacioQuotient hH₀T quot hquot
@@ -284,13 +285,14 @@ theorem exists_configuration (I : LiteratureInputs) : Nonempty Configuration := 
   have hEfp : Group.IsFinitelyPresented (Skeleton f hf) :=
     skeleton_isFinitelyPresented f hf
   have hEtf : IsPowerTorsionFree (Skeleton f hf) := skeleton_torsionFree f hf hPtf
+  let groupSkeleton : Group (Skeleton f hf) := inferInstance
   have hEacyl : TorsionFree.IsAcylindricallyHyperbolic (Skeleton f hf) :=
-    I.minasyanOsin P FreeCommutatorWitness (inferInstanceAs (Group P))
-      (inferInstanceAs (Group FreeCommutatorWitness)) f hf
+    I.minasyanOsin P FreeCommutatorWitness instP
+      groupFreeCommutatorWitness f hf
   let s := freeWitnessCommutator
   obtain ⟨G₀, instG₀, pi, -, hG₀fp, hG₀tf, hG₀T, hG₀acyl, hinj⟩ :=
     I.hullCommonQuotient (Skeleton f hf)
-      (inferInstanceAs (Group (Skeleton f hf))) H₀ instH₀ hEfp hEtf hEacyl
+      groupSkeleton H₀ instH₀ hEfp hEtf hEacyl
       hH₀inf hH₀fp hH₀tf hH₀hyp hH₀T
       {1, skeletonIota f hf (factorSimple f s)}
   letI := instG₀

@@ -162,7 +162,7 @@ def _root_.GroupApproximation.SmallCancellationRouter.RoutingLemmaData.toBareDef
       E D.core.defectNormal D.s B)
     (hB : HasKazhdanPropertyT.{0, 0} B) :
     BareDefectHullQuotientData D := by
-  letI : Countable R.Quotient := by
+  let quotientCountable : Countable R.Quotient := by
     obtain ⟨n, f, hsurj, -⟩ := R.finitelyPresented.out
     letI : Countable (FreeGroup (Fin n)) := by
       have hfree : Function.Surjective
@@ -172,11 +172,12 @@ def _root_.GroupApproximation.SmallCancellationRouter.RoutingLemmaData.toBareDef
         exact ⟨L, by rw [← FreeGroup.quot_mk_eq_mk, hL]⟩
       exact hfree.countable
     exact hsurj.countable
+  letI : Countable R.Quotient := quotientCountable
   exact {
     Quotient := R.Quotient
     groupQuotient := R.groupQuotient
     quotient := R.route
-    quotientCountable := inferInstanceAs (Countable R.Quotient)
+    quotientCountable := quotientCountable
     targetTorsionFree := R.torsionFree
     targetKazhdan := R.kazhdan hB
     defectNormal_maps_top := R.defect_top
@@ -266,8 +267,8 @@ theorem to_exists_torsionFree_not_MF :
       IsPowerTorsionFree Q ∧
       ¬ IsCDEOperatorMF Q ∧
       ¬ IsOperatorMF Q := by
-  exact ⟨H.Quotient, inferInstanceAs (Group H.Quotient),
-    inferInstanceAs (Countable H.Quotient), H.quotient_torsionFree,
+  exact ⟨H.Quotient, H.groupQuotient,
+    H.quotientCountable, H.quotient_torsionFree,
     H.not_isCDEOperatorMF, H.not_isOperatorMF⟩
 
 end BareDefectHullQuotientData
