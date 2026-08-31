@@ -42,6 +42,9 @@ remaining closure. The following modules are green on v4.32:
 - `HomotopyToChainHomotopy`: its conclusion is changed directly to the
   `homologyMap` expression before applying the chain-homotopy theorem, avoiding
   a v4.32 functor-whiskering definitional-equality mismatch.
+- `Basic`, `Antipodal`, and `RealProjectiveSpace`: namespace-only ports.
+- `Covering`: replaces brittle `fin_cases` reductions of the order-two deck
+  action by an explicit zero/nonzero split and the already-proved `proj_neg`.
 
 The old local `SimplicialObjectHomotopy` backport is intentionally not
 vendored: Mathlib v4.32 now contains the stronger upstream module
