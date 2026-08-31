@@ -8,7 +8,7 @@ artifacts:
 distinct_from:
   locally-affine-support-bcs-is-exactly-the-lcs-boundary: that gives an existential BCS/LCS equivalence; this proves that the canonical Lin--independent-set SynchBCS lies on the negative side of its local-support hypothesis for every perfect trace.
   binary-tracial-two-csp-has-classical-solution: that collapses a Boolean unary-binary tracial CSP; this uses it after support-restricting every one-hot question to at most two outcomes.
-  perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model: that constructs the source; this audits its actual one-hot supports and the precise local toric/LCS obstruction.
+  perfect-qc-separation-yields-finite-bcs-with-no-matrix-model: that constructs the source; this audits its actual one-hot supports and the precise local toric/LCS obstruction.
 ---
 
 Let `I` be the finite independent-set game obtained from Lin's fixed
