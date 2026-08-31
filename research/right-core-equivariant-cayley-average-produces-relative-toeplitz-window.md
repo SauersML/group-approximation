@@ -114,6 +114,25 @@ optimized extender energy
 If \({\cal E}_{N_n,\beta_n}(X_n)\to0\), the authenticated-core flexible
 lift follows.
 
+
+The zero set of this energy is exact, not a relaxation artifact:
+
+\[
+{\cal E}_{N,\beta}(X)=0
+\quad\Longleftrightarrow\quad
+(\beta,X)\text{ is an exact representation of }A_N.    \tag{RCA11}
+\]
+
+For the forward implication every summand in (RCA10) vanishes, so
+\(W_{gx}=W_gX\); (RCA1) gives the analogous equality on every core
+generator.  Following any presentation word around a loop at \(e\) gives
+\(W_eU_w=W_e\), hence \(U_w=1\).  Conversely an exact endpoint permits
+\(W_g=U_g\), which has zero edge energy.  Since the gauge torus
+\(\prod_{A_N/B_N}U(d)\) is compact, a fixed level and dimension with no
+endpoint over \(\beta\) has a strictly positive minimum in (RCA10).  No
+uniform lower bound follows as \(N,d\) move; the one-line Weil completions
+show why that distinction is load-bearing.
+
 Word evaluation on a Schreier section is one admissible choice of
 \((Z_t)\); its estimate is exactly the RMS filling construction in
 'induced-rounding-needs-rms-section-fillings'.  The cyclic core character
