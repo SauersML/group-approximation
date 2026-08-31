@@ -1,3 +1,4 @@
+import GroupApproximation.GroupTheory.NormalClosureProduct
 import GroupApproximation.Sofic.WeakMFUltraproduct
 
 /-!
@@ -60,50 +61,6 @@ open Matrix
 open scoped Matrix.Norms.L2Operator
 
 variable {G : Type*} [Group G]
-
-/-! ## The budget predicate -/
-
-/-- `IsRelatorProduct R n w` records that `w` is a product of at most `n`
-conjugates of elements of `R` and of their inverses.  The four closure
-constructors are exactly the four operations under which operator-norm
-displacement from the identity is controlled. -/
-inductive IsRelatorProduct (R : Set G) : ℕ → G → Prop
-  | one : IsRelatorProduct R 0 1
-  | base {r : G} (hr : r ∈ R) : IsRelatorProduct R 1 r
-  | inv {n : ℕ} {w : G} (h : IsRelatorProduct R n w) : IsRelatorProduct R n w⁻¹
-  | conj {n : ℕ} {w : G} (c : G) (h : IsRelatorProduct R n w) :
-      IsRelatorProduct R n (c * w * c⁻¹)
-  | mul {m n : ℕ} {a b : G} (ha : IsRelatorProduct R m a)
-      (hb : IsRelatorProduct R n b) : IsRelatorProduct R (m + n) (a * b)
-
-/-- The elements carrying some finite budget. -/
-def budgetSubgroup (R : Set G) : Subgroup G where
-  carrier := {w : G | ∃ n : ℕ, IsRelatorProduct R n w}
-  one_mem' := ⟨0, IsRelatorProduct.one⟩
-  mul_mem' := by
-    intro a b ha hb
-    obtain ⟨m, hm⟩ := ha
-    obtain ⟨n, hn⟩ := hb
-    exact ⟨m + n, hm.mul hn⟩
-  inv_mem' := by
-    intro a ha
-    obtain ⟨n, hn⟩ := ha
-    exact ⟨n, hn.inv⟩
-
-instance budgetSubgroup_normal (R : Set G) : (budgetSubgroup R).Normal where
-  conj_mem := by
-    intro a ha c
-    obtain ⟨n, hn⟩ := ha
-    exact ⟨n, hn.conj c⟩
-
-/-- Every element of the normal closure of the relator set is a product of
-boundedly many conjugates of relators. -/
-theorem exists_isRelatorProduct {R : Set G} {w : G}
-    (hw : w ∈ Subgroup.normalClosure R) : ∃ n : ℕ, IsRelatorProduct R n w := by
-  have hsub : R ⊆ (budgetSubgroup R : Set G) := by
-    intro r hr
-    exact ⟨1, IsRelatorProduct.base hr⟩
-  exact Subgroup.normalClosure_le_normal hsub hw
 
 /-! ## The estimate -/
 
