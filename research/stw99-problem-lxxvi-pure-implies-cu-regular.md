@@ -12,6 +12,7 @@ artifacts:
   - research/artifacts/stw99-lxxvi-finite-graph-compact-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-finite-tree-noncompact-audit-2026-08-30.md
   - research/artifacts/stw99-lxxvi-finite-graph-projectionless-cycle-audit-2026-08-31.md
+  - research/artifacts/stw99-lxxvi-unicyclic-enriched-cu-audit-2026-08-31.md
 ---
 
 **Problem LXXVI of Schafhauser--Tikuisis--White, _Nuclear C\*-algebras:
@@ -104,6 +105,20 @@ arbitrarily small cost, and one simultaneous unitary lift closes every cut.
 Thus a simple stably finite pure stably projectionless fiber gives a pure
 Cu-regular field over every finite graph. This does not cover coefficients
 with nonzero projections or infinite graphs.
+
+
+The projectionful one-cycle corridor is now classified exactly.
+`stw99-lxxvi-unicyclic-enriched-cu-classification` identifies the full Cu
+semigroup of a connected unicyclic field with the fiber product of its actual
+circle Cu semigroup and its global `Lsc` function over circle evaluation.
+Point evaluation is surjective; its fiber is a singleton except when the
+function restricts to a nonzero constant compact class on the unique cycle,
+where the fiber is `K_1(D)`. This records Phillips's globally noncompact
+circle-with-a-tail classes without overdecorating soft cyclic support. It also
+proves that finite-pseudoforest formation preserves Cu-regularity for simple
+stable-rank-one fibers, so every simple stably finite pure fiber gives a pure
+Cu-regular field over every finite pseudoforest with arbitrary projections
+and arbitrary `K_1`. Components with two interacting cycles remain open.
 
 There is now a broader one-dimensional-base theorem at the exact idealwise
 `K_1`-free boundary.  For every second-countable locally compact Hausdorff
@@ -209,6 +224,7 @@ summand kills `alpha`, for arbitrary endpoint multiplicity matrices.  The
 circle theorem separately shows
 that no one-dimensional clutching analogue can work on a single circle.  The
 one-dimensional theorem rules out every second-countable locally compact base
-when the simple fiber has trivial `K_1`.  For arbitrary `K_1` outside the stably projectionless class, even a finite
-graph with a cycle can retain supportwise clutching data not visible in
-pointwise `Lsc` functions, so no unrestricted pointwise formula is claimed.
+when the simple fiber has trivial `K_1`.  For arbitrary `K_1` outside the stably projectionless class, the unicyclic
+classification records the exact supportwise clutching fiber missed by
+pointwise `Lsc` functions. No unrestricted pointwise formula is claimed, and
+compatibility between two or more interacting cycles remains unresolved.
