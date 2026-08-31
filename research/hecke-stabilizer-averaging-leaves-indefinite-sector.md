@@ -9,127 +9,126 @@ distinct_from:
   regular-core-window-is-a-hecke-kraus-hull: that identifies the relative matrix range; this audits the symmetry reduction of the finite Hecke transfer problem.
 ---
 
-Let (G=langle B,xangle) be finite, let
-(D=(lambda_G(B))'), (X_0=lambda_G(x)), and let
-(X=X^*=X^{-1}) be a supplied extender.  Put
+Let \(G=\langle B,x\rangle\) be finite, let
+\(D=(\lambda_G(B))'\), \(X_0=\lambda_G(x)\), and let
+\(X=X^*=X^{-1}\) be a supplied extender. Put
 
-[
-T_X(A)=E_D(X_0AX),qquad
-C_0=Dcap{X_0}',qquad C_X=Dcap{X}'.              	ag{HSA1}
-]
+\[
+T_X(A)=E_D(X_0AX),\qquad
+C_0=D\cap\{X_0\}',\qquad C_X=D\cap\{X\}'.              \tag{HSA1}
+\]
 
 Then
 
-[
-C_0=lambda_G(G)'=mathbb C[G]^{m op},              	ag{HSA2}
-]
+\[
+C_0=\lambda_G(G)'=\mathbb C[G]^{\rm op},              \tag{HSA2}
+\]
 
 and the Hecke transfer is exactly bimodular in the following sense:
 
-[
-T_X(LAR)=L,T_X(A),R
-quad(Lin C_0, Rin C_X, Ain D).                  	ag{HSA3}
-]
+\[
+T_X(LAR)=L\,T_X(A)\,R
+\quad(L\in C_0,\ R\in C_X,\ A\in D).                  \tag{HSA3}
+\]
 
-Consequently every spectral subspace of (T_X), in particular
+Consequently every spectral subspace of \(T_X\), in particular
 
-[
-{cal H}_epsilon
- =1_{[1-epsilon,1]}(T_X)L^2(D),                      	ag{HSA4}
-]
+\[
+{\cal H}_\epsilon
+ =1_{[1-\epsilon,1]}(T_X)L^2(D),                      \tag{HSA4}
+\]
 
-is a (C_0)--(C_X) bimodule.
+is a \(C_0\)--\(C_X\) bimodule.
 
-This gives the strongest canonical exact separator averaging.  If
-(Z=Z^*in D) satisfies
+This gives the strongest canonical exact separator averaging. If
+\(Z=Z^*\in D\) satisfies
 
-[
-	au(Z)>0,qquad
-P_epsilon R_ZP_epsilonpreceq0,                     	ag{HSA5}
-]
+\[
+\tau(Z)>0,\qquad
+P_\epsilon R_ZP_\epsilon\preceq0,                     \tag{HSA5}
+\]
 
-then Haar averaging over (U(C_X)) produces another separator
+then Haar averaging over \(U(C_X)\) produces another separator
 
-[
-overline Z=int_{U(C_X)}U ZU^*,dU
- in C_X'cap D,qquad 	au(overline Z)=	au(Z).       	ag{HSA6}
-]
+\[
+\overline Z=\int_{U(C_X)}U ZU^*\,dU
+ \in C_X'\cap D,\qquad \tau(\overline Z)=\tau(Z).       \tag{HSA6}
+\]
 
 The same averaging preserves positivity and the reverse inequality
-(P_epsilon R_ZP_epsilonsucceq P_epsilon) in the optimal-coverage
-dual.  The left stabilizer (C_0=mathbb C[G]^{m op}) does not further
-average (Z): left multiplication by (C_0) commutes with every right
-multiplier (R_Z).
+\(P_\epsilon R_ZP_\epsilon\succeq P_\epsilon\) in the optimal-coverage
+dual. The left stabilizer \(C_0=\mathbb C[G]^{\rm op}\) does not further
+average \(Z\): left multiplication by \(C_0\) commutes with every right
+multiplier \(R_Z\).
 
 Crucially, (HSA6) does not eliminate the indefinite branch, even with full
-right support and exact two-sided bimodule symmetry.  For arbitrary
-(a,cgeq1), take
+right support and exact two-sided bimodule symmetry. For arbitrary
+\(a,c\geq1\), take
 
-[
-D=M_aotimes M_2otimes M_c,quad
-C_0=M_aotimes1otimes1,quad C=1otimes1otimes M_c,
-]
+\[
+D=M_a\otimes M_2\otimes M_c,\quad
+C_0=M_a\otimes1\otimes1,\quad C=1\otimes1\otimes M_c,
+\]
 
 and
 
-[
-v=egin{pmatrix}1&0\0&2end{pmatrix},qquad
-{cal H}=M_aotimesmathbb Cvotimes M_c.              	ag{HSA7}
-]
+\[
+v=\begin{pmatrix}1&0\\0&2\end{pmatrix},\qquad
+{\cal H}=M_a\otimes\mathbb Cv\otimes M_c.              \tag{HSA7}
+\]
 
-The subspace ({cal H}) is a (C_0)--(C) bimodule and contains the
-invertible element (1otimes votimes1), so it has full right support.
+The subspace \({\cal H}\) is a \(C_0\)--\(C\) bimodule and contains the
+invertible element \(1\otimes v\otimes1\), so it has full right support.
 Nevertheless
 
-[
-Z=1otimes
- egin{pmatrix}2&0\0&-1end{pmatrix}
- otimes1in C'cap D                                  	ag{HSA8}
-]
+\[
+Z=1\otimes
+ \begin{pmatrix}2&0\\0&-1\end{pmatrix}
+ \otimes1\in C'\cap D                                  \tag{HSA8}
+\]
 
-has (	au(Z)=1/2), while for every (Ain{cal H}),
+has \(\tau(Z)=1/2\), while for every \(A\in{\cal H}\),
 
-[
-	au(ZA^*A)
- =-|A|_2^2<0quad(A
-e0).                            	ag{HSA9}
-]
+\[
+\tau(ZA^*A)
+ =-\frac25\|A\|_2^2<0\quad(A\ne0).                    \tag{HSA9}
+\]
 
-Thus (Z) is already stabilizer-averaged, indefinite, and separates the
+Thus \(Z\) is already stabilizer-averaged, indefinite, and separates the
 unit from the Hecke-frame cone although that subspace has full support.
-Taking (T) to be the orthogonal projection onto ({cal H}) realizes
-({cal H}) as the sharp top band of a selfadjoint bimodular contraction.
+Taking \(T\) to be the orthogonal projection onto \({\cal H}\) realizes
+\({\cal H}\) as the sharp top band of a selfadjoint bimodular contraction.
 Hence bimodularity and stabilizer averaging alone cannot prove coverage.
 
 Nor can vanishing approximate covariance be substituted for exact band
-invariance.  On (mathbb C^2), let
+invariance. On \(\mathbb C^2\), let
 
-[
-S_eta=operatorname{diag}(1,1-eta),qquad
-W=egin{pmatrix}0&1\1&0end{pmatrix}.
-]
+\[
+S_\eta=\operatorname{diag}(1,1-\eta),\qquad
+W=\begin{pmatrix}0&1\\1&0\end{pmatrix}.
+\]
 
-Then (|WS_eta-S_eta W|=eta), but
+Then \(\|WS_\eta-S_\eta W\|=\eta\), but
 
-[
-Q_eta=1_{[1-eta/2,1]}(S_eta)
- =operatorname{diag}(1,0),qquad
-|WQ_eta-Q_eta W|=1.                               	ag{HSA10}
-]
+\[
+Q_\eta=1_{[1-\eta/2,1]}(S_\eta)
+ =\operatorname{diag}(1,0),\qquad
+\|WQ_\eta-Q_\eta W\|=1.                               \tag{HSA10}
+\]
 
-Therefore even an (o(1)) covariance estimate extracted from the four
+Therefore even an \(o(1)\) covariance estimate extracted from the four
 Iwahori residuals does not justify averaging a certificate inside a moving
 sharp near-top band without a spectral-margin estimate or a soft-filter
 replacement.
 
 For the regular congruence core,
-(Dcong M_{[G:B]}(mathbb C[B]^{m op})), and (HSA2)--(HSA6) are exact
-at every level.  They reduce a candidate certificate to the relative
+\(D\cong M_{[G:B]}(\mathbb C[B]^{\rm op})\), and (HSA2)--(HSA6) are exact
+at every level. They reduce a candidate certificate to the relative
 commutant of the supplied extender's exact stabilizer, but (HSA7)--(HSA10)
 show that this formal reduction cannot yield a uniform anti-separator
-estimate.  One must use additional arithmetic of the concrete Iwahori
+estimate. One must use additional arithmetic of the concrete Iwahori
 Hecke matrix to rule out the surviving sector, or construct it in an
-actual congruence sequence.  Neither is currently known, so the
+actual congruence sequence. Neither is currently known, so the
 nonhyperlinear-group root remains open.
 
 DERIVATION
