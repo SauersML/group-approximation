@@ -8,6 +8,7 @@ requires:
   - spherical-tight-single-colour-near-perfect-matching
   - spherical-relation-defect-pairs-small-chord
   - partial-schreier-completion-preserves-sofic-loss
+  - trace-separation-sphere-distance-concentration
 ---
 
 Write `r_(g,h,k)=k^(-1)gh` for the relator belonging to
@@ -104,6 +105,13 @@ d_Ham(r(tau),1)
 
 Thus all tested relations, including fully old closing equations, hold
 asymptotically.
+
+If distinct labels `s,t` have regular-character trace separation, then
+`trace-separation-sphere-distance-concentration` gives a fixed lower bound on
+`||U_sx_i-U_tx_i||` outside `o(N)` roots.  The two constructed shadow radii
+tend to zero, so `tau_s(i)=tau_t(i)` is impossible on every remaining common
+domain root.  Arbitrary completion changes only `o(N)` values; hence the
+completed permutations are Hamming-separated on `1-o(1)` roots.
 
 Restriction of a full coherent family to the core is immediate, while the
 reverse-peeling construction proves extension from the core.  If the core is
