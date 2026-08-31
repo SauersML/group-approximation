@@ -31,10 +31,16 @@ non-rank-preserving cross-Gram or one-sided proper-corner incidence must
 authenticate the active actors and commuting-label actors on the same
 multiplicity reservoir.
 
-Equations `(AIM1)--(AIM2)` would make the residual commutator in `(CPM6)`
-asymptotically trivial on a positive fraction of every active-mismatch atom;
-the controlled-Pauli relation would then charge that atom.  Iteration or a
-bounded packing argument would still be needed if `c<1`.
+The two occurrence estimates are not sufficient while their frames are
+independent. `separate-occurrence-arrows-do-not-lock-pauli-gauge` gives an
+exact finite Clifford model with `R=E_11`, `c=1`, and zero defect in
+`(AIM1)--(AIM2)`, yet the original multiplicity actors have commutator `-1`:
+the two arrows separately rotate both actors to the same commuting Pauli
+axis. The packet must therefore add a **joint-frame** relation--one common
+arrow, or a mixed Gram constraint controlling `W_A^*W_B` on `R`. With that
+coherence added, `(AIM1)--(AIM2)` would make the residual commutator in
+`(CPM6)` asymptotically trivial on a positive fraction of the active atom;
+iteration or a bounded packing argument would still be needed if `c<1`.
 
 Packet dressing cannot supply `(AIM1)` by
 `pauli-gauge-word-retains-and-cocycle`.
