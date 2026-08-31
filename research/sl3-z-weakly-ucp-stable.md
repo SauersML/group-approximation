@@ -5,7 +5,7 @@ kind: claim
 title: SL_3(Z) is weakly ucp-stable, equivalently fully flexible HS-stable
 distinct_from:
   sln-z-flexibly-hs-stable: that asks for full flexible HS-stability of SL_n(Z) for SOME n at least three; this is exactly its n = 3 instance, stated in Dogon's weak-ucp language and identified with the full version by residual-finite-regularization-removes-the-weak-ucp-quantifier plus property T.
-  sl3z-regular-microstates-are-congruence-correctable: that asks to correct the lattice restriction of regular microstates to genuine ODD-congruence representations, for consumption by the Weyl-slot sector theorem; this asks for correction of every hyperlinear approximation to genuine representations of unrestricted level, for consumption by the HNN theorem over a thin co-dense subgroup, and is stated in Dogon's dilation language.
+  sl3z-regular-microstates-are-congruence-correctable: that refuted odd-level strengthening required every regular correction to land in an odd congruence quotient; this asks for unrestricted-level correction of every hyperlinear approximation and remains open.
 ---
 
 OPEN CLAIM.  `SL_3(Z)` is weakly ucp-stable in the sense of Dogon
@@ -113,9 +113,9 @@ the p = 3 HNN microstates to the `Lambda`-exact face
   limit character `delta_e` with GNS `L(SL_3(Z))`, non-amenable, so the
   known theorem does not apply.  The regular-type sector is nevertheless a
   complete test class for this claim by the tensor-regularization theorem;
-  it is the same input sector as
-  `sl3z-regular-microstates-are-congruence-correctable`, but with
-  infinite-dimensional ucp dilations allowed before Kazhdan rounding.
+  the explicit even-level countersequence refuting
+  `sl3z-regular-microstates-are-congruence-correctable` is already exact and
+  therefore does not obstruct this unrestricted claim.
 - **The large-prime one-twist theorem is downstream, not an exactification
   theorem.**  `p-divisible-lambda-exact-mass-vanishes-at-large-primes`
   begins with a genuine finite-dimensional representation `rho'` of
