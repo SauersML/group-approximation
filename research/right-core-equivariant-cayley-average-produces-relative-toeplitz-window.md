@@ -101,7 +101,8 @@ G=A_N,\qquad B=B_N,
 
 take \(U_b=\beta(b)\) on the authenticated core and \(U_x=X\) on the
 extending involution.  Every core edge in (RCA4) is then identically zero.
-The entire finite-corner problem is the single optimized extender energy
+For this Cayley-average construction, the sufficient condition is the single
+optimized extender energy
 
 \[
 {\cal E}_{N,\beta}(X)
@@ -120,5 +121,6 @@ shows that this **frozen word-section gauge** can have macroscopic energy.
 It does not lower-bound the infimum (RCA10), because nearby exact-core
 motion can change the gauge and repair the known scalar counterfamily.
 No current congruence or operator-algebraic theorem proves that (RCA10)
-vanishes for every Iwahori microstate.  Hence (RCA10) is a finite,
-double-coset synchronization target, not a completed proof of the root.
+vanishes for every Iwahori microstate.  Hence (RCA10) is a finite, double-coset synchronization target.  It is a
+sufficient gauge ansatz, not an assertion that every relative ucp kernel has
+this unitary-fibre form, and not a completed proof of the root.
