@@ -112,10 +112,15 @@ Every finite seed/Z marginal is product Haar, but
 tau_0(1 tensor b)=tau_r(b).                              (PHT9)
 ```
 
-If one separately supplies compatible embeddings for an infinite packet
-chain, its norm closure is the `2^infinity` UHF C*-algebra, and its weak
-closure in the product trace is the hyperfinite `II_1` factor. The BCV
-fixed-point syntax does not itself supply those compatible embeddings. An
+If one separately supplies compatible embeddings for the full matrix
+packet algebras in an infinite chain, their norm closure is the
+`2^infinity` UHF C*-algebra, and their weak closure in the product trace is
+the hyperfinite `II_1` factor. This concerns the ambient packet matrices,
+not the readable closure: `D_infinity` is forced to contain the tensor of
+diagonal SamZ cylinder algebras, while the Pauli-X translations are
+unreadable normalizers and are not thereby elements of `D_infinity`. The
+BCV fixed-point syntax does not itself supply compatible embeddings of
+either system. An
 attained finite-dimensional strategy cannot contain infinitely many
 nontrivial packet factors because its dimension is divisible by every
 finite product `product_j 2^(k_j)`. In neither setting do the packet
