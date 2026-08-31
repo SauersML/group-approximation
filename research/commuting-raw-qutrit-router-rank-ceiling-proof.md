@@ -20,7 +20,7 @@ K=<H> times (A semidirect <k>),               |K|=96.   (CRQ5)
 ```
 
 Here `C=<h> times <k>`, `|h|=|k|=3`, and `A isomorphic to F_2^4`.
-Let `f_j` be the three character projections of `<h>).  The selected
+Let `f_j` be the three character projections of `<h>`.  The selected
 qutrit atoms have the form
 
 ```text
@@ -28,16 +28,16 @@ e_a=f_(2+a)e_k.                                          (CRQ6)
 ```
 
 Let `P_sigma` be the relevant initial or range polar support of
-`G_(sigma,+)e_k` in the regular representation of `K).  The
+`G_(sigma,+)e_k` in the regular representation of `K`.  The
 Frobenius-group count in the sign-rank theorem says
 
 ```text
 rank_K(P_+)=10,                    rank_K(P_-)=9.         (CRQ7)
 ```
 
-Indeed, adjoining the two selected `h)-character blocks gives ranks
-20 and 18 in the regular representation of `F_0), which are exactly
-the numerators of `5/72` and `1/16).
+Indeed, adjoining the two selected `h`-character blocks gives ranks
+20 and 18 in the regular representation of `F_0`, which are exactly
+the numerators of `5/72` and `1/16`.
 
 The active part of the target is
 
@@ -46,7 +46,7 @@ Q_act=E e_k.
 ```
 
 The two factors `E` and `e_k` have regular traces `1/2` and
-`1/3), so
+`1/3`, so
 
 ```text
 rank_K(Q_act)=96/(2*3)=16.                               (CRQ8)
@@ -66,7 +66,7 @@ only 10 or 9.
 
 Take finitely many literal elementary roots with coefficients `S` or
 `T` whose matrix directions are product-zero.  Write their off-diagonal
-parts as `L(v)).  Then
+parts as `L(v)`.  Then
 
 ```text
 L(v)L(w)=0,
@@ -80,8 +80,8 @@ raw coefficient by `ST`: the entries can still be literal `S` and
 available.
 
 Choose the root positions in unused multiplicity blocks, as in the
-commuting moved-root construction.  Then `K` commutes with `N);
-`h` may act on `N), and `k` acts trivially on the chosen
+commuting moved-root construction.  Then `K` commutes with `N`;
+`h` may act on `N`, and `k` acts trivially on the chosen
 intertwiner packet.  The complete local group is therefore
 
 ```text
@@ -102,7 +102,7 @@ commuting raw packet, arbitrary finite linear combinations of such
 coefficients, and their products with the three-line selector on the
 active factor.
 
-If `R_B` is the range projection of the polar of `B), then the
+If `R_B` is the range projection of the polar of `B`, then the
 second equality in `(CRQ12)` gives
 
 ```text
@@ -110,8 +110,8 @@ R_B<=f_1P_sigma.                                        (CRQ13)
 ```
 
 The canonical trace on the direct product in `(CRQ11)` factors.  The
-coefficient of the identity in every `f_j` is `1/3), independently
-of the action of `h` on `N).  Hence
+coefficient of the identity in every `f_j` is `1/3`, independently
+of the action of `h` on `N`.  Hence
 
 ```text
 tau_L(f_1P_+)= (1/3)(10/96)=5/144,
@@ -119,7 +119,7 @@ tau_L(f_1P_-)= (1/3)( 9/96)=1/32.                       (CRQ14)
 ```
 
 Equations `(CRQ13)--(CRQ14)` prove the universal ceiling.  Enlarging
-`N), removing its trivial-character quarter kernel, arranging
+`N`, removing its trivial-character quarter kernel, arranging
 orthogonal Fourier phases, or proving a singular-value lower bound
 cannot change it.  The factor `|N|` cancels from normalized rank.
 
@@ -155,7 +155,7 @@ P_0<=f_0P_sigma,          P_2<=f_2P_sigma,
 rank(P_0)=rank(P_2)=8,          P_sel=P_0+P_2.           (CRQ17)
 ```
 
-Choose a partial isometry `V` from `P_sel` onto `Q).  Extend it
+Choose a partial isometry `V` from `P_sel` onto `Q`.  Extend it
 to a unitary `U` so that
 
 ```text
