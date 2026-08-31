@@ -39,6 +39,9 @@ remaining closure. The following modules are green on v4.32:
   to reuse the quotient ring's canonical instances.
 - `AffineBarycentricSubdivision`: its final dependent barycenter rewrite is an
   explicit equality calculation compatible with v4.32.
+- `HomotopyToChainHomotopy`: its conclusion is changed directly to the
+  `homologyMap` expression before applying the chain-homotopy theorem, avoiding
+  a v4.32 functor-whiskering definitional-equality mismatch.
 
 The old local `SimplicialObjectHomotopy` backport is intentionally not
 vendored: Mathlib v4.32 now contains the stronger upstream module
