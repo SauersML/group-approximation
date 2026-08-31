@@ -47,16 +47,28 @@ In particular, the residual kernel has an infinite cyclic quotient.  The
 `Z` summand is the two-torus class represented by the Steinberg symbol
 `{x_1,x_2}`.
 
+The same conclusion holds at finite matrix rank in the classical stability
+range.  If `r>=d+3`, form
+
+```text
+H_r=E_r(R_+) *_(E_r(R_0)) E_r(R_-)
+```
+
+and quotient by the same two words.  The kernel of the canonical map to
+`E_r(R_pm)` still surjects onto the group in (TKO3), because
+`K2(r,R)=K2(R)` for all four rings in this range.
+
 Thus the two ring-level inverse equations do not give a rank-uniform
 presentation of the Laurent elementary group from the two polynomial cone
 groups.  They first produce a group surjecting onto the Laurent Steinberg
 group; killing its nonzero `K2` is an additional relation packet.
 
-This is a stable theorem.  Unstable `K2(r,R_pm)` and stability maps require
-separate control at the pinned rank `r=3`, so (TKO1)--(TKO3) do not prove
-that the fixed-rank opposite Kun--Thom slice is negative or non-RE.  They do
-rule out any proof that treats the two coordinate words as a complete
-rank-independent quotient presentation.
+This is a stable-range theorem, not a rank-three theorem.  It applies to the
+actual finite-rank Kun--Thom family whenever `r>=d+3`.  Unstable
+`K2(3,R_pm)` and the relevant low-rank maps require separate control, so it
+does not prove that the pinned rank-three opposite slice is negative or
+non-RE.  It does rule out any proof that treats the two coordinate words as a
+complete rank-independent quotient presentation.
 
 DERIVATION
 polynomial-k2-vanishing-lifts-cones-to-laurent-steinberg-proof
