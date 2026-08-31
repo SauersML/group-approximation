@@ -66,6 +66,9 @@ Combining it with (MKF5) proves (RTF8).
 When \(R=d\), every isometry \(V_g:\mathbb C^d\to\mathbb C^d\) is unitary
 and \(W_g=V_g^*\) has the relative equivariance in (RCO2). For \(R>d\),
 fibrewise polar decomposition changes nothing because the fibres are
-already isometries. The unresolved operation is instead to align their
-range projections \(V_gV_g^*\) with one common \(d\)-plane, or to avoid
-that reduction and prove (RTF7) directly.
+already isometries. The required operation is to align the range
+projections \(V_gV_g^*\) with one common \(d\)-plane.
+Cayley-expansion-aligns-isometry-frame-coranges performs exactly that
+operation with constant \(1+2\sqrt{2/\gamma}\) whenever the finite
+quotient Cayley graph has Poincare gap \(\gamma\). Property \((T;FD)\)
+makes this constant uniform for the authenticated quotients.
