@@ -4,11 +4,13 @@ id: spherical-one-overlap-forest-rounding
 kind: claim
 title: Regular-character unitary tables with a one-overlap relation forest round to partial Schreier tables
 distinct_from:
-  hypergraph-near-perfect-schreier-packing: This closes the packing problem only when the relation-incidence system is acyclic in the explicit one-overlap ordering below; the global node must synchronize cycles where a new relation reuses two or three previously chosen label maps.
+  hypergraph-near-perfect-schreier-packing: this proves a restricted packing theorem for the explicit one-overlap ordering below; the global node asks for arbitrary relation cores.
+  coherent-reselection-reduces-to-private-label-core: that later theorem strictly extends this one by allowing two previously assigned labels when the third is fresh, and by discarding formally redundant closing relations.
 ---
 
 Let a fixed finite partial multiplication table have finitely many labels and
-relations `gh=k`.  Suppose its relations can be ordered componentwise so that
+relations `gh=k`.  Suppose its relations can be ordered componentwise so
+that
 
 - the first relation of each component introduces all of its labels; and
 - every later relation meets the set of labels seen earlier in **exactly one**
@@ -26,7 +28,8 @@ Completing the partial bijections arbitrarily therefore gives permutation
 models with vanishing Hamming multiplication error and the required regular
 separation.
 
-So Q3.4 has no obstruction on one-overlap relation forests.  In the spherical
-packing route, the first genuinely new combinatorial content is **cycle
-synchronization**: a relation which reuses at least two maps already fixed by
-other relations.
+Thus Q3.4 has no obstruction on one-overlap relation forests.  This is now a
+special case of [[coherent-reselection-reduces-to-private-label-core]].
+The first genuinely new combinatorial content is not merely a relation
+reusing two assigned maps; it is a nonredundant relation in the surviving
+private-label core, where every label is already constrained elsewhere.
