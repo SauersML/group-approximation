@@ -3,8 +3,6 @@ rg: 2
 id: congruence-twist-survives-flexible-moving-padding
 kind: claim
 title: A congruence twist keeps logarithmic Boolean fibers quantum after sublinear padding
-requires:
-  - moving-tail-fixed-traces-keep-quantum-fibers
 distinct_from:
   moving-tail-fixed-traces-keep-quantum-fibers: that uses the zero-sum projective representation and is absorbed by one padding line per atom; this tensors with a fixed Klein representation and proves a monomial-carrier gap larger than the whole original fiber.
   property-t-does-not-kill-boolean-fiber-holonomy: that gives padding-stable nonmonomial holonomy for a fixed finite property-T group but lacks canonical actor trace; this gives canonical pointwise traces for the fixed infinite actor SL_3(Z).
@@ -94,3 +92,7 @@ specific nontrivial Kun--Thom coset action.
 
 DERIVATION
 congruence-twist-padding-stable-countermodel-proof
+
+## Attempts
+
+(Repair note: invalid requires-block removed from a claim; the authoring lane's route carries the attack.)

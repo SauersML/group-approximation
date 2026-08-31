@@ -6,7 +6,7 @@ title: Prime-cyclic finite-packet amalgams reflect the source HS gap exactly
 artifacts:
   - research/prime-sector-tensor-balancing-and-finite-packet-absorption-proof.md
 distinct_from:
-  deligne-q8-finite-edge-terminal-compiler-is-equivalent-to-source-gap: that proves the order-three quaternion instance with an explicit spin matrix and an explicit four-to-one HS estimate; this classifies every finite selector and every prime-order actor mark by tensor-balancing all central sectors.
+  deligne-q8-finite-edge-terminal-compiler-iff-source-gap: that proves the order-three quaternion instance with an explicit spin matrix and an explicit four-to-one HS estimate; this classifies every finite selector and every prime-order actor mark by tensor-balancing all central sectors.
   finite-selector-gadget-induction-barrier: that classifies exact characters inside one finite overgroup; this transfers arbitrary almost-representation sectors through a finite-edge amalgam and proves an equivalence of dimension-uniform HS collapse.
   shared-center-extraspecial-wreath-has-fd-invisible-spin-sector: that uses unbounded Pauli rank and therefore lies outside the finite-packet hypothesis; this proves why replacing that moving rank by any fixed finite packet cannot improve the actor's metric gap.
 ---

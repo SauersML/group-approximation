@@ -6,7 +6,7 @@ title: Use regular finite quotients to keep the shared center at trace zero
 target: property-t-actor-keeps-fd-invisible-center-in-lef-models
 requires:
   - shared-center-extraspecial-wreath-has-fd-invisible-spin-sector
-  - shared-center-extraspecial-wreath-sector-and-normalizer-proof
+  - shared-center-extraspecial-wreath-has-fd-invisible-spin-sector
 ---
 
 # Use regular finite quotients to keep the shared center at trace zero
