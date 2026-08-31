@@ -1,5 +1,9 @@
 # STW 99-problems master ledger (2026-08-30)
 
+*Companion: the gates atlas
+(`stw99-gates-atlas-2026-08-30.md`) states the seven gates onto which
+the open mass concentrates, with their downstream closure lists.*
+
 *One row per paper numeral of Schafhauser--Tikuisis--White,
 arXiv:2506.10902 v2.  "Root" names the canonical Cairn claim; status
 is as recorded in the graph at this date (the graph, not this file, is
