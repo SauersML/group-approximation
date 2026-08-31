@@ -29,7 +29,7 @@ r=floor(log_2(max(1,B(M))))+1
 ```
 
 and simulate `M` for `T_r` steps. If it has not halted but later halts
-at `N`, then `N>T_r`, hence `h_M>r), and `(CRG2)` contradicts
+at `N`, then `N>T_r`, hence `h_M>r`, and `(CRG2)` contradicts
 `dim D_infinity(S_M^can)<=B(M)`. Thus such a `B` would decide HALT.
 
 The full work is in
