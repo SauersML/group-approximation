@@ -12,7 +12,7 @@ requires:
   - finite-support-corner-localizes-obstruction
 ---
 
-Split the first `R)-module coordinate along `D_27` and write `star`
+Split the first `R`-module coordinate along `D_27` and write `star`
 for the second coordinate.  The leaf `d_0=0` gives the four identities
 
 ```text
@@ -30,7 +30,7 @@ J=F_2<S,T | TS=1> -> R,        S |-> s_0, T |-> t_0    (FQJ5)
 ```
 
 is injective; the Jacobson orbit quotient supplies a left inverse.  Thus all
-matrix groups below are literal subgroups over `R), not coefficient
+matrix groups below are literal subgroups over `R`, not coefficient
 specializations.
 
 By the one-chart theorem, the qutrit packet together with the first two roots
@@ -58,8 +58,8 @@ closed under addition.  If `r,s in A` and `i!=j), choose a third index
 ```
 
 Thus `A` is also closed under multiplication.  It is a unital subalgebra
-of `J` containing `S,T), so `A=J`.  The generated group therefore
-contains `EL_28(J)).
+of `J` containing `S,T`, so `A=J`.  The generated group therefore
+contains `EL_28(J)`.
 
 Conversely, every generator in `(FQJ4)` lies in `EL_28(J)), and the
 qutrit permutation matrices lie in its scalar elementary subgroup by
