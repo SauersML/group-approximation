@@ -3,7 +3,7 @@ rg: 2
 id: andrew-guerch-hughes-theorem-c-citation
 kind: route
 title: Apply Andrew--Guerch--Hughes Theorem C
-target: aut-polycyclic-relative-hyp-groups-satisfy-fjc
+target: polycyclic-relatively-hyperbolic-aut-groups-satisfy-fjc
 requires: []
 ---
 

@@ -5,7 +5,7 @@ kind: route
 title: Apply factor-uniform degree-two selection to stabilized diffuse-factor weighted fibres
 target: stw22-dim3-diffuse-factor-bundles-have-uniform-traces
 requires:
-  - stw22-stabilize-l2-bundle-and-select-weighted-copies-proof
+  - stw22-dim1-factor-bundles-have-uniform-traces
   - stw22-diffuse-weighted-copy-uniform-s2-fillings
   - stw22-all-finite-factor-weighted-copy-uniform-loop-fillings
   - stw22-tracefree-fibre-gap-ideals-force-trace-continuity
@@ -22,7 +22,7 @@ m tau_x(supp(a_x))<=1-gamma             for every x in K.   (D3-3)
 
 ## 1. The varying fibres live in one complete space
 
-Apply `stw22-stabilize-l2-bundle-and-select-weighted-copies-proof`.
+Apply `stw22-dim1-factor-bundles-have-uniform-traces`.
 The countably generated Hilbert `C(K)`-module embeds as a complemented
 submodule of `C(K,ell^2)`. The exact weighted-copy sets
 
@@ -74,7 +74,7 @@ over `K` because `dim(K)<=3`.
 The selected tuple is initially a section of the stabilized Hilbert
 module. Each component lies fibrewise in the operator unit ball. The
 operator-ball identity `(OB)` in
-`stw22-stabilize-l2-bundle-and-select-weighted-copies-proof` therefore
+`stw22-dim1-factor-bundles-have-uniform-traces` therefore
 puts every component back in `M_1`; no norm-continuity assertion is used.
 Hence (D3-4) holds globally in `M`.
 
