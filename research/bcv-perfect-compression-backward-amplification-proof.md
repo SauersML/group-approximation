@@ -57,10 +57,10 @@ edge `xy` of `H`, the tensor edge
 
 has positive weight: its first coordinate has the weight of `xy` and every
 other coordinate has the positive weight of `oo`. Definition 3.43 and
-Section 6.2 say that the tensor predicate is the product of the coordinate
-predicates. Perfectness of `R` therefore makes the first coordinate pass
-the predicate of `H` exactly. The same restriction preserves synchrony and
-edge commutation.
+Section 6.2 say that the tensor predicate is the conjunction of the
+coordinate predicates. Perfectness of `R` therefore makes the first
+coordinate pass the predicate of `H` exactly. The same restriction
+preserves synchrony and edge commutation.
 
 Definition 6.2 and the tensor answer split in Section 6.2 place the first
 coordinate's readable variables in the target readable answer and its
@@ -80,8 +80,7 @@ The type graph of the Answer Reduced game `V^(2)_n` has every self-loop:
 Definition 5.79 takes the tensor product of the Player and Space type
 graphs and explicitly includes all their loops. Definition 6.2 preserves
 those loops and adds every edge incident to the new Anchor type, including
-the Anchor loop. Thus `Anchor(V^(2)_n)` satisfies the hypothesis of
-Corollary 4.43.
+the Anchor loop. Thus `Anchor(V^(2)_n)` satisfies Corollary 4.43.
 
 More concretely, Remark 4.41 restricts a perfect strategy for
 
@@ -114,8 +113,7 @@ gives the exact source double cover in the same matrix algebra.
 The actual input `V^(1)_n` has the special form supplied by Theorem 4.36:
 
 ```text
-V^(1)_n
- = DeType(Q_n),
+V^(1)_n = DeType(Q_n),
 
 Q_n
  = QueRed(Padding(V_(2^n),2^(lambda n)),
@@ -146,28 +144,40 @@ k(n)=2^(lambda n).
 Apply
 `bcv-every-perfect-question-reduction-amplifies-readable-closure`
 to the decoded perfect strategy for `Q_n`. It gives a perfect ZPC strategy
-`T_pad` for `Padding(V_(2^n),2^(lambda n))` and a monomial identification
-under which
+`T_pad,pm` for
 
 ```text
-ell^infinity(F_2^k(n)) tensor D_infinity(T_pad)
+DoubleCover(Padding(V_(2^n),2^(lambda n)))
+```
+
+and a monomial identification under which
+
+```text
+ell^infinity(F_2^k(n)) tensor D_infinity(T_pad,pm)
   subseteq D_infinity(Q_n strategy).                     (UCP7)
 ```
 
-Fact 4.48 unpads by discarding dummy coordinates. It returns a perfect ZPC
-strategy `T` for the supported part of `V_(2^n)` and
+Fact 4.48 unpads each sheet by discarding dummy coordinates. It returns a
+perfect ZPC strategy `T_pm` for the supported part of
+`DoubleCover(V_(2^n))` and
 
 ```text
-D_infinity(T) subseteq D_infinity(T_pad).                (UCP8)
+D_infinity(T_pm) subseteq D_infinity(T_pad,pm).          (UCP8)
 ```
 
 Combining `(UCP3)--(UCP8)` proves `(UCA1)`. The SamZ algebra has exactly
 `2^k(n)` atoms, and every nonzero finite Boolean algebra has dimension at
 least one. This proves `(UCA2)`.
 
-The assumptions used here are exact and explicit: `V` is
-`lambda`-bounded so that `(UCP5)` is the actual game identity,
-`n>=C(h)` and `K(n)>=1` so every construction is defined, and only
-vertices or edges in the sampler support are decoded. Trivial extension
-off support makes the output a strategy on the full formal question set
-without changing its value or the inclusion.
+If the supported source has positive synchronization loops, Claim 3.54
+identifies the sheet PVMs. If its nontrivial support is bipartite, choose
+the plus measurements on one side and the minus measurements on the other;
+zero-answer anchors have only the trivial PVM. Either exact descent only
+selects measurements, so `(UCA1)` then holds with the recovered source
+`T`.
+
+The assumptions are explicit: `V` is `lambda`-bounded so that `(UCP5)`
+is the actual game identity, `n>=C(h)` and `K(n)>=1` so every construction
+is defined, and only vertices or edges in the sampler support are decoded.
+Trivial extension off support makes the output a strategy on the full
+formal question set without changing its value or the inclusion.
