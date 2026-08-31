@@ -43,14 +43,18 @@ the following exact hypotheses:
 2. the nontrivial source question graph is bipartite, by Remark 3.55,
    choosing one double-cover sheet on each side.
 
-The second case is the one used by the actual Question-Reduction-to-Answer-
-Reduction pipeline. Theorem 4.36 outputs
-`DeType(QueRed(...))`; Definition 4.40 puts genuine A-questions and
-B-questions in disjoint copies, while their only common zero anchor has
-answer length zero and autoaccepts. Hence the decoded double-cover strategy
-restricts exactly to that source game. Subsequent inverse purification and
-padding are value-preserving restriction operations (Fact 5.41 and Fact
-4.48).
+The second case is the first inverse step in the actual Question-Reduction-
+to-Answer-Reduction pipeline. After undoing purification and padding,
+Theorem 4.36's input is `H=DeType(Q)`, with `Q=QueRed(...)`.
+Definition 4.40 puts genuine A-questions and B-questions of H in disjoint
+copies; their only common zero anchor has answer length zero and autoaccepts.
+Choosing opposite double-cover sheets therefore recovers H while retaining
+all non-anchor generators. Corollary 4.42 then restricts H to
+`DoubleCover(Q)`, and Figure 14 gives every typed question of Q a
+self-loop, so Corollary 4.43/Claim 3.54 returns Q exactly. Fact 5.41 and
+Fact 4.48 supply the value-preserving inverse purification and unpadding
+operations. Every step is a restriction or coarse-graining, so `(BAD2)`
+persists.
 
 This scope is sharp. Without synchronization or bipartiteness, take the
 loopless triangle game with one bit per question and the constraint that
