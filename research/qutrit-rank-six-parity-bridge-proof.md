@@ -18,14 +18,14 @@ Z_1=diag(1,omega,omega^2) tensor I_3.
 
 The formula
 `R=z_(C,chi_0)+z_(C,chi_1)` says exactly that the first qutrit has
-`Z_1)-label `0` or `1).  Therefore
+`Z_1`-label `0` or `1`.  Therefore
 
 ```text
 R=diag(1,1,0) tensor I_3
  =(1-|2><2|) tensor I_3,                                (QPB5)
 ```
 
-which also reads its rank as `2*3=6).
+which also reads its rank as `2*3=6`.
 
 In the ordered basis `|0>,|1>,|2>`, parity and its positive cut are
 
@@ -54,7 +54,7 @@ states to stabilizer states because it normalizes the qutrit Pauli group.
 But `|m>` is not a stabilizer state.  Indeed an eigenvector of a nontrivial
 one-qutrit Pauli has either support one in the computational basis, when the
 Pauli is a nontrivial power of `Z`, or support three with all three
-coordinates of equal modulus, when its `X)-power is nonzero.  The vector
+coordinates of equal modulus, when its `X`-power is nonzero.  The vector
 `|m>` has support exactly two.  This contradicts `(QPB8)` and proves the
 Clifford impossibility.
 
@@ -84,7 +84,7 @@ rho:F *_C A -> U(9)                                     (QPB10)
 ```
 
 whose restriction to `F` is the full spin packet and for which the
-distinguished parity cut is exactly `R).  Thus the qutrit context, its
+distinguished parity cut is exactly `R`.  Thus the qutrit context, its
 three-phase marginal, and the parity identification all hold in one exact
 finite-dimensional model.
 
