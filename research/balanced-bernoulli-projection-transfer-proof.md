@@ -168,7 +168,7 @@ of this generalized coset wreath product from the available actor
 microstates.  Thus `(BBQ6b)` is a conditional refuter, not a refutation.
 It follows unconditionally that property `(T)`, conditional expectations,
 projection rank `1/2`, and abstract finite-factor inequalities cannot alone
-imply `(BBP3)`.  The exact missing input is hyperlinearity of `W), or
+imply `(BBP3)`.  The exact missing input is hyperlinearity of `W`, or
 equivalently matrix embeddability of `N`.
 
 ## Step 4: projective tensoring erases scalar displacement
