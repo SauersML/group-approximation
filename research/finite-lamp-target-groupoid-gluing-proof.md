@@ -12,7 +12,7 @@ requires:
 
 ## Step 1: exact transport from a completed finite groupoid
 
-Work first in one connected component `O).  Choose a root `o` and one
+Work first in one connected component `O`.  Choose a root `o` and one
 arrow `a_i:o->i` for every object, with `a_o=1_o`.  Put
 `H=Aut_C(o)`.  Let `K` be a disjoint union of
 
@@ -20,7 +20,7 @@ arrow `a_i:o->i` for every object, with `a_o=1_o`.  Put
 floor(min_i r_i / |H|)
 ```
 
-copies of the left regular `H`-set.  Thus `|K|=k_O).  For an arrow
+copies of the left regular `H`-set.  Thus `|K|=k_O`.  For an arrow
 `g:i->j`, define
 
 ```text
@@ -37,7 +37,7 @@ h_(fg)
  =h_f h_g.                                              (FTP2)
 ```
 
-The left action on `K` therefore gives `T_(fg)=T_fT_g), and inverses
+The left action on `K` therefore gives `T_(fg)=T_fT_g`, and inverses
 work by taking inverses in `H`.  If `g:i->i` is a nonidentity isotropy
 arrow, then `h_g` is nonidentity.  Its action on every regular `H`-orbit
 has no fixed point.  This proves `(FTG1)--(FTG3)`.
@@ -127,7 +127,7 @@ hat(theta)x=hat(eta)x
 
 holds exactly when `x` is constant on every cycle of `delta`.  If
 `c(delta)` counts all cycles, there are exactly `2^(c(delta))` such sign
-assignments out of `2^|S|).  This proves `(FTG7)`.
+assignments out of `2^|S|`.  This proves `(FTG7)`.
 
 If `delta` is nonidentity, some cycle has length at least two, so
 `c(delta)<=|S|-1` and the Hamming defect is at least `1/2`.  If its
