@@ -369,7 +369,7 @@ resolution).**  The claim
 local normalizer question in both directions.
 
 1. For one fixed invariant `B=(C_2)^m`, asymptotic regular character leaves
-   `1-o(1)` free `B)-orbits.  Every genuine actor action on `B` therefore
+   `1-o(1)` free `B`-orbits.  Every genuine actor action on `B` therefore
    has canonical coherent permutation representatives on that window.
 2. The given unitary normalizers need not be close to those representatives.
    An exact Fourier multiplicity cocycle stays at normalized-HS distance
@@ -389,6 +389,15 @@ global and moving-window:
 for `B_E -> B_(gE)`, choose commutant gauges or new permutations
 simultaneously over increasing `E` so that all actor products agree on
 almost every point.  The local quotients use different multiplicity
-commutants and provide no comparison maps between them.  Thus this node
-remains OPEN.
+commutants and provide no comparison maps between them.
+
+`finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction`
+sharpens the fixed-window part: after a spanning-tree gauge, simultaneous
+spatialization relative to a proposed permutation target is exactly
+simultaneous conjugacy of the fundamental-cycle holonomy tuple.  Its
+multiplicity-one bent-phase example has exact canonical trace and covariance
+but no commutant gauge to any permutation normalizer.  A different
+permutation target still exists, so this is a gauge-rounding obstruction,
+not a counterexample to equivariant transfer.  Constructing compatible
+targets across growing windows remains OPEN.
 
