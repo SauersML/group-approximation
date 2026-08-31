@@ -13,7 +13,7 @@ requires:
 
 The primitive-spectrum computation gives a type-I algebra with two
 continuous-trace composition strata.  The open stratum is Morita equivalent
-to `C(T)), and the closed quotient stratum is `C(T)).  Both spectra have
+to `C(T)`, and the closed quotient stratum is `C(T)`.  Both spectra have
 covering dimension one.  Therefore the definition of `ctdim`, together
 with its equality with Brown--Pedersen topological dimension on separable
 type-I algebras, gives
