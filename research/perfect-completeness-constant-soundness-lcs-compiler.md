@@ -121,6 +121,16 @@ machine-indexed binary LCS compiler or a separate direct terminal.
 
 ## Attempts
 
+- **Reweight or flag the published positive-noise test.** Dies
+  presentation-theoretically by
+  `taller-vidick-positive-noise-collapses-central-sign`. For every
+  `0<epsilon<1`, two supported masks `mu=f` and `mu=-f` produce the
+  same folded three-variable left-hand side with opposite parity signs.
+  Hence the output solution group has an explicit two-equation proof
+  `J=1`, for every source instance. Reweighting keeps both equations;
+  strategy-level direct sums and accept flags cannot create a representation
+  with `J=-1`. A successful exactification must change the finite
+  presentation and replace the lost zero-noise decoder.
 - **Remove the mask from the Taller--Vidick decoder.**  Dies by
   `linear-encoding-lcs-admits-odd-subset-cheats`: without noise every
   linear test on a linear encoding is passed by odd-subset characters with
@@ -176,14 +186,13 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   nonhalting inputs, which is the other orientation
   (`kleene-mipco-self-destroying-game`).
 - **Reverse Kleene does not manufacture perfect completeness.**
-  `reverse-kleene-does-not-remove-tv-completeness-loss` runs the exact
-  self-referential proof search for `J=1`.  The NONHALT branch would close the
-  goal, but a HALT proof gives only an instance-dependent upper gap
-  `gamma(D)` and conflicts with completeness `1-epsilon` only if
-  `epsilon<gamma(D)`.  Since `epsilon` was fixed before `D` is found, this is
-  another threshold-crossing obligation.  At `epsilon=0` the Bernoulli mask
-  support collapses and the Taller--Vidick decoder becomes vacuous, so no
-  algebraic limiting argument repairs it.
+  `reverse-kleene-does-not-remove-tv-completeness-loss` now has an explicit
+  outcome: on every positive-noise output, proof search finds the same
+  two-mask certificate `J=1`, so the fixed-point machine halts. Any
+  certificate-derived upper gap `gamma(D)` satisfies
+  `gamma(D)<=epsilon` on the honest halting strategy, precluding the
+  desired crossing. At `epsilon=0` the certificate disappears only because
+  the support changes, while the published decoder becomes vacuous.
 - **2026 shortcut audit.**  Cleve--Culf--Taller, arXiv:2607.06876, now give
   RE-hard tilted-XOR games, but their inherited completeness is
   `3/4-epsilon`, not one.  Culf, arXiv:2603.14746, rounds almost-perfect
