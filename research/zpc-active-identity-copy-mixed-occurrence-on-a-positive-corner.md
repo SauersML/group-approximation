@@ -73,3 +73,21 @@ reservoir, every proper subcorner lies entirely in the external factor and
 the selector packet compresses to scalars. Thus the next construction must
 add a genuinely mixed selector--reservoir generator; reusing another
 multipath sum or finite-packet arrow cannot provide the coherent occurrence.
+
+The common-arrow endpoint itself is quantitative and sharp.
+`two-qutrit-common-intertwiner-is-scalar-or-universal` proves, for one
+partial isometry `w` with source `r`, that
+
+```text
+||w([A,B]-1)||_2
+ <=2||A^o w-wA||_2+2||B^o w-wB||_2
+   +||([A^o,B^o]-1)ww^*||_2.
+```
+
+With the active Pauli gauge `[A,B]r=-r`, the left side is exactly
+`2 sqrt(tau(r))`. A genuine common frame therefore gives the desired
+normalized-HS charge. But the telescoping proof works in every tracial
+C-star algebra, so exact common-intertwiner rows are a universal lock. The
+remaining finite-specific task is precisely to extract such a positive
+model-dependent `r,w` from small matrix defects without requiring the
+infinite escape to contain that positive common occurrence.
