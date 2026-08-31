@@ -3,9 +3,9 @@ rg: 2
 id: extraspecial-fusion-filter-normalizer-proof
 kind: route
 title: Compute the spin Fourier PVM and factor every normalizer through its matrix multiplicity
-target: extraspecial-fusion-filter-is-local-and-normalizer-globalization-is-matricial
+target: extraspecial-fusion-filter-local-normalizer-globalization
 requires:
-  - perfect-qc-synchronous-separation-yields-a-finite-bcs-with-no-matrix-model
+  - perfect-qc-separation-yields-finite-bcs-with-no-matrix-model
 ---
 
 An extraspecial group `E_n` has `2^(2n)` linear characters, all trivial

@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: extraspecial-fusion-filter-is-local-and-normalizer-globalization-is-matricial
+id: extraspecial-fusion-filter-local-normalizer-globalization
 kind: claim
 title: The extraspecial fusion filter gives exact one-hot corners, but every normalizer globalization is matricial
 artifacts:
