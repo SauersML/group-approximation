@@ -59,7 +59,10 @@ that perfectness cannot force the whole character to be canonical.
 
 For any finite recursive chain, apply the second prerequisite successively
 and compose its monomial unitaries. Ordinary associativity of finite tensor
-products gives `(PHT8)`, and trace factorization gives `(PHT9)`.
+products gives `(PHT8)`, and trace factorization gives `(PHT9)`. The
+readable inclusion contains only the tensor diagonal SamZ algebras; the
+Pauli-X normalizers live in the ambient strategy algebra and their existence
+does not place the full matrix packet inside `D_infinity`.
 This construction chooses a new restricted/coarse-grained strategy and a
 new monomial identification at each level. Existence of those finite
 factorizations supplies no compatible inclusions, endomorphism, or
