@@ -39,8 +39,9 @@ finite pure `D`, and then `C(X,D)` is also pure. Projections and `K_1(D)` are
 arbitrary. The assertion is componentwise: tree components use the pointwise
 formula and unicyclic components use the enriched formula above.
 
-No classification is asserted for a component containing two or more
-independent cycles.
+This claim treats one cyclic block. The separate cactus classification
+handles multiple cycles separated by articulation vertices; a 2-connected
+block of first Betti number at least two remains outside both formulas.
 
 ROUTES
 
