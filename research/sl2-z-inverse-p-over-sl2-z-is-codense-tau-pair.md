@@ -35,6 +35,17 @@ Let `p` be a prime, `A = SL_2(Z[1/p])`, `C = SL_2(Z)`.
    `c` satisfies `||v - Ev||_2 <= eps/kappa`, `E` the projection onto
    `rho(C)'`.
 
+The categorical and convex consequence is recorded in
+`modular-vertex-restriction-cone-has-singleton-fibers`. Restriction gives
+an order equivalence from finite-dimensional representations of `A` to
+the prime-to-`p` congruence representations of `C`. At every fixed
+congruence quotient the restriction matrix is the identity, its fibers are
+singletons, and the regular multiplicity vector is an exact feasible
+endpoint. Moreover every finite coordinate window of the regular character
+of `C` is matched exactly by a pulled-back finite-quotient regular
+representation. Hence no finite-support character or multiplicity Farkas
+obstruction remains at the full modular vertex.
+
 So `(A, C)` satisfies every hypothesis of
 `hnn-over-codense-kazhdan-subgroup-not-hyperlinear` in its `(tau)` form
 except the flexible HS-stability of `A`, which for `p = 2` is exactly
