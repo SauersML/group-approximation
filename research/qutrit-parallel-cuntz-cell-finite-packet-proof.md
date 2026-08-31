@@ -5,7 +5,7 @@ kind: route
 title: Count the shared-center parallel Cuntz packet and its scalar covariance
 target: qutrit-parallel-full-cuntz-cell-covariance-is-finite
 requires:
-  - qutrit-full-cuntz-four-root-cell-is-finite-but-generates-full-leavitt-group
+  - qutrit-four-root-cell-finite-but-generates-full-leavitt
   - finite-overgroup-packing-preserves-hyperlinearity
 ---
 
