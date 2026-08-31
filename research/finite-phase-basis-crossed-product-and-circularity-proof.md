@@ -102,24 +102,29 @@ its diffuse central algebra and need not be a positive corner.
 ## 3. The unrestricted existence statement is circular
 
 One direction of (PBD4) is Section 2.  Conversely, suppose a countable
-nonhyperlinear group `Lambda` exists.  Let
+nonhyperlinear group `Lambda` exists.  Take the countable locally finite
+Pauli index group
 
 ~~~text
-K=S_fin(N).
+K=direct_sum_(n in N) F_2^2
 ~~~
 
-This is countable, amenable and ICC, so `L(K)` is the hyperfinite
-`II_1` factor `R`.  Let `Lambda` act trivially on `R` and on its canonical
-group basis.  Then
+with the standard tensor-product symplectic sign cocycle `omega`.  Its
+twisted group algebra is
 
 ~~~text
-R crossed_product Lambda
- =L(K) tensor L(Lambda)
- =L(K times Lambda).                                    (8)
+L_omega(K)=tensor_(n in N) M_2(C)=R.                     (8)
 ~~~
 
-It is not Connes embeddable because it contains `L(Lambda)`.  The action in
-(8) already is its own phase-free group-basis dilation.  This proves the
+Let `Lambda` act trivially on `R` and on this projective Pauli basis.
+Then
+
+~~~text
+R crossed_product Lambda=R tensor L(Lambda).             (9)
+~~~
+
+It is not Connes embeddable because it contains `L(Lambda)`.  The action
+already is its own `mu_2`-phase Pauli-basis dilation.  This proves the
 reverse direction of (PBD4).
 
 Thus an unrestricted theorem asking only for the existence of some non-CE
