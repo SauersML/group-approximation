@@ -106,12 +106,12 @@ def simultaneousOffDiagonalMap {ι : Type*} {d s : ℕ}
 @[simp] theorem simultaneousOffDiagonalMap_apply_inl
     {ι : Type*} {d s : ℕ} (a : ι → RealProjectiveBlock d s)
     (x : Sphere d) (r : ι) (k : Fin s) :
-    simultaneousOffDiagonalMap a x (r, Sum.inl k) = a r |>.1 x k.succ 0 := rfl
+    simultaneousOffDiagonalMap a x (r, Sum.inl k) = (a r).1 x k.succ 0 := rfl
 
 @[simp] theorem simultaneousOffDiagonalMap_apply_inr
     {ι : Type*} {d s : ℕ} (a : ι → RealProjectiveBlock d s)
     (x : Sphere d) (r : ι) (k : Fin s) :
-    simultaneousOffDiagonalMap a x (r, Sum.inr k) = a r |>.1 x 0 k.succ := rfl
+    simultaneousOffDiagonalMap a x (r, Sum.inr k) = (a r).1 x 0 k.succ := rfl
 
 /-- The simultaneous off-diagonal map is odd. -/
 theorem simultaneousOffDiagonalMap_neg
@@ -129,8 +129,8 @@ upper-right entry in the family. -/
 theorem offDiagonal_entries_eq_zero_of_simultaneous_eq_zero
     {ι : Type*} {d s : ℕ} (a : ι → RealProjectiveBlock d s)
     {x : Sphere d} (hx : simultaneousOffDiagonalMap a x = 0) :
-    (∀ r k, a r |>.1 x k.succ 0 = 0) ∧
-      ∀ r k, a r |>.1 x 0 k.succ = 0 := by
+    (∀ (r : ι) (k : Fin s), (a r).1 x k.succ 0 = 0) ∧
+      ∀ (r : ι) (k : Fin s), (a r).1 x 0 k.succ = 0 := by
   constructor
   · intro r k
     have h := congrFun hx (r, Sum.inl k)
@@ -144,8 +144,8 @@ exactly vanishing of the assembled map. -/
 theorem simultaneousOffDiagonalMap_eq_zero_of_entries
     {ι : Type*} {d s : ℕ} (a : ι → RealProjectiveBlock d s)
     (x : Sphere d)
-    (hcol : ∀ r k, a r |>.1 x k.succ 0 = 0)
-    (hrow : ∀ r k, a r |>.1 x 0 k.succ = 0) :
+    (hcol : ∀ (r : ι) (k : Fin s), (a r).1 x k.succ 0 = 0)
+    (hrow : ∀ (r : ι) (k : Fin s), (a r).1 x 0 k.succ = 0) :
     simultaneousOffDiagonalMap a x = 0 := by
   funext p
   rcases p with ⟨r, k⟩
