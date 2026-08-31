@@ -2951,6 +2951,7 @@ import GroupApproximation.GGT.DGOLemma421Consequences
 import GroupApproximation.GGT.DGOAssemblyIsolation
 import GroupApproximation.GGT.DGOProposition414Assembly
 import GroupApproximation.GGT.DGOProposition414TwoHalfFlatten
+import GroupApproximation.GGT.DGOProposition414TwoHalfProducer
 import GroupApproximation.GGT.DGOTheorem442ProjectionDiameter
 import GroupApproximation.GGT.DGOTheorem442CosetProjections
 import GroupApproximation.GGT.HullHeGXFamily

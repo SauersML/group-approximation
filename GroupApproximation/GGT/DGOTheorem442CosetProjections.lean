@@ -122,6 +122,14 @@ theorem cosetOrbitAt_smul (H : Subgroup G) (s : S) (a : G) (q : G ⧸ H) :
       rw [MulAction.Quotient.smul_mk, smul_eq_mul, cosetOrbitAt_mk,
         cosetOrbitAt_mk, image_smul_leftCosetOrbitAt]
 
+omit [PseudoMetricSpace S] in
+/-- Every coset-indexed orbit vertex is nonempty. -/
+theorem cosetOrbitAt_nonempty (H : Subgroup G) (s : S) (q : G ⧸ H) :
+    (cosetOrbitAt H s q).Nonempty := by
+  obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective q
+  rw [cosetOrbitAt_mk]
+  exact ⟨g • s, 1, H.one_mem, by simp⟩
+
 /-- A positive-error approximate projection to a left-coset orbit. -/
 def IsApproxLeftCosetProjectionAt (H : Subgroup G) (s : S)
     (g : G) (a x : S) (κ : ℝ) : Prop :=
@@ -187,6 +195,50 @@ theorem exists_approxLeftCosetProjection_diameter_bound
   refine ⟨14 * δ + 2 * σ, by positivity, ?_⟩
   intro g a x y hx hy
   exact dist_approxLeftCosetProjection_le hδ hδ0 hgeo hiso hquasi hx hy
+
+/-! ## Projection sets between coset-orbit vertices -/
+
+/-- DGO's `π_Y(Z)`: all `δ`-approximate projections to the orbit vertex `Y`
+of all points in the orbit vertex `Z`. -/
+def approxCosetProjectionSet (H : Subgroup G) (s : S) (κ : ℝ)
+    (Y Z : G ⧸ H) : Set S :=
+  {x | ∃ a : S, a ∈ cosetOrbitAt H s Z ∧
+    IsApproxProjectionTo (cosetOrbitAt H s Y) a x κ}
+
+/-- Projection sets between coset-orbit vertices are nonempty at positive
+error. -/
+theorem approxCosetProjectionSet_nonempty
+    (H : Subgroup G) (s : S) {Y Z : G ⧸ H} {κ : ℝ} (hκ : 0 < κ) :
+    (approxCosetProjectionSet H s κ Y Z).Nonempty := by
+  obtain ⟨a, ha⟩ := cosetOrbitAt_nonempty H s Z
+  obtain ⟨x, hx⟩ := exists_isApproxProjectionTo (cosetOrbitAt H s Y) a
+    (cosetOrbitAt_nonempty H s Y) hκ
+  exact ⟨x, a, ha, hx⟩
+
+/-- The projection-set construction is exactly equivariant. -/
+theorem approxCosetProjectionSet_smul
+    (hiso : IsIsometricAction G S) (H : Subgroup G) (s : S)
+    (g : G) (κ : ℝ) (Y Z : G ⧸ H) :
+    approxCosetProjectionSet H s κ (g • Y) (g • Z) =
+      (fun x : S ↦ g • x) '' approxCosetProjectionSet H s κ Y Z := by
+  ext x
+  constructor
+  · rintro ⟨a, ha, hx⟩
+    rw [cosetOrbitAt_smul] at ha
+    obtain ⟨a₀, ha₀, rfl⟩ := ha
+    refine ⟨g⁻¹ • x, ?_, by simp⟩
+    refine ⟨a₀, ha₀, ?_⟩
+    have hback := isApproxProjectionTo_smul hiso g⁻¹
+      (cosetOrbitAt H s (g • Y)) hx
+    rw [cosetOrbitAt_smul] at hback
+    simpa only [Set.image_image, Function.comp_apply, inv_smul_smul,
+      Set.image_id'] using hback
+  · rintro ⟨x₀, ⟨a, ha, hx⟩, rfl⟩
+    refine ⟨g • a, ?_, ?_⟩
+    · rw [cosetOrbitAt_smul]
+      exact ⟨a, ha, rfl⟩
+    · rw [cosetOrbitAt_smul]
+      exact isApproxProjectionTo_smul hiso g (cosetOrbitAt H s Y) hx
 
 end Elementary
 end GGT
