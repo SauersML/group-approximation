@@ -162,7 +162,7 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   are uniformly repairable; the remaining question is vertex exactification
   of arbitrary approximate representations.
 - **The full remaining modulus is exactly congruence capture.**
-  \`dv-distance-is-defect-plus-congruence-capture\` defines
+  `dv-distance-is-defect-plus-congruence-capture` defines
   \(A_{\mathrm{cong}}\) as generalized-HS distance to the union of all exact
   congruence vertex pairs, in all dimensions and at all mixed levels. The
   unbounded mixed repair theorem and one fixed word-length estimate give
