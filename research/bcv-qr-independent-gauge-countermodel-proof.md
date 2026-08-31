@@ -60,7 +60,7 @@ These choices satisfy the exact conclusions of BCV Remark 4.22. Equation
 (92) is literal. Equation (93) is imposed side by side. Both answer
 observables commute with every `SamZ` atom. For the hiding condition,
 `ker(s_A)=0`, so there is no nontrivial A-side Pauli-X fibre translation
-to check. On the B side `ker(s_B)=F_2^2), and `A=I tensor W` commutes
+to check. On the B side `ker(s_B)=F_2^2`, and `A=I tensor W` commutes
 with every `X^alpha tensor I`. The Read and Hide PVMs are therefore the
 ones in BCV equation (98), specialized to these two maps. They are genuine
 PVMs by the commutation calculation following that equation. The standard
@@ -100,7 +100,7 @@ In particular no Pauli-X translation or balanced product produces
 `I tensor V`.
 
 The B-side observable in (BQP4) does have identity outer action, but its
-gauge is the unconstrained involution `W), not `V).
+gauge is the unconstrained involution `W`, not `V`.
 
 ## 3. There is no hidden positive comparison corner
 
@@ -132,11 +132,11 @@ dimension-free positive-corner version of the desired anchor.
 Finally, a combinatorial-detyping anchor cannot repair the example.
 BCV Definition 4.40 assigns every such anchor both answer lengths zero and
 automatically accepts every incident edge. Its measurement algebra is
-scalar, so it carries no occurrence of `V), `W`, or any source
+scalar, so it carries no occurrence of `V`, `W`, or any source
 unreadable.
 
 A non-autoaccept synchronization equation on a common fibre could of
-course identify `V` and `W). But that is an added mixed occurrence
+course identify `V` and `W`. But that is an added mixed occurrence
 relation. If it is activated only when the readable seed lies in one
 fibre, it is exactly the selector-conditioned relation which the
 ZPC-to-LCS compiler is trying to replace. The BCV apparatus and its
