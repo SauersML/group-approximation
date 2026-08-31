@@ -25,9 +25,9 @@ Every `St_N(q)={v:v^*v=q}` is four-connected. The modulus is independent
 of `N` and `q`; no hyperfiniteness, full fundamental group, property
 Gamma, McDuff absorption, or complement slack is assumed.
 
-Equivalently, for every continuous `x:S^4->Nq` with
-`sup||x||_2<=delta` and every `kappa>0`, there is a continuous
-constant-trace supercarrier `e_z<=q` satisfying
+The proof establishes the stronger auxiliary statement: for every
+continuous `x:S^4->Nq` with `sup||x||_2<=delta` and every `kappa>0`, there
+is a continuous constant-trace supercarrier `e_z<=q` satisfying
 
 ```text
 tau(e_z)<=min(tau(q),2delta^2/kappa^2),
