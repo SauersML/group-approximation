@@ -503,3 +503,48 @@ retained by canonical HS microstates.  The latter proves that finite
 presentation plus exact FD invisibility, even after adjoining a nonamenable
 property-(T) factor, has no abstract approximate-collapse consequence.
 The global nonhyperlinearity route remains **OPEN**.
+
+
+**2026-08-31 (Kun--Thom v3 exact counterprofile and CE fork).**
+`canonical-kun-thom-wreath-factor-is-an-exact-nonnormalized-commutant`
+shows that the proposed normalization is false before the matrix/CE
+hypothesis is imposed.  In the canonical finite tracial algebra `L(W)`, the
+base lamp `a_Gamma` lies in the `Gamma`-commutant, while for a strict
+compressor `t` and `gamma_0 in Gamma minus t Gamma t^(-1)`,
+
+~~~text
+norm_2(
+  gamma_0 a_(tGamma) gamma_0^(-1)-a_(tGamma)
+)=sqrt(2).
+~~~
+
+Thus the translated lamp is at distance at least `1/sqrt(2)` from the
+`Gamma`-commutant.  Consequently there is an unconditional fork:
+
+~~~text
+W is nonhyperlinear,
+or
+a CE embedding of L(W) is a trace-faithful matrix-ultraproduct
+counterexample to centralizer normalization.
+~~~
+
+The derivation
+`strict-compressor-lamp-commutator-and-ce-dichotomy-proof` also audits the
+v3 proof of Kun--Thom Theorem 4.1.  Its permutation-only fullness step is
+now pinned exactly: Lemma 4.2(4) represents every centralizer permutation
+by a total bisection; compressor transport gives a faithful groupoid
+functor; the two median arguments make orbit and isotropy-order ratios tend
+to one; and the residual finite isotropy index is an integer below two, so
+the Hom-torsor map is onto and the transported bisection can be completed.
+There is no known matrix counterpart of the total-bisection
+representation or integer-index surjectivity.
+
+Alekseev--Thom Open Problem 6.2 is the coordinate-description gate, but
+the relative application also needs joint compatibility: the coordinate
+algebras for `Gamma` and `t Gamma t^(-1)` must use the same compressor lifts,
+and the automatic one-sided inclusion must be upgraded uniformly on their
+operator-norm unit balls.  Property `(T)` supplies adjoint spectral gap but
+cannot identify the two fixed spaces; the exact wreath vector above proves
+this already in a finite tracial algebra.  Hence the matrix-internal
+cluster/fullness theorem, not spectral gap alone, is the precise remaining
+bridge.
