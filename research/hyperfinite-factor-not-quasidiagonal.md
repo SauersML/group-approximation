@@ -9,6 +9,7 @@ distinct_from:
   stw99-problem-x1-fails-on-full-group-algebras: that refutes X(1) through an amenable non-quasidiagonal canonical trace on some full group algebra C*(G); this refutes X(2), which is the single trace of R, and it also refutes X(1) but through the trace of R rather than a group trace.
 artifacts:
   - research/artifacts/stw99-x2-unitary-subgroup-reduction-2026-08-30.md
+  - research/artifacts/x2-popa-formulations-ingestion-2026-08-30.md
 ---
 
 The hyperfinite II₁ factor `R` is not quasidiagonal as a C\*-algebra;
@@ -38,3 +39,12 @@ needs one countable non-MF group inside `U(R)`.
   quasidiagonal, so non-exactness alone is not enough; the witness must be
   non-quasidiagonal for a reason invisible to all its finite-dimensional
   representations, which is exactly what a non-MF group supplies.
+* External status pass (2026-08-30, quarantined in
+  `research/artifacts/x2-popa-formulations-ingestion-2026-08-30.md`):
+  independently reaches the same frontier — the two remaining
+  breakthrough shapes are the norm upgrade of Connes' Folner
+  projections (positive side,
+  `norm-folner-projections-for-hyperfinite-factor`) and a non-MF group
+  with a faithful hyperfinite character (this side).  Note a weaker
+  target suffices here: refuting `hyperfinite-factor-mf` (norm matrix
+  models alone, no trace recovery, no u.c.p.) already refutes X(2).
