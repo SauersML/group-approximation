@@ -52,3 +52,8 @@ cycles.
 This is an exact presentation theorem only.  Approximate equality errors
 can accumulate around a cycle of length `d`, so the construction does not
 claim a degree-independent Hilbert--Schmidt soundness constant.
+
+`expander-equality-splitting-is-a-robust-occurrence-four-compiler` repairs
+this quantitative loss by spending one more occurrence per copy.  Its
+rotating-Pauli example also proves that the degree-two equality cycle here
+has an unavoidable quadratic Poincare degeneration.
