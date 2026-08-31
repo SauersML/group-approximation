@@ -137,6 +137,120 @@ theorem adjoint_superposition_comp_self
   rw [hx, hinner j hj]
   rfl
 
+/-- **The finite Pythagorean identity for the partial superposition.**
+
+This is the scalar form of `adjoint_superposition_comp_self` which the strong
+limit construction consumes.  It is important that the right side is the
+partition's actual finite square sum: no passage to an infinite operator sum
+has happened yet. -/
+theorem norm_superposition_apply_sq (P : QuasicentralPartition K d)
+    (hiso : ∀ j, ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
+    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
+    (N : ℕ) (x : K) :
+    ‖superposition V P.d N x‖ ^ 2 =
+      ∑ j ∈ Finset.range N, ‖P.d j x‖ ^ 2 := by
+  have hgram := adjoint_superposition_comp_self (d := P.d) hiso horth
+    P.isSelfAdjoint N
+  have happ := congrArg (fun T : K →L[ℂ] K ↦ T x) hgram
+  have hinner := congrArg (fun y : K ↦ ⟪x, y⟫_ℂ) happ
+  have hleft :
+      ⟪x, (ContinuousLinearMap.adjoint (superposition V P.d N) ∘L
+        superposition V P.d N) x⟫_ℂ =
+        (((‖superposition V P.d N x‖ ^ 2 : ℝ) : ℂ)) := by
+    rw [ContinuousLinearMap.comp_apply,
+      ContinuousLinearMap.adjoint_inner_right, inner_self_eq_norm_sq_to_K]
+    norm_cast
+  have hright :
+      ⟪x, (∑ j ∈ Finset.range N, P.d j * P.d j) x⟫_ℂ =
+        (((∑ j ∈ Finset.range N, ‖P.d j x‖ ^ 2 : ℝ) : ℂ)) := by
+    rw [sum_apply, inner_sum]
+    push_cast
+    exact Finset.sum_congr rfl fun j _ ↦ P.inner_sq j x
+  rw [hleft, hright] at hinner
+  exact_mod_cast hinner
+
+/-- Every partial superposition is a contraction. -/
+theorem norm_superposition_apply_le (P : QuasicentralPartition K d)
+    (hiso : ∀ j, ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
+    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
+    (N : ℕ) (x : K) : ‖superposition V P.d N x‖ ≤ ‖x‖ := by
+  have hmono : Monotone fun M ↦ ∑ j ∈ Finset.range M, ‖P.d j x‖ ^ 2 := by
+    refine monotone_nat_of_le_succ fun M ↦ ?_
+    rw [Finset.sum_range_succ]
+    positivity
+  have hsqle := hmono.ge_of_tendsto (P.tendsto_sum_norm_sq x) N
+  rw [norm_superposition_apply_sq P hiso horth N x] at hsqle
+  nlinarith [norm_nonneg (superposition V P.d N x), norm_nonneg x]
+
+/-- The operator norms of all partial superpositions are uniformly bounded by
+one. -/
+theorem norm_superposition_le_one (P : QuasicentralPartition K d)
+    (hiso : ∀ j, ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
+    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
+    (N : ℕ) : ‖superposition V P.d N‖ ≤ 1 := by
+  refine ContinuousLinearMap.opNorm_le_bound _ zero_le_one fun x ↦ ?_
+  simpa using norm_superposition_apply_le P hiso horth N x
+
+/-! ## The strong-limit recursion seam -/
+
+/-- **A pointwise-Cauchy superposition has an isometric strong limit.**
+
+The finite Gram identities do all the operator-theoretic work: they uniformly
+bound the partial maps and identify the norm of their limit with the partition
+sum.  The sole hypothesis left here is pointwise Cauchy-ness of the orthogonal
+series.  It is the exact Hilbert-series lemma still needed to turn the finite
+partial construction into the general V4 isometry; no block-diagonal or Glimm
+input is hidden in it. -/
+theorem exists_isometric_superposition_limit
+    (P : QuasicentralPartition K d)
+    (hiso : ∀ j, ContinuousLinearMap.adjoint (V j) ∘L V j = 1)
+    (horth : ∀ j k, j ≠ k → ContinuousLinearMap.adjoint (V j) ∘L V k = 0)
+    (hcauchy : ∀ x : K, CauchySeq fun N ↦ superposition V P.d N x) :
+    ∃ W : K →L[ℂ] H,
+      (∀ x : K, Tendsto (fun N ↦ superposition V P.d N x) atTop (𝓝 (W x))) ∧
+      ContinuousLinearMap.adjoint W ∘L W = 1 := by
+  classical
+  let f : K → H := fun x ↦
+    Classical.choose (cauchySeq_tendsto_of_complete (hcauchy x))
+  have hf : ∀ x : K,
+      Tendsto (fun N ↦ superposition V P.d N x) atTop (𝓝 (f x)) :=
+    fun x ↦ Classical.choose_spec (cauchySeq_tendsto_of_complete (hcauchy x))
+  have hadd : ∀ x y : K, f (x + y) = f x + f y := by
+    intro x y
+    refine tendsto_nhds_unique (hf (x + y)) ?_
+    simpa only [map_add] using (hf x).add (hf y)
+  have hsmul : ∀ (c : ℂ) (x : K), f (c • x) = c • f x := by
+    intro c x
+    refine tendsto_nhds_unique (hf (c • x)) ?_
+    simpa only [map_smul] using (hf x).const_smul c
+  have hbound : ∀ x : K, ‖f x‖ ≤ 1 * ‖x‖ := by
+    intro x
+    refine le_of_tendsto (hf x).norm (Eventually.of_forall fun N ↦ ?_)
+    simpa using norm_superposition_apply_le P hiso horth N x
+  let W : K →L[ℂ] H := LinearMap.mkContinuous
+    { toFun := f
+      map_add' := hadd
+      map_smul' := hsmul }
+    1 hbound
+  have hW : ∀ x : K,
+      Tendsto (fun N ↦ superposition V P.d N x) atTop (𝓝 (W x)) := by
+    intro x
+    exact hf x
+  have hWnorm : ∀ x : K, ‖W x‖ = ‖x‖ := by
+    intro x
+    have hsquare : Tendsto (fun N ↦ ‖superposition V P.d N x‖ ^ 2)
+        atTop (𝓝 (‖W x‖ ^ 2)) := (hW x).norm.pow 2
+    have hsquare' : Tendsto (fun N ↦ ‖superposition V P.d N x‖ ^ 2)
+        atTop (𝓝 (‖x‖ ^ 2)) :=
+      (P.tendsto_sum_norm_sq x).congr fun N ↦
+        (norm_superposition_apply_sq P hiso horth N x).symm
+    have heq : ‖W x‖ ^ 2 = ‖x‖ ^ 2 := tendsto_nhds_unique hsquare hsquare'
+    nlinarith [norm_nonneg (W x), norm_nonneg x]
+  have hWiso : Isometry W :=
+    (AddMonoidHomClass.isometry_iff_norm W).mpr hWnorm
+  exact ⟨W, hW,
+    (ContinuousLinearMap.isometry_iff_adjoint_comp_self W).mp hWiso⟩
+
 /-! ## The defect estimate -/
 
 omit [CompleteSpace K] [CompleteSpace H] in
