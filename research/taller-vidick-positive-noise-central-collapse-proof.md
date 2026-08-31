@@ -85,3 +85,45 @@ At zero noise only `mu=1` occurs. Unless the chosen lifted `f` happens
 to be constant, neither `(TVP3)` nor `(TVP6)` is then simultaneously
 present. This pinpoints why deleting the noisy masks changes the algebra
 rather than continuously improving completeness.
+
+For the direct gap, let `q_+` and `q_-` denote the probabilities of the
+two full tuples used above. In each tuple the last two LCS occurrences are
+the same variable, so their two equal assignment bits cancel. Alice's first
+bit is therefore forced to `m_f` in the first context and to `-m_f` in
+the second. Condition on Bob receiving the common first query, an event of
+probability `1/3` in each tuple. If `r` is Bob's probability of returning
+`m_f` on that query, the loss contributed by these two contexts is
+
+```text
+(q_+/3)(1-r)+(q_-/3)r >= min(q_+,q_-)/3.                (TVP9)
+```
+
+This uses no finite-dimensional or synchrony assumption and proves
+`(TVC4)`.
+
+Now replace full Bernoulli support by a fixed support
+`M subseteq F_W`, sampled independently of the query function `f`.
+The proof `(TVP3)--(TVP8)` is available precisely when `M` contains both
+members of a lifted antipodal pair `{f^up,-f^up}`; this proves `(TVC5)`
+for this two-equation certificate.
+
+Let `S` be the honest assignment support. On a dictator at
+`phi in S`, the three honest answers in the test equation multiply to
+`mu(phi)`. Exact acceptance for every positive honest atom is therefore
+equivalent to `mu(phi)=1` for every `phi in S` and every supported mask,
+which is `(TVC6)`. If `S` is nonempty, `mu` and `-mu` cannot both
+belong to `A_S`. If the full assignment cube has a point outside `S`,
+flipping the mask only at that point gives a nonconstant member of `A_S`,
+so a support strictly larger than `{1}` exists.
+
+Finally, for `beta subseteq S` and every `mu in A_S`,
+
+```text
+chi_beta(mu)=product_(phi in beta) mu(phi)=1.            (TVP10)
+```
+
+Averaging proves `(TVC7)`. Folding removes even Fourier degrees, so any
+three-element subset of `S` is an undamped odd non-dictator character.
+This proves the stated `|S|<=2` necessary condition and completes the
+support-design audit.
+
