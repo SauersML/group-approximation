@@ -98,6 +98,19 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   bounded branching (`notes/TRUE_IWAHORI_INDEX_THREE_HAS_BOUNDED_BRANCHING.md`)
   and this does not stop the identity's mass spreading over growing many
   cross-pairs.  Recorded negative.
+- **The full modular-vertex restriction cone has no Farkas
+  obstruction.**
+  `modular-vertex-restriction-cone-has-singleton-fibers` proves that
+  restriction from `SL_2(Z[1/p])` to `SL_2(Z)` is an order equivalence
+  onto the prime-to-`p` congruence representations. At every finite
+  quotient the restriction matrix is the identity, its projectivized
+  feasible cone is the full simplex, and the Plancherel vector is an
+  integral interior point. Every finite regular character window, and even
+  every finite compressed regular coefficient table, is matched exactly by
+  a finite endpoint regular representation. Thus no fixed-level or
+  finite-support multiplicity/character separator can refute the target.
+  The missing obstruction or repair must live in coordinate alignment over
+  the smaller moving Iwahori/BS core.
 - **Refutation by character rigidity is unavailable.**  By
   `character-rigidity-equals-hyperfinite-hs-stability`, stability implies
   character rigidity, so a failure of character rigidity would refute the
