@@ -443,17 +443,17 @@ non-hyperlinear group, their Corollary 1.3) is consumed.
   must not be advertised as an equivalence without an additional flattening
   argument.
 - **Matrix-algebra Ulam stability starts after the missing leakage
-  estimate.** `alekseev-thom-starts-after-full-iwahori-leakage` audits
-  Alekseev--Thom, arXiv:2606.07369v1, Definition 2.1 and Theorem
-  3.5. Their dimension-free conclusion assumes one map on the entire
-  operator-norm unit ball with uniform additive, scalar, product, adjoint,
-  and unit defects. For a Stinespring compression the product defect is the
-  off-corner term `V*pi(x)(1-VV*)pi(y)V`; bounding it for all
-  contractions is the full leakage gate, not a consequence of two marked
-  cubics. A word-section compiler retains its moving van Kampen filling
-  constant (and a crude `|G|` coefficient loss). The theorem is a
-  valid amplified terminal repair once a uniform unit-ball compiler exists,
-  but invoking it to manufacture that compiler is circular.
+  estimate.** `matrix-ulam-stability-needs-full-unit-ball-control`
+  records the exact Alekseev--Thom input and a sharp two-by-two separation:
+  marked unitary relations can be exact while a matrix-unit product has
+  defect one. `word-section-fillings-obstruct-matrix-ulam-input` gives
+  the complementary quantitative compiler fence. A relative equivariant
+  section with RMS defective filling area `A_rms` gives unitary-table
+  energy at most `delta A_rms`, while the naive linear unit-ball
+  extension retains the crude loss `|G| A_max delta`. Thus
+  Alekseev--Thom is a valid amplified terminal repair once uniform
+  all-contraction leakage is supplied, but it neither removes the moving
+  filling constant nor manufactures that leakage from the two cubics.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
