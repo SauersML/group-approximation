@@ -19,6 +19,11 @@ namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 abbrev Sphere (n : ℕ) : Type :=
   ↥(Metric.sphere (0 : EuclideanSpace ℝ (Fin (n + 1))) (1 : ℝ))
 
+/-- The concrete finite-dimensional unit sphere is compact. -/
+noncomputable instance sphereCompactSpace (n : ℕ) : CompactSpace (Sphere n) :=
+  isCompact_iff_compactSpace.mp
+    (isCompact_sphere (0 : EuclideanSpace ℝ (Fin (n + 1))) 1)
+
 /-- An odd map between spheres is equivariant for the antipodal map. -/
 def IsOddMap {n : ℕ} (f : C(Sphere n, Sphere n)) : Prop :=
   ∀ x : Sphere n, f (-x) = - f x
