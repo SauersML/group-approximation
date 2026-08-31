@@ -307,7 +307,7 @@ theorem isClosed_twoNullIdeal (G : TracialTwoGauge D) :
   apply IsSeqClosed.isClosed
   intro a x ha hax
   show Tendsto (fun n ↦ G.q n (x n)) atTop (nhds 0)
-  rw [Metric.tendsto_nhds]
+  refine Metric.tendsto_nhds.2 ?_
   intro ε hε
   obtain ⟨k, hk⟩ :=
     ((Metric.tendsto_nhds.mp hax) (ε / 2) (half_pos hε)).exists
@@ -368,7 +368,11 @@ theorem mem_scalarPlusJ_iff_sub {G : TracialTwoGauge D}
       ∃ c : ℂ, x - algebraMap ℂ (BoundedCStarSequence D) c ∈ twoNullIdeal G := by
   constructor
   · rintro ⟨c, j, hj, rfl⟩
-    exact ⟨c, by simpa using hj⟩
+    refine ⟨c, ?_⟩
+    have hcancel : algebraMap ℂ (BoundedCStarSequence D) c + j
+        - algebraMap ℂ (BoundedCStarSequence D) c = j := by abel
+    rw [hcancel]
+    exact hj
   · rintro ⟨c, hc⟩
     exact ⟨c, x - algebraMap ℂ (BoundedCStarSequence D) c, hc, by abel⟩
 
@@ -481,7 +485,7 @@ theorem isClosed_scalarPlusJ (G : TracialTwoGauge D) :
       a m = algebraMap ℂ (BoundedCStarSequence D) d + i := ha
   choose c j hj hdec using ha'
   have hcauchy : CauchySeq c := by
-    rw [Metric.cauchySeq_iff]
+    refine Metric.cauchySeq_iff.2 ?_
     intro ε hε
     obtain ⟨N, hN⟩ :=
       Metric.cauchySeq_iff.mp hax.cauchySeq (ε / 2) (half_pos hε)
