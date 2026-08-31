@@ -110,7 +110,7 @@ earlier "all 99 covered" note.*
 | XCIII | stw99-problem-xciii-free-group-jiang-su-si | |
 | XCIV | stw99-problem-xciv-hyperfinite-factor-separably-z-stable | |
 | XCV | stw99-problem-xcv-cu-z-tensor, stw99-problem-xcv-pure-tensor-permanence | |
-| XCVI | stw99-problem-xcvi-simple-…, stw99-problem-xcvi-nowhere-scattered-… | |
+| XCVI | stw99-problem-xcvi-simple-…, stw99-problem-xcvi-nowhere-scattered-… | Cantor-diagonal cell SOLVED: such algebras are singly generated (cantor-diagonal-algebras-are-two-generated, single-generator upgrade) |
 | XCVII | stw99-problem-xcvii-nuclear-single-generation | |
 | XCVIII | stw99-problem-xcviii-free-isomorphism | infinite case ANSWERED (HP import) |
 | XCIX | stw99-problem-xcix-z-stability-kadison-kastler | |
