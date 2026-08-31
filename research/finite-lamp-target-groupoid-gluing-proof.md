@@ -67,7 +67,7 @@ zero.
 This construction is target-side.  It does not compare the new transports
 with any supplied unitary blocks and therefore has none of the conjugacy
 obstructions in
-`finite-schreier-holonomy-is-the-simultaneous-lamp-gauge-obstruction`.
+`finite-schreier-holonomy-is-the-lamp-gauge-obstruction`.
 
 ## Step 2: Fourier balance on a common union window
 
