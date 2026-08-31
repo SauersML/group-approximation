@@ -78,8 +78,10 @@ There is also an exact unitality obstruction. For
  q_{\rm dict}=\sum_{p\in P}e_{\chi_{\{p\}}},
 \]
 
-the extension statement makes \(K_\alpha\to\Pi\) injective. Hence, when
-all singleton characters survive and \(|P|\geq3\),
+the extension statement gives
+\(\ker(K\to\Pi)\subseteq\ker(K\to K_\alpha)\). Hence all singleton
+characters surviving forces \(L=1\) and makes \(H\to\Pi\) injective. When
+\(|P|\geq3\),
 
 \[
  p_--q_{\rm dict}
