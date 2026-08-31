@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.STW22TypeIC0Sum
+import GroupApproximation.Analysis.StateExtension
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Basic
 import Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Commute
 
@@ -19,6 +20,7 @@ namespace STW22
 noncomputable section
 
 open scoped CStarAlgebra ComplexOrder
+open StateExtension
 
 universe u
 
@@ -151,6 +153,54 @@ theorem IsIrreducibleRep.selfAdjoint_commutant_eq_scalar
     rcases hπ.2 M ⟨hMclosed, hMinv⟩ with hbot | htop
     · exact (hMne hbot).elim
     · exact (hMtop htop).elim
+
+/-- Full topological Schur lemma: an operator whose real and imaginary parts
+belong to the commutant of an irreducible C-star representation is a complex
+scalar.  The separate hypothesis for `star T` is exactly what is automatic for
+the image of a central element of the represented star algebra. -/
+theorem IsIrreducibleRep.commutant_eq_scalar
+    {π : A →⋆ₐ[ℂ] (H →L[ℂ] H)} (hπ : IsIrreducibleRep π)
+    (T : H →L[ℂ] H)
+    (hcomm : ∀ a : A, Commute T (π a))
+    (hstarcomm : ∀ a : A, Commute (star T) (π a)) :
+    ∃ c : ℂ, T = algebraMap ℂ (H →L[ℂ] H) c := by
+  let R : H →L[ℂ] H := ((rePart T : selfAdjoint (H →L[ℂ] H)) : H →L[ℂ] H)
+  let S : H →L[ℂ] H := ((imPart T : selfAdjoint (H →L[ℂ] H)) : H →L[ℂ] H)
+  have hRcomm : ∀ a : A, Commute R (π a) := by
+    intro a
+    dsimp [R]
+    exact ((hcomm a).add_left (hstarcomm a)).smul_left _
+  have hScomm : ∀ a : A, Commute S (π a) := by
+    intro a
+    dsimp [S]
+    exact (((hcomm a).sub_left (hstarcomm a)).smul_left _).smul_left _
+  obtain ⟨r, hr⟩ := hπ.selfAdjoint_commutant_eq_scalar R (rePart T).2 hRcomm
+  obtain ⟨s, hs⟩ := hπ.selfAdjoint_commutant_eq_scalar S (imPart T).2 hScomm
+  refine ⟨(r : ℂ) + Complex.I * (s : ℂ), ?_⟩
+  calc
+    T = R + Complex.I • S := (rePart_add_I_smul_imPart T).symm
+    _ = algebraMap ℝ (H →L[ℂ] H) r +
+        Complex.I • algebraMap ℝ (H →L[ℂ] H) s := by rw [hr, hs]
+    _ = algebraMap ℂ (H →L[ℂ] H) ((r : ℂ) + Complex.I * (s : ℂ)) := by
+      ext v
+      change (r : ℂ) • v + Complex.I • ((s : ℂ) • v) =
+        ((r : ℂ) + Complex.I * (s : ℂ)) • v
+      rw [smul_smul, add_smul]
+
+/-- The image of a central element in an irreducible C-star representation is
+a scalar.  No algebraic or Borel-functional-calculus Schur lemma is assumed. -/
+theorem IsIrreducibleRep.map_center_eq_scalar
+    {π : A →⋆ₐ[ℂ] (H →L[ℂ] H)} (hπ : IsIrreducibleRep π)
+    (z : A) (hz : ∀ a : A, z * a = a * z) :
+    ∃ c : ℂ, π z = algebraMap ℂ (H →L[ℂ] H) c := by
+  apply hπ.commutant_eq_scalar (π z)
+  · intro a
+    rw [commute_iff_eq, ← map_mul, ← map_mul, hz]
+  · intro a
+    rw [← map_star]
+    rw [commute_iff_eq, ← map_mul, ← map_mul]
+    have h := congrArg star (hz (star a))
+    exact congrArg π (by simpa only [star_mul, star_star] using h.symm)
 
 end
 
