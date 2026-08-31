@@ -59,6 +59,20 @@ cone, finite-dimensional strong separation gives (HFD4), and every real
 functional on \(D_{\rm sa}\) has the form \(C\mapsto\tau(ZC)\).  This proves
 the alternative.
 
+The sign of the separator is load-bearing.  If \(Z\geq0\), then (HFD3)
+becomes
+
+\[
+\tau(ZA^*A)=\|AZ^{1/2}\|_2^2.
+\]
+
+Thus (HFD2) forces \(AZ^{1/2}=0\) for every \(A\in{\cal H}\): a positive
+dual witness is nothing but a literal uncovered right carrier.  Any
+frame failure with full right support can only be certified by an
+**indefinite** multiplier, using cancellation between core sectors.  Hence
+central positive-idempotent bookkeeping cannot see the most general
+near-top obstruction.
+
 Apply the theorem to the near-top Hecke subspace
 
 \[
