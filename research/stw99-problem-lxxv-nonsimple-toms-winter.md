@@ -15,6 +15,14 @@ artifacts:
 are finite nuclear dimension, `Z`-stability, and `Cu`-regularity
 (`Cu(A) ≅ Cu(A ⊗ Z)` via the first-factor map) equivalent?
 
+**Known arcs now formalized:**
+`stw99-lxxv-z-stable-implies-cu-regular` (unconditional) and
+`stw99-lxxv-fnd-implies-pure` (Robert--Tikuisis + APTV).  The cycle's
+open content is exactly: pure ⟹ Cu-regular nonsimply (Problem
+LXXVI), Cu-regular ⟹ `Z`-stable nonsimply (the nonsimple Winter
+question), and `Z`-stable ⟹ finite nuclear dimension nonsimply
+(where LXXXII is the sub-question).
+
 ## Attempts
 
 * Known arcs: `Z`-stable ⟹ Cu-regular (Rordam machinery, no
