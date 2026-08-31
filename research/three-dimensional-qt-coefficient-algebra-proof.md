@@ -44,7 +44,7 @@ S v_i=v_(i+1),
 T v_0=0,                    T v_(i+1)=v_i.
 ```
 
-Then `TS=1), while `Q` is the projection onto `F_2v_0` and
+Then `TS=1`, while `Q` is the projection onto `F_2v_0` and
 `A=QT` sends `v_1` to `v_0` and kills every other basis vector.
 The operators `1,Q,A` are linearly independent. Hence their preimages
 in `J` are linearly independent, proving `(GQF1)` and
@@ -78,7 +78,7 @@ tau(lambda(H))=0,
 Restriction of the regular representation of a finite group to its
 subgroup `C` is a multiple of the regular representation of `C`.
 Hence all nine qutrit Fourier atoms have their canonical normalized
-weight `1/9).
+weight `1/9`.
 
 ## Absorption of the polar calculation
 
@@ -97,8 +97,8 @@ g_2^j G_(sigma,tau)R,
 and all source, range, and cross terms formed from them.
 
 The sign subgroup `F_0=<C,H,C_1,W>` is a subgroup of `K_QT`.
-The restriction of the regular `K_QT)-module to `F_0` is a multiple
-of the regular `F_0)-module. Therefore the normalized polar-support
+The restriction of the regular `K_QT`-module to `F_0` is a multiple
+of the regular `F_0`-module. Therefore the normalized polar-support
 ranks computed in the sign-rank theorem remain exactly `5/72` and
 `1/16` in this larger model.
 
