@@ -78,6 +78,24 @@ mechanism for proving a trace non-quasidiagonal:
    the negative route's difficulty, strictly extending
    "witnesses are never group-shaped" to the mechanism level.
 
+## 2a. Same-session refutation of the dimension-free claim
+
+Continuing to model-test after landing: the dimension-free shadow
+avoidance claim is FALSE.  `z = Σ_k e_{k1} ⊗ u_k/√d` (trace-zero
+unitaries `u_k ∈ R'`) has `z*z = e₁₁⊗1`, so `‖z‖₂ = d^{-1/2} → 0`,
+`E_{M_d}(z) = 0`, and `‖z(1⊗s')‖ = 1` for every nonzero `s' ∈ R'` —
+the bad subspace has trace `1/d` and full `R'`-shadow.  Nodes:
+`shadow-avoidance-fails-at-column-isometries` (+proof).  The rate cell
+of Section 1 survives (this family sits at `d^{-1/2}`, above the
+`ε d^{-5/2}` threshold), and the two results pin the critical
+avoidance exponent into `[1/2, 5/2]`.  Section 1's closing hope that
+"a proof should re-choose `M` and `s'` jointly" is hereby demoted:
+re-choosing `M` adapted to the packet is a reformulation of local AFD
+itself, so the commutant reduction yields exactly the rate cell and
+nothing more.  Lesson re-learned: model-test the OPEN claim before
+landing it, not only the established one — the counterexample took
+minutes and the claim had already shipped.
+
 ## 3. Consistency checks recorded
 
 * Rate-cell sanity at `δ = 0` (packet inside `M_d`): reduces to

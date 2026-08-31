@@ -9,6 +9,10 @@ artifacts:
   - research/artifacts/x2-shadow-avoidance-recon-2026-08-31.md
 ---
 
+**DEAD**: the first premise is refuted by
+`shadow-avoidance-fails-at-column-isometries`; the implication below
+remains valid and the route is kept as the record of it.
+
 Given a finite packet `Y ⊂ R` and `ε`, hyperfiniteness supplies a
 finite-dimensional subfactor `M_d` with residues
 `z_i = y_i − E_{M}(y_i)` of 2-norm below `δ₀(ε, |Y|)` — no rate

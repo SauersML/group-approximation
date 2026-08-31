@@ -2,6 +2,7 @@
 rg: 2
 id: dimension-free-shadow-avoidance-in-hyperfinite-factor
 kind: claim
+refuted_by: [shadow-avoidance-fails-at-column-isometries]
 title: Small 2-norm elements admit norm-killing projections in the relative commutant, dimension-free
 distinct_from:
   x2-local-afd-holds-at-rate-controlled-packets: that is the solved cell where the approximation rate pays for the dimension factors; this is the dimension-free strengthening whose truth would settle Problem X(2) positively for all packets.
@@ -24,6 +25,14 @@ dimension-free form makes Popa's local-AFD criterion hold for EVERY
 finite packet of `R` (apply it to the residues `z_i = y_i − E_M(y_i)`
 of an arbitrarily good 2-norm approximation), so it implies
 Problem X(2) affirmatively (`x2-via-dimension-free-shadow-avoidance`).
+
+**REFUTED** (`shadow-avoidance-fails-at-column-isometries`): the
+column isometry `z = Σ_k e_{k1} ⊗ u_k/√d` has vanishing 2-norm
+`d^{-1/2}` yet full shadow — `‖z(1⊗s')‖ = 1` for every nonzero
+`s' ∈ R'`.  The route `x2-via-dimension-free-shadow-avoidance` is
+dead; the rate-controlled cell survives, with the critical exponent
+pinned in `[1/2, 5/2]`.  The Attempts below are kept as the record of
+the reduction's shape.
 
 ## Attempts
 
