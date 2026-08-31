@@ -8,6 +8,7 @@ distinct_from:
   finite-schreier-holonomy-is-the-lamp-gauge-obstruction: that asks whether supplied normalizers are related to a prescribed target by commutant gauge; this rounds near-Cartan normalizers and then discards all phases.
   invariant-cartan-completion: that asks abstractly for an actor-invariant Cartan in the ultraproduct; this identifies two finite-dimensional numerical observables, proves quantitative target bounds, and shows why deriving them from ordinary moments is the same open theorem.
   elementary-abelian-regular-normalizers-have-diffuse-fibers: that supplies exact diffuse normalizers far from monomials; this isolates the extra collision statistic which those local hypotheses do not control.
+  canonical-regular-packets-leave-an-unbounded-cartan-reservoir: that tests fixed nonabelian and paired central-character packets; canonical trace leaves an unbounded multiplicity commutant, so the packet cannot select the rank-one masa assumed here.
 artifacts:
   - notes/TRUE_RELATIVE_BURTON_KUN_THOM_REDUCTION.md
 ---
@@ -98,6 +99,14 @@ Thus scalar mixed traces, even together with exact covariance and actor
 products, supply neither the collision nor the phase-free condition.  These
 statistics sum over the growing minimal projections of a chosen Cartan; they
 are not moments of a fixed finite list of group words.
+
+The same remains true after adjoining a fixed nonabelian basis packet.
+`canonical-regular-packets-leave-an-unbounded-cartan-reservoir` proves that
+canonical regular trace represents every selected simple sector as a fixed
+matrix factor tensored with an unbounded multiplicity algebra.  Even an ideal
+left/right pair leaves the external amplification.  The packet rigidifies
+coarse atoms but supplies neither the rank-one refinement nor collision
+control on the multiplicity actor.
 
 ## Exact circularity barrier
 
