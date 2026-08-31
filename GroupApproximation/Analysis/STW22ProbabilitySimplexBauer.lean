@@ -131,7 +131,8 @@ theorem diracFM_mem_probSimplex (x : K) : diracFM x ∈ probSimplex K :=
 
 theorem diracFM_apply_singleton_self (x : K) : (diracFM x) ({x} : Set K) = 1 := by
   have h : (((diracFM x) ({x} : Set K) : ℝ≥0) : ℝ≥0∞) = 1 := by
-    rw [FiniteMeasure.ennreal_coeFn_eq_coeFn_toMeasure, diracFM_toMeasure]
+    rw [FiniteMeasure.ennreal_coeFn_eq_coeFn_toMeasure]
+    show (Measure.dirac x) ({x} : Set K) = 1
     exact Measure.dirac_apply_of_mem rfl
   exact_mod_cast h
 
@@ -139,7 +140,7 @@ theorem diracFM_apply_singleton_self (x : K) : (diracFM x) ({x} : Set K) = 1 := 
 theorem eq_diracFM_of_apply_singleton [MeasurableSingletonClass K] {μ : FiniteMeasure K}
     (hmass : μ.mass = 1) {x : K} (hx : μ ({x} : Set K) = 1) : μ = diracFM x := by
   apply FiniteMeasure.toMeasure_injective
-  rw [diracFM_toMeasure]
+  show (μ : Measure K) = Measure.dirac x
   have huniv : (μ : Measure K) univ = 1 := by
     rw [← FiniteMeasure.ennreal_mass, hmass, ENNReal.coe_one]
   have hxm : (μ : Measure K) ({x} : Set K) = 1 := by
@@ -205,7 +206,9 @@ theorem apply_eq_zero_or_one_of_mem_extremePoints {μ : FiniteMeasure K}
   have ht : (0 : ℝ≥0) < μ E := lt_of_le_of_ne (zero_le _) (Ne.symm h0)
   have hu : (0 : ℝ≥0) < μ Eᶜ := by
     rcases eq_or_lt_of_le (zero_le (μ Eᶜ)) with h | h
-    · exact absurd (by rw [← hsum, ← h, add_zero]) h1
+    · exfalso
+      apply h1
+      rw [← hsum, ← h, add_zero]
     · exact h
   have hm1 : ((μ E)⁻¹ • μ.restrict E) ∈ probSimplex K := by
     show ((μ E)⁻¹ • μ.restrict E).mass = 1
@@ -256,7 +259,8 @@ theorem exists_eq_diracFM_of_mem_extremePoints [TopologicalSpace K] [T2Space K]
   have huniv : (μ : Measure K) univ = 1 := by
     rw [← FiniteMeasure.ennreal_mass, hmass, ENNReal.coe_one]
   have hone : (μ : Measure K) (⋂ n, V n) = 1 := by
-    have h := measure_add_measure_compl (μ := (μ : Measure K)) hmble
+    have h : (μ : Measure K) (⋂ n, V n) + (μ : Measure K) ((⋂ n, V n)ᶜ)
+        = (μ : Measure K) univ := measure_add_measure_compl hmble
     rw [hnull, add_zero, huniv] at h
     exact h
   have hne0 : (μ : Measure K) (⋂ n, V n) ≠ 0 := by
