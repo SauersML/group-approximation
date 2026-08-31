@@ -156,3 +156,22 @@ Thus finite-corner production is equivalent to finding a
 \`right-core-cayley-average-gives-toeplitz-window\`
 reduces this to a double-coset synchronization energy.  Its zero set is
 exactly the endpoint set, but no uniform moving-level estimate is known.
+
+
+On an exactly regular finite core this selector diagonalizes further.
+\`regular-core-window-is-a-hecke-kraus-hull\` identifies every relative
+extender coefficient with
+
+\[
+\sum_j A_j^*\lambda_{A_N}(x)A_j,\qquad
+ A_j\in(\lambda_{A_N}(B_N))',\quad \sum_jA_j^*A_j=1.
+\]
+
+The transfer operator
+\(T_X(A)=E_D(\lambda(x)AX)\) is a selfadjoint contraction.
+By \`hecke-top-spectrum-coverage-controls-window\`, exact window membership
+is equivalent to the \(1\)-eigenspace carrying a unital Kraus frame, while
+a frame in its \([1-\epsilon,1]\) band gives corner error at most
+\(\sqrt{2\epsilon}\).  The moving arithmetic gate can therefore be stated
+as uniform top-Hecke-spectrum **coverage**, not merely existence of a top
+eigenvector or scalar character agreement.
