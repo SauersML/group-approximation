@@ -401,3 +401,32 @@ permutation target still exists, so this is a gauge-rounding obstruction,
 not a counterexample to equivariant transfer.  Constructing compatible
 targets across growing windows remains OPEN.
 
+**2026-08-31 (FDT7 balanced-projection and coset-wreath boundary; (CCR)
+still OPEN).**  The claim
+`fdt7-is-balanced-bernoulli-projection-transfer` and derivation
+`balanced-bernoulli-projection-transfer-proof` reduce the remaining pointed
+unitary estimate exactly to trace-half projection transfer.  The reversible
+map is `J(v)=[[0,v],[v^*,0]]`, `P(v)=(I+J(v))/2`; diagonal actor doubling
+preserves normalized-HS actor defects, and the projection displacement is
+one half of the original commutator displacement.  Conversely
+`v=2p-I`.  Thus polar decomposition, Powers--Størmer, and spectral cutting
+do not close the gate.
+
+The exact finite-tracial counterprofile is the Bernoulli crossed product for
+`G` acting on `G/Lambda`.  Its base half-projection is
+`Lambda`-fixed and has squared displacement `1/2` under every
+`gamma in Gamma minus Lambda`; its orbit module is the non-FD-tempered
+`ell^2(G/Lambda)`.  This is
+`L((direct_sum_(G/Lambda) C_2) semidirect G)`, so hyperlinearity of that
+generalized coset wreath product would give a literal FDT7 and (CCR)
+counterexample.  No such matrix model follows from the actor microstates;
+the refuter remains conditional, exactly as in
+`coset-bernoulli-ce-refutes-relative-commutant-collapse`.
+
+Projectivization is not a substitute: Pauli `X,Z` have
+`||[X,Z]||_2=2`, while both their adjoint actions and their
+conjugate-tensor lifts commute.  A phase-sensitive corner Ulam theorem would
+suffice, but finite-dimensional image collapse shows that its asserted
+exactification already implies FDT7.  That matrix-specific exactification is
+the remaining gate.
+
