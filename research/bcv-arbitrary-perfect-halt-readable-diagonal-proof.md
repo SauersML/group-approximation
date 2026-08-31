@@ -79,8 +79,9 @@ assigns answer length zero to every anchor and autoaccepts every sampled
 edge incident to one. Cross intersections between a copy and an
 opposite-player anchor are impossible for the same type-indicator reason.
 
-In the tensor sampler, every left endpoint is a tuple of left-range
-vertices and every right endpoint a tuple of right-range vertices. Hence
+Claim 6.7 applies the base Player map coordinatewise in the tensor sampler.
+Thus every left endpoint is a tuple of left-range vertices and every right
+endpoint a tuple of right-range vertices. Hence
 the two endpoint ranges intersect only in `(o,...,o)`, whose total answer
 length is zero. Removing that harmless zero-answer vertex leaves a genuine
 bipartition of the entire supported graph of `(NHP2)`. By Lemma 2.59
