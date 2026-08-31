@@ -7,6 +7,7 @@ target: fdt7-is-balanced-bernoulli-projection-transfer
 requires:
   - kt-ccr-holds-on-the-fd-tempered-adjoint-sector
   - fd-invisibility-of-compression
+  - coset-bernoulli-ce-refutes-relative-commutant-collapse
 ---
 
 ## Step 1: the two-by-two linearization is isometric
