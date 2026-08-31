@@ -7,6 +7,7 @@ distinct_from:
   trace-extending-bcs-to-lcs-maps-are-already-terminal: that identifies a trace-extending BCS-to-LCS arrow as the final theorem; this constructs a genuine property-T trace envelope and proves that quotienting it cannot supply that arrow after GNS reduction.
   non-ce-property-t-equivalence-relation-exists: that embeds a non-CE algebra into a property-T relation factor; this is a C-star crossed-product statement with explicit unital maps and an exact quotient/coequalizer obstruction.
   standard-character-envelopes-do-not-supply-signed-bcs-quotient: that audits particular group-character envelopes; this gives a general faithful-trace theorem for every quotient or coequalizer.
+  fd-invisible-coequalizers-have-only-affine-tv-packets: that classifies the finite-dimensional selector sectors of one automorphic Kun-Thom coequalizer; this proves trace-GNS rigidity before any selector calculation and leaves only nonquotient embeddings alive.
 ---
 
 **ESTABLISHED PROPERTY-T FIREWALL.** Let `A_B` be the unital C-star
