@@ -9,7 +9,7 @@ distinct_from:
   strict-compressor-mixed-return-collapses-shared-pauli-sign: that proves collapse for genuine finite-dimensional actors and isolates compressor low-band normalization; this gives a Pauli-compatible countermodel to that normalization for one actual Kun--Thom compressor.
   kt-nested-compressor-flat-tower-has-uniform-wall: that constructs an explicit two-fold relative wall for the one-compressor actor; this realizes the whole shared-center Pauli presentation and keeps the central sign maximally separated.
   monomial-ascending-hnn-coset-action-sofic: that proves the underlying coset action is sofic; this applies the marked common-center Pauli chart theorem and quantifies the resulting operator-norm low-band leakage.
-  kt-two-positive-compressors-generate-full-obstruction: that proves two positive compressors already generate the full nons​​ofic action; this proves one compressor is insufficient even after naming both Pauli coordinates.
+  kt-two-positive-compressors-generate-full-obstruction: that proves two positive compressors already generate the full nonsofic action; this proves one compressor is insufficient even after naming both Pauli coordinates.
 ---
 
 **ESTABLISHED PAULI-COMPATIBLE COUNTERMODEL FOR EVERY ONE-COMPRESSOR
