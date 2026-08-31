@@ -224,11 +224,12 @@ theorem hullLemma44Canonical :
   sorry
 
 /-- **Temporary exact geometric debt.**  This is Hull's Lemma 4.9 after the
-quotient, order, normal-closure, least-area, and reducedness bookkeeping has
-been proved internally.  What remains is exactly the correction construction
-for a nontrivial reduced power diagram. -/
+shortest quotient-conjugacy representative, correction transport, order,
+normal-closure, least-area, and reducedness bookkeeping have been proved
+internally.  What remains is exactly the diagram argument for a nontrivial
+power of a shortest representative. -/
 theorem hullLemma49ReducedDiagram :
-    HullSC.HullLemma49ReducedDiagramStatement.{0, 0} := by
+    HullSC.HullLemma49ShortestReducedDiagramStatement.{0, 0} := by
   sorry
 
 /-- Hull's quotient-free kernel-power conclusion, derived from the exact
@@ -281,9 +282,10 @@ former unrestricted-anchor side-exclusion premise.  The exact-length
 finite-avoidance construction in
 `HullSC.exists_relator_exponents_window_diff_through_exact` instead chooses one
 list jointly with the deep-letter, difference, pure-tail, and through-base-tail
-exclusions.  That chosen list must feed the remaining block-count argument and
-all the extra `IsLemma49Input` fields; no projection to the weaker predicate is
-accepted by the one-step seam.
+exclusions.  That chosen list now feeds the every-edge geodesic-bigon count in
+`ExactRelatorDesign₂.blockCountAt_one`, whose fixed constant is independent of
+the list, and must still feed the extra `IsLemma49Input` fields; no projection
+to the weaker predicate is accepted by the one-step seam.
 
 Two of those extra fields are already bookkeeping rather than debts.
 `RelWord.finite_componentLetters_symmetrized` proves strong boundedness, and
