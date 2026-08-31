@@ -21,12 +21,15 @@ equivalent to the full all-graphs assertion in STW Problem LXXXIII.
 
 The finite case is not covered by a generic ideal-extension estimate: splitting
 a finite graph algebra into its AF and purely infinite pieces gives an upper
-bound of two unless one can reuse a colour across the extension.  After the
-existing full-corner reductions, the sharp unresolved test is the canonical
-circle-to-circle Toeplitz family
+bound of two unless one can reuse a colour across the extension.  One sharp unresolved test after the existing full-corner reductions is the
+canonical circle-to-circle Toeplitz family
 `C*(S^N tensor 1, K tensor C(T))`.  Its known construction uses three
 colours; the missing step is a finite-set-adaptive two-colour approximation
 that carries genuinely circle-varying information on the plateau diagonal.
+Solving this family would settle the circle-ideal/circle-quotient direction,
+but not by itself the finite-graph claim or STW Problem LXXXIII: the independent
+circle-ideal/Kirchberg-quotient direction remains open as recorded in
+[[stw83-two-non-k-extension-directions-remain-open]].
 
 The firewall [[stw83-commuting-cone-two-colour-firewall]] now rules out
 two broad implementations.  A uniformly local commuting functional calculus
