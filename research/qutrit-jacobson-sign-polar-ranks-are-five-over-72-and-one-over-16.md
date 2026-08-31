@@ -1,6 +1,6 @@
 ---
 rg: 2
-id: qutrit-jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
+id: jacobson-sign-polar-ranks-are-five-over-72-and-one-over-16
 kind: claim
 title: Jacobson sign-quarter polar ranks are 5/72 and 1/16, not their overlap energy
 artifacts:
