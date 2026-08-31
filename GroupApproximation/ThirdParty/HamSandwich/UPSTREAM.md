@@ -108,3 +108,7 @@ transfer chain map.
 compatibility for the contravariant functor composition identities; all
 identity, composition, naturality, and deck-transformation statements retain
 their upstream formulations.
+
+`CoveringTransferHomology` is included unchanged apart from namespace
+isolation; it descends the transfer chain map and its dual to homology and
+cohomology using Mathlib's current homology-map API.

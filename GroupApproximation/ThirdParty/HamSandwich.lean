@@ -24,5 +24,6 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CoveringTransferBoundary
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CupProductPowers
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.InducedOnRPCohomology
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CoveringTransferHomology
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/
