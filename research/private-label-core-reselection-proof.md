@@ -14,6 +14,41 @@ requires:
 Write `r_(g,h,k)=k^(-1)gh` for the relator belonging to
 `gh=k`.
 
+## The multiplicity core is canonical
+
+For a subfamily `A subset R_0`, count every literal label occurrence and
+write
+
+```text
+deg_A(s)=sum_(r in A) occ_s(r).
+```
+
+Call `D subset R_0` *two-dense* if every label occurring in `D` has
+degree at least two in `D`.
+
+Fix any sequential peeling order and let `A` be its current relation
+family.  The following invariant holds:
+
+```text
+every two-dense D subset R_0 is contained in A.          (PCR0)
+```
+
+It is true initially.  Suppose a relation `r` is deleted because
+`deg_A(p)=1`.  If a two-dense `D subset A` contained `r`, then the
+single occurrence of `p` in `A` would also be its single occurrence in
+`D`, contradicting `deg_D(p)>=2`.  Thus `r notin D`, and deleting
+`r` preserves `(PCR0)`.
+
+A terminal family `K` is itself two-dense, since it has no positive
+degree-one label.  Invariant `(PCR0)` says every two-dense subfamily is
+contained in `K`.  Therefore `K` is the unique largest two-dense
+subfamily.  Any two terminal peeling outputs contain one another and are
+equal.
+
+This proof uses occurrence multiplicity.  If a label occurs twice in one
+relation and nowhere else, its degree is two, not one, so that label does not
+make the relation peelable.
+
 ## Reverse the peeling order
 
 Record a sequence of deletions which leaves the private-label core.  Reverse
