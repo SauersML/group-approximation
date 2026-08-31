@@ -206,6 +206,32 @@ theorem exists_dist_approxProjection_between_distinct_leftCosets_bound
       dsimp [β] at hβbound
       linarith
 
+/-- The quotient-indexed form of DGO Lemma 4.46: every projection set from a
+distinct orbit vertex has uniformly bounded diameter. -/
+theorem exists_approxCosetProjectionSet_diameter_bound
+    {δ : ℝ} (hδ : IsHyperbolicSpace δ S) (hδ0 : 0 ≤ δ)
+    (hgeo : IsGeodesicSpace S) (hiso : IsIsometricAction G S)
+    {H : Subgroup G} {s : S} (hqc : IsQuasiconvexOrbitAt H s)
+    (hsep : GeometricallySeparatedAt H s) :
+    ∃ ν : ℝ, 0 ≤ ν ∧ ∀ (Y Z : G ⧸ H), Y ≠ Z →
+      ∀ x ∈ approxCosetProjectionSet H s δ Y Z,
+        ∀ y ∈ approxCosetProjectionSet H s δ Y Z, dist x y ≤ ν := by
+  obtain ⟨ν, hν0, hbound⟩ :=
+    exists_dist_approxProjection_between_distinct_leftCosets_bound
+      hδ hδ0 hgeo hiso hqc hsep
+  refine ⟨ν, hν0, ?_⟩
+  intro Y Z hYZ x hx y hy
+  obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective Y
+  obtain ⟨f, rfl⟩ := QuotientGroup.mk_surjective Z
+  have hfg : f⁻¹ * g ∉ H := by
+    intro hmem
+    apply hYZ
+    exact (QuotientGroup.eq.mpr hmem).symm
+  obtain ⟨a₁, ha₁, hx⟩ := hx
+  obtain ⟨a₂, ha₂, hy⟩ := hy
+  rw [cosetOrbitAt_mk] at ha₁ ha₂ hx hy
+  exact hbound f g hfg a₁ a₂ x y ha₁ ha₂ hx hy
+
 end Elementary
 end GGT
 end GroupApproximation
