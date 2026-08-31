@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: fixed-holonomy-character-regularization-and-quantum-fiber-proof
-kind: proof
+kind: route
 title: Fixed-holonomy character regularization and an exact quantum-fiber countermodel
 proves:
   - property-t-does-not-kill-boolean-fiber-holonomy

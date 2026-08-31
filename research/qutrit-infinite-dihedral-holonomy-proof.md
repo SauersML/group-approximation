@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-infinite-dihedral-holonomy-proof
-kind: proof
+kind: route
 title: Prove the positive-letter opposite-root product is infinite and has an amenable qutrit cover
 target: qutrit-first-infinite-prefix-holonomy-is-dihedral-amenable
 requires:
