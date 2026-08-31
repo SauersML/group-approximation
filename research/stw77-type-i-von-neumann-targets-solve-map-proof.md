@@ -31,17 +31,18 @@ and
 ||phi_x(a_n)||_ess<r.
 ```
 
-Conversely, these two inequalities imply that
-`(phi_x(a_n)-r)_+` is nonzero and compact. The norm and essential norm of a
+Conversely, these two inequalities imply that the spectral projection of
+`phi_x(a_n)` above `r` is nonzero and finite-rank, so
+`(phi_x(a_n)-r)_+` is nonzero and finite-rank. The norm and essential norm of a
 measurable operator field are measurable, so the nonessential fibres are a
 countable union of the measurable sets defined by these inequalities.
 
 If the nonessential fibres had positive measure, one fixed pair `(n,r)`
 would work on a positive-measure set. Put `c=(a_n-r)_+`. Then `phi(c)` is
-nonzero, while `phi_x(c)` is a nonzero compact positive operator on that
+nonzero, while `phi_x(c)` is a nonzero finite-rank positive operator on that
 positive-measure set. This contradicts proper infiniteness of `phi(c)`:
 proper-infiniteness witnesses in the direct integral evaluate to witnesses
-in almost every fibre, whereas a nonzero compact positive operator in
+in almost every fibre, whereas a nonzero finite-rank positive operator in
 `B(H_x)` is not properly infinite. Hence `phi_x` is essential almost
 everywhere.
 
