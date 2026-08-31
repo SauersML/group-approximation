@@ -8,11 +8,11 @@ requires: []
 ---
 
 Source: Benjamin Bachner, *Linear sofic representations of amenable
-algebras*, arXiv:2602.05039v1, Theorem 1.1.
+algebras*, arXiv:2602.05039v3, Theorem 1.1.
 
 Theorem 1.1 states exactly that for every field `K`, a finitely generated
 amenable `K`-algebra without zero divisors has a unique conjugacy class of
-linear sofic representations. Proposition 3.4 supplies existence.
+linear sofic representations. Proposition 3.5 supplies existence.
 
 The proof builds large independent families of root vectors from Følner
 subspaces (the linear monotiling lemma). For two approximations, the root
@@ -25,5 +25,5 @@ The zero-divisor hypothesis is essential to the stated notion: maximal
 separation requires every nonzero algebra element to have asymptotic
 normalized rank one.
 
-Status: arXiv preprint, v1, submitted 2026-02-04. The full theorem statement
+Status: arXiv preprint, v3, revised 2026-05-27. The full theorem statement
 and definitions were checked 2026-08-31.
