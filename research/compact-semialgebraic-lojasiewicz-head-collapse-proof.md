@@ -6,8 +6,30 @@ title: Compact semialgebraic separation gives the bounded-dimension head modulus
 target: bounded-dimension-jacobson-head-has-algebraic-collapse
 requires:
   - binary-jacobson-core-is-weakly-sofic-with-fd-head-radical
+  - binary-jacobson-steinberg-cover-is-elementary
   - qutrit-complementary-jacobson-signs-with-minimal-router-are-finite
 ---
+
+## The finite presentation really exists
+
+The binary Jacobson ring has the finite unital ring presentation
+
+```text
+J=F_2<S,T | TS=1>.
+```
+
+Krstic--McCool, Theorem 3, says that `St_r(R)` is finitely presented
+for every finitely presented ring `R` and every `r>=4`. Thus
+`St_28(J)` is finitely presented. The established calculation
+`bsr(J)=2`, `K_2(J)=0`, together with unstable K-two stability,
+gives
+
+```text
+ker(St_28(J)->E_28(J))=0.
+```
+
+Hence `G=E_28(J)` itself is finitely presented. The use of a finite
+presentation below is therefore unconditional.
 
 ## A fixed matrix size
 
