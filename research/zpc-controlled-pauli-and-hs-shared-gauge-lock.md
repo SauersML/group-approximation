@@ -36,6 +36,19 @@ phase, or a sector-preserving covariance packet.  Any construction must
 explicitly defeat both the regular-profile barrier and the four-sector
 Clifford escape while retaining the infinite tracial model.
 
+An exact two-qutrit test now separates the Boolean and gauge burdens.
+`two-qutrit-and-cell-retains-sectorwise-pauli-gauge` realizes two selector
+cuts `S,T` and their conjunction `ST` as finite-type/multipath marginals in
+one marked extraspecial packet; all four joint sectors are nonzero, with
+ranks `4,2,2,1` in the spin block.  Nevertheless, after tensoring one shared
+`D_8`/Pauli label and one multiplicity Pauli pair, sectorwise controlled
+unitaries satisfy the exact shared-label covariance and commute globally:
+on the active `ST` sector the label commutator is cancelled by the nontrivial
+multiplicity commutator.  Thus the multipath cell supplies the missing AND
+syntax but the shared `D_8` subgroup alone does not imply `(ZPAG1)`.  The
+remaining relation must mix an identity-label occurrence with that same
+multiplicity reservoir on a positive corner.
+
 The natural two-label-copy gauge strip is now sharply fenced.  By
 `pauli-gauge-word-retains-and-cocycle`,
 any dressed word carrying `[A,B]` also carries the `ab` Pauli cocycle up to an
