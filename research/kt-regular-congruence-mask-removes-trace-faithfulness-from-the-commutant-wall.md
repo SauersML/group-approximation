@@ -102,6 +102,24 @@ sqrt(D_n k_n/(D_n k_n+q_n))=1-o(1),                     (KTM7)
 
 so the displayed leak itself is not diluted by negligible padding.
 
+There is an exact physical-mass versus adjoint-rank split.  In
+`L^2(M_(D_n k_n))` the multiplicity sector is
+
+```text
+C I_(D_n) tensor L^2(M_(k_n)).
+```
+
+It contains every unit vector `I tensor x_n` above, but its dimension ratio
+inside the full adjoint Hilbert space is
+
+```text
+k_n^2/(D_n^2 k_n^2)=D_n^(-2)->0.                        (KTM8)
+```
+
+Thus the leak has full physical `2`-mass while occupying a vanishing-density
+adjoint sector.  Global low-band rank or normalized superoperator-trace
+estimates cannot see it; a pointed bounded-vector estimate is indispensable.
+
 **Meaning.**  Repeating the irreducible Steinberg carrier with a trivial
 multiplicity action gives a large matrix commutant which the actor fixes.
 Allowing a multiplicity cocycle does not make the carrier rigidify it:
