@@ -103,6 +103,19 @@ characterize positive operator extension on finite group Fourier windows
 by complete Fejer--Riesz/factorisation properties; they provide completely
 positive maps, not projection-preserving star-homomorphisms.
 
+The node
+`naimark-stinespring-does-not-weaken-the-finite-synchbcs-pauli-corner-gate`
+now closes the formal dilation shortcuts around (PQB5).  If ambient
+Naimark projections compress to the sharp SynchBCS PVMs, the identity
+`pPp-(pPp)^2=pP(1-p)Pp` forces the corner to reduce every projection.
+The full multiplicative-domain calculation gives the same conclusion for
+an exactly multiplicative Stinespring or matrix-unit compression.  Thus
+finite amplification and exact dilation already produce a literal unital
+corner map.  If the host is a finite-phase Pauli crossed product, pulling
+back its normalized corner trace makes the host non-CE and the finite
+central-character compiler produces a nonhyperlinear group.  This is an
+exact terminal implication, not a construction of the missing map.
+
 Thus the 2025 literature closes the perfect-completeness source gate and
 reduces it to a finite independent-set/BCS algebra. The unresolved gate is
 solely a robust multiplicative group-corner realization of its partition
