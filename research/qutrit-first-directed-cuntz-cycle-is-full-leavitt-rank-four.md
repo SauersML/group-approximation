@@ -72,11 +72,25 @@ X(t)Y(s)D^epsilon,
 t in span{t_0,t_1}, s in span{s_0,s_1}, epsilon in F_2,
 ```
 
-so `|Q|=2^5=32`. Every `X(t_s)` and `Y(s_r)` has the complete
-three-by-three `h`-fibre qutrit graph with squared block norm `1/27`,
-while `D` commutes with `C`. Thus the first cycle row has an exact
-regular finite-dimensional model with all nine qutrit weights `1/9`
-and creates no trace imbalance.
+so `|Q|=2^5=32`. Nevertheless this one finite packet and the actor
+already generate the full target:
+
+```text
+<P,Q>=EL_4(L_(F_2)(1,2)).                               (QCY4)
+```
+
+Indeed `D in Q`, and its four `P`-conjugates are the constant
+transvections around the reverse directed four-cycle. Their commutators
+give `GL_4(F_2)`. Scalar conjugation then moves the `s_r` and `t_s`
+roots in `Q` to every root position.
+
+Every `X(t_s)` and `Y(s_r)` has the complete three-by-three `h`-fibre
+qutrit graph with squared block norm `1/27`, while `D` commutes with
+`C`. Thus the first cycle row has an exact regular finite-dimensional
+model with all nine qutrit weights `1/9` and creates no trace imbalance.
+The free product `C_4*Q` is a virtually free finite-vertex cover of the
+marked generator package, but its concrete quotient `(QCY4)` is already
+nonsofic.
 
 The hard boundary is therefore collective. The finite scalar/qutrit
 vertex and the finite acyclic cell have a virtually free amalgam shadow,
