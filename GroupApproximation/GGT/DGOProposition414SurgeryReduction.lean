@@ -1,4 +1,6 @@
 import GroupApproximation.GGT.DGOProposition414BalancedSurgery
+import GroupApproximation.GGT.DGOAssemblyAdapter
+import Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics
 
 /-!
 # The balanced-surgery input to DGO Proposition 4.14
@@ -143,6 +145,131 @@ def balancedSurgerySizeOverhead (δ R : ℕ) (n : ℕ) : ℝ :=
   (6 * ((2 * balancedSurgeryChordCap δ R n + 1) *
     (2 * balancedSurgeryChordCap δ R n + 1)) : ℕ)
 
+/-- The explicit logarithmic-square overhead of balanced surgery is
+eventually smaller than one tenth of the square-root gain. -/
+theorem exists_balancedSurgery_overhead_decay (δ R : ℕ) :
+    ∃ M : ℕ, ∀ n : ℕ, M < n →
+      balancedSurgerySizeOverhead δ R n +
+        balancedSurgeryPieceOverhead δ R n ≤
+          (1 / 10 : ℝ) * Real.sqrt n := by
+  let a : ℕ := 6 * (δ + 6)
+  let d : ℕ := 2 * a + R
+  let e : ℕ := 2 * d + 1
+  let f : ℕ := 2 * d + 2
+  let C : ℕ := 6 * ((2 * a + e) * (2 * a + e)) + (2 * a + f)
+  let A : ℝ := (C : ℝ) * (2 / Real.log 2) ^ 2
+  have hlog2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
+  have hA0 : 0 ≤ A := by
+    dsimp [A]
+    positivity
+  have hlittle : (fun x : ℝ => A * Real.log x ^ (2 : ℝ)) =o[Filter.atTop]
+      fun x : ℝ => x ^ (1 / 2 : ℝ) :=
+    (isLittleO_log_rpow_rpow_atTop (2 : ℝ)
+      (by norm_num : (0 : ℝ) < 1 / 2)).const_mul_left A
+  obtain ⟨x₀, hx₀⟩ := (Filter.eventually_atTop.1
+    (hlittle.bound (by norm_num : (0 : ℝ) < 1 / 10)))
+  refine ⟨max 2 (Nat.ceil x₀), ?_⟩
+  intro n hn
+  have hn2 : 2 ≤ n := by omega
+  have hn1 : 1 ≤ n := by omega
+  have hx₀n : x₀ ≤ (n : ℝ) := by
+    have hceil : x₀ ≤ (Nat.ceil x₀ : ℝ) := Nat.le_ceil x₀
+    have hceiln : Nat.ceil x₀ ≤ n := by omega
+    exact hceil.trans (by exact_mod_cast hceiln)
+  have hasym := hx₀ (n : ℝ) hx₀n
+  have hlogn0 : 0 ≤ Real.log (n : ℝ) := Real.log_nonneg (by exact_mod_cast hn1)
+  have hrpow0 : 0 ≤ (n : ℝ) ^ (1 / 2 : ℝ) :=
+    Real.rpow_nonneg (by positivity) _
+  rw [Real.norm_of_nonneg
+      (mul_nonneg hA0 (Real.rpow_nonneg hlogn0 _)),
+    Real.norm_of_nonneg hrpow0] at hasym
+  let l : ℕ := Nat.log 2 n
+  have hl0 : (0 : ℝ) ≤ (l : ℝ) := Nat.cast_nonneg _
+  have ha0 : (0 : ℝ) ≤ (a : ℝ) := Nat.cast_nonneg _
+  have he0 : (0 : ℝ) ≤ (e : ℝ) := Nat.cast_nonneg _
+  have hf0 : (0 : ℝ) ≤ (f : ℝ) := Nat.cast_nonneg _
+  have hcap : (balancedSurgeryChordCap δ R n : ℝ) =
+      (a : ℝ) * l + d := by
+    simp [balancedSurgeryChordCap, a, d, l]
+    ring
+  have hq : (2 * balancedSurgeryChordCap δ R n + 1 : ℕ) ≤
+      ((2 * a + e : ℕ) : ℝ) * ((l : ℝ) + 1) := by
+    push_cast
+    rw [hcap]
+    have heq : (e : ℝ) = 2 * (d : ℝ) + 1 := by simp [e]
+    rw [heq]
+    nlinarith [mul_nonneg (by positivity : (0 : ℝ) ≤ 2 * d + 1) hl0]
+  have hp : (2 * balancedSurgeryChordCap δ R n + 2 : ℕ) ≤
+      ((2 * a + f : ℕ) : ℝ) * ((l : ℝ) + 1) := by
+    push_cast
+    rw [hcap]
+    have hfeq : (f : ℝ) = 2 * (d : ℝ) + 2 := by simp [f]
+    rw [hfeq]
+    nlinarith [mul_nonneg (by positivity : (0 : ℝ) ≤ 2 * d + 2) hl0]
+  have hq0 : (0 : ℝ) ≤ (2 * balancedSurgeryChordCap δ R n + 1 : ℕ) := by
+    positivity
+  have hqSq := mul_self_le_mul_self hq0 hq
+  have hl1 : (1 : ℝ) ≤ (l : ℝ) + 1 := by linarith
+  have hpSq : (2 * balancedSurgeryChordCap δ R n + 2 : ℕ) ≤
+      ((2 * a + f : ℕ) : ℝ) * ((l : ℝ) + 1) ^ 2 := by
+    calc
+      (2 * balancedSurgeryChordCap δ R n + 2 : ℕ) ≤
+          ((2 * a + f : ℕ) : ℝ) * ((l : ℝ) + 1) := hp
+      _ ≤ ((2 * a + f : ℕ) : ℝ) * ((l : ℝ) + 1) ^ 2 := by
+        apply mul_le_mul_of_nonneg_left
+        · nlinarith
+        · positivity
+  have hover : balancedSurgerySizeOverhead δ R n +
+      balancedSurgeryPieceOverhead δ R n ≤
+        (C : ℝ) * ((l : ℝ) + 1) ^ 2 := by
+    calc
+      balancedSurgerySizeOverhead δ R n +
+          balancedSurgeryPieceOverhead δ R n =
+        6 * (2 * balancedSurgeryChordCap δ R n + 1 : ℕ) ^ 2 +
+          (2 * balancedSurgeryChordCap δ R n + 2 : ℕ) := by
+            simp [balancedSurgerySizeOverhead, balancedSurgeryPieceOverhead]
+            ring
+      _ ≤ 6 * (((2 * a + e : ℕ) : ℝ) * ((l : ℝ) + 1)) ^ 2 +
+          ((2 * a + f : ℕ) : ℝ) * ((l : ℝ) + 1) ^ 2 := by
+            apply add_le_add
+            · simpa [pow_two] using
+                (mul_le_mul_of_nonneg_left hqSq (by norm_num : (0 : ℝ) ≤ 6))
+            · exact hpSq
+      _ = (C : ℝ) * ((l : ℝ) + 1) ^ 2 := by
+        dsimp [C]
+        push_cast
+        ring
+  have hbridge := DGOPolygonCut.natLog_mul_log_two_le n hn1
+  have hlog2n : Real.log 2 ≤ Real.log (n : ℝ) := by
+    apply Real.log_le_log (by norm_num)
+    exact_mod_cast hn2
+  have hl1log : ((l : ℝ) + 1) * Real.log 2 ≤
+      2 * Real.log (n : ℝ) := by
+    dsimp [l]
+    nlinarith
+  have hl1bound : (l : ℝ) + 1 ≤
+      (2 / Real.log 2) * Real.log (n : ℝ) := by
+    rw [div_mul_eq_mul_div]
+    exact (le_div_iff₀ hlog2).2 hl1log
+  have hright0 : 0 ≤ (2 / Real.log 2) * Real.log (n : ℝ) := by positivity
+  have hsquare := mul_self_le_mul_self (by positivity : 0 ≤ (l : ℝ) + 1) hl1bound
+  have hpoly : (C : ℝ) * ((l : ℝ) + 1) ^ 2 ≤
+      A * Real.log (n : ℝ) ^ 2 := by
+    dsimp [A]
+    have hC0 : (0 : ℝ) ≤ C := Nat.cast_nonneg _
+    nlinarith
+  calc
+    balancedSurgerySizeOverhead δ R n +
+        balancedSurgeryPieceOverhead δ R n ≤
+      (C : ℝ) * ((l : ℝ) + 1) ^ 2 := hover
+    _ ≤ A * Real.log (n : ℝ) ^ 2 := hpoly
+    _ = A * Real.log (n : ℝ) ^ (2 : ℝ) := by
+      congr 1
+      exact (Real.rpow_natCast (Real.log (n : ℝ)) 2).symm
+    _ ≤ (1 / 10 : ℝ) * ((n : ℝ) ^ (1 / 2 : ℝ)) := hasym
+    _ = (1 / 10 : ℝ) * Real.sqrt n := by
+      rw [Real.sqrt_eq_rpow]
+
 /-- Proposition 4.14 from balanced interval surgery and the explicit decay of
 its logarithmic-square overhead.
 
@@ -151,20 +278,16 @@ The old polygon-dependent subdivision tuple is not a premise: the extremal
 input, dyadic exponent, raw split, placement, assignment, and tuple are all
 chosen internally.  The remaining `overhead_decay` statement is pure
 arithmetic and mentions no group, polygon, component, or surgery data. -/
-theorem sumBound_linear_of_balancedSurgery_of_overheadDecay
+theorem sumBound_linear_of_balancedSurgery
     (D : RelGenSet G Λ)
     (hsymm : ∀ x ∈ D.base, x⁻¹ ∈ D.base) {δ : ℕ} (b : ℕ)
     (hδ : Hyperbolic.IsFourPointHyperbolic D.alphabet.carrier δ)
     (produce : ∀ {n k R : ℕ} (P : SumBoundInput D (b : ℝ) n)
       (B : BalancedSplitData D hsymm b hδ P k R),
-        Nonempty (BalancedSplitSurgeryRealization D hsymm b hδ P B))
-    (overhead_decay : ∀ R : ℕ, ∃ M : ℕ, ∀ n : ℕ, M < n →
-      balancedSurgerySizeOverhead δ R n +
-        balancedSurgeryPieceOverhead δ R n ≤
-          (1 / 10 : ℝ) * Real.sqrt n) :
+        Nonempty (BalancedSplitSurgeryRealization D hsymm b hδ P B)) :
     ∃ L : ℕ, ∀ n : ℕ, 1 ≤ n → SumBound D (b : ℝ) n (L * n) := by
   obtain ⟨R, hsplit⟩ := exists_balancedSplitData D hsymm b hδ
-  obtain ⟨M, hdecay⟩ := overhead_decay R
+  obtain ⟨M, hdecay⟩ := exists_balancedSurgery_overhead_decay δ R
   apply sumBound_linear_of_quadraticCostSubdivision D hsymm b hδ
     (balancedSurgeryPieceOverhead δ R)
     (balancedSurgerySizeOverhead δ R) 7 (4 / 5) (1 / 10) M
