@@ -83,6 +83,45 @@ theorem leftCosetOrbitAt_eq_iff_inv_mul_mem
   ⟨fun horbit ↦ inv_mul_mem_of_leftCosetOrbitAt_eq H s f g hsep hunbounded horbit,
     leftCosetOrbitAt_eq_of_inv_mul_mem H s⟩
 
+omit [PseudoMetricSpace S] in
+/-- The orbit subset attached to a left coset, independent of its
+representative.  This is DGO's actual projection-complex vertex map. -/
+def cosetOrbitAt (H : Subgroup G) (s : S) (q : G ⧸ H) : Set S :=
+  Quotient.liftOn' q (fun g ↦ leftCosetOrbitAt H g s) (by
+    intro f g hfg
+    exact leftCosetOrbitAt_eq_of_inv_mul_mem H s
+      (QuotientGroup.leftRel_apply.mp hfg))
+
+omit [PseudoMetricSpace S] in
+@[simp] theorem cosetOrbitAt_mk (H : Subgroup G) (s : S) (g : G) :
+    cosetOrbitAt H s (QuotientGroup.mk g) = leftCosetOrbitAt H g s :=
+  rfl
+
+/-- Under unbounded geometric separation, the coset-orbit vertex map is
+injective.  Thus no distinct projection-complex vertices are accidentally
+identified by a nonfaithful action on the ambient space. -/
+theorem cosetOrbitAt_injective
+    (H : Subgroup G) (s : S)
+    (hsep : GeometricallySeparatedAt H s)
+    (hunbounded : ∀ R : ℝ, ∃ h : G, h ∈ H ∧ R ≤ dist s (h • s)) :
+    Function.Injective (cosetOrbitAt H s) := by
+  intro x y hxy
+  obtain ⟨f, rfl⟩ := QuotientGroup.mk_surjective x
+  obtain ⟨g, rfl⟩ := QuotientGroup.mk_surjective y
+  rw [cosetOrbitAt_mk, cosetOrbitAt_mk] at hxy
+  exact QuotientGroup.eq.mpr
+    ((leftCosetOrbitAt_eq_iff_inv_mul_mem H s f g hsep hunbounded).mp hxy)
+
+omit [PseudoMetricSpace S] in
+/-- The coset-orbit vertex map intertwines the natural left action on cosets
+with pointwise translation of orbit subsets. -/
+theorem cosetOrbitAt_smul (H : Subgroup G) (s : S) (a : G) (q : G ⧸ H) :
+    cosetOrbitAt H s (a • q) = (fun z : S ↦ a • z) '' cosetOrbitAt H s q := by
+  induction q using QuotientGroup.induction_on with
+  | _ g =>
+      rw [MulAction.Quotient.smul_mk, smul_eq_mul, cosetOrbitAt_mk,
+        cosetOrbitAt_mk, image_smul_leftCosetOrbitAt]
+
 /-- A positive-error approximate projection to a left-coset orbit. -/
 def IsApproxLeftCosetProjectionAt (H : Subgroup G) (s : S)
     (g : G) (a x : S) (κ : ℝ) : Prop :=
