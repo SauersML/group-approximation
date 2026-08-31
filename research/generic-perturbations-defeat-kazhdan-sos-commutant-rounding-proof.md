@@ -7,6 +7,7 @@ target: ozawa-sos-does-not-round-an-approximate-actor-to-its-exact-commutant
 requires:
   - compactness-closes-exact-actor-pauli-window
   - high-type-mass-is-discontinuous-at-exact-code-tuples
+  - generic-perturbations-destroy-exact-commutant-gap
 ---
 
 # Generic perturbations defeat exact-commutant rounding
@@ -137,6 +138,12 @@ central and stays at distance one from that commutant.
 This is stronger than the near-trivial example for the proposed use: it
 survives amplification of any given hyperlinear coordinate and changes
 every fixed observable continuously.
+
+For the Kun--Thom elementary actor, `generic-perturbations-destroy-exact-commutant-gap`
+sharpens this construction further: it starts from left-regular residual
+finite quotients, keeps a trace-zero right-regular unitary almost central,
+and therefore retains canonical trace-faithfulness while the literal
+commutant collapses to scalars.
 
 ## 3. What the lifted Ozawa certificate actually gives
 
