@@ -147,9 +147,21 @@ We have proved the exact equality
 where \(q:K\to K_\alpha\) is the quotient map. Notice that (11) is
 stronger than a one-way soundness statement: every sector left by the
 finite quotient really occurs in a finite-dimensional representation of
-the full nonamenable interface. In particular, the natural map
-\(K_\alpha\to\Pi\) is injective: the faithful regular representation of
-the finite group \(K_\alpha\) extends by (9).
+the full nonamenable interface.
+
+There is a useful but correctly directed injectivity consequence. Let
+\(\iota:K\to\Pi\) be the canonical map. If \(k\in\ker\iota\), extend the
+faithful regular representation of \(K_\alpha\) by (9). Its value on
+\(k\) is both the identity and the regular action of \(\bar k\), so
+\(\bar k=1\). Therefore
+
+\[
+ \ker(K\longrightarrow\Pi)\subseteq N_\alpha.            \tag{11a}
+\]
+
+There need not be a homomorphism \(K_\alpha\to\Pi\); (11a), not the
+reverse inclusion, is what the proof supplies. In particular, if
+\(H\cap N_\alpha=1\), then \(H\to\Pi\) is injective.
 
 ## 3. Character packet on the TV torsor
 
@@ -250,9 +262,10 @@ In group-algebra language, define
  q_{\rm dict}=\sum_{p\in P}e_{\chi_{\{p\}}}.             \tag{19}
 \]
 
-View these elements in \(C^*(\Pi)\). Injectivity from Section 2 makes the
-\(e_\chi\)'s nonzero mutually orthogonal projections. If all singleton
-characters survive, (17) gives
+View these elements in \(C^*(\Pi)\). If all singleton characters
+survive, (17) gives \(L=H\cap N_\alpha=1\), so (11a) makes
+\(H\to\Pi\) injective. Thus the \(e_\chi\)'s are nonzero mutually
+orthogonal projections, and
 
 \[
  p_--q_{\rm dict}
