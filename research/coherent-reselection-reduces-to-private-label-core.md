@@ -69,7 +69,8 @@ to zero.
 
 In particular, every table admitting a relation basis with empty
 private-label core has coherent same-cloud shadow reselection.  This strictly
-extends one-overlap forests.  For example,
+extends one-overlap forests.  For example, with `a,b,c,d` four distinct
+labels,
 
 ```text
 a b = c,        a c = d
