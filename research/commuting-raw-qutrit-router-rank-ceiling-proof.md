@@ -123,7 +123,7 @@ Equations `(CRQ13)--(CRQ14)` prove the universal ceiling.  Enlarging
 orthogonal Fourier phases, or proving a singular-value lower bound
 cannot change it.  The factor `|N|` cancels from normalized rank.
 
-The full target is `f_1Q_act=Ee_2), with trace `16/288=1/18).
+The full target is `f_1Q_act=Ee_2`, with trace `16/288=1/18`.
 The exact remaining deficits are
 
 ```text
