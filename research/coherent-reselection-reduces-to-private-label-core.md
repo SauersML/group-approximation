@@ -51,7 +51,10 @@ its private-label core:
 After arbitrary completion of the partial bijections, every relation in
 `R_0` has Hamming defect `o(1)`.  Every relation in `R` then also has
 defect `o(1)`, by bi-invariance of Hamming distance and the chosen normal
-closure expressions.
+closure expressions.  Under regular-character trace separation, distinct
+completed label maps also disagree on `1-o(1)` of the cloud, because their
+unitary image points have a fixed geometric gap while both shadow radii tend
+to zero.
 
 In particular, every table admitting a relation basis with empty
 private-label core has coherent same-cloud shadow reselection.  This strictly
