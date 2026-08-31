@@ -78,8 +78,7 @@ theorem barycentricSubdivisionChainHomotopy_comm
   · subst hn;
     simp +decide [ dNext, prevD, barycentricSubdivisionChainMap, barycentricSubdivisionChainHomotopyHom ];
     ext c;
-    have h := barycentricSubdivisionHomotopy_boundary_formula R X 0 c; simp_all +decide [ homotopyBoundaryTerm_zero ] ;
-    convert congr_arg ( fun x => -x + c ) h.symm using 1 ; abel1;
+    have h := barycentricSubdivisionHomotopy_boundary_formula R X 0 c; simp_all +decide [ homotopyBoundaryTerm_zero, singularBoundary ] ;
   · obtain ⟨ m, rfl ⟩ := Nat.exists_eq_succ_of_ne_zero hn;
     unfold dNext prevD;
     simp +decide [ singularChainComplex, barycentricSubdivisionChainHomotopyHom, barycentricSubdivisionChainMap ];
