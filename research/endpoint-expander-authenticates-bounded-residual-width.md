@@ -2,7 +2,7 @@
 rg: 2
 id: endpoint-expander-authenticates-bounded-residual-width
 kind: claim
-title: Endpoint expansion authenticates every supplied bounded residual factor
+title: Irreducible endpoint expansion authenticates supplied bounded residual factors
 artifacts:
   - research/tfd-expectation-untwists-and-rounds-residual-generators.md
 distinct_from:
@@ -80,8 +80,8 @@ In particular,
  w_{C_\kappa\Xi}(\pi)\leq D.                             \tag{ERW8}
 \]
 
-Thus property \((T;FD)\) eliminates collapse of the endpoint adjoint gap as
-a possible escape. For a positive-distance sequence, every fixed-\(D\)
+Thus property \((T;FD)\) eliminates collapse of the endpoint adjoint gap
+for a supplied irreducible factor as a possible escape. For a positive-distance sequence, every fixed-\(D\)
 candidate decomposition (ERW2) must have authentication energy bounded away
 from zero, unless positive physical rank is left outside the decomposition.
 Combined with **approximate-central-tensor-coverage-forces-capture**, the

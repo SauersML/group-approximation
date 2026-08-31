@@ -433,6 +433,17 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   rounding then produce exact bounded payloads. Thus endpoint adjoint-gap
   collapse is not an escape. A negative sequence must fail factor/carrier
   discovery or retain unbounded residual width after every absorption.
+- **Central character refinement can invent unbounded payload.**
+  `central-projectors-overcount-regular-endpoint-payload` uses the exact
+  regular endpoint of `PSL_2(F_p)`. Its true residual width is one, but
+  Plancherel refinement exposes multiplicity `dim(rho)` on every
+  `rho`-block; outside the rank-one trivial block these dimensions are at
+  least `(p-1)/2`. The entire multiplicity algebra is fixed by endpoint
+  conjugation, so property `(T;FD)` and all central character projectors
+  assign it zero authentication energy. Blockwise irreducible-projector
+  tests therefore cannot choose the minimal endpoint grouping; the full
+  multiplicity vector may still be regrouped globally through the
+  representation ring or complete multiplication data.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
