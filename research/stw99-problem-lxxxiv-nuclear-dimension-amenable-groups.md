@@ -338,6 +338,22 @@ congruence, checkerboard, and arbitrary disjoint-coordinate colourings.
 The remaining escape must mix or duplicate coordinates in the incoming
 map, or replace the weighted row itself.
 
+Allowing bounded duplication and overlap still does not escape.
+`stw84-bounded-overlap-fourier-gap` treats `r` positive return colours whose
+images of the diagonal atoms have orthogonality chromatic number at most
+`M`.  If `n>rM`, their distance from weighted averaging is at least
+
+```text
+(1-rM/n)/(rM+1),
+```
+
+and hence at least `1/(2(rM+1))` once `n>=2rM`.  This covers duplicated
+coordinates, scalar Fejer/tent weights, two-grid shifts, and bounded-depth
+interval or graph-coloured bands.  Thus fixed colours with fixed internal
+overlap cannot converge either.  Any surviving c.p. factorization must have
+diagonal mixing depth growing with the Fourier window, or abandon the
+weighted row.
+
 ## Attempts
 
 The locally finite factor argument depends on the augmentation quotient
