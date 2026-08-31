@@ -2,7 +2,7 @@
 rg: 2
 id: stw22-projective-bundle-corona-counterexample-proof
 kind: route
-title: Combine vanishing rank fraction with unbounded Chern commutator width
+title: Combine vanishing rank fraction with simultaneous Chern zeros and state compactness
 target: stw22-nuclear-type-i-counterexample-trace-problem
 requires: []
 artifacts:
@@ -26,36 +26,36 @@ onto the first copy of `L_s`; put `h_s=p_s-q_s`.  Every fibre of `D_s` is
 ||h_s||_(2,T(D_s))^2 = 2/(s+1).                     (XXII-1)
 ```
 
-The load-bearing estimate is
-
-```text
-inf_{z_1,...,z_ell in D_s}
- ||h_s - sum_(j<=ell) [z_j^*,z_j]|| >= 1
- whenever ell <= s.                                  (XXII-2)
-```
-
-Indeed, write `E_s=1 + L_s^{+s}` and
+The load-bearing Chern estimate is simultaneous.  Write
+`E_s=1 + L_s^{+s}` and
 
 ```text
 z_j = [ a_j  b_j ]
       [ c_j  d_j ].
 ```
 
-The tuple `(c_1,...,c_ell)` is a section of `L_s^{+(s ell)}`.  Since
-`s ell <= s^2`, its top Chern class is
+Apply the Chern argument to the lower-left columns of `z_j` and `z_j^*`,
+namely
 
 ```text
-c_(s ell)(L_s^{+(s ell)}) = c_1(L_s)^(s ell) != 0
+c_1,...,c_ell,b_1^*,...,b_ell^*.
 ```
 
-in `H^(2 s ell)(CP^(s^2);Z)`.  Hence the tuple vanishes at some point `x`.
-At that point the compression to the trivial line satisfies
+Their join is a section of `L_s^{+(2 s ell)}`.  Whenever `s>=2 ell`, its top
+Chern class is `c_1(L_s)^(2 s ell)!=0`, because `2 s ell<=s^2`.  Hence there
+is a point `x` where both `b_j(x)=0` and `c_j(x)=0` for every `j`.  The vector
+state on the trivial line at this fibre satisfies
 
 ```text
-p_s [z_j^*,z_j](x) p_s = - b_j(x)b_j(x)^* <= 0,
+omega_(s,x)(h_s)=1,
+omega_(s,x)(z_j z_k)=omega_(s,x)(z_j)omega_(s,x)(z_k)
+                                           for every j,k.  (XXII-2)
 ```
 
-whereas `p_s h_s(x) p_s=p_s(x)`.  This proves (XXII-2).
+Indeed, the trivial line reduces every `z_j(x)`, so the compressed scalar of
+a product is the product of the compressed scalars.  This simultaneous-zero
+estimate produces finite packets of an eventual character, not merely a
+trace.
 
 Now let
 
@@ -86,38 +86,58 @@ tracial completion
 M = overline(A)^{T(A)} = C 1 + J.                    (XXII-3)
 ```
 
-The original ideal `B=direct_sum_s D_s` sits in `J`.  Set `H=M/B`.  By
-(XXII-1), `h=(h_s)` belongs to `J`, while `||h_s||=1`, so its class `hbar` in
-`H` is nonzero.  For every finite family `y_1,...,y_ell in H`, choose lifts
-`lambda_j 1+z_j` with `z_j in J`.  Scalar parts cancel in self-commutators,
-and the quotient norm is the tail limsup, hence (XXII-2) gives
+The original ideal `B=direct_sum_s D_s` sits in `J`, and `h=(h_s)` belongs to
+`J` by (XXII-1).  Work first on the bounded product `P=product_s D_s`.  For
+every finite family `z_1,...,z_ell in P` and every lower bound `S`, choose
+`s>=max(S,2 ell)` and apply (XXII-2) to the coordinate family
+`z_(1,s),...,z_(ell,s)`.  Pulling the resulting fibre vector state back along
+the `s`-th coordinate evaluation gives a state `omega` on `P` with
 
 ```text
-||hbar - sum_(j<=ell)[y_j^*,y_j]||
- = limsup_s ||h_s - sum_(j<=ell)[z_(j,s)^*,z_(j,s)]||
- >= 1.                                                (XXII-4)
+omega(h)=1,
+omega(z_j z_k)=omega(z_j)omega(z_k)     for every j,k.  (XXII-4)
 ```
 
-Thus `hbar` is not in the Cuntz--Pedersen trace-zero subspace of `H`, the norm
-closure of finite sums of self-commutators.  The Cuntz--Pedersen duality
-between this quotient of `H_sa` and bounded self-adjoint tracial functionals
-therefore yields a bounded trace detecting `hbar`.  Taking a Jordan component
-and normalizing gives `sigma in T(H)` with `sigma(hbar) != 0`.
+It also makes any prescribed finite family from `B` arbitrarily small:
+choose `s` farther out, where those norm-null sequences have small
+coordinates.
 
-Pull `sigma` back along `M -> H`.  The resulting trace `sigma_tilde` kills
-`B`, so on `A=C1+B` it is exactly the trace `tau_infinity` at the point at
-infinity.  But `sigma_tilde(h) != 0`, whereas the uniform-`2`-continuous
-extension of `tau_infinity` vanishes on `J`.  More explicitly, the tail
-representatives
+Now use compactness of the state space of `P`.  For finitely many
+multiplicativity constraints, finitely many `a in B`, and an integer `r>=1`,
+impose the closed conditions
+
+```text
+omega(h)=1,
+omega(xy)=omega(x)omega(y),
+|omega(a)|<=1/r.
+```
+
+For each finite collection, include every left and right factor in the Chern
+packet before choosing the late coordinate.  The conditions are weak-star
+closed (the product is in `C`), so the late-coordinate construction proves
+the finite intersection property.  Compactness gives a state `rho`
+satisfying all such conditions simultaneously.  Thus `rho` is multiplicative
+on `P`, while the constraints for every `r` give `rho|_B=0`.  It descends to
+a character of the corona `P/B`, and its restriction to `M=C1+J` is a
+character, hence a tracial state, `sigma_tilde` with
+
+```text
+sigma_tilde(h)=1,
+sigma_tilde(lambda 1+b)=lambda          (b in B).       (XXII-5)
+```
+
+Hence its restriction to `A=C1+B` is exactly the trace `tau_infinity` at the
+point at infinity, whereas the uniform-`2`-continuous extension of
+`tau_infinity` vanishes on `J`.  More explicitly, the tail representatives
 
 ```text
 h^(n)=(0,...,0,h_n,h_(n+1),...)
 ```
 
-all have the same image `hbar` in `H`, so
+have `h-h^(n) in B`, so
 
 ```text
-sigma_tilde(h^(n)) = sigma(hbar) != 0,
+sigma_tilde(h^(n)) = 1,
 ||h^(n)||_(2,T(A)) = sup_(s>=n) sqrt(2/(s+1)) -> 0.
 ```
 

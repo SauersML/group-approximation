@@ -2,7 +2,7 @@
 rg: 2
 id: stw22-trace-problem-counterexample-from-chern-corona
 kind: route
-title: Put the Chern obstructions in a 2-null corona and separate by Cuntz-Pedersen traces
+title: Put simultaneous Chern zeros in a 2-null corona and compactify coordinate states
 target: stw22-nuclear-typei-trace-problem-counterexample
 requires:
   - stw22-chern-l2-small-unbounded-commutator-width
@@ -31,44 +31,50 @@ Indeed a uniform-`2` Cauchy bounded sequence converges in each fixed block
 condition is exactly what is left from approximating by the `c_0` sum.
 Conversely truncation proves every element of `C1+J` lies in the completion.
 
-Let `I=direct_sum_s D_s`, viewed as the norm-`c_0` ideal in `M`, and put
-`H=M/I`. The sequence `h=(h_s)` belongs to `J`, because its uniform
-`2`-norm tends to zero blockwise, but `||h_s||=1`, so its class
-`hbar=h+I` is nonzero and `||hbar||=1`.
+Let `I=direct_sum_s D_s`, viewed as the norm-`c_0` ideal.  The sequence
+`h=(h_s)` belongs to `J`, because its uniform `2`-norm tends to zero
+blockwise.
 
-Fix a finite number `ell` and lift arbitrary `y_1,...,y_ell in H` to
-`m_j=lambda_j 1+z_j` with `z_j in J`. Scalars disappear from
-self-commutators. For a bounded sequence `x=(x_s)`, quotienting by the
-`c_0` ideal gives
-
-```text
-||x+I|| = limsup_s ||x_s||.
-```
-
-Every tail index `s>=ell` therefore satisfies the Chern estimate from the
-prerequisite, and hence
+The one-sided Chern width estimate from the prerequisite is not, by itself,
+a positive-state construction: after only the lower-left columns vanish, the
+trivial-line vector state evaluates a self-commutator as `-b b^*`.  Strengthen
+the same Chern argument by joining both the lower-left columns of the chosen
+elements and those of their adjoints.  This is a section of
+`L_s^{+(2 s ell)}`, whose top Chern class is nonzero when `s>=2 ell`.  At a
+common zero both off-diagonal blocks vanish, so the trivial-line fibre vector
+state `omega_s` satisfies
 
 ```text
-|| hbar - sum_(j=1)^ell (y_j^*y_j-y_j y_j^*) || >= 1.   (TC-1)
+omega_s(h_s)=1,
+omega_s(z_j^*z_j-z_jz_j^*)=0            for j=1,...,ell. (TC-1)
 ```
 
-Thus `hbar` is not in the norm-closed selfadjoint commutator subspace.
-By the Cuntz--Pedersen trace-separation theorem (equivalently Hahn--Banach
-followed by polarization), there is a nonzero bounded hermitian tracial
-functional on `H` detecting `hbar`. The positive and negative parts of a
-hermitian trace are again traces (use uniqueness of Jordan decomposition
-and invariance under inner automorphisms), so after normalization there is
-`sigma in T(H)` with `sigma(hbar)!=0`.
+For any finite family of product elements and any prescribed tail, choose
+such a later coordinate and pull `omega_s` back to the bounded product.  A
+finite family from `I` is simultaneously small there because its coordinate
+norms tend to zero.
 
-Let `pi:M->H` be the quotient map. Then `sigma*pi` is a tracial state on
-`M`. Since `A=C1+I`, its restriction to `A` is exactly the scalar quotient
-trace `tau_infinity(lambda 1+a)=lambda`.
+The state space of the bounded product is compact.  Impose all closed
+constraints `omega(h)=1`, all self-commutator constraints, and, for every
+`a in I` and integer `r>=1`, `|omega(a)|<=1/r`.  The late-coordinate states
+give the finite intersection property, so compactness produces a state `rho`
+satisfying every constraint.  Polarization makes `rho` tracial, and the
+`1/r` constraints give `rho|_I=0`.  Therefore `rho` descends to the norm
+corona and restricts to a tracial state on `M=C1+J` with
+
+```text
+rho(h)=1,
+rho(lambda 1+a)=lambda                  for a in I.      (TC-2)
+```
+
+Thus its restriction to `A` is exactly the scalar quotient trace
+`tau_infinity(lambda 1+a)=lambda`.
 
 For `N>=1`, let `h^(N)` be the tail sequence equal to zero for `s<N` and to
-`h_s` for `s>=N`. Then `pi(h^(N))=hbar`, so
+`h_s` for `s>=N`. Then `h-h^(N) in I`, so
 
 ```text
-(sigma*pi)(h^(N)) = sigma(hbar) != 0
+rho(h^(N)) = 1
 ```
 
 for every `N`, while
@@ -77,5 +83,5 @@ for every `N`, while
 ||h^(N)||_(2,T(A)) = sup_(s>=N) sqrt(2/(s+1)) -> 0.
 ```
 
-Therefore `sigma*pi` is not uniform-`2`-norm continuous. It is a second
+Therefore `rho` is not uniform-`2`-norm continuous. It is a second
 extension of `tau_infinity` to `M`, proving `(XXII-NEG)`.

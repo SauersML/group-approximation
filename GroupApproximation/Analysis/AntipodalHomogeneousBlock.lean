@@ -59,14 +59,23 @@ def antipodalBlockStarSubalgebra (d s : ℕ)
   mul_mem' := by
     intro f g hf hg x
     simp only [ContinuousMap.mul_apply, hf x, hg x]
-    rw [mul_assoc u (f x) u, ← mul_assoc (u * f x) u u, hu_sq]
-    simp [mul_assoc]
+    calc
+      u * f x * u * (u * g x * u) = u * f x * (u * u) * g x * u := by
+        noncomm_ring
+      _ = u * (f x * g x) * u := by rw [hu_sq]; simp [mul_assoc]
   algebraMap_mem' := by
     intro c x
-    change algebraMap ℂ (CStarMatrix (Fin k) (Fin k) ℂ) c =
-      u * algebraMap ℂ (CStarMatrix (Fin k) (Fin k) ℂ) c * u
-    rw [Algebra.commutes c u]
-    simp [← mul_assoc, hu_sq]
+    change algebraMap ℂ (CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ) c =
+      u * algebraMap ℂ (CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ) c * u
+    symm
+    calc
+      u * algebraMap ℂ (CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ) c * u =
+          algebraMap ℂ (CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ) c * (u * u) := by
+            rw [← Algebra.commutes c u]
+            simp [mul_assoc]
+      _ = algebraMap ℂ (CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ) c := by
+        rw [hu_sq]
+        simp
   star_mem' := by
     intro f hf x
     change star (f (-x)) = u * star (f x) * u
@@ -96,8 +105,9 @@ theorem isClosed_antipodalBlockStarSubalgebra (d s : ℕ)
   rw [hcarrier]
   refine isClosed_iInter fun x ↦ ?_
   apply isClosed_eq
-  · exact continuous_apply (-x)
-  · exact (continuous_const.mul (continuous_apply x)).mul continuous_const
+  · exact continuous_eval_const (-x)
+  · have hu : Continuous (fun _ : SphereMatrixFunctions d s ↦ u) := continuous_const
+    exact (hu.mul (continuous_eval_const x)).mul hu
 
 /-- The concrete closed C-star algebra of antipodally covariant functions. -/
 abbrev AntipodalBlock (d s : ℕ)
@@ -111,12 +121,6 @@ noncomputable instance antipodalBlock_isClosed (d s : ℕ)
     IsClosed ((antipodalBlockStarSubalgebra d s u hu_sq hu_star :
       StarSubalgebra ℂ (SphereMatrixFunctions d s)) : Set (SphereMatrixFunctions d s)) :=
   isClosed_antipodalBlockStarSubalgebra d s u hu_sq hu_star
-
-noncomputable instance antipodalBlock_cStarAlgebra (d s : ℕ)
-    (u : CStarMatrix (Fin (s + 1)) (Fin (s + 1)) ℂ)
-    (hu_sq : u * u = 1) (hu_star : star u = u) :
-    CStarAlgebra (AntipodalBlock d s u hu_sq hu_star) :=
-  StarSubalgebra.cstarAlgebra _
 
 /-- The sign of a summand: the distinguished trivial line has sign `+1`, and
 every tautological summand has sign `-1`. -/
@@ -135,13 +139,32 @@ theorem blockSign_mul_self {s : ℕ} (i : Fin (s + 1)) : blockSign i * blockSign
 
 @[simp]
 theorem blockInvolution_sq (s : ℕ) : blockInvolution s * blockInvolution s = 1 := by
-  ext i j
-  simp [blockInvolution, CStarMatrix.mul_apply, blockSign]
+  have hmat :
+      Matrix.diagonal blockSign * Matrix.diagonal blockSign =
+        (1 : Matrix (Fin (s + 1)) (Fin (s + 1)) ℂ) := by
+    rw [Matrix.diagonal_mul_diagonal, ← Matrix.diagonal_one]
+    congr 1
+    funext i
+    exact blockSign_mul_self i
+  apply CStarMatrix.ext
+  intro i j
+  change (∑ x, Matrix.diagonal blockSign i x * Matrix.diagonal blockSign x j) =
+    (1 : Matrix (Fin (s + 1)) (Fin (s + 1)) ℂ) i j
+  simpa only [Matrix.mul_apply] using congrFun (congrFun hmat i) j
 
 @[simp]
 theorem blockInvolution_star (s : ℕ) : star (blockInvolution s) = blockInvolution s := by
-  ext i j
-  simp [blockInvolution, CStarMatrix.star_apply, blockSign]
+  have hmat : star (Matrix.diagonal (blockSign (s := s))) =
+      Matrix.diagonal (blockSign (s := s)) := by
+    rw [Matrix.star_eq_conjTranspose, Matrix.diagonal_conjTranspose]
+    congr 1
+    funext i
+    simp only [Pi.star_apply]
+    by_cases hi : i = 0 <;> simp [blockSign, hi]
+  apply CStarMatrix.ext
+  intro i j
+  simpa [blockInvolution, CStarMatrix.star_apply, Matrix.star_eq_conjTranspose] using
+    congrFun (congrFun hmat i) j
 
 /-- The concrete `s`-th homogeneous block over `RP^d`. -/
 abbrev RealProjectiveBlock (d s : ℕ) :=
