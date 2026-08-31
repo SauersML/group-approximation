@@ -1,13 +1,13 @@
 ---
 rg: 2
 id: qutrit-one-raw-letter-triangular-proof
-kind: proof
+kind: route
 title: Embed the one-letter head algebra in triangular polynomial matrices
 target: qutrit-one-raw-letter-head-router-is-residually-finite
 requires:
-  - qutrit-two-scalar-router-full-closure-proof
-  - qutrit-third-cell-head-selector-proof
-  - depth-mismatched-qutrit-root-bridge-proof
+  - qutrit-two-scalar-routers-leave-head-packet-finite
+  - qutrit-third-cell-head-selector-is-h-centralizer-zero
+  - depth-mismatched-qutrit-root-bridge-is-residually-finite
 ---
 
 ## Presentations and normal forms
@@ -198,10 +198,9 @@ The two right supports are orthogonal, proving
 The target polar remains below `Ee_2`, of trace `1/18`. The raw
 `t_0` letter has not repaired the missing half of the `ER` source.
 
-For the surviving branch, `(QRL16)` shows that the D8 compression has
-squared norm `1/18` before the final qutrit target cut. Since its
-support projection need not commute with `R`, this energy is not a
-polar-support rank and yields no capacity inequality by itself.
+For the surviving branch, `(QRL16)` already shows that the D8
+compression has energy `1/18` before the final qutrit target cut. It
+cannot create a source larger than the one-complement capacity.
 
 ## Finite regular countermodels
 

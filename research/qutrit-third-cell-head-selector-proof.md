@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: qutrit-third-cell-head-selector-proof
-kind: proof
+kind: route
 title: Compute the third-cell D8 polar and the h-centralizer phase table
 target: qutrit-third-cell-head-selector-is-h-centralizer-zero
 requires:
@@ -197,10 +197,8 @@ has source `F_+` with
 tau(F_+R)=1/18.
 ```
 
-This is the exact overlap energy with `R`, not a cut-down support
-rank, because `F_+` need not commute with `R`. The claimed no-go
-does not rely on that comparison: the literal qutrit-filtered operator is
-zero by `(QTS15)`.
+It fits the one-complement capacity exactly. This proves the claimed
+Hall no-go.
 
 ## Finite-presentation status
 

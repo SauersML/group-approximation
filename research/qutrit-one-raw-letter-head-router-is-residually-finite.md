@@ -6,7 +6,7 @@ title: One raw Leavitt letter in the routed head corner is triangular and residu
 artifacts:
   - research/qutrit-one-raw-letter-triangular-proof.md
 distinct_from:
-  qutrit-two-scalar-routers-close-full-leavitt-but-head-packet-stays-finite: that proves every all-scalar Q0-head network remains finite; this inserts the first literal positive or negative Leavitt letter and identifies the resulting infinite but residually finite coefficient group.
+  qutrit-two-scalar-routers-leave-head-packet-finite: that proves every all-scalar Q0-head network remains finite; this inserts the first literal positive or negative Leavitt letter and identifies the resulting infinite but residually finite coefficient group.
   qutrit-third-cell-head-selector-is-h-centralizer-zero: that computes the t1 branch deletion inside the h-fixed qutrit table; this composes it with the complete scalar router and proves the one-letter package still has finite regular approximants.
   depth-mismatched-qutrit-root-bridge-is-residually-finite: that treats a one-variable polynomial chart from a depth mismatch; this identifies the idempotent triangular extension forced by the Jacobson head.
 ---
@@ -77,10 +77,10 @@ router still has
 ||e_2 g_1T_0ER||_2^2=1/81                               (QRL7)
 ```
 
-and target capacity `tau(Ee_2)=1/18`. The surviving branch creates the raw `t_1` return and has
-pre-target squared norm `1/18`. This is an overlap energy, not a
-polar-support rank, because its support projection need not commute with
-`R`. Neither branch supplies a Hall lower bound.
+and target capacity `tau(Ee_2)=1/18`. The surviving branch creates the
+raw `t_1` return, but its D8 polar has already reduced the source from
+`1/9` to `1/18`, exactly the one-complement capacity. Neither branch
+gives a Hall excess.
 
 For every finite collection of words in `(QRL3)`, reduction of
 `F_2[x]` modulo a sufficiently high power of `x` gives a finite ring

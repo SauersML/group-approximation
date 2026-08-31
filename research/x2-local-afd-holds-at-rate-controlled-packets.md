@@ -42,8 +42,11 @@ tiny-support freedom is what the proof spends.
 What this does NOT give: `τ_R` quasidiagonal.  Hyperfiniteness supplies
 `δ → 0` for every packet but with NO rate against `d`, and generic
 `y ∈ R` has no rate (the weak closure is exactly the rate-free regime).
-The dimension-free residue is isolated as
-`dimension-free-shadow-avoidance-in-hyperfinite-factor`; the checked
-rank-`n` projection pair there shows rate-free conversion is
-impossible at the black-box level, so the residue needs structure of
-the inclusion, not better bookkeeping.
+The dimension-free strengthening of the underlying avoidance
+statement is FALSE (`shadow-avoidance-fails-at-column-isometries`:
+column isometries have 2-norm `d^{-1/2}` and full commutant shadow),
+so some dimension dependence in the threshold is necessary: the
+critical exponent lies in `[1/2, 5/2]`.  Consequently this cell is
+not a stepping stone to all packets — for generic `Y` the
+finite-dimensional subfactor must be chosen jointly with the packet,
+which is a reformulation of local AFD itself.
