@@ -41,16 +41,8 @@ subspaces do the work.
 `Submodule.topologicalClosure` supplies the closed span, and invariance passes
 to it because `π b` is continuous (`mapsTo_topologicalClosure`).
 
-## The corrected input bundle
-
-`HomogeneousBlockTypeIInputsNonUnital` replaces
-`HomogeneousBlockTypeIInputs` of `Analysis/STW22TypeIBlocks`, whose `B` was
-typed `[CStarAlgebra B]` and so forced the `c₀`-sum to be unital — which it is
-not, and which is the whole reason the unitization appears.  The re-typed bundle
-could not be put in the original module because `IsTypeINonUnital` is defined in
-`Analysis/STW22TypeIUnitization`, which imports it; moving the definition
-instead would duplicate a constant and break the import.  Both of its permanence
-clauses are now *theorems* rather than fields.
+The resulting permanence theorem is used directly by the concrete `c₀`-sum
+construction; no hypothesis bundle is needed.
 -/
 
 namespace GroupApproximation
@@ -253,32 +245,6 @@ theorem isTypeINonUnital_of_summands {D : ℕ → Type u} [∀ s, NonUnitalCStar
     isIrreducibleNonUnitalRep_restrict (hideal s) hπ hσ hσne
   obtain ⟨x, hx⟩ := h s H σ hσirr T hT
   exact ⟨ι s x, (hσ x).symm.trans hx⟩
-
-/-! ## The corrected input bundle for the counterexample -/
-
-/-- The type I bookkeeping of the counterexample, with `B` correctly typed as a
-**non-unital** C⋆-algebra.  Both permanence clauses of
-`HomogeneousBlockTypeIInputs` are now theorems, so only the block hypothesis
-remains. -/
-structure HomogeneousBlockTypeIInputsNonUnital (d : ℕ → ℕ) (D : ℕ → Type u)
-    [∀ s, NonUnitalCStarAlgebra (D s)] (B : Type u) [NonUnitalCStarAlgebra B]
-    (ι : ∀ s, D s →⋆ₙₐ[ℂ] B) : Prop where
-  /-- Every block is type I. -/
-  blocks_typeI : ∀ s : ℕ, IsTypeINonUnital.{u, v} (D s)
-  /-- Each summand sits inside the sum as a two-sided ideal. -/
-  summand_ideal : ∀ s : ℕ, IsIdealHom (ι s)
-  /-- The summands detect representations of the sum. -/
-  summand_exhaustive : IsSummandExhaustive.{u, v} ι
-
-/-- **Audit step (A5), with both permanence clauses proved.**  The unitization
-of a `c₀`-sum of type I blocks is type I. -/
-theorem HomogeneousBlockTypeIInputsNonUnital.isTypeI_of_unitization
-    {d : ℕ → ℕ} {D : ℕ → Type u} [∀ s, NonUnitalCStarAlgebra (D s)]
-    {B : Type u} [NonUnitalCStarAlgebra B] {ι : ∀ s, D s →⋆ₙₐ[ℂ] B}
-    (hI : HomogeneousBlockTypeIInputsNonUnital.{u, v} d D B ι) :
-    IsTypeI.{u, v} (Unitization ℂ B) :=
-  isTypeI_unitization
-    (isTypeINonUnital_of_summands ι hI.summand_ideal hI.summand_exhaustive hI.blocks_typeI)
 
 end
 

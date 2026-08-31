@@ -4,9 +4,8 @@ import Mathlib.Analysis.CStarAlgebra.Unitization
 /-!
 # Type I passes through unitization
 
-`Analysis/STW22TypeIBlocks` carried the two permanence clauses of the STW
-Problem XXII audit's step (A5) as hypotheses.  This file **discharges the
-unitization one**, leaving only the countable `c₀`-sum clause open.
+This file proves the unitization permanence step in the STW Problem XXII
+counterexample's Type-I argument.
 
 The audit's algebra is `A = B⁺` for `B = ⨁_{c₀} D s` non-unital, so the
 statement needs a non-unital notion of representation.  `IsTypeINonUnital` is
@@ -34,13 +33,8 @@ which is the same computation that proves `isHomogeneousRep_one_complex` in
 `Analysis/STW22TypeIBlocks`; it is restated here rather than factored out of the
 landed module so that nothing already on `main` has to move.
 
-## Residue after this file
-
-Only `HomogeneousBlockTypeIInputs.sum_typeI` — type I through the countable
-`c₀`-sum — and the block homogeneity of `Γ(End(1 ⊕ L_s^{⊕s}))` remain carried.
-The `c₀` clause needs "an irreducible representation restricted to a closed
-two-sided ideal is irreducible or zero", which is closed-span and density work,
-not the algebraic split used here.
+The countable `c₀`-sum permanence theorem is proved separately in
+`Analysis/STW22TypeIC0Sum`.
 -/
 
 namespace GroupApproximation
@@ -126,8 +120,7 @@ theorem isScalarExtension_inr (B : Type u) [NonUnitalCStarAlgebra B] :
 /-! ## The permanence theorem -/
 
 /-- **Type I passes through a scalar extension**, in particular through the
-minimal unitization.  This discharges `HomogeneousBlockTypeIInputs`'s
-`unitization_typeI` clause. -/
+minimal unitization. -/
 theorem isTypeI_of_isScalarExtension {B : Type u} [NonUnitalCStarAlgebra B]
     {A : Type u} [CStarAlgebra A] (ι : B →⋆ₙₐ[ℂ] A) (hext : IsScalarExtension ι)
     (h : IsTypeINonUnital.{u, v} B) : IsTypeI.{u, v} A := by

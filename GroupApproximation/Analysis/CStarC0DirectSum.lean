@@ -235,8 +235,7 @@ theorem summandInclusion_isSummandExhaustive :
     tendsto_const_nhds.congr' (Eventually.of_forall fun N ↦ (hzero N).symm)
   exact tendsto_nhds_unique hlim hlimZero
 
-/-- Type I passes to the genuine countable `c₀`-sum, with no abstract
-`HomogeneousBlockTypeIInputsNonUnital` bundle in the statement. -/
+/-- Type I passes to the genuine countable `c₀`-sum. -/
 theorem isTypeINonUnital_c0DirectSum
     (hD : ∀ n, IsTypeINonUnital.{u, v} (D n)) :
     IsTypeINonUnital.{u, v} (C0DirectSum D) :=
