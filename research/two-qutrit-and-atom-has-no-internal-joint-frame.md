@@ -49,7 +49,7 @@ selector-origin. For every finite-dimensional algebra `D`,
 ```
 
 Hence every new proper subprojection and every non-scalar joint frame under
-the active atom comes entirely from `D). The two-qutrit finite-type and
+the active atom comes entirely from `D`. The two-qutrit finite-type and
 multipath relations compress to scalars there and impose no relation between
 two external gauge actors.
 
