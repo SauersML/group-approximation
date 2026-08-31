@@ -18,7 +18,24 @@ X_0=\lambda_G(x),\qquad
 T_X(A)=E_D(X_0AX)
 \]
 
-for an arbitrary selfadjoint unitary \(X\). Put
+for an arbitrary selfadjoint unitary \(X\). Let \(P_D\) denote the
+orthogonal projection onto \(D\), and set
+
+\[
+S_X=L_{X_0}R_X,\qquad {\cal Q}_X=S_XP_DS_X.
+\]
+
+The operator \(S_X\) is a selfadjoint unitary, \({\cal Q}_X\) is the
+projection onto \(S_XD\), and
+
+\[
+T_X^2=P_D{\cal Q}_XP_D\big|_D.                         \tag{HMI0}
+\]
+
+Hence the singular values of \(T_X\) are exactly the principal-angle
+cosines between the two Hilbert--Schmidt subspaces \(D\) and \(S_XD\).
+
+Put
 
 \[
 I=B\cap xBx,\qquad \alpha(c)=xcx\quad(c\in I).
