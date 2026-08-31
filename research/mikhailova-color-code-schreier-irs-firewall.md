@@ -65,11 +65,11 @@ Neither of the two standard subgroup replacements captures this criterion.
    The point mass `delta_M` is an IRS exactly when `M` is normal, and
    here that is equivalent to `H` being abelian.  In the intended
    nonabelian host, `delta_M` is not even a candidate IRS limit.
-3. After the faithful amplification in `(MSI4)`, ordinary random point
-   stabilizers converge to the trivial subgroup, while the stabilizer of
-   the external color point remains exactly `M` in the zero/one metric
-   sense.  GKP colors therefore record equality patterns not present in
-   Benjamini--Schramm stabilizer statistics.
+3. After the faithful amplification in `(MSI4)`, every nonidentity actor
+   has fixed-point proportion tending to zero, so the induced Loeb action
+   is essentially free.  The stabilizer of the external color point remains
+   exactly `M` in the zero/one metric sense.  GKP colors therefore record
+   equality patterns not present in ordinary stabilizer statistics.
 
 Consequently the unresolved root cannot be closed by proving subgroup
 separability, co-soficity of an IRS, or freeness of the actor model.  Its
