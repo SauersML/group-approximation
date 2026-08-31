@@ -24,9 +24,10 @@ and `subChainComplex R X (↑U ∩ ↑V)` are the singular chains supported in `
 -/
 
 open CategoryTheory AlgebraicTopology
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 
 variable {R : Type} [CommRing R] {X : TopCat.{0}}
@@ -161,9 +162,11 @@ theorem subBoundary_comp_subBoundary
     {S : Set X} (n : ℕ) :
     subBoundary R X S (n + 1) ≫ subBoundary R X S n = 0 := by
   ext c
-  simp +decide [subBoundary]
-  convert congr_arg (fun f => f c.val)
-    ((singularChainComplex R X).d_comp_d (n + 2) (n + 1) n) using 1
+  have h := congrArg (fun f => f.hom c.val)
+    ((singularChainComplex R X).d_comp_d (n + 2) (n + 1) n)
+  change (singularBoundary R X n).hom
+    ((singularBoundary R X (n + 1)).hom c.val) = 0 at h
+  exact h
 
 /-- **The subordinate-chain complex** `C_*^S(X; R)`. -/
 noncomputable def subChainComplex (R : Type) [CommRing R] (X : TopCat.{0})
@@ -180,7 +183,11 @@ noncomputable def subChainComplex (R : Type) [CommRing R] (X : TopCat.{0})
 @[simp] theorem subChainComplex_d
     {S : Set X} (n : ℕ) :
     (subChainComplex R X S).d (n + 1) n = subBoundary R X S n :=
-  ChainComplex.of_d _ _ _ n
+  by
+    unfold subChainComplex
+    exact ChainComplex.of_d
+      (fun k => ModuleCat.of R (subChainSubmodule R X S k))
+      (fun k => subBoundary R X S k) n
 
 /-! ## 5. Inclusion chain maps -/
 
@@ -192,7 +199,8 @@ noncomputable def subChainInclusion (S T : Set X) (h : S ⊆ T) :
     obtain ⟨k, hk⟩ := hij
     ext c
     apply Subtype.ext
-    simp +decide [subChainComplex, subBoundary, Submodule.inclusion]
+    rw [subChainComplex_d, subChainComplex_d]
+    rfl
 
 @[simp] theorem subChainInclusion_f_apply
     {S T : Set X} (h : S ⊆ T) (n : ℕ) (c : subChainSubmodule R X S n) :
@@ -208,8 +216,8 @@ noncomputable def subChainToSmall (𝒰 : OpenCoverData X) (S : Set X) (hS : S �
     obtain ⟨k, hk⟩ := hij
     ext c
     apply Subtype.ext
-    simp +decide [subChainComplex, smallChainComplex, subBoundary, smallBoundary,
-      Submodule.inclusion]
+    rw [subChainComplex_d, smallChainComplex_d]
+    rfl
 
 @[simp] theorem subChainToSmall_f_apply
     {𝒰 : OpenCoverData X} {S : Set X} (hS : S ∈ 𝒰.sets) (n : ℕ)
