@@ -74,6 +74,18 @@ that fixed finite subproblem.  The load-bearing missing resource is now a
   is exactly the general element-separation question for graph-incidence
   groups; Arkhipov settles only `J`.  A packet escape must raise occurrence
   to at least three or leave parity-context syntax.
+- **Raise only one variable to occurrence three.**  Still marked-tame by
+  `one-triple-variable-lcs-has-no-perfect-model-gap`: its diagonal quotient
+  decomposes into planar pins, nonplanar one-port absorbers, and one closed
+  graph-incidence factor.  A commuting `J=-I` model always yields a finite
+  one.  The minimal packet escape needs at least two triple variables.
+- **Allow a network of occurrence-three variables.**  This is already
+  universal at the exact group level.
+  `cyclic-occurrence-splitting-makes-every-lcs-cubic` turns any LCS into
+  maximum occurrence three by cyclic equality copies, with a
+  `J`-preserving solution-group isomorphism.  Its equality-cycle stability
+  degrades with the original occurrence, so the remaining packet problem is
+  quantitative rather than exact.
 - **Repeat fixed K labels at positive density.**  This can improve the finite
   packet's empirical spectral weight but does not change the universal
   completion; an infinite kernel in the abelian-subgroup amalgam survives
