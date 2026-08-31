@@ -21,7 +21,7 @@ Encode such an equation by the relator `k^(-1)gh` in the free group
 from `R` lies in the normal closure of the relators from `R_0`.
 
 For `A subset R_0`, let `occ_s(r)` be the number of literal occurrences
-of the label `s` among the three slots of `r), and put
+of the label `s` among the three slots of `r`, and put
 
 ```text
 deg_A(s)=sum_(r in A) occ_s(r).                         (PLC1)
