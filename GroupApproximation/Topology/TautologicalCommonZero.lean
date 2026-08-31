@@ -213,7 +213,7 @@ noncomputable def unitSection : TautSection 0 (Fin 1) where
     exact hval.inv₀ fun _ hz => apply_ne_zero_of_ne_zero hz
   homogeneous := fun _ _ _ _ => by
     funext _
-    simp [mul_inv]
+    simp [mul_comm]
 
 theorem unitSection_ne_zero {z : Fin (0 + 1) → ℂ} (hz : z ≠ 0) :
     unitSection.toFun z ≠ 0 := by

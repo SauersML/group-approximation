@@ -101,7 +101,7 @@ def IsIrreducibleRep (π : A →⋆ₐ[ℂ] (H →L[ℂ] H)) : Prop :=
 theorem IsIrreducibleRep.exists_ne_zero {π : A →⋆ₐ[ℂ] (H →L[ℂ] H)}
     (hπ : IsIrreducibleRep π) : ∃ v : H, v ≠ 0 := by
   by_contra hcon
-  push_neg at hcon
+  push Not at hcon
   obtain ⟨a, ha⟩ := hπ.1
   refine ha (ContinuousLinearMap.ext fun x => ?_)
   rw [hcon (π a x), hcon ((0 : H →L[ℂ] H) x)]

@@ -1,4 +1,5 @@
 import GroupApproximation.Analysis.CuntzPedersenHermitianSeparation
+import GroupApproximation.Analysis.CuntzPedersenCoronaObstruction
 import Mathlib.Analysis.CStarAlgebra.Unitary.Span
 
 /-!
