@@ -5,10 +5,10 @@ kind: route
 title: Check edge avoidance at both universal HNN stages
 target: two-generator-frattini-universal-containers
 requires:
-  - whitehead-universal-container-via-enumeration-and-rope
-  - whitehead-universal-group-via-effective-hnn-and-rope
-  - whitehead-injective-two-generator-free-edge-hnn-proof
-  - whitehead-injective-via-waldhausen-higman-rope
+  - whitehead-universal-finitely-presented-container
+  - whitehead-universal-finitely-presented-torsion-free-group
+  - whitehead-injective-two-generator-recursive-compression
+  - whitehead-injective-torsion-order-preserving-higman-embedding
   - fournier-facio-group-is-nonsofic
   - torsion-free-finitely-presented-non-mf
   - mf-positive-controls
