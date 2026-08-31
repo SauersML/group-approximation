@@ -130,7 +130,7 @@ separation do not supply those operator-valued rows.
 There is also a sharp complete-order firewall before the translated rows can
 be lifted.  `finite-nuclear-quotient-does-not-complete-partial-toeplitz-data`
 puts anticommuting Pauli involutions on the two edges of the square
-(C_2	imes C_2).  The data are positive on every allowed local face, but
+(C2 x C2).  The data are positive on every allowed local face, but
 remain at normalized-HS distance at least ((3-sqrt5)/4) from every full
 positive-definite group table.  The target algebra is finite-dimensional,
 nuclear, LP/LLP, locally reflexive, quasidiagonal, RFD, and MF.  Consequently
@@ -207,3 +207,28 @@ moving sharp spectral band without a margin.  The remaining theorem must
 therefore use the concrete Iwahori Hecke matrix to control module position,
 not just stabilizer size, raw band rank, or vanishing residual covariance.
 
+The same reduction now holds for every prescribed core type, not only the
+regular face. `relative-induced-selector-has-intertwiner-order-dual`
+replaces the whole-group Choi variables by the finite right module
+
+```text
+E_beta=Hom_B(H_beta,Ind_B^G(beta))
+```
+
+and computes the exact selector distance by a right-multiplication order
+LMI. `arbitrary-core-near-top-coverage-controls-relative-corner` then
+uses the canonical identity-coset isometry as a trace-small filler. Hence
+any persistent arbitrary-core gap forces a positive module majorant `Z`
+with trace bounded uniformly below one on the entire near-top band.
+
+There is also a sharp limit on importing free-product Positivstellensatz
+technology across the moving normal quotient.
+`moving-dihedral-quotients-force-linear-positive-lift-extent` gives
+extent-two strictly quotient-positive polynomials on finite dihedral
+quotients of `C2*C2` whose every upstream positive algebraic lift has
+extent at least the relation level. The companion
+`dihedral-sampling-margin-makes-positive-lift-trivial` proves that a
+margin above the curvature scale `N^(-2)` makes the original polynomial
+positive upstairs. Thus the missing Iwahori correction cannot follow from
+quotient positivity and input extent alone; it needs a quantitative margin
+or arithmetic control of the translated relation ideal.
