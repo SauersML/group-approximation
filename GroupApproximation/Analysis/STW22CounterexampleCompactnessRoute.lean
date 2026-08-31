@@ -327,7 +327,7 @@ theorem isExtensionOfSomeBaseFunctional_iff (G : TracialTwoGauge D)
     intro y _
     show σ y = if h : (y : BoundedCStarSequence D) ∈ scalarPlusJSubalgebra G
       then σ ⟨(y : BoundedCStarSequence D), h⟩ else (0 : ℂ)
-    exact (dif_pos y.2).symm
+    rw [dif_pos y.2]
 
 /-- **(A18) as a theorem: `T(A) ⊊ T(M)`.**  The extension map from the tracial
 states of `A` to those of the uniform tracial completion `M` is not surjective:
