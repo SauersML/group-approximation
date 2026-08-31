@@ -172,6 +172,109 @@ theorem ExactRelatorDesign₂.peeledPure_not_mem
     RelWord.listVal_cons, GGT.RelLetter.val, blockWord_take] at hmem
   cases s <;> simpa using hmem
 
+/-- Once the peeled tail crosses the unique base letter, it is excluded by the
+corrected cyclic `post/base/pre` clause. -/
+theorem ExactRelatorDesign₂.peeledThroughBase_not_mem
+    (E : HypEmbeddedCore₂ A N) {baseLetter : G}
+    {rho eps diffRadius W target : ℕ} {ms : List ℕ}
+    (h : ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms)
+    {q k : ℕ} {s : Bool} {x : G}
+    (hq : q + 1 < ms.length)
+    (hread : (blockWord (E.lox false) (E.lox true) false ms)[q]? =
+      some (GGT.RelLetter.comp s x))
+    (hkW : k ≤ W) (hklen : k ≤ ms.length)
+    (hcross : ms.length - (q + 1) < k) :
+    GGT.RelLetter.listVal
+        (((blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) ++
+          GGT.RelLetter.base baseLetter ::
+            (blockWord (E.lox false) (E.lox true) false ms).take q).take k)
+      ∉ E.rel.fam s := by
+  have hdrop := blockWord_drop_succ_of_read
+    (E.lox false) (E.lox true) ms hq hread
+  obtain ⟨n, hn⟩ : ∃ n, ms[q + 1]? = some n := by
+    exact ⟨ms[q + 1], List.getElem?_eq_getElem hq⟩
+  have hdropms : ms.drop (q + 1) = n :: ms.drop (q + 2) := by
+    rw [List.drop_eq_getElem_cons hq, getElem_eq_of_getElem? hq hn]
+  have hsplit : ms = ms.take (q + 1) ++ n :: ms.drop (q + 2) := by
+    calc
+      ms = ms.take (q + 1) ++ ms.drop (q + 1) :=
+        (List.take_append_drop (q + 1) ms).symm
+      _ = ms.take (q + 1) ++ n :: ms.drop (q + 2) := by rw [hdropms]
+  let r₀ := (ms.drop (q + 2)).length
+  let r₁ := k - (ms.length - (q + 1)) - 1
+  have hr₀W : r₀ ≤ W := by
+    simp only [r₀, List.length_drop]
+    omega
+  have hr₁W : r₁ ≤ W := by omega
+  have hr₁q : r₁ ≤ q := by
+    simp only [r₁]
+    omega
+  have hthrough := h.throughBase_not_mem_anchorFamily hsplit s s false
+    hr₀W hr₁W
+  have hr₀all : (ms.drop (q + 2)).take r₀ = ms.drop (q + 2) := by
+    simp only [r₀, List.take_length]
+  rw [hr₀all] at hthrough
+  intro hmem
+  apply hthrough
+  rw [List.take_append, List.take_of_length_le (le_of_lt (by
+      simpa only [List.length_drop, length_blockWord] using hcross)),
+    show k - ((blockWord (E.lox false) (E.lox true) false ms).drop
+        (q + 1)).length = r₁ + 1 by
+      simp only [List.length_drop, length_blockWord, r₁]
+      omega,
+    List.take_succ_cons, RelWord.listVal_append, hdrop, hdropms,
+    blockWord_cons, RelWord.listVal_cons, GGT.RelLetter.val,
+    blockWord_take, RelWord.listVal_cons, GGT.RelLetter.val] at hmem
+  have htake : (ms.take q).take r₁ = (ms.take (q + 1)).take r₁ := by
+    rw [List.take_take, List.take_take]
+    congr 1
+    omega
+  rw [blockWord_take] at hmem
+  rw [htake] at hmem
+  cases s <;> simpa [mul_assoc] using hmem
+
+/-- At the final block of an even run, peeling the `true` anchor leaves the
+exceptional `base/false/...` seam controlled by `BaseFirstAvoidance`. -/
+theorem ExactRelatorDesign₂.peeledLastBaseFirst_not_mem
+    (E : HypEmbeddedCore₂ A N) {baseLetter : G}
+    {rho eps diffRadius W target : ℕ} {ms : List ℕ}
+    (h : ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms)
+    {q k : ℕ} (hq : q + 1 = ms.length)
+    (hk2 : 2 ≤ k) (hkW : k ≤ W) (hklen : k ≤ ms.length) :
+    GGT.RelLetter.listVal
+        (((blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) ++
+          GGT.RelLetter.base baseLetter ::
+            (blockWord (E.lox false) (E.lox true) false ms).take q).take k)
+      ∉ E.rel.fam true := by
+  obtain ⟨n, post, hms⟩ : ∃ n post, ms = n :: post := by
+    cases ms with
+    | nil =>
+        exfalso
+        simp at hklen
+        omega
+    | cons n post => exact ⟨n, post, rfl⟩
+  have hbase := h.baseFirst_not_mem_trueFamily hms
+    (r := k - 2) (by omega)
+  intro hmem
+  apply hbase
+  have hdropnil :
+      (blockWord (E.lox false) (E.lox true) false ms).drop (q + 1) = [] := by
+    apply List.drop_eq_nil_of_le
+    rw [length_blockWord]
+    omega
+  rw [hdropnil, List.nil_append,
+    show k = (k - 1) + 1 by omega, List.take_succ_cons,
+    RelWord.listVal_cons, GGT.RelLetter.val] at hmem
+  have htakeq :
+      ((blockWord (E.lox false) (E.lox true) false ms).take q).take (k - 1) =
+        (blockWord (E.lox false) (E.lox true) false ms).take (k - 1) := by
+    rw [List.take_take, Nat.min_eq_left]
+    omega
+  rw [htakeq, hms, blockWord_cons,
+    show k - 1 = (k - 2) + 1 by omega, List.take_succ_cons,
+    RelWord.listVal_cons, GGT.RelLetter.val, blockWord_take] at hmem
+  simpa [mul_assoc] using hmem
+
 end ExactAvoidance
 
 end HullSC
