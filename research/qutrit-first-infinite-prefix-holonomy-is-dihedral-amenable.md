@@ -2,7 +2,7 @@
 rg: 2
 id: qutrit-first-infinite-prefix-holonomy-is-dihedral-amenable
 kind: claim
-title: The first infinite Leavitt qutrit holonomy is dihedral and still amenable
+title: The first infinite Leavitt qutrit holonomy is dihedral and residually finite
 artifacts:
   - research/qutrit-infinite-dihedral-holonomy-proof.md
 distinct_from:
@@ -65,15 +65,23 @@ K *_(<h>) (<h> times D_infinity)
        -> <K,X,Y> <= EL_28(L).                           (QID4)
 ```
 
-The second vertex is amenable and the edge is finite. The cover is
-therefore sofic and hyperlinear. Finite dihedral quotients give direct
-regular microstates for the holonomy vertex, while the `K` vertex keeps
-all nine qutrit character weights equal to `1/9`. Consequently this is
-a genuine infinite-order seam but still has zero normalized-HS
-relator floor and no Hall trace contradiction.
+The second vertex is amenable and the edge is finite, so the cover is
+sofic and hyperlinear. In fact the concrete matrix subgroup is itself
+residually finite. All of its entries lie in the positive free subalgebra
 
-Injectivity of `(QID4)` is not asserted. The theorem closes the first
-infinite package and every relation explicitly listed in `(QID1)--(QID4)`.
-To go further one must either couple two holonomy words by a relation
-not contained in the virtually cyclic vertex, or pass to a prefix-table
+```text
+B=F_2<s_0,s_1>.
+```
+
+Quotienting `B` by all words of length at least `N` gives finite rings
+which separate its elements, and therefore separates every nonidentity
+matrix in `<K,X,Y>`. Thus the actual subgroup, not only the cover, is
+sofic and hyperlinear. Its finite quotient microstates keep all nine
+qutrit character weights equal to `1/9`. This is a genuine infinite-order
+seam but still has zero normalized-HS relator floor and no Hall trace
+contradiction.
+
+The theorem closes the first infinite package. To go further one must
+consume a negative prefix letter in the same coefficient chart, couple
+holonomies by a non-residually-finite relation, or pass to a prefix-table
 subgroup at least as hard as the open Thompson-V hyperlinearity problem.
