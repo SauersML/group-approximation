@@ -39,8 +39,8 @@ kappa_w(delta)
  = sup ||w(U)-I||_(2,n),                                (JRF1)
 ```
 
-where the supremum runs over all dimensions and all unitary `S)-tuples
-with every relator defect at most `delta) in normalized HS norm.  What is
+where the supremum runs over all dimensions and all unitary `S`-tuples
+with every relator defect at most `delta` in normalized HS norm.  What is
 needed is
 
 ```text
@@ -49,8 +49,8 @@ lim_(delta->0) kappa_w(delta)=0.                         (JRF2)
 
 Statement `(JRF2)` is equivalent to saying that every homomorphism from
 `G` to a normalized-HS matrix ultraproduct kills `w`.  It is therefore
-the head operator-MF-invisibility target itself, not a consequence of
-property `(T)).
+the head HS-ultraproduct-invisibility target itself, not a consequence of
+property `(T)`.
 
 There are two sharp reasons the standard rigidity inputs stop.
 
@@ -60,18 +60,19 @@ an approximate matrix representation does not produce the genuine unitary
 representation to which relative property `(T)` applies.
 
 Second, every finite head window is compatible with the exact qutrit packet.
-For every finite `E subset L`, the subgroup
+For every finite `E subset L`, closing `E` under the finite `K)-orbit
+produces a finite subgroup
 
 ```text
-<K,E>
+<K,E>.
 ```
 
-after closing `E` under the finite `K`-orbit is finite.  Its regular
-representation is an exact finite-dimensional model in which every
-nonidentity element of that window has canonical trace zero.  In particular
-the head involution has a negative cut of density one half.  Hence exact
-`K)-types, all qutrit spectral marginals, and any fixed finite collection
-of finitary head roots have an exact head-retaining model.
+Its regular representation is an exact finite-dimensional model of all
+relations internal to that window, in which every nonidentity element has
+canonical trace zero.  In particular the head involution has a negative cut
+of density one half.  Hence exact `K)-types, all qutrit spectral marginals,
+and any fixed finite collection of finitary head roots have an exact
+head-retaining model.
 
 A successful contradiction must therefore use a calibrated mixed
 `S/T)-bearing actor occurrence which couples different finite head
