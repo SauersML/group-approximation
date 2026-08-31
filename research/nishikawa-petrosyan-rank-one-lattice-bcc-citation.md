@@ -19,11 +19,13 @@ Baum--Connes conjecture with coefficients with finite wreath products.
 
 The uniform case is covered by hyperbolicity. In the nonuniform case the
 lattice is relatively hyperbolic with respect to its cusp groups; the
-peripheral input and Theorem 6.2 give the result. The source explicitly
-notes that this reaches nonuniform lattices in `Sp(n,1)`, a case not
-previously covered by ordinary Baum--Connes. QED
+peripheral input and Theorem 6.2 give the result. This includes nonuniform
+lattices in `Sp(n,1)`. The paper says Corollaries F and G generalize
+Chatterji--Ruane's earlier Baum--Connes result without coefficients; the
+strengthening recorded here is coefficients plus every finite wreath
+product. QED
 
-Status: arXiv preprint, v2 posted 2025-10-08; the current manuscript is
-dated 2026-08-24.
+Status: arXiv preprint, v2 posted 2025-10-08; manuscript dated
+2025-10-09.
 Checked 2026-08-31:
 https://arxiv.org/abs/2509.15070

@@ -23,7 +23,7 @@ shows that the controlled equality `gamma_G=1` passes to the wreath
 product. Thus the source proves the finite-wreath statement itself, not
 merely Baum--Connes with coefficients for `G`. QED
 
-Status: arXiv preprint, v2 posted 2025-10-08; the current manuscript is
-dated 2026-08-24.
+Status: arXiv preprint, v2 posted 2025-10-08; manuscript dated
+2025-10-09.
 Checked 2026-08-31:
 https://arxiv.org/abs/2509.15070

@@ -24,7 +24,7 @@ finite-wreath theorem recorded in
 [[hyperbolic-bcc-finite-wreath-products]]. No torsion-free hypothesis is
 inserted. QED
 
-Status: arXiv preprint, v2 posted 2025-10-08; the current manuscript is
-dated 2026-08-24.
+Status: arXiv preprint, v2 posted 2025-10-08; manuscript dated
+2025-10-09.
 Checked 2026-08-31:
 https://arxiv.org/abs/2509.15070
