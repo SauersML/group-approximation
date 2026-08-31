@@ -158,19 +158,17 @@ theorem ExactRelatorDesign₂.forwardSpan_not_mem
     rw [hspan] at hmem
     exact h.revInvCyclicPrefix_not_mem E heven (by omega) hgap hhead hend hmem
 
-/-- The exact finite-avoidance design supplies both same-side exclusions; no
-additional side-exclusion hypothesis is needed. -/
-theorem sideExclusionOfExactDesign₂ (E : HypEmbeddedCore₂ A N) (cnt : ℕ) :
-    SideExclusionOfExactDesign₂ E cnt := by
-  intro hcount baseLetter hbase eps rho epsD Cm target ms heven hdesign hlong
-    py pz u u' huSym hu'Sym hpy hpz hpy0 hpz0
-  let W := 1 + blockConst [baseLetter] (max cnt (eps + 2))
-  have hmsEven : Even ms.length := by
-    rw [hdesign.1]
-    exact heven
-  have hW : 1 + blockConst [baseLetter] cnt ≤ W := by
-    simp only [W, blockConst, List.length_singleton]
-    omega
+/-- A fixed exact design supplies both same-side exclusions once the block
+count for that same fixed relator is available inside its avoidance window. -/
+theorem ExactRelatorDesign₂.sideExclusionAt
+    (E : HypEmbeddedCore₂ A N) {baseLetter : G}
+    {rho eps diffRadius W target : ℕ} {ms : List ℕ}
+    (hdesign : ExactRelatorDesign₂ E baseLetter rho eps diffRadius W target ms)
+    (heven : Even ms.length) {cnt : ℕ}
+    (hcount : RelatorBlockCountAt₂ E [baseLetter] ms cnt)
+    (hW : 1 + blockConst [baseLetter] cnt ≤ W) :
+    RelatorSideExclusionAt₂ E [baseLetter] ms := by
+  intro py pz u u' huSym hu'Sym hpy hpz hpy0 hpz0
   constructor
   · intro s d i hdcomp hi hine hstart hmem
     obtain ⟨v, tl, hv, hu⟩ := huSym
@@ -180,10 +178,10 @@ theorem sideExclusionOfExactDesign₂ (E : HypEmbeddedCore₂ A N) (cnt : ℕ) :
     obtain ⟨hilt, xi, hiRead⟩ :=
       exists_comp_letter_of_firstLongSide_start hpz hpz0 hi hstart
     have hwindow := index_window_of_blockCount E cnt hcount
-      (by simp) hv hu (d := d) (i := i) (by omega) (by omega) hmem
+      hv hu (d := d) (i := i) (by omega) (by omega) hmem
     rcases hwindow with ⟨hdi, hgap⟩ | ⟨hid, hgap⟩
     · have hdilt : d < i := lt_of_le_of_ne hdi (Ne.symm hine)
-      exact hdesign.forwardSpan_not_mem E hmsEven hv hu hdilt hilt hdRead hiRead
+      exact hdesign.forwardSpan_not_mem E heven hv hu hdilt hilt hdRead hiRead
         (le_trans hgap hW) hmem
     · have hidlt : i < d := lt_of_le_of_ne hid hine
       have hspanMem :
@@ -191,7 +189,7 @@ theorem sideExclusionOfExactDesign₂ (E : HypEmbeddedCore₂ A N) (cnt : ℕ) :
               GGT.OsinComponents.vertex (1 : G) u d ∈ E.rel.fam s := by
         have := (E.rel.fam s).inv_mem hmem
         simpa [mul_inv_rev] using this
-      exact hdesign.forwardSpan_not_mem E hmsEven hv hu hidlt hdlt hiRead hdRead
+      exact hdesign.forwardSpan_not_mem E heven hv hu hidlt hdlt hiRead hdRead
         (le_trans hgap hW) hspanMem
   · intro s k m hkcomp hm hmne hstart hmem
     obtain ⟨v, tl, hv, hu⟩ := hu'Sym
@@ -221,7 +219,7 @@ theorem sideExclusionOfExactDesign₂ (E : HypEmbeddedCore₂ A N) (cnt : ℕ) :
       (GGT.RelLetter.comp s xm) hmRead
     simp only [GGT.RelLetter.val] at hjstep hrstep
     have hwindow := index_window_of_blockCount E cnt hcount
-      (by simp) hv hu (d := k) (i := m) hklen hm hmem
+      hv hu (d := k) (i := m) hklen hm hmem
     rcases hwindow with ⟨hkm, hgap⟩ | ⟨hmk, hgap⟩
     · have hjr : j < r := by omega
       have hshiftMem :
@@ -237,7 +235,7 @@ theorem sideExclusionOfExactDesign₂ (E : HypEmbeddedCore₂ A N) (cnt : ℕ) :
         rw [heq]
         exact (E.rel.fam s).mul_mem
           ((E.rel.fam s).mul_mem hkmem hmem) ((E.rel.fam s).inv_mem hrmem)
-      exact hdesign.forwardSpan_not_mem E hmsEven hv hu hjr hrlt hjRead hmRead
+      exact hdesign.forwardSpan_not_mem E heven hv hu hjr hrlt hjRead hmRead
         (by omega) hshiftMem
     · have hrj : r < j := by omega
       have hshiftMem :
@@ -254,82 +252,8 @@ theorem sideExclusionOfExactDesign₂ (E : HypEmbeddedCore₂ A N) (cnt : ℕ) :
         exact (E.rel.fam s).mul_mem
           ((E.rel.fam s).mul_mem hrmem ((E.rel.fam s).inv_mem hmem))
           ((E.rel.fam s).inv_mem hkmem)
-      exact hdesign.forwardSpan_not_mem E hmsEven hv hu hrj hjlt hmRead hjRead
+      exact hdesign.forwardSpan_not_mem E heven hv hu hrj hjlt hmRead hjRead
         (by omega) hshiftMem
-
-/-- The exact separation clause now needs only the block-count estimate; its
-formerly external same-side input is supplied by the exact design itself. -/
-theorem separationNe₂_clause_of_exactDesign
-    (E : HypEmbeddedCore₂ A N) (hN : Suitable A.alphabet N) (cnt : ℕ) {δ : ℕ}
-    (hδ : Hyperbolic.IsFourPointHyperbolic E.rel.alphabet.carrier δ)
-    (hcount : RelatorBlockCountInputOne₂ E cnt)
-    (t : G) (ht : t⁻¹ ∈ E.rel.base) (eps rho : ℕ) :
-    ∃ B : ℕ, ∀ L : ℕ, ∃ (p : List G) (ms : List ℕ),
-      (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ ∧ L ≤ ms.length ∧
-        (∀ m ∈ ms, ∀ b : Bool, E.lox b ^ m ∉ E.rel.relBall b rho ∧
-          (E.lox b ^ m)⁻¹ ∉ E.rel.relBall b rho) ∧
-        ∀ w w' u₀ u₀' : List (GGT.RelLetter G Bool),
-          RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w →
-            RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
-              w' ≠ w → (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') →
-                B < u₀.length → ∀ y z : G,
-                  wordNorm E.rel.base y ≤ eps → wordNorm E.rel.base z ≤ eps →
-                    GGT.RelLetter.listVal u₀' =
-                        y * GGT.RelLetter.listVal u₀ * z →
-                      GGT.RelLetter.listVal w' =
-                        y * GGT.RelLetter.listVal w * y⁻¹ :=
-  separationNe₂_clause_of_exactDesign_of_sideExclusion E hN cnt hδ hcount
-    (sideExclusionOfExactDesign₂ E cnt) t ht eps rho
-
-section QuantifiedCount
-
-variable
-  (hcountClosure : ∀ {G : Type u} [Group G] (A : HullGeneratingSet G)
-    (N : Subgroup G) (E : HypEmbeddedCore₂ A N),
-      ∃ cnt : ℕ, RelatorBlockCountInputOne₂ E cnt)
-
-include hcountClosure in
-/-- Quantified exact separation with the obsolete side-closure conjunct
-removed from its sole remaining geometric input. -/
-theorem separationNe₂OfBaseLetter_of_exactDesign :
-    ∀ {G : Type u} [Group G] (A : HullGeneratingSet G) (N : Subgroup G)
-      (E : HypEmbeddedCore₂ A N), Suitable A.alphabet N →
-        ∀ (t : G), t⁻¹ ∈ E.rel.base → ∀ (eps rho : ℕ),
-          ∃ B : ℕ, ∀ L : ℕ,
-            ∃ (p : List G) (ms : List ℕ),
-              (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ ∧ L ≤ ms.length ∧
-                (∀ m ∈ ms, ∀ b : Bool,
-                  E.lox b ^ m ∉ E.rel.relBall b rho ∧
-                    (E.lox b ^ m)⁻¹ ∉ E.rel.relBall b rho) ∧
-                ∀ w w' u₀ u₀' : List (GGT.RelLetter G Bool),
-                  RelWord.Sym
-                      (relatorWord₂ p (E.lox false) (E.lox true) ms) w →
-                    RelWord.Sym
-                        (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
-                      w' ≠ w → (∃ s, w = u₀ ++ s) →
-                        (∃ s', w' = u₀' ++ s') → B < u₀.length →
-                          ∀ y z : G, wordNorm E.rel.base y ≤ eps →
-                            wordNorm E.rel.base z ≤ eps →
-                              GGT.RelLetter.listVal u₀' =
-                                  y * GGT.RelLetter.listVal u₀ * z →
-                                GGT.RelLetter.listVal w' =
-                                  y * GGT.RelLetter.listVal w * y⁻¹ := by
-  intro G _ A N E hN t ht eps rho
-  obtain ⟨cnt, hcount⟩ := hcountClosure A N E
-  obtain ⟨δ, hδ⟩ :=
-    GGT.exists_isFourPointHyperbolic_of_isHyperbolicallyEmbedded E.rel E.embedded
-  exact separationNe₂_clause_of_exactDesign E hN cnt hδ hcount
-    t ht eps rho
-
-include hcountClosure in
-/-- The corrected one-letter relator endpoint, conditional only on Hull's
-block-count item and not on any finite-avoidance or side-exclusion input. -/
-theorem hullRelatorStatement₂OfBaseLetter_of_exactDesign :
-    HullRelatorStatement₂OfBaseLetter.{u} :=
-  hullRelatorStatement₂OfBaseLetter_of_separationNe₂
-    (separationNe₂OfBaseLetter_of_exactDesign hcountClosure)
-
-end QuantifiedCount
 
 end ExactSide
 

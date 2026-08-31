@@ -4,9 +4,9 @@ import GroupApproximation.GGT.HullSCRelatorSeparation2Statement
 /-!
 # The relator chain's chosen-list inputs
 
-Hull builds a relator with one base letter and chooses its exponent list
-jointly with the finite-avoidance conditions.  This module therefore exposes
-only the one-letter block count and the side exclusion for one fixed relator.
+Hull builds a relator and chooses its exponent list jointly with the
+finite-avoidance conditions.  This module therefore exposes a block count and
+the side exclusion for one fixed relator.
 The superseded unrestricted-anchor predicate is retained solely as the target
 of its formal counterexample; no active construction consumes it.
 
@@ -30,17 +30,35 @@ section Inputs
 
 variable {G : Type u} [Group G] {A : HullGeneratingSet G} {N : Subgroup G}
 
-/-- **The block count, at the base parts the construction builds.**  Item 2 as
-Hull discharges it: his base part is one letter. -/
-def RelatorBlockCountInputOne₂ (E : HypEmbeddedCore₂ A N) (cnt : ℕ) : Prop :=
-  ∀ (p : List G), p.length = 1 →
-    ∀ (ms : List ℕ)
-      (v : List (GGT.RelLetter G Bool)),
-      RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v →
-      ∀ i j : ℕ, i ≤ j → j ≤ v.length →
-        j - i ≤ wordDist E.rel.alphabet.carrier
-          (GGT.OsinComponents.vertex (1 : G) v i)
-          (GGT.OsinComponents.vertex (1 : G) v j) + blockConst p cnt
+/-- **The block count for one fixed relator.**
+
+The exponent list is part of the predicate.  This is essential: the former
+all-list version was false on arbitrarily long zero-exponent lists.  Hull's
+geometric estimate is consumed only after the deep exact list has been chosen. -/
+def RelatorBlockCountAt₂ (E : HypEmbeddedCore₂ A N) (p : List G)
+    (ms : List ℕ) (cnt : ℕ) : Prop :=
+  ∀ (v : List (GGT.RelLetter G Bool)),
+    RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v →
+    ∀ i j : ℕ, i ≤ j → j ≤ v.length →
+      j - i ≤ wordDist E.rel.alphabet.carrier
+        (GGT.OsinComponents.vertex (1 : G) v i)
+        (GGT.OsinComponents.vertex (1 : G) v j) + blockConst p cnt
+
+/-- Every fixed relator has the tautological block-count constant given by the
+length of its exponent list.  A useful Hull estimate must improve this to a
+uniform geometric constant, but unlike the superseded all-list predicate this
+statement is unconditional and true. -/
+theorem relatorBlockCountAt₂_length (E : HypEmbeddedCore₂ A N)
+    (p : List G) (ms : List ℕ) :
+    RelatorBlockCountAt₂ E p ms ms.length := by
+  intro v hv i j hij hj
+  have hvlen : v.length = p.length + ms.length := by
+    rw [hv.length_eq, length_relatorWord₂]
+  have hdist : 0 ≤ wordDist E.rel.alphabet.carrier
+      (GGT.OsinComponents.vertex (1 : G) v i)
+      (GGT.OsinComponents.vertex (1 : G) v j) := Nat.zero_le _
+  simp only [blockConst]
+  omega
 
 /-- **The superseded unrestricted side exclusions for one chosen relator.**
 

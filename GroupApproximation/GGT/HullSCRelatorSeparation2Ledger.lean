@@ -511,22 +511,23 @@ suitability, and the block-count constant.  (W4) rides in on the core itself,
 as the field `disjoint`, and is passed to the four-way through
 `E.rel.fam = E.H`.
 
-The exponent list comes from
-`HullSC.exists_exactRelatorDesign₂`, which packages depth, separation, deep
-differences, pure-run windows, and through-base windows at an exact length.
-`HullSC.separationNe₂_clause_of_exactDesign` feeds that one returned list to
-the producer route.  The remaining cyclic-word parser is isolated by
-`SideExclusionOfExactDesign₂`; `index_window_of_blockCount` already proves that
-every peripheral anchor span has one of the two required bounded orientations:
+The exponent list comes from `HullSC.exists_exactRelatorDesign₂`, which packages
+depth, separation, deep differences, pure-run windows, and through-base windows
+at an exact length.  The block-count predicate is now correctly scoped to that
+one word as `RelatorBlockCountAt₂`; the former all-list input was false on long
+zero-exponent lists.  Given a fixed-list count whose constant fits inside the
+design window, `ExactRelatorDesign₂.sideExclusionAt` proves both same-side
+exclusions.  `index_window_of_blockCount` supplies the two bounded orientations:
 
     hδ     item 1's residue: four-point hyperbolicity of Γ(G, X ⊔ ℋ)
-    hcount item 2: the block count, at every member of the closure
+    hcount item 2: the block count, at every closure member of the fixed relator
     hexcl  item 3: the two same-side exclusions
 
-and on nothing else.  That is the whole standing debt of the chain, and the
-first of the three is a hypothesis about the ambient geometry rather than a
-gap: items 2 and 3 are the ones that still owe a proof.  Item 6 was the fourth
-until (W4) replaced it.
+and on nothing else.  The side exclusions are now discharged from the exact
+design.  The remaining geometric debt is a useful fixed-list count with a
+constant chosen before the length threshold; the tautological unconditional
+bound `relatorBlockCountAt₂_length` is true but grows with the list and therefore
+does not meet that uniformity requirement.
 
 Item 2 is not independent of item 1, though item 1 is marked closed: the count
 needs item 1's bound at `mu = 4` for a two-sided figure, and item 1 is

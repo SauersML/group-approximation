@@ -1,4 +1,5 @@
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyExact
+import GroupApproximation.GGT.HullSCRelatorSeparation2Inputs
 import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyGap
 import GroupApproximation.GGT.HullSCRelatorSeparation2CyclicSegment
 import GroupApproximation.GGT.OsinTheorem54SepPolygonVertex
@@ -88,8 +89,8 @@ theorem exists_comp_letter_of_secondLongSide_start
 index length. -/
 theorem forward_index_gap_le_of_blockCount
     (E : HypEmbeddedCore₂ A N) (cnt : ℕ)
-    (hcount : RelatorBlockCountInputOne₂ E cnt)
-    {p : List G} (hp : p.length = 1) {ms : List ℕ}
+    {p : List G} {ms : List ℕ}
+    (hcount : RelatorBlockCountAt₂ E p ms cnt)
     {v u tl : List (GGT.RelLetter G Bool)}
     (hv : RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v)
     (hu : v = u ++ tl) {d i : ℕ} (hdi : d ≤ i) (hi : i ≤ u.length)
@@ -99,7 +100,7 @@ theorem forward_index_gap_le_of_blockCount
     i - d ≤ 1 + blockConst p cnt := by
   have hiv : i ≤ v.length := by rw [hu, List.length_append]; omega
   have hdv : d ≤ v.length := le_trans hdi hiv
-  have hq := hcount p hp ms v hv d i hdi hiv
+  have hq := hcount v hv d i hdi hiv
   have hdu : d ≤ u.length := le_trans hdi hi
   have hvd : GGT.OsinComponents.vertex (1 : G) v d =
       GGT.OsinComponents.vertex (1 : G) u d := by
@@ -119,8 +120,8 @@ theorem forward_index_gap_le_of_blockCount
 /-- The same estimate when the anchor order is reversed. -/
 theorem reverse_index_gap_le_of_blockCount
     (E : HypEmbeddedCore₂ A N) (cnt : ℕ)
-    (hcount : RelatorBlockCountInputOne₂ E cnt)
-    {p : List G} (hp : p.length = 1) {ms : List ℕ}
+    {p : List G} {ms : List ℕ}
+    (hcount : RelatorBlockCountAt₂ E p ms cnt)
     {v u tl : List (GGT.RelLetter G Bool)}
     (hv : RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v)
     (hu : v = u ++ tl) {d i : ℕ} (hid : i ≤ d) (hd : d ≤ u.length)
@@ -130,7 +131,7 @@ theorem reverse_index_gap_le_of_blockCount
     d - i ≤ 1 + blockConst p cnt := by
   have hdv : d ≤ v.length := by rw [hu, List.length_append]; omega
   have hiv : i ≤ v.length := le_trans hid hdv
-  have hq := hcount p hp ms v hv i d hid hdv
+  have hq := hcount v hv i d hid hdv
   have hi : i ≤ u.length := le_trans hid hd
   have hvi : GGT.OsinComponents.vertex (1 : G) v i =
       GGT.OsinComponents.vertex (1 : G) u i := by
@@ -151,8 +152,8 @@ theorem reverse_index_gap_le_of_blockCount
 the two oriented windows of radius `1 + blockConst p cnt`. -/
 theorem index_window_of_blockCount
     (E : HypEmbeddedCore₂ A N) (cnt : ℕ)
-    (hcount : RelatorBlockCountInputOne₂ E cnt)
-    {p : List G} (hp : p.length = 1) {ms : List ℕ}
+    {p : List G} {ms : List ℕ}
+    (hcount : RelatorBlockCountAt₂ E p ms cnt)
     {v u tl : List (GGT.RelLetter G Bool)}
     (hv : RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) v)
     (hu : v = u ++ tl) {d i : ℕ} (hd : d ≤ u.length) (hi : i ≤ u.length)
@@ -163,9 +164,9 @@ theorem index_window_of_blockCount
       (i ≤ d ∧ d - i ≤ 1 + blockConst p cnt) := by
   rcases le_total d i with hdi | hid
   · exact Or.inl ⟨hdi,
-      forward_index_gap_le_of_blockCount E cnt hcount hp hv hu hdi hi hmem⟩
+      forward_index_gap_le_of_blockCount E cnt hcount hv hu hdi hi hmem⟩
   · exact Or.inr ⟨hid,
-      reverse_index_gap_le_of_blockCount E cnt hcount hp hv hu hid hd hmem⟩
+      reverse_index_gap_le_of_blockCount E cnt hcount hv hu hid hd hmem⟩
 
 /-- A forward span in a prefix of a symmetrized relator is a prefix of a
 rotation based at the first endpoint, either in the relator or in its formal

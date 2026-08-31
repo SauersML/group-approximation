@@ -1,19 +1,17 @@
-import GroupApproximation.GGT.HullSCRelatorSeparation2ApplyCompose
 import GroupApproximation.GGT.HullSCRelatorSeparation2WindowDiffExact
-import GroupApproximation.GGT.CayleyFourPointConverse
 
 /-!
 # Hull's relator separation from the jointly chosen exact design
 
 The old endpoint asked for side exclusion uniformly over every exponent list.
-This module keeps only the precise chosen-list seam left by the construction.
+This module packages the precise chosen-list design produced by the
+construction.
 
 `ExactRelatorDesign₂` packages the list produced by
 `exists_relator_exponents_window_diff_through_exact`.  It records depth,
 translate separation, deep positive differences, bounded pure-run windows,
-and bounded windows crossing the unique base letter.  The closure predicate
-below is asked only for such a design, at the radius and minimum length fixed
-by the block-count argument.  Thus it has no degenerate all-list branch.
+and bounded windows crossing the unique base letter.  The fixed-list block
+count and its cyclic parser live downstream, after this design has been chosen.
 -/
 
 namespace GroupApproximation
@@ -105,85 +103,6 @@ theorem ExactRelatorDesign₂.baseFirst_not_mem_trueFamily
       ∉ E.rel.fam true := by
   subst ms
   exact h.2.2.2.2.2.2.2 r hr
-
-/-- The one remaining same-side implication, scoped only to the exact lists
-the construction can produce.  Its window and difference radius is
-`1 + blockConst`; its list is required to clear the same (C3) threshold used
-by the four-way composition. -/
-def SideExclusionOfExactDesign₂ (E : HypEmbeddedCore₂ A N)
-    (cnt : ℕ) : Prop :=
-  RelatorBlockCountInputOne₂ E cnt →
-  ∀ (baseLetter : G), baseLetter ∈ E.rel.base → ∀ (eps rho epsD Cm : ℕ),
-    ∀ (target : ℕ) (ms : List ℕ),
-      Even target →
-      ExactRelatorDesign₂ E baseLetter (max rho (Cm * 4)) epsD
-          (1 + blockConst [baseLetter] (max cnt (eps + 2)))
-          (1 + blockConst [baseLetter] (max cnt (eps + 2))) target ms →
-      [baseLetter].length +
-          5 * blockSeparation [baseLetter] (max cnt (eps + 2)) eps + 3 ≤
-        ms.length →
-      RelatorSideExclusionAt₂ E [baseLetter] ms
-
-/-- The separation theorem with the false all-list premise removed.  The
-exact producer is invoked at a target enlarged to the composition's (C3)
-threshold, and the side closure is consumed only for that returned list. -/
-theorem separationNe₂_clause_of_exactDesign_of_sideExclusion
-    (E : HypEmbeddedCore₂ A N)
-    (hN : Suitable A.alphabet N) (cnt : ℕ) {δ : ℕ}
-    (hδ : Hyperbolic.IsFourPointHyperbolic E.rel.alphabet.carrier δ)
-    (hcount : RelatorBlockCountInputOne₂ E cnt)
-    (hside : SideExclusionOfExactDesign₂ E cnt)
-    (t : G) (ht : t⁻¹ ∈ E.rel.base) (eps rho : ℕ) :
-    ∃ B : ℕ, ∀ L : ℕ, ∃ (p : List G) (ms : List ℕ),
-      (∀ g ∈ p, g ∈ E.rel.base) ∧ p.prod = t⁻¹ ∧ L ≤ ms.length ∧
-        (∀ m ∈ ms, ∀ b : Bool, E.lox b ^ m ∉ E.rel.relBall b rho ∧
-          (E.lox b ^ m)⁻¹ ∉ E.rel.relBall b rho) ∧
-        ∀ w w' u₀ u₀' : List (GGT.RelLetter G Bool),
-          RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w →
-            RelWord.Sym (relatorWord₂ p (E.lox false) (E.lox true) ms) w' →
-              w' ≠ w → (∃ s, w = u₀ ++ s) → (∃ s', w' = u₀' ++ s') →
-                B < u₀.length →
-                  ∀ y z : G, wordNorm E.rel.base y ≤ eps →
-                    wordNorm E.rel.base z ≤ eps →
-                      GGT.RelLetter.listVal u₀'
-                          = y * GGT.RelLetter.listVal u₀ * z →
-                        GGT.RelLetter.listVal w'
-                          = y * GGT.RelLetter.listVal w * y⁻¹ := by
-  let p : List G := [t⁻¹]
-  have hplen : p.length = 1 := by simp [p]
-  have hp0 : 0 < p.length := by simp [p]
-  have hpbase : ∀ g ∈ p, g ∈ E.rel.base := by
-    intro g hg
-    have hgt : g = t⁻¹ := by simpa [p] using hg
-    simpa [hgt] using ht
-  have hpprod : p.prod = t⁻¹ := by simp [p]
-  apply separationNe₂_clause_of_spelling_of_producer E hN cnt hδ t p hp0
-    hpbase hpprod (hcount p hplen) eps rho
-  intro epsD Cm L
-  let cw := max cnt (eps + 2)
-  let W := 1 + blockConst p cw
-  let threshold := p.length + 5 * blockSeparation p cw eps + 3
-  let target := 2 * max L threshold
-  obtain ⟨ms, hdesign⟩ :=
-    exists_exactRelatorDesign₂ E (max rho (Cm * 4)) epsD W (t⁻¹) W target
-  rcases hdesign with
-    ⟨hlen, hnodup, hdeep, hsep, hdiff, hwin, hthrough, hbaseFirst⟩
-  have htargetEven : Even target := by
-    refine ⟨max L threshold, ?_⟩
-    simp only [target, two_mul]
-  have hlong : p.length + 5 * blockSeparation p cw eps + 3 ≤ ms.length := by
-    rw [hlen]
-    simp only [target, threshold]
-    omega
-  have hexcl : RelatorSideExclusionAt₂ E p ms := by
-    have hs := hside hcount (t⁻¹) ht eps rho epsD Cm target ms
-    simpa only [p, cw, W] using
-      hs htargetEven
-        ⟨hlen, hnodup, hdeep, hsep, hdiff, hwin, hthrough, hbaseFirst⟩ hlong
-  refine ⟨ms, ?_, hnodup, hdeep, hsep, hexcl⟩
-  rw [hlen]
-  simp only [target]
-  omega
 
 end ExactDesign
 
