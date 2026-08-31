@@ -114,6 +114,29 @@ theorem cosetOrbitAt_injective
   exact QuotientGroup.eq.mpr
     ((leftCosetOrbitAt_eq_iff_inv_mul_mem H s f g hsep hunbounded).mp hxy)
 
+/-- Properness of an infinite subgroup action forces its basepoint orbit to be
+unbounded.  This discharges the extra hypothesis in the exact coset-vertex
+identification in every DGO 4.42 application. -/
+theorem exists_far_of_actsProperlyAt_of_infinite
+    (H : Subgroup G) (s : S) (hproper : ActsProperlyAt H s)
+    (hinfinite : Infinite H) (R : ℝ) :
+  ∃ h : G, h ∈ H ∧ R ≤ dist s (h • s) := by
+  by_contra hfar
+  push Not at hfar
+  have hfin : (H : Set G).Finite := (hproper R).subset (by
+    intro h hh
+    exact ⟨hh, (hfar h hh).le⟩)
+  exact hinfinite.not_finite (Set.Finite.to_subtype hfin)
+
+/-- The orbit-vertex map is injective under the exact hypotheses of the "in
+particular" clause of DGO 4.42, provided the peripheral is infinite. -/
+theorem cosetOrbitAt_injective_of_actsProperlyAt
+    (H : Subgroup G) (s : S) (hsep : GeometricallySeparatedAt H s)
+    (hproper : ActsProperlyAt H s) (hinfinite : Infinite H) :
+    Function.Injective (cosetOrbitAt H s) :=
+  cosetOrbitAt_injective H s hsep
+    (exists_far_of_actsProperlyAt_of_infinite H s hproper hinfinite)
+
 omit [PseudoMetricSpace S] in
 /-- The coset-orbit vertex map intertwines the natural left action on cosets
 with pointwise translation of orbit subsets. -/
