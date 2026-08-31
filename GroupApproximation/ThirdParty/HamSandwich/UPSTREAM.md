@@ -73,3 +73,7 @@ and `AlexanderWhitney` applies naturality through
 
 `CoveringSimplexLift` uses the renamed `LocallyPathConnectedSpace` class, and
 `DegreeAPIStrengthening` explicitly closes a post-rewrite reflexive goal.
+
+`CupProduct` uses v4.32's `SSet.ι_chainComplexMap_f` for singular-chain
+generators and explicitly closes the definitional conversions around coproduct
+inclusions.
