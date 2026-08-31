@@ -47,8 +47,8 @@ For the remaining rows, abbreviate
 A=E_31,       B=E_23,       C_0=E_21,       D=B+C_0.
 ```
 
-For `ktk=I+TD`, comparison of the `T)-coefficient says that `P`
-commutes with `D=e_2(e_1^*+e_3^*)). Thus it fixes coordinate `2` and
+For `ktk=I+TD`, comparison of the `T`-coefficient says that `P`
+commutes with `D=e_2(e_1^*+e_3^*)`. Thus it fixes coordinate `2` and
 preserves the set `{1,3}`. Every element of the odd-order group `C`
 has odd order, so it cannot swap two coordinates and must fix both.
 
@@ -61,14 +61,14 @@ For each of `tkt`, `kt`, and `tk`, the scalar coefficient of
 
 The scalar transvection calculation first forces `P` to fix coordinates
 `1,3`, after which `P` commutes with `A`. The remaining
-`T)-coefficient reduces respectively to
+`T`-coefficient reduces respectively to
 
 ```text
 C_0P+PC_0,          DP+PD,          BP+PB.
 ```
 
 Its vanishing forces coordinate `2` to be fixed as well; the
-`T^2)-coefficient then vanishes automatically. Conversely a permutation
+`T^2`-coefficient then vanishes automatically. Conversely a permutation
 fixing the listed coordinates commutes with the displayed matrix. This
 proves `(QDW2)`.
 
