@@ -273,6 +273,22 @@ is compatible with the rotating matrix-compression
 escape in `stw83-rotating-order-zero-compression-escapes-circle-gap`, whose
 compressed map is not order zero.
 
+The first apparent escape—sharing the unit between neighboring frames—is
+also closed for every genuine scalar two-chart transition.
+`stw81-shared-unit-two-chart-patching-forces-af` evaluates the same affine
+mixture at two cutoff values separated by `kappa`.  The resulting
+two-by-two scalar system recovers both local factorizations within
+`epsilon(1+2/kappa)`.  They are therefore separately near-unital, and the
+projectionless rotating-overlap theorem again forces AF.  Thus a
+nonconstant scalar partition of unity cannot by itself produce a
+two-colour approximation of `C([0,1]) tensor Z`, even when the two local
+frames rotate independently and their total return maps are not
+contractive.  The exact surviving mechanisms are outgoing-colour
+subdivision and genuinely base-dependent incoming coupling.  In the
+standard fixed-anchor construction, approximation of the interval
+coordinate itself forces the cutoff oscillation to stay above `1/4`, so
+flattening the scalar transition cannot evade the theorem.
+
 There is now a first stably finite non-elementary exception to that
 obstruction.  `stw81-one-dim-simple-af-fields-have-dim-one`
 proves directly that a locally trivial field over a one-dimensional base
