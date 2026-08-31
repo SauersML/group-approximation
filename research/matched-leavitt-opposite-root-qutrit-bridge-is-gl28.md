@@ -27,14 +27,14 @@ Whether the return is matched or crossed-zero,
 t_(d_-)s_(d_+)=delta_(d_-,d_+),
 ```
 
-one has, for `m=|D|),
+one has, for `m=|D|`,
 
 ```text
 H isomorphic to GL_(m+1)(F_2),                           (MLO2)
 ```
 
 acting trivially on the last `n-2` module coordinates.  In particular, for
-the transitive order-`3^5` qutrit packet on `D_27), every such one-chart
+the transitive order-`3^5` qutrit packet on `D_27`, every such one-chart
 opposite-root bridge is exactly
 
 ```text
