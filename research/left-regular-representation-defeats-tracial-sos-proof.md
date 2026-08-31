@@ -1,7 +1,7 @@
 ---
 rg: 2
 id: left-regular-representation-defeats-tracial-sos-proof
-kind: proof
+kind: route
 title: Test every universal tracial head estimate on the left regular tuple
 target: jacobson-head-collapse-is-not-a-universal-tracial-identity
 requires:

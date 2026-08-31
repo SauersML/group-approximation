@@ -4,7 +4,6 @@ id: untwisted-bilateral-symbol-enrichment-is-lef
 kind: claim
 title: The untwisted bilateral Jacobson symbol enrichment is LEF
 artifacts:
-  - research/periodic-laurent-reduction-preserves-finite-action-table.md
 distinct_from:
   binary-jacobson-monomial-symbol-preimage-is-marked-mf: that handles the actual one-sided preimage of the monomial symbol subgroup; this treats every Laurent elementary symbol but only in the untwisted bilateral semidirect product.
   binary-jacobson-core-is-weakly-sofic-with-fd-head-radical: that records the weak-sofic status of the actual Toeplitz extension; this proves LEF for a comparison group in which the extension cocycle has been removed.

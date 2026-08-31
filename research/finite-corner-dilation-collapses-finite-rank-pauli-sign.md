@@ -5,7 +5,7 @@ kind: route
 title: Arbitrary finite actor dilations collapse the finite-rank shared Pauli sign
 target: very-flexible-actor-stability-closes-finite-rank-pauli-host
 requires:
-  - padded-actor-correction-collapses-finite-rank-pauli-sign
+  - finite-rank-pauli-sign-forces-local-flexible-actor-instability
   - shared-center-pauli-tape-has-same-fp-gate
   - shared-center-extraspecial-wreath-has-fd-invisible-spin-sector
 ---
@@ -39,16 +39,23 @@ For (D=d), interpret the lower-right block as zero-dimensional.
 
 Here is the complete estimate.  With unnormalized Hilbert--Schmidt norm, set
 [
- L^2=d-|A|_{m HS}^2.
+ L^2=d-|A|_{
+m HS}^2.
 ]
 The row and column identities for (W) give
 [
- |B|_{m HS}^2=|C|_{m HS}^2=L^2.                    	ag{4}
+ |B|_{
+m HS}^2=|C|_{
+m HS}^2=L^2.                    	ag{4}
 ]
-Since (A) is a contraction and (|U|_{m HS}=sqrt d),
+Since (A) is a contraction and (|U|_{
+m HS}=sqrt d),
 [
- L^2=(sqrt d-|A|_{m HS})(sqrt d+|A|_{m HS})
- le 2sqrt d,|U-A|_{m HS}
+ L^2=(sqrt d-|A|_{
+m HS})(sqrt d+|A|_{
+m HS})
+ le 2sqrt d,|U-A|_{
+m HS}
  =2ad.                                                     	ag{5}
 ]
 Choose a singular-value decomposition
@@ -56,17 +63,20 @@ Choose a singular-value decomposition
 (Z=RS^*).  Since (0le s_jle1),
 [
 egin{aligned}
- |E-Z|_{m HS}^2
+ |E-Z|_{
+m HS}^2
  &=sum_j(1-s_j)^2
  lesum_j(1-s_j^2)\\
  &=operatorname{Tr}(I-E^*E)
- =|B|_{m HS}^2=L^2.                                   	ag{6}
+ =|B|_{
+m HS}^2=L^2.                                   	ag{6}
 end{aligned}
 ]
 Consequently
 [
 egin{aligned}
- |W-(Uoplus Z)|_{m HS}^2
+ |W-(Uoplus Z)|_{
+m HS}^2
  &le da^2+3L^2\\
  &le d(a^2+6a),
 end{aligned}                                             	ag{7}
@@ -103,10 +113,12 @@ and
  [C,u_{r_ell}D_0u_{r_ell}^*]=1
  quad(C,D_0in{A,B}, 1leellle s).                   	ag{11}
 ]
-Suppose (ho:G	o U(D)) is a genuine finite-dimensional representation
+Suppose (
+ho:G	o U(D)) is a genuine finite-dimensional representation
 and (V:mathbb C^d	omathbb C^D) is an isometry.  Define
 [
- alpha=max_{tin T}|V^*ho(t)V-u_t|_{2,d}.             	ag{12}
+ alpha=max_{tin T}|V^*
+ho(t)V-u_t|_{2,d}.             	ag{12}
 ]
 Then
 [
@@ -118,11 +130,13 @@ Then
 ]
 
 Indeed use the same coordinate change to make (Vmathbb C^d) the first
-block for every (ho(t)).  Apply (3) separately to each (t), obtaining
+block for every (
+ho(t)).  Apply (3) separately to each (t), obtaining
 unitaries (z_tin U(D-d)) with
 [
  epsilon:=max_{tin T}
- |ho(t)-(u_toplus z_t)|_{2,D}
+ |
+ho(t)-(u_toplus z_t)|_{2,D}
  lelambdasqrt{alpha^2+6alpha}.                        	ag{14}
 ]
 The padded exact-actor estimate is
@@ -144,15 +158,18 @@ dilation of arbitrarily large dimension forces (J	o I) whenever
 Let
 [
  E(X)=langle J,A_x,B_x (xin X)mid
- J^2=A_x^2=B_x^2=1, J {m central}, [A_x,B_x]=J,
+ J^2=A_x^2=B_x^2=1, J {
+m central}, [A_x,B_x]=J,
 ]
 [
  [A_x,A_y]=[A_x,B_y]=[B_x,B_y]=1 (x
-e y)angle          	ag{16}
+e y)
+angle          	ag{16}
 ]
 and let (G) permute the sites.  Write
 [
- Pi(X)=E(X)times G.                                    	ag{17}
+ Pi(X)=E(X)
+times G.                                    	ag{17}
 ]
 The displayed finite-support normal form gives (J
 e1).
@@ -178,13 +195,15 @@ Fournier-Facio--Willett, arXiv:2603.18456v2, Theorem 1.1 (in the normalized
 Hilbert--Schmidt instance made precise in Theorem 7.11), gives
 finite-dimensional genuine representations
 [
- ho_n:G	o U(D_n)
+ 
+ho_n:G	o U(D_n)
 ]
 and isometries (V_n:mathbb C^{d_n}	omathbb C^{D_n}), with no bound on
 (D_n/d_n), such that
 [
  alpha_n=max_{tin T}
- |V_n^*ho_n(t)V_n-u_{n,t}|_{2,d_n}longrightarrow0.    	ag{20}
+ |V_n^*
+ho_n(t)V_n-u_{n,t}|_{2,d_n}longrightarrow0.    	ag{20}
 ]
 Applying (13) yields
 [
