@@ -10,7 +10,7 @@ distinct_from:
 ---
 
 **ESTABLISHED MULTIPLICATIVE-LIFT FIREWALL.** Let `B_*` be the finite
-tracially satisfiable but non-`R^U)-satisfiable BCS, and let
+tracially satisfiable but non-`R^U`-satisfiable BCS, and let
 
 ```text
 q:A_(L_*)->A_(B_*)                                      (NSL1)
@@ -35,7 +35,7 @@ finite-dimensional operator-system argument at this cover. Such properties
 may produce local ucp lifts. They do not make those lifts compatible and
 multiplicative on the full BCS algebra. Any claimed upgrade to a unital
 star-homomorphism would contradict the scalar perfect model of `L_*` and
-would already prove the terminal non-`R^U) transfer.
+would already prove the terminal non-`R^U` transfer.
 
 DERIVATION
 scalar-lcs-character-forbids-a-bcs-section-proof
