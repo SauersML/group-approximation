@@ -424,6 +424,15 @@ non-hyperlinear group, their Corollary 1.5) is consumed.
   has residual payload width one. Thus alternative (3) must be measured
   only after absorbing every compatible congruence factor; the remaining
   issue is noncongruence alignment, not raw irreducible dimension.
+- **Supplied endpoint factors are uniformly authenticated.**
+  `endpoint-expander-authenticates-bounded-residual-width` defines residual
+  width only after absorbing all compatible congruence factors. For a
+  supplied common block carrier and irreducible endpoint factor, property
+  `(T;FD)` sends every untwisted generator to the residual matrix algebra
+  with a uniform conditional-expectation constant; polar and torsion
+  rounding then produce exact bounded payloads. Thus endpoint adjoint-gap
+  collapse is not an escape. A negative sequence must fail factor/carrier
+  discovery or retain unbounded residual width after every absorption.
 - **Deep-rank comparison (updated 2026-08-31).**  This question is DV's
   Question 1.4 (arXiv:2506.20843v2). The proposed higher-rank odd-level
   analogue, `sl3z-regular-microstates-are-congruence-correctable`, is
