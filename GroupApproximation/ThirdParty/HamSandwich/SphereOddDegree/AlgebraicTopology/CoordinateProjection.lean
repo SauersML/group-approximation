@@ -19,9 +19,10 @@ splitting of the singular Mayer–Vietoris short exact sequence.
 -/
 
 open CategoryTheory AlgebraicTopology Limits
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
+
+open AffineBarycentricSubdivision
 
 
 variable {R : Type} [CommRing R] {X : TopCat.{0}}
@@ -49,7 +50,9 @@ theorem keepHom_generator {n : ℕ} (P : singularSimplices X n → Prop) [Decida
   refine h2.trans ?_
   by_cases hP : P σ
   · rw [if_pos hP, if_pos hP]; rfl
-  · rw [if_neg hP, if_neg hP]; simp
+  · rw [if_neg hP, if_neg hP]
+    change (0 : singularChainGroup R X n) = 0
+    rfl
 
 /-- **Support of a kept chain.** If `c` is subordinate to `T` and we keep the
 simplices subordinate to `S`, the result is subordinate to `S ∩ T`. -/
