@@ -116,3 +116,13 @@ decoded by additional relations, or start from a native LCS gap. Neither
 independent masks, correlated masks, anchoring, nor a direct-sum flag changes
 this conclusion.
 
+There is now a sharp parity-gadget closure as well.
+`lcs-parity-gadgets-preserve-odd-dictator-affine-hull` proves that any finite
+binary LCS extension which gives every honest atom a scalar extension also
+gives every odd product of those extensions.  On the full folded long code
+this unavoidable scalar projection has exactly `2^{|S|-1}` points.  Thus
+adding auxiliary LCS variables or further parity equations cannot eliminate
+the undamped odd modes; the remaining escape must break atomwise scalar
+extendability through cross-context nonclassical structure, leave the affine
+predicate language before groupification, or start from a native LCS gap.
+
