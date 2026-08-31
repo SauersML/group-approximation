@@ -18,9 +18,9 @@ theorem singularBoundary_coneGenerator_zero (R : Type) [CommRing R] (n : ℕ) (v
     (singularBoundary R (TopCat.of (Delta n)) 0).hom (coneGenerator R n 0 v σ)
       = chainGenerator R (TopCat.of (Delta n)) 0 σ
         - chainGenerator R (TopCat.of (Delta n)) 0 (constSimplex0 n v) := by
-  convert singularBoundary_chainGenerator_formula R { carrier := ( Delta n ), str := instTopologicalSpaceSubtype } 0 ( coneSimplex n 0 v σ ) using 1;
-  rw [ Fin.sum_univ_two ] ; norm_num [ sub_eq_add_neg ];
-  rw [ coneSimplex_face_zero, coneSimplex_face_one_zero ]
+  rw [coneGenerator, singularBoundary_chainGenerator_formula]
+  rw [Fin.sum_univ_two]
+  norm_num [sub_eq_add_neg]
+  rw [coneSimplex_face_zero, coneSimplex_face_one_zero]
 end AffineBarycentricSubdivision
 end GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
-
