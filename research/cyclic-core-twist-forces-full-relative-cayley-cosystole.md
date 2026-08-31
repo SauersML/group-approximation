@@ -24,13 +24,23 @@ for one \(\gamma>0\). Let \(G\) be a finite quotient, let \(B<G\), let
 \[
  \beta(b)=\theta(b)\rho(b).                              \tag{CCT2}
 \]
-Choose phases \(c_s\in\mathbb T\) and prescribe
+Let
 \[
- U_s=c_s\rho(s),\qquad
- h(c)^2=\frac1{|S|}\sum_{s\in S}|c_s-1|^2,               \tag{CCT3}
+ S_B=\{s\in S:q(s)\in B\}
 \]
-with \(U_s=\beta(s)\) on the marked core generators. Then the full
-relative multi-Kraus energy obeys
+be the marked letters whose images lie in the core. Choose phases
+\(c_s\in\mathbb T\), require
+\[
+ c_s=\theta(q(s))\quad(s\in S_B),
+\]
+and prescribe
+\[
+ U_s=c_s\rho(q(s)),\qquad
+ h(c)^2=\frac1{|S|}\sum_{s\in S}|c_s-1|^2.               \tag{CCT3}
+\]
+Thus \(U_s=\beta(q(s))\) on every marked core letter; the relative-frame
+condition separately intertwines every \(b\in B\), not only these
+generators. Then the full relative multi-Kraus energy obeys
 \[
  e_{\rm K}(U;\beta)\geq\bigl(\sqrt\gamma-h(c)\bigr)_+.     \tag{CCT4}
 \]
@@ -48,15 +58,25 @@ chosen word section or a flat unitary subclass.
 
 There is an explicit Iwahori family. Put
 \[
- N_K=4^K-1,\qquad G_K=A_{N_K},\qquad B_K=\langle r,t\rangle<G_K,
+ N_K=4^K-1,\qquad
+ G_K=A_{N_K}:=
+ PSL_2(\mathbb Z[1/2])/\langle\!\langle t^{N_K}\rangle\!\rangle,
+ \qquad B_K=\langle r,t\rangle<G_K.                       \tag{CCT7a}
 \]
-and let
+Here \(A_{N_K}\) is the finite one-power BS(1,4) congruence endpoint
+forced by the square-free Iwahori core; it is unrelated to any alternating
+group notation. Let
 \[
  \zeta_K=e^{2\pi i/K},\qquad
  \theta_K(r)=\zeta_K,\qquad\theta_K(t)=1.                 \tag{CCT7}
 \]
-The character \(\theta_K\) is well defined and nontrivial. For any exact
-representation \(\rho_K:G_K\to U(d_K)\), set
+The character \(\theta_K\) is well defined and nontrivial. In the fixed
+marking \(S=\{x,r,t\}\), set
+\[
+ c_x=c_t=1,\qquad c_r=\zeta_K;
+\]
+if the symmetric closure is used, set \(c_{s^{-1}}=\overline{c_s}\).
+For any exact representation \(\rho_K:G_K\to U(d_K)\), set
 \[
  X_K=\rho_K(x),\qquad R_K=\zeta_K\rho_K(r),\qquad
  T_K=\rho_K(t),                                          \tag{CCT8}
