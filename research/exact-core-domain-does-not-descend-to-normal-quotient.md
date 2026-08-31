@@ -145,3 +145,6 @@ cannot select a lift before quotient descent.
 For the authenticated \(SL_2(\mathbb Z[1/2])\) core, no available theorem
 controls all translated rows (CMD3) or the equivalent finite positive
 kernel.  The finite-corner lift and the root problem remain open.
+
+DERIVATION
+exact-core-normal-quotient-descent-counterexample-proof
