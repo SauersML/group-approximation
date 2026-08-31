@@ -35,9 +35,8 @@ def projectiveBlockTraceFunction {d s : Nat}
       rcases hxy with hxy | hxy
       · rw [hxy]
       · rw [hxy, diagonalCoefficientSum_neg])
-  continuous_toFun := (proj_isQuotientMap d).continuous_iff.mpr <| by
-    simpa only [Function.comp_apply, Quotient.lift_mk] using
-      (continuous_const.mul (diagonalCoefficientSum a).continuous)
+  continuous_toFun :=
+    (continuous_const.mul (diagonalCoefficientSum a).continuous).quotient_lift _
 
 @[simp] theorem projectiveBlockTraceFunction_proj {d s : Nat}
     (a : RealProjectiveBlock d s) (x : Sphere d) :
@@ -98,30 +97,54 @@ def probabilityMeasureBlockTrace {d s : Nat} (mu : ProbabilityMeasure (RP d)) :
     { toFun := fun a => ∫ x, projectiveBlockTraceFunction a x ∂(mu : Measure (RP d))
       map_add' := fun a b => by
         rw [projectiveBlockTraceFunction_add]
+        have ha : HasCompactSupport (projectiveBlockTraceFunction a) :=
+          HasCompactSupport.of_support_subset_isCompact isCompact_univ
+            (Set.subset_univ _)
+        have hb : HasCompactSupport (projectiveBlockTraceFunction b) :=
+          HasCompactSupport.of_support_subset_isCompact isCompact_univ
+            (Set.subset_univ _)
         exact integral_add
           ((projectiveBlockTraceFunction a).continuous.integrable_of_hasCompactSupport
-            (isClosed_tsupport _).isCompact)
+            ha)
           ((projectiveBlockTraceFunction b).continuous.integrable_of_hasCompactSupport
-            (isClosed_tsupport _).isCompact)
+            hb)
       map_smul' := fun c a => by
         rw [projectiveBlockTraceFunction_smul]
         exact integral_smul c _ }
   map_one := by
+    change (∫ x, projectiveBlockTraceFunction (1 : RealProjectiveBlock d s) x
+      ∂(mu : Measure (RP d))) = 1
     rw [projectiveBlockTraceFunction_one]
     simp
   map_star_mul_self_nonneg := by
     intro a
+    change 0 ≤ (∫ x, projectiveBlockTraceFunction (star a * a) x
+      ∂(mu : Measure (RP d)))
+    have hsupp : HasCompactSupport (projectiveBlockTraceFunction (star a * a)) :=
+      HasCompactSupport.of_support_subset_isCompact isCompact_univ
+        (Set.subset_univ _)
+    have hint : Integrable (projectiveBlockTraceFunction (star a * a))
+        (mu : Measure (RP d)) :=
+      (projectiveBlockTraceFunction (star a * a)).continuous.integrable_of_hasCompactSupport
+        hsupp
     rw [Complex.nonneg_iff]
     constructor
-    · rw [← integral_re]
-      exact integral_nonneg fun x =>
-        (Complex.nonneg_iff.mp
+    · change 0 ≤ RCLike.re (∫ x,
+        projectiveBlockTraceFunction (star a * a) x ∂(mu : Measure (RP d)))
+      rw [← integral_re hint]
+      exact integral_nonneg fun x => by
+        rw [projectiveBlockTraceFunction_eq_projectiveFibre]
+        exact (Complex.nonneg_iff.mp
           ((projectiveFibreTracialState d s x).map_star_mul_self_nonneg a)).1
-    · rw [← integral_im]
+    · change 0 = RCLike.im (∫ x,
+        projectiveBlockTraceFunction (star a * a) x ∂(mu : Measure (RP d)))
+      rw [← integral_im hint]
+      symm
       apply integral_eq_zero_of_ae
       filter_upwards [] with x
-      exact (Complex.nonneg_iff.mp
-        ((projectiveFibreTracialState d s x).map_star_mul_self_nonneg a)).2
+      rw [projectiveBlockTraceFunction_eq_projectiveFibre]
+      simpa using (Complex.nonneg_iff.mp
+        ((projectiveFibreTracialState d s x).map_star_mul_self_nonneg a)).2.symm
   map_mul_comm := by
     intro a b
     apply integral_congr_ae
