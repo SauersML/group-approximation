@@ -43,7 +43,20 @@ s_U(-f)=s_U(f),         m_(-f)=-m_f.                    (TVC3)
 ```
 
 Thus the two equations have literally the same left-hand side and opposite
-right-hand sides. Their quotient is `J), proving `(TVC1)`.
+right-hand sides. Their quotient is `J`, proving `(TVC1)`.
+
+There is also a direct value gap. Let `q_+` and `q_-` be the sampling
+probabilities of these two full equation contexts. In either equation the
+last two occurrences are the same variable, so the parity relation fixes
+the first answer deterministically to `m_f` or `-m_f`. Bob receives that
+shared first-variable query with probability `1/3`. No response
+distribution for Bob can agree with both opposite deterministic answers.
+Thus, for arbitrary finite-dimensional or commuting strategies,
+
+```text
+omega(L^epsilon(u,B,pi))
+  <= 1 - min(q_+,q_-)/3 < 1.                            (TVC4)
+```
 
 Consequently no positive-noise output of the published test has a perfect
 commuting or finite-dimensional strategy, regardless of whether the source
