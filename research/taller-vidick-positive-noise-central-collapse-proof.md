@@ -66,7 +66,7 @@ s_U(-f)=s_U(f),       m_(-f)=-m_f.                      (TVP7)
 Indeed `s_U` chooses the same representative from `{f,-f}`, and
 multiplying that representative by `-f` reverses the constant sign used
 to define `m_f`. Therefore the second instance of `(TVP2)` has the
-same left-hand side as `(TVP4)`) but gives
+same left-hand side as `(TVP4)` but gives
 
 ```text
 x_(U,s_U(f))=[-m_f]=J[m_f].                             (TVP8)
