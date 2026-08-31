@@ -115,7 +115,9 @@ of `H`, so
 1 -> Gamma intersect ker(pi) -> Gamma -> H -> 1         (DMQ13)
 ```
 
-is exact with central kernel in the stable range.  The argument above proves
-nothing about whether this particular central extension splits.  That kernel
-question, rather than the downstairs opposite-root subgroup, is the precise
-remaining issue for this depth-one candidate.
+is exact with central kernel in the stable range.  The residual-finiteness argument alone does not decide whether this
+central extension splits.  The separate route
+`polynomial-qutrit-chart-has-hyperlinear-steinberg-lift` uses stable
+`K_2(F_2[T])=0` to construct a polynomial section and compares the
+specified lifts up to a finite central group.  It therefore closes this
+remaining depth-one kernel question and proves `Gamma` hyperlinear.
