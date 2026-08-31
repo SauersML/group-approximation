@@ -107,11 +107,25 @@ nonzero.  Since a nontrivial proper projection in the full matrix algebra
 `(TVQ14)` is not central, `P` remains noncentral after the inclusion
 `C[F] subset C[V]`.  This proves `(TVQ6)--(TVQ7)`.
 
-The earlier two-qutrit classification also shows that `P` is not a marked
-central type of any subgroup of this finite packet `F`.  We do not need,
-and do not assert, the stronger statement that no unrelated finite subgroup
-of all of `V` could rename `P`; the load-bearing conclusions here are
-its explicit three-chart expression and noncentrality.
+Equation `(TVQ12)` also gives the six-atom marginal
+
+```text
+R=sum_(a in {0,1},b) p_(a,b)
+ =z_(C,chi_0)+z_(C,chi_1)=q-z_(C,chi_2).               (TVQ18)
+```
+
+It has spin-block rank six and trace `2/9`; its complement has rank three
+and trace `1/9`.  Thus `R` is a proper noncentral projection.  The
+finite-subgroup classification in the two-qutrit proof says that every
+marked central type below `q` coming from a subgroup of `F` has
+spin-block rank `9`, `3`, or `1`.  Rank six is absent, so `R` is
+not one such type.
+
+That classification likewise shows that `P` is not a marked central type
+of any subgroup of this finite packet `F`.  We do not need, and do not
+assert, the stronger statement that no unrelated finite subgroup of all of
+`V` could rename either marginal; the conclusions here are their explicit
+multichart expressions and noncentrality.
 
 ## 3. Exact three-phase support balance
 
@@ -131,10 +145,13 @@ three incident atoms are
 ```
 
 Because multiplication by nonzero `t in F_3` permutes the three cube-root
-phases, these coefficients have equal modulus and sum to zero.  Thus the
-outside-`K` cancellation is an exact three-way collision, not hidden
-pairing.  This is the strict local alternative left open by support phase
-balance.
+phases, these coefficients have equal modulus and sum to zero.  For the
+proper marginal `R`, select the rows `a=0,1`; every element occurring
+outside `C` in either selected row is canceled by exactly such a triple,
+so `R` has the coefficient support displayed in `(TVQ18)`.  For the
+full context, all three rows give the same cancellation outside `K`.
+Thus both the proper marginal and the root partition cross support phase
+balance by an exact three-way collision, not hidden pairing.
 
 ## 4. Finite-dimensional invisibility in the three hosts
 
@@ -156,12 +173,12 @@ calculation proves `(TVQ17)`.
 For `n>=5`, the established splitting of the Steinberg central extension
 gives an injective lift `V->St_n(L_(F_2)(1,2))`.  Restricting any
 finite-dimensional representation to this lifted copy again proves
-`(TVQ17)`.  Since every `p_(a,b)` and `P` lies below `q`, all of
+`(TVQ17)`.  Since every `p_(a,b)`, `P`, and `R` lies below `q`, all of
 them are annihilated as well.
 
 ## 5. Why the construction stops locally
 
-All coefficients in `q`, the nine `p_(a,b)`, and `P` belong to
+All coefficients in `q`, the nine `p_(a,b)`, `P`, and `R` belong to
 `C[F]`, where `F` is finite.  The left regular representation of `F`
 is an exact finite-dimensional model; its canonical trace gives
 `tau(q)=1/3`, so it does not annihilate the selected corner.  It need not
