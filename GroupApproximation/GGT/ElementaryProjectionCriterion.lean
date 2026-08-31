@@ -151,6 +151,76 @@ def GeometricallySeparatedAt (H : Subgroup G) (s : S) : Prop :=
       (∃ c : G, c ∈ H ∧ dist (b • s) ((g * c) • s) ≤ ε)) →
     g ∈ H
 
+/-- **DGO Lemma 4.45, in the single-subgroup form used by Theorem 6.8.**
+
+Assume the `H`-orbit is unbounded at the chosen basepoint.  If every point of
+that orbit is also represented by the left-coset orbit `gH`, geometric
+separation forces `g ∈ H`.  Equality of the two orbit sets, as in the printed
+lemma, gives the displayed inclusion immediately; the one-sided formulation
+is the exact amount used by the proof.
+
+The argument is Definition 4.40 itself: take `1 • s` and an orbit point as far
+away as the requested diameter, and use the two prescribed representatives in
+`gH` with error zero. -/
+theorem mem_of_orbit_subset_leftCosetOrbit
+    (H : Subgroup G) (s : S) (g : G)
+    (hsep : GeometricallySeparatedAt H s)
+    (hunbounded : ∀ R : ℝ, ∃ h : G, h ∈ H ∧ R ≤ dist s (h • s))
+    (hsubset : ∀ a : G, a ∈ H →
+      ∃ c : G, c ∈ H ∧ a • s = (g * c) • s) :
+    g ∈ H := by
+  obtain ⟨R, hR, hforce⟩ := hsep 1 zero_lt_one
+  apply hforce g
+  intro D hDR
+  obtain ⟨b, hbH, hb⟩ := hunbounded D
+  obtain ⟨c₀, hc₀H, hc₀⟩ := hsubset 1 H.one_mem
+  obtain ⟨c₁, hc₁H, hc₁⟩ := hsubset b hbH
+  refine ⟨1, b, H.one_mem, hbH, ?_, ⟨c₀, hc₀H, ?_⟩,
+    ⟨c₁, hc₁H, ?_⟩⟩
+  · simpa using hb
+  · rw [hc₀]
+    exact dist_self _ |>.trans_le zero_le_one
+  · rw [hc₁]
+    exact dist_self _ |>.trans_le zero_le_one
+
+/-- The orbit of the left coset `gH` at `s`, used as the vertex set in DGO's
+projection complex.  Keeping the coset representative in the definition makes
+the equivariance calculations later in §4.5 literal applications of
+`mul_smul`. -/
+def leftCosetOrbitAt (H : Subgroup G) (g : G) (s : S) : Set S :=
+  {x | ∃ h : G, h ∈ H ∧ (g * h) • s = x}
+
+omit [PseudoMetricSpace S] in
+@[simp] theorem mem_leftCosetOrbitAt_iff
+    (H : Subgroup G) (g : G) (s x : S) :
+    x ∈ leftCosetOrbitAt H g s ↔
+      ∃ h : G, h ∈ H ∧ (g * h) • s = x :=
+  Iff.rfl
+
+/-- **DGO Lemma 4.45, printed two-coset form.**  If the `fH`- and `gH`-orbits
+at `s` agree and the subgroup orbit is unbounded, geometric separation gives
+`f⁻¹g ∈ H`.  Thus equal orbit subsets cannot represent two distinct left
+cosets.
+
+The proof translates the equality by `f⁻¹` and invokes
+`mem_of_orbit_subset_leftCosetOrbit`; no faithfulness of the action is assumed
+or needed. -/
+theorem inv_mul_mem_of_leftCosetOrbitAt_eq
+    (H : Subgroup G) (s : S) (f g : G)
+    (hsep : GeometricallySeparatedAt H s)
+    (hunbounded : ∀ R : ℝ, ∃ h : G, h ∈ H ∧ R ≤ dist s (h • s))
+    (horbit : leftCosetOrbitAt H f s = leftCosetOrbitAt H g s) :
+    f⁻¹ * g ∈ H := by
+  apply mem_of_orbit_subset_leftCosetOrbit H s (f⁻¹ * g) hsep hunbounded
+  intro a haH
+  have hfa : (f * a) • s ∈ leftCosetOrbitAt H f s :=
+    ⟨a, haH, rfl⟩
+  rw [horbit] at hfa
+  obtain ⟨c, hcH, hfac⟩ := hfa
+  refine ⟨c, hcH, ?_⟩
+  have htranslated := congrArg (fun x : S => f⁻¹ • x) hfac
+  simpa only [← mul_smul, inv_mul_cancel_left, mul_assoc] using htranslated.symm
+
 end Defs
 
 /-! ## Theorem 4.42, single subgroup -/

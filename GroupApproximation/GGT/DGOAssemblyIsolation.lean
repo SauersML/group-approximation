@@ -607,6 +607,30 @@ published proof of Proposition 4.14. -/
 def ChordPartnerQuadraticTraversalBound (L : ℕ) (partners : List ℕ) : Prop :=
   chordTraversalCost partners ≤ L * L
 
+/-- The sixteen chord partners used in the source-audit counterexample above:
+they are distinct starts on a chord of length sixteen, listed in the order of
+their partners on the polygon arc rather than in chord order. -/
+def zigzagChordPartners : List ℕ :=
+  [0, 15, 1, 14, 2, 13, 3, 12, 4, 11, 5, 10, 6, 9, 7, 8]
+
+/-- **The printed linear chord-traversal assertion is not a consequence of
+distinct chord incidence.**
+
+The explicit source-order enumeration has sixteen distinct entries, every
+one the start of an edge on a sixteen-edge chord, but its total variation is
+`120`, not at most `16`.  Thus injectivity and chord range alone imply only
+the quadratic traversal estimate used below; a linear estimate needs a
+genuine monotonicity or bounded-variation theorem. -/
+theorem zigzagChordPartners_refutes_linearTraversal :
+    zigzagChordPartners.Nodup ∧
+      (∀ y ∈ zigzagChordPartners, y < 16) ∧
+      chordTraversalCost zigzagChordPartners = 120 ∧
+      ¬ ChordPartnerTraversalBound 16 zigzagChordPartners ∧
+      ChordPartnerQuadraticTraversalBound 16 zigzagChordPartners := by
+  norm_num [zigzagChordPartners, chordTraversalCost,
+    ChordPartnerTraversalBound, ChordPartnerQuadraticTraversalBound,
+    Nat.dist]
+
 /-- If every entry is at most `L`, each transition costs at most `L`, so the
 total traversal is at most `partners.length * L`.  No order premise occurs. -/
 theorem chordTraversalCost_le_length_mul {partners : List ℕ} {L : ℕ}
