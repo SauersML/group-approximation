@@ -33,3 +33,11 @@ latter.
   recursively presented torsion-free non-MF seed, but that is the same
   missing analytic input at a weaker finiteness level; the embedding does
   not manufacture MF-radical membership.
+- The one-seam Baumslag--Gersten candidate is now excluded.  The explicit
+  primitive-shell construction in
+  `baumslag-gersten-mark-survives-opnorm-corona` gives operator-norm
+  microstates with relator defect tending to zero and the distinguished
+  generator at distance exactly two from the identity.  Thus that generator
+  is not in the MF radical.  Any successful Higman-type seed must spend the
+  genuinely cyclic multi-seam return rather than a single Baumslag--Solitar
+  closure.
