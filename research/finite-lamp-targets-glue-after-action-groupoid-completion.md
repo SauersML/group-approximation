@@ -108,6 +108,22 @@ relation on the character cube has Hamming defect exactly `1/2`.
 Therefore marginal character couplings do not determine a joint actor
 coupling; multiplication cells must be imposed during target selection.
 
+## A sufficient matrix observable, and its limit
+
+[[collision-and-phase-free-cartan-observables-force-joint-lamp-targets]]
+gives a quantitative extractor once a common rank-one masa refining the lamp
+PVMs is available.  Fourth-power collision mass near one rounds each actor
+unitary to a monomial; phase-free diagonal conditional-expectation mass near
+zero makes the underlying permutation asymptotically free.  Explicit bounds
+then transfer actor products and cylinder covariance to Hamming distance.
+
+These two statistics are not canonical scalar group moments.  They range
+over the growing minimal projections of the chosen masa.  Producing such
+masas uniformly from arbitrary crossed-product microstates would imply that
+every Connes-embeddable p.m.p. action admitting the extraction is sofic.
+For the Kun--Thom Bernoulli action this is exactly the desired contradiction,
+not an independent finite-dimensional Ulam theorem.
+
 ## Exact surviving direct-target seam
 
 The theorem above deliberately abandons conjugating the supplied unitary
