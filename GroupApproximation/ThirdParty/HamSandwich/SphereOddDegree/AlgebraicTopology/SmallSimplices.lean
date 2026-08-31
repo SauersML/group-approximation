@@ -35,10 +35,10 @@ that belongs to later prompts.
 -/
 
 open CategoryTheory AlgebraicTopology
-open AffineBarycentricSubdivision
 
 namespace GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree
 
+open AffineBarycentricSubdivision
 
 /-! ## 1. Open cover data -/
 
