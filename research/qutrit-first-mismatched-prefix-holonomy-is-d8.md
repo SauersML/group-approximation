@@ -29,7 +29,7 @@ Steinberg relations
 x^2=y^2=a^2=1,        [x,y]=a,        [a,x]=[a,y]=1.    (QMH1)
 ```
 
-Thus `D=<x,y> is exactly `D_8`. The returned scalar transvection
+Thus `D=<x,y>` is exactly `D_8`. The returned scalar transvection
 `a` lies in `K=GL_28(F_2)`, centralizes the whole qutrit group `C`,
 and normally generates `K`. This is the smallest natural
 degree-minus-one/degree-plus-one seam whose commutator returns a
