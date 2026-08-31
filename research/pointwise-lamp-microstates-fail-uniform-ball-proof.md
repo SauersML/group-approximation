@@ -1,10 +1,11 @@
 ---
 rg: 2
-id: pointwise-lamp-microstates-fail-the-uniform-ball-and-leave-multiplicity-proof
+id: pointwise-lamp-microstates-fail-uniform-ball-proof
 kind: route
 title: Separate pointwise lamp control from uniform Ulam control
 target: alekseev-thom-ulam-stability-does-not-close-the-kt-moving-window
 requires:
+  - finite-packet-basis-rigidifiers-leave-a-multiplicity-cocycle
   - kt-cyclic-parity-is-an-exact-quasiregular-return-correspondence
 ---
 

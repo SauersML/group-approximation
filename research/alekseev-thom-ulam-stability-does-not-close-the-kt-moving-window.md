@@ -4,7 +4,7 @@ id: alekseev-thom-ulam-stability-does-not-close-the-kt-moving-window
 kind: claim
 title: Hyperfinite Ulam stability does not close the Kun--Thom moving window
 artifacts:
-  - research/pointwise-lamp-microstates-fail-the-uniform-ball-and-leave-multiplicity-proof.md
+  - research/pointwise-lamp-microstates-fail-uniform-ball-proof.md
 distinct_from:
   kt-cyclic-parity-is-an-exact-quasiregular-return-correspondence: That identifies the pointed return which must be controlled; this proves that Ulam rounding of the lamp algebra neither supplies the required hypothesis globally nor controls the return multiplicity after rounding.
 ---
@@ -92,4 +92,3 @@ force the commutator to shrink. A valid bridge would require either:
 Neither follows from arXiv:2606.07369. The global route remains **OPEN**.
 
 DERIVATION
-pointwise-lamp-microstates-fail-the-uniform-ball-and-leave-multiplicity-proof
