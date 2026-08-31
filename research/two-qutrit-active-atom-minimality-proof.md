@@ -14,7 +14,7 @@ group has its irreducible spin representation on a nine-dimensional space.
 The proof of
 `two-qutrit-controlled-bases-give-proper-multipath-marginal` identifies
 the nine projections `p_(a,b)` as mutually orthogonal rank-one
-projections summing to the marked central projection `q). Therefore
+projections summing to the marked central projection `q`. Therefore
 
 ```text
 q C[E]q isomorphicTo M_9(C),       rank(p_(a,b))=1.      (TAP1)
@@ -24,7 +24,7 @@ The intrinsic selector calculation gives `ST=p_(0,0)`, so `E_11` has
 rank one. If `R` is a projection with `R<=E_11`, then
 `Ran(R)<=Ran(E_11)`. The latter space is one-dimensional, hence
 `rank(R)` is zero or one. In the nonzero case the ranges agree and
-`R=E_11). This proves `(TAJ2)`.
+`R=E_11`. This proves `(TAJ2)`.
 
 For any rank-one projection `e` in a full matrix algebra,
 
@@ -50,7 +50,7 @@ gives
  =C E_11 tensor D.                                     (TAP3)
 ```
 
-Under the canonical identification this is `D), and a projection in it
+Under the canonical identification this is `D`, and a projection in it
 has the form `E_11 tensor r`. The compressed image of every selector-packet
 operator `x tensor 1` is
 
