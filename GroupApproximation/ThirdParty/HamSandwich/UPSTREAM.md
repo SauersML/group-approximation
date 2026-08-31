@@ -66,3 +66,7 @@ cohomology homotopy-invariance layer therefore uses Mathlib's `Homotopy.op` and
 `PrismSimplicialHomotopy` backport. `CupProductScaffolding` reuses Mathlib's
 current tensor-additivity instances and enables the same compatibility options
 used by Mathlib for downward-complex tensor signs.
+
+`Degree` now unfolds the categorical endomorphism multiplication explicitly,
+and `AlexanderWhitney` applies naturality through
+`ConcreteCategory.congr_hom`; these are proof-preserving v4.32 API updates.

@@ -9,5 +9,8 @@ import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopolo
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularCohomology
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.SingularCohomologyHomotopyInvariance
 import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.CupProductScaffolding
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.TopCatBridge
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.Degree
+import GroupApproximation.ThirdParty.HamSandwich.SphereOddDegree.AlgebraicTopology.AlexanderWhitney
 
 /-! Namespace-isolated Apache-2.0 port of the HamSandwich Borsuk--Ulam dependency. -/
