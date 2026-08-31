@@ -228,16 +228,17 @@ machine-indexed binary LCS compiler or a separate direct terminal.
   `d` occurrences of a variable by a cycle of `d` equality-linked copies.
   Tietze elimination gives an isomorphism of solution groups fixing `J`.
   Thus occurrence two versus three is a sharp exact boundary.
-- **Demand a robust bounded-occurrence compiler.**  This is now closed at
-  occurrence four by
-  `expander-equality-splitting-is-a-robust-occurrence-four-compiler`.
-  Put the copies on cubic bipartite Ramanujan graphs and test equality on
-  edges.  Hilbert-valued Poincare rounding selects one actual copy reflection
-  and transfers the full source product-plus-commutator RMS defect with loss
-  at most `3w sqrt(2/lambda_*)`, independent of dimension and source
-  occurrence.  The rotating-Pauli assignment on every degree-two path or
-  cycle has edge energy `Theta(d^-2)` but constant distance from every
-  reflection, proving the occurrence-three pairwise-equality loss is sharp.
+- **Demand a robust bounded-occurrence compiler.**  This is now closed
+  already at occurrence three by
+  `dummy-subdivided-expanders-give-robust-occurrence-three`.
+  Subdivide `d` edges of a cubic bipartite Ramanujan graph, put the `d`
+  source occurrences on the new degree-two vertices, and leave the cubic
+  core as dummy equality variables.  Both used and dummy variables then
+  occur exactly three times.  Hilbert-valued Poincare rounding selects one
+  actual copy reflection and transfers every source product and context
+  commutator with a dimension- and degree-independent constant.  The
+  rotating-Pauli path/cycle lower bound remains sharp only for the no-dummy
+  construction: the dummy core is precisely what evades it.
   This solves only the bounded-occurrence synchronization layer; the native
   perfect source gap and its reverse decoder remain open.
 - **Nonlinear gadgets inside the LCS.**  Dies at the algebra level:
